@@ -346,6 +346,172 @@ gbVec3D *gbMatrix4::GetColumn(gbVec3D *out, int col) const
 }
 
 // ============================================================================
+// 0x10001910  SetAxisAngle(gbAxis, float, float)  (143 bytes)
+// public: void __thiscall gbMatrix4::SetAxisAngle(enum gbAxis,float,float)
+//
+// Sets this to a rotation matrix for the given axis.
+// param_2 = cos(angle), param_3 = sin(angle).
+// ============================================================================
+void gbMatrix4::SetAxisAngle(gbAxis axis, float cosA, float sinA)
+{
+    float *p = (float *)this;
+    int i;
+    for (i = 16; i != 0; i--) {
+        *p = 0.0f;
+        p++;
+    }
+    m[3][3] = 1.0f;
+    if (axis == 0) {
+        m[0][0] = 1.0f;
+        m[1][1] = cosA;
+        m[1][2] = sinA;
+        m[2][1] = -sinA;
+        m[2][2] = cosA;
+    } else if (axis == 1) {
+        m[1][1] = 1.0f;
+        m[0][0] = cosA;
+        m[2][0] = sinA;
+        m[0][2] = -sinA;
+        m[2][2] = cosA;
+    } else if (axis == 2) {
+        m[2][2] = 1.0f;
+        m[0][0] = cosA;
+        m[0][1] = sinA;
+        m[1][0] = -sinA;
+        m[1][1] = cosA;
+    }
+}
+
+// ============================================================================
+// 0x10001A30  SetAxisAngle(gbAxis, float)  (37 bytes)
+// public: void __thiscall gbMatrix4::SetAxisAngle(enum gbAxis,float)
+//
+// Sets rotation matrix from axis and angle in degrees.
+// Converts angle to radians, computes cos/sin, calls 3-arg overload.
+// ============================================================================
+void gbMatrix4::SetAxisAngle(gbAxis axis, float angle)
+{
+    float rad = angle * 0.017453292f;
+    float s = (float)sin(rad);
+    float c = (float)cos(rad);
+    SetAxisAngle(axis, c, s);
+}
+
+// ============================================================================
+// 0x10001A60  SetAxisAngle(gbVec3D*, float)  (74 bytes)
+// public: void __thiscall gbMatrix4::SetAxisAngle(struct gbVec3D *,float)
+//
+// Arbitrary axis rotation: creates a quaternion, converts to matrix.
+// ============================================================================
+void gbMatrix4::SetAxisAngle(gbVec3D *axis, float angle)
+{
+    gbQuaternion q;
+    q.x = 0.0f;
+    q.y = 0.0f;
+    q.z = 0.0f;
+    q.w = 1.0f;
+    q.SetAxisAngle(axis, angle);
+    q.GetMatrix(this);
+}
+
+// ============================================================================
+// 0x10001AB0  Invert (in-place)  (407 bytes)
+// public: void __thiscall gbMatrix4::Invert(void)
+//
+// Computes the inverse of the matrix in-place. Uses the cofactor method
+// for the 3x3 rotation part, then computes the translation from the
+// rotation inverse. Assumes m[0][3]==m[1][3]==m[2][3]==0, m[3][3]==1.
+// ============================================================================
+void gbMatrix4::Invert(void)
+{
+    gbMatrix4 tmp;
+    tmp.m[0][3] = 0.0f;
+    tmp.m[1][3] = 0.0f;
+
+    float cofA = m[1][1] * m[2][2] - m[2][1] * m[1][2];
+    float cofB = m[1][0] * m[2][2] - m[2][0] * m[1][2];
+    float cofC = m[2][1] * m[1][0] - m[2][0] * m[1][1];
+
+    float det = 1.0f / (cofA * m[0][0] - cofB * m[0][1] + cofC * m[0][2]);
+
+    tmp.m[0][0] = cofA * det;
+    tmp.m[0][1] = -((m[0][1] * m[2][2] - m[2][1] * m[0][2]) * det);
+    tmp.m[0][2] = (m[0][1] * m[1][2] - m[0][2] * m[1][1]) * det;
+    tmp.m[1][0] = -(cofB * det);
+    tmp.m[1][1] = (m[0][0] * m[2][2] - m[2][0] * m[0][2]) * det;
+    tmp.m[1][2] = -((m[0][0] * m[1][2] - m[1][0] * m[0][2]) * det);
+    tmp.m[2][0] = cofC * det;
+    tmp.m[2][3] = 0.0f;
+    tmp.m[3][3] = 1.0f;
+    tmp.m[2][1] = -((m[2][1] * m[0][0] - m[2][0] * m[0][1]) * det);
+    tmp.m[2][2] = (m[1][1] * m[0][0] - m[1][0] * m[0][1]) * det;
+    tmp.m[3][0] = -(tmp.m[1][0] * m[3][1] + tmp.m[2][0] * m[3][2] + tmp.m[0][0] * m[3][0]);
+    tmp.m[3][1] = -(tmp.m[1][1] * m[3][1] + tmp.m[2][1] * m[3][2] + tmp.m[0][1] * m[3][0]);
+    tmp.m[3][2] = -(tmp.m[1][2] * m[3][1] + tmp.m[2][2] * m[3][2] + tmp.m[0][2] * m[3][0]);
+
+    *this = tmp;
+}
+
+// ============================================================================
+// 0x10001C50  Invert(gbMatrix4*)  (351 bytes)
+// public: void __thiscall gbMatrix4::Invert(struct gbMatrix4 *)
+//
+// Computes the inverse and stores in output parameter.
+// Same cofactor method as the in-place version.
+// ============================================================================
+void gbMatrix4::Invert(gbMatrix4 *out)
+{
+    float cofA = m[1][1] * m[2][2] - m[2][1] * m[1][2];
+    float det = 1.0f / ((m[2][1] * m[1][0] - m[2][0] * m[1][1]) * m[0][2] +
+                        (cofA * m[0][0] -
+                        (m[1][0] * m[2][2] - m[2][0] * m[1][2]) * m[0][1]));
+
+    out->m[0][0] = cofA * det;
+    out->m[0][1] = -((m[0][1] * m[2][2] - m[2][1] * m[0][2]) * det);
+    out->m[0][3] = 0;
+    out->m[0][2] = (m[0][1] * m[1][2] - m[0][2] * m[1][1]) * det;
+    out->m[1][0] = -((m[1][0] * m[2][2] - m[2][0] * m[1][2]) * det);
+    out->m[1][1] = (m[0][0] * m[2][2] - m[2][0] * m[0][2]) * det;
+    out->m[1][3] = 0;
+    out->m[1][2] = -((m[0][0] * m[1][2] - m[1][0] * m[0][2]) * det);
+    out->m[2][0] = (m[2][1] * m[1][0] - m[2][0] * m[1][1]) * det;
+    out->m[2][1] = -((m[2][1] * m[0][0] - m[2][0] * m[0][1]) * det);
+    out->m[2][3] = 0;
+    out->m[2][2] = (m[1][1] * m[0][0] - m[1][0] * m[0][1]) * det;
+    out->m[3][0] = -(out->m[2][0] * m[3][2] + out->m[0][0] * m[3][0] + m[3][1] * out->m[1][0]);
+    out->m[3][1] = -(out->m[0][1] * m[3][0] + out->m[2][1] * m[3][2] + m[3][1] * out->m[1][1]);
+    out->m[3][3] = 1.0f;
+    out->m[3][2] = -(m[3][0] * out->m[0][2] + m[3][1] * out->m[1][2] + m[3][2] * out->m[2][2]);
+}
+
+// ============================================================================
+// 0x10001EF0  RightMultiply(gbQuaternion)  (48 bytes)
+// public: void __thiscall gbMatrix4::RightMultiply(struct gbQuaternion const &)
+//
+// Converts quaternion to matrix, then right-multiplies this by it.
+// ============================================================================
+void gbMatrix4::RightMultiply(const gbQuaternion &q)
+{
+    gbMatrix4 tmp;
+    ((gbQuaternion *)&q)->GetMatrix(&tmp);
+    RightMultiply(tmp);
+}
+
+// ============================================================================
+// 0x10001F20  operator*=(gbQuaternion)  (48 bytes)
+// public: void __thiscall gbMatrix4::operator*=(struct gbQuaternion const &)
+// Also: void __thiscall gbMatrix4::LeftMultiply(struct gbQuaternion const &)
+//
+// Converts quaternion to matrix, then left-multiplies this by it.
+// ============================================================================
+void gbMatrix4::operator*=(const gbQuaternion &q)
+{
+    gbMatrix4 tmp;
+    ((gbQuaternion *)&q)->GetMatrix(&tmp);
+    LeftMultiply(tmp);
+}
+
+// ============================================================================
 // 0x10001F50  LeftTranslate(gbVec3D&)  (87 bytes)
 // public: void __thiscall gbMatrix4::LeftTranslate(struct gbVec3D &)
 //
@@ -436,4 +602,185 @@ void gbMatrix4::LeftScale(float sx, float sy, float sz)
     m[2][0] = sz * m[2][0];
     m[2][1] = sz * m[2][1];
     m[2][2] = sz * m[2][2];
+}
+
+// ============================================================================
+// 0x10002150  GetRow(gbVec4D*, int)  (38 bytes)
+// public: struct gbVec4D * __thiscall gbMatrix4::GetRow(struct gbVec4D *,int)const
+//
+// Copies all 4 elements of a row.
+// ============================================================================
+float *gbMatrix4::GetRow(float *out, int row) const
+{
+    float *pRow = (float *)this + row * 4;
+    out[0] = pRow[0];
+    out[1] = pRow[1];
+    out[2] = pRow[2];
+    out[3] = pRow[3];
+    return out;
+}
+
+// ============================================================================
+// 0x10002180  GetColumn(gbVec4D*, int)  (39 bytes)
+// public: struct gbVec4D * __thiscall gbMatrix4::GetColumn(struct gbVec4D *,int)const
+//
+// Copies all 4 elements of a column.
+// ============================================================================
+float *gbMatrix4::GetColumn(float *out, int col) const
+{
+    out[0] = m[0][col];
+    out[1] = m[1][col];
+    out[2] = m[2][col];
+    out[3] = m[3][col];
+    return out;
+}
+
+// ============================================================================
+// 0x100012B0  Transform(gbVec3D*, gbVec3D*, int)  (126 bytes)
+// public: void __thiscall gbMatrix4::Transform(struct gbVec3D *,struct gbVec3D *,int)const
+//
+// Batch point transform: transforms an array of vectors.
+// ============================================================================
+void gbMatrix4::Transform(gbVec3D *in, gbVec3D *out, int count) const
+{
+    if (count > 0) {
+        do {
+            count--;
+            out->x = in->y * m[1][0] + in->z * m[2][0] + in->x * m[0][0] + m[3][0];
+            out->y = in->x * m[0][1] + in->y * m[1][1] + in->z * m[2][1] + m[3][1];
+            out->z = in->x * m[0][2] + in->y * m[1][2] + in->z * m[2][2] + m[3][2];
+            in++;
+            out++;
+        } while (count != 0);
+    }
+}
+
+// ============================================================================
+// 0x100013F0  Transform(gbVec3D*, int)  (116 bytes)
+// public: void __thiscall gbMatrix4::Transform(struct gbVec3D *,int)const
+//
+// In-place batch point transform. Must preserve original values before
+// overwriting since input and output are the same buffer.
+// ============================================================================
+void gbMatrix4::Transform(gbVec3D *verts, int count) const
+{
+    if (count > 0) {
+        do {
+            float ox = verts->x;
+            float oy = verts->y;
+            float oz = verts->z;
+            count--;
+            verts->z = ox * m[0][2] + oy * m[1][2] + oz * m[2][2] + m[3][2];
+            verts->x = ox * m[0][0] + oy * m[1][0] + oz * m[2][0] + m[3][0];
+            verts->y = ox * m[0][1] + oy * m[1][1] + oz * m[2][1] + m[3][1];
+            verts++;
+        } while (count != 0);
+    }
+}
+
+// ============================================================================
+// 0x10001330  Transform_W(gbVec3D*, gbVec3D*, int)  (185 bytes)
+// public: void __thiscall gbMatrix4::Transform_W(struct gbVec3D *,struct gbVec3D *,int)const
+//
+// Batch perspective transform: full 4x4 multiply with W divide.
+// out = (M * [in, 1]) / w
+// ============================================================================
+void gbMatrix4::Transform_W(gbVec3D *in, gbVec3D *out, int count) const
+{
+    if (count > 0) {
+        do {
+            count--;
+            out->x = in->x * m[0][0] + in->y * m[1][0] + in->z * m[2][0] + m[3][0];
+            out->y = in->x * m[0][1] + in->y * m[1][1] + in->z * m[2][1] + m[3][1];
+            out->z = in->x * m[0][2] + in->y * m[1][2] + in->z * m[2][2] + m[3][2];
+            float w = in->x * m[0][3] + in->y * m[1][3] + in->z * m[2][3] + m[3][3];
+            out->x = out->x / w;
+            out->y = out->y / w;
+            out->z = out->z / w;
+            out++;
+            in++;
+        } while (count != 0);
+    }
+}
+
+// ============================================================================
+// 0x10001760  IsOrthonormal  (337 bytes)
+// public: bool __thiscall gbMatrix4::IsOrthonormal(void)const
+//
+// Same as gbRotMatrix::IsOrthonormal but also checks that the translation
+// row (row 3) is valid (no NaN). Result = orthonormal_check & row3_valid.
+// ============================================================================
+bool gbMatrix4::IsOrthonormal(void) const
+{
+    gbVec3D col_x, col_y, cross, col_z;
+    bool ortho;
+
+    col_x.x = m[0][0]; col_x.y = m[1][0]; col_x.z = m[2][0];
+    col_y.x = m[0][1]; col_y.y = m[1][1]; col_y.z = m[2][1];
+    col_z.x = m[0][2]; col_z.y = m[1][2]; col_z.z = m[2][2];
+    cross.x = 0.0f;
+    cross.y = 0.0f;
+    cross.z = 0.0f;
+
+    col_z.Normalize();
+    col_x.CrossProduct(&col_y, &cross);
+    cross.Normalize();
+
+    if (fabs(cross.x - col_z.x) < GB_FLOAT_EPSILON &&
+        fabs(cross.y - col_z.y) < GB_FLOAT_EPSILON &&
+        fabs(cross.z - col_z.z) < GB_FLOAT_EPSILON) {
+        ortho = true;
+    } else {
+        col_z.x = -col_z.x;
+        col_z.y = -col_z.y;
+        col_z.z = -col_z.z;
+        if (fabs(cross.x - col_z.x) < GB_FLOAT_EPSILON &&
+            fabs(cross.y - col_z.y) < GB_FLOAT_EPSILON &&
+            fabs(cross.z - col_z.z) < GB_FLOAT_EPSILON) {
+            ortho = true;
+        } else {
+            ortho = false;
+        }
+    }
+
+    bool valid = ((gbVec3D *)&m[3][0])->IsValid();
+    return valid && ortho;
+}
+
+// ============================================================================
+// 0x10001E20  MakeMatrix  (205 bytes)
+// public: void __thiscall gbMatrix4::MakeMatrix(struct gbVec3D &,struct gbVec3D &,struct gbVec3D &)
+//
+// Builds a view/orientation matrix from forward, up, and position vectors.
+// Row 0 = side (cross of up and forward, normalized)
+// Row 1 = recomputed up (cross of forward and side)
+// Row 2 = forward
+// Row 3 = position
+// ============================================================================
+void gbMatrix4::MakeMatrix(gbVec3D &forward, gbVec3D &up, gbVec3D &pos)
+{
+    gbVec3D side, realUp;
+    side.x = 0.0f; side.y = 0.0f; side.z = 0.0f;
+    realUp.x = 0.0f; realUp.y = 0.0f; realUp.z = 0.0f;
+
+    up.CrossProduct(&forward, &side);
+    side.Normalize();
+    forward.CrossProduct(&side, &realUp);
+
+    m[0][0] = side.x;
+    m[0][1] = side.y;
+    m[0][2] = side.z;
+    m[0][3] = 0.0f;
+    m[1][0] = realUp.x;
+    m[1][1] = realUp.y;
+    m[1][2] = realUp.z;
+    m[1][3] = 0.0f;
+    m[2][0] = forward.x;
+    m[2][1] = forward.y;
+    m[2][2] = forward.z;
+    m[2][3] = 0.0f;
+    m[3][0] = pos.x;
+    m[3][1] = pos.y;
+    m[3][2] = pos.z;
+    m[3][3] = 1.0f;
 }

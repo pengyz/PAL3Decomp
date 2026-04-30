@@ -149,6 +149,14 @@ struct gbMatrix4 {
     };
 };
 
+struct gbMatrixStack {
+    struct gbMatrix4 *pStack;   /* +0x00: pointer to array of gbMatrix4 */
+    int maxDepth;               /* +0x04: maximum stack depth */
+    int curDepth;               /* +0x08: current stack index */
+    int dirty;                  /* +0x0C: invalidation flag */
+};
+/* sizeof = 0x10 */
+
 struct gbColorQuad {
     union {
         int ColorQuadFmt;
