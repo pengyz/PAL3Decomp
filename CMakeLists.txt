@@ -57,8 +57,8 @@ if(MSVC)
     elseif(BUILD_TARGET STREQUAL "pal3")
         # VC7.0/VS2003 flags for PAL3.exe
         set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} /EHsc /GR")  # Modern exception handling + RTTI
-        set(CMAKE_C_FLAGS_RELEASE "/O2 /DNDEBUG /DWIN32 /D_WINDOWS")
-        set(CMAKE_CXX_FLAGS_RELEASE "/O2 /DNDEBUG /DWIN32 /D_WINDOWS")
+        set(CMAKE_C_FLAGS_RELEASE "/O2 /DNDEBUG /DWIN32 /D_WINDOWS /MD")
+        set(CMAKE_CXX_FLAGS_RELEASE "/O2 /DNDEBUG /DWIN32 /D_WINDOWS /MD")
 
         if(COMPILER_VERSION STREQUAL "VS2003" OR COMPILER_VERSION STREQUAL "VS2002")
             # Link-time code generation (if supported)
