@@ -91,30 +91,32 @@ void __cdecl operator_delete_wrapper(void *p)
 // ============================================================================
 void __fastcall TopoFace_Assign(void *pThis, int src)
 {
-    int *pDst = (int *)pThis;
+    struct TopoFace *pDst = (struct TopoFace *)pThis;
+    struct TopoFace *pSrc = (struct TopoFace *)src;
+    int *pDstInt = (int *)pThis;
     int offset = src - (int)pThis;
 
     /* Copy first 3 dwords (vertex indices) */
     int n = 3;
     do {
-        *pDst = *(int *)(offset + (int)pDst);
-        pDst++;
+        *pDstInt = *(int *)(offset + (int)pDstInt);
+        pDstInt++;
         n--;
     } while (n != 0);
 
     /* Copy next 6 pairs of dwords (adjacency data, +0x0C to +0x24) */
     n = 3;
     do {
-        *pDst = *(int *)(offset + (int)pDst);
-        pDst[1] = *(int *)(offset + (int)pDst + 4);
-        pDst += 2;
+        *pDstInt = *(int *)(offset + (int)pDstInt);
+        pDstInt[1] = *(int *)(offset + (int)pDstInt + 4);
+        pDstInt += 2;
         n--;
     } while (n != 0);
 
     /* Copy last 3 dwords (+0x24 to +0x30) */
-    *(int *)((int)pThis + 0x24) = *(int *)(src + 0x24);
-    *(int *)((int)pThis + 0x28) = *(int *)(src + 0x28);
-    *(int *)((int)pThis + 0x2C) = *(int *)(src + 0x2C);
+    pDst->extra[0] = pSrc->extra[0];
+    pDst->extra[1] = pSrc->extra[1];
+    pDst->extra[2] = pSrc->extra[2];
 }
 
 // ============================================================================
@@ -123,14 +125,16 @@ void __fastcall TopoFace_Assign(void *pThis, int src)
 //
 // Returns the number of face elements (each 0x30 bytes) in the vector.
 // Vector layout: this+0x04=pBegin, this+0x08=pEnd
+// Note: 'this' points to TopoGeom+0x04 (the type field), so faceVector is at this+0x04
 // ============================================================================
 int __fastcall TopoFaceVector_Size(void *pThis)
 {
-    int pBegin = *(int *)((int)pThis + 0x04);
+    struct TopoFaceVector *pVec = (struct TopoFaceVector *)((char *)pThis + 0x04);
+    struct TopoFace *pBegin = pVec->pBegin;
     if (pBegin == 0) {
         return 0;
     }
-    return (*(int *)((int)pThis + 0x08) - pBegin) / 0x30;
+    return (int)(pVec->pEnd - pBegin);
 }
 
 // ============================================================================
@@ -141,10 +145,12 @@ int __fastcall TopoFaceVector_Size(void *pThis)
 // forward into the gap. Each element is 0x30 bytes (12 dwords).
 // The move is done element-by-element, with the source at a fixed offset
 // from destination (the gap size = param_2 - param_1).
+// Note: 'this' points to the faceVector itself
 // ============================================================================
 int *__fastcall TopoFaceVector_Erase(void *pThis, int edx, int *pFirst, int *pLast)
 {
-    int *pEnd = *(int **)((int)pThis + 0x08);
+    struct TopoFaceVector *pVec = (struct TopoFaceVector *)pThis;
+    int *pEnd = (int *)pVec->pEnd;
     int *pDst = pFirst;
     int *pNext;  // Declare outside do-while loop for MSVC compatibility
 
@@ -175,7 +181,7 @@ int *__fastcall TopoFaceVector_Erase(void *pThis, int edx, int *pFirst, int *pLa
             pNextSrc = pNextSrc + 0xC;
         } while (pNext != pEnd);
     }
-    *(int **)((int)pThis + 0x08) = pDst;
+    pVec->pEnd = (struct TopoFace *)pDst;
     return pFirst;
 }
 
@@ -188,13 +194,15 @@ int *__fastcall TopoFaceVector_Erase(void *pThis, int edx, int *pFirst, int *pLa
 // 1. Need reallocation (pEnd + count > pAlloc)
 // 2. Partial space (pEnd - pPos < count)
 // 3. Full space available (pEnd - pPos >= count)
+// Note: 'this' points to the faceVector itself
 // ============================================================================
 void __fastcall TopoFaceVector_Insert(void *pThis, int edx,
     int *pPos, unsigned int count, int *pValue)
 {
-    int *pBegin = *(int **)((int)pThis + 0x04);
-    int *pEnd = *(int **)((int)pThis + 0x08);
-    int *pAlloc = *(int **)((int)pThis + 0x0C);
+    struct TopoFaceVector *pVec = (struct TopoFaceVector *)pThis;
+    int *pBegin = (int *)pVec->pBegin;
+    int *pEnd = (int *)pVec->pEnd;
+    int *pAlloc = (int *)pVec->pAlloc;
 
     /* Calculate available space: (pAlloc - pEnd) / 0x30 */
     unsigned int availSpace;
@@ -301,12 +309,12 @@ void __fastcall TopoFaceVector_Insert(void *pThis, int edx,
         }
 
         /* Free old buffer */
-        operator_delete_wrapper(*(void **)((int)pThis + 0x04));
+        operator_delete_wrapper((void *)pVec->pBegin);
 
         /* Update vector pointers */
-        *(int **)((int)pThis + 0x0C) = pNew + newCap * 0xC;
-        *(int **)((int)pThis + 0x04) = pNew;
-        *(int **)((int)pThis + 0x08) = pNew + (curSize + count) * 0xC;
+        pVec->pAlloc = (struct TopoFace *)(pNew + newCap * 0xC);
+        pVec->pBegin = (struct TopoFace *)pNew;
+        pVec->pEnd = (struct TopoFace *)(pNew + (curSize + count) * 0xC);
         return;
     }
 
@@ -371,7 +379,7 @@ void __fastcall TopoFaceVector_Insert(void *pThis, int edx,
         }
 
         /* Update pEnd */
-        *(int *)((int)pThis + 0x08) = *(int *)((int)pThis + 0x08) + count * 0x30;
+        pVec->pEnd = (struct TopoFace *)((int)pVec->pEnd + count * 0x30);
         return;
     }
 
@@ -416,7 +424,7 @@ void __fastcall TopoFaceVector_Insert(void *pThis, int edx,
         }
 
         /* Update pEnd */
-        *(int *)((int)pThis + 0x08) = *(int *)((int)pThis + 0x08) + count * 0x30;
+        pVec->pEnd = (struct TopoFace *)((int)pVec->pEnd + count * 0x30);
     }
 }
 
@@ -429,39 +437,36 @@ void __fastcall TopoFaceVector_Insert(void *pThis, int edx,
 // ============================================================================
 void __fastcall TopoMeshData_Init(void *pThis, int edx, int *pDesc)
 {
+    struct TopoMeshData *pMesh = (struct TopoMeshData *)pThis;
     int vertexCount = pDesc[9];                     /* desc+0x24 */
-    *(int *)((int)pThis + 0x24) = vertexCount;
+    pMesh->vertexCount = vertexCount;
     int bufRowSize = pDesc[8];                      /* desc+0x20 */
-    *(int *)((int)pThis + 0x20) = bufRowSize;
+    pMesh->bufferRowSize = bufRowSize;
 
     int allocRows = vertexCount;
     if (vertexCount < 0x10) {
         allocRows = 0x10;
     }
-    *(int *)((int)pThis + 0x28) = allocRows;
+    pMesh->allocRowCount = allocRows;
 
-    *(int *)((int)pThis + 0x04) = pDesc[1];         /* vertexStride */
-    int vertexFlags = pDesc[2];                     /* vertexFlags */
-    *(int *)((int)pThis + 0x08) = vertexFlags;
+    pMesh->vertexStride = pDesc[1];         /* vertexStride */
+    int vertexFlags = pDesc[2];             /* vertexFlags */
+    pMesh->vertexFlags = vertexFlags;
 
     /* Copy 4 dwords from desc+0x0C to this+0x0C */
-    int *pDst = (int *)((int)pThis + 0x0C);
-    int offset = (int)pDesc - (int)pThis;
-    int n = 4;
-    do {
-        *pDst = *(int *)(offset + (int)pDst);
-        pDst++;
-        n--;
-    } while (n != 0);
+    pMesh->field_0C = pDesc[3];             /* desc+0x0C */
+    pMesh->field_10 = pDesc[4];             /* desc+0x10 */
+    pMesh->field_14 = pDesc[5];             /* desc+0x14 */
+    pMesh->field_18 = pDesc[6];             /* desc+0x18 */
 
-    *(int *)((int)pThis + 0x1C) = pDesc[7];         /* desc+0x1C */
+    pMesh->field_1C = pDesc[7];         /* desc+0x1C */
 
     if (vertexFlags >= 0) {
         /* Normal path: allocate rowSize * allocRows, copy rowSize * vertexCount bytes */
-        void *buf = malloc(*(int *)((int)pThis + 0x20) * *(int *)((int)pThis + 0x28));
-        *(void **)pThis = buf;
+        void *buf = malloc(pMesh->bufferRowSize * pMesh->allocRowCount);
+        pMesh->pVertexBuffer = buf;
 
-        unsigned int copySize = (unsigned int)(*(int *)((int)pThis + 0x20) * *(int *)((int)pThis + 0x24));
+        unsigned int copySize = (unsigned int)(pMesh->bufferRowSize * pMesh->vertexCount);
         int *pSrc = (int *)pDesc[0];
         int *pCopyDst = (int *)buf;
 
@@ -473,23 +478,23 @@ void __fastcall TopoMeshData_Init(void *pThis, int edx, int *pDesc)
         char *pByteDst = (char *)pCopyDst;
         while (bytes != 0) { *pByteDst = *pByteSrc; pByteSrc++; pByteDst++; bytes--; }
 
-        *(int *)((int)pThis + 0x2C) = pDesc[0xD];   /* desc+0x34 */
-        *(int *)((int)pThis + 0x30) = pDesc[0xE];   /* desc+0x38 */
+        pMesh->field_2C = pDesc[0xD];   /* desc+0x34 */
+        pMesh->field_30 = pDesc[0xE];   /* desc+0x38 */
         return;
     }
 
     /* Negative flags path: expand vertex rows by inserting 12 extra bytes per row */
-    int newRowSize = *(int *)((int)pThis + 0x20) + 0x0C;
-    *(int *)((int)pThis + 0x20) = newRowSize;
+    int newRowSize = pMesh->bufferRowSize + 0x0C;
+    pMesh->bufferRowSize = newRowSize;
 
-    void *buf = malloc(newRowSize * *(int *)((int)pThis + 0x28));
-    *(void **)pThis = buf;
+    void *buf = malloc(newRowSize * pMesh->allocRowCount);
+    pMesh->pVertexBuffer = buf;
 
     int idx = 0;
     if (vertexCount > 0) {
         do {
-            char *pDstRow = (char *)*(int *)pThis + *(int *)((int)pThis + 0x20) * idx;
-            int stride = *(int *)((int)pThis + 0x04);
+            char *pDstRow = (char *)pMesh->pVertexBuffer + pMesh->bufferRowSize * idx;
+            int stride = pMesh->vertexStride;
             unsigned int copyLen = stride + 0x0C;
             char *pSrcRow = (char *)pDesc[0] + pDesc[8] * idx;
 
@@ -520,12 +525,12 @@ void __fastcall TopoMeshData_Init(void *pThis, int edx, int *pDesc)
             }
 
             idx++;
-        } while (idx < *(int *)((int)pThis + 0x24));
+        } while (idx < pMesh->vertexCount);
     }
 
-    *(int *)((int)pThis + 0x08) = *(int *)((int)pThis + 0x04) + 0x0C;
-    *(int *)((int)pThis + 0x2C) = pDesc[0xD];       /* desc+0x34 */
-    *(int *)((int)pThis + 0x30) = pDesc[0xE];       /* desc+0x38 */
+    pMesh->vertexFlags = pMesh->vertexStride + 0x0C;
+    pMesh->field_2C = pDesc[0xD];       /* desc+0x34 */
+    pMesh->field_30 = pDesc[0xE];       /* desc+0x38 */
 }
 
 // ============================================================================
@@ -542,6 +547,7 @@ void __fastcall TopoMeshData_Init(void *pThis, int edx, int *pDesc)
 // ============================================================================
 int __fastcall TopoGeom_Init(void *pThis, int edx, int *pDesc)
 {
+    struct TopoGeom *pGeom = (struct TopoGeom *)pThis;
     int *pMesh;
     unsigned int faceCount;
     unsigned int curSize;
@@ -559,15 +565,15 @@ int __fastcall TopoGeom_Init(void *pThis, int edx, int *pDesc)
     } else {
         pMesh = NULL;
     }
-    *(int **)((int)pThis + 0x14) = pMesh;
+    pGeom->pMeshData = (struct TopoMeshData *)pMesh;
 
     /* Initialize mesh data from descriptor */
     TopoMeshData_Init(pMesh, 0, pDesc);
 
     /* Get face vector info */
-    int pBegin = *(int *)((int)pThis + 0x08);
+    struct TopoFace *pBegin = pGeom->faceVector.pBegin;
     faceCount = (unsigned int)pDesc[0x0C];           /* desc+0x30 = faceCount */
-    void *pVec = (void *)((int)pThis + 0x04);        /* face vector at this+0x04 */
+    void *pVec = (void *)&pGeom->type;               /* Pointer to type field (this+0x04) */
 
     local_c = 0;
     local_8 = 0;
@@ -577,7 +583,7 @@ int __fastcall TopoGeom_Init(void *pThis, int edx, int *pDesc)
     if (pBegin == 0) {
         curSize = 0;
     } else {
-        curSize = (unsigned int)((*(int *)((int)pThis + 0x0C) - pBegin) / 0x30);
+        curSize = (unsigned int)((int)(pGeom->faceVector.pEnd - pBegin));
     }
 
     if (curSize < faceCount) {
@@ -586,18 +592,18 @@ int __fastcall TopoGeom_Init(void *pThis, int edx, int *pDesc)
         if (pBegin == 0) {
             sizeNow = 0;
         } else {
-            sizeNow = (*(int *)((int)pThis + 0x0C) - pBegin) / 0x30;
+            sizeNow = (int)(pGeom->faceVector.pEnd - pBegin);
         }
         TopoFaceVector_Insert(pVec, 0,
-            *(int **)((int)pThis + 0x0C),            /* insert at pEnd */
+            (int *)pGeom->faceVector.pEnd,            /* insert at pEnd */
             faceCount - sizeNow, local_30);
     } else {
         /* May need to shrink */
         unsigned int existingSize = (unsigned int)TopoFaceVector_Size(pVec);
         if (faceCount < existingSize) {
             TopoFaceVector_Erase(pVec, 0,
-                (int *)(faceCount * 0x30 + *(int *)((int)pThis + 0x08)),
-                *(int **)((int)pThis + 0x0C));
+                (int *)((char *)pGeom->faceVector.pBegin + faceCount * 0x30),
+                (int *)pGeom->faceVector.pEnd);
         }
     }
 
@@ -616,14 +622,14 @@ int __fastcall TopoGeom_Init(void *pThis, int edx, int *pDesc)
                 unsigned int i0 = (unsigned int)*(unsigned short *)((char *)pIdx16 + idx16Ofs);
                 unsigned int i1 = (unsigned int)*(unsigned short *)((char *)pIdx16 + idx16Ofs + 2);
                 unsigned int i2 = (unsigned int)*(unsigned short *)((char *)pIdx16 + idx16Ofs + 4);
-                int base = *(int *)((int)pThis + 0x08);
+                int base = (int)pGeom->faceVector.pBegin;
                 *(unsigned int *)(base + faceOfs) = i0;
                 *(unsigned int *)(base + faceOfs + 4) = i1;
                 *(unsigned int *)(base + faceOfs + 8) = i2;
             } else {
                 /* 32-bit indices (desc+0x2C = pIndices32) */
                 int *pIdx32 = (int *)pDesc[11];
-                int base = *(int *)((int)pThis + 0x08);
+                int base = (int)pGeom->faceVector.pBegin;
                 *(int *)(base + faceOfs) = *(int *)((char *)pIdx32 + idx32Ofs);
                 *(int *)(base + faceOfs + 4) = *(int *)((char *)pIdx32 + idx32Ofs + 4);
                 *(int *)(base + faceOfs + 8) = *(int *)((char *)pIdx32 + idx32Ofs + 8);
@@ -633,7 +639,7 @@ int __fastcall TopoGeom_Init(void *pThis, int edx, int *pDesc)
             int adjOfs = faceOfs;
             int n = 3;
             do {
-                int pBase2 = *(int *)((int)pThis + 0x08);
+                int pBase2 = (int)pGeom->faceVector.pBegin;
                 adjOfs += 8;
                 n--;
                 *(int *)(adjOfs + pBase2 + 4) = (int)0xFFFFFFFF;
