@@ -133,6 +133,10 @@ struct gbQuaternion {
     float w;
 };
 
+struct gbRotMatrix {
+    float m[3][3];
+};
+
 struct gbMatrix4 {
     union {
         struct {

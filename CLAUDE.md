@@ -9,11 +9,10 @@ compiler (MSVC), generates byte-identical machine code to the original binary.
 ## Directory Structure
 
 - `original/` - Original PAL3.exe (not in git)
-- `src/` - Decompiled source code, organized by module:
-  - `core/` - Engine core (rendering, input, audio)
-  - `game/` - Game logic (combat, story, UI)
-  - `script/` - Script engine (SCE interpreter)
-  - `third_party/` - Third-party library stubs
+- `src/` - Decompiled source code, organized by build target:
+  - `topo/` - topo.dll (数学库: gbVec3D, gbMatrix4, gbRotMatrix, gbQuaternion, gbMatrixStack)
+  - `gbengine/` - gbengine.dll (引擎核心: 渲染、输入、音频、资源管理)
+  - `pal3/` - PAL3.exe (游戏逻辑: 战斗、剧情、UI、脚本)
 - `include/` - Header files and struct definitions
   - `pal3.h` - Master header (include this everywhere)
   - `pal3_config.h` - Compiler/platform macros

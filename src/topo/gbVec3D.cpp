@@ -87,6 +87,20 @@ gbVec3D::gbVec3D(float _x, float _y, float _z)
 }
 
 // ============================================================================
+// 0x100018C0  `default constructor closure'  (11 bytes)
+// public: void __thiscall gbVec3D::`default constructor closure'(void)
+//
+// Compiler-generated default constructor. Zeros all members.
+// Mangled: ??_FgbVec3D@@QAEXXZ
+// ============================================================================
+gbVec3D::gbVec3D(void)
+{
+    x = 0.0f;
+    y = 0.0f;
+    z = 0.0f;
+}
+
+// ============================================================================
 // 0x10001490  operator=  (20 bytes)
 // public: void __thiscall gbVec3D::operator=(struct gbVec3D const &)
 // ============================================================================
