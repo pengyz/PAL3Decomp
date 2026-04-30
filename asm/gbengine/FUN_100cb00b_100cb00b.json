@@ -1,0 +1,24 @@
+{
+  "address": "0x100cb00b", 
+  "size_bytes": 8, 
+  "calling_convention": "unknown", 
+  "signature": "undefined FUN_100cb00b(void)", 
+  "callees": [
+    {
+      "address": "0x100caad7", 
+      "name": "FUN_100caad7"
+    }
+  ], 
+  "global_refs": [], 
+  "has_custom_name": false, 
+  "decompiled_c": "\nvoid FUN_100cb00b(void)\n\n{\n  FUN_100caad7(10);\n  return;\n}\n\n", 
+  "is_thunk": false, 
+  "name": "FUN_100cb00b", 
+  "assembly": "  100cb00b:  PUSH 0xa\n  100cb00d:  CALL 0x100caad7\n  100cb012:  RET", 
+  "callers": [
+    {
+      "address": "0x100bb13b", 
+      "name": "FUN_100bb13b"
+    }
+  ]
+}

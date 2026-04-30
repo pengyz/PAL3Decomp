@@ -1,0 +1,108 @@
+{
+  "address": "0x100200d0", 
+  "size_bytes": 191, 
+  "calling_convention": "__thiscall", 
+  "signature": "void __thiscall ~gbResource(gbResource * this)", 
+  "callees": [
+    {
+      "address": "0x100e4b0d", 
+      "name": "_malloc"
+    }, 
+    {
+      "address": "0x100e4b99", 
+      "name": "FUN_100e4b99"
+    }, 
+    {
+      "address": "0x100e4b99", 
+      "name": "FUN_100e4b99"
+    }, 
+    {
+      "address": "0x1002f7e0", 
+      "name": "~gbRefObject"
+    }
+  ], 
+  "global_refs": [
+    {
+      "address": "0x-0000008", 
+      "type": null, 
+      "name": "DAT_-0000008"
+    }, 
+    {
+      "address": "0x100f5338", 
+      "type": "pointer", 
+      "name": "DAT_100f5338"
+    }, 
+    {
+      "address": "0x-0000004", 
+      "type": null, 
+      "name": "DAT_-0000004"
+    }
+  ], 
+  "has_custom_name": true, 
+  "decompiled_c": "\n/* public: virtual __thiscall gbResource::~gbResource(void) */\n\nvoid __thiscall gbResource::~gbResource(gbResource *this)\n\n{\n  int iVar1;\n  int *piVar2;\n  int iVar3;\n  int iVar4;\n  undefined4 *puVar5;\n  int *piVar6;\n  undefined4 *puVar7;\n  undefined4 *puVar8;\n  \n                    /* 0x200d0  157  ??1gbResource@@UAE@XZ */\n  piVar2 = *(int **)(this + 0x14);\n  *(undefined ***)this = &_vftable_;\n  if (piVar2 != (int *)0x0) {\n    iVar4 = piVar2[2];\n    iVar3 = 0;\n    if (0 < iVar4) {\n      piVar6 = (int *)*piVar2;\n      do {\n        if ((gbResource *)*piVar6 == this) {\n          iVar1 = iVar4 + -1;\n          *(undefined4 *)(this + 0x14) = 0;\n          if (iVar3 < iVar1) {\n            *(undefined4 *)(*piVar2 + iVar3 * 4) = *(undefined4 *)(*piVar2 + -4 + iVar4 * 4);\n          }\n          iVar4 = iVar1;\n          if (iVar1 == 0) {\n            iVar4 = 0x10;\n          }\n          if (piVar2[1] < iVar4) {\n            piVar2[1] = iVar4;\n            puVar5 = (undefined4 *)_malloc(iVar4 * 4);\n            iVar4 = piVar2[2];\n            if (iVar4 != 0) {\n              puVar7 = (undefined4 *)*piVar2;\n              puVar8 = puVar5;\n              for (; iVar4 != 0; iVar4 = iVar4 + -1) {\n                *puVar8 = *puVar7;\n                puVar7 = puVar7 + 1;\n                puVar8 = puVar8 + 1;\n              }\n            }\n            if (*piVar2 != 0) {\n              FUN_100e4b99(*piVar2);\n            }\n            *piVar2 = (int)puVar5;\n          }\n          piVar2[2] = iVar1;\n          break;\n        }\n        iVar3 = iVar3 + 1;\n        piVar6 = piVar6 + 1;\n      } while (iVar3 < iVar4);\n    }\n  }\n  if (*(int *)(this + 8) != 0) {\n    FUN_100e4b99(*(int *)(this + 8));\n  }\n  gbRefObject::~gbRefObject((gbRefObject *)this);\n  return;\n}\n\n", 
+  "is_thunk": false, 
+  "name": "~gbResource", 
+  "assembly": "  100200d0:  SUB ESP,0x8\n  100200d3:  PUSH EBX\n  100200d4:  PUSH ESI\n  100200d5:  PUSH EDI\n  100200d6:  MOV EDI,ECX\n  100200d8:  MOV dword ptr [ESP + 0xc],EDI\n  100200dc:  MOV EBX,dword ptr [EDI + 0x14]\n  100200df:  MOV dword ptr [EDI],0x100f5338\n  100200e5:  TEST EBX,EBX\n  100200e7:  JZ 0x10020171\n  100200ed:  MOV ECX,dword ptr [EBX + 0x8]\n  100200f0:  XOR EAX,EAX\n  100200f2:  TEST ECX,ECX\n  100200f4:  JLE 0x10020171\n  100200f6:  MOV EDX,dword ptr [EBX]\n  100200f8:  CMP dword ptr [EDX],EDI\n  100200fa:  JZ 0x10020106\n  100200fc:  INC EAX\n  100200fd:  ADD EDX,0x4\n  10020100:  CMP EAX,ECX\n  10020102:  JL 0x100200f8\n  10020104:  JMP 0x10020171\n  10020106:  LEA ESI,[ECX + -0x1]\n  10020109:  MOV dword ptr [EDI + 0x14],0x0\n  10020110:  CMP ESI,EAX\n  10020112:  MOV dword ptr [ESP + 0x10],ESI\n  10020116:  JLE 0x10020121\n  10020118:  MOV EDX,dword ptr [EBX]\n  1002011a:  MOV ECX,dword ptr [EDX + ECX*0x4 + -0x4]\n  1002011e:  MOV dword ptr [EDX + EAX*0x4],ECX\n  10020121:  TEST ESI,ESI\n  10020123:  MOV EAX,ESI\n  10020125:  JNZ 0x1002012c\n  10020127:  MOV EAX,0x10\n  1002012c:  CMP EAX,dword ptr [EBX + 0x4]\n  1002012f:  JLE 0x1002016e\n  10020131:  LEA EDX,[EAX*0x4 + 0x0]\n  10020138:  PUSH EBP\n  10020139:  PUSH EDX\n  1002013a:  MOV dword ptr [EBX + 0x4],EAX\n  1002013d:  CALL 0x100e4b0d\n  10020142:  MOV ECX,dword ptr [EBX + 0x8]\n  10020145:  ADD ESP,0x4\n  10020148:  TEST ECX,ECX\n  1002014a:  MOV EBP,EAX\n  1002014c:  JZ 0x1002015c\n  1002014e:  MOV ESI,dword ptr [EBX]\n  10020150:  MOV EDI,EBP\n  10020152:  MOVSD.REP ES:EDI,ESI\n  10020154:  MOV EDI,dword ptr [ESP + 0x10]\n  10020158:  MOV ESI,dword ptr [ESP + 0x14]\n  1002015c:  MOV EAX,dword ptr [EBX]\n  1002015e:  TEST EAX,EAX\n  10020160:  JZ 0x1002016b\n  10020162:  PUSH EAX\n  10020163:  CALL 0x100e4b99\n  10020168:  ADD ESP,0x4\n  1002016b:  MOV dword ptr [EBX],EBP\n  1002016d:  POP EBP\n  1002016e:  MOV dword ptr [EBX + 0x8],ESI\n  10020171:  MOV EAX,dword ptr [EDI + 0x8]\n  10020174:  TEST EAX,EAX\n  10020176:  JZ 0x10020181\n  10020178:  PUSH EAX\n  10020179:  CALL 0x100e4b99\n  1002017e:  ADD ESP,0x4\n  10020181:  MOV ECX,EDI\n  10020183:  CALL 0x1002f7e0\n  10020188:  POP EDI\n  10020189:  POP ESI\n  1002018a:  POP EBX\n  1002018b:  ADD ESP,0x8\n  1002018e:  RET", 
+  "callers": [
+    {
+      "address": "0x1000e920", 
+      "name": "~gbBaseMesh"
+    }, 
+    {
+      "address": "0x100203c0", 
+      "name": "~gbTexture"
+    }, 
+    {
+      "address": "0x1001cf80", 
+      "name": "~gbRenderEffect"
+    }, 
+    {
+      "address": "0x100094b0", 
+      "name": "~gbResource"
+    }, 
+    {
+      "address": "0x100f3a80", 
+      "name": "Unwind@100f3a80"
+    }, 
+    {
+      "address": "0x100f3aa0", 
+      "name": "Unwind@100f3aa0"
+    }, 
+    {
+      "address": "0x100f3e60", 
+      "name": "Unwind@100f3e60"
+    }, 
+    {
+      "address": "0x100f3f20", 
+      "name": "Unwind@100f3f20"
+    }, 
+    {
+      "address": "0x100f3f40", 
+      "name": "Unwind@100f3f40"
+    }, 
+    {
+      "address": "0x100f3f6b", 
+      "name": "Unwind@100f3f6b"
+    }, 
+    {
+      "address": "0x100f4050", 
+      "name": "Unwind@100f4050"
+    }, 
+    {
+      "address": "0x10001f00", 
+      "name": "FUN_10001f00"
+    }, 
+    {
+      "address": "0x10008a50", 
+      "name": "FUN_10008a50"
+    }, 
+    {
+      "address": "0x100095a0", 
+      "name": "FUN_100095a0"
+    }, 
+    {
+      "address": "0x1001b970", 
+      "name": "FUN_1001b970"
+    }
+  ]
+}

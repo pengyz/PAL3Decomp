@@ -1,0 +1,48 @@
+{
+  "address": "0x1006b89c", 
+  "size_bytes": 51, 
+  "calling_convention": "unknown", 
+  "signature": "undefined FUN_1006b89c(void)", 
+  "callees": [
+    {
+      "address": "0x1006a74a", 
+      "name": "FUN_1006a74a"
+    }, 
+    {
+      "address": "0x10064ad3", 
+      "name": "FUN_10064ad3"
+    }
+  ], 
+  "global_refs": [], 
+  "has_custom_name": false, 
+  "decompiled_c": "\nvoid FUN_1006b89c(void)\n\n{\n  int iVar1;\n  int in_ECX;\n  \n  if (*(int *)(in_ECX + 0x10) != 0) {\n    FUN_1006a74a(3);\n    *(undefined4 *)(in_ECX + 0x10) = 0;\n  }\n  while (*(int *)(in_ECX + 0x14) != 0) {\n    iVar1 = *(int *)(in_ECX + 0x14);\n    *(undefined4 *)(in_ECX + 0x14) = *(undefined4 *)(iVar1 + 0x14);\n    *(undefined4 *)(iVar1 + 0x14) = 0;\n    FUN_10064ad3(1);\n  }\n  return;\n}\n\n", 
+  "is_thunk": false, 
+  "name": "FUN_1006b89c", 
+  "assembly": "  1006b89c:  PUSH ESI\n  1006b89d:  MOV ESI,ECX\n  1006b89f:  MOV ECX,dword ptr [ESI + 0x10]\n  1006b8a2:  TEST ECX,ECX\n  1006b8a4:  JZ 0x1006b8c7\n  1006b8a6:  PUSH 0x3\n  1006b8a8:  CALL 0x1006a74a\n  1006b8ad:  AND dword ptr [ESI + 0x10],0x0\n  1006b8b1:  JMP 0x1006b8c7\n  1006b8b3:  MOV ECX,dword ptr [ESI + 0x14]\n  1006b8b6:  MOV EAX,dword ptr [ECX + 0x14]\n  1006b8b9:  MOV dword ptr [ESI + 0x14],EAX\n  1006b8bc:  AND dword ptr [ECX + 0x14],0x0\n  1006b8c0:  PUSH 0x1\n  1006b8c2:  CALL 0x10064ad3\n  1006b8c7:  CMP dword ptr [ESI + 0x14],0x0\n  1006b8cb:  JNZ 0x1006b8b3\n  1006b8cd:  POP ESI\n  1006b8ce:  RET", 
+  "callers": [
+    {
+      "address": "0x10064ad3", 
+      "name": "FUN_10064ad3"
+    }, 
+    {
+      "address": "0x1006a74a", 
+      "name": "FUN_1006a74a"
+    }, 
+    {
+      "address": "0x1006c94c", 
+      "name": "FUN_1006c94c"
+    }, 
+    {
+      "address": "0x1006b90b", 
+      "name": "FUN_1006b90b"
+    }, 
+    {
+      "address": "0x1006ca77", 
+      "name": "FUN_1006ca77"
+    }, 
+    {
+      "address": "0x10070671", 
+      "name": "FUN_10070671"
+    }
+  ]
+}

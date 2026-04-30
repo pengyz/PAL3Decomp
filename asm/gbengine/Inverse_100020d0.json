@@ -1,0 +1,14 @@
+{
+  "address": "0x100020d0", 
+  "size_bytes": 23, 
+  "calling_convention": "__thiscall", 
+  "signature": "void __thiscall Inverse(gbVec3D * this)", 
+  "callees": [], 
+  "global_refs": [], 
+  "has_custom_name": true, 
+  "decompiled_c": "\n/* public: void __thiscall gbVec3D::Inverse(void) */\n\nvoid __thiscall gbVec3D::Inverse(gbVec3D *this)\n\n{\n                    /* 0x20d0  608  ?Inverse@gbVec3D@@QAEXXZ */\n  *(float *)this = -*(float *)this;\n  *(float *)(this + 4) = -*(float *)(this + 4);\n  *(float *)(this + 8) = -*(float *)(this + 8);\n  return;\n}\n\n", 
+  "is_thunk": false, 
+  "name": "Inverse", 
+  "assembly": "  100020d0:  FLD dword ptr [ECX]\n  100020d2:  FCHS\n  100020d4:  FSTP dword ptr [ECX]\n  100020d6:  FLD dword ptr [ECX + 0x4]\n  100020d9:  FCHS\n  100020db:  FSTP dword ptr [ECX + 0x4]\n  100020de:  FLD dword ptr [ECX + 0x8]\n  100020e1:  FCHS\n  100020e3:  FSTP dword ptr [ECX + 0x8]\n  100020e6:  RET", 
+  "callers": []
+}

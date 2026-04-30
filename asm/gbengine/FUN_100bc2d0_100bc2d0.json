@@ -1,0 +1,25 @@
+{
+  "address": "0x100bc2d0", 
+  "size_bytes": 60, 
+  "calling_convention": "unknown", 
+  "signature": "undefined FUN_100bc2d0(void)", 
+  "callees": [
+    {
+      "address": "0x1007e25d", 
+      "name": "FUN_1007e25d"
+    }
+  ], 
+  "global_refs": [
+    {
+      "address": "0x1010cd30", 
+      "type": "undefined *", 
+      "name": "DAT_1010cd30"
+    }
+  ], 
+  "has_custom_name": false, 
+  "decompiled_c": "\nvoid FUN_100bc2d0(void)\n\n{\n  undefined4 *in_ECX;\n  int iVar1;\n  undefined4 *puVar2;\n  \n  FUN_1007e25d(0x12);\n  in_ECX[0xc] = 0;\n  in_ECX[0xd] = 0;\n  in_ECX[0xe] = 0;\n  in_ECX[0xf] = 0;\n  in_ECX[0x10] = 0;\n  in_ECX[0x15] = 0;\n  in_ECX[0x16] = 0;\n  *in_ECX = &PTR_FUN_1010cd30;\n  puVar2 = in_ECX + 4;\n  for (iVar1 = 8; iVar1 != 0; iVar1 = iVar1 + -1) {\n    *puVar2 = 0;\n    puVar2 = puVar2 + 1;\n  }\n  in_ECX[0x11] = 0;\n  in_ECX[0x12] = 0;\n  in_ECX[0x13] = 0;\n  in_ECX[0x14] = 0;\n  return;\n}\n\n", 
+  "is_thunk": false, 
+  "name": "FUN_100bc2d0", 
+  "assembly": "  100bc2d0:  PUSH ESI\n  100bc2d1:  PUSH EDI\n  100bc2d2:  PUSH 0x12\n  100bc2d4:  MOV ESI,ECX\n  100bc2d6:  CALL 0x1007e25d\n  100bc2db:  XOR EAX,EAX\n  100bc2dd:  MOV dword ptr [ESI + 0x30],EAX\n  100bc2e0:  MOV dword ptr [ESI + 0x34],EAX\n  100bc2e3:  MOV dword ptr [ESI + 0x38],EAX\n  100bc2e6:  MOV dword ptr [ESI + 0x3c],EAX\n  100bc2e9:  MOV dword ptr [ESI + 0x40],EAX\n  100bc2ec:  MOV dword ptr [ESI + 0x54],EAX\n  100bc2ef:  MOV dword ptr [ESI + 0x58],EAX\n  100bc2f2:  MOV dword ptr [ESI],0x1010cd30\n  100bc2f8:  PUSH 0x8\n  100bc2fa:  POP ECX\n  100bc2fb:  LEA EDI,[ESI + 0x10]\n  100bc2fe:  STOSD.REP ES:EDI\n  100bc300:  LEA EDI,[ESI + 0x44]\n  100bc303:  STOSD ES:EDI\n  100bc304:  STOSD ES:EDI\n  100bc305:  STOSD ES:EDI\n  100bc306:  STOSD ES:EDI\n  100bc307:  POP EDI\n  100bc308:  MOV EAX,ESI\n  100bc30a:  POP ESI\n  100bc30b:  RET", 
+  "callers": []
+}

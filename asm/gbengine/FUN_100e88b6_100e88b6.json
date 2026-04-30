@@ -1,0 +1,68 @@
+{
+  "address": "0x100e88b6", 
+  "size_bytes": 97, 
+  "calling_convention": "unknown", 
+  "signature": "undefined FUN_100e88b6(undefined4 param_1, undefined4 param_2, undefined4 param_3, undefined4 param_4)", 
+  "callees": [
+    {
+      "address": "0x100f176a", 
+      "name": "FUN_100f176a"
+    }, 
+    {
+      "address": "0x100f16f3", 
+      "name": "FUN_100f16f3"
+    }, 
+    {
+      "address": "0x100e8917", 
+      "name": "FUN_100e8917"
+    }
+  ], 
+  "global_refs": [
+    {
+      "address": "0x-000002c", 
+      "type": null, 
+      "name": "DAT_-000002c"
+    }, 
+    {
+      "address": "0x-0000014", 
+      "type": null, 
+      "name": "DAT_-0000014"
+    }, 
+    {
+      "address": "0x00000004", 
+      "type": null, 
+      "name": "DAT_00000004"
+    }, 
+    {
+      "address": "0x-0000040", 
+      "type": null, 
+      "name": "DAT_-0000040"
+    }, 
+    {
+      "address": "0x0000000c", 
+      "type": null, 
+      "name": "DAT_0000000c"
+    }, 
+    {
+      "address": "0x00000008", 
+      "type": null, 
+      "name": "DAT_00000008"
+    }, 
+    {
+      "address": "0x00000010", 
+      "type": null, 
+      "name": "DAT_00000010"
+    }
+  ], 
+  "has_custom_name": false, 
+  "decompiled_c": "\nint FUN_100e88b6(undefined8 *param_1,int param_2,int param_3,undefined4 param_4)\n\n{\n  undefined local_2c [24];\n  int local_14 [4];\n  \n  FUN_100f176a(*param_1,local_14,local_2c);\n  FUN_100f16f3((uint)(0 < param_3) + param_2 + (uint)(local_14[0] == 0x2d),param_3 + 1,local_14);\n  FUN_100e8917(param_2,param_3,param_4,local_14,0);\n  return param_2;\n}\n\n", 
+  "is_thunk": false, 
+  "name": "FUN_100e88b6", 
+  "assembly": "  100e88b6:  PUSH EBP\n  100e88b7:  MOV EBP,ESP\n  100e88b9:  SUB ESP,0x28\n  100e88bc:  LEA EAX,[EBP + -0x28]\n  100e88bf:  PUSH ESI\n  100e88c0:  PUSH EAX\n  100e88c1:  LEA EAX,[EBP + -0x10]\n  100e88c4:  PUSH EAX\n  100e88c5:  MOV EAX,dword ptr [EBP + 0x8]\n  100e88c8:  PUSH ECX\n  100e88c9:  PUSH ECX\n  100e88ca:  FLD qword ptr [EAX]\n  100e88cc:  FSTP qword ptr [ESP]\n  100e88cf:  CALL 0x100f176a\n  100e88d4:  MOV ESI,dword ptr [EBP + 0x10]\n  100e88d7:  LEA EAX,[EBP + -0x10]\n  100e88da:  PUSH EAX\n  100e88db:  MOV EDX,dword ptr [EBP + 0xc]\n  100e88de:  LEA EAX,[ESI + 0x1]\n  100e88e1:  PUSH EAX\n  100e88e2:  XOR EAX,EAX\n  100e88e4:  CMP dword ptr [EBP + -0x10],0x2d\n  100e88e8:  SETZ AL\n  100e88eb:  XOR ECX,ECX\n  100e88ed:  TEST ESI,ESI\n  100e88ef:  SETG CL\n  100e88f2:  ADD EDX,EAX\n  100e88f4:  ADD ECX,EDX\n  100e88f6:  PUSH ECX\n  100e88f7:  CALL 0x100f16f3\n  100e88fc:  LEA EAX,[EBP + -0x10]\n  100e88ff:  PUSH 0x0\n  100e8901:  PUSH EAX\n  100e8902:  PUSH dword ptr [EBP + 0x14]\n  100e8905:  PUSH ESI\n  100e8906:  PUSH dword ptr [EBP + 0xc]\n  100e8909:  CALL 0x100e8917\n  100e890e:  MOV EAX,dword ptr [EBP + 0xc]\n  100e8911:  ADD ESP,0x30\n  100e8914:  POP ESI\n  100e8915:  LEAVE\n  100e8916:  RET", 
+  "callers": [
+    {
+      "address": "0x100e8b68", 
+      "name": "__cfltcvt"
+    }
+  ]
+}

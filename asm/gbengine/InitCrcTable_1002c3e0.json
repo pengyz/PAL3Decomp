@@ -1,0 +1,25 @@
+{
+  "address": "0x1002c3e0", 
+  "size_bytes": 71, 
+  "calling_convention": "__cdecl", 
+  "signature": "void __cdecl InitCrcTable(void)", 
+  "callees": [], 
+  "global_refs": [
+    {
+      "address": "0x1014b60c", 
+      "type": "undefined1", 
+      "name": "DAT_1014b60c"
+    }, 
+    {
+      "address": "0x1014b20c", 
+      "type": "ulong *", 
+      "name": "DAT_1014b20c"
+    }
+  ], 
+  "has_custom_name": true, 
+  "decompiled_c": "\n/* private: static void __cdecl CPK::InitCrcTable(void) */\n\nvoid __cdecl CPK::InitCrcTable(void)\n\n{\n  ulong *puVar1;\n  ulong **ppuVar2;\n  int iVar3;\n  int iVar4;\n  \n                    /* 0x2c3e0  602  ?InitCrcTable@CPK@@CAXXZ */\n  if (DAT_1014b60c == '\\0') {\n    iVar3 = 0;\n    ppuVar2 = &CrcTable;\n    do {\n      iVar4 = 8;\n      puVar1 = (ulong *)(iVar3 << 0x18);\n      do {\n        if (((uint)puVar1 & 0x80000000) == 0) {\n          puVar1 = (ulong *)((int)puVar1 << 1);\n        }\n        else {\n          puVar1 = (ulong *)((int)puVar1 * 2 ^ 0x4c11db7);\n        }\n        iVar4 = iVar4 + -1;\n      } while (iVar4 != 0);\n      *ppuVar2 = puVar1;\n      ppuVar2 = ppuVar2 + 1;\n      iVar3 = iVar3 + 1;\n    } while ((int)ppuVar2 < 0x1014b60c);\n    DAT_1014b60c = '\\x01';\n  }\n  return;\n}\n\n", 
+  "is_thunk": false, 
+  "name": "InitCrcTable", 
+  "assembly": "  1002c3e0:  MOV AL,[0x1014b60c]\n  1002c3e5:  TEST AL,AL\n  1002c3e7:  JNZ 0x1002c426\n  1002c3e9:  PUSH ESI\n  1002c3ea:  XOR EDX,EDX\n  1002c3ec:  MOV ECX,0x1014b20c\n  1002c3f1:  MOV EAX,EDX\n  1002c3f3:  MOV ESI,0x8\n  1002c3f8:  SHL EAX,0x18\n  1002c3fb:  TEST EAX,0x80000000\n  1002c400:  JZ 0x1002c40b\n  1002c402:  ADD EAX,EAX\n  1002c404:  XOR EAX,0x4c11db7\n  1002c409:  JMP 0x1002c40d\n  1002c40b:  SHL EAX,0x1\n  1002c40d:  DEC ESI\n  1002c40e:  JNZ 0x1002c3fb\n  1002c410:  MOV dword ptr [ECX],EAX\n  1002c412:  ADD ECX,0x4\n  1002c415:  INC EDX\n  1002c416:  CMP ECX,0x1014b60c\n  1002c41c:  JL 0x1002c3f1\n  1002c41e:  MOV byte ptr [0x1014b60c],0x1\n  1002c425:  POP ESI\n  1002c426:  RET", 
+  "callers": []
+}

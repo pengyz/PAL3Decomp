@@ -1,0 +1,54 @@
+{
+  "address": "0x1002df10", 
+  "size_bytes": 76, 
+  "calling_convention": "unknown", 
+  "signature": "undefined FUN_1002df10(undefined4 param_1)", 
+  "callees": [
+    {
+      "address": "0x1002e850", 
+      "name": "FUN_1002e850"
+    }, 
+    {
+      "address": "0x1002e820", 
+      "name": "FUN_1002e820"
+    }
+  ], 
+  "global_refs": [
+    {
+      "address": "0x1002e070", 
+      "type": "undefined *", 
+      "name": "DAT_1002e070"
+    }, 
+    {
+      "address": "0x10120770", 
+      "type": "string", 
+      "name": "DAT_10120770"
+    }, 
+    {
+      "address": "0x10120238", 
+      "type": "string", 
+      "name": "DAT_10120238"
+    }, 
+    {
+      "address": "0x00000004", 
+      "type": null, 
+      "name": "DAT_00000004"
+    }, 
+    {
+      "address": "0x10120824", 
+      "type": null, 
+      "name": "DAT_10120824"
+    }
+  ], 
+  "has_custom_name": false, 
+  "decompiled_c": "\nvoid * FUN_1002df10(uint param_1)\n\n{\n  uint *puVar1;\n  DWORD dwFlags;\n  undefined4 *in_ECX;\n  int iVar2;\n  int iVar3;\n  void *pvVar4;\n  int *piVar5;\n  \n  pvVar4 = (void *)0x0;\n  switch(*in_ECX) {\n  case 1:\nLAB_1002dfef:\n    pvVar4 = _malloc(param_1);\n    break;\n  case 2:\n    iVar2 = 0;\n    puVar1 = &DAT_10120710;\n    do {\n      if (param_1 <= *puVar1) {\n        if (4 < iVar2) goto LAB_1002dfef;\n        iVar3 = 0;\n        piVar5 = in_ECX + iVar2 * 0x30 + 5;\n        goto LAB_1002df6c;\n      }\n      puVar1 = puVar1 + 1;\n      iVar2 = iVar2 + 1;\n    } while ((int)puVar1 < 0x10120724);\n    pvVar4 = _malloc(param_1);\n    break;\n  case 3:\n    dwFlags = 1;\n    if (*(char *)(in_ECX + 1) != '\\0') {\n      dwFlags = 5;\n    }\n    pvVar4 = HeapAlloc((HANDLE)in_ECX[2],dwFlags,param_1);\n    break;\n  default:\n    goto LAB_1002e03d;\n  case 5:\n    pvVar4 = VirtualAlloc((LPVOID)in_ECX[4],param_1,0x1000,4);\n  }\nLAB_1002e037:\n  if (pvVar4 == (void *)0x0) {\nLAB_1002e03d:\n    FUN_1002e850(0x10,s_Error___CE_CANNOT_ALLOC_MEM_File_10120238,\n                 s_D__Project_gbengine9_support_cpa_10120770,0xe6);\n    FUN_1002e820(&DAT_10120824,param_1);\n  }\n  return pvVar4;\nLAB_1002df6c:\n  do {\n    if (*(char *)((int)piVar5 + 0x15) == '\\0') {\n      if (*(char *)(piVar5 + 5) == '\\0') {\n        pvVar4 = _malloc((&DAT_10120710)[iVar2]);\n        *piVar5 = (int)pvVar4;\n      }\n      if (*piVar5 != 0) {\n        iVar3 = iVar3 + iVar2 * 8;\n        pvVar4 = (void *)in_ECX[iVar3 * 6 + 5];\n        *(undefined *)(in_ECX + iVar3 * 6 + 10) = 1;\n        *(undefined *)((int)in_ECX + iVar3 * 0x18 + 0x29) = 1;\n        in_ECX[(iVar3 * 3 + 3) * 2] = (&DAT_10120710)[iVar2];\n        *(undefined *)((int)in_ECX + iVar3 * 0x18 + 0x2a) = 1;\n        in_ECX[iVar3 * 6 + 7] = param_1;\n        in_ECX[iVar3 * 6 + 9] = in_ECX[iVar3 * 6 + 9] + 1;\n        if ((uint)in_ECX[iVar3 * 6 + 8] < param_1) {\n          in_ECX[iVar3 * 6 + 8] = param_1;\n        }\n        if (pvVar4 != (void *)0x0) {\n          return pvVar4;\n        }\n        goto LAB_1002dfef;\n      }\n    }\n    iVar3 = iVar3 + 1;\n    piVar5 = piVar5 + 6;\n  } while (iVar3 < 8);\n  pvVar4 = _malloc(param_1);\n  goto LAB_1002e037;\n}\n\n", 
+  "is_thunk": false, 
+  "name": "FUN_1002df10", 
+  "assembly": "  1002df10:  PUSH EBX\n  1002df11:  PUSH EBP\n  1002df12:  PUSH ESI\n  1002df13:  PUSH EDI\n  1002df14:  MOV EDI,ECX\n  1002df16:  XOR ESI,ESI\n  1002df18:  MOV EAX,dword ptr [EDI]\n  1002df1a:  DEC EAX\n  1002df1b:  CMP EAX,0x4\n  1002df1e:  JA 0x1002e03d\n  1002df24:  JMP dword ptr [EAX*0x4 + 0x1002e070]\n  1002e03d:  PUSH 0xe6\n  1002e042:  PUSH 0x10120770\n  1002e047:  PUSH 0x10120238\n  1002e04c:  PUSH 0x10\n  1002e04e:  CALL 0x1002e850\n  1002e053:  MOV EDX,dword ptr [ESP + 0x24]\n  1002e057:  PUSH EDX\n  1002e058:  PUSH 0x10120824\n  1002e05d:  CALL 0x1002e820\n  1002e062:  ADD ESP,0x18\n  1002e065:  MOV EAX,ESI\n  1002e067:  POP EDI\n  1002e068:  POP ESI\n  1002e069:  POP EBP\n  1002e06a:  POP EBX\n  1002e06b:  RET 0x4", 
+  "callers": [
+    {
+      "address": "0x1002cc50", 
+      "name": "Open"
+    }
+  ]
+}

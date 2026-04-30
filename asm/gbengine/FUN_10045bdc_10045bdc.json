@@ -1,0 +1,35 @@
+{
+  "address": "0x10045bdc", 
+  "size_bytes": 24, 
+  "calling_convention": "unknown", 
+  "signature": "undefined FUN_10045bdc(undefined4 param_1)", 
+  "callees": [
+    {
+      "address": "0x10045290", 
+      "name": "FUN_10045290"
+    }
+  ], 
+  "global_refs": [
+    {
+      "address": "0x00000004", 
+      "type": null, 
+      "name": "DAT_00000004"
+    }, 
+    {
+      "address": "0x100f7298", 
+      "type": "undefined *", 
+      "name": "DAT_100f7298"
+    }
+  ], 
+  "has_custom_name": false, 
+  "decompiled_c": "\nvoid FUN_10045bdc(undefined4 param_1)\n\n{\n  undefined4 *in_ECX;\n  \n  FUN_10045290(param_1);\n  *in_ECX = &PTR_FUN_100f7298;\n  return;\n}\n\n", 
+  "is_thunk": false, 
+  "name": "FUN_10045bdc", 
+  "assembly": "  10045bdc:  PUSH ESI\n  10045bdd:  PUSH dword ptr [ESP + 0x8]\n  10045be1:  MOV ESI,ECX\n  10045be3:  CALL 0x10045290\n  10045be8:  MOV dword ptr [ESI],0x100f7298\n  10045bee:  MOV EAX,ESI\n  10045bf0:  POP ESI\n  10045bf1:  RET 0x4", 
+  "callers": [
+    {
+      "address": "0x10045c3c", 
+      "name": "FUN_10045c3c"
+    }
+  ]
+}

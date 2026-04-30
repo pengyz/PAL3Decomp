@@ -1,0 +1,42 @@
+{
+  "address": "0x10025400", 
+  "size_bytes": 116, 
+  "calling_convention": "__thiscall", 
+  "signature": "void __thiscall Transform(gbMatrix4 * this, gbVec3D * param_1, int param_2)", 
+  "callees": [], 
+  "global_refs": [
+    {
+      "address": "0x00000008", 
+      "type": null, 
+      "name": "DAT_00000008"
+    }, 
+    {
+      "address": "0x00000004", 
+      "type": null, 
+      "name": "DAT_00000004"
+    }
+  ], 
+  "has_custom_name": true, 
+  "decompiled_c": "\n/* public: void __thiscall gbMatrix4::Transform(struct gbVec3D *,int)const  */\n\nvoid __thiscall gbMatrix4::Transform(gbMatrix4 *this,gbVec3D *param_1,int param_2)\n\n{\n  float fVar1;\n  float fVar2;\n  float fVar3;\n  float fVar4;\n  float fVar5;\n  float fVar6;\n  float fVar7;\n  float fVar8;\n  float fVar9;\n  float fVar10;\n  float fVar11;\n  gbVec3D *pgVar12;\n  \n                    /* 0x25400  925  ?Transform@gbMatrix4@@QBEXPAUgbVec3D@@H@Z */\n  if (0 < param_2) {\n    pgVar12 = param_1 + 8;\n    do {\n      fVar1 = *(float *)(this + 0x14);\n      fVar2 = *(float *)pgVar12;\n      fVar3 = *(float *)(this + 0x24);\n      param_2 = param_2 + -1;\n      fVar4 = *(float *)(this + 4);\n      fVar5 = *(float *)(pgVar12 + -8);\n      fVar6 = *(float *)(this + 0x34);\n      fVar7 = *(float *)(this + 0x10);\n      fVar8 = *(float *)this;\n      fVar9 = *(float *)(this + 0x20);\n      fVar10 = *(float *)pgVar12;\n      fVar11 = *(float *)(this + 0x30);\n      *(float *)pgVar12 =\n           *(float *)(this + 8) * *(float *)(pgVar12 + -8) +\n           *(float *)(this + 0x18) * *(float *)(pgVar12 + -4) +\n           *(float *)pgVar12 * *(float *)(this + 0x28) + *(float *)(this + 0x38);\n      *(float *)(pgVar12 + -8) =\n           fVar9 * fVar10 + *(float *)(pgVar12 + -8) * fVar8 + fVar7 * *(float *)(pgVar12 + -4) +\n           fVar11;\n      *(float *)(pgVar12 + -4) =\n           fVar4 * fVar5 + fVar2 * fVar3 + fVar1 * *(float *)(pgVar12 + -4) + fVar6;\n      pgVar12 = pgVar12 + 0xc;\n    } while (param_2 != 0);\n  }\n  return;\n}\n\n", 
+  "is_thunk": false, 
+  "name": "Transform", 
+  "assembly": "  10025400:  MOV EDX,dword ptr [ESP + 0x8]\n  10025404:  TEST EDX,EDX\n  10025406:  JLE 0x10025471\n  10025408:  MOV EAX,dword ptr [ESP + 0x4]\n  1002540c:  PUSH ESI\n  1002540d:  ADD EAX,0x8\n  10025410:  FLD dword ptr [ECX + 0x14]\n  10025413:  FMUL dword ptr [EAX + -0x4]\n  10025416:  FLD dword ptr [EAX]\n  10025418:  FMUL dword ptr [ECX + 0x24]\n  1002541b:  ADD EAX,0xc\n  1002541e:  DEC EDX\n  1002541f:  FADDP\n  10025421:  FLD dword ptr [ECX + 0x4]\n  10025424:  FMUL dword ptr [EAX + -0x14]\n  10025427:  FADDP\n  10025429:  FADD dword ptr [ECX + 0x34]\n  1002542c:  FLD dword ptr [EAX + -0xc]\n  1002542f:  FMUL dword ptr [ECX + 0x28]\n  10025432:  FLD dword ptr [ECX + 0x18]\n  10025435:  FMUL dword ptr [EAX + -0x10]\n  10025438:  FADDP\n  1002543a:  FLD dword ptr [ECX + 0x8]\n  1002543d:  FMUL dword ptr [EAX + -0x14]\n  10025440:  FADDP\n  10025442:  FADD dword ptr [ECX + 0x38]\n  10025445:  FSTP dword ptr [ESP + 0xc]\n  10025449:  FLD dword ptr [ECX + 0x10]\n  1002544c:  FMUL dword ptr [EAX + -0x10]\n  1002544f:  FLD dword ptr [EAX + -0x14]\n  10025452:  FMUL dword ptr [ECX]\n  10025454:  MOV ESI,dword ptr [ESP + 0xc]\n  10025458:  FADDP\n  1002545a:  FLD dword ptr [ECX + 0x20]\n  1002545d:  FMUL dword ptr [EAX + -0xc]\n  10025460:  FADDP\n  10025462:  FADD dword ptr [ECX + 0x30]\n  10025465:  MOV dword ptr [EAX + -0xc],ESI\n  10025468:  FSTP dword ptr [EAX + -0x14]\n  1002546b:  FSTP dword ptr [EAX + -0x10]\n  1002546e:  JNZ 0x10025410\n  10025470:  POP ESI\n  10025471:  RET 0x8", 
+  "callers": [
+    {
+      "address": "0x100279e0", 
+      "name": "Transform"
+    }, 
+    {
+      "address": "0x10021fc0", 
+      "name": "PointScrToWorld"
+    }, 
+    {
+      "address": "0x1002b2a0", 
+      "name": "CreateOneParticle"
+    }, 
+    {
+      "address": "0x1002b770", 
+      "name": "Render"
+    }
+  ]
+}

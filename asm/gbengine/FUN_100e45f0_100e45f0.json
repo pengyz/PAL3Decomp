@@ -1,0 +1,40 @@
+{
+  "address": "0x100e45f0", 
+  "size_bytes": 45, 
+  "calling_convention": "unknown", 
+  "signature": "undefined FUN_100e45f0(undefined4 param_1, undefined4 param_2)", 
+  "callees": [], 
+  "global_refs": [
+    {
+      "address": "0x00000008", 
+      "type": null, 
+      "name": "DAT_00000008"
+    }, 
+    {
+      "address": "0x-0000008", 
+      "type": null, 
+      "name": "DAT_-0000008"
+    }, 
+    {
+      "address": "0xffdff000", 
+      "type": "void *32", 
+      "name": "DAT_ffdff000"
+    }, 
+    {
+      "address": "0x00000004", 
+      "type": null, 
+      "name": "DAT_00000004"
+    }
+  ], 
+  "has_custom_name": false, 
+  "decompiled_c": "\nvoid FUN_100e45f0(code *param_1)\n\n{\n                    /* WARNING: Load size is inaccurate */\n  ExceptionList = *ExceptionList;\n                    /* WARNING: Could not recover jumptable at 0x100e461b. Too many branches */\n                    /* WARNING: Treating indirect jump as call */\n  (*param_1)();\n  return;\n}\n\n", 
+  "is_thunk": false, 
+  "name": "FUN_100e45f0", 
+  "assembly": "  100e45f0:  PUSH EBP\n  100e45f1:  MOV EBP,ESP\n  100e45f3:  PUSH ECX\n  100e45f4:  PUSH EBX\n  100e45f5:  PUSH ESI\n  100e45f6:  PUSH EDI\n  100e45f7:  MOV EAX,dword ptr [EBP + 0xc]\n  100e45fa:  ADD EAX,0xc\n  100e45fd:  MOV dword ptr [EBP + -0x4],EAX\n  100e4600:  MOV EBX,dword ptr FS:[0x0]\n  100e4607:  MOV EAX,dword ptr [EBX]\n  100e4609:  MOV FS:[0x0],EAX\n  100e460f:  MOV EAX,dword ptr [EBP + 0x8]\n  100e4612:  MOV EBX,dword ptr [EBP + 0xc]\n  100e4615:  MOV ESP,dword ptr [EBX + -0x4]\n  100e4618:  MOV EBP,dword ptr [EBP + -0x4]\n  100e461b:  JMP EAX", 
+  "callers": [
+    {
+      "address": "0x100e809a", 
+      "name": "FUN_100e809a"
+    }
+  ]
+}

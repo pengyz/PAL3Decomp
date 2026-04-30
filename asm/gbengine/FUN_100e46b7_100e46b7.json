@@ -1,0 +1,85 @@
+{
+  "address": "0x100e46b7", 
+  "size_bytes": 84, 
+  "calling_convention": "unknown", 
+  "signature": "undefined FUN_100e46b7(undefined4 param_1, undefined4 param_2, undefined4 param_3, undefined4 param_4, undefined4 param_5)", 
+  "callees": [
+    {
+      "address": "0x100e84b0", 
+      "name": "__CallSettingFrame@12"
+    }
+  ], 
+  "global_refs": [
+    {
+      "address": "0x00000008", 
+      "type": null, 
+      "name": "DAT_00000008"
+    }, 
+    {
+      "address": "0x-0000018", 
+      "type": null, 
+      "name": "DAT_-0000018"
+    }, 
+    {
+      "address": "0x00000004", 
+      "type": null, 
+      "name": "DAT_00000004"
+    }, 
+    {
+      "address": "0x-0000010", 
+      "type": null, 
+      "name": "DAT_-0000010"
+    }, 
+    {
+      "address": "0x00000010", 
+      "type": null, 
+      "name": "DAT_00000010"
+    }, 
+    {
+      "address": "0x100e470b", 
+      "type": null, 
+      "name": "DAT_100e470b"
+    }, 
+    {
+      "address": "0x-0000014", 
+      "type": null, 
+      "name": "DAT_-0000014"
+    }, 
+    {
+      "address": "0x-000000c", 
+      "type": null, 
+      "name": "DAT_-000000c"
+    }, 
+    {
+      "address": "0x-0000008", 
+      "type": null, 
+      "name": "DAT_-0000008"
+    }, 
+    {
+      "address": "0xffdff000", 
+      "type": "void *32", 
+      "name": "DAT_ffdff000"
+    }, 
+    {
+      "address": "0x00000014", 
+      "type": null, 
+      "name": "DAT_00000014"
+    }, 
+    {
+      "address": "0x0000000c", 
+      "type": null, 
+      "name": "DAT_0000000c"
+    }
+  ], 
+  "has_custom_name": false, 
+  "decompiled_c": "\nundefined4\nFUN_100e46b7(undefined4 param_1,undefined4 param_2,undefined4 param_3,int param_4,undefined4 param_5\n            )\n\n{\n  undefined4 uVar1;\n  void *local_18;\n  code *local_14;\n  undefined4 local_10;\n  undefined4 local_c;\n  int local_8;\n  \n  local_10 = param_2;\n  local_14 = FUN_100e470b;\n  local_8 = param_4 + 1;\n  local_c = param_1;\n  local_18 = ExceptionList;\n  ExceptionList = &local_18;\n  uVar1 = __CallSettingFrame_12(param_3,param_1,param_5);\n  ExceptionList = local_18;\n  return uVar1;\n}\n\n", 
+  "is_thunk": false, 
+  "name": "FUN_100e46b7", 
+  "assembly": "  100e46b7:  PUSH EBP\n  100e46b8:  MOV EBP,ESP\n  100e46ba:  SUB ESP,0x14\n  100e46bd:  MOV EAX,dword ptr [EBP + 0xc]\n  100e46c0:  AND dword ptr [EBP + -0x14],0x0\n  100e46c4:  MOV ECX,dword ptr [EBP + 0x8]\n  100e46c7:  MOV dword ptr [EBP + -0xc],EAX\n  100e46ca:  MOV EAX,dword ptr [EBP + 0x14]\n  100e46cd:  MOV dword ptr [EBP + -0x10],0x100e470b\n  100e46d4:  INC EAX\n  100e46d5:  MOV dword ptr [EBP + -0x8],ECX\n  100e46d8:  MOV dword ptr [EBP + -0x4],EAX\n  100e46db:  MOV EAX,FS:[0x0]\n  100e46e1:  MOV dword ptr [EBP + -0x14],EAX\n  100e46e4:  LEA EAX,[EBP + 0xffffffec]\n  100e46ea:  MOV FS:[0x0],EAX\n  100e46f0:  PUSH dword ptr [EBP + 0x18]\n  100e46f3:  PUSH ECX\n  100e46f4:  PUSH dword ptr [EBP + 0x10]\n  100e46f7:  CALL 0x100e84b0\n  100e46fc:  MOV ECX,EAX\n  100e46fe:  MOV EAX,dword ptr [EBP + -0x14]\n  100e4701:  MOV FS:[0x0],EAX\n  100e4707:  MOV EAX,ECX\n  100e4709:  LEAVE\n  100e470a:  RET", 
+  "callers": [
+    {
+      "address": "0x100e8115", 
+      "name": "FUN_100e8115"
+    }
+  ]
+}

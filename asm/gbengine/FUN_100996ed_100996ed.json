@@ -1,0 +1,43 @@
+{
+  "address": "0x100996ed", 
+  "size_bytes": 359, 
+  "calling_convention": "unknown", 
+  "signature": "undefined FUN_100996ed(void)", 
+  "callees": [], 
+  "global_refs": [], 
+  "has_custom_name": false, 
+  "decompiled_c": "\nundefined4 FUN_100996ed(void)\n\n{\n  uint uVar1;\n  uint *in_ECX;\n  bool bVar2;\n  \n  uVar1 = *in_ECX & 0xfff00000;\n  if (uVar1 < 0xf3800001) {\n    if (uVar1 == 0xf3800000) {\n      return 1;\n    }\n    if (uVar1 < 0x20900001) {\n      if (uVar1 == 0x20900000) {\n        return 1;\n      }\n      if (uVar1 < 0x11400001) {\n        if (uVar1 == 0x11400000) {\n          return 1;\n        }\n        if (uVar1 == 0x10f00000) {\n          return 1;\n        }\n        if (uVar1 == 0x11100000) {\n          return 1;\n        }\n        if (uVar1 == 0x11200000) {\n          return 1;\n        }\n        bVar2 = uVar1 == 0x11300000;\n      }\n      else {\n        if (uVar1 == 0x11500000) {\n          return 1;\n        }\n        if (uVar1 == 0x20700000) {\n          return 1;\n        }\n        bVar2 = uVar1 == 0x20800000;\n      }\n    }\n    else if (uVar1 < 0xf3400001) {\n      if (uVar1 == 0xf3400000) {\n        return 1;\n      }\n      if (uVar1 == 0xf3000000) {\n        return 1;\n      }\n      if (uVar1 == 0xf3100000) {\n        return 1;\n      }\n      if (uVar1 == 0xf3200000) {\n        return 1;\n      }\n      bVar2 = uVar1 == 0xf3300000;\n    }\n    else {\n      if (uVar1 == 0xf3500000) {\n        return 1;\n      }\n      if (uVar1 == 0xf3600000) {\n        return 1;\n      }\n      bVar2 = uVar1 == 0xf3700000;\n    }\n  }\n  else if (uVar1 < 0xf4100001) {\n    if (uVar1 == 0xf4100000) {\n      return 1;\n    }\n    if (uVar1 < 0xf3d00001) {\n      if (uVar1 == 0xf3d00000) {\n        return 1;\n      }\n      if (uVar1 == 0xf3900000) {\n        return 1;\n      }\n      if (uVar1 == 0xf3a00000) {\n        return 1;\n      }\n      if (uVar1 == 0xf3b00000) {\n        return 1;\n      }\n      bVar2 = uVar1 == 0xf3c00000;\n    }\n    else {\n      if (uVar1 == 0xf3e00000) {\n        return 1;\n      }\n      if (uVar1 == 0xf3f00000) {\n        return 1;\n      }\n      bVar2 = uVar1 == 0xf4000000;\n    }\n  }\n  else if (uVar1 < 0xf4600001) {\n    if (uVar1 == 0xf4600000) {\n      return 1;\n    }\n    if (uVar1 == 0xf4200000) {\n      return 1;\n    }\n    if (uVar1 == 0xf4300000) {\n      return 1;\n    }\n    if (uVar1 == 0xf4400000) {\n      return 1;\n    }\n    bVar2 = uVar1 == 0xf4500000;\n  }\n  else {\n    if (uVar1 == 0xf4700000) {\n      return 1;\n    }\n    if (uVar1 == 0xf4a00000) {\n      return 1;\n    }\n    bVar2 = uVar1 == 0xf4b00000;\n  }\n  if (bVar2) {\n    return 1;\n  }\n  return 0;\n}\n\n", 
+  "is_thunk": false, 
+  "name": "FUN_100996ed", 
+  "assembly": "  100996ed:  MOV EAX,dword ptr [ECX]\n  100996ef:  AND EAX,0xfff00000\n  100996f4:  MOV ECX,0xf3800000\n  100996f9:  CMP EAX,ECX\n  100996fb:  JA 0x100997ca\n  10099701:  JZ 0x10099850\n  10099707:  MOV ECX,0x20900000\n  1009970c:  CMP EAX,ECX\n  1009970e:  JA 0x10099770\n  10099710:  JZ 0x10099850\n  10099716:  MOV ECX,0x11400000\n  1009971b:  CMP EAX,ECX\n  1009971d:  JA 0x10099750\n  1009971f:  JZ 0x10099850\n  10099725:  CMP EAX,0x10f00000\n  1009972a:  JZ 0x10099850\n  10099730:  CMP EAX,0x11100000\n  10099735:  JZ 0x10099850\n  1009973b:  CMP EAX,0x11200000\n  10099740:  JZ 0x10099850\n  10099746:  CMP EAX,0x11300000\n  1009974b:  JMP 0x1009984b\n  10099750:  CMP EAX,0x11500000\n  10099755:  JZ 0x10099850\n  1009975b:  CMP EAX,0x20700000\n  10099760:  JZ 0x10099850\n  10099766:  CMP EAX,0x20800000\n  1009976b:  JMP 0x1009984b\n  10099770:  MOV ECX,0xf3400000\n  10099775:  CMP EAX,ECX\n  10099777:  JA 0x100997aa\n  10099779:  JZ 0x10099850\n  1009977f:  CMP EAX,0xf3000000\n  10099784:  JZ 0x10099850\n  1009978a:  CMP EAX,0xf3100000\n  1009978f:  JZ 0x10099850\n  10099795:  CMP EAX,0xf3200000\n  1009979a:  JZ 0x10099850\n  100997a0:  CMP EAX,0xf3300000\n  100997a5:  JMP 0x1009984b\n  100997aa:  CMP EAX,0xf3500000\n  100997af:  JZ 0x10099850\n  100997b5:  CMP EAX,0xf3600000\n  100997ba:  JZ 0x10099850\n  100997c0:  CMP EAX,0xf3700000\n  100997c5:  JMP 0x1009984b\n  100997ca:  MOV ECX,0xf4100000\n  100997cf:  CMP EAX,ECX\n  100997d1:  JA 0x10099811\n  100997d3:  JZ 0x10099850\n  100997d5:  MOV ECX,0xf3d00000\n  100997da:  CMP EAX,ECX\n  100997dc:  JA 0x100997fc\n  100997de:  JZ 0x10099850\n  100997e0:  CMP EAX,0xf3900000\n  100997e5:  JZ 0x10099850\n  100997e7:  CMP EAX,0xf3a00000\n  100997ec:  JZ 0x10099850\n  100997ee:  CMP EAX,0xf3b00000\n  100997f3:  JZ 0x10099850\n  100997f5:  CMP EAX,0xf3c00000\n  100997fa:  JMP 0x1009984b\n  100997fc:  CMP EAX,0xf3e00000\n  10099801:  JZ 0x10099850\n  10099803:  CMP EAX,0xf3f00000\n  10099808:  JZ 0x10099850\n  1009980a:  CMP EAX,0xf4000000\n  1009980f:  JMP 0x1009984b\n  10099811:  MOV ECX,0xf4600000\n  10099816:  CMP EAX,ECX\n  10099818:  JA 0x10099838\n  1009981a:  JZ 0x10099850\n  1009981c:  CMP EAX,0xf4200000\n  10099821:  JZ 0x10099850\n  10099823:  CMP EAX,0xf4300000\n  10099828:  JZ 0x10099850\n  1009982a:  CMP EAX,0xf4400000\n  1009982f:  JZ 0x10099850\n  10099831:  CMP EAX,0xf4500000\n  10099836:  JMP 0x1009984b\n  10099838:  CMP EAX,0xf4700000\n  1009983d:  JZ 0x10099850\n  1009983f:  CMP EAX,0xf4a00000\n  10099844:  JZ 0x10099850\n  10099846:  CMP EAX,0xf4b00000\n  1009984b:  JZ 0x10099850\n  1009984d:  XOR EAX,EAX\n  1009984f:  RET\n  10099850:  XOR EAX,EAX\n  10099852:  INC EAX\n  10099853:  RET", 
+  "callers": [
+    {
+      "address": "0x100814ac", 
+      "name": "FUN_100814ac"
+    }, 
+    {
+      "address": "0x100c1e3e", 
+      "name": "FUN_100c1e3e"
+    }, 
+    {
+      "address": "0x100c1b2f", 
+      "name": "FUN_100c1b2f"
+    }, 
+    {
+      "address": "0x100c1d03", 
+      "name": "FUN_100c1d03"
+    }, 
+    {
+      "address": "0x100c1d03", 
+      "name": "FUN_100c1d03"
+    }, 
+    {
+      "address": "0x100bd746", 
+      "name": "FUN_100bd746"
+    }, 
+    {
+      "address": "0x100de461", 
+      "name": "FUN_100de461"
+    }
+  ]
+}

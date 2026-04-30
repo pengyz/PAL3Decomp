@@ -1,0 +1,48 @@
+{
+  "address": "0x100e639d", 
+  "size_bytes": 98, 
+  "calling_convention": "unknown", 
+  "signature": "undefined FUN_100e639d(undefined4 param_1, undefined4 param_2, undefined4 param_3)", 
+  "callees": [
+    {
+      "address": "0x100ec11b", 
+      "name": "FUN_100ec11b"
+    }, 
+    {
+      "address": "0x100ec758", 
+      "name": "FUN_100ec758"
+    }, 
+    {
+      "address": "0x100ec16d", 
+      "name": "FUN_100ec16d"
+    }
+  ], 
+  "global_refs": [
+    {
+      "address": "0x00000008", 
+      "type": null, 
+      "name": "DAT_00000008"
+    }, 
+    {
+      "address": "0x00000004", 
+      "type": null, 
+      "name": "DAT_00000004"
+    }, 
+    {
+      "address": "0x0000000c", 
+      "type": null, 
+      "name": "DAT_0000000c"
+    }
+  ], 
+  "has_custom_name": false, 
+  "decompiled_c": "\nchar * FUN_100e639d(char *param_1,int param_2,undefined4 *param_3)\n\n{\n  int *piVar1;\n  uint uVar2;\n  char *pcVar3;\n  \n  if (param_2 < 1) {\n    param_1 = (char *)0x0;\n  }\n  else {\n    FUN_100ec11b(param_3);\n    pcVar3 = param_1;\n    do {\n      param_2 = param_2 + -1;\n      if (param_2 == 0) break;\n      piVar1 = param_3 + 1;\n      *piVar1 = *piVar1 + -1;\n      if (*piVar1 < 0) {\n        uVar2 = FUN_100ec758(param_3);\n      }\n      else {\n        uVar2 = (uint)*(byte *)*param_3;\n        *param_3 = (byte *)*param_3 + 1;\n      }\n      if (uVar2 == 0xffffffff) {\n        if (pcVar3 == param_1) {\n          param_1 = (char *)0x0;\n          goto LAB_100e63f1;\n        }\n        break;\n      }\n      *pcVar3 = (char)uVar2;\n      pcVar3 = pcVar3 + 1;\n    } while ((char)uVar2 != '\\n');\n    *pcVar3 = '\\0';\nLAB_100e63f1:\n    FUN_100ec16d(param_3);\n  }\n  return param_1;\n}\n\n", 
+  "is_thunk": false, 
+  "name": "FUN_100e639d", 
+  "assembly": "  100e639d:  PUSH EBP\n  100e639e:  MOV EBP,ESP\n  100e63a0:  CMP dword ptr [EBP + 0xc],0x0\n  100e63a4:  PUSH EBX\n  100e63a5:  MOV EBX,dword ptr [EBP + 0x8]\n  100e63a8:  PUSH EDI\n  100e63a9:  MOV EDI,EBX\n  100e63ab:  JG 0x100e63b1\n  100e63ad:  XOR EAX,EAX\n  100e63af:  JMP 0x100e63fb\n  100e63b1:  PUSH ESI\n  100e63b2:  MOV ESI,dword ptr [EBP + 0x10]\n  100e63b5:  PUSH ESI\n  100e63b6:  CALL 0x100ec11b\n  100e63bb:  POP ECX\n  100e63bc:  DEC dword ptr [EBP + 0xc]\n  100e63bf:  JZ 0x100e63ee\n  100e63c1:  DEC dword ptr [ESI + 0x4]\n  100e63c4:  JS 0x100e63d0\n  100e63c6:  MOV ECX,dword ptr [ESI]\n  100e63c8:  MOVZX EAX,byte ptr [ECX]\n  100e63cb:  INC ECX\n  100e63cc:  MOV dword ptr [ESI],ECX\n  100e63ce:  JMP 0x100e63d7\n  100e63d0:  PUSH ESI\n  100e63d1:  CALL 0x100ec758\n  100e63d6:  POP ECX\n  100e63d7:  CMP EAX,-0x1\n  100e63da:  JZ 0x100e63e5\n  100e63dc:  MOV byte ptr [EDI],AL\n  100e63de:  INC EDI\n  100e63df:  CMP AL,0xa\n  100e63e1:  JZ 0x100e63ee\n  100e63e3:  JMP 0x100e63bc\n  100e63e5:  CMP EDI,dword ptr [EBP + 0x8]\n  100e63e8:  JNZ 0x100e63ee\n  100e63ea:  XOR EBX,EBX\n  100e63ec:  JMP 0x100e63f1\n  100e63ee:  AND byte ptr [EDI],0x0\n  100e63f1:  PUSH ESI\n  100e63f2:  CALL 0x100ec16d\n  100e63f7:  POP ECX\n  100e63f8:  MOV EAX,EBX\n  100e63fa:  POP ESI\n  100e63fb:  POP EDI\n  100e63fc:  POP EBX\n  100e63fd:  POP EBP\n  100e63fe:  RET", 
+  "callers": [
+    {
+      "address": "0x10030dc0", 
+      "name": "ReadLine"
+    }
+  ]
+}

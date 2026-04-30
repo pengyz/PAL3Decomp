@@ -1,0 +1,43 @@
+{
+  "address": "0x10044dc6", 
+  "size_bytes": 78, 
+  "calling_convention": "unknown", 
+  "signature": "undefined FUN_10044dc6(undefined4 param_1, undefined4 param_2, undefined4 param_3)", 
+  "callees": [
+    {
+      "address": "0x10046cd3", 
+      "name": "thunk_FUN_10046cc6"
+    }, 
+    {
+      "address": "0x1003c954", 
+      "name": "FUN_1003c954"
+    }, 
+    {
+      "address": "0x1003cbeb", 
+      "name": "FUN_1003cbeb"
+    }
+  ], 
+  "global_refs": [
+    {
+      "address": "0x00000008", 
+      "type": null, 
+      "name": "DAT_00000008"
+    }, 
+    {
+      "address": "0x00000004", 
+      "type": null, 
+      "name": "DAT_00000004"
+    }, 
+    {
+      "address": "0x0000000c", 
+      "type": null, 
+      "name": "DAT_0000000c"
+    }
+  ], 
+  "has_custom_name": false, 
+  "decompiled_c": "\nvoid FUN_10044dc6(int param_1,int param_2,undefined4 param_3)\n\n{\n  int in_ECX;\n  \n  thunk_FUN_10046cc6(param_3,*(int *)(in_ECX + 0x60) * param_1 + *(int *)(in_ECX + 100) * param_2 +\n                             *(int *)(in_ECX + 0x20),*(int *)(in_ECX + 0x68) << 2);\n  if (*(int *)(in_ECX + 0x18) != 0) {\n    FUN_1003c954(param_3);\n  }\n  if (*(int *)(in_ECX + 0x10) != 0) {\n    FUN_1003cbeb(param_3);\n  }\n  return;\n}\n\n", 
+  "is_thunk": false, 
+  "name": "FUN_10044dc6", 
+  "assembly": "  10044dc6:  PUSH EBP\n  10044dc7:  MOV EBP,ESP\n  10044dc9:  PUSH ESI\n  10044dca:  MOV ESI,ECX\n  10044dcc:  MOV EAX,dword ptr [ESI + 0x68]\n  10044dcf:  MOV ECX,dword ptr [ESI + 0x64]\n  10044dd2:  IMUL ECX,dword ptr [EBP + 0xc]\n  10044dd6:  SHL EAX,0x2\n  10044dd9:  PUSH EAX\n  10044dda:  MOV EAX,dword ptr [ESI + 0x60]\n  10044ddd:  IMUL EAX,dword ptr [EBP + 0x8]\n  10044de1:  ADD EAX,ECX\n  10044de3:  ADD EAX,dword ptr [ESI + 0x20]\n  10044de6:  PUSH EAX\n  10044de7:  PUSH dword ptr [EBP + 0x10]\n  10044dea:  CALL 0x10046cd3\n  10044def:  CMP dword ptr [ESI + 0x18],0x0\n  10044df3:  JZ 0x10044dff\n  10044df5:  PUSH dword ptr [EBP + 0x10]\n  10044df8:  MOV ECX,ESI\n  10044dfa:  CALL 0x1003c954\n  10044dff:  CMP dword ptr [ESI + 0x10],0x0\n  10044e03:  JZ 0x10044e0f\n  10044e05:  PUSH dword ptr [EBP + 0x10]\n  10044e08:  MOV ECX,ESI\n  10044e0a:  CALL 0x1003cbeb\n  10044e0f:  POP ESI\n  10044e10:  POP EBP\n  10044e11:  RET 0xc", 
+  "callers": []
+}

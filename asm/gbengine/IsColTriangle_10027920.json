@@ -1,0 +1,30 @@
+{
+  "address": "0x10027920", 
+  "size_bytes": 183, 
+  "calling_convention": "__thiscall", 
+  "signature": "int __thiscall IsColTriangle(gbSphere * this, gbVec3D * param_1, gbVec3D * param_2, gbVec3D * param_3)", 
+  "callees": [], 
+  "global_refs": [
+    {
+      "address": "0x00000004", 
+      "type": null, 
+      "name": "DAT_00000004"
+    }, 
+    {
+      "address": "0x00000008", 
+      "type": null, 
+      "name": "DAT_00000008"
+    }, 
+    {
+      "address": "0x0000000c", 
+      "type": null, 
+      "name": "DAT_0000000c"
+    }
+  ], 
+  "has_custom_name": true, 
+  "decompiled_c": "\n/* public: int __thiscall gbSphere::IsColTriangle(struct gbVec3D &,struct gbVec3D &,struct gbVec3D\n   &) */\n\nint __thiscall\ngbSphere::IsColTriangle(gbSphere *this,gbVec3D *param_1,gbVec3D *param_2,gbVec3D *param_3)\n\n{\n  float fVar1;\n  char cVar2;\n  \n                    /* 0x27920  627  ?IsColTriangle@gbSphere@@QAEHAAUgbVec3D@@00@Z */\n  fVar1 = *(float *)this * *(float *)this;\n  cVar2 = (*(float *)param_1 - *(float *)(this + 4)) * (*(float *)param_1 - *(float *)(this + 4)) +\n          (*(float *)(param_1 + 4) - *(float *)(this + 8)) *\n          (*(float *)(param_1 + 4) - *(float *)(this + 8)) +\n          (*(float *)(param_1 + 8) - *(float *)(this + 0xc)) *\n          (*(float *)(param_1 + 8) - *(float *)(this + 0xc)) <= fVar1;\n  if ((*(float *)param_2 - *(float *)(this + 4)) * (*(float *)param_2 - *(float *)(this + 4)) +\n      (*(float *)(param_2 + 4) - *(float *)(this + 8)) *\n      (*(float *)(param_2 + 4) - *(float *)(this + 8)) +\n      (*(float *)(param_2 + 8) - *(float *)(this + 0xc)) *\n      (*(float *)(param_2 + 8) - *(float *)(this + 0xc)) <= fVar1) {\n    cVar2 = cVar2 + '\\x01';\n  }\n  if ((*(float *)param_3 - *(float *)(this + 4)) * (*(float *)param_3 - *(float *)(this + 4)) +\n      (*(float *)(param_3 + 4) - *(float *)(this + 8)) *\n      (*(float *)(param_3 + 4) - *(float *)(this + 8)) +\n      (*(float *)(param_3 + 8) - *(float *)(this + 0xc)) *\n      (*(float *)(param_3 + 8) - *(float *)(this + 0xc)) <= fVar1) {\n    cVar2 = cVar2 + '\\x01';\n  }\n  return (uint)(cVar2 != '\\0');\n}\n\n", 
+  "is_thunk": false, 
+  "name": "IsColTriangle", 
+  "assembly": "  10027920:  FLD dword ptr [ECX]\n  10027922:  MOV EAX,dword ptr [ESP + 0x4]\n  10027926:  XOR EDX,EDX\n  10027928:  FLD ST0\n  1002792a:  FMULP\n  1002792c:  FLD dword ptr [EAX]\n  1002792e:  FSUB dword ptr [ECX + 0x4]\n  10027931:  FLD dword ptr [EAX + 0x4]\n  10027934:  FSUB dword ptr [ECX + 0x8]\n  10027937:  FLD dword ptr [EAX + 0x8]\n  1002793a:  FSUB dword ptr [ECX + 0xc]\n  1002793d:  FLD ST0\n  1002793f:  FMUL ST1\n  10027941:  FLD ST2\n  10027943:  FMUL ST3\n  10027945:  FADDP\n  10027947:  FLD ST3\n  10027949:  FMUL ST4\n  1002794b:  FADDP\n  1002794d:  FCOMP ST4\n  1002794f:  FSTP ST0\n  10027951:  FNSTSW AX\n  10027953:  FSTP ST0\n  10027955:  TEST AH,0x41\n  10027958:  FSTP ST0\n  1002795a:  JZ 0x10027961\n  1002795c:  MOV EDX,0x1\n  10027961:  MOV EAX,dword ptr [ESP + 0x8]\n  10027965:  FLD dword ptr [EAX]\n  10027967:  FSUB dword ptr [ECX + 0x4]\n  1002796a:  FLD dword ptr [EAX + 0x4]\n  1002796d:  FSUB dword ptr [ECX + 0x8]\n  10027970:  FLD dword ptr [EAX + 0x8]\n  10027973:  FSUB dword ptr [ECX + 0xc]\n  10027976:  FLD ST0\n  10027978:  FMUL ST1\n  1002797a:  FLD ST2\n  1002797c:  FMUL ST3\n  1002797e:  FADDP\n  10027980:  FLD ST3\n  10027982:  FMUL ST4\n  10027984:  FADDP\n  10027986:  FCOMP ST4\n  10027988:  FSTP ST0\n  1002798a:  FNSTSW AX\n  1002798c:  FSTP ST0\n  1002798e:  TEST AH,0x41\n  10027991:  FSTP ST0\n  10027993:  JZ 0x10027996\n  10027995:  INC EDX\n  10027996:  MOV EAX,dword ptr [ESP + 0xc]\n  1002799a:  FLD dword ptr [EAX]\n  1002799c:  FSUB dword ptr [ECX + 0x4]\n  1002799f:  FLD dword ptr [EAX + 0x4]\n  100279a2:  FSUB dword ptr [ECX + 0x8]\n  100279a5:  FLD dword ptr [EAX + 0x8]\n  100279a8:  FSUB dword ptr [ECX + 0xc]\n  100279ab:  FLD ST0\n  100279ad:  FMUL ST1\n  100279af:  FLD ST2\n  100279b1:  FMUL ST3\n  100279b3:  FADDP\n  100279b5:  FLD ST3\n  100279b7:  FMUL ST4\n  100279b9:  FADDP\n  100279bb:  FCOMP ST4\n  100279bd:  FSTP ST0\n  100279bf:  FSTP ST0\n  100279c1:  FNSTSW AX\n  100279c3:  FSTP ST0\n  100279c5:  TEST AH,0x41\n  100279c8:  FSTP ST0\n  100279ca:  JZ 0x100279cd\n  100279cc:  INC EDX\n  100279cd:  XOR EAX,EAX\n  100279cf:  TEST EDX,EDX\n  100279d1:  SETG AL\n  100279d4:  RET 0xc", 
+  "callers": []
+}

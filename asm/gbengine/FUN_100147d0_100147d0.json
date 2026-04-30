@@ -1,0 +1,63 @@
+{
+  "address": "0x100147d0", 
+  "size_bytes": 154, 
+  "calling_convention": "unknown", 
+  "signature": "undefined FUN_100147d0(undefined4 param_1)", 
+  "callees": [
+    {
+      "address": "0x10014660", 
+      "name": "FUN_10014660"
+    }, 
+    {
+      "address": "0x100147d0", 
+      "name": "FUN_100147d0"
+    }
+  ], 
+  "global_refs": [
+    {
+      "address": "0x00000004", 
+      "type": null, 
+      "name": "DAT_00000004"
+    }, 
+    {
+      "address": "0x-0000010", 
+      "type": null, 
+      "name": "DAT_-0000010"
+    }, 
+    {
+      "address": "0x-000000c", 
+      "type": null, 
+      "name": "DAT_-000000c"
+    }, 
+    {
+      "address": "0x-0000008", 
+      "type": null, 
+      "name": "DAT_-0000008"
+    }, 
+    {
+      "address": "0x-0000004", 
+      "type": null, 
+      "name": "DAT_-0000004"
+    }, 
+    {
+      "address": "0x100f53a0", 
+      "type": null, 
+      "name": "DAT_100f53a0"
+    }
+  ], 
+  "has_custom_name": false, 
+  "decompiled_c": "\nvoid FUN_100147d0(int *param_1)\n\n{\n  int iVar1;\n  undefined4 *in_ECX;\n  float unaff_ESI;\n  undefined local_10 [4];\n  undefined4 local_c;\n  undefined4 local_8;\n  undefined4 local_4;\n  \n  local_c = 0;\n  local_8 = 0;\n  local_4 = 0;\n  (**(code **)(*param_1 + 0x1c))(local_10);\n  if (0.0 < unaff_ESI) {\n    iVar1 = FUN_10014660(&stack0xffffffec,*in_ECX);\n    param_1[0x11] = iVar1;\n    param_1[0x13] = 0;\n    param_1[0x12] = 0;\n    if (*(int *)(iVar1 + 0x40) != 0) {\n      param_1[0x13] = *(int *)(iVar1 + 0x40);\n      *(int **)(*(int *)(iVar1 + 0x40) + 0x48) = param_1;\n    }\n    *(int **)(iVar1 + 0x40) = param_1;\n  }\n  iVar1 = param_1[3];\n  param_1[6] = iVar1;\n  while (iVar1 != 0) {\n    FUN_100147d0(iVar1);\n    iVar1 = *(int *)(param_1[6] + 4);\n    param_1[6] = iVar1;\n  }\n  return;\n}\n\n", 
+  "is_thunk": false, 
+  "name": "FUN_100147d0", 
+  "assembly": "  100147d0:  SUB ESP,0x10\n  100147d3:  PUSH ESI\n  100147d4:  MOV ESI,dword ptr [ESP + 0x18]\n  100147d8:  PUSH EDI\n  100147d9:  MOV EDI,ECX\n  100147db:  MOV EAX,dword ptr [ESI]\n  100147dd:  LEA ECX,[ESP + 0x8]\n  100147e1:  PUSH ECX\n  100147e2:  MOV ECX,ESI\n  100147e4:  MOV dword ptr [ESP + 0x10],0x0\n  100147ec:  MOV dword ptr [ESP + 0x14],0x0\n  100147f4:  MOV dword ptr [ESP + 0x18],0x0\n  100147fc:  CALL dword ptr [EAX + 0x1c]\n  100147ff:  FLD dword ptr [ESP + 0x8]\n  10014803:  FCOMP dword ptr [0x100f53a0]\n  10014809:  FNSTSW AX\n  1001480b:  TEST AH,0x41\n  1001480e:  JNZ 0x10014843\n  10014810:  MOV EDX,dword ptr [EDI]\n  10014812:  LEA EAX,[ESP + 0x8]\n  10014816:  PUSH EDX\n  10014817:  PUSH EAX\n  10014818:  MOV ECX,EDI\n  1001481a:  CALL 0x10014660\n  1001481f:  MOV dword ptr [ESI + 0x44],EAX\n  10014822:  MOV dword ptr [ESI + 0x4c],0x0\n  10014829:  MOV dword ptr [ESI + 0x48],0x0\n  10014830:  MOV ECX,dword ptr [EAX + 0x40]\n  10014833:  TEST ECX,ECX\n  10014835:  JZ 0x10014840\n  10014837:  MOV dword ptr [ESI + 0x4c],ECX\n  1001483a:  MOV ECX,dword ptr [EAX + 0x40]\n  1001483d:  MOV dword ptr [ECX + 0x48],ESI\n  10014840:  MOV dword ptr [EAX + 0x40],ESI\n  10014843:  MOV EAX,dword ptr [ESI + 0xc]\n  10014846:  TEST EAX,EAX\n  10014848:  MOV dword ptr [ESI + 0x18],EAX\n  1001484b:  JZ 0x10014862\n  1001484d:  PUSH EAX\n  1001484e:  MOV ECX,EDI\n  10014850:  CALL 0x100147d0\n  10014855:  MOV EDX,dword ptr [ESI + 0x18]\n  10014858:  MOV EAX,dword ptr [EDX + 0x4]\n  1001485b:  TEST EAX,EAX\n  1001485d:  MOV dword ptr [ESI + 0x18],EAX\n  10014860:  JNZ 0x1001484d\n  10014862:  POP EDI\n  10014863:  POP ESI\n  10014864:  ADD ESP,0x10\n  10014867:  RET 0x4", 
+  "callers": [
+    {
+      "address": "0x100155a0", 
+      "name": "AddVisNode"
+    }, 
+    {
+      "address": "0x100147d0", 
+      "name": "FUN_100147d0"
+    }
+  ]
+}

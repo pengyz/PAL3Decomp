@@ -1,0 +1,25 @@
+{
+  "address": "0x10004400", 
+  "size_bytes": 17, 
+  "calling_convention": "__thiscall", 
+  "signature": "void __thiscall SetCurFontScale(gbPrintFont * this, float param_1, float param_2)", 
+  "callees": [], 
+  "global_refs": [
+    {
+      "address": "0x00000004", 
+      "type": null, 
+      "name": "DAT_00000004"
+    }, 
+    {
+      "address": "0x00000008", 
+      "type": null, 
+      "name": "DAT_00000008"
+    }
+  ], 
+  "has_custom_name": true, 
+  "decompiled_c": "\n/* public: void __thiscall gbPrintFont::SetCurFontScale(float,float) */\n\nvoid __thiscall gbPrintFont::SetCurFontScale(gbPrintFont *this,float param_1,float param_2)\n\n{\n                    /* 0x4400  856  ?SetCurFontScale@gbPrintFont@@QAEXMM@Z */\n  *(float *)(this + 0x30) = param_1;\n  *(float *)(this + 0x34) = param_2;\n  return;\n}\n\n", 
+  "is_thunk": false, 
+  "name": "SetCurFontScale", 
+  "assembly": "  10004400:  MOV EAX,dword ptr [ESP + 0x4]\n  10004404:  MOV EDX,dword ptr [ESP + 0x8]\n  10004408:  MOV dword ptr [ECX + 0x30],EAX\n  1000440b:  MOV dword ptr [ECX + 0x34],EDX\n  1000440e:  RET 0x8", 
+  "callers": []
+}

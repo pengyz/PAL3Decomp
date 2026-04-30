@@ -1,0 +1,97 @@
+{
+  "address": "0x10026c40", 
+  "size_bytes": 320, 
+  "calling_convention": "__thiscall", 
+  "signature": "void __thiscall Slerp(gbQuaternion * this, gbQuaternion * param_1, gbQuaternion * param_2, float param_3)", 
+  "callees": [
+    {
+      "address": "0x100e5090", 
+      "name": "FUN_100e5090"
+    }
+  ], 
+  "global_refs": [
+    {
+      "address": "0x00000004", 
+      "type": null, 
+      "name": "DAT_00000004"
+    }, 
+    {
+      "address": "0x00000008", 
+      "type": null, 
+      "name": "DAT_00000008"
+    }, 
+    {
+      "address": "0x100f53a0", 
+      "type": null, 
+      "name": "DAT_100f53a0"
+    }, 
+    {
+      "address": "0x-0000010", 
+      "type": null, 
+      "name": "DAT_-0000010"
+    }, 
+    {
+      "address": "0x-000000c", 
+      "type": null, 
+      "name": "DAT_-000000c"
+    }, 
+    {
+      "address": "0x-0000008", 
+      "type": null, 
+      "name": "DAT_-0000008"
+    }, 
+    {
+      "address": "0x-0000004", 
+      "type": null, 
+      "name": "DAT_-0000004"
+    }, 
+    {
+      "address": "0x100f5344", 
+      "type": null, 
+      "name": "DAT_100f5344"
+    }, 
+    {
+      "address": "0x100f58b0", 
+      "type": null, 
+      "name": "DAT_100f58b0"
+    }, 
+    {
+      "address": "0x100f58ac", 
+      "type": null, 
+      "name": "DAT_100f58ac"
+    }, 
+    {
+      "address": "0x100f5648", 
+      "type": null, 
+      "name": "DAT_100f5648"
+    }, 
+    {
+      "address": "0x0000000c", 
+      "type": null, 
+      "name": "DAT_0000000c"
+    }
+  ], 
+  "has_custom_name": true, 
+  "decompiled_c": "\n/* public: void __thiscall gbQuaternion::Slerp(struct gbQuaternion *,struct gbQuaternion *,float) */\n\nvoid __thiscall\ngbQuaternion::Slerp(gbQuaternion *this,gbQuaternion *param_1,gbQuaternion *param_2,float param_3)\n\n{\n  float fVar1;\n  gbQuaternion *pgVar2;\n  float10 fVar3;\n  float10 fVar4;\n  float10 fVar5;\n  float local_10;\n  float local_c;\n  float local_8;\n  float local_4;\n  \n                    /* 0x26c40  914  ?Slerp@gbQuaternion@@QAEXPAU1@0M@Z */\n  pgVar2 = param_1;\n  param_1 = (gbQuaternion *)\n            (*(float *)param_1 * *(float *)param_2 +\n            *(float *)(param_1 + 4) * *(float *)(param_2 + 4) +\n            *(float *)(param_2 + 8) * *(float *)(param_1 + 8) +\n            *(float *)(param_2 + 0xc) * *(float *)(param_1 + 0xc));\n  if (0.0 <= (float)param_1) {\n    local_10 = *(float *)param_2;\n    local_c = *(float *)(param_2 + 4);\n    local_8 = *(float *)(param_2 + 8);\n    local_4 = *(float *)(param_2 + 0xc);\n  }\n  else {\n    param_1 = (gbQuaternion *)-(float)param_1;\n    local_10 = -*(float *)param_2;\n    local_c = -*(float *)(param_2 + 4);\n    local_8 = -*(float *)(param_2 + 8);\n    local_4 = -*(float *)(param_2 + 0xc);\n  }\n  if (1.0 - (float)param_1 <= 1e-05) {\n    fVar3 = (float10)1.0 - (float10)param_3;\n    fVar5 = (float10)param_3;\n  }\n  else {\n    fVar3 = (float10)FUN_100e5090();\n    fVar1 = (float)(fVar3 * (float10)57.295776);\n    fVar4 = (float10)fsin(fVar3 * (float10)57.295776 * (float10)0.017453292);\n    fVar3 = (float10)fsin(((float10)1.0 - (float10)param_3) * (float10)fVar1 * (float10)0.017453292)\n    ;\n    fVar3 = fVar3 / (float10)(float)fVar4;\n    fVar5 = (float10)fsin((float10)fVar1 * (float10)param_3 * (float10)0.017453292);\n    fVar5 = fVar5 / (float10)(float)fVar4;\n  }\n  *(float *)this = (float)(fVar5 * (float10)local_10 + fVar3 * (float10)*(float *)pgVar2);\n  *(float *)(this + 4) = (float)(fVar5 * (float10)local_c + fVar3 * (float10)*(float *)(pgVar2 + 4))\n  ;\n  *(float *)(this + 8) = (float)(fVar5 * (float10)local_8 + fVar3 * (float10)*(float *)(pgVar2 + 8))\n  ;\n  *(float *)(this + 0xc) =\n       (float)(fVar5 * (float10)local_4 + fVar3 * (float10)*(float *)(pgVar2 + 0xc));\n  return;\n}\n\n", 
+  "is_thunk": false, 
+  "name": "Slerp", 
+  "assembly": "  10026c40:  SUB ESP,0x10\n  10026c43:  PUSH ESI\n  10026c44:  MOV ESI,dword ptr [ESP + 0x18]\n  10026c48:  PUSH EDI\n  10026c49:  MOV EDI,ECX\n  10026c4b:  MOV ECX,dword ptr [ESP + 0x20]\n  10026c4f:  FLD dword ptr [ECX + 0xc]\n  10026c52:  FMUL dword ptr [ESI + 0xc]\n  10026c55:  FLD dword ptr [ECX + 0x8]\n  10026c58:  FMUL dword ptr [ESI + 0x8]\n  10026c5b:  FADDP\n  10026c5d:  FLD dword ptr [ESI + 0x4]\n  10026c60:  FMUL dword ptr [ECX + 0x4]\n  10026c63:  FADDP\n  10026c65:  FLD dword ptr [ESI]\n  10026c67:  FMUL dword ptr [ECX]\n  10026c69:  FADDP\n  10026c6b:  FST dword ptr [ESP + 0x1c]\n  10026c6f:  FCOMP dword ptr [0x100f53a0]\n  10026c75:  FNSTSW AX\n  10026c77:  TEST AH,0x1\n  10026c7a:  JZ 0x10026cab\n  10026c7c:  FLD dword ptr [ESP + 0x1c]\n  10026c80:  FCHS\n  10026c82:  FSTP dword ptr [ESP + 0x1c]\n  10026c86:  FLD dword ptr [ECX]\n  10026c88:  FCHS\n  10026c8a:  FSTP dword ptr [ESP + 0x8]\n  10026c8e:  FLD dword ptr [ECX + 0x4]\n  10026c91:  FCHS\n  10026c93:  FSTP dword ptr [ESP + 0xc]\n  10026c97:  FLD dword ptr [ECX + 0x8]\n  10026c9a:  FCHS\n  10026c9c:  FSTP dword ptr [ESP + 0x10]\n  10026ca0:  FLD dword ptr [ECX + 0xc]\n  10026ca3:  FCHS\n  10026ca5:  FSTP dword ptr [ESP + 0x14]\n  10026ca9:  JMP 0x10026cc6\n  10026cab:  MOV EAX,dword ptr [ECX]\n  10026cad:  MOV EDX,dword ptr [ECX + 0x4]\n  10026cb0:  MOV dword ptr [ESP + 0x8],EAX\n  10026cb4:  MOV EAX,dword ptr [ECX + 0x8]\n  10026cb7:  MOV ECX,dword ptr [ECX + 0xc]\n  10026cba:  MOV dword ptr [ESP + 0xc],EDX\n  10026cbe:  MOV dword ptr [ESP + 0x10],EAX\n  10026cc2:  MOV dword ptr [ESP + 0x14],ECX\n  10026cc6:  FLD dword ptr [0x100f5344]\n  10026ccc:  FSUB dword ptr [ESP + 0x1c]\n  10026cd0:  FCOMP qword ptr [0x100f58b0]\n  10026cd6:  FNSTSW AX\n  10026cd8:  TEST AH,0x41\n  10026cdb:  JNZ 0x10026d2c\n  10026cdd:  FLD dword ptr [ESP + 0x1c]\n  10026ce1:  CALL 0x100e5090\n  10026ce6:  FMUL dword ptr [0x100f58ac]\n  10026cec:  FST dword ptr [ESP + 0x1c]\n  10026cf0:  FMUL dword ptr [0x100f5648]\n  10026cf6:  FSIN\n  10026cf8:  FSTP dword ptr [ESP + 0x20]\n  10026cfc:  FLD dword ptr [0x100f5344]\n  10026d02:  FSUB dword ptr [ESP + 0x24]\n  10026d06:  FMUL dword ptr [ESP + 0x1c]\n  10026d0a:  FMUL dword ptr [0x100f5648]\n  10026d10:  FSIN\n  10026d12:  FDIV dword ptr [ESP + 0x20]\n  10026d16:  FLD dword ptr [ESP + 0x1c]\n  10026d1a:  FMUL dword ptr [ESP + 0x24]\n  10026d1e:  FMUL dword ptr [0x100f5648]\n  10026d24:  FSIN\n  10026d26:  FDIV dword ptr [ESP + 0x20]\n  10026d2a:  JMP 0x10026d3a\n  10026d2c:  FLD dword ptr [0x100f5344]\n  10026d32:  FSUB dword ptr [ESP + 0x24]\n  10026d36:  FLD dword ptr [ESP + 0x24]\n  10026d3a:  FLD ST1\n  10026d3c:  FMUL dword ptr [ESI]\n  10026d3e:  FLD ST1\n  10026d40:  FMUL dword ptr [ESP + 0x8]\n  10026d44:  FADDP\n  10026d46:  FSTP dword ptr [EDI]\n  10026d48:  FLD ST1\n  10026d4a:  FMUL dword ptr [ESI + 0x4]\n  10026d4d:  FLD ST1\n  10026d4f:  FMUL dword ptr [ESP + 0xc]\n  10026d53:  FADDP\n  10026d55:  FSTP dword ptr [EDI + 0x4]\n  10026d58:  FLD ST1\n  10026d5a:  FMUL dword ptr [ESI + 0x8]\n  10026d5d:  FLD ST1\n  10026d5f:  FMUL dword ptr [ESP + 0x10]\n  10026d63:  FADDP\n  10026d65:  FSTP dword ptr [EDI + 0x8]\n  10026d68:  FXCH\n  10026d6a:  FMUL dword ptr [ESI + 0xc]\n  10026d6d:  FXCH\n  10026d6f:  FMUL dword ptr [ESP + 0x14]\n  10026d73:  FADDP\n  10026d75:  FSTP dword ptr [EDI + 0xc]\n  10026d78:  POP EDI\n  10026d79:  POP ESI\n  10026d7a:  ADD ESP,0x10\n  10026d7d:  RET 0xc", 
+  "callers": [
+    {
+      "address": "0x10021700", 
+      "name": "Update"
+    }, 
+    {
+      "address": "0x100078a0", 
+      "name": "FUN_100078a0"
+    }, 
+    {
+      "address": "0x10007470", 
+      "name": "FUN_10007470"
+    }, 
+    {
+      "address": "0x1000ada0", 
+      "name": "FUN_1000ada0"
+    }
+  ]
+}

@@ -1,0 +1,41 @@
+{
+  "address": "0x1000ac70", 
+  "size_bytes": 108, 
+  "calling_convention": "unknown", 
+  "signature": "undefined FUN_1000ac70(void)", 
+  "callees": [
+    {
+      "address": "0x100e4a2f", 
+      "name": "FUN_100e4a2f"
+    }, 
+    {
+      "address": "0x100e4a24", 
+      "name": "FUN_100e4a24"
+    }, 
+    {
+      "address": "0x100e4a24", 
+      "name": "FUN_100e4a24"
+    }, 
+    {
+      "address": "0x100e4a24", 
+      "name": "FUN_100e4a24"
+    }, 
+    {
+      "address": "0x100e4a24", 
+      "name": "FUN_100e4a24"
+    }
+  ], 
+  "global_refs": [
+    {
+      "address": "0x1000b4a0", 
+      "type": null, 
+      "name": "DAT_1000b4a0"
+    }
+  ], 
+  "has_custom_name": false, 
+  "decompiled_c": "\nvoid FUN_1000ac70(void)\n\n{\n  int in_ECX;\n  int iVar1;\n  \n  iVar1 = *(int *)(in_ECX + 0x68);\n  if (iVar1 != 0) {\n    FUN_100e4a2f(iVar1,0x14,*(undefined4 *)(iVar1 + -4),FUN_1000b4a0);\n    FUN_100e4a24(iVar1 + -4);\n  }\n  iVar1 = 0;\n  if (0 < *(int *)(in_ECX + 0x48)) {\n    do {\n      FUN_100e4a24(*(undefined4 *)(*(int *)(in_ECX + 0x6c) + 4 + iVar1 * 8));\n      iVar1 = iVar1 + 1;\n    } while (iVar1 < *(int *)(in_ECX + 0x48));\n  }\n  if (*(int *)(in_ECX + 0x6c) != 0) {\n    FUN_100e4a24(*(int *)(in_ECX + 0x6c));\n  }\n  if (*(int *)(in_ECX + 0x70) != 0) {\n    FUN_100e4a24(*(int *)(in_ECX + 0x70));\n  }\n  return;\n}\n\n", 
+  "is_thunk": false, 
+  "name": "FUN_1000ac70", 
+  "assembly": "  1000ac70:  PUSH ESI\n  1000ac71:  MOV ESI,ECX\n  1000ac73:  PUSH EDI\n  1000ac74:  MOV EAX,dword ptr [ESI + 0x68]\n  1000ac77:  TEST EAX,EAX\n  1000ac79:  JZ 0x1000ac98\n  1000ac7b:  MOV ECX,dword ptr [EAX + -0x4]\n  1000ac7e:  LEA EDI,[EAX + -0x4]\n  1000ac81:  PUSH 0x1000b4a0\n  1000ac86:  PUSH ECX\n  1000ac87:  PUSH 0x14\n  1000ac89:  PUSH EAX\n  1000ac8a:  CALL 0x100e4a2f\n  1000ac8f:  PUSH EDI\n  1000ac90:  CALL 0x100e4a24\n  1000ac95:  ADD ESP,0x4\n  1000ac98:  MOV EAX,dword ptr [ESI + 0x48]\n  1000ac9b:  XOR EDI,EDI\n  1000ac9d:  TEST EAX,EAX\n  1000ac9f:  JLE 0x1000acb9\n  1000aca1:  MOV EDX,dword ptr [ESI + 0x6c]\n  1000aca4:  MOV EAX,dword ptr [EDX + EDI*0x8 + 0x4]\n  1000aca8:  PUSH EAX\n  1000aca9:  CALL 0x100e4a24\n  1000acae:  MOV EAX,dword ptr [ESI + 0x48]\n  1000acb1:  ADD ESP,0x4\n  1000acb4:  INC EDI\n  1000acb5:  CMP EDI,EAX\n  1000acb7:  JL 0x1000aca1\n  1000acb9:  MOV EAX,dword ptr [ESI + 0x6c]\n  1000acbc:  TEST EAX,EAX\n  1000acbe:  JZ 0x1000acc9\n  1000acc0:  PUSH EAX\n  1000acc1:  CALL 0x100e4a24\n  1000acc6:  ADD ESP,0x4\n  1000acc9:  MOV ESI,dword ptr [ESI + 0x70]\n  1000accc:  TEST ESI,ESI\n  1000acce:  JZ 0x1000acd9\n  1000acd0:  PUSH ESI\n  1000acd1:  CALL 0x100e4a24\n  1000acd6:  ADD ESP,0x4\n  1000acd9:  POP EDI\n  1000acda:  POP ESI\n  1000acdb:  RET", 
+  "callers": []
+}

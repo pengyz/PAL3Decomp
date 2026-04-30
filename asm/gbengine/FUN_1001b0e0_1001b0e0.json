@@ -1,0 +1,43 @@
+{
+  "address": "0x1001b0e0", 
+  "size_bytes": 176, 
+  "calling_convention": "unknown", 
+  "signature": "undefined FUN_1001b0e0(undefined4 param_1, undefined4 param_2, undefined4 param_3)", 
+  "callees": [], 
+  "global_refs": [
+    {
+      "address": "0x0000000c", 
+      "type": null, 
+      "name": "DAT_0000000c"
+    }, 
+    {
+      "address": "0x00000004", 
+      "type": null, 
+      "name": "DAT_00000004"
+    }, 
+    {
+      "address": "0x00000008", 
+      "type": null, 
+      "name": "DAT_00000008"
+    }
+  ], 
+  "has_custom_name": false, 
+  "decompiled_c": "\nundefined4 FUN_1001b0e0(uint param_1,undefined4 param_2,uint param_3)\n\n{\n  int iVar1;\n  int in_ECX;\n  uint uVar2;\n  uint uVar3;\n  undefined4 unaff_EBP;\n  \n  uVar3 = param_3;\n  if (*(int *)(in_ECX + 0x66c) != 0) {\n    uVar3 = param_3 | 0x10;\n  }\n  if ((param_1 & 0x80000000) == 0) {\n    uVar2 = 0;\n    if ((param_1 & 1) != 0) {\n      uVar2 = 2;\n    }\n    if ((param_1 & 0x100) != 0) {\n      uVar2 = uVar2 | 4;\n    }\n    if ((param_1 & 2) != 0) {\n      uVar2 = uVar2 | 0x10;\n    }\n    if ((param_1 & 4) != 0) {\n      uVar2 = uVar2 | 0x40;\n    }\n    if ((param_1 & 8) != 0) {\n      uVar2 = uVar2 | 0x80;\n    }\n    if ((param_1 & 0x80) == 0) {\n      if ((param_1 & 0x40) == 0) {\n        if ((param_1 & 0x20) == 0) {\n          if ((param_1 & 0x10) != 0) {\n            uVar2 = uVar2 | 0x100;\n          }\n        }\n        else {\n          uVar2 = uVar2 | 0x200;\n        }\n      }\n      else {\n        uVar2 = uVar2 | 0x300;\n      }\n    }\n    else {\n      uVar2 = uVar2 | 0x400;\n    }\n  }\n  else {\n    uVar2 = 0;\n  }\n  iVar1 = (**(code **)(**(int **)(in_ECX + 0x718) + 0x68))\n                    (*(int **)(in_ECX + 0x718),param_2,uVar3,uVar2,param_3 == 0,&param_3,0);\n  if (iVar1 < 0) {\n    *(int *)(in_ECX + 0x8c8) = iVar1;\n    return 0;\n  }\n  return unaff_EBP;\n}\n\n", 
+  "is_thunk": false, 
+  "name": "FUN_1001b0e0", 
+  "assembly": "  1001b0e0:  MOV EDX,dword ptr [ESP + 0xc]\n  1001b0e4:  XOR EAX,EAX\n  1001b0e6:  TEST EDX,EDX\n  1001b0e8:  PUSH ESI\n  1001b0e9:  MOV ESI,ECX\n  1001b0eb:  SETZ AL\n  1001b0ee:  PUSH EDI\n  1001b0ef:  MOV EDI,EAX\n  1001b0f1:  MOV EAX,dword ptr [ESI + 0x66c]\n  1001b0f7:  TEST EAX,EAX\n  1001b0f9:  JZ 0x1001b0fe\n  1001b0fb:  OR EDX,0x10\n  1001b0fe:  MOV EAX,dword ptr [ESP + 0xc]\n  1001b102:  TEST EAX,0x80000000\n  1001b107:  JZ 0x1001b10d\n  1001b109:  XOR ECX,ECX\n  1001b10b:  JMP 0x1001b157\n  1001b10d:  XOR ECX,ECX\n  1001b10f:  TEST AL,0x1\n  1001b111:  JZ 0x1001b118\n  1001b113:  MOV ECX,0x2\n  1001b118:  TEST AH,0x1\n  1001b11b:  JZ 0x1001b120\n  1001b11d:  OR ECX,0x4\n  1001b120:  TEST AL,0x2\n  1001b122:  JZ 0x1001b127\n  1001b124:  OR ECX,0x10\n  1001b127:  TEST AL,0x4\n  1001b129:  JZ 0x1001b12e\n  1001b12b:  OR ECX,0x40\n  1001b12e:  TEST AL,0x8\n  1001b130:  JZ 0x1001b135\n  1001b132:  OR CL,0x80\n  1001b135:  TEST AL,0x80\n  1001b137:  JZ 0x1001b13e\n  1001b139:  OR CH,0x4\n  1001b13c:  JMP 0x1001b157\n  1001b13e:  TEST AL,0x40\n  1001b140:  JZ 0x1001b147\n  1001b142:  OR CH,0x3\n  1001b145:  JMP 0x1001b157\n  1001b147:  TEST AL,0x20\n  1001b149:  JZ 0x1001b150\n  1001b14b:  OR CH,0x2\n  1001b14e:  JMP 0x1001b157\n  1001b150:  TEST AL,0x10\n  1001b152:  JZ 0x1001b157\n  1001b154:  OR CH,0x1\n  1001b157:  MOV EAX,dword ptr [ESI + 0x718]\n  1001b15d:  PUSH EBX\n  1001b15e:  PUSH EBP\n  1001b15f:  LEA EBP,[ESP + 0x1c]\n  1001b163:  MOV EBX,dword ptr [EAX]\n  1001b165:  PUSH 0x0\n  1001b167:  PUSH EBP\n  1001b168:  PUSH EDI\n  1001b169:  PUSH ECX\n  1001b16a:  MOV ECX,dword ptr [ESP + 0x28]\n  1001b16e:  PUSH EDX\n  1001b16f:  PUSH ECX\n  1001b170:  PUSH EAX\n  1001b171:  CALL dword ptr [EBX + 0x68]\n  1001b174:  POP EBP\n  1001b175:  POP EBX\n  1001b176:  TEST EAX,EAX\n  1001b178:  JGE 0x1001b187\n  1001b17a:  MOV dword ptr [ESI + 0x8c8],EAX\n  1001b180:  POP EDI\n  1001b181:  XOR EAX,EAX\n  1001b183:  POP ESI\n  1001b184:  RET 0xc\n  1001b187:  MOV EAX,dword ptr [ESP + 0x14]\n  1001b18b:  POP EDI\n  1001b18c:  POP ESI\n  1001b18d:  RET 0xc", 
+  "callers": [
+    {
+      "address": "0x10018410", 
+      "name": "FUN_10018410"
+    }, 
+    {
+      "address": "0x10018520", 
+      "name": "FUN_10018520"
+    }, 
+    {
+      "address": "0x1001c3c0", 
+      "name": "FUN_1001c3c0"
+    }
+  ]
+}

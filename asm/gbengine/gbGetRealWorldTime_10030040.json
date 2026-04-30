@@ -1,0 +1,30 @@
+{
+  "address": "0x10030040", 
+  "size_bytes": 125, 
+  "calling_convention": "__cdecl", 
+  "signature": "void __cdecl gbGetRealWorldTime(gbRealWorldTime * param_1)", 
+  "callees": [
+    {
+      "address": "0x00000016", 
+      "name": "GetLocalTime"
+    }
+  ], 
+  "global_refs": [
+    {
+      "address": "0x-0000014", 
+      "type": null, 
+      "name": "DAT_-0000014"
+    }, 
+    {
+      "address": "0x100f5084", 
+      "type": "pointer", 
+      "name": "DAT_100f5084"
+    }
+  ], 
+  "has_custom_name": true, 
+  "decompiled_c": "\n/* void __cdecl gbGetRealWorldTime(struct gbRealWorldTime *) */\n\nvoid __cdecl gbGetRealWorldTime(gbRealWorldTime *param_1)\n\n{\n  _SYSTEMTIME local_14;\n  \n                    /* 0x30040  987  ?gbGetRealWorldTime@@YAXPAUgbRealWorldTime@@@Z */\n  GetLocalTime(&local_14);\n  *(uint *)(param_1 + 0xc) = (uint)local_14.wDay;\n  *(uint *)(param_1 + 8) = (uint)local_14.wDayOfWeek;\n  *(uint *)(param_1 + 0x10) = (uint)local_14.wHour;\n  *(uint *)(param_1 + 0x1c) = (uint)local_14.wMilliseconds;\n  *(uint *)(param_1 + 0x14) = (uint)local_14.wMinute;\n  *(uint *)(param_1 + 4) = (uint)local_14.wMonth;\n  *(uint *)(param_1 + 0x18) = (uint)local_14.wSecond;\n  *(uint *)param_1 = (uint)local_14.wYear;\n  return;\n}\n\n", 
+  "is_thunk": false, 
+  "name": "gbGetRealWorldTime", 
+  "assembly": "  10030040:  SUB ESP,0x14\n  10030043:  LEA EAX,[ESP]\n  10030047:  PUSH EAX\n  10030048:  CALL dword ptr [0x100f5084]\n  1003004e:  MOV ECX,dword ptr [ESP + 0x6]\n  10030052:  MOV EAX,dword ptr [ESP + 0x18]\n  10030056:  MOV EDX,dword ptr [ESP + 0x4]\n  1003005a:  AND ECX,0xffff\n  10030060:  AND EDX,0xffff\n  10030066:  MOV dword ptr [EAX + 0xc],ECX\n  10030069:  MOV ECX,dword ptr [ESP + 0x8]\n  1003006d:  MOV dword ptr [EAX + 0x8],EDX\n  10030070:  MOV EDX,dword ptr [ESP + 0xe]\n  10030074:  AND ECX,0xffff\n  1003007a:  AND EDX,0xffff\n  10030080:  MOV dword ptr [EAX + 0x10],ECX\n  10030083:  MOV ECX,dword ptr [ESP + 0xa]\n  10030087:  MOV dword ptr [EAX + 0x1c],EDX\n  1003008a:  MOV EDX,dword ptr [ESP + 0x2]\n  1003008e:  AND ECX,0xffff\n  10030094:  AND EDX,0xffff\n  1003009a:  MOV dword ptr [EAX + 0x14],ECX\n  1003009d:  MOV ECX,dword ptr [ESP + 0xc]\n  100300a1:  MOV dword ptr [EAX + 0x4],EDX\n  100300a4:  MOV EDX,dword ptr [ESP]\n  100300a8:  AND ECX,0xffff\n  100300ae:  AND EDX,0xffff\n  100300b4:  MOV dword ptr [EAX + 0x18],ECX\n  100300b7:  MOV dword ptr [EAX],EDX\n  100300b9:  ADD ESP,0x14\n  100300bc:  RET", 
+  "callers": []
+}

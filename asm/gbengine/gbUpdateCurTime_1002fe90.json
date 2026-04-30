@@ -1,0 +1,64 @@
+{
+  "address": "0x1002fe90", 
+  "size_bytes": 100, 
+  "calling_convention": "__cdecl", 
+  "signature": "double __cdecl gbUpdateCurTime(void)", 
+  "callees": [
+    {
+      "address": "0x00000014", 
+      "name": "QueryPerformanceCounter"
+    }, 
+    {
+      "address": "0x100e5e04", 
+      "name": "FUN_100e5e04"
+    }
+  ], 
+  "global_refs": [
+    {
+      "address": "0x1015d398", 
+      "type": "undefined4", 
+      "name": "DAT_1015d398"
+    }, 
+    {
+      "address": "0x-0000008", 
+      "type": null, 
+      "name": "DAT_-0000008"
+    }, 
+    {
+      "address": "0x100f507c", 
+      "type": "pointer", 
+      "name": "DAT_100f507c"
+    }, 
+    {
+      "address": "0x100f5b30", 
+      "type": null, 
+      "name": "DAT_100f5b30"
+    }, 
+    {
+      "address": "0x1015d390", 
+      "type": null, 
+      "name": "DAT_1015d390"
+    }, 
+    {
+      "address": "0x1015d388", 
+      "type": "double", 
+      "name": "DAT_1015d388"
+    }, 
+    {
+      "address": "0x100f55f8", 
+      "type": null, 
+      "name": "DAT_100f55f8"
+    }
+  ], 
+  "has_custom_name": true, 
+  "decompiled_c": "\n/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */\n/* double __cdecl gbUpdateCurTime(void) */\n\ndouble __cdecl gbUpdateCurTime(void)\n\n{\n  int iVar1;\n  LARGE_INTEGER local_8;\n  \n                    /* 0x2fe90  1005  ?gbUpdateCurTime@@YANXZ */\n  if (DAT_1015d398 != 0) {\n    QueryPerformanceCounter(&local_8);\n    g_CurrentTime =\n         ((double)local_8._0_4_ + (double)local_8.s.HighPart * 4294967295.0) / _DAT_1015d390;\n    return g_CurrentTime;\n  }\n  iVar1 = FUN_100e5e04();\n  g_CurrentTime = (double)iVar1 * 1000.0;\n  return (double)iVar1 * 1000.0;\n}\n\n", 
+  "is_thunk": false, 
+  "name": "gbUpdateCurTime", 
+  "assembly": "  1002fe90:  MOV EAX,[0x1015d398]\n  1002fe95:  SUB ESP,0x8\n  1002fe98:  TEST EAX,EAX\n  1002fe9a:  JZ 0x1002fed7\n  1002fe9c:  LEA EAX,[ESP]\n  1002fea0:  PUSH EAX\n  1002fea1:  CALL dword ptr [0x100f507c]\n  1002fea7:  FILD dword ptr [ESP + 0x4]\n  1002feab:  MOV ECX,dword ptr [ESP]\n  1002feaf:  MOV dword ptr [ESP + 0x4],0x0\n  1002feb7:  MOV dword ptr [ESP],ECX\n  1002febb:  FMUL qword ptr [0x100f5b30]\n  1002fec1:  FILD qword ptr [ESP]\n  1002fec5:  FADDP\n  1002fec7:  FDIV qword ptr [0x1015d390]\n  1002fecd:  FST qword ptr [0x1015d388]\n  1002fed3:  ADD ESP,0x8\n  1002fed6:  RET\n  1002fed7:  CALL 0x100e5e04\n  1002fedc:  MOV dword ptr [ESP],EAX\n  1002fee0:  FILD dword ptr [ESP]\n  1002fee4:  FMUL qword ptr [0x100f55f8]\n  1002feea:  FST qword ptr [0x1015d388]\n  1002fef0:  ADD ESP,0x8\n  1002fef3:  RET", 
+  "callers": [
+    {
+      "address": "0x1001db10", 
+      "name": "BeginScene"
+    }
+  ]
+}

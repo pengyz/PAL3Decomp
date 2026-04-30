@@ -1,0 +1,42 @@
+{
+  "address": "0x1003c35a", 
+  "size_bytes": 122, 
+  "calling_convention": "unknown", 
+  "signature": "undefined FUN_1003c35a(void)", 
+  "callees": [
+    {
+      "address": "0x100e4a24", 
+      "name": "FUN_100e4a24"
+    }, 
+    {
+      "address": "0x100e4a24", 
+      "name": "FUN_100e4a24"
+    }, 
+    {
+      "address": "0x100e4a24", 
+      "name": "FUN_100e4a24"
+    }, 
+    {
+      "address": "0x1003b74b", 
+      "name": "FUN_1003b74b"
+    }
+  ], 
+  "global_refs": [
+    {
+      "address": "0x100f6f30", 
+      "type": "undefined *", 
+      "name": "DAT_100f6f30"
+    }
+  ], 
+  "has_custom_name": false, 
+  "decompiled_c": "\nvoid FUN_1003c35a(void)\n\n{\n  undefined4 *in_ECX;\n  uint uVar1;\n  int iVar2;\n  uint uVar3;\n  \n  *in_ECX = &PTR_FUN_100f6f30;\n  if (((in_ECX[0x3d] != 0) && (iVar2 = in_ECX[0x3e], iVar2 != 0)) &&\n     (uVar3 = in_ECX[0x35], uVar3 < (uint)in_ECX[0x36])) {\n    do {\n      for (uVar1 = in_ECX[0x32]; uVar1 < (uint)in_ECX[0x34]; uVar1 = uVar1 + 4) {\n        FUN_100e4a24(*(undefined4 *)(iVar2 + 4));\n        iVar2 = iVar2 + 8;\n      }\n      uVar3 = uVar3 + 1;\n    } while (uVar3 < (uint)in_ECX[0x36]);\n  }\n  FUN_100e4a24(in_ECX[0x3c]);\n  FUN_100e4a24(in_ECX[0x3e]);\n  FUN_1003b74b();\n  return;\n}\n\n", 
+  "is_thunk": false, 
+  "name": "FUN_1003c35a", 
+  "assembly": "  1003c35a:  PUSH ESI\n  1003c35b:  MOV ESI,ECX\n  1003c35d:  CMP dword ptr [ESI + 0xf4],0x0\n  1003c364:  MOV dword ptr [ESI],0x100f6f30\n  1003c36a:  JZ 0x1003c3b4\n  1003c36c:  MOV EAX,dword ptr [ESI + 0xf8]\n  1003c372:  TEST EAX,EAX\n  1003c374:  JZ 0x1003c3b4\n  1003c376:  PUSH EBP\n  1003c377:  PUSH EDI\n  1003c378:  MOV EDI,dword ptr [ESI + 0xd4]\n  1003c37e:  CMP EDI,dword ptr [ESI + 0xd8]\n  1003c384:  MOV EBP,EAX\n  1003c386:  JNC 0x1003c3b2\n  1003c388:  PUSH EBX\n  1003c389:  MOV EBX,dword ptr [ESI + 0xc8]\n  1003c38f:  JMP 0x1003c3a0\n  1003c391:  PUSH dword ptr [EBP + 0x4]\n  1003c394:  CALL 0x100e4a24\n  1003c399:  ADD EBP,0x8\n  1003c39c:  POP ECX\n  1003c39d:  ADD EBX,0x4\n  1003c3a0:  CMP EBX,dword ptr [ESI + 0xd0]\n  1003c3a6:  JC 0x1003c391\n  1003c3a8:  INC EDI\n  1003c3a9:  CMP EDI,dword ptr [ESI + 0xd8]\n  1003c3af:  JC 0x1003c389\n  1003c3b1:  POP EBX\n  1003c3b2:  POP EDI\n  1003c3b3:  POP EBP\n  1003c3b4:  PUSH dword ptr [ESI + 0xf0]\n  1003c3ba:  CALL 0x100e4a24\n  1003c3bf:  PUSH dword ptr [ESI + 0xf8]\n  1003c3c5:  CALL 0x100e4a24\n  1003c3ca:  POP ECX\n  1003c3cb:  POP ECX\n  1003c3cc:  MOV ECX,ESI\n  1003c3ce:  POP ESI\n  1003c3cf:  JMP 0x1003b74b", 
+  "callers": [
+    {
+      "address": "0x10045474", 
+      "name": "FUN_10045474"
+    }
+  ]
+}

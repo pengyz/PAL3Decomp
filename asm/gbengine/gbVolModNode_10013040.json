@@ -1,0 +1,62 @@
+{
+  "address": "0x10013040", 
+  "size_bytes": 106, 
+  "calling_convention": "__thiscall", 
+  "signature": "undefined __thiscall gbVolModNode(gbVolModNode * this)", 
+  "callees": [
+    {
+      "address": "0x10016590", 
+      "name": "gbVisNode"
+    }, 
+    {
+      "address": "0x10025110", 
+      "name": "gbMatrix4"
+    }, 
+    {
+      "address": "0x10025110", 
+      "name": "gbMatrix4"
+    }, 
+    {
+      "address": "0x10025640", 
+      "name": "LoadIdentity"
+    }
+  ], 
+  "global_refs": [
+    {
+      "address": "0x100f3bd8", 
+      "type": null, 
+      "name": "DAT_100f3bd8"
+    }, 
+    {
+      "address": "0xffdff000", 
+      "type": "void *32", 
+      "name": "DAT_ffdff000"
+    }, 
+    {
+      "address": "0x-0000010", 
+      "type": null, 
+      "name": "DAT_-0000010"
+    }, 
+    {
+      "address": "0x-0000004", 
+      "type": null, 
+      "name": "DAT_-0000004"
+    }, 
+    {
+      "address": "0x100f542c", 
+      "type": "undefined *", 
+      "name": "DAT_100f542c"
+    }, 
+    {
+      "address": "0x-000000c", 
+      "type": null, 
+      "name": "DAT_-000000c"
+    }
+  ], 
+  "has_custom_name": true, 
+  "decompiled_c": "\n/* public: __thiscall gbVolModNode::gbVolModNode(void) */\n\ngbVolModNode * __thiscall gbVolModNode::gbVolModNode(gbVolModNode *this)\n\n{\n  void *local_c;\n  undefined *puStack_8;\n  undefined4 local_4;\n  \n                    /* 0x13040  117  ??0gbVolModNode@@QAE@XZ */\n  local_4 = 0xffffffff;\n  puStack_8 = &LAB_100f3bd8;\n  local_c = ExceptionList;\n  ExceptionList = &local_c;\n  gbVisNode::gbVisNode((gbVisNode *)this);\n  local_4 = 0;\n  gbMatrix4::gbMatrix4((gbMatrix4 *)(this + 0x58));\n  gbMatrix4::gbMatrix4((gbMatrix4 *)(this + 0x98));\n  *(undefined ***)this = &_vftable_;\n  gbMatrix4::LoadIdentity((gbMatrix4 *)(this + 0x58));\n  *(undefined4 *)(this + 0xd8) = 0;\n  ExceptionList = local_c;\n  return this;\n}\n\n", 
+  "is_thunk": false, 
+  "name": "gbVolModNode", 
+  "assembly": "  10013040:  PUSH -0x1\n  10013042:  PUSH 0x100f3bd8\n  10013047:  MOV EAX,FS:[0x0]\n  1001304d:  PUSH EAX\n  1001304e:  MOV dword ptr FS:[0x0],ESP\n  10013055:  PUSH ECX\n  10013056:  PUSH ESI\n  10013057:  MOV ESI,ECX\n  10013059:  PUSH EDI\n  1001305a:  MOV dword ptr [ESP + 0x8],ESI\n  1001305e:  CALL 0x10016590\n  10013063:  LEA EDI,[ESI + 0x58]\n  10013066:  MOV dword ptr [ESP + 0x14],0x0\n  1001306e:  MOV ECX,EDI\n  10013070:  CALL 0x10025110\n  10013075:  LEA ECX,[ESI + 0x98]\n  1001307b:  CALL 0x10025110\n  10013080:  MOV ECX,EDI\n  10013082:  MOV dword ptr [ESI],0x100f542c\n  10013088:  CALL 0x10025640\n  1001308d:  MOV ECX,dword ptr [ESP + 0xc]\n  10013091:  MOV dword ptr [ESI + 0xd8],0x0\n  1001309b:  MOV EAX,ESI\n  1001309d:  POP EDI\n  1001309e:  POP ESI\n  1001309f:  MOV dword ptr FS:[0x0],ECX\n  100130a6:  ADD ESP,0x10\n  100130a9:  RET", 
+  "callers": []
+}

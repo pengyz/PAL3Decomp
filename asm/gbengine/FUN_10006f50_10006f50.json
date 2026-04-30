@@ -1,0 +1,36 @@
+{
+  "address": "0x10006f50", 
+  "size_bytes": 86, 
+  "calling_convention": "unknown", 
+  "signature": "undefined FUN_10006f50(void)", 
+  "callees": [
+    {
+      "address": "0x10006f50", 
+      "name": "FUN_10006f50"
+    }, 
+    {
+      "address": "0x100e4a24", 
+      "name": "FUN_100e4a24"
+    }, 
+    {
+      "address": "0x100e4a24", 
+      "name": "FUN_100e4a24"
+    }
+  ], 
+  "global_refs": [], 
+  "has_custom_name": false, 
+  "decompiled_c": "\nvoid FUN_10006f50(void)\n\n{\n  int iVar1;\n  int in_ECX;\n  int iVar2;\n  \n  if (*(int *)(in_ECX + 0xd4) != 0) {\n    iVar2 = 0;\n    if (0 < *(int *)(in_ECX + 0xd0)) {\n      do {\n        iVar1 = *(int *)(*(int *)(in_ECX + 0xd4) + iVar2 * 4);\n        if (iVar1 != 0) {\n          FUN_10006f50();\n          FUN_100e4a24(iVar1);\n        }\n        iVar2 = iVar2 + 1;\n      } while (iVar2 < *(int *)(in_ECX + 0xd0));\n    }\n    FUN_100e4a24(*(undefined4 *)(in_ECX + 0xd4));\n  }\n  return;\n}\n\n", 
+  "is_thunk": false, 
+  "name": "FUN_10006f50", 
+  "assembly": "  10006f50:  PUSH EDI\n  10006f51:  MOV EDI,ECX\n  10006f53:  MOV EAX,dword ptr [EDI + 0xd4]\n  10006f59:  TEST EAX,EAX\n  10006f5b:  JZ 0x10006fa4\n  10006f5d:  MOV EAX,dword ptr [EDI + 0xd0]\n  10006f63:  PUSH EBX\n  10006f64:  XOR EBX,EBX\n  10006f66:  TEST EAX,EAX\n  10006f68:  JLE 0x10006f94\n  10006f6a:  PUSH ESI\n  10006f6b:  MOV EAX,dword ptr [EDI + 0xd4]\n  10006f71:  MOV ESI,dword ptr [EAX + EBX*0x4]\n  10006f74:  TEST ESI,ESI\n  10006f76:  JZ 0x10006f88\n  10006f78:  MOV ECX,ESI\n  10006f7a:  CALL 0x10006f50\n  10006f7f:  PUSH ESI\n  10006f80:  CALL 0x100e4a24\n  10006f85:  ADD ESP,0x4\n  10006f88:  MOV EAX,dword ptr [EDI + 0xd0]\n  10006f8e:  INC EBX\n  10006f8f:  CMP EBX,EAX\n  10006f91:  JL 0x10006f6b\n  10006f93:  POP ESI\n  10006f94:  MOV ECX,dword ptr [EDI + 0xd4]\n  10006f9a:  PUSH ECX\n  10006f9b:  CALL 0x100e4a24\n  10006fa0:  ADD ESP,0x4\n  10006fa3:  POP EBX\n  10006fa4:  POP EDI\n  10006fa5:  RET", 
+  "callers": [
+    {
+      "address": "0x10008a50", 
+      "name": "FUN_10008a50"
+    }, 
+    {
+      "address": "0x10006f50", 
+      "name": "FUN_10006f50"
+    }
+  ]
+}

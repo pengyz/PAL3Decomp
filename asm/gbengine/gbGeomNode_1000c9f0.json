@@ -1,0 +1,40 @@
+{
+  "address": "0x1000c9f0", 
+  "size_bytes": 356, 
+  "calling_convention": "__thiscall", 
+  "signature": "undefined __thiscall gbGeomNode(gbGeomNode * this, gbGeomNode * param_1)", 
+  "callees": [], 
+  "global_refs": [
+    {
+      "address": "0x00000004", 
+      "type": null, 
+      "name": "DAT_00000004"
+    }, 
+    {
+      "address": "0x100f53a8", 
+      "type": "pointer", 
+      "name": "DAT_100f53a8"
+    }, 
+    {
+      "address": "0x100f5370", 
+      "type": "pointer", 
+      "name": "DAT_100f5370"
+    }, 
+    {
+      "address": "0x100f5374", 
+      "type": "undefined *", 
+      "name": "DAT_100f5374"
+    }, 
+    {
+      "address": "0x100f5588", 
+      "type": "undefined *", 
+      "name": "DAT_100f5588"
+    }
+  ], 
+  "has_custom_name": true, 
+  "decompiled_c": "\n/* public: __thiscall gbGeomNode::gbGeomNode(class gbGeomNode const &) */\n\nvoid __thiscall gbGeomNode::gbGeomNode(gbGeomNode *this,gbGeomNode *param_1)\n\n{\n  undefined4 uVar1;\n  int iVar2;\n  gbGeomNode *pgVar3;\n  gbGeomNode *pgVar4;\n  \n                    /* 0xc9f0  49  ??0gbGeomNode@@QAE@ABV0@@Z */\n  uVar1 = *(undefined4 *)(param_1 + 4);\n  *(undefined ***)this = &gbChain1DNode::_vftable_;\n  *(undefined4 *)(this + 4) = uVar1;\n  *(undefined4 *)(this + 8) = *(undefined4 *)(param_1 + 8);\n  *(undefined4 *)(this + 0xc) = *(undefined4 *)(param_1 + 0xc);\n  *(undefined4 *)(this + 0x10) = *(undefined4 *)(param_1 + 0x10);\n  *(undefined4 *)(this + 0x14) = *(undefined4 *)(param_1 + 0x14);\n  uVar1 = *(undefined4 *)(param_1 + 0x18);\n  *(undefined ***)this = &gbNBTreeNode::_vftable_;\n  *(undefined4 *)(this + 0x18) = uVar1;\n  pgVar3 = param_1 + 0x1c;\n  pgVar4 = this + 0x1c;\n  for (iVar2 = 6; iVar2 != 0; iVar2 = iVar2 + -1) {\n    *(undefined4 *)pgVar4 = *(undefined4 *)pgVar3;\n    pgVar3 = pgVar3 + 4;\n    pgVar4 = pgVar4 + 4;\n  }\n  *(undefined4 *)(this + 0x34) = *(undefined4 *)(param_1 + 0x34);\n  *(undefined4 *)(this + 0x38) = *(undefined4 *)(param_1 + 0x38);\n  *(undefined4 *)(this + 0x3c) = *(undefined4 *)(param_1 + 0x3c);\n  *(undefined4 *)(this + 0x40) = *(undefined4 *)(param_1 + 0x40);\n  *(undefined4 *)(this + 0x44) = *(undefined4 *)(param_1 + 0x44);\n  *(undefined4 *)(this + 0x48) = *(undefined4 *)(param_1 + 0x48);\n  *(undefined4 *)(this + 0x4c) = *(undefined4 *)(param_1 + 0x4c);\n  *(undefined4 *)(this + 0x50) = *(undefined4 *)(param_1 + 0x50);\n  *(undefined4 *)(this + 0x54) = *(undefined4 *)(param_1 + 0x54);\n  *(undefined ***)this = &gbVisNode::_vftable_;\n  pgVar3 = param_1 + 0x58;\n  pgVar4 = this + 0x58;\n  for (iVar2 = 0x10; iVar2 != 0; iVar2 = iVar2 + -1) {\n    *(undefined4 *)pgVar4 = *(undefined4 *)pgVar3;\n    pgVar3 = pgVar3 + 4;\n    pgVar4 = pgVar4 + 4;\n  }\n  pgVar3 = param_1 + 0x98;\n  pgVar4 = this + 0x98;\n  for (iVar2 = 0x10; iVar2 != 0; iVar2 = iVar2 + -1) {\n    *(undefined4 *)pgVar4 = *(undefined4 *)pgVar3;\n    pgVar3 = pgVar3 + 4;\n    pgVar4 = pgVar4 + 4;\n  }\n  *(undefined4 *)(this + 0xd8) = *(undefined4 *)(param_1 + 0xd8);\n  *(undefined4 *)(this + 0xdc) = *(undefined4 *)(param_1 + 0xdc);\n  *(undefined4 *)(this + 0xe0) = *(undefined4 *)(param_1 + 0xe0);\n  *(undefined4 *)(this + 0xe4) = *(undefined4 *)(param_1 + 0xe4);\n  *(undefined4 *)(this + 0xe8) = *(undefined4 *)(param_1 + 0xe8);\n  *(undefined4 *)(this + 0xec) = *(undefined4 *)(param_1 + 0xec);\n  *(undefined4 *)(this + 0xf0) = *(undefined4 *)(param_1 + 0xf0);\n  *(undefined4 *)(this + 0xf4) = *(undefined4 *)(param_1 + 0xf4);\n  *(undefined4 *)(this + 0xf8) = *(undefined4 *)(param_1 + 0xf8);\n  *(undefined4 *)(this + 0xfc) = *(undefined4 *)(param_1 + 0xfc);\n  *(undefined4 *)(this + 0x100) = *(undefined4 *)(param_1 + 0x100);\n  *(undefined4 *)(this + 0x104) = *(undefined4 *)(param_1 + 0x104);\n  *(undefined4 *)(this + 0x108) = *(undefined4 *)(param_1 + 0x108);\n  *(undefined4 *)(this + 0x10c) = *(undefined4 *)(param_1 + 0x10c);\n  *(undefined4 *)(this + 0x110) = *(undefined4 *)(param_1 + 0x110);\n  *(undefined ***)this = &_vftable_;\n  return;\n}\n\n", 
+  "is_thunk": false, 
+  "name": "gbGeomNode", 
+  "assembly": "  1000c9f0:  MOV EDX,dword ptr [ESP + 0x4]\n  1000c9f4:  MOV EAX,ECX\n  1000c9f6:  PUSH ESI\n  1000c9f7:  PUSH EDI\n  1000c9f8:  MOV ECX,dword ptr [EDX + 0x4]\n  1000c9fb:  MOV dword ptr [EAX],0x100f53a8\n  1000ca01:  MOV dword ptr [EAX + 0x4],ECX\n  1000ca04:  MOV ECX,dword ptr [EDX + 0x8]\n  1000ca07:  MOV dword ptr [EAX + 0x8],ECX\n  1000ca0a:  LEA ECX,[EDX + 0xc]\n  1000ca0d:  LEA ESI,[EAX + 0xc]\n  1000ca10:  MOV EDI,dword ptr [ECX]\n  1000ca12:  MOV dword ptr [ESI],EDI\n  1000ca14:  MOV EDI,dword ptr [ECX + 0x4]\n  1000ca17:  MOV dword ptr [ESI + 0x4],EDI\n  1000ca1a:  MOV EDI,dword ptr [ECX + 0x8]\n  1000ca1d:  MOV dword ptr [ESI + 0x8],EDI\n  1000ca20:  LEA EDI,[EAX + 0x1c]\n  1000ca23:  MOV ECX,dword ptr [ECX + 0xc]\n  1000ca26:  MOV dword ptr [EAX],0x100f5370\n  1000ca2c:  MOV dword ptr [ESI + 0xc],ECX\n  1000ca2f:  LEA ESI,[EDX + 0x1c]\n  1000ca32:  MOV ECX,0x6\n  1000ca37:  MOVSD.REP ES:EDI,ESI\n  1000ca39:  MOV ECX,dword ptr [EDX + 0x34]\n  1000ca3c:  LEA ESI,[EDX + 0x58]\n  1000ca3f:  MOV dword ptr [EAX + 0x34],ECX\n  1000ca42:  MOV ECX,dword ptr [EDX + 0x38]\n  1000ca45:  MOV dword ptr [EAX + 0x38],ECX\n  1000ca48:  MOV ECX,dword ptr [EDX + 0x3c]\n  1000ca4b:  MOV dword ptr [EAX + 0x3c],ECX\n  1000ca4e:  MOV ECX,dword ptr [EDX + 0x40]\n  1000ca51:  MOV dword ptr [EAX + 0x40],ECX\n  1000ca54:  MOV ECX,dword ptr [EDX + 0x44]\n  1000ca57:  MOV dword ptr [EAX + 0x44],ECX\n  1000ca5a:  MOV ECX,dword ptr [EDX + 0x48]\n  1000ca5d:  MOV dword ptr [EAX + 0x48],ECX\n  1000ca60:  MOV ECX,dword ptr [EDX + 0x4c]\n  1000ca63:  MOV dword ptr [EAX + 0x4c],ECX\n  1000ca66:  MOV ECX,dword ptr [EDX + 0x50]\n  1000ca69:  MOV dword ptr [EAX + 0x50],ECX\n  1000ca6c:  MOV ECX,dword ptr [EDX + 0x54]\n  1000ca6f:  MOV dword ptr [EAX + 0x54],ECX\n  1000ca72:  LEA EDI,[EAX + 0x58]\n  1000ca75:  MOV ECX,0x10\n  1000ca7a:  MOV dword ptr [EAX],0x100f5374\n  1000ca80:  MOVSD.REP ES:EDI,ESI\n  1000ca82:  LEA ESI,[EDX + 0x98]\n  1000ca88:  LEA EDI,[EAX + 0x98]\n  1000ca8e:  MOV ECX,0x10\n  1000ca93:  MOVSD.REP ES:EDI,ESI\n  1000ca95:  MOV ECX,dword ptr [EDX + 0xd8]\n  1000ca9b:  MOV dword ptr [EAX + 0xd8],ECX\n  1000caa1:  MOV ECX,dword ptr [EDX + 0xdc]\n  1000caa7:  MOV dword ptr [EAX + 0xdc],ECX\n  1000caad:  MOV ECX,dword ptr [EDX + 0xe0]\n  1000cab3:  MOV dword ptr [EAX + 0xe0],ECX\n  1000cab9:  MOV ECX,dword ptr [EDX + 0xe4]\n  1000cabf:  MOV dword ptr [EAX + 0xe4],ECX\n  1000cac5:  MOV ECX,dword ptr [EDX + 0xe8]\n  1000cacb:  MOV dword ptr [EAX + 0xe8],ECX\n  1000cad1:  MOV ECX,dword ptr [EDX + 0xec]\n  1000cad7:  MOV dword ptr [EAX + 0xec],ECX\n  1000cadd:  MOV ECX,dword ptr [EDX + 0xf0]\n  1000cae3:  MOV dword ptr [EAX + 0xf0],ECX\n  1000cae9:  MOV ECX,dword ptr [EDX + 0xf4]\n  1000caef:  MOV dword ptr [EAX + 0xf4],ECX\n  1000caf5:  MOV ECX,dword ptr [EDX + 0xf8]\n  1000cafb:  MOV dword ptr [EAX + 0xf8],ECX\n  1000cb01:  MOV ECX,dword ptr [EDX + 0xfc]\n  1000cb07:  MOV dword ptr [EAX + 0xfc],ECX\n  1000cb0d:  MOV ECX,dword ptr [EDX + 0x100]\n  1000cb13:  MOV dword ptr [EAX + 0x100],ECX\n  1000cb19:  MOV ECX,dword ptr [EDX + 0x104]\n  1000cb1f:  MOV dword ptr [EAX + 0x104],ECX\n  1000cb25:  MOV ECX,dword ptr [EDX + 0x108]\n  1000cb2b:  MOV dword ptr [EAX + 0x108],ECX\n  1000cb31:  MOV ECX,dword ptr [EDX + 0x10c]\n  1000cb37:  MOV dword ptr [EAX + 0x10c],ECX\n  1000cb3d:  MOV EDX,dword ptr [EDX + 0x110]\n  1000cb43:  MOV dword ptr [EAX + 0x110],EDX\n  1000cb49:  POP EDI\n  1000cb4a:  MOV dword ptr [EAX],0x100f5588\n  1000cb50:  POP ESI\n  1000cb51:  RET 0x4", 
+  "callers": []
+}

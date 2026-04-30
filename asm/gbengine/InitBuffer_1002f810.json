@@ -1,0 +1,35 @@
+{
+  "address": "0x1002f810", 
+  "size_bytes": 151, 
+  "calling_convention": "__thiscall", 
+  "signature": "void __thiscall InitBuffer(gbStaticChain * this, int param_1, int param_2)", 
+  "callees": [
+    {
+      "address": "0x100e4b0d", 
+      "name": "_malloc"
+    }
+  ], 
+  "global_refs": [
+    {
+      "address": "0x00000008", 
+      "type": null, 
+      "name": "DAT_00000008"
+    }, 
+    {
+      "address": "0x00000004", 
+      "type": null, 
+      "name": "DAT_00000004"
+    }
+  ], 
+  "has_custom_name": true, 
+  "decompiled_c": "\n/* public: void __thiscall gbStaticChain::InitBuffer(int,int) */\n\nvoid __thiscall gbStaticChain::InitBuffer(gbStaticChain *this,int param_1,int param_2)\n\n{\n  int iVar1;\n  void *pvVar2;\n  int iVar3;\n  int iVar4;\n  \n                    /* 0x2f810  601  ?InitBuffer@gbStaticChain@@QAEXHH@Z */\n  *(int *)(this + 0x10) = param_1;\n  *(int *)(this + 0x14) = param_2;\n  *(undefined4 *)(this + 0x18) = 0;\n  pvVar2 = _malloc(param_1 * param_2);\n  iVar1 = param_1 + -1;\n  *(void **)this = pvVar2;\n  iVar4 = 0;\n  if (0 < iVar1) {\n    do {\n      iVar3 = iVar4 + 1;\n      *(int *)(*(int *)(this + 0x14) * iVar4 + 4 + *(int *)this) =\n           *(int *)(this + 0x14) * iVar3 + *(int *)this;\n      iVar4 = iVar3;\n    } while (iVar3 < iVar1);\n  }\n  iVar4 = 1;\n  *(undefined4 *)(*(int *)(this + 0x14) * iVar1 + 4 + *(int *)this) = 0;\n  if (1 < param_1) {\n    do {\n      iVar1 = iVar4 + -1;\n      iVar3 = *(int *)(this + 0x14) * iVar4;\n      iVar4 = iVar4 + 1;\n      *(int *)(iVar3 + *(int *)this) = iVar1 * *(int *)(this + 0x14) + *(int *)this;\n    } while (iVar4 < param_1);\n  }\n  **(undefined4 **)this = 0;\n  *(undefined4 *)(this + 4) = *(undefined4 *)this;\n  *(undefined4 *)(this + 8) = 0;\n  *(undefined4 *)(this + 0xc) = 0;\n  return;\n}\n\n", 
+  "is_thunk": false, 
+  "name": "InitBuffer", 
+  "assembly": "  1002f810:  MOV EAX,dword ptr [ESP + 0x8]\n  1002f814:  PUSH EBX\n  1002f815:  PUSH EBP\n  1002f816:  PUSH ESI\n  1002f817:  PUSH EDI\n  1002f818:  MOV EDI,dword ptr [ESP + 0x14]\n  1002f81c:  MOV ESI,ECX\n  1002f81e:  XOR EBP,EBP\n  1002f820:  MOV ECX,EDI\n  1002f822:  IMUL ECX,EAX\n  1002f825:  PUSH ECX\n  1002f826:  MOV dword ptr [ESI + 0x10],EDI\n  1002f829:  MOV dword ptr [ESI + 0x14],EAX\n  1002f82c:  MOV dword ptr [ESI + 0x18],EBP\n  1002f82f:  CALL 0x100e4b0d\n  1002f834:  LEA EBX,[EDI + -0x1]\n  1002f837:  ADD ESP,0x4\n  1002f83a:  XOR ECX,ECX\n  1002f83c:  CMP EBX,EBP\n  1002f83e:  MOV dword ptr [ESI],EAX\n  1002f840:  JLE 0x1002f864\n  1002f842:  MOV EAX,dword ptr [ESI + 0x14]\n  1002f845:  LEA EDX,[ECX + 0x1]\n  1002f848:  MOV EBP,EAX\n  1002f84a:  MOV EDI,dword ptr [ESI]\n  1002f84c:  IMUL EBP,EDX\n  1002f84f:  IMUL EAX,ECX\n  1002f852:  MOV ECX,EDX\n  1002f854:  ADD EBP,EDI\n  1002f856:  CMP ECX,EBX\n  1002f858:  MOV dword ptr [EAX + EDI*0x1 + 0x4],EBP\n  1002f85c:  JL 0x1002f842\n  1002f85e:  MOV EDI,dword ptr [ESP + 0x14]\n  1002f862:  XOR EBP,EBP\n  1002f864:  MOV EDX,dword ptr [ESI + 0x14]\n  1002f867:  MOV EAX,dword ptr [ESI]\n  1002f869:  IMUL EDX,EBX\n  1002f86c:  MOV ECX,0x1\n  1002f871:  CMP EDI,ECX\n  1002f873:  MOV dword ptr [EDX + EAX*0x1 + 0x4],EBP\n  1002f877:  JLE 0x1002f891\n  1002f879:  MOV EAX,dword ptr [ESI + 0x14]\n  1002f87c:  LEA EBX,[ECX + -0x1]\n  1002f87f:  IMUL EBX,EAX\n  1002f882:  IMUL EAX,ECX\n  1002f885:  MOV EDX,dword ptr [ESI]\n  1002f887:  ADD EBX,EDX\n  1002f889:  INC ECX\n  1002f88a:  CMP ECX,EDI\n  1002f88c:  MOV dword ptr [EAX + EDX*0x1],EBX\n  1002f88f:  JL 0x1002f879\n  1002f891:  MOV ECX,dword ptr [ESI]\n  1002f893:  POP EDI\n  1002f894:  MOV dword ptr [ECX],EBP\n  1002f896:  MOV EDX,dword ptr [ESI]\n  1002f898:  MOV dword ptr [ESI + 0x4],EDX\n  1002f89b:  MOV dword ptr [ESI + 0x8],EBP\n  1002f89e:  MOV dword ptr [ESI + 0xc],EBP\n  1002f8a1:  POP ESI\n  1002f8a2:  POP EBP\n  1002f8a3:  POP EBX\n  1002f8a4:  RET 0x8", 
+  "callers": [
+    {
+      "address": "0x100145a0", 
+      "name": "FUN_100145a0"
+    }
+  ]
+}

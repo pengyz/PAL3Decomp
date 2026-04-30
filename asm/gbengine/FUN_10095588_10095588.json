@@ -1,0 +1,76 @@
+{
+  "address": "0x10095588", 
+  "size_bytes": 55, 
+  "calling_convention": "unknown", 
+  "signature": "undefined FUN_10095588(undefined4 param_1, undefined4 param_2)", 
+  "callees": [
+    {
+      "address": "0x100e4b0d", 
+      "name": "_malloc"
+    }, 
+    {
+      "address": "0x10078bd5", 
+      "name": "FUN_10078bd5"
+    }
+  ], 
+  "global_refs": [
+    {
+      "address": "0x00000004", 
+      "type": null, 
+      "name": "DAT_00000004"
+    }, 
+    {
+      "address": "0x00000008", 
+      "type": null, 
+      "name": "DAT_00000008"
+    }, 
+    {
+      "address": "0x10109b40", 
+      "type": "string", 
+      "name": "DAT_10109b40"
+    }
+  ], 
+  "has_custom_name": false, 
+  "decompiled_c": "\nvoid * FUN_10095588(int param_1,size_t param_2)\n\n{\n  void *pvVar1;\n  \n  if ((param_1 == 0) || (param_2 == 0)) {\n    pvVar1 = (void *)0x0;\n  }\n  else {\n    pvVar1 = _malloc(param_2);\n    if (pvVar1 == (void *)0x0) {\n      FUN_10078bd5(param_1,\"Out of Memory\");\n    }\n  }\n  return pvVar1;\n}\n\n", 
+  "is_thunk": false, 
+  "name": "FUN_10095588", 
+  "assembly": "  10095588:  CMP dword ptr [ESP + 0x4],0x0\n  1009558d:  JZ 0x100955ba\n  1009558f:  CMP dword ptr [ESP + 0x8],0x0\n  10095594:  JZ 0x100955ba\n  10095596:  PUSH ESI\n  10095597:  PUSH dword ptr [ESP + 0xc]\n  1009559b:  CALL 0x100e4b0d\n  100955a0:  MOV ESI,EAX\n  100955a2:  TEST ESI,ESI\n  100955a4:  POP ECX\n  100955a5:  JNZ 0x100955b5\n  100955a7:  PUSH 0x10109b40\n  100955ac:  PUSH dword ptr [ESP + 0xc]\n  100955b0:  CALL 0x10078bd5\n  100955b5:  MOV EAX,ESI\n  100955b7:  POP ESI\n  100955b8:  JMP 0x100955bc\n  100955ba:  XOR EAX,EAX\n  100955bc:  RET 0x8", 
+  "callers": [
+    {
+      "address": "0x10078f04", 
+      "name": "FUN_10078f04"
+    }, 
+    {
+      "address": "0x10096d7e", 
+      "name": "FUN_10096d7e"
+    }, 
+    {
+      "address": "0x10096d7e", 
+      "name": "FUN_10096d7e"
+    }, 
+    {
+      "address": "0x1007aa87", 
+      "name": "FUN_1007aa87"
+    }, 
+    {
+      "address": "0x1007aa87", 
+      "name": "FUN_1007aa87"
+    }, 
+    {
+      "address": "0x1007aa87", 
+      "name": "FUN_1007aa87"
+    }, 
+    {
+      "address": "0x1007aa87", 
+      "name": "FUN_1007aa87"
+    }, 
+    {
+      "address": "0x10078c9d", 
+      "name": "FUN_10078c9d"
+    }, 
+    {
+      "address": "0x100974bf", 
+      "name": "FUN_100974bf"
+    }
+  ]
+}

@@ -1,0 +1,68 @@
+{
+  "address": "0x100234a0", 
+  "size_bytes": 143, 
+  "calling_convention": "unknown", 
+  "signature": "undefined FUN_100234a0(undefined4 param_1, undefined4 param_2, undefined4 param_3, undefined4 param_4, undefined4 param_5)", 
+  "callees": [
+    {
+      "address": "0x10022a20", 
+      "name": "gbPrintFont"
+    }
+  ], 
+  "global_refs": [
+    {
+      "address": "0x0000000c", 
+      "type": null, 
+      "name": "DAT_0000000c"
+    }, 
+    {
+      "address": "0x00000004", 
+      "type": null, 
+      "name": "DAT_00000004"
+    }, 
+    {
+      "address": "0x00000008", 
+      "type": null, 
+      "name": "DAT_00000008"
+    }, 
+    {
+      "address": "0x00000014", 
+      "type": null, 
+      "name": "DAT_00000014"
+    }, 
+    {
+      "address": "0x00000010", 
+      "type": null, 
+      "name": "DAT_00000010"
+    }, 
+    {
+      "address": "0x100f5878", 
+      "type": "undefined *", 
+      "name": "DAT_100f5878"
+    }, 
+    {
+      "address": "0x100f5660", 
+      "type": null, 
+      "name": "DAT_100f5660"
+    }
+  ], 
+  "has_custom_name": false, 
+  "decompiled_c": "\nvoid FUN_100234a0(int param_1,int param_2,int param_3,int param_4,undefined4 param_5)\n\n{\n  gbPrintFont *in_ECX;\n  \n  gbPrintFont::gbPrintFont(in_ECX,param_1,param_2,param_3);\n  *(undefined4 *)(in_ECX + 0x4c) = param_5;\n  *(undefined4 *)(in_ECX + 0x50) = 0;\n  *(undefined4 *)(in_ECX + 0x94) = 0;\n  *(undefined4 *)(in_ECX + 0x98) = 0;\n  *(undefined4 *)(in_ECX + 0x9c) = 0;\n  *(undefined ***)in_ECX = &PTR_LAB_100f5878;\n  *(int *)(in_ECX + 0xac) = param_4;\n  *(undefined4 *)(in_ECX + 0xb0) = 1;\n  *(int *)(in_ECX + 0xb4) = (int)(param_4 * param_4 + (param_4 * param_4 >> 0x1f & 7U)) >> 3;\n  *(undefined4 *)(in_ECX + 0xb8) = 0x100;\n  *(float *)(in_ECX + 0xbc) = (float)param_4 * 0.00390625;\n  *(int *)(in_ECX + 0xc0) = (int)(0x100 / (longlong)param_4);\n  return;\n}\n\n", 
+  "is_thunk": false, 
+  "name": "FUN_100234a0", 
+  "assembly": "  100234a0:  MOV EAX,dword ptr [ESP + 0xc]\n  100234a4:  MOV EDX,dword ptr [ESP + 0x4]\n  100234a8:  PUSH ESI\n  100234a9:  MOV ESI,ECX\n  100234ab:  MOV ECX,dword ptr [ESP + 0xc]\n  100234af:  PUSH EAX\n  100234b0:  PUSH ECX\n  100234b1:  PUSH EDX\n  100234b2:  MOV ECX,ESI\n  100234b4:  CALL 0x10022a20\n  100234b9:  MOV EAX,dword ptr [ESP + 0x18]\n  100234bd:  MOV ECX,dword ptr [ESP + 0x14]\n  100234c1:  MOV dword ptr [ESI + 0x4c],EAX\n  100234c4:  XOR EAX,EAX\n  100234c6:  MOV dword ptr [ESI + 0x50],EAX\n  100234c9:  MOV dword ptr [ESI + 0x94],EAX\n  100234cf:  MOV dword ptr [ESI + 0x98],EAX\n  100234d5:  MOV dword ptr [ESI + 0x9c],EAX\n  100234db:  MOV EAX,ECX\n  100234dd:  MOV dword ptr [ESI],0x100f5878\n  100234e3:  IMUL EAX,ECX\n  100234e6:  FILD dword ptr [ESP + 0x14]\n  100234ea:  FMUL dword ptr [0x100f5660]\n  100234f0:  CDQ\n  100234f1:  AND EDX,0x7\n  100234f4:  MOV dword ptr [ESI + 0xac],ECX\n  100234fa:  ADD EAX,EDX\n  100234fc:  MOV dword ptr [ESI + 0xb0],0x1\n  10023506:  SAR EAX,0x3\n  10023509:  MOV dword ptr [ESI + 0xb4],EAX\n  1002350f:  MOV EAX,0x100\n  10023514:  MOV dword ptr [ESI + 0xb8],EAX\n  1002351a:  CDQ\n  1002351b:  IDIV ECX\n  1002351d:  FSTP dword ptr [ESI + 0xbc]\n  10023523:  MOV dword ptr [ESI + 0xc0],EAX\n  10023529:  MOV EAX,ESI\n  1002352b:  POP ESI\n  1002352c:  RET 0x14", 
+  "callers": [
+    {
+      "address": "0x10022f60", 
+      "name": "Init"
+    }, 
+    {
+      "address": "0x10022f60", 
+      "name": "Init"
+    }, 
+    {
+      "address": "0x10022f60", 
+      "name": "Init"
+    }
+  ]
+}

@@ -1,0 +1,20 @@
+{
+  "address": "0x10067911", 
+  "size_bytes": 60, 
+  "calling_convention": "unknown", 
+  "signature": "undefined FUN_10067911(undefined4 param_1)", 
+  "callees": [], 
+  "global_refs": [
+    {
+      "address": "0x00000004", 
+      "type": null, 
+      "name": "DAT_00000004"
+    }
+  ], 
+  "has_custom_name": false, 
+  "decompiled_c": "\nundefined4 FUN_10067911(int *param_1)\n\n{\n  int *piVar1;\n  int in_ECX;\n  \n  if (param_1 != (int *)0x0) {\n    (**(code **)(*param_1 + 4))(param_1);\n  }\n  piVar1 = *(int **)(in_ECX + 0xc);\n  if (piVar1 != (int *)0x0) {\n    (**(code **)(*piVar1 + 8))(piVar1);\n    *(undefined4 *)(in_ECX + 0xc) = 0;\n  }\n  *(int **)(in_ECX + 0xc) = param_1;\n  if (param_1 == (int *)0x0) {\n    *(undefined4 *)(in_ECX + 4) = *(undefined4 *)(in_ECX + 8);\n  }\n  else {\n    *(int *)(in_ECX + 4) = in_ECX;\n  }\n  return 0;\n}\n\n", 
+  "is_thunk": false, 
+  "name": "FUN_10067911", 
+  "assembly": "  10067911:  PUSH ESI\n  10067912:  PUSH EDI\n  10067913:  MOV EDI,dword ptr [ESP + 0xc]\n  10067917:  TEST EDI,EDI\n  10067919:  MOV ESI,ECX\n  1006791b:  JZ 0x10067923\n  1006791d:  MOV EAX,dword ptr [EDI]\n  1006791f:  PUSH EDI\n  10067920:  CALL dword ptr [EAX + 0x4]\n  10067923:  MOV EAX,dword ptr [ESI + 0xc]\n  10067926:  TEST EAX,EAX\n  10067928:  JZ 0x10067934\n  1006792a:  MOV ECX,dword ptr [EAX]\n  1006792c:  PUSH EAX\n  1006792d:  CALL dword ptr [ECX + 0x8]\n  10067930:  AND dword ptr [ESI + 0xc],0x0\n  10067934:  TEST EDI,EDI\n  10067936:  MOV dword ptr [ESI + 0xc],EDI\n  10067939:  JNZ 0x10067943\n  1006793b:  MOV EAX,dword ptr [ESI + 0x8]\n  1006793e:  MOV dword ptr [ESI + 0x4],EAX\n  10067941:  JMP 0x10067946\n  10067943:  MOV dword ptr [ESI + 0x4],ESI\n  10067946:  POP EDI\n  10067947:  XOR EAX,EAX\n  10067949:  POP ESI\n  1006794a:  RET 0x4", 
+  "callers": []
+}

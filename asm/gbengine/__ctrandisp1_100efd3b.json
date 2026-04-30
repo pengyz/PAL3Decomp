@@ -1,0 +1,48 @@
+{
+  "address": "0x100efd3b", 
+  "size_bytes": 51, 
+  "calling_convention": "unknown", 
+  "signature": "undefined __ctrandisp1(undefined4 param_1, undefined4 param_2)", 
+  "callees": [
+    {
+      "address": "0x100efd6e", 
+      "name": "__fload"
+    }, 
+    {
+      "address": "0x100ea220", 
+      "name": "__trandisp1"
+    }, 
+    {
+      "address": "0x100efc03", 
+      "name": "FUN_100efc03"
+    }
+  ], 
+  "global_refs": [
+    {
+      "address": "0x00000008", 
+      "type": null, 
+      "name": "DAT_00000008"
+    }, 
+    {
+      "address": "0x00000004", 
+      "type": null, 
+      "name": "DAT_00000004"
+    }, 
+    {
+      "address": "0x-00000a8", 
+      "type": null, 
+      "name": "DAT_-00000a8"
+    }, 
+    {
+      "address": "0x-00002cc", 
+      "type": null, 
+      "name": "DAT_-00002cc"
+    }
+  ], 
+  "has_custom_name": true, 
+  "decompiled_c": "\n/* Library Function - Single Match\n    __ctrandisp1\n   \n   Library: Visual Studio */\n\nvoid __ctrandisp1(undefined4 param_1,undefined4 param_2)\n\n{\n  __fload(param_1,param_2);\n  __trandisp1();\n  FUN_100efc03();\n  return;\n}\n\n", 
+  "is_thunk": false, 
+  "name": "__ctrandisp1", 
+  "assembly": "  100efd3b:  PUSH EBP\n  100efd3c:  MOV EBP,ESP\n  100efd3e:  ADD ESP,0xfffffd30\n  100efd44:  PUSH EBX\n  100efd45:  PUSH dword ptr [EBP + 0xc]\n  100efd48:  PUSH dword ptr [EBP + 0x8]\n  100efd4b:  CALL 0x100efd6e\n  100efd50:  ADD ESP,0x8\n  100efd53:  FSTCW word ptr [EBP + 0xffffff5c]\n  100efd5a:  AND byte ptr [EBP + 0xfffffd38],0xfd\n  100efd61:  CALL 0x100ea220\n  100efd66:  CALL 0x100efc03\n  100efd6b:  POP EBX\n  100efd6c:  LEAVE\n  100efd6d:  RET", 
+  "callers": []
+}

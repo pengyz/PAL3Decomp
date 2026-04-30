@@ -1,0 +1,83 @@
+{
+  "address": "0x1001c3c0", 
+  "size_bytes": 146, 
+  "calling_convention": "unknown", 
+  "signature": "undefined FUN_1001c3c0(undefined4 param_1, undefined4 param_2, undefined4 param_3)", 
+  "callees": [
+    {
+      "address": "0x10020d90", 
+      "name": "gbVertexPool"
+    }, 
+    {
+      "address": "0x1001b0e0", 
+      "name": "FUN_1001b0e0"
+    }, 
+    {
+      "address": "0x100e4b0d", 
+      "name": "_malloc"
+    }
+  ], 
+  "global_refs": [
+    {
+      "address": "0x100f3ee8", 
+      "type": null, 
+      "name": "DAT_100f3ee8"
+    }, 
+    {
+      "address": "0xffdff000", 
+      "type": "void *32", 
+      "name": "DAT_ffdff000"
+    }, 
+    {
+      "address": "0x0000000c", 
+      "type": null, 
+      "name": "DAT_0000000c"
+    }, 
+    {
+      "address": "0x00000008", 
+      "type": null, 
+      "name": "DAT_00000008"
+    }, 
+    {
+      "address": "0x00000004", 
+      "type": null, 
+      "name": "DAT_00000004"
+    }, 
+    {
+      "address": "0x-0000010", 
+      "type": null, 
+      "name": "DAT_-0000010"
+    }, 
+    {
+      "address": "0x100f5758", 
+      "type": "undefined *", 
+      "name": "DAT_100f5758"
+    }, 
+    {
+      "address": "0x10140dbc", 
+      "type": "gbGfxManager *", 
+      "name": "DAT_10140dbc"
+    }, 
+    {
+      "address": "0x-0000004", 
+      "type": null, 
+      "name": "DAT_-0000004"
+    }, 
+    {
+      "address": "0x-000000c", 
+      "type": null, 
+      "name": "DAT_-000000c"
+    }
+  ], 
+  "has_custom_name": false, 
+  "decompiled_c": "\nvoid FUN_1001c3c0(gbPoolType param_1,uint param_2,int param_3)\n\n{\n  undefined4 uVar1;\n  void *pvVar2;\n  gbVertexPool *in_ECX;\n  void *local_c;\n  undefined *puStack_8;\n  undefined4 local_4;\n  \n  local_4 = 0xffffffff;\n  puStack_8 = &LAB_100f3ee8;\n  local_c = ExceptionList;\n  ExceptionList = &local_c;\n  gbVertexPool::gbVertexPool(in_ECX,param_1,param_2,param_3);\n  uVar1 = 0;\n  *(undefined ***)in_ECX = &PTR_FUN_100f5758;\n  local_4 = 0;\n  if (param_1 != 0) {\n    if (param_1 == 1) {\n      uVar1 = 0x208;\n    }\n    else if (param_1 == 2) {\n      pvVar2 = _malloc(*(int *)(in_ECX + 0x18) * param_3);\n      goto LAB_1001c422;\n    }\n  }\n  pvVar2 = (void *)FUN_1001b0e0(param_2,*(int *)(in_ECX + 0x18) * param_3,uVar1);\nLAB_1001c422:\n  *(void **)(in_ECX + 0xc) = pvVar2;\n  ExceptionList = local_c;\n  return;\n}\n\n", 
+  "is_thunk": false, 
+  "name": "FUN_1001c3c0", 
+  "assembly": "  1001c3c0:  PUSH -0x1\n  1001c3c2:  PUSH 0x100f3ee8\n  1001c3c7:  MOV EAX,FS:[0x0]\n  1001c3cd:  PUSH EAX\n  1001c3ce:  MOV dword ptr FS:[0x0],ESP\n  1001c3d5:  PUSH ECX\n  1001c3d6:  PUSH EBX\n  1001c3d7:  MOV EBX,dword ptr [ESP + 0x20]\n  1001c3db:  PUSH EBP\n  1001c3dc:  MOV EBP,dword ptr [ESP + 0x20]\n  1001c3e0:  PUSH ESI\n  1001c3e1:  PUSH EDI\n  1001c3e2:  MOV EDI,dword ptr [ESP + 0x24]\n  1001c3e6:  PUSH EBX\n  1001c3e7:  MOV ESI,ECX\n  1001c3e9:  PUSH EBP\n  1001c3ea:  PUSH EDI\n  1001c3eb:  MOV dword ptr [ESP + 0x1c],ESI\n  1001c3ef:  CALL 0x10020d90\n  1001c3f4:  XOR EAX,EAX\n  1001c3f6:  MOV dword ptr [ESI],0x100f5758\n  1001c3fc:  MOV ECX,dword ptr [0x10140dbc]\n  1001c402:  CMP EDI,EAX\n  1001c404:  MOV dword ptr [ESP + 0x1c],EAX\n  1001c408:  JZ 0x1001c414\n  1001c40a:  CMP EDI,0x1\n  1001c40d:  JNZ 0x1001c43c\n  1001c40f:  MOV EAX,0x208\n  1001c414:  MOV EDX,dword ptr [ESI + 0x18]\n  1001c417:  PUSH EAX\n  1001c418:  IMUL EDX,EBX\n  1001c41b:  PUSH EDX\n  1001c41c:  PUSH EBP\n  1001c41d:  CALL 0x1001b0e0\n  1001c422:  MOV ECX,dword ptr [ESP + 0x14]\n  1001c426:  MOV dword ptr [ESI + 0xc],EAX\n  1001c429:  MOV EAX,ESI\n  1001c42b:  POP EDI\n  1001c42c:  POP ESI\n  1001c42d:  POP EBP\n  1001c42e:  POP EBX\n  1001c42f:  MOV dword ptr FS:[0x0],ECX\n  1001c436:  ADD ESP,0x10\n  1001c439:  RET 0xc\n  1001c43c:  CMP EDI,0x2\n  1001c43f:  JNZ 0x1001c414\n  1001c441:  MOV EAX,dword ptr [ESI + 0x18]\n  1001c444:  IMUL EAX,EBX\n  1001c447:  PUSH EAX\n  1001c448:  CALL 0x100e4b0d\n  1001c44d:  ADD ESP,0x4\n  1001c450:  JMP 0x1001c422", 
+  "callers": [
+    {
+      "address": "0x100190d0", 
+      "name": "FUN_100190d0"
+    }
+  ]
+}

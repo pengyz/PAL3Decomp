@@ -1,0 +1,39 @@
+{
+  "address": "0x1003c734", 
+  "size_bytes": 125, 
+  "calling_convention": "unknown", 
+  "signature": "undefined FUN_1003c734(undefined4 param_1)", 
+  "callees": [
+    {
+      "address": "0x100e4a16", 
+      "name": "operator_new"
+    }, 
+    {
+      "address": "0x10033415", 
+      "name": "`vector_constructor_iterator'"
+    }
+  ], 
+  "global_refs": [
+    {
+      "address": "0x00000004", 
+      "type": null, 
+      "name": "DAT_00000004"
+    }, 
+    {
+      "address": "0x10032f86", 
+      "type": null, 
+      "name": "DAT_10032f86"
+    }
+  ], 
+  "has_custom_name": false, 
+  "decompiled_c": "\nundefined4 FUN_1003c734(int param_1)\n\n{\n  int iVar1;\n  void *pvVar2;\n  int in_ECX;\n  \n  if ((*(int *)(in_ECX + 8) != *(int *)(param_1 + 8)) && (*(int *)(in_ECX + 8) != 4)) {\n    *(int *)(in_ECX + 0x54) = *(int *)(param_1 + 8);\n  }\n  if ((*(int *)(in_ECX + 0x54) != 0) || (*(int *)(in_ECX + 0x10) != 0)) {\n    iVar1 = *(int *)(in_ECX + 0x68);\n    pvVar2 = operator_new(iVar1 << 4);\n    if (pvVar2 == (void *)0x0) {\n      pvVar2 = (void *)0x0;\n    }\n    else {\n      _vector_constructor_iterator_(pvVar2,0x10,iVar1,(_func_void_ptr_void_ptr *)&LAB_10032f86);\n    }\n    *(void **)(in_ECX + 0x58) = pvVar2;\n    if (pvVar2 == (void *)0x0) {\n      return 0x8007000e;\n    }\n    if ((*(int *)(in_ECX + 0x10) != 0) && (*(int *)(param_1 + 0x10) != 0)) {\n      *(undefined4 *)(param_1 + 0x14) = 1;\n      *(undefined4 *)(in_ECX + 0x14) = 1;\n    }\n  }\n  return 0;\n}\n\n", 
+  "is_thunk": false, 
+  "name": "FUN_1003c734", 
+  "assembly": "  1003c734:  PUSH EBP\n  1003c735:  MOV EBP,dword ptr [ESP + 0x8]\n  1003c739:  MOV EAX,dword ptr [EBP + 0x8]\n  1003c73c:  PUSH ESI\n  1003c73d:  MOV ESI,ECX\n  1003c73f:  MOV ECX,dword ptr [ESI + 0x8]\n  1003c742:  CMP ECX,EAX\n  1003c744:  JZ 0x1003c74e\n  1003c746:  CMP ECX,0x4\n  1003c749:  JZ 0x1003c74e\n  1003c74b:  MOV dword ptr [ESI + 0x54],EAX\n  1003c74e:  CMP dword ptr [ESI + 0x54],0x0\n  1003c752:  JNZ 0x1003c75a\n  1003c754:  CMP dword ptr [ESI + 0x10],0x0\n  1003c758:  JZ 0x1003c7aa\n  1003c75a:  PUSH EBX\n  1003c75b:  PUSH EDI\n  1003c75c:  MOV EDI,dword ptr [ESI + 0x68]\n  1003c75f:  MOV EAX,EDI\n  1003c761:  SHL EAX,0x4\n  1003c764:  PUSH EAX\n  1003c765:  CALL 0x100e4a16\n  1003c76a:  MOV EBX,EAX\n  1003c76c:  TEST EBX,EBX\n  1003c76e:  POP ECX\n  1003c76f:  JZ 0x1003c783\n  1003c771:  PUSH 0x10032f86\n  1003c776:  PUSH EDI\n  1003c777:  PUSH 0x10\n  1003c779:  PUSH EBX\n  1003c77a:  CALL 0x10033415\n  1003c77f:  MOV EAX,EBX\n  1003c781:  JMP 0x1003c785\n  1003c783:  XOR EAX,EAX\n  1003c785:  TEST EAX,EAX\n  1003c787:  POP EDI\n  1003c788:  MOV dword ptr [ESI + 0x58],EAX\n  1003c78b:  POP EBX\n  1003c78c:  JNZ 0x1003c795\n  1003c78e:  MOV EAX,0x8007000e\n  1003c793:  JMP 0x1003c7ac\n  1003c795:  CMP dword ptr [ESI + 0x10],0x0\n  1003c799:  JZ 0x1003c7aa\n  1003c79b:  CMP dword ptr [EBP + 0x10],0x0\n  1003c79f:  JZ 0x1003c7aa\n  1003c7a1:  XOR EAX,EAX\n  1003c7a3:  INC EAX\n  1003c7a4:  MOV dword ptr [EBP + 0x14],EAX\n  1003c7a7:  MOV dword ptr [ESI + 0x14],EAX\n  1003c7aa:  XOR EAX,EAX\n  1003c7ac:  POP ESI\n  1003c7ad:  POP EBP\n  1003c7ae:  RET 0x4", 
+  "callers": [
+    {
+      "address": "0x1003abde", 
+      "name": "FUN_1003abde"
+    }
+  ]
+}

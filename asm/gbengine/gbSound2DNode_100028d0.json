@@ -1,0 +1,14 @@
+{
+  "address": "0x100028d0", 
+  "size_bytes": 30, 
+  "calling_convention": "__thiscall", 
+  "signature": "undefined __thiscall gbSound2DNode(gbSound2DNode * this)", 
+  "callees": [], 
+  "global_refs": [], 
+  "has_custom_name": true, 
+  "decompiled_c": "\n/* public: __thiscall gbSound2DNode::gbSound2DNode(void) */\n\nvoid __thiscall gbSound2DNode::gbSound2DNode(gbSound2DNode *this)\n\n{\n                    /* 0x28d0  93  ??0gbSound2DNode@@QAE@XZ */\n  *(undefined4 *)this = 0;\n  *(undefined4 *)(this + 4) = 0;\n  *(undefined4 *)(this + 8) = 1;\n  *(undefined4 *)(this + 0xc) = 0x3f800000;\n  return;\n}\n\n", 
+  "is_thunk": false, 
+  "name": "gbSound2DNode", 
+  "assembly": "  100028d0:  MOV EAX,ECX\n  100028d2:  MOV dword ptr [EAX],0x0\n  100028d8:  MOV dword ptr [EAX + 0x4],0x0\n  100028df:  MOV dword ptr [EAX + 0x8],0x1\n  100028e6:  MOV dword ptr [EAX + 0xc],0x3f800000\n  100028ed:  RET", 
+  "callers": []
+}

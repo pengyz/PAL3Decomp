@@ -1,0 +1,65 @@
+{
+  "address": "0x10049de0", 
+  "size_bytes": 157, 
+  "calling_convention": "unknown", 
+  "signature": "undefined FUN_10049de0(undefined4 param_1, undefined4 param_2)", 
+  "callees": [
+    {
+      "address": "0x10046bf4", 
+      "name": "FUN_10046bf4"
+    }
+  ], 
+  "global_refs": [
+    {
+      "address": "0x00000008", 
+      "type": null, 
+      "name": "DAT_00000008"
+    }, 
+    {
+      "address": "0x-000001c", 
+      "type": null, 
+      "name": "DAT_-000001c"
+    }, 
+    {
+      "address": "0x-0000020", 
+      "type": null, 
+      "name": "DAT_-0000020"
+    }, 
+    {
+      "address": "0x00000004", 
+      "type": null, 
+      "name": "DAT_00000004"
+    }, 
+    {
+      "address": "0x100f9320", 
+      "type": null, 
+      "name": "DAT_100f9320"
+    }, 
+    {
+      "address": "0x100f6408", 
+      "type": null, 
+      "name": "DAT_100f6408"
+    }, 
+    {
+      "address": "0x-0000010", 
+      "type": null, 
+      "name": "DAT_-0000010"
+    }, 
+    {
+      "address": "0x-000000c", 
+      "type": null, 
+      "name": "DAT_-000000c"
+    }, 
+    {
+      "address": "0x-0000008", 
+      "type": null, 
+      "name": "DAT_-0000008"
+    }
+  ], 
+  "has_custom_name": false, 
+  "decompiled_c": "\nvoid FUN_10049de0(float *param_1,float *param_2)\n\n{\n  float *pfVar1;\n  float fVar2;\n  int iVar3;\n  float local_10;\n  float local_c;\n  float local_8;\n  \n  fVar2 = param_2[2] * param_2[2] + param_2[1] * param_2[1] + *param_2 * *param_2;\n  iVar3 = FUN_10046bf4(fVar2,0x3f800000);\n  if (iVar3 == 0) {\n    if (fVar2 <= 1.1754944e-38) {\n      *param_1 = 0.0;\n      param_1[1] = 0.0;\n      param_1[2] = 0.0;\n      return;\n    }\n    fVar2 = 1.0 / SQRT(fVar2);\n    local_10 = fVar2 * *param_2;\n    local_c = fVar2 * param_2[1];\n    pfVar1 = param_2 + 2;\n    param_2 = &local_10;\n    local_8 = fVar2 * *pfVar1;\n  }\n  else if (param_1 == param_2) {\n    return;\n  }\n  *param_1 = *param_2;\n  param_1[1] = param_2[1];\n  param_1[2] = param_2[2];\n  return;\n}\n\n", 
+  "is_thunk": false, 
+  "name": "FUN_10049de0", 
+  "assembly": "  10049de0:  PUSH EBP\n  10049de1:  MOV EBP,ESP\n  10049de3:  SUB ESP,0xc\n  10049de6:  PUSH ESI\n  10049de7:  MOV ESI,dword ptr [EBP + 0xc]\n  10049dea:  FLD dword ptr [ESI + 0x8]\n  10049ded:  PUSH EDI\n  10049dee:  FLD dword ptr [ESI + 0x4]\n  10049df1:  PUSH ECX\n  10049df2:  FLD dword ptr [ESI]\n  10049df4:  PUSH ECX\n  10049df5:  FLD ST0\n  10049df7:  FMUL ST1\n  10049df9:  FLD ST2\n  10049dfb:  FMUL ST3\n  10049dfd:  FADDP\n  10049dff:  FLD ST3\n  10049e01:  FMUL ST4\n  10049e03:  FADDP\n  10049e05:  FSTP dword ptr [EBP + 0xc]\n  10049e08:  FSTP ST0\n  10049e0a:  FSTP ST0\n  10049e0c:  FSTP ST0\n  10049e0e:  FLD1\n  10049e10:  FSTP dword ptr [ESP + 0x4]\n  10049e14:  FLD dword ptr [EBP + 0xc]\n  10049e17:  FSTP dword ptr [ESP]\n  10049e1a:  CALL 0x10046bf4\n  10049e1f:  TEST EAX,EAX\n  10049e21:  JZ 0x10049e31\n  10049e23:  MOV EAX,dword ptr [EBP + 0x8]\n  10049e26:  CMP EAX,ESI\n  10049e28:  JZ 0x10049e77\n  10049e2a:  MOV EDI,EAX\n  10049e2c:  MOVSD ES:EDI,ESI\n  10049e2d:  MOVSD ES:EDI,ESI\n  10049e2e:  MOVSD ES:EDI,ESI\n  10049e2f:  JMP 0x10049e77\n  10049e31:  FLD dword ptr [EBP + 0xc]\n  10049e34:  FCOMP dword ptr [0x100f9320]\n  10049e3a:  FNSTSW AX\n  10049e3c:  TEST AH,0x41\n  10049e3f:  MOV EAX,dword ptr [EBP + 0x8]\n  10049e42:  JNZ 0x10049e69\n  10049e44:  FLD dword ptr [EBP + 0xc]\n  10049e47:  FSQRT\n  10049e49:  FDIVR dword ptr [0x100f6408]\n  10049e4f:  FLD ST0\n  10049e51:  FMUL dword ptr [ESI]\n  10049e53:  FSTP dword ptr [EBP + -0xc]\n  10049e56:  FLD ST0\n  10049e58:  FMUL dword ptr [ESI + 0x4]\n  10049e5b:  FSTP dword ptr [EBP + -0x8]\n  10049e5e:  FMUL dword ptr [ESI + 0x8]\n  10049e61:  LEA ESI,[EBP + -0xc]\n  10049e64:  FSTP dword ptr [EBP + -0x4]\n  10049e67:  JMP 0x10049e2a\n  10049e69:  FLDZ\n  10049e6b:  FSTP dword ptr [EAX]\n  10049e6d:  FLDZ\n  10049e6f:  FSTP dword ptr [EAX + 0x4]\n  10049e72:  FLDZ\n  10049e74:  FSTP dword ptr [EAX + 0x8]\n  10049e77:  POP EDI\n  10049e78:  POP ESI\n  10049e79:  LEAVE\n  10049e7a:  RET 0x8", 
+  "callers": []
+}

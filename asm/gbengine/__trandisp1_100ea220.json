@@ -1,0 +1,29 @@
+{
+  "address": "0x100ea220", 
+  "size_bytes": 103, 
+  "calling_convention": "unknown", 
+  "signature": "undefined __trandisp1(void)", 
+  "callees": [], 
+  "global_refs": [
+    {
+      "address": "0x1012a12c", 
+      "type": null, 
+      "name": "DAT_1012a12c"
+    }
+  ], 
+  "has_custom_name": true, 
+  "decompiled_c": "\n/* Library Function - Single Match\n    __trandisp1\n   \n   Library: Visual Studio */\n\nvoid __trandisp1(void)\n\n{\n  float10 fVar1;\n  byte bVar2;\n  int in_EDX;\n  undefined2 uVar3;\n  int unaff_EBP;\n  float10 in_ST0;\n  \n  if (*(char *)(in_EDX + 0xe) == '\\x05') {\n    uVar3 = (undefined2)\n            CONCAT31((uint3)((byte)((ushort)*(undefined2 *)(unaff_EBP + -0xa4) >> 8) & 0xfe | 2),\n                     0x3f);\n  }\n  else {\n    uVar3 = 0x133f;\n  }\n  *(undefined2 *)(unaff_EBP + -0xa2) = uVar3;\n  fVar1 = (float10)0;\n  *(int *)(unaff_EBP + -0x94) = in_EDX;\n  *(ushort *)(unaff_EBP + -0xa0) =\n       (ushort)NAN(in_ST0) << 8 | (ushort)(in_ST0 < fVar1) << 9 | (ushort)(in_ST0 != fVar1) << 10 |\n       (ushort)(in_ST0 == fVar1) << 0xe;\n  *(undefined *)(unaff_EBP + -0x90) = 0;\n  bVar2 = (char)(*(char *)(unaff_EBP + -0x9f) << 1) >> 1;\n                    /* WARNING: Could not recover jumptable at 0x100ea285. Too many branches */\n                    /* WARNING: Treating indirect jump as call */\n  (**(code **)(in_EDX + (char)(&DAT_1012a12c)[(byte)((bVar2 & 7) << 1 | (char)bVar2 < '\\0')] + 0x10)\n  )();\n  return;\n}\n\n", 
+  "is_thunk": false, 
+  "name": "__trandisp1", 
+  "assembly": "  100ea220:  CMP byte ptr [EDX + 0xe],0x5\n  100ea224:  JNZ 0x100ea237\n  100ea226:  MOV BX,word ptr [EBP + 0xffffff5c]\n  100ea22d:  OR BH,0x2\n  100ea230:  AND BH,0xfe\n  100ea233:  MOV BL,0x3f\n  100ea235:  JMP 0x100ea23b\n  100ea237:  MOV BX,0x133f\n  100ea23b:  MOV word ptr [EBP + 0xffffff5e],BX\n  100ea242:  FLDCW word ptr [EBP + 0xffffff5e]\n  100ea248:  MOV EBX,0x1012a12c\n  100ea24d:  FXAM\n  100ea24f:  MOV dword ptr [EBP + 0xffffff6c],EDX\n  100ea255:  FSTSW word ptr [EBP + 0xffffff60]\n  100ea25c:  MOV byte ptr [EBP + 0xffffff70],0x0\n  100ea263:  WAIT\n  100ea264:  MOV CL,byte ptr [EBP + 0xffffff61]\n  100ea26a:  SHL CL,0x1\n  100ea26c:  SAR CL,0x1\n  100ea26e:  ROL CL,0x1\n  100ea270:  MOV AL,CL\n  100ea272:  AND AL,0xf\n  100ea274:  XLAT EBX\n  100ea275:  MOVSX EAX,AL\n  100ea278:  AND ECX,0x404\n  100ea27e:  MOV EBX,EDX\n  100ea280:  ADD EBX,EAX\n  100ea282:  ADD EBX,0x10\n  100ea285:  JMP dword ptr [EBX]", 
+  "callers": [
+    {
+      "address": "0x100efb7e", 
+      "name": "__cintrindisp1"
+    }, 
+    {
+      "address": "0x100efd3b", 
+      "name": "__ctrandisp1"
+    }
+  ]
+}

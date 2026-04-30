@@ -1,0 +1,19 @@
+{
+  "address": "0x10022f40", 
+  "size_bytes": 21, 
+  "calling_convention": "__thiscall", 
+  "signature": "undefined __thiscall gbPrintFontMgr(gbPrintFontMgr * this)", 
+  "callees": [], 
+  "global_refs": [], 
+  "has_custom_name": true, 
+  "decompiled_c": "\n/* public: __thiscall gbPrintFontMgr::gbPrintFontMgr(void) */\n\nvoid __thiscall gbPrintFontMgr::gbPrintFontMgr(gbPrintFontMgr *this)\n\n{\n                    /* 0x22f40  76  ??0gbPrintFontMgr@@QAE@XZ */\n  *(undefined4 *)this = 0;\n  *(undefined4 *)(this + 4) = 0;\n  *(undefined4 *)(this + 8) = 0;\n  *(undefined4 *)(this + 0xc) = 0;\n  *(undefined4 *)(this + 0x10) = 0;\n  return;\n}\n\n", 
+  "is_thunk": false, 
+  "name": "gbPrintFontMgr", 
+  "assembly": "  10022f40:  MOV EAX,ECX\n  10022f42:  MOV EDX,EAX\n  10022f44:  XOR ECX,ECX\n  10022f46:  MOV dword ptr [EDX],ECX\n  10022f48:  MOV dword ptr [EDX + 0x4],ECX\n  10022f4b:  MOV dword ptr [EDX + 0x8],ECX\n  10022f4e:  MOV dword ptr [EDX + 0xc],ECX\n  10022f51:  MOV dword ptr [EDX + 0x10],ECX\n  10022f54:  RET", 
+  "callers": [
+    {
+      "address": "0x1001dbf0", 
+      "name": "FUN_1001dbf0"
+    }
+  ]
+}

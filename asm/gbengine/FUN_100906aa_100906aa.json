@@ -1,0 +1,25 @@
+{
+  "address": "0x100906aa", 
+  "size_bytes": 80, 
+  "calling_convention": "unknown", 
+  "signature": "undefined FUN_100906aa(undefined4 param_1)", 
+  "callees": [], 
+  "global_refs": [
+    {
+      "address": "0x00000004", 
+      "type": null, 
+      "name": "DAT_00000004"
+    }
+  ], 
+  "has_custom_name": false, 
+  "decompiled_c": "\nint FUN_100906aa(int param_1)\n\n{\n  int *piVar1;\n  uint uVar2;\n  int iVar3;\n  int in_ECX;\n  \n  piVar1 = *(int **)(in_ECX + 8);\n  if (piVar1 != (int *)0x0) {\n    uVar2 = *(uint *)(in_ECX + 100);\n    if (uVar2 < *(uint *)(in_ECX + 0x5c)) {\n      *(int *)(in_ECX + 0x30) = param_1;\n      iVar3 = (**(code **)(*piVar1 + 0x10))\n                        (piVar1,*(undefined4 *)(param_1 + 0x10),*(undefined4 *)(param_1 + 0x14),\n                         *(int *)(in_ECX + 0x58) + uVar2 * 4,*(uint *)(in_ECX + 0x5c) - uVar2);\n      if (iVar3 < 0) {\n        *(undefined4 *)(in_ECX + 0x4c) = 1;\n        *(undefined4 *)(in_ECX + 0x50) = 1;\n      }\n      *(undefined4 *)(in_ECX + 100) = *(undefined4 *)(in_ECX + 0x5c);\n      return iVar3;\n    }\n  }\n  return 0;\n}\n\n", 
+  "is_thunk": false, 
+  "name": "FUN_100906aa", 
+  "assembly": "  100906aa:  PUSH ESI\n  100906ab:  MOV ESI,ECX\n  100906ad:  PUSH EDI\n  100906ae:  MOV EDI,dword ptr [ESI + 0x8]\n  100906b1:  TEST EDI,EDI\n  100906b3:  JZ 0x100906f3\n  100906b5:  MOV EDX,dword ptr [ESI + 0x64]\n  100906b8:  MOV ECX,dword ptr [ESI + 0x5c]\n  100906bb:  CMP EDX,ECX\n  100906bd:  JNC 0x100906f3\n  100906bf:  MOV EAX,dword ptr [ESP + 0xc]\n  100906c3:  PUSH EBX\n  100906c4:  SUB ECX,EDX\n  100906c6:  PUSH ECX\n  100906c7:  MOV ECX,dword ptr [ESI + 0x58]\n  100906ca:  LEA ECX,[ECX + EDX*0x4]\n  100906cd:  PUSH ECX\n  100906ce:  MOV dword ptr [ESI + 0x30],EAX\n  100906d1:  PUSH dword ptr [EAX + 0x14]\n  100906d4:  MOV EBX,dword ptr [EDI]\n  100906d6:  PUSH dword ptr [EAX + 0x10]\n  100906d9:  PUSH EDI\n  100906da:  CALL dword ptr [EBX + 0x10]\n  100906dd:  TEST EAX,EAX\n  100906df:  POP EBX\n  100906e0:  JGE 0x100906eb\n  100906e2:  XOR ECX,ECX\n  100906e4:  INC ECX\n  100906e5:  MOV dword ptr [ESI + 0x4c],ECX\n  100906e8:  MOV dword ptr [ESI + 0x50],ECX\n  100906eb:  MOV ECX,dword ptr [ESI + 0x5c]\n  100906ee:  MOV dword ptr [ESI + 0x64],ECX\n  100906f1:  JMP 0x100906f5\n  100906f3:  XOR EAX,EAX\n  100906f5:  POP EDI\n  100906f6:  POP ESI\n  100906f7:  RET 0x4", 
+  "callers": [
+    {
+      "address": "0x1009079c", 
+      "name": "FUN_1009079c"
+    }
+  ]
+}

@@ -1,0 +1,249 @@
+{
+  "address": "0x10058d70", 
+  "size_bytes": 84, 
+  "calling_convention": "unknown", 
+  "signature": "undefined FUN_10058d70(undefined4 param_1, undefined4 param_2, undefined4 param_3, undefined4 param_4, undefined1 param_5)", 
+  "callees": [
+    {
+      "address": "0x100e68e0", 
+      "name": "FUN_100e68e0"
+    }, 
+    {
+      "address": "0x1004cb83", 
+      "name": "FUN_1004cb83"
+    }
+  ], 
+  "global_refs": [
+    {
+      "address": "0x00000014", 
+      "type": null, 
+      "name": "DAT_00000014"
+    }, 
+    {
+      "address": "0x00000010", 
+      "type": null, 
+      "name": "DAT_00000010"
+    }, 
+    {
+      "address": "0x-0000104", 
+      "type": null, 
+      "name": "DAT_-0000104"
+    }, 
+    {
+      "address": "0x00000004", 
+      "type": null, 
+      "name": "DAT_00000004"
+    }, 
+    {
+      "address": "0x-0000005", 
+      "type": null, 
+      "name": "DAT_-0000005"
+    }, 
+    {
+      "address": "0x100f9350", 
+      "type": null, 
+      "name": "DAT_100f9350"
+    }, 
+    {
+      "address": "0x0000000c", 
+      "type": null, 
+      "name": "DAT_0000000c"
+    }, 
+    {
+      "address": "0x00000008", 
+      "type": null, 
+      "name": "DAT_00000008"
+    }
+  ], 
+  "has_custom_name": false, 
+  "decompiled_c": "\nvoid FUN_10058d70(int param_1,undefined4 param_2,undefined4 param_3,undefined4 param_4)\n\n{\n  undefined local_104 [255];\n  undefined local_5;\n  \n  FUN_100e68e0(local_104,0x100,param_4,&stack0x00000014);\n  local_5 = 0;\n  FUN_1004cb83(*(int *)(param_1 + 4) + 0x18,param_2,param_3,&DAT_100f9350,local_104);\n  *(undefined4 *)(param_1 + 0x40) = 1;\n  return;\n}\n\n", 
+  "is_thunk": false, 
+  "name": "FUN_10058d70", 
+  "assembly": "  10058d70:  PUSH EBP\n  10058d71:  MOV EBP,ESP\n  10058d73:  SUB ESP,0x100\n  10058d79:  PUSH ESI\n  10058d7a:  LEA EAX,[EBP + 0x18]\n  10058d7d:  PUSH EAX\n  10058d7e:  PUSH dword ptr [EBP + 0x14]\n  10058d81:  LEA EAX,[EBP + 0xffffff00]\n  10058d87:  PUSH 0x100\n  10058d8c:  PUSH EAX\n  10058d8d:  CALL 0x100e68e0\n  10058d92:  MOV ESI,dword ptr [EBP + 0x8]\n  10058d95:  AND byte ptr [EBP + -0x1],0x0\n  10058d99:  LEA EAX,[EBP + 0xffffff00]\n  10058d9f:  PUSH EAX\n  10058da0:  MOV EAX,dword ptr [ESI + 0x4]\n  10058da3:  PUSH 0x100f9350\n  10058da8:  PUSH dword ptr [EBP + 0x10]\n  10058dab:  ADD EAX,0x18\n  10058dae:  PUSH dword ptr [EBP + 0xc]\n  10058db1:  PUSH EAX\n  10058db2:  CALL 0x1004cb83\n  10058db7:  ADD ESP,0x24\n  10058dba:  MOV dword ptr [ESI + 0x40],0x1\n  10058dc1:  POP ESI\n  10058dc2:  LEAVE\n  10058dc3:  RET", 
+  "callers": [
+    {
+      "address": "0x10059209", 
+      "name": "FUN_10059209"
+    }, 
+    {
+      "address": "0x10059ecc", 
+      "name": "FUN_10059ecc"
+    }, 
+    {
+      "address": "0x1005a3a4", 
+      "name": "FUN_1005a3a4"
+    }, 
+    {
+      "address": "0x1005b22f", 
+      "name": "FUN_1005b22f"
+    }, 
+    {
+      "address": "0x1005b22f", 
+      "name": "FUN_1005b22f"
+    }, 
+    {
+      "address": "0x1005b77f", 
+      "name": "FUN_1005b77f"
+    }, 
+    {
+      "address": "0x1005e5cc", 
+      "name": "FUN_1005e5cc"
+    }, 
+    {
+      "address": "0x1005d7b6", 
+      "name": "FUN_1005d7b6"
+    }, 
+    {
+      "address": "0x1005d7b6", 
+      "name": "FUN_1005d7b6"
+    }, 
+    {
+      "address": "0x1005d7b6", 
+      "name": "FUN_1005d7b6"
+    }, 
+    {
+      "address": "0x1005dff3", 
+      "name": "FUN_1005dff3"
+    }, 
+    {
+      "address": "0x1005e222", 
+      "name": "FUN_1005e222"
+    }, 
+    {
+      "address": "0x1005ff91", 
+      "name": "FUN_1005ff91"
+    }, 
+    {
+      "address": "0x100601a3", 
+      "name": "FUN_100601a3"
+    }, 
+    {
+      "address": "0x100601a3", 
+      "name": "FUN_100601a3"
+    }, 
+    {
+      "address": "0x1006022f", 
+      "name": "FUN_1006022f"
+    }, 
+    {
+      "address": "0x1006022f", 
+      "name": "FUN_1006022f"
+    }, 
+    {
+      "address": "0x100602de", 
+      "name": "FUN_100602de"
+    }, 
+    {
+      "address": "0x1006035d", 
+      "name": "FUN_1006035d"
+    }, 
+    {
+      "address": "0x1006035d", 
+      "name": "FUN_1006035d"
+    }, 
+    {
+      "address": "0x100605a3", 
+      "name": "FUN_100605a3"
+    }, 
+    {
+      "address": "0x100609c2", 
+      "name": "FUN_100609c2"
+    }, 
+    {
+      "address": "0x10060a86", 
+      "name": "FUN_10060a86"
+    }, 
+    {
+      "address": "0x10060a86", 
+      "name": "FUN_10060a86"
+    }, 
+    {
+      "address": "0x10060a86", 
+      "name": "FUN_10060a86"
+    }, 
+    {
+      "address": "0x10060a86", 
+      "name": "FUN_10060a86"
+    }, 
+    {
+      "address": "0x10060a86", 
+      "name": "FUN_10060a86"
+    }, 
+    {
+      "address": "0x10060a86", 
+      "name": "FUN_10060a86"
+    }, 
+    {
+      "address": "0x10060a86", 
+      "name": "FUN_10060a86"
+    }, 
+    {
+      "address": "0x10060a86", 
+      "name": "FUN_10060a86"
+    }, 
+    {
+      "address": "0x10060a86", 
+      "name": "FUN_10060a86"
+    }, 
+    {
+      "address": "0x10060a86", 
+      "name": "FUN_10060a86"
+    }, 
+    {
+      "address": "0x10060a86", 
+      "name": "FUN_10060a86"
+    }, 
+    {
+      "address": "0x10060a86", 
+      "name": "FUN_10060a86"
+    }, 
+    {
+      "address": "0x10060a86", 
+      "name": "FUN_10060a86"
+    }, 
+    {
+      "address": "0x10060a86", 
+      "name": "FUN_10060a86"
+    }, 
+    {
+      "address": "0x10060a86", 
+      "name": "FUN_10060a86"
+    }, 
+    {
+      "address": "0x10060a86", 
+      "name": "FUN_10060a86"
+    }, 
+    {
+      "address": "0x10060a86", 
+      "name": "FUN_10060a86"
+    }, 
+    {
+      "address": "0x10060a86", 
+      "name": "FUN_10060a86"
+    }, 
+    {
+      "address": "0x10060a86", 
+      "name": "FUN_10060a86"
+    }, 
+    {
+      "address": "0x10060a86", 
+      "name": "FUN_10060a86"
+    }, 
+    {
+      "address": "0x10060a86", 
+      "name": "FUN_10060a86"
+    }, 
+    {
+      "address": "0x100613d1", 
+      "name": "FUN_100613d1"
+    }, 
+    {
+      "address": "0x100613d1", 
+      "name": "FUN_100613d1"
+    }, 
+    {
+      "address": "0x10061806", 
+      "name": "FUN_10061806"
+    }
+  ]
+}

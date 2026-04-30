@@ -1,0 +1,54 @@
+{
+  "address": "0x1007e125", 
+  "size_bytes": 83, 
+  "calling_convention": "unknown", 
+  "signature": "undefined FUN_1007e125(undefined4 param_1, undefined4 param_2)", 
+  "callees": [
+    {
+      "address": "0x00000019", 
+      "name": "GetSystemInfo"
+    }
+  ], 
+  "global_refs": [
+    {
+      "address": "0x-0000028", 
+      "type": null, 
+      "name": "DAT_-0000028"
+    }, 
+    {
+      "address": "0x100f5090", 
+      "type": "pointer", 
+      "name": "DAT_100f5090"
+    }, 
+    {
+      "address": "0x-0000024", 
+      "type": null, 
+      "name": "DAT_-0000024"
+    }, 
+    {
+      "address": "0x00000008", 
+      "type": null, 
+      "name": "DAT_00000008"
+    }, 
+    {
+      "address": "0x00000004", 
+      "type": null, 
+      "name": "DAT_00000004"
+    }
+  ], 
+  "has_custom_name": false, 
+  "decompiled_c": "\nvoid FUN_1007e125(int param_1,int param_2)\n\n{\n  uint uVar1;\n  undefined4 *in_ECX;\n  _SYSTEM_INFO local_28;\n  \n  *in_ECX = 0;\n  GetSystemInfo(&local_28);\n  in_ECX[2] = 0;\n  in_ECX[3] = 0;\n  in_ECX[4] = 0;\n  uVar1 = (local_28.dwPageSize - 1) + param_2 & ~(local_28.dwPageSize - 1);\n  in_ECX[1] = uVar1;\n  if (param_1 == 0) {\n    param_1 = 0x100000;\n  }\n  in_ECX[5] = (uVar1 - 1) + param_1 & ~(uVar1 - 1);\n  return;\n}\n\n", 
+  "is_thunk": false, 
+  "name": "FUN_1007e125", 
+  "assembly": "  1007e125:  PUSH EBP\n  1007e126:  MOV EBP,ESP\n  1007e128:  SUB ESP,0x24\n  1007e12b:  PUSH ESI\n  1007e12c:  LEA EAX,[EBP + -0x24]\n  1007e12f:  MOV ESI,ECX\n  1007e131:  AND dword ptr [ESI],0x0\n  1007e134:  PUSH EAX\n  1007e135:  CALL dword ptr [0x100f5090]\n  1007e13b:  MOV ECX,dword ptr [EBP + -0x20]\n  1007e13e:  MOV EAX,dword ptr [EBP + 0xc]\n  1007e141:  AND dword ptr [ESI + 0x8],0x0\n  1007e145:  AND dword ptr [ESI + 0xc],0x0\n  1007e149:  AND dword ptr [ESI + 0x10],0x0\n  1007e14d:  LEA EAX,[ECX + EAX*0x1 + -0x1]\n  1007e151:  DEC ECX\n  1007e152:  NOT ECX\n  1007e154:  AND EAX,ECX\n  1007e156:  MOV ECX,dword ptr [EBP + 0x8]\n  1007e159:  TEST ECX,ECX\n  1007e15b:  MOV dword ptr [ESI + 0x4],EAX\n  1007e15e:  JNZ 0x1007e165\n  1007e160:  MOV ECX,0x100000\n  1007e165:  LEA ECX,[EAX + ECX*0x1 + -0x1]\n  1007e169:  DEC EAX\n  1007e16a:  NOT EAX\n  1007e16c:  AND ECX,EAX\n  1007e16e:  MOV dword ptr [ESI + 0x14],ECX\n  1007e171:  MOV EAX,ESI\n  1007e173:  POP ESI\n  1007e174:  LEAVE\n  1007e175:  RET 0x8", 
+  "callers": [
+    {
+      "address": "0x1004f7bc", 
+      "name": "FUN_1004f7bc"
+    }, 
+    {
+      "address": "0x1008f021", 
+      "name": "FUN_1008f021"
+    }
+  ]
+}

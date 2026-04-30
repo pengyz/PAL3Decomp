@@ -1,0 +1,97 @@
+{
+  "address": "0x1000e860", 
+  "size_bytes": 191, 
+  "calling_convention": "__thiscall", 
+  "signature": "undefined __thiscall gbBaseMesh(gbBaseMesh * this, gbGfxManager * param_1)", 
+  "callees": [
+    {
+      "address": "0x1001d6d0", 
+      "name": "NewRenderEffect"
+    }, 
+    {
+      "address": "0x1001d6d0", 
+      "name": "NewRenderEffect"
+    }
+  ], 
+  "global_refs": [
+    {
+      "address": "0x100f3a88", 
+      "type": null, 
+      "name": "DAT_100f3a88"
+    }, 
+    {
+      "address": "0xffdff000", 
+      "type": "void *32", 
+      "name": "DAT_ffdff000"
+    }, 
+    {
+      "address": "0x-0000010", 
+      "type": null, 
+      "name": "DAT_-0000010"
+    }, 
+    {
+      "address": "0x100f53f0", 
+      "type": "undefined *", 
+      "name": "DAT_100f53f0"
+    }, 
+    {
+      "address": "0x00000004", 
+      "type": null, 
+      "name": "DAT_00000004"
+    }, 
+    {
+      "address": "0x-0000004", 
+      "type": null, 
+      "name": "DAT_-0000004"
+    }, 
+    {
+      "address": "0x101390c0", 
+      "type": "int", 
+      "name": "DAT_101390c0"
+    }, 
+    {
+      "address": "0x1011f360", 
+      "type": "string", 
+      "name": "DAT_1011f360"
+    }, 
+    {
+      "address": "0x10138fb8", 
+      "type": "gbRenderEffect * *", 
+      "name": "DAT_10138fb8"
+    }, 
+    {
+      "address": "0x1011f344", 
+      "type": "string", 
+      "name": "DAT_1011f344"
+    }, 
+    {
+      "address": "0x10138fbc", 
+      "type": "undefined4", 
+      "name": "DAT_10138fbc"
+    }, 
+    {
+      "address": "0x-000000c", 
+      "type": null, 
+      "name": "DAT_-000000c"
+    }
+  ], 
+  "has_custom_name": true, 
+  "decompiled_c": "\n/* public: __thiscall gbBaseMesh::gbBaseMesh(class gbGfxManager *) */\n\ngbBaseMesh * __thiscall gbBaseMesh::gbBaseMesh(gbBaseMesh *this,gbGfxManager *param_1)\n\n{\n  void *local_c;\n  undefined *puStack_8;\n  undefined4 local_4;\n  \n                    /* 0xe860  16  ??0gbBaseMesh@@QAE@PAVgbGfxManager@@@Z */\n  puStack_8 = &LAB_100f3a88;\n  local_c = ExceptionList;\n  ExceptionList = &local_c;\n  *(undefined4 *)(this + 4) = 1;\n  *(undefined4 *)(this + 8) = 0;\n  *(undefined4 *)(this + 0x10) = 0;\n  *(undefined4 *)(this + 0x14) = 0;\n  *(undefined4 *)(this + 0x58) = 0;\n  *(undefined4 *)(this + 0x5c) = 0;\n  *(undefined4 *)(this + 0x60) = 0;\n  *(undefined4 *)(this + 100) = 0;\n  *(undefined4 *)(this + 0x68) = 0;\n  *(undefined4 *)(this + 0x6c) = 0;\n  *(undefined ***)this = &_vftable_;\n  *(undefined4 *)(this + 0x48) = 0;\n  local_4 = 0;\n  *(undefined4 *)(this + 0x4c) = 0;\n  *(undefined4 *)(this + 0x50) = 0;\n  *(undefined4 *)(this + 0x54) = 0;\n  *(undefined4 *)(this + 0x44) = 0;\n  *(undefined4 *)(this + 0x40) = 0;\n  *(gbGfxManager **)(this + 0x74) = param_1;\n  if (Effect_RefCount == 0) {\n    pShadowEffect =\n         (gbRenderEffect **)\n         gbEffectMgr::NewRenderEffect\n                   (*(gbEffectMgr **)(param_1 + 200),s_gfxscript_meshshadow1_gbf_1011f360,0);\n    DAT_10138fbc = gbEffectMgr::NewRenderEffect\n                             (*(gbEffectMgr **)(param_1 + 200),s_gfxscript_meshshadow2_gbf_1011f344,\n                              0);\n  }\n  Effect_RefCount = Effect_RefCount + 1;\n  ExceptionList = local_c;\n  return this;\n}\n\n", 
+  "is_thunk": false, 
+  "name": "gbBaseMesh", 
+  "assembly": "  1000e860:  PUSH -0x1\n  1000e862:  PUSH 0x100f3a88\n  1000e867:  MOV EAX,FS:[0x0]\n  1000e86d:  PUSH EAX\n  1000e86e:  MOV dword ptr FS:[0x0],ESP\n  1000e875:  PUSH ECX\n  1000e876:  PUSH EBX\n  1000e877:  PUSH ESI\n  1000e878:  PUSH EDI\n  1000e879:  MOV ESI,ECX\n  1000e87b:  XOR EDI,EDI\n  1000e87d:  MOV dword ptr [ESP + 0xc],ESI\n  1000e881:  MOV dword ptr [ESI + 0x4],0x1\n  1000e888:  MOV dword ptr [ESI + 0x8],EDI\n  1000e88b:  MOV dword ptr [ESI + 0x10],EDI\n  1000e88e:  MOV dword ptr [ESI + 0x14],EDI\n  1000e891:  MOV dword ptr [ESI + 0x58],EDI\n  1000e894:  MOV dword ptr [ESI + 0x5c],EDI\n  1000e897:  MOV dword ptr [ESI + 0x60],EDI\n  1000e89a:  LEA ECX,[ESI + 0x48]\n  1000e89d:  MOV dword ptr [ESI + 0x64],EDI\n  1000e8a0:  MOV dword ptr [ESI + 0x68],EDI\n  1000e8a3:  MOV dword ptr [ESI + 0x6c],EDI\n  1000e8a6:  XOR EAX,EAX\n  1000e8a8:  MOV dword ptr [ESI],0x100f53f0\n  1000e8ae:  MOV dword ptr [ECX],EAX\n  1000e8b0:  MOV EBX,dword ptr [ESP + 0x20]\n  1000e8b4:  MOV dword ptr [ESP + 0x18],EDI\n  1000e8b8:  MOV dword ptr [ECX + 0x4],EAX\n  1000e8bb:  MOV dword ptr [ECX + 0x8],EAX\n  1000e8be:  MOV dword ptr [ECX + 0xc],EAX\n  1000e8c1:  MOV dword ptr [ESI + 0x44],EDI\n  1000e8c4:  MOV dword ptr [ESI + 0x40],EDI\n  1000e8c7:  MOV dword ptr [ESI + 0x74],EBX\n  1000e8ca:  CMP dword ptr [0x101390c0],EDI\n  1000e8d0:  JNZ 0x1000e8fe\n  1000e8d2:  MOV ECX,dword ptr [EBX + 0xc8]\n  1000e8d8:  PUSH EDI\n  1000e8d9:  PUSH 0x1011f360\n  1000e8de:  CALL 0x1001d6d0\n  1000e8e3:  MOV [0x10138fb8],EAX\n  1000e8e8:  MOV ECX,dword ptr [EBX + 0xc8]\n  1000e8ee:  PUSH EDI\n  1000e8ef:  PUSH 0x1011f344\n  1000e8f4:  CALL 0x1001d6d0\n  1000e8f9:  MOV [0x10138fbc],EAX\n  1000e8fe:  MOV EAX,[0x101390c0]\n  1000e903:  MOV ECX,dword ptr [ESP + 0x10]\n  1000e907:  INC EAX\n  1000e908:  POP EDI\n  1000e909:  MOV [0x101390c0],EAX\n  1000e90e:  MOV EAX,ESI\n  1000e910:  POP ESI\n  1000e911:  POP EBX\n  1000e912:  MOV dword ptr FS:[0x0],ECX\n  1000e919:  ADD ESP,0x10\n  1000e91c:  RET 0x4", 
+  "callers": [
+    {
+      "address": "0x100138a0", 
+      "name": "FUN_100138a0"
+    }, 
+    {
+      "address": "0x10015630", 
+      "name": "gbStaticMesh"
+    }, 
+    {
+      "address": "0x10011b40", 
+      "name": "FUN_10011b40"
+    }
+  ]
+}

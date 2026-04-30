@@ -1,0 +1,35 @@
+{
+  "address": "0x100068f0", 
+  "size_bytes": 177, 
+  "calling_convention": "unknown", 
+  "signature": "undefined FUN_100068f0(undefined4 param_1, undefined4 param_2)", 
+  "callees": [], 
+  "global_refs": [
+    {
+      "address": "0x00000008", 
+      "type": null, 
+      "name": "DAT_00000008"
+    }, 
+    {
+      "address": "0x00000004", 
+      "type": null, 
+      "name": "DAT_00000004"
+    }, 
+    {
+      "address": "0x100f5460", 
+      "type": null, 
+      "name": "DAT_100f5460"
+    }
+  ], 
+  "has_custom_name": false, 
+  "decompiled_c": "\nvoid FUN_100068f0(undefined4 *param_1,undefined4 *param_2)\n\n{\n  *param_1 = *param_2;\n  param_1[1] = param_2[1];\n  param_1[2] = param_2[2];\n  param_1[6] = (float)*(byte *)(param_2 + 5) * 0.003921569;\n  param_1[7] = (float)*(byte *)((int)param_2 + 0x15) * 0.003921569;\n  param_1[8] = (float)*(byte *)((int)param_2 + 0x16) * 0.003921569;\n  param_1[9] = (float)*(byte *)((int)param_2 + 0x17) * 0.003921569;\n  param_1[10] = (float)*(byte *)(param_2 + 3);\n  param_1[0xb] = (float)*(byte *)((int)param_2 + 0xd);\n  param_1[0xc] = (float)*(byte *)((int)param_2 + 0xe);\n  param_1[0xd] = (float)*(byte *)((int)param_2 + 0xf);\n  return;\n}\n\n", 
+  "is_thunk": false, 
+  "name": "FUN_100068f0", 
+  "assembly": "  100068f0:  MOV EAX,dword ptr [ESP + 0x8]\n  100068f4:  MOV ECX,dword ptr [ESP + 0x4]\n  100068f8:  MOV EDX,dword ptr [EAX]\n  100068fa:  MOV dword ptr [ECX],EDX\n  100068fc:  MOV EDX,dword ptr [EAX + 0x4]\n  100068ff:  MOV dword ptr [ECX + 0x4],EDX\n  10006902:  MOV EDX,dword ptr [EAX + 0x8]\n  10006905:  MOV dword ptr [ECX + 0x8],EDX\n  10006908:  XOR EDX,EDX\n  1000690a:  MOV DL,byte ptr [EAX + 0x14]\n  1000690d:  MOV dword ptr [ESP + 0x8],EDX\n  10006911:  XOR EDX,EDX\n  10006913:  FILD dword ptr [ESP + 0x8]\n  10006917:  FMUL dword ptr [0x100f5460]\n  1000691d:  FSTP dword ptr [ECX + 0x18]\n  10006920:  MOV DL,byte ptr [EAX + 0x15]\n  10006923:  MOV dword ptr [ESP + 0x8],EDX\n  10006927:  XOR EDX,EDX\n  10006929:  FILD dword ptr [ESP + 0x8]\n  1000692d:  FMUL dword ptr [0x100f5460]\n  10006933:  FSTP dword ptr [ECX + 0x1c]\n  10006936:  MOV DL,byte ptr [EAX + 0x16]\n  10006939:  MOV dword ptr [ESP + 0x8],EDX\n  1000693d:  XOR EDX,EDX\n  1000693f:  FILD dword ptr [ESP + 0x8]\n  10006943:  FMUL dword ptr [0x100f5460]\n  10006949:  FSTP dword ptr [ECX + 0x20]\n  1000694c:  MOV DL,byte ptr [EAX + 0x17]\n  1000694f:  MOV dword ptr [ESP + 0x8],EDX\n  10006953:  XOR EDX,EDX\n  10006955:  FILD dword ptr [ESP + 0x8]\n  10006959:  FMUL dword ptr [0x100f5460]\n  1000695f:  FSTP dword ptr [ECX + 0x24]\n  10006962:  MOV DL,byte ptr [EAX + 0xc]\n  10006965:  MOV dword ptr [ESP + 0x8],EDX\n  10006969:  XOR EDX,EDX\n  1000696b:  FILD dword ptr [ESP + 0x8]\n  1000696f:  FSTP dword ptr [ECX + 0x28]\n  10006972:  MOV DL,byte ptr [EAX + 0xd]\n  10006975:  MOV dword ptr [ESP + 0x8],EDX\n  10006979:  XOR EDX,EDX\n  1000697b:  FILD dword ptr [ESP + 0x8]\n  1000697f:  FSTP dword ptr [ECX + 0x2c]\n  10006982:  MOV DL,byte ptr [EAX + 0xe]\n  10006985:  MOV dword ptr [ESP + 0x8],EDX\n  10006989:  XOR EDX,EDX\n  1000698b:  FILD dword ptr [ESP + 0x8]\n  1000698f:  FSTP dword ptr [ECX + 0x30]\n  10006992:  MOV DL,byte ptr [EAX + 0xf]\n  10006995:  MOV dword ptr [ESP + 0x8],EDX\n  10006999:  FILD dword ptr [ESP + 0x8]\n  1000699d:  FSTP dword ptr [ECX + 0x34]\n  100069a0:  RET", 
+  "callers": [
+    {
+      "address": "0x100069b0", 
+      "name": "FUN_100069b0"
+    }
+  ]
+}

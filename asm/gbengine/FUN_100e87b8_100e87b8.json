@@ -1,0 +1,49 @@
+{
+  "address": "0x100e87b8", 
+  "size_bytes": 90, 
+  "calling_convention": "unknown", 
+  "signature": "undefined FUN_100e87b8(undefined4 param_1)", 
+  "callees": [
+    {
+      "address": "0x100e7480", 
+      "name": "FUN_100e7480"
+    }, 
+    {
+      "address": "0x100ea5dc", 
+      "name": "FUN_100ea5dc"
+    }
+  ], 
+  "global_refs": [
+    {
+      "address": "0x00000004", 
+      "type": null, 
+      "name": "DAT_00000004"
+    }, 
+    {
+      "address": "0x1012a34c", 
+      "type": "undefined4", 
+      "name": "DAT_1012a34c"
+    }, 
+    {
+      "address": "0x1012a140", 
+      "type": "pointer", 
+      "name": "DAT_1012a140"
+    }, 
+    {
+      "address": "0x1012a14a", 
+      "type": null, 
+      "name": "DAT_1012a14a"
+    }, 
+    {
+      "address": "0x1012a350", 
+      "type": "undefined1", 
+      "name": "DAT_1012a350"
+    }
+  ], 
+  "has_custom_name": false, 
+  "decompiled_c": "\nvoid FUN_100e87b8(char *param_1)\n\n{\n  char cVar1;\n  char cVar2;\n  int iVar3;\n  uint uVar4;\n  \n  iVar3 = FUN_100e7480((int)*param_1);\n  if (iVar3 != 0x65) {\n    do {\n      param_1 = param_1 + 1;\n      if (DAT_1012a34c < 2) {\n        uVar4 = (byte)PTR_DAT_1012a140[*param_1 * 2] & 4;\n      }\n      else {\n        uVar4 = FUN_100ea5dc((int)*param_1,4);\n      }\n    } while (uVar4 != 0);\n  }\n  cVar2 = *param_1;\n  *param_1 = DAT_1012a350;\n  do {\n    param_1 = param_1 + 1;\n    cVar1 = *param_1;\n    *param_1 = cVar2;\n    cVar2 = cVar1;\n  } while (*param_1 != '\\0');\n  return;\n}\n\n", 
+  "is_thunk": false, 
+  "name": "FUN_100e87b8", 
+  "assembly": "  100e87b8:  PUSH ESI\n  100e87b9:  MOV ESI,dword ptr [ESP + 0x8]\n  100e87bd:  MOVSX EAX,byte ptr [ESI]\n  100e87c0:  PUSH EAX\n  100e87c1:  CALL 0x100e7480\n  100e87c6:  CMP EAX,0x65\n  100e87c9:  POP ECX\n  100e87ca:  JZ 0x100e87f8\n  100e87cc:  INC ESI\n  100e87cd:  CMP dword ptr [0x1012a34c],0x1\n  100e87d4:  JLE 0x100e87e5\n  100e87d6:  MOVSX EAX,byte ptr [ESI]\n  100e87d9:  PUSH 0x4\n  100e87db:  PUSH EAX\n  100e87dc:  CALL 0x100ea5dc\n  100e87e1:  POP ECX\n  100e87e2:  POP ECX\n  100e87e3:  JMP 0x100e87f4\n  100e87e5:  MOVSX EAX,byte ptr [ESI]\n  100e87e8:  MOV ECX,dword ptr [0x1012a140]\n  100e87ee:  MOV AL,byte ptr [ECX + EAX*0x2]\n  100e87f1:  AND EAX,0x4\n  100e87f4:  TEST EAX,EAX\n  100e87f6:  JNZ 0x100e87cc\n  100e87f8:  MOV CL,byte ptr [0x1012a350]\n  100e87fe:  MOV AL,byte ptr [ESI]\n  100e8800:  MOV byte ptr [ESI],CL\n  100e8802:  INC ESI\n  100e8803:  MOV CL,byte ptr [ESI]\n  100e8805:  MOV byte ptr [ESI],AL\n  100e8807:  MOV AL,CL\n  100e8809:  MOV CL,byte ptr [ESI]\n  100e880b:  INC ESI\n  100e880c:  TEST CL,CL\n  100e880e:  JNZ 0x100e8803\n  100e8810:  POP ESI\n  100e8811:  RET", 
+  "callers": []
+}

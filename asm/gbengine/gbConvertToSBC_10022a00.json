@@ -1,0 +1,40 @@
+{
+  "address": "0x10022a00", 
+  "size_bytes": 29, 
+  "calling_convention": "__cdecl", 
+  "signature": "int __cdecl gbConvertToSBC(uchar * param_1, int param_2, uchar * param_3, int param_4)", 
+  "callees": [
+    {
+      "address": "0x0000001d", 
+      "name": "MultiByteToWideChar"
+    }
+  ], 
+  "global_refs": [
+    {
+      "address": "0x00000008", 
+      "type": null, 
+      "name": "DAT_00000008"
+    }, 
+    {
+      "address": "0x00000004", 
+      "type": null, 
+      "name": "DAT_00000004"
+    }, 
+    {
+      "address": "0x0000000c", 
+      "type": null, 
+      "name": "DAT_0000000c"
+    }, 
+    {
+      "address": "0x100f50a0", 
+      "type": "pointer", 
+      "name": "DAT_100f50a0"
+    }
+  ], 
+  "has_custom_name": true, 
+  "decompiled_c": "\n/* int __cdecl gbConvertToSBC(unsigned char *,int,unsigned char *,int) */\n\nint __cdecl gbConvertToSBC(uchar *param_1,int param_2,uchar *param_3,int param_4)\n\n{\n  int iVar1;\n  \n                    /* 0x22a00  973  ?gbConvertToSBC@@YAHPAEH0H@Z */\n  iVar1 = MultiByteToWideChar(0,1,(LPCSTR)param_3,-1,(LPWSTR)param_1,param_2);\n  return iVar1 + -1;\n}\n\n", 
+  "is_thunk": false, 
+  "name": "gbConvertToSBC", 
+  "assembly": "  10022a00:  MOV EAX,dword ptr [ESP + 0x8]\n  10022a04:  MOV ECX,dword ptr [ESP + 0x4]\n  10022a08:  MOV EDX,dword ptr [ESP + 0xc]\n  10022a0c:  PUSH EAX\n  10022a0d:  PUSH ECX\n  10022a0e:  PUSH -0x1\n  10022a10:  PUSH EDX\n  10022a11:  PUSH 0x1\n  10022a13:  PUSH 0x0\n  10022a15:  CALL dword ptr [0x100f50a0]\n  10022a1b:  DEC EAX\n  10022a1c:  RET", 
+  "callers": []
+}

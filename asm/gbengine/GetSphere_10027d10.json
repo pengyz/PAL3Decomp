@@ -1,0 +1,30 @@
+{
+  "address": "0x10027d10", 
+  "size_bytes": 66, 
+  "calling_convention": "__thiscall", 
+  "signature": "void __thiscall GetSphere(gbOBBox * this, gbSphere * param_1)", 
+  "callees": [], 
+  "global_refs": [
+    {
+      "address": "0x00000004", 
+      "type": null, 
+      "name": "DAT_00000004"
+    }, 
+    {
+      "address": "0x100f5508", 
+      "type": null, 
+      "name": "DAT_100f5508"
+    }
+  ], 
+  "has_custom_name": true, 
+  "decompiled_c": "\n/* public: void __thiscall gbOBBox::GetSphere(struct gbSphere &) */\n\nvoid __thiscall gbOBBox::GetSphere(gbOBBox *this,gbSphere *param_1)\n\n{\n                    /* 0x27d10  543  ?GetSphere@gbOBBox@@QAEXAAUgbSphere@@@Z */\n  *(undefined4 *)(param_1 + 4) = *(undefined4 *)(this + 0x30);\n  *(undefined4 *)(param_1 + 8) = *(undefined4 *)(this + 0x34);\n  *(undefined4 *)(param_1 + 0xc) = *(undefined4 *)(this + 0x38);\n  *(float *)param_1 =\n       SQRT(*(float *)(this + 0x48) * *(float *)(this + 0x48) +\n            *(float *)(this + 0x44) * *(float *)(this + 0x44) +\n            *(float *)(this + 0x40) * *(float *)(this + 0x40)) * 0.5;\n  return;\n}\n\n", 
+  "is_thunk": false, 
+  "name": "GetSphere", 
+  "assembly": "  10027d10:  MOV EAX,dword ptr [ESP + 0x4]\n  10027d14:  MOV EDX,dword ptr [ECX + 0x30]\n  10027d17:  MOV dword ptr [EAX + 0x4],EDX\n  10027d1a:  MOV EDX,dword ptr [ECX + 0x34]\n  10027d1d:  MOV dword ptr [EAX + 0x8],EDX\n  10027d20:  MOV EDX,dword ptr [ECX + 0x38]\n  10027d23:  MOV dword ptr [EAX + 0xc],EDX\n  10027d26:  FLD dword ptr [ECX + 0x48]\n  10027d29:  FLD dword ptr [ECX + 0x44]\n  10027d2c:  FLD dword ptr [ECX + 0x40]\n  10027d2f:  FLD ST0\n  10027d31:  FMUL ST1\n  10027d33:  FLD ST2\n  10027d35:  FMUL ST3\n  10027d37:  FADDP\n  10027d39:  FLD ST3\n  10027d3b:  FMUL ST4\n  10027d3d:  FADDP\n  10027d3f:  FSQRT\n  10027d41:  FSTP ST3\n  10027d43:  FSTP ST0\n  10027d45:  FSTP ST0\n  10027d47:  FMUL dword ptr [0x100f5508]\n  10027d4d:  FSTP dword ptr [EAX]\n  10027d4f:  RET 0x4", 
+  "callers": [
+    {
+      "address": "0x10007cd0", 
+      "name": "FUN_10007cd0"
+    }
+  ]
+}

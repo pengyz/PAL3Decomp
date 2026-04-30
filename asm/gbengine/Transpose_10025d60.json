@@ -1,0 +1,20 @@
+{
+  "address": "0x10025d60", 
+  "size_bytes": 44, 
+  "calling_convention": "__thiscall", 
+  "signature": "void __thiscall Transpose(gbMatrix4 * this, gbMatrix4 * param_1)", 
+  "callees": [], 
+  "global_refs": [
+    {
+      "address": "0x00000004", 
+      "type": null, 
+      "name": "DAT_00000004"
+    }
+  ], 
+  "has_custom_name": true, 
+  "decompiled_c": "\n/* public: void __thiscall gbMatrix4::Transpose(struct gbMatrix4 *)const  */\n\nvoid __thiscall gbMatrix4::Transpose(gbMatrix4 *this,gbMatrix4 *param_1)\n\n{\n  undefined4 uVar1;\n  gbMatrix4 *pgVar2;\n  int iVar3;\n  int iVar4;\n  \n                    /* 0x25d60  932  ?Transpose@gbMatrix4@@QBEXPAU1@@Z */\n  iVar4 = 4;\n  do {\n    iVar3 = 4;\n    pgVar2 = this;\n    do {\n      uVar1 = *(undefined4 *)pgVar2;\n      pgVar2 = pgVar2 + 0x10;\n      *(undefined4 *)param_1 = uVar1;\n      param_1 = param_1 + 4;\n      iVar3 = iVar3 + -1;\n    } while (iVar3 != 0);\n    this = this + 4;\n    iVar4 = iVar4 + -1;\n  } while (iVar4 != 0);\n  return;\n}\n\n", 
+  "is_thunk": false, 
+  "name": "Transpose", 
+  "assembly": "  10025d60:  MOV EAX,dword ptr [ESP + 0x4]\n  10025d64:  PUSH EBX\n  10025d65:  PUSH ESI\n  10025d66:  PUSH EDI\n  10025d67:  MOV EDI,0x4\n  10025d6c:  MOV EDX,ECX\n  10025d6e:  MOV ESI,0x4\n  10025d73:  MOV EBX,dword ptr [EDX]\n  10025d75:  ADD EDX,0x10\n  10025d78:  MOV dword ptr [EAX],EBX\n  10025d7a:  ADD EAX,0x4\n  10025d7d:  DEC ESI\n  10025d7e:  JNZ 0x10025d73\n  10025d80:  ADD ECX,0x4\n  10025d83:  DEC EDI\n  10025d84:  JNZ 0x10025d6c\n  10025d86:  POP EDI\n  10025d87:  POP ESI\n  10025d88:  POP EBX\n  10025d89:  RET 0x4", 
+  "callers": []
+}

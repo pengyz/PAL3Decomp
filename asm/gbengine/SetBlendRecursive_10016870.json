@@ -1,0 +1,35 @@
+{
+  "address": "0x10016870", 
+  "size_bytes": 57, 
+  "calling_convention": "__thiscall", 
+  "signature": "void __thiscall SetBlendRecursive(gbVisNode * this, NodeBlend param_1, float param_2)", 
+  "callees": [
+    {
+      "address": "0x10016870", 
+      "name": "SetBlendRecursive"
+    }
+  ], 
+  "global_refs": [
+    {
+      "address": "0x00000008", 
+      "type": null, 
+      "name": "DAT_00000008"
+    }, 
+    {
+      "address": "0x00000004", 
+      "type": null, 
+      "name": "DAT_00000004"
+    }
+  ], 
+  "has_custom_name": true, 
+  "decompiled_c": "\n/* public: void __thiscall gbVisNode::SetBlendRecursive(enum NodeBlend,float) */\n\nvoid __thiscall gbVisNode::SetBlendRecursive(gbVisNode *this,NodeBlend param_1,float param_2)\n\n{\n  gbVisNode *this_00;\n  \n                    /* 0x16870  850  ?SetBlendRecursive@gbVisNode@@QAEXW4NodeBlend@@M@Z */\n  *(NodeBlend *)(this + 0x54) = param_1;\n  *(float *)(this + 0x50) = param_2;\n  this_00 = *(gbVisNode **)(this + 0xc);\n  *(gbVisNode **)(this + 0x18) = this_00;\n  while (this_00 != (gbVisNode *)0x0) {\n    SetBlendRecursive(this_00,param_1,param_2);\n    this_00 = *(gbVisNode **)(*(int *)(this + 0x18) + 4);\n    *(gbVisNode **)(this + 0x18) = this_00;\n  }\n  return;\n}\n\n", 
+  "is_thunk": false, 
+  "name": "SetBlendRecursive", 
+  "assembly": "  10016870:  MOV EAX,dword ptr [ESP + 0x8]\n  10016874:  PUSH ESI\n  10016875:  PUSH EDI\n  10016876:  MOV EDI,dword ptr [ESP + 0xc]\n  1001687a:  MOV ESI,ECX\n  1001687c:  MOV dword ptr [ESI + 0x54],EDI\n  1001687f:  MOV dword ptr [ESI + 0x50],EAX\n  10016882:  MOV ECX,dword ptr [ESI + 0xc]\n  10016885:  TEST ECX,ECX\n  10016887:  MOV dword ptr [ESI + 0x18],ECX\n  1001688a:  JZ 0x100168a4\n  1001688c:  PUSH EBX\n  1001688d:  MOV EBX,EAX\n  1001688f:  PUSH EBX\n  10016890:  PUSH EDI\n  10016891:  CALL 0x10016870\n  10016896:  MOV ECX,dword ptr [ESI + 0x18]\n  10016899:  MOV ECX,dword ptr [ECX + 0x4]\n  1001689c:  TEST ECX,ECX\n  1001689e:  MOV dword ptr [ESI + 0x18],ECX\n  100168a1:  JNZ 0x1001688f\n  100168a3:  POP EBX\n  100168a4:  POP EDI\n  100168a5:  POP ESI\n  100168a6:  RET 0x8", 
+  "callers": [
+    {
+      "address": "0x10016870", 
+      "name": "SetBlendRecursive"
+    }
+  ]
+}

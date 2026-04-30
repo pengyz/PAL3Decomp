@@ -1,0 +1,29 @@
+{
+  "address": "0x10030130", 
+  "size_bytes": 77, 
+  "calling_convention": "__thiscall", 
+  "signature": "char * __thiscall GetFileName(gbVFile1 * this, char * param_1, int param_2)", 
+  "callees": [
+    {
+      "address": "0x100e4f50", 
+      "name": "_strrchr"
+    }, 
+    {
+      "address": "0x100e4f50", 
+      "name": "_strrchr"
+    }
+  ], 
+  "global_refs": [
+    {
+      "address": "0x00000004", 
+      "type": null, 
+      "name": "DAT_00000004"
+    }
+  ], 
+  "has_custom_name": true, 
+  "decompiled_c": "\n/* public: char * __thiscall gbVFile1::GetFileName(char *,int) */\n\nchar * __thiscall gbVFile1::GetFileName(gbVFile1 *this,char *param_1,int param_2)\n\n{\n  gbVFile1 gVar1;\n  char *pcVar2;\n  char *pcVar3;\n  uint uVar4;\n  uint uVar5;\n  gbVFile1 *pgVar6;\n  gbVFile1 *pgVar7;\n  \n                    /* 0x30130  462  ?GetFileName@gbVFile1@@QAEPADPADH@Z */\n  pgVar6 = this + 0xc;\n  pcVar2 = _strrchr((char *)pgVar6,0x2f);\n  pcVar3 = _strrchr((char *)pgVar6,0x5c);\n  if (pcVar2 < pcVar3) {\n    pcVar2 = pcVar3;\n  }\n  if (pcVar2 != (char *)0x0) {\n    pgVar6 = (gbVFile1 *)(pcVar2 + 1);\n  }\n  uVar4 = 0xffffffff;\n  do {\n    pgVar7 = pgVar6;\n    if (uVar4 == 0) break;\n    uVar4 = uVar4 - 1;\n    pgVar7 = pgVar6 + 1;\n    gVar1 = *pgVar6;\n    pgVar6 = pgVar7;\n  } while (gVar1 != (gbVFile1)0x0);\n  uVar4 = ~uVar4;\n  pgVar6 = pgVar7 + -uVar4;\n  pgVar7 = (gbVFile1 *)param_1;\n  for (uVar5 = uVar4 >> 2; uVar5 != 0; uVar5 = uVar5 - 1) {\n    *(undefined4 *)pgVar7 = *(undefined4 *)pgVar6;\n    pgVar6 = pgVar6 + 4;\n    pgVar7 = pgVar7 + 4;\n  }\n  for (uVar4 = uVar4 & 3; uVar4 != 0; uVar4 = uVar4 - 1) {\n    *pgVar7 = *pgVar6;\n    pgVar6 = pgVar6 + 1;\n    pgVar7 = pgVar7 + 1;\n  }\n  return param_1;\n}\n\n", 
+  "is_thunk": false, 
+  "name": "GetFileName", 
+  "assembly": "  10030130:  PUSH ESI\n  10030131:  PUSH EDI\n  10030132:  LEA EDI,[ECX + 0xc]\n  10030135:  PUSH 0x2f\n  10030137:  PUSH EDI\n  10030138:  CALL 0x100e4f50\n  1003013d:  PUSH 0x5c\n  1003013f:  PUSH EDI\n  10030140:  MOV ESI,EAX\n  10030142:  CALL 0x100e4f50\n  10030147:  ADD ESP,0x10\n  1003014a:  CMP EAX,ESI\n  1003014c:  JBE 0x10030150\n  1003014e:  MOV ESI,EAX\n  10030150:  TEST ESI,ESI\n  10030152:  JZ 0x10030157\n  10030154:  LEA EDI,[ESI + 0x1]\n  10030157:  OR ECX,0xffffffff\n  1003015a:  XOR EAX,EAX\n  1003015c:  SCASB.REPNE ES:EDI\n  1003015e:  MOV EAX,dword ptr [ESP + 0xc]\n  10030162:  NOT ECX\n  10030164:  SUB EDI,ECX\n  10030166:  MOV EDX,ECX\n  10030168:  MOV ESI,EDI\n  1003016a:  MOV EDI,EAX\n  1003016c:  SHR ECX,0x2\n  1003016f:  MOVSD.REP ES:EDI,ESI\n  10030171:  MOV ECX,EDX\n  10030173:  AND ECX,0x3\n  10030176:  MOVSB.REP ES:EDI,ESI\n  10030178:  POP EDI\n  10030179:  POP ESI\n  1003017a:  RET 0x8", 
+  "callers": []
+}

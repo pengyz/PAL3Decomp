@@ -1,0 +1,85 @@
+{
+  "address": "0x1008fa4a", 
+  "size_bytes": 190, 
+  "calling_convention": "unknown", 
+  "signature": "undefined FUN_1008fa4a(undefined4 param_1, undefined4 param_2, undefined1 param_3)", 
+  "callees": [
+    {
+      "address": "0x100e4f80", 
+      "name": "FUN_100e4f80"
+    }, 
+    {
+      "address": "0x1004cdad", 
+      "name": "FUN_1004cdad"
+    }, 
+    {
+      "address": "0x1004cb83", 
+      "name": "FUN_1004cb83"
+    }, 
+    {
+      "address": "0x1004cb83", 
+      "name": "FUN_1004cb83"
+    }, 
+    {
+      "address": "0x100e68e0", 
+      "name": "FUN_100e68e0"
+    }, 
+    {
+      "address": "0x1004cb83", 
+      "name": "FUN_1004cb83"
+    }
+  ], 
+  "global_refs": [
+    {
+      "address": "0x00000004", 
+      "type": null, 
+      "name": "DAT_00000004"
+    }, 
+    {
+      "address": "0x00000008", 
+      "type": null, 
+      "name": "DAT_00000008"
+    }, 
+    {
+      "address": "0x100f9584", 
+      "type": "string", 
+      "name": "DAT_100f9584"
+    }, 
+    {
+      "address": "0x10108cf8", 
+      "type": "string", 
+      "name": "DAT_10108cf8"
+    }, 
+    {
+      "address": "0x10108cd4", 
+      "type": "string", 
+      "name": "DAT_10108cd4"
+    }, 
+    {
+      "address": "0x0000000c", 
+      "type": null, 
+      "name": "DAT_0000000c"
+    }, 
+    {
+      "address": "0x-0001004", 
+      "type": null, 
+      "name": "DAT_-0001004"
+    }, 
+    {
+      "address": "0x-0000f05", 
+      "type": null, 
+      "name": "DAT_-0000f05"
+    }, 
+    {
+      "address": "0x100f9350", 
+      "type": null, 
+      "name": "DAT_100f9350"
+    }
+  ], 
+  "has_custom_name": false, 
+  "decompiled_c": "\nvoid FUN_1008fa4a(undefined4 *param_1,char *param_2)\n\n{\n  int *piVar1;\n  int iVar2;\n  char *pcVar3;\n  char *pcVar4;\n  bool bVar5;\n  undefined local_1004 [255];\n  undefined local_f05;\n  undefined4 uStack_38;\n  undefined4 uStack_34;\n  undefined4 *puStack_30;\n  undefined4 uStack_2c;\n  undefined *puStack_28;\n  undefined *puStack_24;\n  int *piStack_20;\n  undefined4 uStack_1c;\n  char *pcStack_18;\n  int *piStack_14;\n  \n  FUN_100e4f80();\n  iVar2 = 0xd;\n  bVar5 = true;\n  param_1[0x13] = 1;\n  pcVar3 = param_2;\n  pcVar4 = \"syntax error\";\n  do {\n    if (iVar2 == 0) break;\n    iVar2 = iVar2 + -1;\n    bVar5 = *pcVar3 == *pcVar4;\n    pcVar3 = pcVar3 + 1;\n    pcVar4 = pcVar4 + 1;\n  } while (bVar5);\n  if (bVar5) {\n    piVar1 = param_1 + 4;\n    pcStack_18 = (char *)0x7d0;\n    uStack_1c = 0x1008fa85;\n    piStack_14 = piVar1;\n    FUN_1004cdad();\n    if (*piVar1 == 9) {\n      if (param_1[0x15] == 0x7e7) {\n        piStack_14 = (int *)param_1[6];\n        pcStack_18 = \"\\'%s\\' is not a valid instruction in this shader version\";\n        uStack_1c = 0x7e7;\n        puStack_24 = (undefined *)*param_1;\n        puStack_28 = (undefined *)0x1008faa5;\n        piStack_20 = piVar1;\n        FUN_1004cb83();\n      }\n      if (param_1[0x15] == 0x7e8) {\n        piStack_14 = (int *)param_1[6];\n        pcStack_18 = \"invalid instruction modifiers \\'%s\\'\";\n        uStack_1c = 0x7e8;\n        puStack_24 = (undefined *)*param_1;\n        puStack_28 = (undefined *)0x1008fac3;\n        piStack_20 = piVar1;\n        FUN_1004cb83();\n      }\n    }\n  }\n  else {\n    piStack_14 = (int *)&stack0x0000000c;\n    pcStack_18 = param_2;\n    piStack_20 = (int *)local_1004;\n    uStack_1c = 0x1000;\n    puStack_24 = (undefined *)0x1008fae0;\n    FUN_100e68e0();\n    local_f05 = 0;\n    puStack_24 = local_1004;\n    puStack_28 = &DAT_100f9350;\n    uStack_2c = 0;\n    puStack_30 = param_1 + 4;\n    uStack_34 = *param_1;\n    uStack_38 = 0x1008fb00;\n    FUN_1004cb83();\n  }\n  return;\n}\n\n", 
+  "is_thunk": false, 
+  "name": "FUN_1008fa4a", 
+  "assembly": "  1008fa4a:  PUSH EBP\n  1008fa4b:  MOV EBP,ESP\n  1008fa4d:  MOV EAX,0x1000\n  1008fa52:  CALL 0x100e4f80\n  1008fa57:  PUSH EBX\n  1008fa58:  MOV EBX,dword ptr [EBP + 0x8]\n  1008fa5b:  PUSH ESI\n  1008fa5c:  MOV ESI,dword ptr [EBP + 0xc]\n  1008fa5f:  PUSH EDI\n  1008fa60:  PUSH 0xd\n  1008fa62:  MOV EDI,0x100f9584\n  1008fa67:  POP ECX\n  1008fa68:  XOR EAX,EAX\n  1008fa6a:  MOV dword ptr [EBX + 0x4c],0x1\n  1008fa71:  CMPSB.REPE ES:EDI,ESI\n  1008fa73:  JNZ 0x1008fac8\n  1008fa75:  MOV ECX,dword ptr [EBX]\n  1008fa77:  LEA ESI,[EBX + 0x10]\n  1008fa7a:  PUSH ESI\n  1008fa7b:  PUSH 0x7d0\n  1008fa80:  CALL 0x1004cdad\n  1008fa85:  CMP dword ptr [ESI],0x9\n  1008fa88:  JNZ 0x1008fb03\n  1008fa8a:  MOV EAX,0x7e7\n  1008fa8f:  CMP dword ptr [EBX + 0x54],EAX\n  1008fa92:  JNZ 0x1008faa8\n  1008fa94:  PUSH dword ptr [EBX + 0x18]\n  1008fa97:  PUSH 0x10108cf8\n  1008fa9c:  PUSH EAX\n  1008fa9d:  PUSH ESI\n  1008fa9e:  PUSH dword ptr [EBX]\n  1008faa0:  CALL 0x1004cb83\n  1008faa5:  ADD ESP,0x14\n  1008faa8:  MOV EAX,0x7e8\n  1008faad:  CMP dword ptr [EBX + 0x54],EAX\n  1008fab0:  JNZ 0x1008fb03\n  1008fab2:  PUSH dword ptr [EBX + 0x18]\n  1008fab5:  PUSH 0x10108cd4\n  1008faba:  PUSH EAX\n  1008fabb:  PUSH ESI\n  1008fabc:  PUSH dword ptr [EBX]\n  1008fabe:  CALL 0x1004cb83\n  1008fac3:  ADD ESP,0x14\n  1008fac6:  JMP 0x1008fb03\n  1008fac8:  LEA EAX,[EBP + 0x10]\n  1008facb:  PUSH EAX\n  1008facc:  PUSH dword ptr [EBP + 0xc]\n  1008facf:  LEA EAX,[EBP + 0xfffff000]\n  1008fad5:  PUSH 0x1000\n  1008fada:  PUSH EAX\n  1008fadb:  CALL 0x100e68e0\n  1008fae0:  AND byte ptr [EBP + 0xfffff0ff],0x0\n  1008fae7:  LEA EAX,[EBP + 0xfffff000]\n  1008faed:  PUSH EAX\n  1008faee:  PUSH 0x100f9350\n  1008faf3:  PUSH 0x0\n  1008faf5:  LEA EAX,[EBX + 0x10]\n  1008faf8:  PUSH EAX\n  1008faf9:  PUSH dword ptr [EBX]\n  1008fafb:  CALL 0x1004cb83\n  1008fb00:  ADD ESP,0x24\n  1008fb03:  POP EDI\n  1008fb04:  POP ESI\n  1008fb05:  POP EBX\n  1008fb06:  LEAVE\n  1008fb07:  RET", 
+  "callers": []
+}

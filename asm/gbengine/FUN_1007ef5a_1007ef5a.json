@@ -1,0 +1,20 @@
+{
+  "address": "0x1007ef5a", 
+  "size_bytes": 30, 
+  "calling_convention": "unknown", 
+  "signature": "undefined FUN_1007ef5a(void)", 
+  "callees": [], 
+  "global_refs": [
+    {
+      "address": "0x10106790", 
+      "type": "undefined *", 
+      "name": "DAT_10106790"
+    }
+  ], 
+  "has_custom_name": false, 
+  "decompiled_c": "\nvoid FUN_1007ef5a(void)\n\n{\n  undefined4 *in_ECX;\n  \n  in_ECX[1] = 0x11;\n  in_ECX[2] = 0;\n  in_ECX[3] = 0;\n  *in_ECX = &PTR_LAB_10106790;\n  in_ECX[4] = 0;\n  in_ECX[5] = 0;\n  return;\n}\n\n", 
+  "is_thunk": false, 
+  "name": "FUN_1007ef5a", 
+  "assembly": "  1007ef5a:  MOV EAX,ECX\n  1007ef5c:  XOR ECX,ECX\n  1007ef5e:  MOV dword ptr [EAX + 0x4],0x11\n  1007ef65:  MOV dword ptr [EAX + 0x8],ECX\n  1007ef68:  MOV dword ptr [EAX + 0xc],ECX\n  1007ef6b:  MOV dword ptr [EAX],0x10106790\n  1007ef71:  MOV dword ptr [EAX + 0x10],ECX\n  1007ef74:  MOV dword ptr [EAX + 0x14],ECX\n  1007ef77:  RET", 
+  "callers": []
+}

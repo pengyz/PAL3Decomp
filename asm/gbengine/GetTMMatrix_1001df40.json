@@ -1,0 +1,25 @@
+{
+  "address": "0x1001df40", 
+  "size_bytes": 37, 
+  "calling_convention": "__thiscall", 
+  "signature": "void __thiscall GetTMMatrix(gbGfxManager * this, int param_1, gbMatrix4 * param_2)", 
+  "callees": [], 
+  "global_refs": [
+    {
+      "address": "0x00000004", 
+      "type": null, 
+      "name": "DAT_00000004"
+    }, 
+    {
+      "address": "0x1001e04c", 
+      "type": "undefined *", 
+      "name": "DAT_1001e04c"
+    }
+  ], 
+  "has_custom_name": true, 
+  "decompiled_c": "\n/* public: void __thiscall gbGfxManager::GetTMMatrix(int,struct gbMatrix4 *) */\n\nvoid __thiscall gbGfxManager::GetTMMatrix(gbGfxManager *this,int param_1,gbMatrix4 *param_2)\n\n{\n  gbMatrix4 *pgVar1;\n  gbMatrix4 *pgVar2;\n  gbMatrixStack *this_00;\n  int iVar3;\n  gbMatrix4 agStack_40 [64];\n  \n                    /* 0x1df40  548  ?GetTMMatrix@gbGfxManager@@QAEXHPAUgbMatrix4@@@Z */\n  switch(param_1) {\n  case 0:\n    this_00 = *(gbMatrixStack **)(this + 0xd8);\n    break;\n  case 1:\n    this_00 = *(gbMatrixStack **)(this + 0xd4);\n    break;\n  case 2:\n    pgVar1 = gbMatrixStack::GetTop(*(gbMatrixStack **)(this + 0xd8));\n    pgVar2 = param_2;\n    for (iVar3 = 0x10; iVar3 != 0; iVar3 = iVar3 + -1) {\n      *(undefined4 *)pgVar2 = *(undefined4 *)pgVar1;\n      pgVar1 = pgVar1 + 4;\n      pgVar2 = pgVar2 + 4;\n    }\n    pgVar1 = gbMatrixStack::GetTop(*(gbMatrixStack **)(this + 0xd4));\n    gbMatrix4::RightMultiply(param_2,pgVar1);\n    return;\n  case 3:\n    pgVar1 = gbMatrixStack::GetTop(*(gbMatrixStack **)(this + 0xd4));\n    gbMatrix4::Invert(pgVar1,param_2);\n    return;\n  case 4:\n    pgVar1 = gbMatrixStack::GetTop(*(gbMatrixStack **)(this + 0xd8));\n    gbMatrix4::Invert(pgVar1,param_2);\n    return;\n  case 5:\n    gbMatrix4::gbMatrix4(agStack_40);\n    pgVar1 = param_2;\n    pgVar2 = gbMatrixStack::GetTop(*(gbMatrixStack **)(this + 0xd4));\n    gbMatrix4::Invert(pgVar2,pgVar1);\n    pgVar1 = agStack_40;\n    pgVar2 = gbMatrixStack::GetTop(*(gbMatrixStack **)(this + 0xd8));\n    gbMatrix4::Invert(pgVar2,pgVar1);\n    gbMatrix4::RightMultiply(param_2,agStack_40);\n  default:\n    return;\n  }\n  pgVar1 = gbMatrixStack::GetTop(this_00);\n  for (iVar3 = 0x10; iVar3 != 0; iVar3 = iVar3 + -1) {\n    *(undefined4 *)param_2 = *(undefined4 *)pgVar1;\n    pgVar1 = pgVar1 + 4;\n    param_2 = param_2 + 4;\n  }\n  return;\n}\n\n", 
+  "is_thunk": false, 
+  "name": "GetTMMatrix", 
+  "assembly": "  1001df40:  MOV EAX,dword ptr [ESP + 0x4]\n  1001df44:  SUB ESP,0x40\n  1001df47:  CMP EAX,0x5\n  1001df4a:  PUSH EBX\n  1001df4b:  PUSH ESI\n  1001df4c:  PUSH EDI\n  1001df4d:  MOV EBX,ECX\n  1001df4f:  JA 0x1001e040\n  1001df55:  JMP dword ptr [EAX*0x4 + 0x1001e04c]\n  1001e040:  POP EDI\n  1001e041:  POP ESI\n  1001e042:  POP EBX\n  1001e043:  ADD ESP,0x40\n  1001e046:  RET 0x8", 
+  "callers": []
+}

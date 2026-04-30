@@ -1,0 +1,55 @@
+{
+  "address": "0x10004460", 
+  "size_bytes": 82, 
+  "calling_convention": "__thiscall", 
+  "signature": "undefined __thiscall gbNBTreeNode(gbNBTreeNode * this)", 
+  "callees": [
+    {
+      "address": "0x1002ea50", 
+      "name": "gbChain1D"
+    }
+  ], 
+  "global_refs": [
+    {
+      "address": "0x100f3768", 
+      "type": null, 
+      "name": "DAT_100f3768"
+    }, 
+    {
+      "address": "0xffdff000", 
+      "type": "void *32", 
+      "name": "DAT_ffdff000"
+    }, 
+    {
+      "address": "0x-0000010", 
+      "type": null, 
+      "name": "DAT_-0000010"
+    }, 
+    {
+      "address": "0x100f53a8", 
+      "type": "pointer", 
+      "name": "DAT_100f53a8"
+    }, 
+    {
+      "address": "0x-0000004", 
+      "type": null, 
+      "name": "DAT_-0000004"
+    }, 
+    {
+      "address": "0x-000000c", 
+      "type": null, 
+      "name": "DAT_-000000c"
+    }, 
+    {
+      "address": "0x100f5370", 
+      "type": "pointer", 
+      "name": "DAT_100f5370"
+    }
+  ], 
+  "has_custom_name": true, 
+  "decompiled_c": "\n/* public: __thiscall gbNBTreeNode::gbNBTreeNode(void) */\n\ngbNBTreeNode * __thiscall gbNBTreeNode::gbNBTreeNode(gbNBTreeNode *this)\n\n{\n  void *local_c;\n  undefined *puStack_8;\n  undefined4 local_4;\n  \n                    /* 0x4460  63  ??0gbNBTreeNode@@QAE@XZ */\n  puStack_8 = &LAB_100f3768;\n  local_c = ExceptionList;\n  ExceptionList = &local_c;\n  *(undefined ***)this = &gbChain1DNode::_vftable_;\n  local_4 = 0;\n  gbChain1D::gbChain1D((gbChain1D *)(this + 0xc));\n  *(undefined ***)this = &_vftable_;\n  *(undefined4 *)(this + 8) = 0;\n  ExceptionList = local_c;\n  return this;\n}\n\n", 
+  "is_thunk": false, 
+  "name": "gbNBTreeNode", 
+  "assembly": "  10004460:  PUSH -0x1\n  10004462:  PUSH 0x100f3768\n  10004467:  MOV EAX,FS:[0x0]\n  1000446d:  PUSH EAX\n  1000446e:  MOV dword ptr FS:[0x0],ESP\n  10004475:  PUSH ECX\n  10004476:  PUSH ESI\n  10004477:  MOV ESI,ECX\n  10004479:  MOV dword ptr [ESP + 0x4],ESI\n  1000447d:  MOV dword ptr [ESI],0x100f53a8\n  10004483:  LEA ECX,[ESI + 0xc]\n  10004486:  MOV dword ptr [ESP + 0x10],0x0\n  1000448e:  CALL 0x1002ea50\n  10004493:  MOV ECX,dword ptr [ESP + 0x8]\n  10004497:  MOV dword ptr [ESI],0x100f5370\n  1000449d:  MOV dword ptr [ESI + 0x8],0x0\n  100044a4:  MOV EAX,ESI\n  100044a6:  POP ESI\n  100044a7:  MOV dword ptr FS:[0x0],ECX\n  100044ae:  ADD ESP,0x10\n  100044b1:  RET", 
+  "callers": []
+}

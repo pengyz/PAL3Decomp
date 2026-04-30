@@ -1,0 +1,79 @@
+{
+  "address": "0x10048940", 
+  "size_bytes": 49, 
+  "calling_convention": "unknown", 
+  "signature": "undefined FUN_10048940(undefined4 param_1, undefined4 param_2, undefined4 param_3, undefined4 param_4, undefined4 param_5, undefined4 param_6, undefined4 param_7)", 
+  "callees": [
+    {
+      "address": "0x1007713a", 
+      "name": "FUN_1007713a"
+    }, 
+    {
+      "address": "0x10048940", 
+      "name": "FUN_10048940"
+    }
+  ], 
+  "global_refs": [
+    {
+      "address": "0x00000018", 
+      "type": null, 
+      "name": "DAT_00000018"
+    }, 
+    {
+      "address": "0x0000001c", 
+      "type": null, 
+      "name": "DAT_0000001c"
+    }, 
+    {
+      "address": "0x-000000c", 
+      "type": null, 
+      "name": "DAT_-000000c"
+    }, 
+    {
+      "address": "0x00000014", 
+      "type": null, 
+      "name": "DAT_00000014"
+    }, 
+    {
+      "address": "0x0000000c", 
+      "type": null, 
+      "name": "DAT_0000000c"
+    }, 
+    {
+      "address": "0x00000010", 
+      "type": null, 
+      "name": "DAT_00000010"
+    }, 
+    {
+      "address": "0x-0000018", 
+      "type": null, 
+      "name": "DAT_-0000018"
+    }, 
+    {
+      "address": "0x00000008", 
+      "type": null, 
+      "name": "DAT_00000008"
+    }, 
+    {
+      "address": "0x00000004", 
+      "type": null, 
+      "name": "DAT_00000004"
+    }, 
+    {
+      "address": "0x101215b4", 
+      "type": "undefined *", 
+      "name": "DAT_101215b4"
+    }
+  ], 
+  "has_custom_name": false, 
+  "decompiled_c": "\nvoid FUN_10048940(undefined4 param_1,undefined4 param_2,undefined4 param_3,undefined4 param_4,\n                 undefined4 param_5,undefined4 param_6,undefined4 param_7)\n\n{\n  FUN_1007713a(1);\n  (*(code *)PTR_FUN_101215b4)(param_1,param_2,param_3,param_4,param_5,param_6,param_7);\n  return;\n}\n\n", 
+  "is_thunk": false, 
+  "name": "FUN_10048940", 
+  "assembly": "  10048940:  PUSH EBP\n  10048941:  MOV EBP,ESP\n  10048943:  PUSH 0x1\n  10048945:  CALL 0x1007713a\n  1004894a:  FLD dword ptr [EBP + 0x1c]\n  1004894d:  PUSH dword ptr [EBP + 0x20]\n  10048950:  PUSH ECX\n  10048951:  FSTP dword ptr [ESP]\n  10048954:  PUSH dword ptr [EBP + 0x18]\n  10048957:  FLD dword ptr [EBP + 0x10]\n  1004895a:  PUSH dword ptr [EBP + 0x14]\n  1004895d:  PUSH ECX\n  1004895e:  FSTP dword ptr [ESP]\n  10048961:  PUSH dword ptr [EBP + 0xc]\n  10048964:  PUSH dword ptr [EBP + 0x8]\n  10048967:  CALL dword ptr [0x101215b4]\n  1004896d:  POP EBP\n  1004896e:  RET 0x1c", 
+  "callers": [
+    {
+      "address": "0x10048940", 
+      "name": "FUN_10048940"
+    }
+  ]
+}

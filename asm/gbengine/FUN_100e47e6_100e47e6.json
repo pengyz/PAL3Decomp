@@ -1,0 +1,39 @@
+{
+  "address": "0x100e47e6", 
+  "size_bytes": 114, 
+  "calling_convention": "unknown", 
+  "signature": "undefined FUN_100e47e6(undefined4 param_1, undefined4 param_2, undefined4 param_3)", 
+  "callees": [
+    {
+      "address": "0x100e7c91", 
+      "name": "FUN_100e7c91"
+    }, 
+    {
+      "address": "0x100e4632", 
+      "name": "FUN_100e4632"
+    }
+  ], 
+  "global_refs": [
+    {
+      "address": "0x00000004", 
+      "type": null, 
+      "name": "DAT_00000004"
+    }, 
+    {
+      "address": "0x00000008", 
+      "type": null, 
+      "name": "DAT_00000008"
+    }, 
+    {
+      "address": "0x0000000c", 
+      "type": null, 
+      "name": "DAT_0000000c"
+    }
+  ], 
+  "has_custom_name": false, 
+  "decompiled_c": "\nundefined4 FUN_100e47e6(int param_1,int param_2,undefined4 param_3)\n\n{\n  undefined4 uVar1;\n  \n  if ((*(uint *)(param_1 + 4) & 0x66) != 0) {\n    *(undefined4 *)(param_2 + 0x24) = 1;\n    return 1;\n  }\n  FUN_100e7c91(param_1,*(undefined4 *)(param_2 + 0xc),param_3,0,*(undefined4 *)(param_2 + 8),\n               *(undefined4 *)(param_2 + 0x10),*(undefined4 *)(param_2 + 0x14),1);\n  if (*(int *)(param_2 + 0x24) == 0) {\n    FUN_100e4632(param_2,param_1);\n  }\n                    /* WARNING: Could not recover jumptable at 0x100e4850. Too many branches */\n                    /* WARNING: Treating indirect jump as call */\n  uVar1 = (**(code **)(param_2 + 0x18))();\n  return uVar1;\n}\n\n", 
+  "is_thunk": false, 
+  "name": "FUN_100e47e6", 
+  "assembly": "  100e47e6:  PUSH EBP\n  100e47e7:  MOV EBP,ESP\n  100e47e9:  PUSH EBX\n  100e47ea:  PUSH ESI\n  100e47eb:  PUSH EDI\n  100e47ec:  CLD\n  100e47ed:  MOV EAX,dword ptr [EBP + 0x8]\n  100e47f0:  MOV EAX,dword ptr [EAX + 0x4]\n  100e47f3:  AND EAX,0x66\n  100e47f6:  TEST EAX,EAX\n  100e47f8:  JZ 0x100e4809\n  100e47fa:  MOV EAX,dword ptr [EBP + 0xc]\n  100e47fd:  MOV dword ptr [EAX + 0x24],0x1\n  100e4804:  PUSH 0x1\n  100e4806:  POP EAX\n  100e4807:  JMP 0x100e4856\n  100e4809:  PUSH 0x1\n  100e480b:  MOV EAX,dword ptr [EBP + 0xc]\n  100e480e:  PUSH dword ptr [EAX + 0x14]\n  100e4811:  MOV EAX,dword ptr [EBP + 0xc]\n  100e4814:  PUSH dword ptr [EAX + 0x10]\n  100e4817:  MOV EAX,dword ptr [EBP + 0xc]\n  100e481a:  PUSH dword ptr [EAX + 0x8]\n  100e481d:  PUSH 0x0\n  100e481f:  PUSH dword ptr [EBP + 0x10]\n  100e4822:  MOV EAX,dword ptr [EBP + 0xc]\n  100e4825:  PUSH dword ptr [EAX + 0xc]\n  100e4828:  PUSH dword ptr [EBP + 0x8]\n  100e482b:  CALL 0x100e7c91\n  100e4830:  ADD ESP,0x20\n  100e4833:  MOV EAX,dword ptr [EBP + 0xc]\n  100e4836:  CMP dword ptr [EAX + 0x24],0x0\n  100e483a:  JNZ 0x100e4847\n  100e483c:  PUSH dword ptr [EBP + 0x8]\n  100e483f:  PUSH dword ptr [EBP + 0xc]\n  100e4842:  CALL 0x100e4632\n  100e4847:  MOV EBX,dword ptr [EBP + 0xc]\n  100e484a:  MOV ESP,dword ptr [EBX + 0x1c]\n  100e484d:  MOV EBP,dword ptr [EBX + 0x20]\n  100e4850:  JMP dword ptr [EBX + 0x18]\n  100e4856:  POP EDI\n  100e4857:  POP ESI\n  100e4858:  POP EBX\n  100e4859:  POP EBP\n  100e485a:  RET", 
+  "callers": []
+}

@@ -1,0 +1,28 @@
+{
+  "address": "0x1002c590", 
+  "size_bytes": 52, 
+  "calling_convention": "__thiscall", 
+  "signature": "void __thiscall ~CPK(CPK * this)", 
+  "callees": [
+    {
+      "address": "0x10024140", 
+      "name": "~BEZIER"
+    }, 
+    {
+      "address": "0x100e4a24", 
+      "name": "FUN_100e4a24"
+    }
+  ], 
+  "global_refs": [], 
+  "has_custom_name": true, 
+  "decompiled_c": "\n/* public: __thiscall CPK::~CPK(void) */\n\nvoid __thiscall CPK::~CPK(CPK *this)\n\n{\n  BEZIER *this_00;\n  int iVar1;\n  CPK *pCVar2;\n  \n                    /* 0x2c590  122  ??1CPK@@QAE@XZ */\n  pCVar2 = this + 0xe0088;\n  iVar1 = 8;\n  do {\n    this_00 = *(BEZIER **)pCVar2;\n    if (this_00 != (BEZIER *)0x0) {\n      BEZIER::~BEZIER(this_00);\n      FUN_100e4a24(this_00);\n      *(undefined4 *)pCVar2 = 0;\n    }\n    pCVar2 = pCVar2 + 4;\n    iVar1 = iVar1 + -1;\n  } while (iVar1 != 0);\n  return;\n}\n\n", 
+  "is_thunk": false, 
+  "name": "~CPK", 
+  "assembly": "  1002c590:  PUSH EBX\n  1002c591:  PUSH ESI\n  1002c592:  PUSH EDI\n  1002c593:  LEA EDI,[ECX + 0xe0088]\n  1002c599:  MOV EBX,0x8\n  1002c59e:  MOV ESI,dword ptr [EDI]\n  1002c5a0:  TEST ESI,ESI\n  1002c5a2:  JZ 0x1002c5ba\n  1002c5a4:  MOV ECX,ESI\n  1002c5a6:  CALL 0x10024140\n  1002c5ab:  PUSH ESI\n  1002c5ac:  CALL 0x100e4a24\n  1002c5b1:  ADD ESP,0x4\n  1002c5b4:  MOV dword ptr [EDI],0x0\n  1002c5ba:  ADD EDI,0x4\n  1002c5bd:  DEC EBX\n  1002c5be:  JNZ 0x1002c59e\n  1002c5c0:  POP EDI\n  1002c5c1:  POP ESI\n  1002c5c2:  POP EBX\n  1002c5c3:  RET", 
+  "callers": [
+    {
+      "address": "0x10005ec0", 
+      "name": "~gbVFileSystem"
+    }
+  ]
+}

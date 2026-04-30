@@ -1,0 +1,72 @@
+{
+  "address": "0x10091fc2", 
+  "size_bytes": 213, 
+  "calling_convention": "unknown", 
+  "signature": "undefined FUN_10091fc2(undefined4 param_1, undefined4 param_2)", 
+  "callees": [
+    {
+      "address": "0x1004cb83", 
+      "name": "FUN_1004cb83"
+    }, 
+    {
+      "address": "0x1007e198", 
+      "name": "FUN_1007e198"
+    }, 
+    {
+      "address": "0x1007e301", 
+      "name": "FUN_1007e301"
+    }, 
+    {
+      "address": "0x1004cb83", 
+      "name": "FUN_1004cb83"
+    }
+  ], 
+  "global_refs": [
+    {
+      "address": "0x00000008", 
+      "type": null, 
+      "name": "DAT_00000008"
+    }, 
+    {
+      "address": "0x00000004", 
+      "type": null, 
+      "name": "DAT_00000004"
+    }, 
+    {
+      "address": "0x10092565", 
+      "type": null, 
+      "name": "DAT_10092565"
+    }, 
+    {
+      "address": "0x100924f5", 
+      "type": null, 
+      "name": "DAT_100924f5"
+    }, 
+    {
+      "address": "0x100f9930", 
+      "type": "string", 
+      "name": "DAT_100f9930"
+    }, 
+    {
+      "address": "0x10165864", 
+      "type": "undefined4", 
+      "name": "DAT_10165864"
+    }, 
+    {
+      "address": "0x100f98fc", 
+      "type": "string", 
+      "name": "DAT_100f98fc"
+    }, 
+    {
+      "address": "0x100f98dc", 
+      "type": "string", 
+      "name": "DAT_100f98dc"
+    }
+  ], 
+  "has_custom_name": false, 
+  "decompiled_c": "\nvoid FUN_10091fc2(undefined4 param_1,uint param_2)\n\n{\n  double dVar1;\n  int iVar2;\n  undefined4 *puVar3;\n  int iVar4;\n  int iVar5;\n  undefined4 *in_ECX;\n  uint uVar6;\n  int *piVar7;\n  undefined4 uVar8;\n  char *pcVar9;\n  int aiStack_44 [16];\n  \n  if (in_ECX[0x14] != 0) {\n    return;\n  }\n  uVar6 = param_2;\n  if (param_2 != 0) {\n    do {\n      iVar5 = in_ECX[0xd];\n      uVar6 = uVar6 - 1;\n      if (iVar5 == 0) {\n        FUN_1004cb83(*in_ECX,in_ECX + 4,0,\"internal error: stack underflow\");\n        in_ECX[0x13] = 1;\n        return;\n      }\n      aiStack_44[uVar6] = *(int *)(iVar5 + 8);\n      in_ECX[0xd] = *(undefined4 *)(iVar5 + 0xc);\n      *(undefined4 *)(iVar5 + 8) = 0;\n      *(undefined4 *)(iVar5 + 0xc) = 0;\n    } while (uVar6 != 0);\n  }\n  iVar2 = aiStack_44[1];\n  iVar5 = aiStack_44[0];\n  uVar6 = 1;\n  iVar4 = 0;\n  switch(param_1) {\n  case 0:\n  case 6:\n    iVar4 = 0;\n    break;\n  case 1:\n  case 2:\n  case 4:\n  case 5:\n  case 10:\n  case 0x17:\n  case 0x19:\n  case 0x1d:\n  case 0x23:\n  case 0x29:\n  case 0x2a:\n  case 0x2f:\n  case 0x30:\n    iVar4 = iVar5;\n    break;\n  case 3:\n    iVar4 = FUN_1007e2bf(aiStack_44[1],aiStack_44[0]);\n    break;\n  case 7:\n    iVar4 = 0;\n    if (in_ECX[0x1d] == 0) {\n      in_ECX[0x1d] = *(undefined4 *)(aiStack_44[0] + 0x18);\n    }\n    break;\n  case 8:\n    goto code_r0x10092092;\n  case 9:\n    if (((int)in_ECX[0xe] < 6) || (9 < (int)in_ECX[0xe])) {\n      pcVar9 = \"instruction coissue is not supported in this shader version\";\n      uVar8 = 0x7eb;\n      iVar4 = aiStack_44[0];\n      goto code_r0x100920da;\n    }\n    *(undefined4 *)(aiStack_44[0] + 0x54) = 1;\ncode_r0x10092092:\n    FUN_1009079c(aiStack_44[0]);\n    iVar4 = iVar5;\n    break;\n  case 0xb:\n    iVar5 = in_ECX[0xe];\n    if (((1 < iVar5) && (iVar5 < 6)) || ((10 < iVar5 && (iVar5 < 0xf)))) {\n      *(int *)(aiStack_44[1] + 0x40) = aiStack_44[0];\n      iVar4 = aiStack_44[1];\n      break;\n    }\n    pcVar9 = \"instruction predication is not supported in this shader version\";\n    uVar8 = 0x7ec;\n    iVar4 = aiStack_44[1];\ncode_r0x100920da:\n    puVar3 = (undefined4 *)(iVar4 + 0x10);\n    goto code_r0x1009226c;\n  case 0xc:\n  case 0xd:\n  case 0xe:\n  case 0xf:\n  case 0x10:\n  case 0x11:\n  case 0x12:\n  case 0x13:\n  case 0x14:\n    aiStack_44[0] = 0;\n    if (1 < param_2) {\n      aiStack_44[1] = 0;\n      *(int *)(iVar5 + 0x3c) = iVar2;\n    }\n    uVar6 = 2;\n    iVar4 = iVar5;\n    if (2 < param_2) {\n      piVar7 = (int *)(iVar5 + 0x44);\n      do {\n        iVar2 = aiStack_44[uVar6];\n        aiStack_44[uVar6] = 0;\n        *piVar7 = iVar2;\n        uVar6 = uVar6 + 1;\n        piVar7 = piVar7 + 1;\n      } while (uVar6 < param_2);\n    }\n    break;\n  case 0x15:\n  case 0x16:\n    aiStack_44[0] = 0;\n    iVar4 = iVar5;\n    if (1 < param_2) {\n      piVar7 = (int *)(iVar5 + 0x44);\n      do {\n        iVar2 = aiStack_44[uVar6];\n        aiStack_44[uVar6] = 0;\n        *piVar7 = iVar2;\n        uVar6 = uVar6 + 1;\n        piVar7 = piVar7 + 1;\n      } while (uVar6 < param_2);\n    }\n    break;\n  case 0x18:\n    if (*(int *)(aiStack_44[0] + 0x1c) == 0) {\n      uVar8 = FUN_1009053d(aiStack_44[1] + 0x10);\n      *(undefined4 *)(iVar5 + 0x20) = uVar8;\n      iVar4 = iVar5;\n    }\n    else {\n      FUN_1004cb83(*in_ECX,in_ECX + 4,0x7e6,\"scalar registers cannot be masked\");\n      in_ECX[0x13] = 1;\n      *(undefined4 *)(iVar5 + 0x20) = 0xf0000;\n      iVar4 = iVar5;\n    }\n    break;\n  case 0x1a:\n    if (*(int *)(aiStack_44[0] + 0x14) == 0) {\n      *(undefined4 *)(aiStack_44[0] + 0x14) = 0xd000000;\n      iVar4 = iVar5;\n      break;\n    }\n    pcVar9 = \"not cannot be used with other modifiers\";\n    uVar8 = 0x7e2;\n    iVar4 = aiStack_44[0];\n    goto code_r0x10092269;\n  case 0x1b:\n    iVar2 = *(int *)(aiStack_44[0] + 0x14);\n    if (iVar2 == 0) {\n      *(undefined4 *)(aiStack_44[0] + 0x14) = 0x1000000;\n      iVar4 = iVar5;\n      break;\n    }\n    if (iVar2 == 0x2000000) {\n      *(undefined4 *)(aiStack_44[0] + 0x14) = 0x3000000;\n      iVar4 = iVar5;\n      break;\n    }\n    if (iVar2 == 0x4000000) {\n      *(undefined4 *)(aiStack_44[0] + 0x14) = 0x5000000;\n      iVar4 = iVar5;\n      break;\n    }\n    if (iVar2 == 0x7000000) {\n      *(undefined4 *)(aiStack_44[0] + 0x14) = 0x8000000;\n      iVar4 = iVar5;\n      break;\n    }\n    if ((iVar2 != 0x9000000) && (iVar2 != 0xa000000)) {\n      iVar4 = iVar5;\n      if (iVar2 == 0xb000000) {\n        *(undefined4 *)(aiStack_44[0] + 0x14) = 0xc000000;\n      }\n      break;\n    }\n    pcVar9 = \"negate and divide modifiers cannot be combined\";\n    uVar8 = 0x7db;\n    iVar4 = aiStack_44[0];\n    goto code_r0x10092269;\n  case 0x1c:\n    if (*(int *)(aiStack_44[0] + 0x18) == 1) {\n      if (((int)in_ECX[0xe] < 6) || (9 < (int)in_ECX[0xe])) {\n        pcVar9 = \"complement is not supported in this shader version\";\n        uVar8 = 0x7ed;\n        iVar4 = aiStack_44[1];\n      }\n      else {\n        if (*(int *)(aiStack_44[1] + 0x14) == 0) {\n          *(undefined4 *)(aiStack_44[1] + 0x14) = 0x6000000;\n          iVar4 = aiStack_44[1];\n          break;\n        }\n        pcVar9 = \"complement cannot be used with other modifiers\";\n        uVar8 = 0x7dc;\n        iVar4 = aiStack_44[1];\n      }\n    }\n    else {\n      pcVar9 = \"invalid complement expression\";\n      uVar8 = 0x7da;\n      iVar4 = aiStack_44[1];\n    }\n    goto code_r0x10092269;\n  case 0x1e:\n    if (*(int *)(aiStack_44[0] + 0x1c) == 0) {\n      uVar8 = FUN_100905f0(aiStack_44[1] + 0x10);\n      *(undefined4 *)(iVar5 + 0x24) = uVar8;\n      iVar4 = iVar5;\n    }\n    else {\n      FUN_1004cb83(*in_ECX,in_ECX + 4,0x7e6,\"scalar registers cannot be swizzled\");\n      in_ECX[0x13] = 1;\n      *(undefined4 *)(iVar5 + 0x24) = 0xe40000;\n      iVar4 = iVar5;\n    }\n    break;\n  case 0x21:\n    iVar5 = 0;\n    goto code_r0x100922e2;\n  case 0x22:\n    iVar5 = aiStack_44[1];\ncode_r0x100922e2:\n    iVar4 = FUN_10091a6b(aiStack_44[0] + 0x10,iVar5);\n    goto code_r0x10092496;\n  case 0x24:\n    *(int *)(aiStack_44[0] + 0x18) = *(int *)(aiStack_44[0] + 0x18) + *(int *)(aiStack_44[1] + 0x18)\n    ;\n    if (*(int *)(aiStack_44[0] + 0x28) == 0) {\n      *(undefined4 *)(aiStack_44[0] + 0x28) = *(undefined4 *)(aiStack_44[1] + 0x28);\n      *(undefined4 *)(aiStack_44[1] + 0x28) = 0;\n      iVar4 = iVar5;\n      break;\n    }\n    iVar4 = iVar5;\n    if (*(int *)(aiStack_44[1] + 0x28) == 0) break;\n    pcVar9 = \"only one address register reference allowed in a relative address expression\";\n    uVar8 = 0x7d9;\n    iVar4 = aiStack_44[0];\ncode_r0x10092269:\n    puVar3 = in_ECX + 4;\ncode_r0x1009226c:\n    FUN_1004cb83(*in_ECX,puVar3,uVar8,pcVar9);\n    in_ECX[0x13] = 1;\n    break;\n  case 0x25:\n    iVar5 = FUN_1007e198(0x2c,0x10);\n    iVar4 = 0;\n    if (iVar5 != 0) {\n      uVar8 = 0;\n      iVar5 = aiStack_44[0];\ncode_r0x10092351:\n      iVar4 = FUN_100bc38f(0,0,uVar8,0,iVar5);\n    }\n    goto code_r0x10092496;\n  case 0x26:\n    iVar5 = FUN_1007e198(0x2c,0x10);\n    iVar4 = 0;\n    if (iVar5 != 0) {\n      uVar8 = *(undefined4 *)(aiStack_44[0] + 0x18);\n      iVar5 = 0;\n      goto code_r0x10092351;\n    }\n    goto code_r0x10092496;\n  case 0x27:\n    iVar5 = FUN_1007e198(0x30,0x10);\n    if (iVar5 == 0) {\n      iVar4 = 0;\n    }\n    else {\n      iVar4 = FUN_1007e4fd(in_ECX + 4);\n    }\n    func_0x1008fb74(iVar4);\n    *(undefined4 *)(iVar4 + 0x10) = 2;\n    *(undefined4 *)(iVar4 + 0x18) = 1;\n    break;\n  case 0x28:\n    iVar5 = FUN_1007e198(0x30,0x10);\n    if (iVar5 == 0) {\n      iVar4 = 0;\n    }\n    else {\n      iVar4 = FUN_1007e4fd(in_ECX + 4);\n    }\n    func_0x1008fb74(iVar4);\n    *(undefined4 *)(iVar4 + 0x18) = 0;\n    *(undefined4 *)(iVar4 + 0x10) = 2;\n    break;\n  case 0x2b:\n    *(int *)(aiStack_44[0] + 0x18) = -*(int *)(aiStack_44[0] + 0x18);\n    iVar4 = iVar5;\n    break;\n  case 0x2c:\n  case 0x2d:\n    dVar1 = (double)*(int *)(aiStack_44[0] + 0x18);\n    *(undefined4 *)(aiStack_44[0] + 0x10) = 5;\n    if (*(int *)(aiStack_44[0] + 0x18) < 0) {\n      dVar1 = dVar1 + 4294967296.0;\n    }\n    goto code_r0x1009243c;\n  case 0x2e:\n    dVar1 = (double)*(int *)(aiStack_44[0] + 0x18);\n    *(undefined4 *)(aiStack_44[0] + 0x10) = 5;\n    if (*(int *)(aiStack_44[0] + 0x18) < 0) {\n      dVar1 = dVar1 + 4294967296.0;\n    }\n    goto code_r0x1009243a;\n  case 0x31:\n    dVar1 = *(double *)(aiStack_44[0] + 0x18);\ncode_r0x1009243a:\n    dVar1 = -dVar1;\ncode_r0x1009243c:\n    *(double *)(aiStack_44[0] + 0x18) = dVar1;\n    iVar4 = iVar5;\n    break;\n  case 0x32:\n  case 0x33:\n  case 0x34:\n  case 0x35:\n  case 0x36:\n  case 0x37:\n  case 0x38:\n  case 0x39:\n  case 0x3a:\n  case 0x3b:\n  case 0x3c:\n    iVar5 = FUN_1007e198(0x60,0x10);\n    if (iVar5 == 0) {\ncode_r0x10092494:\n      iVar4 = 0;\n    }\n    else {\n      iVar4 = FUN_100bc30c(in_ECX + 4,in_ECX[0x10],in_ECX[0x11],in_ECX[0x12]);\n    }\n    goto code_r0x10092496;\n  case 0x3d:\n  case 0x3e:\n  case 0x3f:\n    iVar5 = FUN_1007e198(0x30,0x10);\n    if (iVar5 == 0) goto code_r0x10092494;\n    iVar4 = FUN_1007e4fd(in_ECX + 4);\ncode_r0x10092496:\n    func_0x1008fb74(iVar4);\n  }\n  if (in_ECX[0x14] == 0) {\n    iVar5 = FUN_1007e198(0x14,0x10);\n    if (iVar5 == 0) {\n      iVar5 = 0;\n    }\n    else {\n      iVar5 = FUN_1007e301(iVar4,in_ECX[0xd],\"Stack\");\n    }\n    if (iVar5 == 0) {\n      FUN_1004cb83(*in_ECX,in_ECX + 4,0,\"internal error: out of memory\");\n      in_ECX[0x14] = 1;\n      in_ECX[0x13] = 1;\n    }\n    else {\n      in_ECX[0xd] = iVar5;\n    }\n  }\n  return;\n}\n\n", 
+  "is_thunk": false, 
+  "name": "FUN_10091fc2", 
+  "assembly": "  10091fc2:  PUSH EBP\n  10091fc3:  MOV EBP,ESP\n  10091fc5:  SUB ESP,0x40\n  10091fc8:  PUSH ESI\n  10091fc9:  PUSH EDI\n  10091fca:  MOV ESI,ECX\n  10091fcc:  XOR EDI,EDI\n  10091fce:  CMP dword ptr [ESI + 0x50],EDI\n  10091fd1:  JNZ 0x100924ef\n  10091fd7:  MOV EDX,dword ptr [EBP + 0xc]\n  10091fda:  CMP EDX,EDI\n  10091fdc:  PUSH EBX\n  10091fdd:  MOV ECX,EDX\n  10091fdf:  JBE 0x10092002\n  10091fe1:  MOV EAX,dword ptr [ESI + 0x34]\n  10091fe4:  DEC ECX\n  10091fe5:  TEST EAX,EAX\n  10091fe7:  JZ 0x1009201f\n  10091fe9:  MOV EBX,dword ptr [EAX + 0x8]\n  10091fec:  MOV dword ptr [EBP + ECX*0x4 + -0x40],EBX\n  10091ff0:  MOV EBX,dword ptr [EAX + 0xc]\n  10091ff3:  MOV dword ptr [ESI + 0x34],EBX\n  10091ff6:  AND dword ptr [EAX + 0x8],0x0\n  10091ffa:  AND dword ptr [EAX + 0xc],0x0\n  10091ffe:  TEST ECX,ECX\n  10092000:  JA 0x10091fe1\n  10092002:  MOV EAX,dword ptr [EBP + 0x8]\n  10092005:  XOR EBX,EBX\n  10092007:  INC EBX\n  10092008:  CMP EAX,0x3f\n  1009200b:  JA 0x1009249e\n  10092011:  MOVZX EAX,byte ptr [EAX + 0x10092565]\n  10092018:  JMP dword ptr [EAX*0x4 + 0x100924f5]\n  1009201f:  PUSH 0x100f9930\n  10092024:  PUSH 0x0\n  10092026:  LEA EAX,[ESI + 0x10]\n  10092029:  PUSH EAX\n  1009202a:  PUSH dword ptr [ESI]\n  1009202c:  CALL 0x1004cb83\n  10092031:  ADD ESP,0x10\n  10092034:  MOV dword ptr [ESI + 0x4c],0x1\n  1009203b:  JMP 0x100924ee\n  1009249e:  CMP dword ptr [ESI + 0x50],0x0\n  100924a2:  JNZ 0x100924ee\n  100924a4:  MOV ECX,dword ptr [0x10165864]\n  100924aa:  PUSH 0x10\n  100924ac:  PUSH 0x14\n  100924ae:  CALL 0x1007e198\n  100924b3:  TEST EAX,EAX\n  100924b5:  JZ 0x100924c9\n  100924b7:  PUSH 0x100f98fc\n  100924bc:  PUSH dword ptr [ESI + 0x34]\n  100924bf:  MOV ECX,EAX\n  100924c1:  PUSH EDI\n  100924c2:  CALL 0x1007e301\n  100924c7:  JMP 0x100924cb\n  100924c9:  XOR EAX,EAX\n  100924cb:  TEST EAX,EAX\n  100924cd:  JNZ 0x100924eb\n  100924cf:  PUSH 0x100f98dc\n  100924d4:  PUSH EAX\n  100924d5:  LEA EAX,[ESI + 0x10]\n  100924d8:  PUSH EAX\n  100924d9:  PUSH dword ptr [ESI]\n  100924db:  CALL 0x1004cb83\n  100924e0:  ADD ESP,0x10\n  100924e3:  MOV dword ptr [ESI + 0x50],EBX\n  100924e6:  MOV dword ptr [ESI + 0x4c],EBX\n  100924e9:  JMP 0x100924ee\n  100924eb:  MOV dword ptr [ESI + 0x34],EAX\n  100924ee:  POP EBX\n  100924ef:  POP EDI\n  100924f0:  POP ESI\n  100924f1:  LEAVE\n  100924f2:  RET 0x8", 
+  "callers": []
+}

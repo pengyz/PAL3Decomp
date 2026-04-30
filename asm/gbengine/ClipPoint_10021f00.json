@@ -1,0 +1,25 @@
+{
+  "address": "0x10021f00", 
+  "size_bytes": 82, 
+  "calling_convention": "__thiscall", 
+  "signature": "int __thiscall ClipPoint(gbCamera * this, gbVec3D * param_1)", 
+  "callees": [], 
+  "global_refs": [
+    {
+      "address": "0x00000004", 
+      "type": null, 
+      "name": "DAT_00000004"
+    }, 
+    {
+      "address": "0x100f53a0", 
+      "type": null, 
+      "name": "DAT_100f53a0"
+    }
+  ], 
+  "has_custom_name": true, 
+  "decompiled_c": "\n/* public: int __thiscall gbCamera::ClipPoint(struct gbVec3D *) */\n\nint __thiscall gbCamera::ClipPoint(gbCamera *this,gbVec3D *param_1)\n\n{\n  gbCamera *pgVar1;\n  int iVar2;\n  \n                    /* 0x21f00  332  ?ClipPoint@gbCamera@@QAEHPAUgbVec3D@@@Z */\n  iVar2 = 0;\n  if (0 < *(int *)(this + 0x90)) {\n    pgVar1 = this + 0x34;\n    do {\n      if (*(float *)(param_1 + 4) * *(float *)pgVar1 +\n          *(float *)(pgVar1 + 4) * *(float *)(param_1 + 8) +\n          *(float *)(pgVar1 + -4) * *(float *)param_1 + *(float *)(pgVar1 + 8) < 0.0) {\n        return 1;\n      }\n      iVar2 = iVar2 + 1;\n      pgVar1 = pgVar1 + 0x10;\n    } while (iVar2 < *(int *)(this + 0x90));\n  }\n  return 0;\n}\n\n", 
+  "is_thunk": false, 
+  "name": "ClipPoint", 
+  "assembly": "  10021f00:  PUSH ESI\n  10021f01:  MOV ESI,dword ptr [ECX + 0x90]\n  10021f07:  XOR EDX,EDX\n  10021f09:  PUSH EDI\n  10021f0a:  TEST ESI,ESI\n  10021f0c:  JLE 0x10021f41\n  10021f0e:  MOV EDI,dword ptr [ESP + 0xc]\n  10021f12:  ADD ECX,0x34\n  10021f15:  FLD dword ptr [ECX + -0x4]\n  10021f18:  FMUL dword ptr [EDI]\n  10021f1a:  FLD dword ptr [ECX + 0x4]\n  10021f1d:  FMUL dword ptr [EDI + 0x8]\n  10021f20:  FADDP\n  10021f22:  FLD dword ptr [EDI + 0x4]\n  10021f25:  FMUL dword ptr [ECX]\n  10021f27:  FADDP\n  10021f29:  FADD dword ptr [ECX + 0x8]\n  10021f2c:  FCOMP dword ptr [0x100f53a0]\n  10021f32:  FNSTSW AX\n  10021f34:  TEST AH,0x1\n  10021f37:  JNZ 0x10021f48\n  10021f39:  INC EDX\n  10021f3a:  ADD ECX,0x10\n  10021f3d:  CMP EDX,ESI\n  10021f3f:  JL 0x10021f15\n  10021f41:  POP EDI\n  10021f42:  XOR EAX,EAX\n  10021f44:  POP ESI\n  10021f45:  RET 0x4\n  10021f48:  POP EDI\n  10021f49:  MOV EAX,0x1\n  10021f4e:  POP ESI\n  10021f4f:  RET 0x4", 
+  "callers": []
+}

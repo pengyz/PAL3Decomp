@@ -1,0 +1,28 @@
+{
+  "address": "0x1000ecc0", 
+  "size_bytes": 53, 
+  "calling_convention": "unknown", 
+  "signature": "undefined FUN_1000ecc0(void)", 
+  "callees": [
+    {
+      "address": "0x100e4b99", 
+      "name": "FUN_100e4b99"
+    }, 
+    {
+      "address": "0x1002f7f0", 
+      "name": "Release"
+    }
+  ], 
+  "global_refs": [], 
+  "has_custom_name": false, 
+  "decompiled_c": "\nvoid FUN_1000ecc0(void)\n\n{\n  int *in_ECX;\n  int *piVar1;\n  int iVar2;\n  \n  iVar2 = 0x20;\n  piVar1 = in_ECX;\n  do {\n    if (*piVar1 != 0) {\n      FUN_100e4b99(piVar1[1]);\n    }\n    piVar1 = piVar1 + 0x2f;\n    iVar2 = iVar2 + -1;\n  } while (iVar2 != 0);\n  gbRefObject::Release((gbRefObject *)in_ECX[0x5e2]);\n  return;\n}\n\n", 
+  "is_thunk": false, 
+  "name": "FUN_1000ecc0", 
+  "assembly": "  1000ecc0:  PUSH EBX\n  1000ecc1:  PUSH ESI\n  1000ecc2:  MOV EBX,ECX\n  1000ecc4:  PUSH EDI\n  1000ecc5:  MOV ESI,EBX\n  1000ecc7:  MOV EDI,0x20\n  1000eccc:  CMP dword ptr [ESI],0x0\n  1000eccf:  JZ 0x1000ecdd\n  1000ecd1:  MOV EAX,dword ptr [ESI + 0x4]\n  1000ecd4:  PUSH EAX\n  1000ecd5:  CALL 0x100e4b99\n  1000ecda:  ADD ESP,0x4\n  1000ecdd:  ADD ESI,0xbc\n  1000ece3:  DEC EDI\n  1000ece4:  JNZ 0x1000eccc\n  1000ece6:  MOV ECX,dword ptr [EBX + 0x1788]\n  1000ecec:  CALL 0x1002f7f0\n  1000ecf1:  POP EDI\n  1000ecf2:  POP ESI\n  1000ecf3:  POP EBX\n  1000ecf4:  RET", 
+  "callers": [
+    {
+      "address": "0x10014c60", 
+      "name": "~gbSceneGraph"
+    }
+  ]
+}

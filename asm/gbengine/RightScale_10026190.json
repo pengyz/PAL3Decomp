@@ -1,0 +1,30 @@
+{
+  "address": "0x10026190", 
+  "size_bytes": 121, 
+  "calling_convention": "__thiscall", 
+  "signature": "void __thiscall RightScale(gbMatrix4 * this, float param_1, float param_2, float param_3)", 
+  "callees": [], 
+  "global_refs": [
+    {
+      "address": "0x00000004", 
+      "type": null, 
+      "name": "DAT_00000004"
+    }, 
+    {
+      "address": "0x00000008", 
+      "type": null, 
+      "name": "DAT_00000008"
+    }, 
+    {
+      "address": "0x0000000c", 
+      "type": null, 
+      "name": "DAT_0000000c"
+    }
+  ], 
+  "has_custom_name": true, 
+  "decompiled_c": "\n/* public: void __thiscall gbMatrix4::RightScale(float,float,float) */\n\nvoid __thiscall gbMatrix4::RightScale(gbMatrix4 *this,float param_1,float param_2,float param_3)\n\n{\n                    /* 0x26190  819  ?RightScale@gbMatrix4@@QAEXMMM@Z */\n  *(float *)this = param_1 * *(float *)this;\n  *(float *)(this + 0x10) = param_1 * *(float *)(this + 0x10);\n  *(float *)(this + 0x20) = param_1 * *(float *)(this + 0x20);\n  *(float *)(this + 0x30) = param_1 * *(float *)(this + 0x30);\n  *(float *)(this + 4) = param_2 * *(float *)(this + 4);\n  *(float *)(this + 0x14) = param_2 * *(float *)(this + 0x14);\n  *(float *)(this + 0x24) = param_2 * *(float *)(this + 0x24);\n  *(float *)(this + 0x34) = param_2 * *(float *)(this + 0x34);\n  *(float *)(this + 8) = param_3 * *(float *)(this + 8);\n  *(float *)(this + 0x18) = param_3 * *(float *)(this + 0x18);\n  *(float *)(this + 0x28) = param_3 * *(float *)(this + 0x28);\n  *(float *)(this + 0x38) = param_3 * *(float *)(this + 0x38);\n  return;\n}\n\n", 
+  "is_thunk": false, 
+  "name": "RightScale", 
+  "assembly": "  10026190:  FLD dword ptr [ESP + 0x4]\n  10026194:  FMUL dword ptr [ECX]\n  10026196:  FSTP dword ptr [ECX]\n  10026198:  FLD dword ptr [ESP + 0x4]\n  1002619c:  FMUL dword ptr [ECX + 0x10]\n  1002619f:  FSTP dword ptr [ECX + 0x10]\n  100261a2:  FLD dword ptr [ESP + 0x4]\n  100261a6:  FMUL dword ptr [ECX + 0x20]\n  100261a9:  FSTP dword ptr [ECX + 0x20]\n  100261ac:  FLD dword ptr [ESP + 0x4]\n  100261b0:  FMUL dword ptr [ECX + 0x30]\n  100261b3:  FSTP dword ptr [ECX + 0x30]\n  100261b6:  FLD dword ptr [ESP + 0x8]\n  100261ba:  FMUL dword ptr [ECX + 0x4]\n  100261bd:  FSTP dword ptr [ECX + 0x4]\n  100261c0:  FLD dword ptr [ESP + 0x8]\n  100261c4:  FMUL dword ptr [ECX + 0x14]\n  100261c7:  FSTP dword ptr [ECX + 0x14]\n  100261ca:  FLD dword ptr [ESP + 0x8]\n  100261ce:  FMUL dword ptr [ECX + 0x24]\n  100261d1:  FSTP dword ptr [ECX + 0x24]\n  100261d4:  FLD dword ptr [ESP + 0x8]\n  100261d8:  FMUL dword ptr [ECX + 0x34]\n  100261db:  FSTP dword ptr [ECX + 0x34]\n  100261de:  FLD dword ptr [ESP + 0xc]\n  100261e2:  FMUL dword ptr [ECX + 0x8]\n  100261e5:  FSTP dword ptr [ECX + 0x8]\n  100261e8:  FLD dword ptr [ESP + 0xc]\n  100261ec:  FMUL dword ptr [ECX + 0x18]\n  100261ef:  FSTP dword ptr [ECX + 0x18]\n  100261f2:  FLD dword ptr [ESP + 0xc]\n  100261f6:  FMUL dword ptr [ECX + 0x28]\n  100261f9:  FSTP dword ptr [ECX + 0x28]\n  100261fc:  FLD dword ptr [ESP + 0xc]\n  10026200:  FMUL dword ptr [ECX + 0x38]\n  10026203:  FSTP dword ptr [ECX + 0x38]\n  10026206:  RET 0xc", 
+  "callers": []
+}

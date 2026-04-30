@@ -1,0 +1,60 @@
+{
+  "address": "0x100201a0", 
+  "size_bytes": 14, 
+  "calling_convention": "__thiscall", 
+  "signature": "void __thiscall ~gbResManager(gbResManager * this)", 
+  "callees": [
+    {
+      "address": "0x100e4b99", 
+      "name": "FUN_100e4b99"
+    }
+  ], 
+  "global_refs": [], 
+  "has_custom_name": true, 
+  "decompiled_c": "\n/* public: __thiscall gbResManager::~gbResManager(void) */\n\nvoid __thiscall gbResManager::~gbResManager(gbResManager *this)\n\n{\n                    /* 0x201a0  156  ??1gbResManager@@QAE@XZ */\n  if (*(int *)this != 0) {\n    FUN_100e4b99(*(int *)this);\n  }\n  return;\n}\n\n", 
+  "is_thunk": false, 
+  "name": "~gbResManager", 
+  "assembly": "  100201a0:  MOV EAX,dword ptr [ECX]\n  100201a2:  TEST EAX,EAX\n  100201a4:  JZ 0x100201ad\n  100201a6:  PUSH EAX\n  100201a7:  CALL 0x100e4b99\n  100201ac:  POP ECX\n  100201ad:  RET", 
+  "callers": [
+    {
+      "address": "0x10001440", 
+      "name": "~gbAudioManager"
+    }, 
+    {
+      "address": "0x10003620", 
+      "name": "~gbActorMgr"
+    }, 
+    {
+      "address": "0x100f3640", 
+      "name": "Unwind@100f3640"
+    }, 
+    {
+      "address": "0x100f36e0", 
+      "name": "Unwind@100f36e0"
+    }, 
+    {
+      "address": "0x100f3700", 
+      "name": "Unwind@100f3700"
+    }, 
+    {
+      "address": "0x100f3d86", 
+      "name": "Unwind@100f3d86"
+    }, 
+    {
+      "address": "0x100f3dc6", 
+      "name": "Unwind@100f3dc6"
+    }, 
+    {
+      "address": "0x10018bd0", 
+      "name": "FUN_10018bd0"
+    }, 
+    {
+      "address": "0x10018bd0", 
+      "name": "FUN_10018bd0"
+    }, 
+    {
+      "address": "0x1001de70", 
+      "name": "FUN_1001de70"
+    }
+  ]
+}

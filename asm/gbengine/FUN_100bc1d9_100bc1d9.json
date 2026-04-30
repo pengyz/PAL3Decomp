@@ -1,0 +1,31 @@
+{
+  "address": "0x100bc1d9", 
+  "size_bytes": 12, 
+  "calling_convention": "unknown", 
+  "signature": "undefined FUN_100bc1d9(void)", 
+  "callees": [], 
+  "global_refs": [], 
+  "has_custom_name": false, 
+  "decompiled_c": "\nint FUN_100bc1d9(void)\n\n{\n  int in_ECX;\n  \n  return (*(int *)(in_ECX + 4) + 3U >> 2) + 2;\n}\n\n", 
+  "is_thunk": false, 
+  "name": "FUN_100bc1d9", 
+  "assembly": "  100bc1d9:  MOV EAX,dword ptr [ECX + 0x4]\n  100bc1dc:  ADD EAX,0x3\n  100bc1df:  SHR EAX,0x2\n  100bc1e2:  INC EAX\n  100bc1e3:  INC EAX\n  100bc1e4:  RET", 
+  "callers": [
+    {
+      "address": "0x10090fc2", 
+      "name": "FUN_10090fc2"
+    }, 
+    {
+      "address": "0x10091217", 
+      "name": "FUN_10091217"
+    }, 
+    {
+      "address": "0x100c79a9", 
+      "name": "FUN_100c79a9"
+    }, 
+    {
+      "address": "0x100c8308", 
+      "name": "FUN_100c8308"
+    }
+  ]
+}

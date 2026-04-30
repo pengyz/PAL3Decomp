@@ -1,0 +1,38 @@
+{
+  "address": "0x100201b0", 
+  "size_bytes": 71, 
+  "calling_convention": "__thiscall", 
+  "signature": "gbResource * __thiscall FindResByName(gbResManager * this, char * param_1)", 
+  "callees": [
+    {
+      "address": "0x100277e0", 
+      "name": "gbCrc32Compute"
+    }
+  ], 
+  "global_refs": [
+    {
+      "address": "0x00000004", 
+      "type": null, 
+      "name": "DAT_00000004"
+    }
+  ], 
+  "has_custom_name": true, 
+  "decompiled_c": "\n/* public: class gbResource * __thiscall gbResManager::FindResByName(char const *) */\n\ngbResource * __thiscall gbResManager::FindResByName(gbResManager *this,char *param_1)\n\n{\n  gbResource *pgVar1;\n  uint uVar2;\n  int iVar3;\n  int *piVar4;\n  \n                    /* 0x201b0  396  ?FindResByName@gbResManager@@QAEPAVgbResource@@PBD@Z */\n  if (param_1 != (char *)0x0) {\n    uVar2 = gbCrc32Compute(param_1);\n    iVar3 = 0;\n    if (0 < *(int *)(this + 8)) {\n      piVar4 = *(int **)this;\n      do {\n        pgVar1 = (gbResource *)*piVar4;\n        if (*(uint *)(pgVar1 + 0xc) == uVar2) {\n          *(int *)(pgVar1 + 4) = *(int *)(pgVar1 + 4) + 1;\n          return pgVar1;\n        }\n        iVar3 = iVar3 + 1;\n        piVar4 = piVar4 + 1;\n      } while (iVar3 < *(int *)(this + 8));\n    }\n  }\n  return (gbResource *)0x0;\n}\n\n", 
+  "is_thunk": false, 
+  "name": "FindResByName", 
+  "assembly": "  100201b0:  MOV EAX,dword ptr [ESP + 0x4]\n  100201b4:  PUSH EBX\n  100201b5:  PUSH ESI\n  100201b6:  PUSH EDI\n  100201b7:  TEST EAX,EAX\n  100201b9:  MOV EDI,ECX\n  100201bb:  JZ 0x100201e2\n  100201bd:  PUSH EAX\n  100201be:  CALL 0x100277e0\n  100201c3:  MOV ESI,dword ptr [EDI + 0x8]\n  100201c6:  ADD ESP,0x4\n  100201c9:  XOR ECX,ECX\n  100201cb:  MOV EBX,EAX\n  100201cd:  TEST ESI,ESI\n  100201cf:  JLE 0x100201e2\n  100201d1:  MOV EDX,dword ptr [EDI]\n  100201d3:  MOV EAX,dword ptr [EDX]\n  100201d5:  CMP dword ptr [EAX + 0xc],EBX\n  100201d8:  JZ 0x100201ea\n  100201da:  INC ECX\n  100201db:  ADD EDX,0x4\n  100201de:  CMP ECX,ESI\n  100201e0:  JL 0x100201d3\n  100201e2:  POP EDI\n  100201e3:  POP ESI\n  100201e4:  XOR EAX,EAX\n  100201e6:  POP EBX\n  100201e7:  RET 0x4\n  100201ea:  MOV ECX,dword ptr [EAX + 0x4]\n  100201ed:  POP EDI\n  100201ee:  INC ECX\n  100201ef:  POP ESI\n  100201f0:  MOV dword ptr [EAX + 0x4],ECX\n  100201f3:  POP EBX\n  100201f4:  RET 0x4", 
+  "callers": [
+    {
+      "address": "0x10001560", 
+      "name": "LoadSoundFile"
+    }, 
+    {
+      "address": "0x1001d6d0", 
+      "name": "NewRenderEffect"
+    }, 
+    {
+      "address": "0x10003680", 
+      "name": "LoadActorFile"
+    }
+  ]
+}

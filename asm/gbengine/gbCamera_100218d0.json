@@ -1,0 +1,29 @@
+{
+  "address": "0x100218d0", 
+  "size_bytes": 157, 
+  "calling_convention": "__thiscall", 
+  "signature": "undefined __thiscall gbCamera(gbCamera * this, gbGfxManager * param_1)", 
+  "callees": [
+    {
+      "address": "0x10025110", 
+      "name": "gbMatrix4"
+    }, 
+    {
+      "address": "0x10025110", 
+      "name": "gbMatrix4"
+    }
+  ], 
+  "global_refs": [
+    {
+      "address": "0x00000004", 
+      "type": null, 
+      "name": "DAT_00000004"
+    }
+  ], 
+  "has_custom_name": true, 
+  "decompiled_c": "\n/* public: __thiscall gbCamera::gbCamera(class gbGfxManager *) */\n\ngbCamera * __thiscall gbCamera::gbCamera(gbCamera *this,gbGfxManager *param_1)\n\n{\n                    /* 0x218d0  26  ??0gbCamera@@QAE@PAVgbGfxManager@@@Z */\n  gbMatrix4::gbMatrix4((gbMatrix4 *)(this + 0x94));\n  gbMatrix4::gbMatrix4((gbMatrix4 *)(this + 0xd4));\n  *(undefined4 *)(this + 0x15c) = 0;\n  *(undefined4 *)(this + 0x160) = 0;\n  *(undefined4 *)(this + 0x164) = 0;\n  *(undefined4 *)(this + 0x170) = 0;\n  *(undefined4 *)(this + 0x16c) = 0;\n  *(undefined4 *)(this + 0x168) = 0;\n  *(undefined4 *)(this + 0x174) = 0x3f800000;\n  *(undefined4 *)(this + 8) = 0;\n  *(undefined4 *)(this + 0xc) = 0;\n  *(undefined4 *)(this + 0x18) = 0;\n  *(undefined4 *)(this + 0x1c) = 0;\n  *(undefined4 *)(this + 0x20) = 0;\n  *(undefined4 *)(this + 0x24) = 0;\n  *(undefined4 *)(this + 0x28) = 0;\n  *(undefined4 *)(this + 0x90) = 0;\n  *(gbGfxManager **)(this + 0x158) = param_1;\n  *(undefined4 *)this = 0x42340000;\n  *(undefined4 *)(this + 4) = 0x40a00000;\n  *(undefined4 *)(this + 0x10) = 0x42480000;\n  *(undefined4 *)(this + 0x14) = 0x45bb8000;\n  *(undefined4 *)(this + 0x2c) = 0x3f800000;\n  *(undefined4 *)(this + 0x154) = 0xffffffff;\n  return this;\n}\n\n", 
+  "is_thunk": false, 
+  "name": "gbCamera", 
+  "assembly": "  100218d0:  PUSH ESI\n  100218d1:  MOV ESI,ECX\n  100218d3:  LEA ECX,[ESI + 0x94]\n  100218d9:  CALL 0x10025110\n  100218de:  LEA ECX,[ESI + 0xd4]\n  100218e4:  CALL 0x10025110\n  100218e9:  XOR EAX,EAX\n  100218eb:  MOV ECX,0x3f800000\n  100218f0:  MOV dword ptr [ESI + 0x15c],EAX\n  100218f6:  MOV dword ptr [ESI + 0x160],EAX\n  100218fc:  MOV dword ptr [ESI + 0x164],EAX\n  10021902:  MOV dword ptr [ESI + 0x170],EAX\n  10021908:  MOV dword ptr [ESI + 0x16c],EAX\n  1002190e:  MOV dword ptr [ESI + 0x168],EAX\n  10021914:  MOV dword ptr [ESI + 0x174],ECX\n  1002191a:  MOV dword ptr [ESI + 0x8],EAX\n  1002191d:  MOV dword ptr [ESI + 0xc],EAX\n  10021920:  MOV dword ptr [ESI + 0x18],EAX\n  10021923:  MOV dword ptr [ESI + 0x1c],EAX\n  10021926:  MOV dword ptr [ESI + 0x20],EAX\n  10021929:  MOV dword ptr [ESI + 0x24],EAX\n  1002192c:  MOV dword ptr [ESI + 0x28],EAX\n  1002192f:  MOV dword ptr [ESI + 0x90],EAX\n  10021935:  MOV EAX,dword ptr [ESP + 0x8]\n  10021939:  MOV dword ptr [ESI + 0x158],EAX\n  1002193f:  MOV dword ptr [ESI],0x42340000\n  10021945:  MOV dword ptr [ESI + 0x4],0x40a00000\n  1002194c:  MOV dword ptr [ESI + 0x10],0x42480000\n  10021953:  MOV dword ptr [ESI + 0x14],0x45bb8000\n  1002195a:  MOV dword ptr [ESI + 0x2c],ECX\n  1002195d:  MOV dword ptr [ESI + 0x154],0xffffffff\n  10021967:  MOV EAX,ESI\n  10021969:  POP ESI\n  1002196a:  RET 0x4", 
+  "callers": []
+}

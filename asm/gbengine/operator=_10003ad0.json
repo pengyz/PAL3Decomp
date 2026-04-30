@@ -1,0 +1,20 @@
+{
+  "address": "0x10003ad0", 
+  "size_bytes": 22, 
+  "calling_convention": "__thiscall", 
+  "signature": "gbChain2D * __thiscall operator=(gbChain2D * this, gbChain2D * param_1)", 
+  "callees": [], 
+  "global_refs": [
+    {
+      "address": "0x00000004", 
+      "type": null, 
+      "name": "DAT_00000004"
+    }
+  ], 
+  "has_custom_name": true, 
+  "decompiled_c": "\n/* public: class gbChain2D & __thiscall gbChain2D::operator=(class gbChain2D const &) */\n\ngbChain2D * __thiscall gbChain2D::operator=(gbChain2D *this,gbChain2D *param_1)\n\n{\n  int iVar1;\n  gbChain2D *pgVar2;\n  \n                    /* 0x3ad0  193  ??4gbChain2D@@QAEAAV0@ABV0@@Z */\n  pgVar2 = this;\n  for (iVar1 = 5; iVar1 != 0; iVar1 = iVar1 + -1) {\n    *(undefined4 *)pgVar2 = *(undefined4 *)param_1;\n    param_1 = param_1 + 4;\n    pgVar2 = pgVar2 + 4;\n  }\n  return this;\n}\n\n", 
+  "is_thunk": false, 
+  "name": "operator=", 
+  "assembly": "  10003ad0:  PUSH ESI\n  10003ad1:  MOV ESI,dword ptr [ESP + 0x8]\n  10003ad5:  MOV EAX,ECX\n  10003ad7:  PUSH EDI\n  10003ad8:  MOV ECX,0x5\n  10003add:  MOV EDI,EAX\n  10003adf:  MOVSD.REP ES:EDI,ESI\n  10003ae1:  POP EDI\n  10003ae2:  POP ESI\n  10003ae3:  RET 0x4", 
+  "callers": []
+}

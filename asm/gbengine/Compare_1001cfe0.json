@@ -1,0 +1,20 @@
+{
+  "address": "0x1001cfe0", 
+  "size_bytes": 32, 
+  "calling_convention": "__thiscall", 
+  "signature": "int __thiscall Compare(gbRenderEffect * this, gbRenderEffect * param_1)", 
+  "callees": [], 
+  "global_refs": [
+    {
+      "address": "0x00000004", 
+      "type": null, 
+      "name": "DAT_00000004"
+    }
+  ], 
+  "has_custom_name": true, 
+  "decompiled_c": "\n/* public: int __thiscall gbRenderEffect::Compare(class gbRenderEffect *) */\n\nint __thiscall gbRenderEffect::Compare(gbRenderEffect *this,gbRenderEffect *param_1)\n\n{\n                    /* 0x1cfe0  340  ?Compare@gbRenderEffect@@QAEHPAV1@@Z */\n  if (*(uint *)(this + 0x18) < *(uint *)(param_1 + 0x18)) {\n    return -1;\n  }\n  return (uint)(*(uint *)(this + 0x18) != *(uint *)(param_1 + 0x18));\n}\n\n", 
+  "is_thunk": false, 
+  "name": "Compare", 
+  "assembly": "  1001cfe0:  MOV EAX,dword ptr [ECX + 0x18]\n  1001cfe3:  MOV ECX,dword ptr [ESP + 0x4]\n  1001cfe7:  MOV ECX,dword ptr [ECX + 0x18]\n  1001cfea:  CMP EAX,ECX\n  1001cfec:  JNC 0x1001cff4\n  1001cfee:  OR EAX,0xffffffff\n  1001cff1:  RET 0x4\n  1001cff4:  XOR EDX,EDX\n  1001cff6:  CMP EAX,ECX\n  1001cff8:  SETNZ DL\n  1001cffb:  MOV EAX,EDX\n  1001cffd:  RET 0x4", 
+  "callers": []
+}

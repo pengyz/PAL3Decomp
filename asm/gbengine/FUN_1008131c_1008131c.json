@@ -1,0 +1,90 @@
+{
+  "address": "0x1008131c", 
+  "size_bytes": 127, 
+  "calling_convention": "unknown", 
+  "signature": "undefined FUN_1008131c(undefined4 param_1, undefined4 param_2)", 
+  "callees": [
+    {
+      "address": "0x100e72d0", 
+      "name": "FUN_100e72d0"
+    }, 
+    {
+      "address": "0x1007fcc7", 
+      "name": "FUN_1007fcc7"
+    }, 
+    {
+      "address": "0x100e72d0", 
+      "name": "FUN_100e72d0"
+    }
+  ], 
+  "global_refs": [
+    {
+      "address": "0x00000004", 
+      "type": null, 
+      "name": "DAT_00000004"
+    }, 
+    {
+      "address": "0x-0000020", 
+      "type": null, 
+      "name": "DAT_-0000020"
+    }, 
+    {
+      "address": "0x00000008", 
+      "type": null, 
+      "name": "DAT_00000008"
+    }, 
+    {
+      "address": "0x-0000014", 
+      "type": null, 
+      "name": "DAT_-0000014"
+    }, 
+    {
+      "address": "0x-000000c", 
+      "type": null, 
+      "name": "DAT_-000000c"
+    }
+  ], 
+  "has_custom_name": false, 
+  "decompiled_c": "\nint FUN_1008131c(int param_1,double *param_2)\n\n{\n  byte *pbVar1;\n  int iVar2;\n  int in_ECX;\n  double local_14;\n  double local_c;\n  \n  pbVar1 = *(byte **)(*(int *)(*(int *)(in_ECX + 8) + 0x14) + param_1 * 4);\n  if ((*pbVar1 & 0x80) == 0) {\n    iVar2 = FUN_1007fcc7(param_1,&local_14);\n    if (iVar2 < 0) {\n      return iVar2;\n    }\n    if ((NAN(local_14) || NAN(local_c)) == (local_14 == local_c)) {\n      return -0x7fffbffb;\n    }\n    iVar2 = FUN_100e72d0(local_14);\n    if (iVar2 == 0) {\n      return -0x7fffbffb;\n    }\n    if (param_2 == (double *)0x0) {\n      return 0;\n    }\n  }\n  else {\n    iVar2 = FUN_100e72d0(*(undefined8 *)(pbVar1 + 0x20));\n    if (iVar2 == 0) {\n      return -0x7fffbffb;\n    }\n    if (param_2 == (double *)0x0) {\n      return 0;\n    }\n    local_14 = *(double *)(pbVar1 + 0x20);\n  }\n  *param_2 = local_14;\n  return 0;\n}\n\n", 
+  "is_thunk": false, 
+  "name": "FUN_1008131c", 
+  "assembly": "  1008131c:  PUSH EBP\n  1008131d:  MOV EBP,ESP\n  1008131f:  SUB ESP,0x10\n  10081322:  MOV EAX,dword ptr [ECX + 0x8]\n  10081325:  MOV EDX,dword ptr [EAX + 0x14]\n  10081328:  MOV EAX,dword ptr [EBP + 0x8]\n  1008132b:  PUSH ESI\n  1008132c:  MOV ESI,dword ptr [EDX + EAX*0x4]\n  1008132f:  TEST byte ptr [ESI],0x80\n  10081332:  JZ 0x10081353\n  10081334:  FLD qword ptr [ESI + 0x20]\n  10081337:  PUSH ECX\n  10081338:  PUSH ECX\n  10081339:  FSTP qword ptr [ESP]\n  1008133c:  CALL 0x100e72d0\n  10081341:  TEST EAX,EAX\n  10081343:  POP ECX\n  10081344:  POP ECX\n  10081345:  JZ 0x10081391\n  10081347:  MOV EAX,dword ptr [EBP + 0xc]\n  1008134a:  TEST EAX,EAX\n  1008134c:  JZ 0x1008138d\n  1008134e:  FLD qword ptr [ESI + 0x20]\n  10081351:  JMP 0x1008138b\n  10081353:  LEA EDX,[EBP + -0x10]\n  10081356:  PUSH EDX\n  10081357:  PUSH EAX\n  10081358:  CALL 0x1007fcc7\n  1008135d:  TEST EAX,EAX\n  1008135f:  JL 0x10081396\n  10081361:  FLD qword ptr [EBP + -0x10]\n  10081364:  FCOMP qword ptr [EBP + -0x8]\n  10081367:  FNSTSW AX\n  10081369:  TEST AH,0x44\n  1008136c:  JP 0x10081391\n  1008136e:  FLD qword ptr [EBP + -0x10]\n  10081371:  PUSH ECX\n  10081372:  PUSH ECX\n  10081373:  FSTP qword ptr [ESP]\n  10081376:  CALL 0x100e72d0\n  1008137b:  TEST EAX,EAX\n  1008137d:  POP ECX\n  1008137e:  POP ECX\n  1008137f:  JZ 0x10081391\n  10081381:  MOV EAX,dword ptr [EBP + 0xc]\n  10081384:  TEST EAX,EAX\n  10081386:  JZ 0x1008138d\n  10081388:  FLD qword ptr [EBP + -0x10]\n  1008138b:  FSTP qword ptr [EAX]\n  1008138d:  XOR EAX,EAX\n  1008138f:  JMP 0x10081396\n  10081391:  MOV EAX,0x80004005\n  10081396:  POP ESI\n  10081397:  LEAVE\n  10081398:  RET 0x8", 
+  "callers": [
+    {
+      "address": "0x100814ac", 
+      "name": "FUN_100814ac"
+    }, 
+    {
+      "address": "0x1007fcc7", 
+      "name": "FUN_1007fcc7"
+    }, 
+    {
+      "address": "0x10084afb", 
+      "name": "FUN_10084afb"
+    }, 
+    {
+      "address": "0x10084afb", 
+      "name": "FUN_10084afb"
+    }, 
+    {
+      "address": "0x10083cc6", 
+      "name": "FUN_10083cc6"
+    }, 
+    {
+      "address": "0x10083cc6", 
+      "name": "FUN_10083cc6"
+    }, 
+    {
+      "address": "0x10083cc6", 
+      "name": "FUN_10083cc6"
+    }, 
+    {
+      "address": "0x100835cf", 
+      "name": "FUN_100835cf"
+    }, 
+    {
+      "address": "0x100835cf", 
+      "name": "FUN_100835cf"
+    }
+  ]
+}

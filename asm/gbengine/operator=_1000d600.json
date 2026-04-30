@@ -1,0 +1,78 @@
+{
+  "address": "0x1000d600", 
+  "size_bytes": 830, 
+  "calling_convention": "__thiscall", 
+  "signature": "gbPartEmitter * __thiscall operator=(gbPartEmitter * this, gbPartEmitter * param_1)", 
+  "callees": [
+    {
+      "address": "0x10001f40", 
+      "name": "operator="
+    }, 
+    {
+      "address": "0x10025140", 
+      "name": "operator="
+    }, 
+    {
+      "address": "0x10001f40", 
+      "name": "operator="
+    }, 
+    {
+      "address": "0x10001f40", 
+      "name": "operator="
+    }, 
+    {
+      "address": "0x10001f40", 
+      "name": "operator="
+    }, 
+    {
+      "address": "0x10001f40", 
+      "name": "operator="
+    }, 
+    {
+      "address": "0x10001f40", 
+      "name": "operator="
+    }, 
+    {
+      "address": "0x10001f40", 
+      "name": "operator="
+    }, 
+    {
+      "address": "0x10001f40", 
+      "name": "operator="
+    }, 
+    {
+      "address": "0x1000cdf0", 
+      "name": "operator="
+    }, 
+    {
+      "address": "0x1000cdf0", 
+      "name": "operator="
+    }, 
+    {
+      "address": "0x1000cdf0", 
+      "name": "operator="
+    }, 
+    {
+      "address": "0x1000cdf0", 
+      "name": "operator="
+    }
+  ], 
+  "global_refs": [
+    {
+      "address": "0x00000004", 
+      "type": null, 
+      "name": "DAT_00000004"
+    }, 
+    {
+      "address": "0x-0000004", 
+      "type": null, 
+      "name": "DAT_-0000004"
+    }
+  ], 
+  "has_custom_name": true, 
+  "decompiled_c": "\n/* public: class gbPartEmitter & __thiscall gbPartEmitter::operator=(class gbPartEmitter const &) */\n\ngbPartEmitter * __thiscall gbPartEmitter::operator=(gbPartEmitter *this,gbPartEmitter *param_1)\n\n{\n  gbPartEmitter *pgVar1;\n  gbPartEmitter *pgVar2;\n  gbPartEmitter *pgVar3;\n  gbVec3D *pgVar4;\n  int iVar5;\n  gbPartEmitter *pgVar6;\n  int local_4;\n  \n                    /* 0xd600  215  ??4gbPartEmitter@@QAEAAV0@ABV0@@Z */\n  pgVar2 = param_1;\n  iVar5 = 0x40;\n  pgVar3 = this;\n  do {\n    *pgVar3 = pgVar3[(int)param_1 - (int)this];\n    pgVar3 = pgVar3 + 1;\n    iVar5 = iVar5 + -1;\n  } while (iVar5 != 0);\n  *(undefined4 *)(this + 0x40) = *(undefined4 *)(param_1 + 0x40);\n  *(undefined4 *)(this + 0x44) = *(undefined4 *)(param_1 + 0x44);\n  *(undefined4 *)(this + 0x48) = *(undefined4 *)(param_1 + 0x48);\n  *(undefined4 *)(this + 0x4c) = *(undefined4 *)(param_1 + 0x4c);\n  *(undefined4 *)(this + 0x50) = *(undefined4 *)(param_1 + 0x50);\n  *(undefined4 *)(this + 0x54) = *(undefined4 *)(param_1 + 0x54);\n  pgVar3 = this + 0x58;\n  do {\n    *pgVar3 = pgVar3[(int)param_1 - (int)this];\n    pgVar3 = pgVar3 + 1;\n  } while (pgVar3 + (-0x58 - (int)this) < (gbPartEmitter *)0x40);\n  *(undefined4 *)(this + 0x98) = *(undefined4 *)(param_1 + 0x98);\n  *(undefined4 *)(this + 0x9c) = *(undefined4 *)(param_1 + 0x9c);\n  *(undefined4 *)(this + 0xa0) = *(undefined4 *)(param_1 + 0xa0);\n  *(undefined4 *)(this + 0xa4) = *(undefined4 *)(param_1 + 0xa4);\n  *(undefined4 *)(this + 0xa8) = *(undefined4 *)(param_1 + 0xa8);\n  *(undefined4 *)(this + 0xac) = *(undefined4 *)(param_1 + 0xac);\n  *(undefined4 *)(this + 0xb0) = *(undefined4 *)(param_1 + 0xb0);\n  *(undefined4 *)(this + 0xb4) = *(undefined4 *)(param_1 + 0xb4);\n  gbVec3D::operator=((gbVec3D *)(this + 0xb8),(gbVec3D *)(param_1 + 0xb8));\n  *(undefined4 *)(this + 0xc4) = *(undefined4 *)(param_1 + 0xc4);\n  *(undefined4 *)(this + 200) = *(undefined4 *)(param_1 + 200);\n  *(undefined4 *)(this + 0xcc) = *(undefined4 *)(param_1 + 0xcc);\n  *(undefined4 *)(this + 0xd0) = *(undefined4 *)(param_1 + 0xd0);\n  *(undefined4 *)(this + 0xd4) = *(undefined4 *)(param_1 + 0xd4);\n  gbMatrix4::operator=((gbMatrix4 *)(this + 0xd8),(gbMatrix4 *)(param_1 + 0xd8));\n  pgVar1 = this + 0x120;\n  *(undefined4 *)(this + 0x118) = *(undefined4 *)(param_1 + 0x118);\n  *(undefined4 *)(this + 0x11c) = *(undefined4 *)(param_1 + 0x11c);\n  iVar5 = (int)(param_1 + 0x120) - (int)pgVar1;\n  *(undefined4 *)pgVar1 = *(undefined4 *)(param_1 + 0x120);\n  *(undefined4 *)(this + 0x124) = *(undefined4 *)(param_1 + 0x124);\n  pgVar3 = this + 0x128;\n  do {\n    *pgVar3 = pgVar3[iVar5];\n    pgVar3 = pgVar3 + 1;\n  } while (pgVar3 + (-8 - (int)pgVar1) < (gbPartEmitter *)0x40);\n  pgVar3 = this + 0x168;\n  do {\n    *pgVar3 = pgVar3[iVar5];\n    pgVar3 = pgVar3 + 1;\n  } while (pgVar3 + (-0x48 - (int)pgVar1) < (gbPartEmitter *)0x80);\n  *(undefined4 *)(this + 0x1e8) = *(undefined4 *)(param_1 + 0x1e8);\n  *(undefined4 *)(this + 0x1ec) = *(undefined4 *)(param_1 + 0x1ec);\n  *(undefined4 *)(this + 0x1f0) = *(undefined4 *)(param_1 + 0x1f0);\n  gbVec3D::operator=((gbVec3D *)(this + 500),(gbVec3D *)(param_1 + 500));\n  pgVar3 = this + 0x200;\n  local_4 = 0x3c;\n  do {\n    gbVec3D::operator=((gbVec3D *)pgVar3,(gbVec3D *)pgVar3 + iVar5);\n    pgVar3 = (gbPartEmitter *)((gbVec3D *)pgVar3 + 0xc);\n    local_4 = local_4 + -1;\n  } while (local_4 != 0);\n  pgVar4 = (gbVec3D *)(this + 0x4d0);\n  param_1 = (gbPartEmitter *)0x12f;\n  do {\n    gbVec3D::operator=(pgVar4,pgVar4 + iVar5);\n    pgVar4 = pgVar4 + 0xc;\n    param_1 = param_1 + -1;\n  } while (param_1 != (gbPartEmitter *)0x0);\n  pgVar1 = this + 0x1304;\n  *(undefined4 *)pgVar1 = *(undefined4 *)(pgVar2 + 0x1304);\n  pgVar6 = pgVar2 + (0x1304 - (int)pgVar1);\n  *(undefined4 *)(this + 0x1308) = *(undefined4 *)(pgVar2 + 0x1308);\n  pgVar3 = this + 0x130c;\n  do {\n    *pgVar3 = pgVar3[(int)pgVar6];\n    pgVar3 = pgVar3 + 1;\n  } while (pgVar3 + (-8 - (int)pgVar1) < (gbPartEmitter *)0x40);\n  pgVar3 = this + 0x134c;\n  do {\n    *pgVar3 = pgVar3[(int)pgVar6];\n    pgVar3 = pgVar3 + 1;\n  } while (pgVar3 + (-0x48 - (int)pgVar1) < (gbPartEmitter *)0x80);\n  gbVec3D::operator=((gbVec3D *)(this + 0x13cc),(gbVec3D *)(pgVar2 + 0x13cc));\n  gbVec3D::operator=((gbVec3D *)(this + 0x13d8),(gbVec3D *)(pgVar2 + 0x13d8));\n  pgVar3 = this + 0x13e4;\n  local_4 = 0x3c;\n  do {\n    gbVec3D::operator=((gbVec3D *)pgVar3,(gbVec3D *)pgVar3 + (int)pgVar6);\n    pgVar3 = (gbPartEmitter *)((gbVec3D *)pgVar3 + 0xc);\n    local_4 = local_4 + -1;\n  } while (local_4 != 0);\n  pgVar4 = (gbVec3D *)(this + 0x16b4);\n  param_1 = (gbPartEmitter *)0x12f;\n  do {\n    gbVec3D::operator=(pgVar4,pgVar4 + (int)pgVar6);\n    pgVar4 = pgVar4 + 0xc;\n    param_1 = param_1 + -1;\n  } while (param_1 != (gbPartEmitter *)0x0);\n  gbPartParamControl::operator=\n            ((gbPartParamControl *)(this + 0x24e8),(gbPartParamControl *)(pgVar2 + 0x24e8));\n  gbPartParamControl::operator=\n            ((gbPartParamControl *)(this + 0x36cc),(gbPartParamControl *)(pgVar2 + 0x36cc));\n  gbPartParamControl::operator=\n            ((gbPartParamControl *)(this + 0x48b0),(gbPartParamControl *)(pgVar2 + 0x48b0));\n  gbPartParamControl::operator=\n            ((gbPartParamControl *)(this + 0x5a94),(gbPartParamControl *)(pgVar2 + 0x5a94));\n  return this;\n}\n\n", 
+  "is_thunk": false, 
+  "name": "operator=", 
+  "assembly": "  1000d600:  PUSH ECX\n  1000d601:  PUSH EBX\n  1000d602:  PUSH EBP\n  1000d603:  PUSH ESI\n  1000d604:  PUSH EDI\n  1000d605:  MOV EDI,dword ptr [ESP + 0x18]\n  1000d609:  MOV ESI,ECX\n  1000d60b:  MOV ECX,EDI\n  1000d60d:  MOV EAX,ESI\n  1000d60f:  SUB ECX,ESI\n  1000d611:  MOV EBP,0x40\n  1000d616:  MOV DL,byte ptr [ECX + EAX*0x1]\n  1000d619:  MOV byte ptr [EAX],DL\n  1000d61b:  INC EAX\n  1000d61c:  DEC EBP\n  1000d61d:  JNZ 0x1000d616\n  1000d61f:  MOV EAX,dword ptr [EDI + 0x40]\n  1000d622:  MOV EBP,0xffffffa8\n  1000d627:  MOV dword ptr [ESI + 0x40],EAX\n  1000d62a:  MOV EDX,dword ptr [EDI + 0x44]\n  1000d62d:  MOV dword ptr [ESI + 0x44],EDX\n  1000d630:  MOV EAX,dword ptr [EDI + 0x48]\n  1000d633:  MOV dword ptr [ESI + 0x48],EAX\n  1000d636:  MOV EDX,dword ptr [EDI + 0x4c]\n  1000d639:  MOV dword ptr [ESI + 0x4c],EDX\n  1000d63c:  MOV EAX,dword ptr [EDI + 0x50]\n  1000d63f:  MOV dword ptr [ESI + 0x50],EAX\n  1000d642:  MOV EDX,dword ptr [EDI + 0x54]\n  1000d645:  MOV dword ptr [ESI + 0x54],EDX\n  1000d648:  LEA EAX,[ESI + 0x58]\n  1000d64b:  SUB EBP,ESI\n  1000d64d:  MOV DL,byte ptr [EAX + ECX*0x1]\n  1000d650:  MOV byte ptr [EAX],DL\n  1000d652:  INC EAX\n  1000d653:  LEA EDX,[EAX + EBP*0x1]\n  1000d656:  CMP EDX,0x40\n  1000d659:  JC 0x1000d64d\n  1000d65b:  MOV EAX,dword ptr [EDI + 0x98]\n  1000d661:  MOV dword ptr [ESI + 0x98],EAX\n  1000d667:  MOV ECX,dword ptr [EDI + 0x9c]\n  1000d66d:  MOV dword ptr [ESI + 0x9c],ECX\n  1000d673:  MOV EDX,dword ptr [EDI + 0xa0]\n  1000d679:  MOV dword ptr [ESI + 0xa0],EDX\n  1000d67f:  MOV EAX,dword ptr [EDI + 0xa4]\n  1000d685:  MOV dword ptr [ESI + 0xa4],EAX\n  1000d68b:  MOV ECX,dword ptr [EDI + 0xa8]\n  1000d691:  MOV dword ptr [ESI + 0xa8],ECX\n  1000d697:  MOV EDX,dword ptr [EDI + 0xac]\n  1000d69d:  MOV dword ptr [ESI + 0xac],EDX\n  1000d6a3:  MOV EAX,dword ptr [EDI + 0xb0]\n  1000d6a9:  MOV dword ptr [ESI + 0xb0],EAX\n  1000d6af:  MOV ECX,dword ptr [EDI + 0xb4]\n  1000d6b5:  LEA EDX,[EDI + 0xb8]\n  1000d6bb:  MOV dword ptr [ESI + 0xb4],ECX\n  1000d6c1:  PUSH EDX\n  1000d6c2:  LEA ECX,[ESI + 0xb8]\n  1000d6c8:  CALL 0x10001f40\n  1000d6cd:  MOV EAX,dword ptr [EDI + 0xc4]\n  1000d6d3:  MOV dword ptr [ESI + 0xc4],EAX\n  1000d6d9:  MOV ECX,dword ptr [EDI + 0xc8]\n  1000d6df:  MOV dword ptr [ESI + 0xc8],ECX\n  1000d6e5:  MOV EDX,dword ptr [EDI + 0xcc]\n  1000d6eb:  MOV dword ptr [ESI + 0xcc],EDX\n  1000d6f1:  MOV EAX,dword ptr [EDI + 0xd0]\n  1000d6f7:  MOV dword ptr [ESI + 0xd0],EAX\n  1000d6fd:  MOV ECX,dword ptr [EDI + 0xd4]\n  1000d703:  LEA EDX,[EDI + 0xd8]\n  1000d709:  MOV dword ptr [ESI + 0xd4],ECX\n  1000d70f:  PUSH EDX\n  1000d710:  LEA ECX,[ESI + 0xd8]\n  1000d716:  CALL 0x10025140\n  1000d71b:  MOV EAX,dword ptr [EDI + 0x118]\n  1000d721:  LEA EBX,[ESI + 0x120]\n  1000d727:  MOV dword ptr [ESI + 0x118],EAX\n  1000d72d:  MOV ECX,dword ptr [EDI + 0x11c]\n  1000d733:  LEA EAX,[EDI + 0x120]\n  1000d739:  MOV dword ptr [ESI + 0x11c],ECX\n  1000d73f:  MOV EBP,EAX\n  1000d741:  MOV EDX,dword ptr [EAX]\n  1000d743:  SUB EBP,EBX\n  1000d745:  MOV dword ptr [EBX],EDX\n  1000d747:  MOV ECX,dword ptr [EAX + 0x4]\n  1000d74a:  MOV EDX,0xfffffff8\n  1000d74f:  MOV dword ptr [EBX + 0x4],ECX\n  1000d752:  SUB EDX,EBX\n  1000d754:  LEA ECX,[EBX + 0x8]\n  1000d757:  MOV dword ptr [ESP + 0x18],EDX\n  1000d75b:  MOV DL,byte ptr [ECX + EBP*0x1]\n  1000d75e:  MOV byte ptr [ECX],DL\n  1000d760:  MOV EDX,dword ptr [ESP + 0x18]\n  1000d764:  INC ECX\n  1000d765:  ADD EDX,ECX\n  1000d767:  CMP EDX,0x40\n  1000d76a:  JC 0x1000d75b\n  1000d76c:  MOV EDX,0xffffffb8\n  1000d771:  LEA ECX,[EBX + 0x48]\n  1000d774:  SUB EDX,EBX\n  1000d776:  MOV dword ptr [ESP + 0x18],EDX\n  1000d77a:  MOV DL,byte ptr [ECX + EBP*0x1]\n  1000d77d:  MOV byte ptr [ECX],DL\n  1000d77f:  MOV EDX,dword ptr [ESP + 0x18]\n  1000d783:  INC ECX\n  1000d784:  ADD EDX,ECX\n  1000d786:  CMP EDX,0x80\n  1000d78c:  JC 0x1000d77a\n  1000d78e:  MOV ECX,dword ptr [EAX + 0xc8]\n  1000d794:  ADD EAX,0xd4\n  1000d799:  MOV dword ptr [EBX + 0xc8],ECX\n  1000d79f:  MOV EDX,dword ptr [EAX + -0x8]\n  1000d7a2:  MOV dword ptr [EBX + 0xcc],EDX\n  1000d7a8:  MOV ECX,dword ptr [EAX + -0x4]\n  1000d7ab:  MOV dword ptr [EBX + 0xd0],ECX\n  1000d7b1:  PUSH EAX\n  1000d7b2:  LEA ECX,[EBX + 0xd4]\n  1000d7b8:  CALL 0x10001f40\n  1000d7bd:  LEA ECX,[EBX + 0xe0]\n  1000d7c3:  MOV dword ptr [ESP + 0x10],0x3c\n  1000d7cb:  MOV dword ptr [ESP + 0x18],ECX\n  1000d7cf:  JMP 0x1000d7d5\n  1000d7d1:  MOV ECX,dword ptr [ESP + 0x18]\n  1000d7d5:  LEA EDX,[ECX + EBP*0x1]\n  1000d7d8:  PUSH EDX\n  1000d7d9:  CALL 0x10001f40\n  1000d7de:  MOV ECX,dword ptr [ESP + 0x18]\n  1000d7e2:  MOV EAX,dword ptr [ESP + 0x10]\n  1000d7e6:  ADD ECX,0xc\n  1000d7e9:  DEC EAX\n  1000d7ea:  MOV dword ptr [ESP + 0x18],ECX\n  1000d7ee:  MOV dword ptr [ESP + 0x10],EAX\n  1000d7f2:  JNZ 0x1000d7d1\n  1000d7f4:  ADD EBX,0x3b0\n  1000d7fa:  MOV dword ptr [ESP + 0x18],0x12f\n  1000d802:  LEA EAX,[EBX + EBP*0x1]\n  1000d805:  MOV ECX,EBX\n  1000d807:  PUSH EAX\n  1000d808:  CALL 0x10001f40\n  1000d80d:  MOV EAX,dword ptr [ESP + 0x18]\n  1000d811:  ADD EBX,0xc\n  1000d814:  DEC EAX\n  1000d815:  MOV dword ptr [ESP + 0x18],EAX\n  1000d819:  JNZ 0x1000d802\n  1000d81b:  MOV ECX,dword ptr [EDI + 0x1304]\n  1000d821:  LEA EBP,[EDI + 0x1304]\n  1000d827:  LEA EBX,[ESI + 0x1304]\n  1000d82d:  MOV dword ptr [EBX],ECX\n  1000d82f:  MOV EDX,dword ptr [EBP + 0x4]\n  1000d832:  MOV ECX,0xfffffff8\n  1000d837:  SUB EBP,EBX\n  1000d839:  MOV dword ptr [EBX + 0x4],EDX\n  1000d83c:  LEA EAX,[EBX + 0x8]\n  1000d83f:  SUB ECX,EBX\n  1000d841:  MOV DL,byte ptr [EAX + EBP*0x1]\n  1000d844:  MOV byte ptr [EAX],DL\n  1000d846:  INC EAX\n  1000d847:  LEA EDX,[ECX + EAX*0x1]\n  1000d84a:  CMP EDX,0x40\n  1000d84d:  JC 0x1000d841\n  1000d84f:  MOV ECX,0xffffffb8\n  1000d854:  LEA EAX,[EBX + 0x48]\n  1000d857:  SUB ECX,EBX\n  1000d859:  MOV DL,byte ptr [EAX + EBP*0x1]\n  1000d85c:  MOV byte ptr [EAX],DL\n  1000d85e:  INC EAX\n  1000d85f:  LEA EDX,[ECX + EAX*0x1]\n  1000d862:  CMP EDX,0x80\n  1000d868:  JC 0x1000d859\n  1000d86a:  LEA EAX,[EDI + 0x13cc]\n  1000d870:  LEA ECX,[EBX + 0xc8]\n  1000d876:  PUSH EAX\n  1000d877:  CALL 0x10001f40\n  1000d87c:  LEA ECX,[EDI + 0x13d8]\n  1000d882:  PUSH ECX\n  1000d883:  LEA ECX,[EBX + 0xd4]\n  1000d889:  CALL 0x10001f40\n  1000d88e:  LEA ECX,[EBX + 0xe0]\n  1000d894:  MOV dword ptr [ESP + 0x10],0x3c\n  1000d89c:  MOV dword ptr [ESP + 0x18],ECX\n  1000d8a0:  JMP 0x1000d8a6\n  1000d8a2:  MOV ECX,dword ptr [ESP + 0x18]\n  1000d8a6:  LEA EDX,[ECX + EBP*0x1]\n  1000d8a9:  PUSH EDX\n  1000d8aa:  CALL 0x10001f40\n  1000d8af:  MOV ECX,dword ptr [ESP + 0x18]\n  1000d8b3:  MOV EAX,dword ptr [ESP + 0x10]\n  1000d8b7:  ADD ECX,0xc\n  1000d8ba:  DEC EAX\n  1000d8bb:  MOV dword ptr [ESP + 0x18],ECX\n  1000d8bf:  MOV dword ptr [ESP + 0x10],EAX\n  1000d8c3:  JNZ 0x1000d8a2\n  1000d8c5:  ADD EBX,0x3b0\n  1000d8cb:  MOV dword ptr [ESP + 0x18],0x12f\n  1000d8d3:  LEA EAX,[EBX + EBP*0x1]\n  1000d8d6:  MOV ECX,EBX\n  1000d8d8:  PUSH EAX\n  1000d8d9:  CALL 0x10001f40\n  1000d8de:  MOV EAX,dword ptr [ESP + 0x18]\n  1000d8e2:  ADD EBX,0xc\n  1000d8e5:  DEC EAX\n  1000d8e6:  MOV dword ptr [ESP + 0x18],EAX\n  1000d8ea:  JNZ 0x1000d8d3\n  1000d8ec:  LEA ECX,[EDI + 0x24e8]\n  1000d8f2:  PUSH ECX\n  1000d8f3:  LEA ECX,[ESI + 0x24e8]\n  1000d8f9:  CALL 0x1000cdf0\n  1000d8fe:  LEA EDX,[EDI + 0x36cc]\n  1000d904:  LEA ECX,[ESI + 0x36cc]\n  1000d90a:  PUSH EDX\n  1000d90b:  CALL 0x1000cdf0\n  1000d910:  LEA EAX,[EDI + 0x48b0]\n  1000d916:  LEA ECX,[ESI + 0x48b0]\n  1000d91c:  PUSH EAX\n  1000d91d:  CALL 0x1000cdf0\n  1000d922:  ADD EDI,0x5a94\n  1000d928:  LEA ECX,[ESI + 0x5a94]\n  1000d92e:  PUSH EDI\n  1000d92f:  CALL 0x1000cdf0\n  1000d934:  MOV EAX,ESI\n  1000d936:  POP EDI\n  1000d937:  POP ESI\n  1000d938:  POP EBP\n  1000d939:  POP EBX\n  1000d93a:  POP ECX\n  1000d93b:  RET 0x4", 
+  "callers": []
+}

@@ -1,0 +1,83 @@
+{
+  "address": "0x100e7fe6", 
+  "size_bytes": 132, 
+  "calling_convention": "unknown", 
+  "signature": "undefined FUN_100e7fe6(undefined4 param_1, undefined param_2, undefined4 param_3, undefined4 param_4)", 
+  "callees": [
+    {
+      "address": "0x100e86e9", 
+      "name": "FUN_100e86e9"
+    }, 
+    {
+      "address": "0x100e84b0", 
+      "name": "__CallSettingFrame@12"
+    }
+  ], 
+  "global_refs": [
+    {
+      "address": "0x101103e0", 
+      "type": null, 
+      "name": "DAT_101103e0"
+    }, 
+    {
+      "address": "0x100e7a3c", 
+      "type": null, 
+      "name": "DAT_100e7a3c"
+    }, 
+    {
+      "address": "0xffdff000", 
+      "type": "void *32", 
+      "name": "DAT_ffdff000"
+    }, 
+    {
+      "address": "0x-000001c", 
+      "type": null, 
+      "name": "DAT_-000001c"
+    }, 
+    {
+      "address": "0x00000004", 
+      "type": null, 
+      "name": "DAT_00000004"
+    }, 
+    {
+      "address": "0x-0000020", 
+      "type": null, 
+      "name": "DAT_-0000020"
+    }, 
+    {
+      "address": "0x0000000c", 
+      "type": null, 
+      "name": "DAT_0000000c"
+    }, 
+    {
+      "address": "0x00000010", 
+      "type": null, 
+      "name": "DAT_00000010"
+    }, 
+    {
+      "address": "0x-0000008", 
+      "type": null, 
+      "name": "DAT_-0000008"
+    }, 
+    {
+      "address": "0x-0000014", 
+      "type": null, 
+      "name": "DAT_-0000014"
+    }
+  ], 
+  "has_custom_name": false, 
+  "decompiled_c": "\nvoid FUN_100e7fe6(int param_1,undefined4 param_2,int param_3,int param_4)\n\n{\n  int iVar1;\n  int iVar2;\n  void *local_14;\n  undefined *puStack_10;\n  undefined *puStack_c;\n  undefined4 local_8;\n  \n  puStack_c = &DAT_101103e0;\n  puStack_10 = &LAB_100e7a3c;\n  local_14 = ExceptionList;\n  ExceptionList = &local_14;\n  for (iVar2 = *(int *)(param_1 + 8); local_8 = 0xffffffff, iVar2 != param_4;\n      iVar2 = *(int *)(*(int *)(param_3 + 8) + iVar2 * 8)) {\n    if ((iVar2 < 0) || (*(int *)(param_3 + 4) <= iVar2)) {\n      FUN_100e86e9();\n    }\n    local_8 = 0;\n    iVar1 = *(int *)(*(int *)(param_3 + 8) + 4 + iVar2 * 8);\n    if (iVar1 != 0) {\n      __CallSettingFrame_12(iVar1,param_1,0x103);\n    }\n  }\n  *(int *)(param_1 + 8) = iVar2;\n  ExceptionList = local_14;\n  return;\n}\n\n", 
+  "is_thunk": false, 
+  "name": "FUN_100e7fe6", 
+  "assembly": "  100e7fe6:  PUSH EBP\n  100e7fe7:  MOV EBP,ESP\n  100e7fe9:  PUSH -0x1\n  100e7feb:  PUSH 0x101103e0\n  100e7ff0:  PUSH 0x100e7a3c\n  100e7ff5:  MOV EAX,FS:[0x0]\n  100e7ffb:  PUSH EAX\n  100e7ffc:  MOV dword ptr FS:[0x0],ESP\n  100e8003:  SUB ESP,0xc\n  100e8006:  PUSH EBX\n  100e8007:  PUSH ESI\n  100e8008:  PUSH EDI\n  100e8009:  MOV dword ptr [EBP + -0x18],ESP\n  100e800c:  MOV EBX,dword ptr [EBP + 0x8]\n  100e800f:  MOV ESI,dword ptr [EBX + 0x8]\n  100e8012:  MOV dword ptr [EBP + -0x1c],ESI\n  100e8015:  MOV EDI,dword ptr [EBP + 0x10]\n  100e8018:  CMP ESI,dword ptr [EBP + 0x14]\n  100e801b:  JZ 0x100e8072\n  100e801d:  CMP ESI,-0x1\n  100e8020:  JLE 0x100e8027\n  100e8022:  CMP ESI,dword ptr [EDI + 0x4]\n  100e8025:  JL 0x100e802c\n  100e8027:  CALL 0x100e86e9\n  100e802c:  AND dword ptr [EBP + -0x4],0x0\n  100e8030:  MOV EAX,dword ptr [EDI + 0x8]\n  100e8033:  MOV EAX,dword ptr [EAX + ESI*0x8 + 0x4]\n  100e8037:  TEST EAX,EAX\n  100e8039:  JZ 0x100e8047\n  100e803b:  PUSH 0x103\n  100e8040:  PUSH EBX\n  100e8041:  PUSH EAX\n  100e8042:  CALL 0x100e84b0\n  100e8047:  OR dword ptr [EBP + -0x4],0xffffffff\n  100e804b:  JMP 0x100e8067\n  100e8067:  MOV EAX,dword ptr [EDI + 0x8]\n  100e806a:  MOV ESI,dword ptr [EAX + ESI*0x8]\n  100e806d:  MOV dword ptr [EBP + -0x1c],ESI\n  100e8070:  JMP 0x100e8018\n  100e8072:  MOV dword ptr [EBX + 0x8],ESI\n  100e8075:  MOV ECX,dword ptr [EBP + -0x10]\n  100e8078:  MOV dword ptr FS:[0x0],ECX\n  100e807f:  POP EDI\n  100e8080:  POP ESI\n  100e8081:  POP EBX\n  100e8082:  LEAVE\n  100e8083:  RET", 
+  "callers": [
+    {
+      "address": "0x100e7c91", 
+      "name": "FUN_100e7c91"
+    }, 
+    {
+      "address": "0x100e809a", 
+      "name": "FUN_100e809a"
+    }
+  ]
+}

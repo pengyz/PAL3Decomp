@@ -1,0 +1,37 @@
+{
+  "address": "0x100ef967", 
+  "size_bytes": 57, 
+  "calling_convention": "unknown", 
+  "signature": "undefined FUN_100ef967(undefined4 param_1)", 
+  "callees": [], 
+  "global_refs": [
+    {
+      "address": "0x00000004", 
+      "type": null, 
+      "name": "DAT_00000004"
+    }
+  ], 
+  "has_custom_name": false, 
+  "decompiled_c": "\nint FUN_100ef967(char *param_1)\n\n{\n  int iVar1;\n  char cVar2;\n  \n  iVar1 = 0;\n  while( true ) {\n    cVar2 = *param_1;\n    param_1 = param_1 + 1;\n    if (cVar2 == '\\0') break;\n    if ((cVar2 < 'a') || ('f' < cVar2)) {\n      if (('@' < cVar2) && (cVar2 < 'G')) {\n        cVar2 = cVar2 + -7;\n      }\n    }\n    else {\n      cVar2 = cVar2 + -0x27;\n    }\n    iVar1 = (iVar1 + 0xffffffd) * 0x10 + (int)cVar2;\n  }\n  return iVar1;\n}\n\n", 
+  "is_thunk": false, 
+  "name": "FUN_100ef967", 
+  "assembly": "  100ef967:  MOV EDX,dword ptr [ESP + 0x4]\n  100ef96b:  XOR EAX,EAX\n  100ef96d:  MOV CL,byte ptr [EDX]\n  100ef96f:  INC EDX\n  100ef970:  TEST CL,CL\n  100ef972:  JZ 0x100ef99f\n  100ef974:  CMP CL,0x61\n  100ef977:  JL 0x100ef983\n  100ef979:  CMP CL,0x66\n  100ef97c:  JG 0x100ef983\n  100ef97e:  ADD CL,0xd9\n  100ef981:  JMP 0x100ef990\n  100ef983:  CMP CL,0x41\n  100ef986:  JL 0x100ef990\n  100ef988:  CMP CL,0x46\n  100ef98b:  JG 0x100ef990\n  100ef98d:  ADD CL,0xf9\n  100ef990:  ADD EAX,0xffffffd\n  100ef995:  MOVSX ECX,CL\n  100ef998:  SHL EAX,0x4\n  100ef99b:  ADD EAX,ECX\n  100ef99d:  JMP 0x100ef96d\n  100ef99f:  RET", 
+  "callers": [
+    {
+      "address": "0x100ef376", 
+      "name": "FUN_100ef376"
+    }, 
+    {
+      "address": "0x100ef7e9", 
+      "name": "FUN_100ef7e9"
+    }, 
+    {
+      "address": "0x100ef5d0", 
+      "name": "FUN_100ef5d0"
+    }, 
+    {
+      "address": "0x100ef6c4", 
+      "name": "FUN_100ef6c4"
+    }
+  ]
+}

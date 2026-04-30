@@ -1,0 +1,30 @@
+{
+  "address": "0x10005bc0", 
+  "size_bytes": 111, 
+  "calling_convention": "__thiscall", 
+  "signature": "undefined __thiscall gbCamSpringControl(gbCamSpringControl * this, gbCamSpringControl * param_1)", 
+  "callees": [], 
+  "global_refs": [
+    {
+      "address": "0x00000004", 
+      "type": null, 
+      "name": "DAT_00000004"
+    }, 
+    {
+      "address": "0x100f5454", 
+      "type": "pointer", 
+      "name": "DAT_100f5454"
+    }, 
+    {
+      "address": "0x100f5458", 
+      "type": "pointer", 
+      "name": "DAT_100f5458"
+    }
+  ], 
+  "has_custom_name": true, 
+  "decompiled_c": "\n/* public: __thiscall gbCamSpringControl::gbCamSpringControl(class gbCamSpringControl const &) */\n\nvoid __thiscall\ngbCamSpringControl::gbCamSpringControl(gbCamSpringControl *this,gbCamSpringControl *param_1)\n\n{\n                    /* 0x5bc0  24  ??0gbCamSpringControl@@QAE@ABV0@@Z */\n  *(undefined4 *)(this + 8) = *(undefined4 *)(param_1 + 8);\n  *(undefined4 *)(this + 0x10) = *(undefined4 *)(param_1 + 0x10);\n  *(undefined4 *)(this + 0x14) = *(undefined4 *)(param_1 + 0x14);\n  *(undefined4 *)(this + 0x18) = *(undefined4 *)(param_1 + 0x18);\n  *(undefined4 *)(this + 0x1c) = *(undefined4 *)(param_1 + 0x1c);\n  *(undefined ***)this = &gbCamControler::_vftable_;\n  *(undefined4 *)(this + 0x20) = *(undefined4 *)(param_1 + 0x20);\n  *(undefined4 *)(this + 0x24) = *(undefined4 *)(param_1 + 0x24);\n  *(undefined4 *)(this + 0x28) = *(undefined4 *)(param_1 + 0x28);\n  *(undefined4 *)(this + 0x2c) = *(undefined4 *)(param_1 + 0x2c);\n  *(undefined4 *)(this + 0x30) = *(undefined4 *)(param_1 + 0x30);\n  *(undefined4 *)(this + 0x34) = *(undefined4 *)(param_1 + 0x34);\n  *(undefined4 *)(this + 0x38) = *(undefined4 *)(param_1 + 0x38);\n  *(undefined4 *)(this + 0x3c) = *(undefined4 *)(param_1 + 0x3c);\n  *(undefined ***)this = &_vftable_;\n  return;\n}\n\n", 
+  "is_thunk": false, 
+  "name": "gbCamSpringControl", 
+  "assembly": "  10005bc0:  MOV EAX,ECX\n  10005bc2:  PUSH ESI\n  10005bc3:  MOV ECX,dword ptr [ESP + 0x8]\n  10005bc7:  PUSH EDI\n  10005bc8:  LEA ESI,[EAX + 0x20]\n  10005bcb:  MOV EDX,dword ptr [ECX + 0x8]\n  10005bce:  MOV dword ptr [EAX + 0x8],EDX\n  10005bd1:  MOV EDX,dword ptr [ECX + 0x10]\n  10005bd4:  MOV dword ptr [EAX + 0x10],EDX\n  10005bd7:  MOV EDX,dword ptr [ECX + 0x14]\n  10005bda:  MOV dword ptr [EAX + 0x14],EDX\n  10005bdd:  MOV EDX,dword ptr [ECX + 0x18]\n  10005be0:  MOV dword ptr [EAX + 0x18],EDX\n  10005be3:  MOV EDX,dword ptr [ECX + 0x1c]\n  10005be6:  MOV dword ptr [EAX + 0x1c],EDX\n  10005be9:  LEA EDX,[ECX + 0x20]\n  10005bec:  MOV dword ptr [EAX],0x100f5454\n  10005bf2:  MOV EDI,dword ptr [EDX]\n  10005bf4:  MOV dword ptr [ESI],EDI\n  10005bf6:  MOV EDI,dword ptr [EDX + 0x4]\n  10005bf9:  MOV dword ptr [ESI + 0x4],EDI\n  10005bfc:  MOV EDX,dword ptr [EDX + 0x8]\n  10005bff:  MOV dword ptr [ESI + 0x8],EDX\n  10005c02:  LEA EDX,[ECX + 0x2c]\n  10005c05:  LEA ESI,[EAX + 0x2c]\n  10005c08:  MOV EDI,dword ptr [EDX]\n  10005c0a:  MOV dword ptr [ESI],EDI\n  10005c0c:  MOV EDI,dword ptr [EDX + 0x4]\n  10005c0f:  MOV dword ptr [ESI + 0x4],EDI\n  10005c12:  MOV EDI,dword ptr [EDX + 0x8]\n  10005c15:  MOV dword ptr [ESI + 0x8],EDI\n  10005c18:  POP EDI\n  10005c19:  MOV EDX,dword ptr [EDX + 0xc]\n  10005c1c:  MOV dword ptr [ESI + 0xc],EDX\n  10005c1f:  MOV ECX,dword ptr [ECX + 0x3c]\n  10005c22:  MOV dword ptr [EAX + 0x3c],ECX\n  10005c25:  MOV dword ptr [EAX],0x100f5458\n  10005c2b:  POP ESI\n  10005c2c:  RET 0x4", 
+  "callers": []
+}

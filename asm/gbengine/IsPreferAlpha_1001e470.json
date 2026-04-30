@@ -1,0 +1,14 @@
+{
+  "address": "0x1001e470", 
+  "size_bytes": 22, 
+  "calling_convention": "__thiscall", 
+  "signature": "int __thiscall IsPreferAlpha(gbImage2DInfo * this)", 
+  "callees": [], 
+  "global_refs": [], 
+  "has_custom_name": true, 
+  "decompiled_c": "\n/* public: int __thiscall gbImage2DInfo::IsPreferAlpha(void) */\n\nint __thiscall gbImage2DInfo::IsPreferAlpha(gbImage2DInfo *this)\n\n{\n                    /* 0x1e470  647  ?IsPreferAlpha@gbImage2DInfo@@QAEHXZ */\n  if ((*(int *)(this + 4) != 1) && (*(int *)(this + 4) != 3)) {\n    return 0;\n  }\n  return 1;\n}\n\n", 
+  "is_thunk": false, 
+  "name": "IsPreferAlpha", 
+  "assembly": "  1001e470:  MOV EAX,dword ptr [ECX + 0x4]\n  1001e473:  CMP EAX,0x1\n  1001e476:  JZ 0x1001e480\n  1001e478:  CMP EAX,0x3\n  1001e47b:  JZ 0x1001e480\n  1001e47d:  XOR EAX,EAX\n  1001e47f:  RET\n  1001e480:  MOV EAX,0x1\n  1001e485:  RET", 
+  "callers": []
+}

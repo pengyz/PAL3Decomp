@@ -1,0 +1,35 @@
+{
+  "address": "0x1004ca4e", 
+  "size_bytes": 70, 
+  "calling_convention": "unknown", 
+  "signature": "undefined FUN_1004ca4e(undefined4 param_1, undefined4 param_2)", 
+  "callees": [
+    {
+      "address": "0x100e7480", 
+      "name": "FUN_100e7480"
+    }
+  ], 
+  "global_refs": [
+    {
+      "address": "0x00000004", 
+      "type": null, 
+      "name": "DAT_00000004"
+    }, 
+    {
+      "address": "0x00000008", 
+      "type": null, 
+      "name": "DAT_00000008"
+    }
+  ], 
+  "has_custom_name": false, 
+  "decompiled_c": "\nint FUN_1004ca4e(char *param_1,undefined4 *param_2)\n\n{\n  int iVar1;\n  int in_ECX;\n  char *pcVar2;\n  undefined4 uVar3;\n  \n  uVar3 = 5;\n  if (*(char **)(in_ECX + 4) <= param_1) {\n    return 0;\n  }\n  iVar1 = FUN_100e7480((int)*param_1);\n  if (iVar1 == 0x66) {\n    uVar3 = 7;\n  }\n  else {\n    pcVar2 = param_1;\n    if (iVar1 != 0x68) goto LAB_1004ca80;\n    uVar3 = 6;\n  }\n  pcVar2 = param_1 + 1;\nLAB_1004ca80:\n  if (param_2 != (undefined4 *)0x0) {\n    *param_2 = uVar3;\n  }\n  return (int)pcVar2 - (int)param_1;\n}\n\n", 
+  "is_thunk": false, 
+  "name": "FUN_1004ca4e", 
+  "assembly": "  1004ca4e:  PUSH EBX\n  1004ca4f:  PUSH ESI\n  1004ca50:  MOV ESI,dword ptr [ESP + 0xc]\n  1004ca54:  CMP ESI,dword ptr [ECX + 0x4]\n  1004ca57:  PUSH EDI\n  1004ca58:  PUSH 0x5\n  1004ca5a:  MOV EDI,ESI\n  1004ca5c:  POP EBX\n  1004ca5d:  JC 0x1004ca63\n  1004ca5f:  XOR EAX,EAX\n  1004ca61:  JMP 0x1004ca8e\n  1004ca63:  MOVSX EAX,byte ptr [ESI]\n  1004ca66:  PUSH EAX\n  1004ca67:  CALL 0x100e7480\n  1004ca6c:  SUB EAX,0x66\n  1004ca6f:  POP ECX\n  1004ca70:  JZ 0x1004ca7a\n  1004ca72:  DEC EAX\n  1004ca73:  DEC EAX\n  1004ca74:  JNZ 0x1004ca80\n  1004ca76:  PUSH 0x6\n  1004ca78:  JMP 0x1004ca7c\n  1004ca7a:  PUSH 0x7\n  1004ca7c:  POP EBX\n  1004ca7d:  LEA EDI,[ESI + 0x1]\n  1004ca80:  MOV EAX,dword ptr [ESP + 0x14]\n  1004ca84:  TEST EAX,EAX\n  1004ca86:  JZ 0x1004ca8a\n  1004ca88:  MOV dword ptr [EAX],EBX\n  1004ca8a:  MOV EAX,EDI\n  1004ca8c:  SUB EAX,ESI\n  1004ca8e:  POP EDI\n  1004ca8f:  POP ESI\n  1004ca90:  POP EBX\n  1004ca91:  RET 0x8", 
+  "callers": [
+    {
+      "address": "0x1004d5fa", 
+      "name": "FUN_1004d5fa"
+    }
+  ]
+}

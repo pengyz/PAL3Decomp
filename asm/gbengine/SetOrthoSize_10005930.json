@@ -1,0 +1,20 @@
+{
+  "address": "0x10005930", 
+  "size_bytes": 16, 
+  "calling_convention": "__thiscall", 
+  "signature": "void __thiscall SetOrthoSize(gbCamera * this, float param_1)", 
+  "callees": [], 
+  "global_refs": [
+    {
+      "address": "0x00000004", 
+      "type": null, 
+      "name": "DAT_00000004"
+    }
+  ], 
+  "has_custom_name": true, 
+  "decompiled_c": "\n/* public: void __thiscall gbCamera::SetOrthoSize(float) */\n\nvoid __thiscall gbCamera::SetOrthoSize(gbCamera *this,float param_1)\n\n{\n                    /* 0x5930  881  ?SetOrthoSize@gbCamera@@QAEXM@Z */\n  *(undefined4 *)this = 0;\n  *(float *)(this + 4) = param_1;\n  return;\n}\n\n", 
+  "is_thunk": false, 
+  "name": "SetOrthoSize", 
+  "assembly": "  10005930:  MOV EAX,dword ptr [ESP + 0x4]\n  10005934:  MOV dword ptr [ECX],0x0\n  1000593a:  MOV dword ptr [ECX + 0x4],EAX\n  1000593d:  RET 0x4", 
+  "callers": []
+}

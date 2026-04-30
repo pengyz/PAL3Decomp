@@ -1,0 +1,25 @@
+{
+  "address": "0x10002110", 
+  "size_bytes": 17, 
+  "calling_convention": "__thiscall", 
+  "signature": "float __thiscall operator()(gbMatrix4 * this, int param_1, int param_2)", 
+  "callees": [], 
+  "global_refs": [
+    {
+      "address": "0x00000008", 
+      "type": null, 
+      "name": "DAT_00000008"
+    }, 
+    {
+      "address": "0x00000004", 
+      "type": null, 
+      "name": "DAT_00000004"
+    }
+  ], 
+  "has_custom_name": true, 
+  "decompiled_c": "\n/* public: float __thiscall gbMatrix4::operator()(int,int) */\n\nfloat __thiscall gbMatrix4::operator()(gbMatrix4 *this,int param_1,int param_2)\n\n{\n                    /* 0x2110  255  ??RgbMatrix4@@QAEMHH@Z */\n  return *(float *)(this + (param_2 + param_1 * 4) * 4);\n}\n\n", 
+  "is_thunk": false, 
+  "name": "operator()", 
+  "assembly": "  10002110:  MOV EAX,dword ptr [ESP + 0x8]\n  10002114:  MOV EDX,dword ptr [ESP + 0x4]\n  10002118:  LEA EAX,[EAX + EDX*0x4]\n  1000211b:  FLD dword ptr [ECX + EAX*0x4]\n  1000211e:  RET 0x8", 
+  "callers": []
+}

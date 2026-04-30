@@ -1,0 +1,35 @@
+{
+  "address": "0x10027c00", 
+  "size_bytes": 56, 
+  "calling_convention": "__thiscall", 
+  "signature": "gbVec3D __thiscall GetCenter(gbOBBox * this, undefined4 param_1)", 
+  "callees": [], 
+  "global_refs": [
+    {
+      "address": "0x00000004", 
+      "type": null, 
+      "name": "DAT_00000004"
+    }, 
+    {
+      "address": "0x-000000c", 
+      "type": null, 
+      "name": "DAT_-000000c"
+    }, 
+    {
+      "address": "0x-0000008", 
+      "type": null, 
+      "name": "DAT_-0000008"
+    }, 
+    {
+      "address": "0x-0000004", 
+      "type": null, 
+      "name": "DAT_-0000004"
+    }
+  ], 
+  "has_custom_name": true, 
+  "decompiled_c": "\n/* public: struct gbVec3D __thiscall gbOBBox::GetCenter(void)const  */\n\nvoid __thiscall gbOBBox::GetCenter(gbOBBox *this,undefined4 *param_1)\n\n{\n  undefined4 uVar1;\n  undefined4 uVar2;\n  \n                    /* 0x27c00  429  ?GetCenter@gbOBBox@@QBE?AUgbVec3D@@XZ */\n  uVar1 = *(undefined4 *)(this + 0x34);\n  uVar2 = *(undefined4 *)(this + 0x38);\n  *param_1 = *(undefined4 *)(this + 0x30);\n  param_1[1] = uVar1;\n  param_1[2] = uVar2;\n  return;\n}\n\n", 
+  "is_thunk": false, 
+  "name": "GetCenter", 
+  "assembly": "  10027c00:  SUB ESP,0xc\n  10027c03:  FLD dword ptr [ECX + 0x30]\n  10027c06:  MOV EAX,dword ptr [ESP + 0x10]\n  10027c0a:  FSTP dword ptr [ESP]\n  10027c0e:  FLD dword ptr [ECX + 0x34]\n  10027c11:  MOV EDX,dword ptr [ESP]\n  10027c15:  FSTP dword ptr [ESP + 0x4]\n  10027c19:  FLD dword ptr [ECX + 0x38]\n  10027c1c:  MOV ECX,EAX\n  10027c1e:  FSTP dword ptr [ESP + 0x8]\n  10027c22:  MOV dword ptr [ECX],EDX\n  10027c24:  MOV EDX,dword ptr [ESP + 0x4]\n  10027c28:  MOV dword ptr [ECX + 0x4],EDX\n  10027c2b:  MOV EDX,dword ptr [ESP + 0x8]\n  10027c2f:  MOV dword ptr [ECX + 0x8],EDX\n  10027c32:  ADD ESP,0xc\n  10027c35:  RET 0x4", 
+  "callers": []
+}

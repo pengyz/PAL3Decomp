@@ -1,0 +1,117 @@
+{
+  "address": "0x10010ec0", 
+  "size_bytes": 619, 
+  "calling_convention": "__thiscall", 
+  "signature": "void __thiscall Update(gbGeomNode * this)", 
+  "callees": [
+    {
+      "address": "0x1001dac0", 
+      "name": "GetDeltaTime"
+    }, 
+    {
+      "address": "0x100e4be4", 
+      "name": "__ftol"
+    }, 
+    {
+      "address": "0x10016640", 
+      "name": "PushMessage"
+    }, 
+    {
+      "address": "0x10025640", 
+      "name": "LoadIdentity"
+    }, 
+    {
+      "address": "0x10026070", 
+      "name": "LeftTranslate"
+    }, 
+    {
+      "address": "0x10026210", 
+      "name": "LeftScale"
+    }, 
+    {
+      "address": "0x10025fa0", 
+      "name": "operator*="
+    }, 
+    {
+      "address": "0x10026f20", 
+      "name": "Inverse"
+    }, 
+    {
+      "address": "0x10025fa0", 
+      "name": "operator*="
+    }, 
+    {
+      "address": "0x10026210", 
+      "name": "LeftScale"
+    }, 
+    {
+      "address": "0x10025fa0", 
+      "name": "operator*="
+    }, 
+    {
+      "address": "0x10016730", 
+      "name": "Update"
+    }, 
+    {
+      "address": "0x100251e0", 
+      "name": "operator*="
+    }, 
+    {
+      "address": "0x10016730", 
+      "name": "Update"
+    }
+  ], 
+  "global_refs": [
+    {
+      "address": "0x1013bdec", 
+      "type": "gbGfxManager *", 
+      "name": "DAT_1013bdec"
+    }, 
+    {
+      "address": "0x-0000040", 
+      "type": null, 
+      "name": "DAT_-0000040"
+    }, 
+    {
+      "address": "0x100f53a0", 
+      "type": null, 
+      "name": "DAT_100f53a0"
+    }, 
+    {
+      "address": "0x-000002c", 
+      "type": null, 
+      "name": "DAT_-000002c"
+    }, 
+    {
+      "address": "0x-0000028", 
+      "type": null, 
+      "name": "DAT_-0000028"
+    }, 
+    {
+      "address": "0x-000001c", 
+      "type": null, 
+      "name": "DAT_-000001c"
+    }, 
+    {
+      "address": "0x-0000024", 
+      "type": null, 
+      "name": "DAT_-0000024"
+    }, 
+    {
+      "address": "0x-000003c", 
+      "type": null, 
+      "name": "DAT_-000003c"
+    }, 
+    {
+      "address": "0x-0000054", 
+      "type": null, 
+      "name": "DAT_-0000054"
+    }
+  ], 
+  "has_custom_name": true, 
+  "decompiled_c": "\n/* public: virtual void __thiscall gbGeomNode::Update(void) */\n\nvoid __thiscall gbGeomNode::Update(gbGeomNode *this)\n\n{\n  gbMatrix4 *this_00;\n  gbGeomNode *pgVar1;\n  float fVar2;\n  double dVar3;\n  double dVar4;\n  int iVar5;\n  undefined4 *puVar6;\n  gbMatrix4 *pgVar7;\n  float10 extraout_ST0;\n  float10 extraout_ST1;\n  double dVar8;\n  undefined *puStack_48;\n  undefined4 uStack_30;\n  float local_2c;\n  undefined4 local_28;\n  float local_24;\n  float fStack_20;\n  gbGeomNode *local_1c;\n  float fStack_18;\n  \n                    /* 0x10ec0  943  ?Update@gbGeomNode@@UAEXXZ */\n  puStack_48 = &stack0xfffffffc;\n  dVar8 = gbGfxManager::GetDeltaTime(gbVisNode::pGfxMgr);\n  fVar2 = *(float *)(this + 0x38);\n  if ((0.0 < *(float *)(this + 0xf8)) &&\n     (local_2c = (float)__ftol(),\n     (float10)*(float *)(this + 0xf8) <=\n     (extraout_ST0 - (float10)(int)local_2c * extraout_ST1) + (float10)((float)dVar8 * fVar2))) {\n    local_28 = 1;\n    local_24 = 7.625595e+28;\n    local_1c = this;\n    gbVisNode::PushMessage((gbVisNode *)this,(gbNodeMsgObj *)&local_28);\n  }\n  fVar2 = (float)dVar8 * fVar2 + (float)*(double *)(this + 0xf0);\n  *(double *)(this + 0xf0) = (double)fVar2;\n  if (0.0 < *(float *)(this + 0xf8)) {\n    if (*(float *)(this + 0xf8) <= fVar2) {\n      do {\n        dVar8 = *(double *)(this + 0xf0);\n        *(double *)(this + 0xf0) = (double)((float)dVar8 - *(float *)(this + 0xf8));\n        *(int *)(this + 0x100) = *(int *)(this + 0x100) + 1;\n      } while (*(float *)(this + 0xf8) <= (float)dVar8 - *(float *)(this + 0xf8));\n    }\n    if ((0 < *(int *)(this + 0xfc)) && (*(int *)(this + 0xfc) <= *(int *)(this + 0x100))) {\n      *(double *)(this + 0xf0) = (double)*(float *)(this + 0xf8);\n    }\n  }\n  pgVar1 = this + 0xf0;\n  dVar4 = *(double *)pgVar1;\n  dVar3 = *(double *)pgVar1;\n  dVar8 = *(double *)pgVar1;\n  this_00 = (gbMatrix4 *)(this + 0x58);\n  if (*(int *)(this + 8) == 0) {\n    gbMatrix4::LoadIdentity(this_00);\n  }\n  else {\n    puVar6 = (undefined4 *)(*(int *)(this + 8) + 0x58);\n    pgVar7 = this_00;\n    for (iVar5 = 0x10; iVar5 != 0; iVar5 = iVar5 + -1) {\n      *(undefined4 *)pgVar7 = *puVar6;\n      puVar6 = puVar6 + 1;\n      pgVar7 = pgVar7 + 4;\n    }\n  }\n  if (*(int *)(this + 0xe8) == 0) {\n    gbMatrix4::operator*=(this_00,(gbMatrix4 *)(this + 0x98));\n  }\n  else {\n    if (*(undefined4 **)(this + 0xd8) != (undefined4 *)0x0) {\n      (**(code **)**(undefined4 **)(this + 0xd8))(&local_28,(float)dVar8);\n      gbMatrix4::LeftTranslate(this_00,(gbVec3D *)&local_28);\n    }\n    local_2c = *(float *)(this + 0xe4);\n    gbMatrix4::LeftScale(this_00,local_2c,local_2c,local_2c);\n    if (*(undefined4 **)(this + 0xe0) != (undefined4 *)0x0) {\n      (**(code **)**(undefined4 **)(this + 0xe0))(&local_28,(float)dVar3);\n      local_1c = (gbGeomNode *)-(float)local_1c;\n      gbMatrix4::operator*=(this_00,(gbQuaternion *)&local_28);\n    }\n    if (*(undefined4 **)(this + 0xdc) != (undefined4 *)0x0) {\n      (**(code **)**(undefined4 **)(this + 0xdc))(&local_28,(float)dVar4);\n      puStack_48 = (undefined *)uStack_30;\n      local_24 = -local_24;\n      gbQuaternion::Inverse((gbQuaternion *)&puStack_48);\n      gbMatrix4::operator*=(this_00,(gbQuaternion *)&uStack_30);\n      gbMatrix4::LeftScale(this_00,fStack_20,(float)local_1c,fStack_18);\n      gbMatrix4::operator*=(this_00,(gbQuaternion *)&puStack_48);\n      gbVisNode::Update((gbVisNode *)this);\n      return;\n    }\n  }\n  gbVisNode::Update((gbVisNode *)this);\n  return;\n}\n\n", 
+  "is_thunk": false, 
+  "name": "Update", 
+  "assembly": "  10010ec0:  PUSH EBP\n  10010ec1:  MOV EBP,ESP\n  10010ec3:  AND ESP,0xfffffff8\n  10010ec6:  SUB ESP,0x38\n  10010ec9:  PUSH EBX\n  10010eca:  PUSH EBP\n  10010ecb:  MOV EBX,ECX\n  10010ecd:  PUSH ESI\n  10010ece:  MOV ECX,dword ptr [0x1013bdec]\n  10010ed4:  PUSH EDI\n  10010ed5:  CALL 0x1001dac0\n  10010eda:  FMUL dword ptr [EBX + 0x38]\n  10010edd:  FSTP dword ptr [ESP + 0x10]\n  10010ee1:  FLD dword ptr [EBX + 0xf8]\n  10010ee7:  FCOMP dword ptr [0x100f53a0]\n  10010eed:  FNSTSW AX\n  10010eef:  TEST AH,0x41\n  10010ef2:  JNZ 0x10010f4a\n  10010ef4:  FLD dword ptr [EBX + 0xf8]\n  10010efa:  FLD qword ptr [EBX + 0xf0]\n  10010f00:  FLD ST0\n  10010f02:  FDIV ST0,ST2\n  10010f04:  CALL 0x100e4be4\n  10010f09:  MOV dword ptr [ESP + 0x24],EAX\n  10010f0d:  FILD dword ptr [ESP + 0x24]\n  10010f11:  FMUL ST2\n  10010f13:  FSUBR ST0,ST1\n  10010f15:  FADD dword ptr [ESP + 0x10]\n  10010f19:  FCOMP dword ptr [EBX + 0xf8]\n  10010f1f:  FNSTSW AX\n  10010f21:  FSTP ST0\n  10010f23:  TEST AH,0x1\n  10010f26:  FSTP ST0\n  10010f28:  JNZ 0x10010f4a\n  10010f2a:  LEA EAX,[ESP + 0x28]\n  10010f2e:  MOV ECX,EBX\n  10010f30:  PUSH EAX\n  10010f31:  MOV dword ptr [ESP + 0x38],EBX\n  10010f35:  MOV dword ptr [ESP + 0x2c],0x1\n  10010f3d:  MOV dword ptr [ESP + 0x30],0x6f766572\n  10010f45:  CALL 0x10016640\n  10010f4a:  FLD dword ptr [ESP + 0x10]\n  10010f4e:  FADD qword ptr [EBX + 0xf0]\n  10010f54:  FST qword ptr [EBX + 0xf0]\n  10010f5a:  FLD dword ptr [EBX + 0xf8]\n  10010f60:  FCOMP dword ptr [0x100f53a0]\n  10010f66:  FNSTSW AX\n  10010f68:  TEST AH,0x41\n  10010f6b:  JNZ 0x10010fce\n  10010f6d:  FLD dword ptr [EBX + 0xf8]\n  10010f73:  FXCH\n  10010f75:  FCOMPP\n  10010f77:  FNSTSW AX\n  10010f79:  TEST AH,0x1\n  10010f7c:  JNZ 0x10010fae\n  10010f7e:  FLD dword ptr [EBX + 0xf8]\n  10010f84:  FSUBR qword ptr [EBX + 0xf0]\n  10010f8a:  MOV EAX,dword ptr [EBX + 0x100]\n  10010f90:  INC EAX\n  10010f91:  FST qword ptr [EBX + 0xf0]\n  10010f97:  FLD dword ptr [EBX + 0xf8]\n  10010f9d:  FXCH\n  10010f9f:  FCOMPP\n  10010fa1:  MOV dword ptr [EBX + 0x100],EAX\n  10010fa7:  FNSTSW AX\n  10010fa9:  TEST AH,0x1\n  10010fac:  JZ 0x10010f7e\n  10010fae:  MOV EAX,dword ptr [EBX + 0xfc]\n  10010fb4:  TEST EAX,EAX\n  10010fb6:  JLE 0x10010fd0\n  10010fb8:  CMP dword ptr [EBX + 0x100],EAX\n  10010fbe:  JL 0x10010fd0\n  10010fc0:  FLD dword ptr [EBX + 0xf8]\n  10010fc6:  FSTP qword ptr [EBX + 0xf0]\n  10010fcc:  JMP 0x10010fd0\n  10010fce:  FSTP ST0\n  10010fd0:  MOV EAX,dword ptr [EBX + 0x8]\n  10010fd3:  MOV ECX,dword ptr [EBX + 0xf0]\n  10010fd9:  MOV EDX,dword ptr [EBX + 0xf4]\n  10010fdf:  MOV dword ptr [ESP + 0x10],ECX\n  10010fe3:  TEST EAX,EAX\n  10010fe5:  MOV dword ptr [ESP + 0x14],EDX\n  10010fe9:  LEA EBP,[EBX + 0x58]\n  10010fec:  JZ 0x10010ffc\n  10010fee:  LEA ESI,[EAX + 0x58]\n  10010ff1:  MOV ECX,0x10\n  10010ff6:  MOV EDI,EBP\n  10010ff8:  MOVSD.REP ES:EDI,ESI\n  10010ffa:  JMP 0x10011003\n  10010ffc:  MOV ECX,EBP\n  10010ffe:  CALL 0x10025640\n  10011003:  MOV EAX,dword ptr [EBX + 0xe8]\n  10011009:  TEST EAX,EAX\n  1001100b:  JZ 0x1001110e\n  10011011:  MOV ECX,dword ptr [EBX + 0xd8]\n  10011017:  TEST ECX,ECX\n  10011019:  JZ 0x10011038\n  1001101b:  FLD qword ptr [ESP + 0x10]\n  1001101f:  MOV EAX,dword ptr [ECX]\n  10011021:  PUSH ECX\n  10011022:  LEA EDX,[ESP + 0x2c]\n  10011026:  FSTP dword ptr [ESP]\n  10011029:  PUSH EDX\n  1001102a:  CALL dword ptr [EAX]\n  1001102c:  LEA EAX,[ESP + 0x28]\n  10011030:  MOV ECX,EBP\n  10011032:  PUSH EAX\n  10011033:  CALL 0x10026070\n  10011038:  MOV ECX,dword ptr [EBX + 0xe4]\n  1001103e:  MOV EAX,ECX\n  10011040:  MOV dword ptr [ESP + 0x24],ECX\n  10011044:  PUSH EAX\n  10011045:  PUSH EAX\n  10011046:  PUSH EAX\n  10011047:  MOV ECX,EBP\n  10011049:  CALL 0x10026210\n  1001104e:  MOV ECX,dword ptr [EBX + 0xe0]\n  10011054:  TEST ECX,ECX\n  10011056:  JZ 0x1001107f\n  10011058:  FLD qword ptr [ESP + 0x10]\n  1001105c:  MOV EDX,dword ptr [ECX]\n  1001105e:  PUSH ECX\n  1001105f:  LEA EAX,[ESP + 0x2c]\n  10011063:  FSTP dword ptr [ESP]\n  10011066:  PUSH EAX\n  10011067:  CALL dword ptr [EDX]\n  10011069:  FLD dword ptr [ESP + 0x34]\n  1001106d:  LEA ECX,[ESP + 0x28]\n  10011071:  FCHS\n  10011073:  FSTP dword ptr [ESP + 0x34]\n  10011077:  PUSH ECX\n  10011078:  MOV ECX,EBP\n  1001107a:  CALL 0x10025fa0\n  1001107f:  MOV ECX,dword ptr [EBX + 0xdc]\n  10011085:  TEST ECX,ECX\n  10011087:  JZ 0x1001111c\n  1001108d:  FLD qword ptr [ESP + 0x10]\n  10011091:  MOV EDX,dword ptr [ECX]\n  10011093:  PUSH ECX\n  10011094:  LEA EAX,[ESP + 0x2c]\n  10011098:  FSTP dword ptr [ESP]\n  1001109b:  PUSH EAX\n  1001109c:  CALL dword ptr [EDX]\n  1001109e:  FLD dword ptr [ESP + 0x34]\n  100110a2:  MOV ECX,dword ptr [ESP + 0x28]\n  100110a6:  MOV EDX,dword ptr [ESP + 0x2c]\n  100110aa:  MOV EAX,dword ptr [ESP + 0x30]\n  100110ae:  MOV dword ptr [ESP + 0x10],ECX\n  100110b2:  FCHS\n  100110b4:  FSTP dword ptr [ESP + 0x34]\n  100110b8:  MOV ECX,dword ptr [ESP + 0x34]\n  100110bc:  MOV dword ptr [ESP + 0x14],EDX\n  100110c0:  MOV dword ptr [ESP + 0x1c],ECX\n  100110c4:  LEA ECX,[ESP + 0x10]\n  100110c8:  MOV dword ptr [ESP + 0x18],EAX\n  100110cc:  CALL 0x10026f20\n  100110d1:  LEA EDX,[ESP + 0x28]\n  100110d5:  MOV ECX,EBP\n  100110d7:  PUSH EDX\n  100110d8:  CALL 0x10025fa0\n  100110dd:  MOV EAX,dword ptr [ESP + 0x40]\n  100110e1:  MOV ECX,dword ptr [ESP + 0x3c]\n  100110e5:  MOV EDX,dword ptr [ESP + 0x38]\n  100110e9:  PUSH EAX\n  100110ea:  PUSH ECX\n  100110eb:  PUSH EDX\n  100110ec:  MOV ECX,EBP\n  100110ee:  CALL 0x10026210\n  100110f3:  LEA EAX,[ESP + 0x10]\n  100110f7:  MOV ECX,EBP\n  100110f9:  PUSH EAX\n  100110fa:  CALL 0x10025fa0\n  100110ff:  MOV ECX,EBX\n  10011101:  CALL 0x10016730\n  10011106:  POP EDI\n  10011107:  POP ESI\n  10011108:  POP EBP\n  10011109:  POP EBX\n  1001110a:  MOV ESP,EBP\n  1001110c:  POP EBP\n  1001110d:  RET\n  1001110e:  LEA ECX,[EBX + 0x98]\n  10011114:  PUSH ECX\n  10011115:  MOV ECX,EBP\n  10011117:  CALL 0x100251e0\n  1001111c:  MOV ECX,EBX\n  1001111e:  CALL 0x10016730\n  10011123:  POP EDI\n  10011124:  POP ESI\n  10011125:  POP EBP\n  10011126:  POP EBX\n  10011127:  MOV ESP,EBP\n  10011129:  POP EBP\n  1001112a:  RET", 
+  "callers": []
+}

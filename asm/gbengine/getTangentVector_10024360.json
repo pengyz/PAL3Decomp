@@ -1,0 +1,90 @@
+{
+  "address": "0x10024360", 
+  "size_bytes": 363, 
+  "calling_convention": "__thiscall", 
+  "signature": "gbVec3D __thiscall getTangentVector(BEZIER * this, float param_1)", 
+  "callees": [
+    {
+      "address": "0x100250a0", 
+      "name": "Normalize"
+    }
+  ], 
+  "global_refs": [
+    {
+      "address": "0x-0000018", 
+      "type": null, 
+      "name": "DAT_-0000018"
+    }, 
+    {
+      "address": "0x-0000014", 
+      "type": null, 
+      "name": "DAT_-0000014"
+    }, 
+    {
+      "address": "0x-0000010", 
+      "type": null, 
+      "name": "DAT_-0000010"
+    }, 
+    {
+      "address": "0x100f5344", 
+      "type": null, 
+      "name": "DAT_100f5344"
+    }, 
+    {
+      "address": "0x00000008", 
+      "type": null, 
+      "name": "DAT_00000008"
+    }, 
+    {
+      "address": "0x-0000020", 
+      "type": null, 
+      "name": "DAT_-0000020"
+    }, 
+    {
+      "address": "0x100f58a8", 
+      "type": null, 
+      "name": "DAT_100f58a8"
+    }, 
+    {
+      "address": "0x100f58a4", 
+      "type": null, 
+      "name": "DAT_100f58a4"
+    }, 
+    {
+      "address": "0x-000001c", 
+      "type": null, 
+      "name": "DAT_-000001c"
+    }, 
+    {
+      "address": "0x100f58a0", 
+      "type": null, 
+      "name": "DAT_100f58a0"
+    }, 
+    {
+      "address": "0x-0000008", 
+      "type": null, 
+      "name": "DAT_-0000008"
+    }, 
+    {
+      "address": "0x-000000c", 
+      "type": null, 
+      "name": "DAT_-000000c"
+    }, 
+    {
+      "address": "0x-0000004", 
+      "type": null, 
+      "name": "DAT_-0000004"
+    }, 
+    {
+      "address": "0x00000004", 
+      "type": null, 
+      "name": "DAT_00000004"
+    }
+  ], 
+  "has_custom_name": true, 
+  "decompiled_c": "\n/* public: struct gbVec3D __thiscall BEZIER::getTangentVector(float) */\n\nvoid __thiscall BEZIER::getTangentVector(BEZIER *this,float *param_1,float param_3)\n\n{\n  float fVar1;\n  float fVar2;\n  float fVar3;\n  float fVar4;\n  float local_c;\n  float local_8;\n  float local_4;\n  \n                    /* 0x24360  1012  ?getTangentVector@BEZIER@@QAE?AUgbVec3D@@M@Z */\n  if (this[0x40] != (BEZIER)0x0) {\n    this[0x40] = (BEZIER)0x0;\n    *(undefined4 *)this = 1;\n    *(undefined4 *)(this + 4) = 3;\n    *(undefined4 *)(this + 8) = 3;\n    *(undefined4 *)(this + 0xc) = 1;\n  }\n  fVar1 = 1.0 - param_3;\n  fVar3 = fVar1 * fVar1 * -3.0;\n  fVar2 = fVar1 * param_3 * 6.0;\n  fVar1 = fVar1 * fVar1 * 3.0 - fVar2;\n  fVar4 = param_3 * param_3 * 3.0;\n  fVar2 = fVar2 - fVar4;\n  local_c = fVar4 * *(float *)(this + 0x34) +\n            fVar2 * *(float *)(this + 0x28) +\n            fVar1 * *(float *)(this + 0x1c) + fVar3 * *(float *)(this + 0x10) + 0.0;\n  local_8 = fVar4 * *(float *)(this + 0x38) +\n            fVar2 * *(float *)(this + 0x2c) +\n            fVar1 * *(float *)(this + 0x20) + fVar3 * *(float *)(this + 0x14) + 0.0;\n  local_4 = fVar4 * *(float *)(this + 0x3c) +\n            fVar2 * *(float *)(this + 0x30) +\n            fVar1 * *(float *)(this + 0x24) + fVar3 * *(float *)(this + 0x18) + 0.0;\n  gbVec3D::Normalize((gbVec3D *)&local_c);\n  *param_1 = local_c;\n  param_1[1] = local_8;\n  param_1[2] = local_4;\n  return;\n}\n\n", 
+  "is_thunk": false, 
+  "name": "getTangentVector", 
+  "assembly": "  10024360:  SUB ESP,0x20\n  10024363:  MOV AL,byte ptr [ECX + 0x40]\n  10024366:  MOV dword ptr [ESP + 0x8],0x0\n  1002436e:  TEST AL,AL\n  10024370:  MOV dword ptr [ESP + 0xc],0x0\n  10024378:  MOV dword ptr [ESP + 0x10],0x0\n  10024380:  JZ 0x1002439e\n  10024382:  MOV EAX,0x3\n  10024387:  MOV byte ptr [ECX + 0x40],0x0\n  1002438b:  MOV dword ptr [ECX],0x1\n  10024391:  MOV dword ptr [ECX + 0x4],EAX\n  10024394:  MOV dword ptr [ECX + 0x8],EAX\n  10024397:  MOV dword ptr [ECX + 0xc],0x1\n  1002439e:  FLD dword ptr [0x100f5344]\n  100243a4:  FSUB dword ptr [ESP + 0x28]\n  100243a8:  XOR EAX,EAX\n  100243aa:  MOV dword ptr [ESP + 0x8],EAX\n  100243ae:  FLD ST0\n  100243b0:  FLD ST0\n  100243b2:  FMUL ST1\n  100243b4:  MOV dword ptr [ESP + 0xc],EAX\n  100243b8:  MOV dword ptr [ESP + 0x10],EAX\n  100243bc:  FSTP dword ptr [ESP]\n  100243c0:  FSTP ST0\n  100243c2:  FLD dword ptr [ESP]\n  100243c6:  FMUL dword ptr [0x100f58a8]\n  100243cc:  FLD ST0\n  100243ce:  FMUL dword ptr [ECX + 0x10]\n  100243d1:  FADD dword ptr [ESP + 0x8]\n  100243d5:  FSTP dword ptr [ESP + 0x8]\n  100243d9:  FLD ST0\n  100243db:  FMUL dword ptr [ECX + 0x14]\n  100243de:  FADD dword ptr [ESP + 0xc]\n  100243e2:  FSTP dword ptr [ESP + 0xc]\n  100243e6:  FMUL dword ptr [ECX + 0x18]\n  100243e9:  FADD dword ptr [ESP + 0x10]\n  100243ed:  FSTP dword ptr [ESP + 0x10]\n  100243f1:  FMUL dword ptr [ESP + 0x28]\n  100243f5:  FMUL dword ptr [0x100f58a4]\n  100243fb:  FSTP dword ptr [ESP + 0x4]\n  100243ff:  FLD dword ptr [ESP]\n  10024403:  FMUL dword ptr [0x100f58a0]\n  10024409:  FSUB dword ptr [ESP + 0x4]\n  1002440d:  FLD ST0\n  1002440f:  FMUL dword ptr [ECX + 0x1c]\n  10024412:  FADD dword ptr [ESP + 0x8]\n  10024416:  FSTP dword ptr [ESP + 0x8]\n  1002441a:  FLD ST0\n  1002441c:  FMUL dword ptr [ECX + 0x20]\n  1002441f:  FADD dword ptr [ESP + 0xc]\n  10024423:  FSTP dword ptr [ESP + 0xc]\n  10024427:  FMUL dword ptr [ECX + 0x24]\n  1002442a:  FADD dword ptr [ESP + 0x10]\n  1002442e:  FSTP dword ptr [ESP + 0x10]\n  10024432:  FLD dword ptr [ESP + 0x28]\n  10024436:  FMUL dword ptr [ESP + 0x28]\n  1002443a:  FMUL dword ptr [0x100f58a0]\n  10024440:  FLD dword ptr [ESP + 0x4]\n  10024444:  FSUB ST0,ST1\n  10024446:  FLD ST0\n  10024448:  FMUL dword ptr [ECX + 0x28]\n  1002444b:  FADD dword ptr [ESP + 0x8]\n  1002444f:  FSTP dword ptr [ESP + 0x8]\n  10024453:  FLD ST0\n  10024455:  FMUL dword ptr [ECX + 0x2c]\n  10024458:  FADD dword ptr [ESP + 0xc]\n  1002445c:  FSTP dword ptr [ESP + 0xc]\n  10024460:  FMUL dword ptr [ECX + 0x30]\n  10024463:  FADD dword ptr [ESP + 0x10]\n  10024467:  FSTP dword ptr [ESP + 0x10]\n  1002446b:  FLD ST0\n  1002446d:  FMUL dword ptr [ECX + 0x34]\n  10024470:  FADD dword ptr [ESP + 0x8]\n  10024474:  FLD ST1\n  10024476:  FMUL dword ptr [ECX + 0x38]\n  10024479:  FADD dword ptr [ESP + 0xc]\n  1002447d:  FSTP dword ptr [ESP + 0xc]\n  10024481:  FXCH\n  10024483:  FMUL dword ptr [ECX + 0x3c]\n  10024486:  MOV ECX,dword ptr [ESP + 0xc]\n  1002448a:  MOV dword ptr [ESP + 0x18],ECX\n  1002448e:  LEA ECX,[ESP + 0x14]\n  10024492:  FADD dword ptr [ESP + 0x10]\n  10024496:  FSTP dword ptr [ESP + 0x10]\n  1002449a:  MOV EDX,dword ptr [ESP + 0x10]\n  1002449e:  FSTP dword ptr [ESP + 0x14]\n  100244a2:  MOV dword ptr [ESP + 0x1c],EDX\n  100244a6:  CALL 0x100250a0\n  100244ab:  MOV EAX,dword ptr [ESP + 0x24]\n  100244af:  MOV EDX,dword ptr [ESP + 0x14]\n  100244b3:  MOV ECX,EAX\n  100244b5:  MOV dword ptr [ECX],EDX\n  100244b7:  MOV EDX,dword ptr [ESP + 0x18]\n  100244bb:  MOV dword ptr [ECX + 0x4],EDX\n  100244be:  MOV EDX,dword ptr [ESP + 0x1c]\n  100244c2:  MOV dword ptr [ECX + 0x8],EDX\n  100244c5:  ADD ESP,0x20\n  100244c8:  RET 0x8", 
+  "callers": []
+}

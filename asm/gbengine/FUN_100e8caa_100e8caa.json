@@ -1,0 +1,82 @@
+{
+  "address": "0x100e8caa", 
+  "size_bytes": 41, 
+  "calling_convention": "unknown", 
+  "signature": "undefined FUN_100e8caa(void)", 
+  "callees": [
+    {
+      "address": "0x00000025", 
+      "name": "InitializeCriticalSection"
+    }, 
+    {
+      "address": "0x00000025", 
+      "name": "InitializeCriticalSection"
+    }, 
+    {
+      "address": "0x00000025", 
+      "name": "InitializeCriticalSection"
+    }, 
+    {
+      "address": "0x00000025", 
+      "name": "InitializeCriticalSection"
+    }
+  ], 
+  "global_refs": [
+    {
+      "address": "0x100f50c0", 
+      "type": "pointer", 
+      "name": "DAT_100f50c0"
+    }, 
+    {
+      "address": "0x1012a088", 
+      "type": "pointer", 
+      "name": "DAT_1012a088"
+    }, 
+    {
+      "address": "0x10166d18", 
+      "type": null, 
+      "name": "DAT_10166d18"
+    }, 
+    {
+      "address": "0x1012a078", 
+      "type": "pointer", 
+      "name": "DAT_1012a078"
+    }, 
+    {
+      "address": "0x10166d48", 
+      "type": null, 
+      "name": "DAT_10166d48"
+    }, 
+    {
+      "address": "0x1012a068", 
+      "type": "pointer", 
+      "name": "DAT_1012a068"
+    }, 
+    {
+      "address": "0x10166d30", 
+      "type": null, 
+      "name": "DAT_10166d30"
+    }, 
+    {
+      "address": "0x1012a048", 
+      "type": "pointer", 
+      "name": "DAT_1012a048"
+    }, 
+    {
+      "address": "0x10166d00", 
+      "type": null, 
+      "name": "DAT_10166d00"
+    }
+  ], 
+  "has_custom_name": false, 
+  "decompiled_c": "\nvoid FUN_100e8caa(void)\n\n{\n  InitializeCriticalSection((LPCRITICAL_SECTION)PTR_DAT_1012a088);\n  InitializeCriticalSection((LPCRITICAL_SECTION)PTR_DAT_1012a078);\n  InitializeCriticalSection((LPCRITICAL_SECTION)PTR_DAT_1012a068);\n  InitializeCriticalSection((LPCRITICAL_SECTION)PTR_DAT_1012a048);\n  return;\n}\n\n", 
+  "is_thunk": false, 
+  "name": "FUN_100e8caa", 
+  "assembly": "  100e8caa:  PUSH ESI\n  100e8cab:  MOV ESI,dword ptr [0x100f50c0]\n  100e8cb1:  PUSH dword ptr [0x1012a088]\n  100e8cb7:  CALL ESI\n  100e8cb9:  PUSH dword ptr [0x1012a078]\n  100e8cbf:  CALL ESI\n  100e8cc1:  PUSH dword ptr [0x1012a068]\n  100e8cc7:  CALL ESI\n  100e8cc9:  PUSH dword ptr [0x1012a048]\n  100e8ccf:  CALL ESI\n  100e8cd1:  POP ESI\n  100e8cd2:  RET", 
+  "callers": [
+    {
+      "address": "0x100e84fc", 
+      "name": "FUN_100e84fc"
+    }
+  ]
+}

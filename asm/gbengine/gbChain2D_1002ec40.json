@@ -1,0 +1,14 @@
+{
+  "address": "0x1002ec40", 
+  "size_bytes": 13, 
+  "calling_convention": "__thiscall", 
+  "signature": "undefined __thiscall gbChain2D(gbChain2D * this)", 
+  "callees": [], 
+  "global_refs": [], 
+  "has_custom_name": true, 
+  "decompiled_c": "\n/* public: __thiscall gbChain2D::gbChain2D(void) */\n\nvoid __thiscall gbChain2D::gbChain2D(gbChain2D *this)\n\n{\n                    /* 0x2ec40  30  ??0gbChain2D@@QAE@XZ */\n  *(undefined4 *)(this + 4) = 0;\n  *(undefined4 *)this = 0;\n  *(undefined4 *)(this + 0xc) = 0;\n  return;\n}\n\n", 
+  "is_thunk": false, 
+  "name": "gbChain2D", 
+  "assembly": "  1002ec40:  MOV EAX,ECX\n  1002ec42:  XOR ECX,ECX\n  1002ec44:  MOV dword ptr [EAX + 0x4],ECX\n  1002ec47:  MOV dword ptr [EAX],ECX\n  1002ec49:  MOV dword ptr [EAX + 0xc],ECX\n  1002ec4c:  RET", 
+  "callers": []
+}

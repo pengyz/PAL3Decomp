@@ -1,0 +1,79 @@
+{
+  "address": "0x1001c200", 
+  "size_bytes": 195, 
+  "calling_convention": "unknown", 
+  "signature": "undefined FUN_1001c200(undefined4 param_1, undefined4 param_2, undefined4 param_3)", 
+  "callees": [
+    {
+      "address": "0x10020930", 
+      "name": "gbIndexPool"
+    }, 
+    {
+      "address": "0x100e4b0d", 
+      "name": "_malloc"
+    }
+  ], 
+  "global_refs": [
+    {
+      "address": "0x100f3ea8", 
+      "type": null, 
+      "name": "DAT_100f3ea8"
+    }, 
+    {
+      "address": "0xffdff000", 
+      "type": "void *32", 
+      "name": "DAT_ffdff000"
+    }, 
+    {
+      "address": "0x00000004", 
+      "type": null, 
+      "name": "DAT_00000004"
+    }, 
+    {
+      "address": "0x0000000c", 
+      "type": null, 
+      "name": "DAT_0000000c"
+    }, 
+    {
+      "address": "0x00000008", 
+      "type": null, 
+      "name": "DAT_00000008"
+    }, 
+    {
+      "address": "0x-0000010", 
+      "type": null, 
+      "name": "DAT_-0000010"
+    }, 
+    {
+      "address": "0x100f574c", 
+      "type": "undefined *", 
+      "name": "DAT_100f574c"
+    }, 
+    {
+      "address": "0x10140dbc", 
+      "type": "gbGfxManager *", 
+      "name": "DAT_10140dbc"
+    }, 
+    {
+      "address": "0x-0000004", 
+      "type": null, 
+      "name": "DAT_-0000004"
+    }, 
+    {
+      "address": "0x-000000c", 
+      "type": null, 
+      "name": "DAT_-000000c"
+    }
+  ], 
+  "has_custom_name": false, 
+  "decompiled_c": "\nvoid FUN_1001c200(gbPoolType param_1,int param_2,int param_3)\n\n{\n  gbGfxManager *pgVar1;\n  int iVar2;\n  void *pvVar3;\n  gbIndexPool *in_ECX;\n  void *local_c;\n  undefined *puStack_8;\n  undefined4 local_4;\n  \n  iVar2 = param_3;\n  local_4 = 0xffffffff;\n  puStack_8 = &LAB_100f3ea8;\n  local_c = ExceptionList;\n  ExceptionList = &local_c;\n  gbIndexPool::gbIndexPool(in_ECX,param_1,param_2,param_3);\n  *(undefined ***)in_ECX = &PTR_FUN_100f574c;\n  pgVar1 = gbVertexPool::pGfxMgr;\n  local_4 = 0;\n  if (param_1 == 0) {\n    param_3 = 0;\n  }\n  else if (param_1 == 1) {\n    param_3 = 0x208;\n  }\n  else if (param_1 == 2) {\n    pvVar3 = _malloc(param_2 * param_3);\n    *(void **)(in_ECX + 0x10) = pvVar3;\n    ExceptionList = local_c;\n    return;\n  }\n  iVar2 = (**(code **)(**(int **)(gbVertexPool::pGfxMgr + 0x718) + 0x6c))\n                    (*(int **)(gbVertexPool::pGfxMgr + 0x718),param_2 * iVar2,param_3,\n                     (param_2 != 2) + 'e',1,in_ECX + 0x10,0);\n  if (iVar2 < 0) {\n    *(int *)(pgVar1 + 0x8c8) = iVar2;\n  }\n  ExceptionList = local_c;\n  return;\n}\n\n", 
+  "is_thunk": false, 
+  "name": "FUN_1001c200", 
+  "assembly": "  1001c200:  PUSH -0x1\n  1001c202:  PUSH 0x100f3ea8\n  1001c207:  MOV EAX,FS:[0x0]\n  1001c20d:  PUSH EAX\n  1001c20e:  MOV dword ptr FS:[0x0],ESP\n  1001c215:  PUSH ECX\n  1001c216:  PUSH EBX\n  1001c217:  MOV EBX,dword ptr [ESP + 0x18]\n  1001c21b:  PUSH EBP\n  1001c21c:  MOV EBP,dword ptr [ESP + 0x24]\n  1001c220:  PUSH ESI\n  1001c221:  MOV ESI,dword ptr [ESP + 0x24]\n  1001c225:  PUSH EDI\n  1001c226:  PUSH EBP\n  1001c227:  MOV EDI,ECX\n  1001c229:  PUSH ESI\n  1001c22a:  PUSH EBX\n  1001c22b:  MOV dword ptr [ESP + 0x1c],EDI\n  1001c22f:  CALL 0x10020930\n  1001c234:  XOR EDX,EDX\n  1001c236:  MOV dword ptr [EDI],0x100f574c\n  1001c23c:  MOV EAX,[0x10140dbc]\n  1001c241:  CMP EBX,EDX\n  1001c243:  MOV dword ptr [ESP + 0x1c],EDX\n  1001c247:  MOV dword ptr [ESP + 0x28],EAX\n  1001c24b:  JNZ 0x1001c29e\n  1001c24d:  MOV dword ptr [ESP + 0x2c],EDX\n  1001c251:  XOR ECX,ECX\n  1001c253:  CMP ESI,0x2\n  1001c256:  SETNZ CL\n  1001c259:  IMUL ESI,EBP\n  1001c25c:  MOV EAX,dword ptr [EAX + 0x718]\n  1001c262:  PUSH EDX\n  1001c263:  LEA EDX,[EDI + 0x10]\n  1001c266:  ADD ECX,0x65\n  1001c269:  MOV EBX,dword ptr [EAX]\n  1001c26b:  PUSH EDX\n  1001c26c:  PUSH 0x1\n  1001c26e:  PUSH ECX\n  1001c26f:  MOV ECX,dword ptr [ESP + 0x3c]\n  1001c273:  PUSH ECX\n  1001c274:  PUSH ESI\n  1001c275:  PUSH EAX\n  1001c276:  CALL dword ptr [EBX + 0x6c]\n  1001c279:  TEST EAX,EAX\n  1001c27b:  JGE 0x1001c287\n  1001c27d:  MOV EDX,dword ptr [ESP + 0x28]\n  1001c281:  MOV dword ptr [EDX + 0x8c8],EAX\n  1001c287:  MOV ECX,dword ptr [ESP + 0x14]\n  1001c28b:  MOV EAX,EDI\n  1001c28d:  POP EDI\n  1001c28e:  POP ESI\n  1001c28f:  POP EBP\n  1001c290:  POP EBX\n  1001c291:  MOV dword ptr FS:[0x0],ECX\n  1001c298:  ADD ESP,0x10\n  1001c29b:  RET 0xc\n  1001c29e:  CMP EBX,0x1\n  1001c2a1:  JNZ 0x1001c2ad\n  1001c2a3:  MOV dword ptr [ESP + 0x2c],0x208\n  1001c2ab:  JMP 0x1001c251\n  1001c2ad:  CMP EBX,0x2\n  1001c2b0:  JNZ 0x1001c251\n  1001c2b2:  IMUL ESI,EBP\n  1001c2b5:  PUSH ESI\n  1001c2b6:  CALL 0x100e4b0d\n  1001c2bb:  ADD ESP,0x4\n  1001c2be:  MOV dword ptr [EDI + 0x10],EAX\n  1001c2c1:  JMP 0x1001c287", 
+  "callers": [
+    {
+      "address": "0x10019140", 
+      "name": "FUN_10019140"
+    }
+  ]
+}

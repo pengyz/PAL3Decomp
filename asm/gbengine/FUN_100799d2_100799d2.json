@@ -1,0 +1,30 @@
+{
+  "address": "0x100799d2", 
+  "size_bytes": 193, 
+  "calling_convention": "unknown", 
+  "signature": "undefined FUN_100799d2(undefined4 param_1, undefined4 param_2)", 
+  "callees": [], 
+  "global_refs": [
+    {
+      "address": "0x00000004", 
+      "type": null, 
+      "name": "DAT_00000004"
+    }, 
+    {
+      "address": "0x00000008", 
+      "type": null, 
+      "name": "DAT_00000008"
+    }
+  ], 
+  "has_custom_name": false, 
+  "decompiled_c": "\nvoid FUN_100799d2(int *param_1,undefined *param_2)\n\n{\n  byte bVar1;\n  undefined uVar2;\n  int iVar3;\n  \n  bVar1 = *(byte *)(param_1 + 2);\n  if ((bVar1 & 2) != 0) {\n    iVar3 = *param_1;\n    if (*(char *)((int)param_1 + 9) == '\\b') {\n      if (bVar1 == 2) {\n        for (; iVar3 != 0; iVar3 = iVar3 + -1) {\n          uVar2 = *param_2;\n          *param_2 = param_2[2];\n          param_2[2] = uVar2;\n          param_2 = param_2 + 3;\n        }\n      }\n      else if (bVar1 == 6) {\n        for (; iVar3 != 0; iVar3 = iVar3 + -1) {\n          uVar2 = *param_2;\n          *param_2 = param_2[2];\n          param_2[2] = uVar2;\n          param_2 = param_2 + 4;\n        }\n      }\n    }\n    else if (*(char *)((int)param_1 + 9) == '\\x10') {\n      if (bVar1 == 2) {\n        if (iVar3 != 0) {\n          param_2 = param_2 + 1;\n          do {\n            uVar2 = param_2[-1];\n            param_2[-1] = param_2[3];\n            param_2[3] = uVar2;\n            uVar2 = *param_2;\n            *param_2 = param_2[4];\n            param_2[4] = uVar2;\n            param_2 = param_2 + 6;\n            iVar3 = iVar3 + -1;\n          } while (iVar3 != 0);\n        }\n      }\n      else if ((bVar1 == 6) && (iVar3 != 0)) {\n        param_2 = param_2 + 1;\n        do {\n          uVar2 = param_2[-1];\n          param_2[-1] = param_2[3];\n          param_2[3] = uVar2;\n          uVar2 = *param_2;\n          *param_2 = param_2[4];\n          param_2[4] = uVar2;\n          param_2 = param_2 + 8;\n          iVar3 = iVar3 + -1;\n        } while (iVar3 != 0);\n      }\n    }\n  }\n  return;\n}\n\n", 
+  "is_thunk": false, 
+  "name": "FUN_100799d2", 
+  "assembly": "  100799d2:  PUSH EBP\n  100799d3:  MOV EBP,ESP\n  100799d5:  MOV EAX,dword ptr [EBP + 0x8]\n  100799d8:  MOV DL,byte ptr [EAX + 0x8]\n  100799db:  TEST DL,0x2\n  100799de:  JZ 0x10079a8f\n  100799e4:  MOV ECX,dword ptr [EAX]\n  100799e6:  MOV AL,byte ptr [EAX + 0x9]\n  100799e9:  CMP AL,0x8\n  100799eb:  PUSH ESI\n  100799ec:  JNZ 0x10079a32\n  100799ee:  CMP DL,0x2\n  100799f1:  JNZ 0x10079a12\n  100799f3:  TEST ECX,ECX\n  100799f5:  MOV EAX,dword ptr [EBP + 0xc]\n  100799f8:  JBE 0x10079a8e\n  100799fe:  MOV ESI,ECX\n  10079a00:  MOV DL,byte ptr [EAX]\n  10079a02:  MOV CL,byte ptr [EAX + 0x2]\n  10079a05:  MOV byte ptr [EAX],CL\n  10079a07:  MOV byte ptr [EAX + 0x2],DL\n  10079a0a:  ADD EAX,0x3\n  10079a0d:  DEC ESI\n  10079a0e:  JNZ 0x10079a00\n  10079a10:  JMP 0x10079a8e\n  10079a12:  CMP DL,0x6\n  10079a15:  JNZ 0x10079a8e\n  10079a17:  TEST ECX,ECX\n  10079a19:  MOV EAX,dword ptr [EBP + 0xc]\n  10079a1c:  JBE 0x10079a8e\n  10079a1e:  MOV ESI,ECX\n  10079a20:  MOV DL,byte ptr [EAX]\n  10079a22:  MOV CL,byte ptr [EAX + 0x2]\n  10079a25:  MOV byte ptr [EAX],CL\n  10079a27:  MOV byte ptr [EAX + 0x2],DL\n  10079a2a:  ADD EAX,0x4\n  10079a2d:  DEC ESI\n  10079a2e:  JNZ 0x10079a20\n  10079a30:  JMP 0x10079a8e\n  10079a32:  CMP AL,0x10\n  10079a34:  JNZ 0x10079a8e\n  10079a36:  CMP DL,0x2\n  10079a39:  JNZ 0x10079a63\n  10079a3b:  TEST ECX,ECX\n  10079a3d:  JBE 0x10079a8e\n  10079a3f:  MOV EAX,dword ptr [EBP + 0xc]\n  10079a42:  INC EAX\n  10079a43:  MOV ESI,ECX\n  10079a45:  MOV CL,byte ptr [EAX + -0x1]\n  10079a48:  MOV DL,byte ptr [EAX + 0x3]\n  10079a4b:  MOV byte ptr [EAX + -0x1],DL\n  10079a4e:  MOV DL,byte ptr [EAX + 0x4]\n  10079a51:  MOV byte ptr [EAX + 0x3],CL\n  10079a54:  MOV CL,byte ptr [EAX]\n  10079a56:  MOV byte ptr [EAX],DL\n  10079a58:  MOV byte ptr [EAX + 0x4],CL\n  10079a5b:  ADD EAX,0x6\n  10079a5e:  DEC ESI\n  10079a5f:  JNZ 0x10079a45\n  10079a61:  JMP 0x10079a8e\n  10079a63:  CMP DL,0x6\n  10079a66:  JNZ 0x10079a8e\n  10079a68:  TEST ECX,ECX\n  10079a6a:  JBE 0x10079a8e\n  10079a6c:  MOV EAX,dword ptr [EBP + 0xc]\n  10079a6f:  INC EAX\n  10079a70:  MOV ESI,ECX\n  10079a72:  MOV CL,byte ptr [EAX + -0x1]\n  10079a75:  MOV DL,byte ptr [EAX + 0x3]\n  10079a78:  MOV byte ptr [EAX + -0x1],DL\n  10079a7b:  MOV DL,byte ptr [EAX + 0x4]\n  10079a7e:  MOV byte ptr [EAX + 0x3],CL\n  10079a81:  MOV CL,byte ptr [EAX]\n  10079a83:  MOV byte ptr [EAX],DL\n  10079a85:  MOV byte ptr [EAX + 0x4],CL\n  10079a88:  ADD EAX,0x8\n  10079a8b:  DEC ESI\n  10079a8c:  JNZ 0x10079a72\n  10079a8e:  POP ESI\n  10079a8f:  POP EBP\n  10079a90:  RET 0x8", 
+  "callers": [
+    {
+      "address": "0x1007ae9e", 
+      "name": "FUN_1007ae9e"
+    }
+  ]
+}

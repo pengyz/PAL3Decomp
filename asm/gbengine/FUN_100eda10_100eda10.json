@@ -1,0 +1,60 @@
+{
+  "address": "0x100eda10", 
+  "size_bytes": 76, 
+  "calling_convention": "unknown", 
+  "signature": "undefined FUN_100eda10(undefined4 param_1)", 
+  "callees": [], 
+  "global_refs": [
+    {
+      "address": "0x10110868", 
+      "type": null, 
+      "name": "DAT_10110868"
+    }, 
+    {
+      "address": "0x100e7a3c", 
+      "type": null, 
+      "name": "DAT_100e7a3c"
+    }, 
+    {
+      "address": "0xffdff000", 
+      "type": "void *32", 
+      "name": "DAT_ffdff000"
+    }, 
+    {
+      "address": "0x-000001c", 
+      "type": null, 
+      "name": "DAT_-000001c"
+    }, 
+    {
+      "address": "0x-0000008", 
+      "type": null, 
+      "name": "DAT_-0000008"
+    }, 
+    {
+      "address": "0x00000004", 
+      "type": null, 
+      "name": "DAT_00000004"
+    }, 
+    {
+      "address": "0x-0000020", 
+      "type": null, 
+      "name": "DAT_-0000020"
+    }, 
+    {
+      "address": "0x-0000014", 
+      "type": null, 
+      "name": "DAT_-0000014"
+    }
+  ], 
+  "has_custom_name": false, 
+  "decompiled_c": "\nvoid FUN_100eda10(void)\n\n{\n  return;\n}\n\n", 
+  "is_thunk": false, 
+  "name": "FUN_100eda10", 
+  "assembly": "  100eda10:  PUSH EBP\n  100eda11:  MOV EBP,ESP\n  100eda13:  PUSH -0x1\n  100eda15:  PUSH 0x10110868\n  100eda1a:  PUSH 0x100e7a3c\n  100eda1f:  MOV EAX,FS:[0x0]\n  100eda25:  PUSH EAX\n  100eda26:  MOV dword ptr FS:[0x0],ESP\n  100eda2d:  SUB ESP,0x10\n  100eda30:  PUSH EBX\n  100eda31:  PUSH ESI\n  100eda32:  PUSH EDI\n  100eda33:  MOV dword ptr [EBP + -0x18],ESP\n  100eda36:  AND dword ptr [EBP + -0x4],0x0\n  100eda3a:  MOV EAX,dword ptr [EBP + 0x8]\n  100eda3d:  MOV EAX,dword ptr [EAX]\n  100eda3f:  PUSH 0x1\n  100eda41:  POP EAX\n  100eda42:  MOV dword ptr [EBP + -0x1c],EAX\n  100eda45:  JMP 0x100eda60\n  100eda60:  OR dword ptr [EBP + -0x4],0xffffffff\n  100eda64:  MOV ECX,dword ptr [EBP + -0x10]\n  100eda67:  MOV dword ptr FS:[0x0],ECX\n  100eda6e:  POP EDI\n  100eda6f:  POP ESI\n  100eda70:  POP EBX\n  100eda71:  LEAVE\n  100eda72:  RET 0x4", 
+  "callers": [
+    {
+      "address": "0x100e6710", 
+      "name": "_longjmp"
+    }
+  ]
+}

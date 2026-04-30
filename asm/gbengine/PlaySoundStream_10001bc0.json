@@ -1,0 +1,98 @@
+{
+  "address": "0x10001bc0", 
+  "size_bytes": 136, 
+  "calling_convention": "__thiscall", 
+  "signature": "void __thiscall PlaySoundStream(gbAudioManager * this, int param_1, char * param_2, int param_3)", 
+  "callees": [
+    {
+      "address": "0x000000ba", 
+      "name": "_AIL_register_stream_callback@8"
+    }, 
+    {
+      "address": "0x000000a2", 
+      "name": "_AIL_close_stream@4"
+    }, 
+    {
+      "address": "0x00000096", 
+      "name": "_AIL_open_stream@12"
+    }, 
+    {
+      "address": "0x000000ba", 
+      "name": "_AIL_register_stream_callback@8"
+    }, 
+    {
+      "address": "0x00000098", 
+      "name": "_AIL_start_stream@4"
+    }, 
+    {
+      "address": "0x100e4be4", 
+      "name": "__ftol"
+    }, 
+    {
+      "address": "0x000000b9", 
+      "name": "_AIL_set_stream_volume@8"
+    }, 
+    {
+      "address": "0x00000097", 
+      "name": "_AIL_set_stream_loop_count@8"
+    }
+  ], 
+  "global_refs": [
+    {
+      "address": "0x100f5310", 
+      "type": "pointer", 
+      "name": "DAT_100f5310"
+    }, 
+    {
+      "address": "0x00000004", 
+      "type": null, 
+      "name": "DAT_00000004"
+    }, 
+    {
+      "address": "0x100f52b0", 
+      "type": "pointer", 
+      "name": "DAT_100f52b0"
+    }, 
+    {
+      "address": "0x00000008", 
+      "type": null, 
+      "name": "DAT_00000008"
+    }, 
+    {
+      "address": "0x100f5280", 
+      "type": "pointer", 
+      "name": "DAT_100f5280"
+    }, 
+    {
+      "address": "0x10001b40", 
+      "type": null, 
+      "name": "DAT_10001b40"
+    }, 
+    {
+      "address": "0x100f5288", 
+      "type": "pointer", 
+      "name": "DAT_100f5288"
+    }, 
+    {
+      "address": "0x100f533c", 
+      "type": null, 
+      "name": "DAT_100f533c"
+    }, 
+    {
+      "address": "0x100f530c", 
+      "type": "pointer", 
+      "name": "DAT_100f530c"
+    }, 
+    {
+      "address": "0x100f5284", 
+      "type": "pointer", 
+      "name": "DAT_100f5284"
+    }
+  ], 
+  "has_custom_name": true, 
+  "decompiled_c": "\n/* public: void __thiscall gbAudioManager::PlaySoundStream(int,char *,int) */\n\nvoid __thiscall\ngbAudioManager::PlaySoundStream(gbAudioManager *this,int param_1,char *param_2,int param_3)\n\n{\n  int iVar1;\n  undefined4 uVar2;\n  \n                    /* 0x1bc0  734  ?PlaySoundStream@gbAudioManager@@QAEXHPADH@Z */\n  if (*(int *)(this + param_1 * 4) != 0) {\n    _AIL_register_stream_callback_8(*(int *)(this + param_1 * 4),0);\n    _AIL_close_stream_4(*(undefined4 *)(this + param_1 * 4));\n  }\n  iVar1 = _AIL_open_stream_12(*(undefined4 *)(this + 0x18),param_2,0);\n  *(int *)(this + param_1 * 4) = iVar1;\n  if (iVar1 != 0) {\n    _AIL_register_stream_callback_8(iVar1,&LAB_10001b40);\n    _AIL_start_stream_4(*(undefined4 *)(this + param_1 * 4));\n    *(undefined4 *)(this + param_1 * 4 + 0xc) = 1;\n    uVar2 = __ftol();\n    _AIL_set_stream_volume_8(*(undefined4 *)(this + param_1 * 4),uVar2);\n    _AIL_set_stream_loop_count_8(*(undefined4 *)(this + param_1 * 4),param_3);\n  }\n  return;\n}\n\n", 
+  "is_thunk": false, 
+  "name": "PlaySoundStream", 
+  "assembly": "  10001bc0:  PUSH EBX\n  10001bc1:  PUSH ESI\n  10001bc2:  MOV EBX,dword ptr [0x100f5310]\n  10001bc8:  PUSH EDI\n  10001bc9:  MOV EDI,dword ptr [ESP + 0x10]\n  10001bcd:  MOV ESI,ECX\n  10001bcf:  MOV EAX,dword ptr [ESI + EDI*0x4]\n  10001bd2:  TEST EAX,EAX\n  10001bd4:  JZ 0x10001be5\n  10001bd6:  PUSH 0x0\n  10001bd8:  PUSH EAX\n  10001bd9:  CALL EBX\n  10001bdb:  MOV EAX,dword ptr [ESI + EDI*0x4]\n  10001bde:  PUSH EAX\n  10001bdf:  CALL dword ptr [0x100f52b0]\n  10001be5:  MOV ECX,dword ptr [ESP + 0x14]\n  10001be9:  MOV EDX,dword ptr [ESI + 0x18]\n  10001bec:  PUSH 0x0\n  10001bee:  PUSH ECX\n  10001bef:  PUSH EDX\n  10001bf0:  CALL dword ptr [0x100f5280]\n  10001bf6:  TEST EAX,EAX\n  10001bf8:  MOV dword ptr [ESI + EDI*0x4],EAX\n  10001bfb:  JZ 0x10001c42\n  10001bfd:  PUSH 0x10001b40\n  10001c02:  PUSH EAX\n  10001c03:  CALL EBX\n  10001c05:  MOV EAX,dword ptr [ESI + EDI*0x4]\n  10001c08:  PUSH EAX\n  10001c09:  CALL dword ptr [0x100f5288]\n  10001c0f:  MOV dword ptr [ESI + EDI*0x4 + 0xc],0x1\n  10001c17:  FLD dword ptr [ESI + 0xd4]\n  10001c1d:  FMUL dword ptr [0x100f533c]\n  10001c23:  CALL 0x100e4be4\n  10001c28:  MOV ECX,dword ptr [ESI + EDI*0x4]\n  10001c2b:  PUSH EAX\n  10001c2c:  PUSH ECX\n  10001c2d:  CALL dword ptr [0x100f530c]\n  10001c33:  MOV EDX,dword ptr [ESP + 0x18]\n  10001c37:  MOV EAX,dword ptr [ESI + EDI*0x4]\n  10001c3a:  PUSH EDX\n  10001c3b:  PUSH EAX\n  10001c3c:  CALL dword ptr [0x100f5284]\n  10001c42:  POP EDI\n  10001c43:  POP ESI\n  10001c44:  POP EBX\n  10001c45:  RET 0xc", 
+  "callers": []
+}

@@ -1,0 +1,35 @@
+{
+  "address": "0x100eb7c0", 
+  "size_bytes": 291, 
+  "calling_convention": "__cdecl", 
+  "signature": "char * __cdecl _strncat(char * _Dest, char * _Source, size_t _Count)", 
+  "callees": [], 
+  "global_refs": [
+    {
+      "address": "0x0000000c", 
+      "type": null, 
+      "name": "DAT_0000000c"
+    }, 
+    {
+      "address": "0x00000004", 
+      "type": null, 
+      "name": "DAT_00000004"
+    }, 
+    {
+      "address": "0x00000008", 
+      "type": null, 
+      "name": "DAT_00000008"
+    }
+  ], 
+  "has_custom_name": true, 
+  "decompiled_c": "\n/* Library Function - Single Match\n    _strncat\n   \n   Libraries: Visual Studio 1998 Debug, Visual Studio 1998 Release */\n\nchar * __cdecl _strncat(char *_Dest,char *_Source,size_t _Count)\n\n{\n  byte bVar1;\n  uint uVar2;\n  uint uVar3;\n  uint uVar4;\n  uint *puVar5;\n  uint *puVar6;\n  \n  if (_Count != 0) {\n    uVar4 = (uint)_Dest & 3;\n    puVar5 = (uint *)_Dest;\n    while (uVar4 != 0) {\n      bVar1 = *(byte *)puVar5;\n      puVar5 = (uint *)((int)puVar5 + 1);\n      if (bVar1 == 0) goto LAB_100eb81b;\n      uVar4 = (uint)puVar5 & 3;\n    }\n    do {\n      do {\n        puVar6 = puVar5;\n        puVar5 = puVar6 + 1;\n      } while (((*puVar6 ^ 0xffffffff ^ *puVar6 + 0x7efefeff) & 0x81010100) == 0);\n      uVar4 = *puVar6;\n      if ((char)uVar4 == '\\0') goto LAB_100eb82b;\n      if ((char)(uVar4 >> 8) == '\\0') {\n        puVar6 = (uint *)((int)puVar6 + 1);\n        goto LAB_100eb82b;\n      }\n      if ((uVar4 & 0xff0000) == 0) {\n        puVar6 = (uint *)((int)puVar6 + 2);\n        goto LAB_100eb82b;\n      }\n    } while ((uVar4 & 0xff000000) != 0);\nLAB_100eb81b:\n    puVar6 = (uint *)((int)puVar5 + -1);\nLAB_100eb82b:\n    if (((uint)_Source & 3) == 0) {\n      uVar3 = _Count >> 2;\n    }\n    else {\n      do {\n        bVar1 = *_Source;\n        uVar4 = (uint)bVar1;\n        _Source = (char *)((int)_Source + 1);\n        if (bVar1 == 0) goto LAB_100eb87a;\n        *(byte *)puVar6 = bVar1;\n        puVar6 = (uint *)((int)puVar6 + 1);\n        _Count = _Count - 1;\n        if (_Count == 0) goto LAB_100eb870;\n      } while (((uint)_Source & 3) != 0);\n      uVar3 = _Count >> 2;\n    }\n    for (; uVar3 != 0; uVar3 = uVar3 - 1) {\n      uVar2 = *(uint *)_Source;\n      uVar4 = *(uint *)_Source;\n      _Source = (char *)((int)_Source + 4);\n      if (((uVar2 ^ 0xffffffff ^ uVar2 + 0x7efefeff) & 0x81010100) != 0) {\n        if ((char)uVar4 == '\\0') {\nLAB_100eb87a:\n          *(byte *)puVar6 = (byte)uVar4;\n          return _Dest;\n        }\n        if ((char)(uVar4 >> 8) == '\\0') {\n          *(short *)puVar6 = (short)uVar4;\n          return _Dest;\n        }\n        if ((uVar4 & 0xff0000) == 0) {\n          *(short *)puVar6 = (short)uVar4;\n          *(byte *)((int)puVar6 + 2) = 0;\n          return _Dest;\n        }\n        if ((uVar4 & 0xff000000) == 0) {\n          *puVar6 = uVar4;\n          return _Dest;\n        }\n      }\n      *puVar6 = uVar4;\n      puVar6 = puVar6 + 1;\n    }\n    for (_Count = _Count & 3; _Count != 0; _Count = _Count - 1) {\n      bVar1 = *_Source;\n      _Source = (char *)((int)_Source + 1);\n      *(byte *)puVar6 = bVar1;\n      puVar6 = (uint *)((int)puVar6 + 1);\n      if (bVar1 == 0) {\n        return _Dest;\n      }\n    }\nLAB_100eb870:\n    *(byte *)puVar6 = (byte)_Count;\n  }\n  return _Dest;\n}\n\n", 
+  "is_thunk": false, 
+  "name": "_strncat", 
+  "assembly": "  100eb7c0:  MOV ECX,dword ptr [ESP + 0xc]\n  100eb7c4:  PUSH EDI\n  100eb7c5:  TEST ECX,ECX\n  100eb7c7:  JZ 0x100eb874\n  100eb7cd:  MOV EDI,dword ptr [ESP + 0x8]\n  100eb7d1:  PUSH ESI\n  100eb7d2:  TEST EDI,0x3\n  100eb7d8:  PUSH EBX\n  100eb7d9:  JZ 0x100eb7ea\n  100eb7db:  MOV AL,byte ptr [EDI]\n  100eb7dd:  INC EDI\n  100eb7de:  TEST AL,AL\n  100eb7e0:  JZ 0x100eb81b\n  100eb7e2:  TEST EDI,0x3\n  100eb7e8:  JNZ 0x100eb7db\n  100eb7ea:  MOV EAX,dword ptr [EDI]\n  100eb7ec:  MOV EDX,0x7efefeff\n  100eb7f1:  ADD EDX,EAX\n  100eb7f3:  XOR EAX,0xffffffff\n  100eb7f6:  XOR EAX,EDX\n  100eb7f8:  ADD EDI,0x4\n  100eb7fb:  TEST EAX,0x81010100\n  100eb800:  JZ 0x100eb7ea\n  100eb802:  MOV EAX,dword ptr [EDI + -0x4]\n  100eb805:  TEST AL,AL\n  100eb807:  JZ 0x100eb828\n  100eb809:  TEST AH,AH\n  100eb80b:  JZ 0x100eb823\n  100eb80d:  TEST EAX,0xff0000\n  100eb812:  JZ 0x100eb81e\n  100eb814:  TEST EAX,0xff000000\n  100eb819:  JNZ 0x100eb7ea\n  100eb81b:  DEC EDI\n  100eb81c:  JMP 0x100eb82b\n  100eb81e:  SUB EDI,0x2\n  100eb821:  JMP 0x100eb82b\n  100eb823:  SUB EDI,0x3\n  100eb826:  JMP 0x100eb82b\n  100eb828:  SUB EDI,0x4\n  100eb82b:  MOV ESI,dword ptr [ESP + 0x14]\n  100eb82f:  TEST ESI,0x3\n  100eb835:  JNZ 0x100eb840\n  100eb837:  MOV EBX,ECX\n  100eb839:  SHR ECX,0x2\n  100eb83c:  JNZ 0x100eb88c\n  100eb83e:  JMP 0x100eb85c\n  100eb840:  MOV DL,byte ptr [ESI]\n  100eb842:  INC ESI\n  100eb843:  TEST DL,DL\n  100eb845:  JZ 0x100eb87a\n  100eb847:  MOV byte ptr [EDI],DL\n  100eb849:  INC EDI\n  100eb84a:  DEC ECX\n  100eb84b:  JZ 0x100eb870\n  100eb84d:  TEST ESI,0x3\n  100eb853:  JNZ 0x100eb840\n  100eb855:  MOV EBX,ECX\n  100eb857:  SHR ECX,0x2\n  100eb85a:  JNZ 0x100eb88c\n  100eb85c:  MOV ECX,EBX\n  100eb85e:  AND ECX,0x3\n  100eb861:  JZ 0x100eb870\n  100eb863:  MOV DL,byte ptr [ESI]\n  100eb865:  INC ESI\n  100eb866:  MOV byte ptr [EDI],DL\n  100eb868:  INC EDI\n  100eb869:  TEST DL,DL\n  100eb86b:  JZ 0x100eb872\n  100eb86d:  DEC ECX\n  100eb86e:  JNZ 0x100eb863\n  100eb870:  MOV byte ptr [EDI],CL\n  100eb872:  POP EBX\n  100eb873:  POP ESI\n  100eb874:  MOV EAX,dword ptr [ESP + 0x8]\n  100eb878:  POP EDI\n  100eb879:  RET\n  100eb87a:  MOV byte ptr [EDI],DL\n  100eb87c:  MOV EAX,dword ptr [ESP + 0x10]\n  100eb880:  POP EBX\n  100eb881:  POP ESI\n  100eb882:  POP EDI\n  100eb883:  RET\n  100eb884:  MOV dword ptr [EDI],EDX\n  100eb886:  ADD EDI,0x4\n  100eb889:  DEC ECX\n  100eb88a:  JZ 0x100eb85c\n  100eb88c:  MOV EDX,0x7efefeff\n  100eb891:  MOV EAX,dword ptr [ESI]\n  100eb893:  ADD EDX,EAX\n  100eb895:  XOR EAX,0xffffffff\n  100eb898:  XOR EAX,EDX\n  100eb89a:  MOV EDX,dword ptr [ESI]\n  100eb89c:  ADD ESI,0x4\n  100eb89f:  TEST EAX,0x81010100\n  100eb8a4:  JZ 0x100eb884\n  100eb8a6:  TEST DL,DL\n  100eb8a8:  JZ 0x100eb87a\n  100eb8aa:  TEST DH,DH\n  100eb8ac:  JZ 0x100eb8d8\n  100eb8ae:  TEST EDX,0xff0000\n  100eb8b4:  JZ 0x100eb8c8\n  100eb8b6:  TEST EDX,0xff000000\n  100eb8bc:  JNZ 0x100eb884\n  100eb8be:  MOV dword ptr [EDI],EDX\n  100eb8c0:  MOV EAX,dword ptr [ESP + 0x10]\n  100eb8c4:  POP EBX\n  100eb8c5:  POP ESI\n  100eb8c6:  POP EDI\n  100eb8c7:  RET\n  100eb8c8:  MOV word ptr [EDI],DX\n  100eb8cb:  XOR EDX,EDX\n  100eb8cd:  MOV EAX,dword ptr [ESP + 0x10]\n  100eb8d1:  MOV byte ptr [EDI + 0x2],DL\n  100eb8d4:  POP EBX\n  100eb8d5:  POP ESI\n  100eb8d6:  POP EDI\n  100eb8d7:  RET\n  100eb8d8:  MOV word ptr [EDI],DX\n  100eb8db:  MOV EAX,dword ptr [ESP + 0x10]\n  100eb8df:  POP EBX\n  100eb8e0:  POP ESI\n  100eb8e1:  POP EDI\n  100eb8e2:  RET", 
+  "callers": [
+    {
+      "address": "0x100e57ae", 
+      "name": "FUN_100e57ae"
+    }
+  ]
+}

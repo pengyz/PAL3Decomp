@@ -1,0 +1,96 @@
+{
+  "address": "0x100e5c9f", 
+  "size_bytes": 60, 
+  "calling_convention": "unknown", 
+  "signature": "undefined FUN_100e5c9f(undefined4 param_1, undefined4 param_2, undefined1 param_3)", 
+  "callees": [
+    {
+      "address": "0x100ec11b", 
+      "name": "FUN_100ec11b"
+    }, 
+    {
+      "address": "0x100ec401", 
+      "name": "FUN_100ec401"
+    }, 
+    {
+      "address": "0x100e9a0c", 
+      "name": "FUN_100e9a0c"
+    }, 
+    {
+      "address": "0x100ec48e", 
+      "name": "FUN_100ec48e"
+    }, 
+    {
+      "address": "0x100ec16d", 
+      "name": "FUN_100ec16d"
+    }
+  ], 
+  "global_refs": [
+    {
+      "address": "0x00000004", 
+      "type": null, 
+      "name": "DAT_00000004"
+    }, 
+    {
+      "address": "0x0000000c", 
+      "type": null, 
+      "name": "DAT_0000000c"
+    }, 
+    {
+      "address": "0x00000008", 
+      "type": null, 
+      "name": "DAT_00000008"
+    }
+  ], 
+  "has_custom_name": false, 
+  "decompiled_c": "\nundefined4 FUN_100e5c9f(undefined4 param_1,undefined4 param_2)\n\n{\n  undefined4 uVar1;\n  undefined4 uVar2;\n  \n  FUN_100ec11b(param_1);\n  uVar1 = FUN_100ec401(param_1);\n  uVar2 = FUN_100e9a0c(param_1,param_2,&stack0x0000000c);\n  FUN_100ec48e(uVar1,param_1);\n  FUN_100ec16d(param_1);\n  return uVar2;\n}\n\n", 
+  "is_thunk": false, 
+  "name": "FUN_100e5c9f", 
+  "assembly": "  100e5c9f:  PUSH EBX\n  100e5ca0:  PUSH ESI\n  100e5ca1:  MOV ESI,dword ptr [ESP + 0xc]\n  100e5ca5:  PUSH EDI\n  100e5ca6:  PUSH ESI\n  100e5ca7:  CALL 0x100ec11b\n  100e5cac:  PUSH ESI\n  100e5cad:  CALL 0x100ec401\n  100e5cb2:  MOV EDI,EAX\n  100e5cb4:  LEA EAX,[ESP + 0x20]\n  100e5cb8:  PUSH EAX\n  100e5cb9:  PUSH dword ptr [ESP + 0x20]\n  100e5cbd:  PUSH ESI\n  100e5cbe:  CALL 0x100e9a0c\n  100e5cc3:  PUSH ESI\n  100e5cc4:  PUSH EDI\n  100e5cc5:  MOV EBX,EAX\n  100e5cc7:  CALL 0x100ec48e\n  100e5ccc:  PUSH ESI\n  100e5ccd:  CALL 0x100ec16d\n  100e5cd2:  ADD ESP,0x20\n  100e5cd5:  MOV EAX,EBX\n  100e5cd7:  POP EDI\n  100e5cd8:  POP ESI\n  100e5cd9:  POP EBX\n  100e5cda:  RET", 
+  "callers": [
+    {
+      "address": "0x1002e980", 
+      "name": "gbReportError"
+    }, 
+    {
+      "address": "0x1002e930", 
+      "name": "gbLogInfo"
+    }, 
+    {
+      "address": "0x1002e9d0", 
+      "name": "gbPopErrorBox"
+    }, 
+    {
+      "address": "0x1002f0b0", 
+      "name": "gbInitDispSetting"
+    }, 
+    {
+      "address": "0x10031670", 
+      "name": "WriteSection"
+    }, 
+    {
+      "address": "0x10031690", 
+      "name": "WriteLine"
+    }, 
+    {
+      "address": "0x100316b0", 
+      "name": "WriteLine"
+    }, 
+    {
+      "address": "0x100316d0", 
+      "name": "WriteLine"
+    }, 
+    {
+      "address": "0x10031700", 
+      "name": "WriteLine"
+    }, 
+    {
+      "address": "0x10031730", 
+      "name": "WriteLineSeperator"
+    }, 
+    {
+      "address": "0x100319b0", 
+      "name": "ProfileDumpOutputToFile"
+    }
+  ]
+}

@@ -1,0 +1,51 @@
+{
+  "address": "0x100e6710", 
+  "size_bytes": 120, 
+  "calling_convention": "__cdecl", 
+  "signature": "noreturn void __cdecl _longjmp(int * _Buf, int _Value)", 
+  "callees": [
+    {
+      "address": "0x100e4928", 
+      "name": "__global_unwind2"
+    }, 
+    {
+      "address": "0x100eda10", 
+      "name": "FUN_100eda10"
+    }, 
+    {
+      "address": "0x100e496a", 
+      "name": "__local_unwind2"
+    }, 
+    {
+      "address": "0x100e49fe", 
+      "name": "FUN_100e49fe"
+    }
+  ], 
+  "global_refs": [
+    {
+      "address": "0x00000004", 
+      "type": null, 
+      "name": "DAT_00000004"
+    }, 
+    {
+      "address": "0xffdff000", 
+      "type": "void *32", 
+      "name": "DAT_ffdff000"
+    }
+  ], 
+  "has_custom_name": true, 
+  "decompiled_c": "\n/* WARNING: Unable to track spacebase fully for stack */\n/* Library Function - Single Match\n    _longjmp\n   \n   Libraries: Visual Studio 1998 Debug, Visual Studio 1998 Release, Visual Studio 2003 Debug, Visual\n   Studio 2003 Release */\n\nvoid __cdecl _longjmp(int *_Buf,int _Value)\n\n{\n  void *pvVar1;\n  int iVar2;\n  \n  pvVar1 = (void *)_Buf[6];\n  if (pvVar1 != ExceptionList) {\n    __global_unwind2(pvVar1);\n  }\n  if (pvVar1 != (void *)0x0) {\n    iVar2 = FUN_100eda10(_Buf + 8);\n    if ((iVar2 == 0) || (_Buf[8] != 0x56433230)) {\n      __local_unwind2(pvVar1,_Buf[7]);\n    }\n    else if ((code *)_Buf[9] != (code *)0x0) {\n      (*(code *)_Buf[9])(_Buf);\n    }\n  }\n  FUN_100e49fe(0);\n                    /* WARNING: Could not recover jumptable at 0x100e6785. Too many branches */\n                    /* WARNING: Treating indirect jump as call */\n  (*(code *)_Buf[5])();\n  return;\n}\n\n", 
+  "is_thunk": false, 
+  "name": "_longjmp", 
+  "assembly": "  100e6710:  MOV EBX,dword ptr [ESP + 0x4]\n  100e6714:  MOV EBP,dword ptr [EBX]\n  100e6716:  MOV ESI,dword ptr [EBX + 0x18]\n  100e6719:  CMP ESI,dword ptr FS:[0x0]\n  100e6720:  JZ 0x100e672b\n  100e6722:  PUSH ESI\n  100e6723:  CALL 0x100e4928\n  100e6728:  ADD ESP,0x4\n  100e672b:  CMP ESI,0x0\n  100e672e:  JZ 0x100e6760\n  100e6730:  LEA EAX,[EBX + 0x20]\n  100e6733:  PUSH EAX\n  100e6734:  CALL 0x100eda10\n  100e6739:  OR EAX,EAX\n  100e673b:  JZ 0x100e6753\n  100e673d:  MOV EAX,dword ptr [EBX + 0x20]\n  100e6740:  CMP EAX,0x56433230\n  100e6745:  JNZ 0x100e6753\n  100e6747:  MOV EAX,dword ptr [EBX + 0x24]\n  100e674a:  OR EAX,EAX\n  100e674c:  JZ 0x100e6760\n  100e674e:  PUSH EBX\n  100e674f:  CALL EAX\n  100e6751:  JMP 0x100e6760\n  100e6753:  MOV EAX,dword ptr [EBX + 0x1c]\n  100e6756:  PUSH EAX\n  100e6757:  PUSH ESI\n  100e6758:  CALL 0x100e496a\n  100e675d:  ADD ESP,0x8\n  100e6760:  PUSH 0x0\n  100e6762:  MOV EAX,dword ptr [EBX + 0x14]\n  100e6765:  CALL 0x100e49fe\n  100e676a:  MOV EDX,EBX\n  100e676c:  MOV EBX,dword ptr [EDX + 0x4]\n  100e676f:  MOV EDI,dword ptr [EDX + 0x8]\n  100e6772:  MOV ESI,dword ptr [EDX + 0xc]\n  100e6775:  MOV EAX,dword ptr [ESP + 0x8]\n  100e6779:  CMP EAX,0x1\n  100e677c:  ADC EAX,0x0\n  100e677f:  MOV ESP,dword ptr [EDX + 0x10]\n  100e6782:  ADD ESP,0x4\n  100e6785:  JMP dword ptr [EDX + 0x14]", 
+  "callers": [
+    {
+      "address": "0x10078bd5", 
+      "name": "FUN_10078bd5"
+    }, 
+    {
+      "address": "0x100352d0", 
+      "name": "FUN_100352d0"
+    }
+  ]
+}

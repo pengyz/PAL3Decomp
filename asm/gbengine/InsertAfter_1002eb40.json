@@ -1,0 +1,34 @@
+{
+  "address": "0x1002eb40", 
+  "size_bytes": 70, 
+  "calling_convention": "__thiscall", 
+  "signature": "void __thiscall InsertAfter(gbChain1D * this, gbChain1DNode * param_1, gbChain1DNode * param_2)", 
+  "callees": [], 
+  "global_refs": [
+    {
+      "address": "0x00000008", 
+      "type": null, 
+      "name": "DAT_00000008"
+    }, 
+    {
+      "address": "0x00000004", 
+      "type": null, 
+      "name": "DAT_00000004"
+    }
+  ], 
+  "has_custom_name": true, 
+  "decompiled_c": "\n/* public: void __thiscall gbChain1D::InsertAfter(class gbChain1DNode *,class gbChain1DNode *) */\n\nvoid __thiscall\ngbChain1D::InsertAfter(gbChain1D *this,gbChain1DNode *param_1,gbChain1DNode *param_2)\n\n{\n                    /* 0x2eb40  604  ?InsertAfter@gbChain1D@@QAEXPAVgbChain1DNode@@0@Z */\n  if (param_2 == (gbChain1DNode *)0x0) {\n    *(undefined4 *)(param_1 + 4) = *(undefined4 *)this;\n    *(gbChain1DNode **)this = param_1;\n    if (*(int *)(this + 4) == 0) {\n      *(gbChain1DNode **)(this + 4) = param_1;\n      *(int *)(this + 8) = *(int *)(this + 8) + 1;\n      return;\n    }\n  }\n  else {\n    *(undefined4 *)(param_1 + 4) = *(undefined4 *)(param_2 + 4);\n    *(gbChain1DNode **)(param_2 + 4) = param_1;\n    if (*(gbChain1DNode **)(this + 4) == param_2) {\n      *(gbChain1DNode **)(this + 4) = param_1;\n    }\n  }\n  *(int *)(this + 8) = *(int *)(this + 8) + 1;\n  return;\n}\n\n", 
+  "is_thunk": false, 
+  "name": "InsertAfter", 
+  "assembly": "  1002eb40:  MOV EAX,dword ptr [ESP + 0x8]\n  1002eb44:  TEST EAX,EAX\n  1002eb46:  JNZ 0x1002eb67\n  1002eb48:  MOV EAX,dword ptr [ESP + 0x4]\n  1002eb4c:  MOV EDX,dword ptr [ECX]\n  1002eb4e:  MOV dword ptr [EAX + 0x4],EDX\n  1002eb51:  MOV EDX,dword ptr [ECX + 0x4]\n  1002eb54:  TEST EDX,EDX\n  1002eb56:  MOV dword ptr [ECX],EAX\n  1002eb58:  JNZ 0x1002eb80\n  1002eb5a:  MOV dword ptr [ECX + 0x4],EAX\n  1002eb5d:  MOV EAX,dword ptr [ECX + 0x8]\n  1002eb60:  INC EAX\n  1002eb61:  MOV dword ptr [ECX + 0x8],EAX\n  1002eb64:  RET 0x8\n  1002eb67:  MOV EDX,dword ptr [ESP + 0x4]\n  1002eb6b:  PUSH ESI\n  1002eb6c:  MOV ESI,dword ptr [EAX + 0x4]\n  1002eb6f:  MOV dword ptr [EDX + 0x4],ESI\n  1002eb72:  MOV dword ptr [EAX + 0x4],EDX\n  1002eb75:  MOV ESI,dword ptr [ECX + 0x4]\n  1002eb78:  CMP ESI,EAX\n  1002eb7a:  POP ESI\n  1002eb7b:  JNZ 0x1002eb80\n  1002eb7d:  MOV dword ptr [ECX + 0x4],EDX\n  1002eb80:  INC dword ptr [ECX + 0x8]\n  1002eb83:  RET 0x8", 
+  "callers": [
+    {
+      "address": "0x10020b20", 
+      "name": "DelBubble"
+    }, 
+    {
+      "address": "0x10020fe0", 
+      "name": "DelBubble"
+    }
+  ]
+}

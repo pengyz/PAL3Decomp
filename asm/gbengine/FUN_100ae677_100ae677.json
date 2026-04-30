@@ -1,0 +1,52 @@
+{
+  "address": "0x100ae677", 
+  "size_bytes": 117, 
+  "calling_convention": "unknown", 
+  "signature": "undefined FUN_100ae677(undefined4 param_1, undefined4 param_2)", 
+  "callees": [
+    {
+      "address": "0x100a9dcd", 
+      "name": "FUN_100a9dcd"
+    }, 
+    {
+      "address": "0x1009dba6", 
+      "name": "FUN_1009dba6"
+    }, 
+    {
+      "address": "0x100ae677", 
+      "name": "FUN_100ae677"
+    }
+  ], 
+  "global_refs": [
+    {
+      "address": "0x00000004", 
+      "type": null, 
+      "name": "DAT_00000004"
+    }, 
+    {
+      "address": "0x00000008", 
+      "type": null, 
+      "name": "DAT_00000008"
+    }, 
+    {
+      "address": "0x1010bcac", 
+      "type": "string", 
+      "name": "DAT_1010bcac"
+    }
+  ], 
+  "has_custom_name": false, 
+  "decompiled_c": "\nundefined4 FUN_100ae677(uint *param_1,int param_2)\n\n{\n  int iVar1;\n  int in_ECX;\n  uint uVar2;\n  \n  iVar1 = FUN_100a9dcd(*param_1 & 0xfff00000);\n  uVar2 = 0;\n  if (iVar1 != 0) {\n    if (param_1[5] == 0) {\n      return 1;\n    }\n    if (param_2 != 0) {\n      FUN_1009dba6();\n      return 0;\n    }\n    param_2 = 1;\n  }\n  if (param_1[5] != 0) {\n    do {\n      iVar1 = FUN_100ae677(*(undefined4 *)\n                            (*(int *)(in_ECX + 0x18) + *(int *)(param_1[6] + uVar2 * 4) * 4),param_2\n                          );\n      if (iVar1 == 0) {\n        return 0;\n      }\n      uVar2 = uVar2 + 1;\n    } while (uVar2 < param_1[5]);\n  }\n  return 1;\n}\n\n", 
+  "is_thunk": false, 
+  "name": "FUN_100ae677", 
+  "assembly": "  100ae677:  PUSH EBX\n  100ae678:  PUSH ESI\n  100ae679:  MOV ESI,dword ptr [ESP + 0xc]\n  100ae67d:  MOV EAX,dword ptr [ESI]\n  100ae67f:  PUSH EDI\n  100ae680:  AND EAX,0xfff00000\n  100ae685:  PUSH EAX\n  100ae686:  MOV EBX,ECX\n  100ae688:  CALL 0x100a9dcd\n  100ae68d:  XOR EDI,EDI\n  100ae68f:  TEST EAX,EAX\n  100ae691:  JZ 0x100ae6bd\n  100ae693:  CMP dword ptr [ESI + 0x14],EDI\n  100ae696:  JZ 0x100ae6e3\n  100ae698:  CMP dword ptr [ESP + 0x14],0x1\n  100ae69d:  JC 0x100ae6b9\n  100ae69f:  PUSH 0x1010bcac\n  100ae6a4:  PUSH 0x1194\n  100ae6a9:  PUSH dword ptr [ESI + 0x3c]\n  100ae6ac:  PUSH EBX\n  100ae6ad:  CALL 0x1009dba6\n  100ae6b2:  ADD ESP,0x10\n  100ae6b5:  XOR EAX,EAX\n  100ae6b7:  JMP 0x100ae6e6\n  100ae6b9:  INC dword ptr [ESP + 0x14]\n  100ae6bd:  CMP dword ptr [ESI + 0x14],EDI\n  100ae6c0:  JBE 0x100ae6e3\n  100ae6c2:  MOV EAX,dword ptr [ESI + 0x18]\n  100ae6c5:  PUSH dword ptr [ESP + 0x14]\n  100ae6c9:  MOV ECX,dword ptr [EBX + 0x18]\n  100ae6cc:  MOV EAX,dword ptr [EAX + EDI*0x4]\n  100ae6cf:  PUSH dword ptr [ECX + EAX*0x4]\n  100ae6d2:  MOV ECX,EBX\n  100ae6d4:  CALL 0x100ae677\n  100ae6d9:  TEST EAX,EAX\n  100ae6db:  JZ 0x100ae6b5\n  100ae6dd:  INC EDI\n  100ae6de:  CMP EDI,dword ptr [ESI + 0x14]\n  100ae6e1:  JC 0x100ae6c2\n  100ae6e3:  XOR EAX,EAX\n  100ae6e5:  INC EAX\n  100ae6e6:  POP EDI\n  100ae6e7:  POP ESI\n  100ae6e8:  POP EBX\n  100ae6e9:  RET 0x8", 
+  "callers": [
+    {
+      "address": "0x100ae6ec", 
+      "name": "FUN_100ae6ec"
+    }, 
+    {
+      "address": "0x100ae677", 
+      "name": "FUN_100ae677"
+    }
+  ]
+}

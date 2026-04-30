@@ -1,0 +1,20 @@
+{
+  "address": "0x1002c360", 
+  "size_bytes": 21, 
+  "calling_convention": "__thiscall", 
+  "signature": "gbParticleGroup * __thiscall GetParticleGroup(gbParticleEffect * this, int param_1)", 
+  "callees": [], 
+  "global_refs": [
+    {
+      "address": "0x00000004", 
+      "type": null, 
+      "name": "DAT_00000004"
+    }
+  ], 
+  "has_custom_name": true, 
+  "decompiled_c": "\n/* public: class gbParticleGroup * __thiscall gbParticleEffect::GetParticleGroup(int) */\n\ngbParticleGroup * __thiscall gbParticleEffect::GetParticleGroup(gbParticleEffect *this,int param_1)\n\n{\n                    /* 0x2c360  519  ?GetParticleGroup@gbParticleEffect@@QAEPAVgbParticleGroup@@H@Z\n                        */\n  return (gbParticleGroup *)(*(int *)(this + 0xa4) + param_1 * 0x90);\n}\n\n", 
+  "is_thunk": false, 
+  "name": "GetParticleGroup", 
+  "assembly": "  1002c360:  MOV EAX,dword ptr [ESP + 0x4]\n  1002c364:  LEA EDX,[EAX + EAX*0x8]\n  1002c367:  MOV EAX,dword ptr [ECX + 0xa4]\n  1002c36d:  SHL EDX,0x4\n  1002c370:  ADD EAX,EDX\n  1002c372:  RET 0x4", 
+  "callers": []
+}

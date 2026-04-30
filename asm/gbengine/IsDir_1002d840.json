@@ -1,0 +1,20 @@
+{
+  "address": "0x1002d840", 
+  "size_bytes": 137, 
+  "calling_convention": "__thiscall", 
+  "signature": "bool __thiscall IsDir(CPK * this, ulong param_1)", 
+  "callees": [], 
+  "global_refs": [
+    {
+      "address": "0x00000004", 
+      "type": null, 
+      "name": "DAT_00000004"
+    }
+  ], 
+  "has_custom_name": true, 
+  "decompiled_c": "\n/* private: bool __thiscall CPK::IsDir(unsigned long) */\n\nbool __thiscall CPK::IsDir(CPK *this,ulong param_1)\n\n{\n  int iVar1;\n  int iVar2;\n  int iVar3;\n  \n                    /* 0x2d840  632  ?IsDir@CPK@@AAE_NK@Z */\n  if (param_1 == 0) {\n    return true;\n  }\n  iVar2 = 0;\n  iVar3 = *(int *)(this + 0x28);\n  if (*(int *)(this + 0x28) != 0) {\n    do {\n      iVar1 = (iVar3 - iVar2) / 2 + iVar2;\n      if (((param_1 == *(uint *)(this + iVar1 * 0x1c + 0x88)) &&\n          ((*(uint *)(this + (iVar1 + 5) * 0x1c) & 1) != 0)) &&\n         ((*(uint *)(this + (iVar1 + 5) * 0x1c) & 0x10) == 0)) goto LAB_1002d8af;\n      if (iVar3 == iVar2 + 1) break;\n      if (*(uint *)(this + iVar1 * 0x1c + 0x88) <= param_1) {\n        iVar2 = iVar1;\n        iVar1 = iVar3;\n      }\n      iVar3 = iVar1;\n    } while (iVar1 != iVar2);\n  }\n  iVar1 = -1;\nLAB_1002d8af:\n  return (bool)((byte)(*(uint *)(this + (iVar1 + 5) * 0x1c) >> 1) & 1);\n}\n\n", 
+  "is_thunk": false, 
+  "name": "IsDir", 
+  "assembly": "  1002d840:  PUSH EBP\n  1002d841:  MOV EBP,dword ptr [ESP + 0x8]\n  1002d845:  TEST EBP,EBP\n  1002d847:  JNZ 0x1002d84f\n  1002d849:  MOV AL,0x1\n  1002d84b:  POP EBP\n  1002d84c:  RET 0x4\n  1002d84f:  PUSH EBX\n  1002d850:  PUSH ESI\n  1002d851:  PUSH EDI\n  1002d852:  MOV EDI,dword ptr [ECX + 0x28]\n  1002d855:  XOR ESI,ESI\n  1002d857:  TEST EDI,EDI\n  1002d859:  JZ 0x1002d8ac\n  1002d85b:  MOV EAX,EDI\n  1002d85d:  SUB EAX,ESI\n  1002d85f:  CDQ\n  1002d860:  SUB EAX,EDX\n  1002d862:  SAR EAX,0x1\n  1002d864:  ADD EAX,ESI\n  1002d866:  LEA EDX,[EAX*0x8 + 0x0]\n  1002d86d:  SUB EDX,EAX\n  1002d86f:  MOV EBX,dword ptr [ECX + EDX*0x4 + 0x88]\n  1002d876:  CMP EBP,EBX\n  1002d878:  JNZ 0x1002d897\n  1002d87a:  LEA EDX,[EAX + 0x5]\n  1002d87d:  LEA EBP,[EDX*0x8 + 0x0]\n  1002d884:  SUB EBP,EDX\n  1002d886:  MOV EDX,dword ptr [ECX + EBP*0x4]\n  1002d889:  TEST DL,0x1\n  1002d88c:  JZ 0x1002d893\n  1002d88e:  TEST DL,0x10\n  1002d891:  JZ 0x1002d8af\n  1002d893:  MOV EBP,dword ptr [ESP + 0x14]\n  1002d897:  LEA EDX,[ESI + 0x1]\n  1002d89a:  CMP EDI,EDX\n  1002d89c:  JZ 0x1002d8ac\n  1002d89e:  CMP EBP,EBX\n  1002d8a0:  JC 0x1002d8a6\n  1002d8a2:  MOV ESI,EAX\n  1002d8a4:  JMP 0x1002d8a8\n  1002d8a6:  MOV EDI,EAX\n  1002d8a8:  CMP EDI,ESI\n  1002d8aa:  JNZ 0x1002d85b\n  1002d8ac:  OR EAX,0xffffffff\n  1002d8af:  ADD EAX,0x5\n  1002d8b2:  POP EDI\n  1002d8b3:  POP ESI\n  1002d8b4:  POP EBX\n  1002d8b5:  LEA EDX,[EAX*0x8 + 0x0]\n  1002d8bc:  POP EBP\n  1002d8bd:  SUB EDX,EAX\n  1002d8bf:  MOV EAX,dword ptr [ECX + EDX*0x4]\n  1002d8c2:  SHR AL,0x1\n  1002d8c4:  AND AL,0x1\n  1002d8c6:  RET 0x4", 
+  "callers": []
+}

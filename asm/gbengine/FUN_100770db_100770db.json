@@ -1,0 +1,25 @@
+{
+  "address": "0x100770db", 
+  "size_bytes": 90, 
+  "calling_convention": "unknown", 
+  "signature": "undefined FUN_100770db(void)", 
+  "callees": [], 
+  "global_refs": [
+    {
+      "address": "0xffdff000", 
+      "type": "void *32", 
+      "name": "DAT_ffdff000"
+    }
+  ], 
+  "has_custom_name": false, 
+  "decompiled_c": "\n/* WARNING: Removing unreachable block (ram,0x100770f6) */\n\nundefined4 FUN_100770db(void)\n\n{\n  undefined4 *puVar1;\n  undefined4 uVar2;\n  int unaff_EBP;\n  \n  *(undefined4 *)(unaff_EBP + -4) = 0xffffffff;\n  if (*(int *)(unaff_EBP + -0x2c) == 0) {\n    uVar2 = *(undefined4 *)(unaff_EBP + -0x14);\n  }\n  else {\n    puVar1 = (undefined4 *)cpuid_Version_info(1);\n    uVar2 = puVar1[2];\n    *(undefined4 *)(unaff_EBP + -0x2c) = *puVar1;\n    *(undefined4 *)(unaff_EBP + -0x28) = uVar2;\n    if ((*(uint *)(unaff_EBP + -0x28) & 0x2000000) != 0) {\n      *(uint *)(unaff_EBP + -0x14) = *(uint *)(unaff_EBP + -0x14) | 4;\n    }\n    if ((*(uint *)(unaff_EBP + -0x28) & 0x4000000) != 0) {\n      *(uint *)(unaff_EBP + -0x14) = *(uint *)(unaff_EBP + -0x14) | 8;\n    }\n    uVar2 = *(undefined4 *)(unaff_EBP + -0x14);\n  }\n  ExceptionList = *(void **)(unaff_EBP + -0xc);\n  return uVar2;\n}\n\n", 
+  "is_thunk": false, 
+  "name": "FUN_100770db", 
+  "assembly": "  100770db:  OR dword ptr [EBP + -0x4],0xffffffff\n  100770df:  JMP 0x100770e6\n  100770e6:  CMP dword ptr [EBP + -0x2c],0x0\n  100770ea:  JNZ 0x100770f1\n  100770ec:  MOV EAX,dword ptr [EBP + -0x14]\n  100770ef:  JMP 0x1007712b\n  100770f1:  MOV EAX,0x1\n  100770f6:  CPUID\n  100770f8:  MOV dword ptr [EBP + -0x2c],EAX\n  100770fb:  MOV dword ptr [EBP + -0x28],EDX\n  100770fe:  MOV EAX,dword ptr [EBP + -0x28]\n  10077101:  AND EAX,0x2000000\n  10077106:  TEST EAX,EAX\n  10077108:  JZ 0x10077113\n  1007710a:  MOV EAX,dword ptr [EBP + -0x14]\n  1007710d:  OR EAX,0x4\n  10077110:  MOV dword ptr [EBP + -0x14],EAX\n  10077113:  MOV EAX,dword ptr [EBP + -0x28]\n  10077116:  AND EAX,0x4000000\n  1007711b:  TEST EAX,EAX\n  1007711d:  JZ 0x10077128\n  1007711f:  MOV EAX,dword ptr [EBP + -0x14]\n  10077122:  OR EAX,0x8\n  10077125:  MOV dword ptr [EBP + -0x14],EAX\n  10077128:  MOV EAX,dword ptr [EBP + -0x14]\n  1007712b:  MOV ECX,dword ptr [EBP + -0xc]\n  1007712e:  MOV dword ptr FS:[0x0],ECX\n  10077135:  POP EDI\n  10077136:  POP ESI\n  10077137:  POP EBX\n  10077138:  LEAVE\n  10077139:  RET", 
+  "callers": [
+    {
+      "address": "0x10077095", 
+      "name": "FUN_10077095"
+    }
+  ]
+}

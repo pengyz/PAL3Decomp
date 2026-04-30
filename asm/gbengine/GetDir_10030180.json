@@ -1,0 +1,59 @@
+{
+  "address": "0x10030180", 
+  "size_bytes": 73, 
+  "calling_convention": "__thiscall", 
+  "signature": "char * __thiscall GetDir(gbVFile1 * this, char * param_1, int param_2)", 
+  "callees": [
+    {
+      "address": "0x100e56b0", 
+      "name": "_strncpy"
+    }, 
+    {
+      "address": "0x100e4f50", 
+      "name": "_strrchr"
+    }, 
+    {
+      "address": "0x100e4f50", 
+      "name": "_strrchr"
+    }
+  ], 
+  "global_refs": [
+    {
+      "address": "0x00000008", 
+      "type": null, 
+      "name": "DAT_00000008"
+    }, 
+    {
+      "address": "0x00000004", 
+      "type": null, 
+      "name": "DAT_00000004"
+    }
+  ], 
+  "has_custom_name": true, 
+  "decompiled_c": "\n/* public: char * __thiscall gbVFile1::GetDir(char *,int) */\n\nchar * __thiscall gbVFile1::GetDir(gbVFile1 *this,char *param_1,int param_2)\n\n{\n  char *pcVar1;\n  char *pcVar2;\n  \n                    /* 0x30180  449  ?GetDir@gbVFile1@@QAEPADPADH@Z */\n  _strncpy(param_1,(char *)(this + 0xc),param_2);\n  pcVar1 = _strrchr(param_1,0x2f);\n  pcVar2 = _strrchr(param_1,0x5c);\n  if (pcVar1 < pcVar2) {\n    pcVar1 = pcVar2;\n  }\n  if (pcVar1 == (char *)0x0) {\n    *param_1 = '\\0';\n    return param_1;\n  }\n  pcVar1[1] = '\\0';\n  return param_1;\n}\n\n", 
+  "is_thunk": false, 
+  "name": "GetDir", 
+  "assembly": "  10030180:  MOV EAX,dword ptr [ESP + 0x8]\n  10030184:  PUSH ESI\n  10030185:  MOV ESI,dword ptr [ESP + 0x8]\n  10030189:  PUSH EDI\n  1003018a:  ADD ECX,0xc\n  1003018d:  PUSH EAX\n  1003018e:  PUSH ECX\n  1003018f:  PUSH ESI\n  10030190:  CALL 0x100e56b0\n  10030195:  PUSH 0x2f\n  10030197:  PUSH ESI\n  10030198:  CALL 0x100e4f50\n  1003019d:  PUSH 0x5c\n  1003019f:  PUSH ESI\n  100301a0:  MOV EDI,EAX\n  100301a2:  CALL 0x100e4f50\n  100301a7:  ADD ESP,0x1c\n  100301aa:  CMP EAX,EDI\n  100301ac:  JBE 0x100301b0\n  100301ae:  MOV EDI,EAX\n  100301b0:  TEST EDI,EDI\n  100301b2:  JNZ 0x100301be\n  100301b4:  MOV byte ptr [ESI],0x0\n  100301b7:  MOV EAX,ESI\n  100301b9:  POP EDI\n  100301ba:  POP ESI\n  100301bb:  RET 0x8\n  100301be:  MOV byte ptr [EDI + 0x1],0x0\n  100301c2:  MOV EAX,ESI\n  100301c4:  POP EDI\n  100301c5:  POP ESI\n  100301c6:  RET 0x8", 
+  "callers": [
+    {
+      "address": "0x100108b0", 
+      "name": "LoadCVDFile"
+    }, 
+    {
+      "address": "0x10011c60", 
+      "name": "FUN_10011c60"
+    }, 
+    {
+      "address": "0x10015e80", 
+      "name": "LoadFromStream"
+    }, 
+    {
+      "address": "0x10029cf0", 
+      "name": "LoadFromFile"
+    }, 
+    {
+      "address": "0x1002a7f0", 
+      "name": "LoadFromFile"
+    }
+  ]
+}

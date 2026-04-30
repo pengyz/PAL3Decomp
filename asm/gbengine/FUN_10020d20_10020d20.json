@@ -1,0 +1,37 @@
+{
+  "address": "0x10020d20", 
+  "size_bytes": 97, 
+  "calling_convention": "unknown", 
+  "signature": "undefined FUN_10020d20(undefined4 param_1)", 
+  "callees": [], 
+  "global_refs": [
+    {
+      "address": "0x00000004", 
+      "type": null, 
+      "name": "DAT_00000004"
+    }
+  ], 
+  "has_custom_name": false, 
+  "decompiled_c": "\nuint FUN_10020d20(uint param_1)\n\n{\n  uint uVar1;\n  \n  uVar1 = 0;\n  if ((param_1 & 0x80000000) != 0) {\n    return param_1 & 0x7fffffff;\n  }\n  if ((param_1 & 1) != 0) {\n    uVar1 = 0xc;\n  }\n  if ((param_1 & 0x100) != 0) {\n    uVar1 = uVar1 + 0x10;\n  }\n  if ((param_1 & 2) != 0) {\n    uVar1 = uVar1 + 0xc;\n  }\n  if ((param_1 & 4) != 0) {\n    uVar1 = uVar1 + 4;\n  }\n  if ((param_1 & 8) != 0) {\n    uVar1 = uVar1 + 4;\n  }\n  if ((param_1 & 0x10) != 0) {\n    uVar1 = uVar1 + 8;\n  }\n  if ((param_1 & 0x20) != 0) {\n    uVar1 = uVar1 + 8;\n  }\n  if ((param_1 & 0x40) != 0) {\n    uVar1 = uVar1 + 8;\n  }\n  if ((param_1 & 0x80) != 0) {\n    uVar1 = uVar1 + 8;\n  }\n  return uVar1;\n}\n\n", 
+  "is_thunk": false, 
+  "name": "FUN_10020d20", 
+  "assembly": "  10020d20:  MOV ECX,dword ptr [ESP + 0x4]\n  10020d24:  XOR EAX,EAX\n  10020d26:  TEST ECX,0x80000000\n  10020d2c:  JZ 0x10020d36\n  10020d2e:  MOV EAX,ECX\n  10020d30:  AND EAX,0x7fffffff\n  10020d35:  RET\n  10020d36:  TEST CL,0x1\n  10020d39:  JZ 0x10020d40\n  10020d3b:  MOV EAX,0xc\n  10020d40:  TEST CH,0x1\n  10020d43:  JZ 0x10020d48\n  10020d45:  ADD EAX,0x10\n  10020d48:  TEST CL,0x2\n  10020d4b:  JZ 0x10020d50\n  10020d4d:  ADD EAX,0xc\n  10020d50:  TEST CL,0x4\n  10020d53:  JZ 0x10020d58\n  10020d55:  ADD EAX,0x4\n  10020d58:  TEST CL,0x8\n  10020d5b:  JZ 0x10020d60\n  10020d5d:  ADD EAX,0x4\n  10020d60:  TEST CL,0x10\n  10020d63:  JZ 0x10020d68\n  10020d65:  ADD EAX,0x8\n  10020d68:  TEST CL,0x20\n  10020d6b:  JZ 0x10020d70\n  10020d6d:  ADD EAX,0x8\n  10020d70:  TEST CL,0x40\n  10020d73:  JZ 0x10020d78\n  10020d75:  ADD EAX,0x8\n  10020d78:  TEST CL,0x80\n  10020d7b:  JZ 0x10020d80\n  10020d7d:  ADD EAX,0x8\n  10020d80:  RET", 
+  "callers": [
+    {
+      "address": "0x10011c60", 
+      "name": "FUN_10011c60"
+    }, 
+    {
+      "address": "0x10011c60", 
+      "name": "FUN_10011c60"
+    }, 
+    {
+      "address": "0x10015e80", 
+      "name": "LoadFromStream"
+    }, 
+    {
+      "address": "0x1001c790", 
+      "name": "gbDynVertBuf"
+    }
+  ]
+}

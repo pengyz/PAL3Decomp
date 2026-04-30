@@ -1,0 +1,42 @@
+{
+  "address": "0x100e5c53", 
+  "size_bytes": 76, 
+  "calling_convention": "unknown", 
+  "signature": "undefined __fclose_lk(undefined4 param_1)", 
+  "callees": [
+    {
+      "address": "0x100ec2f8", 
+      "name": "FUN_100ec2f8"
+    }, 
+    {
+      "address": "0x100ec29f", 
+      "name": "__freebuf"
+    }, 
+    {
+      "address": "0x100ec1bf", 
+      "name": "FUN_100ec1bf"
+    }, 
+    {
+      "address": "0x100e4b99", 
+      "name": "FUN_100e4b99"
+    }
+  ], 
+  "global_refs": [
+    {
+      "address": "0x00000004", 
+      "type": null, 
+      "name": "DAT_00000004"
+    }
+  ], 
+  "has_custom_name": true, 
+  "decompiled_c": "\n/* Library Function - Single Match\n    __fclose_lk\n   \n   Library: Visual Studio 2003 Release */\n\nundefined4 __fclose_lk(FILE *param_1)\n\n{\n  int iVar1;\n  undefined4 uVar2;\n  \n  uVar2 = 0xffffffff;\n  if ((*(byte *)&param_1->_flag & 0x83) != 0) {\n    uVar2 = FUN_100ec2f8(param_1);\n    __freebuf(param_1);\n    iVar1 = FUN_100ec1bf(param_1->_file);\n    if (iVar1 < 0) {\n      uVar2 = 0xffffffff;\n    }\n    else if (param_1->_tmpfname != (char *)0x0) {\n      FUN_100e4b99(param_1->_tmpfname);\n      param_1->_tmpfname = (char *)0x0;\n    }\n  }\n  param_1->_flag = 0;\n  return uVar2;\n}\n\n", 
+  "is_thunk": false, 
+  "name": "__fclose_lk", 
+  "assembly": "  100e5c53:  PUSH ESI\n  100e5c54:  MOV ESI,dword ptr [ESP + 0x8]\n  100e5c58:  PUSH EDI\n  100e5c59:  OR EDI,0xffffffff\n  100e5c5c:  TEST byte ptr [ESI + 0xc],0x83\n  100e5c60:  JZ 0x100e5c96\n  100e5c62:  PUSH ESI\n  100e5c63:  CALL 0x100ec2f8\n  100e5c68:  PUSH ESI\n  100e5c69:  MOV EDI,EAX\n  100e5c6b:  CALL 0x100ec29f\n  100e5c70:  PUSH dword ptr [ESI + 0x10]\n  100e5c73:  CALL 0x100ec1bf\n  100e5c78:  ADD ESP,0xc\n  100e5c7b:  TEST EAX,EAX\n  100e5c7d:  JGE 0x100e5c84\n  100e5c7f:  OR EDI,0xffffffff\n  100e5c82:  JMP 0x100e5c96\n  100e5c84:  MOV EAX,dword ptr [ESI + 0x1c]\n  100e5c87:  TEST EAX,EAX\n  100e5c89:  JZ 0x100e5c96\n  100e5c8b:  PUSH EAX\n  100e5c8c:  CALL 0x100e4b99\n  100e5c91:  AND dword ptr [ESI + 0x1c],0x0\n  100e5c95:  POP ECX\n  100e5c96:  AND dword ptr [ESI + 0xc],0x0\n  100e5c9a:  MOV EAX,EDI\n  100e5c9c:  POP EDI\n  100e5c9d:  POP ESI\n  100e5c9e:  RET", 
+  "callers": [
+    {
+      "address": "0x100e5c22", 
+      "name": "FUN_100e5c22"
+    }
+  ]
+}

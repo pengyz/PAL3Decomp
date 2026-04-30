@@ -1,0 +1,23 @@
+{
+  "address": "0x1005845e", 
+  "size_bytes": 28, 
+  "calling_convention": "unknown", 
+  "signature": "undefined FUN_1005845e(void)", 
+  "callees": [
+    {
+      "address": "0x1005839c", 
+      "name": "FUN_1005839c"
+    }, 
+    {
+      "address": "0x100e4a24", 
+      "name": "FUN_100e4a24"
+    }
+  ], 
+  "global_refs": [], 
+  "has_custom_name": false, 
+  "decompiled_c": "\nvoid FUN_1005845e(byte param_1)\n\n{\n  FUN_1005839c();\n  if ((param_1 & 1) != 0) {\n    FUN_100e4a24();\n  }\n  return;\n}\n\n", 
+  "is_thunk": false, 
+  "name": "FUN_1005845e", 
+  "assembly": "  1005845e:  PUSH ESI\n  1005845f:  MOV ESI,ECX\n  10058461:  CALL 0x1005839c\n  10058466:  TEST byte ptr [ESP + 0x8],0x1\n  1005846b:  JZ 0x10058474\n  1005846d:  PUSH ESI\n  1005846e:  CALL 0x100e4a24\n  10058473:  POP ECX\n  10058474:  MOV EAX,ESI\n  10058476:  POP ESI\n  10058477:  RET 0x4", 
+  "callers": []
+}

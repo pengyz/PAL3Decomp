@@ -1,0 +1,14 @@
+{
+  "address": "0x1000cd20", 
+  "size_bytes": 8, 
+  "calling_convention": "__thiscall", 
+  "signature": "void __thiscall SetToDead(gbAnimNodeGroup * this)", 
+  "callees": [], 
+  "global_refs": [], 
+  "has_custom_name": true, 
+  "decompiled_c": "\n/* public: void __thiscall gbAnimNodeGroup::SetToDead(void) */\n\nvoid __thiscall gbAnimNodeGroup::SetToDead(gbAnimNodeGroup *this)\n\n{\n                    /* 0xcd20  898  ?SetToDead@gbAnimNodeGroup@@QAEXXZ */\n  *(undefined4 *)(this + 0x2c) = 0;\n  return;\n}\n\n", 
+  "is_thunk": false, 
+  "name": "SetToDead", 
+  "assembly": "  1000cd20:  MOV dword ptr [ECX + 0x2c],0x0\n  1000cd27:  RET", 
+  "callers": []
+}

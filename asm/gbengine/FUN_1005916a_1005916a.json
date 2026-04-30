@@ -1,0 +1,19 @@
+{
+  "address": "0x1005916a", 
+  "size_bytes": 12, 
+  "calling_convention": "unknown", 
+  "signature": "undefined FUN_1005916a(void)", 
+  "callees": [], 
+  "global_refs": [], 
+  "has_custom_name": false, 
+  "decompiled_c": "\nint FUN_1005916a(void)\n\n{\n  int iVar1;\n  int in_ECX;\n  \n  iVar1 = *(int *)(in_ECX + 0x14);\n  if (iVar1 == 0) {\n    return iVar1;\n  }\n  return *(int *)(iVar1 + 8);\n}\n\n", 
+  "is_thunk": false, 
+  "name": "FUN_1005916a", 
+  "assembly": "  1005916a:  MOV EAX,dword ptr [ECX + 0x14]\n  1005916d:  TEST EAX,EAX\n  1005916f:  JNZ 0x10059172\n  10059171:  RET\n  10059172:  MOV EAX,dword ptr [EAX + 0x8]\n  10059175:  RET", 
+  "callers": [
+    {
+      "address": "0x10060a86", 
+      "name": "FUN_10060a86"
+    }
+  ]
+}

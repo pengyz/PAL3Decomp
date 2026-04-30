@@ -1,0 +1,29 @@
+{
+  "address": "0x1009b9cd", 
+  "size_bytes": 152, 
+  "calling_convention": "unknown", 
+  "signature": "undefined FUN_1009b9cd(void)", 
+  "callees": [], 
+  "global_refs": [
+    {
+      "address": "0x-0000008", 
+      "type": null, 
+      "name": "DAT_-0000008"
+    }
+  ], 
+  "has_custom_name": false, 
+  "decompiled_c": "\nuint FUN_1009b9cd(void)\n\n{\n  uint uVar1;\n  int in_ECX;\n  int *piVar2;\n  uint uVar3;\n  int iVar4;\n  uint uVar5;\n  uint local_8;\n  \n  uVar3 = 0;\n  local_8 = 0;\n  if ((*(uint *)(in_ECX + 0x6c) & 0x2000000) == 0) {\n    if (((*(uint *)(in_ECX + 0x6c) & 0x4000000) != 0) &&\n       (uVar1 = *(uint *)(in_ECX + 0xc), uVar1 != 0)) {\n      piVar2 = *(int **)(in_ECX + 0x18);\n      uVar5 = 1;\n      do {\n        if ((((*(uint *)(*piVar2 + 0x2c) & 1) != 0) && (local_8 = local_8 + 1, uVar5 < uVar1)) &&\n           (*(uint *)(*piVar2 + 0x2c) == *(uint *)(piVar2[1] + 0x2c))) {\n          uVar3 = uVar3 + 1;\n          uVar5 = uVar5 + 1;\n          piVar2 = piVar2 + 1;\n        }\n        uVar3 = uVar3 + 1;\n        uVar5 = uVar5 + 1;\n        piVar2 = piVar2 + 1;\n      } while (uVar3 < uVar1);\n    }\n  }\n  else {\n    uVar3 = *(uint *)(in_ECX + 0xc);\n    local_8 = 0;\n    if (uVar3 != 0) {\n      local_8 = (uint)((*(byte *)(**(int **)(in_ECX + 0x18) + 0x2c) & 1) == 0);\n      if (1 < uVar3) {\n        iVar4 = uVar3 - 1;\n        piVar2 = *(int **)(in_ECX + 0x18);\n        do {\n          uVar3 = *(uint *)(piVar2[1] + 0x2c);\n          if (((uVar3 & 1) != 0) && (uVar3 != *(uint *)(*piVar2 + 0x2c))) {\n            local_8 = local_8 + 1;\n          }\n          iVar4 = iVar4 + -1;\n          piVar2 = piVar2 + 1;\n        } while (iVar4 != 0);\n      }\n    }\n  }\n  return local_8;\n}\n\n", 
+  "is_thunk": false, 
+  "name": "FUN_1009b9cd", 
+  "assembly": "  1009b9cd:  PUSH EBP\n  1009b9ce:  MOV EBP,ESP\n  1009b9d0:  PUSH ECX\n  1009b9d1:  MOV EDX,dword ptr [ECX + 0x6c]\n  1009b9d4:  PUSH EBX\n  1009b9d5:  XOR EBX,EBX\n  1009b9d7:  TEST EDX,0x2000000\n  1009b9dd:  PUSH ESI\n  1009b9de:  PUSH EDI\n  1009b9df:  MOV dword ptr [EBP + -0x4],EBX\n  1009b9e2:  JZ 0x1009ba21\n  1009b9e4:  MOV EDX,dword ptr [ECX + 0xc]\n  1009b9e7:  XOR EAX,EAX\n  1009b9e9:  CMP EDX,EBX\n  1009b9eb:  JZ 0x1009ba60\n  1009b9ed:  MOV ECX,dword ptr [ECX + 0x18]\n  1009b9f0:  MOV ESI,dword ptr [ECX]\n  1009b9f2:  INC EAX\n  1009b9f3:  TEST byte ptr [ESI + 0x2c],AL\n  1009b9f6:  JNZ 0x1009b9fb\n  1009b9f8:  MOV dword ptr [EBP + -0x4],EAX\n  1009b9fb:  CMP EDX,EAX\n  1009b9fd:  JBE 0x1009ba5d\n  1009b9ff:  ADD ECX,0x4\n  1009ba02:  LEA ESI,[EDX + -0x1]\n  1009ba05:  MOV EDX,dword ptr [ECX]\n  1009ba07:  MOV EDX,dword ptr [EDX + 0x2c]\n  1009ba0a:  TEST AL,DL\n  1009ba0c:  JZ 0x1009ba19\n  1009ba0e:  MOV EDI,dword ptr [ECX + -0x4]\n  1009ba11:  CMP EDX,dword ptr [EDI + 0x2c]\n  1009ba14:  JZ 0x1009ba19\n  1009ba16:  INC dword ptr [EBP + -0x4]\n  1009ba19:  ADD ECX,0x4\n  1009ba1c:  DEC ESI\n  1009ba1d:  JNZ 0x1009ba05\n  1009ba1f:  JMP 0x1009ba5d\n  1009ba21:  TEST EDX,0x4000000\n  1009ba27:  JZ 0x1009ba5d\n  1009ba29:  MOV EDI,dword ptr [ECX + 0xc]\n  1009ba2c:  CMP EDI,EBX\n  1009ba2e:  JBE 0x1009ba5d\n  1009ba30:  MOV ECX,dword ptr [ECX + 0x18]\n  1009ba33:  XOR ESI,ESI\n  1009ba35:  INC ESI\n  1009ba36:  MOV EAX,dword ptr [ECX]\n  1009ba38:  MOV EDX,dword ptr [EAX + 0x2c]\n  1009ba3b:  TEST DL,0x1\n  1009ba3e:  JZ 0x1009ba54\n  1009ba40:  INC dword ptr [EBP + -0x4]\n  1009ba43:  CMP ESI,EDI\n  1009ba45:  JNC 0x1009ba54\n  1009ba47:  MOV EAX,dword ptr [ECX + 0x4]\n  1009ba4a:  CMP EDX,dword ptr [EAX + 0x2c]\n  1009ba4d:  JNZ 0x1009ba54\n  1009ba4f:  INC EBX\n  1009ba50:  INC ESI\n  1009ba51:  ADD ECX,0x4\n  1009ba54:  INC EBX\n  1009ba55:  INC ESI\n  1009ba56:  ADD ECX,0x4\n  1009ba59:  CMP EBX,EDI\n  1009ba5b:  JC 0x1009ba36\n  1009ba5d:  MOV EAX,dword ptr [EBP + -0x4]\n  1009ba60:  POP EDI\n  1009ba61:  POP ESI\n  1009ba62:  POP EBX\n  1009ba63:  LEAVE\n  1009ba64:  RET", 
+  "callers": [
+    {
+      "address": "0x100a94f9", 
+      "name": "FUN_100a94f9"
+    }, 
+    {
+      "address": "0x100a94f9", 
+      "name": "FUN_100a94f9"
+    }
+  ]
+}

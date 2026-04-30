@@ -1,0 +1,40 @@
+{
+  "address": "0x10005700", 
+  "size_bytes": 188, 
+  "calling_convention": "__thiscall", 
+  "signature": "undefined __thiscall gbVolModNode(gbVolModNode * this, gbVolModNode * param_1)", 
+  "callees": [], 
+  "global_refs": [
+    {
+      "address": "0x00000004", 
+      "type": null, 
+      "name": "DAT_00000004"
+    }, 
+    {
+      "address": "0x100f53a8", 
+      "type": "pointer", 
+      "name": "DAT_100f53a8"
+    }, 
+    {
+      "address": "0x100f5370", 
+      "type": "pointer", 
+      "name": "DAT_100f5370"
+    }, 
+    {
+      "address": "0x100f5374", 
+      "type": "undefined *", 
+      "name": "DAT_100f5374"
+    }, 
+    {
+      "address": "0x100f542c", 
+      "type": "undefined *", 
+      "name": "DAT_100f542c"
+    }
+  ], 
+  "has_custom_name": true, 
+  "decompiled_c": "\n/* public: __thiscall gbVolModNode::gbVolModNode(class gbVolModNode const &) */\n\nvoid __thiscall gbVolModNode::gbVolModNode(gbVolModNode *this,gbVolModNode *param_1)\n\n{\n  undefined4 uVar1;\n  int iVar2;\n  gbVolModNode *pgVar3;\n  gbVolModNode *pgVar4;\n  \n                    /* 0x5700  116  ??0gbVolModNode@@QAE@ABV0@@Z */\n  uVar1 = *(undefined4 *)(param_1 + 4);\n  *(undefined ***)this = &gbChain1DNode::_vftable_;\n  *(undefined4 *)(this + 4) = uVar1;\n  *(undefined4 *)(this + 8) = *(undefined4 *)(param_1 + 8);\n  *(undefined4 *)(this + 0xc) = *(undefined4 *)(param_1 + 0xc);\n  *(undefined4 *)(this + 0x10) = *(undefined4 *)(param_1 + 0x10);\n  *(undefined4 *)(this + 0x14) = *(undefined4 *)(param_1 + 0x14);\n  uVar1 = *(undefined4 *)(param_1 + 0x18);\n  *(undefined ***)this = &gbNBTreeNode::_vftable_;\n  *(undefined4 *)(this + 0x18) = uVar1;\n  pgVar3 = param_1 + 0x1c;\n  pgVar4 = this + 0x1c;\n  for (iVar2 = 6; iVar2 != 0; iVar2 = iVar2 + -1) {\n    *(undefined4 *)pgVar4 = *(undefined4 *)pgVar3;\n    pgVar3 = pgVar3 + 4;\n    pgVar4 = pgVar4 + 4;\n  }\n  *(undefined4 *)(this + 0x34) = *(undefined4 *)(param_1 + 0x34);\n  *(undefined4 *)(this + 0x38) = *(undefined4 *)(param_1 + 0x38);\n  *(undefined4 *)(this + 0x3c) = *(undefined4 *)(param_1 + 0x3c);\n  *(undefined4 *)(this + 0x40) = *(undefined4 *)(param_1 + 0x40);\n  *(undefined4 *)(this + 0x44) = *(undefined4 *)(param_1 + 0x44);\n  *(undefined4 *)(this + 0x48) = *(undefined4 *)(param_1 + 0x48);\n  *(undefined4 *)(this + 0x4c) = *(undefined4 *)(param_1 + 0x4c);\n  *(undefined4 *)(this + 0x50) = *(undefined4 *)(param_1 + 0x50);\n  *(undefined4 *)(this + 0x54) = *(undefined4 *)(param_1 + 0x54);\n  *(undefined ***)this = &gbVisNode::_vftable_;\n  pgVar3 = param_1 + 0x58;\n  pgVar4 = this + 0x58;\n  for (iVar2 = 0x10; iVar2 != 0; iVar2 = iVar2 + -1) {\n    *(undefined4 *)pgVar4 = *(undefined4 *)pgVar3;\n    pgVar3 = pgVar3 + 4;\n    pgVar4 = pgVar4 + 4;\n  }\n  pgVar3 = param_1 + 0x98;\n  pgVar4 = this + 0x98;\n  for (iVar2 = 0x10; iVar2 != 0; iVar2 = iVar2 + -1) {\n    *(undefined4 *)pgVar4 = *(undefined4 *)pgVar3;\n    pgVar3 = pgVar3 + 4;\n    pgVar4 = pgVar4 + 4;\n  }\n  *(undefined4 *)(this + 0xd8) = *(undefined4 *)(param_1 + 0xd8);\n  *(undefined ***)this = &_vftable_;\n  return;\n}\n\n", 
+  "is_thunk": false, 
+  "name": "gbVolModNode", 
+  "assembly": "  10005700:  MOV EDX,dword ptr [ESP + 0x4]\n  10005704:  MOV EAX,ECX\n  10005706:  PUSH ESI\n  10005707:  PUSH EDI\n  10005708:  MOV ECX,dword ptr [EDX + 0x4]\n  1000570b:  MOV dword ptr [EAX],0x100f53a8\n  10005711:  MOV dword ptr [EAX + 0x4],ECX\n  10005714:  MOV ECX,dword ptr [EDX + 0x8]\n  10005717:  MOV dword ptr [EAX + 0x8],ECX\n  1000571a:  LEA ECX,[EDX + 0xc]\n  1000571d:  LEA ESI,[EAX + 0xc]\n  10005720:  MOV EDI,dword ptr [ECX]\n  10005722:  MOV dword ptr [ESI],EDI\n  10005724:  MOV EDI,dword ptr [ECX + 0x4]\n  10005727:  MOV dword ptr [ESI + 0x4],EDI\n  1000572a:  MOV EDI,dword ptr [ECX + 0x8]\n  1000572d:  MOV dword ptr [ESI + 0x8],EDI\n  10005730:  LEA EDI,[EAX + 0x1c]\n  10005733:  MOV ECX,dword ptr [ECX + 0xc]\n  10005736:  MOV dword ptr [EAX],0x100f5370\n  1000573c:  MOV dword ptr [ESI + 0xc],ECX\n  1000573f:  LEA ESI,[EDX + 0x1c]\n  10005742:  MOV ECX,0x6\n  10005747:  MOVSD.REP ES:EDI,ESI\n  10005749:  MOV ECX,dword ptr [EDX + 0x34]\n  1000574c:  LEA ESI,[EDX + 0x58]\n  1000574f:  MOV dword ptr [EAX + 0x34],ECX\n  10005752:  MOV ECX,dword ptr [EDX + 0x38]\n  10005755:  MOV dword ptr [EAX + 0x38],ECX\n  10005758:  MOV ECX,dword ptr [EDX + 0x3c]\n  1000575b:  MOV dword ptr [EAX + 0x3c],ECX\n  1000575e:  MOV ECX,dword ptr [EDX + 0x40]\n  10005761:  MOV dword ptr [EAX + 0x40],ECX\n  10005764:  MOV ECX,dword ptr [EDX + 0x44]\n  10005767:  MOV dword ptr [EAX + 0x44],ECX\n  1000576a:  MOV ECX,dword ptr [EDX + 0x48]\n  1000576d:  MOV dword ptr [EAX + 0x48],ECX\n  10005770:  MOV ECX,dword ptr [EDX + 0x4c]\n  10005773:  MOV dword ptr [EAX + 0x4c],ECX\n  10005776:  MOV ECX,dword ptr [EDX + 0x50]\n  10005779:  MOV dword ptr [EAX + 0x50],ECX\n  1000577c:  MOV ECX,dword ptr [EDX + 0x54]\n  1000577f:  MOV dword ptr [EAX + 0x54],ECX\n  10005782:  LEA EDI,[EAX + 0x58]\n  10005785:  MOV ECX,0x10\n  1000578a:  MOV dword ptr [EAX],0x100f5374\n  10005790:  MOVSD.REP ES:EDI,ESI\n  10005792:  LEA ESI,[EDX + 0x98]\n  10005798:  LEA EDI,[EAX + 0x98]\n  1000579e:  MOV ECX,0x10\n  100057a3:  MOVSD.REP ES:EDI,ESI\n  100057a5:  MOV EDX,dword ptr [EDX + 0xd8]\n  100057ab:  POP EDI\n  100057ac:  MOV dword ptr [EAX + 0xd8],EDX\n  100057b2:  MOV dword ptr [EAX],0x100f542c\n  100057b8:  POP ESI\n  100057b9:  RET 0x4", 
+  "callers": []
+}

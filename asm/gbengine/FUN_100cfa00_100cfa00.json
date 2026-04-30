@@ -1,0 +1,100 @@
+{
+  "address": "0x100cfa00", 
+  "size_bytes": 358, 
+  "calling_convention": "unknown", 
+  "signature": "undefined FUN_100cfa00(undefined4 param_1, undefined4 param_2, undefined4 param_3, undefined4 param_4, undefined4 param_5)", 
+  "callees": [], 
+  "global_refs": [
+    {
+      "address": "0x00000004", 
+      "type": null, 
+      "name": "DAT_00000004"
+    }, 
+    {
+      "address": "0x-0000028", 
+      "type": null, 
+      "name": "DAT_-0000028"
+    }, 
+    {
+      "address": "0x00000014", 
+      "type": null, 
+      "name": "DAT_00000014"
+    }, 
+    {
+      "address": "0x-000001c", 
+      "type": null, 
+      "name": "DAT_-000001c"
+    }, 
+    {
+      "address": "0x-000000c", 
+      "type": null, 
+      "name": "DAT_-000000c"
+    }, 
+    {
+      "address": "0x-0000010", 
+      "type": null, 
+      "name": "DAT_-0000010"
+    }, 
+    {
+      "address": "0x-0000014", 
+      "type": null, 
+      "name": "DAT_-0000014"
+    }, 
+    {
+      "address": "0x-0000018", 
+      "type": null, 
+      "name": "DAT_-0000018"
+    }, 
+    {
+      "address": "0x00000008", 
+      "type": null, 
+      "name": "DAT_00000008"
+    }, 
+    {
+      "address": "0x0000000c", 
+      "type": null, 
+      "name": "DAT_0000000c"
+    }, 
+    {
+      "address": "0x-000002c", 
+      "type": null, 
+      "name": "DAT_-000002c"
+    }, 
+    {
+      "address": "0x00000010", 
+      "type": null, 
+      "name": "DAT_00000010"
+    }, 
+    {
+      "address": "0x-0000004", 
+      "type": null, 
+      "name": "DAT_-0000004"
+    }, 
+    {
+      "address": "0x-0000024", 
+      "type": null, 
+      "name": "DAT_-0000024"
+    }, 
+    {
+      "address": "0x-0000020", 
+      "type": null, 
+      "name": "DAT_-0000020"
+    }, 
+    {
+      "address": "0x-0000008", 
+      "type": null, 
+      "name": "DAT_-0000008"
+    }, 
+    {
+      "address": "0x-000003c", 
+      "type": null, 
+      "name": "DAT_-000003c"
+    }
+  ], 
+  "has_custom_name": false, 
+  "decompiled_c": "\nvoid FUN_100cfa00(int param_1,int *param_2,int param_3,undefined4 *param_4,int param_5)\n\n{\n  int *piVar1;\n  int *piVar2;\n  int *piVar3;\n  byte bVar4;\n  byte bVar5;\n  int iVar6;\n  int iVar7;\n  int iVar8;\n  int iVar9;\n  int iVar10;\n  int iVar11;\n  int iVar12;\n  int iVar13;\n  int iVar14;\n  int iVar15;\n  byte *pbVar16;\n  undefined *puVar17;\n  undefined4 *puVar18;\n  int iVar19;\n  int iVar20;\n  int iVar21;\n  uint uVar22;\n  \n  iVar6 = *(int *)(param_1 + 0x70);\n  iVar7 = *(int *)(param_1 + 0x1cc);\n  iVar8 = *(int *)(param_1 + 0x148);\n  iVar9 = *(int *)(iVar7 + 8);\n  iVar10 = *(int *)(iVar7 + 0xc);\n  iVar11 = *(int *)(iVar7 + 0x10);\n  iVar7 = *(int *)(iVar7 + 0x14);\n  if (-1 < param_5 + -1) {\n    iVar12 = param_2[1];\n    iVar13 = param_2[2];\n    iVar14 = *param_2;\n    iVar15 = param_2[3];\n    puVar18 = (undefined4 *)(iVar12 + param_3 * 4);\n    do {\n      piVar1 = (int *)((iVar14 - iVar12) + (int)puVar18);\n      piVar2 = (int *)((iVar15 - iVar12) + (int)puVar18);\n      pbVar16 = (byte *)*puVar18;\n      piVar3 = (int *)((int)puVar18 + (iVar13 - iVar12));\n      puVar17 = (undefined *)*param_4;\n      param_4 = param_4 + 1;\n      puVar18 = puVar18 + 1;\n      if (iVar6 != 0) {\n        iVar19 = *piVar1 - (int)pbVar16;\n        iVar20 = *piVar3 - (int)pbVar16;\n        iVar21 = *piVar2 - (int)pbVar16;\n        param_1 = iVar6;\n        do {\n          uVar22 = (uint)pbVar16[iVar19];\n          bVar4 = pbVar16[iVar20];\n          bVar5 = *pbVar16;\n          *puVar17 = *(undefined *)(((iVar8 - *(int *)(iVar9 + (uint)bVar4 * 4)) - uVar22) + 0xff);\n          puVar17[1] = *(undefined *)\n                        (((iVar8 - (*(int *)(iVar7 + (uint)bVar5 * 4) +\n                                    *(int *)(iVar11 + (uint)bVar4 * 4) >> 0x10)) - uVar22) + 0xff);\n          puVar17[2] = *(undefined *)\n                        (((iVar8 - *(int *)(iVar10 + (uint)bVar5 * 4)) - uVar22) + 0xff);\n          puVar17[3] = pbVar16[iVar21];\n          pbVar16 = pbVar16 + 1;\n          param_1 = param_1 + -1;\n          puVar17 = puVar17 + 4;\n        } while (param_1 != 0);\n      }\n      param_5 = param_5 + -1;\n    } while (param_5 != 0);\n  }\n  return;\n}\n\n", 
+  "is_thunk": false, 
+  "name": "FUN_100cfa00", 
+  "assembly": "  100cfa00:  SUB ESP,0x2c\n  100cfa03:  MOV ECX,dword ptr [ESP + 0x30]\n  100cfa07:  MOV EDX,dword ptr [ECX + 0x70]\n  100cfa0a:  MOV EAX,dword ptr [ECX + 0x1cc]\n  100cfa10:  PUSH EBX\n  100cfa11:  MOV EBX,dword ptr [ECX + 0x148]\n  100cfa17:  MOV ECX,dword ptr [EAX + 0x8]\n  100cfa1a:  MOV dword ptr [ESP + 0x8],EDX\n  100cfa1e:  MOV EDX,dword ptr [EAX + 0xc]\n  100cfa21:  PUSH ESI\n  100cfa22:  MOV ESI,dword ptr [ESP + 0x48]\n  100cfa26:  DEC ESI\n  100cfa27:  MOV dword ptr [ESP + 0x18],ECX\n  100cfa2b:  MOV ECX,dword ptr [EAX + 0x10]\n  100cfa2e:  MOV dword ptr [ESP + 0x28],EDX\n  100cfa32:  MOV EDX,dword ptr [EAX + 0x14]\n  100cfa35:  MOV dword ptr [ESP + 0x24],EBX\n  100cfa39:  MOV dword ptr [ESP + 0x20],ECX\n  100cfa3d:  MOV dword ptr [ESP + 0x1c],EDX\n  100cfa41:  JS 0x100cfb5e\n  100cfa47:  MOV ECX,dword ptr [ESP + 0x3c]\n  100cfa4b:  MOV EAX,dword ptr [ECX + 0x4]\n  100cfa4e:  MOV EDX,dword ptr [ESP + 0x40]\n  100cfa52:  PUSH EBP\n  100cfa53:  MOV EBP,dword ptr [ECX + 0x8]\n  100cfa56:  PUSH EDI\n  100cfa57:  MOV EDI,dword ptr [ECX]\n  100cfa59:  MOV ECX,dword ptr [ECX + 0xc]\n  100cfa5c:  SUB EDI,EAX\n  100cfa5e:  SUB EBP,EAX\n  100cfa60:  SUB ECX,EAX\n  100cfa62:  INC ESI\n  100cfa63:  LEA EDX,[EAX + EDX*0x4]\n  100cfa66:  MOV dword ptr [ESP + 0x10],EDI\n  100cfa6a:  MOV dword ptr [ESP + 0x44],EBP\n  100cfa6e:  MOV dword ptr [ESP + 0x48],ECX\n  100cfa72:  MOV dword ptr [ESP + 0x50],ESI\n  100cfa76:  JMP 0x100cfa84\n  100cfa78:  MOV EBP,dword ptr [ESP + 0x44]\n  100cfa7c:  MOV ECX,dword ptr [ESP + 0x48]\n  100cfa80:  MOV EDI,dword ptr [ESP + 0x10]\n  100cfa84:  MOV ESI,dword ptr [EDI + EDX*0x1]\n  100cfa87:  MOV ECX,dword ptr [ECX + EDX*0x1]\n  100cfa8a:  MOV EDI,dword ptr [ESP + 0x4c]\n  100cfa8e:  MOV EAX,dword ptr [EDX]\n  100cfa90:  MOV EBP,dword ptr [EDX + EBP*0x1]\n  100cfa93:  MOV dword ptr [ESP + 0x40],ECX\n  100cfa97:  MOV ECX,dword ptr [EDI]\n  100cfa99:  ADD EDI,0x4\n  100cfa9c:  MOV dword ptr [ESP + 0x4c],EDI\n  100cfaa0:  MOV EDI,dword ptr [ESP + 0x14]\n  100cfaa4:  ADD EDX,0x4\n  100cfaa7:  TEST EDI,EDI\n  100cfaa9:  MOV dword ptr [ESP + 0x38],EDX\n  100cfaad:  JBE 0x100cfb52\n  100cfab3:  MOV EDX,ESI\n  100cfab5:  MOV ESI,dword ptr [ESP + 0x40]\n  100cfab9:  SUB EDX,EAX\n  100cfabb:  SUB EBP,EAX\n  100cfabd:  SUB ESI,EAX\n  100cfabf:  MOV dword ptr [ESP + 0x18],EDX\n  100cfac3:  MOV dword ptr [ESP + 0x1c],EBP\n  100cfac7:  MOV dword ptr [ESP + 0x34],ESI\n  100cfacb:  MOV dword ptr [ESP + 0x40],EDI\n  100cfacf:  JMP 0x100cfae0\n  100cfad1:  MOV EDX,dword ptr [ESP + 0x18]\n  100cfad5:  MOV EBP,dword ptr [ESP + 0x1c]\n  100cfad9:  LEA ESP,[ESP]\n  100cfae0:  MOVZX ESI,byte ptr [EDX + EAX*0x1]\n  100cfae4:  MOVZX EBP,byte ptr [EAX + EBP*0x1]\n  100cfae8:  MOV EDX,dword ptr [ESP + 0x20]\n  100cfaec:  SUB EBX,dword ptr [EDX + EBP*0x4]\n  100cfaef:  MOVZX EDI,byte ptr [EAX]\n  100cfaf2:  SUB EBX,ESI\n  100cfaf4:  MOV DL,byte ptr [EBX + 0xff]\n  100cfafa:  MOV EBX,dword ptr [ESP + 0x28]\n  100cfafe:  MOV byte ptr [ECX],DL\n  100cfb00:  MOV EDX,dword ptr [ESP + 0x24]\n  100cfb04:  MOV EDX,dword ptr [EDX + EDI*0x4]\n  100cfb07:  ADD EDX,dword ptr [EBX + EBP*0x4]\n  100cfb0a:  MOV EBX,dword ptr [ESP + 0x2c]\n  100cfb0e:  SAR EDX,0x10\n  100cfb11:  MOV EBP,EBX\n  100cfb13:  SUB EBP,EDX\n  100cfb15:  SUB EBP,ESI\n  100cfb17:  MOV DL,byte ptr [EBP + 0xff]\n  100cfb1d:  MOV EBP,dword ptr [ESP + 0x30]\n  100cfb21:  MOV byte ptr [ECX + 0x1],DL\n  100cfb24:  MOV EDX,EBX\n  100cfb26:  SUB EDX,dword ptr [EBP + EDI*0x4]\n  100cfb2a:  ADD ECX,0x4\n  100cfb2d:  SUB EDX,ESI\n  100cfb2f:  MOV DL,byte ptr [EDX + 0xff]\n  100cfb35:  MOV byte ptr [ECX + -0x2],DL\n  100cfb38:  MOV EDX,dword ptr [ESP + 0x34]\n  100cfb3c:  MOV DL,byte ptr [EDX + EAX*0x1]\n  100cfb3f:  MOV byte ptr [ECX + -0x1],DL\n  100cfb42:  MOV EDX,dword ptr [ESP + 0x40]\n  100cfb46:  INC EAX\n  100cfb47:  DEC EDX\n  100cfb48:  MOV dword ptr [ESP + 0x40],EDX\n  100cfb4c:  JNZ 0x100cfad1\n  100cfb4e:  MOV EDX,dword ptr [ESP + 0x38]\n  100cfb52:  DEC dword ptr [ESP + 0x50]\n  100cfb56:  JNZ 0x100cfa78\n  100cfb5c:  POP EDI\n  100cfb5d:  POP EBP\n  100cfb5e:  POP ESI\n  100cfb5f:  POP EBX\n  100cfb60:  ADD ESP,0x2c\n  100cfb63:  RET 0x14", 
+  "callers": []
+}

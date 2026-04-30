@@ -1,0 +1,59 @@
+{
+  "address": "0x100f2cc6", 
+  "size_bytes": 33, 
+  "calling_convention": "unknown", 
+  "signature": "undefined FUN_100f2cc6(undefined4 param_1, undefined4 param_2, undefined4 param_3)", 
+  "callees": [], 
+  "global_refs": [
+    {
+      "address": "0x00000004", 
+      "type": null, 
+      "name": "DAT_00000004"
+    }, 
+    {
+      "address": "0x00000008", 
+      "type": null, 
+      "name": "DAT_00000008"
+    }, 
+    {
+      "address": "0x0000000c", 
+      "type": null, 
+      "name": "DAT_0000000c"
+    }
+  ], 
+  "has_custom_name": false, 
+  "decompiled_c": "\nundefined4 FUN_100f2cc6(uint param_1,uint param_2,uint *param_3)\n\n{\n  uint uVar1;\n  undefined4 uVar2;\n  \n  uVar2 = 0;\n  uVar1 = param_1 + param_2;\n  if ((uVar1 < param_1) || (uVar1 < param_2)) {\n    uVar2 = 1;\n  }\n  *param_3 = uVar1;\n  return uVar2;\n}\n\n", 
+  "is_thunk": false, 
+  "name": "FUN_100f2cc6", 
+  "assembly": "  100f2cc6:  MOV EDX,dword ptr [ESP + 0x4]\n  100f2cca:  PUSH ESI\n  100f2ccb:  MOV ESI,dword ptr [ESP + 0xc]\n  100f2ccf:  XOR EAX,EAX\n  100f2cd1:  LEA ECX,[EDX + ESI*0x1]\n  100f2cd4:  CMP ECX,EDX\n  100f2cd6:  JC 0x100f2cdc\n  100f2cd8:  CMP ECX,ESI\n  100f2cda:  JNC 0x100f2cdf\n  100f2cdc:  PUSH 0x1\n  100f2cde:  POP EAX\n  100f2cdf:  MOV EDX,dword ptr [ESP + 0x10]\n  100f2ce3:  POP ESI\n  100f2ce4:  MOV dword ptr [EDX],ECX\n  100f2ce6:  RET", 
+  "callers": [
+    {
+      "address": "0x100f1350", 
+      "name": "FUN_100f1350"
+    }, 
+    {
+      "address": "0x100f1350", 
+      "name": "FUN_100f1350"
+    }, 
+    {
+      "address": "0x100f2ce7", 
+      "name": "___add_12"
+    }, 
+    {
+      "address": "0x100f2ce7", 
+      "name": "___add_12"
+    }, 
+    {
+      "address": "0x100f2ce7", 
+      "name": "___add_12"
+    }, 
+    {
+      "address": "0x100f2ce7", 
+      "name": "___add_12"
+    }, 
+    {
+      "address": "0x100f30fa", 
+      "name": "FUN_100f30fa"
+    }
+  ]
+}

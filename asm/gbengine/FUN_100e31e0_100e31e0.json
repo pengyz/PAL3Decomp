@@ -1,0 +1,89 @@
+{
+  "address": "0x100e31e0", 
+  "size_bytes": 252, 
+  "calling_convention": "unknown", 
+  "signature": "undefined FUN_100e31e0(void)", 
+  "callees": [], 
+  "global_refs": [
+    {
+      "address": "0x10128bdc", 
+      "type": "undefined4", 
+      "name": "DAT_10128bdc"
+    }, 
+    {
+      "address": "0x10128c90", 
+      "type": "undefined4", 
+      "name": "DAT_10128c90"
+    }, 
+    {
+      "address": "0x10128ba0", 
+      "type": "undefined8", 
+      "name": "DAT_10128ba0"
+    }, 
+    {
+      "address": "0x10128ba8", 
+      "type": "undefined8", 
+      "name": "DAT_10128ba8"
+    }, 
+    {
+      "address": "0x10128bb8", 
+      "type": "undefined8", 
+      "name": "DAT_10128bb8"
+    }, 
+    {
+      "address": "0x10128b58", 
+      "type": "undefined8", 
+      "name": "DAT_10128b58"
+    }, 
+    {
+      "address": "0x10128bb0", 
+      "type": "undefined8", 
+      "name": "DAT_10128bb0"
+    }, 
+    {
+      "address": "0x10128bc0", 
+      "type": "undefined8", 
+      "name": "DAT_10128bc0"
+    }, 
+    {
+      "address": "0x10128bc8", 
+      "type": "undefined8", 
+      "name": "DAT_10128bc8"
+    }
+  ], 
+  "has_custom_name": false, 
+  "decompiled_c": "\nuint FUN_100e31e0(void)\n\n{\n  ulonglong in_MM0;\n  undefined8 uVar1;\n  ulonglong uVar2;\n  undefined4 uVar3;\n  undefined8 uVar4;\n  undefined8 uVar5;\n  undefined8 uVar6;\n  undefined8 uVar7;\n  \n  uVar1 = PackedFloatingMUL(in_MM0 & DAT_10128bdc,(ulonglong)DAT_10128c90);\n  uVar2 = PackedFloatingToIntDwordConv(uVar1,uVar1);\n  uVar1 = PackedIntToFloatingDwordConv(uVar2,uVar2);\n  uVar1 = PackedFloatingMUL(CONCAT44((int)uVar1,(int)uVar1),DAT_10128ba0);\n  uVar4 = PackedFloatingADD(in_MM0 & DAT_10128bdc,uVar1);\n  uVar3 = (undefined4)((ulonglong)uVar1 >> 0x20);\n  uVar1 = PackedFloatingADD(uVar4,CONCAT44(uVar3,uVar3));\n  uVar1 = CONCAT44((int)uVar1,(int)uVar1);\n  if ((uVar2 & 1) != 0) {\n    uVar1 = PackedFloatingSUBR(uVar1,DAT_10128bb0);\n  }\n  uVar4 = PackedFloatingMUL(uVar1,uVar1);\n  uVar6 = PackedFloatingMUL(DAT_10128ba8,uVar4);\n  uVar5 = PackedFloatingMUL(DAT_10128bb8,uVar4);\n  uVar7 = PackedFloatingADD(uVar6,DAT_10128b58);\n  uVar6 = PackedFloatingMUL(DAT_10128bc0,uVar4);\n  uVar5 = PackedFloatingMUL(uVar7,uVar5);\n  uVar7 = PackedFloatingADD(uVar5,DAT_10128b58);\n  uVar5 = PackedFloatingMUL(DAT_10128bc8,uVar4);\n  uVar4 = PackedFloatingMUL(uVar6,uVar7);\n  uVar4 = PackedFloatingADD(uVar4,DAT_10128b58);\n  uVar4 = PackedFloatingMUL(uVar4,CONCAT44((int)DAT_10128b58,(int)uVar5));\n  uVar4 = PackedFloatingADD(uVar4,DAT_10128b58 >> 0x20);\n  PackedFloatingMUL(uVar4,CONCAT44((int)uVar1,(int)DAT_10128b58));\n  return (uint)in_MM0 ^ (uint)in_MM0 & 0x80000000;\n}\n\n", 
+  "is_thunk": false, 
+  "name": "FUN_100e31e0", 
+  "assembly": "  100e31e0:  MOVD EAX,MM0\n  100e31e3:  MOVD MM3,dword ptr [0x10128bdc]\n  100e31ea:  MOV EBX,EAX\n  100e31ec:  MOV EDX,EAX\n  100e31ee:  PAND MM0,MM3\n  100e31f1:  AND EBX,0x80000000\n  100e31f7:  SHR EDX,0x1f\n  100e31fa:  XOR EAX,EBX\n  100e31fc:  MOVD MM2,dword ptr [0x10128c90]\n  100e3203:  MOVQ MM1,MM0\n  100e3206:  PFMUL MM0,MM2\n  100e320a:  MOVQ MM3,qword ptr [0x10128ba0]\n  100e3211:  PF2ID MM0,MM0\n  100e3215:  MOVQ MM7,qword ptr [0x10128ba8]\n  100e321c:  MOVD ECX,MM0\n  100e321f:  PI2FD MM0,MM0\n  100e3223:  MOV ESI,ECX\n  100e3225:  MOVQ MM6,qword ptr [0x10128bb8]\n  100e322c:  PUNPCKLDQ MM0,MM0\n  100e322f:  MOVQ MM5,qword ptr [0x10128b58]\n  100e3236:  PFMUL MM0,MM3\n  100e323a:  MOVQ MM3,qword ptr [0x10128bb0]\n  100e3241:  PFADD MM1,MM0\n  100e3245:  SHR ESI,0x2\n  100e3248:  PUNPCKHDQ MM0,MM0\n  100e324b:  XOR EDX,ESI\n  100e324d:  PFADD MM1,MM0\n  100e3251:  TEST ECX,0x1\n  100e3257:  PUNPCKLDQ MM1,MM1\n  100e325a:  JZ 0x100e3260\n  100e325c:  PFSUBR MM1,MM3\n  100e3260:  MOVQ MM2,MM5\n  100e3263:  SHL EDX,0x1f\n  100e3266:  PUNPCKLDQ MM2,MM1\n  100e3269:  PFMUL MM1,MM1\n  100e326d:  MOV ESI,ECX\n  100e326f:  MOVQ MM4,qword ptr [0x10128bc0]\n  100e3276:  SHR ESI,0x1\n  100e3278:  PFMUL MM7,MM1\n  100e327c:  XOR ECX,ESI\n  100e327e:  PFMUL MM6,MM1\n  100e3282:  SHL ESI,0x1f\n  100e3285:  PFADD MM7,MM5\n  100e3289:  XOR EBX,ESI\n  100e328b:  PFMUL MM4,MM1\n  100e328f:  PFMUL MM7,MM6\n  100e3293:  MOVQ MM6,qword ptr [0x10128bc8]\n  100e329a:  PFADD MM7,MM5\n  100e329e:  PFMUL MM6,MM1\n  100e32a2:  PFMUL MM4,MM7\n  100e32a6:  MOVD MM0,EDX\n  100e32a9:  PFADD MM4,MM5\n  100e32ad:  PUNPCKLDQ MM6,MM5\n  100e32b0:  PSRLQ MM5,0x20\n  100e32b4:  PFMUL MM4,MM6\n  100e32b8:  PUNPCKLDQ MM0,MM0\n  100e32bb:  MOVD MM1,EBX\n  100e32be:  PFADD MM4,MM5\n  100e32c2:  TEST ECX,0x1\n  100e32c8:  PFMUL MM4,MM2\n  100e32cc:  JZ 0x100e32d4\n  100e32ce:  PUNPCKLDQ MM5,MM4\n  100e32d1:  PUNPCKHDQ MM4,MM5\n  100e32d4:  PXOR MM4,MM1\n  100e32d7:  PXOR MM0,MM4\n  100e32da:  NOP\n  100e32db:  RET", 
+  "callers": [
+    {
+      "address": "0x100d7d6c", 
+      "name": "FUN_100d7d6c"
+    }, 
+    {
+      "address": "0x100d81de", 
+      "name": "FUN_100d81de"
+    }, 
+    {
+      "address": "0x100d81de", 
+      "name": "FUN_100d81de"
+    }, 
+    {
+      "address": "0x100d9486", 
+      "name": "FUN_100d9486"
+    }, 
+    {
+      "address": "0x100d9486", 
+      "name": "FUN_100d9486"
+    }, 
+    {
+      "address": "0x100d9486", 
+      "name": "FUN_100d9486"
+    }, 
+    {
+      "address": "0x100d9b5f", 
+      "name": "FUN_100d9b5f"
+    }
+  ]
+}

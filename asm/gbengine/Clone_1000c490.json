@@ -1,0 +1,66 @@
+{
+  "address": "0x1000c490", 
+  "size_bytes": 319, 
+  "calling_convention": "__thiscall", 
+  "signature": "gbAnimNodeGroup * __thiscall Clone(gbAnimNodeGroup * this)", 
+  "callees": [
+    {
+      "address": "0x100e4a16", 
+      "name": "operator_new"
+    }, 
+    {
+      "address": "0x10025110", 
+      "name": "gbMatrix4"
+    }, 
+    {
+      "address": "0x1002ec20", 
+      "name": "operator[]"
+    }, 
+    {
+      "address": "0x1000c310", 
+      "name": "FUN_1000c310"
+    }, 
+    {
+      "address": "0x10025140", 
+      "name": "operator="
+    }
+  ], 
+  "global_refs": [
+    {
+      "address": "0x100f3a2b", 
+      "type": null, 
+      "name": "DAT_100f3a2b"
+    }, 
+    {
+      "address": "0xffdff000", 
+      "type": "void *32", 
+      "name": "DAT_ffdff000"
+    }, 
+    {
+      "address": "0x-0000010", 
+      "type": null, 
+      "name": "DAT_-0000010"
+    }, 
+    {
+      "address": "0x-0000004", 
+      "type": null, 
+      "name": "DAT_-0000004"
+    }, 
+    {
+      "address": "0x101379b0", 
+      "type": "undefined4", 
+      "name": "DAT_101379b0"
+    }, 
+    {
+      "address": "0x-000000c", 
+      "type": null, 
+      "name": "DAT_-000000c"
+    }
+  ], 
+  "has_custom_name": true, 
+  "decompiled_c": "\n/* public: class gbAnimNodeGroup * __thiscall gbAnimNodeGroup::Clone(void) */\n\ngbAnimNodeGroup * __thiscall gbAnimNodeGroup::Clone(gbAnimNodeGroup *this)\n\n{\n  int iVar1;\n  undefined4 uVar2;\n  gbAnimNodeGroup *pgVar3;\n  int iVar4;\n  void *local_c;\n  undefined *puStack_8;\n  undefined4 local_4;\n  \n                    /* 0xc490  334  ?Clone@gbAnimNodeGroup@@QAEPAV1@XZ */\n  local_4 = 0xffffffff;\n  puStack_8 = &LAB_100f3a2b;\n  local_c = ExceptionList;\n  ExceptionList = &local_c;\n  pgVar3 = (gbAnimNodeGroup *)operator_new(0x78);\n  uVar2 = DAT_101379b0;\n  iVar4 = 0;\n  local_4 = 0;\n  if (pgVar3 == (gbAnimNodeGroup *)0x0) {\n    pgVar3 = (gbAnimNodeGroup *)0x0;\n  }\n  else {\n    gbMatrix4::gbMatrix4((gbMatrix4 *)(pgVar3 + 0x34));\n    *(int *)pgVar3 = 0;\n    *(int *)(pgVar3 + 0x24) = 0;\n    iVar1 = *(int *)pgVar3;\n    DAT_101379b0 = uVar2;\n    *(int *)(pgVar3 + 8) = 0;\n    *(int *)(pgVar3 + 0x10) = 0;\n    *(int *)(pgVar3 + 0xc) = -0x40100000;\n    *(int *)(pgVar3 + 0x14) = 0;\n    *(int *)(pgVar3 + 0x18) = 0;\n    *(int *)(pgVar3 + 0x28) = 0;\n    *(int *)(pgVar3 + 0x2c) = 1;\n    if (iVar1 != 0) {\n      if ((*(int *)(iVar1 + 0x15c) == 3) || (*(int *)(iVar1 + 0x15c) == 1)) {\n        (**(code **)(**(int **)(iVar1 + 0x168) + 0x18))(0);\n      }\n      if (0 < *(int *)(iVar1 + 0x14)) {\n        do {\n          gbChain1D::operator[]((gbChain1D *)(iVar1 + 0xc),iVar4);\n          FUN_1000c310();\n          iVar4 = iVar4 + 1;\n        } while (iVar4 < *(int *)(iVar1 + 0x14));\n      }\n    }\n    *(int *)(pgVar3 + 0x2c) = 0;\n    *(int *)(pgVar3 + 0x30) = 1;\n  }\n  local_4 = 0xffffffff;\n  *(int *)pgVar3 = *(int *)this;\n  *(int *)(*(int *)this + 0x174) = *(int *)(*(int *)this + 0x174) + 1;\n  *(int *)(pgVar3 + 8) = *(int *)(this + 8);\n  *(int *)(pgVar3 + 0xc) = *(int *)(this + 0xc);\n  *(int *)(pgVar3 + 0x10) = *(int *)(this + 0x10);\n  *(int *)(pgVar3 + 0x14) = *(int *)(this + 0x14);\n  *(int *)(pgVar3 + 0x18) = *(int *)(this + 0x18);\n  *(int *)(pgVar3 + 0x1c) = *(int *)(this + 0x1c);\n  *(int *)(pgVar3 + 0x20) = *(int *)(this + 0x20);\n  *(int *)(pgVar3 + 0x24) = *(int *)(this + 0x24);\n  *(int *)(pgVar3 + 0x28) = *(int *)(this + 0x28);\n  *(int *)(pgVar3 + 0x2c) = *(int *)(this + 0x2c);\n  gbMatrix4::operator=((gbMatrix4 *)(pgVar3 + 0x34),(gbMatrix4 *)(this + 0x34));\n  *(int *)(pgVar3 + 0x30) = *(int *)(this + 0x30);\n  ExceptionList = local_c;\n  return pgVar3;\n}\n\n", 
+  "is_thunk": false, 
+  "name": "Clone", 
+  "assembly": "  1000c490:  PUSH -0x1\n  1000c492:  PUSH 0x100f3a2b\n  1000c497:  MOV EAX,FS:[0x0]\n  1000c49d:  PUSH EAX\n  1000c49e:  MOV dword ptr FS:[0x0],ESP\n  1000c4a5:  PUSH ECX\n  1000c4a6:  PUSH EBP\n  1000c4a7:  PUSH ESI\n  1000c4a8:  PUSH EDI\n  1000c4a9:  MOV EDI,ECX\n  1000c4ab:  PUSH 0x78\n  1000c4ad:  CALL 0x100e4a16\n  1000c4b2:  MOV ESI,EAX\n  1000c4b4:  ADD ESP,0x4\n  1000c4b7:  MOV dword ptr [ESP + 0xc],ESI\n  1000c4bb:  XOR EBP,EBP\n  1000c4bd:  CMP ESI,EBP\n  1000c4bf:  MOV dword ptr [ESP + 0x18],EBP\n  1000c4c3:  JZ 0x1000c550\n  1000c4c9:  PUSH EBX\n  1000c4ca:  MOV EBX,dword ptr [0x101379b0]\n  1000c4d0:  LEA ECX,[ESI + 0x34]\n  1000c4d3:  CALL 0x10025110\n  1000c4d8:  MOV dword ptr [ESI],EBP\n  1000c4da:  MOV dword ptr [ESI + 0x24],EBP\n  1000c4dd:  MOV dword ptr [0x101379b0],EBX\n  1000c4e3:  MOV EBX,dword ptr [ESI]\n  1000c4e5:  MOV dword ptr [ESI + 0x8],EBP\n  1000c4e8:  MOV dword ptr [ESI + 0x10],EBP\n  1000c4eb:  CMP EBX,EBP\n  1000c4ed:  MOV dword ptr [ESI + 0xc],0xbff00000\n  1000c4f4:  MOV dword ptr [ESI + 0x14],EBP\n  1000c4f7:  MOV dword ptr [ESI + 0x18],EBP\n  1000c4fa:  MOV dword ptr [ESI + 0x28],EBP\n  1000c4fd:  MOV dword ptr [ESI + 0x2c],0x1\n  1000c504:  JZ 0x1000c543\n  1000c506:  MOV EAX,dword ptr [EBX + 0x15c]\n  1000c50c:  CMP EAX,0x3\n  1000c50f:  JZ 0x1000c516\n  1000c511:  CMP EAX,0x1\n  1000c514:  JNZ 0x1000c522\n  1000c516:  MOV ECX,dword ptr [EBX + 0x168]\n  1000c51c:  PUSH EBP\n  1000c51d:  MOV EAX,dword ptr [ECX]\n  1000c51f:  CALL dword ptr [EAX + 0x18]\n  1000c522:  MOV EAX,dword ptr [EBX + 0x14]\n  1000c525:  TEST EAX,EAX\n  1000c527:  JLE 0x1000c541\n  1000c529:  PUSH EBP\n  1000c52a:  LEA ECX,[EBX + 0xc]\n  1000c52d:  CALL 0x1002ec20\n  1000c532:  MOV ECX,EAX\n  1000c534:  CALL 0x1000c310\n  1000c539:  MOV EAX,dword ptr [EBX + 0x14]\n  1000c53c:  INC EBP\n  1000c53d:  CMP EBP,EAX\n  1000c53f:  JL 0x1000c529\n  1000c541:  XOR EBP,EBP\n  1000c543:  MOV dword ptr [ESI + 0x2c],EBP\n  1000c546:  MOV dword ptr [ESI + 0x30],0x1\n  1000c54d:  POP EBX\n  1000c54e:  JMP 0x1000c552\n  1000c550:  XOR ESI,ESI\n  1000c552:  MOV ECX,dword ptr [EDI]\n  1000c554:  MOV dword ptr [ESP + 0x18],0xffffffff\n  1000c55c:  MOV dword ptr [ESI],ECX\n  1000c55e:  MOV EAX,dword ptr [EDI]\n  1000c560:  MOV EDX,dword ptr [EAX + 0x174]\n  1000c566:  INC EDX\n  1000c567:  MOV dword ptr [EAX + 0x174],EDX\n  1000c56d:  MOV EDX,dword ptr [EDI + 0x8]\n  1000c570:  MOV dword ptr [ESI + 0x8],EDX\n  1000c573:  MOV EAX,dword ptr [EDI + 0xc]\n  1000c576:  MOV dword ptr [ESI + 0xc],EAX\n  1000c579:  MOV ECX,dword ptr [EDI + 0x10]\n  1000c57c:  MOV dword ptr [ESI + 0x10],ECX\n  1000c57f:  MOV EDX,dword ptr [EDI + 0x14]\n  1000c582:  MOV dword ptr [ESI + 0x14],EDX\n  1000c585:  MOV EAX,dword ptr [EDI + 0x18]\n  1000c588:  MOV dword ptr [ESI + 0x18],EAX\n  1000c58b:  MOV ECX,dword ptr [EDI + 0x1c]\n  1000c58e:  MOV dword ptr [ESI + 0x1c],ECX\n  1000c591:  MOV EDX,dword ptr [EDI + 0x20]\n  1000c594:  MOV dword ptr [ESI + 0x20],EDX\n  1000c597:  MOV EAX,dword ptr [EDI + 0x24]\n  1000c59a:  MOV dword ptr [ESI + 0x24],EAX\n  1000c59d:  MOV ECX,dword ptr [EDI + 0x28]\n  1000c5a0:  MOV dword ptr [ESI + 0x28],ECX\n  1000c5a3:  MOV EDX,dword ptr [EDI + 0x2c]\n  1000c5a6:  LEA EAX,[EDI + 0x34]\n  1000c5a9:  LEA ECX,[ESI + 0x34]\n  1000c5ac:  PUSH EAX\n  1000c5ad:  MOV dword ptr [ESI + 0x2c],EDX\n  1000c5b0:  CALL 0x10025140\n  1000c5b5:  MOV ECX,dword ptr [EDI + 0x30]\n  1000c5b8:  MOV EAX,ESI\n  1000c5ba:  MOV dword ptr [ESI + 0x30],ECX\n  1000c5bd:  MOV ECX,dword ptr [ESP + 0x10]\n  1000c5c1:  POP EDI\n  1000c5c2:  POP ESI\n  1000c5c3:  POP EBP\n  1000c5c4:  MOV dword ptr FS:[0x0],ECX\n  1000c5cb:  ADD ESP,0x10\n  1000c5ce:  RET", 
+  "callers": []
+}

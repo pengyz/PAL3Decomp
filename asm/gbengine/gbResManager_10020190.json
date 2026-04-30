@@ -1,0 +1,39 @@
+{
+  "address": "0x10020190", 
+  "size_bytes": 13, 
+  "calling_convention": "__thiscall", 
+  "signature": "undefined __thiscall gbResManager(gbResManager * this)", 
+  "callees": [], 
+  "global_refs": [], 
+  "has_custom_name": true, 
+  "decompiled_c": "\n/* public: __thiscall gbResManager::gbResManager(void) */\n\nvoid __thiscall gbResManager::gbResManager(gbResManager *this)\n\n{\n                    /* 0x20190  86  ??0gbResManager@@QAE@XZ */\n  *(undefined4 *)(this + 4) = 0;\n  *(undefined4 *)(this + 8) = 0;\n  *(undefined4 *)this = 0;\n  return;\n}\n\n", 
+  "is_thunk": false, 
+  "name": "gbResManager", 
+  "assembly": "  10020190:  MOV EAX,ECX\n  10020192:  XOR ECX,ECX\n  10020194:  MOV dword ptr [EAX + 0x4],ECX\n  10020197:  MOV dword ptr [EAX + 0x8],ECX\n  1002019a:  MOV dword ptr [EAX],ECX\n  1002019c:  RET", 
+  "callers": [
+    {
+      "address": "0x10001120", 
+      "name": "gbAudioManager"
+    }, 
+    {
+      "address": "0x100035a0", 
+      "name": "gbActorMgr"
+    }, 
+    {
+      "address": "0x10004d20", 
+      "name": "gbEffectMgr"
+    }, 
+    {
+      "address": "0x100189a0", 
+      "name": "FUN_100189a0"
+    }, 
+    {
+      "address": "0x100189a0", 
+      "name": "FUN_100189a0"
+    }, 
+    {
+      "address": "0x1001dbf0", 
+      "name": "FUN_1001dbf0"
+    }
+  ]
+}

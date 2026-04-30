@@ -1,0 +1,92 @@
+{
+  "address": "0x10020d90", 
+  "size_bytes": 282, 
+  "calling_convention": "__thiscall", 
+  "signature": "undefined __thiscall gbVertexPool(gbVertexPool * this, gbPoolType param_1, uint param_2, int param_3)", 
+  "callees": [
+    {
+      "address": "0x1002ea50", 
+      "name": "gbChain1D"
+    }, 
+    {
+      "address": "0x1002ea50", 
+      "name": "gbChain1D"
+    }, 
+    {
+      "address": "0x100e4a16", 
+      "name": "operator_new"
+    }, 
+    {
+      "address": "0x1002eaa0", 
+      "name": "AddNode"
+    }
+  ], 
+  "global_refs": [
+    {
+      "address": "0x100f40fe", 
+      "type": null, 
+      "name": "DAT_100f40fe"
+    }, 
+    {
+      "address": "0xffdff000", 
+      "type": "void *32", 
+      "name": "DAT_ffdff000"
+    }, 
+    {
+      "address": "0x-0000010", 
+      "type": null, 
+      "name": "DAT_-0000010"
+    }, 
+    {
+      "address": "0x100f53a8", 
+      "type": "pointer", 
+      "name": "DAT_100f53a8"
+    }, 
+    {
+      "address": "0x-0000004", 
+      "type": null, 
+      "name": "DAT_-0000004"
+    }, 
+    {
+      "address": "0x00000004", 
+      "type": null, 
+      "name": "DAT_00000004"
+    }, 
+    {
+      "address": "0x0000000c", 
+      "type": null, 
+      "name": "DAT_0000000c"
+    }, 
+    {
+      "address": "0x00000008", 
+      "type": null, 
+      "name": "DAT_00000008"
+    }, 
+    {
+      "address": "0x100f53c4", 
+      "type": "undefined *", 
+      "name": "DAT_100f53c4"
+    }, 
+    {
+      "address": "0x100f53c0", 
+      "type": "pointer", 
+      "name": "DAT_100f53c0"
+    }, 
+    {
+      "address": "0x-000000c", 
+      "type": null, 
+      "name": "DAT_-000000c"
+    }
+  ], 
+  "has_custom_name": true, 
+  "decompiled_c": "\n/* public: __thiscall gbVertexPool::gbVertexPool(enum gbPoolType,unsigned int,int) */\n\ngbVertexPool * __thiscall\ngbVertexPool::gbVertexPool(gbVertexPool *this,gbPoolType param_1,uint param_2,int param_3)\n\n{\n  gbChain1DNode *pgVar1;\n  uint uVar2;\n  void *local_c;\n  undefined *puStack_8;\n  undefined4 local_4;\n  \n                    /* 0x20d90  113  ??0gbVertexPool@@QAE@W4gbPoolType@@IH@Z */\n  puStack_8 = &LAB_100f40fe;\n  local_c = ExceptionList;\n  ExceptionList = &local_c;\n  *(undefined ***)this = &gbChain1DNode::_vftable_;\n  local_4 = 0;\n  gbChain1D::gbChain1D((gbChain1D *)(this + 0x1c));\n  local_4._0_1_ = 1;\n  gbChain1D::gbChain1D((gbChain1D *)(this + 0x2c));\n  *(gbPoolType *)(this + 8) = param_1;\n  uVar2 = 0;\n  local_4 = CONCAT31(local_4._1_3_,2);\n  *(undefined ***)this = &_vftable_;\n  *(uint *)(this + 0x14) = param_2;\n  *(int *)(this + 0x10) = param_3;\n  if ((param_2 & 0x80000000) == 0) {\n    if ((param_2 & 1) != 0) {\n      uVar2 = 0xc;\n    }\n    if ((param_2 & 0x100) != 0) {\n      uVar2 = uVar2 + 0x10;\n    }\n    if ((param_2 & 2) != 0) {\n      uVar2 = uVar2 + 0xc;\n    }\n    if ((param_2 & 4) != 0) {\n      uVar2 = uVar2 + 4;\n    }\n    if ((param_2 & 8) != 0) {\n      uVar2 = uVar2 + 4;\n    }\n    if ((param_2 & 0x10) != 0) {\n      uVar2 = uVar2 + 8;\n    }\n    if ((param_2 & 0x20) != 0) {\n      uVar2 = uVar2 + 8;\n    }\n    if ((param_2 & 0x40) != 0) {\n      uVar2 = uVar2 + 8;\n    }\n    if ((param_2 & 0x80) != 0) {\n      uVar2 = uVar2 + 8;\n    }\n  }\n  else {\n    uVar2 = param_2 & 0x7fffffff;\n  }\n  *(uint *)(this + 0x18) = uVar2;\n  *(undefined4 *)(this + 0xc) = 0;\n  pgVar1 = (gbChain1DNode *)operator_new(0x38);\n  if (pgVar1 == (gbChain1DNode *)0x0) {\n    pgVar1 = (gbChain1DNode *)0x0;\n  }\n  else {\n    *(undefined ***)pgVar1 = &gbVertexBubble::_vftable_;\n    *(gbVertexPool **)(pgVar1 + 8) = this;\n    *(undefined4 *)(pgVar1 + 0xc) = 0;\n    *(int *)(pgVar1 + 0x14) = param_3;\n    *(int *)(pgVar1 + 0x10) = param_3;\n    *(undefined4 *)(pgVar1 + 0x18) = 0;\n    *(undefined4 *)(pgVar1 + 0x1c) = 0;\n    *(undefined4 *)(pgVar1 + 0x20) = 0;\n    *(undefined4 *)(pgVar1 + 0x24) = 0;\n    *(undefined4 *)(pgVar1 + 0x28) = 0;\n    *(undefined4 *)(pgVar1 + 0x2c) = 0;\n    *(undefined4 *)(pgVar1 + 0x30) = 0;\n    *(undefined4 *)(pgVar1 + 0x34) = 0;\n  }\n  gbChain1D::AddNode((gbChain1D *)(this + 0x1c),pgVar1);\n  ExceptionList = local_c;\n  return this;\n}\n\n", 
+  "is_thunk": false, 
+  "name": "gbVertexPool", 
+  "assembly": "  10020d90:  PUSH -0x1\n  10020d92:  PUSH 0x100f40fe\n  10020d97:  MOV EAX,FS:[0x0]\n  10020d9d:  PUSH EAX\n  10020d9e:  MOV dword ptr FS:[0x0],ESP\n  10020da5:  PUSH ECX\n  10020da6:  PUSH EBX\n  10020da7:  PUSH EBP\n  10020da8:  PUSH ESI\n  10020da9:  MOV ESI,ECX\n  10020dab:  PUSH EDI\n  10020dac:  MOV dword ptr [ESP + 0x10],ESI\n  10020db0:  MOV dword ptr [ESI],0x100f53a8\n  10020db6:  LEA EBP,[ESI + 0x1c]\n  10020db9:  XOR EDI,EDI\n  10020dbb:  MOV ECX,EBP\n  10020dbd:  MOV dword ptr [ESP + 0x1c],EDI\n  10020dc1:  CALL 0x1002ea50\n  10020dc6:  LEA ECX,[ESI + 0x2c]\n  10020dc9:  MOV byte ptr [ESP + 0x1c],0x1\n  10020dce:  CALL 0x1002ea50\n  10020dd3:  MOV EAX,dword ptr [ESP + 0x24]\n  10020dd7:  MOV EBX,dword ptr [ESP + 0x2c]\n  10020ddb:  MOV dword ptr [ESI + 0x8],EAX\n  10020dde:  MOV EAX,dword ptr [ESP + 0x28]\n  10020de2:  XOR ECX,ECX\n  10020de4:  MOV byte ptr [ESP + 0x1c],0x2\n  10020de9:  TEST EAX,0x80000000\n  10020dee:  MOV dword ptr [ESI],0x100f53c4\n  10020df4:  MOV dword ptr [ESI + 0x14],EAX\n  10020df7:  MOV dword ptr [ESI + 0x10],EBX\n  10020dfa:  JZ 0x10020e03\n  10020dfc:  AND EAX,0x7fffffff\n  10020e01:  JMP 0x10020e47\n  10020e03:  TEST AL,0x1\n  10020e05:  JZ 0x10020e0c\n  10020e07:  MOV ECX,0xc\n  10020e0c:  TEST AH,0x1\n  10020e0f:  JZ 0x10020e14\n  10020e11:  ADD ECX,0x10\n  10020e14:  TEST AL,0x2\n  10020e16:  JZ 0x10020e1b\n  10020e18:  ADD ECX,0xc\n  10020e1b:  TEST AL,0x4\n  10020e1d:  JZ 0x10020e22\n  10020e1f:  ADD ECX,0x4\n  10020e22:  TEST AL,0x8\n  10020e24:  JZ 0x10020e29\n  10020e26:  ADD ECX,0x4\n  10020e29:  TEST AL,0x10\n  10020e2b:  JZ 0x10020e30\n  10020e2d:  ADD ECX,0x8\n  10020e30:  TEST AL,0x20\n  10020e32:  JZ 0x10020e37\n  10020e34:  ADD ECX,0x8\n  10020e37:  TEST AL,0x40\n  10020e39:  JZ 0x10020e3e\n  10020e3b:  ADD ECX,0x8\n  10020e3e:  TEST AL,0x80\n  10020e40:  JZ 0x10020e45\n  10020e42:  ADD ECX,0x8\n  10020e45:  MOV EAX,ECX\n  10020e47:  PUSH 0x38\n  10020e49:  MOV dword ptr [ESI + 0x18],EAX\n  10020e4c:  MOV dword ptr [ESI + 0xc],EDI\n  10020e4f:  CALL 0x100e4a16\n  10020e54:  ADD ESP,0x4\n  10020e57:  CMP EAX,EDI\n  10020e59:  JZ 0x10020e89\n  10020e5b:  XOR ECX,ECX\n  10020e5d:  MOV dword ptr [EAX],0x100f53c0\n  10020e63:  MOV dword ptr [EAX + 0x8],ESI\n  10020e66:  MOV dword ptr [EAX + 0xc],EDI\n  10020e69:  MOV dword ptr [EAX + 0x14],EBX\n  10020e6c:  MOV dword ptr [EAX + 0x10],EBX\n  10020e6f:  MOV dword ptr [EAX + 0x18],EDI\n  10020e72:  MOV dword ptr [EAX + 0x1c],EDI\n  10020e75:  MOV dword ptr [EAX + 0x20],EDI\n  10020e78:  MOV dword ptr [EAX + 0x24],EDI\n  10020e7b:  MOV dword ptr [EAX + 0x28],ECX\n  10020e7e:  MOV dword ptr [EAX + 0x2c],ECX\n  10020e81:  MOV dword ptr [EAX + 0x30],ECX\n  10020e84:  MOV dword ptr [EAX + 0x34],ECX\n  10020e87:  JMP 0x10020e8b\n  10020e89:  XOR EAX,EAX\n  10020e8b:  PUSH EAX\n  10020e8c:  MOV ECX,EBP\n  10020e8e:  CALL 0x1002eaa0\n  10020e93:  MOV ECX,dword ptr [ESP + 0x14]\n  10020e97:  MOV EAX,ESI\n  10020e99:  POP EDI\n  10020e9a:  POP ESI\n  10020e9b:  POP EBP\n  10020e9c:  POP EBX\n  10020e9d:  MOV dword ptr FS:[0x0],ECX\n  10020ea4:  ADD ESP,0x10\n  10020ea7:  RET 0xc", 
+  "callers": [
+    {
+      "address": "0x1001c3c0", 
+      "name": "FUN_1001c3c0"
+    }
+  ]
+}

@@ -1,0 +1,30 @@
+{
+  "address": "0x100029d0", 
+  "size_bytes": 24, 
+  "calling_convention": "__thiscall", 
+  "signature": "void __thiscall Stop(gbSound2DNode * this)", 
+  "callees": [
+    {
+      "address": "0x00000099", 
+      "name": "_AIL_end_sample@4"
+    }
+  ], 
+  "global_refs": [
+    {
+      "address": "0x1012b988", 
+      "type": "gbAudioManager *", 
+      "name": "DAT_1012b988"
+    }, 
+    {
+      "address": "0x100f528c", 
+      "type": "pointer", 
+      "name": "DAT_100f528c"
+    }
+  ], 
+  "has_custom_name": true, 
+  "decompiled_c": "\n/* public: void __thiscall gbSound2DNode::Stop(void) */\n\nvoid __thiscall gbSound2DNode::Stop(gbSound2DNode *this)\n\n{\n                    /* 0x29d0  917  ?Stop@gbSound2DNode@@QAEXXZ */\n  if ((pAudioMgr != (gbAudioManager *)0x0) && (*(int *)(this + 4) != 0)) {\n    _AIL_end_sample_4(*(int *)(this + 4));\n  }\n  return;\n}\n\n", 
+  "is_thunk": false, 
+  "name": "Stop", 
+  "assembly": "  100029d0:  MOV EAX,[0x1012b988]\n  100029d5:  TEST EAX,EAX\n  100029d7:  JZ 0x100029e7\n  100029d9:  MOV EAX,dword ptr [ECX + 0x4]\n  100029dc:  TEST EAX,EAX\n  100029de:  JZ 0x100029e7\n  100029e0:  PUSH EAX\n  100029e1:  CALL dword ptr [0x100f528c]\n  100029e7:  RET", 
+  "callers": []
+}

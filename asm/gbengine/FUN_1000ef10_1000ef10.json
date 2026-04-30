@@ -1,0 +1,28 @@
+{
+  "address": "0x1000ef10", 
+  "size_bytes": 77, 
+  "calling_convention": "unknown", 
+  "signature": "undefined FUN_1000ef10(void)", 
+  "callees": [
+    {
+      "address": "0x10021680", 
+      "name": "GetDynVertBuf"
+    }, 
+    {
+      "address": "0x1000f1a0", 
+      "name": "FUN_1000f1a0"
+    }
+  ], 
+  "global_refs": [], 
+  "has_custom_name": false, 
+  "decompiled_c": "\nvoid FUN_1000ef10(void)\n\n{\n  gbDynVertBuf *pgVar1;\n  int *in_ECX;\n  int iVar2;\n  int *piVar3;\n  \n  pgVar1 = gbVertPoolMgr::GetDynVertBuf(*(gbVertPoolMgr **)(in_ECX[0x5e0] + 0xc4),5);\n  iVar2 = 0x20;\n  piVar3 = in_ECX;\n  do {\n    if ((*piVar3 != 0) && (2 < piVar3[0x2e])) {\n      FUN_1000f1a0(pgVar1,in_ECX[0x5e2]);\n    }\n    piVar3 = piVar3 + 0x2f;\n    iVar2 = iVar2 + -1;\n  } while (iVar2 != 0);\n  return;\n}\n\n", 
+  "is_thunk": false, 
+  "name": "FUN_1000ef10", 
+  "assembly": "  1000ef10:  PUSH EBX\n  1000ef11:  PUSH EBP\n  1000ef12:  PUSH ESI\n  1000ef13:  PUSH EDI\n  1000ef14:  MOV EDI,ECX\n  1000ef16:  PUSH 0x5\n  1000ef18:  MOV EAX,dword ptr [EDI + 0x1780]\n  1000ef1e:  MOV ECX,dword ptr [EAX + 0xc4]\n  1000ef24:  CALL 0x10021680\n  1000ef29:  MOV EBP,EAX\n  1000ef2b:  MOV ESI,EDI\n  1000ef2d:  MOV EBX,0x20\n  1000ef32:  CMP dword ptr [ESI],0x0\n  1000ef35:  JZ 0x1000ef4f\n  1000ef37:  CMP dword ptr [ESI + 0xb8],0x3\n  1000ef3e:  JL 0x1000ef4f\n  1000ef40:  MOV ECX,dword ptr [EDI + 0x1788]\n  1000ef46:  PUSH ECX\n  1000ef47:  PUSH EBP\n  1000ef48:  MOV ECX,ESI\n  1000ef4a:  CALL 0x1000f1a0\n  1000ef4f:  ADD ESI,0xbc\n  1000ef55:  DEC EBX\n  1000ef56:  JNZ 0x1000ef32\n  1000ef58:  POP EDI\n  1000ef59:  POP ESI\n  1000ef5a:  POP EBP\n  1000ef5b:  POP EBX\n  1000ef5c:  RET", 
+  "callers": [
+    {
+      "address": "0x10014f40", 
+      "name": "End"
+    }
+  ]
+}

@@ -1,0 +1,47 @@
+{
+  "address": "0x10030f50", 
+  "size_bytes": 76, 
+  "calling_convention": "__cdecl", 
+  "signature": "char * __cdecl gbVfgetname(char * param_1, char * param_2, int param_3)", 
+  "callees": [
+    {
+      "address": "0x100e4f50", 
+      "name": "_strrchr"
+    }, 
+    {
+      "address": "0x100e4f50", 
+      "name": "_strrchr"
+    }
+  ], 
+  "global_refs": [
+    {
+      "address": "0x00000004", 
+      "type": null, 
+      "name": "DAT_00000004"
+    }, 
+    {
+      "address": "0x00000008", 
+      "type": null, 
+      "name": "DAT_00000008"
+    }
+  ], 
+  "has_custom_name": true, 
+  "decompiled_c": "\n/* char * __cdecl gbVfgetname(char const *,char *,int) */\n\nchar * __cdecl gbVfgetname(char *param_1,char *param_2,int param_3)\n\n{\n  char cVar1;\n  char *pcVar2;\n  char *pcVar3;\n  uint uVar4;\n  uint uVar5;\n  \n                    /* 0x30f50  1007  ?gbVfgetname@@YAPADPBDPADH@Z */\n  pcVar2 = _strrchr(param_1,0x2f);\n  pcVar3 = _strrchr(param_1,0x5c);\n  if (pcVar2 < pcVar3) {\n    pcVar2 = pcVar3;\n  }\n  if (pcVar2 != (char *)0x0) {\n    param_1 = pcVar2 + 1;\n  }\n  uVar4 = 0xffffffff;\n  do {\n    pcVar2 = param_1;\n    if (uVar4 == 0) break;\n    uVar4 = uVar4 - 1;\n    pcVar2 = param_1 + 1;\n    cVar1 = *param_1;\n    param_1 = pcVar2;\n  } while (cVar1 != '\\0');\n  uVar4 = ~uVar4;\n  pcVar2 = pcVar2 + -uVar4;\n  pcVar3 = param_2;\n  for (uVar5 = uVar4 >> 2; uVar5 != 0; uVar5 = uVar5 - 1) {\n    *(undefined4 *)pcVar3 = *(undefined4 *)pcVar2;\n    pcVar2 = pcVar2 + 4;\n    pcVar3 = pcVar3 + 4;\n  }\n  for (uVar4 = uVar4 & 3; uVar4 != 0; uVar4 = uVar4 - 1) {\n    *pcVar3 = *pcVar2;\n    pcVar2 = pcVar2 + 1;\n    pcVar3 = pcVar3 + 1;\n  }\n  return param_2;\n}\n\n", 
+  "is_thunk": false, 
+  "name": "gbVfgetname", 
+  "assembly": "  10030f50:  PUSH ESI\n  10030f51:  PUSH EDI\n  10030f52:  MOV EDI,dword ptr [ESP + 0xc]\n  10030f56:  PUSH 0x2f\n  10030f58:  PUSH EDI\n  10030f59:  CALL 0x100e4f50\n  10030f5e:  PUSH 0x5c\n  10030f60:  PUSH EDI\n  10030f61:  MOV ESI,EAX\n  10030f63:  CALL 0x100e4f50\n  10030f68:  ADD ESP,0x10\n  10030f6b:  CMP EAX,ESI\n  10030f6d:  JBE 0x10030f71\n  10030f6f:  MOV ESI,EAX\n  10030f71:  TEST ESI,ESI\n  10030f73:  JZ 0x10030f78\n  10030f75:  LEA EDI,[ESI + 0x1]\n  10030f78:  OR ECX,0xffffffff\n  10030f7b:  XOR EAX,EAX\n  10030f7d:  SCASB.REPNE ES:EDI\n  10030f7f:  MOV EAX,dword ptr [ESP + 0x10]\n  10030f83:  NOT ECX\n  10030f85:  SUB EDI,ECX\n  10030f87:  MOV EDX,ECX\n  10030f89:  MOV ESI,EDI\n  10030f8b:  MOV EDI,EAX\n  10030f8d:  SHR ECX,0x2\n  10030f90:  MOVSD.REP ES:EDI,ESI\n  10030f92:  MOV ECX,EDX\n  10030f94:  AND ECX,0x3\n  10030f97:  MOVSB.REP ES:EDI,ESI\n  10030f99:  POP EDI\n  10030f9a:  POP ESI\n  10030f9b:  RET", 
+  "callers": [
+    {
+      "address": "0x1000b910", 
+      "name": "FUN_1000b910"
+    }, 
+    {
+      "address": "0x1002a7f0", 
+      "name": "LoadFromFile"
+    }, 
+    {
+      "address": "0x10009630", 
+      "name": "FUN_10009630"
+    }
+  ]
+}

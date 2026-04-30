@@ -1,0 +1,19 @@
+{
+  "address": "0x10003860", 
+  "size_bytes": 12, 
+  "calling_convention": "__thiscall", 
+  "signature": "undefined __thiscall gbOBBox(gbOBBox * this)", 
+  "callees": [
+    {
+      "address": "0x10025110", 
+      "name": "gbMatrix4"
+    }
+  ], 
+  "global_refs": [], 
+  "has_custom_name": true, 
+  "decompiled_c": "\n/* public: __thiscall gbOBBox::gbOBBox(void) */\n\ngbOBBox * __thiscall gbOBBox::gbOBBox(gbOBBox *this)\n\n{\n                    /* 0x3860  65  ??0gbOBBox@@QAE@XZ */\n  gbMatrix4::gbMatrix4((gbMatrix4 *)this);\n  return this;\n}\n\n", 
+  "is_thunk": false, 
+  "name": "gbOBBox", 
+  "assembly": "  10003860:  PUSH ESI\n  10003861:  MOV ESI,ECX\n  10003863:  CALL 0x10025110\n  10003868:  MOV EAX,ESI\n  1000386a:  POP ESI\n  1000386b:  RET", 
+  "callers": []
+}

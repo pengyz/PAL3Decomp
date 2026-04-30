@@ -1,0 +1,25 @@
+{
+  "address": "0x1002c430", 
+  "size_bytes": 118, 
+  "calling_convention": "__cdecl", 
+  "signature": "ulong __cdecl Crc(char * param_1)", 
+  "callees": [], 
+  "global_refs": [
+    {
+      "address": "0x00000004", 
+      "type": null, 
+      "name": "DAT_00000004"
+    }, 
+    {
+      "address": "0x1014b20c", 
+      "type": "ulong *", 
+      "name": "DAT_1014b20c"
+    }
+  ], 
+  "has_custom_name": true, 
+  "decompiled_c": "\n/* private: static unsigned long __cdecl CPK::Crc(char const *) */\n\nulong __cdecl CPK::Crc(char *param_1)\n\n{\n  byte *pbVar1;\n  byte bVar2;\n  uint uVar3;\n  byte *pbVar4;\n  \n                    /* 0x2c430  352  ?Crc@CPK@@CAKPBD@Z */\n  if (*param_1 != 0) {\n    uVar3 = (uint)(byte)*param_1 << 0x18;\n    pbVar4 = (byte *)(param_1 + 1);\n    if (*pbVar4 != 0) {\n      uVar3 = uVar3 | (uint)*pbVar4 << 0x10;\n      pbVar4 = (byte *)(param_1 + 2);\n      if (param_1[2] != 0) {\n        uVar3 = uVar3 | (uint)(byte)param_1[2] << 8;\n        pbVar4 = (byte *)(param_1 + 3);\n        if (param_1[3] != 0) {\n          uVar3 = uVar3 | (byte)param_1[3];\n          pbVar4 = (byte *)(param_1 + 4);\n        }\n      }\n    }\n    uVar3 = ~uVar3;\n    bVar2 = *pbVar4;\n    while (bVar2 != 0) {\n      uVar3 = (uVar3 << 8 | (uint)bVar2) ^ (uint)(&CrcTable)[uVar3 >> 0x18];\n      pbVar1 = pbVar4 + 1;\n      pbVar4 = pbVar4 + 1;\n      bVar2 = *pbVar1;\n    }\n    return ~uVar3;\n  }\n  return 0;\n}\n\n", 
+  "is_thunk": false, 
+  "name": "Crc", 
+  "assembly": "  1002c430:  MOV ECX,dword ptr [ESP + 0x4]\n  1002c434:  MOV AL,byte ptr [ECX]\n  1002c436:  TEST AL,AL\n  1002c438:  JNZ 0x1002c43d\n  1002c43a:  XOR EAX,EAX\n  1002c43c:  RET\n  1002c43d:  AND EAX,0xff\n  1002c442:  PUSH ESI\n  1002c443:  SHL EAX,0x18\n  1002c446:  INC ECX\n  1002c447:  MOV ESI,EAX\n  1002c449:  MOV AL,byte ptr [ECX]\n  1002c44b:  TEST AL,AL\n  1002c44d:  JZ 0x1002c477\n  1002c44f:  AND EAX,0xff\n  1002c454:  SHL EAX,0x10\n  1002c457:  OR ESI,EAX\n  1002c459:  MOV AL,byte ptr [ECX + 0x1]\n  1002c45c:  INC ECX\n  1002c45d:  TEST AL,AL\n  1002c45f:  JZ 0x1002c477\n  1002c461:  XOR EDX,EDX\n  1002c463:  MOV DH,AL\n  1002c465:  MOV AL,byte ptr [ECX + 0x1]\n  1002c468:  OR ESI,EDX\n  1002c46a:  INC ECX\n  1002c46b:  TEST AL,AL\n  1002c46d:  JZ 0x1002c477\n  1002c46f:  AND EAX,0xff\n  1002c474:  OR ESI,EAX\n  1002c476:  INC ECX\n  1002c477:  MOV DL,byte ptr [ECX]\n  1002c479:  NOT ESI\n  1002c47b:  TEST DL,DL\n  1002c47d:  MOV EAX,ESI\n  1002c47f:  JZ 0x1002c4a2\n  1002c481:  MOV ESI,EAX\n  1002c483:  AND EDX,0xff\n  1002c489:  SHR ESI,0x18\n  1002c48c:  SHL EAX,0x8\n  1002c48f:  OR EAX,EDX\n  1002c491:  MOV EDX,dword ptr [ESI*0x4 + 0x1014b20c]\n  1002c498:  XOR EAX,EDX\n  1002c49a:  MOV DL,byte ptr [ECX + 0x1]\n  1002c49d:  INC ECX\n  1002c49e:  TEST DL,DL\n  1002c4a0:  JNZ 0x1002c481\n  1002c4a2:  NOT EAX\n  1002c4a4:  POP ESI\n  1002c4a5:  RET", 
+  "callers": []
+}

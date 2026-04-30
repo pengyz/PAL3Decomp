@@ -1,0 +1,25 @@
+{
+  "address": "0x1002fa60", 
+  "size_bytes": 59, 
+  "calling_convention": "__cdecl", 
+  "signature": "char * __cdecl gbStrChr(char * param_1, char * param_2)", 
+  "callees": [], 
+  "global_refs": [
+    {
+      "address": "0x00000004", 
+      "type": null, 
+      "name": "DAT_00000004"
+    }, 
+    {
+      "address": "0x00000008", 
+      "type": null, 
+      "name": "DAT_00000008"
+    }
+  ], 
+  "has_custom_name": true, 
+  "decompiled_c": "\n/* char * __cdecl gbStrChr(char const *,char const *) */\n\nchar * __cdecl gbStrChr(char *param_1,char *param_2)\n\n{\n  char cVar1;\n  char *pcVar2;\n  char cVar3;\n  \n                    /* 0x2fa60  1001  ?gbStrChr@@YAPADPBD0@Z */\n  cVar3 = *param_1;\n  if (cVar3 != '\\0') {\n    cVar1 = *param_2;\n    pcVar2 = param_2;\n    do {\n      while (cVar1 != '\\0') {\n        if (cVar3 == cVar1) {\n          return param_1;\n        }\n        cVar1 = pcVar2[1];\n        pcVar2 = pcVar2 + 1;\n      }\n      cVar3 = param_1[1];\n      param_1 = param_1 + 1;\n      cVar1 = *param_2;\n      pcVar2 = param_2;\n    } while (cVar3 != '\\0');\n  }\n  return (char *)0x0;\n}\n\n", 
+  "is_thunk": false, 
+  "name": "gbStrChr", 
+  "assembly": "  1002fa60:  PUSH EBX\n  1002fa61:  PUSH ESI\n  1002fa62:  MOV ESI,dword ptr [ESP + 0xc]\n  1002fa66:  PUSH EDI\n  1002fa67:  MOV BL,byte ptr [ESI]\n  1002fa69:  TEST BL,BL\n  1002fa6b:  JZ 0x1002fa8f\n  1002fa6d:  MOV EDI,dword ptr [ESP + 0x14]\n  1002fa71:  MOV AL,byte ptr [EDI]\n  1002fa73:  TEST AL,AL\n  1002fa75:  MOV EDX,EDI\n  1002fa77:  JZ 0x1002fa87\n  1002fa79:  MOV CL,AL\n  1002fa7b:  CMP BL,CL\n  1002fa7d:  JZ 0x1002fa95\n  1002fa7f:  MOV CL,byte ptr [EDX + 0x1]\n  1002fa82:  INC EDX\n  1002fa83:  TEST CL,CL\n  1002fa85:  JNZ 0x1002fa7b\n  1002fa87:  MOV BL,byte ptr [ESI + 0x1]\n  1002fa8a:  INC ESI\n  1002fa8b:  TEST BL,BL\n  1002fa8d:  JNZ 0x1002fa73\n  1002fa8f:  POP EDI\n  1002fa90:  POP ESI\n  1002fa91:  XOR EAX,EAX\n  1002fa93:  POP EBX\n  1002fa94:  RET\n  1002fa95:  MOV EAX,ESI\n  1002fa97:  POP EDI\n  1002fa98:  POP ESI\n  1002fa99:  POP EBX\n  1002fa9a:  RET", 
+  "callers": []
+}

@@ -1,0 +1,75 @@
+{
+  "address": "0x100e48ed", 
+  "size_bytes": 56, 
+  "calling_convention": "unknown", 
+  "signature": "undefined FUN_100e48ed(void)", 
+  "callees": [], 
+  "global_refs": [
+    {
+      "address": "0x100e8b68", 
+      "type": null, 
+      "name": "DAT_100e8b68"
+    }, 
+    {
+      "address": "0x1012a02c", 
+      "type": "pointer", 
+      "name": "DAT_1012a02c"
+    }, 
+    {
+      "address": "0x100e8812", 
+      "type": null, 
+      "name": "DAT_100e8812"
+    }, 
+    {
+      "address": "0x1012a028", 
+      "type": "pointer", 
+      "name": "DAT_1012a028"
+    }, 
+    {
+      "address": "0x1012a030", 
+      "type": "pointer", 
+      "name": "DAT_1012a030"
+    }, 
+    {
+      "address": "0x100e8878", 
+      "type": null, 
+      "name": "DAT_100e8878"
+    }, 
+    {
+      "address": "0x1012a034", 
+      "type": "pointer", 
+      "name": "DAT_1012a034"
+    }, 
+    {
+      "address": "0x100e87b8", 
+      "type": null, 
+      "name": "DAT_100e87b8"
+    }, 
+    {
+      "address": "0x1012a038", 
+      "type": "pointer", 
+      "name": "DAT_1012a038"
+    }, 
+    {
+      "address": "0x100e8860", 
+      "type": null, 
+      "name": "DAT_100e8860"
+    }, 
+    {
+      "address": "0x1012a03c", 
+      "type": "pointer", 
+      "name": "DAT_1012a03c"
+    }
+  ], 
+  "has_custom_name": false, 
+  "decompiled_c": "\nvoid FUN_100e48ed(void)\n\n{\n  PTR___fptrap_1012a02c = &LAB_100e8812;\n  PTR___fptrap_1012a028 = __cfltcvt;\n  PTR___fptrap_1012a030 = __fassign;\n  PTR___fptrap_1012a034 = FUN_100e87b8;\n  PTR___fptrap_1012a038 = &LAB_100e8860;\n  PTR___fptrap_1012a03c = __cfltcvt;\n  return;\n}\n\n", 
+  "is_thunk": false, 
+  "name": "FUN_100e48ed", 
+  "assembly": "  100e48ed:  MOV EAX,0x100e8b68\n  100e48f2:  MOV dword ptr [0x1012a02c],0x100e8812\n  100e48fc:  MOV [0x1012a028],EAX\n  100e4901:  MOV dword ptr [0x1012a030],0x100e8878\n  100e490b:  MOV dword ptr [0x1012a034],0x100e87b8\n  100e4915:  MOV dword ptr [0x1012a038],0x100e8860\n  100e491f:  MOV [0x1012a03c],EAX\n  100e4924:  RET", 
+  "callers": [
+    {
+      "address": "0x100e48d6", 
+      "name": "FUN_100e48d6"
+    }
+  ]
+}

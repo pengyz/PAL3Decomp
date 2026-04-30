@@ -1,0 +1,80 @@
+{
+  "address": "0x100d1c51", 
+  "size_bytes": 194, 
+  "calling_convention": "unknown", 
+  "signature": "undefined FUN_100d1c51(undefined4 param_1, undefined4 param_2, undefined4 param_3, undefined4 param_4)", 
+  "callees": [
+    {
+      "address": "0x100e2710", 
+      "name": "FUN_100e2710"
+    }
+  ], 
+  "global_refs": [
+    {
+      "address": "0x00000010", 
+      "type": null, 
+      "name": "DAT_00000010"
+    }, 
+    {
+      "address": "0x-0000030", 
+      "type": null, 
+      "name": "DAT_-0000030"
+    }, 
+    {
+      "address": "0x0000000c", 
+      "type": null, 
+      "name": "DAT_0000000c"
+    }, 
+    {
+      "address": "0x1010efe0", 
+      "type": null, 
+      "name": "DAT_1010efe0"
+    }, 
+    {
+      "address": "0x-000002c", 
+      "type": null, 
+      "name": "DAT_-000002c"
+    }, 
+    {
+      "address": "0x00000008", 
+      "type": null, 
+      "name": "DAT_00000008"
+    }, 
+    {
+      "address": "0x-0000020", 
+      "type": null, 
+      "name": "DAT_-0000020"
+    }, 
+    {
+      "address": "0x-0000028", 
+      "type": null, 
+      "name": "DAT_-0000028"
+    }, 
+    {
+      "address": "0x100f641c", 
+      "type": "undefined4", 
+      "name": "DAT_100f641c"
+    }, 
+    {
+      "address": "0x-0000024", 
+      "type": null, 
+      "name": "DAT_-0000024"
+    }, 
+    {
+      "address": "0x1010efd0", 
+      "type": null, 
+      "name": "DAT_1010efd0"
+    }, 
+    {
+      "address": "0x00000004", 
+      "type": null, 
+      "name": "DAT_00000004"
+    }
+  ], 
+  "has_custom_name": false, 
+  "decompiled_c": "\nvoid FUN_100d1c51(float *param_1,float param_2,float param_3,float param_4)\n\n{\n  float local_30;\n  float fStack_2c;\n  float fStack_28;\n  undefined4 uStack_24;\n  float local_20;\n  float fStack_1c;\n  float fStack_18;\n  \n  local_30 = param_4 * 0.5;\n  fStack_2c = param_3 * 0.5;\n  fStack_28 = param_2 * 0.5;\n  uStack_24 = 0;\n  FUN_100e2710(&local_30,&local_30,&local_20);\n  *param_1 = local_20 * fStack_18 * fStack_2c + local_30 * fStack_28 * fStack_1c;\n  param_1[1] = local_20 * fStack_28 * fStack_1c + -(local_30 * fStack_18 * fStack_2c);\n  param_1[2] = local_30 * fStack_18 * fStack_1c + -(local_20 * fStack_28 * fStack_2c);\n  param_1[3] = local_20 * fStack_18 * fStack_1c + local_30 * fStack_28 * fStack_2c;\n  return;\n}\n\n", 
+  "is_thunk": false, 
+  "name": "FUN_100d1c51", 
+  "assembly": "  100d1c51:  PUSH EBP\n  100d1c52:  MOV EBP,ESP\n  100d1c54:  AND ESP,0xfffffff0\n  100d1c57:  SUB ESP,0x20\n  100d1c5a:  MOVSS XMM1,dword ptr [EBP + 0x14]\n  100d1c5f:  MOVSS dword ptr [ESP],XMM1\n  100d1c65:  MOVSS XMM1,dword ptr [EBP + 0x10]\n  100d1c6a:  MOV EAX,0x1010efe0\n  100d1c6f:  MOVAPS XMM0,xmmword ptr [EAX]\n  100d1c72:  MOVSS dword ptr [ESP + 0x4],XMM1\n  100d1c78:  MOVSS XMM1,dword ptr [EBP + 0xc]\n  100d1c7d:  LEA EAX,[ESP + 0x10]\n  100d1c81:  PUSH EAX\n  100d1c82:  MOVSS dword ptr [ESP + 0xc],XMM1\n  100d1c88:  MOVSS XMM1,dword ptr [0x100f641c]\n  100d1c90:  LEA EAX,[ESP + 0x4]\n  100d1c94:  MOVSS dword ptr [ESP + 0x10],XMM1\n  100d1c9a:  MOVAPS XMM1,xmmword ptr [ESP + 0x4]\n  100d1c9f:  PUSH EAX\n  100d1ca0:  LEA EAX,[ESP + 0x8]\n  100d1ca4:  MULPS XMM1,XMM0\n  100d1ca7:  PUSH EAX\n  100d1ca8:  MOVAPS xmmword ptr [ESP + 0xc],XMM1\n  100d1cad:  CALL 0x100e2710\n  100d1cb2:  MOVAPS XMM0,xmmword ptr [ESP]\n  100d1cb7:  MOVAPS XMM1,XMM0\n  100d1cba:  SHUFPS XMM1,xmmword ptr [ESP + 0x10],0x99\n  100d1cc0:  SHUFPS XMM0,xmmword ptr [ESP + 0x10],0x0\n  100d1cc6:  MOVAPS XMM2,XMM1\n  100d1cc9:  SHUFPS XMM2,XMM1,0xf7\n  100d1ccd:  MOVAPS XMM3,XMM1\n  100d1cd0:  SHUFPS XMM3,XMM1,0xa8\n  100d1cd4:  SHUFPS XMM0,XMM0,0x8a\n  100d1cd8:  MOVAPS XMM1,XMM0\n  100d1cdb:  SHUFPS XMM1,XMM0,0x8a\n  100d1cdf:  MOVAPS XMM5,XMM3\n  100d1ce2:  MULPS XMM0,XMM2\n  100d1ce5:  MULPS XMM0,XMM3\n  100d1ce8:  SHUFPS XMM5,XMM3,0x1\n  100d1cec:  MOV EAX,0x1010efd0\n  100d1cf1:  MOVAPS XMM4,xmmword ptr [EAX]\n  100d1cf4:  MOV EAX,dword ptr [EBP + 0x8]\n  100d1cf7:  MOVAPS XMM3,XMM2\n  100d1cfa:  SHUFPS XMM3,XMM2,0x51\n  100d1cfe:  MULPS XMM1,XMM3\n  100d1d01:  MULPS XMM1,XMM5\n  100d1d04:  XORPS XMM1,XMM4\n  100d1d07:  ADDPS XMM0,XMM1\n  100d1d0a:  MOVUPS xmmword ptr [EAX],XMM0\n  100d1d0d:  MOV ESP,EBP\n  100d1d0f:  POP EBP\n  100d1d10:  RET 0x10", 
+  "callers": []
+}

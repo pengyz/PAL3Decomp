@@ -1,0 +1,20 @@
+{
+  "address": "0x10002620", 
+  "size_bytes": 10, 
+  "calling_convention": "__thiscall", 
+  "signature": "void __thiscall SetVolume(gbSound2DNode * this, float param_1)", 
+  "callees": [], 
+  "global_refs": [
+    {
+      "address": "0x00000004", 
+      "type": null, 
+      "name": "DAT_00000004"
+    }
+  ], 
+  "has_custom_name": true, 
+  "decompiled_c": "\n/* public: void __thiscall gbSound2DNode::SetVolume(float) */\n\nvoid __thiscall gbSound2DNode::SetVolume(gbSound2DNode *this,float param_1)\n\n{\n                    /* 0x2620  907  ?SetVolume@gbSound2DNode@@QAEXM@Z */\n  *(float *)(this + 0xc) = param_1;\n  return;\n}\n\n", 
+  "is_thunk": false, 
+  "name": "SetVolume", 
+  "assembly": "  10002620:  MOV EAX,dword ptr [ESP + 0x4]\n  10002624:  MOV dword ptr [ECX + 0xc],EAX\n  10002627:  RET 0x4", 
+  "callers": []
+}

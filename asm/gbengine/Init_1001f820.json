@@ -1,0 +1,91 @@
+{
+  "address": "0x1001f820", 
+  "size_bytes": 487, 
+  "calling_convention": "__thiscall", 
+  "signature": "void __thiscall Init(gbPixelFormat * this, gbPixelFmtType param_1)", 
+  "callees": [
+    {
+      "address": "0x1001fa10", 
+      "name": "Init"
+    }, 
+    {
+      "address": "0x1001fa10", 
+      "name": "Init"
+    }, 
+    {
+      "address": "0x1001fa10", 
+      "name": "Init"
+    }, 
+    {
+      "address": "0x1001fa10", 
+      "name": "Init"
+    }, 
+    {
+      "address": "0x1001fa10", 
+      "name": "Init"
+    }, 
+    {
+      "address": "0x1001fa10", 
+      "name": "Init"
+    }, 
+    {
+      "address": "0x1001fa10", 
+      "name": "Init"
+    }, 
+    {
+      "address": "0x1001fa10", 
+      "name": "Init"
+    }, 
+    {
+      "address": "0x1001fa10", 
+      "name": "Init"
+    }, 
+    {
+      "address": "0x1002e980", 
+      "name": "gbReportError"
+    }, 
+    {
+      "address": "0x1001fa10", 
+      "name": "Init"
+    }
+  ], 
+  "global_refs": [
+    {
+      "address": "0x00000004", 
+      "type": null, 
+      "name": "DAT_00000004"
+    }, 
+    {
+      "address": "0x1012016c", 
+      "type": "string", 
+      "name": "DAT_1012016c"
+    }
+  ], 
+  "has_custom_name": true, 
+  "decompiled_c": "\n/* public: void __thiscall gbPixelFormat::Init(enum gbPixelFmtType) */\n\nvoid __thiscall gbPixelFormat::Init(gbPixelFormat *this,gbPixelFmtType param_1)\n\n{\n                    /* 0x1f820  596  ?Init@gbPixelFormat@@QAEXW4gbPixelFmtType@@@Z */\n  if (param_1 == 1) {\n    Init(this,0x18,0xff0000,0xff00,0xff,0);\n    return;\n  }\n  if (param_1 == 2) {\n    Init(this,0x20,0xff0000,0xff00,0xff,0xff000000);\n    return;\n  }\n  if (param_1 == 3) {\n    Init(this,0x10,0xf800,0x7e0,0x1f,0);\n    return;\n  }\n  if (param_1 == 4) {\n    Init(this,0x10,0x7c00,0x3e0,0x1f,0x8000);\n    return;\n  }\n  if (param_1 == 5) {\n    Init(this,0x10,0xf00,0xf0,0xf,0xf000);\n    return;\n  }\n  if (param_1 != 6) {\n    if (param_1 == 7) {\n      Init(this,8,0,0,0,0xff);\n      return;\n    }\n    if (param_1 == 8) {\n      Init(this,0x20,0xff0000,0xff00,0xff,0xff000000);\n      return;\n    }\n    if (param_1 == 9) {\n      Init(this,0x10,0x7c00,0x3e0,0x1f,0x8000);\n      return;\n    }\n    if (param_1 == 10) {\n      Init(this,0x10,0xf00,0xf0,0xf,0xf000);\n      return;\n    }\n    gbReportError(s_not_supported_pixel_format___d___1012016c,param_1);\n  }\n  Init(this,param_1,param_1,param_1,param_1,param_1);\n  return;\n}\n\n", 
+  "is_thunk": false, 
+  "name": "Init", 
+  "assembly": "  1001f820:  MOV EAX,dword ptr [ESP + 0x4]\n  1001f824:  PUSH EBX\n  1001f825:  PUSH ESI\n  1001f826:  CMP EAX,0x1\n  1001f829:  PUSH EDI\n  1001f82a:  MOV EBX,ECX\n  1001f82c:  JNZ 0x1001f856\n  1001f82e:  XOR ECX,ECX\n  1001f830:  MOV EDI,0xff\n  1001f835:  MOV ESI,0xff00\n  1001f83a:  PUSH ECX\n  1001f83b:  MOV EDX,0xff0000\n  1001f840:  PUSH EDI\n  1001f841:  MOV EAX,0x18\n  1001f846:  PUSH ESI\n  1001f847:  PUSH EDX\n  1001f848:  PUSH EAX\n  1001f849:  MOV ECX,EBX\n  1001f84b:  CALL 0x1001fa10\n  1001f850:  POP EDI\n  1001f851:  POP ESI\n  1001f852:  POP EBX\n  1001f853:  RET 0x4\n  1001f856:  CMP EAX,0x2\n  1001f859:  JNZ 0x1001f886\n  1001f85b:  MOV ECX,0xff000000\n  1001f860:  MOV EDI,0xff\n  1001f865:  MOV ESI,0xff00\n  1001f86a:  PUSH ECX\n  1001f86b:  MOV EDX,0xff0000\n  1001f870:  PUSH EDI\n  1001f871:  MOV EAX,0x20\n  1001f876:  PUSH ESI\n  1001f877:  PUSH EDX\n  1001f878:  PUSH EAX\n  1001f879:  MOV ECX,EBX\n  1001f87b:  CALL 0x1001fa10\n  1001f880:  POP EDI\n  1001f881:  POP ESI\n  1001f882:  POP EBX\n  1001f883:  RET 0x4\n  1001f886:  CMP EAX,0x3\n  1001f889:  JNZ 0x1001f8b3\n  1001f88b:  XOR ECX,ECX\n  1001f88d:  MOV EDI,0x1f\n  1001f892:  MOV ESI,0x7e0\n  1001f897:  PUSH ECX\n  1001f898:  MOV EDX,0xf800\n  1001f89d:  PUSH EDI\n  1001f89e:  MOV EAX,0x10\n  1001f8a3:  PUSH ESI\n  1001f8a4:  PUSH EDX\n  1001f8a5:  PUSH EAX\n  1001f8a6:  MOV ECX,EBX\n  1001f8a8:  CALL 0x1001fa10\n  1001f8ad:  POP EDI\n  1001f8ae:  POP ESI\n  1001f8af:  POP EBX\n  1001f8b0:  RET 0x4\n  1001f8b3:  CMP EAX,0x4\n  1001f8b6:  JNZ 0x1001f8e3\n  1001f8b8:  MOV ECX,0x8000\n  1001f8bd:  MOV EDI,0x1f\n  1001f8c2:  MOV ESI,0x3e0\n  1001f8c7:  PUSH ECX\n  1001f8c8:  MOV EDX,0x7c00\n  1001f8cd:  PUSH EDI\n  1001f8ce:  MOV EAX,0x10\n  1001f8d3:  PUSH ESI\n  1001f8d4:  PUSH EDX\n  1001f8d5:  PUSH EAX\n  1001f8d6:  MOV ECX,EBX\n  1001f8d8:  CALL 0x1001fa10\n  1001f8dd:  POP EDI\n  1001f8de:  POP ESI\n  1001f8df:  POP EBX\n  1001f8e0:  RET 0x4\n  1001f8e3:  CMP EAX,0x5\n  1001f8e6:  JNZ 0x1001f913\n  1001f8e8:  MOV ECX,0xf000\n  1001f8ed:  MOV EDI,0xf\n  1001f8f2:  MOV ESI,0xf0\n  1001f8f7:  PUSH ECX\n  1001f8f8:  MOV EDX,0xf00\n  1001f8fd:  PUSH EDI\n  1001f8fe:  MOV EAX,0x10\n  1001f903:  PUSH ESI\n  1001f904:  PUSH EDX\n  1001f905:  PUSH EAX\n  1001f906:  MOV ECX,EBX\n  1001f908:  CALL 0x1001fa10\n  1001f90d:  POP EDI\n  1001f90e:  POP ESI\n  1001f90f:  POP EBX\n  1001f910:  RET 0x4\n  1001f913:  CMP EAX,0x6\n  1001f916:  JZ 0x1001f9e1\n  1001f91c:  CMP EAX,0x7\n  1001f91f:  JNZ 0x1001f943\n  1001f921:  MOV ECX,0xff\n  1001f926:  XOR EDI,EDI\n  1001f928:  XOR ESI,ESI\n  1001f92a:  PUSH ECX\n  1001f92b:  XOR EDX,EDX\n  1001f92d:  PUSH EDI\n  1001f92e:  MOV EAX,0x8\n  1001f933:  PUSH ESI\n  1001f934:  PUSH EDX\n  1001f935:  PUSH EAX\n  1001f936:  MOV ECX,EBX\n  1001f938:  CALL 0x1001fa10\n  1001f93d:  POP EDI\n  1001f93e:  POP ESI\n  1001f93f:  POP EBX\n  1001f940:  RET 0x4\n  1001f943:  CMP EAX,0x8\n  1001f946:  JNZ 0x1001f973\n  1001f948:  MOV ECX,0xff000000\n  1001f94d:  MOV EDI,0xff\n  1001f952:  MOV ESI,0xff00\n  1001f957:  PUSH ECX\n  1001f958:  MOV EDX,0xff0000\n  1001f95d:  PUSH EDI\n  1001f95e:  MOV EAX,0x20\n  1001f963:  PUSH ESI\n  1001f964:  PUSH EDX\n  1001f965:  PUSH EAX\n  1001f966:  MOV ECX,EBX\n  1001f968:  CALL 0x1001fa10\n  1001f96d:  POP EDI\n  1001f96e:  POP ESI\n  1001f96f:  POP EBX\n  1001f970:  RET 0x4\n  1001f973:  CMP EAX,0x9\n  1001f976:  JNZ 0x1001f9a3\n  1001f978:  MOV ECX,0x8000\n  1001f97d:  MOV EDI,0x1f\n  1001f982:  MOV ESI,0x3e0\n  1001f987:  PUSH ECX\n  1001f988:  MOV EDX,0x7c00\n  1001f98d:  PUSH EDI\n  1001f98e:  MOV EAX,0x10\n  1001f993:  PUSH ESI\n  1001f994:  PUSH EDX\n  1001f995:  PUSH EAX\n  1001f996:  MOV ECX,EBX\n  1001f998:  CALL 0x1001fa10\n  1001f99d:  POP EDI\n  1001f99e:  POP ESI\n  1001f99f:  POP EBX\n  1001f9a0:  RET 0x4\n  1001f9a3:  CMP EAX,0xa\n  1001f9a6:  JNZ 0x1001f9d3\n  1001f9a8:  MOV ECX,0xf000\n  1001f9ad:  MOV EDI,0xf\n  1001f9b2:  MOV ESI,0xf0\n  1001f9b7:  PUSH ECX\n  1001f9b8:  MOV EDX,0xf00\n  1001f9bd:  PUSH EDI\n  1001f9be:  MOV EAX,0x10\n  1001f9c3:  PUSH ESI\n  1001f9c4:  PUSH EDX\n  1001f9c5:  PUSH EAX\n  1001f9c6:  MOV ECX,EBX\n  1001f9c8:  CALL 0x1001fa10\n  1001f9cd:  POP EDI\n  1001f9ce:  POP ESI\n  1001f9cf:  POP EBX\n  1001f9d0:  RET 0x4\n  1001f9d3:  PUSH EAX\n  1001f9d4:  PUSH 0x1012016c\n  1001f9d9:  CALL 0x1002e980\n  1001f9de:  ADD ESP,0x8\n  1001f9e1:  MOV ECX,dword ptr [ESP + 0x10]\n  1001f9e5:  MOV EDI,dword ptr [ESP + 0x10]\n  1001f9e9:  MOV ESI,dword ptr [ESP + 0x10]\n  1001f9ed:  MOV EDX,dword ptr [ESP + 0x10]\n  1001f9f1:  MOV EAX,dword ptr [ESP + 0x10]\n  1001f9f5:  PUSH ECX\n  1001f9f6:  PUSH EDI\n  1001f9f7:  PUSH ESI\n  1001f9f8:  PUSH EDX\n  1001f9f9:  PUSH EAX\n  1001f9fa:  MOV ECX,EBX\n  1001f9fc:  CALL 0x1001fa10\n  1001fa01:  POP EDI\n  1001fa02:  POP ESI\n  1001fa03:  POP EBX\n  1001fa04:  RET 0x4", 
+  "callers": [
+    {
+      "address": "0x1001bd30", 
+      "name": "CreateFromMemory"
+    }, 
+    {
+      "address": "0x1001bd30", 
+      "name": "CreateFromMemory"
+    }, 
+    {
+      "address": "0x1001bea0", 
+      "name": "UpdateTexture"
+    }, 
+    {
+      "address": "0x1001bf80", 
+      "name": "CreateForRenderTarget"
+    }, 
+    {
+      "address": "0x10020760", 
+      "name": "CreateTexture"
+    }
+  ]
+}

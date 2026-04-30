@@ -1,0 +1,20 @@
+{
+  "address": "0x10002630", 
+  "size_bytes": 10, 
+  "calling_convention": "__thiscall", 
+  "signature": "void __thiscall SetLoopNum(gbSound2DNode * this, int param_1)", 
+  "callees": [], 
+  "global_refs": [
+    {
+      "address": "0x00000004", 
+      "type": null, 
+      "name": "DAT_00000004"
+    }
+  ], 
+  "has_custom_name": true, 
+  "decompiled_c": "\n/* public: void __thiscall gbSound2DNode::SetLoopNum(int) */\n\nvoid __thiscall gbSound2DNode::SetLoopNum(gbSound2DNode *this,int param_1)\n\n{\n                    /* 0x2630  873  ?SetLoopNum@gbSound2DNode@@QAEXH@Z */\n  *(int *)(this + 8) = param_1;\n  return;\n}\n\n", 
+  "is_thunk": false, 
+  "name": "SetLoopNum", 
+  "assembly": "  10002630:  MOV EAX,dword ptr [ESP + 0x4]\n  10002634:  MOV dword ptr [ECX + 0x8],EAX\n  10002637:  RET 0x4", 
+  "callers": []
+}

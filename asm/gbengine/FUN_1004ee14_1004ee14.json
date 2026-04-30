@@ -1,0 +1,32 @@
+{
+  "address": "0x1004ee14", 
+  "size_bytes": 24, 
+  "calling_convention": "unknown", 
+  "signature": "undefined FUN_1004ee14(void)", 
+  "callees": [
+    {
+      "address": "0x1004ee14", 
+      "name": "FUN_1004ee14"
+    }, 
+    {
+      "address": "0x100e4a24", 
+      "name": "FUN_100e4a24"
+    }
+  ], 
+  "global_refs": [], 
+  "has_custom_name": false, 
+  "decompiled_c": "\nvoid FUN_1004ee14(void)\n\n{\n  int iVar1;\n  int in_ECX;\n  \n  iVar1 = *(int *)(in_ECX + 0xc);\n  if (iVar1 != 0) {\n    FUN_1004ee14();\n    FUN_100e4a24(iVar1);\n  }\n  return;\n}\n\n", 
+  "is_thunk": false, 
+  "name": "FUN_1004ee14", 
+  "assembly": "  1004ee14:  PUSH ESI\n  1004ee15:  MOV ESI,dword ptr [ECX + 0xc]\n  1004ee18:  TEST ESI,ESI\n  1004ee1a:  JZ 0x1004ee2a\n  1004ee1c:  MOV ECX,ESI\n  1004ee1e:  CALL 0x1004ee14\n  1004ee23:  PUSH ESI\n  1004ee24:  CALL 0x100e4a24\n  1004ee29:  POP ECX\n  1004ee2a:  POP ESI\n  1004ee2b:  RET", 
+  "callers": [
+    {
+      "address": "0x1004ee2c", 
+      "name": "FUN_1004ee2c"
+    }, 
+    {
+      "address": "0x1004ee14", 
+      "name": "FUN_1004ee14"
+    }
+  ]
+}

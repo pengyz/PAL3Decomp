@@ -1,0 +1,65 @@
+{
+  "address": "0x1007b542", 
+  "size_bytes": 69, 
+  "calling_convention": "unknown", 
+  "signature": "undefined FUN_1007b542(undefined4 param_1)", 
+  "callees": [], 
+  "global_refs": [
+    {
+      "address": "0x00000004", 
+      "type": null, 
+      "name": "DAT_00000004"
+    }, 
+    {
+      "address": "0x1007b229", 
+      "type": null, 
+      "name": "DAT_1007b229"
+    }, 
+    {
+      "address": "0x1007b0a1", 
+      "type": null, 
+      "name": "DAT_1007b0a1"
+    }, 
+    {
+      "address": "0x1007b13f", 
+      "type": null, 
+      "name": "DAT_1007b13f"
+    }, 
+    {
+      "address": "0x1007b3d1", 
+      "type": null, 
+      "name": "DAT_1007b3d1"
+    }, 
+    {
+      "address": "0x1007b4b4", 
+      "type": null, 
+      "name": "DAT_1007b4b4"
+    }, 
+    {
+      "address": "0x1007b10a", 
+      "type": null, 
+      "name": "DAT_1007b10a"
+    }, 
+    {
+      "address": "0x1007b1ca", 
+      "type": null, 
+      "name": "DAT_1007b1ca"
+    }, 
+    {
+      "address": "0x1007b307", 
+      "type": null, 
+      "name": "DAT_1007b307"
+    }
+  ], 
+  "has_custom_name": false, 
+  "decompiled_c": "\nvoid FUN_1007b542(undefined4 *param_1)\n\n{\n  *param_1 = &LAB_1007b0a1;\n  param_1[1] = &LAB_1007b13f;\n  param_1[2] = &LAB_1007b229;\n  param_1[3] = FUN_1007b3d1;\n  param_1[4] = FUN_1007b4b4;\n  param_1[5] = &LAB_1007b10a;\n  param_1[6] = &LAB_1007b1ca;\n  param_1[7] = FUN_1007b307;\n  param_1[0x22] = &LAB_1007b229;\n  return;\n}\n\n", 
+  "is_thunk": false, 
+  "name": "FUN_1007b542", 
+  "assembly": "  1007b542:  MOV EAX,dword ptr [ESP + 0x4]\n  1007b546:  MOV ECX,0x1007b229\n  1007b54b:  MOV dword ptr [EAX],0x1007b0a1\n  1007b551:  MOV dword ptr [EAX + 0x4],0x1007b13f\n  1007b558:  MOV dword ptr [EAX + 0x8],ECX\n  1007b55b:  MOV dword ptr [EAX + 0xc],0x1007b3d1\n  1007b562:  MOV dword ptr [EAX + 0x10],0x1007b4b4\n  1007b569:  MOV dword ptr [EAX + 0x14],0x1007b10a\n  1007b570:  MOV dword ptr [EAX + 0x18],0x1007b1ca\n  1007b577:  MOV dword ptr [EAX + 0x1c],0x1007b307\n  1007b57e:  MOV dword ptr [EAX + 0x88],ECX\n  1007b584:  RET 0x4", 
+  "callers": [
+    {
+      "address": "0x1007713a", 
+      "name": "FUN_1007713a"
+    }
+  ]
+}

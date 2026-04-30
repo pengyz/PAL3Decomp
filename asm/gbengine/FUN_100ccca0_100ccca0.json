@@ -1,0 +1,14 @@
+{
+  "address": "0x100ccca0", 
+  "size_bytes": 103, 
+  "calling_convention": "unknown", 
+  "signature": "undefined FUN_100ccca0(void)", 
+  "callees": [], 
+  "global_refs": [], 
+  "has_custom_name": false, 
+  "decompiled_c": "\nundefined4 FUN_100ccca0(void)\n\n{\n  int iVar1;\n  int iVar2;\n  int unaff_ESI;\n  undefined4 *puVar3;\n  \n  iVar2 = *(int *)(unaff_ESI + 0x1bc);\n  iVar1 = *(int *)(unaff_ESI + 0x1c0);\n  *(int *)(iVar2 + 0x18) =\n       *(int *)(iVar2 + 0x18) +\n       ((int)(*(int *)(iVar1 + 0x10) + (*(int *)(iVar1 + 0x10) >> 0x1f & 7U)) >> 3);\n  *(undefined4 *)(iVar1 + 0x10) = 0;\n  iVar2 = (**(code **)(iVar2 + 8))();\n  if (iVar2 == 0) {\n    return 0;\n  }\n  iVar2 = *(int *)(unaff_ESI + 0x14c);\n  if (0 < iVar2) {\n    puVar3 = (undefined4 *)(iVar1 + 0x14);\n    for (; iVar2 != 0; iVar2 = iVar2 + -1) {\n      *puVar3 = 0;\n      puVar3 = puVar3 + 1;\n    }\n  }\n  *(undefined4 *)(iVar1 + 0x24) = *(undefined4 *)(unaff_ESI + 0x118);\n  if (*(int *)(unaff_ESI + 0x1a4) == 0) {\n    *(undefined4 *)(iVar1 + 8) = 0;\n  }\n  return 1;\n}\n\n", 
+  "is_thunk": false, 
+  "name": "FUN_100ccca0", 
+  "assembly": "  100ccca0:  MOV ECX,dword ptr [ESI + 0x1bc]\n  100ccca6:  PUSH EBX\n  100ccca7:  MOV EBX,dword ptr [ESI + 0x1c0]\n  100cccad:  MOV EAX,dword ptr [EBX + 0x10]\n  100cccb0:  CDQ\n  100cccb1:  AND EDX,0x7\n  100cccb4:  PUSH EDI\n  100cccb5:  MOV EDI,dword ptr [ECX + 0x18]\n  100cccb8:  ADD EAX,EDX\n  100cccba:  SAR EAX,0x3\n  100cccbd:  ADD EDI,EAX\n  100cccbf:  PUSH ESI\n  100cccc0:  MOV dword ptr [ECX + 0x18],EDI\n  100cccc3:  MOV dword ptr [EBX + 0x10],0x0\n  100cccca:  CALL dword ptr [ECX + 0x8]\n  100ccccd:  TEST EAX,EAX\n  100ccccf:  JNZ 0x100cccd4\n  100cccd1:  POP EDI\n  100cccd2:  POP EBX\n  100cccd3:  RET\n  100cccd4:  MOV ECX,dword ptr [ESI + 0x14c]\n  100cccda:  TEST ECX,ECX\n  100cccdc:  JLE 0x100ccce5\n  100cccde:  LEA EDI,[EBX + 0x14]\n  100ccce1:  XOR EAX,EAX\n  100ccce3:  STOSD.REP ES:EDI\n  100ccce5:  MOV EAX,dword ptr [ESI + 0x118]\n  100ccceb:  MOV dword ptr [EBX + 0x24],EAX\n  100cccee:  MOV EAX,dword ptr [ESI + 0x1a4]\n  100cccf4:  TEST EAX,EAX\n  100cccf6:  JNZ 0x100cccff\n  100cccf8:  MOV dword ptr [EBX + 0x8],0x0\n  100cccff:  POP EDI\n  100ccd00:  MOV EAX,0x1\n  100ccd05:  POP EBX\n  100ccd06:  RET", 
+  "callers": []
+}

@@ -1,0 +1,40 @@
+{
+  "address": "0x100ddc09", 
+  "size_bytes": 70, 
+  "calling_convention": "unknown", 
+  "signature": "undefined FUN_100ddc09(undefined4 param_1, undefined4 param_2, undefined4 param_3, undefined4 param_4)", 
+  "callees": [], 
+  "global_refs": [
+    {
+      "address": "0x00000010", 
+      "type": null, 
+      "name": "DAT_00000010"
+    }, 
+    {
+      "address": "0x00000004", 
+      "type": null, 
+      "name": "DAT_00000004"
+    }, 
+    {
+      "address": "0x00000008", 
+      "type": null, 
+      "name": "DAT_00000008"
+    }, 
+    {
+      "address": "0x0000000c", 
+      "type": null, 
+      "name": "DAT_0000000c"
+    }
+  ], 
+  "has_custom_name": false, 
+  "decompiled_c": "\nvoid FUN_100ddc09(undefined4 param_1,undefined4 param_2,undefined4 param_3,uint param_4)\n\n{\n  undefined4 *in_ECX;\n  \n  if (4 < param_4) {\n    param_4 = 4;\n  }\n  in_ECX[6] = 0xffffffff;\n  in_ECX[9] = 0xffffffff;\n  in_ECX[10] = 0xffffffff;\n  *in_ECX = param_1;\n  in_ECX[1] = param_2;\n  in_ECX[3] = param_4;\n  in_ECX[2] = param_3;\n  in_ECX[4] = 0;\n  in_ECX[5] = 0;\n  in_ECX[7] = 0;\n  in_ECX[8] = 0;\n  in_ECX[0xb] = 0;\n  in_ECX[0xc] = 0;\n  return;\n}\n\n", 
+  "is_thunk": false, 
+  "name": "FUN_100ddc09", 
+  "assembly": "  100ddc09:  MOV EAX,dword ptr [ESP + 0x10]\n  100ddc0d:  CMP EAX,0x4\n  100ddc10:  JBE 0x100ddc15\n  100ddc12:  PUSH 0x4\n  100ddc14:  POP EAX\n  100ddc15:  MOV EDX,dword ptr [ESP + 0x4]\n  100ddc19:  OR dword ptr [ECX + 0x18],0xffffffff\n  100ddc1d:  OR dword ptr [ECX + 0x24],0xffffffff\n  100ddc21:  OR dword ptr [ECX + 0x28],0xffffffff\n  100ddc25:  MOV dword ptr [ECX],EDX\n  100ddc27:  MOV EDX,dword ptr [ESP + 0x8]\n  100ddc2b:  MOV dword ptr [ECX + 0x4],EDX\n  100ddc2e:  MOV EDX,dword ptr [ESP + 0xc]\n  100ddc32:  MOV dword ptr [ECX + 0xc],EAX\n  100ddc35:  XOR EAX,EAX\n  100ddc37:  MOV dword ptr [ECX + 0x8],EDX\n  100ddc3a:  MOV dword ptr [ECX + 0x10],EAX\n  100ddc3d:  MOV dword ptr [ECX + 0x14],EAX\n  100ddc40:  MOV dword ptr [ECX + 0x1c],EAX\n  100ddc43:  MOV dword ptr [ECX + 0x20],EAX\n  100ddc46:  MOV dword ptr [ECX + 0x2c],EAX\n  100ddc49:  MOV dword ptr [ECX + 0x30],EAX\n  100ddc4c:  RET 0x10", 
+  "callers": [
+    {
+      "address": "0x1009a0bc", 
+      "name": "FUN_1009a0bc"
+    }
+  ]
+}

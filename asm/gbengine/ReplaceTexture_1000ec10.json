@@ -1,0 +1,25 @@
+{
+  "address": "0x1000ec10", 
+  "size_bytes": 13, 
+  "calling_convention": "__thiscall", 
+  "signature": "void __thiscall ReplaceTexture(gbBaseMesh * this, gbTexture * param_1)", 
+  "callees": [], 
+  "global_refs": [
+    {
+      "address": "0x00000004", 
+      "type": null, 
+      "name": "DAT_00000004"
+    }
+  ], 
+  "has_custom_name": true, 
+  "decompiled_c": "\n/* public: void __thiscall gbBaseMesh::ReplaceTexture(class gbTexture *) */\n\nvoid __thiscall gbBaseMesh::ReplaceTexture(gbBaseMesh *this,gbTexture *param_1)\n\n{\n                    /* 0xec10  799  ?ReplaceTexture@gbBaseMesh@@QAEXPAVgbTexture@@@Z */\n  *(gbTexture **)(*(int *)(this + 0x40) + 8) = param_1;\n  return;\n}\n\n", 
+  "is_thunk": false, 
+  "name": "ReplaceTexture", 
+  "assembly": "  1000ec10:  MOV EAX,dword ptr [ECX + 0x40]\n  1000ec13:  MOV ECX,dword ptr [ESP + 0x4]\n  1000ec17:  MOV dword ptr [EAX + 0x8],ECX\n  1000ec1a:  RET 0x4", 
+  "callers": [
+    {
+      "address": "0x10011880", 
+      "name": "ReplaceTexture"
+    }
+  ]
+}

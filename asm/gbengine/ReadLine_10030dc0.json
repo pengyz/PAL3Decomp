@@ -1,0 +1,60 @@
+{
+  "address": "0x10030dc0", 
+  "size_bytes": 193, 
+  "calling_convention": "__thiscall", 
+  "signature": "char * __thiscall ReadLine(gbVFileSystem * this, char * param_1, int param_2, gbVFile * param_3)", 
+  "callees": [
+    {
+      "address": "0x1002d380", 
+      "name": "ReadLine"
+    }, 
+    {
+      "address": "0x100e639d", 
+      "name": "FUN_100e639d"
+    }
+  ], 
+  "global_refs": [
+    {
+      "address": "0x0000000c", 
+      "type": null, 
+      "name": "DAT_0000000c"
+    }, 
+    {
+      "address": "0x00000004", 
+      "type": null, 
+      "name": "DAT_00000004"
+    }, 
+    {
+      "address": "0x00000008", 
+      "type": null, 
+      "name": "DAT_00000008"
+    }
+  ], 
+  "has_custom_name": true, 
+  "decompiled_c": "\n/* public: char * __thiscall gbVFileSystem::ReadLine(char *,int,class gbVFile *) */\n\nchar * __thiscall\ngbVFileSystem::ReadLine(gbVFileSystem *this,char *param_1,int param_2,gbVFile *param_3)\n\n{\n  CPKFile *pCVar1;\n  char *pcVar2;\n  int iVar3;\n  \n                    /* 0x30dc0  765  ?ReadLine@gbVFileSystem@@QAEPADPADHPAVgbVFile@@@Z */\n  iVar3 = *(int *)(this + 0xc);\n  if (iVar3 == 1) {\n    if (param_3 == (gbVFile *)0x0) {\n      pCVar1 = (CPKFile *)0x0;\n    }\n    else {\n      pCVar1 = (CPKFile *)(param_3 + 0x110);\n    }\n    pcVar2 = CPK::ReadLine((CPK *)(this + 0x18),param_1,param_2,pCVar1);\n    return pcVar2;\n  }\n  if (iVar3 == 0) {\n    pcVar2 = (char *)FUN_100e639d(param_1,param_2,*(undefined4 *)(param_3 + 4));\n    return pcVar2;\n  }\n  if (iVar3 == 2) {\n    iVar3 = 0;\n    if (0 < param_2 + -1) {\n      while ((uint)((int)*(char **)(param_3 + 0x10c) - *(int *)(param_3 + 4)) <\n             *(uint *)(param_3 + 8)) {\n        param_1[iVar3] = **(char **)(param_3 + 0x10c);\n        *(int *)(param_3 + 0x10c) = *(int *)(param_3 + 0x10c) + 1;\n        if ((((param_1[iVar3] == '\\n') && (0 < iVar3)) && (param_1[iVar3 + -1] == '\\r')) ||\n           (iVar3 = iVar3 + 1, param_2 + -1 <= iVar3)) break;\n      }\n      if (0 < iVar3) {\n        param_1[iVar3] = '\\0';\n        return param_1;\n      }\n    }\n  }\n  return (char *)0x0;\n}\n\n", 
+  "is_thunk": false, 
+  "name": "ReadLine", 
+  "assembly": "  10030dc0:  MOV EAX,dword ptr [ECX + 0xc]\n  10030dc3:  PUSH EBP\n  10030dc4:  CMP EAX,0x1\n  10030dc7:  JNZ 0x10030df1\n  10030dc9:  MOV EAX,dword ptr [ESP + 0x10]\n  10030dcd:  TEST EAX,EAX\n  10030dcf:  JZ 0x10030dd8\n  10030dd1:  ADD EAX,0x110\n  10030dd6:  JMP 0x10030dda\n  10030dd8:  XOR EAX,EAX\n  10030dda:  MOV EDX,dword ptr [ESP + 0x8]\n  10030dde:  PUSH EAX\n  10030ddf:  MOV EAX,dword ptr [ESP + 0x10]\n  10030de3:  ADD ECX,0x18\n  10030de6:  PUSH EAX\n  10030de7:  PUSH EDX\n  10030de8:  CALL 0x1002d380\n  10030ded:  POP EBP\n  10030dee:  RET 0xc\n  10030df1:  TEST EAX,EAX\n  10030df3:  JNZ 0x10030e13\n  10030df5:  MOV EAX,dword ptr [ESP + 0x10]\n  10030df9:  MOV EDX,dword ptr [ESP + 0xc]\n  10030dfd:  MOV ECX,dword ptr [EAX + 0x4]\n  10030e00:  MOV EAX,dword ptr [ESP + 0x8]\n  10030e04:  PUSH ECX\n  10030e05:  PUSH EDX\n  10030e06:  PUSH EAX\n  10030e07:  CALL 0x100e639d\n  10030e0c:  ADD ESP,0xc\n  10030e0f:  POP EBP\n  10030e10:  RET 0xc\n  10030e13:  CMP EAX,0x2\n  10030e16:  JNZ 0x10030e7b\n  10030e18:  MOV EDX,dword ptr [ESP + 0xc]\n  10030e1c:  XOR ECX,ECX\n  10030e1e:  LEA EBP,[EDX + -0x1]\n  10030e21:  TEST EBP,EBP\n  10030e23:  JLE 0x10030e7b\n  10030e25:  MOV EAX,dword ptr [ESP + 0x8]\n  10030e29:  PUSH EBX\n  10030e2a:  PUSH ESI\n  10030e2b:  MOV ESI,dword ptr [ESP + 0x18]\n  10030e2f:  PUSH EDI\n  10030e30:  MOV DL,0xd\n  10030e32:  MOV EDI,dword ptr [ESI + 0x10c]\n  10030e38:  MOV EBX,EDI\n  10030e3a:  SUB EBX,dword ptr [ESI + 0x4]\n  10030e3d:  CMP EBX,dword ptr [ESI + 0x8]\n  10030e40:  JNC 0x10030e6c\n  10030e42:  MOV BL,byte ptr [EDI]\n  10030e44:  MOV byte ptr [ECX + EAX*0x1],BL\n  10030e47:  MOV EDI,dword ptr [ESI + 0x10c]\n  10030e4d:  INC EDI\n  10030e4e:  MOV dword ptr [ESI + 0x10c],EDI\n  10030e54:  MOV BL,byte ptr [ECX + EAX*0x1]\n  10030e57:  CMP BL,0xa\n  10030e5a:  JNZ 0x10030e67\n  10030e5c:  CMP ECX,0x1\n  10030e5f:  JL 0x10030e67\n  10030e61:  CMP byte ptr [ECX + EAX*0x1 + -0x1],DL\n  10030e65:  JZ 0x10030e6c\n  10030e67:  INC ECX\n  10030e68:  CMP ECX,EBP\n  10030e6a:  JL 0x10030e32\n  10030e6c:  POP EDI\n  10030e6d:  POP ESI\n  10030e6e:  TEST ECX,ECX\n  10030e70:  POP EBX\n  10030e71:  JLE 0x10030e7b\n  10030e73:  MOV byte ptr [ECX + EAX*0x1],0x0\n  10030e77:  POP EBP\n  10030e78:  RET 0xc\n  10030e7b:  XOR EAX,EAX\n  10030e7d:  POP EBP\n  10030e7e:  RET 0xc", 
+  "callers": [
+    {
+      "address": "0x10003680", 
+      "name": "LoadActorFile"
+    }, 
+    {
+      "address": "0x1000e760", 
+      "name": "FUN_1000e760"
+    }, 
+    {
+      "address": "0x1000e760", 
+      "name": "FUN_1000e760"
+    }, 
+    {
+      "address": "0x10015d10", 
+      "name": "FUN_10015d10"
+    }, 
+    {
+      "address": "0x10031190", 
+      "name": "ReadLine"
+    }
+  ]
+}

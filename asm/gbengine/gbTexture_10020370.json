@@ -1,0 +1,25 @@
+{
+  "address": "0x10020370", 
+  "size_bytes": 37, 
+  "calling_convention": "__thiscall", 
+  "signature": "undefined __thiscall gbTexture(gbTexture * this)", 
+  "callees": [], 
+  "global_refs": [
+    {
+      "address": "0x100f57e8", 
+      "type": "undefined *", 
+      "name": "DAT_100f57e8"
+    }
+  ], 
+  "has_custom_name": true, 
+  "decompiled_c": "\n/* public: __thiscall gbTexture::gbTexture(void) */\n\nvoid __thiscall gbTexture::gbTexture(gbTexture *this)\n\n{\n                    /* 0x20370  99  ??0gbTexture@@QAE@XZ */\n  *(undefined4 *)(this + 4) = 1;\n  *(undefined4 *)(this + 8) = 0;\n  *(undefined4 *)(this + 0x10) = 0;\n  *(undefined4 *)(this + 0x14) = 0;\n  *(undefined ***)this = &PTR_FUN_100f57e8;\n  *(undefined4 *)(this + 0x50) = 0xffffffff;\n  *(undefined4 *)(this + 0x20) = 0;\n  return;\n}\n\n", 
+  "is_thunk": false, 
+  "name": "gbTexture", 
+  "assembly": "  10020370:  MOV EAX,ECX\n  10020372:  XOR ECX,ECX\n  10020374:  MOV dword ptr [EAX + 0x4],0x1\n  1002037b:  MOV dword ptr [EAX + 0x8],ECX\n  1002037e:  MOV dword ptr [EAX + 0x10],ECX\n  10020381:  MOV dword ptr [EAX + 0x14],ECX\n  10020384:  MOV dword ptr [EAX],0x100f57e8\n  1002038a:  MOV dword ptr [EAX + 0x50],0xffffffff\n  10020391:  MOV dword ptr [EAX + 0x20],ECX\n  10020394:  RET", 
+  "callers": [
+    {
+      "address": "0x1001ba60", 
+      "name": "gbTexture_D3D"
+    }
+  ]
+}

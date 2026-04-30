@@ -1,0 +1,75 @@
+{
+  "address": "0x100dac5f", 
+  "size_bytes": 186, 
+  "calling_convention": "unknown", 
+  "signature": "undefined FUN_100dac5f(undefined4 param_1, undefined4 param_2, undefined4 param_3, undefined4 param_4, undefined4 param_5, undefined4 param_6)", 
+  "callees": [
+    {
+      "address": "0x100daa08", 
+      "name": "FUN_100daa08"
+    }
+  ], 
+  "global_refs": [
+    {
+      "address": "0x00000018", 
+      "type": null, 
+      "name": "DAT_00000018"
+    }, 
+    {
+      "address": "0x00000010", 
+      "type": null, 
+      "name": "DAT_00000010"
+    }, 
+    {
+      "address": "0x00000014", 
+      "type": null, 
+      "name": "DAT_00000014"
+    }, 
+    {
+      "address": "0x-0000044", 
+      "type": null, 
+      "name": "DAT_-0000044"
+    }, 
+    {
+      "address": "0x100dadc7", 
+      "type": null, 
+      "name": "DAT_100dadc7"
+    }, 
+    {
+      "address": "0x00000008", 
+      "type": null, 
+      "name": "DAT_00000008"
+    }, 
+    {
+      "address": "0x00000004", 
+      "type": null, 
+      "name": "DAT_00000004"
+    }, 
+    {
+      "address": "0x0000000c", 
+      "type": null, 
+      "name": "DAT_0000000c"
+    }, 
+    {
+      "address": "0x10109960", 
+      "type": "undefined8", 
+      "name": "DAT_10109960"
+    }, 
+    {
+      "address": "0x10109968", 
+      "type": "undefined4", 
+      "name": "DAT_10109968"
+    }, 
+    {
+      "address": "0x10109970", 
+      "type": "undefined8", 
+      "name": "DAT_10109970"
+    }
+  ], 
+  "has_custom_name": false, 
+  "decompiled_c": "\nulonglong *\nFUN_100dac5f(ulonglong *param_1,undefined4 param_2,undefined8 *param_3,undefined4 *param_4,\n            undefined4 *param_5,undefined4 *param_6)\n\n{\n  undefined4 *puVar1;\n  undefined8 uVar2;\n  ulonglong uVar3;\n  undefined8 uVar4;\n  undefined8 uVar5;\n  undefined8 uVar6;\n  undefined4 uVar8;\n  undefined8 uVar7;\n  undefined4 local_44;\n  undefined4 uStack_40;\n  undefined4 uStack_3c;\n  undefined4 uStack_38;\n  undefined4 uStack_34;\n  undefined4 uStack_30;\n  undefined4 uStack_2c;\n  undefined4 uStack_28;\n  undefined4 uStack_24;\n  undefined4 uStack_20;\n  undefined4 uStack_1c;\n  undefined4 uStack_18;\n  undefined4 uStack_14;\n  undefined4 uStack_10;\n  undefined4 uStack_c;\n  undefined4 uStack_8;\n  \n  puVar1 = &local_44;\n  switch(((uint)(param_6 != (undefined4 *)0x0) << 1 | (uint)(param_5 != (undefined4 *)0x0)) << 1 |\n         (uint)(param_4 != (undefined4 *)0x0)) {\n  case 0:\n    uStack_c = 0;\n    uStack_10 = 0;\n    uStack_14 = 0;\n    uStack_18 = 0;\n    uStack_20 = 0;\n    uStack_24 = 0;\n    uStack_28 = 0;\n    uStack_2c = 0;\n    uStack_34 = 0;\n    uStack_38 = 0;\n    uStack_3c = 0;\n    uStack_40 = 0;\n    uStack_8 = 0x3f800000;\n    uStack_1c = 0x3f800000;\n    uStack_30 = 0x3f800000;\n    local_44 = 0x3f800000;\n    break;\n  case 1:\n    puVar1 = param_4;\n    break;\n  case 2:\n    puVar1 = param_5;\n    break;\n  case 3:\n    FastExitMediaState();\n    func_0x100daa93(&local_44,param_5,param_4);\n    FastExitMediaState();\n    break;\n  case 4:\n    puVar1 = param_6;\n    break;\n  case 5:\n    FastExitMediaState();\n    func_0x100daa93(&local_44,param_6,param_4);\n    FastExitMediaState();\n    break;\n  case 6:\n    FastExitMediaState();\n    func_0x100daa93(&local_44,param_6,param_5);\n    FastExitMediaState();\n    break;\n  case 7:\n    FastExitMediaState();\n    func_0x100daa93(&local_44,param_6,param_5);\n    func_0x100daa93(&local_44,&local_44,param_4);\n    FastExitMediaState();\n  }\n  FUN_100daa08(param_1,param_2,puVar1);\n  if (param_3 != (undefined8 *)0x0) {\n    FastExitMediaState();\n    uVar4 = param_3[2];\n    uVar5 = PackedIntToFloatingDwordConv(*param_3,*param_3);\n    uVar6 = PackedIntToFloatingDwordConv(param_3[1],param_3[1]);\n    uVar2 = PackedFloatingADD(*param_1 ^ 0x8000000000000000,0x3f8000003f800000);\n    uVar6 = PackedFloatingMUL(uVar6,0x3f0000003f000000);\n    uVar8 = (undefined4)((ulonglong)uVar4 >> 0x20);\n    uVar7 = PackedFloatingSUB(CONCAT44(uVar8,uVar8),uVar4);\n    uVar2 = PackedFloatingMUL(uVar2,uVar6);\n    uVar6 = PackedFloatingMUL((ulonglong)*(uint *)(param_1 + 1),uVar7);\n    uVar4 = PackedFloatingADD(uVar6,uVar4);\n    uVar3 = PackedFloatingADD(uVar2,uVar5);\n    *param_1 = uVar3;\n    *(int *)(param_1 + 1) = (int)uVar4;\n    FastExitMediaState();\n  }\n  return param_1;\n}\n\n", 
+  "is_thunk": false, 
+  "name": "FUN_100dac5f", 
+  "assembly": "  100dac5f:  PUSH EBP\n  100dac60:  MOV EBP,ESP\n  100dac62:  SUB ESP,0x40\n  100dac65:  MOV ECX,dword ptr [EBP + 0x1c]\n  100dac68:  XOR EAX,EAX\n  100dac6a:  TEST ECX,ECX\n  100dac6c:  SETNZ AL\n  100dac6f:  PUSH EBX\n  100dac70:  MOV EBX,dword ptr [EBP + 0x14]\n  100dac73:  XOR EDX,EDX\n  100dac75:  PUSH ESI\n  100dac76:  PUSH EDI\n  100dac77:  MOV EDI,dword ptr [EBP + 0x18]\n  100dac7a:  SHL EAX,0x1\n  100dac7c:  TEST EDI,EDI\n  100dac7e:  SETNZ DL\n  100dac81:  LEA ESI,[EBP + -0x40]\n  100dac84:  OR EAX,EDX\n  100dac86:  XOR EDX,EDX\n  100dac88:  SHL EAX,0x1\n  100dac8a:  TEST EBX,EBX\n  100dac8c:  SETNZ DL\n  100dac8f:  OR EAX,EDX\n  100dac91:  CMP EAX,0x7\n  100dac94:  JA 0x100dad4f\n  100dac9a:  JMP dword ptr [EAX*0x4 + 0x100dadc7]\n  100dad4f:  PUSH ESI\n  100dad50:  PUSH dword ptr [EBP + 0xc]\n  100dad53:  PUSH dword ptr [EBP + 0x8]\n  100dad56:  CALL 0x100daa08\n  100dad5b:  CMP dword ptr [EBP + 0x10],0x0\n  100dad5f:  POP EDI\n  100dad60:  POP ESI\n  100dad61:  POP EBX\n  100dad62:  JZ 0x100dadc0\n  100dad64:  FEMMS\n  100dad66:  MOV EAX,dword ptr [EBP + 0x8]\n  100dad69:  MOV ECX,dword ptr [EBP + 0x10]\n  100dad6c:  MOVQ MM0,qword ptr [EAX]\n  100dad6f:  MOVD MM1,dword ptr [EAX + 0x8]\n  100dad73:  MOVQ MM2,qword ptr [ECX]\n  100dad76:  PXOR MM0,qword ptr [0x10109960]\n  100dad7d:  MOVQ MM3,qword ptr [ECX + 0x8]\n  100dad81:  MOVQ MM4,qword ptr [ECX + 0x10]\n  100dad85:  PI2FD MM2,MM2\n  100dad89:  PI2FD MM3,MM3\n  100dad8d:  PFADD MM0,qword ptr [0x10109968]\n  100dad95:  PFMUL MM3,qword ptr [0x10109970]\n  100dad9d:  MOVQ MM5,MM4\n  100dada0:  PUNPCKHDQ MM5,MM5\n  100dada3:  PFSUB MM5,MM4\n  100dada7:  PFMUL MM0,MM3\n  100dadab:  PFMUL MM1,MM5\n  100dadaf:  PFADD MM1,MM4\n  100dadb3:  PFADD MM0,MM2\n  100dadb7:  MOVQ qword ptr [EAX],MM0\n  100dadba:  MOVD dword ptr [EAX + 0x8],MM1\n  100dadbe:  FEMMS\n  100dadc0:  MOV EAX,dword ptr [EBP + 0x8]\n  100dadc3:  LEAVE\n  100dadc4:  RET 0x18", 
+  "callers": []
+}

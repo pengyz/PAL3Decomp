@@ -1,0 +1,35 @@
+{
+  "address": "0x100ddbd2", 
+  "size_bytes": 51, 
+  "calling_convention": "unknown", 
+  "signature": "undefined FUN_100ddbd2(undefined4 param_1, undefined4 param_2)", 
+  "callees": [
+    {
+      "address": "0x100dd3a2", 
+      "name": "FUN_100dd3a2"
+    }
+  ], 
+  "global_refs": [
+    {
+      "address": "0x00000008", 
+      "type": null, 
+      "name": "DAT_00000008"
+    }, 
+    {
+      "address": "0x00000004", 
+      "type": null, 
+      "name": "DAT_00000004"
+    }
+  ], 
+  "has_custom_name": false, 
+  "decompiled_c": "\nundefined4 FUN_100ddbd2(int param_1,int param_2)\n\n{\n  FUN_100dd3a2(param_1,param_2,0);\n  (**(code **)(param_2 + 0x24))(*(undefined4 *)(param_2 + 0x28),*(undefined4 *)(param_1 + 0x28));\n  (**(code **)(param_2 + 0x24))(*(undefined4 *)(param_2 + 0x28),*(undefined4 *)(param_1 + 0x24));\n  (**(code **)(param_2 + 0x24))(*(undefined4 *)(param_2 + 0x28),param_1);\n  return 0;\n}\n\n", 
+  "is_thunk": false, 
+  "name": "FUN_100ddbd2", 
+  "assembly": "  100ddbd2:  PUSH ESI\n  100ddbd3:  MOV ESI,dword ptr [ESP + 0xc]\n  100ddbd7:  PUSH EDI\n  100ddbd8:  MOV EDI,dword ptr [ESP + 0xc]\n  100ddbdc:  PUSH 0x0\n  100ddbde:  PUSH ESI\n  100ddbdf:  PUSH EDI\n  100ddbe0:  CALL 0x100dd3a2\n  100ddbe5:  PUSH dword ptr [EDI + 0x28]\n  100ddbe8:  PUSH dword ptr [ESI + 0x28]\n  100ddbeb:  CALL dword ptr [ESI + 0x24]\n  100ddbee:  PUSH dword ptr [EDI + 0x24]\n  100ddbf1:  PUSH dword ptr [ESI + 0x28]\n  100ddbf4:  CALL dword ptr [ESI + 0x24]\n  100ddbf7:  PUSH EDI\n  100ddbf8:  PUSH dword ptr [ESI + 0x28]\n  100ddbfb:  CALL dword ptr [ESI + 0x24]\n  100ddbfe:  POP EDI\n  100ddbff:  XOR EAX,EAX\n  100ddc01:  POP ESI\n  100ddc02:  RET 0x8", 
+  "callers": [
+    {
+      "address": "0x10096195", 
+      "name": "FUN_10096195"
+    }
+  ]
+}

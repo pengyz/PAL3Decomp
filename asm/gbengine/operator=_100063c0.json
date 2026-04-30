@@ -1,0 +1,20 @@
+{
+  "address": "0x100063c0", 
+  "size_bytes": 19, 
+  "calling_convention": "__thiscall", 
+  "signature": "CIniFile * __thiscall operator=(CIniFile * this, CIniFile * param_1)", 
+  "callees": [], 
+  "global_refs": [
+    {
+      "address": "0x00000004", 
+      "type": null, 
+      "name": "DAT_00000004"
+    }
+  ], 
+  "has_custom_name": true, 
+  "decompiled_c": "\n/* public: class CIniFile & __thiscall CIniFile::operator=(class CIniFile const &) */\n\nCIniFile * __thiscall CIniFile::operator=(CIniFile *this,CIniFile *param_1)\n\n{\n                    /* 0x63c0  175  ??4CIniFile@@QAEAAV0@ABV0@@Z */\n  *(undefined4 *)this = *(undefined4 *)param_1;\n  *(undefined4 *)(this + 4) = *(undefined4 *)(param_1 + 4);\n  return this;\n}\n\n", 
+  "is_thunk": false, 
+  "name": "operator=", 
+  "assembly": "  100063c0:  MOV EAX,ECX\n  100063c2:  MOV ECX,dword ptr [ESP + 0x4]\n  100063c6:  MOV EDX,dword ptr [ECX]\n  100063c8:  MOV dword ptr [EAX],EDX\n  100063ca:  MOV ECX,dword ptr [ECX + 0x4]\n  100063cd:  MOV dword ptr [EAX + 0x4],ECX\n  100063d0:  RET 0x4", 
+  "callers": []
+}

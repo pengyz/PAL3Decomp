@@ -1,0 +1,93 @@
+{
+  "address": "0x10016590", 
+  "size_bytes": 163, 
+  "calling_convention": "__thiscall", 
+  "signature": "undefined __thiscall gbVisNode(gbVisNode * this)", 
+  "callees": [
+    {
+      "address": "0x1002ea50", 
+      "name": "gbChain1D"
+    }, 
+    {
+      "address": "0x100e4a16", 
+      "name": "operator_new"
+    }
+  ], 
+  "global_refs": [
+    {
+      "address": "0x100f3d00", 
+      "type": null, 
+      "name": "DAT_100f3d00"
+    }, 
+    {
+      "address": "0xffdff000", 
+      "type": "void *32", 
+      "name": "DAT_ffdff000"
+    }, 
+    {
+      "address": "0x-0000010", 
+      "type": null, 
+      "name": "DAT_-0000010"
+    }, 
+    {
+      "address": "0x100f53a8", 
+      "type": "pointer", 
+      "name": "DAT_100f53a8"
+    }, 
+    {
+      "address": "0x-0000004", 
+      "type": null, 
+      "name": "DAT_-0000004"
+    }, 
+    {
+      "address": "0x100f5370", 
+      "type": "pointer", 
+      "name": "DAT_100f5370"
+    }, 
+    {
+      "address": "0x-000000c", 
+      "type": null, 
+      "name": "DAT_-000000c"
+    }, 
+    {
+      "address": "0x100f5374", 
+      "type": "undefined *", 
+      "name": "DAT_100f5374"
+    }
+  ], 
+  "has_custom_name": true, 
+  "decompiled_c": "\n/* public: __thiscall gbVisNode::gbVisNode(void) */\n\ngbVisNode * __thiscall gbVisNode::gbVisNode(gbVisNode *this)\n\n{\n  void *pvVar1;\n  void *local_c;\n  undefined *puStack_8;\n  undefined4 local_4;\n  \n                    /* 0x16590  115  ??0gbVisNode@@QAE@XZ */\n  puStack_8 = &LAB_100f3d00;\n  local_c = ExceptionList;\n  ExceptionList = &local_c;\n  *(undefined ***)this = &gbChain1DNode::_vftable_;\n  local_4 = 0;\n  gbChain1D::gbChain1D((gbChain1D *)(this + 0xc));\n  *(undefined ***)this = &gbNBTreeNode::_vftable_;\n  *(undefined4 *)(this + 8) = 0;\n  local_4 = 1;\n  *(undefined4 *)(this + 0x28) = 1;\n  *(undefined4 *)(this + 0x24) = 0;\n  *(undefined4 *)(this + 0x20) = 8;\n  pvVar1 = operator_new(0x80);\n  *(void **)(this + 0x1c) = pvVar1;\n  *(undefined4 *)(this + 0x2c) = 0;\n  *(undefined4 *)(this + 0x30) = 0;\n  *(undefined4 *)(this + 0x34) = 0;\n  *(undefined4 *)(this + 0x40) = 0;\n  *(undefined4 *)(this + 0x44) = 0;\n  *(undefined4 *)(this + 0x4c) = 0;\n  *(undefined4 *)(this + 0x48) = 0;\n  *(undefined4 *)(this + 0x54) = 0;\n  *(undefined ***)this = &_vftable_;\n  *(undefined4 *)(this + 0x38) = 0x3f800000;\n  *(undefined4 *)(this + 0x3c) = 1;\n  ExceptionList = local_c;\n  return this;\n}\n\n", 
+  "is_thunk": false, 
+  "name": "gbVisNode", 
+  "assembly": "  10016590:  PUSH -0x1\n  10016592:  PUSH 0x100f3d00\n  10016597:  MOV EAX,FS:[0x0]\n  1001659d:  PUSH EAX\n  1001659e:  MOV dword ptr FS:[0x0],ESP\n  100165a5:  PUSH ECX\n  100165a6:  PUSH ESI\n  100165a7:  MOV ESI,ECX\n  100165a9:  PUSH EDI\n  100165aa:  MOV dword ptr [ESP + 0x8],ESI\n  100165ae:  MOV dword ptr [ESI],0x100f53a8\n  100165b4:  XOR EDI,EDI\n  100165b6:  LEA ECX,[ESI + 0xc]\n  100165b9:  MOV dword ptr [ESP + 0x14],EDI\n  100165bd:  CALL 0x1002ea50\n  100165c2:  MOV dword ptr [ESI],0x100f5370\n  100165c8:  MOV dword ptr [ESI + 0x8],EDI\n  100165cb:  PUSH 0x80\n  100165d0:  MOV dword ptr [ESP + 0x18],0x1\n  100165d8:  MOV dword ptr [ESI + 0x28],0x1\n  100165df:  MOV dword ptr [ESI + 0x24],EDI\n  100165e2:  MOV dword ptr [ESI + 0x20],0x8\n  100165e9:  CALL 0x100e4a16\n  100165ee:  MOV ECX,dword ptr [ESP + 0x10]\n  100165f2:  ADD ESP,0x4\n  100165f5:  MOV dword ptr [ESI + 0x1c],EAX\n  100165f8:  MOV dword ptr [ESI + 0x2c],EDI\n  100165fb:  MOV dword ptr [ESI + 0x30],EDI\n  100165fe:  MOV dword ptr [ESI + 0x34],EDI\n  10016601:  MOV dword ptr [ESI + 0x40],EDI\n  10016604:  MOV dword ptr [ESI + 0x44],EDI\n  10016607:  MOV dword ptr [ESI + 0x4c],EDI\n  1001660a:  MOV dword ptr [ESI + 0x48],EDI\n  1001660d:  MOV dword ptr [ESI + 0x54],EDI\n  10016610:  MOV dword ptr [ESI],0x100f5374\n  10016616:  MOV dword ptr [ESI + 0x38],0x3f800000\n  1001661d:  MOV dword ptr [ESI + 0x3c],0x1\n  10016624:  MOV EAX,ESI\n  10016626:  POP EDI\n  10016627:  POP ESI\n  10016628:  MOV dword ptr FS:[0x0],ECX\n  1001662f:  ADD ESP,0x10\n  10016632:  RET", 
+  "callers": [
+    {
+      "address": "0x10002ad0", 
+      "name": "gbActor"
+    }, 
+    {
+      "address": "0x1000fc10", 
+      "name": "gbGeomNode"
+    }, 
+    {
+      "address": "0x1002baf0", 
+      "name": "gbParticleEffect"
+    }, 
+    {
+      "address": "0x10013040", 
+      "name": "gbVolModNode"
+    }, 
+    {
+      "address": "0x100135a0", 
+      "name": "gbLoadLightFile"
+    }, 
+    {
+      "address": "0x100135a0", 
+      "name": "gbLoadLightFile"
+    }, 
+    {
+      "address": "0x10014b10", 
+      "name": "gbSceneGraph"
+    }
+  ]
+}

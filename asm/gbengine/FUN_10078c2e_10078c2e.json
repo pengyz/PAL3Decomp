@@ -1,0 +1,44 @@
+{
+  "address": "0x10078c2e", 
+  "size_bytes": 36, 
+  "calling_convention": "unknown", 
+  "signature": "undefined FUN_10078c2e(undefined4 param_1, undefined4 param_2)", 
+  "callees": [
+    {
+      "address": "0x10078b30", 
+      "name": "FUN_10078b30"
+    }, 
+    {
+      "address": "0x10078bf3", 
+      "name": "FUN_10078bf3"
+    }
+  ], 
+  "global_refs": [
+    {
+      "address": "0x00000008", 
+      "type": null, 
+      "name": "DAT_00000008"
+    }, 
+    {
+      "address": "0x-0000054", 
+      "type": null, 
+      "name": "DAT_-0000054"
+    }, 
+    {
+      "address": "0x00000004", 
+      "type": null, 
+      "name": "DAT_00000004"
+    }
+  ], 
+  "has_custom_name": false, 
+  "decompiled_c": "\nvoid FUN_10078c2e(undefined4 param_1,undefined4 param_2)\n\n{\n  undefined local_54 [80];\n  \n  FUN_10078b30(param_1,param_2);\n  FUN_10078bf3(param_1,local_54);\n  return;\n}\n\n", 
+  "is_thunk": false, 
+  "name": "FUN_10078c2e", 
+  "assembly": "  10078c2e:  PUSH EBP\n  10078c2f:  MOV EBP,ESP\n  10078c31:  SUB ESP,0x50\n  10078c34:  PUSH dword ptr [EBP + 0xc]\n  10078c37:  LEA ECX,[EBP + -0x50]\n  10078c3a:  PUSH dword ptr [EBP + 0x8]\n  10078c3d:  CALL 0x10078b30\n  10078c42:  LEA EAX,[EBP + -0x50]\n  10078c45:  PUSH EAX\n  10078c46:  PUSH dword ptr [EBP + 0x8]\n  10078c49:  CALL 0x10078bf3\n  10078c4e:  LEAVE\n  10078c4f:  RET 0x8", 
+  "callers": [
+    {
+      "address": "0x10096f18", 
+      "name": "FUN_10096f18"
+    }
+  ]
+}

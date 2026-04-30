@@ -1,0 +1,71 @@
+{
+  "address": "0x1002f530", 
+  "size_bytes": 193, 
+  "calling_convention": "__cdecl", 
+  "signature": "void __cdecl gbEnableSystemKeys(HINSTANCE__ * param_1, int param_2)", 
+  "callees": [
+    {
+      "address": "0x00000013", 
+      "name": "GetVersionExA"
+    }, 
+    {
+      "address": "0x00000071", 
+      "name": "SetWindowsHookExA"
+    }, 
+    {
+      "address": "0x0000006f", 
+      "name": "UnhookWindowsHookEx"
+    }, 
+    {
+      "address": "0x00000073", 
+      "name": "SystemParametersInfoA"
+    }, 
+    {
+      "address": "0x00000073", 
+      "name": "SystemParametersInfoA"
+    }
+  ], 
+  "global_refs": [
+    {
+      "address": "0x-0000094", 
+      "type": null, 
+      "name": "DAT_-0000094"
+    }, 
+    {
+      "address": "0x100f5078", 
+      "type": "pointer", 
+      "name": "DAT_100f5078"
+    }, 
+    {
+      "address": "0x1002f600", 
+      "type": null, 
+      "name": "DAT_1002f600"
+    }, 
+    {
+      "address": "0x100f51f4", 
+      "type": "pointer", 
+      "name": "DAT_100f51f4"
+    }, 
+    {
+      "address": "0x1015d374", 
+      "type": "undefined4", 
+      "name": "DAT_1015d374"
+    }, 
+    {
+      "address": "0x100f51ec", 
+      "type": "pointer", 
+      "name": "DAT_100f51ec"
+    }, 
+    {
+      "address": "0x100f51fc", 
+      "type": "pointer", 
+      "name": "DAT_100f51fc"
+    }
+  ], 
+  "has_custom_name": true, 
+  "decompiled_c": "\n/* void __cdecl gbEnableSystemKeys(struct HINSTANCE__ *,int) */\n\nvoid __cdecl gbEnableSystemKeys(HINSTANCE__ *param_1,int param_2)\n\n{\n  undefined auStack_98 [4];\n  _OSVERSIONINFOA local_94;\n  \n                    /* 0x2f530  978  ?gbEnableSystemKeys@@YAXPAUHINSTANCE__@@H@Z */\n  local_94.dwOSVersionInfoSize = 0x94;\n  GetVersionExA(&local_94);\n  if (local_94.dwPlatformId == 2) {\n    if (3 < local_94.dwMajorVersion) {\n      if (param_2 == 0) {\n        DAT_1015d374 = SetWindowsHookExA(0xd,FUN_1002f600,param_1,0);\n        return;\n      }\n      if (DAT_1015d374 != (HHOOK)0x0) {\n        UnhookWindowsHookEx(DAT_1015d374);\n        DAT_1015d374 = (HHOOK)0x0;\n        return;\n      }\n    }\n  }\n  else if ((local_94.dwPlatformId == 1) && (3 < local_94.dwMajorVersion)) {\n    if (param_2 == 0) {\n      SystemParametersInfoA(0x61,1,auStack_98,0);\n      return;\n    }\n    SystemParametersInfoA(0x61,0,auStack_98,0);\n  }\n  return;\n}\n\n", 
+  "is_thunk": false, 
+  "name": "gbEnableSystemKeys", 
+  "assembly": "  1002f530:  SUB ESP,0x98\n  1002f536:  LEA EAX,[ESP + 0x4]\n  1002f53a:  MOV dword ptr [ESP + 0x4],0x94\n  1002f542:  PUSH EAX\n  1002f543:  CALL dword ptr [0x100f5078]\n  1002f549:  MOV EAX,dword ptr [ESP + 0x14]\n  1002f54d:  CMP EAX,0x2\n  1002f550:  JNZ 0x1002f5ac\n  1002f552:  CMP dword ptr [ESP + 0x8],0x4\n  1002f557:  JC 0x1002f5ea\n  1002f55d:  MOV EAX,dword ptr [ESP + 0xa0]\n  1002f564:  TEST EAX,EAX\n  1002f566:  JNZ 0x1002f58b\n  1002f568:  MOV ECX,dword ptr [ESP + 0x9c]\n  1002f56f:  PUSH 0x0\n  1002f571:  PUSH ECX\n  1002f572:  PUSH 0x1002f600\n  1002f577:  PUSH 0xd\n  1002f579:  CALL dword ptr [0x100f51f4]\n  1002f57f:  MOV [0x1015d374],EAX\n  1002f584:  ADD ESP,0x98\n  1002f58a:  RET\n  1002f58b:  MOV EAX,[0x1015d374]\n  1002f590:  TEST EAX,EAX\n  1002f592:  JZ 0x1002f5ea\n  1002f594:  PUSH EAX\n  1002f595:  CALL dword ptr [0x100f51ec]\n  1002f59b:  MOV dword ptr [0x1015d374],0x0\n  1002f5a5:  ADD ESP,0x98\n  1002f5ab:  RET\n  1002f5ac:  CMP EAX,0x1\n  1002f5af:  JNZ 0x1002f5ea\n  1002f5b1:  CMP dword ptr [ESP + 0x8],0x4\n  1002f5b6:  JC 0x1002f5ea\n  1002f5b8:  MOV EAX,dword ptr [ESP + 0xa0]\n  1002f5bf:  PUSH 0x0\n  1002f5c1:  TEST EAX,EAX\n  1002f5c3:  JNZ 0x1002f5db\n  1002f5c5:  LEA EDX,[ESP + 0x4]\n  1002f5c9:  PUSH EDX\n  1002f5ca:  PUSH 0x1\n  1002f5cc:  PUSH 0x61\n  1002f5ce:  CALL dword ptr [0x100f51fc]\n  1002f5d4:  ADD ESP,0x98\n  1002f5da:  RET\n  1002f5db:  LEA EAX,[ESP + 0x4]\n  1002f5df:  PUSH EAX\n  1002f5e0:  PUSH 0x0\n  1002f5e2:  PUSH 0x61\n  1002f5e4:  CALL dword ptr [0x100f51fc]\n  1002f5ea:  ADD ESP,0x98\n  1002f5f0:  RET", 
+  "callers": []
+}

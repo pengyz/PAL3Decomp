@@ -1,0 +1,61 @@
+{
+  "address": "0x1004d138", 
+  "size_bytes": 161, 
+  "calling_convention": "unknown", 
+  "signature": "undefined FUN_1004d138(undefined4 param_1, undefined4 param_2)", 
+  "callees": [
+    {
+      "address": "0x100e6835", 
+      "name": "FUN_100e6835"
+    }, 
+    {
+      "address": "0x100e6835", 
+      "name": "FUN_100e6835"
+    }, 
+    {
+      "address": "0x1004cb83", 
+      "name": "FUN_1004cb83"
+    }
+  ], 
+  "global_refs": [
+    {
+      "address": "0x00000004", 
+      "type": null, 
+      "name": "DAT_00000004"
+    }, 
+    {
+      "address": "0x-0000008", 
+      "type": null, 
+      "name": "DAT_-0000008"
+    }, 
+    {
+      "address": "0x00000008", 
+      "type": null, 
+      "name": "DAT_00000008"
+    }, 
+    {
+      "address": "0x100f94a0", 
+      "type": "string", 
+      "name": "DAT_100f94a0"
+    }
+  ], 
+  "has_custom_name": false, 
+  "decompiled_c": "\nint FUN_1004d138(char *param_1,uint *param_2)\n\n{\n  bool bVar1;\n  int iVar2;\n  uint uVar3;\n  int in_ECX;\n  char *pcVar4;\n  uint uVar5;\n  \n  if ((*(char **)(in_ECX + 4) <= param_1) || (iVar2 = FUN_100e6835((int)*param_1), iVar2 == 0)) {\n    return 0;\n  }\n  uVar5 = 0;\n  bVar1 = false;\n  pcVar4 = param_1;\n  if (param_1 < *(char **)(in_ECX + 4)) {\n    do {\n      iVar2 = FUN_100e6835((int)*pcVar4);\n      if (iVar2 == 0) break;\n      if (0x19999999 < uVar5) {\n        bVar1 = true;\n      }\n      uVar3 = uVar5 * 10;\n      uVar5 = *pcVar4 + -0x30 + uVar3;\n      if (uVar5 < uVar3) {\n        bVar1 = true;\n      }\n      pcVar4 = pcVar4 + 1;\n    } while (pcVar4 < *(char **)(in_ECX + 4));\n  }\n  if (param_2 != (uint *)0x0) {\n    *param_2 = uVar5;\n  }\n  if (bVar1) {\n    FUN_1004cb83(*(undefined4 *)(in_ECX + 0x30),in_ECX + 8,0x3ec,\"decimal value truncated to 32bits\"\n                );\n  }\n  return (int)pcVar4 - (int)param_1;\n}\n\n", 
+  "is_thunk": false, 
+  "name": "FUN_1004d138", 
+  "assembly": "  1004d138:  PUSH EBP\n  1004d139:  MOV EBP,ESP\n  1004d13b:  PUSH ECX\n  1004d13c:  PUSH EBX\n  1004d13d:  MOV EBX,dword ptr [EBP + 0x8]\n  1004d140:  PUSH EDI\n  1004d141:  MOV EDI,ECX\n  1004d143:  CMP EBX,dword ptr [EDI + 0x4]\n  1004d146:  JNC 0x1004d1d1\n  1004d14c:  MOVSX EAX,byte ptr [EBX]\n  1004d14f:  PUSH EAX\n  1004d150:  CALL 0x100e6835\n  1004d155:  TEST EAX,EAX\n  1004d157:  POP ECX\n  1004d158:  JZ 0x1004d1d1\n  1004d15a:  PUSH ESI\n  1004d15b:  XOR ESI,ESI\n  1004d15d:  MOV EAX,EBX\n  1004d15f:  CMP EAX,dword ptr [EDI + 0x4]\n  1004d162:  MOV dword ptr [EBP + -0x4],ESI\n  1004d165:  JNC 0x1004d1a1\n  1004d167:  MOVSX EAX,byte ptr [EBX]\n  1004d16a:  PUSH EAX\n  1004d16b:  CALL 0x100e6835\n  1004d170:  TEST EAX,EAX\n  1004d172:  POP ECX\n  1004d173:  JZ 0x1004d1a1\n  1004d175:  CMP ESI,0x19999999\n  1004d17b:  JBE 0x1004d184\n  1004d17d:  MOV dword ptr [EBP + -0x4],0x1\n  1004d184:  MOVSX ECX,byte ptr [EBX]\n  1004d187:  LEA EAX,[ESI + ESI*0x4]\n  1004d18a:  SHL EAX,0x1\n  1004d18c:  LEA ESI,[ECX + EAX*0x1 + -0x30]\n  1004d190:  CMP ESI,EAX\n  1004d192:  JNC 0x1004d19b\n  1004d194:  MOV dword ptr [EBP + -0x4],0x1\n  1004d19b:  INC EBX\n  1004d19c:  CMP EBX,dword ptr [EDI + 0x4]\n  1004d19f:  JC 0x1004d167\n  1004d1a1:  MOV EAX,dword ptr [EBP + 0xc]\n  1004d1a4:  TEST EAX,EAX\n  1004d1a6:  JZ 0x1004d1aa\n  1004d1a8:  MOV dword ptr [EAX],ESI\n  1004d1aa:  CMP dword ptr [EBP + -0x4],0x0\n  1004d1ae:  POP ESI\n  1004d1af:  JZ 0x1004d1ca\n  1004d1b1:  PUSH 0x100f94a0\n  1004d1b6:  PUSH 0x3ec\n  1004d1bb:  LEA EAX,[EDI + 0x8]\n  1004d1be:  PUSH EAX\n  1004d1bf:  PUSH dword ptr [EDI + 0x30]\n  1004d1c2:  CALL 0x1004cb83\n  1004d1c7:  ADD ESP,0x10\n  1004d1ca:  MOV EAX,EBX\n  1004d1cc:  SUB EAX,dword ptr [EBP + 0x8]\n  1004d1cf:  JMP 0x1004d1d3\n  1004d1d1:  XOR EAX,EAX\n  1004d1d3:  POP EDI\n  1004d1d4:  POP EBX\n  1004d1d5:  LEAVE\n  1004d1d6:  RET 0x8", 
+  "callers": [
+    {
+      "address": "0x1004d5fa", 
+      "name": "FUN_1004d5fa"
+    }, 
+    {
+      "address": "0x1004d370", 
+      "name": "FUN_1004d370"
+    }, 
+    {
+      "address": "0x1004d370", 
+      "name": "FUN_1004d370"
+    }
+  ]
+}

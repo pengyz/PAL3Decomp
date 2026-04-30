@@ -1,0 +1,20 @@
+{
+  "address": "0x100050c0", 
+  "size_bytes": 16, 
+  "calling_convention": "__thiscall", 
+  "signature": "void __thiscall SetCurMaterial(gbActor * this, char * param_1)", 
+  "callees": [], 
+  "global_refs": [
+    {
+      "address": "0x00000004", 
+      "type": null, 
+      "name": "DAT_00000004"
+    }
+  ], 
+  "has_custom_name": true, 
+  "decompiled_c": "\n/* public: void __thiscall gbActor::SetCurMaterial(char *) */\n\nvoid __thiscall gbActor::SetCurMaterial(gbActor *this,char *param_1)\n\n{\n                    /* 0x50c0  857  ?SetCurMaterial@gbActor@@QAEXPAD@Z */\n  (**(code **)(**(int **)(this + 0x58) + 0x3c))(param_1);\n  return;\n}\n\n", 
+  "is_thunk": false, 
+  "name": "SetCurMaterial", 
+  "assembly": "  100050c0:  MOV ECX,dword ptr [ECX + 0x58]\n  100050c3:  MOV EDX,dword ptr [ESP + 0x4]\n  100050c7:  PUSH EDX\n  100050c8:  MOV EAX,dword ptr [ECX]\n  100050ca:  CALL dword ptr [EAX + 0x3c]\n  100050cd:  RET 0x4", 
+  "callers": []
+}

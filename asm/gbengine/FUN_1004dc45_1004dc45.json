@@ -1,0 +1,85 @@
+{
+  "address": "0x1004dc45", 
+  "size_bytes": 184, 
+  "calling_convention": "unknown", 
+  "signature": "undefined FUN_1004dc45(undefined4 param_1, undefined4 param_2, undefined1 param_3)", 
+  "callees": [
+    {
+      "address": "0x1004cb83", 
+      "name": "FUN_1004cb83"
+    }, 
+    {
+      "address": "0x1004cdad", 
+      "name": "FUN_1004cdad"
+    }, 
+    {
+      "address": "0x100e68e0", 
+      "name": "FUN_100e68e0"
+    }, 
+    {
+      "address": "0x1004cb83", 
+      "name": "FUN_1004cb83"
+    }
+  ], 
+  "global_refs": [
+    {
+      "address": "0x00000004", 
+      "type": null, 
+      "name": "DAT_00000004"
+    }, 
+    {
+      "address": "0x00000008", 
+      "type": null, 
+      "name": "DAT_00000008"
+    }, 
+    {
+      "address": "0x100f9584", 
+      "type": "string", 
+      "name": "DAT_100f9584"
+    }, 
+    {
+      "address": "0x100f9560", 
+      "type": "string", 
+      "name": "DAT_100f9560"
+    }, 
+    {
+      "address": "0x0000000c", 
+      "type": null, 
+      "name": "DAT_0000000c"
+    }, 
+    {
+      "address": "0x-0000104", 
+      "type": null, 
+      "name": "DAT_-0000104"
+    }, 
+    {
+      "address": "0x-0000005", 
+      "type": null, 
+      "name": "DAT_-0000005"
+    }, 
+    {
+      "address": "0x100f9350", 
+      "type": null, 
+      "name": "DAT_100f9350"
+    }
+  ], 
+  "has_custom_name": false, 
+  "decompiled_c": "\nvoid FUN_1004dc45(int param_1,char *param_2)\n\n{\n  int iVar1;\n  char *pcVar2;\n  char *pcVar3;\n  bool bVar4;\n  undefined local_104 [255];\n  undefined local_5;\n  \n  *(undefined4 *)(param_1 + 0x44) = 1;\n  if (*(int *)(param_1 + 0x50) != 0) {\n    iVar1 = 0xd;\n    bVar4 = true;\n    pcVar2 = param_2;\n    pcVar3 = \"syntax error\";\n    do {\n      if (iVar1 == 0) break;\n      iVar1 = iVar1 + -1;\n      bVar4 = *pcVar2 == *pcVar3;\n      pcVar2 = pcVar2 + 1;\n      pcVar3 = pcVar3 + 1;\n    } while (bVar4);\n    if (bVar4) {\n      if ((*(int *)(param_1 + 0x4c) == 0) || (*(int *)(param_1 + 0x278) != 9)) {\n        FUN_1004cdad(0x5dc,param_1 + 0x278);\n      }\n      else {\n        FUN_1004cb83(param_1 + 0x18,(int *)(param_1 + 0x278),0x5e0,\n                     \"invalid preprocessor command \\'%s\\'\",*(undefined4 *)(param_1 + 0x280));\n      }\n    }\n    else {\n      FUN_100e68e0(local_104,0x100,param_2,&stack0x0000000c);\n      local_5 = 0;\n      FUN_1004cb83(param_1 + 0x18,param_1 + 0x278,0,&DAT_100f9350,local_104);\n    }\n  }\n  return;\n}\n\n", 
+  "is_thunk": false, 
+  "name": "FUN_1004dc45", 
+  "assembly": "  1004dc45:  PUSH EBP\n  1004dc46:  MOV EBP,ESP\n  1004dc48:  SUB ESP,0x100\n  1004dc4e:  PUSH EBX\n  1004dc4f:  MOV EBX,dword ptr [EBP + 0x8]\n  1004dc52:  CMP dword ptr [EBX + 0x50],0x0\n  1004dc56:  MOV dword ptr [EBX + 0x44],0x1\n  1004dc5d:  JZ 0x1004dcfa\n  1004dc63:  PUSH ESI\n  1004dc64:  MOV ESI,dword ptr [EBP + 0xc]\n  1004dc67:  PUSH EDI\n  1004dc68:  PUSH 0xd\n  1004dc6a:  POP ECX\n  1004dc6b:  MOV EDI,0x100f9584\n  1004dc70:  XOR EAX,EAX\n  1004dc72:  CMPSB.REPE ES:EDI,ESI\n  1004dc74:  POP EDI\n  1004dc75:  POP ESI\n  1004dc76:  JNZ 0x1004dcbd\n  1004dc78:  CMP dword ptr [EBX + 0x4c],EAX\n  1004dc7b:  JZ 0x1004dca7\n  1004dc7d:  LEA EAX,[EBX + 0x278]\n  1004dc83:  CMP dword ptr [EAX],0x9\n  1004dc86:  JNZ 0x1004dca7\n  1004dc88:  PUSH dword ptr [EBX + 0x280]\n  1004dc8e:  ADD EBX,0x18\n  1004dc91:  PUSH 0x100f9560\n  1004dc96:  PUSH 0x5e0\n  1004dc9b:  PUSH EAX\n  1004dc9c:  PUSH EBX\n  1004dc9d:  CALL 0x1004cb83\n  1004dca2:  ADD ESP,0x14\n  1004dca5:  JMP 0x1004dcfa\n  1004dca7:  LEA EAX,[EBX + 0x278]\n  1004dcad:  PUSH EAX\n  1004dcae:  PUSH 0x5dc\n  1004dcb3:  LEA ECX,[EBX + 0x18]\n  1004dcb6:  CALL 0x1004cdad\n  1004dcbb:  JMP 0x1004dcfa\n  1004dcbd:  LEA EAX,[EBP + 0x10]\n  1004dcc0:  PUSH EAX\n  1004dcc1:  PUSH dword ptr [EBP + 0xc]\n  1004dcc4:  LEA EAX,[EBP + 0xffffff00]\n  1004dcca:  PUSH 0x100\n  1004dccf:  PUSH EAX\n  1004dcd0:  CALL 0x100e68e0\n  1004dcd5:  AND byte ptr [EBP + -0x1],0x0\n  1004dcd9:  LEA EAX,[EBP + 0xffffff00]\n  1004dcdf:  PUSH EAX\n  1004dce0:  PUSH 0x100f9350\n  1004dce5:  LEA EAX,[EBX + 0x278]\n  1004dceb:  PUSH 0x0\n  1004dced:  PUSH EAX\n  1004dcee:  ADD EBX,0x18\n  1004dcf1:  PUSH EBX\n  1004dcf2:  CALL 0x1004cb83\n  1004dcf7:  ADD ESP,0x24\n  1004dcfa:  POP EBX\n  1004dcfb:  LEAVE\n  1004dcfc:  RET", 
+  "callers": [
+    {
+      "address": "0x100506f8", 
+      "name": "FUN_100506f8"
+    }, 
+    {
+      "address": "0x100506f8", 
+      "name": "FUN_100506f8"
+    }, 
+    {
+      "address": "0x1004dd32", 
+      "name": "FUN_1004dd32"
+    }
+  ]
+}

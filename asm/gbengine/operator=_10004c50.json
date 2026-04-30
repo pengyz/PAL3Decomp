@@ -1,0 +1,20 @@
+{
+  "address": "0x10004c50", 
+  "size_bytes": 82, 
+  "calling_convention": "__thiscall", 
+  "signature": "gbRenderEffect * __thiscall operator=(gbRenderEffect * this, gbRenderEffect * param_1)", 
+  "callees": [], 
+  "global_refs": [
+    {
+      "address": "0x00000004", 
+      "type": null, 
+      "name": "DAT_00000004"
+    }
+  ], 
+  "has_custom_name": true, 
+  "decompiled_c": "\n/* public: class gbRenderEffect & __thiscall gbRenderEffect::operator=(class gbRenderEffect const &)\n    */\n\ngbRenderEffect * __thiscall gbRenderEffect::operator=(gbRenderEffect *this,gbRenderEffect *param_1)\n\n{\n  gbRenderEffect *pgVar1;\n  int iVar2;\n  \n                    /* 0x4c50  227  ??4gbRenderEffect@@QAEAAV0@ABV0@@Z */\n  iVar2 = 8;\n  *(undefined4 *)(this + 4) = *(undefined4 *)(param_1 + 4);\n  *(undefined4 *)(this + 8) = *(undefined4 *)(param_1 + 8);\n  *(undefined4 *)(this + 0xc) = *(undefined4 *)(param_1 + 0xc);\n  *(undefined4 *)(this + 0x10) = *(undefined4 *)(param_1 + 0x10);\n  *(undefined4 *)(this + 0x14) = *(undefined4 *)(param_1 + 0x14);\n  *(undefined4 *)(this + 0x18) = *(undefined4 *)(param_1 + 0x18);\n  *(undefined4 *)(this + 0x1c) = *(undefined4 *)(param_1 + 0x1c);\n  *(undefined4 *)(this + 0x20) = *(undefined4 *)(param_1 + 0x20);\n  pgVar1 = this + 0x24;\n  do {\n    *(undefined4 *)pgVar1 = *(undefined4 *)(pgVar1 + ((int)param_1 - (int)this));\n    pgVar1 = pgVar1 + 4;\n    iVar2 = iVar2 + -1;\n  } while (iVar2 != 0);\n  return this;\n}\n\n", 
+  "is_thunk": false, 
+  "name": "operator=", 
+  "assembly": "  10004c50:  MOV EAX,ECX\n  10004c52:  PUSH ESI\n  10004c53:  MOV ECX,dword ptr [ESP + 0x8]\n  10004c57:  PUSH EDI\n  10004c58:  MOV ESI,0x8\n  10004c5d:  MOV EDX,dword ptr [ECX + 0x4]\n  10004c60:  MOV dword ptr [EAX + 0x4],EDX\n  10004c63:  MOV EDX,dword ptr [ECX + 0x8]\n  10004c66:  MOV dword ptr [EAX + 0x8],EDX\n  10004c69:  MOV EDX,dword ptr [ECX + 0xc]\n  10004c6c:  MOV dword ptr [EAX + 0xc],EDX\n  10004c6f:  MOV EDX,dword ptr [ECX + 0x10]\n  10004c72:  MOV dword ptr [EAX + 0x10],EDX\n  10004c75:  MOV EDX,dword ptr [ECX + 0x14]\n  10004c78:  MOV dword ptr [EAX + 0x14],EDX\n  10004c7b:  MOV EDX,dword ptr [ECX + 0x18]\n  10004c7e:  MOV dword ptr [EAX + 0x18],EDX\n  10004c81:  MOV EDX,dword ptr [ECX + 0x1c]\n  10004c84:  MOV dword ptr [EAX + 0x1c],EDX\n  10004c87:  MOV EDX,dword ptr [ECX + 0x20]\n  10004c8a:  MOV dword ptr [EAX + 0x20],EDX\n  10004c8d:  LEA EDX,[EAX + 0x24]\n  10004c90:  SUB ECX,EAX\n  10004c92:  MOV EDI,dword ptr [ECX + EDX*0x1]\n  10004c95:  MOV dword ptr [EDX],EDI\n  10004c97:  ADD EDX,0x4\n  10004c9a:  DEC ESI\n  10004c9b:  JNZ 0x10004c92\n  10004c9d:  POP EDI\n  10004c9e:  POP ESI\n  10004c9f:  RET 0x4", 
+  "callers": []
+}

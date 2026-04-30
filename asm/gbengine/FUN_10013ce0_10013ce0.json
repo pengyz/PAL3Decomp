@@ -1,0 +1,71 @@
+{
+  "address": "0x10013ce0", 
+  "size_bytes": 266, 
+  "calling_convention": "unknown", 
+  "signature": "undefined FUN_10013ce0(undefined4 param_1)", 
+  "callees": [
+    {
+      "address": "0x10030810", 
+      "name": "Read"
+    }, 
+    {
+      "address": "0x10030810", 
+      "name": "Read"
+    }, 
+    {
+      "address": "0x100e4b0d", 
+      "name": "_malloc"
+    }, 
+    {
+      "address": "0x10013940", 
+      "name": "FUN_10013940"
+    }, 
+    {
+      "address": "0x10013a30", 
+      "name": "FUN_10013a30"
+    }
+  ], 
+  "global_refs": [
+    {
+      "address": "0x-000000c", 
+      "type": null, 
+      "name": "DAT_-000000c"
+    }, 
+    {
+      "address": "0x00000004", 
+      "type": null, 
+      "name": "DAT_00000004"
+    }, 
+    {
+      "address": "0x1015d3a8", 
+      "type": "gbVFileSystem *", 
+      "name": "DAT_1015d3a8"
+    }, 
+    {
+      "address": "0x100f5664", 
+      "type": null, 
+      "name": "DAT_100f5664"
+    }, 
+    {
+      "address": "0x-0000004", 
+      "type": null, 
+      "name": "DAT_-0000004"
+    }, 
+    {
+      "address": "0x100f5508", 
+      "type": null, 
+      "name": "DAT_100f5508"
+    }
+  ], 
+  "has_custom_name": false, 
+  "decompiled_c": "\nundefined4 FUN_10013ce0(gbVFile *param_1)\n\n{\n  void *pvVar1;\n  int iVar2;\n  int in_ECX;\n  undefined local_c [12];\n  \n  gbVFileSystem::Read(g_pVFileSys,local_c,0xc,param_1);\n  gbVFileSystem::Read(g_pVFileSys,(void *)(in_ECX + 0x78),0x594,param_1);\n  pvVar1 = _malloc(*(int *)(in_ECX + 0x8c) * *(int *)(in_ECX + 0x90) * 8);\n  *(void **)(in_ECX + 0x60c) = pvVar1;\n  iVar2 = 0;\n  if (0 < *(int *)(in_ECX + 0x8c) * *(int *)(in_ECX + 0x90)) {\n    do {\n      iVar2 = iVar2 + 1;\n      *(undefined4 *)(*(int *)(in_ECX + 0x60c) + -8 + iVar2 * 8) = 0;\n      *(undefined4 *)(*(int *)(in_ECX + 0x60c) + -4 + iVar2 * 8) = 0;\n    } while (iVar2 < *(int *)(in_ECX + 0x8c) * *(int *)(in_ECX + 0x90));\n  }\n  FUN_10013940(*(undefined4 *)(in_ECX + 0x94),0x41200000);\n  FUN_10013a30();\n  *(undefined4 *)(in_ECX + 0x5c) = 0;\n  *(float *)(in_ECX + 0x58) = *(float *)(in_ECX + 0x94) * -0.5;\n  *(float *)(in_ECX + 0x60) = *(float *)(in_ECX + 0x98) * -0.5;\n  *(undefined4 *)(in_ECX + 0x68) = 0x3dcccccd;\n  *(float *)(in_ECX + 100) = *(float *)(in_ECX + 0x94) * 0.5;\n  *(float *)(in_ECX + 0x6c) = *(float *)(in_ECX + 0x98) * 0.5;\n  return 1;\n}\n\n", 
+  "is_thunk": false, 
+  "name": "FUN_10013ce0", 
+  "assembly": "  10013ce0:  SUB ESP,0xc\n  10013ce3:  LEA EAX,[ESP]\n  10013ce7:  PUSH ESI\n  10013ce8:  PUSH EDI\n  10013ce9:  MOV EDI,dword ptr [ESP + 0x18]\n  10013ced:  MOV ESI,ECX\n  10013cef:  MOV ECX,dword ptr [0x1015d3a8]\n  10013cf5:  PUSH EDI\n  10013cf6:  PUSH 0xc\n  10013cf8:  PUSH EAX\n  10013cf9:  CALL 0x10030810\n  10013cfe:  PUSH EDI\n  10013cff:  LEA ECX,[ESI + 0x78]\n  10013d02:  PUSH 0x594\n  10013d07:  PUSH ECX\n  10013d08:  MOV ECX,dword ptr [0x1015d3a8]\n  10013d0e:  CALL 0x10030810\n  10013d13:  MOV EDX,dword ptr [ESI + 0x8c]\n  10013d19:  IMUL EDX,dword ptr [ESI + 0x90]\n  10013d20:  SHL EDX,0x3\n  10013d23:  PUSH EDX\n  10013d24:  CALL 0x100e4b0d\n  10013d29:  MOV ECX,dword ptr [ESI + 0x8c]\n  10013d2f:  MOV dword ptr [ESI + 0x60c],EAX\n  10013d35:  IMUL ECX,dword ptr [ESI + 0x90]\n  10013d3c:  ADD ESP,0x4\n  10013d3f:  XOR EDI,EDI\n  10013d41:  XOR EAX,EAX\n  10013d43:  TEST ECX,ECX\n  10013d45:  JLE 0x10013d6d\n  10013d47:  MOV EDX,dword ptr [ESI + 0x60c]\n  10013d4d:  INC EAX\n  10013d4e:  MOV dword ptr [EDX + EAX*0x8 + -0x8],EDI\n  10013d52:  MOV ECX,dword ptr [ESI + 0x60c]\n  10013d58:  MOV dword ptr [ECX + EAX*0x8 + -0x4],EDI\n  10013d5c:  MOV EDX,dword ptr [ESI + 0x8c]\n  10013d62:  IMUL EDX,dword ptr [ESI + 0x90]\n  10013d69:  CMP EAX,EDX\n  10013d6b:  JL 0x10013d47\n  10013d6d:  MOV EAX,dword ptr [ESI + 0x94]\n  10013d73:  PUSH 0x41200000\n  10013d78:  PUSH EAX\n  10013d79:  MOV ECX,ESI\n  10013d7b:  CALL 0x10013940\n  10013d80:  MOV ECX,ESI\n  10013d82:  CALL 0x10013a30\n  10013d87:  FLD dword ptr [ESI + 0x94]\n  10013d8d:  FMUL dword ptr [0x100f5664]\n  10013d93:  FLD dword ptr [ESI + 0x98]\n  10013d99:  FMUL dword ptr [0x100f5664]\n  10013d9f:  MOV dword ptr [ESI + 0x5c],EDI\n  10013da2:  POP EDI\n  10013da3:  FSTP dword ptr [ESP + 0xc]\n  10013da7:  MOV ECX,dword ptr [ESP + 0xc]\n  10013dab:  MOV EAX,0x1\n  10013db0:  FSTP dword ptr [ESI + 0x58]\n  10013db3:  MOV dword ptr [ESI + 0x60],ECX\n  10013db6:  FLD dword ptr [ESI + 0x94]\n  10013dbc:  FMUL dword ptr [0x100f5508]\n  10013dc2:  FLD dword ptr [ESI + 0x98]\n  10013dc8:  FMUL dword ptr [0x100f5508]\n  10013dce:  MOV dword ptr [ESI + 0x68],0x3dcccccd\n  10013dd5:  FSTP dword ptr [ESP + 0xc]\n  10013dd9:  MOV EDX,dword ptr [ESP + 0xc]\n  10013ddd:  FSTP dword ptr [ESI + 0x64]\n  10013de0:  MOV dword ptr [ESI + 0x6c],EDX\n  10013de3:  POP ESI\n  10013de4:  ADD ESP,0xc\n  10013de7:  RET 0x8", 
+  "callers": [
+    {
+      "address": "0x100102c0", 
+      "name": "LoadFromFile"
+    }
+  ]
+}

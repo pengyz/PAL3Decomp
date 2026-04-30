@@ -1,0 +1,176 @@
+{
+  "address": "0x1002e850", 
+  "size_bytes": 158, 
+  "calling_convention": "unknown", 
+  "signature": "undefined FUN_1002e850(void)", 
+  "callees": [
+    {
+      "address": "0x100e4f80", 
+      "name": "FUN_100e4f80"
+    }, 
+    {
+      "address": "0x0000001f", 
+      "name": "GetLastError"
+    }, 
+    {
+      "address": "0x100e5bd1", 
+      "name": "FUN_100e5bd1"
+    }, 
+    {
+      "address": "0x00000010", 
+      "name": "FormatMessageA"
+    }, 
+    {
+      "address": "0x100e5031", 
+      "name": "FUN_100e5031"
+    }, 
+    {
+      "address": "0x00000021", 
+      "name": "LocalFree"
+    }, 
+    {
+      "address": "0x00000069", 
+      "name": "MessageBoxA"
+    }
+  ], 
+  "global_refs": [
+    {
+      "address": "0x00000000", 
+      "type": null, 
+      "name": "DAT_00000000"
+    }, 
+    {
+      "address": "0x100f50a8", 
+      "type": "pointer", 
+      "name": "DAT_100f50a8"
+    }, 
+    {
+      "address": "0x100f506c", 
+      "type": "pointer", 
+      "name": "DAT_100f506c"
+    }, 
+    {
+      "address": "0x1012087c", 
+      "type": "string", 
+      "name": "DAT_1012087c"
+    }, 
+    {
+      "address": "0x100f50b0", 
+      "type": "pointer", 
+      "name": "DAT_100f50b0"
+    }, 
+    {
+      "address": "0x10120874", 
+      "type": "string", 
+      "name": "DAT_10120874"
+    }, 
+    {
+      "address": "0x100f51d4", 
+      "type": "pointer", 
+      "name": "DAT_100f51d4"
+    }
+  ], 
+  "has_custom_name": false, 
+  "decompiled_c": "\nvoid FUN_1002e850(void)\n\n{\n  DWORD dwMessageId;\n  UINT in_stack_00001008;\n  \n  FUN_100e4f80();\n  dwMessageId = GetLastError();\n  FUN_100e5bd1();\n  FormatMessageA(0x1300,(LPCVOID)0x0,dwMessageId,0x400,&stack0x00000000,0,(va_list *)0x0);\n  FUN_100e5031();\n  LocalFree((HLOCAL)0x0);\n  MessageBoxA((HWND)0x0,&stack0x00000004,s_Error_10120874,in_stack_00001008);\n  return;\n}\n\n", 
+  "is_thunk": false, 
+  "name": "FUN_1002e850", 
+  "assembly": "  1002e850:  MOV EAX,0x1004\n  1002e855:  CALL 0x100e4f80\n  1002e85a:  PUSH ESI\n  1002e85b:  MOV dword ptr [ESP + 0x4],0x0\n  1002e863:  CALL dword ptr [0x100f50a8]\n  1002e869:  MOV ECX,dword ptr [ESP + 0x1010]\n  1002e870:  MOV ESI,EAX\n  1002e872:  LEA EAX,[ESP + 0x1014]\n  1002e879:  LEA EDX,[ESP + 0x8]\n  1002e87d:  PUSH EAX\n  1002e87e:  PUSH ECX\n  1002e87f:  PUSH EDX\n  1002e880:  CALL 0x100e5bd1\n  1002e885:  ADD ESP,0xc\n  1002e888:  LEA EAX,[ESP + 0x4]\n  1002e88c:  PUSH 0x0\n  1002e88e:  PUSH 0x0\n  1002e890:  PUSH EAX\n  1002e891:  PUSH 0x400\n  1002e896:  PUSH ESI\n  1002e897:  PUSH 0x0\n  1002e899:  PUSH 0x1300\n  1002e89e:  CALL dword ptr [0x100f506c]\n  1002e8a4:  MOV ECX,dword ptr [ESP + 0x4]\n  1002e8a8:  LEA EDX,[ESP + 0x8]\n  1002e8ac:  PUSH ECX\n  1002e8ad:  PUSH ESI\n  1002e8ae:  PUSH EDX\n  1002e8af:  LEA EAX,[ESP + 0x14]\n  1002e8b3:  PUSH 0x1012087c\n  1002e8b8:  PUSH EAX\n  1002e8b9:  CALL 0x100e5031\n  1002e8be:  MOV ECX,dword ptr [ESP + 0x18]\n  1002e8c2:  ADD ESP,0x14\n  1002e8c5:  PUSH ECX\n  1002e8c6:  CALL dword ptr [0x100f50b0]\n  1002e8cc:  MOV EDX,dword ptr [ESP + 0x100c]\n  1002e8d3:  LEA EAX,[ESP + 0x8]\n  1002e8d7:  PUSH EDX\n  1002e8d8:  PUSH 0x10120874\n  1002e8dd:  PUSH EAX\n  1002e8de:  PUSH 0x0\n  1002e8e0:  CALL dword ptr [0x100f51d4]\n  1002e8e6:  POP ESI\n  1002e8e7:  ADD ESP,0x1004\n  1002e8ed:  RET", 
+  "callers": [
+    {
+      "address": "0x1002d1a0", 
+      "name": "Close"
+    }, 
+    {
+      "address": "0x1002d1a0", 
+      "name": "Close"
+    }, 
+    {
+      "address": "0x1002dcf0", 
+      "name": "FUN_1002dcf0"
+    }, 
+    {
+      "address": "0x1002e090", 
+      "name": "FUN_1002e090"
+    }, 
+    {
+      "address": "0x1002cc50", 
+      "name": "Open"
+    }, 
+    {
+      "address": "0x1002cc50", 
+      "name": "Open"
+    }, 
+    {
+      "address": "0x1002cc50", 
+      "name": "Open"
+    }, 
+    {
+      "address": "0x1002cc50", 
+      "name": "Open"
+    }, 
+    {
+      "address": "0x1002cc50", 
+      "name": "Open"
+    }, 
+    {
+      "address": "0x1002df10", 
+      "name": "FUN_1002df10"
+    }, 
+    {
+      "address": "0x1002db70", 
+      "name": "FUN_1002db70"
+    }, 
+    {
+      "address": "0x1002c4b0", 
+      "name": "CPK"
+    }, 
+    {
+      "address": "0x1002cad0", 
+      "name": "IsFileExist"
+    }, 
+    {
+      "address": "0x1002c660", 
+      "name": "Load"
+    }, 
+    {
+      "address": "0x1002c660", 
+      "name": "Load"
+    }, 
+    {
+      "address": "0x1002c660", 
+      "name": "Load"
+    }, 
+    {
+      "address": "0x1002c660", 
+      "name": "Load"
+    }, 
+    {
+      "address": "0x1002c660", 
+      "name": "Load"
+    }, 
+    {
+      "address": "0x1002c660", 
+      "name": "Load"
+    }, 
+    {
+      "address": "0x1002d3f0", 
+      "name": "LoadFile"
+    }, 
+    {
+      "address": "0x1002d3f0", 
+      "name": "LoadFile"
+    }, 
+    {
+      "address": "0x1002d3f0", 
+      "name": "LoadFile"
+    }, 
+    {
+      "address": "0x1002d3f0", 
+      "name": "LoadFile"
+    }, 
+    {
+      "address": "0x1002d3f0", 
+      "name": "LoadFile"
+    }
+  ]
+}

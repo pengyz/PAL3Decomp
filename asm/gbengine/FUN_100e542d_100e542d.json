@@ -1,0 +1,72 @@
+{
+  "address": "0x100e542d", 
+  "size_bytes": 174, 
+  "calling_convention": "unknown", 
+  "signature": "undefined FUN_100e542d(undefined4 param_1, undefined4 param_2)", 
+  "callees": [
+    {
+      "address": "0x100ea465", 
+      "name": "FUN_100ea465"
+    }, 
+    {
+      "address": "0x100ea4fb", 
+      "name": "__math_exit"
+    }, 
+    {
+      "address": "0x100ea47c", 
+      "name": "FUN_100ea47c"
+    }, 
+    {
+      "address": "0x100ea407", 
+      "name": "__startOneArgErrorHandling"
+    }
+  ], 
+  "global_refs": [
+    {
+      "address": "0x-0000004", 
+      "type": null, 
+      "name": "DAT_-0000004"
+    }, 
+    {
+      "address": "0x10166c5c", 
+      "type": "undefined4", 
+      "name": "DAT_10166c5c"
+    }, 
+    {
+      "address": "0x10129e30", 
+      "type": null, 
+      "name": "DAT_10129e30"
+    }, 
+    {
+      "address": "0x00000008", 
+      "type": null, 
+      "name": "DAT_00000008"
+    }, 
+    {
+      "address": "0x00000004", 
+      "type": null, 
+      "name": "DAT_00000004"
+    }, 
+    {
+      "address": "0x1012a11a", 
+      "type": null, 
+      "name": "DAT_1012a11a"
+    }, 
+    {
+      "address": "0x1012a110", 
+      "type": null, 
+      "name": "DAT_1012a110"
+    }
+  ], 
+  "has_custom_name": false, 
+  "decompiled_c": "\n/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */\n\nfloat10 FUN_100e542d(int param_1,uint param_2)\n\n{\n  uint in_EAX;\n  bool in_ZF;\n  short in_FPUControlWord;\n  float10 in_ST0;\n  float10 extraout_ST0;\n  float10 fVar1;\n  \n  if (in_ZF) {\n    if (((in_EAX & 0xfffff) != 0) || (fVar1 = _DAT_1012a110, param_1 != 0)) {\n      fVar1 = (float10)FUN_100ea47c();\n    }\nLAB_100e54bc:\n    if (DAT_10166c5c == 0) {\n      fVar1 = (float10)__startOneArgErrorHandling();\n      return fVar1;\n    }\n  }\n  else {\n    if (in_FPUControlWord != 0x27f) {\n      in_EAX = FUN_100ea465();\n      in_ST0 = extraout_ST0;\n    }\n    if (in_EAX < 0x3ff00000) {\n      fVar1 = (float10)fpatan(in_ST0,SQRT(((float10)1 - in_ST0) * ((float10)1 + in_ST0)));\n    }\n    else {\n      fVar1 = _DAT_1012a110;\n      if ((0x3ff00000 < in_EAX) || ((param_2 & 0xfffff) != 0 || param_1 != 0)) goto LAB_100e54bc;\n      fVar1 = _DAT_1012a11a;\n      if ((param_2 & 0x80000000) != 0) {\n        fVar1 = -_DAT_1012a11a;\n      }\n    }\n    if (DAT_10166c5c == 0) {\n      fVar1 = (float10)__math_exit();\n      return fVar1;\n    }\n  }\n  return fVar1;\n}\n\n", 
+  "is_thunk": false, 
+  "name": "FUN_100e542d", 
+  "assembly": "  100e542d:  PUSH EDX\n  100e542e:  FSTCW word ptr [ESP]\n  100e5432:  JZ 0x100e54a1\n  100e5434:  CMP word ptr [ESP],0x27f\n  100e543a:  JZ 0x100e5441\n  100e543c:  CALL 0x100ea465\n  100e5441:  CMP EAX,0x3ff00000\n  100e5446:  JNC 0x100e5473\n  100e5448:  FLD1\n  100e544a:  FADD ST0,ST1\n  100e544c:  FLD1\n  100e544e:  FSUB ST0,ST2\n  100e5450:  FMULP\n  100e5452:  FSQRT\n  100e5454:  FPATAN\n  100e5456:  CMP dword ptr [0x10166c5c],0x0\n  100e545d:  JNZ 0x100ea4ee\n  100e5463:  MOV EDX,0xe\n  100e5468:  LEA ECX,[0x10129e30]\n  100e546e:  JMP 0x100ea4fb\n  100e5473:  JA 0x100e54af\n  100e5475:  MOV EAX,dword ptr [ESP + 0xc]\n  100e5479:  MOV ECX,EAX\n  100e547b:  AND EAX,0xfffff\n  100e5480:  OR EAX,dword ptr [ESP + 0x8]\n  100e5484:  JNZ 0x100e54af\n  100e5486:  AND ECX,0x80000000\n  100e548c:  FSTP ST0\n  100e548e:  FLD tword ptr [0x1012a11a]\n  100e5494:  JZ 0x100e5456\n  100e5496:  FCHS\n  100e5498:  JMP 0x100e5456\n  100e549a:  CALL 0x100ea47c\n  100e549f:  JMP 0x100e54bc\n  100e54a1:  TEST EAX,0xfffff\n  100e54a6:  JNZ 0x100e549a\n  100e54a8:  CMP dword ptr [ESP + 0x8],0x0\n  100e54ad:  JNZ 0x100e549a\n  100e54af:  FSTP ST0\n  100e54b1:  FLD tword ptr [0x1012a110]\n  100e54b7:  MOV EAX,0x1\n  100e54bc:  CMP dword ptr [0x10166c5c],0x0\n  100e54c3:  JNZ 0x100ea4ee\n  100e54c9:  MOV EDX,0xe\n  100e54ce:  LEA ECX,[0x10129e30]\n  100e54d4:  CALL 0x100ea407\n  100e54d9:  POP EDX\n  100e54da:  RET", 
+  "callers": [
+    {
+      "address": "0x100e5410", 
+      "name": "FUN_100e5410"
+    }
+  ]
+}

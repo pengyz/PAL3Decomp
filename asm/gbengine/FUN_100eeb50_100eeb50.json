@@ -1,0 +1,25 @@
+{
+  "address": "0x100eeb50", 
+  "size_bytes": 55, 
+  "calling_convention": "unknown", 
+  "signature": "undefined FUN_100eeb50(undefined4 param_1)", 
+  "callees": [], 
+  "global_refs": [
+    {
+      "address": "0x00000004", 
+      "type": null, 
+      "name": "DAT_00000004"
+    }
+  ], 
+  "has_custom_name": false, 
+  "decompiled_c": "\nvoid FUN_100eeb50(char *param_1)\n\n{\n  char *pcVar1;\n  char cVar2;\n  char *pcVar3;\n  \n  cVar2 = *param_1;\n  do {\n    if (cVar2 == '\\0') {\n      return;\n    }\n    if ((cVar2 < '0') || ('9' < cVar2)) {\n      pcVar3 = param_1;\n      if (cVar2 != ';') goto LAB_100eeb67;\n      do {\n        pcVar1 = pcVar3 + 1;\n        *pcVar3 = pcVar3[1];\n        pcVar3 = pcVar1;\n      } while (*pcVar1 != '\\0');\n    }\n    else {\n      *param_1 = cVar2 + -0x30;\nLAB_100eeb67:\n      param_1 = param_1 + 1;\n    }\n    cVar2 = *param_1;\n  } while( true );\n}\n\n", 
+  "is_thunk": false, 
+  "name": "FUN_100eeb50", 
+  "assembly": "  100eeb50:  MOV ECX,dword ptr [ESP + 0x4]\n  100eeb54:  MOV AL,byte ptr [ECX]\n  100eeb56:  TEST AL,AL\n  100eeb58:  JZ 0x100eeb6f\n  100eeb5a:  PUSH ESI\n  100eeb5b:  CMP AL,0x30\n  100eeb5d:  JL 0x100eeb70\n  100eeb5f:  CMP AL,0x39\n  100eeb61:  JG 0x100eeb70\n  100eeb63:  SUB AL,0x30\n  100eeb65:  MOV byte ptr [ECX],AL\n  100eeb67:  INC ECX\n  100eeb68:  MOV AL,byte ptr [ECX]\n  100eeb6a:  TEST AL,AL\n  100eeb6c:  JNZ 0x100eeb5b\n  100eeb6e:  POP ESI\n  100eeb6f:  RET\n  100eeb70:  CMP AL,0x3b\n  100eeb72:  JNZ 0x100eeb67\n  100eeb74:  MOV EAX,ECX\n  100eeb76:  MOV DL,byte ptr [EAX + 0x1]\n  100eeb79:  LEA ESI,[EAX + 0x1]\n  100eeb7c:  MOV byte ptr [EAX],DL\n  100eeb7e:  MOV EAX,ESI\n  100eeb80:  CMP byte ptr [EAX],0x0\n  100eeb83:  JNZ 0x100eeb76\n  100eeb85:  JMP 0x100eeb68", 
+  "callers": [
+    {
+      "address": "0x100eec52", 
+      "name": "FUN_100eec52"
+    }
+  ]
+}

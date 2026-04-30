@@ -1,0 +1,20 @@
+{
+  "address": "0x1002c3a0", 
+  "size_bytes": 30, 
+  "calling_convention": "__thiscall", 
+  "signature": "gbPartEmitter * __thiscall GetEmitter(gbParticleEffect * this, int param_1)", 
+  "callees": [], 
+  "global_refs": [
+    {
+      "address": "0x00000004", 
+      "type": null, 
+      "name": "DAT_00000004"
+    }
+  ], 
+  "has_custom_name": true, 
+  "decompiled_c": "\n/* public: class gbPartEmitter * __thiscall gbParticleEffect::GetEmitter(int) */\n\ngbPartEmitter * __thiscall gbParticleEffect::GetEmitter(gbParticleEffect *this,int param_1)\n\n{\n                    /* 0x2c3a0  455  ?GetEmitter@gbParticleEffect@@QAEPAVgbPartEmitter@@H@Z */\n  return (gbPartEmitter *)(*(int *)(this + 0xac) + param_1 * 0x6c78);\n}\n\n", 
+  "is_thunk": false, 
+  "name": "GetEmitter", 
+  "assembly": "  1002c3a0:  MOV EAX,dword ptr [ESP + 0x4]\n  1002c3a4:  MOV ECX,dword ptr [ECX + 0xac]\n  1002c3aa:  LEA EDX,[EAX + EAX*0x8]\n  1002c3ad:  SHL EDX,0x5\n  1002c3b0:  ADD EDX,EAX\n  1002c3b2:  LEA EAX,[EAX + EDX*0x4]\n  1002c3b5:  LEA EAX,[EAX + EAX*0x2]\n  1002c3b8:  LEA EAX,[ECX + EAX*0x8]\n  1002c3bb:  RET 0x4", 
+  "callers": []
+}

@@ -1,0 +1,48 @@
+{
+  "address": "0x10078c52", 
+  "size_bytes": 75, 
+  "calling_convention": "unknown", 
+  "signature": "undefined FUN_10078c52(undefined4 param_1, undefined4 param_2, undefined4 param_3)", 
+  "callees": [], 
+  "global_refs": [
+    {
+      "address": "0x0000000c", 
+      "type": null, 
+      "name": "DAT_0000000c"
+    }, 
+    {
+      "address": "0x00000008", 
+      "type": null, 
+      "name": "DAT_00000008"
+    }, 
+    {
+      "address": "0x00000004", 
+      "type": null, 
+      "name": "DAT_00000004"
+    }, 
+    {
+      "address": "0x10105ea8", 
+      "type": null, 
+      "name": "DAT_10105ea8"
+    }
+  ], 
+  "has_custom_name": false, 
+  "decompiled_c": "\nint FUN_10078c52(int param_1,uint param_2,uint param_3)\n\n{\n  int iVar1;\n  uint uVar2;\n  byte *pbVar3;\n  byte *pbVar4;\n  bool bVar5;\n  bool bVar6;\n  \n  uVar2 = 8;\n  if (((param_3 < 9) && (uVar2 = param_3, param_3 == 0)) || (7 < param_2)) {\n    iVar1 = 0;\n  }\n  else {\n    if (8 < param_2 + uVar2) {\n      uVar2 = 8 - param_2;\n    }\n    bVar5 = false;\n    iVar1 = 0;\n    bVar6 = true;\n    pbVar3 = (byte *)(param_1 + param_2);\n    pbVar4 = &DAT_10105ea8 + param_2;\n    do {\n      if (uVar2 == 0) break;\n      uVar2 = uVar2 - 1;\n      bVar5 = *pbVar3 < *pbVar4;\n      bVar6 = *pbVar3 == *pbVar4;\n      pbVar3 = pbVar3 + 1;\n      pbVar4 = pbVar4 + 1;\n    } while (bVar6);\n    if (!bVar6) {\n      iVar1 = (1 - (uint)bVar5) - (uint)(bVar5 != 0);\n    }\n  }\n  return iVar1;\n}\n\n", 
+  "is_thunk": false, 
+  "name": "FUN_10078c52", 
+  "assembly": "  10078c52:  MOV ECX,dword ptr [ESP + 0xc]\n  10078c56:  PUSH 0x8\n  10078c58:  POP EDX\n  10078c59:  CMP ECX,EDX\n  10078c5b:  JBE 0x10078c61\n  10078c5d:  MOV ECX,EDX\n  10078c5f:  JMP 0x10078c66\n  10078c61:  CMP ECX,0x1\n  10078c64:  JC 0x10078c6f\n  10078c66:  MOV EAX,dword ptr [ESP + 0x8]\n  10078c6a:  CMP EAX,0x7\n  10078c6d:  JBE 0x10078c73\n  10078c6f:  XOR EAX,EAX\n  10078c71:  JMP 0x10078c9a\n  10078c73:  PUSH ESI\n  10078c74:  LEA ESI,[EAX + ECX*0x1]\n  10078c77:  CMP ESI,EDX\n  10078c79:  PUSH EDI\n  10078c7a:  JBE 0x10078c80\n  10078c7c:  MOV ECX,EDX\n  10078c7e:  SUB ECX,EAX\n  10078c80:  MOV EDX,dword ptr [ESP + 0xc]\n  10078c84:  LEA EDI,[EAX + 0x10105ea8]\n  10078c8a:  LEA ESI,[EDX + EAX*0x1]\n  10078c8d:  XOR EAX,EAX\n  10078c8f:  CMPSB.REPE ES:EDI,ESI\n  10078c91:  POP EDI\n  10078c92:  POP ESI\n  10078c93:  JZ 0x10078c9a\n  10078c95:  SBB EAX,EAX\n  10078c97:  SBB EAX,-0x1\n  10078c9a:  RET 0xc", 
+  "callers": [
+    {
+      "address": "0x10035dfa", 
+      "name": "FUN_10035dfa"
+    }, 
+    {
+      "address": "0x10078ff8", 
+      "name": "FUN_10078ff8"
+    }, 
+    {
+      "address": "0x10078ff8", 
+      "name": "FUN_10078ff8"
+    }
+  ]
+}

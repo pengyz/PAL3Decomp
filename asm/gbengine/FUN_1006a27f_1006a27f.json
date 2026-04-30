@@ -1,0 +1,49 @@
+{
+  "address": "0x1006a27f", 
+  "size_bytes": 154, 
+  "calling_convention": "unknown", 
+  "signature": "undefined FUN_1006a27f(undefined4 param_1, undefined4 param_2)", 
+  "callees": [
+    {
+      "address": "0x10064553", 
+      "name": "FUN_10064553"
+    }
+  ], 
+  "global_refs": [
+    {
+      "address": "0x00000004", 
+      "type": null, 
+      "name": "DAT_00000004"
+    }, 
+    {
+      "address": "0x00000008", 
+      "type": null, 
+      "name": "DAT_00000008"
+    }, 
+    {
+      "address": "0x-000000c", 
+      "type": null, 
+      "name": "DAT_-000000c"
+    }, 
+    {
+      "address": "0x-0000008", 
+      "type": null, 
+      "name": "DAT_-0000008"
+    }
+  ], 
+  "has_custom_name": false, 
+  "decompiled_c": "\nvoid FUN_1006a27f(int param_1,int param_2)\n\n{\n  int iVar1;\n  undefined4 *puVar2;\n  int in_ECX;\n  int *piVar3;\n  int iVar4;\n  int local_c;\n  int local_8;\n  \n  piVar3 = (int *)(param_1 * 0x3c + *(int *)(in_ECX + 0x2c));\n  iVar4 = param_2 * 0x40 + piVar3[1];\n  puVar2 = (undefined4 *)(**(code **)(**(int **)(iVar4 + 0x24) + 0xc))(*(int **)(iVar4 + 0x24));\n  param_2 = puVar2[3] + *piVar3;\n  param_1 = *puVar2;\n  iVar1 = *(int *)(*(int *)(in_ECX + 0x9c) + (uint)*(ushort *)(iVar4 + 4) * 4);\n  if (*(int *)(iVar1 + 0x38) == 0) {\n    local_c = *(int *)(in_ECX + 0x20);\n  }\n  else {\n    local_c = *(int *)(*(int *)(in_ECX + 0x38) + 8);\n  }\n  local_c = *(int *)(iVar1 + 0x24) + *(int *)(iVar4 + 8) + local_c;\n  iVar1 = *(int *)(*(int *)(in_ECX + 0x9c) + (uint)*(ushort *)(iVar4 + 4) * 4);\n  if (*(int *)(iVar1 + 0x38) == 0) {\n    local_8 = *(int *)(in_ECX + 0x20);\n  }\n  else {\n    local_8 = *(int *)(*(int *)(in_ECX + 0x38) + 8);\n  }\n  local_8 = *(int *)(iVar1 + 0x28) + *(int *)(iVar4 + 0xc) + local_8;\n  FUN_10064553(&local_c,&local_8,&param_2,&param_1);\n  return;\n}\n\n", 
+  "is_thunk": false, 
+  "name": "FUN_1006a27f", 
+  "assembly": "  1006a27f:  PUSH EBP\n  1006a280:  MOV EBP,ESP\n  1006a282:  PUSH ECX\n  1006a283:  PUSH ECX\n  1006a284:  PUSH EBX\n  1006a285:  PUSH ESI\n  1006a286:  MOV ESI,dword ptr [EBP + 0x8]\n  1006a289:  IMUL ESI,ESI,0x3c\n  1006a28c:  PUSH EDI\n  1006a28d:  MOV EDI,dword ptr [EBP + 0xc]\n  1006a290:  MOV EBX,ECX\n  1006a292:  ADD ESI,dword ptr [EBX + 0x2c]\n  1006a295:  SHL EDI,0x6\n  1006a298:  ADD EDI,dword ptr [ESI + 0x4]\n  1006a29b:  MOV EAX,dword ptr [EDI + 0x24]\n  1006a29e:  MOV ECX,dword ptr [EAX]\n  1006a2a0:  PUSH EAX\n  1006a2a1:  CALL dword ptr [ECX + 0xc]\n  1006a2a4:  MOV ECX,dword ptr [EAX + 0xc]\n  1006a2a7:  ADD ECX,dword ptr [ESI]\n  1006a2a9:  MOV dword ptr [EBP + 0xc],ECX\n  1006a2ac:  MOV EAX,dword ptr [EAX]\n  1006a2ae:  MOV dword ptr [EBP + 0x8],EAX\n  1006a2b1:  MOVZX ECX,word ptr [EDI + 0x4]\n  1006a2b5:  MOV EAX,dword ptr [EBX + 0x9c]\n  1006a2bb:  MOV ECX,dword ptr [EAX + ECX*0x4]\n  1006a2be:  CMP dword ptr [ECX + 0x38],0x0\n  1006a2c2:  JNZ 0x1006a2c9\n  1006a2c4:  MOV EDX,dword ptr [EBX + 0x20]\n  1006a2c7:  JMP 0x1006a2cf\n  1006a2c9:  MOV EDX,dword ptr [EBX + 0x38]\n  1006a2cc:  MOV EDX,dword ptr [EDX + 0x8]\n  1006a2cf:  MOV ECX,dword ptr [ECX + 0x24]\n  1006a2d2:  ADD ECX,dword ptr [EDI + 0x8]\n  1006a2d5:  ADD ECX,EDX\n  1006a2d7:  MOV dword ptr [EBP + -0x8],ECX\n  1006a2da:  MOVZX ECX,word ptr [EDI + 0x4]\n  1006a2de:  MOV EAX,dword ptr [EAX + ECX*0x4]\n  1006a2e1:  CMP dword ptr [EAX + 0x38],0x0\n  1006a2e5:  JNZ 0x1006a2ec\n  1006a2e7:  MOV EBX,dword ptr [EBX + 0x20]\n  1006a2ea:  JMP 0x1006a2f2\n  1006a2ec:  MOV ECX,dword ptr [EBX + 0x38]\n  1006a2ef:  MOV EBX,dword ptr [ECX + 0x8]\n  1006a2f2:  MOV EAX,dword ptr [EAX + 0x28]\n  1006a2f5:  ADD EAX,dword ptr [EDI + 0xc]\n  1006a2f8:  ADD EAX,EBX\n  1006a2fa:  MOV dword ptr [EBP + -0x4],EAX\n  1006a2fd:  LEA EAX,[EBP + 0x8]\n  1006a300:  PUSH EAX\n  1006a301:  LEA EAX,[EBP + 0xc]\n  1006a304:  PUSH EAX\n  1006a305:  LEA EAX,[EBP + -0x4]\n  1006a308:  PUSH EAX\n  1006a309:  LEA EAX,[EBP + -0x8]\n  1006a30c:  PUSH EAX\n  1006a30d:  CALL 0x10064553\n  1006a312:  POP EDI\n  1006a313:  POP ESI\n  1006a314:  POP EBX\n  1006a315:  LEAVE\n  1006a316:  RET 0x8", 
+  "callers": [
+    {
+      "address": "0x1006f84a", 
+      "name": "FUN_1006f84a"
+    }, 
+    {
+      "address": "0x1006c47a", 
+      "name": "FUN_1006c47a"
+    }
+  ]
+}

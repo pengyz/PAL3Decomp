@@ -1,0 +1,20 @@
+{
+  "address": "0x1002c380", 
+  "size_bytes": 27, 
+  "calling_convention": "__thiscall", 
+  "signature": "gbPartGroupParam * __thiscall GetGroupParam(gbParticleEffect * this, int param_1)", 
+  "callees": [], 
+  "global_refs": [
+    {
+      "address": "0x00000004", 
+      "type": null, 
+      "name": "DAT_00000004"
+    }
+  ], 
+  "has_custom_name": true, 
+  "decompiled_c": "\n/* public: struct gbPartGroupParam * __thiscall gbParticleEffect::GetGroupParam(int) */\n\ngbPartGroupParam * __thiscall gbParticleEffect::GetGroupParam(gbParticleEffect *this,int param_1)\n\n{\n                    /* 0x2c380  473  ?GetGroupParam@gbParticleEffect@@QAEPAUgbPartGroupParam@@H@Z */\n  return (gbPartGroupParam *)(param_1 * 0x4940 + *(int *)(this + 0xa8));\n}\n\n", 
+  "is_thunk": false, 
+  "name": "GetGroupParam", 
+  "assembly": "  1002c380:  MOV EAX,dword ptr [ESP + 0x4]\n  1002c384:  LEA EDX,[EAX + EAX*0x8]\n  1002c387:  LEA EDX,[EAX + EDX*0x8]\n  1002c38a:  LEA EAX,[EAX + EDX*0x4]\n  1002c38d:  MOV EDX,dword ptr [ECX + 0xa8]\n  1002c393:  SHL EAX,0x6\n  1002c396:  ADD EAX,EDX\n  1002c398:  RET 0x4", 
+  "callers": []
+}

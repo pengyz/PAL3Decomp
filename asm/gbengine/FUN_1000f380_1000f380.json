@@ -1,0 +1,39 @@
+{
+  "address": "0x1000f380", 
+  "size_bytes": 15, 
+  "calling_convention": "unknown", 
+  "signature": "undefined FUN_1000f380(void)", 
+  "callees": [], 
+  "global_refs": [], 
+  "has_custom_name": false, 
+  "decompiled_c": "\nfloat10 FUN_1000f380(void)\n\n{\n  int in_ECX;\n  \n  return (float10)*(float *)((*(int *)(in_ECX + 0x10) + -1) * *(int *)(in_ECX + 8) +\n                            *(int *)(in_ECX + 4));\n}\n\n", 
+  "is_thunk": false, 
+  "name": "FUN_1000f380", 
+  "assembly": "  1000f380:  MOV EAX,dword ptr [ECX + 0x10]\n  1000f383:  DEC EAX\n  1000f384:  IMUL EAX,dword ptr [ECX + 0x8]\n  1000f388:  MOV ECX,dword ptr [ECX + 0x4]\n  1000f38b:  FLD dword ptr [EAX + ECX*0x1]\n  1000f38e:  RET", 
+  "callers": [
+    {
+      "address": "0x10010cd0", 
+      "name": "LoadCVDFromStream"
+    }, 
+    {
+      "address": "0x10010cd0", 
+      "name": "LoadCVDFromStream"
+    }, 
+    {
+      "address": "0x10010cd0", 
+      "name": "LoadCVDFromStream"
+    }, 
+    {
+      "address": "0x10010cd0", 
+      "name": "LoadCVDFromStream"
+    }, 
+    {
+      "address": "0x10010cd0", 
+      "name": "LoadCVDFromStream"
+    }, 
+    {
+      "address": "0x10010cd0", 
+      "name": "LoadCVDFromStream"
+    }
+  ]
+}

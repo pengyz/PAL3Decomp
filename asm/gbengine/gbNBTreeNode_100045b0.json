@@ -1,0 +1,30 @@
+{
+  "address": "0x100045b0", 
+  "size_bytes": 63, 
+  "calling_convention": "__thiscall", 
+  "signature": "undefined __thiscall gbNBTreeNode(gbNBTreeNode * this, gbNBTreeNode * param_1)", 
+  "callees": [], 
+  "global_refs": [
+    {
+      "address": "0x00000004", 
+      "type": null, 
+      "name": "DAT_00000004"
+    }, 
+    {
+      "address": "0x100f53a8", 
+      "type": "pointer", 
+      "name": "DAT_100f53a8"
+    }, 
+    {
+      "address": "0x100f5370", 
+      "type": "pointer", 
+      "name": "DAT_100f5370"
+    }
+  ], 
+  "has_custom_name": true, 
+  "decompiled_c": "\n/* public: __thiscall gbNBTreeNode::gbNBTreeNode(class gbNBTreeNode const &) */\n\nvoid __thiscall gbNBTreeNode::gbNBTreeNode(gbNBTreeNode *this,gbNBTreeNode *param_1)\n\n{\n  undefined4 uVar1;\n  \n                    /* 0x45b0  62  ??0gbNBTreeNode@@QAE@ABV0@@Z */\n  uVar1 = *(undefined4 *)(param_1 + 4);\n  *(undefined ***)this = &gbChain1DNode::_vftable_;\n  *(undefined4 *)(this + 4) = uVar1;\n  *(undefined4 *)(this + 8) = *(undefined4 *)(param_1 + 8);\n  *(undefined4 *)(this + 0xc) = *(undefined4 *)(param_1 + 0xc);\n  *(undefined4 *)(this + 0x10) = *(undefined4 *)(param_1 + 0x10);\n  *(undefined4 *)(this + 0x14) = *(undefined4 *)(param_1 + 0x14);\n  uVar1 = *(undefined4 *)(param_1 + 0x18);\n  *(undefined ***)this = &_vftable_;\n  *(undefined4 *)(this + 0x18) = uVar1;\n  return;\n}\n\n", 
+  "is_thunk": false, 
+  "name": "gbNBTreeNode", 
+  "assembly": "  100045b0:  MOV EAX,ECX\n  100045b2:  PUSH ESI\n  100045b3:  MOV ECX,dword ptr [ESP + 0x8]\n  100045b7:  MOV EDX,dword ptr [ECX + 0x4]\n  100045ba:  MOV dword ptr [EAX],0x100f53a8\n  100045c0:  MOV dword ptr [EAX + 0x4],EDX\n  100045c3:  MOV EDX,dword ptr [ECX + 0x8]\n  100045c6:  ADD ECX,0xc\n  100045c9:  MOV dword ptr [EAX + 0x8],EDX\n  100045cc:  LEA EDX,[EAX + 0xc]\n  100045cf:  MOV ESI,dword ptr [ECX]\n  100045d1:  MOV dword ptr [EDX],ESI\n  100045d3:  MOV ESI,dword ptr [ECX + 0x4]\n  100045d6:  MOV dword ptr [EDX + 0x4],ESI\n  100045d9:  MOV ESI,dword ptr [ECX + 0x8]\n  100045dc:  MOV dword ptr [EDX + 0x8],ESI\n  100045df:  POP ESI\n  100045e0:  MOV ECX,dword ptr [ECX + 0xc]\n  100045e3:  MOV dword ptr [EAX],0x100f5370\n  100045e9:  MOV dword ptr [EDX + 0xc],ECX\n  100045ec:  RET 0x4", 
+  "callers": []
+}

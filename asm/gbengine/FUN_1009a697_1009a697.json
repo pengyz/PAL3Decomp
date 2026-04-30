@@ -1,0 +1,23 @@
+{
+  "address": "0x1009a697", 
+  "size_bytes": 65, 
+  "calling_convention": "unknown", 
+  "signature": "undefined FUN_1009a697(void)", 
+  "callees": [], 
+  "global_refs": [], 
+  "has_custom_name": false, 
+  "decompiled_c": "\nuint FUN_1009a697(void)\n\n{\n  int iVar1;\n  int iVar2;\n  uint uVar3;\n  uint uVar4;\n  int in_EAX;\n  int in_ECX;\n  int in_EDX;\n  \n  iVar2 = *(int *)(*(int *)(in_EAX + 0xb4) + 0x58);\n  iVar1 = iVar2 + in_ECX * 0xc;\n  iVar2 = iVar2 + in_EDX * 0xc;\n  uVar3 = *(uint *)(iVar1 + 4);\n  uVar4 = *(uint *)(iVar2 + 4);\n  if (uVar4 <= uVar3) {\n    if (uVar4 < uVar3) {\n      return 1;\n    }\n    iVar1 = *(int *)(iVar1 + 8);\n    iVar2 = *(int *)(iVar2 + 8);\n    if (iVar2 <= iVar1) {\n      return (uint)(iVar2 < iVar1);\n    }\n  }\n  return 0xffffffff;\n}\n\n", 
+  "is_thunk": false, 
+  "name": "FUN_1009a697", 
+  "assembly": "  1009a697:  MOV EAX,dword ptr [EAX + 0xb4]\n  1009a69d:  MOV EAX,dword ptr [EAX + 0x58]\n  1009a6a0:  LEA ECX,[ECX + ECX*0x2]\n  1009a6a3:  LEA EDX,[EDX + EDX*0x2]\n  1009a6a6:  LEA ECX,[EAX + ECX*0x4]\n  1009a6a9:  LEA EAX,[EAX + EDX*0x4]\n  1009a6ac:  MOV EDX,dword ptr [ECX + 0x4]\n  1009a6af:  PUSH ESI\n  1009a6b0:  MOV ESI,dword ptr [EAX + 0x4]\n  1009a6b3:  CMP EDX,ESI\n  1009a6b5:  JNC 0x1009a6bc\n  1009a6b7:  OR EAX,0xffffffff\n  1009a6ba:  POP ESI\n  1009a6bb:  RET\n  1009a6bc:  JBE 0x1009a6c3\n  1009a6be:  XOR EAX,EAX\n  1009a6c0:  INC EAX\n  1009a6c1:  POP ESI\n  1009a6c2:  RET\n  1009a6c3:  MOV ECX,dword ptr [ECX + 0x8]\n  1009a6c6:  MOV EAX,dword ptr [EAX + 0x8]\n  1009a6c9:  CMP ECX,EAX\n  1009a6cb:  JL 0x1009a6b7\n  1009a6cd:  XOR EDX,EDX\n  1009a6cf:  CMP ECX,EAX\n  1009a6d1:  SETG DL\n  1009a6d4:  POP ESI\n  1009a6d5:  MOV EAX,EDX\n  1009a6d7:  RET", 
+  "callers": [
+    {
+      "address": "0x1009a70d", 
+      "name": "FUN_1009a70d"
+    }, 
+    {
+      "address": "0x100a6df8", 
+      "name": "FUN_100a6df8"
+    }
+  ]
+}

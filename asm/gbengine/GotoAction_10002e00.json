@@ -1,0 +1,52 @@
+{
+  "address": "0x10002e00", 
+  "size_bytes": 67, 
+  "calling_convention": "__thiscall", 
+  "signature": "void __thiscall GotoAction(gbActor * this, char * param_1, float param_2, float param_3)", 
+  "callees": [
+    {
+      "address": "0x100e4be4", 
+      "name": "__ftol"
+    }, 
+    {
+      "address": "0x100e4be4", 
+      "name": "__ftol"
+    }, 
+    {
+      "address": "0x100277e0", 
+      "name": "gbCrc32Compute"
+    }, 
+    {
+      "address": "0x10002f20", 
+      "name": "GotoAction"
+    }
+  ], 
+  "global_refs": [
+    {
+      "address": "0x0000000c", 
+      "type": null, 
+      "name": "DAT_0000000c"
+    }, 
+    {
+      "address": "0x100f539c", 
+      "type": null, 
+      "name": "DAT_100f539c"
+    }, 
+    {
+      "address": "0x00000008", 
+      "type": null, 
+      "name": "DAT_00000008"
+    }, 
+    {
+      "address": "0x00000004", 
+      "type": null, 
+      "name": "DAT_00000004"
+    }
+  ], 
+  "has_custom_name": true, 
+  "decompiled_c": "\n/* public: void __thiscall gbActor::GotoAction(char *,float,float) */\n\nvoid __thiscall gbActor::GotoAction(gbActor *this,char *param_1,float param_2,float param_3)\n\n{\n  uint uVar1;\n  uint uVar2;\n  uint uVar3;\n  int iVar4;\n  ulong uVar5;\n  \n                    /* 0x2e00  586  ?GotoAction@gbActor@@QAEXPADMM@Z */\n  uVar5 = 0x6f766572;\n  uVar1 = __ftol();\n  uVar2 = __ftol();\n  iVar4 = 2;\n  uVar3 = gbCrc32Compute(param_1);\n  GotoAction(this,uVar3,iVar4,uVar2,uVar1,uVar5);\n  return;\n}\n\n", 
+  "is_thunk": false, 
+  "name": "GotoAction", 
+  "assembly": "  10002e00:  FLD dword ptr [ESP + 0xc]\n  10002e04:  FMUL dword ptr [0x100f539c]\n  10002e0a:  PUSH ESI\n  10002e0b:  MOV ESI,ECX\n  10002e0d:  PUSH 0x6f766572\n  10002e12:  CALL 0x100e4be4\n  10002e17:  FLD dword ptr [ESP + 0x10]\n  10002e1b:  FMUL dword ptr [0x100f539c]\n  10002e21:  PUSH EAX\n  10002e22:  CALL 0x100e4be4\n  10002e27:  PUSH EAX\n  10002e28:  MOV EAX,dword ptr [ESP + 0x14]\n  10002e2c:  PUSH 0x2\n  10002e2e:  PUSH EAX\n  10002e2f:  CALL 0x100277e0\n  10002e34:  ADD ESP,0x4\n  10002e37:  MOV ECX,ESI\n  10002e39:  PUSH EAX\n  10002e3a:  CALL 0x10002f20\n  10002e3f:  POP ESI\n  10002e40:  RET 0xc", 
+  "callers": []
+}

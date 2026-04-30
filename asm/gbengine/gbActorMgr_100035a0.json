@@ -1,0 +1,87 @@
+{
+  "address": "0x100035a0", 
+  "size_bytes": 125, 
+  "calling_convention": "__thiscall", 
+  "signature": "undefined __thiscall gbActorMgr(gbActorMgr * this, gbGfxManager * param_1)", 
+  "callees": [
+    {
+      "address": "0x10020190", 
+      "name": "gbResManager"
+    }, 
+    {
+      "address": "0x1001d6d0", 
+      "name": "NewRenderEffect"
+    }, 
+    {
+      "address": "0x1001d6d0", 
+      "name": "NewRenderEffect"
+    }, 
+    {
+      "address": "0x1000b070", 
+      "name": "FUN_1000b070"
+    }
+  ], 
+  "global_refs": [
+    {
+      "address": "0x100f36e8", 
+      "type": null, 
+      "name": "DAT_100f36e8"
+    }, 
+    {
+      "address": "0xffdff000", 
+      "type": "void *32", 
+      "name": "DAT_ffdff000"
+    }, 
+    {
+      "address": "0x-0000010", 
+      "type": null, 
+      "name": "DAT_-0000010"
+    }, 
+    {
+      "address": "0x00000004", 
+      "type": null, 
+      "name": "DAT_00000004"
+    }, 
+    {
+      "address": "0x1012b99c", 
+      "type": "undefined4", 
+      "name": "DAT_1012b99c"
+    }, 
+    {
+      "address": "0x1011f1b8", 
+      "type": "string", 
+      "name": "DAT_1011f1b8"
+    }, 
+    {
+      "address": "0x-0000004", 
+      "type": null, 
+      "name": "DAT_-0000004"
+    }, 
+    {
+      "address": "0x1012b9a0", 
+      "type": "undefined4", 
+      "name": "DAT_1012b9a0"
+    }, 
+    {
+      "address": "0x1011f19c", 
+      "type": "string", 
+      "name": "DAT_1011f19c"
+    }, 
+    {
+      "address": "0x1012b9a4", 
+      "type": "undefined4", 
+      "name": "DAT_1012b9a4"
+    }, 
+    {
+      "address": "0x-000000c", 
+      "type": null, 
+      "name": "DAT_-000000c"
+    }
+  ], 
+  "has_custom_name": true, 
+  "decompiled_c": "\n/* public: __thiscall gbActorMgr::gbActorMgr(class gbGfxManager *) */\n\ngbActorMgr * __thiscall gbActorMgr::gbActorMgr(gbActorMgr *this,gbGfxManager *param_1)\n\n{\n  void *local_c;\n  undefined *puStack_8;\n  undefined4 local_4;\n  \n                    /* 0x35a0  10  ??0gbActorMgr@@QAE@PAVgbGfxManager@@@Z */\n  local_4 = 0xffffffff;\n  puStack_8 = &LAB_100f36e8;\n  local_c = ExceptionList;\n  ExceptionList = &local_c;\n  gbResManager::gbResManager((gbResManager *)this);\n  DAT_1012b99c = param_1;\n  local_4 = 0;\n  DAT_1012b9a0 = gbEffectMgr::NewRenderEffect\n                           (*(gbEffectMgr **)(param_1 + 200),s_gfxscript_skinshadow1_gbf_1011f1b8,0)\n  ;\n  DAT_1012b9a4 = gbEffectMgr::NewRenderEffect\n                           (*(gbEffectMgr **)(param_1 + 200),s_gfxscript_skinshadow2_gbf_1011f19c,0)\n  ;\n  FUN_1000b070();\n  ExceptionList = local_c;\n  return this;\n}\n\n", 
+  "is_thunk": false, 
+  "name": "gbActorMgr", 
+  "assembly": "  100035a0:  PUSH -0x1\n  100035a2:  PUSH 0x100f36e8\n  100035a7:  MOV EAX,FS:[0x0]\n  100035ad:  PUSH EAX\n  100035ae:  MOV dword ptr FS:[0x0],ESP\n  100035b5:  PUSH ECX\n  100035b6:  PUSH ESI\n  100035b7:  MOV ESI,ECX\n  100035b9:  PUSH EDI\n  100035ba:  MOV dword ptr [ESP + 0x8],ESI\n  100035be:  CALL 0x10020190\n  100035c3:  MOV EDI,dword ptr [ESP + 0x1c]\n  100035c7:  PUSH 0x0\n  100035c9:  MOV dword ptr [0x1012b99c],EDI\n  100035cf:  PUSH 0x1011f1b8\n  100035d4:  MOV ECX,dword ptr [EDI + 0xc8]\n  100035da:  MOV dword ptr [ESP + 0x1c],0x0\n  100035e2:  CALL 0x1001d6d0\n  100035e7:  MOV [0x1012b9a0],EAX\n  100035ec:  MOV ECX,dword ptr [EDI + 0xc8]\n  100035f2:  PUSH 0x0\n  100035f4:  PUSH 0x1011f19c\n  100035f9:  CALL 0x1001d6d0\n  100035fe:  MOV [0x1012b9a4],EAX\n  10003603:  CALL 0x1000b070\n  10003608:  MOV ECX,dword ptr [ESP + 0xc]\n  1000360c:  MOV EAX,ESI\n  1000360e:  POP EDI\n  1000360f:  POP ESI\n  10003610:  MOV dword ptr FS:[0x0],ECX\n  10003617:  ADD ESP,0x10\n  1000361a:  RET 0x4", 
+  "callers": []
+}

@@ -1,0 +1,34 @@
+{
+  "address": "0x1001e220", 
+  "size_bytes": 158, 
+  "calling_convention": "__thiscall", 
+  "signature": "int __thiscall ClipBoundVolume(gbGfxManager * this, gbAABBox * param_1)", 
+  "callees": [], 
+  "global_refs": [
+    {
+      "address": "0x-0000060", 
+      "type": null, 
+      "name": "DAT_-0000060"
+    }, 
+    {
+      "address": "0x100f53a0", 
+      "type": null, 
+      "name": "DAT_100f53a0"
+    }
+  ], 
+  "has_custom_name": true, 
+  "decompiled_c": "\n/* public: int __thiscall gbGfxManager::ClipBoundVolume(struct gbAABBox *) */\n\nint __thiscall gbGfxManager::ClipBoundVolume(gbGfxManager *this,gbAABBox *param_1)\n\n{\n  float fVar1;\n  float fVar2;\n  float fVar3;\n  float *pfVar4;\n  int iVar5;\n  float local_60 [23];\n  float *pfStack_4;\n  \n                    /* 0x1e220  330  ?ClipBoundVolume@gbGfxManager@@QAEHPAUgbAABBox@@@Z */\n  (**(code **)(*(int *)this + 0x40))(local_60,0);\n  iVar5 = 0;\n  pfVar4 = (float *)&stack0xffffff9c;\n  while( true ) {\n    if (pfVar4[-1] <= 0.0) {\n      fVar1 = *pfStack_4;\n    }\n    else {\n      fVar1 = pfStack_4[3];\n    }\n    if (*pfVar4 <= 0.0) {\n      fVar2 = pfStack_4[1];\n    }\n    else {\n      fVar2 = pfStack_4[4];\n    }\n    if (pfVar4[1] <= 0.0) {\n      fVar3 = pfStack_4[2];\n    }\n    else {\n      fVar3 = pfStack_4[5];\n    }\n    if (fVar1 * pfVar4[-1] + fVar2 * *pfVar4 + fVar3 * pfVar4[1] + pfVar4[2] < 0.0) break;\n    iVar5 = iVar5 + 1;\n    pfVar4 = pfVar4 + 4;\n    if (5 < iVar5) {\n      return 0;\n    }\n  }\n  return 1;\n}\n\n", 
+  "is_thunk": false, 
+  "name": "ClipBoundVolume", 
+  "assembly": "  1001e220:  MOV EAX,dword ptr [ECX]\n  1001e222:  SUB ESP,0x60\n  1001e225:  LEA EDX,[ESP]\n  1001e229:  PUSH ESI\n  1001e22a:  PUSH 0x0\n  1001e22c:  PUSH EDX\n  1001e22d:  CALL dword ptr [EAX + 0x40]\n  1001e230:  MOV ESI,dword ptr [ESP + 0x68]\n  1001e234:  XOR EDX,EDX\n  1001e236:  LEA ECX,[ESP + 0x8]\n  1001e23a:  FLD dword ptr [ECX + -0x4]\n  1001e23d:  FCOMP dword ptr [0x100f53a0]\n  1001e243:  FNSTSW AX\n  1001e245:  TEST AH,0x41\n  1001e248:  JNZ 0x1001e24f\n  1001e24a:  FLD dword ptr [ESI + 0xc]\n  1001e24d:  JMP 0x1001e251\n  1001e24f:  FLD dword ptr [ESI]\n  1001e251:  FLD dword ptr [ECX]\n  1001e253:  FCOMP dword ptr [0x100f53a0]\n  1001e259:  FNSTSW AX\n  1001e25b:  TEST AH,0x41\n  1001e25e:  JNZ 0x1001e265\n  1001e260:  FLD dword ptr [ESI + 0x10]\n  1001e263:  JMP 0x1001e268\n  1001e265:  FLD dword ptr [ESI + 0x4]\n  1001e268:  FLD dword ptr [ECX + 0x4]\n  1001e26b:  FCOMP dword ptr [0x100f53a0]\n  1001e271:  FNSTSW AX\n  1001e273:  TEST AH,0x41\n  1001e276:  JNZ 0x1001e27d\n  1001e278:  FLD dword ptr [ESI + 0x14]\n  1001e27b:  JMP 0x1001e280\n  1001e27d:  FLD dword ptr [ESI + 0x8]\n  1001e280:  FMUL dword ptr [ECX + 0x4]\n  1001e283:  FXCH\n  1001e285:  FMUL dword ptr [ECX]\n  1001e287:  FADDP\n  1001e289:  FXCH\n  1001e28b:  FMUL dword ptr [ECX + -0x4]\n  1001e28e:  FADDP\n  1001e290:  FADD dword ptr [ECX + 0x8]\n  1001e293:  FCOMP dword ptr [0x100f53a0]\n  1001e299:  FNSTSW AX\n  1001e29b:  TEST AH,0x1\n  1001e29e:  JNZ 0x1001e2b2\n  1001e2a0:  INC EDX\n  1001e2a1:  ADD ECX,0x10\n  1001e2a4:  CMP EDX,0x6\n  1001e2a7:  JL 0x1001e23a\n  1001e2a9:  XOR EAX,EAX\n  1001e2ab:  POP ESI\n  1001e2ac:  ADD ESP,0x60\n  1001e2af:  RET 0x4\n  1001e2b2:  MOV EAX,0x1\n  1001e2b7:  POP ESI\n  1001e2b8:  ADD ESP,0x60\n  1001e2bb:  RET 0x4", 
+  "callers": [
+    {
+      "address": "0x10003200", 
+      "name": "Attach"
+    }, 
+    {
+      "address": "0x10011130", 
+      "name": "AttachSelf"
+    }
+  ]
+}

@@ -1,0 +1,68 @@
+{
+  "address": "0x1002dbd0", 
+  "size_bytes": 30, 
+  "calling_convention": "unknown", 
+  "signature": "undefined FUN_1002dbd0(undefined4 param_1)", 
+  "callees": [
+    {
+      "address": "0x0000000e", 
+      "name": "CloseHandle"
+    }
+  ], 
+  "global_refs": [
+    {
+      "address": "0x10120654", 
+      "type": "undefined4", 
+      "name": "DAT_10120654"
+    }, 
+    {
+      "address": "0x00000004", 
+      "type": null, 
+      "name": "DAT_00000004"
+    }, 
+    {
+      "address": "0x100f5064", 
+      "type": "pointer", 
+      "name": "DAT_100f5064"
+    }
+  ], 
+  "has_custom_name": false, 
+  "decompiled_c": "\nuint FUN_1002dbd0(HANDLE param_1)\n\n{\n  uint in_EAX;\n  BOOL BVar1;\n  \n  if (DAT_10120654 != 4) {\n    return in_EAX & 0xffffff00;\n  }\n  BVar1 = CloseHandle(param_1);\n  return (uint)(BVar1 == 1);\n}\n\n", 
+  "is_thunk": false, 
+  "name": "FUN_1002dbd0", 
+  "assembly": "  1002dbd0:  CMP dword ptr [0x10120654],0x4\n  1002dbd7:  JZ 0x1002dbdc\n  1002dbd9:  XOR AL,AL\n  1002dbdb:  RET\n  1002dbdc:  MOV EAX,dword ptr [ESP + 0x4]\n  1002dbe0:  PUSH EAX\n  1002dbe1:  CALL dword ptr [0x100f5064]\n  1002dbe7:  DEC EAX\n  1002dbe8:  NEG EAX\n  1002dbea:  SBB EAX,EAX\n  1002dbec:  INC EAX\n  1002dbed:  RET", 
+  "callers": [
+    {
+      "address": "0x1002c660", 
+      "name": "Load"
+    }, 
+    {
+      "address": "0x1002c660", 
+      "name": "Load"
+    }, 
+    {
+      "address": "0x1002c660", 
+      "name": "Load"
+    }, 
+    {
+      "address": "0x1002c660", 
+      "name": "Load"
+    }, 
+    {
+      "address": "0x1002c660", 
+      "name": "Load"
+    }, 
+    {
+      "address": "0x1002c660", 
+      "name": "Load"
+    }, 
+    {
+      "address": "0x1002c940", 
+      "name": "Unload"
+    }, 
+    {
+      "address": "0x1002c9e0", 
+      "name": "IsValidCPK"
+    }
+  ]
+}

@@ -1,0 +1,46 @@
+{
+  "address": "0x1009a20d", 
+  "size_bytes": 74, 
+  "calling_convention": "unknown", 
+  "signature": "undefined FUN_1009a20d(undefined4 param_1)", 
+  "callees": [
+    {
+      "address": "0x10099d69", 
+      "name": "FUN_10099d69"
+    }, 
+    {
+      "address": "0x100ddc05", 
+      "name": "FUN_100ddc05"
+    }, 
+    {
+      "address": "0x10099c6d", 
+      "name": "FUN_10099c6d"
+    }, 
+    {
+      "address": "0x10080cfb", 
+      "name": "FUN_10080cfb"
+    }, 
+    {
+      "address": "0x10099ea4", 
+      "name": "FUN_10099ea4"
+    }
+  ], 
+  "global_refs": [
+    {
+      "address": "0x00000004", 
+      "type": null, 
+      "name": "DAT_00000004"
+    }
+  ], 
+  "has_custom_name": false, 
+  "decompiled_c": "\nundefined4 FUN_1009a20d(undefined4 param_1)\n\n{\n  int iVar1;\n  int iVar2;\n  undefined4 uVar3;\n  \n  iVar1 = FUN_10099d69(0x78);\n  if (iVar1 == 0) {\n    iVar1 = 0;\n  }\n  else {\n    iVar1 = FUN_100ddc05();\n  }\n  if (iVar1 != 0) {\n    iVar2 = FUN_10099c6d(param_1);\n    if (-1 < iVar2) {\n      uVar3 = FUN_10099ea4(iVar1);\n      return uVar3;\n    }\n    FUN_10080cfb(1);\n  }\n  return 0xffffffff;\n}\n\n", 
+  "is_thunk": false, 
+  "name": "FUN_1009a20d", 
+  "assembly": "  1009a20d:  PUSH ESI\n  1009a20e:  PUSH EDI\n  1009a20f:  PUSH 0x78\n  1009a211:  MOV EDI,ECX\n  1009a213:  CALL 0x10099d69\n  1009a218:  TEST EAX,EAX\n  1009a21a:  JZ 0x1009a227\n  1009a21c:  MOV ECX,EAX\n  1009a21e:  CALL 0x100ddc05\n  1009a223:  MOV ESI,EAX\n  1009a225:  JMP 0x1009a229\n  1009a227:  XOR ESI,ESI\n  1009a229:  TEST ESI,ESI\n  1009a22b:  JZ 0x1009a245\n  1009a22d:  PUSH dword ptr [ESP + 0xc]\n  1009a231:  MOV ECX,ESI\n  1009a233:  CALL 0x10099c6d\n  1009a238:  TEST EAX,EAX\n  1009a23a:  JGE 0x1009a24a\n  1009a23c:  PUSH 0x1\n  1009a23e:  MOV ECX,ESI\n  1009a240:  CALL 0x10080cfb\n  1009a245:  OR EAX,0xffffffff\n  1009a248:  JMP 0x1009a252\n  1009a24a:  PUSH ESI\n  1009a24b:  MOV ECX,EDI\n  1009a24d:  CALL 0x10099ea4\n  1009a252:  POP EDI\n  1009a253:  POP ESI\n  1009a254:  RET 0x4", 
+  "callers": [
+    {
+      "address": "0x100bd4ea", 
+      "name": "FUN_100bd4ea"
+    }
+  ]
+}

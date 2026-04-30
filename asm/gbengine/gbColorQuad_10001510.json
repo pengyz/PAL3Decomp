@@ -1,0 +1,40 @@
+{
+  "address": "0x10001510", 
+  "size_bytes": 72, 
+  "calling_convention": "__thiscall", 
+  "signature": "undefined __thiscall gbColorQuad(gbColorQuad * this, uchar param_1, uchar param_2, uchar param_3, uchar param_4)", 
+  "callees": [], 
+  "global_refs": [
+    {
+      "address": "0x1015d3a4", 
+      "type": "int", 
+      "name": "DAT_1015d3a4"
+    }, 
+    {
+      "address": "0x00000004", 
+      "type": null, 
+      "name": "DAT_00000004"
+    }, 
+    {
+      "address": "0x00000008", 
+      "type": null, 
+      "name": "DAT_00000008"
+    }, 
+    {
+      "address": "0x0000000c", 
+      "type": null, 
+      "name": "DAT_0000000c"
+    }, 
+    {
+      "address": "0x00000010", 
+      "type": null, 
+      "name": "DAT_00000010"
+    }
+  ], 
+  "has_custom_name": true, 
+  "decompiled_c": "\n/* public: __thiscall gbColorQuad::gbColorQuad(unsigned char,unsigned char,unsigned char,unsigned\n   char) */\n\nvoid __thiscall\ngbColorQuad::gbColorQuad(gbColorQuad *this,uchar param_1,uchar param_2,uchar param_3,uchar param_4)\n\n{\n                    /* 0x1510  38  ??0gbColorQuad@@QAE@EEEE@Z */\n  if (ColorQuadFmt == 0) {\n    this[2] = (gbColorQuad)param_1;\n    this[1] = (gbColorQuad)param_2;\n    *this = (gbColorQuad)param_3;\n    this[3] = (gbColorQuad)param_4;\n    return;\n  }\n  this[2] = (gbColorQuad)param_3;\n  this[1] = (gbColorQuad)param_2;\n  *this = (gbColorQuad)param_1;\n  this[3] = (gbColorQuad)param_4;\n  return;\n}\n\n", 
+  "is_thunk": false, 
+  "name": "gbColorQuad", 
+  "assembly": "  10001510:  MOV EAX,ECX\n  10001512:  MOV ECX,dword ptr [0x1015d3a4]\n  10001518:  TEST ECX,ECX\n  1000151a:  JNZ 0x1000153a\n  1000151c:  MOV CL,byte ptr [ESP + 0x4]\n  10001520:  MOV DL,byte ptr [ESP + 0x8]\n  10001524:  MOV byte ptr [EAX + 0x2],CL\n  10001527:  MOV CL,byte ptr [ESP + 0xc]\n  1000152b:  MOV byte ptr [EAX + 0x1],DL\n  1000152e:  MOV DL,byte ptr [ESP + 0x10]\n  10001532:  MOV byte ptr [EAX],CL\n  10001534:  MOV byte ptr [EAX + 0x3],DL\n  10001537:  RET 0x10\n  1000153a:  MOV CL,byte ptr [ESP + 0xc]\n  1000153e:  MOV DL,byte ptr [ESP + 0x8]\n  10001542:  MOV byte ptr [EAX + 0x2],CL\n  10001545:  MOV CL,byte ptr [ESP + 0x4]\n  10001549:  MOV byte ptr [EAX + 0x1],DL\n  1000154c:  MOV DL,byte ptr [ESP + 0x10]\n  10001550:  MOV byte ptr [EAX],CL\n  10001552:  MOV byte ptr [EAX + 0x3],DL\n  10001555:  RET 0x10", 
+  "callers": []
+}

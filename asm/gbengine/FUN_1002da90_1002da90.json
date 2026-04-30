@@ -1,0 +1,74 @@
+{
+  "address": "0x1002da90", 
+  "size_bytes": 54, 
+  "calling_convention": "unknown", 
+  "signature": "undefined FUN_1002da90(undefined4 param_1, undefined4 param_2, undefined4 param_3, undefined4 param_4, undefined4 param_5, undefined4 param_6, undefined4 param_7)", 
+  "callees": [
+    {
+      "address": "0x0000001e", 
+      "name": "CreateFileA"
+    }
+  ], 
+  "global_refs": [
+    {
+      "address": "0x10120654", 
+      "type": "undefined4", 
+      "name": "DAT_10120654"
+    }, 
+    {
+      "address": "0x0000001c", 
+      "type": null, 
+      "name": "DAT_0000001c"
+    }, 
+    {
+      "address": "0x00000018", 
+      "type": null, 
+      "name": "DAT_00000018"
+    }, 
+    {
+      "address": "0x00000014", 
+      "type": null, 
+      "name": "DAT_00000014"
+    }, 
+    {
+      "address": "0x00000010", 
+      "type": null, 
+      "name": "DAT_00000010"
+    }, 
+    {
+      "address": "0x0000000c", 
+      "type": null, 
+      "name": "DAT_0000000c"
+    }, 
+    {
+      "address": "0x00000008", 
+      "type": null, 
+      "name": "DAT_00000008"
+    }, 
+    {
+      "address": "0x00000004", 
+      "type": null, 
+      "name": "DAT_00000004"
+    }, 
+    {
+      "address": "0x100f50a4", 
+      "type": "pointer", 
+      "name": "DAT_100f50a4"
+    }
+  ], 
+  "has_custom_name": false, 
+  "decompiled_c": "\nHANDLE FUN_1002da90(LPCSTR param_1,DWORD param_2,DWORD param_3,LPSECURITY_ATTRIBUTES param_4,\n                   DWORD param_5,DWORD param_6,HANDLE param_7)\n\n{\n  HANDLE pvVar1;\n  \n  if (DAT_10120654 != 4) {\n    return (HANDLE)0x0;\n  }\n  pvVar1 = CreateFileA(param_1,param_2,param_3,param_4,param_5,param_6,param_7);\n  return pvVar1;\n}\n\n", 
+  "is_thunk": false, 
+  "name": "FUN_1002da90", 
+  "assembly": "  1002da90:  CMP dword ptr [0x10120654],0x4\n  1002da97:  JZ 0x1002da9c\n  1002da99:  XOR EAX,EAX\n  1002da9b:  RET\n  1002da9c:  MOV EAX,dword ptr [ESP + 0x1c]\n  1002daa0:  MOV ECX,dword ptr [ESP + 0x18]\n  1002daa4:  MOV EDX,dword ptr [ESP + 0x14]\n  1002daa8:  PUSH EAX\n  1002daa9:  MOV EAX,dword ptr [ESP + 0x14]\n  1002daad:  PUSH ECX\n  1002daae:  MOV ECX,dword ptr [ESP + 0x14]\n  1002dab2:  PUSH EDX\n  1002dab3:  MOV EDX,dword ptr [ESP + 0x14]\n  1002dab7:  PUSH EAX\n  1002dab8:  MOV EAX,dword ptr [ESP + 0x14]\n  1002dabc:  PUSH ECX\n  1002dabd:  PUSH EDX\n  1002dabe:  PUSH EAX\n  1002dabf:  CALL dword ptr [0x100f50a4]\n  1002dac5:  RET", 
+  "callers": [
+    {
+      "address": "0x1002c660", 
+      "name": "Load"
+    }, 
+    {
+      "address": "0x1002c9e0", 
+      "name": "IsValidCPK"
+    }
+  ]
+}

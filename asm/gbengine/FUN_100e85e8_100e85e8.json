@@ -1,0 +1,86 @@
+{
+  "address": "0x100e85e8", 
+  "size_bytes": 160, 
+  "calling_convention": "unknown", 
+  "signature": "undefined FUN_100e85e8(undefined4 param_1)", 
+  "callees": [
+    {
+      "address": "0x0000004d", 
+      "name": "TlsGetValue"
+    }, 
+    {
+      "address": "0x100e4b99", 
+      "name": "FUN_100e4b99"
+    }, 
+    {
+      "address": "0x100e4b99", 
+      "name": "FUN_100e4b99"
+    }, 
+    {
+      "address": "0x100e4b99", 
+      "name": "FUN_100e4b99"
+    }, 
+    {
+      "address": "0x100e4b99", 
+      "name": "FUN_100e4b99"
+    }, 
+    {
+      "address": "0x100e4b99", 
+      "name": "FUN_100e4b99"
+    }, 
+    {
+      "address": "0x100e4b99", 
+      "name": "FUN_100e4b99"
+    }, 
+    {
+      "address": "0x100e4b99", 
+      "name": "FUN_100e4b99"
+    }, 
+    {
+      "address": "0x100e4b99", 
+      "name": "FUN_100e4b99"
+    }, 
+    {
+      "address": "0x0000005a", 
+      "name": "TlsSetValue"
+    }
+  ], 
+  "global_refs": [
+    {
+      "address": "0x1012a020", 
+      "type": "undefined4", 
+      "name": "DAT_1012a020"
+    }, 
+    {
+      "address": "0x00000004", 
+      "type": null, 
+      "name": "DAT_00000004"
+    }, 
+    {
+      "address": "0x100f5160", 
+      "type": "pointer", 
+      "name": "DAT_100f5160"
+    }, 
+    {
+      "address": "0x1012b3e8", 
+      "type": null, 
+      "name": "DAT_1012b3e8"
+    }, 
+    {
+      "address": "0x100f5194", 
+      "type": "pointer", 
+      "name": "DAT_100f5194"
+    }
+  ], 
+  "has_custom_name": false, 
+  "decompiled_c": "\nvoid FUN_100e85e8(LPVOID param_1)\n\n{\n  if (DAT_1012a020 != 0xffffffff) {\n    if ((param_1 != (LPVOID)0x0) || (param_1 = TlsGetValue(DAT_1012a020), param_1 != (LPVOID)0x0)) {\n      if (*(int *)((int)param_1 + 0x24) != 0) {\n        FUN_100e4b99(*(int *)((int)param_1 + 0x24));\n      }\n      if (*(int *)((int)param_1 + 0x28) != 0) {\n        FUN_100e4b99(*(int *)((int)param_1 + 0x28));\n      }\n      if (*(int *)((int)param_1 + 0x30) != 0) {\n        FUN_100e4b99(*(int *)((int)param_1 + 0x30));\n      }\n      if (*(int *)((int)param_1 + 0x38) != 0) {\n        FUN_100e4b99(*(int *)((int)param_1 + 0x38));\n      }\n      if (*(int *)((int)param_1 + 0x40) != 0) {\n        FUN_100e4b99(*(int *)((int)param_1 + 0x40));\n      }\n      if (*(int *)((int)param_1 + 0x44) != 0) {\n        FUN_100e4b99(*(int *)((int)param_1 + 0x44));\n      }\n      if (*(undefined **)((int)param_1 + 0x50) != &DAT_1012b3e8) {\n        FUN_100e4b99(*(undefined **)((int)param_1 + 0x50));\n      }\n      FUN_100e4b99(param_1);\n    }\n    TlsSetValue(DAT_1012a020,(LPVOID)0x0);\n    return;\n  }\n  return;\n}\n\n", 
+  "is_thunk": false, 
+  "name": "FUN_100e85e8", 
+  "assembly": "  100e85e8:  MOV EAX,[0x1012a020]\n  100e85ed:  CMP EAX,-0x1\n  100e85f0:  JZ 0x100e8687\n  100e85f6:  PUSH ESI\n  100e85f7:  MOV ESI,dword ptr [ESP + 0x8]\n  100e85fb:  TEST ESI,ESI\n  100e85fd:  JNZ 0x100e860c\n  100e85ff:  PUSH EAX\n  100e8600:  CALL dword ptr [0x100f5160]\n  100e8606:  MOV ESI,EAX\n  100e8608:  TEST ESI,ESI\n  100e860a:  JZ 0x100e8678\n  100e860c:  MOV EAX,dword ptr [ESI + 0x24]\n  100e860f:  TEST EAX,EAX\n  100e8611:  JZ 0x100e861a\n  100e8613:  PUSH EAX\n  100e8614:  CALL 0x100e4b99\n  100e8619:  POP ECX\n  100e861a:  MOV EAX,dword ptr [ESI + 0x28]\n  100e861d:  TEST EAX,EAX\n  100e861f:  JZ 0x100e8628\n  100e8621:  PUSH EAX\n  100e8622:  CALL 0x100e4b99\n  100e8627:  POP ECX\n  100e8628:  MOV EAX,dword ptr [ESI + 0x30]\n  100e862b:  TEST EAX,EAX\n  100e862d:  JZ 0x100e8636\n  100e862f:  PUSH EAX\n  100e8630:  CALL 0x100e4b99\n  100e8635:  POP ECX\n  100e8636:  MOV EAX,dword ptr [ESI + 0x38]\n  100e8639:  TEST EAX,EAX\n  100e863b:  JZ 0x100e8644\n  100e863d:  PUSH EAX\n  100e863e:  CALL 0x100e4b99\n  100e8643:  POP ECX\n  100e8644:  MOV EAX,dword ptr [ESI + 0x40]\n  100e8647:  TEST EAX,EAX\n  100e8649:  JZ 0x100e8652\n  100e864b:  PUSH EAX\n  100e864c:  CALL 0x100e4b99\n  100e8651:  POP ECX\n  100e8652:  MOV EAX,dword ptr [ESI + 0x44]\n  100e8655:  TEST EAX,EAX\n  100e8657:  JZ 0x100e8660\n  100e8659:  PUSH EAX\n  100e865a:  CALL 0x100e4b99\n  100e865f:  POP ECX\n  100e8660:  MOV EAX,dword ptr [ESI + 0x50]\n  100e8663:  CMP EAX,0x1012b3e8\n  100e8668:  JZ 0x100e8671\n  100e866a:  PUSH EAX\n  100e866b:  CALL 0x100e4b99\n  100e8670:  POP ECX\n  100e8671:  PUSH ESI\n  100e8672:  CALL 0x100e4b99\n  100e8677:  POP ECX\n  100e8678:  PUSH 0x0\n  100e867a:  PUSH dword ptr [0x1012a020]\n  100e8680:  CALL dword ptr [0x100f5194]\n  100e8686:  POP ESI\n  100e8687:  RET", 
+  "callers": [
+    {
+      "address": "0x100e63ff", 
+      "name": "FUN_100e63ff"
+    }
+  ]
+}

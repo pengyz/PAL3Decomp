@@ -1,0 +1,51 @@
+{
+  "address": "0x10054f79", 
+  "size_bytes": 75, 
+  "calling_convention": "unknown", 
+  "signature": "undefined FUN_10054f79(undefined1 param_1)", 
+  "callees": [
+    {
+      "address": "0x10033437", 
+      "name": "FUN_10033437"
+    }, 
+    {
+      "address": "0x100e4a24", 
+      "name": "FUN_100e4a24"
+    }, 
+    {
+      "address": "0x10054f46", 
+      "name": "FUN_10054f46"
+    }, 
+    {
+      "address": "0x100e4a24", 
+      "name": "FUN_100e4a24"
+    }
+  ], 
+  "global_refs": [
+    {
+      "address": "0x00000004", 
+      "type": null, 
+      "name": "DAT_00000004"
+    }, 
+    {
+      "address": "0x10054f46", 
+      "type": null, 
+      "name": "DAT_10054f46"
+    }
+  ], 
+  "has_custom_name": false, 
+  "decompiled_c": "\nvoid FUN_10054f79(byte param_1)\n\n{\n  int in_ECX;\n  \n  if ((param_1 & 2) == 0) {\n    FUN_10054f46();\n    if ((param_1 & 1) != 0) {\n      FUN_100e4a24();\n    }\n  }\n  else {\n    FUN_10033437(in_ECX,0x20,*(undefined4 *)(in_ECX + -4),FUN_10054f46);\n    if ((param_1 & 1) != 0) {\n      FUN_100e4a24((undefined4 *)(in_ECX + -4));\n    }\n  }\n  return;\n}\n\n", 
+  "is_thunk": false, 
+  "name": "FUN_10054f79", 
+  "assembly": "  10054f79:  PUSH EBX\n  10054f7a:  MOV BL,byte ptr [ESP + 0x8]\n  10054f7e:  TEST BL,0x2\n  10054f81:  PUSH ESI\n  10054f82:  MOV ESI,ECX\n  10054f84:  JZ 0x10054faa\n  10054f86:  PUSH EDI\n  10054f87:  PUSH 0x10054f46\n  10054f8c:  LEA EDI,[ESI + -0x4]\n  10054f8f:  PUSH dword ptr [EDI]\n  10054f91:  PUSH 0x20\n  10054f93:  PUSH ESI\n  10054f94:  CALL 0x10033437\n  10054f99:  TEST BL,0x1\n  10054f9c:  JZ 0x10054fa5\n  10054f9e:  PUSH EDI\n  10054f9f:  CALL 0x100e4a24\n  10054fa4:  POP ECX\n  10054fa5:  MOV EAX,EDI\n  10054fa7:  POP EDI\n  10054fa8:  JMP 0x10054fbf\n  10054faa:  MOV ECX,ESI\n  10054fac:  CALL 0x10054f46\n  10054fb1:  TEST BL,0x1\n  10054fb4:  JZ 0x10054fbd\n  10054fb6:  PUSH ESI\n  10054fb7:  CALL 0x100e4a24\n  10054fbc:  POP ECX\n  10054fbd:  MOV EAX,ESI\n  10054fbf:  POP ESI\n  10054fc0:  POP EBX\n  10054fc1:  RET 0x4", 
+  "callers": [
+    {
+      "address": "0x10054f46", 
+      "name": "FUN_10054f46"
+    }, 
+    {
+      "address": "0x10055701", 
+      "name": "FUN_10055701"
+    }
+  ]
+}

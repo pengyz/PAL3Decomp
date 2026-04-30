@@ -1,0 +1,30 @@
+{
+  "address": "0x10002830", 
+  "size_bytes": 38, 
+  "calling_convention": "__thiscall", 
+  "signature": "int __thiscall IsPlaying(gbSound3DNode * this)", 
+  "callees": [
+    {
+      "address": "0x000000b7", 
+      "name": "_AIL_3D_sample_status@4"
+    }
+  ], 
+  "global_refs": [
+    {
+      "address": "0x1012b984", 
+      "type": "gbAudioManager *", 
+      "name": "DAT_1012b984"
+    }, 
+    {
+      "address": "0x100f5304", 
+      "type": "pointer", 
+      "name": "DAT_100f5304"
+    }
+  ], 
+  "has_custom_name": true, 
+  "decompiled_c": "\n/* public: int __thiscall gbSound3DNode::IsPlaying(void) */\n\nint __thiscall gbSound3DNode::IsPlaying(gbSound3DNode *this)\n\n{\n  int iVar1;\n  \n                    /* 0x2830  646  ?IsPlaying@gbSound3DNode@@QAEHXZ */\n  if (pAudioMgr == (gbAudioManager *)0x0) {\n    return 0;\n  }\n  iVar1 = *(int *)(this + 4);\n  if (iVar1 == 0) {\n    return iVar1;\n  }\n  iVar1 = _AIL_3D_sample_status_4(iVar1);\n  return (uint)(iVar1 == 4);\n}\n\n", 
+  "is_thunk": false, 
+  "name": "IsPlaying", 
+  "assembly": "  10002830:  MOV EAX,[0x1012b984]\n  10002835:  TEST EAX,EAX\n  10002837:  JNZ 0x1000283c\n  10002839:  XOR EAX,EAX\n  1000283b:  RET\n  1000283c:  MOV EAX,dword ptr [ECX + 0x4]\n  1000283f:  TEST EAX,EAX\n  10002841:  JNZ 0x10002844\n  10002843:  RET\n  10002844:  PUSH EAX\n  10002845:  CALL dword ptr [0x100f5304]\n  1000284b:  XOR ECX,ECX\n  1000284d:  CMP EAX,0x4\n  10002850:  SETZ CL\n  10002853:  MOV EAX,ECX\n  10002855:  RET", 
+  "callers": []
+}

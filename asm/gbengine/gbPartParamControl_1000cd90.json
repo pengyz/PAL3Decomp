@@ -1,0 +1,19 @@
+{
+  "address": "0x1000cd90", 
+  "size_bytes": 93, 
+  "calling_convention": "__thiscall", 
+  "signature": "undefined __thiscall gbPartParamControl(gbPartParamControl * this)", 
+  "callees": [], 
+  "global_refs": [], 
+  "has_custom_name": true, 
+  "decompiled_c": "\n/* public: __thiscall gbPartParamControl::gbPartParamControl(void) */\n\nvoid __thiscall gbPartParamControl::gbPartParamControl(gbPartParamControl *this)\n\n{\n  gbPartParamControl *pgVar1;\n  int iVar2;\n  \n                    /* 0xcd90  68  ??0gbPartParamControl@@QAE@XZ */\n  iVar2 = 0x3c;\n  *(undefined4 *)(this + 200) = 0;\n  *(undefined4 *)(this + 0xcc) = 0;\n  *(undefined4 *)(this + 0xd0) = 0;\n  *(undefined4 *)(this + 0xd4) = 0;\n  *(undefined4 *)(this + 0xd8) = 0;\n  *(undefined4 *)(this + 0xdc) = 0;\n  pgVar1 = this + 0xe0;\n  do {\n    *(undefined4 *)pgVar1 = 0;\n    *(undefined4 *)(pgVar1 + 4) = 0;\n    *(undefined4 *)(pgVar1 + 8) = 0;\n    pgVar1 = pgVar1 + 0xc;\n    iVar2 = iVar2 + -1;\n  } while (iVar2 != 0);\n  pgVar1 = this + 0x3b0;\n  iVar2 = 0x12f;\n  do {\n    *(undefined4 *)pgVar1 = 0;\n    *(undefined4 *)(pgVar1 + 4) = 0;\n    *(undefined4 *)(pgVar1 + 8) = 0;\n    pgVar1 = pgVar1 + 0xc;\n    iVar2 = iVar2 + -1;\n  } while (iVar2 != 0);\n  return;\n}\n\n", 
+  "is_thunk": false, 
+  "name": "gbPartParamControl", 
+  "assembly": "  1000cd90:  MOV EAX,ECX\n  1000cd92:  PUSH ESI\n  1000cd93:  XOR ECX,ECX\n  1000cd95:  MOV ESI,0x3c\n  1000cd9a:  MOV dword ptr [EAX + 0xc8],ECX\n  1000cda0:  MOV dword ptr [EAX + 0xcc],ECX\n  1000cda6:  MOV dword ptr [EAX + 0xd0],ECX\n  1000cdac:  MOV dword ptr [EAX + 0xd4],ECX\n  1000cdb2:  MOV dword ptr [EAX + 0xd8],ECX\n  1000cdb8:  MOV dword ptr [EAX + 0xdc],ECX\n  1000cdbe:  LEA EDX,[EAX + 0xe0]\n  1000cdc4:  MOV dword ptr [EDX],ECX\n  1000cdc6:  MOV dword ptr [EDX + 0x4],ECX\n  1000cdc9:  MOV dword ptr [EDX + 0x8],ECX\n  1000cdcc:  ADD EDX,0xc\n  1000cdcf:  DEC ESI\n  1000cdd0:  JNZ 0x1000cdc4\n  1000cdd2:  LEA EDX,[EAX + 0x3b0]\n  1000cdd8:  MOV ESI,0x12f\n  1000cddd:  MOV dword ptr [EDX],ECX\n  1000cddf:  MOV dword ptr [EDX + 0x4],ECX\n  1000cde2:  MOV dword ptr [EDX + 0x8],ECX\n  1000cde5:  ADD EDX,0xc\n  1000cde8:  DEC ESI\n  1000cde9:  JNZ 0x1000cddd\n  1000cdeb:  POP ESI\n  1000cdec:  RET", 
+  "callers": [
+    {
+      "address": "0x1000d3f0", 
+      "name": "gbPartEmitter"
+    }
+  ]
+}

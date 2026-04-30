@@ -1,0 +1,45 @@
+{
+  "address": "0x100ef74a", 
+  "size_bytes": 26, 
+  "calling_convention": "unknown", 
+  "signature": "undefined FUN_100ef74a(void)", 
+  "callees": [
+    {
+      "address": "0x0000003f", 
+      "name": "GetUserDefaultLCID"
+    }
+  ], 
+  "global_refs": [
+    {
+      "address": "0x10166f0c", 
+      "type": "undefined4", 
+      "name": "DAT_10166f0c"
+    }, 
+    {
+      "address": "0x100f5128", 
+      "type": "pointer", 
+      "name": "DAT_100f5128"
+    }, 
+    {
+      "address": "0x10166f10", 
+      "type": "undefined4", 
+      "name": "DAT_10166f10"
+    }, 
+    {
+      "address": "0x10166ef4", 
+      "type": "undefined4", 
+      "name": "DAT_10166ef4"
+    }
+  ], 
+  "has_custom_name": false, 
+  "decompiled_c": "\nvoid FUN_100ef74a(void)\n\n{\n  DAT_10166f0c._0_2_ = (ushort)DAT_10166f0c | 0x104;\n  DAT_10166f10 = GetUserDefaultLCID();\n  DAT_10166ef4 = DAT_10166f10;\n  return;\n}\n\n", 
+  "is_thunk": false, 
+  "name": "FUN_100ef74a", 
+  "assembly": "  100ef74a:  OR word ptr [0x10166f0c],0x104\n  100ef753:  CALL dword ptr [0x100f5128]\n  100ef759:  MOV [0x10166f10],EAX\n  100ef75e:  MOV [0x10166ef4],EAX\n  100ef763:  RET", 
+  "callers": [
+    {
+      "address": "0x100ef11a", 
+      "name": "FUN_100ef11a"
+    }
+  ]
+}

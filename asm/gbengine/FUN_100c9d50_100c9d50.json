@@ -1,0 +1,19 @@
+{
+  "address": "0x100c9d50", 
+  "size_bytes": 53, 
+  "calling_convention": "unknown", 
+  "signature": "undefined FUN_100c9d50(void)", 
+  "callees": [
+    {
+      "address": "0x100c9674", 
+      "name": "FUN_100c9674"
+    }
+  ], 
+  "global_refs": [], 
+  "has_custom_name": false, 
+  "decompiled_c": "\nvoid FUN_100c9d50(void)\n\n{\n  uint *puVar1;\n  uint uVar2;\n  uint uVar3;\n  int in_ECX;\n  \n  puVar1 = *(uint **)(in_ECX + 0xe0);\n  uVar2 = puVar1[2];\n  uVar3 = *puVar1 & 0xfffff;\n  FUN_100c9674(0x5a,puVar1[4],puVar1[3],uVar2,uVar2 + uVar3 * 4,uVar2 + uVar3 * 8,uVar3,0,0,0);\n  return;\n}\n\n", 
+  "is_thunk": false, 
+  "name": "FUN_100c9d50", 
+  "assembly": "  100c9d50:  MOV EDX,dword ptr [ECX + 0xe0]\n  100c9d56:  MOV EAX,dword ptr [EDX]\n  100c9d58:  PUSH EBX\n  100c9d59:  PUSH ESI\n  100c9d5a:  MOV ESI,dword ptr [EDX + 0xc]\n  100c9d5d:  PUSH EDI\n  100c9d5e:  MOV EDI,dword ptr [EDX + 0x10]\n  100c9d61:  MOV EDX,dword ptr [EDX + 0x8]\n  100c9d64:  XOR EBX,EBX\n  100c9d66:  PUSH EBX\n  100c9d67:  PUSH EBX\n  100c9d68:  PUSH EBX\n  100c9d69:  AND EAX,0xfffff\n  100c9d6e:  PUSH EAX\n  100c9d6f:  LEA EBX,[EDX + EAX*0x8]\n  100c9d72:  PUSH EBX\n  100c9d73:  LEA EAX,[EDX + EAX*0x4]\n  100c9d76:  PUSH EAX\n  100c9d77:  PUSH EDX\n  100c9d78:  PUSH ESI\n  100c9d79:  PUSH EDI\n  100c9d7a:  PUSH 0x5a\n  100c9d7c:  CALL 0x100c9674\n  100c9d81:  POP EDI\n  100c9d82:  POP ESI\n  100c9d83:  POP EBX\n  100c9d84:  RET", 
+  "callers": []
+}

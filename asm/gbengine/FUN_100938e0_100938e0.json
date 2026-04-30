@@ -1,0 +1,19 @@
+{
+  "address": "0x100938e0", 
+  "size_bytes": 118, 
+  "calling_convention": "unknown", 
+  "signature": "undefined FUN_100938e0(void)", 
+  "callees": [], 
+  "global_refs": [], 
+  "has_custom_name": false, 
+  "decompiled_c": "\nvoid FUN_100938e0(void)\n\n{\n  int in_EAX;\n  undefined4 *puVar1;\n  int iVar2;\n  int iVar3;\n  undefined4 *puVar4;\n  undefined4 *puVar5;\n  \n  puVar1 = (undefined4 *)(*(code *)**(undefined4 **)(in_EAX + 4))();\n  iVar2 = 0;\n  *(undefined4 **)(in_EAX + 0x148) = puVar1 + 0x40;\n  puVar4 = puVar1;\n  for (iVar3 = 0x40; iVar3 != 0; iVar3 = iVar3 + -1) {\n    *puVar4 = 0;\n    puVar4 = puVar4 + 1;\n  }\n  do {\n    *(char *)(iVar2 + (int)(puVar1 + 0x40)) = (char)iVar2;\n    iVar2 = iVar2 + 1;\n  } while (iVar2 < 0x100);\n  puVar4 = *(undefined4 **)(in_EAX + 0x148);\n  puVar5 = puVar1 + 0x80;\n  for (iVar2 = 0x60; iVar2 != 0; iVar2 = iVar2 + -1) {\n    *puVar5 = 0xffffffff;\n    puVar5 = puVar5 + 1;\n  }\n  puVar5 = puVar1 + 0xe0;\n  for (iVar2 = 0x60; iVar2 != 0; iVar2 = iVar2 + -1) {\n    *puVar5 = 0;\n    puVar5 = puVar5 + 1;\n  }\n  puVar1 = puVar1 + 0x140;\n  for (iVar2 = 0x20; iVar2 != 0; iVar2 = iVar2 + -1) {\n    *puVar1 = *puVar4;\n    puVar4 = puVar4 + 1;\n    puVar1 = puVar1 + 1;\n  }\n  return;\n}\n\n", 
+  "is_thunk": false, 
+  "name": "FUN_100938e0", 
+  "assembly": "  100938e0:  PUSH ESI\n  100938e1:  PUSH EDI\n  100938e2:  PUSH 0x580\n  100938e7:  MOV ESI,EAX\n  100938e9:  MOV EAX,dword ptr [ESI + 0x4]\n  100938ec:  PUSH 0x1\n  100938ee:  PUSH ESI\n  100938ef:  CALL dword ptr [EAX]\n  100938f1:  MOV EDX,EAX\n  100938f3:  ADD EDX,0x100\n  100938f9:  MOV ECX,0x40\n  100938fe:  XOR EAX,EAX\n  10093900:  LEA EDI,[EDX + 0xffffff00]\n  10093906:  MOV dword ptr [ESI + 0x148],EDX\n  1009390c:  STOSD.REP ES:EDI\n  1009390e:  MOV EDI,EDI\n  10093910:  MOV byte ptr [EAX + EDX*0x1],AL\n  10093913:  INC EAX\n  10093914:  CMP EAX,0xff\n  10093919:  JLE 0x10093910\n  1009391b:  MOV ESI,dword ptr [ESI + 0x148]\n  10093921:  ADD EDX,0x80\n  10093927:  OR EAX,0xffffffff\n  1009392a:  LEA EDI,[EDX + 0x80]\n  10093930:  MOV ECX,0x60\n  10093935:  STOSD.REP ES:EDI\n  10093937:  MOV ECX,0x60\n  1009393c:  XOR EAX,EAX\n  1009393e:  LEA EDI,[EDX + 0x200]\n  10093944:  STOSD.REP ES:EDI\n  10093946:  LEA EDI,[EDX + 0x380]\n  1009394c:  MOV ECX,0x20\n  10093951:  MOVSD.REP ES:EDI,ESI\n  10093953:  POP EDI\n  10093954:  POP ESI\n  10093955:  RET", 
+  "callers": [
+    {
+      "address": "0x10093960", 
+      "name": "FUN_10093960"
+    }
+  ]
+}

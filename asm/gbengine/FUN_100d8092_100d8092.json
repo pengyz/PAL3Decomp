@@ -1,0 +1,69 @@
+{
+  "address": "0x100d8092", 
+  "size_bytes": 167, 
+  "calling_convention": "unknown", 
+  "signature": "undefined FUN_100d8092(undefined4 param_1, undefined4 param_2)", 
+  "callees": [
+    {
+      "address": "0x100e2c00", 
+      "name": "FUN_100e2c00"
+    }, 
+    {
+      "address": "0x100e32e0", 
+      "name": "FUN_100e32e0"
+    }
+  ], 
+  "global_refs": [
+    {
+      "address": "0x00000004", 
+      "type": null, 
+      "name": "DAT_00000004"
+    }, 
+    {
+      "address": "0x00000008", 
+      "type": null, 
+      "name": "DAT_00000008"
+    }, 
+    {
+      "address": "0x10109968", 
+      "type": "undefined4", 
+      "name": "DAT_10109968"
+    }, 
+    {
+      "address": "0x-000000c", 
+      "type": null, 
+      "name": "DAT_-000000c"
+    }, 
+    {
+      "address": "0x-0000008", 
+      "type": null, 
+      "name": "DAT_-0000008"
+    }, 
+    {
+      "address": "0x-0000004", 
+      "type": null, 
+      "name": "DAT_-0000004"
+    }, 
+    {
+      "address": "0x10109920", 
+      "type": null, 
+      "name": "DAT_10109920"
+    }, 
+    {
+      "address": "0x10109928", 
+      "type": "undefined8", 
+      "name": "DAT_10109928"
+    }, 
+    {
+      "address": "0x10109930", 
+      "type": null, 
+      "name": "DAT_10109930"
+    }
+  ], 
+  "has_custom_name": false, 
+  "decompiled_c": "\nvoid FUN_100d8092(undefined8 *param_1,undefined8 *param_2)\n\n{\n  undefined4 uVar1;\n  ulonglong uVar2;\n  undefined8 uVar3;\n  ulonglong uVar4;\n  undefined8 uVar5;\n  undefined8 in_MM4;\n  undefined8 uVar6;\n  \n  FastExitMediaState();\n  uVar3 = *param_2;\n  uVar4 = param_2[1];\n  uVar1 = (undefined4)(uVar4 >> 0x20);\n  uVar5 = PackedFloatingCompareGE(CONCAT44(uVar1,uVar1),0x3f8000003f800000);\n  if ((int)uVar5 == 0) {\n    uVar1 = FUN_100e2c00();\n    uVar2 = FUN_100e32e0();\n    uVar5 = PackedFloatingCompareGE(uVar2 & 0x7fffffff7fffffff,0x3400000034000000);\n    uVar3 = *param_2;\n    uVar4 = param_2[1];\n    if ((int)uVar5 != 0) {\n      uVar6 = FloatingReciprocalAprox(in_MM4,uVar2);\n      uVar5 = PackedFloatingReciprocalIter1(uVar2,uVar6);\n      uVar5 = PackedFloatingReciprocalIter2(uVar5,uVar6);\n      uVar5 = PackedFloatingMUL(CONCAT44(uVar1,uVar1),uVar5);\n      uVar3 = PackedFloatingMUL(uVar3,uVar5);\n      uVar4 = PackedFloatingMUL(uVar4,uVar5);\n    }\n  }\n  *param_1 = uVar3;\n  param_1[1] = uVar4 & 0xffffffff;\n  FastExitMediaState();\n  return;\n}\n\n", 
+  "is_thunk": false, 
+  "name": "FUN_100d8092", 
+  "assembly": "  100d8092:  SUB ESP,0xc\n  100d8095:  FEMMS\n  100d8097:  MOV EAX,dword ptr [ESP + 0x10]\n  100d809b:  MOV EDX,dword ptr [ESP + 0x14]\n  100d809f:  MOVQ MM1,qword ptr [EDX]\n  100d80a2:  MOVQ MM2,qword ptr [EDX + 0x8]\n  100d80a6:  MOVQ MM3,MM2\n  100d80a9:  PUNPCKHDQ MM3,MM3\n  100d80ac:  MOVQ MM0,MM3\n  100d80af:  PFCMPGE MM3,qword ptr [0x10109968]\n  100d80b7:  MOVD ECX,MM3\n  100d80ba:  TEST ECX,ECX\n  100d80bc:  JNZ 0x100d8123\n  100d80be:  CALL 0x100e2c00\n  100d80c3:  MOVD dword ptr [ESP],MM0\n  100d80c7:  MOV dword ptr [ESP + 0x4],ESI\n  100d80cb:  MOV dword ptr [ESP + 0x8],EBX\n  100d80cf:  CALL 0x100e32e0\n  100d80d4:  MOVQ MM3,MM0\n  100d80d7:  MOV EDX,dword ptr [ESP + 0x14]\n  100d80db:  MOV ESI,dword ptr [ESP + 0x4]\n  100d80df:  PAND MM3,qword ptr [0x10109920]\n  100d80e6:  MOV EAX,dword ptr [ESP + 0x10]\n  100d80ea:  MOV EBX,dword ptr [ESP + 0x8]\n  100d80ee:  PFCMPGE MM3,qword ptr [0x10109928]\n  100d80f6:  MOVD ECX,MM3\n  100d80f9:  MOVQ MM1,qword ptr [EDX]\n  100d80fc:  MOVQ MM2,qword ptr [EDX + 0x8]\n  100d8100:  TEST ECX,ECX\n  100d8102:  JZ 0x100d8123\n  100d8104:  MOVD MM3,dword ptr [ESP]\n  100d8108:  PFRCP MM4,MM0\n  100d810c:  PUNPCKLDQ MM3,MM3\n  100d810f:  PFRCPIT1 MM0,MM4\n  100d8113:  PFRCPIT2 MM0,MM4\n  100d8117:  PFMUL MM3,MM0\n  100d811b:  PFMUL MM1,MM3\n  100d811f:  PFMUL MM2,MM3\n  100d8123:  PAND MM2,qword ptr [0x10109930]\n  100d812a:  MOVQ qword ptr [EAX],MM1\n  100d812d:  MOVQ qword ptr [EAX + 0x8],MM2\n  100d8131:  FEMMS\n  100d8133:  ADD ESP,0xc\n  100d8136:  RET 0x8", 
+  "callers": []
+}

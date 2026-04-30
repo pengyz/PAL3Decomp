@@ -1,0 +1,24 @@
+{
+  "address": "0x1002f8b0", 
+  "size_bytes": 10, 
+  "calling_convention": "__thiscall", 
+  "signature": "void __thiscall ReleaseBuffer(gbStaticChain * this)", 
+  "callees": [
+    {
+      "address": "0x100e4b99", 
+      "name": "FUN_100e4b99"
+    }
+  ], 
+  "global_refs": [], 
+  "has_custom_name": true, 
+  "decompiled_c": "\n/* public: void __thiscall gbStaticChain::ReleaseBuffer(void) */\n\nvoid __thiscall gbStaticChain::ReleaseBuffer(gbStaticChain *this)\n\n{\n                    /* 0x2f8b0  780  ?ReleaseBuffer@gbStaticChain@@QAEXXZ */\n  FUN_100e4b99(*(undefined4 *)this);\n  return;\n}\n\n", 
+  "is_thunk": false, 
+  "name": "ReleaseBuffer", 
+  "assembly": "  1002f8b0:  MOV EAX,dword ptr [ECX]\n  1002f8b2:  PUSH EAX\n  1002f8b3:  CALL 0x100e4b99\n  1002f8b8:  POP ECX\n  1002f8b9:  RET", 
+  "callers": [
+    {
+      "address": "0x10014650", 
+      "name": "FUN_10014650"
+    }
+  ]
+}

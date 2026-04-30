@@ -1,0 +1,14 @@
+{
+  "address": "0x10077240", 
+  "size_bytes": 162, 
+  "calling_convention": "unknown", 
+  "signature": "undefined FUN_10077240(void)", 
+  "callees": [], 
+  "global_refs": [], 
+  "has_custom_name": false, 
+  "decompiled_c": "\nundefined4 FUN_10077240(void)\n\n{\n  undefined4 *puVar1;\n  int *piVar2;\n  int iVar3;\n  int *unaff_ESI;\n  \n  iVar3 = *unaff_ESI;\n  *(undefined4 *)(iVar3 + 0x14) = 0x66;\n  (**(code **)(iVar3 + 4))();\n  if (*(int *)(unaff_ESI[0x6f] + 0xc) != 0) {\n    puVar1 = (undefined4 *)*unaff_ESI;\n    puVar1[5] = 0x3d;\n    (*(code *)*puVar1)();\n  }\n  piVar2 = unaff_ESI + 0x3e;\n  iVar3 = 0x10;\n  do {\n    *(undefined *)(piVar2 + -4) = 0;\n    *(undefined *)piVar2 = 1;\n    *(undefined *)(piVar2 + 4) = 5;\n    piVar2 = (int *)((int)piVar2 + 1);\n    iVar3 = iVar3 + -1;\n  } while (iVar3 != 0);\n  unaff_ESI[0x46] = 0;\n  unaff_ESI[10] = 0;\n  unaff_ESI[0x4c] = 0;\n  unaff_ESI[0x47] = 0;\n  *(undefined *)((int)unaff_ESI + 0x122) = 0;\n  unaff_ESI[0x4a] = 0;\n  *(undefined *)(unaff_ESI + 0x4b) = 0;\n  *(undefined *)(unaff_ESI + 0x48) = 1;\n  *(undefined *)((int)unaff_ESI + 0x121) = 1;\n  *(undefined2 *)(unaff_ESI + 0x49) = 1;\n  *(undefined2 *)((int)unaff_ESI + 0x126) = 1;\n  *(undefined4 *)(unaff_ESI[0x6f] + 0xc) = 1;\n  return 1;\n}\n\n", 
+  "is_thunk": false, 
+  "name": "FUN_10077240", 
+  "assembly": "  10077240:  MOV EAX,dword ptr [ESI]\n  10077242:  PUSH EBX\n  10077243:  PUSH 0x1\n  10077245:  PUSH ESI\n  10077246:  MOV dword ptr [EAX + 0x14],0x66\n  1007724d:  CALL dword ptr [EAX + 0x4]\n  10077250:  MOV EAX,dword ptr [ESI + 0x1bc]\n  10077256:  MOV ECX,dword ptr [EAX + 0xc]\n  10077259:  XOR EBX,EBX\n  1007725b:  CMP ECX,EBX\n  1007725d:  JZ 0x1007726b\n  1007725f:  MOV EAX,dword ptr [ESI]\n  10077261:  PUSH ESI\n  10077262:  MOV dword ptr [EAX + 0x14],0x3d\n  10077269:  CALL dword ptr [EAX]\n  1007726b:  LEA EAX,[ESI + 0xf8]\n  10077271:  MOV ECX,0x10\n  10077276:  MOV DL,0x5\n  10077278:  JMP 0x10077280\n  10077280:  MOV byte ptr [EAX + -0x10],BL\n  10077283:  MOV byte ptr [EAX],0x1\n  10077286:  MOV byte ptr [EAX + 0x10],DL\n  10077289:  INC EAX\n  1007728a:  DEC ECX\n  1007728b:  JNZ 0x10077280\n  1007728d:  MOV ECX,dword ptr [ESI + 0x1bc]\n  10077293:  MOV dword ptr [ESI + 0x118],EBX\n  10077299:  MOV dword ptr [ESI + 0x28],EBX\n  1007729c:  MOV dword ptr [ESI + 0x130],EBX\n  100772a2:  MOV dword ptr [ESI + 0x11c],EBX\n  100772a8:  MOV byte ptr [ESI + 0x122],BL\n  100772ae:  MOV dword ptr [ESI + 0x128],EBX\n  100772b4:  MOV byte ptr [ESI + 0x12c],BL\n  100772ba:  MOV byte ptr [ESI + 0x120],0x1\n  100772c1:  MOV byte ptr [ESI + 0x121],0x1\n  100772c8:  MOV word ptr [ESI + 0x124],0x1\n  100772d1:  MOV word ptr [ESI + 0x126],0x1\n  100772da:  MOV dword ptr [ECX + 0xc],0x1\n  100772e1:  MOV EAX,0x1\n  100772e6:  POP EBX\n  100772e7:  RET", 
+  "callers": []
+}

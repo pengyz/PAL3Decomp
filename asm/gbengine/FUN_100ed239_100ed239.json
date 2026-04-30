@@ -1,0 +1,49 @@
+{
+  "address": "0x100ed239", 
+  "size_bytes": 84, 
+  "calling_convention": "unknown", 
+  "signature": "undefined FUN_100ed239(void)", 
+  "callees": [
+    {
+      "address": "0x0000002f", 
+      "name": "DeleteCriticalSection"
+    }, 
+    {
+      "address": "0x100e4b99", 
+      "name": "FUN_100e4b99"
+    }
+  ], 
+  "global_refs": [
+    {
+      "address": "0x10167400", 
+      "type": "undefined4", 
+      "name": "DAT_10167400"
+    }, 
+    {
+      "address": "0x10167404", 
+      "type": "undefined4", 
+      "name": "DAT_10167404"
+    }, 
+    {
+      "address": "0x100f50e8", 
+      "type": "pointer", 
+      "name": "DAT_100f50e8"
+    }, 
+    {
+      "address": "0x10167500", 
+      "type": "undefined4", 
+      "name": "DAT_10167500"
+    }
+  ], 
+  "has_custom_name": false, 
+  "decompiled_c": "\nvoid FUN_100ed239(void)\n\n{\n  LPCRITICAL_SECTION lpCriticalSection;\n  uint *puVar1;\n  uint uVar2;\n  \n  puVar1 = &DAT_10167400;\n  do {\n    uVar2 = *puVar1;\n    if (uVar2 != 0) {\n      if (uVar2 < uVar2 + 0x480) {\n        lpCriticalSection = (LPCRITICAL_SECTION)(uVar2 + 0xc);\n        do {\n          if (lpCriticalSection[-1].SpinCount != 0) {\n            DeleteCriticalSection(lpCriticalSection);\n          }\n          uVar2 = uVar2 + 0x24;\n          lpCriticalSection = (LPCRITICAL_SECTION)&lpCriticalSection[1].OwningThread;\n        } while (uVar2 < *puVar1 + 0x480);\n      }\n      FUN_100e4b99(*puVar1);\n      *puVar1 = 0;\n    }\n    puVar1 = puVar1 + 1;\n  } while ((int)puVar1 < 0x10167500);\n  return;\n}\n\n", 
+  "is_thunk": false, 
+  "name": "FUN_100ed239", 
+  "assembly": "  100ed239:  PUSH EBX\n  100ed23a:  PUSH ESI\n  100ed23b:  PUSH EDI\n  100ed23c:  MOV ESI,0x10167400\n  100ed241:  MOV EAX,dword ptr [ESI]\n  100ed243:  TEST EAX,EAX\n  100ed245:  JZ 0x100ed27e\n  100ed247:  MOV EDI,EAX\n  100ed249:  ADD EAX,0x480\n  100ed24e:  CMP EDI,EAX\n  100ed250:  JNC 0x100ed273\n  100ed252:  LEA EBX,[EDI + 0xc]\n  100ed255:  CMP dword ptr [EBX + -0x4],0x0\n  100ed259:  JZ 0x100ed262\n  100ed25b:  PUSH EBX\n  100ed25c:  CALL dword ptr [0x100f50e8]\n  100ed262:  MOV EAX,dword ptr [ESI]\n  100ed264:  ADD EDI,0x24\n  100ed267:  ADD EAX,0x480\n  100ed26c:  ADD EBX,0x24\n  100ed26f:  CMP EDI,EAX\n  100ed271:  JC 0x100ed255\n  100ed273:  PUSH dword ptr [ESI]\n  100ed275:  CALL 0x100e4b99\n  100ed27a:  AND dword ptr [ESI],0x0\n  100ed27d:  POP ECX\n  100ed27e:  ADD ESI,0x4\n  100ed281:  CMP ESI,0x10167500\n  100ed287:  JL 0x100ed241\n  100ed289:  POP EDI\n  100ed28a:  POP ESI\n  100ed28b:  POP EBX\n  100ed28c:  RET", 
+  "callers": [
+    {
+      "address": "0x100e63ff", 
+      "name": "FUN_100e63ff"
+    }
+  ]
+}

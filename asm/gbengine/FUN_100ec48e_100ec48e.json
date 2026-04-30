@@ -1,0 +1,35 @@
+{
+  "address": "0x100ec48e", 
+  "size_bytes": 42, 
+  "calling_convention": "unknown", 
+  "signature": "undefined FUN_100ec48e(undefined4 param_1, undefined4 param_2)", 
+  "callees": [
+    {
+      "address": "0x100ec2f8", 
+      "name": "FUN_100ec2f8"
+    }
+  ], 
+  "global_refs": [
+    {
+      "address": "0x00000004", 
+      "type": null, 
+      "name": "DAT_00000004"
+    }, 
+    {
+      "address": "0x00000008", 
+      "type": null, 
+      "name": "DAT_00000008"
+    }
+  ], 
+  "has_custom_name": false, 
+  "decompiled_c": "\nvoid FUN_100ec48e(int param_1,undefined4 *param_2)\n\n{\n  if ((param_1 != 0) && ((*(byte *)((int)param_2 + 0xd) & 0x10) != 0)) {\n    FUN_100ec2f8(param_2);\n    *(byte *)((int)param_2 + 0xd) = *(byte *)((int)param_2 + 0xd) & 0xee;\n    param_2[6] = 0;\n    *param_2 = 0;\n    param_2[2] = 0;\n  }\n  return;\n}\n\n", 
+  "is_thunk": false, 
+  "name": "FUN_100ec48e", 
+  "assembly": "  100ec48e:  CMP dword ptr [ESP + 0x4],0x0\n  100ec493:  PUSH ESI\n  100ec494:  JZ 0x100ec4b6\n  100ec496:  MOV ESI,dword ptr [ESP + 0xc]\n  100ec49a:  TEST byte ptr [ESI + 0xd],0x10\n  100ec49e:  JZ 0x100ec4b6\n  100ec4a0:  PUSH ESI\n  100ec4a1:  CALL 0x100ec2f8\n  100ec4a6:  AND byte ptr [ESI + 0xd],0xee\n  100ec4aa:  AND dword ptr [ESI + 0x18],0x0\n  100ec4ae:  AND dword ptr [ESI],0x0\n  100ec4b1:  AND dword ptr [ESI + 0x8],0x0\n  100ec4b5:  POP ECX\n  100ec4b6:  POP ESI\n  100ec4b7:  RET", 
+  "callers": [
+    {
+      "address": "0x100e5c9f", 
+      "name": "FUN_100e5c9f"
+    }
+  ]
+}

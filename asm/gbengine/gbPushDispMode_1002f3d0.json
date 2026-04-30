@@ -1,0 +1,30 @@
+{
+  "address": "0x1002f3d0", 
+  "size_bytes": 45, 
+  "calling_convention": "__cdecl", 
+  "signature": "void __cdecl gbPushDispMode(void)", 
+  "callees": [], 
+  "global_refs": [
+    {
+      "address": "0x1015cb80", 
+      "type": "undefined4", 
+      "name": "DAT_1015cb80"
+    }, 
+    {
+      "address": "0x1015cb78", 
+      "type": "undefined4", 
+      "name": "DAT_1015cb78"
+    }, 
+    {
+      "address": "0x1015d360", 
+      "type": "undefined4", 
+      "name": "DAT_1015d360"
+    }
+  ], 
+  "has_custom_name": true, 
+  "decompiled_c": "\n/* void __cdecl gbPushDispMode(void) */\n\nvoid __cdecl gbPushDispMode(void)\n\n{\n  int iVar1;\n  undefined4 *puVar2;\n  undefined4 *puVar3;\n  \n                    /* 0x2f3d0  998  ?gbPushDispMode@@YAXXZ */\n  puVar2 = &DAT_1015d360;\n  puVar3 = (undefined4 *)(DAT_1015cb78 + DAT_1015cb80 * 0x14);\n  for (iVar1 = 5; iVar1 != 0; iVar1 = iVar1 + -1) {\n    *puVar3 = *puVar2;\n    puVar2 = puVar2 + 1;\n    puVar3 = puVar3 + 1;\n  }\n  DAT_1015cb80 = DAT_1015cb80 + 1;\n  return;\n}\n\n", 
+  "is_thunk": false, 
+  "name": "gbPushDispMode", 
+  "assembly": "  1002f3d0:  MOV EAX,[0x1015cb80]\n  1002f3d5:  MOV ECX,dword ptr [0x1015cb78]\n  1002f3db:  PUSH ESI\n  1002f3dc:  PUSH EDI\n  1002f3dd:  LEA EAX,[EAX + EAX*0x4]\n  1002f3e0:  MOV ESI,0x1015d360\n  1002f3e5:  LEA EDI,[ECX + EAX*0x4]\n  1002f3e8:  MOV ECX,0x5\n  1002f3ed:  MOVSD.REP ES:EDI,ESI\n  1002f3ef:  MOV EAX,[0x1015cb80]\n  1002f3f4:  POP EDI\n  1002f3f5:  INC EAX\n  1002f3f6:  POP ESI\n  1002f3f7:  MOV [0x1015cb80],EAX\n  1002f3fc:  RET", 
+  "callers": []
+}

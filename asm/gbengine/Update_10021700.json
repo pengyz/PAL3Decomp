@@ -1,0 +1,60 @@
+{
+  "address": "0x10021700", 
+  "size_bytes": 295, 
+  "calling_convention": "__thiscall", 
+  "signature": "void __thiscall Update(gbCamSpringControl * this, double param_1)", 
+  "callees": [
+    {
+      "address": "0x10026c40", 
+      "name": "Slerp"
+    }
+  ], 
+  "global_refs": [
+    {
+      "address": "0x100f53a0", 
+      "type": null, 
+      "name": "DAT_100f53a0"
+    }, 
+    {
+      "address": "0x00000004", 
+      "type": null, 
+      "name": "DAT_00000004"
+    }, 
+    {
+      "address": "0x100f5578", 
+      "type": null, 
+      "name": "DAT_100f5578"
+    }, 
+    {
+      "address": "0x-0000018", 
+      "type": null, 
+      "name": "DAT_-0000018"
+    }, 
+    {
+      "address": "0x-0000010", 
+      "type": null, 
+      "name": "DAT_-0000010"
+    }, 
+    {
+      "address": "0x-0000008", 
+      "type": null, 
+      "name": "DAT_-0000008"
+    }, 
+    {
+      "address": "0x-000000c", 
+      "type": null, 
+      "name": "DAT_-000000c"
+    }, 
+    {
+      "address": "0x-0000004", 
+      "type": null, 
+      "name": "DAT_-0000004"
+    }
+  ], 
+  "has_custom_name": true, 
+  "decompiled_c": "\n/* public: virtual void __thiscall gbCamSpringControl::Update(double) */\n\nvoid __thiscall gbCamSpringControl::Update(gbCamSpringControl *this,double param_1)\n\n{\n  int iVar1;\n  float fVar2;\n  undefined4 local_10;\n  undefined4 local_c;\n  undefined4 local_8;\n  undefined4 local_4;\n  \n                    /* 0x21700  941  ?Update@gbCamSpringControl@@UAEXN@Z */\n  if (*(float *)(this + 0x3c) < 0.0) {\n    iVar1 = *(int *)(this + 8);\n    *(undefined4 *)(iVar1 + 0x15c) = *(undefined4 *)(this + 0x20);\n    *(undefined4 *)(iVar1 + 0x160) = *(undefined4 *)(this + 0x24);\n    *(undefined4 *)(iVar1 + 0x164) = *(undefined4 *)(this + 0x28);\n    iVar1 = *(int *)(this + 8);\n    *(undefined4 *)(iVar1 + 0x168) = *(undefined4 *)(this + 0x2c);\n    *(undefined4 *)(iVar1 + 0x16c) = *(undefined4 *)(this + 0x30);\n    *(undefined4 *)(iVar1 + 0x170) = *(undefined4 *)(this + 0x34);\n    *(undefined4 *)(iVar1 + 0x174) = *(undefined4 *)(this + 0x38);\n    return;\n  }\n  fVar2 = *(float *)(this + 0x3c) * (float)param_1;\n  if (1.0 < fVar2) {\n    fVar2 = 1.0;\n  }\n  iVar1 = *(int *)(this + 8);\n  *(float *)(iVar1 + 0x15c) =\n       (*(float *)(this + 0x20) - *(float *)(iVar1 + 0x15c)) * fVar2 + *(float *)(iVar1 + 0x15c);\n  iVar1 = *(int *)(this + 8);\n  *(float *)(iVar1 + 0x160) =\n       (*(float *)(this + 0x24) - *(float *)(iVar1 + 0x160)) * fVar2 + *(float *)(iVar1 + 0x160);\n  iVar1 = *(int *)(this + 8);\n  *(float *)(iVar1 + 0x164) =\n       (*(float *)(this + 0x28) - *(float *)(iVar1 + 0x164)) * fVar2 + *(float *)(iVar1 + 0x164);\n  local_8 = 0;\n  local_c = 0;\n  local_10 = 0;\n  local_4 = 0x3f800000;\n  gbQuaternion::Slerp((gbQuaternion *)&local_10,(gbQuaternion *)(*(int *)(this + 8) + 0x168),\n                      (gbQuaternion *)(this + 0x2c),fVar2);\n  iVar1 = *(int *)(this + 8);\n  *(undefined4 *)(iVar1 + 0x168) = local_10;\n  *(undefined4 *)(iVar1 + 0x16c) = local_c;\n  *(undefined4 *)(iVar1 + 0x170) = local_8;\n  *(undefined4 *)(iVar1 + 0x174) = local_4;\n  return;\n}\n\n", 
+  "is_thunk": false, 
+  "name": "Update", 
+  "assembly": "  10021700:  SUB ESP,0x10\n  10021703:  PUSH ESI\n  10021704:  MOV ESI,ECX\n  10021706:  FLD dword ptr [ESI + 0x3c]\n  10021709:  FCOMP dword ptr [0x100f53a0]\n  1002170f:  FNSTSW AX\n  10021711:  TEST AH,0x1\n  10021714:  JZ 0x10021757\n  10021716:  MOV EAX,dword ptr [ESI + 0x8]\n  10021719:  MOV ECX,dword ptr [ESI + 0x20]\n  1002171c:  ADD EAX,0x15c\n  10021721:  MOV dword ptr [EAX],ECX\n  10021723:  MOV EDX,dword ptr [ESI + 0x24]\n  10021726:  MOV dword ptr [EAX + 0x4],EDX\n  10021729:  MOV ECX,dword ptr [ESI + 0x28]\n  1002172c:  MOV dword ptr [EAX + 0x8],ECX\n  1002172f:  MOV EAX,dword ptr [ESI + 0x8]\n  10021732:  LEA EDX,[ESI + 0x2c]\n  10021735:  ADD EAX,0x168\n  1002173a:  POP ESI\n  1002173b:  MOV ECX,dword ptr [EDX]\n  1002173d:  MOV dword ptr [EAX],ECX\n  1002173f:  MOV ECX,dword ptr [EDX + 0x4]\n  10021742:  MOV dword ptr [EAX + 0x4],ECX\n  10021745:  MOV ECX,dword ptr [EDX + 0x8]\n  10021748:  MOV dword ptr [EAX + 0x8],ECX\n  1002174b:  MOV EDX,dword ptr [EDX + 0xc]\n  1002174e:  MOV dword ptr [EAX + 0xc],EDX\n  10021751:  ADD ESP,0x10\n  10021754:  RET 0x8\n  10021757:  FLD dword ptr [ESI + 0x3c]\n  1002175a:  FMUL qword ptr [ESP + 0x18]\n  1002175e:  FCOM qword ptr [0x100f5578]\n  10021764:  FNSTSW AX\n  10021766:  TEST AH,0x41\n  10021769:  JNZ 0x10021773\n  1002176b:  FSTP ST0\n  1002176d:  FLD qword ptr [0x100f5578]\n  10021773:  MOV EAX,dword ptr [ESI + 0x8]\n  10021776:  PUSH ECX\n  10021777:  FLD dword ptr [ESI + 0x20]\n  1002177a:  FSUB dword ptr [EAX + 0x15c]\n  10021780:  FMUL ST1\n  10021782:  FADD dword ptr [EAX + 0x15c]\n  10021788:  FSTP dword ptr [EAX + 0x15c]\n  1002178e:  MOV EAX,dword ptr [ESI + 0x8]\n  10021791:  FLD dword ptr [ESI + 0x24]\n  10021794:  FSUB dword ptr [EAX + 0x160]\n  1002179a:  FMUL ST1\n  1002179c:  FADD dword ptr [EAX + 0x160]\n  100217a2:  FSTP dword ptr [EAX + 0x160]\n  100217a8:  MOV EAX,dword ptr [ESI + 0x8]\n  100217ab:  FLD dword ptr [ESI + 0x28]\n  100217ae:  FSUB dword ptr [EAX + 0x164]\n  100217b4:  FMUL ST1\n  100217b6:  FADD dword ptr [EAX + 0x164]\n  100217bc:  FSTP dword ptr [EAX + 0x164]\n  100217c2:  MOV ECX,dword ptr [ESI + 0x8]\n  100217c5:  LEA EAX,[ESI + 0x2c]\n  100217c8:  FSTP dword ptr [ESP]\n  100217cb:  ADD ECX,0x168\n  100217d1:  PUSH EAX\n  100217d2:  PUSH ECX\n  100217d3:  LEA ECX,[ESP + 0x10]\n  100217d7:  MOV dword ptr [ESP + 0x18],0x0\n  100217df:  MOV dword ptr [ESP + 0x14],0x0\n  100217e7:  MOV dword ptr [ESP + 0x10],0x0\n  100217ef:  MOV dword ptr [ESP + 0x1c],0x3f800000\n  100217f7:  CALL 0x10026c40\n  100217fc:  MOV EDX,dword ptr [ESI + 0x8]\n  100217ff:  MOV EAX,dword ptr [ESP + 0x4]\n  10021803:  ADD EDX,0x168\n  10021809:  POP ESI\n  1002180a:  MOV dword ptr [EDX],EAX\n  1002180c:  MOV ECX,dword ptr [ESP + 0x4]\n  10021810:  MOV dword ptr [EDX + 0x4],ECX\n  10021813:  MOV EAX,dword ptr [ESP + 0x8]\n  10021817:  MOV dword ptr [EDX + 0x8],EAX\n  1002181a:  MOV ECX,dword ptr [ESP + 0xc]\n  1002181e:  MOV dword ptr [EDX + 0xc],ECX\n  10021821:  ADD ESP,0x10\n  10021824:  RET 0x8", 
+  "callers": []
+}

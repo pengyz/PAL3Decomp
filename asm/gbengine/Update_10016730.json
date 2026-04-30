@@ -1,0 +1,27 @@
+{
+  "address": "0x10016730", 
+  "size_bytes": 33, 
+  "calling_convention": "__thiscall", 
+  "signature": "void __thiscall Update(gbVisNode * this)", 
+  "callees": [], 
+  "global_refs": [], 
+  "has_custom_name": true, 
+  "decompiled_c": "\n/* public: virtual void __thiscall gbVisNode::Update(void) */\n\nvoid __thiscall gbVisNode::Update(gbVisNode *this)\n\n{\n  int *piVar1;\n  \n                    /* 0x16730  949  ?Update@gbVisNode@@UAEXXZ */\n  piVar1 = *(int **)(this + 0xc);\n  *(int **)(this + 0x18) = piVar1;\n  while (piVar1 != (int *)0x0) {\n    (**(code **)(*piVar1 + 0x14))();\n    piVar1 = *(int **)(*(int *)(this + 0x18) + 4);\n    *(int **)(this + 0x18) = piVar1;\n  }\n  return;\n}\n\n", 
+  "is_thunk": false, 
+  "name": "Update", 
+  "assembly": "  10016730:  PUSH ESI\n  10016731:  MOV ESI,ECX\n  10016733:  MOV ECX,dword ptr [ESI + 0xc]\n  10016736:  TEST ECX,ECX\n  10016738:  MOV dword ptr [ESI + 0x18],ECX\n  1001673b:  JZ 0x1001674f\n  1001673d:  MOV EAX,dword ptr [ECX]\n  1001673f:  CALL dword ptr [EAX + 0x14]\n  10016742:  MOV ECX,dword ptr [ESI + 0x18]\n  10016745:  MOV ECX,dword ptr [ECX + 0x4]\n  10016748:  TEST ECX,ECX\n  1001674a:  MOV dword ptr [ESI + 0x18],ECX\n  1001674d:  JNZ 0x1001673d\n  1001674f:  POP ESI\n  10016750:  RET", 
+  "callers": [
+    {
+      "address": "0x100032e0", 
+      "name": "Update"
+    }, 
+    {
+      "address": "0x10010ec0", 
+      "name": "Update"
+    }, 
+    {
+      "address": "0x10010ec0", 
+      "name": "Update"
+    }
+  ]
+}

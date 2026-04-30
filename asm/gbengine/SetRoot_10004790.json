@@ -1,0 +1,20 @@
+{
+  "address": "0x10004790", 
+  "size_bytes": 9, 
+  "calling_convention": "__thiscall", 
+  "signature": "void __thiscall SetRoot(gbBinaryTree * this, gbBinaryTreeNode * param_1)", 
+  "callees": [], 
+  "global_refs": [
+    {
+      "address": "0x00000004", 
+      "type": null, 
+      "name": "DAT_00000004"
+    }
+  ], 
+  "has_custom_name": true, 
+  "decompiled_c": "\n/* public: void __thiscall gbBinaryTree::SetRoot(class gbBinaryTreeNode *) */\n\nvoid __thiscall gbBinaryTree::SetRoot(gbBinaryTree *this,gbBinaryTreeNode *param_1)\n\n{\n                    /* 0x4790  888  ?SetRoot@gbBinaryTree@@QAEXPAVgbBinaryTreeNode@@@Z\n                       0x4790  889  ?SetRoot@gbNBTree@@QAEXPAVgbNBTreeNode@@@Z */\n  *(gbBinaryTreeNode **)this = param_1;\n  return;\n}\n\n", 
+  "is_thunk": false, 
+  "name": "SetRoot", 
+  "assembly": "  10004790:  MOV EAX,dword ptr [ESP + 0x4]\n  10004794:  MOV dword ptr [ECX],EAX\n  10004796:  RET 0x4", 
+  "callers": []
+}

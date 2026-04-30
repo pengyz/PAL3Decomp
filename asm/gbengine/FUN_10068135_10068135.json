@@ -1,0 +1,19 @@
+{
+  "address": "0x10068135", 
+  "size_bytes": 46, 
+  "calling_convention": "unknown", 
+  "signature": "undefined FUN_10068135(void)", 
+  "callees": [], 
+  "global_refs": [], 
+  "has_custom_name": false, 
+  "decompiled_c": "\nvoid FUN_10068135(void)\n\n{\n  int iVar1;\n  int *piVar2;\n  int *in_ECX;\n  \n  iVar1 = *in_ECX;\n  if (((iVar1 == 4) || ((4 < iVar1 && (((iVar1 < 10 || (iVar1 == 0xf)) || (iVar1 == 0x10)))))) &&\n     (piVar2 = (int *)in_ECX[1], piVar2 != (int *)0x0)) {\n    (**(code **)(*piVar2 + 8))(piVar2);\n    in_ECX[1] = 0;\n  }\n  return;\n}\n\n", 
+  "is_thunk": false, 
+  "name": "FUN_10068135", 
+  "assembly": "  10068135:  PUSH ESI\n  10068136:  MOV ESI,ECX\n  10068138:  MOV EAX,dword ptr [ESI]\n  1006813a:  CMP EAX,0x4\n  1006813d:  JZ 0x10068150\n  1006813f:  JLE 0x10068161\n  10068141:  CMP EAX,0x9\n  10068144:  JLE 0x10068150\n  10068146:  CMP EAX,0xf\n  10068149:  JZ 0x10068150\n  1006814b:  CMP EAX,0x10\n  1006814e:  JNZ 0x10068161\n  10068150:  MOV EAX,dword ptr [ESI + 0x4]\n  10068153:  TEST EAX,EAX\n  10068155:  JZ 0x10068161\n  10068157:  MOV ECX,dword ptr [EAX]\n  10068159:  PUSH EAX\n  1006815a:  CALL dword ptr [ECX + 0x8]\n  1006815d:  AND dword ptr [ESI + 0x4],0x0\n  10068161:  POP ESI\n  10068162:  RET", 
+  "callers": [
+    {
+      "address": "0x1006afb7", 
+      "name": "FID_conflict:`vector_deleting_destructor'"
+    }
+  ]
+}

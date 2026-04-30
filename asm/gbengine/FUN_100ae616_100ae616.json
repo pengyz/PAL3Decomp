@@ -1,0 +1,24 @@
+{
+  "address": "0x100ae616", 
+  "size_bytes": 97, 
+  "calling_convention": "unknown", 
+  "signature": "undefined FUN_100ae616(void)", 
+  "callees": [
+    {
+      "address": "0x100a9dcd", 
+      "name": "FUN_100a9dcd"
+    }
+  ], 
+  "global_refs": [], 
+  "has_custom_name": false, 
+  "decompiled_c": "\nint FUN_100ae616(void)\n\n{\n  int in_ECX;\n  int extraout_ECX;\n  int iVar1;\n  uint *puVar2;\n  uint uVar3;\n  uint uVar4;\n  undefined8 uVar5;\n  \n  uVar4 = 0;\n  uVar3 = 0;\n  if (*(int *)(in_ECX + 0xc) != 0) {\n    puVar2 = (uint *)(in_ECX + 0x408);\n    do {\n      uVar5 = FUN_100a9dcd(**(uint **)(*(int *)(in_ECX + 0x18) + uVar3 * 4) & 0xfff00000);\n      iVar1 = (int)((ulonglong)uVar5 >> 0x20);\n      if ((((int)uVar5 != 0) || (iVar1 == -0xdf00000)) || (iVar1 == 0x11000000)) {\n        if (0xb < uVar4) {\n          return -1;\n        }\n        *puVar2 = uVar3;\n        uVar4 = uVar4 + 1;\n        puVar2 = puVar2 + 1;\n      }\n      uVar3 = uVar3 + 1;\n      in_ECX = extraout_ECX;\n    } while (uVar3 < *(uint *)(extraout_ECX + 0xc));\n  }\n  *(uint *)(in_ECX + 0x438) = uVar4;\n  return 1 << ((byte)uVar4 & 0x1f);\n}\n\n", 
+  "is_thunk": false, 
+  "name": "FUN_100ae616", 
+  "assembly": "  100ae616:  PUSH EBX\n  100ae617:  PUSH ESI\n  100ae618:  PUSH EDI\n  100ae619:  XOR EDI,EDI\n  100ae61b:  XOR ESI,ESI\n  100ae61d:  CMP dword ptr [ECX + 0xc],EDI\n  100ae620:  JBE 0x100ae661\n  100ae622:  LEA EBX,[ECX + 0x408]\n  100ae628:  MOV EAX,dword ptr [ECX + 0x18]\n  100ae62b:  MOV EAX,dword ptr [EAX + ESI*0x4]\n  100ae62e:  MOV EDX,dword ptr [EAX]\n  100ae630:  AND EDX,0xfff00000\n  100ae636:  PUSH EDX\n  100ae637:  CALL 0x100a9dcd\n  100ae63c:  TEST EAX,EAX\n  100ae63e:  JNZ 0x100ae650\n  100ae640:  CMP EDX,0xf2100000\n  100ae646:  JZ 0x100ae650\n  100ae648:  CMP EDX,0x11000000\n  100ae64e:  JNZ 0x100ae65b\n  100ae650:  CMP EDI,0xc\n  100ae653:  JNC 0x100ae672\n  100ae655:  MOV dword ptr [EBX],ESI\n  100ae657:  INC EDI\n  100ae658:  ADD EBX,0x4\n  100ae65b:  INC ESI\n  100ae65c:  CMP ESI,dword ptr [ECX + 0xc]\n  100ae65f:  JC 0x100ae628\n  100ae661:  XOR EAX,EAX\n  100ae663:  MOV dword ptr [ECX + 0x438],EDI\n  100ae669:  INC EAX\n  100ae66a:  MOV ECX,EDI\n  100ae66c:  SHL EAX,CL\n  100ae66e:  POP EDI\n  100ae66f:  POP ESI\n  100ae670:  POP EBX\n  100ae671:  RET\n  100ae672:  OR EAX,0xffffffff\n  100ae675:  JMP 0x100ae66e", 
+  "callers": [
+    {
+      "address": "0x100b4ad4", 
+      "name": "FUN_100b4ad4"
+    }
+  ]
+}

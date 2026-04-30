@@ -1,0 +1,52 @@
+{
+  "address": "0x100e7098", 
+  "size_bytes": 204, 
+  "calling_convention": "unknown", 
+  "signature": "undefined FUN_100e7098(undefined4 param_1, undefined4 param_2)", 
+  "callees": [
+    {
+      "address": "0x100ef9d0", 
+      "name": "_memset"
+    }, 
+    {
+      "address": "0x100ebd20", 
+      "name": "FUN_100ebd20"
+    }, 
+    {
+      "address": "0x100ef0a0", 
+      "name": "FUN_100ef0a0"
+    }, 
+    {
+      "address": "0x100e56b0", 
+      "name": "_strncpy"
+    }
+  ], 
+  "global_refs": [
+    {
+      "address": "0x00000004", 
+      "type": null, 
+      "name": "DAT_00000004"
+    }, 
+    {
+      "address": "0x00000008", 
+      "type": null, 
+      "name": "DAT_00000008"
+    }, 
+    {
+      "address": "0x101103d0", 
+      "type": null, 
+      "name": "DAT_101103d0"
+    }
+  ], 
+  "has_custom_name": false, 
+  "decompiled_c": "\nundefined4 FUN_100e7098(char *param_1,char *param_2)\n\n{\n  char cVar1;\n  size_t _Count;\n  char *_Source;\n  char *_Dest;\n  \n  _Source = param_2;\n  _memset(param_1,0,0x88);\n  if (*param_2 != '\\0') {\n    if ((*param_2 != '.') || (param_2[1] == '\\0')) {\n      param_2 = (char *)0x0;\n      while( true ) {\n        _Count = FUN_100ef0a0(_Source,&DAT_101103d0);\n        if (_Count == 0) {\n          return 0xffffffff;\n        }\n        cVar1 = _Source[_Count];\n        if (param_2 == (char *)0x0) {\n          if (0x3f < (int)_Count) {\n            return 0xffffffff;\n          }\n          _Dest = param_1;\n          if (cVar1 == '.') {\n            return 0xffffffff;\n          }\n        }\n        else if (param_2 == (char *)0x1) {\n          if (0x3f < (int)_Count) {\n            return 0xffffffff;\n          }\n          if (cVar1 == '_') {\n            return 0xffffffff;\n          }\n          _Dest = param_1 + 0x40;\n        }\n        else {\n          if (param_2 != (char *)0x2) {\n            return 0xffffffff;\n          }\n          if ((cVar1 != '\\0') && (cVar1 != ',')) {\n            return 0xffffffff;\n          }\n          _Dest = param_1 + 0x80;\n        }\n        _strncpy(_Dest,_Source,_Count);\n        if (cVar1 == ',') {\n          return 0;\n        }\n        if (cVar1 == '\\0') break;\n        param_2 = (char *)((int)param_2 + 1);\n        _Source = _Source + _Count + 1;\n      }\n      return 0;\n    }\n    FUN_100ebd20(param_1 + 0x80,param_2 + 1);\n  }\n  return 0;\n}\n\n", 
+  "is_thunk": false, 
+  "name": "FUN_100e7098", 
+  "assembly": "  100e7098:  PUSH EBP\n  100e7099:  MOV EBP,ESP\n  100e709b:  PUSH EBX\n  100e709c:  PUSH ESI\n  100e709d:  PUSH EDI\n  100e709e:  MOV EDI,dword ptr [EBP + 0x8]\n  100e70a1:  PUSH 0x88\n  100e70a6:  PUSH 0x0\n  100e70a8:  PUSH EDI\n  100e70a9:  CALL 0x100ef9d0\n  100e70ae:  MOV ESI,dword ptr [EBP + 0xc]\n  100e70b1:  ADD ESP,0xc\n  100e70b4:  MOV AL,byte ptr [ESI]\n  100e70b6:  TEST AL,AL\n  100e70b8:  JZ 0x100e70d6\n  100e70ba:  CMP AL,0x2e\n  100e70bc:  JNZ 0x100e70dd\n  100e70be:  CMP byte ptr [ESI + 0x1],0x0\n  100e70c2:  LEA EAX,[ESI + 0x1]\n  100e70c5:  JZ 0x100e70dd\n  100e70c7:  ADD EDI,0x80\n  100e70cd:  PUSH EAX\n  100e70ce:  PUSH EDI\n  100e70cf:  CALL 0x100ebd20\n  100e70d4:  POP ECX\n  100e70d5:  POP ECX\n  100e70d6:  XOR EAX,EAX\n  100e70d8:  JMP 0x100e715f\n  100e70dd:  AND dword ptr [EBP + 0xc],0x0\n  100e70e1:  PUSH 0x101103d0\n  100e70e6:  PUSH ESI\n  100e70e7:  CALL 0x100ef0a0\n  100e70ec:  POP ECX\n  100e70ed:  TEST EAX,EAX\n  100e70ef:  POP ECX\n  100e70f0:  JZ 0x100e715c\n  100e70f2:  CMP dword ptr [EBP + 0xc],0x0\n  100e70f6:  MOV BL,byte ptr [EAX + ESI*0x1]\n  100e70f9:  LEA EDI,[EAX + ESI*0x1]\n  100e70fc:  JNZ 0x100e710f\n  100e70fe:  CMP EAX,0x40\n  100e7101:  JGE 0x100e715c\n  100e7103:  CMP BL,0x2e\n  100e7106:  JZ 0x100e715c\n  100e7108:  PUSH EAX\n  100e7109:  PUSH ESI\n  100e710a:  PUSH dword ptr [EBP + 0x8]\n  100e710d:  JMP 0x100e7143\n  100e710f:  CMP dword ptr [EBP + 0xc],0x1\n  100e7113:  JNZ 0x100e7129\n  100e7115:  CMP EAX,0x40\n  100e7118:  JGE 0x100e715c\n  100e711a:  CMP BL,0x5f\n  100e711d:  JZ 0x100e715c\n  100e711f:  PUSH EAX\n  100e7120:  MOV EAX,dword ptr [EBP + 0x8]\n  100e7123:  PUSH ESI\n  100e7124:  ADD EAX,0x40\n  100e7127:  JMP 0x100e7142\n  100e7129:  CMP dword ptr [EBP + 0xc],0x2\n  100e712d:  JNZ 0x100e715c\n  100e712f:  TEST BL,BL\n  100e7131:  JZ 0x100e7138\n  100e7133:  CMP BL,0x2c\n  100e7136:  JNZ 0x100e715c\n  100e7138:  PUSH EAX\n  100e7139:  MOV EAX,dword ptr [EBP + 0x8]\n  100e713c:  PUSH ESI\n  100e713d:  ADD EAX,0x80\n  100e7142:  PUSH EAX\n  100e7143:  CALL 0x100e56b0\n  100e7148:  ADD ESP,0xc\n  100e714b:  CMP BL,0x2c\n  100e714e:  JZ 0x100e70d6\n  100e7150:  TEST BL,BL\n  100e7152:  JZ 0x100e70d6\n  100e7154:  INC dword ptr [EBP + 0xc]\n  100e7157:  LEA ESI,[EDI + 0x1]\n  100e715a:  JMP 0x100e70e1\n  100e715c:  OR EAX,0xffffffff\n  100e715f:  POP EDI\n  100e7160:  POP ESI\n  100e7161:  POP EBX\n  100e7162:  POP EBP\n  100e7163:  RET", 
+  "callers": [
+    {
+      "address": "0x100e6f5b", 
+      "name": "FUN_100e6f5b"
+    }
+  ]
+}

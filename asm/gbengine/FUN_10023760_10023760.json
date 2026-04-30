@@ -1,0 +1,39 @@
+{
+  "address": "0x10023760", 
+  "size_bytes": 97, 
+  "calling_convention": "unknown", 
+  "signature": "undefined FUN_10023760(void)", 
+  "callees": [
+    {
+      "address": "0x100e4b99", 
+      "name": "FUN_100e4b99"
+    }, 
+    {
+      "address": "0x100e4b99", 
+      "name": "FUN_100e4b99"
+    }, 
+    {
+      "address": "0x1002f7f0", 
+      "name": "Release"
+    }, 
+    {
+      "address": "0x100e4b99", 
+      "name": "FUN_100e4b99"
+    }, 
+    {
+      "address": "0x100e4b99", 
+      "name": "FUN_100e4b99"
+    }, 
+    {
+      "address": "0x10022b40", 
+      "name": "Release"
+    }
+  ], 
+  "global_refs": [], 
+  "has_custom_name": false, 
+  "decompiled_c": "\nvoid FUN_10023760(void)\n\n{\n  gbPrintFont *in_ECX;\n  gbPrintFont *pgVar1;\n  int iVar2;\n  \n  FUN_100e4b99(*(undefined4 *)(in_ECX + 0xa4));\n  FUN_100e4b99(*(undefined4 *)(in_ECX + 0x9c));\n  iVar2 = 0;\n  if (0 < *(int *)(in_ECX + 0x4c)) {\n    pgVar1 = in_ECX + 0x54;\n    do {\n      gbRefObject::Release(*(gbRefObject **)pgVar1);\n      iVar2 = iVar2 + 1;\n      pgVar1 = pgVar1 + 4;\n    } while (iVar2 < *(int *)(in_ECX + 0x4c));\n  }\n  FUN_100e4b99(*(undefined4 *)(in_ECX + 0x50));\n  FUN_100e4b99(*(undefined4 *)(in_ECX + 0x98));\n  gbPrintFont::Release(in_ECX);\n  return;\n}\n\n", 
+  "is_thunk": false, 
+  "name": "FUN_10023760", 
+  "assembly": "  10023760:  PUSH ESI\n  10023761:  MOV ESI,ECX\n  10023763:  PUSH EDI\n  10023764:  MOV EAX,dword ptr [ESI + 0xa4]\n  1002376a:  PUSH EAX\n  1002376b:  CALL 0x100e4b99\n  10023770:  MOV ECX,dword ptr [ESI + 0x9c]\n  10023776:  PUSH ECX\n  10023777:  CALL 0x100e4b99\n  1002377c:  MOV EAX,dword ptr [ESI + 0x4c]\n  1002377f:  ADD ESP,0x8\n  10023782:  XOR EDI,EDI\n  10023784:  TEST EAX,EAX\n  10023786:  JLE 0x1002379f\n  10023788:  PUSH EBX\n  10023789:  LEA EBX,[ESI + 0x54]\n  1002378c:  MOV ECX,dword ptr [EBX]\n  1002378e:  CALL 0x1002f7f0\n  10023793:  MOV EAX,dword ptr [ESI + 0x4c]\n  10023796:  INC EDI\n  10023797:  ADD EBX,0x4\n  1002379a:  CMP EDI,EAX\n  1002379c:  JL 0x1002378c\n  1002379e:  POP EBX\n  1002379f:  MOV EDX,dword ptr [ESI + 0x50]\n  100237a2:  PUSH EDX\n  100237a3:  CALL 0x100e4b99\n  100237a8:  MOV EAX,dword ptr [ESI + 0x98]\n  100237ae:  PUSH EAX\n  100237af:  CALL 0x100e4b99\n  100237b4:  ADD ESP,0x8\n  100237b7:  MOV ECX,ESI\n  100237b9:  CALL 0x10022b40\n  100237be:  POP EDI\n  100237bf:  POP ESI\n  100237c0:  RET", 
+  "callers": []
+}

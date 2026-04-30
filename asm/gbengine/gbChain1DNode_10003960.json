@@ -1,0 +1,25 @@
+{
+  "address": "0x10003960", 
+  "size_bytes": 21, 
+  "calling_convention": "__thiscall", 
+  "signature": "undefined __thiscall gbChain1DNode(gbChain1DNode * this, gbChain1DNode * param_1)", 
+  "callees": [], 
+  "global_refs": [
+    {
+      "address": "0x00000004", 
+      "type": null, 
+      "name": "DAT_00000004"
+    }, 
+    {
+      "address": "0x100f53a8", 
+      "type": "pointer", 
+      "name": "DAT_100f53a8"
+    }
+  ], 
+  "has_custom_name": true, 
+  "decompiled_c": "\n/* public: __thiscall gbChain1DNode::gbChain1DNode(class gbChain1DNode const &) */\n\nvoid __thiscall gbChain1DNode::gbChain1DNode(gbChain1DNode *this,gbChain1DNode *param_1)\n\n{\n  undefined4 uVar1;\n  \n                    /* 0x3960  28  ??0gbChain1DNode@@QAE@ABV0@@Z */\n  uVar1 = *(undefined4 *)(param_1 + 4);\n  *(undefined ***)this = &_vftable_;\n  *(undefined4 *)(this + 4) = uVar1;\n  return;\n}\n\n", 
+  "is_thunk": false, 
+  "name": "gbChain1DNode", 
+  "assembly": "  10003960:  MOV EAX,ECX\n  10003962:  MOV ECX,dword ptr [ESP + 0x4]\n  10003966:  MOV EDX,dword ptr [ECX + 0x4]\n  10003969:  MOV dword ptr [EAX],0x100f53a8\n  1000396f:  MOV dword ptr [EAX + 0x4],EDX\n  10003972:  RET 0x4", 
+  "callers": []
+}

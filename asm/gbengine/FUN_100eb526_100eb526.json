@@ -1,0 +1,35 @@
+{
+  "address": "0x100eb526", 
+  "size_bytes": 74, 
+  "calling_convention": "unknown", 
+  "signature": "undefined FUN_100eb526(undefined4 param_1)", 
+  "callees": [], 
+  "global_refs": [
+    {
+      "address": "0x00000004", 
+      "type": null, 
+      "name": "DAT_00000004"
+    }, 
+    {
+      "address": "0x10166d60", 
+      "type": "undefined4", 
+      "name": "DAT_10166d60"
+    }, 
+    {
+      "address": "0x10166d80", 
+      "type": "undefined4", 
+      "name": "DAT_10166d80"
+    }
+  ], 
+  "has_custom_name": false, 
+  "decompiled_c": "\nint FUN_100eb526(int param_1)\n\n{\n  int iVar1;\n  bool bVar2;\n  \n  if (param_1 == -2) {\n    DAT_10166d60 = 1;\n                    /* WARNING: Could not recover jumptable at 0x100eb540. Too many branches */\n                    /* WARNING: Treating indirect jump as call */\n    iVar1 = GetOEMCP();\n    return iVar1;\n  }\n  if (param_1 == -3) {\n    DAT_10166d60 = 1;\n                    /* WARNING: Could not recover jumptable at 0x100eb555. Too many branches */\n                    /* WARNING: Treating indirect jump as call */\n    iVar1 = GetACP();\n    return iVar1;\n  }\n  bVar2 = param_1 == -4;\n  if (bVar2) {\n    param_1 = DAT_10166d80;\n  }\n  DAT_10166d60 = (uint)bVar2;\n  return param_1;\n}\n\n", 
+  "is_thunk": false, 
+  "name": "FUN_100eb526", 
+  "assembly": "  100eb526:  MOV EAX,dword ptr [ESP + 0x4]\n  100eb52a:  AND dword ptr [0x10166d60],0x0\n  100eb531:  CMP EAX,-0x2\n  100eb534:  JNZ 0x100eb546\n  100eb536:  MOV dword ptr [0x10166d60],0x1\n  100eb540:  JMP dword ptr [0x100f516c]\n  100eb546:  CMP EAX,-0x3\n  100eb549:  JNZ 0x100eb55b\n  100eb54b:  MOV dword ptr [0x10166d60],0x1\n  100eb555:  JMP dword ptr [0x100f5170]\n  100eb55b:  CMP EAX,-0x4\n  100eb55e:  JNZ 0x100eb56f\n  100eb560:  MOV EAX,[0x10166d80]\n  100eb565:  MOV dword ptr [0x10166d60],0x1\n  100eb56f:  RET", 
+  "callers": [
+    {
+      "address": "0x100eb379", 
+      "name": "FUN_100eb379"
+    }
+  ]
+}

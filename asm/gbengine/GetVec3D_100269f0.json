@@ -1,0 +1,25 @@
+{
+  "address": "0x100269f0", 
+  "size_bytes": 32, 
+  "calling_convention": "__thiscall", 
+  "signature": "void __thiscall GetVec3D(gbQuaternion * this, float * param_1, gbVec3D * param_2)", 
+  "callees": [], 
+  "global_refs": [
+    {
+      "address": "0x00000004", 
+      "type": null, 
+      "name": "DAT_00000004"
+    }, 
+    {
+      "address": "0x00000008", 
+      "type": null, 
+      "name": "DAT_00000008"
+    }
+  ], 
+  "has_custom_name": true, 
+  "decompiled_c": "\n/* public: void __thiscall gbQuaternion::GetVec3D(float *,struct gbVec3D *) */\n\nvoid __thiscall gbQuaternion::GetVec3D(gbQuaternion *this,float *param_1,gbVec3D *param_2)\n\n{\n                    /* 0x269f0  565  ?GetVec3D@gbQuaternion@@QAEXPAMPAUgbVec3D@@@Z */\n  *param_1 = *(float *)(this + 0xc);\n  *(undefined4 *)param_2 = *(undefined4 *)this;\n  *(undefined4 *)(param_2 + 4) = *(undefined4 *)(this + 4);\n  *(undefined4 *)(param_2 + 8) = *(undefined4 *)(this + 8);\n  return;\n}\n\n", 
+  "is_thunk": false, 
+  "name": "GetVec3D", 
+  "assembly": "  100269f0:  MOV EDX,dword ptr [ESP + 0x4]\n  100269f4:  MOV EAX,dword ptr [ECX + 0xc]\n  100269f7:  MOV dword ptr [EDX],EAX\n  100269f9:  MOV EAX,dword ptr [ESP + 0x8]\n  100269fd:  MOV EDX,dword ptr [ECX]\n  100269ff:  MOV dword ptr [EAX],EDX\n  10026a01:  MOV EDX,dword ptr [ECX + 0x4]\n  10026a04:  MOV dword ptr [EAX + 0x4],EDX\n  10026a07:  MOV ECX,dword ptr [ECX + 0x8]\n  10026a0a:  MOV dword ptr [EAX + 0x8],ECX\n  10026a0d:  RET 0x8", 
+  "callers": []
+}

@@ -1,0 +1,44 @@
+{
+  "address": "0x10043a69", 
+  "size_bytes": 182, 
+  "calling_convention": "unknown", 
+  "signature": "undefined FUN_10043a69(undefined4 param_1, undefined4 param_2, undefined4 param_3)", 
+  "callees": [
+    {
+      "address": "0x1003c954", 
+      "name": "FUN_1003c954"
+    }, 
+    {
+      "address": "0x1003cbeb", 
+      "name": "FUN_1003cbeb"
+    }
+  ], 
+  "global_refs": [
+    {
+      "address": "0x00000004", 
+      "type": null, 
+      "name": "DAT_00000004"
+    }, 
+    {
+      "address": "0x00000008", 
+      "type": null, 
+      "name": "DAT_00000008"
+    }, 
+    {
+      "address": "0x0000000c", 
+      "type": null, 
+      "name": "DAT_0000000c"
+    }, 
+    {
+      "address": "0x100f6f48", 
+      "type": null, 
+      "name": "DAT_100f6f48"
+    }
+  ], 
+  "has_custom_name": false, 
+  "decompiled_c": "\nvoid FUN_10043a69(int param_1,int param_2,float *param_3)\n\n{\n  ushort *puVar1;\n  ushort *puVar2;\n  int in_ECX;\n  int extraout_ECX;\n  \n  puVar2 = (ushort *)\n           (*(int *)(in_ECX + 0x60) * param_1 + *(int *)(in_ECX + 100) * param_2 +\n           *(int *)(in_ECX + 0x20));\n  puVar1 = puVar2 + *(int *)(in_ECX + 0x68);\n  for (; puVar2 < puVar1; puVar2 = puVar2 + 1) {\n    *param_3 = (float)((*puVar2 & 0x7c00) >> 10) * 0.032258064;\n    param_3[1] = (float)((*puVar2 & 0x3e0) >> 5) * 0.032258064;\n    param_3[2] = (float)(*(byte *)puVar2 & 0x1f) * 0.032258064;\n    param_3[3] = (float)(*puVar2 >> 0xf);\n    param_3 = param_3 + 4;\n  }\n  if (*(int *)(in_ECX + 0x18) != 0) {\n    FUN_1003c954(param_3 + *(int *)(in_ECX + 0x68) * -4);\n    in_ECX = extraout_ECX;\n  }\n  if (*(int *)(in_ECX + 0x10) != 0) {\n    FUN_1003cbeb(param_3 + *(int *)(in_ECX + 0x68) * -4);\n  }\n  return;\n}\n\n", 
+  "is_thunk": false, 
+  "name": "FUN_10043a69", 
+  "assembly": "  10043a69:  PUSH EBP\n  10043a6a:  MOV EBP,ESP\n  10043a6c:  MOV EAX,dword ptr [ECX + 0x60]\n  10043a6f:  IMUL EAX,dword ptr [EBP + 0x8]\n  10043a73:  MOV EDX,dword ptr [ECX + 0x64]\n  10043a76:  IMUL EDX,dword ptr [EBP + 0xc]\n  10043a7a:  ADD EAX,EDX\n  10043a7c:  ADD EAX,dword ptr [ECX + 0x20]\n  10043a7f:  MOV EDX,dword ptr [ECX + 0x68]\n  10043a82:  PUSH ESI\n  10043a83:  MOV ESI,dword ptr [EBP + 0x10]\n  10043a86:  PUSH EDI\n  10043a87:  LEA EDI,[EAX + EDX*0x2]\n  10043a8a:  CMP EAX,EDI\n  10043a8c:  JNC 0x10043aef\n  10043a8e:  FLD dword ptr [0x100f6f48]\n  10043a94:  XOR EDX,EDX\n  10043a96:  MOV DX,word ptr [EAX]\n  10043a99:  SHR EDX,0xa\n  10043a9c:  AND EDX,0x1f\n  10043a9f:  MOV dword ptr [EBP + 0x10],EDX\n  10043aa2:  FILD dword ptr [EBP + 0x10]\n  10043aa5:  XOR EDX,EDX\n  10043aa7:  FMUL ST1\n  10043aa9:  FSTP dword ptr [ESI]\n  10043aab:  MOV DX,word ptr [EAX]\n  10043aae:  ADD ESI,0x10\n  10043ab1:  SHR EDX,0x5\n  10043ab4:  AND EDX,0x1f\n  10043ab7:  MOV dword ptr [EBP + 0x10],EDX\n  10043aba:  FILD dword ptr [EBP + 0x10]\n  10043abd:  XOR EDX,EDX\n  10043abf:  FMUL ST1\n  10043ac1:  FSTP dword ptr [ESI + -0xc]\n  10043ac4:  MOV DL,byte ptr [EAX]\n  10043ac6:  AND EDX,0x1f\n  10043ac9:  MOV dword ptr [EBP + 0x10],EDX\n  10043acc:  FILD dword ptr [EBP + 0x10]\n  10043acf:  FMUL ST1\n  10043ad1:  FSTP dword ptr [ESI + -0x8]\n  10043ad4:  MOV DX,word ptr [EAX]\n  10043ad7:  SHR DX,0xf\n  10043adb:  MOVZX EDX,DX\n  10043ade:  MOV dword ptr [EBP + 0x10],EDX\n  10043ae1:  INC EAX\n  10043ae2:  INC EAX\n  10043ae3:  CMP EAX,EDI\n  10043ae5:  FILD dword ptr [EBP + 0x10]\n  10043ae8:  FSTP dword ptr [ESI + -0x4]\n  10043aeb:  JC 0x10043a94\n  10043aed:  FSTP ST0\n  10043aef:  CMP dword ptr [ECX + 0x18],0x0\n  10043af3:  JZ 0x10043b05\n  10043af5:  MOV EAX,dword ptr [ECX + 0x68]\n  10043af8:  SHL EAX,0x4\n  10043afb:  MOV EDX,ESI\n  10043afd:  SUB EDX,EAX\n  10043aff:  PUSH EDX\n  10043b00:  CALL 0x1003c954\n  10043b05:  CMP dword ptr [ECX + 0x10],0x0\n  10043b09:  JZ 0x10043b19\n  10043b0b:  MOV EAX,dword ptr [ECX + 0x68]\n  10043b0e:  SHL EAX,0x4\n  10043b11:  SUB ESI,EAX\n  10043b13:  PUSH ESI\n  10043b14:  CALL 0x1003cbeb\n  10043b19:  POP EDI\n  10043b1a:  POP ESI\n  10043b1b:  POP EBP\n  10043b1c:  RET 0xc", 
+  "callers": []
+}

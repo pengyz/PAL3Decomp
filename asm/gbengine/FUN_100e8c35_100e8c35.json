@@ -1,0 +1,75 @@
+{
+  "address": "0x100e8c35", 
+  "size_bytes": 117, 
+  "calling_convention": "unknown", 
+  "signature": "undefined FUN_100e8c35(void)", 
+  "callees": [
+    {
+      "address": "0x00000022", 
+      "name": "VirtualFree"
+    }, 
+    {
+      "address": "0x00000022", 
+      "name": "VirtualFree"
+    }, 
+    {
+      "address": "0x00000020", 
+      "name": "HeapFree"
+    }, 
+    {
+      "address": "0x00000020", 
+      "name": "HeapFree"
+    }, 
+    {
+      "address": "0x0000000b", 
+      "name": "HeapDestroy"
+    }
+  ], 
+  "global_refs": [
+    {
+      "address": "0x10168758", 
+      "type": "undefined4", 
+      "name": "DAT_10168758"
+    }, 
+    {
+      "address": "0x100f50ac", 
+      "type": "pointer", 
+      "name": "DAT_100f50ac"
+    }, 
+    {
+      "address": "0x1016875c", 
+      "type": "undefined4", 
+      "name": "DAT_1016875c"
+    }, 
+    {
+      "address": "0x100f50b4", 
+      "type": "pointer", 
+      "name": "DAT_100f50b4"
+    }, 
+    {
+      "address": "0x10168760", 
+      "type": "undefined4", 
+      "name": "DAT_10168760"
+    }, 
+    {
+      "address": "0x100f5058", 
+      "type": "pointer", 
+      "name": "DAT_100f5058"
+    }
+  ], 
+  "has_custom_name": false, 
+  "decompiled_c": "\nvoid FUN_100e8c35(void)\n\n{\n  int iVar1;\n  undefined4 *puVar2;\n  \n  iVar1 = 0;\n  if (0 < DAT_10168758) {\n    puVar2 = (undefined4 *)((int)DAT_1016875c + 0xc);\n    do {\n      VirtualFree((LPVOID)*puVar2,0x100000,0x4000);\n      VirtualFree((LPVOID)*puVar2,0,0x8000);\n      HeapFree(DAT_10168760,0,(LPVOID)puVar2[1]);\n      puVar2 = puVar2 + 5;\n      iVar1 = iVar1 + 1;\n    } while (iVar1 < DAT_10168758);\n  }\n  HeapFree(DAT_10168760,0,DAT_1016875c);\n  HeapDestroy(DAT_10168760);\n  return;\n}\n\n", 
+  "is_thunk": false, 
+  "name": "FUN_100e8c35", 
+  "assembly": "  100e8c35:  PUSH EBX\n  100e8c36:  XOR EBX,EBX\n  100e8c38:  CMP dword ptr [0x10168758],EBX\n  100e8c3e:  PUSH EBP\n  100e8c3f:  MOV EBP,dword ptr [0x100f50ac]\n  100e8c45:  JLE 0x100e8c8b\n  100e8c47:  MOV EAX,[0x1016875c]\n  100e8c4c:  PUSH ESI\n  100e8c4d:  PUSH EDI\n  100e8c4e:  MOV EDI,dword ptr [0x100f50b4]\n  100e8c54:  LEA ESI,[EAX + 0xc]\n  100e8c57:  PUSH 0x4000\n  100e8c5c:  PUSH 0x100000\n  100e8c61:  PUSH dword ptr [ESI]\n  100e8c63:  CALL EDI\n  100e8c65:  PUSH 0x8000\n  100e8c6a:  PUSH 0x0\n  100e8c6c:  PUSH dword ptr [ESI]\n  100e8c6e:  CALL EDI\n  100e8c70:  PUSH dword ptr [ESI + 0x4]\n  100e8c73:  PUSH 0x0\n  100e8c75:  PUSH dword ptr [0x10168760]\n  100e8c7b:  CALL EBP\n  100e8c7d:  ADD ESI,0x14\n  100e8c80:  INC EBX\n  100e8c81:  CMP EBX,dword ptr [0x10168758]\n  100e8c87:  JL 0x100e8c57\n  100e8c89:  POP EDI\n  100e8c8a:  POP ESI\n  100e8c8b:  PUSH dword ptr [0x1016875c]\n  100e8c91:  PUSH 0x0\n  100e8c93:  PUSH dword ptr [0x10168760]\n  100e8c99:  CALL EBP\n  100e8c9b:  PUSH dword ptr [0x10168760]\n  100e8ca1:  CALL dword ptr [0x100f5058]\n  100e8ca7:  POP EBP\n  100e8ca8:  POP EBX\n  100e8ca9:  RET", 
+  "callers": [
+    {
+      "address": "0x100e63ff", 
+      "name": "FUN_100e63ff"
+    }, 
+    {
+      "address": "0x100e63ff", 
+      "name": "FUN_100e63ff"
+    }
+  ]
+}

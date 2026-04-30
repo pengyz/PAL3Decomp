@@ -1,0 +1,20 @@
+{
+  "address": "0x1006794d", 
+  "size_bytes": 31, 
+  "calling_convention": "unknown", 
+  "signature": "undefined FUN_1006794d(undefined4 param_1)", 
+  "callees": [], 
+  "global_refs": [
+    {
+      "address": "0x00000004", 
+      "type": null, 
+      "name": "DAT_00000004"
+    }
+  ], 
+  "has_custom_name": false, 
+  "decompiled_c": "\nundefined4 FUN_1006794d(undefined4 *param_1)\n\n{\n  int *piVar1;\n  int in_ECX;\n  \n  piVar1 = *(int **)(in_ECX + 0xc);\n  if (piVar1 != (int *)0x0) {\n    (**(code **)(*piVar1 + 4))(piVar1);\n  }\n  *param_1 = *(undefined4 *)(in_ECX + 0xc);\n  return 0;\n}\n\n", 
+  "is_thunk": false, 
+  "name": "FUN_1006794d", 
+  "assembly": "  1006794d:  PUSH ESI\n  1006794e:  MOV ESI,ECX\n  10067950:  MOV EAX,dword ptr [ESI + 0xc]\n  10067953:  TEST EAX,EAX\n  10067955:  JZ 0x1006795d\n  10067957:  MOV ECX,dword ptr [EAX]\n  10067959:  PUSH EAX\n  1006795a:  CALL dword ptr [ECX + 0x4]\n  1006795d:  MOV EAX,dword ptr [ESI + 0xc]\n  10067960:  MOV ECX,dword ptr [ESP + 0x8]\n  10067964:  MOV dword ptr [ECX],EAX\n  10067966:  XOR EAX,EAX\n  10067968:  POP ESI\n  10067969:  RET 0x4", 
+  "callers": []
+}

@@ -1,0 +1,44 @@
+{
+  "address": "0x100ef7ca", 
+  "size_bytes": 31, 
+  "calling_convention": "unknown", 
+  "signature": "undefined FUN_100ef7ca(undefined2 param_1)", 
+  "callees": [], 
+  "global_refs": [
+    {
+      "address": "0x1012af34", 
+      "type": "undefined2", 
+      "name": "DAT_1012af34"
+    }, 
+    {
+      "address": "0x00000004", 
+      "type": null, 
+      "name": "DAT_00000004"
+    }, 
+    {
+      "address": "0x1012af36", 
+      "type": "undefined2", 
+      "name": "DAT_1012af36"
+    }, 
+    {
+      "address": "0x1012af48", 
+      "type": "pointer", 
+      "name": "DAT_1012af48"
+    }
+  ], 
+  "has_custom_name": false, 
+  "decompiled_c": "\nundefined4 FUN_100ef7ca(short param_1)\n\n{\n  short *psVar1;\n  \n  psVar1 = &DAT_1012af34;\n  do {\n    if (param_1 == *psVar1) {\n      return 0;\n    }\n    psVar1 = psVar1 + 1;\n  } while ((int)psVar1 < 0x1012af48);\n  return 1;\n}\n\n", 
+  "is_thunk": false, 
+  "name": "FUN_100ef7ca", 
+  "assembly": "  100ef7ca:  MOV EAX,0x1012af34\n  100ef7cf:  MOV CX,word ptr [ESP + 0x4]\n  100ef7d4:  CMP CX,word ptr [EAX]\n  100ef7d7:  JZ 0x100ef7e6\n  100ef7d9:  INC EAX\n  100ef7da:  INC EAX\n  100ef7db:  CMP EAX,0x1012af48\n  100ef7e0:  JL 0x100ef7cf\n  100ef7e2:  PUSH 0x1\n  100ef7e4:  POP EAX\n  100ef7e5:  RET\n  100ef7e6:  XOR EAX,EAX\n  100ef7e8:  RET", 
+  "callers": [
+    {
+      "address": "0x100ef376", 
+      "name": "FUN_100ef376"
+    }, 
+    {
+      "address": "0x100ef6c4", 
+      "name": "FUN_100ef6c4"
+    }
+  ]
+}

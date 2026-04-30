@@ -1,0 +1,58 @@
+{
+  "address": "0x10020760", 
+  "size_bytes": 102, 
+  "calling_convention": "__thiscall", 
+  "signature": "void __thiscall CreateTexture(gbTexture * this, int param_1, int param_2, gbPixelFmtType param_3, int param_4)", 
+  "callees": [
+    {
+      "address": "0x1001f820", 
+      "name": "Init"
+    }, 
+    {
+      "address": "0x100e4b0d", 
+      "name": "_malloc"
+    }, 
+    {
+      "address": "0x100e4b99", 
+      "name": "FUN_100e4b99"
+    }
+  ], 
+  "global_refs": [
+    {
+      "address": "0x-000002c", 
+      "type": null, 
+      "name": "DAT_-000002c"
+    }, 
+    {
+      "address": "0x-0000028", 
+      "type": null, 
+      "name": "DAT_-0000028"
+    }, 
+    {
+      "address": "0x00000004", 
+      "type": null, 
+      "name": "DAT_00000004"
+    }, 
+    {
+      "address": "0x00000008", 
+      "type": null, 
+      "name": "DAT_00000008"
+    }, 
+    {
+      "address": "0x00000010", 
+      "type": null, 
+      "name": "DAT_00000010"
+    }, 
+    {
+      "address": "0x0000000c", 
+      "type": null, 
+      "name": "DAT_0000000c"
+    }
+  ], 
+  "has_custom_name": true, 
+  "decompiled_c": "\n/* public: void __thiscall gbTexture::CreateTexture(int,int,enum gbPixelFmtType,int) */\n\nvoid __thiscall\ngbTexture::CreateTexture(gbTexture *this,int param_1,int param_2,gbPixelFmtType param_3,int param_4)\n\n{\n  int iVar1;\n  void *pvVar2;\n  undefined4 local_2c;\n  int local_28;\n  \n                    /* 0x20760  359  ?CreateTexture@gbTexture@@QAEXHHW4gbPixelFmtType@@H@Z */\n  gbPixelFormat::Init((gbPixelFormat *)&local_2c,1);\n  iVar1 = local_28 * param_1 * param_2;\n  pvVar2 = _malloc((int)(iVar1 + (iVar1 >> 0x1f & 7U)) >> 3);\n  (**(code **)(*(int *)this + 4))(param_1,param_2,param_3,param_4,local_2c,pvVar2);\n  FUN_100e4b99(pvVar2);\n  return;\n}\n\n", 
+  "is_thunk": false, 
+  "name": "CreateTexture", 
+  "assembly": "  10020760:  SUB ESP,0x2c\n  10020763:  PUSH EBX\n  10020764:  PUSH EBP\n  10020765:  PUSH ESI\n  10020766:  MOV ESI,ECX\n  10020768:  PUSH EDI\n  10020769:  PUSH 0x1\n  1002076b:  LEA ECX,[ESP + 0x14]\n  1002076f:  CALL 0x1001f820\n  10020774:  MOV EAX,dword ptr [ESP + 0x14]\n  10020778:  MOV EBX,dword ptr [ESP + 0x40]\n  1002077c:  IMUL EAX,EBX\n  1002077f:  MOV EBP,dword ptr [ESP + 0x44]\n  10020783:  IMUL EAX,EBP\n  10020786:  CDQ\n  10020787:  AND EDX,0x7\n  1002078a:  ADD EAX,EDX\n  1002078c:  SAR EAX,0x3\n  1002078f:  PUSH EAX\n  10020790:  CALL 0x100e4b0d\n  10020795:  MOV ECX,dword ptr [ESP + 0x14]\n  10020799:  MOV EDX,dword ptr [ESP + 0x50]\n  1002079d:  ADD ESP,0x4\n  100207a0:  MOV EDI,EAX\n  100207a2:  MOV EAX,dword ptr [ESI]\n  100207a4:  PUSH EDI\n  100207a5:  PUSH ECX\n  100207a6:  MOV ECX,dword ptr [ESP + 0x50]\n  100207aa:  PUSH EDX\n  100207ab:  PUSH ECX\n  100207ac:  PUSH EBP\n  100207ad:  PUSH EBX\n  100207ae:  MOV ECX,ESI\n  100207b0:  CALL dword ptr [EAX + 0x4]\n  100207b3:  PUSH EDI\n  100207b4:  CALL 0x100e4b99\n  100207b9:  ADD ESP,0x4\n  100207bc:  POP EDI\n  100207bd:  POP ESI\n  100207be:  POP EBP\n  100207bf:  POP EBX\n  100207c0:  ADD ESP,0x2c\n  100207c3:  RET 0x10", 
+  "callers": []
+}

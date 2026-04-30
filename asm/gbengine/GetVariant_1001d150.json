@@ -1,0 +1,25 @@
+{
+  "address": "0x1001d150", 
+  "size_bytes": 30, 
+  "calling_convention": "__thiscall", 
+  "signature": "void __thiscall GetVariant(gbRenderEffect * this, GBPARAMHANDLE param_1, void * param_2)", 
+  "callees": [], 
+  "global_refs": [
+    {
+      "address": "0x00000008", 
+      "type": null, 
+      "name": "DAT_00000008"
+    }, 
+    {
+      "address": "0x00000004", 
+      "type": null, 
+      "name": "DAT_00000004"
+    }
+  ], 
+  "has_custom_name": true, 
+  "decompiled_c": "\n/* public: void __thiscall gbRenderEffect::GetVariant(enum GBPARAMHANDLE,void *) */\n\nvoid __thiscall gbRenderEffect::GetVariant(gbRenderEffect *this,GBPARAMHANDLE param_1,void *param_2)\n\n{\n                    /* 0x1d150  564  ?GetVariant@gbRenderEffect@@QAEXW4GBPARAMHANDLE@@PAX@Z */\n  (**(code **)(**(int **)(this + 0x18) + 0x54))\n            (*(int **)(this + 0x18),*(undefined4 *)(this + param_1 * 4 + 0x24),param_2,0xffffffff);\n  return;\n}\n\n", 
+  "is_thunk": false, 
+  "name": "GetVariant", 
+  "assembly": "  1001d150:  MOV EAX,dword ptr [ECX + 0x18]\n  1001d153:  PUSH ESI\n  1001d154:  MOV ESI,dword ptr [ESP + 0xc]\n  1001d158:  PUSH -0x1\n  1001d15a:  MOV EDX,dword ptr [EAX]\n  1001d15c:  PUSH ESI\n  1001d15d:  MOV ESI,dword ptr [ESP + 0x10]\n  1001d161:  MOV ECX,dword ptr [ECX + ESI*0x4 + 0x24]\n  1001d165:  PUSH ECX\n  1001d166:  PUSH EAX\n  1001d167:  CALL dword ptr [EDX + 0x54]\n  1001d16a:  POP ESI\n  1001d16b:  RET 0x8", 
+  "callers": []
+}

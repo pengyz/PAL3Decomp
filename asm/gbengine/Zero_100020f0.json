@@ -1,0 +1,14 @@
+{
+  "address": "0x100020f0", 
+  "size_bytes": 11, 
+  "calling_convention": "__thiscall", 
+  "signature": "void __thiscall Zero(gbVec3D * this)", 
+  "callees": [], 
+  "global_refs": [], 
+  "has_custom_name": true, 
+  "decompiled_c": "\n/* public: void __thiscall gbVec3D::Zero(void) */\n\nvoid __thiscall gbVec3D::Zero(gbVec3D *this)\n\n{\n                    /* 0x20f0  967  ?Zero@gbVec3D@@QAEXXZ */\n  *(undefined4 *)(this + 8) = 0;\n  *(undefined4 *)(this + 4) = 0;\n  *(undefined4 *)this = 0;\n  return;\n}\n\n", 
+  "is_thunk": false, 
+  "name": "Zero", 
+  "assembly": "  100020f0:  XOR EAX,EAX\n  100020f2:  MOV dword ptr [ECX + 0x8],EAX\n  100020f5:  MOV dword ptr [ECX + 0x4],EAX\n  100020f8:  MOV dword ptr [ECX],EAX\n  100020fa:  RET", 
+  "callers": []
+}

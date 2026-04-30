@@ -1,0 +1,53 @@
+{
+  "address": "0x100e84b0", 
+  "size_bytes": 76, 
+  "calling_convention": "unknown", 
+  "signature": "undefined __CallSettingFrame@12(undefined4 param_1, undefined4 param_2, undefined4 param_3)", 
+  "callees": [
+    {
+      "address": "0x100e49f5", 
+      "name": "__NLG_Notify1"
+    }, 
+    {
+      "address": "0x100e49f5", 
+      "name": "__NLG_Notify1"
+    }
+  ], 
+  "global_refs": [
+    {
+      "address": "0x00000008", 
+      "type": null, 
+      "name": "DAT_00000008"
+    }, 
+    {
+      "address": "0x-0000008", 
+      "type": null, 
+      "name": "DAT_-0000008"
+    }, 
+    {
+      "address": "0x00000004", 
+      "type": null, 
+      "name": "DAT_00000004"
+    }, 
+    {
+      "address": "0x0000000c", 
+      "type": null, 
+      "name": "DAT_0000000c"
+    }
+  ], 
+  "has_custom_name": true, 
+  "decompiled_c": "\n/* WARNING: Restarted to delay deadcode elimination for space: stack */\n/* Library Function - Single Match\n    __CallSettingFrame@12\n   \n   Libraries: Visual Studio 2017 Debug, Visual Studio 2017 Release, Visual Studio 2019 Debug, Visual\n   Studio 2019 Release */\n\nvoid __CallSettingFrame_12(undefined4 param_1,undefined4 param_2,int param_3)\n\n{\n  code *pcVar1;\n  \n  pcVar1 = (code *)__NLG_Notify1(param_3);\n  (*pcVar1)();\n  if (param_3 == 0x100) {\n    param_3 = 2;\n  }\n  __NLG_Notify1(param_3);\n  return;\n}\n\n", 
+  "is_thunk": false, 
+  "name": "__CallSettingFrame@12", 
+  "assembly": "  100e84b0:  PUSH EBP\n  100e84b1:  MOV EBP,ESP\n  100e84b3:  SUB ESP,0x4\n  100e84b6:  PUSH EBX\n  100e84b7:  PUSH ECX\n  100e84b8:  MOV EAX,dword ptr [EBP + 0xc]\n  100e84bb:  ADD EAX,0xc\n  100e84be:  MOV dword ptr [EBP + -0x4],EAX\n  100e84c1:  MOV EAX,dword ptr [EBP + 0x8]\n  100e84c4:  PUSH EBP\n  100e84c5:  PUSH dword ptr [EBP + 0x10]\n  100e84c8:  MOV ECX,dword ptr [EBP + 0x10]\n  100e84cb:  MOV EBP,dword ptr [EBP + -0x4]\n  100e84ce:  CALL 0x100e49f5\n  100e84d3:  PUSH ESI\n  100e84d4:  PUSH EDI\n  100e84d5:  CALL EAX\n  100e84d7:  POP EDI\n  100e84d8:  POP ESI\n  100e84d9:  MOV EBX,EBP\n  100e84db:  POP EBP\n  100e84dc:  MOV ECX,dword ptr [EBP + 0x10]\n  100e84df:  PUSH EBP\n  100e84e0:  MOV EBP,EBX\n  100e84e2:  CMP ECX,0x100\n  100e84e8:  JNZ 0x100e84ef\n  100e84ea:  MOV ECX,0x2\n  100e84ef:  PUSH ECX\n  100e84f0:  CALL 0x100e49f5\n  100e84f5:  POP EBP\n  100e84f6:  POP ECX\n  100e84f7:  POP EBX\n  100e84f8:  LEAVE\n  100e84f9:  RET 0xc", 
+  "callers": [
+    {
+      "address": "0x100e7fe6", 
+      "name": "FUN_100e7fe6"
+    }, 
+    {
+      "address": "0x100e46b7", 
+      "name": "FUN_100e46b7"
+    }
+  ]
+}

@@ -1,0 +1,34 @@
+{
+  "address": "0x100af616", 
+  "size_bytes": 82, 
+  "calling_convention": "unknown", 
+  "signature": "undefined FUN_100af616(undefined4 param_1)", 
+  "callees": [
+    {
+      "address": "0x100af616", 
+      "name": "FUN_100af616"
+    }
+  ], 
+  "global_refs": [
+    {
+      "address": "0x00000004", 
+      "type": null, 
+      "name": "DAT_00000004"
+    }
+  ], 
+  "has_custom_name": false, 
+  "decompiled_c": "\nundefined4 FUN_100af616(uint param_1)\n\n{\n  uint uVar1;\n  int iVar2;\n  undefined4 uVar3;\n  int iVar4;\n  int in_ECX;\n  int *piVar5;\n  \n  iVar4 = param_1;\n  if (*(int *)(param_1 + 0x28) == 1) {\n    param_1 = 0;\n    uVar1 = *(uint *)(iVar4 + 0x14);\n    if (uVar1 != 0) {\n      iVar2 = *(int *)(in_ECX + 0x18);\n      piVar5 = *(int **)(iVar4 + 0x18);\n      do {\n        iVar4 = FUN_100af616(*(undefined4 *)(iVar2 + *piVar5 * 4));\n        if (iVar4 != 0) {\n          return 1;\n        }\n        param_1 = param_1 + 1;\n        piVar5 = piVar5 + 1;\n      } while (param_1 < uVar1);\n    }\n    uVar3 = 0;\n  }\n  else {\n    uVar3 = 1;\n  }\n  return uVar3;\n}\n\n", 
+  "is_thunk": false, 
+  "name": "FUN_100af616", 
+  "assembly": "  100af616:  MOV EAX,dword ptr [ESP + 0x4]\n  100af61a:  CMP dword ptr [EAX + 0x28],0x1\n  100af61e:  PUSH EBP\n  100af61f:  MOV EBP,ECX\n  100af621:  JZ 0x100af628\n  100af623:  XOR EAX,EAX\n  100af625:  INC EAX\n  100af626:  JMP 0x100af65f\n  100af628:  AND dword ptr [ESP + 0x8],0x0\n  100af62d:  PUSH EBX\n  100af62e:  MOV EBX,dword ptr [EAX + 0x14]\n  100af631:  TEST EBX,EBX\n  100af633:  PUSH ESI\n  100af634:  PUSH EDI\n  100af635:  JBE 0x100af65a\n  100af637:  MOV EDI,dword ptr [EBP + 0x18]\n  100af63a:  MOV ESI,dword ptr [EAX + 0x18]\n  100af63d:  MOV EAX,dword ptr [ESI]\n  100af63f:  PUSH dword ptr [EDI + EAX*0x4]\n  100af642:  MOV ECX,EBP\n  100af644:  CALL 0x100af616\n  100af649:  TEST EAX,EAX\n  100af64b:  JNZ 0x100af663\n  100af64d:  INC dword ptr [ESP + 0x14]\n  100af651:  ADD ESI,0x4\n  100af654:  CMP dword ptr [ESP + 0x14],EBX\n  100af658:  JC 0x100af63d\n  100af65a:  XOR EAX,EAX\n  100af65c:  POP EDI\n  100af65d:  POP ESI\n  100af65e:  POP EBX\n  100af65f:  POP EBP\n  100af660:  RET 0x4\n  100af663:  XOR EAX,EAX\n  100af665:  INC EAX\n  100af666:  JMP 0x100af65c", 
+  "callers": [
+    {
+      "address": "0x100b40c3", 
+      "name": "FUN_100b40c3"
+    }, 
+    {
+      "address": "0x100af616", 
+      "name": "FUN_100af616"
+    }
+  ]
+}

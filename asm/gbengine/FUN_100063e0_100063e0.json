@@ -1,0 +1,55 @@
+{
+  "address": "0x100063e0", 
+  "size_bytes": 254, 
+  "calling_convention": "unknown", 
+  "signature": "undefined FUN_100063e0(undefined4 param_1, undefined4 param_2, undefined4 param_3, undefined4 param_4)", 
+  "callees": [], 
+  "global_refs": [
+    {
+      "address": "0x00000004", 
+      "type": null, 
+      "name": "DAT_00000004"
+    }, 
+    {
+      "address": "0x00000008", 
+      "type": null, 
+      "name": "DAT_00000008"
+    }, 
+    {
+      "address": "0x00000010", 
+      "type": null, 
+      "name": "DAT_00000010"
+    }, 
+    {
+      "address": "0x0000000c", 
+      "type": null, 
+      "name": "DAT_0000000c"
+    }, 
+    {
+      "address": "0x100f546c", 
+      "type": null, 
+      "name": "DAT_100f546c"
+    }, 
+    {
+      "address": "0x100f5460", 
+      "type": null, 
+      "name": "DAT_100f5460"
+    }, 
+    {
+      "address": "0x100f5468", 
+      "type": null, 
+      "name": "DAT_100f5468"
+    }
+  ], 
+  "has_custom_name": false, 
+  "decompiled_c": "\nvoid FUN_100063e0(undefined4 *param_1,undefined4 *param_2,int param_3,int param_4)\n\n{\n  ushort uVar1;\n  float10 fVar2;\n  float10 fVar3;\n  float10 fVar4;\n  float10 fVar5;\n  \n  *param_1 = *param_2;\n  param_1[1] = param_2[1];\n  param_1[2] = param_2[2];\n  uVar1 = *(ushort *)(param_3 + 0xc + param_4 * 2);\n  fVar2 = (float10)((int)(char)(uVar1 >> 8) << 1) * (float10)3.1415927 * (float10)0.003921569;\n  fVar3 = (float10)(uVar1 & 0xff) * (float10)0.012319972;\n  fVar4 = (float10)fsin(fVar3);\n  fVar5 = (float10)fcos(fVar2);\n  param_1[3] = (float)(fVar5 * fVar4);\n  fVar2 = (float10)fsin(fVar2);\n  param_1[4] = (float)(fVar2 * fVar4);\n  fVar2 = (float10)fcos((float10)(float)fVar3);\n  param_1[5] = (float)fVar2;\n  param_1[6] = (float)*(byte *)(param_2 + 5) * 0.003921569;\n  param_1[7] = (float)*(byte *)((int)param_2 + 0x15) * 0.003921569;\n  param_1[8] = (float)*(byte *)((int)param_2 + 0x16) * 0.003921569;\n  param_1[9] = (float)*(byte *)((int)param_2 + 0x17) * 0.003921569;\n  *(undefined *)(param_1 + 10) = *(undefined *)(param_2 + 3);\n  *(undefined *)((int)param_1 + 0x29) = *(undefined *)((int)param_2 + 0xd);\n  *(undefined *)((int)param_1 + 0x2a) = *(undefined *)((int)param_2 + 0xe);\n  *(undefined *)((int)param_1 + 0x2b) = *(undefined *)((int)param_2 + 0xf);\n  param_1[0xb] = *(undefined4 *)(param_3 + 0x14 + param_4 * 8);\n  param_1[0xc] = *(undefined4 *)(param_3 + 0x2c + param_4 * 8);\n  return;\n}\n\n", 
+  "is_thunk": false, 
+  "name": "FUN_100063e0", 
+  "assembly": "  100063e0:  MOV EAX,dword ptr [ESP + 0x4]\n  100063e4:  PUSH EBP\n  100063e5:  PUSH ESI\n  100063e6:  MOV ESI,dword ptr [ESP + 0x10]\n  100063ea:  MOV EBP,dword ptr [ESP + 0x18]\n  100063ee:  PUSH EDI\n  100063ef:  MOV ECX,dword ptr [ESI]\n  100063f1:  MOV EDI,dword ptr [ESP + 0x18]\n  100063f5:  MOV dword ptr [EAX],ECX\n  100063f7:  MOV EDX,dword ptr [ESI + 0x4]\n  100063fa:  MOV dword ptr [EAX + 0x4],EDX\n  100063fd:  MOV ECX,dword ptr [ESI + 0x8]\n  10006400:  MOV dword ptr [EAX + 0x8],ECX\n  10006403:  MOV CX,word ptr [EDI + EBP*0x2 + 0xc]\n  10006408:  XOR EDX,EDX\n  1000640a:  MOV DL,CH\n  1000640c:  AND ECX,0xff\n  10006412:  MOVSX EDX,DL\n  10006415:  SHL EDX,0x1\n  10006417:  MOV dword ptr [ESP + 0x14],EDX\n  1000641b:  XOR EDX,EDX\n  1000641d:  FILD dword ptr [ESP + 0x14]\n  10006421:  MOV dword ptr [ESP + 0x14],ECX\n  10006425:  XOR ECX,ECX\n  10006427:  FMUL dword ptr [0x100f546c]\n  1000642d:  FMUL dword ptr [0x100f5460]\n  10006433:  FILD dword ptr [ESP + 0x14]\n  10006437:  FMUL dword ptr [0x100f5468]\n  1000643d:  FST dword ptr [ESP + 0x14]\n  10006441:  FSIN\n  10006443:  FLD ST1\n  10006445:  FCOS\n  10006447:  FMUL ST1\n  10006449:  FSTP dword ptr [EAX + 0xc]\n  1000644c:  FXCH\n  1000644e:  FSIN\n  10006450:  FMUL ST1\n  10006452:  FSTP dword ptr [EAX + 0x10]\n  10006455:  FSTP ST0\n  10006457:  FLD dword ptr [ESP + 0x14]\n  1000645b:  FCOS\n  1000645d:  FSTP dword ptr [EAX + 0x14]\n  10006460:  MOV CL,byte ptr [ESI + 0x14]\n  10006463:  MOV dword ptr [ESP + 0x14],ECX\n  10006467:  XOR ECX,ECX\n  10006469:  FILD dword ptr [ESP + 0x14]\n  1000646d:  FMUL dword ptr [0x100f5460]\n  10006473:  FSTP dword ptr [EAX + 0x18]\n  10006476:  MOV DL,byte ptr [ESI + 0x15]\n  10006479:  MOV dword ptr [ESP + 0x14],EDX\n  1000647d:  XOR EDX,EDX\n  1000647f:  FILD dword ptr [ESP + 0x14]\n  10006483:  FMUL dword ptr [0x100f5460]\n  10006489:  FSTP dword ptr [EAX + 0x1c]\n  1000648c:  MOV CL,byte ptr [ESI + 0x16]\n  1000648f:  MOV dword ptr [ESP + 0x14],ECX\n  10006493:  FILD dword ptr [ESP + 0x14]\n  10006497:  FMUL dword ptr [0x100f5460]\n  1000649d:  FSTP dword ptr [EAX + 0x20]\n  100064a0:  MOV DL,byte ptr [ESI + 0x17]\n  100064a3:  MOV dword ptr [ESP + 0x14],EDX\n  100064a7:  FILD dword ptr [ESP + 0x14]\n  100064ab:  FMUL dword ptr [0x100f5460]\n  100064b1:  FSTP dword ptr [EAX + 0x24]\n  100064b4:  MOV CL,byte ptr [ESI + 0xc]\n  100064b7:  MOV byte ptr [EAX + 0x28],CL\n  100064ba:  MOV DL,byte ptr [ESI + 0xd]\n  100064bd:  MOV byte ptr [EAX + 0x29],DL\n  100064c0:  MOV CL,byte ptr [ESI + 0xe]\n  100064c3:  MOV byte ptr [EAX + 0x2a],CL\n  100064c6:  MOV DL,byte ptr [ESI + 0xf]\n  100064c9:  MOV byte ptr [EAX + 0x2b],DL\n  100064cc:  MOV ECX,dword ptr [EDI + EBP*0x8 + 0x14]\n  100064d0:  MOV dword ptr [EAX + 0x2c],ECX\n  100064d3:  MOV EDX,dword ptr [EDI + EBP*0x8 + 0x2c]\n  100064d7:  MOV dword ptr [EAX + 0x30],EDX\n  100064da:  POP EDI\n  100064db:  POP ESI\n  100064dc:  POP EBP\n  100064dd:  RET", 
+  "callers": [
+    {
+      "address": "0x100064e0", 
+      "name": "FUN_100064e0"
+    }
+  ]
+}

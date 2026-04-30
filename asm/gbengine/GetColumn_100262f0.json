@@ -1,0 +1,25 @@
+{
+  "address": "0x100262f0", 
+  "size_bytes": 32, 
+  "calling_convention": "__thiscall", 
+  "signature": "gbVec3D * __thiscall GetColumn(gbMatrix4 * this, gbVec3D * param_1, int param_2)", 
+  "callees": [], 
+  "global_refs": [
+    {
+      "address": "0x00000008", 
+      "type": null, 
+      "name": "DAT_00000008"
+    }, 
+    {
+      "address": "0x00000004", 
+      "type": null, 
+      "name": "DAT_00000004"
+    }
+  ], 
+  "has_custom_name": true, 
+  "decompiled_c": "\n/* public: struct gbVec3D * __thiscall gbMatrix4::GetColumn(struct gbVec3D *,int)const  */\n\ngbVec3D * __thiscall gbMatrix4::GetColumn(gbMatrix4 *this,gbVec3D *param_1,int param_2)\n\n{\n                    /* 0x262f0  436  ?GetColumn@gbMatrix4@@QBEPAUgbVec3D@@PAU2@H@Z */\n  *(undefined4 *)param_1 = *(undefined4 *)(this + param_2 * 4);\n  *(undefined4 *)(param_1 + 4) = *(undefined4 *)(this + param_2 * 4 + 0x10);\n  *(undefined4 *)(param_1 + 8) = *(undefined4 *)(this + param_2 * 4 + 0x20);\n  return param_1;\n}\n\n", 
+  "is_thunk": false, 
+  "name": "GetColumn", 
+  "assembly": "  100262f0:  MOV EDX,dword ptr [ESP + 0x8]\n  100262f4:  MOV EAX,dword ptr [ESP + 0x4]\n  100262f8:  PUSH ESI\n  100262f9:  MOV ESI,dword ptr [ECX + EDX*0x4]\n  100262fc:  MOV dword ptr [EAX],ESI\n  100262fe:  MOV ESI,dword ptr [ECX + EDX*0x4 + 0x10]\n  10026302:  MOV dword ptr [EAX + 0x4],ESI\n  10026305:  MOV ECX,dword ptr [ECX + EDX*0x4 + 0x20]\n  10026309:  MOV dword ptr [EAX + 0x8],ECX\n  1002630c:  POP ESI\n  1002630d:  RET 0x8", 
+  "callers": []
+}

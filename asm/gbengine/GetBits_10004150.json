@@ -1,0 +1,25 @@
+{
+  "address": "0x10004150", 
+  "size_bytes": 44, 
+  "calling_convention": "__thiscall", 
+  "signature": "uchar * __thiscall GetBits(gbImage2D * this, int param_1, int param_2)", 
+  "callees": [], 
+  "global_refs": [
+    {
+      "address": "0x00000004", 
+      "type": null, 
+      "name": "DAT_00000004"
+    }, 
+    {
+      "address": "0x00000008", 
+      "type": null, 
+      "name": "DAT_00000008"
+    }
+  ], 
+  "has_custom_name": true, 
+  "decompiled_c": "\n/* public: unsigned char * __thiscall gbImage2D::GetBits(int,int) */\n\nuchar * __thiscall gbImage2D::GetBits(gbImage2D *this,int param_1,int param_2)\n\n{\n  int iVar1;\n  \n                    /* 0x4150  416  ?GetBits@gbImage2D@@QAEPAEHH@Z */\n  iVar1 = (*(int *)(this + 0x80) * param_2 + param_1) * *(int *)(this + 0xb4);\n  return (uchar *)(((int)(iVar1 + (iVar1 >> 0x1f & 7U)) >> 3) + *(int *)(this + 0xb8));\n}\n\n", 
+  "is_thunk": false, 
+  "name": "GetBits", 
+  "assembly": "  10004150:  MOV EAX,dword ptr [ECX + 0x80]\n  10004156:  MOV EDX,dword ptr [ESP + 0x4]\n  1000415a:  IMUL EAX,dword ptr [ESP + 0x8]\n  1000415f:  ADD EAX,EDX\n  10004161:  IMUL EAX,dword ptr [ECX + 0xb4]\n  10004168:  CDQ\n  10004169:  AND EDX,0x7\n  1000416c:  ADD EAX,EDX\n  1000416e:  MOV EDX,dword ptr [ECX + 0xb8]\n  10004174:  SAR EAX,0x3\n  10004177:  ADD EAX,EDX\n  10004179:  RET 0x8", 
+  "callers": []
+}

@@ -1,0 +1,50 @@
+{
+  "address": "0x1007dd57", 
+  "size_bytes": 157, 
+  "calling_convention": "unknown", 
+  "signature": "undefined FUN_1007dd57(undefined4 param_1, undefined4 param_2, undefined4 param_3, undefined4 param_4, undefined4 param_5)", 
+  "callees": [], 
+  "global_refs": [
+    {
+      "address": "0x00000014", 
+      "type": null, 
+      "name": "DAT_00000014"
+    }, 
+    {
+      "address": "0x00000008", 
+      "type": null, 
+      "name": "DAT_00000008"
+    }, 
+    {
+      "address": "0x00000004", 
+      "type": null, 
+      "name": "DAT_00000004"
+    }, 
+    {
+      "address": "0x0000000c", 
+      "type": null, 
+      "name": "DAT_0000000c"
+    }, 
+    {
+      "address": "0x-0000010", 
+      "type": null, 
+      "name": "DAT_-0000010"
+    }, 
+    {
+      "address": "0x-000000c", 
+      "type": null, 
+      "name": "DAT_-000000c"
+    }, 
+    {
+      "address": "0x00000010", 
+      "type": null, 
+      "name": "DAT_00000010"
+    }
+  ], 
+  "has_custom_name": false, 
+  "decompiled_c": "\nvoid FUN_1007dd57(float *param_1,float *param_2,float *param_3,float param_4,float *param_5)\n\n{\n  float fVar1;\n  float fVar2;\n  float fVar3;\n  float fVar4;\n  \n  *param_5 = *param_1;\n  param_5[1] = param_1[1];\n  param_5[2] = param_1[2];\n  *param_5 = *param_5 - *param_2;\n  param_5[1] = param_5[1] - param_2[1];\n  fVar3 = param_5[2] - param_2[2];\n  param_5[2] = fVar3;\n  fVar4 = param_5[1] * param_3[1] + *param_3 * *param_5 + fVar3 * param_3[2];\n  fVar1 = *param_3;\n  fVar2 = param_3[1];\n  param_5[2] = fVar3 - fVar4 * param_3[2];\n  fVar1 = (*param_5 - fVar4 * fVar1) * param_4;\n  *param_5 = fVar1;\n  fVar2 = (param_5[1] - fVar4 * fVar2) * param_4;\n  param_5[1] = fVar2;\n  param_5[2] = param_4 * param_5[2];\n  *param_5 = fVar1 + *param_2;\n  param_5[1] = fVar2 + param_2[1];\n  param_5[2] = param_2[2] + param_5[2];\n  return;\n}\n\n", 
+  "is_thunk": false, 
+  "name": "FUN_1007dd57", 
+  "assembly": "  1007dd57:  PUSH EBP\n  1007dd58:  MOV EBP,ESP\n  1007dd5a:  SUB ESP,0xc\n  1007dd5d:  MOV EAX,dword ptr [EBP + 0x18]\n  1007dd60:  MOV ECX,dword ptr [EBP + 0xc]\n  1007dd63:  PUSH ESI\n  1007dd64:  MOV ESI,dword ptr [EBP + 0x8]\n  1007dd67:  PUSH EDI\n  1007dd68:  MOV EDX,dword ptr [EBP + 0x10]\n  1007dd6b:  MOV EDI,EAX\n  1007dd6d:  MOVSD ES:EDI,ESI\n  1007dd6e:  MOVSD ES:EDI,ESI\n  1007dd6f:  MOVSD ES:EDI,ESI\n  1007dd70:  FLD dword ptr [EAX]\n  1007dd72:  FSUB dword ptr [ECX]\n  1007dd74:  POP EDI\n  1007dd75:  POP ESI\n  1007dd76:  FSTP dword ptr [EAX]\n  1007dd78:  FLD dword ptr [EAX + 0x4]\n  1007dd7b:  FSUB dword ptr [ECX + 0x4]\n  1007dd7e:  FSTP dword ptr [EAX + 0x4]\n  1007dd81:  FLD dword ptr [EAX + 0x8]\n  1007dd84:  FSUB dword ptr [ECX + 0x8]\n  1007dd87:  FST dword ptr [EAX + 0x8]\n  1007dd8a:  FLD ST0\n  1007dd8c:  FMUL dword ptr [EDX + 0x8]\n  1007dd8f:  FLD dword ptr [EDX]\n  1007dd91:  FMUL dword ptr [EAX]\n  1007dd93:  FADDP\n  1007dd95:  FLD dword ptr [EAX + 0x4]\n  1007dd98:  FMUL dword ptr [EDX + 0x4]\n  1007dd9b:  FADDP\n  1007dd9d:  FLD ST0\n  1007dd9f:  FMUL dword ptr [EDX]\n  1007dda1:  FSTP dword ptr [EBP + -0xc]\n  1007dda4:  FLD ST0\n  1007dda6:  FMUL dword ptr [EDX + 0x4]\n  1007dda9:  FSTP dword ptr [EBP + -0x8]\n  1007ddac:  FMUL dword ptr [EDX + 0x8]\n  1007ddaf:  FLD ST1\n  1007ddb1:  FSUB ST0,ST1\n  1007ddb3:  FSTP dword ptr [EAX + 0x8]\n  1007ddb6:  FSTP ST0\n  1007ddb8:  FSTP ST0\n  1007ddba:  FLD dword ptr [EAX]\n  1007ddbc:  FSUB dword ptr [EBP + -0xc]\n  1007ddbf:  FMUL dword ptr [EBP + 0x14]\n  1007ddc2:  FST dword ptr [EAX]\n  1007ddc4:  FLD dword ptr [EAX + 0x4]\n  1007ddc7:  FSUB dword ptr [EBP + -0x8]\n  1007ddca:  FMUL dword ptr [EBP + 0x14]\n  1007ddcd:  FST dword ptr [EAX + 0x4]\n  1007ddd0:  FLD dword ptr [EBP + 0x14]\n  1007ddd3:  FMUL dword ptr [EAX + 0x8]\n  1007ddd6:  FSTP dword ptr [EAX + 0x8]\n  1007ddd9:  FLD ST1\n  1007dddb:  FADD dword ptr [ECX]\n  1007dddd:  FSTP dword ptr [EAX]\n  1007dddf:  FADD dword ptr [ECX + 0x4]\n  1007dde2:  FSTP dword ptr [EAX + 0x4]\n  1007dde5:  FSTP ST0\n  1007dde7:  FLD dword ptr [ECX + 0x8]\n  1007ddea:  FADD dword ptr [EAX + 0x8]\n  1007dded:  FSTP dword ptr [EAX + 0x8]\n  1007ddf0:  LEAVE\n  1007ddf1:  RET 0x14", 
+  "callers": []
+}

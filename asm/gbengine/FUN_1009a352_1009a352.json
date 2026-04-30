@@ -1,0 +1,35 @@
+{
+  "address": "0x1009a352", 
+  "size_bytes": 76, 
+  "calling_convention": "unknown", 
+  "signature": "undefined FUN_1009a352(undefined4 param_1, undefined4 param_2, undefined4 param_3)", 
+  "callees": [], 
+  "global_refs": [
+    {
+      "address": "0x0000000c", 
+      "type": null, 
+      "name": "DAT_0000000c"
+    }, 
+    {
+      "address": "0x00000004", 
+      "type": null, 
+      "name": "DAT_00000004"
+    }, 
+    {
+      "address": "0x00000008", 
+      "type": null, 
+      "name": "DAT_00000008"
+    }
+  ], 
+  "has_custom_name": false, 
+  "decompiled_c": "\nundefined4 FUN_1009a352(int param_1,int param_2,int param_3)\n\n{\n  int iVar1;\n  int iVar2;\n  undefined4 uVar3;\n  \n  iVar1 = *(int *)(*(int *)(param_3 + 0x14) + param_2 * 4);\n  iVar2 = *(int *)(*(int *)(param_3 + 0x14) + param_1 * 4);\n  if (*(uint *)(iVar2 + 4) < *(uint *)(iVar1 + 4)) {\nLAB_1009a381:\n    uVar3 = 0xffffffff;\n  }\n  else {\n    if (*(uint *)(iVar2 + 4) <= *(uint *)(iVar1 + 4)) {\n      if (*(double *)(iVar2 + 0x20) < *(double *)(iVar1 + 0x20) !=\n          (NAN(*(double *)(iVar2 + 0x20)) || NAN(*(double *)(iVar1 + 0x20)))) goto LAB_1009a381;\n      if (*(double *)(iVar2 + 0x20) <= *(double *)(iVar1 + 0x20)) {\n        return 0;\n      }\n    }\n    uVar3 = 1;\n  }\n  return uVar3;\n}\n\n", 
+  "is_thunk": false, 
+  "name": "FUN_1009a352", 
+  "assembly": "  1009a352:  MOV EAX,dword ptr [ESP + 0xc]\n  1009a356:  MOV EAX,dword ptr [EAX + 0x14]\n  1009a359:  MOV ECX,dword ptr [ESP + 0x4]\n  1009a35d:  MOV EDX,dword ptr [ESP + 0x8]\n  1009a361:  MOV EDX,dword ptr [EAX + EDX*0x4]\n  1009a364:  MOV ECX,dword ptr [EAX + ECX*0x4]\n  1009a367:  MOV EAX,dword ptr [ECX + 0x4]\n  1009a36a:  PUSH ESI\n  1009a36b:  MOV ESI,dword ptr [EDX + 0x4]\n  1009a36e:  CMP EAX,ESI\n  1009a370:  JC 0x1009a381\n  1009a372:  JA 0x1009a393\n  1009a374:  FLD qword ptr [ECX + 0x20]\n  1009a377:  FCOMP qword ptr [EDX + 0x20]\n  1009a37a:  FNSTSW AX\n  1009a37c:  TEST AH,0x5\n  1009a37f:  JP 0x1009a386\n  1009a381:  OR EAX,0xffffffff\n  1009a384:  JMP 0x1009a39a\n  1009a386:  FLD qword ptr [ECX + 0x20]\n  1009a389:  FCOMP qword ptr [EDX + 0x20]\n  1009a38c:  FNSTSW AX\n  1009a38e:  TEST AH,0x41\n  1009a391:  JNZ 0x1009a398\n  1009a393:  XOR EAX,EAX\n  1009a395:  INC EAX\n  1009a396:  JMP 0x1009a39a\n  1009a398:  XOR EAX,EAX\n  1009a39a:  POP ESI\n  1009a39b:  RET 0xc", 
+  "callers": [
+    {
+      "address": "0x100a7f76", 
+      "name": "FUN_100a7f76"
+    }
+  ]
+}

@@ -1,0 +1,65 @@
+{
+  "address": "0x1007b03a", 
+  "size_bytes": 41, 
+  "calling_convention": "unknown", 
+  "signature": "undefined FUN_1007b03a(undefined4 param_1, undefined4 param_2, undefined4 param_3)", 
+  "callees": [
+    {
+      "address": "0x10078bd5", 
+      "name": "FUN_10078bd5"
+    }
+  ], 
+  "global_refs": [
+    {
+      "address": "0x00000004", 
+      "type": null, 
+      "name": "DAT_00000004"
+    }, 
+    {
+      "address": "0x0000000c", 
+      "type": null, 
+      "name": "DAT_0000000c"
+    }, 
+    {
+      "address": "0x00000008", 
+      "type": null, 
+      "name": "DAT_00000008"
+    }, 
+    {
+      "address": "0x1010616c", 
+      "type": "string", 
+      "name": "DAT_1010616c"
+    }
+  ], 
+  "has_custom_name": false, 
+  "decompiled_c": "\nvoid FUN_1007b03a(int param_1,undefined4 param_2,undefined4 param_3)\n\n{\n  if (*(code **)(param_1 + 0x50) == (code *)0x0) {\n    FUN_10078bd5(param_1,\"Call to NULL read function\");\n  }\n  else {\n    (**(code **)(param_1 + 0x50))(param_1,param_2,param_3);\n  }\n  return;\n}\n\n", 
+  "is_thunk": false, 
+  "name": "FUN_1007b03a", 
+  "assembly": "  1007b03a:  MOV ECX,dword ptr [ESP + 0x4]\n  1007b03e:  MOV EAX,dword ptr [ECX + 0x50]\n  1007b041:  TEST EAX,EAX\n  1007b043:  JZ 0x1007b055\n  1007b045:  PUSH dword ptr [ESP + 0xc]\n  1007b049:  PUSH dword ptr [ESP + 0xc]\n  1007b04d:  PUSH ECX\n  1007b04e:  CALL EAX\n  1007b050:  ADD ESP,0xc\n  1007b053:  JMP 0x1007b060\n  1007b055:  PUSH 0x1010616c\n  1007b05a:  PUSH ECX\n  1007b05b:  CALL 0x10078bd5\n  1007b060:  RET 0xc", 
+  "callers": [
+    {
+      "address": "0x10078ff8", 
+      "name": "FUN_10078ff8"
+    }, 
+    {
+      "address": "0x10078ff8", 
+      "name": "FUN_10078ff8"
+    }, 
+    {
+      "address": "0x10079185", 
+      "name": "FUN_10079185"
+    }, 
+    {
+      "address": "0x1009664f", 
+      "name": "FUN_1009664f"
+    }, 
+    {
+      "address": "0x10096666", 
+      "name": "FUN_10096666"
+    }, 
+    {
+      "address": "0x100976a6", 
+      "name": "FUN_100976a6"
+    }
+  ]
+}

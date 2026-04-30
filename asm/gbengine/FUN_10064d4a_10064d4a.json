@@ -1,0 +1,50 @@
+{
+  "address": "0x10064d4a", 
+  "size_bytes": 81, 
+  "calling_convention": "unknown", 
+  "signature": "undefined FUN_10064d4a(undefined4 param_1)", 
+  "callees": [
+    {
+      "address": "0x10034576", 
+      "name": "FUN_10034576"
+    }, 
+    {
+      "address": "0x10034576", 
+      "name": "FUN_10034576"
+    }, 
+    {
+      "address": "0x10034576", 
+      "name": "FUN_10034576"
+    }
+  ], 
+  "global_refs": [
+    {
+      "address": "0x00000004", 
+      "type": null, 
+      "name": "DAT_00000004"
+    }
+  ], 
+  "has_custom_name": false, 
+  "decompiled_c": "\nvoid FUN_10064d4a(int param_1)\n\n{\n  undefined4 uVar1;\n  int iVar2;\n  int in_ECX;\n  \n  FUN_10034576(1);\n  iVar2 = **(int **)(in_ECX + 0xc);\n  uVar1 = (**(code **)(**(int **)(param_1 + 8) + 0xc))\n                    (*(int **)(param_1 + 8),(undefined4 *)(param_1 + 4));\n  iVar2 = (**(code **)(iVar2 + 0x1a8))(*(undefined4 *)(in_ECX + 0xc),uVar1);\n  if (iVar2 < 0) {\n    FUN_10034576(0);\n    *(undefined4 *)(param_1 + 4) = 0;\n    *(uint *)(param_1 + 0x14) = *(uint *)(param_1 + 0x14) & 0xfffffffc;\n  }\n  else {\n    FUN_10034576(0);\n    *(uint *)(param_1 + 0x14) = *(uint *)(param_1 + 0x14) | 2;\n  }\n  return;\n}\n\n", 
+  "is_thunk": false, 
+  "name": "FUN_10064d4a", 
+  "assembly": "  10064d4a:  PUSH EBX\n  10064d4b:  PUSH EBP\n  10064d4c:  PUSH ESI\n  10064d4d:  PUSH EDI\n  10064d4e:  PUSH 0x1\n  10064d50:  MOV EDI,ECX\n  10064d52:  CALL 0x10034576\n  10064d57:  MOV ESI,dword ptr [ESP + 0x14]\n  10064d5b:  MOV ECX,dword ptr [EDI + 0xc]\n  10064d5e:  MOV EAX,dword ptr [ESI + 0x8]\n  10064d61:  MOV EBP,dword ptr [ECX]\n  10064d63:  MOV ECX,dword ptr [EAX]\n  10064d65:  LEA EBX,[ESI + 0x4]\n  10064d68:  PUSH EBX\n  10064d69:  PUSH EAX\n  10064d6a:  CALL dword ptr [ECX + 0xc]\n  10064d6d:  PUSH EAX\n  10064d6e:  PUSH dword ptr [EDI + 0xc]\n  10064d71:  CALL dword ptr [EBP + 0x1a8]\n  10064d77:  TEST EAX,EAX\n  10064d79:  PUSH 0x0\n  10064d7b:  JL 0x10064d88\n  10064d7d:  CALL 0x10034576\n  10064d82:  OR dword ptr [ESI + 0x14],0x2\n  10064d86:  JMP 0x10064d94\n  10064d88:  CALL 0x10034576\n  10064d8d:  AND dword ptr [EBX],0x0\n  10064d90:  AND dword ptr [ESI + 0x14],0xfffffffc\n  10064d94:  POP EDI\n  10064d95:  POP ESI\n  10064d96:  POP EBP\n  10064d97:  POP EBX\n  10064d98:  RET 0x4", 
+  "callers": [
+    {
+      "address": "0x10064d9b", 
+      "name": "FUN_10064d9b"
+    }, 
+    {
+      "address": "0x1006cece", 
+      "name": "FUN_1006cece"
+    }, 
+    {
+      "address": "0x1006a65a", 
+      "name": "FUN_1006a65a"
+    }, 
+    {
+      "address": "0x10066ec9", 
+      "name": "FUN_10066ec9"
+    }
+  ]
+}

@@ -1,0 +1,40 @@
+{
+  "address": "0x10014990", 
+  "size_bytes": 44, 
+  "calling_convention": "unknown", 
+  "signature": "undefined FUN_10014990(undefined4 param_1, undefined4 param_2)", 
+  "callees": [
+    {
+      "address": "0x100149c0", 
+      "name": "FUN_100149c0"
+    }
+  ], 
+  "global_refs": [
+    {
+      "address": "0x00000008", 
+      "type": null, 
+      "name": "DAT_00000008"
+    }, 
+    {
+      "address": "0x00000004", 
+      "type": null, 
+      "name": "DAT_00000004"
+    }, 
+    {
+      "address": "0x-0000004", 
+      "type": null, 
+      "name": "DAT_-0000004"
+    }
+  ], 
+  "has_custom_name": false, 
+  "decompiled_c": "\nundefined4 FUN_10014990(undefined4 param_1,undefined4 param_2)\n\n{\n  undefined4 *in_ECX;\n  undefined4 local_4;\n  \n  local_4 = 0;\n  FUN_100149c0(param_1,&local_4,param_2,*in_ECX,0);\n  return local_4;\n}\n\n", 
+  "is_thunk": false, 
+  "name": "FUN_10014990", 
+  "assembly": "  10014990:  PUSH ECX\n  10014991:  MOV EAX,dword ptr [ECX]\n  10014993:  MOV ECX,dword ptr [ESP + 0xc]\n  10014997:  PUSH 0x0\n  10014999:  PUSH EAX\n  1001499a:  MOV EAX,dword ptr [ESP + 0x10]\n  1001499e:  LEA EDX,[ESP + 0x8]\n  100149a2:  PUSH ECX\n  100149a3:  PUSH EDX\n  100149a4:  PUSH EAX\n  100149a5:  MOV dword ptr [ESP + 0x14],0x0\n  100149ad:  CALL 0x100149c0\n  100149b2:  MOV EAX,dword ptr [ESP + 0x14]\n  100149b6:  ADD ESP,0x18\n  100149b9:  RET 0x8", 
+  "callers": [
+    {
+      "address": "0x10014f40", 
+      "name": "End"
+    }
+  ]
+}

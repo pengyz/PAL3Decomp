@@ -1,0 +1,70 @@
+{
+  "address": "0x100992c9", 
+  "size_bytes": 57, 
+  "calling_convention": "unknown", 
+  "signature": "undefined FUN_100992c9(undefined4 param_1, undefined4 param_2, undefined4 param_3, undefined4 param_4, undefined4 param_5)", 
+  "callees": [
+    {
+      "address": "0x10097bd0", 
+      "name": "FUN_10097bd0"
+    }
+  ], 
+  "global_refs": [
+    {
+      "address": "0x00000010", 
+      "type": null, 
+      "name": "DAT_00000010"
+    }, 
+    {
+      "address": "0x00000004", 
+      "type": null, 
+      "name": "DAT_00000004"
+    }, 
+    {
+      "address": "0x-0000018", 
+      "type": null, 
+      "name": "DAT_-0000018"
+    }, 
+    {
+      "address": "0x-0000010", 
+      "type": null, 
+      "name": "DAT_-0000010"
+    }, 
+    {
+      "address": "0x-000000c", 
+      "type": null, 
+      "name": "DAT_-000000c"
+    }, 
+    {
+      "address": "0x00000014", 
+      "type": null, 
+      "name": "DAT_00000014"
+    }, 
+    {
+      "address": "0x-0000008", 
+      "type": null, 
+      "name": "DAT_-0000008"
+    }, 
+    {
+      "address": "0x0000000c", 
+      "type": null, 
+      "name": "DAT_0000000c"
+    }, 
+    {
+      "address": "0x-0000014", 
+      "type": null, 
+      "name": "DAT_-0000014"
+    }, 
+    {
+      "address": "0x00000008", 
+      "type": null, 
+      "name": "DAT_00000008"
+    }
+  ], 
+  "has_custom_name": false, 
+  "decompiled_c": "\nvoid FUN_100992c9(undefined4 param_1,undefined4 param_2,undefined4 param_3,undefined4 param_4,\n                 undefined4 param_5)\n\n{\n  undefined4 local_18;\n  undefined4 local_14;\n  undefined4 local_10;\n  undefined4 local_c;\n  undefined4 local_8;\n  \n  local_18 = 0;\n  local_10 = 1;\n  local_c = 1;\n  local_8 = param_5;\n  local_14 = 3;\n  FUN_10097bd0(param_2,param_3,&local_18,param_4);\n  return;\n}\n\n", 
+  "is_thunk": false, 
+  "name": "FUN_100992c9", 
+  "assembly": "  100992c9:  PUSH EBP\n  100992ca:  MOV EBP,ESP\n  100992cc:  SUB ESP,0x14\n  100992cf:  PUSH dword ptr [EBP + 0x14]\n  100992d2:  MOV ECX,dword ptr [EBP + 0x8]\n  100992d5:  AND dword ptr [EBP + -0x14],0x0\n  100992d9:  XOR EAX,EAX\n  100992db:  INC EAX\n  100992dc:  MOV dword ptr [EBP + -0xc],EAX\n  100992df:  MOV dword ptr [EBP + -0x8],EAX\n  100992e2:  MOV EAX,dword ptr [EBP + 0x18]\n  100992e5:  MOV dword ptr [EBP + -0x4],EAX\n  100992e8:  LEA EAX,[EBP + -0x14]\n  100992eb:  PUSH EAX\n  100992ec:  PUSH dword ptr [EBP + 0x10]\n  100992ef:  MOV dword ptr [EBP + -0x10],0x3\n  100992f6:  PUSH dword ptr [EBP + 0xc]\n  100992f9:  CALL 0x10097bd0\n  100992fe:  LEAVE\n  100992ff:  RET 0x14", 
+  "callers": []
+}

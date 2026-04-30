@@ -1,0 +1,14 @@
+{
+  "address": "0x100024d0", 
+  "size_bytes": 11, 
+  "calling_convention": "__thiscall", 
+  "signature": "bool __thiscall IfAttached(gbSound3DNode * this)", 
+  "callees": [], 
+  "global_refs": [], 
+  "has_custom_name": true, 
+  "decompiled_c": "\n/* public: bool __thiscall gbSound3DNode::IfAttached(void) */\n\nbool __thiscall gbSound3DNode::IfAttached(gbSound3DNode *this)\n\n{\n                    /* 0x24d0  588  ?IfAttached@gbSound3DNode@@QAE_NXZ */\n  return *(int *)(this + 4) != 0;\n}\n\n", 
+  "is_thunk": false, 
+  "name": "IfAttached", 
+  "assembly": "  100024d0:  MOV EDX,dword ptr [ECX + 0x4]\n  100024d3:  XOR EAX,EAX\n  100024d5:  TEST EDX,EDX\n  100024d7:  SETNZ AL\n  100024da:  RET", 
+  "callers": []
+}

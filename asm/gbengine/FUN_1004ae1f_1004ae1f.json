@@ -1,0 +1,65 @@
+{
+  "address": "0x1004ae1f", 
+  "size_bytes": 218, 
+  "calling_convention": "unknown", 
+  "signature": "undefined FUN_1004ae1f(undefined4 param_1, undefined4 param_2, undefined4 param_3)", 
+  "callees": [
+    {
+      "address": "0x10049472", 
+      "name": "thunk_FUN_10049465"
+    }
+  ], 
+  "global_refs": [
+    {
+      "address": "0x0000000c", 
+      "type": null, 
+      "name": "DAT_0000000c"
+    }, 
+    {
+      "address": "0x-0000014", 
+      "type": null, 
+      "name": "DAT_-0000014"
+    }, 
+    {
+      "address": "0x-0000010", 
+      "type": null, 
+      "name": "DAT_-0000010"
+    }, 
+    {
+      "address": "0x00000008", 
+      "type": null, 
+      "name": "DAT_00000008"
+    }, 
+    {
+      "address": "0x00000004", 
+      "type": null, 
+      "name": "DAT_00000004"
+    }, 
+    {
+      "address": "0x-0000008", 
+      "type": null, 
+      "name": "DAT_-0000008"
+    }, 
+    {
+      "address": "0x-000000c", 
+      "type": null, 
+      "name": "DAT_-000000c"
+    }, 
+    {
+      "address": "0x-000001c", 
+      "type": null, 
+      "name": "DAT_-000001c"
+    }, 
+    {
+      "address": "0x-0000018", 
+      "type": null, 
+      "name": "DAT_-0000018"
+    }
+  ], 
+  "has_custom_name": false, 
+  "decompiled_c": "\nvoid FUN_1004ae1f(float *param_1,float *param_2,undefined4 param_3)\n\n{\n  float fVar1;\n  float local_14;\n  float local_10;\n  float local_c;\n  float local_8;\n  \n  thunk_FUN_10049465(&local_14,param_3);\n  fVar1 = local_c * param_2[2] + local_8 * param_2[3] + local_14 * *param_2 + local_10 * param_2[1];\n  local_14 = -local_14;\n  local_10 = -local_10;\n  local_c = -local_c;\n  local_8 = -local_8;\n  *param_1 = local_14 * *param_2 + fVar1;\n  param_1[4] = local_10 * *param_2;\n  param_1[8] = local_c * *param_2;\n  param_1[0xc] = local_8 * *param_2;\n  param_1[1] = local_14 * param_2[1];\n  param_1[5] = local_10 * param_2[1] + fVar1;\n  param_1[9] = local_c * param_2[1];\n  param_1[0xd] = local_8 * param_2[1];\n  param_1[2] = local_14 * param_2[2];\n  param_1[6] = local_10 * param_2[2];\n  param_1[10] = local_c * param_2[2] + fVar1;\n  param_1[0xe] = local_8 * param_2[2];\n  param_1[3] = local_14 * param_2[3];\n  param_1[7] = local_10 * param_2[3];\n  param_1[0xb] = local_c * param_2[3];\n  param_1[0xf] = local_8 * param_2[3] + fVar1;\n  return;\n}\n\n", 
+  "is_thunk": false, 
+  "name": "FUN_1004ae1f", 
+  "assembly": "  1004ae1f:  PUSH EBP\n  1004ae20:  MOV EBP,ESP\n  1004ae22:  SUB ESP,0x20\n  1004ae25:  PUSH dword ptr [EBP + 0x10]\n  1004ae28:  LEA EAX,[EBP + -0x10]\n  1004ae2b:  PUSH EAX\n  1004ae2c:  CALL 0x10049472\n  1004ae31:  FLD dword ptr [EBP + -0xc]\n  1004ae34:  MOV ECX,dword ptr [EBP + 0xc]\n  1004ae37:  FMUL dword ptr [ECX + 0x4]\n  1004ae3a:  MOV EAX,dword ptr [EBP + 0x8]\n  1004ae3d:  FLD dword ptr [EBP + -0x10]\n  1004ae40:  FMUL dword ptr [ECX]\n  1004ae42:  FADDP\n  1004ae44:  FLD dword ptr [EBP + -0x4]\n  1004ae47:  FMUL dword ptr [ECX + 0xc]\n  1004ae4a:  FADDP\n  1004ae4c:  FLD dword ptr [EBP + -0x8]\n  1004ae4f:  FMUL dword ptr [ECX + 0x8]\n  1004ae52:  FADDP\n  1004ae54:  FLD dword ptr [EBP + -0x10]\n  1004ae57:  FCHS\n  1004ae59:  FLD dword ptr [EBP + -0xc]\n  1004ae5c:  FCHS\n  1004ae5e:  FLD dword ptr [EBP + -0x8]\n  1004ae61:  FCHS\n  1004ae63:  FST dword ptr [EBP + -0x18]\n  1004ae66:  FLD dword ptr [EBP + -0x4]\n  1004ae69:  FCHS\n  1004ae6b:  FST dword ptr [EBP + -0x14]\n  1004ae6e:  FLD ST3\n  1004ae70:  FMUL dword ptr [ECX]\n  1004ae72:  FADD ST0,ST5\n  1004ae74:  FSTP dword ptr [EAX]\n  1004ae76:  FLD ST2\n  1004ae78:  FMUL dword ptr [ECX]\n  1004ae7a:  FSTP dword ptr [EAX + 0x10]\n  1004ae7d:  FLD ST1\n  1004ae7f:  FMUL dword ptr [ECX]\n  1004ae81:  FSTP dword ptr [EAX + 0x20]\n  1004ae84:  FLD ST0\n  1004ae86:  FMUL dword ptr [ECX]\n  1004ae88:  FSTP dword ptr [EAX + 0x30]\n  1004ae8b:  FLD ST3\n  1004ae8d:  FMUL dword ptr [ECX + 0x4]\n  1004ae90:  FSTP dword ptr [EAX + 0x4]\n  1004ae93:  FLD ST2\n  1004ae95:  FMUL dword ptr [ECX + 0x4]\n  1004ae98:  FADD ST0,ST5\n  1004ae9a:  FSTP dword ptr [EAX + 0x14]\n  1004ae9d:  FLD ST1\n  1004ae9f:  FMUL dword ptr [ECX + 0x4]\n  1004aea2:  FSTP dword ptr [EAX + 0x24]\n  1004aea5:  FLD ST0\n  1004aea7:  FMUL dword ptr [ECX + 0x4]\n  1004aeaa:  FSTP dword ptr [EAX + 0x34]\n  1004aead:  FLD ST3\n  1004aeaf:  FMUL dword ptr [ECX + 0x8]\n  1004aeb2:  FSTP dword ptr [EAX + 0x8]\n  1004aeb5:  FLD ST2\n  1004aeb7:  FMUL dword ptr [ECX + 0x8]\n  1004aeba:  FSTP dword ptr [EAX + 0x18]\n  1004aebd:  FLD ST1\n  1004aebf:  FMUL dword ptr [ECX + 0x8]\n  1004aec2:  FADD ST0,ST5\n  1004aec4:  FSTP dword ptr [EAX + 0x28]\n  1004aec7:  FMUL dword ptr [ECX + 0x8]\n  1004aeca:  FSTP dword ptr [EAX + 0x38]\n  1004aecd:  FSTP ST0\n  1004aecf:  FLD ST1\n  1004aed1:  FMUL dword ptr [ECX + 0xc]\n  1004aed4:  FSTP dword ptr [EAX + 0xc]\n  1004aed7:  FMUL dword ptr [ECX + 0xc]\n  1004aeda:  FSTP dword ptr [EAX + 0x1c]\n  1004aedd:  FSTP ST0\n  1004aedf:  FLD dword ptr [EBP + -0x18]\n  1004aee2:  FMUL dword ptr [ECX + 0xc]\n  1004aee5:  FSTP dword ptr [EAX + 0x2c]\n  1004aee8:  FLD dword ptr [EBP + -0x14]\n  1004aeeb:  FMUL dword ptr [ECX + 0xc]\n  1004aeee:  FADD ST0,ST1\n  1004aef0:  FSTP dword ptr [EAX + 0x3c]\n  1004aef3:  FSTP ST0\n  1004aef5:  LEAVE\n  1004aef6:  RET 0xc", 
+  "callers": []
+}

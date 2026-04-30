@@ -1,0 +1,75 @@
+{
+  "address": "0x100e25d0", 
+  "size_bytes": 318, 
+  "calling_convention": "unknown", 
+  "signature": "undefined FUN_100e25d0(undefined4 param_1, undefined4 param_2, undefined4 param_3, undefined4 param_4, undefined4 param_5)", 
+  "callees": [], 
+  "global_refs": [
+    {
+      "address": "0x00000008", 
+      "type": null, 
+      "name": "DAT_00000008"
+    }, 
+    {
+      "address": "0x00000010", 
+      "type": null, 
+      "name": "DAT_00000010"
+    }, 
+    {
+      "address": "0x00000004", 
+      "type": null, 
+      "name": "DAT_00000004"
+    }, 
+    {
+      "address": "0x0000000c", 
+      "type": null, 
+      "name": "DAT_0000000c"
+    }, 
+    {
+      "address": "0x00000014", 
+      "type": null, 
+      "name": "DAT_00000014"
+    }, 
+    {
+      "address": "0x1010fd20", 
+      "type": null, 
+      "name": "DAT_1010fd20"
+    }, 
+    {
+      "address": "0x1010fd28", 
+      "type": null, 
+      "name": "DAT_1010fd28"
+    }, 
+    {
+      "address": "0x1010fd30", 
+      "type": null, 
+      "name": "DAT_1010fd30"
+    }, 
+    {
+      "address": "0x1010fd38", 
+      "type": null, 
+      "name": "DAT_1010fd38"
+    }, 
+    {
+      "address": "0x1010fd18", 
+      "type": "undefined4", 
+      "name": "DAT_1010fd18"
+    }, 
+    {
+      "address": "0x1010fd1c", 
+      "type": "undefined4", 
+      "name": "DAT_1010fd1c"
+    }, 
+    {
+      "address": "0x1010fd40", 
+      "type": null, 
+      "name": "DAT_1010fd40"
+    }
+  ], 
+  "has_custom_name": false, 
+  "decompiled_c": "\nvoid FUN_100e25d0(uint param_1,undefined4 *param_2,undefined4 *param_3,undefined4 *param_4,\n                 uint *param_5)\n\n{\n  undefined4 uVar1;\n  short sVar2;\n  short sVar3;\n  short sVar4;\n  short sVar5;\n  ushort uVar6;\n  undefined7 uVar7;\n  byte bVar8;\n  undefined2 uVar9;\n  undefined8 uVar10;\n  undefined4 uVar11;\n  undefined8 uVar12;\n  undefined2 uVar14;\n  undefined8 uVar13;\n  uint uVar15;\n  undefined2 uVar20;\n  undefined8 uVar16;\n  undefined2 uVar19;\n  undefined2 uVar21;\n  undefined8 uVar17;\n  ulonglong uVar18;\n  undefined8 uVar22;\n  undefined2 uVar24;\n  undefined2 uVar25;\n  undefined8 uVar23;\n  undefined8 uVar26;\n  \n  param_1 = param_1 >> 2;\n  do {\n    uVar11 = *param_2;\n    uVar1 = *param_3;\n    uVar6 = (ushort)(((uint7)(byte)((uint)uVar11 >> 0x18) << 0x30) >> 0x28);\n    uVar7 = CONCAT25(uVar6,CONCAT14((char)((uint)uVar11 >> 0x10),uVar11));\n    uVar18 = (ulonglong)\n             CONCAT41((int)(CONCAT34((int3)((uint7)uVar7 >> 0x20),uVar11) >> 0x18),\n                      (char)((uint)uVar11 >> 8)) & 0xffffffff00ff;\n    bVar8 = (byte)uVar11;\n    uVar11 = *param_4;\n    uVar12 = psubsw((ulonglong)\n                    CONCAT52((int5)(CONCAT43((int)(CONCAT34((int3)(CONCAT25((short)(((uint7)(byte)((\n                                                  uint)uVar1 >> 0x18) << 0x30) >> 0x28),\n                                                  CONCAT14((char)((uint)uVar1 >> 0x10),uVar1)) >>\n                                                  0x20),uVar1) >> 0x18),\n                                             CONCAT12((char)((uint)uVar1 >> 8),(short)uVar1)) >>\n                                   0x10),(short)uVar1) & 0xffffffff00ff00ff,0x80008000800080);\n    uVar16 = psubsw((ulonglong)\n                    CONCAT52(CONCAT41((int)(CONCAT34((int3)(CONCAT25((short)(((uint7)(byte)((uint)\n                                                  uVar11 >> 0x18) << 0x30) >> 0x28),\n                                                  CONCAT14((char)((uint)uVar11 >> 0x10),uVar11)) >>\n                                                  0x20),uVar11) >> 0x18),(char)((uint)uVar11 >> 8)),\n                             (ushort)(byte)uVar11) & 0xffffffff00ffffff,0x80008000800080);\n    uVar19 = (undefined2)((ulonglong)uVar16 >> 0x10);\n    uVar14 = (undefined2)((ulonglong)uVar12 >> 0x10);\n    uVar13 = pmaddwd(CONCAT44(CONCAT22(uVar19,uVar14),CONCAT22((short)uVar16,(short)uVar12)),\n                     0xff49ffa8ff49ffa8);\n    uVar10 = psllw(CONCAT62((int6)uVar18,(ushort)bVar8),8);\n    uVar24 = (undefined2)((ulonglong)uVar12 >> 0x20);\n    uVar20 = (undefined2)((ulonglong)uVar16 >> 0x20);\n    uVar25 = (undefined2)((ulonglong)uVar12 >> 0x30);\n    uVar21 = (undefined2)((ulonglong)uVar16 >> 0x30);\n    uVar23 = pmaddwd(CONCAT26(uVar21,CONCAT24(uVar25,CONCAT22(uVar20,uVar24))),0xff49ffa8ff49ffa8);\n    uVar9 = (undefined2)uVar18;\n    uVar16 = pmaddwd(CONCAT44(CONCAT22(uVar9,uVar19),(uint)CONCAT12(bVar8,(short)uVar16)),\n                     0x100016701000167);\n    uVar22 = pmaddwd(CONCAT44(CONCAT22(uVar9,uVar14),(uint)CONCAT12(bVar8,(short)uVar12)),\n                     0x10001c6010001c6);\n    uVar9 = (undefined2)((uint7)uVar7 >> 0x20);\n    uVar6 = uVar6 >> 8;\n    uVar26 = pmaddwd(CONCAT26(uVar6,CONCAT24(uVar25,CONCAT22(uVar9,uVar24))),0x10001c6010001c6);\n    uVar12 = pmaddwd(CONCAT26(uVar6,CONCAT24(uVar21,CONCAT22(uVar9,uVar20))),0x100016701000167);\n    uVar17 = packssdw(CONCAT44((int)((int)uVar13 + (uint)(ushort)uVar10) >> 8,(int)uVar16 >> 8),\n                      (ulonglong)(uint)((int)uVar22 >> 8));\n    uVar16 = packssdw(CONCAT44((int)((int)((ulonglong)uVar13 >> 0x20) +\n                                    (uint)(ushort)((ulonglong)uVar10 >> 0x10)) >> 8,\n                               (int)((longlong)uVar16 >> 0x28)),\n                      (ulonglong)(uint)((longlong)uVar22 >> 0x28));\n    sVar2 = (short)uVar17;\n    sVar3 = (short)((ulonglong)uVar17 >> 0x10);\n    sVar4 = (short)((ulonglong)uVar17 >> 0x20);\n    sVar5 = (short)((ulonglong)uVar17 >> 0x30);\n    uVar15 = CONCAT13((0 < sVar5) * (sVar5 < 0x100) * (char)((ulonglong)uVar17 >> 0x30) -\n                      (0xff < sVar5),\n                      CONCAT12((0 < sVar4) * (sVar4 < 0x100) * (char)((ulonglong)uVar17 >> 0x20) -\n                               (0xff < sVar4),\n                               CONCAT11((0 < sVar3) * (sVar3 < 0x100) *\n                                        (char)((ulonglong)uVar17 >> 0x10) - (0xff < sVar3),\n                                        (0 < sVar2) * (sVar2 < 0x100) * (char)uVar17 -\n                                        (0xff < sVar2))));\n    sVar2 = (short)uVar16;\n    sVar3 = (short)((ulonglong)uVar16 >> 0x10);\n    sVar4 = (short)((ulonglong)uVar16 >> 0x20);\n    uVar13 = packssdw(CONCAT44((int)((int)uVar23 + (uint)(ushort)((ulonglong)uVar10 >> 0x20)) >> 8,\n                               (int)uVar12 >> 8),(ulonglong)(uint)((int)uVar26 >> 8));\n    uVar18 = (ulonglong)\n             CONCAT16((0 < sVar4) * (sVar4 < 0x100) * (char)((ulonglong)uVar16 >> 0x20) -\n                      (0xff < sVar4),\n                      CONCAT15((0 < sVar3) * (sVar3 < 0x100) * (char)((ulonglong)uVar16 >> 0x10) -\n                               (0xff < sVar3),\n                               CONCAT14((0 < sVar2) * (sVar2 < 0x100) * (char)uVar16 -\n                                        (0xff < sVar2),uVar15))) & 0xffffffff00000000;\n    uVar10 = packssdw(CONCAT44((int)((int)((ulonglong)uVar23 >> 0x20) +\n                                    (uint)(ushort)((ulonglong)uVar10 >> 0x30)) >> 8,\n                               (int)((longlong)uVar12 >> 0x28)),\n                      (ulonglong)(uint)((longlong)uVar26 >> 0x28));\n    sVar2 = (short)uVar13;\n    sVar3 = (short)((ulonglong)uVar13 >> 0x10);\n    uVar9 = CONCAT11((0 < sVar3) * (sVar3 < 0x100) * (char)((ulonglong)uVar13 >> 0x10) -\n                     (0xff < sVar3),(0 < sVar2) * (sVar2 < 0x100) * (char)uVar13 - (0xff < sVar2));\n    sVar2 = (short)((ulonglong)uVar13 >> 0x20);\n    sVar3 = (short)((ulonglong)uVar13 >> 0x30);\n    uVar11 = CONCAT13((0 < sVar3) * (sVar3 < 0x100) * (char)((ulonglong)uVar13 >> 0x30) -\n                      (0xff < sVar3),\n                      CONCAT12((0 < sVar2) * (sVar2 < 0x100) * (char)((ulonglong)uVar13 >> 0x20) -\n                               (0xff < sVar2),uVar9));\n    sVar2 = (short)uVar10;\n    sVar3 = (short)((ulonglong)uVar10 >> 0x10);\n    sVar4 = (short)((ulonglong)uVar10 >> 0x20);\n    param_2 = param_2 + 1;\n    *param_5 = uVar15 | (uint)(uVar18 >> 8);\n    param_4 = param_4 + 1;\n    param_5[1] = CONCAT22(uVar9,(short)(uVar18 >> 0x28));\n    param_3 = param_3 + 1;\n    param_5[2] = (uint)(CONCAT16((0 < sVar4) * (sVar4 < 0x100) * (char)((ulonglong)uVar10 >> 0x20) -\n                                 (0xff < sVar4),\n                                 CONCAT15((0 < sVar3) * (sVar3 < 0x100) *\n                                          (char)((ulonglong)uVar10 >> 0x10) - (0xff < sVar3),\n                                          CONCAT14((0 < sVar2) * (sVar2 < 0x100) * (char)uVar10 -\n                                                   (0xff < sVar2),uVar11))) >> 0x18) |\n                 (uint)(((ulonglong)(ushort)((uint)uVar11 >> 0x10) << 0x30) >> 0x30);\n    param_1 = param_1 - 1;\n    param_5 = param_5 + 3;\n  } while (param_1 != 0);\n  return;\n}\n\n", 
+  "is_thunk": false, 
+  "name": "FUN_100e25d0", 
+  "assembly": "  100e25d0:  PUSH EBP\n  100e25d1:  MOV EBP,ESP\n  100e25d3:  PUSH EBX\n  100e25d4:  PUSH EDI\n  100e25d5:  MOV EAX,dword ptr [EBP + 0xc]\n  100e25d8:  MOV ECX,dword ptr [EBP + 0x14]\n  100e25db:  MOV EDI,dword ptr [EBP + 0x8]\n  100e25de:  MOV EBX,dword ptr [EBP + 0x10]\n  100e25e1:  SHR EDI,0x2\n  100e25e4:  MOV EDX,dword ptr [EBP + 0x18]\n  100e25e7:  MOVD MM0,dword ptr [EAX]\n  100e25ea:  PXOR MM7,MM7\n  100e25ed:  MOVD MM2,dword ptr [EBX]\n  100e25f0:  PUNPCKLBW MM0,MM7\n  100e25f3:  MOVD MM3,dword ptr [ECX]\n  100e25f6:  PUNPCKLBW MM2,MM7\n  100e25f9:  PSUBSW MM2,qword ptr [0x1010fd20]\n  100e2600:  PUNPCKLBW MM3,MM7\n  100e2603:  PSUBSW MM3,qword ptr [0x1010fd20]\n  100e260a:  MOVQ MM4,MM2\n  100e260d:  PUNPCKLWD MM2,MM3\n  100e2610:  MOVQ MM1,MM0\n  100e2613:  PMADDWD MM2,qword ptr [0x1010fd28]\n  100e261a:  PSLLW MM1,0x8\n  100e261e:  MOVQ MM6,MM1\n  100e2621:  PUNPCKLWD MM1,MM7\n  100e2624:  PUNPCKHWD MM6,MM7\n  100e2627:  MOVQ MM5,MM4\n  100e262a:  PUNPCKHWD MM5,MM3\n  100e262d:  PADDD MM2,MM1\n  100e2630:  PMADDWD MM5,qword ptr [0x1010fd28]\n  100e2637:  MOVQ MM1,MM3\n  100e263a:  PUNPCKLWD MM3,MM0\n  100e263d:  MOVQ MM7,MM4\n  100e2640:  PMADDWD MM3,qword ptr [0x1010fd30]\n  100e2647:  PSRAD MM2,0x8\n  100e264b:  PADDD MM5,MM6\n  100e264e:  PUNPCKLWD MM4,MM0\n  100e2651:  PMADDWD MM4,qword ptr [0x1010fd38]\n  100e2658:  PSRAD MM5,0x8\n  100e265c:  PSRAD MM3,0x8\n  100e2660:  PUNPCKHWD MM7,MM0\n  100e2663:  PSRAD MM4,0x8\n  100e2667:  MOVQ MM6,MM3\n  100e266a:  PMADDWD MM7,qword ptr [0x1010fd38]\n  100e2671:  PUNPCKHWD MM1,MM0\n  100e2674:  PMADDWD MM1,qword ptr [0x1010fd30]\n  100e267b:  PUNPCKLDQ MM3,MM2\n  100e267e:  PUNPCKHDQ MM6,MM2\n  100e2681:  MOVQ MM0,MM4\n  100e2684:  PSRAD MM7,0x8\n  100e2688:  PUNPCKLDQ MM4,dword ptr [0x1010fd18]\n  100e268f:  PUNPCKHDQ MM0,qword ptr [0x1010fd18]\n  100e2696:  PSRAD MM1,0x8\n  100e269a:  PACKSSDW MM3,MM4\n  100e269d:  MOVQ MM2,MM1\n  100e26a0:  PACKSSDW MM6,MM0\n  100e26a3:  PACKUSWB MM3,MM6\n  100e26a6:  PUNPCKLDQ MM2,MM5\n  100e26a9:  MOVQ MM4,MM7\n  100e26ac:  PUNPCKHDQ MM1,MM5\n  100e26af:  PUNPCKLDQ MM7,dword ptr [0x1010fd18]\n  100e26b6:  PUNPCKHDQ MM4,qword ptr [0x1010fd18]\n  100e26bd:  MOVQ MM0,MM3\n  100e26c0:  PACKSSDW MM2,MM7\n  100e26c3:  PAND MM3,qword ptr [0x1010fd40]\n  100e26ca:  PACKSSDW MM1,MM4\n  100e26cd:  PSRLQ MM3,0x8\n  100e26d1:  ADD EDX,0xc\n  100e26d4:  POR MM0,MM3\n  100e26d7:  PACKUSWB MM2,MM1\n  100e26da:  PSRLQ MM3,0x20\n  100e26de:  ADD EAX,0x4\n  100e26e1:  MOVD dword ptr [EDX + -0xc],MM0\n  100e26e5:  PUNPCKLWD MM3,MM2\n  100e26e8:  PSRLQ MM2,0x18\n  100e26ec:  ADD ECX,0x4\n  100e26ef:  MOVD dword ptr [EDX + -0x8],MM3\n  100e26f3:  PSRLQ MM3,0x30\n  100e26f7:  POR MM2,MM3\n  100e26fa:  ADD EBX,0x4\n  100e26fd:  MOVD dword ptr [EDX + -0x4],MM2\n  100e2701:  DEC EDI\n  100e2702:  JNZ 0x100e25e7\n  100e2708:  POP EDI\n  100e2709:  POP EBX\n  100e270a:  POP EBP\n  100e270b:  RET 0x14", 
+  "callers": []
+}

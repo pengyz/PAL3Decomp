@@ -1,0 +1,20 @@
+{
+  "address": "0x10002210", 
+  "size_bytes": 33, 
+  "calling_convention": "__thiscall", 
+  "signature": "void __thiscall GetListenerPosition(gbAudioManager * this, gbVec3D * param_1)", 
+  "callees": [], 
+  "global_refs": [
+    {
+      "address": "0x00000004", 
+      "type": null, 
+      "name": "DAT_00000004"
+    }
+  ], 
+  "has_custom_name": true, 
+  "decompiled_c": "\n/* public: void __thiscall gbAudioManager::GetListenerPosition(struct gbVec3D &) */\n\nvoid __thiscall gbAudioManager::GetListenerPosition(gbAudioManager *this,gbVec3D *param_1)\n\n{\n                    /* 0x2210  487  ?GetListenerPosition@gbAudioManager@@QAEXAAUgbVec3D@@@Z */\n  *(undefined4 *)param_1 = *(undefined4 *)(this + 0xdc);\n  *(undefined4 *)(param_1 + 4) = *(undefined4 *)(this + 0xe0);\n  *(undefined4 *)(param_1 + 8) = *(undefined4 *)(this + 0xe4);\n  return;\n}\n\n", 
+  "is_thunk": false, 
+  "name": "GetListenerPosition", 
+  "assembly": "  10002210:  MOV EAX,dword ptr [ESP + 0x4]\n  10002214:  MOV EDX,dword ptr [ECX + 0xdc]\n  1000221a:  MOV dword ptr [EAX],EDX\n  1000221c:  MOV EDX,dword ptr [ECX + 0xe0]\n  10002222:  MOV dword ptr [EAX + 0x4],EDX\n  10002225:  MOV ECX,dword ptr [ECX + 0xe4]\n  1000222b:  MOV dword ptr [EAX + 0x8],ECX\n  1000222e:  RET 0x4", 
+  "callers": []
+}

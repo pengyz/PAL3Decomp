@@ -1,0 +1,36 @@
+{
+  "address": "0x1001e330", 
+  "size_bytes": 55, 
+  "calling_convention": "__thiscall", 
+  "signature": "gbMatrix4 * __thiscall GetWorldMatrix(gbGfxManager * this)", 
+  "callees": [
+    {
+      "address": "0x10027590", 
+      "name": "GetTop"
+    }, 
+    {
+      "address": "0x10025160", 
+      "name": "RightMultiply"
+    }
+  ], 
+  "global_refs": [], 
+  "has_custom_name": true, 
+  "decompiled_c": "\n/* public: struct gbMatrix4 const & __thiscall gbGfxManager::GetWorldMatrix(void) */\n\ngbMatrix4 * __thiscall gbGfxManager::GetWorldMatrix(gbGfxManager *this)\n\n{\n  gbMatrix4 *this_00;\n  gbMatrix4 *pgVar1;\n  int iVar2;\n  gbMatrix4 *pgVar3;\n  \n                    /* 0x1e330  579  ?GetWorldMatrix@gbGfxManager@@QAEABUgbMatrix4@@XZ */\n  this_00 = (gbMatrix4 *)(this + 0x164);\n  pgVar1 = gbMatrixStack::GetTop(*(gbMatrixStack **)(this + 0xd8));\n  pgVar3 = this_00;\n  for (iVar2 = 0x10; iVar2 != 0; iVar2 = iVar2 + -1) {\n    *(undefined4 *)pgVar3 = *(undefined4 *)pgVar1;\n    pgVar1 = pgVar1 + 4;\n    pgVar3 = pgVar3 + 4;\n  }\n  gbMatrix4::RightMultiply(this_00,(gbMatrix4 *)(this + 0x124));\n  return this_00;\n}\n\n", 
+  "is_thunk": false, 
+  "name": "GetWorldMatrix", 
+  "assembly": "  1001e330:  PUSH EBX\n  1001e331:  MOV EBX,ECX\n  1001e333:  PUSH EBP\n  1001e334:  PUSH ESI\n  1001e335:  MOV ECX,dword ptr [EBX + 0xd8]\n  1001e33b:  PUSH EDI\n  1001e33c:  LEA EBP,[EBX + 0x164]\n  1001e342:  CALL 0x10027590\n  1001e347:  MOV ECX,0x10\n  1001e34c:  MOV ESI,EAX\n  1001e34e:  MOV EDI,EBP\n  1001e350:  ADD EBX,0x124\n  1001e356:  MOVSD.REP ES:EDI,ESI\n  1001e358:  PUSH EBX\n  1001e359:  MOV ECX,EBP\n  1001e35b:  CALL 0x10025160\n  1001e360:  POP EDI\n  1001e361:  MOV EAX,EBP\n  1001e363:  POP ESI\n  1001e364:  POP EBP\n  1001e365:  POP EBX\n  1001e366:  RET", 
+  "callers": [
+    {
+      "address": "0x10011130", 
+      "name": "AttachSelf"
+    }, 
+    {
+      "address": "0x1002c0d0", 
+      "name": "UpdateInternal"
+    }, 
+    {
+      "address": "0x1002c160", 
+      "name": "Attach"
+    }
+  ]
+}

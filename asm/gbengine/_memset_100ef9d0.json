@@ -1,0 +1,59 @@
+{
+  "address": "0x100ef9d0", 
+  "size_bytes": 88, 
+  "calling_convention": "__cdecl", 
+  "signature": "void * __cdecl _memset(void * _Dst, int _Val, size_t _Size)", 
+  "callees": [], 
+  "global_refs": [
+    {
+      "address": "0x0000000c", 
+      "type": null, 
+      "name": "DAT_0000000c"
+    }, 
+    {
+      "address": "0x00000004", 
+      "type": null, 
+      "name": "DAT_00000004"
+    }, 
+    {
+      "address": "0x00000008", 
+      "type": null, 
+      "name": "DAT_00000008"
+    }
+  ], 
+  "has_custom_name": true, 
+  "decompiled_c": "\n/* Library Function - Single Match\n    _memset\n   \n   Libraries: Visual Studio 1998 Debug, Visual Studio 1998 Release */\n\nvoid * __cdecl _memset(void *_Dst,int _Val,size_t _Size)\n\n{\n  uint uVar1;\n  uint uVar2;\n  size_t sVar3;\n  uint *puVar4;\n  \n  if (_Size == 0) {\n    return _Dst;\n  }\n  uVar1 = _Val & 0xff;\n  puVar4 = (uint *)_Dst;\n  if (3 < _Size) {\n    uVar2 = -(int)_Dst & 3;\n    sVar3 = _Size;\n    if (uVar2 != 0) {\n      sVar3 = _Size - uVar2;\n      do {\n        *(undefined *)puVar4 = (undefined)_Val;\n        puVar4 = (uint *)((int)puVar4 + 1);\n        uVar2 = uVar2 - 1;\n      } while (uVar2 != 0);\n    }\n    uVar1 = uVar1 * 0x1010101;\n    _Size = sVar3 & 3;\n    uVar2 = sVar3 >> 2;\n    if (uVar2 != 0) {\n      for (; uVar2 != 0; uVar2 = uVar2 - 1) {\n        *puVar4 = uVar1;\n        puVar4 = puVar4 + 1;\n      }\n      if (_Size == 0) {\n        return _Dst;\n      }\n    }\n  }\n  do {\n    *(char *)puVar4 = (char)uVar1;\n    puVar4 = (uint *)((int)puVar4 + 1);\n    _Size = _Size - 1;\n  } while (_Size != 0);\n  return _Dst;\n}\n\n", 
+  "is_thunk": false, 
+  "name": "_memset", 
+  "assembly": "  100ef9d0:  MOV EDX,dword ptr [ESP + 0xc]\n  100ef9d4:  MOV ECX,dword ptr [ESP + 0x4]\n  100ef9d8:  TEST EDX,EDX\n  100ef9da:  JZ 0x100efa23\n  100ef9dc:  XOR EAX,EAX\n  100ef9de:  MOV AL,byte ptr [ESP + 0x8]\n  100ef9e2:  PUSH EDI\n  100ef9e3:  MOV EDI,ECX\n  100ef9e5:  CMP EDX,0x4\n  100ef9e8:  JC 0x100efa17\n  100ef9ea:  NEG ECX\n  100ef9ec:  AND ECX,0x3\n  100ef9ef:  JZ 0x100ef9f9\n  100ef9f1:  SUB EDX,ECX\n  100ef9f3:  MOV byte ptr [EDI],AL\n  100ef9f5:  INC EDI\n  100ef9f6:  DEC ECX\n  100ef9f7:  JNZ 0x100ef9f3\n  100ef9f9:  MOV ECX,EAX\n  100ef9fb:  SHL EAX,0x8\n  100ef9fe:  ADD EAX,ECX\n  100efa00:  MOV ECX,EAX\n  100efa02:  SHL EAX,0x10\n  100efa05:  ADD EAX,ECX\n  100efa07:  MOV ECX,EDX\n  100efa09:  AND EDX,0x3\n  100efa0c:  SHR ECX,0x2\n  100efa0f:  JZ 0x100efa17\n  100efa11:  STOSD.REP ES:EDI\n  100efa13:  TEST EDX,EDX\n  100efa15:  JZ 0x100efa1d\n  100efa17:  MOV byte ptr [EDI],AL\n  100efa19:  INC EDI\n  100efa1a:  DEC EDX\n  100efa1b:  JNZ 0x100efa17\n  100efa1d:  MOV EAX,dword ptr [ESP + 0x8]\n  100efa21:  POP EDI\n  100efa22:  RET\n  100efa23:  MOV EAX,dword ptr [ESP + 0x4]\n  100efa27:  RET", 
+  "callers": [
+    {
+      "address": "0x100f1263", 
+      "name": "FUN_100f1263"
+    }, 
+    {
+      "address": "0x100f1b05", 
+      "name": "FUN_100f1b05"
+    }, 
+    {
+      "address": "0x100f2ba1", 
+      "name": "FUN_100f2ba1"
+    }, 
+    {
+      "address": "0x100e7098", 
+      "name": "FUN_100e7098"
+    }, 
+    {
+      "address": "0x100ea74b", 
+      "name": "FUN_100ea74b"
+    }, 
+    {
+      "address": "0x100e8a2e", 
+      "name": "FUN_100e8a2e"
+    }, 
+    {
+      "address": "0x100f28d7", 
+      "name": "FUN_100f28d7"
+    }
+  ]
+}

@@ -1,0 +1,39 @@
+{
+  "address": "0x10064a55", 
+  "size_bytes": 99, 
+  "calling_convention": "unknown", 
+  "signature": "undefined FUN_10064a55(undefined4 param_1, undefined4 param_2, undefined4 param_3)", 
+  "callees": [], 
+  "global_refs": [
+    {
+      "address": "0x00000004", 
+      "type": null, 
+      "name": "DAT_00000004"
+    }, 
+    {
+      "address": "0x0000000c", 
+      "type": null, 
+      "name": "DAT_0000000c"
+    }, 
+    {
+      "address": "0x00000008", 
+      "type": null, 
+      "name": "DAT_00000008"
+    }
+  ], 
+  "has_custom_name": false, 
+  "decompiled_c": "\nundefined4 FUN_10064a55(int param_1,int param_2,int param_3)\n\n{\n  int *piVar1;\n  int iVar2;\n  int in_ECX;\n  \n  piVar1 = (int *)(*(int *)(*(int *)(param_1 * 0x3c + 4 + *(int *)(in_ECX + 0x2c)) + 0x20 +\n                           param_2 * 0x40) + param_3 * 0x18);\n  *(int *)(*piVar1 + 4) = piVar1[1];\n  *(int *)piVar1[1] = *piVar1;\n  iVar2 = *(int *)(*(int *)(in_ECX + 0x9c) + (uint)*(ushort *)(piVar1[2] + 4) * 4);\n  if (piVar1 == *(int **)(iVar2 + 0x2c)) {\n    *(uint *)(iVar2 + 0x2c) = -(uint)((int *)piVar1[1] != piVar1) & (uint)piVar1[1];\n  }\n  *piVar1 = (int)piVar1;\n  piVar1[1] = (int)piVar1;\n  return 0;\n}\n\n", 
+  "is_thunk": false, 
+  "name": "FUN_10064a55", 
+  "assembly": "  10064a55:  MOV EAX,dword ptr [ESP + 0x4]\n  10064a59:  MOV EDX,dword ptr [ECX + 0x2c]\n  10064a5c:  IMUL EAX,EAX,0x3c\n  10064a5f:  MOV EDX,dword ptr [EAX + EDX*0x1 + 0x4]\n  10064a63:  MOV EAX,dword ptr [ESP + 0xc]\n  10064a67:  PUSH ESI\n  10064a68:  MOV ESI,dword ptr [ESP + 0xc]\n  10064a6c:  SHL ESI,0x6\n  10064a6f:  MOV EDX,dword ptr [EDX + ESI*0x1 + 0x20]\n  10064a73:  LEA EAX,[EAX + EAX*0x2]\n  10064a76:  LEA EAX,[EDX + EAX*0x8]\n  10064a79:  MOV EDX,dword ptr [EAX]\n  10064a7b:  MOV ESI,dword ptr [EAX + 0x4]\n  10064a7e:  MOV dword ptr [EDX + 0x4],ESI\n  10064a81:  MOV EDX,dword ptr [EAX + 0x4]\n  10064a84:  MOV ESI,dword ptr [EAX]\n  10064a86:  MOV dword ptr [EDX],ESI\n  10064a88:  MOV EDX,dword ptr [EAX + 0x8]\n  10064a8b:  MOVZX EDX,word ptr [EDX + 0x4]\n  10064a8f:  MOV ECX,dword ptr [ECX + 0x9c]\n  10064a95:  MOV ECX,dword ptr [ECX + EDX*0x4]\n  10064a98:  CMP EAX,dword ptr [ECX + 0x2c]\n  10064a9b:  JNZ 0x10064aad\n  10064a9d:  MOV EDX,dword ptr [EAX + 0x4]\n  10064aa0:  MOV ESI,EDX\n  10064aa2:  SUB ESI,EAX\n  10064aa4:  NEG ESI\n  10064aa6:  SBB ESI,ESI\n  10064aa8:  AND ESI,EDX\n  10064aaa:  MOV dword ptr [ECX + 0x2c],ESI\n  10064aad:  MOV dword ptr [EAX],EAX\n  10064aaf:  MOV dword ptr [EAX + 0x4],EAX\n  10064ab2:  XOR EAX,EAX\n  10064ab4:  POP ESI\n  10064ab5:  RET 0xc", 
+  "callers": [
+    {
+      "address": "0x1006ea3d", 
+      "name": "FUN_1006ea3d"
+    }, 
+    {
+      "address": "0x1006f0c9", 
+      "name": "FUN_1006f0c9"
+    }
+  ]
+}

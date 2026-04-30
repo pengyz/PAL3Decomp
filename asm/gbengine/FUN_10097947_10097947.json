@@ -1,0 +1,57 @@
+{
+  "address": "0x10097947", 
+  "size_bytes": 159, 
+  "calling_convention": "unknown", 
+  "signature": "undefined FUN_10097947(undefined4 param_1, undefined4 param_2)", 
+  "callees": [
+    {
+      "address": "0x10097947", 
+      "name": "FUN_10097947"
+    }
+  ], 
+  "global_refs": [
+    {
+      "address": "0x00000008", 
+      "type": null, 
+      "name": "DAT_00000008"
+    }, 
+    {
+      "address": "0x-0000008", 
+      "type": null, 
+      "name": "DAT_-0000008"
+    }, 
+    {
+      "address": "0x-000000c", 
+      "type": null, 
+      "name": "DAT_-000000c"
+    }, 
+    {
+      "address": "0x00000004", 
+      "type": null, 
+      "name": "DAT_00000004"
+    }
+  ], 
+  "has_custom_name": false, 
+  "decompiled_c": "\nshort * FUN_10097947(int param_1,short *param_2)\n\n{\n  ushort *puVar1;\n  int iVar2;\n  ushort uVar3;\n  ushort uVar4;\n  int iVar5;\n  int *piVar6;\n  int iVar7;\n  uint uVar8;\n  int in_ECX;\n  uint local_c;\n  \n  puVar1 = (ushort *)(param_2 + 5);\n  if (*puVar1 == 0) {\n    if (*(short *)(param_1 + 4) == 0) {\n      uVar8 = (uint)(ushort)param_2[3];\n      uVar3 = param_2[2];\n    }\n    else {\n      if (*param_2 == 3) {\n        uVar4 = param_2[2];\n        uVar3 = param_2[3];\n      }\n      else {\n        uVar4 = param_2[3];\n        uVar3 = param_2[2];\n      }\n      uVar8 = (int)(uVar4 + 3) >> 2;\n    }\n    param_2 = (short *)(uVar8 * uVar3);\n  }\n  else {\n    piVar6 = (int *)(param_2 + 6);\n    param_2 = (short *)0x0;\n    iVar5 = *(int *)(in_ECX + 0xc);\n    local_c = (uint)*puVar1;\n    if (local_c != 0) {\n      piVar6 = (int *)(*piVar6 + iVar5 + 4);\n      do {\n        if (*piVar6 != 0) {\n          iVar2 = *piVar6 + iVar5;\n          iVar7 = FUN_10097947(param_1,iVar2);\n          param_2 = (short *)((int)param_2 + iVar7 * (uint)*(ushort *)(iVar2 + 8));\n        }\n        piVar6 = piVar6 + 2;\n        local_c = local_c - 1;\n      } while (local_c != 0);\n    }\n  }\n  return param_2;\n}\n\n", 
+  "is_thunk": false, 
+  "name": "FUN_10097947", 
+  "assembly": "  10097947:  PUSH EBP\n  10097948:  MOV EBP,ESP\n  1009794a:  PUSH ECX\n  1009794b:  PUSH ECX\n  1009794c:  PUSH EBX\n  1009794d:  MOV EBX,ECX\n  1009794f:  MOV ECX,dword ptr [EBP + 0xc]\n  10097952:  MOV DX,word ptr [ECX + 0xa]\n  10097956:  TEST DX,DX\n  10097959:  JZ 0x100979ac\n  1009795b:  MOV EAX,dword ptr [ECX + 0xc]\n  1009795e:  AND dword ptr [EBP + 0xc],0x0\n  10097962:  PUSH EDI\n  10097963:  MOV EDI,dword ptr [EBX + 0xc]\n  10097966:  MOVZX ECX,DX\n  10097969:  ADD EAX,EDI\n  1009796b:  TEST ECX,ECX\n  1009796d:  JBE 0x100979a6\n  1009796f:  ADD EAX,0x4\n  10097972:  MOV dword ptr [EBP + -0x4],EAX\n  10097975:  MOV dword ptr [EBP + -0x8],ECX\n  10097978:  PUSH ESI\n  10097979:  MOV EAX,dword ptr [EAX]\n  1009797b:  TEST EAX,EAX\n  1009797d:  JZ 0x10097997\n  1009797f:  LEA ESI,[EAX + EDI*0x1]\n  10097982:  PUSH ESI\n  10097983:  PUSH dword ptr [EBP + 0x8]\n  10097986:  MOV ECX,EBX\n  10097988:  CALL 0x10097947\n  1009798d:  MOVZX ECX,word ptr [ESI + 0x8]\n  10097991:  IMUL EAX,ECX\n  10097994:  ADD dword ptr [EBP + 0xc],EAX\n  10097997:  MOV EAX,dword ptr [EBP + -0x4]\n  1009799a:  ADD EAX,0x8\n  1009799d:  DEC dword ptr [EBP + -0x8]\n  100979a0:  MOV dword ptr [EBP + -0x4],EAX\n  100979a3:  JNZ 0x10097979\n  100979a5:  POP ESI\n  100979a6:  MOV EAX,dword ptr [EBP + 0xc]\n  100979a9:  POP EDI\n  100979aa:  JMP 0x100979e1\n  100979ac:  MOV EAX,dword ptr [EBP + 0x8]\n  100979af:  CMP word ptr [EAX + 0x4],0x0\n  100979b4:  JNZ 0x100979c0\n  100979b6:  MOVZX EAX,word ptr [ECX + 0x6]\n  100979ba:  MOVZX ECX,word ptr [ECX + 0x4]\n  100979be:  JMP 0x100979de\n  100979c0:  CMP word ptr [ECX],0x3\n  100979c4:  JZ 0x100979d0\n  100979c6:  MOVZX EAX,word ptr [ECX + 0x6]\n  100979ca:  MOVZX ECX,word ptr [ECX + 0x4]\n  100979ce:  JMP 0x100979d8\n  100979d0:  MOVZX EAX,word ptr [ECX + 0x4]\n  100979d4:  MOVZX ECX,word ptr [ECX + 0x6]\n  100979d8:  ADD EAX,0x3\n  100979db:  SAR EAX,0x2\n  100979de:  IMUL EAX,ECX\n  100979e1:  POP EBX\n  100979e2:  LEAVE\n  100979e3:  RET 0x8", 
+  "callers": [
+    {
+      "address": "0x10097947", 
+      "name": "FUN_10097947"
+    }, 
+    {
+      "address": "0x10098b45", 
+      "name": "FUN_10098b45"
+    }, 
+    {
+      "address": "0x10098c44", 
+      "name": "FUN_10098c44"
+    }, 
+    {
+      "address": "0x10098fc4", 
+      "name": "FUN_10098fc4"
+    }
+  ]
+}

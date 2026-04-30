@@ -1,0 +1,19 @@
+{
+  "address": "0x100f3800", 
+  "size_bytes": 8, 
+  "calling_convention": "unknown", 
+  "signature": "undefined Unwind@100f3800(void)", 
+  "callees": [
+    {
+      "address": "0x100094b0", 
+      "name": "~gbResource"
+    }
+  ], 
+  "global_refs": [], 
+  "has_custom_name": true, 
+  "decompiled_c": "\nvoid Unwind_100f3800(void)\n\n{\n  int unaff_EBP;\n  \n  gbResource::~gbResource(*(gbResource **)(unaff_EBP + -0x10));\n  return;\n}\n\n", 
+  "is_thunk": false, 
+  "name": "Unwind@100f3800", 
+  "assembly": "  100f3800:  MOV ECX,dword ptr [EBP + -0x10]\n  100f3803:  JMP 0x100094b0", 
+  "callers": []
+}

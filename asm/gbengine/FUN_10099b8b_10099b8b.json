@@ -1,0 +1,30 @@
+{
+  "address": "0x10099b8b", 
+  "size_bytes": 119, 
+  "calling_convention": "unknown", 
+  "signature": "undefined FUN_10099b8b(undefined4 param_1, undefined4 param_2)", 
+  "callees": [], 
+  "global_refs": [
+    {
+      "address": "0x00000004", 
+      "type": null, 
+      "name": "DAT_00000004"
+    }, 
+    {
+      "address": "0x00000008", 
+      "type": null, 
+      "name": "DAT_00000008"
+    }
+  ], 
+  "has_custom_name": false, 
+  "decompiled_c": "\nuint FUN_10099b8b(int param_1,int *param_2)\n\n{\n  uint uVar1;\n  uint uVar2;\n  uint *in_ECX;\n  \n  uVar2 = *in_ECX;\n  uVar1 = uVar2 & 0xfff00000;\n  if (uVar1 == 0) {\n    uVar2 = 0;\n  }\n  else if (((uVar1 == 0x50000000) || (uVar1 == 0x50200000)) || (uVar1 == 0xf0a00000)) {\n    uVar2 = 1;\n  }\n  else if ((uVar2 & 0xf0000000) == 0x60000000) {\n    uVar2 = 4;\n  }\n  else {\n    uVar2 = uVar2 & 0xfffff;\n  }\n  if (in_ECX[3] < uVar2 * param_1 + uVar2) {\n    if (param_2 != (int *)0x0) {\n      *param_2 = 0;\n    }\n    uVar2 = 0;\n  }\n  else if (param_2 != (int *)0x0) {\n    *param_2 = in_ECX[4] + uVar2 * param_1 * 4;\n  }\n  return uVar2;\n}\n\n", 
+  "is_thunk": false, 
+  "name": "FUN_10099b8b", 
+  "assembly": "  10099b8b:  MOV EDX,dword ptr [ECX]\n  10099b8d:  MOV EAX,EDX\n  10099b8f:  AND EAX,0xfff00000\n  10099b94:  JZ 0x10099bcd\n  10099b96:  CMP EAX,0x50000000\n  10099b9b:  JZ 0x10099bc8\n  10099b9d:  CMP EAX,0x50200000\n  10099ba2:  JZ 0x10099bc8\n  10099ba4:  CMP EAX,0xf0a00000\n  10099ba9:  JZ 0x10099bc8\n  10099bab:  MOV EAX,EDX\n  10099bad:  AND EAX,0xf0000000\n  10099bb2:  CMP EAX,0x60000000\n  10099bb7:  JNZ 0x10099bbe\n  10099bb9:  PUSH 0x4\n  10099bbb:  POP EAX\n  10099bbc:  JMP 0x10099bcf\n  10099bbe:  AND EDX,0xfffff\n  10099bc4:  MOV EAX,EDX\n  10099bc6:  JMP 0x10099bcf\n  10099bc8:  XOR EAX,EAX\n  10099bca:  INC EAX\n  10099bcb:  JMP 0x10099bcf\n  10099bcd:  XOR EAX,EAX\n  10099bcf:  MOV EDX,EAX\n  10099bd1:  IMUL EDX,dword ptr [ESP + 0x4]\n  10099bd6:  PUSH ESI\n  10099bd7:  LEA ESI,[EDX + EAX*0x1]\n  10099bda:  CMP ESI,dword ptr [ECX + 0xc]\n  10099bdd:  JBE 0x10099bee\n  10099bdf:  MOV EAX,dword ptr [ESP + 0xc]\n  10099be3:  TEST EAX,EAX\n  10099be5:  JZ 0x10099bea\n  10099be7:  AND dword ptr [EAX],0x0\n  10099bea:  XOR EAX,EAX\n  10099bec:  JMP 0x10099bfe\n  10099bee:  MOV ESI,dword ptr [ESP + 0xc]\n  10099bf2:  TEST ESI,ESI\n  10099bf4:  JZ 0x10099bfe\n  10099bf6:  MOV ECX,dword ptr [ECX + 0x10]\n  10099bf9:  LEA ECX,[ECX + EDX*0x4]\n  10099bfc:  MOV dword ptr [ESI],ECX\n  10099bfe:  POP ESI\n  10099bff:  RET 0x8", 
+  "callers": [
+    {
+      "address": "0x100814ac", 
+      "name": "FUN_100814ac"
+    }
+  ]
+}

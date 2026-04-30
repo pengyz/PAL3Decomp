@@ -1,0 +1,29 @@
+{
+  "address": "0x100ea287", 
+  "size_bytes": 140, 
+  "calling_convention": "unknown", 
+  "signature": "undefined __trandisp2(void)", 
+  "callees": [], 
+  "global_refs": [
+    {
+      "address": "0x1012a12c", 
+      "type": null, 
+      "name": "DAT_1012a12c"
+    }
+  ], 
+  "has_custom_name": true, 
+  "decompiled_c": "\n/* Library Function - Single Match\n    __trandisp2\n   \n   Libraries: Visual Studio 1998, Visual Studio 2003, Visual Studio 2005, Visual Studio 2008 */\n\nvoid __trandisp2(void)\n\n{\n  float10 fVar1;\n  char cVar2;\n  byte bVar3;\n  int in_EDX;\n  undefined2 uVar4;\n  int unaff_EBP;\n  float10 in_ST0;\n  float10 in_ST1;\n  \n  if (*(char *)(in_EDX + 0xe) == '\\x05') {\n    uVar4 = (undefined2)\n            CONCAT31((uint3)((byte)((ushort)*(undefined2 *)(unaff_EBP + -0xa4) >> 8) & 0xfe | 2),\n                     0x3f);\n  }\n  else {\n    uVar4 = 0x133f;\n  }\n  *(undefined2 *)(unaff_EBP + -0xa2) = uVar4;\n  fVar1 = (float10)0;\n  *(int *)(unaff_EBP + -0x94) = in_EDX;\n  *(ushort *)(unaff_EBP + -0xa0) =\n       (ushort)NAN(in_ST0) << 8 | (ushort)(in_ST0 < fVar1) << 9 | (ushort)(in_ST0 != fVar1) << 10 |\n       (ushort)(in_ST0 == fVar1) << 0xe;\n  *(undefined *)(unaff_EBP + -0x90) = 0;\n  fVar1 = (float10)0;\n  *(ushort *)(unaff_EBP + -0xa0) =\n       (ushort)NAN(in_ST1) << 8 | (ushort)(in_ST1 < fVar1) << 9 | (ushort)(in_ST1 != fVar1) << 10 |\n       (ushort)(in_ST1 == fVar1) << 0xe;\n  bVar3 = (char)(*(char *)(unaff_EBP + -0x9f) << 1) >> 1;\n  cVar2 = (char)(*(char *)(unaff_EBP + -0x9f) << 1) >> 1;\n                    /* WARNING: Could not recover jumptable at 0x100ea311. Too many branches */\n                    /* WARNING: Treating indirect jump as call */\n  (**(code **)(in_EDX + (char)((&DAT_1012a12c)[(byte)(cVar2 << 1 | cVar2 < '\\0') & 0xf] |\n                              (&DAT_1012a12c)[(byte)((bVar3 & 7) << 1 | (char)bVar3 < '\\0')] << 2) +\n              0x10))();\n  return;\n}\n\n", 
+  "is_thunk": false, 
+  "name": "__trandisp2", 
+  "assembly": "  100ea287:  CMP byte ptr [EDX + 0xe],0x5\n  100ea28b:  JNZ 0x100ea29e\n  100ea28d:  MOV BX,word ptr [EBP + 0xffffff5c]\n  100ea294:  OR BH,0x2\n  100ea297:  AND BH,0xfe\n  100ea29a:  MOV BL,0x3f\n  100ea29c:  JMP 0x100ea2a2\n  100ea29e:  MOV BX,0x133f\n  100ea2a2:  MOV word ptr [EBP + 0xffffff5e],BX\n  100ea2a9:  FLDCW word ptr [EBP + 0xffffff5e]\n  100ea2af:  MOV EBX,0x1012a12c\n  100ea2b4:  FXAM\n  100ea2b6:  MOV dword ptr [EBP + 0xffffff6c],EDX\n  100ea2bc:  FSTSW word ptr [EBP + 0xffffff60]\n  100ea2c3:  MOV byte ptr [EBP + 0xffffff70],0x0\n  100ea2ca:  FXCH\n  100ea2cc:  MOV CL,byte ptr [EBP + 0xffffff61]\n  100ea2d2:  FXAM\n  100ea2d4:  FSTSW word ptr [EBP + 0xffffff60]\n  100ea2db:  FXCH\n  100ea2dd:  MOV CH,byte ptr [EBP + 0xffffff61]\n  100ea2e3:  SHL CH,0x1\n  100ea2e5:  SAR CH,0x1\n  100ea2e7:  ROL CH,0x1\n  100ea2e9:  MOV AL,CH\n  100ea2eb:  AND AL,0xf\n  100ea2ed:  XLAT EBX\n  100ea2ee:  MOV AH,AL\n  100ea2f0:  SHL CL,0x1\n  100ea2f2:  SAR CL,0x1\n  100ea2f4:  ROL CL,0x1\n  100ea2f6:  MOV AL,CL\n  100ea2f8:  AND AL,0xf\n  100ea2fa:  XLAT EBX\n  100ea2fb:  SHL AH,0x1\n  100ea2fd:  SHL AH,0x1\n  100ea2ff:  OR AL,AH\n  100ea301:  MOVSX EAX,AL\n  100ea304:  AND ECX,0x404\n  100ea30a:  MOV EBX,EDX\n  100ea30c:  ADD EBX,EAX\n  100ea30e:  ADD EBX,0x10\n  100ea311:  JMP dword ptr [EBX]", 
+  "callers": [
+    {
+      "address": "0x100efb40", 
+      "name": "__cintrindisp2"
+    }, 
+    {
+      "address": "0x100efbbb", 
+      "name": "__ctrandisp2"
+    }
+  ]
+}

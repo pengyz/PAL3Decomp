@@ -1,0 +1,23 @@
+{
+  "address": "0x1002eda0", 
+  "size_bytes": 36, 
+  "calling_convention": "__thiscall", 
+  "signature": "void __thiscall ~gbNameVarBuf(gbNameVarBuf * this)", 
+  "callees": [
+    {
+      "address": "0x100e4b99", 
+      "name": "FUN_100e4b99"
+    }, 
+    {
+      "address": "0x100e4b99", 
+      "name": "FUN_100e4b99"
+    }
+  ], 
+  "global_refs": [], 
+  "has_custom_name": true, 
+  "decompiled_c": "\n/* public: __thiscall gbNameVarBuf::~gbNameVarBuf(void) */\n\nvoid __thiscall gbNameVarBuf::~gbNameVarBuf(gbNameVarBuf *this)\n\n{\n                    /* 0x2eda0  147  ??1gbNameVarBuf@@QAE@XZ */\n  if (*(int *)this != 0) {\n    FUN_100e4b99(*(int *)this);\n  }\n  if (*(int *)(this + 0xc) != 0) {\n    FUN_100e4b99(*(int *)(this + 0xc));\n  }\n  return;\n}\n\n", 
+  "is_thunk": false, 
+  "name": "~gbNameVarBuf", 
+  "assembly": "  1002eda0:  PUSH ESI\n  1002eda1:  MOV ESI,ECX\n  1002eda3:  MOV EAX,dword ptr [ESI]\n  1002eda5:  TEST EAX,EAX\n  1002eda7:  JZ 0x1002edb2\n  1002eda9:  PUSH EAX\n  1002edaa:  CALL 0x100e4b99\n  1002edaf:  ADD ESP,0x4\n  1002edb2:  MOV ESI,dword ptr [ESI + 0xc]\n  1002edb5:  TEST ESI,ESI\n  1002edb7:  JZ 0x1002edc2\n  1002edb9:  PUSH ESI\n  1002edba:  CALL 0x100e4b99\n  1002edbf:  ADD ESP,0x4\n  1002edc2:  POP ESI\n  1002edc3:  RET", 
+  "callers": []
+}

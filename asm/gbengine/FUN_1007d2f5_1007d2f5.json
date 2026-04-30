@@ -1,0 +1,44 @@
+{
+  "address": "0x1007d2f5", 
+  "size_bytes": 55, 
+  "calling_convention": "unknown", 
+  "signature": "undefined FUN_1007d2f5(undefined4 param_1, undefined4 param_2, undefined4 param_3)", 
+  "callees": [
+    {
+      "address": "0x1007b651", 
+      "name": "FUN_1007b651"
+    }, 
+    {
+      "address": "0x1007cdd9", 
+      "name": "FUN_1007cdd9"
+    }
+  ], 
+  "global_refs": [
+    {
+      "address": "0x00000008", 
+      "type": null, 
+      "name": "DAT_00000008"
+    }, 
+    {
+      "address": "0x-0000104", 
+      "type": null, 
+      "name": "DAT_-0000104"
+    }, 
+    {
+      "address": "0x0000000c", 
+      "type": null, 
+      "name": "DAT_0000000c"
+    }, 
+    {
+      "address": "0x00000004", 
+      "type": null, 
+      "name": "DAT_00000004"
+    }
+  ], 
+  "has_custom_name": false, 
+  "decompiled_c": "\nint FUN_1007d2f5(undefined4 param_1,undefined4 param_2,undefined4 param_3)\n\n{\n  int iVar1;\n  undefined local_104 [256];\n  \n  iVar1 = FUN_1007b651();\n  if (-1 < iVar1) {\n    iVar1 = FUN_1007cdd9(param_1,local_104,param_3);\n    if (-1 < iVar1) {\n      iVar1 = 0;\n    }\n  }\n  return iVar1;\n}\n\n", 
+  "is_thunk": false, 
+  "name": "FUN_1007d2f5", 
+  "assembly": "  1007d2f5:  PUSH EBP\n  1007d2f6:  MOV EBP,ESP\n  1007d2f8:  SUB ESP,0x100\n  1007d2fe:  MOV EAX,dword ptr [EBP + 0xc]\n  1007d301:  LEA ECX,[EBP + 0xffffff00]\n  1007d307:  CALL 0x1007b651\n  1007d30c:  TEST EAX,EAX\n  1007d30e:  JL 0x1007d328\n  1007d310:  PUSH dword ptr [EBP + 0x10]\n  1007d313:  LEA EAX,[EBP + 0xffffff00]\n  1007d319:  PUSH EAX\n  1007d31a:  PUSH dword ptr [EBP + 0x8]\n  1007d31d:  CALL 0x1007cdd9\n  1007d322:  TEST EAX,EAX\n  1007d324:  JL 0x1007d328\n  1007d326:  XOR EAX,EAX\n  1007d328:  LEAVE\n  1007d329:  RET 0xc", 
+  "callers": []
+}

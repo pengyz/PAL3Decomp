@@ -1,0 +1,38 @@
+{
+  "address": "0x100214f0", 
+  "size_bytes": 145, 
+  "calling_convention": "__thiscall", 
+  "signature": "void __thiscall DelSrcVertBub(gbVertPoolMgr * this, gbVertexBubble * param_1)", 
+  "callees": [
+    {
+      "address": "0x10020fe0", 
+      "name": "DelBubble"
+    }, 
+    {
+      "address": "0x1002ec20", 
+      "name": "operator[]"
+    }, 
+    {
+      "address": "0x1002eb90", 
+      "name": "DelNodeFromChain"
+    }
+  ], 
+  "global_refs": [
+    {
+      "address": "0x00000004", 
+      "type": null, 
+      "name": "DAT_00000004"
+    }
+  ], 
+  "has_custom_name": true, 
+  "decompiled_c": "\n/* public: void __thiscall gbVertPoolMgr::DelSrcVertBub(class gbVertexBubble *) */\n\nvoid __thiscall gbVertPoolMgr::DelSrcVertBub(gbVertPoolMgr *this,gbVertexBubble *param_1)\n\n{\n  gbVertPoolMgr *pgVar1;\n  gbVertexPool *this_00;\n  int iVar2;\n  gbChain1DNode *pgVar3;\n  gbVertPoolMgr *pgVar4;\n  \n                    /* 0x214f0  373  ?DelSrcVertBub@gbVertPoolMgr@@QAEXPAVgbVertexBubble@@@Z */\n  *(int *)(*(int *)(this + 0x620) + 0x218) =\n       *(int *)(*(int *)(this + 0x620) + 0x218) - *(int *)(param_1 + 0x14);\n  this_00 = *(gbVertexPool **)(param_1 + 8);\n  pgVar1 = this + 0x590;\n  iVar2 = 0;\n  pgVar4 = pgVar1;\n  do {\n    if (*(int *)pgVar4 == *(int *)(this_00 + 0x14)) goto LAB_10021543;\n    iVar2 = iVar2 + 1;\n    pgVar4 = pgVar4 + 4;\n  } while (iVar2 < 0x20);\n  iVar2 = 0;\n  pgVar4 = pgVar1;\n  do {\n    if (*(int *)pgVar4 == 0) {\n      *(int *)(pgVar1 + iVar2 * 4) = *(int *)(this_00 + 0x14);\n      goto LAB_10021543;\n    }\n    iVar2 = iVar2 + 1;\n    pgVar4 = pgVar4 + 4;\n  } while (iVar2 < 0x20);\n  iVar2 = -1;\nLAB_10021543:\n  gbVertexPool::DelBubble(this_00,param_1);\n  pgVar3 = gbChain1D::operator[]((gbChain1D *)(this_00 + 0x2c),0);\n  if ((pgVar3 == (gbChain1DNode *)0x0) &&\n     (gbChain1D::DelNodeFromChain\n                ((gbChain1D *)(this + (iVar2 + 0x39) * 0x10),(gbChain1DNode *)this_00),\n     this_00 != (gbVertexPool *)0x0)) {\n    (*(code *)**(undefined4 **)this_00)(1);\n  }\n  return;\n}\n\n", 
+  "is_thunk": false, 
+  "name": "DelSrcVertBub", 
+  "assembly": "  100214f0:  PUSH EBX\n  100214f1:  PUSH EBP\n  100214f2:  MOV EBP,dword ptr [ESP + 0xc]\n  100214f6:  PUSH ESI\n  100214f7:  PUSH EDI\n  100214f8:  MOV EDI,ECX\n  100214fa:  MOV ECX,dword ptr [EBP + 0x14]\n  100214fd:  MOV EAX,dword ptr [EDI + 0x620]\n  10021503:  MOV EDX,dword ptr [EAX + 0x218]\n  10021509:  SUB EDX,ECX\n  1002150b:  MOV dword ptr [EAX + 0x218],EDX\n  10021511:  MOV ESI,dword ptr [EBP + 0x8]\n  10021514:  LEA EDX,[EDI + 0x590]\n  1002151a:  XOR EAX,EAX\n  1002151c:  MOV EBX,dword ptr [ESI + 0x14]\n  1002151f:  MOV ECX,EDX\n  10021521:  CMP dword ptr [ECX],EBX\n  10021523:  JZ 0x1002157d\n  10021525:  INC EAX\n  10021526:  ADD ECX,0x4\n  10021529:  CMP EAX,0x20\n  1002152c:  JL 0x10021521\n  1002152e:  XOR EAX,EAX\n  10021530:  MOV ECX,EDX\n  10021532:  CMP dword ptr [ECX],0x0\n  10021535:  JZ 0x1002157a\n  10021537:  INC EAX\n  10021538:  ADD ECX,0x4\n  1002153b:  CMP EAX,0x20\n  1002153e:  JL 0x10021532\n  10021540:  OR EBX,0xffffffff\n  10021543:  PUSH EBP\n  10021544:  MOV ECX,ESI\n  10021546:  CALL 0x10020fe0\n  1002154b:  PUSH 0x0\n  1002154d:  LEA ECX,[ESI + 0x2c]\n  10021550:  CALL 0x1002ec20\n  10021555:  TEST EAX,EAX\n  10021557:  JNZ 0x10021573\n  10021559:  LEA ECX,[EBX + 0x39]\n  1002155c:  PUSH ESI\n  1002155d:  SHL ECX,0x4\n  10021560:  ADD ECX,EDI\n  10021562:  CALL 0x1002eb90\n  10021567:  TEST ESI,ESI\n  10021569:  JZ 0x10021573\n  1002156b:  MOV EDX,dword ptr [ESI]\n  1002156d:  PUSH 0x1\n  1002156f:  MOV ECX,ESI\n  10021571:  CALL dword ptr [EDX]\n  10021573:  POP EDI\n  10021574:  POP ESI\n  10021575:  POP EBP\n  10021576:  POP EBX\n  10021577:  RET 0x4\n  1002157a:  MOV dword ptr [EDX + EAX*0x4],EBX\n  1002157d:  MOV EBX,EAX\n  1002157f:  JMP 0x10021543", 
+  "callers": [
+    {
+      "address": "0x10011b90", 
+      "name": "FUN_10011b90"
+    }
+  ]
+}

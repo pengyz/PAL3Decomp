@@ -1,0 +1,14 @@
+{
+  "address": "0x10032870", 
+  "size_bytes": 32, 
+  "calling_convention": "__thiscall", 
+  "signature": "undefined __thiscall gbDropUnit(gbDropUnit * this)", 
+  "callees": [], 
+  "global_refs": [], 
+  "has_custom_name": true, 
+  "decompiled_c": "\n/* public: __thiscall gbDropUnit::gbDropUnit(void) */\n\nvoid __thiscall gbDropUnit::gbDropUnit(gbDropUnit *this)\n\n{\n                    /* 0x32870  42  ??0gbDropUnit@@QAE@XZ */\n  *(undefined4 *)(this + 4) = 0;\n  *(undefined4 *)(this + 8) = 0;\n  *(undefined4 *)(this + 0xc) = 0;\n  *(undefined4 *)(this + 0x10) = 0;\n  *(undefined4 *)(this + 0x14) = 0;\n  *(undefined4 *)(this + 0x18) = 0;\n  *(undefined4 *)(this + 0x1c) = 0;\n  *(undefined4 *)(this + 0x20) = 0;\n  *(undefined4 *)(this + 0x24) = 0;\n  return;\n}\n\n", 
+  "is_thunk": false, 
+  "name": "gbDropUnit", 
+  "assembly": "  10032870:  MOV EAX,ECX\n  10032872:  XOR ECX,ECX\n  10032874:  MOV dword ptr [EAX + 0x4],ECX\n  10032877:  MOV dword ptr [EAX + 0x8],ECX\n  1003287a:  MOV dword ptr [EAX + 0xc],ECX\n  1003287d:  MOV dword ptr [EAX + 0x10],ECX\n  10032880:  MOV dword ptr [EAX + 0x14],ECX\n  10032883:  MOV dword ptr [EAX + 0x18],ECX\n  10032886:  MOV dword ptr [EAX + 0x1c],ECX\n  10032889:  MOV dword ptr [EAX + 0x20],ECX\n  1003288c:  MOV dword ptr [EAX + 0x24],ECX\n  1003288f:  RET", 
+  "callers": []
+}

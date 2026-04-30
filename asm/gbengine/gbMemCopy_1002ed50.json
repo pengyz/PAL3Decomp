@@ -1,0 +1,30 @@
+{
+  "address": "0x1002ed50", 
+  "size_bytes": 34, 
+  "calling_convention": "__cdecl", 
+  "signature": "void __cdecl gbMemCopy(void * param_1, void * param_2, uint param_3)", 
+  "callees": [], 
+  "global_refs": [
+    {
+      "address": "0x0000000c", 
+      "type": null, 
+      "name": "DAT_0000000c"
+    }, 
+    {
+      "address": "0x00000008", 
+      "type": null, 
+      "name": "DAT_00000008"
+    }, 
+    {
+      "address": "0x00000004", 
+      "type": null, 
+      "name": "DAT_00000004"
+    }
+  ], 
+  "has_custom_name": true, 
+  "decompiled_c": "\n/* void __cdecl gbMemCopy(void *,void *,unsigned int) */\n\nvoid __cdecl gbMemCopy(void *param_1,void *param_2,uint param_3)\n\n{\n  uint uVar1;\n  uint uVar2;\n  \n  uVar2 = param_3 & 3;\n                    /* 0x2ed50  995  ?gbMemCopy@@YAXPAX0I@Z */\n                    /* WARNING: Load size is inaccurate */\n  for (uVar1 = param_3 >> 2; uVar1 != 0; uVar1 = uVar1 - 1) {\n    *(undefined4 *)param_1 = *param_2;\n    param_2 = (undefined4 *)((int)param_2 + 4);\n    param_1 = (undefined4 *)((int)param_1 + 4);\n  }\n                    /* WARNING: Load size is inaccurate */\n  for (; uVar2 != 0; uVar2 = uVar2 - 1) {\n    *(undefined *)param_1 = *param_2;\n    param_2 = (undefined4 *)((int)param_2 + 1);\n    param_1 = (undefined4 *)((int)param_1 + 1);\n  }\n  return;\n}\n\n", 
+  "is_thunk": false, 
+  "name": "gbMemCopy", 
+  "assembly": "  1002ed50:  PUSH EBP\n  1002ed51:  MOV EBP,ESP\n  1002ed53:  PUSH EBX\n  1002ed54:  PUSH ESI\n  1002ed55:  PUSH EDI\n  1002ed56:  MOV ECX,dword ptr [EBP + 0x10]\n  1002ed59:  MOV ESI,dword ptr [EBP + 0xc]\n  1002ed5c:  MOV EDI,dword ptr [EBP + 0x8]\n  1002ed5f:  MOV EBX,ECX\n  1002ed61:  SHR ECX,0x2\n  1002ed64:  AND EBX,0x3\n  1002ed67:  MOVSD.REP ES:EDI,ESI\n  1002ed69:  MOV ECX,EBX\n  1002ed6b:  MOVSB.REP ES:EDI,ESI\n  1002ed6d:  POP EDI\n  1002ed6e:  POP ESI\n  1002ed6f:  POP EBX\n  1002ed70:  POP EBP\n  1002ed71:  RET", 
+  "callers": []
+}

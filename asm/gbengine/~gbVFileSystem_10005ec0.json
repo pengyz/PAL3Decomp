@@ -1,0 +1,19 @@
+{
+  "address": "0x10005ec0", 
+  "size_bytes": 8, 
+  "calling_convention": "__thiscall", 
+  "signature": "void __thiscall ~gbVFileSystem(gbVFileSystem * this)", 
+  "callees": [
+    {
+      "address": "0x1002c590", 
+      "name": "~CPK"
+    }
+  ], 
+  "global_refs": [], 
+  "has_custom_name": true, 
+  "decompiled_c": "\n/* public: __thiscall gbVFileSystem::~gbVFileSystem(void) */\n\nvoid __thiscall gbVFileSystem::~gbVFileSystem(gbVFileSystem *this)\n\n{\n                    /* 0x5ec0  166  ??1gbVFileSystem@@QAE@XZ */\n  CPK::~CPK((CPK *)(this + 0x18));\n  return;\n}\n\n", 
+  "is_thunk": false, 
+  "name": "~gbVFileSystem", 
+  "assembly": "  10005ec0:  ADD ECX,0x18\n  10005ec3:  JMP 0x1002c590", 
+  "callers": []
+}

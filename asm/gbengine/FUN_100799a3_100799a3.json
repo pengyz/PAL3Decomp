@@ -1,0 +1,30 @@
+{
+  "address": "0x100799a3", 
+  "size_bytes": 47, 
+  "calling_convention": "unknown", 
+  "signature": "undefined FUN_100799a3(undefined4 param_1, undefined4 param_2)", 
+  "callees": [], 
+  "global_refs": [
+    {
+      "address": "0x00000004", 
+      "type": null, 
+      "name": "DAT_00000004"
+    }, 
+    {
+      "address": "0x00000008", 
+      "type": null, 
+      "name": "DAT_00000008"
+    }
+  ], 
+  "has_custom_name": false, 
+  "decompiled_c": "\nvoid FUN_100799a3(int *param_1,undefined *param_2)\n\n{\n  undefined uVar1;\n  int iVar2;\n  \n  if (*(char *)((int)param_1 + 9) == '\\x10') {\n    for (iVar2 = (uint)*(byte *)((int)param_1 + 10) * *param_1; iVar2 != 0; iVar2 = iVar2 + -1) {\n      uVar1 = *param_2;\n      *param_2 = param_2[1];\n      param_2[1] = uVar1;\n      param_2 = param_2 + 2;\n    }\n  }\n  return;\n}\n\n", 
+  "is_thunk": false, 
+  "name": "FUN_100799a3", 
+  "assembly": "  100799a3:  MOV EDX,dword ptr [ESP + 0x4]\n  100799a7:  CMP byte ptr [EDX + 0x9],0x10\n  100799ab:  JNZ 0x100799cf\n  100799ad:  MOVZX ECX,byte ptr [EDX + 0xa]\n  100799b1:  IMUL ECX,dword ptr [EDX]\n  100799b4:  TEST ECX,ECX\n  100799b6:  MOV EAX,dword ptr [ESP + 0x8]\n  100799ba:  JBE 0x100799cf\n  100799bc:  PUSH ESI\n  100799bd:  MOV ESI,ECX\n  100799bf:  MOV DL,byte ptr [EAX]\n  100799c1:  MOV CL,byte ptr [EAX + 0x1]\n  100799c4:  MOV byte ptr [EAX],CL\n  100799c6:  MOV byte ptr [EAX + 0x1],DL\n  100799c9:  INC EAX\n  100799ca:  INC EAX\n  100799cb:  DEC ESI\n  100799cc:  JNZ 0x100799bf\n  100799ce:  POP ESI\n  100799cf:  RET 0x8", 
+  "callers": [
+    {
+      "address": "0x1007ae9e", 
+      "name": "FUN_1007ae9e"
+    }
+  ]
+}

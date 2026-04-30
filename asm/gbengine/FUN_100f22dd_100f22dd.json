@@ -1,0 +1,40 @@
+{
+  "address": "0x100f22dd", 
+  "size_bytes": 68, 
+  "calling_convention": "unknown", 
+  "signature": "undefined FUN_100f22dd(undefined1 param_1, undefined4 param_2)", 
+  "callees": [], 
+  "global_refs": [
+    {
+      "address": "0x00000008", 
+      "type": null, 
+      "name": "DAT_00000008"
+    }, 
+    {
+      "address": "0x00000004", 
+      "type": null, 
+      "name": "DAT_00000004"
+    }, 
+    {
+      "address": "0x10168641", 
+      "type": "undefined1", 
+      "name": "DAT_10168641"
+    }, 
+    {
+      "address": "0x1012a14a", 
+      "type": null, 
+      "name": "DAT_1012a14a"
+    }
+  ], 
+  "has_custom_name": false, 
+  "decompiled_c": "\nint FUN_100f22dd(byte param_1,int param_2)\n\n{\n  uint uVar1;\n  \n  uVar1 = (uint)param_1;\n  if (param_2 == 1) {\n    return (-(uint)(((&DAT_10168641)[uVar1] & 8) != 0) & 3) - 1;\n  }\n  if (((&DAT_10168641)[uVar1] & 4) != 0) {\n    return 1;\n  }\n  if (((*(ushort *)(&DAT_1012a14a + uVar1 * 2) & 0x157) == 0) && (((&DAT_10168641)[uVar1] & 3) == 0)\n     ) {\n    return -1;\n  }\n  return 0;\n}\n\n", 
+  "is_thunk": false, 
+  "name": "FUN_100f22dd", 
+  "assembly": "  100f22dd:  MOV EAX,dword ptr [ESP + 0x8]\n  100f22e1:  DEC EAX\n  100f22e2:  MOVZX EAX,byte ptr [ESP + 0x4]\n  100f22e7:  JZ 0x100f2310\n  100f22e9:  MOV CL,byte ptr [EAX + 0x10168641]\n  100f22ef:  TEST CL,0x4\n  100f22f2:  JZ 0x100f22f8\n  100f22f4:  PUSH 0x1\n  100f22f6:  POP EAX\n  100f22f7:  RET\n  100f22f8:  TEST word ptr [EAX*0x2 + 0x1012a14a],0x157\n  100f2302:  JNZ 0x100f230d\n  100f2304:  TEST CL,0x3\n  100f2307:  JNZ 0x100f230d\n  100f2309:  OR EAX,0xffffffff\n  100f230c:  RET\n  100f230d:  XOR EAX,EAX\n  100f230f:  RET\n  100f2310:  MOV AL,byte ptr [EAX + 0x10168641]\n  100f2316:  AND AL,0x8\n  100f2318:  NEG AL\n  100f231a:  SBB EAX,EAX\n  100f231c:  AND EAX,0x3\n  100f231f:  DEC EAX\n  100f2320:  RET", 
+  "callers": [
+    {
+      "address": "0x100eb76d", 
+      "name": "FUN_100eb76d"
+    }
+  ]
+}

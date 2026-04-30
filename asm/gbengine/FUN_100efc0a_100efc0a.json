@@ -1,0 +1,64 @@
+{
+  "address": "0x100efc0a", 
+  "size_bytes": 305, 
+  "calling_convention": "unknown", 
+  "signature": "undefined FUN_100efc0a(void)", 
+  "callees": [
+    {
+      "address": "0x100f1a35", 
+      "name": "FUN_100f1a35"
+    }
+  ], 
+  "global_refs": [
+    {
+      "address": "0x10166c5c", 
+      "type": "undefined4", 
+      "name": "DAT_10166c5c"
+    }, 
+    {
+      "address": "0x10110fc8", 
+      "type": null, 
+      "name": "DAT_10110fc8"
+    }, 
+    {
+      "address": "0x10110fb8", 
+      "type": null, 
+      "name": "DAT_10110fb8"
+    }, 
+    {
+      "address": "0x10110fd8", 
+      "type": null, 
+      "name": "DAT_10110fd8"
+    }, 
+    {
+      "address": "0x10110fc0", 
+      "type": null, 
+      "name": "DAT_10110fc0"
+    }, 
+    {
+      "address": "0x10110fb0", 
+      "type": null, 
+      "name": "DAT_10110fb0"
+    }, 
+    {
+      "address": "0x10110fd0", 
+      "type": null, 
+      "name": "DAT_10110fd0"
+    }
+  ], 
+  "has_custom_name": false, 
+  "decompiled_c": "\nvoid FUN_100efc0a(void)\n\n{\n  char cVar1;\n  ushort uVar2;\n  int unaff_EBP;\n  ushort in_FPUStatusWord;\n  float10 in_ST0;\n  \n  if (DAT_10166c5c != 0) {\n    return;\n  }\n  *(double *)(unaff_EBP + -0x2d0) = (double)in_ST0;\n  cVar1 = *(char *)(unaff_EBP + -0x90);\n  if (cVar1 != '\\0') {\n    if ((cVar1 != -1) && (cVar1 != -2)) {\n      if (cVar1 == '\\0') {\n        return;\n      }\n      *(int *)(unaff_EBP + -0x8e) = (int)cVar1;\n      goto LAB_100efcd9;\n    }\n    uVar2 = *(ushort *)(unaff_EBP + -0x2ca) & 0x7ff0;\n    if (uVar2 == 0) {\n      *(undefined4 *)(unaff_EBP + -0x8e) = 4;\n      in_ST0 = (float10)fscale(in_ST0,(float10)1536.0);\n      if (ABS(in_ST0) < (float10)2.2250738585072014e-308) {\n        in_ST0 = in_ST0 * (float10)0.0;\n      }\n      goto LAB_100efcd9;\n    }\n    if (uVar2 == 0x7ff0) {\n      *(undefined4 *)(unaff_EBP + -0x8e) = 3;\n      in_ST0 = (float10)fscale(in_ST0,(float10)-1536.0);\n      if ((float10)1.79769313486232e+308 < ABS(in_ST0)) {\n        in_ST0 = in_ST0 * (float10)INFINITY;\n      }\n      goto LAB_100efcd9;\n    }\n  }\n  if ((*(ushort *)(unaff_EBP + -0xa4) & 0x20) != 0) {\n    return;\n  }\n  if ((in_FPUStatusWord & 0x20) == 0) {\n    return;\n  }\n  *(undefined4 *)(unaff_EBP + -0x8e) = 8;\nLAB_100efcd9:\n  *(int *)(unaff_EBP + -0x8a) = *(int *)(unaff_EBP + -0x94) + 1;\n  if ((*(byte *)(unaff_EBP + -0x2c8) & 1) == 0) {\n    *(undefined4 *)(unaff_EBP + -0x86) = *(undefined4 *)(unaff_EBP + 8);\n    *(undefined4 *)(unaff_EBP + -0x82) = *(undefined4 *)(unaff_EBP + 0xc);\n    if (*(char *)(*(int *)(unaff_EBP + -0x94) + 0xd) != '\\x01') {\n      *(undefined4 *)(unaff_EBP + -0x7e) = *(undefined4 *)(unaff_EBP + 0x10);\n      *(undefined4 *)(unaff_EBP + -0x7a) = *(undefined4 *)(unaff_EBP + 0x14);\n    }\n  }\n  *(double *)(unaff_EBP + -0x76) = (double)in_ST0;\n  FUN_100f1a35((int)*(char *)(*(int *)(unaff_EBP + -0x94) + 0xe),unaff_EBP + -0x8e,unaff_EBP + -0xa4\n              );\n  return;\n}\n\n", 
+  "is_thunk": false, 
+  "name": "FUN_100efc0a", 
+  "assembly": "  100efc0a:  CMP dword ptr [0x10166c5c],0x0\n  100efc11:  JNZ 0x100efc5f\n  100efc13:  FST qword ptr [EBP + 0xfffffd30]\n  100efc19:  MOV AL,byte ptr [EBP + 0xffffff70]\n  100efc1f:  OR AL,AL\n  100efc21:  JZ 0x100efc3d\n  100efc23:  CMP AL,0xff\n  100efc25:  JZ 0x100efc67\n  100efc27:  CMP AL,0xfe\n  100efc29:  JZ 0x100efc67\n  100efc2b:  OR AL,AL\n  100efc2d:  JZ 0x100efc5f\n  100efc2f:  MOVSX EAX,AL\n  100efc32:  MOV dword ptr [EBP + 0xffffff72],EAX\n  100efc38:  JMP 0x100efcd9\n  100efc3d:  MOV AX,word ptr [EBP + 0xffffff5c]\n  100efc44:  AND AX,0x20\n  100efc48:  JNZ 0x100efc5f\n  100efc4a:  FSTSW AX\n  100efc4d:  AND AX,0x20\n  100efc51:  JZ 0x100efc5f\n  100efc53:  MOV dword ptr [EBP + 0xffffff72],0x8\n  100efc5d:  JMP 0x100efcd9\n  100efc5f:  FLDCW word ptr [EBP + 0xffffff5c]\n  100efc65:  WAIT\n  100efc66:  RET\n  100efc67:  MOV AX,word ptr [EBP + 0xfffffd36]\n  100efc6e:  AND AX,0x7ff0\n  100efc72:  OR AX,AX\n  100efc75:  JZ 0x100efc7f\n  100efc77:  CMP AX,0x7ff0\n  100efc7b:  JZ 0x100efcad\n  100efc7d:  JMP 0x100efc3d\n  100efc7f:  MOV dword ptr [EBP + 0xffffff72],0x4\n  100efc89:  FLD qword ptr [0x10110fc8]\n  100efc8f:  FXCH\n  100efc91:  FSCALE\n  100efc93:  FSTP ST1\n  100efc95:  FLD ST0\n  100efc97:  FABS\n  100efc99:  FCOMP qword ptr [0x10110fb8]\n  100efc9f:  FSTSW AX\n  100efca2:  SAHF\n  100efca3:  JNC 0x100efcd9\n  100efca5:  FMUL qword ptr [0x10110fd8]\n  100efcab:  JMP 0x100efcd9\n  100efcad:  MOV dword ptr [EBP + 0xffffff72],0x3\n  100efcb7:  FLD qword ptr [0x10110fc0]\n  100efcbd:  FXCH\n  100efcbf:  FSCALE\n  100efcc1:  FSTP ST1\n  100efcc3:  FLD ST0\n  100efcc5:  FABS\n  100efcc7:  FCOMP qword ptr [0x10110fb0]\n  100efccd:  FSTSW AX\n  100efcd0:  SAHF\n  100efcd1:  JBE 0x100efcd9\n  100efcd3:  FMUL qword ptr [0x10110fd0]\n  100efcd9:  PUSH ESI\n  100efcda:  PUSH EDI\n  100efcdb:  MOV EBX,dword ptr [EBP + 0xffffff6c]\n  100efce1:  INC EBX\n  100efce2:  MOV dword ptr [EBP + 0xffffff76],EBX\n  100efce8:  TEST byte ptr [EBP + 0xfffffd38],0x1\n  100efcef:  JNZ 0x100efd0b\n  100efcf1:  CLD\n  100efcf2:  LEA ESI,[EBP + 0x8]\n  100efcf5:  LEA EDI,[EBP + 0xffffff7a]\n  100efcfb:  MOVSD ES:EDI,ESI\n  100efcfc:  MOVSD ES:EDI,ESI\n  100efcfd:  CMP byte ptr [EBX + 0xc],0x1\n  100efd01:  JZ 0x100efd0b\n  100efd03:  LEA ESI,[EBP + 0x10]\n  100efd06:  LEA EDI,[EBP + -0x7e]\n  100efd09:  MOVSD ES:EDI,ESI\n  100efd0a:  MOVSD ES:EDI,ESI\n  100efd0b:  FSTP qword ptr [EBP + -0x76]\n  100efd0e:  LEA EAX,[EBP + 0xffffff72]\n  100efd14:  LEA EBX,[EBP + 0xffffff5c]\n  100efd1a:  PUSH EBX\n  100efd1b:  PUSH EAX\n  100efd1c:  MOV EBX,dword ptr [EBP + 0xffffff6c]\n  100efd22:  MOV AL,byte ptr [EBX + 0xe]\n  100efd25:  MOVSX EAX,AL\n  100efd28:  PUSH EAX\n  100efd29:  CALL 0x100f1a35\n  100efd2e:  ADD ESP,0xc\n  100efd31:  POP EDI\n  100efd32:  POP ESI\n  100efd33:  FLD qword ptr [EBP + -0x76]\n  100efd36:  JMP 0x100efc5f", 
+  "callers": [
+    {
+      "address": "0x100efb40", 
+      "name": "__cintrindisp2"
+    }, 
+    {
+      "address": "0x100efb7e", 
+      "name": "__cintrindisp1"
+    }
+  ]
+}

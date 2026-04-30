@@ -1,0 +1,60 @@
+{
+  "address": "0x10002cd0", 
+  "size_bytes": 256, 
+  "calling_convention": "__thiscall", 
+  "signature": "void __thiscall UpdateExportNodes(gbActor * this)", 
+  "callees": [
+    {
+      "address": "0x100e4a24", 
+      "name": "FUN_100e4a24"
+    }, 
+    {
+      "address": "0x100e4a16", 
+      "name": "operator_new"
+    }, 
+    {
+      "address": "0x10025110", 
+      "name": "gbMatrix4"
+    }, 
+    {
+      "address": "0x10025110", 
+      "name": "gbMatrix4"
+    }, 
+    {
+      "address": "0x10025640", 
+      "name": "LoadIdentity"
+    }
+  ], 
+  "global_refs": [
+    {
+      "address": "0xffdff000", 
+      "type": "void *32", 
+      "name": "DAT_ffdff000"
+    }, 
+    {
+      "address": "0x100f36ce", 
+      "type": null, 
+      "name": "DAT_100f36ce"
+    }, 
+    {
+      "address": "0x-000040c", 
+      "type": null, 
+      "name": "DAT_-000040c"
+    }
+  ], 
+  "has_custom_name": true, 
+  "decompiled_c": "\n/* private: void __thiscall gbActor::UpdateExportNodes(void) */\n\nvoid __thiscall gbActor::UpdateExportNodes(gbActor *this)\n\n{\n  int iVar1;\n  void *pvVar2;\n  int iVar3;\n  undefined4 *puVar4;\n  gbMatrix4 *this_00;\n  int iVar5;\n  undefined local_40c [1016];\n  void *pvStack_14;\n  void *pvStack_c;\n  undefined *puStack_8;\n  undefined4 uStack_4;\n  \n                    /* 0x2cd0  950  ?UpdateExportNodes@gbActor@@AAEXXZ */\n  uStack_4 = 0xffffffff;\n  puStack_8 = &LAB_100f36ce;\n  pvStack_c = ExceptionList;\n  ExceptionList = &pvStack_c;\n  iVar1 = (**(code **)(**(int **)(this + 0x58) + 0x2c))(local_40c,0x100);\n  if (*(int *)(this + 0x70) < iVar1) {\n    if (*(int *)(this + 0x68) != 0) {\n      FUN_100e4a24(*(int *)(this + 0x68));\n    }\n    *(int *)(this + 0x70) = iVar1;\n    pvVar2 = operator_new(iVar1 * 0x84);\n    pvStack_c = (void *)0x0;\n    if (pvVar2 == (void *)0x0) {\n      pvVar2 = (void *)0x0;\n    }\n    else if (-1 < iVar1 + -1) {\n      this_00 = (gbMatrix4 *)((int)pvVar2 + 0x44);\n      iVar3 = iVar1;\n      do {\n        gbMatrix4::gbMatrix4(this_00 + -0x40);\n        gbMatrix4::gbMatrix4(this_00);\n        this_00 = this_00 + 0x84;\n        iVar3 = iVar3 + -1;\n      } while (iVar3 != 0);\n    }\n    pvStack_c = (void *)0xffffffff;\n    *(void **)(this + 0x68) = pvVar2;\n  }\n  if (0 < iVar1) {\n    iVar5 = 0;\n    puVar4 = (undefined4 *)&stack0xfffffbec;\n    iVar3 = iVar1;\n    do {\n      *(undefined4 *)(iVar5 + *(int *)(this + 0x68)) = *puVar4;\n      gbMatrix4::LoadIdentity((gbMatrix4 *)(iVar5 + 4 + *(int *)(this + 0x68)));\n      puVar4 = puVar4 + 1;\n      iVar5 = iVar5 + 0x84;\n      iVar3 = iVar3 + -1;\n    } while (iVar3 != 0);\n  }\n  *(int *)(this + 0x6c) = iVar1;\n  ExceptionList = pvStack_14;\n  return;\n}\n\n", 
+  "is_thunk": false, 
+  "name": "UpdateExportNodes", 
+  "assembly": "  10002cd0:  MOV EAX,FS:[0x0]\n  10002cd6:  PUSH -0x1\n  10002cd8:  PUSH 0x100f36ce\n  10002cdd:  PUSH EAX\n  10002cde:  MOV dword ptr FS:[0x0],ESP\n  10002ce5:  SUB ESP,0x404\n  10002ceb:  LEA EDX,[ESP + 0x4]\n  10002cef:  PUSH EBX\n  10002cf0:  PUSH EBP\n  10002cf1:  PUSH ESI\n  10002cf2:  MOV ESI,ECX\n  10002cf4:  PUSH EDI\n  10002cf5:  PUSH 0x100\n  10002cfa:  MOV ECX,dword ptr [ESI + 0x58]\n  10002cfd:  PUSH EDX\n  10002cfe:  MOV EAX,dword ptr [ECX]\n  10002d00:  CALL dword ptr [EAX + 0x2c]\n  10002d03:  MOV EBP,EAX\n  10002d05:  MOV EAX,dword ptr [ESI + 0x70]\n  10002d08:  CMP EBP,EAX\n  10002d0a:  JLE 0x10002d7e\n  10002d0c:  MOV EAX,dword ptr [ESI + 0x68]\n  10002d0f:  TEST EAX,EAX\n  10002d11:  JZ 0x10002d1c\n  10002d13:  PUSH EAX\n  10002d14:  CALL 0x100e4a24\n  10002d19:  ADD ESP,0x4\n  10002d1c:  MOV EAX,EBP\n  10002d1e:  MOV dword ptr [ESI + 0x70],EBP\n  10002d21:  SHL EAX,0x5\n  10002d24:  ADD EAX,EBP\n  10002d26:  SHL EAX,0x2\n  10002d29:  PUSH EAX\n  10002d2a:  CALL 0x100e4a16\n  10002d2f:  ADD ESP,0x4\n  10002d32:  MOV dword ptr [ESP + 0x10],EAX\n  10002d36:  TEST EAX,EAX\n  10002d38:  MOV dword ptr [ESP + 0x41c],0x0\n  10002d43:  JZ 0x10002d6e\n  10002d45:  LEA EBX,[EBP + -0x1]\n  10002d48:  TEST EBX,EBX\n  10002d4a:  JL 0x10002d70\n  10002d4c:  LEA EDI,[EAX + 0x44]\n  10002d4f:  INC EBX\n  10002d50:  LEA ECX,[EDI + -0x40]\n  10002d53:  CALL 0x10025110\n  10002d58:  MOV ECX,EDI\n  10002d5a:  CALL 0x10025110\n  10002d5f:  ADD EDI,0x84\n  10002d65:  DEC EBX\n  10002d66:  JNZ 0x10002d50\n  10002d68:  MOV EAX,dword ptr [ESP + 0x10]\n  10002d6c:  JMP 0x10002d70\n  10002d6e:  XOR EAX,EAX\n  10002d70:  MOV dword ptr [ESP + 0x41c],0xffffffff\n  10002d7b:  MOV dword ptr [ESI + 0x68],EAX\n  10002d7e:  TEST EBP,EBP\n  10002d80:  JLE 0x10002db4\n  10002d82:  XOR EDI,EDI\n  10002d84:  LEA EBX,[ESP + 0x14]\n  10002d88:  MOV dword ptr [ESP + 0x10],EBP\n  10002d8c:  MOV ECX,dword ptr [ESI + 0x68]\n  10002d8f:  MOV EDX,dword ptr [EBX]\n  10002d91:  MOV dword ptr [EDI + ECX*0x1],EDX\n  10002d94:  MOV EAX,dword ptr [ESI + 0x68]\n  10002d97:  LEA ECX,[EDI + EAX*0x1 + 0x4]\n  10002d9b:  CALL 0x10025640\n  10002da0:  MOV EAX,dword ptr [ESP + 0x10]\n  10002da4:  ADD EBX,0x4\n  10002da7:  ADD EDI,0x84\n  10002dad:  DEC EAX\n  10002dae:  MOV dword ptr [ESP + 0x10],EAX\n  10002db2:  JNZ 0x10002d8c\n  10002db4:  MOV ECX,dword ptr [ESP + 0x414]\n  10002dbb:  MOV dword ptr [ESI + 0x6c],EBP\n  10002dbe:  POP EDI\n  10002dbf:  POP ESI\n  10002dc0:  POP EBP\n  10002dc1:  POP EBX\n  10002dc2:  MOV dword ptr FS:[0x0],ECX\n  10002dc9:  ADD ESP,0x410\n  10002dcf:  RET", 
+  "callers": [
+    {
+      "address": "0x10002ad0", 
+      "name": "gbActor"
+    }, 
+    {
+      "address": "0x10002f20", 
+      "name": "GotoAction"
+    }
+  ]
+}

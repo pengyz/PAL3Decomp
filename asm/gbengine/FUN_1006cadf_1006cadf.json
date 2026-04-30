@@ -1,0 +1,39 @@
+{
+  "address": "0x1006cadf", 
+  "size_bytes": 184, 
+  "calling_convention": "unknown", 
+  "signature": "undefined FUN_1006cadf(void)", 
+  "callees": [
+    {
+      "address": "0x1006c927", 
+      "name": "FUN_1006c927"
+    }, 
+    {
+      "address": "0x10067e71", 
+      "name": "FUN_10067e71"
+    }
+  ], 
+  "global_refs": [
+    {
+      "address": "0x10104888", 
+      "type": "undefined *", 
+      "name": "DAT_10104888"
+    }, 
+    {
+      "address": "0x101046a0", 
+      "type": "undefined *", 
+      "name": "DAT_101046a0"
+    }
+  ], 
+  "has_custom_name": false, 
+  "decompiled_c": "\nint FUN_1006cadf(void)\n\n{\n  undefined4 *in_ECX;\n  int extraout_EDX;\n  \n  *in_ECX = &PTR_FUN_10104888;\n  in_ECX[1] = &PTR_LAB_101046a0;\n  in_ECX[4] = 0;\n  in_ECX[3] = 0;\n  in_ECX[2] = 0;\n  FUN_1006c927();\n  FUN_10067e71();\n  *(uint *)(extraout_EDX + 0xe8) = *(uint *)(extraout_EDX + 0xe8) & 0xfffffff8;\n  *(undefined4 *)(extraout_EDX + 0x38) = 0;\n  *(undefined4 *)(extraout_EDX + 0x8c) = 0;\n  *(undefined4 *)(extraout_EDX + 0x94) = 0;\n  *(undefined4 *)(extraout_EDX + 0x18) = 0;\n  *(undefined4 *)(extraout_EDX + 0x20) = 0;\n  *(undefined4 *)(extraout_EDX + 0x9c) = 0;\n  *(undefined4 *)(extraout_EDX + 0x28) = 0;\n  *(undefined4 *)(extraout_EDX + 0xa0) = 0;\n  *(undefined4 *)(extraout_EDX + 0xdc) = 0;\n  *(undefined4 *)(extraout_EDX + 0xe0) = 0;\n  *(undefined4 *)(extraout_EDX + 0xa4) = 0;\n  *(undefined4 *)(extraout_EDX + 0xa8) = 0;\n  *(undefined2 *)(extraout_EDX + 0x30) = 0;\n  *(undefined4 *)(extraout_EDX + 0x34) = 0;\n  *(undefined4 *)(extraout_EDX + 0x2c) = 0;\n  *(undefined4 *)(extraout_EDX + 0xac) = 0;\n  *(undefined4 *)(extraout_EDX + 0xb0) = 0;\n  *(undefined4 *)(extraout_EDX + 0xb4) = 0;\n  *(undefined4 *)(extraout_EDX + 0xb8) = 0;\n  *(undefined4 *)(extraout_EDX + 0x6c) = 0;\n  *(undefined4 *)(extraout_EDX + 0x70) = 0;\n  *(undefined4 *)(extraout_EDX + 0x50) = 0;\n  *(undefined4 *)(extraout_EDX + 0x54) = 0;\n  *(undefined2 *)(extraout_EDX + 0x4c) = 0;\n  *(undefined4 *)(extraout_EDX + 0x24) = 1;\n  *(undefined4 *)(extraout_EDX + 0xe4) = 0x10000;\n  return extraout_EDX;\n}\n\n", 
+  "is_thunk": false, 
+  "name": "FUN_1006cadf", 
+  "assembly": "  1006cadf:  MOV EDX,ECX\n  1006cae1:  MOV dword ptr [EDX],0x10104888\n  1006cae7:  PUSH ESI\n  1006cae8:  XOR ESI,ESI\n  1006caea:  LEA ECX,[EDX + 0x48]\n  1006caed:  MOV dword ptr [EDX + 0x4],0x101046a0\n  1006caf4:  MOV dword ptr [EDX + 0x10],ESI\n  1006caf7:  MOV dword ptr [EDX + 0xc],ESI\n  1006cafa:  MOV dword ptr [EDX + 0x8],ESI\n  1006cafd:  CALL 0x1006c927\n  1006cb02:  LEA ECX,[EDX + 0xbc]\n  1006cb08:  CALL 0x10067e71\n  1006cb0d:  AND dword ptr [EDX + 0xe8],0xfffffff8\n  1006cb14:  MOV dword ptr [EDX + 0x38],ESI\n  1006cb17:  MOV dword ptr [EDX + 0x8c],ESI\n  1006cb1d:  MOV dword ptr [EDX + 0x94],ESI\n  1006cb23:  MOV dword ptr [EDX + 0x18],ESI\n  1006cb26:  MOV dword ptr [EDX + 0x20],ESI\n  1006cb29:  MOV dword ptr [EDX + 0x9c],ESI\n  1006cb2f:  MOV dword ptr [EDX + 0x28],ESI\n  1006cb32:  MOV dword ptr [EDX + 0xa0],ESI\n  1006cb38:  MOV dword ptr [EDX + 0xdc],ESI\n  1006cb3e:  MOV dword ptr [EDX + 0xe0],ESI\n  1006cb44:  MOV dword ptr [EDX + 0xa4],ESI\n  1006cb4a:  MOV dword ptr [EDX + 0xa8],ESI\n  1006cb50:  MOV word ptr [EDX + 0x30],SI\n  1006cb54:  MOV dword ptr [EDX + 0x34],ESI\n  1006cb57:  MOV dword ptr [EDX + 0x2c],ESI\n  1006cb5a:  MOV dword ptr [EDX + 0xac],ESI\n  1006cb60:  MOV dword ptr [EDX + 0xb0],ESI\n  1006cb66:  MOV dword ptr [EDX + 0xb4],ESI\n  1006cb6c:  MOV dword ptr [EDX + 0xb8],ESI\n  1006cb72:  MOV dword ptr [EDX + 0x6c],ESI\n  1006cb75:  MOV dword ptr [EDX + 0x70],ESI\n  1006cb78:  MOV dword ptr [EDX + 0x50],ESI\n  1006cb7b:  MOV dword ptr [EDX + 0x54],ESI\n  1006cb7e:  MOV word ptr [EDX + 0x4c],SI\n  1006cb82:  MOV dword ptr [EDX + 0x24],0x1\n  1006cb89:  MOV dword ptr [EDX + 0xe4],0x10000\n  1006cb93:  MOV EAX,EDX\n  1006cb95:  POP ESI\n  1006cb96:  RET", 
+  "callers": [
+    {
+      "address": "0x1003439a", 
+      "name": "FUN_1003439a"
+    }
+  ]
+}

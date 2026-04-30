@@ -1,0 +1,35 @@
+{
+  "address": "0x10002010", 
+  "size_bytes": 61, 
+  "calling_convention": "__thiscall", 
+  "signature": "gbVec3D __thiscall operator-(gbVec3D * this, undefined4 param_1)", 
+  "callees": [], 
+  "global_refs": [
+    {
+      "address": "0x-000000c", 
+      "type": null, 
+      "name": "DAT_-000000c"
+    }, 
+    {
+      "address": "0x00000004", 
+      "type": null, 
+      "name": "DAT_00000004"
+    }, 
+    {
+      "address": "0x-0000008", 
+      "type": null, 
+      "name": "DAT_-0000008"
+    }, 
+    {
+      "address": "0x-0000004", 
+      "type": null, 
+      "name": "DAT_-0000004"
+    }
+  ], 
+  "has_custom_name": true, 
+  "decompiled_c": "\n/* public: struct gbVec3D __thiscall gbVec3D::operator-(void)const  */\n\nvoid __thiscall gbVec3D::operator-(gbVec3D *this,float *param_1)\n\n{\n  float fVar1;\n  float fVar2;\n  \n                    /* 0x2010  254  ??GgbVec3D@@QBE?AU0@XZ */\n  fVar1 = *(float *)(this + 4);\n  fVar2 = *(float *)(this + 8);\n  *param_1 = -*(float *)this;\n  param_1[1] = -fVar1;\n  param_1[2] = -fVar2;\n  return;\n}\n\n", 
+  "is_thunk": false, 
+  "name": "operator-", 
+  "assembly": "  10002010:  SUB ESP,0xc\n  10002013:  FLD dword ptr [ECX]\n  10002015:  FCHS\n  10002017:  FSTP dword ptr [ESP]\n  1000201b:  FLD dword ptr [ECX + 0x4]\n  1000201e:  MOV EAX,dword ptr [ESP + 0x10]\n  10002022:  MOV EDX,dword ptr [ESP]\n  10002026:  FCHS\n  10002028:  FSTP dword ptr [ESP + 0x4]\n  1000202c:  FLD dword ptr [ECX + 0x8]\n  1000202f:  MOV ECX,EAX\n  10002031:  FCHS\n  10002033:  MOV dword ptr [ECX],EDX\n  10002035:  MOV EDX,dword ptr [ESP + 0x4]\n  10002039:  FSTP dword ptr [ESP + 0x8]\n  1000203d:  MOV dword ptr [ECX + 0x4],EDX\n  10002040:  MOV EDX,dword ptr [ESP + 0x8]\n  10002044:  MOV dword ptr [ECX + 0x8],EDX\n  10002047:  ADD ESP,0xc\n  1000204a:  RET 0x4", 
+  "callers": []
+}

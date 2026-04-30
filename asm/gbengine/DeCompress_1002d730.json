@@ -1,0 +1,80 @@
+{
+  "address": "0x1002d730", 
+  "size_bytes": 79, 
+  "calling_convention": "__thiscall", 
+  "signature": "ulong __thiscall DeCompress(CPK * this, void * param_1, void * param_2, ulong param_3)", 
+  "callees": [
+    {
+      "address": "0x1002dc60", 
+      "name": "FUN_1002dc60"
+    }
+  ], 
+  "global_refs": [
+    {
+      "address": "0x0000000c", 
+      "type": null, 
+      "name": "DAT_0000000c"
+    }, 
+    {
+      "address": "0x00000004", 
+      "type": null, 
+      "name": "DAT_00000004"
+    }, 
+    {
+      "address": "0x-0000014", 
+      "type": null, 
+      "name": "DAT_-0000014"
+    }, 
+    {
+      "address": "0x-000000c", 
+      "type": null, 
+      "name": "DAT_-000000c"
+    }, 
+    {
+      "address": "0x-0000010", 
+      "type": null, 
+      "name": "DAT_-0000010"
+    }, 
+    {
+      "address": "0x-0000020", 
+      "type": null, 
+      "name": "DAT_-0000020"
+    }, 
+    {
+      "address": "0x-0000004", 
+      "type": null, 
+      "name": "DAT_-0000004"
+    }, 
+    {
+      "address": "0x-0000008", 
+      "type": null, 
+      "name": "DAT_-0000008"
+    }, 
+    {
+      "address": "0x00000008", 
+      "type": null, 
+      "name": "DAT_00000008"
+    }, 
+    {
+      "address": "0x-0000024", 
+      "type": null, 
+      "name": "DAT_-0000024"
+    }, 
+    {
+      "address": "0x-000001c", 
+      "type": null, 
+      "name": "DAT_-000001c"
+    }, 
+    {
+      "address": "0x-0000018", 
+      "type": null, 
+      "name": "DAT_-0000018"
+    }
+  ], 
+  "has_custom_name": true, 
+  "decompiled_c": "\n/* public: unsigned long __thiscall CPK::DeCompress(void *,void *,unsigned long) */\n\nulong __thiscall CPK::DeCompress(CPK *this,void *param_1,void *param_2,ulong param_3)\n\n{\n  undefined4 local_24;\n  undefined local_20;\n  void *local_1c;\n  void *local_18;\n  ulong local_14;\n  int local_10;\n  ulong local_c;\n  ulong local_8;\n  undefined local_4;\n  \n                    /* 0x2d730  362  ?DeCompress@CPK@@QAEKPAX0K@Z */\n  local_14 = param_3;\n  local_c = param_3;\n  local_10 = param_3 * 2;\n  local_20 = 0;\n  local_4 = 0;\n  local_8 = 0;\n  local_24 = 2;\n  local_1c = param_2;\n  local_18 = param_1;\n  FUN_1002dc60(&local_24);\n  return local_8;\n}\n\n", 
+  "is_thunk": false, 
+  "name": "DeCompress", 
+  "assembly": "  1002d730:  SUB ESP,0x24\n  1002d733:  MOV EAX,dword ptr [ESP + 0x30]\n  1002d737:  MOV EDX,dword ptr [ESP + 0x28]\n  1002d73b:  MOV dword ptr [ESP + 0x10],EAX\n  1002d73f:  MOV dword ptr [ESP + 0x18],EAX\n  1002d743:  ADD EAX,EAX\n  1002d745:  XOR ECX,ECX\n  1002d747:  MOV dword ptr [ESP + 0x14],EAX\n  1002d74b:  MOV byte ptr [ESP + 0x4],CL\n  1002d74f:  MOV byte ptr [ESP + 0x20],CL\n  1002d753:  MOV dword ptr [ESP + 0x1c],ECX\n  1002d757:  MOV ECX,dword ptr [ESP + 0x2c]\n  1002d75b:  LEA EAX,[ESP]\n  1002d75f:  PUSH EAX\n  1002d760:  MOV dword ptr [ESP + 0x4],0x2\n  1002d768:  MOV dword ptr [ESP + 0xc],ECX\n  1002d76c:  MOV dword ptr [ESP + 0x10],EDX\n  1002d770:  CALL 0x1002dc60\n  1002d775:  MOV EAX,dword ptr [ESP + 0x20]\n  1002d779:  ADD ESP,0x28\n  1002d77c:  RET 0xc", 
+  "callers": []
+}

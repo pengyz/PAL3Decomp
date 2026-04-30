@@ -1,0 +1,73 @@
+{
+  "address": "0x10099d1e", 
+  "size_bytes": 56, 
+  "calling_convention": "unknown", 
+  "signature": "undefined FUN_10099d1e(undefined4 param_1)", 
+  "callees": [], 
+  "global_refs": [
+    {
+      "address": "0x00000004", 
+      "type": null, 
+      "name": "DAT_00000004"
+    }
+  ], 
+  "has_custom_name": false, 
+  "decompiled_c": "\nundefined4 FUN_10099d1e(int param_1)\n\n{\n  undefined4 uVar1;\n  int in_ECX;\n  \n  if (param_1 == 0) {\n    uVar1 = 0x80004005;\n  }\n  else {\n    *(undefined4 *)(in_ECX + 0x5c) = *(undefined4 *)(param_1 + 0x5c);\n    *(undefined4 *)(in_ECX + 0x60) = *(undefined4 *)(param_1 + 0x60);\n    *(undefined4 *)(in_ECX + 100) = *(undefined4 *)(param_1 + 100);\n    *(undefined4 *)(in_ECX + 0x68) = *(undefined4 *)(param_1 + 0x68);\n    *(undefined4 *)(in_ECX + 0x6c) = *(undefined4 *)(param_1 + 0x6c);\n    *(undefined4 *)(in_ECX + 0x70) = *(undefined4 *)(param_1 + 0x70);\n    uVar1 = 0;\n  }\n  return uVar1;\n}\n\n", 
+  "is_thunk": false, 
+  "name": "FUN_10099d1e", 
+  "assembly": "  10099d1e:  MOV EAX,dword ptr [ESP + 0x4]\n  10099d22:  TEST EAX,EAX\n  10099d24:  JNZ 0x10099d2d\n  10099d26:  MOV EAX,0x80004005\n  10099d2b:  JMP 0x10099d53\n  10099d2d:  MOV EDX,dword ptr [EAX + 0x5c]\n  10099d30:  MOV dword ptr [ECX + 0x5c],EDX\n  10099d33:  MOV EDX,dword ptr [EAX + 0x60]\n  10099d36:  MOV dword ptr [ECX + 0x60],EDX\n  10099d39:  MOV EDX,dword ptr [EAX + 0x64]\n  10099d3c:  MOV dword ptr [ECX + 0x64],EDX\n  10099d3f:  MOV EDX,dword ptr [EAX + 0x68]\n  10099d42:  MOV dword ptr [ECX + 0x68],EDX\n  10099d45:  MOV EDX,dword ptr [EAX + 0x6c]\n  10099d48:  MOV dword ptr [ECX + 0x6c],EDX\n  10099d4b:  MOV EAX,dword ptr [EAX + 0x70]\n  10099d4e:  MOV dword ptr [ECX + 0x70],EAX\n  10099d51:  XOR EAX,EAX\n  10099d53:  RET 0x4", 
+  "callers": [
+    {
+      "address": "0x10083e10", 
+      "name": "FUN_10083e10"
+    }, 
+    {
+      "address": "0x1009c320", 
+      "name": "FUN_1009c320"
+    }, 
+    {
+      "address": "0x100a2922", 
+      "name": "FUN_100a2922"
+    }, 
+    {
+      "address": "0x100a3c94", 
+      "name": "FUN_100a3c94"
+    }, 
+    {
+      "address": "0x100c6398", 
+      "name": "FUN_100c6398"
+    }, 
+    {
+      "address": "0x100c458f", 
+      "name": "FUN_100c458f"
+    }, 
+    {
+      "address": "0x100c458f", 
+      "name": "FUN_100c458f"
+    }, 
+    {
+      "address": "0x100c09bc", 
+      "name": "FUN_100c09bc"
+    }, 
+    {
+      "address": "0x100bee8c", 
+      "name": "FUN_100bee8c"
+    }, 
+    {
+      "address": "0x100c1934", 
+      "name": "FUN_100c1934"
+    }, 
+    {
+      "address": "0x100c1a0d", 
+      "name": "FUN_100c1a0d"
+    }, 
+    {
+      "address": "0x100c2520", 
+      "name": "FUN_100c2520"
+    }, 
+    {
+      "address": "0x100c76c7", 
+      "name": "FUN_100c76c7"
+    }
+  ]
+}

@@ -1,0 +1,130 @@
+{
+  "address": "0x1007f982", 
+  "size_bytes": 24, 
+  "calling_convention": "unknown", 
+  "signature": "undefined FUN_1007f982(undefined4 param_1, undefined4 param_2)", 
+  "callees": [], 
+  "global_refs": [
+    {
+      "address": "0x00000008", 
+      "type": null, 
+      "name": "DAT_00000008"
+    }, 
+    {
+      "address": "0x00000004", 
+      "type": null, 
+      "name": "DAT_00000004"
+    }
+  ], 
+  "has_custom_name": false, 
+  "decompiled_c": "\nundefined4 FUN_1007f982(undefined4 *param_1,int param_2)\n\n{\n  if (param_2 != 0) {\n    for (; param_2 != 0; param_2 = param_2 + -1) {\n      *param_1 = 0xffffffff;\n      param_1 = param_1 + 1;\n    }\n  }\n  return 0;\n}\n\n", 
+  "is_thunk": false, 
+  "name": "FUN_1007f982", 
+  "assembly": "  1007f982:  MOV ECX,dword ptr [ESP + 0x8]\n  1007f986:  TEST ECX,ECX\n  1007f988:  JBE 0x1007f995\n  1007f98a:  PUSH EDI\n  1007f98b:  MOV EDI,dword ptr [ESP + 0x8]\n  1007f98f:  OR EAX,0xffffffff\n  1007f992:  STOSD.REP ES:EDI\n  1007f994:  POP EDI\n  1007f995:  XOR EAX,EAX\n  1007f997:  RET 0x8", 
+  "callers": [
+    {
+      "address": "0x100814ac", 
+      "name": "FUN_100814ac"
+    }, 
+    {
+      "address": "0x100814ac", 
+      "name": "FUN_100814ac"
+    }, 
+    {
+      "address": "0x100839f2", 
+      "name": "FUN_100839f2"
+    }, 
+    {
+      "address": "0x100839f2", 
+      "name": "FUN_100839f2"
+    }, 
+    {
+      "address": "0x10083e10", 
+      "name": "FUN_10083e10"
+    }, 
+    {
+      "address": "0x10083228", 
+      "name": "FUN_10083228"
+    }, 
+    {
+      "address": "0x10083228", 
+      "name": "FUN_10083228"
+    }, 
+    {
+      "address": "0x10083228", 
+      "name": "FUN_10083228"
+    }, 
+    {
+      "address": "0x10083228", 
+      "name": "FUN_10083228"
+    }, 
+    {
+      "address": "0x10083228", 
+      "name": "FUN_10083228"
+    }, 
+    {
+      "address": "0x10083228", 
+      "name": "FUN_10083228"
+    }, 
+    {
+      "address": "0x10083228", 
+      "name": "FUN_10083228"
+    }, 
+    {
+      "address": "0x10083228", 
+      "name": "FUN_10083228"
+    }, 
+    {
+      "address": "0x10083228", 
+      "name": "FUN_10083228"
+    }, 
+    {
+      "address": "0x10083228", 
+      "name": "FUN_10083228"
+    }, 
+    {
+      "address": "0x10083228", 
+      "name": "FUN_10083228"
+    }, 
+    {
+      "address": "0x10084afb", 
+      "name": "FUN_10084afb"
+    }, 
+    {
+      "address": "0x1008ef22", 
+      "name": "FUN_1008ef22"
+    }, 
+    {
+      "address": "0x100829f6", 
+      "name": "FUN_100829f6"
+    }, 
+    {
+      "address": "0x100835cf", 
+      "name": "FUN_100835cf"
+    }, 
+    {
+      "address": "0x100835cf", 
+      "name": "FUN_100835cf"
+    }, 
+    {
+      "address": "0x100835cf", 
+      "name": "FUN_100835cf"
+    }, 
+    {
+      "address": "0x100835cf", 
+      "name": "FUN_100835cf"
+    }, 
+    {
+      "address": "0x100835cf", 
+      "name": "FUN_100835cf"
+    }, 
+    {
+      "address": "0x100835cf", 
+      "name": "FUN_100835cf"
+    }, 
+    {
+      "address": "0x100835cf", 
+      "name": "FUN_100835cf"
+    }
+  ]
+}

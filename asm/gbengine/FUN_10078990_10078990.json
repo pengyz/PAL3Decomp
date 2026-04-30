@@ -1,0 +1,29 @@
+{
+  "address": "0x10078990", 
+  "size_bytes": 62, 
+  "calling_convention": "unknown", 
+  "signature": "undefined FUN_10078990(undefined4 param_1)", 
+  "callees": [
+    {
+      "address": "0x10094da0", 
+      "name": "FUN_10094da0"
+    }, 
+    {
+      "address": "0x100e77b0", 
+      "name": "FUN_100e77b0"
+    }
+  ], 
+  "global_refs": [
+    {
+      "address": "0x00000004", 
+      "type": null, 
+      "name": "DAT_00000004"
+    }
+  ], 
+  "has_custom_name": false, 
+  "decompiled_c": "\nvoid FUN_10078990(int *param_1)\n\n{\n  int *unaff_ESI;\n  undefined auStack_d0 [192];\n  undefined4 uStack_10;\n  int *piStack_c;\n  int *piStack_8;\n  \n  piStack_8 = param_1;\n  piStack_c = (int *)0x1007899b;\n  (**(code **)(*param_1 + 8))();\n  piStack_c = param_1;\n  uStack_10 = 0x100789a1;\n  FUN_10094da0();\n  piStack_c = (int *)0x1;\n  uStack_10 = 0x100789a8;\n  FUN_100e77b0();\n  (**(code **)(*unaff_ESI + 0xc))(unaff_ESI,auStack_d0);\n  return;\n}\n\n", 
+  "is_thunk": false, 
+  "name": "FUN_10078990", 
+  "assembly": "  10078990:  PUSH ESI\n  10078991:  MOV ESI,dword ptr [ESP + 0x8]\n  10078995:  MOV EAX,dword ptr [ESI]\n  10078997:  PUSH ESI\n  10078998:  CALL dword ptr [EAX + 0x8]\n  1007899b:  PUSH ESI\n  1007899c:  CALL 0x10094da0\n  100789a1:  PUSH 0x1\n  100789a3:  CALL 0x100e77b0\n  100789a8:  POP ESI\n  100789a9:  NOP\n  100789aa:  NOP\n  100789ab:  NOP\n  100789ac:  NOP\n  100789ad:  NOP\n  100789ae:  NOP\n  100789af:  NOP\n  100789b0:  MOV EAX,dword ptr [ESP + 0x4]\n  100789b4:  MOV ECX,dword ptr [EAX]\n  100789b6:  SUB ESP,0xc8\n  100789bc:  LEA EDX,[ESP]\n  100789c0:  PUSH EDX\n  100789c1:  PUSH EAX\n  100789c2:  CALL dword ptr [ECX + 0xc]\n  100789c5:  ADD ESP,0xc8\n  100789cb:  RET 0x4", 
+  "callers": []
+}

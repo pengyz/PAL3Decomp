@@ -1,0 +1,24 @@
+{
+  "address": "0x100e77d2", 
+  "size_bytes": 15, 
+  "calling_convention": "unknown", 
+  "signature": "undefined FUN_100e77d2(void)", 
+  "callees": [
+    {
+      "address": "0x100e77e1", 
+      "name": "FUN_100e77e1"
+    }
+  ], 
+  "global_refs": [], 
+  "has_custom_name": false, 
+  "decompiled_c": "\nvoid FUN_100e77d2(void)\n\n{\n  FUN_100e77e1(0,0,1);\n  return;\n}\n\n", 
+  "is_thunk": false, 
+  "name": "FUN_100e77d2", 
+  "assembly": "  100e77d2:  PUSH 0x1\n  100e77d4:  PUSH 0x0\n  100e77d6:  PUSH 0x0\n  100e77d8:  CALL 0x100e77e1\n  100e77dd:  ADD ESP,0xc\n  100e77e0:  RET", 
+  "callers": [
+    {
+      "address": "0x100e63ff", 
+      "name": "FUN_100e63ff"
+    }
+  ]
+}

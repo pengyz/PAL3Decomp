@@ -1,0 +1,32 @@
+{
+  "address": "0x10016db0", 
+  "size_bytes": 15, 
+  "calling_convention": "unknown", 
+  "signature": "undefined FUN_10016db0(void)", 
+  "callees": [
+    {
+      "address": "0x100e4a24", 
+      "name": "FUN_100e4a24"
+    }
+  ], 
+  "global_refs": [], 
+  "has_custom_name": false, 
+  "decompiled_c": "\nvoid FUN_10016db0(void)\n\n{\n  int in_ECX;\n  \n  if (*(int *)(in_ECX + 4) != 0) {\n    FUN_100e4a24(*(int *)(in_ECX + 4));\n  }\n  return;\n}\n\n", 
+  "is_thunk": false, 
+  "name": "FUN_10016db0", 
+  "assembly": "  10016db0:  MOV EAX,dword ptr [ECX + 0x4]\n  10016db3:  TEST EAX,EAX\n  10016db5:  JZ 0x10016dbe\n  10016db7:  PUSH EAX\n  10016db8:  CALL 0x100e4a24\n  10016dbd:  POP ECX\n  10016dbe:  RET", 
+  "callers": [
+    {
+      "address": "0x10017110", 
+      "name": "FUN_10017110"
+    }, 
+    {
+      "address": "0x100172f0", 
+      "name": "FUN_100172f0"
+    }, 
+    {
+      "address": "0x100f3d10", 
+      "name": "Unwind@100f3d10"
+    }
+  ]
+}

@@ -1,0 +1,39 @@
+{
+  "address": "0x10071663", 
+  "size_bytes": 173, 
+  "calling_convention": "unknown", 
+  "signature": "undefined FUN_10071663(undefined4 param_1, undefined4 param_2, undefined4 param_3)", 
+  "callees": [
+    {
+      "address": "0x100714a6", 
+      "name": "FUN_100714a6"
+    }, 
+    {
+      "address": "0x1006ad68", 
+      "name": "FUN_1006ad68"
+    }
+  ], 
+  "global_refs": [
+    {
+      "address": "0x00000008", 
+      "type": null, 
+      "name": "DAT_00000008"
+    }, 
+    {
+      "address": "0x0000000c", 
+      "type": null, 
+      "name": "DAT_0000000c"
+    }, 
+    {
+      "address": "0x00000004", 
+      "type": null, 
+      "name": "DAT_00000004"
+    }
+  ], 
+  "has_custom_name": false, 
+  "decompiled_c": "\nuint FUN_10071663(int param_1,int param_2,uint param_3)\n\n{\n  uint uVar1;\n  int iVar2;\n  int iVar3;\n  int iVar4;\n  \n  if (param_2 == 0) {\n    if (param_3 < *(uint *)(param_1 + 0x88)) {\n      uVar1 = ~(*(int *)(param_1 + 0x8c) + param_3 * 0x40);\n    }\n    else {\n      uVar1 = 0;\n    }\n  }\n  else {\n    iVar2 = FUN_100714a6(param_2,1,0);\n    if (iVar2 != 0) {\n      iVar4 = *(int *)(*(int *)(param_1 + 0x9c) + (uint)*(ushort *)(iVar2 + 4) * 4);\n      if (*(int *)(iVar4 + 0x38) == 0) {\n        iVar3 = *(int *)(param_1 + 0x20);\n      }\n      else {\n        iVar3 = *(int *)(*(int *)(param_1 + 0x38) + 8);\n      }\n      iVar3 = *(int *)(iVar4 + 0x24) + *(int *)(iVar2 + 8) + iVar3;\n      if (((*(int *)(iVar3 + 4) == 5) &&\n          (((*(int *)(iVar2 + 0x18) != -1 || (*(int *)(iVar3 + 0x10) == 0)) &&\n           (param_3 < *(uint *)(iVar3 + 0x14))))) &&\n         ((*(int *)(iVar2 + 0x10) != 0 ||\n          (iVar4 = FUN_1006ad68(iVar2,*(uint *)(iVar3 + 0x14)), -1 < iVar4)))) {\n        return ~(param_3 * 0x20 + *(int *)(iVar2 + 0x10));\n      }\n    }\n    uVar1 = 0;\n  }\n  return uVar1;\n}\n\n", 
+  "is_thunk": false, 
+  "name": "FUN_10071663", 
+  "assembly": "  10071663:  PUSH EBP\n  10071664:  MOV EBP,ESP\n  10071666:  PUSH EBX\n  10071667:  XOR EBX,EBX\n  10071669:  CMP dword ptr [EBP + 0xc],EBX\n  1007166c:  JNZ 0x10071692\n  1007166e:  MOV ECX,dword ptr [EBP + 0x10]\n  10071671:  MOV EAX,dword ptr [EBP + 0x8]\n  10071674:  CMP ECX,dword ptr [EAX + 0x88]\n  1007167a:  JC 0x10071683\n  1007167c:  XOR EAX,EAX\n  1007167e:  JMP 0x1007170b\n  10071683:  MOV EAX,dword ptr [EAX + 0x8c]\n  10071689:  SHL ECX,0x6\n  1007168c:  ADD EAX,ECX\n  1007168e:  NOT EAX\n  10071690:  JMP 0x1007170b\n  10071692:  PUSH ESI\n  10071693:  PUSH EDI\n  10071694:  MOV EDI,dword ptr [EBP + 0x8]\n  10071697:  PUSH EBX\n  10071698:  PUSH 0x1\n  1007169a:  PUSH dword ptr [EBP + 0xc]\n  1007169d:  MOV ECX,EDI\n  1007169f:  CALL 0x100714a6\n  100716a4:  MOV ESI,EAX\n  100716a6:  CMP ESI,EBX\n  100716a8:  JNZ 0x100716ae\n  100716aa:  XOR EAX,EAX\n  100716ac:  JMP 0x10071709\n  100716ae:  MOVZX EAX,word ptr [ESI + 0x4]\n  100716b2:  MOV ECX,dword ptr [EDI + 0x9c]\n  100716b8:  MOV EAX,dword ptr [ECX + EAX*0x4]\n  100716bb:  CMP dword ptr [EAX + 0x38],EBX\n  100716be:  JNZ 0x100716c5\n  100716c0:  MOV ECX,dword ptr [EDI + 0x20]\n  100716c3:  JMP 0x100716cb\n  100716c5:  MOV ECX,dword ptr [EDI + 0x38]\n  100716c8:  MOV ECX,dword ptr [ECX + 0x8]\n  100716cb:  MOV EAX,dword ptr [EAX + 0x24]\n  100716ce:  ADD EAX,dword ptr [ESI + 0x8]\n  100716d1:  ADD EAX,ECX\n  100716d3:  CMP dword ptr [EAX + 0x4],0x5\n  100716d7:  JNZ 0x100716aa\n  100716d9:  CMP dword ptr [ESI + 0x18],-0x1\n  100716dd:  JNZ 0x100716e4\n  100716df:  CMP dword ptr [EAX + 0x10],EBX\n  100716e2:  JNZ 0x100716aa\n  100716e4:  MOV EAX,dword ptr [EAX + 0x14]\n  100716e7:  CMP dword ptr [EBP + 0x10],EAX\n  100716ea:  JNC 0x100716aa\n  100716ec:  CMP dword ptr [ESI + 0x10],EBX\n  100716ef:  JNZ 0x100716fe\n  100716f1:  PUSH EAX\n  100716f2:  PUSH ESI\n  100716f3:  MOV ECX,EDI\n  100716f5:  CALL 0x1006ad68\n  100716fa:  TEST EAX,EAX\n  100716fc:  JL 0x100716aa\n  100716fe:  MOV EAX,dword ptr [EBP + 0x10]\n  10071701:  SHL EAX,0x5\n  10071704:  ADD EAX,dword ptr [ESI + 0x10]\n  10071707:  NOT EAX\n  10071709:  POP EDI\n  1007170a:  POP ESI\n  1007170b:  POP EBX\n  1007170c:  POP EBP\n  1007170d:  RET 0xc", 
+  "callers": []
+}

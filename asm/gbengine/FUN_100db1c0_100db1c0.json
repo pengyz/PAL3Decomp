@@ -1,0 +1,90 @@
+{
+  "address": "0x100db1c0", 
+  "size_bytes": 298, 
+  "calling_convention": "unknown", 
+  "signature": "undefined FUN_100db1c0(undefined4 param_1, undefined4 param_2, undefined4 param_3)", 
+  "callees": [
+    {
+      "address": "0x10046cd9", 
+      "name": "FUN_10046cd9"
+    }
+  ], 
+  "global_refs": [
+    {
+      "address": "0x-000000c", 
+      "type": null, 
+      "name": "DAT_-000000c"
+    }, 
+    {
+      "address": "0x-0000008", 
+      "type": null, 
+      "name": "DAT_-0000008"
+    }, 
+    {
+      "address": "0x-0000004", 
+      "type": null, 
+      "name": "DAT_-0000004"
+    }, 
+    {
+      "address": "0x0000000c", 
+      "type": null, 
+      "name": "DAT_0000000c"
+    }, 
+    {
+      "address": "0x00000004", 
+      "type": null, 
+      "name": "DAT_00000004"
+    }, 
+    {
+      "address": "0x00000008", 
+      "type": null, 
+      "name": "DAT_00000008"
+    }, 
+    {
+      "address": "0x-0000018", 
+      "type": null, 
+      "name": "DAT_-0000018"
+    }, 
+    {
+      "address": "0x-0000014", 
+      "type": null, 
+      "name": "DAT_-0000014"
+    }, 
+    {
+      "address": "0x-0000010", 
+      "type": null, 
+      "name": "DAT_-0000010"
+    }, 
+    {
+      "address": "0x10128740", 
+      "type": "undefined8", 
+      "name": "DAT_10128740"
+    }, 
+    {
+      "address": "0x10128750", 
+      "type": "undefined8", 
+      "name": "DAT_10128750"
+    }, 
+    {
+      "address": "0x10128760", 
+      "type": "undefined8", 
+      "name": "DAT_10128760"
+    }, 
+    {
+      "address": "0x10128770", 
+      "type": null, 
+      "name": "DAT_10128770"
+    }, 
+    {
+      "address": "0x10128780", 
+      "type": null, 
+      "name": "DAT_10128780"
+    }
+  ], 
+  "has_custom_name": false, 
+  "decompiled_c": "\n/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */\n\nulonglong * FUN_100db1c0(ulonglong *param_1,undefined4 *param_2,int param_3)\n\n{\n  ulonglong *puVar1;\n  ulonglong uVar2;\n  ulonglong uVar3;\n  ulonglong uVar4;\n  ulonglong uVar5;\n  ulonglong uVar6;\n  ulonglong uVar7;\n  ulonglong uVar8;\n  ulonglong uVar9;\n  int iVar10;\n  \n  puVar1 = param_1;\n  if (param_3 < 4) {\n    if (param_3 != 0) {\n      FUN_10046cd9(param_1,param_2,param_3);\n    }\n  }\n  else {\n    while( true ) {\n      for (; 3 < param_3; param_3 = param_3 + -4) {\n        uVar7 = (ulonglong)CONCAT24((short)((uint)*param_2 >> 0x10),*param_2) & 0xffffffff0000ffff;\n        uVar3 = (ulonglong)CONCAT24((short)((uint)param_2[1] >> 0x10),param_2[1]) &\n                0xffffffff0000ffff;\n        uVar9 = CONCAT44(-(uint)((int)((uVar7 & DAT_10128740) >> 0x20) == 0),\n                         -(uint)((int)(uVar7 & DAT_10128740) == 0));\n        uVar4 = CONCAT44(-(uint)((int)((uVar3 & DAT_10128740) >> 0x20) == 0),\n                         -(uint)((int)(uVar3 & DAT_10128740) == 0));\n        uVar6 = uVar7 & DAT_10128760;\n        uVar8 = uVar3 & DAT_10128760;\n        iVar10 = (int)((ulonglong)DAT_10128750 >> 0x20);\n        uVar2 = uVar9 & _DAT_10128770;\n        uVar5 = uVar4 & _DAT_10128770;\n        uVar7 = PackedFloatingSUB(CONCAT44(((int)((uVar7 ^ uVar6) >> 0x20) + iVar10 +\n                                           (int)(uVar2 >> 0x20)) * 0x2000,\n                                           ((int)(uVar7 ^ uVar6) + (int)DAT_10128750 + (int)uVar2) *\n                                           0x2000),uVar9 & _DAT_10128780);\n        uVar9 = PackedFloatingSUB(CONCAT44(((int)((uVar3 ^ uVar8) >> 0x20) + iVar10 +\n                                           (int)(uVar5 >> 0x20)) * 0x2000,\n                                           ((int)(uVar3 ^ uVar8) + (int)DAT_10128750 + (int)uVar5) *\n                                           0x2000),uVar4 & _DAT_10128780);\n        *puVar1 = uVar7 | CONCAT44((int)(uVar6 >> 0x20) << 0x10,(int)uVar6 << 0x10);\n        puVar1[1] = uVar9 | CONCAT44((int)(uVar8 >> 0x20) << 0x10,(int)uVar8 << 0x10);\n        puVar1 = puVar1 + 2;\n        param_2 = param_2 + 2;\n      }\n      if (param_3 == 0) break;\n      param_2 = (undefined4 *)((int)param_2 + (param_3 + -4) * 2);\n      puVar1 = (ulonglong *)((int)puVar1 + (param_3 + -4) * 4);\n      param_3 = 4;\n    }\n  }\n  FastExitMediaState();\n  return param_1;\n}\n\n", 
+  "is_thunk": false, 
+  "name": "FUN_100db1c0", 
+  "assembly": "  100db1c0:  SUB ESP,0xc\n  100db1c3:  MOV dword ptr [ESP],EBP\n  100db1c6:  MOV dword ptr [ESP + 0x4],ESI\n  100db1ca:  MOV dword ptr [ESP + 0x8],EDI\n  100db1ce:  MOV EBP,ESP\n  100db1d0:  MOV ECX,dword ptr [EBP + 0x18]\n  100db1d3:  MOV EAX,dword ptr [EBP + 0x10]\n  100db1d6:  MOV EDX,dword ptr [EBP + 0x14]\n  100db1d9:  CMP ECX,0x4\n  100db1dc:  JGE 0x100db1ff\n  100db1de:  CMP ECX,0x0\n  100db1e1:  JZ 0x100db2d2\n  100db1e7:  SUB ESP,0xc\n  100db1ea:  MOV dword ptr [ESP],EAX\n  100db1ed:  MOV dword ptr [ESP + 0x4],EDX\n  100db1f1:  MOV dword ptr [ESP + 0x8],ECX\n  100db1f5:  CALL 0x10046cd9\n  100db1fa:  JMP 0x100db2d2\n  100db1ff:  CMP ECX,0x4\n  100db202:  JL 0x100db2b2\n  100db208:  MOVD MM0,dword ptr [EDX]\n  100db20b:  MOVD MM1,dword ptr [EDX + 0x4]\n  100db20f:  PXOR MM6,MM6\n  100db212:  MOVQ MM7,qword ptr [0x10128740]\n  100db219:  PUNPCKLWD MM0,MM6\n  100db21c:  PUNPCKLWD MM1,MM6\n  100db21f:  MOVQ MM2,MM0\n  100db222:  MOVQ MM3,MM0\n  100db225:  MOVQ MM4,MM1\n  100db228:  MOVQ MM5,MM1\n  100db22b:  PAND MM0,MM7\n  100db22e:  PAND MM1,MM7\n  100db231:  MOVQ MM7,qword ptr [0x10128750]\n  100db238:  PCMPEQD MM0,MM6\n  100db23b:  PCMPEQD MM1,MM6\n  100db23e:  MOVQ MM6,qword ptr [0x10128760]\n  100db245:  PAND MM2,MM6\n  100db248:  PAND MM4,MM6\n  100db24b:  PXOR MM3,MM2\n  100db24e:  PXOR MM5,MM4\n  100db251:  PADDD MM3,MM7\n  100db254:  PADDD MM5,MM7\n  100db257:  MOVQ MM6,MM0\n  100db25a:  MOVQ MM7,MM1\n  100db25d:  PAND MM0,qword ptr [0x10128770]\n  100db264:  PAND MM1,qword ptr [0x10128770]\n  100db26b:  PADDD MM3,MM0\n  100db26e:  PADDD MM5,MM1\n  100db271:  PAND MM6,qword ptr [0x10128780]\n  100db278:  PAND MM7,qword ptr [0x10128780]\n  100db27f:  PSLLD MM2,0x10\n  100db283:  PSLLD MM4,0x10\n  100db287:  PSLLD MM3,0xd\n  100db28b:  PSLLD MM5,0xd\n  100db28f:  PFSUB MM3,MM6\n  100db293:  PFSUB MM5,MM7\n  100db297:  POR MM3,MM2\n  100db29a:  POR MM5,MM4\n  100db29d:  MOVQ qword ptr [EAX],MM3\n  100db2a0:  MOVQ qword ptr [EAX + 0x8],MM5\n  100db2a4:  LEA EAX,[EAX + 0x10]\n  100db2a7:  LEA EDX,[EDX + 0x8]\n  100db2aa:  SUB ECX,0x4\n  100db2ad:  JMP 0x100db1ff\n  100db2b2:  CMP ECX,0x0\n  100db2b5:  JZ 0x100db2d2\n  100db2b7:  SUB ECX,0x4\n  100db2ba:  MOV EDI,ECX\n  100db2bc:  MOV ESI,ECX\n  100db2be:  IMUL EDI,EDI,0x4\n  100db2c1:  IMUL ESI,ESI,0x2\n  100db2c4:  ADD EDX,ESI\n  100db2c6:  ADD EAX,EDI\n  100db2c8:  MOV ECX,0x4\n  100db2cd:  JMP 0x100db1ff\n  100db2d2:  MOV ESP,EBP\n  100db2d4:  MOV EAX,dword ptr [EBP + 0x10]\n  100db2d7:  MOV EBP,dword ptr [ESP]\n  100db2da:  MOV ESI,dword ptr [ESP + 0x4]\n  100db2de:  MOV EDI,dword ptr [ESP + 0x8]\n  100db2e2:  ADD ESP,0xc\n  100db2e5:  FEMMS\n  100db2e7:  RET 0xc", 
+  "callers": []
+}

@@ -1,0 +1,48 @@
+{
+  "address": "0x100e60fd", 
+  "size_bytes": 44, 
+  "calling_convention": "unknown", 
+  "signature": "undefined FUN_100e60fd(undefined4 param_1, undefined4 param_2, undefined4 param_3)", 
+  "callees": [
+    {
+      "address": "0x100ec11b", 
+      "name": "FUN_100ec11b"
+    }, 
+    {
+      "address": "0x100e6129", 
+      "name": "FUN_100e6129"
+    }, 
+    {
+      "address": "0x100ec16d", 
+      "name": "FUN_100ec16d"
+    }
+  ], 
+  "global_refs": [
+    {
+      "address": "0x00000004", 
+      "type": null, 
+      "name": "DAT_00000004"
+    }, 
+    {
+      "address": "0x0000000c", 
+      "type": null, 
+      "name": "DAT_0000000c"
+    }, 
+    {
+      "address": "0x00000008", 
+      "type": null, 
+      "name": "DAT_00000008"
+    }
+  ], 
+  "has_custom_name": false, 
+  "decompiled_c": "\nundefined4 FUN_100e60fd(undefined4 param_1,undefined4 param_2,undefined4 param_3)\n\n{\n  undefined4 uVar1;\n  \n  FUN_100ec11b(param_1);\n  uVar1 = FUN_100e6129(param_1,param_2,param_3);\n  FUN_100ec16d(param_1);\n  return uVar1;\n}\n\n", 
+  "is_thunk": false, 
+  "name": "FUN_100e60fd", 
+  "assembly": "  100e60fd:  PUSH EBP\n  100e60fe:  MOV EBP,ESP\n  100e6100:  PUSH ESI\n  100e6101:  PUSH dword ptr [EBP + 0x8]\n  100e6104:  CALL 0x100ec11b\n  100e6109:  PUSH dword ptr [EBP + 0x10]\n  100e610c:  PUSH dword ptr [EBP + 0xc]\n  100e610f:  PUSH dword ptr [EBP + 0x8]\n  100e6112:  CALL 0x100e6129\n  100e6117:  PUSH dword ptr [EBP + 0x8]\n  100e611a:  MOV ESI,EAX\n  100e611c:  CALL 0x100ec16d\n  100e6121:  ADD ESP,0x14\n  100e6124:  MOV EAX,ESI\n  100e6126:  POP ESI\n  100e6127:  POP EBP\n  100e6128:  RET", 
+  "callers": [
+    {
+      "address": "0x10030a00", 
+      "name": "Seek"
+    }
+  ]
+}

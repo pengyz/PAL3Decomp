@@ -1,0 +1,14 @@
+{
+  "address": "0x100241c0", 
+  "size_bytes": 25, 
+  "calling_convention": "__thiscall", 
+  "signature": "void __thiscall computerCoefficient(BEZIER * this)", 
+  "callees": [], 
+  "global_refs": [], 
+  "has_custom_name": true, 
+  "decompiled_c": "\n/* private: void __thiscall BEZIER::computerCoefficient(void) */\n\nvoid __thiscall BEZIER::computerCoefficient(BEZIER *this)\n\n{\n                    /* 0x241c0  968  ?computerCoefficient@BEZIER@@AAEXXZ */\n  *(undefined4 *)this = 1;\n  *(undefined4 *)(this + 4) = 3;\n  *(undefined4 *)(this + 8) = 3;\n  *(undefined4 *)(this + 0xc) = 1;\n  return;\n}\n\n", 
+  "is_thunk": false, 
+  "name": "computerCoefficient", 
+  "assembly": "  100241c0:  MOV EAX,0x3\n  100241c5:  MOV dword ptr [ECX],0x1\n  100241cb:  MOV dword ptr [ECX + 0x4],EAX\n  100241ce:  MOV dword ptr [ECX + 0x8],EAX\n  100241d1:  MOV dword ptr [ECX + 0xc],0x1\n  100241d8:  RET", 
+  "callers": []
+}

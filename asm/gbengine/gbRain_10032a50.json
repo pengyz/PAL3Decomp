@@ -1,0 +1,25 @@
+{
+  "address": "0x10032a50", 
+  "size_bytes": 117, 
+  "calling_convention": "__thiscall", 
+  "signature": "undefined __thiscall gbRain(gbRain * this, gbRain * param_1)", 
+  "callees": [], 
+  "global_refs": [
+    {
+      "address": "0x00000004", 
+      "type": null, 
+      "name": "DAT_00000004"
+    }, 
+    {
+      "address": "0x100f5b54", 
+      "type": "undefined *", 
+      "name": "DAT_100f5b54"
+    }
+  ], 
+  "has_custom_name": true, 
+  "decompiled_c": "\n/* public: __thiscall gbRain::gbRain(class gbRain const &) */\n\nvoid __thiscall gbRain::gbRain(gbRain *this,gbRain *param_1)\n\n{\n                    /* 0x32a50  78  ??0gbRain@@QAE@ABV0@@Z */\n  *(undefined4 *)(this + 8) = *(undefined4 *)(param_1 + 8);\n  *(undefined4 *)(this + 0xc) = *(undefined4 *)(param_1 + 0xc);\n  *(undefined4 *)(this + 0x10) = *(undefined4 *)(param_1 + 0x10);\n  *(undefined4 *)(this + 0x14) = *(undefined4 *)(param_1 + 0x14);\n  *(undefined4 *)(this + 0x18) = *(undefined4 *)(param_1 + 0x18);\n  *(undefined4 *)(this + 0x1c) = *(undefined4 *)(param_1 + 0x1c);\n  *(undefined4 *)(this + 0x20) = *(undefined4 *)(param_1 + 0x20);\n  *(undefined4 *)(this + 0x24) = *(undefined4 *)(param_1 + 0x24);\n  *(undefined4 *)(this + 0x28) = *(undefined4 *)(param_1 + 0x28);\n  *(undefined4 *)(this + 0x2c) = *(undefined4 *)(param_1 + 0x2c);\n  *(undefined4 *)(this + 0x30) = *(undefined4 *)(param_1 + 0x30);\n  *(undefined4 *)(this + 0x38) = *(undefined4 *)(param_1 + 0x38);\n  *(undefined4 *)(this + 0x3c) = *(undefined4 *)(param_1 + 0x3c);\n  *(undefined4 *)(this + 0x40) = *(undefined4 *)(param_1 + 0x40);\n  *(undefined4 *)(this + 0x44) = *(undefined4 *)(param_1 + 0x44);\n  *(undefined4 *)(this + 0x48) = *(undefined4 *)(param_1 + 0x48);\n  *(undefined4 *)(this + 0x4c) = *(undefined4 *)(param_1 + 0x4c);\n  *(undefined ***)this = &_vftable_;\n  return;\n}\n\n", 
+  "is_thunk": false, 
+  "name": "gbRain", 
+  "assembly": "  10032a50:  MOV EAX,ECX\n  10032a52:  MOV ECX,dword ptr [ESP + 0x4]\n  10032a56:  MOV EDX,dword ptr [ECX + 0x8]\n  10032a59:  MOV dword ptr [EAX + 0x8],EDX\n  10032a5c:  MOV EDX,dword ptr [ECX + 0xc]\n  10032a5f:  MOV dword ptr [EAX + 0xc],EDX\n  10032a62:  MOV EDX,dword ptr [ECX + 0x10]\n  10032a65:  MOV dword ptr [EAX + 0x10],EDX\n  10032a68:  MOV EDX,dword ptr [ECX + 0x14]\n  10032a6b:  MOV dword ptr [EAX + 0x14],EDX\n  10032a6e:  MOV EDX,dword ptr [ECX + 0x18]\n  10032a71:  MOV dword ptr [EAX + 0x18],EDX\n  10032a74:  MOV EDX,dword ptr [ECX + 0x1c]\n  10032a77:  MOV dword ptr [EAX + 0x1c],EDX\n  10032a7a:  MOV EDX,dword ptr [ECX + 0x20]\n  10032a7d:  MOV dword ptr [EAX + 0x20],EDX\n  10032a80:  MOV EDX,dword ptr [ECX + 0x24]\n  10032a83:  MOV dword ptr [EAX + 0x24],EDX\n  10032a86:  MOV EDX,dword ptr [ECX + 0x28]\n  10032a89:  MOV dword ptr [EAX + 0x28],EDX\n  10032a8c:  MOV EDX,dword ptr [ECX + 0x2c]\n  10032a8f:  MOV dword ptr [EAX + 0x2c],EDX\n  10032a92:  MOV EDX,dword ptr [ECX + 0x30]\n  10032a95:  MOV dword ptr [EAX + 0x30],EDX\n  10032a98:  MOV EDX,dword ptr [ECX + 0x38]\n  10032a9b:  MOV dword ptr [EAX + 0x38],EDX\n  10032a9e:  MOV EDX,dword ptr [ECX + 0x3c]\n  10032aa1:  MOV dword ptr [EAX + 0x3c],EDX\n  10032aa4:  MOV EDX,dword ptr [ECX + 0x40]\n  10032aa7:  MOV dword ptr [EAX + 0x40],EDX\n  10032aaa:  MOV EDX,dword ptr [ECX + 0x44]\n  10032aad:  MOV dword ptr [EAX + 0x44],EDX\n  10032ab0:  MOV EDX,dword ptr [ECX + 0x48]\n  10032ab3:  MOV dword ptr [EAX + 0x48],EDX\n  10032ab6:  MOV ECX,dword ptr [ECX + 0x4c]\n  10032ab9:  MOV dword ptr [EAX + 0x4c],ECX\n  10032abc:  MOV dword ptr [EAX],0x100f5b54\n  10032ac2:  RET 0x4", 
+  "callers": []
+}

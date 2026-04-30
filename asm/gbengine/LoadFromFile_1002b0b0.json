@@ -1,0 +1,56 @@
+{
+  "address": "0x1002b0b0", 
+  "size_bytes": 294, 
+  "calling_convention": "__thiscall", 
+  "signature": "void __thiscall LoadFromFile(gbParticleGroup * this, gbVFile * param_1, gbParticleEffect * param_2)", 
+  "callees": [
+    {
+      "address": "0x10030810", 
+      "name": "Read"
+    }, 
+    {
+      "address": "0x10030810", 
+      "name": "Read"
+    }, 
+    {
+      "address": "0x10030810", 
+      "name": "Read"
+    }, 
+    {
+      "address": "0x10030810", 
+      "name": "Read"
+    }, 
+    {
+      "address": "0x100e4a16", 
+      "name": "operator_new"
+    }
+  ], 
+  "global_refs": [
+    {
+      "address": "0x00000008", 
+      "type": null, 
+      "name": "DAT_00000008"
+    }, 
+    {
+      "address": "0x00000004", 
+      "type": null, 
+      "name": "DAT_00000004"
+    }, 
+    {
+      "address": "0x1015d3a8", 
+      "type": "gbVFileSystem *", 
+      "name": "DAT_1015d3a8"
+    }
+  ], 
+  "has_custom_name": true, 
+  "decompiled_c": "\n/* public: void __thiscall gbParticleGroup::LoadFromFile(class gbVFile *,class gbParticleEffect *)\n    */\n\nvoid __thiscall\ngbParticleGroup::LoadFromFile(gbParticleGroup *this,gbVFile *param_1,gbParticleEffect *param_2)\n\n{\n  gbParticleGroup *pgVar1;\n  gbVFile *pgVar2;\n  void *pvVar3;\n  int iVar4;\n  undefined4 *puVar5;\n  int iVar6;\n  \n                    /* 0x2b0b0  680\n                       ?LoadFromFile@gbParticleGroup@@QAEXPAVgbVFile@@PAVgbParticleEffect@@@Z */\n  pgVar2 = param_1;\n  *(gbParticleEffect **)(this + 0x8c) = param_2;\n  gbVFileSystem::Read(g_pVFileSys,this,0x40,param_1);\n  gbVFileSystem::Read(g_pVFileSys,&param_2,4,pgVar2);\n  gbVFileSystem::Read(g_pVFileSys,&param_1,4,pgVar2);\n  pgVar1 = this + 0x84;\n  gbVFileSystem::Read(g_pVFileSys,pgVar1,4,pgVar2);\n  iVar4 = *(int *)(this + 0x8c);\n  *(int *)pgVar1 = *(int *)(iVar4 + 0xb0);\n  iVar6 = *(int *)pgVar1;\n  *(int *)(this + 0x78) = (int)param_2 * 0x4940 + *(int *)(iVar4 + 0xa8);\n  *(int *)(this + 0x7c) = *(int *)(iVar4 + 0xac) + (int)param_1 * 0x6c78;\n  pvVar3 = operator_new(iVar6 * 0x58);\n  if (pvVar3 == (void *)0x0) {\n    pvVar3 = (void *)0x0;\n  }\n  else if (-1 < iVar6 + -1) {\n    puVar5 = (undefined4 *)((int)pvVar3 + 0x24);\n    do {\n      puVar5[-2] = 0;\n      puVar5[-1] = 0;\n      *puVar5 = 0;\n      puVar5[1] = 0;\n      puVar5[2] = 0;\n      puVar5[3] = 0;\n      puVar5[4] = 0;\n      puVar5[5] = 0;\n      puVar5[6] = 0;\n      puVar5 = puVar5 + 0x16;\n      iVar6 = iVar6 + -1;\n    } while (iVar6 != 0);\n  }\n  *(void **)(this + 0x80) = pvVar3;\n  iVar4 = 0;\n  *(undefined4 *)(this + 0x40) = 0;\n  *(undefined4 *)(this + 0x70) = 0;\n  *(undefined4 *)(this + 0x44) = 0;\n  *(undefined4 *)(this + 0x74) = 0;\n  if (0 < *(int *)pgVar1) {\n    iVar6 = 0;\n    do {\n      iVar4 = iVar4 + 1;\n      *(undefined4 *)(iVar6 + *(int *)(this + 0x80)) = 0;\n      iVar6 = iVar6 + 0x58;\n    } while (iVar4 < *(int *)pgVar1);\n  }\n  *(undefined4 *)(this + 0x88) = 0;\n  return;\n}\n\n", 
+  "is_thunk": false, 
+  "name": "LoadFromFile", 
+  "assembly": "  1002b0b0:  MOV EAX,dword ptr [ESP + 0x8]\n  1002b0b4:  PUSH EBX\n  1002b0b5:  MOV EBX,dword ptr [ESP + 0x8]\n  1002b0b9:  PUSH ESI\n  1002b0ba:  MOV ESI,ECX\n  1002b0bc:  PUSH EDI\n  1002b0bd:  PUSH EBX\n  1002b0be:  PUSH 0x40\n  1002b0c0:  MOV dword ptr [ESI + 0x8c],EAX\n  1002b0c6:  MOV ECX,dword ptr [0x1015d3a8]\n  1002b0cc:  PUSH ESI\n  1002b0cd:  CALL 0x10030810\n  1002b0d2:  PUSH EBX\n  1002b0d3:  LEA ECX,[ESP + 0x18]\n  1002b0d7:  PUSH 0x4\n  1002b0d9:  PUSH ECX\n  1002b0da:  MOV ECX,dword ptr [0x1015d3a8]\n  1002b0e0:  CALL 0x10030810\n  1002b0e5:  MOV ECX,dword ptr [0x1015d3a8]\n  1002b0eb:  PUSH EBX\n  1002b0ec:  LEA EDX,[ESP + 0x14]\n  1002b0f0:  PUSH 0x4\n  1002b0f2:  PUSH EDX\n  1002b0f3:  CALL 0x10030810\n  1002b0f8:  MOV ECX,dword ptr [0x1015d3a8]\n  1002b0fe:  LEA EDI,[ESI + 0x84]\n  1002b104:  PUSH EBX\n  1002b105:  PUSH 0x4\n  1002b107:  PUSH EDI\n  1002b108:  CALL 0x10030810\n  1002b10d:  MOV ECX,dword ptr [ESI + 0x8c]\n  1002b113:  MOV EAX,dword ptr [ECX + 0xb0]\n  1002b119:  MOV dword ptr [EDI],EAX\n  1002b11b:  MOV EAX,dword ptr [ESP + 0x14]\n  1002b11f:  MOV EBX,dword ptr [EDI]\n  1002b121:  LEA EDX,[EAX + EAX*0x8]\n  1002b124:  LEA EDX,[EAX + EDX*0x8]\n  1002b127:  LEA EAX,[EAX + EDX*0x4]\n  1002b12a:  MOV EDX,dword ptr [ECX + 0xa8]\n  1002b130:  SHL EAX,0x6\n  1002b133:  ADD EAX,EDX\n  1002b135:  MOV dword ptr [ESI + 0x78],EAX\n  1002b138:  MOV EAX,dword ptr [ESP + 0x10]\n  1002b13c:  MOV ECX,dword ptr [ECX + 0xac]\n  1002b142:  LEA EDX,[EAX + EAX*0x8]\n  1002b145:  SHL EDX,0x5\n  1002b148:  ADD EDX,EAX\n  1002b14a:  LEA EAX,[EAX + EDX*0x4]\n  1002b14d:  LEA EAX,[EAX + EAX*0x2]\n  1002b150:  LEA EDX,[ECX + EAX*0x8]\n  1002b153:  LEA EAX,[EBX + EBX*0x4]\n  1002b156:  MOV dword ptr [ESI + 0x7c],EDX\n  1002b159:  LEA ECX,[EBX + EAX*0x2]\n  1002b15c:  SHL ECX,0x3\n  1002b15f:  PUSH ECX\n  1002b160:  CALL 0x100e4a16\n  1002b165:  XOR EDX,EDX\n  1002b167:  ADD ESP,0x4\n  1002b16a:  CMP EAX,EDX\n  1002b16c:  JZ 0x1002b199\n  1002b16e:  DEC EBX\n  1002b16f:  CMP EBX,EDX\n  1002b171:  JL 0x1002b19b\n  1002b173:  LEA ECX,[EAX + 0x24]\n  1002b176:  INC EBX\n  1002b177:  MOV dword ptr [ECX + -0x8],EDX\n  1002b17a:  MOV dword ptr [ECX + -0x4],EDX\n  1002b17d:  MOV dword ptr [ECX],EDX\n  1002b17f:  MOV dword ptr [ECX + 0x4],EDX\n  1002b182:  MOV dword ptr [ECX + 0x8],EDX\n  1002b185:  MOV dword ptr [ECX + 0xc],EDX\n  1002b188:  MOV dword ptr [ECX + 0x10],EDX\n  1002b18b:  MOV dword ptr [ECX + 0x14],EDX\n  1002b18e:  MOV dword ptr [ECX + 0x18],EDX\n  1002b191:  ADD ECX,0x58\n  1002b194:  DEC EBX\n  1002b195:  JNZ 0x1002b177\n  1002b197:  JMP 0x1002b19b\n  1002b199:  XOR EAX,EAX\n  1002b19b:  MOV ECX,dword ptr [EDI]\n  1002b19d:  MOV dword ptr [ESI + 0x80],EAX\n  1002b1a3:  XOR EAX,EAX\n  1002b1a5:  MOV dword ptr [ESI + 0x40],EDX\n  1002b1a8:  MOV dword ptr [ESI + 0x70],EDX\n  1002b1ab:  CMP ECX,EDX\n  1002b1ad:  MOV dword ptr [ESI + 0x44],EDX\n  1002b1b0:  MOV dword ptr [ESI + 0x74],EDX\n  1002b1b3:  JLE 0x1002b1ca\n  1002b1b5:  XOR ECX,ECX\n  1002b1b7:  MOV EBX,dword ptr [ESI + 0x80]\n  1002b1bd:  INC EAX\n  1002b1be:  MOV dword ptr [ECX + EBX*0x1],EDX\n  1002b1c1:  MOV EBX,dword ptr [EDI]\n  1002b1c3:  ADD ECX,0x58\n  1002b1c6:  CMP EAX,EBX\n  1002b1c8:  JL 0x1002b1b7\n  1002b1ca:  MOV dword ptr [ESI + 0x88],EDX\n  1002b1d0:  POP EDI\n  1002b1d1:  POP ESI\n  1002b1d2:  POP EBX\n  1002b1d3:  RET 0x8", 
+  "callers": [
+    {
+      "address": "0x1002bca0", 
+      "name": "LoadFromFile"
+    }
+  ]
+}

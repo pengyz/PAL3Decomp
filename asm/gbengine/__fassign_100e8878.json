@@ -1,0 +1,49 @@
+{
+  "address": "0x100e8878", 
+  "size_bytes": 62, 
+  "calling_convention": "__cdecl", 
+  "signature": "void __cdecl __fassign(int flag, char * argument, char * number)", 
+  "callees": [
+    {
+      "address": "0x100f1699", 
+      "name": "FUN_100f1699"
+    }, 
+    {
+      "address": "0x100f16c6", 
+      "name": "FUN_100f16c6"
+    }
+  ], 
+  "global_refs": [
+    {
+      "address": "0x00000004", 
+      "type": null, 
+      "name": "DAT_00000004"
+    }, 
+    {
+      "address": "0x0000000c", 
+      "type": null, 
+      "name": "DAT_0000000c"
+    }, 
+    {
+      "address": "0x-000000c", 
+      "type": null, 
+      "name": "DAT_-000000c"
+    }, 
+    {
+      "address": "0x00000008", 
+      "type": null, 
+      "name": "DAT_00000008"
+    }, 
+    {
+      "address": "0x-0000008", 
+      "type": null, 
+      "name": "DAT_-0000008"
+    }
+  ], 
+  "has_custom_name": true, 
+  "decompiled_c": "\n/* Library Function - Single Match\n    __fassign\n   \n   Library: Visual Studio 2003 Release */\n\nvoid __cdecl __fassign(int flag,char *argument,char *number)\n\n{\n  undefined4 local_c;\n  undefined4 local_8;\n  \n  if (flag != 0) {\n    FUN_100f1699(&local_c);\n    *(undefined4 *)argument = local_c;\n    *(undefined4 *)(argument + 4) = local_8;\n    return;\n  }\n  FUN_100f16c6(&number,number);\n  *(char **)argument = number;\n  return;\n}\n\n", 
+  "is_thunk": false, 
+  "name": "__fassign", 
+  "assembly": "  100e8878:  PUSH EBP\n  100e8879:  MOV EBP,ESP\n  100e887b:  PUSH ECX\n  100e887c:  PUSH ECX\n  100e887d:  CMP dword ptr [EBP + 0x8],0x0\n  100e8881:  PUSH dword ptr [EBP + 0x10]\n  100e8884:  JZ 0x100e88a1\n  100e8886:  LEA EAX,[EBP + -0x8]\n  100e8889:  PUSH EAX\n  100e888a:  CALL 0x100f1699\n  100e888f:  MOV EAX,dword ptr [EBP + 0xc]\n  100e8892:  POP ECX\n  100e8893:  POP ECX\n  100e8894:  MOV ECX,dword ptr [EBP + -0x8]\n  100e8897:  MOV dword ptr [EAX],ECX\n  100e8899:  MOV ECX,dword ptr [EBP + -0x4]\n  100e889c:  MOV dword ptr [EAX + 0x4],ECX\n  100e889f:  LEAVE\n  100e88a0:  RET\n  100e88a1:  LEA EAX,[EBP + 0x10]\n  100e88a4:  PUSH EAX\n  100e88a5:  CALL 0x100f16c6\n  100e88aa:  MOV EAX,dword ptr [EBP + 0xc]\n  100e88ad:  POP ECX\n  100e88ae:  POP ECX\n  100e88af:  MOV ECX,dword ptr [EBP + 0x10]\n  100e88b2:  MOV dword ptr [EAX],ECX\n  100e88b4:  LEAVE\n  100e88b5:  RET", 
+  "callers": []
+}

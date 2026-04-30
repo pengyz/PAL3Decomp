@@ -1,0 +1,45 @@
+{
+  "address": "0x1005c122", 
+  "size_bytes": 107, 
+  "calling_convention": "unknown", 
+  "signature": "undefined FUN_1005c122(undefined4 param_1, undefined8 param_2)", 
+  "callees": [
+    {
+      "address": "0x100e4be4", 
+      "name": "__ftol"
+    }
+  ], 
+  "global_refs": [
+    {
+      "address": "0x00000004", 
+      "type": null, 
+      "name": "DAT_00000004"
+    }, 
+    {
+      "address": "0x00000008", 
+      "type": null, 
+      "name": "DAT_00000008"
+    }, 
+    {
+      "address": "0x100f72e8", 
+      "type": null, 
+      "name": "DAT_100f72e8"
+    }, 
+    {
+      "address": "0x100f6660", 
+      "type": null, 
+      "name": "DAT_100f6660"
+    }
+  ], 
+  "has_custom_name": false, 
+  "decompiled_c": "\nundefined4 FUN_1005c122(int *param_1,double param_2)\n\n{\n  int iVar1;\n  \n  iVar1 = *param_1;\n  if (iVar1 == 0) {\n    if (NAN(param_2) == (param_2 == 0.0)) {\n      iVar1 = 1;\n    }\n    else {\n      iVar1 = 0;\n    }\n  }\n  else {\n    if ((iVar1 != 1) && (iVar1 != 2)) {\n      if (iVar1 == 3) {\n        *(double *)(param_1 + 2) = param_2;\n        return 0;\n      }\n      return 0x80004005;\n    }\n    iVar1 = __ftol();\n  }\n  param_1[2] = iVar1;\n  return 0;\n}\n\n", 
+  "is_thunk": false, 
+  "name": "FUN_1005c122", 
+  "assembly": "  1005c122:  PUSH EBP\n  1005c123:  MOV EBP,ESP\n  1005c125:  PUSH ESI\n  1005c126:  MOV ESI,dword ptr [EBP + 0x8]\n  1005c129:  MOV EAX,dword ptr [ESI]\n  1005c12b:  SUB EAX,0x0\n  1005c12e:  JZ 0x1005c170\n  1005c130:  DEC EAX\n  1005c131:  JZ 0x1005c148\n  1005c133:  DEC EAX\n  1005c134:  JZ 0x1005c148\n  1005c136:  DEC EAX\n  1005c137:  JZ 0x1005c140\n  1005c139:  MOV EAX,0x80004005\n  1005c13e:  JMP 0x1005c188\n  1005c140:  FLD qword ptr [EBP + 0xc]\n  1005c143:  FSTP qword ptr [ESI + 0x8]\n  1005c146:  JMP 0x1005c186\n  1005c148:  FLD qword ptr [EBP + 0xc]\n  1005c14b:  FCOMP qword ptr [0x100f72e8]\n  1005c151:  FLD qword ptr [EBP + 0xc]\n  1005c154:  FNSTSW AX\n  1005c156:  TEST AH,0x1\n  1005c159:  JNZ 0x1005c163\n  1005c15b:  FADD qword ptr [0x100f6660]\n  1005c161:  JMP 0x1005c169\n  1005c163:  FSUB qword ptr [0x100f6660]\n  1005c169:  CALL 0x100e4be4\n  1005c16e:  JMP 0x1005c183\n  1005c170:  FLDZ\n  1005c172:  FCOMP qword ptr [EBP + 0xc]\n  1005c175:  FNSTSW AX\n  1005c177:  TEST AH,0x44\n  1005c17a:  JNP 0x1005c181\n  1005c17c:  XOR EAX,EAX\n  1005c17e:  INC EAX\n  1005c17f:  JMP 0x1005c183\n  1005c181:  XOR EAX,EAX\n  1005c183:  MOV dword ptr [ESI + 0x8],EAX\n  1005c186:  XOR EAX,EAX\n  1005c188:  POP ESI\n  1005c189:  POP EBP\n  1005c18a:  RET 0x10", 
+  "callers": [
+    {
+      "address": "0x1005e5cc", 
+      "name": "FUN_1005e5cc"
+    }
+  ]
+}

@@ -1,0 +1,30 @@
+{
+  "address": "0x10027c40", 
+  "size_bytes": 199, 
+  "calling_convention": "__thiscall", 
+  "signature": "int __thiscall IsColPoint(gbOBBox * this, gbVec3D * param_1)", 
+  "callees": [], 
+  "global_refs": [
+    {
+      "address": "0x-000000c", 
+      "type": null, 
+      "name": "DAT_-000000c"
+    }, 
+    {
+      "address": "0x-0000008", 
+      "type": null, 
+      "name": "DAT_-0000008"
+    }, 
+    {
+      "address": "0x-0000004", 
+      "type": null, 
+      "name": "DAT_-0000004"
+    }
+  ], 
+  "has_custom_name": true, 
+  "decompiled_c": "\n/* public: int __thiscall gbOBBox::IsColPoint(struct gbVec3D &) */\n\nint __thiscall gbOBBox::IsColPoint(gbOBBox *this,gbVec3D *param_1)\n\n{\n  float fVar1;\n  float fVar2;\n  float fVar3;\n  float fVar4;\n  float fVar5;\n  \n                    /* 0x27c40  620  ?IsColPoint@gbOBBox@@QAEHAAUgbVec3D@@@Z */\n  fVar1 = -*(float *)(this + 0x30);\n  fVar5 = -*(float *)(this + 0x34);\n  fVar4 = -*(float *)(this + 0x38);\n  fVar3 = fVar1 * *(float *)this + fVar5 * *(float *)(this + 4) + fVar4 * *(float *)(this + 8);\n  fVar3 = fVar3 + fVar3;\n  fVar2 = fVar1 * *(float *)(this + 0x10) +\n          fVar5 * *(float *)(this + 0x14) + fVar4 * *(float *)(this + 0x18);\n  fVar2 = fVar2 + fVar2;\n  fVar1 = fVar1 * *(float *)(this + 0x20) +\n          fVar5 * *(float *)(this + 0x24) + fVar4 * *(float *)(this + 0x28);\n  fVar1 = fVar1 + fVar1;\n  if ((((-*(float *)(this + 0x40) < fVar3) && (-*(float *)(this + 0x44) < fVar2)) &&\n      (-*(float *)(this + 0x48) < fVar1)) &&\n     (((fVar3 < *(float *)(this + 0x40) && (fVar2 < *(float *)(this + 0x44))) &&\n      (fVar1 < *(float *)(this + 0x48))))) {\n    return 1;\n  }\n  return 0;\n}\n\n", 
+  "is_thunk": false, 
+  "name": "IsColPoint", 
+  "assembly": "  10027c40:  SUB ESP,0xc\n  10027c43:  FLD dword ptr [ECX + 0x30]\n  10027c46:  FCHS\n  10027c48:  FLD dword ptr [ECX + 0x34]\n  10027c4b:  FCHS\n  10027c4d:  FLD dword ptr [ECX + 0x38]\n  10027c50:  FCHS\n  10027c52:  FLD ST0\n  10027c54:  FMUL dword ptr [ECX + 0x8]\n  10027c57:  FLD ST2\n  10027c59:  FMUL dword ptr [ECX + 0x4]\n  10027c5c:  FADDP\n  10027c5e:  FLD ST3\n  10027c60:  FMUL dword ptr [ECX]\n  10027c62:  FADDP\n  10027c64:  FADD ST0,ST0\n  10027c66:  FSTP dword ptr [ESP]\n  10027c6a:  FLD ST0\n  10027c6c:  FMUL dword ptr [ECX + 0x18]\n  10027c6f:  FLD ST2\n  10027c71:  FMUL dword ptr [ECX + 0x14]\n  10027c74:  FADDP\n  10027c76:  FLD ST3\n  10027c78:  FMUL dword ptr [ECX + 0x10]\n  10027c7b:  FADDP\n  10027c7d:  FADD ST0,ST0\n  10027c7f:  FSTP dword ptr [ESP + 0x4]\n  10027c83:  FMUL dword ptr [ECX + 0x28]\n  10027c86:  FXCH\n  10027c88:  FMUL dword ptr [ECX + 0x24]\n  10027c8b:  FADDP\n  10027c8d:  FXCH\n  10027c8f:  FMUL dword ptr [ECX + 0x20]\n  10027c92:  FADDP\n  10027c94:  FADD ST0,ST0\n  10027c96:  FSTP dword ptr [ESP + 0x8]\n  10027c9a:  FLD dword ptr [ECX + 0x40]\n  10027c9d:  FCHS\n  10027c9f:  FCOMP dword ptr [ESP]\n  10027ca3:  FNSTSW AX\n  10027ca5:  TEST AH,0x1\n  10027ca8:  JZ 0x10027cff\n  10027caa:  FLD dword ptr [ECX + 0x44]\n  10027cad:  FCHS\n  10027caf:  FCOMP dword ptr [ESP + 0x4]\n  10027cb3:  FNSTSW AX\n  10027cb5:  TEST AH,0x1\n  10027cb8:  JZ 0x10027cff\n  10027cba:  FLD dword ptr [ECX + 0x48]\n  10027cbd:  FCHS\n  10027cbf:  FCOMP dword ptr [ESP + 0x8]\n  10027cc3:  FNSTSW AX\n  10027cc5:  TEST AH,0x1\n  10027cc8:  JZ 0x10027cff\n  10027cca:  FLD dword ptr [ESP]\n  10027cce:  FCOMP dword ptr [ECX + 0x40]\n  10027cd1:  FNSTSW AX\n  10027cd3:  TEST AH,0x1\n  10027cd6:  JZ 0x10027cff\n  10027cd8:  FLD dword ptr [ESP + 0x4]\n  10027cdc:  FCOMP dword ptr [ECX + 0x44]\n  10027cdf:  FNSTSW AX\n  10027ce1:  TEST AH,0x1\n  10027ce4:  JZ 0x10027cff\n  10027ce6:  FLD dword ptr [ESP + 0x8]\n  10027cea:  FCOMP dword ptr [ECX + 0x48]\n  10027ced:  FNSTSW AX\n  10027cef:  TEST AH,0x1\n  10027cf2:  JZ 0x10027cff\n  10027cf4:  MOV EAX,0x1\n  10027cf9:  ADD ESP,0xc\n  10027cfc:  RET 0x4\n  10027cff:  XOR EAX,EAX\n  10027d01:  ADD ESP,0xc\n  10027d04:  RET 0x4", 
+  "callers": []
+}

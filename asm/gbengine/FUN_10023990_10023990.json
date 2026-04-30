@@ -1,0 +1,100 @@
+{
+  "address": "0x10023990", 
+  "size_bytes": 255, 
+  "calling_convention": "unknown", 
+  "signature": "undefined FUN_10023990(undefined4 param_1, undefined4 param_2, undefined4 param_3, undefined4 param_4, undefined4 param_5, undefined4 param_6, undefined4 param_7)", 
+  "callees": [
+    {
+      "address": "0x100276a0", 
+      "name": "FUN_100276a0"
+    }, 
+    {
+      "address": "0x100276a0", 
+      "name": "FUN_100276a0"
+    }, 
+    {
+      "address": "0x100276a0", 
+      "name": "FUN_100276a0"
+    }, 
+    {
+      "address": "0x100276a0", 
+      "name": "FUN_100276a0"
+    }, 
+    {
+      "address": "0x1001c860", 
+      "name": "RenderUIQuad"
+    }
+  ], 
+  "global_refs": [
+    {
+      "address": "0x0000000c", 
+      "type": null, 
+      "name": "DAT_0000000c"
+    }, 
+    {
+      "address": "0x00000008", 
+      "type": null, 
+      "name": "DAT_00000008"
+    }, 
+    {
+      "address": "0x00000018", 
+      "type": null, 
+      "name": "DAT_00000018"
+    }, 
+    {
+      "address": "0x0000001c", 
+      "type": null, 
+      "name": "DAT_0000001c"
+    }, 
+    {
+      "address": "0x100f5344", 
+      "type": null, 
+      "name": "DAT_100f5344"
+    }, 
+    {
+      "address": "0x100f5508", 
+      "type": null, 
+      "name": "DAT_100f5508"
+    }, 
+    {
+      "address": "0x-0000014", 
+      "type": null, 
+      "name": "DAT_-0000014"
+    }, 
+    {
+      "address": "0x100f5890", 
+      "type": null, 
+      "name": "DAT_100f5890"
+    }, 
+    {
+      "address": "0x00000014", 
+      "type": null, 
+      "name": "DAT_00000014"
+    }, 
+    {
+      "address": "0x00000010", 
+      "type": null, 
+      "name": "DAT_00000010"
+    }, 
+    {
+      "address": "0x00000004", 
+      "type": null, 
+      "name": "DAT_00000004"
+    }
+  ], 
+  "has_custom_name": false, 
+  "decompiled_c": "\nvoid FUN_10023990(gbDynVertBuf *param_1,gbUIQuad *param_2,int param_3,gbRenderEffect *param_4,\n                 gbTextureArray *param_5,int param_6,int param_7)\n\n{\n  int iVar1;\n  gbUIQuad *pgVar2;\n  int iVar3;\n  \n  if (0 < param_3) {\n    pgVar2 = param_2 + 8;\n    iVar3 = param_3;\n    do {\n      iVar1 = FUN_100276a0((*(float *)(pgVar2 + -8) + 1.0) * (float)param_6 * 0.5);\n      *(float *)(pgVar2 + -8) = (float)iVar1 - 0.4875;\n      iVar1 = FUN_100276a0((1.0 - *(float *)(pgVar2 + -4)) * (float)param_7 * 0.5);\n      *(float *)(pgVar2 + -4) = (float)iVar1 - 0.4875;\n      iVar1 = FUN_100276a0((*(float *)pgVar2 + 1.0) * (float)param_6 * 0.5);\n      *(float *)pgVar2 = (float)iVar1 - 0.4875;\n      iVar1 = FUN_100276a0((1.0 - *(float *)(pgVar2 + 4)) * (float)param_7 * 0.5);\n      iVar3 = iVar3 + -1;\n      *(float *)(pgVar2 + 4) = (float)iVar1 - 0.4875;\n      pgVar2 = pgVar2 + 0x28;\n    } while (iVar3 != 0);\n  }\n  gbDynVertBuf::RenderUIQuad(param_1,param_2,param_3,param_4,param_5);\n  return;\n}\n\n", 
+  "is_thunk": false, 
+  "name": "FUN_10023990", 
+  "assembly": "  10023990:  PUSH EBX\n  10023991:  MOV EBX,dword ptr [ESP + 0x10]\n  10023995:  PUSH EBP\n  10023996:  MOV EBP,dword ptr [ESP + 0x10]\n  1002399a:  TEST EBX,EBX\n  1002399c:  JLE 0x10023a77\n  100239a2:  FILD dword ptr [ESP + 0x20]\n  100239a6:  PUSH ESI\n  100239a7:  PUSH EDI\n  100239a8:  LEA ESI,[EBP + 0x8]\n  100239ab:  MOV EDI,EBX\n  100239ad:  FSTP dword ptr [ESP + 0x1c]\n  100239b1:  FILD dword ptr [ESP + 0x2c]\n  100239b5:  FSTP dword ptr [ESP + 0x18]\n  100239b9:  FLD dword ptr [ESI + -0x8]\n  100239bc:  FADD dword ptr [0x100f5344]\n  100239c2:  PUSH ECX\n  100239c3:  FMUL dword ptr [ESP + 0x20]\n  100239c7:  FMUL dword ptr [0x100f5508]\n  100239cd:  FSTP dword ptr [ESP]\n  100239d0:  CALL 0x100276a0\n  100239d5:  MOV dword ptr [ESP + 0x2c],EAX\n  100239d9:  FILD dword ptr [ESP + 0x2c]\n  100239dd:  FSUB dword ptr [0x100f5890]\n  100239e3:  FSTP dword ptr [ESI + -0x8]\n  100239e6:  FLD dword ptr [0x100f5344]\n  100239ec:  FSUB dword ptr [ESI + -0x4]\n  100239ef:  FMUL dword ptr [ESP + 0x1c]\n  100239f3:  FMUL dword ptr [0x100f5508]\n  100239f9:  FSTP dword ptr [ESP]\n  100239fc:  CALL 0x100276a0\n  10023a01:  MOV dword ptr [ESP + 0x2c],EAX\n  10023a05:  FILD dword ptr [ESP + 0x2c]\n  10023a09:  FSUB dword ptr [0x100f5890]\n  10023a0f:  FSTP dword ptr [ESI + -0x4]\n  10023a12:  FLD dword ptr [ESI]\n  10023a14:  FADD dword ptr [0x100f5344]\n  10023a1a:  FMUL dword ptr [ESP + 0x20]\n  10023a1e:  FMUL dword ptr [0x100f5508]\n  10023a24:  FSTP dword ptr [ESP]\n  10023a27:  CALL 0x100276a0\n  10023a2c:  MOV dword ptr [ESP + 0x2c],EAX\n  10023a30:  FILD dword ptr [ESP + 0x2c]\n  10023a34:  FSUB dword ptr [0x100f5890]\n  10023a3a:  FSTP dword ptr [ESI]\n  10023a3c:  FLD dword ptr [0x100f5344]\n  10023a42:  FSUB dword ptr [ESI + 0x4]\n  10023a45:  FMUL dword ptr [ESP + 0x1c]\n  10023a49:  FMUL dword ptr [0x100f5508]\n  10023a4f:  FSTP dword ptr [ESP]\n  10023a52:  CALL 0x100276a0\n  10023a57:  MOV dword ptr [ESP + 0x2c],EAX\n  10023a5b:  ADD ESP,0x4\n  10023a5e:  FILD dword ptr [ESP + 0x28]\n  10023a62:  ADD ESI,0x28\n  10023a65:  DEC EDI\n  10023a66:  FSUB dword ptr [0x100f5890]\n  10023a6c:  FSTP dword ptr [ESI + -0x24]\n  10023a6f:  JNZ 0x100239b9\n  10023a75:  POP EDI\n  10023a76:  POP ESI\n  10023a77:  MOV EAX,dword ptr [ESP + 0x1c]\n  10023a7b:  MOV ECX,dword ptr [ESP + 0x18]\n  10023a7f:  PUSH EAX\n  10023a80:  PUSH ECX\n  10023a81:  MOV ECX,dword ptr [ESP + 0x14]\n  10023a85:  PUSH EBX\n  10023a86:  PUSH EBP\n  10023a87:  CALL 0x1001c860\n  10023a8c:  POP EBP\n  10023a8d:  POP EBX\n  10023a8e:  RET", 
+  "callers": [
+    {
+      "address": "0x10023a90", 
+      "name": "FUN_10023a90"
+    }, 
+    {
+      "address": "0x10023a90", 
+      "name": "FUN_10023a90"
+    }
+  ]
+}

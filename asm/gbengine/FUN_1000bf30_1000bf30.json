@@ -1,0 +1,39 @@
+{
+  "address": "0x1000bf30", 
+  "size_bytes": 316, 
+  "calling_convention": "unknown", 
+  "signature": "undefined FUN_1000bf30(undefined4 param_1, undefined4 param_2)", 
+  "callees": [], 
+  "global_refs": [
+    {
+      "address": "0x00000008", 
+      "type": null, 
+      "name": "DAT_00000008"
+    }, 
+    {
+      "address": "0x00000004", 
+      "type": null, 
+      "name": "DAT_00000004"
+    }, 
+    {
+      "address": "0x100f5344", 
+      "type": null, 
+      "name": "DAT_100f5344"
+    }
+  ], 
+  "has_custom_name": false, 
+  "decompiled_c": "\nundefined4 FUN_1000bf30(int param_1,int *param_2)\n\n{\n  float *pfVar1;\n  float fVar2;\n  float fVar3;\n  int *piVar4;\n  int iVar5;\n  float *pfVar6;\n  int in_ECX;\n  int iVar7;\n  int *piVar8;\n  int *piVar9;\n  int *piVar10;\n  \n  if ((*(int *)(in_ECX + 0x15c) != 2) && (*(int *)(in_ECX + 0x164) == 1)) {\n    piVar9 = *(int **)(in_ECX + 0x160);\n    for (iVar7 = 0xc; iVar7 != 0; iVar7 = iVar7 + -1) {\n      *param_2 = *piVar9;\n      piVar9 = piVar9 + 1;\n      param_2 = param_2 + 1;\n    }\n    return 1;\n  }\n  iVar7 = *(int *)(in_ECX + 0x164);\n  if ((((iVar7 != 0) && (piVar9 = *(int **)(in_ECX + 0x160), *piVar9 <= param_1)) &&\n      (param_1 <= piVar9[iVar7 * 0xc + -0xc])) && (*(int *)(in_ECX + 0x168) != 0)) {\n    piVar8 = (int *)0x0;\n    iVar5 = 0;\n    piVar4 = piVar9;\n    if (0 < iVar7) {\n      while (piVar10 = piVar4, *piVar10 <= param_1) {\n        iVar5 = iVar5 + 1;\n        piVar4 = piVar10 + 0xc;\n        piVar8 = piVar10;\n        if (iVar7 <= iVar5) {\n          for (iVar7 = 0xc; iVar7 != 0; iVar7 = iVar7 + -1) {\n            *param_2 = *piVar10;\n            piVar10 = piVar10 + 1;\n            param_2 = param_2 + 1;\n          }\n          return 1;\n        }\n      }\n      piVar9 = piVar9 + iVar5 * 0xc;\n      if (piVar9 != (int *)0x0) {\n        iVar7 = 4;\n        pfVar6 = (float *)(piVar9 + 5);\n        fVar3 = (float)(param_1 - *piVar8) / (float)(*piVar9 - *piVar8);\n        do {\n          pfVar1 = (float *)(((int)piVar8 - (int)piVar9) + (int)pfVar6);\n          fVar2 = *pfVar6;\n          pfVar6 = pfVar6 + 1;\n          iVar7 = iVar7 + -1;\n          *(float *)(((int)param_2 - (int)piVar9) + -4 + (int)pfVar6) =\n               fVar3 * fVar2 + (1.0 - fVar3) * *pfVar1;\n        } while (iVar7 != 0);\n        iVar7 = 3;\n        pfVar6 = (float *)(piVar9 + 2);\n        do {\n          iVar7 = iVar7 + -1;\n          *(float *)((int)pfVar6 + ((int)param_2 - (int)piVar9)) =\n               fVar3 * *pfVar6 +\n               (1.0 - fVar3) * *(float *)((int)pfVar6 + ((int)piVar8 - (int)piVar9));\n          pfVar6 = pfVar6 + 1;\n        } while (iVar7 != 0);\n        return 1;\n      }\n    }\n    for (iVar7 = 0xc; iVar7 != 0; iVar7 = iVar7 + -1) {\n      *param_2 = *piVar8;\n      piVar8 = piVar8 + 1;\n      param_2 = param_2 + 1;\n    }\n    return 1;\n  }\n  return 0;\n}\n\n", 
+  "is_thunk": false, 
+  "name": "FUN_1000bf30", 
+  "assembly": "  1000bf30:  MOV EAX,ECX\n  1000bf32:  PUSH EBX\n  1000bf33:  PUSH ESI\n  1000bf34:  PUSH EDI\n  1000bf35:  CMP dword ptr [EAX + 0x15c],0x2\n  1000bf3c:  JZ 0x1000bf63\n  1000bf3e:  CMP dword ptr [EAX + 0x164],0x1\n  1000bf45:  JNZ 0x1000bf63\n  1000bf47:  MOV ESI,dword ptr [EAX + 0x160]\n  1000bf4d:  MOV EDI,dword ptr [ESP + 0x14]\n  1000bf51:  MOV ECX,0xc\n  1000bf56:  MOV EAX,0x1\n  1000bf5b:  MOVSD.REP ES:EDI,ESI\n  1000bf5d:  POP EDI\n  1000bf5e:  POP ESI\n  1000bf5f:  POP EBX\n  1000bf60:  RET 0x8\n  1000bf63:  MOV EDI,dword ptr [EAX + 0x164]\n  1000bf69:  TEST EDI,EDI\n  1000bf6b:  JZ 0x1000c064\n  1000bf71:  MOV EBX,dword ptr [EAX + 0x160]\n  1000bf77:  MOV ESI,dword ptr [ESP + 0x10]\n  1000bf7b:  CMP ESI,dword ptr [EBX]\n  1000bf7d:  JL 0x1000c064\n  1000bf83:  LEA ECX,[EDI + EDI*0x2]\n  1000bf86:  SHL ECX,0x4\n  1000bf89:  CMP ESI,dword ptr [ECX + EBX*0x1 + -0x30]\n  1000bf8d:  JG 0x1000c064\n  1000bf93:  MOV ECX,dword ptr [EAX + 0x168]\n  1000bf99:  TEST ECX,ECX\n  1000bf9b:  JZ 0x1000c064\n  1000bfa1:  XOR EDX,EDX\n  1000bfa3:  XOR EAX,EAX\n  1000bfa5:  TEST EDI,EDI\n  1000bfa7:  JLE 0x1000bfdb\n  1000bfa9:  MOV ECX,EBX\n  1000bfab:  CMP dword ptr [ECX],ESI\n  1000bfad:  JG 0x1000bfd1\n  1000bfaf:  MOV EDX,ECX\n  1000bfb1:  INC EAX\n  1000bfb2:  ADD ECX,0x30\n  1000bfb5:  CMP EAX,EDI\n  1000bfb7:  JL 0x1000bfab\n  1000bfb9:  MOV EDI,dword ptr [ESP + 0x14]\n  1000bfbd:  MOV ECX,0xc\n  1000bfc2:  MOV ESI,EDX\n  1000bfc4:  MOVSD.REP ES:EDI,ESI\n  1000bfc6:  POP EDI\n  1000bfc7:  POP ESI\n  1000bfc8:  MOV EAX,0x1\n  1000bfcd:  POP EBX\n  1000bfce:  RET 0x8\n  1000bfd1:  LEA ECX,[EAX + EAX*0x2]\n  1000bfd4:  SHL ECX,0x4\n  1000bfd7:  ADD ECX,EBX\n  1000bfd9:  JNZ 0x1000bff3\n  1000bfdb:  MOV EDI,dword ptr [ESP + 0x14]\n  1000bfdf:  MOV ECX,0xc\n  1000bfe4:  MOV ESI,EDX\n  1000bfe6:  MOVSD.REP ES:EDI,ESI\n  1000bfe8:  POP EDI\n  1000bfe9:  POP ESI\n  1000bfea:  MOV EAX,0x1\n  1000bfef:  POP EBX\n  1000bff0:  RET 0x8\n  1000bff3:  MOV EAX,dword ptr [EDX]\n  1000bff5:  SUB EDX,ECX\n  1000bff7:  SUB ESI,EAX\n  1000bff9:  MOV EDI,0x4\n  1000bffe:  MOV dword ptr [ESP + 0x10],ESI\n  1000c002:  MOV ESI,dword ptr [ECX]\n  1000c004:  FILD dword ptr [ESP + 0x10]\n  1000c008:  SUB ESI,EAX\n  1000c00a:  LEA EAX,[ECX + 0x14]\n  1000c00d:  MOV dword ptr [ESP + 0x10],ESI\n  1000c011:  MOV ESI,dword ptr [ESP + 0x14]\n  1000c015:  FIDIV dword ptr [ESP + 0x10]\n  1000c019:  SUB ESI,ECX\n  1000c01b:  FLD dword ptr [0x100f5344]\n  1000c021:  FSUB ST0,ST1\n  1000c023:  FLD ST0\n  1000c025:  FMUL dword ptr [EDX + EAX*0x1]\n  1000c028:  FLD ST2\n  1000c02a:  FMUL dword ptr [EAX]\n  1000c02c:  ADD EAX,0x4\n  1000c02f:  DEC EDI\n  1000c030:  FADDP\n  1000c032:  FSTP dword ptr [ESI + EAX*0x1 + -0x4]\n  1000c036:  JNZ 0x1000c023\n  1000c038:  LEA EAX,[ECX + 0x8]\n  1000c03b:  MOV ECX,0x3\n  1000c040:  FLD ST0\n  1000c042:  FMUL dword ptr [EAX + EDX*0x1]\n  1000c045:  FLD ST2\n  1000c047:  FMUL dword ptr [EAX]\n  1000c049:  ADD EAX,0x4\n  1000c04c:  DEC ECX\n  1000c04d:  FADDP\n  1000c04f:  FSTP dword ptr [EAX + ESI*0x1 + -0x4]\n  1000c053:  JNZ 0x1000c040\n  1000c055:  POP EDI\n  1000c056:  FSTP ST0\n  1000c058:  POP ESI\n  1000c059:  MOV EAX,0x1\n  1000c05e:  FSTP ST0\n  1000c060:  POP EBX\n  1000c061:  RET 0x8\n  1000c064:  POP EDI\n  1000c065:  POP ESI\n  1000c066:  XOR EAX,EAX\n  1000c068:  POP EBX\n  1000c069:  RET 0x8", 
+  "callers": [
+    {
+      "address": "0x1000c070", 
+      "name": "FUN_1000c070"
+    }, 
+    {
+      "address": "0x1000c190", 
+      "name": "FUN_1000c190"
+    }
+  ]
+}

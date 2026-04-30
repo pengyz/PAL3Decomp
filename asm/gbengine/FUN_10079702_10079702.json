@@ -1,0 +1,30 @@
+{
+  "address": "0x10079702", 
+  "size_bytes": 25, 
+  "calling_convention": "unknown", 
+  "signature": "undefined FUN_10079702(undefined4 param_1, undefined4 param_2)", 
+  "callees": [], 
+  "global_refs": [
+    {
+      "address": "0x00000004", 
+      "type": null, 
+      "name": "DAT_00000004"
+    }, 
+    {
+      "address": "0x00000008", 
+      "type": null, 
+      "name": "DAT_00000008"
+    }
+  ], 
+  "has_custom_name": false, 
+  "decompiled_c": "\nundefined4 FUN_10079702(int param_1,int param_2)\n\n{\n  undefined4 uVar1;\n  \n  if ((param_1 == 0) || (param_2 == 0)) {\n    uVar1 = 0;\n  }\n  else {\n    uVar1 = *(undefined4 *)(param_2 + 0xc);\n  }\n  return uVar1;\n}\n\n", 
+  "is_thunk": false, 
+  "name": "FUN_10079702", 
+  "assembly": "  10079702:  CMP dword ptr [ESP + 0x4],0x0\n  10079707:  JZ 0x10079716\n  10079709:  MOV EAX,dword ptr [ESP + 0x8]\n  1007970d:  TEST EAX,EAX\n  1007970f:  JZ 0x10079716\n  10079711:  MOV EAX,dword ptr [EAX + 0xc]\n  10079714:  JMP 0x10079718\n  10079716:  XOR EAX,EAX\n  10079718:  RET 0x8", 
+  "callers": [
+    {
+      "address": "0x10035dfa", 
+      "name": "FUN_10035dfa"
+    }
+  ]
+}

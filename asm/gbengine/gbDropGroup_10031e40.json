@@ -1,0 +1,62 @@
+{
+  "address": "0x10031e40", 
+  "size_bytes": 244, 
+  "calling_convention": "__thiscall", 
+  "signature": "undefined __thiscall gbDropGroup(gbDropGroup * this, int param_1, gbDropDesc * param_2, char * param_3)", 
+  "callees": [
+    {
+      "address": "0x100e4a16", 
+      "name": "operator_new"
+    }, 
+    {
+      "address": "0x100205a0", 
+      "name": "LoadTexture"
+    }, 
+    {
+      "address": "0x1001d6d0", 
+      "name": "NewRenderEffect"
+    }
+  ], 
+  "global_refs": [
+    {
+      "address": "0x00000004", 
+      "type": null, 
+      "name": "DAT_00000004"
+    }, 
+    {
+      "address": "0x100f5b44", 
+      "type": "undefined *", 
+      "name": "DAT_100f5b44"
+    }, 
+    {
+      "address": "0x0000000c", 
+      "type": null, 
+      "name": "DAT_0000000c"
+    }, 
+    {
+      "address": "0x101379a8", 
+      "type": "undefined4", 
+      "name": "DAT_101379a8"
+    }, 
+    {
+      "address": "0x10120210", 
+      "type": "string", 
+      "name": "DAT_10120210"
+    }
+  ], 
+  "has_custom_name": true, 
+  "decompiled_c": "\n/* public: __thiscall gbDropGroup::gbDropGroup(int,struct gbDropDesc const *,char const *) */\n\ngbDropGroup * __thiscall\ngbDropGroup::gbDropGroup(gbDropGroup *this,int param_1,gbDropDesc *param_2,char *param_3)\n\n{\n  undefined4 uVar1;\n  int *piVar2;\n  void *pvVar3;\n  gbTexture *this_00;\n  gbRenderEffect *pgVar4;\n  undefined4 *puVar5;\n  int iVar6;\n  \n                    /* 0x31e40  41  ??0gbDropGroup@@QAE@HPBUgbDropDesc@@PBD@Z */\n  *(undefined ***)this = &_vftable_;\n  *(int *)(this + 8) = param_1;\n  pvVar3 = operator_new(param_1 * 0x28);\n  if (pvVar3 == (void *)0x0) {\n    pvVar3 = (void *)0x0;\n  }\n  else if (-1 < param_1 + -1) {\n    puVar5 = (undefined4 *)((int)pvVar3 + 0xc);\n    iVar6 = param_1;\n    do {\n      puVar5[-2] = 0;\n      puVar5[-1] = 0;\n      *puVar5 = 0;\n      puVar5[1] = 0;\n      puVar5[2] = 0;\n      puVar5[3] = 0;\n      puVar5[4] = 0;\n      puVar5[5] = 0;\n      puVar5[6] = 0;\n      puVar5 = puVar5 + 10;\n      iVar6 = iVar6 + -1;\n    } while (iVar6 != 0);\n  }\n  *(void **)(this + 0x44) = pvVar3;\n  if (0 < param_1) {\n    iVar6 = 0;\n    do {\n      param_1 = param_1 + -1;\n      *(undefined4 *)(iVar6 + *(int *)(this + 0x44)) = 0;\n      iVar6 = iVar6 + 0x28;\n    } while (param_1 != 0);\n  }\n  piVar2 = DAT_101379a8;\n  if (param_3 == (char *)0x0) {\n    *(undefined4 *)(this + 0x48) = 0;\n  }\n  else {\n    this_00 = (gbTexture *)(**(code **)(*DAT_101379a8 + 8))(param_3);\n    *(gbTexture **)(this + 0x48) = this_00;\n    gbTexture::LoadTexture(this_00,1);\n  }\n  pgVar4 = gbEffectMgr::NewRenderEffect\n                     ((gbEffectMgr *)piVar2[0x32],s_gfxscript_p_add_gbf_10120210,0);\n  *(gbRenderEffect **)(this + 0x4c) = pgVar4;\n  *(undefined4 *)(this + 0x10) = *(undefined4 *)param_2;\n  *(undefined4 *)(this + 0x14) = *(undefined4 *)(param_2 + 4);\n  *(undefined4 *)(this + 0x18) = *(undefined4 *)(param_2 + 8);\n  *(undefined4 *)(this + 0x1c) = *(undefined4 *)(param_2 + 0xc);\n  *(undefined4 *)(this + 0x20) = *(undefined4 *)(param_2 + 0x10);\n  *(undefined4 *)(this + 0x24) = *(undefined4 *)(param_2 + 0x14);\n  *(undefined4 *)(this + 0x28) = *(undefined4 *)(param_2 + 0x18);\n  *(undefined4 *)(this + 0x2c) = *(undefined4 *)(param_2 + 0x1c);\n  uVar1 = *(undefined4 *)(param_2 + 0x20);\n  *(undefined4 *)(this + 0x38) = 0;\n  *(undefined4 *)(this + 0x30) = uVar1;\n  *(undefined4 *)(this + 0xc) = 0;\n  *(undefined4 *)(this + 0x3c) = 0;\n  *(undefined4 *)(this + 0x40) = 0;\n  return this;\n}\n\n", 
+  "is_thunk": false, 
+  "name": "gbDropGroup", 
+  "assembly": "  10031e40:  PUSH EBX\n  10031e41:  MOV EBX,dword ptr [ESP + 0x8]\n  10031e45:  PUSH ESI\n  10031e46:  MOV ESI,ECX\n  10031e48:  LEA EAX,[EBX + EBX*0x4]\n  10031e4b:  PUSH EDI\n  10031e4c:  SHL EAX,0x3\n  10031e4f:  PUSH EAX\n  10031e50:  MOV dword ptr [ESI],0x100f5b44\n  10031e56:  MOV dword ptr [ESI + 0x8],EBX\n  10031e59:  CALL 0x100e4a16\n  10031e5e:  XOR EDI,EDI\n  10031e60:  ADD ESP,0x4\n  10031e63:  CMP EAX,EDI\n  10031e65:  JZ 0x10031e94\n  10031e67:  LEA EDX,[EBX + -0x1]\n  10031e6a:  CMP EDX,EDI\n  10031e6c:  JL 0x10031e96\n  10031e6e:  LEA ECX,[EAX + 0xc]\n  10031e71:  INC EDX\n  10031e72:  MOV dword ptr [ECX + -0x8],EDI\n  10031e75:  MOV dword ptr [ECX + -0x4],EDI\n  10031e78:  MOV dword ptr [ECX],EDI\n  10031e7a:  MOV dword ptr [ECX + 0x4],EDI\n  10031e7d:  MOV dword ptr [ECX + 0x8],EDI\n  10031e80:  MOV dword ptr [ECX + 0xc],EDI\n  10031e83:  MOV dword ptr [ECX + 0x10],EDI\n  10031e86:  MOV dword ptr [ECX + 0x14],EDI\n  10031e89:  MOV dword ptr [ECX + 0x18],EDI\n  10031e8c:  ADD ECX,0x28\n  10031e8f:  DEC EDX\n  10031e90:  JNZ 0x10031e72\n  10031e92:  JMP 0x10031e96\n  10031e94:  XOR EAX,EAX\n  10031e96:  CMP EBX,EDI\n  10031e98:  MOV dword ptr [ESI + 0x44],EAX\n  10031e9b:  JLE 0x10031eac\n  10031e9d:  XOR EAX,EAX\n  10031e9f:  MOV ECX,dword ptr [ESI + 0x44]\n  10031ea2:  ADD EAX,0x28\n  10031ea5:  DEC EBX\n  10031ea6:  MOV dword ptr [EAX + ECX*0x1 + -0x28],EDI\n  10031eaa:  JNZ 0x10031e9f\n  10031eac:  MOV EAX,dword ptr [ESP + 0x18]\n  10031eb0:  MOV EBX,dword ptr [0x101379a8]\n  10031eb6:  CMP EAX,EDI\n  10031eb8:  JZ 0x10031ed0\n  10031eba:  MOV EDX,dword ptr [EBX]\n  10031ebc:  PUSH EAX\n  10031ebd:  MOV ECX,EBX\n  10031ebf:  CALL dword ptr [EDX + 0x8]\n  10031ec2:  PUSH 0x1\n  10031ec4:  MOV ECX,EAX\n  10031ec6:  MOV dword ptr [ESI + 0x48],EAX\n  10031ec9:  CALL 0x100205a0\n  10031ece:  JMP 0x10031ed3\n  10031ed0:  MOV dword ptr [ESI + 0x48],EDI\n  10031ed3:  MOV ECX,dword ptr [EBX + 0xc8]\n  10031ed9:  PUSH EDI\n  10031eda:  PUSH 0x10120210\n  10031edf:  CALL 0x1001d6d0\n  10031ee4:  MOV dword ptr [ESI + 0x4c],EAX\n  10031ee7:  MOV EAX,dword ptr [ESP + 0x14]\n  10031eeb:  MOV ECX,dword ptr [EAX]\n  10031eed:  MOV dword ptr [ESI + 0x10],ECX\n  10031ef0:  MOV EDX,dword ptr [EAX + 0x4]\n  10031ef3:  MOV dword ptr [ESI + 0x14],EDX\n  10031ef6:  MOV ECX,dword ptr [EAX + 0x8]\n  10031ef9:  MOV dword ptr [ESI + 0x18],ECX\n  10031efc:  MOV EDX,dword ptr [EAX + 0xc]\n  10031eff:  MOV dword ptr [ESI + 0x1c],EDX\n  10031f02:  MOV ECX,dword ptr [EAX + 0x10]\n  10031f05:  MOV dword ptr [ESI + 0x20],ECX\n  10031f08:  MOV EDX,dword ptr [EAX + 0x14]\n  10031f0b:  MOV dword ptr [ESI + 0x24],EDX\n  10031f0e:  MOV ECX,dword ptr [EAX + 0x18]\n  10031f11:  MOV dword ptr [ESI + 0x28],ECX\n  10031f14:  MOV EDX,dword ptr [EAX + 0x1c]\n  10031f17:  MOV dword ptr [ESI + 0x2c],EDX\n  10031f1a:  MOV EAX,dword ptr [EAX + 0x20]\n  10031f1d:  MOV dword ptr [ESI + 0x38],EDI\n  10031f20:  MOV dword ptr [ESI + 0x30],EAX\n  10031f23:  MOV dword ptr [ESI + 0xc],EDI\n  10031f26:  MOV dword ptr [ESI + 0x3c],EDI\n  10031f29:  MOV dword ptr [ESI + 0x40],EDI\n  10031f2c:  MOV EAX,ESI\n  10031f2e:  POP EDI\n  10031f2f:  POP ESI\n  10031f30:  POP EBX\n  10031f31:  RET 0xc", 
+  "callers": [
+    {
+      "address": "0x100320f0", 
+      "name": "gbRain"
+    }, 
+    {
+      "address": "0x100324a0", 
+      "name": "gbSnow"
+    }
+  ]
+}

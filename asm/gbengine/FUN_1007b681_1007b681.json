@@ -1,0 +1,79 @@
+{
+  "address": "0x1007b681", 
+  "size_bytes": 257, 
+  "calling_convention": "unknown", 
+  "signature": "undefined FUN_1007b681(void)", 
+  "callees": [], 
+  "global_refs": [
+    {
+      "address": "0x100f641c", 
+      "type": "undefined4", 
+      "name": "DAT_100f641c"
+    }, 
+    {
+      "address": "0x-0000020", 
+      "type": null, 
+      "name": "DAT_-0000020"
+    }, 
+    {
+      "address": "0x100f6408", 
+      "type": null, 
+      "name": "DAT_100f6408"
+    }, 
+    {
+      "address": "0x-000001c", 
+      "type": null, 
+      "name": "DAT_-000001c"
+    }, 
+    {
+      "address": "0x-0000018", 
+      "type": null, 
+      "name": "DAT_-0000018"
+    }, 
+    {
+      "address": "0x-0000008", 
+      "type": null, 
+      "name": "DAT_-0000008"
+    }, 
+    {
+      "address": "0x-000000c", 
+      "type": null, 
+      "name": "DAT_-000000c"
+    }, 
+    {
+      "address": "0x100f6f4c", 
+      "type": null, 
+      "name": "DAT_100f6f4c"
+    }, 
+    {
+      "address": "0x-0000010", 
+      "type": null, 
+      "name": "DAT_-0000010"
+    }, 
+    {
+      "address": "0x100f6404", 
+      "type": null, 
+      "name": "DAT_100f6404"
+    }, 
+    {
+      "address": "0x100f6f44", 
+      "type": null, 
+      "name": "DAT_100f6f44"
+    }
+  ], 
+  "has_custom_name": false, 
+  "decompiled_c": "\nuint FUN_1007b681(void)\n\n{\n  float *in_ECX;\n  float local_20;\n  float local_1c;\n  float local_18;\n  \n  if (0.0 <= *in_ECX) {\n    if (1.0 < *in_ECX) {\n      local_20 = 1.0;\n    }\n    else {\n      local_20 = *in_ECX;\n    }\n  }\n  else {\n    local_20 = 0.0;\n  }\n  if (0.0 <= in_ECX[1]) {\n    if (1.0 < in_ECX[1]) {\n      local_1c = 1.0;\n    }\n    else {\n      local_1c = in_ECX[1];\n    }\n  }\n  else {\n    local_1c = 0.0;\n  }\n  if (0.0 <= in_ECX[2]) {\n    if (in_ECX[2] <= 1.0) {\n      local_18 = in_ECX[2];\n    }\n    else {\n      local_18 = 1.0;\n    }\n  }\n  else {\n    local_18 = 0.0;\n  }\n  return ((int)ROUND(local_20 * 31.0 + 0.5) << 6 | (int)ROUND(local_1c * 63.0 + 0.5)) << 5 |\n         (int)ROUND(local_18 * 31.0 + 0.5);\n}\n\n", 
+  "is_thunk": false, 
+  "name": "FUN_1007b681", 
+  "assembly": "  1007b681:  PUSH EBP\n  1007b682:  MOV EBP,ESP\n  1007b684:  SUB ESP,0x1c\n  1007b687:  FLD dword ptr [0x100f641c]\n  1007b68d:  FCOM dword ptr [ECX]\n  1007b68f:  FNSTSW AX\n  1007b691:  TEST AH,0x41\n  1007b694:  JNZ 0x1007b69d\n  1007b696:  FLDZ\n  1007b698:  FSTP dword ptr [EBP + -0x1c]\n  1007b69b:  JMP 0x1007b6b5\n  1007b69d:  FLD dword ptr [ECX]\n  1007b69f:  FCOMP dword ptr [0x100f6408]\n  1007b6a5:  FNSTSW AX\n  1007b6a7:  TEST AH,0x41\n  1007b6aa:  JNZ 0x1007b6b0\n  1007b6ac:  FLD1\n  1007b6ae:  JMP 0x1007b698\n  1007b6b0:  MOV EAX,dword ptr [ECX]\n  1007b6b2:  MOV dword ptr [EBP + -0x1c],EAX\n  1007b6b5:  FCOM dword ptr [ECX + 0x4]\n  1007b6b8:  FNSTSW AX\n  1007b6ba:  TEST AH,0x41\n  1007b6bd:  JNZ 0x1007b6c6\n  1007b6bf:  FLDZ\n  1007b6c1:  FSTP dword ptr [EBP + -0x18]\n  1007b6c4:  JMP 0x1007b6e0\n  1007b6c6:  FLD dword ptr [ECX + 0x4]\n  1007b6c9:  FCOMP dword ptr [0x100f6408]\n  1007b6cf:  FNSTSW AX\n  1007b6d1:  TEST AH,0x41\n  1007b6d4:  JNZ 0x1007b6da\n  1007b6d6:  FLD1\n  1007b6d8:  JMP 0x1007b6c1\n  1007b6da:  MOV EAX,dword ptr [ECX + 0x4]\n  1007b6dd:  MOV dword ptr [EBP + -0x18],EAX\n  1007b6e0:  FCOMP dword ptr [ECX + 0x8]\n  1007b6e3:  FNSTSW AX\n  1007b6e5:  TEST AH,0x41\n  1007b6e8:  JNZ 0x1007b6f1\n  1007b6ea:  FLDZ\n  1007b6ec:  FSTP dword ptr [EBP + -0x14]\n  1007b6ef:  JMP 0x1007b70b\n  1007b6f1:  FLD dword ptr [ECX + 0x8]\n  1007b6f4:  FCOMP dword ptr [0x100f6408]\n  1007b6fa:  FNSTSW AX\n  1007b6fc:  TEST AH,0x41\n  1007b6ff:  JNZ 0x1007b705\n  1007b701:  FLD1\n  1007b703:  JMP 0x1007b6ec\n  1007b705:  MOV EAX,dword ptr [ECX + 0x8]\n  1007b708:  MOV dword ptr [EBP + -0x14],EAX\n  1007b70b:  FNSTCW word ptr [EBP + -0x4]\n  1007b70e:  MOV EAX,dword ptr [EBP + -0x4]\n  1007b711:  OR EAX,0xc00\n  1007b716:  MOV dword ptr [EBP + -0x8],EAX\n  1007b719:  FLDCW word ptr [EBP + -0x8]\n  1007b71c:  FLD dword ptr [EBP + -0x1c]\n  1007b71f:  FMUL dword ptr [0x100f6f4c]\n  1007b725:  MOV EAX,dword ptr [EBP + -0x4]\n  1007b728:  MOV dword ptr [EBP + -0xc],EAX\n  1007b72b:  FADD dword ptr [0x100f6404]\n  1007b731:  FSTP dword ptr [EBP + -0x8]\n  1007b734:  FLD dword ptr [EBP + -0x8]\n  1007b737:  FISTP dword ptr [EBP + -0x4]\n  1007b73a:  FLD dword ptr [EBP + -0x18]\n  1007b73d:  MOV EAX,dword ptr [EBP + -0x4]\n  1007b740:  FMUL dword ptr [0x100f6f44]\n  1007b746:  FADD dword ptr [0x100f6404]\n  1007b74c:  FSTP dword ptr [EBP + -0x8]\n  1007b74f:  FLD dword ptr [EBP + -0x8]\n  1007b752:  FISTP dword ptr [EBP + -0x4]\n  1007b755:  FLD dword ptr [EBP + -0x14]\n  1007b758:  MOV ECX,dword ptr [EBP + -0x4]\n  1007b75b:  FMUL dword ptr [0x100f6f4c]\n  1007b761:  FADD dword ptr [0x100f6404]\n  1007b767:  FSTP dword ptr [EBP + -0x8]\n  1007b76a:  FLD dword ptr [EBP + -0x8]\n  1007b76d:  FISTP dword ptr [EBP + -0x4]\n  1007b770:  MOV EDX,dword ptr [EBP + -0x4]\n  1007b773:  FLDCW word ptr [EBP + -0xc]\n  1007b776:  SHL EAX,0x6\n  1007b779:  OR EAX,ECX\n  1007b77b:  SHL EAX,0x5\n  1007b77e:  OR EAX,EDX\n  1007b780:  LEAVE\n  1007b781:  RET", 
+  "callers": [
+    {
+      "address": "0x1007c00a", 
+      "name": "FUN_1007c00a"
+    }, 
+    {
+      "address": "0x1007c00a", 
+      "name": "FUN_1007c00a"
+    }
+  ]
+}

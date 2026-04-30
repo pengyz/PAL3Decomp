@@ -1,0 +1,58 @@
+{
+  "address": "0x100262d0", 
+  "size_bytes": 32, 
+  "calling_convention": "__thiscall", 
+  "signature": "gbVec3D * __thiscall GetRow(gbMatrix4 * this, gbVec3D * param_1, int param_2)", 
+  "callees": [], 
+  "global_refs": [
+    {
+      "address": "0x00000008", 
+      "type": null, 
+      "name": "DAT_00000008"
+    }, 
+    {
+      "address": "0x00000004", 
+      "type": null, 
+      "name": "DAT_00000004"
+    }
+  ], 
+  "has_custom_name": true, 
+  "decompiled_c": "\n/* public: struct gbVec3D * __thiscall gbMatrix4::GetRow(struct gbVec3D *,int)const  */\n\ngbVec3D * __thiscall gbMatrix4::GetRow(gbMatrix4 *this,gbVec3D *param_1,int param_2)\n\n{\n  gbMatrix4 *pgVar1;\n  \n                    /* 0x262d0  538  ?GetRow@gbMatrix4@@QBEPAUgbVec3D@@PAU2@H@Z */\n  pgVar1 = this + param_2 * 0x10;\n  *(undefined4 *)param_1 = *(undefined4 *)pgVar1;\n  *(undefined4 *)(param_1 + 4) = *(undefined4 *)(pgVar1 + 4);\n  *(undefined4 *)(param_1 + 8) = *(undefined4 *)(pgVar1 + 8);\n  return param_1;\n}\n\n", 
+  "is_thunk": false, 
+  "name": "GetRow", 
+  "assembly": "  100262d0:  MOV EAX,dword ptr [ESP + 0x8]\n  100262d4:  SHL EAX,0x4\n  100262d7:  ADD ECX,EAX\n  100262d9:  MOV EAX,dword ptr [ESP + 0x4]\n  100262dd:  MOV EDX,dword ptr [ECX]\n  100262df:  MOV dword ptr [EAX],EDX\n  100262e1:  MOV EDX,dword ptr [ECX + 0x4]\n  100262e4:  MOV dword ptr [EAX + 0x4],EDX\n  100262e7:  MOV ECX,dword ptr [ECX + 0x8]\n  100262ea:  MOV dword ptr [EAX + 0x8],ECX\n  100262ed:  RET 0x8", 
+  "callers": [
+    {
+      "address": "0x10027df0", 
+      "name": "GetRadiusInDirection"
+    }, 
+    {
+      "address": "0x10027df0", 
+      "name": "GetRadiusInDirection"
+    }, 
+    {
+      "address": "0x10027df0", 
+      "name": "GetRadiusInDirection"
+    }, 
+    {
+      "address": "0x10027df0", 
+      "name": "GetRadiusInDirection"
+    }, 
+    {
+      "address": "0x10027ec0", 
+      "name": "IsColOBB"
+    }, 
+    {
+      "address": "0x10027ec0", 
+      "name": "IsColOBB"
+    }, 
+    {
+      "address": "0x10027ec0", 
+      "name": "IsColOBB"
+    }, 
+    {
+      "address": "0x10027ec0", 
+      "name": "IsColOBB"
+    }
+  ]
+}

@@ -1,0 +1,25 @@
+{
+  "address": "0x10021c50", 
+  "size_bytes": 39, 
+  "calling_convention": "__thiscall", 
+  "signature": "void __thiscall SetDimention(gbCamera * this, int param_1, int param_2)", 
+  "callees": [], 
+  "global_refs": [
+    {
+      "address": "0x00000004", 
+      "type": null, 
+      "name": "DAT_00000004"
+    }, 
+    {
+      "address": "0x00000008", 
+      "type": null, 
+      "name": "DAT_00000008"
+    }
+  ], 
+  "has_custom_name": true, 
+  "decompiled_c": "\n/* public: void __thiscall gbCamera::SetDimention(int,int) */\n\nvoid __thiscall gbCamera::SetDimention(gbCamera *this,int param_1,int param_2)\n\n{\n                    /* 0x21c50  860  ?SetDimention@gbCamera@@QAEXHH@Z */\n  *(undefined4 *)(this + 0x18) = 0;\n  *(undefined4 *)(this + 0x1c) = 0;\n  *(float *)(this + 8) = (float)param_1;\n  *(int *)(this + 0x24) = param_2;\n  *(int *)(this + 0x20) = param_1;\n  *(float *)(this + 0xc) = (float)param_2;\n  return;\n}\n\n", 
+  "is_thunk": false, 
+  "name": "SetDimention", 
+  "assembly": "  10021c50:  FILD dword ptr [ESP + 0x4]\n  10021c54:  MOV EDX,dword ptr [ESP + 0x8]\n  10021c58:  XOR EAX,EAX\n  10021c5a:  MOV dword ptr [ECX + 0x18],EAX\n  10021c5d:  MOV dword ptr [ECX + 0x1c],EAX\n  10021c60:  FSTP dword ptr [ECX + 0x8]\n  10021c63:  FILD dword ptr [ESP + 0x8]\n  10021c67:  MOV EAX,dword ptr [ESP + 0x4]\n  10021c6b:  MOV dword ptr [ECX + 0x24],EDX\n  10021c6e:  MOV dword ptr [ECX + 0x20],EAX\n  10021c71:  FSTP dword ptr [ECX + 0xc]\n  10021c74:  RET 0x8", 
+  "callers": []
+}

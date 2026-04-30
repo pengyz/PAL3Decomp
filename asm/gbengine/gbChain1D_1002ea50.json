@@ -1,0 +1,51 @@
+{
+  "address": "0x1002ea50", 
+  "size_bytes": 13, 
+  "calling_convention": "__thiscall", 
+  "signature": "undefined __thiscall gbChain1D(gbChain1D * this)", 
+  "callees": [], 
+  "global_refs": [], 
+  "has_custom_name": true, 
+  "decompiled_c": "\n/* public: __thiscall gbChain1D::gbChain1D(void) */\n\nvoid __thiscall gbChain1D::gbChain1D(gbChain1D *this)\n\n{\n                    /* 0x2ea50  27  ??0gbChain1D@@QAE@XZ */\n  *(undefined4 *)(this + 4) = 0;\n  *(undefined4 *)this = 0;\n  *(undefined4 *)(this + 8) = 0;\n  return;\n}\n\n", 
+  "is_thunk": false, 
+  "name": "gbChain1D", 
+  "assembly": "  1002ea50:  MOV EAX,ECX\n  1002ea52:  XOR ECX,ECX\n  1002ea54:  MOV dword ptr [EAX + 0x4],ECX\n  1002ea57:  MOV dword ptr [EAX],ECX\n  1002ea59:  MOV dword ptr [EAX + 0x8],ECX\n  1002ea5c:  RET", 
+  "callers": [
+    {
+      "address": "0x10016590", 
+      "name": "gbVisNode"
+    }, 
+    {
+      "address": "0x10004460", 
+      "name": "gbNBTreeNode"
+    }, 
+    {
+      "address": "0x1000c5d0", 
+      "name": "LoadFromFile"
+    }, 
+    {
+      "address": "0x1000bc50", 
+      "name": "FUN_1000bc50"
+    }, 
+    {
+      "address": "0x100210c0", 
+      "name": "gbVertPoolMgr"
+    }, 
+    {
+      "address": "0x10020930", 
+      "name": "gbIndexPool"
+    }, 
+    {
+      "address": "0x10020930", 
+      "name": "gbIndexPool"
+    }, 
+    {
+      "address": "0x10020d90", 
+      "name": "gbVertexPool"
+    }, 
+    {
+      "address": "0x10020d90", 
+      "name": "gbVertexPool"
+    }
+  ]
+}

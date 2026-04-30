@@ -1,0 +1,40 @@
+{
+  "address": "0x1001e410", 
+  "size_bytes": 89, 
+  "calling_convention": "__thiscall", 
+  "signature": "void __thiscall ~gbImage2D(gbImage2D * this)", 
+  "callees": [
+    {
+      "address": "0x100e4b99", 
+      "name": "FUN_100e4b99"
+    }, 
+    {
+      "address": "0x100e4b99", 
+      "name": "FUN_100e4b99"
+    }
+  ], 
+  "global_refs": [], 
+  "has_custom_name": true, 
+  "decompiled_c": "\n/* public: __thiscall gbImage2D::~gbImage2D(void) */\n\nvoid __thiscall gbImage2D::~gbImage2D(gbImage2D *this)\n\n{\n                    /* 0x1e410  140  ??1gbImage2D@@QAE@XZ\n                       0x1e410  773  ?Release@gbImage2D@@QAEXXZ */\n  *(undefined4 *)(this + 0xb4) = 0;\n  *(undefined4 *)(this + 0x84) = 0;\n  *(undefined4 *)(this + 0x80) = 0;\n  if (*(int *)(this + 0xb8) != 0) {\n    FUN_100e4b99(*(int *)(this + 0xb8));\n    *(undefined4 *)(this + 0xb8) = 0;\n  }\n  if (*(int *)(this + 0xbc) != 0) {\n    FUN_100e4b99(*(int *)(this + 0xbc));\n    *(undefined4 *)(this + 0xbc) = 0;\n    *(undefined4 *)(this + 0xc0) = 0;\n  }\n  this[199] = (gbImage2D)0x0;\n  return;\n}\n\n", 
+  "is_thunk": false, 
+  "name": "~gbImage2D", 
+  "assembly": "  1001e410:  PUSH EBX\n  1001e411:  PUSH ESI\n  1001e412:  MOV ESI,ECX\n  1001e414:  XOR EBX,EBX\n  1001e416:  MOV EAX,dword ptr [ESI + 0xb8]\n  1001e41c:  MOV dword ptr [ESI + 0xb4],EBX\n  1001e422:  CMP EAX,EBX\n  1001e424:  MOV dword ptr [ESI + 0x84],EBX\n  1001e42a:  MOV dword ptr [ESI + 0x80],EBX\n  1001e430:  JZ 0x1001e441\n  1001e432:  PUSH EAX\n  1001e433:  CALL 0x100e4b99\n  1001e438:  ADD ESP,0x4\n  1001e43b:  MOV dword ptr [ESI + 0xb8],EBX\n  1001e441:  MOV EAX,dword ptr [ESI + 0xbc]\n  1001e447:  CMP EAX,EBX\n  1001e449:  JZ 0x1001e460\n  1001e44b:  PUSH EAX\n  1001e44c:  CALL 0x100e4b99\n  1001e451:  ADD ESP,0x4\n  1001e454:  MOV dword ptr [ESI + 0xbc],EBX\n  1001e45a:  MOV dword ptr [ESI + 0xc0],EBX\n  1001e460:  MOV byte ptr [ESI + 0xc7],BL\n  1001e466:  POP ESI\n  1001e467:  POP EBX\n  1001e468:  RET", 
+  "callers": [
+    {
+      "address": "0x100203c0", 
+      "name": "~gbTexture"
+    }, 
+    {
+      "address": "0x100203c0", 
+      "name": "~gbTexture"
+    }, 
+    {
+      "address": "0x100205a0", 
+      "name": "LoadTexture"
+    }, 
+    {
+      "address": "0x100205a0", 
+      "name": "LoadTexture"
+    }
+  ]
+}

@@ -1,0 +1,20 @@
+{
+  "address": "0x10005900", 
+  "size_bytes": 42, 
+  "calling_convention": "__thiscall", 
+  "signature": "void __thiscall SetEyeDir(gbCamera * this, gbQuaternion * param_1)", 
+  "callees": [], 
+  "global_refs": [
+    {
+      "address": "0x00000004", 
+      "type": null, 
+      "name": "DAT_00000004"
+    }
+  ], 
+  "has_custom_name": true, 
+  "decompiled_c": "\n/* public: void __thiscall gbCamera::SetEyeDir(struct gbQuaternion *) */\n\nvoid __thiscall gbCamera::SetEyeDir(gbCamera *this,gbQuaternion *param_1)\n\n{\n                    /* 0x5900  863  ?SetEyeDir@gbCamera@@QAEXPAUgbQuaternion@@@Z */\n  *(undefined4 *)(this + 0x168) = *(undefined4 *)param_1;\n  *(undefined4 *)(this + 0x16c) = *(undefined4 *)(param_1 + 4);\n  *(undefined4 *)(this + 0x170) = *(undefined4 *)(param_1 + 8);\n  *(undefined4 *)(this + 0x174) = *(undefined4 *)(param_1 + 0xc);\n  return;\n}\n\n", 
+  "is_thunk": false, 
+  "name": "SetEyeDir", 
+  "assembly": "  10005900:  MOV EAX,dword ptr [ESP + 0x4]\n  10005904:  MOV EDX,dword ptr [EAX]\n  10005906:  MOV dword ptr [ECX + 0x168],EDX\n  1000590c:  MOV EDX,dword ptr [EAX + 0x4]\n  1000590f:  MOV dword ptr [ECX + 0x16c],EDX\n  10005915:  MOV EDX,dword ptr [EAX + 0x8]\n  10005918:  MOV dword ptr [ECX + 0x170],EDX\n  1000591e:  MOV EAX,dword ptr [EAX + 0xc]\n  10005921:  MOV dword ptr [ECX + 0x174],EAX\n  10005927:  RET 0x4", 
+  "callers": []
+}

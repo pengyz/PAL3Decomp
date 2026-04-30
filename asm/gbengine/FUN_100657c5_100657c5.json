@@ -1,0 +1,33 @@
+{
+  "address": "0x100657c5", 
+  "size_bytes": 62, 
+  "calling_convention": "unknown", 
+  "signature": "undefined FUN_100657c5(undefined4 param_1)", 
+  "callees": [], 
+  "global_refs": [
+    {
+      "address": "0x00000004", 
+      "type": null, 
+      "name": "DAT_00000004"
+    }
+  ], 
+  "has_custom_name": false, 
+  "decompiled_c": "\nint FUN_100657c5(uint param_1)\n\n{\n  int in_ECX;\n  int iVar1;\n  int *piVar2;\n  \n  piVar2 = (int *)~param_1;\n  if ((*piVar2 == 1) && ((uint)*(ushort *)(piVar2 + 1) < *(uint *)(in_ECX + 0x90))) {\n    iVar1 = *(int *)(in_ECX + 0x94) + (uint)*(ushort *)(piVar2 + 1) * 0xac;\n    if ((uint)*(ushort *)(piVar2 + 2) < *(uint *)(iVar1 + 0x2c)) {\n      return (uint)*(ushort *)(piVar2 + 2) * 0x30 + *(int *)(iVar1 + 0x30);\n    }\n  }\n  return 0;\n}\n\n", 
+  "is_thunk": false, 
+  "name": "FUN_100657c5", 
+  "assembly": "  100657c5:  MOV EDX,dword ptr [ESP + 0x4]\n  100657c9:  NOT EDX\n  100657cb:  CMP dword ptr [EDX],0x1\n  100657ce:  JNZ 0x100657fe\n  100657d0:  MOVZX EAX,word ptr [EDX + 0x4]\n  100657d4:  CMP EAX,dword ptr [ECX + 0x90]\n  100657da:  JNC 0x100657fe\n  100657dc:  MOV ECX,dword ptr [ECX + 0x94]\n  100657e2:  IMUL EAX,EAX,0xac\n  100657e8:  ADD ECX,EAX\n  100657ea:  MOVZX EAX,word ptr [EDX + 0x8]\n  100657ee:  CMP EAX,dword ptr [ECX + 0x2c]\n  100657f1:  JNC 0x100657fe\n  100657f3:  LEA EAX,[EAX + EAX*0x2]\n  100657f6:  SHL EAX,0x4\n  100657f9:  ADD EAX,dword ptr [ECX + 0x30]\n  100657fc:  JMP 0x10065800\n  100657fe:  XOR EAX,EAX\n  10065800:  RET 0x8", 
+  "callers": [
+    {
+      "address": "0x1006d67e", 
+      "name": "FUN_1006d67e"
+    }, 
+    {
+      "address": "0x1006ae93", 
+      "name": "FUN_1006ae93"
+    }, 
+    {
+      "address": "0x1006dc21", 
+      "name": "FUN_1006dc21"
+    }
+  ]
+}

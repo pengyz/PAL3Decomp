@@ -1,0 +1,25 @@
+{
+  "address": "0x1002eff0", 
+  "size_bytes": 92, 
+  "calling_convention": "__thiscall", 
+  "signature": "void * __thiscall LockVariant(gbNameVarBuf * this, uint param_1, int * param_2)", 
+  "callees": [], 
+  "global_refs": [
+    {
+      "address": "0x00000004", 
+      "type": null, 
+      "name": "DAT_00000004"
+    }, 
+    {
+      "address": "0x00000008", 
+      "type": null, 
+      "name": "DAT_00000008"
+    }
+  ], 
+  "has_custom_name": true, 
+  "decompiled_c": "\n/* public: void * __thiscall gbNameVarBuf::LockVariant(unsigned int,int *) */\n\nvoid * __thiscall gbNameVarBuf::LockVariant(gbNameVarBuf *this,uint param_1,int *param_2)\n\n{\n  uint *puVar1;\n  int iVar2;\n  uint *puVar3;\n  \n                    /* 0x2eff0  696  ?LockVariant@gbNameVarBuf@@QAEPAXIPAH@Z */\n  iVar2 = 0;\n  if (0 < *(int *)(this + 0x14)) {\n    puVar1 = *(uint **)(this + 0xc);\n    puVar3 = puVar1;\n    do {\n      if (*puVar3 == param_1) {\n        *(undefined4 *)(this + 0x18) = 1;\n        if (param_2 != (int *)0x0) {\n          *param_2 = puVar1[iVar2 * 4 + 3] * puVar1[iVar2 * 4 + 1];\n        }\n        return (void *)(*(int *)(iVar2 * 0x10 + 8 + *(int *)(this + 0xc)) + *(int *)this);\n      }\n      iVar2 = iVar2 + 1;\n      puVar3 = puVar3 + 4;\n    } while (iVar2 < *(int *)(this + 0x14));\n  }\n  return (void *)0x0;\n}\n\n", 
+  "is_thunk": false, 
+  "name": "LockVariant", 
+  "assembly": "  1002eff0:  PUSH EBX\n  1002eff1:  PUSH ESI\n  1002eff2:  MOV ESI,dword ptr [ECX + 0x14]\n  1002eff5:  XOR EAX,EAX\n  1002eff7:  PUSH EDI\n  1002eff8:  TEST ESI,ESI\n  1002effa:  JLE 0x1002f011\n  1002effc:  MOV EDI,dword ptr [ECX + 0xc]\n  1002efff:  MOV EBX,dword ptr [ESP + 0x10]\n  1002f003:  MOV EDX,EDI\n  1002f005:  CMP dword ptr [EDX],EBX\n  1002f007:  JZ 0x1002f019\n  1002f009:  INC EAX\n  1002f00a:  ADD EDX,0x10\n  1002f00d:  CMP EAX,ESI\n  1002f00f:  JL 0x1002f005\n  1002f011:  POP EDI\n  1002f012:  POP ESI\n  1002f013:  XOR EAX,EAX\n  1002f015:  POP EBX\n  1002f016:  RET 0x8\n  1002f019:  MOV ESI,dword ptr [ESP + 0x14]\n  1002f01d:  MOV dword ptr [ECX + 0x18],0x1\n  1002f024:  TEST ESI,ESI\n  1002f026:  JZ 0x1002f038\n  1002f028:  MOV EDX,EAX\n  1002f02a:  SHL EDX,0x4\n  1002f02d:  ADD EDX,EDI\n  1002f02f:  MOV EDI,dword ptr [EDX + 0xc]\n  1002f032:  IMUL EDI,dword ptr [EDX + 0x4]\n  1002f036:  MOV dword ptr [ESI],EDI\n  1002f038:  MOV EDX,dword ptr [ECX + 0xc]\n  1002f03b:  POP EDI\n  1002f03c:  SHL EAX,0x4\n  1002f03f:  POP ESI\n  1002f040:  MOV EAX,dword ptr [EAX + EDX*0x1 + 0x8]\n  1002f044:  MOV EDX,dword ptr [ECX]\n  1002f046:  ADD EAX,EDX\n  1002f048:  POP EBX\n  1002f049:  RET 0x8", 
+  "callers": []
+}

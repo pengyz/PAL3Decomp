@@ -1,0 +1,54 @@
+{
+  "address": "0x100118a0", 
+  "size_bytes": 69, 
+  "calling_convention": "unknown", 
+  "signature": "undefined FUN_100118a0(undefined4 param_1, undefined4 param_2, undefined4 param_3)", 
+  "callees": [], 
+  "global_refs": [
+    {
+      "address": "0x00000008", 
+      "type": null, 
+      "name": "DAT_00000008"
+    }, 
+    {
+      "address": "0x0000000c", 
+      "type": null, 
+      "name": "DAT_0000000c"
+    }, 
+    {
+      "address": "0x-000000c", 
+      "type": null, 
+      "name": "DAT_-000000c"
+    }, 
+    {
+      "address": "0x-0000008", 
+      "type": null, 
+      "name": "DAT_-0000008"
+    }, 
+    {
+      "address": "0x00000004", 
+      "type": null, 
+      "name": "DAT_00000004"
+    }, 
+    {
+      "address": "0x-0000004", 
+      "type": null, 
+      "name": "DAT_-0000004"
+    }
+  ], 
+  "has_custom_name": false, 
+  "decompiled_c": "\nvoid FUN_100118a0(float *param_1,float *param_2,float *param_3)\n\n{\n  float fVar1;\n  float fVar2;\n  float fVar3;\n  float fVar4;\n  \n  fVar1 = param_2[1];\n  fVar2 = param_3[1];\n  fVar3 = param_2[2];\n  fVar4 = param_3[2];\n  *param_1 = *param_2 + *param_3;\n  param_1[1] = fVar1 + fVar2;\n  param_1[2] = fVar3 + fVar4;\n  return;\n}\n\n", 
+  "is_thunk": false, 
+  "name": "FUN_100118a0", 
+  "assembly": "  100118a0:  SUB ESP,0xc\n  100118a3:  MOV EAX,dword ptr [ESP + 0x14]\n  100118a7:  MOV ECX,dword ptr [ESP + 0x18]\n  100118ab:  FLD dword ptr [EAX]\n  100118ad:  FADD dword ptr [ECX]\n  100118af:  FSTP dword ptr [ESP]\n  100118b3:  FLD dword ptr [EAX + 0x4]\n  100118b6:  FADD dword ptr [ECX + 0x4]\n  100118b9:  MOV EDX,dword ptr [ESP]\n  100118bd:  FSTP dword ptr [ESP + 0x4]\n  100118c1:  FLD dword ptr [EAX + 0x8]\n  100118c4:  MOV EAX,dword ptr [ESP + 0x10]\n  100118c8:  FADD dword ptr [ECX + 0x8]\n  100118cb:  MOV ECX,EAX\n  100118cd:  MOV dword ptr [ECX],EDX\n  100118cf:  MOV EDX,dword ptr [ESP + 0x4]\n  100118d3:  FSTP dword ptr [ESP + 0x8]\n  100118d7:  MOV dword ptr [ECX + 0x4],EDX\n  100118da:  MOV EDX,dword ptr [ESP + 0x8]\n  100118de:  MOV dword ptr [ECX + 0x8],EDX\n  100118e1:  ADD ESP,0xc\n  100118e4:  RET", 
+  "callers": [
+    {
+      "address": "0x1000fec0", 
+      "name": "GetTotalOBBox"
+    }, 
+    {
+      "address": "0x1000fec0", 
+      "name": "GetTotalOBBox"
+    }
+  ]
+}

@@ -1,0 +1,38 @@
+{
+  "address": "0x1002c0d0", 
+  "size_bytes": 129, 
+  "calling_convention": "__thiscall", 
+  "signature": "void __thiscall UpdateInternal(gbParticleEffect * this)", 
+  "callees": [
+    {
+      "address": "0x1001e330", 
+      "name": "GetWorldMatrix"
+    }, 
+    {
+      "address": "0x10025140", 
+      "name": "operator="
+    }, 
+    {
+      "address": "0x1002b6a0", 
+      "name": "Update"
+    }
+  ], 
+  "global_refs": [
+    {
+      "address": "0x100f5580", 
+      "type": null, 
+      "name": "DAT_100f5580"
+    }, 
+    {
+      "address": "0x101379a8", 
+      "type": "undefined4", 
+      "name": "DAT_101379a8"
+    }
+  ], 
+  "has_custom_name": true, 
+  "decompiled_c": "\n/* public: void __thiscall gbParticleEffect::UpdateInternal(void) */\n\nvoid __thiscall gbParticleEffect::UpdateInternal(gbParticleEffect *this)\n\n{\n  gbMatrix4 *pgVar1;\n  int iVar2;\n  int iVar3;\n  \n                    /* 0x2c0d0  951  ?UpdateInternal@gbParticleEffect@@QAEXXZ */\n  if (0.0 < *(double *)(this + 0x110)) {\n    pgVar1 = gbGfxManager::GetWorldMatrix(DAT_101379a8);\n    gbMatrix4::operator=((gbMatrix4 *)(this + 0x11c),pgVar1);\n    iVar3 = 0;\n    if (0 < *(int *)(this + 0x98)) {\n      iVar2 = 0;\n      do {\n        gbParticleGroup::Update\n                  ((gbParticleGroup *)(*(int *)(this + 0xa4) + iVar2),*(double *)(this + 0x110));\n        iVar3 = iVar3 + 1;\n        iVar2 = iVar2 + 0x90;\n      } while (iVar3 < *(int *)(this + 0x98));\n    }\n    *(undefined4 *)(this + 0x110) = 0;\n    *(undefined4 *)(this + 0x114) = 0;\n  }\n  return;\n}\n\n", 
+  "is_thunk": false, 
+  "name": "UpdateInternal", 
+  "assembly": "  1002c0d0:  PUSH ESI\n  1002c0d1:  MOV ESI,ECX\n  1002c0d3:  FLD qword ptr [ESI + 0x110]\n  1002c0d9:  FCOMP qword ptr [0x100f5580]\n  1002c0df:  FNSTSW AX\n  1002c0e1:  TEST AH,0x41\n  1002c0e4:  JNZ 0x1002c14f\n  1002c0e6:  MOV ECX,dword ptr [0x101379a8]\n  1002c0ec:  PUSH EDI\n  1002c0ed:  CALL 0x1001e330\n  1002c0f2:  PUSH EAX\n  1002c0f3:  LEA ECX,[ESI + 0x11c]\n  1002c0f9:  CALL 0x10025140\n  1002c0fe:  MOV EAX,dword ptr [ESI + 0x98]\n  1002c104:  XOR EDI,EDI\n  1002c106:  TEST EAX,EAX\n  1002c108:  JLE 0x1002c13a\n  1002c10a:  PUSH EBX\n  1002c10b:  XOR EBX,EBX\n  1002c10d:  MOV EAX,dword ptr [ESI + 0x114]\n  1002c113:  MOV ECX,dword ptr [ESI + 0x110]\n  1002c119:  PUSH EAX\n  1002c11a:  PUSH ECX\n  1002c11b:  MOV ECX,dword ptr [ESI + 0xa4]\n  1002c121:  ADD ECX,EBX\n  1002c123:  CALL 0x1002b6a0\n  1002c128:  MOV EAX,dword ptr [ESI + 0x98]\n  1002c12e:  INC EDI\n  1002c12f:  ADD EBX,0x90\n  1002c135:  CMP EDI,EAX\n  1002c137:  JL 0x1002c10d\n  1002c139:  POP EBX\n  1002c13a:  MOV dword ptr [ESI + 0x110],0x0\n  1002c144:  MOV dword ptr [ESI + 0x114],0x0\n  1002c14e:  POP EDI\n  1002c14f:  POP ESI\n  1002c150:  RET", 
+  "callers": []
+}

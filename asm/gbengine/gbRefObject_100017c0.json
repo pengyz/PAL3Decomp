@@ -1,0 +1,25 @@
+{
+  "address": "0x100017c0", 
+  "size_bytes": 21, 
+  "calling_convention": "__thiscall", 
+  "signature": "undefined __thiscall gbRefObject(gbRefObject * this, gbRefObject * param_1)", 
+  "callees": [], 
+  "global_refs": [
+    {
+      "address": "0x00000004", 
+      "type": null, 
+      "name": "DAT_00000004"
+    }, 
+    {
+      "address": "0x100f5334", 
+      "type": "pointer", 
+      "name": "DAT_100f5334"
+    }
+  ], 
+  "has_custom_name": true, 
+  "decompiled_c": "\n/* public: __thiscall gbRefObject::gbRefObject(class gbRefObject const &) */\n\nvoid __thiscall gbRefObject::gbRefObject(gbRefObject *this,gbRefObject *param_1)\n\n{\n  undefined4 uVar1;\n  \n                    /* 0x17c0  81  ??0gbRefObject@@QAE@ABV0@@Z */\n  uVar1 = *(undefined4 *)(param_1 + 4);\n  *(undefined ***)this = &_vftable_;\n  *(undefined4 *)(this + 4) = uVar1;\n  return;\n}\n\n", 
+  "is_thunk": false, 
+  "name": "gbRefObject", 
+  "assembly": "  100017c0:  MOV EAX,ECX\n  100017c2:  MOV ECX,dword ptr [ESP + 0x4]\n  100017c6:  MOV EDX,dword ptr [ECX + 0x4]\n  100017c9:  MOV dword ptr [EAX],0x100f5334\n  100017cf:  MOV dword ptr [EAX + 0x4],EDX\n  100017d2:  RET 0x4", 
+  "callers": []
+}

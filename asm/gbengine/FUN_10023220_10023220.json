@@ -1,0 +1,34 @@
+{
+  "address": "0x10023220", 
+  "size_bytes": 43, 
+  "calling_convention": "unknown", 
+  "signature": "undefined FUN_10023220(void)", 
+  "callees": [
+    {
+      "address": "0x10022b00", 
+      "name": "Init"
+    }, 
+    {
+      "address": "0x100205a0", 
+      "name": "LoadTexture"
+    }
+  ], 
+  "global_refs": [
+    {
+      "address": "0x1014adc0", 
+      "type": "undefined4", 
+      "name": "DAT_1014adc0"
+    }, 
+    {
+      "address": "0x101201c8", 
+      "type": "string", 
+      "name": "DAT_101201c8"
+    }
+  ], 
+  "has_custom_name": false, 
+  "decompiled_c": "\nundefined4 FUN_10023220(void)\n\n{\n  gbTexture *this;\n  gbPrintFont *in_ECX;\n  \n  gbPrintFont::Init(in_ECX);\n  this = (gbTexture *)(**(code **)(*DAT_1014adc0 + 8))(s_gbdata_number_tga_101201c8);\n  *(gbTexture **)(in_ECX + 0x4c) = this;\n  gbTexture::LoadTexture(this,1);\n  return 1;\n}\n\n", 
+  "is_thunk": false, 
+  "name": "FUN_10023220", 
+  "assembly": "  10023220:  PUSH ESI\n  10023221:  MOV ESI,ECX\n  10023223:  CALL 0x10022b00\n  10023228:  MOV ECX,dword ptr [0x1014adc0]\n  1002322e:  PUSH 0x101201c8\n  10023233:  MOV EAX,dword ptr [ECX]\n  10023235:  CALL dword ptr [EAX + 0x8]\n  10023238:  PUSH 0x1\n  1002323a:  MOV ECX,EAX\n  1002323c:  MOV dword ptr [ESI + 0x4c],EAX\n  1002323f:  CALL 0x100205a0\n  10023244:  MOV EAX,0x1\n  10023249:  POP ESI\n  1002324a:  RET", 
+  "callers": []
+}

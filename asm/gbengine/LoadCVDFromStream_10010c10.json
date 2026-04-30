@@ -1,0 +1,100 @@
+{
+  "address": "0x10010c10", 
+  "size_bytes": 180, 
+  "calling_convention": "__cdecl", 
+  "signature": "void __cdecl LoadCVDFromStream(gbVFile * param_1, float param_2, gbGeomNode * * param_3, int * param_4)", 
+  "callees": [
+    {
+      "address": "0x100e4a16", 
+      "name": "operator_new"
+    }, 
+    {
+      "address": "0x1000fc10", 
+      "name": "gbGeomNode"
+    }, 
+    {
+      "address": "0x10010cd0", 
+      "name": "LoadCVDFromStream"
+    }, 
+    {
+      "address": "0x10030810", 
+      "name": "Read"
+    }, 
+    {
+      "address": "0x10010c10", 
+      "name": "LoadCVDFromStream"
+    }
+  ], 
+  "global_refs": [
+    {
+      "address": "0x100f3b7b", 
+      "type": null, 
+      "name": "DAT_100f3b7b"
+    }, 
+    {
+      "address": "0xffdff000", 
+      "type": "void *32", 
+      "name": "DAT_ffdff000"
+    }, 
+    {
+      "address": "0x-0000010", 
+      "type": null, 
+      "name": "DAT_-0000010"
+    }, 
+    {
+      "address": "0x-0000004", 
+      "type": null, 
+      "name": "DAT_-0000004"
+    }, 
+    {
+      "address": "0x00000008", 
+      "type": null, 
+      "name": "DAT_00000008"
+    }, 
+    {
+      "address": "0x00000004", 
+      "type": null, 
+      "name": "DAT_00000004"
+    }, 
+    {
+      "address": "0x00000010", 
+      "type": null, 
+      "name": "DAT_00000010"
+    }, 
+    {
+      "address": "0x0000000c", 
+      "type": null, 
+      "name": "DAT_0000000c"
+    }, 
+    {
+      "address": "0x-0000014", 
+      "type": null, 
+      "name": "DAT_-0000014"
+    }, 
+    {
+      "address": "0x1015d3a8", 
+      "type": "gbVFileSystem *", 
+      "name": "DAT_1015d3a8"
+    }, 
+    {
+      "address": "0x-000000c", 
+      "type": null, 
+      "name": "DAT_-000000c"
+    }
+  ], 
+  "has_custom_name": true, 
+  "decompiled_c": "\n/* private: static void __cdecl gbGeomNode::LoadCVDFromStream(class gbVFile *,float,class gbGeomNode\n   * *,int &) */\n\nvoid __cdecl\ngbGeomNode::LoadCVDFromStream(gbVFile *param_1,float param_2,gbGeomNode **param_3,int *param_4)\n\n{\n  gbGeomNode *this;\n  int iVar1;\n  int local_14;\n  gbGeomNode *local_10;\n  void *local_c;\n  undefined *puStack_8;\n  undefined4 local_4;\n  \n                    /* 0x10c10  672  ?LoadCVDFromStream@gbGeomNode@@CAXPAVgbVFile@@MPAPAV1@AAH@Z */\n  local_4 = 0xffffffff;\n  puStack_8 = &LAB_100f3b7b;\n  local_c = ExceptionList;\n  ExceptionList = &local_c;\n  local_10 = (gbGeomNode *)operator_new(0x118);\n  this = (gbGeomNode *)0x0;\n  local_4 = 0;\n  if (local_10 != (gbGeomNode *)0x0) {\n    this = (gbGeomNode *)gbGeomNode(local_10);\n  }\n  local_4 = 0xffffffff;\n  LoadCVDFromStream(this,param_1,param_2);\n  param_3[*param_4] = this;\n  *param_4 = *param_4 + 1;\n  gbVFileSystem::Read(g_pVFileSys,&local_14,4,param_1);\n  iVar1 = 0;\n  if (0 < local_14) {\n    do {\n      LoadCVDFromStream(param_1,param_2,param_3,param_4);\n      iVar1 = iVar1 + 1;\n    } while (iVar1 < local_14);\n  }\n  ExceptionList = local_c;\n  return;\n}\n\n", 
+  "is_thunk": false, 
+  "name": "LoadCVDFromStream", 
+  "assembly": "  10010c10:  PUSH -0x1\n  10010c12:  PUSH 0x100f3b7b\n  10010c17:  MOV EAX,FS:[0x0]\n  10010c1d:  PUSH EAX\n  10010c1e:  MOV dword ptr FS:[0x0],ESP\n  10010c25:  SUB ESP,0x8\n  10010c28:  PUSH EBX\n  10010c29:  PUSH EBP\n  10010c2a:  PUSH ESI\n  10010c2b:  PUSH EDI\n  10010c2c:  PUSH 0x118\n  10010c31:  CALL 0x100e4a16\n  10010c36:  ADD ESP,0x4\n  10010c39:  MOV dword ptr [ESP + 0x14],EAX\n  10010c3d:  XOR EDI,EDI\n  10010c3f:  CMP EAX,EDI\n  10010c41:  MOV dword ptr [ESP + 0x20],EDI\n  10010c45:  JZ 0x10010c50\n  10010c47:  MOV ECX,EAX\n  10010c49:  CALL 0x1000fc10\n  10010c4e:  MOV EDI,EAX\n  10010c50:  MOV EBP,dword ptr [ESP + 0x2c]\n  10010c54:  MOV EBX,dword ptr [ESP + 0x28]\n  10010c58:  PUSH EBP\n  10010c59:  PUSH EBX\n  10010c5a:  MOV ECX,EDI\n  10010c5c:  MOV dword ptr [ESP + 0x28],0xffffffff\n  10010c64:  CALL 0x10010cd0\n  10010c69:  MOV ESI,dword ptr [ESP + 0x34]\n  10010c6d:  MOV ECX,dword ptr [ESP + 0x30]\n  10010c71:  PUSH EBX\n  10010c72:  LEA EDX,[ESP + 0x14]\n  10010c76:  MOV EAX,dword ptr [ESI]\n  10010c78:  PUSH 0x4\n  10010c7a:  PUSH EDX\n  10010c7b:  MOV dword ptr [ECX + EAX*0x4],EDI\n  10010c7e:  MOV EAX,dword ptr [ESI]\n  10010c80:  INC EAX\n  10010c81:  MOV dword ptr [ESI],EAX\n  10010c83:  MOV ECX,dword ptr [0x1015d3a8]\n  10010c89:  CALL 0x10030810\n  10010c8e:  MOV EAX,dword ptr [ESP + 0x10]\n  10010c92:  XOR EDI,EDI\n  10010c94:  TEST EAX,EAX\n  10010c96:  JLE 0x10010cb1\n  10010c98:  MOV EAX,dword ptr [ESP + 0x30]\n  10010c9c:  PUSH ESI\n  10010c9d:  PUSH EAX\n  10010c9e:  PUSH EBP\n  10010c9f:  PUSH EBX\n  10010ca0:  CALL 0x10010c10\n  10010ca5:  MOV EAX,dword ptr [ESP + 0x20]\n  10010ca9:  ADD ESP,0x10\n  10010cac:  INC EDI\n  10010cad:  CMP EDI,EAX\n  10010caf:  JL 0x10010c98\n  10010cb1:  MOV ECX,dword ptr [ESP + 0x18]\n  10010cb5:  POP EDI\n  10010cb6:  POP ESI\n  10010cb7:  POP EBP\n  10010cb8:  POP EBX\n  10010cb9:  MOV dword ptr FS:[0x0],ECX\n  10010cc0:  ADD ESP,0x14\n  10010cc3:  RET", 
+  "callers": [
+    {
+      "address": "0x100108b0", 
+      "name": "LoadCVDFile"
+    }, 
+    {
+      "address": "0x10010c10", 
+      "name": "LoadCVDFromStream"
+    }
+  ]
+}

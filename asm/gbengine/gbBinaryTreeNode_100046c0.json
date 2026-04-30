@@ -1,0 +1,20 @@
+{
+  "address": "0x100046c0", 
+  "size_bytes": 20, 
+  "calling_convention": "__thiscall", 
+  "signature": "undefined __thiscall gbBinaryTreeNode(gbBinaryTreeNode * this)", 
+  "callees": [], 
+  "global_refs": [
+    {
+      "address": "0x100f53ec", 
+      "type": "pointer", 
+      "name": "DAT_100f53ec"
+    }
+  ], 
+  "has_custom_name": true, 
+  "decompiled_c": "\n/* public: __thiscall gbBinaryTreeNode::gbBinaryTreeNode(void) */\n\nvoid __thiscall gbBinaryTreeNode::gbBinaryTreeNode(gbBinaryTreeNode *this)\n\n{\n                    /* 0x46c0  19  ??0gbBinaryTreeNode@@QAE@XZ */\n  *(undefined ***)this = &_vftable_;\n  *(undefined4 *)(this + 0xc) = 0;\n  *(undefined4 *)(this + 8) = 0;\n  *(undefined4 *)(this + 4) = 0;\n  return;\n}\n\n", 
+  "is_thunk": false, 
+  "name": "gbBinaryTreeNode", 
+  "assembly": "  100046c0:  MOV EAX,ECX\n  100046c2:  XOR ECX,ECX\n  100046c4:  MOV dword ptr [EAX],0x100f53ec\n  100046ca:  MOV dword ptr [EAX + 0xc],ECX\n  100046cd:  MOV dword ptr [EAX + 0x8],ECX\n  100046d0:  MOV dword ptr [EAX + 0x4],ECX\n  100046d3:  RET", 
+  "callers": []
+}

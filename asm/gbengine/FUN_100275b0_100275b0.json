@@ -1,0 +1,33 @@
+{
+  "address": "0x100275b0", 
+  "size_bytes": 42, 
+  "calling_convention": "unknown", 
+  "signature": "undefined FUN_100275b0(void)", 
+  "callees": [], 
+  "global_refs": [
+    {
+      "address": "0x1014adc4", 
+      "type": "undefined4", 
+      "name": "DAT_1014adc4"
+    }
+  ], 
+  "has_custom_name": false, 
+  "decompiled_c": "\nuint FUN_100275b0(void)\n\n{\n  DAT_1014adc4 = DAT_1014adc4 * 0x343fd + 0x269ec3;\n  return DAT_1014adc4 >> 0x10 & 0x7fff;\n}\n\n", 
+  "is_thunk": false, 
+  "name": "FUN_100275b0", 
+  "assembly": "  100275b0:  MOV EAX,[0x1014adc4]\n  100275b5:  LEA ECX,[EAX + EAX*0x2]\n  100275b8:  LEA EDX,[EAX + ECX*0x4]\n  100275bb:  SHL EDX,0x4\n  100275be:  ADD EDX,EAX\n  100275c0:  SHL EDX,0x8\n  100275c3:  SUB EDX,EAX\n  100275c5:  LEA EAX,[EAX + EDX*0x4 + 0x269ec3]\n  100275cc:  MOV [0x1014adc4],EAX\n  100275d1:  SAR EAX,0x10\n  100275d4:  AND EAX,0x7fff\n  100275d9:  RET", 
+  "callers": [
+    {
+      "address": "0x1002a400", 
+      "name": "ComputeParticleInitPos"
+    }, 
+    {
+      "address": "0x1002b2a0", 
+      "name": "CreateOneParticle"
+    }, 
+    {
+      "address": "0x1002b2a0", 
+      "name": "CreateOneParticle"
+    }
+  ]
+}

@@ -1,0 +1,93 @@
+{
+  "address": "0x10016eb0", 
+  "size_bytes": 34, 
+  "calling_convention": "unknown", 
+  "signature": "undefined FUN_10016eb0(undefined4 param_1)", 
+  "callees": [], 
+  "global_refs": [
+    {
+      "address": "0x00000004", 
+      "type": null, 
+      "name": "DAT_00000004"
+    }
+  ], 
+  "has_custom_name": false, 
+  "decompiled_c": "\nint FUN_10016eb0(int param_1)\n\n{\n  int *in_ECX;\n  \n  if (*in_ECX == 0) {\n    return in_ECX[2] * param_1 + in_ECX[1];\n  }\n  return *(int *)(in_ECX[1] + param_1 * 4);\n}\n\n", 
+  "is_thunk": false, 
+  "name": "FUN_10016eb0", 
+  "assembly": "  10016eb0:  CMP dword ptr [ECX],0x0\n  10016eb3:  JNZ 0x10016ec5\n  10016eb5:  MOV EAX,dword ptr [ECX + 0x8]\n  10016eb8:  MOV EDX,dword ptr [ECX + 0x4]\n  10016ebb:  IMUL EAX,dword ptr [ESP + 0x4]\n  10016ec0:  ADD EAX,EDX\n  10016ec2:  RET 0x4\n  10016ec5:  MOV EAX,dword ptr [ECX + 0x4]\n  10016ec8:  MOV ECX,dword ptr [ESP + 0x4]\n  10016ecc:  MOV EAX,dword ptr [EAX + ECX*0x4]\n  10016ecf:  RET 0x4", 
+  "callers": [
+    {
+      "address": "0x100172f0", 
+      "name": "FUN_100172f0"
+    }, 
+    {
+      "address": "0x10017930", 
+      "name": "FUN_10017930"
+    }, 
+    {
+      "address": "0x10017930", 
+      "name": "FUN_10017930"
+    }, 
+    {
+      "address": "0x10017930", 
+      "name": "FUN_10017930"
+    }, 
+    {
+      "address": "0x10019c60", 
+      "name": "FUN_10019c60"
+    }, 
+    {
+      "address": "0x10019c60", 
+      "name": "FUN_10019c60"
+    }, 
+    {
+      "address": "0x10019c60", 
+      "name": "FUN_10019c60"
+    }, 
+    {
+      "address": "0x10019c60", 
+      "name": "FUN_10019c60"
+    }, 
+    {
+      "address": "0x10019c60", 
+      "name": "FUN_10019c60"
+    }, 
+    {
+      "address": "0x10019c60", 
+      "name": "FUN_10019c60"
+    }, 
+    {
+      "address": "0x10019c60", 
+      "name": "FUN_10019c60"
+    }, 
+    {
+      "address": "0x10019e70", 
+      "name": "FUN_10019e70"
+    }, 
+    {
+      "address": "0x10019e70", 
+      "name": "FUN_10019e70"
+    }, 
+    {
+      "address": "0x10019e70", 
+      "name": "FUN_10019e70"
+    }, 
+    {
+      "address": "0x10019e70", 
+      "name": "FUN_10019e70"
+    }, 
+    {
+      "address": "0x10019e70", 
+      "name": "FUN_10019e70"
+    }, 
+    {
+      "address": "0x10019e70", 
+      "name": "FUN_10019e70"
+    }, 
+    {
+      "address": "0x10019e70", 
+      "name": "FUN_10019e70"
+    }
+  ]
+}

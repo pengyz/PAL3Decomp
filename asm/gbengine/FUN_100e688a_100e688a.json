@@ -1,0 +1,85 @@
+{
+  "address": "0x100e688a", 
+  "size_bytes": 40, 
+  "calling_convention": "unknown", 
+  "signature": "undefined FUN_100e688a(undefined4 param_1)", 
+  "callees": [
+    {
+      "address": "0x100ea5dc", 
+      "name": "FUN_100ea5dc"
+    }
+  ], 
+  "global_refs": [
+    {
+      "address": "0x1012a34c", 
+      "type": "undefined4", 
+      "name": "DAT_1012a34c"
+    }, 
+    {
+      "address": "0x00000004", 
+      "type": null, 
+      "name": "DAT_00000004"
+    }, 
+    {
+      "address": "0x1012a140", 
+      "type": "pointer", 
+      "name": "DAT_1012a140"
+    }, 
+    {
+      "address": "0x1012a14a", 
+      "type": null, 
+      "name": "DAT_1012a14a"
+    }
+  ], 
+  "has_custom_name": false, 
+  "decompiled_c": "\nuint FUN_100e688a(int param_1)\n\n{\n  uint uVar1;\n  \n  if (1 < DAT_1012a34c) {\n    uVar1 = FUN_100ea5dc(param_1,8);\n    return uVar1;\n  }\n  return (byte)PTR_DAT_1012a140[param_1 * 2] & 8;\n}\n\n", 
+  "is_thunk": false, 
+  "name": "FUN_100e688a", 
+  "assembly": "  100e688a:  CMP dword ptr [0x1012a34c],0x1\n  100e6891:  JLE 0x100e68a1\n  100e6893:  PUSH 0x8\n  100e6895:  PUSH dword ptr [ESP + 0x8]\n  100e6899:  CALL 0x100ea5dc\n  100e689e:  POP ECX\n  100e689f:  POP ECX\n  100e68a0:  RET\n  100e68a1:  MOV EAX,dword ptr [ESP + 0x4]\n  100e68a5:  MOV ECX,dword ptr [0x1012a140]\n  100e68ab:  MOV AL,byte ptr [ECX + EAX*0x2]\n  100e68ae:  AND EAX,0x8\n  100e68b1:  RET", 
+  "callers": [
+    {
+      "address": "0x100ea74b", 
+      "name": "FUN_100ea74b"
+    }, 
+    {
+      "address": "0x100ea74b", 
+      "name": "FUN_100ea74b"
+    }, 
+    {
+      "address": "0x100eb1d8", 
+      "name": "FUN_100eb1d8"
+    }, 
+    {
+      "address": "0x10035b26", 
+      "name": "FUN_10035b26"
+    }, 
+    {
+      "address": "0x10035b26", 
+      "name": "FUN_10035b26"
+    }, 
+    {
+      "address": "0x10098c44", 
+      "name": "FUN_10098c44"
+    }, 
+    {
+      "address": "0x10098c44", 
+      "name": "FUN_10098c44"
+    }, 
+    {
+      "address": "0x10098c44", 
+      "name": "FUN_10098c44"
+    }, 
+    {
+      "address": "0x10098c44", 
+      "name": "FUN_10098c44"
+    }, 
+    {
+      "address": "0x10098c44", 
+      "name": "FUN_10098c44"
+    }, 
+    {
+      "address": "0x10098c44", 
+      "name": "FUN_10098c44"
+    }
+  ]
+}

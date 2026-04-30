@@ -1,0 +1,72 @@
+{
+  "address": "0x10016c70", 
+  "size_bytes": 308, 
+  "calling_convention": "unknown", 
+  "signature": "undefined FUN_10016c70(undefined4 param_1)", 
+  "callees": [
+    {
+      "address": "0x000000bb", 
+      "name": "CreateTopoGeom"
+    }, 
+    {
+      "address": "0x10021590", 
+      "name": "NewIndexBubble"
+    }, 
+    {
+      "address": "0x10020900", 
+      "name": "Lock16"
+    }, 
+    {
+      "address": "0x10020920", 
+      "name": "Unlock"
+    }, 
+    {
+      "address": "0x100212e0", 
+      "name": "NewVertexBubble"
+    }, 
+    {
+      "address": "0x10020c00", 
+      "name": "Lock"
+    }, 
+    {
+      "address": "0x10020ca0", 
+      "name": "Unlock"
+    }, 
+    {
+      "address": "0x000000bc", 
+      "name": "DestroyTopoGeom"
+    }
+  ], 
+  "global_refs": [
+    {
+      "address": "0x00000004", 
+      "type": null, 
+      "name": "DAT_00000004"
+    }, 
+    {
+      "address": "0x100f5318", 
+      "type": "pointer", 
+      "name": "DAT_100f5318"
+    }, 
+    {
+      "address": "0x100f531c", 
+      "type": "pointer", 
+      "name": "DAT_100f531c"
+    }
+  ], 
+  "has_custom_name": false, 
+  "decompiled_c": "\nvoid FUN_10016c70(TopoDataDesc *param_1,undefined4 *param_2)\n\n{\n  gbVertPoolMgr *pgVar1;\n  ITopoGeom *pIVar2;\n  gbIndexBubble *this;\n  ushort *puVar3;\n  undefined4 *puVar4;\n  uint uVar5;\n  undefined4 *unaff_EBP;\n  int unaff_retaddr;\n  undefined4 uStack_3c;\n  undefined4 uStack_38;\n  undefined4 uStack_34;\n  undefined4 uStack_30;\n  undefined4 uStack_2c;\n  undefined4 uStack_28;\n  int iStack_24;\n  int iStack_20;\n  undefined4 *puStack_1c;\n  undefined4 uStack_18;\n  int iStack_14;\n  undefined4 uStack_10;\n  undefined4 uStack_c;\n  undefined4 uStack_8;\n  gbVertPoolMgr *pgStack_4;\n  \n  pIVar2 = CreateTopoGeom(param_1,0);\n  uStack_38 = 0xffffffff;\n  uStack_34 = 0xffffffff;\n  iStack_24 = -1;\n  uStack_28 = 0xffffffff;\n  uStack_2c = 0xffffffff;\n  uStack_30 = 0xffffffff;\n  iStack_20 = -1;\n  uStack_3c = 0;\n  puStack_1c = (undefined4 *)0x0;\n  uStack_18 = 0;\n  iStack_14 = 0;\n  uStack_10 = 0;\n  uStack_c = 0;\n  uStack_8 = 0;\n  pgStack_4 = (gbVertPoolMgr *)0x0;\n  (*(code *)**(undefined4 **)pIVar2)(&uStack_3c,0x3f19999a);\n  pgStack_4 = *(gbVertPoolMgr **)(unaff_retaddr + 0xc4);\n  this = gbVertPoolMgr::NewIndexBubble(pgStack_4,1,iStack_14 * 3);\n  puVar3 = gbIndexBubble::Lock16(this);\n  puVar4 = puStack_1c;\n  for (uVar5 = (uint)(iStack_14 * 6) >> 2; uVar5 != 0; uVar5 = uVar5 - 1) {\n    *(undefined4 *)puVar3 = *puVar4;\n    puVar4 = puVar4 + 1;\n    puVar3 = puVar3 + 2;\n  }\n  for (uVar5 = iStack_14 * 6 & 3; uVar5 != 0; uVar5 = uVar5 - 1) {\n    *(undefined *)puVar3 = *(undefined *)puVar4;\n    puVar4 = (undefined4 *)((int)puVar4 + 1);\n    puVar3 = (ushort *)((int)puVar3 + 1);\n  }\n  gbIndexBubble::Unlock(this);\n  *(undefined4 *)(this + 0x1c) = 0;\n  *(int *)(this + 0x20) = iStack_20 + -1;\n  pgStack_4 = (gbVertPoolMgr *)gbVertPoolMgr::NewVertexBubble(pgStack_4,(uint)param_1,iStack_20);\n  puVar4 = (undefined4 *)gbVertexBubble::Lock((gbVertexBubble *)pgStack_4);\n  pgVar1 = pgStack_4;\n  for (uVar5 = (uint)(iStack_24 * iStack_20) >> 2; uVar5 != 0; uVar5 = uVar5 - 1) {\n    *puVar4 = *unaff_EBP;\n    unaff_EBP = unaff_EBP + 1;\n    puVar4 = puVar4 + 1;\n  }\n  for (uVar5 = iStack_24 * iStack_20 & 3; uVar5 != 0; uVar5 = uVar5 - 1) {\n    *(undefined *)puVar4 = *(undefined *)unaff_EBP;\n    unaff_EBP = (undefined4 *)((int)unaff_EBP + 1);\n    puVar4 = (undefined4 *)((int)puVar4 + 1);\n  }\n  gbVertexBubble::Unlock((gbVertexBubble *)pgStack_4);\n  (**(code **)(*(int *)pIVar2 + 8))(&stack0xffffffbc);\n  *(gbVertPoolMgr **)param_1 = pgVar1;\n  *param_2 = this;\n  DestroyTopoGeom(pIVar2);\n  return;\n}\n\n", 
+  "is_thunk": false, 
+  "name": "FUN_10016c70", 
+  "assembly": "  10016c70:  SUB ESP,0x3c\n  10016c73:  MOV EAX,dword ptr [ESP + 0x40]\n  10016c77:  PUSH EBX\n  10016c78:  PUSH EBP\n  10016c79:  PUSH ESI\n  10016c7a:  XOR ESI,ESI\n  10016c7c:  PUSH EDI\n  10016c7d:  PUSH ESI\n  10016c7e:  PUSH EAX\n  10016c7f:  CALL dword ptr [0x100f5318]\n  10016c85:  MOV EBX,EAX\n  10016c87:  OR EAX,0xffffffff\n  10016c8a:  ADD ESP,0x8\n  10016c8d:  MOV dword ptr [ESP + 0x14],EAX\n  10016c91:  MOV dword ptr [ESP + 0x18],EAX\n  10016c95:  MOV dword ptr [ESP + 0x28],EAX\n  10016c99:  MOV dword ptr [ESP + 0x24],EAX\n  10016c9d:  MOV dword ptr [ESP + 0x20],EAX\n  10016ca1:  MOV dword ptr [ESP + 0x1c],EAX\n  10016ca5:  MOV dword ptr [ESP + 0x2c],EAX\n  10016ca9:  MOV dword ptr [ESP + 0x10],ESI\n  10016cad:  MOV dword ptr [ESP + 0x30],ESI\n  10016cb1:  MOV dword ptr [ESP + 0x34],ESI\n  10016cb5:  MOV dword ptr [ESP + 0x38],ESI\n  10016cb9:  MOV dword ptr [ESP + 0x3c],ESI\n  10016cbd:  MOV dword ptr [ESP + 0x40],ESI\n  10016cc1:  MOV dword ptr [ESP + 0x44],ESI\n  10016cc5:  MOV dword ptr [ESP + 0x48],ESI\n  10016cc9:  MOV EDX,dword ptr [EBX]\n  10016ccb:  LEA EAX,[ESP + 0x10]\n  10016ccf:  PUSH 0x3f19999a\n  10016cd4:  PUSH EAX\n  10016cd5:  MOV ECX,EBX\n  10016cd7:  CALL dword ptr [EDX]\n  10016cd9:  MOV EAX,dword ptr [ESP + 0x40]\n  10016cdd:  MOV ECX,dword ptr [ESP + 0x54]\n  10016ce1:  MOV ECX,dword ptr [ECX + 0xc4]\n  10016ce7:  LEA EDX,[EAX + EAX*0x2]\n  10016cea:  PUSH EDX\n  10016ceb:  PUSH 0x1\n  10016ced:  MOV dword ptr [ESP + 0x58],ECX\n  10016cf1:  CALL 0x10021590\n  10016cf6:  MOV EBP,EAX\n  10016cf8:  MOV ECX,EBP\n  10016cfa:  CALL 0x10020900\n  10016cff:  MOV ECX,dword ptr [ESP + 0x40]\n  10016d03:  MOV ESI,dword ptr [ESP + 0x38]\n  10016d07:  MOV EDI,EAX\n  10016d09:  LEA ECX,[ECX + ECX*0x2]\n  10016d0c:  SHL ECX,0x1\n  10016d0e:  MOV EAX,ECX\n  10016d10:  SHR ECX,0x2\n  10016d13:  MOVSD.REP ES:EDI,ESI\n  10016d15:  MOV ECX,EAX\n  10016d17:  AND ECX,0x3\n  10016d1a:  MOVSB.REP ES:EDI,ESI\n  10016d1c:  MOV ECX,EBP\n  10016d1e:  CALL 0x10020920\n  10016d23:  MOV ECX,dword ptr [ESP + 0x34]\n  10016d27:  MOV dword ptr [EBP + 0x1c],0x0\n  10016d2e:  LEA EAX,[ECX + -0x1]\n  10016d31:  MOV ECX,dword ptr [ESP + 0x50]\n  10016d35:  MOV dword ptr [EBP + 0x20],EAX\n  10016d38:  MOV EDX,dword ptr [ESP + 0x34]\n  10016d3c:  MOV EAX,dword ptr [ESP + 0x58]\n  10016d40:  PUSH EDX\n  10016d41:  PUSH EAX\n  10016d42:  CALL 0x100212e0\n  10016d47:  MOV ECX,EAX\n  10016d49:  MOV dword ptr [ESP + 0x50],EAX\n  10016d4d:  CALL 0x10020c00\n  10016d52:  MOV ECX,dword ptr [ESP + 0x30]\n  10016d56:  MOV ESI,dword ptr [ESP + 0x10]\n  10016d5a:  IMUL ECX,dword ptr [ESP + 0x34]\n  10016d5f:  MOV EDX,ECX\n  10016d61:  MOV EDI,EAX\n  10016d63:  SHR ECX,0x2\n  10016d66:  MOVSD.REP ES:EDI,ESI\n  10016d68:  MOV ECX,EDX\n  10016d6a:  AND ECX,0x3\n  10016d6d:  MOVSB.REP ES:EDI,ESI\n  10016d6f:  MOV ESI,dword ptr [ESP + 0x50]\n  10016d73:  MOV ECX,ESI\n  10016d75:  CALL 0x10020ca0\n  10016d7a:  MOV EAX,dword ptr [EBX]\n  10016d7c:  LEA ECX,[ESP + 0x10]\n  10016d80:  PUSH ECX\n  10016d81:  MOV ECX,EBX\n  10016d83:  CALL dword ptr [EAX + 0x8]\n  10016d86:  MOV EDX,dword ptr [ESP + 0x5c]\n  10016d8a:  MOV EAX,dword ptr [ESP + 0x60]\n  10016d8e:  PUSH EBX\n  10016d8f:  MOV dword ptr [EDX],ESI\n  10016d91:  MOV dword ptr [EAX],EBP\n  10016d93:  CALL dword ptr [0x100f531c]\n  10016d99:  ADD ESP,0x4\n  10016d9c:  POP EDI\n  10016d9d:  POP ESI\n  10016d9e:  POP EBP\n  10016d9f:  POP EBX\n  10016da0:  ADD ESP,0x3c\n  10016da3:  RET", 
+  "callers": [
+    {
+      "address": "0x10016390", 
+      "name": "ComputeShadowVolume"
+    }, 
+    {
+      "address": "0x100069b0", 
+      "name": "FUN_100069b0"
+    }
+  ]
+}

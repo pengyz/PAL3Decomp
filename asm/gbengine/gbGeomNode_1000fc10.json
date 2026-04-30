@@ -1,0 +1,83 @@
+{
+  "address": "0x1000fc10", 
+  "size_bytes": 195, 
+  "calling_convention": "__thiscall", 
+  "signature": "undefined __thiscall gbGeomNode(gbGeomNode * this)", 
+  "callees": [
+    {
+      "address": "0x10016590", 
+      "name": "gbVisNode"
+    }, 
+    {
+      "address": "0x10025110", 
+      "name": "gbMatrix4"
+    }, 
+    {
+      "address": "0x10025110", 
+      "name": "gbMatrix4"
+    }, 
+    {
+      "address": "0x10025640", 
+      "name": "LoadIdentity"
+    }, 
+    {
+      "address": "0x10025640", 
+      "name": "LoadIdentity"
+    }
+  ], 
+  "global_refs": [
+    {
+      "address": "0x100f3ac8", 
+      "type": null, 
+      "name": "DAT_100f3ac8"
+    }, 
+    {
+      "address": "0xffdff000", 
+      "type": "void *32", 
+      "name": "DAT_ffdff000"
+    }, 
+    {
+      "address": "0x-0000010", 
+      "type": null, 
+      "name": "DAT_-0000010"
+    }, 
+    {
+      "address": "0x-0000004", 
+      "type": null, 
+      "name": "DAT_-0000004"
+    }, 
+    {
+      "address": "0x100f5588", 
+      "type": "undefined *", 
+      "name": "DAT_100f5588"
+    }, 
+    {
+      "address": "0x-000000c", 
+      "type": null, 
+      "name": "DAT_-000000c"
+    }
+  ], 
+  "has_custom_name": true, 
+  "decompiled_c": "\n/* public: __thiscall gbGeomNode::gbGeomNode(void) */\n\ngbGeomNode * __thiscall gbGeomNode::gbGeomNode(gbGeomNode *this)\n\n{\n  void *local_c;\n  undefined *puStack_8;\n  undefined4 local_4;\n  \n                    /* 0xfc10  50  ??0gbGeomNode@@QAE@XZ */\n  local_4 = 0xffffffff;\n  puStack_8 = &LAB_100f3ac8;\n  local_c = ExceptionList;\n  ExceptionList = &local_c;\n  gbVisNode::gbVisNode((gbVisNode *)this);\n  local_4 = 0;\n  gbMatrix4::gbMatrix4((gbMatrix4 *)(this + 0x58));\n  gbMatrix4::gbMatrix4((gbMatrix4 *)(this + 0x98));\n  *(undefined ***)this = &_vftable_;\n  gbMatrix4::LoadIdentity((gbMatrix4 *)(this + 0x58));\n  gbMatrix4::LoadIdentity((gbMatrix4 *)(this + 0x98));\n  *(undefined4 *)(this + 0xf0) = 0;\n  *(undefined4 *)(this + 0xec) = 0;\n  *(undefined4 *)(this + 0xd8) = 0;\n  *(undefined4 *)(this + 0xdc) = 0;\n  *(undefined4 *)(this + 0xe0) = 0;\n  *(undefined4 *)(this + 0xe8) = 0;\n  *(undefined4 *)(this + 0xf4) = 0;\n  *(undefined4 *)(this + 0xf8) = 0;\n  *(undefined4 *)(this + 0xfc) = 0;\n  *(undefined4 *)(this + 0x100) = 0;\n  *(undefined4 *)(this + 0x108) = 0;\n  *(undefined4 *)(this + 0x104) = 0;\n  *(undefined4 *)(this + 0x10c) = 0;\n  *(undefined4 *)(this + 0xe4) = 0x3f800000;\n  ExceptionList = local_c;\n  return this;\n}\n\n", 
+  "is_thunk": false, 
+  "name": "gbGeomNode", 
+  "assembly": "  1000fc10:  PUSH -0x1\n  1000fc12:  PUSH 0x100f3ac8\n  1000fc17:  MOV EAX,FS:[0x0]\n  1000fc1d:  PUSH EAX\n  1000fc1e:  MOV dword ptr FS:[0x0],ESP\n  1000fc25:  PUSH ECX\n  1000fc26:  PUSH EBX\n  1000fc27:  PUSH EBP\n  1000fc28:  PUSH ESI\n  1000fc29:  MOV ESI,ECX\n  1000fc2b:  PUSH EDI\n  1000fc2c:  MOV dword ptr [ESP + 0x10],ESI\n  1000fc30:  CALL 0x10016590\n  1000fc35:  LEA EBX,[ESI + 0x58]\n  1000fc38:  XOR EDI,EDI\n  1000fc3a:  MOV ECX,EBX\n  1000fc3c:  MOV dword ptr [ESP + 0x1c],EDI\n  1000fc40:  CALL 0x10025110\n  1000fc45:  LEA EBP,[ESI + 0x98]\n  1000fc4b:  MOV ECX,EBP\n  1000fc4d:  CALL 0x10025110\n  1000fc52:  MOV ECX,EBX\n  1000fc54:  MOV dword ptr [ESI],0x100f5588\n  1000fc5a:  CALL 0x10025640\n  1000fc5f:  MOV ECX,EBP\n  1000fc61:  CALL 0x10025640\n  1000fc66:  MOV ECX,dword ptr [ESP + 0x14]\n  1000fc6a:  MOV dword ptr [ESI + 0xf0],EDI\n  1000fc70:  MOV dword ptr [ESI + 0xec],EDI\n  1000fc76:  MOV dword ptr [ESI + 0xd8],EDI\n  1000fc7c:  MOV dword ptr [ESI + 0xdc],EDI\n  1000fc82:  MOV dword ptr [ESI + 0xe0],EDI\n  1000fc88:  MOV dword ptr [ESI + 0xe8],EDI\n  1000fc8e:  MOV dword ptr [ESI + 0xf4],EDI\n  1000fc94:  MOV dword ptr [ESI + 0xf8],EDI\n  1000fc9a:  MOV dword ptr [ESI + 0xfc],EDI\n  1000fca0:  MOV dword ptr [ESI + 0x100],EDI\n  1000fca6:  MOV dword ptr [ESI + 0x108],EDI\n  1000fcac:  MOV dword ptr [ESI + 0x104],EDI\n  1000fcb2:  MOV dword ptr [ESI + 0x10c],EDI\n  1000fcb8:  MOV dword ptr [ESI + 0xe4],0x3f800000\n  1000fcc2:  MOV EAX,ESI\n  1000fcc4:  POP EDI\n  1000fcc5:  POP ESI\n  1000fcc6:  POP EBP\n  1000fcc7:  POP EBX\n  1000fcc8:  MOV dword ptr FS:[0x0],ECX\n  1000fccf:  ADD ESP,0x10\n  1000fcd2:  RET", 
+  "callers": [
+    {
+      "address": "0x1000b910", 
+      "name": "FUN_1000b910"
+    }, 
+    {
+      "address": "0x100102c0", 
+      "name": "LoadFromFile"
+    }, 
+    {
+      "address": "0x100108b0", 
+      "name": "LoadCVDFile"
+    }, 
+    {
+      "address": "0x10010c10", 
+      "name": "LoadCVDFromStream"
+    }
+  ]
+}

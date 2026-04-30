@@ -1,0 +1,39 @@
+{
+  "address": "0x10076f50", 
+  "size_bytes": 97, 
+  "calling_convention": "unknown", 
+  "signature": "undefined FUN_10076f50(undefined4 param_1, undefined4 param_2)", 
+  "callees": [
+    {
+      "address": "0x10076de0", 
+      "name": "FUN_10076de0"
+    }, 
+    {
+      "address": "0x10094d60", 
+      "name": "FUN_10094d60"
+    }
+  ], 
+  "global_refs": [
+    {
+      "address": "0x00000004", 
+      "type": null, 
+      "name": "DAT_00000004"
+    }, 
+    {
+      "address": "0x00000008", 
+      "type": null, 
+      "name": "DAT_00000008"
+    }
+  ], 
+  "has_custom_name": false, 
+  "decompiled_c": "\nint FUN_10076f50(int *param_1,int param_2)\n\n{\n  undefined4 *puVar1;\n  int iVar2;\n  \n  iVar2 = param_1[5];\n  if ((iVar2 != 200) && (iVar2 != 0xc9)) {\n    puVar1 = (undefined4 *)*param_1;\n    puVar1[5] = 0x14;\n    puVar1[6] = iVar2;\n    (*(code *)*puVar1)(param_1);\n  }\n  iVar2 = FUN_10076de0(param_1);\n  if (iVar2 == 1) {\n    iVar2 = 1;\n  }\n  else if (iVar2 == 2) {\n    if (param_2 != 0) {\n      puVar1 = (undefined4 *)*param_1;\n      puVar1[5] = 0x33;\n      (*(code *)*puVar1)(param_1);\n    }\n    FUN_10094d60(param_1);\n    return 2;\n  }\n  return iVar2;\n}\n\n", 
+  "is_thunk": false, 
+  "name": "FUN_10076f50", 
+  "assembly": "  10076f50:  PUSH ESI\n  10076f51:  MOV ESI,dword ptr [ESP + 0x8]\n  10076f55:  MOV ECX,dword ptr [ESI + 0x14]\n  10076f58:  CMP ECX,0xc8\n  10076f5e:  JZ 0x10076f77\n  10076f60:  CMP ECX,0xc9\n  10076f66:  JZ 0x10076f77\n  10076f68:  MOV EAX,dword ptr [ESI]\n  10076f6a:  MOV dword ptr [EAX + 0x14],0x14\n  10076f71:  PUSH ESI\n  10076f72:  MOV dword ptr [EAX + 0x18],ECX\n  10076f75:  CALL dword ptr [EAX]\n  10076f77:  PUSH ESI\n  10076f78:  CALL 0x10076de0\n  10076f7d:  MOV ECX,EAX\n  10076f7f:  DEC ECX\n  10076f80:  JZ 0x10076fa8\n  10076f82:  DEC ECX\n  10076f83:  JNZ 0x10076fad\n  10076f85:  MOV EAX,dword ptr [ESP + 0xc]\n  10076f89:  TEST EAX,EAX\n  10076f8b:  JZ 0x10076f99\n  10076f8d:  MOV EAX,dword ptr [ESI]\n  10076f8f:  PUSH ESI\n  10076f90:  MOV dword ptr [EAX + 0x14],0x33\n  10076f97:  CALL dword ptr [EAX]\n  10076f99:  PUSH ESI\n  10076f9a:  CALL 0x10094d60\n  10076f9f:  MOV EAX,0x2\n  10076fa4:  POP ESI\n  10076fa5:  RET 0x8\n  10076fa8:  MOV EAX,0x1\n  10076fad:  POP ESI\n  10076fae:  RET 0x8", 
+  "callers": [
+    {
+      "address": "0x10035336", 
+      "name": "FUN_10035336"
+    }
+  ]
+}

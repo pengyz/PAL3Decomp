@@ -1,0 +1,61 @@
+{
+  "address": "0x10002e50", 
+  "size_bytes": 203, 
+  "calling_convention": "__thiscall", 
+  "signature": "void __thiscall GotoAction(gbActor * this, char * param_1, char * param_2, char * param_3)", 
+  "callees": [
+    {
+      "address": "0x100277e0", 
+      "name": "gbCrc32Compute"
+    }, 
+    {
+      "address": "0x100277e0", 
+      "name": "gbCrc32Compute"
+    }, 
+    {
+      "address": "0x100277e0", 
+      "name": "gbCrc32Compute"
+    }, 
+    {
+      "address": "0x1002e930", 
+      "name": "gbLogInfo"
+    }, 
+    {
+      "address": "0x10002f20", 
+      "name": "GotoAction"
+    }
+  ], 
+  "global_refs": [
+    {
+      "address": "0x00000004", 
+      "type": null, 
+      "name": "DAT_00000004"
+    }, 
+    {
+      "address": "0x-0000004", 
+      "type": null, 
+      "name": "DAT_-0000004"
+    }, 
+    {
+      "address": "0x00000008", 
+      "type": null, 
+      "name": "DAT_00000008"
+    }, 
+    {
+      "address": "0x0000000c", 
+      "type": null, 
+      "name": "DAT_0000000c"
+    }, 
+    {
+      "address": "0x1011f168", 
+      "type": "string", 
+      "name": "DAT_1011f168"
+    }
+  ], 
+  "has_custom_name": true, 
+  "decompiled_c": "\n/* public: void __thiscall gbActor::GotoAction(char *,char *,char *) */\n\nvoid __thiscall gbActor::GotoAction(gbActor *this,char *param_1,char *param_2,char *param_3)\n\n{\n  int iVar1;\n  uint uVar2;\n  uint *puVar3;\n  uint uVar4;\n  uint uVar5;\n  int iVar6;\n  int iVar7;\n  \n                    /* 0x2e50  584  ?GotoAction@gbActor@@QAEXPAD00@Z */\n  uVar2 = gbCrc32Compute(param_1);\n  iVar6 = 0;\n  if (0 < *(int *)(this + 100)) {\n    puVar3 = (uint *)(*(int *)(this + 0x60) + 4);\n    do {\n      if (uVar2 == *puVar3) break;\n      iVar6 = iVar6 + 1;\n      puVar3 = puVar3 + 9;\n    } while (iVar6 < *(int *)(this + 100));\n  }\n  if (param_2 == (char *)0x0) {\n    param_2 = (char *)0x0;\n  }\n  else {\n    iVar1 = **(int **)(this + 0x58);\n    iVar7 = iVar6;\n    uVar4 = gbCrc32Compute(param_2);\n    param_2 = (char *)(**(code **)(iVar1 + 0x44))(uVar4,iVar7);\n  }\n  if (param_3 != (char *)0x0) {\n    uVar4 = gbCrc32Compute(param_3);\n    uVar5 = (**(code **)(**(int **)(this + 0x58) + 0x44))(uVar4,iVar6);\n    if (uVar5 != 0) goto LAB_10002efe;\n    gbLogInfo(s___Action_msg_not_find_actor__s_a_1011f168,*(undefined4 *)(*(int *)(this + 0x58) + 8)\n              ,param_1,param_3);\n  }\n  uVar5 = (**(code **)(**(int **)(this + 0x58) + 8))(param_1);\n  uVar4 = 0x6f766572;\nLAB_10002efe:\n  GotoAction(this,uVar2,2,(uint)param_2,uVar5,uVar4);\n  return;\n}\n\n", 
+  "is_thunk": false, 
+  "name": "GotoAction", 
+  "assembly": "  10002e50:  PUSH ECX\n  10002e51:  MOV EAX,dword ptr [ESP + 0x8]\n  10002e55:  PUSH EBX\n  10002e56:  PUSH EBP\n  10002e57:  PUSH ESI\n  10002e58:  PUSH EDI\n  10002e59:  MOV ESI,ECX\n  10002e5b:  PUSH EAX\n  10002e5c:  CALL 0x100277e0\n  10002e61:  MOV ECX,dword ptr [ESI + 0x64]\n  10002e64:  ADD ESP,0x4\n  10002e67:  MOV EDX,EAX\n  10002e69:  XOR EDI,EDI\n  10002e6b:  TEST ECX,ECX\n  10002e6d:  MOV dword ptr [ESP + 0x10],EDX\n  10002e71:  JLE 0x10002e85\n  10002e73:  MOV EAX,dword ptr [ESI + 0x60]\n  10002e76:  ADD EAX,0x4\n  10002e79:  CMP EDX,dword ptr [EAX]\n  10002e7b:  JZ 0x10002e85\n  10002e7d:  INC EDI\n  10002e7e:  ADD EAX,0x24\n  10002e81:  CMP EDI,ECX\n  10002e83:  JL 0x10002e79\n  10002e85:  MOV EAX,dword ptr [ESP + 0x1c]\n  10002e89:  TEST EAX,EAX\n  10002e8b:  JZ 0x10002ea9\n  10002e8d:  MOV ECX,dword ptr [ESI + 0x58]\n  10002e90:  PUSH EDI\n  10002e91:  PUSH EAX\n  10002e92:  MOV EBX,dword ptr [ECX]\n  10002e94:  CALL 0x100277e0\n  10002e99:  MOV ECX,dword ptr [ESI + 0x58]\n  10002e9c:  ADD ESP,0x4\n  10002e9f:  PUSH EAX\n  10002ea0:  CALL dword ptr [EBX + 0x44]\n  10002ea3:  MOV dword ptr [ESP + 0x1c],EAX\n  10002ea7:  JMP 0x10002eb1\n  10002ea9:  MOV dword ptr [ESP + 0x1c],0x0\n  10002eb1:  MOV EBP,dword ptr [ESP + 0x20]\n  10002eb5:  TEST EBP,EBP\n  10002eb7:  JZ 0x10002eec\n  10002eb9:  PUSH EBP\n  10002eba:  CALL 0x100277e0\n  10002ebf:  MOV ECX,dword ptr [ESI + 0x58]\n  10002ec2:  ADD ESP,0x4\n  10002ec5:  MOV EBX,EAX\n  10002ec7:  MOV EDX,dword ptr [ECX]\n  10002ec9:  PUSH EDI\n  10002eca:  PUSH EBX\n  10002ecb:  CALL dword ptr [EDX + 0x44]\n  10002ece:  TEST EAX,EAX\n  10002ed0:  JNZ 0x10002efe\n  10002ed2:  MOV ECX,dword ptr [ESI + 0x58]\n  10002ed5:  MOV EAX,dword ptr [ESP + 0x18]\n  10002ed9:  PUSH EBP\n  10002eda:  PUSH EAX\n  10002edb:  MOV EDX,dword ptr [ECX + 0x8]\n  10002ede:  PUSH EDX\n  10002edf:  PUSH 0x1011f168\n  10002ee4:  CALL 0x1002e930\n  10002ee9:  ADD ESP,0x10\n  10002eec:  MOV ECX,dword ptr [ESI + 0x58]\n  10002eef:  MOV EDX,dword ptr [ESP + 0x18]\n  10002ef3:  PUSH EDX\n  10002ef4:  MOV EAX,dword ptr [ECX]\n  10002ef6:  CALL dword ptr [EAX + 0x8]\n  10002ef9:  MOV EBX,0x6f766572\n  10002efe:  MOV ECX,dword ptr [ESP + 0x10]\n  10002f02:  PUSH EBX\n  10002f03:  PUSH EAX\n  10002f04:  MOV EAX,dword ptr [ESP + 0x24]\n  10002f08:  PUSH EAX\n  10002f09:  PUSH 0x2\n  10002f0b:  PUSH ECX\n  10002f0c:  MOV ECX,ESI\n  10002f0e:  CALL 0x10002f20\n  10002f13:  POP EDI\n  10002f14:  POP ESI\n  10002f15:  POP EBP\n  10002f16:  POP EBX\n  10002f17:  POP ECX\n  10002f18:  RET 0xc", 
+  "callers": []
+}

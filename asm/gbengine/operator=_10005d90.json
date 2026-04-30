@@ -1,0 +1,20 @@
+{
+  "address": "0x10005d90", 
+  "size_bytes": 22, 
+  "calling_convention": "__thiscall", 
+  "signature": "CPKFile * __thiscall operator=(CPKFile * this, CPKFile * param_1)", 
+  "callees": [], 
+  "global_refs": [
+    {
+      "address": "0x00000004", 
+      "type": null, 
+      "name": "DAT_00000004"
+    }
+  ], 
+  "has_custom_name": true, 
+  "decompiled_c": "\n/* public: class CPKFile & __thiscall CPKFile::operator=(class CPKFile const &) */\n\nCPKFile * __thiscall CPKFile::operator=(CPKFile *this,CPKFile *param_1)\n\n{\n  int iVar1;\n  CPKFile *pCVar2;\n  \n                    /* 0x5d90  177  ??4CPKFile@@QAEAAV0@ABV0@@Z */\n  pCVar2 = this;\n  for (iVar1 = 0xc; iVar1 != 0; iVar1 = iVar1 + -1) {\n    *(undefined4 *)pCVar2 = *(undefined4 *)param_1;\n    param_1 = param_1 + 4;\n    pCVar2 = pCVar2 + 4;\n  }\n  return this;\n}\n\n", 
+  "is_thunk": false, 
+  "name": "operator=", 
+  "assembly": "  10005d90:  PUSH ESI\n  10005d91:  MOV ESI,dword ptr [ESP + 0x8]\n  10005d95:  MOV EAX,ECX\n  10005d97:  PUSH EDI\n  10005d98:  MOV ECX,0xc\n  10005d9d:  MOV EDI,EAX\n  10005d9f:  MOVSD.REP ES:EDI,ESI\n  10005da1:  POP EDI\n  10005da2:  POP ESI\n  10005da3:  RET 0x4", 
+  "callers": []
+}

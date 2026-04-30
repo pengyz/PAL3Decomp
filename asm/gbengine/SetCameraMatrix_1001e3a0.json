@@ -1,0 +1,30 @@
+{
+  "address": "0x1001e3a0", 
+  "size_bytes": 43, 
+  "calling_convention": "__thiscall", 
+  "signature": "void __thiscall SetCameraMatrix(gbGfxManager * this, gbMatrix4 * param_1, gbMatrix4 * param_2)", 
+  "callees": [], 
+  "global_refs": [
+    {
+      "address": "0x00000004", 
+      "type": null, 
+      "name": "DAT_00000004"
+    }, 
+    {
+      "address": "0x00000008", 
+      "type": null, 
+      "name": "DAT_00000008"
+    }
+  ], 
+  "has_custom_name": true, 
+  "decompiled_c": "\n/* public: void __thiscall gbGfxManager::SetCameraMatrix(struct gbMatrix4 const &,struct gbMatrix4\n   const &) */\n\nvoid __thiscall\ngbGfxManager::SetCameraMatrix(gbGfxManager *this,gbMatrix4 *param_1,gbMatrix4 *param_2)\n\n{\n  int iVar1;\n  gbGfxManager *pgVar2;\n  \n                    /* 0x1e3a0  851  ?SetCameraMatrix@gbGfxManager@@QAEXABUgbMatrix4@@0@Z */\n  pgVar2 = this + 0x124;\n  for (iVar1 = 0x10; iVar1 != 0; iVar1 = iVar1 + -1) {\n    *(undefined4 *)pgVar2 = *(undefined4 *)param_1;\n    param_1 = param_1 + 4;\n    pgVar2 = pgVar2 + 4;\n  }\n  pgVar2 = this + 0xe4;\n  for (iVar1 = 0x10; iVar1 != 0; iVar1 = iVar1 + -1) {\n    *(undefined4 *)pgVar2 = *(undefined4 *)param_2;\n    param_2 = param_2 + 4;\n    pgVar2 = pgVar2 + 4;\n  }\n  return;\n}\n\n", 
+  "is_thunk": false, 
+  "name": "SetCameraMatrix", 
+  "assembly": "  1001e3a0:  MOV EAX,ECX\n  1001e3a2:  PUSH ESI\n  1001e3a3:  MOV ESI,dword ptr [ESP + 0x8]\n  1001e3a7:  PUSH EDI\n  1001e3a8:  LEA EDI,[EAX + 0x124]\n  1001e3ae:  MOV ECX,0x10\n  1001e3b3:  MOVSD.REP ES:EDI,ESI\n  1001e3b5:  MOV ESI,dword ptr [ESP + 0x10]\n  1001e3b9:  LEA EDI,[EAX + 0xe4]\n  1001e3bf:  MOV ECX,0x10\n  1001e3c4:  MOVSD.REP ES:EDI,ESI\n  1001e3c6:  POP EDI\n  1001e3c7:  POP ESI\n  1001e3c8:  RET 0x8", 
+  "callers": [
+    {
+      "address": "0x10021a80", 
+      "name": "SetAsCurrent"
+    }
+  ]
+}

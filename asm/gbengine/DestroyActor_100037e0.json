@@ -1,0 +1,20 @@
+{
+  "address": "0x100037e0", 
+  "size_bytes": 17, 
+  "calling_convention": "__thiscall", 
+  "signature": "void __thiscall DestroyActor(gbActorMgr * this, gbActor * param_1)", 
+  "callees": [], 
+  "global_refs": [
+    {
+      "address": "0x00000004", 
+      "type": null, 
+      "name": "DAT_00000004"
+    }
+  ], 
+  "has_custom_name": true, 
+  "decompiled_c": "\n/* public: void __thiscall gbActorMgr::DestroyActor(class gbActor *) */\n\nvoid __thiscall gbActorMgr::DestroyActor(gbActorMgr *this,gbActor *param_1)\n\n{\n                    /* 0x37e0  377  ?DestroyActor@gbActorMgr@@QAEXPAVgbActor@@@Z */\n  if (param_1 != (gbActor *)0x0) {\n    (*(code *)**(undefined4 **)param_1)(1);\n  }\n  return;\n}\n\n", 
+  "is_thunk": false, 
+  "name": "DestroyActor", 
+  "assembly": "  100037e0:  MOV ECX,dword ptr [ESP + 0x4]\n  100037e4:  TEST ECX,ECX\n  100037e6:  JZ 0x100037ee\n  100037e8:  MOV EAX,dword ptr [ECX]\n  100037ea:  PUSH 0x1\n  100037ec:  CALL dword ptr [EAX]\n  100037ee:  RET 0x4", 
+  "callers": []
+}

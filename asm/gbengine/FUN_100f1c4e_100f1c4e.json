@@ -1,0 +1,167 @@
+{
+  "address": "0x100f1c4e", 
+  "size_bytes": 417, 
+  "calling_convention": "unknown", 
+  "signature": "undefined FUN_100f1c4e(undefined4 param_1, undefined4 param_2, undefined4 param_3, undefined4 param_4, undefined4 param_5, undefined4 param_6)", 
+  "callees": [
+    {
+      "address": "0x100f2da0", 
+      "name": "FUN_100f2da0"
+    }, 
+    {
+      "address": "0x100f331a", 
+      "name": "FUN_100f331a"
+    }
+  ], 
+  "global_refs": [
+    {
+      "address": "0x0000000c", 
+      "type": null, 
+      "name": "DAT_0000000c"
+    }, 
+    {
+      "address": "0x-0000060", 
+      "type": null, 
+      "name": "DAT_-0000060"
+    }, 
+    {
+      "address": "0x-0000010", 
+      "type": null, 
+      "name": "DAT_-0000010"
+    }, 
+    {
+      "address": "0x-000002c", 
+      "type": null, 
+      "name": "DAT_-000002c"
+    }, 
+    {
+      "address": "0x-000001c", 
+      "type": null, 
+      "name": "DAT_-000001c"
+    }, 
+    {
+      "address": "0x-0000008", 
+      "type": null, 
+      "name": "DAT_-0000008"
+    }, 
+    {
+      "address": "0x-0000014", 
+      "type": null, 
+      "name": "DAT_-0000014"
+    }, 
+    {
+      "address": "0x-0000028", 
+      "type": null, 
+      "name": "DAT_-0000028"
+    }, 
+    {
+      "address": "0x-0000024", 
+      "type": null, 
+      "name": "DAT_-0000024"
+    }, 
+    {
+      "address": "0x-0000030", 
+      "type": null, 
+      "name": "DAT_-0000030"
+    }, 
+    {
+      "address": "0x-0000034", 
+      "type": null, 
+      "name": "DAT_-0000034"
+    }, 
+    {
+      "address": "0x-0000020", 
+      "type": null, 
+      "name": "DAT_-0000020"
+    }, 
+    {
+      "address": "0x-000000c", 
+      "type": null, 
+      "name": "DAT_-000000c"
+    }, 
+    {
+      "address": "0x-0000018", 
+      "type": null, 
+      "name": "DAT_-0000018"
+    }, 
+    {
+      "address": "0x100f20ef", 
+      "type": "pointer", 
+      "name": "DAT_100f20ef"
+    }, 
+    {
+      "address": "0x00000008", 
+      "type": null, 
+      "name": "DAT_00000008"
+    }, 
+    {
+      "address": "0x-0000049", 
+      "type": null, 
+      "name": "DAT_-0000049"
+    }, 
+    {
+      "address": "0x-0000062", 
+      "type": null, 
+      "name": "DAT_-0000062"
+    }, 
+    {
+      "address": "0x-0000044", 
+      "type": null, 
+      "name": "DAT_-0000044"
+    }, 
+    {
+      "address": "0x00000014", 
+      "type": null, 
+      "name": "DAT_00000014"
+    }, 
+    {
+      "address": "0x00000018", 
+      "type": null, 
+      "name": "DAT_00000018"
+    }, 
+    {
+      "address": "0x00000010", 
+      "type": null, 
+      "name": "DAT_00000010"
+    }, 
+    {
+      "address": "0x-0000042", 
+      "type": null, 
+      "name": "DAT_-0000042"
+    }, 
+    {
+      "address": "0x-000003e", 
+      "type": null, 
+      "name": "DAT_-000003e"
+    }, 
+    {
+      "address": "0x-000003a", 
+      "type": null, 
+      "name": "DAT_-000003a"
+    }, 
+    {
+      "address": "0x00000004", 
+      "type": null, 
+      "name": "DAT_00000004"
+    }
+  ], 
+  "has_custom_name": false, 
+  "decompiled_c": "\nundefined4\nFUN_100f1c4e(ushort *param_1,int *param_2,byte *param_3,undefined4 param_4,int param_5,int param_6,\n            int param_7)\n\n{\n  int iVar1;\n  uint uVar2;\n  char *pcVar3;\n  int iVar4;\n  int iVar5;\n  byte bVar6;\n  byte *pbVar7;\n  byte *pbVar8;\n  byte *pbVar9;\n  int iVar10;\n  char local_60 [23];\n  char local_49;\n  ushort local_44;\n  undefined2 uStack_42;\n  undefined2 uStack_40;\n  byte *local_3e;\n  ushort local_3a;\n  int local_34;\n  int local_30;\n  undefined4 local_2c;\n  int local_28;\n  int local_24;\n  int local_20;\n  int local_1c;\n  undefined4 local_18;\n  int local_14;\n  char *local_10;\n  int local_c;\n  uint local_8;\n  \n  local_10 = local_60;\n  local_2c = 0;\n  local_1c = 1;\n  local_8 = 0;\n  local_14 = 0;\n  local_28 = 0;\n  local_24 = 0;\n  local_30 = 0;\n  local_34 = 0;\n  local_20 = 0;\n  local_c = 0;\n  local_18 = 0;\n  for (pbVar7 = param_3;\n      (((bVar6 = *pbVar7, bVar6 == 0x20 || (bVar6 == 9)) || (bVar6 == 10)) || (bVar6 == 0xd));\n      pbVar7 = pbVar7 + 1) {\n  }\n  iVar4 = 4;\n  iVar10 = 0;\n  iVar5 = local_14;\nLAB_100f1ca5:\n  local_14 = iVar5;\n  iVar5 = 1;\n  bVar6 = *pbVar7;\n  pbVar8 = pbVar7 + 1;\n  pbVar9 = param_3;\n  iVar1 = local_14;\n  switch(iVar10) {\n  case 0:\n    if (('0' < (char)bVar6) && ((char)bVar6 < ':')) {\ncode_r0x100f1cc2:\n      local_14 = iVar1;\n      iVar10 = 3;\n      goto code_r0x100f1ee7;\n    }\n    if (bVar6 == DAT_1012a350) goto code_r0x100f1cd1;\n    if (bVar6 == 0x2b) {\n      local_2c = 0;\n      iVar10 = 2;\n      pbVar7 = pbVar8;\n      iVar5 = local_14;\n    }\n    else if (bVar6 == 0x2d) {\n      local_2c = 0x8000;\n      iVar10 = 2;\n      pbVar7 = pbVar8;\n      iVar5 = local_14;\n    }\n    else {\n      iVar10 = iVar5;\n      pbVar7 = pbVar8;\n      iVar5 = local_14;\n      if (bVar6 != 0x30) goto LAB_100f1fc1;\n    }\n    goto LAB_100f1ca5;\n  case 1:\n    local_14 = 1;\n    if (('0' < (char)bVar6) && (iVar1 = iVar5, (char)bVar6 < ':')) goto code_r0x100f1cc2;\n    iVar10 = iVar4;\n    pbVar7 = pbVar8;\n    if (bVar6 != DAT_1012a350) {\n      iVar10 = iVar5;\n      if ((bVar6 == 0x2b) || (iVar10 = local_14, bVar6 == 0x2d)) goto code_r0x100f1d56;\n      iVar10 = iVar5;\n      local_14 = iVar5;\n      if (bVar6 != 0x30) goto code_r0x100f1d2f;\n    }\n    goto LAB_100f1ca5;\n  case 2:\n    if (('0' < (char)bVar6) && ((char)bVar6 < ':')) goto code_r0x100f1cc2;\n    if (bVar6 == DAT_1012a350) {\ncode_r0x100f1cd1:\n      iVar10 = 5;\n      pbVar7 = pbVar8;\n      iVar5 = local_14;\n    }\n    else {\n      iVar10 = iVar5;\n      pbVar7 = pbVar8;\n      iVar5 = local_14;\n      if (bVar6 != 0x30) goto LAB_100f1fc6;\n    }\n    goto LAB_100f1ca5;\n  case 3:\n    local_14 = iVar5;\n    while( true ) {\n      if (DAT_1012a34c < 2) {\n        uVar2 = (byte)PTR_DAT_1012a140[(uint)bVar6 * 2] & 4;\n      }\n      else {\n        uVar2 = FUN_100ea5dc(bVar6,4);\n      }\n      if (uVar2 == 0) break;\n      if (local_8 < 0x19) {\n        local_8 = local_8 + 1;\n        pcVar3 = local_10 + 1;\n        *local_10 = bVar6 - 0x30;\n        local_10 = pcVar3;\n      }\n      else {\n        local_c = local_c + 1;\n      }\n      bVar6 = *pbVar8;\n      pbVar8 = pbVar8 + 1;\n    }\n    iVar10 = iVar4;\n    pbVar7 = pbVar8;\n    iVar5 = local_14;\n    if (bVar6 != DAT_1012a350) goto code_r0x100f1e43;\n    goto LAB_100f1ca5;\n  case 4:\n    local_14 = 1;\n    local_28 = 1;\n    iVar10 = iVar5;\n    if (local_8 == 0) {\n      while (iVar5 = local_28, iVar10 = local_14, bVar6 == 0x30) {\n        local_c = local_c + -1;\n        bVar6 = *pbVar8;\n        pbVar8 = pbVar8 + 1;\n      }\n    }\n    while( true ) {\n      local_14 = iVar10;\n      local_28 = iVar5;\n      if (DAT_1012a34c < 2) {\n        uVar2 = (byte)PTR_DAT_1012a140[(uint)bVar6 * 2] & 4;\n      }\n      else {\n        uVar2 = FUN_100ea5dc(bVar6,4);\n      }\n      if (uVar2 == 0) break;\n      if (local_8 < 0x19) {\n        local_8 = local_8 + 1;\n        local_c = local_c + -1;\n        pcVar3 = local_10 + 1;\n        *local_10 = bVar6 - 0x30;\n        local_10 = pcVar3;\n      }\n      bVar6 = *pbVar8;\n      pbVar8 = pbVar8 + 1;\n      iVar5 = local_28;\n      iVar10 = local_14;\n    }\ncode_r0x100f1e43:\n    iVar10 = local_14;\n    if ((bVar6 == 0x2b) || (bVar6 == 0x2d)) {\ncode_r0x100f1d56:\n      local_14 = iVar10;\n      iVar10 = 0xb;\n      pbVar7 = pbVar8 + -1;\n      iVar5 = local_14;\n    }\n    else {\ncode_r0x100f1d2f:\n      if (((char)bVar6 < 'D') ||\n         (('E' < (char)bVar6 && (((char)bVar6 < 'd' || ('e' < (char)bVar6)))))) goto LAB_100f1fc1;\n      iVar10 = 6;\n      pbVar7 = pbVar8;\n      iVar5 = local_14;\n    }\n    goto LAB_100f1ca5;\n  case 5:\n    local_28 = iVar5;\n    if (DAT_1012a34c < 2) {\n      uVar2 = (byte)PTR_DAT_1012a140[(uint)bVar6 * 2] & 4;\n    }\n    else {\n      uVar2 = FUN_100ea5dc(bVar6,4);\n    }\n    iVar10 = iVar4;\n    if (uVar2 != 0) goto code_r0x100f1ee7;\n    goto LAB_100f1fc6;\n  case 6:\n    param_3 = pbVar7 + -1;\n    if (((char)bVar6 < '1') || ('9' < (char)bVar6)) {\n      if (bVar6 == 0x2b) goto code_r0x100f1f1c;\n      if (bVar6 == 0x2d) goto code_r0x100f1f10;\n      pbVar9 = param_3;\n      if (bVar6 != 0x30) goto LAB_100f1fc6;\ncode_r0x100f1eb5:\n      iVar10 = 8;\n      pbVar7 = pbVar8;\n      iVar5 = local_14;\n      goto LAB_100f1ca5;\n    }\n    break;\n  case 7:\n    if (((char)bVar6 < '1') || ('9' < (char)bVar6)) {\n      if (bVar6 == 0x30) goto code_r0x100f1eb5;\n      goto LAB_100f1fc6;\n    }\n    break;\n  case 8:\n    local_24 = 1;\n    while (bVar6 == 0x30) {\n      bVar6 = *pbVar8;\n      pbVar8 = pbVar8 + 1;\n    }\n    if (((char)bVar6 < '1') || ('9' < (char)bVar6)) goto LAB_100f1fc1;\n    break;\n  case 9:\n    local_24 = 1;\n    iVar4 = 0;\n    goto code_r0x100f1f47;\n  default:\n    goto LAB_100f1f28;\n  case 0xb:\n    if (param_7 != 0) {\n      param_3 = pbVar7;\n      if (bVar6 == 0x2b) {\ncode_r0x100f1f1c:\n        iVar10 = 7;\n        pbVar7 = pbVar8;\n        iVar5 = local_14;\n      }\n      else {\n        pbVar9 = pbVar7;\n        if (bVar6 != 0x2d) goto LAB_100f1fc6;\ncode_r0x100f1f10:\n        local_1c = -1;\n        iVar10 = 7;\n        pbVar7 = pbVar8;\n        iVar5 = local_14;\n      }\n      goto LAB_100f1ca5;\n    }\n    iVar10 = 10;\n    pbVar8 = pbVar7;\nLAB_100f1f28:\n    pbVar7 = pbVar8;\n    pbVar9 = pbVar8;\n    iVar5 = local_14;\n    if (iVar10 != 10) goto LAB_100f1ca5;\n    goto LAB_100f1fc6;\n  }\n  iVar10 = 9;\ncode_r0x100f1ee7:\n  pbVar7 = pbVar8 + -1;\n  iVar5 = local_14;\n  goto LAB_100f1ca5;\ncode_r0x100f1f47:\n  if (DAT_1012a34c < 2) {\n    uVar2 = (byte)PTR_DAT_1012a140[(uint)bVar6 * 2] & 4;\n  }\n  else {\n    uVar2 = FUN_100ea5dc(bVar6,4);\n  }\n  if (uVar2 == 0) goto code_r0x100f1f91;\n  iVar4 = (char)bVar6 + -0x30 + iVar4 * 10;\n  if (0x1450 < iVar4) goto code_r0x100f1f89;\n  bVar6 = *pbVar8;\n  pbVar8 = pbVar8 + 1;\n  goto code_r0x100f1f47;\ncode_r0x100f1f89:\n  iVar4 = 0x1451;\ncode_r0x100f1f91:\n  while( true ) {\n    local_20 = iVar4;\n    if (DAT_1012a34c < 2) {\n      uVar2 = (byte)PTR_DAT_1012a140[(uint)bVar6 * 2] & 4;\n    }\n    else {\n      uVar2 = FUN_100ea5dc(bVar6,4);\n    }\n    if (uVar2 == 0) break;\n    bVar6 = *pbVar8;\n    pbVar8 = pbVar8 + 1;\n    iVar4 = local_20;\n  }\nLAB_100f1fc1:\n  pbVar9 = pbVar8 + -1;\nLAB_100f1fc6:\n  *param_2 = (int)pbVar9;\n  if (local_14 == 0) {\n    local_44 = 0;\n    local_3a = 0;\n    local_3e = (byte *)0x0;\n    param_3 = (byte *)0x0;\n    local_18 = 4;\n    goto LAB_100f20d4;\n  }\n  pcVar3 = local_10;\n  if (0x18 < local_8) {\n    if ('\\x04' < local_49) {\n      local_49 = local_49 + '\\x01';\n    }\n    local_8 = 0x18;\n    local_c = local_c + 1;\n    pcVar3 = local_10 + -1;\n  }\n  if (local_8 == 0) {\n    local_44 = 0;\n    local_3a = 0;\n    local_3e = (byte *)0x0;\n    param_3 = (byte *)0x0;\n  }\n  else {\n    while (pcVar3 = pcVar3 + -1, *pcVar3 == '\\0') {\n      local_8 = local_8 - 1;\n      local_c = local_c + 1;\n    }\n    FUN_100f2da0(local_60,local_8,&local_44);\n    iVar4 = local_20;\n    if (local_1c < 0) {\n      iVar4 = -local_20;\n    }\n    iVar4 = iVar4 + local_c;\n    if (local_24 == 0) {\n      iVar4 = iVar4 + param_5;\n    }\n    if (local_28 == 0) {\n      iVar4 = iVar4 - param_6;\n    }\n    if (iVar4 < 0x1451) {\n      if (-0x1451 < iVar4) {\n        FUN_100f331a(&local_44,iVar4,param_4);\n        param_3 = (byte *)CONCAT22(uStack_40,uStack_42);\n        goto LAB_100f2059;\n      }\n      local_34 = 1;\n    }\n    else {\n      local_30 = 1;\n    }\n    local_3a = (ushort)param_3;\n    local_3e = param_3;\n    local_44 = local_3a;\n  }\nLAB_100f2059:\n  if (local_30 == 0) {\n    if (local_34 != 0) {\n      local_44 = 0;\n      local_3a = 0;\n      local_3e = (byte *)0x0;\n      param_3 = (byte *)0x0;\n      local_18 = 1;\n    }\n  }\n  else {\n    param_3 = (byte *)0x0;\n    local_3a = 0x7fff;\n    local_3e = (byte *)0x80000000;\n    local_44 = 0;\n    local_18 = 2;\n  }\nLAB_100f20d4:\n  *(byte **)(param_1 + 3) = local_3e;\n  *(byte **)(param_1 + 1) = param_3;\n  param_1[5] = local_3a | (ushort)local_2c;\n  *param_1 = local_44;\n  return local_18;\n}\n\n", 
+  "is_thunk": false, 
+  "name": "FUN_100f1c4e", 
+  "assembly": "  100f1c4e:  PUSH EBP\n  100f1c4f:  MOV EBP,ESP\n  100f1c51:  SUB ESP,0x5c\n  100f1c54:  PUSH EBX\n  100f1c55:  PUSH ESI\n  100f1c56:  PUSH EDI\n  100f1c57:  MOV EDI,dword ptr [EBP + 0x10]\n  100f1c5a:  LEA EAX,[EBP + -0x5c]\n  100f1c5d:  PUSH 0x1\n  100f1c5f:  MOV dword ptr [EBP + -0xc],EAX\n  100f1c62:  XOR EAX,EAX\n  100f1c64:  POP EDX\n  100f1c65:  MOV dword ptr [EBP + -0x28],EAX\n  100f1c68:  MOV dword ptr [EBP + -0x18],EDX\n  100f1c6b:  MOV dword ptr [EBP + -0x4],EAX\n  100f1c6e:  MOV dword ptr [EBP + -0x10],EAX\n  100f1c71:  MOV dword ptr [EBP + -0x24],EAX\n  100f1c74:  MOV dword ptr [EBP + -0x20],EAX\n  100f1c77:  MOV dword ptr [EBP + -0x2c],EAX\n  100f1c7a:  MOV dword ptr [EBP + -0x30],EAX\n  100f1c7d:  MOV dword ptr [EBP + -0x1c],EAX\n  100f1c80:  MOV dword ptr [EBP + -0x8],EAX\n  100f1c83:  MOV dword ptr [EBP + -0x14],EAX\n  100f1c86:  MOV dword ptr [EBP + 0x10],EDI\n  100f1c89:  MOV CL,byte ptr [EDI]\n  100f1c8b:  CMP CL,0x20\n  100f1c8e:  JZ 0x100f1c9f\n  100f1c90:  CMP CL,0x9\n  100f1c93:  JZ 0x100f1c9f\n  100f1c95:  CMP CL,0xa\n  100f1c98:  JZ 0x100f1c9f\n  100f1c9a:  CMP CL,0xd\n  100f1c9d:  JNZ 0x100f1ca2\n  100f1c9f:  INC EDI\n  100f1ca0:  JMP 0x100f1c89\n  100f1ca2:  PUSH 0x4\n  100f1ca4:  POP ESI\n  100f1ca5:  MOV BL,byte ptr [EDI]\n  100f1ca7:  INC EDI\n  100f1ca8:  CMP EAX,0xb\n  100f1cab:  JA 0x100f1f28\n  100f1cb1:  JMP dword ptr [EAX*0x4 + 0x100f20ef]\n  100f1f28:  CMP EAX,0xa\n  100f1f2b:  JZ 0x100f1fc6\n  100f1f31:  JMP 0x100f1ca5\n  100f1fc6:  MOV EAX,dword ptr [EBP + 0xc]\n  100f1fc9:  CMP dword ptr [EBP + -0x10],0x0\n  100f1fcd:  MOV dword ptr [EAX],EDI\n  100f1fcf:  JZ 0x100f20ae\n  100f1fd5:  PUSH 0x18\n  100f1fd7:  POP EAX\n  100f1fd8:  CMP dword ptr [EBP + -0x4],EAX\n  100f1fdb:  JBE 0x100f1ff2\n  100f1fdd:  CMP byte ptr [EBP + -0x45],0x5\n  100f1fe1:  JL 0x100f1fe6\n  100f1fe3:  INC byte ptr [EBP + -0x45]\n  100f1fe6:  MOV dword ptr [EBP + -0x4],EAX\n  100f1fe9:  MOV EAX,dword ptr [EBP + -0xc]\n  100f1fec:  DEC EAX\n  100f1fed:  INC dword ptr [EBP + -0x8]\n  100f1ff0:  JMP 0x100f1ff5\n  100f1ff2:  MOV EAX,dword ptr [EBP + -0xc]\n  100f1ff5:  CMP dword ptr [EBP + -0x4],0x0\n  100f1ff9:  JBE 0x100f20a4\n  100f1fff:  DEC EAX\n  100f2000:  CMP byte ptr [EAX],0x0\n  100f2003:  JNZ 0x100f200d\n  100f2005:  DEC dword ptr [EBP + -0x4]\n  100f2008:  INC dword ptr [EBP + -0x8]\n  100f200b:  JMP 0x100f1fff\n  100f200d:  LEA EAX,[EBP + -0x40]\n  100f2010:  PUSH EAX\n  100f2011:  LEA EAX,[EBP + -0x5c]\n  100f2014:  PUSH dword ptr [EBP + -0x4]\n  100f2017:  PUSH EAX\n  100f2018:  CALL 0x100f2da0\n  100f201d:  MOV EAX,dword ptr [EBP + -0x1c]\n  100f2020:  XOR ECX,ECX\n  100f2022:  ADD ESP,0xc\n  100f2025:  CMP dword ptr [EBP + -0x18],ECX\n  100f2028:  JGE 0x100f202c\n  100f202a:  NEG EAX\n  100f202c:  ADD EAX,dword ptr [EBP + -0x8]\n  100f202f:  CMP dword ptr [EBP + -0x20],ECX\n  100f2032:  JNZ 0x100f2037\n  100f2034:  ADD EAX,dword ptr [EBP + 0x18]\n  100f2037:  CMP dword ptr [EBP + -0x24],ECX\n  100f203a:  JNZ 0x100f203f\n  100f203c:  SUB EAX,dword ptr [EBP + 0x1c]\n  100f203f:  CMP EAX,0x1450\n  100f2044:  JLE 0x100f2076\n  100f2046:  MOV dword ptr [EBP + -0x2c],0x1\n  100f204d:  MOV EBX,dword ptr [EBP + 0x10]\n  100f2050:  MOV ESI,dword ptr [EBP + 0x10]\n  100f2053:  MOV EAX,dword ptr [EBP + 0x10]\n  100f2056:  MOV EDX,dword ptr [EBP + 0x10]\n  100f2059:  CMP dword ptr [EBP + -0x2c],0x0\n  100f205d:  JZ 0x100f20bf\n  100f205f:  XOR EBX,EBX\n  100f2061:  MOV EAX,0x7fff\n  100f2066:  MOV ESI,0x80000000\n  100f206b:  XOR EDX,EDX\n  100f206d:  MOV dword ptr [EBP + -0x14],0x2\n  100f2074:  JMP 0x100f20d4\n  100f2076:  CMP EAX,0xffffebb0\n  100f207b:  JGE 0x100f2086\n  100f207d:  MOV dword ptr [EBP + -0x30],0x1\n  100f2084:  JMP 0x100f204d\n  100f2086:  PUSH dword ptr [EBP + 0x14]\n  100f2089:  PUSH EAX\n  100f208a:  LEA EAX,[EBP + -0x40]\n  100f208d:  PUSH EAX\n  100f208e:  CALL 0x100f331a\n  100f2093:  MOV EDX,dword ptr [EBP + -0x40]\n  100f2096:  MOV EBX,dword ptr [EBP + -0x3e]\n  100f2099:  MOV ESI,dword ptr [EBP + -0x3a]\n  100f209c:  MOV EAX,dword ptr [EBP + -0x36]\n  100f209f:  ADD ESP,0xc\n  100f20a2:  JMP 0x100f2059\n  100f20a4:  XOR EDX,EDX\n  100f20a6:  XOR EAX,EAX\n  100f20a8:  XOR ESI,ESI\n  100f20aa:  XOR EBX,EBX\n  100f20ac:  JMP 0x100f2059\n  100f20ae:  XOR EDX,EDX\n  100f20b0:  XOR EAX,EAX\n  100f20b2:  XOR ESI,ESI\n  100f20b4:  XOR EBX,EBX\n  100f20b6:  MOV dword ptr [EBP + -0x14],0x4\n  100f20bd:  JMP 0x100f20d4\n  100f20bf:  CMP dword ptr [EBP + -0x30],0x0\n  100f20c3:  JZ 0x100f20d4\n  100f20c5:  XOR EDX,EDX\n  100f20c7:  XOR EAX,EAX\n  100f20c9:  XOR ESI,ESI\n  100f20cb:  XOR EBX,EBX\n  100f20cd:  MOV dword ptr [EBP + -0x14],0x1\n  100f20d4:  MOV ECX,dword ptr [EBP + 0x8]\n  100f20d7:  OR EAX,dword ptr [EBP + -0x28]\n  100f20da:  POP EDI\n  100f20db:  MOV dword ptr [ECX + 0x6],ESI\n  100f20de:  MOV dword ptr [ECX + 0x2],EBX\n  100f20e1:  MOV word ptr [ECX + 0xa],AX\n  100f20e5:  MOV EAX,dword ptr [EBP + -0x14]\n  100f20e8:  POP ESI\n  100f20e9:  MOV word ptr [ECX],DX\n  100f20ec:  POP EBX\n  100f20ed:  LEAVE\n  100f20ee:  RET", 
+  "callers": [
+    {
+      "address": "0x100ea651", 
+      "name": "FUN_100ea651"
+    }, 
+    {
+      "address": "0x100f1699", 
+      "name": "FUN_100f1699"
+    }, 
+    {
+      "address": "0x100f16c6", 
+      "name": "FUN_100f16c6"
+    }
+  ]
+}

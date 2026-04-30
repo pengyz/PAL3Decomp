@@ -1,0 +1,53 @@
+{
+  "address": "0x100e878f", 
+  "size_bytes": 41, 
+  "calling_convention": "unknown", 
+  "signature": "undefined FUN_100e878f(void)", 
+  "callees": [
+    {
+      "address": "0x0000002a", 
+      "name": "GetModuleHandleA"
+    }, 
+    {
+      "address": "0x0000002d", 
+      "name": "GetProcAddress"
+    }, 
+    {
+      "address": "0x100e8751", 
+      "name": "FUN_100e8751"
+    }
+  ], 
+  "global_refs": [
+    {
+      "address": "0x10110484", 
+      "type": "string", 
+      "name": "DAT_10110484"
+    }, 
+    {
+      "address": "0x100f50d4", 
+      "type": "pointer", 
+      "name": "DAT_100f50d4"
+    }, 
+    {
+      "address": "0x10110468", 
+      "type": null, 
+      "name": "DAT_10110468"
+    }, 
+    {
+      "address": "0x100f50e0", 
+      "type": "pointer", 
+      "name": "DAT_100f50e0"
+    }
+  ], 
+  "has_custom_name": false, 
+  "decompiled_c": "\nvoid FUN_100e878f(void)\n\n{\n  HMODULE hModule;\n  FARPROC pFVar1;\n  \n  hModule = GetModuleHandleA(\"KERNEL32\");\n  if (hModule != (HMODULE)0x0) {\n    pFVar1 = GetProcAddress(hModule,\"IsProcessorFeaturePresent\");\n    if (pFVar1 != (FARPROC)0x0) {\n      (*pFVar1)(0);\n      return;\n    }\n  }\n  FUN_100e8751();\n  return;\n}\n\n", 
+  "is_thunk": false, 
+  "name": "FUN_100e878f", 
+  "assembly": "  100e878f:  PUSH 0x10110484\n  100e8794:  CALL dword ptr [0x100f50d4]\n  100e879a:  TEST EAX,EAX\n  100e879c:  JZ 0x100e87b3\n  100e879e:  PUSH 0x10110468\n  100e87a3:  PUSH EAX\n  100e87a4:  CALL dword ptr [0x100f50e0]\n  100e87aa:  TEST EAX,EAX\n  100e87ac:  JZ 0x100e87b3\n  100e87ae:  PUSH 0x0\n  100e87b0:  CALL EAX\n  100e87b2:  RET\n  100e87b3:  JMP 0x100e8751", 
+  "callers": [
+    {
+      "address": "0x100e48d6", 
+      "name": "FUN_100e48d6"
+    }
+  ]
+}

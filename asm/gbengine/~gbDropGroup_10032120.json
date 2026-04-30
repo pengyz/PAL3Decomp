@@ -1,0 +1,33 @@
+{
+  "address": "0x10032120", 
+  "size_bytes": 43, 
+  "calling_convention": "__thiscall", 
+  "signature": "void __thiscall ~gbDropGroup(gbDropGroup * this)", 
+  "callees": [
+    {
+      "address": "0x1002f7f0", 
+      "name": "Release"
+    }, 
+    {
+      "address": "0x1002f7f0", 
+      "name": "Release"
+    }, 
+    {
+      "address": "0x100e4a24", 
+      "name": "FUN_100e4a24"
+    }
+  ], 
+  "global_refs": [
+    {
+      "address": "0x100f5b44", 
+      "type": "undefined *", 
+      "name": "DAT_100f5b44"
+    }
+  ], 
+  "has_custom_name": true, 
+  "decompiled_c": "\n/* public: virtual __thiscall gbDropGroup::~gbDropGroup(void) */\n\nvoid __thiscall gbDropGroup::~gbDropGroup(gbDropGroup *this)\n\n{\n                    /* 0x32120  135  ??1gbDropGroup@@UAE@XZ\n                       0x32120  153  ??1gbRain@@UAE@XZ\n                       0x32120  159  ??1gbSnow@@UAE@XZ */\n  *(undefined ***)this = &_vftable_;\n  gbRefObject::Release(*(gbRefObject **)(this + 0x4c));\n  if (*(gbRefObject **)(this + 0x48) != (gbRefObject *)0x0) {\n    gbRefObject::Release(*(gbRefObject **)(this + 0x48));\n  }\n  FUN_100e4a24(*(undefined4 *)(this + 0x44));\n  return;\n}\n\n", 
+  "is_thunk": false, 
+  "name": "~gbDropGroup", 
+  "assembly": "  10032120:  PUSH ESI\n  10032121:  MOV ESI,ECX\n  10032123:  MOV ECX,dword ptr [ESI + 0x4c]\n  10032126:  MOV dword ptr [ESI],0x100f5b44\n  1003212c:  CALL 0x1002f7f0\n  10032131:  MOV ECX,dword ptr [ESI + 0x48]\n  10032134:  TEST ECX,ECX\n  10032136:  JZ 0x1003213d\n  10032138:  CALL 0x1002f7f0\n  1003213d:  MOV EAX,dword ptr [ESI + 0x44]\n  10032140:  PUSH EAX\n  10032141:  CALL 0x100e4a24\n  10032146:  ADD ESP,0x4\n  10032149:  POP ESI\n  1003214a:  RET", 
+  "callers": []
+}

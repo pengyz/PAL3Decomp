@@ -1,0 +1,20 @@
+{
+  "address": "0x10004260", 
+  "size_bytes": 11, 
+  "calling_convention": "__thiscall", 
+  "signature": "float * __thiscall GetUV(gbDynVertBuf * this, int param_1)", 
+  "callees": [], 
+  "global_refs": [
+    {
+      "address": "0x00000004", 
+      "type": null, 
+      "name": "DAT_00000004"
+    }
+  ], 
+  "has_custom_name": true, 
+  "decompiled_c": "\n/* public: float * __thiscall gbDynVertBuf::GetUV(int) */\n\nfloat * __thiscall gbDynVertBuf::GetUV(gbDynVertBuf *this,int param_1)\n\n{\n                    /* 0x4260  560  ?GetUV@gbDynVertBuf@@QAEPAMH@Z */\n  return *(float **)(this + param_1 * 4 + 0x2c);\n}\n\n", 
+  "is_thunk": false, 
+  "name": "GetUV", 
+  "assembly": "  10004260:  MOV EAX,dword ptr [ESP + 0x4]\n  10004264:  MOV EAX,dword ptr [ECX + EAX*0x4 + 0x2c]\n  10004268:  RET 0x4", 
+  "callers": []
+}

@@ -1,0 +1,34 @@
+{
+  "address": "0x10019b70", 
+  "size_bytes": 232, 
+  "calling_convention": "unknown", 
+  "signature": "undefined FUN_10019b70(void)", 
+  "callees": [
+    {
+      "address": "0x100172f0", 
+      "name": "FUN_100172f0"
+    }, 
+    {
+      "address": "0x1001ad80", 
+      "name": "FUN_1001ad80"
+    }
+  ], 
+  "global_refs": [
+    {
+      "address": "0x10019b00", 
+      "type": null, 
+      "name": "DAT_10019b00"
+    }
+  ], 
+  "has_custom_name": false, 
+  "decompiled_c": "\nundefined4 FUN_10019b70(void)\n\n{\n  int iVar1;\n  undefined4 uVar2;\n  int in_ECX;\n  \n  *(undefined4 *)(in_ECX + 0x5f0) = *(undefined4 *)(in_ECX + 0x714);\n  if (*(int *)(in_ECX + 0x2c) == 0) {\n    if (*(int *)(in_ECX + 0x1c) == 0x10) {\n      *(undefined4 *)(in_ECX + 0x604) = 5;\n    }\n    else {\n      *(undefined4 *)(in_ECX + 0x604) = 8;\n    }\n    *(undefined4 *)(in_ECX + 0x60c) = 0x10;\n    *(undefined4 *)(in_ECX + 0x608) = 0;\n    *(undefined4 *)(in_ECX + 0x610) = 0;\n    *(undefined *)(in_ECX + 0x614) = 1;\n    *(undefined *)(in_ECX + 0x616) = 1;\n  }\n  else {\n    *(undefined4 *)(in_ECX + 0x5fc) = *(undefined4 *)(in_ECX + 0x14);\n    *(undefined4 *)(in_ECX + 0x600) = *(undefined4 *)(in_ECX + 0x18);\n    if (*(int *)(in_ECX + 0x1c) == 0x10) {\n      *(undefined4 *)(in_ECX + 0x604) = 5;\n    }\n    else {\n      *(undefined4 *)(in_ECX + 0x604) = 8;\n    }\n    *(undefined4 *)(in_ECX + 0x608) = 0;\n    *(undefined4 *)(in_ECX + 0x60c) = 0x10;\n    *(undefined4 *)(in_ECX + 0x610) = 0;\n    *(undefined *)(in_ECX + 0x614) = 1;\n  }\n  *(undefined **)(in_ECX + 0x5f8) = &LAB_10019b00;\n  iVar1 = FUN_100172f0();\n  if (iVar1 < 0) {\n    (**(code **)(**(int **)(in_ECX + 0x714) + 8))(*(int **)(in_ECX + 0x714));\n    *(undefined4 *)(in_ECX + 0x714) = 0;\n    uVar2 = FUN_1001ad80(iVar1,2);\n    return uVar2;\n  }\n  return 0;\n}\n\n", 
+  "is_thunk": false, 
+  "name": "FUN_10019b70", 
+  "assembly": "  10019b70:  PUSH EBX\n  10019b71:  PUSH ESI\n  10019b72:  MOV ESI,ECX\n  10019b74:  XOR EBX,EBX\n  10019b76:  PUSH EDI\n  10019b77:  MOV EAX,dword ptr [ESI + 0x714]\n  10019b7d:  LEA ECX,[ESI + 0x5f0]\n  10019b83:  MOV dword ptr [ECX],EAX\n  10019b85:  MOV EAX,dword ptr [ESI + 0x2c]\n  10019b88:  CMP EAX,EBX\n  10019b8a:  JZ 0x10019bdb\n  10019b8c:  MOV EDX,dword ptr [ESI + 0x14]\n  10019b8f:  MOV EAX,dword ptr [ESI + 0x18]\n  10019b92:  MOV dword ptr [ESI + 0x5fc],EDX\n  10019b98:  MOV EDX,dword ptr [ESI + 0x1c]\n  10019b9b:  MOV dword ptr [ESI + 0x600],EAX\n  10019ba1:  MOV EAX,0x10\n  10019ba6:  CMP EDX,EAX\n  10019ba8:  JNZ 0x10019bb6\n  10019baa:  MOV dword ptr [ESI + 0x604],0x5\n  10019bb4:  JMP 0x10019bc0\n  10019bb6:  MOV dword ptr [ESI + 0x604],0x8\n  10019bc0:  MOV dword ptr [ESI + 0x608],EBX\n  10019bc6:  MOV dword ptr [ESI + 0x60c],EAX\n  10019bcc:  MOV dword ptr [ESI + 0x610],EBX\n  10019bd2:  MOV byte ptr [ESI + 0x614],0x1\n  10019bd9:  JMP 0x10019c1d\n  10019bdb:  MOV EDX,dword ptr [ESI + 0x1c]\n  10019bde:  MOV EAX,0x10\n  10019be3:  CMP EDX,EAX\n  10019be5:  JNZ 0x10019bf3\n  10019be7:  MOV dword ptr [ESI + 0x604],0x5\n  10019bf1:  JMP 0x10019bfd\n  10019bf3:  MOV dword ptr [ESI + 0x604],0x8\n  10019bfd:  MOV dword ptr [ESI + 0x60c],EAX\n  10019c03:  MOV AL,0x1\n  10019c05:  MOV dword ptr [ESI + 0x608],EBX\n  10019c0b:  MOV dword ptr [ESI + 0x610],EBX\n  10019c11:  MOV byte ptr [ESI + 0x614],AL\n  10019c17:  MOV byte ptr [ESI + 0x616],AL\n  10019c1d:  MOV dword ptr [ESI + 0x5f8],0x10019b00\n  10019c27:  CALL 0x100172f0\n  10019c2c:  MOV EDI,EAX\n  10019c2e:  CMP EDI,EBX\n  10019c30:  JGE 0x10019c52\n  10019c32:  MOV EAX,dword ptr [ESI + 0x714]\n  10019c38:  PUSH EAX\n  10019c39:  MOV ECX,dword ptr [EAX]\n  10019c3b:  CALL dword ptr [ECX + 0x8]\n  10019c3e:  PUSH 0x2\n  10019c40:  PUSH EDI\n  10019c41:  MOV ECX,ESI\n  10019c43:  MOV dword ptr [ESI + 0x714],EBX\n  10019c49:  CALL 0x1001ad80\n  10019c4e:  POP EDI\n  10019c4f:  POP ESI\n  10019c50:  POP EBX\n  10019c51:  RET\n  10019c52:  POP EDI\n  10019c53:  POP ESI\n  10019c54:  XOR EAX,EAX\n  10019c56:  POP EBX\n  10019c57:  RET", 
+  "callers": [
+    {
+      "address": "0x10019920", 
+      "name": "FUN_10019920"
+    }
+  ]
+}

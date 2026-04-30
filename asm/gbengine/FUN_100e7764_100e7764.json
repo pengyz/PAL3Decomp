@@ -1,0 +1,30 @@
+{
+  "address": "0x100e7764", 
+  "size_bytes": 31, 
+  "calling_convention": "unknown", 
+  "signature": "undefined FUN_100e7764(void)", 
+  "callees": [], 
+  "global_refs": [
+    {
+      "address": "0xffdff000", 
+      "type": "void *32", 
+      "name": "DAT_ffdff000"
+    }, 
+    {
+      "address": "0x00000000", 
+      "type": null, 
+      "name": "DAT_00000000"
+    }
+  ], 
+  "has_custom_name": false, 
+  "decompiled_c": "\nvoid FUN_100e7764(void)\n\n{\n  undefined auStack_c [12];\n  \n  ExceptionList = auStack_c;\n  return;\n}\n\n", 
+  "is_thunk": false, 
+  "name": "FUN_100e7764", 
+  "assembly": "  100e7764:  PUSH -0x1\n  100e7766:  PUSH EAX\n  100e7767:  MOV EAX,FS:[0x0]\n  100e776d:  PUSH EAX\n  100e776e:  MOV EAX,dword ptr [ESP + 0xc]\n  100e7772:  MOV dword ptr FS:[0x0],ESP\n  100e7779:  MOV dword ptr [ESP + 0xc],EBP\n  100e777d:  LEA EBP,[ESP + 0xc]\n  100e7781:  PUSH EAX\n  100e7782:  RET", 
+  "callers": [
+    {
+      "address": "0x10077095", 
+      "name": "FUN_10077095"
+    }
+  ]
+}

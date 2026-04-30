@@ -1,0 +1,65 @@
+{
+  "address": "0x100e84fc", 
+  "size_bytes": 84, 
+  "calling_convention": "unknown", 
+  "signature": "undefined FUN_100e84fc(void)", 
+  "callees": [
+    {
+      "address": "0x100e8caa", 
+      "name": "FUN_100e8caa"
+    }, 
+    {
+      "address": "0x00000059", 
+      "name": "TlsAlloc"
+    }, 
+    {
+      "address": "0x100f1263", 
+      "name": "FUN_100f1263"
+    }, 
+    {
+      "address": "0x0000005a", 
+      "name": "TlsSetValue"
+    }, 
+    {
+      "address": "0x100e856e", 
+      "name": "FUN_100e856e"
+    }, 
+    {
+      "address": "0x0000005b", 
+      "name": "GetCurrentThreadId"
+    }
+  ], 
+  "global_refs": [
+    {
+      "address": "0x100f5190", 
+      "type": "pointer", 
+      "name": "DAT_100f5190"
+    }, 
+    {
+      "address": "0x1012a020", 
+      "type": "undefined4", 
+      "name": "DAT_1012a020"
+    }, 
+    {
+      "address": "0x100f5194", 
+      "type": "pointer", 
+      "name": "DAT_100f5194"
+    }, 
+    {
+      "address": "0x100f5198", 
+      "type": "pointer", 
+      "name": "DAT_100f5198"
+    }
+  ], 
+  "has_custom_name": false, 
+  "decompiled_c": "\nundefined4 FUN_100e84fc(void)\n\n{\n  DWORD *lpTlsValue;\n  BOOL BVar1;\n  DWORD DVar2;\n  \n  FUN_100e8caa();\n  DAT_1012a020 = TlsAlloc();\n  if (DAT_1012a020 != 0xffffffff) {\n    lpTlsValue = (DWORD *)FUN_100f1263(1,0x74);\n    if (lpTlsValue != (DWORD *)0x0) {\n      BVar1 = TlsSetValue(DAT_1012a020,lpTlsValue);\n      if (BVar1 != 0) {\n        FUN_100e856e(lpTlsValue);\n        DVar2 = GetCurrentThreadId();\n        lpTlsValue[1] = 0xffffffff;\n        *lpTlsValue = DVar2;\n        return 1;\n      }\n    }\n  }\n  return 0;\n}\n\n", 
+  "is_thunk": false, 
+  "name": "FUN_100e84fc", 
+  "assembly": "  100e84fc:  PUSH ESI\n  100e84fd:  CALL 0x100e8caa\n  100e8502:  CALL dword ptr [0x100f5190]\n  100e8508:  CMP EAX,-0x1\n  100e850b:  MOV [0x1012a020],EAX\n  100e8510:  JZ 0x100e854c\n  100e8512:  PUSH 0x74\n  100e8514:  PUSH 0x1\n  100e8516:  CALL 0x100f1263\n  100e851b:  MOV ESI,EAX\n  100e851d:  POP ECX\n  100e851e:  TEST ESI,ESI\n  100e8520:  POP ECX\n  100e8521:  JZ 0x100e854c\n  100e8523:  PUSH ESI\n  100e8524:  PUSH dword ptr [0x1012a020]\n  100e852a:  CALL dword ptr [0x100f5194]\n  100e8530:  TEST EAX,EAX\n  100e8532:  JZ 0x100e854c\n  100e8534:  PUSH ESI\n  100e8535:  CALL 0x100e856e\n  100e853a:  POP ECX\n  100e853b:  CALL dword ptr [0x100f5198]\n  100e8541:  OR dword ptr [ESI + 0x4],0xffffffff\n  100e8545:  PUSH 0x1\n  100e8547:  MOV dword ptr [ESI],EAX\n  100e8549:  POP EAX\n  100e854a:  POP ESI\n  100e854b:  RET\n  100e854c:  XOR EAX,EAX\n  100e854e:  POP ESI\n  100e854f:  RET", 
+  "callers": [
+    {
+      "address": "0x100e63ff", 
+      "name": "FUN_100e63ff"
+    }
+  ]
+}

@@ -1,0 +1,20 @@
+{
+  "address": "0x10078210", 
+  "size_bytes": 146, 
+  "calling_convention": "unknown", 
+  "signature": "undefined FUN_10078210(undefined4 param_1)", 
+  "callees": [], 
+  "global_refs": [
+    {
+      "address": "0x00000004", 
+      "type": null, 
+      "name": "DAT_00000004"
+    }
+  ], 
+  "has_custom_name": false, 
+  "decompiled_c": "\nundefined4 FUN_10078210(int *param_1)\n\n{\n  byte bVar1;\n  byte bVar2;\n  undefined4 *puVar3;\n  int iVar4;\n  int iVar5;\n  int iVar6;\n  int unaff_EBX;\n  byte *pbVar7;\n  \n  puVar3 = (undefined4 *)param_1[6];\n  iVar6 = puVar3[1];\n  pbVar7 = (byte *)*puVar3;\n  if (iVar6 == 0) {\n    iVar6 = (*(code *)puVar3[3])(param_1);\n    if (iVar6 == 0) {\n      return 0;\n    }\n    pbVar7 = (byte *)*puVar3;\n    iVar6 = puVar3[1];\n  }\n  bVar1 = *pbVar7;\n  iVar6 = iVar6 + -1;\n  pbVar7 = pbVar7 + 1;\n  if (iVar6 == 0) {\n    iVar6 = (*(code *)puVar3[3])(param_1);\n    if (iVar6 == 0) {\n      return 0;\n    }\n    pbVar7 = (byte *)*puVar3;\n    iVar6 = puVar3[1];\n  }\n  bVar2 = *pbVar7;\n  iVar4 = *param_1;\n  iVar5 = param_1[0x69];\n  *(undefined4 *)(iVar4 + 0x14) = 0x5b;\n  *(int *)(iVar4 + 0x18) = iVar5;\n  *(uint *)(iVar4 + 0x1c) = (uint)bVar1 * 0x100 + -2 + (uint)bVar2;\n  (**(code **)(iVar4 + 4))(param_1,1);\n  *puVar3 = pbVar7 + 1;\n  puVar3[1] = iVar6 + -1;\n  if (0 < unaff_EBX) {\n    (**(code **)(param_1[6] + 0x10))(param_1,unaff_EBX);\n  }\n  return 1;\n}\n\n", 
+  "is_thunk": false, 
+  "name": "FUN_10078210", 
+  "assembly": "  10078210:  PUSH EBX\n  10078211:  MOV EBX,dword ptr [ESP + 0x8]\n  10078215:  PUSH EBP\n  10078216:  PUSH ESI\n  10078217:  MOV ESI,dword ptr [EBX + 0x18]\n  1007821a:  MOV EBP,dword ptr [ESI + 0x4]\n  1007821d:  TEST EBP,EBP\n  1007821f:  PUSH EDI\n  10078220:  MOV EDI,dword ptr [ESI]\n  10078222:  JNZ 0x10078231\n  10078224:  PUSH EBX\n  10078225:  CALL dword ptr [ESI + 0xc]\n  10078228:  TEST EAX,EAX\n  1007822a:  JZ 0x10078247\n  1007822c:  MOV EDI,dword ptr [ESI]\n  1007822e:  MOV EBP,dword ptr [ESI + 0x4]\n  10078231:  XOR EAX,EAX\n  10078233:  MOV AH,byte ptr [EDI]\n  10078235:  DEC EBP\n  10078236:  INC EDI\n  10078237:  TEST EBP,EBP\n  10078239:  MOV dword ptr [ESP + 0x14],EAX\n  1007823d:  JNZ 0x10078255\n  1007823f:  PUSH EBX\n  10078240:  CALL dword ptr [ESI + 0xc]\n  10078243:  TEST EAX,EAX\n  10078245:  JNZ 0x10078250\n  10078247:  POP EDI\n  10078248:  POP ESI\n  10078249:  POP EBP\n  1007824a:  XOR EAX,EAX\n  1007824c:  POP EBX\n  1007824d:  RET 0x4\n  10078250:  MOV EDI,dword ptr [ESI]\n  10078252:  MOV EBP,dword ptr [ESI + 0x4]\n  10078255:  MOVZX ECX,byte ptr [EDI]\n  10078258:  MOV EDX,dword ptr [ESP + 0x14]\n  1007825c:  MOV EAX,dword ptr [EBX]\n  1007825e:  LEA ECX,[EDX + ECX*0x1 + -0x2]\n  10078262:  MOV EDX,dword ptr [EBX + 0x1a4]\n  10078268:  MOV dword ptr [EAX + 0x14],0x5b\n  1007826f:  PUSH 0x1\n  10078271:  MOV dword ptr [EAX + 0x18],EDX\n  10078274:  PUSH EBX\n  10078275:  MOV dword ptr [ESP + 0x1c],ECX\n  10078279:  MOV dword ptr [EAX + 0x1c],ECX\n  1007827c:  CALL dword ptr [EAX + 0x4]\n  1007827f:  MOV EAX,dword ptr [ESP + 0x14]\n  10078283:  INC EDI\n  10078284:  DEC EBP\n  10078285:  TEST EAX,EAX\n  10078287:  MOV dword ptr [ESI],EDI\n  10078289:  MOV dword ptr [ESI + 0x4],EBP\n  1007828c:  JLE 0x10078296\n  1007828e:  MOV ECX,dword ptr [EBX + 0x18]\n  10078291:  PUSH EAX\n  10078292:  PUSH EBX\n  10078293:  CALL dword ptr [ECX + 0x10]\n  10078296:  POP EDI\n  10078297:  POP ESI\n  10078298:  POP EBP\n  10078299:  MOV EAX,0x1\n  1007829e:  POP EBX\n  1007829f:  RET 0x4", 
+  "callers": []
+}

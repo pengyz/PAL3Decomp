@@ -1,0 +1,32 @@
+{
+  "address": "0x100f12f0", 
+  "size_bytes": 23, 
+  "calling_convention": "unknown", 
+  "signature": "undefined FUN_100f12f0(void)", 
+  "callees": [
+    {
+      "address": "0x100ed6fe", 
+      "name": "FUN_100ed6fe"
+    }, 
+    {
+      "address": "0x100ed851", 
+      "name": "FUN_100ed851"
+    }, 
+    {
+      "address": "0x100e77c1", 
+      "name": "__exit"
+    }
+  ], 
+  "global_refs": [], 
+  "has_custom_name": false, 
+  "decompiled_c": "\nvoid FUN_100f12f0(void)\n\n{\n  FUN_100ed6fe(10);\n  FUN_100ed851(0x16);\n                    /* WARNING: Subroutine does not return */\n  __exit(3);\n}\n\n", 
+  "is_thunk": false, 
+  "name": "FUN_100f12f0", 
+  "assembly": "  100f12f0:  PUSH 0xa\n  100f12f2:  CALL 0x100ed6fe\n  100f12f7:  PUSH 0x16\n  100f12f9:  CALL 0x100ed851\n  100f12fe:  POP ECX\n  100f12ff:  POP ECX\n  100f1300:  PUSH 0x3\n  100f1302:  CALL 0x100e77c1", 
+  "callers": [
+    {
+      "address": "0x100e8688", 
+      "name": "FUN_100e8688"
+    }
+  ]
+}

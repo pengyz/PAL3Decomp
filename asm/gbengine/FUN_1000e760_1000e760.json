@@ -1,0 +1,79 @@
+{
+  "address": "0x1000e760", 
+  "size_bytes": 243, 
+  "calling_convention": "unknown", 
+  "signature": "undefined FUN_1000e760(undefined4 param_1)", 
+  "callees": [
+    {
+      "address": "0x10001f20", 
+      "name": "gbVec3D"
+    }, 
+    {
+      "address": "0x10001f40", 
+      "name": "operator="
+    }, 
+    {
+      "address": "0x10030540", 
+      "name": "OpenFile"
+    }, 
+    {
+      "address": "0x10030dc0", 
+      "name": "ReadLine"
+    }, 
+    {
+      "address": "0x1000df20", 
+      "name": "FUN_1000df20"
+    }, 
+    {
+      "address": "0x10030dc0", 
+      "name": "ReadLine"
+    }, 
+    {
+      "address": "0x100307a0", 
+      "name": "CloseFile"
+    }
+  ], 
+  "global_refs": [
+    {
+      "address": "0x-000010c", 
+      "type": null, 
+      "name": "DAT_-000010c"
+    }, 
+    {
+      "address": "0x00000004", 
+      "type": null, 
+      "name": "DAT_00000004"
+    }, 
+    {
+      "address": "0x1015d3a8", 
+      "type": "gbVFileSystem *", 
+      "name": "DAT_1015d3a8"
+    }, 
+    {
+      "address": "0x10137bb4", 
+      "type": "undefined4", 
+      "name": "DAT_10137bb4"
+    }, 
+    {
+      "address": "0x-0000100", 
+      "type": null, 
+      "name": "DAT_-0000100"
+    }, 
+    {
+      "address": "0x-00000ff", 
+      "type": null, 
+      "name": "DAT_-00000ff"
+    }
+  ], 
+  "has_custom_name": false, 
+  "decompiled_c": "\nbool FUN_1000e760(char *param_1)\n\n{\n  gbVec3D *pgVar1;\n  gbVFile *pgVar2;\n  char *pcVar3;\n  int *in_ECX;\n  gbVec3D local_10c [12];\n  char local_100;\n  char local_ff;\n  \n  in_ECX[0x13] = 0x3f800000;\n  in_ECX[0x14] = 0;\n  in_ECX[0x15] = 0;\n  in_ECX[0x16] = 0;\n  in_ECX[0x17] = 0;\n  in_ECX[0x18] = 0;\n  in_ECX[0x19] = 0;\n  pgVar1 = (gbVec3D *)gbVec3D::gbVec3D(local_10c,0.0,0.0,0.0);\n  gbVec3D::operator=((gbVec3D *)(in_ECX + 0x1a),pgVar1);\n  in_ECX[0x1e] = 0;\n  in_ECX[0x20] = 0;\n  in_ECX[0x1d] = 0;\n  in_ECX[0x1f] = 0;\n  in_ECX[0x21] = 0;\n  pgVar2 = gbVFileSystem::OpenFile(g_pVFileSys,param_1,0x401);\n  *in_ECX = DAT_10137bb4;\n  in_ECX[2] = DAT_10137bb4;\n  pcVar3 = gbVFileSystem::ReadLine(g_pVFileSys,&local_100,0x100,pgVar2);\n  while (pcVar3 != (char *)0x0) {\n    if (('`' < local_100) && (local_ff < '{')) {\n      FUN_1000df20(&local_100);\n    }\n    pcVar3 = gbVFileSystem::ReadLine(g_pVFileSys,&local_100,0x100,pgVar2);\n  }\n  in_ECX[1] = DAT_10137bb4;\n  gbVFileSystem::CloseFile(g_pVFileSys,pgVar2);\n  return in_ECX[1] != *in_ECX;\n}\n\n", 
+  "is_thunk": false, 
+  "name": "FUN_1000e760", 
+  "assembly": "  1000e760:  SUB ESP,0x10c\n  1000e766:  PUSH ESI\n  1000e767:  PUSH EDI\n  1000e768:  MOV ESI,ECX\n  1000e76a:  XOR EDI,EDI\n  1000e76c:  PUSH EDI\n  1000e76d:  PUSH EDI\n  1000e76e:  MOV dword ptr [ESI + 0x4c],0x3f800000\n  1000e775:  MOV dword ptr [ESI + 0x50],EDI\n  1000e778:  MOV dword ptr [ESI + 0x54],EDI\n  1000e77b:  MOV dword ptr [ESI + 0x58],EDI\n  1000e77e:  PUSH EDI\n  1000e77f:  LEA ECX,[ESP + 0x14]\n  1000e783:  MOV dword ptr [ESI + 0x5c],EDI\n  1000e786:  MOV dword ptr [ESI + 0x60],EDI\n  1000e789:  MOV dword ptr [ESI + 0x64],EDI\n  1000e78c:  CALL 0x10001f20\n  1000e791:  PUSH EAX\n  1000e792:  LEA ECX,[ESI + 0x68]\n  1000e795:  CALL 0x10001f40\n  1000e79a:  MOV EAX,dword ptr [ESP + 0x118]\n  1000e7a1:  MOV dword ptr [ESI + 0x78],EDI\n  1000e7a4:  MOV dword ptr [ESI + 0x80],EDI\n  1000e7aa:  MOV dword ptr [ESI + 0x74],EDI\n  1000e7ad:  MOV dword ptr [ESI + 0x7c],EDI\n  1000e7b0:  MOV dword ptr [ESI + 0x84],EDI\n  1000e7b6:  MOV ECX,dword ptr [0x1015d3a8]\n  1000e7bc:  PUSH 0x401\n  1000e7c1:  PUSH EAX\n  1000e7c2:  CALL 0x10030540\n  1000e7c7:  MOV ECX,dword ptr [0x10137bb4]\n  1000e7cd:  MOV EDI,EAX\n  1000e7cf:  MOV dword ptr [ESI],ECX\n  1000e7d1:  MOV EDX,dword ptr [0x10137bb4]\n  1000e7d7:  PUSH EDI\n  1000e7d8:  LEA EAX,[ESP + 0x18]\n  1000e7dc:  MOV dword ptr [ESI + 0x8],EDX\n  1000e7df:  MOV ECX,dword ptr [0x1015d3a8]\n  1000e7e5:  PUSH 0x100\n  1000e7ea:  PUSH EAX\n  1000e7eb:  CALL 0x10030dc0\n  1000e7f0:  TEST EAX,EAX\n  1000e7f2:  JZ 0x1000e828\n  1000e7f4:  CMP byte ptr [ESP + 0x14],0x61\n  1000e7f9:  JL 0x1000e80e\n  1000e7fb:  CMP byte ptr [ESP + 0x15],0x7a\n  1000e800:  JG 0x1000e80e\n  1000e802:  LEA ECX,[ESP + 0x14]\n  1000e806:  PUSH ECX\n  1000e807:  MOV ECX,ESI\n  1000e809:  CALL 0x1000df20\n  1000e80e:  MOV ECX,dword ptr [0x1015d3a8]\n  1000e814:  PUSH EDI\n  1000e815:  LEA EDX,[ESP + 0x18]\n  1000e819:  PUSH 0x100\n  1000e81e:  PUSH EDX\n  1000e81f:  CALL 0x10030dc0\n  1000e824:  TEST EAX,EAX\n  1000e826:  JNZ 0x1000e7f4\n  1000e828:  MOV EAX,[0x10137bb4]\n  1000e82d:  PUSH EDI\n  1000e82e:  MOV dword ptr [ESI + 0x4],EAX\n  1000e831:  MOV ECX,dword ptr [0x1015d3a8]\n  1000e837:  CALL 0x100307a0\n  1000e83c:  MOV ECX,dword ptr [ESI + 0x4]\n  1000e83f:  MOV EDX,dword ptr [ESI]\n  1000e841:  XOR EAX,EAX\n  1000e843:  CMP ECX,EDX\n  1000e845:  POP EDI\n  1000e846:  POP ESI\n  1000e847:  SETNZ AL\n  1000e84a:  ADD ESP,0x10c\n  1000e850:  RET 0x4", 
+  "callers": [
+    {
+      "address": "0x100108b0", 
+      "name": "LoadCVDFile"
+    }
+  ]
+}

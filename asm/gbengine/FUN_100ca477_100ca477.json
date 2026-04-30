@@ -1,0 +1,28 @@
+{
+  "address": "0x100ca477", 
+  "size_bytes": 40, 
+  "calling_convention": "unknown", 
+  "signature": "undefined FUN_100ca477(void)", 
+  "callees": [
+    {
+      "address": "0x100c94b8", 
+      "name": "FUN_100c94b8"
+    }, 
+    {
+      "address": "0x100c407a", 
+      "name": "FUN_100c407a"
+    }
+  ], 
+  "global_refs": [], 
+  "has_custom_name": false, 
+  "decompiled_c": "\nint FUN_100ca477(void)\n\n{\n  int iVar1;\n  int *in_ECX;\n  \n  iVar1 = FUN_100c94b8(0x2a);\n  if (-1 < iVar1) {\n    iVar1 = (**(code **)(*in_ECX + 0x4c))();\n    if (-1 < iVar1) {\n      iVar1 = FUN_100c407a();\n      if (-1 < iVar1) {\n        iVar1 = 0;\n      }\n    }\n  }\n  return iVar1;\n}\n\n", 
+  "is_thunk": false, 
+  "name": "FUN_100ca477", 
+  "assembly": "  100ca477:  PUSH ESI\n  100ca478:  PUSH 0x2a\n  100ca47a:  MOV ESI,ECX\n  100ca47c:  CALL 0x100c94b8\n  100ca481:  TEST EAX,EAX\n  100ca483:  JL 0x100ca49d\n  100ca485:  MOV EAX,dword ptr [ESI]\n  100ca487:  MOV ECX,ESI\n  100ca489:  CALL dword ptr [EAX + 0x4c]\n  100ca48c:  TEST EAX,EAX\n  100ca48e:  JL 0x100ca49d\n  100ca490:  MOV ECX,ESI\n  100ca492:  CALL 0x100c407a\n  100ca497:  TEST EAX,EAX\n  100ca499:  JL 0x100ca49d\n  100ca49b:  XOR EAX,EAX\n  100ca49d:  POP ESI\n  100ca49e:  RET", 
+  "callers": [
+    {
+      "address": "0x100bb13b", 
+      "name": "FUN_100bb13b"
+    }
+  ]
+}

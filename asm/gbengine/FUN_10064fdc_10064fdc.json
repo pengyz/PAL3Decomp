@@ -1,0 +1,37 @@
+{
+  "address": "0x10064fdc", 
+  "size_bytes": 69, 
+  "calling_convention": "unknown", 
+  "signature": "undefined FUN_10064fdc(undefined4 param_1)", 
+  "callees": [], 
+  "global_refs": [
+    {
+      "address": "0x00000004", 
+      "type": null, 
+      "name": "DAT_00000004"
+    }
+  ], 
+  "has_custom_name": false, 
+  "decompiled_c": "\nuint FUN_10064fdc(int param_1)\n\n{\n  uint uVar1;\n  int iVar2;\n  uint uVar3;\n  int in_ECX;\n  uint uVar4;\n  \n  iVar2 = *(int *)(in_ECX + 0x20);\n  uVar1 = *(int *)(in_ECX + 0x1c) + iVar2;\n  uVar3 = -(uint)(uVar1 < (uint)(iVar2 + 4 + param_1)) & 0x80004005;\n  if ((-1 < (int)uVar3) && (*(int *)(iVar2 + param_1) != 0)) {\n    uVar4 = iVar2 + *(int *)(iVar2 + param_1) + param_1 + 4;\n    uVar3 = -(uint)(uVar1 < uVar4) & 0x80004005;\n    if ((-1 < (int)uVar3) && (*(char *)(uVar4 - 1) != '\\0')) {\n      uVar3 = 0x80004005;\n    }\n  }\n  return uVar3;\n}\n\n", 
+  "is_thunk": false, 
+  "name": "FUN_10064fdc", 
+  "assembly": "  10064fdc:  MOV EDX,dword ptr [ECX + 0x20]\n  10064fdf:  MOV EAX,dword ptr [ECX + 0x1c]\n  10064fe2:  PUSH EBX\n  10064fe3:  LEA EBX,[EAX + EDX*0x1]\n  10064fe6:  PUSH ESI\n  10064fe7:  MOV ESI,dword ptr [ESP + 0xc]\n  10064feb:  LEA EAX,[EDX + ESI*0x1 + 0x4]\n  10064fef:  CMP EBX,EAX\n  10064ff1:  SBB EAX,EAX\n  10064ff3:  MOV ECX,0x80004005\n  10064ff8:  AND EAX,ECX\n  10064ffa:  JL 0x1006501c\n  10064ffc:  PUSH EDI\n  10064ffd:  MOV EDI,dword ptr [EDX + ESI*0x1]\n  10065000:  TEST EDI,EDI\n  10065002:  JZ 0x1006501b\n  10065004:  ADD ESI,0x4\n  10065007:  ADD EDX,EDI\n  10065009:  ADD EDX,ESI\n  1006500b:  CMP EBX,EDX\n  1006500d:  SBB EAX,EAX\n  1006500f:  AND EAX,ECX\n  10065011:  JL 0x1006501b\n  10065013:  CMP byte ptr [EDX + -0x1],0x0\n  10065017:  JZ 0x1006501b\n  10065019:  MOV EAX,ECX\n  1006501b:  POP EDI\n  1006501c:  POP ESI\n  1006501d:  POP EBX\n  1006501e:  RET 0x4", 
+  "callers": [
+    {
+      "address": "0x1006d13f", 
+      "name": "FUN_1006d13f"
+    }, 
+    {
+      "address": "0x10065021", 
+      "name": "FUN_10065021"
+    }, 
+    {
+      "address": "0x10070791", 
+      "name": "FUN_10070791"
+    }, 
+    {
+      "address": "0x1006cd43", 
+      "name": "FUN_1006cd43"
+    }
+  ]
+}

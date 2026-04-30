@@ -1,0 +1,14 @@
+{
+  "address": "0x1000cd10", 
+  "size_bytes": 11, 
+  "calling_convention": "__thiscall", 
+  "signature": "int __thiscall IsDead(gbAnimNodeGroup * this)", 
+  "callees": [], 
+  "global_refs": [], 
+  "has_custom_name": true, 
+  "decompiled_c": "\n/* public: int __thiscall gbAnimNodeGroup::IsDead(void) */\n\nint __thiscall gbAnimNodeGroup::IsDead(gbAnimNodeGroup *this)\n\n{\n                    /* 0xcd10  631  ?IsDead@gbAnimNodeGroup@@QAEHXZ */\n  return (uint)(*(int *)(this + 0x2c) == 0);\n}\n\n", 
+  "is_thunk": false, 
+  "name": "IsDead", 
+  "assembly": "  1000cd10:  MOV EDX,dword ptr [ECX + 0x2c]\n  1000cd13:  XOR EAX,EAX\n  1000cd15:  TEST EDX,EDX\n  1000cd17:  SETZ AL\n  1000cd1a:  RET", 
+  "callers": []
+}

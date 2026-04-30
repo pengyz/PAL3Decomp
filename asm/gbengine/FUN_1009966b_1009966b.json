@@ -1,0 +1,38 @@
+{
+  "address": "0x1009966b", 
+  "size_bytes": 56, 
+  "calling_convention": "unknown", 
+  "signature": "undefined FUN_1009966b(void)", 
+  "callees": [], 
+  "global_refs": [
+    {
+      "address": "0x10000000", 
+      "type": "/DOS/IMAGE_DOS_HEADER\npack(disabled)\nStructure IMAGE_DOS_HEADER {\n   0   char[2]   2   e_magic   \"Magic number\"\n   2   word   2   e_cblp   \"Bytes of last page\"\n   4   word   2   e_cp   \"Pages in file\"\n   6   word   2   e_crlc   \"Relocations\"\n   8   word   2   e_cparhdr   \"Size of header in paragraphs\"\n   10   word   2   e_minalloc   \"Minimum extra paragraphs needed\"\n   12   word   2   e_maxalloc   \"Maximum extra paragraphs needed\"\n   14   word   2   e_ss   \"Initial (relative) SS value\"\n   16   word   2   e_sp   \"Initial SP value\"\n   18   word   2   e_csum   \"Checksum\"\n   20   word   2   e_ip   \"Initial IP value\"\n   22   word   2   e_cs   \"Initial (relative) CS value\"\n   24   word   2   e_lfarlc   \"File address of relocation table\"\n   26   word   2   e_ovno   \"Overlay number\"\n   28   word[4]   8   e_res[4]   \"Reserved words\"\n   36   word   2   e_oemid   \"OEM identifier (for e_oeminfo)\"\n   38   word   2   e_oeminfo   \"OEM information; e_oemid specific\"\n   40   word[10]   20   e_res2[10]   \"Reserved words\"\n   60   dword   4   e_lfanew   \"File address of new exe header\"\n   64   byte[64]   64   e_program   \"Actual DOS program\"\n}\nLength: 128 Alignment: 1\n", 
+      "name": "DAT_10000000"
+    }, 
+    {
+      "address": "0x10100000", 
+      "type": null, 
+      "name": "DAT_10100000"
+    }
+  ], 
+  "has_custom_name": false, 
+  "decompiled_c": "\nundefined4 FUN_1009966b(void)\n\n{\n  undefined *puVar1;\n  uint *in_ECX;\n  \n  puVar1 = (undefined *)(*in_ECX & 0xfff00000);\n  if ((((puVar1 != (undefined *)0x10000000) && (puVar1 != &DAT_10100000)) &&\n      (puVar1 != (undefined *)0x11200000)) &&\n     (((puVar1 != (undefined *)0x20700000 && (puVar1 != (undefined *)0x20800000)) &&\n      (puVar1 != (undefined *)0x20900000)))) {\n    return 0;\n  }\n  return 1;\n}\n\n", 
+  "is_thunk": false, 
+  "name": "FUN_1009966b", 
+  "assembly": "  1009966b:  MOV EAX,dword ptr [ECX]\n  1009966d:  AND EAX,0xfff00000\n  10099672:  CMP EAX,0x10000000\n  10099677:  JZ 0x1009969f\n  10099679:  CMP EAX,0x10100000\n  1009967e:  JZ 0x1009969f\n  10099680:  CMP EAX,0x11200000\n  10099685:  JZ 0x1009969f\n  10099687:  CMP EAX,0x20700000\n  1009968c:  JZ 0x1009969f\n  1009968e:  CMP EAX,0x20800000\n  10099693:  JZ 0x1009969f\n  10099695:  CMP EAX,0x20900000\n  1009969a:  JZ 0x1009969f\n  1009969c:  XOR EAX,EAX\n  1009969e:  RET\n  1009969f:  XOR EAX,EAX\n  100996a1:  INC EAX\n  100996a2:  RET", 
+  "callers": [
+    {
+      "address": "0x100a674a", 
+      "name": "FUN_100a674a"
+    }, 
+    {
+      "address": "0x100a6df8", 
+      "name": "FUN_100a6df8"
+    }, 
+    {
+      "address": "0x100bd746", 
+      "name": "FUN_100bd746"
+    }
+  ]
+}

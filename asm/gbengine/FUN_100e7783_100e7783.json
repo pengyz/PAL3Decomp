@@ -1,0 +1,58 @@
+{
+  "address": "0x100e7783", 
+  "size_bytes": 45, 
+  "calling_convention": "unknown", 
+  "signature": "undefined FUN_100e7783(void)", 
+  "callees": [
+    {
+      "address": "0x100e48d6", 
+      "name": "FUN_100e48d6"
+    }, 
+    {
+      "address": "0x100e7898", 
+      "name": "FUN_100e7898"
+    }, 
+    {
+      "address": "0x100e7898", 
+      "name": "FUN_100e7898"
+    }
+  ], 
+  "global_refs": [
+    {
+      "address": "0x10129df8", 
+      "type": "undefined *", 
+      "name": "DAT_10129df8"
+    }, 
+    {
+      "address": "0x1011f064", 
+      "type": null, 
+      "name": "DAT_1011f064"
+    }, 
+    {
+      "address": "0x1011f04c", 
+      "type": null, 
+      "name": "DAT_1011f04c"
+    }, 
+    {
+      "address": "0x1011f048", 
+      "type": null, 
+      "name": "DAT_1011f048"
+    }, 
+    {
+      "address": "0x1011f000", 
+      "type": null, 
+      "name": "DAT_1011f000"
+    }
+  ], 
+  "has_custom_name": false, 
+  "decompiled_c": "\nvoid FUN_100e7783(void)\n\n{\n  if (PTR_FUN_10129df8 != (undefined *)0x0) {\n    (*(code *)PTR_FUN_10129df8)();\n  }\n  FUN_100e7898(&DAT_1011f04c,&DAT_1011f064);\n  FUN_100e7898(&DAT_1011f000,&DAT_1011f048);\n  return;\n}\n\n", 
+  "is_thunk": false, 
+  "name": "FUN_100e7783", 
+  "assembly": "  100e7783:  MOV EAX,[0x10129df8]\n  100e7788:  TEST EAX,EAX\n  100e778a:  JZ 0x100e778e\n  100e778c:  CALL EAX\n  100e778e:  PUSH 0x1011f064\n  100e7793:  PUSH 0x1011f04c\n  100e7798:  CALL 0x100e7898\n  100e779d:  PUSH 0x1011f048\n  100e77a2:  PUSH 0x1011f000\n  100e77a7:  CALL 0x100e7898\n  100e77ac:  ADD ESP,0x10\n  100e77af:  RET", 
+  "callers": [
+    {
+      "address": "0x100e63ff", 
+      "name": "FUN_100e63ff"
+    }
+  ]
+}

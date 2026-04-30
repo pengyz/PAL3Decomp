@@ -1,0 +1,54 @@
+{
+  "address": "0x10022270", 
+  "size_bytes": 80, 
+  "calling_convention": "__thiscall", 
+  "signature": "void __thiscall PointWorldToScr(gbCamera * this, gbVec3D * param_1, float * param_2, float * param_3)", 
+  "callees": [
+    {
+      "address": "0x10025260", 
+      "name": "Transform"
+    }, 
+    {
+      "address": "0x100220b0", 
+      "name": "PointEyeToScr"
+    }
+  ], 
+  "global_refs": [
+    {
+      "address": "0x00000004", 
+      "type": null, 
+      "name": "DAT_00000004"
+    }, 
+    {
+      "address": "0x-000000c", 
+      "type": null, 
+      "name": "DAT_-000000c"
+    }, 
+    {
+      "address": "0x-0000008", 
+      "type": null, 
+      "name": "DAT_-0000008"
+    }, 
+    {
+      "address": "0x-0000004", 
+      "type": null, 
+      "name": "DAT_-0000004"
+    }, 
+    {
+      "address": "0x0000000c", 
+      "type": null, 
+      "name": "DAT_0000000c"
+    }, 
+    {
+      "address": "0x00000008", 
+      "type": null, 
+      "name": "DAT_00000008"
+    }
+  ], 
+  "has_custom_name": true, 
+  "decompiled_c": "\n/* public: void __thiscall gbCamera::PointWorldToScr(struct gbVec3D *,float &,float &) */\n\nvoid __thiscall\ngbCamera::PointWorldToScr(gbCamera *this,gbVec3D *param_1,float *param_2,float *param_3)\n\n{\n  undefined4 local_c;\n  undefined4 local_8;\n  undefined4 local_4;\n  \n                    /* 0x22270  743  ?PointWorldToScr@gbCamera@@QAEXPAUgbVec3D@@AAM1@Z */\n  local_c = 0;\n  local_8 = 0;\n  local_4 = 0;\n  gbMatrix4::Transform((gbMatrix4 *)(this + 0x94),param_1,(gbVec3D *)&local_c);\n  PointEyeToScr(this,(gbVec3D *)&local_c,param_2,param_3);\n  return;\n}\n\n", 
+  "is_thunk": false, 
+  "name": "PointWorldToScr", 
+  "assembly": "  10022270:  SUB ESP,0xc\n  10022273:  PUSH ESI\n  10022274:  MOV ESI,ECX\n  10022276:  MOV ECX,dword ptr [ESP + 0x14]\n  1002227a:  LEA EAX,[ESP + 0x4]\n  1002227e:  PUSH EAX\n  1002227f:  PUSH ECX\n  10022280:  LEA ECX,[ESI + 0x94]\n  10022286:  MOV dword ptr [ESP + 0xc],0x0\n  1002228e:  MOV dword ptr [ESP + 0x10],0x0\n  10022296:  MOV dword ptr [ESP + 0x14],0x0\n  1002229e:  CALL 0x10025260\n  100222a3:  MOV EDX,dword ptr [ESP + 0x1c]\n  100222a7:  MOV EAX,dword ptr [ESP + 0x18]\n  100222ab:  PUSH EDX\n  100222ac:  LEA ECX,[ESP + 0x8]\n  100222b0:  PUSH EAX\n  100222b1:  PUSH ECX\n  100222b2:  MOV ECX,ESI\n  100222b4:  CALL 0x100220b0\n  100222b9:  POP ESI\n  100222ba:  ADD ESP,0xc\n  100222bd:  RET 0xc", 
+  "callers": []
+}

@@ -1,0 +1,14 @@
+{
+  "address": "0x1000d360", 
+  "size_bytes": 13, 
+  "calling_convention": "__thiscall", 
+  "signature": "undefined __thiscall gbEmitterData(gbEmitterData * this)", 
+  "callees": [], 
+  "global_refs": [], 
+  "has_custom_name": true, 
+  "decompiled_c": "\n/* public: __thiscall gbEmitterData::gbEmitterData(void) */\n\nvoid __thiscall gbEmitterData::gbEmitterData(gbEmitterData *this)\n\n{\n                    /* 0xd360  47  ??0gbEmitterData@@QAE@XZ\n                       0xd360  74  ??0gbPlane@@QAE@XZ */\n  *(undefined4 *)this = 0;\n  *(undefined4 *)(this + 4) = 0;\n  *(undefined4 *)(this + 8) = 0;\n  return;\n}\n\n", 
+  "is_thunk": false, 
+  "name": "gbEmitterData", 
+  "assembly": "  1000d360:  MOV EAX,ECX\n  1000d362:  XOR ECX,ECX\n  1000d364:  MOV dword ptr [EAX],ECX\n  1000d366:  MOV dword ptr [EAX + 0x4],ECX\n  1000d369:  MOV dword ptr [EAX + 0x8],ECX\n  1000d36c:  RET", 
+  "callers": []
+}

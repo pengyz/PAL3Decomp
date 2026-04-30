@@ -1,0 +1,146 @@
+{
+  "address": "0x10016390", 
+  "size_bytes": 501, 
+  "calling_convention": "__thiscall", 
+  "signature": "void __thiscall ComputeShadowVolume(gbStaticMesh * this)", 
+  "callees": [
+    {
+      "address": "0x100e4a16", 
+      "name": "operator_new"
+    }, 
+    {
+      "address": "0x10020c00", 
+      "name": "Lock"
+    }, 
+    {
+      "address": "0x10020cd0", 
+      "name": "StepVertexPtr"
+    }, 
+    {
+      "address": "0x10020ca0", 
+      "name": "Unlock"
+    }, 
+    {
+      "address": "0x100e4a16", 
+      "name": "operator_new"
+    }, 
+    {
+      "address": "0x10020900", 
+      "name": "Lock16"
+    }, 
+    {
+      "address": "0x10020920", 
+      "name": "Unlock"
+    }, 
+    {
+      "address": "0x10016c70", 
+      "name": "FUN_10016c70"
+    }, 
+    {
+      "address": "0x100e4a24", 
+      "name": "FUN_100e4a24"
+    }, 
+    {
+      "address": "0x100e4a24", 
+      "name": "FUN_100e4a24"
+    }
+  ], 
+  "global_refs": [
+    {
+      "address": "0x-0000048", 
+      "type": null, 
+      "name": "DAT_-0000048"
+    }, 
+    {
+      "address": "0x-0000040", 
+      "type": null, 
+      "name": "DAT_-0000040"
+    }, 
+    {
+      "address": "0x-0000044", 
+      "type": null, 
+      "name": "DAT_-0000044"
+    }, 
+    {
+      "address": "0x-0000038", 
+      "type": null, 
+      "name": "DAT_-0000038"
+    }, 
+    {
+      "address": "0x-0000024", 
+      "type": null, 
+      "name": "DAT_-0000024"
+    }, 
+    {
+      "address": "0x-0000028", 
+      "type": null, 
+      "name": "DAT_-0000028"
+    }, 
+    {
+      "address": "0x-000002c", 
+      "type": null, 
+      "name": "DAT_-000002c"
+    }, 
+    {
+      "address": "0x-0000030", 
+      "type": null, 
+      "name": "DAT_-0000030"
+    }, 
+    {
+      "address": "0x-0000020", 
+      "type": null, 
+      "name": "DAT_-0000020"
+    }, 
+    {
+      "address": "0x-0000034", 
+      "type": null, 
+      "name": "DAT_-0000034"
+    }, 
+    {
+      "address": "0x-000003c", 
+      "type": null, 
+      "name": "DAT_-000003c"
+    }, 
+    {
+      "address": "0x-000001c", 
+      "type": null, 
+      "name": "DAT_-000001c"
+    }, 
+    {
+      "address": "0x-0000018", 
+      "type": null, 
+      "name": "DAT_-0000018"
+    }, 
+    {
+      "address": "0x-0000014", 
+      "type": null, 
+      "name": "DAT_-0000014"
+    }, 
+    {
+      "address": "0x-0000010", 
+      "type": null, 
+      "name": "DAT_-0000010"
+    }, 
+    {
+      "address": "0x-0000008", 
+      "type": null, 
+      "name": "DAT_-0000008"
+    }, 
+    {
+      "address": "0x-0000004", 
+      "type": null, 
+      "name": "DAT_-0000004"
+    }, 
+    {
+      "address": "0x-000000c", 
+      "type": null, 
+      "name": "DAT_-000000c"
+    }
+  ], 
+  "has_custom_name": true, 
+  "decompiled_c": "\n/* public: virtual void __thiscall gbStaticMesh::ComputeShadowVolume(void) */\n\nvoid __thiscall gbStaticMesh::ComputeShadowVolume(gbStaticMesh *this)\n\n{\n  undefined4 *puVar1;\n  int *piVar2;\n  void *pvVar3;\n  ushort *puVar4;\n  undefined4 *puVar5;\n  ushort *puVar6;\n  int iVar7;\n  int iVar8;\n  int iVar9;\n  void *local_48;\n  int local_44;\n  void *local_3c;\n  undefined4 local_38;\n  undefined4 local_34;\n  undefined4 local_30;\n  undefined4 local_2c;\n  undefined4 local_28;\n  undefined4 local_24;\n  undefined4 local_20;\n  undefined4 local_1c;\n  undefined4 local_18;\n  void *local_14;\n  undefined4 local_10;\n  int local_c;\n  undefined4 local_8;\n  undefined4 local_4;\n  \n                    /* 0x16390  350  ?ComputeShadowVolume@gbStaticMesh@@UAEXXZ */\n  if (*(int *)(this + 0x7c) == 0) {\n    iVar7 = *(int *)(*(int *)(this + 0x78) + 0x14);\n    local_48 = operator_new(iVar7 * 0xc);\n    if (local_48 == (void *)0x0) {\n      local_48 = (void *)0x0;\n    }\n    else if (-1 < iVar7 + -1) {\n      puVar5 = (undefined4 *)((int)local_48 + 8);\n      do {\n        puVar5[-2] = 0;\n        puVar5[-1] = 0;\n        *puVar5 = 0;\n        puVar5 = puVar5 + 3;\n        iVar7 = iVar7 + -1;\n      } while (iVar7 != 0);\n    }\n    gbVertexBubble::Lock(*(gbVertexBubble **)(this + 0x78));\n    iVar7 = *(int *)(this + 0x78);\n    iVar9 = 0;\n    if (0 < *(int *)(iVar7 + 0x14)) {\n      puVar5 = (undefined4 *)((int)local_48 + 8);\n      do {\n        puVar1 = *(undefined4 **)(iVar7 + 0x18);\n        puVar5[-2] = *puVar1;\n        puVar5[-1] = puVar1[1];\n        *puVar5 = puVar1[2];\n        gbVertexBubble::StepVertexPtr(*(gbVertexBubble **)(this + 0x78));\n        iVar7 = *(int *)(this + 0x78);\n        iVar9 = iVar9 + 1;\n        puVar5 = puVar5 + 3;\n      } while (iVar9 < *(int *)(iVar7 + 0x14));\n    }\n    gbVertexBubble::Unlock(*(gbVertexBubble **)(this + 0x78));\n    iVar7 = *(int *)(this + 0x44);\n    iVar9 = 0;\n    if (0 < iVar7) {\n      piVar2 = (int *)(*(int *)(this + 0x40) + 0x90);\n      do {\n        iVar8 = *piVar2;\n        piVar2 = piVar2 + 0x2f;\n        iVar9 = iVar9 + *(int *)(iVar8 + 0x10);\n        iVar7 = iVar7 + -1;\n      } while (iVar7 != 0);\n    }\n    pvVar3 = operator_new(iVar9 * 2);\n    iVar9 = 0;\n    iVar7 = 0;\n    local_44 = 0;\n    if (0 < *(int *)(this + 0x44)) {\n      do {\n        puVar4 = gbIndexBubble::Lock16(*(gbIndexBubble **)(iVar9 + 0x90 + *(int *)(this + 0x40)));\n        iVar8 = 0;\n        if (0 < *(int *)(*(int *)(iVar9 + 0x90 + *(int *)(this + 0x40)) + 0x10)) {\n          puVar6 = (ushort *)((int)pvVar3 + iVar7 * 2);\n          do {\n            iVar7 = iVar7 + 1;\n            *puVar6 = *puVar4;\n            puVar6 = puVar6 + 1;\n            iVar8 = iVar8 + 1;\n            puVar4 = puVar4 + 1;\n          } while (iVar8 < *(int *)(*(int *)(iVar9 + 0x90 + *(int *)(this + 0x40)) + 0x10));\n        }\n        gbIndexBubble::Unlock(*(gbIndexBubble **)(iVar9 + 0x90 + *(int *)(this + 0x40)));\n        local_44 = local_44 + 1;\n        iVar9 = iVar9 + 0xbc;\n      } while (local_44 < *(int *)(this + 0x44));\n    }\n    local_c = iVar7 / 3;\n    local_24 = 0xffffffff;\n    local_28 = 0xffffffff;\n    local_2c = 0xffffffff;\n    local_30 = 0xffffffff;\n    local_20 = 0xffffffff;\n    local_34 = 0xffffffff;\n    local_10 = 0;\n    local_8 = 0;\n    local_18 = *(undefined4 *)(*(int *)(this + 0x78) + 0x14);\n    local_38 = 0;\n    local_3c = local_48;\n    local_1c = 0xc;\n    local_4 = 0x3c23d70a;\n    local_14 = pvVar3;\n    FUN_10016c70(&local_3c,*(undefined4 *)(this + 0x74),3,this + 0x7c,this + 0x80);\n    FUN_100e4a24(local_48);\n    FUN_100e4a24(pvVar3);\n  }\n  return;\n}\n\n", 
+  "is_thunk": false, 
+  "name": "ComputeShadowVolume", 
+  "assembly": "  10016390:  SUB ESP,0x48\n  10016393:  PUSH EBP\n  10016394:  PUSH ESI\n  10016395:  MOV ESI,ECX\n  10016397:  XOR EBP,EBP\n  10016399:  CMP dword ptr [ESI + 0x7c],EBP\n  1001639c:  JNZ 0x1001657f\n  100163a2:  MOV EAX,dword ptr [ESI + 0x78]\n  100163a5:  PUSH EBX\n  100163a6:  PUSH EDI\n  100163a7:  MOV EDI,dword ptr [EAX + 0x14]\n  100163aa:  LEA ECX,[EDI + EDI*0x2]\n  100163ad:  SHL ECX,0x2\n  100163b0:  PUSH ECX\n  100163b1:  CALL 0x100e4a16\n  100163b6:  ADD ESP,0x4\n  100163b9:  CMP EAX,EBP\n  100163bb:  JZ 0x100163dc\n  100163bd:  LEA EDX,[EDI + -0x1]\n  100163c0:  CMP EDX,EBP\n  100163c2:  JL 0x100163d6\n  100163c4:  LEA ECX,[EAX + 0x8]\n  100163c7:  INC EDX\n  100163c8:  MOV dword ptr [ECX + -0x8],EBP\n  100163cb:  MOV dword ptr [ECX + -0x4],EBP\n  100163ce:  MOV dword ptr [ECX],EBP\n  100163d0:  ADD ECX,0xc\n  100163d3:  DEC EDX\n  100163d4:  JNZ 0x100163c8\n  100163d6:  MOV dword ptr [ESP + 0x10],EAX\n  100163da:  JMP 0x100163e0\n  100163dc:  MOV dword ptr [ESP + 0x10],EBP\n  100163e0:  MOV ECX,dword ptr [ESI + 0x78]\n  100163e3:  CALL 0x10020c00\n  100163e8:  MOV EAX,dword ptr [ESI + 0x78]\n  100163eb:  XOR EBX,EBX\n  100163ed:  CMP dword ptr [EAX + 0x14],EBP\n  100163f0:  JLE 0x10016420\n  100163f2:  MOV EDX,dword ptr [ESP + 0x10]\n  100163f6:  LEA EDI,[EDX + 0x8]\n  100163f9:  MOV EAX,dword ptr [EAX + 0x18]\n  100163fc:  MOV ECX,dword ptr [EAX]\n  100163fe:  MOV dword ptr [EDI + -0x8],ECX\n  10016401:  MOV EDX,dword ptr [EAX + 0x4]\n  10016404:  MOV dword ptr [EDI + -0x4],EDX\n  10016407:  MOV EAX,dword ptr [EAX + 0x8]\n  1001640a:  MOV dword ptr [EDI],EAX\n  1001640c:  MOV ECX,dword ptr [ESI + 0x78]\n  1001640f:  CALL 0x10020cd0\n  10016414:  MOV EAX,dword ptr [ESI + 0x78]\n  10016417:  INC EBX\n  10016418:  ADD EDI,0xc\n  1001641b:  CMP EBX,dword ptr [EAX + 0x14]\n  1001641e:  JL 0x100163f9\n  10016420:  MOV ECX,dword ptr [ESI + 0x78]\n  10016423:  CALL 0x10020ca0\n  10016428:  MOV EDX,dword ptr [ESI + 0x44]\n  1001642b:  XOR ECX,ECX\n  1001642d:  CMP EDX,EBP\n  1001642f:  JLE 0x10016448\n  10016431:  MOV EAX,dword ptr [ESI + 0x40]\n  10016434:  ADD EAX,0x90\n  10016439:  MOV EDI,dword ptr [EAX]\n  1001643b:  ADD EAX,0xbc\n  10016440:  MOV EBP,dword ptr [EDI + 0x10]\n  10016443:  ADD ECX,EBP\n  10016445:  DEC EDX\n  10016446:  JNZ 0x10016439\n  10016448:  ADD ECX,ECX\n  1001644a:  PUSH ECX\n  1001644b:  CALL 0x100e4a16\n  10016450:  MOV EBP,EAX\n  10016452:  MOV EAX,dword ptr [ESI + 0x44]\n  10016455:  XOR EDI,EDI\n  10016457:  ADD ESP,0x4\n  1001645a:  XOR EBX,EBX\n  1001645c:  CMP EAX,EDI\n  1001645e:  MOV dword ptr [ESP + 0x18],EBP\n  10016462:  MOV dword ptr [ESP + 0x14],EDI\n  10016466:  JLE 0x100164d4\n  10016468:  MOV EDX,dword ptr [ESI + 0x40]\n  1001646b:  MOV ECX,dword ptr [EDI + EDX*0x1 + 0x90]\n  10016472:  CALL 0x10020900\n  10016477:  MOV ECX,dword ptr [ESI + 0x40]\n  1001647a:  XOR EDX,EDX\n  1001647c:  MOV ECX,dword ptr [EDI + ECX*0x1 + 0x90]\n  10016483:  CMP dword ptr [ECX + 0x10],EDX\n  10016486:  JLE 0x100164ad\n  10016488:  LEA ECX,[EBP + EBX*0x2]\n  1001648c:  MOV BP,word ptr [EAX]\n  1001648f:  INC EBX\n  10016490:  MOV word ptr [ECX],BP\n  10016493:  MOV EBP,dword ptr [ESI + 0x40]\n  10016496:  ADD ECX,0x2\n  10016499:  INC EDX\n  1001649a:  MOV EBP,dword ptr [EDI + EBP*0x1 + 0x90]\n  100164a1:  ADD EAX,0x2\n  100164a4:  CMP EDX,dword ptr [EBP + 0x10]\n  100164a7:  JL 0x1001648c\n  100164a9:  MOV EBP,dword ptr [ESP + 0x18]\n  100164ad:  MOV EDX,dword ptr [ESI + 0x40]\n  100164b0:  MOV ECX,dword ptr [EDI + EDX*0x1 + 0x90]\n  100164b7:  CALL 0x10020920\n  100164bc:  MOV EAX,dword ptr [ESP + 0x14]\n  100164c0:  MOV ECX,dword ptr [ESI + 0x44]\n  100164c3:  INC EAX\n  100164c4:  ADD EDI,0xbc\n  100164ca:  CMP EAX,ECX\n  100164cc:  MOV dword ptr [ESP + 0x14],EAX\n  100164d0:  JL 0x10016468\n  100164d2:  XOR EDI,EDI\n  100164d4:  MOV EAX,0x55555556\n  100164d9:  OR ECX,0xffffffff\n  100164dc:  IMUL EBX\n  100164de:  MOV EAX,EDX\n  100164e0:  MOV dword ptr [ESP + 0x20],ECX\n  100164e4:  SHR EAX,0x1f\n  100164e7:  MOV dword ptr [ESP + 0x34],ECX\n  100164eb:  MOV dword ptr [ESP + 0x30],ECX\n  100164ef:  MOV dword ptr [ESP + 0x2c],ECX\n  100164f3:  MOV dword ptr [ESP + 0x28],ECX\n  100164f7:  MOV dword ptr [ESP + 0x38],ECX\n  100164fb:  ADD EDX,EAX\n  100164fd:  MOV dword ptr [ESP + 0x24],ECX\n  10016501:  MOV ECX,dword ptr [ESI + 0x78]\n  10016504:  LEA EAX,[ESI + 0x80]\n  1001650a:  MOV dword ptr [ESP + 0x1c],EDI\n  1001650e:  MOV dword ptr [ESP + 0x3c],EDI\n  10016512:  MOV dword ptr [ESP + 0x40],EDI\n  10016516:  MOV dword ptr [ESP + 0x44],EDI\n  1001651a:  MOV dword ptr [ESP + 0x48],EDI\n  1001651e:  MOV dword ptr [ESP + 0x50],EDI\n  10016522:  MOV EDI,dword ptr [ESP + 0x10]\n  10016526:  MOV dword ptr [ESP + 0x54],0x0\n  1001652e:  MOV dword ptr [ESP + 0x4c],EDX\n  10016532:  MOV EDX,dword ptr [ECX + 0x14]\n  10016535:  MOV ECX,dword ptr [ESI + 0x74]\n  10016538:  PUSH EAX\n  10016539:  LEA EAX,[ESI + 0x7c]\n  1001653c:  MOV dword ptr [ESP + 0x44],EDX\n  10016540:  PUSH EAX\n  10016541:  PUSH 0x3\n  10016543:  LEA EDX,[ESP + 0x28]\n  10016547:  PUSH ECX\n  10016548:  PUSH EDX\n  10016549:  MOV dword ptr [ESP + 0x58],EBP\n  1001654d:  MOV dword ptr [ESP + 0x34],0x0\n  10016555:  MOV dword ptr [ESP + 0x30],EDI\n  10016559:  MOV dword ptr [ESP + 0x50],0xc\n  10016561:  MOV dword ptr [ESP + 0x68],0x3c23d70a\n  10016569:  CALL 0x10016c70\n  1001656e:  PUSH EDI\n  1001656f:  CALL 0x100e4a24\n  10016574:  PUSH EBP\n  10016575:  CALL 0x100e4a24\n  1001657a:  ADD ESP,0x1c\n  1001657d:  POP EDI\n  1001657e:  POP EBX\n  1001657f:  POP ESI\n  10016580:  POP EBP\n  10016581:  ADD ESP,0x48\n  10016584:  RET", 
+  "callers": []
+}

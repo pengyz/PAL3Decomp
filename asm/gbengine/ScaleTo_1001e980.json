@@ -1,0 +1,43 @@
+{
+  "address": "0x1001e980", 
+  "size_bytes": 162, 
+  "calling_convention": "__thiscall", 
+  "signature": "void __thiscall ScaleTo(gbImage2D * this, int param_1, int param_2)", 
+  "callees": [
+    {
+      "address": "0x100e4b0d", 
+      "name": "_malloc"
+    }, 
+    {
+      "address": "0x100244d0", 
+      "name": "FUN_100244d0"
+    }, 
+    {
+      "address": "0x100e4b99", 
+      "name": "FUN_100e4b99"
+    }
+  ], 
+  "global_refs": [
+    {
+      "address": "0x00000004", 
+      "type": null, 
+      "name": "DAT_00000004"
+    }, 
+    {
+      "address": "0x00000008", 
+      "type": null, 
+      "name": "DAT_00000008"
+    }
+  ], 
+  "has_custom_name": true, 
+  "decompiled_c": "\n/* public: void __thiscall gbImage2D::ScaleTo(int,int) */\n\nvoid __thiscall gbImage2D::ScaleTo(gbImage2D *this,int param_1,int param_2)\n\n{\n  int iVar1;\n  void *pvVar2;\n  \n                    /* 0x1e980  832  ?ScaleTo@gbImage2D@@QAEXHH@Z */\n  if (*(int *)(this + 0xb8) != 0) {\n    if ((param_1 != *(int *)(this + 0x80)) || (param_2 != *(int *)(this + 0x84))) {\n      iVar1 = param_1 * param_2 * *(int *)(this + 0xb4);\n      pvVar2 = _malloc((int)(iVar1 + (iVar1 >> 0x1f & 7U)) >> 3);\n      FUN_100244d0(5,(int)(*(int *)(this + 0xb4) + (*(int *)(this + 0xb4) >> 0x1f & 7U)) >> 3,\n                   *(undefined4 *)(this + 0x80),*(undefined4 *)(this + 0x84),\n                   *(undefined4 *)(this + 0xb8),param_1,param_2,pvVar2);\n      *(int *)(this + 0x80) = param_1;\n      *(int *)(this + 0x84) = param_2;\n      FUN_100e4b99(*(undefined4 *)(this + 0xb8));\n      *(void **)(this + 0xb8) = pvVar2;\n    }\n  }\n  return;\n}\n\n", 
+  "is_thunk": false, 
+  "name": "ScaleTo", 
+  "assembly": "  1001e980:  PUSH EBX\n  1001e981:  PUSH ESI\n  1001e982:  MOV ESI,ECX\n  1001e984:  PUSH EDI\n  1001e985:  MOV EAX,dword ptr [ESI + 0xb8]\n  1001e98b:  TEST EAX,EAX\n  1001e98d:  JZ 0x1001ea1c\n  1001e993:  MOV EDI,dword ptr [ESP + 0x10]\n  1001e997:  MOV EAX,dword ptr [ESI + 0x80]\n  1001e99d:  MOV EBX,dword ptr [ESP + 0x14]\n  1001e9a1:  CMP EDI,EAX\n  1001e9a3:  JNZ 0x1001e9ad\n  1001e9a5:  CMP EBX,dword ptr [ESI + 0x84]\n  1001e9ab:  JZ 0x1001ea1c\n  1001e9ad:  MOV EAX,EDI\n  1001e9af:  PUSH EBP\n  1001e9b0:  IMUL EAX,EBX\n  1001e9b3:  IMUL EAX,dword ptr [ESI + 0xb4]\n  1001e9ba:  CDQ\n  1001e9bb:  AND EDX,0x7\n  1001e9be:  ADD EAX,EDX\n  1001e9c0:  SAR EAX,0x3\n  1001e9c3:  PUSH EAX\n  1001e9c4:  CALL 0x100e4b0d\n  1001e9c9:  MOV ECX,dword ptr [ESI + 0x84]\n  1001e9cf:  MOV EDX,dword ptr [ESI + 0x80]\n  1001e9d5:  MOV EBP,EAX\n  1001e9d7:  MOV EAX,dword ptr [ESI + 0xb8]\n  1001e9dd:  PUSH EBP\n  1001e9de:  PUSH EBX\n  1001e9df:  PUSH EDI\n  1001e9e0:  PUSH EAX\n  1001e9e1:  MOV EAX,dword ptr [ESI + 0xb4]\n  1001e9e7:  PUSH ECX\n  1001e9e8:  PUSH EDX\n  1001e9e9:  CDQ\n  1001e9ea:  AND EDX,0x7\n  1001e9ed:  ADD EAX,EDX\n  1001e9ef:  SAR EAX,0x3\n  1001e9f2:  PUSH EAX\n  1001e9f3:  PUSH 0x5\n  1001e9f5:  CALL 0x100244d0\n  1001e9fa:  MOV EAX,dword ptr [ESI + 0xb8]\n  1001ea00:  MOV dword ptr [ESI + 0x80],EDI\n  1001ea06:  PUSH EAX\n  1001ea07:  MOV dword ptr [ESI + 0x84],EBX\n  1001ea0d:  CALL 0x100e4b99\n  1001ea12:  ADD ESP,0x28\n  1001ea15:  MOV dword ptr [ESI + 0xb8],EBP\n  1001ea1b:  POP EBP\n  1001ea1c:  POP EDI\n  1001ea1d:  POP ESI\n  1001ea1e:  POP EBX\n  1001ea1f:  RET 0x8", 
+  "callers": [
+    {
+      "address": "0x10020490", 
+      "name": "LoadFromImage2D"
+    }
+  ]
+}

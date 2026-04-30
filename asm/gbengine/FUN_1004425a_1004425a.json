@@ -1,0 +1,44 @@
+{
+  "address": "0x1004425a", 
+  "size_bytes": 165, 
+  "calling_convention": "unknown", 
+  "signature": "undefined FUN_1004425a(undefined4 param_1, undefined4 param_2, undefined4 param_3)", 
+  "callees": [
+    {
+      "address": "0x1003c954", 
+      "name": "FUN_1003c954"
+    }, 
+    {
+      "address": "0x1003cbeb", 
+      "name": "FUN_1003cbeb"
+    }
+  ], 
+  "global_refs": [
+    {
+      "address": "0x00000004", 
+      "type": null, 
+      "name": "DAT_00000004"
+    }, 
+    {
+      "address": "0x00000008", 
+      "type": null, 
+      "name": "DAT_00000008"
+    }, 
+    {
+      "address": "0x0000000c", 
+      "type": null, 
+      "name": "DAT_0000000c"
+    }, 
+    {
+      "address": "0x100f6f6c", 
+      "type": null, 
+      "name": "DAT_100f6f6c"
+    }
+  ], 
+  "has_custom_name": false, 
+  "decompiled_c": "\nvoid FUN_1004425a(int param_1,int param_2,float *param_3)\n\n{\n  byte *pbVar1;\n  byte *pbVar2;\n  int in_ECX;\n  int extraout_ECX;\n  \n  pbVar2 = (byte *)(*(int *)(in_ECX + 0x60) * param_1 + *(int *)(in_ECX + 100) * param_2 +\n                   *(int *)(in_ECX + 0x20));\n  pbVar1 = pbVar2 + *(int *)(in_ECX + 0x68) * 2;\n  for (; pbVar2 < pbVar1; pbVar2 = pbVar2 + 2) {\n    *param_3 = (float)(pbVar2[1] & 0xf) * 0.06666667;\n    param_3[1] = (float)(*pbVar2 >> 4) * 0.06666667;\n    param_3[2] = (float)(*pbVar2 & 0xf) * 0.06666667;\n    param_3[3] = 1.0;\n    param_3 = param_3 + 4;\n  }\n  if (*(int *)(in_ECX + 0x18) != 0) {\n    FUN_1003c954(param_3 + *(int *)(in_ECX + 0x68) * -4);\n    in_ECX = extraout_ECX;\n  }\n  if (*(int *)(in_ECX + 0x10) != 0) {\n    FUN_1003cbeb(param_3 + *(int *)(in_ECX + 0x68) * -4);\n  }\n  return;\n}\n\n", 
+  "is_thunk": false, 
+  "name": "FUN_1004425a", 
+  "assembly": "  1004425a:  PUSH EBP\n  1004425b:  MOV EBP,ESP\n  1004425d:  MOV EAX,dword ptr [ECX + 0x60]\n  10044260:  IMUL EAX,dword ptr [EBP + 0x8]\n  10044264:  MOV EDX,dword ptr [ECX + 0x64]\n  10044267:  IMUL EDX,dword ptr [EBP + 0xc]\n  1004426b:  ADD EAX,EDX\n  1004426d:  ADD EAX,dword ptr [ECX + 0x20]\n  10044270:  MOV EDX,dword ptr [ECX + 0x68]\n  10044273:  PUSH ESI\n  10044274:  MOV ESI,dword ptr [EBP + 0x10]\n  10044277:  PUSH EDI\n  10044278:  LEA EDI,[EAX + EDX*0x2]\n  1004427b:  CMP EAX,EDI\n  1004427d:  JNC 0x100442cf\n  1004427f:  FLD dword ptr [0x100f6f6c]\n  10044285:  MOV DL,byte ptr [EAX + 0x1]\n  10044288:  AND DL,0xf\n  1004428b:  MOVZX EDX,DL\n  1004428e:  MOV dword ptr [EBP + 0x10],EDX\n  10044291:  XOR EDX,EDX\n  10044293:  FILD dword ptr [EBP + 0x10]\n  10044296:  FMUL ST1\n  10044298:  FSTP dword ptr [ESI]\n  1004429a:  MOV DL,byte ptr [EAX]\n  1004429c:  SHR DL,0x4\n  1004429f:  ADD ESI,0x10\n  100442a2:  AND EDX,0xf\n  100442a5:  MOV dword ptr [EBP + 0x10],EDX\n  100442a8:  FILD dword ptr [EBP + 0x10]\n  100442ab:  XOR EDX,EDX\n  100442ad:  FMUL ST1\n  100442af:  FSTP dword ptr [ESI + -0xc]\n  100442b2:  MOV DL,byte ptr [EAX]\n  100442b4:  AND EDX,0xf\n  100442b7:  MOV dword ptr [EBP + 0x10],EDX\n  100442ba:  FILD dword ptr [EBP + 0x10]\n  100442bd:  INC EAX\n  100442be:  INC EAX\n  100442bf:  CMP EAX,EDI\n  100442c1:  FMUL ST1\n  100442c3:  FSTP dword ptr [ESI + -0x8]\n  100442c6:  FLD1\n  100442c8:  FSTP dword ptr [ESI + -0x4]\n  100442cb:  JC 0x10044285\n  100442cd:  FSTP ST0\n  100442cf:  CMP dword ptr [ECX + 0x18],0x0\n  100442d3:  JZ 0x100442e5\n  100442d5:  MOV EAX,dword ptr [ECX + 0x68]\n  100442d8:  SHL EAX,0x4\n  100442db:  MOV EDX,ESI\n  100442dd:  SUB EDX,EAX\n  100442df:  PUSH EDX\n  100442e0:  CALL 0x1003c954\n  100442e5:  CMP dword ptr [ECX + 0x10],0x0\n  100442e9:  JZ 0x100442f9\n  100442eb:  MOV EAX,dword ptr [ECX + 0x68]\n  100442ee:  SHL EAX,0x4\n  100442f1:  SUB ESI,EAX\n  100442f3:  PUSH ESI\n  100442f4:  CALL 0x1003cbeb\n  100442f9:  POP EDI\n  100442fa:  POP ESI\n  100442fb:  POP EBP\n  100442fc:  RET 0xc", 
+  "callers": []
+}

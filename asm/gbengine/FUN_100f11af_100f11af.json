@@ -1,0 +1,34 @@
+{
+  "address": "0x100f11af", 
+  "size_bytes": 70, 
+  "calling_convention": "unknown", 
+  "signature": "undefined FUN_100f11af(undefined4 param_1)", 
+  "callees": [
+    {
+      "address": "0x100e8688", 
+      "name": "FUN_100e8688"
+    }, 
+    {
+      "address": "0x100f124b", 
+      "name": "FUN_100f124b"
+    }
+  ], 
+  "global_refs": [
+    {
+      "address": "0x00000004", 
+      "type": null, 
+      "name": "DAT_00000004"
+    }, 
+    {
+      "address": "0x10166f20", 
+      "type": "undefined4", 
+      "name": "DAT_10166f20"
+    }
+  ], 
+  "has_custom_name": false, 
+  "decompiled_c": "\nundefined4 FUN_100f11af(int *param_1)\n\n{\n  int *piVar1;\n  undefined4 uVar2;\n  int iVar3;\n  \n  piVar1 = (int *)*param_1;\n  if (((*piVar1 == -0x1f928c9d) && (piVar1[4] == 3)) && (piVar1[5] == 0x19930520)) {\n    uVar2 = FUN_100e8688();\n    return uVar2;\n  }\n  if ((DAT_10166f20 != (code *)0x0) && (iVar3 = FUN_100f124b(DAT_10166f20), iVar3 != 0)) {\n    uVar2 = (*DAT_10166f20)(param_1);\n    return uVar2;\n  }\n  return 0;\n}\n\n", 
+  "is_thunk": false, 
+  "name": "FUN_100f11af", 
+  "assembly": "  100f11af:  PUSH ESI\n  100f11b0:  MOV ESI,dword ptr [ESP + 0x8]\n  100f11b4:  MOV EAX,dword ptr [ESI]\n  100f11b6:  CMP dword ptr [EAX],0xe06d7363\n  100f11bc:  JNZ 0x100f11d2\n  100f11be:  CMP dword ptr [EAX + 0x10],0x3\n  100f11c2:  JNZ 0x100f11d2\n  100f11c4:  CMP dword ptr [EAX + 0x14],0x19930520\n  100f11cb:  JNZ 0x100f11d2\n  100f11cd:  JMP 0x100e8688\n  100f11d2:  MOV EAX,[0x10166f20]\n  100f11d7:  TEST EAX,EAX\n  100f11d9:  JZ 0x100f11ef\n  100f11db:  PUSH EAX\n  100f11dc:  CALL 0x100f124b\n  100f11e1:  TEST EAX,EAX\n  100f11e3:  POP ECX\n  100f11e4:  JZ 0x100f11ef\n  100f11e6:  PUSH ESI\n  100f11e7:  CALL dword ptr [0x10166f20]\n  100f11ed:  JMP 0x100f11f1\n  100f11ef:  XOR EAX,EAX\n  100f11f1:  POP ESI\n  100f11f2:  RET 0x4", 
+  "callers": []
+}

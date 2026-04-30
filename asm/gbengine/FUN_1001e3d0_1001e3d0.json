@@ -1,0 +1,25 @@
+{
+  "address": "0x1001e3d0", 
+  "size_bytes": 11, 
+  "calling_convention": "unknown", 
+  "signature": "undefined FUN_1001e3d0(void)", 
+  "callees": [], 
+  "global_refs": [
+    {
+      "address": "0x101379a8", 
+      "type": "undefined4", 
+      "name": "DAT_101379a8"
+    }
+  ], 
+  "has_custom_name": false, 
+  "decompiled_c": "\nvoid FUN_1001e3d0(void)\n\n{\n  DAT_101379a8 = 0;\n  return;\n}\n\n", 
+  "is_thunk": false, 
+  "name": "FUN_1001e3d0", 
+  "assembly": "  1001e3d0:  MOV dword ptr [0x101379a8],0x0\n  1001e3da:  RET", 
+  "callers": [
+    {
+      "address": "0x100f3f80", 
+      "name": "Unwind@100f3f80"
+    }
+  ]
+}

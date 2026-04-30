@@ -1,0 +1,19 @@
+{
+  "address": "0x1001d5a0", 
+  "size_bytes": 50, 
+  "calling_convention": "__thiscall", 
+  "signature": "int __thiscall OnResetDevice(gbEffectMgr * this)", 
+  "callees": [], 
+  "global_refs": [], 
+  "has_custom_name": true, 
+  "decompiled_c": "\n/* public: int __thiscall gbEffectMgr::OnResetDevice(void) */\n\nint __thiscall gbEffectMgr::OnResetDevice(gbEffectMgr *this)\n\n{\n  int iVar1;\n  int *piVar2;\n  int iVar3;\n  \n                    /* 0x1d5a0  722  ?OnResetDevice@gbEffectMgr@@QAEHXZ */\n  iVar3 = 0;\n  if (0 < *(int *)(this + 8)) {\n    do {\n      iVar1 = *(int *)(*(int *)this + iVar3 * 4);\n      if (iVar1 != 0) {\n        piVar2 = *(int **)(iVar1 + 0x18);\n        (**(code **)(*piVar2 + 0x114))(piVar2);\n      }\n      iVar3 = iVar3 + 1;\n    } while (iVar3 < *(int *)(this + 8));\n  }\n  return 1;\n}\n\n", 
+  "is_thunk": false, 
+  "name": "OnResetDevice", 
+  "assembly": "  1001d5a0:  PUSH ESI\n  1001d5a1:  PUSH EDI\n  1001d5a2:  MOV EDI,ECX\n  1001d5a4:  XOR ESI,ESI\n  1001d5a6:  MOV EAX,dword ptr [EDI + 0x8]\n  1001d5a9:  TEST EAX,EAX\n  1001d5ab:  JLE 0x1001d5ca\n  1001d5ad:  MOV EAX,dword ptr [EDI]\n  1001d5af:  MOV EAX,dword ptr [EAX + ESI*0x4]\n  1001d5b2:  TEST EAX,EAX\n  1001d5b4:  JZ 0x1001d5c2\n  1001d5b6:  MOV EAX,dword ptr [EAX + 0x18]\n  1001d5b9:  PUSH EAX\n  1001d5ba:  MOV ECX,dword ptr [EAX]\n  1001d5bc:  CALL dword ptr [ECX + 0x114]\n  1001d5c2:  MOV EAX,dword ptr [EDI + 0x8]\n  1001d5c5:  INC ESI\n  1001d5c6:  CMP ESI,EAX\n  1001d5c8:  JL 0x1001d5ad\n  1001d5ca:  POP EDI\n  1001d5cb:  MOV EAX,0x1\n  1001d5d0:  POP ESI\n  1001d5d1:  RET", 
+  "callers": [
+    {
+      "address": "0x1001ac50", 
+      "name": "FUN_1001ac50"
+    }
+  ]
+}

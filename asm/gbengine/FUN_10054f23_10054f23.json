@@ -1,0 +1,45 @@
+{
+  "address": "0x10054f23", 
+  "size_bytes": 27, 
+  "calling_convention": "unknown", 
+  "signature": "undefined FUN_10054f23(undefined1 param_1, undefined1 param_2, undefined1 param_3, undefined4 param_4)", 
+  "callees": [
+    {
+      "address": "0x10054d69", 
+      "name": "FUN_10054d69"
+    }
+  ], 
+  "global_refs": [
+    {
+      "address": "0x00000010", 
+      "type": null, 
+      "name": "DAT_00000010"
+    }, 
+    {
+      "address": "0x0000000c", 
+      "type": null, 
+      "name": "DAT_0000000c"
+    }, 
+    {
+      "address": "0x00000008", 
+      "type": null, 
+      "name": "DAT_00000008"
+    }, 
+    {
+      "address": "0x00000004", 
+      "type": null, 
+      "name": "DAT_00000004"
+    }
+  ], 
+  "has_custom_name": false, 
+  "decompiled_c": "\nvoid FUN_10054f23(void)\n\n{\n  undefined4 param_4;\n  \n  FUN_10054d69(&stack0x00000004,&stack0x00000008,&stack0x0000000c,param_4);\n  return;\n}\n\n", 
+  "is_thunk": false, 
+  "name": "FUN_10054f23", 
+  "assembly": "  10054f23:  PUSH dword ptr [ESP + 0x10]\n  10054f27:  LEA EAX,[ESP + 0x10]\n  10054f2b:  PUSH EAX\n  10054f2c:  LEA EAX,[ESP + 0x10]\n  10054f30:  PUSH EAX\n  10054f31:  LEA EAX,[ESP + 0x10]\n  10054f35:  PUSH EAX\n  10054f36:  CALL 0x10054d69\n  10054f3b:  RET 0x10", 
+  "callers": [
+    {
+      "address": "0x1005613f", 
+      "name": "FUN_1005613f"
+    }
+  ]
+}

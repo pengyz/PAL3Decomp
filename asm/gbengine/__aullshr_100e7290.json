@@ -1,0 +1,19 @@
+{
+  "address": "0x100e7290", 
+  "size_bytes": 31, 
+  "calling_convention": "unknown", 
+  "signature": "undefined __aullshr(void)", 
+  "callees": [], 
+  "global_refs": [], 
+  "has_custom_name": true, 
+  "decompiled_c": "\n/* Library Function - Single Match\n    __aullshr\n   \n   Library: Visual Studio */\n\nulonglong __aullshr(void)\n\n{\n  uint in_EAX;\n  byte in_CL;\n  uint in_EDX;\n  \n  if (0x3f < in_CL) {\n    return 0;\n  }\n  if (in_CL < 0x20) {\n    return CONCAT44(in_EDX >> (in_CL & 0x1f),\n                    in_EAX >> (in_CL & 0x1f) | in_EDX << 0x20 - (in_CL & 0x1f));\n  }\n  return (ulonglong)(in_EDX >> (in_CL & 0x1f));\n}\n\n", 
+  "is_thunk": false, 
+  "name": "__aullshr", 
+  "assembly": "  100e7290:  CMP CL,0x40\n  100e7293:  JNC 0x100e72aa\n  100e7295:  CMP CL,0x20\n  100e7298:  JNC 0x100e72a0\n  100e729a:  SHRD EAX,EDX,CL\n  100e729d:  SHR EDX,CL\n  100e729f:  RET\n  100e72a0:  MOV EAX,EDX\n  100e72a2:  XOR EDX,EDX\n  100e72a4:  AND CL,0x1f\n  100e72a7:  SHR EAX,CL\n  100e72a9:  RET\n  100e72aa:  XOR EAX,EAX\n  100e72ac:  XOR EDX,EDX\n  100e72ae:  RET", 
+  "callers": [
+    {
+      "address": "0x10043f86", 
+      "name": "FUN_10043f86"
+    }
+  ]
+}

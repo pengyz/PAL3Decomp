@@ -1,0 +1,141 @@
+{
+  "address": "0x1000e920", 
+  "size_bytes": 412, 
+  "calling_convention": "__thiscall", 
+  "signature": "void __thiscall ~gbBaseMesh(gbBaseMesh * this)", 
+  "callees": [
+    {
+      "address": "0x100e4b99", 
+      "name": "FUN_100e4b99"
+    }, 
+    {
+      "address": "0x100e4b99", 
+      "name": "FUN_100e4b99"
+    }, 
+    {
+      "address": "0x10021620", 
+      "name": "DelIndexBubble"
+    }, 
+    {
+      "address": "0x1002f7f0", 
+      "name": "Release"
+    }, 
+    {
+      "address": "0x1002f7f0", 
+      "name": "Release"
+    }, 
+    {
+      "address": "0x100e4a24", 
+      "name": "FUN_100e4a24"
+    }, 
+    {
+      "address": "0x100e4a2f", 
+      "name": "FUN_100e4a2f"
+    }, 
+    {
+      "address": "0x100e4a24", 
+      "name": "FUN_100e4a24"
+    }, 
+    {
+      "address": "0x1002f7f0", 
+      "name": "Release"
+    }, 
+    {
+      "address": "0x1002f7f0", 
+      "name": "Release"
+    }, 
+    {
+      "address": "0x100200d0", 
+      "name": "~gbResource"
+    }
+  ], 
+  "global_refs": [
+    {
+      "address": "0x100f3aa8", 
+      "type": null, 
+      "name": "DAT_100f3aa8"
+    }, 
+    {
+      "address": "0xffdff000", 
+      "type": "void *32", 
+      "name": "DAT_ffdff000"
+    }, 
+    {
+      "address": "0x-0000010", 
+      "type": null, 
+      "name": "DAT_-0000010"
+    }, 
+    {
+      "address": "0x100f53f0", 
+      "type": "undefined *", 
+      "name": "DAT_100f53f0"
+    }, 
+    {
+      "address": "0x-0000004", 
+      "type": null, 
+      "name": "DAT_-0000004"
+    }, 
+    {
+      "address": "0x-0000014", 
+      "type": null, 
+      "name": "DAT_-0000014"
+    }, 
+    {
+      "address": "0x-0000018", 
+      "type": null, 
+      "name": "DAT_-0000018"
+    }, 
+    {
+      "address": "0x10024140", 
+      "type": null, 
+      "name": "DAT_10024140"
+    }, 
+    {
+      "address": "0x101390c0", 
+      "type": "int", 
+      "name": "DAT_101390c0"
+    }, 
+    {
+      "address": "0x10138fb8", 
+      "type": "gbRenderEffect * *", 
+      "name": "DAT_10138fb8"
+    }, 
+    {
+      "address": "0x10138fbc", 
+      "type": "undefined4", 
+      "name": "DAT_10138fbc"
+    }, 
+    {
+      "address": "0x-000000c", 
+      "type": null, 
+      "name": "DAT_-000000c"
+    }
+  ], 
+  "has_custom_name": true, 
+  "decompiled_c": "\n/* public: virtual __thiscall gbBaseMesh::~gbBaseMesh(void) */\n\nvoid __thiscall gbBaseMesh::~gbBaseMesh(gbBaseMesh *this)\n\n{\n  gbIndexBubble *pgVar1;\n  gbRefObject *this_00;\n  undefined4 *puVar2;\n  int iVar3;\n  int iVar4;\n  int local_18;\n  int local_14;\n  void *local_c;\n  undefined *puStack_8;\n  undefined4 local_4;\n  \n                    /* 0xe920  128  ??1gbBaseMesh@@UAE@XZ */\n  puStack_8 = &LAB_100f3aa8;\n  local_c = ExceptionList;\n  ExceptionList = &local_c;\n  *(undefined ***)this = &_vftable_;\n  local_4 = 0;\n  if (*(int *)(this + 0x4c) != 0) {\n    FUN_100e4b99(*(undefined4 *)(this + 0x48));\n  }\n  if (*(int *)(this + 0x54) != 0) {\n    FUN_100e4b99(*(undefined4 *)(this + 0x50));\n  }\n  if (*(int *)(this + 0x40) != 0) {\n    local_14 = 0;\n    if (0 < *(int *)(this + 0x44)) {\n      local_18 = 0;\n      do {\n        pgVar1 = *(gbIndexBubble **)(*(int *)(this + 0x40) + 0x90 + local_18);\n        if (pgVar1 != (gbIndexBubble *)0x0) {\n          gbVertPoolMgr::DelIndexBubble(*(gbVertPoolMgr **)(*(int *)(this + 0x74) + 0xc4),pgVar1);\n        }\n        iVar4 = 0;\n        iVar3 = local_18 + *(int *)(this + 0x40);\n        puVar2 = (undefined4 *)(iVar3 + 8);\n        if (0 < *(int *)(iVar3 + 0x48)) {\n          do {\n            if (((*(int *)(iVar3 + 0xb4) == 0) || (*(int *)(iVar3 + 0xb0) != iVar4)) &&\n               ((gbRefObject *)*puVar2 != (gbRefObject *)0x0)) {\n              gbRefObject::Release((gbRefObject *)*puVar2);\n            }\n            iVar4 = iVar4 + 1;\n            puVar2 = puVar2 + 1;\n          } while (iVar4 < *(int *)(iVar3 + 0x48));\n        }\n        iVar4 = 0;\n        if (0 < *(int *)(iVar3 + 0xb4)) {\n          do {\n            this_00 = *(gbRefObject **)(*(int *)(iVar3 + 0xac) + iVar4 * 4);\n            if (this_00 != (gbRefObject *)0x0) {\n              gbRefObject::Release(this_00);\n            }\n            iVar4 = iVar4 + 1;\n          } while (iVar4 < *(int *)(iVar3 + 0xb4));\n        }\n        if (*(int *)(iVar3 + 0xac) != 0) {\n          FUN_100e4a24(*(int *)(iVar3 + 0xac));\n        }\n        local_14 = local_14 + 1;\n        local_18 = local_18 + 0xbc;\n      } while (local_14 < *(int *)(this + 0x44));\n    }\n    iVar3 = *(int *)(this + 0x40);\n    if (iVar3 != 0) {\n      FUN_100e4a2f(iVar3,0xbc,*(undefined4 *)(iVar3 + -4),BEZIER::~BEZIER);\n      FUN_100e4a24(iVar3 + -4);\n    }\n  }\n  Effect_RefCount = Effect_RefCount + -1;\n  if (Effect_RefCount == 0) {\n    gbRefObject::Release((gbRefObject *)pShadowEffect);\n    gbRefObject::Release(DAT_10138fbc);\n  }\n  local_4 = 0xffffffff;\n  gbResource::~gbResource((gbResource *)this);\n  ExceptionList = local_c;\n  return;\n}\n\n", 
+  "is_thunk": false, 
+  "name": "~gbBaseMesh", 
+  "assembly": "  1000e920:  PUSH -0x1\n  1000e922:  PUSH 0x100f3aa8\n  1000e927:  MOV EAX,FS:[0x0]\n  1000e92d:  PUSH EAX\n  1000e92e:  MOV dword ptr FS:[0x0],ESP\n  1000e935:  SUB ESP,0xc\n  1000e938:  PUSH EBP\n  1000e939:  MOV EBP,ECX\n  1000e93b:  PUSH ESI\n  1000e93c:  MOV dword ptr [ESP + 0x10],EBP\n  1000e940:  MOV dword ptr [EBP],0x100f53f0\n  1000e947:  MOV EAX,dword ptr [EBP + 0x4c]\n  1000e94a:  XOR ESI,ESI\n  1000e94c:  CMP EAX,ESI\n  1000e94e:  MOV dword ptr [ESP + 0x1c],ESI\n  1000e952:  JZ 0x1000e960\n  1000e954:  MOV EAX,dword ptr [EBP + 0x48]\n  1000e957:  PUSH EAX\n  1000e958:  CALL 0x100e4b99\n  1000e95d:  ADD ESP,0x4\n  1000e960:  CMP dword ptr [EBP + 0x54],ESI\n  1000e963:  JZ 0x1000e971\n  1000e965:  MOV ECX,dword ptr [EBP + 0x50]\n  1000e968:  PUSH ECX\n  1000e969:  CALL 0x100e4b99\n  1000e96e:  ADD ESP,0x4\n  1000e971:  CMP dword ptr [EBP + 0x40],ESI\n  1000e974:  JZ 0x1000ea79\n  1000e97a:  MOV EAX,dword ptr [EBP + 0x44]\n  1000e97d:  MOV dword ptr [ESP + 0xc],ESI\n  1000e981:  CMP EAX,ESI\n  1000e983:  JLE 0x1000ea52\n  1000e989:  PUSH EBX\n  1000e98a:  PUSH EDI\n  1000e98b:  MOV dword ptr [ESP + 0x10],ESI\n  1000e98f:  JMP 0x1000e995\n  1000e991:  MOV ESI,dword ptr [ESP + 0x10]\n  1000e995:  MOV EDX,dword ptr [EBP + 0x40]\n  1000e998:  MOV EAX,dword ptr [EDX + ESI*0x1 + 0x90]\n  1000e99f:  TEST EAX,EAX\n  1000e9a1:  JZ 0x1000e9b2\n  1000e9a3:  MOV ECX,dword ptr [EBP + 0x74]\n  1000e9a6:  PUSH EAX\n  1000e9a7:  MOV ECX,dword ptr [ECX + 0xc4]\n  1000e9ad:  CALL 0x10021620\n  1000e9b2:  MOV EDX,dword ptr [EBP + 0x40]\n  1000e9b5:  XOR EDI,EDI\n  1000e9b7:  ADD ESI,EDX\n  1000e9b9:  MOV EAX,dword ptr [ESI + 0x48]\n  1000e9bc:  LEA EBX,[ESI + 0x8]\n  1000e9bf:  TEST EAX,EAX\n  1000e9c1:  JLE 0x1000e9f2\n  1000e9c3:  MOV EBP,EBX\n  1000e9c5:  MOV EAX,dword ptr [ESI + 0xb4]\n  1000e9cb:  TEST EAX,EAX\n  1000e9cd:  JZ 0x1000e9d7\n  1000e9cf:  CMP dword ptr [ESI + 0xb0],EDI\n  1000e9d5:  JZ 0x1000e9e3\n  1000e9d7:  MOV ECX,dword ptr [EBP]\n  1000e9da:  TEST ECX,ECX\n  1000e9dc:  JZ 0x1000e9e3\n  1000e9de:  CALL 0x1002f7f0\n  1000e9e3:  MOV EAX,dword ptr [EBX + 0x40]\n  1000e9e6:  INC EDI\n  1000e9e7:  ADD EBP,0x4\n  1000e9ea:  CMP EDI,EAX\n  1000e9ec:  JL 0x1000e9c5\n  1000e9ee:  MOV EBP,dword ptr [ESP + 0x18]\n  1000e9f2:  MOV EAX,dword ptr [ESI + 0xb4]\n  1000e9f8:  XOR EDI,EDI\n  1000e9fa:  TEST EAX,EAX\n  1000e9fc:  JLE 0x1000ea1b\n  1000e9fe:  MOV EAX,dword ptr [ESI + 0xac]\n  1000ea04:  MOV ECX,dword ptr [EAX + EDI*0x4]\n  1000ea07:  TEST ECX,ECX\n  1000ea09:  JZ 0x1000ea10\n  1000ea0b:  CALL 0x1002f7f0\n  1000ea10:  MOV EAX,dword ptr [ESI + 0xb4]\n  1000ea16:  INC EDI\n  1000ea17:  CMP EDI,EAX\n  1000ea19:  JL 0x1000e9fe\n  1000ea1b:  MOV ESI,dword ptr [ESI + 0xac]\n  1000ea21:  TEST ESI,ESI\n  1000ea23:  JZ 0x1000ea2e\n  1000ea25:  PUSH ESI\n  1000ea26:  CALL 0x100e4a24\n  1000ea2b:  ADD ESP,0x4\n  1000ea2e:  MOV EAX,dword ptr [ESP + 0x14]\n  1000ea32:  MOV EDX,dword ptr [ESP + 0x10]\n  1000ea36:  MOV ECX,dword ptr [EBP + 0x44]\n  1000ea39:  INC EAX\n  1000ea3a:  ADD EDX,0xbc\n  1000ea40:  CMP EAX,ECX\n  1000ea42:  MOV dword ptr [ESP + 0x14],EAX\n  1000ea46:  MOV dword ptr [ESP + 0x10],EDX\n  1000ea4a:  JL 0x1000e991\n  1000ea50:  POP EDI\n  1000ea51:  POP EBX\n  1000ea52:  MOV EAX,dword ptr [EBP + 0x40]\n  1000ea55:  TEST EAX,EAX\n  1000ea57:  JZ 0x1000ea79\n  1000ea59:  MOV ECX,dword ptr [EAX + -0x4]\n  1000ea5c:  LEA ESI,[EAX + -0x4]\n  1000ea5f:  PUSH 0x10024140\n  1000ea64:  PUSH ECX\n  1000ea65:  PUSH 0xbc\n  1000ea6a:  PUSH EAX\n  1000ea6b:  CALL 0x100e4a2f\n  1000ea70:  PUSH ESI\n  1000ea71:  CALL 0x100e4a24\n  1000ea76:  ADD ESP,0x4\n  1000ea79:  MOV EAX,[0x101390c0]\n  1000ea7e:  DEC EAX\n  1000ea7f:  MOV [0x101390c0],EAX\n  1000ea84:  JNZ 0x1000ea9c\n  1000ea86:  MOV ECX,dword ptr [0x10138fb8]\n  1000ea8c:  CALL 0x1002f7f0\n  1000ea91:  MOV ECX,dword ptr [0x10138fbc]\n  1000ea97:  CALL 0x1002f7f0\n  1000ea9c:  MOV ECX,EBP\n  1000ea9e:  MOV dword ptr [ESP + 0x1c],0xffffffff\n  1000eaa6:  CALL 0x100200d0\n  1000eaab:  MOV ECX,dword ptr [ESP + 0x14]\n  1000eaaf:  POP ESI\n  1000eab0:  POP EBP\n  1000eab1:  MOV dword ptr FS:[0x0],ECX\n  1000eab8:  ADD ESP,0x18\n  1000eabb:  RET", 
+  "callers": [
+    {
+      "address": "0x10015660", 
+      "name": "~gbStaticMesh"
+    }, 
+    {
+      "address": "0x100f3b90", 
+      "name": "Unwind@100f3b90"
+    }, 
+    {
+      "address": "0x100f3cb0", 
+      "name": "Unwind@100f3cb0"
+    }, 
+    {
+      "address": "0x10011b90", 
+      "name": "FUN_10011b90"
+    }, 
+    {
+      "address": "0x10013910", 
+      "name": "FUN_10013910"
+    }
+  ]
+}

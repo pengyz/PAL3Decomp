@@ -1,0 +1,57 @@
+{
+  "address": "0x10011460", 
+  "size_bytes": 184, 
+  "calling_convention": "__thiscall", 
+  "signature": "void __thiscall Render(gbGeomNode * this, gbRenderInfoObj * param_1)", 
+  "callees": [
+    {
+      "address": "0x100e4be4", 
+      "name": "__ftol"
+    }, 
+    {
+      "address": "0x10027090", 
+      "name": "Push"
+    }, 
+    {
+      "address": "0x10027110", 
+      "name": "LoadMatrix"
+    }, 
+    {
+      "address": "0x100270c0", 
+      "name": "Pop"
+    }
+  ], 
+  "global_refs": [
+    {
+      "address": "0x-0000008", 
+      "type": null, 
+      "name": "DAT_-0000008"
+    }, 
+    {
+      "address": "0x-0000004", 
+      "type": null, 
+      "name": "DAT_-0000004"
+    }, 
+    {
+      "address": "0x100f53a0", 
+      "type": null, 
+      "name": "DAT_100f53a0"
+    }, 
+    {
+      "address": "0x1013bdec", 
+      "type": "gbGfxManager *", 
+      "name": "DAT_1013bdec"
+    }, 
+    {
+      "address": "0x00000004", 
+      "type": null, 
+      "name": "DAT_00000004"
+    }
+  ], 
+  "has_custom_name": true, 
+  "decompiled_c": "\n/* public: virtual void __thiscall gbGeomNode::Render(struct gbRenderInfoObj *) */\n\nvoid __thiscall gbGeomNode::Render(gbGeomNode *this,gbRenderInfoObj *param_1)\n\n{\n  double dVar1;\n  gbMatrixStack *this_00;\n  float fVar2;\n  int local_8;\n  \n                    /* 0x11460  783  ?Render@gbGeomNode@@UAEXPAUgbRenderInfoObj@@@Z */\n  local_8 = 0;\n  dVar1 = *(double *)(this + 0xf0);\n  if (*(float *)(this + 0xf8) != 0.0) {\n    local_8 = __ftol();\n  }\n  if ((*(int *)(this + 0x3c) != 0) && (*(int *)(this + 0x108) != 0)) {\n    fVar2 = (float)dVar1 - (float)local_8 * *(float *)(this + 0xf8);\n    if (fVar2 < 0.0) {\n      fVar2 = 0.0;\n    }\n    *(float *)(*(int *)(this + 0x108) + 0x70) = fVar2;\n    this_00 = *(gbMatrixStack **)(gbVisNode::pGfxMgr + 0xd8);\n    gbMatrixStack::Push(this_00);\n    gbMatrixStack::LoadMatrix(this_00,(gbMatrix4 *)(param_1 + 0x20));\n    (**(code **)(**(int **)(this + 0x108) + 4))(*(undefined4 *)(param_1 + 8),param_1);\n    gbMatrixStack::Pop(this_00);\n  }\n  return;\n}\n\n", 
+  "is_thunk": false, 
+  "name": "Render", 
+  "assembly": "  10011460:  SUB ESP,0x8\n  10011463:  PUSH EDI\n  10011464:  MOV EDI,ECX\n  10011466:  MOV dword ptr [ESP + 0x4],0x0\n  1001146e:  FLD qword ptr [EDI + 0xf0]\n  10011474:  FSTP dword ptr [ESP + 0x8]\n  10011478:  FLD dword ptr [EDI + 0xf8]\n  1001147e:  FCOMP dword ptr [0x100f53a0]\n  10011484:  FNSTSW AX\n  10011486:  TEST AH,0x40\n  10011489:  JNZ 0x1001149e\n  1001148b:  FLD dword ptr [ESP + 0x8]\n  1001148f:  FDIV dword ptr [EDI + 0xf8]\n  10011495:  CALL 0x100e4be4\n  1001149a:  MOV dword ptr [ESP + 0x4],EAX\n  1001149e:  MOV EAX,dword ptr [EDI + 0x3c]\n  100114a1:  TEST EAX,EAX\n  100114a3:  JZ 0x10011511\n  100114a5:  MOV ECX,dword ptr [EDI + 0x108]\n  100114ab:  TEST ECX,ECX\n  100114ad:  JZ 0x10011511\n  100114af:  FILD dword ptr [ESP + 0x4]\n  100114b3:  FMUL dword ptr [EDI + 0xf8]\n  100114b9:  FSUBR dword ptr [ESP + 0x8]\n  100114bd:  FCOM dword ptr [0x100f53a0]\n  100114c3:  FNSTSW AX\n  100114c5:  TEST AH,0x1\n  100114c8:  JZ 0x100114d2\n  100114ca:  FSTP ST0\n  100114cc:  FLD dword ptr [0x100f53a0]\n  100114d2:  FSTP dword ptr [ECX + 0x70]\n  100114d5:  MOV EAX,[0x1013bdec]\n  100114da:  PUSH EBX\n  100114db:  PUSH ESI\n  100114dc:  MOV ESI,dword ptr [EAX + 0xd8]\n  100114e2:  MOV ECX,ESI\n  100114e4:  CALL 0x10027090\n  100114e9:  MOV EBX,dword ptr [ESP + 0x18]\n  100114ed:  LEA ECX,[EBX + 0x20]\n  100114f0:  PUSH ECX\n  100114f1:  MOV ECX,ESI\n  100114f3:  CALL 0x10027110\n  100114f8:  MOV ECX,dword ptr [EDI + 0x108]\n  100114fe:  MOV EAX,dword ptr [EBX + 0x8]\n  10011501:  PUSH EBX\n  10011502:  PUSH EAX\n  10011503:  MOV EDX,dword ptr [ECX]\n  10011505:  CALL dword ptr [EDX + 0x4]\n  10011508:  MOV ECX,ESI\n  1001150a:  CALL 0x100270c0\n  1001150f:  POP ESI\n  10011510:  POP EBX\n  10011511:  POP EDI\n  10011512:  ADD ESP,0x8\n  10011515:  RET 0x4", 
+  "callers": []
+}

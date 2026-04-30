@@ -1,0 +1,45 @@
+{
+  "address": "0x10078ebb", 
+  "size_bytes": 73, 
+  "calling_convention": "unknown", 
+  "signature": "undefined FUN_10078ebb(undefined4 param_1, undefined4 param_2, undefined4 param_3, undefined4 param_4, undefined4 param_5)", 
+  "callees": [], 
+  "global_refs": [
+    {
+      "address": "0x00000004", 
+      "type": null, 
+      "name": "DAT_00000004"
+    }, 
+    {
+      "address": "0x00000008", 
+      "type": null, 
+      "name": "DAT_00000008"
+    }, 
+    {
+      "address": "0x0000000c", 
+      "type": null, 
+      "name": "DAT_0000000c"
+    }, 
+    {
+      "address": "0x00000014", 
+      "type": null, 
+      "name": "DAT_00000014"
+    }, 
+    {
+      "address": "0x00000010", 
+      "type": null, 
+      "name": "DAT_00000010"
+    }
+  ], 
+  "has_custom_name": false, 
+  "decompiled_c": "\nvoid FUN_10078ebb(int param_1,int param_2,int param_3,int param_4,undefined4 *param_5)\n\n{\n  if ((param_1 != 0) && (param_2 != 0)) {\n    if (param_3 != 0) {\n      *(int *)(param_2 + 0x30) = param_3;\n    }\n    if (param_5 != (undefined4 *)0x0) {\n      *(undefined4 *)(param_2 + 0x34) = *param_5;\n      *(undefined4 *)(param_2 + 0x38) = param_5[1];\n      *(undefined2 *)(param_2 + 0x3c) = *(undefined2 *)(param_5 + 2);\n      if (param_4 == 0) {\n        param_4 = 1;\n      }\n    }\n    *(uint *)(param_2 + 8) = *(uint *)(param_2 + 8) | 0x10;\n    *(undefined2 *)(param_2 + 0x16) = (undefined2)param_4;\n  }\n  return;\n}\n\n", 
+  "is_thunk": false, 
+  "name": "FUN_10078ebb", 
+  "assembly": "  10078ebb:  PUSH EBP\n  10078ebc:  MOV EBP,ESP\n  10078ebe:  CMP dword ptr [EBP + 0x8],0x0\n  10078ec2:  JZ 0x10078f00\n  10078ec4:  MOV EAX,dword ptr [EBP + 0xc]\n  10078ec7:  TEST EAX,EAX\n  10078ec9:  JZ 0x10078f00\n  10078ecb:  MOV ECX,dword ptr [EBP + 0x10]\n  10078ece:  TEST ECX,ECX\n  10078ed0:  JZ 0x10078ed5\n  10078ed2:  MOV dword ptr [EAX + 0x30],ECX\n  10078ed5:  PUSH ESI\n  10078ed6:  MOV ESI,dword ptr [EBP + 0x18]\n  10078ed9:  TEST ESI,ESI\n  10078edb:  JZ 0x10078ef3\n  10078edd:  CMP dword ptr [EBP + 0x14],0x0\n  10078ee1:  PUSH EDI\n  10078ee2:  LEA EDI,[EAX + 0x34]\n  10078ee5:  MOVSD ES:EDI,ESI\n  10078ee6:  MOVSD ES:EDI,ESI\n  10078ee7:  MOVSW ES:EDI,ESI\n  10078ee9:  POP EDI\n  10078eea:  JNZ 0x10078ef3\n  10078eec:  MOV dword ptr [EBP + 0x14],0x1\n  10078ef3:  MOV CX,word ptr [EBP + 0x14]\n  10078ef7:  OR dword ptr [EAX + 0x8],0x10\n  10078efb:  MOV word ptr [EAX + 0x16],CX\n  10078eff:  POP ESI\n  10078f00:  POP EBP\n  10078f01:  RET 0x14", 
+  "callers": [
+    {
+      "address": "0x100974bf", 
+      "name": "FUN_100974bf"
+    }
+  ]
+}

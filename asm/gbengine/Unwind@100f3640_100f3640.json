@@ -1,0 +1,19 @@
+{
+  "address": "0x100f3640", 
+  "size_bytes": 14, 
+  "calling_convention": "unknown", 
+  "signature": "undefined Unwind@100f3640(void)", 
+  "callees": [
+    {
+      "address": "0x100201a0", 
+      "name": "~gbResManager"
+    }
+  ], 
+  "global_refs": [], 
+  "has_custom_name": true, 
+  "decompiled_c": "\nvoid Unwind_100f3640(void)\n\n{\n  int unaff_EBP;\n  \n  gbResManager::~gbResManager((gbResManager *)(*(int *)(unaff_EBP + -0x10) + 0xe8));\n  return;\n}\n\n", 
+  "is_thunk": false, 
+  "name": "Unwind@100f3640", 
+  "assembly": "  100f3640:  MOV ECX,dword ptr [EBP + -0x10]\n  100f3643:  ADD ECX,0xe8\n  100f3649:  JMP 0x100201a0", 
+  "callers": []
+}

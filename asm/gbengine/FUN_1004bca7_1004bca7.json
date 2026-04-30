@@ -1,0 +1,40 @@
+{
+  "address": "0x1004bca7", 
+  "size_bytes": 23, 
+  "calling_convention": "unknown", 
+  "signature": "undefined FUN_1004bca7(undefined1 param_1, undefined1 param_2, undefined1 param_3)", 
+  "callees": [
+    {
+      "address": "0x1004bbb9", 
+      "name": "FUN_1004bbb9"
+    }
+  ], 
+  "global_refs": [
+    {
+      "address": "0x0000000c", 
+      "type": null, 
+      "name": "DAT_0000000c"
+    }, 
+    {
+      "address": "0x00000008", 
+      "type": null, 
+      "name": "DAT_00000008"
+    }, 
+    {
+      "address": "0x00000004", 
+      "type": null, 
+      "name": "DAT_00000004"
+    }
+  ], 
+  "has_custom_name": false, 
+  "decompiled_c": "\nvoid FUN_1004bca7(void)\n\n{\n  FUN_1004bbb9(&stack0x00000004,&stack0x00000008,&stack0x0000000c);\n  return;\n}\n\n", 
+  "is_thunk": false, 
+  "name": "FUN_1004bca7", 
+  "assembly": "  1004bca7:  LEA EAX,[ESP + 0xc]\n  1004bcab:  PUSH EAX\n  1004bcac:  LEA EAX,[ESP + 0xc]\n  1004bcb0:  PUSH EAX\n  1004bcb1:  LEA EAX,[ESP + 0xc]\n  1004bcb5:  PUSH EAX\n  1004bcb6:  CALL 0x1004bbb9\n  1004bcbb:  RET 0xc", 
+  "callers": [
+    {
+      "address": "0x1004c160", 
+      "name": "FUN_1004c160"
+    }
+  ]
+}

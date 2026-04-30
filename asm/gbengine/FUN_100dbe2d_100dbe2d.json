@@ -1,0 +1,35 @@
+{
+  "address": "0x100dbe2d", 
+  "size_bytes": 283, 
+  "calling_convention": "unknown", 
+  "signature": "undefined FUN_100dbe2d(undefined4 param_1, undefined4 param_2, undefined4 param_3)", 
+  "callees": [], 
+  "global_refs": [
+    {
+      "address": "0x00000008", 
+      "type": null, 
+      "name": "DAT_00000008"
+    }, 
+    {
+      "address": "0x00000004", 
+      "type": null, 
+      "name": "DAT_00000004"
+    }, 
+    {
+      "address": "0x0000000c", 
+      "type": null, 
+      "name": "DAT_0000000c"
+    }
+  ], 
+  "has_custom_name": false, 
+  "decompiled_c": "\nuint FUN_100dbe2d(uint param_1,byte *param_2,uint param_3)\n\n{\n  uint uVar1;\n  uint uVar2;\n  uint uVar3;\n  int iVar4;\n  int iVar5;\n  int iVar6;\n  int iVar7;\n  int iVar8;\n  int iVar9;\n  int iVar10;\n  int iVar11;\n  int iVar12;\n  int iVar13;\n  int iVar14;\n  int iVar15;\n  int iVar16;\n  int iVar17;\n  int iVar18;\n  \n  uVar3 = param_1 & 0xffff;\n  param_1 = param_1 >> 0x10;\n  if (param_2 == (byte *)0x0) {\n    uVar3 = 1;\n  }\n  else {\n    if (param_3 != 0) {\n      do {\n        uVar2 = 0x15b0;\n        if (param_3 < 0x15b0) {\n          uVar2 = param_3;\n        }\n        param_3 = param_3 - uVar2;\n        if (0xf < (int)uVar2) {\n          uVar1 = uVar2 >> 4;\n          uVar2 = uVar2 + uVar1 * -0x10;\n          do {\n            iVar4 = uVar3 + *param_2;\n            iVar5 = iVar4 + (uint)param_2[1];\n            iVar6 = iVar5 + (uint)param_2[2];\n            iVar7 = iVar6 + (uint)param_2[3];\n            iVar8 = iVar7 + (uint)param_2[4];\n            iVar9 = iVar8 + (uint)param_2[5];\n            iVar10 = iVar9 + (uint)param_2[6];\n            iVar11 = iVar10 + (uint)param_2[7];\n            iVar12 = iVar11 + (uint)param_2[8];\n            iVar13 = iVar12 + (uint)param_2[9];\n            iVar14 = iVar13 + (uint)param_2[10];\n            iVar15 = iVar14 + (uint)param_2[0xb];\n            iVar16 = iVar15 + (uint)param_2[0xc];\n            iVar17 = iVar16 + (uint)param_2[0xd];\n            iVar18 = iVar17 + (uint)param_2[0xe];\n            uVar3 = iVar18 + (uint)param_2[0xf];\n            param_1 = param_1 + iVar4 + iVar5 + iVar6 + iVar7 + iVar8 + iVar9 + iVar10 + iVar11 +\n                      iVar12 + iVar13 + iVar14 + iVar15 + iVar16 + iVar17 + iVar18 + uVar3;\n            param_2 = param_2 + 0x10;\n            uVar1 = uVar1 - 1;\n          } while (uVar1 != 0);\n        }\n        for (; uVar2 != 0; uVar2 = uVar2 - 1) {\n          uVar3 = uVar3 + *param_2;\n          param_2 = param_2 + 1;\n          param_1 = param_1 + uVar3;\n        }\n        uVar3 = uVar3 % 0xfff1;\n        param_1 = param_1 % 0xfff1;\n      } while (param_3 != 0);\n    }\n    uVar3 = param_1 << 0x10 | uVar3;\n  }\n  return uVar3;\n}\n\n", 
+  "is_thunk": false, 
+  "name": "FUN_100dbe2d", 
+  "assembly": "  100dbe2d:  PUSH EBP\n  100dbe2e:  MOV EBP,ESP\n  100dbe30:  MOV ECX,dword ptr [EBP + 0xc]\n  100dbe33:  PUSH ESI\n  100dbe34:  PUSH EDI\n  100dbe35:  MOV EDI,dword ptr [EBP + 0x8]\n  100dbe38:  MOV ESI,EDI\n  100dbe3a:  AND ESI,0xffff\n  100dbe40:  SHR EDI,0x10\n  100dbe43:  TEST ECX,ECX\n  100dbe45:  JNZ 0x100dbe4f\n  100dbe47:  XOR EAX,EAX\n  100dbe49:  INC EAX\n  100dbe4a:  JMP 0x100dbf42\n  100dbe4f:  CMP dword ptr [EBP + 0x10],0x0\n  100dbe53:  JBE 0x100dbf3b\n  100dbe59:  PUSH EBX\n  100dbe5a:  MOV EDX,0x15b0\n  100dbe5f:  CMP dword ptr [EBP + 0x10],EDX\n  100dbe62:  JNC 0x100dbe67\n  100dbe64:  MOV EDX,dword ptr [EBP + 0x10]\n  100dbe67:  SUB dword ptr [EBP + 0x10],EDX\n  100dbe6a:  CMP EDX,0x10\n  100dbe6d:  JL 0x100dbf0a\n  100dbe73:  MOV EAX,EDX\n  100dbe75:  SHR EAX,0x4\n  100dbe78:  MOV EBX,EAX\n  100dbe7a:  NEG EBX\n  100dbe7c:  SHL EBX,0x4\n  100dbe7f:  ADD EDX,EBX\n  100dbe81:  MOVZX EBX,byte ptr [ECX]\n  100dbe84:  ADD ESI,EBX\n  100dbe86:  MOVZX EBX,byte ptr [ECX + 0x1]\n  100dbe8a:  ADD EDI,ESI\n  100dbe8c:  ADD ESI,EBX\n  100dbe8e:  MOVZX EBX,byte ptr [ECX + 0x2]\n  100dbe92:  ADD EDI,ESI\n  100dbe94:  ADD ESI,EBX\n  100dbe96:  MOVZX EBX,byte ptr [ECX + 0x3]\n  100dbe9a:  ADD EDI,ESI\n  100dbe9c:  ADD ESI,EBX\n  100dbe9e:  MOVZX EBX,byte ptr [ECX + 0x4]\n  100dbea2:  ADD EDI,ESI\n  100dbea4:  ADD ESI,EBX\n  100dbea6:  MOVZX EBX,byte ptr [ECX + 0x5]\n  100dbeaa:  ADD EDI,ESI\n  100dbeac:  ADD ESI,EBX\n  100dbeae:  MOVZX EBX,byte ptr [ECX + 0x6]\n  100dbeb2:  ADD EDI,ESI\n  100dbeb4:  ADD ESI,EBX\n  100dbeb6:  MOVZX EBX,byte ptr [ECX + 0x7]\n  100dbeba:  ADD EDI,ESI\n  100dbebc:  ADD ESI,EBX\n  100dbebe:  MOVZX EBX,byte ptr [ECX + 0x8]\n  100dbec2:  ADD EDI,ESI\n  100dbec4:  ADD ESI,EBX\n  100dbec6:  MOVZX EBX,byte ptr [ECX + 0x9]\n  100dbeca:  ADD EDI,ESI\n  100dbecc:  ADD ESI,EBX\n  100dbece:  MOVZX EBX,byte ptr [ECX + 0xa]\n  100dbed2:  ADD EDI,ESI\n  100dbed4:  ADD ESI,EBX\n  100dbed6:  MOVZX EBX,byte ptr [ECX + 0xb]\n  100dbeda:  ADD EDI,ESI\n  100dbedc:  ADD ESI,EBX\n  100dbede:  MOVZX EBX,byte ptr [ECX + 0xc]\n  100dbee2:  ADD EDI,ESI\n  100dbee4:  ADD ESI,EBX\n  100dbee6:  MOVZX EBX,byte ptr [ECX + 0xd]\n  100dbeea:  ADD EDI,ESI\n  100dbeec:  ADD ESI,EBX\n  100dbeee:  MOVZX EBX,byte ptr [ECX + 0xe]\n  100dbef2:  ADD EDI,ESI\n  100dbef4:  ADD ESI,EBX\n  100dbef6:  MOVZX EBX,byte ptr [ECX + 0xf]\n  100dbefa:  ADD EDI,ESI\n  100dbefc:  ADD ESI,EBX\n  100dbefe:  ADD EDI,ESI\n  100dbf00:  ADD ECX,0x10\n  100dbf03:  DEC EAX\n  100dbf04:  JNZ 0x100dbe81\n  100dbf0a:  TEST EDX,EDX\n  100dbf0c:  JZ 0x100dbf19\n  100dbf0e:  MOVZX EAX,byte ptr [ECX]\n  100dbf11:  ADD ESI,EAX\n  100dbf13:  INC ECX\n  100dbf14:  ADD EDI,ESI\n  100dbf16:  DEC EDX\n  100dbf17:  JNZ 0x100dbf0e\n  100dbf19:  MOV EAX,ESI\n  100dbf1b:  XOR EDX,EDX\n  100dbf1d:  MOV EBX,0xfff1\n  100dbf22:  MOV ESI,EBX\n  100dbf24:  DIV ESI\n  100dbf26:  MOV EAX,EDI\n  100dbf28:  MOV ESI,EDX\n  100dbf2a:  XOR EDX,EDX\n  100dbf2c:  DIV EBX\n  100dbf2e:  CMP dword ptr [EBP + 0x10],0x0\n  100dbf32:  MOV EDI,EDX\n  100dbf34:  JA 0x100dbe5a\n  100dbf3a:  POP EBX\n  100dbf3b:  MOV EAX,EDI\n  100dbf3d:  SHL EAX,0x10\n  100dbf40:  OR EAX,ESI\n  100dbf42:  POP EDI\n  100dbf43:  POP ESI\n  100dbf44:  POP EBP\n  100dbf45:  RET 0xc", 
+  "callers": [
+    {
+      "address": "0x100958c5", 
+      "name": "FUN_100958c5"
+    }
+  ]
+}

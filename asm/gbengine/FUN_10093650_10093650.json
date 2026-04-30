@@ -1,0 +1,23 @@
+{
+  "address": "0x10093650", 
+  "size_bytes": 125, 
+  "calling_convention": "unknown", 
+  "signature": "undefined FUN_10093650(void)", 
+  "callees": [], 
+  "global_refs": [], 
+  "has_custom_name": false, 
+  "decompiled_c": "\nundefined4 FUN_10093650(void)\n\n{\n  int iVar1;\n  int iVar2;\n  undefined4 uVar3;\n  int in_EDX;\n  \n  if (((((*(int *)(in_EDX + 0x4c) != 0) || (*(int *)(in_EDX + 0x130) != 0)) ||\n       (*(int *)(in_EDX + 0x28) != 3)) ||\n      (((*(int *)(in_EDX + 0x24) != 3 || (*(int *)(in_EDX + 0x2c) != 2)) ||\n       ((*(int *)(in_EDX + 0x78) != 3 ||\n        ((iVar1 = *(int *)(in_EDX + 0xdc), *(int *)(iVar1 + 8) != 2 ||\n         (uVar3 = 1, *(int *)(iVar1 + 0x5c) != 1)))))))) ||\n     ((*(int *)(iVar1 + 0xb0) != 1 ||\n      (((((2 < *(int *)(iVar1 + 0xc) || (*(int *)(iVar1 + 0x60) != 1)) ||\n         (*(int *)(iVar1 + 0xb4) != 1)) ||\n        ((iVar2 = *(int *)(in_EDX + 0x140), *(int *)(iVar1 + 0x24) != iVar2 ||\n         (*(int *)(iVar1 + 0x78) != iVar2)))) || (*(int *)(iVar1 + 0xcc) != iVar2)))))) {\n    uVar3 = 0;\n  }\n  return uVar3;\n}\n\n", 
+  "is_thunk": false, 
+  "name": "FUN_10093650", 
+  "assembly": "  10093650:  MOV EAX,dword ptr [EDX + 0x4c]\n  10093653:  TEST EAX,EAX\n  10093655:  PUSH EDI\n  10093656:  JNZ 0x100936c9\n  10093658:  MOV EAX,dword ptr [EDX + 0x130]\n  1009365e:  TEST EAX,EAX\n  10093660:  JNZ 0x100936c9\n  10093662:  MOV ECX,dword ptr [EDX + 0x28]\n  10093665:  MOV EAX,0x3\n  1009366a:  CMP ECX,EAX\n  1009366c:  JNZ 0x100936c9\n  1009366e:  CMP dword ptr [EDX + 0x24],EAX\n  10093671:  JNZ 0x100936c9\n  10093673:  CMP dword ptr [EDX + 0x2c],0x2\n  10093677:  JNZ 0x100936c9\n  10093679:  CMP dword ptr [EDX + 0x78],EAX\n  1009367c:  JNZ 0x100936c9\n  1009367e:  MOV ECX,dword ptr [EDX + 0xdc]\n  10093684:  CMP dword ptr [ECX + 0x8],0x2\n  10093688:  JNZ 0x100936c9\n  1009368a:  MOV EDI,dword ptr [ECX + 0x5c]\n  1009368d:  MOV EAX,0x1\n  10093692:  CMP EDI,EAX\n  10093694:  JNZ 0x100936c9\n  10093696:  CMP dword ptr [ECX + 0xb0],EAX\n  1009369c:  JNZ 0x100936c9\n  1009369e:  CMP dword ptr [ECX + 0xc],0x2\n  100936a2:  JG 0x100936c9\n  100936a4:  CMP dword ptr [ECX + 0x60],EAX\n  100936a7:  JNZ 0x100936c9\n  100936a9:  CMP dword ptr [ECX + 0xb4],EAX\n  100936af:  JNZ 0x100936c9\n  100936b1:  MOV EDX,dword ptr [EDX + 0x140]\n  100936b7:  CMP dword ptr [ECX + 0x24],EDX\n  100936ba:  JNZ 0x100936c9\n  100936bc:  CMP dword ptr [ECX + 0x78],EDX\n  100936bf:  JNZ 0x100936c9\n  100936c1:  CMP dword ptr [ECX + 0xcc],EDX\n  100936c7:  JZ 0x100936cb\n  100936c9:  XOR EAX,EAX\n  100936cb:  POP EDI\n  100936cc:  RET", 
+  "callers": [
+    {
+      "address": "0x10093960", 
+      "name": "FUN_10093960"
+    }, 
+    {
+      "address": "0x100936d0", 
+      "name": "FUN_100936d0"
+    }
+  ]
+}

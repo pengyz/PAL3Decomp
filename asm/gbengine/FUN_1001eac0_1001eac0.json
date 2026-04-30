@@ -1,0 +1,32 @@
+{
+  "address": "0x1001eac0", 
+  "size_bytes": 183, 
+  "calling_convention": "unknown", 
+  "signature": "undefined FUN_1001eac0(void)", 
+  "callees": [
+    {
+      "address": "0x100e4b0d", 
+      "name": "_malloc"
+    }, 
+    {
+      "address": "0x100e4b99", 
+      "name": "FUN_100e4b99"
+    }, 
+    {
+      "address": "0x100e4b99", 
+      "name": "FUN_100e4b99"
+    }
+  ], 
+  "global_refs": [], 
+  "has_custom_name": false, 
+  "decompiled_c": "\nvoid FUN_1001eac0(void)\n\n{\n  byte *pbVar1;\n  undefined *puVar2;\n  void *pvVar3;\n  undefined *puVar4;\n  int in_ECX;\n  int iVar5;\n  \n  if (*(int *)(in_ECX + 0xbc) != 0) {\n    pvVar3 = _malloc(*(int *)(in_ECX + 0x80) * *(int *)(in_ECX + 0x84) * 3);\n    iVar5 = 0;\n    if (0 < *(int *)(in_ECX + 0x80) * *(int *)(in_ECX + 0x84)) {\n      puVar4 = (undefined *)((int)pvVar3 + 2);\n      do {\n        pbVar1 = (byte *)(*(int *)(in_ECX + 0xb8) + iVar5);\n        iVar5 = iVar5 + 1;\n        puVar2 = (undefined *)(*(int *)(in_ECX + 0xbc) + (uint)*pbVar1 * 4);\n        puVar4[-2] = *puVar2;\n        puVar4[-1] = puVar2[1];\n        *puVar4 = puVar2[2];\n        puVar4 = puVar4 + 3;\n      } while (iVar5 < *(int *)(in_ECX + 0x80) * *(int *)(in_ECX + 0x84));\n    }\n    FUN_100e4b99(*(undefined4 *)(in_ECX + 0xb8));\n    *(void **)(in_ECX + 0xb8) = pvVar3;\n    FUN_100e4b99(*(undefined4 *)(in_ECX + 0xbc));\n    *(undefined4 *)(in_ECX + 0xbc) = 0;\n    *(undefined4 *)(in_ECX + 0xb4) = 0x18;\n  }\n  return;\n}\n\n", 
+  "is_thunk": false, 
+  "name": "FUN_1001eac0", 
+  "assembly": "  1001eac0:  PUSH ESI\n  1001eac1:  MOV ESI,ECX\n  1001eac3:  MOV EAX,dword ptr [ESI + 0xbc]\n  1001eac9:  TEST EAX,EAX\n  1001eacb:  JZ 0x1001eb75\n  1001ead1:  MOV EAX,dword ptr [ESI + 0x80]\n  1001ead7:  PUSH EBP\n  1001ead8:  IMUL EAX,dword ptr [ESI + 0x84]\n  1001eadf:  PUSH EDI\n  1001eae0:  LEA EAX,[EAX + EAX*0x2]\n  1001eae3:  PUSH EAX\n  1001eae4:  CALL 0x100e4b0d\n  1001eae9:  MOV ECX,dword ptr [ESI + 0x80]\n  1001eaef:  ADD ESP,0x4\n  1001eaf2:  IMUL ECX,dword ptr [ESI + 0x84]\n  1001eaf9:  XOR EDI,EDI\n  1001eafb:  MOV EBP,EAX\n  1001eafd:  TEST ECX,ECX\n  1001eaff:  JLE 0x1001eb3e\n  1001eb01:  LEA EAX,[EBP + 0x2]\n  1001eb04:  MOV EDX,dword ptr [ESI + 0xb8]\n  1001eb0a:  XOR ECX,ECX\n  1001eb0c:  ADD EAX,0x3\n  1001eb0f:  MOV CL,byte ptr [EDX + EDI*0x1]\n  1001eb12:  MOV EDX,dword ptr [ESI + 0xbc]\n  1001eb18:  INC EDI\n  1001eb19:  LEA ECX,[EDX + ECX*0x4]\n  1001eb1c:  MOV DL,byte ptr [ECX]\n  1001eb1e:  MOV byte ptr [EAX + -0x5],DL\n  1001eb21:  MOV DL,byte ptr [ECX + 0x1]\n  1001eb24:  MOV byte ptr [EAX + -0x4],DL\n  1001eb27:  MOV CL,byte ptr [ECX + 0x2]\n  1001eb2a:  MOV byte ptr [EAX + -0x3],CL\n  1001eb2d:  MOV EDX,dword ptr [ESI + 0x80]\n  1001eb33:  IMUL EDX,dword ptr [ESI + 0x84]\n  1001eb3a:  CMP EDI,EDX\n  1001eb3c:  JL 0x1001eb04\n  1001eb3e:  MOV EAX,dword ptr [ESI + 0xb8]\n  1001eb44:  PUSH EAX\n  1001eb45:  CALL 0x100e4b99\n  1001eb4a:  MOV ECX,dword ptr [ESI + 0xbc]\n  1001eb50:  MOV dword ptr [ESI + 0xb8],EBP\n  1001eb56:  PUSH ECX\n  1001eb57:  CALL 0x100e4b99\n  1001eb5c:  ADD ESP,0x8\n  1001eb5f:  MOV dword ptr [ESI + 0xbc],0x0\n  1001eb69:  MOV dword ptr [ESI + 0xb4],0x18\n  1001eb73:  POP EDI\n  1001eb74:  POP EBP\n  1001eb75:  POP ESI\n  1001eb76:  RET", 
+  "callers": [
+    {
+      "address": "0x1001e490", 
+      "name": "LoadImageFile"
+    }
+  ]
+}

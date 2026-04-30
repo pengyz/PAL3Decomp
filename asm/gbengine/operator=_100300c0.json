@@ -1,0 +1,20 @@
+{
+  "address": "0x100300c0", 
+  "size_bytes": 35, 
+  "calling_convention": "__thiscall", 
+  "signature": "gbChain1D * __thiscall operator=(gbChain1D * this, gbChain1D * param_1)", 
+  "callees": [], 
+  "global_refs": [
+    {
+      "address": "0x00000004", 
+      "type": null, 
+      "name": "DAT_00000004"
+    }
+  ], 
+  "has_custom_name": true, 
+  "decompiled_c": "\n/* public: class gbChain1D & __thiscall gbChain1D::operator=(class gbChain1D const &) */\n\ngbChain1D * __thiscall gbChain1D::operator=(gbChain1D *this,gbChain1D *param_1)\n\n{\n                    /* 0x300c0  191  ??4gbChain1D@@QAEAAV0@ABV0@@Z\n                       0x300c0  195  ??4gbColorFlt@@QAEAAU0@ABU0@@Z\n                       0x300c0  210  ??4gbMatrixStack@@QAEAAV0@ABV0@@Z\n                       0x300c0  223  ??4gbQuaternion@@QAEAAU0@ABU0@@Z\n                       0x300c0  232  ??4gbSound2DNode@@QAEAAV0@ABV0@@Z\n                       0x300c0  238  ??4gbTimeCounter@@QAEAAV0@ABV0@@Z */\n  *(undefined4 *)this = *(undefined4 *)param_1;\n  *(undefined4 *)(this + 4) = *(undefined4 *)(param_1 + 4);\n  *(undefined4 *)(this + 8) = *(undefined4 *)(param_1 + 8);\n  *(undefined4 *)(this + 0xc) = *(undefined4 *)(param_1 + 0xc);\n  return this;\n}\n\n", 
+  "is_thunk": false, 
+  "name": "operator=", 
+  "assembly": "  100300c0:  MOV EAX,ECX\n  100300c2:  PUSH ESI\n  100300c3:  MOV ECX,dword ptr [ESP + 0x8]\n  100300c7:  MOV EDX,EAX\n  100300c9:  MOV ESI,dword ptr [ECX]\n  100300cb:  MOV dword ptr [EDX],ESI\n  100300cd:  MOV ESI,dword ptr [ECX + 0x4]\n  100300d0:  MOV dword ptr [EDX + 0x4],ESI\n  100300d3:  MOV ESI,dword ptr [ECX + 0x8]\n  100300d6:  MOV dword ptr [EDX + 0x8],ESI\n  100300d9:  POP ESI\n  100300da:  MOV ECX,dword ptr [ECX + 0xc]\n  100300dd:  MOV dword ptr [EDX + 0xc],ECX\n  100300e0:  RET 0x4", 
+  "callers": []
+}

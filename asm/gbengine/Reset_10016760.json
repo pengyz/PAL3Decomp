@@ -1,0 +1,33 @@
+{
+  "address": "0x10016760", 
+  "size_bytes": 42, 
+  "calling_convention": "__thiscall", 
+  "signature": "void __thiscall Reset(gbVisNode * this, float param_1)", 
+  "callees": [], 
+  "global_refs": [
+    {
+      "address": "0x00000004", 
+      "type": null, 
+      "name": "DAT_00000004"
+    }
+  ], 
+  "has_custom_name": true, 
+  "decompiled_c": "\n/* public: virtual void __thiscall gbVisNode::Reset(float) */\n\nvoid __thiscall gbVisNode::Reset(gbVisNode *this,float param_1)\n\n{\n  int *piVar1;\n  \n                    /* 0x16760  809  ?Reset@gbVisNode@@UAEXM@Z */\n  piVar1 = *(int **)(this + 0xc);\n  *(int **)(this + 0x18) = piVar1;\n  while (piVar1 != (int *)0x0) {\n    (**(code **)(*piVar1 + 0x18))(param_1);\n    piVar1 = *(int **)(*(int *)(this + 0x18) + 4);\n    *(int **)(this + 0x18) = piVar1;\n  }\n  return;\n}\n\n", 
+  "is_thunk": false, 
+  "name": "Reset", 
+  "assembly": "  10016760:  PUSH ESI\n  10016761:  MOV ESI,ECX\n  10016763:  MOV ECX,dword ptr [ESI + 0xc]\n  10016766:  TEST ECX,ECX\n  10016768:  MOV dword ptr [ESI + 0x18],ECX\n  1001676b:  JZ 0x10016786\n  1001676d:  PUSH EDI\n  1001676e:  MOV EDI,dword ptr [ESP + 0xc]\n  10016772:  MOV EAX,dword ptr [ECX]\n  10016774:  PUSH EDI\n  10016775:  CALL dword ptr [EAX + 0x18]\n  10016778:  MOV ECX,dword ptr [ESI + 0x18]\n  1001677b:  MOV ECX,dword ptr [ECX + 0x4]\n  1001677e:  TEST ECX,ECX\n  10016780:  MOV dword ptr [ESI + 0x18],ECX\n  10016783:  JNZ 0x10016772\n  10016785:  POP EDI\n  10016786:  POP ESI\n  10016787:  RET 0x4", 
+  "callers": [
+    {
+      "address": "0x100115e0", 
+      "name": "Reset"
+    }, 
+    {
+      "address": "0x100115e0", 
+      "name": "Reset"
+    }, 
+    {
+      "address": "0x1002bfd0", 
+      "name": "Reset"
+    }
+  ]
+}

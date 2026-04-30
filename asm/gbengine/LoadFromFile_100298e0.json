@@ -1,0 +1,62 @@
+{
+  "address": "0x100298e0", 
+  "size_bytes": 194, 
+  "calling_convention": "__thiscall", 
+  "signature": "void __thiscall LoadFromFile(gbPartParamControl * this, gbVFile * param_1)", 
+  "callees": [
+    {
+      "address": "0x10030810", 
+      "name": "Read"
+    }, 
+    {
+      "address": "0x10030810", 
+      "name": "Read"
+    }, 
+    {
+      "address": "0x10030810", 
+      "name": "Read"
+    }, 
+    {
+      "address": "0x10030810", 
+      "name": "Read"
+    }, 
+    {
+      "address": "0x10030810", 
+      "name": "Read"
+    }, 
+    {
+      "address": "0x10030810", 
+      "name": "Read"
+    }, 
+    {
+      "address": "0x10030a00", 
+      "name": "Seek"
+    }, 
+    {
+      "address": "0x10030810", 
+      "name": "Read"
+    }, 
+    {
+      "address": "0x10030810", 
+      "name": "Read"
+    }
+  ], 
+  "global_refs": [
+    {
+      "address": "0x00000004", 
+      "type": null, 
+      "name": "DAT_00000004"
+    }, 
+    {
+      "address": "0x1015d3a8", 
+      "type": "gbVFileSystem *", 
+      "name": "DAT_1015d3a8"
+    }
+  ], 
+  "has_custom_name": true, 
+  "decompiled_c": "\n/* public: void __thiscall gbPartParamControl::LoadFromFile(class gbVFile *) */\n\nvoid __thiscall gbPartParamControl::LoadFromFile(gbPartParamControl *this,gbVFile *param_1)\n\n{\n                    /* 0x298e0  678  ?LoadFromFile@gbPartParamControl@@QAEXPAVgbVFile@@@Z */\n  gbVFileSystem::Read(g_pVFileSys,this,4,param_1);\n  gbVFileSystem::Read(g_pVFileSys,this + 4,4,param_1);\n  gbVFileSystem::Read(g_pVFileSys,this + 8,0x40,param_1);\n  gbVFileSystem::Read(g_pVFileSys,this + 0x48,0x80,param_1);\n  gbVFileSystem::Read(g_pVFileSys,this + 0xd4,0xc,param_1);\n  gbVFileSystem::Read(g_pVFileSys,this + 200,0xc,param_1);\n  gbVFileSystem::Seek(g_pVFileSys,param_1,0x2d0,2);\n  gbVFileSystem::Read(g_pVFileSys,this + 0xe0,0x2d0,param_1);\n  gbVFileSystem::Read(g_pVFileSys,this + 0x3b0,0xe34,param_1);\n  return;\n}\n\n", 
+  "is_thunk": false, 
+  "name": "LoadFromFile", 
+  "assembly": "  100298e0:  PUSH ESI\n  100298e1:  PUSH EDI\n  100298e2:  MOV EDI,dword ptr [ESP + 0xc]\n  100298e6:  MOV ESI,ECX\n  100298e8:  MOV ECX,dword ptr [0x1015d3a8]\n  100298ee:  PUSH EDI\n  100298ef:  PUSH 0x4\n  100298f1:  PUSH ESI\n  100298f2:  CALL 0x10030810\n  100298f7:  MOV ECX,dword ptr [0x1015d3a8]\n  100298fd:  PUSH EDI\n  100298fe:  LEA EAX,[ESI + 0x4]\n  10029901:  PUSH 0x4\n  10029903:  PUSH EAX\n  10029904:  CALL 0x10030810\n  10029909:  PUSH EDI\n  1002990a:  LEA ECX,[ESI + 0x8]\n  1002990d:  PUSH 0x40\n  1002990f:  PUSH ECX\n  10029910:  MOV ECX,dword ptr [0x1015d3a8]\n  10029916:  CALL 0x10030810\n  1002991b:  MOV ECX,dword ptr [0x1015d3a8]\n  10029921:  PUSH EDI\n  10029922:  LEA EDX,[ESI + 0x48]\n  10029925:  PUSH 0x80\n  1002992a:  PUSH EDX\n  1002992b:  CALL 0x10030810\n  10029930:  MOV ECX,dword ptr [0x1015d3a8]\n  10029936:  PUSH EDI\n  10029937:  LEA EAX,[ESI + 0xd4]\n  1002993d:  PUSH 0xc\n  1002993f:  PUSH EAX\n  10029940:  CALL 0x10030810\n  10029945:  PUSH EDI\n  10029946:  LEA ECX,[ESI + 0xc8]\n  1002994c:  PUSH 0xc\n  1002994e:  PUSH ECX\n  1002994f:  MOV ECX,dword ptr [0x1015d3a8]\n  10029955:  CALL 0x10030810\n  1002995a:  MOV ECX,dword ptr [0x1015d3a8]\n  10029960:  PUSH 0x2\n  10029962:  PUSH 0x2d0\n  10029967:  PUSH EDI\n  10029968:  CALL 0x10030a00\n  1002996d:  MOV ECX,dword ptr [0x1015d3a8]\n  10029973:  PUSH EDI\n  10029974:  LEA EDX,[ESI + 0xe0]\n  1002997a:  PUSH 0x2d0\n  1002997f:  PUSH EDX\n  10029980:  CALL 0x10030810\n  10029985:  MOV ECX,dword ptr [0x1015d3a8]\n  1002998b:  PUSH EDI\n  1002998c:  ADD ESI,0x3b0\n  10029992:  PUSH 0xe34\n  10029997:  PUSH ESI\n  10029998:  CALL 0x10030810\n  1002999d:  POP EDI\n  1002999e:  POP ESI\n  1002999f:  RET 0x4", 
+  "callers": []
+}

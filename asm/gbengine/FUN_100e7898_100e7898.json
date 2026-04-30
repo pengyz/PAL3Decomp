@@ -1,0 +1,42 @@
+{
+  "address": "0x100e7898", 
+  "size_bytes": 26, 
+  "calling_convention": "unknown", 
+  "signature": "undefined FUN_100e7898(undefined4 param_1, undefined4 param_2)", 
+  "callees": [], 
+  "global_refs": [
+    {
+      "address": "0x00000004", 
+      "type": null, 
+      "name": "DAT_00000004"
+    }, 
+    {
+      "address": "0x00000008", 
+      "type": null, 
+      "name": "DAT_00000008"
+    }
+  ], 
+  "has_custom_name": false, 
+  "decompiled_c": "\nvoid FUN_100e7898(undefined4 *param_1,undefined4 *param_2)\n\n{\n  for (; param_1 < param_2; param_1 = param_1 + 1) {\n    if ((code *)*param_1 != (code *)0x0) {\n      (*(code *)*param_1)();\n    }\n  }\n  return;\n}\n\n", 
+  "is_thunk": false, 
+  "name": "FUN_100e7898", 
+  "assembly": "  100e7898:  PUSH ESI\n  100e7899:  MOV ESI,dword ptr [ESP + 0x8]\n  100e789d:  CMP ESI,dword ptr [ESP + 0xc]\n  100e78a1:  JNC 0x100e78b0\n  100e78a3:  MOV EAX,dword ptr [ESI]\n  100e78a5:  TEST EAX,EAX\n  100e78a7:  JZ 0x100e78ab\n  100e78a9:  CALL EAX\n  100e78ab:  ADD ESI,0x4\n  100e78ae:  JMP 0x100e789d\n  100e78b0:  POP ESI\n  100e78b1:  RET", 
+  "callers": [
+    {
+      "address": "0x100e7783", 
+      "name": "FUN_100e7783"
+    }, 
+    {
+      "address": "0x100e7783", 
+      "name": "FUN_100e7783"
+    }, 
+    {
+      "address": "0x100e77e1", 
+      "name": "FUN_100e77e1"
+    }, 
+    {
+      "address": "0x100e77e1", 
+      "name": "FUN_100e77e1"
+    }
+  ]
+}

@@ -1,0 +1,70 @@
+{
+  "address": "0x100f18f2", 
+  "size_bytes": 89, 
+  "calling_convention": "unknown", 
+  "signature": "undefined FUN_100f18f2(undefined4 param_1, undefined4 param_2)", 
+  "callees": [
+    {
+      "address": "0x00000061", 
+      "name": "InterlockedIncrement"
+    }, 
+    {
+      "address": "0x0000004c", 
+      "name": "InterlockedDecrement"
+    }, 
+    {
+      "address": "0x100e8d3f", 
+      "name": "FUN_100e8d3f"
+    }, 
+    {
+      "address": "0x100f194b", 
+      "name": "FUN_100f194b"
+    }, 
+    {
+      "address": "0x100e8da0", 
+      "name": "FUN_100e8da0"
+    }, 
+    {
+      "address": "0x0000004c", 
+      "name": "InterlockedDecrement"
+    }
+  ], 
+  "global_refs": [
+    {
+      "address": "0x10168778", 
+      "type": "undefined4", 
+      "name": "DAT_10168778"
+    }, 
+    {
+      "address": "0x100f51b0", 
+      "type": "pointer", 
+      "name": "DAT_100f51b0"
+    }, 
+    {
+      "address": "0x100f515c", 
+      "type": "pointer", 
+      "name": "DAT_100f515c"
+    }, 
+    {
+      "address": "0x10168774", 
+      "type": "undefined4", 
+      "name": "DAT_10168774"
+    }, 
+    {
+      "address": "0x00000008", 
+      "type": null, 
+      "name": "DAT_00000008"
+    }, 
+    {
+      "address": "0x00000004", 
+      "type": null, 
+      "name": "DAT_00000004"
+    }
+  ], 
+  "has_custom_name": false, 
+  "decompiled_c": "\nundefined4 FUN_100f18f2(undefined4 param_1,undefined4 param_2)\n\n{\n  undefined4 uVar1;\n  bool bVar2;\n  \n  InterlockedIncrement(&DAT_10168778);\n  bVar2 = DAT_10168774 != 0;\n  if (bVar2) {\n    InterlockedDecrement(&DAT_10168778);\n    FUN_100e8d3f(0x13);\n  }\n  uVar1 = FUN_100f194b(param_1,param_2);\n  if (bVar2) {\n    FUN_100e8da0(0x13);\n  }\n  else {\n    InterlockedDecrement(&DAT_10168778);\n  }\n  return uVar1;\n}\n\n", 
+  "is_thunk": false, 
+  "name": "FUN_100f18f2", 
+  "assembly": "  100f18f2:  PUSH EBP\n  100f18f3:  MOV EBP,ESP\n  100f18f5:  PUSH EBX\n  100f18f6:  PUSH ESI\n  100f18f7:  MOV ESI,0x10168778\n  100f18fc:  PUSH EDI\n  100f18fd:  PUSH ESI\n  100f18fe:  CALL dword ptr [0x100f51b0]\n  100f1904:  MOV EDI,dword ptr [0x100f515c]\n  100f190a:  XOR EBX,EBX\n  100f190c:  CMP dword ptr [0x10168774],EBX\n  100f1912:  JZ 0x100f1922\n  100f1914:  PUSH ESI\n  100f1915:  CALL EDI\n  100f1917:  PUSH 0x13\n  100f1919:  CALL 0x100e8d3f\n  100f191e:  POP ECX\n  100f191f:  PUSH 0x1\n  100f1921:  POP EBX\n  100f1922:  PUSH dword ptr [EBP + 0xc]\n  100f1925:  PUSH dword ptr [EBP + 0x8]\n  100f1928:  CALL 0x100f194b\n  100f192d:  POP ECX\n  100f192e:  MOV dword ptr [EBP + 0xc],EAX\n  100f1931:  TEST EBX,EBX\n  100f1933:  POP ECX\n  100f1934:  JZ 0x100f1940\n  100f1936:  PUSH 0x13\n  100f1938:  CALL 0x100e8da0\n  100f193d:  POP ECX\n  100f193e:  JMP 0x100f1943\n  100f1940:  PUSH ESI\n  100f1941:  CALL EDI\n  100f1943:  MOV EAX,dword ptr [EBP + 0xc]\n  100f1946:  POP EDI\n  100f1947:  POP ESI\n  100f1948:  POP EBX\n  100f1949:  POP EBP\n  100f194a:  RET", 
+  "callers": []
+}

@@ -1,0 +1,41 @@
+{
+  "address": "0x10001f60", 
+  "size_bytes": 31, 
+  "calling_convention": "__thiscall", 
+  "signature": "void __thiscall operator-=(gbVec3D * this, gbVec3D * param_1)", 
+  "callees": [], 
+  "global_refs": [
+    {
+      "address": "0x00000004", 
+      "type": null, 
+      "name": "DAT_00000004"
+    }
+  ], 
+  "has_custom_name": true, 
+  "decompiled_c": "\n/* public: void __thiscall gbVec3D::operator-=(struct gbVec3D const &) */\n\nvoid __thiscall gbVec3D::operator-=(gbVec3D *this,gbVec3D *param_1)\n\n{\n                    /* 0x1f60  263  ??ZgbVec3D@@QAEXABU0@@Z */\n  *(float *)this = *(float *)this - *(float *)param_1;\n  *(float *)(this + 4) = *(float *)(this + 4) - *(float *)(param_1 + 4);\n  *(float *)(this + 8) = *(float *)(this + 8) - *(float *)(param_1 + 8);\n  return;\n}\n\n", 
+  "is_thunk": false, 
+  "name": "operator-=", 
+  "assembly": "  10001f60:  MOV EAX,dword ptr [ESP + 0x4]\n  10001f64:  FLD dword ptr [ECX]\n  10001f66:  FSUB dword ptr [EAX]\n  10001f68:  FSTP dword ptr [ECX]\n  10001f6a:  FLD dword ptr [ECX + 0x4]\n  10001f6d:  FSUB dword ptr [EAX + 0x4]\n  10001f70:  FSTP dword ptr [ECX + 0x4]\n  10001f73:  FLD dword ptr [ECX + 0x8]\n  10001f76:  FSUB dword ptr [EAX + 0x8]\n  10001f79:  FSTP dword ptr [ECX + 0x8]\n  10001f7c:  RET 0x4", 
+  "callers": [
+    {
+      "address": "0x10028360", 
+      "name": "IsColAABB"
+    }, 
+    {
+      "address": "0x100293b0", 
+      "name": "IsColOBB"
+    }, 
+    {
+      "address": "0x100293b0", 
+      "name": "IsColOBB"
+    }, 
+    {
+      "address": "0x100293b0", 
+      "name": "IsColOBB"
+    }, 
+    {
+      "address": "0x1000a920", 
+      "name": "FUN_1000a920"
+    }
+  ]
+}

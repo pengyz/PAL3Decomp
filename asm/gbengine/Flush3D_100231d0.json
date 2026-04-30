@@ -1,0 +1,14 @@
+{
+  "address": "0x100231d0", 
+  "size_bytes": 25, 
+  "calling_convention": "__thiscall", 
+  "signature": "void __thiscall Flush3D(gbPrintFontMgr * this)", 
+  "callees": [], 
+  "global_refs": [], 
+  "has_custom_name": true, 
+  "decompiled_c": "\n/* public: void __thiscall gbPrintFontMgr::Flush3D(void) */\n\nvoid __thiscall gbPrintFontMgr::Flush3D(gbPrintFontMgr *this)\n\n{\n  int iVar1;\n  \n                    /* 0x231d0  398  ?Flush3D@gbPrintFontMgr@@QAEXXZ */\n  iVar1 = 5;\n  do {\n    (**(code **)(**(int **)this + 0xc))();\n    this = this + 4;\n    iVar1 = iVar1 + -1;\n  } while (iVar1 != 0);\n  return;\n}\n\n", 
+  "is_thunk": false, 
+  "name": "Flush3D", 
+  "assembly": "  100231d0:  PUSH ESI\n  100231d1:  PUSH EDI\n  100231d2:  MOV ESI,ECX\n  100231d4:  MOV EDI,0x5\n  100231d9:  MOV ECX,dword ptr [ESI]\n  100231db:  MOV EAX,dword ptr [ECX]\n  100231dd:  CALL dword ptr [EAX + 0xc]\n  100231e0:  ADD ESI,0x4\n  100231e3:  DEC EDI\n  100231e4:  JNZ 0x100231d9\n  100231e6:  POP EDI\n  100231e7:  POP ESI\n  100231e8:  RET", 
+  "callers": []
+}

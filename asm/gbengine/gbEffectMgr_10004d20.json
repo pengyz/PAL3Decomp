@@ -1,0 +1,19 @@
+{
+  "address": "0x10004d20", 
+  "size_bytes": 12, 
+  "calling_convention": "__thiscall", 
+  "signature": "undefined __thiscall gbEffectMgr(gbEffectMgr * this)", 
+  "callees": [
+    {
+      "address": "0x10020190", 
+      "name": "gbResManager"
+    }
+  ], 
+  "global_refs": [], 
+  "has_custom_name": true, 
+  "decompiled_c": "\n/* public: __thiscall gbEffectMgr::gbEffectMgr(void) */\n\ngbEffectMgr * __thiscall gbEffectMgr::gbEffectMgr(gbEffectMgr *this)\n\n{\n                    /* 0x4d20  46  ??0gbEffectMgr@@QAE@XZ */\n  gbResManager::gbResManager((gbResManager *)this);\n  return this;\n}\n\n", 
+  "is_thunk": false, 
+  "name": "gbEffectMgr", 
+  "assembly": "  10004d20:  PUSH ESI\n  10004d21:  MOV ESI,ECX\n  10004d23:  CALL 0x10020190\n  10004d28:  MOV EAX,ESI\n  10004d2a:  POP ESI\n  10004d2b:  RET", 
+  "callers": []
+}

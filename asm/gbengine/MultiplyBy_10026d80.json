@@ -1,0 +1,65 @@
+{
+  "address": "0x10026d80", 
+  "size_bytes": 234, 
+  "calling_convention": "__thiscall", 
+  "signature": "void __thiscall MultiplyBy(gbQuaternion * this, gbQuaternion * param_1, gbQuaternion * param_2)", 
+  "callees": [], 
+  "global_refs": [
+    {
+      "address": "0x-0000020", 
+      "type": null, 
+      "name": "DAT_-0000020"
+    }, 
+    {
+      "address": "0x-000001c", 
+      "type": null, 
+      "name": "DAT_-000001c"
+    }, 
+    {
+      "address": "0x00000004", 
+      "type": null, 
+      "name": "DAT_00000004"
+    }, 
+    {
+      "address": "0x-0000018", 
+      "type": null, 
+      "name": "DAT_-0000018"
+    }, 
+    {
+      "address": "0x-0000014", 
+      "type": null, 
+      "name": "DAT_-0000014"
+    }, 
+    {
+      "address": "0x-0000010", 
+      "type": null, 
+      "name": "DAT_-0000010"
+    }, 
+    {
+      "address": "0x-000000c", 
+      "type": null, 
+      "name": "DAT_-000000c"
+    }, 
+    {
+      "address": "0x-0000008", 
+      "type": null, 
+      "name": "DAT_-0000008"
+    }, 
+    {
+      "address": "0x00000008", 
+      "type": null, 
+      "name": "DAT_00000008"
+    }, 
+    {
+      "address": "0x-0000004", 
+      "type": null, 
+      "name": "DAT_-0000004"
+    }
+  ], 
+  "has_custom_name": true, 
+  "decompiled_c": "\n/* public: void __thiscall gbQuaternion::MultiplyBy(struct gbQuaternion *,struct gbQuaternion *) */\n\nvoid __thiscall\ngbQuaternion::MultiplyBy(gbQuaternion *this,gbQuaternion *param_1,gbQuaternion *param_2)\n\n{\n  float fVar1;\n  float fVar2;\n  float fVar3;\n  float fVar4;\n  float fVar5;\n  float fVar6;\n  float fVar7;\n  float fVar8;\n  \n                    /* 0x26d80  701  ?MultiplyBy@gbQuaternion@@QAEXPAU1@0@Z */\n  fVar1 = *(float *)this;\n  fVar2 = *(float *)(this + 4);\n  fVar3 = *(float *)(this + 8);\n  fVar4 = *(float *)(this + 0xc);\n  fVar5 = *(float *)param_1;\n  fVar6 = *(float *)(param_1 + 4);\n  fVar7 = *(float *)(param_1 + 8);\n  fVar8 = *(float *)(param_1 + 0xc);\n  *(float *)(param_2 + 0xc) = ((fVar8 * fVar4 - fVar5 * fVar1) - fVar6 * fVar2) - fVar7 * fVar3;\n  *(float *)param_2 = (fVar5 * fVar4 + fVar1 * fVar8 + fVar7 * fVar2) - fVar3 * fVar6;\n  *(float *)(param_2 + 4) = fVar2 * fVar8 + fVar3 * fVar5 + (fVar6 * fVar4 - fVar7 * fVar1);\n  *(float *)(param_2 + 8) = fVar3 * fVar8 + ((fVar7 * fVar4 + fVar6 * fVar1) - fVar2 * fVar5);\n  return;\n}\n\n", 
+  "is_thunk": false, 
+  "name": "MultiplyBy", 
+  "assembly": "  10026d80:  SUB ESP,0x20\n  10026d83:  MOV EAX,dword ptr [ECX]\n  10026d85:  MOV EDX,dword ptr [ECX + 0x4]\n  10026d88:  MOV dword ptr [ESP],EAX\n  10026d8c:  MOV EAX,dword ptr [ECX + 0x8]\n  10026d8f:  MOV ECX,dword ptr [ECX + 0xc]\n  10026d92:  MOV dword ptr [ESP + 0x4],EDX\n  10026d96:  MOV EDX,dword ptr [ESP + 0x24]\n  10026d9a:  MOV dword ptr [ESP + 0x8],EAX\n  10026d9e:  MOV dword ptr [ESP + 0xc],ECX\n  10026da2:  MOV EAX,dword ptr [EDX]\n  10026da4:  MOV dword ptr [ESP + 0x10],EAX\n  10026da8:  MOV ECX,dword ptr [EDX + 0x4]\n  10026dab:  MOV dword ptr [ESP + 0x14],ECX\n  10026daf:  MOV EAX,dword ptr [EDX + 0x8]\n  10026db2:  MOV dword ptr [ESP + 0x18],EAX\n  10026db6:  MOV EAX,dword ptr [ESP + 0x28]\n  10026dba:  MOV ECX,dword ptr [EDX + 0xc]\n  10026dbd:  MOV dword ptr [ESP + 0x1c],ECX\n  10026dc1:  FLD dword ptr [ESP + 0x1c]\n  10026dc5:  FMUL dword ptr [ESP + 0xc]\n  10026dc9:  FLD dword ptr [ESP + 0x10]\n  10026dcd:  FMUL dword ptr [ESP]\n  10026dd1:  FSUBP\n  10026dd3:  FLD dword ptr [ESP + 0x14]\n  10026dd7:  FMUL dword ptr [ESP + 0x4]\n  10026ddb:  FSUBP\n  10026ddd:  FLD dword ptr [ESP + 0x18]\n  10026de1:  FMUL dword ptr [ESP + 0x8]\n  10026de5:  FSUBP\n  10026de7:  FSTP dword ptr [EAX + 0xc]\n  10026dea:  FLD dword ptr [ESP + 0x18]\n  10026dee:  FMUL dword ptr [ESP + 0x4]\n  10026df2:  FLD dword ptr [ESP]\n  10026df6:  FMUL dword ptr [ESP + 0x1c]\n  10026dfa:  FADDP\n  10026dfc:  FLD dword ptr [ESP + 0x10]\n  10026e00:  FMUL dword ptr [ESP + 0xc]\n  10026e04:  FADDP\n  10026e06:  FLD dword ptr [ESP + 0x8]\n  10026e0a:  FMUL dword ptr [ESP + 0x14]\n  10026e0e:  FSUBP\n  10026e10:  FSTP dword ptr [EAX]\n  10026e12:  FLD dword ptr [ESP + 0x14]\n  10026e16:  FMUL dword ptr [ESP + 0xc]\n  10026e1a:  FLD dword ptr [ESP + 0x18]\n  10026e1e:  FMUL dword ptr [ESP]\n  10026e22:  FSUBP\n  10026e24:  FLD dword ptr [ESP + 0x8]\n  10026e28:  FMUL dword ptr [ESP + 0x10]\n  10026e2c:  FADDP\n  10026e2e:  FLD dword ptr [ESP + 0x4]\n  10026e32:  FMUL dword ptr [ESP + 0x1c]\n  10026e36:  FADDP\n  10026e38:  FSTP dword ptr [EAX + 0x4]\n  10026e3b:  FLD dword ptr [ESP + 0x14]\n  10026e3f:  FMUL dword ptr [ESP]\n  10026e43:  FLD dword ptr [ESP + 0x18]\n  10026e47:  FMUL dword ptr [ESP + 0xc]\n  10026e4b:  FADDP\n  10026e4d:  FLD dword ptr [ESP + 0x4]\n  10026e51:  FMUL dword ptr [ESP + 0x10]\n  10026e55:  FSUBP\n  10026e57:  FLD dword ptr [ESP + 0x8]\n  10026e5b:  FMUL dword ptr [ESP + 0x1c]\n  10026e5f:  FADDP\n  10026e61:  FSTP dword ptr [EAX + 0x8]\n  10026e64:  ADD ESP,0x20\n  10026e67:  RET 0x8", 
+  "callers": []
+}

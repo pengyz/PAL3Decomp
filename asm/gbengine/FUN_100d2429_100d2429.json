@@ -1,0 +1,45 @@
+{
+  "address": "0x100d2429", 
+  "size_bytes": 192, 
+  "calling_convention": "unknown", 
+  "signature": "undefined FUN_100d2429(undefined4 param_1, undefined4 param_2, undefined4 param_3, undefined4 param_4)", 
+  "callees": [], 
+  "global_refs": [
+    {
+      "address": "0x00000008", 
+      "type": null, 
+      "name": "DAT_00000008"
+    }, 
+    {
+      "address": "0x-0000020", 
+      "type": null, 
+      "name": "DAT_-0000020"
+    }, 
+    {
+      "address": "0x0000000c", 
+      "type": null, 
+      "name": "DAT_0000000c"
+    }, 
+    {
+      "address": "0x00000010", 
+      "type": null, 
+      "name": "DAT_00000010"
+    }, 
+    {
+      "address": "0x00000004", 
+      "type": null, 
+      "name": "DAT_00000004"
+    }, 
+    {
+      "address": "0x10128490", 
+      "type": null, 
+      "name": "DAT_10128490"
+    }
+  ], 
+  "has_custom_name": false, 
+  "decompiled_c": "\n/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */\n\nvoid FUN_100d2429(uint *param_1,undefined8 *param_2,undefined8 *param_3,undefined8 *param_4)\n\n{\n  float fVar1;\n  float fVar2;\n  uint uVar3;\n  float fVar4;\n  uint uVar5;\n  float fVar6;\n  uint uVar7;\n  float fVar8;\n  float fVar9;\n  float fVar10;\n  float fVar11;\n  float fVar12;\n  float fVar13;\n  float fVar14;\n  float fVar15;\n  \n  fVar1 = (float)*param_3;\n  fVar2 = (float)((ulonglong)*param_3 >> 0x20);\n  fVar4 = (float)param_3[1];\n  fVar6 = (float)((ulonglong)param_3[1] >> 0x20);\n  fVar8 = (float)*param_4;\n  fVar9 = (float)((ulonglong)*param_4 >> 0x20);\n  fVar10 = (float)param_4[1];\n  fVar11 = (float)((ulonglong)param_4[1] >> 0x20);\n  fVar12 = (float)*param_2;\n  fVar13 = (float)((ulonglong)*param_2 >> 0x20);\n  fVar14 = (float)param_2[1];\n  fVar15 = (float)((ulonglong)param_2[1] >> 0x20);\n  uVar3 = (uint)(fVar14 * (fVar6 * fVar8 - fVar1 * fVar11) +\n                 fVar15 * (fVar1 * fVar10 - fVar4 * fVar8) +\n                fVar12 * (fVar4 * fVar11 - fVar6 * fVar10)) ^ uRam10128494;\n  uVar5 = (uint)(fVar15 * (fVar1 * fVar9 - fVar2 * fVar8) +\n                 fVar12 * (fVar2 * fVar11 - fVar6 * fVar9) +\n                fVar13 * (fVar6 * fVar8 - fVar1 * fVar11)) ^ uRam10128498;\n  uVar7 = (uint)(fVar12 * (fVar2 * fVar10 - fVar4 * fVar9) +\n                 fVar13 * (fVar4 * fVar8 - fVar1 * fVar10) +\n                fVar14 * (fVar1 * fVar9 - fVar2 * fVar8)) ^ uRam1012849c;\n  *param_1 = (uint)(fVar13 * (fVar4 * fVar11 - fVar6 * fVar10) +\n                    fVar14 * (fVar6 * fVar9 - fVar2 * fVar11) +\n                   fVar15 * (fVar2 * fVar10 - fVar4 * fVar9)) ^ _DAT_10128490;\n  param_1[1] = uVar3;\n  param_1[2] = uVar5;\n  param_1[3] = uVar7;\n  return;\n}\n\n", 
+  "is_thunk": false, 
+  "name": "FUN_100d2429", 
+  "assembly": "  100d2429:  PUSH EBP\n  100d242a:  MOV EBP,ESP\n  100d242c:  AND ESP,0xfffffff0\n  100d242f:  SUB ESP,0x10\n  100d2432:  MOV EAX,dword ptr [EBP + 0xc]\n  100d2435:  MOVAPS XMM7,xmmword ptr [ESP]\n  100d243a:  MOVLPS XMM7,qword ptr [EAX]\n  100d243d:  MOVAPS XMM0,xmmword ptr [ESP]\n  100d2442:  MOVAPS XMM2,xmmword ptr [ESP]\n  100d2447:  LEA ECX,[EAX + 0x8]\n  100d244a:  MOVHPS XMM7,qword ptr [ECX]\n  100d244d:  MOV EAX,dword ptr [EBP + 0x10]\n  100d2450:  MOVLPS XMM0,qword ptr [EAX]\n  100d2453:  LEA ECX,[EAX + 0x8]\n  100d2456:  MOVHPS XMM0,qword ptr [ECX]\n  100d2459:  MOV EAX,dword ptr [EBP + 0x14]\n  100d245c:  MOVLPS XMM2,qword ptr [EAX]\n  100d245f:  SHUFPS XMM0,XMM0,0x39\n  100d2463:  MOVAPS XMM1,XMM0\n  100d2466:  MOVAPS XMM3,XMM0\n  100d2469:  LEA ECX,[EAX + 0x8]\n  100d246c:  MOVHPS XMM2,qword ptr [ECX]\n  100d246f:  MOV EAX,dword ptr [EBP + 0x8]\n  100d2472:  MULPS XMM1,XMM2\n  100d2475:  SHUFPS XMM2,XMM2,0x4e\n  100d2479:  MULPS XMM3,XMM2\n  100d247c:  SHUFPS XMM2,XMM2,0x39\n  100d2480:  MULPS XMM0,XMM2\n  100d2483:  MOVAPS XMM2,XMM1\n  100d2486:  SHUFPS XMM2,XMM1,0x4e\n  100d248a:  MOVAPS XMM4,XMM3\n  100d248d:  SHUFPS XMM4,XMM3,0x39\n  100d2491:  MOVAPS xmmword ptr [ESP],XMM0\n  100d2496:  SUBPS XMM4,XMM2\n  100d2499:  MOVAPS XMM2,XMM0\n  100d249c:  SHUFPS XMM2,XMM0,0x4e\n  100d24a0:  SUBPS XMM2,xmmword ptr [ESP]\n  100d24a5:  MOVAPS XMM5,XMM1\n  100d24a8:  SHUFPS XMM5,XMM1,0x39\n  100d24ac:  MOVAPS XMM0,XMM7\n  100d24af:  SHUFPS XMM0,XMM7,0x39\n  100d24b3:  MOVAPS XMM7,xmmword ptr [0x10128490]\n  100d24ba:  MOVAPS XMM1,XMM0\n  100d24bd:  SHUFPS XMM1,XMM0,0x39\n  100d24c1:  MOVAPS XMM6,XMM3\n  100d24c4:  MOVAPS XMM3,XMM1\n  100d24c7:  SHUFPS XMM3,XMM1,0x39\n  100d24cb:  MULPS XMM0,XMM4\n  100d24ce:  SUBPS XMM6,XMM5\n  100d24d1:  MULPS XMM1,XMM2\n  100d24d4:  ADDPS XMM0,XMM1\n  100d24d7:  MULPS XMM3,XMM6\n  100d24da:  ADDPS XMM0,XMM3\n  100d24dd:  XORPS XMM0,XMM7\n  100d24e0:  MOVUPS xmmword ptr [EAX],XMM0\n  100d24e3:  MOV ESP,EBP\n  100d24e5:  POP EBP\n  100d24e6:  RET 0x10", 
+  "callers": []
+}

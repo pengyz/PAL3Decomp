@@ -1,0 +1,39 @@
+{
+  "address": "0x100251e0", 
+  "size_bytes": 122, 
+  "calling_convention": "__thiscall", 
+  "signature": "void __thiscall operator*=(gbMatrix4 * this, gbMatrix4 * param_1)", 
+  "callees": [], 
+  "global_refs": [
+    {
+      "address": "0x00000004", 
+      "type": null, 
+      "name": "DAT_00000004"
+    }, 
+    {
+      "address": "0x-0000040", 
+      "type": null, 
+      "name": "DAT_-0000040"
+    }, 
+    {
+      "address": "0x-0000044", 
+      "type": null, 
+      "name": "DAT_-0000044"
+    }
+  ], 
+  "has_custom_name": true, 
+  "decompiled_c": "\n/* public: void __thiscall gbMatrix4::operator*=(struct gbMatrix4 const &) */\n\nvoid __thiscall gbMatrix4::operator*=(gbMatrix4 *this,gbMatrix4 *param_1)\n\n{\n  float fVar1;\n  float fVar2;\n  int iVar3;\n  gbMatrix4 *pgVar4;\n  int iVar5;\n  float *pfVar6;\n  gbMatrix4 *pgVar7;\n  gbMatrix4 *pgVar8;\n  int iVar9;\n  float *pfVar10;\n  float local_40 [16];\n  \n                    /* 0x251e0  256  ??XgbMatrix4@@QAEXABU0@@Z\n                       0x251e0  258  ??XgbMatrix4@@QAEXPBM@Z\n                       0x251e0  660  ?LeftMultiply@gbMatrix4@@QAEXABU1@@Z */\n  pgVar8 = param_1;\n  iVar3 = (int)this - (int)param_1;\n  pfVar10 = local_40;\n  for (iVar5 = 0x10; iVar5 != 0; iVar5 = iVar5 + -1) {\n    *pfVar10 = *(float *)this;\n    this = this + 4;\n    pfVar10 = pfVar10 + 1;\n  }\n  param_1 = (gbMatrix4 *)0x4;\n  do {\n    pfVar10 = local_40;\n    pgVar4 = pgVar8 + iVar3;\n    iVar5 = 4;\n    do {\n      *(float *)pgVar4 = 0.0;\n      iVar9 = 4;\n      pfVar6 = pfVar10;\n      pgVar7 = pgVar8;\n      do {\n        fVar1 = *(float *)pgVar7;\n        fVar2 = *pfVar6;\n        pfVar6 = pfVar6 + 4;\n        pgVar7 = pgVar7 + 4;\n        iVar9 = iVar9 + -1;\n        *(float *)pgVar4 = fVar1 * fVar2 + *(float *)pgVar4;\n      } while (iVar9 != 0);\n      pgVar4 = pgVar4 + 4;\n      pfVar10 = pfVar10 + 1;\n      iVar5 = iVar5 + -1;\n    } while (iVar5 != 0);\n    pgVar8 = pgVar8 + 0x10;\n    param_1 = param_1 + -1;\n  } while (param_1 != (gbMatrix4 *)0x0);\n  return;\n}\n\n", 
+  "is_thunk": false, 
+  "name": "operator*=", 
+  "assembly": "  100251e0:  SUB ESP,0x44\n  100251e3:  PUSH EBX\n  100251e4:  MOV EBX,dword ptr [ESP + 0x4c]\n  100251e8:  PUSH EBP\n  100251e9:  MOV EAX,ECX\n  100251eb:  PUSH ESI\n  100251ec:  PUSH EDI\n  100251ed:  MOV ESI,EAX\n  100251ef:  MOV ECX,0x10\n  100251f4:  LEA EDI,[ESP + 0x14]\n  100251f8:  SUB EAX,EBX\n  100251fa:  MOVSD.REP ES:EDI,ESI\n  100251fc:  MOV dword ptr [ESP + 0x10],EAX\n  10025200:  MOV dword ptr [ESP + 0x58],0x4\n  10025208:  JMP 0x1002520e\n  1002520a:  MOV EAX,dword ptr [ESP + 0x10]\n  1002520e:  LEA EDI,[ESP + 0x14]\n  10025212:  ADD EAX,EBX\n  10025214:  MOV EBP,0x4\n  10025219:  MOV dword ptr [EAX],0x0\n  1002521f:  MOV EDX,EBX\n  10025221:  MOV ECX,EDI\n  10025223:  MOV ESI,0x4\n  10025228:  FLD dword ptr [EDX]\n  1002522a:  FMUL dword ptr [ECX]\n  1002522c:  ADD ECX,0x10\n  1002522f:  ADD EDX,0x4\n  10025232:  DEC ESI\n  10025233:  FADD dword ptr [EAX]\n  10025235:  FSTP dword ptr [EAX]\n  10025237:  JNZ 0x10025228\n  10025239:  ADD EAX,0x4\n  1002523c:  ADD EDI,0x4\n  1002523f:  DEC EBP\n  10025240:  JNZ 0x10025219\n  10025242:  MOV EAX,dword ptr [ESP + 0x58]\n  10025246:  ADD EBX,0x10\n  10025249:  DEC EAX\n  1002524a:  MOV dword ptr [ESP + 0x58],EAX\n  1002524e:  JNZ 0x1002520a\n  10025250:  POP EDI\n  10025251:  POP ESI\n  10025252:  POP EBP\n  10025253:  POP EBX\n  10025254:  ADD ESP,0x44\n  10025257:  RET 0x4", 
+  "callers": [
+    {
+      "address": "0x10010ec0", 
+      "name": "Update"
+    }, 
+    {
+      "address": "0x10021a80", 
+      "name": "SetAsCurrent"
+    }
+  ]
+}

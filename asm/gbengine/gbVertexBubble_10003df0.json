@@ -1,0 +1,40 @@
+{
+  "address": "0x10003df0", 
+  "size_bytes": 65, 
+  "calling_convention": "__thiscall", 
+  "signature": "undefined __thiscall gbVertexBubble(gbVertexBubble * this, gbVertexPool * param_1, int param_2, int param_3, int param_4)", 
+  "callees": [], 
+  "global_refs": [
+    {
+      "address": "0x00000008", 
+      "type": null, 
+      "name": "DAT_00000008"
+    }, 
+    {
+      "address": "0x00000004", 
+      "type": null, 
+      "name": "DAT_00000004"
+    }, 
+    {
+      "address": "0x0000000c", 
+      "type": null, 
+      "name": "DAT_0000000c"
+    }, 
+    {
+      "address": "0x00000010", 
+      "type": null, 
+      "name": "DAT_00000010"
+    }, 
+    {
+      "address": "0x100f53c0", 
+      "type": "pointer", 
+      "name": "DAT_100f53c0"
+    }
+  ], 
+  "has_custom_name": true, 
+  "decompiled_c": "\n/* public: __thiscall gbVertexBubble::gbVertexBubble(class gbVertexPool *,int,int,int) */\n\nvoid __thiscall\ngbVertexBubble::gbVertexBubble\n          (gbVertexBubble *this,gbVertexPool *param_1,int param_2,int param_3,int param_4)\n\n{\n                    /* 0x3df0  111  ??0gbVertexBubble@@QAE@PAVgbVertexPool@@HHH@Z */\n  *(gbVertexPool **)(this + 8) = param_1;\n  *(int *)(this + 0xc) = param_2;\n  *(int *)(this + 0x14) = param_3;\n  *(undefined ***)this = &_vftable_;\n  *(int *)(this + 0x10) = param_4;\n  *(undefined4 *)(this + 0x18) = 0;\n  *(undefined4 *)(this + 0x1c) = 0;\n  *(undefined4 *)(this + 0x20) = 0;\n  *(undefined4 *)(this + 0x24) = 0;\n  *(undefined4 *)(this + 0x28) = 0;\n  *(undefined4 *)(this + 0x2c) = 0;\n  *(undefined4 *)(this + 0x30) = 0;\n  *(undefined4 *)(this + 0x34) = 0;\n  return;\n}\n\n", 
+  "is_thunk": false, 
+  "name": "gbVertexBubble", 
+  "assembly": "  10003df0:  MOV EDX,dword ptr [ESP + 0x8]\n  10003df4:  MOV EAX,ECX\n  10003df6:  MOV ECX,dword ptr [ESP + 0x4]\n  10003dfa:  MOV dword ptr [EAX + 0x8],ECX\n  10003dfd:  MOV ECX,dword ptr [ESP + 0xc]\n  10003e01:  MOV dword ptr [EAX + 0xc],EDX\n  10003e04:  MOV EDX,dword ptr [ESP + 0x10]\n  10003e08:  MOV dword ptr [EAX + 0x14],ECX\n  10003e0b:  XOR ECX,ECX\n  10003e0d:  MOV dword ptr [EAX],0x100f53c0\n  10003e13:  MOV dword ptr [EAX + 0x10],EDX\n  10003e16:  MOV dword ptr [EAX + 0x18],ECX\n  10003e19:  MOV dword ptr [EAX + 0x1c],ECX\n  10003e1c:  MOV dword ptr [EAX + 0x20],ECX\n  10003e1f:  MOV dword ptr [EAX + 0x24],ECX\n  10003e22:  MOV dword ptr [EAX + 0x28],ECX\n  10003e25:  MOV dword ptr [EAX + 0x2c],ECX\n  10003e28:  MOV dword ptr [EAX + 0x30],ECX\n  10003e2b:  MOV dword ptr [EAX + 0x34],ECX\n  10003e2e:  RET 0x10", 
+  "callers": []
+}

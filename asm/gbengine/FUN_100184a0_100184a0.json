@@ -1,0 +1,50 @@
+{
+  "address": "0x100184a0", 
+  "size_bytes": 94, 
+  "calling_convention": "unknown", 
+  "signature": "undefined FUN_100184a0(void)", 
+  "callees": [
+    {
+      "address": "0x1001c7d0", 
+      "name": "~gbDynVertBuf"
+    }
+  ], 
+  "global_refs": [
+    {
+      "address": "0x100f3d58", 
+      "type": null, 
+      "name": "DAT_100f3d58"
+    }, 
+    {
+      "address": "0xffdff000", 
+      "type": "void *32", 
+      "name": "DAT_ffdff000"
+    }, 
+    {
+      "address": "0x-0000010", 
+      "type": null, 
+      "name": "DAT_-0000010"
+    }, 
+    {
+      "address": "0x100f569c", 
+      "type": "undefined *", 
+      "name": "DAT_100f569c"
+    }, 
+    {
+      "address": "0x-0000004", 
+      "type": null, 
+      "name": "DAT_-0000004"
+    }
+  ], 
+  "has_custom_name": false, 
+  "decompiled_c": "\nvoid FUN_100184a0(void)\n\n{\n  int *piVar1;\n  gbDynVertBuf *in_ECX;\n  void *pvStack_c;\n  undefined *puStack_8;\n  undefined4 local_4;\n  \n  puStack_8 = &LAB_100f3d58;\n  pvStack_c = ExceptionList;\n  ExceptionList = &pvStack_c;\n  *(undefined ***)in_ECX = &PTR_FUN_100f569c;\n  piVar1 = *(int **)(in_ECX + 0x3c);\n  local_4 = 0;\n  if (piVar1 != (int *)0x0) {\n    (**(code **)(*piVar1 + 8))(piVar1);\n    *(undefined4 *)(in_ECX + 0x3c) = 0;\n  }\n  local_4 = 0xffffffff;\n  gbDynVertBuf::~gbDynVertBuf(in_ECX);\n  ExceptionList = pvStack_c;\n  return;\n}\n\n", 
+  "is_thunk": false, 
+  "name": "FUN_100184a0", 
+  "assembly": "  100184a0:  PUSH -0x1\n  100184a2:  PUSH 0x100f3d58\n  100184a7:  MOV EAX,FS:[0x0]\n  100184ad:  PUSH EAX\n  100184ae:  MOV dword ptr FS:[0x0],ESP\n  100184b5:  PUSH ECX\n  100184b6:  PUSH ESI\n  100184b7:  MOV ESI,ECX\n  100184b9:  MOV dword ptr [ESP + 0x4],ESI\n  100184bd:  MOV dword ptr [ESI],0x100f569c\n  100184c3:  MOV EAX,dword ptr [ESI + 0x3c]\n  100184c6:  MOV dword ptr [ESP + 0x10],0x0\n  100184ce:  TEST EAX,EAX\n  100184d0:  JZ 0x100184df\n  100184d2:  MOV ECX,dword ptr [EAX]\n  100184d4:  PUSH EAX\n  100184d5:  CALL dword ptr [ECX + 0x8]\n  100184d8:  MOV dword ptr [ESI + 0x3c],0x0\n  100184df:  MOV ECX,ESI\n  100184e1:  MOV dword ptr [ESP + 0x10],0xffffffff\n  100184e9:  CALL 0x1001c7d0\n  100184ee:  MOV ECX,dword ptr [ESP + 0x8]\n  100184f2:  POP ESI\n  100184f3:  MOV dword ptr FS:[0x0],ECX\n  100184fa:  ADD ESP,0x10\n  100184fd:  RET", 
+  "callers": [
+    {
+      "address": "0x10018480", 
+      "name": "FUN_10018480"
+    }
+  ]
+}

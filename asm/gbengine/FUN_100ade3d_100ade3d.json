@@ -1,0 +1,84 @@
+{
+  "address": "0x100ade3d", 
+  "size_bytes": 123, 
+  "calling_convention": "unknown", 
+  "signature": "undefined FUN_100ade3d(undefined4 param_1, undefined4 param_2, undefined4 param_3, undefined4 param_4, undefined4 param_5, undefined4 param_6)", 
+  "callees": [], 
+  "global_refs": [
+    {
+      "address": "0x00000018", 
+      "type": null, 
+      "name": "DAT_00000018"
+    }, 
+    {
+      "address": "0x-0000008", 
+      "type": null, 
+      "name": "DAT_-0000008"
+    }, 
+    {
+      "address": "0x-000000c", 
+      "type": null, 
+      "name": "DAT_-000000c"
+    }, 
+    {
+      "address": "0x00000008", 
+      "type": null, 
+      "name": "DAT_00000008"
+    }, 
+    {
+      "address": "0x0000000c", 
+      "type": null, 
+      "name": "DAT_0000000c"
+    }, 
+    {
+      "address": "0x00000004", 
+      "type": null, 
+      "name": "DAT_00000004"
+    }, 
+    {
+      "address": "0x00000010", 
+      "type": null, 
+      "name": "DAT_00000010"
+    }, 
+    {
+      "address": "0x00000014", 
+      "type": null, 
+      "name": "DAT_00000014"
+    }
+  ], 
+  "has_custom_name": false, 
+  "decompiled_c": "\nuint FUN_100ade3d(int param_1,uint param_2,uint param_3,int param_4,int param_5,undefined4 *param_6)\n\n{\n  int iVar1;\n  int iVar2;\n  int iVar3;\n  int in_ECX;\n  uint uVar4;\n  uint local_8;\n  \n  local_8 = 0;\n  *param_6 = 0;\n  if (param_2 < param_3) {\n    do {\n      iVar1 = *(int *)(param_1 + param_2 * 4);\n      uVar4 = 0;\n      if ((iVar1 != 0) && (*(int *)(iVar1 + 4) != 0)) {\n        do {\n          iVar2 = *(int *)(*(int *)(iVar1 + 8) + uVar4 * 4);\n          iVar3 = *(int *)(*(int *)(in_ECX + 0x14) + iVar2 * 4);\n          if ((iVar2 == param_4) || (*(int *)(iVar3 + 0x38) == param_4)) {\n            *(undefined4 *)(iVar3 + 0xc) = *(undefined4 *)(param_5 + 0xc);\n            *(undefined4 *)(iVar3 + 0x10) = *(undefined4 *)(param_5 + 0x10);\n            *param_6 = 1;\n            local_8 = param_2;\n          }\n          uVar4 = uVar4 + 1;\n        } while (uVar4 < *(uint *)(iVar1 + 4));\n      }\n      param_2 = param_2 + 1;\n    } while (param_2 < param_3);\n  }\n  return local_8;\n}\n\n", 
+  "is_thunk": false, 
+  "name": "FUN_100ade3d", 
+  "assembly": "  100ade3d:  PUSH EBP\n  100ade3e:  MOV EBP,ESP\n  100ade40:  PUSH ECX\n  100ade41:  PUSH ECX\n  100ade42:  MOV EAX,dword ptr [EBP + 0x1c]\n  100ade45:  AND dword ptr [EBP + -0x4],0x0\n  100ade49:  AND dword ptr [EAX],0x0\n  100ade4c:  MOV dword ptr [EBP + -0x8],ECX\n  100ade4f:  MOV ECX,dword ptr [EBP + 0xc]\n  100ade52:  CMP ECX,dword ptr [EBP + 0x10]\n  100ade55:  JNC 0x100adeb1\n  100ade57:  PUSH EBX\n  100ade58:  PUSH ESI\n  100ade59:  PUSH EDI\n  100ade5a:  MOV EDX,dword ptr [EBP + 0x8]\n  100ade5d:  MOV EDI,dword ptr [EDX + ECX*0x4]\n  100ade60:  XOR EBX,EBX\n  100ade62:  CMP EDI,EBX\n  100ade64:  JZ 0x100adea8\n  100ade66:  CMP dword ptr [EDI + 0x4],EBX\n  100ade69:  JBE 0x100adea8\n  100ade6b:  MOV EDX,dword ptr [EDI + 0x8]\n  100ade6e:  MOV ESI,dword ptr [EDX + EBX*0x4]\n  100ade71:  CMP ESI,dword ptr [EBP + 0x14]\n  100ade74:  MOV EDX,dword ptr [EBP + -0x8]\n  100ade77:  MOV EDX,dword ptr [EDX + 0x14]\n  100ade7a:  MOV EDX,dword ptr [EDX + ESI*0x4]\n  100ade7d:  JZ 0x100ade87\n  100ade7f:  MOV ESI,dword ptr [EBP + 0x14]\n  100ade82:  CMP dword ptr [EDX + 0x38],ESI\n  100ade85:  JNZ 0x100adea2\n  100ade87:  MOV ESI,dword ptr [EBP + 0x18]\n  100ade8a:  MOV ESI,dword ptr [ESI + 0xc]\n  100ade8d:  MOV dword ptr [EDX + 0xc],ESI\n  100ade90:  MOV ESI,dword ptr [EBP + 0x18]\n  100ade93:  MOV ESI,dword ptr [ESI + 0x10]\n  100ade96:  MOV dword ptr [EDX + 0x10],ESI\n  100ade99:  MOV dword ptr [EBP + -0x4],ECX\n  100ade9c:  MOV dword ptr [EAX],0x1\n  100adea2:  INC EBX\n  100adea3:  CMP EBX,dword ptr [EDI + 0x4]\n  100adea6:  JC 0x100ade6b\n  100adea8:  INC ECX\n  100adea9:  CMP ECX,dword ptr [EBP + 0x10]\n  100adeac:  JC 0x100ade5a\n  100adeae:  POP EDI\n  100adeaf:  POP ESI\n  100adeb0:  POP EBX\n  100adeb1:  MOV EAX,dword ptr [EBP + -0x4]\n  100adeb4:  LEAVE\n  100adeb5:  RET 0x18", 
+  "callers": [
+    {
+      "address": "0x100b0449", 
+      "name": "FUN_100b0449"
+    }, 
+    {
+      "address": "0x100b0449", 
+      "name": "FUN_100b0449"
+    }, 
+    {
+      "address": "0x100b0449", 
+      "name": "FUN_100b0449"
+    }, 
+    {
+      "address": "0x100b0449", 
+      "name": "FUN_100b0449"
+    }, 
+    {
+      "address": "0x100b0449", 
+      "name": "FUN_100b0449"
+    }, 
+    {
+      "address": "0x100b0449", 
+      "name": "FUN_100b0449"
+    }, 
+    {
+      "address": "0x100b0449", 
+      "name": "FUN_100b0449"
+    }
+  ]
+}

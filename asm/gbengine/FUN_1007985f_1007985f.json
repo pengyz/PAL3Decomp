@@ -1,0 +1,40 @@
+{
+  "address": "0x1007985f", 
+  "size_bytes": 54, 
+  "calling_convention": "unknown", 
+  "signature": "undefined FUN_1007985f(undefined4 param_1, undefined4 param_2, undefined4 param_3, undefined4 param_4)", 
+  "callees": [], 
+  "global_refs": [
+    {
+      "address": "0x00000004", 
+      "type": null, 
+      "name": "DAT_00000004"
+    }, 
+    {
+      "address": "0x00000008", 
+      "type": null, 
+      "name": "DAT_00000008"
+    }, 
+    {
+      "address": "0x0000000c", 
+      "type": null, 
+      "name": "DAT_0000000c"
+    }, 
+    {
+      "address": "0x00000010", 
+      "type": null, 
+      "name": "DAT_00000010"
+    }
+  ], 
+  "has_custom_name": false, 
+  "decompiled_c": "\nundefined4 FUN_1007985f(int param_1,int param_2,undefined4 *param_3,uint *param_4)\n\n{\n  undefined4 uVar1;\n  \n  if ((((param_1 == 0) || (param_2 == 0)) || ((*(byte *)(param_2 + 8) & 8) == 0)) ||\n     (param_3 == (undefined4 *)0x0)) {\n    uVar1 = 0;\n  }\n  else {\n    *param_3 = *(undefined4 *)(param_2 + 0x10);\n    *param_4 = (uint)*(ushort *)(param_2 + 0x14);\n    uVar1 = 8;\n  }\n  return uVar1;\n}\n\n", 
+  "is_thunk": false, 
+  "name": "FUN_1007985f", 
+  "assembly": "  1007985f:  CMP dword ptr [ESP + 0x4],0x0\n  10079864:  JZ 0x10079890\n  10079866:  MOV EAX,dword ptr [ESP + 0x8]\n  1007986a:  TEST EAX,EAX\n  1007986c:  JZ 0x10079890\n  1007986e:  TEST byte ptr [EAX + 0x8],0x8\n  10079872:  JZ 0x10079890\n  10079874:  MOV ECX,dword ptr [ESP + 0xc]\n  10079878:  TEST ECX,ECX\n  1007987a:  JZ 0x10079890\n  1007987c:  MOV EDX,dword ptr [EAX + 0x10]\n  1007987f:  MOV dword ptr [ECX],EDX\n  10079881:  MOVZX EAX,word ptr [EAX + 0x14]\n  10079885:  MOV ECX,dword ptr [ESP + 0x10]\n  10079889:  PUSH 0x8\n  1007988b:  MOV dword ptr [ECX],EAX\n  1007988d:  POP EAX\n  1007988e:  JMP 0x10079892\n  10079890:  XOR EAX,EAX\n  10079892:  RET 0x10", 
+  "callers": [
+    {
+      "address": "0x10035dfa", 
+      "name": "FUN_10035dfa"
+    }
+  ]
+}

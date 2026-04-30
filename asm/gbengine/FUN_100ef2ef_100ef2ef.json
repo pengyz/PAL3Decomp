@@ -1,0 +1,82 @@
+{
+  "address": "0x100ef2ef", 
+  "size_bytes": 135, 
+  "calling_convention": "unknown", 
+  "signature": "undefined FUN_100ef2ef(void)", 
+  "callees": [
+    {
+      "address": "0x100ea6d0", 
+      "name": "_strlen"
+    }, 
+    {
+      "address": "0x100ea6d0", 
+      "name": "_strlen"
+    }, 
+    {
+      "address": "0x100ef9a0", 
+      "name": "FUN_100ef9a0"
+    }, 
+    {
+      "address": "0x00000040", 
+      "name": "EnumSystemLocalesA"
+    }
+  ], 
+  "global_refs": [
+    {
+      "address": "0x10166f04", 
+      "type": "undefined4", 
+      "name": "DAT_10166f04"
+    }, 
+    {
+      "address": "0x10166f08", 
+      "type": "undefined4", 
+      "name": "DAT_10166f08"
+    }, 
+    {
+      "address": "0x10166f00", 
+      "type": "undefined4", 
+      "name": "DAT_10166f00"
+    }, 
+    {
+      "address": "0x10166ef4", 
+      "type": "undefined4", 
+      "name": "DAT_10166ef4"
+    }, 
+    {
+      "address": "0x10166ef8", 
+      "type": "undefined4", 
+      "name": "DAT_10166ef8"
+    }, 
+    {
+      "address": "0x10166efc", 
+      "type": "undefined4", 
+      "name": "DAT_10166efc"
+    }, 
+    {
+      "address": "0x100ef376", 
+      "type": null, 
+      "name": "DAT_100ef376"
+    }, 
+    {
+      "address": "0x100f512c", 
+      "type": "pointer", 
+      "name": "DAT_100f512c"
+    }, 
+    {
+      "address": "0x10166f0c", 
+      "type": "undefined4", 
+      "name": "DAT_10166f0c"
+    }
+  ], 
+  "has_custom_name": false, 
+  "decompiled_c": "\nvoid FUN_100ef2ef(void)\n\n{\n  size_t sVar1;\n  \n  sVar1 = _strlen(DAT_10166f04);\n  DAT_10166f00 = (uint)(sVar1 == 3);\n  sVar1 = _strlen(DAT_10166f08);\n  DAT_10166ef8 = (uint)(sVar1 == 3);\n  DAT_10166ef4 = 0;\n  if (DAT_10166f00 == 0) {\n    DAT_10166efc = FUN_100ef9a0(DAT_10166f04);\n  }\n  else {\n    DAT_10166efc = 2;\n  }\n  EnumSystemLocalesA(FUN_100ef376,1);\n  if ((((DAT_10166f0c & 0x100) == 0) || ((DAT_10166f0c & 0x200) == 0)) || ((DAT_10166f0c & 7) == 0))\n  {\n    DAT_10166f0c = 0;\n  }\n  return;\n}\n\n", 
+  "is_thunk": false, 
+  "name": "FUN_100ef2ef", 
+  "assembly": "  100ef2ef:  PUSH dword ptr [0x10166f04]\n  100ef2f5:  CALL 0x100ea6d0\n  100ef2fa:  PUSH dword ptr [0x10166f08]\n  100ef300:  SUB EAX,0x3\n  100ef303:  NEG EAX\n  100ef305:  SBB EAX,EAX\n  100ef307:  INC EAX\n  100ef308:  MOV [0x10166f00],EAX\n  100ef30d:  CALL 0x100ea6d0\n  100ef312:  SUB EAX,0x3\n  100ef315:  POP ECX\n  100ef316:  NEG EAX\n  100ef318:  SBB EAX,EAX\n  100ef31a:  AND dword ptr [0x10166ef4],0x0\n  100ef321:  INC EAX\n  100ef322:  CMP dword ptr [0x10166f00],0x0\n  100ef329:  POP ECX\n  100ef32a:  MOV [0x10166ef8],EAX\n  100ef32f:  JZ 0x100ef33d\n  100ef331:  MOV dword ptr [0x10166efc],0x2\n  100ef33b:  JMP 0x100ef34e\n  100ef33d:  PUSH dword ptr [0x10166f04]\n  100ef343:  CALL 0x100ef9a0\n  100ef348:  POP ECX\n  100ef349:  MOV [0x10166efc],EAX\n  100ef34e:  PUSH 0x1\n  100ef350:  PUSH 0x100ef376\n  100ef355:  CALL dword ptr [0x100f512c]\n  100ef35b:  MOV EAX,[0x10166f0c]\n  100ef360:  TEST AH,0x1\n  100ef363:  JZ 0x100ef36e\n  100ef365:  TEST AH,0x2\n  100ef368:  JZ 0x100ef36e\n  100ef36a:  TEST AL,0x7\n  100ef36c:  JNZ 0x100ef375\n  100ef36e:  AND dword ptr [0x10166f0c],0x0\n  100ef375:  RET", 
+  "callers": [
+    {
+      "address": "0x100ef11a", 
+      "name": "FUN_100ef11a"
+    }
+  ]
+}

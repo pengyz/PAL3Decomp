@@ -1,0 +1,49 @@
+{
+  "address": "0x100dd370", 
+  "size_bytes": 28, 
+  "calling_convention": "unknown", 
+  "signature": "undefined FUN_100dd370(undefined param_1, undefined4 param_2, undefined4 param_3)", 
+  "callees": [
+    {
+      "address": "0x00000035", 
+      "name": "GetProcessHeap"
+    }, 
+    {
+      "address": "0x00000023", 
+      "name": "HeapAlloc"
+    }
+  ], 
+  "global_refs": [
+    {
+      "address": "0x00000008", 
+      "type": null, 
+      "name": "DAT_00000008"
+    }, 
+    {
+      "address": "0x0000000c", 
+      "type": null, 
+      "name": "DAT_0000000c"
+    }, 
+    {
+      "address": "0x100f5100", 
+      "type": "pointer", 
+      "name": "DAT_100f5100"
+    }, 
+    {
+      "address": "0x100f50b8", 
+      "type": "pointer", 
+      "name": "DAT_100f50b8"
+    }
+  ], 
+  "has_custom_name": false, 
+  "decompiled_c": "\nvoid FUN_100dd370(undefined4 param_1,int param_2,int param_3)\n\n{\n  SIZE_T dwBytes;\n  HANDLE hHeap;\n  DWORD dwFlags;\n  \n  dwBytes = param_2 * param_3;\n  dwFlags = 8;\n  hHeap = GetProcessHeap();\n  HeapAlloc(hHeap,dwFlags,dwBytes);\n  return;\n}\n\n", 
+  "is_thunk": false, 
+  "name": "FUN_100dd370", 
+  "assembly": "  100dd370:  MOV EAX,dword ptr [ESP + 0x8]\n  100dd374:  IMUL EAX,dword ptr [ESP + 0xc]\n  100dd379:  PUSH EAX\n  100dd37a:  PUSH 0x8\n  100dd37c:  CALL dword ptr [0x100f5100]\n  100dd382:  PUSH EAX\n  100dd383:  CALL dword ptr [0x100f50b8]\n  100dd389:  RET 0xc", 
+  "callers": [
+    {
+      "address": "0x100961d2", 
+      "name": "FUN_100961d2"
+    }
+  ]
+}

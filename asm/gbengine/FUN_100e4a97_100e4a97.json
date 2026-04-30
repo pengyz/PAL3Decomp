@@ -1,0 +1,24 @@
+{
+  "address": "0x100e4a97", 
+  "size_bytes": 24, 
+  "calling_convention": "unknown", 
+  "signature": "undefined FUN_100e4a97(void)", 
+  "callees": [
+    {
+      "address": "0x100e4aaf", 
+      "name": "FUN_100e4aaf"
+    }
+  ], 
+  "global_refs": [], 
+  "has_custom_name": false, 
+  "decompiled_c": "\nvoid FUN_100e4a97(void)\n\n{\n  int unaff_EBP;\n  \n  if (*(int *)(unaff_EBP + -0x1c) == 0) {\n    FUN_100e4aaf(*(undefined4 *)(unaff_EBP + 8),*(undefined4 *)(unaff_EBP + 0xc),\n                 *(undefined4 *)(unaff_EBP + 0x10),*(undefined4 *)(unaff_EBP + 0x14));\n  }\n  return;\n}\n\n", 
+  "is_thunk": false, 
+  "name": "FUN_100e4a97", 
+  "assembly": "  100e4a97:  CMP dword ptr [EBP + -0x1c],0x0\n  100e4a9b:  JNZ 0x100e4aae\n  100e4a9d:  PUSH dword ptr [EBP + 0x14]\n  100e4aa0:  PUSH dword ptr [EBP + 0x10]\n  100e4aa3:  PUSH dword ptr [EBP + 0xc]\n  100e4aa6:  PUSH dword ptr [EBP + 0x8]\n  100e4aa9:  CALL 0x100e4aaf\n  100e4aae:  RET", 
+  "callers": [
+    {
+      "address": "0x100e4a2f", 
+      "name": "FUN_100e4a2f"
+    }
+  ]
+}

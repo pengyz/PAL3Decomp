@@ -1,0 +1,20 @@
+{
+  "address": "0x100770cf", 
+  "size_bytes": 12, 
+  "calling_convention": "unknown", 
+  "signature": "undefined Catch@100770cf(void)", 
+  "callees": [], 
+  "global_refs": [
+    {
+      "address": "0x100770e1", 
+      "type": null, 
+      "name": "DAT_100770e1"
+    }
+  ], 
+  "has_custom_name": true, 
+  "decompiled_c": "\nundefined * Catch_100770cf(void)\n\n{\n  int unaff_EBP;\n  \n  *(undefined4 *)(unaff_EBP + -0x3c) = *(undefined4 *)(unaff_EBP + -0x14);\n  return &DAT_100770e1;\n}\n\n", 
+  "is_thunk": false, 
+  "name": "Catch@100770cf", 
+  "assembly": "  100770cf:  MOV EAX,dword ptr [EBP + -0x14]\n  100770d2:  MOV dword ptr [EBP + -0x3c],EAX\n  100770d5:  MOV EAX,0x100770e1\n  100770da:  RET", 
+  "callers": []
+}

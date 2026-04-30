@@ -1,0 +1,52 @@
+{
+  "address": "0x10012f30", 
+  "size_bytes": 199, 
+  "calling_convention": "unknown", 
+  "signature": "undefined FUN_10012f30(undefined4 param_1, undefined4 param_2)", 
+  "callees": [], 
+  "global_refs": [
+    {
+      "address": "0x1015d3a4", 
+      "type": "int", 
+      "name": "DAT_1015d3a4"
+    }, 
+    {
+      "address": "0x00000008", 
+      "type": null, 
+      "name": "DAT_00000008"
+    }, 
+    {
+      "address": "0x00000004", 
+      "type": null, 
+      "name": "DAT_00000004"
+    }, 
+    {
+      "address": "0x100f5460", 
+      "type": null, 
+      "name": "DAT_100f5460"
+    }
+  ], 
+  "has_custom_name": false, 
+  "decompiled_c": "\nvoid FUN_10012f30(float *param_1,byte *param_2)\n\n{\n  if (gbColorQuad::ColorQuadFmt == 0) {\n    *param_1 = (float)param_2[2] * 0.003921569;\n    param_1[1] = (float)param_2[1] * 0.003921569;\n    param_1[2] = (float)*param_2 * 0.003921569;\n    param_1[3] = (float)param_2[3] * 0.003921569;\n    return;\n  }\n  *param_1 = (float)*param_2 * 0.003921569;\n  param_1[1] = (float)param_2[1] * 0.003921569;\n  param_1[2] = (float)param_2[2] * 0.003921569;\n  param_1[3] = (float)param_2[3] * 0.003921569;\n  return;\n}\n\n", 
+  "is_thunk": false, 
+  "name": "FUN_10012f30", 
+  "assembly": "  10012f30:  MOV EAX,[0x1015d3a4]\n  10012f35:  TEST EAX,EAX\n  10012f37:  JNZ 0x10012f98\n  10012f39:  MOV EAX,dword ptr [ESP + 0x8]\n  10012f3d:  XOR ECX,ECX\n  10012f3f:  XOR EDX,EDX\n  10012f41:  MOV CL,byte ptr [EAX + 0x2]\n  10012f44:  MOV dword ptr [ESP + 0x8],ECX\n  10012f48:  MOV ECX,dword ptr [ESP + 0x4]\n  10012f4c:  FILD dword ptr [ESP + 0x8]\n  10012f50:  FMUL dword ptr [0x100f5460]\n  10012f56:  FSTP dword ptr [ECX]\n  10012f58:  MOV DL,byte ptr [EAX + 0x1]\n  10012f5b:  MOV dword ptr [ESP + 0x8],EDX\n  10012f5f:  XOR EDX,EDX\n  10012f61:  FILD dword ptr [ESP + 0x8]\n  10012f65:  FMUL dword ptr [0x100f5460]\n  10012f6b:  FSTP dword ptr [ECX + 0x4]\n  10012f6e:  MOV DL,byte ptr [EAX]\n  10012f70:  MOV dword ptr [ESP + 0x8],EDX\n  10012f74:  XOR EDX,EDX\n  10012f76:  FILD dword ptr [ESP + 0x8]\n  10012f7a:  FMUL dword ptr [0x100f5460]\n  10012f80:  FSTP dword ptr [ECX + 0x8]\n  10012f83:  MOV DL,byte ptr [EAX + 0x3]\n  10012f86:  MOV dword ptr [ESP + 0x8],EDX\n  10012f8a:  FILD dword ptr [ESP + 0x8]\n  10012f8e:  FMUL dword ptr [0x100f5460]\n  10012f94:  FSTP dword ptr [ECX + 0xc]\n  10012f97:  RET\n  10012f98:  MOV EAX,dword ptr [ESP + 0x8]\n  10012f9c:  XOR ECX,ECX\n  10012f9e:  XOR EDX,EDX\n  10012fa0:  MOV CL,byte ptr [EAX]\n  10012fa2:  MOV dword ptr [ESP + 0x8],ECX\n  10012fa6:  MOV ECX,dword ptr [ESP + 0x4]\n  10012faa:  FILD dword ptr [ESP + 0x8]\n  10012fae:  FMUL dword ptr [0x100f5460]\n  10012fb4:  FSTP dword ptr [ECX]\n  10012fb6:  MOV DL,byte ptr [EAX + 0x1]\n  10012fb9:  MOV dword ptr [ESP + 0x8],EDX\n  10012fbd:  XOR EDX,EDX\n  10012fbf:  FILD dword ptr [ESP + 0x8]\n  10012fc3:  FMUL dword ptr [0x100f5460]\n  10012fc9:  FSTP dword ptr [ECX + 0x4]\n  10012fcc:  MOV DL,byte ptr [EAX + 0x2]\n  10012fcf:  MOV dword ptr [ESP + 0x8],EDX\n  10012fd3:  XOR EDX,EDX\n  10012fd5:  FILD dword ptr [ESP + 0x8]\n  10012fd9:  FMUL dword ptr [0x100f5460]\n  10012fdf:  FSTP dword ptr [ECX + 0x8]\n  10012fe2:  MOV DL,byte ptr [EAX + 0x3]\n  10012fe5:  MOV dword ptr [ESP + 0x8],EDX\n  10012fe9:  FILD dword ptr [ESP + 0x8]\n  10012fed:  FMUL dword ptr [0x100f5460]\n  10012ff3:  FSTP dword ptr [ECX + 0xc]\n  10012ff6:  RET", 
+  "callers": [
+    {
+      "address": "0x10011c60", 
+      "name": "FUN_10011c60"
+    }, 
+    {
+      "address": "0x10011c60", 
+      "name": "FUN_10011c60"
+    }, 
+    {
+      "address": "0x10011c60", 
+      "name": "FUN_10011c60"
+    }, 
+    {
+      "address": "0x10011c60", 
+      "name": "FUN_10011c60"
+    }
+  ]
+}

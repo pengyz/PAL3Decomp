@@ -1,0 +1,39 @@
+{
+  "address": "0x100955ff", 
+  "size_bytes": 51, 
+  "calling_convention": "unknown", 
+  "signature": "undefined FUN_100955ff(undefined param_1, undefined4 param_2, undefined1 param_3, undefined4 param_4)", 
+  "callees": [], 
+  "global_refs": [
+    {
+      "address": "0x0000000c", 
+      "type": null, 
+      "name": "DAT_0000000c"
+    }, 
+    {
+      "address": "0x00000010", 
+      "type": null, 
+      "name": "DAT_00000010"
+    }, 
+    {
+      "address": "0x00000008", 
+      "type": null, 
+      "name": "DAT_00000008"
+    }
+  ], 
+  "has_custom_name": false, 
+  "decompiled_c": "\nundefined4 * FUN_100955ff(undefined4 param_1,undefined4 *param_2,undefined param_3,uint param_4)\n\n{\n  uint uVar1;\n  undefined4 *puVar2;\n  \n  puVar2 = param_2;\n  for (uVar1 = param_4 >> 2; uVar1 != 0; uVar1 = uVar1 - 1) {\n    *puVar2 = CONCAT22(CONCAT11(param_3,param_3),CONCAT11(param_3,param_3));\n    puVar2 = puVar2 + 1;\n  }\n  for (param_4 = param_4 & 3; param_4 != 0; param_4 = param_4 - 1) {\n    *(undefined *)puVar2 = param_3;\n    puVar2 = (undefined4 *)((int)puVar2 + 1);\n  }\n  return param_2;\n}\n\n", 
+  "is_thunk": false, 
+  "name": "FUN_100955ff", 
+  "assembly": "  100955ff:  MOV AL,byte ptr [ESP + 0xc]\n  10095603:  MOV ECX,dword ptr [ESP + 0x10]\n  10095607:  PUSH EBX\n  10095608:  MOV BL,AL\n  1009560a:  MOV BH,BL\n  1009560c:  PUSH ESI\n  1009560d:  PUSH EDI\n  1009560e:  MOV EDI,dword ptr [ESP + 0x14]\n  10095612:  MOV EDX,ECX\n  10095614:  MOV ESI,EDI\n  10095616:  SHR ECX,0x2\n  10095619:  MOV EAX,EBX\n  1009561b:  SHL EAX,0x10\n  1009561e:  MOV AX,BX\n  10095621:  STOSD.REP ES:EDI\n  10095623:  MOV ECX,EDX\n  10095625:  AND ECX,0x3\n  10095628:  STOSB.REP ES:EDI\n  1009562a:  POP EDI\n  1009562b:  MOV EAX,ESI\n  1009562d:  POP ESI\n  1009562e:  POP EBX\n  1009562f:  RET 0x10", 
+  "callers": [
+    {
+      "address": "0x10096d7e", 
+      "name": "FUN_10096d7e"
+    }, 
+    {
+      "address": "0x100976a6", 
+      "name": "FUN_100976a6"
+    }
+  ]
+}

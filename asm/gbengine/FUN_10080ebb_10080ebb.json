@@ -1,0 +1,77 @@
+{
+  "address": "0x10080ebb", 
+  "size_bytes": 87, 
+  "calling_convention": "unknown", 
+  "signature": "undefined FUN_10080ebb(undefined4 param_1, undefined4 param_2, undefined4 param_3, undefined4 param_4, undefined1 param_5)", 
+  "callees": [
+    {
+      "address": "0x100e68e0", 
+      "name": "FUN_100e68e0"
+    }, 
+    {
+      "address": "0x10080dee", 
+      "name": "FUN_10080dee"
+    }, 
+    {
+      "address": "0x1004cc4c", 
+      "name": "FUN_1004cc4c"
+    }
+  ], 
+  "global_refs": [
+    {
+      "address": "0x00000014", 
+      "type": null, 
+      "name": "DAT_00000014"
+    }, 
+    {
+      "address": "0x00000010", 
+      "type": null, 
+      "name": "DAT_00000010"
+    }, 
+    {
+      "address": "0x-0000104", 
+      "type": null, 
+      "name": "DAT_-0000104"
+    }, 
+    {
+      "address": "0x00000004", 
+      "type": null, 
+      "name": "DAT_00000004"
+    }, 
+    {
+      "address": "0x-0000005", 
+      "type": null, 
+      "name": "DAT_-0000005"
+    }, 
+    {
+      "address": "0x100f9350", 
+      "type": null, 
+      "name": "DAT_100f9350"
+    }, 
+    {
+      "address": "0x0000000c", 
+      "type": null, 
+      "name": "DAT_0000000c"
+    }, 
+    {
+      "address": "0x00000008", 
+      "type": null, 
+      "name": "DAT_00000008"
+    }
+  ], 
+  "has_custom_name": false, 
+  "decompiled_c": "\nundefined4 FUN_10080ebb(undefined4 param_1,undefined4 param_2,undefined4 param_3,undefined4 param_4)\n\n{\n  undefined8 uVar1;\n  undefined *puVar2;\n  undefined *puVar3;\n  undefined local_104 [255];\n  undefined local_5;\n  \n  FUN_100e68e0(local_104,0x100,param_4,&stack0x00000014);\n  local_5 = 0;\n  puVar3 = local_104;\n  puVar2 = &DAT_100f9350;\n  uVar1 = FUN_10080dee(param_2);\n  FUN_1004cc4c(*(int *)((ulonglong)uVar1 >> 0x20) + 0x18,(int)uVar1,param_3,puVar2,puVar3);\n  return 0;\n}\n\n", 
+  "is_thunk": false, 
+  "name": "FUN_10080ebb", 
+  "assembly": "  10080ebb:  PUSH EBP\n  10080ebc:  MOV EBP,ESP\n  10080ebe:  SUB ESP,0x100\n  10080ec4:  LEA EAX,[EBP + 0x18]\n  10080ec7:  PUSH EAX\n  10080ec8:  PUSH dword ptr [EBP + 0x14]\n  10080ecb:  LEA EAX,[EBP + 0xffffff00]\n  10080ed1:  PUSH 0x100\n  10080ed6:  PUSH EAX\n  10080ed7:  CALL 0x100e68e0\n  10080edc:  MOV EDX,dword ptr [EBP + 0x8]\n  10080edf:  AND byte ptr [EBP + -0x1],0x0\n  10080ee3:  ADD ESP,0x10\n  10080ee6:  LEA EAX,[EBP + 0xffffff00]\n  10080eec:  PUSH EAX\n  10080eed:  PUSH 0x100f9350\n  10080ef2:  PUSH dword ptr [EBP + 0x10]\n  10080ef5:  MOV ECX,EDX\n  10080ef7:  PUSH dword ptr [EBP + 0xc]\n  10080efa:  CALL 0x10080dee\n  10080eff:  PUSH EAX\n  10080f00:  MOV EAX,dword ptr [EDX]\n  10080f02:  ADD EAX,0x18\n  10080f05:  PUSH EAX\n  10080f06:  CALL 0x1004cc4c\n  10080f0b:  ADD ESP,0x14\n  10080f0e:  XOR EAX,EAX\n  10080f10:  LEAVE\n  10080f11:  RET", 
+  "callers": [
+    {
+      "address": "0x1008f021", 
+      "name": "FUN_1008f021"
+    }, 
+    {
+      "address": "0x1008f021", 
+      "name": "FUN_1008f021"
+    }
+  ]
+}

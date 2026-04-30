@@ -1,0 +1,30 @@
+{
+  "address": "0x10022700", 
+  "size_bytes": 71, 
+  "calling_convention": "__thiscall", 
+  "signature": "void __thiscall Init(gbUIRect * this, char * param_1, float param_2, float param_3, float param_4, float param_5, gbGfxManager * param_6)", 
+  "callees": [
+    {
+      "address": "0x100205a0", 
+      "name": "LoadTexture"
+    }
+  ], 
+  "global_refs": [
+    {
+      "address": "0x00000004", 
+      "type": null, 
+      "name": "DAT_00000004"
+    }, 
+    {
+      "address": "0x00000018", 
+      "type": null, 
+      "name": "DAT_00000018"
+    }
+  ], 
+  "has_custom_name": true, 
+  "decompiled_c": "\n/* public: void __thiscall gbUIRect::Init(char *,float,float,float,float,class gbGfxManager *) */\n\nvoid __thiscall\ngbUIRect::Init(gbUIRect *this,char *param_1,float param_2,float param_3,float param_4,float param_5,\n              gbGfxManager *param_6)\n\n{\n  gbTexture *this_00;\n  \n                    /* 0x22700  599  ?Init@gbUIRect@@QAEXPADMMMMPAVgbGfxManager@@@Z */\n  *(gbGfxManager **)(this + 4) = param_6;\n  this_00 = (gbTexture *)(**(code **)(*(int *)param_6 + 8))(param_1);\n  *(gbTexture **)this = this_00;\n  gbTexture::LoadTexture(this_00,1);\n  *(char **)(this + 8) = param_1;\n  *(float *)(this + 0xc) = param_2;\n  *(float *)(this + 0x10) = param_3 - (float)param_1;\n  *(float *)(this + 0x14) = param_4 - param_2;\n  return;\n}\n\n", 
+  "is_thunk": false, 
+  "name": "Init", 
+  "assembly": "  10022700:  MOV EDX,dword ptr [ESP + 0x4]\n  10022704:  PUSH ESI\n  10022705:  MOV ESI,ECX\n  10022707:  PUSH EDX\n  10022708:  MOV ECX,dword ptr [ESP + 0x20]\n  1002270c:  MOV dword ptr [ESI + 0x4],ECX\n  1002270f:  MOV EAX,dword ptr [ECX]\n  10022711:  CALL dword ptr [EAX + 0x8]\n  10022714:  PUSH 0x1\n  10022716:  MOV ECX,EAX\n  10022718:  MOV dword ptr [ESI],EAX\n  1002271a:  CALL 0x100205a0\n  1002271f:  FLD dword ptr [ESP + 0x14]\n  10022723:  FSUB dword ptr [ESP + 0xc]\n  10022727:  MOV EAX,dword ptr [ESP + 0xc]\n  1002272b:  MOV ECX,dword ptr [ESP + 0x10]\n  1002272f:  MOV dword ptr [ESI + 0x8],EAX\n  10022732:  MOV dword ptr [ESI + 0xc],ECX\n  10022735:  FSTP dword ptr [ESI + 0x10]\n  10022738:  FLD dword ptr [ESP + 0x18]\n  1002273c:  FSUB dword ptr [ESP + 0x10]\n  10022740:  FSTP dword ptr [ESI + 0x14]\n  10022743:  POP ESI\n  10022744:  RET 0x18", 
+  "callers": []
+}

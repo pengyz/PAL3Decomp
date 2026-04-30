@@ -1,0 +1,45 @@
+{
+  "address": "0x10079a93", 
+  "size_bytes": 56, 
+  "calling_convention": "unknown", 
+  "signature": "undefined FUN_10079a93(undefined4 param_1, undefined8 param_2, undefined8 param_3)", 
+  "callees": [], 
+  "global_refs": [
+    {
+      "address": "0x00000008", 
+      "type": null, 
+      "name": "DAT_00000008"
+    }, 
+    {
+      "address": "0x00000010", 
+      "type": null, 
+      "name": "DAT_00000010"
+    }, 
+    {
+      "address": "0x100f6658", 
+      "type": null, 
+      "name": "DAT_100f6658"
+    }, 
+    {
+      "address": "0x10106118", 
+      "type": null, 
+      "name": "DAT_10106118"
+    }, 
+    {
+      "address": "0x00000004", 
+      "type": null, 
+      "name": "DAT_00000004"
+    }
+  ], 
+  "has_custom_name": false, 
+  "decompiled_c": "\nvoid FUN_10079a93(int param_1,double param_2,double param_3)\n\n{\n  if (0.05 < ABS(param_2 * param_3 - 1.0)) {\n    *(byte *)(param_1 + 0x61) = *(byte *)(param_1 + 0x61) | 0x20;\n  }\n  *(float *)(param_1 + 0x130) = (float)param_3;\n  *(float *)(param_1 + 0x134) = (float)param_2;\n  return;\n}\n\n", 
+  "is_thunk": false, 
+  "name": "FUN_10079a93", 
+  "assembly": "  10079a93:  FLD qword ptr [ESP + 0x8]\n  10079a97:  FLD qword ptr [ESP + 0x10]\n  10079a9b:  FLD ST1\n  10079a9d:  FMUL ST1\n  10079a9f:  FSUB qword ptr [0x100f6658]\n  10079aa5:  FABS\n  10079aa7:  FCOMP qword ptr [0x10106118]\n  10079aad:  FNSTSW AX\n  10079aaf:  TEST AH,0x41\n  10079ab2:  MOV EAX,dword ptr [ESP + 0x4]\n  10079ab6:  JNZ 0x10079abc\n  10079ab8:  OR byte ptr [EAX + 0x61],0x20\n  10079abc:  FSTP dword ptr [EAX + 0x130]\n  10079ac2:  FSTP dword ptr [EAX + 0x134]\n  10079ac8:  RET 0x14", 
+  "callers": [
+    {
+      "address": "0x10035dfa", 
+      "name": "FUN_10035dfa"
+    }
+  ]
+}

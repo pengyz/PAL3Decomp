@@ -1,0 +1,69 @@
+{
+  "address": "0x1002dc60", 
+  "size_bytes": 135, 
+  "calling_convention": "unknown", 
+  "signature": "undefined FUN_1002dc60(undefined4 param_1)", 
+  "callees": [
+    {
+      "address": "0x1002e1b0", 
+      "name": "FUN_1002e1b0"
+    }, 
+    {
+      "address": "0x1002e820", 
+      "name": "FUN_1002e820"
+    }, 
+    {
+      "address": "0x1002e5e0", 
+      "name": "FUN_1002e5e0"
+    }, 
+    {
+      "address": "0x1002e820", 
+      "name": "FUN_1002e820"
+    }
+  ], 
+  "global_refs": [
+    {
+      "address": "0x00000004", 
+      "type": null, 
+      "name": "DAT_00000004"
+    }, 
+    {
+      "address": "0x1014b760", 
+      "type": null, 
+      "name": "DAT_1014b760"
+    }, 
+    {
+      "address": "0x101206f0", 
+      "type": "string", 
+      "name": "DAT_101206f0"
+    }, 
+    {
+      "address": "0x101206cc", 
+      "type": "string", 
+      "name": "DAT_101206cc"
+    }
+  ], 
+  "has_custom_name": false, 
+  "decompiled_c": "\nvoid FUN_1002dc60(int *param_1)\n\n{\n  int iVar1;\n  \n  if (*param_1 == 1) {\n    param_1[7] = param_1[6];\n  }\n  else {\n    if (*param_1 != 2) {\n      return;\n    }\n    if (*(char *)(param_1 + 1) == '\\0') {\n      iVar1 = FUN_1002e5e0(param_1[2],param_1[6],param_1[3],param_1 + 7,0);\n      if (iVar1 != 0) {\n        *(undefined *)(param_1 + 8) = 0;\n        FUN_1002e820(s_MiniLzo_decompression_failed___d_101206cc,iVar1);\n        return;\n      }\n    }\n    else {\n      iVar1 = FUN_1002e1b0(param_1[2],param_1[6],param_1[3],param_1 + 7,&DAT_1014b760);\n      if (iVar1 != 0) {\n        *(undefined *)(param_1 + 8) = 0;\n        FUN_1002e820(s_MiniLzo_compression_failed___d_101206f0,iVar1);\n        return;\n      }\n    }\n  }\n  *(undefined *)(param_1 + 8) = 1;\n  return;\n}\n\n", 
+  "is_thunk": false, 
+  "name": "FUN_1002dc60", 
+  "assembly": "  1002dc60:  PUSH ESI\n  1002dc61:  MOV ESI,dword ptr [ESP + 0x8]\n  1002dc65:  MOV EAX,dword ptr [ESI]\n  1002dc67:  DEC EAX\n  1002dc68:  JZ 0x1002dcdb\n  1002dc6a:  DEC EAX\n  1002dc6b:  JNZ 0x1002dce5\n  1002dc6d:  MOV AL,byte ptr [ESI + 0x4]\n  1002dc70:  TEST AL,AL\n  1002dc72:  JZ 0x1002dca9\n  1002dc74:  MOV ECX,dword ptr [ESI + 0xc]\n  1002dc77:  MOV EDX,dword ptr [ESI + 0x18]\n  1002dc7a:  LEA EAX,[ESI + 0x1c]\n  1002dc7d:  PUSH 0x1014b760\n  1002dc82:  PUSH EAX\n  1002dc83:  MOV EAX,dword ptr [ESI + 0x8]\n  1002dc86:  PUSH ECX\n  1002dc87:  PUSH EDX\n  1002dc88:  PUSH EAX\n  1002dc89:  CALL 0x1002e1b0\n  1002dc8e:  ADD ESP,0x14\n  1002dc91:  TEST EAX,EAX\n  1002dc93:  JZ 0x1002dce1\n  1002dc95:  PUSH EAX\n  1002dc96:  PUSH 0x101206f0\n  1002dc9b:  MOV byte ptr [ESI + 0x20],0x0\n  1002dc9f:  CALL 0x1002e820\n  1002dca4:  ADD ESP,0x8\n  1002dca7:  POP ESI\n  1002dca8:  RET\n  1002dca9:  MOV EDX,dword ptr [ESI + 0xc]\n  1002dcac:  MOV EAX,dword ptr [ESI + 0x18]\n  1002dcaf:  LEA ECX,[ESI + 0x1c]\n  1002dcb2:  PUSH 0x0\n  1002dcb4:  PUSH ECX\n  1002dcb5:  MOV ECX,dword ptr [ESI + 0x8]\n  1002dcb8:  PUSH EDX\n  1002dcb9:  PUSH EAX\n  1002dcba:  PUSH ECX\n  1002dcbb:  CALL 0x1002e5e0\n  1002dcc0:  ADD ESP,0x14\n  1002dcc3:  TEST EAX,EAX\n  1002dcc5:  JZ 0x1002dce1\n  1002dcc7:  PUSH EAX\n  1002dcc8:  PUSH 0x101206cc\n  1002dccd:  MOV byte ptr [ESI + 0x20],0x0\n  1002dcd1:  CALL 0x1002e820\n  1002dcd6:  ADD ESP,0x8\n  1002dcd9:  POP ESI\n  1002dcda:  RET\n  1002dcdb:  MOV EDX,dword ptr [ESI + 0x18]\n  1002dcde:  MOV dword ptr [ESI + 0x1c],EDX\n  1002dce1:  MOV byte ptr [ESI + 0x20],0x1\n  1002dce5:  POP ESI\n  1002dce6:  RET", 
+  "callers": [
+    {
+      "address": "0x1002cc50", 
+      "name": "Open"
+    }, 
+    {
+      "address": "0x1002d3f0", 
+      "name": "LoadFile"
+    }, 
+    {
+      "address": "0x1002d6e0", 
+      "name": "Compress"
+    }, 
+    {
+      "address": "0x1002d730", 
+      "name": "DeCompress"
+    }
+  ]
+}

@@ -1,0 +1,30 @@
+{
+  "address": "0x100058d0", 
+  "size_bytes": 33, 
+  "calling_convention": "__thiscall", 
+  "signature": "void __thiscall SetEyeLoc(gbCamera * this, float param_1, float param_2, float param_3)", 
+  "callees": [], 
+  "global_refs": [
+    {
+      "address": "0x00000004", 
+      "type": null, 
+      "name": "DAT_00000004"
+    }, 
+    {
+      "address": "0x00000008", 
+      "type": null, 
+      "name": "DAT_00000008"
+    }, 
+    {
+      "address": "0x0000000c", 
+      "type": null, 
+      "name": "DAT_0000000c"
+    }
+  ], 
+  "has_custom_name": true, 
+  "decompiled_c": "\n/* public: void __thiscall gbCamera::SetEyeLoc(float,float,float) */\n\nvoid __thiscall gbCamera::SetEyeLoc(gbCamera *this,float param_1,float param_2,float param_3)\n\n{\n                    /* 0x58d0  864  ?SetEyeLoc@gbCamera@@QAEXMMM@Z */\n  *(float *)(this + 0x15c) = param_1;\n  *(float *)(this + 0x160) = param_2;\n  *(float *)(this + 0x164) = param_3;\n  return;\n}\n\n", 
+  "is_thunk": false, 
+  "name": "SetEyeLoc", 
+  "assembly": "  100058d0:  MOV EAX,dword ptr [ESP + 0x4]\n  100058d4:  MOV EDX,dword ptr [ESP + 0x8]\n  100058d8:  MOV dword ptr [ECX + 0x15c],EAX\n  100058de:  MOV EAX,dword ptr [ESP + 0xc]\n  100058e2:  MOV dword ptr [ECX + 0x160],EDX\n  100058e8:  MOV dword ptr [ECX + 0x164],EAX\n  100058ee:  RET 0xc", 
+  "callers": []
+}

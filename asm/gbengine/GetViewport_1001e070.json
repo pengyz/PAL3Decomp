@@ -1,0 +1,25 @@
+{
+  "address": "0x1001e070", 
+  "size_bytes": 24, 
+  "calling_convention": "__thiscall", 
+  "signature": "void __thiscall GetViewport(gbGfxManager * this, gbViewPort * param_1)", 
+  "callees": [], 
+  "global_refs": [
+    {
+      "address": "0x00000004", 
+      "type": null, 
+      "name": "DAT_00000004"
+    }
+  ], 
+  "has_custom_name": true, 
+  "decompiled_c": "\n/* public: void __thiscall gbGfxManager::GetViewport(struct gbViewPort &) */\n\nvoid __thiscall gbGfxManager::GetViewport(gbGfxManager *this,gbViewPort *param_1)\n\n{\n  int iVar1;\n  gbGfxManager *pgVar2;\n  \n                    /* 0x1e070  575  ?GetViewport@gbGfxManager@@QAEXAAUgbViewPort@@@Z */\n  pgVar2 = this + 0x1c4;\n  for (iVar1 = 6; iVar1 != 0; iVar1 = iVar1 + -1) {\n    *(undefined4 *)param_1 = *(undefined4 *)pgVar2;\n    pgVar2 = pgVar2 + 4;\n    param_1 = param_1 + 4;\n  }\n  return;\n}\n\n", 
+  "is_thunk": false, 
+  "name": "GetViewport", 
+  "assembly": "  1001e070:  PUSH ESI\n  1001e071:  PUSH EDI\n  1001e072:  MOV EDI,dword ptr [ESP + 0xc]\n  1001e076:  LEA ESI,[ECX + 0x1c4]\n  1001e07c:  MOV ECX,0x6\n  1001e081:  MOVSD.REP ES:EDI,ESI\n  1001e083:  POP EDI\n  1001e084:  POP ESI\n  1001e085:  RET 0x4", 
+  "callers": [
+    {
+      "address": "0x10023a90", 
+      "name": "FUN_10023a90"
+    }
+  ]
+}

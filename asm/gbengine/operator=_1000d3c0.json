@@ -1,0 +1,20 @@
+{
+  "address": "0x1000d3c0", 
+  "size_bytes": 43, 
+  "calling_convention": "__thiscall", 
+  "signature": "gbAABBox * __thiscall operator=(gbAABBox * this, gbAABBox * param_1)", 
+  "callees": [], 
+  "global_refs": [
+    {
+      "address": "0x00000004", 
+      "type": null, 
+      "name": "DAT_00000004"
+    }
+  ], 
+  "has_custom_name": true, 
+  "decompiled_c": "\n/* public: struct gbAABBox & __thiscall gbAABBox::operator=(struct gbAABBox const &) */\n\ngbAABBox * __thiscall gbAABBox::operator=(gbAABBox *this,gbAABBox *param_1)\n\n{\n                    /* 0xd3c0  178  ??4gbAABBox@@QAEAAU0@ABU0@@Z\n                       0xd3c0  203  ??4gbEmitterSquare@@QAEAAU0@ABU0@@Z\n                       0xd3c0  225  ??4gbRay@@QAEAAU0@ABU0@@Z */\n  *(undefined4 *)this = *(undefined4 *)param_1;\n  *(undefined4 *)(this + 4) = *(undefined4 *)(param_1 + 4);\n  *(undefined4 *)(this + 8) = *(undefined4 *)(param_1 + 8);\n  *(undefined4 *)(this + 0xc) = *(undefined4 *)(param_1 + 0xc);\n  *(undefined4 *)(this + 0x10) = *(undefined4 *)(param_1 + 0x10);\n  *(undefined4 *)(this + 0x14) = *(undefined4 *)(param_1 + 0x14);\n  return this;\n}\n\n", 
+  "is_thunk": false, 
+  "name": "operator=", 
+  "assembly": "  1000d3c0:  MOV EAX,ECX\n  1000d3c2:  MOV ECX,dword ptr [ESP + 0x4]\n  1000d3c6:  MOV EDX,dword ptr [ECX]\n  1000d3c8:  MOV dword ptr [EAX],EDX\n  1000d3ca:  MOV EDX,dword ptr [ECX + 0x4]\n  1000d3cd:  MOV dword ptr [EAX + 0x4],EDX\n  1000d3d0:  MOV EDX,dword ptr [ECX + 0x8]\n  1000d3d3:  MOV dword ptr [EAX + 0x8],EDX\n  1000d3d6:  MOV EDX,dword ptr [ECX + 0xc]\n  1000d3d9:  MOV dword ptr [EAX + 0xc],EDX\n  1000d3dc:  MOV EDX,dword ptr [ECX + 0x10]\n  1000d3df:  MOV dword ptr [EAX + 0x10],EDX\n  1000d3e2:  MOV ECX,dword ptr [ECX + 0x14]\n  1000d3e5:  MOV dword ptr [EAX + 0x14],ECX\n  1000d3e8:  RET 0x4", 
+  "callers": []
+}

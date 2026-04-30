@@ -1,0 +1,40 @@
+{
+  "address": "0x1002d270", 
+  "size_bytes": 105, 
+  "calling_convention": "__thiscall", 
+  "signature": "bool __thiscall Read(CPK * this, void * param_1, ulong param_2, CPKFile * param_3)", 
+  "callees": [
+    {
+      "address": "0x1002db70", 
+      "name": "FUN_1002db70"
+    }
+  ], 
+  "global_refs": [
+    {
+      "address": "0x0000000c", 
+      "type": null, 
+      "name": "DAT_0000000c"
+    }, 
+    {
+      "address": "0x00000008", 
+      "type": null, 
+      "name": "DAT_00000008"
+    }, 
+    {
+      "address": "0x00000004", 
+      "type": null, 
+      "name": "DAT_00000004"
+    }
+  ], 
+  "has_custom_name": true, 
+  "decompiled_c": "\n/* public: bool __thiscall CPK::Read(void *,unsigned long,class CPKFile *) */\n\nbool __thiscall CPK::Read(CPK *this,void *param_1,ulong param_2,CPKFile *param_3)\n\n{\n  uint uVar1;\n  undefined4 *puVar2;\n  \n                    /* 0x2d270  756  ?Read@CPK@@QAE_NPAXKPAVCPKFile@@@Z */\n  if (*(int *)(this + 4) != 2) {\n    FUN_1002db70(*(undefined4 *)(this + 0xe00ac),param_1,param_2);\n    *(ulong *)(param_3 + 0x28) = *(int *)(param_3 + 0x28) + param_2;\n    return true;\n  }\n  puVar2 = (undefined4 *)(*(int *)(param_3 + 0x28) + *(int *)(param_3 + 0x20));\n  for (uVar1 = param_2 >> 2; uVar1 != 0; uVar1 = uVar1 - 1) {\n    *(undefined4 *)param_1 = *puVar2;\n    puVar2 = puVar2 + 1;\n    param_1 = (undefined4 *)((int)param_1 + 4);\n  }\n  for (uVar1 = param_2 & 3; uVar1 != 0; uVar1 = uVar1 - 1) {\n    *(undefined *)param_1 = *(undefined *)puVar2;\n    puVar2 = (undefined4 *)((int)puVar2 + 1);\n    param_1 = (undefined4 *)((int)param_1 + 1);\n  }\n  *(ulong *)(param_3 + 0x28) = *(int *)(param_3 + 0x28) + param_2;\n  return true;\n}\n\n", 
+  "is_thunk": false, 
+  "name": "Read", 
+  "assembly": "  1002d270:  MOV EAX,dword ptr [ECX + 0x4]\n  1002d273:  PUSH EBX\n  1002d274:  MOV EBX,dword ptr [ESP + 0x10]\n  1002d278:  SUB EAX,0x2\n  1002d27b:  PUSH EBP\n  1002d27c:  JZ 0x1002d2a6\n  1002d27e:  MOV EBP,dword ptr [ESP + 0x10]\n  1002d282:  MOV EAX,dword ptr [ESP + 0xc]\n  1002d286:  MOV ECX,dword ptr [ECX + 0xe00ac]\n  1002d28c:  PUSH EBP\n  1002d28d:  PUSH EAX\n  1002d28e:  PUSH ECX\n  1002d28f:  CALL 0x1002db70\n  1002d294:  MOV EAX,dword ptr [EBX + 0x28]\n  1002d297:  ADD ESP,0xc\n  1002d29a:  ADD EAX,EBP\n  1002d29c:  MOV dword ptr [EBX + 0x28],EAX\n  1002d29f:  POP EBP\n  1002d2a0:  MOV AL,0x1\n  1002d2a2:  POP EBX\n  1002d2a3:  RET 0xc\n  1002d2a6:  MOV EBP,dword ptr [ESP + 0x10]\n  1002d2aa:  MOV EDX,dword ptr [EBX + 0x20]\n  1002d2ad:  PUSH ESI\n  1002d2ae:  MOV ESI,dword ptr [EBX + 0x28]\n  1002d2b1:  MOV ECX,EBP\n  1002d2b3:  ADD ESI,EDX\n  1002d2b5:  MOV EDX,ECX\n  1002d2b7:  PUSH EDI\n  1002d2b8:  MOV EDI,dword ptr [ESP + 0x14]\n  1002d2bc:  SHR ECX,0x2\n  1002d2bf:  MOVSD.REP ES:EDI,ESI\n  1002d2c1:  MOV ECX,EDX\n  1002d2c3:  AND ECX,0x3\n  1002d2c6:  MOVSB.REP ES:EDI,ESI\n  1002d2c8:  MOV EAX,dword ptr [EBX + 0x28]\n  1002d2cb:  POP EDI\n  1002d2cc:  ADD EAX,EBP\n  1002d2ce:  POP ESI\n  1002d2cf:  MOV dword ptr [EBX + 0x28],EAX\n  1002d2d2:  POP EBP\n  1002d2d3:  MOV AL,0x1\n  1002d2d5:  POP EBX\n  1002d2d6:  RET 0xc", 
+  "callers": [
+    {
+      "address": "0x10030810", 
+      "name": "Read"
+    }
+  ]
+}

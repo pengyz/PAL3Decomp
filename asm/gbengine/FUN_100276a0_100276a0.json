@@ -1,0 +1,65 @@
+{
+  "address": "0x100276a0", 
+  "size_bytes": 100, 
+  "calling_convention": "unknown", 
+  "signature": "undefined FUN_100276a0(undefined4 param_1)", 
+  "callees": [
+    {
+      "address": "0x100e4be4", 
+      "name": "__ftol"
+    }, 
+    {
+      "address": "0x100e4be4", 
+      "name": "__ftol"
+    }
+  ], 
+  "global_refs": [
+    {
+      "address": "0x00000004", 
+      "type": null, 
+      "name": "DAT_00000004"
+    }, 
+    {
+      "address": "0x100f53a0", 
+      "type": null, 
+      "name": "DAT_100f53a0"
+    }, 
+    {
+      "address": "0x-0000004", 
+      "type": null, 
+      "name": "DAT_-0000004"
+    }, 
+    {
+      "address": "0x100f5508", 
+      "type": null, 
+      "name": "DAT_100f5508"
+    }
+  ], 
+  "has_custom_name": false, 
+  "decompiled_c": "\nint FUN_100276a0(float param_1)\n\n{\n  int iVar1;\n  int iVar2;\n  \n  if (0.0 <= param_1) {\n    iVar1 = __ftol();\n    iVar2 = iVar1 + 1;\n    if (param_1 - (float)iVar1 < 0.5) {\n      iVar2 = iVar1;\n    }\n  }\n  else {\n    iVar1 = __ftol();\n    iVar2 = iVar1 + -1;\n    if (0.5 < (float)iVar1 - param_1) {\n      return iVar1;\n    }\n  }\n  return iVar2;\n}\n\n", 
+  "is_thunk": false, 
+  "name": "FUN_100276a0", 
+  "assembly": "  100276a0:  PUSH ECX\n  100276a1:  FLD dword ptr [ESP + 0x8]\n  100276a5:  FCOMP dword ptr [0x100f53a0]\n  100276ab:  FLD dword ptr [ESP + 0x8]\n  100276af:  FNSTSW AX\n  100276b1:  TEST AH,0x1\n  100276b4:  JZ 0x100276dd\n  100276b6:  CALL 0x100e4be4\n  100276bb:  MOV ECX,EAX\n  100276bd:  MOV dword ptr [ESP],ECX\n  100276c1:  FILD dword ptr [ESP]\n  100276c5:  FSUB dword ptr [ESP + 0x8]\n  100276c9:  FCOMP dword ptr [0x100f5508]\n  100276cf:  FNSTSW AX\n  100276d1:  TEST AH,0x41\n  100276d4:  LEA EAX,[ECX + -0x1]\n  100276d7:  JNZ 0x10027702\n  100276d9:  MOV EAX,ECX\n  100276db:  POP ECX\n  100276dc:  RET\n  100276dd:  CALL 0x100e4be4\n  100276e2:  MOV ECX,EAX\n  100276e4:  MOV dword ptr [ESP],ECX\n  100276e8:  FILD dword ptr [ESP]\n  100276ec:  FSUBR dword ptr [ESP + 0x8]\n  100276f0:  FCOMP dword ptr [0x100f5508]\n  100276f6:  FNSTSW AX\n  100276f8:  TEST AH,0x1\n  100276fb:  LEA EAX,[ECX + 0x1]\n  100276fe:  JZ 0x10027702\n  10027700:  MOV EAX,ECX\n  10027702:  POP ECX\n  10027703:  RET", 
+  "callers": [
+    {
+      "address": "0x10023a90", 
+      "name": "FUN_10023a90"
+    }, 
+    {
+      "address": "0x10023990", 
+      "name": "FUN_10023990"
+    }, 
+    {
+      "address": "0x10023990", 
+      "name": "FUN_10023990"
+    }, 
+    {
+      "address": "0x10023990", 
+      "name": "FUN_10023990"
+    }, 
+    {
+      "address": "0x10023990", 
+      "name": "FUN_10023990"
+    }
+  ]
+}

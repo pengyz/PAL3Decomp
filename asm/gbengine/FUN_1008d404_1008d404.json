@@ -1,0 +1,59 @@
+{
+  "address": "0x1008d404", 
+  "size_bytes": 262, 
+  "calling_convention": "unknown", 
+  "signature": "undefined FUN_1008d404(void)", 
+  "callees": [
+    {
+      "address": "0x1009de54", 
+      "name": "FUN_1009de54"
+    }, 
+    {
+      "address": "0x100e4a24", 
+      "name": "FUN_100e4a24"
+    }, 
+    {
+      "address": "0x100e4a16", 
+      "name": "operator_new"
+    }, 
+    {
+      "address": "0x1009a113", 
+      "name": "FUN_1009a113"
+    }, 
+    {
+      "address": "0x1009a113", 
+      "name": "FUN_1009a113"
+    }, 
+    {
+      "address": "0x1009a113", 
+      "name": "FUN_1009a113"
+    }, 
+    {
+      "address": "0x1008c552", 
+      "name": "FUN_1008c552"
+    }
+  ], 
+  "global_refs": [
+    {
+      "address": "0x-0000018", 
+      "type": null, 
+      "name": "DAT_-0000018"
+    }, 
+    {
+      "address": "0x10101a48", 
+      "type": null, 
+      "name": "DAT_10101a48"
+    }
+  ], 
+  "has_custom_name": false, 
+  "decompiled_c": "\nuint FUN_1008d404(void)\n\n{\n  int iVar1;\n  uint uVar2;\n  undefined4 *puVar3;\n  int *in_ECX;\n  int iVar4;\n  \n  iVar1 = in_ECX[1];\n  if ((iVar1 == 0) || (*(int *)(iVar1 + 4) != 4)) {\n    uVar2 = 0;\n  }\n  else if (in_ECX[2] == 0) {\n    uVar2 = 0x80004005;\n  }\n  else {\n    uVar2 = FUN_1009de54(iVar1,*in_ECX + 0x18,in_ECX[4],in_ECX[5]);\n    if (-1 < (int)uVar2) {\n      FUN_100e4a24();\n      puVar3 = (undefined4 *)operator_new(*(int *)(iVar1 + 0x18) << 2);\n      in_ECX[6] = (int)puVar3;\n      if (puVar3 == (undefined4 *)0x0) {\n        uVar2 = 0x8007000e;\n      }\n      else {\n        for (uVar2 = *(uint *)(iVar1 + 0x18) & 0x3fffffff; uVar2 != 0; uVar2 = uVar2 - 1) {\n          *puVar3 = 0xffffffff;\n          puVar3 = puVar3 + 1;\n        }\n        for (iVar4 = 0; iVar4 != 0; iVar4 = iVar4 + -1) {\n          *(undefined *)puVar3 = 0xff;\n          puVar3 = (undefined4 *)((int)puVar3 + 1);\n        }\n        iVar4 = FUN_1009a113(*(undefined4 *)(in_ECX[2] + 0x78),0,0,0x3ff0000000000000);\n        in_ECX[8] = iVar4;\n        iVar4 = FUN_1009a113(*(undefined4 *)(in_ECX[2] + 0x78),0,0,0);\n        in_ECX[9] = iVar4;\n        iVar4 = FUN_1009a113(*(undefined4 *)(in_ECX[2] + 0x78),0,0,0xbff0000000000000);\n        in_ECX[0xc] = -1;\n        in_ECX[10] = iVar4;\n        in_ECX[0xb] = in_ECX[8];\n        in_ECX[0xd] = 1;\n        uVar2 = FUN_1008c552(*(undefined4 *)(iVar1 + 0x1c),0);\n        if (-1 < (int)uVar2) {\n          uVar2 = -(uint)(in_ECX[0x13] != 0) & 0x80004005;\n        }\n      }\n    }\n  }\n  return uVar2;\n}\n\n", 
+  "is_thunk": false, 
+  "name": "FUN_1008d404", 
+  "assembly": "  1008d404:  PUSH EBX\n  1008d405:  PUSH EBP\n  1008d406:  PUSH ESI\n  1008d407:  MOV ESI,ECX\n  1008d409:  MOV EBX,dword ptr [ESI + 0x4]\n  1008d40c:  XOR EBP,EBP\n  1008d40e:  CMP EBX,EBP\n  1008d410:  PUSH EDI\n  1008d411:  JZ 0x1008d503\n  1008d417:  CMP dword ptr [EBX + 0x4],0x4\n  1008d41b:  JNZ 0x1008d503\n  1008d421:  MOV ECX,dword ptr [ESI + 0x8]\n  1008d424:  CMP ECX,EBP\n  1008d426:  JNZ 0x1008d432\n  1008d428:  MOV EAX,0x80004005\n  1008d42d:  JMP 0x1008d505\n  1008d432:  PUSH dword ptr [ESI + 0x14]\n  1008d435:  MOV EAX,dword ptr [ESI]\n  1008d437:  PUSH dword ptr [ESI + 0x10]\n  1008d43a:  ADD EAX,0x18\n  1008d43d:  PUSH EAX\n  1008d43e:  PUSH EBX\n  1008d43f:  CALL 0x1009de54\n  1008d444:  CMP EAX,EBP\n  1008d446:  JL 0x1008d505\n  1008d44c:  PUSH dword ptr [ESI + 0x18]\n  1008d44f:  CALL 0x100e4a24\n  1008d454:  MOV EAX,dword ptr [EBX + 0x18]\n  1008d457:  SHL EAX,0x2\n  1008d45a:  PUSH EAX\n  1008d45b:  CALL 0x100e4a16\n  1008d460:  MOV EDI,EAX\n  1008d462:  CMP EDI,EBP\n  1008d464:  POP ECX\n  1008d465:  POP ECX\n  1008d466:  MOV dword ptr [ESI + 0x18],EDI\n  1008d469:  JNZ 0x1008d475\n  1008d46b:  MOV EAX,0x8007000e\n  1008d470:  JMP 0x1008d505\n  1008d475:  MOV ECX,dword ptr [EBX + 0x18]\n  1008d478:  FLD1\n  1008d47a:  SHL ECX,0x2\n  1008d47d:  MOV EDX,ECX\n  1008d47f:  SHR ECX,0x2\n  1008d482:  OR EAX,0xffffffff\n  1008d485:  STOSD.REP ES:EDI\n  1008d487:  MOV ECX,EDX\n  1008d489:  AND ECX,0x3\n  1008d48c:  STOSB.REP ES:EDI\n  1008d48e:  MOV ECX,dword ptr [ESI + 0x8]\n  1008d491:  PUSH ECX\n  1008d492:  PUSH ECX\n  1008d493:  FSTP qword ptr [ESP]\n  1008d496:  PUSH EBP\n  1008d497:  PUSH EBP\n  1008d498:  PUSH dword ptr [ECX + 0x78]\n  1008d49b:  CALL 0x1009a113\n  1008d4a0:  FLDZ\n  1008d4a2:  MOV ECX,dword ptr [ESI + 0x8]\n  1008d4a5:  PUSH ECX\n  1008d4a6:  PUSH ECX\n  1008d4a7:  FSTP qword ptr [ESP]\n  1008d4aa:  PUSH EBP\n  1008d4ab:  PUSH EBP\n  1008d4ac:  MOV dword ptr [ESI + 0x20],EAX\n  1008d4af:  PUSH dword ptr [ECX + 0x78]\n  1008d4b2:  CALL 0x1009a113\n  1008d4b7:  FLD qword ptr [0x10101a48]\n  1008d4bd:  MOV ECX,dword ptr [ESI + 0x8]\n  1008d4c0:  PUSH ECX\n  1008d4c1:  PUSH ECX\n  1008d4c2:  FSTP qword ptr [ESP]\n  1008d4c5:  PUSH EBP\n  1008d4c6:  PUSH EBP\n  1008d4c7:  MOV dword ptr [ESI + 0x24],EAX\n  1008d4ca:  PUSH dword ptr [ECX + 0x78]\n  1008d4cd:  CALL 0x1009a113\n  1008d4d2:  OR dword ptr [ESI + 0x30],0xffffffff\n  1008d4d6:  MOV dword ptr [ESI + 0x28],EAX\n  1008d4d9:  MOV EAX,dword ptr [ESI + 0x20]\n  1008d4dc:  PUSH EBP\n  1008d4dd:  MOV dword ptr [ESI + 0x2c],EAX\n  1008d4e0:  MOV dword ptr [ESI + 0x34],0x1\n  1008d4e7:  PUSH dword ptr [EBX + 0x1c]\n  1008d4ea:  MOV ECX,ESI\n  1008d4ec:  CALL 0x1008c552\n  1008d4f1:  CMP EAX,EBP\n  1008d4f3:  JL 0x1008d505\n  1008d4f5:  MOV EAX,dword ptr [ESI + 0x4c]\n  1008d4f8:  NEG EAX\n  1008d4fa:  SBB EAX,EAX\n  1008d4fc:  AND EAX,0x80004005\n  1008d501:  JMP 0x1008d505\n  1008d503:  XOR EAX,EAX\n  1008d505:  POP EDI\n  1008d506:  POP ESI\n  1008d507:  POP EBP\n  1008d508:  POP EBX\n  1008d509:  RET", 
+  "callers": [
+    {
+      "address": "0x1008f021", 
+      "name": "FUN_1008f021"
+    }
+  ]
+}

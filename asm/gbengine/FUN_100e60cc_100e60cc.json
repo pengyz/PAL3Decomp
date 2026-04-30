@@ -1,0 +1,38 @@
+{
+  "address": "0x100e60cc", 
+  "size_bytes": 49, 
+  "calling_convention": "unknown", 
+  "signature": "undefined FUN_100e60cc(undefined4 param_1)", 
+  "callees": [
+    {
+      "address": "0x100ec11b", 
+      "name": "FUN_100ec11b"
+    }, 
+    {
+      "address": "0x100ec758", 
+      "name": "FUN_100ec758"
+    }, 
+    {
+      "address": "0x100ec16d", 
+      "name": "FUN_100ec16d"
+    }
+  ], 
+  "global_refs": [
+    {
+      "address": "0x00000004", 
+      "type": null, 
+      "name": "DAT_00000004"
+    }
+  ], 
+  "has_custom_name": false, 
+  "decompiled_c": "\nuint FUN_100e60cc(undefined4 *param_1)\n\n{\n  int *piVar1;\n  uint uVar2;\n  \n  FUN_100ec11b(param_1);\n  piVar1 = param_1 + 1;\n  *piVar1 = *piVar1 + -1;\n  if (*piVar1 < 0) {\n    uVar2 = FUN_100ec758(param_1);\n  }\n  else {\n    uVar2 = (uint)*(byte *)*param_1;\n    *param_1 = (byte *)*param_1 + 1;\n  }\n  FUN_100ec16d(param_1);\n  return uVar2;\n}\n\n", 
+  "is_thunk": false, 
+  "name": "FUN_100e60cc", 
+  "assembly": "  100e60cc:  PUSH ESI\n  100e60cd:  MOV ESI,dword ptr [ESP + 0x8]\n  100e60d1:  PUSH EDI\n  100e60d2:  PUSH ESI\n  100e60d3:  CALL 0x100ec11b\n  100e60d8:  DEC dword ptr [ESI + 0x4]\n  100e60db:  POP ECX\n  100e60dc:  JS 0x100e60e8\n  100e60de:  MOV EAX,dword ptr [ESI]\n  100e60e0:  MOVZX EDI,byte ptr [EAX]\n  100e60e3:  INC EAX\n  100e60e4:  MOV dword ptr [ESI],EAX\n  100e60e6:  JMP 0x100e60f1\n  100e60e8:  PUSH ESI\n  100e60e9:  CALL 0x100ec758\n  100e60ee:  POP ECX\n  100e60ef:  MOV EDI,EAX\n  100e60f1:  PUSH ESI\n  100e60f2:  CALL 0x100ec16d\n  100e60f7:  POP ECX\n  100e60f8:  MOV EAX,EDI\n  100e60fa:  POP EDI\n  100e60fb:  POP ESI\n  100e60fc:  RET", 
+  "callers": [
+    {
+      "address": "0x10030990", 
+      "name": "ReadChar"
+    }
+  ]
+}

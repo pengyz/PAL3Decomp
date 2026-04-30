@@ -1,0 +1,25 @@
+{
+  "address": "0x100047a0", 
+  "size_bytes": 16, 
+  "calling_convention": "__thiscall", 
+  "signature": "gbNBTreeNode * __thiscall GetChild(gbNBTreeNode * this, int param_1)", 
+  "callees": [
+    {
+      "address": "0x1002ec20", 
+      "name": "operator[]"
+    }
+  ], 
+  "global_refs": [
+    {
+      "address": "0x00000004", 
+      "type": null, 
+      "name": "DAT_00000004"
+    }
+  ], 
+  "has_custom_name": true, 
+  "decompiled_c": "\n/* public: class gbNBTreeNode * __thiscall gbNBTreeNode::GetChild(int) */\n\ngbNBTreeNode * __thiscall gbNBTreeNode::GetChild(gbNBTreeNode *this,int param_1)\n\n{\n  gbChain1DNode *pgVar1;\n  \n                    /* 0x47a0  430  ?GetChild@gbNBTreeNode@@QAEPAV1@H@Z */\n  pgVar1 = gbChain1D::operator[]((gbChain1D *)(this + 0xc),param_1);\n  return (gbNBTreeNode *)pgVar1;\n}\n\n", 
+  "is_thunk": false, 
+  "name": "GetChild", 
+  "assembly": "  100047a0:  MOV EAX,dword ptr [ESP + 0x4]\n  100047a4:  ADD ECX,0xc\n  100047a7:  PUSH EAX\n  100047a8:  CALL 0x1002ec20\n  100047ad:  RET 0x4", 
+  "callers": []
+}

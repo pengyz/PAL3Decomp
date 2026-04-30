@@ -1,0 +1,35 @@
+{
+  "address": "0x100cd260", 
+  "size_bytes": 62, 
+  "calling_convention": "unknown", 
+  "signature": "undefined FUN_100cd260(undefined4 param_1)", 
+  "callees": [], 
+  "global_refs": [
+    {
+      "address": "0x00000004", 
+      "type": null, 
+      "name": "DAT_00000004"
+    }, 
+    {
+      "address": "0x100cd120", 
+      "type": null, 
+      "name": "DAT_100cd120"
+    }, 
+    {
+      "address": "0x100ccd10", 
+      "type": null, 
+      "name": "DAT_100ccd10"
+    }
+  ], 
+  "has_custom_name": false, 
+  "decompiled_c": "\nvoid FUN_100cd260(int param_1)\n\n{\n  undefined4 *puVar1;\n  int iVar2;\n  \n  puVar1 = (undefined4 *)(*(code *)**(undefined4 **)(param_1 + 4))(param_1,1,0xe8);\n  *(undefined4 **)(param_1 + 0x1c0) = puVar1;\n  *puVar1 = &LAB_100cd120;\n  puVar1[1] = &LAB_100ccd10;\n  puVar1 = puVar1 + 10;\n  iVar2 = 4;\n  do {\n    puVar1[4] = 0;\n    *puVar1 = 0;\n    puVar1 = puVar1 + 1;\n    iVar2 = iVar2 + -1;\n  } while (iVar2 != 0);\n  return;\n}\n\n", 
+  "is_thunk": false, 
+  "name": "FUN_100cd260", 
+  "assembly": "  100cd260:  PUSH ESI\n  100cd261:  MOV ESI,dword ptr [ESP + 0x8]\n  100cd265:  MOV EAX,dword ptr [ESI + 0x4]\n  100cd268:  PUSH 0xe8\n  100cd26d:  PUSH 0x1\n  100cd26f:  PUSH ESI\n  100cd270:  CALL dword ptr [EAX]\n  100cd272:  MOV dword ptr [ESI + 0x1c0],EAX\n  100cd278:  MOV dword ptr [EAX],0x100cd120\n  100cd27e:  MOV dword ptr [EAX + 0x4],0x100ccd10\n  100cd285:  ADD EAX,0x28\n  100cd288:  MOV ECX,0x4\n  100cd28d:  XOR EDX,EDX\n  100cd28f:  POP ESI\n  100cd290:  MOV dword ptr [EAX + 0x10],EDX\n  100cd293:  MOV dword ptr [EAX],EDX\n  100cd295:  ADD EAX,0x4\n  100cd298:  DEC ECX\n  100cd299:  JNZ 0x100cd290\n  100cd29b:  RET 0x4", 
+  "callers": [
+    {
+      "address": "0x10093960", 
+      "name": "FUN_10093960"
+    }
+  ]
+}

@@ -1,0 +1,30 @@
+{
+  "address": "0x100225f0", 
+  "size_bytes": 54, 
+  "calling_convention": "__thiscall", 
+  "signature": "void __thiscall AddControler(gbCamera * this, gbCamControler * param_1, double param_2)", 
+  "callees": [], 
+  "global_refs": [
+    {
+      "address": "0x00000004", 
+      "type": null, 
+      "name": "DAT_00000004"
+    }, 
+    {
+      "address": "0x0000000c", 
+      "type": null, 
+      "name": "DAT_0000000c"
+    }, 
+    {
+      "address": "0x00000008", 
+      "type": null, 
+      "name": "DAT_00000008"
+    }
+  ], 
+  "has_custom_name": true, 
+  "decompiled_c": "\n/* public: void __thiscall gbCamera::AddControler(class gbCamControler *,double) */\n\nvoid __thiscall gbCamera::AddControler(gbCamera *this,gbCamControler *param_1,double param_2)\n\n{\n  int iVar1;\n  undefined4 in_stack_00000008;\n  \n                    /* 0x225f0  296  ?AddControler@gbCamera@@QAEXPAVgbCamControler@@N@Z */\n  iVar1 = *(int *)(this + 0x154);\n  *(int *)(this + 0x154) = iVar1 + 1;\n  *(gbCamControler **)(this + (iVar1 + 1) * 4 + 0x114) = param_1;\n  *(gbCamera **)(param_1 + 8) = this;\n  *(undefined4 *)(param_1 + 0x10) = 0;\n  *(undefined4 *)(param_1 + 0x14) = 0;\n  *(undefined4 *)(param_1 + 0x18) = in_stack_00000008;\n  *(undefined4 *)(param_1 + 0x1c) = param_2._0_4_;\n  return;\n}\n\n", 
+  "is_thunk": false, 
+  "name": "AddControler", 
+  "assembly": "  100225f0:  MOV EAX,dword ptr [ECX + 0x154]\n  100225f6:  INC EAX\n  100225f7:  MOV dword ptr [ECX + 0x154],EAX\n  100225fd:  MOV EDX,EAX\n  100225ff:  MOV EAX,dword ptr [ESP + 0x4]\n  10022603:  MOV dword ptr [ECX + EDX*0x4 + 0x114],EAX\n  1002260a:  MOV EDX,dword ptr [ESP + 0xc]\n  1002260e:  MOV dword ptr [EAX + 0x8],ECX\n  10022611:  XOR ECX,ECX\n  10022613:  MOV dword ptr [EAX + 0x10],ECX\n  10022616:  MOV dword ptr [EAX + 0x14],ECX\n  10022619:  MOV ECX,dword ptr [ESP + 0x8]\n  1002261d:  MOV dword ptr [EAX + 0x18],ECX\n  10022620:  MOV dword ptr [EAX + 0x1c],EDX\n  10022623:  RET 0xc", 
+  "callers": []
+}

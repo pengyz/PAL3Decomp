@@ -1,0 +1,85 @@
+{
+  "address": "0x1002ad80", 
+  "size_bytes": 323, 
+  "calling_convention": "__thiscall", 
+  "signature": "void __thiscall ComputeAirResist(gbPartGroupParam * this, gbParticleUnit * param_1, float param_2)", 
+  "callees": [
+    {
+      "address": "0x10024fe0", 
+      "name": "Length"
+    }
+  ], 
+  "global_refs": [
+    {
+      "address": "0x00000004", 
+      "type": null, 
+      "name": "DAT_00000004"
+    }, 
+    {
+      "address": "0x100f5344", 
+      "type": null, 
+      "name": "DAT_100f5344"
+    }, 
+    {
+      "address": "0x-000000c", 
+      "type": null, 
+      "name": "DAT_-000000c"
+    }, 
+    {
+      "address": "0x-0000008", 
+      "type": null, 
+      "name": "DAT_-0000008"
+    }, 
+    {
+      "address": "0x-0000004", 
+      "type": null, 
+      "name": "DAT_-0000004"
+    }, 
+    {
+      "address": "0x100f53a0", 
+      "type": null, 
+      "name": "DAT_100f53a0"
+    }, 
+    {
+      "address": "0x-000001c", 
+      "type": null, 
+      "name": "DAT_-000001c"
+    }, 
+    {
+      "address": "0x-0000020", 
+      "type": null, 
+      "name": "DAT_-0000020"
+    }, 
+    {
+      "address": "0x-0000014", 
+      "type": null, 
+      "name": "DAT_-0000014"
+    }, 
+    {
+      "address": "0x-0000010", 
+      "type": null, 
+      "name": "DAT_-0000010"
+    }, 
+    {
+      "address": "0x00000008", 
+      "type": null, 
+      "name": "DAT_00000008"
+    }, 
+    {
+      "address": "0x-0000018", 
+      "type": null, 
+      "name": "DAT_-0000018"
+    }
+  ], 
+  "has_custom_name": true, 
+  "decompiled_c": "\n/* public: void __thiscall gbPartGroupParam::ComputeAirResist(struct gbParticleUnit *,float) */\n\nvoid __thiscall\ngbPartGroupParam::ComputeAirResist(gbPartGroupParam *this,gbParticleUnit *param_1,float param_2)\n\n{\n  gbVec3D *this_00;\n  float fVar1;\n  float fVar2;\n  float local_20;\n  float local_1c;\n  \n                    /* 0x2ad80  343  ?ComputeAirResist@gbPartGroupParam@@QAEXPAUgbParticleUnit@@M@Z\n                        */\n  this_00 = (gbVec3D *)(param_1 + 0x1c);\n  fVar2 = gbVec3D::Length(this_00);\n  fVar1 = 1.0 / fVar2;\n  if (*(float *)(this + 0x28) < fVar2) {\n    if (*(int *)(this + 0x30) == 0) {\n      fVar2 = 0.0;\n      local_1c = 0.0;\n      local_20 = 0.0;\n    }\n    else {\n      local_1c = *(float *)(param_1 + 0x40) * *(float *)(this + 0x34);\n      fVar2 = fVar1 * *(float *)this_00 * local_1c;\n      local_20 = fVar1 * *(float *)(param_1 + 0x20) * local_1c;\n      local_1c = fVar1 * *(float *)(param_1 + 0x24) * local_1c;\n    }\n    fVar1 = *(float *)(this + 0x34);\n    *(float *)this_00 = *(float *)this_00 - (fVar1 * *(float *)this_00 * param_2 + fVar2 * param_2);\n    *(float *)(param_1 + 0x20) =\n         *(float *)(param_1 + 0x20) -\n         (local_20 * param_2 + fVar1 * *(float *)(param_1 + 0x20) * param_2);\n    *(float *)(param_1 + 0x24) =\n         *(float *)(param_1 + 0x24) -\n         (local_1c * param_2 + fVar1 * *(float *)(param_1 + 0x24) * param_2);\n  }\n  return;\n}\n\n", 
+  "is_thunk": false, 
+  "name": "ComputeAirResist", 
+  "assembly": "  1002ad80:  SUB ESP,0x24\n  1002ad83:  PUSH EBX\n  1002ad84:  MOV EBX,dword ptr [ESP + 0x2c]\n  1002ad88:  PUSH ESI\n  1002ad89:  PUSH EDI\n  1002ad8a:  MOV EDI,ECX\n  1002ad8c:  LEA ESI,[EBX + 0x1c]\n  1002ad8f:  MOV ECX,ESI\n  1002ad91:  CALL 0x10024fe0\n  1002ad96:  FLD dword ptr [0x100f5344]\n  1002ad9c:  FDIV ST0,ST1\n  1002ad9e:  FLD ST0\n  1002ada0:  FMUL dword ptr [ESI]\n  1002ada2:  FSTP dword ptr [ESP + 0x24]\n  1002ada6:  FLD ST0\n  1002ada8:  FMUL dword ptr [ESI + 0x4]\n  1002adab:  FSTP dword ptr [ESP + 0x28]\n  1002adaf:  FMUL dword ptr [ESI + 0x8]\n  1002adb2:  FSTP dword ptr [ESP + 0x2c]\n  1002adb6:  FCOMP dword ptr [EDI + 0x28]\n  1002adb9:  FNSTSW AX\n  1002adbb:  TEST AH,0x41\n  1002adbe:  JNZ 0x1002aeba\n  1002adc4:  MOV EAX,dword ptr [EDI + 0x30]\n  1002adc7:  TEST EAX,EAX\n  1002adc9:  JNZ 0x1002ade3\n  1002adcb:  FLD dword ptr [0x100f53a0]\n  1002add1:  MOV dword ptr [ESP + 0x14],0x0\n  1002add9:  MOV dword ptr [ESP + 0x10],0x0\n  1002ade1:  JMP 0x1002ae15\n  1002ade3:  FLD dword ptr [EBX + 0x40]\n  1002ade6:  FMUL dword ptr [EDI + 0x34]\n  1002ade9:  FLD dword ptr [ESP + 0x24]\n  1002aded:  FMUL ST1\n  1002adef:  FLD dword ptr [ESP + 0x28]\n  1002adf3:  FMUL ST2\n  1002adf5:  FSTP dword ptr [ESP + 0x1c]\n  1002adf9:  FLD dword ptr [ESP + 0x2c]\n  1002adfd:  MOV EAX,dword ptr [ESP + 0x1c]\n  1002ae01:  FMUL ST2\n  1002ae03:  MOV dword ptr [ESP + 0x10],EAX\n  1002ae07:  FSTP dword ptr [ESP + 0x20]\n  1002ae0b:  MOV ECX,dword ptr [ESP + 0x20]\n  1002ae0f:  FSTP ST1\n  1002ae11:  MOV dword ptr [ESP + 0x14],ECX\n  1002ae15:  FMUL dword ptr [ESP + 0x38]\n  1002ae19:  FLD dword ptr [ESP + 0x10]\n  1002ae1d:  FMUL dword ptr [ESP + 0x38]\n  1002ae21:  FSTP dword ptr [ESP + 0x10]\n  1002ae25:  FLD dword ptr [ESP + 0x14]\n  1002ae29:  FMUL dword ptr [ESP + 0x38]\n  1002ae2d:  FSTP dword ptr [ESP + 0x14]\n  1002ae31:  FLD dword ptr [EDI + 0x34]\n  1002ae34:  FLD ST0\n  1002ae36:  FMUL dword ptr [ESI]\n  1002ae38:  FSTP dword ptr [ESP + 0x24]\n  1002ae3c:  MOV EDX,dword ptr [ESP + 0x24]\n  1002ae40:  FLD ST0\n  1002ae42:  FMUL dword ptr [ESI + 0x4]\n  1002ae45:  MOV dword ptr [ESP + 0x18],EDX\n  1002ae49:  FSTP dword ptr [ESP + 0x28]\n  1002ae4d:  MOV EAX,dword ptr [ESP + 0x28]\n  1002ae51:  FMUL dword ptr [ESI + 0x8]\n  1002ae54:  MOV dword ptr [ESP + 0x1c],EAX\n  1002ae58:  FSTP dword ptr [ESP + 0x2c]\n  1002ae5c:  FLD dword ptr [ESP + 0x24]\n  1002ae60:  FMUL dword ptr [ESP + 0x38]\n  1002ae64:  FLD dword ptr [ESP + 0x1c]\n  1002ae68:  FMUL dword ptr [ESP + 0x38]\n  1002ae6c:  MOV ECX,dword ptr [ESP + 0x2c]\n  1002ae70:  MOV dword ptr [ESP + 0x20],ECX\n  1002ae74:  FSTP dword ptr [ESP + 0x1c]\n  1002ae78:  FLD dword ptr [ESP + 0x20]\n  1002ae7c:  FMUL dword ptr [ESP + 0x38]\n  1002ae80:  FSTP dword ptr [ESP + 0x20]\n  1002ae84:  FADDP\n  1002ae86:  FLD dword ptr [ESP + 0x10]\n  1002ae8a:  FADD dword ptr [ESP + 0x1c]\n  1002ae8e:  FSTP dword ptr [ESP + 0x10]\n  1002ae92:  FLD dword ptr [ESP + 0x14]\n  1002ae96:  FADD dword ptr [ESP + 0x20]\n  1002ae9a:  FSTP dword ptr [ESP + 0x14]\n  1002ae9e:  FLD dword ptr [ESI]\n  1002aea0:  FSUB ST0,ST1\n  1002aea2:  FSTP dword ptr [ESI]\n  1002aea4:  FSTP ST0\n  1002aea6:  FLD dword ptr [ESI + 0x4]\n  1002aea9:  FSUB dword ptr [ESP + 0x10]\n  1002aead:  FSTP dword ptr [ESI + 0x4]\n  1002aeb0:  FLD dword ptr [ESI + 0x8]\n  1002aeb3:  FSUB dword ptr [ESP + 0x14]\n  1002aeb7:  FSTP dword ptr [ESI + 0x8]\n  1002aeba:  POP EDI\n  1002aebb:  POP ESI\n  1002aebc:  POP EBX\n  1002aebd:  ADD ESP,0x24\n  1002aec0:  RET 0x8", 
+  "callers": [
+    {
+      "address": "0x1002b590", 
+      "name": "UpdateOneParticle"
+    }
+  ]
+}

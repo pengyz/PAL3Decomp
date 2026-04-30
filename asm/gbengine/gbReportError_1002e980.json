@@ -1,0 +1,104 @@
+{
+  "address": "0x1002e980", 
+  "size_bytes": 79, 
+  "calling_convention": "__cdecl", 
+  "signature": "void __cdecl gbReportError(char * param_1, ...)", 
+  "callees": [
+    {
+      "address": "0x100e5bd1", 
+      "name": "FUN_100e5bd1"
+    }, 
+    {
+      "address": "0x100e5d0c", 
+      "name": "FUN_100e5d0c"
+    }, 
+    {
+      "address": "0x100e5c9f", 
+      "name": "FUN_100e5c9f"
+    }, 
+    {
+      "address": "0x100e5c22", 
+      "name": "FUN_100e5c22"
+    }
+  ], 
+  "global_refs": [
+    {
+      "address": "0x00000004", 
+      "type": null, 
+      "name": "DAT_00000004"
+    }, 
+    {
+      "address": "0x00000008", 
+      "type": null, 
+      "name": "DAT_00000008"
+    }, 
+    {
+      "address": "0x1015c774", 
+      "type": null, 
+      "name": "DAT_1015c774"
+    }, 
+    {
+      "address": "0x101208cc", 
+      "type": null, 
+      "name": "DAT_101208cc"
+    }, 
+    {
+      "address": "0x101208bc", 
+      "type": "string", 
+      "name": "DAT_101208bc"
+    }, 
+    {
+      "address": "0x1015cb74", 
+      "type": null, 
+      "name": "DAT_1015cb74"
+    }, 
+    {
+      "address": "0x101208b8", 
+      "type": null, 
+      "name": "DAT_101208b8"
+    }
+  ], 
+  "has_custom_name": true, 
+  "decompiled_c": "\n/* void __cdecl gbReportError(char *,...) */\n\nvoid __cdecl gbReportError(char *param_1,...)\n\n{\n  int iVar1;\n  \n                    /* 0x2e980  999  ?gbReportError@@YAXPADZZ */\n  FUN_100e5bd1(&DAT_1015c774,param_1,&stack0x00000008);\n  DAT_1015cb74 = 1;\n  iVar1 = FUN_100e5d0c(s_EngineLog_txt_101208bc,&DAT_101208cc);\n  if (iVar1 != 0) {\n    FUN_100e5c9f(iVar1,&DAT_101208b8,&DAT_1015c774);\n    FUN_100e5c22(iVar1);\n  }\n  return;\n}\n\n", 
+  "is_thunk": false, 
+  "name": "gbReportError", 
+  "assembly": "  1002e980:  MOV ECX,dword ptr [ESP + 0x4]\n  1002e984:  LEA EAX,[ESP + 0x8]\n  1002e988:  PUSH ESI\n  1002e989:  PUSH EAX\n  1002e98a:  PUSH ECX\n  1002e98b:  PUSH 0x1015c774\n  1002e990:  CALL 0x100e5bd1\n  1002e995:  PUSH 0x101208cc\n  1002e99a:  PUSH 0x101208bc\n  1002e99f:  MOV byte ptr [0x1015cb74],0x1\n  1002e9a6:  CALL 0x100e5d0c\n  1002e9ab:  MOV ESI,EAX\n  1002e9ad:  ADD ESP,0x14\n  1002e9b0:  TEST ESI,ESI\n  1002e9b2:  JZ 0x1002e9cd\n  1002e9b4:  PUSH 0x1015c774\n  1002e9b9:  PUSH 0x101208b8\n  1002e9be:  PUSH ESI\n  1002e9bf:  CALL 0x100e5c9f\n  1002e9c4:  PUSH ESI\n  1002e9c5:  CALL 0x100e5c22\n  1002e9ca:  ADD ESP,0x10\n  1002e9cd:  POP ESI\n  1002e9ce:  RET", 
+  "callers": [
+    {
+      "address": "0x10001020", 
+      "name": "Get3DProvider"
+    }, 
+    {
+      "address": "0x10001020", 
+      "name": "Get3DProvider"
+    }, 
+    {
+      "address": "0x10001120", 
+      "name": "gbAudioManager"
+    }, 
+    {
+      "address": "0x10001120", 
+      "name": "gbAudioManager"
+    }, 
+    {
+      "address": "0x10001120", 
+      "name": "gbAudioManager"
+    }, 
+    {
+      "address": "0x10001e40", 
+      "name": "FUN_10001e40"
+    }, 
+    {
+      "address": "0x10002700", 
+      "name": "LoadFromFile"
+    }, 
+    {
+      "address": "0x1000b910", 
+      "name": "FUN_1000b910"
+    }, 
+    {
+      "address": "0x1001f820", 
+      "name": "Init"
+    }
+  ]
+}

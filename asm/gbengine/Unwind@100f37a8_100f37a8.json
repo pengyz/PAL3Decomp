@@ -1,0 +1,19 @@
+{
+  "address": "0x100f37a8", 
+  "size_bytes": 8, 
+  "calling_convention": "unknown", 
+  "signature": "undefined Unwind@100f37a8(void)", 
+  "callees": [
+    {
+      "address": "0x1002ea40", 
+      "name": "~gbChain1DNode"
+    }
+  ], 
+  "global_refs": [], 
+  "has_custom_name": true, 
+  "decompiled_c": "\nvoid Unwind_100f37a8(void)\n\n{\n  int unaff_EBP;\n  \n  gbChain1DNode::~gbChain1DNode(*(gbChain1DNode **)(unaff_EBP + -0x10));\n  return;\n}\n\n", 
+  "is_thunk": false, 
+  "name": "Unwind@100f37a8", 
+  "assembly": "  100f37a8:  MOV ECX,dword ptr [EBP + -0x10]\n  100f37ab:  JMP 0x1002ea40", 
+  "callers": []
+}

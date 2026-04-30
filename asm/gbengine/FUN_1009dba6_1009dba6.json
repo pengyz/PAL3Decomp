@@ -1,0 +1,441 @@
+{
+  "address": "0x1009dba6", 
+  "size_bytes": 131, 
+  "calling_convention": "unknown", 
+  "signature": "undefined FUN_1009dba6(undefined4 param_1, undefined4 param_2, undefined4 param_3, undefined4 param_4, undefined1 param_5)", 
+  "callees": [
+    {
+      "address": "0x100e68e0", 
+      "name": "FUN_100e68e0"
+    }, 
+    {
+      "address": "0x1004cb83", 
+      "name": "FUN_1004cb83"
+    }
+  ], 
+  "global_refs": [
+    {
+      "address": "0x00000014", 
+      "type": null, 
+      "name": "DAT_00000014"
+    }, 
+    {
+      "address": "0x00000010", 
+      "type": null, 
+      "name": "DAT_00000010"
+    }, 
+    {
+      "address": "0x-0000104", 
+      "type": null, 
+      "name": "DAT_-0000104"
+    }, 
+    {
+      "address": "0x00000008", 
+      "type": null, 
+      "name": "DAT_00000008"
+    }, 
+    {
+      "address": "0x-0000005", 
+      "type": null, 
+      "name": "DAT_-0000005"
+    }, 
+    {
+      "address": "0x00000004", 
+      "type": null, 
+      "name": "DAT_00000004"
+    }, 
+    {
+      "address": "0x100f9350", 
+      "type": null, 
+      "name": "DAT_100f9350"
+    }, 
+    {
+      "address": "0x0000000c", 
+      "type": null, 
+      "name": "DAT_0000000c"
+    }
+  ], 
+  "has_custom_name": false, 
+  "decompiled_c": "\nundefined4 FUN_1009dba6(int param_1,int param_2,undefined4 param_3,undefined4 param_4)\n\n{\n  int iVar1;\n  int iVar2;\n  undefined local_104 [255];\n  undefined local_5;\n  \n  FUN_100e68e0(local_104,0x100,param_4,&stack0x00000014);\n  iVar2 = 0;\n  local_5 = 0;\n  if (param_2 != 0) {\n    iVar1 = *(int *)(param_2 + 4);\n    if (iVar1 == 3) {\n      iVar2 = param_2 + 0x10;\n    }\n    else if (iVar1 == 6) {\n      iVar2 = *(int *)(param_2 + 0x14) + 0x10;\n    }\n    else if (iVar1 == 0xd) {\n      iVar2 = param_2 + 0x30;\n    }\n  }\n  FUN_1004cb83(*(undefined4 *)(param_1 + 0xbc),iVar2,param_3,&DAT_100f9350,local_104);\n  *(undefined4 *)(param_1 + 0xcc) = 1;\n  return 0;\n}\n\n", 
+  "is_thunk": false, 
+  "name": "FUN_1009dba6", 
+  "assembly": "  1009dba6:  PUSH EBP\n  1009dba7:  MOV EBP,ESP\n  1009dba9:  SUB ESP,0x100\n  1009dbaf:  LEA EAX,[EBP + 0x18]\n  1009dbb2:  PUSH EAX\n  1009dbb3:  PUSH dword ptr [EBP + 0x14]\n  1009dbb6:  LEA EAX,[EBP + 0xffffff00]\n  1009dbbc:  PUSH 0x100\n  1009dbc1:  PUSH EAX\n  1009dbc2:  CALL 0x100e68e0\n  1009dbc7:  MOV ECX,dword ptr [EBP + 0xc]\n  1009dbca:  XOR EAX,EAX\n  1009dbcc:  ADD ESP,0x10\n  1009dbcf:  CMP ECX,EAX\n  1009dbd1:  MOV byte ptr [EBP + -0x1],AL\n  1009dbd4:  JZ 0x1009dbf8\n  1009dbd6:  MOV EDX,dword ptr [ECX + 0x4]\n  1009dbd9:  CMP EDX,0x3\n  1009dbdc:  JZ 0x1009dbf5\n  1009dbde:  CMP EDX,0x6\n  1009dbe1:  JZ 0x1009dbed\n  1009dbe3:  CMP EDX,0xd\n  1009dbe6:  JNZ 0x1009dbf8\n  1009dbe8:  LEA EAX,[ECX + 0x30]\n  1009dbeb:  JMP 0x1009dbf8\n  1009dbed:  MOV EAX,dword ptr [ECX + 0x14]\n  1009dbf0:  ADD EAX,0x10\n  1009dbf3:  JMP 0x1009dbf8\n  1009dbf5:  LEA EAX,[ECX + 0x10]\n  1009dbf8:  PUSH ESI\n  1009dbf9:  MOV ESI,dword ptr [EBP + 0x8]\n  1009dbfc:  LEA ECX,[EBP + 0xffffff00]\n  1009dc02:  PUSH ECX\n  1009dc03:  PUSH 0x100f9350\n  1009dc08:  PUSH dword ptr [EBP + 0x10]\n  1009dc0b:  PUSH EAX\n  1009dc0c:  PUSH dword ptr [ESI + 0xbc]\n  1009dc12:  CALL 0x1004cb83\n  1009dc17:  ADD ESP,0x14\n  1009dc1a:  MOV dword ptr [ESI + 0xcc],0x1\n  1009dc24:  XOR EAX,EAX\n  1009dc26:  POP ESI\n  1009dc27:  LEAVE\n  1009dc28:  RET", 
+  "callers": [
+    {
+      "address": "0x1009e054", 
+      "name": "FUN_1009e054"
+    }, 
+    {
+      "address": "0x1009e054", 
+      "name": "FUN_1009e054"
+    }, 
+    {
+      "address": "0x1009e054", 
+      "name": "FUN_1009e054"
+    }, 
+    {
+      "address": "0x1009ff72", 
+      "name": "FUN_1009ff72"
+    }, 
+    {
+      "address": "0x100a0d6a", 
+      "name": "FUN_100a0d6a"
+    }, 
+    {
+      "address": "0x100a0d6a", 
+      "name": "FUN_100a0d6a"
+    }, 
+    {
+      "address": "0x100a0d6a", 
+      "name": "FUN_100a0d6a"
+    }, 
+    {
+      "address": "0x100a650a", 
+      "name": "FUN_100a650a"
+    }, 
+    {
+      "address": "0x100c898d", 
+      "name": "FUN_100c898d"
+    }, 
+    {
+      "address": "0x100c898d", 
+      "name": "FUN_100c898d"
+    }, 
+    {
+      "address": "0x100c898d", 
+      "name": "FUN_100c898d"
+    }, 
+    {
+      "address": "0x100bcd03", 
+      "name": "FUN_100bcd03"
+    }, 
+    {
+      "address": "0x100bcd03", 
+      "name": "FUN_100bcd03"
+    }, 
+    {
+      "address": "0x100bcd03", 
+      "name": "FUN_100bcd03"
+    }, 
+    {
+      "address": "0x100bcc82", 
+      "name": "FUN_100bcc82"
+    }, 
+    {
+      "address": "0x100c79a9", 
+      "name": "FUN_100c79a9"
+    }, 
+    {
+      "address": "0x100aa19e", 
+      "name": "FUN_100aa19e"
+    }, 
+    {
+      "address": "0x100aa19e", 
+      "name": "FUN_100aa19e"
+    }, 
+    {
+      "address": "0x100ab1b4", 
+      "name": "FUN_100ab1b4"
+    }, 
+    {
+      "address": "0x100ac134", 
+      "name": "FUN_100ac134"
+    }, 
+    {
+      "address": "0x100ac134", 
+      "name": "FUN_100ac134"
+    }, 
+    {
+      "address": "0x100ac134", 
+      "name": "FUN_100ac134"
+    }, 
+    {
+      "address": "0x100acd0b", 
+      "name": "FUN_100acd0b"
+    }, 
+    {
+      "address": "0x100ace60", 
+      "name": "FUN_100ace60"
+    }, 
+    {
+      "address": "0x100acf8d", 
+      "name": "FUN_100acf8d"
+    }, 
+    {
+      "address": "0x100ad16b", 
+      "name": "FUN_100ad16b"
+    }, 
+    {
+      "address": "0x100ad16b", 
+      "name": "FUN_100ad16b"
+    }, 
+    {
+      "address": "0x100ad16b", 
+      "name": "FUN_100ad16b"
+    }, 
+    {
+      "address": "0x100ad906", 
+      "name": "FUN_100ad906"
+    }, 
+    {
+      "address": "0x100ad906", 
+      "name": "FUN_100ad906"
+    }, 
+    {
+      "address": "0x100af668", 
+      "name": "FUN_100af668"
+    }, 
+    {
+      "address": "0x100afe52", 
+      "name": "FUN_100afe52"
+    }, 
+    {
+      "address": "0x100afffb", 
+      "name": "FUN_100afffb"
+    }, 
+    {
+      "address": "0x100b14ff", 
+      "name": "FUN_100b14ff"
+    }, 
+    {
+      "address": "0x100b14ff", 
+      "name": "FUN_100b14ff"
+    }, 
+    {
+      "address": "0x100b1ff5", 
+      "name": "FUN_100b1ff5"
+    }, 
+    {
+      "address": "0x100b1ff5", 
+      "name": "FUN_100b1ff5"
+    }, 
+    {
+      "address": "0x100b1ff5", 
+      "name": "FUN_100b1ff5"
+    }, 
+    {
+      "address": "0x100b217a", 
+      "name": "FUN_100b217a"
+    }, 
+    {
+      "address": "0x100b2906", 
+      "name": "FUN_100b2906"
+    }, 
+    {
+      "address": "0x100b2906", 
+      "name": "FUN_100b2906"
+    }, 
+    {
+      "address": "0x100b2906", 
+      "name": "FUN_100b2906"
+    }, 
+    {
+      "address": "0x100b2906", 
+      "name": "FUN_100b2906"
+    }, 
+    {
+      "address": "0x100b2906", 
+      "name": "FUN_100b2906"
+    }, 
+    {
+      "address": "0x100b34bb", 
+      "name": "FUN_100b34bb"
+    }, 
+    {
+      "address": "0x100b37a8", 
+      "name": "FUN_100b37a8"
+    }, 
+    {
+      "address": "0x100b37a8", 
+      "name": "FUN_100b37a8"
+    }, 
+    {
+      "address": "0x100b44a4", 
+      "name": "FUN_100b44a4"
+    }, 
+    {
+      "address": "0x100b44a4", 
+      "name": "FUN_100b44a4"
+    }, 
+    {
+      "address": "0x100b19d1", 
+      "name": "FUN_100b19d1"
+    }, 
+    {
+      "address": "0x100b19d1", 
+      "name": "FUN_100b19d1"
+    }, 
+    {
+      "address": "0x100b46d5", 
+      "name": "FUN_100b46d5"
+    }, 
+    {
+      "address": "0x100b46d5", 
+      "name": "FUN_100b46d5"
+    }, 
+    {
+      "address": "0x100c9d85", 
+      "name": "FUN_100c9d85"
+    }, 
+    {
+      "address": "0x100b4ad4", 
+      "name": "FUN_100b4ad4"
+    }, 
+    {
+      "address": "0x100b4ad4", 
+      "name": "FUN_100b4ad4"
+    }, 
+    {
+      "address": "0x100b4ad4", 
+      "name": "FUN_100b4ad4"
+    }, 
+    {
+      "address": "0x100ae6ec", 
+      "name": "FUN_100ae6ec"
+    }, 
+    {
+      "address": "0x100ae6ec", 
+      "name": "FUN_100ae6ec"
+    }, 
+    {
+      "address": "0x100ae677", 
+      "name": "FUN_100ae677"
+    }, 
+    {
+      "address": "0x100af976", 
+      "name": "FUN_100af976"
+    }, 
+    {
+      "address": "0x100b0449", 
+      "name": "FUN_100b0449"
+    }, 
+    {
+      "address": "0x100be795", 
+      "name": "FUN_100be795"
+    }, 
+    {
+      "address": "0x100b57c8", 
+      "name": "FUN_100b57c8"
+    }, 
+    {
+      "address": "0x100b5900", 
+      "name": "FUN_100b5900"
+    }, 
+    {
+      "address": "0x100b5900", 
+      "name": "FUN_100b5900"
+    }, 
+    {
+      "address": "0x100b5900", 
+      "name": "FUN_100b5900"
+    }, 
+    {
+      "address": "0x100b5900", 
+      "name": "FUN_100b5900"
+    }, 
+    {
+      "address": "0x100b5efc", 
+      "name": "FUN_100b5efc"
+    }, 
+    {
+      "address": "0x100b63a4", 
+      "name": "FUN_100b63a4"
+    }, 
+    {
+      "address": "0x100b63a4", 
+      "name": "FUN_100b63a4"
+    }, 
+    {
+      "address": "0x100b7687", 
+      "name": "FUN_100b7687"
+    }, 
+    {
+      "address": "0x100b6ab5", 
+      "name": "FUN_100b6ab5"
+    }, 
+    {
+      "address": "0x100c458f", 
+      "name": "FUN_100c458f"
+    }, 
+    {
+      "address": "0x100b89e9", 
+      "name": "FUN_100b89e9"
+    }, 
+    {
+      "address": "0x100b89e9", 
+      "name": "FUN_100b89e9"
+    }, 
+    {
+      "address": "0x100b89e9", 
+      "name": "FUN_100b89e9"
+    }, 
+    {
+      "address": "0x100b9497", 
+      "name": "FUN_100b9497"
+    }, 
+    {
+      "address": "0x100b9497", 
+      "name": "FUN_100b9497"
+    }, 
+    {
+      "address": "0x100ba398", 
+      "name": "FUN_100ba398"
+    }, 
+    {
+      "address": "0x100ba54b", 
+      "name": "FUN_100ba54b"
+    }, 
+    {
+      "address": "0x100ba54b", 
+      "name": "FUN_100ba54b"
+    }, 
+    {
+      "address": "0x100bb13b", 
+      "name": "FUN_100bb13b"
+    }, 
+    {
+      "address": "0x100bb732", 
+      "name": "FUN_100bb732"
+    }, 
+    {
+      "address": "0x100bb91f", 
+      "name": "FUN_100bb91f"
+    }, 
+    {
+      "address": "0x100bd395", 
+      "name": "FUN_100bd395"
+    }, 
+    {
+      "address": "0x100c2520", 
+      "name": "FUN_100c2520"
+    }, 
+    {
+      "address": "0x100c371d", 
+      "name": "FUN_100c371d"
+    }, 
+    {
+      "address": "0x100c371d", 
+      "name": "FUN_100c371d"
+    }, 
+    {
+      "address": "0x100c386d", 
+      "name": "FUN_100c386d"
+    }, 
+    {
+      "address": "0x100c3a11", 
+      "name": "FUN_100c3a11"
+    }, 
+    {
+      "address": "0x100c3a11", 
+      "name": "FUN_100c3a11"
+    }, 
+    {
+      "address": "0x100c434b", 
+      "name": "FUN_100c434b"
+    }, 
+    {
+      "address": "0x100bf5cf", 
+      "name": "FUN_100bf5cf"
+    }
+  ]
+}

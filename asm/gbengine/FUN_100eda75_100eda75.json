@@ -1,0 +1,61 @@
+{
+  "address": "0x100eda75", 
+  "size_bytes": 41, 
+  "calling_convention": "unknown", 
+  "signature": "undefined FUN_100eda75(undefined8 param_1, undefined4 param_2)", 
+  "callees": [], 
+  "global_refs": [
+    {
+      "address": "0x0000000c", 
+      "type": null, 
+      "name": "DAT_0000000c"
+    }, 
+    {
+      "address": "0x0000000a", 
+      "type": null, 
+      "name": "DAT_0000000a"
+    }, 
+    {
+      "address": "0x00000004", 
+      "type": null, 
+      "name": "DAT_00000004"
+    }, 
+    {
+      "address": "0x-000000c", 
+      "type": null, 
+      "name": "DAT_-000000c"
+    }, 
+    {
+      "address": "0x-0000006", 
+      "type": null, 
+      "name": "DAT_-0000006"
+    }
+  ], 
+  "has_custom_name": false, 
+  "decompiled_c": "\nfloat10 FUN_100eda75(undefined8 param_1,short param_2)\n\n{\n  undefined8 local_c;\n  \n  local_c = (double)CONCAT26((param_2 + 0x3fe) * 0x10 | param_1._6_2_ & 0x800f,(undefined6)param_1);\n  return (float10)local_c;\n}\n\n", 
+  "is_thunk": false, 
+  "name": "FUN_100eda75", 
+  "assembly": "  100eda75:  PUSH EBP\n  100eda76:  MOV EBP,ESP\n  100eda78:  PUSH ECX\n  100eda79:  PUSH ECX\n  100eda7a:  MOV EAX,dword ptr [EBP + 0x10]\n  100eda7d:  MOV ECX,dword ptr [EBP + 0xe]\n  100eda80:  FLD qword ptr [EBP + 0x8]\n  100eda83:  ADD EAX,0x3fe\n  100eda88:  AND CX,0x800f\n  100eda8d:  FSTP qword ptr [EBP + -0x8]\n  100eda90:  SHL EAX,0x4\n  100eda93:  OR EAX,ECX\n  100eda95:  MOV word ptr [EBP + -0x2],AX\n  100eda99:  FLD qword ptr [EBP + -0x8]\n  100eda9c:  LEAVE\n  100eda9d:  RET", 
+  "callers": [
+    {
+      "address": "0x100edaf8", 
+      "name": "FUN_100edaf8"
+    }, 
+    {
+      "address": "0x100edaf8", 
+      "name": "FUN_100edaf8"
+    }, 
+    {
+      "address": "0x100e6930", 
+      "name": "FUN_100e6930"
+    }, 
+    {
+      "address": "0x100e6930", 
+      "name": "FUN_100e6930"
+    }, 
+    {
+      "address": "0x100e6930", 
+      "name": "FUN_100e6930"
+    }
+  ]
+}

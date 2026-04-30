@@ -1,0 +1,65 @@
+{
+  "address": "0x100d28ac", 
+  "size_bytes": 134, 
+  "calling_convention": "unknown", 
+  "signature": "undefined FUN_100d28ac(undefined4 param_1, undefined4 param_2, undefined4 param_3, undefined4 param_4, undefined4 param_5, undefined4 param_6)", 
+  "callees": [], 
+  "global_refs": [
+    {
+      "address": "0x00000018", 
+      "type": null, 
+      "name": "DAT_00000018"
+    }, 
+    {
+      "address": "0x10128360", 
+      "type": null, 
+      "name": "DAT_10128360"
+    }, 
+    {
+      "address": "0x10128350", 
+      "type": null, 
+      "name": "DAT_10128350"
+    }, 
+    {
+      "address": "0x10128370", 
+      "type": null, 
+      "name": "DAT_10128370"
+    }, 
+    {
+      "address": "0x10128340", 
+      "type": null, 
+      "name": "DAT_10128340"
+    }, 
+    {
+      "address": "0x00000008", 
+      "type": null, 
+      "name": "DAT_00000008"
+    }, 
+    {
+      "address": "0x0000000c", 
+      "type": null, 
+      "name": "DAT_0000000c"
+    }, 
+    {
+      "address": "0x00000010", 
+      "type": null, 
+      "name": "DAT_00000010"
+    }, 
+    {
+      "address": "0x00000014", 
+      "type": null, 
+      "name": "DAT_00000014"
+    }, 
+    {
+      "address": "0x00000004", 
+      "type": null, 
+      "name": "DAT_00000004"
+    }
+  ], 
+  "has_custom_name": false, 
+  "decompiled_c": "\n/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */\n\nundefined8 *\nFUN_100d28ac(undefined8 *param_1,undefined8 *param_2,undefined8 *param_3,undefined8 *param_4,\n            undefined8 *param_5,float param_6)\n\n{\n  float fVar1;\n  float fVar2;\n  float fVar3;\n  float fVar4;\n  float fVar5;\n  \n  fVar4 = param_6 * param_6;\n  fVar5 = param_6 * fVar4;\n  fVar1 = param_6 * _DAT_10128360 + _DAT_10128370 + fVar4 * _DAT_10128350 + fVar5 * _DAT_10128340;\n  fVar2 = param_6 * fRam10128364 + fVar4 * fRam10128354 + fVar5 * fRam10128344;\n  fVar3 = param_6 * fRam10128368 + fVar4 * fRam10128358 + fVar5 * fRam10128348;\n  fVar4 = param_6 * fRam1012836c + fVar4 * fRam1012835c + fVar5 * fRam1012834c;\n  *param_1 = CONCAT44((float)((ulonglong)*param_2 >> 0x20) * fVar1 +\n                      (float)((ulonglong)*param_4 >> 0x20) * fVar3 +\n                      (float)((ulonglong)*param_3 >> 0x20) * fVar2 +\n                      (float)((ulonglong)*param_5 >> 0x20) * fVar4,\n                      (float)*param_2 * fVar1 + (float)*param_4 * fVar3 +\n                      (float)*param_3 * fVar2 + (float)*param_5 * fVar4);\n  return param_1;\n}\n\n", 
+  "is_thunk": false, 
+  "name": "FUN_100d28ac", 
+  "assembly": "  100d28ac:  PUSH EBP\n  100d28ad:  MOV EBP,ESP\n  100d28af:  MOVSS XMM0,dword ptr [EBP + 0x1c]\n  100d28b4:  MOVSS XMM1,XMM0\n  100d28b8:  MULSS XMM1,XMM0\n  100d28bc:  MOVSS XMM2,XMM0\n  100d28c0:  SHUFPS XMM0,XMM0,0x0\n  100d28c4:  MULSS XMM2,XMM1\n  100d28c8:  SHUFPS XMM1,XMM1,0x0\n  100d28cc:  MULPS XMM0,xmmword ptr [0x10128360]\n  100d28d3:  SHUFPS XMM2,XMM2,0x0\n  100d28d7:  MULPS XMM1,xmmword ptr [0x10128350]\n  100d28de:  ADDSS XMM0,dword ptr [0x10128370]\n  100d28e6:  MULPS XMM2,xmmword ptr [0x10128340]\n  100d28ed:  ADDPS XMM0,XMM1\n  100d28f0:  ADDPS XMM0,XMM2\n  100d28f3:  MOV EAX,dword ptr [EBP + 0xc]\n  100d28f6:  MOVAPS XMM2,XMM0\n  100d28f9:  SHUFPS XMM2,XMM0,0xfa\n  100d28fd:  SHUFPS XMM0,XMM0,0x50\n  100d2901:  MOV ECX,dword ptr [EBP + 0x10]\n  100d2904:  MOV EDX,dword ptr [EBP + 0x14]\n  100d2907:  MOVLPS XMM4,qword ptr [EAX]\n  100d290a:  MOVHPS XMM4,qword ptr [ECX]\n  100d290d:  MOV EAX,dword ptr [EBP + 0x18]\n  100d2910:  MULPS XMM4,XMM0\n  100d2913:  MOVLPS XMM6,qword ptr [EDX]\n  100d2916:  MOVHPS XMM6,qword ptr [EAX]\n  100d2919:  MULPS XMM6,XMM2\n  100d291c:  MOV ECX,dword ptr [EBP + 0x8]\n  100d291f:  ADDPS XMM4,XMM6\n  100d2922:  MOVHLPS XMM3,XMM4\n  100d2925:  ADDPS XMM4,XMM3\n  100d2928:  MOVLPS qword ptr [ECX],XMM4\n  100d292b:  MOV EAX,dword ptr [EBP + 0x8]\n  100d292e:  POP EBP\n  100d292f:  RET 0x18", 
+  "callers": []
+}

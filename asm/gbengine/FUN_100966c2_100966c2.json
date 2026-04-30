@@ -1,0 +1,40 @@
+{
+  "address": "0x100966c2", 
+  "size_bytes": 98, 
+  "calling_convention": "unknown", 
+  "signature": "undefined FUN_100966c2(undefined4 param_1, undefined4 param_2)", 
+  "callees": [
+    {
+      "address": "0x10078c0a", 
+      "name": "FUN_10078c0a"
+    }
+  ], 
+  "global_refs": [
+    {
+      "address": "0x00000008", 
+      "type": null, 
+      "name": "DAT_00000008"
+    }, 
+    {
+      "address": "0x1010a184", 
+      "type": "string", 
+      "name": "DAT_1010a184"
+    }, 
+    {
+      "address": "0x00000004", 
+      "type": null, 
+      "name": "DAT_00000004"
+    }
+  ], 
+  "has_custom_name": false, 
+  "decompiled_c": "\nvoid FUN_100966c2(undefined4 param_1,byte *param_2)\n\n{\n  byte bVar1;\n  \n  bVar1 = *param_2;\n  if (((((((bVar1 < 0x29) || (0x7a < bVar1)) || ((0x5a < bVar1 && (bVar1 < 0x61)))) ||\n        ((bVar1 = param_2[1], bVar1 < 0x29 || (0x7a < bVar1)))) ||\n       ((0x5a < bVar1 && (bVar1 < 0x61)))) ||\n      ((((bVar1 = param_2[2], bVar1 < 0x29 || (0x7a < bVar1)) || ((0x5a < bVar1 && (bVar1 < 0x61))))\n       || ((bVar1 = param_2[3], bVar1 < 0x29 || (0x7a < bVar1)))))) ||\n     ((0x5a < bVar1 && (bVar1 < 0x61)))) {\n    FUN_10078c0a(param_1,\"invalid chunk type\");\n  }\n  return;\n}\n\n", 
+  "is_thunk": false, 
+  "name": "FUN_100966c2", 
+  "assembly": "  100966c2:  MOV ECX,dword ptr [ESP + 0x8]\n  100966c6:  MOV AL,byte ptr [ECX]\n  100966c8:  MOV DL,0x29\n  100966ca:  CMP AL,DL\n  100966cc:  JC 0x10096713\n  100966ce:  CMP AL,0x7a\n  100966d0:  JA 0x10096713\n  100966d2:  CMP AL,0x5a\n  100966d4:  JBE 0x100966da\n  100966d6:  CMP AL,0x61\n  100966d8:  JC 0x10096713\n  100966da:  MOV AL,byte ptr [ECX + 0x1]\n  100966dd:  CMP AL,DL\n  100966df:  JC 0x10096713\n  100966e1:  CMP AL,0x7a\n  100966e3:  JA 0x10096713\n  100966e5:  CMP AL,0x5a\n  100966e7:  JBE 0x100966ed\n  100966e9:  CMP AL,0x61\n  100966eb:  JC 0x10096713\n  100966ed:  MOV AL,byte ptr [ECX + 0x2]\n  100966f0:  CMP AL,DL\n  100966f2:  JC 0x10096713\n  100966f4:  CMP AL,0x7a\n  100966f6:  JA 0x10096713\n  100966f8:  CMP AL,0x5a\n  100966fa:  JBE 0x10096700\n  100966fc:  CMP AL,0x61\n  100966fe:  JC 0x10096713\n  10096700:  MOV AL,byte ptr [ECX + 0x3]\n  10096703:  CMP AL,DL\n  10096705:  JC 0x10096713\n  10096707:  CMP AL,0x7a\n  10096709:  JA 0x10096713\n  1009670b:  CMP AL,0x5a\n  1009670d:  JBE 0x10096721\n  1009670f:  CMP AL,0x61\n  10096711:  JNC 0x10096721\n  10096713:  PUSH 0x1010a184\n  10096718:  PUSH dword ptr [ESP + 0x8]\n  1009671c:  CALL 0x10078c0a\n  10096721:  RET 0x8", 
+  "callers": [
+    {
+      "address": "0x10097660", 
+      "name": "FUN_10097660"
+    }
+  ]
+}

@@ -1,0 +1,135 @@
+{
+  "address": "0x1001ad80", 
+  "size_bytes": 393, 
+  "calling_convention": "unknown", 
+  "signature": "undefined FUN_1001ad80(undefined4 param_1, undefined4 param_2)", 
+  "callees": [
+    {
+      "address": "0x00000069", 
+      "name": "MessageBoxA"
+    }
+  ], 
+  "global_refs": [
+    {
+      "address": "0x00000004", 
+      "type": null, 
+      "name": "DAT_00000004"
+    }, 
+    {
+      "address": "0x-0000200", 
+      "type": null, 
+      "name": "DAT_-0000200"
+    }, 
+    {
+      "address": "0x1011fb8c", 
+      "type": null, 
+      "name": "DAT_1011fb8c"
+    }, 
+    {
+      "address": "0x1011fb5c", 
+      "type": null, 
+      "name": "DAT_1011fb5c"
+    }, 
+    {
+      "address": "0x1011fb48", 
+      "type": "string", 
+      "name": "DAT_1011fb48"
+    }, 
+    {
+      "address": "0x1011fa9c", 
+      "type": "string", 
+      "name": "DAT_1011fa9c"
+    }, 
+    {
+      "address": "0x1011fa0c", 
+      "type": "string", 
+      "name": "DAT_1011fa0c"
+    }, 
+    {
+      "address": "0x1011f9ac", 
+      "type": "string", 
+      "name": "DAT_1011f9ac"
+    }, 
+    {
+      "address": "0x1011f974", 
+      "type": "string", 
+      "name": "DAT_1011f974"
+    }, 
+    {
+      "address": "0x1011f8b8", 
+      "type": "string", 
+      "name": "DAT_1011f8b8"
+    }, 
+    {
+      "address": "0x1001af40", 
+      "type": "undefined *", 
+      "name": "DAT_1001af40"
+    }, 
+    {
+      "address": "0x1011f640", 
+      "type": "string", 
+      "name": "DAT_1011f640"
+    }, 
+    {
+      "address": "0x1011f5f4", 
+      "type": "string", 
+      "name": "DAT_1011f5f4"
+    }, 
+    {
+      "address": "0x00000008", 
+      "type": null, 
+      "name": "DAT_00000008"
+    }, 
+    {
+      "address": "0x1011f4d8", 
+      "type": "string", 
+      "name": "DAT_1011f4d8"
+    }, 
+    {
+      "address": "0x1011f570", 
+      "type": "string", 
+      "name": "DAT_1011f570"
+    }, 
+    {
+      "address": "0x1011f568", 
+      "type": "string", 
+      "name": "DAT_1011f568"
+    }, 
+    {
+      "address": "0x100f51d4", 
+      "type": "pointer", 
+      "name": "DAT_100f51d4"
+    }
+  ], 
+  "has_custom_name": false, 
+  "decompiled_c": "\nint FUN_1001ad80(int param_1,int param_2)\n\n{\n  char cVar1;\n  uint uVar2;\n  uint uVar3;\n  int iVar4;\n  char *pcVar5;\n  char *pcVar6;\n  char *pcVar7;\n  UINT uType;\n  char local_200 [512];\n  \n  if (param_1 < -0x7dfffff7) {\n    if (param_1 == -0x7dfffff8) {\n      pcVar5 = s_Your_Direct3D_hardware_accelerat_1011f8b8;\n      goto LAB_1001aeb2;\n    }\n    if (param_1 < -0x7dfffffb) {\n      if (param_1 == -0x7dfffffc) {\n        pcVar5 = s_This_sample_cannot_run_in_a_desk_1011fa9c;\n        goto LAB_1001aeb2;\n      }\n      if (param_1 == -0x7ff8fff2) {\n        pcVar5 = s_Not_enough_memory__1011fb48;\n        goto LAB_1001aeb2;\n      }\n      if (param_1 == -0x7dffffff) {\n        pcVar5 = &DAT_1011fb5c;\n        goto LAB_1001aeb2;\n      }\n      if (param_1 == -0x7dfffffd) {\n        pcVar5 = &DAT_1011fb8c;\n        goto LAB_1001aeb2;\n      }\n    }\n    else {\n      if (param_1 == -0x7dfffffb) {\n        pcVar5 = s_No_hardware_accelerated_Direct3D_1011f974;\n        goto LAB_1001aeb2;\n      }\n      if (param_1 == -0x7dfffffa) {\n        pcVar5 = s_This_sample_requires_functionali_1011f9ac;\n        goto LAB_1001aeb2;\n      }\n      if (param_1 == -0x7dfffff9) {\n        pcVar5 = s_Your_Direct3D_hardware_accelerat_1011fa0c;\n        goto LAB_1001aeb2;\n      }\n    }\n  }\n  else if (param_1 < -0x7789fe83) {\n    if (param_1 == -0x7789fe84) {\n      pcVar5 = s_Not_enough_video_memory__1011f640;\n      goto LAB_1001aeb2;\n    }\n    switch(param_1) {\n    case -0x7dfffff7:\n      pcVar5 = s_This_sample_requires_functionali_1011f7dc;\n      break;\n    case -0x7dfffff6:\n      pcVar5 = s_A_D3D_object_has_a_non_zero_refe_1011f760;\n      break;\n    case -0x7dfffff5:\n      pcVar5 = s_Could_not_load_required_media__1011f7bc;\n      break;\n    case -0x7dfffff4:\n      pcVar5 = s_Could_not_reset_the_Direct3D_dev_1011f65c;\n      break;\n    case -0x7dfffff3:\n      pcVar5 = s_Warning__Nothing_will_be_rendere_1011f684;\n      break;\n    default:\n      goto LAB_1001aea9;\n    }\n    goto LAB_1001aeb2;\n  }\nLAB_1001aea9:\n  pcVar5 = s_Generic_application_error__Enabl_1011f5f4;\nLAB_1001aeb2:\n  uVar2 = 0xffffffff;\n  do {\n    pcVar7 = pcVar5;\n    if (uVar2 == 0) break;\n    uVar2 = uVar2 - 1;\n    pcVar7 = pcVar5 + 1;\n    cVar1 = *pcVar5;\n    pcVar5 = pcVar7;\n  } while (cVar1 != '\\0');\n  uVar2 = ~uVar2;\n  pcVar5 = pcVar7 + -uVar2;\n  pcVar7 = local_200;\n  for (uVar3 = uVar2 >> 2; uVar3 != 0; uVar3 = uVar3 - 1) {\n    *(undefined4 *)pcVar7 = *(undefined4 *)pcVar5;\n    pcVar5 = pcVar5 + 4;\n    pcVar7 = pcVar7 + 4;\n  }\n  for (uVar2 = uVar2 & 3; uVar2 != 0; uVar2 = uVar2 - 1) {\n    *pcVar7 = *pcVar5;\n    pcVar5 = pcVar5 + 1;\n    pcVar7 = pcVar7 + 1;\n  }\n  if (param_2 == 2) {\n    uType = 0x10;\n    pcVar5 = s_error_1011f4d8;\n  }\n  else {\n    if (param_2 == 1) {\n      uVar2 = 0xffffffff;\n      pcVar5 = s_Switching_to_the_reference_raste_1011f570;\n      do {\n        pcVar7 = pcVar5;\n        if (uVar2 == 0) break;\n        uVar2 = uVar2 - 1;\n        pcVar7 = pcVar5 + 1;\n        cVar1 = *pcVar5;\n        pcVar5 = pcVar7;\n      } while (cVar1 != '\\0');\n      uVar2 = ~uVar2;\n      iVar4 = -1;\n      pcVar5 = local_200;\n      do {\n        pcVar6 = pcVar5;\n        if (iVar4 == 0) break;\n        iVar4 = iVar4 + -1;\n        pcVar6 = pcVar5 + 1;\n        cVar1 = *pcVar5;\n        pcVar5 = pcVar6;\n      } while (cVar1 != '\\0');\n      pcVar5 = pcVar7 + -uVar2;\n      pcVar7 = pcVar6 + -1;\n      for (uVar3 = uVar2 >> 2; uVar3 != 0; uVar3 = uVar3 - 1) {\n        *(undefined4 *)pcVar7 = *(undefined4 *)pcVar5;\n        pcVar5 = pcVar5 + 4;\n        pcVar7 = pcVar7 + 4;\n      }\n      for (uVar2 = uVar2 & 3; uVar2 != 0; uVar2 = uVar2 - 1) {\n        *pcVar7 = *pcVar5;\n        pcVar5 = pcVar5 + 1;\n        pcVar7 = pcVar7 + 1;\n      }\n    }\n    uType = 0x30;\n    pcVar5 = s_warning_1011f568;\n  }\n  MessageBoxA((HWND)0x0,local_200,pcVar5,uType);\n  return param_1;\n}\n\n", 
+  "is_thunk": false, 
+  "name": "FUN_1001ad80", 
+  "assembly": "  1001ad80:  SUB ESP,0x200\n  1001ad86:  PUSH EBX\n  1001ad87:  MOV EBX,dword ptr [ESP + 0x208]\n  1001ad8e:  PUSH ESI\n  1001ad8f:  CMP EBX,0x82000008\n  1001ad95:  PUSH EDI\n  1001ad96:  JG 0x1001ae4b\n  1001ad9c:  JZ 0x1001ae40\n  1001ada2:  CMP EBX,0x82000004\n  1001ada8:  JG 0x1001ae00\n  1001adaa:  JZ 0x1001adf2\n  1001adac:  CMP EBX,0x8007000e\n  1001adb2:  JZ 0x1001ade4\n  1001adb4:  CMP EBX,0x82000001\n  1001adba:  JZ 0x1001add6\n  1001adbc:  CMP EBX,0x82000003\n  1001adc2:  JNZ 0x1001aea9\n  1001adc8:  LEA EDX,[ESP + 0xc]\n  1001adcc:  MOV EDI,0x1011fb8c\n  1001add1:  JMP 0x1001aeb2\n  1001add6:  LEA EDX,[ESP + 0xc]\n  1001adda:  MOV EDI,0x1011fb5c\n  1001addf:  JMP 0x1001aeb2\n  1001ade4:  LEA EDX,[ESP + 0xc]\n  1001ade8:  MOV EDI,0x1011fb48\n  1001aded:  JMP 0x1001aeb2\n  1001adf2:  LEA EDX,[ESP + 0xc]\n  1001adf6:  MOV EDI,0x1011fa9c\n  1001adfb:  JMP 0x1001aeb2\n  1001ae00:  CMP EBX,0x82000005\n  1001ae06:  JZ 0x1001ae35\n  1001ae08:  CMP EBX,0x82000006\n  1001ae0e:  JZ 0x1001ae2a\n  1001ae10:  CMP EBX,0x82000007\n  1001ae16:  JNZ 0x1001aea9\n  1001ae1c:  LEA EDX,[ESP + 0xc]\n  1001ae20:  MOV EDI,0x1011fa0c\n  1001ae25:  JMP 0x1001aeb2\n  1001ae2a:  LEA EDX,[ESP + 0xc]\n  1001ae2e:  MOV EDI,0x1011f9ac\n  1001ae33:  JMP 0x1001aeb2\n  1001ae35:  LEA EDX,[ESP + 0xc]\n  1001ae39:  MOV EDI,0x1011f974\n  1001ae3e:  JMP 0x1001aeb2\n  1001ae40:  LEA EDX,[ESP + 0xc]\n  1001ae44:  MOV EDI,0x1011f8b8\n  1001ae49:  JMP 0x1001aeb2\n  1001ae4b:  CMP EBX,0x8876017c\n  1001ae51:  JG 0x1001aea9\n  1001ae53:  JZ 0x1001ae9e\n  1001ae55:  LEA EAX,[EBX + 0x7dfffff7]\n  1001ae5b:  CMP EAX,0x4\n  1001ae5e:  JA 0x1001aea9\n  1001ae60:  JMP dword ptr [EAX*0x4 + 0x1001af40]\n  1001ae9e:  LEA EDX,[ESP + 0xc]\n  1001aea2:  MOV EDI,0x1011f640\n  1001aea7:  JMP 0x1001aeb2\n  1001aea9:  LEA EDX,[ESP + 0xc]\n  1001aead:  MOV EDI,0x1011f5f4\n  1001aeb2:  OR ECX,0xffffffff\n  1001aeb5:  XOR EAX,EAX\n  1001aeb7:  SCASB.REPNE ES:EDI\n  1001aeb9:  NOT ECX\n  1001aebb:  SUB EDI,ECX\n  1001aebd:  MOV EAX,ECX\n  1001aebf:  MOV ESI,EDI\n  1001aec1:  MOV EDI,EDX\n  1001aec3:  SHR ECX,0x2\n  1001aec6:  MOVSD.REP ES:EDI,ESI\n  1001aec8:  MOV ECX,EAX\n  1001aeca:  MOV EAX,dword ptr [ESP + 0x214]\n  1001aed1:  AND ECX,0x3\n  1001aed4:  CMP EAX,0x2\n  1001aed7:  MOVSB.REP ES:EDI,ESI\n  1001aed9:  JNZ 0x1001aee9\n  1001aedb:  PUSH 0x10\n  1001aedd:  LEA ECX,[ESP + 0x10]\n  1001aee1:  PUSH 0x1011f4d8\n  1001aee6:  PUSH ECX\n  1001aee7:  JMP 0x1001af2a\n  1001aee9:  CMP EAX,0x1\n  1001aeec:  JNZ 0x1001af1e\n  1001aeee:  MOV EDI,0x1011f570\n  1001aef3:  OR ECX,0xffffffff\n  1001aef6:  XOR EAX,EAX\n  1001aef8:  PUSH EBP\n  1001aef9:  SCASB.REPNE ES:EDI\n  1001aefb:  NOT ECX\n  1001aefd:  SUB EDI,ECX\n  1001aeff:  LEA EDX,[ESP + 0x10]\n  1001af03:  MOV ESI,EDI\n  1001af05:  MOV EBP,ECX\n  1001af07:  MOV EDI,EDX\n  1001af09:  OR ECX,0xffffffff\n  1001af0c:  SCASB.REPNE ES:EDI\n  1001af0e:  MOV ECX,EBP\n  1001af10:  DEC EDI\n  1001af11:  SHR ECX,0x2\n  1001af14:  MOVSD.REP ES:EDI,ESI\n  1001af16:  MOV ECX,EBP\n  1001af18:  POP EBP\n  1001af19:  AND ECX,0x3\n  1001af1c:  MOVSB.REP ES:EDI,ESI\n  1001af1e:  PUSH 0x30\n  1001af20:  LEA EAX,[ESP + 0x10]\n  1001af24:  PUSH 0x1011f568\n  1001af29:  PUSH EAX\n  1001af2a:  PUSH 0x0\n  1001af2c:  CALL dword ptr [0x100f51d4]\n  1001af32:  POP EDI\n  1001af33:  MOV EAX,EBX\n  1001af35:  POP ESI\n  1001af36:  POP EBX\n  1001af37:  ADD ESP,0x200\n  1001af3d:  RET 0x8", 
+  "callers": [
+    {
+      "address": "0x10019920", 
+      "name": "FUN_10019920"
+    }, 
+    {
+      "address": "0x10019920", 
+      "name": "FUN_10019920"
+    }, 
+    {
+      "address": "0x10019920", 
+      "name": "FUN_10019920"
+    }, 
+    {
+      "address": "0x10019b70", 
+      "name": "FUN_10019b70"
+    }, 
+    {
+      "address": "0x1001a790", 
+      "name": "FUN_1001a790"
+    }, 
+    {
+      "address": "0x1001b750", 
+      "name": "FUN_1001b750"
+    }
+  ]
+}

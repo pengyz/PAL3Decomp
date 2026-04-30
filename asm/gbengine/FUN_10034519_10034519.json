@@ -1,0 +1,86 @@
+{
+  "address": "0x10034519", 
+  "size_bytes": 93, 
+  "calling_convention": "unknown", 
+  "signature": "undefined FUN_10034519(undefined4 param_1, undefined4 param_2, undefined4 param_3, undefined1 param_4)", 
+  "callees": [
+    {
+      "address": "0x00000083", 
+      "name": "RegOpenKeyA"
+    }, 
+    {
+      "address": "0x00000084", 
+      "name": "RegQueryValueExA"
+    }, 
+    {
+      "address": "0x00000085", 
+      "name": "RegCloseKey"
+    }
+  ], 
+  "global_refs": [
+    {
+      "address": "0x-0000008", 
+      "type": null, 
+      "name": "DAT_-0000008"
+    }, 
+    {
+      "address": "0x100f6428", 
+      "type": "string", 
+      "name": "DAT_100f6428"
+    }, 
+    {
+      "address": "0x100f5004", 
+      "type": "pointer", 
+      "name": "DAT_100f5004"
+    }, 
+    {
+      "address": "0x00000010", 
+      "type": null, 
+      "name": "DAT_00000010"
+    }, 
+    {
+      "address": "0x0000000c", 
+      "type": null, 
+      "name": "DAT_0000000c"
+    }, 
+    {
+      "address": "0x00000008", 
+      "type": null, 
+      "name": "DAT_00000008"
+    }, 
+    {
+      "address": "0x100f5008", 
+      "type": "pointer", 
+      "name": "DAT_100f5008"
+    }, 
+    {
+      "address": "0x100f500c", 
+      "type": "pointer", 
+      "name": "DAT_100f500c"
+    }, 
+    {
+      "address": "0x00000004", 
+      "type": null, 
+      "name": "DAT_00000004"
+    }
+  ], 
+  "has_custom_name": false, 
+  "decompiled_c": "\nundefined4 FUN_10034519(LPBYTE param_1,LPCSTR param_2,LPBYTE param_3)\n\n{\n  LSTATUS LVar1;\n  HKEY local_8;\n  \n  local_8 = (HKEY)0x0;\n  LVar1 = RegOpenKeyA((HKEY)0x80000002,\"Software\\\\Microsoft\\\\Direct3D\",&local_8);\n  if (LVar1 == 0) {\n    LVar1 = RegQueryValueExA(local_8,param_2,(LPDWORD)0x0,(LPDWORD)&param_3,param_3,\n                             (LPDWORD)&stack0x00000010);\n    RegCloseKey(local_8);\n    if ((LVar1 == 0) && (param_3 == param_1)) {\n      return 1;\n    }\n  }\n  return 0;\n}\n\n", 
+  "is_thunk": false, 
+  "name": "FUN_10034519", 
+  "assembly": "  10034519:  PUSH EBP\n  1003451a:  MOV EBP,ESP\n  1003451c:  PUSH ECX\n  1003451d:  AND dword ptr [EBP + -0x4],0x0\n  10034521:  LEA EAX,[EBP + -0x4]\n  10034524:  PUSH EAX\n  10034525:  PUSH 0x100f6428\n  1003452a:  PUSH 0x80000002\n  1003452f:  CALL dword ptr [0x100f5004]\n  10034535:  TEST EAX,EAX\n  10034537:  JNZ 0x10034570\n  10034539:  PUSH ESI\n  1003453a:  LEA EAX,[EBP + 0x14]\n  1003453d:  PUSH EAX\n  1003453e:  PUSH dword ptr [EBP + 0x10]\n  10034541:  LEA EAX,[EBP + 0x10]\n  10034544:  PUSH EAX\n  10034545:  PUSH 0x0\n  10034547:  PUSH dword ptr [EBP + 0xc]\n  1003454a:  PUSH dword ptr [EBP + -0x4]\n  1003454d:  CALL dword ptr [0x100f5008]\n  10034553:  PUSH dword ptr [EBP + -0x4]\n  10034556:  MOV ESI,EAX\n  10034558:  CALL dword ptr [0x100f500c]\n  1003455e:  TEST ESI,ESI\n  10034560:  POP ESI\n  10034561:  JNZ 0x10034570\n  10034563:  MOV EAX,dword ptr [EBP + 0x10]\n  10034566:  CMP EAX,dword ptr [EBP + 0x8]\n  10034569:  JNZ 0x10034570\n  1003456b:  XOR EAX,EAX\n  1003456d:  INC EAX\n  1003456e:  JMP 0x10034572\n  10034570:  XOR EAX,EAX\n  10034572:  LEAVE\n  10034573:  RET 0x10", 
+  "callers": [
+    {
+      "address": "0x10034576", 
+      "name": "FUN_10034576"
+    }, 
+    {
+      "address": "0x1007713a", 
+      "name": "FUN_1007713a"
+    }, 
+    {
+      "address": "0x1007713a", 
+      "name": "FUN_1007713a"
+    }
+  ]
+}

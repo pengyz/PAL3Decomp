@@ -1,0 +1,34 @@
+{
+  "address": "0x100caf91", 
+  "size_bytes": 122, 
+  "calling_convention": "unknown", 
+  "signature": "undefined FUN_100caf91(void)", 
+  "callees": [
+    {
+      "address": "0x100cab4a", 
+      "name": "FUN_100cab4a"
+    }, 
+    {
+      "address": "0x100c9674", 
+      "name": "FUN_100c9674"
+    }
+  ], 
+  "global_refs": [
+    {
+      "address": "0x-0000014", 
+      "type": null, 
+      "name": "DAT_-0000014"
+    }
+  ], 
+  "has_custom_name": false, 
+  "decompiled_c": "\nint FUN_100caf91(void)\n\n{\n  int iVar1;\n  int *in_ECX;\n  undefined local_14 [16];\n  \n  iVar1 = (**(code **)(*in_ECX + 0x6c))\n                    (in_ECX[0x37],local_14,*(undefined4 *)(in_ECX[0x38] + 0xc),0,0);\n  if (-1 < iVar1) {\n    iVar1 = in_ECX[0x38];\n    iVar1 = FUN_100cab4a(7,local_14,*(undefined4 *)(iVar1 + 8),*(undefined4 *)(iVar1 + 0xc),\n                         *(undefined4 *)(iVar1 + 4),0,0);\n    if (-1 < iVar1) {\n      iVar1 = in_ECX[0x38];\n      iVar1 = FUN_100c9674(5,*(undefined4 *)(iVar1 + 0x10),*(undefined4 *)(iVar1 + 0xc),local_14,\n                           *(undefined4 *)(iVar1 + 8),0,*(undefined4 *)(iVar1 + 0xc),0,0,0);\n      if (-1 < iVar1) {\n        iVar1 = 0;\n      }\n    }\n  }\n  return iVar1;\n}\n\n", 
+  "is_thunk": false, 
+  "name": "FUN_100caf91", 
+  "assembly": "  100caf91:  PUSH EBP\n  100caf92:  MOV EBP,ESP\n  100caf94:  SUB ESP,0x10\n  100caf97:  PUSH ESI\n  100caf98:  PUSH EDI\n  100caf99:  MOV ESI,ECX\n  100caf9b:  MOV ECX,dword ptr [ESI + 0xe0]\n  100cafa1:  MOV EAX,dword ptr [ESI]\n  100cafa3:  XOR EDI,EDI\n  100cafa5:  PUSH EDI\n  100cafa6:  PUSH EDI\n  100cafa7:  PUSH dword ptr [ECX + 0xc]\n  100cafaa:  LEA ECX,[EBP + -0x10]\n  100cafad:  PUSH ECX\n  100cafae:  PUSH dword ptr [ESI + 0xdc]\n  100cafb4:  MOV ECX,ESI\n  100cafb6:  CALL dword ptr [EAX + 0x6c]\n  100cafb9:  CMP EAX,EDI\n  100cafbb:  JL 0x100cb007\n  100cafbd:  MOV EAX,dword ptr [ESI + 0xe0]\n  100cafc3:  PUSH EDI\n  100cafc4:  PUSH EDI\n  100cafc5:  PUSH dword ptr [EAX + 0x4]\n  100cafc8:  MOV ECX,ESI\n  100cafca:  PUSH dword ptr [EAX + 0xc]\n  100cafcd:  PUSH dword ptr [EAX + 0x8]\n  100cafd0:  LEA EAX,[EBP + -0x10]\n  100cafd3:  PUSH EAX\n  100cafd4:  PUSH 0x7\n  100cafd6:  CALL 0x100cab4a\n  100cafdb:  CMP EAX,EDI\n  100cafdd:  JL 0x100cb007\n  100cafdf:  MOV EAX,dword ptr [ESI + 0xe0]\n  100cafe5:  MOV ECX,dword ptr [EAX + 0xc]\n  100cafe8:  PUSH EDI\n  100cafe9:  PUSH EDI\n  100cafea:  PUSH EDI\n  100cafeb:  PUSH ECX\n  100cafec:  PUSH EDI\n  100cafed:  PUSH dword ptr [EAX + 0x8]\n  100caff0:  LEA EDX,[EBP + -0x10]\n  100caff3:  PUSH EDX\n  100caff4:  PUSH ECX\n  100caff5:  PUSH dword ptr [EAX + 0x10]\n  100caff8:  MOV ECX,ESI\n  100caffa:  PUSH 0x5\n  100caffc:  CALL 0x100c9674\n  100cb001:  CMP EAX,EDI\n  100cb003:  JL 0x100cb007\n  100cb005:  XOR EAX,EAX\n  100cb007:  POP EDI\n  100cb008:  POP ESI\n  100cb009:  LEAVE\n  100cb00a:  RET", 
+  "callers": [
+    {
+      "address": "0x100bb13b", 
+      "name": "FUN_100bb13b"
+    }
+  ]
+}

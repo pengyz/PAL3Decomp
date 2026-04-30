@@ -1,0 +1,14 @@
+{
+  "address": "0x1002b070", 
+  "size_bytes": 20, 
+  "calling_convention": "__thiscall", 
+  "signature": "undefined __thiscall gbParticleGroup(gbParticleGroup * this)", 
+  "callees": [], 
+  "global_refs": [], 
+  "has_custom_name": true, 
+  "decompiled_c": "\n/* public: __thiscall gbParticleGroup::gbParticleGroup(void) */\n\nvoid __thiscall gbParticleGroup::gbParticleGroup(gbParticleGroup *this)\n\n{\n                    /* 0x2b070  71  ??0gbParticleGroup@@QAE@XZ */\n  *(undefined4 *)(this + 0x48) = 0;\n  *(undefined4 *)(this + 0x4c) = 0;\n  *(undefined4 *)(this + 0x50) = 0;\n  *(undefined4 *)(this + 0x80) = 0;\n  return;\n}\n\n", 
+  "is_thunk": false, 
+  "name": "gbParticleGroup", 
+  "assembly": "  1002b070:  MOV EAX,ECX\n  1002b072:  XOR ECX,ECX\n  1002b074:  MOV dword ptr [EAX + 0x48],ECX\n  1002b077:  MOV dword ptr [EAX + 0x4c],ECX\n  1002b07a:  MOV dword ptr [EAX + 0x50],ECX\n  1002b07d:  MOV dword ptr [EAX + 0x80],ECX\n  1002b083:  RET", 
+  "callers": []
+}

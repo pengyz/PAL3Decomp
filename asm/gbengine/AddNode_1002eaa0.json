@@ -1,0 +1,89 @@
+{
+  "address": "0x1002eaa0", 
+  "size_bytes": 41, 
+  "calling_convention": "__thiscall", 
+  "signature": "void __thiscall AddNode(gbChain1D * this, gbChain1DNode * param_1)", 
+  "callees": [], 
+  "global_refs": [
+    {
+      "address": "0x00000004", 
+      "type": null, 
+      "name": "DAT_00000004"
+    }
+  ], 
+  "has_custom_name": true, 
+  "decompiled_c": "\n/* public: void __thiscall gbChain1D::AddNode(class gbChain1DNode *) */\n\nvoid __thiscall gbChain1D::AddNode(gbChain1D *this,gbChain1DNode *param_1)\n\n{\n                    /* 0x2eaa0  297  ?AddNode@gbChain1D@@QAEXPAVgbChain1DNode@@@Z\n                       0x2eaa0  300  ?AddNodeOnTail@gbChain1D@@QAEXPAVgbChain1DNode@@@Z */\n  *(undefined4 *)(param_1 + 4) = 0;\n  if (*(int *)(this + 4) == 0) {\n    *(gbChain1DNode **)(this + 4) = param_1;\n    *(gbChain1DNode **)this = param_1;\n    *(int *)(this + 8) = *(int *)(this + 8) + 1;\n    return;\n  }\n  *(gbChain1DNode **)(*(int *)(this + 4) + 4) = param_1;\n  *(gbChain1DNode **)(this + 4) = param_1;\n  *(int *)(this + 8) = *(int *)(this + 8) + 1;\n  return;\n}\n\n", 
+  "is_thunk": false, 
+  "name": "AddNode", 
+  "assembly": "  1002eaa0:  MOV EAX,dword ptr [ESP + 0x4]\n  1002eaa4:  MOV dword ptr [EAX + 0x4],0x0\n  1002eaab:  MOV EDX,dword ptr [ECX + 0x4]\n  1002eaae:  TEST EDX,EDX\n  1002eab0:  JNZ 0x1002eabd\n  1002eab2:  MOV dword ptr [ECX + 0x4],EAX\n  1002eab5:  MOV dword ptr [ECX],EAX\n  1002eab7:  INC dword ptr [ECX + 0x8]\n  1002eaba:  RET 0x4\n  1002eabd:  MOV dword ptr [EDX + 0x4],EAX\n  1002eac0:  MOV dword ptr [ECX + 0x4],EAX\n  1002eac3:  INC dword ptr [ECX + 0x8]\n  1002eac6:  RET 0x4", 
+  "callers": [
+    {
+      "address": "0x10020b20", 
+      "name": "DelBubble"
+    }, 
+    {
+      "address": "0x10004540", 
+      "name": "AddChild"
+    }, 
+    {
+      "address": "0x1000bc50", 
+      "name": "FUN_1000bc50"
+    }, 
+    {
+      "address": "0x100102c0", 
+      "name": "LoadFromFile"
+    }, 
+    {
+      "address": "0x100108b0", 
+      "name": "LoadCVDFile"
+    }, 
+    {
+      "address": "0x100212e0", 
+      "name": "NewVertexBubble"
+    }, 
+    {
+      "address": "0x10020f10", 
+      "name": "NewBubble"
+    }, 
+    {
+      "address": "0x10020f10", 
+      "name": "NewBubble"
+    }, 
+    {
+      "address": "0x10021430", 
+      "name": "NewSrcVertBub"
+    }, 
+    {
+      "address": "0x10021590", 
+      "name": "NewIndexBubble"
+    }, 
+    {
+      "address": "0x10020a50", 
+      "name": "NewBubble"
+    }, 
+    {
+      "address": "0x10020a50", 
+      "name": "NewBubble"
+    }, 
+    {
+      "address": "0x100135a0", 
+      "name": "gbLoadLightFile"
+    }, 
+    {
+      "address": "0x100155a0", 
+      "name": "AddVisNode"
+    }, 
+    {
+      "address": "0x10020fe0", 
+      "name": "DelBubble"
+    }, 
+    {
+      "address": "0x10020930", 
+      "name": "gbIndexPool"
+    }, 
+    {
+      "address": "0x10020d90", 
+      "name": "gbVertexPool"
+    }
+  ]
+}

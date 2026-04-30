@@ -1,0 +1,69 @@
+{
+  "address": "0x100d7d6c", 
+  "size_bytes": 108, 
+  "calling_convention": "unknown", 
+  "signature": "undefined FUN_100d7d6c(undefined4 param_1, undefined4 param_2, undefined4 param_3)", 
+  "callees": [
+    {
+      "address": "0x100da77a", 
+      "name": "FUN_100da77a"
+    }, 
+    {
+      "address": "0x100e31e0", 
+      "name": "FUN_100e31e0"
+    }
+  ], 
+  "global_refs": [
+    {
+      "address": "0x-0000008", 
+      "type": null, 
+      "name": "DAT_-0000008"
+    }, 
+    {
+      "address": "0x-000000c", 
+      "type": null, 
+      "name": "DAT_-000000c"
+    }, 
+    {
+      "address": "0x-0000004", 
+      "type": null, 
+      "name": "DAT_-0000004"
+    }, 
+    {
+      "address": "0x00000008", 
+      "type": null, 
+      "name": "DAT_00000008"
+    }, 
+    {
+      "address": "0x0000000c", 
+      "type": null, 
+      "name": "DAT_0000000c"
+    }, 
+    {
+      "address": "0x10109970", 
+      "type": "undefined8", 
+      "name": "DAT_10109970"
+    }, 
+    {
+      "address": "0x00000004", 
+      "type": null, 
+      "name": "DAT_00000004"
+    }, 
+    {
+      "address": "0x-0000018", 
+      "type": null, 
+      "name": "DAT_-0000018"
+    }, 
+    {
+      "address": "0x-0000010", 
+      "type": null, 
+      "name": "DAT_-0000010"
+    }
+  ], 
+  "has_custom_name": false, 
+  "decompiled_c": "\nvoid FUN_100d7d6c(undefined8 *param_1,undefined4 param_2,uint param_3)\n\n{\n  undefined8 uVar1;\n  undefined8 uVar2;\n  undefined8 uVar3;\n  undefined4 uVar4;\n  undefined8 local_18;\n  uint local_10;\n  \n  FastExitMediaState();\n  FUN_100da77a(&local_18,param_2);\n  PackedFloatingMUL((ulonglong)param_3,0x3f0000003f000000);\n  uVar1 = FUN_100e31e0();\n  uVar4 = (undefined4)((ulonglong)uVar1 >> 0x20);\n  uVar3 = CONCAT44(uVar4,uVar4);\n  uVar2 = PackedFloatingMUL(local_18,uVar3);\n  uVar3 = PackedFloatingMUL((ulonglong)local_10,uVar3);\n  *param_1 = uVar2;\n  param_1[1] = CONCAT44((int)uVar1,(int)uVar3);\n  FastExitMediaState();\n  return;\n}\n\n", 
+  "is_thunk": false, 
+  "name": "FUN_100d7d6c", 
+  "assembly": "  100d7d6c:  SUB ESP,0x18\n  100d7d6f:  MOV dword ptr [ESP + 0x10],EBX\n  100d7d73:  MOV dword ptr [ESP + 0xc],ESI\n  100d7d77:  MOV dword ptr [ESP + 0x14],EBP\n  100d7d7b:  MOV EBP,ESP\n  100d7d7d:  AND ESP,0xfffffff8\n  100d7d80:  MOV EDX,ESP\n  100d7d82:  FEMMS\n  100d7d84:  PUSH dword ptr [EBP + 0x20]\n  100d7d87:  PUSH EDX\n  100d7d88:  CALL 0x100da77a\n  100d7d8d:  MOVD MM0,dword ptr [EBP + 0x24]\n  100d7d91:  PFMUL MM0,qword ptr [0x10109970]\n  100d7d99:  CALL 0x100e31e0\n  100d7d9e:  MOV EAX,dword ptr [EBP + 0x1c]\n  100d7da1:  MOVQ MM1,qword ptr [ESP]\n  100d7da5:  MOVD MM2,dword ptr [ESP + 0x8]\n  100d7daa:  MOVQ MM3,MM0\n  100d7dad:  PUNPCKHDQ MM3,MM3\n  100d7db0:  PFMUL MM1,MM3\n  100d7db4:  PFMUL MM2,MM3\n  100d7db8:  PUNPCKLDQ MM2,MM0\n  100d7dbb:  MOVQ qword ptr [EAX],MM1\n  100d7dbe:  MOVQ qword ptr [EAX + 0x8],MM2\n  100d7dc2:  FEMMS\n  100d7dc4:  MOV ESP,EBP\n  100d7dc6:  MOV EBX,dword ptr [ESP + 0x10]\n  100d7dca:  MOV ESI,dword ptr [ESP + 0xc]\n  100d7dce:  MOV EBP,dword ptr [ESP + 0x14]\n  100d7dd2:  ADD ESP,0x18\n  100d7dd5:  RET 0xc", 
+  "callers": []
+}

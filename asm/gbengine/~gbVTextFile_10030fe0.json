@@ -1,0 +1,37 @@
+{
+  "address": "0x10030fe0", 
+  "size_bytes": 104, 
+  "calling_convention": "__thiscall", 
+  "signature": "void __thiscall ~gbVTextFile(gbVTextFile * this)", 
+  "callees": [
+    {
+      "address": "0x1002d1a0", 
+      "name": "Close"
+    }, 
+    {
+      "address": "0x1002d1a0", 
+      "name": "Close"
+    }, 
+    {
+      "address": "0x100e5c22", 
+      "name": "FUN_100e5c22"
+    }, 
+    {
+      "address": "0x100e4b99", 
+      "name": "FUN_100e4b99"
+    }
+  ], 
+  "global_refs": [
+    {
+      "address": "0x1015d3a8", 
+      "type": "gbVFileSystem *", 
+      "name": "DAT_1015d3a8"
+    }
+  ], 
+  "has_custom_name": true, 
+  "decompiled_c": "\n/* public: __thiscall gbVTextFile::~gbVTextFile(void) */\n\nvoid __thiscall gbVTextFile::~gbVTextFile(gbVTextFile *this)\n\n{\n  undefined4 *puVar1;\n  int iVar2;\n  \n                    /* 0x30fe0  167  ??1gbVTextFile@@QAE@XZ */\n  puVar1 = *(undefined4 **)(this + 0x400);\n  iVar2 = *(int *)(g_pVFileSys + 0xc);\n  if (iVar2 != 1) {\n    if (iVar2 == 0) {\n      FUN_100e5c22(puVar1[1]);\n      *puVar1 = 0;\n      return;\n    }\n    if (iVar2 == 2) {\n      FUN_100e4b99(puVar1[1]);\n      *puVar1 = 0;\n    }\n    return;\n  }\n  if (puVar1 != (undefined4 *)0x0) {\n    CPK::Close((CPK *)(g_pVFileSys + 0x18),(CPKFile *)(puVar1 + 0x44));\n    return;\n  }\n  CPK::Close((CPK *)(g_pVFileSys + 0x18),(CPKFile *)0x0);\n  return;\n}\n\n", 
+  "is_thunk": false, 
+  "name": "~gbVTextFile", 
+  "assembly": "  10030fe0:  PUSH ESI\n  10030fe1:  MOV ESI,dword ptr [ECX + 0x400]\n  10030fe7:  MOV ECX,dword ptr [0x1015d3a8]\n  10030fed:  MOV EAX,dword ptr [ECX + 0xc]\n  10030ff0:  CMP EAX,0x1\n  10030ff3:  JNZ 0x10031017\n  10030ff5:  TEST ESI,ESI\n  10030ff7:  JZ 0x1003100a\n  10030ff9:  LEA EAX,[ESI + 0x110]\n  10030fff:  ADD ECX,0x18\n  10031002:  PUSH EAX\n  10031003:  CALL 0x1002d1a0\n  10031008:  POP ESI\n  10031009:  RET\n  1003100a:  XOR EAX,EAX\n  1003100c:  ADD ECX,0x18\n  1003100f:  PUSH EAX\n  10031010:  CALL 0x1002d1a0\n  10031015:  POP ESI\n  10031016:  RET\n  10031017:  TEST EAX,EAX\n  10031019:  JNZ 0x1003102f\n  1003101b:  MOV EAX,dword ptr [ESI + 0x4]\n  1003101e:  PUSH EAX\n  1003101f:  CALL 0x100e5c22\n  10031024:  ADD ESP,0x4\n  10031027:  MOV dword ptr [ESI],0x0\n  1003102d:  POP ESI\n  1003102e:  RET\n  1003102f:  CMP EAX,0x2\n  10031032:  JNZ 0x10031046\n  10031034:  MOV ECX,dword ptr [ESI + 0x4]\n  10031037:  PUSH ECX\n  10031038:  CALL 0x100e4b99\n  1003103d:  ADD ESP,0x4\n  10031040:  MOV dword ptr [ESI],0x0\n  10031046:  POP ESI\n  10031047:  RET", 
+  "callers": []
+}

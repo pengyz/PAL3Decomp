@@ -1,0 +1,93 @@
+{
+  "address": "0x1000ada0", 
+  "size_bytes": 340, 
+  "calling_convention": "unknown", 
+  "signature": "undefined FUN_1000ada0(undefined4 param_1, undefined4 param_2)", 
+  "callees": [
+    {
+      "address": "0x10026c40", 
+      "name": "Slerp"
+    }, 
+    {
+      "address": "0x10026b60", 
+      "name": "GetMatrix"
+    }, 
+    {
+      "address": "0x10026130", 
+      "name": "RightTranslate"
+    }
+  ], 
+  "global_refs": [
+    {
+      "address": "0x00000008", 
+      "type": null, 
+      "name": "DAT_00000008"
+    }, 
+    {
+      "address": "0x-0000028", 
+      "type": null, 
+      "name": "DAT_-0000028"
+    }, 
+    {
+      "address": "0x-0000024", 
+      "type": null, 
+      "name": "DAT_-0000024"
+    }, 
+    {
+      "address": "0x-0000008", 
+      "type": null, 
+      "name": "DAT_-0000008"
+    }, 
+    {
+      "address": "0x-0000004", 
+      "type": null, 
+      "name": "DAT_-0000004"
+    }, 
+    {
+      "address": "0x100f5344", 
+      "type": null, 
+      "name": "DAT_100f5344"
+    }, 
+    {
+      "address": "0x-0000010", 
+      "type": null, 
+      "name": "DAT_-0000010"
+    }, 
+    {
+      "address": "0x-0000020", 
+      "type": null, 
+      "name": "DAT_-0000020"
+    }, 
+    {
+      "address": "0x-000001c", 
+      "type": null, 
+      "name": "DAT_-000001c"
+    }, 
+    {
+      "address": "0x-000000c", 
+      "type": null, 
+      "name": "DAT_-000000c"
+    }, 
+    {
+      "address": "0x-0000018", 
+      "type": null, 
+      "name": "DAT_-0000018"
+    }, 
+    {
+      "address": "0x-0000014", 
+      "type": null, 
+      "name": "DAT_-0000014"
+    }, 
+    {
+      "address": "0x00000004", 
+      "type": null, 
+      "name": "DAT_00000004"
+    }
+  ], 
+  "has_custom_name": false, 
+  "decompiled_c": "\nvoid FUN_1000ada0(gbMatrix4 *param_1,uint param_2)\n\n{\n  float fVar1;\n  uint *puVar2;\n  float fVar3;\n  uint *puVar4;\n  uint *puVar5;\n  int in_ECX;\n  uint *puVar6;\n  int iVar7;\n  int iVar8;\n  float10 fVar9;\n  undefined4 local_1c;\n  undefined4 local_18;\n  undefined4 local_14;\n  float local_10;\n  float local_c;\n  float local_8;\n  float local_4;\n  \n  puVar2 = *(uint **)(in_ECX + 0x44);\n  iVar7 = 0;\n  puVar5 = (uint *)0x0;\n  puVar6 = (uint *)0x0;\n  iVar8 = *(int *)(in_ECX + 0x40) + -1;\n  puVar4 = puVar2;\n  if (0 < iVar8) {\n    do {\n      if (param_2 % puVar2[*(int *)(in_ECX + 0x40) * 0x11 + -0x11] < puVar4[0x11]) {\n        puVar5 = puVar2 + iVar7 * 0x11;\n        puVar6 = puVar2 + (iVar7 + 1) * 0x11;\n        break;\n      }\n      iVar7 = iVar7 + 1;\n      puVar4 = puVar4 + 0x11;\n    } while (iVar7 < iVar8);\n  }\n  fVar9 = (float10)(param_2 % puVar2[*(int *)(in_ECX + 0x40) * 0x11 + -0x11] - *puVar5) /\n          (float10)(*puVar6 - *puVar5);\n  fVar1 = (float)fVar9;\n  fVar3 = 1.0 - fVar1;\n  local_10 = 1.0;\n  local_c = (float)((float10)(fVar3 * (float)puVar5[1]) + fVar9 * (float10)(float)puVar6[1]);\n  local_1c = 0;\n  local_8 = fVar3 * (float)puVar5[2] + fVar1 * (float)puVar6[2];\n  local_4 = fVar3 * (float)puVar5[3] + fVar1 * (float)puVar6[3];\n  local_18 = 0;\n  local_14 = 0;\n  gbQuaternion::Slerp((gbQuaternion *)&local_1c,(gbQuaternion *)(puVar5 + 4),\n                      (gbQuaternion *)(puVar6 + 4),fVar1);\n  local_10 = -local_10;\n  gbQuaternion::GetMatrix((gbQuaternion *)&local_1c,param_1);\n  gbMatrix4::RightTranslate(param_1,(gbVec3D *)&local_c);\n  return;\n}\n\n", 
+  "is_thunk": false, 
+  "name": "FUN_1000ada0", 
+  "assembly": "  1000ada0:  SUB ESP,0x28\n  1000ada3:  MOV EAX,dword ptr [ESP + 0x30]\n  1000ada7:  XOR EDX,EDX\n  1000ada9:  PUSH EBX\n  1000adaa:  MOV EBX,dword ptr [ECX + 0x44]\n  1000adad:  PUSH EBP\n  1000adae:  PUSH ESI\n  1000adaf:  PUSH EDI\n  1000adb0:  MOV EDI,dword ptr [ECX + 0x40]\n  1000adb3:  MOV ECX,EDI\n  1000adb5:  XOR ESI,ESI\n  1000adb7:  SHL ECX,0x4\n  1000adba:  ADD ECX,EDI\n  1000adbc:  DIV dword ptr [EBX + ECX*0x4 + -0x44]\n  1000adc0:  XOR EAX,EAX\n  1000adc2:  XOR ECX,ECX\n  1000adc4:  DEC EDI\n  1000adc5:  TEST EDI,EDI\n  1000adc7:  JLE 0x1000adf0\n  1000adc9:  LEA EBP,[EBX + 0x44]\n  1000adcc:  CMP EDX,dword ptr [EBP]\n  1000adcf:  JC 0x1000addb\n  1000add1:  INC ESI\n  1000add2:  ADD EBP,0x44\n  1000add5:  CMP ESI,EDI\n  1000add7:  JL 0x1000adcc\n  1000add9:  JMP 0x1000adf0\n  1000addb:  MOV EAX,ESI\n  1000addd:  SHL EAX,0x4\n  1000ade0:  ADD EAX,ESI\n  1000ade2:  INC ESI\n  1000ade3:  MOV ECX,ESI\n  1000ade5:  SHL ECX,0x4\n  1000ade8:  ADD ECX,ESI\n  1000adea:  LEA EAX,[EBX + EAX*0x4]\n  1000aded:  LEA ECX,[EBX + ECX*0x4]\n  1000adf0:  MOV ESI,dword ptr [EAX]\n  1000adf2:  MOV EDI,dword ptr [ECX]\n  1000adf4:  SUB EDX,ESI\n  1000adf6:  SUB EDI,ESI\n  1000adf8:  MOV dword ptr [ESP + 0x10],EDX\n  1000adfc:  XOR EDX,EDX\n  1000adfe:  MOV dword ptr [ESP + 0x14],EDX\n  1000ae02:  ADD ECX,0x10\n  1000ae05:  FILD qword ptr [ESP + 0x10]\n  1000ae09:  MOV dword ptr [ESP + 0x10],EDI\n  1000ae0d:  MOV dword ptr [ESP + 0x14],EDX\n  1000ae11:  FILD qword ptr [ESP + 0x10]\n  1000ae15:  ADD EAX,0x10\n  1000ae18:  FDIVP\n  1000ae1a:  FST dword ptr [ESP + 0x40]\n  1000ae1e:  FMUL dword ptr [ECX + -0xc]\n  1000ae21:  FLD dword ptr [ESP + 0x40]\n  1000ae25:  FMUL dword ptr [ECX + -0x8]\n  1000ae28:  FSTP dword ptr [ESP + 0x30]\n  1000ae2c:  FLD dword ptr [ESP + 0x40]\n  1000ae30:  FMUL dword ptr [ECX + -0x4]\n  1000ae33:  FSTP dword ptr [ESP + 0x34]\n  1000ae37:  FLD dword ptr [0x100f5344]\n  1000ae3d:  FSUB dword ptr [ESP + 0x40]\n  1000ae41:  FLD ST0\n  1000ae43:  FMUL dword ptr [EAX + -0xc]\n  1000ae46:  FSTP dword ptr [ESP + 0x10]\n  1000ae4a:  FLD ST0\n  1000ae4c:  FMUL dword ptr [EAX + -0x8]\n  1000ae4f:  FSTP dword ptr [ESP + 0x14]\n  1000ae53:  FMUL dword ptr [EAX + -0x4]\n  1000ae56:  MOV dword ptr [ESP + 0x28],0x3f800000\n  1000ae5e:  FSTP dword ptr [ESP + 0x18]\n  1000ae62:  FLD dword ptr [ESP + 0x10]\n  1000ae66:  FADD ST0,ST1\n  1000ae68:  FSTP dword ptr [ESP + 0x1c]\n  1000ae6c:  MOV EDX,dword ptr [ESP + 0x1c]\n  1000ae70:  MOV dword ptr [ESP + 0x1c],0x0\n  1000ae78:  FSTP ST0\n  1000ae7a:  FLD dword ptr [ESP + 0x14]\n  1000ae7e:  FADD dword ptr [ESP + 0x30]\n  1000ae82:  MOV dword ptr [ESP + 0x2c],EDX\n  1000ae86:  FSTP dword ptr [ESP + 0x20]\n  1000ae8a:  FLD dword ptr [ESP + 0x18]\n  1000ae8e:  FADD dword ptr [ESP + 0x34]\n  1000ae92:  MOV EDX,dword ptr [ESP + 0x20]\n  1000ae96:  MOV dword ptr [ESP + 0x20],0x0\n  1000ae9e:  MOV dword ptr [ESP + 0x30],EDX\n  1000aea2:  FSTP dword ptr [ESP + 0x24]\n  1000aea6:  MOV EDX,dword ptr [ESP + 0x24]\n  1000aeaa:  MOV dword ptr [ESP + 0x24],0x0\n  1000aeb2:  MOV dword ptr [ESP + 0x34],EDX\n  1000aeb6:  MOV EDX,dword ptr [ESP + 0x40]\n  1000aeba:  PUSH EDX\n  1000aebb:  PUSH ECX\n  1000aebc:  PUSH EAX\n  1000aebd:  LEA ECX,[ESP + 0x28]\n  1000aec1:  CALL 0x10026c40\n  1000aec6:  FLD dword ptr [ESP + 0x28]\n  1000aeca:  MOV ESI,dword ptr [ESP + 0x3c]\n  1000aece:  LEA ECX,[ESP + 0x1c]\n  1000aed2:  FCHS\n  1000aed4:  FSTP dword ptr [ESP + 0x28]\n  1000aed8:  PUSH ESI\n  1000aed9:  CALL 0x10026b60\n  1000aede:  LEA EAX,[ESP + 0x2c]\n  1000aee2:  MOV ECX,ESI\n  1000aee4:  PUSH EAX\n  1000aee5:  CALL 0x10026130\n  1000aeea:  POP EDI\n  1000aeeb:  POP ESI\n  1000aeec:  POP EBP\n  1000aeed:  POP EBX\n  1000aeee:  ADD ESP,0x28\n  1000aef1:  RET 0x8", 
+  "callers": []
+}

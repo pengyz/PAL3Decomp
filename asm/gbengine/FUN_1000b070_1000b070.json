@@ -1,0 +1,50 @@
+{
+  "address": "0x1000b070", 
+  "size_bytes": 163, 
+  "calling_convention": "unknown", 
+  "signature": "undefined FUN_1000b070(void)", 
+  "callees": [
+    {
+      "address": "0x100e4a16", 
+      "name": "operator_new"
+    }
+  ], 
+  "global_refs": [
+    {
+      "address": "0x101379ac", 
+      "type": "undefined4", 
+      "name": "DAT_101379ac"
+    }, 
+    {
+      "address": "0x-0000004", 
+      "type": null, 
+      "name": "DAT_-0000004"
+    }, 
+    {
+      "address": "0x100f546c", 
+      "type": null, 
+      "name": "DAT_100f546c"
+    }, 
+    {
+      "address": "0x100f5460", 
+      "type": null, 
+      "name": "DAT_100f5460"
+    }, 
+    {
+      "address": "0x100f5468", 
+      "type": null, 
+      "name": "DAT_100f5468"
+    }
+  ], 
+  "has_custom_name": false, 
+  "decompiled_c": "\nvoid FUN_1000b070(void)\n\n{\n  uint uVar1;\n  float *pfVar2;\n  uint uVar3;\n  undefined4 *puVar4;\n  uint uVar5;\n  int iVar6;\n  float10 fVar7;\n  float10 fVar8;\n  float10 fVar9;\n  float10 fVar10;\n  \n  DAT_101379ac = operator_new(0xbfff4);\n  uVar3 = 0;\n  if (DAT_101379ac == (void *)0x0) {\n    DAT_101379ac = (void *)0x0;\n  }\n  else {\n    puVar4 = (undefined4 *)((int)DAT_101379ac + 8);\n    iVar6 = 0xffff;\n    do {\n      puVar4[-2] = 0;\n      puVar4[-1] = 0;\n      *puVar4 = 0;\n      puVar4 = puVar4 + 3;\n      iVar6 = iVar6 + -1;\n    } while (iVar6 != 0);\n  }\n  iVar6 = 0;\n  do {\n    uVar1 = uVar3 >> 8;\n    pfVar2 = (float *)((int)DAT_101379ac + iVar6);\n    uVar5 = uVar3 & 0xff;\n    iVar6 = iVar6 + 0xc;\n    uVar3 = uVar3 + 1;\n    fVar7 = (float10)((int)(char)uVar1 << 1) * (float10)3.1415927 * (float10)0.003921569;\n    fVar8 = (float10)uVar5 * (float10)0.012319972;\n    fVar9 = (float10)fsin(fVar8);\n    fVar10 = (float10)fcos(fVar7);\n    *pfVar2 = (float)(fVar10 * fVar9);\n    fVar7 = (float10)fsin(fVar7);\n    pfVar2[1] = (float)(fVar7 * fVar9);\n    fVar7 = (float10)fcos((float10)(float)fVar8);\n    pfVar2[2] = (float)fVar7;\n  } while (iVar6 < 0xbfff4);\n  return;\n}\n\n", 
+  "is_thunk": false, 
+  "name": "FUN_1000b070", 
+  "assembly": "  1000b070:  PUSH ECX\n  1000b071:  PUSH 0xbfff4\n  1000b076:  CALL 0x100e4a16\n  1000b07b:  XOR ECX,ECX\n  1000b07d:  ADD ESP,0x4\n  1000b080:  CMP EAX,ECX\n  1000b082:  JZ 0x1000b09e\n  1000b084:  PUSH EDI\n  1000b085:  LEA EDX,[EAX + 0x8]\n  1000b088:  MOV EDI,0xffff\n  1000b08d:  MOV dword ptr [EDX + -0x8],ECX\n  1000b090:  MOV dword ptr [EDX + -0x4],ECX\n  1000b093:  MOV dword ptr [EDX],ECX\n  1000b095:  ADD EDX,0xc\n  1000b098:  DEC EDI\n  1000b099:  JNZ 0x1000b08d\n  1000b09b:  POP EDI\n  1000b09c:  JMP 0x1000b0a0\n  1000b09e:  XOR EAX,EAX\n  1000b0a0:  PUSH ESI\n  1000b0a1:  MOV [0x101379ac],EAX\n  1000b0a6:  XOR ESI,ESI\n  1000b0a8:  XOR EDX,EDX\n  1000b0aa:  MOV EAX,[0x101379ac]\n  1000b0af:  MOV DL,CH\n  1000b0b1:  ADD EAX,ESI\n  1000b0b3:  MOVSX EDX,DL\n  1000b0b6:  SHL EDX,0x1\n  1000b0b8:  MOV dword ptr [ESP + 0x4],EDX\n  1000b0bc:  MOV DL,CL\n  1000b0be:  FILD dword ptr [ESP + 0x4]\n  1000b0c2:  AND EDX,0xff\n  1000b0c8:  ADD ESI,0xc\n  1000b0cb:  MOV dword ptr [ESP + 0x4],EDX\n  1000b0cf:  INC ECX\n  1000b0d0:  FMUL dword ptr [0x100f546c]\n  1000b0d6:  CMP ESI,0xbfff4\n  1000b0dc:  FMUL dword ptr [0x100f5460]\n  1000b0e2:  FILD dword ptr [ESP + 0x4]\n  1000b0e6:  FMUL dword ptr [0x100f5468]\n  1000b0ec:  FST dword ptr [ESP + 0x4]\n  1000b0f0:  FSIN\n  1000b0f2:  FLD ST1\n  1000b0f4:  FCOS\n  1000b0f6:  FMUL ST1\n  1000b0f8:  FSTP dword ptr [EAX]\n  1000b0fa:  FXCH\n  1000b0fc:  FSIN\n  1000b0fe:  FMUL ST1\n  1000b100:  FSTP dword ptr [EAX + 0x4]\n  1000b103:  FSTP ST0\n  1000b105:  FLD dword ptr [ESP + 0x4]\n  1000b109:  FCOS\n  1000b10b:  FSTP dword ptr [EAX + 0x8]\n  1000b10e:  JL 0x1000b0a8\n  1000b110:  POP ESI\n  1000b111:  POP ECX\n  1000b112:  RET", 
+  "callers": [
+    {
+      "address": "0x100035a0", 
+      "name": "gbActorMgr"
+    }
+  ]
+}

@@ -1,0 +1,175 @@
+{
+  "address": "0x100ed6fe", 
+  "size_bytes": 339, 
+  "calling_convention": "unknown", 
+  "signature": "undefined FUN_100ed6fe(undefined4 param_1)", 
+  "callees": [
+    {
+      "address": "0x00000049", 
+      "name": "GetModuleFileNameA"
+    }, 
+    {
+      "address": "0x100ebd20", 
+      "name": "FUN_100ebd20"
+    }, 
+    {
+      "address": "0x100ea6d0", 
+      "name": "_strlen"
+    }, 
+    {
+      "address": "0x100ea6d0", 
+      "name": "_strlen"
+    }, 
+    {
+      "address": "0x100e56b0", 
+      "name": "_strncpy"
+    }, 
+    {
+      "address": "0x100ebd20", 
+      "name": "FUN_100ebd20"
+    }, 
+    {
+      "address": "0x100ebd30", 
+      "name": "FUN_100ebd30"
+    }, 
+    {
+      "address": "0x100ebd30", 
+      "name": "FUN_100ebd30"
+    }, 
+    {
+      "address": "0x100ebd30", 
+      "name": "FUN_100ebd30"
+    }, 
+    {
+      "address": "0x100f2716", 
+      "name": "FUN_100f2716"
+    }, 
+    {
+      "address": "0x100ea6d0", 
+      "name": "_strlen"
+    }, 
+    {
+      "address": "0x00000031", 
+      "name": "GetStdHandle"
+    }, 
+    {
+      "address": "0x00000001", 
+      "name": "WriteFile"
+    }
+  ], 
+  "global_refs": [
+    {
+      "address": "0x00000004", 
+      "type": null, 
+      "name": "DAT_00000004"
+    }, 
+    {
+      "address": "0x1012a8e8", 
+      "type": "undefined4", 
+      "name": "DAT_1012a8e8"
+    }, 
+    {
+      "address": "0x1012a8f0", 
+      "type": "undefined4", 
+      "name": "DAT_1012a8f0"
+    }, 
+    {
+      "address": "0x1012a978", 
+      "type": null, 
+      "name": "DAT_1012a978"
+    }, 
+    {
+      "address": "0x10166c7c", 
+      "type": "undefined4", 
+      "name": "DAT_10166c7c"
+    }, 
+    {
+      "address": "0x10166c80", 
+      "type": "undefined4", 
+      "name": "DAT_10166c80"
+    }, 
+    {
+      "address": "0x-00001a8", 
+      "type": null, 
+      "name": "DAT_-00001a8"
+    }, 
+    {
+      "address": "0x100f5150", 
+      "type": "pointer", 
+      "name": "DAT_100f5150"
+    }, 
+    {
+      "address": "0x10110850", 
+      "type": "string", 
+      "name": "DAT_10110850"
+    }, 
+    {
+      "address": "0x1011084c", 
+      "type": null, 
+      "name": "DAT_1011084c"
+    }, 
+    {
+      "address": "0x-00000a4", 
+      "type": null, 
+      "name": "DAT_-00000a4"
+    }, 
+    {
+      "address": "0x10110830", 
+      "type": "string", 
+      "name": "DAT_10110830"
+    }, 
+    {
+      "address": "0x1011082c", 
+      "type": null, 
+      "name": "DAT_1011082c"
+    }, 
+    {
+      "address": "0x1012a8f4", 
+      "type": "pointer", 
+      "name": "DAT_1012a8f4"
+    }, 
+    {
+      "address": "0x101107b0", 
+      "type": "string", 
+      "name": "DAT_101107b0"
+    }, 
+    {
+      "address": "0x10110804", 
+      "type": "string", 
+      "name": "DAT_10110804"
+    }, 
+    {
+      "address": "0x100f50f0", 
+      "type": "pointer", 
+      "name": "DAT_100f50f0"
+    }, 
+    {
+      "address": "0x100f5030", 
+      "type": "pointer", 
+      "name": "DAT_100f5030"
+    }
+  ], 
+  "has_custom_name": false, 
+  "decompiled_c": "\nvoid FUN_100ed6fe(DWORD param_1)\n\n{\n  undefined4 *puVar1;\n  DWORD *pDVar2;\n  DWORD DVar3;\n  size_t sVar4;\n  HANDLE hFile;\n  int iVar5;\n  char acStackY_1e3 [7];\n  undefined *puStackY_1dc;\n  char *pcStackY_1d8;\n  undefined4 uStackY_1d4;\n  undefined *puStackY_1d0;\n  undefined4 uStackY_1cc;\n  undefined *puStackY_1c8;\n  undefined *puStackY_1c4;\n  LPCVOID lpBuffer;\n  LPDWORD lpNumberOfBytesWritten;\n  LPOVERLAPPED lpOverlapped;\n  CHAR local_1a8 [260];\n  undefined local_a4 [160];\n  \n  iVar5 = 0;\n  pDVar2 = &DAT_1012a8e8;\n  do {\n    if (param_1 == *pDVar2) break;\n    pDVar2 = pDVar2 + 2;\n    iVar5 = iVar5 + 1;\n  } while ((int)pDVar2 < 0x1012a978);\n  if (param_1 == (&DAT_1012a8e8)[iVar5 * 2]) {\n    if ((DAT_10166c7c == 1) || ((DAT_10166c7c == 0 && (DAT_10166c80 == 1)))) {\n      lpNumberOfBytesWritten = &param_1;\n      puVar1 = (undefined4 *)(iVar5 * 8 + 0x1012a8ec);\n      lpOverlapped = (LPOVERLAPPED)0x0;\n      sVar4 = _strlen((char *)*puVar1);\n      lpBuffer = (LPCVOID)*puVar1;\n      puStackY_1c4 = (undefined *)0x100ed847;\n      hFile = GetStdHandle(0xfffffff4);\n      puStackY_1c4 = (undefined *)0x100ed84e;\n      WriteFile(hFile,lpBuffer,sVar4,lpNumberOfBytesWritten,lpOverlapped);\n    }\n    else if (param_1 != 0xfc) {\n      DVar3 = GetModuleFileNameA((HMODULE)0x0,local_1a8,0x104);\n      if (DVar3 == 0) {\n        FUN_100ebd20();\n      }\n      sVar4 = _strlen(local_1a8);\n      if (0x3c < sVar4 + 1) {\n        sVar4 = _strlen(local_1a8);\n        puStackY_1c4 = (undefined *)0x100ed7c8;\n        _strncpy(acStackY_1e3 + sVar4,\"...\",3);\n      }\n      FUN_100ebd20();\n      puStackY_1c4 = (undefined *)0x100ed7e9;\n      FUN_100ebd30();\n      puStackY_1c8 = local_a4;\n      puStackY_1c4 = &DAT_1011082c;\n      uStackY_1cc = 0x100ed7fa;\n      FUN_100ebd30();\n      uStackY_1cc = *(undefined4 *)(iVar5 * 8 + 0x1012a8ec);\n      puStackY_1d0 = local_a4;\n      uStackY_1d4 = 0x100ed80c;\n      FUN_100ebd30();\n      uStackY_1d4 = 0x12010;\n      puStackY_1dc = local_a4;\n      pcStackY_1d8 = \"Microsoft Visual C++ Runtime Library\";\n      acStackY_1e3[3] = '\\\"';\n      acStackY_1e3[4] = -0x28;\n      acStackY_1e3[5] = '\\x0e';\n      acStackY_1e3[6] = '\\x10';\n      FUN_100f2716();\n    }\n  }\n  return;\n}\n\n", 
+  "is_thunk": false, 
+  "name": "FUN_100ed6fe", 
+  "assembly": "  100ed6fe:  PUSH EBP\n  100ed6ff:  MOV EBP,ESP\n  100ed701:  SUB ESP,0x1a4\n  100ed707:  MOV EDX,dword ptr [EBP + 0x8]\n  100ed70a:  XOR ECX,ECX\n  100ed70c:  MOV EAX,0x1012a8e8\n  100ed711:  CMP EDX,dword ptr [EAX]\n  100ed713:  JZ 0x100ed720\n  100ed715:  ADD EAX,0x8\n  100ed718:  INC ECX\n  100ed719:  CMP EAX,0x1012a978\n  100ed71e:  JL 0x100ed711\n  100ed720:  PUSH ESI\n  100ed721:  MOV ESI,ECX\n  100ed723:  SHL ESI,0x3\n  100ed726:  CMP EDX,dword ptr [ESI + 0x1012a8e8]\n  100ed72c:  JNZ 0x100ed84e\n  100ed732:  MOV EAX,[0x10166c7c]\n  100ed737:  CMP EAX,0x1\n  100ed73a:  JZ 0x100ed828\n  100ed740:  TEST EAX,EAX\n  100ed742:  JNZ 0x100ed751\n  100ed744:  CMP dword ptr [0x10166c80],0x1\n  100ed74b:  JZ 0x100ed828\n  100ed751:  CMP EDX,0xfc\n  100ed757:  JZ 0x100ed84e\n  100ed75d:  LEA EAX,[EBP + 0xfffffe5c]\n  100ed763:  PUSH 0x104\n  100ed768:  PUSH EAX\n  100ed769:  PUSH 0x0\n  100ed76b:  CALL dword ptr [0x100f5150]\n  100ed771:  TEST EAX,EAX\n  100ed773:  JNZ 0x100ed788\n  100ed775:  LEA EAX,[EBP + 0xfffffe5c]\n  100ed77b:  PUSH 0x10110850\n  100ed780:  PUSH EAX\n  100ed781:  CALL 0x100ebd20\n  100ed786:  POP ECX\n  100ed787:  POP ECX\n  100ed788:  LEA EAX,[EBP + 0xfffffe5c]\n  100ed78e:  PUSH EDI\n  100ed78f:  PUSH EAX\n  100ed790:  LEA EDI,[EBP + 0xfffffe5c]\n  100ed796:  CALL 0x100ea6d0\n  100ed79b:  INC EAX\n  100ed79c:  POP ECX\n  100ed79d:  CMP EAX,0x3c\n  100ed7a0:  JBE 0x100ed7cb\n  100ed7a2:  LEA EAX,[EBP + 0xfffffe5c]\n  100ed7a8:  PUSH EAX\n  100ed7a9:  CALL 0x100ea6d0\n  100ed7ae:  MOV EDI,EAX\n  100ed7b0:  LEA EAX,[EBP + 0xfffffe5c]\n  100ed7b6:  SUB EAX,0x3b\n  100ed7b9:  PUSH 0x3\n  100ed7bb:  ADD EDI,EAX\n  100ed7bd:  PUSH 0x1011084c\n  100ed7c2:  PUSH EDI\n  100ed7c3:  CALL 0x100e56b0\n  100ed7c8:  ADD ESP,0x10\n  100ed7cb:  LEA EAX,[EBP + 0xffffff60]\n  100ed7d1:  PUSH 0x10110830\n  100ed7d6:  PUSH EAX\n  100ed7d7:  CALL 0x100ebd20\n  100ed7dc:  LEA EAX,[EBP + 0xffffff60]\n  100ed7e2:  PUSH EDI\n  100ed7e3:  PUSH EAX\n  100ed7e4:  CALL 0x100ebd30\n  100ed7e9:  LEA EAX,[EBP + 0xffffff60]\n  100ed7ef:  PUSH 0x1011082c\n  100ed7f4:  PUSH EAX\n  100ed7f5:  CALL 0x100ebd30\n  100ed7fa:  PUSH dword ptr [ESI + 0x1012a8ec]\n  100ed800:  LEA EAX,[EBP + 0xffffff60]\n  100ed806:  PUSH EAX\n  100ed807:  CALL 0x100ebd30\n  100ed80c:  PUSH 0x12010\n  100ed811:  LEA EAX,[EBP + 0xffffff60]\n  100ed817:  PUSH 0x10110804\n  100ed81c:  PUSH EAX\n  100ed81d:  CALL 0x100f2716\n  100ed822:  ADD ESP,0x2c\n  100ed825:  POP EDI\n  100ed826:  JMP 0x100ed84e\n  100ed828:  LEA EAX,[EBP + 0x8]\n  100ed82b:  LEA ESI,[ESI + 0x1012a8ec]\n  100ed831:  PUSH 0x0\n  100ed833:  PUSH EAX\n  100ed834:  PUSH dword ptr [ESI]\n  100ed836:  CALL 0x100ea6d0\n  100ed83b:  POP ECX\n  100ed83c:  PUSH EAX\n  100ed83d:  PUSH dword ptr [ESI]\n  100ed83f:  PUSH -0xc\n  100ed841:  CALL dword ptr [0x100f50f0]\n  100ed847:  PUSH EAX\n  100ed848:  CALL dword ptr [0x100f5030]\n  100ed84e:  POP ESI\n  100ed84f:  LEAVE\n  100ed850:  RET", 
+  "callers": [
+    {
+      "address": "0x100e6575", 
+      "name": "__amsg_exit"
+    }, 
+    {
+      "address": "0x100ed6c5", 
+      "name": "FUN_100ed6c5"
+    }, 
+    {
+      "address": "0x100ed6c5", 
+      "name": "FUN_100ed6c5"
+    }, 
+    {
+      "address": "0x100f12f0", 
+      "name": "FUN_100f12f0"
+    }
+  ]
+}

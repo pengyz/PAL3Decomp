@@ -1,0 +1,183 @@
+{
+  "address": "0x1000fec0", 
+  "size_bytes": 929, 
+  "calling_convention": "__thiscall", 
+  "signature": "gbOBBox * __thiscall GetTotalOBBox(gbGeomNode * this, gbOBBox * param_1)", 
+  "callees": [
+    {
+      "address": "0x10010270", 
+      "name": "FUN_10010270"
+    }, 
+    {
+      "address": "0x10001f20", 
+      "name": "gbVec3D"
+    }, 
+    {
+      "address": "0x10001f40", 
+      "name": "operator="
+    }, 
+    {
+      "address": "0x100118a0", 
+      "name": "FUN_100118a0"
+    }, 
+    {
+      "address": "0x100118f0", 
+      "name": "FUN_100118f0"
+    }, 
+    {
+      "address": "0x10026070", 
+      "name": "LeftTranslate"
+    }, 
+    {
+      "address": "0x10001f20", 
+      "name": "gbVec3D"
+    }, 
+    {
+      "address": "0x10001f40", 
+      "name": "operator="
+    }, 
+    {
+      "address": "0x100118a0", 
+      "name": "FUN_100118a0"
+    }, 
+    {
+      "address": "0x100118f0", 
+      "name": "FUN_100118f0"
+    }, 
+    {
+      "address": "0x10026070", 
+      "name": "LeftTranslate"
+    }, 
+    {
+      "address": "0x100279e0", 
+      "name": "Transform"
+    }, 
+    {
+      "address": "0x10025640", 
+      "name": "LoadIdentity"
+    }
+  ], 
+  "global_refs": [
+    {
+      "address": "0x-0000058", 
+      "type": null, 
+      "name": "DAT_-0000058"
+    }, 
+    {
+      "address": "0x1013a0cc", 
+      "type": "undefined4", 
+      "name": "DAT_1013a0cc"
+    }, 
+    {
+      "address": "0x00000004", 
+      "type": null, 
+      "name": "DAT_00000004"
+    }, 
+    {
+      "address": "0x-000006c", 
+      "type": null, 
+      "name": "DAT_-000006c"
+    }, 
+    {
+      "address": "0x-0000070", 
+      "type": null, 
+      "name": "DAT_-0000070"
+    }, 
+    {
+      "address": "0x-000003c", 
+      "type": null, 
+      "name": "DAT_-000003c"
+    }, 
+    {
+      "address": "0x-0000074", 
+      "type": null, 
+      "name": "DAT_-0000074"
+    }, 
+    {
+      "address": "0x-0000048", 
+      "type": null, 
+      "name": "DAT_-0000048"
+    }, 
+    {
+      "address": "0x-0000044", 
+      "type": null, 
+      "name": "DAT_-0000044"
+    }, 
+    {
+      "address": "0x-0000040", 
+      "type": null, 
+      "name": "DAT_-0000040"
+    }, 
+    {
+      "address": "0x-0000030", 
+      "type": null, 
+      "name": "DAT_-0000030"
+    }, 
+    {
+      "address": "0x-0000024", 
+      "type": null, 
+      "name": "DAT_-0000024"
+    }, 
+    {
+      "address": "0x-0000054", 
+      "type": null, 
+      "name": "DAT_-0000054"
+    }, 
+    {
+      "address": "0x-0000050", 
+      "type": null, 
+      "name": "DAT_-0000050"
+    }, 
+    {
+      "address": "0x-000004c", 
+      "type": null, 
+      "name": "DAT_-000004c"
+    }, 
+    {
+      "address": "0x-0000018", 
+      "type": null, 
+      "name": "DAT_-0000018"
+    }, 
+    {
+      "address": "0x-0000014", 
+      "type": null, 
+      "name": "DAT_-0000014"
+    }, 
+    {
+      "address": "0x-0000010", 
+      "type": null, 
+      "name": "DAT_-0000010"
+    }, 
+    {
+      "address": "0x-000000c", 
+      "type": null, 
+      "name": "DAT_-000000c"
+    }, 
+    {
+      "address": "0x-0000008", 
+      "type": null, 
+      "name": "DAT_-0000008"
+    }, 
+    {
+      "address": "0x-0000004", 
+      "type": null, 
+      "name": "DAT_-0000004"
+    }, 
+    {
+      "address": "0x1013a0d0", 
+      "type": "undefined4", 
+      "name": "DAT_1013a0d0"
+    }, 
+    {
+      "address": "0x100f5508", 
+      "type": null, 
+      "name": "DAT_100f5508"
+    }
+  ], 
+  "has_custom_name": true, 
+  "decompiled_c": "\n/* public: struct gbOBBox * __thiscall gbGeomNode::GetTotalOBBox(struct gbOBBox *) */\n\ngbOBBox * __thiscall gbGeomNode::GetTotalOBBox(gbGeomNode *this,gbOBBox *param_1)\n\n{\n  int iVar1;\n  undefined4 *puVar2;\n  undefined4 uVar3;\n  int iVar4;\n  int iVar5;\n  int *piVar6;\n  gbGeomNode *pgVar7;\n  gbGeomNode *pgVar8;\n  float *pfVar9;\n  gbOBBox *pgVar10;\n  float *pfVar11;\n  uint local_58;\n  float local_54;\n  float local_50;\n  float local_4c;\n  float local_48;\n  float local_44;\n  float local_40;\n  gbVec3D local_3c [12];\n  undefined local_30 [12];\n  gbVec3D local_24 [12];\n  float local_18 [6];\n  \n                    /* 0xfec0  558  ?GetTotalOBBox@gbGeomNode@@QAEPAUgbOBBox@@PAU2@@Z */\n  if (*(int *)(this + 0x108) != 0) {\n    DAT_1013a0cc = this;\n  }\n  local_58 = (uint)(*(int *)(this + 0x108) != 0);\n  iVar4 = *(int *)(this + 0xc);\n  *(int *)(this + 0x18) = iVar4;\n  pgVar7 = DAT_1013a0cc;\n  while (DAT_1013a0cc = pgVar7, iVar4 != 0) {\n    FUN_10010270(&DAT_1013a0cc,&local_58,iVar4);\n    iVar4 = *(int *)(*(int *)(this + 0x18) + 4);\n    *(int *)(this + 0x18) = iVar4;\n    pgVar7 = DAT_1013a0cc;\n  }\n  if (local_58 == 0) {\n    pgVar7 = this + 0x58;\n    pgVar10 = param_1;\n    for (iVar4 = 0x10; iVar4 != 0; iVar4 = iVar4 + -1) {\n      *(undefined4 *)pgVar10 = *(undefined4 *)pgVar7;\n      pgVar7 = pgVar7 + 4;\n      pgVar10 = pgVar10 + 4;\n    }\n    iVar4 = *(int *)(this + 0x108);\n    if (iVar4 != 0) {\n      puVar2 = (undefined4 *)\n               gbVec3D::gbVec3D(local_3c,*(float *)(iVar4 + 100) - *(float *)(iVar4 + 0x58),\n                                *(float *)(iVar4 + 0x68) - *(float *)(iVar4 + 0x5c),\n                                *(float *)(iVar4 + 0x6c) - *(float *)(iVar4 + 0x60));\n      local_48 = (float)*puVar2;\n      local_44 = (float)puVar2[1];\n      local_40 = (float)puVar2[2];\n      gbVec3D::operator=((gbVec3D *)(param_1 + 0x40),(gbVec3D *)&local_48);\n      uVar3 = FUN_100118a0(local_30,(float *)(iVar4 + 0x58),(float *)(iVar4 + 100),0x3f000000);\n      puVar2 = (undefined4 *)FUN_100118f0(local_24,uVar3);\n      local_54 = (float)*puVar2;\n      local_50 = (float)puVar2[1];\n      local_4c = (float)puVar2[2];\n      gbMatrix4::LeftTranslate((gbMatrix4 *)param_1,(gbVec3D *)&local_54);\n      return param_1;\n    }\n    *(undefined4 *)(param_1 + 0x48) = 0;\n    *(undefined4 *)(param_1 + 0x44) = 0;\n    *(undefined4 *)(param_1 + 0x40) = 0;\n    return param_1;\n  }\n  if (local_58 != 1) {\n    iVar4 = 0;\n    local_48 = 3.4028235e+38;\n    local_44 = 3.4028235e+38;\n    local_40 = 3.4028235e+38;\n    local_54 = -3.4028235e+38;\n    local_50 = -3.4028235e+38;\n    local_4c = -3.4028235e+38;\n    local_18[0] = 0.0;\n    local_18[1] = 0.0;\n    local_18[2] = 0.0;\n    local_18[3] = 0.0;\n    local_18[4] = 0.0;\n    local_18[5] = 0.0;\n    if (0 < (int)local_58) {\n      piVar6 = (int *)&DAT_1013a0cc;\n      do {\n        iVar1 = *piVar6;\n        pfVar9 = (float *)(*(int *)(iVar1 + 0x108) + 0x58);\n        pfVar11 = local_18;\n        for (iVar5 = 6; iVar5 != 0; iVar5 = iVar5 + -1) {\n          *pfVar11 = *pfVar9;\n          pfVar9 = pfVar9 + 1;\n          pfVar11 = pfVar11 + 1;\n        }\n        gbAABBox::Transform((gbAABBox *)local_18,(gbMatrix4 *)(iVar1 + 0x58));\n        if (local_18[0] < local_48) {\n          local_48 = local_18[0];\n        }\n        if (local_18[1] < local_44) {\n          local_44 = local_18[1];\n        }\n        if (local_18[2] < local_40) {\n          local_40 = local_18[2];\n        }\n        if (local_54 < local_18[3]) {\n          local_54 = local_18[3];\n        }\n        if (local_50 < local_18[4]) {\n          local_50 = local_18[4];\n        }\n        if (local_4c < local_18[5]) {\n          local_4c = local_18[5];\n        }\n        iVar4 = iVar4 + 1;\n        piVar6 = piVar6 + 1;\n      } while (iVar4 < (int)local_58);\n    }\n    *(float *)(param_1 + 0x40) = local_54 - local_48;\n    *(float *)(param_1 + 0x44) = local_50 - local_44;\n    *(float *)(param_1 + 0x48) = local_4c - local_40;\n    gbMatrix4::LoadIdentity((gbMatrix4 *)param_1);\n    *(float *)(param_1 + 0x30) = (local_54 + local_48) * 0.5;\n    *(float *)(param_1 + 0x34) = (local_50 + local_44) * 0.5;\n    *(float *)(param_1 + 0x38) = (local_4c + local_40) * 0.5;\n    return param_1;\n  }\n  pgVar8 = pgVar7 + 0x58;\n  pgVar10 = param_1;\n  for (iVar4 = 0x10; iVar4 != 0; iVar4 = iVar4 + -1) {\n    *(undefined4 *)pgVar10 = *(undefined4 *)pgVar8;\n    pgVar8 = pgVar8 + 4;\n    pgVar10 = pgVar10 + 4;\n  }\n  iVar4 = *(int *)(pgVar7 + 0x108);\n  if (iVar4 != 0) {\n    puVar2 = (undefined4 *)\n             gbVec3D::gbVec3D(local_24,*(float *)(iVar4 + 100) - *(float *)(iVar4 + 0x58),\n                              *(float *)(iVar4 + 0x68) - *(float *)(iVar4 + 0x5c),\n                              *(float *)(iVar4 + 0x6c) - *(float *)(iVar4 + 0x60));\n    local_48 = (float)*puVar2;\n    local_44 = (float)puVar2[1];\n    local_40 = (float)puVar2[2];\n    gbVec3D::operator=((gbVec3D *)(param_1 + 0x40),(gbVec3D *)&local_48);\n    uVar3 = FUN_100118a0(local_30,(float *)(iVar4 + 0x58),(float *)(iVar4 + 100),0x3f000000);\n    puVar2 = (undefined4 *)FUN_100118f0(local_3c,uVar3);\n    local_54 = (float)*puVar2;\n    local_50 = (float)puVar2[1];\n    local_4c = (float)puVar2[2];\n    gbMatrix4::LeftTranslate((gbMatrix4 *)param_1,(gbVec3D *)&local_54);\n    return param_1;\n  }\n  *(undefined4 *)(param_1 + 0x48) = 0;\n  *(undefined4 *)(param_1 + 0x44) = 0;\n  *(undefined4 *)(param_1 + 0x40) = 0;\n  return param_1;\n}\n\n", 
+  "is_thunk": false, 
+  "name": "GetTotalOBBox", 
+  "assembly": "  1000fec0:  SUB ESP,0x58\n  1000fec3:  PUSH EBX\n  1000fec4:  MOV EBX,ECX\n  1000fec6:  XOR EDX,EDX\n  1000fec8:  PUSH EBP\n  1000fec9:  MOV EAX,dword ptr [EBX + 0x108]\n  1000fecf:  XOR ECX,ECX\n  1000fed1:  PUSH ESI\n  1000fed2:  CMP EAX,EDX\n  1000fed4:  PUSH EDI\n  1000fed5:  MOV dword ptr [ESP + 0x10],ECX\n  1000fed9:  JZ 0x1000feea\n  1000fedb:  MOV ECX,0x1\n  1000fee0:  MOV dword ptr [0x1013a0cc],EBX\n  1000fee6:  MOV dword ptr [ESP + 0x10],ECX\n  1000feea:  MOV EAX,dword ptr [EBX + 0xc]\n  1000feed:  CMP EAX,EDX\n  1000feef:  MOV dword ptr [EBX + 0x18],EAX\n  1000fef2:  JZ 0x1000ff1a\n  1000fef4:  PUSH EAX\n  1000fef5:  LEA EAX,[ESP + 0x14]\n  1000fef9:  PUSH EAX\n  1000fefa:  PUSH 0x1013a0cc\n  1000feff:  CALL 0x10010270\n  1000ff04:  MOV ECX,dword ptr [EBX + 0x18]\n  1000ff07:  ADD ESP,0xc\n  1000ff0a:  MOV EAX,dword ptr [ECX + 0x4]\n  1000ff0d:  TEST EAX,EAX\n  1000ff0f:  MOV dword ptr [EBX + 0x18],EAX\n  1000ff12:  JNZ 0x1000fef4\n  1000ff14:  MOV ECX,dword ptr [ESP + 0x10]\n  1000ff18:  XOR EDX,EDX\n  1000ff1a:  CMP ECX,EDX\n  1000ff1c:  JNZ 0x1000ffef\n  1000ff22:  MOV EBP,dword ptr [ESP + 0x6c]\n  1000ff26:  LEA ESI,[EBX + 0x58]\n  1000ff29:  MOV ECX,0x10\n  1000ff2e:  MOV EDI,EBP\n  1000ff30:  MOVSD.REP ES:EDI,ESI\n  1000ff32:  MOV EBX,dword ptr [EBX + 0x108]\n  1000ff38:  CMP EBX,EDX\n  1000ff3a:  JZ 0x1000ffda\n  1000ff40:  LEA ESI,[EBX + 0x58]\n  1000ff43:  PUSH ECX\n  1000ff44:  FLD dword ptr [ESI + 0x14]\n  1000ff47:  FSUB dword ptr [ESI + 0x8]\n  1000ff4a:  LEA EDI,[ESI + 0xc]\n  1000ff4d:  FSTP dword ptr [ESP]\n  1000ff50:  FLD dword ptr [EDI + 0x4]\n  1000ff53:  FSUB dword ptr [ESI + 0x4]\n  1000ff56:  PUSH ECX\n  1000ff57:  FSTP dword ptr [ESP]\n  1000ff5a:  FLD dword ptr [EDI]\n  1000ff5c:  FSUB dword ptr [ESI]\n  1000ff5e:  PUSH ECX\n  1000ff5f:  LEA ECX,[ESP + 0x38]\n  1000ff63:  FSTP dword ptr [ESP]\n  1000ff66:  CALL 0x10001f20\n  1000ff6b:  MOV EDX,dword ptr [EAX]\n  1000ff6d:  MOV dword ptr [ESP + 0x20],EDX\n  1000ff71:  MOV ECX,dword ptr [EAX + 0x4]\n  1000ff74:  MOV dword ptr [ESP + 0x24],ECX\n  1000ff78:  LEA ECX,[EBP + 0x40]\n  1000ff7b:  MOV EDX,dword ptr [EAX + 0x8]\n  1000ff7e:  LEA EAX,[ESP + 0x20]\n  1000ff82:  PUSH EAX\n  1000ff83:  MOV dword ptr [ESP + 0x2c],EDX\n  1000ff87:  CALL 0x10001f40\n  1000ff8c:  PUSH 0x3f000000\n  1000ff91:  PUSH EDI\n  1000ff92:  LEA ECX,[ESP + 0x40]\n  1000ff96:  PUSH ESI\n  1000ff97:  PUSH ECX\n  1000ff98:  CALL 0x100118a0\n  1000ff9d:  ADD ESP,0xc\n  1000ffa0:  LEA EDX,[ESP + 0x48]\n  1000ffa4:  PUSH EAX\n  1000ffa5:  PUSH EDX\n  1000ffa6:  CALL 0x100118f0\n  1000ffab:  MOV ECX,dword ptr [EAX]\n  1000ffad:  ADD ESP,0xc\n  1000ffb0:  MOV dword ptr [ESP + 0x14],ECX\n  1000ffb4:  LEA ECX,[ESP + 0x14]\n  1000ffb8:  MOV EDX,dword ptr [EAX + 0x4]\n  1000ffbb:  PUSH ECX\n  1000ffbc:  MOV dword ptr [ESP + 0x1c],EDX\n  1000ffc0:  MOV ECX,EBP\n  1000ffc2:  MOV EAX,dword ptr [EAX + 0x8]\n  1000ffc5:  MOV dword ptr [ESP + 0x20],EAX\n  1000ffc9:  CALL 0x10026070\n  1000ffce:  POP EDI\n  1000ffcf:  MOV EAX,EBP\n  1000ffd1:  POP ESI\n  1000ffd2:  POP EBP\n  1000ffd3:  POP EBX\n  1000ffd4:  ADD ESP,0x58\n  1000ffd7:  RET 0x4\n  1000ffda:  POP EDI\n  1000ffdb:  MOV dword ptr [EBP + 0x48],EDX\n  1000ffde:  MOV dword ptr [EBP + 0x44],EDX\n  1000ffe1:  MOV dword ptr [EBP + 0x40],EDX\n  1000ffe4:  MOV EAX,EBP\n  1000ffe6:  POP ESI\n  1000ffe7:  POP EBP\n  1000ffe8:  POP EBX\n  1000ffe9:  ADD ESP,0x58\n  1000ffec:  RET 0x4\n  1000ffef:  CMP ECX,0x1\n  1000fff2:  JNZ 0x100100ca\n  1000fff8:  MOV EAX,[0x1013a0cc]\n  1000fffd:  MOV EBX,dword ptr [ESP + 0x6c]\n  10010001:  MOV ECX,0x10\n  10010006:  MOV EDI,EBX\n  10010008:  LEA ESI,[EAX + 0x58]\n  1001000b:  MOVSD.REP ES:EDI,ESI\n  1001000d:  MOV EAX,dword ptr [EAX + 0x108]\n  10010013:  CMP EAX,EDX\n  10010015:  JZ 0x100100b5\n  1001001b:  LEA ESI,[EAX + 0x58]\n  1001001e:  PUSH ECX\n  1001001f:  FLD dword ptr [ESI + 0x14]\n  10010022:  FSUB dword ptr [ESI + 0x8]\n  10010025:  LEA EDI,[ESI + 0xc]\n  10010028:  FSTP dword ptr [ESP]\n  1001002b:  FLD dword ptr [EDI + 0x4]\n  1001002e:  FSUB dword ptr [ESI + 0x4]\n  10010031:  PUSH ECX\n  10010032:  FSTP dword ptr [ESP]\n  10010035:  FLD dword ptr [EDI]\n  10010037:  FSUB dword ptr [ESI]\n  10010039:  PUSH ECX\n  1001003a:  LEA ECX,[ESP + 0x50]\n  1001003e:  FSTP dword ptr [ESP]\n  10010041:  CALL 0x10001f20\n  10010046:  MOV EDX,dword ptr [EAX]\n  10010048:  MOV dword ptr [ESP + 0x20],EDX\n  1001004c:  MOV ECX,dword ptr [EAX + 0x4]\n  1001004f:  MOV dword ptr [ESP + 0x24],ECX\n  10010053:  LEA ECX,[EBX + 0x40]\n  10010056:  MOV EDX,dword ptr [EAX + 0x8]\n  10010059:  LEA EAX,[ESP + 0x20]\n  1001005d:  PUSH EAX\n  1001005e:  MOV dword ptr [ESP + 0x2c],EDX\n  10010062:  CALL 0x10001f40\n  10010067:  PUSH 0x3f000000\n  1001006c:  PUSH EDI\n  1001006d:  LEA ECX,[ESP + 0x40]\n  10010071:  PUSH ESI\n  10010072:  PUSH ECX\n  10010073:  CALL 0x100118a0\n  10010078:  ADD ESP,0xc\n  1001007b:  LEA EDX,[ESP + 0x30]\n  1001007f:  PUSH EAX\n  10010080:  PUSH EDX\n  10010081:  CALL 0x100118f0\n  10010086:  MOV ECX,dword ptr [EAX]\n  10010088:  ADD ESP,0xc\n  1001008b:  MOV dword ptr [ESP + 0x14],ECX\n  1001008f:  LEA ECX,[ESP + 0x14]\n  10010093:  MOV EDX,dword ptr [EAX + 0x4]\n  10010096:  PUSH ECX\n  10010097:  MOV dword ptr [ESP + 0x1c],EDX\n  1001009b:  MOV ECX,EBX\n  1001009d:  MOV EAX,dword ptr [EAX + 0x8]\n  100100a0:  MOV dword ptr [ESP + 0x20],EAX\n  100100a4:  CALL 0x10026070\n  100100a9:  POP EDI\n  100100aa:  POP ESI\n  100100ab:  MOV EAX,EBX\n  100100ad:  POP EBP\n  100100ae:  POP EBX\n  100100af:  ADD ESP,0x58\n  100100b2:  RET 0x4\n  100100b5:  POP EDI\n  100100b6:  POP ESI\n  100100b7:  MOV dword ptr [EBX + 0x48],EDX\n  100100ba:  MOV dword ptr [EBX + 0x44],EDX\n  100100bd:  MOV dword ptr [EBX + 0x40],EDX\n  100100c0:  MOV EAX,EBX\n  100100c2:  POP EBP\n  100100c3:  POP EBX\n  100100c4:  ADD ESP,0x58\n  100100c7:  RET 0x4\n  100100ca:  XOR EBP,EBP\n  100100cc:  CMP ECX,EDX\n  100100ce:  MOV dword ptr [ESP + 0x20],0x7f7fffff\n  100100d6:  MOV dword ptr [ESP + 0x24],0x7f7fffff\n  100100de:  MOV dword ptr [ESP + 0x28],0x7f7fffff\n  100100e6:  MOV dword ptr [ESP + 0x14],0xff7fffff\n  100100ee:  MOV dword ptr [ESP + 0x18],0xff7fffff\n  100100f6:  MOV dword ptr [ESP + 0x1c],0xff7fffff\n  100100fe:  MOV dword ptr [ESP + 0x50],0x0\n  10010106:  MOV dword ptr [ESP + 0x54],0x0\n  1001010e:  MOV dword ptr [ESP + 0x58],0x0\n  10010116:  MOV dword ptr [ESP + 0x5c],0x0\n  1001011e:  MOV dword ptr [ESP + 0x60],0x0\n  10010126:  MOV dword ptr [ESP + 0x64],0x0\n  1001012e:  JLE 0x100101f6\n  10010134:  MOV EBX,0x1013a0cc\n  10010139:  MOV EAX,dword ptr [EBX]\n  1001013b:  MOV ECX,0x6\n  10010140:  LEA EDI,[ESP + 0x50]\n  10010144:  MOV ESI,dword ptr [EAX + 0x108]\n  1001014a:  ADD EAX,0x58\n  1001014d:  ADD ESI,0x58\n  10010150:  PUSH EAX\n  10010151:  MOVSD.REP ES:EDI,ESI\n  10010153:  LEA ECX,[ESP + 0x54]\n  10010157:  CALL 0x100279e0\n  1001015c:  FLD dword ptr [ESP + 0x20]\n  10010160:  FCOMP dword ptr [ESP + 0x50]\n  10010164:  FNSTSW AX\n  10010166:  TEST AH,0x41\n  10010169:  JNZ 0x10010173\n  1001016b:  MOV EDX,dword ptr [ESP + 0x50]\n  1001016f:  MOV dword ptr [ESP + 0x20],EDX\n  10010173:  FLD dword ptr [ESP + 0x24]\n  10010177:  FCOMP dword ptr [ESP + 0x54]\n  1001017b:  FNSTSW AX\n  1001017d:  TEST AH,0x41\n  10010180:  JNZ 0x1001018a\n  10010182:  MOV EAX,dword ptr [ESP + 0x54]\n  10010186:  MOV dword ptr [ESP + 0x24],EAX\n  1001018a:  FLD dword ptr [ESP + 0x28]\n  1001018e:  FCOMP dword ptr [ESP + 0x58]\n  10010192:  FNSTSW AX\n  10010194:  TEST AH,0x41\n  10010197:  JNZ 0x100101a1\n  10010199:  MOV ECX,dword ptr [ESP + 0x58]\n  1001019d:  MOV dword ptr [ESP + 0x28],ECX\n  100101a1:  FLD dword ptr [ESP + 0x14]\n  100101a5:  FCOMP dword ptr [ESP + 0x5c]\n  100101a9:  FNSTSW AX\n  100101ab:  TEST AH,0x1\n  100101ae:  JZ 0x100101b8\n  100101b0:  MOV EDX,dword ptr [ESP + 0x5c]\n  100101b4:  MOV dword ptr [ESP + 0x14],EDX\n  100101b8:  FLD dword ptr [ESP + 0x18]\n  100101bc:  FCOMP dword ptr [ESP + 0x60]\n  100101c0:  FNSTSW AX\n  100101c2:  TEST AH,0x1\n  100101c5:  JZ 0x100101cf\n  100101c7:  MOV EAX,dword ptr [ESP + 0x60]\n  100101cb:  MOV dword ptr [ESP + 0x18],EAX\n  100101cf:  FLD dword ptr [ESP + 0x1c]\n  100101d3:  FCOMP dword ptr [ESP + 0x64]\n  100101d7:  FNSTSW AX\n  100101d9:  TEST AH,0x1\n  100101dc:  JZ 0x100101e6\n  100101de:  MOV ECX,dword ptr [ESP + 0x64]\n  100101e2:  MOV dword ptr [ESP + 0x1c],ECX\n  100101e6:  MOV EAX,dword ptr [ESP + 0x10]\n  100101ea:  INC EBP\n  100101eb:  ADD EBX,0x4\n  100101ee:  CMP EBP,EAX\n  100101f0:  JL 0x10010139\n  100101f6:  FLD dword ptr [ESP + 0x14]\n  100101fa:  FSUB dword ptr [ESP + 0x20]\n  100101fe:  MOV ESI,dword ptr [ESP + 0x6c]\n  10010202:  MOV ECX,ESI\n  10010204:  FSTP dword ptr [ESI + 0x40]\n  10010207:  FLD dword ptr [ESP + 0x18]\n  1001020b:  FSUB dword ptr [ESP + 0x24]\n  1001020f:  FSTP dword ptr [ESI + 0x44]\n  10010212:  FLD dword ptr [ESP + 0x1c]\n  10010216:  FSUB dword ptr [ESP + 0x28]\n  1001021a:  FSTP dword ptr [ESI + 0x48]\n  1001021d:  CALL 0x10025640\n  10010222:  FLD dword ptr [ESP + 0x14]\n  10010226:  FADD dword ptr [ESP + 0x20]\n  1001022a:  MOV EAX,ESI\n  1001022c:  POP EDI\n  1001022d:  FMUL dword ptr [0x100f5508]\n  10010233:  FSTP dword ptr [ESI + 0x30]\n  10010236:  FLD dword ptr [ESP + 0x14]\n  1001023a:  FADD dword ptr [ESP + 0x20]\n  1001023e:  FMUL dword ptr [0x100f5508]\n  10010244:  FSTP dword ptr [ESI + 0x34]\n  10010247:  FLD dword ptr [ESP + 0x18]\n  1001024b:  FADD dword ptr [ESP + 0x24]\n  1001024f:  FMUL dword ptr [0x100f5508]\n  10010255:  FSTP dword ptr [ESI + 0x38]\n  10010258:  POP ESI\n  10010259:  POP EBP\n  1001025a:  POP EBX\n  1001025b:  ADD ESP,0x58\n  1001025e:  RET 0x4", 
+  "callers": []
+}

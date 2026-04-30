@@ -1,0 +1,23 @@
+{
+  "address": "0x100311b0", 
+  "size_bytes": 16, 
+  "calling_convention": "__thiscall", 
+  "signature": "undefined __thiscall CIniFile(CIniFile * this)", 
+  "callees": [], 
+  "global_refs": [], 
+  "has_custom_name": true, 
+  "decompiled_c": "\n/* public: __thiscall CIniFile::CIniFile(void) */\n\nvoid __thiscall CIniFile::CIniFile(CIniFile *this)\n\n{\n                    /* 0x311b0  3  ??0CIniFile@@QAE@XZ */\n  *(undefined4 *)this = 0;\n  *(undefined4 *)(this + 4) = 0xffffffff;\n  return;\n}\n\n", 
+  "is_thunk": false, 
+  "name": "CIniFile", 
+  "assembly": "  100311b0:  MOV EAX,ECX\n  100311b2:  MOV dword ptr [EAX],0x0\n  100311b8:  MOV dword ptr [EAX + 0x4],0xffffffff\n  100311bf:  RET", 
+  "callers": [
+    {
+      "address": "0x10008420", 
+      "name": "FUN_10008420"
+    }, 
+    {
+      "address": "0x10009630", 
+      "name": "FUN_10009630"
+    }
+  ]
+}

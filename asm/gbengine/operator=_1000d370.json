@@ -1,0 +1,20 @@
+{
+  "address": "0x1000d370", 
+  "size_bytes": 73, 
+  "calling_convention": "__thiscall", 
+  "signature": "gbEmitterData * __thiscall operator=(gbEmitterData * this, gbEmitterData * param_1)", 
+  "callees": [], 
+  "global_refs": [
+    {
+      "address": "0x00000004", 
+      "type": null, 
+      "name": "DAT_00000004"
+    }
+  ], 
+  "has_custom_name": true, 
+  "decompiled_c": "\n/* public: struct gbEmitterData & __thiscall gbEmitterData::operator=(struct gbEmitterData const &)\n    */\n\ngbEmitterData * __thiscall gbEmitterData::operator=(gbEmitterData *this,gbEmitterData *param_1)\n\n{\n                    /* 0xd370  202  ??4gbEmitterData@@QAEAAU0@ABU0@@Z */\n  *(undefined4 *)this = *(undefined4 *)param_1;\n  *(undefined4 *)(this + 4) = *(undefined4 *)(param_1 + 4);\n  *(undefined4 *)(this + 8) = *(undefined4 *)(param_1 + 8);\n  *(undefined4 *)(this + 0xc) = *(undefined4 *)(param_1 + 0xc);\n  *(undefined4 *)(this + 0x10) = *(undefined4 *)(param_1 + 0x10);\n  *(undefined4 *)(this + 0x14) = *(undefined4 *)(param_1 + 0x14);\n  *(undefined4 *)(this + 0x18) = *(undefined4 *)(param_1 + 0x18);\n  *(undefined4 *)(this + 0x1c) = *(undefined4 *)(param_1 + 0x1c);\n  *(undefined4 *)(this + 0x20) = *(undefined4 *)(param_1 + 0x20);\n  *(undefined4 *)(this + 0x28) = *(undefined4 *)(param_1 + 0x28);\n  *(undefined4 *)(this + 0x2c) = *(undefined4 *)(param_1 + 0x2c);\n  return this;\n}\n\n", 
+  "is_thunk": false, 
+  "name": "operator=", 
+  "assembly": "  1000d370:  MOV EAX,ECX\n  1000d372:  MOV ECX,dword ptr [ESP + 0x4]\n  1000d376:  MOV EDX,dword ptr [ECX]\n  1000d378:  MOV dword ptr [EAX],EDX\n  1000d37a:  MOV EDX,dword ptr [ECX + 0x4]\n  1000d37d:  MOV dword ptr [EAX + 0x4],EDX\n  1000d380:  MOV EDX,dword ptr [ECX + 0x8]\n  1000d383:  MOV dword ptr [EAX + 0x8],EDX\n  1000d386:  MOV EDX,dword ptr [ECX + 0xc]\n  1000d389:  MOV dword ptr [EAX + 0xc],EDX\n  1000d38c:  MOV EDX,dword ptr [ECX + 0x10]\n  1000d38f:  MOV dword ptr [EAX + 0x10],EDX\n  1000d392:  MOV EDX,dword ptr [ECX + 0x14]\n  1000d395:  MOV dword ptr [EAX + 0x14],EDX\n  1000d398:  MOV EDX,dword ptr [ECX + 0x18]\n  1000d39b:  MOV dword ptr [EAX + 0x18],EDX\n  1000d39e:  MOV EDX,dword ptr [ECX + 0x1c]\n  1000d3a1:  MOV dword ptr [EAX + 0x1c],EDX\n  1000d3a4:  MOV EDX,dword ptr [ECX + 0x20]\n  1000d3a7:  MOV dword ptr [EAX + 0x20],EDX\n  1000d3aa:  MOV EDX,dword ptr [ECX + 0x28]\n  1000d3ad:  MOV dword ptr [EAX + 0x28],EDX\n  1000d3b0:  MOV ECX,dword ptr [ECX + 0x2c]\n  1000d3b3:  MOV dword ptr [EAX + 0x2c],ECX\n  1000d3b6:  RET 0x4", 
+  "callers": []
+}

@@ -1,0 +1,158 @@
+{
+  "address": "0x100e58a2", 
+  "size_bytes": 467, 
+  "calling_convention": "unknown", 
+  "signature": "undefined FUN_100e58a2(undefined4 param_1, undefined4 param_2, undefined4 param_3, undefined4 param_4)", 
+  "callees": [
+    {
+      "address": "0x100ea465", 
+      "name": "FUN_100ea465"
+    }, 
+    {
+      "address": "0x100ea495", 
+      "name": "__fload_withFB"
+    }, 
+    {
+      "address": "0x100ea450", 
+      "name": "FUN_100ea450"
+    }, 
+    {
+      "address": "0x100ea539", 
+      "name": "FUN_100ea539"
+    }, 
+    {
+      "address": "0x100ea3f0", 
+      "name": "FUN_100ea3f0"
+    }, 
+    {
+      "address": "0x100ea495", 
+      "name": "__fload_withFB"
+    }, 
+    {
+      "address": "0x100ea495", 
+      "name": "__fload_withFB"
+    }, 
+    {
+      "address": "0x100ebaf7", 
+      "name": "FUN_100ebaf7"
+    }, 
+    {
+      "address": "0x100e5a75", 
+      "name": "FUN_100e5a75"
+    }, 
+    {
+      "address": "0x100ea4ee", 
+      "name": "FUN_100ea4ee"
+    }, 
+    {
+      "address": "0x100ea4ee", 
+      "name": "FUN_100ea4ee"
+    }, 
+    {
+      "address": "0x100ea4ee", 
+      "name": "FUN_100ea4ee"
+    }, 
+    {
+      "address": "0x100e5a75", 
+      "name": "FUN_100e5a75"
+    }
+  ], 
+  "global_refs": [
+    {
+      "address": "0x-0000004", 
+      "type": null, 
+      "name": "DAT_-0000004"
+    }, 
+    {
+      "address": "0x00000004", 
+      "type": null, 
+      "name": "DAT_00000004"
+    }, 
+    {
+      "address": "0x0000000b", 
+      "type": null, 
+      "name": "DAT_0000000b"
+    }, 
+    {
+      "address": "0x10166c5c", 
+      "type": "undefined4", 
+      "name": "DAT_10166c5c"
+    }, 
+    {
+      "address": "0x10129e48", 
+      "type": null, 
+      "name": "DAT_10129e48"
+    }, 
+    {
+      "address": "0x00000012", 
+      "type": null, 
+      "name": "DAT_00000012"
+    }, 
+    {
+      "address": "0x0000000a", 
+      "type": null, 
+      "name": "DAT_0000000a"
+    }, 
+    {
+      "address": "0x0000000c", 
+      "type": null, 
+      "name": "DAT_0000000c"
+    }, 
+    {
+      "address": "0x00000008", 
+      "type": null, 
+      "name": "DAT_00000008"
+    }, 
+    {
+      "address": "0x-000008c", 
+      "type": null, 
+      "name": "DAT_-000008c"
+    }, 
+    {
+      "address": "0x-0000084", 
+      "type": null, 
+      "name": "DAT_-0000084"
+    }, 
+    {
+      "address": "0x-0000070", 
+      "type": null, 
+      "name": "DAT_-0000070"
+    }, 
+    {
+      "address": "0x-0000078", 
+      "type": null, 
+      "name": "DAT_-0000078"
+    }, 
+    {
+      "address": "0x00000010", 
+      "type": null, 
+      "name": "DAT_00000010"
+    }, 
+    {
+      "address": "0x00000013", 
+      "type": null, 
+      "name": "DAT_00000013"
+    }, 
+    {
+      "address": "0x1012a470", 
+      "type": null, 
+      "name": "DAT_1012a470"
+    }, 
+    {
+      "address": "0x1012a110", 
+      "type": null, 
+      "name": "DAT_1012a110"
+    }
+  ], 
+  "has_custom_name": false, 
+  "decompiled_c": "\n/* WARNING: Type propagation algorithm not settling */\n\nundefined4 FUN_100e58a2(int param_1,uint param_2,int param_3,uint param_4)\n\n{\n  uint in_EAX;\n  uint uVar1;\n  undefined4 uVar2;\n  byte extraout_CL;\n  char extraout_CL_00;\n  uint extraout_ECX;\n  int extraout_ECX_00;\n  int iVar3;\n  int extraout_ECX_01;\n  bool bVar4;\n  short in_FPUControlWord;\n  float10 extraout_ST0;\n  float10 fVar5;\n  float10 extraout_ST1;\n  float10 extraout_ST1_00;\n  float10 extraout_ST1_01;\n  float10 fVar6;\n  unkbyte10 in_ST7;\n  undefined local_78 [106];\n  undefined auStack_e [10];\n  short local_4;\n  undefined2 uStack_2;\n  \n  _local_4 = CONCAT22((short)(in_EAX >> 0x10),in_FPUControlWord);\n  uVar1 = in_EAX;\n  if (in_FPUControlWord != 0x27f) {\n    auStack_e._6_4_ = 0x100e58b6;\n    in_EAX = FUN_100ea465();\n    uVar1 = extraout_ECX;\n  }\n  bVar4 = (uVar1 & 0x7ff00000) == 0x7ff00000;\n  if (bVar4) {\n    if ((in_EAX & 0xfffff) == 0 && param_3 == 0) {\n      auStack_e._6_4_ = 0x100e597f;\n      fVar5 = (float10)__fload_withFB();\n      iVar3 = extraout_ECX_01;\n      fVar6 = extraout_ST1_01;\n      goto LAB_100e597f;\n    }\n    auStack_e._6_4_ = 0x100e5942;\n    fVar5 = (float10)__fload_withFB();\n    if ((param_4 & 0x80000) == 0) {\n      iVar3 = extraout_ECX_00 + 1;\n      fVar6 = extraout_ST1_00;\n      goto LAB_100e597f;\n    }\nLAB_100e594c:\n    uVar2 = 1;\n  }\n  else {\n    auStack_e._6_4_ = 0x100e58d1;\n    uVar1 = __fload_withFB();\n    if (!bVar4) {\n      if (((uVar1 & 0x7ff00000) != 0) || ((param_2 & 0xfffff) != 0 || param_1 != 0)) {\n        if ((param_2 & 0x80000000) != 0) {\n          auStack_e._6_4_ = 0x100e5a57;\n          FUN_100e5a75();\n          if (extraout_CL_00 == '\\0') {\n            uVar2 = 1;\n            goto LAB_100e591a;\n          }\n        }\n        auStack_e._6_4_ = 0x100e58f6;\n        uVar2 = FUN_100ea450();\n        if (DAT_10166c5c != 0) {\n          return uVar2;\n        }\n        uVar2 = FUN_100ea539();\n        return uVar2;\n      }\n      if ((param_4 & 0x7ff00000) == 0) {\n        if ((param_4 & 0xfffff) != 0 || param_3 != 0) {\n          uVar2 = FUN_100ea4ee();\n          return uVar2;\n        }\n        uVar2 = FUN_100ea4ee();\n        return uVar2;\n      }\n      auStack_e._6_4_ = 0x100e59fd;\n      uVar2 = FUN_100e5a75();\n      if ((param_4 & 0x80000000) == 0) {\n        if ((param_2._3_1_ >> 7 & extraout_CL) == 0) {\n          return uVar2;\n        }\n        uVar2 = FUN_100ea4ee();\n        return uVar2;\n      }\n      uVar2 = 2;\n      goto LAB_100e591a;\n    }\n    iVar3 = 0;\n    fVar5 = extraout_ST0;\n    fVar6 = extraout_ST1;\nLAB_100e597f:\n    if (((param_2 & 0x7ff00000) == 0x7ff00000) && ((param_2 & 0xfffff) != 0 || param_1 != 0)) {\n      if ((param_2 & 0x80000) != 0) goto LAB_100e594c;\n    }\n    else if (iVar3 == 0) {\n      auStack_e = (undefined  [10])in_ST7;\n      iVar3 = FUN_100ebaf7((double)fVar5,(double)fVar6,local_78);\n      if (iVar3 == 0) {\n        return 0;\n      }\n      uVar2 = 1;\n      goto LAB_100e591a;\n    }\n    uVar2 = 7;\n  }\nLAB_100e591a:\n  if (DAT_10166c5c != 0) {\n    return uVar2;\n  }\n  auStack_e._6_4_ = 0x100e5937;\n  uVar2 = FUN_100ea3f0();\n  return uVar2;\n}\n\n", 
+  "is_thunk": false, 
+  "name": "FUN_100e58a2", 
+  "assembly": "  100e58a2:  MOV ECX,EAX\n  100e58a4:  PUSH EAX\n  100e58a5:  FSTCW word ptr [ESP]\n  100e58a9:  CMP word ptr [ESP],0x27f\n  100e58af:  JZ 0x100e58b6\n  100e58b1:  CALL 0x100ea465\n  100e58b6:  AND ECX,0x7ff00000\n  100e58bc:  LEA EDX,[ESP + 0x8]\n  100e58c0:  CMP ECX,0x7ff00000\n  100e58c6:  JZ 0x100e5969\n  100e58cc:  CALL 0x100ea495\n  100e58d1:  JZ 0x100e5965\n  100e58d7:  TEST EAX,0x7ff00000\n  100e58dc:  JZ 0x100e59d8\n  100e58e2:  MOV CL,byte ptr [ESP + 0xf]\n  100e58e6:  AND CL,0x80\n  100e58e9:  JNZ 0x100e5a50\n  100e58ef:  FYL2X\n  100e58f1:  CALL 0x100ea450\n  100e58f6:  CMP CL,0x1\n  100e58f9:  JNZ 0x100e58fd\n  100e58fb:  FCHS\n  100e58fd:  CMP dword ptr [0x10166c5c],0x0\n  100e5904:  JNZ 0x100ea4ee\n  100e590a:  LEA ECX,[0x10129e48]\n  100e5910:  MOV EDX,0x1d\n  100e5915:  JMP 0x100ea539\n  100e591a:  CMP dword ptr [0x10166c5c],0x0\n  100e5921:  JNZ 0x100ea4ee\n  100e5927:  LEA ECX,[0x10129e48]\n  100e592d:  MOV EDX,0x1d\n  100e5932:  CALL 0x100ea3f0\n  100e5937:  POP EDX\n  100e5938:  RET\n  100e5939:  LEA EDX,[ESP + 0x8]\n  100e593d:  CALL 0x100ea495\n  100e5942:  TEST byte ptr [ESP + 0x16],0x8\n  100e5947:  JNZ 0x100e594c\n  100e5949:  INC ECX\n  100e594a:  JMP 0x100e597f\n  100e594c:  FADDP\n  100e594e:  MOV EAX,0x1\n  100e5953:  JMP 0x100e591a\n  100e5955:  TEST byte ptr [ESP + 0xe],0x8\n  100e595a:  JNZ 0x100e594c\n  100e595c:  FADDP\n  100e595e:  MOV EAX,0x7\n  100e5963:  JMP 0x100e591a\n  100e5965:  XOR ECX,ECX\n  100e5967:  JMP 0x100e597f\n  100e5969:  XOR ECX,ECX\n  100e596b:  AND EAX,0xfffff\n  100e5970:  OR EAX,dword ptr [ESP + 0x10]\n  100e5974:  JNZ 0x100e5939\n  100e5976:  LEA EDX,[ESP + 0x8]\n  100e597a:  CALL 0x100ea495\n  100e597f:  MOV EAX,dword ptr [ESP + 0xc]\n  100e5983:  MOV EDX,EAX\n  100e5985:  AND EAX,0x7ff00000\n  100e598a:  AND EDX,0xfffff\n  100e5990:  CMP EAX,0x7ff00000\n  100e5995:  JNZ 0x100e599d\n  100e5997:  OR EDX,dword ptr [ESP + 0x8]\n  100e599b:  JNZ 0x100e5955\n  100e599d:  TEST ECX,ECX\n  100e599f:  JNZ 0x100e595c\n  100e59a1:  SUB ESP,0x74\n  100e59a4:  MOV ECX,ESP\n  100e59a6:  PUSH ECX\n  100e59a7:  SUB ESP,0x10\n  100e59aa:  FSTP qword ptr [ESP]\n  100e59ad:  FSTP qword ptr [ESP + 0x8]\n  100e59b1:  FSAVE [ECX + 0x8]\n  100e59b5:  CALL 0x100ebaf7\n  100e59ba:  ADD ESP,0x10\n  100e59bd:  POP ECX\n  100e59be:  FRSTOR [ECX + 0x8]\n  100e59c1:  FLD qword ptr [ECX]\n  100e59c3:  ADD ESP,0x74\n  100e59c6:  TEST EAX,EAX\n  100e59c8:  JZ 0x100ea4ee\n  100e59ce:  MOV EAX,0x1\n  100e59d3:  JMP 0x100e591a\n  100e59d8:  MOV EAX,dword ptr [ESP + 0xc]\n  100e59dc:  AND EAX,0xfffff\n  100e59e1:  OR EAX,dword ptr [ESP + 0x8]\n  100e59e5:  JNZ 0x100e58e2\n  100e59eb:  FSTP ST0\n  100e59ed:  MOV EAX,dword ptr [ESP + 0x14]\n  100e59f1:  TEST EAX,0x7ff00000\n  100e59f6:  JZ 0x100e5a35\n  100e59f8:  CALL 0x100e5a75\n  100e59fd:  MOV CH,byte ptr [ESP + 0xf]\n  100e5a01:  SHR CH,0x7\n  100e5a04:  TEST dword ptr [ESP + 0x17],0x80\n  100e5a0c:  JZ 0x100e5a24\n  100e5a0e:  FLD tword ptr [0x1012a470]\n  100e5a14:  TEST CH,CL\n  100e5a16:  JZ 0x100e5a1a\n  100e5a18:  FCHS\n  100e5a1a:  MOV EAX,0x2\n  100e5a1f:  JMP 0x100e591a\n  100e5a24:  FLDZ\n  100e5a26:  TEST CH,CL\n  100e5a28:  JZ 0x100ea4ee\n  100e5a2e:  FCHS\n  100e5a30:  JMP 0x100ea4ee\n  100e5a35:  FSTP ST0\n  100e5a37:  AND EAX,0xfffff\n  100e5a3c:  OR EAX,dword ptr [ESP + 0x10]\n  100e5a40:  JNZ 0x100e5a49\n  100e5a42:  FLD1\n  100e5a44:  JMP 0x100ea4ee\n  100e5a49:  FLDZ\n  100e5a4b:  JMP 0x100ea4ee\n  100e5a50:  FLD ST1\n  100e5a52:  CALL 0x100e5a75\n  100e5a57:  FCHS\n  100e5a59:  TEST CL,CL\n  100e5a5b:  JNZ 0x100e58ef\n  100e5a61:  FSTP ST0\n  100e5a63:  FSTP ST0\n  100e5a65:  FLD tword ptr [0x1012a110]\n  100e5a6b:  MOV EAX,0x1\n  100e5a70:  JMP 0x100e591a", 
+  "callers": [
+    {
+      "address": "0x100e5880", 
+      "name": "FUN_100e5880"
+    }
+  ]
+}

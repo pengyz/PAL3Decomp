@@ -1,0 +1,20 @@
+{
+  "address": "0x10004200", 
+  "size_bytes": 16, 
+  "calling_convention": "__thiscall", 
+  "signature": "void __thiscall SetTexture(gbTextureArray * this, gbTexture * param_1)", 
+  "callees": [], 
+  "global_refs": [
+    {
+      "address": "0x00000004", 
+      "type": null, 
+      "name": "DAT_00000004"
+    }
+  ], 
+  "has_custom_name": true, 
+  "decompiled_c": "\n/* public: void __thiscall gbTextureArray::SetTexture(class gbTexture *) */\n\nvoid __thiscall gbTextureArray::SetTexture(gbTextureArray *this,gbTexture *param_1)\n\n{\n                    /* 0x4200  896  ?SetTexture@gbTextureArray@@QAEXPAVgbTexture@@@Z */\n  *(undefined4 *)(this + 0x40) = 1;\n  *(gbTexture **)this = param_1;\n  return;\n}\n\n", 
+  "is_thunk": false, 
+  "name": "SetTexture", 
+  "assembly": "  10004200:  MOV EAX,dword ptr [ESP + 0x4]\n  10004204:  MOV dword ptr [ECX + 0x40],0x1\n  1000420b:  MOV dword ptr [ECX],EAX\n  1000420d:  RET 0x4", 
+  "callers": []
+}

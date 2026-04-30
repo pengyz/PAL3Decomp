@@ -1,0 +1,28 @@
+{
+  "address": "0x10022b40", 
+  "size_bytes": 36, 
+  "calling_convention": "__thiscall", 
+  "signature": "void __thiscall Release(gbPrintFont * this)", 
+  "callees": [
+    {
+      "address": "0x1002f7f0", 
+      "name": "Release"
+    }
+  ], 
+  "global_refs": [], 
+  "has_custom_name": true, 
+  "decompiled_c": "\n/* public: virtual void __thiscall gbPrintFont::Release(void) */\n\nvoid __thiscall gbPrintFont::Release(gbPrintFont *this)\n\n{\n  gbPrintFont *pgVar1;\n  int iVar2;\n  \n                    /* 0x22b40  775  ?Release@gbPrintFont@@UAEXXZ */\n  pgVar1 = this + 0x44;\n  iVar2 = 2;\n  do {\n    if (*(gbRefObject **)pgVar1 != (gbRefObject *)0x0) {\n      gbRefObject::Release(*(gbRefObject **)pgVar1);\n      *(undefined4 *)pgVar1 = 0;\n    }\n    pgVar1 = pgVar1 + 4;\n    iVar2 = iVar2 + -1;\n  } while (iVar2 != 0);\n  return;\n}\n\n", 
+  "is_thunk": false, 
+  "name": "Release", 
+  "assembly": "  10022b40:  PUSH ESI\n  10022b41:  PUSH EDI\n  10022b42:  LEA ESI,[ECX + 0x44]\n  10022b45:  MOV EDI,0x2\n  10022b4a:  MOV ECX,dword ptr [ESI]\n  10022b4c:  TEST ECX,ECX\n  10022b4e:  JZ 0x10022b5b\n  10022b50:  CALL 0x1002f7f0\n  10022b55:  MOV dword ptr [ESI],0x0\n  10022b5b:  ADD ESI,0x4\n  10022b5e:  DEC EDI\n  10022b5f:  JNZ 0x10022b4a\n  10022b61:  POP EDI\n  10022b62:  POP ESI\n  10022b63:  RET", 
+  "callers": [
+    {
+      "address": "0x10023250", 
+      "name": "FUN_10023250"
+    }, 
+    {
+      "address": "0x10023760", 
+      "name": "FUN_10023760"
+    }
+  ]
+}

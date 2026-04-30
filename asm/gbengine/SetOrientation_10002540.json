@@ -1,0 +1,20 @@
+{
+  "address": "0x10002540", 
+  "size_bytes": 24, 
+  "calling_convention": "__thiscall", 
+  "signature": "void __thiscall SetOrientation(gbSound3DNode * this, gbVec3D * param_1)", 
+  "callees": [], 
+  "global_refs": [
+    {
+      "address": "0x00000004", 
+      "type": null, 
+      "name": "DAT_00000004"
+    }
+  ], 
+  "has_custom_name": true, 
+  "decompiled_c": "\n/* public: void __thiscall gbSound3DNode::SetOrientation(struct gbVec3D &) */\n\nvoid __thiscall gbSound3DNode::SetOrientation(gbSound3DNode *this,gbVec3D *param_1)\n\n{\n                    /* 0x2540  880  ?SetOrientation@gbSound3DNode@@QAEXAAUgbVec3D@@@Z */\n  *(undefined4 *)(this + 0x20) = *(undefined4 *)param_1;\n  *(undefined4 *)(this + 0x24) = *(undefined4 *)(param_1 + 4);\n  *(undefined4 *)(this + 0x28) = *(undefined4 *)(param_1 + 8);\n  return;\n}\n\n", 
+  "is_thunk": false, 
+  "name": "SetOrientation", 
+  "assembly": "  10002540:  MOV EAX,dword ptr [ESP + 0x4]\n  10002544:  MOV EDX,dword ptr [EAX]\n  10002546:  MOV dword ptr [ECX + 0x20],EDX\n  10002549:  MOV EDX,dword ptr [EAX + 0x4]\n  1000254c:  MOV dword ptr [ECX + 0x24],EDX\n  1000254f:  MOV EAX,dword ptr [EAX + 0x8]\n  10002552:  MOV dword ptr [ECX + 0x28],EAX\n  10002555:  RET 0x4", 
+  "callers": []
+}

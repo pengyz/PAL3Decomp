@@ -1,0 +1,69 @@
+{
+  "address": "0x100470e5", 
+  "size_bytes": 42, 
+  "calling_convention": "unknown", 
+  "signature": "undefined FUN_100470e5(undefined4 param_1, undefined4 param_2, undefined4 param_3, undefined4 param_4, undefined4 param_5, undefined4 param_6)", 
+  "callees": [
+    {
+      "address": "0x1007713a", 
+      "name": "FUN_1007713a"
+    }, 
+    {
+      "address": "0x100470e5", 
+      "name": "FUN_100470e5"
+    }
+  ], 
+  "global_refs": [
+    {
+      "address": "0x00000018", 
+      "type": null, 
+      "name": "DAT_00000018"
+    }, 
+    {
+      "address": "0x-0000008", 
+      "type": null, 
+      "name": "DAT_-0000008"
+    }, 
+    {
+      "address": "0x00000014", 
+      "type": null, 
+      "name": "DAT_00000014"
+    }, 
+    {
+      "address": "0x00000010", 
+      "type": null, 
+      "name": "DAT_00000010"
+    }, 
+    {
+      "address": "0x0000000c", 
+      "type": null, 
+      "name": "DAT_0000000c"
+    }, 
+    {
+      "address": "0x00000008", 
+      "type": null, 
+      "name": "DAT_00000008"
+    }, 
+    {
+      "address": "0x00000004", 
+      "type": null, 
+      "name": "DAT_00000004"
+    }, 
+    {
+      "address": "0x10121560", 
+      "type": "pointer", 
+      "name": "DAT_10121560"
+    }
+  ], 
+  "has_custom_name": false, 
+  "decompiled_c": "\nvoid FUN_100470e5(undefined4 param_1,undefined4 param_2,undefined4 param_3,undefined4 param_4,\n                 undefined4 param_5,undefined4 param_6)\n\n{\n  FUN_1007713a(1);\n  (*(code *)PTR_FUN_10121560)(param_1,param_2,param_3,param_4,param_5,param_6);\n  return;\n}\n\n", 
+  "is_thunk": false, 
+  "name": "FUN_100470e5", 
+  "assembly": "  100470e5:  PUSH EBP\n  100470e6:  MOV EBP,ESP\n  100470e8:  PUSH 0x1\n  100470ea:  CALL 0x1007713a\n  100470ef:  FLD dword ptr [EBP + 0x1c]\n  100470f2:  PUSH ECX\n  100470f3:  FSTP dword ptr [ESP]\n  100470f6:  PUSH dword ptr [EBP + 0x18]\n  100470f9:  PUSH dword ptr [EBP + 0x14]\n  100470fc:  PUSH dword ptr [EBP + 0x10]\n  100470ff:  PUSH dword ptr [EBP + 0xc]\n  10047102:  PUSH dword ptr [EBP + 0x8]\n  10047105:  CALL dword ptr [0x10121560]\n  1004710b:  POP EBP\n  1004710c:  RET 0x18", 
+  "callers": [
+    {
+      "address": "0x100470e5", 
+      "name": "FUN_100470e5"
+    }
+  ]
+}

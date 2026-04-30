@@ -1,0 +1,59 @@
+{
+  "address": "0x1002baf0", 
+  "size_bytes": 175, 
+  "calling_convention": "__thiscall", 
+  "signature": "undefined __thiscall gbParticleEffect(gbParticleEffect * this)", 
+  "callees": [
+    {
+      "address": "0x10016590", 
+      "name": "gbVisNode"
+    }, 
+    {
+      "address": "0x10025110", 
+      "name": "gbMatrix4"
+    }
+  ], 
+  "global_refs": [
+    {
+      "address": "0x100f4208", 
+      "type": null, 
+      "name": "DAT_100f4208"
+    }, 
+    {
+      "address": "0xffdff000", 
+      "type": "void *32", 
+      "name": "DAT_ffdff000"
+    }, 
+    {
+      "address": "0x-0000010", 
+      "type": null, 
+      "name": "DAT_-0000010"
+    }, 
+    {
+      "address": "0x-0000004", 
+      "type": null, 
+      "name": "DAT_-0000004"
+    }, 
+    {
+      "address": "0x-000000c", 
+      "type": null, 
+      "name": "DAT_-000000c"
+    }, 
+    {
+      "address": "0x100f55b0", 
+      "type": "undefined *", 
+      "name": "DAT_100f55b0"
+    }
+  ], 
+  "has_custom_name": true, 
+  "decompiled_c": "\n/* public: __thiscall gbParticleEffect::gbParticleEffect(void) */\n\ngbParticleEffect * __thiscall gbParticleEffect::gbParticleEffect(gbParticleEffect *this)\n\n{\n  void *local_c;\n  undefined *puStack_8;\n  undefined4 local_4;\n  \n                    /* 0x2baf0  70  ??0gbParticleEffect@@QAE@XZ */\n  local_4 = 0xffffffff;\n  puStack_8 = &LAB_100f4208;\n  local_c = ExceptionList;\n  ExceptionList = &local_c;\n  gbVisNode::gbVisNode((gbVisNode *)this);\n  *(undefined4 *)(this + 0xe0) = 0;\n  *(undefined4 *)(this + 0xe4) = 0;\n  *(undefined4 *)(this + 0xe8) = 0;\n  *(undefined4 *)(this + 0xec) = 0;\n  *(undefined4 *)(this + 0xf0) = 0;\n  *(undefined4 *)(this + 0xf4) = 0;\n  local_4 = 0;\n  *(undefined4 *)(this + 0xf8) = 0;\n  *(undefined4 *)(this + 0xfc) = 0;\n  *(undefined4 *)(this + 0x100) = 0;\n  gbMatrix4::gbMatrix4((gbMatrix4 *)(this + 0x11c));\n  *(undefined4 *)(this + 0xa4) = 0;\n  *(undefined4 *)(this + 0xa8) = 0;\n  *(undefined4 *)(this + 0xac) = 0;\n  *(undefined4 *)(this + 0x108) = 0;\n  *(undefined ***)this = &_vftable_;\n  *(undefined4 *)(this + 0x118) = 0x3f800000;\n  *(undefined4 *)(this + 0x10c) = 0xbff00000;\n  ExceptionList = local_c;\n  return this;\n}\n\n", 
+  "is_thunk": false, 
+  "name": "gbParticleEffect", 
+  "assembly": "  1002baf0:  PUSH -0x1\n  1002baf2:  PUSH 0x100f4208\n  1002baf7:  MOV EAX,FS:[0x0]\n  1002bafd:  PUSH EAX\n  1002bafe:  MOV dword ptr FS:[0x0],ESP\n  1002bb05:  PUSH ECX\n  1002bb06:  PUSH ESI\n  1002bb07:  MOV ESI,ECX\n  1002bb09:  PUSH EDI\n  1002bb0a:  MOV dword ptr [ESP + 0x8],ESI\n  1002bb0e:  CALL 0x10016590\n  1002bb13:  XOR EDI,EDI\n  1002bb15:  LEA ECX,[ESI + 0x11c]\n  1002bb1b:  MOV dword ptr [ESI + 0xe0],EDI\n  1002bb21:  MOV dword ptr [ESI + 0xe4],EDI\n  1002bb27:  MOV dword ptr [ESI + 0xe8],EDI\n  1002bb2d:  MOV dword ptr [ESI + 0xec],EDI\n  1002bb33:  MOV dword ptr [ESI + 0xf0],EDI\n  1002bb39:  MOV dword ptr [ESI + 0xf4],EDI\n  1002bb3f:  MOV dword ptr [ESP + 0x14],EDI\n  1002bb43:  MOV dword ptr [ESI + 0xf8],EDI\n  1002bb49:  MOV dword ptr [ESI + 0xfc],EDI\n  1002bb4f:  MOV dword ptr [ESI + 0x100],EDI\n  1002bb55:  CALL 0x10025110\n  1002bb5a:  MOV ECX,dword ptr [ESP + 0xc]\n  1002bb5e:  MOV dword ptr [ESI + 0xa4],EDI\n  1002bb64:  MOV dword ptr [ESI + 0xa8],EDI\n  1002bb6a:  MOV dword ptr [ESI + 0xac],EDI\n  1002bb70:  MOV dword ptr [ESI + 0x108],EDI\n  1002bb76:  MOV dword ptr [ESI],0x100f55b0\n  1002bb7c:  MOV dword ptr [ESI + 0x118],0x3f800000\n  1002bb86:  MOV dword ptr [ESI + 0x10c],0xbff00000\n  1002bb90:  MOV EAX,ESI\n  1002bb92:  POP EDI\n  1002bb93:  POP ESI\n  1002bb94:  MOV dword ptr FS:[0x0],ECX\n  1002bb9b:  ADD ESP,0x10\n  1002bb9e:  RET", 
+  "callers": [
+    {
+      "address": "0x1000b910", 
+      "name": "FUN_1000b910"
+    }
+  ]
+}

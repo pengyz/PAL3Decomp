@@ -1,0 +1,35 @@
+{
+  "address": "0x10020c00", 
+  "size_bytes": 160, 
+  "calling_convention": "__thiscall", 
+  "signature": "void * __thiscall Lock(gbVertexBubble * this)", 
+  "callees": [], 
+  "global_refs": [], 
+  "has_custom_name": true, 
+  "decompiled_c": "\n/* public: void * __thiscall gbVertexBubble::Lock(void) */\n\nvoid * __thiscall gbVertexBubble::Lock(gbVertexBubble *this)\n\n{\n  int iVar1;\n  uint uVar2;\n  void *pvVar3;\n  int iVar4;\n  \n                    /* 0x20c00  694  ?Lock@gbVertexBubble@@QAEPAXXZ */\n  pvVar3 = (void *)(**(code **)(**(int **)(this + 8) + 4))\n                             (*(undefined4 *)(this + 0xc),*(undefined4 *)(this + 0x10));\n  iVar4 = 0;\n  uVar2 = *(uint *)(*(int *)(this + 8) + 0x14);\n  if ((uVar2 & 0x80000000) == 0) {\n    if ((uVar2 & 1) != 0) {\n      *(void **)(this + 0x18) = pvVar3;\n      iVar4 = 0xc;\n    }\n    if ((uVar2 & 0x100) != 0) {\n      iVar1 = iVar4 + (int)pvVar3;\n      iVar4 = iVar4 + 0x10;\n      *(int *)(this + 0x18) = iVar1;\n    }\n    if ((uVar2 & 2) != 0) {\n      iVar1 = iVar4 + (int)pvVar3;\n      iVar4 = iVar4 + 0xc;\n      *(int *)(this + 0x1c) = iVar1;\n    }\n    if ((uVar2 & 4) != 0) {\n      iVar1 = iVar4 + (int)pvVar3;\n      iVar4 = iVar4 + 4;\n      *(int *)(this + 0x20) = iVar1;\n    }\n    if ((uVar2 & 8) != 0) {\n      iVar1 = iVar4 + (int)pvVar3;\n      iVar4 = iVar4 + 4;\n      *(int *)(this + 0x24) = iVar1;\n    }\n    if ((uVar2 & 0x10) != 0) {\n      iVar1 = iVar4 + (int)pvVar3;\n      iVar4 = iVar4 + 8;\n      *(int *)(this + 0x28) = iVar1;\n    }\n    if ((uVar2 & 0x20) != 0) {\n      iVar1 = iVar4 + (int)pvVar3;\n      iVar4 = iVar4 + 8;\n      *(int *)(this + 0x2c) = iVar1;\n    }\n    if ((uVar2 & 0x40) != 0) {\n      iVar1 = iVar4 + (int)pvVar3;\n      iVar4 = iVar4 + 8;\n      *(int *)(this + 0x30) = iVar1;\n    }\n    if ((uVar2 & 0x80) != 0) {\n      *(int *)(this + 0x34) = iVar4 + (int)pvVar3;\n    }\n  }\n  return pvVar3;\n}\n\n", 
+  "is_thunk": false, 
+  "name": "Lock", 
+  "assembly": "  10020c00:  PUSH ESI\n  10020c01:  MOV ESI,ECX\n  10020c03:  MOV EDX,dword ptr [ESI + 0x10]\n  10020c06:  MOV ECX,dword ptr [ESI + 0x8]\n  10020c09:  PUSH EDX\n  10020c0a:  MOV EDX,dword ptr [ESI + 0xc]\n  10020c0d:  MOV EAX,dword ptr [ECX]\n  10020c0f:  PUSH EDX\n  10020c10:  CALL dword ptr [EAX + 0x4]\n  10020c13:  MOV EDX,dword ptr [ESI + 0x8]\n  10020c16:  XOR ECX,ECX\n  10020c18:  MOV EDX,dword ptr [EDX + 0x14]\n  10020c1b:  TEST EDX,0x80000000\n  10020c21:  JNZ 0x10020c9e\n  10020c23:  TEST DL,0x1\n  10020c26:  JZ 0x10020c30\n  10020c28:  MOV dword ptr [ESI + 0x18],EAX\n  10020c2b:  MOV ECX,0xc\n  10020c30:  TEST DH,0x1\n  10020c33:  PUSH EDI\n  10020c34:  JZ 0x10020c3f\n  10020c36:  LEA EDI,[ECX + EAX*0x1]\n  10020c39:  ADD ECX,0x10\n  10020c3c:  MOV dword ptr [ESI + 0x18],EDI\n  10020c3f:  TEST DL,0x2\n  10020c42:  JZ 0x10020c4d\n  10020c44:  LEA EDI,[ECX + EAX*0x1]\n  10020c47:  ADD ECX,0xc\n  10020c4a:  MOV dword ptr [ESI + 0x1c],EDI\n  10020c4d:  TEST DL,0x4\n  10020c50:  JZ 0x10020c5b\n  10020c52:  LEA EDI,[ECX + EAX*0x1]\n  10020c55:  ADD ECX,0x4\n  10020c58:  MOV dword ptr [ESI + 0x20],EDI\n  10020c5b:  TEST DL,0x8\n  10020c5e:  JZ 0x10020c69\n  10020c60:  LEA EDI,[ECX + EAX*0x1]\n  10020c63:  ADD ECX,0x4\n  10020c66:  MOV dword ptr [ESI + 0x24],EDI\n  10020c69:  TEST DL,0x10\n  10020c6c:  JZ 0x10020c77\n  10020c6e:  LEA EDI,[ECX + EAX*0x1]\n  10020c71:  ADD ECX,0x8\n  10020c74:  MOV dword ptr [ESI + 0x28],EDI\n  10020c77:  TEST DL,0x20\n  10020c7a:  JZ 0x10020c85\n  10020c7c:  LEA EDI,[ECX + EAX*0x1]\n  10020c7f:  ADD ECX,0x8\n  10020c82:  MOV dword ptr [ESI + 0x2c],EDI\n  10020c85:  TEST DL,0x40\n  10020c88:  JZ 0x10020c93\n  10020c8a:  LEA EDI,[ECX + EAX*0x1]\n  10020c8d:  ADD ECX,0x8\n  10020c90:  MOV dword ptr [ESI + 0x30],EDI\n  10020c93:  TEST DL,0x80\n  10020c96:  POP EDI\n  10020c97:  JZ 0x10020c9e\n  10020c99:  ADD ECX,EAX\n  10020c9b:  MOV dword ptr [ESI + 0x34],ECX\n  10020c9e:  POP ESI\n  10020c9f:  RET", 
+  "callers": [
+    {
+      "address": "0x10011c60", 
+      "name": "FUN_10011c60"
+    }, 
+    {
+      "address": "0x10015e80", 
+      "name": "LoadFromStream"
+    }, 
+    {
+      "address": "0x10016390", 
+      "name": "ComputeShadowVolume"
+    }, 
+    {
+      "address": "0x10016c70", 
+      "name": "FUN_10016c70"
+    }, 
+    {
+      "address": "0x100064e0", 
+      "name": "FUN_100064e0"
+    }
+  ]
+}

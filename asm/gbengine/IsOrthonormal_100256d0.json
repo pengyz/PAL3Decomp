@@ -1,0 +1,70 @@
+{
+  "address": "0x100256d0", 
+  "size_bytes": 563, 
+  "calling_convention": "__thiscall", 
+  "signature": "bool __thiscall IsOrthonormal(gbMatrix4 * this)", 
+  "callees": [], 
+  "global_refs": [
+    {
+      "address": "0x-0000008", 
+      "type": null, 
+      "name": "DAT_-0000008"
+    }, 
+    {
+      "address": "0x-000001c", 
+      "type": null, 
+      "name": "DAT_-000001c"
+    }, 
+    {
+      "address": "0x-000000c", 
+      "type": null, 
+      "name": "DAT_-000000c"
+    }, 
+    {
+      "address": "0x-0000020", 
+      "type": null, 
+      "name": "DAT_-0000020"
+    }, 
+    {
+      "address": "0x-0000028", 
+      "type": null, 
+      "name": "DAT_-0000028"
+    }, 
+    {
+      "address": "0x100f5340", 
+      "type": null, 
+      "name": "DAT_100f5340"
+    }, 
+    {
+      "address": "0x-0000024", 
+      "type": null, 
+      "name": "DAT_-0000024"
+    }, 
+    {
+      "address": "0x-0000018", 
+      "type": null, 
+      "name": "DAT_-0000018"
+    }, 
+    {
+      "address": "0x-0000014", 
+      "type": null, 
+      "name": "DAT_-0000014"
+    }, 
+    {
+      "address": "0x-0000010", 
+      "type": null, 
+      "name": "DAT_-0000010"
+    }, 
+    {
+      "address": "0x100f53a0", 
+      "type": null, 
+      "name": "DAT_100f53a0"
+    }
+  ], 
+  "has_custom_name": true, 
+  "decompiled_c": "\n/* public: bool __thiscall gbMatrix4::IsOrthonormal(void)const  */\n\nbool __thiscall gbMatrix4::IsOrthonormal(gbMatrix4 *this)\n\n{\n  float fVar1;\n  float fVar2;\n  bool bVar3;\n  float local_24;\n  float local_20;\n  float local_1c;\n  float local_14;\n  float local_10;\n  \n                    /* 0x256d0  643  ?IsOrthonormal@gbMatrix4@@QBE_NXZ */\n  local_24 = *(float *)(this + 8);\n  local_1c = *(float *)(this + 0x28);\n  local_20 = *(float *)(this + 0x18);\n  fVar1 = SQRT(local_24 * local_24 + local_20 * local_20 + local_1c * local_1c);\n  if (0.005 <= ABS(fVar1)) {\n    local_24 = local_24 / fVar1;\n    local_20 = local_20 / fVar1;\n    local_1c = local_1c / fVar1;\n  }\n  else {\n    local_1c = 0.0;\n    local_24 = 0.0;\n    local_20 = 1.0;\n  }\n  fVar1 = *(float *)(this + 0x24) * *(float *)(this + 0x10) -\n          *(float *)(this + 0x14) * *(float *)(this + 0x20);\n  local_14 = *(float *)(this + 4) * *(float *)(this + 0x20) -\n             *(float *)(this + 0x24) * *(float *)this;\n  local_10 = *(float *)(this + 0x14) * *(float *)this -\n             *(float *)(this + 4) * *(float *)(this + 0x10);\n  fVar2 = SQRT(fVar1 * fVar1 + local_14 * local_14 + local_10 * local_10);\n  if (0.005 <= ABS(fVar2)) {\n    fVar1 = fVar1 / fVar2;\n    local_14 = local_14 / fVar2;\n    local_10 = local_10 / fVar2;\n  }\n  else {\n    fVar1 = 0.0;\n    local_10 = 0.0;\n    local_14 = 1.0;\n  }\n  if (((0.005 <= ABS(fVar1 - local_24)) || (0.005 <= ABS(local_14 - local_20))) ||\n     (0.005 <= ABS(local_10 - local_1c))) {\n    if (((0.005 <= ABS(fVar1 - -local_24)) || (0.005 <= ABS(local_14 - -local_20))) ||\n       (0.005 <= ABS(local_10 - -local_1c))) {\n      bVar3 = false;\n    }\n    else {\n      bVar3 = true;\n    }\n  }\n  else {\n    bVar3 = true;\n  }\n  if (((0.0 <= *(float *)(this + 0x30) * *(float *)(this + 0x30)) &&\n      (0.0 <= *(float *)(this + 0x34) * *(float *)(this + 0x34))) &&\n     (0.0 <= *(float *)(this + 0x38) * *(float *)(this + 0x38))) {\n    return bVar3;\n  }\n  return false;\n}\n\n", 
+  "is_thunk": false, 
+  "name": "IsOrthonormal", 
+  "assembly": "  100256d0:  SUB ESP,0x28\n  100256d3:  FLD dword ptr [ECX]\n  100256d5:  FLD dword ptr [ECX + 0x10]\n  100256d8:  FLD dword ptr [ECX + 0x20]\n  100256db:  MOV EDX,dword ptr [ECX + 0x14]\n  100256de:  MOV EAX,dword ptr [ECX + 0x4]\n  100256e1:  FLD dword ptr [ECX + 0x24]\n  100256e4:  FLD dword ptr [ECX + 0x8]\n  100256e7:  MOV dword ptr [ESP + 0x20],EDX\n  100256eb:  MOV EDX,dword ptr [ECX + 0x28]\n  100256ee:  MOV dword ptr [ESP + 0xc],EDX\n  100256f2:  MOV dword ptr [ESP + 0x1c],EAX\n  100256f6:  FLD dword ptr [ESP + 0xc]\n  100256fa:  MOV EAX,dword ptr [ECX + 0x18]\n  100256fd:  FMUL dword ptr [ESP + 0xc]\n  10025701:  MOV dword ptr [ESP + 0x8],EAX\n  10025705:  FLD dword ptr [ESP + 0x8]\n  10025709:  FMUL dword ptr [ESP + 0x8]\n  1002570d:  FADDP\n  1002570f:  FLD ST1\n  10025711:  FMUL ST2\n  10025713:  FADDP\n  10025715:  FSQRT\n  10025717:  FST dword ptr [ESP]\n  1002571b:  FABS\n  1002571d:  FCOMP dword ptr [0x100f5340]\n  10025723:  FNSTSW AX\n  10025725:  TEST AH,0x1\n  10025728:  JZ 0x10025746\n  1002572a:  FSTP ST0\n  1002572c:  MOV dword ptr [ESP + 0xc],0x0\n  10025734:  MOV dword ptr [ESP + 0x4],0x0\n  1002573c:  MOV dword ptr [ESP + 0x8],0x3f800000\n  10025744:  JMP 0x10025766\n  10025746:  FDIV dword ptr [ESP]\n  1002574a:  FSTP dword ptr [ESP + 0x4]\n  1002574e:  FLD dword ptr [ESP + 0x8]\n  10025752:  FDIV dword ptr [ESP]\n  10025756:  FSTP dword ptr [ESP + 0x8]\n  1002575a:  FLD dword ptr [ESP + 0xc]\n  1002575e:  FDIV dword ptr [ESP]\n  10025762:  FSTP dword ptr [ESP + 0xc]\n  10025766:  FLD ST0\n  10025768:  FMUL ST3\n  1002576a:  FLD dword ptr [ESP + 0x20]\n  1002576e:  FMUL ST3\n  10025770:  FSUBP\n  10025772:  FSTP dword ptr [ESP + 0x10]\n  10025776:  FLD dword ptr [ESP + 0x1c]\n  1002577a:  FMUL ST2\n  1002577c:  FXCH\n  1002577e:  FMUL ST4\n  10025780:  FSUBP\n  10025782:  FSTP dword ptr [ESP + 0x14]\n  10025786:  FSTP ST0\n  10025788:  FLD dword ptr [ESP + 0x20]\n  1002578c:  FMUL ST2\n  1002578e:  FLD dword ptr [ESP + 0x1c]\n  10025792:  FMUL ST2\n  10025794:  FSUBP\n  10025796:  FSTP dword ptr [ESP + 0x18]\n  1002579a:  FSTP ST0\n  1002579c:  FSTP ST0\n  1002579e:  FLD dword ptr [ESP + 0x18]\n  100257a2:  FMUL dword ptr [ESP + 0x18]\n  100257a6:  FLD dword ptr [ESP + 0x14]\n  100257aa:  FMUL dword ptr [ESP + 0x14]\n  100257ae:  FADDP\n  100257b0:  FLD dword ptr [ESP + 0x10]\n  100257b4:  FMUL dword ptr [ESP + 0x10]\n  100257b8:  FADDP\n  100257ba:  FSQRT\n  100257bc:  FST dword ptr [ESP]\n  100257c0:  FABS\n  100257c2:  FCOMP dword ptr [0x100f5340]\n  100257c8:  FNSTSW AX\n  100257ca:  TEST AH,0x1\n  100257cd:  JZ 0x100257e7\n  100257cf:  FLD dword ptr [0x100f53a0]\n  100257d5:  MOV dword ptr [ESP + 0x18],0x0\n  100257dd:  MOV dword ptr [ESP + 0x14],0x3f800000\n  100257e5:  JMP 0x10025807\n  100257e7:  FLD dword ptr [ESP + 0x10]\n  100257eb:  FDIV dword ptr [ESP]\n  100257ef:  FLD dword ptr [ESP + 0x14]\n  100257f3:  FDIV dword ptr [ESP]\n  100257f7:  FSTP dword ptr [ESP + 0x14]\n  100257fb:  FLD dword ptr [ESP + 0x18]\n  100257ff:  FDIV dword ptr [ESP]\n  10025803:  FSTP dword ptr [ESP + 0x18]\n  10025807:  FLD ST0\n  10025809:  FSUB dword ptr [ESP + 0x4]\n  1002580d:  FABS\n  1002580f:  FCOMP dword ptr [0x100f5340]\n  10025815:  FNSTSW AX\n  10025817:  TEST AH,0x1\n  1002581a:  JZ 0x10025850\n  1002581c:  FLD dword ptr [ESP + 0x14]\n  10025820:  FSUB dword ptr [ESP + 0x8]\n  10025824:  FABS\n  10025826:  FCOMP dword ptr [0x100f5340]\n  1002582c:  FNSTSW AX\n  1002582e:  TEST AH,0x1\n  10025831:  JZ 0x10025850\n  10025833:  FLD dword ptr [ESP + 0x18]\n  10025837:  FSUB dword ptr [ESP + 0xc]\n  1002583b:  FABS\n  1002583d:  FCOMP dword ptr [0x100f5340]\n  10025843:  FNSTSW AX\n  10025845:  TEST AH,0x1\n  10025848:  JZ 0x10025850\n  1002584a:  FSTP ST0\n  1002584c:  MOV DL,0x1\n  1002584e:  JMP 0x100258b5\n  10025850:  FLD dword ptr [ESP + 0x4]\n  10025854:  FCHS\n  10025856:  FLD dword ptr [ESP + 0x8]\n  1002585a:  FCHS\n  1002585c:  FSTP dword ptr [ESP + 0x8]\n  10025860:  FLD dword ptr [ESP + 0xc]\n  10025864:  FCHS\n  10025866:  FSTP dword ptr [ESP + 0xc]\n  1002586a:  FXCH\n  1002586c:  FSUB ST0,ST1\n  1002586e:  FABS\n  10025870:  FXCH\n  10025872:  FSTP ST0\n  10025874:  FCOMP dword ptr [0x100f5340]\n  1002587a:  FNSTSW AX\n  1002587c:  TEST AH,0x1\n  1002587f:  JZ 0x100258b3\n  10025881:  FLD dword ptr [ESP + 0x14]\n  10025885:  FSUB dword ptr [ESP + 0x8]\n  10025889:  FABS\n  1002588b:  FCOMP dword ptr [0x100f5340]\n  10025891:  FNSTSW AX\n  10025893:  TEST AH,0x1\n  10025896:  JZ 0x100258b3\n  10025898:  FLD dword ptr [ESP + 0x18]\n  1002589c:  FSUB dword ptr [ESP + 0xc]\n  100258a0:  FABS\n  100258a2:  FCOMP dword ptr [0x100f5340]\n  100258a8:  FNSTSW AX\n  100258aa:  TEST AH,0x1\n  100258ad:  JZ 0x100258b3\n  100258af:  MOV DL,0x1\n  100258b1:  JMP 0x100258b5\n  100258b3:  XOR DL,DL\n  100258b5:  FLD dword ptr [ECX + 0x30]\n  100258b8:  FLD ST0\n  100258ba:  FMUL ST1\n  100258bc:  FCOMP dword ptr [0x100f53a0]\n  100258c2:  FNSTSW AX\n  100258c4:  TEST AH,0x1\n  100258c7:  FSTP ST0\n  100258c9:  JNZ 0x100258f7\n  100258cb:  FLD dword ptr [ECX + 0x34]\n  100258ce:  FLD ST0\n  100258d0:  FMUL ST1\n  100258d2:  FCOMP dword ptr [0x100f53a0]\n  100258d8:  FNSTSW AX\n  100258da:  TEST AH,0x1\n  100258dd:  FSTP ST0\n  100258df:  JNZ 0x100258f7\n  100258e1:  FLD dword ptr [ECX + 0x38]\n  100258e4:  FLD ST0\n  100258e6:  FMUL ST1\n  100258e8:  FCOMP dword ptr [0x100f53a0]\n  100258ee:  FNSTSW AX\n  100258f0:  TEST AH,0x1\n  100258f3:  FSTP ST0\n  100258f5:  JZ 0x100258fd\n  100258f7:  XOR AL,AL\n  100258f9:  ADD ESP,0x28\n  100258fc:  RET\n  100258fd:  MOV AL,DL\n  100258ff:  ADD ESP,0x28\n  10025902:  RET", 
+  "callers": []
+}

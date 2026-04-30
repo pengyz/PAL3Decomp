@@ -1,0 +1,60 @@
+{
+  "address": "0x100043a0", 
+  "size_bytes": 96, 
+  "calling_convention": "__thiscall", 
+  "signature": "void __thiscall SetFontColor(gbPrintFont * this, uchar param_1, uchar param_2, uchar param_3, uchar param_4)", 
+  "callees": [], 
+  "global_refs": [
+    {
+      "address": "0x1015d3a4", 
+      "type": "int", 
+      "name": "DAT_1015d3a4"
+    }, 
+    {
+      "address": "0x00000004", 
+      "type": null, 
+      "name": "DAT_00000004"
+    }, 
+    {
+      "address": "0x00000008", 
+      "type": null, 
+      "name": "DAT_00000008"
+    }, 
+    {
+      "address": "0x-0000002", 
+      "type": null, 
+      "name": "DAT_-0000002"
+    }, 
+    {
+      "address": "0x0000000c", 
+      "type": null, 
+      "name": "DAT_0000000c"
+    }, 
+    {
+      "address": "0x-0000003", 
+      "type": null, 
+      "name": "DAT_-0000003"
+    }, 
+    {
+      "address": "0x00000010", 
+      "type": null, 
+      "name": "DAT_00000010"
+    }, 
+    {
+      "address": "0x-0000004", 
+      "type": null, 
+      "name": "DAT_-0000004"
+    }, 
+    {
+      "address": "0x-0000001", 
+      "type": null, 
+      "name": "DAT_-0000001"
+    }
+  ], 
+  "has_custom_name": true, 
+  "decompiled_c": "\n/* public: void __thiscall gbPrintFont::SetFontColor(unsigned char,unsigned char,unsigned\n   char,unsigned char) */\n\nvoid __thiscall\ngbPrintFont::SetFontColor(gbPrintFont *this,uchar param_1,uchar param_2,uchar param_3,uchar param_4)\n\n{\n  undefined4 local_4;\n  \n                    /* 0x43a0  868  ?SetFontColor@gbPrintFont@@QAEXEEEE@Z */\n  if (gbColorQuad::ColorQuadFmt == 0) {\n    local_4 = CONCAT13(param_4,CONCAT21(CONCAT11(param_1,param_2),param_3));\n    *(undefined4 *)(this + 0x2c) = local_4;\n    return;\n  }\n  local_4 = CONCAT13(param_4,CONCAT21(CONCAT11(param_3,param_2),param_1));\n  *(undefined4 *)(this + 0x2c) = local_4;\n  return;\n}\n\n", 
+  "is_thunk": false, 
+  "name": "SetFontColor", 
+  "assembly": "  100043a0:  PUSH ECX\n  100043a1:  MOV EAX,[0x1015d3a4]\n  100043a6:  TEST EAX,EAX\n  100043a8:  JNZ 0x100043d5\n  100043aa:  MOV AL,byte ptr [ESP + 0x8]\n  100043ae:  MOV DL,byte ptr [ESP + 0xc]\n  100043b2:  MOV byte ptr [ESP + 0x2],AL\n  100043b6:  MOV AL,byte ptr [ESP + 0x10]\n  100043ba:  MOV byte ptr [ESP + 0x1],DL\n  100043be:  MOV DL,byte ptr [ESP + 0x14]\n  100043c2:  MOV byte ptr [ESP],AL\n  100043c6:  MOV byte ptr [ESP + 0x3],DL\n  100043ca:  MOV EAX,dword ptr [ESP]\n  100043ce:  MOV dword ptr [ECX + 0x2c],EAX\n  100043d1:  POP ECX\n  100043d2:  RET 0x10\n  100043d5:  MOV DL,byte ptr [ESP + 0x10]\n  100043d9:  MOV AL,byte ptr [ESP + 0xc]\n  100043dd:  MOV byte ptr [ESP + 0x2],DL\n  100043e1:  MOV DL,byte ptr [ESP + 0x8]\n  100043e5:  MOV byte ptr [ESP + 0x1],AL\n  100043e9:  MOV AL,byte ptr [ESP + 0x14]\n  100043ed:  MOV byte ptr [ESP],DL\n  100043f1:  MOV byte ptr [ESP + 0x3],AL\n  100043f5:  MOV EDX,dword ptr [ESP]\n  100043f9:  MOV dword ptr [ECX + 0x2c],EDX\n  100043fc:  POP ECX\n  100043fd:  RET 0x10", 
+  "callers": []
+}

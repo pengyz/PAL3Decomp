@@ -1,0 +1,45 @@
+{
+  "address": "0x100324a0", 
+  "size_bytes": 44, 
+  "calling_convention": "__thiscall", 
+  "signature": "undefined __thiscall gbSnow(gbSnow * this, int param_1, gbDropDesc * param_2, char * param_3, float param_4)", 
+  "callees": [
+    {
+      "address": "0x10031e40", 
+      "name": "gbDropGroup"
+    }
+  ], 
+  "global_refs": [
+    {
+      "address": "0x0000000c", 
+      "type": null, 
+      "name": "DAT_0000000c"
+    }, 
+    {
+      "address": "0x00000004", 
+      "type": null, 
+      "name": "DAT_00000004"
+    }, 
+    {
+      "address": "0x00000008", 
+      "type": null, 
+      "name": "DAT_00000008"
+    }, 
+    {
+      "address": "0x00000010", 
+      "type": null, 
+      "name": "DAT_00000010"
+    }, 
+    {
+      "address": "0x100f5b60", 
+      "type": "undefined *", 
+      "name": "DAT_100f5b60"
+    }
+  ], 
+  "has_custom_name": true, 
+  "decompiled_c": "\n/* public: __thiscall gbSnow::gbSnow(int,struct gbDropDesc const *,char const *,float) */\n\ngbSnow * __thiscall\ngbSnow::gbSnow(gbSnow *this,int param_1,gbDropDesc *param_2,char *param_3,float param_4)\n\n{\n                    /* 0x324a0  92  ??0gbSnow@@QAE@HPBUgbDropDesc@@PBDM@Z */\n  gbDropGroup::gbDropGroup((gbDropGroup *)this,param_1,param_2,param_3);\n  *(undefined ***)this = &_vftable_;\n  *(float *)(this + 0x50) = param_4;\n  return this;\n}\n\n", 
+  "is_thunk": false, 
+  "name": "gbSnow", 
+  "assembly": "  100324a0:  MOV EAX,dword ptr [ESP + 0xc]\n  100324a4:  MOV EDX,dword ptr [ESP + 0x4]\n  100324a8:  PUSH ESI\n  100324a9:  MOV ESI,ECX\n  100324ab:  MOV ECX,dword ptr [ESP + 0xc]\n  100324af:  PUSH EAX\n  100324b0:  PUSH ECX\n  100324b1:  PUSH EDX\n  100324b2:  MOV ECX,ESI\n  100324b4:  CALL 0x10031e40\n  100324b9:  MOV EAX,dword ptr [ESP + 0x14]\n  100324bd:  MOV dword ptr [ESI],0x100f5b60\n  100324c3:  MOV dword ptr [ESI + 0x50],EAX\n  100324c6:  MOV EAX,ESI\n  100324c8:  POP ESI\n  100324c9:  RET 0x10", 
+  "callers": []
+}

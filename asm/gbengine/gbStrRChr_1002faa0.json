@@ -1,0 +1,25 @@
+{
+  "address": "0x1002faa0", 
+  "size_bytes": 75, 
+  "calling_convention": "__cdecl", 
+  "signature": "char * __cdecl gbStrRChr(char * param_1, char * param_2)", 
+  "callees": [], 
+  "global_refs": [
+    {
+      "address": "0x00000004", 
+      "type": null, 
+      "name": "DAT_00000004"
+    }, 
+    {
+      "address": "0x00000008", 
+      "type": null, 
+      "name": "DAT_00000008"
+    }
+  ], 
+  "has_custom_name": true, 
+  "decompiled_c": "\n/* char * __cdecl gbStrRChr(char const *,char const *) */\n\nchar * __cdecl gbStrRChr(char *param_1,char *param_2)\n\n{\n  char cVar1;\n  uint uVar2;\n  char *pcVar3;\n  char *pcVar4;\n  \n                    /* 0x2faa0  1002  ?gbStrRChr@@YAPADPBD0@Z */\n  uVar2 = 0xffffffff;\n  pcVar4 = param_1;\n  do {\n    if (uVar2 == 0) break;\n    uVar2 = uVar2 - 1;\n    cVar1 = *pcVar4;\n    pcVar4 = pcVar4 + 1;\n  } while (cVar1 != '\\0');\n  pcVar4 = param_1 + (~uVar2 - 2);\n  if (param_1 <= pcVar4) {\n    do {\n      if (*param_2 != '\\0') {\n        pcVar3 = param_2;\n        cVar1 = *param_2;\n        do {\n          if (*pcVar4 == cVar1) {\n            return pcVar4;\n          }\n          cVar1 = pcVar3[1];\n          pcVar3 = pcVar3 + 1;\n        } while (cVar1 != '\\0');\n      }\n      pcVar4 = pcVar4 + -1;\n    } while (param_1 <= pcVar4);\n  }\n  return (char *)0x0;\n}\n\n", 
+  "is_thunk": false, 
+  "name": "gbStrRChr", 
+  "assembly": "  1002faa0:  PUSH EBX\n  1002faa1:  PUSH EBP\n  1002faa2:  MOV EBP,dword ptr [ESP + 0xc]\n  1002faa6:  PUSH ESI\n  1002faa7:  PUSH EDI\n  1002faa8:  MOV EDI,EBP\n  1002faaa:  OR ECX,0xffffffff\n  1002faad:  XOR EAX,EAX\n  1002faaf:  SCASB.REPNE ES:EDI\n  1002fab1:  NOT ECX\n  1002fab3:  DEC ECX\n  1002fab4:  LEA ESI,[ECX + EBP*0x1 + -0x1]\n  1002fab8:  CMP ESI,EBP\n  1002faba:  JC 0x1002fadd\n  1002fabc:  MOV EDI,dword ptr [ESP + 0x18]\n  1002fac0:  MOV AL,byte ptr [EDI]\n  1002fac2:  TEST AL,AL\n  1002fac4:  MOV EDX,EDI\n  1002fac6:  JZ 0x1002fad8\n  1002fac8:  MOV BL,byte ptr [ESI]\n  1002faca:  MOV CL,AL\n  1002facc:  CMP BL,CL\n  1002face:  JZ 0x1002fae4\n  1002fad0:  MOV CL,byte ptr [EDX + 0x1]\n  1002fad3:  INC EDX\n  1002fad4:  TEST CL,CL\n  1002fad6:  JNZ 0x1002facc\n  1002fad8:  DEC ESI\n  1002fad9:  CMP ESI,EBP\n  1002fadb:  JNC 0x1002fac2\n  1002fadd:  POP EDI\n  1002fade:  POP ESI\n  1002fadf:  POP EBP\n  1002fae0:  XOR EAX,EAX\n  1002fae2:  POP EBX\n  1002fae3:  RET\n  1002fae4:  MOV EAX,ESI\n  1002fae6:  POP EDI\n  1002fae7:  POP ESI\n  1002fae8:  POP EBP\n  1002fae9:  POP EBX\n  1002faea:  RET", 
+  "callers": []
+}

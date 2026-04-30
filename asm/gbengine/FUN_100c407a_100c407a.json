@@ -1,0 +1,143 @@
+{
+  "address": "0x100c407a", 
+  "size_bytes": 115, 
+  "calling_convention": "unknown", 
+  "signature": "undefined FUN_100c407a(void)", 
+  "callees": [], 
+  "global_refs": [], 
+  "has_custom_name": false, 
+  "decompiled_c": "\nundefined4 FUN_100c407a(void)\n\n{\n  int *piVar1;\n  uint uVar2;\n  int iVar3;\n  int in_ECX;\n  undefined4 uVar4;\n  undefined4 uVar5;\n  \n  piVar1 = *(int **)(in_ECX + 0x168);\n  uVar5 = 0;\n  if (piVar1 != (int *)0x0) {\n    uVar2 = *(uint *)(in_ECX + 0xfc);\n    if ((uVar2 < *(uint *)(in_ECX + 0xf0)) && (*(int *)(in_ECX + 0xcc) == 0)) {\n      uVar4 = 0;\n      if ((*(int *)(in_ECX + 0xe0) != 0) &&\n         ((iVar3 = *(int *)(*(int *)(in_ECX + 0xe0) + 0x3c), iVar3 != 0 &&\n          (*(int *)(iVar3 + 4) == 0xd)))) {\n        uVar4 = *(undefined4 *)(iVar3 + 0x40);\n        uVar5 = *(undefined4 *)(iVar3 + 0x44);\n      }\n      uVar5 = (**(code **)(*piVar1 + 0x10))\n                        (piVar1,uVar4,uVar5,*(int *)(in_ECX + 0xec) + uVar2 * 4,\n                         *(uint *)(in_ECX + 0xf0) - uVar2);\n      *(undefined4 *)(in_ECX + 0xfc) = *(undefined4 *)(in_ECX + 0xf0);\n      return uVar5;\n    }\n  }\n  return 0;\n}\n\n", 
+  "is_thunk": false, 
+  "name": "FUN_100c407a", 
+  "assembly": "  100c407a:  PUSH EBP\n  100c407b:  PUSH ESI\n  100c407c:  MOV ESI,ECX\n  100c407e:  PUSH EDI\n  100c407f:  MOV EDI,dword ptr [ESI + 0x168]\n  100c4085:  XOR EBP,EBP\n  100c4087:  CMP EDI,EBP\n  100c4089:  JZ 0x100c40e7\n  100c408b:  MOV EDX,dword ptr [ESI + 0xfc]\n  100c4091:  MOV EAX,dword ptr [ESI + 0xf0]\n  100c4097:  CMP EDX,EAX\n  100c4099:  JNC 0x100c40e7\n  100c409b:  CMP dword ptr [ESI + 0xcc],EBP\n  100c40a1:  JNZ 0x100c40e7\n  100c40a3:  MOV ECX,dword ptr [ESI + 0xe0]\n  100c40a9:  PUSH EBX\n  100c40aa:  XOR EBX,EBX\n  100c40ac:  TEST ECX,ECX\n  100c40ae:  JZ 0x100c40c3\n  100c40b0:  MOV ECX,dword ptr [ECX + 0x3c]\n  100c40b3:  TEST ECX,ECX\n  100c40b5:  JZ 0x100c40c3\n  100c40b7:  CMP dword ptr [ECX + 0x4],0xd\n  100c40bb:  JNZ 0x100c40c3\n  100c40bd:  MOV EBX,dword ptr [ECX + 0x40]\n  100c40c0:  MOV EBP,dword ptr [ECX + 0x44]\n  100c40c3:  MOV ECX,dword ptr [EDI]\n  100c40c5:  SUB EAX,EDX\n  100c40c7:  PUSH EAX\n  100c40c8:  MOV EAX,dword ptr [ESI + 0xec]\n  100c40ce:  LEA EAX,[EAX + EDX*0x4]\n  100c40d1:  PUSH EAX\n  100c40d2:  PUSH EBP\n  100c40d3:  PUSH EBX\n  100c40d4:  PUSH EDI\n  100c40d5:  CALL dword ptr [ECX + 0x10]\n  100c40d8:  MOV ECX,dword ptr [ESI + 0xf0]\n  100c40de:  MOV dword ptr [ESI + 0xfc],ECX\n  100c40e4:  POP EBX\n  100c40e5:  JMP 0x100c40e9\n  100c40e7:  XOR EAX,EAX\n  100c40e9:  POP EDI\n  100c40ea:  POP ESI\n  100c40eb:  POP EBP\n  100c40ec:  RET", 
+  "callers": [
+    {
+      "address": "0x100c898d", 
+      "name": "FUN_100c898d"
+    }, 
+    {
+      "address": "0x100c9674", 
+      "name": "FUN_100c9674"
+    }, 
+    {
+      "address": "0x100b22b7", 
+      "name": "FUN_100b22b7"
+    }, 
+    {
+      "address": "0x100b23f5", 
+      "name": "FUN_100b23f5"
+    }, 
+    {
+      "address": "0x100b24ce", 
+      "name": "FUN_100b24ce"
+    }, 
+    {
+      "address": "0x100b259e", 
+      "name": "FUN_100b259e"
+    }, 
+    {
+      "address": "0x100b259e", 
+      "name": "FUN_100b259e"
+    }, 
+    {
+      "address": "0x100b26ed", 
+      "name": "FUN_100b26ed"
+    }, 
+    {
+      "address": "0x100b2857", 
+      "name": "FUN_100b2857"
+    }, 
+    {
+      "address": "0x100c9d85", 
+      "name": "FUN_100c9d85"
+    }, 
+    {
+      "address": "0x100ca4c7", 
+      "name": "FUN_100ca4c7"
+    }, 
+    {
+      "address": "0x100ca628", 
+      "name": "FUN_100ca628"
+    }, 
+    {
+      "address": "0x100ca7e3", 
+      "name": "FUN_100ca7e3"
+    }, 
+    {
+      "address": "0x100b4a4d", 
+      "name": "FUN_100b4a4d"
+    }, 
+    {
+      "address": "0x100b5efc", 
+      "name": "FUN_100b5efc"
+    }, 
+    {
+      "address": "0x100b609a", 
+      "name": "FUN_100b609a"
+    }, 
+    {
+      "address": "0x100b945f", 
+      "name": "FUN_100b945f"
+    }, 
+    {
+      "address": "0x100ba398", 
+      "name": "FUN_100ba398"
+    }, 
+    {
+      "address": "0x100c9a93", 
+      "name": "FUN_100c9a93"
+    }, 
+    {
+      "address": "0x100c9abb", 
+      "name": "FUN_100c9abb"
+    }, 
+    {
+      "address": "0x100c9ae3", 
+      "name": "FUN_100c9ae3"
+    }, 
+    {
+      "address": "0x100c9ed5", 
+      "name": "FUN_100c9ed5"
+    }, 
+    {
+      "address": "0x100ca0dc", 
+      "name": "FUN_100ca0dc"
+    }, 
+    {
+      "address": "0x100ca2a6", 
+      "name": "FUN_100ca2a6"
+    }, 
+    {
+      "address": "0x100ca3ff", 
+      "name": "FUN_100ca3ff"
+    }, 
+    {
+      "address": "0x100ca477", 
+      "name": "FUN_100ca477"
+    }, 
+    {
+      "address": "0x100ca49f", 
+      "name": "FUN_100ca49f"
+    }, 
+    {
+      "address": "0x100ca91f", 
+      "name": "FUN_100ca91f"
+    }, 
+    {
+      "address": "0x100cad27", 
+      "name": "FUN_100cad27"
+    }, 
+    {
+      "address": "0x100cad8f", 
+      "name": "FUN_100cad8f"
+    }, 
+    {
+      "address": "0x100c9858", 
+      "name": "FUN_100c9858"
+    }, 
+    {
+      "address": "0x100c9993", 
+      "name": "FUN_100c9993"
+    }
+  ]
+}

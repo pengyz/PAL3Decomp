@@ -1,0 +1,38 @@
+{
+  "address": "0x100c1ae6", 
+  "size_bytes": 73, 
+  "calling_convention": "unknown", 
+  "signature": "undefined FUN_100c1ae6(undefined4 param_1, undefined4 param_2)", 
+  "callees": [], 
+  "global_refs": [
+    {
+      "address": "0x00000008", 
+      "type": null, 
+      "name": "DAT_00000008"
+    }, 
+    {
+      "address": "0x00000004", 
+      "type": null, 
+      "name": "DAT_00000004"
+    }
+  ], 
+  "has_custom_name": false, 
+  "decompiled_c": "\nundefined4 FUN_100c1ae6(uint param_1,uint param_2)\n\n{\n  undefined4 *puVar1;\n  undefined4 uVar2;\n  int in_ECX;\n  \n  uVar2 = *(undefined4 *)(*(int *)(in_ECX + 0x18) + param_2 * 4);\n  if (param_2 < param_1) {\n    do {\n      puVar1 = (undefined4 *)(*(int *)(in_ECX + 0x18) + param_2 * 4);\n      param_2 = param_2 + 1;\n      *puVar1 = puVar1[1];\n    } while (param_2 < param_1);\n  }\n  else if (param_1 < param_2) {\n    do {\n      puVar1 = (undefined4 *)(*(int *)(in_ECX + 0x18) + param_2 * 4);\n      param_2 = param_2 - 1;\n      *puVar1 = puVar1[-1];\n    } while (param_1 < param_2);\n  }\n  *(undefined4 *)(*(int *)(in_ECX + 0x18) + param_1 * 4) = uVar2;\n  return 0;\n}\n\n", 
+  "is_thunk": false, 
+  "name": "FUN_100c1ae6", 
+  "assembly": "  100c1ae6:  MOV EAX,dword ptr [ESP + 0x8]\n  100c1aea:  MOV EDX,dword ptr [ECX + 0x18]\n  100c1aed:  PUSH EBX\n  100c1aee:  PUSH ESI\n  100c1aef:  PUSH EDI\n  100c1af0:  MOV EDI,dword ptr [EDX + EAX*0x4]\n  100c1af3:  MOV EDX,dword ptr [ESP + 0x10]\n  100c1af7:  CMP EAX,EDX\n  100c1af9:  MOV ESI,EAX\n  100c1afb:  JNC 0x100c1b0f\n  100c1afd:  MOV EAX,dword ptr [ECX + 0x18]\n  100c1b00:  LEA EAX,[EAX + ESI*0x4]\n  100c1b03:  MOV EBX,dword ptr [EAX + 0x4]\n  100c1b06:  INC ESI\n  100c1b07:  CMP ESI,EDX\n  100c1b09:  MOV dword ptr [EAX],EBX\n  100c1b0b:  JC 0x100c1afd\n  100c1b0d:  JMP 0x100c1b21\n  100c1b0f:  JBE 0x100c1b21\n  100c1b11:  MOV EAX,dword ptr [ECX + 0x18]\n  100c1b14:  LEA EAX,[EAX + ESI*0x4]\n  100c1b17:  MOV EBX,dword ptr [EAX + -0x4]\n  100c1b1a:  DEC ESI\n  100c1b1b:  CMP ESI,EDX\n  100c1b1d:  MOV dword ptr [EAX],EBX\n  100c1b1f:  JA 0x100c1b11\n  100c1b21:  MOV EAX,dword ptr [ECX + 0x18]\n  100c1b24:  MOV dword ptr [EAX + EDX*0x4],EDI\n  100c1b27:  POP EDI\n  100c1b28:  POP ESI\n  100c1b29:  XOR EAX,EAX\n  100c1b2b:  POP EBX\n  100c1b2c:  RET 0x8", 
+  "callers": [
+    {
+      "address": "0x100c1b2f", 
+      "name": "FUN_100c1b2f"
+    }, 
+    {
+      "address": "0x100c1d03", 
+      "name": "FUN_100c1d03"
+    }, 
+    {
+      "address": "0x100c1d03", 
+      "name": "FUN_100c1d03"
+    }
+  ]
+}

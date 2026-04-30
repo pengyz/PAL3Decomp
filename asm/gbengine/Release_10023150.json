@@ -1,0 +1,46 @@
+{
+  "address": "0x10023150", 
+  "size_bytes": 94, 
+  "calling_convention": "__thiscall", 
+  "signature": "void __thiscall Release(gbPrintFontMgr * this)", 
+  "callees": [
+    {
+      "address": "0x100e4b99", 
+      "name": "FUN_100e4b99"
+    }, 
+    {
+      "address": "0x100e4b99", 
+      "name": "FUN_100e4b99"
+    }, 
+    {
+      "address": "0x100e4b99", 
+      "name": "FUN_100e4b99"
+    }, 
+    {
+      "address": "0x100e4b99", 
+      "name": "FUN_100e4b99"
+    }, 
+    {
+      "address": "0x100e4a24", 
+      "name": "FUN_100e4a24"
+    }
+  ], 
+  "global_refs": [
+    {
+      "address": "0x100f5844", 
+      "type": "undefined *", 
+      "name": "DAT_100f5844"
+    }
+  ], 
+  "has_custom_name": true, 
+  "decompiled_c": "\n/* public: void __thiscall gbPrintFontMgr::Release(void) */\n\nvoid __thiscall gbPrintFontMgr::Release(gbPrintFontMgr *this)\n\n{\n  undefined4 *puVar1;\n  int iVar2;\n  \n                    /* 0x23150  776  ?Release@gbPrintFontMgr@@QAEXXZ */\n  iVar2 = 5;\n  do {\n    if (*(int **)this != (int *)0x0) {\n      (**(code **)(**(int **)this + 4))();\n      puVar1 = *(undefined4 **)this;\n      if (puVar1 != (undefined4 *)0x0) {\n        *puVar1 = &PTR_Init_100f5844;\n        FUN_100e4b99(puVar1[8]);\n        FUN_100e4b99(puVar1[5]);\n        FUN_100e4b99(puVar1[2]);\n        FUN_100e4b99(puVar1[1]);\n        FUN_100e4a24(puVar1);\n      }\n      *(int *)this = 0;\n    }\n    this = this + 4;\n    iVar2 = iVar2 + -1;\n  } while (iVar2 != 0);\n  return;\n}\n\n", 
+  "is_thunk": false, 
+  "name": "Release", 
+  "assembly": "  10023150:  PUSH EBX\n  10023151:  PUSH ESI\n  10023152:  PUSH EDI\n  10023153:  MOV EDI,ECX\n  10023155:  MOV EBX,0x5\n  1002315a:  MOV ECX,dword ptr [EDI]\n  1002315c:  TEST ECX,ECX\n  1002315e:  JZ 0x100231a4\n  10023160:  MOV EAX,dword ptr [ECX]\n  10023162:  CALL dword ptr [EAX + 0x4]\n  10023165:  MOV ESI,dword ptr [EDI]\n  10023167:  TEST ESI,ESI\n  10023169:  JZ 0x1002319e\n  1002316b:  MOV ECX,dword ptr [ESI + 0x20]\n  1002316e:  MOV dword ptr [ESI],0x100f5844\n  10023174:  PUSH ECX\n  10023175:  CALL 0x100e4b99\n  1002317a:  MOV EDX,dword ptr [ESI + 0x14]\n  1002317d:  PUSH EDX\n  1002317e:  CALL 0x100e4b99\n  10023183:  MOV EAX,dword ptr [ESI + 0x8]\n  10023186:  PUSH EAX\n  10023187:  CALL 0x100e4b99\n  1002318c:  MOV ECX,dword ptr [ESI + 0x4]\n  1002318f:  PUSH ECX\n  10023190:  CALL 0x100e4b99\n  10023195:  PUSH ESI\n  10023196:  CALL 0x100e4a24\n  1002319b:  ADD ESP,0x14\n  1002319e:  MOV dword ptr [EDI],0x0\n  100231a4:  ADD EDI,0x4\n  100231a7:  DEC EBX\n  100231a8:  JNZ 0x1002315a\n  100231aa:  POP EDI\n  100231ab:  POP ESI\n  100231ac:  POP EBX\n  100231ad:  RET", 
+  "callers": [
+    {
+      "address": "0x1001de70", 
+      "name": "FUN_1001de70"
+    }
+  ]
+}

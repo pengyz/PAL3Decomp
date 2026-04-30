@@ -1,0 +1,69 @@
+{
+  "address": "0x100f07bc", 
+  "size_bytes": 178, 
+  "calling_convention": "unknown", 
+  "signature": "undefined FUN_100f07bc(void)", 
+  "callees": [
+    {
+      "address": "0x100f05b6", 
+      "name": "FUN_100f05b6"
+    }, 
+    {
+      "address": "0x100f05b6", 
+      "name": "FUN_100f05b6"
+    }
+  ], 
+  "global_refs": [
+    {
+      "address": "0x-000001c", 
+      "type": null, 
+      "name": "DAT_-000001c"
+    }, 
+    {
+      "address": "0x-0000034", 
+      "type": null, 
+      "name": "DAT_-0000034"
+    }, 
+    {
+      "address": "0x-000002e", 
+      "type": null, 
+      "name": "DAT_-000002e"
+    }, 
+    {
+      "address": "0x-0000030", 
+      "type": null, 
+      "name": "DAT_-0000030"
+    }, 
+    {
+      "address": "0x-0000028", 
+      "type": null, 
+      "name": "DAT_-0000028"
+    }, 
+    {
+      "address": "0x-0000010", 
+      "type": null, 
+      "name": "DAT_-0000010"
+    }, 
+    {
+      "address": "0x-000000c", 
+      "type": null, 
+      "name": "DAT_-000000c"
+    }, 
+    {
+      "address": "0x-0000014", 
+      "type": null, 
+      "name": "DAT_-0000014"
+    }, 
+    {
+      "address": "0x1012b2b4", 
+      "type": null, 
+      "name": "DAT_1012b2b4"
+    }
+  ], 
+  "has_custom_name": false, 
+  "decompiled_c": "\n/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */\n\nfloat10 FUN_100f07bc(void)\n\n{\n  float10 in_ST0;\n  float10 fVar1;\n  float10 in_ST1;\n  \n  if (((unkuint10)in_ST1 & 0) != 0) {\n    fVar1 = (float10)FUN_100f05b6();\n    return fVar1;\n  }\n  if (SUB104(in_ST1,0) != 0 || (int)((unkuint10)in_ST1 >> 0x20) != 0) {\n    fVar1 = (float10)FUN_100f05b6(in_ST1 * (float10)_DAT_1012b2b4);\n    return fVar1;\n  }\n  return in_ST0 - (in_ST0 / in_ST1) * in_ST1;\n}\n\n", 
+  "is_thunk": false, 
+  "name": "FUN_100f07bc", 
+  "assembly": "  100f07bc:  PUSH EDX\n  100f07bd:  SUB ESP,0x30\n  100f07c0:  FSTP tword ptr [ESP + 0x18]\n  100f07c4:  FSTP tword ptr [ESP]\n  100f07c7:  XOR EDX,EDX\n  100f07c9:  MOV EAX,dword ptr [ESP + 0x6]\n  100f07cd:  TEST EAX,0x7fff0000\n  100f07d2:  JZ 0x100f07de\n  100f07d4:  CALL 0x100f05b6\n  100f07d9:  ADD ESP,0x30\n  100f07dc:  POP EDX\n  100f07dd:  RET\n  100f07de:  FLD tword ptr [ESP]\n  100f07e1:  FLD tword ptr [ESP + 0x18]\n  100f07e5:  MOV EAX,dword ptr [ESP]\n  100f07e8:  OR EAX,dword ptr [ESP + 0x4]\n  100f07ec:  JZ 0x100f0867\n  100f07ee:  FXCH\n  100f07f0:  FSTP tword ptr [ESP + 0xc]\n  100f07f4:  FLD tword ptr [ESP]\n  100f07f7:  FXCH\n  100f07f9:  OR EDX,0x2\n  100f07fc:  FNSTCW word ptr [ESP + 0x24]\n  100f0800:  MOV EAX,dword ptr [ESP + 0x24]\n  100f0804:  OR EAX,0x33f\n  100f0809:  MOV dword ptr [ESP + 0x28],EAX\n  100f080d:  FLDCW word ptr [ESP + 0x28]\n  100f0811:  MOV EAX,dword ptr [ESP + 0x20]\n  100f0815:  AND EAX,0x7fff\n  100f081a:  CMP EAX,0x7fbe\n  100f081f:  JA 0x100f0839\n  100f0821:  OR EDX,0x1\n  100f0824:  FMUL qword ptr [0x1012b2b4]\n  100f082a:  FSTP tword ptr [ESP + 0x18]\n  100f082e:  FMUL qword ptr [0x1012b2b4]\n  100f0834:  FSTP tword ptr [ESP]\n  100f0837:  JMP 0x100f0859\n  100f0839:  FNSTCW word ptr [ESP + 0x24]\n  100f083d:  MOV EAX,dword ptr [ESP + 0x24]\n  100f0841:  OR EAX,0x300\n  100f0846:  MOV dword ptr [ESP + 0x28],EAX\n  100f084a:  FLDCW word ptr [ESP + 0x28]\n  100f084e:  FSTP ST0\n  100f0850:  FMUL qword ptr [0x1012b2b4]\n  100f0856:  FSTP tword ptr [ESP]\n  100f0859:  FLDCW word ptr [ESP + 0x24]\n  100f085d:  CALL 0x100f05b6\n  100f0862:  ADD ESP,0x30\n  100f0865:  POP EDX\n  100f0866:  RET\n  100f0867:  FPREM\n  100f0869:  ADD ESP,0x30\n  100f086c:  POP EDX\n  100f086d:  RET", 
+  "callers": []
+}

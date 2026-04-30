@@ -1,0 +1,25 @@
+{
+  "address": "0x1002fcc0", 
+  "size_bytes": 79, 
+  "calling_convention": "__cdecl", 
+  "signature": "int __cdecl gbIsMultiCharHead(char * param_1, int param_2)", 
+  "callees": [], 
+  "global_refs": [
+    {
+      "address": "0x00000008", 
+      "type": null, 
+      "name": "DAT_00000008"
+    }, 
+    {
+      "address": "0x00000004", 
+      "type": null, 
+      "name": "DAT_00000004"
+    }
+  ], 
+  "has_custom_name": true, 
+  "decompiled_c": "\n/* int __cdecl gbIsMultiCharHead(char *,int) */\n\nint __cdecl gbIsMultiCharHead(char *param_1,int param_2)\n\n{\n  int iVar1;\n  char cVar2;\n  \n                    /* 0x2fcc0  991  ?gbIsMultiCharHead@@YAHPADH@Z */\n  cVar2 = '\\0';\n  iVar1 = 0;\n  if (-1 < param_2) {\n    do {\n      if (cVar2 == '\\0') {\n        if (0x7f < (byte)param_1[iVar1]) {\n          cVar2 = '\\x01';\n        }\n      }\n      else if (cVar2 == '\\x01') {\n        cVar2 = '\\x02';\n      }\n      else if (cVar2 == '\\x02') {\n        cVar2 = 0x7f < (byte)param_1[iVar1];\n      }\n      iVar1 = iVar1 + 1;\n    } while (iVar1 <= param_2);\n    if (cVar2 == '\\x01') {\n      return 1;\n    }\n  }\n  return 0;\n}\n\n", 
+  "is_thunk": false, 
+  "name": "gbIsMultiCharHead", 
+  "assembly": "  1002fcc0:  PUSH EBX\n  1002fcc1:  MOV EBX,dword ptr [ESP + 0xc]\n  1002fcc5:  PUSH ESI\n  1002fcc6:  XOR EAX,EAX\n  1002fcc8:  XOR ESI,ESI\n  1002fcca:  TEST EBX,EBX\n  1002fccc:  JL 0x1002fd0a\n  1002fcce:  PUSH EDI\n  1002fccf:  MOV EDI,dword ptr [ESP + 0x10]\n  1002fcd3:  MOV DL,byte ptr [ESI + EDI*0x1]\n  1002fcd6:  MOV ECX,EAX\n  1002fcd8:  SUB ECX,0x0\n  1002fcdb:  JZ 0x1002fcf2\n  1002fcdd:  DEC ECX\n  1002fcde:  JZ 0x1002fceb\n  1002fce0:  DEC ECX\n  1002fce1:  JNZ 0x1002fcfc\n  1002fce3:  CMP DL,0x80\n  1002fce6:  SBB EAX,EAX\n  1002fce8:  INC EAX\n  1002fce9:  JMP 0x1002fcfc\n  1002fceb:  MOV EAX,0x2\n  1002fcf0:  JMP 0x1002fcfc\n  1002fcf2:  CMP DL,0x80\n  1002fcf5:  JC 0x1002fcfc\n  1002fcf7:  MOV EAX,0x1\n  1002fcfc:  INC ESI\n  1002fcfd:  CMP ESI,EBX\n  1002fcff:  JLE 0x1002fcd3\n  1002fd01:  CMP EAX,0x1\n  1002fd04:  POP EDI\n  1002fd05:  JNZ 0x1002fd0a\n  1002fd07:  POP ESI\n  1002fd08:  POP EBX\n  1002fd09:  RET\n  1002fd0a:  POP ESI\n  1002fd0b:  XOR EAX,EAX\n  1002fd0d:  POP EBX\n  1002fd0e:  RET", 
+  "callers": []
+}

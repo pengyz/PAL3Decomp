@@ -1,0 +1,19 @@
+{
+  "address": "0x10015620", 
+  "size_bytes": 11, 
+  "calling_convention": "__thiscall", 
+  "signature": "void __thiscall ResetBladeMgr(gbSceneGraph * this)", 
+  "callees": [
+    {
+      "address": "0x1000ed00", 
+      "name": "FUN_1000ed00"
+    }
+  ], 
+  "global_refs": [], 
+  "has_custom_name": true, 
+  "decompiled_c": "\n/* public: void __thiscall gbSceneGraph::ResetBladeMgr(void) */\n\nvoid __thiscall gbSceneGraph::ResetBladeMgr(gbSceneGraph *this)\n\n{\n                    /* 0x15620  810  ?ResetBladeMgr@gbSceneGraph@@QAEXXZ */\n  FUN_1000ed00();\n  return;\n}\n\n", 
+  "is_thunk": false, 
+  "name": "ResetBladeMgr", 
+  "assembly": "  10015620:  MOV ECX,dword ptr [ECX + 0x4b28]\n  10015626:  JMP 0x1000ed00", 
+  "callers": []
+}

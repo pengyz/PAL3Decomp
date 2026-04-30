@@ -1,0 +1,14 @@
+{
+  "address": "0x1002f970", 
+  "size_bytes": 26, 
+  "calling_convention": "__thiscall", 
+  "signature": "gbStaticChainNode * __thiscall BeginReverseIterate(gbStaticChain * this)", 
+  "callees": [], 
+  "global_refs": [], 
+  "has_custom_name": true, 
+  "decompiled_c": "\n/* public: struct gbStaticChainNode * __thiscall gbStaticChain::BeginReverseIterate(void) */\n\ngbStaticChainNode * __thiscall gbStaticChain::BeginReverseIterate(gbStaticChain *this)\n\n{\n  gbStaticChainNode *pgVar1;\n  gbStaticChainNode *pgVar2;\n  \n                    /* 0x2f970  322  ?BeginReverseIterate@gbStaticChain@@QAEPAUgbStaticChainNode@@XZ\n                        */\n  pgVar1 = *(gbStaticChainNode **)(this + 8);\n  if (pgVar1 != (gbStaticChainNode *)0x0) {\n    do {\n      pgVar2 = pgVar1;\n      pgVar1 = *(gbStaticChainNode **)(pgVar2 + 4);\n    } while (*(gbStaticChainNode **)(pgVar2 + 4) != (gbStaticChainNode *)0x0);\n    *(gbStaticChainNode **)(this + 0xc) = pgVar2;\n    return pgVar2;\n  }\n  *(undefined4 *)(this + 0xc) = 0;\n  return pgVar1;\n}\n\n", 
+  "is_thunk": false, 
+  "name": "BeginReverseIterate", 
+  "assembly": "  1002f970:  MOV EAX,dword ptr [ECX + 0x8]\n  1002f973:  TEST EAX,EAX\n  1002f975:  JZ 0x1002f986\n  1002f977:  MOV EDX,EAX\n  1002f979:  MOV EAX,dword ptr [EAX + 0x4]\n  1002f97c:  TEST EAX,EAX\n  1002f97e:  JNZ 0x1002f977\n  1002f980:  MOV dword ptr [ECX + 0xc],EDX\n  1002f983:  MOV EAX,EDX\n  1002f985:  RET\n  1002f986:  MOV dword ptr [ECX + 0xc],EAX\n  1002f989:  RET", 
+  "callers": []
+}

@@ -1,0 +1,98 @@
+{
+  "address": "0x1002e820", 
+  "size_bytes": 44, 
+  "calling_convention": "unknown", 
+  "signature": "undefined FUN_1002e820(undefined4 param_1, undefined1 param_2)", 
+  "callees": [
+    {
+      "address": "0x100e5bd1", 
+      "name": "FUN_100e5bd1"
+    }, 
+    {
+      "address": "0x00000069", 
+      "name": "MessageBoxA"
+    }
+  ], 
+  "global_refs": [
+    {
+      "address": "0x00000004", 
+      "type": null, 
+      "name": "DAT_00000004"
+    }, 
+    {
+      "address": "0x00000008", 
+      "type": null, 
+      "name": "DAT_00000008"
+    }, 
+    {
+      "address": "0x1015bf70", 
+      "type": null, 
+      "name": "DAT_1015bf70"
+    }, 
+    {
+      "address": "0x1012086c", 
+      "type": "string", 
+      "name": "DAT_1012086c"
+    }, 
+    {
+      "address": "0x100f51d4", 
+      "type": "pointer", 
+      "name": "DAT_100f51d4"
+    }
+  ], 
+  "has_custom_name": false, 
+  "decompiled_c": "\nvoid FUN_1002e820(undefined4 param_1)\n\n{\n  FUN_100e5bd1(&DAT_1015bf70,param_1,&stack0x00000008);\n  MessageBoxA((HWND)0x0,&DAT_1015bf70,s_Message_1012086c,0);\n  return;\n}\n\n", 
+  "is_thunk": false, 
+  "name": "FUN_1002e820", 
+  "assembly": "  1002e820:  MOV ECX,dword ptr [ESP + 0x4]\n  1002e824:  LEA EAX,[ESP + 0x8]\n  1002e828:  PUSH EAX\n  1002e829:  PUSH ECX\n  1002e82a:  PUSH 0x1015bf70\n  1002e82f:  CALL 0x100e5bd1\n  1002e834:  ADD ESP,0xc\n  1002e837:  PUSH 0x0\n  1002e839:  PUSH 0x1012086c\n  1002e83e:  PUSH 0x1015bf70\n  1002e843:  PUSH 0x0\n  1002e845:  CALL dword ptr [0x100f51d4]\n  1002e84b:  RET", 
+  "callers": [
+    {
+      "address": "0x1002cc50", 
+      "name": "Open"
+    }, 
+    {
+      "address": "0x1002dc60", 
+      "name": "FUN_1002dc60"
+    }, 
+    {
+      "address": "0x1002dc60", 
+      "name": "FUN_1002dc60"
+    }, 
+    {
+      "address": "0x1002df10", 
+      "name": "FUN_1002df10"
+    }, 
+    {
+      "address": "0x1002c660", 
+      "name": "Load"
+    }, 
+    {
+      "address": "0x1002c660", 
+      "name": "Load"
+    }, 
+    {
+      "address": "0x1002c660", 
+      "name": "Load"
+    }, 
+    {
+      "address": "0x1002c660", 
+      "name": "Load"
+    }, 
+    {
+      "address": "0x1002c660", 
+      "name": "Load"
+    }, 
+    {
+      "address": "0x1002c9e0", 
+      "name": "IsValidCPK"
+    }, 
+    {
+      "address": "0x1002c9e0", 
+      "name": "IsValidCPK"
+    }, 
+    {
+      "address": "0x1002c9e0", 
+      "name": "IsValidCPK"
+    }
+  ]
+}

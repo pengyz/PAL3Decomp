@@ -1,0 +1,14 @@
+{
+  "address": "0x10005a10", 
+  "size_bytes": 14, 
+  "calling_convention": "__thiscall", 
+  "signature": "int __thiscall IsCurCtrlDefault(gbCamera * this)", 
+  "callees": [], 
+  "global_refs": [], 
+  "has_custom_name": true, 
+  "decompiled_c": "\n/* public: int __thiscall gbCamera::IsCurCtrlDefault(void) */\n\nint __thiscall gbCamera::IsCurCtrlDefault(gbCamera *this)\n\n{\n                    /* 0x5a10  630  ?IsCurCtrlDefault@gbCamera@@QAEHXZ */\n  return (uint)(*(int *)(this + 0x154) == 0);\n}\n\n", 
+  "is_thunk": false, 
+  "name": "IsCurCtrlDefault", 
+  "assembly": "  10005a10:  MOV EDX,dword ptr [ECX + 0x154]\n  10005a16:  XOR EAX,EAX\n  10005a18:  TEST EDX,EDX\n  10005a1a:  SETZ AL\n  10005a1d:  RET", 
+  "callers": []
+}

@@ -1,0 +1,20 @@
+{
+  "address": "0x10005ed0", 
+  "size_bytes": 22, 
+  "calling_convention": "__thiscall", 
+  "signature": "gbVFileSystem * __thiscall operator=(gbVFileSystem * this, gbVFileSystem * param_1)", 
+  "callees": [], 
+  "global_refs": [
+    {
+      "address": "0x00000004", 
+      "type": null, 
+      "name": "DAT_00000004"
+    }
+  ], 
+  "has_custom_name": true, 
+  "decompiled_c": "\n/* public: class gbVFileSystem & __thiscall gbVFileSystem::operator=(class gbVFileSystem const &) */\n\ngbVFileSystem * __thiscall gbVFileSystem::operator=(gbVFileSystem *this,gbVFileSystem *param_1)\n\n{\n  int iVar1;\n  gbVFileSystem *pgVar2;\n  \n                    /* 0x5ed0  242  ??4gbVFileSystem@@QAEAAV0@ABV0@@Z */\n  pgVar2 = this;\n  for (iVar1 = 0x38075; iVar1 != 0; iVar1 = iVar1 + -1) {\n    *(undefined4 *)pgVar2 = *(undefined4 *)param_1;\n    param_1 = param_1 + 4;\n    pgVar2 = pgVar2 + 4;\n  }\n  return this;\n}\n\n", 
+  "is_thunk": false, 
+  "name": "operator=", 
+  "assembly": "  10005ed0:  PUSH ESI\n  10005ed1:  MOV ESI,dword ptr [ESP + 0x8]\n  10005ed5:  MOV EAX,ECX\n  10005ed7:  PUSH EDI\n  10005ed8:  MOV ECX,0x38075\n  10005edd:  MOV EDI,EAX\n  10005edf:  MOVSD.REP ES:EDI,ESI\n  10005ee1:  POP EDI\n  10005ee2:  POP ESI\n  10005ee3:  RET 0x4", 
+  "callers": []
+}

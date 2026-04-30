@@ -1,0 +1,158 @@
+{
+  "address": "0x100307a0", 
+  "size_bytes": 111, 
+  "calling_convention": "__thiscall", 
+  "signature": "void __thiscall CloseFile(gbVFileSystem * this, gbVFile * param_1)", 
+  "callees": [
+    {
+      "address": "0x1002d1a0", 
+      "name": "Close"
+    }, 
+    {
+      "address": "0x1002d1a0", 
+      "name": "Close"
+    }, 
+    {
+      "address": "0x100e5c22", 
+      "name": "FUN_100e5c22"
+    }, 
+    {
+      "address": "0x100e4b99", 
+      "name": "FUN_100e4b99"
+    }
+  ], 
+  "global_refs": [
+    {
+      "address": "0x00000004", 
+      "type": null, 
+      "name": "DAT_00000004"
+    }
+  ], 
+  "has_custom_name": true, 
+  "decompiled_c": "\n/* public: void __thiscall gbVFileSystem::CloseFile(class gbVFile *) */\n\nvoid __thiscall gbVFileSystem::CloseFile(gbVFileSystem *this,gbVFile *param_1)\n\n{\n  int iVar1;\n  \n                    /* 0x307a0  338  ?CloseFile@gbVFileSystem@@QAEXPAVgbVFile@@@Z */\n  iVar1 = *(int *)(this + 0xc);\n  if (iVar1 != 1) {\n    if (iVar1 == 0) {\n      FUN_100e5c22(*(undefined4 *)(param_1 + 4));\n      *(undefined4 *)param_1 = 0;\n      return;\n    }\n    if (iVar1 == 2) {\n      FUN_100e4b99(*(undefined4 *)(param_1 + 4));\n      *(undefined4 *)param_1 = 0;\n    }\n    return;\n  }\n  if (param_1 != (gbVFile *)0x0) {\n    CPK::Close((CPK *)(this + 0x18),(CPKFile *)(param_1 + 0x110));\n    return;\n  }\n  CPK::Close((CPK *)(this + 0x18),(CPKFile *)0x0);\n  return;\n}\n\n", 
+  "is_thunk": false, 
+  "name": "CloseFile", 
+  "assembly": "  100307a0:  MOV EAX,dword ptr [ECX + 0xc]\n  100307a3:  PUSH ESI\n  100307a4:  CMP EAX,0x1\n  100307a7:  JNZ 0x100307d2\n  100307a9:  MOV EAX,dword ptr [ESP + 0x8]\n  100307ad:  TEST EAX,EAX\n  100307af:  JZ 0x100307c3\n  100307b1:  ADD EAX,0x110\n  100307b6:  ADD ECX,0x18\n  100307b9:  PUSH EAX\n  100307ba:  CALL 0x1002d1a0\n  100307bf:  POP ESI\n  100307c0:  RET 0x4\n  100307c3:  XOR EAX,EAX\n  100307c5:  ADD ECX,0x18\n  100307c8:  PUSH EAX\n  100307c9:  CALL 0x1002d1a0\n  100307ce:  POP ESI\n  100307cf:  RET 0x4\n  100307d2:  TEST EAX,EAX\n  100307d4:  JNZ 0x100307f0\n  100307d6:  MOV ESI,dword ptr [ESP + 0x8]\n  100307da:  MOV EAX,dword ptr [ESI + 0x4]\n  100307dd:  PUSH EAX\n  100307de:  CALL 0x100e5c22\n  100307e3:  ADD ESP,0x4\n  100307e6:  MOV dword ptr [ESI],0x0\n  100307ec:  POP ESI\n  100307ed:  RET 0x4\n  100307f0:  CMP EAX,0x2\n  100307f3:  JNZ 0x1003080b\n  100307f5:  MOV ESI,dword ptr [ESP + 0x8]\n  100307f9:  MOV ECX,dword ptr [ESI + 0x4]\n  100307fc:  PUSH ECX\n  100307fd:  CALL 0x100e4b99\n  10030802:  ADD ESP,0x4\n  10030805:  MOV dword ptr [ESI],0x0\n  1003080b:  POP ESI\n  1003080c:  RET 0x4", 
+  "callers": [
+    {
+      "address": "0x100311c0", 
+      "name": "~CIniFile"
+    }, 
+    {
+      "address": "0x1001d6d0", 
+      "name": "NewRenderEffect"
+    }, 
+    {
+      "address": "0x10003680", 
+      "name": "LoadActorFile"
+    }, 
+    {
+      "address": "0x1000c5d0", 
+      "name": "LoadFromFile"
+    }, 
+    {
+      "address": "0x100102c0", 
+      "name": "LoadFromFile"
+    }, 
+    {
+      "address": "0x100102c0", 
+      "name": "LoadFromFile"
+    }, 
+    {
+      "address": "0x100108b0", 
+      "name": "LoadCVDFile"
+    }, 
+    {
+      "address": "0x1000e760", 
+      "name": "FUN_1000e760"
+    }, 
+    {
+      "address": "0x10015d10", 
+      "name": "FUN_10015d10"
+    }, 
+    {
+      "address": "0x100205a0", 
+      "name": "LoadTexture"
+    }, 
+    {
+      "address": "0x100205a0", 
+      "name": "LoadTexture"
+    }, 
+    {
+      "address": "0x1001e490", 
+      "name": "LoadImageFile"
+    }, 
+    {
+      "address": "0x1001eb80", 
+      "name": "FUN_1001eb80"
+    }, 
+    {
+      "address": "0x1001ed50", 
+      "name": "FUN_1001ed50"
+    }, 
+    {
+      "address": "0x1001f0a0", 
+      "name": "FUN_1001f0a0"
+    }, 
+    {
+      "address": "0x1001f0a0", 
+      "name": "FUN_1001f0a0"
+    }, 
+    {
+      "address": "0x1001f0a0", 
+      "name": "FUN_1001f0a0"
+    }, 
+    {
+      "address": "0x1001f0a0", 
+      "name": "FUN_1001f0a0"
+    }, 
+    {
+      "address": "0x1001f410", 
+      "name": "FUN_1001f410"
+    }, 
+    {
+      "address": "0x1002bca0", 
+      "name": "LoadFromFile"
+    }, 
+    {
+      "address": "0x1002bca0", 
+      "name": "LoadFromFile"
+    }, 
+    {
+      "address": "0x10029b20", 
+      "name": "FUN_10029b20"
+    }, 
+    {
+      "address": "0x10029b20", 
+      "name": "FUN_10029b20"
+    }, 
+    {
+      "address": "0x100135a0", 
+      "name": "gbLoadLightFile"
+    }, 
+    {
+      "address": "0x1001efc0", 
+      "name": "WriteTGAImage"
+    }, 
+    {
+      "address": "0x100312f0", 
+      "name": "CloseFile"
+    }, 
+    {
+      "address": "0x10007600", 
+      "name": "FUN_10007600"
+    }, 
+    {
+      "address": "0x10007da0", 
+      "name": "FUN_10007da0"
+    }, 
+    {
+      "address": "0x10008140", 
+      "name": "FUN_10008140"
+    }, 
+    {
+      "address": "0x1000a100", 
+      "name": "FUN_1000a100"
+    }
+  ]
+}

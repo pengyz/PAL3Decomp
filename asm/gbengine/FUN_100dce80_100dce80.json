@@ -1,0 +1,30 @@
+{
+  "address": "0x100dce80", 
+  "size_bytes": 112, 
+  "calling_convention": "unknown", 
+  "signature": "undefined FUN_100dce80(undefined4 param_1)", 
+  "callees": [], 
+  "global_refs": [
+    {
+      "address": "0x-0000022", 
+      "type": null, 
+      "name": "DAT_-0000022"
+    }, 
+    {
+      "address": "0x00000004", 
+      "type": null, 
+      "name": "DAT_00000004"
+    }
+  ], 
+  "has_custom_name": false, 
+  "decompiled_c": "\nvoid FUN_100dce80(int param_1)\n\n{\n  ushort uVar1;\n  uint uVar2;\n  int iVar3;\n  uint uVar4;\n  int iVar5;\n  uint uVar6;\n  int in_EDX;\n  uint uVar7;\n  int unaff_EBX;\n  uint uVar8;\n  int iVar9;\n  ushort auStack_24 [16];\n  \n  iVar9 = 0;\n  iVar3 = 0;\n  iVar5 = 1;\n  do {\n    iVar3 = (uint)(ushort)(*(short *)(in_EDX + iVar5 * 2 + -2) + (short)iVar3) << 1;\n    auStack_24[iVar5] = (ushort)iVar3;\n    iVar5 = iVar5 + 1;\n  } while (iVar5 < 0x10);\n  if (-1 < param_1) {\n    do {\n      uVar7 = (uint)*(ushort *)(unaff_EBX + 2 + iVar9 * 4);\n      if (uVar7 != 0) {\n        uVar1 = auStack_24[uVar7];\n        uVar8 = (uint)uVar1;\n        auStack_24[uVar7] = uVar1 + 1;\n        uVar2 = 0;\n        do {\n          uVar4 = uVar2;\n          uVar6 = uVar8 & 1;\n          uVar8 = uVar8 >> 1;\n          uVar7 = uVar7 - 1;\n          uVar2 = (uVar4 | uVar6) << 1;\n        } while (0 < (int)uVar7);\n        *(ushort *)(unaff_EBX + iVar9 * 4) = (ushort)uVar4 | (ushort)uVar6;\n      }\n      iVar9 = iVar9 + 1;\n    } while (iVar9 <= param_1);\n  }\n  return;\n}\n\n", 
+  "is_thunk": false, 
+  "name": "FUN_100dce80", 
+  "assembly": "  100dce80:  PUSH EBP\n  100dce81:  MOV EBP,ESP\n  100dce83:  SUB ESP,0x20\n  100dce86:  PUSH ESI\n  100dce87:  XOR ECX,ECX\n  100dce89:  PUSH EDI\n  100dce8a:  LEA ESI,[EBP + -0x1e]\n  100dce8d:  XOR EDI,EDI\n  100dce8f:  XOR EAX,EAX\n  100dce91:  INC ECX\n  100dce92:  SUB EDX,ESI\n  100dce94:  LEA ESI,[EDX + ECX*0x2]\n  100dce97:  MOVZX ESI,word ptr [EBP + ESI*0x1 + -0x20]\n  100dce9c:  ADD SI,AX\n  100dce9f:  SHL ESI,0x1\n  100dcea1:  MOV EAX,ESI\n  100dcea3:  MOV word ptr [EBP + ECX*0x2 + -0x20],AX\n  100dcea8:  INC ECX\n  100dcea9:  CMP ECX,0xf\n  100dceac:  JLE 0x100dce94\n  100dceae:  CMP dword ptr [EBP + 0x8],EDI\n  100dceb1:  JL 0x100dceea\n  100dceb3:  MOVZX EDX,word ptr [EBX + EDI*0x4 + 0x2]\n  100dceb8:  TEST EDX,EDX\n  100dceba:  JZ 0x100dcee4\n  100dcebc:  LEA EAX,[EBP + EDX*0x2 + -0x20]\n  100dcec0:  XOR ECX,ECX\n  100dcec2:  MOV CX,word ptr [EAX]\n  100dcec5:  MOVZX ESI,CX\n  100dcec8:  INC ECX\n  100dcec9:  MOV word ptr [EAX],CX\n  100dcecc:  XOR EAX,EAX\n  100dcece:  MOV ECX,ESI\n  100dced0:  AND ECX,0x1\n  100dced3:  OR EAX,ECX\n  100dced5:  SHR ESI,0x1\n  100dced7:  SHL EAX,0x1\n  100dced9:  DEC EDX\n  100dceda:  TEST EDX,EDX\n  100dcedc:  JG 0x100dcece\n  100dcede:  SHR EAX,0x1\n  100dcee0:  MOV word ptr [EBX + EDI*0x4],AX\n  100dcee4:  INC EDI\n  100dcee5:  CMP EDI,dword ptr [EBP + 0x8]\n  100dcee8:  JLE 0x100dceb3\n  100dceea:  POP EDI\n  100dceeb:  POP ESI\n  100dceec:  LEAVE\n  100dceed:  RET 0x4", 
+  "callers": [
+    {
+      "address": "0x100dcef0", 
+      "name": "FUN_100dcef0"
+    }
+  ]
+}

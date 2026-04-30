@@ -1,0 +1,20 @@
+{
+  "address": "0x10032850", 
+  "size_bytes": 22, 
+  "calling_convention": "__thiscall", 
+  "signature": "gbDropDesc * __thiscall operator=(gbDropDesc * this, gbDropDesc * param_1)", 
+  "callees": [], 
+  "global_refs": [
+    {
+      "address": "0x00000004", 
+      "type": null, 
+      "name": "DAT_00000004"
+    }
+  ], 
+  "has_custom_name": true, 
+  "decompiled_c": "\n/* public: struct gbDropDesc & __thiscall gbDropDesc::operator=(struct gbDropDesc const &) */\n\ngbDropDesc * __thiscall gbDropDesc::operator=(gbDropDesc *this,gbDropDesc *param_1)\n\n{\n  int iVar1;\n  gbDropDesc *pgVar2;\n  \n                    /* 0x32850  197  ??4gbDropDesc@@QAEAAU0@ABU0@@Z */\n  pgVar2 = this;\n  for (iVar1 = 9; iVar1 != 0; iVar1 = iVar1 + -1) {\n    *(undefined4 *)pgVar2 = *(undefined4 *)param_1;\n    param_1 = param_1 + 4;\n    pgVar2 = pgVar2 + 4;\n  }\n  return this;\n}\n\n", 
+  "is_thunk": false, 
+  "name": "operator=", 
+  "assembly": "  10032850:  PUSH ESI\n  10032851:  MOV ESI,dword ptr [ESP + 0x8]\n  10032855:  MOV EAX,ECX\n  10032857:  PUSH EDI\n  10032858:  MOV ECX,0x9\n  1003285d:  MOV EDI,EAX\n  1003285f:  MOVSD.REP ES:EDI,ESI\n  10032861:  POP EDI\n  10032862:  POP ESI\n  10032863:  RET 0x4", 
+  "callers": []
+}

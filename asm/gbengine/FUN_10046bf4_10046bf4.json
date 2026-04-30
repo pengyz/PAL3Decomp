@@ -1,0 +1,64 @@
+{
+  "address": "0x10046bf4", 
+  "size_bytes": 48, 
+  "calling_convention": "unknown", 
+  "signature": "undefined FUN_10046bf4(undefined4 param_1, undefined4 param_2)", 
+  "callees": [], 
+  "global_refs": [
+    {
+      "address": "0x00000004", 
+      "type": null, 
+      "name": "DAT_00000004"
+    }, 
+    {
+      "address": "0x00000008", 
+      "type": null, 
+      "name": "DAT_00000008"
+    }, 
+    {
+      "address": "0x100f9314", 
+      "type": null, 
+      "name": "DAT_100f9314"
+    }, 
+    {
+      "address": "0x100f9310", 
+      "type": null, 
+      "name": "DAT_100f9310"
+    }
+  ], 
+  "has_custom_name": false, 
+  "decompiled_c": "\nundefined4 FUN_10046bf4(float param_1,float param_2)\n\n{\n  undefined4 uVar1;\n  \n  param_1 = param_1 - param_2;\n  if ((-1.1920929e-07 < param_1 == (param_1 == -1.1920929e-07)) ||\n     (param_1 < 1.1920929e-07 == (param_1 == 1.1920929e-07))) {\n    uVar1 = 0;\n  }\n  else {\n    uVar1 = 1;\n  }\n  return uVar1;\n}\n\n", 
+  "is_thunk": false, 
+  "name": "FUN_10046bf4", 
+  "assembly": "  10046bf4:  FLD dword ptr [ESP + 0x4]\n  10046bf8:  FSUB dword ptr [ESP + 0x8]\n  10046bfc:  FLD dword ptr [0x100f9314]\n  10046c02:  FCOMP\n  10046c04:  FNSTSW AX\n  10046c06:  TEST AH,0x41\n  10046c09:  JP 0x10046c1d\n  10046c0b:  FCOMP dword ptr [0x100f9310]\n  10046c11:  FNSTSW AX\n  10046c13:  TEST AH,0x41\n  10046c16:  JP 0x10046c1f\n  10046c18:  XOR EAX,EAX\n  10046c1a:  INC EAX\n  10046c1b:  JMP 0x10046c21\n  10046c1d:  FSTP ST0\n  10046c1f:  XOR EAX,EAX\n  10046c21:  RET 0x8", 
+  "callers": [
+    {
+      "address": "0x100493dd", 
+      "name": "FUN_100493dd"
+    }, 
+    {
+      "address": "0x10049c3b", 
+      "name": "FUN_10049c3b"
+    }, 
+    {
+      "address": "0x10049cb8", 
+      "name": "FUN_10049cb8"
+    }, 
+    {
+      "address": "0x10049de0", 
+      "name": "FUN_10049de0"
+    }, 
+    {
+      "address": "0x10049e7d", 
+      "name": "FUN_10049e7d"
+    }, 
+    {
+      "address": "0x10049f39", 
+      "name": "FUN_10049f39"
+    }, 
+    {
+      "address": "0x1004a77c", 
+      "name": "FUN_1004a77c"
+    }
+  ]
+}

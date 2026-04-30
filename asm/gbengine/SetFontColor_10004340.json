@@ -1,0 +1,55 @@
+{
+  "address": "0x10004340", 
+  "size_bytes": 90, 
+  "calling_convention": "__thiscall", 
+  "signature": "void __thiscall SetFontColor(gbPrintFont * this, uchar param_1, uchar param_2, uchar param_3)", 
+  "callees": [], 
+  "global_refs": [
+    {
+      "address": "0x1015d3a4", 
+      "type": "int", 
+      "name": "DAT_1015d3a4"
+    }, 
+    {
+      "address": "0x00000004", 
+      "type": null, 
+      "name": "DAT_00000004"
+    }, 
+    {
+      "address": "0x00000008", 
+      "type": null, 
+      "name": "DAT_00000008"
+    }, 
+    {
+      "address": "0x-0000002", 
+      "type": null, 
+      "name": "DAT_-0000002"
+    }, 
+    {
+      "address": "0x0000000c", 
+      "type": null, 
+      "name": "DAT_0000000c"
+    }, 
+    {
+      "address": "0x-0000003", 
+      "type": null, 
+      "name": "DAT_-0000003"
+    }, 
+    {
+      "address": "0x-0000004", 
+      "type": null, 
+      "name": "DAT_-0000004"
+    }, 
+    {
+      "address": "0x-0000001", 
+      "type": null, 
+      "name": "DAT_-0000001"
+    }
+  ], 
+  "has_custom_name": true, 
+  "decompiled_c": "\n/* public: void __thiscall gbPrintFont::SetFontColor(unsigned char,unsigned char,unsigned char) */\n\nvoid __thiscall\ngbPrintFont::SetFontColor(gbPrintFont *this,uchar param_1,uchar param_2,uchar param_3)\n\n{\n  undefined4 local_4;\n  \n                    /* 0x4340  867  ?SetFontColor@gbPrintFont@@QAEXEEE@Z */\n  if (gbColorQuad::ColorQuadFmt == 0) {\n    local_4 = CONCAT13(0xff,CONCAT21(CONCAT11(param_1,param_2),param_3));\n    *(undefined4 *)(this + 0x2c) = local_4;\n    return;\n  }\n  local_4 = CONCAT13(0xff,CONCAT21(CONCAT11(param_3,param_2),param_1));\n  *(undefined4 *)(this + 0x2c) = local_4;\n  return;\n}\n\n", 
+  "is_thunk": false, 
+  "name": "SetFontColor", 
+  "assembly": "  10004340:  PUSH ECX\n  10004341:  MOV EAX,[0x1015d3a4]\n  10004346:  TEST EAX,EAX\n  10004348:  JNZ 0x10004372\n  1000434a:  MOV AL,byte ptr [ESP + 0x8]\n  1000434e:  MOV DL,byte ptr [ESP + 0xc]\n  10004352:  MOV byte ptr [ESP + 0x2],AL\n  10004356:  MOV AL,byte ptr [ESP + 0x10]\n  1000435a:  MOV byte ptr [ESP + 0x1],DL\n  1000435e:  MOV byte ptr [ESP],AL\n  10004362:  MOV byte ptr [ESP + 0x3],0xff\n  10004367:  MOV EDX,dword ptr [ESP]\n  1000436b:  MOV dword ptr [ECX + 0x2c],EDX\n  1000436e:  POP ECX\n  1000436f:  RET 0xc\n  10004372:  MOV AL,byte ptr [ESP + 0x10]\n  10004376:  MOV DL,byte ptr [ESP + 0xc]\n  1000437a:  MOV byte ptr [ESP + 0x2],AL\n  1000437e:  MOV AL,byte ptr [ESP + 0x8]\n  10004382:  MOV byte ptr [ESP + 0x1],DL\n  10004386:  MOV byte ptr [ESP],AL\n  1000438a:  MOV byte ptr [ESP + 0x3],0xff\n  1000438f:  MOV EDX,dword ptr [ESP]\n  10004393:  MOV dword ptr [ECX + 0x2c],EDX\n  10004396:  POP ECX\n  10004397:  RET 0xc", 
+  "callers": []
+}

@@ -1,0 +1,54 @@
+{
+  "address": "0x100d1a60", 
+  "size_bytes": 80, 
+  "calling_convention": "unknown", 
+  "signature": "undefined FUN_100d1a60(undefined4 param_1, undefined4 param_2)", 
+  "callees": [
+    {
+      "address": "0x100e7b14", 
+      "name": "FUN_100e7b14"
+    }, 
+    {
+      "address": "0x100e56b0", 
+      "name": "_strncpy"
+    }
+  ], 
+  "global_refs": [
+    {
+      "address": "0x00000008", 
+      "type": null, 
+      "name": "DAT_00000008"
+    }, 
+    {
+      "address": "0x00000004", 
+      "type": null, 
+      "name": "DAT_00000004"
+    }, 
+    {
+      "address": "0x100f9538", 
+      "type": "undefined1", 
+      "name": "DAT_100f9538"
+    }, 
+    {
+      "address": "0x100d1980", 
+      "type": null, 
+      "name": "DAT_100d1980"
+    }, 
+    {
+      "address": "0x100d19e0", 
+      "type": null, 
+      "name": "DAT_100d19e0"
+    }, 
+    {
+      "address": "0x100d1a40", 
+      "type": null, 
+      "name": "DAT_100d1a40"
+    }
+  ], 
+  "has_custom_name": false, 
+  "decompiled_c": "\nvoid FUN_100d1a60(int *param_1,undefined4 *param_2)\n\n{\n  int iVar1;\n  \n  iVar1 = FUN_100e7b14();\n  param_2[3] = iVar1;\n  if (iVar1 == 0) {\n    iVar1 = *param_1;\n    *(undefined4 *)(iVar1 + 0x14) = 0x3f;\n    _strncpy((char *)(iVar1 + 0x18),\"\",0x50);\n    (**(code **)*param_1)(param_1);\n  }\n  *param_2 = &LAB_100d1980;\n  param_2[1] = &LAB_100d19e0;\n  param_2[2] = &LAB_100d1a40;\n  return;\n}\n\n", 
+  "is_thunk": false, 
+  "name": "FUN_100d1a60", 
+  "assembly": "  100d1a60:  PUSH EDI\n  100d1a61:  CALL 0x100e7b14\n  100d1a66:  TEST EAX,EAX\n  100d1a68:  MOV EDI,dword ptr [ESP + 0xc]\n  100d1a6c:  MOV dword ptr [EDI + 0xc],EAX\n  100d1a6f:  JNZ 0x100d1a98\n  100d1a71:  PUSH ESI\n  100d1a72:  MOV ESI,dword ptr [ESP + 0xc]\n  100d1a76:  MOV EAX,dword ptr [ESI]\n  100d1a78:  PUSH 0x50\n  100d1a7a:  MOV dword ptr [EAX + 0x14],0x3f\n  100d1a81:  ADD EAX,0x18\n  100d1a84:  PUSH 0x100f9538\n  100d1a89:  PUSH EAX\n  100d1a8a:  CALL 0x100e56b0\n  100d1a8f:  MOV EAX,dword ptr [ESI]\n  100d1a91:  ADD ESP,0xc\n  100d1a94:  PUSH ESI\n  100d1a95:  CALL dword ptr [EAX]\n  100d1a97:  POP ESI\n  100d1a98:  MOV dword ptr [EDI],0x100d1980\n  100d1a9e:  MOV dword ptr [EDI + 0x4],0x100d19e0\n  100d1aa5:  MOV dword ptr [EDI + 0x8],0x100d1a40\n  100d1aac:  POP EDI\n  100d1aad:  RET 0xc", 
+  "callers": []
+}

@@ -1,0 +1,40 @@
+{
+  "address": "0x1000c310", 
+  "size_bytes": 73, 
+  "calling_convention": "unknown", 
+  "signature": "undefined FUN_1000c310(void)", 
+  "callees": [
+    {
+      "address": "0x1002ec20", 
+      "name": "operator[]"
+    }, 
+    {
+      "address": "0x1000c310", 
+      "name": "FUN_1000c310"
+    }
+  ], 
+  "global_refs": [], 
+  "has_custom_name": false, 
+  "decompiled_c": "\nvoid FUN_1000c310(void)\n\n{\n  int in_ECX;\n  int iVar1;\n  \n  if ((*(int *)(in_ECX + 0x15c) == 3) || (*(int *)(in_ECX + 0x15c) == 1)) {\n    (**(code **)(**(int **)(in_ECX + 0x168) + 0x18))(0);\n  }\n  iVar1 = 0;\n  if (0 < *(int *)(in_ECX + 0x14)) {\n    do {\n      gbChain1D::operator[]((gbChain1D *)(in_ECX + 0xc),iVar1);\n      FUN_1000c310();\n      iVar1 = iVar1 + 1;\n    } while (iVar1 < *(int *)(in_ECX + 0x14));\n  }\n  return;\n}\n\n", 
+  "is_thunk": false, 
+  "name": "FUN_1000c310", 
+  "assembly": "  1000c310:  PUSH ESI\n  1000c311:  PUSH EDI\n  1000c312:  MOV EDI,ECX\n  1000c314:  MOV EAX,dword ptr [EDI + 0x15c]\n  1000c31a:  CMP EAX,0x3\n  1000c31d:  JZ 0x1000c324\n  1000c31f:  CMP EAX,0x1\n  1000c322:  JNZ 0x1000c331\n  1000c324:  MOV ECX,dword ptr [EDI + 0x168]\n  1000c32a:  PUSH 0x0\n  1000c32c:  MOV EAX,dword ptr [ECX]\n  1000c32e:  CALL dword ptr [EAX + 0x18]\n  1000c331:  MOV EAX,dword ptr [EDI + 0x14]\n  1000c334:  XOR ESI,ESI\n  1000c336:  TEST EAX,EAX\n  1000c338:  JLE 0x1000c356\n  1000c33a:  PUSH EBX\n  1000c33b:  LEA EBX,[EDI + 0xc]\n  1000c33e:  PUSH ESI\n  1000c33f:  MOV ECX,EBX\n  1000c341:  CALL 0x1002ec20\n  1000c346:  MOV ECX,EAX\n  1000c348:  CALL 0x1000c310\n  1000c34d:  MOV EAX,dword ptr [EDI + 0x14]\n  1000c350:  INC ESI\n  1000c351:  CMP ESI,EAX\n  1000c353:  JL 0x1000c33e\n  1000c355:  POP EBX\n  1000c356:  POP EDI\n  1000c357:  POP ESI\n  1000c358:  RET", 
+  "callers": [
+    {
+      "address": "0x1000c3c0", 
+      "name": "gbAnimNodeGroup"
+    }, 
+    {
+      "address": "0x1000c310", 
+      "name": "FUN_1000c310"
+    }, 
+    {
+      "address": "0x1000c490", 
+      "name": "Clone"
+    }, 
+    {
+      "address": "0x1000c890", 
+      "name": "Reset"
+    }
+  ]
+}

@@ -1,0 +1,73 @@
+{
+  "address": "0x10058dc4", 
+  "size_bytes": 75, 
+  "calling_convention": "unknown", 
+  "signature": "undefined FUN_10058dc4(undefined4 param_1, undefined4 param_2, undefined4 param_3, undefined4 param_4, undefined1 param_5)", 
+  "callees": [
+    {
+      "address": "0x100e68e0", 
+      "name": "FUN_100e68e0"
+    }, 
+    {
+      "address": "0x1004cc4c", 
+      "name": "FUN_1004cc4c"
+    }
+  ], 
+  "global_refs": [
+    {
+      "address": "0x00000014", 
+      "type": null, 
+      "name": "DAT_00000014"
+    }, 
+    {
+      "address": "0x00000010", 
+      "type": null, 
+      "name": "DAT_00000010"
+    }, 
+    {
+      "address": "0x-0000104", 
+      "type": null, 
+      "name": "DAT_-0000104"
+    }, 
+    {
+      "address": "0x-0000005", 
+      "type": null, 
+      "name": "DAT_-0000005"
+    }, 
+    {
+      "address": "0x00000004", 
+      "type": null, 
+      "name": "DAT_00000004"
+    }, 
+    {
+      "address": "0x100f9350", 
+      "type": null, 
+      "name": "DAT_100f9350"
+    }, 
+    {
+      "address": "0x0000000c", 
+      "type": null, 
+      "name": "DAT_0000000c"
+    }, 
+    {
+      "address": "0x00000008", 
+      "type": null, 
+      "name": "DAT_00000008"
+    }
+  ], 
+  "has_custom_name": false, 
+  "decompiled_c": "\nvoid FUN_10058dc4(int param_1,undefined4 param_2,undefined4 param_3,undefined4 param_4)\n\n{\n  undefined local_104 [255];\n  undefined local_5;\n  \n  FUN_100e68e0(local_104,0x100,param_4,&stack0x00000014);\n  local_5 = 0;\n  FUN_1004cc4c(*(int *)(param_1 + 4) + 0x18,param_2,param_3,&DAT_100f9350,local_104);\n  return;\n}\n\n", 
+  "is_thunk": false, 
+  "name": "FUN_10058dc4", 
+  "assembly": "  10058dc4:  PUSH EBP\n  10058dc5:  MOV EBP,ESP\n  10058dc7:  SUB ESP,0x100\n  10058dcd:  LEA EAX,[EBP + 0x18]\n  10058dd0:  PUSH EAX\n  10058dd1:  PUSH dword ptr [EBP + 0x14]\n  10058dd4:  LEA EAX,[EBP + 0xffffff00]\n  10058dda:  PUSH 0x100\n  10058ddf:  PUSH EAX\n  10058de0:  CALL 0x100e68e0\n  10058de5:  AND byte ptr [EBP + -0x1],0x0\n  10058de9:  LEA EAX,[EBP + 0xffffff00]\n  10058def:  PUSH EAX\n  10058df0:  MOV EAX,dword ptr [EBP + 0x8]\n  10058df3:  MOV EAX,dword ptr [EAX + 0x4]\n  10058df6:  PUSH 0x100f9350\n  10058dfb:  PUSH dword ptr [EBP + 0x10]\n  10058dfe:  ADD EAX,0x18\n  10058e01:  PUSH dword ptr [EBP + 0xc]\n  10058e04:  PUSH EAX\n  10058e05:  CALL 0x1004cc4c\n  10058e0a:  ADD ESP,0x24\n  10058e0d:  LEAVE\n  10058e0e:  RET", 
+  "callers": [
+    {
+      "address": "0x1005d7b6", 
+      "name": "FUN_1005d7b6"
+    }, 
+    {
+      "address": "0x1005d7b6", 
+      "name": "FUN_1005d7b6"
+    }
+  ]
+}

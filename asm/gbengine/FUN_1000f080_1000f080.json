@@ -1,0 +1,25 @@
+{
+  "address": "0x1000f080", 
+  "size_bytes": 47, 
+  "calling_convention": "unknown", 
+  "signature": "undefined FUN_1000f080(undefined4 param_1)", 
+  "callees": [], 
+  "global_refs": [
+    {
+      "address": "0x00000004", 
+      "type": null, 
+      "name": "DAT_00000004"
+    }
+  ], 
+  "has_custom_name": false, 
+  "decompiled_c": "\nint FUN_1000f080(int param_1)\n\n{\n  int iVar1;\n  int *in_ECX;\n  int *piVar2;\n  \n  iVar1 = 0;\n  piVar2 = in_ECX;\n  do {\n    if (*piVar2 == param_1) {\n      return in_ECX[iVar1 * 0x2f + 1];\n    }\n    iVar1 = iVar1 + 1;\n    piVar2 = piVar2 + 0x2f;\n  } while (iVar1 < 0x20);\n  return 0;\n}\n\n", 
+  "is_thunk": false, 
+  "name": "FUN_1000f080", 
+  "assembly": "  1000f080:  PUSH ESI\n  1000f081:  MOV ESI,dword ptr [ESP + 0x8]\n  1000f085:  XOR EAX,EAX\n  1000f087:  MOV EDX,ECX\n  1000f089:  CMP dword ptr [EDX],ESI\n  1000f08b:  JZ 0x1000f09f\n  1000f08d:  INC EAX\n  1000f08e:  ADD EDX,0xbc\n  1000f094:  CMP EAX,0x20\n  1000f097:  JL 0x1000f089\n  1000f099:  XOR EAX,EAX\n  1000f09b:  POP ESI\n  1000f09c:  RET 0x4\n  1000f09f:  LEA EDX,[EAX + EAX*0x2]\n  1000f0a2:  SHL EDX,0x4\n  1000f0a5:  SUB EDX,EAX\n  1000f0a7:  POP ESI\n  1000f0a8:  MOV EAX,dword ptr [ECX + EDX*0x4 + 0x4]\n  1000f0ac:  RET 0x4", 
+  "callers": [
+    {
+      "address": "0x10011820", 
+      "name": "GetLastBladePos"
+    }
+  ]
+}

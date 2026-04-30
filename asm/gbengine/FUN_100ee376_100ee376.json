@@ -1,0 +1,25 @@
+{
+  "address": "0x100ee376", 
+  "size_bytes": 14, 
+  "calling_convention": "unknown", 
+  "signature": "undefined FUN_100ee376(void)", 
+  "callees": [], 
+  "global_refs": [
+    {
+      "address": "0x-0000006", 
+      "type": null, 
+      "name": "DAT_-0000006"
+    }
+  ], 
+  "has_custom_name": false, 
+  "decompiled_c": "\nint FUN_100ee376(void)\n\n{\n  short in_FPUStatusWord;\n  \n  return (int)in_FPUStatusWord;\n}\n\n", 
+  "is_thunk": false, 
+  "name": "FUN_100ee376", 
+  "assembly": "  100ee376:  PUSH EBP\n  100ee377:  MOV EBP,ESP\n  100ee379:  PUSH ECX\n  100ee37a:  FSTSW word ptr [EBP + -0x2]\n  100ee37e:  MOVSX EAX,word ptr [EBP + -0x2]\n  100ee382:  LEAVE\n  100ee383:  RET", 
+  "callers": [
+    {
+      "address": "0x100eddaa", 
+      "name": "FUN_100eddaa"
+    }
+  ]
+}

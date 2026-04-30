@@ -1,0 +1,25 @@
+{
+  "address": "0x100029f0", 
+  "size_bytes": 28, 
+  "calling_convention": "__thiscall", 
+  "signature": "bool __thiscall IsPlaying(gbSound2DNode * this)", 
+  "callees": [
+    {
+      "address": "0x000000b8", 
+      "name": "_AIL_sample_status@4"
+    }
+  ], 
+  "global_refs": [
+    {
+      "address": "0x100f5308", 
+      "type": "pointer", 
+      "name": "DAT_100f5308"
+    }
+  ], 
+  "has_custom_name": true, 
+  "decompiled_c": "\n/* public: bool __thiscall gbSound2DNode::IsPlaying(void) */\n\nbool __thiscall gbSound2DNode::IsPlaying(gbSound2DNode *this)\n\n{\n  int iVar1;\n  \n                    /* 0x29f0  645  ?IsPlaying@gbSound2DNode@@QAE_NXZ */\n  if (*(int *)(this + 4) == 0) {\n    return false;\n  }\n  iVar1 = _AIL_sample_status_4(*(int *)(this + 4));\n  return iVar1 == 4;\n}\n\n", 
+  "is_thunk": false, 
+  "name": "IsPlaying", 
+  "assembly": "  100029f0:  MOV EAX,dword ptr [ECX + 0x4]\n  100029f3:  TEST EAX,EAX\n  100029f5:  JNZ 0x100029fa\n  100029f7:  XOR AL,AL\n  100029f9:  RET\n  100029fa:  PUSH EAX\n  100029fb:  CALL dword ptr [0x100f5308]\n  10002a01:  XOR ECX,ECX\n  10002a03:  CMP EAX,0x4\n  10002a06:  SETZ CL\n  10002a09:  MOV AL,CL\n  10002a0b:  RET", 
+  "callers": []
+}

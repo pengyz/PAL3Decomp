@@ -1,0 +1,50 @@
+{
+  "address": "0x10078910", 
+  "size_bytes": 128, 
+  "calling_convention": "unknown", 
+  "signature": "undefined FUN_10078910(undefined4 param_1)", 
+  "callees": [], 
+  "global_refs": [
+    {
+      "address": "0x00000004", 
+      "type": null, 
+      "name": "DAT_00000004"
+    }, 
+    {
+      "address": "0x100788e0", 
+      "type": null, 
+      "name": "DAT_100788e0"
+    }, 
+    {
+      "address": "0x10078450", 
+      "type": null, 
+      "name": "DAT_10078450"
+    }, 
+    {
+      "address": "0x10078760", 
+      "type": null, 
+      "name": "DAT_10078760"
+    }, 
+    {
+      "address": "0x10078210", 
+      "type": null, 
+      "name": "DAT_10078210"
+    }, 
+    {
+      "address": "0x100780d0", 
+      "type": null, 
+      "name": "DAT_100780d0"
+    }
+  ], 
+  "has_custom_name": false, 
+  "decompiled_c": "\nvoid FUN_10078910(int param_1)\n\n{\n  undefined4 *puVar1;\n  undefined4 *puVar2;\n  int iVar3;\n  \n  puVar1 = (undefined4 *)(*(code *)**(undefined4 **)(param_1 + 4))(param_1,0,0xac);\n  *(undefined4 **)(param_1 + 0x1bc) = puVar1;\n  *puVar1 = &LAB_100788e0;\n  puVar1[1] = &LAB_10078450;\n  puVar1[2] = FUN_10078760;\n  puVar1[7] = FUN_10078210;\n  puVar1[0x18] = 0;\n  puVar2 = puVar1 + 0x19;\n  iVar3 = 0x10;\n  do {\n    puVar2[-0x11] = FUN_10078210;\n    *puVar2 = 0;\n    puVar2 = puVar2 + 1;\n    iVar3 = iVar3 + -1;\n  } while (iVar3 != 0);\n  puVar1[8] = &LAB_100780d0;\n  puVar1[0x16] = &LAB_100780d0;\n  *(undefined4 *)(param_1 + 0xdc) = 0;\n  *(undefined4 *)(param_1 + 0x94) = 0;\n  *(undefined4 *)(param_1 + 0x1a4) = 0;\n  puVar1[3] = 0;\n  puVar1[4] = 0;\n  puVar1[6] = 0;\n  puVar1[0x29] = 0;\n  return;\n}\n\n", 
+  "is_thunk": false, 
+  "name": "FUN_10078910", 
+  "assembly": "  10078910:  PUSH ESI\n  10078911:  MOV ESI,dword ptr [ESP + 0x8]\n  10078915:  MOV EAX,dword ptr [ESI + 0x4]\n  10078918:  PUSH EDI\n  10078919:  PUSH 0xac\n  1007891e:  XOR EDI,EDI\n  10078920:  PUSH EDI\n  10078921:  PUSH ESI\n  10078922:  CALL dword ptr [EAX]\n  10078924:  MOV dword ptr [ESI + 0x1bc],EAX\n  1007892a:  MOV dword ptr [EAX],0x100788e0\n  10078930:  MOV dword ptr [EAX + 0x4],0x10078450\n  10078937:  MOV dword ptr [EAX + 0x8],0x10078760\n  1007893e:  MOV dword ptr [EAX + 0x1c],0x10078210\n  10078945:  MOV dword ptr [EAX + 0x60],EDI\n  10078948:  LEA ECX,[EAX + 0x64]\n  1007894b:  MOV EDX,0x10\n  10078950:  MOV dword ptr [ECX + -0x44],0x10078210\n  10078957:  MOV dword ptr [ECX],EDI\n  10078959:  ADD ECX,0x4\n  1007895c:  DEC EDX\n  1007895d:  JNZ 0x10078950\n  1007895f:  MOV ECX,0x100780d0\n  10078964:  MOV dword ptr [EAX + 0x20],ECX\n  10078967:  MOV dword ptr [EAX + 0x58],ECX\n  1007896a:  MOV dword ptr [ESI + 0xdc],EDI\n  10078970:  MOV dword ptr [ESI + 0x94],EDI\n  10078976:  MOV dword ptr [ESI + 0x1a4],EDI\n  1007897c:  MOV dword ptr [EAX + 0xc],EDI\n  1007897f:  MOV dword ptr [EAX + 0x10],EDI\n  10078982:  MOV dword ptr [EAX + 0x18],EDI\n  10078985:  MOV dword ptr [EAX + 0xa4],EDI\n  1007898b:  POP EDI\n  1007898c:  POP ESI\n  1007898d:  RET 0x4", 
+  "callers": [
+    {
+      "address": "0x10076b90", 
+      "name": "FUN_10076b90"
+    }
+  ]
+}

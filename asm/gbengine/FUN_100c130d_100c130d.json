@@ -1,0 +1,25 @@
+{
+  "address": "0x100c130d", 
+  "size_bytes": 110, 
+  "calling_convention": "unknown", 
+  "signature": "undefined FUN_100c130d(undefined4 param_1)", 
+  "callees": [], 
+  "global_refs": [
+    {
+      "address": "0x00000004", 
+      "type": null, 
+      "name": "DAT_00000004"
+    }
+  ], 
+  "has_custom_name": false, 
+  "decompiled_c": "\nundefined4 FUN_100c130d(int param_1)\n\n{\n  int iVar1;\n  uint uVar2;\n  uint *puVar3;\n  int *piVar4;\n  int in_ECX;\n  int *piVar5;\n  uint uVar6;\n  uint uVar7;\n  \n  iVar1 = *(int *)(*(int *)(in_ECX + 0x14) + param_1 * 4);\n  uVar6 = *(uint *)(iVar1 + 0x50);\n  if (((uVar6 != 0xffffffff) && ((*(byte *)(in_ECX + 0x6f) & 0x10) == 0)) &&\n     (uVar2 = *(uint *)(iVar1 + 0x54), uVar6 <= uVar2)) {\n    piVar4 = (int *)(*(int *)(in_ECX + 0x18) + uVar6 * 4);\n    do {\n      puVar3 = (uint *)*piVar4;\n      if ((*puVar3 & 0xf0000000) == 0x60000000) {\n        uVar7 = 0;\n        if (puVar3[1] != 0) {\n          piVar5 = (int *)puVar3[2];\n          do {\n            if (*piVar5 == param_1) {\n              return 1;\n            }\n            uVar7 = uVar7 + 1;\n            piVar5 = piVar5 + 1;\n          } while (uVar7 < puVar3[1]);\n        }\n      }\n      uVar6 = uVar6 + 1;\n      piVar4 = piVar4 + 1;\n    } while (uVar6 <= uVar2);\n  }\n  return 0;\n}\n\n", 
+  "is_thunk": false, 
+  "name": "FUN_100c130d", 
+  "assembly": "  100c130d:  PUSH EBP\n  100c130e:  MOV EBP,ESP\n  100c1310:  MOV EAX,dword ptr [ECX + 0x14]\n  100c1313:  PUSH EBX\n  100c1314:  MOV EBX,dword ptr [EBP + 0x8]\n  100c1317:  MOV EAX,dword ptr [EAX + EBX*0x4]\n  100c131a:  MOV EDX,dword ptr [EAX + 0x50]\n  100c131d:  CMP EDX,-0x1\n  100c1320:  PUSH ESI\n  100c1321:  PUSH EDI\n  100c1322:  JZ 0x100c136d\n  100c1324:  TEST byte ptr [ECX + 0x6f],0x10\n  100c1328:  JNZ 0x100c136d\n  100c132a:  MOV EAX,dword ptr [EAX + 0x54]\n  100c132d:  CMP EDX,EAX\n  100c132f:  MOV dword ptr [EBP + 0x8],EAX\n  100c1332:  JA 0x100c136d\n  100c1334:  MOV EAX,dword ptr [ECX + 0x18]\n  100c1337:  LEA EAX,[EAX + EDX*0x4]\n  100c133a:  MOV ECX,dword ptr [EAX]\n  100c133c:  MOV ESI,dword ptr [ECX]\n  100c133e:  AND ESI,0xf0000000\n  100c1344:  CMP ESI,0x60000000\n  100c134a:  JNZ 0x100c1364\n  100c134c:  MOV ESI,dword ptr [ECX + 0x4]\n  100c134f:  XOR EDI,EDI\n  100c1351:  TEST ESI,ESI\n  100c1353:  JBE 0x100c1364\n  100c1355:  MOV ECX,dword ptr [ECX + 0x8]\n  100c1358:  CMP dword ptr [ECX],EBX\n  100c135a:  JZ 0x100c1376\n  100c135c:  INC EDI\n  100c135d:  ADD ECX,0x4\n  100c1360:  CMP EDI,ESI\n  100c1362:  JC 0x100c1358\n  100c1364:  INC EDX\n  100c1365:  ADD EAX,0x4\n  100c1368:  CMP EDX,dword ptr [EBP + 0x8]\n  100c136b:  JBE 0x100c133a\n  100c136d:  XOR EAX,EAX\n  100c136f:  POP EDI\n  100c1370:  POP ESI\n  100c1371:  POP EBX\n  100c1372:  POP EBP\n  100c1373:  RET 0x4\n  100c1376:  XOR EAX,EAX\n  100c1378:  INC EAX\n  100c1379:  JMP 0x100c136f", 
+  "callers": [
+    {
+      "address": "0x100c6398", 
+      "name": "FUN_100c6398"
+    }
+  ]
+}

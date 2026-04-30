@@ -1,0 +1,35 @@
+{
+  "address": "0x10020ca0", 
+  "size_bytes": 34, 
+  "calling_convention": "__thiscall", 
+  "signature": "void __thiscall Unlock(gbVertexBubble * this)", 
+  "callees": [], 
+  "global_refs": [], 
+  "has_custom_name": true, 
+  "decompiled_c": "\n/* public: void __thiscall gbVertexBubble::Unlock(void) */\n\nvoid __thiscall gbVertexBubble::Unlock(gbVertexBubble *this)\n\n{\n                    /* 0x20ca0  935  ?Unlock@gbVertexBubble@@QAEXXZ */\n  *(undefined4 *)(this + 0x18) = 0;\n  *(undefined4 *)(this + 0x1c) = 0;\n  *(undefined4 *)(this + 0x20) = 0;\n  *(undefined4 *)(this + 0x24) = 0;\n  *(undefined4 *)(this + 0x28) = 0;\n  *(undefined4 *)(this + 0x2c) = 0;\n  *(undefined4 *)(this + 0x30) = 0;\n  *(undefined4 *)(this + 0x34) = 0;\n                    /* WARNING: Could not recover jumptable at 0x10020cbf. Too many branches */\n                    /* WARNING: Treating indirect jump as call */\n  (**(code **)(**(int **)(this + 8) + 8))();\n  return;\n}\n\n", 
+  "is_thunk": false, 
+  "name": "Unlock", 
+  "assembly": "  10020ca0:  XOR EAX,EAX\n  10020ca2:  MOV dword ptr [ECX + 0x18],EAX\n  10020ca5:  MOV dword ptr [ECX + 0x1c],EAX\n  10020ca8:  MOV dword ptr [ECX + 0x20],EAX\n  10020cab:  MOV dword ptr [ECX + 0x24],EAX\n  10020cae:  MOV dword ptr [ECX + 0x28],EAX\n  10020cb1:  MOV dword ptr [ECX + 0x2c],EAX\n  10020cb4:  MOV dword ptr [ECX + 0x30],EAX\n  10020cb7:  MOV dword ptr [ECX + 0x34],EAX\n  10020cba:  MOV ECX,dword ptr [ECX + 0x8]\n  10020cbd:  MOV EDX,dword ptr [ECX]\n  10020cbf:  JMP dword ptr [EDX + 0x8]", 
+  "callers": [
+    {
+      "address": "0x10011c60", 
+      "name": "FUN_10011c60"
+    }, 
+    {
+      "address": "0x10015e80", 
+      "name": "LoadFromStream"
+    }, 
+    {
+      "address": "0x10016390", 
+      "name": "ComputeShadowVolume"
+    }, 
+    {
+      "address": "0x10016c70", 
+      "name": "FUN_10016c70"
+    }, 
+    {
+      "address": "0x100064e0", 
+      "name": "FUN_100064e0"
+    }
+  ]
+}

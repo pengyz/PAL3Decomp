@@ -1,0 +1,24 @@
+{
+  "address": "0x100cb105", 
+  "size_bytes": 30, 
+  "calling_convention": "unknown", 
+  "signature": "undefined FUN_100cb105(void)", 
+  "callees": [
+    {
+      "address": "0x100cab4a", 
+      "name": "FUN_100cab4a"
+    }
+  ], 
+  "global_refs": [], 
+  "has_custom_name": false, 
+  "decompiled_c": "\nvoid FUN_100cb105(void)\n\n{\n  int iVar1;\n  int in_ECX;\n  \n  iVar1 = *(int *)(in_ECX + 0xe0);\n  FUN_100cab4a(7,*(undefined4 *)(iVar1 + 0x10),*(undefined4 *)(iVar1 + 8),\n               *(undefined4 *)(iVar1 + 0xc),*(undefined4 *)(iVar1 + 4),0,0);\n  return;\n}\n\n", 
+  "is_thunk": false, 
+  "name": "FUN_100cb105", 
+  "assembly": "  100cb105:  MOV EAX,dword ptr [ECX + 0xe0]\n  100cb10b:  PUSH 0x0\n  100cb10d:  PUSH 0x0\n  100cb10f:  PUSH dword ptr [EAX + 0x4]\n  100cb112:  PUSH dword ptr [EAX + 0xc]\n  100cb115:  PUSH dword ptr [EAX + 0x8]\n  100cb118:  PUSH dword ptr [EAX + 0x10]\n  100cb11b:  PUSH 0x7\n  100cb11d:  CALL 0x100cab4a\n  100cb122:  RET", 
+  "callers": [
+    {
+      "address": "0x100bb13b", 
+      "name": "FUN_100bb13b"
+    }
+  ]
+}

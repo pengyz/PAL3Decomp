@@ -1,0 +1,14 @@
+{
+  "address": "0x10002100", 
+  "size_bytes": 11, 
+  "calling_convention": "__thiscall", 
+  "signature": "void __thiscall `default_constructor_closure'(gbVec3D * this)", 
+  "callees": [], 
+  "global_refs": [], 
+  "has_custom_name": true, 
+  "decompiled_c": "\n/* public: void __thiscall gbVec3D::`default constructor closure'(void) */\n\nvoid __thiscall gbVec3D::_default_constructor_closure_(gbVec3D *this)\n\n{\n                    /* 0x2100  292  ??_FgbVec3D@@QAEXXZ */\n  *(undefined4 *)this = 0;\n  *(undefined4 *)(this + 4) = 0;\n  *(undefined4 *)(this + 8) = 0;\n  return;\n}\n\n", 
+  "is_thunk": false, 
+  "name": "`default_constructor_closure'", 
+  "assembly": "  10002100:  XOR EAX,EAX\n  10002102:  MOV dword ptr [ECX],EAX\n  10002104:  MOV dword ptr [ECX + 0x4],EAX\n  10002107:  MOV dword ptr [ECX + 0x8],EAX\n  1000210a:  RET", 
+  "callers": []
+}

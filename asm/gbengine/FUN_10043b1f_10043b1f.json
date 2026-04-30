@@ -1,0 +1,44 @@
+{
+  "address": "0x10043b1f", 
+  "size_bytes": 181, 
+  "calling_convention": "unknown", 
+  "signature": "undefined FUN_10043b1f(undefined4 param_1, undefined4 param_2, undefined4 param_3)", 
+  "callees": [
+    {
+      "address": "0x1003c954", 
+      "name": "FUN_1003c954"
+    }, 
+    {
+      "address": "0x1003cbeb", 
+      "name": "FUN_1003cbeb"
+    }
+  ], 
+  "global_refs": [
+    {
+      "address": "0x00000004", 
+      "type": null, 
+      "name": "DAT_00000004"
+    }, 
+    {
+      "address": "0x00000008", 
+      "type": null, 
+      "name": "DAT_00000008"
+    }, 
+    {
+      "address": "0x0000000c", 
+      "type": null, 
+      "name": "DAT_0000000c"
+    }, 
+    {
+      "address": "0x100f6f6c", 
+      "type": null, 
+      "name": "DAT_100f6f6c"
+    }
+  ], 
+  "has_custom_name": false, 
+  "decompiled_c": "\nvoid FUN_10043b1f(int param_1,int param_2,float *param_3)\n\n{\n  ushort *puVar1;\n  ushort *puVar2;\n  int in_ECX;\n  int extraout_ECX;\n  \n  puVar2 = (ushort *)\n           (*(int *)(in_ECX + 0x60) * param_1 + *(int *)(in_ECX + 100) * param_2 +\n           *(int *)(in_ECX + 0x20));\n  puVar1 = puVar2 + *(int *)(in_ECX + 0x68);\n  for (; puVar2 < puVar1; puVar2 = puVar2 + 1) {\n    *param_3 = (float)(*(byte *)((int)puVar2 + 1) & 0xf) * 0.06666667;\n    param_3[1] = (float)(*(byte *)puVar2 >> 4) * 0.06666667;\n    param_3[2] = (float)(*(byte *)puVar2 & 0xf) * 0.06666667;\n    param_3[3] = (float)(*puVar2 >> 0xc) * 0.06666667;\n    param_3 = param_3 + 4;\n  }\n  if (*(int *)(in_ECX + 0x18) != 0) {\n    FUN_1003c954(param_3 + *(int *)(in_ECX + 0x68) * -4);\n    in_ECX = extraout_ECX;\n  }\n  if (*(int *)(in_ECX + 0x10) != 0) {\n    FUN_1003cbeb(param_3 + *(int *)(in_ECX + 0x68) * -4);\n  }\n  return;\n}\n\n", 
+  "is_thunk": false, 
+  "name": "FUN_10043b1f", 
+  "assembly": "  10043b1f:  PUSH EBP\n  10043b20:  MOV EBP,ESP\n  10043b22:  MOV EAX,dword ptr [ECX + 0x60]\n  10043b25:  IMUL EAX,dword ptr [EBP + 0x8]\n  10043b29:  MOV EDX,dword ptr [ECX + 0x64]\n  10043b2c:  IMUL EDX,dword ptr [EBP + 0xc]\n  10043b30:  ADD EAX,EDX\n  10043b32:  ADD EAX,dword ptr [ECX + 0x20]\n  10043b35:  MOV EDX,dword ptr [ECX + 0x68]\n  10043b38:  PUSH ESI\n  10043b39:  MOV ESI,dword ptr [EBP + 0x10]\n  10043b3c:  PUSH EDI\n  10043b3d:  LEA EDI,[EAX + EDX*0x2]\n  10043b40:  CMP EAX,EDI\n  10043b42:  JNC 0x10043ba4\n  10043b44:  FLD dword ptr [0x100f6f6c]\n  10043b4a:  MOV DL,byte ptr [EAX + 0x1]\n  10043b4d:  AND DL,0xf\n  10043b50:  MOVZX EDX,DL\n  10043b53:  MOV dword ptr [EBP + 0x10],EDX\n  10043b56:  XOR EDX,EDX\n  10043b58:  FILD dword ptr [EBP + 0x10]\n  10043b5b:  FMUL ST1\n  10043b5d:  FSTP dword ptr [ESI]\n  10043b5f:  MOV DL,byte ptr [EAX]\n  10043b61:  SHR DL,0x4\n  10043b64:  ADD ESI,0x10\n  10043b67:  AND EDX,0xf\n  10043b6a:  MOV dword ptr [EBP + 0x10],EDX\n  10043b6d:  FILD dword ptr [EBP + 0x10]\n  10043b70:  XOR EDX,EDX\n  10043b72:  FMUL ST1\n  10043b74:  FSTP dword ptr [ESI + -0xc]\n  10043b77:  MOV DL,byte ptr [EAX]\n  10043b79:  AND EDX,0xf\n  10043b7c:  MOV dword ptr [EBP + 0x10],EDX\n  10043b7f:  FILD dword ptr [EBP + 0x10]\n  10043b82:  FMUL ST1\n  10043b84:  FSTP dword ptr [ESI + -0x8]\n  10043b87:  MOV DX,word ptr [EAX]\n  10043b8a:  SHR DX,0xc\n  10043b8e:  MOVZX EDX,DX\n  10043b91:  MOV dword ptr [EBP + 0x10],EDX\n  10043b94:  INC EAX\n  10043b95:  INC EAX\n  10043b96:  CMP EAX,EDI\n  10043b98:  FILD dword ptr [EBP + 0x10]\n  10043b9b:  FMUL ST1\n  10043b9d:  FSTP dword ptr [ESI + -0x4]\n  10043ba0:  JC 0x10043b4a\n  10043ba2:  FSTP ST0\n  10043ba4:  CMP dword ptr [ECX + 0x18],0x0\n  10043ba8:  JZ 0x10043bba\n  10043baa:  MOV EAX,dword ptr [ECX + 0x68]\n  10043bad:  SHL EAX,0x4\n  10043bb0:  MOV EDX,ESI\n  10043bb2:  SUB EDX,EAX\n  10043bb4:  PUSH EDX\n  10043bb5:  CALL 0x1003c954\n  10043bba:  CMP dword ptr [ECX + 0x10],0x0\n  10043bbe:  JZ 0x10043bce\n  10043bc0:  MOV EAX,dword ptr [ECX + 0x68]\n  10043bc3:  SHL EAX,0x4\n  10043bc6:  SUB ESI,EAX\n  10043bc8:  PUSH ESI\n  10043bc9:  CALL 0x1003cbeb\n  10043bce:  POP EDI\n  10043bcf:  POP ESI\n  10043bd0:  POP EBP\n  10043bd1:  RET 0xc", 
+  "callers": []
+}

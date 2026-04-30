@@ -1,0 +1,71 @@
+{
+  "address": "0x100209f0", 
+  "size_bytes": 95, 
+  "calling_convention": "__thiscall", 
+  "signature": "void __thiscall ~gbIndexPool(gbIndexPool * this)", 
+  "callees": [
+    {
+      "address": "0x1002ea60", 
+      "name": "~gbChain1D"
+    }, 
+    {
+      "address": "0x1002ea60", 
+      "name": "~gbChain1D"
+    }, 
+    {
+      "address": "0x1002ea40", 
+      "name": "~gbChain1DNode"
+    }
+  ], 
+  "global_refs": [
+    {
+      "address": "0x100f40d3", 
+      "type": null, 
+      "name": "DAT_100f40d3"
+    }, 
+    {
+      "address": "0xffdff000", 
+      "type": "void *32", 
+      "name": "DAT_ffdff000"
+    }, 
+    {
+      "address": "0x-0000010", 
+      "type": null, 
+      "name": "DAT_-0000010"
+    }, 
+    {
+      "address": "0x100f53b4", 
+      "type": "undefined *", 
+      "name": "DAT_100f53b4"
+    }, 
+    {
+      "address": "0x-0000004", 
+      "type": null, 
+      "name": "DAT_-0000004"
+    }, 
+    {
+      "address": "0x-000000c", 
+      "type": null, 
+      "name": "DAT_-000000c"
+    }
+  ], 
+  "has_custom_name": true, 
+  "decompiled_c": "\n/* public: virtual __thiscall gbIndexPool::~gbIndexPool(void) */\n\nvoid __thiscall gbIndexPool::~gbIndexPool(gbIndexPool *this)\n\n{\n  void *local_c;\n  undefined *puStack_8;\n  uint local_4;\n  \n                    /* 0x209f0  142  ??1gbIndexPool@@UAE@XZ */\n  puStack_8 = &LAB_100f40d3;\n  local_c = ExceptionList;\n  ExceptionList = &local_c;\n  *(undefined ***)this = &_vftable_;\n  local_4 = 1;\n  gbChain1D::~gbChain1D((gbChain1D *)(this + 0x28));\n  local_4 = local_4 & 0xffffff00;\n  gbChain1D::~gbChain1D((gbChain1D *)(this + 0x18));\n  local_4 = 0xffffffff;\n  gbChain1DNode::~gbChain1DNode((gbChain1DNode *)this);\n  ExceptionList = local_c;\n  return;\n}\n\n", 
+  "is_thunk": false, 
+  "name": "~gbIndexPool", 
+  "assembly": "  100209f0:  PUSH -0x1\n  100209f2:  PUSH 0x100f40d3\n  100209f7:  MOV EAX,FS:[0x0]\n  100209fd:  PUSH EAX\n  100209fe:  MOV dword ptr FS:[0x0],ESP\n  10020a05:  PUSH ECX\n  10020a06:  PUSH ESI\n  10020a07:  MOV ESI,ECX\n  10020a09:  MOV dword ptr [ESP + 0x4],ESI\n  10020a0d:  MOV dword ptr [ESI],0x100f53b4\n  10020a13:  LEA ECX,[ESI + 0x28]\n  10020a16:  MOV dword ptr [ESP + 0x10],0x1\n  10020a1e:  CALL 0x1002ea60\n  10020a23:  LEA ECX,[ESI + 0x18]\n  10020a26:  MOV byte ptr [ESP + 0x10],0x0\n  10020a2b:  CALL 0x1002ea60\n  10020a30:  MOV ECX,ESI\n  10020a32:  MOV dword ptr [ESP + 0x10],0xffffffff\n  10020a3a:  CALL 0x1002ea40\n  10020a3f:  MOV ECX,dword ptr [ESP + 0x8]\n  10020a43:  POP ESI\n  10020a44:  MOV dword ptr FS:[0x0],ECX\n  10020a4b:  ADD ESP,0x10\n  10020a4e:  RET", 
+  "callers": [
+    {
+      "address": "0x100f3ea0", 
+      "name": "Unwind@100f3ea0"
+    }, 
+    {
+      "address": "0x100f3ec0", 
+      "name": "Unwind@100f3ec0"
+    }, 
+    {
+      "address": "0x1001c2f0", 
+      "name": "FUN_1001c2f0"
+    }
+  ]
+}

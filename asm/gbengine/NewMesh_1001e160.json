@@ -1,0 +1,57 @@
+{
+  "address": "0x1001e160", 
+  "size_bytes": 189, 
+  "calling_convention": "__thiscall", 
+  "signature": "gbBaseMesh * __thiscall NewMesh(gbGfxManager * this, char * param_1, gbMeshType param_2)", 
+  "callees": [
+    {
+      "address": "0x100e4a16", 
+      "name": "operator_new"
+    }, 
+    {
+      "address": "0x10015630", 
+      "name": "gbStaticMesh"
+    }, 
+    {
+      "address": "0x100e4a16", 
+      "name": "operator_new"
+    }, 
+    {
+      "address": "0x10011b40", 
+      "name": "FUN_10011b40"
+    }
+  ], 
+  "global_refs": [
+    {
+      "address": "0xffdff000", 
+      "type": "void *32", 
+      "name": "DAT_ffdff000"
+    }, 
+    {
+      "address": "0x100f4046", 
+      "type": null, 
+      "name": "DAT_100f4046"
+    }, 
+    {
+      "address": "0x00000008", 
+      "type": null, 
+      "name": "DAT_00000008"
+    }, 
+    {
+      "address": "0x-0000004", 
+      "type": null, 
+      "name": "DAT_-0000004"
+    }, 
+    {
+      "address": "0x-000000c", 
+      "type": null, 
+      "name": "DAT_-000000c"
+    }
+  ], 
+  "has_custom_name": true, 
+  "decompiled_c": "\n/* public: virtual class gbBaseMesh * __thiscall gbGfxManager::NewMesh(char const *,enum gbMeshType)\n    */\n\ngbBaseMesh * __thiscall gbGfxManager::NewMesh(gbGfxManager *this,char *param_1,gbMeshType param_2)\n\n{\n  gbStaticMesh *this_00;\n  gbBaseMesh *pgVar1;\n  void *pvVar2;\n  void *local_c;\n  undefined *puStack_8;\n  undefined4 local_4;\n  \n                    /* 0x1e160  706  ?NewMesh@gbGfxManager@@UAEPAVgbBaseMesh@@PBDW4gbMeshType@@@Z */\n  local_4 = 0xffffffff;\n  puStack_8 = &LAB_100f4046;\n  local_c = ExceptionList;\n  if (param_2 == 0) {\n    ExceptionList = &local_c;\n    this_00 = (gbStaticMesh *)operator_new(0x84);\n    local_4 = 0;\n    if (this_00 != (gbStaticMesh *)0x0) {\n      pgVar1 = (gbBaseMesh *)gbStaticMesh::gbStaticMesh(this_00,this);\n      ExceptionList = local_c;\n      return pgVar1;\n    }\n  }\n  else {\n    if (param_2 != 1) {\n      return (gbBaseMesh *)param_2;\n    }\n    ExceptionList = &local_c;\n    pvVar2 = operator_new(0x8c);\n    local_4 = 1;\n    if (pvVar2 != (void *)0x0) {\n      pgVar1 = (gbBaseMesh *)FUN_10011b40(this);\n      ExceptionList = local_c;\n      return pgVar1;\n    }\n  }\n  ExceptionList = local_c;\n  return (gbBaseMesh *)0x0;\n}\n\n", 
+  "is_thunk": false, 
+  "name": "NewMesh", 
+  "assembly": "  1001e160:  MOV EAX,FS:[0x0]\n  1001e166:  PUSH -0x1\n  1001e168:  PUSH 0x100f4046\n  1001e16d:  PUSH EAX\n  1001e16e:  MOV EAX,dword ptr [ESP + 0x14]\n  1001e172:  MOV dword ptr FS:[0x0],ESP\n  1001e179:  PUSH ESI\n  1001e17a:  MOV ESI,ECX\n  1001e17c:  TEST EAX,EAX\n  1001e17e:  JNZ 0x1001e1b7\n  1001e180:  PUSH 0x84\n  1001e185:  CALL 0x100e4a16\n  1001e18a:  ADD ESP,0x4\n  1001e18d:  MOV dword ptr [ESP + 0x18],EAX\n  1001e191:  TEST EAX,EAX\n  1001e193:  MOV dword ptr [ESP + 0xc],0x0\n  1001e19b:  JZ 0x1001e1f3\n  1001e19d:  PUSH ESI\n  1001e19e:  MOV ECX,EAX\n  1001e1a0:  CALL 0x10015630\n  1001e1a5:  MOV ECX,dword ptr [ESP + 0x4]\n  1001e1a9:  MOV dword ptr FS:[0x0],ECX\n  1001e1b0:  POP ESI\n  1001e1b1:  ADD ESP,0xc\n  1001e1b4:  RET 0x8\n  1001e1b7:  CMP EAX,0x1\n  1001e1ba:  JNZ 0x1001e207\n  1001e1bc:  PUSH 0x8c\n  1001e1c1:  CALL 0x100e4a16\n  1001e1c6:  ADD ESP,0x4\n  1001e1c9:  MOV dword ptr [ESP + 0x18],EAX\n  1001e1cd:  TEST EAX,EAX\n  1001e1cf:  MOV dword ptr [ESP + 0xc],0x1\n  1001e1d7:  JZ 0x1001e1f3\n  1001e1d9:  PUSH ESI\n  1001e1da:  MOV ECX,EAX\n  1001e1dc:  CALL 0x10011b40\n  1001e1e1:  MOV ECX,dword ptr [ESP + 0x4]\n  1001e1e5:  MOV dword ptr FS:[0x0],ECX\n  1001e1ec:  POP ESI\n  1001e1ed:  ADD ESP,0xc\n  1001e1f0:  RET 0x8\n  1001e1f3:  XOR EAX,EAX\n  1001e1f5:  MOV ECX,dword ptr [ESP + 0x4]\n  1001e1f9:  MOV dword ptr FS:[0x0],ECX\n  1001e200:  POP ESI\n  1001e201:  ADD ESP,0xc\n  1001e204:  RET 0x8\n  1001e207:  MOV ECX,dword ptr [ESP + 0x4]\n  1001e20b:  MOV EAX,dword ptr [ESP + 0x18]\n  1001e20f:  MOV dword ptr FS:[0x0],ECX\n  1001e216:  POP ESI\n  1001e217:  ADD ESP,0xc\n  1001e21a:  RET 0x8", 
+  "callers": []
+}

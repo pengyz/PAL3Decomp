@@ -1,0 +1,14 @@
+{
+  "address": "0x10003b00", 
+  "size_bytes": 10, 
+  "calling_convention": "__thiscall", 
+  "signature": "gbChain1DNode * __thiscall Iterate(gbChain1D * this)", 
+  "callees": [], 
+  "global_refs": [], 
+  "has_custom_name": true, 
+  "decompiled_c": "\n/* public: class gbChain1DNode * __thiscall gbChain1D::Iterate(void) */\n\ngbChain1DNode * __thiscall gbChain1D::Iterate(gbChain1D *this)\n\n{\n  gbChain1DNode *pgVar1;\n  \n                    /* 0x3b00  656  ?Iterate@gbChain1D@@QAEPAVgbChain1DNode@@XZ */\n  pgVar1 = *(gbChain1DNode **)(*(int *)(this + 0xc) + 4);\n  *(gbChain1DNode **)(this + 0xc) = pgVar1;\n  return pgVar1;\n}\n\n", 
+  "is_thunk": false, 
+  "name": "Iterate", 
+  "assembly": "  10003b00:  MOV EAX,dword ptr [ECX + 0xc]\n  10003b03:  MOV EAX,dword ptr [EAX + 0x4]\n  10003b06:  MOV dword ptr [ECX + 0xc],EAX\n  10003b09:  RET", 
+  "callers": []
+}

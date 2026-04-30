@@ -1,0 +1,30 @@
+{
+  "address": "0x100bb07f", 
+  "size_bytes": 96, 
+  "calling_convention": "unknown", 
+  "signature": "undefined FUN_100bb07f(undefined4 param_1, undefined4 param_2)", 
+  "callees": [], 
+  "global_refs": [
+    {
+      "address": "0x00000004", 
+      "type": null, 
+      "name": "DAT_00000004"
+    }, 
+    {
+      "address": "0x-0000008", 
+      "type": null, 
+      "name": "DAT_-0000008"
+    }, 
+    {
+      "address": "0x00000008", 
+      "type": null, 
+      "name": "DAT_00000008"
+    }
+  ], 
+  "has_custom_name": false, 
+  "decompiled_c": "\nundefined4 FUN_100bb07f(int param_1,uint param_2)\n\n{\n  int iVar1;\n  uint uVar2;\n  int in_ECX;\n  int *piVar3;\n  uint local_8;\n  \n  local_8 = 0;\n  if (*(uint *)(param_1 + 4) != 0) {\n    piVar3 = *(int **)(param_1 + 8);\n    do {\n      iVar1 = *(int *)(*(int *)(in_ECX + 0x14) + *piVar3 * 4);\n      if (((*(int *)(in_ECX + 0x88) == *(int *)(iVar1 + 4)) &&\n          (uVar2 = *(uint *)(iVar1 + 0x4c), uVar2 < param_2)) &&\n         ((*(ushort *)(*(int *)(*(int *)(in_ECX + 0x18) + uVar2 * 4) + 2) & 0xfff0) != 0)) {\n        return 1;\n      }\n      local_8 = local_8 + 1;\n      piVar3 = piVar3 + 1;\n    } while (local_8 < *(uint *)(param_1 + 4));\n  }\n  return 0;\n}\n\n", 
+  "is_thunk": false, 
+  "name": "FUN_100bb07f", 
+  "assembly": "  100bb07f:  PUSH EBP\n  100bb080:  MOV EBP,ESP\n  100bb082:  PUSH ECX\n  100bb083:  MOV EAX,dword ptr [EBP + 0x8]\n  100bb086:  MOV EDX,dword ptr [EAX + 0x4]\n  100bb089:  AND dword ptr [EBP + -0x4],0x0\n  100bb08d:  TEST EDX,EDX\n  100bb08f:  PUSH EBX\n  100bb090:  PUSH ESI\n  100bb091:  PUSH EDI\n  100bb092:  MOV dword ptr [EBP + 0x8],EDX\n  100bb095:  JBE 0x100bb0d1\n  100bb097:  MOV ESI,dword ptr [ECX + 0x14]\n  100bb09a:  MOV EDI,dword ptr [ECX + 0x88]\n  100bb0a0:  MOV EDX,dword ptr [EAX + 0x8]\n  100bb0a3:  MOV EAX,dword ptr [EDX]\n  100bb0a5:  MOV EAX,dword ptr [ESI + EAX*0x4]\n  100bb0a8:  CMP EDI,dword ptr [EAX + 0x4]\n  100bb0ab:  JNZ 0x100bb0c3\n  100bb0ad:  MOV EAX,dword ptr [EAX + 0x4c]\n  100bb0b0:  CMP EAX,dword ptr [EBP + 0xc]\n  100bb0b3:  JNC 0x100bb0c3\n  100bb0b5:  MOV EBX,dword ptr [ECX + 0x18]\n  100bb0b8:  MOV EAX,dword ptr [EBX + EAX*0x4]\n  100bb0bb:  TEST word ptr [EAX + 0x2],0xfff0\n  100bb0c1:  JNZ 0x100bb0da\n  100bb0c3:  INC dword ptr [EBP + -0x4]\n  100bb0c6:  MOV EAX,dword ptr [EBP + -0x4]\n  100bb0c9:  ADD EDX,0x4\n  100bb0cc:  CMP EAX,dword ptr [EBP + 0x8]\n  100bb0cf:  JC 0x100bb0a3\n  100bb0d1:  XOR EAX,EAX\n  100bb0d3:  POP EDI\n  100bb0d4:  POP ESI\n  100bb0d5:  POP EBX\n  100bb0d6:  LEAVE\n  100bb0d7:  RET 0x8\n  100bb0da:  XOR EAX,EAX\n  100bb0dc:  INC EAX\n  100bb0dd:  JMP 0x100bb0d3", 
+  "callers": []
+}

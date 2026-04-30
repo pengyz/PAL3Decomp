@@ -1,0 +1,35 @@
+{
+  "address": "0x100659d1", 
+  "size_bytes": 166, 
+  "calling_convention": "unknown", 
+  "signature": "undefined FUN_100659d1(undefined4 param_1, undefined4 param_2, undefined4 param_3)", 
+  "callees": [
+    {
+      "address": "0x10065803", 
+      "name": "FUN_10065803"
+    }
+  ], 
+  "global_refs": [
+    {
+      "address": "0x00000004", 
+      "type": null, 
+      "name": "DAT_00000004"
+    }, 
+    {
+      "address": "0x00000008", 
+      "type": null, 
+      "name": "DAT_00000008"
+    }, 
+    {
+      "address": "0x0000000c", 
+      "type": null, 
+      "name": "DAT_0000000c"
+    }
+  ], 
+  "has_custom_name": false, 
+  "decompiled_c": "\nuint FUN_100659d1(undefined4 param_1,uint param_2,byte *param_3)\n\n{\n  byte bVar1;\n  int iVar2;\n  int *piVar3;\n  byte *pbVar4;\n  int extraout_ECX;\n  byte *pbVar5;\n  int *piVar6;\n  bool bVar7;\n  \n  iVar2 = FUN_10065803(param_2,1);\n  if (iVar2 != 0) {\n    param_2 = 0;\n    if (*(int *)(iVar2 + 0x2c) != 0) {\n      piVar6 = (int *)(*(int *)(iVar2 + 0x30) + 0x20);\n      do {\n        piVar3 = (int *)(*piVar6 + *(int *)(extraout_ECX + 0x20));\n        pbVar5 = param_3;\n        if ((*piVar3 == 0) || (pbVar4 = (byte *)(piVar3 + 1), pbVar4 == (byte *)0x0)) {\nLAB_10065a49:\n          if (pbVar5 == (byte *)0x0) break;\n        }\n        else if (param_3 != (byte *)0x0) {\n          do {\n            bVar1 = *pbVar4;\n            bVar7 = bVar1 < *pbVar5;\n            if (bVar1 != *pbVar5) {\nLAB_10065a3c:\n              pbVar5 = (byte *)((1 - (uint)bVar7) - (uint)(bVar7 != 0));\n              goto LAB_10065a49;\n            }\n            if (bVar1 == 0) break;\n            bVar1 = pbVar4[1];\n            bVar7 = bVar1 < pbVar5[1];\n            if (bVar1 != pbVar5[1]) goto LAB_10065a3c;\n            pbVar4 = pbVar4 + 2;\n            pbVar5 = pbVar5 + 2;\n          } while (bVar1 != 0);\n          pbVar5 = (byte *)0x0;\n          goto LAB_10065a49;\n        }\n        param_2 = param_2 + 1;\n        piVar6 = piVar6 + 0xc;\n      } while (param_2 < *(uint *)(iVar2 + 0x2c));\n    }\n    if (*(uint *)(iVar2 + 0x2c) != param_2) {\n      return ~(param_2 * 0x30 + *(int *)(iVar2 + 0x30));\n    }\n  }\n  return 0;\n}\n\n", 
+  "is_thunk": false, 
+  "name": "FUN_100659d1", 
+  "assembly": "  100659d1:  PUSH EBP\n  100659d2:  MOV EBP,ESP\n  100659d4:  MOV ECX,dword ptr [EBP + 0x8]\n  100659d7:  PUSH EBX\n  100659d8:  PUSH 0x1\n  100659da:  PUSH dword ptr [EBP + 0xc]\n  100659dd:  CALL 0x10065803\n  100659e2:  MOV EBX,EAX\n  100659e4:  TEST EBX,EBX\n  100659e6:  JZ 0x10065a63\n  100659e8:  AND dword ptr [EBP + 0xc],0x0\n  100659ec:  CMP dword ptr [EBX + 0x2c],0x0\n  100659f0:  JBE 0x10065a5b\n  100659f2:  MOV EAX,dword ptr [ECX + 0x20]\n  100659f5:  PUSH ESI\n  100659f6:  PUSH EDI\n  100659f7:  MOV EDI,dword ptr [EBX + 0x30]\n  100659fa:  MOV dword ptr [EBP + 0x8],EAX\n  100659fd:  ADD EDI,0x20\n  10065a00:  MOV EAX,dword ptr [EDI]\n  10065a02:  MOV ECX,dword ptr [EBP + 0x8]\n  10065a05:  ADD EAX,ECX\n  10065a07:  CMP dword ptr [EAX],0x0\n  10065a0a:  JZ 0x10065a45\n  10065a0c:  ADD EAX,0x4\n  10065a0f:  TEST EAX,EAX\n  10065a11:  JZ 0x10065a45\n  10065a13:  MOV ESI,dword ptr [EBP + 0x10]\n  10065a16:  TEST ESI,ESI\n  10065a18:  JZ 0x10065a4b\n  10065a1a:  MOV CL,byte ptr [EAX]\n  10065a1c:  MOV DL,CL\n  10065a1e:  CMP CL,byte ptr [ESI]\n  10065a20:  JNZ 0x10065a3c\n  10065a22:  TEST DL,DL\n  10065a24:  JZ 0x10065a38\n  10065a26:  MOV CL,byte ptr [EAX + 0x1]\n  10065a29:  MOV DL,CL\n  10065a2b:  CMP CL,byte ptr [ESI + 0x1]\n  10065a2e:  JNZ 0x10065a3c\n  10065a30:  INC EAX\n  10065a31:  INC EAX\n  10065a32:  INC ESI\n  10065a33:  INC ESI\n  10065a34:  TEST DL,DL\n  10065a36:  JNZ 0x10065a1a\n  10065a38:  XOR EAX,EAX\n  10065a3a:  JMP 0x10065a41\n  10065a3c:  SBB EAX,EAX\n  10065a3e:  SBB EAX,-0x1\n  10065a41:  TEST EAX,EAX\n  10065a43:  JMP 0x10065a49\n  10065a45:  CMP dword ptr [EBP + 0x10],0x0\n  10065a49:  JZ 0x10065a59\n  10065a4b:  INC dword ptr [EBP + 0xc]\n  10065a4e:  MOV EAX,dword ptr [EBP + 0xc]\n  10065a51:  ADD EDI,0x30\n  10065a54:  CMP EAX,dword ptr [EBX + 0x2c]\n  10065a57:  JC 0x10065a00\n  10065a59:  POP EDI\n  10065a5a:  POP ESI\n  10065a5b:  MOV EAX,dword ptr [EBP + 0xc]\n  10065a5e:  CMP dword ptr [EBX + 0x2c],EAX\n  10065a61:  JNZ 0x10065a67\n  10065a63:  XOR EAX,EAX\n  10065a65:  JMP 0x10065a72\n  10065a67:  LEA EAX,[EAX + EAX*0x2]\n  10065a6a:  SHL EAX,0x4\n  10065a6d:  ADD EAX,dword ptr [EBX + 0x30]\n  10065a70:  NOT EAX\n  10065a72:  POP EBX\n  10065a73:  POP EBP\n  10065a74:  RET 0xc", 
+  "callers": []
+}

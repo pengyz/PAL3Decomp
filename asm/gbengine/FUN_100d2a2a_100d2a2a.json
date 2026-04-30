@@ -1,0 +1,40 @@
+{
+  "address": "0x100d2a2a", 
+  "size_bytes": 174, 
+  "calling_convention": "unknown", 
+  "signature": "undefined FUN_100d2a2a(undefined4 param_1, undefined4 param_2, undefined4 param_3, undefined4 param_4)", 
+  "callees": [], 
+  "global_refs": [
+    {
+      "address": "0x00000004", 
+      "type": null, 
+      "name": "DAT_00000004"
+    }, 
+    {
+      "address": "0x00000008", 
+      "type": null, 
+      "name": "DAT_00000008"
+    }, 
+    {
+      "address": "0x0000000c", 
+      "type": null, 
+      "name": "DAT_0000000c"
+    }, 
+    {
+      "address": "0x00000010", 
+      "type": null, 
+      "name": "DAT_00000010"
+    }, 
+    {
+      "address": "0x10166c58", 
+      "type": null, 
+      "name": "DAT_10166c58"
+    }
+  ], 
+  "has_custom_name": false, 
+  "decompiled_c": "\n/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */\n\nundefined8 *\nFUN_100d2a2a(undefined8 *param_1,float *param_2,undefined8 *param_3,undefined8 *param_4)\n\n{\n  float fVar1;\n  float fVar2;\n  undefined auVar3 [16];\n  float fVar6;\n  float fVar7;\n  undefined auVar4 [16];\n  undefined auVar5 [16];\n  float fVar8;\n  float fVar9;\n  float fVar10;\n  float fVar11;\n  float fVar12;\n  float fVar13;\n  float fVar14;\n  float in_XMM6_Dc;\n  float in_XMM6_Dd;\n  \n  fVar12 = param_2[3];\n  fVar1 = *(float *)(param_3 + 1);\n  fVar2 = *(float *)(param_4 + 1);\n  fVar8 = (float)*param_3;\n  fVar9 = (float)((ulonglong)*param_3 >> 0x20);\n  fVar14 = fVar9 * param_2[1];\n  fVar10 = (float)*param_4;\n  fVar6 = *param_2 * fVar10;\n  fVar11 = (float)((ulonglong)*param_4 >> 0x20);\n  fVar7 = param_2[1] * fVar11;\n  fVar13 = fVar12 * 0.0 + fVar14;\n  auVar5._0_4_ = param_2[2] * fVar2 + fVar6;\n  auVar5._4_4_ = fVar12 * 0.0 + fVar7;\n  auVar5._8_4_ = fVar6 + in_XMM6_Dc;\n  auVar5._12_4_ = fVar7 + in_XMM6_Dd;\n  fVar6 = fVar1 * param_2[2] + fVar8 * *param_2 + fVar14;\n  auVar4._4_12_ = auVar5._4_12_;\n  auVar4._0_4_ = auVar5._0_4_ + fVar7;\n  fVar7 = fVar6 - auVar4._0_4_;\n  if (fVar7 == _DAT_10166c58) {\n    param_1 = (undefined8 *)0x0;\n  }\n  else {\n    auVar3._4_4_ = fVar14;\n    auVar3._0_4_ = fVar7;\n    auVar3._8_4_ = fVar13;\n    auVar3._12_4_ = fVar13;\n    auVar5 = rcpss(auVar4,auVar3);\n    fVar13 = auVar5._0_4_;\n    fVar12 = (fVar6 + fVar12) * ((fVar13 + fVar13) - fVar7 * fVar13 * fVar13);\n    *param_1 = CONCAT44(fVar9 + fVar12 * (fVar11 - fVar9),fVar8 + fVar12 * (fVar10 - fVar8));\n    *(float *)(param_1 + 1) = fVar1 + fVar12 * (fVar2 - fVar1);\n  }\n  return param_1;\n}\n\n", 
+  "is_thunk": false, 
+  "name": "FUN_100d2a2a", 
+  "assembly": "  100d2a2a:  PUSH EBP\n  100d2a2b:  MOV EBP,ESP\n  100d2a2d:  MOV EAX,dword ptr [EBP + 0x8]\n  100d2a30:  MOV dword ptr [EBP + 0x8],EAX\n  100d2a33:  MOV EAX,dword ptr [EBP + 0xc]\n  100d2a36:  MOVUPS XMM0,xmmword ptr [EAX]\n  100d2a39:  MOV ECX,dword ptr [EBP + 0x10]\n  100d2a3c:  MOVSS XMM1,dword ptr [ECX + 0x8]\n  100d2a41:  MOV EDX,dword ptr [EBP + 0x14]\n  100d2a44:  MOVHPS XMM1,qword ptr [ECX]\n  100d2a47:  MOVSS XMM2,dword ptr [EDX + 0x8]\n  100d2a4c:  MOVAPS XMM4,XMM0\n  100d2a4f:  SHUFPS XMM0,XMM0,0x4e\n  100d2a53:  MOVAPS XMM3,XMM1\n  100d2a56:  SHUFPS XMM4,XMM4,0xff\n  100d2a5a:  MOVHPS XMM2,qword ptr [EDX]\n  100d2a5d:  MULPS XMM3,XMM0\n  100d2a60:  MULPS XMM0,XMM2\n  100d2a63:  MOVHLPS XMM5,XMM3\n  100d2a66:  MOVHLPS XMM6,XMM0\n  100d2a69:  ADDPS XMM3,XMM5\n  100d2a6c:  ADDPS XMM0,XMM6\n  100d2a6f:  SHUFPS XMM5,XMM3,0x55\n  100d2a73:  SHUFPS XMM6,XMM0,0x55\n  100d2a77:  ADDSS XMM3,XMM5\n  100d2a7b:  ADDSS XMM0,XMM6\n  100d2a7f:  MOVSS XMM5,XMM3\n  100d2a83:  SUBSS XMM5,XMM0\n  100d2a87:  ADDSS XMM3,XMM4\n  100d2a8b:  COMISS XMM5,dword ptr [0x10166c58]\n  100d2a92:  JZ 0x100d2aca\n  100d2a94:  RCPSS XMM0,XMM5\n  100d2a98:  MOVSS XMM6,XMM0\n  100d2a9c:  ADDSS XMM6,XMM6\n  100d2aa0:  MULSS XMM5,XMM0\n  100d2aa4:  MULSS XMM5,XMM0\n  100d2aa8:  SUBSS XMM6,XMM5\n  100d2aac:  MULSS XMM3,XMM6\n  100d2ab0:  SHUFPS XMM3,XMM3,0x0\n  100d2ab4:  SUBPS XMM2,XMM1\n  100d2ab7:  MULPS XMM3,XMM2\n  100d2aba:  MOV EAX,dword ptr [EBP + 0x8]\n  100d2abd:  ADDPS XMM1,XMM3\n  100d2ac0:  MOVHPS qword ptr [EAX],XMM1\n  100d2ac3:  MOVSS dword ptr [EAX + 0x8],XMM1\n  100d2ac8:  JMP 0x100d2ad1\n  100d2aca:  MOV dword ptr [EBP + 0x8],0x0\n  100d2ad1:  MOV EAX,dword ptr [EBP + 0x8]\n  100d2ad4:  POP EBP\n  100d2ad5:  RET 0x10", 
+  "callers": []
+}

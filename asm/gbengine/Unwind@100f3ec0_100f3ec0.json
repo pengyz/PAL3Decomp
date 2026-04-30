@@ -1,0 +1,19 @@
+{
+  "address": "0x100f3ec0", 
+  "size_bytes": 8, 
+  "calling_convention": "unknown", 
+  "signature": "undefined Unwind@100f3ec0(void)", 
+  "callees": [
+    {
+      "address": "0x100209f0", 
+      "name": "~gbIndexPool"
+    }
+  ], 
+  "global_refs": [], 
+  "has_custom_name": true, 
+  "decompiled_c": "\nvoid Unwind_100f3ec0(void)\n\n{\n  int unaff_EBP;\n  \n  gbIndexPool::~gbIndexPool(*(gbIndexPool **)(unaff_EBP + -0x10));\n  return;\n}\n\n", 
+  "is_thunk": false, 
+  "name": "Unwind@100f3ec0", 
+  "assembly": "  100f3ec0:  MOV ECX,dword ptr [EBP + -0x10]\n  100f3ec3:  JMP 0x100209f0", 
+  "callers": []
+}

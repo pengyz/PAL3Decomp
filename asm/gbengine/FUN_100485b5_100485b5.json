@@ -1,0 +1,49 @@
+{
+  "address": "0x100485b5", 
+  "size_bytes": 28, 
+  "calling_convention": "unknown", 
+  "signature": "undefined FUN_100485b5(undefined4 param_1, undefined4 param_2)", 
+  "callees": [
+    {
+      "address": "0x1007713a", 
+      "name": "FUN_1007713a"
+    }, 
+    {
+      "address": "0x100485b5", 
+      "name": "FUN_100485b5"
+    }
+  ], 
+  "global_refs": [
+    {
+      "address": "0x00000008", 
+      "type": null, 
+      "name": "DAT_00000008"
+    }, 
+    {
+      "address": "0x-0000004", 
+      "type": null, 
+      "name": "DAT_-0000004"
+    }, 
+    {
+      "address": "0x00000004", 
+      "type": null, 
+      "name": "DAT_00000004"
+    }, 
+    {
+      "address": "0x10121514", 
+      "type": "undefined *", 
+      "name": "DAT_10121514"
+    }
+  ], 
+  "has_custom_name": false, 
+  "decompiled_c": "\nvoid FUN_100485b5(undefined4 param_1,undefined4 param_2)\n\n{\n  FUN_1007713a(1);\n  (*(code *)PTR_FUN_10121514)(param_1,param_2);\n  return;\n}\n\n", 
+  "is_thunk": false, 
+  "name": "FUN_100485b5", 
+  "assembly": "  100485b5:  PUSH 0x1\n  100485b7:  CALL 0x1007713a\n  100485bc:  FLD dword ptr [ESP + 0x8]\n  100485c0:  PUSH ECX\n  100485c1:  FSTP dword ptr [ESP]\n  100485c4:  PUSH dword ptr [ESP + 0x8]\n  100485c8:  CALL dword ptr [0x10121514]\n  100485ce:  RET 0x8", 
+  "callers": [
+    {
+      "address": "0x100485b5", 
+      "name": "FUN_100485b5"
+    }
+  ]
+}

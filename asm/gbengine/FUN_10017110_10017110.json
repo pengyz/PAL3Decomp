@@ -1,0 +1,70 @@
+{
+  "address": "0x10017110", 
+  "size_bytes": 275, 
+  "calling_convention": "unknown", 
+  "signature": "undefined FUN_10017110(void)", 
+  "callees": [
+    {
+      "address": "0x10016db0", 
+      "name": "FUN_10016db0"
+    }, 
+    {
+      "address": "0x100e4a24", 
+      "name": "FUN_100e4a24"
+    }, 
+    {
+      "address": "0x10017260", 
+      "name": "FUN_10017260"
+    }, 
+    {
+      "address": "0x10017230", 
+      "name": "FUN_10017230"
+    }, 
+    {
+      "address": "0x100e4a24", 
+      "name": "FUN_100e4a24"
+    }, 
+    {
+      "address": "0x100e4a24", 
+      "name": "FUN_100e4a24"
+    }, 
+    {
+      "address": "0x100e4a24", 
+      "name": "FUN_100e4a24"
+    }, 
+    {
+      "address": "0x100e4a24", 
+      "name": "FUN_100e4a24"
+    }, 
+    {
+      "address": "0x100e4a24", 
+      "name": "FUN_100e4a24"
+    }
+  ], 
+  "global_refs": [
+    {
+      "address": "0x-0000004", 
+      "type": null, 
+      "name": "DAT_-0000004"
+    }
+  ], 
+  "has_custom_name": false, 
+  "decompiled_c": "\nvoid FUN_10017110(void)\n\n{\n  int *piVar1;\n  int in_ECX;\n  int iVar2;\n  uint uVar3;\n  uint uVar4;\n  int iVar5;\n  \n  piVar1 = *(int **)(in_ECX + 4);\n  if (piVar1 != (int *)0x0) {\n    uVar3 = 0;\n    if (piVar1[3] != 0) {\n      do {\n        if (*piVar1 == 0) {\n          iVar5 = piVar1[2] * uVar3 + piVar1[1];\n        }\n        else {\n          iVar5 = *(int *)(piVar1[1] + uVar3 * 4);\n        }\n        if (iVar5 != 0) {\n          iVar2 = *(int *)(iVar5 + 0x450);\n          if (iVar2 != 0) {\n            FUN_10016db0();\n            FUN_100e4a24(iVar2);\n          }\n          piVar1 = *(int **)(iVar5 + 0x454);\n          if (piVar1 != (int *)0x0) {\n            uVar4 = 0;\n            if (piVar1[3] != 0) {\n              do {\n                if (*piVar1 == 0) {\n                  iVar2 = piVar1[2] * uVar4 + piVar1[1];\n                }\n                else {\n                  iVar2 = *(int *)(piVar1[1] + uVar4 * 4);\n                }\n                if (iVar2 != 0) {\n                  FUN_10017260(1);\n                }\n                piVar1 = *(int **)(iVar5 + 0x454);\n                uVar4 = uVar4 + 1;\n              } while (uVar4 < (uint)piVar1[3]);\n            }\n            if (*(int *)(iVar5 + 0x454) != 0) {\n              FUN_10017230(1);\n            }\n          }\n          FUN_100e4a24(iVar5);\n        }\n        uVar3 = uVar3 + 1;\n        piVar1 = *(int **)(in_ECX + 4);\n      } while (uVar3 < (uint)piVar1[3]);\n    }\n    iVar5 = *(int *)(in_ECX + 4);\n    if (iVar5 != 0) {\n      if (*(int *)(iVar5 + 4) != 0) {\n        FUN_100e4a24(*(int *)(iVar5 + 4));\n      }\n      FUN_100e4a24(iVar5);\n    }\n  }\n  iVar5 = *(int *)(in_ECX + 0x28);\n  if (iVar5 != 0) {\n    if (*(int *)(iVar5 + 4) != 0) {\n      FUN_100e4a24(*(int *)(iVar5 + 4));\n    }\n    FUN_100e4a24(iVar5);\n  }\n  *(undefined4 *)(in_ECX + 0x28) = 0;\n  return;\n}\n\n", 
+  "is_thunk": false, 
+  "name": "FUN_10017110", 
+  "assembly": "  10017110:  PUSH ECX\n  10017111:  PUSH ESI\n  10017112:  PUSH EDI\n  10017113:  MOV EDI,ECX\n  10017115:  MOV dword ptr [ESP + 0x8],EDI\n  10017119:  MOV EAX,dword ptr [EDI + 0x4]\n  1001711c:  TEST EAX,EAX\n  1001711e:  JZ 0x100171f8\n  10017124:  MOV ECX,dword ptr [EAX + 0xc]\n  10017127:  PUSH EBX\n  10017128:  XOR EBX,EBX\n  1001712a:  TEST ECX,ECX\n  1001712c:  JBE 0x100171d7\n  10017132:  CMP dword ptr [EAX],0x0\n  10017135:  JNZ 0x10017144\n  10017137:  MOV EDI,dword ptr [EAX + 0x8]\n  1001713a:  MOV ECX,dword ptr [EAX + 0x4]\n  1001713d:  IMUL EDI,EBX\n  10017140:  ADD EDI,ECX\n  10017142:  JMP 0x1001714a\n  10017144:  MOV EAX,dword ptr [EAX + 0x4]\n  10017147:  MOV EDI,dword ptr [EAX + EBX*0x4]\n  1001714a:  TEST EDI,EDI\n  1001714c:  JZ 0x100171c4\n  1001714e:  MOV ESI,dword ptr [EDI + 0x450]\n  10017154:  TEST ESI,ESI\n  10017156:  JZ 0x10017168\n  10017158:  MOV ECX,ESI\n  1001715a:  CALL 0x10016db0\n  1001715f:  PUSH ESI\n  10017160:  CALL 0x100e4a24\n  10017165:  ADD ESP,0x4\n  10017168:  MOV EAX,dword ptr [EDI + 0x454]\n  1001716e:  TEST EAX,EAX\n  10017170:  JZ 0x100171bb\n  10017172:  MOV ECX,dword ptr [EAX + 0xc]\n  10017175:  XOR ESI,ESI\n  10017177:  TEST ECX,ECX\n  10017179:  JBE 0x100171aa\n  1001717b:  CMP dword ptr [EAX],0x0\n  1001717e:  JNZ 0x1001718d\n  10017180:  MOV ECX,dword ptr [EAX + 0x8]\n  10017183:  MOV EDX,dword ptr [EAX + 0x4]\n  10017186:  IMUL ECX,ESI\n  10017189:  ADD ECX,EDX\n  1001718b:  JMP 0x10017193\n  1001718d:  MOV ECX,dword ptr [EAX + 0x4]\n  10017190:  MOV ECX,dword ptr [ECX + ESI*0x4]\n  10017193:  TEST ECX,ECX\n  10017195:  JZ 0x1001719e\n  10017197:  PUSH 0x1\n  10017199:  CALL 0x10017260\n  1001719e:  MOV EAX,dword ptr [EDI + 0x454]\n  100171a4:  INC ESI\n  100171a5:  CMP ESI,dword ptr [EAX + 0xc]\n  100171a8:  JC 0x1001717b\n  100171aa:  MOV ECX,dword ptr [EDI + 0x454]\n  100171b0:  TEST ECX,ECX\n  100171b2:  JZ 0x100171bb\n  100171b4:  PUSH 0x1\n  100171b6:  CALL 0x10017230\n  100171bb:  PUSH EDI\n  100171bc:  CALL 0x100e4a24\n  100171c1:  ADD ESP,0x4\n  100171c4:  MOV EDX,dword ptr [ESP + 0xc]\n  100171c8:  INC EBX\n  100171c9:  MOV EAX,dword ptr [EDX + 0x4]\n  100171cc:  CMP EBX,dword ptr [EAX + 0xc]\n  100171cf:  JC 0x10017132\n  100171d5:  MOV EDI,EDX\n  100171d7:  MOV ESI,dword ptr [EDI + 0x4]\n  100171da:  POP EBX\n  100171db:  TEST ESI,ESI\n  100171dd:  JZ 0x100171f8\n  100171df:  MOV EAX,dword ptr [ESI + 0x4]\n  100171e2:  TEST EAX,EAX\n  100171e4:  JZ 0x100171ef\n  100171e6:  PUSH EAX\n  100171e7:  CALL 0x100e4a24\n  100171ec:  ADD ESP,0x4\n  100171ef:  PUSH ESI\n  100171f0:  CALL 0x100e4a24\n  100171f5:  ADD ESP,0x4\n  100171f8:  MOV ESI,dword ptr [EDI + 0x28]\n  100171fb:  TEST ESI,ESI\n  100171fd:  JZ 0x10017218\n  100171ff:  MOV EAX,dword ptr [ESI + 0x4]\n  10017202:  TEST EAX,EAX\n  10017204:  JZ 0x1001720f\n  10017206:  PUSH EAX\n  10017207:  CALL 0x100e4a24\n  1001720c:  ADD ESP,0x4\n  1001720f:  PUSH ESI\n  10017210:  CALL 0x100e4a24\n  10017215:  ADD ESP,0x4\n  10017218:  MOV dword ptr [EDI + 0x28],0x0\n  1001721f:  POP EDI\n  10017220:  POP ESI\n  10017221:  POP ECX\n  10017222:  RET", 
+  "callers": [
+    {
+      "address": "0x100f3d78", 
+      "name": "Unwind@100f3d78"
+    }, 
+    {
+      "address": "0x100f3db8", 
+      "name": "Unwind@100f3db8"
+    }, 
+    {
+      "address": "0x10018bd0", 
+      "name": "FUN_10018bd0"
+    }
+  ]
+}

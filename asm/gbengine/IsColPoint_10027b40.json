@@ -1,0 +1,20 @@
+{
+  "address": "0x10027b40", 
+  "size_bytes": 92, 
+  "calling_convention": "__thiscall", 
+  "signature": "int __thiscall IsColPoint(gbAABBox * this, gbVec3D * param_1)", 
+  "callees": [], 
+  "global_refs": [
+    {
+      "address": "0x00000004", 
+      "type": null, 
+      "name": "DAT_00000004"
+    }
+  ], 
+  "has_custom_name": true, 
+  "decompiled_c": "\n/* public: int __thiscall gbAABBox::IsColPoint(struct gbVec3D &) */\n\nint __thiscall gbAABBox::IsColPoint(gbAABBox *this,gbVec3D *param_1)\n\n{\n                    /* 0x27b40  619  ?IsColPoint@gbAABBox@@QAEHAAUgbVec3D@@@Z */\n  if ((((*(float *)this <= *(float *)param_1) && (*(float *)(this + 4) <= *(float *)(param_1 + 4)))\n      && (*(float *)(this + 8) <= *(float *)(param_1 + 8))) &&\n     (((*(float *)param_1 <= *(float *)(this + 0xc) &&\n       (*(float *)(param_1 + 4) <= *(float *)(this + 0x10))) &&\n      (*(float *)(param_1 + 8) <= *(float *)(this + 0x14))))) {\n    return 1;\n  }\n  return 0;\n}\n\n", 
+  "is_thunk": false, 
+  "name": "IsColPoint", 
+  "assembly": "  10027b40:  MOV EDX,dword ptr [ESP + 0x4]\n  10027b44:  FLD dword ptr [EDX]\n  10027b46:  FCOMP dword ptr [ECX]\n  10027b48:  FNSTSW AX\n  10027b4a:  TEST AH,0x1\n  10027b4d:  JNZ 0x10027b97\n  10027b4f:  FLD dword ptr [EDX + 0x4]\n  10027b52:  FCOMP dword ptr [ECX + 0x4]\n  10027b55:  FNSTSW AX\n  10027b57:  TEST AH,0x1\n  10027b5a:  JNZ 0x10027b97\n  10027b5c:  FLD dword ptr [EDX + 0x8]\n  10027b5f:  FCOMP dword ptr [ECX + 0x8]\n  10027b62:  FNSTSW AX\n  10027b64:  TEST AH,0x1\n  10027b67:  JNZ 0x10027b97\n  10027b69:  FLD dword ptr [EDX]\n  10027b6b:  FCOMP dword ptr [ECX + 0xc]\n  10027b6e:  FNSTSW AX\n  10027b70:  TEST AH,0x41\n  10027b73:  JZ 0x10027b97\n  10027b75:  FLD dword ptr [EDX + 0x4]\n  10027b78:  FCOMP dword ptr [ECX + 0x10]\n  10027b7b:  FNSTSW AX\n  10027b7d:  TEST AH,0x41\n  10027b80:  JZ 0x10027b97\n  10027b82:  FLD dword ptr [EDX + 0x8]\n  10027b85:  FCOMP dword ptr [ECX + 0x14]\n  10027b88:  FNSTSW AX\n  10027b8a:  TEST AH,0x41\n  10027b8d:  JZ 0x10027b97\n  10027b8f:  MOV EAX,0x1\n  10027b94:  RET 0x4\n  10027b97:  XOR EAX,EAX\n  10027b99:  RET 0x4", 
+  "callers": []
+}

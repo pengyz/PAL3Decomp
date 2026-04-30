@@ -1,0 +1,120 @@
+{
+  "address": "0x100e4f80", 
+  "size_bytes": 47, 
+  "calling_convention": "unknown", 
+  "signature": "undefined FUN_100e4f80(undefined1 param_1)", 
+  "callees": [], 
+  "global_refs": [
+    {
+      "address": "0x00000004", 
+      "type": null, 
+      "name": "DAT_00000004"
+    }, 
+    {
+      "address": "0x-0000ffc", 
+      "type": null, 
+      "name": "DAT_-0000ffc"
+    }, 
+    {
+      "address": "0x-0000004", 
+      "type": null, 
+      "name": "DAT_-0000004"
+    }, 
+    {
+      "address": "0x00000000", 
+      "type": null, 
+      "name": "DAT_00000000"
+    }
+  ], 
+  "has_custom_name": false, 
+  "decompiled_c": "\n/* WARNING: Unable to track spacebase fully for stack */\n\nvoid FUN_100e4f80(void)\n\n{\n  uint in_EAX;\n  undefined *puVar1;\n  undefined4 unaff_retaddr;\n  \n  puVar1 = &stack0x00000004;\n  if (0xfff < in_EAX) {\n    do {\n      puVar1 = puVar1 + -0x1000;\n      in_EAX = in_EAX - 0x1000;\n    } while (0xfff < in_EAX);\n  }\n  *(undefined4 *)(puVar1 + (-4 - in_EAX)) = unaff_retaddr;\n  return;\n}\n\n", 
+  "is_thunk": false, 
+  "name": "FUN_100e4f80", 
+  "assembly": "  100e4f80:  PUSH ECX\n  100e4f81:  CMP EAX,0x1000\n  100e4f86:  LEA ECX,[ESP + 0x8]\n  100e4f8a:  JC 0x100e4fa0\n  100e4f8c:  SUB ECX,0x1000\n  100e4f92:  SUB EAX,0x1000\n  100e4f97:  TEST dword ptr [ECX],EAX\n  100e4f99:  CMP EAX,0x1000\n  100e4f9e:  JNC 0x100e4f8c\n  100e4fa0:  SUB ECX,EAX\n  100e4fa2:  MOV EAX,ESP\n  100e4fa4:  TEST dword ptr [ECX],EAX\n  100e4fa6:  MOV ESP,ECX\n  100e4fa8:  MOV ECX,dword ptr [EAX]\n  100e4faa:  MOV EAX,dword ptr [EAX + 0x4]\n  100e4fad:  PUSH EAX\n  100e4fae:  RET", 
+  "callers": [
+    {
+      "address": "0x1002e850", 
+      "name": "FUN_1002e850"
+    }, 
+    {
+      "address": "0x100ebe10", 
+      "name": "FUN_100ebe10"
+    }, 
+    {
+      "address": "0x100ebe10", 
+      "name": "FUN_100ebe10"
+    }, 
+    {
+      "address": "0x100f1b05", 
+      "name": "FUN_100f1b05"
+    }, 
+    {
+      "address": "0x100f2ba1", 
+      "name": "FUN_100f2ba1"
+    }, 
+    {
+      "address": "0x1004cc4c", 
+      "name": "FUN_1004cc4c"
+    }, 
+    {
+      "address": "0x1004cb83", 
+      "name": "FUN_1004cb83"
+    }, 
+    {
+      "address": "0x1004c738", 
+      "name": "FUN_1004c738"
+    }, 
+    {
+      "address": "0x100108b0", 
+      "name": "LoadCVDFile"
+    }, 
+    {
+      "address": "0x1001f410", 
+      "name": "FUN_1001f410"
+    }, 
+    {
+      "address": "0x1002fb90", 
+      "name": "gbstricmp"
+    }, 
+    {
+      "address": "0x10014f40", 
+      "name": "End"
+    }, 
+    {
+      "address": "0x1001f5f0", 
+      "name": "WriteJpegImage"
+    }, 
+    {
+      "address": "0x100319b0", 
+      "name": "ProfileDumpOutputToFile"
+    }, 
+    {
+      "address": "0x1000b4f0", 
+      "name": "FUN_1000b4f0"
+    }, 
+    {
+      "address": "0x1004b3a4", 
+      "name": "FUN_1004b3a4"
+    }, 
+    {
+      "address": "0x1008fa4a", 
+      "name": "FUN_1008fa4a"
+    }, 
+    {
+      "address": "0x100f3396", 
+      "name": "FUN_100f3396"
+    }, 
+    {
+      "address": "0x100f34a9", 
+      "name": "FUN_100f34a9"
+    }, 
+    {
+      "address": "0x100f28d7", 
+      "name": "FUN_100f28d7"
+    }, 
+    {
+      "address": "0x100f28d7", 
+      "name": "FUN_100f28d7"
+    }
+  ]
+}

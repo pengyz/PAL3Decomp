@@ -1,0 +1,64 @@
+{
+  "address": "0x1004a832", 
+  "size_bytes": 57, 
+  "calling_convention": "unknown", 
+  "signature": "undefined FUN_1004a832(undefined4 param_1, undefined4 param_2, undefined4 param_3, undefined4 param_4)", 
+  "callees": [
+    {
+      "address": "0x10048dc7", 
+      "name": "thunk_FUN_10048d99"
+    }, 
+    {
+      "address": "0x10048819", 
+      "name": "thunk_FUN_1004880c"
+    }
+  ], 
+  "global_refs": [
+    {
+      "address": "0x00000010", 
+      "type": null, 
+      "name": "DAT_00000010"
+    }, 
+    {
+      "address": "0x-0000018", 
+      "type": null, 
+      "name": "DAT_-0000018"
+    }, 
+    {
+      "address": "0x-0000014", 
+      "type": null, 
+      "name": "DAT_-0000014"
+    }, 
+    {
+      "address": "0x0000000c", 
+      "type": null, 
+      "name": "DAT_0000000c"
+    }, 
+    {
+      "address": "0x-000001c", 
+      "type": null, 
+      "name": "DAT_-000001c"
+    }, 
+    {
+      "address": "0x00000008", 
+      "type": null, 
+      "name": "DAT_00000008"
+    }, 
+    {
+      "address": "0x-0000020", 
+      "type": null, 
+      "name": "DAT_-0000020"
+    }, 
+    {
+      "address": "0x00000004", 
+      "type": null, 
+      "name": "DAT_00000004"
+    }
+  ], 
+  "has_custom_name": false, 
+  "decompiled_c": "\nundefined4 FUN_1004a832(undefined4 param_1,undefined4 param_2,undefined4 param_3,undefined4 param_4)\n\n{\n  undefined local_14 [16];\n  \n  thunk_FUN_10048d99(local_14,param_2,param_3,param_4);\n  thunk_FUN_1004880c(param_1,local_14);\n  return param_1;\n}\n\n", 
+  "is_thunk": false, 
+  "name": "FUN_1004a832", 
+  "assembly": "  1004a832:  PUSH EBP\n  1004a833:  MOV EBP,ESP\n  1004a835:  SUB ESP,0x10\n  1004a838:  FLD dword ptr [EBP + 0x14]\n  1004a83b:  SUB ESP,0xc\n  1004a83e:  FSTP dword ptr [ESP + 0x8]\n  1004a842:  LEA EAX,[EBP + -0x10]\n  1004a845:  FLD dword ptr [EBP + 0x10]\n  1004a848:  FSTP dword ptr [ESP + 0x4]\n  1004a84c:  FLD dword ptr [EBP + 0xc]\n  1004a84f:  FSTP dword ptr [ESP]\n  1004a852:  PUSH EAX\n  1004a853:  CALL 0x10048dc7\n  1004a858:  LEA EAX,[EBP + -0x10]\n  1004a85b:  PUSH EAX\n  1004a85c:  PUSH dword ptr [EBP + 0x8]\n  1004a85f:  CALL 0x10048819\n  1004a864:  MOV EAX,dword ptr [EBP + 0x8]\n  1004a867:  LEAVE\n  1004a868:  RET 0x10", 
+  "callers": []
+}

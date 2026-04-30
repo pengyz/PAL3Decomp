@@ -1,0 +1,14 @@
+{
+  "address": "0x10013280", 
+  "size_bytes": 18, 
+  "calling_convention": "__thiscall", 
+  "signature": "void __thiscall ComputeBoundSphere(gbLightObj * this)", 
+  "callees": [], 
+  "global_refs": [], 
+  "has_custom_name": true, 
+  "decompiled_c": "\n/* public: void __thiscall gbLightObj::ComputeBoundSphere(void) */\n\nvoid __thiscall gbLightObj::ComputeBoundSphere(gbLightObj *this)\n\n{\n                    /* 0x13280  344  ?ComputeBoundSphere@gbLightObj@@QAEXXZ */\n  *(undefined4 *)(this + 0x5c) = *(undefined4 *)(this + 0x40);\n  *(undefined4 *)(this + 0x60) = 0;\n  *(undefined4 *)(this + 100) = 0;\n  *(undefined4 *)(this + 0x68) = 0;\n  return;\n}\n\n", 
+  "is_thunk": false, 
+  "name": "ComputeBoundSphere", 
+  "assembly": "  10013280:  MOV EAX,dword ptr [ECX + 0x40]\n  10013283:  MOV dword ptr [ECX + 0x5c],EAX\n  10013286:  XOR EAX,EAX\n  10013288:  MOV dword ptr [ECX + 0x60],EAX\n  1001328b:  MOV dword ptr [ECX + 0x64],EAX\n  1001328e:  MOV dword ptr [ECX + 0x68],EAX\n  10013291:  RET", 
+  "callers": []
+}

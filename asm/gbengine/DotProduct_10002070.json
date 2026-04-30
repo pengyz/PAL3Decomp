@@ -1,0 +1,73 @@
+{
+  "address": "0x10002070", 
+  "size_bytes": 27, 
+  "calling_convention": "__thiscall", 
+  "signature": "float __thiscall DotProduct(gbVec3D * this, gbVec3D * param_1)", 
+  "callees": [], 
+  "global_refs": [
+    {
+      "address": "0x00000004", 
+      "type": null, 
+      "name": "DAT_00000004"
+    }
+  ], 
+  "has_custom_name": true, 
+  "decompiled_c": "\n/* public: float __thiscall gbVec3D::DotProduct(struct gbVec3D const *)const  */\n\nfloat __thiscall gbVec3D::DotProduct(gbVec3D *this,gbVec3D *param_1)\n\n{\n                    /* 0x2070  381  ?DotProduct@gbVec3D@@QBEMPBU1@@Z */\n  return *(float *)param_1 * *(float *)this +\n         *(float *)(param_1 + 4) * *(float *)(this + 4) +\n         *(float *)(param_1 + 8) * *(float *)(this + 8);\n}\n\n", 
+  "is_thunk": false, 
+  "name": "DotProduct", 
+  "assembly": "  10002070:  MOV EAX,dword ptr [ESP + 0x4]\n  10002074:  FLD dword ptr [EAX + 0x8]\n  10002077:  FMUL dword ptr [ECX + 0x8]\n  1000207a:  FLD dword ptr [EAX + 0x4]\n  1000207d:  FMUL dword ptr [ECX + 0x4]\n  10002080:  FADDP\n  10002082:  FLD dword ptr [EAX]\n  10002084:  FMUL dword ptr [ECX]\n  10002086:  FADDP\n  10002088:  RET 0x4", 
+  "callers": [
+    {
+      "address": "0x10028360", 
+      "name": "IsColAABB"
+    }, 
+    {
+      "address": "0x10028360", 
+      "name": "IsColAABB"
+    }, 
+    {
+      "address": "0x10028360", 
+      "name": "IsColAABB"
+    }, 
+    {
+      "address": "0x10028360", 
+      "name": "IsColAABB"
+    }, 
+    {
+      "address": "0x10028f80", 
+      "name": "gbIntersectTriangle"
+    }, 
+    {
+      "address": "0x10028f80", 
+      "name": "gbIntersectTriangle"
+    }, 
+    {
+      "address": "0x10028f80", 
+      "name": "gbIntersectTriangle"
+    }, 
+    {
+      "address": "0x100293b0", 
+      "name": "IsColOBB"
+    }, 
+    {
+      "address": "0x100293b0", 
+      "name": "IsColOBB"
+    }, 
+    {
+      "address": "0x100293b0", 
+      "name": "IsColOBB"
+    }, 
+    {
+      "address": "0x100293b0", 
+      "name": "IsColOBB"
+    }, 
+    {
+      "address": "0x100293b0", 
+      "name": "IsColOBB"
+    }, 
+    {
+      "address": "0x100293b0", 
+      "name": "IsColOBB"
+    }
+  ]
+}

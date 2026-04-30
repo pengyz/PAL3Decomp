@@ -1,0 +1,55 @@
+{
+  "address": "0x10022b70", 
+  "size_bytes": 123, 
+  "calling_convention": "__thiscall", 
+  "signature": "void __thiscall PrintCenterLine(gbPrintFont * this, char * param_1, float param_2, float param_3, float param_4, float param_5)", 
+  "callees": [], 
+  "global_refs": [
+    {
+      "address": "0x00000014", 
+      "type": null, 
+      "name": "DAT_00000014"
+    }, 
+    {
+      "address": "0x0000000c", 
+      "type": null, 
+      "name": "DAT_0000000c"
+    }, 
+    {
+      "address": "0x00000004", 
+      "type": null, 
+      "name": "DAT_00000004"
+    }, 
+    {
+      "address": "0x100f5508", 
+      "type": null, 
+      "name": "DAT_100f5508"
+    }, 
+    {
+      "address": "0x-0000014", 
+      "type": null, 
+      "name": "DAT_-0000014"
+    }, 
+    {
+      "address": "0x00000010", 
+      "type": null, 
+      "name": "DAT_00000010"
+    }, 
+    {
+      "address": "0x00000008", 
+      "type": null, 
+      "name": "DAT_00000008"
+    }, 
+    {
+      "address": "0x-0000018", 
+      "type": null, 
+      "name": "DAT_-0000018"
+    }
+  ], 
+  "has_custom_name": true, 
+  "decompiled_c": "\n/* public: void __thiscall gbPrintFont::PrintCenterLine(char *,float,float,float,float) */\n\nvoid __thiscall\ngbPrintFont::PrintCenterLine\n          (gbPrintFont *this,char *param_1,float param_2,float param_3,float param_4,float param_5)\n\n{\n  char cVar1;\n  uint uVar2;\n  char *pcVar3;\n  \n                    /* 0x22b70  747  ?PrintCenterLine@gbPrintFont@@QAEXPADMMMM@Z */\n  uVar2 = 0xffffffff;\n  pcVar3 = param_1;\n  do {\n    if (uVar2 == 0) break;\n    uVar2 = uVar2 - 1;\n    cVar1 = *pcVar3;\n    pcVar3 = pcVar3 + 1;\n  } while (cVar1 != '\\0');\n  (**(code **)(*(int *)this + 0x10))\n            (param_1,(((param_4 - param_2) -\n                      (float)(int)(~uVar2 - 1) * *(float *)(this + 0x30) * 0.5) -\n                     (float)(int)(~uVar2 - 2) * *(float *)(this + 0x38)) * 0.5 + param_2,\n             ((param_5 - param_3) - *(float *)(this + 0x34)) * 0.5 + param_3,0x461c4000,0x461c4000);\n  return;\n}\n\n", 
+  "is_thunk": false, 
+  "name": "PrintCenterLine", 
+  "assembly": "  10022b70:  FLD dword ptr [ESP + 0x14]\n  10022b74:  FSUB dword ptr [ESP + 0xc]\n  10022b78:  PUSH ESI\n  10022b79:  MOV ESI,dword ptr [ESP + 0x8]\n  10022b7d:  MOV EDX,ECX\n  10022b7f:  PUSH EDI\n  10022b80:  MOV EDI,ESI\n  10022b82:  OR ECX,0xffffffff\n  10022b85:  XOR EAX,EAX\n  10022b87:  PUSH 0x461c4000\n  10022b8c:  FSUB dword ptr [EDX + 0x34]\n  10022b8f:  SCASB.REPNE ES:EDI\n  10022b91:  FMUL dword ptr [0x100f5508]\n  10022b97:  NOT ECX\n  10022b99:  DEC ECX\n  10022b9a:  PUSH 0x461c4000\n  10022b9f:  FADD dword ptr [ESP + 0x1c]\n  10022ba3:  PUSH ECX\n  10022ba4:  MOV dword ptr [ESP + 0x18],ECX\n  10022ba8:  DEC ECX\n  10022ba9:  MOV EAX,dword ptr [EDX]\n  10022bab:  MOV dword ptr [ESP + 0x20],ECX\n  10022baf:  FSTP dword ptr [ESP]\n  10022bb2:  FLD dword ptr [ESP + 0x24]\n  10022bb6:  FSUB dword ptr [ESP + 0x1c]\n  10022bba:  FILD dword ptr [ESP + 0x18]\n  10022bbe:  PUSH ECX\n  10022bbf:  MOV ECX,EDX\n  10022bc1:  FMUL dword ptr [EDX + 0x30]\n  10022bc4:  FMUL dword ptr [0x100f5508]\n  10022bca:  FSUBP\n  10022bcc:  FILD dword ptr [ESP + 0x24]\n  10022bd0:  FMUL dword ptr [EDX + 0x38]\n  10022bd3:  FSUBP\n  10022bd5:  FMUL dword ptr [0x100f5508]\n  10022bdb:  FADD dword ptr [ESP + 0x20]\n  10022bdf:  FSTP dword ptr [ESP]\n  10022be2:  PUSH ESI\n  10022be3:  CALL dword ptr [EAX + 0x10]\n  10022be6:  POP EDI\n  10022be7:  POP ESI\n  10022be8:  RET 0x14", 
+  "callers": []
+}

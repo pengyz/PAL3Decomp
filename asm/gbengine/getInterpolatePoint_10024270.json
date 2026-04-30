@@ -1,0 +1,69 @@
+{
+  "address": "0x10024270", 
+  "size_bytes": 233, 
+  "calling_convention": "__thiscall", 
+  "signature": "gbVec3D __thiscall getInterpolatePoint(BEZIER * this, float param_1)", 
+  "callees": [
+    {
+      "address": "0x100e5880", 
+      "name": "FUN_100e5880"
+    }, 
+    {
+      "address": "0x100e5880", 
+      "name": "FUN_100e5880"
+    }
+  ], 
+  "global_refs": [
+    {
+      "address": "0x-000000c", 
+      "type": null, 
+      "name": "DAT_-000000c"
+    }, 
+    {
+      "address": "0x-0000008", 
+      "type": null, 
+      "name": "DAT_-0000008"
+    }, 
+    {
+      "address": "0x-0000004", 
+      "type": null, 
+      "name": "DAT_-0000004"
+    }, 
+    {
+      "address": "0x100f5344", 
+      "type": null, 
+      "name": "DAT_100f5344"
+    }, 
+    {
+      "address": "0x00000008", 
+      "type": null, 
+      "name": "DAT_00000008"
+    }, 
+    {
+      "address": "0x-0000018", 
+      "type": null, 
+      "name": "DAT_-0000018"
+    }, 
+    {
+      "address": "0x-0000014", 
+      "type": null, 
+      "name": "DAT_-0000014"
+    }, 
+    {
+      "address": "0x-0000010", 
+      "type": null, 
+      "name": "DAT_-0000010"
+    }, 
+    {
+      "address": "0x00000004", 
+      "type": null, 
+      "name": "DAT_00000004"
+    }
+  ], 
+  "has_custom_name": true, 
+  "decompiled_c": "\n/* public: struct gbVec3D __thiscall BEZIER::getInterpolatePoint(float) */\n\nvoid __thiscall BEZIER::getInterpolatePoint(BEZIER *this,float *param_1)\n\n{\n  BEZIER *pBVar1;\n  uint uVar2;\n  float10 fVar3;\n  float10 extraout_ST1;\n  float local_c;\n  float local_8;\n  float local_4;\n  \n                    /* 0x24270  1011  ?getInterpolatePoint@BEZIER@@QAE?AUgbVec3D@@M@Z */\n  local_c = 0.0;\n  local_8 = 0.0;\n  local_4 = 0.0;\n  uVar2 = 3;\n  if (this[0x40] != (BEZIER)0x0) {\n    this[0x40] = (BEZIER)0x0;\n    *(undefined4 *)this = 1;\n    *(undefined4 *)(this + 4) = 3;\n    *(undefined4 *)(this + 8) = 3;\n    *(undefined4 *)(this + 0xc) = 1;\n  }\n  pBVar1 = this + 0x14;\n  do {\n    FUN_100e5880();\n    fVar3 = (float10)FUN_100e5880();\n    uVar2 = uVar2 - 1;\n    fVar3 = fVar3 * extraout_ST1 * (float10)*(int *)this;\n    local_c = (float)((float10)*(float *)(pBVar1 + -4) * fVar3 + (float10)local_c);\n    local_8 = (float)((float10)*(float *)pBVar1 * fVar3 + (float10)local_8);\n    local_4 = (float)(fVar3 * (float10)*(float *)(pBVar1 + 4) + (float10)local_4);\n    this = this + 4;\n    pBVar1 = pBVar1 + 0xc;\n  } while (uVar2 < 0x80000000);\n  *param_1 = local_c;\n  param_1[1] = local_8;\n  param_1[2] = local_4;\n  return;\n}\n\n", 
+  "is_thunk": false, 
+  "name": "getInterpolatePoint", 
+  "assembly": "  10024270:  SUB ESP,0x18\n  10024273:  MOV DL,byte ptr [ECX + 0x40]\n  10024276:  XOR EAX,EAX\n  10024278:  MOV dword ptr [ESP + 0xc],0x0\n  10024280:  MOV dword ptr [ESP + 0xc],EAX\n  10024284:  MOV dword ptr [ESP + 0x10],0x0\n  1002428c:  PUSH EBX\n  1002428d:  MOV dword ptr [ESP + 0x14],EAX\n  10024291:  PUSH ESI\n  10024292:  PUSH EDI\n  10024293:  MOV dword ptr [ESP + 0x20],0x0\n  1002429b:  CMP DL,AL\n  1002429d:  MOV dword ptr [ESP + 0x20],EAX\n  100242a1:  MOV EDI,0x3\n  100242a6:  JZ 0x100242be\n  100242a8:  MOV byte ptr [ECX + 0x40],AL\n  100242ab:  MOV dword ptr [ECX],0x1\n  100242b1:  MOV dword ptr [ECX + 0x4],EDI\n  100242b4:  MOV dword ptr [ECX + 0x8],EDI\n  100242b7:  MOV dword ptr [ECX + 0xc],0x1\n  100242be:  FLD dword ptr [0x100f5344]\n  100242c4:  FSUB dword ptr [ESP + 0x2c]\n  100242c8:  MOV dword ptr [ESP + 0xc],EAX\n  100242cc:  MOV EBX,ECX\n  100242ce:  MOV dword ptr [ESP + 0x10],EDI\n  100242d2:  LEA ESI,[ECX + 0x14]\n  100242d5:  FSTP dword ptr [ESP + 0x14]\n  100242d9:  FLD dword ptr [ESP + 0x14]\n  100242dd:  FILD dword ptr [ESP + 0x10]\n  100242e1:  CALL 0x100e5880\n  100242e6:  FLD dword ptr [ESP + 0x2c]\n  100242ea:  FILD dword ptr [ESP + 0xc]\n  100242ee:  CALL 0x100e5880\n  100242f3:  FMULP\n  100242f5:  MOV ECX,dword ptr [ESP + 0xc]\n  100242f9:  ADD EBX,0x4\n  100242fc:  INC ECX\n  100242fd:  DEC EDI\n  100242fe:  FIMUL dword ptr [EBX + -0x4]\n  10024301:  MOV dword ptr [ESP + 0xc],ECX\n  10024305:  MOV dword ptr [ESP + 0x10],EDI\n  10024309:  FLD dword ptr [ESI + -0x4]\n  1002430c:  FMUL ST1\n  1002430e:  ADD ESI,0xc\n  10024311:  CMP EDI,-0x1\n  10024314:  FADD dword ptr [ESP + 0x18]\n  10024318:  FSTP dword ptr [ESP + 0x18]\n  1002431c:  FLD dword ptr [ESI + -0xc]\n  1002431f:  FMUL ST1\n  10024321:  FADD dword ptr [ESP + 0x1c]\n  10024325:  FSTP dword ptr [ESP + 0x1c]\n  10024329:  FMUL dword ptr [ESI + -0x8]\n  1002432c:  FADD dword ptr [ESP + 0x20]\n  10024330:  FSTP dword ptr [ESP + 0x20]\n  10024334:  JG 0x100242d9\n  10024336:  MOV EAX,dword ptr [ESP + 0x28]\n  1002433a:  MOV EDX,dword ptr [ESP + 0x18]\n  1002433e:  MOV ECX,EAX\n  10024340:  POP EDI\n  10024341:  POP ESI\n  10024342:  POP EBX\n  10024343:  MOV dword ptr [ECX],EDX\n  10024345:  MOV EDX,dword ptr [ESP + 0x10]\n  10024349:  MOV dword ptr [ECX + 0x4],EDX\n  1002434c:  MOV EDX,dword ptr [ESP + 0x14]\n  10024350:  MOV dword ptr [ECX + 0x8],EDX\n  10024353:  ADD ESP,0x18\n  10024356:  RET 0x8", 
+  "callers": []
+}

@@ -1,0 +1,51 @@
+{
+  "address": "0x100e8bb9", 
+  "size_bytes": 37, 
+  "calling_convention": "unknown", 
+  "signature": "undefined FUN_100e8bb9(undefined4 param_1, undefined4 param_2)", 
+  "callees": [
+    {
+      "address": "0x100ea6d0", 
+      "name": "_strlen"
+    }, 
+    {
+      "address": "0x100e4c10", 
+      "name": "FUN_100e4c10"
+    }
+  ], 
+  "global_refs": [
+    {
+      "address": "0x00000008", 
+      "type": null, 
+      "name": "DAT_00000008"
+    }, 
+    {
+      "address": "0x00000004", 
+      "type": null, 
+      "name": "DAT_00000004"
+    }
+  ], 
+  "has_custom_name": false, 
+  "decompiled_c": "\nvoid FUN_100e8bb9(char *param_1,int param_2)\n\n{\n  size_t sVar1;\n  \n  if (param_2 != 0) {\n    sVar1 = _strlen(param_1);\n    FUN_100e4c10(param_1 + param_2,param_1,sVar1 + 1);\n  }\n  return;\n}\n\n", 
+  "is_thunk": false, 
+  "name": "FUN_100e8bb9", 
+  "assembly": "  100e8bb9:  PUSH EDI\n  100e8bba:  MOV EDI,dword ptr [ESP + 0xc]\n  100e8bbe:  TEST EDI,EDI\n  100e8bc0:  JZ 0x100e8bdc\n  100e8bc2:  PUSH ESI\n  100e8bc3:  MOV ESI,dword ptr [ESP + 0xc]\n  100e8bc7:  PUSH ESI\n  100e8bc8:  CALL 0x100ea6d0\n  100e8bcd:  INC EAX\n  100e8bce:  PUSH EAX\n  100e8bcf:  PUSH ESI\n  100e8bd0:  ADD ESI,EDI\n  100e8bd2:  PUSH ESI\n  100e8bd3:  CALL 0x100e4c10\n  100e8bd8:  ADD ESP,0x10\n  100e8bdb:  POP ESI\n  100e8bdc:  POP EDI\n  100e8bdd:  RET", 
+  "callers": [
+    {
+      "address": "0x100e8917", 
+      "name": "FUN_100e8917"
+    }, 
+    {
+      "address": "0x100e8a2e", 
+      "name": "FUN_100e8a2e"
+    }, 
+    {
+      "address": "0x100e8a2e", 
+      "name": "FUN_100e8a2e"
+    }, 
+    {
+      "address": "0x100e8a2e", 
+      "name": "FUN_100e8a2e"
+    }
+  ]
+}

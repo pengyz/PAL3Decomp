@@ -1,0 +1,25 @@
+{
+  "address": "0x100212a0", 
+  "size_bytes": 58, 
+  "calling_convention": "__thiscall", 
+  "signature": "int __thiscall FindVertexPoolIndex(gbVertPoolMgr * this, uint * param_1, uint param_2)", 
+  "callees": [], 
+  "global_refs": [
+    {
+      "address": "0x00000004", 
+      "type": null, 
+      "name": "DAT_00000004"
+    }, 
+    {
+      "address": "0x00000008", 
+      "type": null, 
+      "name": "DAT_00000008"
+    }
+  ], 
+  "has_custom_name": true, 
+  "decompiled_c": "\n/* private: int __thiscall gbVertPoolMgr::FindVertexPoolIndex(unsigned int *,unsigned int) */\n\nint __thiscall gbVertPoolMgr::FindVertexPoolIndex(gbVertPoolMgr *this,uint *param_1,uint param_2)\n\n{\n  int iVar1;\n  uint *puVar2;\n  \n                    /* 0x212a0  397  ?FindVertexPoolIndex@gbVertPoolMgr@@AAEHPAII@Z */\n  iVar1 = 0;\n  puVar2 = param_1;\n  do {\n    if (*puVar2 == param_2) {\n      return iVar1;\n    }\n    iVar1 = iVar1 + 1;\n    puVar2 = puVar2 + 1;\n  } while (iVar1 < 0x20);\n  iVar1 = 0;\n  puVar2 = param_1;\n  do {\n    if (*puVar2 == 0) {\n      param_1[iVar1] = param_2;\n      return iVar1;\n    }\n    iVar1 = iVar1 + 1;\n    puVar2 = puVar2 + 1;\n  } while (iVar1 < 0x20);\n  return -1;\n}\n\n", 
+  "is_thunk": false, 
+  "name": "FindVertexPoolIndex", 
+  "assembly": "  100212a0:  MOV EDX,dword ptr [ESP + 0x4]\n  100212a4:  PUSH ESI\n  100212a5:  MOV ESI,dword ptr [ESP + 0xc]\n  100212a9:  XOR EAX,EAX\n  100212ab:  MOV ECX,EDX\n  100212ad:  CMP dword ptr [ECX],ESI\n  100212af:  JZ 0x100212cf\n  100212b1:  INC EAX\n  100212b2:  ADD ECX,0x4\n  100212b5:  CMP EAX,0x20\n  100212b8:  JL 0x100212ad\n  100212ba:  XOR EAX,EAX\n  100212bc:  MOV ECX,EDX\n  100212be:  CMP dword ptr [ECX],0x0\n  100212c1:  JZ 0x100212d3\n  100212c3:  INC EAX\n  100212c4:  ADD ECX,0x4\n  100212c7:  CMP EAX,0x20\n  100212ca:  JL 0x100212be\n  100212cc:  OR EAX,0xffffffff\n  100212cf:  POP ESI\n  100212d0:  RET 0x8\n  100212d3:  MOV dword ptr [EDX + EAX*0x4],ESI\n  100212d6:  POP ESI\n  100212d7:  RET 0x8", 
+  "callers": []
+}

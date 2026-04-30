@@ -1,0 +1,40 @@
+{
+  "address": "0x1000eb60", 
+  "size_bytes": 120, 
+  "calling_convention": "__thiscall", 
+  "signature": "void __thiscall SetTexture(gbBaseMesh * this, int param_1, gbTexture * param_2)", 
+  "callees": [
+    {
+      "address": "0x1002f7f0", 
+      "name": "Release"
+    }
+  ], 
+  "global_refs": [
+    {
+      "address": "0x-0000004", 
+      "type": null, 
+      "name": "DAT_-0000004"
+    }, 
+    {
+      "address": "0x-0000008", 
+      "type": null, 
+      "name": "DAT_-0000008"
+    }, 
+    {
+      "address": "0x00000008", 
+      "type": null, 
+      "name": "DAT_00000008"
+    }, 
+    {
+      "address": "0x00000004", 
+      "type": null, 
+      "name": "DAT_00000004"
+    }
+  ], 
+  "has_custom_name": true, 
+  "decompiled_c": "\n/* public: void __thiscall gbBaseMesh::SetTexture(int,class gbTexture *) */\n\nvoid __thiscall gbBaseMesh::SetTexture(gbBaseMesh *this,int param_1,gbTexture *param_2)\n\n{\n  int iVar1;\n  gbRefObject *this_00;\n  int iVar2;\n  int local_8;\n  \n                    /* 0xeb60  894  ?SetTexture@gbBaseMesh@@QAEXHPAVgbTexture@@@Z */\n  iVar2 = 0;\n  local_8 = 0;\n  if (0 < *(int *)(this + 0x44)) {\n    do {\n      iVar1 = *(int *)(this + 0x40) + 8 + iVar2;\n      if ((param_1 < *(int *)(*(int *)(this + 0x40) + 0x48 + iVar2)) &&\n         (this_00 = *(gbRefObject **)(iVar1 + param_1 * 4), this_00 != (gbRefObject *)0x0)) {\n        gbRefObject::Release(this_00);\n      }\n      *(int *)(param_2 + 4) = *(int *)(param_2 + 4) + 1;\n      *(gbTexture **)(iVar1 + param_1 * 4) = param_2;\n      if (*(int *)(iVar1 + 0x40) < param_1 + 1) {\n        *(int *)(iVar1 + 0x40) = param_1 + 1;\n      }\n      local_8 = local_8 + 1;\n      iVar2 = iVar2 + 0xbc;\n    } while (local_8 < *(int *)(this + 0x44));\n  }\n  return;\n}\n\n", 
+  "is_thunk": false, 
+  "name": "SetTexture", 
+  "assembly": "  1000eb60:  SUB ESP,0x8\n  1000eb63:  MOV EDX,ECX\n  1000eb65:  PUSH EBX\n  1000eb66:  XOR EBX,EBX\n  1000eb68:  MOV dword ptr [ESP + 0x8],EDX\n  1000eb6c:  MOV EAX,dword ptr [EDX + 0x44]\n  1000eb6f:  MOV dword ptr [ESP + 0x4],EBX\n  1000eb73:  CMP EAX,EBX\n  1000eb75:  JLE 0x1000ebd1\n  1000eb77:  PUSH EBP\n  1000eb78:  MOV EBP,dword ptr [ESP + 0x18]\n  1000eb7c:  PUSH ESI\n  1000eb7d:  PUSH EDI\n  1000eb7e:  MOV EDI,dword ptr [ESP + 0x1c]\n  1000eb82:  MOV EAX,dword ptr [EDX + 0x40]\n  1000eb85:  LEA ESI,[EAX + EBX*0x1 + 0x8]\n  1000eb89:  MOV EAX,dword ptr [EAX + EBX*0x1 + 0x48]\n  1000eb8d:  CMP EDI,EAX\n  1000eb8f:  JGE 0x1000eba1\n  1000eb91:  MOV ECX,dword ptr [ESI + EDI*0x4]\n  1000eb94:  TEST ECX,ECX\n  1000eb96:  JZ 0x1000eba1\n  1000eb98:  CALL 0x1002f7f0\n  1000eb9d:  MOV EDX,dword ptr [ESP + 0x14]\n  1000eba1:  MOV EAX,dword ptr [EBP + 0x4]\n  1000eba4:  INC EAX\n  1000eba5:  MOV dword ptr [EBP + 0x4],EAX\n  1000eba8:  MOV dword ptr [ESI + EDI*0x4],EBP\n  1000ebab:  MOV ECX,dword ptr [ESI + 0x40]\n  1000ebae:  LEA EAX,[EDI + 0x1]\n  1000ebb1:  CMP ECX,EAX\n  1000ebb3:  JGE 0x1000ebb8\n  1000ebb5:  MOV dword ptr [ESI + 0x40],EAX\n  1000ebb8:  MOV EAX,dword ptr [ESP + 0x10]\n  1000ebbc:  MOV ECX,dword ptr [EDX + 0x44]\n  1000ebbf:  INC EAX\n  1000ebc0:  ADD EBX,0xbc\n  1000ebc6:  CMP EAX,ECX\n  1000ebc8:  MOV dword ptr [ESP + 0x10],EAX\n  1000ebcc:  JL 0x1000eb82\n  1000ebce:  POP EDI\n  1000ebcf:  POP ESI\n  1000ebd0:  POP EBP\n  1000ebd1:  POP EBX\n  1000ebd2:  ADD ESP,0x8\n  1000ebd5:  RET 0x8", 
+  "callers": []
+}

@@ -1,0 +1,49 @@
+{
+  "address": "0x10027110", 
+  "size_bytes": 37, 
+  "calling_convention": "__thiscall", 
+  "signature": "void __thiscall LoadMatrix(gbMatrixStack * this, gbMatrix4 * param_1)", 
+  "callees": [], 
+  "global_refs": [
+    {
+      "address": "0x00000004", 
+      "type": null, 
+      "name": "DAT_00000004"
+    }
+  ], 
+  "has_custom_name": true, 
+  "decompiled_c": "\n/* public: void __thiscall gbMatrixStack::LoadMatrix(struct gbMatrix4 *) */\n\nvoid __thiscall gbMatrixStack::LoadMatrix(gbMatrixStack *this,gbMatrix4 *param_1)\n\n{\n  int iVar1;\n  undefined4 *puVar2;\n  \n                    /* 0x27110  689  ?LoadMatrix@gbMatrixStack@@QAEXPAUgbMatrix4@@@Z */\n  puVar2 = (undefined4 *)(*(int *)(this + 8) * 0x40 + *(int *)this);\n  for (iVar1 = 0x10; iVar1 != 0; iVar1 = iVar1 + -1) {\n    *puVar2 = *(undefined4 *)param_1;\n    param_1 = param_1 + 4;\n    puVar2 = puVar2 + 1;\n  }\n  *(undefined4 *)(this + 0xc) = 0;\n  return;\n}\n\n", 
+  "is_thunk": false, 
+  "name": "LoadMatrix", 
+  "assembly": "  10027110:  MOV EAX,ECX\n  10027112:  PUSH ESI\n  10027113:  MOV ESI,dword ptr [ESP + 0x8]\n  10027117:  PUSH EDI\n  10027118:  MOV EDI,dword ptr [EAX + 0x8]\n  1002711b:  MOV ECX,dword ptr [EAX]\n  1002711d:  SHL EDI,0x6\n  10027120:  ADD EDI,ECX\n  10027122:  MOV ECX,0x10\n  10027127:  MOVSD.REP ES:EDI,ESI\n  10027129:  POP EDI\n  1002712a:  MOV dword ptr [EAX + 0xc],0x0\n  10027131:  POP ESI\n  10027132:  RET 0x4", 
+  "callers": [
+    {
+      "address": "0x10003180", 
+      "name": "Render"
+    }, 
+    {
+      "address": "0x100031c0", 
+      "name": "RenderShadowVolume"
+    }, 
+    {
+      "address": "0x10011460", 
+      "name": "Render"
+    }, 
+    {
+      "address": "0x10011520", 
+      "name": "RenderShadowVolume"
+    }, 
+    {
+      "address": "0x1001e380", 
+      "name": "IdentityWorldMatrix"
+    }, 
+    {
+      "address": "0x10021a80", 
+      "name": "SetAsCurrent"
+    }, 
+    {
+      "address": "0x1002c2e0", 
+      "name": "Render"
+    }
+  ]
+}

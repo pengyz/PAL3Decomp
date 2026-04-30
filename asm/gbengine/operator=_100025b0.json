@@ -1,0 +1,20 @@
+{
+  "address": "0x100025b0", 
+  "size_bytes": 103, 
+  "calling_convention": "__thiscall", 
+  "signature": "gbSound3DNode * __thiscall operator=(gbSound3DNode * this, gbSound3DNode * param_1)", 
+  "callees": [], 
+  "global_refs": [
+    {
+      "address": "0x00000004", 
+      "type": null, 
+      "name": "DAT_00000004"
+    }
+  ], 
+  "has_custom_name": true, 
+  "decompiled_c": "\n/* public: class gbSound3DNode & __thiscall gbSound3DNode::operator=(class gbSound3DNode const &) */\n\ngbSound3DNode * __thiscall gbSound3DNode::operator=(gbSound3DNode *this,gbSound3DNode *param_1)\n\n{\n                    /* 0x25b0  233  ??4gbSound3DNode@@QAEAAV0@ABV0@@Z */\n  *(undefined4 *)this = *(undefined4 *)param_1;\n  *(undefined4 *)(this + 4) = *(undefined4 *)(param_1 + 4);\n  *(undefined4 *)(this + 8) = *(undefined4 *)(param_1 + 8);\n  *(undefined4 *)(this + 0xc) = *(undefined4 *)(param_1 + 0xc);\n  *(undefined4 *)(this + 0x10) = *(undefined4 *)(param_1 + 0x10);\n  *(undefined4 *)(this + 0x14) = *(undefined4 *)(param_1 + 0x14);\n  *(undefined4 *)(this + 0x18) = *(undefined4 *)(param_1 + 0x18);\n  *(undefined4 *)(this + 0x1c) = *(undefined4 *)(param_1 + 0x1c);\n  *(undefined4 *)(this + 0x20) = *(undefined4 *)(param_1 + 0x20);\n  *(undefined4 *)(this + 0x24) = *(undefined4 *)(param_1 + 0x24);\n  *(undefined4 *)(this + 0x28) = *(undefined4 *)(param_1 + 0x28);\n  *(undefined4 *)(this + 0x2c) = *(undefined4 *)(param_1 + 0x2c);\n  *(undefined4 *)(this + 0x30) = *(undefined4 *)(param_1 + 0x30);\n  *(undefined4 *)(this + 0x34) = *(undefined4 *)(param_1 + 0x34);\n  *(undefined4 *)(this + 0x38) = *(undefined4 *)(param_1 + 0x38);\n  *(undefined4 *)(this + 0x3c) = *(undefined4 *)(param_1 + 0x3c);\n  return this;\n}\n\n", 
+  "is_thunk": false, 
+  "name": "operator=", 
+  "assembly": "  100025b0:  MOV EAX,ECX\n  100025b2:  MOV ECX,dword ptr [ESP + 0x4]\n  100025b6:  MOV EDX,dword ptr [ECX]\n  100025b8:  MOV dword ptr [EAX],EDX\n  100025ba:  MOV EDX,dword ptr [ECX + 0x4]\n  100025bd:  MOV dword ptr [EAX + 0x4],EDX\n  100025c0:  MOV EDX,dword ptr [ECX + 0x8]\n  100025c3:  MOV dword ptr [EAX + 0x8],EDX\n  100025c6:  MOV EDX,dword ptr [ECX + 0xc]\n  100025c9:  MOV dword ptr [EAX + 0xc],EDX\n  100025cc:  MOV EDX,dword ptr [ECX + 0x10]\n  100025cf:  MOV dword ptr [EAX + 0x10],EDX\n  100025d2:  MOV EDX,dword ptr [ECX + 0x14]\n  100025d5:  MOV dword ptr [EAX + 0x14],EDX\n  100025d8:  MOV EDX,dword ptr [ECX + 0x18]\n  100025db:  MOV dword ptr [EAX + 0x18],EDX\n  100025de:  MOV EDX,dword ptr [ECX + 0x1c]\n  100025e1:  MOV dword ptr [EAX + 0x1c],EDX\n  100025e4:  MOV EDX,dword ptr [ECX + 0x20]\n  100025e7:  MOV dword ptr [EAX + 0x20],EDX\n  100025ea:  MOV EDX,dword ptr [ECX + 0x24]\n  100025ed:  MOV dword ptr [EAX + 0x24],EDX\n  100025f0:  MOV EDX,dword ptr [ECX + 0x28]\n  100025f3:  MOV dword ptr [EAX + 0x28],EDX\n  100025f6:  MOV EDX,dword ptr [ECX + 0x2c]\n  100025f9:  MOV dword ptr [EAX + 0x2c],EDX\n  100025fc:  MOV EDX,dword ptr [ECX + 0x30]\n  100025ff:  MOV dword ptr [EAX + 0x30],EDX\n  10002602:  MOV EDX,dword ptr [ECX + 0x34]\n  10002605:  MOV dword ptr [EAX + 0x34],EDX\n  10002608:  MOV EDX,dword ptr [ECX + 0x38]\n  1000260b:  MOV dword ptr [EAX + 0x38],EDX\n  1000260e:  MOV ECX,dword ptr [ECX + 0x3c]\n  10002611:  MOV dword ptr [EAX + 0x3c],ECX\n  10002614:  RET 0x4", 
+  "callers": []
+}

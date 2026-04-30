@@ -1,0 +1,25 @@
+{
+  "address": "0x10099daa", 
+  "size_bytes": 38, 
+  "calling_convention": "unknown", 
+  "signature": "undefined FUN_10099daa(void)", 
+  "callees": [], 
+  "global_refs": [
+    {
+      "address": "0x1010a688", 
+      "type": "pointer", 
+      "name": "DAT_1010a688"
+    }
+  ], 
+  "has_custom_name": false, 
+  "decompiled_c": "\nvoid FUN_10099daa(void)\n\n{\n  undefined4 *in_ECX;\n  \n  *in_ECX = &PTR_FUN_1010a688;\n  in_ECX[1] = 0;\n  in_ECX[7] = 0;\n  in_ECX[4] = 0;\n  in_ECX[2] = 0;\n  in_ECX[8] = 0;\n  in_ECX[5] = 0;\n  in_ECX[3] = 0;\n  in_ECX[9] = 0;\n  in_ECX[6] = 0;\n  return;\n}\n\n", 
+  "is_thunk": false, 
+  "name": "FUN_10099daa", 
+  "assembly": "  10099daa:  MOV EAX,ECX\n  10099dac:  XOR ECX,ECX\n  10099dae:  MOV dword ptr [EAX],0x1010a688\n  10099db4:  MOV dword ptr [EAX + 0x4],ECX\n  10099db7:  MOV dword ptr [EAX + 0x1c],ECX\n  10099dba:  MOV dword ptr [EAX + 0x10],ECX\n  10099dbd:  MOV dword ptr [EAX + 0x8],ECX\n  10099dc0:  MOV dword ptr [EAX + 0x20],ECX\n  10099dc3:  MOV dword ptr [EAX + 0x14],ECX\n  10099dc6:  MOV dword ptr [EAX + 0xc],ECX\n  10099dc9:  MOV dword ptr [EAX + 0x24],ECX\n  10099dcc:  MOV dword ptr [EAX + 0x18],ECX\n  10099dcf:  RET", 
+  "callers": [
+    {
+      "address": "0x1009a841", 
+      "name": "FUN_1009a841"
+    }
+  ]
+}

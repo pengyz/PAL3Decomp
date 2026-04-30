@@ -1,0 +1,30 @@
+{
+  "address": "0x1004e0d2", 
+  "size_bytes": 104, 
+  "calling_convention": "unknown", 
+  "signature": "undefined FUN_1004e0d2(void)", 
+  "callees": [
+    {
+      "address": "0x1004cb83", 
+      "name": "FUN_1004cb83"
+    }
+  ], 
+  "global_refs": [
+    {
+      "address": "0x100f9668", 
+      "type": "string", 
+      "name": "DAT_100f9668"
+    }, 
+    {
+      "address": "0x100f9644", 
+      "type": "string", 
+      "name": "DAT_100f9644"
+    }
+  ], 
+  "has_custom_name": false, 
+  "decompiled_c": "\nundefined4 FUN_1004e0d2(void)\n\n{\n  int *piVar1;\n  int in_ECX;\n  undefined4 uVar2;\n  char *pcVar3;\n  \n  piVar1 = *(int **)(*(int *)(in_ECX + 0x268) + 0x38);\n  if (piVar1 == (int *)0x0) {\n    pcVar3 = \"unexpected #else\";\n    uVar2 = 0x5e5;\n  }\n  else {\n    if (piVar1[2] == 0) {\n      uVar2 = 0;\n      if ((*piVar1 == 0) && (piVar1[1] != 0)) {\n        uVar2 = 1;\n      }\n      *(undefined4 *)(in_ECX + 0x54) = uVar2;\n      *piVar1 = 1;\n      piVar1[2] = 1;\n      return 0;\n    }\n    pcVar3 = \"unexpected #else following #else\";\n    uVar2 = 0x5ea;\n  }\n  FUN_1004cb83(in_ECX + 0x18,in_ECX + 0x278,uVar2,pcVar3);\n  *(undefined4 *)(in_ECX + 0x44) = 1;\n  return 0x80004005;\n}\n\n", 
+  "is_thunk": false, 
+  "name": "FUN_1004e0d2", 
+  "assembly": "  1004e0d2:  PUSH ESI\n  1004e0d3:  MOV ESI,ECX\n  1004e0d5:  MOV EAX,dword ptr [ESI + 0x268]\n  1004e0db:  MOV EAX,dword ptr [EAX + 0x38]\n  1004e0de:  XOR ECX,ECX\n  1004e0e0:  CMP EAX,ECX\n  1004e0e2:  JNZ 0x1004e0f0\n  1004e0e4:  PUSH 0x100f9668\n  1004e0e9:  PUSH 0x5e5\n  1004e0ee:  JMP 0x1004e0ff\n  1004e0f0:  CMP dword ptr [EAX + 0x8],ECX\n  1004e0f3:  JZ 0x1004e120\n  1004e0f5:  PUSH 0x100f9644\n  1004e0fa:  PUSH 0x5ea\n  1004e0ff:  LEA EAX,[ESI + 0x278]\n  1004e105:  PUSH EAX\n  1004e106:  LEA EAX,[ESI + 0x18]\n  1004e109:  PUSH EAX\n  1004e10a:  CALL 0x1004cb83\n  1004e10f:  ADD ESP,0x10\n  1004e112:  MOV dword ptr [ESI + 0x44],0x1\n  1004e119:  MOV EAX,0x80004005\n  1004e11e:  POP ESI\n  1004e11f:  RET\n  1004e120:  XOR EDX,EDX\n  1004e122:  INC EDX\n  1004e123:  CMP dword ptr [EAX],ECX\n  1004e125:  JNZ 0x1004e12e\n  1004e127:  CMP dword ptr [EAX + 0x4],ECX\n  1004e12a:  JZ 0x1004e12e\n  1004e12c:  MOV ECX,EDX\n  1004e12e:  MOV dword ptr [ESI + 0x54],ECX\n  1004e131:  MOV dword ptr [EAX],EDX\n  1004e133:  MOV dword ptr [EAX + 0x8],EDX\n  1004e136:  XOR EAX,EAX\n  1004e138:  POP ESI\n  1004e139:  RET", 
+  "callers": []
+}

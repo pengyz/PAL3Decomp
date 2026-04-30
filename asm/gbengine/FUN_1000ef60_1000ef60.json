@@ -1,0 +1,58 @@
+{
+  "address": "0x1000ef60", 
+  "size_bytes": 279, 
+  "calling_convention": "unknown", 
+  "signature": "undefined FUN_1000ef60(void)", 
+  "callees": [
+    {
+      "address": "0x1001dac0", 
+      "name": "GetDeltaTime"
+    }, 
+    {
+      "address": "0x100e4b99", 
+      "name": "FUN_100e4b99"
+    }, 
+    {
+      "address": "0x100e4be4", 
+      "name": "__ftol"
+    }
+  ], 
+  "global_refs": [
+    {
+      "address": "0x-0000010", 
+      "type": null, 
+      "name": "DAT_-0000010"
+    }, 
+    {
+      "address": "0x-0000008", 
+      "type": null, 
+      "name": "DAT_-0000008"
+    }, 
+    {
+      "address": "0x-000000c", 
+      "type": null, 
+      "name": "DAT_-000000c"
+    }, 
+    {
+      "address": "0x100f55e0", 
+      "type": null, 
+      "name": "DAT_100f55e0"
+    }, 
+    {
+      "address": "0x-0000004", 
+      "type": null, 
+      "name": "DAT_-0000004"
+    }
+  ], 
+  "has_custom_name": false, 
+  "decompiled_c": "\nvoid FUN_1000ef60(void)\n\n{\n  float fVar1;\n  int iVar2;\n  float fVar3;\n  int iVar4;\n  int in_ECX;\n  int iVar5;\n  float *pfVar6;\n  int iVar7;\n  double dVar8;\n  int local_8;\n  \n  dVar8 = gbGfxManager::GetDeltaTime(*(gbGfxManager **)(in_ECX + 0x1780));\n  fVar1 = (float)dVar8 * *(float *)(in_ECX + 0x178c);\n  pfVar6 = (float *)(in_ECX + 0xac);\n  local_8 = 0x20;\n  *(float *)(in_ECX + 0x1784) = fVar1 + *(float *)(in_ECX + 0x1784);\n  do {\n    iVar7 = 0;\n    fVar3 = fVar1 * pfVar6[1] + *pfVar6;\n    *pfVar6 = fVar3;\n    if (pfVar6[-0x2b] != 0.0) {\n      if (fVar3 - pfVar6[-0x29] <= pfVar6[-1] * 100.0) {\n        if (0 < (int)pfVar6[3]) {\n          do {\n            iVar2 = __ftol();\n            iVar2 = 100 - iVar2;\n            if (iVar2 < 0) {\n              iVar2 = 0;\n            }\n            else if (100 < iVar2) {\n              iVar2 = 100;\n            }\n            fVar3 = pfVar6[2];\n            iVar5 = 0;\n            if (0 < (int)fVar3) {\n              do {\n                iVar4 = (int)fVar3 * iVar7 + iVar5;\n                iVar5 = iVar5 + 1;\n                *(char *)(iVar4 * 0x10 + 0xf + (int)pfVar6[-0x2a]) = (char)iVar2;\n                fVar3 = pfVar6[2];\n              } while (iVar5 < (int)fVar3);\n            }\n            iVar7 = iVar7 + 1;\n          } while (iVar7 < (int)pfVar6[3]);\n        }\n      }\n      else {\n        FUN_100e4b99(pfVar6[-0x2a]);\n        pfVar6[-0x2b] = 0.0;\n      }\n    }\n    pfVar6 = pfVar6 + 0x2f;\n    local_8 = local_8 + -1;\n  } while (local_8 != 0);\n  return;\n}\n\n", 
+  "is_thunk": false, 
+  "name": "FUN_1000ef60", 
+  "assembly": "  1000ef60:  SUB ESP,0x10\n  1000ef63:  PUSH EBX\n  1000ef64:  PUSH EBP\n  1000ef65:  PUSH ESI\n  1000ef66:  MOV ESI,ECX\n  1000ef68:  PUSH EDI\n  1000ef69:  MOV ECX,dword ptr [ESI + 0x1780]\n  1000ef6f:  CALL 0x1001dac0\n  1000ef74:  FMUL dword ptr [ESI + 0x178c]\n  1000ef7a:  FST dword ptr [ESP + 0x10]\n  1000ef7e:  FADD dword ptr [ESI + 0x1784]\n  1000ef84:  ADD ESI,0xac\n  1000ef8a:  MOV dword ptr [ESP + 0x18],0x20\n  1000ef92:  FSTP dword ptr [ESI + 0x16d8]\n  1000ef98:  FLD dword ptr [ESP + 0x10]\n  1000ef9c:  FMUL dword ptr [ESI + 0x4]\n  1000ef9f:  MOV EAX,dword ptr [ESI + 0xffffff54]\n  1000efa5:  XOR EDI,EDI\n  1000efa7:  CMP EAX,EDI\n  1000efa9:  FADD dword ptr [ESI]\n  1000efab:  FST dword ptr [ESP + 0x14]\n  1000efaf:  FSTP dword ptr [ESI]\n  1000efb1:  JZ 0x1000f05a\n  1000efb7:  FLD dword ptr [ESP + 0x14]\n  1000efbb:  FSUB dword ptr [ESI + 0xffffff5c]\n  1000efc1:  FLD dword ptr [ESI + -0x4]\n  1000efc4:  FMUL dword ptr [0x100f55e0]\n  1000efca:  LEA ECX,[ESI + 0xffffff5c]\n  1000efd0:  FCOMPP\n  1000efd2:  FNSTSW AX\n  1000efd4:  TEST AH,0x1\n  1000efd7:  JZ 0x1000eff0\n  1000efd9:  MOV EAX,dword ptr [ESI + 0xffffff58]\n  1000efdf:  PUSH EAX\n  1000efe0:  CALL 0x100e4b99\n  1000efe5:  ADD ESP,0x4\n  1000efe8:  MOV dword ptr [ESI + 0xffffff54],EDI\n  1000efee:  JMP 0x1000f05a\n  1000eff0:  MOV EAX,dword ptr [ESI + 0xc]\n  1000eff3:  MOV EDX,dword ptr [ESP + 0x14]\n  1000eff7:  CMP EAX,EDI\n  1000eff9:  MOV dword ptr [ESP + 0x1c],EDX\n  1000effd:  JLE 0x1000f05a\n  1000efff:  MOV EBX,ECX\n  1000f001:  FLD dword ptr [ESP + 0x1c]\n  1000f005:  FSUB dword ptr [EBX]\n  1000f007:  FMUL dword ptr [0x100f55e0]\n  1000f00d:  FDIV dword ptr [ESI + -0x4]\n  1000f010:  CALL 0x100e4be4\n  1000f015:  MOV EDX,0x64\n  1000f01a:  SUB EDX,EAX\n  1000f01c:  JNS 0x1000f022\n  1000f01e:  XOR EDX,EDX\n  1000f020:  JMP 0x1000f02c\n  1000f022:  CMP EDX,0x64\n  1000f025:  JLE 0x1000f02c\n  1000f027:  MOV EDX,0x64\n  1000f02c:  MOV EAX,dword ptr [ESI + 0x8]\n  1000f02f:  XOR ECX,ECX\n  1000f031:  TEST EAX,EAX\n  1000f033:  JLE 0x1000f04f\n  1000f035:  IMUL EAX,EDI\n  1000f038:  MOV EBP,dword ptr [ESI + 0xffffff58]\n  1000f03e:  ADD EAX,ECX\n  1000f040:  SHL EAX,0x4\n  1000f043:  INC ECX\n  1000f044:  MOV byte ptr [EAX + EBP*0x1 + 0xf],DL\n  1000f048:  MOV EAX,dword ptr [ESI + 0x8]\n  1000f04b:  CMP ECX,EAX\n  1000f04d:  JL 0x1000f035\n  1000f04f:  MOV EAX,dword ptr [ESI + 0xc]\n  1000f052:  INC EDI\n  1000f053:  ADD EBX,0x4\n  1000f056:  CMP EDI,EAX\n  1000f058:  JL 0x1000f001\n  1000f05a:  MOV EAX,dword ptr [ESP + 0x18]\n  1000f05e:  ADD ESI,0xbc\n  1000f064:  DEC EAX\n  1000f065:  MOV dword ptr [ESP + 0x18],EAX\n  1000f069:  JNZ 0x1000ef98\n  1000f06f:  POP EDI\n  1000f070:  POP ESI\n  1000f071:  POP EBP\n  1000f072:  POP EBX\n  1000f073:  ADD ESP,0x10\n  1000f076:  RET", 
+  "callers": [
+    {
+      "address": "0x10014f40", 
+      "name": "End"
+    }
+  ]
+}

@@ -1,0 +1,49 @@
+{
+  "address": "0x100220b0", 
+  "size_bytes": 184, 
+  "calling_convention": "__thiscall", 
+  "signature": "void __thiscall PointEyeToScr(gbCamera * this, gbVec3D * param_1, float * param_2, float * param_3)", 
+  "callees": [], 
+  "global_refs": [
+    {
+      "address": "0x00000004", 
+      "type": null, 
+      "name": "DAT_00000004"
+    }, 
+    {
+      "address": "0x100f53a0", 
+      "type": null, 
+      "name": "DAT_100f53a0"
+    }, 
+    {
+      "address": "0x100f5810", 
+      "type": null, 
+      "name": "DAT_100f5810"
+    }, 
+    {
+      "address": "0x00000008", 
+      "type": null, 
+      "name": "DAT_00000008"
+    }, 
+    {
+      "address": "0x0000000c", 
+      "type": null, 
+      "name": "DAT_0000000c"
+    }
+  ], 
+  "has_custom_name": true, 
+  "decompiled_c": "\n/* public: void __thiscall gbCamera::PointEyeToScr(struct gbVec3D *,float &,float &) */\n\nvoid __thiscall\ngbCamera::PointEyeToScr(gbCamera *this,gbVec3D *param_1,float *param_2,float *param_3)\n\n{\n  int iVar1;\n  int iVar2;\n  float fVar3;\n  float10 fVar4;\n  float10 fVar5;\n  \n                    /* 0x220b0  737  ?PointEyeToScr@gbCamera@@QAEXPAUgbVec3D@@AAM1@Z */\n  if ((*(float *)(param_1 + 8) <= -*(float *)(this + 0x10)) &&\n     (-*(float *)(this + 0x14) <= *(float *)(param_1 + 8))) {\n    if (*(float *)this != 0.0) {\n      fVar4 = (float10)fsin((float10)*(float *)this * (float10)0.008726646);\n      fVar5 = (float10)fcos((float10)*(float *)this * (float10)0.008726646);\n      iVar1 = *(int *)(this + 0x24);\n      iVar2 = *(int *)(this + 0x20);\n      *param_2 = (float)(-((float10)*(float *)param_1 / (float10)*(float *)(param_1 + 8)) /\n                        (fVar4 / fVar5));\n      *param_3 = -(*(float *)(param_1 + 4) / *(float *)(param_1 + 8)) /\n                 (float)(((float10)iVar1 * (fVar4 / fVar5)) / (float10)iVar2);\n      return;\n    }\n    fVar3 = *(float *)(this + 4);\n    iVar1 = *(int *)(this + 0x24);\n    iVar2 = *(int *)(this + 0x20);\n    *param_2 = *param_2 / fVar3;\n    *param_3 = *param_3 / (((float)iVar1 * fVar3) / (float)iVar2);\n    return;\n  }\n  *param_2 = 100000.0;\n  return;\n}\n\n", 
+  "is_thunk": false, 
+  "name": "PointEyeToScr", 
+  "assembly": "  100220b0:  FLD dword ptr [ECX + 0x10]\n  100220b3:  MOV EDX,dword ptr [ESP + 0x4]\n  100220b7:  FCHS\n  100220b9:  FCOMP dword ptr [EDX + 0x8]\n  100220bc:  FNSTSW AX\n  100220be:  TEST AH,0x1\n  100220c1:  JNZ 0x1002215b\n  100220c7:  FLD dword ptr [ECX + 0x14]\n  100220ca:  FCHS\n  100220cc:  FCOMP dword ptr [EDX + 0x8]\n  100220cf:  FNSTSW AX\n  100220d1:  TEST AH,0x41\n  100220d4:  JZ 0x1002215b\n  100220da:  FLD dword ptr [ECX]\n  100220dc:  FCOMP dword ptr [0x100f53a0]\n  100220e2:  FNSTSW AX\n  100220e4:  TEST AH,0x40\n  100220e7:  JNZ 0x10022131\n  100220e9:  FLD dword ptr [ECX]\n  100220eb:  FMUL dword ptr [0x100f5810]\n  100220f1:  MOV EAX,dword ptr [ESP + 0x8]\n  100220f5:  FLD ST0\n  100220f7:  FSIN\n  100220f9:  FXCH\n  100220fb:  FCOS\n  100220fd:  FXCH\n  100220ff:  FXCH\n  10022101:  FDIVP\n  10022103:  FILD dword ptr [ECX + 0x24]\n  10022106:  FMUL ST1\n  10022108:  FIDIV dword ptr [ECX + 0x20]\n  1002210b:  MOV ECX,dword ptr [ESP + 0xc]\n  1002210f:  FSTP dword ptr [ESP + 0x4]\n  10022113:  FLD dword ptr [EDX]\n  10022115:  FDIV dword ptr [EDX + 0x8]\n  10022118:  FCHS\n  1002211a:  FDIV ST0,ST1\n  1002211c:  FSTP dword ptr [EAX]\n  1002211e:  FSTP ST0\n  10022120:  FLD dword ptr [EDX + 0x4]\n  10022123:  FDIV dword ptr [EDX + 0x8]\n  10022126:  FCHS\n  10022128:  FDIV dword ptr [ESP + 0x4]\n  1002212c:  FSTP dword ptr [ECX]\n  1002212e:  RET 0xc\n  10022131:  FLD dword ptr [ECX + 0x4]\n  10022134:  FILD dword ptr [ECX + 0x24]\n  10022137:  MOV EAX,dword ptr [ESP + 0x8]\n  1002213b:  FMUL ST1\n  1002213d:  FIDIV dword ptr [ECX + 0x20]\n  10022140:  FSTP dword ptr [ESP + 0x4]\n  10022144:  FLD dword ptr [EAX]\n  10022146:  FDIV ST0,ST1\n  10022148:  FSTP dword ptr [EAX]\n  1002214a:  MOV EAX,dword ptr [ESP + 0xc]\n  1002214e:  FSTP ST0\n  10022150:  FLD dword ptr [EAX]\n  10022152:  FDIV dword ptr [ESP + 0x4]\n  10022156:  FSTP dword ptr [EAX]\n  10022158:  RET 0xc\n  1002215b:  MOV EDX,dword ptr [ESP + 0x8]\n  1002215f:  MOV dword ptr [EDX],0x47c35000\n  10022165:  RET 0xc", 
+  "callers": [
+    {
+      "address": "0x10022270", 
+      "name": "PointWorldToScr"
+    }, 
+    {
+      "address": "0x10022630", 
+      "name": "PointWorld2Scr_NR"
+    }
+  ]
+}

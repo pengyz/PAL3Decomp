@@ -1,0 +1,30 @@
+{
+  "address": "0x100030f0", 
+  "size_bytes": 85, 
+  "calling_convention": "__thiscall", 
+  "signature": "int __thiscall GetTagNodeTM(gbActor * this, gbMatrix4 * param_1, char * param_2)", 
+  "callees": [
+    {
+      "address": "0x100277e0", 
+      "name": "gbCrc32Compute"
+    }
+  ], 
+  "global_refs": [
+    {
+      "address": "0x00000008", 
+      "type": null, 
+      "name": "DAT_00000008"
+    }, 
+    {
+      "address": "0x00000004", 
+      "type": null, 
+      "name": "DAT_00000004"
+    }
+  ], 
+  "has_custom_name": true, 
+  "decompiled_c": "\n/* public: int __thiscall gbActor::GetTagNodeTM(struct gbMatrix4 *,char *) */\n\nint __thiscall gbActor::GetTagNodeTM(gbActor *this,gbMatrix4 *param_1,char *param_2)\n\n{\n  uint uVar1;\n  int iVar2;\n  int iVar3;\n  uint *puVar4;\n  \n                    /* 0x30f0  551  ?GetTagNodeTM@gbActor@@QAEHPAUgbMatrix4@@PAD@Z */\n  uVar1 = gbCrc32Compute(param_2);\n  iVar2 = 0;\n  if (0 < *(int *)(this + 0x6c)) {\n    puVar4 = *(uint **)(this + 0x68);\n    do {\n      if (*puVar4 == uVar1) {\n        puVar4 = *(uint **)(this + 0x68) + iVar2 * 0x21 + 1;\n        for (iVar3 = 0x10; iVar3 != 0; iVar3 = iVar3 + -1) {\n          *(uint *)param_1 = *puVar4;\n          puVar4 = puVar4 + 1;\n          param_1 = param_1 + 4;\n        }\n        return 1;\n      }\n      iVar2 = iVar2 + 1;\n      puVar4 = puVar4 + 0x21;\n    } while (iVar2 < *(int *)(this + 0x6c));\n  }\n  return 0;\n}\n\n", 
+  "is_thunk": false, 
+  "name": "GetTagNodeTM", 
+  "assembly": "  100030f0:  MOV EAX,dword ptr [ESP + 0x8]\n  100030f4:  PUSH ESI\n  100030f5:  PUSH EDI\n  100030f6:  MOV EDI,ECX\n  100030f8:  PUSH EAX\n  100030f9:  CALL 0x100277e0\n  100030fe:  MOV ESI,dword ptr [EDI + 0x6c]\n  10003101:  ADD ESP,0x4\n  10003104:  XOR ECX,ECX\n  10003106:  TEST ESI,ESI\n  10003108:  JLE 0x1000311e\n  1000310a:  MOV EDI,dword ptr [EDI + 0x68]\n  1000310d:  MOV EDX,EDI\n  1000310f:  CMP dword ptr [EDX],EAX\n  10003111:  JZ 0x10003125\n  10003113:  INC ECX\n  10003114:  ADD EDX,0x84\n  1000311a:  CMP ECX,ESI\n  1000311c:  JL 0x1000310f\n  1000311e:  POP EDI\n  1000311f:  POP ESI\n  10003120:  XOR EAX,EAX\n  10003122:  RET 0x8\n  10003125:  MOV EDX,ECX\n  10003127:  MOV EAX,0x1\n  1000312c:  SHL EDX,0x5\n  1000312f:  ADD EDX,ECX\n  10003131:  MOV ECX,0x10\n  10003136:  LEA ESI,[EDI + EDX*0x4 + 0x4]\n  1000313a:  MOV EDI,dword ptr [ESP + 0xc]\n  1000313e:  MOVSD.REP ES:EDI,ESI\n  10003140:  POP EDI\n  10003141:  POP ESI\n  10003142:  RET 0x8", 
+  "callers": []
+}

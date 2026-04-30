@@ -1,0 +1,19 @@
+{
+  "address": "0x100170d0", 
+  "size_bytes": 57, 
+  "calling_convention": "unknown", 
+  "signature": "undefined FUN_100170d0(void)", 
+  "callees": [], 
+  "global_refs": [], 
+  "has_custom_name": false, 
+  "decompiled_c": "\nvoid FUN_100170d0(void)\n\n{\n  int in_ECX;\n  \n  *(undefined4 *)(in_ECX + 4) = 0;\n  *(undefined4 *)(in_ECX + 0x28) = 0;\n  *(undefined4 *)(in_ECX + 0xc) = 0x280;\n  *(undefined4 *)(in_ECX + 0x10) = 0x1e0;\n  *(undefined4 *)(in_ECX + 0x14) = 5;\n  *(undefined4 *)(in_ECX + 0x18) = 0;\n  *(undefined4 *)(in_ECX + 0x1c) = 0xf;\n  *(undefined4 *)(in_ECX + 0x20) = 0;\n  *(undefined *)(in_ECX + 0x24) = 0;\n  *(undefined *)(in_ECX + 0x25) = 0;\n  *(undefined *)(in_ECX + 0x26) = 0;\n  *(undefined *)(in_ECX + 0x27) = 0;\n  return;\n}\n\n", 
+  "is_thunk": false, 
+  "name": "FUN_100170d0", 
+  "assembly": "  100170d0:  MOV EAX,ECX\n  100170d2:  XOR ECX,ECX\n  100170d4:  MOV dword ptr [EAX + 0x4],ECX\n  100170d7:  MOV dword ptr [EAX + 0x28],ECX\n  100170da:  MOV dword ptr [EAX + 0xc],0x280\n  100170e1:  MOV dword ptr [EAX + 0x10],0x1e0\n  100170e8:  MOV dword ptr [EAX + 0x14],0x5\n  100170ef:  MOV dword ptr [EAX + 0x18],ECX\n  100170f2:  MOV dword ptr [EAX + 0x1c],0xf\n  100170f9:  MOV dword ptr [EAX + 0x20],ECX\n  100170fc:  MOV byte ptr [EAX + 0x24],CL\n  100170ff:  MOV byte ptr [EAX + 0x25],CL\n  10017102:  MOV byte ptr [EAX + 0x26],CL\n  10017105:  MOV byte ptr [EAX + 0x27],CL\n  10017108:  RET", 
+  "callers": [
+    {
+      "address": "0x100189a0", 
+      "name": "FUN_100189a0"
+    }
+  ]
+}

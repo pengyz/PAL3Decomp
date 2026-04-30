@@ -1,0 +1,97 @@
+{
+  "address": "0x1002a400", 
+  "size_bytes": 390, 
+  "calling_convention": "__thiscall", 
+  "signature": "void __thiscall ComputeParticleInitPos(gbPartEmitter * this, gbParticleUnit * param_1)", 
+  "callees": [
+    {
+      "address": "0x10027620", 
+      "name": "FUN_10027620"
+    }, 
+    {
+      "address": "0x10027620", 
+      "name": "FUN_10027620"
+    }, 
+    {
+      "address": "0x10027620", 
+      "name": "FUN_10027620"
+    }, 
+    {
+      "address": "0x100275b0", 
+      "name": "FUN_100275b0"
+    }, 
+    {
+      "address": "0x10027620", 
+      "name": "FUN_10027620"
+    }, 
+    {
+      "address": "0x10027620", 
+      "name": "FUN_10027620"
+    }, 
+    {
+      "address": "0x10027620", 
+      "name": "FUN_10027620"
+    }, 
+    {
+      "address": "0x100275e0", 
+      "name": "FUN_100275e0"
+    }, 
+    {
+      "address": "0x10025260", 
+      "name": "Transform"
+    }
+  ], 
+  "global_refs": [
+    {
+      "address": "0x00000004", 
+      "type": null, 
+      "name": "DAT_00000004"
+    }, 
+    {
+      "address": "0x-0000020", 
+      "type": null, 
+      "name": "DAT_-0000020"
+    }, 
+    {
+      "address": "0x-0000014", 
+      "type": null, 
+      "name": "DAT_-0000014"
+    }, 
+    {
+      "address": "0x-0000010", 
+      "type": null, 
+      "name": "DAT_-0000010"
+    }, 
+    {
+      "address": "0x100f5648", 
+      "type": null, 
+      "name": "DAT_100f5648"
+    }, 
+    {
+      "address": "0x-000000c", 
+      "type": null, 
+      "name": "DAT_-000000c"
+    }, 
+    {
+      "address": "0x-0000008", 
+      "type": null, 
+      "name": "DAT_-0000008"
+    }, 
+    {
+      "address": "0x-0000004", 
+      "type": null, 
+      "name": "DAT_-0000004"
+    }
+  ], 
+  "has_custom_name": true, 
+  "decompiled_c": "\n/* public: void __thiscall gbPartEmitter::ComputeParticleInitPos(struct gbParticleUnit *) */\n\nvoid __thiscall gbPartEmitter::ComputeParticleInitPos(gbPartEmitter *this,gbParticleUnit *param_1)\n\n{\n  gbVec3D *pgVar1;\n  int iVar2;\n  uint uVar3;\n  int iVar4;\n  float10 fVar5;\n  float10 fVar6;\n  float10 fVar7;\n  float10 fVar8;\n  float fVar9;\n  undefined4 local_c;\n  undefined4 local_8;\n  undefined4 local_4;\n  \n                    /* 0x2a400  346\n                       ?ComputeParticleInitPos@gbPartEmitter@@QAEXPAUgbParticleUnit@@@Z */\n  iVar2 = *(int *)(this + 0x98);\n  if (iVar2 == 0) {\n    fVar5 = (float10)FUN_10027620(*(undefined4 *)(this + 0xac),*(undefined4 *)(this + 0xb8));\n    *(float *)(param_1 + 0x34) = (float)(fVar5 + (float10)*(float *)(this + 0x40));\n    fVar5 = (float10)FUN_10027620(*(undefined4 *)(this + 0xb0),*(undefined4 *)(this + 0xbc));\n    *(float *)(param_1 + 0x38) = (float)(fVar5 + (float10)*(float *)(this + 0x44));\n    fVar5 = (float10)FUN_10027620(*(undefined4 *)(this + 0xb4),*(undefined4 *)(this + 0xc0));\n    *(float *)(param_1 + 0x3c) = (float)(fVar5 + (float10)*(float *)(this + 0x48));\n    return;\n  }\n  if (iVar2 == 1) {\n    uVar3 = FUN_100275b0();\n    if ((uVar3 & 1) == 0) {\n      fVar9 = *(float *)(this + 200) + *(float *)(this + 0xc4);\n    }\n    else {\n      fVar9 = *(float *)(this + 0xc4);\n    }\n    fVar5 = (float10)FUN_10027620(0,fVar9);\n    fVar9 = (float)fVar5;\n    fVar5 = (float10)FUN_10027620(0,0x43340000);\n    fVar6 = (float10)FUN_10027620(0,0x43b40000);\n    fVar7 = (float10)fsin((float10)(float)fVar5 * (float10)0.017453292);\n    fVar8 = (float10)fsin(fVar6 * (float10)0.017453292);\n    *(float *)(param_1 + 0x34) =\n         (float)(fVar8 * (float10)(float)fVar7 * (float10)fVar9 + (float10)*(float *)(this + 0x40));\n    fVar5 = (float10)fcos((float10)(float)fVar5 * (float10)0.017453292);\n    *(float *)(param_1 + 0x38) = (float)(fVar5 * (float10)fVar9 + (float10)*(float *)(this + 0x44));\n    fVar5 = (float10)fcos(fVar6 * (float10)0.017453292);\n    *(float *)(param_1 + 0x3c) =\n         (float)(fVar5 * (float10)(float)fVar7 * (float10)fVar9 + (float10)*(float *)(this + 0x48));\n    return;\n  }\n  if (iVar2 == 2) {\n    iVar4 = FUN_100275e0(0,*(int *)(this + 0xd4) + -1);\n    iVar2 = *(int *)(this + 0xcc) + iVar4 * 0xc;\n    local_c = *(undefined4 *)(*(int *)(this + 0xcc) + iVar4 * 0xc);\n    local_8 = *(undefined4 *)(iVar2 + 4);\n    pgVar1 = (gbVec3D *)(param_1 + 0x34);\n    local_4 = *(undefined4 *)(iVar2 + 8);\n    gbMatrix4::Transform((gbMatrix4 *)(this + 0xd8),(gbVec3D *)&local_c,pgVar1);\n    *(float *)pgVar1 = *(float *)pgVar1 + *(float *)(this + 0x40);\n    *(float *)(param_1 + 0x38) = *(float *)(this + 0x44) + *(float *)(param_1 + 0x38);\n    *(float *)(param_1 + 0x3c) = *(float *)(this + 0x48) + *(float *)(param_1 + 0x3c);\n  }\n  return;\n}\n\n", 
+  "is_thunk": false, 
+  "name": "ComputeParticleInitPos", 
+  "assembly": "  1002a400:  SUB ESP,0x14\n  1002a403:  PUSH ESI\n  1002a404:  MOV ESI,ECX\n  1002a406:  PUSH EDI\n  1002a407:  MOV EAX,dword ptr [ESI + 0x98]\n  1002a40d:  TEST EAX,EAX\n  1002a40f:  JNZ 0x1002a46b\n  1002a411:  MOV EAX,dword ptr [ESI + 0xb8]\n  1002a417:  MOV ECX,dword ptr [ESI + 0xac]\n  1002a41d:  PUSH EAX\n  1002a41e:  PUSH ECX\n  1002a41f:  CALL 0x10027620\n  1002a424:  FADD dword ptr [ESI + 0x40]\n  1002a427:  MOV EDI,dword ptr [ESP + 0x28]\n  1002a42b:  FSTP dword ptr [EDI + 0x34]\n  1002a42e:  MOV EDX,dword ptr [ESI + 0xbc]\n  1002a434:  MOV EAX,dword ptr [ESI + 0xb0]\n  1002a43a:  PUSH EDX\n  1002a43b:  PUSH EAX\n  1002a43c:  CALL 0x10027620\n  1002a441:  FADD dword ptr [ESI + 0x44]\n  1002a444:  FSTP dword ptr [EDI + 0x38]\n  1002a447:  MOV ECX,dword ptr [ESI + 0xc0]\n  1002a44d:  MOV EDX,dword ptr [ESI + 0xb4]\n  1002a453:  PUSH ECX\n  1002a454:  PUSH EDX\n  1002a455:  CALL 0x10027620\n  1002a45a:  FADD dword ptr [ESI + 0x48]\n  1002a45d:  ADD ESP,0x18\n  1002a460:  FSTP dword ptr [EDI + 0x3c]\n  1002a463:  POP EDI\n  1002a464:  POP ESI\n  1002a465:  ADD ESP,0x14\n  1002a468:  RET 0x4\n  1002a46b:  CMP EAX,0x1\n  1002a46e:  JNZ 0x1002a515\n  1002a474:  CALL 0x100275b0\n  1002a479:  TEST AL,0x1\n  1002a47b:  JZ 0x1002a486\n  1002a47d:  MOV EAX,dword ptr [ESI + 0xc4]\n  1002a483:  PUSH EAX\n  1002a484:  JMP 0x1002a496\n  1002a486:  FLD dword ptr [ESI + 0xc8]\n  1002a48c:  FADD dword ptr [ESI + 0xc4]\n  1002a492:  PUSH ECX\n  1002a493:  FSTP dword ptr [ESP]\n  1002a496:  PUSH 0x0\n  1002a498:  CALL 0x10027620\n  1002a49d:  FSTP dword ptr [ESP + 0x10]\n  1002a4a1:  ADD ESP,0x8\n  1002a4a4:  PUSH 0x43340000\n  1002a4a9:  PUSH 0x0\n  1002a4ab:  CALL 0x10027620\n  1002a4b0:  FSTP dword ptr [ESP + 0x14]\n  1002a4b4:  PUSH 0x43b40000\n  1002a4b9:  PUSH 0x0\n  1002a4bb:  CALL 0x10027620\n  1002a4c0:  FMUL dword ptr [0x100f5648]\n  1002a4c6:  FLD dword ptr [ESP + 0x1c]\n  1002a4ca:  FMUL dword ptr [0x100f5648]\n  1002a4d0:  MOV EAX,dword ptr [ESP + 0x30]\n  1002a4d4:  ADD ESP,0x10\n  1002a4d7:  FLD ST0\n  1002a4d9:  FSIN\n  1002a4db:  POP EDI\n  1002a4dc:  FSTP dword ptr [ESP + 0x8]\n  1002a4e0:  FLD ST1\n  1002a4e2:  FSIN\n  1002a4e4:  FMUL dword ptr [ESP + 0x8]\n  1002a4e8:  FMUL dword ptr [ESP + 0x4]\n  1002a4ec:  FADD dword ptr [ESI + 0x40]\n  1002a4ef:  FSTP dword ptr [EAX + 0x34]\n  1002a4f2:  FCOS\n  1002a4f4:  FMUL dword ptr [ESP + 0x4]\n  1002a4f8:  FADD dword ptr [ESI + 0x44]\n  1002a4fb:  FSTP dword ptr [EAX + 0x38]\n  1002a4fe:  FCOS\n  1002a500:  FMUL dword ptr [ESP + 0x8]\n  1002a504:  FMUL dword ptr [ESP + 0x4]\n  1002a508:  FADD dword ptr [ESI + 0x48]\n  1002a50b:  POP ESI\n  1002a50c:  FSTP dword ptr [EAX + 0x3c]\n  1002a50f:  ADD ESP,0x14\n  1002a512:  RET 0x4\n  1002a515:  CMP EAX,0x2\n  1002a518:  JNZ 0x1002a57e\n  1002a51a:  MOV ECX,dword ptr [ESI + 0xd4]\n  1002a520:  DEC ECX\n  1002a521:  PUSH ECX\n  1002a522:  PUSH 0x0\n  1002a524:  CALL 0x100275e0\n  1002a529:  LEA EDX,[EAX + EAX*0x2]\n  1002a52c:  MOV EAX,dword ptr [ESI + 0xcc]\n  1002a532:  ADD ESP,0x8\n  1002a535:  LEA ECX,[EAX + EDX*0x4]\n  1002a538:  MOV EDX,dword ptr [EAX + EDX*0x4]\n  1002a53b:  MOV dword ptr [ESP + 0x10],EDX\n  1002a53f:  MOV EDX,dword ptr [ESP + 0x20]\n  1002a543:  MOV EAX,dword ptr [ECX + 0x4]\n  1002a546:  MOV dword ptr [ESP + 0x14],EAX\n  1002a54a:  LEA EDI,[EDX + 0x34]\n  1002a54d:  MOV ECX,dword ptr [ECX + 0x8]\n  1002a550:  LEA EAX,[ESP + 0x10]\n  1002a554:  MOV dword ptr [ESP + 0x18],ECX\n  1002a558:  PUSH EDI\n  1002a559:  PUSH EAX\n  1002a55a:  LEA ECX,[ESI + 0xd8]\n  1002a560:  CALL 0x10025260\n  1002a565:  FLD dword ptr [EDI]\n  1002a567:  FADD dword ptr [ESI + 0x40]\n  1002a56a:  FSTP dword ptr [EDI]\n  1002a56c:  FLD dword ptr [ESI + 0x44]\n  1002a56f:  FADD dword ptr [EDI + 0x4]\n  1002a572:  FSTP dword ptr [EDI + 0x4]\n  1002a575:  FLD dword ptr [ESI + 0x48]\n  1002a578:  FADD dword ptr [EDI + 0x8]\n  1002a57b:  FSTP dword ptr [EDI + 0x8]\n  1002a57e:  POP EDI\n  1002a57f:  POP ESI\n  1002a580:  ADD ESP,0x14\n  1002a583:  RET 0x4", 
+  "callers": [
+    {
+      "address": "0x1002b2a0", 
+      "name": "CreateOneParticle"
+    }
+  ]
+}

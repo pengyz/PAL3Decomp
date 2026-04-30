@@ -1,0 +1,46 @@
+{
+  "address": "0x1002c2e0", 
+  "size_bytes": 118, 
+  "calling_convention": "__thiscall", 
+  "signature": "void __thiscall Render(gbParticleEffect * this, gbRenderInfoObj * param_1)", 
+  "callees": [
+    {
+      "address": "0x10027090", 
+      "name": "Push"
+    }, 
+    {
+      "address": "0x1001e380", 
+      "name": "IdentityWorldMatrix"
+    }, 
+    {
+      "address": "0x10027110", 
+      "name": "LoadMatrix"
+    }, 
+    {
+      "address": "0x1002b770", 
+      "name": "Render"
+    }, 
+    {
+      "address": "0x100270c0", 
+      "name": "Pop"
+    }
+  ], 
+  "global_refs": [
+    {
+      "address": "0x00000004", 
+      "type": null, 
+      "name": "DAT_00000004"
+    }, 
+    {
+      "address": "0x101379a8", 
+      "type": "undefined4", 
+      "name": "DAT_101379a8"
+    }
+  ], 
+  "has_custom_name": true, 
+  "decompiled_c": "\n/* public: virtual void __thiscall gbParticleEffect::Render(struct gbRenderInfoObj *) */\n\nvoid __thiscall gbParticleEffect::Render(gbParticleEffect *this,gbRenderInfoObj *param_1)\n\n{\n  int iVar1;\n  gbMatrixStack *this_00;\n  gbGfxManager *this_01;\n  \n                    /* 0x2c2e0  784  ?Render@gbParticleEffect@@UAEXPAUgbRenderInfoObj@@@Z */\n  this_01 = DAT_101379a8;\n  if (*(int *)(this + 0x3c) != 0) {\n    iVar1 = *(int *)(param_1 + 8);\n    this_00 = *(gbMatrixStack **)(DAT_101379a8 + 0xd8);\n    gbMatrixStack::Push(this_00);\n    if (*(int *)(this + 0xb4) == 0) {\n      gbGfxManager::IdentityWorldMatrix(this_01);\n    }\n    else {\n      gbMatrixStack::LoadMatrix(this_00,(gbMatrix4 *)(param_1 + 0x20));\n    }\n    if (*(int *)(iVar1 * 0x90 + 0x88 + *(int *)(this + 0xa4)) != 0) {\n      gbParticleGroup::Render((gbParticleGroup *)(iVar1 * 0x90 + *(int *)(this + 0xa4)));\n    }\n    gbMatrixStack::Pop(this_00);\n  }\n  return;\n}\n\n", 
+  "is_thunk": false, 
+  "name": "Render", 
+  "assembly": "  1002c2e0:  PUSH EBX\n  1002c2e1:  MOV EBX,ECX\n  1002c2e3:  MOV EAX,dword ptr [EBX + 0x3c]\n  1002c2e6:  TEST EAX,EAX\n  1002c2e8:  JZ 0x1002c352\n  1002c2ea:  MOV EAX,dword ptr [ESP + 0x8]\n  1002c2ee:  PUSH EBP\n  1002c2ef:  PUSH ESI\n  1002c2f0:  MOV ESI,dword ptr [0x101379a8]\n  1002c2f6:  PUSH EDI\n  1002c2f7:  MOV EDI,dword ptr [EAX + 0x8]\n  1002c2fa:  MOV EBP,dword ptr [ESI + 0xd8]\n  1002c300:  MOV ECX,EBP\n  1002c302:  CALL 0x10027090\n  1002c307:  MOV EAX,dword ptr [EBX + 0xb4]\n  1002c30d:  TEST EAX,EAX\n  1002c30f:  JNZ 0x1002c31a\n  1002c311:  MOV ECX,ESI\n  1002c313:  CALL 0x1001e380\n  1002c318:  JMP 0x1002c329\n  1002c31a:  MOV ECX,dword ptr [ESP + 0x14]\n  1002c31e:  ADD ECX,0x20\n  1002c321:  PUSH ECX\n  1002c322:  MOV ECX,EBP\n  1002c324:  CALL 0x10027110\n  1002c329:  MOV EAX,dword ptr [EBX + 0xa4]\n  1002c32f:  LEA EDX,[EDI + EDI*0x8]\n  1002c332:  SHL EDX,0x4\n  1002c335:  LEA ECX,[EDX + EAX*0x1]\n  1002c338:  MOV EAX,dword ptr [EDX + EAX*0x1 + 0x88]\n  1002c33f:  TEST EAX,EAX\n  1002c341:  JZ 0x1002c348\n  1002c343:  CALL 0x1002b770\n  1002c348:  MOV ECX,EBP\n  1002c34a:  CALL 0x100270c0\n  1002c34f:  POP EDI\n  1002c350:  POP ESI\n  1002c351:  POP EBP\n  1002c352:  POP EBX\n  1002c353:  RET 0x4", 
+  "callers": []
+}

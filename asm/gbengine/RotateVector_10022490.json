@@ -1,0 +1,30 @@
+{
+  "address": "0x10022490", 
+  "size_bytes": 24, 
+  "calling_convention": "__thiscall", 
+  "signature": "void __thiscall RotateVector(gbCamera * this, gbVec3D * param_1, gbVec3D * param_2, gbAxis param_3)", 
+  "callees": [
+    {
+      "address": "0x10025480", 
+      "name": "Rotate"
+    }
+  ], 
+  "global_refs": [
+    {
+      "address": "0x00000008", 
+      "type": null, 
+      "name": "DAT_00000008"
+    }, 
+    {
+      "address": "0x00000004", 
+      "type": null, 
+      "name": "DAT_00000004"
+    }
+  ], 
+  "has_custom_name": true, 
+  "decompiled_c": "\n/* public: void __thiscall gbCamera::RotateVector(struct gbVec3D *,struct gbVec3D *,enum gbAxis) */\n\nvoid __thiscall\ngbCamera::RotateVector(gbCamera *this,gbVec3D *param_1,gbVec3D *param_2,gbAxis param_3)\n\n{\n                    /* 0x22490  828  ?RotateVector@gbCamera@@QAEXPAUgbVec3D@@0W4gbAxis@@@Z */\n  gbMatrix4::Rotate((gbMatrix4 *)(this + 0xd4),param_1,param_2);\n  return;\n}\n\n", 
+  "is_thunk": false, 
+  "name": "RotateVector", 
+  "assembly": "  10022490:  MOV EAX,dword ptr [ESP + 0x8]\n  10022494:  MOV EDX,dword ptr [ESP + 0x4]\n  10022498:  PUSH EAX\n  10022499:  PUSH EDX\n  1002249a:  ADD ECX,0xd4\n  100224a0:  CALL 0x10025480\n  100224a5:  RET 0xc", 
+  "callers": []
+}

@@ -1,0 +1,45 @@
+{
+  "address": "0x1001cf80", 
+  "size_bytes": 83, 
+  "calling_convention": "__thiscall", 
+  "signature": "void __thiscall ~gbRenderEffect(gbRenderEffect * this)", 
+  "callees": [
+    {
+      "address": "0x100200d0", 
+      "name": "~gbResource"
+    }
+  ], 
+  "global_refs": [
+    {
+      "address": "0x100f3f48", 
+      "type": null, 
+      "name": "DAT_100f3f48"
+    }, 
+    {
+      "address": "0xffdff000", 
+      "type": "void *32", 
+      "name": "DAT_ffdff000"
+    }, 
+    {
+      "address": "0x-0000010", 
+      "type": null, 
+      "name": "DAT_-0000010"
+    }, 
+    {
+      "address": "0x100f5400", 
+      "type": "pointer", 
+      "name": "DAT_100f5400"
+    }, 
+    {
+      "address": "0x-0000004", 
+      "type": null, 
+      "name": "DAT_-0000004"
+    }
+  ], 
+  "has_custom_name": true, 
+  "decompiled_c": "\n/* private: virtual __thiscall gbRenderEffect::~gbRenderEffect(void) */\n\nvoid __thiscall gbRenderEffect::~gbRenderEffect(gbRenderEffect *this)\n\n{\n  void *pvStack_c;\n  undefined *puStack_8;\n  undefined4 local_4;\n  \n                    /* 0x1cf80  155  ??1gbRenderEffect@@EAE@XZ */\n  puStack_8 = &LAB_100f3f48;\n  pvStack_c = ExceptionList;\n  ExceptionList = &pvStack_c;\n  *(undefined ***)this = &_vftable_;\n  local_4 = 0;\n  (**(code **)(**(int **)(this + 0x18) + 8))(*(int **)(this + 0x18));\n  puStack_8 = (undefined *)0xffffffff;\n  gbResource::~gbResource((gbResource *)this);\n  ExceptionList = this;\n  return;\n}\n\n", 
+  "is_thunk": false, 
+  "name": "~gbRenderEffect", 
+  "assembly": "  1001cf80:  PUSH -0x1\n  1001cf82:  PUSH 0x100f3f48\n  1001cf87:  MOV EAX,FS:[0x0]\n  1001cf8d:  PUSH EAX\n  1001cf8e:  MOV dword ptr FS:[0x0],ESP\n  1001cf95:  PUSH ECX\n  1001cf96:  PUSH ESI\n  1001cf97:  MOV ESI,ECX\n  1001cf99:  MOV dword ptr [ESP + 0x4],ESI\n  1001cf9d:  MOV dword ptr [ESI],0x100f5400\n  1001cfa3:  MOV EAX,dword ptr [ESI + 0x18]\n  1001cfa6:  MOV dword ptr [ESP + 0x10],0x0\n  1001cfae:  PUSH EAX\n  1001cfaf:  MOV ECX,dword ptr [EAX]\n  1001cfb1:  CALL dword ptr [ECX + 0x8]\n  1001cfb4:  MOV ECX,ESI\n  1001cfb6:  MOV dword ptr [ESP + 0x10],0xffffffff\n  1001cfbe:  CALL 0x100200d0\n  1001cfc3:  MOV ECX,dword ptr [ESP + 0x8]\n  1001cfc7:  POP ESI\n  1001cfc8:  MOV dword ptr FS:[0x0],ECX\n  1001cfcf:  ADD ESP,0x10\n  1001cfd2:  RET", 
+  "callers": []
+}

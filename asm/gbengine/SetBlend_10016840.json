@@ -1,0 +1,25 @@
+{
+  "address": "0x10016840", 
+  "size_bytes": 17, 
+  "calling_convention": "__thiscall", 
+  "signature": "void __thiscall SetBlend(gbVisNode * this, NodeBlend param_1, float param_2)", 
+  "callees": [], 
+  "global_refs": [
+    {
+      "address": "0x00000004", 
+      "type": null, 
+      "name": "DAT_00000004"
+    }, 
+    {
+      "address": "0x00000008", 
+      "type": null, 
+      "name": "DAT_00000008"
+    }
+  ], 
+  "has_custom_name": true, 
+  "decompiled_c": "\n/* public: void __thiscall gbVisNode::SetBlend(enum NodeBlend,float) */\n\nvoid __thiscall gbVisNode::SetBlend(gbVisNode *this,NodeBlend param_1,float param_2)\n\n{\n                    /* 0x16840  849  ?SetBlend@gbVisNode@@QAEXW4NodeBlend@@M@Z */\n  *(NodeBlend *)(this + 0x54) = param_1;\n  *(float *)(this + 0x50) = param_2;\n  return;\n}\n\n", 
+  "is_thunk": false, 
+  "name": "SetBlend", 
+  "assembly": "  10016840:  MOV EAX,dword ptr [ESP + 0x4]\n  10016844:  MOV EDX,dword ptr [ESP + 0x8]\n  10016848:  MOV dword ptr [ECX + 0x54],EAX\n  1001684b:  MOV dword ptr [ECX + 0x50],EDX\n  1001684e:  RET 0x8", 
+  "callers": []
+}

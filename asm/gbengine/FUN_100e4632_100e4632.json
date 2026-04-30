@@ -1,0 +1,54 @@
+{
+  "address": "0x100e4632", 
+  "size_bytes": 79, 
+  "calling_convention": "unknown", 
+  "signature": "undefined FUN_100e4632(undefined4 param_1, undefined4 param_2)", 
+  "callees": [
+    {
+      "address": "0x100f3630", 
+      "name": "RtlUnwind"
+    }
+  ], 
+  "global_refs": [
+    {
+      "address": "0xffdff000", 
+      "type": "void *32", 
+      "name": "DAT_ffdff000"
+    }, 
+    {
+      "address": "0x-000000c", 
+      "type": null, 
+      "name": "DAT_-000000c"
+    }, 
+    {
+      "address": "0x-0000008", 
+      "type": null, 
+      "name": "DAT_-0000008"
+    }, 
+    {
+      "address": "0x00000008", 
+      "type": null, 
+      "name": "DAT_00000008"
+    }, 
+    {
+      "address": "0x00000004", 
+      "type": null, 
+      "name": "DAT_00000004"
+    }
+  ], 
+  "has_custom_name": false, 
+  "decompiled_c": "\nvoid FUN_100e4632(PVOID param_1,PEXCEPTION_RECORD param_2)\n\n{\n  void *pvVar1;\n  \n  pvVar1 = ExceptionList;\n  RtlUnwind(param_1,(PVOID)0x100e465a,param_2,(PVOID)0x0);\n  param_2->ExceptionFlags = param_2->ExceptionFlags & 0xfffffffd;\n  *(void **)pvVar1 = ExceptionList;\n  ExceptionList = pvVar1;\n  return;\n}\n\n", 
+  "is_thunk": false, 
+  "name": "FUN_100e4632", 
+  "assembly": "  100e4632:  PUSH EBP\n  100e4633:  MOV EBP,ESP\n  100e4635:  PUSH ECX\n  100e4636:  PUSH ECX\n  100e4637:  PUSH EBX\n  100e4638:  PUSH ESI\n  100e4639:  PUSH EDI\n  100e463a:  MOV EAX,FS:[0x0]\n  100e4640:  MOV dword ptr [EBP + -0x8],EAX\n  100e4643:  MOV dword ptr [EBP + -0x4],0x100e465a\n  100e464a:  PUSH 0x0\n  100e464c:  PUSH dword ptr [EBP + 0xc]\n  100e464f:  PUSH dword ptr [EBP + -0x4]\n  100e4652:  PUSH dword ptr [EBP + 0x8]\n  100e4655:  CALL 0x100f3630\n  100e465a:  MOV EAX,dword ptr [EBP + 0xc]\n  100e465d:  MOV EAX,dword ptr [EAX + 0x4]\n  100e4660:  AND AL,0xfd\n  100e4662:  MOV ECX,dword ptr [EBP + 0xc]\n  100e4665:  MOV dword ptr [ECX + 0x4],EAX\n  100e4668:  MOV EAX,FS:[0x0]\n  100e466e:  MOV EBX,dword ptr [EBP + -0x8]\n  100e4671:  MOV dword ptr [EBX],EAX\n  100e4673:  MOV dword ptr FS:[0x0],EBX\n  100e467a:  POP EDI\n  100e467b:  POP ESI\n  100e467c:  POP EBX\n  100e467d:  LEAVE\n  100e467e:  RET 0x8", 
+  "callers": [
+    {
+      "address": "0x100e809a", 
+      "name": "FUN_100e809a"
+    }, 
+    {
+      "address": "0x100e47e6", 
+      "name": "FUN_100e47e6"
+    }
+  ]
+}

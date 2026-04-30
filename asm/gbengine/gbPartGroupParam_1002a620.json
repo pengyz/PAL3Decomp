@@ -1,0 +1,53 @@
+{
+  "address": "0x1002a620", 
+  "size_bytes": 375, 
+  "calling_convention": "__thiscall", 
+  "signature": "undefined __thiscall gbPartGroupParam(gbPartGroupParam * this)", 
+  "callees": [
+    {
+      "address": "0x10001f20", 
+      "name": "gbVec3D"
+    }, 
+    {
+      "address": "0x10002bf0", 
+      "name": "FUN_10002bf0"
+    }, 
+    {
+      "address": "0x10001f20", 
+      "name": "gbVec3D"
+    }, 
+    {
+      "address": "0x10002bf0", 
+      "name": "FUN_10002bf0"
+    }, 
+    {
+      "address": "0x10001f20", 
+      "name": "gbVec3D"
+    }, 
+    {
+      "address": "0x10002bf0", 
+      "name": "FUN_10002bf0"
+    }, 
+    {
+      "address": "0x10002bf0", 
+      "name": "FUN_10002bf0"
+    }, 
+    {
+      "address": "0x10002bf0", 
+      "name": "FUN_10002bf0"
+    }
+  ], 
+  "global_refs": [
+    {
+      "address": "0x10002100", 
+      "type": null, 
+      "name": "DAT_10002100"
+    }
+  ], 
+  "has_custom_name": true, 
+  "decompiled_c": "\n/* public: __thiscall gbPartGroupParam::gbPartGroupParam(void) */\n\ngbPartGroupParam * __thiscall gbPartGroupParam::gbPartGroupParam(gbPartGroupParam *this)\n\n{\n  gbPartGroupParam *pgVar1;\n  int iVar2;\n  \n                    /* 0x2a620  67  ??0gbPartGroupParam@@QAE@XZ */\n  iVar2 = 0x3c;\n  *(undefined4 *)(this + 0x230) = 0;\n  *(undefined4 *)(this + 0x234) = 0;\n  *(undefined4 *)(this + 0x238) = 0;\n  *(undefined4 *)(this + 0x23c) = 0;\n  *(undefined4 *)(this + 0x240) = 0;\n  *(undefined4 *)(this + 0x244) = 0;\n  pgVar1 = this + 0x248;\n  do {\n    gbVec3D::gbVec3D((gbVec3D *)pgVar1,0.0,0.0,0.0);\n    pgVar1 = (gbPartGroupParam *)((gbVec3D *)pgVar1 + 0xc);\n    iVar2 = iVar2 + -1;\n  } while (iVar2 != 0);\n  FUN_10002bf0(this + 0x518,0xc,0x12f,gbVec3D::_default_constructor_closure_);\n  *(undefined4 *)(this + 0x1414) = 0;\n  *(undefined4 *)(this + 0x1418) = 0;\n  *(undefined4 *)(this + 0x141c) = 0;\n  *(undefined4 *)(this + 0x1420) = 0;\n  *(undefined4 *)(this + 0x1424) = 0;\n  *(undefined4 *)(this + 0x1428) = 0;\n  pgVar1 = this + 0x142c;\n  iVar2 = 0x3c;\n  do {\n    gbVec3D::gbVec3D((gbVec3D *)pgVar1,0.0,0.0,0.0);\n    pgVar1 = (gbPartGroupParam *)((gbVec3D *)pgVar1 + 0xc);\n    iVar2 = iVar2 + -1;\n  } while (iVar2 != 0);\n  FUN_10002bf0(this + 0x16fc,0xc,0x12f,gbVec3D::_default_constructor_closure_);\n  *(undefined4 *)(this + 0x25f8) = 0;\n  *(undefined4 *)(this + 0x25fc) = 0;\n  *(undefined4 *)(this + 0x2600) = 0;\n  *(undefined4 *)(this + 0x2604) = 0;\n  *(undefined4 *)(this + 0x2608) = 0;\n  *(undefined4 *)(this + 0x260c) = 0;\n  pgVar1 = this + 0x2610;\n  iVar2 = 0x3c;\n  do {\n    gbVec3D::gbVec3D((gbVec3D *)pgVar1,0.0,0.0,0.0);\n    pgVar1 = (gbPartGroupParam *)((gbVec3D *)pgVar1 + 0xc);\n    iVar2 = iVar2 + -1;\n  } while (iVar2 != 0);\n  FUN_10002bf0(this + 0x28e0,0xc,0x12f,gbVec3D::_default_constructor_closure_);\n  *(undefined4 *)(this + 0x37dc) = 0;\n  *(undefined4 *)(this + 0x37e0) = 0;\n  *(undefined4 *)(this + 0x37e4) = 0;\n  *(undefined4 *)(this + 0x37e8) = 0;\n  *(undefined4 *)(this + 0x37ec) = 0;\n  *(undefined4 *)(this + 0x37f0) = 0;\n  FUN_10002bf0(this + 0x37f4,0xc,0x3c,gbVec3D::_default_constructor_closure_);\n  FUN_10002bf0(this + 0x3ac4,0xc,0x12f,gbVec3D::_default_constructor_closure_);\n  *(undefined4 *)(this + 0x4938) = 0;\n  *(undefined4 *)(this + 0x493c) = 0;\n  *(undefined4 *)(this + 0x4938) = 0;\n  return this;\n}\n\n", 
+  "is_thunk": false, 
+  "name": "gbPartGroupParam", 
+  "assembly": "  1002a620:  PUSH EBX\n  1002a621:  PUSH EBP\n  1002a622:  PUSH ESI\n  1002a623:  PUSH EDI\n  1002a624:  MOV ESI,ECX\n  1002a626:  XOR EDI,EDI\n  1002a628:  MOV EBP,0x3c\n  1002a62d:  MOV dword ptr [ESI + 0x230],EDI\n  1002a633:  MOV dword ptr [ESI + 0x234],EDI\n  1002a639:  MOV dword ptr [ESI + 0x238],EDI\n  1002a63f:  MOV dword ptr [ESI + 0x23c],EDI\n  1002a645:  MOV dword ptr [ESI + 0x240],EDI\n  1002a64b:  MOV dword ptr [ESI + 0x244],EDI\n  1002a651:  LEA EBX,[ESI + 0x248]\n  1002a657:  PUSH EDI\n  1002a658:  PUSH EDI\n  1002a659:  PUSH EDI\n  1002a65a:  MOV ECX,EBX\n  1002a65c:  CALL 0x10001f20\n  1002a661:  ADD EBX,0xc\n  1002a664:  DEC EBP\n  1002a665:  JNZ 0x1002a657\n  1002a667:  PUSH 0x10002100\n  1002a66c:  PUSH 0x12f\n  1002a671:  LEA EAX,[ESI + 0x518]\n  1002a677:  PUSH 0xc\n  1002a679:  PUSH EAX\n  1002a67a:  CALL 0x10002bf0\n  1002a67f:  MOV dword ptr [ESI + 0x1414],EDI\n  1002a685:  MOV dword ptr [ESI + 0x1418],EDI\n  1002a68b:  MOV dword ptr [ESI + 0x141c],EDI\n  1002a691:  MOV dword ptr [ESI + 0x1420],EDI\n  1002a697:  MOV dword ptr [ESI + 0x1424],EDI\n  1002a69d:  MOV dword ptr [ESI + 0x1428],EDI\n  1002a6a3:  LEA EBX,[ESI + 0x142c]\n  1002a6a9:  MOV EBP,0x3c\n  1002a6ae:  PUSH EDI\n  1002a6af:  PUSH EDI\n  1002a6b0:  PUSH EDI\n  1002a6b1:  MOV ECX,EBX\n  1002a6b3:  CALL 0x10001f20\n  1002a6b8:  ADD EBX,0xc\n  1002a6bb:  DEC EBP\n  1002a6bc:  JNZ 0x1002a6ae\n  1002a6be:  PUSH 0x10002100\n  1002a6c3:  PUSH 0x12f\n  1002a6c8:  LEA ECX,[ESI + 0x16fc]\n  1002a6ce:  PUSH 0xc\n  1002a6d0:  PUSH ECX\n  1002a6d1:  CALL 0x10002bf0\n  1002a6d6:  MOV dword ptr [ESI + 0x25f8],EDI\n  1002a6dc:  MOV dword ptr [ESI + 0x25fc],EDI\n  1002a6e2:  MOV dword ptr [ESI + 0x2600],EDI\n  1002a6e8:  MOV dword ptr [ESI + 0x2604],EDI\n  1002a6ee:  MOV dword ptr [ESI + 0x2608],EDI\n  1002a6f4:  MOV dword ptr [ESI + 0x260c],EDI\n  1002a6fa:  LEA EBX,[ESI + 0x2610]\n  1002a700:  MOV EBP,0x3c\n  1002a705:  PUSH EDI\n  1002a706:  PUSH EDI\n  1002a707:  PUSH EDI\n  1002a708:  MOV ECX,EBX\n  1002a70a:  CALL 0x10001f20\n  1002a70f:  ADD EBX,0xc\n  1002a712:  DEC EBP\n  1002a713:  JNZ 0x1002a705\n  1002a715:  PUSH 0x10002100\n  1002a71a:  PUSH 0x12f\n  1002a71f:  LEA EDX,[ESI + 0x28e0]\n  1002a725:  PUSH 0xc\n  1002a727:  PUSH EDX\n  1002a728:  CALL 0x10002bf0\n  1002a72d:  PUSH 0x10002100\n  1002a732:  PUSH 0x3c\n  1002a734:  LEA EAX,[ESI + 0x37f4]\n  1002a73a:  PUSH 0xc\n  1002a73c:  MOV dword ptr [ESI + 0x37dc],EDI\n  1002a742:  MOV dword ptr [ESI + 0x37e0],EDI\n  1002a748:  MOV dword ptr [ESI + 0x37e4],EDI\n  1002a74e:  PUSH EAX\n  1002a74f:  MOV dword ptr [ESI + 0x37e8],EDI\n  1002a755:  MOV dword ptr [ESI + 0x37ec],EDI\n  1002a75b:  MOV dword ptr [ESI + 0x37f0],EDI\n  1002a761:  CALL 0x10002bf0\n  1002a766:  PUSH 0x10002100\n  1002a76b:  PUSH 0x12f\n  1002a770:  LEA ECX,[ESI + 0x3ac4]\n  1002a776:  PUSH 0xc\n  1002a778:  PUSH ECX\n  1002a779:  CALL 0x10002bf0\n  1002a77e:  MOV dword ptr [ESI + 0x4938],EDI\n  1002a784:  MOV dword ptr [ESI + 0x493c],EDI\n  1002a78a:  MOV dword ptr [ESI + 0x4938],EDI\n  1002a790:  MOV EAX,ESI\n  1002a792:  POP EDI\n  1002a793:  POP ESI\n  1002a794:  POP EBP\n  1002a795:  POP EBX\n  1002a796:  RET", 
+  "callers": []
+}

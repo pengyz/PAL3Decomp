@@ -1,0 +1,38 @@
+{
+  "address": "0x100301d0", 
+  "size_bytes": 99, 
+  "calling_convention": "__thiscall", 
+  "signature": "char * __thiscall GetTitle(gbVFile1 * this, char * param_1, int param_2)", 
+  "callees": [
+    {
+      "address": "0x100e4f50", 
+      "name": "_strrchr"
+    }, 
+    {
+      "address": "0x100e4f50", 
+      "name": "_strrchr"
+    }, 
+    {
+      "address": "0x100e4f50", 
+      "name": "_strrchr"
+    }
+  ], 
+  "global_refs": [
+    {
+      "address": "0x00000004", 
+      "type": null, 
+      "name": "DAT_00000004"
+    }
+  ], 
+  "has_custom_name": true, 
+  "decompiled_c": "\n/* public: char * __thiscall gbVFile1::GetTitle(char *,int) */\n\nchar * __thiscall gbVFile1::GetTitle(gbVFile1 *this,char *param_1,int param_2)\n\n{\n  gbVFile1 gVar1;\n  char *pcVar2;\n  char *pcVar3;\n  uint uVar4;\n  uint uVar5;\n  gbVFile1 *pgVar6;\n  gbVFile1 *pgVar7;\n  \n                    /* 0x301d0  555  ?GetTitle@gbVFile1@@QAEPADPADH@Z */\n  pgVar6 = this + 0xc;\n  pcVar2 = _strrchr((char *)pgVar6,0x2f);\n  pcVar3 = _strrchr((char *)pgVar6,0x5c);\n  if (pcVar2 < pcVar3) {\n    pcVar2 = pcVar3;\n  }\n  if (pcVar2 != (char *)0x0) {\n    pgVar6 = (gbVFile1 *)(pcVar2 + 1);\n  }\n  uVar4 = 0xffffffff;\n  do {\n    pgVar7 = pgVar6;\n    if (uVar4 == 0) break;\n    uVar4 = uVar4 - 1;\n    pgVar7 = pgVar6 + 1;\n    gVar1 = *pgVar6;\n    pgVar6 = pgVar7;\n  } while (gVar1 != (gbVFile1)0x0);\n  uVar4 = ~uVar4;\n  pgVar6 = pgVar7 + -uVar4;\n  pgVar7 = (gbVFile1 *)param_1;\n  for (uVar5 = uVar4 >> 2; uVar5 != 0; uVar5 = uVar5 - 1) {\n    *(undefined4 *)pgVar7 = *(undefined4 *)pgVar6;\n    pgVar6 = pgVar6 + 4;\n    pgVar7 = pgVar7 + 4;\n  }\n  for (uVar4 = uVar4 & 3; uVar4 != 0; uVar4 = uVar4 - 1) {\n    *pgVar7 = *pgVar6;\n    pgVar6 = pgVar6 + 1;\n    pgVar7 = pgVar7 + 1;\n  }\n  pcVar2 = _strrchr(param_1,0x2e);\n  if (pcVar2 != (char *)0x0) {\n    *pcVar2 = '\\0';\n  }\n  return param_1;\n}\n\n", 
+  "is_thunk": false, 
+  "name": "GetTitle", 
+  "assembly": "  100301d0:  PUSH EBX\n  100301d1:  PUSH ESI\n  100301d2:  PUSH EDI\n  100301d3:  LEA EDI,[ECX + 0xc]\n  100301d6:  PUSH 0x2f\n  100301d8:  PUSH EDI\n  100301d9:  CALL 0x100e4f50\n  100301de:  PUSH 0x5c\n  100301e0:  PUSH EDI\n  100301e1:  MOV ESI,EAX\n  100301e3:  CALL 0x100e4f50\n  100301e8:  ADD ESP,0x10\n  100301eb:  CMP EAX,ESI\n  100301ed:  JBE 0x100301f1\n  100301ef:  MOV ESI,EAX\n  100301f1:  TEST ESI,ESI\n  100301f3:  JZ 0x100301f8\n  100301f5:  LEA EDI,[ESI + 0x1]\n  100301f8:  OR ECX,0xffffffff\n  100301fb:  XOR EAX,EAX\n  100301fd:  SCASB.REPNE ES:EDI\n  100301ff:  MOV EBX,dword ptr [ESP + 0x10]\n  10030203:  PUSH 0x2e\n  10030205:  NOT ECX\n  10030207:  SUB EDI,ECX\n  10030209:  PUSH EBX\n  1003020a:  MOV EAX,ECX\n  1003020c:  MOV ESI,EDI\n  1003020e:  MOV EDI,EBX\n  10030210:  SHR ECX,0x2\n  10030213:  MOVSD.REP ES:EDI,ESI\n  10030215:  MOV ECX,EAX\n  10030217:  AND ECX,0x3\n  1003021a:  MOVSB.REP ES:EDI,ESI\n  1003021c:  CALL 0x100e4f50\n  10030221:  ADD ESP,0x8\n  10030224:  TEST EAX,EAX\n  10030226:  JZ 0x1003022b\n  10030228:  MOV byte ptr [EAX],0x0\n  1003022b:  POP EDI\n  1003022c:  MOV EAX,EBX\n  1003022e:  POP ESI\n  1003022f:  POP EBX\n  10030230:  RET 0x8", 
+  "callers": [
+    {
+      "address": "0x100108b0", 
+      "name": "LoadCVDFile"
+    }
+  ]
+}

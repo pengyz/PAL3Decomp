@@ -1,0 +1,80 @@
+{
+  "address": "0x10033437", 
+  "size_bytes": 42, 
+  "calling_convention": "unknown", 
+  "signature": "undefined FUN_10033437(undefined4 param_1, undefined4 param_2, undefined4 param_3, undefined4 param_4)", 
+  "callees": [], 
+  "global_refs": [
+    {
+      "address": "0x0000000c", 
+      "type": null, 
+      "name": "DAT_0000000c"
+    }, 
+    {
+      "address": "0x00000008", 
+      "type": null, 
+      "name": "DAT_00000008"
+    }, 
+    {
+      "address": "0x00000004", 
+      "type": null, 
+      "name": "DAT_00000004"
+    }, 
+    {
+      "address": "0x00000010", 
+      "type": null, 
+      "name": "DAT_00000010"
+    }
+  ], 
+  "has_custom_name": false, 
+  "decompiled_c": "\nvoid FUN_10033437(undefined4 param_1,undefined4 param_2,int param_3,code *param_4)\n\n{\n  if (-1 < param_3 + -1) {\n    do {\n      (*param_4)();\n      param_3 = param_3 + -1;\n    } while (param_3 != 0);\n  }\n  return;\n}\n\n", 
+  "is_thunk": false, 
+  "name": "FUN_10033437", 
+  "assembly": "  10033437:  PUSH EBP\n  10033438:  MOV EBP,ESP\n  1003343a:  MOV EAX,dword ptr [EBP + 0x10]\n  1003343d:  MOV ECX,dword ptr [EBP + 0xc]\n  10033440:  IMUL ECX,EAX\n  10033443:  PUSH EDI\n  10033444:  MOV EDI,dword ptr [EBP + 0x8]\n  10033447:  ADD EDI,ECX\n  10033449:  DEC EAX\n  1003344a:  JS 0x1003345c\n  1003344c:  PUSH ESI\n  1003344d:  LEA ESI,[EAX + 0x1]\n  10033450:  SUB EDI,dword ptr [EBP + 0xc]\n  10033453:  MOV ECX,EDI\n  10033455:  CALL dword ptr [EBP + 0x14]\n  10033458:  DEC ESI\n  10033459:  JNZ 0x10033450\n  1003345b:  POP ESI\n  1003345c:  POP EDI\n  1003345d:  POP EBP\n  1003345e:  RET 0x10", 
+  "callers": [
+    {
+      "address": "0x10054f79", 
+      "name": "FUN_10054f79"
+    }, 
+    {
+      "address": "0x1006a74a", 
+      "name": "FUN_1006a74a"
+    }, 
+    {
+      "address": "0x1006c9ae", 
+      "name": "FUN_1006c9ae"
+    }, 
+    {
+      "address": "0x1006a526", 
+      "name": "FUN_1006a526"
+    }, 
+    {
+      "address": "0x1006a795", 
+      "name": "FUN_1006a795"
+    }, 
+    {
+      "address": "0x10039f50", 
+      "name": "FUN_10039f50"
+    }, 
+    {
+      "address": "0x1006afb7", 
+      "name": "FID_conflict:`vector_deleting_destructor'"
+    }, 
+    {
+      "address": "0x1006ca94", 
+      "name": "FUN_1006ca94"
+    }, 
+    {
+      "address": "0x1006cbb3", 
+      "name": "FUN_1006cbb3"
+    }, 
+    {
+      "address": "0x100706f8", 
+      "name": "FUN_100706f8"
+    }, 
+    {
+      "address": "0x10070743", 
+      "name": "FUN_10070743"
+    }
+  ]
+}

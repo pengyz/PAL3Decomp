@@ -1,0 +1,25 @@
+{
+  "address": "0x1002ea80", 
+  "size_bytes": 27, 
+  "calling_convention": "__thiscall", 
+  "signature": "void __thiscall AddNodeOnHead(gbChain1D * this, gbChain1DNode * param_1)", 
+  "callees": [], 
+  "global_refs": [
+    {
+      "address": "0x00000004", 
+      "type": null, 
+      "name": "DAT_00000004"
+    }
+  ], 
+  "has_custom_name": true, 
+  "decompiled_c": "\n/* public: void __thiscall gbChain1D::AddNodeOnHead(class gbChain1DNode *) */\n\nvoid __thiscall gbChain1D::AddNodeOnHead(gbChain1D *this,gbChain1DNode *param_1)\n\n{\n                    /* 0x2ea80  299  ?AddNodeOnHead@gbChain1D@@QAEXPAVgbChain1DNode@@@Z */\n  *(undefined4 *)(param_1 + 4) = *(undefined4 *)this;\n  *(gbChain1DNode **)this = param_1;\n  if (*(int *)(this + 4) == 0) {\n    *(gbChain1DNode **)(this + 4) = param_1;\n  }\n  *(int *)(this + 8) = *(int *)(this + 8) + 1;\n  return;\n}\n\n", 
+  "is_thunk": false, 
+  "name": "AddNodeOnHead", 
+  "assembly": "  1002ea80:  MOV EAX,dword ptr [ESP + 0x4]\n  1002ea84:  MOV EDX,dword ptr [ECX]\n  1002ea86:  MOV dword ptr [EAX + 0x4],EDX\n  1002ea89:  MOV EDX,dword ptr [ECX + 0x4]\n  1002ea8c:  TEST EDX,EDX\n  1002ea8e:  MOV dword ptr [ECX],EAX\n  1002ea90:  JNZ 0x1002ea95\n  1002ea92:  MOV dword ptr [ECX + 0x4],EAX\n  1002ea95:  INC dword ptr [ECX + 0x8]\n  1002ea98:  RET 0x4", 
+  "callers": [
+    {
+      "address": "0x10004520", 
+      "name": "AddChildOnHead"
+    }
+  ]
+}

@@ -1,0 +1,78 @@
+{
+  "address": "0x100f217c", 
+  "size_bytes": 201, 
+  "calling_convention": "unknown", 
+  "signature": "undefined FUN_100f217c(undefined4 param_1, undefined4 param_2, undefined4 param_3)", 
+  "callees": [
+    {
+      "address": "0x0000001d", 
+      "name": "MultiByteToWideChar"
+    }, 
+    {
+      "address": "0x100ebcff", 
+      "name": "FUN_100ebcff"
+    }, 
+    {
+      "address": "0x0000001d", 
+      "name": "MultiByteToWideChar"
+    }
+  ], 
+  "global_refs": [
+    {
+      "address": "0x00000008", 
+      "type": null, 
+      "name": "DAT_00000008"
+    }, 
+    {
+      "address": "0x0000000c", 
+      "type": null, 
+      "name": "DAT_0000000c"
+    }, 
+    {
+      "address": "0x00000004", 
+      "type": null, 
+      "name": "DAT_00000004"
+    }, 
+    {
+      "address": "0x10166d70", 
+      "type": "undefined4", 
+      "name": "DAT_10166d70"
+    }, 
+    {
+      "address": "0x1012a140", 
+      "type": "pointer", 
+      "name": "DAT_1012a140"
+    }, 
+    {
+      "address": "0x1012a14b", 
+      "type": null, 
+      "name": "DAT_1012a14b"
+    }, 
+    {
+      "address": "0x1012a34c", 
+      "type": "undefined4", 
+      "name": "DAT_1012a34c"
+    }, 
+    {
+      "address": "0x10166d80", 
+      "type": "undefined4", 
+      "name": "DAT_10166d80"
+    }, 
+    {
+      "address": "0x100f50a0", 
+      "type": "pointer", 
+      "name": "DAT_100f50a0"
+    }
+  ], 
+  "has_custom_name": false, 
+  "decompiled_c": "\nuint FUN_100f217c(LPWSTR param_1,byte *param_2,uint param_3)\n\n{\n  byte bVar1;\n  int iVar2;\n  undefined4 *puVar3;\n  \n  if ((param_2 != (byte *)0x0) && (param_3 != 0)) {\n    bVar1 = *param_2;\n    if (bVar1 != 0) {\n      if (DAT_10166d70 == 0) {\n        if (param_1 != (LPWSTR)0x0) {\n          *param_1 = (ushort)bVar1;\n        }\n        return 1;\n      }\n      if ((PTR_DAT_1012a140[(uint)bVar1 * 2 + 1] & 0x80) == 0) {\n        iVar2 = MultiByteToWideChar(DAT_10166d80,9,(LPCSTR)param_2,1,param_1,\n                                    (uint)(param_1 != (LPWSTR)0x0));\n        if (iVar2 != 0) {\n          return 1;\n        }\n      }\n      else {\n        if (1 < (int)DAT_1012a34c) {\n          if ((int)param_3 < (int)DAT_1012a34c) goto LAB_100f220e;\n          iVar2 = MultiByteToWideChar(DAT_10166d80,9,(LPCSTR)param_2,DAT_1012a34c,param_1,\n                                      (uint)(param_1 != (LPWSTR)0x0));\n          if (iVar2 != 0) {\n            return DAT_1012a34c;\n          }\n        }\n        if ((DAT_1012a34c <= param_3) && (param_2[1] != 0)) {\n          return DAT_1012a34c;\n        }\n      }\nLAB_100f220e:\n      puVar3 = (undefined4 *)FUN_100ebcff();\n      *puVar3 = 0x2a;\n      return 0xffffffff;\n    }\n    if (param_1 != (LPWSTR)0x0) {\n      *param_1 = L'\\0';\n    }\n  }\n  return 0;\n}\n\n", 
+  "is_thunk": false, 
+  "name": "FUN_100f217c", 
+  "assembly": "  100f217c:  PUSH EBP\n  100f217d:  MOV EBP,ESP\n  100f217f:  PUSH EBX\n  100f2180:  PUSH ESI\n  100f2181:  MOV ESI,dword ptr [EBP + 0xc]\n  100f2184:  XOR EBX,EBX\n  100f2186:  CMP ESI,EBX\n  100f2188:  JZ 0x100f219f\n  100f218a:  CMP dword ptr [EBP + 0x10],EBX\n  100f218d:  JZ 0x100f219f\n  100f218f:  MOV AL,byte ptr [ESI]\n  100f2191:  CMP AL,BL\n  100f2193:  JNZ 0x100f21a5\n  100f2195:  MOV EAX,dword ptr [EBP + 0x8]\n  100f2198:  CMP EAX,EBX\n  100f219a:  JZ 0x100f219f\n  100f219c:  MOV word ptr [EAX],BX\n  100f219f:  XOR EAX,EAX\n  100f21a1:  POP ESI\n  100f21a2:  POP EBX\n  100f21a3:  POP EBP\n  100f21a4:  RET\n  100f21a5:  CMP dword ptr [0x10166d70],EBX\n  100f21ab:  JNZ 0x100f21c0\n  100f21ad:  MOV ECX,dword ptr [EBP + 0x8]\n  100f21b0:  CMP ECX,EBX\n  100f21b2:  JZ 0x100f21bb\n  100f21b4:  MOVZX AX,AL\n  100f21b8:  MOV word ptr [ECX],AX\n  100f21bb:  PUSH 0x1\n  100f21bd:  POP EAX\n  100f21be:  JMP 0x100f21a1\n  100f21c0:  MOV ECX,dword ptr [0x1012a140]\n  100f21c6:  MOVZX EAX,AL\n  100f21c9:  TEST byte ptr [ECX + EAX*0x2 + 0x1],0x80\n  100f21ce:  JZ 0x100f221e\n  100f21d0:  MOV EAX,[0x1012a34c]\n  100f21d5:  CMP EAX,0x1\n  100f21d8:  JLE 0x100f2204\n  100f21da:  CMP dword ptr [EBP + 0x10],EAX\n  100f21dd:  JL 0x100f220e\n  100f21df:  XOR ECX,ECX\n  100f21e1:  CMP dword ptr [EBP + 0x8],EBX\n  100f21e4:  SETNZ CL\n  100f21e7:  PUSH ECX\n  100f21e8:  PUSH dword ptr [EBP + 0x8]\n  100f21eb:  PUSH EAX\n  100f21ec:  PUSH ESI\n  100f21ed:  PUSH 0x9\n  100f21ef:  PUSH dword ptr [0x10166d80]\n  100f21f5:  CALL dword ptr [0x100f50a0]\n  100f21fb:  TEST EAX,EAX\n  100f21fd:  MOV EAX,[0x1012a34c]\n  100f2202:  JNZ 0x100f21a1\n  100f2204:  CMP dword ptr [EBP + 0x10],EAX\n  100f2207:  JC 0x100f220e\n  100f2209:  CMP byte ptr [ESI + 0x1],BL\n  100f220c:  JNZ 0x100f21a1\n  100f220e:  CALL 0x100ebcff\n  100f2213:  MOV dword ptr [EAX],0x2a\n  100f2219:  OR EAX,0xffffffff\n  100f221c:  JMP 0x100f21a1\n  100f221e:  XOR EAX,EAX\n  100f2220:  CMP dword ptr [EBP + 0x8],EBX\n  100f2223:  SETNZ AL\n  100f2226:  PUSH EAX\n  100f2227:  PUSH dword ptr [EBP + 0x8]\n  100f222a:  PUSH 0x1\n  100f222c:  PUSH ESI\n  100f222d:  PUSH 0x9\n  100f222f:  PUSH dword ptr [0x10166d80]\n  100f2235:  CALL dword ptr [0x100f50a0]\n  100f223b:  TEST EAX,EAX\n  100f223d:  JNZ 0x100f21bb\n  100f2243:  JMP 0x100f220e", 
+  "callers": [
+    {
+      "address": "0x100f211f", 
+      "name": "FUN_100f211f"
+    }
+  ]
+}

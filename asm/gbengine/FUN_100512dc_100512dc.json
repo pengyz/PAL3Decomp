@@ -1,0 +1,56 @@
+{
+  "address": "0x100512dc", 
+  "size_bytes": 80, 
+  "calling_convention": "unknown", 
+  "signature": "undefined FUN_100512dc(undefined4 param_1, undefined4 param_2)", 
+  "callees": [
+    {
+      "address": "0x10051227", 
+      "name": "FUN_10051227"
+    }, 
+    {
+      "address": "0x10051227", 
+      "name": "FUN_10051227"
+    }
+  ], 
+  "global_refs": [
+    {
+      "address": "0x-0000008", 
+      "type": null, 
+      "name": "DAT_-0000008"
+    }, 
+    {
+      "address": "0x00000004", 
+      "type": null, 
+      "name": "DAT_00000004"
+    }, 
+    {
+      "address": "0x00000008", 
+      "type": null, 
+      "name": "DAT_00000008"
+    }
+  ], 
+  "has_custom_name": false, 
+  "decompiled_c": "\nvoid FUN_100512dc(char *param_1,undefined4 param_2)\n\n{\n  char cVar1;\n  int iVar2;\n  char *local_8;\n  \n  local_8 = (char *)0x0;\n  if (param_1 != (char *)0x0) {\n    local_8 = param_1;\n    do {\n      cVar1 = *local_8;\n      local_8 = local_8 + 1;\n    } while (cVar1 != '\\0');\n    local_8 = local_8 + (1 - (int)(param_1 + 1));\n  }\n  iVar2 = FUN_10051227(&local_8,4,param_2);\n  if ((-1 < iVar2) && (param_1 != (char *)0x0)) {\n    FUN_10051227(param_1,local_8,0);\n  }\n  return;\n}\n\n", 
+  "is_thunk": false, 
+  "name": "FUN_100512dc", 
+  "assembly": "  100512dc:  PUSH EBP\n  100512dd:  MOV EBP,ESP\n  100512df:  PUSH ECX\n  100512e0:  AND dword ptr [EBP + -0x4],0x0\n  100512e4:  PUSH ESI\n  100512e5:  MOV ESI,dword ptr [EBP + 0x8]\n  100512e8:  TEST ESI,ESI\n  100512ea:  PUSH EDI\n  100512eb:  MOV EDI,ECX\n  100512ed:  JZ 0x10051301\n  100512ef:  MOV EAX,ESI\n  100512f1:  LEA EDX,[EAX + 0x1]\n  100512f4:  MOV CL,byte ptr [EAX]\n  100512f6:  INC EAX\n  100512f7:  TEST CL,CL\n  100512f9:  JNZ 0x100512f4\n  100512fb:  SUB EAX,EDX\n  100512fd:  INC EAX\n  100512fe:  MOV dword ptr [EBP + -0x4],EAX\n  10051301:  PUSH dword ptr [EBP + 0xc]\n  10051304:  LEA EAX,[EBP + -0x4]\n  10051307:  PUSH 0x4\n  10051309:  PUSH EAX\n  1005130a:  MOV ECX,EDI\n  1005130c:  CALL 0x10051227\n  10051311:  TEST EAX,EAX\n  10051313:  JL 0x10051326\n  10051315:  TEST ESI,ESI\n  10051317:  JZ 0x10051326\n  10051319:  PUSH 0x0\n  1005131b:  PUSH dword ptr [EBP + -0x4]\n  1005131e:  MOV ECX,EDI\n  10051320:  PUSH ESI\n  10051321:  CALL 0x10051227\n  10051326:  POP EDI\n  10051327:  POP ESI\n  10051328:  LEAVE\n  10051329:  RET 0x8", 
+  "callers": [
+    {
+      "address": "0x10051b89", 
+      "name": "FUN_10051b89"
+    }, 
+    {
+      "address": "0x10051b89", 
+      "name": "FUN_10051b89"
+    }, 
+    {
+      "address": "0x1005847a", 
+      "name": "FUN_1005847a"
+    }, 
+    {
+      "address": "0x100580b2", 
+      "name": "FUN_100580b2"
+    }
+  ]
+}

@@ -1,0 +1,88 @@
+{
+  "address": "0x10018bd0", 
+  "size_bytes": 242, 
+  "calling_convention": "unknown", 
+  "signature": "undefined FUN_10018bd0(void)", 
+  "callees": [
+    {
+      "address": "0x10020320", 
+      "name": "CleanAllResource"
+    }, 
+    {
+      "address": "0x1001de70", 
+      "name": "FUN_1001de70"
+    }, 
+    {
+      "address": "0x100201a0", 
+      "name": "~gbResManager"
+    }, 
+    {
+      "address": "0x100e4a24", 
+      "name": "FUN_100e4a24"
+    }, 
+    {
+      "address": "0x0000006a", 
+      "name": "DestroyWindow"
+    }, 
+    {
+      "address": "0x100201a0", 
+      "name": "~gbResManager"
+    }, 
+    {
+      "address": "0x10017110", 
+      "name": "FUN_10017110"
+    }, 
+    {
+      "address": "0x1001daa0", 
+      "name": "~gbGfxManager"
+    }
+  ], 
+  "global_refs": [
+    {
+      "address": "0x100f3dd4", 
+      "type": null, 
+      "name": "DAT_100f3dd4"
+    }, 
+    {
+      "address": "0xffdff000", 
+      "type": "void *32", 
+      "name": "DAT_ffdff000"
+    }, 
+    {
+      "address": "0x-0000010", 
+      "type": null, 
+      "name": "DAT_-0000010"
+    }, 
+    {
+      "address": "0x100f56b4", 
+      "type": "undefined *", 
+      "name": "DAT_100f56b4"
+    }, 
+    {
+      "address": "0x-0000004", 
+      "type": null, 
+      "name": "DAT_-0000004"
+    }, 
+    {
+      "address": "0x100f51d8", 
+      "type": "pointer", 
+      "name": "DAT_100f51d8"
+    }, 
+    {
+      "address": "0x1013bdf0", 
+      "type": null, 
+      "name": "DAT_1013bdf0"
+    }
+  ], 
+  "has_custom_name": false, 
+  "decompiled_c": "\n/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */\n\nvoid FUN_10018bd0(void)\n\n{\n  gbResManager *this;\n  int *piVar1;\n  gbGfxManager *in_ECX;\n  void *pvStack_c;\n  undefined *puStack_8;\n  int local_4;\n  \n  puStack_8 = &LAB_100f3dd4;\n  pvStack_c = ExceptionList;\n  ExceptionList = &pvStack_c;\n  *(undefined ***)in_ECX = &PTR_FUN_100f56b4;\n  local_4 = 2;\n  gbResManager::CleanAllResource((gbResManager *)(in_ECX + 0x658));\n  FUN_1001de70();\n  this = *(gbResManager **)(in_ECX + 200);\n  if (this != (gbResManager *)0x0) {\n    gbResManager::~gbResManager(this);\n    FUN_100e4a24(this);\n  }\n  if (*(int *)(in_ECX + 0x718) != 0) {\n    (**(code **)(**(int **)(in_ECX + 0x8d0) + 8))(*(int **)(in_ECX + 0x8d0));\n    (**(code **)(**(int **)(in_ECX + 0x718) + 8))(*(int **)(in_ECX + 0x718));\n    *(undefined4 *)(in_ECX + 0x718) = 0;\n  }\n  if (*(int *)(in_ECX + 0xbc) != 0) {\n    DestroyWindow(*(HWND *)(in_ECX + 0xb8));\n  }\n  piVar1 = *(int **)(in_ECX + 0x714);\n  if (piVar1 != (int *)0x0) {\n    (**(code **)(*piVar1 + 8))(piVar1);\n    *(undefined4 *)(in_ECX + 0x714) = 0;\n  }\n  _DAT_1013bdf0 = 0;\n  local_4._0_1_ = 1;\n  gbResManager::~gbResManager((gbResManager *)(in_ECX + 0x658));\n  local_4 = (uint)local_4._1_3_ << 8;\n  FUN_10017110();\n  local_4 = 0xffffffff;\n  gbGfxManager::~gbGfxManager(in_ECX);\n  ExceptionList = pvStack_c;\n  return;\n}\n\n", 
+  "is_thunk": false, 
+  "name": "FUN_10018bd0", 
+  "assembly": "  10018bd0:  PUSH -0x1\n  10018bd2:  PUSH 0x100f3dd4\n  10018bd7:  MOV EAX,FS:[0x0]\n  10018bdd:  PUSH EAX\n  10018bde:  MOV dword ptr FS:[0x0],ESP\n  10018be5:  PUSH ECX\n  10018be6:  PUSH EBX\n  10018be7:  PUSH EBP\n  10018be8:  PUSH ESI\n  10018be9:  MOV ESI,ECX\n  10018beb:  PUSH EDI\n  10018bec:  MOV dword ptr [ESP + 0x10],ESI\n  10018bf0:  MOV dword ptr [ESI],0x100f56b4\n  10018bf6:  LEA EBP,[ESI + 0x658]\n  10018bfc:  MOV dword ptr [ESP + 0x1c],0x2\n  10018c04:  MOV ECX,EBP\n  10018c06:  CALL 0x10020320\n  10018c0b:  MOV ECX,ESI\n  10018c0d:  CALL 0x1001de70\n  10018c12:  MOV EDI,dword ptr [ESI + 0xc8]\n  10018c18:  XOR EBX,EBX\n  10018c1a:  CMP EDI,EBX\n  10018c1c:  JZ 0x10018c2e\n  10018c1e:  MOV ECX,EDI\n  10018c20:  CALL 0x100201a0\n  10018c25:  PUSH EDI\n  10018c26:  CALL 0x100e4a24\n  10018c2b:  ADD ESP,0x4\n  10018c2e:  CMP dword ptr [ESI + 0x718],EBX\n  10018c34:  JZ 0x10018c54\n  10018c36:  MOV EAX,dword ptr [ESI + 0x8d0]\n  10018c3c:  PUSH EAX\n  10018c3d:  MOV ECX,dword ptr [EAX]\n  10018c3f:  CALL dword ptr [ECX + 0x8]\n  10018c42:  MOV EAX,dword ptr [ESI + 0x718]\n  10018c48:  PUSH EAX\n  10018c49:  MOV EDX,dword ptr [EAX]\n  10018c4b:  CALL dword ptr [EDX + 0x8]\n  10018c4e:  MOV dword ptr [ESI + 0x718],EBX\n  10018c54:  CMP dword ptr [ESI + 0xbc],EBX\n  10018c5a:  JZ 0x10018c69\n  10018c5c:  MOV EAX,dword ptr [ESI + 0xb8]\n  10018c62:  PUSH EAX\n  10018c63:  CALL dword ptr [0x100f51d8]\n  10018c69:  MOV EAX,dword ptr [ESI + 0x714]\n  10018c6f:  CMP EAX,EBX\n  10018c71:  JZ 0x10018c7f\n  10018c73:  MOV ECX,dword ptr [EAX]\n  10018c75:  PUSH EAX\n  10018c76:  CALL dword ptr [ECX + 0x8]\n  10018c79:  MOV dword ptr [ESI + 0x714],EBX\n  10018c7f:  MOV ECX,EBP\n  10018c81:  MOV dword ptr [0x1013bdf0],EBX\n  10018c87:  MOV byte ptr [ESP + 0x1c],0x1\n  10018c8c:  CALL 0x100201a0\n  10018c91:  LEA ECX,[ESI + 0x5f0]\n  10018c97:  MOV byte ptr [ESP + 0x1c],BL\n  10018c9b:  CALL 0x10017110\n  10018ca0:  MOV ECX,ESI\n  10018ca2:  MOV dword ptr [ESP + 0x1c],0xffffffff\n  10018caa:  CALL 0x1001daa0\n  10018caf:  MOV ECX,dword ptr [ESP + 0x14]\n  10018cb3:  POP EDI\n  10018cb4:  POP ESI\n  10018cb5:  POP EBP\n  10018cb6:  POP EBX\n  10018cb7:  MOV dword ptr FS:[0x0],ECX\n  10018cbe:  ADD ESP,0x10\n  10018cc1:  RET", 
+  "callers": [
+    {
+      "address": "0x10018bb0", 
+      "name": "FUN_10018bb0"
+    }
+  ]
+}

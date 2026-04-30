@@ -1,0 +1,40 @@
+{
+  "address": "0x100905f0", 
+  "size_bytes": 186, 
+  "calling_convention": "unknown", 
+  "signature": "undefined FUN_100905f0(undefined4 param_1)", 
+  "callees": [
+    {
+      "address": "0x1004cb83", 
+      "name": "FUN_1004cb83"
+    }
+  ], 
+  "global_refs": [
+    {
+      "address": "0x00000004", 
+      "type": null, 
+      "name": "DAT_00000004"
+    }, 
+    {
+      "address": "0x-000000c", 
+      "type": null, 
+      "name": "DAT_-000000c"
+    }, 
+    {
+      "address": "0x-0000008", 
+      "type": null, 
+      "name": "DAT_-0000008"
+    }, 
+    {
+      "address": "0x10108e1c", 
+      "type": "string", 
+      "name": "DAT_10108e1c"
+    }
+  ], 
+  "has_custom_name": false, 
+  "decompiled_c": "\nuint FUN_100905f0(int param_1)\n\n{\n  uint uVar1;\n  char cVar2;\n  char *pcVar3;\n  char *pcVar4;\n  undefined4 *in_ECX;\n  int iVar5;\n  uint local_c;\n  uint local_8;\n  \n  pcVar3 = *(char **)(param_1 + 8);\n  iVar5 = 0;\n  local_c = 0;\n  if ((pcVar3 == (char *)0x0) || (*pcVar3 == '\\0')) {\n    local_c = 0xe40000;\n  }\n  else {\n    local_8 = 0x10;\n    pcVar4 = pcVar3;\n    do {\n      cVar2 = *pcVar4;\n      if (cVar2 != '\\0') {\n        if (cVar2 < 'x') {\n          if ((cVar2 == 'w') || (cVar2 == 'a')) {\n            iVar5 = 3;\n          }\n          else {\n            if (cVar2 != 'b') {\n              if (cVar2 == 'g') goto LAB_10090694;\n              if (cVar2 == 'r') goto LAB_10090641;\n              goto LAB_1009065d;\n            }\nLAB_10090690:\n            iVar5 = 2;\n          }\n        }\n        else if (cVar2 == 'x') {\nLAB_10090641:\n          iVar5 = 0;\n        }\n        else {\n          if (cVar2 != 'y') {\n            if (cVar2 == 'z') goto LAB_10090690;\n            goto LAB_1009065d;\n          }\nLAB_10090694:\n          iVar5 = 1;\n        }\n        pcVar4 = pcVar4 + 1;\n      }\n      uVar1 = local_8 + 2;\n      local_c = local_c | iVar5 << ((byte)local_8 & 0x1f);\n      local_8 = uVar1;\n    } while (uVar1 < 0x18);\n    if (*pcVar4 != '\\0') {\nLAB_1009065d:\n      FUN_1004cb83(*in_ECX,param_1,0x7d4,\"invalid swizzle \\'%s\\'\",pcVar3);\n      in_ECX[0x13] = 1;\n      local_c = 0;\n    }\n  }\n  return local_c;\n}\n\n", 
+  "is_thunk": false, 
+  "name": "FUN_100905f0", 
+  "assembly": "  100905f0:  PUSH EBP\n  100905f1:  MOV EBP,ESP\n  100905f3:  PUSH ECX\n  100905f4:  PUSH ECX\n  100905f5:  MOV EAX,dword ptr [EBP + 0x8]\n  100905f8:  PUSH EBX\n  100905f9:  PUSH ESI\n  100905fa:  MOV ESI,dword ptr [EAX + 0x8]\n  100905fd:  PUSH EDI\n  100905fe:  XOR EDI,EDI\n  10090600:  CMP ESI,EDI\n  10090602:  MOV EBX,ECX\n  10090604:  MOV dword ptr [EBP + -0x8],EDI\n  10090607:  MOV EAX,ESI\n  10090609:  JZ 0x1009069e\n  1009060f:  CMP byte ptr [ESI],0x0\n  10090612:  JZ 0x1009069e\n  10090618:  MOV dword ptr [EBP + -0x4],0x10\n  1009061f:  MOV DL,byte ptr [EAX]\n  10090621:  TEST DL,DL\n  10090623:  JZ 0x10090644\n  10090625:  MOVSX EDX,DL\n  10090628:  CMP EDX,0x77\n  1009062b:  JG 0x10090685\n  1009062d:  JZ 0x10090680\n  1009062f:  SUB EDX,0x61\n  10090632:  JZ 0x10090680\n  10090634:  DEC EDX\n  10090635:  JZ 0x10090690\n  10090637:  SUB EDX,0x5\n  1009063a:  JZ 0x10090694\n  1009063c:  SUB EDX,0xb\n  1009063f:  JNZ 0x1009065d\n  10090641:  XOR EDI,EDI\n  10090643:  INC EAX\n  10090644:  MOV ECX,dword ptr [EBP + -0x4]\n  10090647:  ADD dword ptr [EBP + -0x4],0x2\n  1009064b:  MOV EDX,EDI\n  1009064d:  SHL EDX,CL\n  1009064f:  OR dword ptr [EBP + -0x8],EDX\n  10090652:  CMP dword ptr [EBP + -0x4],0x18\n  10090656:  JC 0x1009061f\n  10090658:  CMP byte ptr [EAX],0x0\n  1009065b:  JZ 0x10090699\n  1009065d:  PUSH ESI\n  1009065e:  PUSH 0x10108e1c\n  10090663:  PUSH 0x7d4\n  10090668:  PUSH dword ptr [EBP + 0x8]\n  1009066b:  PUSH dword ptr [EBX]\n  1009066d:  CALL 0x1004cb83\n  10090672:  ADD ESP,0x14\n  10090675:  MOV dword ptr [EBX + 0x4c],0x1\n  1009067c:  XOR EAX,EAX\n  1009067e:  JMP 0x100906a3\n  10090680:  PUSH 0x3\n  10090682:  POP EDI\n  10090683:  JMP 0x10090643\n  10090685:  SUB EDX,0x78\n  10090688:  JZ 0x10090641\n  1009068a:  DEC EDX\n  1009068b:  JZ 0x10090694\n  1009068d:  DEC EDX\n  1009068e:  JNZ 0x1009065d\n  10090690:  PUSH 0x2\n  10090692:  JMP 0x10090682\n  10090694:  XOR EDI,EDI\n  10090696:  INC EDI\n  10090697:  JMP 0x10090643\n  10090699:  MOV EAX,dword ptr [EBP + -0x8]\n  1009069c:  JMP 0x100906a3\n  1009069e:  MOV EAX,0xe40000\n  100906a3:  POP EDI\n  100906a4:  POP ESI\n  100906a5:  POP EBX\n  100906a6:  LEAVE\n  100906a7:  RET 0x4", 
+  "callers": []
+}

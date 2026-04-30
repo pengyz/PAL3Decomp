@@ -1,0 +1,40 @@
+{
+  "address": "0x100768ee", 
+  "size_bytes": 71, 
+  "calling_convention": "unknown", 
+  "signature": "undefined FUN_100768ee(undefined4 param_1, undefined4 param_2, undefined4 param_3)", 
+  "callees": [], 
+  "global_refs": [
+    {
+      "address": "0x0000000c", 
+      "type": null, 
+      "name": "DAT_0000000c"
+    }, 
+    {
+      "address": "0x00000008", 
+      "type": null, 
+      "name": "DAT_00000008"
+    }, 
+    {
+      "address": "0x101111e8", 
+      "type": "undefined4", 
+      "name": "DAT_101111e8"
+    }, 
+    {
+      "address": "0x10106234", 
+      "type": "undefined4", 
+      "name": "DAT_10106234"
+    }, 
+    {
+      "address": "0x00000004", 
+      "type": null, 
+      "name": "DAT_00000004"
+    }
+  ], 
+  "has_custom_name": false, 
+  "decompiled_c": "\nundefined4 FUN_100768ee(int *param_1,int *param_2,undefined4 *param_3)\n\n{\n  int iVar1;\n  int *piVar2;\n  int *piVar3;\n  bool bVar4;\n  \n  *param_3 = 0;\n  iVar1 = 4;\n  bVar4 = true;\n  piVar2 = param_2;\n  piVar3 = &DAT_101111e8;\n  do {\n    if (iVar1 == 0) break;\n    iVar1 = iVar1 + -1;\n    bVar4 = *piVar2 == *piVar3;\n    piVar2 = piVar2 + 1;\n    piVar3 = piVar3 + 1;\n  } while (bVar4);\n  if (!bVar4) {\n    iVar1 = 4;\n    bVar4 = true;\n    piVar2 = &DAT_10106234;\n    do {\n      if (iVar1 == 0) break;\n      iVar1 = iVar1 + -1;\n      bVar4 = *param_2 == *piVar2;\n      param_2 = param_2 + 1;\n      piVar2 = piVar2 + 1;\n    } while (bVar4);\n    if (!bVar4) {\n      return 0x80004002;\n    }\n  }\n  *param_3 = param_1;\n  (**(code **)(*param_1 + 4))(param_1);\n  return 0;\n}\n\n", 
+  "is_thunk": false, 
+  "name": "FUN_100768ee", 
+  "assembly": "  100768ee:  PUSH EBP\n  100768ef:  MOV EBP,ESP\n  100768f1:  MOV EAX,dword ptr [EBP + 0x10]\n  100768f4:  AND dword ptr [EAX],0x0\n  100768f7:  PUSH ESI\n  100768f8:  MOV ESI,dword ptr [EBP + 0xc]\n  100768fb:  PUSH EDI\n  100768fc:  PUSH 0x4\n  100768fe:  POP ECX\n  100768ff:  MOV EDI,0x101111e8\n  10076904:  XOR EDX,EDX\n  10076906:  CMPSD.REPE ES:EDI,ESI\n  10076908:  JZ 0x1007691b\n  1007690a:  MOV ESI,dword ptr [EBP + 0xc]\n  1007690d:  PUSH 0x4\n  1007690f:  POP ECX\n  10076910:  MOV EDI,0x10106234\n  10076915:  XOR EDX,EDX\n  10076917:  CMPSD.REPE ES:EDI,ESI\n  10076919:  JNZ 0x1007692a\n  1007691b:  MOV ECX,dword ptr [EBP + 0x8]\n  1007691e:  MOV dword ptr [EAX],ECX\n  10076920:  MOV EAX,dword ptr [ECX]\n  10076922:  PUSH ECX\n  10076923:  CALL dword ptr [EAX + 0x4]\n  10076926:  XOR EAX,EAX\n  10076928:  JMP 0x1007692f\n  1007692a:  MOV EAX,0x80004002\n  1007692f:  POP EDI\n  10076930:  POP ESI\n  10076931:  POP EBP\n  10076932:  RET 0xc", 
+  "callers": []
+}

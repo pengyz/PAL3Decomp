@@ -1,0 +1,44 @@
+{
+  "address": "0x100f0e93", 
+  "size_bytes": 27, 
+  "calling_convention": "unknown", 
+  "signature": "undefined FUN_100f0e93(undefined4 param_1, undefined4 param_2, undefined4 param_3)", 
+  "callees": [
+    {
+      "address": "0x100f0e37", 
+      "name": "FUN_100f0e37"
+    }
+  ], 
+  "global_refs": [
+    {
+      "address": "0x0000000c", 
+      "type": null, 
+      "name": "DAT_0000000c"
+    }, 
+    {
+      "address": "0x00000008", 
+      "type": null, 
+      "name": "DAT_00000008"
+    }, 
+    {
+      "address": "0x00000004", 
+      "type": null, 
+      "name": "DAT_00000004"
+    }
+  ], 
+  "has_custom_name": false, 
+  "decompiled_c": "\nundefined4 FUN_100f0e93(undefined4 param_1,undefined4 param_2,undefined4 param_3)\n\n{\n  FUN_100f0e37(param_1,param_2,param_3,0);\n  return param_2;\n}\n\n", 
+  "is_thunk": false, 
+  "name": "FUN_100f0e93", 
+  "assembly": "  100f0e93:  PUSH 0x0\n  100f0e95:  PUSH dword ptr [ESP + 0x10]\n  100f0e99:  PUSH dword ptr [ESP + 0x10]\n  100f0e9d:  PUSH dword ptr [ESP + 0x10]\n  100f0ea1:  CALL 0x100f0e37\n  100f0ea6:  MOV EAX,dword ptr [ESP + 0x18]\n  100f0eaa:  ADD ESP,0x10\n  100f0ead:  RET", 
+  "callers": [
+    {
+      "address": "0x100e7bea", 
+      "name": "_init_namebuf"
+    }, 
+    {
+      "address": "0x100e7c4b", 
+      "name": "FUN_100e7c4b"
+    }
+  ]
+}

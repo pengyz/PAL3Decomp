@@ -1,0 +1,35 @@
+{
+  "address": "0x1000ed00", 
+  "size_bytes": 118, 
+  "calling_convention": "unknown", 
+  "signature": "undefined FUN_1000ed00(void)", 
+  "callees": [
+    {
+      "address": "0x100e4b99", 
+      "name": "FUN_100e4b99"
+    }
+  ], 
+  "global_refs": [
+    {
+      "address": "0x-0000004", 
+      "type": null, 
+      "name": "DAT_-0000004"
+    }, 
+    {
+      "address": "0x100f55d8", 
+      "type": "undefined4", 
+      "name": "DAT_100f55d8"
+    }
+  ], 
+  "has_custom_name": false, 
+  "decompiled_c": "\nvoid FUN_1000ed00(void)\n\n{\n  int in_ECX;\n  int iVar1;\n  undefined4 *puVar2;\n  undefined4 *puVar3;\n  int local_4;\n  \n  local_4 = 0x20;\n  puVar2 = (undefined4 *)(in_ECX + 4);\n  do {\n    if (puVar2[-1] != 0) {\n      FUN_100e4b99(*puVar2);\n    }\n    puVar2[-1] = 0;\n    *puVar2 = 0;\n    puVar2[0x29] = 0x3dcccccd;\n    puVar2[0x2a] = *(undefined4 *)(in_ECX + 0x1784);\n    puVar2[0x2b] = 0;\n    puVar2[0x2c] = 0;\n    puVar2[0x2d] = 0;\n    puVar3 = puVar2;\n    for (iVar1 = 0x28; puVar3 = puVar3 + 1, iVar1 != 0; iVar1 = iVar1 + -1) {\n      *puVar3 = 0;\n    }\n    puVar2 = puVar2 + 0x2f;\n    local_4 = local_4 + -1;\n  } while (local_4 != 0);\n  return;\n}\n\n", 
+  "is_thunk": false, 
+  "name": "FUN_1000ed00", 
+  "assembly": "  1000ed00:  PUSH ECX\n  1000ed01:  PUSH EBX\n  1000ed02:  PUSH EBP\n  1000ed03:  MOV EBP,ECX\n  1000ed05:  PUSH ESI\n  1000ed06:  PUSH EDI\n  1000ed07:  MOV dword ptr [ESP + 0x10],0x20\n  1000ed0f:  LEA ESI,[EBP + 0x4]\n  1000ed12:  XOR EBX,EBX\n  1000ed14:  CMP dword ptr [ESI + -0x4],EBX\n  1000ed17:  JZ 0x1000ed24\n  1000ed19:  MOV EAX,dword ptr [ESI]\n  1000ed1b:  PUSH EAX\n  1000ed1c:  CALL 0x100e4b99\n  1000ed21:  ADD ESP,0x4\n  1000ed24:  MOV dword ptr [ESI + -0x4],EBX\n  1000ed27:  MOV dword ptr [ESI],EBX\n  1000ed29:  MOV ECX,dword ptr [0x100f55d8]\n  1000ed2f:  XOR EAX,EAX\n  1000ed31:  MOV dword ptr [ESI + 0xa4],ECX\n  1000ed37:  MOV EDX,dword ptr [EBP + 0x1784]\n  1000ed3d:  MOV dword ptr [ESI + 0xa8],EDX\n  1000ed43:  MOV dword ptr [ESI + 0xac],EBX\n  1000ed49:  MOV dword ptr [ESI + 0xb0],EBX\n  1000ed4f:  MOV ECX,0x28\n  1000ed54:  LEA EDI,[ESI + 0x4]\n  1000ed57:  MOV dword ptr [ESI + 0xb4],EBX\n  1000ed5d:  STOSD.REP ES:EDI\n  1000ed5f:  MOV EAX,dword ptr [ESP + 0x10]\n  1000ed63:  ADD ESI,0xbc\n  1000ed69:  DEC EAX\n  1000ed6a:  MOV dword ptr [ESP + 0x10],EAX\n  1000ed6e:  JNZ 0x1000ed14\n  1000ed70:  POP EDI\n  1000ed71:  POP ESI\n  1000ed72:  POP EBP\n  1000ed73:  POP EBX\n  1000ed74:  POP ECX\n  1000ed75:  RET", 
+  "callers": [
+    {
+      "address": "0x10015620", 
+      "name": "ResetBladeMgr"
+    }
+  ]
+}

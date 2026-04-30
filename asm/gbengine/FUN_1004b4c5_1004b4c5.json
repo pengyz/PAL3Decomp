@@ -1,0 +1,43 @@
+{
+  "address": "0x1004b4c5", 
+  "size_bytes": 65, 
+  "calling_convention": "unknown", 
+  "signature": "undefined FUN_1004b4c5(void)", 
+  "callees": [
+    {
+      "address": "0x00000005", 
+      "name": "UnmapViewOfFile"
+    }, 
+    {
+      "address": "0x0000000e", 
+      "name": "CloseHandle"
+    }, 
+    {
+      "address": "0x0000000e", 
+      "name": "CloseHandle"
+    }
+  ], 
+  "global_refs": [
+    {
+      "address": "0x100f5040", 
+      "type": "pointer", 
+      "name": "DAT_100f5040"
+    }, 
+    {
+      "address": "0x100f5064", 
+      "type": "pointer", 
+      "name": "DAT_100f5064"
+    }
+  ], 
+  "has_custom_name": false, 
+  "decompiled_c": "\nundefined4 FUN_1004b4c5(void)\n\n{\n  undefined4 *in_ECX;\n  \n  if ((LPCVOID)in_ECX[2] != (LPCVOID)0x0) {\n    UnmapViewOfFile((LPCVOID)in_ECX[2]);\n    in_ECX[2] = 0;\n    in_ECX[3] = 0;\n  }\n  if ((HANDLE)in_ECX[1] != (HANDLE)0xffffffff) {\n    CloseHandle((HANDLE)in_ECX[1]);\n    in_ECX[1] = 0xffffffff;\n  }\n  if ((HANDLE)*in_ECX != (HANDLE)0xffffffff) {\n    CloseHandle((HANDLE)*in_ECX);\n    *in_ECX = 0xffffffff;\n  }\n  return 0;\n}\n\n", 
+  "is_thunk": false, 
+  "name": "FUN_1004b4c5", 
+  "assembly": "  1004b4c5:  PUSH ESI\n  1004b4c6:  MOV ESI,ECX\n  1004b4c8:  MOV EAX,dword ptr [ESI + 0x8]\n  1004b4cb:  TEST EAX,EAX\n  1004b4cd:  PUSH EDI\n  1004b4ce:  JZ 0x1004b4df\n  1004b4d0:  PUSH EAX\n  1004b4d1:  CALL dword ptr [0x100f5040]\n  1004b4d7:  AND dword ptr [ESI + 0x8],0x0\n  1004b4db:  AND dword ptr [ESI + 0xc],0x0\n  1004b4df:  MOV EAX,dword ptr [ESI + 0x4]\n  1004b4e2:  CMP EAX,-0x1\n  1004b4e5:  MOV EDI,dword ptr [0x100f5064]\n  1004b4eb:  JZ 0x1004b4f4\n  1004b4ed:  PUSH EAX\n  1004b4ee:  CALL EDI\n  1004b4f0:  OR dword ptr [ESI + 0x4],0xffffffff\n  1004b4f4:  MOV EAX,dword ptr [ESI]\n  1004b4f6:  CMP EAX,-0x1\n  1004b4f9:  JZ 0x1004b501\n  1004b4fb:  PUSH EAX\n  1004b4fc:  CALL EDI\n  1004b4fe:  OR dword ptr [ESI],0xffffffff\n  1004b501:  POP EDI\n  1004b502:  XOR EAX,EAX\n  1004b504:  POP ESI\n  1004b505:  RET", 
+  "callers": [
+    {
+      "address": "0x1004b506", 
+      "name": "FUN_1004b506"
+    }
+  ]
+}

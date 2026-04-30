@@ -1,0 +1,19 @@
+{
+  "address": "0x10005ea0", 
+  "size_bytes": 28, 
+  "calling_convention": "__thiscall", 
+  "signature": "undefined __thiscall gbVFileSystem(gbVFileSystem * this)", 
+  "callees": [
+    {
+      "address": "0x1002c4b0", 
+      "name": "CPK"
+    }
+  ], 
+  "global_refs": [], 
+  "has_custom_name": true, 
+  "decompiled_c": "\n/* public: __thiscall gbVFileSystem::gbVFileSystem(void) */\n\ngbVFileSystem * __thiscall gbVFileSystem::gbVFileSystem(gbVFileSystem *this)\n\n{\n                    /* 0x5ea0  105  ??0gbVFileSystem@@QAE@XZ */\n  CPK::CPK((CPK *)(this + 0x18));\n  *(undefined4 *)this = 0;\n  *(undefined4 *)(this + 0x10) = 0;\n  return this;\n}\n\n", 
+  "is_thunk": false, 
+  "name": "gbVFileSystem", 
+  "assembly": "  10005ea0:  PUSH ESI\n  10005ea1:  MOV ESI,ECX\n  10005ea3:  LEA ECX,[ESI + 0x18]\n  10005ea6:  CALL 0x1002c4b0\n  10005eab:  MOV dword ptr [ESI],0x0\n  10005eb1:  MOV dword ptr [ESI + 0x10],0x0\n  10005eb8:  MOV EAX,ESI\n  10005eba:  POP ESI\n  10005ebb:  RET", 
+  "callers": []
+}

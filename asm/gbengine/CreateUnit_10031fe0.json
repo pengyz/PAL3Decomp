@@ -1,0 +1,75 @@
+{
+  "address": "0x10031fe0", 
+  "size_bytes": 271, 
+  "calling_convention": "__thiscall", 
+  "signature": "void __thiscall CreateUnit(gbDropGroup * this, float param_1, gbCamera * param_2)", 
+  "callees": [
+    {
+      "address": "0x100e4be4", 
+      "name": "__ftol"
+    }, 
+    {
+      "address": "0x10027620", 
+      "name": "FUN_10027620"
+    }, 
+    {
+      "address": "0x10027620", 
+      "name": "FUN_10027620"
+    }, 
+    {
+      "address": "0x10027620", 
+      "name": "FUN_10027620"
+    }, 
+    {
+      "address": "0x10027620", 
+      "name": "FUN_10027620"
+    }, 
+    {
+      "address": "0x10027620", 
+      "name": "FUN_10027620"
+    }
+  ], 
+  "global_refs": [
+    {
+      "address": "0x00000004", 
+      "type": null, 
+      "name": "DAT_00000004"
+    }, 
+    {
+      "address": "0x100f53a0", 
+      "type": null, 
+      "name": "DAT_100f53a0"
+    }, 
+    {
+      "address": "0x100f5508", 
+      "type": null, 
+      "name": "DAT_100f5508"
+    }, 
+    {
+      "address": "0x-0000014", 
+      "type": null, 
+      "name": "DAT_-0000014"
+    }, 
+    {
+      "address": "0x100f5664", 
+      "type": null, 
+      "name": "DAT_100f5664"
+    }, 
+    {
+      "address": "0x-0000018", 
+      "type": null, 
+      "name": "DAT_-0000018"
+    }
+  ], 
+  "has_custom_name": true, 
+  "decompiled_c": "\n/* private: void __thiscall gbDropGroup::CreateUnit(float,class gbCamera *) */\n\nvoid __thiscall gbDropGroup::CreateUnit(gbDropGroup *this,float param_1,gbCamera *param_2)\n\n{\n  int iVar1;\n  int iVar2;\n  float *pfVar3;\n  float10 extraout_ST0;\n  float10 fVar4;\n  float10 extraout_ST1;\n  \n                    /* 0x31fe0  360  ?CreateUnit@gbDropGroup@@AAEXMPAVgbCamera@@@Z */\n  *(float *)(this + 0x40) = param_1 + *(float *)(this + 0x40);\n  param_1 = (float)__ftol();\n  if (0 < (int)param_1) {\n    iVar2 = 0;\n    *(float *)(this + 0x40) = (float)(extraout_ST1 - (float10)(int)param_1 / extraout_ST0);\n    if (0 < *(int *)(this + 8)) {\n      iVar1 = 0;\n      do {\n        pfVar3 = (float *)(*(int *)(this + 0x44) + iVar1);\n        if (*pfVar3 <= 0.0) {\n          fVar4 = (float10)FUN_10027620(*(float *)(this + 0x14) * -0.5,*(float *)(this + 0x14) * 0.5\n                                       );\n          pfVar3[4] = (float)fVar4;\n          fVar4 = (float10)FUN_10027620(-*(float *)(this + 0x14),*(float *)(this + 0x14) * -0.5);\n          pfVar3[6] = (float)fVar4;\n          fVar4 = (float10)FUN_10027620(*(undefined4 *)(this + 0x2c),*(undefined4 *)(this + 0x30));\n          pfVar3[5] = (float)fVar4;\n          fVar4 = (float10)FUN_10027620(*(undefined4 *)(this + 0x1c),*(undefined4 *)(this + 0x20));\n          *pfVar3 = (float)fVar4;\n          pfVar3[3] = 0.0;\n          pfVar3[1] = 0.0;\n          fVar4 = (float10)FUN_10027620(*(undefined4 *)(this + 0x24),*(undefined4 *)(this + 0x28));\n          pfVar3[2] = (float)-fVar4;\n          param_1 = (float)((int)param_1 + -1);\n          *(int *)(this + 0xc) = *(int *)(this + 0xc) + 1;\n          if (param_1 == 0.0) {\n            return;\n          }\n        }\n        iVar2 = iVar2 + 1;\n        iVar1 = iVar1 + 0x28;\n      } while (iVar2 < *(int *)(this + 8));\n      return;\n    }\n  }\n  return;\n}\n\n", 
+  "is_thunk": false, 
+  "name": "CreateUnit", 
+  "assembly": "  10031fe0:  FLD dword ptr [ESP + 0x4]\n  10031fe4:  PUSH EBX\n  10031fe5:  PUSH EBP\n  10031fe6:  PUSH ESI\n  10031fe7:  MOV ESI,ECX\n  10031fe9:  PUSH EDI\n  10031fea:  FADD dword ptr [ESI + 0x40]\n  10031fed:  FST dword ptr [ESI + 0x40]\n  10031ff0:  FILD dword ptr [ESI + 0x18]\n  10031ff3:  FLD ST0\n  10031ff5:  FMUL ST2\n  10031ff7:  CALL 0x100e4be4\n  10031ffc:  TEST EAX,EAX\n  10031ffe:  MOV dword ptr [ESP + 0x14],EAX\n  10032002:  JLE 0x100320e4\n  10032008:  FILD dword ptr [ESP + 0x14]\n  1003200c:  MOV EAX,dword ptr [ESI + 0x8]\n  1003200f:  XOR EBP,EBP\n  10032011:  TEST EAX,EAX\n  10032013:  FDIV ST0,ST1\n  10032015:  FSUBR ST0,ST2\n  10032017:  FSTP dword ptr [ESI + 0x40]\n  1003201a:  FSTP ST0\n  1003201c:  FSTP ST0\n  1003201e:  JLE 0x100320e8\n  10032024:  XOR EBX,EBX\n  10032026:  MOV EDI,dword ptr [ESI + 0x44]\n  10032029:  ADD EDI,EBX\n  1003202b:  FLD dword ptr [EDI]\n  1003202d:  FCOMP dword ptr [0x100f53a0]\n  10032033:  FNSTSW AX\n  10032035:  TEST AH,0x41\n  10032038:  JZ 0x100320ce\n  1003203e:  FLD dword ptr [ESI + 0x14]\n  10032041:  FMUL dword ptr [0x100f5508]\n  10032047:  PUSH ECX\n  10032048:  FSTP dword ptr [ESP]\n  1003204b:  FLD dword ptr [ESI + 0x14]\n  1003204e:  FMUL dword ptr [0x100f5664]\n  10032054:  PUSH ECX\n  10032055:  FSTP dword ptr [ESP]\n  10032058:  CALL 0x10027620\n  1003205d:  FSTP dword ptr [EDI + 0x10]\n  10032060:  FLD dword ptr [ESI + 0x14]\n  10032063:  FMUL dword ptr [0x100f5664]\n  10032069:  ADD ESP,0x4\n  1003206c:  FSTP dword ptr [ESP]\n  1003206f:  FLD dword ptr [ESI + 0x14]\n  10032072:  PUSH ECX\n  10032073:  FCHS\n  10032075:  FSTP dword ptr [ESP]\n  10032078:  CALL 0x10027620\n  1003207d:  FSTP dword ptr [EDI + 0x18]\n  10032080:  MOV EAX,dword ptr [ESI + 0x30]\n  10032083:  MOV ECX,dword ptr [ESI + 0x2c]\n  10032086:  PUSH EAX\n  10032087:  PUSH ECX\n  10032088:  CALL 0x10027620\n  1003208d:  FSTP dword ptr [EDI + 0x14]\n  10032090:  MOV EDX,dword ptr [ESI + 0x20]\n  10032093:  MOV EAX,dword ptr [ESI + 0x1c]\n  10032096:  PUSH EDX\n  10032097:  PUSH EAX\n  10032098:  CALL 0x10027620\n  1003209d:  FSTP dword ptr [EDI]\n  1003209f:  XOR EAX,EAX\n  100320a1:  MOV dword ptr [EDI + 0xc],EAX\n  100320a4:  MOV dword ptr [EDI + 0x4],EAX\n  100320a7:  MOV ECX,dword ptr [ESI + 0x28]\n  100320aa:  MOV EDX,dword ptr [ESI + 0x24]\n  100320ad:  PUSH ECX\n  100320ae:  PUSH EDX\n  100320af:  CALL 0x10027620\n  100320b4:  MOV EAX,dword ptr [ESP + 0x34]\n  100320b8:  ADD ESP,0x20\n  100320bb:  FCHS\n  100320bd:  FSTP dword ptr [EDI + 0x8]\n  100320c0:  MOV ECX,dword ptr [ESI + 0xc]\n  100320c3:  INC ECX\n  100320c4:  DEC EAX\n  100320c5:  MOV dword ptr [ESI + 0xc],ECX\n  100320c8:  MOV dword ptr [ESP + 0x14],EAX\n  100320cc:  JZ 0x100320e8\n  100320ce:  MOV EAX,dword ptr [ESI + 0x8]\n  100320d1:  INC EBP\n  100320d2:  ADD EBX,0x28\n  100320d5:  CMP EBP,EAX\n  100320d7:  JL 0x10032026\n  100320dd:  POP EDI\n  100320de:  POP ESI\n  100320df:  POP EBP\n  100320e0:  POP EBX\n  100320e1:  RET 0x8\n  100320e4:  FSTP ST0\n  100320e6:  FSTP ST0\n  100320e8:  POP EDI\n  100320e9:  POP ESI\n  100320ea:  POP EBP\n  100320eb:  POP EBX\n  100320ec:  RET 0x8", 
+  "callers": [
+    {
+      "address": "0x10031f40", 
+      "name": "Render"
+    }
+  ]
+}

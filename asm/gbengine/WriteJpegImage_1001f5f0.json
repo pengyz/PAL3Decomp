@@ -1,0 +1,102 @@
+{
+  "address": "0x1001f5f0", 
+  "size_bytes": 193, 
+  "calling_convention": "__thiscall", 
+  "signature": "void __thiscall WriteJpegImage(gbImage2D * this, char * param_1, int param_2)", 
+  "callees": [
+    {
+      "address": "0x100e4f80", 
+      "name": "FUN_100e4f80"
+    }, 
+    {
+      "address": "0x100e4562", 
+      "name": "ijlInit"
+    }, 
+    {
+      "address": "0x100e4568", 
+      "name": "ijlWrite"
+    }, 
+    {
+      "address": "0x100e4556", 
+      "name": "ijlFree"
+    }
+  ], 
+  "global_refs": [
+    {
+      "address": "0x00000000", 
+      "type": null, 
+      "name": "DAT_00000000"
+    }, 
+    {
+      "address": "0x00000030", 
+      "type": null, 
+      "name": "DAT_00000030"
+    }, 
+    {
+      "address": "0x0000000c", 
+      "type": null, 
+      "name": "DAT_0000000c"
+    }, 
+    {
+      "address": "0x00000004", 
+      "type": null, 
+      "name": "DAT_00000004"
+    }, 
+    {
+      "address": "0x00000008", 
+      "type": null, 
+      "name": "DAT_00000008"
+    }, 
+    {
+      "address": "0x00000010", 
+      "type": null, 
+      "name": "DAT_00000010"
+    }, 
+    {
+      "address": "0x0000002c", 
+      "type": null, 
+      "name": "DAT_0000002c"
+    }, 
+    {
+      "address": "0x00000014", 
+      "type": null, 
+      "name": "DAT_00000014"
+    }, 
+    {
+      "address": "0x00000018", 
+      "type": null, 
+      "name": "DAT_00000018"
+    }, 
+    {
+      "address": "0x00000020", 
+      "type": null, 
+      "name": "DAT_00000020"
+    }, 
+    {
+      "address": "0x00000034", 
+      "type": null, 
+      "name": "DAT_00000034"
+    }, 
+    {
+      "address": "0x00000038", 
+      "type": null, 
+      "name": "DAT_00000038"
+    }, 
+    {
+      "address": "0x0000003c", 
+      "type": null, 
+      "name": "DAT_0000003c"
+    }, 
+    {
+      "address": "0x00000050", 
+      "type": null, 
+      "name": "DAT_00000050"
+    }
+  ], 
+  "has_custom_name": true, 
+  "decompiled_c": "\n/* public: void __thiscall gbImage2D::WriteJpegImage(char *,int) */\n\nvoid __thiscall gbImage2D::WriteJpegImage(gbImage2D *this,char *param_1,int param_2)\n\n{\n  int iVar1;\n  int extraout_ECX;\n  int iStack0000000c;\n  int iStack00000010;\n  undefined4 uStack00000014;\n  undefined4 uStack00000018;\n  int iStack0000002c;\n  int iStack00000030;\n  undefined4 uStack00000034;\n  undefined4 uStack00000038;\n  undefined4 uStack0000003c;\n  \n                    /* 0x1f5f0  958  ?WriteJpegImage@gbImage2D@@QAEXPADH@Z */\n  FUN_100e4f80();\n  iVar1 = ijlInit(&stack0x00000000);\n  if ((iVar1 == 0) && (*(int *)(extraout_ECX + 0xb4) == 0x18)) {\n    iStack00000030 = *(int *)(extraout_ECX + 0x84);\n    iStack0000002c = *(int *)(extraout_ECX + 0x80);\n    iStack0000000c = -iStack00000030;\n    iStack00000010 = (iStack0000002c * 3 + 3U & 0xfffffffc) + iStack0000002c * -3;\n    uStack00000014 = 3;\n    uStack00000018 = 2;\n    uStack00000034 = 3;\n    uStack00000038 = 3;\n    uStack0000003c = 1;\n    iVar1 = ijlWrite(&stack0x00000000,8);\n    if (iVar1 == 0) {\n      ijlFree(&stack0x00000000);\n    }\n  }\n  return;\n}\n\n", 
+  "is_thunk": false, 
+  "name": "WriteJpegImage", 
+  "assembly": "  1001f5f0:  MOV EAX,0x4e68\n  1001f5f5:  CALL 0x100e4f80\n  1001f5fa:  LEA EAX,[ESP]\n  1001f5fe:  PUSH ESI\n  1001f5ff:  MOV ESI,ECX\n  1001f601:  PUSH EAX\n  1001f602:  CALL 0x100e4562\n  1001f607:  TEST EAX,EAX\n  1001f609:  JNZ 0x1001f6a7\n  1001f60f:  CMP dword ptr [ESI + 0xb4],0x18\n  1001f616:  JNZ 0x1001f6a7\n  1001f61c:  MOV ECX,dword ptr [ESI + 0x84]\n  1001f622:  MOV EAX,dword ptr [ESI + 0x80]\n  1001f628:  MOV EDX,ECX\n  1001f62a:  MOV dword ptr [ESP + 0x34],ECX\n  1001f62e:  NEG EDX\n  1001f630:  MOV dword ptr [ESP + 0x10],EDX\n  1001f634:  MOV EDX,dword ptr [ESI + 0xb8]\n  1001f63a:  MOV dword ptr [ESP + 0x8],EDX\n  1001f63e:  LEA EDX,[EAX + EAX*0x2 + 0x3]\n  1001f642:  AND EDX,0xfffffffc\n  1001f645:  LEA ESI,[EAX + EAX*0x2]\n  1001f648:  SUB EDX,ESI\n  1001f64a:  MOV ESI,dword ptr [ESP + 0x4e70]\n  1001f651:  MOV dword ptr [ESP + 0xc],EAX\n  1001f655:  MOV dword ptr [ESP + 0x14],EDX\n  1001f659:  MOV dword ptr [ESP + 0x30],EAX\n  1001f65d:  MOV EAX,dword ptr [ESP + 0x4e74]\n  1001f664:  LEA ECX,[ESP + 0x4]\n  1001f668:  MOV EDX,0x3\n  1001f66d:  PUSH 0x8\n  1001f66f:  PUSH ECX\n  1001f670:  MOV dword ptr [ESP + 0x20],EDX\n  1001f674:  MOV dword ptr [ESP + 0x24],0x2\n  1001f67c:  MOV dword ptr [ESP + 0x2c],ESI\n  1001f680:  MOV dword ptr [ESP + 0x40],EDX\n  1001f684:  MOV dword ptr [ESP + 0x44],EDX\n  1001f688:  MOV dword ptr [ESP + 0x48],0x1\n  1001f690:  MOV dword ptr [ESP + 0x5c],EAX\n  1001f694:  CALL 0x100e4568\n  1001f699:  TEST EAX,EAX\n  1001f69b:  JNZ 0x1001f6a7\n  1001f69d:  LEA EDX,[ESP + 0x4]\n  1001f6a1:  PUSH EDX\n  1001f6a2:  CALL 0x100e4556\n  1001f6a7:  POP ESI\n  1001f6a8:  ADD ESP,0x4e68\n  1001f6ae:  RET 0x8", 
+  "callers": []
+}

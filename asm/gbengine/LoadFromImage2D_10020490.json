@@ -1,0 +1,58 @@
+{
+  "address": "0x10020490", 
+  "size_bytes": 269, 
+  "calling_convention": "__thiscall", 
+  "signature": "void __thiscall LoadFromImage2D(gbTexture * this, gbImage2D * param_1)", 
+  "callees": [
+    {
+      "address": "0x10027670", 
+      "name": "FUN_10027670"
+    }, 
+    {
+      "address": "0x10027670", 
+      "name": "FUN_10027670"
+    }, 
+    {
+      "address": "0x1001e980", 
+      "name": "ScaleTo"
+    }
+  ], 
+  "global_refs": [
+    {
+      "address": "0x10120190", 
+      "type": "undefined4", 
+      "name": "DAT_10120190"
+    }, 
+    {
+      "address": "0x10120194", 
+      "type": "undefined4", 
+      "name": "DAT_10120194"
+    }, 
+    {
+      "address": "0x00000004", 
+      "type": null, 
+      "name": "DAT_00000004"
+    }, 
+    {
+      "address": "0x10140dac", 
+      "type": "undefined4", 
+      "name": "DAT_10140dac"
+    }, 
+    {
+      "address": "0x10140db4", 
+      "type": "undefined4", 
+      "name": "DAT_10140db4"
+    }
+  ], 
+  "has_custom_name": true, 
+  "decompiled_c": "\n/* public: void __thiscall gbTexture::LoadFromImage2D(class gbImage2D *) */\n\nvoid __thiscall gbTexture::LoadFromImage2D(gbTexture *this,gbImage2D *param_1)\n\n{\n  int iVar1;\n  int iVar2;\n  int iVar3;\n  undefined4 uVar4;\n  \n                    /* 0x20490  683  ?LoadFromImage2D@gbTexture@@QAEXPAVgbImage2D@@@Z */\n  if (*(int *)(this + 0x10) != 0) {\n    return;\n  }\n  iVar1 = FUN_10027670(*(undefined4 *)(*(int *)(this + 0x20) + 0x80));\n  iVar2 = FUN_10027670(*(undefined4 *)(*(int *)(this + 0x20) + 0x84));\n  if (DAT_10120190 < iVar1) {\n    iVar1 = DAT_10120190;\n  }\n  if (DAT_10120194 < iVar2) {\n    iVar2 = DAT_10120194;\n  }\n  gbImage2D::ScaleTo(*(gbImage2D **)(this + 0x20),iVar1,iVar2);\n  iVar2 = DAT_10140dac;\n  if (*(int *)param_1 != 0) {\n    iVar2 = *(int *)(param_1 + 0x74);\n  }\n  if (iVar2 == 0) {\n    iVar2 = 1;\n  }\n  else {\n    iVar3 = *(int *)(param_1 + 0x80);\n    iVar2 = 0;\n    for (iVar1 = *(int *)(param_1 + 0x84); (0 < iVar3 || (0 < iVar1)); iVar1 = iVar1 >> 1) {\n      iVar3 = iVar3 >> 1;\n      iVar2 = iVar2 + 1;\n    }\n  }\n  if (*(int *)(param_1 + 0xb4) == 0x18) {\n    if (DAT_10140db4 == 0) {\n      uVar4 = 1;\n      goto LAB_1002056b;\n    }\n    if (DAT_10140db4 == 1) {\n      uVar4 = 3;\n      goto LAB_1002056b;\n    }\n  }\n  else if (*(int *)(param_1 + 0xb4) == 0x20) {\n    if (DAT_10140db4 == 0) {\n      uVar4 = 2;\n      goto LAB_1002056b;\n    }\n    if (DAT_10140db4 == 1) {\n      uVar4 = 5;\n      goto LAB_1002056b;\n    }\n  }\n  uVar4 = 0;\nLAB_1002056b:\n  (**(code **)(*(int *)this + 4))\n            (*(undefined4 *)(param_1 + 0x80),*(undefined4 *)(param_1 + 0x84),uVar4,iVar2,\n             *(undefined4 *)(param_1 + 0x88),*(undefined4 *)(param_1 + 0xb8));\n  *(undefined4 *)(this + 0x10) = 1;\n  return;\n}\n\n", 
+  "is_thunk": false, 
+  "name": "LoadFromImage2D", 
+  "assembly": "  10020490:  PUSH EDI\n  10020491:  MOV EDI,ECX\n  10020493:  MOV EAX,dword ptr [EDI + 0x10]\n  10020496:  TEST EAX,EAX\n  10020498:  JNZ 0x10020599\n  1002049e:  MOV EAX,dword ptr [EDI + 0x20]\n  100204a1:  PUSH EBX\n  100204a2:  PUSH ESI\n  100204a3:  MOV EAX,dword ptr [EAX + 0x80]\n  100204a9:  PUSH EAX\n  100204aa:  CALL 0x10027670\n  100204af:  MOV ECX,dword ptr [EDI + 0x20]\n  100204b2:  MOV ESI,EAX\n  100204b4:  MOV EAX,dword ptr [ECX + 0x84]\n  100204ba:  PUSH EAX\n  100204bb:  CALL 0x10027670\n  100204c0:  MOV ECX,dword ptr [0x10120190]\n  100204c6:  ADD ESP,0x8\n  100204c9:  CMP ESI,ECX\n  100204cb:  JLE 0x100204cf\n  100204cd:  MOV ESI,ECX\n  100204cf:  MOV ECX,dword ptr [0x10120194]\n  100204d5:  CMP EAX,ECX\n  100204d7:  JLE 0x100204db\n  100204d9:  MOV EAX,ECX\n  100204db:  MOV ECX,dword ptr [EDI + 0x20]\n  100204de:  PUSH EAX\n  100204df:  PUSH ESI\n  100204e0:  CALL 0x1001e980\n  100204e5:  MOV EAX,dword ptr [ESP + 0x10]\n  100204e9:  CMP dword ptr [EAX],0x0\n  100204ec:  JZ 0x100204f3\n  100204ee:  MOV ECX,dword ptr [EAX + 0x74]\n  100204f1:  JMP 0x100204f9\n  100204f3:  MOV ECX,dword ptr [0x10140dac]\n  100204f9:  TEST ECX,ECX\n  100204fb:  JZ 0x1002051a\n  100204fd:  MOV EDX,dword ptr [EAX + 0x84]\n  10020503:  MOV ECX,dword ptr [EAX + 0x80]\n  10020509:  XOR ESI,ESI\n  1002050b:  TEST ECX,ECX\n  1002050d:  JG 0x10020513\n  1002050f:  TEST EDX,EDX\n  10020511:  JLE 0x1002051f\n  10020513:  SAR ECX,0x1\n  10020515:  SAR EDX,0x1\n  10020517:  INC ESI\n  10020518:  JMP 0x1002050b\n  1002051a:  MOV ESI,0x1\n  1002051f:  MOV ECX,dword ptr [EAX + 0xb4]\n  10020525:  CMP ECX,0x18\n  10020528:  JZ 0x1002054c\n  1002052a:  CMP ECX,0x20\n  1002052d:  JNZ 0x10020569\n  1002052f:  MOV ECX,dword ptr [0x10140db4]\n  10020535:  TEST ECX,ECX\n  10020537:  JNZ 0x10020540\n  10020539:  MOV ECX,0x2\n  1002053e:  JMP 0x1002056b\n  10020540:  CMP ECX,0x1\n  10020543:  JNZ 0x10020569\n  10020545:  MOV ECX,0x5\n  1002054a:  JMP 0x1002056b\n  1002054c:  MOV ECX,dword ptr [0x10140db4]\n  10020552:  TEST ECX,ECX\n  10020554:  JNZ 0x1002055d\n  10020556:  MOV ECX,0x1\n  1002055b:  JMP 0x1002056b\n  1002055d:  CMP ECX,0x1\n  10020560:  JNZ 0x10020569\n  10020562:  MOV ECX,0x3\n  10020567:  JMP 0x1002056b\n  10020569:  XOR ECX,ECX\n  1002056b:  MOV EBX,dword ptr [EAX + 0xb8]\n  10020571:  MOV EDX,dword ptr [EDI]\n  10020573:  PUSH EBX\n  10020574:  MOV EBX,dword ptr [EAX + 0x88]\n  1002057a:  PUSH EBX\n  1002057b:  PUSH ESI\n  1002057c:  PUSH ECX\n  1002057d:  MOV ECX,dword ptr [EAX + 0x84]\n  10020583:  MOV EAX,dword ptr [EAX + 0x80]\n  10020589:  PUSH ECX\n  1002058a:  PUSH EAX\n  1002058b:  MOV ECX,EDI\n  1002058d:  CALL dword ptr [EDX + 0x4]\n  10020590:  POP ESI\n  10020591:  MOV dword ptr [EDI + 0x10],0x1\n  10020598:  POP EBX\n  10020599:  POP EDI\n  1002059a:  RET 0x4", 
+  "callers": [
+    {
+      "address": "0x100205a0", 
+      "name": "LoadTexture"
+    }
+  ]
+}

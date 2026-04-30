@@ -1,0 +1,54 @@
+{
+  "address": "0x100ef010", 
+  "size_bytes": 129, 
+  "calling_convention": "__cdecl", 
+  "signature": "int __cdecl _strcmp(char * _Str1, char * _Str2)", 
+  "callees": [], 
+  "global_refs": [
+    {
+      "address": "0x00000004", 
+      "type": null, 
+      "name": "DAT_00000004"
+    }, 
+    {
+      "address": "0x00000008", 
+      "type": null, 
+      "name": "DAT_00000008"
+    }
+  ], 
+  "has_custom_name": true, 
+  "decompiled_c": "\n/* Library Function - Single Match\n    _strcmp\n   \n   Libraries: Visual Studio 1998 Debug, Visual Studio 1998 Release */\n\nint __cdecl _strcmp(char *_Str1,char *_Str2)\n\n{\n  undefined2 uVar1;\n  undefined4 uVar2;\n  byte bVar3;\n  byte bVar4;\n  bool bVar5;\n  \n  if (((uint)_Str1 & 3) != 0) {\n    if (((uint)_Str1 & 1) != 0) {\n      bVar4 = *_Str1;\n      _Str1 = _Str1 + 1;\n      bVar5 = bVar4 < (byte)*_Str2;\n      if (bVar4 != *_Str2) goto LAB_100ef054;\n      _Str2 = _Str2 + 1;\n      if (bVar4 == 0) {\n        return 0;\n      }\n      if (((uint)_Str1 & 2) == 0) goto LAB_100ef020;\n    }\n    uVar1 = *(undefined2 *)_Str1;\n    _Str1 = _Str1 + 2;\n    bVar4 = (byte)uVar1;\n    bVar5 = bVar4 < (byte)*_Str2;\n    if (bVar4 != *_Str2) goto LAB_100ef054;\n    if (bVar4 == 0) {\n      return 0;\n    }\n    bVar4 = (byte)((ushort)uVar1 >> 8);\n    bVar5 = bVar4 < ((byte *)_Str2)[1];\n    if (bVar4 != ((byte *)_Str2)[1]) goto LAB_100ef054;\n    if (bVar4 == 0) {\n      return 0;\n    }\n    _Str2 = (char *)((byte *)_Str2 + 2);\n  }\nLAB_100ef020:\n  while( true ) {\n    uVar2 = *(undefined4 *)_Str1;\n    bVar4 = (byte)uVar2;\n    bVar5 = bVar4 < (byte)*_Str2;\n    if (bVar4 != *_Str2) break;\n    if (bVar4 == 0) {\n      return 0;\n    }\n    bVar4 = (byte)((uint)uVar2 >> 8);\n    bVar5 = bVar4 < ((byte *)_Str2)[1];\n    if (bVar4 != ((byte *)_Str2)[1]) break;\n    if (bVar4 == 0) {\n      return 0;\n    }\n    bVar4 = (byte)((uint)uVar2 >> 0x10);\n    bVar5 = bVar4 < ((byte *)_Str2)[2];\n    if (bVar4 != ((byte *)_Str2)[2]) break;\n    bVar3 = (byte)((uint)uVar2 >> 0x18);\n    if (bVar4 == 0) {\n      return 0;\n    }\n    bVar5 = bVar3 < ((byte *)_Str2)[3];\n    if (bVar3 != ((byte *)_Str2)[3]) break;\n    _Str2 = (char *)((byte *)_Str2 + 4);\n    _Str1 = _Str1 + 4;\n    if (bVar3 == 0) {\n      return 0;\n    }\n  }\nLAB_100ef054:\n  return (uint)bVar5 * -2 + 1;\n}\n\n", 
+  "is_thunk": false, 
+  "name": "_strcmp", 
+  "assembly": "  100ef010:  MOV EDX,dword ptr [ESP + 0x4]\n  100ef014:  MOV ECX,dword ptr [ESP + 0x8]\n  100ef018:  TEST EDX,0x3\n  100ef01e:  JNZ 0x100ef05c\n  100ef020:  MOV EAX,dword ptr [EDX]\n  100ef022:  CMP AL,byte ptr [ECX]\n  100ef024:  JNZ 0x100ef054\n  100ef026:  OR AL,AL\n  100ef028:  JZ 0x100ef050\n  100ef02a:  CMP AH,byte ptr [ECX + 0x1]\n  100ef02d:  JNZ 0x100ef054\n  100ef02f:  OR AH,AH\n  100ef031:  JZ 0x100ef050\n  100ef033:  SHR EAX,0x10\n  100ef036:  CMP AL,byte ptr [ECX + 0x2]\n  100ef039:  JNZ 0x100ef054\n  100ef03b:  OR AL,AL\n  100ef03d:  JZ 0x100ef050\n  100ef03f:  CMP AH,byte ptr [ECX + 0x3]\n  100ef042:  JNZ 0x100ef054\n  100ef044:  ADD ECX,0x4\n  100ef047:  ADD EDX,0x4\n  100ef04a:  OR AH,AH\n  100ef04c:  JNZ 0x100ef020\n  100ef04e:  MOV EDI,EDI\n  100ef050:  XOR EAX,EAX\n  100ef052:  RET\n  100ef054:  SBB EAX,EAX\n  100ef056:  SHL EAX,0x1\n  100ef058:  INC EAX\n  100ef059:  RET\n  100ef05c:  TEST EDX,0x1\n  100ef062:  JZ 0x100ef078\n  100ef064:  MOV AL,byte ptr [EDX]\n  100ef066:  INC EDX\n  100ef067:  CMP AL,byte ptr [ECX]\n  100ef069:  JNZ 0x100ef054\n  100ef06b:  INC ECX\n  100ef06c:  OR AL,AL\n  100ef06e:  JZ 0x100ef050\n  100ef070:  TEST EDX,0x2\n  100ef076:  JZ 0x100ef020\n  100ef078:  MOV AX,word ptr [EDX]\n  100ef07b:  ADD EDX,0x2\n  100ef07e:  CMP AL,byte ptr [ECX]\n  100ef080:  JNZ 0x100ef054\n  100ef082:  OR AL,AL\n  100ef084:  JZ 0x100ef050\n  100ef086:  CMP AH,byte ptr [ECX + 0x1]\n  100ef089:  JNZ 0x100ef054\n  100ef08b:  OR AH,AH\n  100ef08d:  JZ 0x100ef050\n  100ef08f:  ADD ECX,0x2\n  100ef092:  JMP 0x100ef020", 
+  "callers": [
+    {
+      "address": "0x100e6b41", 
+      "name": "FUN_100e6b41"
+    }, 
+    {
+      "address": "0x100e6ea2", 
+      "name": "FUN_100e6ea2"
+    }, 
+    {
+      "address": "0x100e6f5b", 
+      "name": "FUN_100e6f5b"
+    }, 
+    {
+      "address": "0x100e6f5b", 
+      "name": "FUN_100e6f5b"
+    }, 
+    {
+      "address": "0x100ef764", 
+      "name": "FUN_100ef764"
+    }, 
+    {
+      "address": "0x100ef764", 
+      "name": "FUN_100ef764"
+    }, 
+    {
+      "address": "0x100e7f89", 
+      "name": "FUN_100e7f89"
+    }
+  ]
+}

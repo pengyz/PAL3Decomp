@@ -1,0 +1,33 @@
+{
+  "address": "0x10009e60", 
+  "size_bytes": 55, 
+  "calling_convention": "unknown", 
+  "signature": "undefined FUN_10009e60(undefined4 param_1)", 
+  "callees": [
+    {
+      "address": "0x1000a100", 
+      "name": "FUN_1000a100"
+    }, 
+    {
+      "address": "0x10002a70", 
+      "name": "FUN_10002a70"
+    }, 
+    {
+      "address": "0x1000a570", 
+      "name": "FUN_1000a570"
+    }
+  ], 
+  "global_refs": [
+    {
+      "address": "0x00000004", 
+      "type": null, 
+      "name": "DAT_00000004"
+    }
+  ], 
+  "has_custom_name": false, 
+  "decompiled_c": "\nvoid FUN_10009e60(int param_1)\n\n{\n  int iVar1;\n  int in_ECX;\n  \n  iVar1 = *(int *)(*(int *)(in_ECX + 0x5c) + param_1 * 4);\n  if (iVar1 != *(int *)(in_ECX + 0x68)) {\n    FUN_1000a100();\n    *(int *)(in_ECX + 0x68) = iVar1;\n    iVar1 = FUN_10002a70(iVar1);\n    if (iVar1 != 0) {\n      FUN_1000a570();\n    }\n  }\n  return;\n}\n\n", 
+  "is_thunk": false, 
+  "name": "FUN_10009e60", 
+  "assembly": "  10009e60:  PUSH ESI\n  10009e61:  PUSH EDI\n  10009e62:  MOV EDI,ECX\n  10009e64:  MOV ECX,dword ptr [ESP + 0xc]\n  10009e68:  MOV EAX,dword ptr [EDI + 0x5c]\n  10009e6b:  MOV ESI,dword ptr [EAX + ECX*0x4]\n  10009e6e:  MOV EAX,dword ptr [EDI + 0x68]\n  10009e71:  CMP ESI,EAX\n  10009e73:  JZ 0x10009e92\n  10009e75:  MOV ECX,ESI\n  10009e77:  CALL 0x1000a100\n  10009e7c:  PUSH ESI\n  10009e7d:  MOV ECX,EDI\n  10009e7f:  MOV dword ptr [EDI + 0x68],ESI\n  10009e82:  CALL 0x10002a70\n  10009e87:  TEST EAX,EAX\n  10009e89:  JZ 0x10009e92\n  10009e8b:  MOV ECX,EAX\n  10009e8d:  CALL 0x1000a570\n  10009e92:  POP EDI\n  10009e93:  POP ESI\n  10009e94:  RET 0x4", 
+  "callers": []
+}

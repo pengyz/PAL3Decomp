@@ -1,0 +1,64 @@
+{
+  "address": "0x10019140", 
+  "size_bytes": 106, 
+  "calling_convention": "unknown", 
+  "signature": "undefined FUN_10019140(undefined4 param_1, undefined4 param_2, undefined4 param_3)", 
+  "callees": [
+    {
+      "address": "0x100e4a16", 
+      "name": "operator_new"
+    }, 
+    {
+      "address": "0x1001c200", 
+      "name": "FUN_1001c200"
+    }
+  ], 
+  "global_refs": [
+    {
+      "address": "0x100f3e2b", 
+      "type": null, 
+      "name": "DAT_100f3e2b"
+    }, 
+    {
+      "address": "0xffdff000", 
+      "type": "void *32", 
+      "name": "DAT_ffdff000"
+    }, 
+    {
+      "address": "0x-0000010", 
+      "type": null, 
+      "name": "DAT_-0000010"
+    }, 
+    {
+      "address": "0x-0000004", 
+      "type": null, 
+      "name": "DAT_-0000004"
+    }, 
+    {
+      "address": "0x0000000c", 
+      "type": null, 
+      "name": "DAT_0000000c"
+    }, 
+    {
+      "address": "0x00000008", 
+      "type": null, 
+      "name": "DAT_00000008"
+    }, 
+    {
+      "address": "0x00000004", 
+      "type": null, 
+      "name": "DAT_00000004"
+    }, 
+    {
+      "address": "0x-000000c", 
+      "type": null, 
+      "name": "DAT_-000000c"
+    }
+  ], 
+  "has_custom_name": false, 
+  "decompiled_c": "\nundefined4 FUN_10019140(undefined4 param_1,undefined4 param_2,undefined4 param_3)\n\n{\n  void *pvVar1;\n  undefined4 uVar2;\n  void *local_c;\n  undefined *puStack_8;\n  undefined4 local_4;\n  \n  local_4 = 0xffffffff;\n  puStack_8 = &LAB_100f3e2b;\n  local_c = ExceptionList;\n  ExceptionList = &local_c;\n  pvVar1 = operator_new(0x38);\n  local_4 = 0;\n  if (pvVar1 != (void *)0x0) {\n    uVar2 = FUN_1001c200(param_1,param_2,param_3);\n    ExceptionList = local_c;\n    return uVar2;\n  }\n  ExceptionList = local_c;\n  return 0;\n}\n\n", 
+  "is_thunk": false, 
+  "name": "FUN_10019140", 
+  "assembly": "  10019140:  PUSH -0x1\n  10019142:  PUSH 0x100f3e2b\n  10019147:  MOV EAX,FS:[0x0]\n  1001914d:  PUSH EAX\n  1001914e:  MOV dword ptr FS:[0x0],ESP\n  10019155:  PUSH ECX\n  10019156:  PUSH 0x38\n  10019158:  CALL 0x100e4a16\n  1001915d:  ADD ESP,0x4\n  10019160:  MOV dword ptr [ESP],EAX\n  10019164:  TEST EAX,EAX\n  10019166:  MOV dword ptr [ESP + 0xc],0x0\n  1001916e:  JZ 0x10019197\n  10019170:  MOV ECX,dword ptr [ESP + 0x1c]\n  10019174:  MOV EDX,dword ptr [ESP + 0x18]\n  10019178:  PUSH ECX\n  10019179:  MOV ECX,dword ptr [ESP + 0x18]\n  1001917d:  PUSH EDX\n  1001917e:  PUSH ECX\n  1001917f:  MOV ECX,EAX\n  10019181:  CALL 0x1001c200\n  10019186:  MOV ECX,dword ptr [ESP + 0x4]\n  1001918a:  MOV dword ptr FS:[0x0],ECX\n  10019191:  ADD ESP,0x10\n  10019194:  RET 0xc\n  10019197:  MOV ECX,dword ptr [ESP + 0x4]\n  1001919b:  XOR EAX,EAX\n  1001919d:  MOV dword ptr FS:[0x0],ECX\n  100191a4:  ADD ESP,0x10\n  100191a7:  RET 0xc", 
+  "callers": []
+}

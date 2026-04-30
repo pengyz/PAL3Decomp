@@ -1,0 +1,60 @@
+{
+  "address": "0x10081cc1", 
+  "size_bytes": 101, 
+  "calling_convention": "unknown", 
+  "signature": "undefined FUN_10081cc1(undefined4 param_1, undefined4 param_2, undefined4 param_3)", 
+  "callees": [
+    {
+      "address": "0x100e4a16", 
+      "name": "operator_new"
+    }, 
+    {
+      "address": "0x10080fa4", 
+      "name": "FUN_10080fa4"
+    }, 
+    {
+      "address": "0x100e4a24", 
+      "name": "FUN_100e4a24"
+    }
+  ], 
+  "global_refs": [
+    {
+      "address": "0x0000000c", 
+      "type": null, 
+      "name": "DAT_0000000c"
+    }, 
+    {
+      "address": "0x00000004", 
+      "type": null, 
+      "name": "DAT_00000004"
+    }, 
+    {
+      "address": "0x00000008", 
+      "type": null, 
+      "name": "DAT_00000008"
+    }
+  ], 
+  "has_custom_name": false, 
+  "decompiled_c": "\nundefined4 FUN_10081cc1(undefined4 param_1,int param_2,int param_3)\n\n{\n  uint *puVar1;\n  uint *puVar2;\n  undefined4 uVar3;\n  int in_ECX;\n  uint *puVar4;\n  \n  puVar2 = (uint *)operator_new(param_3 << 2);\n  if (puVar2 == (uint *)0x0) {\n    uVar3 = 0x8007000e;\n  }\n  else {\n    FUN_10080fa4(param_1,puVar2);\n    if (param_3 != 0) {\n      puVar4 = puVar2;\n      do {\n        puVar1 = *(uint **)(*(int *)(*(int *)(in_ECX + 8) + 0x14) +\n                           *(int *)((param_2 - (int)puVar2) + (int)puVar4) * 4);\n        *puVar1 = *puVar1 | *puVar4;\n        puVar4 = puVar4 + 1;\n        param_3 = param_3 + -1;\n      } while (param_3 != 0);\n    }\n    FUN_100e4a24(puVar2);\n    uVar3 = 0;\n  }\n  return uVar3;\n}\n\n", 
+  "is_thunk": false, 
+  "name": "FUN_10081cc1", 
+  "assembly": "  10081cc1:  PUSH EBP\n  10081cc2:  MOV EBP,ESP\n  10081cc4:  PUSH EBX\n  10081cc5:  PUSH ESI\n  10081cc6:  MOV ESI,dword ptr [EBP + 0x10]\n  10081cc9:  MOV EAX,ESI\n  10081ccb:  PUSH EDI\n  10081ccc:  SHL EAX,0x2\n  10081ccf:  PUSH EAX\n  10081cd0:  MOV EDI,ECX\n  10081cd2:  CALL 0x100e4a16\n  10081cd7:  MOV EBX,EAX\n  10081cd9:  TEST EBX,EBX\n  10081cdb:  POP ECX\n  10081cdc:  JNZ 0x10081ce5\n  10081cde:  MOV EAX,0x8007000e\n  10081ce3:  JMP 0x10081d1f\n  10081ce5:  PUSH EBX\n  10081ce6:  PUSH dword ptr [EBP + 0x8]\n  10081ce9:  MOV ECX,EDI\n  10081ceb:  CALL 0x10080fa4\n  10081cf0:  TEST ESI,ESI\n  10081cf2:  JBE 0x10081d16\n  10081cf4:  MOV EDX,dword ptr [EBP + 0xc]\n  10081cf7:  MOV ECX,EBX\n  10081cf9:  SUB EDX,EBX\n  10081cfb:  MOV dword ptr [EBP + 0x10],ESI\n  10081cfe:  MOV ESI,dword ptr [EDI + 0x8]\n  10081d01:  MOV EAX,dword ptr [EDX + ECX*0x1]\n  10081d04:  MOV ESI,dword ptr [ESI + 0x14]\n  10081d07:  MOV EAX,dword ptr [ESI + EAX*0x4]\n  10081d0a:  MOV ESI,dword ptr [ECX]\n  10081d0c:  OR dword ptr [EAX],ESI\n  10081d0e:  ADD ECX,0x4\n  10081d11:  DEC dword ptr [EBP + 0x10]\n  10081d14:  JNZ 0x10081cfe\n  10081d16:  PUSH EBX\n  10081d17:  CALL 0x100e4a24\n  10081d1c:  POP ECX\n  10081d1d:  XOR EAX,EAX\n  10081d1f:  POP EDI\n  10081d20:  POP ESI\n  10081d21:  POP EBX\n  10081d22:  POP EBP\n  10081d23:  RET 0xc", 
+  "callers": [
+    {
+      "address": "0x1008c94e", 
+      "name": "FUN_1008c94e"
+    }, 
+    {
+      "address": "0x1008c94e", 
+      "name": "FUN_1008c94e"
+    }, 
+    {
+      "address": "0x1008c94e", 
+      "name": "FUN_1008c94e"
+    }, 
+    {
+      "address": "0x1008c552", 
+      "name": "FUN_1008c552"
+    }
+  ]
+}

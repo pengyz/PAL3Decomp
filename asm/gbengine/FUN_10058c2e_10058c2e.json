@@ -1,0 +1,23 @@
+{
+  "address": "0x10058c2e", 
+  "size_bytes": 20, 
+  "calling_convention": "unknown", 
+  "signature": "undefined FUN_10058c2e(void)", 
+  "callees": [], 
+  "global_refs": [], 
+  "has_custom_name": false, 
+  "decompiled_c": "\nvoid FUN_10058c2e(void)\n\n{\n  int in_ECX;\n  \n  *(undefined4 *)(in_ECX + 4) = 0;\n  *(undefined4 *)(in_ECX + 8) = 0;\n  *(undefined4 *)(in_ECX + 0xc) = 0;\n  *(undefined4 *)(in_ECX + 0x10) = 0;\n  *(undefined4 *)(in_ECX + 0x14) = 0;\n  return;\n}\n\n", 
+  "is_thunk": false, 
+  "name": "FUN_10058c2e", 
+  "assembly": "  10058c2e:  MOV EAX,ECX\n  10058c30:  XOR ECX,ECX\n  10058c32:  MOV dword ptr [EAX + 0x4],ECX\n  10058c35:  MOV dword ptr [EAX + 0x8],ECX\n  10058c38:  MOV dword ptr [EAX + 0xc],ECX\n  10058c3b:  MOV dword ptr [EAX + 0x10],ECX\n  10058c3e:  MOV dword ptr [EAX + 0x14],ECX\n  10058c41:  RET", 
+  "callers": [
+    {
+      "address": "0x10057989", 
+      "name": "FUN_10057989"
+    }, 
+    {
+      "address": "0x1008f021", 
+      "name": "FUN_1008f021"
+    }
+  ]
+}

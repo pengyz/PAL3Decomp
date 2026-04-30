@@ -1,0 +1,49 @@
+{
+  "address": "0x100437c0", 
+  "size_bytes": 176, 
+  "calling_convention": "unknown", 
+  "signature": "undefined FUN_100437c0(undefined4 param_1, undefined4 param_2, undefined4 param_3)", 
+  "callees": [
+    {
+      "address": "0x1003c954", 
+      "name": "FUN_1003c954"
+    }, 
+    {
+      "address": "0x1003cbeb", 
+      "name": "FUN_1003cbeb"
+    }
+  ], 
+  "global_refs": [
+    {
+      "address": "0x00000004", 
+      "type": null, 
+      "name": "DAT_00000004"
+    }, 
+    {
+      "address": "0x00000008", 
+      "type": null, 
+      "name": "DAT_00000008"
+    }, 
+    {
+      "address": "0x0000000c", 
+      "type": null, 
+      "name": "DAT_0000000c"
+    }, 
+    {
+      "address": "0x100f6eec", 
+      "type": null, 
+      "name": "DAT_100f6eec"
+    }, 
+    {
+      "address": "0x100f640c", 
+      "type": null, 
+      "name": "DAT_100f640c"
+    }
+  ], 
+  "has_custom_name": false, 
+  "decompiled_c": "\n/* WARNING: Removing unreachable block (ram,0x1004381a) */\n\nvoid FUN_100437c0(int param_1,int param_2,float *param_3)\n\n{\n  uint *puVar1;\n  uint *puVar2;\n  int in_ECX;\n  int extraout_ECX;\n  \n  puVar2 = (uint *)(*(int *)(in_ECX + 0x60) * param_1 + *(int *)(in_ECX + 100) * param_2 +\n                   *(int *)(in_ECX + 0x20));\n  puVar1 = puVar2 + *(int *)(in_ECX + 0x68);\n  for (; puVar2 < puVar1; puVar2 = puVar2 + 1) {\n    *param_3 = (float)*(byte *)((int)puVar2 + 2) * 0.003921569;\n    param_3[1] = (float)*(byte *)((int)puVar2 + 1) * 0.003921569;\n    param_3[2] = (float)(*puVar2 & 0xff) * 0.003921569;\n    param_3[3] = (float)*(byte *)((int)puVar2 + 3) * 0.003921569;\n    param_3 = param_3 + 4;\n  }\n  if (*(int *)(in_ECX + 0x18) != 0) {\n    FUN_1003c954(param_3 + *(int *)(in_ECX + 0x68) * -4);\n    in_ECX = extraout_ECX;\n  }\n  if (*(int *)(in_ECX + 0x10) != 0) {\n    FUN_1003cbeb(param_3 + *(int *)(in_ECX + 0x68) * -4);\n  }\n  return;\n}\n\n", 
+  "is_thunk": false, 
+  "name": "FUN_100437c0", 
+  "assembly": "  100437c0:  PUSH EBP\n  100437c1:  MOV EBP,ESP\n  100437c3:  MOV EAX,dword ptr [ECX + 0x60]\n  100437c6:  IMUL EAX,dword ptr [EBP + 0x8]\n  100437ca:  MOV EDX,dword ptr [ECX + 0x64]\n  100437cd:  IMUL EDX,dword ptr [EBP + 0xc]\n  100437d1:  ADD EAX,EDX\n  100437d3:  ADD EAX,dword ptr [ECX + 0x20]\n  100437d6:  MOV EDX,dword ptr [ECX + 0x68]\n  100437d9:  LEA EDX,[EAX + EDX*0x4]\n  100437dc:  CMP EAX,EDX\n  100437de:  PUSH ESI\n  100437df:  MOV ESI,dword ptr [EBP + 0x10]\n  100437e2:  JNC 0x10043841\n  100437e4:  FLD dword ptr [0x100f6eec]\n  100437ea:  PUSH EDI\n  100437eb:  MOVZX EDI,byte ptr [EAX + 0x2]\n  100437ef:  MOV dword ptr [EBP + 0x10],EDI\n  100437f2:  FILD dword ptr [EBP + 0x10]\n  100437f5:  FMUL ST1\n  100437f7:  FSTP dword ptr [ESI]\n  100437f9:  MOVZX EDI,byte ptr [EAX + 0x1]\n  100437fd:  MOV dword ptr [EBP + 0x10],EDI\n  10043800:  FILD dword ptr [EBP + 0x10]\n  10043803:  FMUL ST1\n  10043805:  FSTP dword ptr [ESI + 0x4]\n  10043808:  MOV EDI,dword ptr [EAX]\n  1004380a:  AND EDI,0xff\n  10043810:  TEST EDI,EDI\n  10043812:  MOV dword ptr [EBP + 0x10],EDI\n  10043815:  FILD dword ptr [EBP + 0x10]\n  10043818:  JGE 0x10043820\n  1004381a:  FADD dword ptr [0x100f640c]\n  10043820:  FMUL ST1\n  10043822:  ADD EAX,0x4\n  10043825:  ADD ESI,0x10\n  10043828:  CMP EAX,EDX\n  1004382a:  FSTP dword ptr [ESI + -0x8]\n  1004382d:  MOVZX EDI,byte ptr [EAX + -0x1]\n  10043831:  MOV dword ptr [EBP + 0x10],EDI\n  10043834:  FILD dword ptr [EBP + 0x10]\n  10043837:  FMUL ST1\n  10043839:  FSTP dword ptr [ESI + -0x4]\n  1004383c:  JC 0x100437eb\n  1004383e:  FSTP ST0\n  10043840:  POP EDI\n  10043841:  CMP dword ptr [ECX + 0x18],0x0\n  10043845:  JZ 0x10043857\n  10043847:  MOV EAX,dword ptr [ECX + 0x68]\n  1004384a:  SHL EAX,0x4\n  1004384d:  MOV EDX,ESI\n  1004384f:  SUB EDX,EAX\n  10043851:  PUSH EDX\n  10043852:  CALL 0x1003c954\n  10043857:  CMP dword ptr [ECX + 0x10],0x0\n  1004385b:  JZ 0x1004386b\n  1004385d:  MOV EAX,dword ptr [ECX + 0x68]\n  10043860:  SHL EAX,0x4\n  10043863:  SUB ESI,EAX\n  10043865:  PUSH ESI\n  10043866:  CALL 0x1003cbeb\n  1004386b:  POP ESI\n  1004386c:  POP EBP\n  1004386d:  RET 0xc", 
+  "callers": []
+}

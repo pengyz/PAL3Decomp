@@ -1,0 +1,97 @@
+{
+  "address": "0x1007e2ab", 
+  "size_bytes": 20, 
+  "calling_convention": "unknown", 
+  "signature": "undefined FUN_1007e2ab(undefined4 param_1)", 
+  "callees": [], 
+  "global_refs": [
+    {
+      "address": "0x00000004", 
+      "type": null, 
+      "name": "DAT_00000004"
+    }
+  ], 
+  "has_custom_name": false, 
+  "decompiled_c": "\nundefined4 FUN_1007e2ab(int *param_1)\n\n{\n  undefined4 uVar1;\n  \n  if (param_1 == (int *)0x0) {\n    uVar1 = 0;\n  }\n  else {\n    uVar1 = (**(code **)(*param_1 + 4))();\n  }\n  return uVar1;\n}\n\n", 
+  "is_thunk": false, 
+  "name": "FUN_1007e2ab", 
+  "assembly": "  1007e2ab:  MOV ECX,dword ptr [ESP + 0x4]\n  1007e2af:  TEST ECX,ECX\n  1007e2b1:  JNZ 0x1007e2b7\n  1007e2b3:  XOR EAX,EAX\n  1007e2b5:  JMP 0x1007e2bc\n  1007e2b7:  MOV EAX,dword ptr [ECX]\n  1007e2b9:  CALL dword ptr [EAX + 0x4]\n  1007e2bc:  RET 0x4", 
+  "callers": [
+    {
+      "address": "0x10059209", 
+      "name": "FUN_10059209"
+    }, 
+    {
+      "address": "0x1005a3a4", 
+      "name": "FUN_1005a3a4"
+    }, 
+    {
+      "address": "0x1005b689", 
+      "name": "FUN_1005b689"
+    }, 
+    {
+      "address": "0x1005bda5", 
+      "name": "FUN_1005bda5"
+    }, 
+    {
+      "address": "0x1005be9b", 
+      "name": "FUN_1005be9b"
+    }, 
+    {
+      "address": "0x1005ded3", 
+      "name": "FUN_1005ded3"
+    }, 
+    {
+      "address": "0x1005d7b6", 
+      "name": "FUN_1005d7b6"
+    }, 
+    {
+      "address": "0x1005e222", 
+      "name": "FUN_1005e222"
+    }, 
+    {
+      "address": "0x1005e222", 
+      "name": "FUN_1005e222"
+    }, 
+    {
+      "address": "0x1007ece2", 
+      "name": "FUN_1007ece2"
+    }, 
+    {
+      "address": "0x1005ff91", 
+      "name": "FUN_1005ff91"
+    }, 
+    {
+      "address": "0x1005ff91", 
+      "name": "FUN_1005ff91"
+    }, 
+    {
+      "address": "0x1006035d", 
+      "name": "FUN_1006035d"
+    }, 
+    {
+      "address": "0x10060a86", 
+      "name": "FUN_10060a86"
+    }, 
+    {
+      "address": "0x10060a86", 
+      "name": "FUN_10060a86"
+    }, 
+    {
+      "address": "0x10060a86", 
+      "name": "FUN_10060a86"
+    }, 
+    {
+      "address": "0x10060a86", 
+      "name": "FUN_10060a86"
+    }, 
+    {
+      "address": "0x10060a86", 
+      "name": "FUN_10060a86"
+    }, 
+    {
+      "address": "0x10061806", 
+      "name": "FUN_10061806"
+    }
+  ]
+}

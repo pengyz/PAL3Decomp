@@ -1,0 +1,30 @@
+{
+  "address": "0x10003e40", 
+  "size_bytes": 24, 
+  "calling_convention": "__thiscall", 
+  "signature": "void __thiscall Set(gbVertexBubble * this, int param_1, int param_2, int param_3)", 
+  "callees": [], 
+  "global_refs": [
+    {
+      "address": "0x00000004", 
+      "type": null, 
+      "name": "DAT_00000004"
+    }, 
+    {
+      "address": "0x00000008", 
+      "type": null, 
+      "name": "DAT_00000008"
+    }, 
+    {
+      "address": "0x0000000c", 
+      "type": null, 
+      "name": "DAT_0000000c"
+    }
+  ], 
+  "has_custom_name": true, 
+  "decompiled_c": "\n/* public: void __thiscall gbVertexBubble::Set(int,int,int) */\n\nvoid __thiscall gbVertexBubble::Set(gbVertexBubble *this,int param_1,int param_2,int param_3)\n\n{\n                    /* 0x3e40  838  ?Set@gbVertexBubble@@QAEXHHH@Z */\n  *(int *)(this + 0xc) = param_1;\n  *(int *)(this + 0x14) = param_2;\n  *(int *)(this + 0x10) = param_3;\n  return;\n}\n\n", 
+  "is_thunk": false, 
+  "name": "Set", 
+  "assembly": "  10003e40:  MOV EAX,dword ptr [ESP + 0x4]\n  10003e44:  MOV EDX,dword ptr [ESP + 0x8]\n  10003e48:  MOV dword ptr [ECX + 0xc],EAX\n  10003e4b:  MOV EAX,dword ptr [ESP + 0xc]\n  10003e4f:  MOV dword ptr [ECX + 0x14],EDX\n  10003e52:  MOV dword ptr [ECX + 0x10],EAX\n  10003e55:  RET 0xc", 
+  "callers": []
+}

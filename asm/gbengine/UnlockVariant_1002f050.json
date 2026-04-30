@@ -1,0 +1,14 @@
+{
+  "address": "0x1002f050", 
+  "size_bytes": 8, 
+  "calling_convention": "__thiscall", 
+  "signature": "void __thiscall UnlockVariant(gbNameVarBuf * this)", 
+  "callees": [], 
+  "global_refs": [], 
+  "has_custom_name": true, 
+  "decompiled_c": "\n/* public: void __thiscall gbNameVarBuf::UnlockVariant(void) */\n\nvoid __thiscall gbNameVarBuf::UnlockVariant(gbNameVarBuf *this)\n\n{\n                    /* 0x2f050  937  ?UnlockVariant@gbNameVarBuf@@QAEXXZ */\n  *(undefined4 *)(this + 0x18) = 0;\n  return;\n}\n\n", 
+  "is_thunk": false, 
+  "name": "UnlockVariant", 
+  "assembly": "  1002f050:  MOV dword ptr [ECX + 0x18],0x0\n  1002f057:  RET", 
+  "callers": []
+}

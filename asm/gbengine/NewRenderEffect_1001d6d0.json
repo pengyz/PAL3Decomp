@@ -1,0 +1,375 @@
+{
+  "address": "0x1001d6d0", 
+  "size_bytes": 353, 
+  "calling_convention": "__thiscall", 
+  "signature": "gbRenderEffect * __thiscall NewRenderEffect(gbEffectMgr * this, char * param_1, uint param_2)", 
+  "callees": [
+    {
+      "address": "0x100201b0", 
+      "name": "FindResByName"
+    }, 
+    {
+      "address": "0x10030540", 
+      "name": "OpenFile"
+    }, 
+    {
+      "address": "0x10030be0", 
+      "name": "GetFileSize"
+    }, 
+    {
+      "address": "0x100e4a16", 
+      "name": "operator_new"
+    }, 
+    {
+      "address": "0x10030810", 
+      "name": "Read"
+    }, 
+    {
+      "address": "0x100307a0", 
+      "name": "CloseFile"
+    }, 
+    {
+      "address": "0x1003439a", 
+      "name": "FUN_1003439a"
+    }, 
+    {
+      "address": "0x100e4a24", 
+      "name": "FUN_100e4a24"
+    }, 
+    {
+      "address": "0x100e4a16", 
+      "name": "operator_new"
+    }, 
+    {
+      "address": "0x10020040", 
+      "name": "SetName"
+    }, 
+    {
+      "address": "0x10020200", 
+      "name": "AddResource"
+    }
+  ], 
+  "global_refs": [
+    {
+      "address": "0x100f3f73", 
+      "type": null, 
+      "name": "DAT_100f3f73"
+    }, 
+    {
+      "address": "0xffdff000", 
+      "type": "void *32", 
+      "name": "DAT_ffdff000"
+    }, 
+    {
+      "address": "0x00000004", 
+      "type": null, 
+      "name": "DAT_00000004"
+    }, 
+    {
+      "address": "0x-0000010", 
+      "type": null, 
+      "name": "DAT_-0000010"
+    }, 
+    {
+      "address": "0x1015d3a8", 
+      "type": "gbVFileSystem *", 
+      "name": "DAT_1015d3a8"
+    }, 
+    {
+      "address": "0x-0000018", 
+      "type": null, 
+      "name": "DAT_-0000018"
+    }, 
+    {
+      "address": "0x-0000014", 
+      "type": null, 
+      "name": "DAT_-0000014"
+    }, 
+    {
+      "address": "0x-0000004", 
+      "type": null, 
+      "name": "DAT_-0000004"
+    }, 
+    {
+      "address": "0x00000008", 
+      "type": null, 
+      "name": "DAT_00000008"
+    }, 
+    {
+      "address": "0x100f5400", 
+      "type": "pointer", 
+      "name": "DAT_100f5400"
+    }, 
+    {
+      "address": "0x1011fc54", 
+      "type": "undefined *", 
+      "name": "DAT_1011fc54"
+    }, 
+    {
+      "address": "0x1011fcbc", 
+      "type": "string", 
+      "name": "DAT_1011fcbc"
+    }, 
+    {
+      "address": "0x1011fc74", 
+      "type": "string", 
+      "name": "DAT_1011fc74"
+    }, 
+    {
+      "address": "0x-000000c", 
+      "type": null, 
+      "name": "DAT_-000000c"
+    }
+  ], 
+  "has_custom_name": true, 
+  "decompiled_c": "\n/* public: class gbRenderEffect * __thiscall gbEffectMgr::NewRenderEffect(char const *,unsigned int)\n    */\n\ngbRenderEffect * __thiscall\ngbEffectMgr::NewRenderEffect(gbEffectMgr *this,char *param_1,uint param_2)\n\n{\n  gbRenderEffect *pgVar1;\n  gbVFile *pgVar2;\n  uint uVar3;\n  void *pvVar4;\n  int iVar5;\n  gbResource *this_00;\n  undefined4 uVar6;\n  gbResource *pgVar7;\n  undefined **ppuVar8;\n  int *local_14;\n  gbEffectMgr *local_10;\n  void *local_c;\n  undefined *puStack_8;\n  undefined4 local_4;\n  \n                    /* 0x1d6d0  709  ?NewRenderEffect@gbEffectMgr@@QAEPAVgbRenderEffect@@PBDI@Z */\n  local_4 = 0xffffffff;\n  puStack_8 = &LAB_100f3f73;\n  local_c = ExceptionList;\n  ExceptionList = &local_c;\n  local_10 = this;\n  pgVar1 = (gbRenderEffect *)gbResManager::FindResByName((gbResManager *)this,param_1);\n  if (pgVar1 == (gbRenderEffect *)0x0) {\n    iVar5 = *(int *)(this + 0xc);\n    pgVar2 = gbVFileSystem::OpenFile(g_pVFileSys,param_1,0x201);\n    if (pgVar2 != (gbVFile *)0x0) {\n      uVar3 = gbVFileSystem::GetFileSize(g_pVFileSys,pgVar2);\n      pvVar4 = operator_new(uVar3);\n      gbVFileSystem::Read(g_pVFileSys,pvVar4,uVar3,pgVar2);\n      gbVFileSystem::CloseFile(g_pVFileSys,pgVar2);\n      iVar5 = FUN_1003439a(*(undefined4 *)(iVar5 + 0x718),pvVar4,uVar3,0,0,1,0,&local_14,0);\n      FUN_100e4a24(pvVar4);\n      if ((-1 < iVar5) && (local_14 != (int *)0x0)) {\n        this_00 = (gbResource *)operator_new(0x44);\n        if (this_00 == (gbResource *)0x0) {\n          this_00 = (gbResource *)0x0;\n        }\n        else {\n          *(undefined4 *)(this_00 + 4) = 1;\n          *(undefined4 *)(this_00 + 8) = 0;\n          *(undefined4 *)(this_00 + 0x10) = 0;\n          *(undefined4 *)(this_00 + 0x14) = 0;\n          *(undefined4 *)(this_00 + 0x20) = 0;\n          local_4 = 1;\n          *(undefined ***)this_00 = &gbRenderEffect::_vftable_;\n          *(int **)(this_00 + 0x18) = local_14;\n          *(uint *)(this_00 + 0x1c) = param_2;\n          ppuVar8 = &PTR_s_alltm_1011fc54;\n          pgVar7 = this_00 + 0x24;\n          do {\n            uVar6 = (**(code **)(*local_14 + 0x24))(local_14,0,*ppuVar8);\n            *(undefined4 *)pgVar7 = uVar6;\n            ppuVar8 = ppuVar8 + 1;\n            pgVar7 = pgVar7 + 4;\n          } while ((int)ppuVar8 < 0x1011fc74);\n        }\n        local_4 = 0xffffffff;\n        gbResource::SetName(this_00,param_1);\n        gbResManager::AddResource((gbResManager *)local_10,this_00);\n        ExceptionList = local_c;\n        return (gbRenderEffect *)this_00;\n      }\n    }\n    pgVar1 = (gbRenderEffect *)0x0;\n  }\n  ExceptionList = local_c;\n  return pgVar1;\n}\n\n", 
+  "is_thunk": false, 
+  "name": "NewRenderEffect", 
+  "assembly": "  1001d6d0:  PUSH -0x1\n  1001d6d2:  PUSH 0x100f3f73\n  1001d6d7:  MOV EAX,FS:[0x0]\n  1001d6dd:  PUSH EAX\n  1001d6de:  MOV dword ptr FS:[0x0],ESP\n  1001d6e5:  SUB ESP,0xc\n  1001d6e8:  PUSH EBX\n  1001d6e9:  PUSH EBP\n  1001d6ea:  MOV EBP,dword ptr [ESP + 0x24]\n  1001d6ee:  PUSH ESI\n  1001d6ef:  PUSH EDI\n  1001d6f0:  MOV EDI,ECX\n  1001d6f2:  PUSH EBP\n  1001d6f3:  MOV dword ptr [ESP + 0x1c],EDI\n  1001d6f7:  CALL 0x100201b0\n  1001d6fc:  MOV ESI,EAX\n  1001d6fe:  XOR EBX,EBX\n  1001d700:  CMP ESI,EBX\n  1001d702:  JNZ 0x1001d81a\n  1001d708:  MOV EAX,dword ptr [EDI + 0xc]\n  1001d70b:  MOV ECX,dword ptr [0x1015d3a8]\n  1001d711:  PUSH 0x201\n  1001d716:  PUSH EBP\n  1001d717:  MOV dword ptr [ESP + 0x18],EAX\n  1001d71b:  CALL 0x10030540\n  1001d720:  MOV ESI,EAX\n  1001d722:  CMP ESI,EBX\n  1001d724:  JZ 0x1001d78d\n  1001d726:  MOV ECX,dword ptr [0x1015d3a8]\n  1001d72c:  PUSH ESI\n  1001d72d:  CALL 0x10030be0\n  1001d732:  MOV EDI,EAX\n  1001d734:  PUSH EDI\n  1001d735:  CALL 0x100e4a16\n  1001d73a:  MOV ECX,dword ptr [0x1015d3a8]\n  1001d740:  ADD ESP,0x4\n  1001d743:  MOV EBP,EAX\n  1001d745:  PUSH ESI\n  1001d746:  PUSH EDI\n  1001d747:  PUSH EBP\n  1001d748:  CALL 0x10030810\n  1001d74d:  MOV ECX,dword ptr [0x1015d3a8]\n  1001d753:  PUSH ESI\n  1001d754:  CALL 0x100307a0\n  1001d759:  MOV EDX,dword ptr [ESP + 0x10]\n  1001d75d:  LEA ECX,[ESP + 0x14]\n  1001d761:  PUSH EBX\n  1001d762:  PUSH ECX\n  1001d763:  MOV EAX,dword ptr [EDX + 0x718]\n  1001d769:  PUSH EBX\n  1001d76a:  PUSH 0x1\n  1001d76c:  PUSH EBX\n  1001d76d:  PUSH EBX\n  1001d76e:  PUSH EDI\n  1001d76f:  PUSH EBP\n  1001d770:  PUSH EAX\n  1001d771:  CALL 0x1003439a\n  1001d776:  PUSH EBP\n  1001d777:  MOV ESI,EAX\n  1001d779:  CALL 0x100e4a24\n  1001d77e:  ADD ESP,0x4\n  1001d781:  CMP ESI,EBX\n  1001d783:  JL 0x1001d78d\n  1001d785:  MOV EBP,dword ptr [ESP + 0x14]\n  1001d789:  CMP EBP,EBX\n  1001d78b:  JNZ 0x1001d794\n  1001d78d:  XOR EAX,EAX\n  1001d78f:  JMP 0x1001d81c\n  1001d794:  PUSH 0x44\n  1001d796:  CALL 0x100e4a16\n  1001d79b:  MOV ESI,EAX\n  1001d79d:  ADD ESP,0x4\n  1001d7a0:  MOV dword ptr [ESP + 0x10],ESI\n  1001d7a4:  CMP ESI,EBX\n  1001d7a6:  MOV dword ptr [ESP + 0x24],EBX\n  1001d7aa:  JZ 0x1001d7fa\n  1001d7ac:  MOV dword ptr [ESI + 0x4],0x1\n  1001d7b3:  MOV dword ptr [ESI + 0x8],EBX\n  1001d7b6:  MOV dword ptr [ESI + 0x10],EBX\n  1001d7b9:  MOV dword ptr [ESI + 0x14],EBX\n  1001d7bc:  MOV ECX,dword ptr [ESP + 0x30]\n  1001d7c0:  MOV dword ptr [ESI + 0x20],EBX\n  1001d7c3:  MOV byte ptr [ESP + 0x24],0x1\n  1001d7c8:  MOV dword ptr [ESI],0x100f5400\n  1001d7ce:  MOV dword ptr [ESI + 0x18],EBP\n  1001d7d1:  MOV dword ptr [ESI + 0x1c],ECX\n  1001d7d4:  MOV EDI,0x1011fc54\n  1001d7d9:  LEA EBX,[ESI + 0x24]\n  1001d7dc:  MOV EAX,dword ptr [EDI]\n  1001d7de:  MOV EDX,dword ptr [EBP]\n  1001d7e1:  PUSH EAX\n  1001d7e2:  PUSH 0x0\n  1001d7e4:  PUSH EBP\n  1001d7e5:  CALL dword ptr [EDX + 0x24]\n  1001d7e8:  MOV dword ptr [EBX],EAX\n  1001d7ea:  ADD EDI,0x4\n  1001d7ed:  ADD EBX,0x4\n  1001d7f0:  CMP EDI,0x1011fc74\n  1001d7f6:  JL 0x1001d7dc\n  1001d7f8:  JMP 0x1001d7fc\n  1001d7fa:  XOR ESI,ESI\n  1001d7fc:  MOV ECX,dword ptr [ESP + 0x2c]\n  1001d800:  MOV dword ptr [ESP + 0x24],0xffffffff\n  1001d808:  PUSH ECX\n  1001d809:  MOV ECX,ESI\n  1001d80b:  CALL 0x10020040\n  1001d810:  MOV ECX,dword ptr [ESP + 0x18]\n  1001d814:  PUSH ESI\n  1001d815:  CALL 0x10020200\n  1001d81a:  MOV EAX,ESI\n  1001d81c:  MOV ECX,dword ptr [ESP + 0x1c]\n  1001d820:  POP EDI\n  1001d821:  POP ESI\n  1001d822:  POP EBP\n  1001d823:  POP EBX\n  1001d824:  MOV dword ptr FS:[0x0],ECX\n  1001d82b:  ADD ESP,0x18\n  1001d82e:  RET 0x8", 
+  "callers": [
+    {
+      "address": "0x100035a0", 
+      "name": "gbActorMgr"
+    }, 
+    {
+      "address": "0x100035a0", 
+      "name": "gbActorMgr"
+    }, 
+    {
+      "address": "0x1000e860", 
+      "name": "gbBaseMesh"
+    }, 
+    {
+      "address": "0x1000e860", 
+      "name": "gbBaseMesh"
+    }, 
+    {
+      "address": "0x10013a30", 
+      "name": "FUN_10013a30"
+    }, 
+    {
+      "address": "0x1002a7f0", 
+      "name": "LoadFromFile"
+    }, 
+    {
+      "address": "0x10014b10", 
+      "name": "gbSceneGraph"
+    }, 
+    {
+      "address": "0x1000ec20", 
+      "name": "FUN_1000ec20"
+    }, 
+    {
+      "address": "0x1001d840", 
+      "name": "NewTrivalEffect"
+    }, 
+    {
+      "address": "0x1001d840", 
+      "name": "NewTrivalEffect"
+    }, 
+    {
+      "address": "0x1001d840", 
+      "name": "NewTrivalEffect"
+    }, 
+    {
+      "address": "0x1001d840", 
+      "name": "NewTrivalEffect"
+    }, 
+    {
+      "address": "0x1001d840", 
+      "name": "NewTrivalEffect"
+    }, 
+    {
+      "address": "0x1001d1f0", 
+      "name": "Init"
+    }, 
+    {
+      "address": "0x1001d1f0", 
+      "name": "Init"
+    }, 
+    {
+      "address": "0x1001d1f0", 
+      "name": "Init"
+    }, 
+    {
+      "address": "0x1001d1f0", 
+      "name": "Init"
+    }, 
+    {
+      "address": "0x1001d1f0", 
+      "name": "Init"
+    }, 
+    {
+      "address": "0x1001d1f0", 
+      "name": "Init"
+    }, 
+    {
+      "address": "0x1001d1f0", 
+      "name": "Init"
+    }, 
+    {
+      "address": "0x1001d1f0", 
+      "name": "Init"
+    }, 
+    {
+      "address": "0x1001d1f0", 
+      "name": "Init"
+    }, 
+    {
+      "address": "0x1001d1f0", 
+      "name": "Init"
+    }, 
+    {
+      "address": "0x1001d1f0", 
+      "name": "Init"
+    }, 
+    {
+      "address": "0x1001d1f0", 
+      "name": "Init"
+    }, 
+    {
+      "address": "0x1001d1f0", 
+      "name": "Init"
+    }, 
+    {
+      "address": "0x1001d1f0", 
+      "name": "Init"
+    }, 
+    {
+      "address": "0x1001d1f0", 
+      "name": "Init"
+    }, 
+    {
+      "address": "0x1001d1f0", 
+      "name": "Init"
+    }, 
+    {
+      "address": "0x1001d1f0", 
+      "name": "Init"
+    }, 
+    {
+      "address": "0x1001d1f0", 
+      "name": "Init"
+    }, 
+    {
+      "address": "0x1001d1f0", 
+      "name": "Init"
+    }, 
+    {
+      "address": "0x1001d1f0", 
+      "name": "Init"
+    }, 
+    {
+      "address": "0x1001d1f0", 
+      "name": "Init"
+    }, 
+    {
+      "address": "0x1001d1f0", 
+      "name": "Init"
+    }, 
+    {
+      "address": "0x1001d1f0", 
+      "name": "Init"
+    }, 
+    {
+      "address": "0x1001d1f0", 
+      "name": "Init"
+    }, 
+    {
+      "address": "0x1001d1f0", 
+      "name": "Init"
+    }, 
+    {
+      "address": "0x1001d1f0", 
+      "name": "Init"
+    }, 
+    {
+      "address": "0x1001d1f0", 
+      "name": "Init"
+    }, 
+    {
+      "address": "0x1001d1f0", 
+      "name": "Init"
+    }, 
+    {
+      "address": "0x1001d1f0", 
+      "name": "Init"
+    }, 
+    {
+      "address": "0x1001d1f0", 
+      "name": "Init"
+    }, 
+    {
+      "address": "0x1001d1f0", 
+      "name": "Init"
+    }, 
+    {
+      "address": "0x1001d1f0", 
+      "name": "Init"
+    }, 
+    {
+      "address": "0x1001d1f0", 
+      "name": "Init"
+    }, 
+    {
+      "address": "0x1001d1f0", 
+      "name": "Init"
+    }, 
+    {
+      "address": "0x1001d1f0", 
+      "name": "Init"
+    }, 
+    {
+      "address": "0x1001d1f0", 
+      "name": "Init"
+    }, 
+    {
+      "address": "0x1001d1f0", 
+      "name": "Init"
+    }, 
+    {
+      "address": "0x1001d1f0", 
+      "name": "Init"
+    }, 
+    {
+      "address": "0x1001d1f0", 
+      "name": "Init"
+    }, 
+    {
+      "address": "0x1001d1f0", 
+      "name": "Init"
+    }, 
+    {
+      "address": "0x1001d1f0", 
+      "name": "Init"
+    }, 
+    {
+      "address": "0x1001d1f0", 
+      "name": "Init"
+    }, 
+    {
+      "address": "0x1001d1f0", 
+      "name": "Init"
+    }, 
+    {
+      "address": "0x1001d1f0", 
+      "name": "Init"
+    }, 
+    {
+      "address": "0x1001d1f0", 
+      "name": "Init"
+    }, 
+    {
+      "address": "0x10022b00", 
+      "name": "Init"
+    }, 
+    {
+      "address": "0x10022b00", 
+      "name": "Init"
+    }, 
+    {
+      "address": "0x10031e40", 
+      "name": "gbDropGroup"
+    }
+  ]
+}

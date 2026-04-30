@@ -1,0 +1,90 @@
+{
+  "address": "0x100ed346", 
+  "size_bytes": 153, 
+  "calling_convention": "unknown", 
+  "signature": "undefined FUN_100ed346(void)", 
+  "callees": [
+    {
+      "address": "0x100eb751", 
+      "name": "FUN_100eb751"
+    }, 
+    {
+      "address": "0x00000049", 
+      "name": "GetModuleFileNameA"
+    }, 
+    {
+      "address": "0x100ed3df", 
+      "name": "FUN_100ed3df"
+    }, 
+    {
+      "address": "0x100e4b0d", 
+      "name": "_malloc"
+    }, 
+    {
+      "address": "0x100e6575", 
+      "name": "__amsg_exit"
+    }, 
+    {
+      "address": "0x100ed3df", 
+      "name": "FUN_100ed3df"
+    }
+  ], 
+  "global_refs": [
+    {
+      "address": "0x10168768", 
+      "type": "undefined4", 
+      "name": "DAT_10168768"
+    }, 
+    {
+      "address": "0x10166d94", 
+      "type": null, 
+      "name": "DAT_10166d94"
+    }, 
+    {
+      "address": "0x100f5150", 
+      "type": "pointer", 
+      "name": "DAT_100f5150"
+    }, 
+    {
+      "address": "0x1016877c", 
+      "type": "undefined4", 
+      "name": "DAT_1016877c"
+    }, 
+    {
+      "address": "0x10166cc0", 
+      "type": null, 
+      "name": "DAT_10166cc0"
+    }, 
+    {
+      "address": "0x-000000c", 
+      "type": null, 
+      "name": "DAT_-000000c"
+    }, 
+    {
+      "address": "0x-0000008", 
+      "type": null, 
+      "name": "DAT_-0000008"
+    }, 
+    {
+      "address": "0x10166ca8", 
+      "type": null, 
+      "name": "DAT_10166ca8"
+    }, 
+    {
+      "address": "0x10166ca4", 
+      "type": null, 
+      "name": "DAT_10166ca4"
+    }
+  ], 
+  "has_custom_name": false, 
+  "decompiled_c": "\n/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */\n\nvoid FUN_100ed346(void)\n\n{\n  void *pvVar1;\n  char *pcVar2;\n  int local_c;\n  int local_8;\n  \n  if (DAT_10168768 == 0) {\n    FUN_100eb751();\n  }\n  GetModuleFileNameA((HMODULE)0x0,&DAT_10166d94,0x104);\n  _DAT_10166cc0 = &DAT_10166d94;\n  pcVar2 = &DAT_10166d94;\n  if (*DAT_1016877c != '\\0') {\n    pcVar2 = DAT_1016877c;\n  }\n  FUN_100ed3df(pcVar2,0,0,&local_8,&local_c);\n  pvVar1 = _malloc(local_c + local_8 * 4);\n  if (pvVar1 == (void *)0x0) {\n    __amsg_exit(8);\n  }\n  FUN_100ed3df(pcVar2,pvVar1,(void *)((int)pvVar1 + local_8 * 4),&local_8,&local_c);\n  _DAT_10166ca8 = pvVar1;\n  _DAT_10166ca4 = local_8 + -1;\n  return;\n}\n\n", 
+  "is_thunk": false, 
+  "name": "FUN_100ed346", 
+  "assembly": "  100ed346:  PUSH EBP\n  100ed347:  MOV EBP,ESP\n  100ed349:  PUSH ECX\n  100ed34a:  PUSH ECX\n  100ed34b:  PUSH EBX\n  100ed34c:  XOR EBX,EBX\n  100ed34e:  CMP dword ptr [0x10168768],EBX\n  100ed354:  PUSH ESI\n  100ed355:  PUSH EDI\n  100ed356:  JNZ 0x100ed35d\n  100ed358:  CALL 0x100eb751\n  100ed35d:  MOV ESI,0x10166d94\n  100ed362:  PUSH 0x104\n  100ed367:  PUSH ESI\n  100ed368:  PUSH EBX\n  100ed369:  CALL dword ptr [0x100f5150]\n  100ed36f:  MOV EAX,[0x1016877c]\n  100ed374:  MOV dword ptr [0x10166cc0],ESI\n  100ed37a:  MOV EDI,ESI\n  100ed37c:  CMP byte ptr [EAX],BL\n  100ed37e:  JZ 0x100ed382\n  100ed380:  MOV EDI,EAX\n  100ed382:  LEA EAX,[EBP + -0x8]\n  100ed385:  PUSH EAX\n  100ed386:  LEA EAX,[EBP + -0x4]\n  100ed389:  PUSH EAX\n  100ed38a:  PUSH EBX\n  100ed38b:  PUSH EBX\n  100ed38c:  PUSH EDI\n  100ed38d:  CALL 0x100ed3df\n  100ed392:  MOV EAX,dword ptr [EBP + -0x8]\n  100ed395:  MOV ECX,dword ptr [EBP + -0x4]\n  100ed398:  LEA EAX,[EAX + ECX*0x4]\n  100ed39b:  PUSH EAX\n  100ed39c:  CALL 0x100e4b0d\n  100ed3a1:  MOV ESI,EAX\n  100ed3a3:  ADD ESP,0x18\n  100ed3a6:  CMP ESI,EBX\n  100ed3a8:  JNZ 0x100ed3b2\n  100ed3aa:  PUSH 0x8\n  100ed3ac:  CALL 0x100e6575\n  100ed3b1:  POP ECX\n  100ed3b2:  LEA EAX,[EBP + -0x8]\n  100ed3b5:  PUSH EAX\n  100ed3b6:  LEA EAX,[EBP + -0x4]\n  100ed3b9:  PUSH EAX\n  100ed3ba:  MOV EAX,dword ptr [EBP + -0x4]\n  100ed3bd:  LEA EAX,[ESI + EAX*0x4]\n  100ed3c0:  PUSH EAX\n  100ed3c1:  PUSH ESI\n  100ed3c2:  PUSH EDI\n  100ed3c3:  CALL 0x100ed3df\n  100ed3c8:  MOV EAX,dword ptr [EBP + -0x4]\n  100ed3cb:  ADD ESP,0x14\n  100ed3ce:  DEC EAX\n  100ed3cf:  MOV dword ptr [0x10166ca8],ESI\n  100ed3d5:  POP EDI\n  100ed3d6:  POP ESI\n  100ed3d7:  MOV [0x10166ca4],EAX\n  100ed3dc:  POP EBX\n  100ed3dd:  LEAVE\n  100ed3de:  RET", 
+  "callers": [
+    {
+      "address": "0x100e63ff", 
+      "name": "FUN_100e63ff"
+    }
+  ]
+}

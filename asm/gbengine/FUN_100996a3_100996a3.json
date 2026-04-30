@@ -1,0 +1,19 @@
+{
+  "address": "0x100996a3", 
+  "size_bytes": 74, 
+  "calling_convention": "unknown", 
+  "signature": "undefined FUN_100996a3(void)", 
+  "callees": [], 
+  "global_refs": [], 
+  "has_custom_name": false, 
+  "decompiled_c": "\nundefined4 FUN_100996a3(void)\n\n{\n  uint uVar1;\n  uint *in_ECX;\n  bool bVar2;\n  \n  uVar1 = *in_ECX & 0xfff00000;\n  if (uVar1 < 0xf0900001) {\n    if (uVar1 == 0xf0900000) {\n      return 1;\n    }\n    if (uVar1 == 0xf0100000) {\n      return 1;\n    }\n    if (uVar1 == 0xf0200000) {\n      return 1;\n    }\n    if (uVar1 == 0xf0700000) {\n      return 1;\n    }\n    bVar2 = uVar1 == 0xf0800000;\n  }\n  else {\n    if (uVar1 == 0xf0d00000) {\n      return 1;\n    }\n    if (uVar1 == 0xf0e00000) {\n      return 1;\n    }\n    bVar2 = uVar1 == 0xf0f00000;\n  }\n  if (bVar2) {\n    return 1;\n  }\n  return 0;\n}\n\n", 
+  "is_thunk": false, 
+  "name": "FUN_100996a3", 
+  "assembly": "  100996a3:  MOV EAX,dword ptr [ECX]\n  100996a5:  AND EAX,0xfff00000\n  100996aa:  MOV ECX,0xf0900000\n  100996af:  CMP EAX,ECX\n  100996b1:  JA 0x100996d1\n  100996b3:  JZ 0x100996e9\n  100996b5:  CMP EAX,0xf0100000\n  100996ba:  JZ 0x100996e9\n  100996bc:  CMP EAX,0xf0200000\n  100996c1:  JZ 0x100996e9\n  100996c3:  CMP EAX,0xf0700000\n  100996c8:  JZ 0x100996e9\n  100996ca:  CMP EAX,0xf0800000\n  100996cf:  JMP 0x100996e4\n  100996d1:  CMP EAX,0xf0d00000\n  100996d6:  JZ 0x100996e9\n  100996d8:  CMP EAX,0xf0e00000\n  100996dd:  JZ 0x100996e9\n  100996df:  CMP EAX,0xf0f00000\n  100996e4:  JZ 0x100996e9\n  100996e6:  XOR EAX,EAX\n  100996e8:  RET\n  100996e9:  XOR EAX,EAX\n  100996eb:  INC EAX\n  100996ec:  RET", 
+  "callers": [
+    {
+      "address": "0x100a674a", 
+      "name": "FUN_100a674a"
+    }
+  ]
+}

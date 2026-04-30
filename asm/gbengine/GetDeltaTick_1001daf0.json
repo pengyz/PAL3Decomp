@@ -1,0 +1,14 @@
+{
+  "address": "0x1001daf0", 
+  "size_bytes": 27, 
+  "calling_convention": "__thiscall", 
+  "signature": "uint __thiscall GetDeltaTick(gbGfxManager * this)", 
+  "callees": [], 
+  "global_refs": [], 
+  "has_custom_name": true, 
+  "decompiled_c": "\n/* public: unsigned int __thiscall gbGfxManager::GetDeltaTick(void) */\n\nuint __thiscall gbGfxManager::GetDeltaTick(gbGfxManager *this)\n\n{\n  uint uVar1;\n  \n                    /* 0x1daf0  446  ?GetDeltaTick@gbGfxManager@@QAEIXZ */\n  uVar1 = *(int *)(this + 0x204) - *(int *)(this + 0x200);\n  if (500 < uVar1) {\n    uVar1 = 100;\n  }\n  return uVar1;\n}\n\n", 
+  "is_thunk": false, 
+  "name": "GetDeltaTick", 
+  "assembly": "  1001daf0:  MOV EAX,dword ptr [ECX + 0x204]\n  1001daf6:  MOV EDX,dword ptr [ECX + 0x200]\n  1001dafc:  SUB EAX,EDX\n  1001dafe:  CMP EAX,0x1f4\n  1001db03:  JBE 0x1001db0a\n  1001db05:  MOV EAX,0x64\n  1001db0a:  RET", 
+  "callers": []
+}

@@ -1,0 +1,30 @@
+{
+  "address": "0x100954e0", 
+  "size_bytes": 36, 
+  "calling_convention": "unknown", 
+  "signature": "undefined FUN_100954e0(undefined4 param_1, undefined4 param_2, undefined4 param_3)", 
+  "callees": [], 
+  "global_refs": [
+    {
+      "address": "0x0000000c", 
+      "type": null, 
+      "name": "DAT_0000000c"
+    }, 
+    {
+      "address": "0x00000004", 
+      "type": null, 
+      "name": "DAT_00000004"
+    }, 
+    {
+      "address": "0x00000008", 
+      "type": null, 
+      "name": "DAT_00000008"
+    }
+  ], 
+  "has_custom_name": false, 
+  "decompiled_c": "\nvoid FUN_100954e0(undefined4 *param_1,undefined4 *param_2,int param_3)\n\n{\n  uint uVar1;\n  int iVar2;\n  \n  for (uVar1 = (uint)(param_3 << 7) >> 2; uVar1 != 0; uVar1 = uVar1 - 1) {\n    *param_2 = *param_1;\n    param_1 = param_1 + 1;\n    param_2 = param_2 + 1;\n  }\n  for (iVar2 = 0; iVar2 != 0; iVar2 = iVar2 + -1) {\n    *(undefined *)param_2 = *(undefined *)param_1;\n    param_1 = (undefined4 *)((int)param_1 + 1);\n    param_2 = (undefined4 *)((int)param_2 + 1);\n  }\n  return;\n}\n\n", 
+  "is_thunk": false, 
+  "name": "FUN_100954e0", 
+  "assembly": "  100954e0:  MOV ECX,dword ptr [ESP + 0xc]\n  100954e4:  SHL ECX,0x7\n  100954e7:  PUSH ESI\n  100954e8:  MOV ESI,dword ptr [ESP + 0x8]\n  100954ec:  MOV EAX,ECX\n  100954ee:  PUSH EDI\n  100954ef:  MOV EDI,dword ptr [ESP + 0x10]\n  100954f3:  SHR ECX,0x2\n  100954f6:  MOVSD.REP ES:EDI,ESI\n  100954f8:  MOV ECX,EAX\n  100954fa:  AND ECX,0x3\n  100954fd:  MOVSB.REP ES:EDI,ESI\n  100954ff:  POP EDI\n  10095500:  POP ESI\n  10095501:  RET 0xc", 
+  "callers": []
+}

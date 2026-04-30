@@ -1,0 +1,185 @@
+{
+  "address": "0x10021d80", 
+  "size_bytes": 381, 
+  "calling_convention": "__thiscall", 
+  "signature": "int __thiscall ClipOBBox(gbCamera * this, gbOBBox * param_1)", 
+  "callees": [
+    {
+      "address": "0x10025260", 
+      "name": "Transform"
+    }
+  ], 
+  "global_refs": [
+    {
+      "address": "0x-0000058", 
+      "type": null, 
+      "name": "DAT_-0000058"
+    }, 
+    {
+      "address": "0x-0000060", 
+      "type": null, 
+      "name": "DAT_-0000060"
+    }, 
+    {
+      "address": "0x-000005c", 
+      "type": null, 
+      "name": "DAT_-000005c"
+    }, 
+    {
+      "address": "0x00000004", 
+      "type": null, 
+      "name": "DAT_00000004"
+    }, 
+    {
+      "address": "0x-000006c", 
+      "type": null, 
+      "name": "DAT_-000006c"
+    }, 
+    {
+      "address": "0x-0000068", 
+      "type": null, 
+      "name": "DAT_-0000068"
+    }, 
+    {
+      "address": "0x-0000064", 
+      "type": null, 
+      "name": "DAT_-0000064"
+    }, 
+    {
+      "address": "0x100f5508", 
+      "type": null, 
+      "name": "DAT_100f5508"
+    }, 
+    {
+      "address": "0x-0000070", 
+      "type": null, 
+      "name": "DAT_-0000070"
+    }, 
+    {
+      "address": "0x-0000054", 
+      "type": null, 
+      "name": "DAT_-0000054"
+    }, 
+    {
+      "address": "0x-0000050", 
+      "type": null, 
+      "name": "DAT_-0000050"
+    }, 
+    {
+      "address": "0x-0000024", 
+      "type": null, 
+      "name": "DAT_-0000024"
+    }, 
+    {
+      "address": "0x-000004c", 
+      "type": null, 
+      "name": "DAT_-000004c"
+    }, 
+    {
+      "address": "0x-0000048", 
+      "type": null, 
+      "name": "DAT_-0000048"
+    }, 
+    {
+      "address": "0x-0000078", 
+      "type": null, 
+      "name": "DAT_-0000078"
+    }, 
+    {
+      "address": "0x-0000044", 
+      "type": null, 
+      "name": "DAT_-0000044"
+    }, 
+    {
+      "address": "0x-0000040", 
+      "type": null, 
+      "name": "DAT_-0000040"
+    }, 
+    {
+      "address": "0x-0000038", 
+      "type": null, 
+      "name": "DAT_-0000038"
+    }, 
+    {
+      "address": "0x-0000014", 
+      "type": null, 
+      "name": "DAT_-0000014"
+    }, 
+    {
+      "address": "0x-000003c", 
+      "type": null, 
+      "name": "DAT_-000003c"
+    }, 
+    {
+      "address": "0x-0000008", 
+      "type": null, 
+      "name": "DAT_-0000008"
+    }, 
+    {
+      "address": "0x-0000034", 
+      "type": null, 
+      "name": "DAT_-0000034"
+    }, 
+    {
+      "address": "0x-0000030", 
+      "type": null, 
+      "name": "DAT_-0000030"
+    }, 
+    {
+      "address": "0x-000002c", 
+      "type": null, 
+      "name": "DAT_-000002c"
+    }, 
+    {
+      "address": "0x-0000074", 
+      "type": null, 
+      "name": "DAT_-0000074"
+    }, 
+    {
+      "address": "0x-0000028", 
+      "type": null, 
+      "name": "DAT_-0000028"
+    }, 
+    {
+      "address": "0x-0000020", 
+      "type": null, 
+      "name": "DAT_-0000020"
+    }, 
+    {
+      "address": "0x-000001c", 
+      "type": null, 
+      "name": "DAT_-000001c"
+    }, 
+    {
+      "address": "0x-0000010", 
+      "type": null, 
+      "name": "DAT_-0000010"
+    }, 
+    {
+      "address": "0x-0000018", 
+      "type": null, 
+      "name": "DAT_-0000018"
+    }, 
+    {
+      "address": "0x-000000c", 
+      "type": null, 
+      "name": "DAT_-000000c"
+    }, 
+    {
+      "address": "0x-0000004", 
+      "type": null, 
+      "name": "DAT_-0000004"
+    }, 
+    {
+      "address": "0x100f53a0", 
+      "type": null, 
+      "name": "DAT_100f53a0"
+    }
+  ], 
+  "has_custom_name": true, 
+  "decompiled_c": "\n/* public: int __thiscall gbCamera::ClipOBBox(struct gbOBBox *) */\n\nint __thiscall gbCamera::ClipOBBox(gbCamera *this,gbOBBox *param_1)\n\n{\n  float *pfVar1;\n  int iVar2;\n  gbCamera *pgVar3;\n  int local_74;\n  int local_70;\n  float local_6c;\n  float local_68;\n  float local_64;\n  float local_60;\n  float local_5c;\n  float local_58;\n  float local_54;\n  float local_50;\n  float local_4c;\n  float local_48;\n  float local_44;\n  float local_40;\n  float local_3c;\n  float local_38;\n  float local_34;\n  float local_30;\n  float local_2c;\n  float local_28;\n  float local_24;\n  float local_20;\n  float local_1c;\n  float local_18;\n  float local_14;\n  float local_10;\n  float local_c;\n  float local_8;\n  float local_4;\n  \n                    /* 0x21d80  331  ?ClipOBBox@gbCamera@@QAEHPAUgbOBBox@@@Z */\n  pfVar1 = &local_58;\n  iVar2 = 8;\n  do {\n    pfVar1[-2] = 0.0;\n    pfVar1[-1] = 0.0;\n    *pfVar1 = 0.0;\n    pfVar1 = pfVar1 + 3;\n    iVar2 = iVar2 + -1;\n  } while (iVar2 != 0);\n  local_6c = 0.0;\n  local_68 = 0.0;\n  local_64 = 0.0;\n  local_60 = *(float *)(param_1 + 0x40) * 0.5;\n  local_5c = *(float *)(param_1 + 0x44) * 0.5;\n  local_58 = *(float *)(param_1 + 0x48) * 0.5;\n  local_54 = -local_60;\n  local_44 = -local_5c;\n  local_28 = -local_58;\n  local_74 = 0;\n  local_70 = 8;\n  local_50 = local_5c;\n  local_4c = local_58;\n  local_48 = local_60;\n  local_40 = local_58;\n  local_3c = local_54;\n  local_38 = local_44;\n  local_34 = local_58;\n  local_30 = local_60;\n  local_2c = local_5c;\n  local_24 = local_54;\n  local_20 = local_5c;\n  local_1c = local_28;\n  local_18 = local_60;\n  local_14 = local_44;\n  local_10 = local_28;\n  local_c = local_54;\n  local_8 = local_44;\n  local_4 = local_28;\n  do {\n    gbMatrix4::Transform((gbMatrix4 *)param_1,(gbVec3D *)&local_60,(gbVec3D *)&local_6c);\n    iVar2 = 0;\n    if (0 < *(int *)(this + 0x90)) {\n      pgVar3 = this + 0x38;\n      do {\n        if (local_64 * *(float *)pgVar3 +\n            local_68 * *(float *)(pgVar3 + -4) + local_6c * *(float *)(pgVar3 + -8) +\n            *(float *)(pgVar3 + 4) < 0.0) {\n          local_74 = local_74 + 1;\n          break;\n        }\n        iVar2 = iVar2 + 1;\n        pgVar3 = pgVar3 + 0x10;\n      } while (iVar2 < *(int *)(this + 0x90));\n    }\n    local_70 = local_70 + -1;\n    if (local_70 == 0) {\n      return (uint)(local_74 == 8);\n    }\n  } while( true );\n}\n\n", 
+  "is_thunk": false, 
+  "name": "ClipOBBox", 
+  "assembly": "  10021d80:  SUB ESP,0x78\n  10021d83:  LEA EAX,[ESP + 0x20]\n  10021d87:  PUSH EBX\n  10021d88:  PUSH EBP\n  10021d89:  MOV EBX,ECX\n  10021d8b:  PUSH ESI\n  10021d8c:  PUSH EDI\n  10021d8d:  MOV ECX,0x8\n  10021d92:  XOR EBP,EBP\n  10021d94:  MOV dword ptr [EAX + -0x8],EBP\n  10021d97:  MOV dword ptr [EAX + -0x4],EBP\n  10021d9a:  MOV dword ptr [EAX],EBP\n  10021d9c:  ADD EAX,0xc\n  10021d9f:  DEC ECX\n  10021da0:  JNZ 0x10021d94\n  10021da2:  MOV EDI,dword ptr [ESP + 0x8c]\n  10021da9:  MOV dword ptr [ESP + 0x1c],0x0\n  10021db1:  MOV dword ptr [ESP + 0x20],0x0\n  10021db9:  MOV dword ptr [ESP + 0x24],0x0\n  10021dc1:  FLD dword ptr [EDI + 0x40]\n  10021dc4:  FMUL dword ptr [0x100f5508]\n  10021dca:  FLD dword ptr [EDI + 0x44]\n  10021dcd:  FMUL dword ptr [0x100f5508]\n  10021dd3:  FLD dword ptr [EDI + 0x48]\n  10021dd6:  FMUL dword ptr [0x100f5508]\n  10021ddc:  FLD ST2\n  10021dde:  FSTP dword ptr [ESP + 0x28]\n  10021de2:  FLD ST1\n  10021de4:  FSTP dword ptr [ESP + 0x2c]\n  10021de8:  FST dword ptr [ESP + 0x30]\n  10021dec:  FLD ST2\n  10021dee:  FCHS\n  10021df0:  FST dword ptr [ESP + 0x18]\n  10021df4:  FST dword ptr [ESP + 0x34]\n  10021df8:  FLD ST2\n  10021dfa:  MOV ECX,dword ptr [ESP + 0x18]\n  10021dfe:  FSTP dword ptr [ESP + 0x38]\n  10021e02:  FLD ST1\n  10021e04:  MOV dword ptr [ESP + 0x64],ECX\n  10021e08:  FSTP dword ptr [ESP + 0x3c]\n  10021e0c:  FLD ST3\n  10021e0e:  FSTP dword ptr [ESP + 0x40]\n  10021e12:  FLD ST2\n  10021e14:  FCHS\n  10021e16:  FST dword ptr [ESP + 0x10]\n  10021e1a:  FSTP dword ptr [ESP + 0x44]\n  10021e1e:  FLD ST1\n  10021e20:  MOV EAX,dword ptr [ESP + 0x10]\n  10021e24:  FSTP dword ptr [ESP + 0x48]\n  10021e28:  MOV dword ptr [ESP + 0x50],EAX\n  10021e2c:  MOV dword ptr [ESP + 0x74],EAX\n  10021e30:  FSTP dword ptr [ESP + 0x4c]\n  10021e34:  MOV dword ptr [ESP + 0x80],EAX\n  10021e3b:  FST dword ptr [ESP + 0x54]\n  10021e3f:  FLD ST2\n  10021e41:  FSTP dword ptr [ESP + 0x58]\n  10021e45:  FLD ST1\n  10021e47:  FSTP dword ptr [ESP + 0x5c]\n  10021e4b:  FCHS\n  10021e4d:  FST dword ptr [ESP + 0x14]\n  10021e51:  FSTP dword ptr [ESP + 0x60]\n  10021e55:  MOV EDX,dword ptr [ESP + 0x14]\n  10021e59:  MOV dword ptr [ESP + 0x14],EBP\n  10021e5d:  FSTP dword ptr [ESP + 0x68]\n  10021e61:  MOV dword ptr [ESP + 0x6c],EDX\n  10021e65:  MOV ECX,EDX\n  10021e67:  MOV EDX,dword ptr [ESP + 0x18]\n  10021e6b:  MOV dword ptr [ESP + 0x78],ECX\n  10021e6f:  FSTP dword ptr [ESP + 0x70]\n  10021e73:  MOV dword ptr [ESP + 0x7c],EDX\n  10021e77:  MOV dword ptr [ESP + 0x84],ECX\n  10021e7e:  MOV dword ptr [ESP + 0x18],0x8\n  10021e86:  LEA EDX,[ESP + 0x1c]\n  10021e8a:  LEA EAX,[ESP + 0x28]\n  10021e8e:  PUSH EDX\n  10021e8f:  PUSH EAX\n  10021e90:  MOV ECX,EDI\n  10021e92:  CALL 0x10025260\n  10021e97:  MOV ESI,dword ptr [EBX + 0x90]\n  10021e9d:  XOR ECX,ECX\n  10021e9f:  CMP ESI,EBP\n  10021ea1:  JLE 0x10021edc\n  10021ea3:  LEA EDX,[EBX + 0x38]\n  10021ea6:  FLD dword ptr [ESP + 0x1c]\n  10021eaa:  FMUL dword ptr [EDX + -0x8]\n  10021ead:  FLD dword ptr [ESP + 0x20]\n  10021eb1:  FMUL dword ptr [EDX + -0x4]\n  10021eb4:  FADDP\n  10021eb6:  FLD dword ptr [ESP + 0x24]\n  10021eba:  FMUL dword ptr [EDX]\n  10021ebc:  FADDP\n  10021ebe:  FADD dword ptr [EDX + 0x4]\n  10021ec1:  FCOMP dword ptr [0x100f53a0]\n  10021ec7:  FNSTSW AX\n  10021ec9:  TEST AH,0x1\n  10021ecc:  JNZ 0x10021ed8\n  10021ece:  INC ECX\n  10021ecf:  ADD EDX,0x10\n  10021ed2:  CMP ECX,ESI\n  10021ed4:  JL 0x10021ea6\n  10021ed6:  JMP 0x10021edc\n  10021ed8:  INC dword ptr [ESP + 0x14]\n  10021edc:  MOV EAX,dword ptr [ESP + 0x18]\n  10021ee0:  DEC EAX\n  10021ee1:  MOV dword ptr [ESP + 0x18],EAX\n  10021ee5:  JNZ 0x10021e86\n  10021ee7:  MOV ECX,dword ptr [ESP + 0x14]\n  10021eeb:  XOR EAX,EAX\n  10021eed:  POP EDI\n  10021eee:  CMP ECX,0x8\n  10021ef1:  POP ESI\n  10021ef2:  POP EBP\n  10021ef3:  SETZ AL\n  10021ef6:  POP EBX\n  10021ef7:  ADD ESP,0x78\n  10021efa:  RET 0x4", 
+  "callers": []
+}

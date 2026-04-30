@@ -1,0 +1,164 @@
+{
+  "address": "0x10030a00", 
+  "size_bytes": 285, 
+  "calling_convention": "__thiscall", 
+  "signature": "void __thiscall Seek(gbVFileSystem * this, gbVFile * param_1, long param_2, int param_3)", 
+  "callees": [
+    {
+      "address": "0x1002d2e0", 
+      "name": "Seek"
+    }, 
+    {
+      "address": "0x1002d2e0", 
+      "name": "Seek"
+    }, 
+    {
+      "address": "0x1002d2e0", 
+      "name": "Seek"
+    }, 
+    {
+      "address": "0x100e60fd", 
+      "name": "FUN_100e60fd"
+    }
+  ], 
+  "global_refs": [
+    {
+      "address": "0x0000000c", 
+      "type": null, 
+      "name": "DAT_0000000c"
+    }, 
+    {
+      "address": "0x00000004", 
+      "type": null, 
+      "name": "DAT_00000004"
+    }, 
+    {
+      "address": "0x00000008", 
+      "type": null, 
+      "name": "DAT_00000008"
+    }
+  ], 
+  "has_custom_name": true, 
+  "decompiled_c": "\n/* public: void __thiscall gbVFileSystem::Seek(class gbVFile *,long,int) */\n\nvoid __thiscall gbVFileSystem::Seek(gbVFileSystem *this,gbVFile *param_1,long param_2,int param_3)\n\n{\n  int iVar1;\n  CPKFile *pCVar2;\n  \n                    /* 0x30a00  834  ?Seek@gbVFileSystem@@QAEXPAVgbVFile@@JH@Z */\n  iVar1 = *(int *)(this + 0xc);\n  if (iVar1 == 1) {\n    if (param_3 == 1) {\n      if (param_1 == (gbVFile *)0x0) {\n        pCVar2 = (CPKFile *)0x0;\n      }\n      else {\n        pCVar2 = (CPKFile *)(param_1 + 0x110);\n      }\n      CPK::Seek((CPK *)(this + 0x18),pCVar2,param_2,0);\n      return;\n    }\n    if (param_3 == 2) {\n      if (param_1 == (gbVFile *)0x0) {\n        pCVar2 = (CPKFile *)0x0;\n      }\n      else {\n        pCVar2 = (CPKFile *)(param_1 + 0x110);\n      }\n      CPK::Seek((CPK *)(this + 0x18),pCVar2,param_2,1);\n      return;\n    }\n    if (param_3 == 3) {\n      if (param_1 == (gbVFile *)0x0) {\n        pCVar2 = (CPKFile *)0x0;\n      }\n      else {\n        pCVar2 = (CPKFile *)(param_1 + 0x110);\n      }\n      CPK::Seek((CPK *)(this + 0x18),pCVar2,param_2,2);\n      return;\n    }\n  }\n  else {\n    if (iVar1 == 0) {\n      if (param_3 == 1) {\n        param_3 = 0;\n      }\n      else if (param_3 == 2) {\n        param_3 = 1;\n      }\n      else if (param_3 == 3) {\n        param_3 = 2;\n      }\n      FUN_100e60fd(*(undefined4 *)(param_1 + 4),param_2,param_3);\n      return;\n    }\n    if (iVar1 == 2) {\n      if (param_3 == 1) {\n        *(int *)(param_1 + 0x10c) = *(int *)(param_1 + 4) + param_2;\n      }\n      else {\n        if (param_3 == 2) {\n          *(int *)(param_1 + 0x10c) = *(int *)(param_1 + 0x10c) + param_2;\n          return;\n        }\n        if (param_3 == 3) {\n          *(int *)(param_1 + 0x10c) = (*(int *)(param_1 + 8) + *(int *)(param_1 + 4)) - param_2;\n          return;\n        }\n      }\n    }\n  }\n  return;\n}\n\n", 
+  "is_thunk": false, 
+  "name": "Seek", 
+  "assembly": "  10030a00:  MOV EAX,dword ptr [ECX + 0xc]\n  10030a03:  CMP EAX,0x1\n  10030a06:  JNZ 0x10030a85\n  10030a08:  MOV EAX,dword ptr [ESP + 0xc]\n  10030a0c:  DEC EAX\n  10030a0d:  JZ 0x10030a61\n  10030a0f:  DEC EAX\n  10030a10:  JZ 0x10030a3d\n  10030a12:  DEC EAX\n  10030a13:  JNZ 0x10030b1a\n  10030a19:  MOV EAX,dword ptr [ESP + 0x4]\n  10030a1d:  TEST EAX,EAX\n  10030a1f:  JZ 0x10030a28\n  10030a21:  ADD EAX,0x110\n  10030a26:  JMP 0x10030a2a\n  10030a28:  XOR EAX,EAX\n  10030a2a:  MOV EDX,dword ptr [ESP + 0x8]\n  10030a2e:  PUSH 0x2\n  10030a30:  PUSH EDX\n  10030a31:  PUSH EAX\n  10030a32:  ADD ECX,0x18\n  10030a35:  CALL 0x1002d2e0\n  10030a3a:  RET 0xc\n  10030a3d:  MOV EAX,dword ptr [ESP + 0x4]\n  10030a41:  TEST EAX,EAX\n  10030a43:  JZ 0x10030a4c\n  10030a45:  ADD EAX,0x110\n  10030a4a:  JMP 0x10030a4e\n  10030a4c:  XOR EAX,EAX\n  10030a4e:  MOV EDX,dword ptr [ESP + 0x8]\n  10030a52:  PUSH 0x1\n  10030a54:  PUSH EDX\n  10030a55:  PUSH EAX\n  10030a56:  ADD ECX,0x18\n  10030a59:  CALL 0x1002d2e0\n  10030a5e:  RET 0xc\n  10030a61:  MOV EAX,dword ptr [ESP + 0x4]\n  10030a65:  TEST EAX,EAX\n  10030a67:  JZ 0x10030a70\n  10030a69:  ADD EAX,0x110\n  10030a6e:  JMP 0x10030a72\n  10030a70:  XOR EAX,EAX\n  10030a72:  MOV EDX,dword ptr [ESP + 0x8]\n  10030a76:  PUSH 0x0\n  10030a78:  PUSH EDX\n  10030a79:  PUSH EAX\n  10030a7a:  ADD ECX,0x18\n  10030a7d:  CALL 0x1002d2e0\n  10030a82:  RET 0xc\n  10030a85:  TEST EAX,EAX\n  10030a87:  JNZ 0x10030ac1\n  10030a89:  MOV EAX,dword ptr [ESP + 0xc]\n  10030a8d:  MOV ECX,EAX\n  10030a8f:  DEC ECX\n  10030a90:  JZ 0x10030aa6\n  10030a92:  DEC ECX\n  10030a93:  JZ 0x10030a9f\n  10030a95:  DEC ECX\n  10030a96:  JNZ 0x10030aa8\n  10030a98:  MOV EAX,0x2\n  10030a9d:  JMP 0x10030aa8\n  10030a9f:  MOV EAX,0x1\n  10030aa4:  JMP 0x10030aa8\n  10030aa6:  XOR EAX,EAX\n  10030aa8:  MOV ECX,dword ptr [ESP + 0x4]\n  10030aac:  PUSH EAX\n  10030aad:  MOV EAX,dword ptr [ESP + 0xc]\n  10030ab1:  MOV EDX,dword ptr [ECX + 0x4]\n  10030ab4:  PUSH EAX\n  10030ab5:  PUSH EDX\n  10030ab6:  CALL 0x100e60fd\n  10030abb:  ADD ESP,0xc\n  10030abe:  RET 0xc\n  10030ac1:  CMP EAX,0x2\n  10030ac4:  JNZ 0x10030b1a\n  10030ac6:  MOV EAX,dword ptr [ESP + 0xc]\n  10030aca:  DEC EAX\n  10030acb:  JZ 0x10030b07\n  10030acd:  DEC EAX\n  10030ace:  JZ 0x10030aee\n  10030ad0:  DEC EAX\n  10030ad1:  JNZ 0x10030b1a\n  10030ad3:  MOV EAX,dword ptr [ESP + 0x4]\n  10030ad7:  MOV ECX,dword ptr [EAX + 0x8]\n  10030ada:  MOV EDX,dword ptr [EAX + 0x4]\n  10030add:  ADD ECX,EDX\n  10030adf:  MOV EDX,dword ptr [ESP + 0x8]\n  10030ae3:  SUB ECX,EDX\n  10030ae5:  MOV dword ptr [EAX + 0x10c],ECX\n  10030aeb:  RET 0xc\n  10030aee:  MOV EAX,dword ptr [ESP + 0x4]\n  10030af2:  MOV EDX,dword ptr [ESP + 0x8]\n  10030af6:  MOV ECX,dword ptr [EAX + 0x10c]\n  10030afc:  ADD ECX,EDX\n  10030afe:  MOV dword ptr [EAX + 0x10c],ECX\n  10030b04:  RET 0xc\n  10030b07:  MOV EAX,dword ptr [ESP + 0x4]\n  10030b0b:  MOV EDX,dword ptr [ESP + 0x8]\n  10030b0f:  MOV ECX,dword ptr [EAX + 0x4]\n  10030b12:  ADD ECX,EDX\n  10030b14:  MOV dword ptr [EAX + 0x10c],ECX\n  10030b1a:  RET 0xc", 
+  "callers": [
+    {
+      "address": "0x10030be0", 
+      "name": "GetFileSize"
+    }, 
+    {
+      "address": "0x10030be0", 
+      "name": "GetFileSize"
+    }, 
+    {
+      "address": "0x10011c60", 
+      "name": "FUN_10011c60"
+    }, 
+    {
+      "address": "0x10011c60", 
+      "name": "FUN_10011c60"
+    }, 
+    {
+      "address": "0x10011c60", 
+      "name": "FUN_10011c60"
+    }, 
+    {
+      "address": "0x10011c60", 
+      "name": "FUN_10011c60"
+    }, 
+    {
+      "address": "0x10011c60", 
+      "name": "FUN_10011c60"
+    }, 
+    {
+      "address": "0x10011c60", 
+      "name": "FUN_10011c60"
+    }, 
+    {
+      "address": "0x10011c60", 
+      "name": "FUN_10011c60"
+    }, 
+    {
+      "address": "0x10011c60", 
+      "name": "FUN_10011c60"
+    }, 
+    {
+      "address": "0x1001eb80", 
+      "name": "FUN_1001eb80"
+    }, 
+    {
+      "address": "0x1001eb80", 
+      "name": "FUN_1001eb80"
+    }, 
+    {
+      "address": "0x1001ed50", 
+      "name": "FUN_1001ed50"
+    }, 
+    {
+      "address": "0x1001f0a0", 
+      "name": "FUN_1001f0a0"
+    }, 
+    {
+      "address": "0x1001f0a0", 
+      "name": "FUN_1001f0a0"
+    }, 
+    {
+      "address": "0x10029cf0", 
+      "name": "LoadFromFile"
+    }, 
+    {
+      "address": "0x10029cf0", 
+      "name": "LoadFromFile"
+    }, 
+    {
+      "address": "0x10029cf0", 
+      "name": "LoadFromFile"
+    }, 
+    {
+      "address": "0x10029cf0", 
+      "name": "LoadFromFile"
+    }, 
+    {
+      "address": "0x10029cf0", 
+      "name": "LoadFromFile"
+    }, 
+    {
+      "address": "0x10029cf0", 
+      "name": "LoadFromFile"
+    }, 
+    {
+      "address": "0x1002a7f0", 
+      "name": "LoadFromFile"
+    }, 
+    {
+      "address": "0x1002a7f0", 
+      "name": "LoadFromFile"
+    }, 
+    {
+      "address": "0x1002a7f0", 
+      "name": "LoadFromFile"
+    }, 
+    {
+      "address": "0x1002a7f0", 
+      "name": "LoadFromFile"
+    }, 
+    {
+      "address": "0x100298e0", 
+      "name": "LoadFromFile"
+    }, 
+    {
+      "address": "0x10031170", 
+      "name": "Rewind"
+    }, 
+    {
+      "address": "0x100313e0", 
+      "name": "ReadLine"
+    }, 
+    {
+      "address": "0x10031650", 
+      "name": "ReadStart"
+    }
+  ]
+}

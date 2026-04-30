@@ -1,0 +1,14 @@
+{
+  "address": "0x100300f0", 
+  "size_bytes": 13, 
+  "calling_convention": "__thiscall", 
+  "signature": "void __thiscall ~gbBinaryTree(gbBinaryTree * this)", 
+  "callees": [], 
+  "global_refs": [], 
+  "has_custom_name": true, 
+  "decompiled_c": "\n/* public: __thiscall gbBinaryTree::~gbBinaryTree(void) */\n\nvoid __thiscall gbBinaryTree::~gbBinaryTree(gbBinaryTree *this)\n\n{\n                    /* 0x300f0  129  ??1gbBinaryTree@@QAE@XZ\n                       0x300f0  145  ??1gbNBTree@@QAE@XZ */\n  if (*(undefined4 **)this != (undefined4 *)0x0) {\n    (**(code **)**(undefined4 **)this)(1);\n  }\n  return;\n}\n\n", 
+  "is_thunk": false, 
+  "name": "~gbBinaryTree", 
+  "assembly": "  100300f0:  MOV ECX,dword ptr [ECX]\n  100300f2:  TEST ECX,ECX\n  100300f4:  JZ 0x100300fc\n  100300f6:  MOV EAX,dword ptr [ECX]\n  100300f8:  PUSH 0x1\n  100300fa:  CALL dword ptr [EAX]\n  100300fc:  RET", 
+  "callers": []
+}

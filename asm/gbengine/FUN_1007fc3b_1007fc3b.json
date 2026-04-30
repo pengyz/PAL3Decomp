@@ -1,0 +1,69 @@
+{
+  "address": "0x1007fc3b", 
+  "size_bytes": 140, 
+  "calling_convention": "unknown", 
+  "signature": "undefined FUN_1007fc3b(undefined4 param_1, undefined4 param_2, undefined4 param_3)", 
+  "callees": [
+    {
+      "address": "0x100e72e4", 
+      "name": "FUN_100e72e4"
+    }
+  ], 
+  "global_refs": [
+    {
+      "address": "0x00000008", 
+      "type": null, 
+      "name": "DAT_00000008"
+    }, 
+    {
+      "address": "0x0000000c", 
+      "type": null, 
+      "name": "DAT_0000000c"
+    }, 
+    {
+      "address": "0x00000004", 
+      "type": null, 
+      "name": "DAT_00000004"
+    }, 
+    {
+      "address": "0x-0000024", 
+      "type": null, 
+      "name": "DAT_-0000024"
+    }, 
+    {
+      "address": "0x-000001c", 
+      "type": null, 
+      "name": "DAT_-000001c"
+    }, 
+    {
+      "address": "0x-0000014", 
+      "type": null, 
+      "name": "DAT_-0000014"
+    }, 
+    {
+      "address": "0x-000000c", 
+      "type": null, 
+      "name": "DAT_-000000c"
+    }, 
+    {
+      "address": "0x-0000038", 
+      "type": null, 
+      "name": "DAT_-0000038"
+    }
+  ], 
+  "has_custom_name": false, 
+  "decompiled_c": "\nvoid FUN_1007fc3b(double *param_1,double *param_2,double *param_3)\n\n{\n  double *pdVar1;\n  int iVar2;\n  int in_ECX;\n  uint uVar3;\n  double local_24 [4];\n  \n  local_24[0] = *param_2 * *param_3;\n  uVar3 = 0;\n  local_24[1] = *param_2 * param_3[1];\n  local_24[2] = param_2[1] * *param_3;\n  local_24[3] = param_2[1] * param_3[1];\n  *param_1 = *(double *)(in_ECX + 0x98);\n  param_1[1] = *(double *)(in_ECX + 0xa0);\n  do {\n    pdVar1 = local_24 + uVar3;\n    iVar2 = FUN_100e72e4(*pdVar1);\n    if (iVar2 != 0) {\n      *pdVar1 = 0.0;\n    }\n    if (*pdVar1 < *param_1) {\n      *param_1 = *pdVar1;\n    }\n    if (param_1[1] < *pdVar1 != (NAN(param_1[1]) || NAN(*pdVar1))) {\n      param_1[1] = *pdVar1;\n    }\n    uVar3 = uVar3 + 1;\n  } while (uVar3 < 4);\n  return;\n}\n\n", 
+  "is_thunk": false, 
+  "name": "FUN_1007fc3b", 
+  "assembly": "  1007fc3b:  PUSH EBP\n  1007fc3c:  MOV EBP,ESP\n  1007fc3e:  SUB ESP,0x20\n  1007fc41:  MOV EAX,dword ptr [EBP + 0xc]\n  1007fc44:  MOV EDX,dword ptr [EBP + 0x10]\n  1007fc47:  FLD qword ptr [EAX]\n  1007fc49:  FMUL qword ptr [EDX]\n  1007fc4b:  PUSH EBX\n  1007fc4c:  PUSH ESI\n  1007fc4d:  MOV ESI,dword ptr [EBP + 0x8]\n  1007fc50:  FSTP qword ptr [EBP + -0x20]\n  1007fc53:  PUSH EDI\n  1007fc54:  FLD qword ptr [EAX]\n  1007fc56:  XOR EBX,EBX\n  1007fc58:  FMUL qword ptr [EDX + 0x8]\n  1007fc5b:  FSTP qword ptr [EBP + -0x18]\n  1007fc5e:  FLD qword ptr [EAX + 0x8]\n  1007fc61:  FMUL qword ptr [EDX]\n  1007fc63:  FSTP qword ptr [EBP + -0x10]\n  1007fc66:  FLD qword ptr [EAX + 0x8]\n  1007fc69:  FMUL qword ptr [EDX + 0x8]\n  1007fc6c:  FSTP qword ptr [EBP + -0x8]\n  1007fc6f:  FLD qword ptr [ECX + 0x98]\n  1007fc75:  FSTP qword ptr [ESI]\n  1007fc77:  FLD qword ptr [ECX + 0xa0]\n  1007fc7d:  FSTP qword ptr [ESI + 0x8]\n  1007fc80:  PUSH ECX\n  1007fc81:  LEA EDI,[EBP + EBX*0x8 + -0x20]\n  1007fc85:  FLD qword ptr [EDI]\n  1007fc87:  PUSH ECX\n  1007fc88:  FSTP qword ptr [ESP]\n  1007fc8b:  CALL 0x100e72e4\n  1007fc90:  TEST EAX,EAX\n  1007fc92:  POP ECX\n  1007fc93:  POP ECX\n  1007fc94:  JZ 0x1007fc9a\n  1007fc96:  FLDZ\n  1007fc98:  FSTP qword ptr [EDI]\n  1007fc9a:  FLD qword ptr [ESI]\n  1007fc9c:  FCOMP qword ptr [EDI]\n  1007fc9e:  FNSTSW AX\n  1007fca0:  TEST AH,0x41\n  1007fca3:  JNZ 0x1007fca9\n  1007fca5:  FLD qword ptr [EDI]\n  1007fca7:  FSTP qword ptr [ESI]\n  1007fca9:  FLD qword ptr [ESI + 0x8]\n  1007fcac:  FCOMP qword ptr [EDI]\n  1007fcae:  FNSTSW AX\n  1007fcb0:  TEST AH,0x5\n  1007fcb3:  JP 0x1007fcba\n  1007fcb5:  FLD qword ptr [EDI]\n  1007fcb7:  FSTP qword ptr [ESI + 0x8]\n  1007fcba:  INC EBX\n  1007fcbb:  CMP EBX,0x4\n  1007fcbe:  JC 0x1007fc80\n  1007fcc0:  POP EDI\n  1007fcc1:  POP ESI\n  1007fcc2:  POP EBX\n  1007fcc3:  LEAVE\n  1007fcc4:  RET 0xc", 
+  "callers": [
+    {
+      "address": "0x1007fcc7", 
+      "name": "FUN_1007fcc7"
+    }, 
+    {
+      "address": "0x1007fcc7", 
+      "name": "FUN_1007fcc7"
+    }
+  ]
+}

@@ -1,0 +1,165 @@
+{
+  "address": "0x100321f0", 
+  "size_bytes": 678, 
+  "calling_convention": "__thiscall", 
+  "signature": "void __thiscall Draw(gbRain * this)", 
+  "callees": [
+    {
+      "address": "0x10021680", 
+      "name": "GetDynVertBuf"
+    }, 
+    {
+      "address": "0x1001d8e0", 
+      "name": "GetWhiteTexture"
+    }, 
+    {
+      "address": "0x10027590", 
+      "name": "GetTop"
+    }, 
+    {
+      "address": "0x10027090", 
+      "name": "Push"
+    }, 
+    {
+      "address": "0x100270d0", 
+      "name": "LoadIdentity"
+    }, 
+    {
+      "address": "0x100270c0", 
+      "name": "Pop"
+    }
+  ], 
+  "global_refs": [
+    {
+      "address": "0x101379a8", 
+      "type": "undefined4", 
+      "name": "DAT_101379a8"
+    }, 
+    {
+      "address": "0x-00000b4", 
+      "type": null, 
+      "name": "DAT_-00000b4"
+    }, 
+    {
+      "address": "0x-0000004", 
+      "type": null, 
+      "name": "DAT_-0000004"
+    }, 
+    {
+      "address": "0x-0000044", 
+      "type": null, 
+      "name": "DAT_-0000044"
+    }, 
+    {
+      "address": "0x-00000b8", 
+      "type": null, 
+      "name": "DAT_-00000b8"
+    }, 
+    {
+      "address": "0x-00000c9", 
+      "type": null, 
+      "name": "DAT_-00000c9"
+    }, 
+    {
+      "address": "0x-00000ca", 
+      "type": null, 
+      "name": "DAT_-00000ca"
+    }, 
+    {
+      "address": "0x-00000cb", 
+      "type": null, 
+      "name": "DAT_-00000cb"
+    }, 
+    {
+      "address": "0x-00000cc", 
+      "type": null, 
+      "name": "DAT_-00000cc"
+    }, 
+    {
+      "address": "0x-00000a4", 
+      "type": null, 
+      "name": "DAT_-00000a4"
+    }, 
+    {
+      "address": "0x1015d3a4", 
+      "type": "int", 
+      "name": "DAT_1015d3a4"
+    }, 
+    {
+      "address": "0x100f5508", 
+      "type": null, 
+      "name": "DAT_100f5508"
+    }, 
+    {
+      "address": "0x-000005c", 
+      "type": null, 
+      "name": "DAT_-000005c"
+    }, 
+    {
+      "address": "0x-00000c8", 
+      "type": null, 
+      "name": "DAT_-00000c8"
+    }, 
+    {
+      "address": "0x-000008c", 
+      "type": null, 
+      "name": "DAT_-000008c"
+    }, 
+    {
+      "address": "0x-0000074", 
+      "type": null, 
+      "name": "DAT_-0000074"
+    }, 
+    {
+      "address": "0x-00000a0", 
+      "type": null, 
+      "name": "DAT_-00000a0"
+    }, 
+    {
+      "address": "0x-000009c", 
+      "type": null, 
+      "name": "DAT_-000009c"
+    }, 
+    {
+      "address": "0x-0000088", 
+      "type": null, 
+      "name": "DAT_-0000088"
+    }, 
+    {
+      "address": "0x-0000084", 
+      "type": null, 
+      "name": "DAT_-0000084"
+    }, 
+    {
+      "address": "0x-0000070", 
+      "type": null, 
+      "name": "DAT_-0000070"
+    }, 
+    {
+      "address": "0x-000006c", 
+      "type": null, 
+      "name": "DAT_-000006c"
+    }, 
+    {
+      "address": "0x-0000058", 
+      "type": null, 
+      "name": "DAT_-0000058"
+    }, 
+    {
+      "address": "0x-0000054", 
+      "type": null, 
+      "name": "DAT_-0000054"
+    }, 
+    {
+      "address": "0x100f53a0", 
+      "type": null, 
+      "name": "DAT_100f53a0"
+    }
+  ], 
+  "has_custom_name": true, 
+  "decompiled_c": "\n/* private: virtual void __thiscall gbRain::Draw(void) */\n\nvoid __thiscall gbRain::Draw(gbRain *this)\n\n{\n  gbMatrixStack *this_00;\n  gbMatrixStack *pgVar1;\n  undefined4 *puVar2;\n  float *pfVar3;\n  int iVar4;\n  int iVar5;\n  gbDynVertBuf **ppgVar6;\n  gbMatrixStack *this_01;\n  undefined4 *puVar7;\n  float *pfVar8;\n  float *pfVar9;\n  int iVar10;\n  gbMatrixStack *pgStack_bc;\n  gbDynVertBuf *local_b4;\n  float fStack_b0;\n  float fStack_ac;\n  undefined4 local_a4;\n  undefined4 local_a0;\n  float local_9c [4];\n  undefined4 local_8c;\n  undefined4 local_88;\n  float local_84 [4];\n  undefined4 local_74;\n  undefined4 local_70;\n  float local_6c [4];\n  undefined4 local_5c;\n  undefined4 local_58;\n  undefined4 local_54;\n  float fStack_4c;\n  undefined auStack_48 [4];\n  gbTexture *local_44;\n  undefined4 local_4;\n  \n                    /* 0x321f0  382  ?Draw@gbRain@@EAEXXZ */\n  iVar5 = DAT_101379a8;\n  pgVar1 = (gbMatrixStack *)\n           gbVertPoolMgr::GetDynVertBuf(*(gbVertPoolMgr **)(DAT_101379a8 + 0xc4),0x15);\n  local_44 = *(gbTexture **)(this + 0x48);\n  local_4 = 1;\n  local_b4 = (gbDynVertBuf *)pgVar1;\n  if (local_44 == (gbTexture *)0x0) {\n    local_44 = gbEffectMgr::GetWhiteTexture(*(gbEffectMgr **)(iVar5 + 200));\n  }\n  this_00 = *(gbMatrixStack **)(iVar5 + 0xd8);\n  gbMatrixStack::GetTop(this_00);\n  local_a4 = 0x80ffffff;\n  local_5c = 0x80ffffff;\n  local_8c = 0x96ffffff;\n  iVar5 = 0;\n  local_74 = 0x96ffffff;\n  local_a0 = 0;\n  local_9c[0] = 1.0;\n  local_88 = 0;\n  local_84[0] = 0.0;\n  local_70 = 0x3f800000;\n  local_6c[0] = 0.0;\n  local_58 = 0x3f800000;\n  local_54 = 0x3f800000;\n  puVar2 = (undefined4 *)(**(code **)(*(int *)pgVar1 + 0xc))(*(int *)(this + 0xc) * 6);\n  if (puVar2 != (undefined4 *)0x0) {\n    iVar10 = 0;\n    this_01 = this_00;\n    if (0 < *(int *)(this + 8)) {\n      do {\n        pfVar3 = (float *)(*(int *)(this + 0x44) + iVar5);\n        if (0.0 < *pfVar3) {\n          fStack_4c = pfVar3[6];\n          fStack_ac = pfVar3[9];\n          local_84[2] = fStack_4c;\n          local_b4 = (gbDynVertBuf *)(pfVar3[7] - -2.3509886e-38);\n          fStack_b0 = pfVar3[8];\n          local_6c[2] = pfVar3[9];\n          local_6c[1] = pfVar3[8];\n          local_9c[0] = pfVar3[4] - -2.3509886e-38;\n          local_9c[1] = pfVar3[5];\n          local_9c[2] = fStack_4c;\n          local_84[0] = pfVar3[4] + -2.3509886e-38;\n          local_84[1] = pfVar3[5];\n          local_6c[0] = pfVar3[7] + -2.3509886e-38;\n          ppgVar6 = &local_b4;\n          puVar7 = puVar2;\n          for (iVar4 = 6; iVar4 != 0; iVar4 = iVar4 + -1) {\n            *puVar7 = *ppgVar6;\n            ppgVar6 = ppgVar6 + 1;\n            puVar7 = puVar7 + 1;\n          }\n          pfVar3 = local_9c;\n          pfVar9 = (float *)(puVar2 + 6);\n          for (iVar4 = 6; iVar4 != 0; iVar4 = iVar4 + -1) {\n            *pfVar9 = *pfVar3;\n            pfVar3 = pfVar3 + 1;\n            pfVar9 = pfVar9 + 1;\n          }\n          pfVar3 = local_84;\n          pfVar9 = (float *)(puVar2 + 0xc);\n          for (iVar4 = 6; iVar4 != 0; iVar4 = iVar4 + -1) {\n            *pfVar9 = *pfVar3;\n            pfVar3 = pfVar3 + 1;\n            pfVar9 = pfVar9 + 1;\n          }\n          ppgVar6 = &local_b4;\n          puVar7 = puVar2 + 0x12;\n          for (iVar4 = 6; iVar4 != 0; iVar4 = iVar4 + -1) {\n            *puVar7 = *ppgVar6;\n            ppgVar6 = ppgVar6 + 1;\n            puVar7 = puVar7 + 1;\n          }\n          pfVar9 = (float *)(puVar2 + 0x1e);\n          pfVar3 = local_84;\n          pfVar8 = (float *)(puVar2 + 0x18);\n          for (iVar4 = 6; iVar4 != 0; iVar4 = iVar4 + -1) {\n            *pfVar8 = *pfVar3;\n            pfVar3 = pfVar3 + 1;\n            pfVar8 = pfVar8 + 1;\n          }\n          puVar2 = puVar2 + 0x24;\n          pfVar3 = local_6c;\n          for (iVar4 = 6; this_01 = pgStack_bc, pgVar1 = this_00, iVar4 != 0; iVar4 = iVar4 + -1) {\n            *pfVar9 = *pfVar3;\n            pfVar3 = pfVar3 + 1;\n            pfVar9 = pfVar9 + 1;\n          }\n        }\n        iVar10 = iVar10 + 1;\n        iVar5 = iVar5 + 0x28;\n      } while (iVar10 < *(int *)(this + 8));\n    }\n    gbMatrixStack::Push(this_01);\n    gbMatrixStack::LoadIdentity(this_01);\n    (**(code **)(*(int *)pgVar1 + 0x14))(1,*(undefined4 *)(this + 0x4c),auStack_48);\n    gbMatrixStack::Pop(this_01);\n  }\n  return;\n}\n\n", 
+  "is_thunk": false, 
+  "name": "Draw", 
+  "assembly": "  100321f0:  SUB ESP,0xcc\n  100321f6:  PUSH EBX\n  100321f7:  PUSH EBP\n  100321f8:  PUSH ESI\n  100321f9:  MOV ESI,dword ptr [0x101379a8]\n  100321ff:  MOV EBX,ECX\n  10032201:  PUSH EDI\n  10032202:  MOV ECX,dword ptr [ESI + 0xc4]\n  10032208:  PUSH 0x15\n  1003220a:  CALL 0x10021680\n  1003220f:  MOV EDI,EAX\n  10032211:  MOV EAX,dword ptr [EBX + 0x48]\n  10032214:  TEST EAX,EAX\n  10032216:  MOV dword ptr [ESP + 0x28],EDI\n  1003221a:  MOV dword ptr [ESP + 0xd8],0x1\n  10032225:  MOV dword ptr [ESP + 0x98],EAX\n  1003222c:  JNZ 0x10032240\n  1003222e:  MOV ECX,dword ptr [ESI + 0xc8]\n  10032234:  CALL 0x1001d8e0\n  10032239:  MOV dword ptr [ESP + 0x98],EAX\n  10032240:  MOV ESI,dword ptr [ESI + 0xd8]\n  10032246:  MOV ECX,ESI\n  10032248:  MOV dword ptr [ESP + 0x24],ESI\n  1003224c:  CALL 0x10027590\n  10032251:  MOV AL,0xff\n  10032253:  MOV byte ptr [ESP + 0x13],0x80\n  10032258:  MOV byte ptr [ESP + 0x12],AL\n  1003225c:  MOV byte ptr [ESP + 0x11],AL\n  10032260:  MOV byte ptr [ESP + 0x10],AL\n  10032264:  MOV EDX,dword ptr [ESP + 0x10]\n  10032268:  MOV dword ptr [ESP + 0x38],EDX\n  1003226c:  MOV DL,0x96\n  1003226e:  MOV byte ptr [ESP + 0x12],AL\n  10032272:  MOV byte ptr [ESP + 0x11],AL\n  10032276:  MOV byte ptr [ESP + 0x10],AL\n  1003227a:  MOV byte ptr [ESP + 0x13],DL\n  1003227e:  MOV EBP,dword ptr [ESP + 0x10]\n  10032282:  MOV ECX,dword ptr [0x1015d3a4]\n  10032288:  FLD dword ptr [EBX + 0x10]\n  1003228b:  MOV byte ptr [ESP + 0x12],AL\n  1003228f:  MOV byte ptr [ESP + 0x11],AL\n  10032293:  MOV byte ptr [ESP + 0x10],AL\n  10032297:  MOV byte ptr [ESP + 0x13],DL\n  1003229b:  MOV EDX,dword ptr [ESP + 0x10]\n  1003229f:  MOV byte ptr [ESP + 0x12],AL\n  100322a3:  FMUL dword ptr [0x100f5508]\n  100322a9:  MOV byte ptr [ESP + 0x11],AL\n  100322ad:  MOV byte ptr [ESP + 0x10],AL\n  100322b1:  MOV byte ptr [ESP + 0x13],0x80\n  100322b6:  MOV EAX,dword ptr [ESP + 0x10]\n  100322ba:  MOV dword ptr [ESP + 0x80],EAX\n  100322c1:  MOV EAX,dword ptr [EBX + 0xc]\n  100322c4:  FSTP dword ptr [ESP + 0x14]\n  100322c8:  MOV dword ptr [ESP + 0x50],EBP\n  100322cc:  XOR EBP,EBP\n  100322ce:  TEST ECX,ECX\n  100322d0:  LEA EAX,[EAX + EAX*0x2]\n  100322d3:  MOV dword ptr [ESP + 0x68],EDX\n  100322d7:  MOV EDX,dword ptr [EDI]\n  100322d9:  MOV dword ptr [ESP + 0x3c],0x0\n  100322e1:  TEST ECX,ECX\n  100322e3:  CMP ECX,EBP\n  100322e5:  CMP ECX,EBP\n  100322e7:  SHL EAX,0x1\n  100322e9:  PUSH EAX\n  100322ea:  MOV ECX,EDI\n  100322ec:  MOV dword ptr [ESP + 0x44],0x3f800000\n  100322f4:  MOV dword ptr [ESP + 0x58],0x0\n  100322fc:  MOV dword ptr [ESP + 0x5c],0x0\n  10032304:  MOV dword ptr [ESP + 0x70],0x3f800000\n  1003230c:  MOV dword ptr [ESP + 0x74],0x0\n  10032314:  MOV dword ptr [ESP + 0x88],0x3f800000\n  1003231f:  MOV dword ptr [ESP + 0x8c],0x3f800000\n  1003232a:  CALL dword ptr [EDX + 0xc]\n  1003232d:  MOV EDX,EAX\n  1003232f:  CMP EDX,EBP\n  10032331:  JZ 0x1003248b\n  10032337:  MOV EAX,dword ptr [EBX + 0x8]\n  1003233a:  MOV dword ptr [ESP + 0x10],EBP\n  1003233e:  CMP EAX,EBP\n  10032340:  JLE 0x10032461\n  10032346:  MOV ECX,dword ptr [EBX + 0x44]\n  10032349:  ADD ECX,EBP\n  1003234b:  FLD dword ptr [ECX]\n  1003234d:  FCOMP dword ptr [0x100f53a0]\n  10032353:  FNSTSW AX\n  10032355:  TEST AH,0x41\n  10032358:  JNZ 0x1003244a\n  1003235e:  FLD dword ptr [ECX + 0x10]\n  10032361:  FLD dword ptr [ECX + 0x14]\n  10032364:  FLD dword ptr [ECX + 0x18]\n  10032367:  MOV EAX,dword ptr [ECX + 0x1c]\n  1003236a:  LEA ESI,[ESP + 0x2c]\n  1003236e:  FST dword ptr [ESP + 0x94]\n  10032375:  FLD dword ptr [ECX + 0x20]\n  10032378:  MOV dword ptr [ESP + 0x18],EAX\n  1003237c:  MOV ECX,dword ptr [ECX + 0x24]\n  1003237f:  FST dword ptr [ESP + 0x1c]\n  10032383:  FLD dword ptr [ESP + 0x18]\n  10032387:  FSUB dword ptr [ESP + 0x14]\n  1003238b:  MOV dword ptr [ESP + 0x20],ECX\n  1003238f:  MOV EAX,ECX\n  10032391:  MOV ECX,dword ptr [ESP + 0x94]\n  10032398:  MOV dword ptr [ESP + 0x34],EAX\n  1003239c:  MOV EAX,dword ptr [ESP + 0x1c]\n  100323a0:  MOV dword ptr [ESP + 0x64],ECX\n  100323a4:  FSTP dword ptr [ESP + 0x2c]\n  100323a8:  MOV ECX,dword ptr [ESP + 0x20]\n  100323ac:  MOV EDI,EDX\n  100323ae:  FSTP dword ptr [ESP + 0x30]\n  100323b2:  FLD ST2\n  100323b4:  FSUB dword ptr [ESP + 0x14]\n  100323b8:  MOV dword ptr [ESP + 0x7c],ECX\n  100323bc:  MOV ECX,0x6\n  100323c1:  MOV dword ptr [ESP + 0x78],EAX\n  100323c5:  ADD EDX,0x18\n  100323c8:  FSTP dword ptr [ESP + 0x44]\n  100323cc:  FLD ST1\n  100323ce:  FSTP dword ptr [ESP + 0x48]\n  100323d2:  FSTP dword ptr [ESP + 0x4c]\n  100323d6:  FXCH\n  100323d8:  FADD dword ptr [ESP + 0x14]\n  100323dc:  FSTP dword ptr [ESP + 0x5c]\n  100323e0:  FSTP dword ptr [ESP + 0x60]\n  100323e4:  FLD dword ptr [ESP + 0x18]\n  100323e8:  FADD dword ptr [ESP + 0x14]\n  100323ec:  FSTP dword ptr [ESP + 0x74]\n  100323f0:  MOVSD.REP ES:EDI,ESI\n  100323f2:  MOV ECX,0x6\n  100323f7:  LEA ESI,[ESP + 0x44]\n  100323fb:  MOV EDI,EDX\n  100323fd:  ADD EDX,0x18\n  10032400:  MOVSD.REP ES:EDI,ESI\n  10032402:  MOV ECX,0x6\n  10032407:  LEA ESI,[ESP + 0x5c]\n  1003240b:  MOV EDI,EDX\n  1003240d:  ADD EDX,0x18\n  10032410:  MOVSD.REP ES:EDI,ESI\n  10032412:  MOV ECX,0x6\n  10032417:  LEA ESI,[ESP + 0x2c]\n  1003241b:  MOV EDI,EDX\n  1003241d:  ADD EDX,0x18\n  10032420:  MOVSD.REP ES:EDI,ESI\n  10032422:  MOV ECX,0x6\n  10032427:  LEA ESI,[ESP + 0x5c]\n  1003242b:  MOV EDI,EDX\n  1003242d:  ADD EDX,0x18\n  10032430:  MOVSD.REP ES:EDI,ESI\n  10032432:  MOV ECX,0x6\n  10032437:  LEA ESI,[ESP + 0x74]\n  1003243b:  MOV EDI,EDX\n  1003243d:  ADD EDX,0x18\n  10032440:  MOVSD.REP ES:EDI,ESI\n  10032442:  MOV EDI,dword ptr [ESP + 0x28]\n  10032446:  MOV ESI,dword ptr [ESP + 0x24]\n  1003244a:  MOV EAX,dword ptr [ESP + 0x10]\n  1003244e:  MOV ECX,dword ptr [EBX + 0x8]\n  10032451:  INC EAX\n  10032452:  ADD EBP,0x28\n  10032455:  CMP EAX,ECX\n  10032457:  MOV dword ptr [ESP + 0x10],EAX\n  1003245b:  JL 0x10032346\n  10032461:  MOV ECX,ESI\n  10032463:  CALL 0x10027090\n  10032468:  MOV ECX,ESI\n  1003246a:  CALL 0x100270d0\n  1003246f:  MOV ECX,dword ptr [EBX + 0x4c]\n  10032472:  MOV EDX,dword ptr [EDI]\n  10032474:  LEA EAX,[ESP + 0x98]\n  1003247b:  PUSH EAX\n  1003247c:  PUSH ECX\n  1003247d:  PUSH 0x1\n  1003247f:  MOV ECX,EDI\n  10032481:  CALL dword ptr [EDX + 0x14]\n  10032484:  MOV ECX,ESI\n  10032486:  CALL 0x100270c0\n  1003248b:  POP EDI\n  1003248c:  POP ESI\n  1003248d:  POP EBP\n  1003248e:  POP EBX\n  1003248f:  ADD ESP,0xcc\n  10032495:  RET", 
+  "callers": []
+}

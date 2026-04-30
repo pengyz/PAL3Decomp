@@ -1,0 +1,44 @@
+{
+  "address": "0x100f35c7", 
+  "size_bytes": 97, 
+  "calling_convention": "unknown", 
+  "signature": "undefined FUN_100f35c7(undefined4 param_1, undefined4 param_2)", 
+  "callees": [
+    {
+      "address": "0x100ebcff", 
+      "name": "FUN_100ebcff"
+    }
+  ], 
+  "global_refs": [
+    {
+      "address": "0x00000004", 
+      "type": null, 
+      "name": "DAT_00000004"
+    }, 
+    {
+      "address": "0x10167400", 
+      "type": "undefined4", 
+      "name": "DAT_10167400"
+    }, 
+    {
+      "address": "0x00000008", 
+      "type": null, 
+      "name": "DAT_00000008"
+    }
+  ], 
+  "has_custom_name": false, 
+  "decompiled_c": "\nint FUN_100f35c7(uint param_1,int param_2)\n\n{\n  byte bVar1;\n  undefined4 *puVar2;\n  byte bVar3;\n  \n  bVar1 = *(byte *)((&DAT_10167400)[(int)param_1 >> 5] + 4 + (param_1 & 0x1f) * 0x24);\n  if (param_2 == 0x8000) {\n    bVar3 = bVar1 & 0x7f;\n  }\n  else {\n    if (param_2 != 0x4000) {\n      puVar2 = (undefined4 *)FUN_100ebcff();\n      *puVar2 = 0x16;\n      return -1;\n    }\n    bVar3 = bVar1 | 0x80;\n  }\n  *(byte *)((&DAT_10167400)[(int)param_1 >> 5] + 4 + (param_1 & 0x1f) * 0x24) = bVar3;\n  return (-(uint)((bVar1 & 0x80) != 0) & 0xffffc000) + 0x8000;\n}\n\n", 
+  "is_thunk": false, 
+  "name": "FUN_100f35c7", 
+  "assembly": "  100f35c7:  MOV EAX,dword ptr [ESP + 0x4]\n  100f35cb:  PUSH ESI\n  100f35cc:  MOV ECX,EAX\n  100f35ce:  AND EAX,0x1f\n  100f35d1:  SAR ECX,0x5\n  100f35d4:  LEA EAX,[EAX + EAX*0x8]\n  100f35d7:  MOV ESI,0x8000\n  100f35dc:  MOV ECX,dword ptr [ECX*0x4 + 0x10167400]\n  100f35e3:  LEA EDX,[ECX + EAX*0x4 + 0x4]\n  100f35e7:  MOV CL,byte ptr [ECX + EAX*0x4 + 0x4]\n  100f35eb:  MOV AL,CL\n  100f35ed:  AND EAX,0x80\n  100f35f2:  CMP dword ptr [ESP + 0xc],ESI\n  100f35f6:  JNZ 0x100f35fd\n  100f35f8:  AND CL,0x7f\n  100f35fb:  JMP 0x100f360a\n  100f35fd:  CMP dword ptr [ESP + 0xc],0x4000\n  100f3605:  JNZ 0x100f3618\n  100f3607:  OR CL,0x80\n  100f360a:  NEG EAX\n  100f360c:  SBB EAX,EAX\n  100f360e:  MOV byte ptr [EDX],CL\n  100f3610:  AND AX,0xc000\n  100f3614:  ADD EAX,ESI\n  100f3616:  POP ESI\n  100f3617:  RET\n  100f3618:  CALL 0x100ebcff\n  100f361d:  MOV dword ptr [EAX],0x16\n  100f3623:  OR EAX,0xffffffff\n  100f3626:  POP ESI\n  100f3627:  RET", 
+  "callers": [
+    {
+      "address": "0x100f2ba1", 
+      "name": "FUN_100f2ba1"
+    }, 
+    {
+      "address": "0x100f2ba1", 
+      "name": "FUN_100f2ba1"
+    }
+  ]
+}

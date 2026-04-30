@@ -1,0 +1,25 @@
+{
+  "address": "0x10001970", 
+  "size_bytes": 54, 
+  "calling_convention": "__thiscall", 
+  "signature": "void __thiscall DetachAll3D(gbAudioManager * this)", 
+  "callees": [
+    {
+      "address": "0x0000009c", 
+      "name": "_AIL_end_3D_sample@4"
+    }
+  ], 
+  "global_refs": [
+    {
+      "address": "0x100f5298", 
+      "type": "pointer", 
+      "name": "DAT_100f5298"
+    }
+  ], 
+  "has_custom_name": true, 
+  "decompiled_c": "\n/* public: void __thiscall gbAudioManager::DetachAll3D(void) */\n\nvoid __thiscall gbAudioManager::DetachAll3D(gbAudioManager *this)\n\n{\n  int iVar1;\n  gbAudioManager *pgVar2;\n  \n                    /* 0x1970  378  ?DetachAll3D@gbAudioManager@@QAEXXZ */\n  pgVar2 = this + 0x20;\n  iVar1 = 10;\n  do {\n    if (*(int *)pgVar2 != 0) {\n      _AIL_end_3D_sample_4(*(undefined4 *)(*(int *)pgVar2 + 4));\n      *(undefined4 *)(*(int *)pgVar2 + 4) = 0;\n      *(int *)pgVar2 = 0;\n    }\n    pgVar2 = pgVar2 + 0xc;\n    iVar1 = iVar1 + -1;\n  } while (iVar1 != 0);\n  return;\n}\n\n", 
+  "is_thunk": false, 
+  "name": "DetachAll3D", 
+  "assembly": "  10001970:  PUSH EBP\n  10001971:  PUSH ESI\n  10001972:  PUSH EDI\n  10001973:  MOV EDI,dword ptr [0x100f5298]\n  10001979:  LEA ESI,[ECX + 0x20]\n  1000197c:  MOV EBP,0xa\n  10001981:  MOV EAX,dword ptr [ESI]\n  10001983:  TEST EAX,EAX\n  10001985:  JZ 0x1000199c\n  10001987:  MOV EAX,dword ptr [EAX + 0x4]\n  1000198a:  PUSH EAX\n  1000198b:  CALL EDI\n  1000198d:  MOV ECX,dword ptr [ESI]\n  1000198f:  MOV dword ptr [ECX + 0x4],0x0\n  10001996:  MOV dword ptr [ESI],0x0\n  1000199c:  ADD ESI,0xc\n  1000199f:  DEC EBP\n  100019a0:  JNZ 0x10001981\n  100019a2:  POP EDI\n  100019a3:  POP ESI\n  100019a4:  POP EBP\n  100019a5:  RET", 
+  "callers": []
+}

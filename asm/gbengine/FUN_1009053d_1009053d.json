@@ -1,0 +1,35 @@
+{
+  "address": "0x1009053d", 
+  "size_bytes": 179, 
+  "calling_convention": "unknown", 
+  "signature": "undefined FUN_1009053d(undefined4 param_1)", 
+  "callees": [
+    {
+      "address": "0x1004cb83", 
+      "name": "FUN_1004cb83"
+    }
+  ], 
+  "global_refs": [
+    {
+      "address": "0x00000004", 
+      "type": null, 
+      "name": "DAT_00000004"
+    }, 
+    {
+      "address": "0x-0000008", 
+      "type": null, 
+      "name": "DAT_-0000008"
+    }, 
+    {
+      "address": "0x10108e08", 
+      "type": "string", 
+      "name": "DAT_10108e08"
+    }
+  ], 
+  "has_custom_name": false, 
+  "decompiled_c": "\nuint FUN_1009053d(int param_1)\n\n{\n  char *pcVar1;\n  uint uVar2;\n  char cVar3;\n  undefined4 *in_ECX;\n  undefined4 *puVar4;\n  char *pcVar5;\n  undefined4 *local_8;\n  \n  pcVar1 = *(char **)(param_1 + 8);\n  uVar2 = 0;\n  if ((pcVar1 == (char *)0x0) || (cVar3 = *pcVar1, pcVar5 = pcVar1, local_8 = in_ECX, cVar3 == '\\0')\n     ) {\n    uVar2 = 0xf0000;\n  }\n  else {\n    do {\n      if (cVar3 < 'x') {\n        if ((cVar3 == 'w') || (cVar3 == 'a')) {\n          puVar4 = (undefined4 *)0x3;\n          uVar2 = uVar2 | 0x80000;\n        }\n        else {\n          if (cVar3 != 'b') {\n            if (cVar3 == 'g') goto LAB_100905b8;\n            if (cVar3 != 'r') goto LAB_100905c2;\n            goto LAB_1009057d;\n          }\nLAB_100905ae:\n          puVar4 = (undefined4 *)0x2;\n          uVar2 = uVar2 | 0x40000;\n        }\n      }\n      else if (cVar3 == 'x') {\nLAB_1009057d:\n        puVar4 = (undefined4 *)0x0;\n        uVar2 = uVar2 | 0x10000;\n      }\n      else {\n        if (cVar3 != 'y') {\n          if (cVar3 != 'z') goto LAB_100905c2;\n          goto LAB_100905ae;\n        }\nLAB_100905b8:\n        puVar4 = (undefined4 *)0x1;\n        uVar2 = uVar2 | 0x20000;\n      }\n      if ((pcVar5 != pcVar1) && (puVar4 <= local_8)) {\nLAB_100905c2:\n        FUN_1004cb83(*in_ECX,param_1,0x7d3,\"invalid mask \\'%s\\'\",pcVar1);\n        in_ECX[0x13] = 1;\n        return 0;\n      }\n      cVar3 = pcVar5[1];\n      pcVar5 = pcVar5 + 1;\n      local_8 = puVar4;\n    } while (cVar3 != '\\0');\n  }\n  return uVar2;\n}\n\n", 
+  "is_thunk": false, 
+  "name": "FUN_1009053d", 
+  "assembly": "  1009053d:  PUSH EBP\n  1009053e:  MOV EBP,ESP\n  10090540:  PUSH ECX\n  10090541:  PUSH ESI\n  10090542:  PUSH EDI\n  10090543:  MOV EDI,ECX\n  10090545:  MOV ECX,dword ptr [EBP + 0x8]\n  10090548:  MOV EDX,dword ptr [ECX + 0x8]\n  1009054b:  XOR EAX,EAX\n  1009054d:  TEST EDX,EDX\n  1009054f:  JZ 0x100905e5\n  10090555:  MOV CL,byte ptr [EDX]\n  10090557:  TEST CL,CL\n  10090559:  JZ 0x100905e5\n  1009055f:  MOV ESI,EDX\n  10090561:  MOVSX ECX,CL\n  10090564:  CMP ECX,0x77\n  10090567:  JG 0x100905a3\n  10090569:  JZ 0x10090599\n  1009056b:  SUB ECX,0x61\n  1009056e:  JZ 0x10090599\n  10090570:  DEC ECX\n  10090571:  JZ 0x100905ae\n  10090573:  SUB ECX,0x5\n  10090576:  JZ 0x100905b8\n  10090578:  SUB ECX,0xb\n  1009057b:  JNZ 0x100905c2\n  1009057d:  XOR ECX,ECX\n  1009057f:  OR EAX,0x10000\n  10090584:  CMP ESI,EDX\n  10090586:  JZ 0x1009058d\n  10090588:  CMP ECX,dword ptr [EBP + -0x4]\n  1009058b:  JBE 0x100905c2\n  1009058d:  INC ESI\n  1009058e:  MOV dword ptr [EBP + -0x4],ECX\n  10090591:  MOV CL,byte ptr [ESI]\n  10090593:  TEST CL,CL\n  10090595:  JNZ 0x10090561\n  10090597:  JMP 0x100905ea\n  10090599:  PUSH 0x3\n  1009059b:  POP ECX\n  1009059c:  OR EAX,0x80000\n  100905a1:  JMP 0x10090584\n  100905a3:  SUB ECX,0x78\n  100905a6:  JZ 0x1009057d\n  100905a8:  DEC ECX\n  100905a9:  JZ 0x100905b8\n  100905ab:  DEC ECX\n  100905ac:  JNZ 0x100905c2\n  100905ae:  PUSH 0x2\n  100905b0:  POP ECX\n  100905b1:  OR EAX,0x40000\n  100905b6:  JMP 0x10090584\n  100905b8:  XOR ECX,ECX\n  100905ba:  INC ECX\n  100905bb:  OR EAX,0x20000\n  100905c0:  JMP 0x10090584\n  100905c2:  PUSH EDX\n  100905c3:  PUSH 0x10108e08\n  100905c8:  PUSH 0x7d3\n  100905cd:  PUSH dword ptr [EBP + 0x8]\n  100905d0:  PUSH dword ptr [EDI]\n  100905d2:  CALL 0x1004cb83\n  100905d7:  ADD ESP,0x14\n  100905da:  MOV dword ptr [EDI + 0x4c],0x1\n  100905e1:  XOR EAX,EAX\n  100905e3:  JMP 0x100905ea\n  100905e5:  MOV EAX,0xf0000\n  100905ea:  POP EDI\n  100905eb:  POP ESI\n  100905ec:  LEAVE\n  100905ed:  RET 0x4", 
+  "callers": []
+}

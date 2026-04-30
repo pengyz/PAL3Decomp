@@ -1,0 +1,20 @@
+{
+  "address": "0x10020860", 
+  "size_bytes": 40, 
+  "calling_convention": "__thiscall", 
+  "signature": "void __thiscall UpdateTexture(gbTexture * this, gbImage2D * param_1)", 
+  "callees": [], 
+  "global_refs": [
+    {
+      "address": "0x00000004", 
+      "type": null, 
+      "name": "DAT_00000004"
+    }
+  ], 
+  "has_custom_name": true, 
+  "decompiled_c": "\n/* public: void __thiscall gbTexture::UpdateTexture(class gbImage2D *) */\n\nvoid __thiscall gbTexture::UpdateTexture(gbTexture *this,gbImage2D *param_1)\n\n{\n                    /* 0x20860  954  ?UpdateTexture@gbTexture@@QAEXPAVgbImage2D@@@Z */\n  (**(code **)(*(int *)this + 8))\n            (0,0,*(undefined4 *)(this + 0x18),*(undefined4 *)(this + 0x1c),\n             *(undefined4 *)(param_1 + 0x88),*(undefined4 *)(param_1 + 0xb8));\n  return;\n}\n\n", 
+  "is_thunk": false, 
+  "name": "UpdateTexture", 
+  "assembly": "  10020860:  MOV EAX,dword ptr [ESP + 0x4]\n  10020864:  PUSH ESI\n  10020865:  MOV EDX,dword ptr [ECX]\n  10020867:  MOV ESI,dword ptr [EAX + 0xb8]\n  1002086d:  MOV EAX,dword ptr [EAX + 0x88]\n  10020873:  PUSH ESI\n  10020874:  PUSH EAX\n  10020875:  MOV EAX,dword ptr [ECX + 0x1c]\n  10020878:  PUSH EAX\n  10020879:  MOV EAX,dword ptr [ECX + 0x18]\n  1002087c:  PUSH EAX\n  1002087d:  PUSH 0x0\n  1002087f:  PUSH 0x0\n  10020881:  CALL dword ptr [EDX + 0x8]\n  10020884:  POP ESI\n  10020885:  RET 0x4", 
+  "callers": []
+}

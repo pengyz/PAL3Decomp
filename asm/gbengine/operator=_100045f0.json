@@ -1,0 +1,20 @@
+{
+  "address": "0x100045f0", 
+  "size_bytes": 52, 
+  "calling_convention": "__thiscall", 
+  "signature": "gbNBTreeNode * __thiscall operator=(gbNBTreeNode * this, gbNBTreeNode * param_1)", 
+  "callees": [], 
+  "global_refs": [
+    {
+      "address": "0x00000004", 
+      "type": null, 
+      "name": "DAT_00000004"
+    }
+  ], 
+  "has_custom_name": true, 
+  "decompiled_c": "\n/* public: class gbNBTreeNode & __thiscall gbNBTreeNode::operator=(class gbNBTreeNode const &) */\n\ngbNBTreeNode * __thiscall gbNBTreeNode::operator=(gbNBTreeNode *this,gbNBTreeNode *param_1)\n\n{\n                    /* 0x45f0  212  ??4gbNBTreeNode@@QAEAAV0@ABV0@@Z */\n  *(undefined4 *)(this + 4) = *(undefined4 *)(param_1 + 4);\n  *(undefined4 *)(this + 8) = *(undefined4 *)(param_1 + 8);\n  *(undefined4 *)(this + 0xc) = *(undefined4 *)(param_1 + 0xc);\n  *(undefined4 *)(this + 0x10) = *(undefined4 *)(param_1 + 0x10);\n  *(undefined4 *)(this + 0x14) = *(undefined4 *)(param_1 + 0x14);\n  *(undefined4 *)(this + 0x18) = *(undefined4 *)(param_1 + 0x18);\n  return this;\n}\n\n", 
+  "is_thunk": false, 
+  "name": "operator=", 
+  "assembly": "  100045f0:  MOV EAX,ECX\n  100045f2:  PUSH ESI\n  100045f3:  MOV ECX,dword ptr [ESP + 0x8]\n  100045f7:  MOV EDX,dword ptr [ECX + 0x4]\n  100045fa:  ADD ECX,0xc\n  100045fd:  MOV dword ptr [EAX + 0x4],EDX\n  10004600:  MOV EDX,dword ptr [ECX + -0x4]\n  10004603:  MOV dword ptr [EAX + 0x8],EDX\n  10004606:  MOV ESI,dword ptr [ECX]\n  10004608:  LEA EDX,[EAX + 0xc]\n  1000460b:  MOV dword ptr [EAX + 0xc],ESI\n  1000460e:  MOV ESI,dword ptr [ECX + 0x4]\n  10004611:  MOV dword ptr [EDX + 0x4],ESI\n  10004614:  MOV ESI,dword ptr [ECX + 0x8]\n  10004617:  MOV dword ptr [EDX + 0x8],ESI\n  1000461a:  MOV ECX,dword ptr [ECX + 0xc]\n  1000461d:  POP ESI\n  1000461e:  MOV dword ptr [EDX + 0xc],ECX\n  10004621:  RET 0x4", 
+  "callers": []
+}

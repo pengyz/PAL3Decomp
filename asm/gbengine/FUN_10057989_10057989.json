@@ -1,0 +1,34 @@
+{
+  "address": "0x10057989", 
+  "size_bytes": 89, 
+  "calling_convention": "unknown", 
+  "signature": "undefined FUN_10057989(void)", 
+  "callees": [
+    {
+      "address": "0x1004f7bc", 
+      "name": "FUN_1004f7bc"
+    }, 
+    {
+      "address": "0x10058c2e", 
+      "name": "FUN_10058c2e"
+    }
+  ], 
+  "global_refs": [
+    {
+      "address": "0x100fd6d0", 
+      "type": "undefined *", 
+      "name": "DAT_100fd6d0"
+    }
+  ], 
+  "has_custom_name": false, 
+  "decompiled_c": "\nvoid FUN_10057989(void)\n\n{\n  undefined4 *in_ECX;\n  \n  *in_ECX = &PTR_FUN_100fd6d0;\n  FUN_1004f7bc();\n  FUN_10058c2e();\n  in_ECX[200] = 0;\n  in_ECX[0xd2] = 0;\n  in_ECX[0xd3] = 0;\n  in_ECX[0xd4] = 0;\n  in_ECX[0xd5] = 0;\n  in_ECX[0xd6] = 0;\n  in_ECX[0xcf] = 0;\n  in_ECX[0xd1] = 0;\n  in_ECX[2] = 1;\n  return;\n}\n\n", 
+  "is_thunk": false, 
+  "name": "FUN_10057989", 
+  "assembly": "  10057989:  PUSH ESI\n  1005798a:  MOV ESI,ECX\n  1005798c:  LEA ECX,[ESI + 0x10]\n  1005798f:  MOV dword ptr [ESI],0x100fd6d0\n  10057995:  CALL 0x1004f7bc\n  1005799a:  LEA ECX,[ESI + 0x2c0]\n  100579a0:  CALL 0x10058c2e\n  100579a5:  XOR EAX,EAX\n  100579a7:  MOV dword ptr [ESI + 0x320],EAX\n  100579ad:  MOV dword ptr [ESI + 0x348],EAX\n  100579b3:  MOV dword ptr [ESI + 0x34c],EAX\n  100579b9:  MOV dword ptr [ESI + 0x350],EAX\n  100579bf:  MOV dword ptr [ESI + 0x354],EAX\n  100579c5:  MOV dword ptr [ESI + 0x358],EAX\n  100579cb:  MOV dword ptr [ESI + 0x33c],EAX\n  100579d1:  MOV dword ptr [ESI + 0x344],EAX\n  100579d7:  MOV dword ptr [ESI + 0x8],0x1\n  100579de:  MOV EAX,ESI\n  100579e0:  POP ESI\n  100579e1:  RET", 
+  "callers": [
+    {
+      "address": "0x1003428b", 
+      "name": "FUN_1003428b"
+    }
+  ]
+}

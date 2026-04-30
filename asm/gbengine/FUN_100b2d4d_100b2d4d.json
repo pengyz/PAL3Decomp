@@ -1,0 +1,35 @@
+{
+  "address": "0x100b2d4d", 
+  "size_bytes": 92, 
+  "calling_convention": "unknown", 
+  "signature": "undefined FUN_100b2d4d(undefined4 param_1, undefined4 param_2, undefined4 param_3, undefined4 param_4)", 
+  "callees": [], 
+  "global_refs": [
+    {
+      "address": "0x00000004", 
+      "type": null, 
+      "name": "DAT_00000004"
+    }, 
+    {
+      "address": "0x00000008", 
+      "type": null, 
+      "name": "DAT_00000008"
+    }, 
+    {
+      "address": "0x0000000c", 
+      "type": null, 
+      "name": "DAT_0000000c"
+    }, 
+    {
+      "address": "0x00000010", 
+      "type": null, 
+      "name": "DAT_00000010"
+    }
+  ], 
+  "has_custom_name": false, 
+  "decompiled_c": "\nundefined4 FUN_100b2d4d(int param_1,uint *param_2,undefined4 *param_3,undefined4 *param_4)\n\n{\n  uint uVar1;\n  uint uVar2;\n  \n  uVar1 = *(uint *)(param_1 + 0x68);\n  uVar2 = (uint)*(byte *)(param_1 + 0x69);\n  *param_2 = uVar2;\n  uVar1 = uVar1 & 0xff;\n  if (uVar1 == 1) {\n    if (uVar2 != 0) {\n      return 0x80004005;\n    }\n    *param_3 = 0;\n    if (param_4 != (undefined4 *)0x0) {\n      *param_4 = 0;\n    }\n  }\n  else {\n    if (uVar1 != 2) {\n      return 0x80004005;\n    }\n    if (uVar2 != 0) {\n      return 0x80004005;\n    }\n    *param_3 = 9;\n    if (param_4 != (undefined4 *)0x0) {\n      *param_4 = 1;\n    }\n  }\n  return 0;\n}\n\n", 
+  "is_thunk": false, 
+  "name": "FUN_100b2d4d", 
+  "assembly": "  100b2d4d:  PUSH EBP\n  100b2d4e:  MOV EBP,ESP\n  100b2d50:  MOV ECX,dword ptr [EBP + 0x8]\n  100b2d53:  MOV EAX,dword ptr [ECX + 0x68]\n  100b2d56:  MOVZX ECX,byte ptr [ECX + 0x69]\n  100b2d5a:  MOV EDX,dword ptr [EBP + 0xc]\n  100b2d5d:  MOV dword ptr [EDX],ECX\n  100b2d5f:  XOR EDX,EDX\n  100b2d61:  AND EAX,0xff\n  100b2d66:  INC EDX\n  100b2d67:  CMP EAX,EDX\n  100b2d69:  JNZ 0x100b2d81\n  100b2d6b:  CMP ECX,EDX\n  100b2d6d:  JNC 0x100b2da0\n  100b2d6f:  MOV EAX,dword ptr [EBP + 0x10]\n  100b2d72:  AND dword ptr [EAX],0x0\n  100b2d75:  MOV EAX,dword ptr [EBP + 0x14]\n  100b2d78:  TEST EAX,EAX\n  100b2d7a:  JZ 0x100b2d9c\n  100b2d7c:  AND dword ptr [EAX],0x0\n  100b2d7f:  JMP 0x100b2d9c\n  100b2d81:  CMP EAX,0x2\n  100b2d84:  JNZ 0x100b2da0\n  100b2d86:  TEST ECX,ECX\n  100b2d88:  JNZ 0x100b2da0\n  100b2d8a:  MOV EAX,dword ptr [EBP + 0x10]\n  100b2d8d:  MOV dword ptr [EAX],0x9\n  100b2d93:  MOV EAX,dword ptr [EBP + 0x14]\n  100b2d96:  TEST EAX,EAX\n  100b2d98:  JZ 0x100b2d9c\n  100b2d9a:  MOV dword ptr [EAX],EDX\n  100b2d9c:  XOR EAX,EAX\n  100b2d9e:  JMP 0x100b2da5\n  100b2da0:  MOV EAX,0x80004005\n  100b2da5:  POP EBP\n  100b2da6:  RET 0x10", 
+  "callers": []
+}

@@ -1,0 +1,116 @@
+{
+  "address": "0x100eb1fc", 
+  "size_bytes": 312, 
+  "calling_convention": "unknown", 
+  "signature": "undefined FUN_100eb1fc(undefined4 param_1, undefined4 param_2)", 
+  "callees": [
+    {
+      "address": "0x100e4b0d", 
+      "name": "_malloc"
+    }, 
+    {
+      "address": "0x100e4b99", 
+      "name": "FUN_100e4b99"
+    }, 
+    {
+      "address": "0x100e8d3f", 
+      "name": "FUN_100e8d3f"
+    }, 
+    {
+      "address": "0x100e8df3", 
+      "name": "FUN_100e8df3"
+    }, 
+    {
+      "address": "0x100e95fe", 
+      "name": "FUN_100e95fe"
+    }, 
+    {
+      "address": "0x100e9149", 
+      "name": "FUN_100e9149"
+    }, 
+    {
+      "address": "0x100eca80", 
+      "name": "FUN_100eca80"
+    }, 
+    {
+      "address": "0x100e8e1e", 
+      "name": "FUN_100e8e1e"
+    }, 
+    {
+      "address": "0x00000023", 
+      "name": "HeapAlloc"
+    }, 
+    {
+      "address": "0x100eca80", 
+      "name": "FUN_100eca80"
+    }, 
+    {
+      "address": "0x100e8e1e", 
+      "name": "FUN_100e8e1e"
+    }, 
+    {
+      "address": "0x100e8da0", 
+      "name": "FUN_100e8da0"
+    }, 
+    {
+      "address": "0x100e8da0", 
+      "name": "FUN_100e8da0"
+    }, 
+    {
+      "address": "0x00000055", 
+      "name": "HeapReAlloc"
+    }, 
+    {
+      "address": "0x100e8bde", 
+      "name": "FUN_100e8bde"
+    }
+  ], 
+  "global_refs": [
+    {
+      "address": "0x00000004", 
+      "type": null, 
+      "name": "DAT_00000004"
+    }, 
+    {
+      "address": "0x00000008", 
+      "type": null, 
+      "name": "DAT_00000008"
+    }, 
+    {
+      "address": "0x1012a104", 
+      "type": "undefined4", 
+      "name": "DAT_1012a104"
+    }, 
+    {
+      "address": "0x10168760", 
+      "type": "undefined4", 
+      "name": "DAT_10168760"
+    }, 
+    {
+      "address": "0x100f50b8", 
+      "type": "pointer", 
+      "name": "DAT_100f50b8"
+    }, 
+    {
+      "address": "0x100f5180", 
+      "type": "pointer", 
+      "name": "DAT_100f5180"
+    }, 
+    {
+      "address": "0x10166cf4", 
+      "type": "undefined4", 
+      "name": "DAT_10166cf4"
+    }
+  ], 
+  "has_custom_name": false, 
+  "decompiled_c": "\nvoid * FUN_100eb1fc(LPVOID param_1,uint param_2)\n\n{\n  void *pvVar1;\n  int iVar2;\n  int iVar3;\n  uint uVar4;\n  LPVOID pvVar5;\n  \n  if (param_1 == (LPVOID)0x0) {\n    pvVar1 = _malloc(param_2);\n  }\n  else {\n    if (param_2 == 0) {\n      FUN_100e4b99(param_1);\n    }\n    else {\n      do {\n        pvVar5 = (LPVOID)0x0;\n        if (param_2 < 0xffffffe1) {\n          FUN_100e8d3f(9);\n          iVar2 = FUN_100e8df3(param_1);\n          if (iVar2 == 0) {\n            FUN_100e8da0(9);\n            if (param_2 == 0) {\n              param_2 = 1;\n            }\n            param_2 = param_2 + 0xf & 0xfffffff0;\n            pvVar5 = HeapReAlloc(DAT_10168760,0,param_1,param_2);\n          }\n          else {\n            if (DAT_1012a104 < param_2) {\nLAB_100eb29b:\n              if (param_2 == 0) {\n                param_2 = 1;\n              }\n              param_2 = param_2 + 0xf & 0xfffffff0;\n              pvVar5 = HeapAlloc(DAT_10168760,0,param_2);\n              if (pvVar5 != (LPVOID)0x0) {\n                uVar4 = *(int *)((int)param_1 + -4) - 1;\n                if (param_2 <= uVar4) {\n                  uVar4 = param_2;\n                }\n                FUN_100eca80(pvVar5,param_1,uVar4);\n                FUN_100e8e1e(iVar2,param_1);\n              }\n            }\n            else {\n              iVar3 = FUN_100e95fe(iVar2,param_1,param_2);\n              pvVar5 = param_1;\n              if (iVar3 == 0) {\n                pvVar5 = (LPVOID)FUN_100e9149(param_2);\n                if (pvVar5 == (LPVOID)0x0) goto LAB_100eb29b;\n                uVar4 = *(int *)((int)param_1 + -4) - 1;\n                if (param_2 <= uVar4) {\n                  uVar4 = param_2;\n                }\n                FUN_100eca80(pvVar5,param_1,uVar4);\n                FUN_100e8e1e(iVar2,param_1);\n              }\n              if (pvVar5 == (LPVOID)0x0) goto LAB_100eb29b;\n            }\n            FUN_100e8da0(9);\n          }\n          if (pvVar5 != (LPVOID)0x0) {\n            return pvVar5;\n          }\n        }\n        if (DAT_10166cf4 == 0) {\n          return pvVar5;\n        }\n        iVar2 = FUN_100e8bde(param_2);\n      } while (iVar2 != 0);\n    }\n    pvVar1 = (void *)0x0;\n  }\n  return pvVar1;\n}\n\n", 
+  "is_thunk": false, 
+  "name": "FUN_100eb1fc", 
+  "assembly": "  100eb1fc:  PUSH EBP\n  100eb1fd:  MOV EBP,ESP\n  100eb1ff:  PUSH EBX\n  100eb200:  MOV EBX,dword ptr [EBP + 0x8]\n  100eb203:  PUSH ESI\n  100eb204:  PUSH EDI\n  100eb205:  TEST EBX,EBX\n  100eb207:  JNZ 0x100eb217\n  100eb209:  PUSH dword ptr [EBP + 0xc]\n  100eb20c:  CALL 0x100e4b0d\n  100eb211:  POP ECX\n  100eb212:  JMP 0x100eb32f\n  100eb217:  MOV ESI,dword ptr [EBP + 0xc]\n  100eb21a:  TEST ESI,ESI\n  100eb21c:  JNZ 0x100eb22c\n  100eb21e:  PUSH EBX\n  100eb21f:  CALL 0x100e4b99\n  100eb224:  POP ECX\n  100eb225:  XOR EAX,EAX\n  100eb227:  JMP 0x100eb32f\n  100eb22c:  XOR EDI,EDI\n  100eb22e:  CMP ESI,-0x20\n  100eb231:  JA 0x100eb310\n  100eb237:  PUSH 0x9\n  100eb239:  CALL 0x100e8d3f\n  100eb23e:  PUSH EBX\n  100eb23f:  CALL 0x100e8df3\n  100eb244:  POP ECX\n  100eb245:  MOV dword ptr [EBP + 0xc],EAX\n  100eb248:  TEST EAX,EAX\n  100eb24a:  POP ECX\n  100eb24b:  JZ 0x100eb2e5\n  100eb251:  CMP ESI,dword ptr [0x1012a104]\n  100eb257:  JA 0x100eb29b\n  100eb259:  PUSH ESI\n  100eb25a:  PUSH EBX\n  100eb25b:  PUSH EAX\n  100eb25c:  CALL 0x100e95fe\n  100eb261:  ADD ESP,0xc\n  100eb264:  TEST EAX,EAX\n  100eb266:  JZ 0x100eb26c\n  100eb268:  MOV EDI,EBX\n  100eb26a:  JMP 0x100eb297\n  100eb26c:  PUSH ESI\n  100eb26d:  CALL 0x100e9149\n  100eb272:  MOV EDI,EAX\n  100eb274:  POP ECX\n  100eb275:  TEST EDI,EDI\n  100eb277:  JZ 0x100eb29b\n  100eb279:  MOV EAX,dword ptr [EBX + -0x4]\n  100eb27c:  DEC EAX\n  100eb27d:  CMP EAX,ESI\n  100eb27f:  JC 0x100eb283\n  100eb281:  MOV EAX,ESI\n  100eb283:  PUSH EAX\n  100eb284:  PUSH EBX\n  100eb285:  PUSH EDI\n  100eb286:  CALL 0x100eca80\n  100eb28b:  PUSH EBX\n  100eb28c:  PUSH dword ptr [EBP + 0xc]\n  100eb28f:  CALL 0x100e8e1e\n  100eb294:  ADD ESP,0x14\n  100eb297:  TEST EDI,EDI\n  100eb299:  JNZ 0x100eb2db\n  100eb29b:  TEST ESI,ESI\n  100eb29d:  JNZ 0x100eb2a2\n  100eb29f:  PUSH 0x1\n  100eb2a1:  POP ESI\n  100eb2a2:  ADD ESI,0xf\n  100eb2a5:  AND ESI,0xfffffff0\n  100eb2a8:  PUSH ESI\n  100eb2a9:  PUSH 0x0\n  100eb2ab:  PUSH dword ptr [0x10168760]\n  100eb2b1:  CALL dword ptr [0x100f50b8]\n  100eb2b7:  MOV EDI,EAX\n  100eb2b9:  TEST EDI,EDI\n  100eb2bb:  JZ 0x100eb2db\n  100eb2bd:  MOV EAX,dword ptr [EBX + -0x4]\n  100eb2c0:  DEC EAX\n  100eb2c1:  CMP EAX,ESI\n  100eb2c3:  JC 0x100eb2c7\n  100eb2c5:  MOV EAX,ESI\n  100eb2c7:  PUSH EAX\n  100eb2c8:  PUSH EBX\n  100eb2c9:  PUSH EDI\n  100eb2ca:  CALL 0x100eca80\n  100eb2cf:  PUSH EBX\n  100eb2d0:  PUSH dword ptr [EBP + 0xc]\n  100eb2d3:  CALL 0x100e8e1e\n  100eb2d8:  ADD ESP,0x14\n  100eb2db:  PUSH 0x9\n  100eb2dd:  CALL 0x100e8da0\n  100eb2e2:  POP ECX\n  100eb2e3:  JMP 0x100eb30c\n  100eb2e5:  PUSH 0x9\n  100eb2e7:  CALL 0x100e8da0\n  100eb2ec:  TEST ESI,ESI\n  100eb2ee:  POP ECX\n  100eb2ef:  JNZ 0x100eb2f4\n  100eb2f1:  PUSH 0x1\n  100eb2f3:  POP ESI\n  100eb2f4:  ADD ESI,0xf\n  100eb2f7:  AND ESI,0xfffffff0\n  100eb2fa:  PUSH ESI\n  100eb2fb:  PUSH EBX\n  100eb2fc:  PUSH 0x0\n  100eb2fe:  PUSH dword ptr [0x10168760]\n  100eb304:  CALL dword ptr [0x100f5180]\n  100eb30a:  MOV EDI,EAX\n  100eb30c:  TEST EDI,EDI\n  100eb30e:  JNZ 0x100eb32d\n  100eb310:  CMP dword ptr [0x10166cf4],0x0\n  100eb317:  JZ 0x100eb32d\n  100eb319:  PUSH ESI\n  100eb31a:  CALL 0x100e8bde\n  100eb31f:  TEST EAX,EAX\n  100eb321:  POP ECX\n  100eb322:  JNZ 0x100eb22c\n  100eb328:  JMP 0x100eb225\n  100eb32d:  MOV EAX,EDI\n  100eb32f:  POP EDI\n  100eb330:  POP ESI\n  100eb331:  POP EBX\n  100eb332:  POP EBP\n  100eb333:  RET", 
+  "callers": [
+    {
+      "address": "0x100e5350", 
+      "name": "FUN_100e5350"
+    }
+  ]
+}

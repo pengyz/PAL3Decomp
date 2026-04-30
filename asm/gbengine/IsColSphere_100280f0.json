@@ -1,0 +1,65 @@
+{
+  "address": "0x100280f0", 
+  "size_bytes": 221, 
+  "calling_convention": "__thiscall", 
+  "signature": "int __thiscall IsColSphere(gbRay * this, gbSphere * param_1)", 
+  "callees": [], 
+  "global_refs": [
+    {
+      "address": "0x00000004", 
+      "type": null, 
+      "name": "DAT_00000004"
+    }, 
+    {
+      "address": "0x-0000024", 
+      "type": null, 
+      "name": "DAT_-0000024"
+    }, 
+    {
+      "address": "0x-0000018", 
+      "type": null, 
+      "name": "DAT_-0000018"
+    }, 
+    {
+      "address": "0x-0000020", 
+      "type": null, 
+      "name": "DAT_-0000020"
+    }, 
+    {
+      "address": "0x-0000014", 
+      "type": null, 
+      "name": "DAT_-0000014"
+    }, 
+    {
+      "address": "0x-000001c", 
+      "type": null, 
+      "name": "DAT_-000001c"
+    }, 
+    {
+      "address": "0x-0000010", 
+      "type": null, 
+      "name": "DAT_-0000010"
+    }, 
+    {
+      "address": "0x100f53a0", 
+      "type": null, 
+      "name": "DAT_100f53a0"
+    }, 
+    {
+      "address": "0x-0000008", 
+      "type": null, 
+      "name": "DAT_-0000008"
+    }, 
+    {
+      "address": "0x-0000004", 
+      "type": null, 
+      "name": "DAT_-0000004"
+    }
+  ], 
+  "has_custom_name": true, 
+  "decompiled_c": "\n/* public: int __thiscall gbRay::IsColSphere(struct gbSphere &) */\n\nint __thiscall gbRay::IsColSphere(gbRay *this,gbSphere *param_1)\n\n{\n  float fVar1;\n  float fVar2;\n  float fVar3;\n  float local_18;\n  \n                    /* 0x280f0  623  ?IsColSphere@gbRay@@QAEHAAUgbSphere@@@Z */\n  local_18 = *(float *)(param_1 + 4) - *(float *)this;\n  fVar1 = *(float *)(param_1 + 8) - *(float *)(this + 4);\n  fVar2 = *(float *)(param_1 + 0xc) - *(float *)(this + 8);\n  fVar3 = local_18 * *(float *)(this + 0xc) +\n          fVar1 * *(float *)(this + 0x10) + fVar2 * *(float *)(this + 0x14);\n  if (0.0 < fVar3) {\n    local_18 = local_18 - fVar3 * *(float *)(this + 0xc);\n    fVar1 = fVar1 - fVar3 * *(float *)(this + 0x10);\n    fVar2 = fVar2 - fVar3 * *(float *)(this + 0x14);\n  }\n  if (local_18 * local_18 + fVar2 * fVar2 + fVar1 * fVar1 <= *(float *)param_1 * *(float *)param_1)\n  {\n    return 1;\n  }\n  return 0;\n}\n\n", 
+  "is_thunk": false, 
+  "name": "IsColSphere", 
+  "assembly": "  100280f0:  SUB ESP,0x24\n  100280f3:  MOV EDX,dword ptr [ESP + 0x28]\n  100280f7:  FLD dword ptr [EDX + 0x4]\n  100280fa:  FSUB dword ptr [ECX]\n  100280fc:  FSTP dword ptr [ESP]\n  10028100:  FLD dword ptr [EDX + 0x8]\n  10028103:  FSUB dword ptr [ECX + 0x4]\n  10028106:  MOV EAX,dword ptr [ESP]\n  1002810a:  MOV dword ptr [ESP + 0xc],EAX\n  1002810e:  FSTP dword ptr [ESP + 0x4]\n  10028112:  FLD dword ptr [EDX + 0xc]\n  10028115:  FSUB dword ptr [ECX + 0x8]\n  10028118:  MOV EAX,dword ptr [ESP + 0x4]\n  1002811c:  MOV dword ptr [ESP + 0x10],EAX\n  10028120:  FSTP dword ptr [ESP + 0x8]\n  10028124:  FLD dword ptr [ESP + 0x8]\n  10028128:  FMUL dword ptr [ECX + 0x14]\n  1002812b:  FLD dword ptr [ESP + 0x4]\n  1002812f:  FMUL dword ptr [ECX + 0x10]\n  10028132:  MOV EAX,dword ptr [ESP + 0x8]\n  10028136:  MOV dword ptr [ESP + 0x14],EAX\n  1002813a:  FADDP\n  1002813c:  FLD dword ptr [ESP]\n  10028140:  FMUL dword ptr [ECX + 0xc]\n  10028143:  FADDP\n  10028145:  FCOM dword ptr [0x100f53a0]\n  1002814b:  FNSTSW AX\n  1002814d:  TEST AH,0x41\n  10028150:  JNZ 0x10028187\n  10028152:  FLD ST0\n  10028154:  FMUL dword ptr [ECX + 0xc]\n  10028157:  FLD ST1\n  10028159:  FMUL dword ptr [ECX + 0x10]\n  1002815c:  FSTP dword ptr [ESP + 0x1c]\n  10028160:  FXCH\n  10028162:  FMUL dword ptr [ECX + 0x14]\n  10028165:  FSTP dword ptr [ESP + 0x20]\n  10028169:  FLD dword ptr [ESP]\n  1002816d:  FSUB ST0,ST1\n  1002816f:  FSTP dword ptr [ESP + 0xc]\n  10028173:  FSTP ST0\n  10028175:  FLD dword ptr [ESP + 0x10]\n  10028179:  FSUB dword ptr [ESP + 0x1c]\n  1002817d:  FLD dword ptr [ESP + 0x14]\n  10028181:  FSUB dword ptr [ESP + 0x20]\n  10028185:  JMP 0x10028191\n  10028187:  FSTP ST0\n  10028189:  FLD dword ptr [ESP + 0x10]\n  1002818d:  FLD dword ptr [ESP + 0x14]\n  10028191:  FLD dword ptr [EDX]\n  10028193:  FLD ST2\n  10028195:  FMUL ST3\n  10028197:  FLD ST2\n  10028199:  FMUL ST3\n  1002819b:  FADDP\n  1002819d:  FLD dword ptr [ESP + 0xc]\n  100281a1:  FMUL dword ptr [ESP + 0xc]\n  100281a5:  FADDP\n  100281a7:  FLD ST1\n  100281a9:  FMUL ST2\n  100281ab:  FCOMPP\n  100281ad:  FSTP ST0\n  100281af:  FNSTSW AX\n  100281b1:  FSTP ST0\n  100281b3:  TEST AH,0x1\n  100281b6:  FSTP ST0\n  100281b8:  JZ 0x100281c2\n  100281ba:  XOR EAX,EAX\n  100281bc:  ADD ESP,0x24\n  100281bf:  RET 0x4\n  100281c2:  MOV EAX,0x1\n  100281c7:  ADD ESP,0x24\n  100281ca:  RET 0x4", 
+  "callers": []
+}

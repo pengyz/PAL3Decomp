@@ -1,0 +1,58 @@
+{
+  "address": "0x100efd6e", 
+  "size_bytes": 60, 
+  "calling_convention": "unknown", 
+  "signature": "undefined __fload(undefined8 param_1)", 
+  "callees": [], 
+  "global_refs": [
+    {
+      "address": "0x0000000a", 
+      "type": null, 
+      "name": "DAT_0000000a"
+    }, 
+    {
+      "address": "0x-0000006", 
+      "type": null, 
+      "name": "DAT_-0000006"
+    }, 
+    {
+      "address": "0x00000008", 
+      "type": null, 
+      "name": "DAT_00000008"
+    }, 
+    {
+      "address": "0x00000004", 
+      "type": null, 
+      "name": "DAT_00000004"
+    }, 
+    {
+      "address": "0x-000000a", 
+      "type": null, 
+      "name": "DAT_-000000a"
+    }, 
+    {
+      "address": "0x-000000e", 
+      "type": null, 
+      "name": "DAT_-000000e"
+    }
+  ], 
+  "has_custom_name": true, 
+  "decompiled_c": "\n/* Library Function - Single Match\n    __fload\n   \n   Libraries: Visual Studio 1998, Visual Studio 2003, Visual Studio 2005, Visual Studio 2008 */\n\nfloat10 __fload(uint param_1,int param_2)\n\n{\n  float10 fVar1;\n  \n  if ((param_2._2_2_ & 0x7ff0) == 0x7ff0) {\n    fVar1 = (float10)CONCAT28(param_2._2_2_ | 0x7fff,\n                              CONCAT44(param_2 << 0xb | param_1 >> 0x15,param_1));\n  }\n  else {\n    fVar1 = (float10)(double)CONCAT26(param_2._2_2_,CONCAT24((undefined2)param_2,param_1));\n  }\n  return fVar1;\n}\n\n", 
+  "is_thunk": false, 
+  "name": "__fload", 
+  "assembly": "  100efd6e:  PUSH EBP\n  100efd6f:  MOV EBP,ESP\n  100efd71:  ADD ESP,-0xc\n  100efd74:  PUSH EBX\n  100efd75:  MOV AX,word ptr [EBP + 0xe]\n  100efd79:  MOV BX,AX\n  100efd7c:  AND AX,0x7ff0\n  100efd80:  CMP AX,0x7ff0\n  100efd84:  JNZ 0x100efda4\n  100efd86:  OR BX,0x7fff\n  100efd8b:  MOV word ptr [EBP + -0x2],BX\n  100efd8f:  MOV EAX,dword ptr [EBP + 0xc]\n  100efd92:  MOV EBX,dword ptr [EBP + 0x8]\n  100efd95:  SHLD EAX,EBX,0xb\n  100efd99:  MOV dword ptr [EBP + -0x6],EAX\n  100efd9c:  MOV dword ptr [EBP + -0xa],EBX\n  100efd9f:  FLD tword ptr [EBP + -0xa]\n  100efda2:  JMP 0x100efda7\n  100efda4:  FLD qword ptr [EBP + 0x8]\n  100efda7:  POP EBX\n  100efda8:  LEAVE\n  100efda9:  RET", 
+  "callers": [
+    {
+      "address": "0x100efbbb", 
+      "name": "__ctrandisp2"
+    }, 
+    {
+      "address": "0x100efbbb", 
+      "name": "__ctrandisp2"
+    }, 
+    {
+      "address": "0x100efd3b", 
+      "name": "__ctrandisp1"
+    }
+  ]
+}

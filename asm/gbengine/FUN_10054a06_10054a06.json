@@ -1,0 +1,55 @@
+{
+  "address": "0x10054a06", 
+  "size_bytes": 111, 
+  "calling_convention": "unknown", 
+  "signature": "undefined FUN_10054a06(undefined4 param_1, undefined4 param_2, undefined4 param_3, undefined4 param_4)", 
+  "callees": [
+    {
+      "address": "0x1005424a", 
+      "name": "FUN_1005424a"
+    }
+  ], 
+  "global_refs": [
+    {
+      "address": "0x00000010", 
+      "type": null, 
+      "name": "DAT_00000010"
+    }, 
+    {
+      "address": "0x00000004", 
+      "type": null, 
+      "name": "DAT_00000004"
+    }, 
+    {
+      "address": "0x-0000008", 
+      "type": null, 
+      "name": "DAT_-0000008"
+    }, 
+    {
+      "address": "0x0000000c", 
+      "type": null, 
+      "name": "DAT_0000000c"
+    }, 
+    {
+      "address": "0x00000008", 
+      "type": null, 
+      "name": "DAT_00000008"
+    }, 
+    {
+      "address": "0x-0000018", 
+      "type": null, 
+      "name": "DAT_-0000018"
+    }
+  ], 
+  "has_custom_name": false, 
+  "decompiled_c": "\nvoid FUN_10054a06(uint param_1,int param_2,int param_3,int param_4)\n\n{\n  uint uVar1;\n  int iVar2;\n  uint uVar3;\n  \n  if (param_4 != 0) {\n    uVar1 = *(uint *)(param_1 + 0x14);\n    param_1 = 4;\n    if (uVar1 < 5) {\n      param_1 = uVar1;\n    }\n    do {\n      uVar3 = 0;\n      if (param_1 != 0) {\n        do {\n          iVar2 = FUN_1005424a(param_2,*(undefined4 *)(param_3 + uVar3 * 4));\n          if (iVar2 < 0) {\n            return;\n          }\n          param_2 = *(int *)(param_2 + 0xc);\n          uVar3 = uVar3 + 1;\n        } while (uVar3 < param_1);\n      }\n      if (uVar3 < uVar1) {\n        iVar2 = uVar1 - uVar3;\n        do {\n          iVar2 = iVar2 + -1;\n          param_2 = *(int *)(param_2 + 0xc);\n        } while (iVar2 != 0);\n      }\n      param_4 = param_4 + -1;\n      param_3 = param_3 + 0x10;\n    } while (param_4 != 0);\n  }\n  return;\n}\n\n", 
+  "is_thunk": false, 
+  "name": "FUN_10054a06", 
+  "assembly": "  10054a06:  PUSH EBP\n  10054a07:  MOV EBP,ESP\n  10054a09:  PUSH ECX\n  10054a0a:  XOR EAX,EAX\n  10054a0c:  CMP dword ptr [EBP + 0x14],EAX\n  10054a0f:  JZ 0x10054a71\n  10054a11:  MOV ECX,dword ptr [EBP + 0x8]\n  10054a14:  MOV EDX,dword ptr [ECX + 0x14]\n  10054a17:  PUSH 0x4\n  10054a19:  POP ECX\n  10054a1a:  CMP EDX,ECX\n  10054a1c:  MOV dword ptr [EBP + -0x4],EDX\n  10054a1f:  MOV dword ptr [EBP + 0x8],ECX\n  10054a22:  JA 0x10054a27\n  10054a24:  MOV dword ptr [EBP + 0x8],EDX\n  10054a27:  PUSH EBX\n  10054a28:  MOV EBX,dword ptr [EBP + 0x10]\n  10054a2b:  PUSH ESI\n  10054a2c:  PUSH EDI\n  10054a2d:  MOV EDI,dword ptr [EBP + 0xc]\n  10054a30:  XOR ESI,ESI\n  10054a32:  CMP dword ptr [EBP + 0x8],ESI\n  10054a35:  JBE 0x10054a54\n  10054a37:  FLD dword ptr [EBX + ESI*0x4]\n  10054a3a:  PUSH ECX\n  10054a3b:  FSTP dword ptr [ESP]\n  10054a3e:  PUSH EDI\n  10054a3f:  CALL 0x1005424a\n  10054a44:  TEST EAX,EAX\n  10054a46:  JL 0x10054a6e\n  10054a48:  MOV EDI,dword ptr [EDI + 0xc]\n  10054a4b:  INC ESI\n  10054a4c:  CMP ESI,dword ptr [EBP + 0x8]\n  10054a4f:  JC 0x10054a37\n  10054a51:  MOV EDX,dword ptr [EBP + -0x4]\n  10054a54:  CMP ESI,EDX\n  10054a56:  JNC 0x10054a62\n  10054a58:  MOV ECX,EDX\n  10054a5a:  SUB ECX,ESI\n  10054a5c:  DEC ECX\n  10054a5d:  MOV EDI,dword ptr [EDI + 0xc]\n  10054a60:  JNZ 0x10054a5c\n  10054a62:  DEC dword ptr [EBP + 0x14]\n  10054a65:  ADD EBX,0x10\n  10054a68:  CMP dword ptr [EBP + 0x14],0x0\n  10054a6c:  JNZ 0x10054a30\n  10054a6e:  POP EDI\n  10054a6f:  POP ESI\n  10054a70:  POP EBX\n  10054a71:  LEAVE\n  10054a72:  RET 0x10", 
+  "callers": [
+    {
+      "address": "0x10056d0f", 
+      "name": "FUN_10056d0f"
+    }
+  ]
+}

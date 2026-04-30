@@ -1,0 +1,14 @@
+{
+  "address": "0x10005070", 
+  "size_bytes": 8, 
+  "calling_convention": "__thiscall", 
+  "signature": "gbAABBox * __thiscall GetCollideAABBox(gbActor * this)", 
+  "callees": [], 
+  "global_refs": [], 
+  "has_custom_name": true, 
+  "decompiled_c": "\n/* public: struct gbAABBox * __thiscall gbActor::GetCollideAABBox(void) */\n\ngbAABBox * __thiscall gbActor::GetCollideAABBox(gbActor *this)\n\n{\n  gbAABBox *pgVar1;\n  \n                    /* 0x5070  432  ?GetCollideAABBox@gbActor@@QAEPAUgbAABBox@@XZ */\n                    /* WARNING: Could not recover jumptable at 0x10005075. Too many branches */\n                    /* WARNING: Treating indirect jump as call */\n  pgVar1 = (gbAABBox *)(**(code **)(**(int **)(this + 0x58) + 0x24))();\n  return pgVar1;\n}\n\n", 
+  "is_thunk": false, 
+  "name": "GetCollideAABBox", 
+  "assembly": "  10005070:  MOV ECX,dword ptr [ECX + 0x58]\n  10005073:  MOV EAX,dword ptr [ECX]\n  10005075:  JMP dword ptr [EAX + 0x24]", 
+  "callers": []
+}

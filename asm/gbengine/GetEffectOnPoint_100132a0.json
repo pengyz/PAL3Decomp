@@ -1,0 +1,75 @@
+{
+  "address": "0x100132a0", 
+  "size_bytes": 175, 
+  "calling_convention": "__thiscall", 
+  "signature": "float __thiscall GetEffectOnPoint(gbLightObj * this, gbVec3D * param_1, int param_2)", 
+  "callees": [
+    {
+      "address": "0x10024fe0", 
+      "name": "Length"
+    }
+  ], 
+  "global_refs": [
+    {
+      "address": "0x00000008", 
+      "type": null, 
+      "name": "DAT_00000008"
+    }, 
+    {
+      "address": "0x100f53a0", 
+      "type": null, 
+      "name": "DAT_100f53a0"
+    }, 
+    {
+      "address": "0x00000004", 
+      "type": null, 
+      "name": "DAT_00000004"
+    }, 
+    {
+      "address": "0x-0000018", 
+      "type": null, 
+      "name": "DAT_-0000018"
+    }, 
+    {
+      "address": "0x-0000014", 
+      "type": null, 
+      "name": "DAT_-0000014"
+    }, 
+    {
+      "address": "0x-0000008", 
+      "type": null, 
+      "name": "DAT_-0000008"
+    }, 
+    {
+      "address": "0x-000000c", 
+      "type": null, 
+      "name": "DAT_-000000c"
+    }, 
+    {
+      "address": "0x-0000010", 
+      "type": null, 
+      "name": "DAT_-0000010"
+    }, 
+    {
+      "address": "0x-0000004", 
+      "type": null, 
+      "name": "DAT_-0000004"
+    }, 
+    {
+      "address": "0x100f5344", 
+      "type": null, 
+      "name": "DAT_100f5344"
+    }, 
+    {
+      "address": "0x100f5640", 
+      "type": null, 
+      "name": "DAT_100f5640"
+    }
+  ], 
+  "has_custom_name": true, 
+  "decompiled_c": "\n/* public: virtual float __thiscall gbLightObj::GetEffectOnPoint(struct gbVec3D const &,int) */\n\nfloat __thiscall gbLightObj::GetEffectOnPoint(gbLightObj *this,gbVec3D *param_1,int param_2)\n\n{\n  float fVar1;\n  float local_c;\n  float local_8;\n  float local_4;\n  \n                    /* 0x132a0  453  ?GetEffectOnPoint@gbLightObj@@UAEMABUgbVec3D@@H@Z */\n  if (param_2 != 0) {\n    return 0.0;\n  }\n  local_c = *(float *)(this + 0xa0) - *(float *)param_1;\n  local_8 = *(float *)(this + 0xa4) - *(float *)(param_1 + 4);\n  local_4 = *(float *)(this + 0xa8) - *(float *)(param_1 + 8);\n  fVar1 = gbVec3D::Length((gbVec3D *)&local_c);\n  fVar1 = 1.0 / ((fVar1 * *(float *)(this + 200) + *(float *)(this + 0xc4)) * fVar1 +\n                *(float *)(this + 0xc0));\n  if (1.0 < fVar1) {\n    fVar1 = 1.0;\n  }\n  return (*(float *)(this + 0x78) + *(float *)(this + 0x74) + *(float *)(this + 0x70)) * fVar1 *\n         0.33333334;\n}\n\n", 
+  "is_thunk": false, 
+  "name": "GetEffectOnPoint", 
+  "assembly": "  100132a0:  MOV EAX,dword ptr [ESP + 0x8]\n  100132a4:  SUB ESP,0x18\n  100132a7:  TEST EAX,EAX\n  100132a9:  PUSH ESI\n  100132aa:  MOV ESI,ECX\n  100132ac:  JZ 0x100132bb\n  100132ae:  FLD dword ptr [0x100f53a0]\n  100132b4:  POP ESI\n  100132b5:  ADD ESP,0x18\n  100132b8:  RET 0x8\n  100132bb:  MOV EAX,dword ptr [ESP + 0x20]\n  100132bf:  FLD dword ptr [ESI + 0xa0]\n  100132c5:  FSUB dword ptr [EAX]\n  100132c7:  FSTP dword ptr [ESP + 0x4]\n  100132cb:  FLD dword ptr [ESI + 0xa4]\n  100132d1:  FSUB dword ptr [EAX + 0x4]\n  100132d4:  FSTP dword ptr [ESP + 0x8]\n  100132d8:  FLD dword ptr [ESI + 0xa8]\n  100132de:  FSUB dword ptr [EAX + 0x8]\n  100132e1:  MOV ECX,dword ptr [ESP + 0x8]\n  100132e5:  MOV EAX,dword ptr [ESP + 0x4]\n  100132e9:  MOV dword ptr [ESP + 0x14],ECX\n  100132ed:  LEA ECX,[ESP + 0x10]\n  100132f1:  FSTP dword ptr [ESP + 0xc]\n  100132f5:  MOV EDX,dword ptr [ESP + 0xc]\n  100132f9:  MOV dword ptr [ESP + 0x10],EAX\n  100132fd:  MOV dword ptr [ESP + 0x18],EDX\n  10013301:  CALL 0x10024fe0\n  10013306:  FLD ST0\n  10013308:  FMUL dword ptr [ESI + 0xc8]\n  1001330e:  FADD dword ptr [ESI + 0xc4]\n  10013314:  FMULP\n  10013316:  FADD dword ptr [ESI + 0xc0]\n  1001331c:  FDIVR dword ptr [0x100f5344]\n  10013322:  FCOM dword ptr [0x100f5344]\n  10013328:  FNSTSW AX\n  1001332a:  TEST AH,0x41\n  1001332d:  JNZ 0x10013337\n  1001332f:  FSTP ST0\n  10013331:  FLD dword ptr [0x100f5344]\n  10013337:  FLD dword ptr [ESI + 0x78]\n  1001333a:  FADD dword ptr [ESI + 0x74]\n  1001333d:  FADD dword ptr [ESI + 0x70]\n  10013340:  POP ESI\n  10013341:  FMULP\n  10013343:  FMUL dword ptr [0x100f5640]\n  10013349:  ADD ESP,0x18\n  1001334c:  RET 0x8", 
+  "callers": []
+}

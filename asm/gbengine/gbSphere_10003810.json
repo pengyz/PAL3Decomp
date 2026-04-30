@@ -1,0 +1,14 @@
+{
+  "address": "0x10003810", 
+  "size_bytes": 14, 
+  "calling_convention": "__thiscall", 
+  "signature": "undefined __thiscall gbSphere(gbSphere * this)", 
+  "callees": [], 
+  "global_refs": [], 
+  "has_custom_name": true, 
+  "decompiled_c": "\n/* public: __thiscall gbSphere::gbSphere(void) */\n\nvoid __thiscall gbSphere::gbSphere(gbSphere *this)\n\n{\n                    /* 0x3810  95  ??0gbSphere@@QAE@XZ */\n  *(undefined4 *)(this + 4) = 0;\n  *(undefined4 *)(this + 8) = 0;\n  *(undefined4 *)(this + 0xc) = 0;\n  return;\n}\n\n", 
+  "is_thunk": false, 
+  "name": "gbSphere", 
+  "assembly": "  10003810:  MOV EAX,ECX\n  10003812:  XOR ECX,ECX\n  10003814:  MOV dword ptr [EAX + 0x4],ECX\n  10003817:  MOV dword ptr [EAX + 0x8],ECX\n  1000381a:  MOV dword ptr [EAX + 0xc],ECX\n  1000381d:  RET", 
+  "callers": []
+}

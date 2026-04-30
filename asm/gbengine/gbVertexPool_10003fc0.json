@@ -1,0 +1,30 @@
+{
+  "address": "0x10003fc0", 
+  "size_bytes": 118, 
+  "calling_convention": "__thiscall", 
+  "signature": "undefined __thiscall gbVertexPool(gbVertexPool * this, gbVertexPool * param_1)", 
+  "callees": [], 
+  "global_refs": [
+    {
+      "address": "0x00000004", 
+      "type": null, 
+      "name": "DAT_00000004"
+    }, 
+    {
+      "address": "0x100f53a8", 
+      "type": "pointer", 
+      "name": "DAT_100f53a8"
+    }, 
+    {
+      "address": "0x100f53c4", 
+      "type": "undefined *", 
+      "name": "DAT_100f53c4"
+    }
+  ], 
+  "has_custom_name": true, 
+  "decompiled_c": "\n/* public: __thiscall gbVertexPool::gbVertexPool(class gbVertexPool const &) */\n\nvoid __thiscall gbVertexPool::gbVertexPool(gbVertexPool *this,gbVertexPool *param_1)\n\n{\n  undefined4 uVar1;\n  \n                    /* 0x3fc0  112  ??0gbVertexPool@@QAE@ABV0@@Z */\n  uVar1 = *(undefined4 *)(param_1 + 4);\n  *(undefined ***)this = &gbChain1DNode::_vftable_;\n  *(undefined4 *)(this + 4) = uVar1;\n  *(undefined4 *)(this + 8) = *(undefined4 *)(param_1 + 8);\n  *(undefined4 *)(this + 0xc) = *(undefined4 *)(param_1 + 0xc);\n  *(undefined4 *)(this + 0x10) = *(undefined4 *)(param_1 + 0x10);\n  *(undefined4 *)(this + 0x14) = *(undefined4 *)(param_1 + 0x14);\n  *(undefined4 *)(this + 0x18) = *(undefined4 *)(param_1 + 0x18);\n  *(undefined4 *)(this + 0x1c) = *(undefined4 *)(param_1 + 0x1c);\n  *(undefined4 *)(this + 0x20) = *(undefined4 *)(param_1 + 0x20);\n  *(undefined4 *)(this + 0x24) = *(undefined4 *)(param_1 + 0x24);\n  *(undefined4 *)(this + 0x28) = *(undefined4 *)(param_1 + 0x28);\n  *(undefined4 *)(this + 0x2c) = *(undefined4 *)(param_1 + 0x2c);\n  *(undefined4 *)(this + 0x30) = *(undefined4 *)(param_1 + 0x30);\n  *(undefined4 *)(this + 0x34) = *(undefined4 *)(param_1 + 0x34);\n  uVar1 = *(undefined4 *)(param_1 + 0x38);\n  *(undefined ***)this = &_vftable_;\n  *(undefined4 *)(this + 0x38) = uVar1;\n  return;\n}\n\n", 
+  "is_thunk": false, 
+  "name": "gbVertexPool", 
+  "assembly": "  10003fc0:  MOV EAX,ECX\n  10003fc2:  PUSH ESI\n  10003fc3:  MOV ECX,dword ptr [ESP + 0x8]\n  10003fc7:  PUSH EDI\n  10003fc8:  LEA ESI,[EAX + 0x1c]\n  10003fcb:  MOV EDX,dword ptr [ECX + 0x4]\n  10003fce:  MOV dword ptr [EAX],0x100f53a8\n  10003fd4:  MOV dword ptr [EAX + 0x4],EDX\n  10003fd7:  MOV EDX,dword ptr [ECX + 0x8]\n  10003fda:  MOV dword ptr [EAX + 0x8],EDX\n  10003fdd:  MOV EDX,dword ptr [ECX + 0xc]\n  10003fe0:  MOV dword ptr [EAX + 0xc],EDX\n  10003fe3:  MOV EDX,dword ptr [ECX + 0x10]\n  10003fe6:  MOV dword ptr [EAX + 0x10],EDX\n  10003fe9:  MOV EDX,dword ptr [ECX + 0x14]\n  10003fec:  MOV dword ptr [EAX + 0x14],EDX\n  10003fef:  MOV EDX,dword ptr [ECX + 0x18]\n  10003ff2:  MOV dword ptr [EAX + 0x18],EDX\n  10003ff5:  LEA EDX,[ECX + 0x1c]\n  10003ff8:  ADD ECX,0x2c\n  10003ffb:  MOV EDI,dword ptr [EDX]\n  10003ffd:  MOV dword ptr [ESI],EDI\n  10003fff:  MOV EDI,dword ptr [EDX + 0x4]\n  10004002:  MOV dword ptr [ESI + 0x4],EDI\n  10004005:  MOV EDI,dword ptr [EDX + 0x8]\n  10004008:  MOV dword ptr [ESI + 0x8],EDI\n  1000400b:  POP EDI\n  1000400c:  MOV EDX,dword ptr [EDX + 0xc]\n  1000400f:  MOV dword ptr [ESI + 0xc],EDX\n  10004012:  MOV ESI,dword ptr [ECX]\n  10004014:  LEA EDX,[EAX + 0x2c]\n  10004017:  MOV dword ptr [EAX + 0x2c],ESI\n  1000401a:  MOV ESI,dword ptr [ECX + 0x4]\n  1000401d:  MOV dword ptr [EDX + 0x4],ESI\n  10004020:  MOV ESI,dword ptr [ECX + 0x8]\n  10004023:  MOV dword ptr [EDX + 0x8],ESI\n  10004026:  MOV ECX,dword ptr [ECX + 0xc]\n  10004029:  MOV dword ptr [EAX],0x100f53c4\n  1000402f:  POP ESI\n  10004030:  MOV dword ptr [EDX + 0xc],ECX\n  10004033:  RET 0x4", 
+  "callers": []
+}

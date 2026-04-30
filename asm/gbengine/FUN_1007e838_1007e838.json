@@ -1,0 +1,35 @@
+{
+  "address": "0x1007e838", 
+  "size_bytes": 40, 
+  "calling_convention": "unknown", 
+  "signature": "undefined FUN_1007e838(undefined4 param_1, undefined4 param_2)", 
+  "callees": [], 
+  "global_refs": [
+    {
+      "address": "0x00000004", 
+      "type": null, 
+      "name": "DAT_00000004"
+    }, 
+    {
+      "address": "0x00000008", 
+      "type": null, 
+      "name": "DAT_00000008"
+    }, 
+    {
+      "address": "0x10106724", 
+      "type": "undefined *", 
+      "name": "DAT_10106724"
+    }
+  ], 
+  "has_custom_name": false, 
+  "decompiled_c": "\nvoid FUN_1007e838(undefined4 param_1,undefined4 param_2)\n\n{\n  undefined4 *in_ECX;\n  \n  in_ECX[2] = 0;\n  in_ECX[3] = 0;\n  in_ECX[4] = param_1;\n  in_ECX[1] = 8;\n  *in_ECX = &PTR_LAB_10106724;\n  in_ECX[5] = param_2;\n  return;\n}\n\n", 
+  "is_thunk": false, 
+  "name": "FUN_1007e838", 
+  "assembly": "  1007e838:  MOV EAX,ECX\n  1007e83a:  MOV ECX,dword ptr [ESP + 0x4]\n  1007e83e:  AND dword ptr [EAX + 0x8],0x0\n  1007e842:  AND dword ptr [EAX + 0xc],0x0\n  1007e846:  MOV dword ptr [EAX + 0x10],ECX\n  1007e849:  MOV ECX,dword ptr [ESP + 0x8]\n  1007e84d:  MOV dword ptr [EAX + 0x4],0x8\n  1007e854:  MOV dword ptr [EAX],0x10106724\n  1007e85a:  MOV dword ptr [EAX + 0x14],ECX\n  1007e85d:  RET 0x8", 
+  "callers": [
+    {
+      "address": "0x100602de", 
+      "name": "FUN_100602de"
+    }
+  ]
+}

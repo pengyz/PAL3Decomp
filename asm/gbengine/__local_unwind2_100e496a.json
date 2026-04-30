@@ -1,0 +1,54 @@
+{
+  "address": "0x100e496a", 
+  "size_bytes": 104, 
+  "calling_convention": "unknown", 
+  "signature": "undefined __local_unwind2(undefined4 param_1, undefined4 param_2)", 
+  "callees": [
+    {
+      "address": "0x100e49fe", 
+      "name": "FUN_100e49fe"
+    }
+  ], 
+  "global_refs": [
+    {
+      "address": "0x00000004", 
+      "type": null, 
+      "name": "DAT_00000004"
+    }, 
+    {
+      "address": "0x100e4948", 
+      "type": null, 
+      "name": "DAT_100e4948"
+    }, 
+    {
+      "address": "0xffdff000", 
+      "type": "void *32", 
+      "name": "DAT_ffdff000"
+    }, 
+    {
+      "address": "0x00000008", 
+      "type": null, 
+      "name": "DAT_00000008"
+    }, 
+    {
+      "address": "0x-0000014", 
+      "type": null, 
+      "name": "DAT_-0000014"
+    }
+  ], 
+  "has_custom_name": true, 
+  "decompiled_c": "\n/* Library Function - Single Match\n    __local_unwind2\n   \n   Libraries: Visual Studio 1998 Debug, Visual Studio 1998 Release, Visual Studio 2003 Debug, Visual\n   Studio 2003 Release */\n\nvoid __local_unwind2(int param_1,int param_2)\n\n{\n  int iVar1;\n  int iVar2;\n  void *pvStack_1c;\n  undefined *puStack_18;\n  undefined4 local_14;\n  int iStack_10;\n  \n  iStack_10 = param_1;\n  puStack_18 = &LAB_100e4948;\n  pvStack_1c = ExceptionList;\n  ExceptionList = &pvStack_1c;\n  while( true ) {\n    iVar1 = *(int *)(param_1 + 8);\n    iVar2 = *(int *)(param_1 + 0xc);\n    if ((iVar2 == -1) || (iVar2 == param_2)) break;\n    local_14 = *(undefined4 *)(iVar1 + iVar2 * 0xc);\n    *(undefined4 *)(param_1 + 0xc) = local_14;\n    if (*(int *)(iVar1 + 4 + iVar2 * 0xc) == 0) {\n      FUN_100e49fe(0x101);\n      (**(code **)(iVar1 + 8 + iVar2 * 0xc))();\n    }\n  }\n  ExceptionList = pvStack_1c;\n  return;\n}\n\n", 
+  "is_thunk": false, 
+  "name": "__local_unwind2", 
+  "assembly": "  100e496a:  PUSH EBX\n  100e496b:  PUSH ESI\n  100e496c:  PUSH EDI\n  100e496d:  MOV EAX,dword ptr [ESP + 0x10]\n  100e4971:  PUSH EAX\n  100e4972:  PUSH -0x2\n  100e4974:  PUSH 0x100e4948\n  100e4979:  PUSH dword ptr FS:[0x0]\n  100e4980:  MOV dword ptr FS:[0x0],ESP\n  100e4987:  MOV EAX,dword ptr [ESP + 0x20]\n  100e498b:  MOV EBX,dword ptr [EAX + 0x8]\n  100e498e:  MOV ESI,dword ptr [EAX + 0xc]\n  100e4991:  CMP ESI,-0x1\n  100e4994:  JZ 0x100e49c4\n  100e4996:  CMP ESI,dword ptr [ESP + 0x24]\n  100e499a:  JZ 0x100e49c4\n  100e499c:  LEA ESI,[ESI + ESI*0x2]\n  100e499f:  MOV ECX,dword ptr [EBX + ESI*0x4]\n  100e49a2:  MOV dword ptr [ESP + 0x8],ECX\n  100e49a6:  MOV dword ptr [EAX + 0xc],ECX\n  100e49a9:  CMP dword ptr [EBX + ESI*0x4 + 0x4],0x0\n  100e49ae:  JNZ 0x100e49c2\n  100e49b0:  PUSH 0x101\n  100e49b5:  MOV EAX,dword ptr [EBX + ESI*0x4 + 0x8]\n  100e49b9:  CALL 0x100e49fe\n  100e49be:  CALL dword ptr [EBX + ESI*0x4 + 0x8]\n  100e49c2:  JMP 0x100e4987\n  100e49c4:  POP dword ptr FS:[0x0]\n  100e49cb:  ADD ESP,0xc\n  100e49ce:  POP EDI\n  100e49cf:  POP ESI\n  100e49d0:  POP EBX\n  100e49d1:  RET", 
+  "callers": [
+    {
+      "address": "0x100e6710", 
+      "name": "_longjmp"
+    }, 
+    {
+      "address": "0x100e7af9", 
+      "name": "FUN_100e7af9"
+    }
+  ]
+}

@@ -1,0 +1,51 @@
+{
+  "address": "0x1000ace0", 
+  "size_bytes": 190, 
+  "calling_convention": "unknown", 
+  "signature": "undefined FUN_1000ace0(undefined4 param_1)", 
+  "callees": [
+    {
+      "address": "0x10030810", 
+      "name": "Read"
+    }, 
+    {
+      "address": "0x10030810", 
+      "name": "Read"
+    }, 
+    {
+      "address": "0x10030810", 
+      "name": "Read"
+    }, 
+    {
+      "address": "0x100e4a16", 
+      "name": "operator_new"
+    }, 
+    {
+      "address": "0x10030810", 
+      "name": "Read"
+    }
+  ], 
+  "global_refs": [
+    {
+      "address": "0x00000004", 
+      "type": null, 
+      "name": "DAT_00000004"
+    }, 
+    {
+      "address": "0x1015d3a8", 
+      "type": "gbVFileSystem *", 
+      "name": "DAT_1015d3a8"
+    }
+  ], 
+  "has_custom_name": false, 
+  "decompiled_c": "\nvoid FUN_1000ace0(gbVFile *param_1)\n\n{\n  int *piVar1;\n  void *pvVar2;\n  void *in_ECX;\n  undefined4 *puVar3;\n  int iVar4;\n  void *pvVar5;\n  \n  gbVFileSystem::Read(g_pVFileSys,in_ECX,0x40,param_1);\n  gbVFileSystem::Read(g_pVFileSys,(void *)((int)in_ECX + 0x48),4,param_1);\n  piVar1 = (int *)((int)in_ECX + 0x40);\n  gbVFileSystem::Read(g_pVFileSys,piVar1,4,param_1);\n  iVar4 = *piVar1;\n  if (iVar4 == 0) {\n    *(undefined4 *)((int)in_ECX + 0x44) = 0;\n    return;\n  }\n  pvVar2 = operator_new(iVar4 * 0x44);\n  pvVar5 = (void *)0x0;\n  if ((pvVar2 != (void *)0x0) && (pvVar5 = pvVar2, -1 < iVar4 + -1)) {\n    puVar3 = (undefined4 *)((int)pvVar2 + 0xc);\n    do {\n      puVar3[-2] = 0;\n      puVar3[-1] = 0;\n      *puVar3 = 0;\n      puVar3[3] = 0;\n      puVar3[2] = 0;\n      puVar3[1] = 0;\n      puVar3[4] = 0x3f800000;\n      puVar3 = puVar3 + 0x11;\n      iVar4 = iVar4 + -1;\n    } while (iVar4 != 0);\n  }\n  *(void **)((int)in_ECX + 0x44) = pvVar5;\n  gbVFileSystem::Read(g_pVFileSys,pvVar5,*piVar1 * 0x44,param_1);\n  return;\n}\n\n", 
+  "is_thunk": false, 
+  "name": "FUN_1000ace0", 
+  "assembly": "  1000ace0:  PUSH EBX\n  1000ace1:  PUSH EBP\n  1000ace2:  MOV EBP,dword ptr [ESP + 0xc]\n  1000ace6:  PUSH ESI\n  1000ace7:  PUSH EDI\n  1000ace8:  MOV EBX,ECX\n  1000acea:  MOV ECX,dword ptr [0x1015d3a8]\n  1000acf0:  PUSH EBP\n  1000acf1:  PUSH 0x40\n  1000acf3:  PUSH EBX\n  1000acf4:  CALL 0x10030810\n  1000acf9:  MOV ECX,dword ptr [0x1015d3a8]\n  1000acff:  PUSH EBP\n  1000ad00:  LEA EAX,[EBX + 0x48]\n  1000ad03:  PUSH 0x4\n  1000ad05:  PUSH EAX\n  1000ad06:  CALL 0x10030810\n  1000ad0b:  MOV ECX,dword ptr [0x1015d3a8]\n  1000ad11:  LEA ESI,[EBX + 0x40]\n  1000ad14:  PUSH EBP\n  1000ad15:  PUSH 0x4\n  1000ad17:  PUSH ESI\n  1000ad18:  MOV dword ptr [ESP + 0x20],ESI\n  1000ad1c:  CALL 0x10030810\n  1000ad21:  MOV EDI,dword ptr [ESI]\n  1000ad23:  XOR ESI,ESI\n  1000ad25:  CMP EDI,ESI\n  1000ad27:  JZ 0x1000ad94\n  1000ad29:  MOV ECX,EDI\n  1000ad2b:  SHL ECX,0x4\n  1000ad2e:  ADD ECX,EDI\n  1000ad30:  SHL ECX,0x2\n  1000ad33:  PUSH ECX\n  1000ad34:  CALL 0x100e4a16\n  1000ad39:  ADD ESP,0x4\n  1000ad3c:  CMP EAX,ESI\n  1000ad3e:  JZ 0x1000ad6c\n  1000ad40:  LEA EDX,[EDI + -0x1]\n  1000ad43:  CMP EDX,ESI\n  1000ad45:  JL 0x1000ad6a\n  1000ad47:  LEA ECX,[EAX + 0xc]\n  1000ad4a:  INC EDX\n  1000ad4b:  MOV EDI,0x3f800000\n  1000ad50:  MOV dword ptr [ECX + -0x8],ESI\n  1000ad53:  MOV dword ptr [ECX + -0x4],ESI\n  1000ad56:  MOV dword ptr [ECX],ESI\n  1000ad58:  MOV dword ptr [ECX + 0xc],ESI\n  1000ad5b:  MOV dword ptr [ECX + 0x8],ESI\n  1000ad5e:  MOV dword ptr [ECX + 0x4],ESI\n  1000ad61:  MOV dword ptr [ECX + 0x10],EDI\n  1000ad64:  ADD ECX,0x44\n  1000ad67:  DEC EDX\n  1000ad68:  JNZ 0x1000ad50\n  1000ad6a:  MOV ESI,EAX\n  1000ad6c:  MOV EDX,dword ptr [ESP + 0x14]\n  1000ad70:  PUSH EBP\n  1000ad71:  MOV dword ptr [EBX + 0x44],ESI\n  1000ad74:  MOV EAX,dword ptr [EDX]\n  1000ad76:  MOV ECX,EAX\n  1000ad78:  SHL ECX,0x4\n  1000ad7b:  ADD ECX,EAX\n  1000ad7d:  SHL ECX,0x2\n  1000ad80:  PUSH ECX\n  1000ad81:  MOV ECX,dword ptr [0x1015d3a8]\n  1000ad87:  PUSH ESI\n  1000ad88:  CALL 0x10030810\n  1000ad8d:  POP EDI\n  1000ad8e:  POP ESI\n  1000ad8f:  POP EBP\n  1000ad90:  POP EBX\n  1000ad91:  RET 0x4\n  1000ad94:  MOV dword ptr [EBX + 0x44],ESI\n  1000ad97:  POP EDI\n  1000ad98:  POP ESI\n  1000ad99:  POP EBP\n  1000ad9a:  POP EBX\n  1000ad9b:  RET 0x4", 
+  "callers": [
+    {
+      "address": "0x1000a100", 
+      "name": "FUN_1000a100"
+    }
+  ]
+}

@@ -1,0 +1,84 @@
+{
+  "address": "0x100e760b", 
+  "size_bytes": 207, 
+  "calling_convention": "unknown", 
+  "signature": "undefined FUN_100e760b(undefined1[10] param_1)", 
+  "callees": [
+    {
+      "address": "0x100ee393", 
+      "name": "FUN_100ee393"
+    }, 
+    {
+      "address": "0x100eda9e", 
+      "name": "FUN_100eda9e"
+    }, 
+    {
+      "address": "0x100edbb9", 
+      "name": "FUN_100edbb9"
+    }, 
+    {
+      "address": "0x100ee393", 
+      "name": "FUN_100ee393"
+    }, 
+    {
+      "address": "0x100efa28", 
+      "name": "__frnd"
+    }, 
+    {
+      "address": "0x100ee393", 
+      "name": "FUN_100ee393"
+    }, 
+    {
+      "address": "0x100edc6d", 
+      "name": "FUN_100edc6d"
+    }
+  ], 
+  "global_refs": [
+    {
+      "address": "0x10129fb0", 
+      "type": "undefined4", 
+      "name": "DAT_10129fb0"
+    }, 
+    {
+      "address": "0x00000004", 
+      "type": null, 
+      "name": "DAT_00000004"
+    }, 
+    {
+      "address": "0x0000000a", 
+      "type": null, 
+      "name": "DAT_0000000a"
+    }, 
+    {
+      "address": "0x-000001c", 
+      "type": null, 
+      "name": "DAT_-000001c"
+    }, 
+    {
+      "address": "0x-0000020", 
+      "type": null, 
+      "name": "DAT_-0000020"
+    }, 
+    {
+      "address": "0x100f5578", 
+      "type": null, 
+      "name": "DAT_100f5578"
+    }, 
+    {
+      "address": "0x-0000028", 
+      "type": null, 
+      "name": "DAT_-0000028"
+    }, 
+    {
+      "address": "0x-000000c", 
+      "type": null, 
+      "name": "DAT_-000000c"
+    }
+  ], 
+  "has_custom_name": false, 
+  "decompiled_c": "\nfloat10 FUN_100e760b(double param_1)\n\n{\n  double dVar1;\n  uint uVar2;\n  int iVar3;\n  float10 fVar4;\n  undefined4 uVar5;\n  \n  uVar2 = FUN_100ee393(DAT_10129fb0,0xffff);\n  if ((param_1._6_2_ & 0x7ff0) == 0x7ff0) {\n    iVar3 = FUN_100eda9e();\n    if (0 < iVar3) {\n      if (iVar3 < 3) {\n        FUN_100ee393(uVar2,0xffff);\n        return (float10)param_1;\n      }\n      if (iVar3 == 3) {\n        fVar4 = (float10)FUN_100edbb9();\n        return fVar4;\n      }\n    }\n    dVar1 = param_1 + 1.0;\n    uVar5 = 8;\n  }\n  else {\n    fVar4 = (float10)__frnd(SUB84(param_1,0),(int)((ulonglong)param_1 >> 0x20));\n    dVar1 = (double)fVar4;\n    if ((dVar1 == param_1) || ((uVar2 & 0x20) != 0)) {\n      FUN_100ee393(uVar2,0xffff);\n      return (float10)dVar1;\n    }\n    uVar5 = 0x10;\n  }\n  fVar4 = (float10)FUN_100edc6d(uVar5,0xc,param_1,dVar1,uVar2);\n  return fVar4;\n}\n\n", 
+  "is_thunk": false, 
+  "name": "FUN_100e760b", 
+  "assembly": "  100e760b:  PUSH EBP\n  100e760c:  MOV EBP,ESP\n  100e760e:  PUSH ECX\n  100e760f:  PUSH ECX\n  100e7610:  PUSH EBX\n  100e7611:  PUSH ESI\n  100e7612:  MOV ESI,0xffff\n  100e7617:  PUSH ESI\n  100e7618:  PUSH dword ptr [0x10129fb0]\n  100e761e:  CALL 0x100ee393\n  100e7623:  FLD qword ptr [EBP + 0x8]\n  100e7626:  POP ECX\n  100e7627:  MOV EBX,EAX\n  100e7629:  MOV EAX,dword ptr [EBP + 0xe]\n  100e762c:  POP ECX\n  100e762d:  PUSH ECX\n  100e762e:  AND AX,0x7ff0\n  100e7632:  PUSH ECX\n  100e7633:  CMP AX,0x7ff0\n  100e7637:  FSTP qword ptr [ESP]\n  100e763a:  JNZ 0x100e7691\n  100e763c:  CALL 0x100eda9e\n  100e7641:  POP ECX\n  100e7642:  TEST EAX,EAX\n  100e7644:  POP ECX\n  100e7645:  JLE 0x100e7674\n  100e7647:  CMP EAX,0x2\n  100e764a:  JLE 0x100e7666\n  100e764c:  CMP EAX,0x3\n  100e764f:  JNZ 0x100e7674\n  100e7651:  FLD qword ptr [EBP + 0x8]\n  100e7654:  PUSH EBX\n  100e7655:  PUSH ECX\n  100e7656:  PUSH ECX\n  100e7657:  FSTP qword ptr [ESP]\n  100e765a:  PUSH 0xc\n  100e765c:  CALL 0x100edbb9\n  100e7661:  ADD ESP,0x10\n  100e7664:  JMP 0x100e76d6\n  100e7666:  PUSH ESI\n  100e7667:  PUSH EBX\n  100e7668:  CALL 0x100ee393\n  100e766d:  FLD qword ptr [EBP + 0x8]\n  100e7670:  POP ECX\n  100e7671:  POP ECX\n  100e7672:  JMP 0x100e76d6\n  100e7674:  FLD qword ptr [EBP + 0x8]\n  100e7677:  FADD qword ptr [0x100f5578]\n  100e767d:  PUSH EBX\n  100e767e:  PUSH ECX\n  100e767f:  PUSH ECX\n  100e7680:  FSTP qword ptr [ESP]\n  100e7683:  FLD qword ptr [EBP + 0x8]\n  100e7686:  PUSH ECX\n  100e7687:  PUSH ECX\n  100e7688:  FSTP qword ptr [ESP]\n  100e768b:  PUSH 0xc\n  100e768d:  PUSH 0x8\n  100e768f:  JMP 0x100e76ce\n  100e7691:  CALL 0x100efa28\n  100e7696:  FSTP qword ptr [EBP + -0x8]\n  100e7699:  FLD qword ptr [EBP + -0x8]\n  100e769c:  FCOMP qword ptr [EBP + 0x8]\n  100e769f:  POP ECX\n  100e76a0:  POP ECX\n  100e76a1:  FNSTSW AX\n  100e76a3:  SAHF\n  100e76a4:  JNZ 0x100e76b4\n  100e76a6:  PUSH ESI\n  100e76a7:  PUSH EBX\n  100e76a8:  CALL 0x100ee393\n  100e76ad:  FLD qword ptr [EBP + -0x8]\n  100e76b0:  POP ECX\n  100e76b1:  POP ECX\n  100e76b2:  JMP 0x100e76d6\n  100e76b4:  TEST BL,0x20\n  100e76b7:  JNZ 0x100e76a6\n  100e76b9:  FLD qword ptr [EBP + -0x8]\n  100e76bc:  PUSH EBX\n  100e76bd:  PUSH ECX\n  100e76be:  PUSH ECX\n  100e76bf:  FSTP qword ptr [ESP]\n  100e76c2:  FLD qword ptr [EBP + 0x8]\n  100e76c5:  PUSH ECX\n  100e76c6:  PUSH ECX\n  100e76c7:  FSTP qword ptr [ESP]\n  100e76ca:  PUSH 0xc\n  100e76cc:  PUSH 0x10\n  100e76ce:  CALL 0x100edc6d\n  100e76d3:  ADD ESP,0x1c\n  100e76d6:  POP ESI\n  100e76d7:  POP EBX\n  100e76d8:  LEAVE\n  100e76d9:  RET", 
+  "callers": []
+}

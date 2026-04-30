@@ -1,0 +1,126 @@
+{
+  "address": "0x10028260", 
+  "size_bytes": 248, 
+  "calling_convention": "__thiscall", 
+  "signature": "int __thiscall IsColOBB_H(gbRay * this, gbOBBox * param_1)", 
+  "callees": [
+    {
+      "address": "0x10025110", 
+      "name": "gbMatrix4"
+    }, 
+    {
+      "address": "0x10025bc0", 
+      "name": "Invert"
+    }, 
+    {
+      "address": "0x10025260", 
+      "name": "Transform"
+    }, 
+    {
+      "address": "0x10025480", 
+      "name": "Rotate"
+    }, 
+    {
+      "address": "0x10028360", 
+      "name": "IsColAABB"
+    }
+  ], 
+  "global_refs": [
+    {
+      "address": "0x-0000070", 
+      "type": null, 
+      "name": "DAT_-0000070"
+    }, 
+    {
+      "address": "0x-0000040", 
+      "type": null, 
+      "name": "DAT_-0000040"
+    }, 
+    {
+      "address": "0x-000006c", 
+      "type": null, 
+      "name": "DAT_-000006c"
+    }, 
+    {
+      "address": "0x-0000068", 
+      "type": null, 
+      "name": "DAT_-0000068"
+    }, 
+    {
+      "address": "0x-0000064", 
+      "type": null, 
+      "name": "DAT_-0000064"
+    }, 
+    {
+      "address": "0x-0000060", 
+      "type": null, 
+      "name": "DAT_-0000060"
+    }, 
+    {
+      "address": "0x-000005c", 
+      "type": null, 
+      "name": "DAT_-000005c"
+    }, 
+    {
+      "address": "0x00000004", 
+      "type": null, 
+      "name": "DAT_00000004"
+    }, 
+    {
+      "address": "0x100f5664", 
+      "type": null, 
+      "name": "DAT_100f5664"
+    }, 
+    {
+      "address": "0x-0000078", 
+      "type": null, 
+      "name": "DAT_-0000078"
+    }, 
+    {
+      "address": "0x-0000054", 
+      "type": null, 
+      "name": "DAT_-0000054"
+    }, 
+    {
+      "address": "0x-0000074", 
+      "type": null, 
+      "name": "DAT_-0000074"
+    }, 
+    {
+      "address": "0x-0000058", 
+      "type": null, 
+      "name": "DAT_-0000058"
+    }, 
+    {
+      "address": "0x100f5508", 
+      "type": null, 
+      "name": "DAT_100f5508"
+    }, 
+    {
+      "address": "0x-0000050", 
+      "type": null, 
+      "name": "DAT_-0000050"
+    }, 
+    {
+      "address": "0x-0000048", 
+      "type": null, 
+      "name": "DAT_-0000048"
+    }, 
+    {
+      "address": "0x-000004c", 
+      "type": null, 
+      "name": "DAT_-000004c"
+    }, 
+    {
+      "address": "0x-0000044", 
+      "type": null, 
+      "name": "DAT_-0000044"
+    }
+  ], 
+  "has_custom_name": true, 
+  "decompiled_c": "\n/* public: int __thiscall gbRay::IsColOBB_H(struct gbOBBox &) */\n\nint __thiscall gbRay::IsColOBB_H(gbRay *this,gbOBBox *param_1)\n\n{\n  int iVar1;\n  undefined4 local_70;\n  undefined4 local_6c;\n  undefined4 local_68;\n  undefined4 local_64;\n  undefined4 local_60;\n  undefined4 local_5c;\n  float local_58;\n  float local_54;\n  float local_50;\n  float local_4c;\n  float local_48;\n  float local_44;\n  gbMatrix4 local_40 [64];\n  \n                    /* 0x28260  618  ?IsColOBB_H@gbRay@@QAEHAAUgbOBBox@@@Z */\n  local_70 = 0;\n  local_6c = 0;\n  local_68 = 0;\n  local_64 = 0;\n  local_60 = 0;\n  local_5c = 0;\n  gbMatrix4::gbMatrix4(local_40);\n  gbMatrix4::Invert((gbMatrix4 *)param_1,local_40);\n  gbMatrix4::Transform(local_40,(gbVec3D *)this,(gbVec3D *)&local_70);\n  gbMatrix4::Rotate(local_40,(gbVec3D *)(this + 0xc),(gbVec3D *)&local_64);\n  local_58 = *(float *)(param_1 + 0x40) * -0.5;\n  local_54 = *(float *)(param_1 + 0x44) * -0.5;\n  local_50 = *(float *)(param_1 + 0x48) * -0.5;\n  local_4c = *(float *)(param_1 + 0x40) * 0.5;\n  local_48 = *(float *)(param_1 + 0x44) * 0.5;\n  local_44 = *(float *)(param_1 + 0x48) * 0.5;\n  iVar1 = IsColAABB((gbRay *)&local_70,(gbAABBox *)&local_58);\n  return iVar1;\n}\n\n", 
+  "is_thunk": false, 
+  "name": "IsColOBB_H", 
+  "assembly": "  10028260:  SUB ESP,0x7c\n  10028263:  PUSH ESI\n  10028264:  PUSH EDI\n  10028265:  MOV EDI,ECX\n  10028267:  MOV dword ptr [ESP + 0x14],0x0\n  1002826f:  LEA ECX,[ESP + 0x44]\n  10028273:  MOV dword ptr [ESP + 0x18],0x0\n  1002827b:  MOV dword ptr [ESP + 0x1c],0x0\n  10028283:  MOV dword ptr [ESP + 0x20],0x0\n  1002828b:  MOV dword ptr [ESP + 0x24],0x0\n  10028293:  MOV dword ptr [ESP + 0x28],0x0\n  1002829b:  CALL 0x10025110\n  100282a0:  MOV ESI,dword ptr [ESP + 0x88]\n  100282a7:  LEA EAX,[ESP + 0x44]\n  100282ab:  PUSH EAX\n  100282ac:  MOV ECX,ESI\n  100282ae:  CALL 0x10025bc0\n  100282b3:  LEA ECX,[ESP + 0x14]\n  100282b7:  PUSH ECX\n  100282b8:  PUSH EDI\n  100282b9:  LEA ECX,[ESP + 0x4c]\n  100282bd:  CALL 0x10025260\n  100282c2:  LEA EDX,[ESP + 0x20]\n  100282c6:  ADD EDI,0xc\n  100282c9:  PUSH EDX\n  100282ca:  PUSH EDI\n  100282cb:  LEA ECX,[ESP + 0x4c]\n  100282cf:  CALL 0x10025480\n  100282d4:  FLD dword ptr [ESI + 0x40]\n  100282d7:  FMUL dword ptr [0x100f5664]\n  100282dd:  FLD dword ptr [ESI + 0x44]\n  100282e0:  FMUL dword ptr [0x100f5664]\n  100282e6:  FSTP dword ptr [ESP + 0xc]\n  100282ea:  FLD dword ptr [ESI + 0x48]\n  100282ed:  FMUL dword ptr [0x100f5664]\n  100282f3:  MOV EAX,dword ptr [ESP + 0xc]\n  100282f7:  MOV dword ptr [ESP + 0x30],EAX\n  100282fb:  FSTP dword ptr [ESP + 0x10]\n  100282ff:  MOV ECX,dword ptr [ESP + 0x10]\n  10028303:  FSTP dword ptr [ESP + 0x2c]\n  10028307:  FLD dword ptr [ESI + 0x40]\n  1002830a:  FMUL dword ptr [0x100f5508]\n  10028310:  FLD dword ptr [ESI + 0x44]\n  10028313:  FMUL dword ptr [0x100f5508]\n  10028319:  MOV dword ptr [ESP + 0x34],ECX\n  1002831d:  LEA ECX,[ESP + 0x2c]\n  10028321:  PUSH ECX\n  10028322:  LEA ECX,[ESP + 0x18]\n  10028326:  FSTP dword ptr [ESP + 0x10]\n  1002832a:  FLD dword ptr [ESI + 0x48]\n  1002832d:  FMUL dword ptr [0x100f5508]\n  10028333:  MOV EDX,dword ptr [ESP + 0x10]\n  10028337:  MOV dword ptr [ESP + 0x40],EDX\n  1002833b:  FSTP dword ptr [ESP + 0x14]\n  1002833f:  MOV EAX,dword ptr [ESP + 0x14]\n  10028343:  FSTP dword ptr [ESP + 0x3c]\n  10028347:  MOV dword ptr [ESP + 0x44],EAX\n  1002834b:  CALL 0x10028360\n  10028350:  POP EDI\n  10028351:  POP ESI\n  10028352:  ADD ESP,0x7c\n  10028355:  RET 0x4", 
+  "callers": []
+}

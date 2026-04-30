@@ -1,0 +1,20 @@
+{
+  "address": "0x10005c90", 
+  "size_bytes": 29, 
+  "calling_convention": "__thiscall", 
+  "signature": "undefined __thiscall gbCamQuakeControl(gbCamQuakeControl * this)", 
+  "callees": [], 
+  "global_refs": [
+    {
+      "address": "0x100f545c", 
+      "type": "pointer", 
+      "name": "DAT_100f545c"
+    }
+  ], 
+  "has_custom_name": true, 
+  "decompiled_c": "\n/* public: __thiscall gbCamQuakeControl::gbCamQuakeControl(void) */\n\nvoid __thiscall gbCamQuakeControl::gbCamQuakeControl(gbCamQuakeControl *this)\n\n{\n                    /* 0x5c90  23  ??0gbCamQuakeControl@@QAE@XZ */\n  *(undefined4 *)(this + 0x20) = 0;\n  *(undefined4 *)(this + 0x24) = 0;\n  *(undefined4 *)(this + 0x28) = 0;\n  *(undefined4 *)(this + 0x2c) = 0;\n  *(undefined4 *)(this + 0x30) = 0;\n  *(undefined4 *)(this + 0x34) = 0;\n  *(undefined ***)this = &_vftable_;\n  return;\n}\n\n", 
+  "is_thunk": false, 
+  "name": "gbCamQuakeControl", 
+  "assembly": "  10005c90:  MOV EAX,ECX\n  10005c92:  XOR ECX,ECX\n  10005c94:  MOV dword ptr [EAX + 0x20],ECX\n  10005c97:  MOV dword ptr [EAX + 0x24],ECX\n  10005c9a:  MOV dword ptr [EAX + 0x28],ECX\n  10005c9d:  MOV dword ptr [EAX + 0x2c],ECX\n  10005ca0:  MOV dword ptr [EAX + 0x30],ECX\n  10005ca3:  MOV dword ptr [EAX + 0x34],ECX\n  10005ca6:  MOV dword ptr [EAX],0x100f545c\n  10005cac:  RET", 
+  "callers": []
+}

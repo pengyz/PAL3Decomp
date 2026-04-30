@@ -1,0 +1,14 @@
+{
+  "address": "0x10001000", 
+  "size_bytes": 27, 
+  "calling_convention": "__thiscall", 
+  "signature": "undefined __thiscall gbAudioMgrDesc(gbAudioMgrDesc * this)", 
+  "callees": [], 
+  "global_refs": [], 
+  "has_custom_name": true, 
+  "decompiled_c": "\n/* public: __thiscall gbAudioMgrDesc::gbAudioMgrDesc(void) */\n\nvoid __thiscall gbAudioMgrDesc::gbAudioMgrDesc(gbAudioMgrDesc *this)\n\n{\n                    /* 0x1000  14  ??0gbAudioMgrDesc@@QAE@XZ */\n  *(undefined4 *)this = 0x5622;\n  *(undefined4 *)(this + 4) = 0x10;\n  *(undefined4 *)(this + 8) = 2;\n  this[0xc] = (gbAudioMgrDesc)0x0;\n  return;\n}\n\n", 
+  "is_thunk": false, 
+  "name": "gbAudioMgrDesc", 
+  "assembly": "  10001000:  MOV EAX,ECX\n  10001002:  MOV dword ptr [EAX],0x5622\n  10001008:  MOV dword ptr [EAX + 0x4],0x10\n  1000100f:  MOV dword ptr [EAX + 0x8],0x2\n  10001016:  MOV byte ptr [EAX + 0xc],0x0\n  1000101a:  RET", 
+  "callers": []
+}

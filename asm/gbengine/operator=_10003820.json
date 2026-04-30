@@ -1,0 +1,20 @@
+{
+  "address": "0x10003820", 
+  "size_bytes": 31, 
+  "calling_convention": "__thiscall", 
+  "signature": "gbPlane * __thiscall operator=(gbPlane * this, gbPlane * param_1)", 
+  "callees": [], 
+  "global_refs": [
+    {
+      "address": "0x00000004", 
+      "type": null, 
+      "name": "DAT_00000004"
+    }
+  ], 
+  "has_custom_name": true, 
+  "decompiled_c": "\n/* public: struct gbPlane & __thiscall gbPlane::operator=(struct gbPlane const &) */\n\ngbPlane * __thiscall gbPlane::operator=(gbPlane *this,gbPlane *param_1)\n\n{\n                    /* 0x3820  222  ??4gbPlane@@QAEAAU0@ABU0@@Z\n                       0x3820  234  ??4gbSphere@@QAEAAU0@ABU0@@Z */\n  *(undefined4 *)this = *(undefined4 *)param_1;\n  *(undefined4 *)(this + 4) = *(undefined4 *)(param_1 + 4);\n  *(undefined4 *)(this + 8) = *(undefined4 *)(param_1 + 8);\n  *(undefined4 *)(this + 0xc) = *(undefined4 *)(param_1 + 0xc);\n  return this;\n}\n\n", 
+  "is_thunk": false, 
+  "name": "operator=", 
+  "assembly": "  10003820:  MOV EAX,ECX\n  10003822:  MOV ECX,dword ptr [ESP + 0x4]\n  10003826:  MOV EDX,dword ptr [ECX]\n  10003828:  MOV dword ptr [EAX],EDX\n  1000382a:  MOV EDX,dword ptr [ECX + 0x4]\n  1000382d:  MOV dword ptr [EAX + 0x4],EDX\n  10003830:  MOV EDX,dword ptr [ECX + 0x8]\n  10003833:  MOV dword ptr [EAX + 0x8],EDX\n  10003836:  MOV ECX,dword ptr [ECX + 0xc]\n  10003839:  MOV dword ptr [EAX + 0xc],ECX\n  1000383c:  RET 0x4", 
+  "callers": []
+}

@@ -1,0 +1,88 @@
+{
+  "address": "0x100d7f0f", 
+  "size_bytes": 141, 
+  "calling_convention": "unknown", 
+  "signature": "undefined FUN_100d7f0f(undefined4 param_1, undefined4 param_2, undefined4 param_3, undefined4 param_4, undefined4 param_5, undefined4 param_6)", 
+  "callees": [
+    {
+      "address": "0x100d7dd8", 
+      "name": "FUN_100d7dd8"
+    }, 
+    {
+      "address": "0x100d7dd8", 
+      "name": "FUN_100d7dd8"
+    }, 
+    {
+      "address": "0x100d7dd8", 
+      "name": "FUN_100d7dd8"
+    }
+  ], 
+  "global_refs": [
+    {
+      "address": "0x-0000004", 
+      "type": null, 
+      "name": "DAT_-0000004"
+    }, 
+    {
+      "address": "0x00000014", 
+      "type": null, 
+      "name": "DAT_00000014"
+    }, 
+    {
+      "address": "0x00000018", 
+      "type": null, 
+      "name": "DAT_00000018"
+    }, 
+    {
+      "address": "0x-000002c", 
+      "type": null, 
+      "name": "DAT_-000002c"
+    }, 
+    {
+      "address": "0x0000000c", 
+      "type": null, 
+      "name": "DAT_0000000c"
+    }, 
+    {
+      "address": "0x00000008", 
+      "type": null, 
+      "name": "DAT_00000008"
+    }, 
+    {
+      "address": "0x-0000018", 
+      "type": null, 
+      "name": "DAT_-0000018"
+    }, 
+    {
+      "address": "0x00000010", 
+      "type": null, 
+      "name": "DAT_00000010"
+    }, 
+    {
+      "address": "0x-0000028", 
+      "type": null, 
+      "name": "DAT_-0000028"
+    }, 
+    {
+      "address": "0x-0000030", 
+      "type": null, 
+      "name": "DAT_-0000030"
+    }, 
+    {
+      "address": "0x-0000034", 
+      "type": null, 
+      "name": "DAT_-0000034"
+    }, 
+    {
+      "address": "0x00000004", 
+      "type": null, 
+      "name": "DAT_00000004"
+    }
+  ], 
+  "has_custom_name": false, 
+  "decompiled_c": "\nundefined4\nFUN_100d7f0f(undefined4 param_1,undefined4 param_2,undefined4 param_3,undefined4 param_4,\n            uint param_5,uint param_6)\n\n{\n  ulonglong uVar1;\n  undefined8 uVar2;\n  undefined8 in_MM2;\n  undefined8 uVar3;\n  undefined local_28 [16];\n  undefined local_18 [20];\n  \n  FastExitMediaState();\n  uVar1 = PackedFloatingADD((ulonglong)param_5,(ulonglong)param_6);\n  FUN_100d7dd8(local_28,param_2,param_3,(int)uVar1);\n  FUN_100d7dd8(local_18,param_2,param_4,(int)uVar1);\n  uVar3 = FloatingReciprocalAprox(in_MM2,uVar1 & 0xffffffff);\n  uVar2 = PackedFloatingReciprocalIter1(uVar1 & 0xffffffff,uVar3);\n  uVar2 = PackedFloatingReciprocalIter2(uVar2,uVar3);\n  uVar2 = PackedFloatingMUL(uVar2,(ulonglong)param_6);\n  FUN_100d7dd8(param_1,local_28,local_18,(int)uVar2);\n  FastExitMediaState();\n  return param_1;\n}\n\n", 
+  "is_thunk": false, 
+  "name": "FUN_100d7f0f", 
+  "assembly": "  100d7f0f:  SUB ESP,0x24\n  100d7f12:  MOV dword ptr [ESP + 0x20],EBP\n  100d7f16:  MOV EBP,ESP\n  100d7f18:  AND ESP,0xfffffff8\n  100d7f1b:  MOV EDX,ESP\n  100d7f1d:  FEMMS\n  100d7f1f:  MOVD MM0,dword ptr [EBP + 0x38]\n  100d7f23:  MOVD MM1,dword ptr [EBP + 0x3c]\n  100d7f27:  PFADD MM0,MM1\n  100d7f2b:  MOVD dword ptr [EBP + 0x38],MM0\n  100d7f2f:  SUB ESP,0x4\n  100d7f32:  MOVD dword ptr [ESP],MM0\n  100d7f36:  PUSH dword ptr [EBP + 0x30]\n  100d7f39:  PUSH dword ptr [EBP + 0x2c]\n  100d7f3c:  PUSH EDX\n  100d7f3d:  CALL 0x100d7dd8\n  100d7f42:  LEA EDX,[ESP + 0x10]\n  100d7f46:  PUSH dword ptr [EBP + 0x38]\n  100d7f49:  PUSH dword ptr [EBP + 0x34]\n  100d7f4c:  PUSH dword ptr [EBP + 0x2c]\n  100d7f4f:  PUSH EDX\n  100d7f50:  CALL 0x100d7dd8\n  100d7f55:  MOVD MM0,dword ptr [EBP + 0x38]\n  100d7f59:  MOVD MM1,dword ptr [EBP + 0x3c]\n  100d7f5d:  LEA EDX,[ESP + 0x10]\n  100d7f61:  LEA ECX,[ESP]\n  100d7f64:  PFRCP MM2,MM0\n  100d7f68:  PFRCPIT1 MM0,MM2\n  100d7f6c:  PFRCPIT2 MM0,MM2\n  100d7f70:  PFMUL MM0,MM1\n  100d7f74:  SUB ESP,0xc\n  100d7f77:  MOV dword ptr [ESP + 0x4],EDX\n  100d7f7b:  MOV dword ptr [ESP],ECX\n  100d7f7e:  MOVD dword ptr [ESP + 0x8],MM0\n  100d7f83:  PUSH dword ptr [EBP + 0x28]\n  100d7f86:  CALL 0x100d7dd8\n  100d7f8b:  MOV EAX,dword ptr [EBP + 0x28]\n  100d7f8e:  FEMMS\n  100d7f90:  MOV ESP,EBP\n  100d7f92:  MOV EBP,dword ptr [ESP + 0x20]\n  100d7f96:  ADD ESP,0x24\n  100d7f99:  RET 0x18", 
+  "callers": []
+}

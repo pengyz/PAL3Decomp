@@ -1,0 +1,19 @@
+{
+  "address": "0x100bb0df", 
+  "size_bytes": 35, 
+  "calling_convention": "unknown", 
+  "signature": "undefined FUN_100bb0df(void)", 
+  "callees": [], 
+  "global_refs": [], 
+  "has_custom_name": false, 
+  "decompiled_c": "\nint FUN_100bb0df(void)\n\n{\n  int iVar1;\n  int *piVar2;\n  int iVar3;\n  int in_ECX;\n  uint uVar4;\n  \n  if (((*(uint *)(in_ECX + 0xc0) & 0xffff) < 0x200) &&\n     (iVar3 = *(int *)(in_ECX + 0xe0), (*(ushort *)(iVar3 + 2) & 0xfff0) != 0)) {\n    uVar4 = 0;\n    if (*(uint *)(iVar3 + 4) != 0) {\n      piVar2 = *(int **)(iVar3 + 8);\n      do {\n        iVar1 = *(int *)(*(int *)(in_ECX + 0x14) + *piVar2 * 4);\n        if (*(int *)(iVar1 + 8) != -1) {\n          iVar3 = FUN_100ba398(*(undefined4 *)(iVar1 + 8));\n          if (-1 < iVar3) {\n            return 0;\n          }\n          return iVar3;\n        }\n        uVar4 = uVar4 + 1;\n        piVar2 = piVar2 + 1;\n      } while (uVar4 < *(uint *)(iVar3 + 4));\n    }\n    return 0;\n  }\n  return 0;\n}\n\n", 
+  "is_thunk": false, 
+  "name": "FUN_100bb0df", 
+  "assembly": "  100bb0df:  MOV EAX,dword ptr [ECX + 0xc0]\n  100bb0e5:  AND EAX,0xffff\n  100bb0ea:  CMP EAX,0x200\n  100bb0ef:  JNC 0x100bb0ff\n  100bb0f1:  MOV EAX,dword ptr [ECX + 0xe0]\n  100bb0f7:  TEST word ptr [EAX + 0x2],0xfff0\n  100bb0fd:  JNZ 0x100bb102\n  100bb0ff:  XOR EAX,EAX\n  100bb101:  RET", 
+  "callers": [
+    {
+      "address": "0x100bb13b", 
+      "name": "FUN_100bb13b"
+    }
+  ]
+}

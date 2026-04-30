@@ -1,0 +1,58 @@
+{
+  "address": "0x10016c20", 
+  "size_bytes": 69, 
+  "calling_convention": "unknown", 
+  "signature": "undefined FUN_10016c20(undefined4 param_1, undefined4 param_2, undefined4 param_3)", 
+  "callees": [], 
+  "global_refs": [
+    {
+      "address": "0x00000008", 
+      "type": null, 
+      "name": "DAT_00000008"
+    }, 
+    {
+      "address": "0x0000000c", 
+      "type": null, 
+      "name": "DAT_0000000c"
+    }, 
+    {
+      "address": "0x-000000c", 
+      "type": null, 
+      "name": "DAT_-000000c"
+    }, 
+    {
+      "address": "0x-0000008", 
+      "type": null, 
+      "name": "DAT_-0000008"
+    }, 
+    {
+      "address": "0x00000004", 
+      "type": null, 
+      "name": "DAT_00000004"
+    }, 
+    {
+      "address": "0x-0000004", 
+      "type": null, 
+      "name": "DAT_-0000004"
+    }
+  ], 
+  "has_custom_name": false, 
+  "decompiled_c": "\nvoid FUN_10016c20(float *param_1,float *param_2,float *param_3)\n\n{\n  float fVar1;\n  float fVar2;\n  float fVar3;\n  float fVar4;\n  \n  fVar1 = param_2[1];\n  fVar2 = param_3[1];\n  fVar3 = param_2[2];\n  fVar4 = param_3[2];\n  *param_1 = *param_2 - *param_3;\n  param_1[1] = fVar1 - fVar2;\n  param_1[2] = fVar3 - fVar4;\n  return;\n}\n\n", 
+  "is_thunk": false, 
+  "name": "FUN_10016c20", 
+  "assembly": "  10016c20:  SUB ESP,0xc\n  10016c23:  MOV EAX,dword ptr [ESP + 0x14]\n  10016c27:  MOV ECX,dword ptr [ESP + 0x18]\n  10016c2b:  FLD dword ptr [EAX]\n  10016c2d:  FSUB dword ptr [ECX]\n  10016c2f:  FSTP dword ptr [ESP]\n  10016c33:  FLD dword ptr [EAX + 0x4]\n  10016c36:  FSUB dword ptr [ECX + 0x4]\n  10016c39:  MOV EDX,dword ptr [ESP]\n  10016c3d:  FSTP dword ptr [ESP + 0x4]\n  10016c41:  FLD dword ptr [EAX + 0x8]\n  10016c44:  MOV EAX,dword ptr [ESP + 0x10]\n  10016c48:  FSUB dword ptr [ECX + 0x8]\n  10016c4b:  MOV ECX,EAX\n  10016c4d:  MOV dword ptr [ECX],EDX\n  10016c4f:  MOV EDX,dword ptr [ESP + 0x4]\n  10016c53:  FSTP dword ptr [ESP + 0x8]\n  10016c57:  MOV dword ptr [ECX + 0x4],EDX\n  10016c5a:  MOV EDX,dword ptr [ESP + 0x8]\n  10016c5e:  MOV dword ptr [ECX + 0x8],EDX\n  10016c61:  ADD ESP,0xc\n  10016c64:  RET", 
+  "callers": [
+    {
+      "address": "0x100168b0", 
+      "name": "GetTotalBoundSphere"
+    }, 
+    {
+      "address": "0x10028f80", 
+      "name": "gbIntersectTriangle"
+    }, 
+    {
+      "address": "0x10028f80", 
+      "name": "gbIntersectTriangle"
+    }
+  ]
+}

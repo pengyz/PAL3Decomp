@@ -1,0 +1,121 @@
+{
+  "address": "0x10001440", 
+  "size_bytes": 193, 
+  "calling_convention": "__thiscall", 
+  "signature": "void __thiscall ~gbAudioManager(gbAudioManager * this)", 
+  "callees": [
+    {
+      "address": "0x0000009e", 
+      "name": "_AIL_stop_3D_sample@4"
+    }, 
+    {
+      "address": "0x0000009f", 
+      "name": "_AIL_release_3D_sample_handle@4"
+    }, 
+    {
+      "address": "0x00000089", 
+      "name": "_AIL_stop_sample@4"
+    }, 
+    {
+      "address": "0x000000a1", 
+      "name": "_AIL_release_sample_handle@4"
+    }, 
+    {
+      "address": "0x000000a2", 
+      "name": "_AIL_close_stream@4"
+    }, 
+    {
+      "address": "0x000000a3", 
+      "name": "_AIL_close_3D_listener@4"
+    }, 
+    {
+      "address": "0x000000b2", 
+      "name": "_AIL_close_3D_provider@4"
+    }, 
+    {
+      "address": "0x000000a4", 
+      "name": "_AIL_close_digital_driver@4"
+    }, 
+    {
+      "address": "0x000000a5", 
+      "name": "_AIL_shutdown@0"
+    }, 
+    {
+      "address": "0x100201a0", 
+      "name": "~gbResManager"
+    }
+  ], 
+  "global_refs": [
+    {
+      "address": "0x100f52a0", 
+      "type": "pointer", 
+      "name": "DAT_100f52a0"
+    }, 
+    {
+      "address": "0x100f52a4", 
+      "type": "pointer", 
+      "name": "DAT_100f52a4"
+    }, 
+    {
+      "address": "0x-0000004", 
+      "type": null, 
+      "name": "DAT_-0000004"
+    }, 
+    {
+      "address": "0x1012b980", 
+      "type": "undefined4", 
+      "name": "DAT_1012b980"
+    }, 
+    {
+      "address": "0x1012b984", 
+      "type": "gbAudioManager *", 
+      "name": "DAT_1012b984"
+    }, 
+    {
+      "address": "0x1012b988", 
+      "type": "gbAudioManager *", 
+      "name": "DAT_1012b988"
+    }, 
+    {
+      "address": "0x100f524c", 
+      "type": "pointer", 
+      "name": "DAT_100f524c"
+    }, 
+    {
+      "address": "0x100f52ac", 
+      "type": "pointer", 
+      "name": "DAT_100f52ac"
+    }, 
+    {
+      "address": "0x100f52b0", 
+      "type": "pointer", 
+      "name": "DAT_100f52b0"
+    }, 
+    {
+      "address": "0x100f52b4", 
+      "type": "pointer", 
+      "name": "DAT_100f52b4"
+    }, 
+    {
+      "address": "0x100f52f0", 
+      "type": "pointer", 
+      "name": "DAT_100f52f0"
+    }, 
+    {
+      "address": "0x100f52b8", 
+      "type": "pointer", 
+      "name": "DAT_100f52b8"
+    }, 
+    {
+      "address": "0x100f52bc", 
+      "type": "pointer", 
+      "name": "DAT_100f52bc"
+    }
+  ], 
+  "has_custom_name": true, 
+  "decompiled_c": "\n/* public: __thiscall gbAudioManager::~gbAudioManager(void) */\n\nvoid __thiscall gbAudioManager::~gbAudioManager(gbAudioManager *this)\n\n{\n  gbAudioManager *pgVar1;\n  int iVar2;\n  \n                    /* 0x1440  127  ??1gbAudioManager@@QAE@XZ */\n  DAT_1012b980 = 0;\n  gbSound3DNode::pAudioMgr = (gbAudioManager *)0x0;\n  gbSound2DNode::pAudioMgr = (gbAudioManager *)0x0;\n  pgVar1 = this + 0x24;\n  iVar2 = 10;\n  do {\n    _AIL_stop_3D_sample_4(*(undefined4 *)pgVar1);\n    _AIL_release_3D_sample_handle_4(*(undefined4 *)pgVar1);\n    pgVar1 = pgVar1 + 0xc;\n    iVar2 = iVar2 + -1;\n  } while (iVar2 != 0);\n  iVar2 = 4;\n  pgVar1 = this + 0x9c;\n  do {\n    _AIL_stop_sample_4(*(undefined4 *)pgVar1);\n    _AIL_release_sample_handle_4(*(undefined4 *)pgVar1);\n    pgVar1 = pgVar1 + 0xc;\n    iVar2 = iVar2 + -1;\n  } while (iVar2 != 0);\n  iVar2 = 3;\n  pgVar1 = this;\n  do {\n    if (*(int *)pgVar1 != 0) {\n      _AIL_close_stream_4(*(int *)pgVar1);\n    }\n    pgVar1 = pgVar1 + 4;\n    iVar2 = iVar2 + -1;\n  } while (iVar2 != 0);\n  _AIL_close_3D_listener_4(*(undefined4 *)(this + 0xd8));\n  _AIL_close_3D_provider_4(*(undefined4 *)(this + 0x1c));\n  _AIL_close_digital_driver_4(*(undefined4 *)(this + 0x18));\n  _AIL_shutdown_0();\n  gbResManager::~gbResManager((gbResManager *)(this + 0xe8));\n  return;\n}\n\n", 
+  "is_thunk": false, 
+  "name": "~gbAudioManager", 
+  "assembly": "  10001440:  PUSH ECX\n  10001441:  PUSH EBX\n  10001442:  MOV EBX,dword ptr [0x100f52a0]\n  10001448:  PUSH EBP\n  10001449:  MOV EBP,dword ptr [0x100f52a4]\n  1000144f:  PUSH ESI\n  10001450:  XOR EAX,EAX\n  10001452:  PUSH EDI\n  10001453:  MOV dword ptr [ESP + 0x10],ECX\n  10001457:  MOV [0x1012b980],EAX\n  1000145c:  MOV [0x1012b984],EAX\n  10001461:  MOV [0x1012b988],EAX\n  10001466:  LEA ESI,[ECX + 0x24]\n  10001469:  MOV EDI,0xa\n  1000146e:  MOV EAX,dword ptr [ESI]\n  10001470:  PUSH EAX\n  10001471:  CALL EBX\n  10001473:  MOV ECX,dword ptr [ESI]\n  10001475:  PUSH ECX\n  10001476:  CALL EBP\n  10001478:  ADD ESI,0xc\n  1000147b:  DEC EDI\n  1000147c:  JNZ 0x1000146e\n  1000147e:  MOV EDX,dword ptr [ESP + 0x10]\n  10001482:  MOV EBX,dword ptr [0x100f524c]\n  10001488:  MOV EBP,dword ptr [0x100f52ac]\n  1000148e:  MOV EDI,0x4\n  10001493:  LEA ESI,[EDX + 0x9c]\n  10001499:  MOV EAX,dword ptr [ESI]\n  1000149b:  PUSH EAX\n  1000149c:  CALL EBX\n  1000149e:  MOV ECX,dword ptr [ESI]\n  100014a0:  PUSH ECX\n  100014a1:  CALL EBP\n  100014a3:  ADD ESI,0xc\n  100014a6:  DEC EDI\n  100014a7:  JNZ 0x10001499\n  100014a9:  MOV EBX,dword ptr [ESP + 0x10]\n  100014ad:  MOV EBP,dword ptr [0x100f52b0]\n  100014b3:  MOV ESI,EBX\n  100014b5:  MOV EDI,0x3\n  100014ba:  MOV EAX,dword ptr [ESI]\n  100014bc:  TEST EAX,EAX\n  100014be:  JZ 0x100014c3\n  100014c0:  PUSH EAX\n  100014c1:  CALL EBP\n  100014c3:  ADD ESI,0x4\n  100014c6:  DEC EDI\n  100014c7:  JNZ 0x100014ba\n  100014c9:  MOV EDX,dword ptr [EBX + 0xd8]\n  100014cf:  PUSH EDX\n  100014d0:  CALL dword ptr [0x100f52b4]\n  100014d6:  MOV EAX,dword ptr [EBX + 0x1c]\n  100014d9:  PUSH EAX\n  100014da:  CALL dword ptr [0x100f52f0]\n  100014e0:  MOV ECX,dword ptr [EBX + 0x18]\n  100014e3:  PUSH ECX\n  100014e4:  CALL dword ptr [0x100f52b8]\n  100014ea:  CALL dword ptr [0x100f52bc]\n  100014f0:  LEA ECX,[EBX + 0xe8]\n  100014f6:  CALL 0x100201a0\n  100014fb:  POP EDI\n  100014fc:  POP ESI\n  100014fd:  POP EBP\n  100014fe:  POP EBX\n  100014ff:  POP ECX\n  10001500:  RET", 
+  "callers": []
+}

@@ -1,0 +1,91 @@
+{
+  "address": "0x100e56b0", 
+  "size_bytes": 254, 
+  "calling_convention": "__cdecl", 
+  "signature": "char * __cdecl _strncpy(char * _Dest, char * _Source, size_t _Count)", 
+  "callees": [], 
+  "global_refs": [
+    {
+      "address": "0x0000000c", 
+      "type": null, 
+      "name": "DAT_0000000c"
+    }, 
+    {
+      "address": "0x00000008", 
+      "type": null, 
+      "name": "DAT_00000008"
+    }, 
+    {
+      "address": "0x00000004", 
+      "type": null, 
+      "name": "DAT_00000004"
+    }
+  ], 
+  "has_custom_name": true, 
+  "decompiled_c": "\n/* Library Function - Single Match\n    _strncpy\n   \n   Libraries: Visual Studio 1998 Debug, Visual Studio 1998 Release */\n\nchar * __cdecl _strncpy(char *_Dest,char *_Source,size_t _Count)\n\n{\n  uint uVar1;\n  uint uVar2;\n  char cVar3;\n  uint uVar4;\n  uint *puVar5;\n  \n  if (_Count == 0) {\n    return _Dest;\n  }\n  puVar5 = (uint *)_Dest;\n  if (((uint)_Source & 3) != 0) {\n    while( true ) {\n      cVar3 = *_Source;\n      _Source = (char *)((int)_Source + 1);\n      *(char *)puVar5 = cVar3;\n      puVar5 = (uint *)((int)puVar5 + 1);\n      _Count = _Count - 1;\n      if (_Count == 0) {\n        return _Dest;\n      }\n      if (cVar3 == '\\0') break;\n      if (((uint)_Source & 3) == 0) {\n        uVar4 = _Count >> 2;\n        goto joined_r0x100e56ee;\n      }\n    }\n    do {\n      if (((uint)puVar5 & 3) == 0) {\n        uVar4 = _Count >> 2;\n        cVar3 = '\\0';\n        if (uVar4 == 0) goto LAB_100e572b;\n        goto LAB_100e5799;\n      }\n      *(char *)puVar5 = '\\0';\n      puVar5 = (uint *)((int)puVar5 + 1);\n      _Count = _Count - 1;\n    } while (_Count != 0);\n    return _Dest;\n  }\n  uVar4 = _Count >> 2;\n  if (uVar4 != 0) {\n    do {\n      uVar1 = *(uint *)_Source;\n      uVar2 = *(uint *)_Source;\n      _Source = (char *)((int)_Source + 4);\n      if (((uVar1 ^ 0xffffffff ^ uVar1 + 0x7efefeff) & 0x81010100) != 0) {\n        if ((char)uVar2 == '\\0') {\n          *puVar5 = 0;\njoined_r0x100e5795:\n          while( true ) {\n            uVar4 = uVar4 - 1;\n            puVar5 = puVar5 + 1;\n            if (uVar4 == 0) break;\nLAB_100e5799:\n            *puVar5 = 0;\n          }\n          cVar3 = '\\0';\n          _Count = _Count & 3;\n          if (_Count != 0) goto LAB_100e572b;\n          return _Dest;\n        }\n        if ((char)(uVar2 >> 8) == '\\0') {\n          *puVar5 = uVar2 & 0xff;\n          goto joined_r0x100e5795;\n        }\n        if ((uVar2 & 0xff0000) == 0) {\n          *puVar5 = uVar2 & 0xffff;\n          goto joined_r0x100e5795;\n        }\n        if ((uVar2 & 0xff000000) == 0) {\n          *puVar5 = uVar2;\n          goto joined_r0x100e5795;\n        }\n      }\n      *puVar5 = uVar2;\n      puVar5 = puVar5 + 1;\n      uVar4 = uVar4 - 1;\njoined_r0x100e56ee:\n    } while (uVar4 != 0);\n    _Count = _Count & 3;\n    if (_Count == 0) {\n      return _Dest;\n    }\n  }\n  do {\n    cVar3 = *_Source;\n    _Source = (char *)((int)_Source + 1);\n    *(char *)puVar5 = cVar3;\n    puVar5 = (uint *)((int)puVar5 + 1);\n    if (cVar3 == '\\0') {\n      while (_Count = _Count - 1, _Count != 0) {\nLAB_100e572b:\n        *(char *)puVar5 = cVar3;\n        puVar5 = (uint *)((int)puVar5 + 1);\n      }\n      return _Dest;\n    }\n    _Count = _Count - 1;\n  } while (_Count != 0);\n  return _Dest;\n}\n\n", 
+  "is_thunk": false, 
+  "name": "_strncpy", 
+  "assembly": "  100e56b0:  MOV ECX,dword ptr [ESP + 0xc]\n  100e56b4:  PUSH EDI\n  100e56b5:  TEST ECX,ECX\n  100e56b7:  JZ 0x100e5733\n  100e56b9:  PUSH ESI\n  100e56ba:  PUSH EBX\n  100e56bb:  MOV EBX,ECX\n  100e56bd:  MOV ESI,dword ptr [ESP + 0x14]\n  100e56c1:  TEST ESI,0x3\n  100e56c7:  MOV EDI,dword ptr [ESP + 0x10]\n  100e56cb:  JNZ 0x100e56d4\n  100e56cd:  SHR ECX,0x2\n  100e56d0:  JNZ 0x100e5741\n  100e56d2:  JMP 0x100e56f5\n  100e56d4:  MOV AL,byte ptr [ESI]\n  100e56d6:  INC ESI\n  100e56d7:  MOV byte ptr [EDI],AL\n  100e56d9:  INC EDI\n  100e56da:  DEC ECX\n  100e56db:  JZ 0x100e5702\n  100e56dd:  TEST AL,AL\n  100e56df:  JZ 0x100e570a\n  100e56e1:  TEST ESI,0x3\n  100e56e7:  JNZ 0x100e56d4\n  100e56e9:  MOV EBX,ECX\n  100e56eb:  SHR ECX,0x2\n  100e56ee:  JNZ 0x100e5741\n  100e56f0:  AND EBX,0x3\n  100e56f3:  JZ 0x100e5702\n  100e56f5:  MOV AL,byte ptr [ESI]\n  100e56f7:  INC ESI\n  100e56f8:  MOV byte ptr [EDI],AL\n  100e56fa:  INC EDI\n  100e56fb:  TEST AL,AL\n  100e56fd:  JZ 0x100e572e\n  100e56ff:  DEC EBX\n  100e5700:  JNZ 0x100e56f5\n  100e5702:  MOV EAX,dword ptr [ESP + 0x10]\n  100e5706:  POP EBX\n  100e5707:  POP ESI\n  100e5708:  POP EDI\n  100e5709:  RET\n  100e570a:  TEST EDI,0x3\n  100e5710:  JZ 0x100e5724\n  100e5712:  MOV byte ptr [EDI],AL\n  100e5714:  INC EDI\n  100e5715:  DEC ECX\n  100e5716:  JZ 0x100e57a6\n  100e571c:  TEST EDI,0x3\n  100e5722:  JNZ 0x100e5712\n  100e5724:  MOV EBX,ECX\n  100e5726:  SHR ECX,0x2\n  100e5729:  JNZ 0x100e5797\n  100e572b:  MOV byte ptr [EDI],AL\n  100e572d:  INC EDI\n  100e572e:  DEC EBX\n  100e572f:  JNZ 0x100e572b\n  100e5731:  POP EBX\n  100e5732:  POP ESI\n  100e5733:  MOV EAX,dword ptr [ESP + 0x8]\n  100e5737:  POP EDI\n  100e5738:  RET\n  100e5739:  MOV dword ptr [EDI],EDX\n  100e573b:  ADD EDI,0x4\n  100e573e:  DEC ECX\n  100e573f:  JZ 0x100e56f0\n  100e5741:  MOV EDX,0x7efefeff\n  100e5746:  MOV EAX,dword ptr [ESI]\n  100e5748:  ADD EDX,EAX\n  100e574a:  XOR EAX,0xffffffff\n  100e574d:  XOR EAX,EDX\n  100e574f:  MOV EDX,dword ptr [ESI]\n  100e5751:  ADD ESI,0x4\n  100e5754:  TEST EAX,0x81010100\n  100e5759:  JZ 0x100e5739\n  100e575b:  TEST DL,DL\n  100e575d:  JZ 0x100e578b\n  100e575f:  TEST DH,DH\n  100e5761:  JZ 0x100e5781\n  100e5763:  TEST EDX,0xff0000\n  100e5769:  JZ 0x100e5777\n  100e576b:  TEST EDX,0xff000000\n  100e5771:  JNZ 0x100e5739\n  100e5773:  MOV dword ptr [EDI],EDX\n  100e5775:  JMP 0x100e578f\n  100e5777:  AND EDX,0xffff\n  100e577d:  MOV dword ptr [EDI],EDX\n  100e577f:  JMP 0x100e578f\n  100e5781:  AND EDX,0xff\n  100e5787:  MOV dword ptr [EDI],EDX\n  100e5789:  JMP 0x100e578f\n  100e578b:  XOR EDX,EDX\n  100e578d:  MOV dword ptr [EDI],EDX\n  100e578f:  ADD EDI,0x4\n  100e5792:  XOR EAX,EAX\n  100e5794:  DEC ECX\n  100e5795:  JZ 0x100e57a1\n  100e5797:  XOR EAX,EAX\n  100e5799:  MOV dword ptr [EDI],EAX\n  100e579b:  ADD EDI,0x4\n  100e579e:  DEC ECX\n  100e579f:  JNZ 0x100e5799\n  100e57a1:  AND EBX,0x3\n  100e57a4:  JNZ 0x100e572b\n  100e57a6:  MOV EAX,dword ptr [ESP + 0x10]\n  100e57aa:  POP EBX\n  100e57ab:  POP ESI\n  100e57ac:  POP EDI\n  100e57ad:  RET", 
+  "callers": [
+    {
+      "address": "0x100ed6fe", 
+      "name": "FUN_100ed6fe"
+    }, 
+    {
+      "address": "0x100e6b41", 
+      "name": "FUN_100e6b41"
+    }, 
+    {
+      "address": "0x100e7098", 
+      "name": "FUN_100e7098"
+    }, 
+    {
+      "address": "0x10015e80", 
+      "name": "LoadFromStream"
+    }, 
+    {
+      "address": "0x10030180", 
+      "name": "GetDir"
+    }, 
+    {
+      "address": "0x10030f00", 
+      "name": "gbVfgetdir"
+    }, 
+    {
+      "address": "0x1001a790", 
+      "name": "FUN_1001a790"
+    }, 
+    {
+      "address": "0x100535f6", 
+      "name": "FUN_100535f6"
+    }, 
+    {
+      "address": "0x100b2906", 
+      "name": "FUN_100b2906"
+    }, 
+    {
+      "address": "0x100b63a4", 
+      "name": "FUN_100b63a4"
+    }, 
+    {
+      "address": "0x100b9497", 
+      "name": "FUN_100b9497"
+    }, 
+    {
+      "address": "0x100bb732", 
+      "name": "FUN_100bb732"
+    }, 
+    {
+      "address": "0x100f279f", 
+      "name": "FUN_100f279f"
+    }, 
+    {
+      "address": "0x100ef881", 
+      "name": "FUN_100ef881"
+    }, 
+    {
+      "address": "0x100d1a60", 
+      "name": "FUN_100d1a60"
+    }
+  ]
+}

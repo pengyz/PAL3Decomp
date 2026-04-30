@@ -1,0 +1,35 @@
+{
+  "address": "0x100018d0", 
+  "size_bytes": 58, 
+  "calling_convention": "__thiscall", 
+  "signature": "void __thiscall DetachSampleHandle(gbAudioManager * this, gbSound3DNode * param_1)", 
+  "callees": [
+    {
+      "address": "0x0000009c", 
+      "name": "_AIL_end_3D_sample@4"
+    }
+  ], 
+  "global_refs": [
+    {
+      "address": "0x100f5298", 
+      "type": "pointer", 
+      "name": "DAT_100f5298"
+    }, 
+    {
+      "address": "0x00000004", 
+      "type": null, 
+      "name": "DAT_00000004"
+    }
+  ], 
+  "has_custom_name": true, 
+  "decompiled_c": "\n/* public: void __thiscall gbAudioManager::DetachSampleHandle(class gbSound3DNode *) */\n\nvoid __thiscall gbAudioManager::DetachSampleHandle(gbAudioManager *this,gbSound3DNode *param_1)\n\n{\n  int iVar1;\n  gbAudioManager *pgVar2;\n  \n                    /* 0x18d0  380  ?DetachSampleHandle@gbAudioManager@@QAEXPAVgbSound3DNode@@@Z */\n  pgVar2 = this + 0x20;\n  iVar1 = 10;\n  do {\n    if (*(gbSound3DNode **)pgVar2 == param_1) {\n      _AIL_end_3D_sample_4(*(undefined4 *)(param_1 + 4));\n      *(undefined4 *)(param_1 + 4) = 0;\n      *(int *)pgVar2 = 0;\n    }\n    pgVar2 = pgVar2 + 0xc;\n    iVar1 = iVar1 + -1;\n  } while (iVar1 != 0);\n  return;\n}\n\n", 
+  "is_thunk": false, 
+  "name": "DetachSampleHandle", 
+  "assembly": "  100018d0:  PUSH EBX\n  100018d1:  MOV EBX,dword ptr [0x100f5298]\n  100018d7:  PUSH EBP\n  100018d8:  PUSH ESI\n  100018d9:  PUSH EDI\n  100018da:  MOV EDI,dword ptr [ESP + 0x14]\n  100018de:  LEA ESI,[ECX + 0x20]\n  100018e1:  MOV EBP,0xa\n  100018e6:  CMP dword ptr [ESI],EDI\n  100018e8:  JNZ 0x100018fd\n  100018ea:  MOV EAX,dword ptr [EDI + 0x4]\n  100018ed:  PUSH EAX\n  100018ee:  CALL EBX\n  100018f0:  MOV dword ptr [EDI + 0x4],0x0\n  100018f7:  MOV dword ptr [ESI],0x0\n  100018fd:  ADD ESI,0xc\n  10001900:  DEC EBP\n  10001901:  JNZ 0x100018e6\n  10001903:  POP EDI\n  10001904:  POP ESI\n  10001905:  POP EBP\n  10001906:  POP EBX\n  10001907:  RET 0x4", 
+  "callers": [
+    {
+      "address": "0x100026b0", 
+      "name": "~gbSound3DNode"
+    }
+  ]
+}

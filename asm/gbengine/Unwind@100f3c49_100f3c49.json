@@ -1,0 +1,19 @@
+{
+  "address": "0x100f3c49", 
+  "size_bytes": 8, 
+  "calling_convention": "unknown", 
+  "signature": "undefined Unwind@100f3c49(void)", 
+  "callees": [
+    {
+      "address": "0x10005670", 
+      "name": "~gbLightObj"
+    }
+  ], 
+  "global_refs": [], 
+  "has_custom_name": true, 
+  "decompiled_c": "\nvoid Unwind_100f3c49(void)\n\n{\n  int unaff_EBP;\n  \n  gbLightObj::~gbLightObj(*(gbLightObj **)(unaff_EBP + -0x10));\n  return;\n}\n\n", 
+  "is_thunk": false, 
+  "name": "Unwind@100f3c49", 
+  "assembly": "  100f3c49:  MOV ECX,dword ptr [EBP + -0x10]\n  100f3c4c:  JMP 0x10005670", 
+  "callers": []
+}

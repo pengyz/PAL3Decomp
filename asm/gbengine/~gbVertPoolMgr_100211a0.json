@@ -1,0 +1,63 @@
+{
+  "address": "0x100211a0", 
+  "size_bytes": 151, 
+  "calling_convention": "__thiscall", 
+  "signature": "void __thiscall ~gbVertPoolMgr(gbVertPoolMgr * this)", 
+  "callees": [
+    {
+      "address": "0x100e4a2f", 
+      "name": "FUN_100e4a2f"
+    }, 
+    {
+      "address": "0x1002ea60", 
+      "name": "~gbChain1D"
+    }, 
+    {
+      "address": "0x100e4a2f", 
+      "name": "FUN_100e4a2f"
+    }
+  ], 
+  "global_refs": [
+    {
+      "address": "0x100f4199", 
+      "type": null, 
+      "name": "DAT_100f4199"
+    }, 
+    {
+      "address": "0xffdff000", 
+      "type": "void *32", 
+      "name": "DAT_ffdff000"
+    }, 
+    {
+      "address": "0x-0000010", 
+      "type": null, 
+      "name": "DAT_-0000010"
+    }, 
+    {
+      "address": "0x-0000004", 
+      "type": null, 
+      "name": "DAT_-0000004"
+    }, 
+    {
+      "address": "0x1002ea60", 
+      "type": null, 
+      "name": "DAT_1002ea60"
+    }, 
+    {
+      "address": "0x-000000c", 
+      "type": null, 
+      "name": "DAT_-000000c"
+    }
+  ], 
+  "has_custom_name": true, 
+  "decompiled_c": "\n/* public: __thiscall gbVertPoolMgr::~gbVertPoolMgr(void) */\n\nvoid __thiscall gbVertPoolMgr::~gbVertPoolMgr(gbVertPoolMgr *this)\n\n{\n  int iVar1;\n  gbVertPoolMgr *pgVar2;\n  void *local_c;\n  undefined *puStack_8;\n  int local_4;\n  \n                    /* 0x211a0  168  ??1gbVertPoolMgr@@QAE@XZ */\n  puStack_8 = &LAB_100f4199;\n  local_c = ExceptionList;\n  local_4 = 2;\n  pgVar2 = this + 0x290;\n  iVar1 = 0x20;\n  ExceptionList = &local_c;\n  do {\n    if (*(undefined4 **)pgVar2 != (undefined4 *)0x0) {\n      (**(code **)**(undefined4 **)pgVar2)(1);\n    }\n    pgVar2 = pgVar2 + 4;\n    iVar1 = iVar1 + -1;\n  } while (iVar1 != 0);\n  local_4._0_1_ = 1;\n  FUN_100e4a2f(this + 0x390,0x10,0x20,gbChain1D::~gbChain1D);\n  local_4 = (uint)local_4._1_3_ << 8;\n  gbChain1D::~gbChain1D((gbChain1D *)(this + 0x280));\n  local_4 = 0xffffffff;\n  FUN_100e4a2f(this,0x10,0x20,gbChain1D::~gbChain1D);\n  ExceptionList = local_c;\n  return;\n}\n\n", 
+  "is_thunk": false, 
+  "name": "~gbVertPoolMgr", 
+  "assembly": "  100211a0:  PUSH -0x1\n  100211a2:  PUSH 0x100f4199\n  100211a7:  MOV EAX,FS:[0x0]\n  100211ad:  PUSH EAX\n  100211ae:  MOV dword ptr FS:[0x0],ESP\n  100211b5:  PUSH ECX\n  100211b6:  PUSH EBX\n  100211b7:  PUSH ESI\n  100211b8:  MOV ESI,ECX\n  100211ba:  PUSH EDI\n  100211bb:  MOV dword ptr [ESP + 0xc],ESI\n  100211bf:  MOV dword ptr [ESP + 0x18],0x2\n  100211c7:  LEA EDI,[ESI + 0x290]\n  100211cd:  MOV EBX,0x20\n  100211d2:  MOV ECX,dword ptr [EDI]\n  100211d4:  TEST ECX,ECX\n  100211d6:  JZ 0x100211de\n  100211d8:  MOV EAX,dword ptr [ECX]\n  100211da:  PUSH 0x1\n  100211dc:  CALL dword ptr [EAX]\n  100211de:  ADD EDI,0x4\n  100211e1:  DEC EBX\n  100211e2:  JNZ 0x100211d2\n  100211e4:  PUSH 0x1002ea60\n  100211e9:  PUSH 0x20\n  100211eb:  LEA ECX,[ESI + 0x390]\n  100211f1:  PUSH 0x10\n  100211f3:  PUSH ECX\n  100211f4:  MOV byte ptr [ESP + 0x28],0x1\n  100211f9:  CALL 0x100e4a2f\n  100211fe:  LEA ECX,[ESI + 0x280]\n  10021204:  MOV byte ptr [ESP + 0x18],0x0\n  10021209:  CALL 0x1002ea60\n  1002120e:  PUSH 0x1002ea60\n  10021213:  PUSH 0x20\n  10021215:  PUSH 0x10\n  10021217:  PUSH ESI\n  10021218:  MOV dword ptr [ESP + 0x28],0xffffffff\n  10021220:  CALL 0x100e4a2f\n  10021225:  MOV ECX,dword ptr [ESP + 0x10]\n  10021229:  POP EDI\n  1002122a:  POP ESI\n  1002122b:  POP EBX\n  1002122c:  MOV dword ptr FS:[0x0],ECX\n  10021233:  ADD ESP,0x10\n  10021236:  RET", 
+  "callers": [
+    {
+      "address": "0x1001de70", 
+      "name": "FUN_1001de70"
+    }
+  ]
+}

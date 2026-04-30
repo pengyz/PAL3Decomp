@@ -1,0 +1,35 @@
+{
+  "address": "0x100cc640", 
+  "size_bytes": 79, 
+  "calling_convention": "unknown", 
+  "signature": "undefined FUN_100cc640(undefined4 param_1)", 
+  "callees": [
+    {
+      "address": "0x100cbe90", 
+      "name": "FUN_100cbe90"
+    }
+  ], 
+  "global_refs": [
+    {
+      "address": "0x00000004", 
+      "type": null, 
+      "name": "DAT_00000004"
+    }, 
+    {
+      "address": "0x100cbfe0", 
+      "type": null, 
+      "name": "DAT_100cbfe0"
+    }, 
+    {
+      "address": "0x100cbd00", 
+      "type": null, 
+      "name": "DAT_100cbd00"
+    }
+  ], 
+  "has_custom_name": false, 
+  "decompiled_c": "\nvoid FUN_100cc640(int param_1)\n\n{\n  int iVar1;\n  int iVar2;\n  \n  iVar1 = *(int *)(param_1 + 0x1b0);\n  if (*(int *)(iVar1 + 0x10) != 0) {\n    if (*(int *)(param_1 + 0x50) != 0) {\n      iVar2 = FUN_100cbe90();\n      if (iVar2 != 0) {\n        *(undefined **)(iVar1 + 0xc) = &LAB_100cbfe0;\n        *(undefined4 *)(param_1 + 0xa0) = 0;\n        return;\n      }\n    }\n    *(undefined **)(iVar1 + 0xc) = &LAB_100cbd00;\n  }\n  *(undefined4 *)(param_1 + 0xa0) = 0;\n  return;\n}\n\n", 
+  "is_thunk": false, 
+  "name": "FUN_100cc640", 
+  "assembly": "  100cc640:  PUSH EBX\n  100cc641:  MOV EBX,dword ptr [ESP + 0x8]\n  100cc645:  PUSH ESI\n  100cc646:  MOV ESI,dword ptr [EBX + 0x1b0]\n  100cc64c:  MOV EAX,dword ptr [ESI + 0x10]\n  100cc64f:  TEST EAX,EAX\n  100cc651:  JZ 0x100cc680\n  100cc653:  MOV EAX,dword ptr [EBX + 0x50]\n  100cc656:  TEST EAX,EAX\n  100cc658:  JZ 0x100cc679\n  100cc65a:  CALL 0x100cbe90\n  100cc65f:  TEST EAX,EAX\n  100cc661:  JZ 0x100cc679\n  100cc663:  MOV dword ptr [ESI + 0xc],0x100cbfe0\n  100cc66a:  POP ESI\n  100cc66b:  MOV dword ptr [EBX + 0xa0],0x0\n  100cc675:  POP EBX\n  100cc676:  RET 0x4\n  100cc679:  MOV dword ptr [ESI + 0xc],0x100cbd00\n  100cc680:  POP ESI\n  100cc681:  MOV dword ptr [EBX + 0xa0],0x0\n  100cc68b:  POP EBX\n  100cc68c:  RET 0x4", 
+  "callers": []
+}

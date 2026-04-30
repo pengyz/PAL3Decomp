@@ -1,0 +1,43 @@
+{
+  "address": "0x1004c6df", 
+  "size_bytes": 89, 
+  "calling_convention": "unknown", 
+  "signature": "undefined FUN_1004c6df(void)", 
+  "callees": [], 
+  "global_refs": [], 
+  "has_custom_name": false, 
+  "decompiled_c": "\nundefined4 FUN_1004c6df(void)\n\n{\n  char *pcVar1;\n  char *pcVar2;\n  undefined4 *in_ECX;\n  \n  pcVar1 = (char *)in_ECX[1];\n  if ((char *)*in_ECX < pcVar1) {\n    do {\n      pcVar2 = (char *)*in_ECX;\n      if (*pcVar2 == '\\n') {\n        return 1;\n      }\n      if (*pcVar2 == '\\\\') {\n        if ((pcVar2 + 1 < pcVar1) && (pcVar2[1] == '\\n')) {\n          pcVar2 = pcVar2 + 2;\n        }\n        else {\n          if ((pcVar1 <= pcVar2 + 2) || ((pcVar2[1] != '\\r' || (pcVar2[2] != '\\n'))))\n          goto LAB_1004c726;\n          pcVar2 = pcVar2 + 3;\n        }\n        in_ECX[7] = in_ECX[7] + 1;\n      }\n      else {\nLAB_1004c726:\n        pcVar2 = pcVar2 + 1;\n      }\n      *in_ECX = pcVar2;\n    } while (pcVar2 < (char *)in_ECX[1]);\n  }\n  return 0;\n}\n\n", 
+  "is_thunk": false, 
+  "name": "FUN_1004c6df", 
+  "assembly": "  1004c6df:  PUSH ESI\n  1004c6e0:  PUSH EDI\n  1004c6e1:  MOV EDI,dword ptr [ECX + 0x4]\n  1004c6e4:  CMP dword ptr [ECX],EDI\n  1004c6e6:  JNC 0x1004c72e\n  1004c6e8:  MOV EAX,dword ptr [ECX]\n  1004c6ea:  MOV DL,byte ptr [EAX]\n  1004c6ec:  CMP DL,0xa\n  1004c6ef:  JZ 0x1004c733\n  1004c6f1:  CMP DL,0x5c\n  1004c6f4:  JNZ 0x1004c726\n  1004c6f6:  LEA ESI,[EAX + 0x1]\n  1004c6f9:  CMP ESI,EDI\n  1004c6fb:  JNC 0x1004c707\n  1004c6fd:  CMP byte ptr [ESI],0xa\n  1004c700:  JNZ 0x1004c707\n  1004c702:  ADD EAX,0x2\n  1004c705:  JMP 0x1004c721\n  1004c707:  CMP DL,0x5c\n  1004c70a:  JNZ 0x1004c726\n  1004c70c:  LEA EDX,[EAX + 0x2]\n  1004c70f:  CMP EDX,EDI\n  1004c711:  JNC 0x1004c726\n  1004c713:  CMP byte ptr [EAX + 0x1],0xd\n  1004c717:  JNZ 0x1004c726\n  1004c719:  CMP byte ptr [EDX],0xa\n  1004c71c:  JNZ 0x1004c726\n  1004c71e:  ADD EAX,0x3\n  1004c721:  INC dword ptr [ECX + 0x1c]\n  1004c724:  JMP 0x1004c727\n  1004c726:  INC EAX\n  1004c727:  MOV dword ptr [ECX],EAX\n  1004c729:  CMP EAX,dword ptr [ECX + 0x4]\n  1004c72c:  JC 0x1004c6e8\n  1004c72e:  XOR EAX,EAX\n  1004c730:  POP EDI\n  1004c731:  POP ESI\n  1004c732:  RET\n  1004c733:  XOR EAX,EAX\n  1004c735:  INC EAX\n  1004c736:  JMP 0x1004c730", 
+  "callers": [
+    {
+      "address": "0x1004cef0", 
+      "name": "FUN_1004cef0"
+    }, 
+    {
+      "address": "0x10050c79", 
+      "name": "FUN_10050c79"
+    }, 
+    {
+      "address": "0x1004df1b", 
+      "name": "FUN_1004df1b"
+    }, 
+    {
+      "address": "0x1004e2c8", 
+      "name": "FUN_1004e2c8"
+    }, 
+    {
+      "address": "0x1004e6ae", 
+      "name": "FUN_1004e6ae"
+    }, 
+    {
+      "address": "0x1004e190", 
+      "name": "FUN_1004e190"
+    }, 
+    {
+      "address": "0x1004eef4", 
+      "name": "FUN_1004eef4"
+    }
+  ]
+}

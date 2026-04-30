@@ -1,0 +1,55 @@
+{
+  "address": "0x1002e900", 
+  "size_bytes": 35, 
+  "calling_convention": "unknown", 
+  "signature": "undefined FUN_1002e900(void)", 
+  "callees": [
+    {
+      "address": "0x00000087", 
+      "name": "timeGetTime"
+    }
+  ], 
+  "global_refs": [
+    {
+      "address": "0x100f5228", 
+      "type": "pointer", 
+      "name": "DAT_100f5228"
+    }, 
+    {
+      "address": "0x100f5b0c", 
+      "type": null, 
+      "name": "DAT_100f5b0c"
+    }
+  ], 
+  "has_custom_name": false, 
+  "decompiled_c": "\nfloat10 FUN_1002e900(void)\n\n{\n  DWORD DVar1;\n  \n  DVar1 = timeGetTime();\n  return (float10)DVar1 * (float10)0.001;\n}\n\n", 
+  "is_thunk": false, 
+  "name": "FUN_1002e900", 
+  "assembly": "  1002e900:  SUB ESP,0x8\n  1002e903:  CALL dword ptr [0x100f5228]\n  1002e909:  MOV dword ptr [ESP],EAX\n  1002e90d:  MOV dword ptr [ESP + 0x4],0x0\n  1002e915:  FILD qword ptr [ESP]\n  1002e919:  FMUL dword ptr [0x100f5b0c]\n  1002e91f:  ADD ESP,0x8\n  1002e922:  RET", 
+  "callers": [
+    {
+      "address": "0x10031750", 
+      "name": "ProfileInit"
+    }, 
+    {
+      "address": "0x10031780", 
+      "name": "ProfileBegin"
+    }, 
+    {
+      "address": "0x10031780", 
+      "name": "ProfileBegin"
+    }, 
+    {
+      "address": "0x10031890", 
+      "name": "ProfileEnd"
+    }, 
+    {
+      "address": "0x10031a00", 
+      "name": "FUN_10031a00"
+    }, 
+    {
+      "address": "0x10031a00", 
+      "name": "FUN_10031a00"
+    }
+  ]
+}

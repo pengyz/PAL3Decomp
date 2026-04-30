@@ -1,0 +1,25 @@
+{
+  "address": "0x100052f0", 
+  "size_bytes": 16, 
+  "calling_convention": "__thiscall", 
+  "signature": "undefined __thiscall gbVolumeModifier(gbVolumeModifier * this)", 
+  "callees": [], 
+  "global_refs": [
+    {
+      "address": "0x100f5404", 
+      "type": "undefined *", 
+      "name": "DAT_100f5404"
+    }
+  ], 
+  "has_custom_name": true, 
+  "decompiled_c": "\n/* public: __thiscall gbVolumeModifier::gbVolumeModifier(void) */\n\nvoid __thiscall gbVolumeModifier::gbVolumeModifier(gbVolumeModifier *this)\n\n{\n                    /* 0x52f0  119  ??0gbVolumeModifier@@QAE@XZ */\n  *(undefined4 *)(this + 4) = 1;\n  *(undefined ***)this = &_vftable_;\n  return;\n}\n\n", 
+  "is_thunk": false, 
+  "name": "gbVolumeModifier", 
+  "assembly": "  100052f0:  MOV EAX,ECX\n  100052f2:  MOV dword ptr [EAX + 0x4],0x1\n  100052f9:  MOV dword ptr [EAX],0x100f5404\n  100052ff:  RET", 
+  "callers": [
+    {
+      "address": "0x100135a0", 
+      "name": "gbLoadLightFile"
+    }
+  ]
+}

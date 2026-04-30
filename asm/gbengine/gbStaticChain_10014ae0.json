@@ -1,0 +1,14 @@
+{
+  "address": "0x10014ae0", 
+  "size_bytes": 16, 
+  "calling_convention": "__thiscall", 
+  "signature": "undefined __thiscall gbStaticChain(gbStaticChain * this)", 
+  "callees": [], 
+  "global_refs": [], 
+  "has_custom_name": true, 
+  "decompiled_c": "\n/* public: __thiscall gbStaticChain::gbStaticChain(void) */\n\nvoid __thiscall gbStaticChain::gbStaticChain(gbStaticChain *this)\n\n{\n                    /* 0x14ae0  96  ??0gbStaticChain@@QAE@XZ */\n  *(undefined4 *)this = 0;\n  *(undefined4 *)(this + 0xc) = 0;\n  *(undefined4 *)(this + 8) = 0;\n  *(undefined4 *)(this + 4) = 0;\n  return;\n}\n\n", 
+  "is_thunk": false, 
+  "name": "gbStaticChain", 
+  "assembly": "  10014ae0:  MOV EAX,ECX\n  10014ae2:  XOR ECX,ECX\n  10014ae4:  MOV dword ptr [EAX],ECX\n  10014ae6:  MOV dword ptr [EAX + 0xc],ECX\n  10014ae9:  MOV dword ptr [EAX + 0x8],ECX\n  10014aec:  MOV dword ptr [EAX + 0x4],ECX\n  10014aef:  RET", 
+  "callers": []
+}

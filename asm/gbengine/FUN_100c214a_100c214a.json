@@ -1,0 +1,25 @@
+{
+  "address": "0x100c214a", 
+  "size_bytes": 49, 
+  "calling_convention": "unknown", 
+  "signature": "undefined FUN_100c214a(undefined4 param_1)", 
+  "callees": [], 
+  "global_refs": [
+    {
+      "address": "0x00000004", 
+      "type": null, 
+      "name": "DAT_00000004"
+    }
+  ], 
+  "has_custom_name": false, 
+  "decompiled_c": "\nundefined4 FUN_100c214a(int param_1)\n\n{\n  undefined4 uVar1;\n  \n  if ((((param_1 == -0xcb00000) || (param_1 == -0xca00000)) || (param_1 == -0xc900000)) ||\n     ((param_1 == -0xc800000 || (param_1 == 0x10f00000)))) {\n    uVar1 = 1;\n  }\n  else {\n    uVar1 = 0;\n  }\n  return uVar1;\n}\n\n", 
+  "is_thunk": false, 
+  "name": "FUN_100c214a", 
+  "assembly": "  100c214a:  MOV EAX,dword ptr [ESP + 0x4]\n  100c214e:  CMP EAX,0xf3500000\n  100c2153:  JZ 0x100c2175\n  100c2155:  CMP EAX,0xf3600000\n  100c215a:  JZ 0x100c2175\n  100c215c:  CMP EAX,0xf3700000\n  100c2161:  JZ 0x100c2175\n  100c2163:  CMP EAX,0xf3800000\n  100c2168:  JZ 0x100c2175\n  100c216a:  CMP EAX,0x10f00000\n  100c216f:  JZ 0x100c2175\n  100c2171:  XOR EAX,EAX\n  100c2173:  JMP 0x100c2178\n  100c2175:  XOR EAX,EAX\n  100c2177:  INC EAX\n  100c2178:  RET 0x4", 
+  "callers": [
+    {
+      "address": "0x100c2520", 
+      "name": "FUN_100c2520"
+    }
+  ]
+}

@@ -1,0 +1,44 @@
+{
+  "address": "0x1002e090", 
+  "size_bytes": 59, 
+  "calling_convention": "unknown", 
+  "signature": "undefined FUN_1002e090(void)", 
+  "callees": [
+    {
+      "address": "0x1002e850", 
+      "name": "FUN_1002e850"
+    }
+  ], 
+  "global_refs": [
+    {
+      "address": "0x1002e194", 
+      "type": "undefined *", 
+      "name": "DAT_1002e194"
+    }, 
+    {
+      "address": "0x10120770", 
+      "type": "string", 
+      "name": "DAT_10120770"
+    }, 
+    {
+      "address": "0x10120838", 
+      "type": "string", 
+      "name": "DAT_10120838"
+    }
+  ], 
+  "has_custom_name": false, 
+  "decompiled_c": "\nbool FUN_1002e090(LPVOID param_1,SIZE_T param_2)\n\n{\n  int iVar1;\n  DWORD dwFlags;\n  undefined4 *in_ECX;\n  int *piVar2;\n  int *piVar3;\n  int iVar4;\n  \n  iVar4 = 0;\n  switch(*in_ECX) {\n  case 1:\n    FUN_100e4b99(param_1);\n    return true;\n  case 2:\n    iVar4 = 0;\n    piVar3 = in_ECX + 5;\n    do {\n      iVar1 = 0;\n      piVar2 = piVar3;\n      do {\n        if ((LPVOID)*piVar2 == (LPVOID)0x0) break;\n        if ((LPVOID)*piVar2 == param_1) {\n          iVar1 = iVar1 + iVar4 * 8;\n          *(undefined *)((int)in_ECX + iVar1 * 0x18 + 0x29) = 0;\n          in_ECX[iVar1 * 6 + 7] = 0;\n          return true;\n        }\n        iVar1 = iVar1 + 1;\n        piVar2 = piVar2 + 6;\n      } while (iVar1 < 8);\n      iVar4 = iVar4 + 1;\n      piVar3 = piVar3 + 0x30;\n      if (4 < iVar4) {\n        FUN_100e4b99(param_1);\n        return true;\n      }\n    } while( true );\n  case 3:\n    dwFlags = 1;\n    if (*(char *)(in_ECX + 1) == '\\x01') {\n      dwFlags = 5;\n    }\n    iVar4 = HeapFree((HANDLE)in_ECX[2],dwFlags,param_1);\n    break;\n  default:\n    goto LAB_1002e16f;\n  case 5:\n    iVar4 = VirtualFree((LPVOID)in_ECX[4],param_2,0x4000);\n  }\n  if (iVar4 == 0) {\nLAB_1002e16f:\n    FUN_1002e850(0x10,s_Error___CE_CANNOT_FREE_MEM_File___10120838,\n                 s_D__Project_gbengine9_support_cpa_10120770,0x143);\n  }\n  return iVar4 == 1;\n}\n\n", 
+  "is_thunk": false, 
+  "name": "FUN_1002e090", 
+  "assembly": "  1002e090:  MOV EAX,dword ptr [ECX]\n  1002e092:  PUSH ESI\n  1002e093:  XOR ESI,ESI\n  1002e095:  DEC EAX\n  1002e096:  CMP EAX,0x4\n  1002e099:  JA 0x1002e16f\n  1002e09f:  JMP dword ptr [EAX*0x4 + 0x1002e194]\n  1002e16f:  PUSH 0x143\n  1002e174:  PUSH 0x10120770\n  1002e179:  PUSH 0x10120838\n  1002e17e:  PUSH 0x10\n  1002e180:  CALL 0x1002e850\n  1002e185:  ADD ESP,0x10\n  1002e188:  XOR EAX,EAX\n  1002e18a:  CMP ESI,0x1\n  1002e18d:  SETZ AL\n  1002e190:  POP ESI\n  1002e191:  RET 0x8", 
+  "callers": [
+    {
+      "address": "0x1002d1a0", 
+      "name": "Close"
+    }, 
+    {
+      "address": "0x1002cc50", 
+      "name": "Open"
+    }
+  ]
+}

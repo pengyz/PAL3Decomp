@@ -1,0 +1,20 @@
+{
+  "address": "0x100256a0", 
+  "size_bytes": 42, 
+  "calling_convention": "__thiscall", 
+  "signature": "bool __thiscall IsValid(gbMatrix4 * this)", 
+  "callees": [], 
+  "global_refs": [
+    {
+      "address": "0x100f53a0", 
+      "type": null, 
+      "name": "DAT_100f53a0"
+    }
+  ], 
+  "has_custom_name": true, 
+  "decompiled_c": "\n/* public: bool __thiscall gbMatrix4::IsValid(void)const  */\n\nbool __thiscall gbMatrix4::IsValid(gbMatrix4 *this)\n\n{\n  int iVar1;\n  \n                    /* 0x256a0  649  ?IsValid@gbMatrix4@@QBE_NXZ */\n  if (this != (gbMatrix4 *)0x0) {\n    iVar1 = 0;\n    while (0.0 <= *(float *)this * *(float *)this) {\n      iVar1 = iVar1 + 1;\n      this = this + 4;\n      if (0xf < iVar1) {\n        return true;\n      }\n    }\n  }\n  return false;\n}\n\n", 
+  "is_thunk": false, 
+  "name": "IsValid", 
+  "assembly": "  100256a0:  TEST ECX,ECX\n  100256a2:  JNZ 0x100256a7\n  100256a4:  XOR AL,AL\n  100256a6:  RET\n  100256a7:  XOR EDX,EDX\n  100256a9:  FLD dword ptr [ECX]\n  100256ab:  FLD ST0\n  100256ad:  FMUL ST1\n  100256af:  FCOMP dword ptr [0x100f53a0]\n  100256b5:  FNSTSW AX\n  100256b7:  TEST AH,0x1\n  100256ba:  FSTP ST0\n  100256bc:  JNZ 0x100256a4\n  100256be:  INC EDX\n  100256bf:  ADD ECX,0x4\n  100256c2:  CMP EDX,0x10\n  100256c5:  JL 0x100256a9\n  100256c7:  MOV AL,0x1\n  100256c9:  RET", 
+  "callers": []
+}

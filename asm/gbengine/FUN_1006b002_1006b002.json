@@ -1,0 +1,55 @@
+{
+  "address": "0x1006b002", 
+  "size_bytes": 129, 
+  "calling_convention": "unknown", 
+  "signature": "undefined FUN_1006b002(undefined4 param_1, undefined1 param_2, undefined1 param_3, undefined4 param_4, undefined4 param_5)", 
+  "callees": [
+    {
+      "address": "0x10068163", 
+      "name": "FUN_10068163"
+    }
+  ], 
+  "global_refs": [
+    {
+      "address": "0x00000004", 
+      "type": null, 
+      "name": "DAT_00000004"
+    }, 
+    {
+      "address": "0x-0000008", 
+      "type": null, 
+      "name": "DAT_-0000008"
+    }, 
+    {
+      "address": "0x00000010", 
+      "type": null, 
+      "name": "DAT_00000010"
+    }, 
+    {
+      "address": "0x00000014", 
+      "type": null, 
+      "name": "DAT_00000014"
+    }, 
+    {
+      "address": "0x0000000c", 
+      "type": null, 
+      "name": "DAT_0000000c"
+    }, 
+    {
+      "address": "0x00000008", 
+      "type": null, 
+      "name": "DAT_00000008"
+    }
+  ], 
+  "has_custom_name": false, 
+  "decompiled_c": "\nvoid FUN_1006b002(int param_1,undefined4 param_2,undefined4 param_3,int param_4,int param_5)\n\n{\n  int *piVar1;\n  int iVar2;\n  undefined4 uVar3;\n  int in_ECX;\n  int iVar4;\n  int local_8;\n  \n  piVar1 = (int *)(*(int *)(in_ECX + 0x9c) + (uint)*(ushort *)(param_1 + 4) * 4);\n  iVar2 = *piVar1;\n  if (*(int *)(iVar2 + 0x38) == 0) {\n    local_8 = *(int *)(in_ECX + 0x20);\n  }\n  else {\n    local_8 = *(int *)(*(int *)(in_ECX + 0x38) + 8);\n  }\n  local_8 = *(int *)(iVar2 + 0x24) + *(int *)(param_1 + 8) + local_8;\n  iVar2 = *piVar1;\n  if (*(int *)(iVar2 + 0x38) == 0) {\n    iVar4 = *(int *)(in_ECX + 0x20);\n  }\n  else {\n    iVar4 = *(int *)(*(int *)(in_ECX + 0x38) + 8);\n  }\n  param_1 = *(int *)(iVar2 + 0x28) + *(int *)(param_1 + 0xc) + iVar4;\n  if (param_4 == 0) {\n    uVar3 = 0;\n  }\n  else {\n    uVar3 = *(undefined4 *)(param_5 + 0xc);\n  }\n  FUN_10068163(&local_8,&param_1,&param_2,param_4,uVar3,&param_3);\n  return;\n}\n\n", 
+  "is_thunk": false, 
+  "name": "FUN_1006b002", 
+  "assembly": "  1006b002:  PUSH EBP\n  1006b003:  MOV EBP,ESP\n  1006b005:  PUSH ECX\n  1006b006:  MOV EDX,dword ptr [ECX + 0x9c]\n  1006b00c:  PUSH ESI\n  1006b00d:  MOV ESI,dword ptr [EBP + 0x8]\n  1006b010:  MOVZX EAX,word ptr [ESI + 0x4]\n  1006b014:  LEA EAX,[EDX + EAX*0x4]\n  1006b017:  MOV EDX,dword ptr [EAX]\n  1006b019:  CMP dword ptr [EDX + 0x38],0x0\n  1006b01d:  PUSH EDI\n  1006b01e:  JNZ 0x1006b025\n  1006b020:  MOV EDI,dword ptr [ECX + 0x20]\n  1006b023:  JMP 0x1006b02b\n  1006b025:  MOV EDI,dword ptr [ECX + 0x38]\n  1006b028:  MOV EDI,dword ptr [EDI + 0x8]\n  1006b02b:  MOV EDX,dword ptr [EDX + 0x24]\n  1006b02e:  ADD EDX,dword ptr [ESI + 0x8]\n  1006b031:  ADD EDX,EDI\n  1006b033:  MOV dword ptr [EBP + -0x4],EDX\n  1006b036:  MOV EAX,dword ptr [EAX]\n  1006b038:  CMP dword ptr [EAX + 0x38],0x0\n  1006b03c:  JNZ 0x1006b043\n  1006b03e:  MOV ECX,dword ptr [ECX + 0x20]\n  1006b041:  JMP 0x1006b049\n  1006b043:  MOV ECX,dword ptr [ECX + 0x38]\n  1006b046:  MOV ECX,dword ptr [ECX + 0x8]\n  1006b049:  MOV EAX,dword ptr [EAX + 0x28]\n  1006b04c:  ADD EAX,dword ptr [ESI + 0xc]\n  1006b04f:  POP EDI\n  1006b050:  ADD EAX,ECX\n  1006b052:  CMP dword ptr [EBP + 0x14],0x0\n  1006b056:  MOV dword ptr [EBP + 0x8],EAX\n  1006b059:  POP ESI\n  1006b05a:  JZ 0x1006b064\n  1006b05c:  MOV EAX,dword ptr [EBP + 0x18]\n  1006b05f:  MOV EAX,dword ptr [EAX + 0xc]\n  1006b062:  JMP 0x1006b066\n  1006b064:  XOR EAX,EAX\n  1006b066:  LEA ECX,[EBP + 0x10]\n  1006b069:  PUSH ECX\n  1006b06a:  PUSH EAX\n  1006b06b:  PUSH dword ptr [EBP + 0x14]\n  1006b06e:  LEA EAX,[EBP + 0xc]\n  1006b071:  PUSH EAX\n  1006b072:  LEA EAX,[EBP + 0x8]\n  1006b075:  PUSH EAX\n  1006b076:  LEA EAX,[EBP + -0x4]\n  1006b079:  PUSH EAX\n  1006b07a:  CALL 0x10068163\n  1006b07f:  LEAVE\n  1006b080:  RET 0x14", 
+  "callers": [
+    {
+      "address": "0x1006f84a", 
+      "name": "FUN_1006f84a"
+    }
+  ]
+}

@@ -1,0 +1,25 @@
+{
+  "address": "0x10004520", 
+  "size_bytes": 25, 
+  "calling_convention": "__thiscall", 
+  "signature": "void __thiscall AddChildOnHead(gbNBTreeNode * this, gbNBTreeNode * param_1)", 
+  "callees": [
+    {
+      "address": "0x1002ea80", 
+      "name": "AddNodeOnHead"
+    }
+  ], 
+  "global_refs": [
+    {
+      "address": "0x00000004", 
+      "type": null, 
+      "name": "DAT_00000004"
+    }
+  ], 
+  "has_custom_name": true, 
+  "decompiled_c": "\n/* public: void __thiscall gbNBTreeNode::AddChildOnHead(class gbNBTreeNode *) */\n\nvoid __thiscall gbNBTreeNode::AddChildOnHead(gbNBTreeNode *this,gbNBTreeNode *param_1)\n\n{\n                    /* 0x4520  294  ?AddChildOnHead@gbNBTreeNode@@QAEXPAV1@@Z */\n  gbChain1D::AddNodeOnHead((gbChain1D *)(this + 0xc),(gbChain1DNode *)param_1);\n  *(gbNBTreeNode **)(param_1 + 8) = this;\n  return;\n}\n\n", 
+  "is_thunk": false, 
+  "name": "AddChildOnHead", 
+  "assembly": "  10004520:  PUSH ESI\n  10004521:  PUSH EDI\n  10004522:  MOV EDI,dword ptr [ESP + 0xc]\n  10004526:  MOV ESI,ECX\n  10004528:  PUSH EDI\n  10004529:  LEA ECX,[ESI + 0xc]\n  1000452c:  CALL 0x1002ea80\n  10004531:  MOV dword ptr [EDI + 0x8],ESI\n  10004534:  POP EDI\n  10004535:  POP ESI\n  10004536:  RET 0x4", 
+  "callers": []
+}

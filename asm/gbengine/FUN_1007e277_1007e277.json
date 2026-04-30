@@ -1,0 +1,29 @@
+{
+  "address": "0x1007e277", 
+  "size_bytes": 22, 
+  "calling_convention": "unknown", 
+  "signature": "undefined FUN_1007e277(undefined4 param_1)", 
+  "callees": [], 
+  "global_refs": [
+    {
+      "address": "0x00000004", 
+      "type": null, 
+      "name": "DAT_00000004"
+    }
+  ], 
+  "has_custom_name": false, 
+  "decompiled_c": "\nuint FUN_1007e277(uint param_1)\n\n{\n  int in_ECX;\n  \n  if (param_1 != 0) {\n    param_1 = (uint)(*(int *)(param_1 + 4) == *(int *)(in_ECX + 4));\n  }\n  return param_1;\n}\n\n", 
+  "is_thunk": false, 
+  "name": "FUN_1007e277", 
+  "assembly": "  1007e277:  MOV EAX,dword ptr [ESP + 0x4]\n  1007e27b:  TEST EAX,EAX\n  1007e27d:  JZ 0x1007e28a\n  1007e27f:  MOV EAX,dword ptr [EAX + 0x4]\n  1007e282:  SUB EAX,dword ptr [ECX + 0x4]\n  1007e285:  NEG EAX\n  1007e287:  SBB EAX,EAX\n  1007e289:  INC EAX\n  1007e28a:  RET 0x4", 
+  "callers": [
+    {
+      "address": "0x1007e328", 
+      "name": "FUN_1007e328"
+    }, 
+    {
+      "address": "0x1007ede1", 
+      "name": "FUN_1007ede1"
+    }
+  ]
+}

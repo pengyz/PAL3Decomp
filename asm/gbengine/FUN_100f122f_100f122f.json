@@ -1,0 +1,52 @@
+{
+  "address": "0x100f122f", 
+  "size_bytes": 28, 
+  "calling_convention": "unknown", 
+  "signature": "undefined FUN_100f122f(undefined4 param_1, undefined4 param_2)", 
+  "callees": [
+    {
+      "address": "0x00000054", 
+      "name": "IsBadWritePtr"
+    }
+  ], 
+  "global_refs": [
+    {
+      "address": "0x00000008", 
+      "type": null, 
+      "name": "DAT_00000008"
+    }, 
+    {
+      "address": "0x00000004", 
+      "type": null, 
+      "name": "DAT_00000004"
+    }, 
+    {
+      "address": "0x100f517c", 
+      "type": "pointer", 
+      "name": "DAT_100f517c"
+    }
+  ], 
+  "has_custom_name": false, 
+  "decompiled_c": "\nbool FUN_100f122f(LPVOID param_1,UINT_PTR param_2)\n\n{\n  BOOL BVar1;\n  \n  BVar1 = IsBadWritePtr(param_1,param_2);\n  return BVar1 == 0;\n}\n\n", 
+  "is_thunk": false, 
+  "name": "FUN_100f122f", 
+  "assembly": "  100f122f:  PUSH ESI\n  100f1230:  PUSH 0x1\n  100f1232:  POP ESI\n  100f1233:  PUSH dword ptr [ESP + 0xc]\n  100f1237:  PUSH dword ptr [ESP + 0xc]\n  100f123b:  CALL dword ptr [0x100f517c]\n  100f1241:  TEST EAX,EAX\n  100f1243:  JZ 0x100f1247\n  100f1245:  XOR ESI,ESI\n  100f1247:  MOV EAX,ESI\n  100f1249:  POP ESI\n  100f124a:  RET", 
+  "callers": [
+    {
+      "address": "0x100e825a", 
+      "name": "FUN_100e825a"
+    }, 
+    {
+      "address": "0x100e825a", 
+      "name": "FUN_100e825a"
+    }, 
+    {
+      "address": "0x100e825a", 
+      "name": "FUN_100e825a"
+    }, 
+    {
+      "address": "0x100e825a", 
+      "name": "FUN_100e825a"
+    }
+  ]
+}

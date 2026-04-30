@@ -1,0 +1,20 @@
+{
+  "address": "0x100241e0", 
+  "size_bytes": 50, 
+  "calling_convention": "__thiscall", 
+  "signature": "undefined __thiscall BEZIER(BEZIER * this, gbVec3D * param_1)", 
+  "callees": [], 
+  "global_refs": [
+    {
+      "address": "0x00000004", 
+      "type": null, 
+      "name": "DAT_00000004"
+    }
+  ], 
+  "has_custom_name": true, 
+  "decompiled_c": "\n/* public: __thiscall BEZIER::BEZIER(struct gbVec3D *) */\n\nvoid __thiscall BEZIER::BEZIER(BEZIER *this,gbVec3D *param_1)\n\n{\n  BEZIER *pBVar1;\n  int iVar2;\n  \n                    /* 0x241e0  1  ??0BEZIER@@QAE@PAUgbVec3D@@@Z */\n  iVar2 = 4;\n  pBVar1 = this + 0x10;\n  do {\n    *(undefined4 *)pBVar1 = 0;\n    *(undefined4 *)(pBVar1 + 4) = 0;\n    *(undefined4 *)(pBVar1 + 8) = 0;\n    pBVar1 = pBVar1 + 0xc;\n    iVar2 = iVar2 + -1;\n  } while (iVar2 != 0);\n  pBVar1 = this + 0x10;\n  for (iVar2 = 0xc; iVar2 != 0; iVar2 = iVar2 + -1) {\n    *(undefined4 *)pBVar1 = *(undefined4 *)param_1;\n    param_1 = param_1 + 4;\n    pBVar1 = pBVar1 + 4;\n  }\n  this[0x40] = (BEZIER)0x1;\n  return;\n}\n\n", 
+  "is_thunk": false, 
+  "name": "BEZIER", 
+  "assembly": "  100241e0:  MOV EAX,ECX\n  100241e2:  PUSH ESI\n  100241e3:  PUSH EDI\n  100241e4:  MOV EDX,0x4\n  100241e9:  LEA EDI,[EAX + 0x10]\n  100241ec:  XOR ESI,ESI\n  100241ee:  MOV ECX,EDI\n  100241f0:  MOV dword ptr [ECX],ESI\n  100241f2:  MOV dword ptr [ECX + 0x4],ESI\n  100241f5:  MOV dword ptr [ECX + 0x8],ESI\n  100241f8:  ADD ECX,0xc\n  100241fb:  DEC EDX\n  100241fc:  JNZ 0x100241f0\n  100241fe:  MOV ESI,dword ptr [ESP + 0xc]\n  10024202:  MOV ECX,0xc\n  10024207:  MOVSD.REP ES:EDI,ESI\n  10024209:  POP EDI\n  1002420a:  MOV byte ptr [EAX + 0x40],0x1\n  1002420e:  POP ESI\n  1002420f:  RET 0x4", 
+  "callers": []
+}

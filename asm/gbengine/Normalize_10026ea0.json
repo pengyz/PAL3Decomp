@@ -1,0 +1,35 @@
+{
+  "address": "0x10026ea0", 
+  "size_bytes": 115, 
+  "calling_convention": "__thiscall", 
+  "signature": "float __thiscall Normalize(gbQuaternion * this)", 
+  "callees": [], 
+  "global_refs": [
+    {
+      "address": "0x100f58b0", 
+      "type": null, 
+      "name": "DAT_100f58b0"
+    }, 
+    {
+      "address": "0x100f58c8", 
+      "type": null, 
+      "name": "DAT_100f58c8"
+    }, 
+    {
+      "address": "0x100f53a0", 
+      "type": null, 
+      "name": "DAT_100f53a0"
+    }, 
+    {
+      "address": "0x100f5344", 
+      "type": null, 
+      "name": "DAT_100f5344"
+    }
+  ], 
+  "has_custom_name": true, 
+  "decompiled_c": "\n/* public: float __thiscall gbQuaternion::Normalize(void) */\n\nfloat __thiscall gbQuaternion::Normalize(gbQuaternion *this)\n\n{\n  float fVar1;\n  float fVar2;\n  \n                    /* 0x26ea0  714  ?Normalize@gbQuaternion@@QAEMXZ */\n  fVar1 = SQRT(*(float *)(this + 0xc) * *(float *)(this + 0xc) +\n               *(float *)(this + 8) * *(float *)(this + 8) +\n               *(float *)(this + 4) * *(float *)(this + 4) + *(float *)this * *(float *)this);\n  if ((fVar1 < 1e-05) && (-1e-05 < fVar1)) {\n    return 0.0;\n  }\n  fVar2 = 1.0 / fVar1;\n  *(float *)(this + 0xc) = fVar2 * *(float *)(this + 0xc);\n  *(float *)this = fVar2 * *(float *)this;\n  *(float *)(this + 4) = fVar2 * *(float *)(this + 4);\n  *(float *)(this + 8) = fVar2 * *(float *)(this + 8);\n  return fVar1;\n}\n\n", 
+  "is_thunk": false, 
+  "name": "Normalize", 
+  "assembly": "  10026ea0:  FLD dword ptr [ECX + 0xc]\n  10026ea3:  FLD dword ptr [ECX + 0x8]\n  10026ea6:  FLD dword ptr [ECX + 0x4]\n  10026ea9:  FLD dword ptr [ECX]\n  10026eab:  FLD ST0\n  10026ead:  FMUL ST1\n  10026eaf:  FLD ST2\n  10026eb1:  FMUL ST3\n  10026eb3:  FADDP\n  10026eb5:  FLD ST3\n  10026eb7:  FMUL ST4\n  10026eb9:  FADDP\n  10026ebb:  FLD ST4\n  10026ebd:  FMUL ST5\n  10026ebf:  FADDP\n  10026ec1:  FSQRT\n  10026ec3:  FSTP ST4\n  10026ec5:  FSTP ST0\n  10026ec7:  FSTP ST0\n  10026ec9:  FSTP ST0\n  10026ecb:  FCOM qword ptr [0x100f58b0]\n  10026ed1:  FNSTSW AX\n  10026ed3:  TEST AH,0x1\n  10026ed6:  JZ 0x10026eee\n  10026ed8:  FCOM qword ptr [0x100f58c8]\n  10026ede:  FNSTSW AX\n  10026ee0:  TEST AH,0x41\n  10026ee3:  JNZ 0x10026eee\n  10026ee5:  FSTP ST0\n  10026ee7:  FLD dword ptr [0x100f53a0]\n  10026eed:  RET\n  10026eee:  FLD dword ptr [0x100f5344]\n  10026ef4:  FDIV ST0,ST1\n  10026ef6:  FLD ST0\n  10026ef8:  FMUL dword ptr [ECX + 0xc]\n  10026efb:  FSTP dword ptr [ECX + 0xc]\n  10026efe:  FLD ST0\n  10026f00:  FMUL dword ptr [ECX]\n  10026f02:  FSTP dword ptr [ECX]\n  10026f04:  FLD ST0\n  10026f06:  FMUL dword ptr [ECX + 0x4]\n  10026f09:  FSTP dword ptr [ECX + 0x4]\n  10026f0c:  FMUL dword ptr [ECX + 0x8]\n  10026f0f:  FSTP dword ptr [ECX + 0x8]\n  10026f12:  RET", 
+  "callers": []
+}

@@ -1,0 +1,38 @@
+{
+  "address": "0x100ddd88", 
+  "size_bytes": 72, 
+  "calling_convention": "unknown", 
+  "signature": "undefined FUN_100ddd88(undefined4 param_1, undefined4 param_2)", 
+  "callees": [], 
+  "global_refs": [
+    {
+      "address": "0x00000008", 
+      "type": null, 
+      "name": "DAT_00000008"
+    }, 
+    {
+      "address": "0x00000004", 
+      "type": null, 
+      "name": "DAT_00000004"
+    }
+  ], 
+  "has_custom_name": false, 
+  "decompiled_c": "\nvoid FUN_100ddd88(int param_1,uint param_2)\n\n{\n  undefined4 *puVar1;\n  undefined4 uVar2;\n  int iVar3;\n  int in_ECX;\n  uint uVar4;\n  \n  uVar4 = param_2 - param_1 >> 1;\n  if (uVar4 != 0) {\n    param_1 = param_1 << 2;\n    iVar3 = param_2 * 4;\n    param_2 = uVar4;\n    do {\n      iVar3 = iVar3 + -4;\n      puVar1 = (undefined4 *)(param_1 + *(int *)(in_ECX + 0x3c));\n      uVar2 = *puVar1;\n      *puVar1 = *(undefined4 *)(iVar3 + *(int *)(in_ECX + 0x3c));\n      *(undefined4 *)(iVar3 + *(int *)(in_ECX + 0x3c)) = uVar2;\n      param_1 = param_1 + 4;\n      param_2 = param_2 - 1;\n    } while (param_2 != 0);\n  }\n  return;\n}\n\n", 
+  "is_thunk": false, 
+  "name": "FUN_100ddd88", 
+  "assembly": "  100ddd88:  PUSH EBP\n  100ddd89:  MOV EBP,ESP\n  100ddd8b:  MOV EAX,dword ptr [EBP + 0xc]\n  100ddd8e:  PUSH ESI\n  100ddd8f:  MOV ESI,dword ptr [EBP + 0x8]\n  100ddd92:  MOV EDX,EAX\n  100ddd94:  SUB EDX,ESI\n  100ddd96:  SHR EDX,0x1\n  100ddd98:  JZ 0x100dddcb\n  100ddd9a:  PUSH EBX\n  100ddd9b:  PUSH EDI\n  100ddd9c:  MOV EDI,ESI\n  100ddd9e:  SHL EDI,0x2\n  100ddda1:  LEA EAX,[EAX*0x4 + 0xfffffffc]\n  100ddda8:  MOV dword ptr [EBP + 0xc],EDX\n  100dddab:  MOV EDX,dword ptr [ECX + 0x3c]\n  100dddae:  LEA ESI,[EDI + EDX*0x1]\n  100dddb1:  MOV EDX,dword ptr [EAX + EDX*0x1]\n  100dddb4:  MOV EBX,dword ptr [ESI]\n  100dddb6:  MOV dword ptr [ESI],EDX\n  100dddb8:  MOV EDX,dword ptr [ECX + 0x3c]\n  100dddbb:  MOV dword ptr [EAX + EDX*0x1],EBX\n  100dddbe:  ADD EDI,0x4\n  100dddc1:  SUB EAX,0x4\n  100dddc4:  DEC dword ptr [EBP + 0xc]\n  100dddc7:  JNZ 0x100dddab\n  100dddc9:  POP EDI\n  100dddca:  POP EBX\n  100dddcb:  POP ESI\n  100dddcc:  POP EBP\n  100dddcd:  RET 0x8", 
+  "callers": [
+    {
+      "address": "0x100ddf7e", 
+      "name": "FUN_100ddf7e"
+    }, 
+    {
+      "address": "0x100ddf7e", 
+      "name": "FUN_100ddf7e"
+    }, 
+    {
+      "address": "0x100ddf7e", 
+      "name": "FUN_100ddf7e"
+    }
+  ]
+}

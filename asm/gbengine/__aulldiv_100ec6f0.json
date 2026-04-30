@@ -1,0 +1,40 @@
+{
+  "address": "0x100ec6f0", 
+  "size_bytes": 104, 
+  "calling_convention": "unknown", 
+  "signature": "undefined __aulldiv(undefined4 param_1, undefined4 param_2, undefined4 param_3, undefined4 param_4)", 
+  "callees": [], 
+  "global_refs": [
+    {
+      "address": "0x00000010", 
+      "type": null, 
+      "name": "DAT_00000010"
+    }, 
+    {
+      "address": "0x0000000c", 
+      "type": null, 
+      "name": "DAT_0000000c"
+    }, 
+    {
+      "address": "0x00000008", 
+      "type": null, 
+      "name": "DAT_00000008"
+    }, 
+    {
+      "address": "0x00000004", 
+      "type": null, 
+      "name": "DAT_00000004"
+    }
+  ], 
+  "has_custom_name": true, 
+  "decompiled_c": "\n/* Library Function - Single Match\n    __aulldiv\n   \n   Library: Visual Studio */\n\nundefined8 __aulldiv(uint param_1,uint param_2,uint param_3,uint param_4)\n\n{\n  ulonglong uVar1;\n  longlong lVar2;\n  uint uVar3;\n  int iVar4;\n  uint uVar5;\n  uint uVar6;\n  uint uVar7;\n  uint uVar8;\n  uint uVar9;\n  \n  uVar3 = param_1;\n  uVar8 = param_4;\n  uVar6 = param_2;\n  uVar9 = param_3;\n  if (param_4 == 0) {\n    uVar3 = param_2 / param_3;\n    iVar4 = (int)(((ulonglong)param_2 % (ulonglong)param_3 << 0x20 | (ulonglong)param_1) /\n                 (ulonglong)param_3);\n  }\n  else {\n    do {\n      uVar5 = uVar8 >> 1;\n      uVar9 = uVar9 >> 1 | (uint)((uVar8 & 1) != 0) << 0x1f;\n      uVar7 = uVar6 >> 1;\n      uVar3 = uVar3 >> 1 | (uint)((uVar6 & 1) != 0) << 0x1f;\n      uVar8 = uVar5;\n      uVar6 = uVar7;\n    } while (uVar5 != 0);\n    uVar1 = CONCAT44(uVar7,uVar3) / (ulonglong)uVar9;\n    iVar4 = (int)uVar1;\n    lVar2 = (ulonglong)param_3 * (uVar1 & 0xffffffff);\n    uVar3 = (uint)((ulonglong)lVar2 >> 0x20);\n    uVar8 = uVar3 + iVar4 * param_4;\n    if (((CARRY4(uVar3,iVar4 * param_4)) || (param_2 < uVar8)) ||\n       ((param_2 <= uVar8 && (param_1 < (uint)lVar2)))) {\n      iVar4 = iVar4 + -1;\n    }\n    uVar3 = 0;\n  }\n  return CONCAT44(uVar3,iVar4);\n}\n\n", 
+  "is_thunk": false, 
+  "name": "__aulldiv", 
+  "assembly": "  100ec6f0:  PUSH EBX\n  100ec6f1:  PUSH ESI\n  100ec6f2:  MOV EAX,dword ptr [ESP + 0x18]\n  100ec6f6:  OR EAX,EAX\n  100ec6f8:  JNZ 0x100ec712\n  100ec6fa:  MOV ECX,dword ptr [ESP + 0x14]\n  100ec6fe:  MOV EAX,dword ptr [ESP + 0x10]\n  100ec702:  XOR EDX,EDX\n  100ec704:  DIV ECX\n  100ec706:  MOV EBX,EAX\n  100ec708:  MOV EAX,dword ptr [ESP + 0xc]\n  100ec70c:  DIV ECX\n  100ec70e:  MOV EDX,EBX\n  100ec710:  JMP 0x100ec753\n  100ec712:  MOV ECX,EAX\n  100ec714:  MOV EBX,dword ptr [ESP + 0x14]\n  100ec718:  MOV EDX,dword ptr [ESP + 0x10]\n  100ec71c:  MOV EAX,dword ptr [ESP + 0xc]\n  100ec720:  SHR ECX,0x1\n  100ec722:  RCR EBX,0x1\n  100ec724:  SHR EDX,0x1\n  100ec726:  RCR EAX,0x1\n  100ec728:  OR ECX,ECX\n  100ec72a:  JNZ 0x100ec720\n  100ec72c:  DIV EBX\n  100ec72e:  MOV ESI,EAX\n  100ec730:  MUL dword ptr [ESP + 0x18]\n  100ec734:  MOV ECX,EAX\n  100ec736:  MOV EAX,dword ptr [ESP + 0x14]\n  100ec73a:  MUL ESI\n  100ec73c:  ADD EDX,ECX\n  100ec73e:  JC 0x100ec74e\n  100ec740:  CMP EDX,dword ptr [ESP + 0x10]\n  100ec744:  JA 0x100ec74e\n  100ec746:  JC 0x100ec74f\n  100ec748:  CMP EAX,dword ptr [ESP + 0xc]\n  100ec74c:  JBE 0x100ec74f\n  100ec74e:  DEC ESI\n  100ec74f:  XOR EDX,EDX\n  100ec751:  MOV EAX,ESI\n  100ec753:  POP ESI\n  100ec754:  POP EBX\n  100ec755:  RET 0x10", 
+  "callers": [
+    {
+      "address": "0x100e5e04", 
+      "name": "FUN_100e5e04"
+    }
+  ]
+}

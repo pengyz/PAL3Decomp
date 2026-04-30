@@ -1,0 +1,62 @@
+{
+  "address": "0x1003c525", 
+  "size_bytes": 71, 
+  "calling_convention": "unknown", 
+  "signature": "undefined FUN_1003c525(undefined4 param_1)", 
+  "callees": [], 
+  "global_refs": [
+    {
+      "address": "0x00000004", 
+      "type": null, 
+      "name": "DAT_00000004"
+    }, 
+    {
+      "address": "0x100f6f54", 
+      "type": null, 
+      "name": "DAT_100f6f54"
+    }, 
+    {
+      "address": "0x-0000008", 
+      "type": null, 
+      "name": "DAT_-0000008"
+    }, 
+    {
+      "address": "0x100f6ad8", 
+      "type": null, 
+      "name": "DAT_100f6ad8"
+    }, 
+    {
+      "address": "0x100f6adc", 
+      "type": null, 
+      "name": "DAT_100f6adc"
+    }, 
+    {
+      "address": "0x100f640c", 
+      "type": null, 
+      "name": "DAT_100f640c"
+    }
+  ], 
+  "has_custom_name": false, 
+  "decompiled_c": "\nfloat10 FUN_1003c525(float param_1)\n\n{\n  int iVar1;\n  float fVar2;\n  float10 fVar3;\n  \n  fVar2 = param_1 * param_1 * 254.0;\n  iVar1 = (int)ROUND(fVar2);\n  fVar3 = (float10)iVar1;\n  if (iVar1 < 0) {\n    fVar3 = fVar3 + (float10)4.2949673e+09;\n  }\n  return ((float10)fVar2 - fVar3) *\n         ((float10)*(float *)(&DAT_100f6adc + iVar1 * 4) -\n         (float10)*(float *)(&DAT_100f6ad8 + iVar1 * 4)) +\n         (float10)*(float *)(&DAT_100f6ad8 + iVar1 * 4);\n}\n\n", 
+  "is_thunk": false, 
+  "name": "FUN_1003c525", 
+  "assembly": "  1003c525:  PUSH EBP\n  1003c526:  MOV EBP,ESP\n  1003c528:  PUSH ECX\n  1003c529:  FLD dword ptr [EBP + 0x8]\n  1003c52c:  FMUL dword ptr [EBP + 0x8]\n  1003c52f:  FMUL dword ptr [0x100f6f54]\n  1003c535:  FSTP dword ptr [EBP + 0x8]\n  1003c538:  FLD dword ptr [EBP + 0x8]\n  1003c53b:  FISTP dword ptr [EBP + -0x4]\n  1003c53e:  MOV EAX,dword ptr [EBP + -0x4]\n  1003c541:  TEST EAX,EAX\n  1003c543:  FLD dword ptr [EAX*0x4 + 0x100f6ad8]\n  1003c54a:  FLD dword ptr [EAX*0x4 + 0x100f6adc]\n  1003c551:  MOV dword ptr [EBP + -0x4],EAX\n  1003c554:  FSUB ST0,ST1\n  1003c556:  FILD dword ptr [EBP + -0x4]\n  1003c559:  JGE 0x1003c561\n  1003c55b:  FADD dword ptr [0x100f640c]\n  1003c561:  FSUBR dword ptr [EBP + 0x8]\n  1003c564:  FMULP\n  1003c566:  FADDP\n  1003c568:  LEAVE\n  1003c569:  RET 0x4", 
+  "callers": [
+    {
+      "address": "0x1003cbeb", 
+      "name": "FUN_1003cbeb"
+    }, 
+    {
+      "address": "0x1003cbeb", 
+      "name": "FUN_1003cbeb"
+    }, 
+    {
+      "address": "0x1003cbeb", 
+      "name": "FUN_1003cbeb"
+    }, 
+    {
+      "address": "0x1003cbeb", 
+      "name": "FUN_1003cbeb"
+    }
+  ]
+}

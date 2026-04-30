@@ -1,0 +1,53 @@
+{
+  "address": "0x100e5e7c", 
+  "size_bytes": 47, 
+  "calling_convention": "unknown", 
+  "signature": "undefined FUN_100e5e7c(undefined4 param_1, undefined4 param_2, undefined4 param_3, undefined4 param_4)", 
+  "callees": [
+    {
+      "address": "0x100ec11b", 
+      "name": "FUN_100ec11b"
+    }, 
+    {
+      "address": "0x100e5eab", 
+      "name": "FUN_100e5eab"
+    }, 
+    {
+      "address": "0x100ec16d", 
+      "name": "FUN_100ec16d"
+    }
+  ], 
+  "global_refs": [
+    {
+      "address": "0x00000010", 
+      "type": null, 
+      "name": "DAT_00000010"
+    }, 
+    {
+      "address": "0x0000000c", 
+      "type": null, 
+      "name": "DAT_0000000c"
+    }, 
+    {
+      "address": "0x00000008", 
+      "type": null, 
+      "name": "DAT_00000008"
+    }, 
+    {
+      "address": "0x00000004", 
+      "type": null, 
+      "name": "DAT_00000004"
+    }
+  ], 
+  "has_custom_name": false, 
+  "decompiled_c": "\nundefined4 FUN_100e5e7c(undefined4 param_1,undefined4 param_2,undefined4 param_3,undefined4 param_4)\n\n{\n  undefined4 uVar1;\n  \n  FUN_100ec11b(param_4);\n  uVar1 = FUN_100e5eab(param_1,param_2,param_3,param_4);\n  FUN_100ec16d(param_4);\n  return uVar1;\n}\n\n", 
+  "is_thunk": false, 
+  "name": "FUN_100e5e7c", 
+  "assembly": "  100e5e7c:  PUSH EBP\n  100e5e7d:  MOV EBP,ESP\n  100e5e7f:  PUSH ESI\n  100e5e80:  PUSH dword ptr [EBP + 0x14]\n  100e5e83:  CALL 0x100ec11b\n  100e5e88:  PUSH dword ptr [EBP + 0x14]\n  100e5e8b:  PUSH dword ptr [EBP + 0x10]\n  100e5e8e:  PUSH dword ptr [EBP + 0xc]\n  100e5e91:  PUSH dword ptr [EBP + 0x8]\n  100e5e94:  CALL 0x100e5eab\n  100e5e99:  PUSH dword ptr [EBP + 0x14]\n  100e5e9c:  MOV ESI,EAX\n  100e5e9e:  CALL 0x100ec16d\n  100e5ea3:  ADD ESP,0x18\n  100e5ea6:  MOV EAX,ESI\n  100e5ea8:  POP ESI\n  100e5ea9:  POP EBP\n  100e5eaa:  RET", 
+  "callers": [
+    {
+      "address": "0x10030810", 
+      "name": "Read"
+    }
+  ]
+}

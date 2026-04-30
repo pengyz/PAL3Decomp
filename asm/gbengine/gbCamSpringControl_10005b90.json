@@ -1,0 +1,20 @@
+{
+  "address": "0x10005b90", 
+  "size_bytes": 43, 
+  "calling_convention": "__thiscall", 
+  "signature": "undefined __thiscall gbCamSpringControl(gbCamSpringControl * this)", 
+  "callees": [], 
+  "global_refs": [
+    {
+      "address": "0x100f5458", 
+      "type": "pointer", 
+      "name": "DAT_100f5458"
+    }
+  ], 
+  "has_custom_name": true, 
+  "decompiled_c": "\n/* public: __thiscall gbCamSpringControl::gbCamSpringControl(void) */\n\nvoid __thiscall gbCamSpringControl::gbCamSpringControl(gbCamSpringControl *this)\n\n{\n                    /* 0x5b90  25  ??0gbCamSpringControl@@QAE@XZ */\n  *(undefined4 *)(this + 0x20) = 0;\n  *(undefined4 *)(this + 0x24) = 0;\n  *(undefined4 *)(this + 0x28) = 0;\n  *(undefined4 *)(this + 0x34) = 0;\n  *(undefined4 *)(this + 0x30) = 0;\n  *(undefined4 *)(this + 0x2c) = 0;\n  *(undefined4 *)(this + 0x38) = 0x3f800000;\n  *(undefined ***)this = &_vftable_;\n  *(undefined4 *)(this + 0x3c) = 0xbf800000;\n  return;\n}\n\n", 
+  "is_thunk": false, 
+  "name": "gbCamSpringControl", 
+  "assembly": "  10005b90:  MOV EAX,ECX\n  10005b92:  XOR ECX,ECX\n  10005b94:  MOV dword ptr [EAX + 0x20],ECX\n  10005b97:  MOV dword ptr [EAX + 0x24],ECX\n  10005b9a:  MOV dword ptr [EAX + 0x28],ECX\n  10005b9d:  MOV dword ptr [EAX + 0x34],ECX\n  10005ba0:  MOV dword ptr [EAX + 0x30],ECX\n  10005ba3:  MOV dword ptr [EAX + 0x2c],ECX\n  10005ba6:  MOV dword ptr [EAX + 0x38],0x3f800000\n  10005bad:  MOV dword ptr [EAX],0x100f5458\n  10005bb3:  MOV dword ptr [EAX + 0x3c],0xbf800000\n  10005bba:  RET", 
+  "callers": []
+}

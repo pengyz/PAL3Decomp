@@ -1,0 +1,19 @@
+{
+  "address": "0x100f3910", 
+  "size_bytes": 11, 
+  "calling_convention": "unknown", 
+  "signature": "undefined Unwind@100f3910(void)", 
+  "callees": [
+    {
+      "address": "0x100311c0", 
+      "name": "~CIniFile"
+    }
+  ], 
+  "global_refs": [], 
+  "has_custom_name": true, 
+  "decompiled_c": "\nvoid Unwind_100f3910(void)\n\n{\n  int unaff_EBP;\n  \n  CIniFile::~CIniFile((CIniFile *)(unaff_EBP + -0x35c));\n  return;\n}\n\n", 
+  "is_thunk": false, 
+  "name": "Unwind@100f3910", 
+  "assembly": "  100f3910:  LEA ECX,[EBP + 0xfffffca4]\n  100f3916:  JMP 0x100311c0", 
+  "callers": []
+}

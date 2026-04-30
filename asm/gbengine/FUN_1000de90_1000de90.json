@@ -1,0 +1,50 @@
+{
+  "address": "0x1000de90", 
+  "size_bytes": 53, 
+  "calling_convention": "unknown", 
+  "signature": "undefined FUN_1000de90(undefined4 param_1, undefined1 param_2)", 
+  "callees": [
+    {
+      "address": "0x100e51e6", 
+      "name": "FUN_100e51e6"
+    }
+  ], 
+  "global_refs": [
+    {
+      "address": "0x00000008", 
+      "type": null, 
+      "name": "DAT_00000008"
+    }, 
+    {
+      "address": "0x00000004", 
+      "type": null, 
+      "name": "DAT_00000004"
+    }, 
+    {
+      "address": "0x10137bb4", 
+      "type": "undefined4", 
+      "name": "DAT_10137bb4"
+    }, 
+    {
+      "address": "0x10137bb8", 
+      "type": null, 
+      "name": "DAT_10137bb8"
+    }, 
+    {
+      "address": "0x10138bb8", 
+      "type": null, 
+      "name": "DAT_10138bb8"
+    }
+  ], 
+  "has_custom_name": false, 
+  "decompiled_c": "\nvoid FUN_1000de90(undefined4 param_1,char param_2)\n\n{\n  undefined4 uVar1;\n  \n  uVar1 = 0;\n  if ('}' < param_2) {\n    uVar1 = FUN_100e51e6(param_1);\n    param_2 = '\\x7f';\n  }\n  *(undefined4 *)(&DAT_10137bb8 + DAT_10137bb4 * 4) = uVar1;\n  (&DAT_10138bb8)[DAT_10137bb4] = param_2;\n  DAT_10137bb4 = DAT_10137bb4 + 1;\n  return;\n}\n\n", 
+  "is_thunk": false, 
+  "name": "FUN_1000de90", 
+  "assembly": "  1000de90:  MOV DL,byte ptr [ESP + 0x8]\n  1000de94:  XOR EAX,EAX\n  1000de96:  CMP DL,0x7d\n  1000de99:  JLE 0x1000deaa\n  1000de9b:  MOV EAX,dword ptr [ESP + 0x4]\n  1000de9f:  PUSH EAX\n  1000dea0:  CALL 0x100e51e6\n  1000dea5:  ADD ESP,0x4\n  1000dea8:  MOV DL,0x7f\n  1000deaa:  MOV ECX,dword ptr [0x10137bb4]\n  1000deb0:  MOV dword ptr [ECX*0x4 + 0x10137bb8],EAX\n  1000deb7:  MOV byte ptr [ECX + 0x10138bb8],DL\n  1000debd:  INC ECX\n  1000debe:  MOV dword ptr [0x10137bb4],ECX\n  1000dec4:  RET", 
+  "callers": [
+    {
+      "address": "0x1000df20", 
+      "name": "FUN_1000df20"
+    }
+  ]
+}

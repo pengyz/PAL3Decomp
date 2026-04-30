@@ -1,0 +1,32 @@
+{
+  "address": "0x10002f20", 
+  "size_bytes": 200, 
+  "calling_convention": "__thiscall", 
+  "signature": "void __thiscall GotoAction(gbActor * this, ulong param_1, int param_2, uint param_3, uint param_4, ulong param_5)", 
+  "callees": [
+    {
+      "address": "0x10002cd0", 
+      "name": "UpdateExportNodes"
+    }
+  ], 
+  "global_refs": [], 
+  "has_custom_name": true, 
+  "decompiled_c": "\n/* public: void __thiscall gbActor::GotoAction(unsigned long,int,unsigned int,unsigned int,unsigned\n   long) */\n\nvoid __thiscall\ngbActor::GotoAction(gbActor *this,ulong param_1,int param_2,uint param_3,uint param_4,ulong param_5)\n\n{\n  undefined4 *puVar1;\n  int iVar2;\n  int iStack_4;\n  \n                    /* 0x2f20  583  ?GotoAction@gbActor@@QAEXKHIIK@Z */\n  (**(code **)(**(int **)(this + 0x58) + 0x38))();\n  iStack_4 = 0;\n  if (0 < *(int *)(this + 100)) {\n    iVar2 = 0;\n    do {\n      puVar1 = (undefined4 *)(iVar2 + *(int *)(this + 0x60));\n      if (puVar1[1] == param_1) {\n        *puVar1 = 1;\n        *(undefined4 *)(iVar2 + 8 + *(int *)(this + 0x60)) = 0x3f800000;\n        if (param_4 < param_3) {\n          *(undefined4 *)(iVar2 + 0xc + *(int *)(this + 0x60)) = 0;\n        }\n        else {\n          *(uint *)(iVar2 + 0xc + *(int *)(this + 0x60)) = param_3;\n        }\n        *(uint *)(iVar2 + 0x10 + *(int *)(this + 0x60)) = param_3;\n        *(uint *)(iVar2 + 0x14 + *(int *)(this + 0x60)) = param_4;\n        *(ulong *)(iVar2 + 0x20 + *(int *)(this + 0x60)) = param_5;\n        *(undefined4 *)(iVar2 + 0x1c + *(int *)(this + 0x60)) = 1;\n        (**(code **)(**(int **)(this + 0x58) + 0x48))(iStack_4);\n        UpdateExportNodes(this);\n      }\n      else {\n        *puVar1 = 0;\n        *(undefined4 *)(iVar2 + 8 + *(int *)(this + 0x60)) = 0;\n      }\n      iStack_4 = iStack_4 + 1;\n      iVar2 = iVar2 + 0x24;\n    } while (iStack_4 < *(int *)(this + 100));\n  }\n  return;\n}\n\n", 
+  "is_thunk": false, 
+  "name": "GotoAction", 
+  "assembly": "  10002f20:  PUSH ECX\n  10002f21:  PUSH ESI\n  10002f22:  MOV ESI,ECX\n  10002f24:  MOV ECX,dword ptr [ESI + 0x58]\n  10002f27:  MOV EAX,dword ptr [ECX]\n  10002f29:  CALL dword ptr [EAX + 0x38]\n  10002f2c:  MOV EAX,dword ptr [ESI + 0x64]\n  10002f2f:  XOR EDX,EDX\n  10002f31:  TEST EAX,EAX\n  10002f33:  MOV dword ptr [ESP + 0x4],EDX\n  10002f37:  JLE 0x10002fe3\n  10002f3d:  PUSH EBX\n  10002f3e:  MOV EBX,dword ptr [ESP + 0x18]\n  10002f42:  PUSH EBP\n  10002f43:  MOV EBP,dword ptr [ESP + 0x20]\n  10002f47:  PUSH EDI\n  10002f48:  XOR EDI,EDI\n  10002f4a:  MOV ECX,dword ptr [ESI + 0x60]\n  10002f4d:  LEA EAX,[EDI + ECX*0x1]\n  10002f50:  MOV ECX,dword ptr [ESP + 0x18]\n  10002f54:  CMP dword ptr [EAX + 0x4],ECX\n  10002f57:  JNZ 0x10002fbc\n  10002f59:  MOV dword ptr [EAX],0x1\n  10002f5f:  MOV EAX,dword ptr [ESI + 0x60]\n  10002f62:  CMP EBX,EBP\n  10002f64:  MOV dword ptr [EDI + EAX*0x1 + 0x8],0x3f800000\n  10002f6c:  JBE 0x10002f7b\n  10002f6e:  MOV ECX,dword ptr [ESI + 0x60]\n  10002f71:  MOV dword ptr [EDI + ECX*0x1 + 0xc],0x0\n  10002f79:  JMP 0x10002f82\n  10002f7b:  MOV EAX,dword ptr [ESI + 0x60]\n  10002f7e:  MOV dword ptr [EDI + EAX*0x1 + 0xc],EBX\n  10002f82:  MOV ECX,dword ptr [ESI + 0x60]\n  10002f85:  PUSH EDX\n  10002f86:  MOV dword ptr [EDI + ECX*0x1 + 0x10],EBX\n  10002f8a:  MOV EAX,dword ptr [ESI + 0x60]\n  10002f8d:  MOV dword ptr [EDI + EAX*0x1 + 0x14],EBP\n  10002f91:  MOV ECX,dword ptr [ESI + 0x60]\n  10002f94:  MOV EAX,dword ptr [ESP + 0x2c]\n  10002f98:  MOV dword ptr [EDI + ECX*0x1 + 0x20],EAX\n  10002f9c:  MOV ECX,dword ptr [ESI + 0x60]\n  10002f9f:  MOV dword ptr [EDI + ECX*0x1 + 0x1c],0x1\n  10002fa7:  MOV ECX,dword ptr [ESI + 0x58]\n  10002faa:  MOV EAX,dword ptr [ECX]\n  10002fac:  CALL dword ptr [EAX + 0x48]\n  10002faf:  MOV ECX,ESI\n  10002fb1:  CALL 0x10002cd0\n  10002fb6:  MOV EDX,dword ptr [ESP + 0x10]\n  10002fba:  JMP 0x10002fcd\n  10002fbc:  MOV dword ptr [EAX],0x0\n  10002fc2:  MOV ECX,dword ptr [ESI + 0x60]\n  10002fc5:  MOV dword ptr [EDI + ECX*0x1 + 0x8],0x0\n  10002fcd:  MOV EAX,dword ptr [ESI + 0x64]\n  10002fd0:  INC EDX\n  10002fd1:  ADD EDI,0x24\n  10002fd4:  CMP EDX,EAX\n  10002fd6:  MOV dword ptr [ESP + 0x10],EDX\n  10002fda:  JL 0x10002f4a\n  10002fe0:  POP EDI\n  10002fe1:  POP EBP\n  10002fe2:  POP EBX\n  10002fe3:  POP ESI\n  10002fe4:  POP ECX\n  10002fe5:  RET 0x14", 
+  "callers": [
+    {
+      "address": "0x10002dd0", 
+      "name": "GotoAction"
+    }, 
+    {
+      "address": "0x10002e00", 
+      "name": "GotoAction"
+    }, 
+    {
+      "address": "0x10002e50", 
+      "name": "GotoAction"
+    }
+  ]
+}

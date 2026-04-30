@@ -1,0 +1,46 @@
+{
+  "address": "0x10034758", 
+  "size_bytes": 30, 
+  "calling_convention": "unknown", 
+  "signature": "undefined FUN_10034758(undefined4 param_1, undefined4 param_2)", 
+  "callees": [], 
+  "global_refs": [
+    {
+      "address": "0x00000008", 
+      "type": null, 
+      "name": "DAT_00000008"
+    }, 
+    {
+      "address": "0x00000004", 
+      "type": null, 
+      "name": "DAT_00000004"
+    }
+  ], 
+  "has_custom_name": false, 
+  "decompiled_c": "\nuint FUN_10034758(int param_1,uint param_2)\n\n{\n  uint uVar1;\n  \n  uVar1 = 0;\n  if (param_2 != 0) {\n    do {\n      if (*(char *)(uVar1 + param_1) == '\\n') {\n        return uVar1;\n      }\n      uVar1 = uVar1 + 1;\n    } while (uVar1 < param_2);\n  }\n  return 0;\n}\n\n", 
+  "is_thunk": false, 
+  "name": "FUN_10034758", 
+  "assembly": "  10034758:  XOR EAX,EAX\n  1003475a:  CMP dword ptr [ESP + 0x8],EAX\n  1003475e:  JBE 0x10034771\n  10034760:  MOV ECX,dword ptr [ESP + 0x4]\n  10034764:  CMP byte ptr [EAX + ECX*0x1],0xa\n  10034768:  JZ 0x10034773\n  1003476a:  INC EAX\n  1003476b:  CMP EAX,dword ptr [ESP + 0x8]\n  1003476f:  JC 0x10034760\n  10034771:  XOR EAX,EAX\n  10034773:  RET 0x8", 
+  "callers": [
+    {
+      "address": "0x10036722", 
+      "name": "FUN_10036722"
+    }, 
+    {
+      "address": "0x10036722", 
+      "name": "FUN_10036722"
+    }, 
+    {
+      "address": "0x100369d7", 
+      "name": "FUN_100369d7"
+    }, 
+    {
+      "address": "0x100369d7", 
+      "name": "FUN_100369d7"
+    }, 
+    {
+      "address": "0x100369d7", 
+      "name": "FUN_100369d7"
+    }
+  ]
+}

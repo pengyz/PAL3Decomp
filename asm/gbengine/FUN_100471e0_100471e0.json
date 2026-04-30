@@ -1,0 +1,74 @@
+{
+  "address": "0x100471e0", 
+  "size_bytes": 47, 
+  "calling_convention": "unknown", 
+  "signature": "undefined FUN_100471e0(undefined4 param_1, undefined4 param_2, undefined4 param_3, undefined4 param_4, undefined4 param_5, undefined4 param_6)", 
+  "callees": [
+    {
+      "address": "0x1007713a", 
+      "name": "FUN_1007713a"
+    }, 
+    {
+      "address": "0x100471e0", 
+      "name": "FUN_100471e0"
+    }
+  ], 
+  "global_refs": [
+    {
+      "address": "0x00000018", 
+      "type": null, 
+      "name": "DAT_00000018"
+    }, 
+    {
+      "address": "0x-0000008", 
+      "type": null, 
+      "name": "DAT_-0000008"
+    }, 
+    {
+      "address": "0x00000014", 
+      "type": null, 
+      "name": "DAT_00000014"
+    }, 
+    {
+      "address": "0x-000000c", 
+      "type": null, 
+      "name": "DAT_-000000c"
+    }, 
+    {
+      "address": "0x00000010", 
+      "type": null, 
+      "name": "DAT_00000010"
+    }, 
+    {
+      "address": "0x0000000c", 
+      "type": null, 
+      "name": "DAT_0000000c"
+    }, 
+    {
+      "address": "0x00000008", 
+      "type": null, 
+      "name": "DAT_00000008"
+    }, 
+    {
+      "address": "0x00000004", 
+      "type": null, 
+      "name": "DAT_00000004"
+    }, 
+    {
+      "address": "0x10121564", 
+      "type": "pointer", 
+      "name": "DAT_10121564"
+    }
+  ], 
+  "has_custom_name": false, 
+  "decompiled_c": "\nvoid FUN_100471e0(undefined4 param_1,undefined4 param_2,undefined4 param_3,undefined4 param_4,\n                 undefined4 param_5,undefined4 param_6)\n\n{\n  FUN_1007713a(1);\n  (*(code *)PTR_FUN_10121564)(param_1,param_2,param_3,param_4,param_5,param_6);\n  return;\n}\n\n", 
+  "is_thunk": false, 
+  "name": "FUN_100471e0", 
+  "assembly": "  100471e0:  PUSH EBP\n  100471e1:  MOV EBP,ESP\n  100471e3:  PUSH 0x1\n  100471e5:  CALL 0x1007713a\n  100471ea:  FLD dword ptr [EBP + 0x1c]\n  100471ed:  PUSH ECX\n  100471ee:  PUSH ECX\n  100471ef:  FSTP dword ptr [ESP + 0x4]\n  100471f3:  FLD dword ptr [EBP + 0x18]\n  100471f6:  FSTP dword ptr [ESP]\n  100471f9:  PUSH dword ptr [EBP + 0x14]\n  100471fc:  PUSH dword ptr [EBP + 0x10]\n  100471ff:  PUSH dword ptr [EBP + 0xc]\n  10047202:  PUSH dword ptr [EBP + 0x8]\n  10047205:  CALL dword ptr [0x10121564]\n  1004720b:  POP EBP\n  1004720c:  RET 0x18", 
+  "callers": [
+    {
+      "address": "0x100471e0", 
+      "name": "FUN_100471e0"
+    }
+  ]
+}

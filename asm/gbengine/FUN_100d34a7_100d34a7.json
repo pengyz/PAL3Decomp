@@ -1,0 +1,49 @@
+{
+  "address": "0x100d34a7", 
+  "size_bytes": 212, 
+  "calling_convention": "unknown", 
+  "signature": "undefined FUN_100d34a7(undefined4 param_1, undefined4 param_2, undefined4 param_3)", 
+  "callees": [], 
+  "global_refs": [
+    {
+      "address": "0x00000008", 
+      "type": null, 
+      "name": "DAT_00000008"
+    }, 
+    {
+      "address": "0x0000000c", 
+      "type": null, 
+      "name": "DAT_0000000c"
+    }, 
+    {
+      "address": "0x-0000020", 
+      "type": null, 
+      "name": "DAT_-0000020"
+    }, 
+    {
+      "address": "0x-0000024", 
+      "type": null, 
+      "name": "DAT_-0000024"
+    }, 
+    {
+      "address": "0x00000004", 
+      "type": null, 
+      "name": "DAT_00000004"
+    }
+  ], 
+  "has_custom_name": false, 
+  "decompiled_c": "\nvoid FUN_100d34a7(float *param_1,undefined8 *param_2,float *param_3)\n\n{\n  float fVar1;\n  float fVar2;\n  float fVar3;\n  float fVar4;\n  float fVar5;\n  float fVar6;\n  float fVar7;\n  float fVar8;\n  float fVar9;\n  float fVar10;\n  float fVar11;\n  float fVar12;\n  float fVar13;\n  float fVar14;\n  \n  fVar1 = (float)*param_2;\n  fVar3 = (float)((ulonglong)*param_2 >> 0x20);\n  fVar7 = *(float *)(param_2 + 1);\n  if (((uint)param_3 & 0xf) == 0) {\n    fVar11 = param_3[8] * fVar7 + param_3[0xc];\n    fVar12 = param_3[9] * fVar7 + param_3[0xd];\n    fVar13 = param_3[10] * fVar7 + param_3[0xe];\n    fVar14 = param_3[0xb] * fVar7 + param_3[0xf];\n    fVar7 = param_3[4];\n    fVar8 = param_3[5];\n    fVar9 = param_3[6];\n    fVar10 = param_3[7];\n    fVar2 = *param_3;\n    fVar4 = param_3[1];\n    fVar5 = param_3[2];\n    fVar6 = param_3[3];\n  }\n  else {\n    fVar11 = (float)*(undefined8 *)(param_3 + 8) * fVar7 + (float)*(undefined8 *)(param_3 + 0xc);\n    fVar12 = (float)((ulonglong)*(undefined8 *)(param_3 + 8) >> 0x20) * fVar7 +\n             (float)((ulonglong)*(undefined8 *)(param_3 + 0xc) >> 0x20);\n    fVar13 = (float)*(undefined8 *)(param_3 + 10) * fVar7 + (float)*(undefined8 *)(param_3 + 0xe);\n    fVar14 = (float)((ulonglong)*(undefined8 *)(param_3 + 10) >> 0x20) * fVar7 +\n             (float)((ulonglong)*(undefined8 *)(param_3 + 0xe) >> 0x20);\n    fVar7 = (float)*(undefined8 *)(param_3 + 4);\n    fVar8 = (float)((ulonglong)*(undefined8 *)(param_3 + 4) >> 0x20);\n    fVar9 = (float)*(undefined8 *)(param_3 + 6);\n    fVar10 = (float)((ulonglong)*(undefined8 *)(param_3 + 6) >> 0x20);\n    fVar2 = (float)*(undefined8 *)param_3;\n    fVar4 = (float)((ulonglong)*(undefined8 *)param_3 >> 0x20);\n    fVar5 = (float)*(undefined8 *)(param_3 + 2);\n    fVar6 = (float)((ulonglong)*(undefined8 *)(param_3 + 2) >> 0x20);\n  }\n  *param_1 = fVar2 * fVar1 + fVar7 * fVar3 + fVar11;\n  param_1[1] = fVar4 * fVar1 + fVar8 * fVar3 + fVar12;\n  param_1[2] = fVar5 * fVar1 + fVar9 * fVar3 + fVar13;\n  param_1[3] = fVar6 * fVar1 + fVar10 * fVar3 + fVar14;\n  return;\n}\n\n", 
+  "is_thunk": false, 
+  "name": "FUN_100d34a7", 
+  "assembly": "  100d34a7:  PUSH EBP\n  100d34a8:  MOV EBP,ESP\n  100d34aa:  AND ESP,0xfffffff0\n  100d34ad:  SUB ESP,0x1c\n  100d34b0:  MOV ECX,dword ptr [EBP + 0xc]\n  100d34b3:  MOV EAX,dword ptr [EBP + 0x10]\n  100d34b6:  TEST AL,0xf\n  100d34b8:  MOVAPS XMM0,xmmword ptr [ESP + 0xc]\n  100d34bd:  MOVLPS XMM0,qword ptr [ECX]\n  100d34c0:  MOV ECX,dword ptr [ECX + 0x8]\n  100d34c3:  PUSH ESI\n  100d34c4:  JNZ 0x100d34fc\n  100d34c6:  MOVAPS XMM2,xmmword ptr [EAX + 0x30]\n  100d34ca:  MOVAPS XMM3,xmmword ptr [EAX + 0x20]\n  100d34ce:  MOV dword ptr [ESP + 0xc],ECX\n  100d34d2:  MOVSS XMM1,dword ptr [ESP + 0xc]\n  100d34d8:  SHUFPS XMM1,XMM1,0x0\n  100d34dc:  MULPS XMM3,XMM1\n  100d34df:  ADDPS XMM3,XMM2\n  100d34e2:  MOVAPS XMM2,xmmword ptr [EAX + 0x10]\n  100d34e6:  MOVAPS XMM1,XMM0\n  100d34e9:  SHUFPS XMM1,XMM0,0x55\n  100d34ed:  MULPS XMM2,XMM1\n  100d34f0:  MOVAPS XMM1,XMM0\n  100d34f3:  SHUFPS XMM1,XMM0,0x0\n  100d34f7:  MOVAPS XMM0,xmmword ptr [EAX]\n  100d34fa:  JMP 0x100d3565\n  100d34fc:  MOVAPS XMM1,xmmword ptr [ESP + 0x10]\n  100d3501:  MOVAPS XMM3,xmmword ptr [ESP + 0x10]\n  100d3506:  LEA EDX,[EAX + 0x38]\n  100d3509:  LEA ESI,[EAX + 0x30]\n  100d350c:  MOVLPS XMM1,qword ptr [ESI]\n  100d350f:  MOVHPS XMM1,qword ptr [EDX]\n  100d3512:  MOVAPS XMM2,XMM1\n  100d3515:  MOV dword ptr [ESP + 0xc],ECX\n  100d3519:  MOVSS XMM1,dword ptr [ESP + 0xc]\n  100d351f:  SHUFPS XMM1,XMM1,0x0\n  100d3523:  LEA EDX,[EAX + 0x20]\n  100d3526:  MOVLPS XMM3,qword ptr [EDX]\n  100d3529:  LEA ECX,[EAX + 0x28]\n  100d352c:  MOVHPS XMM3,qword ptr [ECX]\n  100d352f:  MULPS XMM3,XMM1\n  100d3532:  ADDPS XMM3,XMM2\n  100d3535:  MOVAPS XMM2,xmmword ptr [ESP + 0x10]\n  100d353a:  MOVAPS XMM1,XMM0\n  100d353d:  SHUFPS XMM1,XMM0,0x55\n  100d3541:  LEA ECX,[EAX + 0x18]\n  100d3544:  LEA EDX,[EAX + 0x10]\n  100d3547:  MOVLPS XMM2,qword ptr [EDX]\n  100d354a:  MOVHPS XMM2,qword ptr [ECX]\n  100d354d:  MULPS XMM2,XMM1\n  100d3550:  MOVAPS XMM1,XMM0\n  100d3553:  SHUFPS XMM1,XMM0,0x0\n  100d3557:  MOVAPS XMM0,xmmword ptr [ESP + 0x10]\n  100d355c:  MOVLPS XMM0,qword ptr [EAX]\n  100d355f:  LEA ECX,[EAX + 0x8]\n  100d3562:  MOVHPS XMM0,qword ptr [ECX]\n  100d3565:  MOV EAX,dword ptr [EBP + 0x8]\n  100d3568:  MULPS XMM0,XMM1\n  100d356b:  ADDPS XMM0,XMM2\n  100d356e:  ADDPS XMM0,XMM3\n  100d3571:  MOVUPS xmmword ptr [EAX],XMM0\n  100d3574:  POP ESI\n  100d3575:  MOV ESP,EBP\n  100d3577:  POP EBP\n  100d3578:  RET 0xc", 
+  "callers": [
+    {
+      "address": "0x100d37f8", 
+      "name": "FUN_100d37f8"
+    }, 
+    {
+      "address": "0x100d525d", 
+      "name": "FUN_100d525d"
+    }
+  ]
+}

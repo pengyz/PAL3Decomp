@@ -1,0 +1,74 @@
+{
+  "address": "0x100ea539", 
+  "size_bytes": 163, 
+  "calling_convention": "unknown", 
+  "signature": "undefined FUN_100ea539(void)", 
+  "callees": [
+    {
+      "address": "0x100ea407", 
+      "name": "__startOneArgErrorHandling"
+    }, 
+    {
+      "address": "0x100ea3f0", 
+      "name": "FUN_100ea3f0"
+    }
+  ], 
+  "global_refs": [
+    {
+      "address": "0x-0000008", 
+      "type": null, 
+      "name": "DAT_-0000008"
+    }, 
+    {
+      "address": "0x-0000004", 
+      "type": null, 
+      "name": "DAT_-0000004"
+    }, 
+    {
+      "address": "0x00000000", 
+      "type": null, 
+      "name": "DAT_00000000"
+    }, 
+    {
+      "address": "0x1011053c", 
+      "type": null, 
+      "name": "DAT_1011053c"
+    }, 
+    {
+      "address": "0x1011052c", 
+      "type": null, 
+      "name": "DAT_1011052c"
+    }, 
+    {
+      "address": "0x1011054c", 
+      "type": null, 
+      "name": "DAT_1011054c"
+    }, 
+    {
+      "address": "0x10110534", 
+      "type": null, 
+      "name": "DAT_10110534"
+    }, 
+    {
+      "address": "0x10110524", 
+      "type": null, 
+      "name": "DAT_10110524"
+    }, 
+    {
+      "address": "0x10110544", 
+      "type": null, 
+      "name": "DAT_10110544"
+    }
+  ], 
+  "has_custom_name": false, 
+  "decompiled_c": "\nvoid FUN_100ea539(void)\n\n{\n  int in_EDX;\n  ushort in_FPUStatusWord;\n  float10 in_ST0;\n  ushort unaff_retaddr;\n  uint uStack_4;\n  \n  uStack_4 = (uint)((ulonglong)(double)in_ST0 >> 0x20);\n  if (((ulonglong)(double)in_ST0 & 0x7ff0000000000000) == 0) {\n    fscale(in_ST0,(float10)1536.0);\n  }\n  else if ((uStack_4 & 0x7ff00000) == 0x7ff00000) {\n    fscale(in_ST0,(float10)-1536.0);\n  }\n  else if (((unaff_retaddr == 0x27f) || ((unaff_retaddr & 0x20) != 0)) ||\n          ((in_FPUStatusWord & 0x20) == 0)) {\n    return;\n  }\n  if (in_EDX == 0x1d) {\n    FUN_100ea3f0();\n    return;\n  }\n  __startOneArgErrorHandling();\n  return;\n}\n\n", 
+  "is_thunk": false, 
+  "name": "FUN_100ea539", 
+  "assembly": "  100ea539:  SUB ESP,0x8\n  100ea53c:  FST qword ptr [ESP]\n  100ea53f:  MOV EAX,dword ptr [ESP + 0x4]\n  100ea543:  ADD ESP,0x8\n  100ea546:  AND EAX,0x7ff00000\n  100ea54b:  JZ 0x100ea58a\n  100ea54d:  CMP EAX,0x7ff00000\n  100ea552:  JZ 0x100ea5b3\n  100ea554:  MOV AX,word ptr [ESP]\n  100ea558:  CMP AX,0x27f\n  100ea55c:  JZ 0x100ea588\n  100ea55e:  AND AX,0x20\n  100ea562:  JNZ 0x100ea585\n  100ea564:  FSTSW AX\n  100ea567:  AND AX,0x20\n  100ea56b:  JZ 0x100ea585\n  100ea56d:  MOV EAX,0x8\n  100ea572:  CMP EDX,0x1d\n  100ea575:  JZ 0x100ea57e\n  100ea577:  CALL 0x100ea407\n  100ea57c:  POP EDX\n  100ea57d:  RET\n  100ea57e:  CALL 0x100ea3f0\n  100ea583:  POP EDX\n  100ea584:  RET\n  100ea585:  FLDCW word ptr [ESP]\n  100ea588:  POP EDX\n  100ea589:  RET\n  100ea58a:  FLD qword ptr [0x1011053c]\n  100ea590:  FXCH\n  100ea592:  FSCALE\n  100ea594:  FSTP ST1\n  100ea596:  FLD ST0\n  100ea598:  FABS\n  100ea59a:  FCOMP qword ptr [0x1011052c]\n  100ea5a0:  FSTSW AX\n  100ea5a3:  SAHF\n  100ea5a4:  MOV EAX,0x4\n  100ea5a9:  JNC 0x100ea572\n  100ea5ab:  FMUL qword ptr [0x1011054c]\n  100ea5b1:  JMP 0x100ea572\n  100ea5b3:  FLD qword ptr [0x10110534]\n  100ea5b9:  FXCH\n  100ea5bb:  FSCALE\n  100ea5bd:  FSTP ST1\n  100ea5bf:  FLD ST0\n  100ea5c1:  FABS\n  100ea5c3:  FCOMP qword ptr [0x10110524]\n  100ea5c9:  FSTSW AX\n  100ea5cc:  SAHF\n  100ea5cd:  MOV EAX,0x3\n  100ea5d2:  JBE 0x100ea572\n  100ea5d4:  FMUL qword ptr [0x10110544]\n  100ea5da:  JMP 0x100ea572", 
+  "callers": [
+    {
+      "address": "0x100e58a2", 
+      "name": "FUN_100e58a2"
+    }
+  ]
+}

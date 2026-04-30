@@ -1,0 +1,40 @@
+{
+  "address": "0x100f0e0a", 
+  "size_bytes": 45, 
+  "calling_convention": "unknown", 
+  "signature": "undefined FUN_100f0e0a(undefined4 param_1, undefined4 param_2, undefined4 param_3)", 
+  "callees": [
+    {
+      "address": "0x100f0e37", 
+      "name": "FUN_100f0e37"
+    }
+  ], 
+  "global_refs": [
+    {
+      "address": "0x0000000c", 
+      "type": null, 
+      "name": "DAT_0000000c"
+    }, 
+    {
+      "address": "0x00000004", 
+      "type": null, 
+      "name": "DAT_00000004"
+    }, 
+    {
+      "address": "0x00000008", 
+      "type": null, 
+      "name": "DAT_00000008"
+    }
+  ], 
+  "has_custom_name": false, 
+  "decompiled_c": "\nundefined4 FUN_100f0e0a(int param_1,undefined4 param_2,int param_3)\n\n{\n  undefined4 uVar1;\n  \n  if ((param_3 == 10) && (param_1 < 0)) {\n    uVar1 = 1;\n    param_3 = 10;\n  }\n  else {\n    uVar1 = 0;\n  }\n  FUN_100f0e37(param_1,param_2,param_3,uVar1);\n  return param_2;\n}\n\n", 
+  "is_thunk": false, 
+  "name": "FUN_100f0e0a", 
+  "assembly": "  100f0e0a:  PUSH EBP\n  100f0e0b:  MOV EBP,ESP\n  100f0e0d:  CMP dword ptr [EBP + 0x10],0xa\n  100f0e11:  JNZ 0x100f0e1f\n  100f0e13:  CMP dword ptr [EBP + 0x8],0x0\n  100f0e17:  JGE 0x100f0e1f\n  100f0e19:  PUSH 0x1\n  100f0e1b:  PUSH 0xa\n  100f0e1d:  JMP 0x100f0e24\n  100f0e1f:  PUSH 0x0\n  100f0e21:  PUSH dword ptr [EBP + 0x10]\n  100f0e24:  PUSH dword ptr [EBP + 0xc]\n  100f0e27:  PUSH dword ptr [EBP + 0x8]\n  100f0e2a:  CALL 0x100f0e37\n  100f0e2f:  MOV EAX,dword ptr [EBP + 0xc]\n  100f0e32:  ADD ESP,0x10\n  100f0e35:  POP EBP\n  100f0e36:  RET", 
+  "callers": [
+    {
+      "address": "0x100ef11a", 
+      "name": "FUN_100ef11a"
+    }
+  ]
+}

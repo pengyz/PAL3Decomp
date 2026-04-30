@@ -1,0 +1,46 @@
+{
+  "address": "0x100e6b16", 
+  "size_bytes": 43, 
+  "calling_convention": "unknown", 
+  "signature": "undefined FUN_100e6b16(undefined4 param_1)", 
+  "callees": [
+    {
+      "address": "0x100ea6d0", 
+      "name": "_strlen"
+    }, 
+    {
+      "address": "0x100e4b0d", 
+      "name": "_malloc"
+    }, 
+    {
+      "address": "0x100ebd20", 
+      "name": "FUN_100ebd20"
+    }
+  ], 
+  "global_refs": [
+    {
+      "address": "0x00000004", 
+      "type": null, 
+      "name": "DAT_00000004"
+    }
+  ], 
+  "has_custom_name": false, 
+  "decompiled_c": "\nundefined4 FUN_100e6b16(char *param_1)\n\n{\n  size_t sVar1;\n  void *pvVar2;\n  undefined4 uVar3;\n  \n  if (param_1 != (char *)0x0) {\n    sVar1 = _strlen(param_1);\n    pvVar2 = _malloc(sVar1 + 1);\n    if (pvVar2 != (void *)0x0) {\n      uVar3 = FUN_100ebd20(pvVar2,param_1);\n      return uVar3;\n    }\n  }\n  return 0;\n}\n\n", 
+  "is_thunk": false, 
+  "name": "FUN_100e6b16", 
+  "assembly": "  100e6b16:  PUSH ESI\n  100e6b17:  MOV ESI,dword ptr [ESP + 0x8]\n  100e6b1b:  TEST ESI,ESI\n  100e6b1d:  JZ 0x100e6b3d\n  100e6b1f:  PUSH ESI\n  100e6b20:  CALL 0x100ea6d0\n  100e6b25:  INC EAX\n  100e6b26:  PUSH EAX\n  100e6b27:  CALL 0x100e4b0d\n  100e6b2c:  POP ECX\n  100e6b2d:  TEST EAX,EAX\n  100e6b2f:  POP ECX\n  100e6b30:  JZ 0x100e6b3d\n  100e6b32:  PUSH ESI\n  100e6b33:  PUSH EAX\n  100e6b34:  CALL 0x100ebd20\n  100e6b39:  POP ECX\n  100e6b3a:  POP ECX\n  100e6b3b:  POP ESI\n  100e6b3c:  RET\n  100e6b3d:  XOR EAX,EAX\n  100e6b3f:  POP ESI\n  100e6b40:  RET", 
+  "callers": [
+    {
+      "address": "0x1004f7bc", 
+      "name": "FUN_1004f7bc"
+    }, 
+    {
+      "address": "0x10037159", 
+      "name": "FUN_10037159"
+    }, 
+    {
+      "address": "0x100e7b14", 
+      "name": "FUN_100e7b14"
+    }
+  ]
+}

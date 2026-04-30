@@ -1,0 +1,14 @@
+{
+  "address": "0x10005d80", 
+  "size_bytes": 13, 
+  "calling_convention": "__thiscall", 
+  "signature": "undefined __thiscall CPKFile(CPKFile * this)", 
+  "callees": [], 
+  "global_refs": [], 
+  "has_custom_name": true, 
+  "decompiled_c": "\n/* public: __thiscall CPKFile::CPKFile(void) */\n\nvoid __thiscall CPKFile::CPKFile(CPKFile *this)\n\n{\n                    /* 0x5d80  5  ??0CPKFile@@QAE@XZ */\n  *this = (CPKFile)0x0;\n  *(undefined4 *)(this + 0x20) = 0;\n  return;\n}\n\n", 
+  "is_thunk": false, 
+  "name": "CPKFile", 
+  "assembly": "  10005d80:  MOV EAX,ECX\n  10005d82:  MOV byte ptr [EAX],0x0\n  10005d85:  MOV dword ptr [EAX + 0x20],0x0\n  10005d8c:  RET", 
+  "callers": []
+}

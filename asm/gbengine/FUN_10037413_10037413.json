@@ -1,0 +1,23 @@
+{
+  "address": "0x10037413", 
+  "size_bytes": 30, 
+  "calling_convention": "unknown", 
+  "signature": "undefined FUN_10037413(void)", 
+  "callees": [], 
+  "global_refs": [], 
+  "has_custom_name": false, 
+  "decompiled_c": "\nvoid FUN_10037413(void)\n\n{\n  int *in_ECX;\n  \n  if ((undefined4 *)in_ECX[1] != (undefined4 *)0x0) {\n    (*(code *)**(undefined4 **)in_ECX[1])(1);\n  }\n  if ((undefined4 *)*in_ECX != (undefined4 *)0x0) {\n    (*(code *)**(undefined4 **)*in_ECX)(1);\n  }\n  return;\n}\n\n", 
+  "is_thunk": false, 
+  "name": "FUN_10037413", 
+  "assembly": "  10037413:  PUSH ESI\n  10037414:  MOV ESI,ECX\n  10037416:  MOV ECX,dword ptr [ESI + 0x4]\n  10037419:  TEST ECX,ECX\n  1003741b:  JZ 0x10037423\n  1003741d:  MOV EAX,dword ptr [ECX]\n  1003741f:  PUSH 0x1\n  10037421:  CALL dword ptr [EAX]\n  10037423:  MOV ECX,dword ptr [ESI]\n  10037425:  TEST ECX,ECX\n  10037427:  POP ESI\n  10037428:  JZ 0x10037430\n  1003742a:  MOV EAX,dword ptr [ECX]\n  1003742c:  PUSH 0x1\n  1003742e:  CALL dword ptr [EAX]\n  10037430:  RET", 
+  "callers": [
+    {
+      "address": "0x10032ea1", 
+      "name": "FUN_10032ea1"
+    }, 
+    {
+      "address": "0x10032f89", 
+      "name": "FUN_10032f89"
+    }
+  ]
+}

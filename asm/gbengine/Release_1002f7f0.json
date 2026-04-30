@@ -1,0 +1,119 @@
+{
+  "address": "0x1002f7f0", 
+  "size_bytes": 20, 
+  "calling_convention": "__thiscall", 
+  "signature": "void __thiscall Release(gbRefObject * this)", 
+  "callees": [], 
+  "global_refs": [], 
+  "has_custom_name": true, 
+  "decompiled_c": "\n/* public: void __thiscall gbRefObject::Release(void) */\n\nvoid __thiscall gbRefObject::Release(gbRefObject *this)\n\n{\n  int iVar1;\n  \n                    /* 0x2f7f0  777  ?Release@gbRefObject@@QAEXXZ */\n  iVar1 = *(int *)(this + 4);\n  *(int *)(this + 4) = iVar1 + -1;\n  if ((iVar1 + -1 == 0) && (this != (gbRefObject *)0x0)) {\n    (*(code *)**(undefined4 **)this)(1);\n  }\n  return;\n}\n\n", 
+  "is_thunk": false, 
+  "name": "Release", 
+  "assembly": "  1002f7f0:  MOV EAX,dword ptr [ECX + 0x4]\n  1002f7f3:  DEC EAX\n  1002f7f4:  MOV dword ptr [ECX + 0x4],EAX\n  1002f7f7:  JNZ 0x1002f803\n  1002f7f9:  TEST ECX,ECX\n  1002f7fb:  JZ 0x1002f803\n  1002f7fd:  MOV EAX,dword ptr [ECX]\n  1002f7ff:  PUSH 0x1\n  1002f801:  CALL dword ptr [EAX]\n  1002f803:  RET", 
+  "callers": [
+    {
+      "address": "0x1000e920", 
+      "name": "~gbBaseMesh"
+    }, 
+    {
+      "address": "0x1000e920", 
+      "name": "~gbBaseMesh"
+    }, 
+    {
+      "address": "0x1000e920", 
+      "name": "~gbBaseMesh"
+    }, 
+    {
+      "address": "0x1000e920", 
+      "name": "~gbBaseMesh"
+    }, 
+    {
+      "address": "0x100015f0", 
+      "name": "DeleteSoundData"
+    }, 
+    {
+      "address": "0x10002c20", 
+      "name": "~gbActor"
+    }, 
+    {
+      "address": "0x10003620", 
+      "name": "~gbActorMgr"
+    }, 
+    {
+      "address": "0x10003620", 
+      "name": "~gbActorMgr"
+    }, 
+    {
+      "address": "0x1000eb60", 
+      "name": "SetTexture"
+    }, 
+    {
+      "address": "0x1000fce0", 
+      "name": "~gbGeomNode"
+    }, 
+    {
+      "address": "0x100130b0", 
+      "name": "~gbVolModNode"
+    }, 
+    {
+      "address": "0x100135a0", 
+      "name": "gbLoadLightFile"
+    }, 
+    {
+      "address": "0x10014c60", 
+      "name": "~gbSceneGraph"
+    }, 
+    {
+      "address": "0x1000ecc0", 
+      "name": "FUN_1000ecc0"
+    }, 
+    {
+      "address": "0x1001d510", 
+      "name": "Release"
+    }, 
+    {
+      "address": "0x1001d510", 
+      "name": "Release"
+    }, 
+    {
+      "address": "0x10020320", 
+      "name": "CleanAllResource"
+    }, 
+    {
+      "address": "0x10020320", 
+      "name": "CleanAllResource"
+    }, 
+    {
+      "address": "0x10022b40", 
+      "name": "Release"
+    }, 
+    {
+      "address": "0x1002a7a0", 
+      "name": "~gbPartGroupParam"
+    }, 
+    {
+      "address": "0x1002a7a0", 
+      "name": "~gbPartGroupParam"
+    }, 
+    {
+      "address": "0x10032120", 
+      "name": "~gbDropGroup"
+    }, 
+    {
+      "address": "0x10032120", 
+      "name": "~gbDropGroup"
+    }, 
+    {
+      "address": "0x10023250", 
+      "name": "FUN_10023250"
+    }, 
+    {
+      "address": "0x10023760", 
+      "name": "FUN_10023760"
+    }, 
+    {
+      "address": "0x10022750", 
+      "name": "Release"
+    }
+  ]
+}

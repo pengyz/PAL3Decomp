@@ -1,0 +1,14 @@
+{
+  "address": "0x10002180", 
+  "size_bytes": 18, 
+  "calling_convention": "__thiscall", 
+  "signature": "void __thiscall SetUnit(gbQuaternion * this)", 
+  "callees": [], 
+  "global_refs": [], 
+  "has_custom_name": true, 
+  "decompiled_c": "\n/* public: void __thiscall gbQuaternion::SetUnit(void) */\n\nvoid __thiscall gbQuaternion::SetUnit(gbQuaternion *this)\n\n{\n                    /* 0x2180  900  ?SetUnit@gbQuaternion@@QAEXXZ */\n  *(undefined4 *)(this + 0xc) = 0x3f800000;\n  *(undefined4 *)(this + 8) = 0;\n  *(undefined4 *)(this + 4) = 0;\n  *(undefined4 *)this = 0;\n  return;\n}\n\n", 
+  "is_thunk": false, 
+  "name": "SetUnit", 
+  "assembly": "  10002180:  XOR EAX,EAX\n  10002182:  MOV dword ptr [ECX + 0xc],0x3f800000\n  10002189:  MOV dword ptr [ECX + 0x8],EAX\n  1000218c:  MOV dword ptr [ECX + 0x4],EAX\n  1000218f:  MOV dword ptr [ECX],EAX\n  10002191:  RET", 
+  "callers": []
+}

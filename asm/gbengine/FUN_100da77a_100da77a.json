@@ -1,0 +1,39 @@
+{
+  "address": "0x100da77a", 
+  "size_bytes": 95, 
+  "calling_convention": "unknown", 
+  "signature": "undefined FUN_100da77a(undefined4 param_1, undefined4 param_2)", 
+  "callees": [], 
+  "global_refs": [
+    {
+      "address": "0x00000008", 
+      "type": null, 
+      "name": "DAT_00000008"
+    }, 
+    {
+      "address": "0x10109950", 
+      "type": null, 
+      "name": "DAT_10109950"
+    }, 
+    {
+      "address": "0x00000004", 
+      "type": null, 
+      "name": "DAT_00000004"
+    }
+  ], 
+  "has_custom_name": false, 
+  "decompiled_c": "\nvoid FUN_100da77a(undefined8 *param_1,ulonglong *param_2)\n\n{\n  ulonglong uVar1;\n  undefined8 uVar2;\n  ulonglong uVar3;\n  undefined8 uVar4;\n  undefined8 in_MM4;\n  undefined8 uVar5;\n  ulonglong uVar6;\n  \n  FastExitMediaState();\n  uVar1 = *param_2;\n  uVar3 = (ulonglong)*(uint *)(param_2 + 1);\n  uVar2 = PackedFloatingMUL(uVar1,uVar1);\n  uVar4 = PackedFloatingMUL(uVar3,uVar3);\n  uVar2 = PackedFloatingADD(uVar2,uVar4);\n  uVar2 = PackedFloatingAccumulate(uVar2,uVar2);\n  uVar5 = PackedFloatingReciprocalSQRAprox(in_MM4,uVar2);\n  uVar6 = PackedFloatingCompareGT(uVar2,0x80000000800000);\n  uVar4 = PackedFloatingMUL(uVar5,uVar5);\n  uVar2 = PackedFloatingReciprocalSQRIter1(uVar2,uVar4);\n  uVar2 = PackedFloatingReciprocalIter2(uVar2,uVar5);\n  uVar4 = PackedFloatingMUL(uVar1 & uVar6,uVar2);\n  uVar2 = PackedFloatingMUL(uVar3 & uVar6,uVar2);\n  *param_1 = uVar4;\n  *(int *)(param_1 + 1) = (int)uVar2;\n  FastExitMediaState();\n  return;\n}\n\n", 
+  "is_thunk": false, 
+  "name": "FUN_100da77a", 
+  "assembly": "  100da77a:  FEMMS\n  100da77c:  MOV ECX,dword ptr [ESP + 0x8]\n  100da780:  MOVQ MM0,qword ptr [ECX]\n  100da783:  MOVQ MM1,MM0\n  100da786:  MOVD MM2,dword ptr [ECX + 0x8]\n  100da78a:  MOVQ MM3,MM2\n  100da78d:  PFMUL MM0,MM0\n  100da791:  PFMUL MM2,MM2\n  100da795:  PFADD MM0,MM2\n  100da799:  PFACC MM0,MM0\n  100da79d:  MOVQ MM5,MM0\n  100da7a0:  PFRSQRT MM4,MM0\n  100da7a4:  PFCMPGT MM5,qword ptr [0x10109950]\n  100da7ac:  MOVQ MM2,MM4\n  100da7af:  PFMUL MM2,MM4\n  100da7b3:  PFRSQIT1 MM0,MM2\n  100da7b7:  MOV EAX,dword ptr [ESP + 0x4]\n  100da7bb:  PAND MM1,MM5\n  100da7be:  PAND MM3,MM5\n  100da7c1:  PFRCPIT2 MM0,MM4\n  100da7c5:  PFMUL MM1,MM0\n  100da7c9:  PFMUL MM3,MM0\n  100da7cd:  MOVQ qword ptr [EAX],MM1\n  100da7d0:  MOVD dword ptr [EAX + 0x8],MM3\n  100da7d4:  FEMMS\n  100da7d6:  RET 0x8", 
+  "callers": [
+    {
+      "address": "0x100d7d6c", 
+      "name": "FUN_100d7d6c"
+    }, 
+    {
+      "address": "0x100d9b5f", 
+      "name": "FUN_100d9b5f"
+    }
+  ]
+}

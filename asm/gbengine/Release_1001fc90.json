@@ -1,0 +1,19 @@
+{
+  "address": "0x1001fc90", 
+  "size_bytes": 15, 
+  "calling_convention": "__thiscall", 
+  "signature": "void __thiscall Release(gbPixelFormat * this)", 
+  "callees": [
+    {
+      "address": "0x100e4b99", 
+      "name": "FUN_100e4b99"
+    }
+  ], 
+  "global_refs": [], 
+  "has_custom_name": true, 
+  "decompiled_c": "\n/* public: void __thiscall gbPixelFormat::Release(void) */\n\nvoid __thiscall gbPixelFormat::Release(gbPixelFormat *this)\n\n{\n                    /* 0x1fc90  774  ?Release@gbPixelFormat@@QAEXXZ */\n  if (*(int *)(this + 8) != 0) {\n    FUN_100e4b99(*(int *)(this + 8));\n  }\n  return;\n}\n\n", 
+  "is_thunk": false, 
+  "name": "Release", 
+  "assembly": "  1001fc90:  MOV EAX,dword ptr [ECX + 0x8]\n  1001fc93:  TEST EAX,EAX\n  1001fc95:  JZ 0x1001fc9e\n  1001fc97:  PUSH EAX\n  1001fc98:  CALL 0x100e4b99\n  1001fc9d:  POP ECX\n  1001fc9e:  RET", 
+  "callers": []
+}

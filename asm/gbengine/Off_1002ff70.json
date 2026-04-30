@@ -1,0 +1,59 @@
+{
+  "address": "0x1002ff70", 
+  "size_bytes": 135, 
+  "calling_convention": "__thiscall", 
+  "signature": "double __thiscall Off(gbTimeCounter * this)", 
+  "callees": [
+    {
+      "address": "0x00000014", 
+      "name": "QueryPerformanceCounter"
+    }, 
+    {
+      "address": "0x100e5e04", 
+      "name": "FUN_100e5e04"
+    }
+  ], 
+  "global_refs": [
+    {
+      "address": "0x100f5580", 
+      "type": null, 
+      "name": "DAT_100f5580"
+    }, 
+    {
+      "address": "0x1015d398", 
+      "type": "undefined4", 
+      "name": "DAT_1015d398"
+    }, 
+    {
+      "address": "0x-0000008", 
+      "type": null, 
+      "name": "DAT_-0000008"
+    }, 
+    {
+      "address": "0x100f507c", 
+      "type": "pointer", 
+      "name": "DAT_100f507c"
+    }, 
+    {
+      "address": "0x100f5b30", 
+      "type": null, 
+      "name": "DAT_100f5b30"
+    }, 
+    {
+      "address": "0x1015d390", 
+      "type": null, 
+      "name": "DAT_1015d390"
+    }, 
+    {
+      "address": "0x100f5b38", 
+      "type": null, 
+      "name": "DAT_100f5b38"
+    }
+  ], 
+  "has_custom_name": true, 
+  "decompiled_c": "\n/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */\n/* public: double __thiscall gbTimeCounter::Off(void) */\n\ndouble __thiscall gbTimeCounter::Off(gbTimeCounter *this)\n\n{\n  int iVar1;\n  LARGE_INTEGER local_8;\n  \n                    /* 0x2ff70  716  ?Off@gbTimeCounter@@QAENXZ */\n  if (*(double *)this < 0.0) {\n    return 0.0;\n  }\n  if (DAT_1015d398 != 0) {\n    QueryPerformanceCounter(&local_8);\n    *(double *)(this + 8) =\n         ((double)local_8._0_4_ + (double)local_8.s.HighPart * 4294967295.0) / _DAT_1015d390;\n    return *(double *)(this + 8) - *(double *)this;\n  }\n  iVar1 = FUN_100e5e04();\n  *(double *)(this + 8) = (double)iVar1 * 0.001;\n  return *(double *)(this + 8) - *(double *)this;\n}\n\n", 
+  "is_thunk": false, 
+  "name": "Off", 
+  "assembly": "  1002ff70:  SUB ESP,0x8\n  1002ff73:  PUSH ESI\n  1002ff74:  MOV ESI,ECX\n  1002ff76:  FLD qword ptr [ESI]\n  1002ff78:  FCOMP qword ptr [0x100f5580]\n  1002ff7e:  FNSTSW AX\n  1002ff80:  TEST AH,0x1\n  1002ff83:  JZ 0x1002ff90\n  1002ff85:  FLD qword ptr [0x100f5580]\n  1002ff8b:  POP ESI\n  1002ff8c:  ADD ESP,0x8\n  1002ff8f:  RET\n  1002ff90:  MOV EAX,[0x1015d398]\n  1002ff95:  TEST EAX,EAX\n  1002ff97:  JZ 0x1002ffd7\n  1002ff99:  LEA EAX,[ESP + 0x4]\n  1002ff9d:  PUSH EAX\n  1002ff9e:  CALL dword ptr [0x100f507c]\n  1002ffa4:  FILD dword ptr [ESP + 0x8]\n  1002ffa8:  MOV ECX,dword ptr [ESP + 0x4]\n  1002ffac:  MOV dword ptr [ESP + 0x8],0x0\n  1002ffb4:  MOV dword ptr [ESP + 0x4],ECX\n  1002ffb8:  FMUL qword ptr [0x100f5b30]\n  1002ffbe:  FILD qword ptr [ESP + 0x4]\n  1002ffc2:  FADDP\n  1002ffc4:  FDIV qword ptr [0x1015d390]\n  1002ffca:  FSTP qword ptr [ESI + 0x8]\n  1002ffcd:  FLD qword ptr [ESI + 0x8]\n  1002ffd0:  FSUB qword ptr [ESI]\n  1002ffd2:  POP ESI\n  1002ffd3:  ADD ESP,0x8\n  1002ffd6:  RET\n  1002ffd7:  CALL 0x100e5e04\n  1002ffdc:  MOV dword ptr [ESP + 0x4],EAX\n  1002ffe0:  FILD dword ptr [ESP + 0x4]\n  1002ffe4:  FMUL qword ptr [0x100f5b38]\n  1002ffea:  FSTP qword ptr [ESI + 0x8]\n  1002ffed:  FLD qword ptr [ESI + 0x8]\n  1002fff0:  FSUB qword ptr [ESI]\n  1002fff2:  POP ESI\n  1002fff3:  ADD ESP,0x8\n  1002fff6:  RET", 
+  "callers": []
+}

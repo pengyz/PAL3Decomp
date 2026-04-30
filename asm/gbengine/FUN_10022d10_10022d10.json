@@ -1,0 +1,30 @@
+{
+  "address": "0x10022d10", 
+  "size_bytes": 24, 
+  "calling_convention": "unknown", 
+  "signature": "undefined FUN_10022d10(void)", 
+  "callees": [
+    {
+      "address": "0x100e54db", 
+      "name": "FUN_100e54db"
+    }
+  ], 
+  "global_refs": [
+    {
+      "address": "0x10022d30", 
+      "type": null, 
+      "name": "DAT_10022d30"
+    }
+  ], 
+  "has_custom_name": false, 
+  "decompiled_c": "\nvoid FUN_10022d10(void)\n\n{\n  int in_ECX;\n  \n  FUN_100e54db(*(undefined4 *)(in_ECX + 8),*(undefined4 *)(in_ECX + 0x10),8,&LAB_10022d30);\n  return;\n}\n\n", 
+  "is_thunk": false, 
+  "name": "FUN_10022d10", 
+  "assembly": "  10022d10:  MOV EAX,dword ptr [ECX + 0x10]\n  10022d13:  MOV ECX,dword ptr [ECX + 0x8]\n  10022d16:  PUSH 0x10022d30\n  10022d1b:  PUSH 0x8\n  10022d1d:  PUSH EAX\n  10022d1e:  PUSH ECX\n  10022d1f:  CALL 0x100e54db\n  10022d24:  ADD ESP,0x10\n  10022d27:  RET", 
+  "callers": [
+    {
+      "address": "0x10023a90", 
+      "name": "FUN_10023a90"
+    }
+  ]
+}

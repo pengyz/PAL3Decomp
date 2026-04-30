@@ -1,0 +1,29 @@
+{
+  "address": "0x100eb570", 
+  "size_bytes": 51, 
+  "calling_convention": "unknown", 
+  "signature": "undefined FUN_100eb570(undefined4 param_1)", 
+  "callees": [], 
+  "global_refs": [
+    {
+      "address": "0x00000004", 
+      "type": null, 
+      "name": "DAT_00000004"
+    }
+  ], 
+  "has_custom_name": false, 
+  "decompiled_c": "\nundefined4 FUN_100eb570(int param_1)\n\n{\n  if (param_1 == 0x3a4) {\n    return 0x411;\n  }\n  if (param_1 == 0x3a8) {\n    return 0x804;\n  }\n  if (param_1 == 0x3b5) {\n    return 0x412;\n  }\n  if (param_1 != 0x3b6) {\n    return 0;\n  }\n  return 0x404;\n}\n\n", 
+  "is_thunk": false, 
+  "name": "FUN_100eb570", 
+  "assembly": "  100eb570:  MOV EAX,dword ptr [ESP + 0x4]\n  100eb574:  SUB EAX,0x3a4\n  100eb579:  JZ 0x100eb59d\n  100eb57b:  SUB EAX,0x4\n  100eb57e:  JZ 0x100eb597\n  100eb580:  SUB EAX,0xd\n  100eb583:  JZ 0x100eb591\n  100eb585:  DEC EAX\n  100eb586:  JZ 0x100eb58b\n  100eb588:  XOR EAX,EAX\n  100eb58a:  RET\n  100eb58b:  MOV EAX,0x404\n  100eb590:  RET\n  100eb591:  MOV EAX,0x412\n  100eb596:  RET\n  100eb597:  MOV EAX,0x804\n  100eb59c:  RET\n  100eb59d:  MOV EAX,0x411\n  100eb5a2:  RET", 
+  "callers": [
+    {
+      "address": "0x100eb379", 
+      "name": "FUN_100eb379"
+    }, 
+    {
+      "address": "0x100eb379", 
+      "name": "FUN_100eb379"
+    }
+  ]
+}

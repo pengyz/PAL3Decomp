@@ -1,0 +1,69 @@
+{
+  "address": "0x10014dc0", 
+  "size_bytes": 322, 
+  "calling_convention": "__thiscall", 
+  "signature": "void __thiscall CalEffectiveVolMod(gbSceneGraph * this, gbRenderInfoObj * param_1, gbVec3D * param_2, int param_3)", 
+  "callees": [
+    {
+      "address": "0x100e54db", 
+      "name": "FUN_100e54db"
+    }
+  ], 
+  "global_refs": [
+    {
+      "address": "0x-0000808", 
+      "type": null, 
+      "name": "DAT_-0000808"
+    }, 
+    {
+      "address": "0x-000080c", 
+      "type": null, 
+      "name": "DAT_-000080c"
+    }, 
+    {
+      "address": "0x-00007fc", 
+      "type": null, 
+      "name": "DAT_-00007fc"
+    }, 
+    {
+      "address": "0x0000000c", 
+      "type": null, 
+      "name": "DAT_0000000c"
+    }, 
+    {
+      "address": "0x00000008", 
+      "type": null, 
+      "name": "DAT_00000008"
+    }, 
+    {
+      "address": "0x100f53a0", 
+      "type": null, 
+      "name": "DAT_100f53a0"
+    }, 
+    {
+      "address": "0x-0000800", 
+      "type": null, 
+      "name": "DAT_-0000800"
+    }, 
+    {
+      "address": "0x10014f10", 
+      "type": null, 
+      "name": "DAT_10014f10"
+    }
+  ], 
+  "has_custom_name": true, 
+  "decompiled_c": "\n/* public: void __thiscall gbSceneGraph::CalEffectiveVolMod(struct gbRenderInfoObj *,struct gbVec3D\n   const &,int) */\n\nvoid __thiscall\ngbSceneGraph::CalEffectiveVolMod\n          (gbSceneGraph *this,gbRenderInfoObj *param_1,gbVec3D *param_2,int param_3)\n\n{\n  float fVar1;\n  int iVar2;\n  float *pfVar3;\n  int iVar4;\n  gbSceneGraph *pgVar5;\n  int iVar6;\n  int iVar7;\n  gbRenderInfoObj *pgVar8;\n  float10 fVar9;\n  float *local_80c;\n  gbRenderInfoObj *local_808;\n  gbRenderInfoObj *pgStack_804;\n  float local_800 [512];\n  \n                    /* 0x14dc0  324\n                       ?CalEffectiveVolMod@gbSceneGraph@@QAEXPAUgbRenderInfoObj@@ABUgbVec3D@@H@Z */\n  iVar7 = 0;\n  local_80c = (float *)0x0;\n  if (0 < *(int *)(this + 0x4b14)) {\n    pfVar3 = local_800 + 1;\n    pgVar5 = this + 0x714;\n    do {\n      fVar1 = *(float *)pgVar5;\n      fVar9 = (float10)(**(code **)(**(int **)((int)fVar1 + 0xd8) + 0xc))(param_2,param_3);\n      if (fVar9 != (float10)0.0) {\n        pfVar3[-1] = fVar1;\n        iVar7 = iVar7 + 1;\n        *pfVar3 = (float)fVar9;\n        pfVar3 = pfVar3 + 2;\n      }\n      local_80c = (float *)((int)local_80c + 1);\n      pgVar5 = pgVar5 + 4;\n    } while ((int)local_80c < *(int *)(this + 0x4b14));\n  }\n  FUN_100e54db(local_800,iVar7,8,&LAB_10014f10);\n  iVar4 = 0;\n  iVar6 = 0;\n  if (0 < iVar7) {\n    local_80c = local_800;\n    local_808 = param_1 + 0x68;\n    pgStack_804 = param_1 + 0x60;\n    do {\n      fVar1 = *local_80c;\n      iVar2 = (**(code **)(**(int **)((int)fVar1 + 0xd8) + 4))();\n      if (iVar2 == 0) {\n        if (iVar4 < 2) {\n          iVar4 = iVar4 + 1;\n          *(float *)pgStack_804 = fVar1;\n          pgStack_804 = pgStack_804 + 4;\n        }\n      }\n      else if (iVar6 < 2) {\n        iVar6 = iVar6 + 1;\n        *(float *)local_808 = fVar1;\n        local_808 = local_808 + 4;\n      }\n      local_80c = local_80c + 2;\n      iVar7 = iVar7 + -1;\n    } while (iVar7 != 0);\n  }\n  if (iVar4 < 2) {\n    pgVar8 = param_1 + iVar4 * 4 + 0x60;\n    for (iVar7 = 2 - iVar4; iVar7 != 0; iVar7 = iVar7 + -1) {\n      *(undefined4 *)pgVar8 = 0;\n      pgVar8 = pgVar8 + 4;\n    }\n  }\n  if (iVar6 < 2) {\n    pgVar8 = param_1 + iVar6 * 4 + 0x68;\n    for (iVar7 = 2 - iVar6; iVar7 != 0; iVar7 = iVar7 + -1) {\n      *(undefined4 *)pgVar8 = 0;\n      pgVar8 = pgVar8 + 4;\n    }\n  }\n  return;\n}\n\n", 
+  "is_thunk": false, 
+  "name": "CalEffectiveVolMod", 
+  "assembly": "  10014dc0:  SUB ESP,0x80c\n  10014dc6:  MOV EAX,dword ptr [ECX + 0x4b14]\n  10014dcc:  PUSH EBX\n  10014dcd:  PUSH EBP\n  10014dce:  PUSH ESI\n  10014dcf:  PUSH EDI\n  10014dd0:  XOR EDI,EDI\n  10014dd2:  CMP EAX,EDI\n  10014dd4:  MOV dword ptr [ESP + 0x14],ECX\n  10014dd8:  MOV dword ptr [ESP + 0x10],EDI\n  10014ddc:  JLE 0x10014e3a\n  10014dde:  LEA EBX,[ESP + 0x20]\n  10014de2:  LEA EBP,[ECX + 0x714]\n  10014de8:  MOV ESI,dword ptr [EBP]\n  10014deb:  MOV EDX,dword ptr [ESP + 0x828]\n  10014df2:  PUSH EDX\n  10014df3:  MOV EDX,dword ptr [ESP + 0x828]\n  10014dfa:  MOV ECX,dword ptr [ESI + 0xd8]\n  10014e00:  PUSH EDX\n  10014e01:  MOV EAX,dword ptr [ECX]\n  10014e03:  CALL dword ptr [EAX + 0xc]\n  10014e06:  FCOM dword ptr [0x100f53a0]\n  10014e0c:  FNSTSW AX\n  10014e0e:  TEST AH,0x40\n  10014e11:  JNZ 0x10014e1e\n  10014e13:  MOV dword ptr [EBX + -0x4],ESI\n  10014e16:  INC EDI\n  10014e17:  FSTP dword ptr [EBX]\n  10014e19:  ADD EBX,0x8\n  10014e1c:  JMP 0x10014e20\n  10014e1e:  FSTP ST0\n  10014e20:  MOV ECX,dword ptr [ESP + 0x14]\n  10014e24:  MOV EAX,dword ptr [ESP + 0x10]\n  10014e28:  INC EAX\n  10014e29:  ADD EBP,0x4\n  10014e2c:  MOV EDX,dword ptr [ECX + 0x4b14]\n  10014e32:  MOV dword ptr [ESP + 0x10],EAX\n  10014e36:  CMP EAX,EDX\n  10014e38:  JL 0x10014de8\n  10014e3a:  PUSH 0x10014f10\n  10014e3f:  PUSH 0x8\n  10014e41:  LEA EDX,[ESP + 0x24]\n  10014e45:  PUSH EDI\n  10014e46:  PUSH EDX\n  10014e47:  CALL 0x100e54db\n  10014e4c:  ADD ESP,0x10\n  10014e4f:  XOR EBX,EBX\n  10014e51:  XOR EBP,EBP\n  10014e53:  TEST EDI,EDI\n  10014e55:  JLE 0x10014ebf\n  10014e57:  LEA EAX,[ESP + 0x1c]\n  10014e5b:  MOV dword ptr [ESP + 0x10],EAX\n  10014e5f:  MOV EAX,dword ptr [ESP + 0x820]\n  10014e66:  LEA ECX,[EAX + 0x68]\n  10014e69:  ADD EAX,0x60\n  10014e6c:  MOV dword ptr [ESP + 0x14],ECX\n  10014e70:  MOV dword ptr [ESP + 0x18],EAX\n  10014e74:  MOV EDX,dword ptr [ESP + 0x10]\n  10014e78:  MOV ESI,dword ptr [EDX]\n  10014e7a:  MOV ECX,dword ptr [ESI + 0xd8]\n  10014e80:  MOV EAX,dword ptr [ECX]\n  10014e82:  CALL dword ptr [EAX + 0x4]\n  10014e85:  TEST EAX,EAX\n  10014e87:  JNZ 0x10014e9e\n  10014e89:  CMP EBX,0x2\n  10014e8c:  JGE 0x10014eb1\n  10014e8e:  MOV EAX,dword ptr [ESP + 0x18]\n  10014e92:  INC EBX\n  10014e93:  MOV dword ptr [EAX],ESI\n  10014e95:  ADD EAX,0x4\n  10014e98:  MOV dword ptr [ESP + 0x18],EAX\n  10014e9c:  JMP 0x10014eb1\n  10014e9e:  CMP EBP,0x2\n  10014ea1:  JGE 0x10014eb1\n  10014ea3:  MOV EAX,dword ptr [ESP + 0x14]\n  10014ea7:  INC EBP\n  10014ea8:  MOV dword ptr [EAX],ESI\n  10014eaa:  ADD EAX,0x4\n  10014ead:  MOV dword ptr [ESP + 0x14],EAX\n  10014eb1:  MOV ECX,dword ptr [ESP + 0x10]\n  10014eb5:  ADD ECX,0x8\n  10014eb8:  DEC EDI\n  10014eb9:  MOV dword ptr [ESP + 0x10],ECX\n  10014ebd:  JNZ 0x10014e74\n  10014ebf:  CMP EBX,0x2\n  10014ec2:  JGE 0x10014eda\n  10014ec4:  MOV ECX,dword ptr [ESP + 0x820]\n  10014ecb:  LEA EDI,[ECX + EBX*0x4 + 0x60]\n  10014ecf:  MOV ECX,0x2\n  10014ed4:  SUB ECX,EBX\n  10014ed6:  XOR EAX,EAX\n  10014ed8:  STOSD.REP ES:EDI\n  10014eda:  CMP EBP,0x2\n  10014edd:  JGE 0x10014ef5\n  10014edf:  MOV EDX,dword ptr [ESP + 0x820]\n  10014ee6:  MOV ECX,0x2\n  10014eeb:  SUB ECX,EBP\n  10014eed:  XOR EAX,EAX\n  10014eef:  LEA EDI,[EDX + EBP*0x4 + 0x68]\n  10014ef3:  STOSD.REP ES:EDI\n  10014ef5:  POP EDI\n  10014ef6:  POP ESI\n  10014ef7:  POP EBP\n  10014ef8:  POP EBX\n  10014ef9:  ADD ESP,0x80c\n  10014eff:  RET 0xc", 
+  "callers": [
+    {
+      "address": "0x10011130", 
+      "name": "AttachSelf"
+    }, 
+    {
+      "address": "0x10009ea0", 
+      "name": "FUN_10009ea0"
+    }
+  ]
+}

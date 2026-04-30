@@ -1,0 +1,25 @@
+{
+  "address": "0x1002ec00", 
+  "size_bytes": 31, 
+  "calling_convention": "__thiscall", 
+  "signature": "bool __thiscall IsContainNode(gbChain1D * this, gbChain1DNode * param_1)", 
+  "callees": [], 
+  "global_refs": [
+    {
+      "address": "0x00000004", 
+      "type": null, 
+      "name": "DAT_00000004"
+    }
+  ], 
+  "has_custom_name": true, 
+  "decompiled_c": "\n/* public: bool __thiscall gbChain1D::IsContainNode(class gbChain1DNode *) */\n\nbool __thiscall gbChain1D::IsContainNode(gbChain1D *this,gbChain1DNode *param_1)\n\n{\n  gbChain1DNode *pgVar1;\n  \n                    /* 0x2ec00  628  ?IsContainNode@gbChain1D@@QAE_NPAVgbChain1DNode@@@Z */\n  pgVar1 = *(gbChain1DNode **)this;\n  while( true ) {\n    if (pgVar1 == (gbChain1DNode *)0x0) {\n      return false;\n    }\n    if (pgVar1 == param_1) break;\n    pgVar1 = *(gbChain1DNode **)(pgVar1 + 4);\n  }\n  return true;\n}\n\n", 
+  "is_thunk": false, 
+  "name": "IsContainNode", 
+  "assembly": "  1002ec00:  MOV EAX,dword ptr [ECX]\n  1002ec02:  TEST EAX,EAX\n  1002ec04:  JZ 0x1002ec15\n  1002ec06:  MOV ECX,dword ptr [ESP + 0x4]\n  1002ec0a:  CMP EAX,ECX\n  1002ec0c:  JZ 0x1002ec1a\n  1002ec0e:  MOV EAX,dword ptr [EAX + 0x4]\n  1002ec11:  TEST EAX,EAX\n  1002ec13:  JNZ 0x1002ec0a\n  1002ec15:  XOR AL,AL\n  1002ec17:  RET 0x4\n  1002ec1a:  MOV AL,0x1\n  1002ec1c:  RET 0x4", 
+  "callers": [
+    {
+      "address": "0x10004570", 
+      "name": "IsChild"
+    }
+  ]
+}

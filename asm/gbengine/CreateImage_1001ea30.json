@@ -1,0 +1,35 @@
+{
+  "address": "0x1001ea30", 
+  "size_bytes": 131, 
+  "calling_convention": "__thiscall", 
+  "signature": "uchar * __thiscall CreateImage(gbImage2D * this, int param_1, int param_2, int param_3)", 
+  "callees": [
+    {
+      "address": "0x100e4b0d", 
+      "name": "_malloc"
+    }
+  ], 
+  "global_refs": [
+    {
+      "address": "0x00000004", 
+      "type": null, 
+      "name": "DAT_00000004"
+    }, 
+    {
+      "address": "0x00000008", 
+      "type": null, 
+      "name": "DAT_00000008"
+    }, 
+    {
+      "address": "0x0000000c", 
+      "type": null, 
+      "name": "DAT_0000000c"
+    }
+  ], 
+  "has_custom_name": true, 
+  "decompiled_c": "\n/* public: unsigned char * __thiscall gbImage2D::CreateImage(int,int,int) */\n\nuchar * __thiscall gbImage2D::CreateImage(gbImage2D *this,int param_1,int param_2,int param_3)\n\n{\n  int iVar1;\n  uchar *puVar2;\n  gbImage2D *pgVar3;\n  int iVar4;\n  \n                    /* 0x1ea30  357  ?CreateImage@gbImage2D@@QAEPAEHHH@Z */\n  iVar4 = 0;\n  *(undefined4 *)this = 0;\n  *(undefined4 *)(this + 4) = 0;\n  *(undefined4 *)(this + 8) = 8;\n  iVar1 = 1;\n  pgVar3 = this + 0x2c;\n  do {\n    *(int *)(pgVar3 + -0x20) = iVar4;\n    *(int *)pgVar3 = iVar1;\n    *(int *)(pgVar3 + 0x20) = iVar1;\n    iVar1 = iVar1 * 2;\n    iVar4 = iVar4 + 1;\n    pgVar3 = pgVar3 + 4;\n  } while (iVar4 < *(int *)(this + 8));\n  *(int *)(this + 0x80) = param_1;\n  *(undefined4 *)(this + 0x70) = 1;\n  iVar1 = param_1 * param_2 * param_3;\n  *(int *)(this + 0xb4) = param_3;\n  *(undefined4 *)(this + 0x6c) = 1;\n  *(undefined4 *)(this + 0x74) = 1;\n  *(undefined4 *)(this + 0x78) = 1;\n  *(undefined4 *)(this + 0x7c) = 1;\n  *(int *)(this + 0x84) = param_2;\n  puVar2 = (uchar *)_malloc((int)(iVar1 + (iVar1 >> 0x1f & 7U)) >> 3);\n  *(uchar **)(this + 0xb8) = puVar2;\n  return puVar2;\n}\n\n", 
+  "is_thunk": false, 
+  "name": "CreateImage", 
+  "assembly": "  1001ea30:  PUSH EBX\n  1001ea31:  PUSH ESI\n  1001ea32:  PUSH EDI\n  1001ea33:  MOV ESI,ECX\n  1001ea35:  XOR EDX,EDX\n  1001ea37:  MOV EDI,0x1\n  1001ea3c:  MOV dword ptr [ESI],EDX\n  1001ea3e:  MOV dword ptr [ESI + 0x4],EDX\n  1001ea41:  MOV dword ptr [ESI + 0x8],0x8\n  1001ea48:  MOV EAX,EDI\n  1001ea4a:  LEA ECX,[ESI + 0x2c]\n  1001ea4d:  MOV dword ptr [ECX + -0x20],EDX\n  1001ea50:  MOV dword ptr [ECX],EAX\n  1001ea52:  MOV dword ptr [ECX + 0x20],EAX\n  1001ea55:  MOV EBX,dword ptr [ESI + 0x8]\n  1001ea58:  ADD EAX,EAX\n  1001ea5a:  INC EDX\n  1001ea5b:  ADD ECX,0x4\n  1001ea5e:  CMP EDX,EBX\n  1001ea60:  JL 0x1001ea4d\n  1001ea62:  MOV EAX,dword ptr [ESP + 0x10]\n  1001ea66:  MOV ECX,dword ptr [ESP + 0x14]\n  1001ea6a:  MOV dword ptr [ESI + 0x80],EAX\n  1001ea70:  IMUL EAX,ECX\n  1001ea73:  MOV EDX,dword ptr [ESP + 0x18]\n  1001ea77:  MOV dword ptr [ESI + 0x70],EDI\n  1001ea7a:  IMUL EAX,EDX\n  1001ea7d:  MOV dword ptr [ESI + 0xb4],EDX\n  1001ea83:  MOV dword ptr [ESI + 0x6c],EDI\n  1001ea86:  CDQ\n  1001ea87:  AND EDX,0x7\n  1001ea8a:  MOV dword ptr [ESI + 0x74],EDI\n  1001ea8d:  ADD EAX,EDX\n  1001ea8f:  MOV dword ptr [ESI + 0x78],EDI\n  1001ea92:  SAR EAX,0x3\n  1001ea95:  PUSH EAX\n  1001ea96:  MOV dword ptr [ESI + 0x7c],EDI\n  1001ea99:  MOV dword ptr [ESI + 0x84],ECX\n  1001ea9f:  CALL 0x100e4b0d\n  1001eaa4:  ADD ESP,0x4\n  1001eaa7:  MOV dword ptr [ESI + 0xb8],EAX\n  1001eaad:  POP EDI\n  1001eaae:  POP ESI\n  1001eaaf:  POP EBX\n  1001eab0:  RET 0xc", 
+  "callers": []
+}

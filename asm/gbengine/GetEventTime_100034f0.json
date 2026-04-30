@@ -1,0 +1,34 @@
+{
+  "address": "0x100034f0", 
+  "size_bytes": 82, 
+  "calling_convention": "__thiscall", 
+  "signature": "uint __thiscall GetEventTime(gbActor * this, char * param_1, char * param_2)", 
+  "callees": [
+    {
+      "address": "0x100277e0", 
+      "name": "gbCrc32Compute"
+    }, 
+    {
+      "address": "0x100277e0", 
+      "name": "gbCrc32Compute"
+    }
+  ], 
+  "global_refs": [
+    {
+      "address": "0x00000004", 
+      "type": null, 
+      "name": "DAT_00000004"
+    }, 
+    {
+      "address": "0x00000008", 
+      "type": null, 
+      "name": "DAT_00000008"
+    }
+  ], 
+  "has_custom_name": true, 
+  "decompiled_c": "\n/* public: unsigned int __thiscall gbActor::GetEventTime(char *,char *) */\n\nuint __thiscall gbActor::GetEventTime(gbActor *this,char *param_1,char *param_2)\n\n{\n  uint uVar1;\n  uint uVar2;\n  uint *puVar3;\n  int iVar4;\n  \n                    /* 0x34f0  457  ?GetEventTime@gbActor@@QAEIPAD0@Z */\n  uVar1 = gbCrc32Compute(param_1);\n  uVar2 = gbCrc32Compute(param_2);\n  iVar4 = 0;\n  if (0 < *(int *)(this + 100)) {\n    puVar3 = (uint *)(*(int *)(this + 0x60) + 4);\n    do {\n      if (*puVar3 == uVar1) {\n        uVar1 = (**(code **)(**(int **)(this + 0x58) + 0x44))(uVar2,iVar4);\n        return uVar1;\n      }\n      iVar4 = iVar4 + 1;\n      puVar3 = puVar3 + 9;\n    } while (iVar4 < *(int *)(this + 100));\n  }\n  return 0xffffffff;\n}\n\n", 
+  "is_thunk": false, 
+  "name": "GetEventTime", 
+  "assembly": "  100034f0:  MOV EAX,dword ptr [ESP + 0x4]\n  100034f4:  PUSH EBX\n  100034f5:  PUSH ESI\n  100034f6:  PUSH EDI\n  100034f7:  MOV EDI,ECX\n  100034f9:  PUSH EAX\n  100034fa:  CALL 0x100277e0\n  100034ff:  MOV ECX,dword ptr [ESP + 0x18]\n  10003503:  MOV EBX,EAX\n  10003505:  PUSH ECX\n  10003506:  CALL 0x100277e0\n  1000350b:  MOV ESI,dword ptr [EDI + 0x64]\n  1000350e:  ADD ESP,0x8\n  10003511:  XOR EDX,EDX\n  10003513:  TEST ESI,ESI\n  10003515:  JLE 0x10003529\n  10003517:  MOV ECX,dword ptr [EDI + 0x60]\n  1000351a:  ADD ECX,0x4\n  1000351d:  CMP dword ptr [ECX],EBX\n  1000351f:  JZ 0x10003532\n  10003521:  INC EDX\n  10003522:  ADD ECX,0x24\n  10003525:  CMP EDX,ESI\n  10003527:  JL 0x1000351d\n  10003529:  POP EDI\n  1000352a:  POP ESI\n  1000352b:  OR EAX,0xffffffff\n  1000352e:  POP EBX\n  1000352f:  RET 0x8\n  10003532:  MOV ECX,dword ptr [EDI + 0x58]\n  10003535:  PUSH EDX\n  10003536:  PUSH EAX\n  10003537:  MOV ESI,dword ptr [ECX]\n  10003539:  CALL dword ptr [ESI + 0x44]\n  1000353c:  POP EDI\n  1000353d:  POP ESI\n  1000353e:  POP EBX\n  1000353f:  RET 0x8", 
+  "callers": []
+}

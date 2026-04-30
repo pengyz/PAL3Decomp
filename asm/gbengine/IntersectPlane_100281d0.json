@@ -1,0 +1,60 @@
+{
+  "address": "0x100281d0", 
+  "size_bytes": 136, 
+  "calling_convention": "__thiscall", 
+  "signature": "float __thiscall IntersectPlane(gbRay * this, gbVec3D * param_1, gbVec3D * param_2)", 
+  "callees": [], 
+  "global_refs": [
+    {
+      "address": "0x00000004", 
+      "type": null, 
+      "name": "DAT_00000004"
+    }, 
+    {
+      "address": "0x00000008", 
+      "type": null, 
+      "name": "DAT_00000008"
+    }, 
+    {
+      "address": "0x-000000c", 
+      "type": null, 
+      "name": "DAT_-000000c"
+    }, 
+    {
+      "address": "0x-0000008", 
+      "type": null, 
+      "name": "DAT_-0000008"
+    }, 
+    {
+      "address": "0x-0000004", 
+      "type": null, 
+      "name": "DAT_-0000004"
+    }, 
+    {
+      "address": "0x100f58e0", 
+      "type": null, 
+      "name": "DAT_100f58e0"
+    }, 
+    {
+      "address": "0x100f58d8", 
+      "type": null, 
+      "name": "DAT_100f58d8"
+    }, 
+    {
+      "address": "0x100f58d4", 
+      "type": null, 
+      "name": "DAT_100f58d4"
+    }
+  ], 
+  "has_custom_name": true, 
+  "decompiled_c": "\n/* public: float __thiscall gbRay::IntersectPlane(struct gbVec3D &,struct gbVec3D &) */\n\nfloat __thiscall gbRay::IntersectPlane(gbRay *this,gbVec3D *param_1,gbVec3D *param_2)\n\n{\n  float fVar1;\n  \n                    /* 0x281d0  606  ?IntersectPlane@gbRay@@QAEMAAUgbVec3D@@0@Z */\n  fVar1 = *(float *)(this + 0xc) * *(float *)param_1 +\n          *(float *)(this + 0x14) * *(float *)(param_1 + 8) +\n          *(float *)(this + 0x10) * *(float *)(param_1 + 4);\n  if ((fVar1 < 1e-06) && (-1e-06 < fVar1)) {\n    return 3.4028235e+38;\n  }\n  return ((*(float *)(param_2 + 4) - *(float *)(this + 4)) * *(float *)(param_1 + 4) +\n         (*(float *)param_2 - *(float *)this) * *(float *)param_1 +\n         (*(float *)(param_2 + 8) - *(float *)(this + 8)) * *(float *)(param_1 + 8)) / fVar1;\n}\n\n", 
+  "is_thunk": false, 
+  "name": "IntersectPlane", 
+  "assembly": "  100281d0:  SUB ESP,0xc\n  100281d3:  MOV EDX,dword ptr [ESP + 0x10]\n  100281d7:  MOV EAX,dword ptr [ESP + 0x14]\n  100281db:  FLD dword ptr [ECX + 0x10]\n  100281de:  FMUL dword ptr [EDX + 0x4]\n  100281e1:  FLD dword ptr [ECX + 0x14]\n  100281e4:  FMUL dword ptr [EDX + 0x8]\n  100281e7:  PUSH ESI\n  100281e8:  MOV ESI,dword ptr [EAX]\n  100281ea:  MOV dword ptr [ESP + 0x4],ESI\n  100281ee:  FADDP\n  100281f0:  FLD dword ptr [ECX + 0xc]\n  100281f3:  FMUL dword ptr [EDX]\n  100281f5:  MOV ESI,dword ptr [EAX + 0x4]\n  100281f8:  MOV dword ptr [ESP + 0x8],ESI\n  100281fc:  POP ESI\n  100281fd:  MOV EAX,dword ptr [EAX + 0x8]\n  10028200:  FADDP\n  10028202:  MOV dword ptr [ESP + 0x8],EAX\n  10028206:  FCOM qword ptr [0x100f58e0]\n  1002820c:  FNSTSW AX\n  1002820e:  TEST AH,0x1\n  10028211:  JZ 0x1002822e\n  10028213:  FCOM qword ptr [0x100f58d8]\n  10028219:  FNSTSW AX\n  1002821b:  TEST AH,0x41\n  1002821e:  JNZ 0x1002822e\n  10028220:  FSTP ST0\n  10028222:  FLD dword ptr [0x100f58d4]\n  10028228:  ADD ESP,0xc\n  1002822b:  RET 0x8\n  1002822e:  FLD dword ptr [ESP]\n  10028232:  FSUB dword ptr [ECX]\n  10028234:  FLD dword ptr [ESP + 0x4]\n  10028238:  FSUB dword ptr [ECX + 0x4]\n  1002823b:  FLD dword ptr [ESP + 0x8]\n  1002823f:  FSUB dword ptr [ECX + 0x8]\n  10028242:  FMUL dword ptr [EDX + 0x8]\n  10028245:  FXCH ST2\n  10028247:  FMUL dword ptr [EDX]\n  10028249:  FADDP ST2,ST0\n  1002824b:  FMUL dword ptr [EDX + 0x4]\n  1002824e:  FADDP\n  10028250:  FDIVRP\n  10028252:  ADD ESP,0xc\n  10028255:  RET 0x8", 
+  "callers": [
+    {
+      "address": "0x100293b0", 
+      "name": "IsColOBB"
+    }
+  ]
+}

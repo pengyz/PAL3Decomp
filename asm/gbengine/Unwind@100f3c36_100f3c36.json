@@ -1,0 +1,19 @@
+{
+  "address": "0x100f3c36", 
+  "size_bytes": 8, 
+  "calling_convention": "unknown", 
+  "signature": "undefined Unwind@100f3c36(void)", 
+  "callees": [
+    {
+      "address": "0x100049c0", 
+      "name": "~gbVisNode"
+    }
+  ], 
+  "global_refs": [], 
+  "has_custom_name": true, 
+  "decompiled_c": "\nvoid Unwind_100f3c36(void)\n\n{\n  int unaff_EBP;\n  \n  gbVisNode::~gbVisNode(*(gbVisNode **)(unaff_EBP + -0x10));\n  return;\n}\n\n", 
+  "is_thunk": false, 
+  "name": "Unwind@100f3c36", 
+  "assembly": "  100f3c36:  MOV ECX,dword ptr [EBP + -0x10]\n  100f3c39:  JMP 0x100049c0", 
+  "callers": []
+}

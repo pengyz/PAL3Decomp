@@ -1,0 +1,30 @@
+{
+  "address": "0x100224b0", 
+  "size_bytes": 39, 
+  "calling_convention": "__thiscall", 
+  "signature": "void __thiscall OffsetZBuffer(gbCamera * this, double param_1)", 
+  "callees": [], 
+  "global_refs": [
+    {
+      "address": "0x00000004", 
+      "type": null, 
+      "name": "DAT_00000004"
+    }, 
+    {
+      "address": "0x100f5818", 
+      "type": null, 
+      "name": "DAT_100f5818"
+    }, 
+    {
+      "address": "0x100f5578", 
+      "type": null, 
+      "name": "DAT_100f5578"
+    }
+  ], 
+  "has_custom_name": true, 
+  "decompiled_c": "\n/* public: void __thiscall gbCamera::OffsetZBuffer(double) */\n\nvoid __thiscall gbCamera::OffsetZBuffer(gbCamera *this,double param_1)\n\n{\n                    /* 0x224b0  717  ?OffsetZBuffer@gbCamera@@QAEXN@Z */\n  *(float *)(this + 0x2c) = (float)((float10)1.0 - (float10)param_1 * (float10)1.52587890625e-05);\n  (**(code **)(**(int **)(this + 0x158) + 0x24))(this + 0x18);\n  return;\n}\n\n", 
+  "is_thunk": false, 
+  "name": "OffsetZBuffer", 
+  "assembly": "  100224b0:  FLD qword ptr [ESP + 0x4]\n  100224b4:  FMUL qword ptr [0x100f5818]\n  100224ba:  MOV EAX,ECX\n  100224bc:  FSUBR qword ptr [0x100f5578]\n  100224c2:  MOV ECX,dword ptr [EAX + 0x158]\n  100224c8:  FSTP dword ptr [EAX + 0x2c]\n  100224cb:  MOV EDX,dword ptr [ECX]\n  100224cd:  ADD EAX,0x18\n  100224d0:  PUSH EAX\n  100224d1:  CALL dword ptr [EDX + 0x24]\n  100224d4:  RET 0x8", 
+  "callers": []
+}

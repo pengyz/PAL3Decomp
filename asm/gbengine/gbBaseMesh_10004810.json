@@ -1,0 +1,35 @@
+{
+  "address": "0x10004810", 
+  "size_bytes": 152, 
+  "calling_convention": "__thiscall", 
+  "signature": "undefined __thiscall gbBaseMesh(gbBaseMesh * this, gbBaseMesh * param_1)", 
+  "callees": [], 
+  "global_refs": [
+    {
+      "address": "0x00000004", 
+      "type": null, 
+      "name": "DAT_00000004"
+    }, 
+    {
+      "address": "0x100f5334", 
+      "type": "pointer", 
+      "name": "DAT_100f5334"
+    }, 
+    {
+      "address": "0x100f5338", 
+      "type": "pointer", 
+      "name": "DAT_100f5338"
+    }, 
+    {
+      "address": "0x100f53f0", 
+      "type": "undefined *", 
+      "name": "DAT_100f53f0"
+    }
+  ], 
+  "has_custom_name": true, 
+  "decompiled_c": "\n/* public: __thiscall gbBaseMesh::gbBaseMesh(class gbBaseMesh const &) */\n\nvoid __thiscall gbBaseMesh::gbBaseMesh(gbBaseMesh *this,gbBaseMesh *param_1)\n\n{\n  undefined4 uVar1;\n  int iVar2;\n  gbBaseMesh *pgVar3;\n  gbBaseMesh *pgVar4;\n  \n                    /* 0x4810  15  ??0gbBaseMesh@@QAE@ABV0@@Z */\n  uVar1 = *(undefined4 *)(param_1 + 4);\n  *(undefined ***)this = &gbRefObject::_vftable_;\n  *(undefined4 *)(this + 4) = uVar1;\n  *(undefined4 *)(this + 8) = *(undefined4 *)(param_1 + 8);\n  *(undefined4 *)(this + 0xc) = *(undefined4 *)(param_1 + 0xc);\n  *(undefined4 *)(this + 0x10) = *(undefined4 *)(param_1 + 0x10);\n  *(undefined4 *)(this + 0x14) = *(undefined4 *)(param_1 + 0x14);\n  *(undefined ***)this = &gbResource::_vftable_;\n  *(undefined4 *)(this + 0x18) = *(undefined4 *)(param_1 + 0x18);\n  pgVar3 = param_1 + 0x1c;\n  pgVar4 = this + 0x1c;\n  for (iVar2 = 8; iVar2 != 0; iVar2 = iVar2 + -1) {\n    *(undefined4 *)pgVar4 = *(undefined4 *)pgVar3;\n    pgVar3 = pgVar3 + 4;\n    pgVar4 = pgVar4 + 4;\n  }\n  *(undefined4 *)(this + 0x3c) = *(undefined4 *)(param_1 + 0x3c);\n  *(undefined4 *)(this + 0x40) = *(undefined4 *)(param_1 + 0x40);\n  *(undefined4 *)(this + 0x44) = *(undefined4 *)(param_1 + 0x44);\n  *(undefined4 *)(this + 0x48) = *(undefined4 *)(param_1 + 0x48);\n  *(undefined4 *)(this + 0x4c) = *(undefined4 *)(param_1 + 0x4c);\n  *(undefined4 *)(this + 0x50) = *(undefined4 *)(param_1 + 0x50);\n  *(undefined4 *)(this + 0x54) = *(undefined4 *)(param_1 + 0x54);\n  pgVar3 = param_1 + 0x58;\n  pgVar4 = this + 0x58;\n  for (iVar2 = 6; iVar2 != 0; iVar2 = iVar2 + -1) {\n    *(undefined4 *)pgVar4 = *(undefined4 *)pgVar3;\n    pgVar3 = pgVar3 + 4;\n    pgVar4 = pgVar4 + 4;\n  }\n  *(undefined4 *)(this + 0x70) = *(undefined4 *)(param_1 + 0x70);\n  *(undefined4 *)(this + 0x74) = *(undefined4 *)(param_1 + 0x74);\n  *(undefined ***)this = &_vftable_;\n  return;\n}\n\n", 
+  "is_thunk": false, 
+  "name": "gbBaseMesh", 
+  "assembly": "  10004810:  MOV EDX,dword ptr [ESP + 0x4]\n  10004814:  MOV EAX,ECX\n  10004816:  PUSH ESI\n  10004817:  PUSH EDI\n  10004818:  MOV ECX,dword ptr [EDX + 0x4]\n  1000481b:  MOV dword ptr [EAX],0x100f5334\n  10004821:  MOV dword ptr [EAX + 0x4],ECX\n  10004824:  MOV ECX,dword ptr [EDX + 0x8]\n  10004827:  MOV dword ptr [EAX + 0x8],ECX\n  1000482a:  MOV ECX,dword ptr [EDX + 0xc]\n  1000482d:  MOV dword ptr [EAX + 0xc],ECX\n  10004830:  MOV ECX,dword ptr [EDX + 0x10]\n  10004833:  MOV dword ptr [EAX + 0x10],ECX\n  10004836:  MOV ECX,dword ptr [EDX + 0x14]\n  10004839:  MOV dword ptr [EAX + 0x14],ECX\n  1000483c:  MOV dword ptr [EAX],0x100f5338\n  10004842:  MOV ECX,dword ptr [EDX + 0x18]\n  10004845:  LEA ESI,[EDX + 0x1c]\n  10004848:  MOV dword ptr [EAX + 0x18],ECX\n  1000484b:  LEA EDI,[EAX + 0x1c]\n  1000484e:  MOV ECX,0x8\n  10004853:  MOVSD.REP ES:EDI,ESI\n  10004855:  MOV ECX,dword ptr [EDX + 0x3c]\n  10004858:  LEA ESI,[EAX + 0x48]\n  1000485b:  MOV dword ptr [EAX + 0x3c],ECX\n  1000485e:  MOV ECX,dword ptr [EDX + 0x40]\n  10004861:  MOV dword ptr [EAX + 0x40],ECX\n  10004864:  MOV ECX,dword ptr [EDX + 0x44]\n  10004867:  MOV dword ptr [EAX + 0x44],ECX\n  1000486a:  LEA ECX,[EDX + 0x48]\n  1000486d:  MOV EDI,dword ptr [EDX + 0x48]\n  10004870:  MOV dword ptr [ESI],EDI\n  10004872:  MOV EDI,dword ptr [ECX + 0x4]\n  10004875:  MOV dword ptr [ESI + 0x4],EDI\n  10004878:  MOV EDI,dword ptr [ECX + 0x8]\n  1000487b:  MOV dword ptr [ESI + 0x8],EDI\n  1000487e:  LEA EDI,[EAX + 0x58]\n  10004881:  MOV ECX,dword ptr [ECX + 0xc]\n  10004884:  MOV dword ptr [ESI + 0xc],ECX\n  10004887:  LEA ESI,[EDX + 0x58]\n  1000488a:  MOV ECX,0x6\n  1000488f:  MOVSD.REP ES:EDI,ESI\n  10004891:  MOV ECX,dword ptr [EDX + 0x70]\n  10004894:  POP EDI\n  10004895:  MOV dword ptr [EAX + 0x70],ECX\n  10004898:  MOV EDX,dword ptr [EDX + 0x74]\n  1000489b:  MOV dword ptr [EAX + 0x74],EDX\n  1000489e:  MOV dword ptr [EAX],0x100f53f0\n  100048a4:  POP ESI\n  100048a5:  RET 0x4", 
+  "callers": []
+}

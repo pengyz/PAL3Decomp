@@ -1,0 +1,39 @@
+{
+  "address": "0x10078d83", 
+  "size_bytes": 29, 
+  "calling_convention": "unknown", 
+  "signature": "undefined FUN_10078d83(undefined4 param_1, undefined4 param_2, undefined8 param_3)", 
+  "callees": [], 
+  "global_refs": [
+    {
+      "address": "0x00000004", 
+      "type": null, 
+      "name": "DAT_00000004"
+    }, 
+    {
+      "address": "0x00000008", 
+      "type": null, 
+      "name": "DAT_00000008"
+    }, 
+    {
+      "address": "0x0000000c", 
+      "type": null, 
+      "name": "DAT_0000000c"
+    }
+  ], 
+  "has_custom_name": false, 
+  "decompiled_c": "\nvoid FUN_10078d83(int param_1,int param_2,double param_3)\n\n{\n  if ((param_1 != 0) && (param_2 != 0)) {\n    *(uint *)(param_2 + 8) = *(uint *)(param_2 + 8) | 1;\n    *(float *)(param_2 + 0x28) = (float)param_3;\n  }\n  return;\n}\n\n", 
+  "is_thunk": false, 
+  "name": "FUN_10078d83", 
+  "assembly": "  10078d83:  CMP dword ptr [ESP + 0x4],0x0\n  10078d88:  JZ 0x10078d9d\n  10078d8a:  MOV EAX,dword ptr [ESP + 0x8]\n  10078d8e:  TEST EAX,EAX\n  10078d90:  JZ 0x10078d9d\n  10078d92:  FLD qword ptr [ESP + 0xc]\n  10078d96:  OR dword ptr [EAX + 0x8],0x1\n  10078d9a:  FSTP dword ptr [EAX + 0x28]\n  10078d9d:  RET 0x10", 
+  "callers": [
+    {
+      "address": "0x100972dc", 
+      "name": "FUN_100972dc"
+    }, 
+    {
+      "address": "0x10078e84", 
+      "name": "FUN_10078e84"
+    }
+  ]
+}

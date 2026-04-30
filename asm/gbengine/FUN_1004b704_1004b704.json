@@ -1,0 +1,50 @@
+{
+  "address": "0x1004b704", 
+  "size_bytes": 33, 
+  "calling_convention": "unknown", 
+  "signature": "undefined FUN_1004b704(undefined4 param_1, undefined1 param_2, undefined4 param_3, undefined1 param_4, undefined4 param_5)", 
+  "callees": [
+    {
+      "address": "0x1004b56b", 
+      "name": "FUN_1004b56b"
+    }
+  ], 
+  "global_refs": [
+    {
+      "address": "0x00000014", 
+      "type": null, 
+      "name": "DAT_00000014"
+    }, 
+    {
+      "address": "0x00000010", 
+      "type": null, 
+      "name": "DAT_00000010"
+    }, 
+    {
+      "address": "0x0000000c", 
+      "type": null, 
+      "name": "DAT_0000000c"
+    }, 
+    {
+      "address": "0x00000008", 
+      "type": null, 
+      "name": "DAT_00000008"
+    }, 
+    {
+      "address": "0x00000004", 
+      "type": null, 
+      "name": "DAT_00000004"
+    }
+  ], 
+  "has_custom_name": false, 
+  "decompiled_c": "\nvoid FUN_1004b704(undefined4 param_1,undefined4 param_2,undefined4 param_3,undefined4 param_4,\n                 undefined4 *param_5)\n\n{\n  *param_5 = 0;\n  FUN_1004b56b(param_1,&param_2,param_3,&param_4,param_5);\n  return;\n}\n\n", 
+  "is_thunk": false, 
+  "name": "FUN_1004b704", 
+  "assembly": "  1004b704:  PUSH EBP\n  1004b705:  MOV EBP,ESP\n  1004b707:  MOV EAX,dword ptr [EBP + 0x18]\n  1004b70a:  AND dword ptr [EAX],0x0\n  1004b70d:  PUSH EAX\n  1004b70e:  LEA EAX,[EBP + 0x14]\n  1004b711:  PUSH EAX\n  1004b712:  PUSH dword ptr [EBP + 0x10]\n  1004b715:  LEA EAX,[EBP + 0xc]\n  1004b718:  PUSH EAX\n  1004b719:  PUSH dword ptr [EBP + 0x8]\n  1004b71c:  CALL 0x1004b56b\n  1004b721:  POP EBP\n  1004b722:  RET 0x14", 
+  "callers": [
+    {
+      "address": "0x1004c160", 
+      "name": "FUN_1004c160"
+    }
+  ]
+}

@@ -1,0 +1,20 @@
+{
+  "address": "0x10064aef", 
+  "size_bytes": 100, 
+  "calling_convention": "unknown", 
+  "signature": "undefined FUN_10064aef(void)", 
+  "callees": [], 
+  "global_refs": [
+    {
+      "address": "0x-0000008", 
+      "type": null, 
+      "name": "DAT_-0000008"
+    }
+  ], 
+  "has_custom_name": false, 
+  "decompiled_c": "\nvoid FUN_10064aef(void)\n\n{\n  undefined4 *in_ECX;\n  undefined4 *puVar1;\n  uint uVar2;\n  undefined4 *puVar3;\n  undefined4 *puVar4;\n  int local_8;\n  \n  *(undefined2 *)((int)in_ECX + 0x3a) = 0xffff;\n  *in_ECX = 0;\n  in_ECX[2] = 0;\n  in_ECX[3] = 0;\n  in_ECX[1] = 0;\n  *(undefined2 *)(in_ECX + 0xc) = 0;\n  *(undefined2 *)((int)in_ECX + 0x32) = 0;\n  *(undefined2 *)(in_ECX + 0xd) = 0;\n  *(undefined2 *)(in_ECX + 0xe) = 0;\n  *(undefined2 *)((int)in_ECX + 0x36) = 0;\n  puVar3 = in_ECX + 10;\n  puVar4 = in_ECX + 6;\n  puVar1 = in_ECX + 5;\n  local_8 = 2;\n  do {\n    *(undefined2 *)puVar1 = 0xffff;\n    uVar2 = 0;\n    do {\n      *(undefined *)((int)puVar3 + uVar2) = 0;\n      *(undefined2 *)puVar4 = 0;\n      uVar2 = uVar2 + 1;\n      puVar4 = (undefined4 *)((int)puVar4 + 2);\n    } while (uVar2 < 4);\n    puVar1 = (undefined4 *)((int)puVar1 + 2);\n    puVar3 = puVar3 + 1;\n    local_8 = local_8 + -1;\n  } while (local_8 != 0);\n  return;\n}\n\n", 
+  "is_thunk": false, 
+  "name": "FUN_10064aef", 
+  "assembly": "  10064aef:  PUSH EBP\n  10064af0:  MOV EBP,ESP\n  10064af2:  PUSH ECX\n  10064af3:  MOV EAX,ECX\n  10064af5:  XOR ECX,ECX\n  10064af7:  OR word ptr [EAX + 0x3a],0xffff\n  10064afd:  PUSH EBX\n  10064afe:  PUSH ESI\n  10064aff:  PUSH EDI\n  10064b00:  MOV dword ptr [EAX],ECX\n  10064b02:  MOV dword ptr [EAX + 0x8],ECX\n  10064b05:  MOV dword ptr [EAX + 0xc],ECX\n  10064b08:  MOV dword ptr [EAX + 0x4],ECX\n  10064b0b:  MOV word ptr [EAX + 0x30],CX\n  10064b0f:  MOV word ptr [EAX + 0x32],CX\n  10064b13:  MOV word ptr [EAX + 0x34],CX\n  10064b17:  MOV word ptr [EAX + 0x38],CX\n  10064b1b:  MOV word ptr [EAX + 0x36],CX\n  10064b1f:  LEA ESI,[EAX + 0x28]\n  10064b22:  LEA EDI,[EAX + 0x18]\n  10064b25:  LEA EDX,[EAX + 0x14]\n  10064b28:  MOV dword ptr [EBP + -0x4],0x2\n  10064b2f:  OR word ptr [EDX],0xffff\n  10064b34:  XOR EBX,EBX\n  10064b36:  MOV byte ptr [ESI + EBX*0x1],CL\n  10064b39:  MOV word ptr [EDI],CX\n  10064b3c:  INC EBX\n  10064b3d:  INC EDI\n  10064b3e:  INC EDI\n  10064b3f:  CMP EBX,0x4\n  10064b42:  JC 0x10064b36\n  10064b44:  INC EDX\n  10064b45:  INC EDX\n  10064b46:  ADD ESI,0x4\n  10064b49:  DEC dword ptr [EBP + -0x4]\n  10064b4c:  JNZ 0x10064b2f\n  10064b4e:  POP EDI\n  10064b4f:  POP ESI\n  10064b50:  POP EBX\n  10064b51:  LEAVE\n  10064b52:  RET", 
+  "callers": []
+}

@@ -1,0 +1,34 @@
+{
+  "address": "0x10009440", 
+  "size_bytes": 78, 
+  "calling_convention": "unknown", 
+  "signature": "undefined FUN_10009440(undefined4 param_1)", 
+  "callees": [
+    {
+      "address": "0x100e4b0d", 
+      "name": "_malloc"
+    }, 
+    {
+      "address": "0x100e4b99", 
+      "name": "FUN_100e4b99"
+    }
+  ], 
+  "global_refs": [
+    {
+      "address": "0x00000004", 
+      "type": null, 
+      "name": "DAT_00000004"
+    }
+  ], 
+  "has_custom_name": false, 
+  "decompiled_c": "\nvoid FUN_10009440(int param_1)\n\n{\n  undefined4 *puVar1;\n  int *in_ECX;\n  int iVar2;\n  undefined4 *puVar3;\n  undefined4 *puVar4;\n  \n  if (param_1 == 0) {\n    param_1 = 0x10;\n  }\n  if (in_ECX[1] < param_1) {\n    in_ECX[1] = param_1;\n    puVar1 = (undefined4 *)_malloc(param_1 << 2);\n    iVar2 = in_ECX[2];\n    if (iVar2 != 0) {\n      puVar3 = (undefined4 *)*in_ECX;\n      puVar4 = puVar1;\n      for (; iVar2 != 0; iVar2 = iVar2 + -1) {\n        *puVar4 = *puVar3;\n        puVar3 = puVar3 + 1;\n        puVar4 = puVar4 + 1;\n      }\n    }\n    if (*in_ECX != 0) {\n      FUN_100e4b99(*in_ECX);\n    }\n    *in_ECX = (int)puVar1;\n  }\n  return;\n}\n\n", 
+  "is_thunk": false, 
+  "name": "FUN_10009440", 
+  "assembly": "  10009440:  MOV EAX,dword ptr [ESP + 0x4]\n  10009444:  PUSH EBX\n  10009445:  TEST EAX,EAX\n  10009447:  MOV EBX,ECX\n  10009449:  JNZ 0x10009450\n  1000944b:  MOV EAX,0x10\n  10009450:  CMP EAX,dword ptr [EBX + 0x4]\n  10009453:  JLE 0x1000948a\n  10009455:  MOV dword ptr [EBX + 0x4],EAX\n  10009458:  PUSH EBP\n  10009459:  SHL EAX,0x2\n  1000945c:  PUSH EAX\n  1000945d:  CALL 0x100e4b0d\n  10009462:  MOV ECX,dword ptr [EBX + 0x8]\n  10009465:  ADD ESP,0x4\n  10009468:  TEST ECX,ECX\n  1000946a:  MOV EBP,EAX\n  1000946c:  JZ 0x10009478\n  1000946e:  PUSH ESI\n  1000946f:  MOV ESI,dword ptr [EBX]\n  10009471:  PUSH EDI\n  10009472:  MOV EDI,EBP\n  10009474:  MOVSD.REP ES:EDI,ESI\n  10009476:  POP EDI\n  10009477:  POP ESI\n  10009478:  MOV EAX,dword ptr [EBX]\n  1000947a:  TEST EAX,EAX\n  1000947c:  JZ 0x10009487\n  1000947e:  PUSH EAX\n  1000947f:  CALL 0x100e4b99\n  10009484:  ADD ESP,0x4\n  10009487:  MOV dword ptr [EBX],EBP\n  10009489:  POP EBP\n  1000948a:  POP EBX\n  1000948b:  RET 0x4", 
+  "callers": [
+    {
+      "address": "0x10008420", 
+      "name": "FUN_10008420"
+    }
+  ]
+}

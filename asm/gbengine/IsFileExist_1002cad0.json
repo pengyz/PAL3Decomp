@@ -1,0 +1,68 @@
+{
+  "address": "0x1002cad0", 
+  "size_bytes": 375, 
+  "calling_convention": "__thiscall", 
+  "signature": "bool __thiscall IsFileExist(CPK * this, char * param_1)", 
+  "callees": [
+    {
+      "address": "0x1002e850", 
+      "name": "FUN_1002e850"
+    }, 
+    {
+      "address": "0x0000001a", 
+      "name": "lstrcpyA"
+    }, 
+    {
+      "address": "0x100e5a9d", 
+      "name": "FUN_100e5a9d"
+    }
+  ], 
+  "global_refs": [
+    {
+      "address": "0x-0000148", 
+      "type": null, 
+      "name": "DAT_-0000148"
+    }, 
+    {
+      "address": "0x10120268", 
+      "type": "string", 
+      "name": "DAT_10120268"
+    }, 
+    {
+      "address": "0x101204b4", 
+      "type": "string", 
+      "name": "DAT_101204b4"
+    }, 
+    {
+      "address": "0x00000004", 
+      "type": null, 
+      "name": "DAT_00000004"
+    }, 
+    {
+      "address": "0x-0000144", 
+      "type": null, 
+      "name": "DAT_-0000144"
+    }, 
+    {
+      "address": "0x100f5094", 
+      "type": "pointer", 
+      "name": "DAT_100f5094"
+    }, 
+    {
+      "address": "0x1014b20c", 
+      "type": "ulong *", 
+      "name": "DAT_1014b20c"
+    }
+  ], 
+  "has_custom_name": true, 
+  "decompiled_c": "\n/* public: bool __thiscall CPK::IsFileExist(char const *) */\n\nbool __thiscall CPK::IsFileExist(CPK *this,char *param_1)\n\n{\n  byte *pbVar1;\n  byte bVar2;\n  byte *pbVar3;\n  int iVar4;\n  uint uVar5;\n  int iVar6;\n  int iVar7;\n  byte local_144;\n  byte abStack_143 [323];\n  \n                    /* 0x2cad0  635  ?IsFileExist@CPK@@QAE_NPBD@Z */\n  if (this[0xe00a8] == (CPK)0x0) {\n    FUN_1002e850(0x10,s_Error___CE_CPK_HASNOT_LOADED_Fil_101204b4,\n                 s_D__Project_gbengine9_support_cpa_10120268,0x147);\n    return false;\n  }\n  lstrcpyA((LPSTR)&local_144,param_1);\n  FUN_100e5a9d(&local_144);\n  if (local_144 == 0) {\n    uVar5 = 0;\n  }\n  else {\n    uVar5 = (uint)local_144 << 0x18;\n    pbVar3 = abStack_143;\n    if (abStack_143[0] != 0) {\n      pbVar3 = abStack_143 + 1;\n      uVar5 = uVar5 | (uint)abStack_143[0] << 0x10;\n      if (abStack_143[1] != '\\0') {\n        pbVar3 = abStack_143 + 2;\n        uVar5 = uVar5 | (CONCAT11(abStack_143[2],abStack_143[1]) & 0xff) << 8;\n        if (abStack_143[2] != 0) {\n          pbVar3 = abStack_143 + 3;\n          uVar5 = uVar5 | abStack_143[2];\n        }\n      }\n    }\n    uVar5 = ~uVar5;\n    bVar2 = *pbVar3;\n    while (bVar2 != 0) {\n      uVar5 = (uVar5 << 8 | (uint)bVar2) ^ (uint)(&CrcTable)[uVar5 >> 0x18];\n      pbVar1 = pbVar3 + 1;\n      pbVar3 = pbVar3 + 1;\n      bVar2 = *pbVar1;\n    }\n    uVar5 = ~uVar5;\n  }\n  iVar6 = 0;\n  iVar7 = *(int *)(this + 0x28);\n  if (*(int *)(this + 0x28) != 0) {\n    while( true ) {\n      iVar4 = (iVar7 - iVar6) / 2 + iVar6;\n      if (((uVar5 == *(uint *)(this + iVar4 * 0x1c + 0x88)) &&\n          ((*(uint *)(this + (iVar4 + 5) * 0x1c) & 1) != 0)) &&\n         ((*(uint *)(this + (iVar4 + 5) * 0x1c) & 0x10) == 0)) break;\n      if (iVar7 == iVar6 + 1) {\n        return false;\n      }\n      if (*(uint *)(this + iVar4 * 0x1c + 0x88) <= uVar5) {\n        iVar6 = iVar4;\n        iVar4 = iVar7;\n      }\n      iVar7 = iVar4;\n      if (iVar4 == iVar6) {\n        return false;\n      }\n    }\n    if (iVar4 != -1) {\n      return true;\n    }\n  }\n  return false;\n}\n\n", 
+  "is_thunk": false, 
+  "name": "IsFileExist", 
+  "assembly": "  1002cad0:  SUB ESP,0x14c\n  1002cad6:  PUSH EBX\n  1002cad7:  PUSH EBP\n  1002cad8:  MOV EBP,ECX\n  1002cada:  PUSH ESI\n  1002cadb:  PUSH EDI\n  1002cadc:  MOV dword ptr [ESP + 0x14],EBP\n  1002cae0:  MOV AL,byte ptr [EBP + 0xe00a8]\n  1002cae6:  TEST AL,AL\n  1002cae8:  JNZ 0x1002cb12\n  1002caea:  PUSH 0x147\n  1002caef:  PUSH 0x10120268\n  1002caf4:  PUSH 0x101204b4\n  1002caf9:  PUSH 0x10\n  1002cafb:  CALL 0x1002e850\n  1002cb00:  ADD ESP,0x10\n  1002cb03:  XOR AL,AL\n  1002cb05:  POP EDI\n  1002cb06:  POP ESI\n  1002cb07:  POP EBP\n  1002cb08:  POP EBX\n  1002cb09:  ADD ESP,0x14c\n  1002cb0f:  RET 0x4\n  1002cb12:  MOV EAX,dword ptr [ESP + 0x160]\n  1002cb19:  LEA ECX,[ESP + 0x18]\n  1002cb1d:  PUSH EAX\n  1002cb1e:  PUSH ECX\n  1002cb1f:  CALL dword ptr [0x100f5094]\n  1002cb25:  LEA EDX,[ESP + 0x18]\n  1002cb29:  PUSH EDX\n  1002cb2a:  CALL 0x100e5a9d\n  1002cb2f:  MOV ECX,dword ptr [ESP + 0x1c]\n  1002cb33:  ADD ESP,0x4\n  1002cb36:  TEST CL,CL\n  1002cb38:  JNZ 0x1002cb3e\n  1002cb3a:  XOR ECX,ECX\n  1002cb3c:  JMP 0x1002cbb8\n  1002cb3e:  MOV EDX,dword ptr [ESP + 0x19]\n  1002cb42:  AND ECX,0xff\n  1002cb48:  SHL ECX,0x18\n  1002cb4b:  TEST DL,DL\n  1002cb4d:  LEA EAX,[ESP + 0x19]\n  1002cb51:  JZ 0x1002cb8d\n  1002cb53:  AND EDX,0xff\n  1002cb59:  LEA EAX,[ESP + 0x1a]\n  1002cb5d:  SHL EDX,0x10\n  1002cb60:  OR ECX,EDX\n  1002cb62:  MOV EDX,dword ptr [ESP + 0x1a]\n  1002cb66:  TEST DL,DL\n  1002cb68:  JZ 0x1002cb8d\n  1002cb6a:  AND EDX,0xff\n  1002cb70:  LEA EAX,[ESP + 0x1b]\n  1002cb74:  SHL EDX,0x8\n  1002cb77:  OR ECX,EDX\n  1002cb79:  MOV EDX,dword ptr [ESP + 0x1b]\n  1002cb7d:  TEST DL,DL\n  1002cb7f:  JZ 0x1002cb8d\n  1002cb81:  AND EDX,0xff\n  1002cb87:  LEA EAX,[ESP + 0x1c]\n  1002cb8b:  OR ECX,EDX\n  1002cb8d:  MOV DL,byte ptr [EAX]\n  1002cb8f:  TEST DL,DL\n  1002cb91:  NOT ECX\n  1002cb93:  JZ 0x1002cbb6\n  1002cb95:  MOV ESI,ECX\n  1002cb97:  AND EDX,0xff\n  1002cb9d:  SHR ESI,0x18\n  1002cba0:  SHL ECX,0x8\n  1002cba3:  OR ECX,EDX\n  1002cba5:  MOV EDX,dword ptr [ESI*0x4 + 0x1014b20c]\n  1002cbac:  XOR ECX,EDX\n  1002cbae:  MOV DL,byte ptr [EAX + 0x1]\n  1002cbb1:  INC EAX\n  1002cbb2:  TEST DL,DL\n  1002cbb4:  JNZ 0x1002cb95\n  1002cbb6:  NOT ECX\n  1002cbb8:  MOV EDI,dword ptr [EBP + 0x28]\n  1002cbbb:  XOR ESI,ESI\n  1002cbbd:  TEST EDI,EDI\n  1002cbbf:  JZ 0x1002cc29\n  1002cbc1:  MOV EAX,EDI\n  1002cbc3:  SUB EAX,ESI\n  1002cbc5:  CDQ\n  1002cbc6:  SUB EAX,EDX\n  1002cbc8:  SAR EAX,0x1\n  1002cbca:  ADD EAX,ESI\n  1002cbcc:  LEA EDX,[EAX*0x8 + 0x0]\n  1002cbd3:  SUB EDX,EAX\n  1002cbd5:  MOV EBX,dword ptr [EBP + EDX*0x4 + 0x88]\n  1002cbdc:  CMP ECX,EBX\n  1002cbde:  JNZ 0x1002cc00\n  1002cbe0:  LEA EDX,[EAX + 0x5]\n  1002cbe3:  LEA EBP,[EDX*0x8 + 0x0]\n  1002cbea:  SUB EBP,EDX\n  1002cbec:  MOV EDX,EBP\n  1002cbee:  MOV EBP,dword ptr [ESP + 0x14]\n  1002cbf2:  MOV EDX,dword ptr [EBP + EDX*0x4]\n  1002cbf6:  TEST DL,0x1\n  1002cbf9:  JZ 0x1002cc00\n  1002cbfb:  TEST DL,0x10\n  1002cbfe:  JZ 0x1002cc24\n  1002cc00:  LEA EDX,[ESI + 0x1]\n  1002cc03:  CMP EDI,EDX\n  1002cc05:  JZ 0x1002cc29\n  1002cc07:  CMP ECX,EBX\n  1002cc09:  JC 0x1002cc0f\n  1002cc0b:  MOV ESI,EAX\n  1002cc0d:  JMP 0x1002cc11\n  1002cc0f:  MOV EDI,EAX\n  1002cc11:  CMP EDI,ESI\n  1002cc13:  JNZ 0x1002cbc1\n  1002cc15:  POP EDI\n  1002cc16:  POP ESI\n  1002cc17:  POP EBP\n  1002cc18:  XOR AL,AL\n  1002cc1a:  POP EBX\n  1002cc1b:  ADD ESP,0x14c\n  1002cc21:  RET 0x4\n  1002cc24:  CMP EAX,-0x1\n  1002cc27:  JNZ 0x1002cc38\n  1002cc29:  POP EDI\n  1002cc2a:  POP ESI\n  1002cc2b:  POP EBP\n  1002cc2c:  XOR AL,AL\n  1002cc2e:  POP EBX\n  1002cc2f:  ADD ESP,0x14c\n  1002cc35:  RET 0x4\n  1002cc38:  POP EDI\n  1002cc39:  POP ESI\n  1002cc3a:  POP EBP\n  1002cc3b:  MOV AL,0x1\n  1002cc3d:  POP EBX\n  1002cc3e:  ADD ESP,0x14c\n  1002cc44:  RET 0x4", 
+  "callers": [
+    {
+      "address": "0x10030ca0", 
+      "name": "FileExistNum"
+    }
+  ]
+}

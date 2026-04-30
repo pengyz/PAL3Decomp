@@ -1,0 +1,48 @@
+{
+  "address": "0x1004d8db", 
+  "size_bytes": 85, 
+  "calling_convention": "unknown", 
+  "signature": "undefined FUN_1004d8db(void)", 
+  "callees": [
+    {
+      "address": "0x1004d88c", 
+      "name": "FUN_1004d88c"
+    }, 
+    {
+      "address": "0x1004d8db", 
+      "name": "FUN_1004d8db"
+    }, 
+    {
+      "address": "0x100e4a24", 
+      "name": "FUN_100e4a24"
+    }, 
+    {
+      "address": "0x1004b51e", 
+      "name": "FUN_1004b51e"
+    }, 
+    {
+      "address": "0x1004b506", 
+      "name": "FUN_1004b506"
+    }, 
+    {
+      "address": "0x100ddc08", 
+      "name": "FUN_100ddc08"
+    }
+  ], 
+  "global_refs": [], 
+  "has_custom_name": false, 
+  "decompiled_c": "\nvoid FUN_1004d8db(void)\n\n{\n  int iVar1;\n  int *piVar2;\n  int in_ECX;\n  \n  if (*(int *)(in_ECX + 0x38) != 0) {\n    FUN_1004d88c(1);\n  }\n  iVar1 = *(int *)(in_ECX + 0x6c);\n  if (iVar1 != 0) {\n    FUN_1004d8db();\n    FUN_100e4a24(iVar1);\n  }\n  piVar2 = *(int **)(in_ECX + 0x58);\n  if ((piVar2 != (int *)0x0) && (*(int *)(in_ECX + 100) != 0)) {\n    (**(code **)(*piVar2 + 4))(piVar2,*(int *)(in_ECX + 100));\n  }\n  FUN_1004b51e();\n  FUN_1004b506();\n  FUN_100ddc08();\n  return;\n}\n\n", 
+  "is_thunk": false, 
+  "name": "FUN_1004d8db", 
+  "assembly": "  1004d8db:  PUSH ESI\n  1004d8dc:  MOV ESI,ECX\n  1004d8de:  MOV ECX,dword ptr [ESI + 0x38]\n  1004d8e1:  TEST ECX,ECX\n  1004d8e3:  JZ 0x1004d8ec\n  1004d8e5:  PUSH 0x1\n  1004d8e7:  CALL 0x1004d88c\n  1004d8ec:  PUSH EDI\n  1004d8ed:  MOV EDI,dword ptr [ESI + 0x6c]\n  1004d8f0:  TEST EDI,EDI\n  1004d8f2:  JZ 0x1004d902\n  1004d8f4:  MOV ECX,EDI\n  1004d8f6:  CALL 0x1004d8db\n  1004d8fb:  PUSH EDI\n  1004d8fc:  CALL 0x100e4a24\n  1004d901:  POP ECX\n  1004d902:  MOV EAX,dword ptr [ESI + 0x58]\n  1004d905:  TEST EAX,EAX\n  1004d907:  POP EDI\n  1004d908:  JZ 0x1004d918\n  1004d90a:  MOV ECX,dword ptr [ESI + 0x64]\n  1004d90d:  TEST ECX,ECX\n  1004d90f:  JZ 0x1004d918\n  1004d911:  MOV EDX,dword ptr [EAX]\n  1004d913:  PUSH ECX\n  1004d914:  PUSH EAX\n  1004d915:  CALL dword ptr [EDX + 0x4]\n  1004d918:  LEA ECX,[ESI + 0x4c]\n  1004d91b:  CALL 0x1004b51e\n  1004d920:  LEA ECX,[ESI + 0x3c]\n  1004d923:  CALL 0x1004b506\n  1004d928:  MOV ECX,ESI\n  1004d92a:  POP ESI\n  1004d92b:  JMP 0x100ddc08", 
+  "callers": [
+    {
+      "address": "0x1004d930", 
+      "name": "FUN_1004d930"
+    }, 
+    {
+      "address": "0x1004d8db", 
+      "name": "FUN_1004d8db"
+    }
+  ]
+}

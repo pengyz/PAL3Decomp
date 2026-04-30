@@ -1,0 +1,39 @@
+{
+  "address": "0x10031560", 
+  "size_bytes": 75, 
+  "calling_convention": "__thiscall", 
+  "signature": "int __thiscall ReadLine(CIniFile * this, char * param_1, int * param_2)", 
+  "callees": [
+    {
+      "address": "0x100313e0", 
+      "name": "ReadLine"
+    }, 
+    {
+      "address": "0x100e51e6", 
+      "name": "FUN_100e51e6"
+    }
+  ], 
+  "global_refs": [
+    {
+      "address": "0x00000004", 
+      "type": null, 
+      "name": "DAT_00000004"
+    }, 
+    {
+      "address": "0x-0000100", 
+      "type": null, 
+      "name": "DAT_-0000100"
+    }, 
+    {
+      "address": "0x00000008", 
+      "type": null, 
+      "name": "DAT_00000008"
+    }
+  ], 
+  "has_custom_name": true, 
+  "decompiled_c": "\n/* public: int __thiscall CIniFile::ReadLine(char const *,int *) */\n\nint __thiscall CIniFile::ReadLine(CIniFile *this,char *param_1,int *param_2)\n\n{\n  int iVar1;\n  char local_100 [256];\n  \n                    /* 0x31560  761  ?ReadLine@CIniFile@@QAEHPBDPAH@Z */\n  iVar1 = ReadLine(this,param_1,local_100,0x100);\n  if (iVar1 == 0) {\n    return 0;\n  }\n  iVar1 = FUN_100e51e6(local_100);\n  *param_2 = iVar1;\n  return 1;\n}\n\n", 
+  "is_thunk": false, 
+  "name": "ReadLine", 
+  "assembly": "  10031560:  MOV EDX,dword ptr [ESP + 0x4]\n  10031564:  SUB ESP,0x100\n  1003156a:  LEA EAX,[ESP]\n  1003156e:  PUSH 0x100\n  10031573:  PUSH EAX\n  10031574:  PUSH EDX\n  10031575:  CALL 0x100313e0\n  1003157a:  TEST EAX,EAX\n  1003157c:  JNZ 0x10031587\n  1003157e:  ADD ESP,0x100\n  10031584:  RET 0x8\n  10031587:  LEA EAX,[ESP]\n  1003158b:  PUSH EAX\n  1003158c:  CALL 0x100e51e6\n  10031591:  MOV ECX,dword ptr [ESP + 0x10c]\n  10031598:  ADD ESP,0x4\n  1003159b:  MOV dword ptr [ECX],EAX\n  1003159d:  MOV EAX,0x1\n  100315a2:  ADD ESP,0x100\n  100315a8:  RET 0x8", 
+  "callers": []
+}

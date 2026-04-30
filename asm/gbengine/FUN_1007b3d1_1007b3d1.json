@@ -1,0 +1,35 @@
+{
+  "address": "0x1007b3d1", 
+  "size_bytes": 227, 
+  "calling_convention": "unknown", 
+  "signature": "undefined FUN_1007b3d1(undefined4 param_1, undefined4 param_2, undefined4 param_3)", 
+  "callees": [], 
+  "global_refs": [
+    {
+      "address": "0x00000004", 
+      "type": null, 
+      "name": "DAT_00000004"
+    }, 
+    {
+      "address": "0x0000000c", 
+      "type": null, 
+      "name": "DAT_0000000c"
+    }, 
+    {
+      "address": "0x00000008", 
+      "type": null, 
+      "name": "DAT_00000008"
+    }, 
+    {
+      "address": "0x-0000044", 
+      "type": null, 
+      "name": "DAT_-0000044"
+    }
+  ], 
+  "has_custom_name": false, 
+  "decompiled_c": "\nvoid FUN_1007b3d1(float *param_1,float *param_2,float *param_3)\n\n{\n  float fVar1;\n  float fVar2;\n  float fVar3;\n  float fVar4;\n  int iVar5;\n  int iVar6;\n  float *pfVar7;\n  float local_44 [16];\n  \n  if (param_3 == param_1) {\n    if (param_2 != param_1) {\n      iVar6 = -4;\n      do {\n        iVar5 = -0x10;\n        fVar1 = param_3[iVar6 + 4];\n        fVar2 = param_3[iVar6 + 8];\n        fVar3 = param_3[iVar6 + 0xc];\n        fVar4 = param_3[iVar6 + 0x10];\n        do {\n          param_1[iVar5 + 0x10] =\n               (float)((float10)fVar4 * (float10)param_2[iVar5 + 0x13] +\n                       (float10)fVar2 * (float10)param_2[iVar5 + 0x11] +\n                      (float10)fVar1 * (float10)param_2[iVar5 + 0x10] +\n                      (float10)fVar3 * (float10)param_2[iVar5 + 0x12]);\n          iVar5 = iVar5 + 4;\n        } while (iVar5 != 0);\n        ffree((float10)fVar1);\n        ffree((float10)fVar2);\n        ffree((float10)fVar3);\n        ffree((float10)fVar4);\n        param_1 = param_1 + 1;\n        iVar6 = iVar6 + 1;\n      } while (iVar6 != 0);\n      return;\n    }\n    pfVar7 = local_44;\n    for (iVar6 = 0x10; iVar6 != 0; iVar6 = iVar6 + -1) {\n      *pfVar7 = *param_3;\n      param_3 = param_3 + 1;\n      pfVar7 = pfVar7 + 1;\n    }\n    param_3 = local_44;\n  }\n  iVar6 = -4;\n  do {\n    iVar5 = -4;\n    fVar1 = *param_2;\n    fVar2 = param_2[1];\n    fVar3 = param_2[2];\n    fVar4 = param_2[3];\n    do {\n      param_1[iVar5 + 4] =\n           (float)((float10)fVar4 * (float10)param_3[iVar5 + 0x10] +\n                   (float10)fVar2 * (float10)param_3[iVar5 + 8] +\n                  (float10)fVar1 * (float10)param_3[iVar5 + 4] +\n                  (float10)fVar3 * (float10)param_3[iVar5 + 0xc]);\n      iVar5 = iVar5 + 1;\n    } while (iVar5 != 0);\n    ffree((float10)fVar1);\n    ffree((float10)fVar2);\n    ffree((float10)fVar3);\n    ffree((float10)fVar4);\n    param_2 = param_2 + 4;\n    param_1 = param_1 + 4;\n    iVar6 = iVar6 + 1;\n  } while (iVar6 != 0);\n  return;\n}\n\n", 
+  "is_thunk": false, 
+  "name": "FUN_1007b3d1", 
+  "assembly": "  1007b3d1:  PUSH EBP\n  1007b3d2:  MOV EBP,ESP\n  1007b3d4:  SUB ESP,0x40\n  1007b3d7:  MOV EAX,dword ptr [EBP + 0x8]\n  1007b3da:  PUSH EBX\n  1007b3db:  PUSH ESI\n  1007b3dc:  MOV ESI,dword ptr [EBP + 0x10]\n  1007b3df:  CMP ESI,EAX\n  1007b3e1:  PUSH EDI\n  1007b3e2:  JNZ 0x1007b455\n  1007b3e4:  CMP dword ptr [EBP + 0xc],EAX\n  1007b3e7:  JZ 0x1007b447\n  1007b3e9:  MOV EBX,dword ptr [EBP + 0x8]\n  1007b3ec:  MOV ECX,dword ptr [EBP + 0xc]\n  1007b3ef:  MOV EDX,dword ptr [EBP + 0x10]\n  1007b3f2:  MOV EDI,0xfffffffc\n  1007b3f7:  MOV ESI,0xfffffff0\n  1007b3fc:  FLD dword ptr [EDX + EDI*0x4 + 0x10]\n  1007b400:  FLD dword ptr [EDX + EDI*0x4 + 0x20]\n  1007b404:  FLD dword ptr [EDX + EDI*0x4 + 0x30]\n  1007b408:  FLD dword ptr [EDX + EDI*0x4 + 0x40]\n  1007b40c:  FLD ST3\n  1007b40e:  FMUL dword ptr [ECX + ESI*0x4 + 0x40]\n  1007b412:  FLD ST3\n  1007b414:  FMUL dword ptr [ECX + ESI*0x4 + 0x44]\n  1007b418:  FLD ST3\n  1007b41a:  FMUL dword ptr [ECX + ESI*0x4 + 0x48]\n  1007b41e:  FLD ST3\n  1007b420:  FMUL dword ptr [ECX + ESI*0x4 + 0x4c]\n  1007b424:  FXCH ST3\n  1007b426:  FADDP\n  1007b428:  FXCH ST2\n  1007b42a:  FADDP\n  1007b42c:  FADDP\n  1007b42e:  FSTP dword ptr [EBX + ESI*0x4 + 0x40]\n  1007b432:  ADD ESI,0x4\n  1007b435:  JNZ 0x1007b40c\n  1007b437:  FFREE ST3\n  1007b439:  FFREE ST2\n  1007b43b:  FFREE ST1\n  1007b43d:  FFREE ST0\n  1007b43f:  LEA EBX,[EBX + 0x4]\n  1007b442:  INC EDI\n  1007b443:  JNZ 0x1007b3f7\n  1007b445:  JMP 0x1007b4ad\n  1007b447:  PUSH 0x10\n  1007b449:  POP ECX\n  1007b44a:  LEA EDI,[EBP + -0x40]\n  1007b44d:  MOVSD.REP ES:EDI,ESI\n  1007b44f:  LEA ECX,[EBP + -0x40]\n  1007b452:  MOV dword ptr [EBP + 0x10],ECX\n  1007b455:  MOV EBX,dword ptr [EBP + 0x8]\n  1007b458:  MOV ECX,dword ptr [EBP + 0xc]\n  1007b45b:  MOV EDX,dword ptr [EBP + 0x10]\n  1007b45e:  MOV EDI,0xfffffffc\n  1007b463:  MOV ESI,0xfffffffc\n  1007b468:  FLD dword ptr [ECX]\n  1007b46a:  FLD dword ptr [ECX + 0x4]\n  1007b46d:  FLD dword ptr [ECX + 0x8]\n  1007b470:  FLD dword ptr [ECX + 0xc]\n  1007b473:  FLD ST3\n  1007b475:  FMUL dword ptr [EDX + ESI*0x4 + 0x10]\n  1007b479:  FLD ST3\n  1007b47b:  FMUL dword ptr [EDX + ESI*0x4 + 0x20]\n  1007b47f:  FLD ST3\n  1007b481:  FMUL dword ptr [EDX + ESI*0x4 + 0x30]\n  1007b485:  FLD ST3\n  1007b487:  FMUL dword ptr [EDX + ESI*0x4 + 0x40]\n  1007b48b:  FXCH ST3\n  1007b48d:  FADDP\n  1007b48f:  FXCH ST2\n  1007b491:  FADDP\n  1007b493:  FADDP\n  1007b495:  FSTP dword ptr [EBX + ESI*0x4 + 0x10]\n  1007b499:  INC ESI\n  1007b49a:  JNZ 0x1007b473\n  1007b49c:  FFREE ST3\n  1007b49e:  FFREE ST2\n  1007b4a0:  FFREE ST1\n  1007b4a2:  FFREE ST0\n  1007b4a4:  LEA ECX,[ECX + 0x10]\n  1007b4a7:  LEA EBX,[EBX + 0x10]\n  1007b4aa:  INC EDI\n  1007b4ab:  JNZ 0x1007b463\n  1007b4ad:  POP EDI\n  1007b4ae:  POP ESI\n  1007b4af:  POP EBX\n  1007b4b0:  LEAVE\n  1007b4b1:  RET 0xc", 
+  "callers": []
+}

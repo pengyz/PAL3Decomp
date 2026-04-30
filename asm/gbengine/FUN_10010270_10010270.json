@@ -1,0 +1,44 @@
+{
+  "address": "0x10010270", 
+  "size_bytes": 73, 
+  "calling_convention": "unknown", 
+  "signature": "undefined FUN_10010270(undefined4 param_1, undefined4 param_2, undefined4 param_3)", 
+  "callees": [
+    {
+      "address": "0x10010270", 
+      "name": "FUN_10010270"
+    }
+  ], 
+  "global_refs": [
+    {
+      "address": "0x00000004", 
+      "type": null, 
+      "name": "DAT_00000004"
+    }, 
+    {
+      "address": "0x0000000c", 
+      "type": null, 
+      "name": "DAT_0000000c"
+    }, 
+    {
+      "address": "0x00000008", 
+      "type": null, 
+      "name": "DAT_00000008"
+    }
+  ], 
+  "has_custom_name": false, 
+  "decompiled_c": "\nvoid FUN_10010270(int param_1,int *param_2,int param_3)\n\n{\n  int iVar1;\n  \n  if (*(int *)(param_3 + 0x108) != 0) {\n    *(int *)(param_1 + *param_2 * 4) = param_3;\n    *param_2 = *param_2 + 1;\n  }\n  iVar1 = *(int *)(param_3 + 0xc);\n  *(int *)(param_3 + 0x18) = iVar1;\n  while (iVar1 != 0) {\n    FUN_10010270(param_1,param_2,iVar1);\n    iVar1 = *(int *)(*(int *)(param_3 + 0x18) + 4);\n    *(int *)(param_3 + 0x18) = iVar1;\n  }\n  return;\n}\n\n", 
+  "is_thunk": false, 
+  "name": "FUN_10010270", 
+  "assembly": "  10010270:  PUSH EBX\n  10010271:  MOV EBX,dword ptr [ESP + 0x8]\n  10010275:  PUSH ESI\n  10010276:  MOV ESI,dword ptr [ESP + 0x14]\n  1001027a:  PUSH EDI\n  1001027b:  MOV EDI,dword ptr [ESP + 0x14]\n  1001027f:  MOV EAX,dword ptr [ESI + 0x108]\n  10010285:  TEST EAX,EAX\n  10010287:  JZ 0x10010293\n  10010289:  MOV EAX,dword ptr [EDI]\n  1001028b:  MOV dword ptr [EBX + EAX*0x4],ESI\n  1001028e:  MOV EAX,dword ptr [EDI]\n  10010290:  INC EAX\n  10010291:  MOV dword ptr [EDI],EAX\n  10010293:  MOV EAX,dword ptr [ESI + 0xc]\n  10010296:  TEST EAX,EAX\n  10010298:  MOV dword ptr [ESI + 0x18],EAX\n  1001029b:  JZ 0x100102b5\n  1001029d:  PUSH EAX\n  1001029e:  PUSH EDI\n  1001029f:  PUSH EBX\n  100102a0:  CALL 0x10010270\n  100102a5:  MOV ECX,dword ptr [ESI + 0x18]\n  100102a8:  ADD ESP,0xc\n  100102ab:  MOV EAX,dword ptr [ECX + 0x4]\n  100102ae:  TEST EAX,EAX\n  100102b0:  MOV dword ptr [ESI + 0x18],EAX\n  100102b3:  JNZ 0x1001029d\n  100102b5:  POP EDI\n  100102b6:  POP ESI\n  100102b7:  POP EBX\n  100102b8:  RET", 
+  "callers": [
+    {
+      "address": "0x1000fec0", 
+      "name": "GetTotalOBBox"
+    }, 
+    {
+      "address": "0x10010270", 
+      "name": "FUN_10010270"
+    }
+  ]
+}

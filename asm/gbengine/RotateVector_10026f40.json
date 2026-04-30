@@ -1,0 +1,85 @@
+{
+  "address": "0x10026f40", 
+  "size_bytes": 158, 
+  "calling_convention": "__thiscall", 
+  "signature": "void __thiscall RotateVector(gbQuaternion * this, gbVec3D * param_1, gbVec3D * param_2)", 
+  "callees": [
+    {
+      "address": "0x10026b60", 
+      "name": "GetMatrix"
+    }
+  ], 
+  "global_refs": [
+    {
+      "address": "0x-0000040", 
+      "type": null, 
+      "name": "DAT_-0000040"
+    }, 
+    {
+      "address": "0x-0000004", 
+      "type": null, 
+      "name": "DAT_-0000004"
+    }, 
+    {
+      "address": "0x-0000018", 
+      "type": null, 
+      "name": "DAT_-0000018"
+    }, 
+    {
+      "address": "0x-000002c", 
+      "type": null, 
+      "name": "DAT_-000002c"
+    }, 
+    {
+      "address": "0x00000004", 
+      "type": null, 
+      "name": "DAT_00000004"
+    }, 
+    {
+      "address": "0x00000008", 
+      "type": null, 
+      "name": "DAT_00000008"
+    }, 
+    {
+      "address": "0x-0000020", 
+      "type": null, 
+      "name": "DAT_-0000020"
+    }, 
+    {
+      "address": "0x-0000030", 
+      "type": null, 
+      "name": "DAT_-0000030"
+    }, 
+    {
+      "address": "0x-000001c", 
+      "type": null, 
+      "name": "DAT_-000001c"
+    }, 
+    {
+      "address": "0x-000003c", 
+      "type": null, 
+      "name": "DAT_-000003c"
+    }, 
+    {
+      "address": "0x-0000028", 
+      "type": null, 
+      "name": "DAT_-0000028"
+    }, 
+    {
+      "address": "0x-0000038", 
+      "type": null, 
+      "name": "DAT_-0000038"
+    }
+  ], 
+  "has_custom_name": true, 
+  "decompiled_c": "\n/* public: void __thiscall gbQuaternion::RotateVector(struct gbVec3D *,struct gbVec3D *) */\n\nvoid __thiscall gbQuaternion::RotateVector(gbQuaternion *this,gbVec3D *param_1,gbVec3D *param_2)\n\n{\n  float *pfVar1;\n  int iVar2;\n  float local_40 [4];\n  float local_30;\n  float local_2c;\n  float local_28;\n  float local_20;\n  float local_1c;\n  float local_18;\n  undefined4 local_4;\n  \n                    /* 0x26f40  829  ?RotateVector@gbQuaternion@@QAEXPAUgbVec3D@@0@Z */\n  pfVar1 = local_40;\n  for (iVar2 = 0x10; iVar2 != 0; iVar2 = iVar2 + -1) {\n    *pfVar1 = 0.0;\n    pfVar1 = pfVar1 + 1;\n  }\n  local_4 = 0x3f800000;\n  local_18 = 1.0;\n  local_2c = 1.0;\n  local_40[0] = 1.0;\n  GetMatrix(this,(gbMatrix4 *)local_40);\n  *(float *)param_2 =\n       local_40[0] * *(float *)param_1 +\n       local_30 * *(float *)(param_1 + 4) + local_20 * *(float *)(param_1 + 8);\n  *(float *)(param_2 + 4) =\n       local_40[1] * *(float *)param_1 +\n       local_2c * *(float *)(param_1 + 4) + local_1c * *(float *)(param_1 + 8);\n  *(float *)(param_2 + 8) =\n       local_40[2] * *(float *)param_1 +\n       local_28 * *(float *)(param_1 + 4) + local_18 * *(float *)(param_1 + 8);\n  return;\n}\n\n", 
+  "is_thunk": false, 
+  "name": "RotateVector", 
+  "assembly": "  10026f40:  SUB ESP,0x40\n  10026f43:  MOV EDX,ECX\n  10026f45:  PUSH EDI\n  10026f46:  MOV ECX,0x10\n  10026f4b:  XOR EAX,EAX\n  10026f4d:  LEA EDI,[ESP + 0x4]\n  10026f51:  STOSD.REP ES:EDI\n  10026f53:  LEA EAX,[ESP + 0x4]\n  10026f57:  MOV ECX,EDX\n  10026f59:  PUSH EAX\n  10026f5a:  MOV dword ptr [ESP + 0x44],0x3f800000\n  10026f62:  MOV dword ptr [ESP + 0x30],0x3f800000\n  10026f6a:  MOV dword ptr [ESP + 0x1c],0x3f800000\n  10026f72:  MOV dword ptr [ESP + 0x8],0x3f800000\n  10026f7a:  CALL 0x10026b60\n  10026f7f:  MOV EAX,dword ptr [ESP + 0x48]\n  10026f83:  MOV ECX,dword ptr [ESP + 0x4c]\n  10026f87:  FLD dword ptr [ESP + 0x24]\n  10026f8b:  FMUL dword ptr [EAX + 0x8]\n  10026f8e:  FLD dword ptr [ESP + 0x14]\n  10026f92:  FMUL dword ptr [EAX + 0x4]\n  10026f95:  POP EDI\n  10026f96:  FADDP\n  10026f98:  FLD dword ptr [ESP]\n  10026f9c:  FMUL dword ptr [EAX]\n  10026f9e:  FADDP\n  10026fa0:  FSTP dword ptr [ECX]\n  10026fa2:  FLD dword ptr [ESP + 0x24]\n  10026fa6:  FMUL dword ptr [EAX + 0x8]\n  10026fa9:  FLD dword ptr [ESP + 0x14]\n  10026fad:  FMUL dword ptr [EAX + 0x4]\n  10026fb0:  FADDP\n  10026fb2:  FLD dword ptr [ESP + 0x4]\n  10026fb6:  FMUL dword ptr [EAX]\n  10026fb8:  FADDP\n  10026fba:  FSTP dword ptr [ECX + 0x4]\n  10026fbd:  FLD dword ptr [ESP + 0x28]\n  10026fc1:  FMUL dword ptr [EAX + 0x8]\n  10026fc4:  FLD dword ptr [ESP + 0x18]\n  10026fc8:  FMUL dword ptr [EAX + 0x4]\n  10026fcb:  FADDP\n  10026fcd:  FLD dword ptr [ESP + 0x8]\n  10026fd1:  FMUL dword ptr [EAX]\n  10026fd3:  FADDP\n  10026fd5:  FSTP dword ptr [ECX + 0x8]\n  10026fd8:  ADD ESP,0x40\n  10026fdb:  RET 0x8", 
+  "callers": [
+    {
+      "address": "0x10022500", 
+      "name": "MoveInEyeDir"
+    }
+  ]
+}

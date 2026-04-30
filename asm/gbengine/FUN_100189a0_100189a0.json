@@ -1,0 +1,134 @@
+{
+  "address": "0x100189a0", 
+  "size_bytes": 522, 
+  "calling_convention": "unknown", 
+  "signature": "undefined FUN_100189a0(undefined4 param_1, undefined4 param_2)", 
+  "callees": [
+    {
+      "address": "0x1001d910", 
+      "name": "gbGfxManager"
+    }, 
+    {
+      "address": "0x100170d0", 
+      "name": "FUN_100170d0"
+    }, 
+    {
+      "address": "0x10020190", 
+      "name": "gbResManager"
+    }, 
+    {
+      "address": "0x10019920", 
+      "name": "FUN_10019920"
+    }, 
+    {
+      "address": "0x100e4a16", 
+      "name": "operator_new"
+    }, 
+    {
+      "address": "0x10020190", 
+      "name": "gbResManager"
+    }, 
+    {
+      "address": "0x1001dbf0", 
+      "name": "FUN_1001dbf0"
+    }
+  ], 
+  "global_refs": [
+    {
+      "address": "0x100f3d9f", 
+      "type": null, 
+      "name": "DAT_100f3d9f"
+    }, 
+    {
+      "address": "0xffdff000", 
+      "type": "void *32", 
+      "name": "DAT_ffdff000"
+    }, 
+    {
+      "address": "0x00000008", 
+      "type": null, 
+      "name": "DAT_00000008"
+    }, 
+    {
+      "address": "0x00000004", 
+      "type": null, 
+      "name": "DAT_00000004"
+    }, 
+    {
+      "address": "0x-0000024", 
+      "type": null, 
+      "name": "DAT_-0000024"
+    }, 
+    {
+      "address": "0x-0000004", 
+      "type": null, 
+      "name": "DAT_-0000004"
+    }, 
+    {
+      "address": "0x100f56b4", 
+      "type": "undefined *", 
+      "name": "DAT_100f56b4"
+    }, 
+    {
+      "address": "0x1013bdf0", 
+      "type": null, 
+      "name": "DAT_1013bdf0"
+    }, 
+    {
+      "address": "0x1015d3a4", 
+      "type": "int", 
+      "name": "DAT_1015d3a4"
+    }, 
+    {
+      "address": "0x-000000c", 
+      "type": null, 
+      "name": "DAT_-000000c"
+    }, 
+    {
+      "address": "0x-0000020", 
+      "type": null, 
+      "name": "DAT_-0000020"
+    }, 
+    {
+      "address": "0x-000001c", 
+      "type": null, 
+      "name": "DAT_-000001c"
+    }, 
+    {
+      "address": "0x-0000018", 
+      "type": null, 
+      "name": "DAT_-0000018"
+    }, 
+    {
+      "address": "0x-0000014", 
+      "type": null, 
+      "name": "DAT_-0000014"
+    }, 
+    {
+      "address": "0x-0000010", 
+      "type": null, 
+      "name": "DAT_-0000010"
+    }, 
+    {
+      "address": "0x-000002c", 
+      "type": null, 
+      "name": "DAT_-000002c"
+    }, 
+    {
+      "address": "0x-0000028", 
+      "type": null, 
+      "name": "DAT_-0000028"
+    }
+  ], 
+  "has_custom_name": false, 
+  "decompiled_c": "\n/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */\n\nvoid FUN_100189a0(int *param_1,gbGfxDriverInfo *param_2)\n\n{\n  int iVar1;\n  gbResManager *this;\n  int iVar2;\n  undefined4 *puVar3;\n  gbGfxManager *in_ECX;\n  gbGfxManager *pgVar4;\n  void **ppvVar5;\n  void *local_20 [6];\n  undefined *puStack_8;\n  undefined4 local_4;\n  \n  local_4 = 0xffffffff;\n  puStack_8 = &LAB_100f3d9f;\n  local_20[5] = ExceptionList;\n  ExceptionList = local_20 + 5;\n  gbGfxManager::gbGfxManager(in_ECX,param_1,param_2);\n  local_4 = 0;\n  FUN_100170d0();\n  local_4._0_1_ = 1;\n  gbResManager::gbResManager((gbResManager *)(in_ECX + 0x658));\n  *(undefined ***)in_ECX = &PTR_FUN_100f56b4;\n  *(undefined4 *)(in_ECX + 0x8cc) = 0;\n  *(undefined4 *)(in_ECX + 0x644) = 0;\n  in_ECX[0x64c] = (gbGfxManager)0x0;\n  in_ECX[0x648] = (gbGfxManager)0x0;\n  in_ECX[0x649] = (gbGfxManager)0x0;\n  in_ECX[0x64b] = (gbGfxManager)0x0;\n  in_ECX[0x64a] = (gbGfxManager)0x1;\n  *(undefined4 *)(in_ECX + 0x664) = 0;\n  *(undefined4 *)(in_ECX + 0x668) = 1;\n  gbColorQuad::ColorQuadFmt = 0;\n  local_4._0_1_ = 2;\n  _DAT_1013bdf0 = in_ECX;\n  *(undefined4 *)(in_ECX + 0x714) = 0;\n  *(undefined4 *)(in_ECX + 0x718) = 0;\n  iVar1 = FUN_10019920();\n  *(int *)(in_ECX + 8) = iVar1;\n  if (iVar1 != 0) {\n    this = (gbResManager *)operator_new(0x828);\n    local_4._0_1_ = 3;\n    if (this == (gbResManager *)0x0) {\n      this = (gbResManager *)0x0;\n    }\n    else {\n      gbResManager::gbResManager(this);\n    }\n    local_4 = CONCAT31(local_4._1_3_,2);\n    *(gbResManager **)(in_ECX + 200) = this;\n    FUN_1001dbf0();\n    local_20[0] = (void *)0x31545844;\n    local_20[1] = (void *)0x32545844;\n    local_20[2] = (void *)0x33545844;\n    local_20[3] = (void *)0x34545844;\n    local_20[4] = (void *)0x35545844;\n    ppvVar5 = local_20;\n    pgVar4 = in_ECX + 0x8d4;\n    param_2 = (gbGfxDriverInfo *)0x5;\n    do {\n      if (in_ECX[0x670] == (gbGfxManager)0x0) {\n        iVar1 = *(int *)(in_ECX + 0x6b4);\n      }\n      else {\n        iVar1 = *(int *)(in_ECX + 0x67c);\n      }\n      if (in_ECX[0x670] == (gbGfxManager)0x0) {\n        iVar2 = *(int *)(in_ECX + 0x6b4);\n      }\n      else {\n        iVar2 = *(int *)(in_ECX + 0x67c);\n      }\n      if (in_ECX[0x670] == (gbGfxManager)0x0) {\n        puVar3 = *(undefined4 **)(in_ECX + 0x6b4);\n      }\n      else {\n        puVar3 = *(undefined4 **)(in_ECX + 0x67c);\n      }\n      iVar1 = (**(code **)(**(int **)(in_ECX + 0x714) + 0x28))\n                        (*(int **)(in_ECX + 0x714),*puVar3,*(undefined4 *)(iVar2 + 4),\n                         *(undefined4 *)(iVar1 + 8),0,3,*ppvVar5);\n      *(uint *)pgVar4 = (uint)(-1 < iVar1);\n      ppvVar5 = ppvVar5 + 1;\n      pgVar4 = pgVar4 + 4;\n      param_2 = (gbGfxDriverInfo *)((int)param_2 + -1);\n    } while (param_2 != (gbGfxDriverInfo *)0x0);\n    *param_1 = 1;\n    in_ECX[0x64c] = (gbGfxManager)0x1;\n    ExceptionList = local_20[5];\n    return;\n  }\n  *param_1 = 0;\n  ExceptionList = local_20[5];\n  return;\n}\n\n", 
+  "is_thunk": false, 
+  "name": "FUN_100189a0", 
+  "assembly": "  100189a0:  PUSH -0x1\n  100189a2:  PUSH 0x100f3d9f\n  100189a7:  MOV EAX,FS:[0x0]\n  100189ad:  PUSH EAX\n  100189ae:  MOV dword ptr FS:[0x0],ESP\n  100189b5:  SUB ESP,0x20\n  100189b8:  MOV EAX,dword ptr [ESP + 0x34]\n  100189bc:  PUSH EBX\n  100189bd:  PUSH ESI\n  100189be:  PUSH EDI\n  100189bf:  MOV EDI,dword ptr [ESP + 0x3c]\n  100189c3:  MOV ESI,ECX\n  100189c5:  PUSH EAX\n  100189c6:  PUSH EDI\n  100189c7:  MOV dword ptr [ESP + 0x1c],ESI\n  100189cb:  CALL 0x1001d910\n  100189d0:  XOR EBX,EBX\n  100189d2:  LEA ECX,[ESI + 0x5f0]\n  100189d8:  MOV dword ptr [ESP + 0x34],EBX\n  100189dc:  CALL 0x100170d0\n  100189e1:  LEA ECX,[ESI + 0x658]\n  100189e7:  MOV byte ptr [ESP + 0x34],0x1\n  100189ec:  CALL 0x10020190\n  100189f1:  MOV dword ptr [ESI],0x100f56b4\n  100189f7:  MOV dword ptr [ESI + 0x8cc],EBX\n  100189fd:  MOV dword ptr [ESI + 0x644],EBX\n  10018a03:  MOV byte ptr [ESI + 0x64c],BL\n  10018a09:  MOV byte ptr [ESI + 0x648],BL\n  10018a0f:  MOV byte ptr [ESI + 0x649],BL\n  10018a15:  MOV byte ptr [ESI + 0x64b],BL\n  10018a1b:  MOV byte ptr [ESI + 0x64a],0x1\n  10018a22:  MOV dword ptr [ESI + 0x664],EBX\n  10018a28:  MOV dword ptr [ESI + 0x668],0x1\n  10018a32:  MOV dword ptr [0x1013bdf0],ESI\n  10018a38:  MOV dword ptr [0x1015d3a4],EBX\n  10018a3e:  MOV ECX,ESI\n  10018a40:  MOV byte ptr [ESP + 0x34],0x2\n  10018a45:  MOV dword ptr [ESI + 0x714],EBX\n  10018a4b:  MOV dword ptr [ESI + 0x718],EBX\n  10018a51:  CALL 0x10019920\n  10018a56:  CMP EAX,EBX\n  10018a58:  MOV dword ptr [ESI + 0x8],EAX\n  10018a5b:  JNZ 0x10018a75\n  10018a5d:  MOV dword ptr [EDI],EBX\n  10018a5f:  MOV EAX,ESI\n  10018a61:  POP EDI\n  10018a62:  POP ESI\n  10018a63:  POP EBX\n  10018a64:  MOV ECX,dword ptr [ESP + 0x20]\n  10018a68:  MOV dword ptr FS:[0x0],ECX\n  10018a6f:  ADD ESP,0x2c\n  10018a72:  RET 0x8\n  10018a75:  PUSH 0x828\n  10018a7a:  CALL 0x100e4a16\n  10018a7f:  MOV EDI,EAX\n  10018a81:  ADD ESP,0x4\n  10018a84:  MOV dword ptr [ESP + 0x40],EDI\n  10018a88:  CMP EDI,EBX\n  10018a8a:  MOV byte ptr [ESP + 0x34],0x3\n  10018a8f:  JZ 0x10018a9c\n  10018a91:  MOV ECX,EDI\n  10018a93:  CALL 0x10020190\n  10018a98:  MOV EAX,EDI\n  10018a9a:  JMP 0x10018a9e\n  10018a9c:  XOR EAX,EAX\n  10018a9e:  PUSH EBP\n  10018a9f:  MOV ECX,ESI\n  10018aa1:  MOV byte ptr [ESP + 0x38],0x2\n  10018aa6:  MOV dword ptr [ESI + 0xc8],EAX\n  10018aac:  CALL 0x1001dbf0\n  10018ab1:  MOV dword ptr [ESP + 0x1c],0x31545844\n  10018ab9:  MOV dword ptr [ESP + 0x20],0x32545844\n  10018ac1:  MOV dword ptr [ESP + 0x24],0x33545844\n  10018ac9:  MOV dword ptr [ESP + 0x28],0x34545844\n  10018ad1:  MOV dword ptr [ESP + 0x2c],0x35545844\n  10018ad9:  LEA EDI,[ESP + 0x1c]\n  10018add:  LEA EBP,[ESI + 0x8d4]\n  10018ae3:  MOV dword ptr [ESP + 0x44],0x5\n  10018aeb:  JMP 0x10018aef\n  10018aed:  XOR EBX,EBX\n  10018aef:  CMP byte ptr [ESI + 0x670],BL\n  10018af5:  JZ 0x10018aff\n  10018af7:  MOV EAX,dword ptr [ESI + 0x67c]\n  10018afd:  JMP 0x10018b05\n  10018aff:  MOV EAX,dword ptr [ESI + 0x6b4]\n  10018b05:  MOV ECX,dword ptr [EAX + 0x8]\n  10018b08:  MOV AL,byte ptr [ESI + 0x670]\n  10018b0e:  CMP AL,BL\n  10018b10:  MOV dword ptr [ESP + 0x10],ECX\n  10018b14:  JZ 0x10018b1e\n  10018b16:  MOV EAX,dword ptr [ESI + 0x67c]\n  10018b1c:  JMP 0x10018b24\n  10018b1e:  MOV EAX,dword ptr [ESI + 0x6b4]\n  10018b24:  MOV EDX,dword ptr [EAX + 0x4]\n  10018b27:  MOV AL,byte ptr [ESI + 0x670]\n  10018b2d:  CMP AL,BL\n  10018b2f:  MOV dword ptr [ESP + 0x14],EDX\n  10018b33:  JZ 0x10018b3d\n  10018b35:  MOV EAX,dword ptr [ESI + 0x67c]\n  10018b3b:  JMP 0x10018b43\n  10018b3d:  MOV EAX,dword ptr [ESI + 0x6b4]\n  10018b43:  MOV EBX,dword ptr [EDI]\n  10018b45:  MOV ECX,dword ptr [EAX]\n  10018b47:  MOV EAX,dword ptr [ESI + 0x714]\n  10018b4d:  PUSH EBX\n  10018b4e:  MOV EBX,dword ptr [ESP + 0x14]\n  10018b52:  PUSH 0x3\n  10018b54:  MOV EDX,dword ptr [EAX]\n  10018b56:  PUSH 0x0\n  10018b58:  PUSH EBX\n  10018b59:  MOV EBX,dword ptr [ESP + 0x24]\n  10018b5d:  PUSH EBX\n  10018b5e:  PUSH ECX\n  10018b5f:  PUSH EAX\n  10018b60:  CALL dword ptr [EDX + 0x28]\n  10018b63:  XOR ECX,ECX\n  10018b65:  TEST EAX,EAX\n  10018b67:  MOV EAX,dword ptr [ESP + 0x44]\n  10018b6b:  SETGE CL\n  10018b6e:  MOV dword ptr [EBP],ECX\n  10018b71:  ADD EDI,0x4\n  10018b74:  ADD EBP,0x4\n  10018b77:  DEC EAX\n  10018b78:  MOV dword ptr [ESP + 0x44],EAX\n  10018b7c:  JNZ 0x10018aed\n  10018b82:  MOV EDX,dword ptr [ESP + 0x40]\n  10018b86:  MOV ECX,dword ptr [ESP + 0x30]\n  10018b8a:  POP EBP\n  10018b8b:  MOV EAX,ESI\n  10018b8d:  MOV dword ptr [EDX],0x1\n  10018b93:  MOV byte ptr [ESI + 0x64c],0x1\n  10018b9a:  POP EDI\n  10018b9b:  POP ESI\n  10018b9c:  POP EBX\n  10018b9d:  MOV dword ptr FS:[0x0],ECX\n  10018ba4:  ADD ESP,0x2c\n  10018ba7:  RET 0x8", 
+  "callers": [
+    {
+      "address": "0x1001e0c0", 
+      "name": "gbCreateGraphManager"
+    }
+  ]
+}

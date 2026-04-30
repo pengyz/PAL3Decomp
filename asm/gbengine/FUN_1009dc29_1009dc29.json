@@ -1,0 +1,105 @@
+{
+  "address": "0x1009dc29", 
+  "size_bytes": 119, 
+  "calling_convention": "unknown", 
+  "signature": "undefined FUN_1009dc29(undefined4 param_1, undefined4 param_2, undefined4 param_3, undefined4 param_4, undefined1 param_5)", 
+  "callees": [
+    {
+      "address": "0x100e68e0", 
+      "name": "FUN_100e68e0"
+    }, 
+    {
+      "address": "0x1004cc4c", 
+      "name": "FUN_1004cc4c"
+    }
+  ], 
+  "global_refs": [
+    {
+      "address": "0x00000014", 
+      "type": null, 
+      "name": "DAT_00000014"
+    }, 
+    {
+      "address": "0x00000010", 
+      "type": null, 
+      "name": "DAT_00000010"
+    }, 
+    {
+      "address": "0x-0000104", 
+      "type": null, 
+      "name": "DAT_-0000104"
+    }, 
+    {
+      "address": "0x00000008", 
+      "type": null, 
+      "name": "DAT_00000008"
+    }, 
+    {
+      "address": "0x-0000005", 
+      "type": null, 
+      "name": "DAT_-0000005"
+    }, 
+    {
+      "address": "0x100f9350", 
+      "type": null, 
+      "name": "DAT_100f9350"
+    }, 
+    {
+      "address": "0x0000000c", 
+      "type": null, 
+      "name": "DAT_0000000c"
+    }, 
+    {
+      "address": "0x00000004", 
+      "type": null, 
+      "name": "DAT_00000004"
+    }
+  ], 
+  "has_custom_name": false, 
+  "decompiled_c": "\nundefined4 FUN_1009dc29(int param_1,int param_2,undefined4 param_3,undefined4 param_4)\n\n{\n  int iVar1;\n  int iVar2;\n  undefined local_104 [255];\n  undefined local_5;\n  \n  FUN_100e68e0(local_104,0x100,param_4,&stack0x00000014);\n  iVar2 = 0;\n  local_5 = 0;\n  if (param_2 != 0) {\n    iVar1 = *(int *)(param_2 + 4);\n    if (iVar1 == 3) {\n      iVar2 = param_2 + 0x10;\n    }\n    else if (iVar1 == 6) {\n      iVar2 = *(int *)(param_2 + 0x14) + 0x10;\n    }\n    else if (iVar1 == 0xd) {\n      iVar2 = param_2 + 0x30;\n    }\n  }\n  FUN_1004cc4c(*(undefined4 *)(param_1 + 0xbc),iVar2,param_3,&DAT_100f9350,local_104);\n  return 0;\n}\n\n", 
+  "is_thunk": false, 
+  "name": "FUN_1009dc29", 
+  "assembly": "  1009dc29:  PUSH EBP\n  1009dc2a:  MOV EBP,ESP\n  1009dc2c:  SUB ESP,0x100\n  1009dc32:  LEA EAX,[EBP + 0x18]\n  1009dc35:  PUSH EAX\n  1009dc36:  PUSH dword ptr [EBP + 0x14]\n  1009dc39:  LEA EAX,[EBP + 0xffffff00]\n  1009dc3f:  PUSH 0x100\n  1009dc44:  PUSH EAX\n  1009dc45:  CALL 0x100e68e0\n  1009dc4a:  MOV ECX,dword ptr [EBP + 0xc]\n  1009dc4d:  XOR EAX,EAX\n  1009dc4f:  ADD ESP,0x10\n  1009dc52:  CMP ECX,EAX\n  1009dc54:  MOV byte ptr [EBP + -0x1],AL\n  1009dc57:  JZ 0x1009dc7b\n  1009dc59:  MOV EDX,dword ptr [ECX + 0x4]\n  1009dc5c:  CMP EDX,0x3\n  1009dc5f:  JZ 0x1009dc78\n  1009dc61:  CMP EDX,0x6\n  1009dc64:  JZ 0x1009dc70\n  1009dc66:  CMP EDX,0xd\n  1009dc69:  JNZ 0x1009dc7b\n  1009dc6b:  LEA EAX,[ECX + 0x30]\n  1009dc6e:  JMP 0x1009dc7b\n  1009dc70:  MOV EAX,dword ptr [ECX + 0x14]\n  1009dc73:  ADD EAX,0x10\n  1009dc76:  JMP 0x1009dc7b\n  1009dc78:  LEA EAX,[ECX + 0x10]\n  1009dc7b:  LEA ECX,[EBP + 0xffffff00]\n  1009dc81:  PUSH ECX\n  1009dc82:  PUSH 0x100f9350\n  1009dc87:  PUSH dword ptr [EBP + 0x10]\n  1009dc8a:  PUSH EAX\n  1009dc8b:  MOV EAX,dword ptr [EBP + 0x8]\n  1009dc8e:  PUSH dword ptr [EAX + 0xbc]\n  1009dc94:  CALL 0x1004cc4c\n  1009dc99:  ADD ESP,0x14\n  1009dc9c:  XOR EAX,EAX\n  1009dc9e:  LEAVE\n  1009dc9f:  RET", 
+  "callers": [
+    {
+      "address": "0x100a9a78", 
+      "name": "FUN_100a9a78"
+    }, 
+    {
+      "address": "0x100c8308", 
+      "name": "FUN_100c8308"
+    }, 
+    {
+      "address": "0x100a9f6e", 
+      "name": "FUN_100a9f6e"
+    }, 
+    {
+      "address": "0x100b2906", 
+      "name": "FUN_100b2906"
+    }, 
+    {
+      "address": "0x100af976", 
+      "name": "FUN_100af976"
+    }, 
+    {
+      "address": "0x100c137b", 
+      "name": "FUN_100c137b"
+    }, 
+    {
+      "address": "0x100c6d4f", 
+      "name": "FUN_100c6d4f"
+    }, 
+    {
+      "address": "0x100c719a", 
+      "name": "FUN_100c719a"
+    }, 
+    {
+      "address": "0x100b63a4", 
+      "name": "FUN_100b63a4"
+    }, 
+    {
+      "address": "0x100b9497", 
+      "name": "FUN_100b9497"
+    }
+  ]
+}

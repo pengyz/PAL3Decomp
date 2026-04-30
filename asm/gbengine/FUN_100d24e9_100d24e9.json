@@ -1,0 +1,35 @@
+{
+  "address": "0x100d24e9", 
+  "size_bytes": 154, 
+  "calling_convention": "unknown", 
+  "signature": "undefined FUN_100d24e9(undefined4 param_1, undefined4 param_2)", 
+  "callees": [], 
+  "global_refs": [
+    {
+      "address": "0x00000008", 
+      "type": null, 
+      "name": "DAT_00000008"
+    }, 
+    {
+      "address": "0x101284b0", 
+      "type": "undefined4", 
+      "name": "DAT_101284b0"
+    }, 
+    {
+      "address": "0x101284a0", 
+      "type": null, 
+      "name": "DAT_101284a0"
+    }, 
+    {
+      "address": "0x00000004", 
+      "type": null, 
+      "name": "DAT_00000004"
+    }
+  ], 
+  "has_custom_name": false, 
+  "decompiled_c": "\n/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */\n\nfloat * FUN_100d24e9(float *param_1,float *param_2)\n\n{\n  float fVar1;\n  float fVar2;\n  float fVar3;\n  float fVar4;\n  float fVar5;\n  undefined in_register_00001304 [12];\n  float fVar6;\n  undefined in_XMM5 [16];\n  undefined auVar7 [16];\n  undefined auVar8 [16];\n  \n  fVar1 = *param_2;\n  fVar2 = param_2[1];\n  fVar3 = param_2[2];\n  fVar4 = param_2[3];\n  auVar7._4_12_ = in_XMM5._4_12_;\n  auVar7._0_4_ = fVar2 * fVar2;\n  fVar5 = fVar1 * fVar1 + auVar7._0_4_ + fVar3 * fVar3 + fVar4 * fVar4;\n  auVar8._4_12_ = in_register_00001304;\n  auVar8._0_4_ = fVar5;\n  auVar8 = rsqrtss(auVar7,auVar8);\n  fVar6 = auVar8._0_4_;\n  fVar6 = (DAT_101284b0 - fVar5 * fVar6 * fVar6) * _DAT_101284a0 * fVar6;\n  *param_1 = fVar1 * fVar6;\n  param_1[1] = fVar2 * fVar6;\n  param_1[2] = fVar3 * fVar6;\n  param_1[3] = fVar4 * fVar6;\n  return param_1;\n}\n\n", 
+  "is_thunk": false, 
+  "name": "FUN_100d24e9", 
+  "assembly": "  100d24e9:  PUSH EBP\n  100d24ea:  MOV EBP,ESP\n  100d24ec:  MOV EAX,dword ptr [EBP + 0xc]\n  100d24ef:  MOVSS XMM0,dword ptr [EAX]\n  100d24f3:  MOVSS XMM1,dword ptr [EAX + 0x4]\n  100d24f8:  MOVSS XMM2,dword ptr [EAX + 0x8]\n  100d24fd:  MOVSS XMM3,dword ptr [EAX + 0xc]\n  100d2502:  MOVSS XMM4,XMM0\n  100d2506:  MOVSS XMM5,XMM1\n  100d250a:  MOVSS XMM6,XMM2\n  100d250e:  MOVSS XMM7,XMM3\n  100d2512:  MULSS XMM4,XMM0\n  100d2516:  MULSS XMM5,XMM1\n  100d251a:  MULSS XMM6,XMM2\n  100d251e:  ADDSS XMM4,XMM5\n  100d2522:  MULSS XMM7,XMM3\n  100d2526:  ADDSS XMM6,XMM7\n  100d252a:  ADDSS XMM4,XMM6\n  100d252e:  RSQRTSS XMM5,XMM4\n  100d2532:  MOVSS XMM6,XMM5\n  100d2536:  MULSS XMM5,XMM5\n  100d253a:  MULSS XMM4,XMM5\n  100d253e:  MOVSS XMM5,dword ptr [0x101284b0]\n  100d2546:  SUBSS XMM5,XMM4\n  100d254a:  MULSS XMM5,dword ptr [0x101284a0]\n  100d2552:  MULSS XMM5,XMM6\n  100d2556:  MOV EAX,dword ptr [EBP + 0x8]\n  100d2559:  MULSS XMM0,XMM5\n  100d255d:  MULSS XMM1,XMM5\n  100d2561:  MOVSS dword ptr [EAX],XMM0\n  100d2565:  MULSS XMM2,XMM5\n  100d2569:  MOVSS dword ptr [EAX + 0x4],XMM1\n  100d256e:  MULSS XMM3,XMM5\n  100d2572:  MOVSS dword ptr [EAX + 0x8],XMM2\n  100d2577:  MOVSS dword ptr [EAX + 0xc],XMM3\n  100d257c:  MOV EAX,dword ptr [EBP + 0x8]\n  100d257f:  POP EBP\n  100d2580:  RET 0x8", 
+  "callers": []
+}

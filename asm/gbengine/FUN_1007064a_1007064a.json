@@ -1,0 +1,28 @@
+{
+  "address": "0x1007064a", 
+  "size_bytes": 39, 
+  "calling_convention": "unknown", 
+  "signature": "undefined FUN_1007064a(void)", 
+  "callees": [
+    {
+      "address": "0x100e4a24", 
+      "name": "FUN_100e4a24"
+    }, 
+    {
+      "address": "0x1006c9ae", 
+      "name": "FUN_1006c9ae"
+    }
+  ], 
+  "global_refs": [], 
+  "has_custom_name": false, 
+  "decompiled_c": "\nvoid FUN_1007064a(void)\n\n{\n  int *in_ECX;\n  \n  if (*in_ECX != 0) {\n    FUN_100e4a24(*in_ECX);\n    *in_ECX = 0;\n  }\n  if (in_ECX[1] != 0) {\n    FUN_1006c9ae(3);\n    in_ECX[1] = 0;\n  }\n  return;\n}\n\n", 
+  "is_thunk": false, 
+  "name": "FUN_1007064a", 
+  "assembly": "  1007064a:  PUSH ESI\n  1007064b:  MOV ESI,ECX\n  1007064d:  MOV EAX,dword ptr [ESI]\n  1007064f:  TEST EAX,EAX\n  10070651:  JZ 0x1007065d\n  10070653:  PUSH EAX\n  10070654:  CALL 0x100e4a24\n  10070659:  AND dword ptr [ESI],0x0\n  1007065c:  POP ECX\n  1007065d:  MOV ECX,dword ptr [ESI + 0x4]\n  10070660:  TEST ECX,ECX\n  10070662:  JZ 0x1007066f\n  10070664:  PUSH 0x3\n  10070666:  CALL 0x1006c9ae\n  1007066b:  AND dword ptr [ESI + 0x4],0x0\n  1007066f:  POP ESI\n  10070670:  RET", 
+  "callers": [
+    {
+      "address": "0x100706f8", 
+      "name": "FUN_100706f8"
+    }
+  ]
+}

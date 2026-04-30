@@ -1,0 +1,42 @@
+{
+  "address": "0x100c4493", 
+  "size_bytes": 166, 
+  "calling_convention": "unknown", 
+  "signature": "undefined FUN_100c4493(void)", 
+  "callees": [
+    {
+      "address": "0x1009a841", 
+      "name": "FUN_1009a841"
+    }
+  ], 
+  "global_refs": [
+    {
+      "address": "0x1010e918", 
+      "type": "undefined *", 
+      "name": "DAT_1010e918"
+    }
+  ], 
+  "has_custom_name": false, 
+  "decompiled_c": "\nvoid FUN_100c4493(void)\n\n{\n  undefined4 *in_ECX;\n  int iVar1;\n  undefined4 *puVar2;\n  \n  FUN_1009a841();\n  *in_ECX = &PTR_FUN_1010e918;\n  puVar2 = in_ECX + 0x5b;\n  for (iVar1 = 7; iVar1 != 0; iVar1 = iVar1 + -1) {\n    *puVar2 = 0;\n    puVar2 = puVar2 + 1;\n  }\n  puVar2 = in_ECX + 99;\n  for (iVar1 = 7; iVar1 != 0; iVar1 = iVar1 + -1) {\n    *puVar2 = 0;\n    puVar2 = puVar2 + 1;\n  }\n  in_ECX[0x50] = 0xffffffff;\n  in_ECX[0x37] = 0;\n  in_ECX[0x38] = 0;\n  in_ECX[0x39] = 0;\n  in_ECX[0x51] = 0xffffffff;\n  in_ECX[0x52] = 0xffffffff;\n  in_ECX[0x53] = 0xffffffff;\n  in_ECX[0x3b] = 0;\n  in_ECX[0x3c] = 0;\n  in_ECX[0x3d] = 0;\n  in_ECX[0x41] = 0;\n  in_ECX[0x42] = 0;\n  in_ECX[0x43] = 0;\n  in_ECX[0x44] = 0;\n  in_ECX[0x45] = 0;\n  in_ECX[0x3a] = 0;\n  in_ECX[0x5a] = 0;\n  in_ECX[0x4e] = 0;\n  in_ECX[0x6a] = 0;\n  in_ECX[0x62] = 0;\n  in_ECX[0x6b] = 0;\n  return;\n}\n\n", 
+  "is_thunk": false, 
+  "name": "FUN_100c4493", 
+  "assembly": "  100c4493:  PUSH ESI\n  100c4494:  PUSH EDI\n  100c4495:  MOV ESI,ECX\n  100c4497:  CALL 0x1009a841\n  100c449c:  PUSH 0x7\n  100c449e:  POP ECX\n  100c449f:  XOR EAX,EAX\n  100c44a1:  MOV dword ptr [ESI],0x1010e918\n  100c44a7:  LEA EDI,[ESI + 0x16c]\n  100c44ad:  STOSD.REP ES:EDI\n  100c44af:  PUSH 0x7\n  100c44b1:  POP ECX\n  100c44b2:  LEA EDI,[ESI + 0x18c]\n  100c44b8:  STOSD.REP ES:EDI\n  100c44ba:  XOR ECX,ECX\n  100c44bc:  OR EAX,0xffffffff\n  100c44bf:  MOV dword ptr [ESI + 0x140],EAX\n  100c44c5:  MOV dword ptr [ESI + 0xdc],ECX\n  100c44cb:  MOV dword ptr [ESI + 0xe0],ECX\n  100c44d1:  MOV dword ptr [ESI + 0xe4],ECX\n  100c44d7:  LEA EDI,[ESI + 0x144]\n  100c44dd:  STOSD ES:EDI\n  100c44de:  STOSD ES:EDI\n  100c44df:  STOSD ES:EDI\n  100c44e0:  POP EDI\n  100c44e1:  MOV dword ptr [ESI + 0xec],ECX\n  100c44e7:  MOV dword ptr [ESI + 0xf0],ECX\n  100c44ed:  MOV dword ptr [ESI + 0xf4],ECX\n  100c44f3:  MOV dword ptr [ESI + 0x104],ECX\n  100c44f9:  MOV dword ptr [ESI + 0x108],ECX\n  100c44ff:  MOV dword ptr [ESI + 0x10c],ECX\n  100c4505:  MOV dword ptr [ESI + 0x110],ECX\n  100c450b:  MOV dword ptr [ESI + 0x114],ECX\n  100c4511:  MOV dword ptr [ESI + 0xe8],ECX\n  100c4517:  MOV dword ptr [ESI + 0x168],ECX\n  100c451d:  MOV dword ptr [ESI + 0x138],ECX\n  100c4523:  MOV dword ptr [ESI + 0x1a8],ECX\n  100c4529:  MOV dword ptr [ESI + 0x188],ECX\n  100c452f:  MOV dword ptr [ESI + 0x1ac],ECX\n  100c4535:  MOV EAX,ESI\n  100c4537:  POP ESI\n  100c4538:  RET", 
+  "callers": [
+    {
+      "address": "0x100a9e05", 
+      "name": "FUN_100a9e05"
+    }, 
+    {
+      "address": "0x100b5522", 
+      "name": "FUN_100b5522"
+    }, 
+    {
+      "address": "0x100b8892", 
+      "name": "FUN_100b8892"
+    }, 
+    {
+      "address": "0x100bb59d", 
+      "name": "FUN_100bb59d"
+    }
+  ]
+}

@@ -1,0 +1,35 @@
+{
+  "address": "0x10031690", 
+  "size_bytes": 32, 
+  "calling_convention": "__thiscall", 
+  "signature": "void __thiscall WriteLine(CIniFile * this, char * param_1, char * param_2)", 
+  "callees": [
+    {
+      "address": "0x100e5c9f", 
+      "name": "FUN_100e5c9f"
+    }
+  ], 
+  "global_refs": [
+    {
+      "address": "0x00000008", 
+      "type": null, 
+      "name": "DAT_00000008"
+    }, 
+    {
+      "address": "0x00000004", 
+      "type": null, 
+      "name": "DAT_00000004"
+    }, 
+    {
+      "address": "0x10120ac4", 
+      "type": "string", 
+      "name": "DAT_10120ac4"
+    }
+  ], 
+  "has_custom_name": true, 
+  "decompiled_c": "\n/* public: void __thiscall CIniFile::WriteLine(char const *,char const *) */\n\nvoid __thiscall CIniFile::WriteLine(CIniFile *this,char *param_1,char *param_2)\n\n{\n                    /* 0x31690  960  ?WriteLine@CIniFile@@QAEXPBD0@Z */\n  FUN_100e5c9f(*(undefined4 *)(*(int *)this + 4),s__s__s_10120ac4,param_1,param_2);\n  return;\n}\n\n", 
+  "is_thunk": false, 
+  "name": "WriteLine", 
+  "assembly": "  10031690:  MOV EAX,dword ptr [ESP + 0x8]\n  10031694:  MOV EDX,dword ptr [ESP + 0x4]\n  10031698:  PUSH EAX\n  10031699:  MOV EAX,dword ptr [ECX]\n  1003169b:  PUSH EDX\n  1003169c:  PUSH 0x10120ac4\n  100316a1:  MOV ECX,dword ptr [EAX + 0x4]\n  100316a4:  PUSH ECX\n  100316a5:  CALL 0x100e5c9f\n  100316aa:  ADD ESP,0x10\n  100316ad:  RET 0x8", 
+  "callers": []
+}

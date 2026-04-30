@@ -1,0 +1,73 @@
+{
+  "address": "0x10049346", 
+  "size_bytes": 87, 
+  "calling_convention": "unknown", 
+  "signature": "undefined FUN_10049346(undefined4 param_1, undefined4 param_2, undefined4 param_3, undefined4 param_4, undefined4 param_5, undefined4 param_6)", 
+  "callees": [
+    {
+      "address": "0x10049233", 
+      "name": "thunk_FUN_1004920f"
+    }, 
+    {
+      "address": "0x10049233", 
+      "name": "thunk_FUN_1004920f"
+    }, 
+    {
+      "address": "0x10049233", 
+      "name": "thunk_FUN_1004920f"
+    }
+  ], 
+  "global_refs": [
+    {
+      "address": "0x00000018", 
+      "type": null, 
+      "name": "DAT_00000018"
+    }, 
+    {
+      "address": "0x-0000028", 
+      "type": null, 
+      "name": "DAT_-0000028"
+    }, 
+    {
+      "address": "0x00000014", 
+      "type": null, 
+      "name": "DAT_00000014"
+    }, 
+    {
+      "address": "0x-0000024", 
+      "type": null, 
+      "name": "DAT_-0000024"
+    }, 
+    {
+      "address": "0x00000008", 
+      "type": null, 
+      "name": "DAT_00000008"
+    }, 
+    {
+      "address": "0x00000010", 
+      "type": null, 
+      "name": "DAT_00000010"
+    }, 
+    {
+      "address": "0x-0000014", 
+      "type": null, 
+      "name": "DAT_-0000014"
+    }, 
+    {
+      "address": "0x0000000c", 
+      "type": null, 
+      "name": "DAT_0000000c"
+    }, 
+    {
+      "address": "0x00000004", 
+      "type": null, 
+      "name": "DAT_00000004"
+    }
+  ], 
+  "has_custom_name": false, 
+  "decompiled_c": "\nundefined4\nFUN_10049346(undefined4 param_1,undefined4 param_2,undefined4 param_3,undefined4 param_4,\n            undefined4 param_5,float param_6)\n\n{\n  undefined local_24 [16];\n  undefined local_14 [16];\n  \n  thunk_FUN_1004920f(local_24,param_2,param_5,param_6);\n  thunk_FUN_1004920f(local_14,param_3,param_4,param_6);\n  param_6 = (1.0 - param_6) * param_6;\n  thunk_FUN_1004920f(param_1,local_24,local_14,param_6 + param_6);\n  return param_1;\n}\n\n", 
+  "is_thunk": false, 
+  "name": "FUN_10049346", 
+  "assembly": "  10049346:  PUSH EBP\n  10049347:  MOV EBP,ESP\n  10049349:  SUB ESP,0x20\n  1004934c:  FLD dword ptr [EBP + 0x1c]\n  1004934f:  PUSH ECX\n  10049350:  FSTP dword ptr [ESP]\n  10049353:  PUSH dword ptr [EBP + 0x18]\n  10049356:  LEA EAX,[EBP + -0x20]\n  10049359:  PUSH dword ptr [EBP + 0xc]\n  1004935c:  PUSH EAX\n  1004935d:  CALL 0x10049233\n  10049362:  FLD dword ptr [EBP + 0x1c]\n  10049365:  PUSH ECX\n  10049366:  FSTP dword ptr [ESP]\n  10049369:  PUSH dword ptr [EBP + 0x14]\n  1004936c:  LEA EAX,[EBP + -0x10]\n  1004936f:  PUSH dword ptr [EBP + 0x10]\n  10049372:  PUSH EAX\n  10049373:  CALL 0x10049233\n  10049378:  FLD1\n  1004937a:  FSUB dword ptr [EBP + 0x1c]\n  1004937d:  PUSH ECX\n  1004937e:  LEA EAX,[EBP + -0x10]\n  10049381:  FMUL dword ptr [EBP + 0x1c]\n  10049384:  FADD ST0,ST0\n  10049386:  FSTP dword ptr [ESP]\n  10049389:  PUSH EAX\n  1004938a:  LEA EAX,[EBP + -0x20]\n  1004938d:  PUSH EAX\n  1004938e:  PUSH dword ptr [EBP + 0x8]\n  10049391:  CALL 0x10049233\n  10049396:  MOV EAX,dword ptr [EBP + 0x8]\n  10049399:  LEAVE\n  1004939a:  RET 0x18", 
+  "callers": []
+}

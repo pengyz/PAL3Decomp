@@ -1,0 +1,78 @@
+{
+  "address": "0x100e5e04", 
+  "size_bytes": 67, 
+  "calling_convention": "unknown", 
+  "signature": "undefined FUN_100e5e04(void)", 
+  "callees": [
+    {
+      "address": "0x00000060", 
+      "name": "GetSystemTimeAsFileTime"
+    }, 
+    {
+      "address": "0x100e5dd0", 
+      "name": "__allmul"
+    }, 
+    {
+      "address": "0x100ec6f0", 
+      "name": "__aulldiv"
+    }
+  ], 
+  "global_refs": [
+    {
+      "address": "0x-000000c", 
+      "type": null, 
+      "name": "DAT_-000000c"
+    }, 
+    {
+      "address": "0x100f51ac", 
+      "type": "pointer", 
+      "name": "DAT_100f51ac"
+    }, 
+    {
+      "address": "0x-0000008", 
+      "type": null, 
+      "name": "DAT_-0000008"
+    }, 
+    {
+      "address": "0x10166c68", 
+      "type": null, 
+      "name": "DAT_10166c68"
+    }, 
+    {
+      "address": "0x10166c6c", 
+      "type": null, 
+      "name": "DAT_10166c6c"
+    }
+  ], 
+  "has_custom_name": false, 
+  "decompiled_c": "\n/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */\n\nvoid FUN_100e5e04(void)\n\n{\n  longlong lVar1;\n  _FILETIME local_c;\n  \n  GetSystemTimeAsFileTime(&local_c);\n  lVar1 = __allmul(local_c.dwHighDateTime,0,0,1);\n  __aulldiv((lVar1 - CONCAT44(_DAT_10166c6c,_DAT_10166c68)) + (ulonglong)local_c.dwLowDateTime,10000\n            ,0);\n  return;\n}\n\n", 
+  "is_thunk": false, 
+  "name": "FUN_100e5e04", 
+  "assembly": "  100e5e04:  PUSH EBP\n  100e5e05:  MOV EBP,ESP\n  100e5e07:  PUSH ECX\n  100e5e08:  PUSH ECX\n  100e5e09:  LEA EAX,[EBP + -0x8]\n  100e5e0c:  PUSH EDI\n  100e5e0d:  PUSH EAX\n  100e5e0e:  CALL dword ptr [0x100f51ac]\n  100e5e14:  PUSH 0x1\n  100e5e16:  PUSH 0x0\n  100e5e18:  PUSH 0x0\n  100e5e1a:  PUSH dword ptr [EBP + -0x4]\n  100e5e1d:  CALL 0x100e5dd0\n  100e5e22:  SUB EAX,dword ptr [0x10166c68]\n  100e5e28:  MOV ECX,dword ptr [EBP + -0x8]\n  100e5e2b:  SBB EDX,dword ptr [0x10166c6c]\n  100e5e31:  XOR EDI,EDI\n  100e5e33:  ADD EAX,ECX\n  100e5e35:  PUSH EDI\n  100e5e36:  ADC EDX,EDI\n  100e5e38:  PUSH 0x2710\n  100e5e3d:  PUSH EDX\n  100e5e3e:  PUSH EAX\n  100e5e3f:  CALL 0x100ec6f0\n  100e5e44:  POP EDI\n  100e5e45:  LEAVE\n  100e5e46:  RET", 
+  "callers": [
+    {
+      "address": "0x1002fe90", 
+      "name": "gbUpdateCurTime"
+    }, 
+    {
+      "address": "0x1002fd70", 
+      "name": "gbTimeCounterInit"
+    }, 
+    {
+      "address": "0x1002fd70", 
+      "name": "gbTimeCounterInit"
+    }, 
+    {
+      "address": "0x1002ff00", 
+      "name": "On"
+    }, 
+    {
+      "address": "0x1002ff70", 
+      "name": "Off"
+    }, 
+    {
+      "address": "0x10030000", 
+      "name": "gbGetDeltaTime"
+    }
+  ]
+}

@@ -1,0 +1,33 @@
+{
+  "address": "0x1007ea27", 
+  "size_bytes": 60, 
+  "calling_convention": "unknown", 
+  "signature": "undefined FUN_1007ea27(void)", 
+  "callees": [], 
+  "global_refs": [
+    {
+      "address": "0x10106748", 
+      "type": "undefined *", 
+      "name": "DAT_10106748"
+    }
+  ], 
+  "has_custom_name": false, 
+  "decompiled_c": "\nvoid FUN_1007ea27(void)\n\n{\n  undefined4 *in_ECX;\n  \n  in_ECX[1] = 0xb;\n  in_ECX[2] = 0;\n  in_ECX[3] = 0;\n  *in_ECX = &PTR_LAB_10106748;\n  in_ECX[4] = 0;\n  in_ECX[5] = 0;\n  in_ECX[6] = 0;\n  in_ECX[7] = 0;\n  in_ECX[8] = 0;\n  in_ECX[9] = 0;\n  in_ECX[10] = 0;\n  in_ECX[0xb] = 0;\n  in_ECX[0xc] = 0;\n  in_ECX[0xd] = 0;\n  in_ECX[0xe] = 0;\n  in_ECX[0xf] = 0;\n  return;\n}\n\n", 
+  "is_thunk": false, 
+  "name": "FUN_1007ea27", 
+  "assembly": "  1007ea27:  MOV EAX,ECX\n  1007ea29:  XOR ECX,ECX\n  1007ea2b:  MOV dword ptr [EAX + 0x4],0xb\n  1007ea32:  MOV dword ptr [EAX + 0x8],ECX\n  1007ea35:  MOV dword ptr [EAX + 0xc],ECX\n  1007ea38:  MOV dword ptr [EAX],0x10106748\n  1007ea3e:  MOV dword ptr [EAX + 0x10],ECX\n  1007ea41:  MOV dword ptr [EAX + 0x14],ECX\n  1007ea44:  MOV dword ptr [EAX + 0x18],ECX\n  1007ea47:  MOV dword ptr [EAX + 0x1c],ECX\n  1007ea4a:  MOV dword ptr [EAX + 0x20],ECX\n  1007ea4d:  MOV dword ptr [EAX + 0x24],ECX\n  1007ea50:  MOV dword ptr [EAX + 0x28],ECX\n  1007ea53:  MOV dword ptr [EAX + 0x2c],ECX\n  1007ea56:  MOV dword ptr [EAX + 0x30],ECX\n  1007ea59:  MOV dword ptr [EAX + 0x34],ECX\n  1007ea5c:  MOV dword ptr [EAX + 0x38],ECX\n  1007ea5f:  MOV dword ptr [EAX + 0x3c],ECX\n  1007ea62:  RET", 
+  "callers": [
+    {
+      "address": "0x1005d7b6", 
+      "name": "FUN_1005d7b6"
+    }, 
+    {
+      "address": "0x10060a86", 
+      "name": "FUN_10060a86"
+    }, 
+    {
+      "address": "0x1005a4f2", 
+      "name": "FUN_1005a4f2"
+    }
+  ]
+}

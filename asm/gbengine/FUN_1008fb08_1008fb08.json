@@ -1,0 +1,49 @@
+{
+  "address": "0x1008fb08", 
+  "size_bytes": 108, 
+  "calling_convention": "unknown", 
+  "signature": "undefined FUN_1008fb08(undefined param_1, undefined param_2, undefined4 param_3, undefined4 param_4, undefined4 param_5, undefined4 param_6)", 
+  "callees": [
+    {
+      "address": "0x1004cb83", 
+      "name": "FUN_1004cb83"
+    }, 
+    {
+      "address": "0x1004cc4c", 
+      "name": "FUN_1004cc4c"
+    }
+  ], 
+  "global_refs": [
+    {
+      "address": "0x0000000c", 
+      "type": null, 
+      "name": "DAT_0000000c"
+    }, 
+    {
+      "address": "0x00000010", 
+      "type": null, 
+      "name": "DAT_00000010"
+    }, 
+    {
+      "address": "0x00000014", 
+      "type": null, 
+      "name": "DAT_00000014"
+    }, 
+    {
+      "address": "0x00000018", 
+      "type": null, 
+      "name": "DAT_00000018"
+    }, 
+    {
+      "address": "0x100f9350", 
+      "type": null, 
+      "name": "DAT_100f9350"
+    }
+  ], 
+  "has_custom_name": false, 
+  "decompiled_c": "\nundefined4\nFUN_1008fb08(undefined4 param_1,undefined4 param_2,short param_3,int param_4,undefined4 param_5,\n            undefined4 *param_6)\n\n{\n  if (param_3 == 1) {\nLAB_1008fb4d:\n    FUN_1004cc4c(*param_6,param_6[0xc],param_4 + 5000,&DAT_100f9350,param_5);\n  }\n  else {\n    if (param_3 != 2) {\n      if (param_3 == 5) goto LAB_1008fb4d;\n      if (param_3 != 6) {\n        return 0;\n      }\n    }\n    FUN_1004cb83(*param_6,param_6[0xc],param_4 + 5000,&DAT_100f9350,param_5);\n    param_6[0x13] = 1;\n  }\n  return 0;\n}\n\n", 
+  "is_thunk": false, 
+  "name": "FUN_1008fb08", 
+  "assembly": "  1008fb08:  PUSH EBP\n  1008fb09:  MOV EBP,ESP\n  1008fb0b:  MOV EAX,dword ptr [EBP + 0x10]\n  1008fb0e:  AND EAX,0xffff\n  1008fb13:  DEC EAX\n  1008fb14:  JZ 0x1008fb4d\n  1008fb16:  DEC EAX\n  1008fb17:  JZ 0x1008fb21\n  1008fb19:  SUB EAX,0x3\n  1008fb1c:  JZ 0x1008fb4d\n  1008fb1e:  DEC EAX\n  1008fb1f:  JNZ 0x1008fb6e\n  1008fb21:  MOV EAX,dword ptr [EBP + 0x14]\n  1008fb24:  PUSH ESI\n  1008fb25:  PUSH dword ptr [EBP + 0x18]\n  1008fb28:  MOV ESI,dword ptr [EBP + 0x1c]\n  1008fb2b:  PUSH 0x100f9350\n  1008fb30:  ADD EAX,0x1388\n  1008fb35:  PUSH EAX\n  1008fb36:  PUSH dword ptr [ESI + 0x30]\n  1008fb39:  PUSH dword ptr [ESI]\n  1008fb3b:  CALL 0x1004cb83\n  1008fb40:  ADD ESP,0x14\n  1008fb43:  MOV dword ptr [ESI + 0x4c],0x1\n  1008fb4a:  POP ESI\n  1008fb4b:  JMP 0x1008fb6e\n  1008fb4d:  PUSH dword ptr [EBP + 0x18]\n  1008fb50:  MOV EAX,dword ptr [EBP + 0x14]\n  1008fb53:  PUSH 0x100f9350\n  1008fb58:  ADD EAX,0x1388\n  1008fb5d:  PUSH EAX\n  1008fb5e:  MOV EAX,dword ptr [EBP + 0x1c]\n  1008fb61:  PUSH dword ptr [EAX + 0x30]\n  1008fb64:  PUSH dword ptr [EAX]\n  1008fb66:  CALL 0x1004cc4c\n  1008fb6b:  ADD ESP,0x14\n  1008fb6e:  XOR EAX,EAX\n  1008fb70:  POP EBP\n  1008fb71:  RET 0x18", 
+  "callers": []
+}

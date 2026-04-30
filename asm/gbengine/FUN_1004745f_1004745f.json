@@ -1,0 +1,19 @@
+{
+  "address": "0x1004745f", 
+  "size_bytes": 17, 
+  "calling_convention": "unknown", 
+  "signature": "undefined FUN_1004745f(void)", 
+  "callees": [
+    {
+      "address": "0x1007713a", 
+      "name": "FUN_1007713a"
+    }
+  ], 
+  "global_refs": [], 
+  "has_custom_name": false, 
+  "decompiled_c": "\n/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */\n\nvoid FUN_1004745f(void)\n\n{\n  FUN_1007713a(1);\n                    /* WARNING: Could not recover jumptable at 0x1004746a. Too many branches */\n                    /* WARNING: Treating indirect jump as call */\n  (*_DAT_10121598)();\n  return;\n}\n\n", 
+  "is_thunk": false, 
+  "name": "FUN_1004745f", 
+  "assembly": "  1004745f:  PUSH EBP\n  10047460:  MOV EBP,ESP\n  10047462:  PUSH 0x1\n  10047464:  CALL 0x1007713a\n  10047469:  POP EBP\n  1004746a:  JMP dword ptr [0x10121598]", 
+  "callers": []
+}

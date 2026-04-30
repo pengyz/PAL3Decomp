@@ -1,0 +1,25 @@
+{
+  "address": "0x10012ec0", 
+  "size_bytes": 106, 
+  "calling_convention": "unknown", 
+  "signature": "undefined FUN_10012ec0(void)", 
+  "callees": [], 
+  "global_refs": [
+    {
+      "address": "0x100f5634", 
+      "type": null, 
+      "name": "DAT_100f5634"
+    }
+  ], 
+  "has_custom_name": false, 
+  "decompiled_c": "\nvoid FUN_10012ec0(void)\n\n{\n  float fVar1;\n  int in_ECX;\n  float *pfVar2;\n  int iVar3;\n  int iVar4;\n  int *piVar5;\n  \n  iVar4 = *(int *)(in_ECX + 0x84);\n  fVar1 = -3.4028235e+38;\n  if (0 < iVar4) {\n    pfVar2 = *(float **)(in_ECX + 0x80);\n    do {\n      if (fVar1 < *pfVar2) {\n        fVar1 = *pfVar2;\n      }\n      pfVar2 = pfVar2 + 1;\n      iVar4 = iVar4 + -1;\n    } while (iVar4 != 0);\n  }\n  piVar5 = *(int **)(in_ECX + 0x88);\n  if ((piVar5 != (int *)0x0) && (iVar4 = *(int *)(in_ECX + 0x44), 0 < iVar4)) {\n    do {\n      iVar3 = piVar5[1];\n      if (0 < iVar3) {\n        pfVar2 = (float *)(*piVar5 + 0x44);\n        do {\n          if (fVar1 < *pfVar2) {\n            fVar1 = *pfVar2;\n          }\n          pfVar2 = pfVar2 + 0x12;\n          iVar3 = iVar3 + -1;\n        } while (iVar3 != 0);\n      }\n      piVar5 = piVar5 + 2;\n      iVar4 = iVar4 + -1;\n    } while (iVar4 != 0);\n  }\n  return;\n}\n\n", 
+  "is_thunk": false, 
+  "name": "FUN_10012ec0", 
+  "assembly": "  10012ec0:  MOV EAX,dword ptr [ECX + 0x84]\n  10012ec6:  PUSH ESI\n  10012ec7:  FLD dword ptr [0x100f5634]\n  10012ecd:  TEST EAX,EAX\n  10012ecf:  JLE 0x10012eec\n  10012ed1:  MOV EDX,dword ptr [ECX + 0x80]\n  10012ed7:  MOV ESI,EAX\n  10012ed9:  FCOM dword ptr [EDX]\n  10012edb:  FNSTSW AX\n  10012edd:  TEST AH,0x1\n  10012ee0:  JZ 0x10012ee6\n  10012ee2:  FSTP ST0\n  10012ee4:  FLD dword ptr [EDX]\n  10012ee6:  ADD EDX,0x4\n  10012ee9:  DEC ESI\n  10012eea:  JNZ 0x10012ed9\n  10012eec:  MOV ESI,dword ptr [ECX + 0x88]\n  10012ef2:  TEST ESI,ESI\n  10012ef4:  JZ 0x10012f28\n  10012ef6:  MOV ECX,dword ptr [ECX + 0x44]\n  10012ef9:  TEST ECX,ECX\n  10012efb:  JLE 0x10012f28\n  10012efd:  PUSH EDI\n  10012efe:  MOV EDI,ECX\n  10012f00:  MOV EAX,dword ptr [ESI + 0x4]\n  10012f03:  TEST EAX,EAX\n  10012f05:  JLE 0x10012f21\n  10012f07:  MOV ECX,dword ptr [ESI]\n  10012f09:  MOV EDX,EAX\n  10012f0b:  ADD ECX,0x44\n  10012f0e:  FCOM dword ptr [ECX]\n  10012f10:  FNSTSW AX\n  10012f12:  TEST AH,0x1\n  10012f15:  JZ 0x10012f1b\n  10012f17:  FSTP ST0\n  10012f19:  FLD dword ptr [ECX]\n  10012f1b:  ADD ECX,0x48\n  10012f1e:  DEC EDX\n  10012f1f:  JNZ 0x10012f0e\n  10012f21:  ADD ESI,0x8\n  10012f24:  DEC EDI\n  10012f25:  JNZ 0x10012f00\n  10012f27:  POP EDI\n  10012f28:  POP ESI\n  10012f29:  RET", 
+  "callers": [
+    {
+      "address": "0x10010cd0", 
+      "name": "LoadCVDFromStream"
+    }
+  ]
+}

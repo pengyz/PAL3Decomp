@@ -1,0 +1,54 @@
+{
+  "address": "0x10077095", 
+  "size_bytes": 58, 
+  "calling_convention": "unknown", 
+  "signature": "undefined FUN_10077095(void)", 
+  "callees": [
+    {
+      "address": "0x100e7764", 
+      "name": "FUN_100e7764"
+    }, 
+    {
+      "address": "0x100770db", 
+      "name": "FUN_100770db"
+    }
+  ], 
+  "global_refs": [
+    {
+      "address": "0x100f42ab", 
+      "type": null, 
+      "name": "DAT_100f42ab"
+    }, 
+    {
+      "address": "0x101049e0", 
+      "type": "string", 
+      "name": "DAT_101049e0"
+    }, 
+    {
+      "address": "0x101049e4", 
+      "type": null, 
+      "name": "DAT_101049e4"
+    }, 
+    {
+      "address": "0x101049e8", 
+      "type": null, 
+      "name": "DAT_101049e8"
+    }, 
+    {
+      "address": "0x101049ec", 
+      "type": null, 
+      "name": "DAT_101049ec"
+    }
+  ], 
+  "has_custom_name": false, 
+  "decompiled_c": "\n/* WARNING: Removing unreachable block (ram,0x100770bf) */\n\nvoid FUN_10077095(void)\n\n{\n  undefined4 *puVar1;\n  undefined4 uVar2;\n  undefined4 uVar3;\n  undefined4 uVar4;\n  int unaff_EBP;\n  \n  FUN_100e7764();\n  *(undefined **)(unaff_EBP + -0x10) = &stack0xffffffc4;\n  *(undefined4 *)(unaff_EBP + -0x14) = 0;\n  builtin_strncpy((char *)(unaff_EBP + -0x24),\"Genu\",4);\n  builtin_strncpy((char *)(unaff_EBP + -0x20),\"ineI\",4);\n  builtin_strncpy((char *)(unaff_EBP + -0x1c),\"ntel\",4);\n  *(char *)(unaff_EBP + -0x18) = '\\0';\n  *(undefined4 *)(unaff_EBP + -4) = 0;\n  puVar1 = (undefined4 *)cpuid_basic_info(0);\n  uVar4 = puVar1[1];\n  uVar3 = puVar1[2];\n  uVar2 = puVar1[3];\n  *(undefined4 *)(unaff_EBP + -0x2c) = *puVar1;\n  *(undefined4 *)(unaff_EBP + -0x38) = uVar4;\n  *(undefined4 *)(unaff_EBP + -0x34) = uVar3;\n  *(undefined4 *)(unaff_EBP + -0x30) = uVar2;\n  FUN_100770db();\n  return;\n}\n\n", 
+  "is_thunk": false, 
+  "name": "FUN_10077095", 
+  "assembly": "  10077095:  MOV EAX,0x100f42ab\n  1007709a:  CALL 0x100e7764\n  1007709f:  PUSH ECX\n  100770a0:  SUB ESP,0x2c\n  100770a3:  PUSH EBX\n  100770a4:  PUSH ESI\n  100770a5:  PUSH EDI\n  100770a6:  MOV dword ptr [EBP + -0x10],ESP\n  100770a9:  AND dword ptr [EBP + -0x14],0x0\n  100770ad:  MOV ESI,0x101049e0\n  100770b2:  LEA EDI,[EBP + -0x24]\n  100770b5:  MOVSD ES:EDI,ESI\n  100770b6:  MOVSD ES:EDI,ESI\n  100770b7:  MOVSD ES:EDI,ESI\n  100770b8:  MOVSB ES:EDI,ESI\n  100770b9:  AND dword ptr [EBP + -0x4],0x0\n  100770bd:  XOR EAX,EAX\n  100770bf:  CPUID\n  100770c1:  MOV dword ptr [EBP + -0x2c],EAX\n  100770c4:  MOV dword ptr [EBP + -0x38],EBX\n  100770c7:  MOV dword ptr [EBP + -0x34],EDX\n  100770ca:  MOV dword ptr [EBP + -0x30],ECX\n  100770cd:  JMP 0x100770db", 
+  "callers": [
+    {
+      "address": "0x1007713a", 
+      "name": "FUN_1007713a"
+    }
+  ]
+}

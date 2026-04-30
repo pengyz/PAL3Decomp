@@ -1,0 +1,40 @@
+{
+  "address": "0x10078c9d", 
+  "size_bytes": 83, 
+  "calling_convention": "unknown", 
+  "signature": "undefined FUN_10078c9d(undefined4 param_1, undefined4 param_2, undefined4 param_3)", 
+  "callees": [
+    {
+      "address": "0x10095588", 
+      "name": "FUN_10095588"
+    }
+  ], 
+  "global_refs": [
+    {
+      "address": "0x00000008", 
+      "type": null, 
+      "name": "DAT_00000008"
+    }, 
+    {
+      "address": "0x0000000c", 
+      "type": null, 
+      "name": "DAT_0000000c"
+    }, 
+    {
+      "address": "0x00000004", 
+      "type": null, 
+      "name": "DAT_00000004"
+    }
+  ], 
+  "has_custom_name": false, 
+  "decompiled_c": "\nundefined4 * FUN_10078c9d(undefined4 param_1,int param_2,int param_3)\n\n{\n  undefined4 *puVar1;\n  undefined4 *puVar2;\n  int iVar3;\n  uint uVar4;\n  uint uVar5;\n  undefined4 *puVar6;\n  \n  uVar5 = param_2 * param_3;\n  puVar1 = (undefined4 *)FUN_10095588(param_1,uVar5);\n  puVar2 = (undefined4 *)0x0;\n  if (puVar1 != (undefined4 *)0x0) {\n    puVar6 = puVar1;\n    if (0x8000 < uVar5) {\n      puVar2 = puVar1;\n      for (iVar3 = 0x2000; iVar3 != 0; iVar3 = iVar3 + -1) {\n        *puVar2 = 0;\n        puVar2 = puVar2 + 1;\n      }\n      uVar5 = uVar5 - 0x8000;\n      puVar6 = puVar1 + 0x2000;\n    }\n    for (uVar4 = uVar5 >> 2; uVar4 != 0; uVar4 = uVar4 - 1) {\n      *puVar6 = 0;\n      puVar6 = puVar6 + 1;\n    }\n    for (uVar5 = uVar5 & 3; puVar2 = puVar1, uVar5 != 0; uVar5 = uVar5 - 1) {\n      *(undefined *)puVar6 = 0;\n      puVar6 = (undefined4 *)((int)puVar6 + 1);\n    }\n  }\n  return puVar2;\n}\n\n", 
+  "is_thunk": false, 
+  "name": "FUN_10078c9d", 
+  "assembly": "  10078c9d:  PUSH ESI\n  10078c9e:  MOV ESI,dword ptr [ESP + 0xc]\n  10078ca2:  IMUL ESI,dword ptr [ESP + 0x10]\n  10078ca7:  PUSH ESI\n  10078ca8:  PUSH dword ptr [ESP + 0xc]\n  10078cac:  CALL 0x10095588\n  10078cb1:  MOV EDX,EAX\n  10078cb3:  XOR EAX,EAX\n  10078cb5:  TEST EDX,EDX\n  10078cb7:  JZ 0x10078cec\n  10078cb9:  CMP ESI,0x8000\n  10078cbf:  PUSH EDI\n  10078cc0:  MOV EDI,EDX\n  10078cc2:  JBE 0x10078cd9\n  10078cc4:  MOV ECX,0x2000\n  10078cc9:  STOSD.REP ES:EDI\n  10078ccb:  LEA ECX,[ESI + 0xffff8000]\n  10078cd1:  LEA EDI,[EDX + 0x8000]\n  10078cd7:  JMP 0x10078cdb\n  10078cd9:  MOV ECX,ESI\n  10078cdb:  MOV ESI,ECX\n  10078cdd:  SHR ECX,0x2\n  10078ce0:  STOSD.REP ES:EDI\n  10078ce2:  MOV ECX,ESI\n  10078ce4:  AND ECX,0x3\n  10078ce7:  STOSB.REP ES:EDI\n  10078ce9:  MOV EAX,EDX\n  10078ceb:  POP EDI\n  10078cec:  POP ESI\n  10078ced:  RET 0xc", 
+  "callers": [
+    {
+      "address": "0x1009717d", 
+      "name": "FUN_1009717d"
+    }
+  ]
+}

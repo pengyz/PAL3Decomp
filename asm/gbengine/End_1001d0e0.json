@@ -1,0 +1,35 @@
+{
+  "address": "0x1001d0e0", 
+  "size_bytes": 20, 
+  "calling_convention": "__thiscall", 
+  "signature": "void __thiscall End(gbRenderEffect * this)", 
+  "callees": [], 
+  "global_refs": [], 
+  "has_custom_name": true, 
+  "decompiled_c": "\n/* public: void __thiscall gbRenderEffect::End(void) */\n\nvoid __thiscall gbRenderEffect::End(gbRenderEffect *this)\n\n{\n                    /* 0x1d0e0  392  ?End@gbRenderEffect@@QAEXXZ */\n  *(undefined4 *)(this + 0x20) = 0;\n  (**(code **)(**(int **)(this + 0x18) + 0x108))(*(int **)(this + 0x18));\n  return;\n}\n\n", 
+  "is_thunk": false, 
+  "name": "End", 
+  "assembly": "  1001d0e0:  MOV dword ptr [ECX + 0x20],0x0\n  1001d0e7:  MOV ECX,dword ptr [ECX + 0x18]\n  1001d0ea:  PUSH ECX\n  1001d0eb:  MOV EAX,dword ptr [ECX]\n  1001d0ed:  CALL dword ptr [EAX + 0x108]\n  1001d0f3:  RET", 
+  "callers": [
+    {
+      "address": "0x10014f40", 
+      "name": "End"
+    }, 
+    {
+      "address": "0x10014f40", 
+      "name": "End"
+    }, 
+    {
+      "address": "0x10014f40", 
+      "name": "End"
+    }, 
+    {
+      "address": "0x10014f40", 
+      "name": "End"
+    }, 
+    {
+      "address": "0x100186e0", 
+      "name": "FUN_100186e0"
+    }
+  ]
+}

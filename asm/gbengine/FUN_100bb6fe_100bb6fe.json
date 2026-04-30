@@ -1,0 +1,35 @@
+{
+  "address": "0x100bb6fe", 
+  "size_bytes": 52, 
+  "calling_convention": "unknown", 
+  "signature": "undefined FUN_100bb6fe(undefined4 param_1, undefined4 param_2)", 
+  "callees": [
+    {
+      "address": "0x100c3685", 
+      "name": "FUN_100c3685"
+    }
+  ], 
+  "global_refs": [
+    {
+      "address": "0x00000004", 
+      "type": null, 
+      "name": "DAT_00000004"
+    }, 
+    {
+      "address": "0x00000008", 
+      "type": null, 
+      "name": "DAT_00000008"
+    }
+  ], 
+  "has_custom_name": false, 
+  "decompiled_c": "\nint FUN_100bb6fe(undefined4 param_1,undefined4 param_2)\n\n{\n  int *piVar1;\n  int iVar2;\n  int iVar3;\n  int in_ECX;\n  \n  iVar3 = FUN_100c3685(2);\n  if (-1 < iVar3) {\n    iVar3 = *(int *)(in_ECX + 0xec);\n    piVar1 = (int *)(in_ECX + 0xf0);\n    iVar2 = *piVar1;\n    *(undefined4 *)(iVar3 + iVar2 * 4) = param_1;\n    *(undefined4 *)(iVar3 + 4 + iVar2 * 4) = param_2;\n    *piVar1 = *piVar1 + 2;\n    iVar3 = 0;\n  }\n  return iVar3;\n}\n\n", 
+  "is_thunk": false, 
+  "name": "FUN_100bb6fe", 
+  "assembly": "  100bb6fe:  PUSH ESI\n  100bb6ff:  PUSH 0x2\n  100bb701:  MOV ESI,ECX\n  100bb703:  CALL 0x100c3685\n  100bb708:  TEST EAX,EAX\n  100bb70a:  JL 0x100bb72e\n  100bb70c:  MOV EDX,dword ptr [ESI + 0xec]\n  100bb712:  LEA EAX,[ESI + 0xf0]\n  100bb718:  MOV ECX,dword ptr [EAX]\n  100bb71a:  MOV ESI,dword ptr [ESP + 0x8]\n  100bb71e:  MOV dword ptr [EDX + ECX*0x4],ESI\n  100bb721:  MOV ESI,dword ptr [ESP + 0xc]\n  100bb725:  MOV dword ptr [EDX + ECX*0x4 + 0x4],ESI\n  100bb729:  ADD dword ptr [EAX],0x2\n  100bb72c:  XOR EAX,EAX\n  100bb72e:  POP ESI\n  100bb72f:  RET 0x8", 
+  "callers": [
+    {
+      "address": "0x100bb91f", 
+      "name": "FUN_100bb91f"
+    }
+  ]
+}

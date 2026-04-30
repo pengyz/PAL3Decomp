@@ -1,0 +1,14 @@
+{
+  "address": "0x10003b30", 
+  "size_bytes": 27, 
+  "calling_convention": "__thiscall", 
+  "signature": "gbChain2DNode * __thiscall Iterate(gbChain2D * this)", 
+  "callees": [], 
+  "global_refs": [], 
+  "has_custom_name": true, 
+  "decompiled_c": "\n/* public: class gbChain2DNode * __thiscall gbChain2D::Iterate(void) */\n\ngbChain2DNode * __thiscall gbChain2D::Iterate(gbChain2D *this)\n\n{\n  gbChain2DNode *pgVar1;\n  \n                    /* 0x3b30  657  ?Iterate@gbChain2D@@QAEPAVgbChain2DNode@@XZ */\n  if (*(int *)(this + 8) == 0) {\n    pgVar1 = *(gbChain2DNode **)(*(int *)(this + 0x10) + 8);\n    *(gbChain2DNode **)(this + 0x10) = pgVar1;\n    return pgVar1;\n  }\n  pgVar1 = *(gbChain2DNode **)(*(int *)(this + 0x10) + 4);\n  *(gbChain2DNode **)(this + 0x10) = pgVar1;\n  return pgVar1;\n}\n\n", 
+  "is_thunk": false, 
+  "name": "Iterate", 
+  "assembly": "  10003b30:  MOV EAX,dword ptr [ECX + 0x8]\n  10003b33:  TEST EAX,EAX\n  10003b35:  JNZ 0x10003b41\n  10003b37:  MOV EAX,dword ptr [ECX + 0x10]\n  10003b3a:  MOV EAX,dword ptr [EAX + 0x8]\n  10003b3d:  MOV dword ptr [ECX + 0x10],EAX\n  10003b40:  RET\n  10003b41:  MOV EDX,dword ptr [ECX + 0x10]\n  10003b44:  MOV EAX,dword ptr [EDX + 0x4]\n  10003b47:  MOV dword ptr [ECX + 0x10],EAX\n  10003b4a:  RET", 
+  "callers": []
+}

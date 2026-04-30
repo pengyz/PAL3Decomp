@@ -1,0 +1,19 @@
+{
+  "address": "0x10002640", 
+  "size_bytes": 99, 
+  "calling_convention": "__thiscall", 
+  "signature": "undefined __thiscall gbSound3DNode(gbSound3DNode * this)", 
+  "callees": [], 
+  "global_refs": [], 
+  "has_custom_name": true, 
+  "decompiled_c": "\n/* public: __thiscall gbSound3DNode::gbSound3DNode(void) */\n\nvoid __thiscall gbSound3DNode::gbSound3DNode(gbSound3DNode *this)\n\n{\n                    /* 0x2640  94  ??0gbSound3DNode@@QAE@XZ */\n  *(undefined4 *)(this + 8) = 0;\n  *(undefined4 *)(this + 0xc) = 0;\n  *(undefined4 *)(this + 0x10) = 0;\n  *(undefined4 *)(this + 0x14) = 0;\n  *(undefined4 *)(this + 0x18) = 0;\n  *(undefined4 *)(this + 0x1c) = 0;\n  *(undefined4 *)(this + 0x20) = 0;\n  *(undefined4 *)(this + 0x24) = 0;\n  *(undefined4 *)(this + 0x28) = 0;\n  *(undefined4 *)this = 0;\n  *(undefined4 *)(this + 4) = 0;\n  *(undefined4 *)(this + 0x38) = 0x461c4000;\n  *(undefined4 *)(this + 0x3c) = 0x47c35000;\n  *(undefined4 *)(this + 0x34) = 1;\n  *(undefined4 *)(this + 0x30) = 0x3f800000;\n  *(undefined4 *)(this + 0x2c) = 0;\n  *(undefined4 *)(this + 0x10) = 0;\n  *(undefined4 *)(this + 0xc) = 0;\n  *(undefined4 *)(this + 8) = 0;\n  *(undefined4 *)(this + 0x1c) = 0;\n  *(undefined4 *)(this + 0x18) = 0;\n  *(undefined4 *)(this + 0x14) = 0;\n  *(undefined4 *)(this + 0x28) = 0;\n  *(undefined4 *)(this + 0x24) = 0;\n  *(undefined4 *)(this + 0x20) = 0;\n  *(undefined4 *)(this + 0x28) = 0x3f800000;\n  return;\n}\n\n", 
+  "is_thunk": false, 
+  "name": "gbSound3DNode", 
+  "assembly": "  10002640:  MOV EAX,ECX\n  10002642:  MOV EDX,0x3f800000\n  10002647:  XOR ECX,ECX\n  10002649:  MOV dword ptr [EAX + 0x8],ECX\n  1000264c:  MOV dword ptr [EAX + 0xc],ECX\n  1000264f:  MOV dword ptr [EAX + 0x10],ECX\n  10002652:  MOV dword ptr [EAX + 0x14],ECX\n  10002655:  MOV dword ptr [EAX + 0x18],ECX\n  10002658:  MOV dword ptr [EAX + 0x1c],ECX\n  1000265b:  MOV dword ptr [EAX + 0x20],ECX\n  1000265e:  MOV dword ptr [EAX + 0x24],ECX\n  10002661:  MOV dword ptr [EAX + 0x28],ECX\n  10002664:  MOV dword ptr [EAX],ECX\n  10002666:  MOV dword ptr [EAX + 0x4],ECX\n  10002669:  MOV dword ptr [EAX + 0x38],0x461c4000\n  10002670:  MOV dword ptr [EAX + 0x3c],0x47c35000\n  10002677:  MOV dword ptr [EAX + 0x34],0x1\n  1000267e:  MOV dword ptr [EAX + 0x30],EDX\n  10002681:  MOV dword ptr [EAX + 0x2c],ECX\n  10002684:  MOV dword ptr [EAX + 0x10],ECX\n  10002687:  MOV dword ptr [EAX + 0xc],ECX\n  1000268a:  MOV dword ptr [EAX + 0x8],ECX\n  1000268d:  MOV dword ptr [EAX + 0x1c],ECX\n  10002690:  MOV dword ptr [EAX + 0x18],ECX\n  10002693:  MOV dword ptr [EAX + 0x14],ECX\n  10002696:  MOV dword ptr [EAX + 0x28],ECX\n  10002699:  MOV dword ptr [EAX + 0x24],ECX\n  1000269c:  MOV dword ptr [EAX + 0x20],ECX\n  1000269f:  MOV dword ptr [EAX + 0x28],EDX\n  100026a2:  RET", 
+  "callers": [
+    {
+      "address": "0x1000b910", 
+      "name": "FUN_1000b910"
+    }
+  ]
+}

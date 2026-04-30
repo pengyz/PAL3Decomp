@@ -1,0 +1,20 @@
+{
+  "address": "0x10004fc0", 
+  "size_bytes": 39, 
+  "calling_convention": "__thiscall", 
+  "signature": "gbColorFlt __thiscall GetAmbientLight(gbGfxManager * this, undefined4 param_1)", 
+  "callees": [], 
+  "global_refs": [
+    {
+      "address": "0x00000004", 
+      "type": null, 
+      "name": "DAT_00000004"
+    }
+  ], 
+  "has_custom_name": true, 
+  "decompiled_c": "\n/* public: struct gbColorFlt __thiscall gbGfxManager::GetAmbientLight(void) */\n\nvoid __thiscall gbGfxManager::GetAmbientLight(gbGfxManager *this,undefined4 *param_1)\n\n{\n                    /* 0x4fc0  411  ?GetAmbientLight@gbGfxManager@@QAE?AUgbColorFlt@@XZ */\n  *param_1 = *(undefined4 *)(this + 0x1ac);\n  param_1[1] = *(undefined4 *)(this + 0x1b0);\n  param_1[2] = *(undefined4 *)(this + 0x1b4);\n  param_1[3] = *(undefined4 *)(this + 0x1b8);\n  return;\n}\n\n", 
+  "is_thunk": false, 
+  "name": "GetAmbientLight", 
+  "assembly": "  10004fc0:  MOV EAX,dword ptr [ESP + 0x4]\n  10004fc4:  ADD ECX,0x1ac\n  10004fca:  PUSH ESI\n  10004fcb:  MOV EDX,EAX\n  10004fcd:  MOV ESI,dword ptr [ECX]\n  10004fcf:  MOV dword ptr [EDX],ESI\n  10004fd1:  MOV ESI,dword ptr [ECX + 0x4]\n  10004fd4:  MOV dword ptr [EDX + 0x4],ESI\n  10004fd7:  MOV ESI,dword ptr [ECX + 0x8]\n  10004fda:  MOV dword ptr [EDX + 0x8],ESI\n  10004fdd:  POP ESI\n  10004fde:  MOV ECX,dword ptr [ECX + 0xc]\n  10004fe1:  MOV dword ptr [EDX + 0xc],ECX\n  10004fe4:  RET 0x4", 
+  "callers": []
+}

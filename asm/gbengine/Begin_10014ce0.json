@@ -1,0 +1,20 @@
+{
+  "address": "0x10014ce0", 
+  "size_bytes": 37, 
+  "calling_convention": "__thiscall", 
+  "signature": "void __thiscall Begin(gbSceneGraph * this, gbCamera * param_1)", 
+  "callees": [], 
+  "global_refs": [
+    {
+      "address": "0x00000004", 
+      "type": null, 
+      "name": "DAT_00000004"
+    }
+  ], 
+  "has_custom_name": true, 
+  "decompiled_c": "\n/* public: void __thiscall gbSceneGraph::Begin(class gbCamera *) */\n\nvoid __thiscall gbSceneGraph::Begin(gbSceneGraph *this,gbCamera *param_1)\n\n{\n                    /* 0x14ce0  317  ?Begin@gbSceneGraph@@QAEXPAVgbCamera@@@Z */\n  this[0x4b2c] = (gbSceneGraph)0x1;\n  *(gbCamera **)(this + 0x4b24) = param_1;\n  *(undefined4 *)(this + 4) = 0;\n  *(undefined4 *)(this + 0x4b14) = 0;\n  *(undefined4 *)(this + 0x710) = 0;\n  return;\n}\n\n", 
+  "is_thunk": false, 
+  "name": "Begin", 
+  "assembly": "  10014ce0:  MOV EAX,dword ptr [ESP + 0x4]\n  10014ce4:  MOV byte ptr [ECX + 0x4b2c],0x1\n  10014ceb:  MOV dword ptr [ECX + 0x4b24],EAX\n  10014cf1:  XOR EAX,EAX\n  10014cf3:  MOV dword ptr [ECX + 0x4],EAX\n  10014cf6:  MOV dword ptr [ECX + 0x4b14],EAX\n  10014cfc:  MOV dword ptr [ECX + 0x710],EAX\n  10014d02:  RET 0x4", 
+  "callers": []
+}

@@ -1,0 +1,14 @@
+{
+  "address": "0x1000eac0", 
+  "size_bytes": 55, 
+  "calling_convention": "__thiscall", 
+  "signature": "int __thiscall GetNumFaces(gbBaseMesh * this)", 
+  "callees": [], 
+  "global_refs": [], 
+  "has_custom_name": true, 
+  "decompiled_c": "\n/* public: int __thiscall gbBaseMesh::GetNumFaces(void) */\n\nint __thiscall gbBaseMesh::GetNumFaces(gbBaseMesh *this)\n\n{\n  int iVar1;\n  int *piVar2;\n  int iVar3;\n  int iVar4;\n  \n                    /* 0xeac0  508  ?GetNumFaces@gbBaseMesh@@QAEHXZ */\n  iVar4 = *(int *)(this + 0x44);\n  iVar3 = 0;\n  if (0 < iVar4) {\n    piVar2 = (int *)(*(int *)(this + 0x40) + 0x90);\n    do {\n      iVar1 = *piVar2;\n      piVar2 = piVar2 + 0x2f;\n      iVar3 = iVar3 + *(int *)(iVar1 + 0x10) / 3;\n      iVar4 = iVar4 + -1;\n    } while (iVar4 != 0);\n  }\n  return iVar3;\n}\n\n", 
+  "is_thunk": false, 
+  "name": "GetNumFaces", 
+  "assembly": "  1000eac0:  PUSH ESI\n  1000eac1:  PUSH EDI\n  1000eac2:  MOV EDI,dword ptr [ECX + 0x44]\n  1000eac5:  XOR ESI,ESI\n  1000eac7:  TEST EDI,EDI\n  1000eac9:  JLE 0x1000eaf2\n  1000eacb:  MOV ECX,dword ptr [ECX + 0x40]\n  1000eace:  ADD ECX,0x90\n  1000ead4:  MOV EAX,dword ptr [ECX]\n  1000ead6:  ADD ECX,0xbc\n  1000eadc:  MOV EDX,dword ptr [EAX + 0x10]\n  1000eadf:  MOV EAX,0x55555556\n  1000eae4:  IMUL EDX\n  1000eae6:  MOV EAX,EDX\n  1000eae8:  SHR EAX,0x1f\n  1000eaeb:  ADD EDX,EAX\n  1000eaed:  ADD ESI,EDX\n  1000eaef:  DEC EDI\n  1000eaf0:  JNZ 0x1000ead4\n  1000eaf2:  MOV EAX,ESI\n  1000eaf4:  POP EDI\n  1000eaf5:  POP ESI\n  1000eaf6:  RET", 
+  "callers": []
+}

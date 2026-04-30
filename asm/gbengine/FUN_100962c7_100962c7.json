@@ -1,0 +1,39 @@
+{
+  "address": "0x100962c7", 
+  "size_bytes": 88, 
+  "calling_convention": "unknown", 
+  "signature": "undefined FUN_100962c7(undefined4 param_1, undefined4 param_2)", 
+  "callees": [], 
+  "global_refs": [
+    {
+      "address": "0x00000004", 
+      "type": null, 
+      "name": "DAT_00000004"
+    }, 
+    {
+      "address": "0x00000008", 
+      "type": null, 
+      "name": "DAT_00000008"
+    }, 
+    {
+      "address": "0x100965f2", 
+      "type": null, 
+      "name": "DAT_100965f2"
+    }
+  ], 
+  "has_custom_name": false, 
+  "decompiled_c": "\nint FUN_100962c7(int *param_1,int param_2)\n\n{\n  byte bVar1;\n  undefined4 uVar2;\n  int iVar3;\n  undefined4 *puVar4;\n  int iVar5;\n  \n  if (((param_1 == (int *)0x0) || (puVar4 = (undefined4 *)param_1[7], puVar4 == (undefined4 *)0x0))\n     || (*param_1 == 0)) {\ncode_r0x100964fe:\n    return -2;\n  }\n  iVar3 = -5;\n  iVar5 = 0;\n  if (param_2 == 4) {\n    iVar5 = iVar3;\n  }\nLAB_100964f1:\n  switch(*puVar4) {\n  case 0:\n    if (param_1[1] == 0) {\n      return iVar3;\n    }\n    param_1[2] = param_1[2] + 1;\n    param_1[1] = param_1[1] + -1;\n    *(uint *)(param_1[7] + 4) = (uint)*(byte *)*param_1;\n    puVar4 = (undefined4 *)param_1[7];\n    uVar2 = puVar4[1];\n    *param_1 = *param_1 + 1;\n    if (((byte)uVar2 & 0xf) == 8) {\n      if (((uint)puVar4[1] >> 4) + 8 <= (uint)puVar4[4]) {\n        *puVar4 = 1;\n        iVar3 = iVar5;\n        goto code_r0x1009636a;\n      }\n      *puVar4 = 0xd;\n      param_1[6] = (int)\"invalid window size\";\n    }\n    else {\n      *puVar4 = 0xd;\n      param_1[6] = (int)\"unknown compression method\";\n    }\n    goto code_r0x100964e4;\n  case 1:\ncode_r0x1009636a:\n    if (param_1[1] == 0) {\n      return iVar3;\n    }\n    puVar4 = (undefined4 *)param_1[7];\n    param_1[2] = param_1[2] + 1;\n    param_1[1] = param_1[1] + -1;\n    bVar1 = *(byte *)*param_1;\n    *param_1 = (int)((byte *)*param_1 + 1);\n    if ((puVar4[1] * 0x100 + (uint)bVar1) % 0x1f != 0) {\n      *puVar4 = 0xd;\n      param_1[6] = (int)\"incorrect header check\";\n      goto code_r0x100964e4;\n    }\n    if ((bVar1 & 0x20) != 0) {\n      *(undefined4 *)param_1[7] = 2;\n      iVar3 = iVar5;\n      goto code_r0x10096512;\n    }\n    *puVar4 = 7;\n    iVar3 = iVar5;\n    break;\n  case 2:\ncode_r0x10096512:\n    if (param_1[1] == 0) {\n      return iVar3;\n    }\n    param_1[2] = param_1[2] + 1;\n    param_1[1] = param_1[1] + -1;\n    *(uint *)(param_1[7] + 8) = (uint)*(byte *)*param_1 << 0x18;\n    *param_1 = *param_1 + 1;\n    *(undefined4 *)param_1[7] = 3;\n    iVar3 = iVar5;\n  case 3:\n    goto code_r0x1009653b;\n  case 4:\n    goto code_r0x10096564;\n  case 5:\n    goto code_r0x1009658d;\n  case 6:\n    *(undefined4 *)param_1[7] = 0xd;\n    param_1[6] = (int)\"need dictionary\";\n    *(undefined4 *)(param_1[7] + 4) = 0;\n    return -2;\n  case 7:\n    iVar3 = FUN_100dd486(*(undefined4 *)(param_1[7] + 0x14),param_1,iVar3);\n    if (iVar3 == -3) {\n      *(undefined4 *)param_1[7] = 0xd;\n      *(undefined4 *)(param_1[7] + 4) = 0;\n      iVar3 = -3;\n    }\n    else {\n      if (iVar3 == 0) {\n        iVar3 = iVar5;\n      }\n      if (iVar3 != 1) {\n        return iVar3;\n      }\n      FUN_100dd3a2(*(undefined4 *)(param_1[7] + 0x14),param_1,param_1[7] + 4);\n      puVar4 = (undefined4 *)param_1[7];\n      if (puVar4[3] == 0) {\n        *puVar4 = 8;\n        iVar3 = iVar5;\n        goto code_r0x1009642c;\n      }\n      *puVar4 = 0xc;\n      iVar3 = iVar5;\n    }\n    break;\n  case 8:\ncode_r0x1009642c:\n    if (param_1[1] == 0) {\n      return iVar3;\n    }\n    param_1[2] = param_1[2] + 1;\n    param_1[1] = param_1[1] + -1;\n    *(uint *)(param_1[7] + 8) = (uint)*(byte *)*param_1 << 0x18;\n    *param_1 = *param_1 + 1;\n    *(undefined4 *)param_1[7] = 9;\n    iVar3 = iVar5;\n  case 9:\n    if (param_1[1] == 0) {\n      return iVar3;\n    }\n    param_1[2] = param_1[2] + 1;\n    param_1[1] = param_1[1] + -1;\n    *(int *)(param_1[7] + 8) = *(int *)(param_1[7] + 8) + (uint)*(byte *)*param_1 * 0x10000;\n    *param_1 = *param_1 + 1;\n    *(undefined4 *)param_1[7] = 10;\n    iVar3 = iVar5;\n  case 10:\n    goto code_r0x10096486;\n  case 0xb:\n    goto code_r0x100964af;\n  case 0xc:\n    goto code_r0x100964fe;\n  case 0xd:\n    return -3;\n  default:\n    goto code_r0x100964fe;\n  }\ncode_r0x100964ee:\n  puVar4 = (undefined4 *)param_1[7];\n  goto LAB_100964f1;\ncode_r0x10096486:\n  if (param_1[1] == 0) {\n    return iVar3;\n  }\n  param_1[2] = param_1[2] + 1;\n  param_1[1] = param_1[1] + -1;\n  *(int *)(param_1[7] + 8) = *(int *)(param_1[7] + 8) + (uint)*(byte *)*param_1 * 0x100;\n  *param_1 = *param_1 + 1;\n  *(undefined4 *)param_1[7] = 0xb;\n  iVar3 = iVar5;\ncode_r0x100964af:\n  if (param_1[1] == 0) {\n    return iVar3;\n  }\n  param_1[2] = param_1[2] + 1;\n  param_1[1] = param_1[1] + -1;\n  *(int *)(param_1[7] + 8) = *(int *)(param_1[7] + 8) + (uint)*(byte *)*param_1;\n  puVar4 = (undefined4 *)param_1[7];\n  *param_1 = *param_1 + 1;\n  if (puVar4[1] == puVar4[2]) {\n    *(undefined4 *)param_1[7] = 0xc;\ncode_r0x100964fe:\n    return 1;\n  }\n  *puVar4 = 0xd;\n  param_1[6] = (int)\"incorrect data check\";\ncode_r0x100964e4:\n  *(undefined4 *)(param_1[7] + 4) = 5;\n  iVar3 = iVar5;\n  goto code_r0x100964ee;\ncode_r0x1009653b:\n  if (param_1[1] == 0) {\n    return iVar3;\n  }\n  param_1[2] = param_1[2] + 1;\n  param_1[1] = param_1[1] + -1;\n  *(int *)(param_1[7] + 8) = *(int *)(param_1[7] + 8) + (uint)*(byte *)*param_1 * 0x10000;\n  *param_1 = *param_1 + 1;\n  *(undefined4 *)param_1[7] = 4;\n  iVar3 = iVar5;\ncode_r0x10096564:\n  if (param_1[1] == 0) {\n    return iVar3;\n  }\n  param_1[2] = param_1[2] + 1;\n  param_1[1] = param_1[1] + -1;\n  *(int *)(param_1[7] + 8) = *(int *)(param_1[7] + 8) + (uint)*(byte *)*param_1 * 0x100;\n  *param_1 = *param_1 + 1;\n  *(undefined4 *)param_1[7] = 5;\n  iVar3 = iVar5;\ncode_r0x1009658d:\n  if (param_1[1] != 0) {\n    param_1[2] = param_1[2] + 1;\n    param_1[1] = param_1[1] + -1;\n    *(int *)(param_1[7] + 8) = *(int *)(param_1[7] + 8) + (uint)*(byte *)*param_1;\n    *param_1 = *param_1 + 1;\n    param_1[0xc] = ((undefined4 *)param_1[7])[2];\n    *(undefined4 *)param_1[7] = 6;\n    return 2;\n  }\n  return iVar3;\n}\n\n", 
+  "is_thunk": false, 
+  "name": "FUN_100962c7", 
+  "assembly": "  100962c7:  PUSH EBX\n  100962c8:  PUSH EBP\n  100962c9:  PUSH ESI\n  100962ca:  MOV ESI,dword ptr [ESP + 0x10]\n  100962ce:  XOR EBX,EBX\n  100962d0:  CMP ESI,EBX\n  100962d2:  PUSH EDI\n  100962d3:  JZ 0x100964fb\n  100962d9:  MOV EAX,dword ptr [ESI + 0x1c]\n  100962dc:  CMP EAX,EBX\n  100962de:  JZ 0x100964fb\n  100962e4:  CMP dword ptr [ESI],EBX\n  100962e6:  JZ 0x100964fb\n  100962ec:  CMP dword ptr [ESP + 0x18],0x4\n  100962f1:  PUSH -0x5\n  100962f3:  POP EDI\n  100962f4:  JNZ 0x100962f8\n  100962f6:  MOV EBX,EDI\n  100962f8:  PUSH 0xd\n  100962fa:  MOV dword ptr [ESP + 0x1c],EBX\n  100962fe:  POP EBP\n  100962ff:  JMP 0x100964f1\n  10096304:  JMP dword ptr [EAX*0x4 + 0x100965f2]\n  100964f1:  MOV EAX,dword ptr [EAX]\n  100964f3:  CMP EAX,EBP\n  100964f5:  JBE 0x10096304\n  100964fb:  PUSH -0x2\n  100964fd:  POP EAX\n  100964fe:  POP EDI\n  100964ff:  POP ESI\n  10096500:  POP EBP\n  10096501:  POP EBX\n  10096502:  RET 0x8", 
+  "callers": [
+    {
+      "address": "0x10079185", 
+      "name": "FUN_10079185"
+    }, 
+    {
+      "address": "0x100976a6", 
+      "name": "FUN_100976a6"
+    }
+  ]
+}

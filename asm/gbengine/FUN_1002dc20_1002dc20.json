@@ -1,0 +1,54 @@
+{
+  "address": "0x1002dc20", 
+  "size_bytes": 59, 
+  "calling_convention": "unknown", 
+  "signature": "undefined FUN_1002dc20(undefined4 param_1)", 
+  "callees": [
+    {
+      "address": "0x0000001e", 
+      "name": "CreateFileA"
+    }, 
+    {
+      "address": "0x0000000e", 
+      "name": "CloseHandle"
+    }
+  ], 
+  "global_refs": [
+    {
+      "address": "0x10120654", 
+      "type": "undefined4", 
+      "name": "DAT_10120654"
+    }, 
+    {
+      "address": "0x00000004", 
+      "type": null, 
+      "name": "DAT_00000004"
+    }, 
+    {
+      "address": "0x10000080", 
+      "type": "IMAGE_RICH_HEADER", 
+      "name": "DAT_10000080"
+    }, 
+    {
+      "address": "0x100f50a4", 
+      "type": "pointer", 
+      "name": "DAT_100f50a4"
+    }, 
+    {
+      "address": "0x100f5064", 
+      "type": "pointer", 
+      "name": "DAT_100f5064"
+    }
+  ], 
+  "has_custom_name": false, 
+  "decompiled_c": "\nundefined4 FUN_1002dc20(LPCSTR param_1)\n\n{\n  HANDLE hObject;\n  \n  if (DAT_10120654 != 4) {\n    return 0;\n  }\n  hObject = CreateFileA(param_1,0x80000000,1,(LPSECURITY_ATTRIBUTES)0x0,3,0x10000080,(HANDLE)0x0);\n  if (hObject == (HANDLE)0xffffffff) {\n    return 0;\n  }\n  CloseHandle(hObject);\n  return 1;\n}\n\n", 
+  "is_thunk": false, 
+  "name": "FUN_1002dc20", 
+  "assembly": "  1002dc20:  CMP dword ptr [0x10120654],0x4\n  1002dc27:  JZ 0x1002dc2c\n  1002dc29:  XOR AL,AL\n  1002dc2b:  RET\n  1002dc2c:  MOV EAX,dword ptr [ESP + 0x4]\n  1002dc30:  PUSH 0x0\n  1002dc32:  PUSH 0x10000080\n  1002dc37:  PUSH 0x3\n  1002dc39:  PUSH 0x0\n  1002dc3b:  PUSH 0x1\n  1002dc3d:  PUSH 0x80000000\n  1002dc42:  PUSH EAX\n  1002dc43:  CALL dword ptr [0x100f50a4]\n  1002dc49:  CMP EAX,-0x1\n  1002dc4c:  JNZ 0x1002dc51\n  1002dc4e:  XOR AL,AL\n  1002dc50:  RET\n  1002dc51:  PUSH EAX\n  1002dc52:  CALL dword ptr [0x100f5064]\n  1002dc58:  MOV AL,0x1\n  1002dc5a:  RET", 
+  "callers": [
+    {
+      "address": "0x1002c9e0", 
+      "name": "IsValidCPK"
+    }
+  ]
+}

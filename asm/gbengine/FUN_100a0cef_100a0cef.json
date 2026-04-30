@@ -1,0 +1,51 @@
+{
+  "address": "0x100a0cef", 
+  "size_bytes": 30, 
+  "calling_convention": "unknown", 
+  "signature": "undefined FUN_100a0cef(undefined4 param_1, undefined4 param_2)", 
+  "callees": [
+    {
+      "address": "0x1009aa07", 
+      "name": "FUN_1009aa07"
+    }
+  ], 
+  "global_refs": [
+    {
+      "address": "0x00000008", 
+      "type": null, 
+      "name": "DAT_00000008"
+    }, 
+    {
+      "address": "0x00000004", 
+      "type": null, 
+      "name": "DAT_00000004"
+    }
+  ], 
+  "has_custom_name": false, 
+  "decompiled_c": "\nvoid FUN_100a0cef(int param_1,int param_2)\n\n{\n  FUN_1009aa07(param_1 + 0x14,param_1 + 0x18,*(undefined4 *)(param_2 + 0x14),\n               *(undefined4 *)(param_2 + 0x18));\n  return;\n}\n\n", 
+  "is_thunk": false, 
+  "name": "FUN_100a0cef", 
+  "assembly": "  100a0cef:  MOV EAX,dword ptr [ESP + 0x8]\n  100a0cf3:  PUSH dword ptr [EAX + 0x18]\n  100a0cf6:  PUSH dword ptr [EAX + 0x14]\n  100a0cf9:  MOV EAX,dword ptr [ESP + 0xc]\n  100a0cfd:  LEA EDX,[EAX + 0x18]\n  100a0d00:  PUSH EDX\n  100a0d01:  ADD EAX,0x14\n  100a0d04:  PUSH EAX\n  100a0d05:  CALL 0x1009aa07\n  100a0d0a:  RET 0x8", 
+  "callers": [
+    {
+      "address": "0x100a0d0d", 
+      "name": "FUN_100a0d0d"
+    }, 
+    {
+      "address": "0x100a888a", 
+      "name": "FUN_100a888a"
+    }, 
+    {
+      "address": "0x100a888a", 
+      "name": "FUN_100a888a"
+    }, 
+    {
+      "address": "0x100a888a", 
+      "name": "FUN_100a888a"
+    }, 
+    {
+      "address": "0x100a888a", 
+      "name": "FUN_100a888a"
+    }
+  ]
+}

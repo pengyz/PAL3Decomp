@@ -1,0 +1,39 @@
+{
+  "address": "0x10027710", 
+  "size_bytes": 17, 
+  "calling_convention": "unknown", 
+  "signature": "undefined FUN_10027710(void)", 
+  "callees": [
+    {
+      "address": "0x10027730", 
+      "name": "gbCrc32Init"
+    }, 
+    {
+      "address": "0x00000087", 
+      "name": "timeGetTime"
+    }
+  ], 
+  "global_refs": [
+    {
+      "address": "0x100f5228", 
+      "type": "pointer", 
+      "name": "DAT_100f5228"
+    }, 
+    {
+      "address": "0x1014adc4", 
+      "type": "undefined4", 
+      "name": "DAT_1014adc4"
+    }
+  ], 
+  "has_custom_name": false, 
+  "decompiled_c": "\nvoid FUN_10027710(void)\n\n{\n  gbCrc32Init();\n  DAT_1014adc4 = timeGetTime();\n  return;\n}\n\n", 
+  "is_thunk": false, 
+  "name": "FUN_10027710", 
+  "assembly": "  10027710:  CALL 0x10027730\n  10027715:  CALL dword ptr [0x100f5228]\n  1002771b:  MOV [0x1014adc4],EAX\n  10027720:  RET", 
+  "callers": [
+    {
+      "address": "0x1001d910", 
+      "name": "gbGfxManager"
+    }
+  ]
+}

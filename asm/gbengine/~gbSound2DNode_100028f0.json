@@ -1,0 +1,38 @@
+{
+  "address": "0x100028f0", 
+  "size_bytes": 66, 
+  "calling_convention": "__thiscall", 
+  "signature": "void __thiscall ~gbSound2DNode(gbSound2DNode * this)", 
+  "callees": [
+    {
+      "address": "0x10001b00", 
+      "name": "DetachSampleHandle"
+    }, 
+    {
+      "address": "0x00000099", 
+      "name": "_AIL_end_sample@4"
+    }, 
+    {
+      "address": "0x100015f0", 
+      "name": "DeleteSoundData"
+    }
+  ], 
+  "global_refs": [
+    {
+      "address": "0x1012b988", 
+      "type": "gbAudioManager *", 
+      "name": "DAT_1012b988"
+    }, 
+    {
+      "address": "0x100f528c", 
+      "type": "pointer", 
+      "name": "DAT_100f528c"
+    }
+  ], 
+  "has_custom_name": true, 
+  "decompiled_c": "\n/* public: __thiscall gbSound2DNode::~gbSound2DNode(void) */\n\nvoid __thiscall gbSound2DNode::~gbSound2DNode(gbSound2DNode *this)\n\n{\n                    /* 0x28f0  160  ??1gbSound2DNode@@QAE@XZ */\n  if (*(int *)(this + 4) != 0) {\n    gbAudioManager::DetachSampleHandle(pAudioMgr,this);\n  }\n  if (*(int *)this != 0) {\n    if ((pAudioMgr != (gbAudioManager *)0x0) && (*(int *)(this + 4) != 0)) {\n      _AIL_end_sample_4(*(int *)(this + 4));\n    }\n    gbAudioManager::DeleteSoundData(pAudioMgr,*(gbSoundData **)this);\n  }\n  return;\n}\n\n", 
+  "is_thunk": false, 
+  "name": "~gbSound2DNode", 
+  "assembly": "  100028f0:  PUSH ESI\n  100028f1:  MOV ESI,ECX\n  100028f3:  MOV EAX,dword ptr [ESI + 0x4]\n  100028f6:  TEST EAX,EAX\n  100028f8:  JZ 0x10002906\n  100028fa:  MOV ECX,dword ptr [0x1012b988]\n  10002900:  PUSH ESI\n  10002901:  CALL 0x10001b00\n  10002906:  CMP dword ptr [ESI],0x0\n  10002909:  JZ 0x10002930\n  1000290b:  MOV EAX,[0x1012b988]\n  10002910:  TEST EAX,EAX\n  10002912:  JZ 0x10002922\n  10002914:  MOV EAX,dword ptr [ESI + 0x4]\n  10002917:  TEST EAX,EAX\n  10002919:  JZ 0x10002922\n  1000291b:  PUSH EAX\n  1000291c:  CALL dword ptr [0x100f528c]\n  10002922:  MOV EAX,dword ptr [ESI]\n  10002924:  MOV ECX,dword ptr [0x1012b988]\n  1000292a:  PUSH EAX\n  1000292b:  CALL 0x100015f0\n  10002930:  POP ESI\n  10002931:  RET", 
+  "callers": []
+}

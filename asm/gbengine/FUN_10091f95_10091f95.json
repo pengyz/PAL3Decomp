@@ -1,0 +1,23 @@
+{
+  "address": "0x10091f95", 
+  "size_bytes": 45, 
+  "calling_convention": "unknown", 
+  "signature": "undefined FUN_10091f95(void)", 
+  "callees": [
+    {
+      "address": "0x100e4a24", 
+      "name": "FUN_100e4a24"
+    }, 
+    {
+      "address": "0x10091973", 
+      "name": "FUN_10091973"
+    }
+  ], 
+  "global_refs": [], 
+  "has_custom_name": false, 
+  "decompiled_c": "\nvoid FUN_10091f95(void)\n\n{\n  int *piVar1;\n  int in_ECX;\n  \n  piVar1 = *(int **)(in_ECX + 8);\n  if (piVar1 != (int *)0x0) {\n    (**(code **)(*piVar1 + 8))(piVar1);\n    *(undefined4 *)(in_ECX + 8) = 0;\n  }\n  FUN_100e4a24(*(undefined4 *)(in_ECX + 0x58));\n  if (*(int *)(in_ECX + 0x78) != 0) {\n    FUN_10091973(1);\n  }\n  return;\n}\n\n", 
+  "is_thunk": false, 
+  "name": "FUN_10091f95", 
+  "assembly": "  10091f95:  PUSH ESI\n  10091f96:  MOV ESI,ECX\n  10091f98:  MOV EAX,dword ptr [ESI + 0x8]\n  10091f9b:  TEST EAX,EAX\n  10091f9d:  JZ 0x10091fa9\n  10091f9f:  MOV ECX,dword ptr [EAX]\n  10091fa1:  PUSH EAX\n  10091fa2:  CALL dword ptr [ECX + 0x8]\n  10091fa5:  AND dword ptr [ESI + 0x8],0x0\n  10091fa9:  PUSH dword ptr [ESI + 0x58]\n  10091fac:  CALL 0x100e4a24\n  10091fb1:  POP ECX\n  10091fb2:  MOV ECX,dword ptr [ESI + 0x78]\n  10091fb5:  TEST ECX,ECX\n  10091fb7:  POP ESI\n  10091fb8:  JZ 0x10091fc1\n  10091fba:  PUSH 0x1\n  10091fbc:  CALL 0x10091973\n  10091fc1:  RET", 
+  "callers": []
+}

@@ -1,0 +1,40 @@
+{
+  "address": "0x100320f0", 
+  "size_bytes": 37, 
+  "calling_convention": "__thiscall", 
+  "signature": "undefined __thiscall gbRain(gbRain * this, int param_1, gbDropDesc * param_2, char * param_3)", 
+  "callees": [
+    {
+      "address": "0x10031e40", 
+      "name": "gbDropGroup"
+    }
+  ], 
+  "global_refs": [
+    {
+      "address": "0x0000000c", 
+      "type": null, 
+      "name": "DAT_0000000c"
+    }, 
+    {
+      "address": "0x00000004", 
+      "type": null, 
+      "name": "DAT_00000004"
+    }, 
+    {
+      "address": "0x00000008", 
+      "type": null, 
+      "name": "DAT_00000008"
+    }, 
+    {
+      "address": "0x100f5b54", 
+      "type": "undefined *", 
+      "name": "DAT_100f5b54"
+    }
+  ], 
+  "has_custom_name": true, 
+  "decompiled_c": "\n/* public: __thiscall gbRain::gbRain(int,struct gbDropDesc const *,char const *) */\n\ngbRain * __thiscall gbRain::gbRain(gbRain *this,int param_1,gbDropDesc *param_2,char *param_3)\n\n{\n                    /* 0x320f0  79  ??0gbRain@@QAE@HPBUgbDropDesc@@PBD@Z */\n  gbDropGroup::gbDropGroup((gbDropGroup *)this,param_1,param_2,param_3);\n  *(undefined ***)this = &_vftable_;\n  return this;\n}\n\n", 
+  "is_thunk": false, 
+  "name": "gbRain", 
+  "assembly": "  100320f0:  MOV EAX,dword ptr [ESP + 0xc]\n  100320f4:  MOV EDX,dword ptr [ESP + 0x4]\n  100320f8:  PUSH ESI\n  100320f9:  MOV ESI,ECX\n  100320fb:  MOV ECX,dword ptr [ESP + 0xc]\n  100320ff:  PUSH EAX\n  10032100:  PUSH ECX\n  10032101:  PUSH EDX\n  10032102:  MOV ECX,ESI\n  10032104:  CALL 0x10031e40\n  10032109:  MOV dword ptr [ESI],0x100f5b54\n  1003210f:  MOV EAX,ESI\n  10032111:  POP ESI\n  10032112:  RET 0xc", 
+  "callers": []
+}

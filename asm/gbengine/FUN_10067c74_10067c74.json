@@ -1,0 +1,20 @@
+{
+  "address": "0x10067c74", 
+  "size_bytes": 62, 
+  "calling_convention": "unknown", 
+  "signature": "undefined FUN_10067c74(undefined4 param_1)", 
+  "callees": [], 
+  "global_refs": [
+    {
+      "address": "0x00000004", 
+      "type": null, 
+      "name": "DAT_00000004"
+    }
+  ], 
+  "has_custom_name": false, 
+  "decompiled_c": "\nundefined4 FUN_10067c74(uint param_1)\n\n{\n  uint uVar1;\n  undefined4 uVar2;\n  int in_ECX;\n  \n  if (((((param_1 & 0x7fffffff) == param_1) || ((param_1 & 0xffff) == param_1)) ||\n      (*(int *)~param_1 != 4)) || (uVar1 = ((int *)~param_1)[1], *(uint *)(in_ECX + 0xac) <= uVar1))\n  {\n    uVar2 = 0;\n  }\n  else {\n    uVar2 = *(undefined4 *)(*(int *)(in_ECX + 0xb4) + uVar1 * 4);\n  }\n  return uVar2;\n}\n\n", 
+  "is_thunk": false, 
+  "name": "FUN_10067c74", 
+  "assembly": "  10067c74:  MOV EAX,dword ptr [ESP + 0x4]\n  10067c78:  MOV EDX,EAX\n  10067c7a:  AND EDX,0x7fffffff\n  10067c80:  CMP EDX,EAX\n  10067c82:  JZ 0x10067cad\n  10067c84:  MOV EDX,EAX\n  10067c86:  AND EDX,0xffff\n  10067c8c:  CMP EDX,EAX\n  10067c8e:  JZ 0x10067cad\n  10067c90:  NOT EAX\n  10067c92:  CMP dword ptr [EAX],0x4\n  10067c95:  JNZ 0x10067cad\n  10067c97:  MOV EAX,dword ptr [EAX + 0x4]\n  10067c9a:  CMP EAX,dword ptr [ECX + 0xac]\n  10067ca0:  JNC 0x10067cad\n  10067ca2:  MOV ECX,dword ptr [ECX + 0xb4]\n  10067ca8:  MOV EAX,dword ptr [ECX + EAX*0x4]\n  10067cab:  JMP 0x10067caf\n  10067cad:  XOR EAX,EAX\n  10067caf:  RET 0x8", 
+  "callers": []
+}

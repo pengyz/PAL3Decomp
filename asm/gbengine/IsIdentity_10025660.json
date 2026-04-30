@@ -1,0 +1,20 @@
+{
+  "address": "0x10025660", 
+  "size_bytes": 57, 
+  "calling_convention": "__thiscall", 
+  "signature": "bool __thiscall IsIdentity(gbMatrix4 * this)", 
+  "callees": [], 
+  "global_refs": [
+    {
+      "address": "0x100f53a0", 
+      "type": null, 
+      "name": "DAT_100f53a0"
+    }
+  ], 
+  "has_custom_name": true, 
+  "decompiled_c": "\n/* public: bool __thiscall gbMatrix4::IsIdentity(void)const  */\n\nbool __thiscall gbMatrix4::IsIdentity(gbMatrix4 *this)\n\n{\n  int iVar1;\n  int iVar2;\n  \n                    /* 0x25660  636  ?IsIdentity@gbMatrix4@@QBE_NXZ */\n  iVar2 = 0;\n  do {\n    iVar1 = 0;\n    do {\n      if (iVar2 == iVar1) {\n        if (*(float *)this != 1.0) {\n          return false;\n        }\n      }\n      else if (*(float *)this != 0.0) {\n        return false;\n      }\n      this = this + 4;\n      iVar1 = iVar1 + 1;\n    } while (iVar1 < 4);\n    iVar2 = iVar2 + 1;\n  } while (iVar2 < 4);\n  return true;\n}\n\n", 
+  "is_thunk": false, 
+  "name": "IsIdentity", 
+  "assembly": "  10025660:  PUSH ESI\n  10025661:  XOR ESI,ESI\n  10025663:  XOR EDX,EDX\n  10025665:  CMP ESI,EDX\n  10025667:  JNZ 0x10025673\n  10025669:  CMP dword ptr [ECX],0x3f800000\n  1002566f:  JNZ 0x10025695\n  10025671:  JMP 0x10025682\n  10025673:  FLD dword ptr [ECX]\n  10025675:  FCOMP dword ptr [0x100f53a0]\n  1002567b:  FNSTSW AX\n  1002567d:  TEST AH,0x40\n  10025680:  JZ 0x10025695\n  10025682:  ADD ECX,0x4\n  10025685:  INC EDX\n  10025686:  CMP EDX,0x4\n  10025689:  JL 0x10025665\n  1002568b:  INC ESI\n  1002568c:  CMP ESI,0x4\n  1002568f:  JL 0x10025663\n  10025691:  MOV AL,0x1\n  10025693:  POP ESI\n  10025694:  RET\n  10025695:  XOR AL,AL\n  10025697:  POP ESI\n  10025698:  RET", 
+  "callers": []
+}

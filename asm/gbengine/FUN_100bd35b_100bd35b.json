@@ -1,0 +1,96 @@
+{
+  "address": "0x100bd35b", 
+  "size_bytes": 47, 
+  "calling_convention": "unknown", 
+  "signature": "undefined FUN_100bd35b(void)", 
+  "callees": [
+    {
+      "address": "0x1009d529", 
+      "name": "FUN_1009d529"
+    }
+  ], 
+  "global_refs": [], 
+  "has_custom_name": false, 
+  "decompiled_c": "\nint FUN_100bd35b(void)\n\n{\n  int iVar1;\n  int in_ECX;\n  \n  *(undefined4 *)(in_ECX + 0x118) = 0xffffffff;\n  *(undefined4 *)(in_ECX + 0x11c) = 0xffffffff;\n  *(undefined4 *)(in_ECX + 0x120) = 0xffffffff;\n  *(undefined4 *)(in_ECX + 0x124) = 0xffffffff;\n  *(undefined4 *)(in_ECX + 0x128) = 0xffffffff;\n  *(undefined4 *)(in_ECX + 300) = 0;\n  *(undefined4 *)(in_ECX + 0x130) = 0;\n  iVar1 = FUN_1009d529();\n  if (-1 < iVar1) {\n    iVar1 = 0;\n  }\n  return iVar1;\n}\n\n", 
+  "is_thunk": false, 
+  "name": "FUN_100bd35b", 
+  "assembly": "  100bd35b:  PUSH EDI\n  100bd35c:  OR EAX,0xffffffff\n  100bd35f:  MOV dword ptr [ECX + 0x118],EAX\n  100bd365:  LEA EDI,[ECX + 0x11c]\n  100bd36b:  STOSD ES:EDI\n  100bd36c:  STOSD ES:EDI\n  100bd36d:  STOSD ES:EDI\n  100bd36e:  STOSD ES:EDI\n  100bd36f:  AND dword ptr [ECX + 0x12c],0x0\n  100bd376:  AND dword ptr [ECX + 0x130],0x0\n  100bd37d:  CALL 0x1009d529\n  100bd382:  TEST EAX,EAX\n  100bd384:  POP EDI\n  100bd385:  JL 0x100bd389\n  100bd387:  XOR EAX,EAX\n  100bd389:  RET", 
+  "callers": [
+    {
+      "address": "0x100c898d", 
+      "name": "FUN_100c898d"
+    }, 
+    {
+      "address": "0x100c898d", 
+      "name": "FUN_100c898d"
+    }, 
+    {
+      "address": "0x100c4a08", 
+      "name": "FUN_100c4a08"
+    }, 
+    {
+      "address": "0x100b4ad4", 
+      "name": "FUN_100b4ad4"
+    }, 
+    {
+      "address": "0x100b4ad4", 
+      "name": "FUN_100b4ad4"
+    }, 
+    {
+      "address": "0x100b4ad4", 
+      "name": "FUN_100b4ad4"
+    }, 
+    {
+      "address": "0x100b4ad4", 
+      "name": "FUN_100b4ad4"
+    }, 
+    {
+      "address": "0x100b4ad4", 
+      "name": "FUN_100b4ad4"
+    }, 
+    {
+      "address": "0x100b4ad4", 
+      "name": "FUN_100b4ad4"
+    }, 
+    {
+      "address": "0x100b4ad4", 
+      "name": "FUN_100b4ad4"
+    }, 
+    {
+      "address": "0x100b781f", 
+      "name": "FUN_100b781f"
+    }, 
+    {
+      "address": "0x100b781f", 
+      "name": "FUN_100b781f"
+    }, 
+    {
+      "address": "0x100c458f", 
+      "name": "FUN_100c458f"
+    }, 
+    {
+      "address": "0x100b8576", 
+      "name": "FUN_100b8576"
+    }, 
+    {
+      "address": "0x100b8576", 
+      "name": "FUN_100b8576"
+    }, 
+    {
+      "address": "0x100b8576", 
+      "name": "FUN_100b8576"
+    }, 
+    {
+      "address": "0x100b8576", 
+      "name": "FUN_100b8576"
+    }, 
+    {
+      "address": "0x100b8576", 
+      "name": "FUN_100b8576"
+    }, 
+    {
+      "address": "0x100b900f", 
+      "name": "FUN_100b900f"
+    }
+  ]
+}

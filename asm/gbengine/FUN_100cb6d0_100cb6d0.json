@@ -1,0 +1,35 @@
+{
+  "address": "0x100cb6d0", 
+  "size_bytes": 204, 
+  "calling_convention": "unknown", 
+  "signature": "undefined FUN_100cb6d0(undefined4 param_1)", 
+  "callees": [
+    {
+      "address": "0x100cb130", 
+      "name": "FUN_100cb130"
+    }
+  ], 
+  "global_refs": [
+    {
+      "address": "0x00000004", 
+      "type": null, 
+      "name": "DAT_00000004"
+    }, 
+    {
+      "address": "0x100cb660", 
+      "type": null, 
+      "name": "DAT_100cb660"
+    }
+  ], 
+  "has_custom_name": false, 
+  "decompiled_c": "\nvoid FUN_100cb6d0(int *param_1)\n\n{\n  undefined4 *puVar1;\n  undefined4 *puVar2;\n  int iVar3;\n  undefined4 uVar4;\n  int unaff_EBX;\n  int iVar5;\n  int *piVar6;\n  \n  puVar2 = (undefined4 *)(**(code **)param_1[1])(param_1,1,0x50);\n  param_1[0x6b] = (int)puVar2;\n  *puVar2 = &LAB_100cb660;\n  if (unaff_EBX != 0) {\n    puVar1 = (undefined4 *)*param_1;\n    puVar1[5] = 4;\n    (*(code *)*puVar1)(param_1);\n  }\n  if (*(int *)(param_1[0x72] + 8) == 0) {\n    iVar3 = param_1[0x50];\n  }\n  else {\n    if (param_1[0x50] < 2) {\n      puVar1 = (undefined4 *)*param_1;\n      puVar1[5] = 0x2f;\n      (*(code *)*puVar1)(param_1);\n    }\n    FUN_100cb130();\n    iVar3 = param_1[0x50] + 2;\n  }\n  iVar5 = 0;\n  if (0 < param_1[9]) {\n    piVar6 = (int *)(param_1[0x37] + 0x24);\n    puVar2 = puVar2 + 2;\n    do {\n      uVar4 = (**(code **)(param_1[1] + 8))\n                        (param_1,1,piVar6[-2] * *piVar6,\n                         ((piVar6[-6] * *piVar6) / param_1[0x50]) * iVar3);\n      *puVar2 = uVar4;\n      iVar5 = iVar5 + 1;\n      puVar2 = puVar2 + 1;\n      piVar6 = piVar6 + 0x15;\n    } while (iVar5 < param_1[9]);\n  }\n  return;\n}\n\n", 
+  "is_thunk": false, 
+  "name": "FUN_100cb6d0", 
+  "assembly": "  100cb6d0:  PUSH EBX\n  100cb6d1:  PUSH EBP\n  100cb6d2:  PUSH ESI\n  100cb6d3:  MOV ESI,dword ptr [ESP + 0x10]\n  100cb6d7:  MOV EAX,dword ptr [ESI + 0x4]\n  100cb6da:  PUSH 0x50\n  100cb6dc:  PUSH 0x1\n  100cb6de:  PUSH ESI\n  100cb6df:  CALL dword ptr [EAX]\n  100cb6e1:  MOV EBX,EAX\n  100cb6e3:  MOV EAX,dword ptr [ESP + 0x14]\n  100cb6e7:  TEST EAX,EAX\n  100cb6e9:  MOV dword ptr [ESI + 0x1ac],EBX\n  100cb6ef:  MOV dword ptr [EBX],0x100cb660\n  100cb6f5:  JZ 0x100cb703\n  100cb6f7:  MOV EAX,dword ptr [ESI]\n  100cb6f9:  PUSH ESI\n  100cb6fa:  MOV dword ptr [EAX + 0x14],0x4\n  100cb701:  CALL dword ptr [EAX]\n  100cb703:  MOV ECX,dword ptr [ESI + 0x1c8]\n  100cb709:  MOV EAX,dword ptr [ECX + 0x8]\n  100cb70c:  TEST EAX,EAX\n  100cb70e:  JZ 0x100cb739\n  100cb710:  CMP dword ptr [ESI + 0x140],0x2\n  100cb717:  JGE 0x100cb725\n  100cb719:  MOV EAX,dword ptr [ESI]\n  100cb71b:  PUSH ESI\n  100cb71c:  MOV dword ptr [EAX + 0x14],0x2f\n  100cb723:  CALL dword ptr [EAX]\n  100cb725:  CALL 0x100cb130\n  100cb72a:  MOV EAX,dword ptr [ESI + 0x140]\n  100cb730:  ADD EAX,0x2\n  100cb733:  MOV dword ptr [ESP + 0x10],EAX\n  100cb737:  JMP 0x100cb743\n  100cb739:  MOV EDX,dword ptr [ESI + 0x140]\n  100cb73f:  MOV dword ptr [ESP + 0x10],EDX\n  100cb743:  MOV ECX,dword ptr [ESI + 0x24]\n  100cb746:  MOV EAX,dword ptr [ESI + 0xdc]\n  100cb74c:  XOR EBP,EBP\n  100cb74e:  TEST ECX,ECX\n  100cb750:  JLE 0x100cb796\n  100cb752:  PUSH EDI\n  100cb753:  LEA EDI,[EAX + 0x24]\n  100cb756:  ADD EBX,0x8\n  100cb759:  LEA ESP,[ESP]\n  100cb760:  MOV ECX,dword ptr [EDI]\n  100cb762:  MOV EAX,dword ptr [EDI + -0x18]\n  100cb765:  IMUL EAX,ECX\n  100cb768:  CDQ\n  100cb769:  IDIV dword ptr [ESI + 0x140]\n  100cb76f:  MOV EDX,dword ptr [ESI + 0x4]\n  100cb772:  IMUL EAX,dword ptr [ESP + 0x14]\n  100cb777:  PUSH EAX\n  100cb778:  MOV EAX,dword ptr [EDI + -0x8]\n  100cb77b:  IMUL EAX,ECX\n  100cb77e:  PUSH EAX\n  100cb77f:  PUSH 0x1\n  100cb781:  PUSH ESI\n  100cb782:  CALL dword ptr [EDX + 0x8]\n  100cb785:  MOV dword ptr [EBX],EAX\n  100cb787:  MOV EAX,dword ptr [ESI + 0x24]\n  100cb78a:  INC EBP\n  100cb78b:  ADD EBX,0x4\n  100cb78e:  ADD EDI,0x54\n  100cb791:  CMP EBP,EAX\n  100cb793:  JL 0x100cb760\n  100cb795:  POP EDI\n  100cb796:  POP ESI\n  100cb797:  POP EBP\n  100cb798:  POP EBX\n  100cb799:  RET 0x8", 
+  "callers": [
+    {
+      "address": "0x10093960", 
+      "name": "FUN_10093960"
+    }
+  ]
+}

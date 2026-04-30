@@ -1,0 +1,144 @@
+{
+  "address": "0x10014f40", 
+  "size_bytes": 1403, 
+  "calling_convention": "__thiscall", 
+  "signature": "void __thiscall End(gbSceneGraph * this)", 
+  "callees": [
+    {
+      "address": "0x100e4f80", 
+      "name": "FUN_100e4f80"
+    }, 
+    {
+      "address": "0x10014990", 
+      "name": "FUN_10014990"
+    }, 
+    {
+      "address": "0x100e54db", 
+      "name": "FUN_100e54db"
+    }, 
+    {
+      "address": "0x10027090", 
+      "name": "Push"
+    }, 
+    {
+      "address": "0x1001d080", 
+      "name": "Begin"
+    }, 
+    {
+      "address": "0x1001d0a0", 
+      "name": "Pass"
+    }, 
+    {
+      "address": "0x1001d0e0", 
+      "name": "End"
+    }, 
+    {
+      "address": "0x1001d080", 
+      "name": "Begin"
+    }, 
+    {
+      "address": "0x1001d0a0", 
+      "name": "Pass"
+    }, 
+    {
+      "address": "0x1001d0e0", 
+      "name": "End"
+    }, 
+    {
+      "address": "0x1001d080", 
+      "name": "Begin"
+    }, 
+    {
+      "address": "0x1001d0a0", 
+      "name": "Pass"
+    }, 
+    {
+      "address": "0x1001d0e0", 
+      "name": "End"
+    }, 
+    {
+      "address": "0x1001d080", 
+      "name": "Begin"
+    }, 
+    {
+      "address": "0x1001d0a0", 
+      "name": "Pass"
+    }, 
+    {
+      "address": "0x1001d0e0", 
+      "name": "End"
+    }, 
+    {
+      "address": "0x1000ef60", 
+      "name": "FUN_1000ef60"
+    }, 
+    {
+      "address": "0x1000ef10", 
+      "name": "FUN_1000ef10"
+    }, 
+    {
+      "address": "0x10027090", 
+      "name": "Push"
+    }, 
+    {
+      "address": "0x100270d0", 
+      "name": "LoadIdentity"
+    }, 
+    {
+      "address": "0x10027090", 
+      "name": "Push"
+    }, 
+    {
+      "address": "0x100270d0", 
+      "name": "LoadIdentity"
+    }, 
+    {
+      "address": "0x10021680", 
+      "name": "GetDynVertBuf"
+    }, 
+    {
+      "address": "0x1001c860", 
+      "name": "RenderUIQuad"
+    }, 
+    {
+      "address": "0x100270c0", 
+      "name": "Pop"
+    }, 
+    {
+      "address": "0x100270c0", 
+      "name": "Pop"
+    }, 
+    {
+      "address": "0x100270c0", 
+      "name": "Pop"
+    }
+  ], 
+  "global_refs": [
+    {
+      "address": "0x0000001c", 
+      "type": null, 
+      "name": "DAT_0000001c"
+    }, 
+    {
+      "address": "0x100154c0", 
+      "type": null, 
+      "name": "DAT_100154c0"
+    }, 
+    {
+      "address": "0x1013bce4", 
+      "type": "undefined4", 
+      "name": "DAT_1013bce4"
+    }, 
+    {
+      "address": "0x1015d3a4", 
+      "type": "int", 
+      "name": "DAT_1015d3a4"
+    }
+  ], 
+  "has_custom_name": true, 
+  "decompiled_c": "\n/* public: void __thiscall gbSceneGraph::End(void) */\n\nvoid __thiscall gbSceneGraph::End(gbSceneGraph *this)\n\n{\n  int *piVar1;\n  gbMatrixStack *this_00;\n  gbMatrixStack *this_01;\n  int iVar2;\n  int iVar3;\n  int iVar4;\n  gbDynVertBuf *this_02;\n  int *extraout_ECX;\n  gbRenderEffect *pgVar5;\n  gbRenderEffect *pgVar6;\n  int *piVar7;\n  gbRenderEffect *pgVar8;\n  int iVar9;\n  gbRenderEffect *pgVar10;\n  gbRenderEffect *pgVar11;\n  gbRenderEffect *pgStack00000004;\n  gbRenderEffect *pgStack00000008;\n  int iStack00000010;\n  gbRenderEffect *pgStack00000014;\n  gbMatrixStack *pgStack0000001c;\n  undefined4 in_stack_00000020;\n  undefined4 in_stack_00000024;\n  undefined4 in_stack_00000028;\n  undefined4 in_stack_0000002c;\n  undefined4 in_stack_00000040;\n  undefined4 in_stack_00000044;\n  undefined4 in_stack_00000088;\n  int in_stack_0000008c;\n  \n                    /* 0x14f40  393  ?End@gbSceneGraph@@QAEXXZ */\n  FUN_100e4f80();\n  if (*(char *)(extraout_ECX + 0x12cb) != '\\0') {\n    if ((extraout_ECX[0x12c9] != 0) && (iVar2 = FUN_10014990(), 0 < iVar2)) {\n      piVar7 = (int *)&stack0x0000408c;\n      do {\n        for (piVar1 = *(int **)(*piVar7 + 0x40); piVar1 != (int *)0x0; piVar1 = (int *)piVar1[0x13])\n        {\n          (**(code **)(*piVar1 + 0xc))();\n        }\n        piVar7 = piVar7 + 1;\n        iVar2 = iVar2 + -1;\n      } while (iVar2 != 0);\n    }\n    if ((int *)extraout_ECX[0x12c7] != (int *)0x0) {\n      (**(code **)(*(int *)extraout_ECX[0x12c7] + 4))();\n    }\n  }\n  pgStack0000001c = (gbMatrixStack *)extraout_ECX[0x12c5];\n  iVar3 = 0;\n  iVar2 = extraout_ECX[1];\n  if (0 < iVar2) {\n    piVar7 = &stack0x0000008c;\n    do {\n      *piVar7 = iVar3;\n      iVar3 = iVar3 + 1;\n      piVar7 = piVar7 + 1;\n    } while (iVar3 < iVar2);\n  }\n  DAT_1013bce4 = *extraout_ECX;\n  FUN_100e54db();\n  pgStack0000001c = *(gbMatrixStack **)(extraout_ECX[0x12c6] + 0xd8);\n  gbMatrixStack::Push(pgStack0000001c);\n  pgVar6 = (gbRenderEffect *)extraout_ECX[1];\n  pgVar5 = (gbRenderEffect *)0x0;\n  pgStack00000008 = pgVar6;\n  if (0 < (int)pgVar6) {\n    piVar7 = &stack0x0000008c;\n    do {\n      pgStack00000008 = pgVar5;\n      if ((*(byte *)(*piVar7 * 0x70 + 0x18 + *extraout_ECX) & 1) == 0) break;\n      pgVar5 = pgVar5 + 1;\n      piVar7 = piVar7 + 1;\n      pgStack00000008 = pgVar6;\n    } while ((int)pgVar5 < (int)pgVar6);\n  }\n  *(undefined4 *)(*(int *)(extraout_ECX[0x12c6] + 200) + 0x824) = 1;\n  pgVar6 = pgStack00000008;\n  if (pgStack00000008 != (gbRenderEffect *)0x0) {\n    iVar2 = 0;\n    pgVar5 = *(gbRenderEffect **)(in_stack_0000008c * 0x70 + 0xc + *extraout_ECX);\n    iVar3 = 0;\n    pgStack00000014 = pgVar5;\n    if (0 < (int)pgStack00000008) {\n      pgStack00000004 = (gbRenderEffect *)0xffffffff;\n      do {\n        pgVar8 = *(gbRenderEffect **)((&stack0x0000008c)[iVar3] * 0x70 + 0xc + *extraout_ECX);\n        if (pgVar8 != pgVar5) {\n          iVar4 = gbRenderEffect::Begin(pgVar5);\n          iStack00000010 = 0;\n          if (0 < iVar4) {\n            do {\n              gbRenderEffect::Pass(pgVar5,iStack00000010);\n              if (iVar2 <= (int)pgStack00000004) {\n                piVar7 = &stack0x0000008c + iVar2;\n                iVar9 = ((int)pgStack00000004 - iVar2) + 1;\n                do {\n                  (**(code **)(**(int **)(*piVar7 * 0x70 + *extraout_ECX) + 4))();\n                  piVar7 = piVar7 + 1;\n                  iVar9 = iVar9 + -1;\n                  pgVar5 = pgStack00000014;\n                } while (iVar9 != 0);\n              }\n              iStack00000010 = iStack00000010 + 1;\n            } while (iStack00000010 < iVar4);\n          }\n          gbRenderEffect::End(pgVar5);\n          iVar2 = iVar3;\n          pgVar6 = pgStack00000008;\n          pgVar5 = pgVar8;\n          pgStack00000014 = pgVar8;\n        }\n        iVar3 = iVar3 + 1;\n        pgStack00000004 = (gbRenderEffect *)((int)pgStack00000004 + 1);\n      } while (iVar3 < (int)pgVar6);\n    }\n    iVar4 = gbRenderEffect::Begin(pgVar5);\n    pgStack00000004 = (gbRenderEffect *)0x0;\n    if (0 < iVar4) {\n      do {\n        gbRenderEffect::Pass(pgVar5,(int)pgStack00000004);\n        if (iVar2 <= iVar3 + -1) {\n          piVar7 = &stack0x0000008c + iVar2;\n          iVar9 = ((iVar3 + -1) - iVar2) + 1;\n          do {\n            (**(code **)(**(int **)(*piVar7 * 0x70 + *extraout_ECX) + 4))();\n            piVar7 = piVar7 + 1;\n            iVar9 = iVar9 + -1;\n            pgVar6 = pgStack00000008;\n            pgVar5 = pgStack00000014;\n          } while (iVar9 != 0);\n        }\n        pgStack00000004 = (gbRenderEffect *)((int)pgStack00000004 + 1);\n      } while ((int)pgStack00000004 < iVar4);\n    }\n    gbRenderEffect::End(pgVar5);\n  }\n  *(undefined4 *)(*(int *)(extraout_ECX[0x12c6] + 200) + 0x824) = 0;\n  *(undefined4 *)(*(int *)(extraout_ECX[0x12c6] + 200) + 0x824) = 1;\n  if ((int)pgVar6 < extraout_ECX[1]) {\n    pgVar5 = *(gbRenderEffect **)((&stack0x0000008c)[(int)pgVar6] * 0x70 + 0xc + *extraout_ECX);\n    pgVar8 = pgVar6;\n    pgStack00000008 = pgVar5;\n    if ((int)pgVar6 < extraout_ECX[1]) {\n      pgStack00000004 = pgVar6 + -1;\n      do {\n        pgVar11 = *(gbRenderEffect **)((&stack0x0000008c)[(int)pgVar6] * 0x70 + 0xc + *extraout_ECX)\n        ;\n        if (pgVar11 != pgVar5) {\n          iVar2 = gbRenderEffect::Begin(pgVar5);\n          iStack00000010 = 0;\n          if (0 < iVar2) {\n            do {\n              gbRenderEffect::Pass(pgVar5,iStack00000010);\n              if ((int)pgVar8 <= (int)pgStack00000004) {\n                piVar7 = &stack0x0000008c + (int)pgVar8;\n                pgVar10 = pgStack00000004 + (1 - (int)pgVar8);\n                do {\n                  (**(code **)(**(int **)(*piVar7 * 0x70 + *extraout_ECX) + 4))();\n                  piVar7 = piVar7 + 1;\n                  pgVar10 = pgVar10 + -1;\n                  pgVar5 = pgStack00000008;\n                } while (pgVar10 != (gbRenderEffect *)0x0);\n              }\n              iStack00000010 = iStack00000010 + 1;\n            } while (iStack00000010 < iVar2);\n          }\n          gbRenderEffect::End(pgVar5);\n          pgVar8 = pgVar6;\n          pgVar5 = pgVar11;\n          pgStack00000008 = pgVar11;\n        }\n        pgVar6 = pgVar6 + 1;\n        pgStack00000004 = pgStack00000004 + 1;\n      } while ((int)pgVar6 < extraout_ECX[1]);\n    }\n    iVar2 = gbRenderEffect::Begin(pgVar5);\n    iStack00000010 = 0;\n    if (0 < iVar2) {\n      do {\n        gbRenderEffect::Pass(pgVar5,iStack00000010);\n        if ((int)pgVar8 <= (int)(pgVar6 + -1)) {\n          piVar7 = &stack0x0000008c + (int)pgVar8;\n          pgVar11 = pgVar6 + -1 + (1 - (int)pgVar8);\n          do {\n            (**(code **)(**(int **)(*piVar7 * 0x70 + *extraout_ECX) + 4))();\n            piVar7 = piVar7 + 1;\n            pgVar11 = pgVar11 + -1;\n            pgVar5 = pgStack00000008;\n          } while (pgVar11 != (gbRenderEffect *)0x0);\n        }\n        iStack00000010 = iStack00000010 + 1;\n      } while (iStack00000010 < iVar2);\n    }\n    gbRenderEffect::End(pgVar5);\n  }\n  iVar2 = 0;\n  *(undefined4 *)(*(int *)(extraout_ECX[0x12c6] + 200) + 0x824) = 0;\n  FUN_1000ef60();\n  FUN_1000ef10();\n  if (0 < extraout_ECX[0x1c4]) {\n    piVar7 = extraout_ECX + 4;\n    do {\n      (**(code **)(*(int *)*piVar7 + 8))();\n      iVar2 = iVar2 + 1;\n      piVar7 = piVar7 + 0x1c;\n    } while (iVar2 < extraout_ECX[0x1c4]);\n  }\n  if (extraout_ECX[0x1c4] != 0) {\n    iVar2 = extraout_ECX[0x12c6];\n    pgVar6 = (gbRenderEffect *)extraout_ECX[0x12c8];\n    in_stack_00000088 = 0;\n    this_00 = *(gbMatrixStack **)(iVar2 + 0xd8);\n    this_01 = *(gbMatrixStack **)(iVar2 + 0xd4);\n    gbMatrixStack::Push(this_00);\n    gbMatrixStack::LoadIdentity(this_00);\n    gbMatrixStack::Push(this_01);\n    gbMatrixStack::LoadIdentity(this_01);\n    this_02 = gbVertPoolMgr::GetDynVertBuf(*(gbVertPoolMgr **)(iVar2 + 0xc4),0x15);\n    in_stack_00000044 = 0x50000000;\n    in_stack_00000040 = 0;\n    in_stack_00000020 = 0xbf800000;\n    in_stack_00000028 = 0x3f800000;\n    in_stack_00000024 = 0xbf800000;\n    in_stack_0000002c = 0x3f800000;\n    gbDynVertBuf::RenderUIQuad\n              (this_02,(gbUIQuad *)&stack0x00000020,1,pgVar6,(gbTextureArray *)&stack0x00000048);\n    gbMatrixStack::Pop(this_00);\n    gbMatrixStack::Pop(this_01);\n  }\n  gbMatrixStack::Pop(pgStack0000001c);\n  *(undefined *)(extraout_ECX + 0x12cb) = 1;\n  extraout_ECX[0x12c9] = 0;\n  extraout_ECX[1] = 0;\n  extraout_ECX[0x12c5] = 0;\n  extraout_ECX[0x1c4] = 0;\n  return;\n}\n\n", 
+  "is_thunk": false, 
+  "name": "End", 
+  "assembly": "  10014f40:  MOV EAX,0x808c\n  10014f45:  CALL 0x100e4f80\n  10014f4a:  PUSH EBX\n  10014f4b:  PUSH EBP\n  10014f4c:  PUSH ESI\n  10014f4d:  MOV ESI,ECX\n  10014f4f:  PUSH EDI\n  10014f50:  MOV AL,byte ptr [ESI + 0x4b2c]\n  10014f56:  TEST AL,AL\n  10014f58:  JZ 0x10014fb3\n  10014f5a:  MOV EAX,dword ptr [ESI + 0x4b24]\n  10014f60:  TEST EAX,EAX\n  10014f62:  JZ 0x10014fa2\n  10014f64:  MOV ECX,dword ptr [ESI + 0x8]\n  10014f67:  PUSH EAX\n  10014f68:  LEA EAX,[ESP + 0x40a0]\n  10014f6f:  PUSH EAX\n  10014f70:  CALL 0x10014990\n  10014f75:  TEST EAX,EAX\n  10014f77:  JLE 0x10014fa2\n  10014f79:  LEA EBP,[ESP + 0x409c]\n  10014f80:  MOV EBX,EAX\n  10014f82:  MOV ECX,dword ptr [EBP]\n  10014f85:  MOV EDI,dword ptr [ECX + 0x40]\n  10014f88:  TEST EDI,EDI\n  10014f8a:  JZ 0x10014f9c\n  10014f8c:  MOV EDX,dword ptr [EDI]\n  10014f8e:  PUSH 0x0\n  10014f90:  MOV ECX,EDI\n  10014f92:  CALL dword ptr [EDX + 0xc]\n  10014f95:  MOV EDI,dword ptr [EDI + 0x4c]\n  10014f98:  TEST EDI,EDI\n  10014f9a:  JNZ 0x10014f8c\n  10014f9c:  ADD EBP,0x4\n  10014f9f:  DEC EBX\n  10014fa0:  JNZ 0x10014f82\n  10014fa2:  MOV ECX,dword ptr [ESI + 0x4b1c]\n  10014fa8:  TEST ECX,ECX\n  10014faa:  JZ 0x10014fb3\n  10014fac:  MOV EAX,dword ptr [ECX]\n  10014fae:  PUSH 0x0\n  10014fb0:  CALL dword ptr [EAX + 0x4]\n  10014fb3:  MOV ECX,dword ptr [ESI + 0x4b14]\n  10014fb9:  XOR EAX,EAX\n  10014fbb:  MOV dword ptr [ESP + 0x2c],ECX\n  10014fbf:  MOV ECX,dword ptr [ESI + 0x4]\n  10014fc2:  TEST ECX,ECX\n  10014fc4:  JLE 0x10014fd7\n  10014fc6:  LEA EDX,[ESP + 0x9c]\n  10014fcd:  MOV dword ptr [EDX],EAX\n  10014fcf:  INC EAX\n  10014fd0:  ADD EDX,0x4\n  10014fd3:  CMP EAX,ECX\n  10014fd5:  JL 0x10014fcd\n  10014fd7:  MOV EDX,dword ptr [ESI]\n  10014fd9:  PUSH 0x100154c0\n  10014fde:  PUSH 0x4\n  10014fe0:  LEA EAX,[ESP + 0xa4]\n  10014fe7:  PUSH ECX\n  10014fe8:  PUSH EAX\n  10014fe9:  MOV dword ptr [0x1013bce4],EDX\n  10014fef:  CALL 0x100e54db\n  10014ff4:  MOV ECX,dword ptr [ESI + 0x4b18]\n  10014ffa:  ADD ESP,0x10\n  10014ffd:  MOV ECX,dword ptr [ECX + 0xd8]\n  10015003:  MOV dword ptr [ESP + 0x2c],ECX\n  10015007:  CALL 0x10027090\n  1001500c:  MOV EBP,dword ptr [ESI + 0x4]\n  1001500f:  XOR ECX,ECX\n  10015011:  TEST EBP,EBP\n  10015013:  MOV dword ptr [ESP + 0x18],EBP\n  10015017:  JLE 0x10015047\n  10015019:  MOV EDI,dword ptr [ESI]\n  1001501b:  LEA EDX,[ESP + 0x9c]\n  10015022:  MOV EAX,dword ptr [EDX]\n  10015024:  LEA EBX,[EAX*0x8 + 0x0]\n  1001502b:  SUB EBX,EAX\n  1001502d:  SHL EBX,0x4\n  10015030:  TEST byte ptr [EBX + EDI*0x1 + 0x18],0x1\n  10015035:  JZ 0x10015041\n  10015037:  INC ECX\n  10015038:  ADD EDX,0x4\n  1001503b:  CMP ECX,EBP\n  1001503d:  JL 0x10015022\n  1001503f:  JMP 0x10015047\n  10015041:  MOV dword ptr [ESP + 0x18],ECX\n  10015045:  MOV EBP,ECX\n  10015047:  MOV EDX,dword ptr [ESI + 0x4b18]\n  1001504d:  TEST EBP,EBP\n  1001504f:  MOV EAX,dword ptr [EDX + 0xc8]\n  10015055:  MOV dword ptr [EAX + 0x824],0x1\n  1001505f:  JZ 0x100151d6\n  10015065:  MOV EAX,dword ptr [ESP + 0x9c]\n  1001506c:  MOV EDX,dword ptr [ESI]\n  1001506e:  XOR EBX,EBX\n  10015070:  LEA ECX,[EAX*0x8 + 0x0]\n  10015077:  SUB ECX,EAX\n  10015079:  SHL ECX,0x4\n  1001507c:  MOV EDI,dword ptr [ECX + EDX*0x1 + 0xc]\n  10015080:  XOR ECX,ECX\n  10015082:  TEST EBP,EBP\n  10015084:  MOV dword ptr [ESP + 0x24],EDI\n  10015088:  MOV dword ptr [ESP + 0x10],ECX\n  1001508c:  JLE 0x10015156\n  10015092:  MOV dword ptr [ESP + 0x14],0xffffffff\n  1001509a:  MOV EAX,dword ptr [ESP + ECX*0x4 + 0x9c]\n  100150a1:  LEA EDX,[EAX*0x8 + 0x0]\n  100150a8:  SUB EDX,EAX\n  100150aa:  MOV EAX,dword ptr [ESI]\n  100150ac:  SHL EDX,0x4\n  100150af:  MOV EAX,dword ptr [EDX + EAX*0x1 + 0xc]\n  100150b3:  CMP EAX,EDI\n  100150b5:  MOV dword ptr [ESP + 0x1c],EAX\n  100150b9:  JZ 0x10015140\n  100150bf:  MOV ECX,EDI\n  100150c1:  CALL 0x1001d080\n  100150c6:  XOR EBP,EBP\n  100150c8:  MOV dword ptr [ESP + 0x28],EAX\n  100150cc:  TEST EAX,EAX\n  100150ce:  MOV dword ptr [ESP + 0x20],EBP\n  100150d2:  JLE 0x10015125\n  100150d4:  PUSH EBP\n  100150d5:  MOV ECX,EDI\n  100150d7:  CALL 0x1001d0a0\n  100150dc:  MOV EAX,dword ptr [ESP + 0x14]\n  100150e0:  CMP EBX,EAX\n  100150e2:  JG 0x10015118\n  100150e4:  MOV EBP,EAX\n  100150e6:  LEA EDI,[ESP + EBX*0x4 + 0x9c]\n  100150ed:  SUB EBP,EBX\n  100150ef:  INC EBP\n  100150f0:  MOV ECX,dword ptr [EDI]\n  100150f2:  MOV EDX,dword ptr [ESI]\n  100150f4:  LEA EAX,[ECX*0x8 + 0x0]\n  100150fb:  SUB EAX,ECX\n  100150fd:  SHL EAX,0x4\n  10015100:  ADD EAX,EDX\n  10015102:  PUSH EAX\n  10015103:  MOV ECX,dword ptr [EAX]\n  10015105:  MOV EDX,dword ptr [ECX]\n  10015107:  CALL dword ptr [EDX + 0x4]\n  1001510a:  ADD EDI,0x4\n  1001510d:  DEC EBP\n  1001510e:  JNZ 0x100150f0\n  10015110:  MOV EBP,dword ptr [ESP + 0x20]\n  10015114:  MOV EDI,dword ptr [ESP + 0x24]\n  10015118:  MOV EAX,dword ptr [ESP + 0x28]\n  1001511c:  INC EBP\n  1001511d:  CMP EBP,EAX\n  1001511f:  MOV dword ptr [ESP + 0x20],EBP\n  10015123:  JL 0x100150d4\n  10015125:  MOV ECX,EDI\n  10015127:  CALL 0x1001d0e0\n  1001512c:  MOV EBX,dword ptr [ESP + 0x10]\n  10015130:  MOV EAX,dword ptr [ESP + 0x1c]\n  10015134:  MOV EBP,dword ptr [ESP + 0x18]\n  10015138:  MOV dword ptr [ESP + 0x24],EAX\n  1001513c:  MOV EDI,EAX\n  1001513e:  MOV ECX,EBX\n  10015140:  MOV EDX,dword ptr [ESP + 0x14]\n  10015144:  INC ECX\n  10015145:  INC EDX\n  10015146:  CMP ECX,EBP\n  10015148:  MOV dword ptr [ESP + 0x10],ECX\n  1001514c:  MOV dword ptr [ESP + 0x14],EDX\n  10015150:  JL 0x1001509a\n  10015156:  MOV ECX,EDI\n  10015158:  CALL 0x1001d080\n  1001515d:  TEST EAX,EAX\n  1001515f:  MOV dword ptr [ESP + 0x1c],EAX\n  10015163:  MOV dword ptr [ESP + 0x14],0x0\n  1001516b:  JLE 0x100151cf\n  1001516d:  MOV ECX,dword ptr [ESP + 0x10]\n  10015171:  DEC ECX\n  10015172:  MOV dword ptr [ESP + 0x10],ECX\n  10015176:  MOV EDX,dword ptr [ESP + 0x14]\n  1001517a:  MOV ECX,EDI\n  1001517c:  PUSH EDX\n  1001517d:  CALL 0x1001d0a0\n  10015182:  MOV EAX,dword ptr [ESP + 0x10]\n  10015186:  CMP EBX,EAX\n  10015188:  JG 0x100151be\n  1001518a:  MOV EBP,EAX\n  1001518c:  LEA EDI,[ESP + EBX*0x4 + 0x9c]\n  10015193:  SUB EBP,EBX\n  10015195:  INC EBP\n  10015196:  MOV ECX,dword ptr [EDI]\n  10015198:  MOV EDX,dword ptr [ESI]\n  1001519a:  LEA EAX,[ECX*0x8 + 0x0]\n  100151a1:  SUB EAX,ECX\n  100151a3:  SHL EAX,0x4\n  100151a6:  ADD EAX,EDX\n  100151a8:  PUSH EAX\n  100151a9:  MOV ECX,dword ptr [EAX]\n  100151ab:  MOV EDX,dword ptr [ECX]\n  100151ad:  CALL dword ptr [EDX + 0x4]\n  100151b0:  ADD EDI,0x4\n  100151b3:  DEC EBP\n  100151b4:  JNZ 0x10015196\n  100151b6:  MOV EDI,dword ptr [ESP + 0x24]\n  100151ba:  MOV EBP,dword ptr [ESP + 0x18]\n  100151be:  MOV EAX,dword ptr [ESP + 0x14]\n  100151c2:  MOV ECX,dword ptr [ESP + 0x1c]\n  100151c6:  INC EAX\n  100151c7:  CMP EAX,ECX\n  100151c9:  MOV dword ptr [ESP + 0x14],EAX\n  100151cd:  JL 0x10015176\n  100151cf:  MOV ECX,EDI\n  100151d1:  CALL 0x1001d0e0\n  100151d6:  MOV EAX,dword ptr [ESI + 0x4b18]\n  100151dc:  MOV ECX,dword ptr [EAX + 0xc8]\n  100151e2:  MOV dword ptr [ECX + 0x824],0x0\n  100151ec:  MOV EDX,dword ptr [ESI + 0x4b18]\n  100151f2:  MOV EAX,dword ptr [EDX + 0xc8]\n  100151f8:  MOV dword ptr [EAX + 0x824],0x1\n  10015202:  MOV EDX,dword ptr [ESI + 0x4]\n  10015205:  CMP EDX,EBP\n  10015207:  JLE 0x1001536c\n  1001520d:  MOV EAX,dword ptr [ESP + EBP*0x4 + 0x9c]\n  10015214:  MOV EBX,EBP\n  10015216:  LEA ECX,[EAX*0x8 + 0x0]\n  1001521d:  SUB ECX,EAX\n  1001521f:  MOV EAX,dword ptr [ESI]\n  10015221:  SHL ECX,0x4\n  10015224:  CMP EBP,EDX\n  10015226:  MOV EDI,dword ptr [ECX + EAX*0x1 + 0xc]\n  1001522a:  MOV ECX,EBP\n  1001522c:  MOV dword ptr [ESP + 0x18],EDI\n  10015230:  MOV dword ptr [ESP + 0x10],ECX\n  10015234:  JGE 0x100152f6\n  1001523a:  DEC EBP\n  1001523b:  MOV dword ptr [ESP + 0x14],EBP\n  1001523f:  MOV EAX,dword ptr [ESP + ECX*0x4 + 0x9c]\n  10015246:  LEA EDX,[EAX*0x8 + 0x0]\n  1001524d:  SUB EDX,EAX\n  1001524f:  MOV EAX,dword ptr [ESI]\n  10015251:  SHL EDX,0x4\n  10015254:  MOV EAX,dword ptr [EDX + EAX*0x1 + 0xc]\n  10015258:  CMP EAX,EDI\n  1001525a:  MOV dword ptr [ESP + 0x28],EAX\n  1001525e:  JZ 0x100152dd\n  10015260:  MOV ECX,EDI\n  10015262:  CALL 0x1001d080\n  10015267:  XOR EBP,EBP\n  10015269:  MOV dword ptr [ESP + 0x1c],EAX\n  1001526d:  TEST EAX,EAX\n  1001526f:  MOV dword ptr [ESP + 0x20],EBP\n  10015273:  JLE 0x100152c6\n  10015275:  PUSH EBP\n  10015276:  MOV ECX,EDI\n  10015278:  CALL 0x1001d0a0\n  1001527d:  MOV EAX,dword ptr [ESP + 0x14]\n  10015281:  CMP EBX,EAX\n  10015283:  JG 0x100152b9\n  10015285:  MOV EBP,EAX\n  10015287:  LEA EDI,[ESP + EBX*0x4 + 0x9c]\n  1001528e:  SUB EBP,EBX\n  10015290:  INC EBP\n  10015291:  MOV ECX,dword ptr [EDI]\n  10015293:  MOV EDX,dword ptr [ESI]\n  10015295:  LEA EAX,[ECX*0x8 + 0x0]\n  1001529c:  SUB EAX,ECX\n  1001529e:  SHL EAX,0x4\n  100152a1:  ADD EAX,EDX\n  100152a3:  PUSH EAX\n  100152a4:  MOV ECX,dword ptr [EAX]\n  100152a6:  MOV EDX,dword ptr [ECX]\n  100152a8:  CALL dword ptr [EDX + 0x4]\n  100152ab:  ADD EDI,0x4\n  100152ae:  DEC EBP\n  100152af:  JNZ 0x10015291\n  100152b1:  MOV EDI,dword ptr [ESP + 0x18]\n  100152b5:  MOV EBP,dword ptr [ESP + 0x20]\n  100152b9:  MOV EAX,dword ptr [ESP + 0x1c]\n  100152bd:  INC EBP\n  100152be:  CMP EBP,EAX\n  100152c0:  MOV dword ptr [ESP + 0x20],EBP\n  100152c4:  JL 0x10015275\n  100152c6:  MOV ECX,EDI\n  100152c8:  CALL 0x1001d0e0\n  100152cd:  MOV EBX,dword ptr [ESP + 0x10]\n  100152d1:  MOV EAX,dword ptr [ESP + 0x28]\n  100152d5:  MOV dword ptr [ESP + 0x18],EAX\n  100152d9:  MOV EDI,EAX\n  100152db:  MOV ECX,EBX\n  100152dd:  MOV EDX,dword ptr [ESP + 0x14]\n  100152e1:  MOV EAX,dword ptr [ESI + 0x4]\n  100152e4:  INC ECX\n  100152e5:  INC EDX\n  100152e6:  CMP ECX,EAX\n  100152e8:  MOV dword ptr [ESP + 0x10],ECX\n  100152ec:  MOV dword ptr [ESP + 0x14],EDX\n  100152f0:  JL 0x1001523f\n  100152f6:  MOV ECX,EDI\n  100152f8:  CALL 0x1001d080\n  100152fd:  XOR EBP,EBP\n  100152ff:  MOV dword ptr [ESP + 0x1c],EAX\n  10015303:  TEST EAX,EAX\n  10015305:  MOV dword ptr [ESP + 0x20],EBP\n  10015309:  JLE 0x10015365\n  1001530b:  MOV ECX,dword ptr [ESP + 0x10]\n  1001530f:  DEC ECX\n  10015310:  MOV dword ptr [ESP + 0x10],ECX\n  10015314:  PUSH EBP\n  10015315:  MOV ECX,EDI\n  10015317:  CALL 0x1001d0a0\n  1001531c:  MOV EAX,dword ptr [ESP + 0x10]\n  10015320:  CMP EBX,EAX\n  10015322:  JG 0x10015358\n  10015324:  MOV EBP,EAX\n  10015326:  LEA EDI,[ESP + EBX*0x4 + 0x9c]\n  1001532d:  SUB EBP,EBX\n  1001532f:  INC EBP\n  10015330:  MOV ECX,dword ptr [EDI]\n  10015332:  MOV EDX,dword ptr [ESI]\n  10015334:  LEA EAX,[ECX*0x8 + 0x0]\n  1001533b:  SUB EAX,ECX\n  1001533d:  SHL EAX,0x4\n  10015340:  ADD EAX,EDX\n  10015342:  PUSH EAX\n  10015343:  MOV ECX,dword ptr [EAX]\n  10015345:  MOV EDX,dword ptr [ECX]\n  10015347:  CALL dword ptr [EDX + 0x4]\n  1001534a:  ADD EDI,0x4\n  1001534d:  DEC EBP\n  1001534e:  JNZ 0x10015330\n  10015350:  MOV EDI,dword ptr [ESP + 0x18]\n  10015354:  MOV EBP,dword ptr [ESP + 0x20]\n  10015358:  MOV EAX,dword ptr [ESP + 0x1c]\n  1001535c:  INC EBP\n  1001535d:  CMP EBP,EAX\n  1001535f:  MOV dword ptr [ESP + 0x20],EBP\n  10015363:  JL 0x10015314\n  10015365:  MOV ECX,EDI\n  10015367:  CALL 0x1001d0e0\n  1001536c:  MOV EAX,dword ptr [ESI + 0x4b18]\n  10015372:  XOR EBP,EBP\n  10015374:  MOV ECX,dword ptr [EAX + 0xc8]\n  1001537a:  MOV dword ptr [ECX + 0x824],EBP\n  10015380:  MOV ECX,dword ptr [ESI + 0x4b28]\n  10015386:  CALL 0x1000ef60\n  1001538b:  MOV ECX,dword ptr [ESI + 0x4b28]\n  10015391:  CALL 0x1000ef10\n  10015396:  CMP dword ptr [ESI + 0x710],EBP\n  1001539c:  JLE 0x100153b7\n  1001539e:  LEA EDI,[ESI + 0x10]\n  100153a1:  MOV ECX,dword ptr [EDI]\n  100153a3:  PUSH EDI\n  100153a4:  MOV EDX,dword ptr [ECX]\n  100153a6:  CALL dword ptr [EDX + 0x8]\n  100153a9:  MOV EAX,dword ptr [ESI + 0x710]\n  100153af:  INC EBP\n  100153b0:  ADD EDI,0x70\n  100153b3:  CMP EBP,EAX\n  100153b5:  JL 0x100153a1\n  100153b7:  MOV EAX,dword ptr [ESI + 0x710]\n  100153bd:  TEST EAX,EAX\n  100153bf:  JZ 0x10015489\n  100153c5:  MOV EDI,dword ptr [ESI + 0x4b18]\n  100153cb:  MOV EAX,dword ptr [ESI + 0x4b20]\n  100153d1:  MOV dword ptr [ESP + 0x1c],EAX\n  100153d5:  MOV dword ptr [ESP + 0x98],0x0\n  100153e0:  MOV EBP,dword ptr [EDI + 0xd8]\n  100153e6:  MOV EBX,dword ptr [EDI + 0xd4]\n  100153ec:  MOV ECX,EBP\n  100153ee:  CALL 0x10027090\n  100153f3:  MOV ECX,EBP\n  100153f5:  CALL 0x100270d0\n  100153fa:  MOV ECX,EBX\n  100153fc:  CALL 0x10027090\n  10015401:  MOV ECX,EBX\n  10015403:  CALL 0x100270d0\n  10015408:  MOV EDI,dword ptr [EDI + 0xc4]\n  1001540e:  PUSH 0x15\n  10015410:  MOV ECX,EDI\n  10015412:  CALL 0x10021680\n  10015417:  MOV ECX,dword ptr [0x1015d3a4]\n  1001541d:  MOV byte ptr [ESP + 0x12],0x0\n  10015422:  TEST ECX,ECX\n  10015424:  MOV byte ptr [ESP + 0x11],0x0\n  10015429:  MOV byte ptr [ESP + 0x10],0x0\n  1001542e:  MOV byte ptr [ESP + 0x13],0x50\n  10015433:  MOV ECX,dword ptr [ESP + 0x10]\n  10015437:  MOV dword ptr [ESP + 0x54],ECX\n  1001543b:  MOV ECX,dword ptr [ESP + 0x1c]\n  1001543f:  LEA EDX,[ESP + 0x58]\n  10015443:  MOV dword ptr [ESP + 0x50],0x0\n  1001544b:  PUSH EDX\n  1001544c:  PUSH ECX\n  1001544d:  LEA EDX,[ESP + 0x38]\n  10015451:  PUSH 0x1\n  10015453:  PUSH EDX\n  10015454:  MOV ECX,EAX\n  10015456:  MOV dword ptr [ESP + 0x40],0xbf800000\n  1001545e:  MOV dword ptr [ESP + 0x48],0x3f800000\n  10015466:  MOV dword ptr [ESP + 0x44],0xbf800000\n  1001546e:  MOV dword ptr [ESP + 0x4c],0x3f800000\n  10015476:  CALL 0x1001c860\n  1001547b:  MOV ECX,EBP\n  1001547d:  CALL 0x100270c0\n  10015482:  MOV ECX,EBX\n  10015484:  CALL 0x100270c0\n  10015489:  MOV ECX,dword ptr [ESP + 0x2c]\n  1001548d:  CALL 0x100270c0\n  10015492:  XOR EAX,EAX\n  10015494:  MOV byte ptr [ESI + 0x4b2c],0x1\n  1001549b:  MOV dword ptr [ESI + 0x4b24],EAX\n  100154a1:  MOV dword ptr [ESI + 0x4],EAX\n  100154a4:  MOV dword ptr [ESI + 0x4b14],EAX\n  100154aa:  MOV dword ptr [ESI + 0x710],EAX\n  100154b0:  POP EDI\n  100154b1:  POP ESI\n  100154b2:  POP EBP\n  100154b3:  POP EBX\n  100154b4:  ADD ESP,0x808c\n  100154ba:  RET", 
+  "callers": []
+}

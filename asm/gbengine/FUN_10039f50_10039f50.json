@@ -1,0 +1,51 @@
+{
+  "address": "0x10039f50", 
+  "size_bytes": 76, 
+  "calling_convention": "unknown", 
+  "signature": "undefined FUN_10039f50(undefined1 param_1)", 
+  "callees": [
+    {
+      "address": "0x10033437", 
+      "name": "FUN_10033437"
+    }, 
+    {
+      "address": "0x100e4a24", 
+      "name": "FUN_100e4a24"
+    }, 
+    {
+      "address": "0x100e4a24", 
+      "name": "FUN_100e4a24"
+    }, 
+    {
+      "address": "0x100e4a24", 
+      "name": "FUN_100e4a24"
+    }
+  ], 
+  "global_refs": [
+    {
+      "address": "0x00000004", 
+      "type": null, 
+      "name": "DAT_00000004"
+    }, 
+    {
+      "address": "0x10037451", 
+      "type": null, 
+      "name": "DAT_10037451"
+    }
+  ], 
+  "has_custom_name": false, 
+  "decompiled_c": "\nvoid FUN_10039f50(byte param_1)\n\n{\n  undefined4 *in_ECX;\n  \n  if ((param_1 & 2) == 0) {\n    FUN_100e4a24(*in_ECX);\n    if ((param_1 & 1) != 0) {\n      FUN_100e4a24();\n    }\n  }\n  else {\n    FUN_10033437(in_ECX,0xc,in_ECX[-1],&LAB_10037451);\n    if ((param_1 & 1) != 0) {\n      FUN_100e4a24(in_ECX + -1);\n    }\n  }\n  return;\n}\n\n", 
+  "is_thunk": false, 
+  "name": "FUN_10039f50", 
+  "assembly": "  10039f50:  PUSH EBX\n  10039f51:  MOV BL,byte ptr [ESP + 0x8]\n  10039f55:  TEST BL,0x2\n  10039f58:  PUSH ESI\n  10039f59:  MOV ESI,ECX\n  10039f5b:  JZ 0x10039f81\n  10039f5d:  PUSH EDI\n  10039f5e:  PUSH 0x10037451\n  10039f63:  LEA EDI,[ESI + -0x4]\n  10039f66:  PUSH dword ptr [EDI]\n  10039f68:  PUSH 0xc\n  10039f6a:  PUSH ESI\n  10039f6b:  CALL 0x10033437\n  10039f70:  TEST BL,0x1\n  10039f73:  JZ 0x10039f7c\n  10039f75:  PUSH EDI\n  10039f76:  CALL 0x100e4a24\n  10039f7b:  POP ECX\n  10039f7c:  MOV EAX,EDI\n  10039f7e:  POP EDI\n  10039f7f:  JMP 0x10039f97\n  10039f81:  PUSH dword ptr [ESI]\n  10039f83:  CALL 0x100e4a24\n  10039f88:  TEST BL,0x1\n  10039f8b:  POP ECX\n  10039f8c:  JZ 0x10039f95\n  10039f8e:  PUSH ESI\n  10039f8f:  CALL 0x100e4a24\n  10039f94:  POP ECX\n  10039f95:  MOV EAX,ESI\n  10039f97:  POP ESI\n  10039f98:  POP EBX\n  10039f99:  RET 0x4", 
+  "callers": [
+    {
+      "address": "0x10039f9c", 
+      "name": "FUN_10039f9c"
+    }, 
+    {
+      "address": "0x1003a620", 
+      "name": "FUN_1003a620"
+    }
+  ]
+}

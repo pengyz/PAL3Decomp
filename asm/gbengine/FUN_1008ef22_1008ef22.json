@@ -1,0 +1,60 @@
+{
+  "address": "0x1008ef22", 
+  "size_bytes": 255, 
+  "calling_convention": "unknown", 
+  "signature": "undefined FUN_1008ef22(undefined4 param_1)", 
+  "callees": [
+    {
+      "address": "0x100e4a16", 
+      "name": "operator_new"
+    }, 
+    {
+      "address": "0x1007f982", 
+      "name": "FUN_1007f982"
+    }, 
+    {
+      "address": "0x1008d50a", 
+      "name": "FUN_1008d50a"
+    }, 
+    {
+      "address": "0x100814ac", 
+      "name": "FUN_100814ac"
+    }, 
+    {
+      "address": "0x10083b25", 
+      "name": "FUN_10083b25"
+    }, 
+    {
+      "address": "0x100e4a24", 
+      "name": "FUN_100e4a24"
+    }
+  ], 
+  "global_refs": [
+    {
+      "address": "0x00000004", 
+      "type": null, 
+      "name": "DAT_00000004"
+    }, 
+    {
+      "address": "0x-0000008", 
+      "type": null, 
+      "name": "DAT_-0000008"
+    }, 
+    {
+      "address": "0x10000000", 
+      "type": "/DOS/IMAGE_DOS_HEADER\npack(disabled)\nStructure IMAGE_DOS_HEADER {\n   0   char[2]   2   e_magic   \"Magic number\"\n   2   word   2   e_cblp   \"Bytes of last page\"\n   4   word   2   e_cp   \"Pages in file\"\n   6   word   2   e_crlc   \"Relocations\"\n   8   word   2   e_cparhdr   \"Size of header in paragraphs\"\n   10   word   2   e_minalloc   \"Minimum extra paragraphs needed\"\n   12   word   2   e_maxalloc   \"Maximum extra paragraphs needed\"\n   14   word   2   e_ss   \"Initial (relative) SS value\"\n   16   word   2   e_sp   \"Initial SP value\"\n   18   word   2   e_csum   \"Checksum\"\n   20   word   2   e_ip   \"Initial IP value\"\n   22   word   2   e_cs   \"Initial (relative) CS value\"\n   24   word   2   e_lfarlc   \"File address of relocation table\"\n   26   word   2   e_ovno   \"Overlay number\"\n   28   word[4]   8   e_res[4]   \"Reserved words\"\n   36   word   2   e_oemid   \"OEM identifier (for e_oeminfo)\"\n   38   word   2   e_oeminfo   \"OEM information; e_oemid specific\"\n   40   word[10]   20   e_res2[10]   \"Reserved words\"\n   60   dword   4   e_lfanew   \"File address of new exe header\"\n   64   byte[64]   64   e_program   \"Actual DOS program\"\n}\nLength: 128 Alignment: 1\n", 
+      "name": "DAT_10000000"
+    }
+  ], 
+  "has_custom_name": false, 
+  "decompiled_c": "\nuint FUN_1008ef22(int param_1)\n\n{\n  uint uVar1;\n  int iVar2;\n  void *pvVar3;\n  int in_ECX;\n  int iVar4;\n  uint uVar5;\n  uint local_8;\n  \n  if (*(int *)(param_1 + 4) == 0xd) {\n    uVar5 = *(int *)(param_1 + 0x18) * *(int *)(param_1 + 0x14);\n    pvVar3 = operator_new(uVar5 * 4);\n    if (pvVar3 == (void *)0x0) {\n      local_8 = -0x7ff8fff2;\n    }\n    else {\n      local_8 = FUN_1007f982(pvVar3,uVar5);\n      if (((-1 < (int)local_8) && (local_8 = FUN_1008d50a(param_1,pvVar3,0), -1 < (int)local_8)) &&\n         (local_8 = FUN_100814ac(param_1,uVar5 & 0xfffff | 0x10000000,pvVar3,pvVar3,0,0),\n         -1 < (int)local_8)) {\n        local_8 = 0;\n        if (uVar5 != 0) {\n          do {\n            uVar1 = *(uint *)((int)pvVar3 + local_8 * 4);\n            iVar2 = *(int *)(in_ECX + 8);\n            if (uVar1 < *(uint *)(iVar2 + 8)) {\n              iVar4 = *(int *)(*(int *)(iVar2 + 0x14) + uVar1 * 4);\n            }\n            else {\n              iVar4 = 0;\n            }\n            if (iVar4 != 0) {\n              *(undefined4 *)(iVar4 + 4) = *(undefined4 *)(iVar2 + 0x84);\n            }\n            local_8 = local_8 + 1;\n          } while (local_8 < uVar5);\n        }\n        local_8 = FUN_10083b25(*(undefined4 *)(param_1 + 0x10),pvVar3,\n                               *(undefined4 *)(*(int *)(in_ECX + 8) + 0x84),1,1,0,0);\n      }\n    }\n    FUN_100e4a24(pvVar3);\n    if (*(int *)(in_ECX + 0x4c) != 0) {\n      local_8 = -0x7fffbffb;\n    }\n  }\n  else {\n    local_8 = 0;\n  }\n  return local_8;\n}\n\n", 
+  "is_thunk": false, 
+  "name": "FUN_1008ef22", 
+  "assembly": "  1008ef22:  PUSH EBP\n  1008ef23:  MOV EBP,ESP\n  1008ef25:  PUSH ECX\n  1008ef26:  MOV EAX,dword ptr [EBP + 0x8]\n  1008ef29:  CMP dword ptr [EAX + 0x4],0xd\n  1008ef2d:  PUSH ESI\n  1008ef2e:  MOV ESI,ECX\n  1008ef30:  JZ 0x1008ef39\n  1008ef32:  XOR EAX,EAX\n  1008ef34:  JMP 0x1008f01c\n  1008ef39:  PUSH EBX\n  1008ef3a:  PUSH EDI\n  1008ef3b:  MOV EDI,dword ptr [EAX + 0x18]\n  1008ef3e:  IMUL EDI,dword ptr [EAX + 0x14]\n  1008ef42:  MOV EAX,EDI\n  1008ef44:  SHL EAX,0x2\n  1008ef47:  PUSH EAX\n  1008ef48:  CALL 0x100e4a16\n  1008ef4d:  MOV EBX,EAX\n  1008ef4f:  TEST EBX,EBX\n  1008ef51:  POP ECX\n  1008ef52:  JNZ 0x1008ef60\n  1008ef54:  MOV dword ptr [EBP + -0x4],0x8007000e\n  1008ef5b:  JMP 0x1008f003\n  1008ef60:  PUSH EDI\n  1008ef61:  PUSH EBX\n  1008ef62:  MOV ECX,ESI\n  1008ef64:  CALL 0x1007f982\n  1008ef69:  TEST EAX,EAX\n  1008ef6b:  MOV dword ptr [EBP + -0x4],EAX\n  1008ef6e:  JL 0x1008f003\n  1008ef74:  PUSH 0x0\n  1008ef76:  PUSH EBX\n  1008ef77:  PUSH dword ptr [EBP + 0x8]\n  1008ef7a:  MOV ECX,ESI\n  1008ef7c:  CALL 0x1008d50a\n  1008ef81:  TEST EAX,EAX\n  1008ef83:  MOV dword ptr [EBP + -0x4],EAX\n  1008ef86:  JL 0x1008f003\n  1008ef88:  PUSH 0x0\n  1008ef8a:  PUSH 0x0\n  1008ef8c:  PUSH EBX\n  1008ef8d:  MOV EAX,EDI\n  1008ef8f:  AND EAX,0xfffff\n  1008ef94:  PUSH EBX\n  1008ef95:  OR EAX,0x10000000\n  1008ef9a:  PUSH EAX\n  1008ef9b:  PUSH dword ptr [EBP + 0x8]\n  1008ef9e:  MOV ECX,ESI\n  1008efa0:  CALL 0x100814ac\n  1008efa5:  TEST EAX,EAX\n  1008efa7:  MOV dword ptr [EBP + -0x4],EAX\n  1008efaa:  JL 0x1008f003\n  1008efac:  AND dword ptr [EBP + -0x4],0x0\n  1008efb0:  TEST EDI,EDI\n  1008efb2:  JBE 0x1008efe1\n  1008efb4:  MOV EAX,dword ptr [EBP + -0x4]\n  1008efb7:  MOV ECX,dword ptr [EBX + EAX*0x4]\n  1008efba:  MOV EAX,dword ptr [ESI + 0x8]\n  1008efbd:  CMP ECX,dword ptr [EAX + 0x8]\n  1008efc0:  JNC 0x1008efca\n  1008efc2:  MOV EDX,dword ptr [EAX + 0x14]\n  1008efc5:  MOV ECX,dword ptr [EDX + ECX*0x4]\n  1008efc8:  JMP 0x1008efcc\n  1008efca:  XOR ECX,ECX\n  1008efcc:  TEST ECX,ECX\n  1008efce:  JZ 0x1008efd9\n  1008efd0:  MOV EAX,dword ptr [EAX + 0x84]\n  1008efd6:  MOV dword ptr [ECX + 0x4],EAX\n  1008efd9:  INC dword ptr [EBP + -0x4]\n  1008efdc:  CMP dword ptr [EBP + -0x4],EDI\n  1008efdf:  JC 0x1008efb4\n  1008efe1:  MOV EAX,dword ptr [ESI + 0x8]\n  1008efe4:  PUSH 0x0\n  1008efe6:  PUSH 0x0\n  1008efe8:  PUSH 0x1\n  1008efea:  PUSH 0x1\n  1008efec:  PUSH dword ptr [EAX + 0x84]\n  1008eff2:  MOV EAX,dword ptr [EBP + 0x8]\n  1008eff5:  PUSH EBX\n  1008eff6:  PUSH dword ptr [EAX + 0x10]\n  1008eff9:  MOV ECX,ESI\n  1008effb:  CALL 0x10083b25\n  1008f000:  MOV dword ptr [EBP + -0x4],EAX\n  1008f003:  PUSH EBX\n  1008f004:  CALL 0x100e4a24\n  1008f009:  CMP dword ptr [ESI + 0x4c],0x0\n  1008f00d:  POP ECX\n  1008f00e:  POP EDI\n  1008f00f:  POP EBX\n  1008f010:  JZ 0x1008f019\n  1008f012:  MOV dword ptr [EBP + -0x4],0x80004005\n  1008f019:  MOV EAX,dword ptr [EBP + -0x4]\n  1008f01c:  POP ESI\n  1008f01d:  LEAVE\n  1008f01e:  RET 0x4", 
+  "callers": [
+    {
+      "address": "0x1008f021", 
+      "name": "FUN_1008f021"
+    }
+  ]
+}

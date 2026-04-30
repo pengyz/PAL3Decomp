@@ -1,0 +1,45 @@
+{
+  "address": "0x10031750", 
+  "size_bytes": 46, 
+  "calling_convention": "__cdecl", 
+  "signature": "void __cdecl ProfileInit(void)", 
+  "callees": [
+    {
+      "address": "0x1002e900", 
+      "name": "FUN_1002e900"
+    }
+  ], 
+  "global_refs": [
+    {
+      "address": "0x10160b28", 
+      "type": "undefined1", 
+      "name": "DAT_10160b28"
+    }, 
+    {
+      "address": "0x1015d3b0", 
+      "type": "undefined1", 
+      "name": "DAT_1015d3b0"
+    }, 
+    {
+      "address": "0x1015d4cc", 
+      "type": "undefined1", 
+      "name": "DAT_1015d4cc"
+    }, 
+    {
+      "address": "0x10160c38", 
+      "type": "undefined1", 
+      "name": "DAT_10160c38"
+    }, 
+    {
+      "address": "0x10164048", 
+      "type": null, 
+      "name": "DAT_10164048"
+    }
+  ], 
+  "has_custom_name": true, 
+  "decompiled_c": "\n/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */\n/* void __cdecl ProfileInit(void) */\n\nvoid __cdecl ProfileInit(void)\n\n{\n  undefined *puVar1;\n  undefined *puVar2;\n  float10 fVar3;\n  \n                    /* 0x31750  752  ?ProfileInit@@YAXXZ */\n  puVar2 = &DAT_10160b28;\n  puVar1 = &DAT_1015d3b0;\n  do {\n    *puVar1 = 0;\n    *puVar2 = 0;\n    puVar1 = puVar1 + 0x11c;\n    puVar2 = puVar2 + 0x110;\n  } while ((int)puVar1 < 0x10160b28);\n  fVar3 = (float10)FUN_1002e900();\n  _DAT_10164048 = (float)fVar3;\n  return;\n}\n\n", 
+  "is_thunk": false, 
+  "name": "ProfileInit", 
+  "assembly": "  10031750:  MOV ECX,0x10160b28\n  10031755:  MOV EAX,0x1015d3b0\n  1003175a:  MOV byte ptr [EAX],0x0\n  1003175d:  MOV byte ptr [ECX],0x0\n  10031760:  ADD EAX,0x11c\n  10031765:  ADD ECX,0x110\n  1003176b:  CMP EAX,0x10160b28\n  10031770:  JL 0x1003175a\n  10031772:  CALL 0x1002e900\n  10031777:  FSTP dword ptr [0x10164048]\n  1003177d:  RET", 
+  "callers": []
+}

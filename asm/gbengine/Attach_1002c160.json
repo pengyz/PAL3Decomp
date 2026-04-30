@@ -1,0 +1,94 @@
+{
+  "address": "0x1002c160", 
+  "size_bytes": 346, 
+  "calling_convention": "__thiscall", 
+  "signature": "int __thiscall Attach(gbParticleEffect * this, gbRenderEffect * param_1)", 
+  "callees": [
+    {
+      "address": "0x1001e330", 
+      "name": "GetWorldMatrix"
+    }, 
+    {
+      "address": "0x10025140", 
+      "name": "operator="
+    }, 
+    {
+      "address": "0x1002b6a0", 
+      "name": "Update"
+    }, 
+    {
+      "address": "0x10014d10", 
+      "name": "NewOneRenderObj"
+    }, 
+    {
+      "address": "0x10027590", 
+      "name": "GetTop"
+    }, 
+    {
+      "address": "0x10025260", 
+      "name": "Transform"
+    }, 
+    {
+      "address": "0x100166f0", 
+      "name": "Attach"
+    }
+  ], 
+  "global_refs": [
+    {
+      "address": "0x100f5580", 
+      "type": null, 
+      "name": "DAT_100f5580"
+    }, 
+    {
+      "address": "0x101379a8", 
+      "type": "undefined4", 
+      "name": "DAT_101379a8"
+    }, 
+    {
+      "address": "0x-0000024", 
+      "type": null, 
+      "name": "DAT_-0000024"
+    }, 
+    {
+      "address": "0x-0000028", 
+      "type": null, 
+      "name": "DAT_-0000028"
+    }, 
+    {
+      "address": "0x-0000014", 
+      "type": null, 
+      "name": "DAT_-0000014"
+    }, 
+    {
+      "address": "0x-0000010", 
+      "type": null, 
+      "name": "DAT_-0000010"
+    }, 
+    {
+      "address": "0x-000000c", 
+      "type": null, 
+      "name": "DAT_-000000c"
+    }, 
+    {
+      "address": "0x-0000020", 
+      "type": null, 
+      "name": "DAT_-0000020"
+    }, 
+    {
+      "address": "0x-000001c", 
+      "type": null, 
+      "name": "DAT_-000001c"
+    }, 
+    {
+      "address": "0x-0000018", 
+      "type": null, 
+      "name": "DAT_-0000018"
+    }
+  ], 
+  "has_custom_name": true, 
+  "decompiled_c": "\n/* public: virtual int __thiscall gbParticleEffect::Attach(class gbRenderEffect *) */\n\nint __thiscall gbParticleEffect::Attach(gbParticleEffect *this,gbRenderEffect *param_1)\n\n{\n  gbSceneGraph *this_00;\n  gbMatrixStack *this_01;\n  int iVar1;\n  undefined4 uVar2;\n  gbMatrix4 *pgVar3;\n  gbRenderInfoObj *pgVar4;\n  int iVar5;\n  int iVar6;\n  gbVec3D *pgVar7;\n  gbVec3D *pgVar8;\n  undefined4 local_20;\n  undefined4 local_1c;\n  undefined4 local_18;\n  undefined4 local_14;\n  undefined4 local_10;\n  undefined4 local_c;\n  \n                    /* 0x2c160  309  ?Attach@gbParticleEffect@@UAEHPAVgbRenderEffect@@@Z */\n  if (0.0 < *(double *)(this + 0x110)) {\n    pgVar3 = gbGfxManager::GetWorldMatrix(DAT_101379a8);\n    gbMatrix4::operator=((gbMatrix4 *)(this + 0x11c),pgVar3);\n    iVar6 = 0;\n    if (0 < *(int *)(this + 0x98)) {\n      iVar5 = 0;\n      do {\n        gbParticleGroup::Update\n                  ((gbParticleGroup *)(*(int *)(this + 0xa4) + iVar5),*(double *)(this + 0x110));\n        iVar6 = iVar6 + 1;\n        iVar5 = iVar5 + 0x90;\n      } while (iVar6 < *(int *)(this + 0x98));\n    }\n    *(undefined4 *)(this + 0x110) = 0;\n    *(undefined4 *)(this + 0x114) = 0;\n  }\n  iVar6 = 0;\n  this_00 = *(gbSceneGraph **)(DAT_101379a8 + 0x1c0);\n  this_01 = *(gbMatrixStack **)(DAT_101379a8 + 0xd8);\n  local_14 = 0;\n  local_10 = 0;\n  local_c = 0;\n  local_20 = 0;\n  local_1c = 0;\n  local_18 = 0;\n  if (0 < *(int *)(this + 0x98)) {\n    iVar5 = 0;\n    do {\n      pgVar4 = gbSceneGraph::NewOneRenderObj(this_00,(gbVisNode *)this);\n      *(undefined4 *)(pgVar4 + 0x18) = 0;\n      *(int *)(pgVar4 + 8) = iVar6;\n      iVar1 = *(int *)(*(int *)(this + 0xa4) + 0x78 + iVar5);\n      pgVar7 = (gbVec3D *)&local_14;\n      uVar2 = *(undefined4 *)(iVar1 + 0x493c);\n      *(int *)(pgVar4 + 0x10) = iVar1 + 0x48f8;\n      pgVar8 = (gbVec3D *)&local_20;\n      *(undefined4 *)(pgVar4 + 0xc) = uVar2;\n      pgVar3 = gbMatrixStack::GetTop(this_01);\n      gbMatrix4::Transform(pgVar3,pgVar7,pgVar8);\n      *(undefined4 *)(pgVar4 + 0x14) = 1;\n      *(undefined4 *)(pgVar4 + 4) = local_18;\n      iVar6 = iVar6 + 1;\n      iVar5 = iVar5 + 0x90;\n    } while (iVar6 < *(int *)(this + 0x98));\n  }\n  gbVisNode::Attach((gbVisNode *)this,(gbRenderEffect *)0x0);\n  return 1;\n}\n\n", 
+  "is_thunk": false, 
+  "name": "Attach", 
+  "assembly": "  1002c160:  PUSH EBP\n  1002c161:  MOV EBP,ESP\n  1002c163:  AND ESP,0xfffffff8\n  1002c166:  SUB ESP,0x20\n  1002c169:  PUSH EBX\n  1002c16a:  PUSH EBP\n  1002c16b:  PUSH ESI\n  1002c16c:  PUSH EDI\n  1002c16d:  MOV EDI,ECX\n  1002c16f:  FLD qword ptr [EDI + 0x110]\n  1002c175:  FCOMP qword ptr [0x100f5580]\n  1002c17b:  FNSTSW AX\n  1002c17d:  TEST AH,0x41\n  1002c180:  JNZ 0x1002c1e1\n  1002c182:  MOV ECX,dword ptr [0x101379a8]\n  1002c188:  CALL 0x1001e330\n  1002c18d:  PUSH EAX\n  1002c18e:  LEA ECX,[EDI + 0x11c]\n  1002c194:  CALL 0x10025140\n  1002c199:  MOV EAX,dword ptr [EDI + 0x98]\n  1002c19f:  XOR EBP,EBP\n  1002c1a1:  XOR ESI,ESI\n  1002c1a3:  CMP EAX,EBP\n  1002c1a5:  JLE 0x1002c1d5\n  1002c1a7:  XOR EBX,EBX\n  1002c1a9:  MOV EAX,dword ptr [EDI + 0x114]\n  1002c1af:  MOV ECX,dword ptr [EDI + 0x110]\n  1002c1b5:  PUSH EAX\n  1002c1b6:  PUSH ECX\n  1002c1b7:  MOV ECX,dword ptr [EDI + 0xa4]\n  1002c1bd:  ADD ECX,EBX\n  1002c1bf:  CALL 0x1002b6a0\n  1002c1c4:  MOV EAX,dword ptr [EDI + 0x98]\n  1002c1ca:  INC ESI\n  1002c1cb:  ADD EBX,0x90\n  1002c1d1:  CMP ESI,EAX\n  1002c1d3:  JL 0x1002c1a9\n  1002c1d5:  MOV dword ptr [EDI + 0x110],EBP\n  1002c1db:  MOV dword ptr [EDI + 0x114],EBP\n  1002c1e1:  MOV EAX,[0x101379a8]\n  1002c1e6:  XOR EBX,EBX\n  1002c1e8:  MOV EDX,dword ptr [EAX + 0x1c0]\n  1002c1ee:  MOV EAX,dword ptr [EAX + 0xd8]\n  1002c1f4:  MOV dword ptr [ESP + 0x14],EAX\n  1002c1f8:  MOV EAX,dword ptr [EDI + 0x98]\n  1002c1fe:  TEST EAX,EAX\n  1002c200:  MOV dword ptr [ESP + 0x10],EDX\n  1002c204:  MOV dword ptr [ESP + 0x24],0x0\n  1002c20c:  MOV dword ptr [ESP + 0x28],0x0\n  1002c214:  MOV dword ptr [ESP + 0x2c],0x0\n  1002c21c:  MOV dword ptr [ESP + 0x18],0x0\n  1002c224:  MOV dword ptr [ESP + 0x1c],0x0\n  1002c22c:  MOV dword ptr [ESP + 0x20],0x0\n  1002c234:  JLE 0x1002c2a2\n  1002c236:  XOR EBP,EBP\n  1002c238:  MOV ECX,dword ptr [ESP + 0x10]\n  1002c23c:  PUSH EDI\n  1002c23d:  CALL 0x10014d10\n  1002c242:  MOV ESI,EAX\n  1002c244:  MOV dword ptr [ESI + 0x18],0x0\n  1002c24b:  MOV dword ptr [ESI + 0x8],EBX\n  1002c24e:  MOV ECX,dword ptr [EDI + 0xa4]\n  1002c254:  MOV EAX,dword ptr [ECX + EBP*0x1 + 0x78]\n  1002c258:  LEA ECX,[ESP + 0x24]\n  1002c25c:  MOV EDX,dword ptr [EAX + 0x493c]\n  1002c262:  ADD EAX,0x48f8\n  1002c267:  MOV dword ptr [ESI + 0x10],EAX\n  1002c26a:  LEA EAX,[ESP + 0x18]\n  1002c26e:  PUSH EAX\n  1002c26f:  PUSH ECX\n  1002c270:  MOV ECX,dword ptr [ESP + 0x1c]\n  1002c274:  MOV dword ptr [ESI + 0xc],EDX\n  1002c277:  CALL 0x10027590\n  1002c27c:  MOV ECX,EAX\n  1002c27e:  CALL 0x10025260\n  1002c283:  MOV EDX,dword ptr [ESP + 0x20]\n  1002c287:  MOV dword ptr [ESI + 0x14],0x1\n  1002c28e:  MOV dword ptr [ESI + 0x4],EDX\n  1002c291:  MOV EAX,dword ptr [EDI + 0x98]\n  1002c297:  INC EBX\n  1002c298:  ADD EBP,0x90\n  1002c29e:  CMP EBX,EAX\n  1002c2a0:  JL 0x1002c238\n  1002c2a2:  PUSH 0x0\n  1002c2a4:  MOV ECX,EDI\n  1002c2a6:  CALL 0x100166f0\n  1002c2ab:  POP EDI\n  1002c2ac:  MOV EAX,0x1\n  1002c2b1:  POP ESI\n  1002c2b2:  POP EBP\n  1002c2b3:  POP EBX\n  1002c2b4:  MOV ESP,EBP\n  1002c2b6:  POP EBP\n  1002c2b7:  RET 0x4", 
+  "callers": []
+}

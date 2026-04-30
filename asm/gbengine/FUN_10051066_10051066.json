@@ -1,0 +1,38 @@
+{
+  "address": "0x10051066", 
+  "size_bytes": 20, 
+  "calling_convention": "unknown", 
+  "signature": "undefined FUN_10051066(undefined4 param_1)", 
+  "callees": [
+    {
+      "address": "0x1004ee48", 
+      "name": "FUN_1004ee48"
+    }
+  ], 
+  "global_refs": [
+    {
+      "address": "0x00000004", 
+      "type": null, 
+      "name": "DAT_00000004"
+    }
+  ], 
+  "has_custom_name": false, 
+  "decompiled_c": "\nvoid FUN_10051066(undefined4 param_1)\n\n{\n  undefined4 *in_ECX;\n  \n  *in_ECX = param_1;\n  FUN_1004ee48();\n  return;\n}\n\n", 
+  "is_thunk": false, 
+  "name": "FUN_10051066", 
+  "assembly": "  10051066:  PUSH ESI\n  10051067:  MOV ESI,ECX\n  10051069:  MOV ECX,dword ptr [ESP + 0x8]\n  1005106d:  MOV dword ptr [ESI],ECX\n  1005106f:  CALL 0x1004ee48\n  10051074:  MOV EAX,ESI\n  10051076:  POP ESI\n  10051077:  RET 0x4", 
+  "callers": [
+    {
+      "address": "0x100535f6", 
+      "name": "FUN_100535f6"
+    }, 
+    {
+      "address": "0x10054afe", 
+      "name": "FUN_10054afe"
+    }, 
+    {
+      "address": "0x10056f5f", 
+      "name": "FUN_10056f5f"
+    }
+  ]
+}

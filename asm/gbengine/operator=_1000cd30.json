@@ -1,0 +1,25 @@
+{
+  "address": "0x1000cd30", 
+  "size_bytes": 95, 
+  "calling_convention": "__thiscall", 
+  "signature": "gbAnimNodeGroup * __thiscall operator=(gbAnimNodeGroup * this, gbAnimNodeGroup * param_1)", 
+  "callees": [
+    {
+      "address": "0x10025140", 
+      "name": "operator="
+    }
+  ], 
+  "global_refs": [
+    {
+      "address": "0x00000004", 
+      "type": null, 
+      "name": "DAT_00000004"
+    }
+  ], 
+  "has_custom_name": true, 
+  "decompiled_c": "\n/* public: class gbAnimNodeGroup & __thiscall gbAnimNodeGroup::operator=(class gbAnimNodeGroup const\n   &) */\n\ngbAnimNodeGroup * __thiscall\ngbAnimNodeGroup::operator=(gbAnimNodeGroup *this,gbAnimNodeGroup *param_1)\n\n{\n                    /* 0xcd30  181  ??4gbAnimNodeGroup@@QAEAAV0@ABV0@@Z */\n  *(undefined4 *)this = *(undefined4 *)param_1;\n  *(undefined4 *)(this + 8) = *(undefined4 *)(param_1 + 8);\n  *(undefined4 *)(this + 0xc) = *(undefined4 *)(param_1 + 0xc);\n  *(undefined4 *)(this + 0x10) = *(undefined4 *)(param_1 + 0x10);\n  *(undefined4 *)(this + 0x14) = *(undefined4 *)(param_1 + 0x14);\n  *(undefined4 *)(this + 0x18) = *(undefined4 *)(param_1 + 0x18);\n  *(undefined4 *)(this + 0x1c) = *(undefined4 *)(param_1 + 0x1c);\n  *(undefined4 *)(this + 0x20) = *(undefined4 *)(param_1 + 0x20);\n  *(undefined4 *)(this + 0x24) = *(undefined4 *)(param_1 + 0x24);\n  *(undefined4 *)(this + 0x28) = *(undefined4 *)(param_1 + 0x28);\n  *(undefined4 *)(this + 0x2c) = *(undefined4 *)(param_1 + 0x2c);\n  *(undefined4 *)(this + 0x30) = *(undefined4 *)(param_1 + 0x30);\n  gbMatrix4::operator=((gbMatrix4 *)(this + 0x34),(gbMatrix4 *)(param_1 + 0x34));\n  return this;\n}\n\n", 
+  "is_thunk": false, 
+  "name": "operator=", 
+  "assembly": "  1000cd30:  MOV EAX,dword ptr [ESP + 0x4]\n  1000cd34:  PUSH ESI\n  1000cd35:  MOV ESI,ECX\n  1000cd37:  MOV ECX,dword ptr [EAX]\n  1000cd39:  ADD EAX,0x34\n  1000cd3c:  MOV dword ptr [ESI],ECX\n  1000cd3e:  MOV EDX,dword ptr [EAX + -0x2c]\n  1000cd41:  MOV dword ptr [ESI + 0x8],EDX\n  1000cd44:  MOV ECX,dword ptr [EAX + -0x28]\n  1000cd47:  MOV dword ptr [ESI + 0xc],ECX\n  1000cd4a:  MOV EDX,dword ptr [EAX + -0x24]\n  1000cd4d:  MOV dword ptr [ESI + 0x10],EDX\n  1000cd50:  MOV ECX,dword ptr [EAX + -0x20]\n  1000cd53:  MOV dword ptr [ESI + 0x14],ECX\n  1000cd56:  MOV EDX,dword ptr [EAX + -0x1c]\n  1000cd59:  MOV dword ptr [ESI + 0x18],EDX\n  1000cd5c:  MOV ECX,dword ptr [EAX + -0x18]\n  1000cd5f:  MOV dword ptr [ESI + 0x1c],ECX\n  1000cd62:  MOV EDX,dword ptr [EAX + -0x14]\n  1000cd65:  MOV dword ptr [ESI + 0x20],EDX\n  1000cd68:  MOV ECX,dword ptr [EAX + -0x10]\n  1000cd6b:  MOV dword ptr [ESI + 0x24],ECX\n  1000cd6e:  MOV EDX,dword ptr [EAX + -0xc]\n  1000cd71:  MOV dword ptr [ESI + 0x28],EDX\n  1000cd74:  MOV ECX,dword ptr [EAX + -0x8]\n  1000cd77:  MOV dword ptr [ESI + 0x2c],ECX\n  1000cd7a:  MOV EDX,dword ptr [EAX + -0x4]\n  1000cd7d:  PUSH EAX\n  1000cd7e:  LEA ECX,[ESI + 0x34]\n  1000cd81:  MOV dword ptr [ESI + 0x30],EDX\n  1000cd84:  CALL 0x10025140\n  1000cd89:  MOV EAX,ESI\n  1000cd8b:  POP ESI\n  1000cd8c:  RET 0x4", 
+  "callers": []
+}

@@ -1,0 +1,20 @@
+{
+  "address": "0x100040d0", 
+  "size_bytes": 22, 
+  "calling_convention": "__thiscall", 
+  "signature": "gbPixelFormat * __thiscall operator=(gbPixelFormat * this, gbPixelFormat * param_1)", 
+  "callees": [], 
+  "global_refs": [
+    {
+      "address": "0x00000004", 
+      "type": null, 
+      "name": "DAT_00000004"
+    }
+  ], 
+  "has_custom_name": true, 
+  "decompiled_c": "\n/* public: class gbPixelFormat & __thiscall gbPixelFormat::operator=(class gbPixelFormat const &) */\n\ngbPixelFormat * __thiscall gbPixelFormat::operator=(gbPixelFormat *this,gbPixelFormat *param_1)\n\n{\n  int iVar1;\n  gbPixelFormat *pgVar2;\n  \n                    /* 0x40d0  221  ??4gbPixelFormat@@QAEAAV0@ABV0@@Z */\n  pgVar2 = this;\n  for (iVar1 = 0xb; iVar1 != 0; iVar1 = iVar1 + -1) {\n    *(undefined4 *)pgVar2 = *(undefined4 *)param_1;\n    param_1 = param_1 + 4;\n    pgVar2 = pgVar2 + 4;\n  }\n  return this;\n}\n\n", 
+  "is_thunk": false, 
+  "name": "operator=", 
+  "assembly": "  100040d0:  PUSH ESI\n  100040d1:  MOV ESI,dword ptr [ESP + 0x8]\n  100040d5:  MOV EAX,ECX\n  100040d7:  PUSH EDI\n  100040d8:  MOV ECX,0xb\n  100040dd:  MOV EDI,EAX\n  100040df:  MOVSD.REP ES:EDI,ESI\n  100040e1:  POP EDI\n  100040e2:  POP ESI\n  100040e3:  RET 0x4", 
+  "callers": []
+}

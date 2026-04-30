@@ -1,0 +1,31 @@
+{
+  "address": "0x100b4a4d", 
+  "size_bytes": 107, 
+  "calling_convention": "unknown", 
+  "signature": "undefined FUN_100b4a4d(void)", 
+  "callees": [
+    {
+      "address": "0x100b46d5", 
+      "name": "FUN_100b46d5"
+    }, 
+    {
+      "address": "0x100c94b8", 
+      "name": "FUN_100c94b8"
+    }, 
+    {
+      "address": "0x100c407a", 
+      "name": "FUN_100c407a"
+    }, 
+    {
+      "address": "0x100b46d5", 
+      "name": "FUN_100b46d5"
+    }
+  ], 
+  "global_refs": [], 
+  "has_custom_name": false, 
+  "decompiled_c": "\nint FUN_100b4a4d(void)\n\n{\n  int iVar1;\n  int in_ECX;\n  \n  if ((*(int *)(in_ECX + 0x1e4) != 0) && (*(int *)(in_ECX + 0x1d8) != 0)) {\n    if ((*(uint *)(in_ECX + 0xc0) & 0xffff) != 0x104) {\n      return -0x7fffbffb;\n    }\n    FUN_100b46d5(*(int *)(in_ECX + 0x1e4),*(int *)(in_ECX + 0x1d8));\n    iVar1 = FUN_100c94b8(0xfffd);\n    if (iVar1 < 0) {\n      return iVar1;\n    }\n    iVar1 = FUN_100c407a();\n    if (iVar1 < 0) {\n      return iVar1;\n    }\n  }\n  iVar1 = FUN_100b46d5(*(undefined4 *)(in_ECX + 0x1e8),*(undefined4 *)(in_ECX + 0x1dc));\n  return iVar1;\n}\n\n", 
+  "is_thunk": false, 
+  "name": "FUN_100b4a4d", 
+  "assembly": "  100b4a4d:  PUSH ESI\n  100b4a4e:  MOV ESI,ECX\n  100b4a50:  MOV ECX,dword ptr [ESI + 0x1e4]\n  100b4a56:  TEST ECX,ECX\n  100b4a58:  JZ 0x100b4aa3\n  100b4a5a:  MOV EAX,dword ptr [ESI + 0x1d8]\n  100b4a60:  TEST EAX,EAX\n  100b4a62:  JZ 0x100b4aa3\n  100b4a64:  MOV EDX,dword ptr [ESI + 0xc0]\n  100b4a6a:  AND EDX,0xffff\n  100b4a70:  CMP EDX,0x104\n  100b4a76:  JZ 0x100b4a7f\n  100b4a78:  MOV EAX,0x80004005\n  100b4a7d:  POP ESI\n  100b4a7e:  RET\n  100b4a7f:  PUSH EAX\n  100b4a80:  PUSH ECX\n  100b4a81:  MOV ECX,ESI\n  100b4a83:  CALL 0x100b46d5\n  100b4a88:  PUSH 0xfffd\n  100b4a8d:  MOV ECX,ESI\n  100b4a8f:  CALL 0x100c94b8\n  100b4a94:  TEST EAX,EAX\n  100b4a96:  JL 0x100b4ab6\n  100b4a98:  MOV ECX,ESI\n  100b4a9a:  CALL 0x100c407a\n  100b4a9f:  TEST EAX,EAX\n  100b4aa1:  JL 0x100b4ab6\n  100b4aa3:  PUSH dword ptr [ESI + 0x1dc]\n  100b4aa9:  MOV ECX,ESI\n  100b4aab:  PUSH dword ptr [ESI + 0x1e8]\n  100b4ab1:  CALL 0x100b46d5\n  100b4ab6:  POP ESI\n  100b4ab7:  RET", 
+  "callers": []
+}

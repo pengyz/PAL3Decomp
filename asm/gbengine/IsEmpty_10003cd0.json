@@ -1,0 +1,19 @@
+{
+  "address": "0x10003cd0", 
+  "size_bytes": 16, 
+  "calling_convention": "__thiscall", 
+  "signature": "int __thiscall IsEmpty(gbIndexPool * this)", 
+  "callees": [
+    {
+      "address": "0x1002ec20", 
+      "name": "operator[]"
+    }
+  ], 
+  "global_refs": [], 
+  "has_custom_name": true, 
+  "decompiled_c": "\n/* public: int __thiscall gbIndexPool::IsEmpty(void) */\n\nint __thiscall gbIndexPool::IsEmpty(gbIndexPool *this)\n\n{\n  gbChain1DNode *pgVar1;\n  \n                    /* 0x3cd0  633  ?IsEmpty@gbIndexPool@@QAEHXZ */\n  pgVar1 = gbChain1D::operator[]((gbChain1D *)(this + 0x28),0);\n  return (uint)(pgVar1 == (gbChain1DNode *)0x0);\n}\n\n", 
+  "is_thunk": false, 
+  "name": "IsEmpty", 
+  "assembly": "  10003cd0:  PUSH 0x0\n  10003cd2:  ADD ECX,0x28\n  10003cd5:  CALL 0x1002ec20\n  10003cda:  NEG EAX\n  10003cdc:  SBB EAX,EAX\n  10003cde:  INC EAX\n  10003cdf:  RET", 
+  "callers": []
+}

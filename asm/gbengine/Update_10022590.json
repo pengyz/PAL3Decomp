@@ -1,0 +1,30 @@
+{
+  "address": "0x10022590", 
+  "size_bytes": 83, 
+  "calling_convention": "__thiscall", 
+  "signature": "void __thiscall Update(gbCamera * this, double param_1)", 
+  "callees": [], 
+  "global_refs": [
+    {
+      "address": "0x00000004", 
+      "type": null, 
+      "name": "DAT_00000004"
+    }, 
+    {
+      "address": "0x00000008", 
+      "type": null, 
+      "name": "DAT_00000008"
+    }, 
+    {
+      "address": "0x100f5580", 
+      "type": null, 
+      "name": "DAT_100f5580"
+    }
+  ], 
+  "has_custom_name": true, 
+  "decompiled_c": "\n/* public: void __thiscall gbCamera::Update(double) */\n\nvoid __thiscall gbCamera::Update(gbCamera *this,double param_1)\n\n{\n  undefined4 *puVar1;\n  \n                    /* 0x22590  942  ?Update@gbCamera@@QAEXN@Z */\n  puVar1 = *(undefined4 **)(this + *(int *)(this + 0x154) * 4 + 0x114);\n  *(double *)(puVar1 + 4) = param_1 + *(double *)(puVar1 + 4);\n  (**(code **)*puVar1)(param_1);\n  if ((0.0 <= *(double *)(puVar1 + 6)) && (*(double *)(puVar1 + 6) < *(double *)(puVar1 + 4))) {\n    *(int *)(this + 0x154) = *(int *)(this + 0x154) + -1;\n  }\n  return;\n}\n\n", 
+  "is_thunk": false, 
+  "name": "Update", 
+  "assembly": "  10022590:  PUSH ESI\n  10022591:  PUSH EDI\n  10022592:  FLD qword ptr [ESP + 0xc]\n  10022596:  MOV EDI,ECX\n  10022598:  MOV ECX,dword ptr [ESP + 0xc]\n  1002259c:  MOV EAX,dword ptr [EDI + 0x154]\n  100225a2:  MOV ESI,dword ptr [EDI + EAX*0x4 + 0x114]\n  100225a9:  MOV EAX,dword ptr [ESP + 0x10]\n  100225ad:  PUSH EAX\n  100225ae:  PUSH ECX\n  100225af:  FADD qword ptr [ESI + 0x10]\n  100225b2:  MOV EDX,dword ptr [ESI]\n  100225b4:  MOV ECX,ESI\n  100225b6:  FSTP qword ptr [ESI + 0x10]\n  100225b9:  CALL dword ptr [EDX]\n  100225bb:  FLD qword ptr [ESI + 0x18]\n  100225be:  FCOMP qword ptr [0x100f5580]\n  100225c4:  FNSTSW AX\n  100225c6:  TEST AH,0x1\n  100225c9:  JNZ 0x100225de\n  100225cb:  FLD qword ptr [ESI + 0x10]\n  100225ce:  FCOMP qword ptr [ESI + 0x18]\n  100225d1:  FNSTSW AX\n  100225d3:  TEST AH,0x41\n  100225d6:  JNZ 0x100225de\n  100225d8:  DEC dword ptr [EDI + 0x154]\n  100225de:  POP EDI\n  100225df:  POP ESI\n  100225e0:  RET 0x8", 
+  "callers": []
+}

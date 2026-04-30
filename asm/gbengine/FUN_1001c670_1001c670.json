@@ -1,0 +1,50 @@
+{
+  "address": "0x1001c670", 
+  "size_bytes": 208, 
+  "calling_convention": "unknown", 
+  "signature": "undefined FUN_1001c670(undefined param_1, undefined4 param_2)", 
+  "callees": [
+    {
+      "address": "0x10020890", 
+      "name": "FUN_10020890"
+    }
+  ], 
+  "global_refs": [
+    {
+      "address": "0x00000008", 
+      "type": null, 
+      "name": "DAT_00000008"
+    }, 
+    {
+      "address": "0x10140dbc", 
+      "type": "gbGfxManager *", 
+      "name": "DAT_10140dbc"
+    }, 
+    {
+      "address": "0x-0000008", 
+      "type": null, 
+      "name": "DAT_-0000008"
+    }, 
+    {
+      "address": "0x-0000004", 
+      "type": null, 
+      "name": "DAT_-0000004"
+    }, 
+    {
+      "address": "0x1001c774", 
+      "type": "undefined *", 
+      "name": "DAT_1001c774"
+    }, 
+    {
+      "address": "0x-000000c", 
+      "type": null, 
+      "name": "DAT_-000000c"
+    }
+  ], 
+  "has_custom_name": false, 
+  "decompiled_c": "\nvoid FUN_1001c670(int param_1,int param_2)\n\n{\n  int *piVar1;\n  int iVar2;\n  int iVar3;\n  gbGfxManager *pgVar4;\n  int iVar5;\n  undefined4 uVar6;\n  int in_ECX;\n  \n  iVar5 = param_2;\n  pgVar4 = gbVertexPool::pGfxMgr;\n  piVar1 = *(int **)(gbVertexPool::pGfxMgr + 0x718);\n  uVar6 = FUN_10020890(*(undefined4 *)(param_2 + 0xc),*(undefined4 *)(param_2 + 0x10));\n  switch(*(undefined4 *)(param_2 + 0xc)) {\n  case 1:\n    param_2 = 4;\n    break;\n  case 2:\n    param_2 = 6;\n    break;\n  case 3:\n    param_2 = 5;\n    break;\n  case 4:\n    param_2 = 2;\n    break;\n  case 5:\n    param_2 = 3;\n    break;\n  default:\n    param_2 = 1;\n  }\n  iVar2 = *(int *)(in_ECX + 0xc);\n  iVar3 = *(int *)(*(int *)(iVar5 + 8) + 0x10);\n  if (*(int *)(pgVar4 + 0x8e8) != iVar2) {\n    (**(code **)(*piVar1 + 400))(piVar1,0,iVar2,0,*(undefined4 *)(in_ECX + 0x18));\n    *(int *)(pgVar4 + 0x8e8) = iVar2;\n  }\n  if (*(int *)(pgVar4 + 0x8ec) != iVar3) {\n    (**(code **)(*piVar1 + 0x1a0))(piVar1,iVar3);\n    *(int *)(pgVar4 + 0x8ec) = iVar3;\n  }\n  (**(code **)(*piVar1 + 0x148))\n            (piVar1,param_2,*(undefined4 *)(param_1 + 0xc),*(int *)(iVar5 + 0x1c),\n             (*(int *)(iVar5 + 0x20) - *(int *)(iVar5 + 0x1c)) + 1,*(undefined4 *)(iVar5 + 0x18),\n             uVar6);\n  return;\n}\n\n", 
+  "is_thunk": false, 
+  "name": "FUN_1001c670", 
+  "assembly": "  1001c670:  SUB ESP,0xc\n  1001c673:  PUSH EBX\n  1001c674:  PUSH EBP\n  1001c675:  PUSH ESI\n  1001c676:  MOV ESI,dword ptr [ESP + 0x20]\n  1001c67a:  MOV EBP,ECX\n  1001c67c:  PUSH EDI\n  1001c67d:  MOV EAX,dword ptr [ESI + 0x10]\n  1001c680:  MOV EDI,dword ptr [0x10140dbc]\n  1001c686:  MOV ECX,dword ptr [ESI + 0xc]\n  1001c689:  PUSH EAX\n  1001c68a:  MOV EBX,dword ptr [EDI + 0x718]\n  1001c690:  PUSH ECX\n  1001c691:  MOV dword ptr [ESP + 0x1c],EBP\n  1001c695:  CALL 0x10020890\n  1001c69a:  MOV dword ptr [ESP + 0x20],EAX\n  1001c69e:  MOV EAX,dword ptr [ESI + 0xc]\n  1001c6a1:  ADD ESP,0x8\n  1001c6a4:  DEC EAX\n  1001c6a5:  CMP EAX,0x5\n  1001c6a8:  JA 0x1001c6e3\n  1001c6aa:  JMP dword ptr [EAX*0x4 + 0x1001c774]\n  1001c6e3:  MOV dword ptr [ESP + 0x24],0x1\n  1001c6eb:  MOV EDX,dword ptr [ESI + 0x8]\n  1001c6ee:  MOV EBP,dword ptr [EBP + 0xc]\n  1001c6f1:  MOV ECX,dword ptr [EDI + 0x8e8]\n  1001c6f7:  MOV EAX,dword ptr [EDX + 0x10]\n  1001c6fa:  CMP ECX,EBP\n  1001c6fc:  MOV dword ptr [ESP + 0x10],EAX\n  1001c700:  JZ 0x1001c722\n  1001c702:  MOV ECX,dword ptr [ESP + 0x14]\n  1001c706:  MOV EAX,dword ptr [EBX]\n  1001c708:  MOV EDX,dword ptr [ECX + 0x18]\n  1001c70b:  PUSH EDX\n  1001c70c:  PUSH 0x0\n  1001c70e:  PUSH EBP\n  1001c70f:  PUSH 0x0\n  1001c711:  PUSH EBX\n  1001c712:  CALL dword ptr [EAX + 0x190]\n  1001c718:  MOV EAX,dword ptr [ESP + 0x10]\n  1001c71c:  MOV dword ptr [EDI + 0x8e8],EBP\n  1001c722:  CMP dword ptr [EDI + 0x8ec],EAX\n  1001c728:  JZ 0x1001c73e\n  1001c72a:  MOV ECX,dword ptr [EBX]\n  1001c72c:  PUSH EAX\n  1001c72d:  PUSH EBX\n  1001c72e:  CALL dword ptr [ECX + 0x1a0]\n  1001c734:  MOV EDX,dword ptr [ESP + 0x10]\n  1001c738:  MOV dword ptr [EDI + 0x8ec],EDX\n  1001c73e:  MOV EDX,dword ptr [ESP + 0x18]\n  1001c742:  MOV EAX,dword ptr [ESI + 0x1c]\n  1001c745:  PUSH EDX\n  1001c746:  MOV EDX,dword ptr [ESI + 0x18]\n  1001c749:  PUSH EDX\n  1001c74a:  MOV EDX,dword ptr [ESI + 0x20]\n  1001c74d:  SUB EDX,EAX\n  1001c74f:  MOV ECX,dword ptr [EBX]\n  1001c751:  INC EDX\n  1001c752:  PUSH EDX\n  1001c753:  PUSH EAX\n  1001c754:  MOV EAX,dword ptr [ESP + 0x30]\n  1001c758:  MOV EDX,dword ptr [EAX + 0xc]\n  1001c75b:  MOV EAX,dword ptr [ESP + 0x34]\n  1001c75f:  PUSH EDX\n  1001c760:  PUSH EAX\n  1001c761:  PUSH EBX\n  1001c762:  CALL dword ptr [ECX + 0x148]\n  1001c768:  POP EDI\n  1001c769:  POP ESI\n  1001c76a:  POP EBP\n  1001c76b:  POP EBX\n  1001c76c:  ADD ESP,0xc\n  1001c76f:  RET 0x8", 
+  "callers": []
+}

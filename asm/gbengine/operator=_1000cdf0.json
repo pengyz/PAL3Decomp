@@ -1,0 +1,45 @@
+{
+  "address": "0x1000cdf0", 
+  "size_bytes": 238, 
+  "calling_convention": "__thiscall", 
+  "signature": "gbPartParamControl * __thiscall operator=(gbPartParamControl * this, gbPartParamControl * param_1)", 
+  "callees": [], 
+  "global_refs": [
+    {
+      "address": "0x00000004", 
+      "type": null, 
+      "name": "DAT_00000004"
+    }
+  ], 
+  "has_custom_name": true, 
+  "decompiled_c": "\n/* public: class gbPartParamControl & __thiscall gbPartParamControl::operator=(class\n   gbPartParamControl const &) */\n\ngbPartParamControl * __thiscall\ngbPartParamControl::operator=(gbPartParamControl *this,gbPartParamControl *param_1)\n\n{\n  gbPartParamControl *pgVar1;\n  int iVar2;\n  int iVar3;\n  gbPartParamControl *pgVar4;\n  \n                    /* 0xcdf0  217  ??4gbPartParamControl@@QAEAAV0@ABV0@@Z */\n  *(undefined4 *)this = *(undefined4 *)param_1;\n  iVar3 = (int)param_1 - (int)this;\n  *(undefined4 *)(this + 4) = *(undefined4 *)(param_1 + 4);\n  pgVar4 = this + 8;\n  do {\n    *pgVar4 = pgVar4[iVar3];\n    pgVar4 = pgVar4 + 1;\n  } while (pgVar4 + (-8 - (int)this) < (gbPartParamControl *)0x40);\n  pgVar4 = this + 0x48;\n  do {\n    *pgVar4 = pgVar4[iVar3];\n    pgVar4 = pgVar4 + 1;\n  } while (pgVar4 + (-0x48 - (int)this) < (gbPartParamControl *)0x80);\n  *(undefined4 *)(this + 200) = *(undefined4 *)(param_1 + 200);\n  *(undefined4 *)(this + 0xcc) = *(undefined4 *)(param_1 + 0xcc);\n  *(undefined4 *)(this + 0xd0) = *(undefined4 *)(param_1 + 0xd0);\n  *(undefined4 *)(this + 0xd4) = *(undefined4 *)(param_1 + 0xd4);\n  *(undefined4 *)(this + 0xd8) = *(undefined4 *)(param_1 + 0xd8);\n  *(undefined4 *)(this + 0xdc) = *(undefined4 *)(param_1 + 0xdc);\n  pgVar4 = this + 0xe4;\n  iVar2 = 0x3c;\n  pgVar1 = param_1 + 0xe0;\n  do {\n    *(undefined4 *)(pgVar4 + -4) = *(undefined4 *)pgVar1;\n    *(undefined4 *)pgVar4 = *(undefined4 *)(pgVar4 + iVar3);\n    *(undefined4 *)(pgVar4 + 4) = *(undefined4 *)(pgVar1 + 8);\n    pgVar4 = pgVar4 + 0xc;\n    iVar2 = iVar2 + -1;\n    pgVar1 = pgVar1 + 0xc;\n  } while (iVar2 != 0);\n  pgVar4 = this + 0x3b4;\n  iVar2 = 0x12f;\n  pgVar1 = param_1 + 0x3b0;\n  do {\n    *(undefined4 *)(pgVar4 + -4) = *(undefined4 *)pgVar1;\n    *(undefined4 *)pgVar4 = *(undefined4 *)(pgVar4 + iVar3);\n    *(undefined4 *)(pgVar4 + 4) = *(undefined4 *)(pgVar1 + 8);\n    pgVar4 = pgVar4 + 0xc;\n    iVar2 = iVar2 + -1;\n    pgVar1 = pgVar1 + 0xc;\n  } while (iVar2 != 0);\n  return this;\n}\n\n", 
+  "is_thunk": false, 
+  "name": "operator=", 
+  "assembly": "  1000cdf0:  MOV EDX,dword ptr [ESP + 0x4]\n  1000cdf4:  MOV EAX,ECX\n  1000cdf6:  PUSH EBX\n  1000cdf7:  PUSH EBP\n  1000cdf8:  MOV ECX,dword ptr [EDX]\n  1000cdfa:  PUSH ESI\n  1000cdfb:  MOV dword ptr [EAX],ECX\n  1000cdfd:  MOV ECX,dword ptr [EDX + 0x4]\n  1000ce00:  MOV ESI,EDX\n  1000ce02:  MOV EBP,0xfffffff8\n  1000ce07:  PUSH EDI\n  1000ce08:  SUB ESI,EAX\n  1000ce0a:  MOV dword ptr [EAX + 0x4],ECX\n  1000ce0d:  LEA EDI,[EAX + 0x8]\n  1000ce10:  SUB EBP,EAX\n  1000ce12:  MOV CL,byte ptr [ESI + EDI*0x1]\n  1000ce15:  MOV byte ptr [EDI],CL\n  1000ce17:  INC EDI\n  1000ce18:  LEA ECX,[EDI + EBP*0x1]\n  1000ce1b:  CMP ECX,0x40\n  1000ce1e:  JC 0x1000ce12\n  1000ce20:  MOV EBP,0xffffffb8\n  1000ce25:  LEA EDI,[EAX + 0x48]\n  1000ce28:  SUB EBP,EAX\n  1000ce2a:  MOV CL,byte ptr [EDI + ESI*0x1]\n  1000ce2d:  MOV byte ptr [EDI],CL\n  1000ce2f:  INC EDI\n  1000ce30:  LEA ECX,[EDI + EBP*0x1]\n  1000ce33:  CMP ECX,0x80\n  1000ce39:  JC 0x1000ce2a\n  1000ce3b:  MOV ECX,dword ptr [EDX + 0xc8]\n  1000ce41:  LEA EDI,[EDX + 0xe0]\n  1000ce47:  MOV dword ptr [EAX + 0xc8],ECX\n  1000ce4d:  MOV ECX,dword ptr [EDX + 0xcc]\n  1000ce53:  MOV dword ptr [EAX + 0xcc],ECX\n  1000ce59:  MOV ECX,dword ptr [EDX + 0xd0]\n  1000ce5f:  MOV dword ptr [EAX + 0xd0],ECX\n  1000ce65:  MOV ECX,dword ptr [EDX + 0xd4]\n  1000ce6b:  MOV dword ptr [EAX + 0xd4],ECX\n  1000ce71:  MOV ECX,dword ptr [EDX + 0xd8]\n  1000ce77:  MOV dword ptr [EAX + 0xd8],ECX\n  1000ce7d:  MOV ECX,dword ptr [EDX + 0xdc]\n  1000ce83:  MOV dword ptr [EAX + 0xdc],ECX\n  1000ce89:  LEA ECX,[EAX + 0xe4]\n  1000ce8f:  MOV EBX,0x3c\n  1000ce94:  MOV EBP,dword ptr [EDI]\n  1000ce96:  ADD EDI,0xc\n  1000ce99:  MOV dword ptr [ECX + -0x4],EBP\n  1000ce9c:  MOV EBP,dword ptr [ECX + ESI*0x1]\n  1000ce9f:  MOV dword ptr [ECX],EBP\n  1000cea1:  MOV EBP,dword ptr [EDI + -0x4]\n  1000cea4:  MOV dword ptr [ECX + 0x4],EBP\n  1000cea7:  ADD ECX,0xc\n  1000ceaa:  DEC EBX\n  1000ceab:  JNZ 0x1000ce94\n  1000cead:  ADD EDX,0x3b0\n  1000ceb3:  LEA ECX,[EAX + 0x3b4]\n  1000ceb9:  MOV EDI,0x12f\n  1000cebe:  MOV EBX,dword ptr [EDX]\n  1000cec0:  ADD EDX,0xc\n  1000cec3:  MOV dword ptr [ECX + -0x4],EBX\n  1000cec6:  MOV EBX,dword ptr [ECX + ESI*0x1]\n  1000cec9:  MOV dword ptr [ECX],EBX\n  1000cecb:  MOV EBX,dword ptr [EDX + -0x4]\n  1000cece:  MOV dword ptr [ECX + 0x4],EBX\n  1000ced1:  ADD ECX,0xc\n  1000ced4:  DEC EDI\n  1000ced5:  JNZ 0x1000cebe\n  1000ced7:  POP EDI\n  1000ced8:  POP ESI\n  1000ced9:  POP EBP\n  1000ceda:  POP EBX\n  1000cedb:  RET 0x4", 
+  "callers": [
+    {
+      "address": "0x1000d030", 
+      "name": "operator="
+    }, 
+    {
+      "address": "0x1000d030", 
+      "name": "operator="
+    }, 
+    {
+      "address": "0x1000d600", 
+      "name": "operator="
+    }, 
+    {
+      "address": "0x1000d600", 
+      "name": "operator="
+    }, 
+    {
+      "address": "0x1000d600", 
+      "name": "operator="
+    }, 
+    {
+      "address": "0x1000d600", 
+      "name": "operator="
+    }
+  ]
+}

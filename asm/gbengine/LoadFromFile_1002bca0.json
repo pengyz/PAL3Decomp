@@ -1,0 +1,200 @@
+{
+  "address": "0x1002bca0", 
+  "size_bytes": 809, 
+  "calling_convention": "__thiscall", 
+  "signature": "int __thiscall LoadFromFile(gbParticleEffect * this, char * param_1)", 
+  "callees": [
+    {
+      "address": "0x10030540", 
+      "name": "OpenFile"
+    }, 
+    {
+      "address": "0x10030810", 
+      "name": "Read"
+    }, 
+    {
+      "address": "0x100307a0", 
+      "name": "CloseFile"
+    }, 
+    {
+      "address": "0x10030810", 
+      "name": "Read"
+    }, 
+    {
+      "address": "0x10030810", 
+      "name": "Read"
+    }, 
+    {
+      "address": "0x10030810", 
+      "name": "Read"
+    }, 
+    {
+      "address": "0x10030810", 
+      "name": "Read"
+    }, 
+    {
+      "address": "0x10030810", 
+      "name": "Read"
+    }, 
+    {
+      "address": "0x10030810", 
+      "name": "Read"
+    }, 
+    {
+      "address": "0x10030810", 
+      "name": "Read"
+    }, 
+    {
+      "address": "0x10030810", 
+      "name": "Read"
+    }, 
+    {
+      "address": "0x100e4a16", 
+      "name": "operator_new"
+    }, 
+    {
+      "address": "0x100e4faf", 
+      "name": "FUN_100e4faf"
+    }, 
+    {
+      "address": "0x100e4a16", 
+      "name": "operator_new"
+    }, 
+    {
+      "address": "0x100e4faf", 
+      "name": "FUN_100e4faf"
+    }, 
+    {
+      "address": "0x100e4a16", 
+      "name": "operator_new"
+    }, 
+    {
+      "address": "0x100e4faf", 
+      "name": "FUN_100e4faf"
+    }, 
+    {
+      "address": "0x1002a7f0", 
+      "name": "LoadFromFile"
+    }, 
+    {
+      "address": "0x10029cf0", 
+      "name": "LoadFromFile"
+    }, 
+    {
+      "address": "0x1002b0b0", 
+      "name": "LoadFromFile"
+    }, 
+    {
+      "address": "0x100307a0", 
+      "name": "CloseFile"
+    }
+  ], 
+  "global_refs": [
+    {
+      "address": "0xffdff000", 
+      "type": "void *32", 
+      "name": "DAT_ffdff000"
+    }, 
+    {
+      "address": "0x100f4271", 
+      "type": null, 
+      "name": "DAT_100f4271"
+    }, 
+    {
+      "address": "0x00000004", 
+      "type": null, 
+      "name": "DAT_00000004"
+    }, 
+    {
+      "address": "0x1015d3a8", 
+      "type": "gbVFileSystem *", 
+      "name": "DAT_1015d3a8"
+    }, 
+    {
+      "address": "0x-0000014", 
+      "type": null, 
+      "name": "DAT_-0000014"
+    }, 
+    {
+      "address": "0x10120230", 
+      "type": "undefined1", 
+      "name": "DAT_10120230"
+    }, 
+    {
+      "address": "0x10120232", 
+      "type": "undefined1", 
+      "name": "DAT_10120232"
+    }, 
+    {
+      "address": "0x-0000013", 
+      "type": null, 
+      "name": "DAT_-0000013"
+    }, 
+    {
+      "address": "0x10120231", 
+      "type": "undefined1", 
+      "name": "DAT_10120231"
+    }, 
+    {
+      "address": "0x1014b208", 
+      "type": "undefined4", 
+      "name": "DAT_1014b208"
+    }, 
+    {
+      "address": "0x-0000018", 
+      "type": null, 
+      "name": "DAT_-0000018"
+    }, 
+    {
+      "address": "0x-0000004", 
+      "type": null, 
+      "name": "DAT_-0000004"
+    }, 
+    {
+      "address": "0x1002b090", 
+      "type": null, 
+      "name": "DAT_1002b090"
+    }, 
+    {
+      "address": "0x1002b070", 
+      "type": null, 
+      "name": "DAT_1002b070"
+    }, 
+    {
+      "address": "0x1002a7a0", 
+      "type": null, 
+      "name": "DAT_1002a7a0"
+    }, 
+    {
+      "address": "0x1002a620", 
+      "type": null, 
+      "name": "DAT_1002a620"
+    }, 
+    {
+      "address": "0x1000d940", 
+      "type": null, 
+      "name": "DAT_1000d940"
+    }, 
+    {
+      "address": "0x1000d3f0", 
+      "type": null, 
+      "name": "DAT_1000d3f0"
+    }, 
+    {
+      "address": "0x-000000c", 
+      "type": null, 
+      "name": "DAT_-000000c"
+    }
+  ], 
+  "has_custom_name": true, 
+  "decompiled_c": "\n/* public: int __thiscall gbParticleEffect::LoadFromFile(char *) */\n\nint __thiscall gbParticleEffect::LoadFromFile(gbParticleEffect *this,char *param_1)\n\n{\n  gbParticleEffect *pgVar1;\n  byte bVar2;\n  gbVFile *pgVar3;\n  int iVar4;\n  int *piVar5;\n  byte *pbVar6;\n  int iVar7;\n  byte *pbVar8;\n  bool bVar9;\n  byte local_14 [8];\n  void *local_c;\n  undefined *puStack_8;\n  undefined4 local_4;\n  \n                    /* 0x2bca0  679  ?LoadFromFile@gbParticleEffect@@QAEHPAD@Z */\n  local_4 = 0xffffffff;\n  puStack_8 = &LAB_100f4271;\n  local_c = ExceptionList;\n  ExceptionList = &local_c;\n  pgVar3 = gbVFileSystem::OpenFile(g_pVFileSys,param_1,0x201);\n  if (pgVar3 != (gbVFile *)0x0) {\n    gbVFileSystem::Read(g_pVFileSys,local_14,6,pgVar3);\n    pbVar6 = &DAT_10120230;\n    pbVar8 = local_14;\n    do {\n      bVar2 = *pbVar8;\n      bVar9 = bVar2 < *pbVar6;\n      if (bVar2 != *pbVar6) {\nLAB_1002bd22:\n        iVar4 = (1 - (uint)bVar9) - (uint)(bVar9 != 0);\n        goto LAB_1002bd27;\n      }\n      if (bVar2 == 0) break;\n      bVar2 = pbVar8[1];\n      bVar9 = bVar2 < pbVar6[1];\n      if (bVar2 != pbVar6[1]) goto LAB_1002bd22;\n      pbVar8 = pbVar8 + 2;\n      pbVar6 = pbVar6 + 2;\n    } while (bVar2 != 0);\n    iVar4 = 0;\nLAB_1002bd27:\n    if (iVar4 == 0) {\n      gbVFileSystem::Read(g_pVFileSys,&DAT_1014b208,4,pgVar3);\n      gbVFileSystem::Read(g_pVFileSys,this + 0xb0,4,pgVar3);\n      gbVFileSystem::Read(g_pVFileSys,this + 0xb4,4,pgVar3);\n      gbVFileSystem::Read(g_pVFileSys,this + 0xb8,4,pgVar3);\n      if (0x10000 < DAT_1014b208) {\n        gbVFileSystem::Read(g_pVFileSys,this + 0x118,4,pgVar3);\n      }\n      pgVar1 = this + 0x9c;\n      gbVFileSystem::Read(g_pVFileSys,pgVar1,4,pgVar3);\n      gbVFileSystem::Read(g_pVFileSys,this + 0xa0,4,pgVar3);\n      gbVFileSystem::Read(g_pVFileSys,this + 0x98,4,pgVar3);\n      iVar4 = *(int *)(this + 0x98);\n      piVar5 = (int *)operator_new(iVar4 * 0x90 + 4);\n      local_4 = 0;\n      if (piVar5 == (int *)0x0) {\n        piVar5 = (int *)0x0;\n      }\n      else {\n        *piVar5 = iVar4;\n        piVar5 = piVar5 + 1;\n        FUN_100e4faf(piVar5,0x90,iVar4,gbParticleGroup::gbParticleGroup,\n                     gbParticleGroup::~gbParticleGroup);\n      }\n      iVar4 = *(int *)pgVar1;\n      *(int **)(this + 0xa4) = piVar5;\n      local_4 = 0xffffffff;\n      piVar5 = (int *)operator_new(iVar4 * 0x4940 + 4);\n      local_4 = 1;\n      if (piVar5 == (int *)0x0) {\n        piVar5 = (int *)0x0;\n      }\n      else {\n        *piVar5 = iVar4;\n        piVar5 = piVar5 + 1;\n        FUN_100e4faf(piVar5,0x4940,iVar4,gbPartGroupParam::gbPartGroupParam,\n                     gbPartGroupParam::~gbPartGroupParam);\n      }\n      iVar4 = *(int *)(this + 0xa0);\n      *(int **)(this + 0xa8) = piVar5;\n      local_4 = 0xffffffff;\n      piVar5 = (int *)operator_new(iVar4 * 0x6c78 + 4);\n      local_4 = 2;\n      if (piVar5 == (int *)0x0) {\n        piVar5 = (int *)0x0;\n      }\n      else {\n        *piVar5 = iVar4;\n        piVar5 = piVar5 + 1;\n        FUN_100e4faf(piVar5,0x6c78,iVar4,gbPartEmitter::gbPartEmitter,gbPartEmitter::~gbPartEmitter)\n        ;\n      }\n      *(int **)(this + 0xac) = piVar5;\n      iVar4 = 0;\n      local_4 = 0xffffffff;\n      if (0 < *(int *)pgVar1) {\n        param_1 = (char *)0x0;\n        do {\n          gbPartGroupParam::LoadFromFile\n                    ((gbPartGroupParam *)(param_1 + *(int *)(this + 0xa8)),pgVar3);\n          iVar4 = iVar4 + 1;\n          param_1 = param_1 + 0x4940;\n        } while (iVar4 < *(int *)pgVar1);\n      }\n      iVar4 = 0;\n      if (0 < *(int *)(this + 0xa0)) {\n        iVar7 = 0;\n        do {\n          gbPartEmitter::LoadFromFile((gbPartEmitter *)(*(int *)(this + 0xac) + iVar7),pgVar3);\n          iVar4 = iVar4 + 1;\n          iVar7 = iVar7 + 0x6c78;\n        } while (iVar4 < *(int *)(this + 0xa0));\n      }\n      iVar4 = 0;\n      if (0 < *(int *)(this + 0x98)) {\n        iVar7 = 0;\n        do {\n          gbParticleGroup::LoadFromFile\n                    ((gbParticleGroup *)(iVar7 + *(int *)(this + 0xa4)),pgVar3,this);\n          iVar4 = iVar4 + 1;\n          iVar7 = iVar7 + 0x90;\n        } while (iVar4 < *(int *)(this + 0x98));\n      }\n      gbVFileSystem::CloseFile(g_pVFileSys,pgVar3);\n      pgVar3 = (gbVFile *)0x1;\n    }\n    else {\n      gbVFileSystem::CloseFile(g_pVFileSys,pgVar3);\n      pgVar3 = (gbVFile *)0x0;\n    }\n  }\n  ExceptionList = local_c;\n  return (int)pgVar3;\n}\n\n", 
+  "is_thunk": false, 
+  "name": "LoadFromFile", 
+  "assembly": "  1002bca0:  MOV EAX,FS:[0x0]\n  1002bca6:  PUSH -0x1\n  1002bca8:  PUSH 0x100f4271\n  1002bcad:  PUSH EAX\n  1002bcae:  MOV EAX,dword ptr [ESP + 0x10]\n  1002bcb2:  MOV dword ptr FS:[0x0],ESP\n  1002bcb9:  SUB ESP,0xc\n  1002bcbc:  PUSH EBX\n  1002bcbd:  PUSH EBP\n  1002bcbe:  PUSH ESI\n  1002bcbf:  PUSH EDI\n  1002bcc0:  MOV ESI,ECX\n  1002bcc2:  PUSH 0x201\n  1002bcc7:  MOV ECX,dword ptr [0x1015d3a8]\n  1002bccd:  PUSH EAX\n  1002bcce:  CALL 0x10030540\n  1002bcd3:  MOV EBX,EAX\n  1002bcd5:  TEST EBX,EBX\n  1002bcd7:  JZ 0x1002bfb4\n  1002bcdd:  PUSH EBX\n  1002bcde:  LEA ECX,[ESP + 0x18]\n  1002bce2:  PUSH 0x6\n  1002bce4:  PUSH ECX\n  1002bce5:  MOV ECX,dword ptr [0x1015d3a8]\n  1002bceb:  CALL 0x10030810\n  1002bcf0:  MOV EBP,0x10120230\n  1002bcf5:  LEA EDI,[ESP + 0x14]\n  1002bcf9:  MOV DL,byte ptr [EDI]\n  1002bcfb:  MOV CL,byte ptr [EBP]\n  1002bcfe:  MOV AL,DL\n  1002bd00:  CMP DL,CL\n  1002bd02:  JNZ 0x1002bd22\n  1002bd04:  TEST AL,AL\n  1002bd06:  JZ 0x1002bd1e\n  1002bd08:  MOV CL,byte ptr [EDI + 0x1]\n  1002bd0b:  MOV DL,byte ptr [EBP + 0x1]\n  1002bd0e:  MOV AL,CL\n  1002bd10:  CMP CL,DL\n  1002bd12:  JNZ 0x1002bd22\n  1002bd14:  ADD EDI,0x2\n  1002bd17:  ADD EBP,0x2\n  1002bd1a:  TEST AL,AL\n  1002bd1c:  JNZ 0x1002bcf9\n  1002bd1e:  XOR EAX,EAX\n  1002bd20:  JMP 0x1002bd27\n  1002bd22:  SBB EAX,EAX\n  1002bd24:  SBB EAX,-0x1\n  1002bd27:  TEST EAX,EAX\n  1002bd29:  PUSH EBX\n  1002bd2a:  JZ 0x1002bd3e\n  1002bd2c:  MOV ECX,dword ptr [0x1015d3a8]\n  1002bd32:  CALL 0x100307a0\n  1002bd37:  XOR EAX,EAX\n  1002bd39:  JMP 0x1002bfb4\n  1002bd3e:  MOV ECX,dword ptr [0x1015d3a8]\n  1002bd44:  PUSH 0x4\n  1002bd46:  PUSH 0x1014b208\n  1002bd4b:  CALL 0x10030810\n  1002bd50:  MOV ECX,dword ptr [0x1015d3a8]\n  1002bd56:  PUSH EBX\n  1002bd57:  LEA EDX,[ESI + 0xb0]\n  1002bd5d:  PUSH 0x4\n  1002bd5f:  PUSH EDX\n  1002bd60:  CALL 0x10030810\n  1002bd65:  MOV ECX,dword ptr [0x1015d3a8]\n  1002bd6b:  PUSH EBX\n  1002bd6c:  LEA EAX,[ESI + 0xb4]\n  1002bd72:  PUSH 0x4\n  1002bd74:  PUSH EAX\n  1002bd75:  CALL 0x10030810\n  1002bd7a:  PUSH EBX\n  1002bd7b:  LEA ECX,[ESI + 0xb8]\n  1002bd81:  PUSH 0x4\n  1002bd83:  PUSH ECX\n  1002bd84:  MOV ECX,dword ptr [0x1015d3a8]\n  1002bd8a:  CALL 0x10030810\n  1002bd8f:  CMP dword ptr [0x1014b208],0x10000\n  1002bd99:  JLE 0x1002bdb0\n  1002bd9b:  MOV ECX,dword ptr [0x1015d3a8]\n  1002bda1:  PUSH EBX\n  1002bda2:  LEA EDX,[ESI + 0x118]\n  1002bda8:  PUSH 0x4\n  1002bdaa:  PUSH EDX\n  1002bdab:  CALL 0x10030810\n  1002bdb0:  MOV ECX,dword ptr [0x1015d3a8]\n  1002bdb6:  LEA EBP,[ESI + 0x9c]\n  1002bdbc:  PUSH EBX\n  1002bdbd:  PUSH 0x4\n  1002bdbf:  PUSH EBP\n  1002bdc0:  CALL 0x10030810\n  1002bdc5:  MOV ECX,dword ptr [0x1015d3a8]\n  1002bdcb:  LEA EAX,[ESI + 0xa0]\n  1002bdd1:  PUSH EBX\n  1002bdd2:  PUSH 0x4\n  1002bdd4:  PUSH EAX\n  1002bdd5:  CALL 0x10030810\n  1002bdda:  MOV ECX,dword ptr [0x1015d3a8]\n  1002bde0:  LEA EDI,[ESI + 0x98]\n  1002bde6:  PUSH EBX\n  1002bde7:  PUSH 0x4\n  1002bde9:  PUSH EDI\n  1002bdea:  CALL 0x10030810\n  1002bdef:  MOV EDI,dword ptr [EDI]\n  1002bdf1:  LEA EAX,[EDI + EDI*0x8]\n  1002bdf4:  SHL EAX,0x4\n  1002bdf7:  ADD EAX,0x4\n  1002bdfa:  PUSH EAX\n  1002bdfb:  CALL 0x100e4a16\n  1002be00:  ADD ESP,0x4\n  1002be03:  MOV dword ptr [ESP + 0x10],EAX\n  1002be07:  TEST EAX,EAX\n  1002be09:  MOV dword ptr [ESP + 0x24],0x0\n  1002be11:  JZ 0x1002be38\n  1002be13:  PUSH 0x1002b090\n  1002be18:  MOV dword ptr [EAX],EDI\n  1002be1a:  PUSH 0x1002b070\n  1002be1f:  ADD EAX,0x4\n  1002be22:  PUSH EDI\n  1002be23:  PUSH 0x90\n  1002be28:  PUSH EAX\n  1002be29:  MOV dword ptr [ESP + 0x40],EAX\n  1002be2d:  CALL 0x100e4faf\n  1002be32:  MOV EAX,dword ptr [ESP + 0x2c]\n  1002be36:  JMP 0x1002be3a\n  1002be38:  XOR EAX,EAX\n  1002be3a:  MOV EDI,dword ptr [EBP]\n  1002be3d:  MOV dword ptr [ESI + 0xa4],EAX\n  1002be43:  MOV dword ptr [ESP + 0x24],0xffffffff\n  1002be4b:  LEA ECX,[EDI + EDI*0x8]\n  1002be4e:  LEA EDX,[EDI + ECX*0x8]\n  1002be51:  LEA EAX,[EDI + EDX*0x4]\n  1002be54:  SHL EAX,0x6\n  1002be57:  ADD EAX,0x4\n  1002be5a:  PUSH EAX\n  1002be5b:  CALL 0x100e4a16\n  1002be60:  ADD ESP,0x4\n  1002be63:  MOV dword ptr [ESP + 0x10],EAX\n  1002be67:  TEST EAX,EAX\n  1002be69:  MOV dword ptr [ESP + 0x24],0x1\n  1002be71:  JZ 0x1002be98\n  1002be73:  PUSH 0x1002a7a0\n  1002be78:  MOV dword ptr [EAX],EDI\n  1002be7a:  PUSH 0x1002a620\n  1002be7f:  ADD EAX,0x4\n  1002be82:  PUSH EDI\n  1002be83:  PUSH 0x4940\n  1002be88:  PUSH EAX\n  1002be89:  MOV dword ptr [ESP + 0x40],EAX\n  1002be8d:  CALL 0x100e4faf\n  1002be92:  MOV EAX,dword ptr [ESP + 0x2c]\n  1002be96:  JMP 0x1002be9a\n  1002be98:  XOR EAX,EAX\n  1002be9a:  MOV EDI,dword ptr [ESI + 0xa0]\n  1002bea0:  MOV dword ptr [ESI + 0xa8],EAX\n  1002bea6:  MOV dword ptr [ESP + 0x24],0xffffffff\n  1002beae:  LEA ECX,[EDI + EDI*0x8]\n  1002beb1:  SHL ECX,0x5\n  1002beb4:  ADD ECX,EDI\n  1002beb6:  LEA EAX,[EDI + ECX*0x4]\n  1002beb9:  LEA EDX,[EAX + EAX*0x2]\n  1002bebc:  LEA EAX,[EDX*0x8 + 0x4]\n  1002bec3:  PUSH EAX\n  1002bec4:  CALL 0x100e4a16\n  1002bec9:  ADD ESP,0x4\n  1002becc:  MOV dword ptr [ESP + 0x10],EAX\n  1002bed0:  TEST EAX,EAX\n  1002bed2:  MOV dword ptr [ESP + 0x24],0x2\n  1002beda:  JZ 0x1002bf01\n  1002bedc:  PUSH 0x1000d940\n  1002bee1:  MOV dword ptr [EAX],EDI\n  1002bee3:  PUSH 0x1000d3f0\n  1002bee8:  ADD EAX,0x4\n  1002beeb:  PUSH EDI\n  1002beec:  PUSH 0x6c78\n  1002bef1:  PUSH EAX\n  1002bef2:  MOV dword ptr [ESP + 0x40],EAX\n  1002bef6:  CALL 0x100e4faf\n  1002befb:  MOV EAX,dword ptr [ESP + 0x2c]\n  1002beff:  JMP 0x1002bf03\n  1002bf01:  XOR EAX,EAX\n  1002bf03:  MOV dword ptr [ESI + 0xac],EAX\n  1002bf09:  MOV EAX,dword ptr [EBP]\n  1002bf0c:  XOR EDI,EDI\n  1002bf0e:  MOV dword ptr [ESP + 0x24],0xffffffff\n  1002bf16:  CMP EAX,EDI\n  1002bf18:  JLE 0x1002bf46\n  1002bf1a:  MOV dword ptr [ESP + 0x2c],EDI\n  1002bf1e:  MOV ECX,dword ptr [ESI + 0xa8]\n  1002bf24:  MOV EAX,dword ptr [ESP + 0x2c]\n  1002bf28:  PUSH EBX\n  1002bf29:  ADD ECX,EAX\n  1002bf2b:  CALL 0x1002a7f0\n  1002bf30:  MOV ECX,dword ptr [ESP + 0x2c]\n  1002bf34:  MOV EAX,dword ptr [EBP]\n  1002bf37:  INC EDI\n  1002bf38:  ADD ECX,0x4940\n  1002bf3e:  CMP EDI,EAX\n  1002bf40:  MOV dword ptr [ESP + 0x2c],ECX\n  1002bf44:  JL 0x1002bf1e\n  1002bf46:  MOV EAX,dword ptr [ESI + 0xa0]\n  1002bf4c:  XOR EDI,EDI\n  1002bf4e:  TEST EAX,EAX\n  1002bf50:  JLE 0x1002bf73\n  1002bf52:  XOR EBP,EBP\n  1002bf54:  MOV ECX,dword ptr [ESI + 0xac]\n  1002bf5a:  PUSH EBX\n  1002bf5b:  ADD ECX,EBP\n  1002bf5d:  CALL 0x10029cf0\n  1002bf62:  MOV EAX,dword ptr [ESI + 0xa0]\n  1002bf68:  INC EDI\n  1002bf69:  ADD EBP,0x6c78\n  1002bf6f:  CMP EDI,EAX\n  1002bf71:  JL 0x1002bf54\n  1002bf73:  MOV EAX,dword ptr [ESI + 0x98]\n  1002bf79:  XOR EDI,EDI\n  1002bf7b:  TEST EAX,EAX\n  1002bf7d:  JLE 0x1002bfa3\n  1002bf7f:  XOR EBP,EBP\n  1002bf81:  MOV EAX,dword ptr [ESI + 0xa4]\n  1002bf87:  MOV ECX,EBP\n  1002bf89:  PUSH ESI\n  1002bf8a:  PUSH EBX\n  1002bf8b:  ADD ECX,EAX\n  1002bf8d:  CALL 0x1002b0b0\n  1002bf92:  MOV EAX,dword ptr [ESI + 0x98]\n  1002bf98:  INC EDI\n  1002bf99:  ADD EBP,0x90\n  1002bf9f:  CMP EDI,EAX\n  1002bfa1:  JL 0x1002bf81\n  1002bfa3:  MOV ECX,dword ptr [0x1015d3a8]\n  1002bfa9:  PUSH EBX\n  1002bfaa:  CALL 0x100307a0\n  1002bfaf:  MOV EAX,0x1\n  1002bfb4:  MOV ECX,dword ptr [ESP + 0x1c]\n  1002bfb8:  POP EDI\n  1002bfb9:  POP ESI\n  1002bfba:  POP EBP\n  1002bfbb:  POP EBX\n  1002bfbc:  MOV dword ptr FS:[0x0],ECX\n  1002bfc3:  ADD ESP,0x18\n  1002bfc6:  RET 0x4", 
+  "callers": [
+    {
+      "address": "0x1000b910", 
+      "name": "FUN_1000b910"
+    }
+  ]
+}

@@ -1,0 +1,35 @@
+{
+  "address": "0x1004c942", 
+  "size_bytes": 268, 
+  "calling_convention": "unknown", 
+  "signature": "undefined FUN_1004c942(undefined4 param_1, undefined4 param_2)", 
+  "callees": [], 
+  "global_refs": [
+    {
+      "address": "0x00000008", 
+      "type": null, 
+      "name": "DAT_00000008"
+    }, 
+    {
+      "address": "0x00000004", 
+      "type": null, 
+      "name": "DAT_00000004"
+    }, 
+    {
+      "address": "0x-0000008", 
+      "type": null, 
+      "name": "DAT_-0000008"
+    }
+  ], 
+  "has_custom_name": false, 
+  "decompiled_c": "\nundefined4 FUN_1004c942(char *param_1,char *param_2)\n\n{\n  char *pcVar1;\n  char cVar2;\n  char cVar3;\n  int in_ECX;\n  \n  param_2[0] = '\\0';\n  param_2[1] = '\\0';\n  param_2[2] = '\\0';\n  param_2[3] = '\\0';\n  *param_2 = *param_1;\n  pcVar1 = param_1 + 1;\n  if (*(char **)(in_ECX + 4) <= pcVar1) {\n    return 1;\n  }\n  cVar2 = *param_1;\n  if ((cVar2 == '#') && ((cVar3 = *pcVar1, cVar3 == '#' || (cVar3 == '@')))) {\n    param_2[1] = cVar3;\n    return 2;\n  }\n  cVar3 = *pcVar1;\n  if (cVar2 != cVar3) {\n    if (cVar3 == '=') {\n      if (cVar2 < '0') {\n        if (((cVar2 != '/') && (cVar2 != '!')) &&\n           ((cVar2 < '%' || (('&' < cVar2 && ((cVar2 < '*' || (('+' < cVar2 && (cVar2 != '-'))))))))\n           )) {\n          return 1;\n        }\n      }\n      else if ((((cVar2 != '<') && (cVar2 != '>')) && (cVar2 != '^')) && (cVar2 != '|')) {\n        return 1;\n      }\n      param_2[1] = '=';\n      return 2;\n    }\n    if (cVar2 != '-') {\n      return 1;\n    }\n    if (cVar3 == '>') {\n      param_2[1] = '>';\n      return 2;\n    }\n    return 1;\n  }\n  if (cVar2 < ';') {\n    if ((((cVar2 != ':') && (cVar2 != '&')) && (cVar2 != '+')) && (cVar2 != '-')) {\n      if (cVar2 != '.') {\n        return 1;\n      }\n      param_1 = param_1 + 2;\n      if (param_1 < *(char **)(in_ECX + 4)) {\n        if (*param_1 == '.') {\n          param_2[1] = cVar3;\n          param_2[2] = *param_1;\n          return 3;\n        }\n        return 1;\n      }\n      return 1;\n    }\n  }\n  else {\n    if (cVar2 == '<') {\nLAB_1004c9d1:\n      param_2[1] = cVar3;\n      if (*(char **)(in_ECX + 4) <= param_1 + 2) {\n        return 2;\n      }\n      if (param_1[2] != '=') {\n        return 2;\n      }\n      param_2[2] = '=';\n      return 3;\n    }\n    if (cVar2 != '=') {\n      if (cVar2 == '>') goto LAB_1004c9d1;\n      if (cVar2 != '|') {\n        return 1;\n      }\n    }\n  }\n  param_2[1] = cVar3;\n  return 2;\n}\n\n", 
+  "is_thunk": false, 
+  "name": "FUN_1004c942", 
+  "assembly": "  1004c942:  PUSH EBP\n  1004c943:  MOV EBP,ESP\n  1004c945:  PUSH ECX\n  1004c946:  MOV EAX,dword ptr [EBP + 0xc]\n  1004c949:  AND dword ptr [EAX],0x0\n  1004c94c:  PUSH EBX\n  1004c94d:  PUSH ESI\n  1004c94e:  MOV ESI,dword ptr [EBP + 0x8]\n  1004c951:  MOV DL,byte ptr [ESI]\n  1004c953:  MOV byte ptr [EAX],DL\n  1004c955:  MOV dword ptr [EBP + -0x4],ECX\n  1004c958:  MOV ECX,dword ptr [ECX + 0x4]\n  1004c95b:  LEA EDX,[ESI + 0x1]\n  1004c95e:  CMP EDX,ECX\n  1004c960:  PUSH EDI\n  1004c961:  MOV dword ptr [EBP + 0xc],ECX\n  1004c964:  JNC 0x1004ca19\n  1004c96a:  MOV BL,byte ptr [ESI]\n  1004c96c:  CMP BL,0x23\n  1004c96f:  JNZ 0x1004c984\n  1004c971:  MOV CL,byte ptr [EDX]\n  1004c973:  CMP CL,BL\n  1004c975:  JZ 0x1004c97c\n  1004c977:  CMP CL,0x40\n  1004c97a:  JNZ 0x1004c984\n  1004c97c:  MOV byte ptr [EAX + 0x1],CL\n  1004c97f:  JMP 0x1004ca49\n  1004c984:  MOV DL,byte ptr [EDX]\n  1004c986:  CMP BL,DL\n  1004c988:  JNZ 0x1004c9ec\n  1004c98a:  MOVSX EDI,BL\n  1004c98d:  CMP EDI,0x3a\n  1004c990:  JG 0x1004c9bc\n  1004c992:  JZ 0x1004c9cc\n  1004c994:  SUB EDI,0x26\n  1004c997:  JZ 0x1004c9cc\n  1004c999:  SUB EDI,0x5\n  1004c99c:  JZ 0x1004c9cc\n  1004c99e:  DEC EDI\n  1004c99f:  DEC EDI\n  1004c9a0:  JZ 0x1004c9cc\n  1004c9a2:  DEC EDI\n  1004c9a3:  JNZ 0x1004ca19\n  1004c9a5:  LEA ECX,[ESI + 0x2]\n  1004c9a8:  CMP ECX,dword ptr [EBP + 0xc]\n  1004c9ab:  JNC 0x1004ca19\n  1004c9ad:  CMP byte ptr [ECX],0x2e\n  1004c9b0:  JNZ 0x1004ca19\n  1004c9b2:  MOV byte ptr [EAX + 0x1],DL\n  1004c9b5:  MOV CL,byte ptr [ECX]\n  1004c9b7:  MOV byte ptr [EAX + 0x2],CL\n  1004c9ba:  JMP 0x1004c9e8\n  1004c9bc:  SUB EDI,0x3c\n  1004c9bf:  JZ 0x1004c9d1\n  1004c9c1:  DEC EDI\n  1004c9c2:  JZ 0x1004c9cc\n  1004c9c4:  DEC EDI\n  1004c9c5:  JZ 0x1004c9d1\n  1004c9c7:  SUB EDI,0x3e\n  1004c9ca:  JNZ 0x1004ca19\n  1004c9cc:  MOV byte ptr [EAX + 0x1],DL\n  1004c9cf:  JMP 0x1004ca49\n  1004c9d1:  MOV ECX,dword ptr [EBP + -0x4]\n  1004c9d4:  MOV byte ptr [EAX + 0x1],DL\n  1004c9d7:  LEA EDX,[ESI + 0x2]\n  1004c9da:  CMP EDX,dword ptr [ECX + 0x4]\n  1004c9dd:  JNC 0x1004ca49\n  1004c9df:  CMP byte ptr [EDX],0x3d\n  1004c9e2:  JNZ 0x1004ca49\n  1004c9e4:  MOV byte ptr [EAX + 0x2],0x3d\n  1004c9e8:  PUSH 0x3\n  1004c9ea:  JMP 0x1004ca4b\n  1004c9ec:  CMP DL,0x3d\n  1004c9ef:  JNZ 0x1004ca3c\n  1004c9f1:  MOVSX ECX,BL\n  1004c9f4:  CMP ECX,0x2f\n  1004c9f7:  JG 0x1004ca23\n  1004c9f9:  JZ 0x1004ca36\n  1004c9fb:  CMP ECX,0x21\n  1004c9fe:  JZ 0x1004ca36\n  1004ca00:  CMP ECX,0x24\n  1004ca03:  JLE 0x1004ca19\n  1004ca05:  CMP ECX,0x26\n  1004ca08:  JLE 0x1004ca36\n  1004ca0a:  CMP ECX,0x29\n  1004ca0d:  JLE 0x1004ca19\n  1004ca0f:  CMP ECX,0x2b\n  1004ca12:  JLE 0x1004ca36\n  1004ca14:  CMP ECX,0x2d\n  1004ca17:  JZ 0x1004ca36\n  1004ca19:  XOR EAX,EAX\n  1004ca1b:  INC EAX\n  1004ca1c:  POP EDI\n  1004ca1d:  POP ESI\n  1004ca1e:  POP EBX\n  1004ca1f:  LEAVE\n  1004ca20:  RET 0x8\n  1004ca23:  SUB ECX,0x3c\n  1004ca26:  JZ 0x1004ca36\n  1004ca28:  DEC ECX\n  1004ca29:  DEC ECX\n  1004ca2a:  JZ 0x1004ca36\n  1004ca2c:  SUB ECX,0x20\n  1004ca2f:  JZ 0x1004ca36\n  1004ca31:  SUB ECX,0x1e\n  1004ca34:  JNZ 0x1004ca19\n  1004ca36:  MOV byte ptr [EAX + 0x1],0x3d\n  1004ca3a:  JMP 0x1004ca49\n  1004ca3c:  CMP BL,0x2d\n  1004ca3f:  JNZ 0x1004ca19\n  1004ca41:  CMP DL,0x3e\n  1004ca44:  JNZ 0x1004ca19\n  1004ca46:  MOV byte ptr [EAX + 0x1],DL\n  1004ca49:  PUSH 0x2\n  1004ca4b:  POP EAX\n  1004ca4c:  JMP 0x1004ca1c", 
+  "callers": [
+    {
+      "address": "0x1004d5fa", 
+      "name": "FUN_1004d5fa"
+    }
+  ]
+}

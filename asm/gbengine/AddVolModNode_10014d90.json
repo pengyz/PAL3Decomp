@@ -1,0 +1,25 @@
+{
+  "address": "0x10014d90", 
+  "size_bytes": 33, 
+  "calling_convention": "__thiscall", 
+  "signature": "void __thiscall AddVolModNode(gbSceneGraph * this, gbVolModNode * param_1)", 
+  "callees": [], 
+  "global_refs": [
+    {
+      "address": "0x00000004", 
+      "type": null, 
+      "name": "DAT_00000004"
+    }
+  ], 
+  "has_custom_name": true, 
+  "decompiled_c": "\n/* public: void __thiscall gbSceneGraph::AddVolModNode(class gbVolModNode *) */\n\nvoid __thiscall gbSceneGraph::AddVolModNode(gbSceneGraph *this,gbVolModNode *param_1)\n\n{\n                    /* 0x14d90  304  ?AddVolModNode@gbSceneGraph@@QAEXPAVgbVolModNode@@@Z */\n  *(gbVolModNode **)(this + *(int *)(this + 0x4b14) * 4 + 0x714) = param_1;\n  *(int *)(this + 0x4b14) = *(int *)(this + 0x4b14) + 1;\n  return;\n}\n\n", 
+  "is_thunk": false, 
+  "name": "AddVolModNode", 
+  "assembly": "  10014d90:  MOV EAX,dword ptr [ECX + 0x4b14]\n  10014d96:  MOV EDX,dword ptr [ESP + 0x4]\n  10014d9a:  MOV dword ptr [ECX + EAX*0x4 + 0x714],EDX\n  10014da1:  MOV EAX,dword ptr [ECX + 0x4b14]\n  10014da7:  INC EAX\n  10014da8:  MOV dword ptr [ECX + 0x4b14],EAX\n  10014dae:  RET 0x4", 
+  "callers": [
+    {
+      "address": "0x10013190", 
+      "name": "Attach"
+    }
+  ]
+}

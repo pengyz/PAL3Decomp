@@ -1,0 +1,129 @@
+{
+  "address": "0x10006fb0", 
+  "size_bytes": 529, 
+  "calling_convention": "unknown", 
+  "signature": "undefined FUN_10006fb0(undefined4 param_1, undefined4 param_2)", 
+  "callees": [
+    {
+      "address": "0x10030810", 
+      "name": "Read"
+    }, 
+    {
+      "address": "0x10030810", 
+      "name": "Read"
+    }, 
+    {
+      "address": "0x10030810", 
+      "name": "Read"
+    }, 
+    {
+      "address": "0x10030810", 
+      "name": "Read"
+    }, 
+    {
+      "address": "0x10030810", 
+      "name": "Read"
+    }, 
+    {
+      "address": "0x10030810", 
+      "name": "Read"
+    }, 
+    {
+      "address": "0x10030810", 
+      "name": "Read"
+    }, 
+    {
+      "address": "0x10030810", 
+      "name": "Read"
+    }, 
+    {
+      "address": "0x10030810", 
+      "name": "Read"
+    }, 
+    {
+      "address": "0x10030810", 
+      "name": "Read"
+    }, 
+    {
+      "address": "0x10030810", 
+      "name": "Read"
+    }, 
+    {
+      "address": "0x100e4a16", 
+      "name": "operator_new"
+    }, 
+    {
+      "address": "0x100e4a16", 
+      "name": "operator_new"
+    }, 
+    {
+      "address": "0x10025110", 
+      "name": "gbMatrix4"
+    }, 
+    {
+      "address": "0x10025110", 
+      "name": "gbMatrix4"
+    }, 
+    {
+      "address": "0x10006fb0", 
+      "name": "FUN_10006fb0"
+    }
+  ], 
+  "global_refs": [
+    {
+      "address": "0x100f37cb", 
+      "type": null, 
+      "name": "DAT_100f37cb"
+    }, 
+    {
+      "address": "0xffdff000", 
+      "type": "void *32", 
+      "name": "DAT_ffdff000"
+    }, 
+    {
+      "address": "0x00000004", 
+      "type": null, 
+      "name": "DAT_00000004"
+    }, 
+    {
+      "address": "0x1015d3a8", 
+      "type": "gbVFileSystem *", 
+      "name": "DAT_1015d3a8"
+    }, 
+    {
+      "address": "0x00000008", 
+      "type": null, 
+      "name": "DAT_00000008"
+    }, 
+    {
+      "address": "0x-0000010", 
+      "type": null, 
+      "name": "DAT_-0000010"
+    }, 
+    {
+      "address": "0x-0000004", 
+      "type": null, 
+      "name": "DAT_-0000004"
+    }, 
+    {
+      "address": "0x-000000c", 
+      "type": null, 
+      "name": "DAT_-000000c"
+    }
+  ], 
+  "has_custom_name": false, 
+  "decompiled_c": "\nvoid FUN_10006fb0(gbVFile *param_1,int param_2)\n\n{\n  int *piVar1;\n  gbVFile *pgVar2;\n  int iVar3;\n  void *pvVar4;\n  void *in_ECX;\n  void *local_c;\n  undefined *puStack_8;\n  undefined4 local_4;\n  \n  pgVar2 = param_1;\n  local_4 = 0xffffffff;\n  puStack_8 = &LAB_100f37cb;\n  local_c = ExceptionList;\n  ExceptionList = &local_c;\n  gbVFileSystem::Read(g_pVFileSys,in_ECX,4,param_1);\n  gbVFileSystem::Read(g_pVFileSys,&param_1,4,pgVar2);\n  gbVFileSystem::Read(g_pVFileSys,(void *)((int)in_ECX + 4),(uint)param_1,pgVar2);\n  (param_1 + 4)[(int)in_ECX] = (gbVFile)0x0;\n  gbVFileSystem::Read(g_pVFileSys,(void *)((int)in_ECX + 0x44),0xc,pgVar2);\n  gbVFileSystem::Read(g_pVFileSys,(void *)((int)in_ECX + 0x50),0x10,pgVar2);\n  gbVFileSystem::Read(g_pVFileSys,(void *)((int)in_ECX + 0x60),0x24,pgVar2);\n  gbVFileSystem::Read(g_pVFileSys,(void *)((int)in_ECX + 0x84),4,pgVar2);\n  gbVFileSystem::Read(g_pVFileSys,(void *)((int)in_ECX + 0x88),0x40,pgVar2);\n  gbVFileSystem::Read(g_pVFileSys,(void *)((int)in_ECX + 200),4,pgVar2);\n  gbVFileSystem::Read(g_pVFileSys,(void *)((int)in_ECX + 0xcc),4,pgVar2);\n  piVar1 = (int *)((int)in_ECX + 0xd0);\n  gbVFileSystem::Read(g_pVFileSys,piVar1,4,pgVar2);\n  *(int *)((int)in_ECX + 0xd8) = param_2;\n  pvVar4 = operator_new(*piVar1 << 2);\n  *(void **)((int)in_ECX + 0xd4) = pvVar4;\n  param_2 = 0;\n  if (0 < *piVar1) {\n    do {\n      pvVar4 = operator_new(0x13c);\n      local_4 = 0;\n      if (pvVar4 == (void *)0x0) {\n        pvVar4 = (void *)0x0;\n      }\n      else {\n        *(undefined4 *)((int)pvVar4 + 0x44) = 0;\n        *(undefined4 *)((int)pvVar4 + 0x48) = 0;\n        *(undefined4 *)((int)pvVar4 + 0x4c) = 0;\n        *(undefined4 *)((int)pvVar4 + 0x58) = 0;\n        *(undefined4 *)((int)pvVar4 + 0x54) = 0;\n        *(undefined4 *)((int)pvVar4 + 0x50) = 0;\n        *(undefined4 *)((int)pvVar4 + 0x5c) = 0x3f800000;\n        gbMatrix4::gbMatrix4((gbMatrix4 *)((int)pvVar4 + 0x88));\n        *(undefined4 *)((int)pvVar4 + 0xdc) = 0;\n        *(undefined4 *)((int)pvVar4 + 0xe0) = 0;\n        *(undefined4 *)((int)pvVar4 + 0xe4) = 0;\n        *(undefined4 *)((int)pvVar4 + 0xf0) = 0;\n        *(undefined4 *)((int)pvVar4 + 0xec) = 0;\n        *(undefined4 *)((int)pvVar4 + 0xe8) = 0;\n        *(undefined4 *)((int)pvVar4 + 0xf4) = 0x3f800000;\n        gbMatrix4::gbMatrix4((gbMatrix4 *)((int)pvVar4 + 0xfc));\n        *(undefined4 *)((int)pvVar4 + 0xd4) = 0;\n        *(undefined4 *)((int)pvVar4 + 0xd8) = 0;\n        *(undefined4 *)((int)pvVar4 + 0xcc) = 0xffffffff;\n        *(undefined4 *)((int)pvVar4 + 200) = 0xffffffff;\n      }\n      iVar3 = param_2;\n      local_4 = 0xffffffff;\n      *(void **)(*(int *)((int)in_ECX + 0xd4) + param_2 * 4) = pvVar4;\n      FUN_10006fb0(pgVar2,in_ECX);\n      param_2 = iVar3 + 1;\n    } while (param_2 < *(int *)((int)in_ECX + 0xd0));\n  }\n  ExceptionList = local_c;\n  return;\n}\n\n", 
+  "is_thunk": false, 
+  "name": "FUN_10006fb0", 
+  "assembly": "  10006fb0:  PUSH -0x1\n  10006fb2:  PUSH 0x100f37cb\n  10006fb7:  MOV EAX,FS:[0x0]\n  10006fbd:  PUSH EAX\n  10006fbe:  MOV dword ptr FS:[0x0],ESP\n  10006fc5:  PUSH ECX\n  10006fc6:  PUSH EBX\n  10006fc7:  PUSH EBP\n  10006fc8:  MOV EBP,dword ptr [ESP + 0x1c]\n  10006fcc:  PUSH ESI\n  10006fcd:  PUSH EDI\n  10006fce:  MOV EDI,ECX\n  10006fd0:  MOV ECX,dword ptr [0x1015d3a8]\n  10006fd6:  PUSH EBP\n  10006fd7:  PUSH 0x4\n  10006fd9:  PUSH EDI\n  10006fda:  CALL 0x10030810\n  10006fdf:  MOV ECX,dword ptr [0x1015d3a8]\n  10006fe5:  PUSH EBP\n  10006fe6:  LEA EAX,[ESP + 0x28]\n  10006fea:  PUSH 0x4\n  10006fec:  PUSH EAX\n  10006fed:  CALL 0x10030810\n  10006ff2:  MOV ECX,dword ptr [ESP + 0x24]\n  10006ff6:  PUSH EBP\n  10006ff7:  LEA EDX,[EDI + 0x4]\n  10006ffa:  PUSH ECX\n  10006ffb:  MOV ECX,dword ptr [0x1015d3a8]\n  10007001:  PUSH EDX\n  10007002:  CALL 0x10030810\n  10007007:  MOV EAX,dword ptr [ESP + 0x24]\n  1000700b:  XOR EBX,EBX\n  1000700d:  PUSH EBP\n  1000700e:  LEA ECX,[EDI + 0x44]\n  10007011:  PUSH 0xc\n  10007013:  MOV byte ptr [EAX + EDI*0x1 + 0x4],BL\n  10007017:  PUSH ECX\n  10007018:  MOV ECX,dword ptr [0x1015d3a8]\n  1000701e:  CALL 0x10030810\n  10007023:  MOV ECX,dword ptr [0x1015d3a8]\n  10007029:  PUSH EBP\n  1000702a:  LEA EDX,[EDI + 0x50]\n  1000702d:  PUSH 0x10\n  1000702f:  PUSH EDX\n  10007030:  CALL 0x10030810\n  10007035:  MOV ECX,dword ptr [0x1015d3a8]\n  1000703b:  PUSH EBP\n  1000703c:  LEA EAX,[EDI + 0x60]\n  1000703f:  PUSH 0x24\n  10007041:  PUSH EAX\n  10007042:  CALL 0x10030810\n  10007047:  PUSH EBP\n  10007048:  LEA ECX,[EDI + 0x84]\n  1000704e:  PUSH 0x4\n  10007050:  PUSH ECX\n  10007051:  MOV ECX,dword ptr [0x1015d3a8]\n  10007057:  CALL 0x10030810\n  1000705c:  MOV ECX,dword ptr [0x1015d3a8]\n  10007062:  PUSH EBP\n  10007063:  LEA EDX,[EDI + 0x88]\n  10007069:  PUSH 0x40\n  1000706b:  PUSH EDX\n  1000706c:  CALL 0x10030810\n  10007071:  MOV ECX,dword ptr [0x1015d3a8]\n  10007077:  PUSH EBP\n  10007078:  LEA EAX,[EDI + 0xc8]\n  1000707e:  PUSH 0x4\n  10007080:  PUSH EAX\n  10007081:  CALL 0x10030810\n  10007086:  PUSH EBP\n  10007087:  LEA ECX,[EDI + 0xcc]\n  1000708d:  PUSH 0x4\n  1000708f:  PUSH ECX\n  10007090:  MOV ECX,dword ptr [0x1015d3a8]\n  10007096:  CALL 0x10030810\n  1000709b:  MOV ECX,dword ptr [0x1015d3a8]\n  100070a1:  LEA ESI,[EDI + 0xd0]\n  100070a7:  PUSH EBP\n  100070a8:  PUSH 0x4\n  100070aa:  PUSH ESI\n  100070ab:  CALL 0x10030810\n  100070b0:  MOV EAX,dword ptr [ESI]\n  100070b2:  MOV EDX,dword ptr [ESP + 0x28]\n  100070b6:  SHL EAX,0x2\n  100070b9:  PUSH EAX\n  100070ba:  MOV dword ptr [EDI + 0xd8],EDX\n  100070c0:  CALL 0x100e4a16\n  100070c5:  MOV dword ptr [EDI + 0xd4],EAX\n  100070cb:  MOV EAX,dword ptr [ESI]\n  100070cd:  ADD ESP,0x4\n  100070d0:  CMP EAX,EBX\n  100070d2:  MOV dword ptr [ESP + 0x28],EBX\n  100070d6:  JLE 0x100071ac\n  100070dc:  PUSH 0x13c\n  100070e1:  CALL 0x100e4a16\n  100070e6:  MOV ESI,EAX\n  100070e8:  ADD ESP,0x4\n  100070eb:  MOV dword ptr [ESP + 0x10],ESI\n  100070ef:  CMP ESI,EBX\n  100070f1:  MOV dword ptr [ESP + 0x1c],EBX\n  100070f5:  JZ 0x10007173\n  100070f7:  MOV dword ptr [ESI + 0x44],EBX\n  100070fa:  MOV dword ptr [ESI + 0x48],EBX\n  100070fd:  MOV dword ptr [ESI + 0x4c],EBX\n  10007100:  LEA ECX,[ESI + 0x88]\n  10007106:  MOV dword ptr [ESI + 0x58],EBX\n  10007109:  MOV dword ptr [ESI + 0x54],EBX\n  1000710c:  MOV dword ptr [ESI + 0x50],EBX\n  1000710f:  MOV dword ptr [ESI + 0x5c],0x3f800000\n  10007116:  CALL 0x10025110\n  1000711b:  MOV dword ptr [ESI + 0xdc],EBX\n  10007121:  MOV dword ptr [ESI + 0xe0],EBX\n  10007127:  MOV dword ptr [ESI + 0xe4],EBX\n  1000712d:  LEA ECX,[ESI + 0xfc]\n  10007133:  MOV dword ptr [ESI + 0xf0],EBX\n  10007139:  MOV dword ptr [ESI + 0xec],EBX\n  1000713f:  MOV dword ptr [ESI + 0xe8],EBX\n  10007145:  MOV dword ptr [ESI + 0xf4],0x3f800000\n  1000714f:  CALL 0x10025110\n  10007154:  OR ECX,0xffffffff\n  10007157:  MOV dword ptr [ESI + 0xd4],EBX\n  1000715d:  MOV dword ptr [ESI + 0xd8],EBX\n  10007163:  MOV dword ptr [ESI + 0xcc],ECX\n  10007169:  MOV dword ptr [ESI + 0xc8],ECX\n  1000716f:  MOV EAX,ESI\n  10007171:  JMP 0x10007178\n  10007173:  XOR EAX,EAX\n  10007175:  OR ECX,0xffffffff\n  10007178:  MOV ESI,dword ptr [ESP + 0x28]\n  1000717c:  MOV dword ptr [ESP + 0x1c],ECX\n  10007180:  MOV ECX,dword ptr [EDI + 0xd4]\n  10007186:  PUSH EDI\n  10007187:  PUSH EBP\n  10007188:  MOV dword ptr [ECX + ESI*0x4],EAX\n  1000718b:  MOV EDX,dword ptr [EDI + 0xd4]\n  10007191:  MOV ECX,dword ptr [EDX + ESI*0x4]\n  10007194:  CALL 0x10006fb0\n  10007199:  MOV EAX,dword ptr [EDI + 0xd0]\n  1000719f:  INC ESI\n  100071a0:  CMP ESI,EAX\n  100071a2:  MOV dword ptr [ESP + 0x28],ESI\n  100071a6:  JL 0x100070dc\n  100071ac:  MOV ECX,dword ptr [ESP + 0x14]\n  100071b0:  POP EDI\n  100071b1:  POP ESI\n  100071b2:  POP EBP\n  100071b3:  POP EBX\n  100071b4:  MOV dword ptr FS:[0x0],ECX\n  100071bb:  ADD ESP,0x10\n  100071be:  RET 0x8", 
+  "callers": [
+    {
+      "address": "0x10006fb0", 
+      "name": "FUN_10006fb0"
+    }, 
+    {
+      "address": "0x10007da0", 
+      "name": "FUN_10007da0"
+    }
+  ]
+}

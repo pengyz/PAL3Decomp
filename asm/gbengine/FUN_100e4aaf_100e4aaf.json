@@ -1,0 +1,74 @@
+{
+  "address": "0x100e4aaf", 
+  "size_bytes": 81, 
+  "calling_convention": "unknown", 
+  "signature": "undefined FUN_100e4aaf(undefined4 param_1, undefined4 param_2, undefined4 param_3, undefined4 param_4)", 
+  "callees": [], 
+  "global_refs": [
+    {
+      "address": "0x10110368", 
+      "type": null, 
+      "name": "DAT_10110368"
+    }, 
+    {
+      "address": "0x100e7a3c", 
+      "type": null, 
+      "name": "DAT_100e7a3c"
+    }, 
+    {
+      "address": "0xffdff000", 
+      "type": "void *32", 
+      "name": "DAT_ffdff000"
+    }, 
+    {
+      "address": "0x-000001c", 
+      "type": null, 
+      "name": "DAT_-000001c"
+    }, 
+    {
+      "address": "0x-0000008", 
+      "type": null, 
+      "name": "DAT_-0000008"
+    }, 
+    {
+      "address": "0x0000000c", 
+      "type": null, 
+      "name": "DAT_0000000c"
+    }, 
+    {
+      "address": "0x00000004", 
+      "type": null, 
+      "name": "DAT_00000004"
+    }, 
+    {
+      "address": "0x00000008", 
+      "type": null, 
+      "name": "DAT_00000008"
+    }, 
+    {
+      "address": "0x00000010", 
+      "type": null, 
+      "name": "DAT_00000010"
+    }, 
+    {
+      "address": "0x-0000014", 
+      "type": null, 
+      "name": "DAT_-0000014"
+    }
+  ], 
+  "has_custom_name": false, 
+  "decompiled_c": "\nvoid FUN_100e4aaf(undefined4 param_1,undefined4 param_2,int param_3,code *param_4)\n\n{\n  void *local_14;\n  undefined *puStack_10;\n  undefined *puStack_c;\n  undefined4 local_8;\n  \n  puStack_c = &DAT_10110368;\n  puStack_10 = &LAB_100e7a3c;\n  local_14 = ExceptionList;\n  local_8 = 0;\n  ExceptionList = &local_14;\n  while( true ) {\n    param_3 = param_3 + -1;\n    if (param_3 < 0) break;\n    (*param_4)();\n  }\n  ExceptionList = local_14;\n  return;\n}\n\n", 
+  "is_thunk": false, 
+  "name": "FUN_100e4aaf", 
+  "assembly": "  100e4aaf:  PUSH EBP\n  100e4ab0:  MOV EBP,ESP\n  100e4ab2:  PUSH -0x1\n  100e4ab4:  PUSH 0x10110368\n  100e4ab9:  PUSH 0x100e7a3c\n  100e4abe:  MOV EAX,FS:[0x0]\n  100e4ac4:  PUSH EAX\n  100e4ac5:  MOV dword ptr FS:[0x0],ESP\n  100e4acc:  PUSH ECX\n  100e4acd:  PUSH ECX\n  100e4ace:  PUSH EBX\n  100e4acf:  PUSH ESI\n  100e4ad0:  PUSH EDI\n  100e4ad1:  MOV dword ptr [EBP + -0x18],ESP\n  100e4ad4:  AND dword ptr [EBP + -0x4],0x0\n  100e4ad8:  DEC dword ptr [EBP + 0x10]\n  100e4adb:  JS 0x100e4af8\n  100e4add:  MOV ECX,dword ptr [EBP + 0x8]\n  100e4ae0:  SUB ECX,dword ptr [EBP + 0xc]\n  100e4ae3:  MOV dword ptr [EBP + 0x8],ECX\n  100e4ae6:  CALL dword ptr [EBP + 0x14]\n  100e4ae9:  JMP 0x100e4ad8\n  100e4af8:  OR dword ptr [EBP + -0x4],0xffffffff\n  100e4afc:  MOV ECX,dword ptr [EBP + -0x10]\n  100e4aff:  MOV dword ptr FS:[0x0],ECX\n  100e4b06:  POP EDI\n  100e4b07:  POP ESI\n  100e4b08:  POP EBX\n  100e4b09:  LEAVE\n  100e4b0a:  RET 0x10", 
+  "callers": [
+    {
+      "address": "0x100e4a97", 
+      "name": "FUN_100e4a97"
+    }, 
+    {
+      "address": "0x100e5019", 
+      "name": "FUN_100e5019"
+    }
+  ]
+}

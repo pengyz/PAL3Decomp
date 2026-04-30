@@ -1,0 +1,20 @@
+{
+  "address": "0x10025010", 
+  "size_bytes": 77, 
+  "calling_convention": "__thiscall", 
+  "signature": "bool __thiscall IsValid(gbVec3D * this)", 
+  "callees": [], 
+  "global_refs": [
+    {
+      "address": "0x100f53a0", 
+      "type": null, 
+      "name": "DAT_100f53a0"
+    }
+  ], 
+  "has_custom_name": true, 
+  "decompiled_c": "\n/* public: bool __thiscall gbVec3D::IsValid(void)const  */\n\nbool __thiscall gbVec3D::IsValid(gbVec3D *this)\n\n{\n                    /* 0x25010  652  ?IsValid@gbVec3D@@QBE_NXZ */\n  if (*(float *)this * *(float *)this < 0.0) {\n    return false;\n  }\n  if (*(float *)(this + 4) * *(float *)(this + 4) < 0.0) {\n    return false;\n  }\n  if (*(float *)(this + 8) * *(float *)(this + 8) < 0.0) {\n    return false;\n  }\n  return true;\n}\n\n", 
+  "is_thunk": false, 
+  "name": "IsValid", 
+  "assembly": "  10025010:  FLD dword ptr [ECX]\n  10025012:  FLD ST0\n  10025014:  FMUL ST1\n  10025016:  FCOMP dword ptr [0x100f53a0]\n  1002501c:  FNSTSW AX\n  1002501e:  TEST AH,0x1\n  10025021:  FSTP ST0\n  10025023:  JZ 0x10025028\n  10025025:  XOR AL,AL\n  10025027:  RET\n  10025028:  FLD dword ptr [ECX + 0x4]\n  1002502b:  FLD ST0\n  1002502d:  FMUL ST1\n  1002502f:  FCOMP dword ptr [0x100f53a0]\n  10025035:  FNSTSW AX\n  10025037:  TEST AH,0x1\n  1002503a:  FSTP ST0\n  1002503c:  JZ 0x10025041\n  1002503e:  XOR AL,AL\n  10025040:  RET\n  10025041:  FLD dword ptr [ECX + 0x8]\n  10025044:  FLD ST0\n  10025046:  FMUL ST1\n  10025048:  FCOMP dword ptr [0x100f53a0]\n  1002504e:  FNSTSW AX\n  10025050:  TEST AH,0x1\n  10025053:  FSTP ST0\n  10025055:  JZ 0x1002505a\n  10025057:  XOR AL,AL\n  10025059:  RET\n  1002505a:  MOV AL,0x1\n  1002505c:  RET", 
+  "callers": []
+}

@@ -1,0 +1,72 @@
+{
+  "address": "0x100130b0", 
+  "size_bytes": 137, 
+  "calling_convention": "__thiscall", 
+  "signature": "void __thiscall ~gbVolModNode(gbVolModNode * this)", 
+  "callees": [
+    {
+      "address": "0x1002f7f0", 
+      "name": "Release"
+    }, 
+    {
+      "address": "0x100e4a24", 
+      "name": "FUN_100e4a24"
+    }, 
+    {
+      "address": "0x1002ea60", 
+      "name": "~gbChain1D"
+    }, 
+    {
+      "address": "0x1002ea40", 
+      "name": "~gbChain1DNode"
+    }
+  ], 
+  "global_refs": [
+    {
+      "address": "0x100f3c08", 
+      "type": null, 
+      "name": "DAT_100f3c08"
+    }, 
+    {
+      "address": "0xffdff000", 
+      "type": "void *32", 
+      "name": "DAT_ffdff000"
+    }, 
+    {
+      "address": "0x-0000010", 
+      "type": null, 
+      "name": "DAT_-0000010"
+    }, 
+    {
+      "address": "0x100f542c", 
+      "type": "undefined *", 
+      "name": "DAT_100f542c"
+    }, 
+    {
+      "address": "0x-0000004", 
+      "type": null, 
+      "name": "DAT_-0000004"
+    }, 
+    {
+      "address": "0x100f5374", 
+      "type": "undefined *", 
+      "name": "DAT_100f5374"
+    }, 
+    {
+      "address": "0x100f5370", 
+      "type": "pointer", 
+      "name": "DAT_100f5370"
+    }, 
+    {
+      "address": "0x-000000c", 
+      "type": null, 
+      "name": "DAT_-000000c"
+    }
+  ], 
+  "has_custom_name": true, 
+  "decompiled_c": "\n/* public: virtual __thiscall gbVolModNode::~gbVolModNode(void) */\n\nvoid __thiscall gbVolModNode::~gbVolModNode(gbVolModNode *this)\n\n{\n  void *local_c;\n  undefined *puStack_8;\n  undefined4 local_4;\n  \n                    /* 0x130b0  172  ??1gbVolModNode@@UAE@XZ */\n  puStack_8 = &LAB_100f3c08;\n  local_c = ExceptionList;\n  ExceptionList = &local_c;\n  *(undefined ***)this = &_vftable_;\n  local_4 = 0;\n  if (*(gbRefObject **)(this + 0xd8) != (gbRefObject *)0x0) {\n    gbRefObject::Release(*(gbRefObject **)(this + 0xd8));\n  }\n  *(undefined ***)this = &gbVisNode::_vftable_;\n  local_4 = 1;\n  FUN_100e4a24(*(undefined4 *)(this + 0x1c));\n  *(undefined ***)this = &gbNBTreeNode::_vftable_;\n  local_4 = 2;\n  gbChain1D::~gbChain1D((gbChain1D *)(this + 0xc));\n  local_4 = 0xffffffff;\n  gbChain1DNode::~gbChain1DNode((gbChain1DNode *)this);\n  ExceptionList = local_c;\n  return;\n}\n\n", 
+  "is_thunk": false, 
+  "name": "~gbVolModNode", 
+  "assembly": "  100130b0:  PUSH -0x1\n  100130b2:  PUSH 0x100f3c08\n  100130b7:  MOV EAX,FS:[0x0]\n  100130bd:  PUSH EAX\n  100130be:  MOV dword ptr FS:[0x0],ESP\n  100130c5:  PUSH ECX\n  100130c6:  PUSH ESI\n  100130c7:  MOV ESI,ECX\n  100130c9:  MOV dword ptr [ESP + 0x4],ESI\n  100130cd:  MOV dword ptr [ESI],0x100f542c\n  100130d3:  MOV ECX,dword ptr [ESI + 0xd8]\n  100130d9:  MOV dword ptr [ESP + 0x10],0x0\n  100130e1:  TEST ECX,ECX\n  100130e3:  JZ 0x100130ea\n  100130e5:  CALL 0x1002f7f0\n  100130ea:  MOV dword ptr [ESI],0x100f5374\n  100130f0:  MOV EAX,dword ptr [ESI + 0x1c]\n  100130f3:  MOV dword ptr [ESP + 0x10],0x1\n  100130fb:  PUSH EAX\n  100130fc:  CALL 0x100e4a24\n  10013101:  ADD ESP,0x4\n  10013104:  MOV dword ptr [ESI],0x100f5370\n  1001310a:  LEA ECX,[ESI + 0xc]\n  1001310d:  MOV dword ptr [ESP + 0x10],0x2\n  10013115:  CALL 0x1002ea60\n  1001311a:  MOV ECX,ESI\n  1001311c:  MOV dword ptr [ESP + 0x10],0xffffffff\n  10013124:  CALL 0x1002ea40\n  10013129:  MOV ECX,dword ptr [ESP + 0x8]\n  1001312d:  POP ESI\n  1001312e:  MOV dword ptr FS:[0x0],ECX\n  10013135:  ADD ESP,0x10\n  10013138:  RET", 
+  "callers": []
+}

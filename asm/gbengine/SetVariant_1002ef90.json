@@ -1,0 +1,25 @@
+{
+  "address": "0x1002ef90", 
+  "size_bytes": 87, 
+  "calling_convention": "__thiscall", 
+  "signature": "void __thiscall SetVariant(gbNameVarBuf * this, uint param_1, void * param_2)", 
+  "callees": [], 
+  "global_refs": [
+    {
+      "address": "0x00000004", 
+      "type": null, 
+      "name": "DAT_00000004"
+    }, 
+    {
+      "address": "0x00000008", 
+      "type": null, 
+      "name": "DAT_00000008"
+    }
+  ], 
+  "has_custom_name": true, 
+  "decompiled_c": "\n/* public: void __thiscall gbNameVarBuf::SetVariant(unsigned int,void *) */\n\nvoid __thiscall gbNameVarBuf::SetVariant(gbNameVarBuf *this,uint param_1,void *param_2)\n\n{\n  uint *puVar1;\n  uint uVar2;\n  int iVar3;\n  uint *puVar4;\n  uint uVar5;\n  uint uVar6;\n  undefined4 *puVar7;\n  \n                    /* 0x2ef90  901  ?SetVariant@gbNameVarBuf@@QAEXIPAX@Z */\n  iVar3 = 0;\n  if (0 < *(int *)(this + 0x14)) {\n    puVar1 = *(uint **)(this + 0xc);\n    puVar4 = puVar1;\n    while (*puVar4 != param_1) {\n      iVar3 = iVar3 + 1;\n      puVar4 = puVar4 + 4;\n      if (*(int *)(this + 0x14) <= iVar3) {\n        return;\n      }\n    }\n    uVar6 = puVar1[iVar3 * 4 + 3];\n    uVar2 = puVar1[iVar3 * 4 + 1];\n    puVar7 = (undefined4 *)(puVar1[iVar3 * 4 + 2] + *(int *)this);\n                    /* WARNING: Load size is inaccurate */\n    for (uVar5 = uVar6 * uVar2 >> 2; uVar5 != 0; uVar5 = uVar5 - 1) {\n      *puVar7 = *param_2;\n      param_2 = (undefined4 *)((int)param_2 + 4);\n      puVar7 = puVar7 + 1;\n    }\n                    /* WARNING: Load size is inaccurate */\n    for (uVar6 = uVar6 * uVar2 & 3; uVar6 != 0; uVar6 = uVar6 - 1) {\n      *(undefined *)puVar7 = *param_2;\n      param_2 = (undefined4 *)((int)param_2 + 1);\n      puVar7 = (undefined4 *)((int)puVar7 + 1);\n    }\n  }\n  return;\n}\n\n", 
+  "is_thunk": false, 
+  "name": "SetVariant", 
+  "assembly": "  1002ef90:  PUSH EBX\n  1002ef91:  MOV EBX,ECX\n  1002ef93:  PUSH EBP\n  1002ef94:  XOR EAX,EAX\n  1002ef96:  MOV EDX,dword ptr [EBX + 0x14]\n  1002ef99:  PUSH ESI\n  1002ef9a:  TEST EDX,EDX\n  1002ef9c:  PUSH EDI\n  1002ef9d:  JLE 0x1002efe0\n  1002ef9f:  MOV ESI,dword ptr [EBX + 0xc]\n  1002efa2:  MOV EDI,dword ptr [ESP + 0x14]\n  1002efa6:  MOV ECX,ESI\n  1002efa8:  CMP dword ptr [ECX],EDI\n  1002efaa:  JZ 0x1002efbb\n  1002efac:  INC EAX\n  1002efad:  ADD ECX,0x10\n  1002efb0:  CMP EAX,EDX\n  1002efb2:  JL 0x1002efa8\n  1002efb4:  POP EDI\n  1002efb5:  POP ESI\n  1002efb6:  POP EBP\n  1002efb7:  POP EBX\n  1002efb8:  RET 0x8\n  1002efbb:  SHL EAX,0x4\n  1002efbe:  ADD EAX,ESI\n  1002efc0:  MOV EBP,dword ptr [EBX]\n  1002efc2:  MOV ESI,dword ptr [ESP + 0x18]\n  1002efc6:  MOV ECX,dword ptr [EAX + 0xc]\n  1002efc9:  MOV EDI,dword ptr [EAX + 0x8]\n  1002efcc:  IMUL ECX,dword ptr [EAX + 0x4]\n  1002efd0:  MOV EAX,ECX\n  1002efd2:  ADD EDI,EBP\n  1002efd4:  SHR ECX,0x2\n  1002efd7:  MOVSD.REP ES:EDI,ESI\n  1002efd9:  MOV ECX,EAX\n  1002efdb:  AND ECX,0x3\n  1002efde:  MOVSB.REP ES:EDI,ESI\n  1002efe0:  POP EDI\n  1002efe1:  POP ESI\n  1002efe2:  POP EBP\n  1002efe3:  POP EBX\n  1002efe4:  RET 0x8", 
+  "callers": []
+}

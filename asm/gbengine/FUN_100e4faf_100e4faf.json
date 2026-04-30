@@ -1,0 +1,144 @@
+{
+  "address": "0x100e4faf", 
+  "size_bytes": 106, 
+  "calling_convention": "unknown", 
+  "signature": "undefined FUN_100e4faf(undefined4 param_1, undefined4 param_2, undefined4 param_3, undefined4 param_4)", 
+  "callees": [
+    {
+      "address": "0x100e5019", 
+      "name": "FUN_100e5019"
+    }
+  ], 
+  "global_refs": [
+    {
+      "address": "0x10110378", 
+      "type": null, 
+      "name": "DAT_10110378"
+    }, 
+    {
+      "address": "0x100e7a3c", 
+      "type": null, 
+      "name": "DAT_100e7a3c"
+    }, 
+    {
+      "address": "0xffdff000", 
+      "type": "void *32", 
+      "name": "DAT_ffdff000"
+    }, 
+    {
+      "address": "0x-0000024", 
+      "type": null, 
+      "name": "DAT_-0000024"
+    }, 
+    {
+      "address": "0x-0000008", 
+      "type": null, 
+      "name": "DAT_-0000008"
+    }, 
+    {
+      "address": "0x-0000020", 
+      "type": null, 
+      "name": "DAT_-0000020"
+    }, 
+    {
+      "address": "0x0000000c", 
+      "type": null, 
+      "name": "DAT_0000000c"
+    }, 
+    {
+      "address": "0x00000004", 
+      "type": null, 
+      "name": "DAT_00000004"
+    }, 
+    {
+      "address": "0x00000010", 
+      "type": null, 
+      "name": "DAT_00000010"
+    }, 
+    {
+      "address": "0x00000008", 
+      "type": null, 
+      "name": "DAT_00000008"
+    }, 
+    {
+      "address": "0x-0000014", 
+      "type": null, 
+      "name": "DAT_-0000014"
+    }
+  ], 
+  "has_custom_name": false, 
+  "decompiled_c": "\nvoid FUN_100e4faf(undefined4 param_1,undefined4 param_2,int param_3,code *param_4)\n\n{\n  int local_20;\n  void *local_14;\n  undefined *puStack_10;\n  undefined *puStack_c;\n  undefined4 local_8;\n  \n  puStack_c = &DAT_10110378;\n  puStack_10 = &LAB_100e7a3c;\n  local_14 = ExceptionList;\n  local_8 = 0;\n  ExceptionList = &local_14;\n  for (local_20 = 0; local_20 < param_3; local_20 = local_20 + 1) {\n    (*param_4)();\n  }\n  local_8 = 0xffffffff;\n  FUN_100e5019();\n  ExceptionList = local_14;\n  return;\n}\n\n", 
+  "is_thunk": false, 
+  "name": "FUN_100e4faf", 
+  "assembly": "  100e4faf:  PUSH EBP\n  100e4fb0:  MOV EBP,ESP\n  100e4fb2:  PUSH -0x1\n  100e4fb4:  PUSH 0x10110378\n  100e4fb9:  PUSH 0x100e7a3c\n  100e4fbe:  MOV EAX,FS:[0x0]\n  100e4fc4:  PUSH EAX\n  100e4fc5:  MOV dword ptr FS:[0x0],ESP\n  100e4fcc:  SUB ESP,0x10\n  100e4fcf:  PUSH EBX\n  100e4fd0:  PUSH ESI\n  100e4fd1:  PUSH EDI\n  100e4fd2:  XOR EAX,EAX\n  100e4fd4:  MOV dword ptr [EBP + -0x20],EAX\n  100e4fd7:  MOV dword ptr [EBP + -0x4],EAX\n  100e4fda:  MOV dword ptr [EBP + -0x1c],EAX\n  100e4fdd:  MOV EAX,dword ptr [EBP + -0x1c]\n  100e4fe0:  CMP EAX,dword ptr [EBP + 0x10]\n  100e4fe3:  JGE 0x100e4ff8\n  100e4fe5:  MOV ESI,dword ptr [EBP + 0x8]\n  100e4fe8:  MOV ECX,ESI\n  100e4fea:  CALL dword ptr [EBP + 0x14]\n  100e4fed:  ADD ESI,dword ptr [EBP + 0xc]\n  100e4ff0:  MOV dword ptr [EBP + 0x8],ESI\n  100e4ff3:  INC dword ptr [EBP + -0x1c]\n  100e4ff6:  JMP 0x100e4fdd\n  100e4ff8:  MOV dword ptr [EBP + -0x20],0x1\n  100e4fff:  OR dword ptr [EBP + -0x4],0xffffffff\n  100e5003:  CALL 0x100e5019\n  100e5008:  MOV ECX,dword ptr [EBP + -0x10]\n  100e500b:  MOV dword ptr FS:[0x0],ECX\n  100e5012:  POP EDI\n  100e5013:  POP ESI\n  100e5014:  POP EBX\n  100e5015:  LEAVE\n  100e5016:  RET 0x14", 
+  "callers": [
+    {
+      "address": "0x10011c60", 
+      "name": "FUN_10011c60"
+    }, 
+    {
+      "address": "0x10013a30", 
+      "name": "FUN_10013a30"
+    }, 
+    {
+      "address": "0x10015e80", 
+      "name": "LoadFromStream"
+    }, 
+    {
+      "address": "0x1002bca0", 
+      "name": "LoadFromFile"
+    }, 
+    {
+      "address": "0x1002bca0", 
+      "name": "LoadFromFile"
+    }, 
+    {
+      "address": "0x1002bca0", 
+      "name": "LoadFromFile"
+    }, 
+    {
+      "address": "0x100210c0", 
+      "name": "gbVertPoolMgr"
+    }, 
+    {
+      "address": "0x100210c0", 
+      "name": "gbVertPoolMgr"
+    }, 
+    {
+      "address": "0x10030240", 
+      "name": "Init"
+    }, 
+    {
+      "address": "0x10030240", 
+      "name": "Init"
+    }, 
+    {
+      "address": "0x10030240", 
+      "name": "Init"
+    }, 
+    {
+      "address": "0x10007600", 
+      "name": "FUN_10007600"
+    }, 
+    {
+      "address": "0x10007da0", 
+      "name": "FUN_10007da0"
+    }, 
+    {
+      "address": "0x10008140", 
+      "name": "FUN_10008140"
+    }, 
+    {
+      "address": "0x1000a100", 
+      "name": "FUN_1000a100"
+    }, 
+    {
+      "address": "0x1000a100", 
+      "name": "FUN_1000a100"
+    }, 
+    {
+      "address": "0x1000a100", 
+      "name": "FUN_1000a100"
+    }
+  ]
+}

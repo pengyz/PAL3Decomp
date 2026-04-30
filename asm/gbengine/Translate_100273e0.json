@@ -1,0 +1,20 @@
+{
+  "address": "0x100273e0", 
+  "size_bytes": 104, 
+  "calling_convention": "__thiscall", 
+  "signature": "void __thiscall Translate(gbMatrixStack * this, gbVec3D * param_1)", 
+  "callees": [], 
+  "global_refs": [
+    {
+      "address": "0x00000004", 
+      "type": null, 
+      "name": "DAT_00000004"
+    }
+  ], 
+  "has_custom_name": true, 
+  "decompiled_c": "\n/* public: void __thiscall gbMatrixStack::Translate(struct gbVec3D &) */\n\nvoid __thiscall gbMatrixStack::Translate(gbMatrixStack *this,gbVec3D *param_1)\n\n{\n  float *pfVar1;\n  \n                    /* 0x273e0  929  ?Translate@gbMatrixStack@@QAEXAAUgbVec3D@@@Z */\n  pfVar1 = (float *)(*(int *)(this + 8) * 0x40 + *(int *)this);\n  pfVar1[0xc] = *pfVar1 * *(float *)param_1 +\n                pfVar1[8] * *(float *)(param_1 + 8) + pfVar1[4] * *(float *)(param_1 + 4) +\n                pfVar1[0xc];\n  pfVar1[0xd] = pfVar1[9] * *(float *)(param_1 + 8) +\n                pfVar1[1] * *(float *)param_1 + pfVar1[5] * *(float *)(param_1 + 4) + pfVar1[0xd];\n  pfVar1[0xe] = pfVar1[10] * *(float *)(param_1 + 8) +\n                pfVar1[2] * *(float *)param_1 + pfVar1[6] * *(float *)(param_1 + 4) + pfVar1[0xe];\n  *(undefined4 *)(this + 0xc) = 0;\n  return;\n}\n\n", 
+  "is_thunk": false, 
+  "name": "Translate", 
+  "assembly": "  100273e0:  MOV EAX,dword ptr [ECX + 0x8]\n  100273e3:  MOV EDX,dword ptr [ECX]\n  100273e5:  SHL EAX,0x6\n  100273e8:  ADD EAX,EDX\n  100273ea:  MOV EDX,dword ptr [ESP + 0x4]\n  100273ee:  FLD dword ptr [EAX + 0x10]\n  100273f1:  FMUL dword ptr [EDX + 0x4]\n  100273f4:  FLD dword ptr [EAX + 0x20]\n  100273f7:  FMUL dword ptr [EDX + 0x8]\n  100273fa:  FADDP\n  100273fc:  FLD dword ptr [EAX]\n  100273fe:  FMUL dword ptr [EDX]\n  10027400:  FADDP\n  10027402:  FADD dword ptr [EAX + 0x30]\n  10027405:  FSTP dword ptr [EAX + 0x30]\n  10027408:  FLD dword ptr [EAX + 0x14]\n  1002740b:  FMUL dword ptr [EDX + 0x4]\n  1002740e:  FLD dword ptr [EAX + 0x4]\n  10027411:  FMUL dword ptr [EDX]\n  10027413:  FADDP\n  10027415:  FLD dword ptr [EAX + 0x24]\n  10027418:  FMUL dword ptr [EDX + 0x8]\n  1002741b:  FADDP\n  1002741d:  FADD dword ptr [EAX + 0x34]\n  10027420:  FSTP dword ptr [EAX + 0x34]\n  10027423:  FLD dword ptr [EAX + 0x18]\n  10027426:  FMUL dword ptr [EDX + 0x4]\n  10027429:  FLD dword ptr [EAX + 0x8]\n  1002742c:  FMUL dword ptr [EDX]\n  1002742e:  FADDP\n  10027430:  FLD dword ptr [EAX + 0x28]\n  10027433:  FMUL dword ptr [EDX + 0x8]\n  10027436:  FADDP\n  10027438:  FADD dword ptr [EAX + 0x38]\n  1002743b:  FSTP dword ptr [EAX + 0x38]\n  1002743e:  MOV dword ptr [ECX + 0xc],0x0\n  10027445:  RET 0x4", 
+  "callers": []
+}

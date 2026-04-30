@@ -1,0 +1,45 @@
+{
+  "address": "0x1000ec20", 
+  "size_bytes": 146, 
+  "calling_convention": "unknown", 
+  "signature": "undefined FUN_1000ec20(undefined4 param_1)", 
+  "callees": [
+    {
+      "address": "0x1001d6d0", 
+      "name": "NewRenderEffect"
+    }
+  ], 
+  "global_refs": [
+    {
+      "address": "0x00000004", 
+      "type": null, 
+      "name": "DAT_00000004"
+    }, 
+    {
+      "address": "0x1011f37c", 
+      "type": "string", 
+      "name": "DAT_1011f37c"
+    }, 
+    {
+      "address": "0x1015d388", 
+      "type": "double", 
+      "name": "DAT_1015d388"
+    }, 
+    {
+      "address": "0x100f55d8", 
+      "type": "undefined4", 
+      "name": "DAT_100f55d8"
+    }
+  ], 
+  "has_custom_name": false, 
+  "decompiled_c": "\nvoid FUN_1000ec20(int param_1)\n\n{\n  gbRenderEffect *pgVar1;\n  int in_ECX;\n  int iVar2;\n  undefined4 *puVar3;\n  int iVar4;\n  undefined4 *puVar5;\n  \n  *(int *)(in_ECX + 0x1780) = param_1;\n  pgVar1 = gbEffectMgr::NewRenderEffect\n                     (*(gbEffectMgr **)(param_1 + 200),s_gfxscript_blade_gbf_1011f37c,0);\n  *(gbRenderEffect **)(in_ECX + 0x1788) = pgVar1;\n  *(undefined4 *)(in_ECX + 0x178c) = 0x3f800000;\n  puVar3 = (undefined4 *)(in_ECX + 0xa8);\n  iVar4 = 0x20;\n  *(float *)(in_ECX + 0x1784) = (float)g_CurrentTime;\n  do {\n    puVar3[-0x2a] = 0;\n    puVar3[-0x29] = 0;\n    puVar5 = puVar3 + -0x28;\n    *puVar3 = 0x3dcccccd;\n    puVar3[1] = *(undefined4 *)(in_ECX + 0x1784);\n    puVar3[2] = 0;\n    puVar3[3] = 0;\n    puVar3[4] = 0;\n    puVar3 = puVar3 + 0x2f;\n    iVar4 = iVar4 + -1;\n    for (iVar2 = 0x28; iVar2 != 0; iVar2 = iVar2 + -1) {\n      *puVar5 = 0;\n      puVar5 = puVar5 + 1;\n    }\n  } while (iVar4 != 0);\n  return;\n}\n\n", 
+  "is_thunk": false, 
+  "name": "FUN_1000ec20", 
+  "assembly": "  1000ec20:  MOV EAX,dword ptr [ESP + 0x4]\n  1000ec24:  PUSH EBX\n  1000ec25:  PUSH EBP\n  1000ec26:  PUSH ESI\n  1000ec27:  MOV ESI,ECX\n  1000ec29:  XOR EBX,EBX\n  1000ec2b:  PUSH EDI\n  1000ec2c:  PUSH EBX\n  1000ec2d:  MOV dword ptr [ESI + 0x1780],EAX\n  1000ec33:  MOV EAX,dword ptr [EAX + 0xc8]\n  1000ec39:  PUSH 0x1011f37c\n  1000ec3e:  MOV ECX,EAX\n  1000ec40:  CALL 0x1001d6d0\n  1000ec45:  MOV dword ptr [ESI + 0x1788],EAX\n  1000ec4b:  MOV dword ptr [ESI + 0x178c],0x3f800000\n  1000ec55:  FLD qword ptr [0x1015d388]\n  1000ec5b:  LEA EDX,[ESI + 0xa8]\n  1000ec61:  MOV EBP,0x20\n  1000ec66:  FSTP dword ptr [ESI + 0x1784]\n  1000ec6c:  MOV dword ptr [EDX + 0xffffff58],EBX\n  1000ec72:  MOV dword ptr [EDX + 0xffffff5c],EBX\n  1000ec78:  MOV EAX,[0x100f55d8]\n  1000ec7d:  LEA EDI,[EDX + 0xffffff60]\n  1000ec83:  MOV dword ptr [EDX],EAX\n  1000ec85:  MOV ECX,dword ptr [ESI + 0x1784]\n  1000ec8b:  MOV dword ptr [EDX + 0x4],ECX\n  1000ec8e:  MOV dword ptr [EDX + 0x8],EBX\n  1000ec91:  MOV dword ptr [EDX + 0xc],EBX\n  1000ec94:  MOV dword ptr [EDX + 0x10],EBX\n  1000ec97:  MOV ECX,0x28\n  1000ec9c:  XOR EAX,EAX\n  1000ec9e:  ADD EDX,0xbc\n  1000eca4:  DEC EBP\n  1000eca5:  STOSD.REP ES:EDI\n  1000eca7:  JNZ 0x1000ec6c\n  1000eca9:  MOV EAX,ESI\n  1000ecab:  POP EDI\n  1000ecac:  POP ESI\n  1000ecad:  POP EBP\n  1000ecae:  POP EBX\n  1000ecaf:  RET 0x4", 
+  "callers": [
+    {
+      "address": "0x10014b10", 
+      "name": "gbSceneGraph"
+    }
+  ]
+}

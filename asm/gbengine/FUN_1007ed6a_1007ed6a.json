@@ -1,0 +1,40 @@
+{
+  "address": "0x1007ed6a", 
+  "size_bytes": 56, 
+  "calling_convention": "unknown", 
+  "signature": "undefined FUN_1007ed6a(undefined4 param_1, undefined8 param_2, undefined param_3, undefined param_4, undefined param_5, undefined param_6, undefined param_7, undefined param_8, undefined param_9, undefined param_10, undefined4 param_11)", 
+  "callees": [], 
+  "global_refs": [
+    {
+      "address": "0x00000008", 
+      "type": null, 
+      "name": "DAT_00000008"
+    }, 
+    {
+      "address": "0x00000004", 
+      "type": null, 
+      "name": "DAT_00000004"
+    }, 
+    {
+      "address": "0x00000010", 
+      "type": null, 
+      "name": "DAT_00000010"
+    }, 
+    {
+      "address": "0x1010676c", 
+      "type": "undefined *", 
+      "name": "DAT_1010676c"
+    }
+  ], 
+  "has_custom_name": false, 
+  "decompiled_c": "\nvoid FUN_1007ed6a(undefined4 param_1,undefined8 param_2,undefined4 *param_11)\n\n{\n  undefined4 *in_ECX;\n  int iVar1;\n  undefined4 *puVar2;\n  \n  *(undefined8 *)(in_ECX + 6) = param_2;\n  in_ECX[2] = 0;\n  in_ECX[3] = 0;\n  in_ECX[4] = param_1;\n  in_ECX[1] = 0xe;\n  *in_ECX = &PTR_FUN_1010676c;\n  puVar2 = in_ECX + 8;\n  for (iVar1 = 8; iVar1 != 0; iVar1 = iVar1 + -1) {\n    *puVar2 = *param_11;\n    param_11 = param_11 + 1;\n    puVar2 = puVar2 + 1;\n  }\n  return;\n}\n\n", 
+  "is_thunk": false, 
+  "name": "FUN_1007ed6a", 
+  "assembly": "  1007ed6a:  FLD qword ptr [ESP + 0x8]\n  1007ed6e:  MOV EAX,ECX\n  1007ed70:  MOV ECX,dword ptr [ESP + 0x4]\n  1007ed74:  FSTP qword ptr [EAX + 0x18]\n  1007ed77:  AND dword ptr [EAX + 0x8],0x0\n  1007ed7b:  AND dword ptr [EAX + 0xc],0x0\n  1007ed7f:  PUSH ESI\n  1007ed80:  MOV ESI,dword ptr [ESP + 0x14]\n  1007ed84:  PUSH EDI\n  1007ed85:  PUSH 0x8\n  1007ed87:  MOV dword ptr [EAX + 0x10],ECX\n  1007ed8a:  POP ECX\n  1007ed8b:  LEA EDI,[EAX + 0x20]\n  1007ed8e:  MOV dword ptr [EAX + 0x4],0xe\n  1007ed95:  MOV dword ptr [EAX],0x1010676c\n  1007ed9b:  MOVSD.REP ES:EDI,ESI\n  1007ed9d:  POP EDI\n  1007ed9e:  POP ESI\n  1007ed9f:  RET 0x10", 
+  "callers": [
+    {
+      "address": "0x1005b3d2", 
+      "name": "FUN_1005b3d2"
+    }
+  ]
+}

@@ -1,0 +1,60 @@
+{
+  "address": "0x100e8db5", 
+  "size_bytes": 62, 
+  "calling_convention": "unknown", 
+  "signature": "undefined FUN_100e8db5(void)", 
+  "callees": [
+    {
+      "address": "0x00000023", 
+      "name": "HeapAlloc"
+    }
+  ], 
+  "global_refs": [
+    {
+      "address": "0x10168760", 
+      "type": "undefined4", 
+      "name": "DAT_10168760"
+    }, 
+    {
+      "address": "0x100f50b8", 
+      "type": "pointer", 
+      "name": "DAT_100f50b8"
+    }, 
+    {
+      "address": "0x1016875c", 
+      "type": "undefined4", 
+      "name": "DAT_1016875c"
+    }, 
+    {
+      "address": "0x10168754", 
+      "type": "undefined4", 
+      "name": "DAT_10168754"
+    }, 
+    {
+      "address": "0x10168758", 
+      "type": "undefined4", 
+      "name": "DAT_10168758"
+    }, 
+    {
+      "address": "0x10168750", 
+      "type": "undefined4", 
+      "name": "DAT_10168750"
+    }, 
+    {
+      "address": "0x10168748", 
+      "type": "undefined4", 
+      "name": "DAT_10168748"
+    }
+  ], 
+  "has_custom_name": false, 
+  "decompiled_c": "\nundefined4 FUN_100e8db5(void)\n\n{\n  DAT_1016875c = HeapAlloc(DAT_10168760,0,0x140);\n  if (DAT_1016875c == (LPVOID)0x0) {\n    return 0;\n  }\n  DAT_10168754 = 0;\n  DAT_10168758 = 0;\n  DAT_10168750 = DAT_1016875c;\n  DAT_10168748 = 0x10;\n  return 1;\n}\n\n", 
+  "is_thunk": false, 
+  "name": "FUN_100e8db5", 
+  "assembly": "  100e8db5:  PUSH 0x140\n  100e8dba:  PUSH 0x0\n  100e8dbc:  PUSH dword ptr [0x10168760]\n  100e8dc2:  CALL dword ptr [0x100f50b8]\n  100e8dc8:  TEST EAX,EAX\n  100e8dca:  MOV [0x1016875c],EAX\n  100e8dcf:  JNZ 0x100e8dd2\n  100e8dd1:  RET\n  100e8dd2:  AND dword ptr [0x10168754],0x0\n  100e8dd9:  AND dword ptr [0x10168758],0x0\n  100e8de0:  PUSH 0x1\n  100e8de2:  MOV [0x10168750],EAX\n  100e8de7:  MOV dword ptr [0x10168748],0x10\n  100e8df1:  POP EAX\n  100e8df2:  RET", 
+  "callers": [
+    {
+      "address": "0x100e8bf9", 
+      "name": "FUN_100e8bf9"
+    }
+  ]
+}

@@ -1,0 +1,34 @@
+{
+  "address": "0x1007e178", 
+  "size_bytes": 32, 
+  "calling_convention": "unknown", 
+  "signature": "undefined FUN_1007e178(void)", 
+  "callees": [
+    {
+      "address": "0x00000022", 
+      "name": "VirtualFree"
+    }
+  ], 
+  "global_refs": [
+    {
+      "address": "0x100f50b4", 
+      "type": "pointer", 
+      "name": "DAT_100f50b4"
+    }
+  ], 
+  "has_custom_name": false, 
+  "decompiled_c": "\nvoid FUN_1007e178(void)\n\n{\n  int *lpAddress;\n  int *in_ECX;\n  \n  while (*in_ECX != 0) {\n    lpAddress = (int *)*in_ECX;\n    *in_ECX = *lpAddress;\n    VirtualFree(lpAddress,0,0x8000);\n  }\n  return;\n}\n\n", 
+  "is_thunk": false, 
+  "name": "FUN_1007e178", 
+  "assembly": "  1007e178:  PUSH ESI\n  1007e179:  MOV ESI,ECX\n  1007e17b:  JMP 0x1007e191\n  1007e17d:  MOV EAX,dword ptr [ESI]\n  1007e17f:  MOV ECX,dword ptr [EAX]\n  1007e181:  PUSH 0x8000\n  1007e186:  PUSH 0x0\n  1007e188:  PUSH EAX\n  1007e189:  MOV dword ptr [ESI],ECX\n  1007e18b:  CALL dword ptr [0x100f50b4]\n  1007e191:  CMP dword ptr [ESI],0x0\n  1007e194:  JNZ 0x1007e17d\n  1007e196:  POP ESI\n  1007e197:  RET", 
+  "callers": [
+    {
+      "address": "0x1008f021", 
+      "name": "FUN_1008f021"
+    }, 
+    {
+      "address": "0x1004f890", 
+      "name": "FUN_1004f890"
+    }
+  ]
+}

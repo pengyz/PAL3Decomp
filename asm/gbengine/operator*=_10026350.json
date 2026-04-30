@@ -1,0 +1,35 @@
+{
+  "address": "0x10026350", 
+  "size_bytes": 126, 
+  "calling_convention": "__thiscall", 
+  "signature": "void __thiscall operator*=(gbRotMatrix * this, gbRotMatrix * param_1)", 
+  "callees": [], 
+  "global_refs": [
+    {
+      "address": "0x-0000024", 
+      "type": null, 
+      "name": "DAT_-0000024"
+    }, 
+    {
+      "address": "0x-000002c", 
+      "type": null, 
+      "name": "DAT_-000002c"
+    }, 
+    {
+      "address": "0x-0000028", 
+      "type": null, 
+      "name": "DAT_-0000028"
+    }, 
+    {
+      "address": "0x00000004", 
+      "type": null, 
+      "name": "DAT_00000004"
+    }
+  ], 
+  "has_custom_name": true, 
+  "decompiled_c": "\n/* public: void __thiscall gbRotMatrix::operator*=(struct gbRotMatrix &) */\n\nvoid __thiscall gbRotMatrix::operator*=(gbRotMatrix *this,gbRotMatrix *param_1)\n\n{\n  float fVar1;\n  float fVar2;\n  float *pfVar3;\n  int iVar4;\n  float *pfVar5;\n  gbRotMatrix *pgVar6;\n  float *pfVar7;\n  int iVar8;\n  gbRotMatrix *pgVar9;\n  int local_2c;\n  float local_24 [9];\n  \n  pgVar9 = this;\n  pfVar7 = local_24;\n                    /* 0x26350  259  ??XgbRotMatrix@@QAEXAAU0@@Z */\n  for (iVar4 = 9; iVar4 != 0; iVar4 = iVar4 + -1) {\n    *pfVar7 = *(float *)pgVar9;\n    pgVar9 = pgVar9 + 4;\n    pfVar7 = pfVar7 + 1;\n  }\n  pfVar7 = local_24;\n  local_2c = 3;\n  do {\n    pfVar3 = (float *)(((int)this - (int)local_24) + (int)pfVar7);\n    iVar4 = 3;\n    pgVar9 = param_1;\n    do {\n      *pfVar3 = 0.0;\n      iVar8 = 3;\n      pfVar5 = pfVar7;\n      pgVar6 = pgVar9;\n      do {\n        fVar1 = *pfVar5;\n        fVar2 = *(float *)pgVar6;\n        pfVar5 = pfVar5 + 1;\n        pgVar6 = pgVar6 + 0xc;\n        iVar8 = iVar8 + -1;\n        *pfVar3 = fVar1 * fVar2 + *pfVar3;\n      } while (iVar8 != 0);\n      pfVar3 = pfVar3 + 1;\n      pgVar9 = pgVar9 + 4;\n      iVar4 = iVar4 + -1;\n    } while (iVar4 != 0);\n    pfVar7 = pfVar7 + 3;\n    local_2c = local_2c + -1;\n  } while (local_2c != 0);\n  return;\n}\n\n", 
+  "is_thunk": false, 
+  "name": "operator*=", 
+  "assembly": "  10026350:  SUB ESP,0x2c\n  10026353:  PUSH EBX\n  10026354:  PUSH EBP\n  10026355:  PUSH ESI\n  10026356:  MOV EAX,ECX\n  10026358:  PUSH EDI\n  10026359:  MOV ECX,0x9\n  1002635e:  MOV ESI,EAX\n  10026360:  LEA EDI,[ESP + 0x18]\n  10026364:  MOVSD.REP ES:EDI,ESI\n  10026366:  LEA ECX,[ESP + 0x18]\n  1002636a:  LEA EBX,[ESP + 0x18]\n  1002636e:  SUB EAX,ECX\n  10026370:  MOV dword ptr [ESP + 0x10],0x3\n  10026378:  MOV dword ptr [ESP + 0x14],EAX\n  1002637c:  JMP 0x10026382\n  1002637e:  MOV EAX,dword ptr [ESP + 0x14]\n  10026382:  MOV EDI,dword ptr [ESP + 0x40]\n  10026386:  ADD EAX,EBX\n  10026388:  MOV EBP,0x3\n  1002638d:  MOV dword ptr [EAX],0x0\n  10026393:  MOV ECX,EBX\n  10026395:  MOV EDX,EDI\n  10026397:  MOV ESI,0x3\n  1002639c:  FLD dword ptr [ECX]\n  1002639e:  FMUL dword ptr [EDX]\n  100263a0:  ADD ECX,0x4\n  100263a3:  ADD EDX,0xc\n  100263a6:  DEC ESI\n  100263a7:  FADD dword ptr [EAX]\n  100263a9:  FSTP dword ptr [EAX]\n  100263ab:  JNZ 0x1002639c\n  100263ad:  ADD EAX,0x4\n  100263b0:  ADD EDI,0x4\n  100263b3:  DEC EBP\n  100263b4:  JNZ 0x1002638d\n  100263b6:  MOV EAX,dword ptr [ESP + 0x10]\n  100263ba:  ADD EBX,0xc\n  100263bd:  DEC EAX\n  100263be:  MOV dword ptr [ESP + 0x10],EAX\n  100263c2:  JNZ 0x1002637e\n  100263c4:  POP EDI\n  100263c5:  POP ESI\n  100263c6:  POP EBP\n  100263c7:  POP EBX\n  100263c8:  ADD ESP,0x2c\n  100263cb:  RET 0x4", 
+  "callers": []
+}

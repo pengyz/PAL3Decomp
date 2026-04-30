@@ -1,0 +1,78 @@
+{
+  "address": "0x100f2683", 
+  "size_bytes": 147, 
+  "calling_convention": "unknown", 
+  "signature": "undefined FUN_100f2683(undefined4 param_1)", 
+  "callees": [
+    {
+      "address": "0x100f2602", 
+      "name": "FUN_100f2602"
+    }, 
+    {
+      "address": "0x100f25c0", 
+      "name": "FUN_100f25c0"
+    }, 
+    {
+      "address": "0x00000037", 
+      "name": "FlushFileBuffers"
+    }, 
+    {
+      "address": "0x0000001f", 
+      "name": "GetLastError"
+    }, 
+    {
+      "address": "0x100ebd08", 
+      "name": "FUN_100ebd08"
+    }, 
+    {
+      "address": "0x100ebcff", 
+      "name": "FUN_100ebcff"
+    }, 
+    {
+      "address": "0x100f2661", 
+      "name": "FUN_100f2661"
+    }, 
+    {
+      "address": "0x100ebcff", 
+      "name": "FUN_100ebcff"
+    }
+  ], 
+  "global_refs": [
+    {
+      "address": "0x00000004", 
+      "type": null, 
+      "name": "DAT_00000004"
+    }, 
+    {
+      "address": "0x10167500", 
+      "type": "undefined4", 
+      "name": "DAT_10167500"
+    }, 
+    {
+      "address": "0x10167400", 
+      "type": "undefined4", 
+      "name": "DAT_10167400"
+    }, 
+    {
+      "address": "0x100f5108", 
+      "type": "pointer", 
+      "name": "DAT_100f5108"
+    }, 
+    {
+      "address": "0x100f50a8", 
+      "type": "pointer", 
+      "name": "DAT_100f50a8"
+    }
+  ], 
+  "has_custom_name": false, 
+  "decompiled_c": "\nDWORD FUN_100f2683(uint param_1)\n\n{\n  HANDLE hFile;\n  BOOL BVar1;\n  DWORD DVar2;\n  DWORD *pDVar3;\n  undefined4 *puVar4;\n  int iVar5;\n  \n  if (DAT_10167500 <= param_1) {\nLAB_100f2704:\n    puVar4 = (undefined4 *)FUN_100ebcff();\n    *puVar4 = 9;\n    return 0xffffffff;\n  }\n  iVar5 = (param_1 & 0x1f) * 0x24;\n  if ((*(byte *)((&DAT_10167400)[(int)param_1 >> 5] + 4 + iVar5) & 1) == 0) goto LAB_100f2704;\n  FUN_100f2602(param_1);\n  if ((*(byte *)((&DAT_10167400)[(int)param_1 >> 5] + 4 + iVar5) & 1) != 0) {\n    hFile = (HANDLE)FUN_100f25c0(param_1);\n    BVar1 = FlushFileBuffers(hFile);\n    if (BVar1 == 0) {\n      DVar2 = GetLastError();\n    }\n    else {\n      DVar2 = 0;\n    }\n    if (DVar2 == 0) goto LAB_100f26f9;\n    pDVar3 = (DWORD *)FUN_100ebd08();\n    *pDVar3 = DVar2;\n  }\n  puVar4 = (undefined4 *)FUN_100ebcff();\n  *puVar4 = 9;\n  DVar2 = 0xffffffff;\nLAB_100f26f9:\n  FUN_100f2661(param_1);\n  return DVar2;\n}\n\n", 
+  "is_thunk": false, 
+  "name": "FUN_100f2683", 
+  "assembly": "  100f2683:  PUSH EBX\n  100f2684:  MOV EBX,dword ptr [ESP + 0x8]\n  100f2688:  CMP EBX,dword ptr [0x10167500]\n  100f268e:  PUSH ESI\n  100f268f:  PUSH EDI\n  100f2690:  JNC 0x100f2704\n  100f2692:  MOV EAX,EBX\n  100f2694:  SAR EAX,0x5\n  100f2697:  LEA EDI,[EAX*0x4 + 0x10167400]\n  100f269e:  MOV EAX,EBX\n  100f26a0:  AND EAX,0x1f\n  100f26a3:  LEA ESI,[EAX + EAX*0x8]\n  100f26a6:  MOV EAX,dword ptr [EDI]\n  100f26a8:  SHL ESI,0x2\n  100f26ab:  TEST byte ptr [EAX + ESI*0x1 + 0x4],0x1\n  100f26b0:  JZ 0x100f2704\n  100f26b2:  PUSH EBX\n  100f26b3:  CALL 0x100f2602\n  100f26b8:  MOV EAX,dword ptr [EDI]\n  100f26ba:  POP ECX\n  100f26bb:  TEST byte ptr [EAX + ESI*0x1 + 0x4],0x1\n  100f26c0:  JZ 0x100f26eb\n  100f26c2:  PUSH EBX\n  100f26c3:  CALL 0x100f25c0\n  100f26c8:  POP ECX\n  100f26c9:  PUSH EAX\n  100f26ca:  CALL dword ptr [0x100f5108]\n  100f26d0:  TEST EAX,EAX\n  100f26d2:  JNZ 0x100f26de\n  100f26d4:  CALL dword ptr [0x100f50a8]\n  100f26da:  MOV ESI,EAX\n  100f26dc:  JMP 0x100f26e0\n  100f26de:  XOR ESI,ESI\n  100f26e0:  TEST ESI,ESI\n  100f26e2:  JZ 0x100f26f9\n  100f26e4:  CALL 0x100ebd08\n  100f26e9:  MOV dword ptr [EAX],ESI\n  100f26eb:  CALL 0x100ebcff\n  100f26f0:  MOV dword ptr [EAX],0x9\n  100f26f6:  OR ESI,0xffffffff\n  100f26f9:  PUSH EBX\n  100f26fa:  CALL 0x100f2661\n  100f26ff:  POP ECX\n  100f2700:  MOV EAX,ESI\n  100f2702:  JMP 0x100f2712\n  100f2704:  CALL 0x100ebcff\n  100f2709:  MOV dword ptr [EAX],0x9\n  100f270f:  OR EAX,0xffffffff\n  100f2712:  POP EDI\n  100f2713:  POP ESI\n  100f2714:  POP EBX\n  100f2715:  RET", 
+  "callers": [
+    {
+      "address": "0x100ec2ca", 
+      "name": "FUN_100ec2ca"
+    }
+  ]
+}

@@ -1,0 +1,25 @@
+{
+  "address": "0x1002e0c3", 
+  "size_bytes": 111, 
+  "calling_convention": "unknown", 
+  "signature": "undefined FUN_1002e0c3(undefined param_1, undefined4 param_2)", 
+  "callees": [
+    {
+      "address": "0x100e4b99", 
+      "name": "FUN_100e4b99"
+    }
+  ], 
+  "global_refs": [
+    {
+      "address": "0x00000008", 
+      "type": null, 
+      "name": "DAT_00000008"
+    }
+  ], 
+  "has_custom_name": false, 
+  "decompiled_c": "\nundefined4 FUN_1002e0c3(undefined4 param_1,int param_2)\n\n{\n  int iVar1;\n  int in_ECX;\n  int *piVar2;\n  int *piVar3;\n  int iVar4;\n  \n  iVar4 = 0;\n  piVar3 = (int *)(in_ECX + 0x14);\n  do {\n    iVar1 = 0;\n    piVar2 = piVar3;\n    do {\n      if (*piVar2 == 0) break;\n      if (*piVar2 == param_2) {\n        iVar4 = in_ECX + (iVar1 + iVar4 * 8) * 0x18;\n        *(undefined *)(iVar4 + 0x29) = 0;\n        *(undefined4 *)(iVar4 + 0x1c) = 0;\n        return 1;\n      }\n      iVar1 = iVar1 + 1;\n      piVar2 = piVar2 + 6;\n    } while (iVar1 < 8);\n    iVar4 = iVar4 + 1;\n    piVar3 = piVar3 + 0x30;\n    if (4 < iVar4) {\n      FUN_100e4b99(param_2);\n      return 1;\n    }\n  } while( true );\n}\n\n", 
+  "is_thunk": false, 
+  "name": "FUN_1002e0c3", 
+  "assembly": "  1002e0c3:  PUSH EBX\n  1002e0c4:  MOV EBX,dword ptr [ESP + 0xc]\n  1002e0c8:  PUSH EBP\n  1002e0c9:  PUSH EDI\n  1002e0ca:  XOR EDI,EDI\n  1002e0cc:  LEA EBP,[ECX + 0x14]\n  1002e0cf:  XOR EAX,EAX\n  1002e0d1:  MOV EDX,EBP\n  1002e0d3:  MOV ESI,dword ptr [EDX]\n  1002e0d5:  TEST ESI,ESI\n  1002e0d7:  JZ 0x1002e0e6\n  1002e0d9:  CMP ESI,EBX\n  1002e0db:  JZ 0x1002e10e\n  1002e0dd:  INC EAX\n  1002e0de:  ADD EDX,0x18\n  1002e0e1:  CMP EAX,0x8\n  1002e0e4:  JL 0x1002e0d3\n  1002e0e6:  INC EDI\n  1002e0e7:  ADD EBP,0xc0\n  1002e0ed:  CMP EDI,0x5\n  1002e0f0:  JL 0x1002e0cf\n  1002e0f2:  PUSH EBX\n  1002e0f3:  CALL 0x100e4b99\n  1002e0f8:  ADD ESP,0x4\n  1002e0fb:  MOV ESI,0x1\n  1002e100:  XOR EAX,EAX\n  1002e102:  CMP ESI,ESI\n  1002e104:  POP EDI\n  1002e105:  POP EBP\n  1002e106:  POP EBX\n  1002e107:  POP ESI\n  1002e108:  SETZ AL\n  1002e10b:  RET 0x8\n  1002e10e:  LEA EAX,[EAX + EDI*0x8]\n  1002e111:  MOV ESI,0x1\n  1002e116:  POP EDI\n  1002e117:  POP EBP\n  1002e118:  LEA EDX,[EAX + EAX*0x2]\n  1002e11b:  POP EBX\n  1002e11c:  LEA EAX,[ECX + EDX*0x8]\n  1002e11f:  XOR ECX,ECX\n  1002e121:  MOV byte ptr [EAX + 0x29],CL\n  1002e124:  MOV dword ptr [EAX + 0x1c],ECX\n  1002e127:  XOR EAX,EAX\n  1002e129:  CMP ESI,ESI\n  1002e12b:  SETZ AL\n  1002e12e:  POP ESI\n  1002e12f:  RET 0x8", 
+  "callers": []
+}

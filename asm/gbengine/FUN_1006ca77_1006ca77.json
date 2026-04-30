@@ -1,0 +1,28 @@
+{
+  "address": "0x1006ca77", 
+  "size_bytes": 29, 
+  "calling_convention": "unknown", 
+  "signature": "undefined FUN_1006ca77(void)", 
+  "callees": [
+    {
+      "address": "0x1006c992", 
+      "name": "FUN_1006c992"
+    }, 
+    {
+      "address": "0x1006b89c", 
+      "name": "FUN_1006b89c"
+    }
+  ], 
+  "global_refs": [], 
+  "has_custom_name": false, 
+  "decompiled_c": "\nvoid FUN_1006ca77(void)\n\n{\n  int in_ECX;\n  \n  if (*(int *)(in_ECX + 0x28) != 0) {\n    FUN_1006c992(1);\n    *(undefined4 *)(in_ECX + 0x28) = 0;\n  }\n  FUN_1006b89c();\n  return;\n}\n\n", 
+  "is_thunk": false, 
+  "name": "FUN_1006ca77", 
+  "assembly": "  1006ca77:  PUSH ESI\n  1006ca78:  MOV ESI,ECX\n  1006ca7a:  MOV ECX,dword ptr [ESI + 0x28]\n  1006ca7d:  TEST ECX,ECX\n  1006ca7f:  JZ 0x1006ca8c\n  1006ca81:  PUSH 0x1\n  1006ca83:  CALL 0x1006c992\n  1006ca88:  AND dword ptr [ESI + 0x28],0x0\n  1006ca8c:  MOV ECX,ESI\n  1006ca8e:  POP ESI\n  1006ca8f:  JMP 0x1006b89c", 
+  "callers": [
+    {
+      "address": "0x1006ca94", 
+      "name": "FUN_1006ca94"
+    }
+  ]
+}

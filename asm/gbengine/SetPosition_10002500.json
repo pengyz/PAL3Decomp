@@ -1,0 +1,20 @@
+{
+  "address": "0x10002500", 
+  "size_bytes": 24, 
+  "calling_convention": "__thiscall", 
+  "signature": "void __thiscall SetPosition(gbSound3DNode * this, gbVec3D * param_1)", 
+  "callees": [], 
+  "global_refs": [
+    {
+      "address": "0x00000004", 
+      "type": null, 
+      "name": "DAT_00000004"
+    }
+  ], 
+  "has_custom_name": true, 
+  "decompiled_c": "\n/* public: void __thiscall gbSound3DNode::SetPosition(struct gbVec3D &) */\n\nvoid __thiscall gbSound3DNode::SetPosition(gbSound3DNode *this,gbVec3D *param_1)\n\n{\n                    /* 0x2500  884  ?SetPosition@gbSound3DNode@@QAEXAAUgbVec3D@@@Z */\n  *(undefined4 *)(this + 8) = *(undefined4 *)param_1;\n  *(undefined4 *)(this + 0xc) = *(undefined4 *)(param_1 + 4);\n  *(undefined4 *)(this + 0x10) = *(undefined4 *)(param_1 + 8);\n  return;\n}\n\n", 
+  "is_thunk": false, 
+  "name": "SetPosition", 
+  "assembly": "  10002500:  MOV EAX,dword ptr [ESP + 0x4]\n  10002504:  MOV EDX,dword ptr [EAX]\n  10002506:  MOV dword ptr [ECX + 0x8],EDX\n  10002509:  MOV EDX,dword ptr [EAX + 0x4]\n  1000250c:  MOV dword ptr [ECX + 0xc],EDX\n  1000250f:  MOV EAX,dword ptr [EAX + 0x8]\n  10002512:  MOV dword ptr [ECX + 0x10],EAX\n  10002515:  RET 0x4", 
+  "callers": []
+}

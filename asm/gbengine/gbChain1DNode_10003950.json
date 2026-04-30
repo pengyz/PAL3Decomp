@@ -1,0 +1,20 @@
+{
+  "address": "0x10003950", 
+  "size_bytes": 9, 
+  "calling_convention": "__thiscall", 
+  "signature": "undefined __thiscall gbChain1DNode(gbChain1DNode * this)", 
+  "callees": [], 
+  "global_refs": [
+    {
+      "address": "0x100f53a8", 
+      "type": "pointer", 
+      "name": "DAT_100f53a8"
+    }
+  ], 
+  "has_custom_name": true, 
+  "decompiled_c": "\n/* public: __thiscall gbChain1DNode::gbChain1DNode(void) */\n\nvoid __thiscall gbChain1DNode::gbChain1DNode(gbChain1DNode *this)\n\n{\n                    /* 0x3950  29  ??0gbChain1DNode@@QAE@XZ */\n  *(undefined ***)this = &_vftable_;\n  return;\n}\n\n", 
+  "is_thunk": false, 
+  "name": "gbChain1DNode", 
+  "assembly": "  10003950:  MOV EAX,ECX\n  10003952:  MOV dword ptr [EAX],0x100f53a8\n  10003958:  RET", 
+  "callers": []
+}

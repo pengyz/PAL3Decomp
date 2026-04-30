@@ -1,0 +1,45 @@
+{
+  "address": "0x10022050", 
+  "size_bytes": 91, 
+  "calling_convention": "__thiscall", 
+  "signature": "void __thiscall PointScrToEye(gbCamera * this, float param_1, float param_2, gbVec3D * param_3)", 
+  "callees": [], 
+  "global_refs": [
+    {
+      "address": "0x100f53a0", 
+      "type": null, 
+      "name": "DAT_100f53a0"
+    }, 
+    {
+      "address": "0x100f5810", 
+      "type": null, 
+      "name": "DAT_100f5810"
+    }, 
+    {
+      "address": "0x0000000c", 
+      "type": null, 
+      "name": "DAT_0000000c"
+    }, 
+    {
+      "address": "0x-0000004", 
+      "type": null, 
+      "name": "DAT_-0000004"
+    }, 
+    {
+      "address": "0x00000004", 
+      "type": null, 
+      "name": "DAT_00000004"
+    }, 
+    {
+      "address": "0x00000008", 
+      "type": null, 
+      "name": "DAT_00000008"
+    }
+  ], 
+  "has_custom_name": true, 
+  "decompiled_c": "\n/* public: void __thiscall gbCamera::PointScrToEye(float,float,struct gbVec3D *) */\n\nvoid __thiscall gbCamera::PointScrToEye(gbCamera *this,float param_1,float param_2,gbVec3D *param_3)\n\n{\n  int iVar1;\n  int iVar2;\n  float10 fVar3;\n  float10 fVar4;\n  \n                    /* 0x22050  739  ?PointScrToEye@gbCamera@@QAEXMMPAUgbVec3D@@@Z */\n  if (*(float *)this == 0.0) {\n    fVar4 = (float10)*(float *)(this + 4);\n  }\n  else {\n    fVar3 = (float10)fsin((float10)*(float *)this * (float10)0.008726646);\n    fVar4 = (float10)fcos((float10)*(float *)this * (float10)0.008726646);\n    fVar4 = (fVar3 * (float10)*(float *)(this + 0x10)) / fVar4;\n  }\n  iVar1 = *(int *)(this + 0x24);\n  iVar2 = *(int *)(this + 0x20);\n  *(float *)param_3 = (float)(fVar4 * (float10)param_1);\n  *(float *)(param_3 + 4) = (float)(((float10)iVar1 * fVar4) / (float10)iVar2) * param_2;\n  *(float *)(param_3 + 8) = -*(float *)(this + 0x10);\n  return;\n}\n\n", 
+  "is_thunk": false, 
+  "name": "PointScrToEye", 
+  "assembly": "  10022050:  PUSH ECX\n  10022051:  FLD dword ptr [ECX]\n  10022053:  FCOMP dword ptr [0x100f53a0]\n  10022059:  FNSTSW AX\n  1002205b:  TEST AH,0x40\n  1002205e:  JNZ 0x1002207b\n  10022060:  FLD dword ptr [ECX]\n  10022062:  FMUL dword ptr [0x100f5810]\n  10022068:  FLD ST0\n  1002206a:  FSIN\n  1002206c:  FMUL dword ptr [ECX + 0x10]\n  1002206f:  FXCH\n  10022071:  FCOS\n  10022073:  FXCH\n  10022075:  FXCH\n  10022077:  FDIVP\n  10022079:  JMP 0x1002207e\n  1002207b:  FLD dword ptr [ECX + 0x4]\n  1002207e:  FILD dword ptr [ECX + 0x24]\n  10022081:  MOV EAX,dword ptr [ESP + 0x10]\n  10022085:  FMUL ST1\n  10022087:  FIDIV dword ptr [ECX + 0x20]\n  1002208a:  FSTP dword ptr [ESP]\n  1002208e:  FMUL dword ptr [ESP + 0x8]\n  10022092:  FSTP dword ptr [EAX]\n  10022094:  FLD dword ptr [ESP]\n  10022098:  FMUL dword ptr [ESP + 0xc]\n  1002209c:  FSTP dword ptr [EAX + 0x4]\n  1002209f:  FLD dword ptr [ECX + 0x10]\n  100220a2:  FCHS\n  100220a4:  FSTP dword ptr [EAX + 0x8]\n  100220a7:  POP ECX\n  100220a8:  RET 0xc", 
+  "callers": []
+}

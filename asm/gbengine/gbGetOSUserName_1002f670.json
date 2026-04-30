@@ -1,0 +1,35 @@
+{
+  "address": "0x1002f670", 
+  "size_bytes": 21, 
+  "calling_convention": "__cdecl", 
+  "signature": "int __cdecl gbGetOSUserName(char * param_1, int param_2)", 
+  "callees": [
+    {
+      "address": "0x00000082", 
+      "name": "GetUserNameA"
+    }
+  ], 
+  "global_refs": [
+    {
+      "address": "0x00000004", 
+      "type": null, 
+      "name": "DAT_00000004"
+    }, 
+    {
+      "address": "0x00000008", 
+      "type": null, 
+      "name": "DAT_00000008"
+    }, 
+    {
+      "address": "0x100f5000", 
+      "type": "pointer", 
+      "name": "DAT_100f5000"
+    }
+  ], 
+  "has_custom_name": true, 
+  "decompiled_c": "\n/* int __cdecl gbGetOSUserName(char *,int) */\n\nint __cdecl gbGetOSUserName(char *param_1,int param_2)\n\n{\n                    /* 0x2f670  986  ?gbGetOSUserName@@YAHPADH@Z */\n  GetUserNameA(param_1,(LPDWORD)&param_2);\n  return param_2;\n}\n\n", 
+  "is_thunk": false, 
+  "name": "gbGetOSUserName", 
+  "assembly": "  1002f670:  MOV ECX,dword ptr [ESP + 0x4]\n  1002f674:  LEA EAX,[ESP + 0x8]\n  1002f678:  PUSH EAX\n  1002f679:  PUSH ECX\n  1002f67a:  CALL dword ptr [0x100f5000]\n  1002f680:  MOV EAX,dword ptr [ESP + 0x8]\n  1002f684:  RET", 
+  "callers": []
+}

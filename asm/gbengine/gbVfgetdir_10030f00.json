@@ -1,0 +1,64 @@
+{
+  "address": "0x10030f00", 
+  "size_bytes": 70, 
+  "calling_convention": "__cdecl", 
+  "signature": "char * __cdecl gbVfgetdir(char * param_1, char * param_2, int param_3)", 
+  "callees": [
+    {
+      "address": "0x100e56b0", 
+      "name": "_strncpy"
+    }, 
+    {
+      "address": "0x100e4f50", 
+      "name": "_strrchr"
+    }, 
+    {
+      "address": "0x100e4f50", 
+      "name": "_strrchr"
+    }
+  ], 
+  "global_refs": [
+    {
+      "address": "0x0000000c", 
+      "type": null, 
+      "name": "DAT_0000000c"
+    }, 
+    {
+      "address": "0x00000004", 
+      "type": null, 
+      "name": "DAT_00000004"
+    }, 
+    {
+      "address": "0x00000008", 
+      "type": null, 
+      "name": "DAT_00000008"
+    }
+  ], 
+  "has_custom_name": true, 
+  "decompiled_c": "\n/* char * __cdecl gbVfgetdir(char const *,char *,int) */\n\nchar * __cdecl gbVfgetdir(char *param_1,char *param_2,int param_3)\n\n{\n  char *pcVar1;\n  char *pcVar2;\n  \n                    /* 0x30f00  1006  ?gbVfgetdir@@YAPADPBDPADH@Z */\n  _strncpy(param_2,param_1,param_3);\n  pcVar1 = _strrchr(param_2,0x2f);\n  pcVar2 = _strrchr(param_2,0x5c);\n  if (pcVar1 < pcVar2) {\n    pcVar1 = pcVar2;\n  }\n  if (pcVar1 == (char *)0x0) {\n    *param_2 = '\\0';\n    return param_2;\n  }\n  pcVar1[1] = '\\0';\n  return param_2;\n}\n\n", 
+  "is_thunk": false, 
+  "name": "gbVfgetdir", 
+  "assembly": "  10030f00:  MOV EAX,dword ptr [ESP + 0xc]\n  10030f04:  MOV ECX,dword ptr [ESP + 0x4]\n  10030f08:  PUSH ESI\n  10030f09:  MOV ESI,dword ptr [ESP + 0xc]\n  10030f0d:  PUSH EDI\n  10030f0e:  PUSH EAX\n  10030f0f:  PUSH ECX\n  10030f10:  PUSH ESI\n  10030f11:  CALL 0x100e56b0\n  10030f16:  PUSH 0x2f\n  10030f18:  PUSH ESI\n  10030f19:  CALL 0x100e4f50\n  10030f1e:  PUSH 0x5c\n  10030f20:  PUSH ESI\n  10030f21:  MOV EDI,EAX\n  10030f23:  CALL 0x100e4f50\n  10030f28:  ADD ESP,0x1c\n  10030f2b:  CMP EAX,EDI\n  10030f2d:  JBE 0x10030f31\n  10030f2f:  MOV EDI,EAX\n  10030f31:  TEST EDI,EDI\n  10030f33:  JNZ 0x10030f3d\n  10030f35:  MOV byte ptr [ESI],0x0\n  10030f38:  MOV EAX,ESI\n  10030f3a:  POP EDI\n  10030f3b:  POP ESI\n  10030f3c:  RET\n  10030f3d:  MOV byte ptr [EDI + 0x1],0x0\n  10030f41:  MOV EAX,ESI\n  10030f43:  POP EDI\n  10030f44:  POP ESI\n  10030f45:  RET", 
+  "callers": [
+    {
+      "address": "0x1000c5d0", 
+      "name": "LoadFromFile"
+    }, 
+    {
+      "address": "0x10008140", 
+      "name": "FUN_10008140"
+    }, 
+    {
+      "address": "0x10008420", 
+      "name": "FUN_10008420"
+    }, 
+    {
+      "address": "0x10009630", 
+      "name": "FUN_10009630"
+    }, 
+    {
+      "address": "0x10009630", 
+      "name": "FUN_10009630"
+    }
+  ]
+}

@@ -1,0 +1,30 @@
+{
+  "address": "0x10003bd0", 
+  "size_bytes": 69, 
+  "calling_convention": "__thiscall", 
+  "signature": "undefined __thiscall gbIndexBubble(gbIndexBubble * this, gbIndexBubble * param_1)", 
+  "callees": [], 
+  "global_refs": [
+    {
+      "address": "0x00000004", 
+      "type": null, 
+      "name": "DAT_00000004"
+    }, 
+    {
+      "address": "0x100f53a8", 
+      "type": "pointer", 
+      "name": "DAT_100f53a8"
+    }, 
+    {
+      "address": "0x100f53b0", 
+      "type": "pointer", 
+      "name": "DAT_100f53b0"
+    }
+  ], 
+  "has_custom_name": true, 
+  "decompiled_c": "\n/* public: __thiscall gbIndexBubble::gbIndexBubble(class gbIndexBubble const &) */\n\nvoid __thiscall gbIndexBubble::gbIndexBubble(gbIndexBubble *this,gbIndexBubble *param_1)\n\n{\n  undefined4 uVar1;\n  \n                    /* 0x3bd0  53  ??0gbIndexBubble@@QAE@ABV0@@Z */\n  uVar1 = *(undefined4 *)(param_1 + 4);\n  *(undefined ***)this = &gbChain1DNode::_vftable_;\n  *(undefined4 *)(this + 4) = uVar1;\n  *(undefined4 *)(this + 8) = *(undefined4 *)(param_1 + 8);\n  *(undefined4 *)(this + 0xc) = *(undefined4 *)(param_1 + 0xc);\n  *(undefined4 *)(this + 0x10) = *(undefined4 *)(param_1 + 0x10);\n  *(undefined4 *)(this + 0x14) = *(undefined4 *)(param_1 + 0x14);\n  *(undefined4 *)(this + 0x18) = *(undefined4 *)(param_1 + 0x18);\n  *(undefined4 *)(this + 0x1c) = *(undefined4 *)(param_1 + 0x1c);\n  *(undefined4 *)(this + 0x20) = *(undefined4 *)(param_1 + 0x20);\n  *(undefined ***)this = &_vftable_;\n  return;\n}\n\n", 
+  "is_thunk": false, 
+  "name": "gbIndexBubble", 
+  "assembly": "  10003bd0:  MOV EAX,ECX\n  10003bd2:  MOV ECX,dword ptr [ESP + 0x4]\n  10003bd6:  MOV EDX,dword ptr [ECX + 0x4]\n  10003bd9:  MOV dword ptr [EAX],0x100f53a8\n  10003bdf:  MOV dword ptr [EAX + 0x4],EDX\n  10003be2:  MOV EDX,dword ptr [ECX + 0x8]\n  10003be5:  MOV dword ptr [EAX + 0x8],EDX\n  10003be8:  MOV EDX,dword ptr [ECX + 0xc]\n  10003beb:  MOV dword ptr [EAX + 0xc],EDX\n  10003bee:  MOV EDX,dword ptr [ECX + 0x10]\n  10003bf1:  MOV dword ptr [EAX + 0x10],EDX\n  10003bf4:  MOV EDX,dword ptr [ECX + 0x14]\n  10003bf7:  MOV dword ptr [EAX + 0x14],EDX\n  10003bfa:  MOV EDX,dword ptr [ECX + 0x18]\n  10003bfd:  MOV dword ptr [EAX + 0x18],EDX\n  10003c00:  MOV EDX,dword ptr [ECX + 0x1c]\n  10003c03:  MOV dword ptr [EAX + 0x1c],EDX\n  10003c06:  MOV ECX,dword ptr [ECX + 0x20]\n  10003c09:  MOV dword ptr [EAX + 0x20],ECX\n  10003c0c:  MOV dword ptr [EAX],0x100f53b0\n  10003c12:  RET 0x4", 
+  "callers": []
+}

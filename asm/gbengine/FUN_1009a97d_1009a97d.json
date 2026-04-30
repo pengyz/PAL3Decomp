@@ -1,0 +1,50 @@
+{
+  "address": "0x1009a97d", 
+  "size_bytes": 45, 
+  "calling_convention": "unknown", 
+  "signature": "undefined FUN_1009a97d(undefined4 param_1, undefined4 param_2)", 
+  "callees": [], 
+  "global_refs": [
+    {
+      "address": "0x00000004", 
+      "type": null, 
+      "name": "DAT_00000004"
+    }, 
+    {
+      "address": "0x00000008", 
+      "type": null, 
+      "name": "DAT_00000008"
+    }
+  ], 
+  "has_custom_name": false, 
+  "decompiled_c": "\nvoid FUN_1009a97d(int param_1,uint *param_2)\n\n{\n  int iVar1;\n  int in_ECX;\n  uint uVar2;\n  \n  iVar1 = *(int *)(*(int *)(*(int *)(in_ECX + 0x14) + param_1 * 4) + 0x14);\n  uVar2 = 0;\n  if (iVar1 != -1) {\n    do {\n      iVar1 = *(int *)(*(int *)(*(int *)(in_ECX + 0x14) + iVar1 * 4) + 0x14);\n      uVar2 = uVar2 + 1;\n    } while (iVar1 != -1);\n    if (*param_2 < uVar2) {\n      *param_2 = uVar2;\n    }\n  }\n  return;\n}\n\n", 
+  "is_thunk": false, 
+  "name": "FUN_1009a97d", 
+  "assembly": "  1009a97d:  MOV ECX,dword ptr [ECX + 0x14]\n  1009a980:  MOV EAX,dword ptr [ESP + 0x4]\n  1009a984:  MOV EAX,dword ptr [ECX + EAX*0x4]\n  1009a987:  MOV EAX,dword ptr [EAX + 0x14]\n  1009a98a:  XOR EDX,EDX\n  1009a98c:  CMP EAX,-0x1\n  1009a98f:  JZ 0x1009a9a7\n  1009a991:  MOV EAX,dword ptr [ECX + EAX*0x4]\n  1009a994:  MOV EAX,dword ptr [EAX + 0x14]\n  1009a997:  INC EDX\n  1009a998:  CMP EAX,-0x1\n  1009a99b:  JNZ 0x1009a991\n  1009a99d:  MOV EAX,dword ptr [ESP + 0x8]\n  1009a9a1:  CMP dword ptr [EAX],EDX\n  1009a9a3:  JNC 0x1009a9a7\n  1009a9a5:  MOV dword ptr [EAX],EDX\n  1009a9a7:  RET 0x8", 
+  "callers": [
+    {
+      "address": "0x100a888a", 
+      "name": "FUN_100a888a"
+    }, 
+    {
+      "address": "0x100a888a", 
+      "name": "FUN_100a888a"
+    }, 
+    {
+      "address": "0x100a888a", 
+      "name": "FUN_100a888a"
+    }, 
+    {
+      "address": "0x100a888a", 
+      "name": "FUN_100a888a"
+    }, 
+    {
+      "address": "0x100a888a", 
+      "name": "FUN_100a888a"
+    }, 
+    {
+      "address": "0x100a888a", 
+      "name": "FUN_100a888a"
+    }
+  ]
+}

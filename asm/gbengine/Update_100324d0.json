@@ -1,0 +1,58 @@
+{
+  "address": "0x100324d0", 
+  "size_bytes": 219, 
+  "calling_convention": "__thiscall", 
+  "signature": "void __thiscall Update(gbSnow * this, float param_1)", 
+  "callees": [
+    {
+      "address": "0x100e4be4", 
+      "name": "__ftol"
+    }, 
+    {
+      "address": "0x10027620", 
+      "name": "FUN_10027620"
+    }, 
+    {
+      "address": "0x10027620", 
+      "name": "FUN_10027620"
+    }
+  ], 
+  "global_refs": [
+    {
+      "address": "0x100f53a0", 
+      "type": null, 
+      "name": "DAT_100f53a0"
+    }, 
+    {
+      "address": "0x00000004", 
+      "type": null, 
+      "name": "DAT_00000004"
+    }, 
+    {
+      "address": "0x-0000008", 
+      "type": null, 
+      "name": "DAT_-0000008"
+    }, 
+    {
+      "address": "0x-0000004", 
+      "type": null, 
+      "name": "DAT_-0000004"
+    }, 
+    {
+      "address": "0x100f5b6c", 
+      "type": null, 
+      "name": "DAT_100f5b6c"
+    }, 
+    {
+      "address": "0x-0000024", 
+      "type": null, 
+      "name": "DAT_-0000024"
+    }
+  ], 
+  "has_custom_name": true, 
+  "decompiled_c": "\n/* private: virtual void __thiscall gbSnow::Update(float) */\n\nvoid __thiscall gbSnow::Update(gbSnow *this,float param_1)\n\n{\n  uint uVar1;\n  int iVar2;\n  int iVar3;\n  float *pfVar4;\n  float10 fVar5;\n  \n                    /* 0x324d0  947  ?Update@gbSnow@@EAEXM@Z */\n  iVar3 = 0;\n  if (0 < *(int *)(this + 8)) {\n    iVar2 = 0;\n    do {\n      pfVar4 = (float *)(iVar2 + *(int *)(this + 0x44));\n      if (0.0 < *pfVar4) {\n        pfVar4[4] = param_1 * pfVar4[1] + pfVar4[4];\n        pfVar4[5] = param_1 * pfVar4[2] + pfVar4[5];\n        pfVar4[6] = param_1 * pfVar4[3] + pfVar4[6];\n        *pfVar4 = *pfVar4 - param_1;\n        uVar1 = __ftol();\n        if ((uVar1 & 1) == 0) {\n          fVar5 = (float10)FUN_10027620(-*(float *)(this + 0x50),*(undefined4 *)(this + 0x50));\n          pfVar4[1] = (float)fVar5;\n          fVar5 = (float10)FUN_10027620(-*(float *)(this + 0x50),*(undefined4 *)(this + 0x50));\n          pfVar4[3] = (float)fVar5;\n        }\n        if (*pfVar4 <= 0.0) {\n          *(int *)(this + 0xc) = *(int *)(this + 0xc) + -1;\n        }\n      }\n      iVar3 = iVar3 + 1;\n      iVar2 = iVar2 + 0x28;\n    } while (iVar3 < *(int *)(this + 8));\n  }\n  return;\n}\n\n", 
+  "is_thunk": false, 
+  "name": "Update", 
+  "assembly": "  100324d0:  SUB ESP,0xc\n  100324d3:  PUSH EBP\n  100324d4:  PUSH EDI\n  100324d5:  MOV EDI,ECX\n  100324d7:  XOR EBP,EBP\n  100324d9:  MOV EAX,dword ptr [EDI + 0x8]\n  100324dc:  TEST EAX,EAX\n  100324de:  JLE 0x100325a3\n  100324e4:  PUSH EBX\n  100324e5:  PUSH ESI\n  100324e6:  XOR EBX,EBX\n  100324e8:  MOV EAX,dword ptr [EDI + 0x44]\n  100324eb:  MOV ESI,EBX\n  100324ed:  ADD ESI,EAX\n  100324ef:  FLD dword ptr [ESI]\n  100324f1:  FCOMP dword ptr [0x100f53a0]\n  100324f7:  FNSTSW AX\n  100324f9:  TEST AH,0x41\n  100324fc:  JNZ 0x10032592\n  10032502:  FLD dword ptr [ESP + 0x20]\n  10032506:  FMUL dword ptr [ESI + 0x4]\n  10032509:  FLD dword ptr [ESP + 0x20]\n  1003250d:  FMUL dword ptr [ESI + 0x8]\n  10032510:  FSTP dword ptr [ESP + 0x14]\n  10032514:  FLD dword ptr [ESP + 0x20]\n  10032518:  FMUL dword ptr [ESI + 0xc]\n  1003251b:  FSTP dword ptr [ESP + 0x18]\n  1003251f:  FADD dword ptr [ESI + 0x10]\n  10032522:  FSTP dword ptr [ESI + 0x10]\n  10032525:  FLD dword ptr [ESP + 0x14]\n  10032529:  FADD dword ptr [ESI + 0x14]\n  1003252c:  FSTP dword ptr [ESI + 0x14]\n  1003252f:  FLD dword ptr [ESP + 0x18]\n  10032533:  FADD dword ptr [ESI + 0x18]\n  10032536:  FSTP dword ptr [ESI + 0x18]\n  10032539:  FLD dword ptr [ESI]\n  1003253b:  FSUB dword ptr [ESP + 0x20]\n  1003253f:  FST dword ptr [ESI]\n  10032541:  FMUL dword ptr [0x100f5b6c]\n  10032547:  CALL 0x100e4be4\n  1003254c:  TEST AL,0x1\n  1003254e:  JNZ 0x10032580\n  10032550:  MOV EAX,dword ptr [EDI + 0x50]\n  10032553:  FLD dword ptr [EDI + 0x50]\n  10032556:  PUSH EAX\n  10032557:  PUSH ECX\n  10032558:  FCHS\n  1003255a:  FSTP dword ptr [ESP]\n  1003255d:  CALL 0x10027620\n  10032562:  FSTP dword ptr [ESI + 0x4]\n  10032565:  MOV ECX,dword ptr [EDI + 0x50]\n  10032568:  ADD ESP,0x8\n  1003256b:  FLD dword ptr [EDI + 0x50]\n  1003256e:  PUSH ECX\n  1003256f:  PUSH ECX\n  10032570:  FCHS\n  10032572:  FSTP dword ptr [ESP]\n  10032575:  CALL 0x10027620\n  1003257a:  FSTP dword ptr [ESI + 0xc]\n  1003257d:  ADD ESP,0x8\n  10032580:  FLD dword ptr [ESI]\n  10032582:  FCOMP dword ptr [0x100f53a0]\n  10032588:  FNSTSW AX\n  1003258a:  TEST AH,0x41\n  1003258d:  JZ 0x10032592\n  1003258f:  DEC dword ptr [EDI + 0xc]\n  10032592:  MOV EAX,dword ptr [EDI + 0x8]\n  10032595:  INC EBP\n  10032596:  ADD EBX,0x28\n  10032599:  CMP EBP,EAX\n  1003259b:  JL 0x100324e8\n  100325a1:  POP ESI\n  100325a2:  POP EBX\n  100325a3:  POP EDI\n  100325a4:  POP EBP\n  100325a5:  ADD ESP,0xc\n  100325a8:  RET 0x4", 
+  "callers": []
+}

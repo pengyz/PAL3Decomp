@@ -1,0 +1,95 @@
+{
+  "address": "0x100e809a", 
+  "size_bytes": 123, 
+  "calling_convention": "unknown", 
+  "signature": "undefined FUN_100e809a(undefined4 param_1, undefined4 param_2, undefined4 param_3, undefined4 param_4, undefined4 param_5, undefined4 param_6, undefined4 param_7, undefined4 param_8, undefined4 param_9, undefined4 param_10)", 
+  "callees": [
+    {
+      "address": "0x100e825a", 
+      "name": "FUN_100e825a"
+    }, 
+    {
+      "address": "0x100e4632", 
+      "name": "FUN_100e4632"
+    }, 
+    {
+      "address": "0x100e7fe6", 
+      "name": "FUN_100e7fe6"
+    }, 
+    {
+      "address": "0x100e8115", 
+      "name": "FUN_100e8115"
+    }, 
+    {
+      "address": "0x100e45f0", 
+      "name": "FUN_100e45f0"
+    }
+  ], 
+  "global_refs": [
+    {
+      "address": "0x0000001c", 
+      "type": null, 
+      "name": "DAT_0000001c"
+    }, 
+    {
+      "address": "0x00000018", 
+      "type": null, 
+      "name": "DAT_00000018"
+    }, 
+    {
+      "address": "0x00000008", 
+      "type": null, 
+      "name": "DAT_00000008"
+    }, 
+    {
+      "address": "0x00000004", 
+      "type": null, 
+      "name": "DAT_00000004"
+    }, 
+    {
+      "address": "0x00000028", 
+      "type": null, 
+      "name": "DAT_00000028"
+    }, 
+    {
+      "address": "0x00000020", 
+      "type": null, 
+      "name": "DAT_00000020"
+    }, 
+    {
+      "address": "0x00000014", 
+      "type": null, 
+      "name": "DAT_00000014"
+    }, 
+    {
+      "address": "0x00000010", 
+      "type": null, 
+      "name": "DAT_00000010"
+    }, 
+    {
+      "address": "0x00000024", 
+      "type": null, 
+      "name": "DAT_00000024"
+    }, 
+    {
+      "address": "0x0000000c", 
+      "type": null, 
+      "name": "DAT_0000000c"
+    }
+  ], 
+  "has_custom_name": false, 
+  "decompiled_c": "\nvoid FUN_100e809a(undefined4 param_1,int param_2,undefined4 param_3,undefined4 param_4,\n                 undefined4 param_5,int param_6,int param_7,undefined4 *param_8,undefined4 param_9,\n                 int param_10)\n\n{\n  int iVar1;\n  \n  if (param_7 != 0) {\n    FUN_100e825a(param_1,param_2,param_6,param_7);\n  }\n  if (param_10 == 0) {\n    param_10 = param_2;\n  }\n  FUN_100e4632(param_10,param_1);\n  FUN_100e7fe6(param_2,param_4,param_5,*param_8);\n  *(int *)(param_2 + 8) = param_8[1] + 1;\n  iVar1 = FUN_100e8115(param_1,param_2,param_3,param_5,*(undefined4 *)(param_6 + 0xc),param_9,0x100)\n  ;\n  if (iVar1 != 0) {\n    FUN_100e45f0(iVar1,param_2);\n  }\n  return;\n}\n\n", 
+  "is_thunk": false, 
+  "name": "FUN_100e809a", 
+  "assembly": "  100e809a:  PUSH EBP\n  100e809b:  MOV EBP,ESP\n  100e809d:  CMP dword ptr [EBP + 0x20],0x0\n  100e80a1:  PUSH EBX\n  100e80a2:  MOV EBX,dword ptr [EBP + 0x1c]\n  100e80a5:  PUSH ESI\n  100e80a6:  PUSH EDI\n  100e80a7:  MOV EDI,dword ptr [EBP + 0xc]\n  100e80aa:  JZ 0x100e80bc\n  100e80ac:  PUSH dword ptr [EBP + 0x20]\n  100e80af:  PUSH EBX\n  100e80b0:  PUSH EDI\n  100e80b1:  PUSH dword ptr [EBP + 0x8]\n  100e80b4:  CALL 0x100e825a\n  100e80b9:  ADD ESP,0x10\n  100e80bc:  CMP dword ptr [EBP + 0x2c],0x0\n  100e80c0:  PUSH dword ptr [EBP + 0x8]\n  100e80c3:  JNZ 0x100e80c8\n  100e80c5:  PUSH EDI\n  100e80c6:  JMP 0x100e80cb\n  100e80c8:  PUSH dword ptr [EBP + 0x2c]\n  100e80cb:  CALL 0x100e4632\n  100e80d0:  MOV ESI,dword ptr [EBP + 0x24]\n  100e80d3:  PUSH dword ptr [ESI]\n  100e80d5:  PUSH dword ptr [EBP + 0x18]\n  100e80d8:  PUSH dword ptr [EBP + 0x14]\n  100e80db:  PUSH EDI\n  100e80dc:  CALL 0x100e7fe6\n  100e80e1:  MOV EAX,dword ptr [ESI + 0x4]\n  100e80e4:  PUSH 0x100\n  100e80e9:  PUSH dword ptr [EBP + 0x28]\n  100e80ec:  INC EAX\n  100e80ed:  MOV dword ptr [EDI + 0x8],EAX\n  100e80f0:  PUSH dword ptr [EBX + 0xc]\n  100e80f3:  PUSH dword ptr [EBP + 0x18]\n  100e80f6:  PUSH dword ptr [EBP + 0x10]\n  100e80f9:  PUSH EDI\n  100e80fa:  PUSH dword ptr [EBP + 0x8]\n  100e80fd:  CALL 0x100e8115\n  100e8102:  ADD ESP,0x2c\n  100e8105:  TEST EAX,EAX\n  100e8107:  JZ 0x100e8110\n  100e8109:  PUSH EDI\n  100e810a:  PUSH EAX\n  100e810b:  CALL 0x100e45f0\n  100e8110:  POP EDI\n  100e8111:  POP ESI\n  100e8112:  POP EBX\n  100e8113:  POP EBP\n  100e8114:  RET", 
+  "callers": [
+    {
+      "address": "0x100e7d2c", 
+      "name": "FUN_100e7d2c"
+    }, 
+    {
+      "address": "0x100e7edf", 
+      "name": "FUN_100e7edf"
+    }
+  ]
+}

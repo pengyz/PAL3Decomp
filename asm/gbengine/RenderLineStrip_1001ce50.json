@@ -1,0 +1,44 @@
+{
+  "address": "0x1001ce50", 
+  "size_bytes": 147, 
+  "calling_convention": "__thiscall", 
+  "signature": "void __thiscall RenderLineStrip(gbDynVertBuf * this, gbColorQuad param_2, gbVec3D * param_3, int param_4, gbRenderEffect * param_5, undefined param_6, undefined param_7, undefined param_8, undefined param_9, undefined param_10, undefined4 param_11, undefined4 param_12)", 
+  "callees": [
+    {
+      "address": "0x1001d840", 
+      "name": "NewTrivalEffect"
+    }, 
+    {
+      "address": "0x1001c7e0", 
+      "name": "StepVertexPtr"
+    }
+  ], 
+  "global_refs": [
+    {
+      "address": "0x1013bdfc", 
+      "type": "undefined4", 
+      "name": "DAT_1013bdfc"
+    }, 
+    {
+      "address": "0x1013bdf8", 
+      "type": "gbGfxManager *", 
+      "name": "DAT_1013bdf8"
+    }, 
+    {
+      "address": "0x00000010", 
+      "type": null, 
+      "name": "DAT_00000010"
+    }, 
+    {
+      "address": "0x0000000c", 
+      "type": null, 
+      "name": "DAT_0000000c"
+    }
+  ], 
+  "has_custom_name": true, 
+  "decompiled_c": "\n/* public: void __thiscall gbDynVertBuf::RenderLineStrip(struct gbColorQuad,struct gbVec3D\n   *,int,class gbRenderEffect *) */\n\nvoid __thiscall\ngbDynVertBuf::RenderLineStrip(void *this,int param_2,undefined4 param_3,int param_11)\n\n{\n  int iVar1;\n  undefined4 *puVar2;\n  undefined4 unaff_retaddr;\n  \n                    /* 0x1ce50  792\n                       ?RenderLineStrip@gbDynVertBuf@@QAEXUgbColorQuad@@PAUgbVec3D@@HPAVgbRenderEffect@@@Z\n                        */\n  if (DAT_1013bdfc == (gbRenderEffect *)0x0) {\n    DAT_1013bdfc = gbEffectMgr::NewTrivalEffect(*(gbEffectMgr **)(pGfxMgr + 200),3);\n  }\n                    /* WARNING: Load size is inaccurate */\n  iVar1 = (**(code **)(*this + 0xc))(param_11);\n  if (iVar1 != 0) {\n    if (0 < param_11) {\n      puVar2 = (undefined4 *)(param_2 + 8);\n      iVar1 = param_11;\n      do {\n        **(undefined4 **)((int)this + 0x1c) = puVar2[-2];\n        *(undefined4 *)(*(int *)((int)this + 0x1c) + 4) = puVar2[-1];\n        *(undefined4 *)(*(int *)((int)this + 0x1c) + 8) = *puVar2;\n        **(undefined4 **)((int)this + 0x24) = unaff_retaddr;\n        StepVertexPtr((gbDynVertBuf *)this);\n        puVar2 = puVar2 + 3;\n        iVar1 = iVar1 + -1;\n      } while (iVar1 != 0);\n    }\n                    /* WARNING: Load size is inaccurate */\n    (**(code **)(*this + 0x14))(5,param_11,0);\n  }\n  return;\n}\n\n", 
+  "is_thunk": false, 
+  "name": "RenderLineStrip", 
+  "assembly": "  1001ce50:  MOV EAX,[0x1013bdfc]\n  1001ce55:  PUSH EBX\n  1001ce56:  PUSH ESI\n  1001ce57:  MOV ESI,ECX\n  1001ce59:  TEST EAX,EAX\n  1001ce5b:  JNZ 0x1001ce74\n  1001ce5d:  MOV EAX,[0x1013bdf8]\n  1001ce62:  PUSH 0x3\n  1001ce64:  MOV ECX,dword ptr [EAX + 0xc8]\n  1001ce6a:  CALL 0x1001d840\n  1001ce6f:  MOV [0x1013bdfc],EAX\n  1001ce74:  MOV ECX,dword ptr [ESP + 0x18]\n  1001ce78:  TEST ECX,ECX\n  1001ce7a:  JNZ 0x1001ce80\n  1001ce7c:  MOV dword ptr [ESP + 0x18],EAX\n  1001ce80:  MOV EBX,dword ptr [ESP + 0x14]\n  1001ce84:  MOV EDX,dword ptr [ESI]\n  1001ce86:  PUSH EBX\n  1001ce87:  MOV ECX,ESI\n  1001ce89:  CALL dword ptr [EDX + 0xc]\n  1001ce8c:  TEST EAX,EAX\n  1001ce8e:  JZ 0x1001cede\n  1001ce90:  TEST EBX,EBX\n  1001ce92:  JLE 0x1001cece\n  1001ce94:  MOV EAX,dword ptr [ESP + 0x10]\n  1001ce98:  PUSH EBP\n  1001ce99:  MOV EBP,dword ptr [ESP + 0x10]\n  1001ce9d:  PUSH EDI\n  1001ce9e:  LEA EDI,[EAX + 0x8]\n  1001cea1:  MOV ECX,dword ptr [ESI + 0x1c]\n  1001cea4:  MOV EDX,dword ptr [EDI + -0x8]\n  1001cea7:  MOV dword ptr [ECX],EDX\n  1001cea9:  MOV EAX,dword ptr [ESI + 0x1c]\n  1001ceac:  MOV ECX,dword ptr [EDI + -0x4]\n  1001ceaf:  MOV dword ptr [EAX + 0x4],ECX\n  1001ceb2:  MOV EDX,dword ptr [ESI + 0x1c]\n  1001ceb5:  MOV EAX,dword ptr [EDI]\n  1001ceb7:  MOV dword ptr [EDX + 0x8],EAX\n  1001ceba:  MOV ECX,dword ptr [ESI + 0x24]\n  1001cebd:  MOV dword ptr [ECX],EBP\n  1001cebf:  MOV ECX,ESI\n  1001cec1:  CALL 0x1001c7e0\n  1001cec6:  ADD EDI,0xc\n  1001cec9:  DEC EBX\n  1001ceca:  JNZ 0x1001cea1\n  1001cecc:  POP EDI\n  1001cecd:  POP EBP\n  1001cece:  MOV EAX,dword ptr [ESP + 0x18]\n  1001ced2:  MOV EDX,dword ptr [ESI]\n  1001ced4:  PUSH 0x0\n  1001ced6:  PUSH EAX\n  1001ced7:  PUSH 0x5\n  1001ced9:  MOV ECX,ESI\n  1001cedb:  CALL dword ptr [EDX + 0x14]\n  1001cede:  POP ESI\n  1001cedf:  POP EBX\n  1001cee0:  RET 0x10", 
+  "callers": []
+}

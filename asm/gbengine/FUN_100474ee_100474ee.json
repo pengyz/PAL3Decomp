@@ -1,0 +1,19 @@
+{
+  "address": "0x100474ee", 
+  "size_bytes": 17, 
+  "calling_convention": "unknown", 
+  "signature": "undefined FUN_100474ee(void)", 
+  "callees": [
+    {
+      "address": "0x1007713a", 
+      "name": "FUN_1007713a"
+    }
+  ], 
+  "global_refs": [], 
+  "has_custom_name": false, 
+  "decompiled_c": "\nvoid FUN_100474ee(void)\n\n{\n  FUN_1007713a(1);\n                    /* WARNING: Could not recover jumptable at 0x100474f9. Too many branches */\n                    /* WARNING: Treating indirect jump as call */\n  (*(code *)PTR_FUN_101214d0)();\n  return;\n}\n\n", 
+  "is_thunk": false, 
+  "name": "FUN_100474ee", 
+  "assembly": "  100474ee:  PUSH EBP\n  100474ef:  MOV EBP,ESP\n  100474f1:  PUSH 0x1\n  100474f3:  CALL 0x1007713a\n  100474f8:  POP EBP\n  100474f9:  JMP dword ptr [0x101214d0]", 
+  "callers": []
+}

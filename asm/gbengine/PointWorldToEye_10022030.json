@@ -1,0 +1,30 @@
+{
+  "address": "0x10022030", 
+  "size_bytes": 24, 
+  "calling_convention": "__thiscall", 
+  "signature": "void __thiscall PointWorldToEye(gbCamera * this, gbVec3D * param_1, gbVec3D * param_2)", 
+  "callees": [
+    {
+      "address": "0x10025260", 
+      "name": "Transform"
+    }
+  ], 
+  "global_refs": [
+    {
+      "address": "0x00000008", 
+      "type": null, 
+      "name": "DAT_00000008"
+    }, 
+    {
+      "address": "0x00000004", 
+      "type": null, 
+      "name": "DAT_00000004"
+    }
+  ], 
+  "has_custom_name": true, 
+  "decompiled_c": "\n/* public: void __thiscall gbCamera::PointWorldToEye(struct gbVec3D *,struct gbVec3D *) */\n\nvoid __thiscall gbCamera::PointWorldToEye(gbCamera *this,gbVec3D *param_1,gbVec3D *param_2)\n\n{\n                    /* 0x22030  742  ?PointWorldToEye@gbCamera@@QAEXPAUgbVec3D@@0@Z */\n  gbMatrix4::Transform((gbMatrix4 *)(this + 0x94),param_1,param_2);\n  return;\n}\n\n", 
+  "is_thunk": false, 
+  "name": "PointWorldToEye", 
+  "assembly": "  10022030:  MOV EAX,dword ptr [ESP + 0x8]\n  10022034:  MOV EDX,dword ptr [ESP + 0x4]\n  10022038:  PUSH EAX\n  10022039:  PUSH EDX\n  1002203a:  ADD ECX,0x94\n  10022040:  CALL 0x10025260\n  10022045:  RET 0x8", 
+  "callers": []
+}

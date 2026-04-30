@@ -1,0 +1,56 @@
+{
+  "address": "0x10020a50", 
+  "size_bytes": 201, 
+  "calling_convention": "__thiscall", 
+  "signature": "gbIndexBubble * __thiscall NewBubble(gbIndexPool * this, gbPrimType param_1, int param_2)", 
+  "callees": [
+    {
+      "address": "0x100e4a16", 
+      "name": "operator_new"
+    }, 
+    {
+      "address": "0x1002eaa0", 
+      "name": "AddNode"
+    }, 
+    {
+      "address": "0x1002eb90", 
+      "name": "DelNodeFromChain"
+    }, 
+    {
+      "address": "0x1002eaa0", 
+      "name": "AddNode"
+    }
+  ], 
+  "global_refs": [
+    {
+      "address": "0x00000008", 
+      "type": null, 
+      "name": "DAT_00000008"
+    }, 
+    {
+      "address": "0x00000004", 
+      "type": null, 
+      "name": "DAT_00000004"
+    }, 
+    {
+      "address": "0x100f53b0", 
+      "type": "pointer", 
+      "name": "DAT_100f53b0"
+    }
+  ], 
+  "has_custom_name": true, 
+  "decompiled_c": "\n/* public: class gbIndexBubble * __thiscall gbIndexPool::NewBubble(enum gbPrimType,int) */\n\ngbIndexBubble * __thiscall gbIndexPool::NewBubble(gbIndexPool *this,gbPrimType param_1,int param_2)\n\n{\n  gbChain1DNode *pgVar1;\n  int iVar2;\n  int iVar3;\n  gbChain1DNode *pgVar4;\n  \n                    /* 0x20a50  702  ?NewBubble@gbIndexPool@@QAEPAVgbIndexBubble@@W4gbPrimType@@H@Z\n                        */\n  pgVar4 = (gbChain1DNode *)0x0;\n  pgVar1 = *(gbChain1DNode **)(this + 0x18);\n  iVar3 = 0x7fffffff;\n  *(gbChain1DNode **)(this + 0x24) = pgVar1;\n  if (pgVar1 != (gbChain1DNode *)0x0) {\n    do {\n      iVar2 = *(int *)(pgVar1 + 0x14) - param_2;\n      if ((-1 < iVar2) && (iVar2 < iVar3)) {\n        iVar3 = iVar2;\n        pgVar4 = pgVar1;\n      }\n      pgVar1 = *(gbChain1DNode **)(*(int *)(this + 0x24) + 4);\n      *(gbChain1DNode **)(this + 0x24) = pgVar1;\n    } while (pgVar1 != (gbChain1DNode *)0x0);\n    if (pgVar4 != (gbChain1DNode *)0x0) {\n      if (iVar3 < 0x10) {\n        gbChain1D::DelNodeFromChain((gbChain1D *)(this + 0x18),pgVar4);\n        *(int *)(pgVar4 + 0x10) = param_2;\n        *(gbPrimType *)(pgVar4 + 0xc) = param_1;\n        gbChain1D::AddNode((gbChain1D *)(this + 0x28),pgVar4);\n        return (gbIndexBubble *)pgVar4;\n      }\n      pgVar1 = (gbChain1DNode *)operator_new(0x24);\n      if (pgVar1 == (gbChain1DNode *)0x0) {\n        pgVar1 = (gbChain1DNode *)0x0;\n      }\n      else {\n        *(undefined4 *)(pgVar1 + 0x18) = *(undefined4 *)(pgVar4 + 0x18);\n        *(undefined ***)pgVar1 = &gbIndexBubble::_vftable_;\n        *(gbIndexPool **)(pgVar1 + 8) = this;\n        *(gbPrimType *)(pgVar1 + 0xc) = param_1;\n        *(int *)(pgVar1 + 0x10) = param_2;\n        *(int *)(pgVar1 + 0x14) = param_2;\n        *(undefined4 *)(pgVar1 + 0x20) = 0xffffffff;\n        *(undefined4 *)(pgVar1 + 0x1c) = 0xffffffff;\n      }\n      gbChain1D::AddNode((gbChain1D *)(this + 0x28),pgVar1);\n      *(int *)(pgVar4 + 0x18) = *(int *)(pgVar4 + 0x18) + param_2;\n      *(int *)(pgVar4 + 0x14) = *(int *)(pgVar4 + 0x14) - param_2;\n      return (gbIndexBubble *)pgVar1;\n    }\n  }\n  return (gbIndexBubble *)0x0;\n}\n\n", 
+  "is_thunk": false, 
+  "name": "NewBubble", 
+  "assembly": "  10020a50:  PUSH EBX\n  10020a51:  PUSH EBP\n  10020a52:  MOV EBP,ECX\n  10020a54:  PUSH ESI\n  10020a55:  XOR ESI,ESI\n  10020a57:  PUSH EDI\n  10020a58:  MOV EAX,dword ptr [EBP + 0x18]\n  10020a5b:  LEA ECX,[EBP + 0x18]\n  10020a5e:  TEST EAX,EAX\n  10020a60:  MOV EBX,0x7fffffff\n  10020a65:  MOV dword ptr [ECX + 0xc],EAX\n  10020a68:  JZ 0x10020a8e\n  10020a6a:  MOV EDI,dword ptr [ESP + 0x18]\n  10020a6e:  MOV EDX,dword ptr [EAX + 0x14]\n  10020a71:  SUB EDX,EDI\n  10020a73:  JS 0x10020a7d\n  10020a75:  CMP EBX,EDX\n  10020a77:  JLE 0x10020a7d\n  10020a79:  MOV ESI,EAX\n  10020a7b:  MOV EBX,EDX\n  10020a7d:  MOV EAX,dword ptr [ECX + 0xc]\n  10020a80:  MOV EAX,dword ptr [EAX + 0x4]\n  10020a83:  TEST EAX,EAX\n  10020a85:  MOV dword ptr [ECX + 0xc],EAX\n  10020a88:  JNZ 0x10020a6e\n  10020a8a:  TEST ESI,ESI\n  10020a8c:  JNZ 0x10020a97\n  10020a8e:  POP EDI\n  10020a8f:  POP ESI\n  10020a90:  POP EBP\n  10020a91:  XOR EAX,EAX\n  10020a93:  POP EBX\n  10020a94:  RET 0x8\n  10020a97:  CMP EBX,0x10\n  10020a9a:  JL 0x10020af7\n  10020a9c:  PUSH 0x24\n  10020a9e:  CALL 0x100e4a16\n  10020aa3:  ADD ESP,0x4\n  10020aa6:  TEST EAX,EAX\n  10020aa8:  JZ 0x10020ad3\n  10020aaa:  MOV ECX,dword ptr [ESI + 0x18]\n  10020aad:  MOV EDX,dword ptr [ESP + 0x14]\n  10020ab1:  MOV dword ptr [EAX + 0x18],ECX\n  10020ab4:  OR ECX,0xffffffff\n  10020ab7:  MOV dword ptr [EAX],0x100f53b0\n  10020abd:  MOV dword ptr [EAX + 0x8],EBP\n  10020ac0:  MOV dword ptr [EAX + 0xc],EDX\n  10020ac3:  MOV dword ptr [EAX + 0x10],EDI\n  10020ac6:  MOV dword ptr [EAX + 0x14],EDI\n  10020ac9:  MOV dword ptr [EAX + 0x20],ECX\n  10020acc:  MOV dword ptr [EAX + 0x1c],ECX\n  10020acf:  MOV EBX,EAX\n  10020ad1:  JMP 0x10020ad5\n  10020ad3:  XOR EBX,EBX\n  10020ad5:  PUSH EBX\n  10020ad6:  LEA ECX,[EBP + 0x28]\n  10020ad9:  CALL 0x1002eaa0\n  10020ade:  MOV ECX,dword ptr [ESI + 0x18]\n  10020ae1:  MOV EAX,dword ptr [ESI + 0x14]\n  10020ae4:  ADD ECX,EDI\n  10020ae6:  SUB EAX,EDI\n  10020ae8:  MOV dword ptr [ESI + 0x18],ECX\n  10020aeb:  MOV dword ptr [ESI + 0x14],EAX\n  10020aee:  POP EDI\n  10020aef:  POP ESI\n  10020af0:  MOV EAX,EBX\n  10020af2:  POP EBP\n  10020af3:  POP EBX\n  10020af4:  RET 0x8\n  10020af7:  PUSH ESI\n  10020af8:  CALL 0x1002eb90\n  10020afd:  MOV EAX,dword ptr [ESP + 0x14]\n  10020b01:  PUSH ESI\n  10020b02:  LEA ECX,[EBP + 0x28]\n  10020b05:  MOV dword ptr [ESI + 0x10],EDI\n  10020b08:  MOV dword ptr [ESI + 0xc],EAX\n  10020b0b:  CALL 0x1002eaa0\n  10020b10:  MOV EAX,ESI\n  10020b12:  POP EDI\n  10020b13:  POP ESI\n  10020b14:  POP EBP\n  10020b15:  POP EBX\n  10020b16:  RET 0x8", 
+  "callers": [
+    {
+      "address": "0x10021590", 
+      "name": "NewIndexBubble"
+    }, 
+    {
+      "address": "0x10021590", 
+      "name": "NewIndexBubble"
+    }
+  ]
+}

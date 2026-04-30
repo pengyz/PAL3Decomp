@@ -1,0 +1,20 @@
+{
+  "address": "0x10026330", 
+  "size_bytes": 27, 
+  "calling_convention": "__thiscall", 
+  "signature": "void __thiscall operator=(gbRotMatrix * this, gbRotMatrix * param_1)", 
+  "callees": [], 
+  "global_refs": [
+    {
+      "address": "0x00000004", 
+      "type": null, 
+      "name": "DAT_00000004"
+    }
+  ], 
+  "has_custom_name": true, 
+  "decompiled_c": "\n/* public: void __thiscall gbRotMatrix::operator=(struct gbRotMatrix &) */\n\nvoid __thiscall gbRotMatrix::operator=(gbRotMatrix *this,gbRotMatrix *param_1)\n\n{\n  int iVar1;\n  int iVar2;\n  \n                    /* 0x26330  230  ??4gbRotMatrix@@QAEXAAU0@@Z */\n  iVar1 = (int)param_1 - (int)this;\n  iVar2 = 9;\n  do {\n    *(undefined4 *)this = *(undefined4 *)(this + iVar1);\n    this = this + 4;\n    iVar2 = iVar2 + -1;\n  } while (iVar2 != 0);\n  return;\n}\n\n", 
+  "is_thunk": false, 
+  "name": "operator=", 
+  "assembly": "  10026330:  MOV EAX,dword ptr [ESP + 0x4]\n  10026334:  PUSH ESI\n  10026335:  SUB EAX,ECX\n  10026337:  MOV EDX,0x9\n  1002633c:  MOV ESI,dword ptr [EAX + ECX*0x1]\n  1002633f:  MOV dword ptr [ECX],ESI\n  10026341:  ADD ECX,0x4\n  10026344:  DEC EDX\n  10026345:  JNZ 0x1002633c\n  10026347:  POP ESI\n  10026348:  RET 0x4", 
+  "callers": []
+}

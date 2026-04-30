@@ -1,0 +1,74 @@
+{
+  "address": "0x10027df0", 
+  "size_bytes": 206, 
+  "calling_convention": "__thiscall", 
+  "signature": "float __thiscall GetRadiusInDirection(gbOBBox * this, gbVec3D * param_1)", 
+  "callees": [
+    {
+      "address": "0x100262d0", 
+      "name": "GetRow"
+    }, 
+    {
+      "address": "0x100262d0", 
+      "name": "GetRow"
+    }, 
+    {
+      "address": "0x100262d0", 
+      "name": "GetRow"
+    }, 
+    {
+      "address": "0x100262d0", 
+      "name": "GetRow"
+    }
+  ], 
+  "global_refs": [
+    {
+      "address": "0x-000000c", 
+      "type": null, 
+      "name": "DAT_-000000c"
+    }, 
+    {
+      "address": "0x-0000008", 
+      "type": null, 
+      "name": "DAT_-0000008"
+    }, 
+    {
+      "address": "0x-0000004", 
+      "type": null, 
+      "name": "DAT_-0000004"
+    }, 
+    {
+      "address": "0x00000004", 
+      "type": null, 
+      "name": "DAT_00000004"
+    }, 
+    {
+      "address": "0x100f5508", 
+      "type": null, 
+      "name": "DAT_100f5508"
+    }
+  ], 
+  "has_custom_name": true, 
+  "decompiled_c": "\n/* public: float __thiscall gbOBBox::GetRadiusInDirection(struct gbVec3D const &)const  */\n\nfloat __thiscall gbOBBox::GetRadiusInDirection(gbOBBox *this,gbVec3D *param_1)\n\n{\n  float fVar1;\n  float fVar2;\n  float fVar3;\n  float fVar4;\n  float fVar5;\n  float fVar6;\n  float fVar7;\n  float fVar8;\n  float fVar9;\n  float fVar10;\n  float fVar11;\n  float fVar12;\n  float fVar13;\n  float fVar14;\n  gbVec3D *pgVar15;\n  undefined4 local_c;\n  undefined4 local_8;\n  undefined4 local_4;\n  \n                    /* 0x27df0  527  ?GetRadiusInDirection@gbOBBox@@QBEMABUgbVec3D@@@Z */\n  local_c = 0;\n  local_8 = 0;\n  local_4 = 0;\n  gbMatrix4::GetRow((gbMatrix4 *)this,(gbVec3D *)&local_c,0);\n  pgVar15 = gbMatrix4::GetRow((gbMatrix4 *)this,(gbVec3D *)&local_c,0);\n  fVar1 = *(float *)(pgVar15 + 8);\n  fVar2 = *(float *)(param_1 + 8);\n  fVar3 = *(float *)(pgVar15 + 4);\n  fVar4 = *(float *)(param_1 + 4);\n  fVar5 = *(float *)param_1;\n  fVar6 = *(float *)pgVar15;\n  fVar7 = *(float *)(this + 0x40);\n  pgVar15 = gbMatrix4::GetRow((gbMatrix4 *)this,(gbVec3D *)&local_c,1);\n  fVar8 = *(float *)(pgVar15 + 8);\n  fVar9 = *(float *)(param_1 + 8);\n  fVar10 = *(float *)(pgVar15 + 4);\n  fVar11 = *(float *)(param_1 + 4);\n  fVar12 = *(float *)param_1;\n  fVar13 = *(float *)pgVar15;\n  fVar14 = *(float *)(this + 0x44);\n  pgVar15 = gbMatrix4::GetRow((gbMatrix4 *)this,(gbVec3D *)&local_c,2);\n  return ABS(*(float *)pgVar15 * *(float *)param_1 +\n             *(float *)(pgVar15 + 4) * *(float *)(param_1 + 4) +\n             *(float *)(pgVar15 + 8) * *(float *)(param_1 + 8)) * *(float *)(this + 0x48) * 0.5 +\n         ABS(fVar12 * fVar13 + fVar10 * fVar11 + fVar8 * fVar9) * fVar14 * 0.5 +\n         ABS(fVar5 * fVar6 + fVar3 * fVar4 + fVar1 * fVar2) * fVar7 * 0.5;\n}\n\n", 
+  "is_thunk": false, 
+  "name": "GetRadiusInDirection", 
+  "assembly": "  10027df0:  SUB ESP,0xc\n  10027df3:  PUSH ESI\n  10027df4:  PUSH EDI\n  10027df5:  LEA EAX,[ESP + 0x8]\n  10027df9:  PUSH 0x0\n  10027dfb:  MOV EDI,ECX\n  10027dfd:  PUSH EAX\n  10027dfe:  MOV dword ptr [ESP + 0x10],0x0\n  10027e06:  MOV dword ptr [ESP + 0x14],0x0\n  10027e0e:  MOV dword ptr [ESP + 0x18],0x0\n  10027e16:  CALL 0x100262d0\n  10027e1b:  LEA ECX,[ESP + 0x8]\n  10027e1f:  PUSH 0x0\n  10027e21:  PUSH ECX\n  10027e22:  MOV ECX,EDI\n  10027e24:  CALL 0x100262d0\n  10027e29:  MOV ESI,dword ptr [ESP + 0x18]\n  10027e2d:  LEA EDX,[ESP + 0x8]\n  10027e31:  FLD dword ptr [EAX + 0x8]\n  10027e34:  FMUL dword ptr [ESI + 0x8]\n  10027e37:  FLD dword ptr [EAX + 0x4]\n  10027e3a:  FMUL dword ptr [ESI + 0x4]\n  10027e3d:  PUSH 0x1\n  10027e3f:  PUSH EDX\n  10027e40:  MOV ECX,EDI\n  10027e42:  FADDP\n  10027e44:  FLD dword ptr [ESI]\n  10027e46:  FMUL dword ptr [EAX]\n  10027e48:  FADDP\n  10027e4a:  FABS\n  10027e4c:  FMUL dword ptr [EDI + 0x40]\n  10027e4f:  FMUL dword ptr [0x100f5508]\n  10027e55:  FSTP dword ptr [ESP + 0x20]\n  10027e59:  CALL 0x100262d0\n  10027e5e:  FLD dword ptr [EAX + 0x8]\n  10027e61:  FMUL dword ptr [ESI + 0x8]\n  10027e64:  FLD dword ptr [EAX + 0x4]\n  10027e67:  FMUL dword ptr [ESI + 0x4]\n  10027e6a:  PUSH 0x2\n  10027e6c:  MOV ECX,EDI\n  10027e6e:  FADDP\n  10027e70:  FLD dword ptr [ESI]\n  10027e72:  FMUL dword ptr [EAX]\n  10027e74:  LEA EAX,[ESP + 0xc]\n  10027e78:  PUSH EAX\n  10027e79:  FADDP\n  10027e7b:  FABS\n  10027e7d:  FMUL dword ptr [EDI + 0x44]\n  10027e80:  FMUL dword ptr [0x100f5508]\n  10027e86:  FADD dword ptr [ESP + 0x20]\n  10027e8a:  FSTP dword ptr [ESP + 0x20]\n  10027e8e:  CALL 0x100262d0\n  10027e93:  FLD dword ptr [EAX + 0x8]\n  10027e96:  FMUL dword ptr [ESI + 0x8]\n  10027e99:  FLD dword ptr [EAX + 0x4]\n  10027e9c:  FMUL dword ptr [ESI + 0x4]\n  10027e9f:  FADDP\n  10027ea1:  FLD dword ptr [EAX]\n  10027ea3:  FMUL dword ptr [ESI]\n  10027ea5:  FADDP\n  10027ea7:  FABS\n  10027ea9:  FMUL dword ptr [EDI + 0x48]\n  10027eac:  POP EDI\n  10027ead:  POP ESI\n  10027eae:  FMUL dword ptr [0x100f5508]\n  10027eb4:  FADD dword ptr [ESP + 0x10]\n  10027eb8:  ADD ESP,0xc\n  10027ebb:  RET 0x4", 
+  "callers": [
+    {
+      "address": "0x10027ec0", 
+      "name": "IsColOBB"
+    }, 
+    {
+      "address": "0x10027ec0", 
+      "name": "IsColOBB"
+    }, 
+    {
+      "address": "0x10027ec0", 
+      "name": "IsColOBB"
+    }, 
+    {
+      "address": "0x10027ec0", 
+      "name": "IsColOBB"
+    }
+  ]
+}

@@ -1,0 +1,19 @@
+{
+  "address": "0x1002b090", 
+  "size_bytes": 18, 
+  "calling_convention": "__thiscall", 
+  "signature": "void __thiscall ~gbParticleGroup(gbParticleGroup * this)", 
+  "callees": [
+    {
+      "address": "0x100e4a24", 
+      "name": "FUN_100e4a24"
+    }
+  ], 
+  "global_refs": [], 
+  "has_custom_name": true, 
+  "decompiled_c": "\n/* public: __thiscall gbParticleGroup::~gbParticleGroup(void) */\n\nvoid __thiscall gbParticleGroup::~gbParticleGroup(gbParticleGroup *this)\n\n{\n                    /* 0x2b090  151  ??1gbParticleGroup@@QAE@XZ */\n  if (*(int *)(this + 0x80) != 0) {\n    FUN_100e4a24(*(int *)(this + 0x80));\n  }\n  return;\n}\n\n", 
+  "is_thunk": false, 
+  "name": "~gbParticleGroup", 
+  "assembly": "  1002b090:  MOV EAX,dword ptr [ECX + 0x80]\n  1002b096:  TEST EAX,EAX\n  1002b098:  JZ 0x1002b0a1\n  1002b09a:  PUSH EAX\n  1002b09b:  CALL 0x100e4a24\n  1002b0a0:  POP ECX\n  1002b0a1:  RET", 
+  "callers": []
+}

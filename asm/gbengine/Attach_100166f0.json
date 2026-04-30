@@ -1,0 +1,33 @@
+{
+  "address": "0x100166f0", 
+  "size_bytes": 64, 
+  "calling_convention": "__thiscall", 
+  "signature": "int __thiscall Attach(gbVisNode * this, gbRenderEffect * param_1)", 
+  "callees": [], 
+  "global_refs": [
+    {
+      "address": "0x00000004", 
+      "type": null, 
+      "name": "DAT_00000004"
+    }
+  ], 
+  "has_custom_name": true, 
+  "decompiled_c": "\n/* public: virtual int __thiscall gbVisNode::Attach(class gbRenderEffect *) */\n\nint __thiscall gbVisNode::Attach(gbVisNode *this,gbRenderEffect *param_1)\n\n{\n  int iVar1;\n  int *piVar2;\n  int iVar3;\n  \n                    /* 0x166f0  310  ?Attach@gbVisNode@@UAEHPAVgbRenderEffect@@@Z */\n  iVar3 = 0;\n  piVar2 = *(int **)(this + 0xc);\n  *(int **)(this + 0x18) = piVar2;\n  if (piVar2 == (int *)0x0) {\n    return 0;\n  }\n  do {\n    iVar1 = (**(code **)(*piVar2 + 0x10))(param_1);\n    if (iVar1 != 0) {\n      iVar3 = 1;\n    }\n    piVar2 = *(int **)(*(int *)(this + 0x18) + 4);\n    *(int **)(this + 0x18) = piVar2;\n  } while (piVar2 != (int *)0x0);\n  return iVar3;\n}\n\n", 
+  "is_thunk": false, 
+  "name": "Attach", 
+  "assembly": "  100166f0:  PUSH ESI\n  100166f1:  MOV ESI,ECX\n  100166f3:  PUSH EDI\n  100166f4:  XOR EDI,EDI\n  100166f6:  MOV ECX,dword ptr [ESI + 0xc]\n  100166f9:  TEST ECX,ECX\n  100166fb:  MOV dword ptr [ESI + 0x18],ECX\n  100166fe:  JZ 0x10016729\n  10016700:  PUSH EBX\n  10016701:  MOV EBX,dword ptr [ESP + 0x10]\n  10016705:  MOV EAX,dword ptr [ECX]\n  10016707:  PUSH EBX\n  10016708:  CALL dword ptr [EAX + 0x10]\n  1001670b:  TEST EAX,EAX\n  1001670d:  JZ 0x10016714\n  1001670f:  MOV EDI,0x1\n  10016714:  MOV ECX,dword ptr [ESI + 0x18]\n  10016717:  MOV ECX,dword ptr [ECX + 0x4]\n  1001671a:  TEST ECX,ECX\n  1001671c:  MOV dword ptr [ESI + 0x18],ECX\n  1001671f:  JNZ 0x10016705\n  10016721:  MOV EAX,EDI\n  10016723:  POP EBX\n  10016724:  POP EDI\n  10016725:  POP ESI\n  10016726:  RET 0x4\n  10016729:  MOV EAX,EDI\n  1001672b:  POP EDI\n  1001672c:  POP ESI\n  1001672d:  RET 0x4", 
+  "callers": [
+    {
+      "address": "0x10011440", 
+      "name": "Attach"
+    }, 
+    {
+      "address": "0x10013190", 
+      "name": "Attach"
+    }, 
+    {
+      "address": "0x1002c160", 
+      "name": "Attach"
+    }
+  ]
+}

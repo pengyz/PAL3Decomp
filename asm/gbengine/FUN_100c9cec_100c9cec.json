@@ -1,0 +1,48 @@
+{
+  "address": "0x100c9cec", 
+  "size_bytes": 100, 
+  "calling_convention": "unknown", 
+  "signature": "undefined FUN_100c9cec(void)", 
+  "callees": [
+    {
+      "address": "0x100995a9", 
+      "name": "FUN_100995a9"
+    }, 
+    {
+      "address": "0x100995a9", 
+      "name": "FUN_100995a9"
+    }, 
+    {
+      "address": "0x100c9674", 
+      "name": "FUN_100c9674"
+    }
+  ], 
+  "global_refs": [
+    {
+      "address": "0x-0000010", 
+      "type": null, 
+      "name": "DAT_-0000010"
+    }, 
+    {
+      "address": "0x-0000014", 
+      "type": null, 
+      "name": "DAT_-0000014"
+    }, 
+    {
+      "address": "0x-0000008", 
+      "type": null, 
+      "name": "DAT_-0000008"
+    }, 
+    {
+      "address": "0x-000000c", 
+      "type": null, 
+      "name": "DAT_-000000c"
+    }
+  ], 
+  "has_custom_name": false, 
+  "decompiled_c": "\nvoid FUN_100c9cec(void)\n\n{\n  uint *puVar1;\n  uint uVar2;\n  uint uVar3;\n  uint uVar4;\n  int in_ECX;\n  undefined4 local_c;\n  undefined4 local_8;\n  \n  puVar1 = *(uint **)(in_ECX + 0xe0);\n  uVar2 = puVar1[3];\n  uVar3 = *puVar1;\n  uVar4 = puVar1[4];\n  FUN_100995a9(0,&local_8);\n  FUN_100995a9(1,&local_c);\n  FUN_100c9674(0x20042,uVar4,uVar2,local_c,local_8,0,uVar3 & 0xfffff,0,0,0);\n  return;\n}\n\n", 
+  "is_thunk": false, 
+  "name": "FUN_100c9cec", 
+  "assembly": "  100c9cec:  PUSH EBP\n  100c9ced:  MOV EBP,ESP\n  100c9cef:  SUB ESP,0x10\n  100c9cf2:  PUSH EBX\n  100c9cf3:  PUSH ESI\n  100c9cf4:  PUSH EDI\n  100c9cf5:  MOV EDI,ECX\n  100c9cf7:  MOV ECX,dword ptr [EDI + 0xe0]\n  100c9cfd:  MOV EAX,dword ptr [ECX + 0xc]\n  100c9d00:  MOV ESI,dword ptr [ECX]\n  100c9d02:  MOV dword ptr [EBP + -0xc],EAX\n  100c9d05:  MOV EAX,dword ptr [ECX + 0x10]\n  100c9d08:  MOV dword ptr [EBP + -0x10],EAX\n  100c9d0b:  LEA EAX,[EBP + -0x4]\n  100c9d0e:  PUSH EAX\n  100c9d0f:  XOR EBX,EBX\n  100c9d11:  PUSH EBX\n  100c9d12:  AND ESI,0xfffff\n  100c9d18:  CALL 0x100995a9\n  100c9d1d:  MOV ECX,dword ptr [EDI + 0xe0]\n  100c9d23:  LEA EAX,[EBP + -0x8]\n  100c9d26:  PUSH EAX\n  100c9d27:  PUSH 0x1\n  100c9d29:  CALL 0x100995a9\n  100c9d2e:  PUSH EBX\n  100c9d2f:  PUSH EBX\n  100c9d30:  PUSH EBX\n  100c9d31:  PUSH ESI\n  100c9d32:  PUSH EBX\n  100c9d33:  PUSH dword ptr [EBP + -0x4]\n  100c9d36:  MOV ECX,EDI\n  100c9d38:  PUSH dword ptr [EBP + -0x8]\n  100c9d3b:  PUSH dword ptr [EBP + -0xc]\n  100c9d3e:  PUSH dword ptr [EBP + -0x10]\n  100c9d41:  PUSH 0x20042\n  100c9d46:  CALL 0x100c9674\n  100c9d4b:  POP EDI\n  100c9d4c:  POP ESI\n  100c9d4d:  POP EBX\n  100c9d4e:  LEAVE\n  100c9d4f:  RET", 
+  "callers": []
+}

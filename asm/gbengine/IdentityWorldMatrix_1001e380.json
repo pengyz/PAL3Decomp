@@ -1,0 +1,24 @@
+{
+  "address": "0x1001e380", 
+  "size_bytes": 19, 
+  "calling_convention": "__thiscall", 
+  "signature": "void __thiscall IdentityWorldMatrix(gbGfxManager * this)", 
+  "callees": [
+    {
+      "address": "0x10027110", 
+      "name": "LoadMatrix"
+    }
+  ], 
+  "global_refs": [], 
+  "has_custom_name": true, 
+  "decompiled_c": "\n/* public: void __thiscall gbGfxManager::IdentityWorldMatrix(void) */\n\nvoid __thiscall gbGfxManager::IdentityWorldMatrix(gbGfxManager *this)\n\n{\n                    /* 0x1e380  587  ?IdentityWorldMatrix@gbGfxManager@@QAEXXZ */\n  gbMatrixStack::LoadMatrix(*(gbMatrixStack **)(this + 0xd8),(gbMatrix4 *)(this + 0xe4));\n  return;\n}\n\n", 
+  "is_thunk": false, 
+  "name": "IdentityWorldMatrix", 
+  "assembly": "  1001e380:  LEA EAX,[ECX + 0xe4]\n  1001e386:  MOV ECX,dword ptr [ECX + 0xd8]\n  1001e38c:  PUSH EAX\n  1001e38d:  CALL 0x10027110\n  1001e392:  RET", 
+  "callers": [
+    {
+      "address": "0x1002c2e0", 
+      "name": "Render"
+    }
+  ]
+}
