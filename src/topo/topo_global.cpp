@@ -22,8 +22,8 @@ extern void *vtbl_TopoGeomComplex;  // 0x10012148
 // Global instance pointer
 static ITopoGeom *g_pTopoGeom = NULL;  // 0x10017f08
 
-// Internal initialization (thiscall)
-extern void __fastcall TopoGeom_Init(void *pThis, void *edx, int *pDesc);
+// Internal initialization (thiscall) - implemented in topo_internal.cpp
+extern int __fastcall TopoGeom_Init(void *pThis, int edx, int *pDesc);
 
 // CRT
 extern "C" void *operator new(unsigned int size);
@@ -48,7 +48,7 @@ ITopoGeom *__cdecl CreateTopoGeom(TopoDataDesc *pDesc, TopoType type)
             *((int *)pObj + 4) = 0;
             *((char *)pObj + 4) = (char)type;
             *(void **)pObj = &vtbl_TopoGeomSimple;
-            TopoGeom_Init(pObj, NULL, (int *)pDesc);
+            TopoGeom_Init(pObj, 0, (int *)pDesc);
             return pObj;
         }
     } else if (type == TOPO_COMPLEX) {
@@ -64,17 +64,17 @@ ITopoGeom *__cdecl CreateTopoGeom(TopoDataDesc *pDesc, TopoType type)
             *((char *)pObj + 0x18) = (char)type;
             *(void **)pObj = &vtbl_TopoGeomComplex;
             g_pTopoGeom = pObj;
-            TopoGeom_Init(pObj, NULL, (int *)pDesc);
+            TopoGeom_Init(pObj, 0, (int *)pDesc);
             return pObj;
         }
     } else {
         // Unknown type: treat 'type' as an existing object pointer, re-init
-        TopoGeom_Init((void *)type, NULL, (int *)pDesc);
+        TopoGeom_Init((void *)type, 0, (int *)pDesc);
         return (ITopoGeom *)type;
     }
 
     // Allocation failed
-    TopoGeom_Init(NULL, NULL, (int *)pDesc);
+    TopoGeom_Init(NULL, 0, (int *)pDesc);
     return NULL;
 }
 
