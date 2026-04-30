@@ -68,10 +68,10 @@ gbMatrixStack::~gbMatrixStack(void)
 // ============================================================================
 gbMatrixStack &gbMatrixStack::operator=(const gbMatrixStack &other)
 {
-    *(int *)((char *)this + 0x00) = *(int *)((char *)&other + 0x00);
-    *(int *)((char *)this + 0x04) = *(int *)((char *)&other + 0x04);
-    *(int *)((char *)this + 0x08) = *(int *)((char *)&other + 0x08);
-    *(int *)((char *)this + 0x0C) = *(int *)((char *)&other + 0x0C);
+    pStack = other.pStack;      /* +0x00 */
+    maxDepth = other.maxDepth;  /* +0x04 */
+    curDepth = other.curDepth;  /* +0x08 */
+    dirty = other.dirty;        /* +0x0C */
     return *this;
 }
 
