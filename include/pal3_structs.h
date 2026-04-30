@@ -673,6 +673,22 @@ struct TopoGeom {
 };
 /* sizeof = 0x18 */
 
+// ============================================================================
+// TopoGeomComplex - Complex Topology Geometry (0x2C bytes = 44 bytes)
+// ============================================================================
+struct TopoGeomComplex {
+    void* vtable;                      // +0x00: 虚函数表指针
+    int type;                          // +0x04: 几何类型 (1=Complex)
+    struct TopoFaceVector faceVector;  // +0x08: 面向量 (内嵌，12字节)
+    struct TopoMeshData* pMeshData;    // +0x14: 网格数据指针
+    int type2;                         // +0x18: 第二个类型字段
+    int field_1C;                      // +0x1C: 未知字段
+    int field_20;                      // +0x20: 未知字段
+    int field_24;                      // +0x24: 未知字段
+    int field_28;                      // +0x28: 未知字段
+};
+/* sizeof = 0x2C */
+
 /* ========================================================================
  * Compile-time Structure Size Verification
  * ======================================================================== */
@@ -691,6 +707,7 @@ struct TopoGeom {
     assert(sizeof(struct TopoFaceVector) == 0x0C); \
     assert(sizeof(struct TopoMeshData) == 0x34); \
     assert(sizeof(struct TopoGeom) == 0x18); \
+    assert(sizeof(struct TopoGeomComplex) == 0x2C); \
 } while (0)
 
 #endif /* PAL3_VERIFY_STRUCT_SIZES */

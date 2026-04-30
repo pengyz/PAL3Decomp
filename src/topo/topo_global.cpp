@@ -44,26 +44,28 @@ ITopoGeom *__cdecl CreateTopoGeom(TopoDataDesc *pDesc, TopoType type)
     if (type == TOPO_SIMPLE) {
         pObj = (ITopoGeom *)operator new(0x18);
         if (pObj != NULL) {
-            *((int *)pObj + 2) = 0;
-            *((int *)pObj + 3) = 0;
-            *((int *)pObj + 4) = 0;
-            *((char *)pObj + 4) = (char)type;
-            *(void **)pObj = &vtbl_TopoGeomSimple;
+            struct TopoGeom *pSimple = (struct TopoGeom *)pObj;
+            pSimple->faceVector.pBegin = NULL;
+            pSimple->faceVector.pEnd = NULL;
+            pSimple->faceVector.pAlloc = NULL;
+            pSimple->type = type;
+            pSimple->vtable = &vtbl_TopoGeomSimple;
             TopoGeom_Init(pObj, 0, (int *)pDesc);
             return pObj;
         }
     } else if (type == TOPO_COMPLEX) {
         pObj = (ITopoGeom *)operator new(0x2C);
         if (pObj != NULL) {
-            *((char *)pObj + 4) = (char)type;
-            *((int *)pObj + 2) = 0;
-            *((int *)pObj + 3) = 0;
-            *((int *)pObj + 4) = 0;
-            *((int *)pObj + 7) = 0;
-            *((int *)pObj + 8) = 0;
-            *((int *)pObj + 9) = 0;
-            *((char *)pObj + 0x18) = (char)type;
-            *(void **)pObj = &vtbl_TopoGeomComplex;
+            struct TopoGeomComplex *pComplex = (struct TopoGeomComplex *)pObj;
+            pComplex->type = type;
+            pComplex->faceVector.pBegin = NULL;
+            pComplex->faceVector.pEnd = NULL;
+            pComplex->faceVector.pAlloc = NULL;
+            pComplex->field_1C = 0;
+            pComplex->field_20 = 0;
+            pComplex->field_24 = 0;
+            pComplex->type2 = type;
+            pComplex->vtable = &vtbl_TopoGeomComplex;
             g_pTopoGeom = pObj;
             TopoGeom_Init(pObj, 0, (int *)pDesc);
             return pObj;
