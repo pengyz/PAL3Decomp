@@ -185,7 +185,7 @@ int *__fastcall TopoFaceVector_Erase(void *pThis, int edx, int *pFirst, int *pLa
 //
 // Inserts param_2 copies of param_3 (0x30 bytes each) at position param_1.
 // May reallocate if needed. This is a complex STL-like vector::insert with 3 branches:
-// 1. Need reallocation (pEnd + count > pCapacity)
+// 1. Need reallocation (pEnd + count > pAlloc)
 // 2. Partial space (pEnd - pPos < count)
 // 3. Full space available (pEnd - pPos >= count)
 // ============================================================================
@@ -194,12 +194,12 @@ void __fastcall TopoFaceVector_Insert(void *pThis, int edx,
 {
     int *pBegin = *(int **)((int)pThis + 0x04);
     int *pEnd = *(int **)((int)pThis + 0x08);
-    int *pCapacity = *(int **)((int)pThis + 0x0C);
+    int *pAlloc = *(int **)((int)pThis + 0x0C);
 
-    /* Calculate available space: (pCapacity - pEnd) / 0x30 */
+    /* Calculate available space: (pAlloc - pEnd) / 0x30 */
     unsigned int availSpace;
     {
-        int diff = (int)pCapacity - (int)pEnd;
+        int diff = (int)pAlloc - (int)pEnd;
         /* Magic multiply for divide by 0x30 */
         __int64 prod = (__int64)diff * 0x2aaaaaab;
         int quotient = (int)(prod >> 32);
