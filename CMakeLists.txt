@@ -3,32 +3,69 @@ project(PAL3Decomp C CXX)
 
 # PAL3 Decompilation Build Configuration
 # ========================================
-# This project targets MSVC (Visual Studio .NET 2003 / MSVC 7.1)
-# to produce binary-compatible output with the original PAL3.exe.
+# This project targets MSVC to produce binary-compatible output with original binaries.
 #
-# Usage:
-#   cmake -B build -G "NMake Makefiles" -DCMAKE_C_COMPILER=cl
-#   cmake --build build
+# Build target selection:
+#   cmake -B build -DBUILD_TARGET=topo      (topo.dll - requires VC6)
+#   cmake -B build -DBUILD_TARGET=gbengine  (gbengine.dll - requires VC6)
+#   cmake -B build -DBUILD_TARGET=pal3      (PAL3.exe - requires VS2003/VC7.0)
 #
-# Or with Visual Studio 2003 command prompt:
-#   cmake -B build -G "NMake Makefiles"
-#   cd build && nmake
+# Or use the provided build.bat script for easier configuration.
+
+# Build target selection
+set(BUILD_TARGET "topo" CACHE STRING "Build target: topo, gbengine, or pal3")
+message(STATUS "Build target: ${BUILD_TARGET}")
 
 # Force 32-bit build
 if(CMAKE_SIZEOF_VOID_P EQUAL 8)
-    message(FATAL_ERROR "Must use 32-bit compiler. Use x86 Native Tools Command Prompt.")
+    message(FATAL_ERROR "Must use 32-bit compiler. Use x86 Native Tools Command Prompt or setup_env.bat.")
 endif()
 
 # Compiler detection and configuration
 if(MSVC)
-    # Match original compilation flags
-    # These need to be confirmed from the PE Rich Header analysis
-    set(CMAKE_C_FLAGS "/nologo /GS- /W3")
-    set(CMAKE_CXX_FLAGS "/nologo /GS- /W3 /GR /EHsc")
+    # Detect MSVC version
+    if(MSVC_VERSION EQUAL 1200)
+        message(STATUS "Detected: Visual C++ 6.0 (binary-exact mode)")
+        set(COMPILER_VERSION "VC6")
+    elseif(MSVC_VERSION EQUAL 1310)
+        message(STATUS "Detected: Visual Studio .NET 2003 (binary-exact mode)")
+        set(COMPILER_VERSION "VS2003")
+    elseif(MSVC_VERSION EQUAL 1300)
+        message(STATUS "Detected: Visual Studio .NET 2002 / VC7.0")
+        set(COMPILER_VERSION "VS2002")
+    else()
+        message(WARNING "Modern MSVC detected (version ${MSVC_VERSION}). Binary matching NOT guaranteed.")
+        set(COMPILER_VERSION "MODERN")
+    endif()
 
-    # Release flags (default - matches original binary)
-    set(CMAKE_C_FLAGS_RELEASE "/O2 /DNDEBUG /DWIN32 /D_WINDOWS")
-    set(CMAKE_CXX_FLAGS_RELEASE "/O2 /DNDEBUG /DWIN32 /D_WINDOWS")
+    # Base flags for all targets
+    set(CMAKE_C_FLAGS "/nologo /W3")
+    set(CMAKE_CXX_FLAGS "/nologo /W3")
+
+    # Target-specific flags
+    if(BUILD_TARGET STREQUAL "topo" OR BUILD_TARGET STREQUAL "gbengine")
+        # VC6 flags for DLLs
+        set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} /GX")  # Enable C++ exceptions (VC6 style)
+        set(CMAKE_C_FLAGS_RELEASE "/O2 /Ob1 /DNDEBUG /DWIN32 /D_WINDOWS /D_MBCS")
+        set(CMAKE_CXX_FLAGS_RELEASE "/O2 /Ob1 /DNDEBUG /DWIN32 /D_WINDOWS /D_MBCS")
+
+        if(COMPILER_VERSION STREQUAL "VC6")
+            # Verified VC6 settings
+            add_compile_options(/GF)  # String pooling
+            add_compile_options(/Gy)  # Function-level linking
+        endif()
+    elseif(BUILD_TARGET STREQUAL "pal3")
+        # VC7.0/VS2003 flags for PAL3.exe
+        set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} /EHsc /GR")  # Modern exception handling + RTTI
+        set(CMAKE_C_FLAGS_RELEASE "/O2 /DNDEBUG /DWIN32 /D_WINDOWS")
+        set(CMAKE_CXX_FLAGS_RELEASE "/O2 /DNDEBUG /DWIN32 /D_WINDOWS")
+
+        if(COMPILER_VERSION STREQUAL "VS2003" OR COMPILER_VERSION STREQUAL "VS2002")
+            # Link-time code generation (if supported)
+            # add_compile_options(/GL)
+            # set(CMAKE_EXE_LINKER_FLAGS "${CMAKE_EXE_LINKER_FLAGS} /LTCG")
+        endif()
+    endif()
 
     # Debug flags (for development/testing)
     set(CMAKE_C_FLAGS_DEBUG "/Od /Zi /DDEBUG /DWIN32 /D_WINDOWS")
@@ -40,8 +77,8 @@ if(MSVC)
     # Disable modern MSVC security features not present in original
     add_compile_options(/GS-)
 
-    # Struct packing (verify from reverse engineering)
-    # add_compile_options(/Zp8)  # 8-byte alignment (default)
+    # Struct packing (8-byte default, verify from RE)
+    # add_compile_options(/Zp8)
 else()
     message(WARNING
         "Non-MSVC compiler detected. Binary matching will NOT work. "
@@ -68,45 +105,80 @@ if(WIN32)
     )
 endif()
 
-# Source file collections - add files as they are decompiled
-# Core engine
-file(GLOB_RECURSE CORE_SOURCES "src/core/*.c" "src/core/*.cpp")
+# Source file collections based on build target
+if(BUILD_TARGET STREQUAL "topo")
+    message(STATUS "Configuring topo.dll build")
+    file(GLOB TOPO_SOURCES "src/topo/*.cpp" "src/topo/*.c")
 
-# Game logic
-file(GLOB_RECURSE GAME_SOURCES "src/game/*.c" "src/game/*.cpp")
+    if(TOPO_SOURCES)
+        add_library(topo SHARED ${TOPO_SOURCES})
+        target_include_directories(topo PUBLIC include)
+        set_target_properties(topo PROPERTIES
+            OUTPUT_NAME "topo"
+            PREFIX ""
+            SUFFIX ".dll"
+        )
 
-# Script engine
-file(GLOB_RECURSE SCRIPT_SOURCES "src/script/*.c" "src/script/*.cpp")
-
-# Third-party stubs
-file(GLOB_RECURSE THIRDPARTY_SOURCES "src/third_party/*.c" "src/third_party/*.cpp")
-
-# Combine all sources
-set(ALL_SOURCES
-    ${CORE_SOURCES}
-    ${GAME_SOURCES}
-    ${SCRIPT_SOURCES}
-    ${THIRDPARTY_SOURCES}
-)
-
-# Only build if we have source files
-if(ALL_SOURCES)
-    # Build as static library first (for incremental development)
-    add_library(pal3_lib STATIC ${ALL_SOURCES})
-    target_include_directories(pal3_lib PUBLIC include)
-
-    # Build as executable when ready
-    # add_executable(PAL3 ${ALL_SOURCES})
-    # target_link_libraries(PAL3 ${PLATFORM_LIBS})
-
-    # Individual object file compilation (for per-function comparison)
-    # This allows comparing individual .obj files against original
-    if(MSVC)
         # Generate assembly listings for comparison
-        target_compile_options(pal3_lib PRIVATE /FA /Fa${CMAKE_BINARY_DIR}/asm/)
+        if(MSVC)
+            target_compile_options(topo PRIVATE /FAcs /Fa${CMAKE_BINARY_DIR}/asm/)
+        endif()
+
+        message(STATUS "topo.dll: ${TOPO_SOURCES} (${CMAKE_CURRENT_LIST_FILE})")
+    else()
+        message(WARNING "No source files found in src/topo/")
     endif()
+
+elseif(BUILD_TARGET STREQUAL "gbengine")
+    message(STATUS "Configuring gbengine.dll build")
+    file(GLOB_RECURSE GBENGINE_SOURCES "src/gbengine/*.cpp" "src/gbengine/*.c")
+
+    if(GBENGINE_SOURCES)
+        add_library(gbengine SHARED ${GBENGINE_SOURCES})
+        target_include_directories(gbengine PUBLIC include)
+        set_target_properties(gbengine PROPERTIES
+            OUTPUT_NAME "gbengine"
+            PREFIX ""
+            SUFFIX ".dll"
+        )
+
+        # Link DirectX and other dependencies
+        target_link_libraries(gbengine ${PLATFORM_LIBS})
+
+        if(MSVC)
+            target_compile_options(gbengine PRIVATE /FAcs /Fa${CMAKE_BINARY_DIR}/asm/)
+        endif()
+
+        message(STATUS "gbengine.dll: ${CMAKE_CURRENT_LIST_FILE} source files")
+    else()
+        message(WARNING "No source files found in src/gbengine/")
+    endif()
+
+elseif(BUILD_TARGET STREQUAL "pal3")
+    message(STATUS "Configuring PAL3.exe build")
+    file(GLOB_RECURSE PAL3_SOURCES "src/pal3/*.cpp" "src/pal3/*.c")
+
+    if(PAL3_SOURCES)
+        add_executable(pal3 ${PAL3_SOURCES})
+        target_include_directories(pal3 PUBLIC include)
+        set_target_properties(pal3 PROPERTIES
+            OUTPUT_NAME "PAL3"
+            SUFFIX ".exe"
+        )
+
+        target_link_libraries(pal3 ${PLATFORM_LIBS})
+
+        if(MSVC)
+            target_compile_options(pal3 PRIVATE /FAcs /Fa${CMAKE_BINARY_DIR}/asm/)
+        endif()
+
+        message(STATUS "PAL3.exe: ${CMAKE_CURRENT_LIST_FILE} source files")
+    else()
+        message(WARNING "No source files found in src/pal3/")
+    endif()
+
 else()
-    message(STATUS "No source files found yet. Add decompiled .c/.cpp files to src/")
+    message(FATAL_ERROR "Invalid BUILD_TARGET: ${BUILD_TARGET}. Must be 'topo', 'gbengine', or 'pal3'")
 endif()
 
 # Custom target: compare a specific function

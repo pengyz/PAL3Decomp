@@ -1,54 +1,44 @@
-# Original binary (do not commit copyrighted game files)
-original/
-*.exe
-*.dll
-
-# Build outputs
+# Build directories
 build/
 *.obj
 *.o
+*.exe
+*.dll
 *.lib
-*.pdb
-*.ilk
 *.exp
-
-# IDE files
-.vs/
+*.ilk
+*.pdb
 *.suo
 *.user
-*.ncb
-*.aps
-.idea/
-*.swp
-*~
-
-# Ghidra installation (large, downloadable)
-tools/ghidra/
-
-# Ghidra project files (large, regenerable)
-*.gpr
-*.rep/
-*.lock
+*.sdf
+*.opensdf
 
 # Python
 __pycache__/
 *.pyc
 *.pyo
-.venv/
-venv/
+.pytest_cache/
 
-# OS files
+# Local config
+local_config.json
+
+# IDE
+.vs/
+.vscode/
+*.swp
+*.swo
+*~
+
+# CMake
+CMakeCache.txt
+CMakeFiles/
+cmake_install.cmake
+Makefile
+
+# OS
 .DS_Store
 Thumbs.db
 desktop.ini
 
-# Local config (user-specific paths, never commit)
-local_config.json
-
-# API keys (never commit)
-.env
-*.key
-
-# Temporary files
-*.tmp
-*.bak
+# Verification builds
+build/verify/
