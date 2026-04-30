@@ -629,14 +629,14 @@ struct TopoFace {
 struct TopoFaceVector {
     struct TopoFace* pBegin;    // +0x00: 起始指针
     struct TopoFace* pEnd;      // +0x04: 结束指针 (当前元素尾后)
-    struct TopoFace* pCapacity; // +0x08: 容量指针 (分配的内存尾后)
+    struct TopoFace* pAlloc;    // +0x08: 分配结束指针 (分配的内存尾后)
 
     // Helper methods
     inline int size() const {
-        return (int)((char*)pEnd - (char*)pBegin) / sizeof(struct TopoFace);
+        return (pEnd - pBegin);
     }
     inline int capacity() const {
-        return (int)((char*)pCapacity - (char*)pBegin) / sizeof(struct TopoFace);
+        return (pAlloc - pBegin);
     }
 };
 /* sizeof = 0x0C (12) */
