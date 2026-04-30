@@ -20,11 +20,11 @@ def count_implemented_functions():
         with open(cpp_file, 'r', encoding='utf-8', errors='ignore') as f:
             lines = f.readlines()
             for i, line in enumerate(lines):
-                if line.startswith("// 0x"):
-                    # Extract address
+                if line.startswith("// 0x") or line.startswith("// 0X"):
+                    # Extract address (case-insensitive)
                     parts = line.split()
                     if len(parts) >= 2:
-                        addr = parts[1]
+                        addr = parts[1].upper()  # Normalize to uppercase
                         func_name = parts[2] if len(parts) > 2 else "unknown"
                         implemented[cpp_file.name].append({
                             'address': addr,
@@ -43,7 +43,7 @@ def count_exported_functions():
             with open(json_file, 'r', encoding='utf-8') as f:
                 data = json.load(f)
                 exported.append({
-                    'address': data.get('address', ''),
+                    'address': data.get('address', '').upper(),  # Normalize to uppercase
                     'name': data.get('name', ''),
                     'size': data.get('size_bytes', 0),
                     'file': json_file.name
