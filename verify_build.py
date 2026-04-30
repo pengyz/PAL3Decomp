@@ -15,15 +15,15 @@ def run_command(cmd, description):
     print(f"[*] {description}")
     print(f"{'='*60}")
 
-    result = subprocess.run(cmd, shell=True, capture_output=True, text=True)
+    result = subprocess.run(cmd, shell=True, capture_output=True, text=True, encoding='gbk', errors='ignore')
 
     if result.returncode != 0:
-        print(f"❌ FAILED: {description}")
+        print(f"[FAIL] {description}")
         print(result.stdout)
         print(result.stderr)
         return False
 
-    print(f"✅ PASSED: {description}")
+    print(f"[PASS] {description}")
     if result.stdout:
         print(result.stdout[:500])  # 只显示前500字符
     return True
@@ -32,9 +32,9 @@ def verify_build():
     """验证构建流程"""
 
     print("""
-╔══════════════════════════════════════════════════════════════╗
-║          PAL3 持续验证 - 增量构建验证                       ║
-╚══════════════════════════════════════════════════════════════╝
+===============================================================╗
+|          PAL3 持续验证 - 增量构建验证                       |
+===============================================================╝
 
 工作流程：
   1. 编译现有代码
@@ -47,7 +47,7 @@ def verify_build():
 
     # 检查环境
     if not run_command("cl.exe 2>&1", "检查 MSVC 编译器"):
-        print("\n⚠️  未找到 MSVC 编译器")
+        print("\n[WARNING]  未找到 MSVC 编译器")
         print("   请先运行: setup_env.bat")
         return False
 
@@ -78,15 +78,15 @@ def verify_build():
 
     if dll_path.exists():
         size = dll_path.stat().st_size
-        print(f"✅ topo.dll 生成成功 ({size:,} bytes)")
+        print(f"[OK] topo.dll generated successfully ({size:,} bytes)")
     else:
-        print("❌ topo.dll 未生成")
+        print("[FAIL] topo.dll not generated")
         return False
 
     print("""
-╔══════════════════════════════════════════════════════════════╗
-║                    ✅ 验证通过                              ║
-╚══════════════════════════════════════════════════════════════╝
+===============================================================╗
+|                    [OK] 验证通过                              |
+===============================================================╝
 
 代码库处于可编译状态，可以安全地添加新代码。
 """)

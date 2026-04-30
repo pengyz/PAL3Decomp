@@ -70,6 +70,12 @@ typedef signed int          sptr;
  * Math Types
  * ======================================================================== */
 
+/* Math constants */
+#define GB_PI             3.14159265358979323846f
+#define GB_FLOAT_EPSILON  1.192092896e-07f  /* FLT_EPSILON for MSVC */
+#define GB_DEG_TO_RAD     0.01745329251994329576f  /* PI / 180 */
+#define GB_RAD_TO_DEG     57.29577951308232087679f /* 180 / PI */
+
 typedef struct Vec2 {
     f32 x, y;
 } Vec2;

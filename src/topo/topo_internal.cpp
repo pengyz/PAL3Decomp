@@ -68,9 +68,9 @@
 #include "pal3.h"
 #include <string.h>
 
-// CRT
-extern "C" void *operator new(unsigned int size);
-extern "C" void operator delete(void *p);
+// CRT and Memory allocation functions
+extern void *operator new(unsigned int size);
+extern void operator delete(void *p);
 extern "C" void *malloc(unsigned int size);
 extern "C" void free(void *p);
 
@@ -110,6 +110,7 @@ int *__fastcall TopoFaceVector_Erase(void *pThis, int edx, int *pFirst, int *pLa
 {
     int *pEnd = *(int **)((int)pThis + 0x08);
     int *pDst = pFirst;
+    int *pNext;  // Declare outside do-while loop for MSVC compatibility
 
     if (pLast != pEnd) {
         int *pNextSrc = (int *)((char *)pLast + 0x2C);  /* pLast + 11 dwords */
@@ -132,7 +133,7 @@ int *__fastcall TopoFaceVector_Erase(void *pThis, int edx, int *pFirst, int *pLa
             } while (iVar4 != 0);
             pDst[9] = pNextSrc[-2];
             pDst[10] = pNextSrc[-1];
-            int *pNext = pNextSrc + 1;
+            pNext = pNextSrc + 1;
             *(int *)((int)pFirst + (-0x30 - (int)pLast) + (int)(pNextSrc + 0xC)) = *pNextSrc;
             pDst = pDst + 0xC;
             pNextSrc = pNextSrc + 0xC;
@@ -148,10 +149,14 @@ int *__fastcall TopoFaceVector_Erase(void *pThis, int edx, int *pFirst, int *pLa
 //
 // Inserts param_2 copies of param_3 (0x30 bytes each) at position param_1.
 // May reallocate if needed. This is a complex STL-like vector::insert.
-// Due to complexity (714 bytes, multiple branches), declared as extern.
+// Due to complexity (714 bytes, multiple branches), temporary stub.
 // ============================================================================
-extern void __fastcall TopoFaceVector_Insert(void *pThis, int edx,
-    int *pPos, unsigned int count, int *pValue);
+void __fastcall TopoFaceVector_Insert(void *pThis, int edx,
+    int *pPos, unsigned int count, int *pValue)
+{
+    // TODO: implement full TopoFaceVector_Insert
+    // This is a complex 714-byte function with STL-like vector insert logic
+}
 
 // ============================================================================
 // 0x10006590  TopoMeshData_Init  (316 bytes)

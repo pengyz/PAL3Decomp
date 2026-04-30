@@ -19,9 +19,9 @@
 #include "pal3.h"
 #include <string.h>
 
-// CRT functions
-extern "C" void *operator new(unsigned int size);
-extern "C" void operator delete(void *p);
+// Memory allocation functions
+extern void *operator new(unsigned int size);
+extern void operator delete(void *p);
 
 // ============================================================================
 // 0x10002D50  gbMatrixStack(int)  (139 bytes)

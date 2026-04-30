@@ -121,6 +121,7 @@ if(BUILD_TARGET STREQUAL "topo")
 
         # Generate assembly listings for comparison
         if(MSVC)
+            file(MAKE_DIRECTORY ${CMAKE_BINARY_DIR}/asm)
             target_compile_options(topo PRIVATE /FAcs /Fa${CMAKE_BINARY_DIR}/asm/)
         endif()
 
@@ -146,6 +147,7 @@ elseif(BUILD_TARGET STREQUAL "gbengine")
         target_link_libraries(gbengine ${PLATFORM_LIBS})
 
         if(MSVC)
+            file(MAKE_DIRECTORY ${CMAKE_BINARY_DIR}/asm)
             target_compile_options(gbengine PRIVATE /FAcs /Fa${CMAKE_BINARY_DIR}/asm/)
         endif()
 
@@ -169,6 +171,7 @@ elseif(BUILD_TARGET STREQUAL "pal3")
         target_link_libraries(pal3 ${PLATFORM_LIBS})
 
         if(MSVC)
+            file(MAKE_DIRECTORY ${CMAKE_BINARY_DIR}/asm)
             target_compile_options(pal3 PRIVATE /FAcs /Fa${CMAKE_BINARY_DIR}/asm/)
         endif()
 

@@ -16,8 +16,9 @@ struct TopoDataDesc;
 enum TopoType { TOPO_SIMPLE = 0, TOPO_COMPLEX = 1 };
 
 // Vtable pointers (from .rdata section)
-extern void *vtbl_TopoGeomSimple;   // 0x10012154
-extern void *vtbl_TopoGeomComplex;  // 0x10012148
+// TODO: implement actual vtables
+void *vtbl_TopoGeomSimple = NULL;    // 0x10012154
+void *vtbl_TopoGeomComplex = NULL;   // 0x10012148
 
 // Global instance pointer
 static ITopoGeom *g_pTopoGeom = NULL;  // 0x10017f08
@@ -25,9 +26,9 @@ static ITopoGeom *g_pTopoGeom = NULL;  // 0x10017f08
 // Internal initialization (thiscall) - implemented in topo_internal.cpp
 extern int __fastcall TopoGeom_Init(void *pThis, int edx, int *pDesc);
 
-// CRT
-extern "C" void *operator new(unsigned int size);
-extern "C" void operator delete(void *p);
+// Memory allocation functions
+extern void *operator new(unsigned int size);
+extern void operator delete(void *p);
 
 // ============================================================================
 // 0x100034B0  CreateTopoGeom  (185 bytes)

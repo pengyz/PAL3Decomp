@@ -16,9 +16,6 @@
 #include "pal3.h"
 #include <math.h>
 
-// FUN_10009bb0 is acos() - wrapper around CRT acos
-extern "C" float acos(float);
-
 // Constants used:
 // 0x10012100 = 1.0f
 // 0x10012104 = 0.017453292f (PI/180)
@@ -208,7 +205,8 @@ void gbQuaternion::SetMatrix(gbMatrix4 *mat)
     }
 
     int i = (int)(mat->m[0][0] < mat->m[1][1]);
-    if (mat->m[i * 4 + i] < mat->m[2][2]) {
+    float *pm = (float *)mat->m;  // Treat as flat array
+    if (pm[i * 5] < mat->m[2][2]) {  // m[i*5] is diagonal element m[i][i]
         i = 2;
     }
     int j = nxt[i];
@@ -220,9 +218,9 @@ void gbQuaternion::SetMatrix(gbMatrix4 *mat)
     if (s != 0.0f) {
         s = 0.5f / s;
     }
-    q[3] = (mat->m[i + k * 4] - mat->m[k + i * 4]) * s;
-    q[j] = (mat->m[j + i * 4] + mat->m[i + j * 4]) * s;
-    q[k] = (mat->m[k + i * 4] + mat->m[i + k * 4]) * s;
+    q[3] = (pm[i + k * 4] - pm[k + i * 4]) * s;
+    q[j] = (pm[j + i * 4] + pm[i + j * 4]) * s;
+    q[k] = (pm[k + i * 4] + pm[i + k * 4]) * s;
 
     x = q[0];
     y = q[1];

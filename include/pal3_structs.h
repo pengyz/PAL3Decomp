@@ -120,10 +120,45 @@ enum ECPKMode {
  * Math / Low-level Structures (gbEngine)
  * ======================================================================== */
 
+enum gbAxis {
+    GB_AXIS_X = 0,
+    GB_AXIS_Y = 1,
+    GB_AXIS_Z = 2
+};
+
+// Forward declarations
+struct gbMatrix4;
+
 struct gbVec3D {
     float x;
     float y;
     float z;
+
+    // Constructors
+    gbVec3D(void);
+    gbVec3D(float x, float y, float z);
+
+    // Operators
+    void operator=(const gbVec3D &other);
+    void operator+=(const gbVec3D &other);
+    void operator-=(const gbVec3D &other);
+    void operator*=(float s);
+    void operator/=(float s);
+    bool operator==(const gbVec3D &other);
+    gbVec3D operator-(void) const;
+
+    // Vector operations
+    void Normalize();
+    void CrossProduct(const gbVec3D *other, gbVec3D *result) const;
+    void Inverse(void);
+    void Zero(void);
+
+    // Properties
+    float Length(void) const;
+    float LengthSquare(void) const;
+    float DotProduct(const gbVec3D *other) const;
+    bool IsValid() const;
+    int IsNormal(void);
 };
 
 struct gbQuaternion {
@@ -131,10 +166,51 @@ struct gbQuaternion {
     float y;
     float z;
     float w;
+
+    // Constructors and operators
+    gbQuaternion(void);
+    gbQuaternion &operator=(const gbQuaternion &other);
+
+    // Quaternion operations
+    void SetUnit(void);
+    void SetAxisAngle(gbVec3D *axis, float angle);
+    void GetAxisAngle(gbVec3D *axis, float *angle);
+    void SetVec3D(float scalar, gbVec3D *vec);
+    void GetVec3D(float *scalar, gbVec3D *vec);
+    void SetMatrix(gbMatrix4 *mat);
+    void GetMatrix(gbMatrix4 *out) const;
+    void SetYawPitchRoll(float yaw, float pitch, float roll);
+    void SetTwoVector(gbVec3D *from, gbVec3D *to);
+    void Slerp(gbQuaternion *q1, gbQuaternion *q2, float t);
+    void MultiplyBy(gbQuaternion *other, gbQuaternion *result);
+    void Inverse(void);
+    void RotateVector(gbVec3D *in, gbVec3D *out);
+
+    // Properties
+    int IsNormal(void);
+    bool IsValid(void) const;
+    bool IsUnit(void) const;
+    float Magnitude(void);
+    float Normalize(void);
 };
 
 struct gbRotMatrix {
     float m[3][3];
+
+    // Constructor
+    gbRotMatrix(void);
+
+    // Operators
+    void operator=(gbRotMatrix &other);
+    void operator*=(gbRotMatrix &other);
+
+    // Operations
+    void Rotate(gbVec3D *in, gbVec3D *out);
+    void LoadIdentity(void);
+
+    // Validation
+    bool IsValid(void);
+    bool IsOrthonormal(void);
 };
 
 struct gbMatrix4 {
@@ -147,6 +223,63 @@ struct gbMatrix4 {
         };
         float m[4][4];
     };
+
+    // Constructor
+    gbMatrix4(void);
+
+    // Operators
+    void operator=(const gbMatrix4 &other);
+    void operator*=(const gbMatrix4 &param);
+    void operator*=(const gbQuaternion &q);
+    float operator()(int row, int col);
+
+    // Matrix operations
+    void LoadIdentity(void);
+    void Transpose(void);
+    void Transpose(gbMatrix4 *out) const;
+    void Invert(void);
+    void Invert(gbMatrix4 *out);
+
+    // Multiplication
+    void RightMultiply(const gbMatrix4 &param);
+    void RightMultiply(const gbQuaternion &q);
+    void LeftMultiply(const gbMatrix4 &param);
+
+    // Transformation
+    void Transform(const gbVec3D *in, gbVec3D *out) const;
+    void Transform(gbVec3D *in, gbVec3D *out, int count) const;
+    void Transform(gbVec3D *verts, int count) const;
+    void Transform_W(gbVec3D *in, gbVec3D *out, int count) const;
+    void Rotate(const gbVec3D *in, gbVec3D *out) const;
+
+    // Translation
+    void LeftTranslate(gbVec3D &v);
+    void LeftTranslate(float x, float y, float z);
+    void RightTranslate(gbVec3D &v);
+    void RightTranslate(float x, float y, float z);
+
+    // Scaling
+    void LeftScale(float sx, float sy, float sz);
+    void RightScale(float sx, float sy, float sz);
+
+    // Rotation
+    void SetAxisAngle(gbAxis axis, float cosA, float sinA);
+    void SetAxisAngle(gbAxis axis, float angle);
+    void SetAxisAngle(gbVec3D *axis, float angle);
+
+    // Accessors
+    gbVec3D *GetRow(gbVec3D *out, int row) const;
+    gbVec3D *GetColumn(gbVec3D *out, int col) const;
+    float *GetRow(float *out, int row) const;
+    float *GetColumn(float *out, int col) const;
+
+    // Matrix construction
+    void MakeMatrix(gbVec3D &forward, gbVec3D &up, gbVec3D &pos);
+
+    // Validation
+    bool IsIdentity() const;
+    bool IsValid() const;
+    bool IsOrthonormal() const;
 };
 
 struct gbMatrixStack {
@@ -154,6 +287,29 @@ struct gbMatrixStack {
     int maxDepth;               /* +0x04: maximum stack depth */
     int curDepth;               /* +0x08: current stack index */
     int dirty;                  /* +0x0C: invalidation flag */
+
+    // Constructor / Destructor
+    gbMatrixStack(int depth);
+    ~gbMatrixStack(void);
+    gbMatrixStack &operator=(const gbMatrixStack &other);
+
+    // Stack operations
+    void Push(void);
+    void Pop(void);
+    void LoadIdentity(void);
+    void LoadMatrix(gbMatrix4 *mat);
+    void MultMatrix(gbMatrix4 *mat);
+
+    // Transformation
+    void Rotate(float angle, gbVec3D &axis);
+    void Rotate(gbQuaternion &q);
+    void Translate(gbVec3D &v);
+    void Translate(float x, float y, float z);
+    void Scale(gbVec3D &v);
+    void Scale(float sx, float sy, float sz);
+
+    // Accessor
+    gbMatrix4 *GetTop(void);
 };
 /* sizeof = 0x10 */
 
