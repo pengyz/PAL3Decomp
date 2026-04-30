@@ -608,3 +608,100 @@ int __fastcall TopoGeom_Init(void *pThis, int edx, int *pDesc)
 
     return 1;
 }
+
+// ============================================================================
+// 0x10004FD0  Vector_Size_Div4  (19 bytes)
+// int __fastcall FUN_10004fd0(int param_1)
+//
+// Returns size of vector (measured in 4-byte elements).
+// Returns 0 if vector is empty.
+// Vector layout: +0x04=begin, +0x08=end
+// ============================================================================
+int __fastcall Vector_Size_Div4(int pVec)
+{
+    int *vec = (int *)pVec;
+    if (vec[1] == 0) {  /* begin pointer at +0x04 */
+        return 0;
+    }
+    return (vec[2] - vec[1]) >> 2;  /* (end - begin) / 4 */
+}
+
+// ============================================================================
+// 0x10005060  Vector_Size_Div8  (19 bytes)
+// int __fastcall FUN_10005060(int param_1)
+//
+// Returns size of vector (measured in 8-byte elements).
+// Returns 0 if vector is empty.
+// Vector layout: +0x04=begin, +0x08=end
+// ============================================================================
+int __fastcall Vector_Size_Div8(int pVec)
+{
+    int *vec = (int *)pVec;
+    if (vec[1] == 0) {  /* begin pointer at +0x04 */
+        return 0;
+    }
+    return (vec[2] - vec[1]) >> 3;  /* (end - begin) / 8 */
+}
+
+// ============================================================================
+// 0x10005310  Vector_Capacity_Div4  (19 bytes)
+// int __fastcall FUN_10005310(int param_1)
+//
+// Returns capacity of vector (measured in 4-byte elements).
+// Returns 0 if vector is unallocated.
+// Vector layout: +0x04=begin, +0x0C=alloc_end
+// ============================================================================
+int __fastcall Vector_Capacity_Div4(int pVec)
+{
+    int *vec = (int *)pVec;
+    if (vec[1] == 0) {  /* begin pointer at +0x04 */
+        return 0;
+    }
+    return (vec[3] - vec[1]) >> 2;  /* (alloc_end - begin) / 4 */
+}
+
+// ============================================================================
+// 0x10006540  Vector_Capacity_Div8  (19 bytes)
+// int __fastcall FUN_10006540(int param_1)
+//
+// Returns capacity of vector (measured in 8-byte elements).
+// Returns 0 if vector is unallocated.
+// Vector layout: +0x04=begin, +0x0C=alloc_end
+// ============================================================================
+int __fastcall Vector_Capacity_Div8(int pVec)
+{
+    int *vec = (int *)pVec;
+    if (vec[1] == 0) {  /* begin pointer at +0x04 */
+        return 0;
+    }
+    return (vec[3] - vec[1]) >> 3;  /* (alloc_end - begin) / 8 */
+}
+
+// ============================================================================
+// 0x10006010  CopyIfNotNull_4B  (17 bytes)
+// void __cdecl FUN_10006010(undefined4 *param_1, undefined4 *param_2)
+//
+// Copies 4 bytes from param_2 to param_1 if param_1 is not NULL.
+// Simple conditional copy helper.
+// ============================================================================
+void __cdecl CopyIfNotNull_4B(void *pDst, void *pSrc)
+{
+    if (pDst != NULL) {
+        *(int *)pDst = *(int *)pSrc;
+    }
+}
+
+// ============================================================================
+// 0x100062A0  CopyIfNotNull_8B  (23 bytes)
+// void __cdecl FUN_100062a0(undefined4 *param_1, undefined4 *param_2)
+//
+// Copies 8 bytes from param_2 to param_1 if param_1 is not NULL.
+// Simple conditional copy helper.
+// ============================================================================
+void __cdecl CopyIfNotNull_8B(void *pDst, void *pSrc)
+{
+    if (pDst != NULL) {
+        ((int *)pDst)[0] = ((int *)pSrc)[0];
+        ((int *)pDst)[1] = ((int *)pSrc)[1];
+    }
+}

@@ -31,6 +31,18 @@ extern void *operator new(unsigned int size);
 extern void operator delete(void *p);
 
 // ============================================================================
+// 0x100034A0  GetTopoVersion  (8 bytes)
+// int __stdcall FUN_100034a0(void)
+//
+// Returns constant value 1. Possibly a version check or success flag.
+// Called by entry point (0x1000a5c4).
+// ============================================================================
+int __stdcall GetTopoVersion(void)
+{
+    return 1;
+}
+
+// ============================================================================
 // 0x100034B0  CreateTopoGeom  (185 bytes)
 // class ITopoGeom * __cdecl CreateTopoGeom(struct TopoDataDesc *,enum TopoType)
 //
