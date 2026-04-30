@@ -802,3 +802,60 @@ int __fastcall Vector_Size_Div12(int pVec)
     }
     return (vec[2] - begin) / 12;  /* (end - begin) / 12 */
 }
+
+// ============================================================================
+// 0x10005010  Vector_Size_Div96  (33 bytes)
+// int __fastcall FUN_10005010(int param_1)
+//
+// Returns size of vector (measured in 96-byte elements, 0x60).
+// Returns 0 if vector is empty.
+// Uses magic multiply for division by 96.
+// Vector layout: +0x04=begin, +0x08=end
+// ============================================================================
+int __fastcall Vector_Size_Div96(int pVec)
+{
+    int *vec = (int *)pVec;
+    int begin = vec[1];  /* begin pointer at +0x04 */
+    if (begin == 0) {
+        return 0;
+    }
+    return (vec[2] - begin) / 0x60;  /* (end - begin) / 96 */
+}
+
+// ============================================================================
+// 0x10008910  Vector_Size_Div24  (33 bytes)
+// int __fastcall FUN_10008910(int param_1)
+//
+// Returns size of vector (measured in 24-byte elements, 0x18).
+// Returns 0 if vector is empty.
+// Uses magic multiply for division by 24.
+// Vector layout: +0x04=begin, +0x08=end
+// ============================================================================
+int __fastcall Vector_Size_Div24(int pVec)
+{
+    int *vec = (int *)pVec;
+    int begin = vec[1];  /* begin pointer at +0x04 */
+    if (begin == 0) {
+        return 0;
+    }
+    return (vec[2] - begin) / 0x18;  /* (end - begin) / 24 */
+}
+
+// ============================================================================
+// 0x100088A0  FreeVectorAndClear  (34 bytes)
+// void __fastcall FUN_100088a0(int param_1)
+//
+// Frees vector buffer and clears all pointers.
+// Called from destructors and cleanup code.
+// param[1] = begin pointer (at +0x04)
+// ============================================================================
+void __fastcall FreeVectorAndClear(void *pVec)
+{
+    extern void __cdecl operator_delete_wrapper(void *p);
+    int **vec = (int **)pVec;
+
+    operator_delete_wrapper(vec[1]);  /* Free buffer at +0x04 */
+    vec[1] = 0;  /* begin = NULL */
+    vec[2] = 0;  /* end = NULL */
+    vec[3] = 0;  /* alloc_end = NULL */
+}
