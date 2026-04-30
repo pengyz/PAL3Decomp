@@ -51,6 +51,18 @@ def cmd_init():
     run_tool("configure.py", ["init"])
 
 
+def cmd_setup_ghidra(args):
+    """安装 Ghidra + Java"""
+    extra = []
+    if "--check" in args:
+        extra.append("--check")
+    if "--java-only" in args:
+        extra.append("--java-only")
+    if "--skip-java" in args:
+        extra.append("--skip-java")
+    run_tool("setup_ghidra.py", extra)
+
+
 def cmd_pe_info():
     """分析 PAL3.exe PE 头（编译器检测）"""
     run_tool("configure.py", ["pe-info"])
@@ -223,6 +235,8 @@ PAL3 反编译项目 - 跨平台任务运行器
 环境/初始化:
   init                          初始化项目（首次）
   check                         检查工具链是否就绪
+  setup-ghidra                  自动安装 Ghidra + Java
+  setup-ghidra --check          仅检查 Ghidra 是否已安装
 
 分析（需要 PAL3.exe）:
   pe-info                       分析 PE 头（编译器检测）
@@ -267,6 +281,7 @@ def main():
         "-h":            lambda: print_help(),
         "init":          lambda: cmd_init(),
         "check":         lambda: cmd_check(),
+        "setup-ghidra":  lambda: cmd_setup_ghidra(args),
         "pe-info":       lambda: cmd_pe_info(),
         "imports":       lambda: cmd_imports(),
         "stubs":         lambda: cmd_stubs(),
