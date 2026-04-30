@@ -93,30 +93,9 @@ void __fastcall TopoFace_Assign(void *pThis, int src)
 {
     struct TopoFace *pDst = (struct TopoFace *)pThis;
     struct TopoFace *pSrc = (struct TopoFace *)src;
-    int *pDstInt = (int *)pThis;
-    int offset = src - (int)pThis;
 
-    /* Copy first 3 dwords (vertex indices) */
-    int n = 3;
-    do {
-        *pDstInt = *(int *)(offset + (int)pDstInt);
-        pDstInt++;
-        n--;
-    } while (n != 0);
-
-    /* Copy next 6 pairs of dwords (adjacency data, +0x0C to +0x24) */
-    n = 3;
-    do {
-        *pDstInt = *(int *)(offset + (int)pDstInt);
-        pDstInt[1] = *(int *)(offset + (int)pDstInt + 4);
-        pDstInt += 2;
-        n--;
-    } while (n != 0);
-
-    /* Copy last 3 dwords (+0x24 to +0x30) */
-    pDst->extra[0] = pSrc->extra[0];
-    pDst->extra[1] = pSrc->extra[1];
-    pDst->extra[2] = pSrc->extra[2];
+    /* Simple struct copy */
+    *pDst = *pSrc;
 }
 
 // ============================================================================
@@ -143,45 +122,31 @@ int __fastcall TopoFaceVector_Size(void *pThis)
 //
 // Erases elements in range [param_1, param_2) by moving elements after param_2
 // forward into the gap. Each element is 0x30 bytes (12 dwords).
-// The move is done element-by-element, with the source at a fixed offset
-// from destination (the gap size = param_2 - param_1).
+// The move is done element-by-element, shifting elements forward.
 // Note: 'this' points to the faceVector itself
 // ============================================================================
 int *__fastcall TopoFaceVector_Erase(void *pThis, int edx, int *pFirst, int *pLast)
 {
     struct TopoFaceVector *pVec = (struct TopoFaceVector *)pThis;
-    int *pEnd = (int *)pVec->pEnd;
-    int *pDst = pFirst;
-    int *pNext;  // Declare outside do-while loop for MSVC compatibility
+    struct TopoFace *pBegin = pVec->pBegin;
+    struct TopoFace *pEnd = pVec->pEnd;
+    struct TopoFace *pFirstFace = (struct TopoFace *)pFirst;
+    struct TopoFace *pLastFace = (struct TopoFace *)pLast;
 
-    if (pLast != pEnd) {
-        int *pNextSrc = (int *)((char *)pLast + 0x2C);  /* pLast + 11 dwords */
-        do {
-            int iVar4 = 3;
-            int offset = (int)pNextSrc + (-0x2C - (int)pDst);
-            int *pCopy = pDst;
-            do {
-                *pCopy = *(int *)(offset + (int)pCopy);
-                pCopy++;
-                iVar4--;
-            } while (iVar4 != 0);
-            int *pCopy2 = pDst + 3;
-            iVar4 = 3;
-            do {
-                *pCopy2 = *(int *)((int)pCopy2 + offset);
-                pCopy2[1] = *(int *)((int)pCopy2 + offset + 4);
-                pCopy2 += 2;
-                iVar4--;
-            } while (iVar4 != 0);
-            pDst[9] = pNextSrc[-2];
-            pDst[10] = pNextSrc[-1];
-            pNext = pNextSrc + 1;
-            *(int *)((int)pFirst + (-0x30 - (int)pLast) + (int)(pNextSrc + 0xC)) = *pNextSrc;
-            pDst = pDst + 0xC;
-            pNextSrc = pNextSrc + 0xC;
-        } while (pNext != pEnd);
+    /* Shift elements left to fill the gap */
+    if (pLastFace != pEnd) {
+        struct TopoFace *pSrc = pLastFace;
+        struct TopoFace *pDst = pFirstFace;
+
+        while (pSrc != pEnd) {
+            *pDst = *pSrc;
+            pDst++;
+            pSrc++;
+        }
+
+        pVec->pEnd = pDst;
     }
-    pVec->pEnd = (struct TopoFace *)pDst;
+
     return pFirst;
 }
 
@@ -379,7 +344,7 @@ void __fastcall TopoFaceVector_Insert(void *pThis, int edx,
         }
 
         /* Update pEnd */
-        pVec->pEnd = (struct TopoFace *)((int)pVec->pEnd + count * 0x30);
+        pVec->pEnd = pVec->pEnd + count;
         return;
     }
 
@@ -424,7 +389,7 @@ void __fastcall TopoFaceVector_Insert(void *pThis, int edx,
         }
 
         /* Update pEnd */
-        pVec->pEnd = (struct TopoFace *)((int)pVec->pEnd + count * 0x30);
+        pVec->pEnd = pVec->pEnd + count;
     }
 }
 
@@ -602,7 +567,7 @@ int __fastcall TopoGeom_Init(void *pThis, int edx, int *pDesc)
         unsigned int existingSize = (unsigned int)TopoFaceVector_Size(pVec);
         if (faceCount < existingSize) {
             TopoFaceVector_Erase(pVec, 0,
-                (int *)((char *)pGeom->faceVector.pBegin + faceCount * 0x30),
+                (int *)(pGeom->faceVector.pBegin + faceCount),
                 (int *)pGeom->faceVector.pEnd);
         }
     }
@@ -610,46 +575,36 @@ int __fastcall TopoGeom_Init(void *pThis, int edx, int *pDesc)
     /* Fill face data from index buffer */
     int nFaces = pDesc[0x0C];               /* faceCount at desc+0x30 */
     int iCounter = 0;
-    int idx16Ofs = 0;                       /* EBX: advances by 6 per face */
-    int faceOfs = 0;                        /* EAX: advances by 0x30 per face */
-    int idx32Ofs = 0;                       /* ECX on stack: advances by 0x0C */
 
     if (nFaces > 0) {
+        struct TopoFace *pFace = pGeom->faceVector.pBegin;
+        unsigned short *pIdx16 = (unsigned short *)pDesc[10];  /* 16-bit indices */
+        unsigned int *pIdx32 = (unsigned int *)pDesc[11];      /* 32-bit indices */
+
         do {
-            if (pDesc[10] != 0) {
+            if (pIdx16 != NULL) {
                 /* 16-bit indices (desc+0x28 = pIndices16) */
-                unsigned short *pIdx16 = (unsigned short *)pDesc[10];
-                unsigned int i0 = (unsigned int)*(unsigned short *)((char *)pIdx16 + idx16Ofs);
-                unsigned int i1 = (unsigned int)*(unsigned short *)((char *)pIdx16 + idx16Ofs + 2);
-                unsigned int i2 = (unsigned int)*(unsigned short *)((char *)pIdx16 + idx16Ofs + 4);
-                int base = (int)pGeom->faceVector.pBegin;
-                *(unsigned int *)(base + faceOfs) = i0;
-                *(unsigned int *)(base + faceOfs + 4) = i1;
-                *(unsigned int *)(base + faceOfs + 8) = i2;
+                pFace->indices[0] = (int)*pIdx16++;
+                pFace->indices[1] = (int)*pIdx16++;
+                pFace->indices[2] = (int)*pIdx16++;
             } else {
                 /* 32-bit indices (desc+0x2C = pIndices32) */
-                int *pIdx32 = (int *)pDesc[11];
-                int base = (int)pGeom->faceVector.pBegin;
-                *(int *)(base + faceOfs) = *(int *)((char *)pIdx32 + idx32Ofs);
-                *(int *)(base + faceOfs + 4) = *(int *)((char *)pIdx32 + idx32Ofs + 4);
-                *(int *)(base + faceOfs + 8) = *(int *)((char *)pIdx32 + idx32Ofs + 8);
+                pFace->indices[0] = (int)*pIdx32++;
+                pFace->indices[1] = (int)*pIdx32++;
+                pFace->indices[2] = (int)*pIdx32++;
             }
 
-            /* Initialize adjacency to -1: offsets +0x0C, +0x14, +0x1C within face */
-            int adjOfs = faceOfs;
-            int n = 3;
-            do {
-                int pBase2 = (int)pGeom->faceVector.pBegin;
-                adjOfs += 8;
-                n--;
-                *(int *)(adjOfs + pBase2 + 4) = (int)0xFFFFFFFF;
-            } while (n != 0);
+            /* Initialize adjacency to -1 */
+            pFace->adjacency[0][0] = -1;
+            pFace->adjacency[0][1] = -1;
+            pFace->adjacency[1][0] = -1;
+            pFace->adjacency[1][1] = -1;
+            pFace->adjacency[2][0] = -1;
+            pFace->adjacency[2][1] = -1;
 
+            pFace++;
             iCounter++;
-            idx16Ofs += 6;
-            idx32Ofs += 0x0C;
-            faceOfs += 0x30;
-        } while (iCounter < pDesc[0x0C]);
+        } while (iCounter < nFaces);
     }
 
     return 1;
