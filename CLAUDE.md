@@ -32,11 +32,11 @@ compiler (MSVC), generates byte-identical machine code to the original binary.
 | gbengine.dll | 1.2 MB | 无壳，可直接分析 | 引擎核心，74类1019导出，MSVC 6.0 SP5 |
 | topo.dll | 104 KB | 无壳，可直接分析 | 数学库，6类100导出，MSVC 6.0 SP5 |
 
-**优先级**: topo.dll (小、纯数学) → gbengine.dll (有符号) → PAL3.exe (需脱壳)
+**优先级**: topo.dll (小、纯数学) → gbengine.dll (**有 PAL3A.PDB 完整符号！**) → PAL3.exe (需脱壳)
 
 ## Known Technical Details (from community RE)
 
-- **Graphics**: DirectX 9 (IDirect3DDevice9)
+- **Graphics**: DirectX 9 (IDirect3DDevice9), DirectX SDK Summer 2003
 - **Audio**: Miles Sound System (AIL)
 - **Video**: Bink Video (.bik)
 - **Input**: DirectInput 8
@@ -44,6 +44,7 @@ compiler (MSVC), generates byte-identical machine code to the original binary.
 - **Script**: SCE bytecode VM (~140 opcodes)
 - **Compiler**: MSVC 6.0 SP5 (gbengine/topo), MSVC 7.0 (PAL3.exe code)
 - **Linker**: MSVC 7.1 (VS2003)
+- **D3DX**: Statically linked D3DX9.LIB (from DirectX SDK Summer 2003)
 
 ## Workflow for Decompiling a Function
 
@@ -118,6 +119,8 @@ PAL3.exe:     Not started
 ## Important Context Files
 
 - `docs/decompilation_workflow.md` - **Detailed workflow guide for matching decompilation**
+- `docs/pal3a_pdb_guide.md` - **PAL3A.PDB 使用指南 (gbengine.dll 完整调试符号!)**
+- `docs/unpack_guide.md` - **PAL3.exe 脱壳工具使用指南 (PAL3patch)**
 - `docs/community_structs.md` - All known structures, addresses, RTTI classes
 - `docs/sce_opcodes.md` - Complete SCE script opcode table
 - `docs/file_formats.md` - CPK, SCN, SCE binary format documentation
@@ -128,11 +131,13 @@ PAL3.exe:     Not started
 - `build/progress.json` - Function-level progress tracking
 - `build/gbengine_exports.json` - gbengine.dll 1019 个 C++ 导出函数
 - `build/topo_exports.json` - topo.dll 100 个导出函数
-- `build/topo_exports.json` - topo.dll 100 个导出函数
 
 ## Community Projects (Reference)
 
 - **PAL3patch** (zhangboyang): C-based game patches, has all major struct definitions
+  - `extra/PAL3patch/` - Added as git submodule
+  - `extra/PAL3patch/extra/unpack/` - PAL3/PAL3A 脱壳工具
+  - `extra/PAL3patch/notes/pal3/` - 逆向工程笔记（非常详细）
   - `/tmp/PAL3patch/src/PAL3patch/include/PAL3patch/pal3.h` - 1872 lines of RE data
 - **OpenPAL3** (dontpanic92): Rust reimplementation with full file format parsers
   - `/tmp/OpenPAL3/yaobow/shared/src/scripting/sce/` - SCE VM implementation
