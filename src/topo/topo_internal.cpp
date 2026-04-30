@@ -74,12 +74,48 @@ extern void operator delete(void *p);
 extern "C" void *malloc(unsigned int size);
 extern "C" void free(void *p);
 
-// FUN_10009960: copy 0x30 bytes (one face entry) from src to dst
-// Used as element assignment in the vector operations
-extern void __fastcall TopoFace_Assign(void *dst, int src);
+// FUN_10009c7b: operator delete wrapper (简化实现)
+void __cdecl operator_delete_wrapper(void *p)
+{
+    if (p != NULL) {
+        operator delete(p);
+    }
+}
 
-// FUN_10009c7b: operator delete wrapper
-extern void __cdecl operator_delete_wrapper(void *p);
+// ============================================================================
+// 0x10009960  TopoFace_Assign  (81 bytes)
+// void __fastcall TopoFace_Assign(void *this, int param_1)
+//
+// Copies one TopoFace (0x30 bytes) from param_1 to this.
+// Used as element assignment in vector operations.
+// ============================================================================
+void __fastcall TopoFace_Assign(void *pThis, int src)
+{
+    int *pDst = (int *)pThis;
+    int offset = src - (int)pThis;
+
+    /* Copy first 3 dwords (vertex indices) */
+    int n = 3;
+    do {
+        *pDst = *(int *)(offset + (int)pDst);
+        pDst++;
+        n--;
+    } while (n != 0);
+
+    /* Copy next 6 pairs of dwords (adjacency data, +0x0C to +0x24) */
+    n = 3;
+    do {
+        *pDst = *(int *)(offset + (int)pDst);
+        pDst[1] = *(int *)(offset + (int)pDst + 4);
+        pDst += 2;
+        n--;
+    } while (n != 0);
+
+    /* Copy last 3 dwords (+0x24 to +0x30) */
+    *(int *)((int)pThis + 0x24) = *(int *)(src + 0x24);
+    *(int *)((int)pThis + 0x28) = *(int *)(src + 0x28);
+    *(int *)((int)pThis + 0x2C) = *(int *)(src + 0x2C);
+}
 
 // ============================================================================
 // 0x10008820  TopoFaceVector_Size  (33 bytes)
@@ -148,14 +184,240 @@ int *__fastcall TopoFaceVector_Erase(void *pThis, int edx, int *pFirst, int *pLa
 // void __thiscall TopoFaceVector_Insert(void *this, undefined4 *param_1, uint param_2, undefined4 *param_3)
 //
 // Inserts param_2 copies of param_3 (0x30 bytes each) at position param_1.
-// May reallocate if needed. This is a complex STL-like vector::insert.
-// Due to complexity (714 bytes, multiple branches), temporary stub.
+// May reallocate if needed. This is a complex STL-like vector::insert with 3 branches:
+// 1. Need reallocation (pEnd + count > pCapacity)
+// 2. Partial space (pEnd - pPos < count)
+// 3. Full space available (pEnd - pPos >= count)
 // ============================================================================
 void __fastcall TopoFaceVector_Insert(void *pThis, int edx,
     int *pPos, unsigned int count, int *pValue)
 {
-    // TODO: implement full TopoFaceVector_Insert
-    // This is a complex 714-byte function with STL-like vector insert logic
+    int *pBegin = *(int **)((int)pThis + 0x04);
+    int *pEnd = *(int **)((int)pThis + 0x08);
+    int *pCapacity = *(int **)((int)pThis + 0x0C);
+
+    /* Calculate available space: (pCapacity - pEnd) / 0x30 */
+    unsigned int availSpace;
+    {
+        int diff = (int)pCapacity - (int)pEnd;
+        /* Magic multiply for divide by 0x30 */
+        __int64 prod = (__int64)diff * 0x2aaaaaab;
+        int quotient = (int)(prod >> 32);
+        quotient >>= 3;
+        int sign = quotient >> 31;
+        availSpace = (unsigned int)(quotient + sign);
+    }
+
+    /* Branch 1: Need reallocation */
+    if (availSpace < count) {
+        /* Calculate current size */
+        unsigned int curSize;
+        unsigned int growBy;
+        if (pBegin == NULL) {
+            curSize = 0;
+            growBy = count;
+        } else {
+            int diff = (int)pEnd - (int)pBegin;
+            __int64 prod = (__int64)diff * 0x2aaaaaab;
+            int quotient = (int)(prod >> 32);
+            quotient >>= 3;
+            int sign = quotient >> 31;
+            curSize = (unsigned int)(quotient + sign);
+
+            if (curSize <= count) {
+                growBy = count;
+            } else {
+                growBy = curSize;
+            }
+        }
+
+        unsigned int newCap = curSize + growBy;
+        if ((int)newCap < 0) {
+            newCap = 0;
+        }
+
+        /* Allocate new buffer */
+        int *pNew = (int *)operator new(newCap * 0x30);
+        int *pDst = pNew;
+
+        /* Copy elements before insert position */
+        int *pSrc = pBegin;
+        while (pSrc != pPos) {
+            if (pDst != NULL) {
+                /* Copy 12 dwords (0x30 bytes) */
+                int n = 0xC;
+                int *ps = pSrc;
+                int *pd = pDst;
+                while (n != 0) {
+                    *pd = *ps;
+                    ps++;
+                    pd++;
+                    n--;
+                }
+            }
+            pSrc = pSrc + 0xC;
+            pDst = pDst + 0xC;
+        }
+
+        /* Insert count copies of pValue */
+        if (count != 0) {
+            unsigned int remaining = count;
+            do {
+                if (pDst != NULL) {
+                    int n = 0xC;
+                    int *ps = pValue;
+                    int *pd = pDst;
+                    while (n != 0) {
+                        *pd = *ps;
+                        ps++;
+                        pd++;
+                        n--;
+                    }
+                }
+                pDst = pDst + 0xC;
+                remaining--;
+            } while (remaining != 0);
+        }
+
+        /* Copy elements after insert position */
+        int *pDst2 = pDst;
+        if (pPos != pEnd) {
+            int *pSrc2 = pPos;
+            do {
+                if (pDst2 != NULL) {
+                    int n = 0xC;
+                    int *ps = pSrc2;
+                    int *pd = pDst2;
+                    while (n != 0) {
+                        *pd = *ps;
+                        ps++;
+                        pd++;
+                        n--;
+                    }
+                }
+                pSrc2 = pSrc2 + 0xC;
+                pDst2 = pDst2 + 0xC;
+            } while (pSrc2 != pEnd);
+        }
+
+        /* Free old buffer */
+        operator_delete_wrapper(*(void **)((int)pThis + 0x04));
+
+        /* Update vector pointers */
+        *(int **)((int)pThis + 0x0C) = pNew + newCap * 0xC;
+        *(int **)((int)pThis + 0x04) = pNew;
+        *(int **)((int)pThis + 0x08) = pNew + (curSize + count) * 0xC;
+        return;
+    }
+
+    /* Calculate space after insert position */
+    unsigned int spaceAfter;
+    {
+        int diff = (int)pEnd - (int)pPos;
+        __int64 prod = (__int64)diff * 0x2aaaaaab;
+        int quotient = (int)(prod >> 32);
+        quotient >>= 3;
+        int sign = quotient >> 31;
+        spaceAfter = (unsigned int)(quotient + sign);
+    }
+
+    /* Branch 2: Partial space (move tail, append some copies, fill rest) */
+    if (spaceAfter < count) {
+        /* Move tail elements forward by count positions */
+        int *pSrc = pPos;
+        int *pDst = pPos + count * 0xC;
+        if (pSrc != pEnd) {
+            do {
+                if (pDst != NULL) {
+                    int n = 0xC;
+                    int *ps = pSrc;
+                    int *pd = pDst;
+                    while (n != 0) {
+                        *pd = *ps;
+                        ps++;
+                        pd++;
+                        n--;
+                    }
+                }
+                pSrc = pSrc + 0xC;
+                pDst = pDst + 0xC;
+            } while (pSrc != pEnd);
+        }
+
+        /* Append extra copies to end */
+        unsigned int extraCount = count - spaceAfter;
+        int *pTail = pEnd;
+        while (extraCount != 0) {
+            if (pTail != NULL) {
+                int n = 0xC;
+                int *ps = pValue;
+                int *pd = pTail;
+                while (n != 0) {
+                    *pd = *ps;
+                    ps++;
+                    pd++;
+                    n--;
+                }
+            }
+            pTail = pTail + 0xC;
+            extraCount--;
+        }
+
+        /* Fill the gap with pValue */
+        int *pFill = pPos;
+        while (pFill != pEnd) {
+            TopoFace_Assign(pFill, (int)pValue);
+            pFill = pFill + 0xC;
+        }
+
+        /* Update pEnd */
+        *(int *)((int)pThis + 0x08) = *(int *)((int)pThis + 0x08) + count * 0x30;
+        return;
+    }
+
+    /* Branch 3: Full space (move tail, copy old tail to gap, fill) */
+    if (count != 0) {
+        /* Move tail elements forward */
+        int *pSrc = pEnd - count * 0xC;
+        int *pDst = pEnd;
+        while (pSrc != pEnd) {
+            if (pDst != NULL) {
+                int n = 0xC;
+                int *ps = pSrc;
+                int *pd = pDst;
+                while (n != 0) {
+                    *pd = *ps;
+                    ps++;
+                    pd++;
+                    n--;
+                }
+            }
+            pSrc = pSrc + 0xC;
+            pDst = pDst + 0xC;
+        }
+
+        /* Move middle section backwards */
+        int *pCopyDst = pEnd - count * 0xC;
+        int *pCopySrc = pCopyDst;
+        while (pPos != pCopyDst) {
+            pCopyDst = pCopyDst - 0xC;
+            pCopySrc = pCopySrc - 0x30;
+            TopoFace_Assign(pCopySrc, (int)pCopyDst);
+        }
+
+        /* Fill insert position with value */
+        int *pFill = pPos;
+        int *pEnd2 = pPos + count * 0xC;
+        if (pFill != pEnd2) {
+            do {
+                TopoFace_Assign(pFill, (int)pValue);
+                pFill = pFill + 0xC;
+            } while (pFill != pEnd2);
+        }
+
+        /* Update pEnd */
+        *(int *)((int)pThis + 0x08) = *(int *)((int)pThis + 0x08) + count * 0x30;
+    }
 }
 
 // ============================================================================
