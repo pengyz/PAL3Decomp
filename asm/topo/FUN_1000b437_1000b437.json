@@ -1,0 +1,36 @@
+{
+  "address": "0x1000b437", 
+  "size_bytes": 78, 
+  "calling_convention": "__stdcall", 
+  "signature": "undefined __stdcall FUN_1000b437(void)", 
+  "callees": [
+    {
+      "address": "0x1000b7d1", 
+      "name": "FUN_1000b7d1"
+    }, 
+    {
+      "address": "0x1000b7d1", 
+      "name": "FUN_1000b7d1"
+    }, 
+    {
+      "address": "0x1000a026", 
+      "name": "__abnormal_termination"
+    }, 
+    {
+      "address": "0x1000b673", 
+      "name": "FUN_1000b673"
+    }
+  ], 
+  "global_refs": [], 
+  "has_custom_name": false, 
+  "decompiled_c": "\nvoid FUN_1000b437(void)\n\n{\n  DWORD *pDVar1;\n  int unaff_EBP;\n  int unaff_ESI;\n  int *unaff_EDI;\n  \n  *(undefined4 *)(unaff_ESI + -4) = *(undefined4 *)(unaff_EBP + -0x28);\n  pDVar1 = FUN_1000b7d1();\n  pDVar1[0x1b] = *(DWORD *)(unaff_EBP + -0x1c);\n  pDVar1 = FUN_1000b7d1();\n  pDVar1[0x1c] = *(DWORD *)(unaff_EBP + -0x20);\n  if ((((*unaff_EDI == -0x1f928c9d) && (unaff_EDI[4] == 3)) && (unaff_EDI[5] == 0x19930520)) &&\n     ((*(int *)(unaff_EBP + -0x24) == 0 && (*(int *)(unaff_EBP + -0x2c) != 0)))) {\n    __abnormal_termination();\n    FUN_1000b673((int)unaff_EDI);\n  }\n  return;\n}\n\n", 
+  "is_thunk": false, 
+  "name": "FUN_1000b437", 
+  "assembly": "  1000b437:  MOV EAX,dword ptr [EBP + -0x28]\n  1000b43a:  MOV dword ptr [ESI + -0x4],EAX\n  1000b43d:  CALL 0x1000b7d1\n  1000b442:  MOV ECX,dword ptr [EBP + -0x1c]\n  1000b445:  MOV dword ptr [EAX + 0x6c],ECX\n  1000b448:  CALL 0x1000b7d1\n  1000b44d:  MOV ECX,dword ptr [EBP + -0x20]\n  1000b450:  MOV dword ptr [EAX + 0x70],ECX\n  1000b453:  CMP dword ptr [EDI],0xe06d7363\n  1000b459:  JNZ 0x1000b484\n  1000b45b:  CMP dword ptr [EDI + 0x10],0x3\n  1000b45f:  JNZ 0x1000b484\n  1000b461:  CMP dword ptr [EDI + 0x14],0x19930520\n  1000b468:  JNZ 0x1000b484\n  1000b46a:  CMP dword ptr [EBP + -0x24],0x0\n  1000b46e:  JNZ 0x1000b484\n  1000b470:  CMP dword ptr [EBP + -0x2c],0x0\n  1000b474:  JZ 0x1000b484\n  1000b476:  CALL 0x1000a026\n  1000b47b:  PUSH EAX\n  1000b47c:  PUSH EDI\n  1000b47d:  CALL 0x1000b673\n  1000b482:  POP ECX\n  1000b483:  POP ECX\n  1000b484:  RET", 
+  "callers": [
+    {
+      "address": "0x1000b36a", 
+      "name": "FUN_1000b36a"
+    }
+  ]
+}

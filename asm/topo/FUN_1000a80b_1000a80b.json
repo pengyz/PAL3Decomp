@@ -1,0 +1,68 @@
+{
+  "address": "0x1000a80b", 
+  "size_bytes": 97, 
+  "calling_convention": "__cdecl", 
+  "signature": "undefined * __cdecl FUN_1000a80b(undefined8 * param_1, undefined * param_2, int param_3, int param_4)", 
+  "callees": [
+    {
+      "address": "0x1000e4ac", 
+      "name": "FUN_1000e4ac"
+    }, 
+    {
+      "address": "0x1000e435", 
+      "name": "FUN_1000e435"
+    }, 
+    {
+      "address": "0x1000a86c", 
+      "name": "FUN_1000a86c"
+    }
+  ], 
+  "global_refs": [
+    {
+      "address": "0x-000002c", 
+      "type": null, 
+      "name": "DAT_-000002c"
+    }, 
+    {
+      "address": "0x-0000014", 
+      "type": null, 
+      "name": "DAT_-0000014"
+    }, 
+    {
+      "address": "0x00000004", 
+      "type": null, 
+      "name": "DAT_00000004"
+    }, 
+    {
+      "address": "0x-0000040", 
+      "type": null, 
+      "name": "DAT_-0000040"
+    }, 
+    {
+      "address": "0x0000000c", 
+      "type": null, 
+      "name": "DAT_0000000c"
+    }, 
+    {
+      "address": "0x00000008", 
+      "type": null, 
+      "name": "DAT_00000008"
+    }, 
+    {
+      "address": "0x00000010", 
+      "type": null, 
+      "name": "DAT_00000010"
+    }
+  ], 
+  "has_custom_name": false, 
+  "decompiled_c": "\nundefined * __cdecl FUN_1000a80b(undefined8 *param_1,undefined *param_2,int param_3,int param_4)\n\n{\n  uint local_2c [6];\n  int local_14 [4];\n  \n  FUN_1000e4ac((int)*param_1,(int)((ulonglong)*param_1 >> 0x20),local_14,local_2c);\n  FUN_1000e435(param_2 + (uint)(0 < param_3) + (uint)(local_14[0] == 0x2d),param_3 + 1,(int)local_14\n              );\n  FUN_1000a86c(param_2,param_3,param_4,local_14,'\\0');\n  return param_2;\n}\n\n", 
+  "is_thunk": false, 
+  "name": "FUN_1000a80b", 
+  "assembly": "  1000a80b:  PUSH EBP\n  1000a80c:  MOV EBP,ESP\n  1000a80e:  SUB ESP,0x28\n  1000a811:  LEA EAX,[EBP + -0x28]\n  1000a814:  PUSH ESI\n  1000a815:  PUSH EAX\n  1000a816:  LEA EAX,[EBP + -0x10]\n  1000a819:  PUSH EAX\n  1000a81a:  MOV EAX,dword ptr [EBP + 0x8]\n  1000a81d:  PUSH ECX\n  1000a81e:  PUSH ECX\n  1000a81f:  FLD qword ptr [EAX]\n  1000a821:  FSTP qword ptr [ESP]\n  1000a824:  CALL 0x1000e4ac\n  1000a829:  MOV ESI,dword ptr [EBP + 0x10]\n  1000a82c:  LEA EAX,[EBP + -0x10]\n  1000a82f:  PUSH EAX\n  1000a830:  MOV EDX,dword ptr [EBP + 0xc]\n  1000a833:  LEA EAX,[ESI + 0x1]\n  1000a836:  PUSH EAX\n  1000a837:  XOR EAX,EAX\n  1000a839:  CMP dword ptr [EBP + -0x10],0x2d\n  1000a83d:  SETZ AL\n  1000a840:  XOR ECX,ECX\n  1000a842:  TEST ESI,ESI\n  1000a844:  SETG CL\n  1000a847:  ADD EDX,EAX\n  1000a849:  ADD ECX,EDX\n  1000a84b:  PUSH ECX\n  1000a84c:  CALL 0x1000e435\n  1000a851:  LEA EAX,[EBP + -0x10]\n  1000a854:  PUSH 0x0\n  1000a856:  PUSH EAX\n  1000a857:  PUSH dword ptr [EBP + 0x14]\n  1000a85a:  PUSH ESI\n  1000a85b:  PUSH dword ptr [EBP + 0xc]\n  1000a85e:  CALL 0x1000a86c\n  1000a863:  MOV EAX,dword ptr [EBP + 0xc]\n  1000a866:  ADD ESP,0x30\n  1000a869:  POP ESI\n  1000a86a:  LEAVE\n  1000a86b:  RET", 
+  "callers": [
+    {
+      "address": "0x1000aabd", 
+      "name": "__cfltcvt"
+    }
+  ]
+}

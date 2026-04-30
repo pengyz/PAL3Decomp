@@ -1,0 +1,56 @@
+{
+  "address": "0x10002640", 
+  "size_bytes": 52, 
+  "calling_convention": "__thiscall", 
+  "signature": "void __thiscall SetAxisAngle(gbQuaternion * this, gbVec3D * param_1, float param_2)", 
+  "callees": [], 
+  "global_refs": [
+    {
+      "address": "0x00000008", 
+      "type": null, 
+      "name": "DAT_00000008"
+    }, 
+    {
+      "address": "0x1001210c", 
+      "type": null, 
+      "name": "DAT_1001210c"
+    }, 
+    {
+      "address": "0x00000004", 
+      "type": null, 
+      "name": "DAT_00000004"
+    }, 
+    {
+      "address": "0x10012104", 
+      "type": null, 
+      "name": "DAT_10012104"
+    }
+  ], 
+  "has_custom_name": true, 
+  "decompiled_c": "\n/* public: void __thiscall gbQuaternion::SetAxisAngle(struct gbVec3D *,float) */\n\nvoid __thiscall gbQuaternion::SetAxisAngle(gbQuaternion *this,gbVec3D *param_1,float param_2)\n\n{\n  float10 fVar1;\n  float10 fVar2;\n  \n                    /* 0x2640  85  ?SetAxisAngle@gbQuaternion@@QAEXPAUgbVec3D@@M@Z */\n  fVar1 = (float10)param_2 * (float10)0.5 * (float10)0.017453292;\n  fVar2 = (float10)fcos(fVar1);\n  *(float *)(this + 0xc) = (float)fVar2;\n  fVar1 = (float10)fsin(fVar1);\n  *(float *)this = (float)(fVar1 * (float10)*(float *)param_1);\n  *(float *)(this + 4) = (float)(fVar1 * (float10)*(float *)(param_1 + 4));\n  *(float *)(this + 8) = (float)(fVar1 * (float10)*(float *)(param_1 + 8));\n  return;\n}\n\n", 
+  "is_thunk": false, 
+  "name": "SetAxisAngle", 
+  "assembly": "  10002640:  FLD dword ptr [ESP + 0x8]\n  10002644:  FMUL dword ptr [0x1001210c]\n  1000264a:  MOV EAX,dword ptr [ESP + 0x4]\n  1000264e:  FMUL dword ptr [0x10012104]\n  10002654:  FLD ST0\n  10002656:  FCOS\n  10002658:  FSTP dword ptr [ECX + 0xc]\n  1000265b:  FSIN\n  1000265d:  FLD ST0\n  1000265f:  FMUL dword ptr [EAX]\n  10002661:  FSTP dword ptr [ECX]\n  10002663:  FLD ST0\n  10002665:  FMUL dword ptr [EAX + 0x4]\n  10002668:  FSTP dword ptr [ECX + 0x4]\n  1000266b:  FMUL dword ptr [EAX + 0x8]\n  1000266e:  FSTP dword ptr [ECX + 0x8]\n  10002671:  RET 0x8", 
+  "callers": [
+    {
+      "address": "0x10001a60", 
+      "name": "SetAxisAngle"
+    }, 
+    {
+      "address": "0x10002490", 
+      "name": "SetYawPitchRoll"
+    }, 
+    {
+      "address": "0x10002490", 
+      "name": "SetYawPitchRoll"
+    }, 
+    {
+      "address": "0x10002490", 
+      "name": "SetYawPitchRoll"
+    }, 
+    {
+      "address": "0x100025c0", 
+      "name": "SetTwoVector"
+    }
+  ]
+}

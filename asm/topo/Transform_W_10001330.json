@@ -1,0 +1,30 @@
+{
+  "address": "0x10001330", 
+  "size_bytes": 185, 
+  "calling_convention": "__thiscall", 
+  "signature": "void __thiscall Transform_W(gbMatrix4 * this, gbVec3D * param_1, gbVec3D * param_2, int param_3)", 
+  "callees": [], 
+  "global_refs": [
+    {
+      "address": "0x00000004", 
+      "type": null, 
+      "name": "DAT_00000004"
+    }, 
+    {
+      "address": "0x0000000c", 
+      "type": null, 
+      "name": "DAT_0000000c"
+    }, 
+    {
+      "address": "0x00000008", 
+      "type": null, 
+      "name": "DAT_00000008"
+    }
+  ], 
+  "has_custom_name": true, 
+  "decompiled_c": "\n/* public: void __thiscall gbMatrix4::Transform_W(struct gbVec3D *,struct gbVec3D *,int)const  */\n\nvoid __thiscall\ngbMatrix4::Transform_W(gbMatrix4 *this,gbVec3D *param_1,gbVec3D *param_2,int param_3)\n\n{\n  float fVar1;\n  gbVec3D *pgVar2;\n  gbVec3D *pgVar3;\n  int iVar4;\n  \n                    /* 0x1330  95  ?Transform_W@gbMatrix4@@QBEXPAUgbVec3D@@0H@Z */\n  if (0 < param_3) {\n    iVar4 = (int)param_1 - (int)param_2;\n    pgVar2 = param_2 + 8;\n    do {\n      pgVar3 = pgVar2 + 0xc;\n      param_3 = param_3 + -1;\n      *(float *)(pgVar2 + -8) =\n           *(float *)(this + 0x10) * *(float *)(param_1 + 4) +\n           *(float *)(this + 0x20) * *(float *)(pgVar2 + iVar4) + *(float *)param_1 * *(float *)this\n           + *(float *)(this + 0x30);\n      *(float *)(pgVar2 + -4) =\n           *(float *)param_1 * *(float *)(this + 4) +\n           *(float *)(this + 0x14) * *(float *)(param_1 + 4) +\n           *(float *)(this + 0x24) * *(float *)(pgVar3 + iVar4 + -0xc) + *(float *)(this + 0x34);\n      *(float *)pgVar2 =\n           *(float *)param_1 * *(float *)(this + 8) +\n           *(float *)(this + 0x18) * *(float *)(param_1 + 4) +\n           *(float *)(this + 0x28) * *(float *)(pgVar3 + iVar4 + -0xc) + *(float *)(this + 0x38);\n      fVar1 = *(float *)param_1 * *(float *)(this + 0xc) +\n              *(float *)(this + 0x1c) * *(float *)(param_1 + 4) +\n              *(float *)(this + 0x2c) * *(float *)(pgVar3 + iVar4 + -0xc) + *(float *)(this + 0x3c);\n      *(float *)(pgVar2 + -8) = *(float *)(pgVar2 + -8) / fVar1;\n      *(float *)(pgVar2 + -4) = *(float *)(pgVar2 + -4) / fVar1;\n      *(float *)pgVar2 = *(float *)pgVar2 / fVar1;\n      pgVar2 = pgVar3;\n      param_1 = param_1 + 0xc;\n    } while (param_3 != 0);\n  }\n  return;\n}\n\n", 
+  "is_thunk": false, 
+  "name": "Transform_W", 
+  "assembly": "  10001330:  MOV EDX,dword ptr [ESP + 0x4]\n  10001334:  PUSH EDI\n  10001335:  MOV EDI,dword ptr [ESP + 0x10]\n  10001339:  TEST EDI,EDI\n  1000133b:  JLE 0x100013e5\n  10001341:  PUSH EBX\n  10001342:  MOV EBX,dword ptr [ESP + 0x10]\n  10001346:  PUSH ESI\n  10001347:  MOV ESI,EDX\n  10001349:  LEA EAX,[EBX + 0x8]\n  1000134c:  SUB ESI,EBX\n  1000134e:  FLD dword ptr [EDX]\n  10001350:  FMUL dword ptr [ECX]\n  10001352:  FLD dword ptr [ECX + 0x20]\n  10001355:  FMUL dword ptr [ESI + EAX*0x1]\n  10001358:  ADD EDX,0xc\n  1000135b:  ADD EAX,0xc\n  1000135e:  DEC EDI\n  1000135f:  FADDP\n  10001361:  FLD dword ptr [ECX + 0x10]\n  10001364:  FMUL dword ptr [EDX + -0x8]\n  10001367:  FADDP\n  10001369:  FADD dword ptr [ECX + 0x30]\n  1000136c:  FSTP dword ptr [EAX + -0x14]\n  1000136f:  FLD dword ptr [ECX + 0x24]\n  10001372:  FMUL dword ptr [ESI + EAX*0x1 + -0xc]\n  10001376:  FLD dword ptr [ECX + 0x14]\n  10001379:  FMUL dword ptr [EDX + -0x8]\n  1000137c:  FADDP\n  1000137e:  FLD dword ptr [EDX + -0xc]\n  10001381:  FMUL dword ptr [ECX + 0x4]\n  10001384:  FADDP\n  10001386:  FADD dword ptr [ECX + 0x34]\n  10001389:  FSTP dword ptr [EAX + -0x10]\n  1000138c:  FLD dword ptr [ECX + 0x28]\n  1000138f:  FMUL dword ptr [ESI + EAX*0x1 + -0xc]\n  10001393:  FLD dword ptr [ECX + 0x18]\n  10001396:  FMUL dword ptr [EDX + -0x8]\n  10001399:  FADDP\n  1000139b:  FLD dword ptr [EDX + -0xc]\n  1000139e:  FMUL dword ptr [ECX + 0x8]\n  100013a1:  FADDP\n  100013a3:  FADD dword ptr [ECX + 0x38]\n  100013a6:  FSTP dword ptr [EAX + -0xc]\n  100013a9:  FLD dword ptr [ECX + 0x2c]\n  100013ac:  FMUL dword ptr [ESI + EAX*0x1 + -0xc]\n  100013b0:  FLD dword ptr [ECX + 0x1c]\n  100013b3:  FMUL dword ptr [EDX + -0x8]\n  100013b6:  FADDP\n  100013b8:  FLD dword ptr [EDX + -0xc]\n  100013bb:  FMUL dword ptr [ECX + 0xc]\n  100013be:  FADDP\n  100013c0:  FADD dword ptr [ECX + 0x3c]\n  100013c3:  FLD dword ptr [EAX + -0x14]\n  100013c6:  FDIV ST0,ST1\n  100013c8:  FSTP dword ptr [EAX + -0x14]\n  100013cb:  FLD dword ptr [EAX + -0x10]\n  100013ce:  FDIV ST0,ST1\n  100013d0:  FSTP dword ptr [EAX + -0x10]\n  100013d3:  FLD dword ptr [EAX + -0xc]\n  100013d6:  FDIV ST0,ST1\n  100013d8:  FSTP dword ptr [EAX + -0xc]\n  100013db:  FSTP ST0\n  100013dd:  JNZ 0x1000134e\n  100013e3:  POP ESI\n  100013e4:  POP EBX\n  100013e5:  POP EDI\n  100013e6:  RET 0xc", 
+  "callers": []
+}

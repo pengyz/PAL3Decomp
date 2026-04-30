@@ -1,0 +1,44 @@
+{
+  "address": "0x1000e408", 
+  "size_bytes": 45, 
+  "calling_convention": "__thiscall", 
+  "signature": "undefined __thiscall FUN_1000e408(void * this, uint * param_1, byte * param_2)", 
+  "callees": [
+    {
+      "address": "0x100101d6", 
+      "name": "FUN_100101d6"
+    }, 
+    {
+      "address": "0x1000e3c5", 
+      "name": "FUN_1000e3c5"
+    }
+  ], 
+  "global_refs": [
+    {
+      "address": "0x00000008", 
+      "type": null, 
+      "name": "DAT_00000008"
+    }, 
+    {
+      "address": "0x-0000010", 
+      "type": null, 
+      "name": "DAT_-0000010"
+    }, 
+    {
+      "address": "0x00000004", 
+      "type": null, 
+      "name": "DAT_00000004"
+    }
+  ], 
+  "has_custom_name": false, 
+  "decompiled_c": "\nvoid __thiscall FUN_1000e408(void *this,uint *param_1,byte *param_2)\n\n{\n  ushort local_10 [6];\n  \n  FUN_100101d6(this,local_10,(int *)&param_2,param_2,0,0,0,0);\n  FUN_1000e3c5(local_10,param_1);\n  return;\n}\n\n", 
+  "is_thunk": false, 
+  "name": "FUN_1000e408", 
+  "assembly": "  1000e408:  PUSH EBP\n  1000e409:  MOV EBP,ESP\n  1000e40b:  SUB ESP,0xc\n  1000e40e:  XOR EAX,EAX\n  1000e410:  PUSH EAX\n  1000e411:  PUSH EAX\n  1000e412:  PUSH EAX\n  1000e413:  PUSH EAX\n  1000e414:  PUSH dword ptr [EBP + 0xc]\n  1000e417:  LEA EAX,[EBP + 0xc]\n  1000e41a:  PUSH EAX\n  1000e41b:  LEA EAX,[EBP + -0xc]\n  1000e41e:  PUSH EAX\n  1000e41f:  CALL 0x100101d6\n  1000e424:  PUSH dword ptr [EBP + 0x8]\n  1000e427:  LEA EAX,[EBP + -0xc]\n  1000e42a:  PUSH EAX\n  1000e42b:  CALL 0x1000e3c5\n  1000e430:  ADD ESP,0x24\n  1000e433:  LEAVE\n  1000e434:  RET", 
+  "callers": [
+    {
+      "address": "0x1000a7cd", 
+      "name": "__fassign"
+    }
+  ]
+}

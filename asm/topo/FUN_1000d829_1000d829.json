@@ -1,0 +1,90 @@
+{
+  "address": "0x1000d829", 
+  "size_bytes": 153, 
+  "calling_convention": "__stdcall", 
+  "signature": "undefined __stdcall FUN_1000d829(void)", 
+  "callees": [
+    {
+      "address": "0x1000f937", 
+      "name": "FUN_1000f937"
+    }, 
+    {
+      "address": "0x00000014", 
+      "name": "GetModuleFileNameA"
+    }, 
+    {
+      "address": "0x1000d8c2", 
+      "name": "FUN_1000d8c2"
+    }, 
+    {
+      "address": "0x1000a152", 
+      "name": "_malloc"
+    }, 
+    {
+      "address": "0x1000a661", 
+      "name": "__amsg_exit"
+    }, 
+    {
+      "address": "0x1000d8c2", 
+      "name": "FUN_1000d8c2"
+    }
+  ], 
+  "global_refs": [
+    {
+      "address": "0x100185ec", 
+      "type": "undefined4", 
+      "name": "DAT_100185ec"
+    }, 
+    {
+      "address": "0x10017fd8", 
+      "type": null, 
+      "name": "DAT_10017fd8"
+    }, 
+    {
+      "address": "0x1001204c", 
+      "type": "pointer", 
+      "name": "DAT_1001204c"
+    }, 
+    {
+      "address": "0x100185f8", 
+      "type": "undefined4", 
+      "name": "DAT_100185f8"
+    }, 
+    {
+      "address": "0x10017f58", 
+      "type": null, 
+      "name": "DAT_10017f58"
+    }, 
+    {
+      "address": "0x-000000c", 
+      "type": null, 
+      "name": "DAT_-000000c"
+    }, 
+    {
+      "address": "0x-0000008", 
+      "type": null, 
+      "name": "DAT_-0000008"
+    }, 
+    {
+      "address": "0x10017f40", 
+      "type": null, 
+      "name": "DAT_10017f40"
+    }, 
+    {
+      "address": "0x10017f3c", 
+      "type": null, 
+      "name": "DAT_10017f3c"
+    }
+  ], 
+  "has_custom_name": false, 
+  "decompiled_c": "\n/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */\n\nvoid FUN_1000d829(void)\n\n{\n  undefined4 *puVar1;\n  byte *pbVar2;\n  int local_c;\n  int local_8;\n  \n  if (DAT_100185ec == 0) {\n    FUN_1000f937();\n  }\n  GetModuleFileNameA((HMODULE)0x0,&DAT_10017fd8,0x104);\n  _DAT_10017f58 = &DAT_10017fd8;\n  pbVar2 = &DAT_10017fd8;\n  if (*DAT_100185f8 != 0) {\n    pbVar2 = DAT_100185f8;\n  }\n  FUN_1000d8c2(pbVar2,(undefined4 *)0x0,(byte *)0x0,&local_8,&local_c);\n  puVar1 = (undefined4 *)_malloc(local_c + local_8 * 4);\n  if (puVar1 == (undefined4 *)0x0) {\n    __amsg_exit(8);\n  }\n  FUN_1000d8c2(pbVar2,puVar1,(byte *)(puVar1 + local_8),&local_8,&local_c);\n  _DAT_10017f40 = puVar1;\n  _DAT_10017f3c = local_8 + -1;\n  return;\n}\n\n", 
+  "is_thunk": false, 
+  "name": "FUN_1000d829", 
+  "assembly": "  1000d829:  PUSH EBP\n  1000d82a:  MOV EBP,ESP\n  1000d82c:  PUSH ECX\n  1000d82d:  PUSH ECX\n  1000d82e:  PUSH EBX\n  1000d82f:  XOR EBX,EBX\n  1000d831:  CMP dword ptr [0x100185ec],EBX\n  1000d837:  PUSH ESI\n  1000d838:  PUSH EDI\n  1000d839:  JNZ 0x1000d840\n  1000d83b:  CALL 0x1000f937\n  1000d840:  MOV ESI,0x10017fd8\n  1000d845:  PUSH 0x104\n  1000d84a:  PUSH ESI\n  1000d84b:  PUSH EBX\n  1000d84c:  CALL dword ptr [0x1001204c]\n  1000d852:  MOV EAX,[0x100185f8]\n  1000d857:  MOV dword ptr [0x10017f58],ESI\n  1000d85d:  MOV EDI,ESI\n  1000d85f:  CMP byte ptr [EAX],BL\n  1000d861:  JZ 0x1000d865\n  1000d863:  MOV EDI,EAX\n  1000d865:  LEA EAX,[EBP + -0x8]\n  1000d868:  PUSH EAX\n  1000d869:  LEA EAX,[EBP + -0x4]\n  1000d86c:  PUSH EAX\n  1000d86d:  PUSH EBX\n  1000d86e:  PUSH EBX\n  1000d86f:  PUSH EDI\n  1000d870:  CALL 0x1000d8c2\n  1000d875:  MOV EAX,dword ptr [EBP + -0x8]\n  1000d878:  MOV ECX,dword ptr [EBP + -0x4]\n  1000d87b:  LEA EAX,[EAX + ECX*0x4]\n  1000d87e:  PUSH EAX\n  1000d87f:  CALL 0x1000a152\n  1000d884:  MOV ESI,EAX\n  1000d886:  ADD ESP,0x18\n  1000d889:  CMP ESI,EBX\n  1000d88b:  JNZ 0x1000d895\n  1000d88d:  PUSH 0x8\n  1000d88f:  CALL 0x1000a661\n  1000d894:  POP ECX\n  1000d895:  LEA EAX,[EBP + -0x8]\n  1000d898:  PUSH EAX\n  1000d899:  LEA EAX,[EBP + -0x4]\n  1000d89c:  PUSH EAX\n  1000d89d:  MOV EAX,dword ptr [EBP + -0x4]\n  1000d8a0:  LEA EAX,[ESI + EAX*0x4]\n  1000d8a3:  PUSH EAX\n  1000d8a4:  PUSH ESI\n  1000d8a5:  PUSH EDI\n  1000d8a6:  CALL 0x1000d8c2\n  1000d8ab:  MOV EAX,dword ptr [EBP + -0x4]\n  1000d8ae:  ADD ESP,0x14\n  1000d8b1:  DEC EAX\n  1000d8b2:  MOV dword ptr [0x10017f40],ESI\n  1000d8b8:  POP EDI\n  1000d8b9:  POP ESI\n  1000d8ba:  MOV [0x10017f3c],EAX\n  1000d8bf:  POP EBX\n  1000d8c0:  LEAVE\n  1000d8c1:  RET", 
+  "callers": [
+    {
+      "address": "0x1000a4eb", 
+      "name": "FUN_1000a4eb"
+    }
+  ]
+}

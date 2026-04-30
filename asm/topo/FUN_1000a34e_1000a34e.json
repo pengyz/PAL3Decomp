@@ -1,0 +1,24 @@
+{
+  "address": "0x1000a34e", 
+  "size_bytes": 9, 
+  "calling_convention": "__stdcall", 
+  "signature": "undefined __stdcall FUN_1000a34e(void)", 
+  "callees": [
+    {
+      "address": "0x1000d469", 
+      "name": "FUN_1000d469"
+    }
+  ], 
+  "global_refs": [], 
+  "has_custom_name": false, 
+  "decompiled_c": "\nvoid FUN_1000a34e(void)\n\n{\n  FUN_1000d469(9);\n  return;\n}\n\n", 
+  "is_thunk": false, 
+  "name": "FUN_1000a34e", 
+  "assembly": "  1000a34e:  PUSH 0x9\n  1000a350:  CALL 0x1000d469\n  1000a355:  POP ECX\n  1000a356:  RET", 
+  "callers": [
+    {
+      "address": "0x1000a28c", 
+      "name": "FUN_1000a28c"
+    }
+  ]
+}

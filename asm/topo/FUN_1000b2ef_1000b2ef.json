@@ -1,0 +1,95 @@
+{
+  "address": "0x1000b2ef", 
+  "size_bytes": 123, 
+  "calling_convention": "__cdecl", 
+  "signature": "undefined __cdecl FUN_1000b2ef(PEXCEPTION_RECORD param_1, PVOID param_2, DWORD param_3, undefined4 param_4, int param_5, byte * param_6, byte * param_7, int * param_8, int param_9, PVOID param_10)", 
+  "callees": [
+    {
+      "address": "0x1000b4af", 
+      "name": "FUN_1000b4af"
+    }, 
+    {
+      "address": "0x10009cd6", 
+      "name": "FUN_10009cd6"
+    }, 
+    {
+      "address": "0x1000b251", 
+      "name": "FUN_1000b251"
+    }, 
+    {
+      "address": "0x1000b36a", 
+      "name": "FUN_1000b36a"
+    }, 
+    {
+      "address": "0x10009c94", 
+      "name": "FUN_10009c94"
+    }
+  ], 
+  "global_refs": [
+    {
+      "address": "0x0000001c", 
+      "type": null, 
+      "name": "DAT_0000001c"
+    }, 
+    {
+      "address": "0x00000018", 
+      "type": null, 
+      "name": "DAT_00000018"
+    }, 
+    {
+      "address": "0x00000008", 
+      "type": null, 
+      "name": "DAT_00000008"
+    }, 
+    {
+      "address": "0x00000004", 
+      "type": null, 
+      "name": "DAT_00000004"
+    }, 
+    {
+      "address": "0x00000028", 
+      "type": null, 
+      "name": "DAT_00000028"
+    }, 
+    {
+      "address": "0x00000020", 
+      "type": null, 
+      "name": "DAT_00000020"
+    }, 
+    {
+      "address": "0x00000014", 
+      "type": null, 
+      "name": "DAT_00000014"
+    }, 
+    {
+      "address": "0x00000010", 
+      "type": null, 
+      "name": "DAT_00000010"
+    }, 
+    {
+      "address": "0x00000024", 
+      "type": null, 
+      "name": "DAT_00000024"
+    }, 
+    {
+      "address": "0x0000000c", 
+      "type": null, 
+      "name": "DAT_0000000c"
+    }
+  ], 
+  "has_custom_name": false, 
+  "decompiled_c": "\nvoid __cdecl\nFUN_1000b2ef(PEXCEPTION_RECORD param_1,PVOID param_2,DWORD param_3,undefined4 param_4,int param_5,\n            byte *param_6,byte *param_7,int *param_8,int param_9,PVOID param_10)\n\n{\n  undefined *UNRECOVERED_JUMPTABLE;\n  \n  if (param_7 != (byte *)0x0) {\n    FUN_1000b4af((int)param_1,(int)param_2,param_6,param_7);\n  }\n  if (param_10 == (PVOID)0x0) {\n    param_10 = param_2;\n  }\n  FUN_10009cd6(param_10,param_1);\n  FUN_1000b251((int)param_2,param_4,param_5,*param_8);\n  *(int *)((int)param_2 + 8) = param_8[1] + 1;\n  UNRECOVERED_JUMPTABLE =\n       (undefined *)\n       FUN_1000b36a((DWORD)param_1,param_2,param_3,param_5,*(undefined4 *)(param_6 + 0xc),param_9,\n                    0x100);\n  if (UNRECOVERED_JUMPTABLE != (undefined *)0x0) {\n    FUN_10009c94(UNRECOVERED_JUMPTABLE);\n  }\n  return;\n}\n\n", 
+  "is_thunk": false, 
+  "name": "FUN_1000b2ef", 
+  "assembly": "  1000b2ef:  PUSH EBP\n  1000b2f0:  MOV EBP,ESP\n  1000b2f2:  CMP dword ptr [EBP + 0x20],0x0\n  1000b2f6:  PUSH EBX\n  1000b2f7:  MOV EBX,dword ptr [EBP + 0x1c]\n  1000b2fa:  PUSH ESI\n  1000b2fb:  PUSH EDI\n  1000b2fc:  MOV EDI,dword ptr [EBP + 0xc]\n  1000b2ff:  JZ 0x1000b311\n  1000b301:  PUSH dword ptr [EBP + 0x20]\n  1000b304:  PUSH EBX\n  1000b305:  PUSH EDI\n  1000b306:  PUSH dword ptr [EBP + 0x8]\n  1000b309:  CALL 0x1000b4af\n  1000b30e:  ADD ESP,0x10\n  1000b311:  CMP dword ptr [EBP + 0x2c],0x0\n  1000b315:  PUSH dword ptr [EBP + 0x8]\n  1000b318:  JNZ 0x1000b31d\n  1000b31a:  PUSH EDI\n  1000b31b:  JMP 0x1000b320\n  1000b31d:  PUSH dword ptr [EBP + 0x2c]\n  1000b320:  CALL 0x10009cd6\n  1000b325:  MOV ESI,dword ptr [EBP + 0x24]\n  1000b328:  PUSH dword ptr [ESI]\n  1000b32a:  PUSH dword ptr [EBP + 0x18]\n  1000b32d:  PUSH dword ptr [EBP + 0x14]\n  1000b330:  PUSH EDI\n  1000b331:  CALL 0x1000b251\n  1000b336:  MOV EAX,dword ptr [ESI + 0x4]\n  1000b339:  PUSH 0x100\n  1000b33e:  PUSH dword ptr [EBP + 0x28]\n  1000b341:  INC EAX\n  1000b342:  MOV dword ptr [EDI + 0x8],EAX\n  1000b345:  PUSH dword ptr [EBX + 0xc]\n  1000b348:  PUSH dword ptr [EBP + 0x18]\n  1000b34b:  PUSH dword ptr [EBP + 0x10]\n  1000b34e:  PUSH EDI\n  1000b34f:  PUSH dword ptr [EBP + 0x8]\n  1000b352:  CALL 0x1000b36a\n  1000b357:  ADD ESP,0x2c\n  1000b35a:  TEST EAX,EAX\n  1000b35c:  JZ 0x1000b365\n  1000b35e:  PUSH EDI\n  1000b35f:  PUSH EAX\n  1000b360:  CALL 0x10009c94\n  1000b365:  POP EDI\n  1000b366:  POP ESI\n  1000b367:  POP EBX\n  1000b368:  POP EBP\n  1000b369:  RET", 
+  "callers": [
+    {
+      "address": "0x1000af97", 
+      "name": "FUN_1000af97"
+    }, 
+    {
+      "address": "0x1000b14a", 
+      "name": "FUN_1000b14a"
+    }
+  ]
+}

@@ -366,7 +366,7 @@ def run():
         'output_dir': output_dir,
     }
     summary_path = os.path.join(output_dir, '_export_summary.json')
-    with open(summary_path, 'w', encoding='utf-8') as f:
+    with open(summary_path, 'w') as f:
         json.dump(summary, f, indent=2)
 
 

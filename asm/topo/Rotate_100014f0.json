@@ -1,0 +1,38 @@
+{
+  "address": "0x100014f0", 
+  "size_bytes": 81, 
+  "calling_convention": "__thiscall", 
+  "signature": "void __thiscall Rotate(gbMatrix4 * this, gbVec3D * param_1, gbVec3D * param_2)", 
+  "callees": [], 
+  "global_refs": [
+    {
+      "address": "0x00000004", 
+      "type": null, 
+      "name": "DAT_00000004"
+    }, 
+    {
+      "address": "0x00000008", 
+      "type": null, 
+      "name": "DAT_00000008"
+    }
+  ], 
+  "has_custom_name": true, 
+  "decompiled_c": "\n/* public: void __thiscall gbMatrix4::Rotate(struct gbVec3D const *,struct gbVec3D *)const  */\n\nvoid __thiscall gbMatrix4::Rotate(gbMatrix4 *this,gbVec3D *param_1,gbVec3D *param_2)\n\n{\n                    /* 0x14f0  75  ?Rotate@gbMatrix4@@QBEXPBUgbVec3D@@PAU2@@Z */\n  *(float *)param_2 =\n       *(float *)param_1 * *(float *)this +\n       *(float *)(this + 0x20) * *(float *)(param_1 + 8) +\n       *(float *)(this + 0x10) * *(float *)(param_1 + 4);\n  *(float *)(param_2 + 4) =\n       *(float *)(this + 0x24) * *(float *)(param_1 + 8) +\n       *(float *)(this + 0x14) * *(float *)(param_1 + 4) + *(float *)(this + 4) * *(float *)param_1;\n  *(float *)(param_2 + 8) =\n       *(float *)(this + 0x28) * *(float *)(param_1 + 8) +\n       *(float *)(this + 0x18) * *(float *)(param_1 + 4) + *(float *)(this + 8) * *(float *)param_1;\n  return;\n}\n\n", 
+  "is_thunk": false, 
+  "name": "Rotate", 
+  "assembly": "  100014f0:  MOV EAX,dword ptr [ESP + 0x4]\n  100014f4:  MOV EDX,dword ptr [ESP + 0x8]\n  100014f8:  FLD dword ptr [ECX + 0x10]\n  100014fb:  FMUL dword ptr [EAX + 0x4]\n  100014fe:  FLD dword ptr [ECX + 0x20]\n  10001501:  FMUL dword ptr [EAX + 0x8]\n  10001504:  FADDP\n  10001506:  FLD dword ptr [EAX]\n  10001508:  FMUL dword ptr [ECX]\n  1000150a:  FADDP\n  1000150c:  FSTP dword ptr [EDX]\n  1000150e:  FLD dword ptr [ECX + 0x4]\n  10001511:  FMUL dword ptr [EAX]\n  10001513:  FLD dword ptr [ECX + 0x14]\n  10001516:  FMUL dword ptr [EAX + 0x4]\n  10001519:  FADDP\n  1000151b:  FLD dword ptr [ECX + 0x24]\n  1000151e:  FMUL dword ptr [EAX + 0x8]\n  10001521:  FADDP\n  10001523:  FSTP dword ptr [EDX + 0x4]\n  10001526:  FLD dword ptr [ECX + 0x8]\n  10001529:  FMUL dword ptr [EAX]\n  1000152b:  FLD dword ptr [ECX + 0x18]\n  1000152e:  FMUL dword ptr [EAX + 0x4]\n  10001531:  FADDP\n  10001533:  FLD dword ptr [ECX + 0x28]\n  10001536:  FMUL dword ptr [EAX + 0x8]\n  10001539:  FADDP\n  1000153b:  FSTP dword ptr [EDX + 0x8]\n  1000153e:  RET 0x8", 
+  "callers": [
+    {
+      "address": "0x10002d10", 
+      "name": "RotateVector"
+    }, 
+    {
+      "address": "0x100047b0", 
+      "name": "FUN_100047b0"
+    }, 
+    {
+      "address": "0x100047b0", 
+      "name": "FUN_100047b0"
+    }
+  ]
+}

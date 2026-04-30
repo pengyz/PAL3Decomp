@@ -1,0 +1,67 @@
+{
+  "address": "0x100054d0", 
+  "size_bytes": 46, 
+  "calling_convention": "__stdcall", 
+  "signature": "undefined4 * __stdcall FUN_100054d0(undefined4 * param_1, undefined4 * param_2, undefined4 * param_3)", 
+  "callees": [], 
+  "global_refs": [
+    {
+      "address": "0x00000004", 
+      "type": null, 
+      "name": "DAT_00000004"
+    }, 
+    {
+      "address": "0x00000008", 
+      "type": null, 
+      "name": "DAT_00000008"
+    }, 
+    {
+      "address": "0x0000000c", 
+      "type": null, 
+      "name": "DAT_0000000c"
+    }
+  ], 
+  "has_custom_name": false, 
+  "decompiled_c": "\nundefined4 * FUN_100054d0(undefined4 *param_1,undefined4 *param_2,undefined4 *param_3)\n\n{\n  if (param_1 == param_2) {\n    return param_3;\n  }\n  do {\n    if (param_3 != (undefined4 *)0x0) {\n      *param_3 = *param_1;\n    }\n    param_1 = param_1 + 1;\n    param_3 = param_3 + 1;\n  } while (param_1 != param_2);\n  return param_3;\n}\n\n", 
+  "is_thunk": false, 
+  "name": "FUN_100054d0", 
+  "assembly": "  100054d0:  MOV ECX,dword ptr [ESP + 0x4]\n  100054d4:  MOV EDX,dword ptr [ESP + 0x8]\n  100054d8:  CMP ECX,EDX\n  100054da:  JZ 0x100054f7\n  100054dc:  MOV EAX,dword ptr [ESP + 0xc]\n  100054e0:  PUSH ESI\n  100054e1:  TEST EAX,EAX\n  100054e3:  JZ 0x100054e9\n  100054e5:  MOV ESI,dword ptr [ECX]\n  100054e7:  MOV dword ptr [EAX],ESI\n  100054e9:  ADD ECX,0x4\n  100054ec:  ADD EAX,0x4\n  100054ef:  CMP ECX,EDX\n  100054f1:  JNZ 0x100054e1\n  100054f3:  POP ESI\n  100054f4:  RET 0xc\n  100054f7:  MOV EAX,dword ptr [ESP + 0xc]\n  100054fb:  RET 0xc", 
+  "callers": [
+    {
+      "address": "0x10005330", 
+      "name": "FUN_10005330"
+    }, 
+    {
+      "address": "0x10005330", 
+      "name": "FUN_10005330"
+    }, 
+    {
+      "address": "0x10005330", 
+      "name": "FUN_10005330"
+    }, 
+    {
+      "address": "0x10003fc0", 
+      "name": "FUN_10003fc0"
+    }, 
+    {
+      "address": "0x10003fc0", 
+      "name": "FUN_10003fc0"
+    }, 
+    {
+      "address": "0x100060c0", 
+      "name": "FUN_100060c0"
+    }, 
+    {
+      "address": "0x100062c0", 
+      "name": "FUN_100062c0"
+    }, 
+    {
+      "address": "0x100062c0", 
+      "name": "FUN_100062c0"
+    }, 
+    {
+      "address": "0x10008090", 
+      "name": "FUN_10008090"
+    }
+  ]
+}

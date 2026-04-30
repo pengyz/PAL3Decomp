@@ -1,0 +1,30 @@
+{
+  "address": "0x100019a0", 
+  "size_bytes": 35, 
+  "calling_convention": "__thiscall", 
+  "signature": "int __thiscall IsNormal(gbQuaternion * this)", 
+  "callees": [
+    {
+      "address": "0x10002c60", 
+      "name": "Magnitude"
+    }
+  ], 
+  "global_refs": [
+    {
+      "address": "0x10012100", 
+      "type": null, 
+      "name": "DAT_10012100"
+    }, 
+    {
+      "address": "0x100120f8", 
+      "type": null, 
+      "name": "DAT_100120f8"
+    }
+  ], 
+  "has_custom_name": true, 
+  "decompiled_c": "\n/* public: int __thiscall gbQuaternion::IsNormal(void) */\n\nint __thiscall gbQuaternion::IsNormal(gbQuaternion *this)\n\n{\n  float fVar1;\n  \n                    /* 0x19a0  42  ?IsNormal@gbQuaternion@@QAEHXZ */\n  fVar1 = Magnitude(this);\n  if (ABS(fVar1 - 1.0) < 0.005) {\n    return 1;\n  }\n  return 0;\n}\n\n", 
+  "is_thunk": false, 
+  "name": "IsNormal", 
+  "assembly": "  100019a0:  CALL 0x10002c60\n  100019a5:  FSUB dword ptr [0x10012100]\n  100019ab:  FABS\n  100019ad:  FCOMP qword ptr [0x100120f8]\n  100019b3:  FNSTSW AX\n  100019b5:  TEST AH,0x1\n  100019b8:  JZ 0x100019c0\n  100019ba:  MOV EAX,0x1\n  100019bf:  RET\n  100019c0:  XOR EAX,EAX\n  100019c2:  RET", 
+  "callers": []
+}

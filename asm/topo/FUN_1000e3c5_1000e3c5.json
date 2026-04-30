@@ -1,0 +1,40 @@
+{
+  "address": "0x1000e3c5", 
+  "size_bytes": 22, 
+  "calling_convention": "__cdecl", 
+  "signature": "undefined __cdecl FUN_1000e3c5(ushort * param_1, uint * param_2)", 
+  "callees": [
+    {
+      "address": "0x1000e243", 
+      "name": "FUN_1000e243"
+    }
+  ], 
+  "global_refs": [
+    {
+      "address": "0x100174b0", 
+      "type": null, 
+      "name": "DAT_100174b0"
+    }, 
+    {
+      "address": "0x00000008", 
+      "type": null, 
+      "name": "DAT_00000008"
+    }, 
+    {
+      "address": "0x00000004", 
+      "type": null, 
+      "name": "DAT_00000004"
+    }
+  ], 
+  "has_custom_name": false, 
+  "decompiled_c": "\nvoid __cdecl FUN_1000e3c5(ushort *param_1,uint *param_2)\n\n{\n  FUN_1000e243(param_1,param_2,(int *)&DAT_100174b0);\n  return;\n}\n\n", 
+  "is_thunk": false, 
+  "name": "FUN_1000e3c5", 
+  "assembly": "  1000e3c5:  PUSH 0x100174b0\n  1000e3ca:  PUSH dword ptr [ESP + 0xc]\n  1000e3ce:  PUSH dword ptr [ESP + 0xc]\n  1000e3d2:  CALL 0x1000e243\n  1000e3d7:  ADD ESP,0xc\n  1000e3da:  RET", 
+  "callers": [
+    {
+      "address": "0x1000e408", 
+      "name": "FUN_1000e408"
+    }
+  ]
+}

@@ -1,0 +1,38 @@
+{
+  "address": "0x10001240", 
+  "size_bytes": 13, 
+  "calling_convention": "__thiscall", 
+  "signature": "void __thiscall LeftMultiply(gbMatrix4 * this, gbMatrix4 * param_1)", 
+  "callees": [
+    {
+      "address": "0x10001140", 
+      "name": "operator*="
+    }
+  ], 
+  "global_refs": [
+    {
+      "address": "0x00000004", 
+      "type": null, 
+      "name": "DAT_00000004"
+    }
+  ], 
+  "has_custom_name": true, 
+  "decompiled_c": "\n/* public: void __thiscall gbMatrix4::LeftMultiply(struct gbMatrix4 const &) */\n\nvoid __thiscall gbMatrix4::LeftMultiply(gbMatrix4 *this,gbMatrix4 *param_1)\n\n{\n                    /* 0x1240  51  ?LeftMultiply@gbMatrix4@@QAEXABU1@@Z */\n  operator*=(this,param_1);\n  return;\n}\n\n", 
+  "is_thunk": false, 
+  "name": "LeftMultiply", 
+  "assembly": "  10001240:  MOV EAX,dword ptr [ESP + 0x4]\n  10001244:  PUSH EAX\n  10001245:  CALL 0x10001140\n  1000124a:  RET 0x4", 
+  "callers": [
+    {
+      "address": "0x10001f20", 
+      "name": "operator*="
+    }, 
+    {
+      "address": "0x10002e80", 
+      "name": "MultMatrix"
+    }, 
+    {
+      "address": "0x10002eb0", 
+      "name": "Rotate"
+    }
+  ]
+}

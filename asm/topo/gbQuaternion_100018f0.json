@@ -1,0 +1,14 @@
+{
+  "address": "0x100018f0", 
+  "size_bytes": 20, 
+  "calling_convention": "__thiscall", 
+  "signature": "undefined __thiscall gbQuaternion(gbQuaternion * this)", 
+  "callees": [], 
+  "global_refs": [], 
+  "has_custom_name": true, 
+  "decompiled_c": "\n/* public: __thiscall gbQuaternion::gbQuaternion(void) */\n\nvoid __thiscall gbQuaternion::gbQuaternion(gbQuaternion *this)\n\n{\n                    /* 0x18f0  3  ??0gbQuaternion@@QAE@XZ */\n  *(undefined4 *)(this + 8) = 0;\n  *(undefined4 *)(this + 4) = 0;\n  *(undefined4 *)this = 0;\n  *(undefined4 *)(this + 0xc) = 0x3f800000;\n  return;\n}\n\n", 
+  "is_thunk": false, 
+  "name": "gbQuaternion", 
+  "assembly": "  100018f0:  MOV EAX,ECX\n  100018f2:  XOR ECX,ECX\n  100018f4:  MOV dword ptr [EAX + 0x8],ECX\n  100018f7:  MOV dword ptr [EAX + 0x4],ECX\n  100018fa:  MOV dword ptr [EAX],ECX\n  100018fc:  MOV dword ptr [EAX + 0xc],0x3f800000\n  10001903:  RET", 
+  "callers": []
+}

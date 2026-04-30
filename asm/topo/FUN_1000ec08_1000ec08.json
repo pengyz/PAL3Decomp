@@ -1,0 +1,56 @@
+{
+  "address": "0x1000ec08", 
+  "size_bytes": 28, 
+  "calling_convention": "__cdecl", 
+  "signature": "bool __cdecl FUN_1000ec08(void * param_1, UINT_PTR param_2)", 
+  "callees": [
+    {
+      "address": "0x0000002d", 
+      "name": "IsBadReadPtr"
+    }
+  ], 
+  "global_refs": [
+    {
+      "address": "0x00000008", 
+      "type": null, 
+      "name": "DAT_00000008"
+    }, 
+    {
+      "address": "0x00000004", 
+      "type": null, 
+      "name": "DAT_00000004"
+    }, 
+    {
+      "address": "0x100120b0", 
+      "type": "pointer", 
+      "name": "DAT_100120b0"
+    }
+  ], 
+  "has_custom_name": false, 
+  "decompiled_c": "\nbool __cdecl FUN_1000ec08(void *param_1,UINT_PTR param_2)\n\n{\n  BOOL BVar1;\n  \n  BVar1 = IsBadReadPtr(param_1,param_2);\n  return BVar1 == 0;\n}\n\n", 
+  "is_thunk": false, 
+  "name": "FUN_1000ec08", 
+  "assembly": "  1000ec08:  PUSH ESI\n  1000ec09:  PUSH 0x1\n  1000ec0b:  POP ESI\n  1000ec0c:  PUSH dword ptr [ESP + 0xc]\n  1000ec10:  PUSH dword ptr [ESP + 0xc]\n  1000ec14:  CALL dword ptr [0x100120b0]\n  1000ec1a:  TEST EAX,EAX\n  1000ec1c:  JZ 0x1000ec20\n  1000ec1e:  XOR ESI,ESI\n  1000ec20:  MOV EAX,ESI\n  1000ec22:  POP ESI\n  1000ec23:  RET", 
+  "callers": [
+    {
+      "address": "0x1000af97", 
+      "name": "FUN_1000af97"
+    }, 
+    {
+      "address": "0x1000b4af", 
+      "name": "FUN_1000b4af"
+    }, 
+    {
+      "address": "0x1000b4af", 
+      "name": "FUN_1000b4af"
+    }, 
+    {
+      "address": "0x1000b4af", 
+      "name": "FUN_1000b4af"
+    }, 
+    {
+      "address": "0x1000b4af", 
+      "name": "FUN_1000b4af"
+    }
+  ]
+}

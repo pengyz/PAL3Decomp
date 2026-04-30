@@ -1,0 +1,30 @@
+{
+  "address": "0x1000ec60", 
+  "size_bytes": 129, 
+  "calling_convention": "__cdecl", 
+  "signature": "int __cdecl _strcmp(char * _Str1, char * _Str2)", 
+  "callees": [], 
+  "global_refs": [
+    {
+      "address": "0x00000004", 
+      "type": null, 
+      "name": "DAT_00000004"
+    }, 
+    {
+      "address": "0x00000008", 
+      "type": null, 
+      "name": "DAT_00000008"
+    }
+  ], 
+  "has_custom_name": true, 
+  "decompiled_c": "\n/* Library Function - Single Match\n    _strcmp\n   \n   Libraries: Visual Studio 1998 Debug, Visual Studio 1998 Release */\n\nint __cdecl _strcmp(char *_Str1,char *_Str2)\n\n{\n  undefined2 uVar1;\n  undefined4 uVar2;\n  byte bVar3;\n  byte bVar4;\n  bool bVar5;\n  \n  if (((uint)_Str1 & 3) != 0) {\n    if (((uint)_Str1 & 1) != 0) {\n      bVar4 = *_Str1;\n      _Str1 = _Str1 + 1;\n      bVar5 = bVar4 < (byte)*_Str2;\n      if (bVar4 != *_Str2) goto LAB_1000eca4;\n      _Str2 = _Str2 + 1;\n      if (bVar4 == 0) {\n        return 0;\n      }\n      if (((uint)_Str1 & 2) == 0) goto LAB_1000ec70;\n    }\n    uVar1 = *(undefined2 *)_Str1;\n    _Str1 = _Str1 + 2;\n    bVar4 = (byte)uVar1;\n    bVar5 = bVar4 < (byte)*_Str2;\n    if (bVar4 != *_Str2) goto LAB_1000eca4;\n    if (bVar4 == 0) {\n      return 0;\n    }\n    bVar4 = (byte)((ushort)uVar1 >> 8);\n    bVar5 = bVar4 < ((byte *)_Str2)[1];\n    if (bVar4 != ((byte *)_Str2)[1]) goto LAB_1000eca4;\n    if (bVar4 == 0) {\n      return 0;\n    }\n    _Str2 = (char *)((byte *)_Str2 + 2);\n  }\nLAB_1000ec70:\n  while( true ) {\n    uVar2 = *(undefined4 *)_Str1;\n    bVar4 = (byte)uVar2;\n    bVar5 = bVar4 < (byte)*_Str2;\n    if (bVar4 != *_Str2) break;\n    if (bVar4 == 0) {\n      return 0;\n    }\n    bVar4 = (byte)((uint)uVar2 >> 8);\n    bVar5 = bVar4 < ((byte *)_Str2)[1];\n    if (bVar4 != ((byte *)_Str2)[1]) break;\n    if (bVar4 == 0) {\n      return 0;\n    }\n    bVar4 = (byte)((uint)uVar2 >> 0x10);\n    bVar5 = bVar4 < ((byte *)_Str2)[2];\n    if (bVar4 != ((byte *)_Str2)[2]) break;\n    bVar3 = (byte)((uint)uVar2 >> 0x18);\n    if (bVar4 == 0) {\n      return 0;\n    }\n    bVar5 = bVar3 < ((byte *)_Str2)[3];\n    if (bVar3 != ((byte *)_Str2)[3]) break;\n    _Str2 = (char *)((byte *)_Str2 + 4);\n    _Str1 = _Str1 + 4;\n    if (bVar3 == 0) {\n      return 0;\n    }\n  }\nLAB_1000eca4:\n  return (uint)bVar5 * -2 + 1;\n}\n\n", 
+  "is_thunk": false, 
+  "name": "_strcmp", 
+  "assembly": "  1000ec60:  MOV EDX,dword ptr [ESP + 0x4]\n  1000ec64:  MOV ECX,dword ptr [ESP + 0x8]\n  1000ec68:  TEST EDX,0x3\n  1000ec6e:  JNZ 0x1000ecac\n  1000ec70:  MOV EAX,dword ptr [EDX]\n  1000ec72:  CMP AL,byte ptr [ECX]\n  1000ec74:  JNZ 0x1000eca4\n  1000ec76:  OR AL,AL\n  1000ec78:  JZ 0x1000eca0\n  1000ec7a:  CMP AH,byte ptr [ECX + 0x1]\n  1000ec7d:  JNZ 0x1000eca4\n  1000ec7f:  OR AH,AH\n  1000ec81:  JZ 0x1000eca0\n  1000ec83:  SHR EAX,0x10\n  1000ec86:  CMP AL,byte ptr [ECX + 0x2]\n  1000ec89:  JNZ 0x1000eca4\n  1000ec8b:  OR AL,AL\n  1000ec8d:  JZ 0x1000eca0\n  1000ec8f:  CMP AH,byte ptr [ECX + 0x3]\n  1000ec92:  JNZ 0x1000eca4\n  1000ec94:  ADD ECX,0x4\n  1000ec97:  ADD EDX,0x4\n  1000ec9a:  OR AH,AH\n  1000ec9c:  JNZ 0x1000ec70\n  1000ec9e:  MOV EDI,EDI\n  1000eca0:  XOR EAX,EAX\n  1000eca2:  RET\n  1000eca4:  SBB EAX,EAX\n  1000eca6:  SHL EAX,0x1\n  1000eca8:  INC EAX\n  1000eca9:  RET\n  1000ecac:  TEST EDX,0x1\n  1000ecb2:  JZ 0x1000ecc8\n  1000ecb4:  MOV AL,byte ptr [EDX]\n  1000ecb6:  INC EDX\n  1000ecb7:  CMP AL,byte ptr [ECX]\n  1000ecb9:  JNZ 0x1000eca4\n  1000ecbb:  INC ECX\n  1000ecbc:  OR AL,AL\n  1000ecbe:  JZ 0x1000eca0\n  1000ecc0:  TEST EDX,0x2\n  1000ecc6:  JZ 0x1000ec70\n  1000ecc8:  MOV AX,word ptr [EDX]\n  1000eccb:  ADD EDX,0x2\n  1000ecce:  CMP AL,byte ptr [ECX]\n  1000ecd0:  JNZ 0x1000eca4\n  1000ecd2:  OR AL,AL\n  1000ecd4:  JZ 0x1000eca0\n  1000ecd6:  CMP AH,byte ptr [ECX + 0x1]\n  1000ecd9:  JNZ 0x1000eca4\n  1000ecdb:  OR AH,AH\n  1000ecdd:  JZ 0x1000eca0\n  1000ecdf:  ADD ECX,0x2\n  1000ece2:  JMP 0x1000ec70", 
+  "callers": [
+    {
+      "address": "0x1000b1f4", 
+      "name": "FUN_1000b1f4"
+    }
+  ]
+}

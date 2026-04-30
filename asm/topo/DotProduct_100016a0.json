@@ -1,0 +1,20 @@
+{
+  "address": "0x100016a0", 
+  "size_bytes": 27, 
+  "calling_convention": "__thiscall", 
+  "signature": "float __thiscall DotProduct(gbVec3D * this, gbVec3D * param_1)", 
+  "callees": [], 
+  "global_refs": [
+    {
+      "address": "0x00000004", 
+      "type": null, 
+      "name": "DAT_00000004"
+    }
+  ], 
+  "has_custom_name": true, 
+  "decompiled_c": "\n/* public: float __thiscall gbVec3D::DotProduct(struct gbVec3D const *)const  */\n\nfloat __thiscall gbVec3D::DotProduct(gbVec3D *this,gbVec3D *param_1)\n\n{\n                    /* 0x16a0  27  ?DotProduct@gbVec3D@@QBEMPBU1@@Z */\n  return *(float *)param_1 * *(float *)this +\n         *(float *)(param_1 + 4) * *(float *)(this + 4) +\n         *(float *)(param_1 + 8) * *(float *)(this + 8);\n}\n\n", 
+  "is_thunk": false, 
+  "name": "DotProduct", 
+  "assembly": "  100016a0:  MOV EAX,dword ptr [ESP + 0x4]\n  100016a4:  FLD dword ptr [EAX + 0x8]\n  100016a7:  FMUL dword ptr [ECX + 0x8]\n  100016aa:  FLD dword ptr [EAX + 0x4]\n  100016ad:  FMUL dword ptr [ECX + 0x4]\n  100016b0:  FADDP\n  100016b2:  FLD dword ptr [EAX]\n  100016b4:  FMUL dword ptr [ECX]\n  100016b6:  FADDP\n  100016b8:  RET 0x4", 
+  "callers": []
+}

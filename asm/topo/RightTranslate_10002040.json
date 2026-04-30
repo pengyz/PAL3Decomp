@@ -1,0 +1,30 @@
+{
+  "address": "0x10002040", 
+  "size_bytes": 33, 
+  "calling_convention": "__thiscall", 
+  "signature": "void __thiscall RightTranslate(gbMatrix4 * this, float param_1, float param_2, float param_3)", 
+  "callees": [], 
+  "global_refs": [
+    {
+      "address": "0x00000004", 
+      "type": null, 
+      "name": "DAT_00000004"
+    }, 
+    {
+      "address": "0x00000008", 
+      "type": null, 
+      "name": "DAT_00000008"
+    }, 
+    {
+      "address": "0x0000000c", 
+      "type": null, 
+      "name": "DAT_0000000c"
+    }
+  ], 
+  "has_custom_name": true, 
+  "decompiled_c": "\n/* public: void __thiscall gbMatrix4::RightTranslate(float,float,float) */\n\nvoid __thiscall gbMatrix4::RightTranslate(gbMatrix4 *this,float param_1,float param_2,float param_3)\n\n{\n                    /* 0x2040  74  ?RightTranslate@gbMatrix4@@QAEXMMM@Z */\n  *(float *)(this + 0x30) = param_1 + *(float *)(this + 0x30);\n  *(float *)(this + 0x34) = param_2 + *(float *)(this + 0x34);\n  *(float *)(this + 0x38) = param_3 + *(float *)(this + 0x38);\n  return;\n}\n\n", 
+  "is_thunk": false, 
+  "name": "RightTranslate", 
+  "assembly": "  10002040:  FLD dword ptr [ESP + 0x4]\n  10002044:  FADD dword ptr [ECX + 0x30]\n  10002047:  FSTP dword ptr [ECX + 0x30]\n  1000204a:  FLD dword ptr [ESP + 0x8]\n  1000204e:  FADD dword ptr [ECX + 0x34]\n  10002051:  FSTP dword ptr [ECX + 0x34]\n  10002054:  FLD dword ptr [ESP + 0xc]\n  10002058:  FADD dword ptr [ECX + 0x38]\n  1000205b:  FSTP dword ptr [ECX + 0x38]\n  1000205e:  RET 0xc", 
+  "callers": []
+}

@@ -1,0 +1,50 @@
+{
+  "address": "0x1000a6a6", 
+  "size_bytes": 62, 
+  "calling_convention": "__stdcall", 
+  "signature": "undefined4 __stdcall FUN_1000a6a6(void)", 
+  "callees": [], 
+  "global_refs": [
+    {
+      "address": "0x100121d0", 
+      "type": null, 
+      "name": "DAT_100121d0"
+    }, 
+    {
+      "address": "0x-000000c", 
+      "type": null, 
+      "name": "DAT_-000000c"
+    }, 
+    {
+      "address": "0x100121c8", 
+      "type": null, 
+      "name": "DAT_100121c8"
+    }, 
+    {
+      "address": "0x-0000014", 
+      "type": null, 
+      "name": "DAT_-0000014"
+    }, 
+    {
+      "address": "0x-000001c", 
+      "type": null, 
+      "name": "DAT_-000001c"
+    }, 
+    {
+      "address": "0x10012128", 
+      "type": null, 
+      "name": "DAT_10012128"
+    }
+  ], 
+  "has_custom_name": false, 
+  "decompiled_c": "\n/* WARNING: Removing unreachable block (ram,0x1000a6db) */\n\nundefined4 FUN_1000a6a6(void)\n\n{\n  return 0;\n}\n\n", 
+  "is_thunk": false, 
+  "name": "FUN_1000a6a6", 
+  "assembly": "  1000a6a6:  PUSH EBP\n  1000a6a7:  MOV EBP,ESP\n  1000a6a9:  SUB ESP,0x18\n  1000a6ac:  FLD qword ptr [0x100121d0]\n  1000a6b2:  FSTP qword ptr [EBP + -0x8]\n  1000a6b5:  FLD qword ptr [0x100121c8]\n  1000a6bb:  FSTP qword ptr [EBP + -0x10]\n  1000a6be:  FLD qword ptr [EBP + -0x10]\n  1000a6c1:  FDIV qword ptr [EBP + -0x8]\n  1000a6c4:  FMUL qword ptr [EBP + -0x8]\n  1000a6c7:  FSUBR qword ptr [EBP + -0x10]\n  1000a6ca:  FSTP qword ptr [EBP + -0x18]\n  1000a6cd:  FLD qword ptr [EBP + -0x18]\n  1000a6d0:  FCOMP qword ptr [0x10012128]\n  1000a6d6:  FNSTSW AX\n  1000a6d8:  SAHF\n  1000a6d9:  JBE 0x1000a6e0\n  1000a6db:  PUSH 0x1\n  1000a6dd:  POP EAX\n  1000a6de:  LEAVE\n  1000a6df:  RET\n  1000a6e0:  XOR EAX,EAX\n  1000a6e2:  LEAVE\n  1000a6e3:  RET", 
+  "callers": [
+    {
+      "address": "0x1000a6e4", 
+      "name": "FUN_1000a6e4"
+    }
+  ]
+}

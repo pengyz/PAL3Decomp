@@ -1,0 +1,102 @@
+{
+  "address": "0x10001760", 
+  "size_bytes": 337, 
+  "calling_convention": "__thiscall", 
+  "signature": "bool __thiscall IsOrthonormal(gbMatrix4 * this)", 
+  "callees": [
+    {
+      "address": "0x100010c0", 
+      "name": "Normalize"
+    }, 
+    {
+      "address": "0x10001080", 
+      "name": "CrossProduct"
+    }, 
+    {
+      "address": "0x100010c0", 
+      "name": "Normalize"
+    }, 
+    {
+      "address": "0x10001030", 
+      "name": "IsValid"
+    }
+  ], 
+  "global_refs": [
+    {
+      "address": "0x-0000024", 
+      "type": null, 
+      "name": "DAT_-0000024"
+    }, 
+    {
+      "address": "0x-0000020", 
+      "type": null, 
+      "name": "DAT_-0000020"
+    }, 
+    {
+      "address": "0x-0000008", 
+      "type": null, 
+      "name": "DAT_-0000008"
+    }, 
+    {
+      "address": "0x-000000c", 
+      "type": null, 
+      "name": "DAT_-000000c"
+    }, 
+    {
+      "address": "0x-0000004", 
+      "type": null, 
+      "name": "DAT_-0000004"
+    }, 
+    {
+      "address": "0x-0000014", 
+      "type": null, 
+      "name": "DAT_-0000014"
+    }, 
+    {
+      "address": "0x-0000018", 
+      "type": null, 
+      "name": "DAT_-0000018"
+    }, 
+    {
+      "address": "0x-0000010", 
+      "type": null, 
+      "name": "DAT_-0000010"
+    }, 
+    {
+      "address": "0x-000002c", 
+      "type": null, 
+      "name": "DAT_-000002c"
+    }, 
+    {
+      "address": "0x-0000030", 
+      "type": null, 
+      "name": "DAT_-0000030"
+    }, 
+    {
+      "address": "0x-000001c", 
+      "type": null, 
+      "name": "DAT_-000001c"
+    }, 
+    {
+      "address": "0x-0000028", 
+      "type": null, 
+      "name": "DAT_-0000028"
+    }, 
+    {
+      "address": "0x100120f8", 
+      "type": null, 
+      "name": "DAT_100120f8"
+    }, 
+    {
+      "address": "0x-0000034", 
+      "type": null, 
+      "name": "DAT_-0000034"
+    }
+  ], 
+  "has_custom_name": true, 
+  "decompiled_c": "\n/* public: bool __thiscall gbMatrix4::IsOrthonormal(void)const  */\n\nbool __thiscall gbMatrix4::IsOrthonormal(gbMatrix4 *this)\n\n{\n  bool bVar1;\n  byte local_34;\n  float local_30;\n  float local_2c;\n  float local_28;\n  float local_24;\n  float local_20;\n  float local_1c;\n  undefined4 local_18;\n  undefined4 local_14;\n  undefined4 local_10;\n  undefined4 local_c;\n  undefined4 local_8;\n  undefined4 local_4;\n  \n                    /* 0x1760  44  ?IsOrthonormal@gbMatrix4@@QBE_NXZ */\n  local_24 = 0.0;\n  local_20 = 0.0;\n  local_8 = *(undefined4 *)(this + 0x10);\n  local_c = *(undefined4 *)this;\n  local_4 = *(undefined4 *)(this + 0x20);\n  local_14 = *(undefined4 *)(this + 0x14);\n  local_18 = *(undefined4 *)(this + 4);\n  local_10 = *(undefined4 *)(this + 0x24);\n  local_2c = *(float *)(this + 0x18);\n  local_30 = *(float *)(this + 8);\n  local_28 = *(float *)(this + 0x28);\n  local_1c = 0.0;\n  gbVec3D::Normalize((gbVec3D *)&local_30);\n  gbVec3D::CrossProduct((gbVec3D *)&local_c,(gbVec3D *)&local_18,(gbVec3D *)&local_24);\n  gbVec3D::Normalize((gbVec3D *)&local_24);\n  if (((0.005 <= ABS(local_24 - local_30)) || (0.005 <= ABS(local_20 - local_2c))) ||\n     (0.005 <= ABS(local_1c - local_28))) {\n    local_30 = -local_30;\n    local_2c = -local_2c;\n    local_28 = -local_28;\n    if (((0.005 <= ABS(local_24 - local_30)) || (0.005 <= ABS(local_20 - local_2c))) ||\n       (local_34 = 1, 0.005 <= ABS(local_1c - local_28))) {\n      local_34 = 0;\n    }\n  }\n  else {\n    local_34 = 1;\n  }\n  bVar1 = gbVec3D::IsValid((gbVec3D *)(this + 0x30));\n  return (bool)(-bVar1 & local_34);\n}\n\n", 
+  "is_thunk": false, 
+  "name": "IsOrthonormal", 
+  "assembly": "  10001760:  SUB ESP,0x34\n  10001763:  PUSH ESI\n  10001764:  MOV ESI,ECX\n  10001766:  MOV dword ptr [ESP + 0x14],0x0\n  1000176e:  MOV dword ptr [ESP + 0x18],0x0\n  10001776:  MOV ECX,dword ptr [ESI + 0x10]\n  10001779:  MOV EAX,dword ptr [ESI]\n  1000177b:  MOV EDX,dword ptr [ESI + 0x20]\n  1000177e:  MOV dword ptr [ESP + 0x30],ECX\n  10001782:  MOV ECX,dword ptr [ESI + 0x14]\n  10001785:  MOV dword ptr [ESP + 0x2c],EAX\n  10001789:  MOV EAX,dword ptr [ESI + 0x4]\n  1000178c:  MOV dword ptr [ESP + 0x34],EDX\n  10001790:  MOV EDX,dword ptr [ESI + 0x24]\n  10001793:  MOV dword ptr [ESP + 0x24],ECX\n  10001797:  MOV ECX,dword ptr [ESI + 0x18]\n  1000179a:  MOV dword ptr [ESP + 0x20],EAX\n  1000179e:  MOV EAX,dword ptr [ESI + 0x8]\n  100017a1:  MOV dword ptr [ESP + 0x28],EDX\n  100017a5:  MOV EDX,dword ptr [ESI + 0x28]\n  100017a8:  MOV dword ptr [ESP + 0xc],ECX\n  100017ac:  LEA ECX,[ESP + 0x8]\n  100017b0:  MOV dword ptr [ESP + 0x1c],0x0\n  100017b8:  MOV dword ptr [ESP + 0x8],EAX\n  100017bc:  MOV dword ptr [ESP + 0x10],EDX\n  100017c0:  CALL 0x100010c0\n  100017c5:  LEA EAX,[ESP + 0x14]\n  100017c9:  LEA ECX,[ESP + 0x20]\n  100017cd:  PUSH EAX\n  100017ce:  PUSH ECX\n  100017cf:  LEA ECX,[ESP + 0x34]\n  100017d3:  CALL 0x10001080\n  100017d8:  LEA ECX,[ESP + 0x14]\n  100017dc:  CALL 0x100010c0\n  100017e1:  FLD dword ptr [ESP + 0x14]\n  100017e5:  FSUB dword ptr [ESP + 0x8]\n  100017e9:  FABS\n  100017eb:  FCOMP qword ptr [0x100120f8]\n  100017f1:  FNSTSW AX\n  100017f3:  TEST AH,0x1\n  100017f6:  JZ 0x1000182d\n  100017f8:  FLD dword ptr [ESP + 0x18]\n  100017fc:  FSUB dword ptr [ESP + 0xc]\n  10001800:  FABS\n  10001802:  FCOMP qword ptr [0x100120f8]\n  10001808:  FNSTSW AX\n  1000180a:  TEST AH,0x1\n  1000180d:  JZ 0x1000182d\n  1000180f:  FLD dword ptr [ESP + 0x1c]\n  10001813:  FSUB dword ptr [ESP + 0x10]\n  10001817:  FABS\n  10001819:  FCOMP qword ptr [0x100120f8]\n  1000181f:  FNSTSW AX\n  10001821:  TEST AH,0x1\n  10001824:  JZ 0x1000182d\n  10001826:  MOV byte ptr [ESP + 0x4],0x1\n  1000182b:  JMP 0x1000189a\n  1000182d:  FLD dword ptr [ESP + 0x8]\n  10001831:  FCHS\n  10001833:  FSTP dword ptr [ESP + 0x8]\n  10001837:  FLD dword ptr [ESP + 0xc]\n  1000183b:  FCHS\n  1000183d:  FSTP dword ptr [ESP + 0xc]\n  10001841:  FLD dword ptr [ESP + 0x10]\n  10001845:  FCHS\n  10001847:  FSTP dword ptr [ESP + 0x10]\n  1000184b:  FLD dword ptr [ESP + 0x14]\n  1000184f:  FSUB dword ptr [ESP + 0x8]\n  10001853:  FABS\n  10001855:  FCOMP qword ptr [0x100120f8]\n  1000185b:  FNSTSW AX\n  1000185d:  TEST AH,0x1\n  10001860:  JZ 0x10001895\n  10001862:  FLD dword ptr [ESP + 0x18]\n  10001866:  FSUB dword ptr [ESP + 0xc]\n  1000186a:  FABS\n  1000186c:  FCOMP qword ptr [0x100120f8]\n  10001872:  FNSTSW AX\n  10001874:  TEST AH,0x1\n  10001877:  JZ 0x10001895\n  10001879:  FLD dword ptr [ESP + 0x1c]\n  1000187d:  FSUB dword ptr [ESP + 0x10]\n  10001881:  MOV byte ptr [ESP + 0x4],0x1\n  10001886:  FABS\n  10001888:  FCOMP qword ptr [0x100120f8]\n  1000188e:  FNSTSW AX\n  10001890:  TEST AH,0x1\n  10001893:  JNZ 0x1000189a\n  10001895:  MOV byte ptr [ESP + 0x4],0x0\n  1000189a:  LEA ECX,[ESI + 0x30]\n  1000189d:  CALL 0x10001030\n  100018a2:  MOV ECX,dword ptr [ESP + 0x4]\n  100018a6:  POP ESI\n  100018a7:  NEG AL\n  100018a9:  SBB AL,AL\n  100018ab:  AND EAX,ECX\n  100018ad:  ADD ESP,0x34\n  100018b0:  RET", 
+  "callers": []
+}

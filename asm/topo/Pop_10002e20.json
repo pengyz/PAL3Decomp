@@ -1,0 +1,14 @@
+{
+  "address": "0x10002e20", 
+  "size_bytes": 15, 
+  "calling_convention": "__thiscall", 
+  "signature": "void __thiscall Pop(gbMatrixStack * this)", 
+  "callees": [], 
+  "global_refs": [], 
+  "has_custom_name": true, 
+  "decompiled_c": "\n/* public: void __thiscall gbMatrixStack::Pop(void) */\n\nvoid __thiscall gbMatrixStack::Pop(gbMatrixStack *this)\n\n{\n                    /* 0x2e20  68  ?Pop@gbMatrixStack@@QAEXXZ */\n  *(undefined4 *)(this + 0xc) = 0;\n  *(int *)(this + 8) = *(int *)(this + 8) + -1;\n  return;\n}\n\n", 
+  "is_thunk": false, 
+  "name": "Pop", 
+  "assembly": "  10002e20:  MOV EAX,dword ptr [ECX + 0x8]\n  10002e23:  MOV dword ptr [ECX + 0xc],0x0\n  10002e2a:  DEC EAX\n  10002e2b:  MOV dword ptr [ECX + 0x8],EAX\n  10002e2e:  RET", 
+  "callers": []
+}

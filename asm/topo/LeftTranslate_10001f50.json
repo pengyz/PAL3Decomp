@@ -1,0 +1,25 @@
+{
+  "address": "0x10001f50", 
+  "size_bytes": 87, 
+  "calling_convention": "__thiscall", 
+  "signature": "void __thiscall LeftTranslate(gbMatrix4 * this, gbVec3D * param_1)", 
+  "callees": [], 
+  "global_refs": [
+    {
+      "address": "0x00000004", 
+      "type": null, 
+      "name": "DAT_00000004"
+    }
+  ], 
+  "has_custom_name": true, 
+  "decompiled_c": "\n/* public: void __thiscall gbMatrix4::LeftTranslate(struct gbVec3D &) */\n\nvoid __thiscall gbMatrix4::LeftTranslate(gbMatrix4 *this,gbVec3D *param_1)\n\n{\n                    /* 0x1f50  54  ?LeftTranslate@gbMatrix4@@QAEXAAUgbVec3D@@@Z */\n  *(float *)(this + 0x30) =\n       *(float *)param_1 * *(float *)this +\n       *(float *)(this + 0x10) * *(float *)(param_1 + 4) +\n       *(float *)(this + 0x20) * *(float *)(param_1 + 8) + *(float *)(this + 0x30);\n  *(float *)(this + 0x34) =\n       *(float *)(this + 4) * *(float *)param_1 +\n       *(float *)(this + 0x14) * *(float *)(param_1 + 4) +\n       *(float *)(this + 0x24) * *(float *)(param_1 + 8) + *(float *)(this + 0x34);\n  *(float *)(this + 0x38) =\n       *(float *)(this + 8) * *(float *)param_1 +\n       *(float *)(this + 0x18) * *(float *)(param_1 + 4) +\n       *(float *)(this + 0x28) * *(float *)(param_1 + 8) + *(float *)(this + 0x38);\n  return;\n}\n\n", 
+  "is_thunk": false, 
+  "name": "LeftTranslate", 
+  "assembly": "  10001f50:  MOV EAX,dword ptr [ESP + 0x4]\n  10001f54:  FLD dword ptr [ECX + 0x20]\n  10001f57:  FMUL dword ptr [EAX + 0x8]\n  10001f5a:  FLD dword ptr [ECX + 0x10]\n  10001f5d:  FMUL dword ptr [EAX + 0x4]\n  10001f60:  FADDP\n  10001f62:  FLD dword ptr [EAX]\n  10001f64:  FMUL dword ptr [ECX]\n  10001f66:  FADDP\n  10001f68:  FADD dword ptr [ECX + 0x30]\n  10001f6b:  FSTP dword ptr [ECX + 0x30]\n  10001f6e:  FLD dword ptr [ECX + 0x24]\n  10001f71:  FMUL dword ptr [EAX + 0x8]\n  10001f74:  FLD dword ptr [ECX + 0x14]\n  10001f77:  FMUL dword ptr [EAX + 0x4]\n  10001f7a:  FADDP\n  10001f7c:  FLD dword ptr [ECX + 0x4]\n  10001f7f:  FMUL dword ptr [EAX]\n  10001f81:  FADDP\n  10001f83:  FADD dword ptr [ECX + 0x34]\n  10001f86:  FSTP dword ptr [ECX + 0x34]\n  10001f89:  FLD dword ptr [ECX + 0x28]\n  10001f8c:  FMUL dword ptr [EAX + 0x8]\n  10001f8f:  FLD dword ptr [ECX + 0x18]\n  10001f92:  FMUL dword ptr [EAX + 0x4]\n  10001f95:  FADDP\n  10001f97:  FLD dword ptr [ECX + 0x8]\n  10001f9a:  FMUL dword ptr [EAX]\n  10001f9c:  FADDP\n  10001f9e:  FADD dword ptr [ECX + 0x38]\n  10001fa1:  FSTP dword ptr [ECX + 0x38]\n  10001fa4:  RET 0x4", 
+  "callers": [
+    {
+      "address": "0x10002f30", 
+      "name": "Translate"
+    }
+  ]
+}

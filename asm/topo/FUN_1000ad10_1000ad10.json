@@ -1,0 +1,40 @@
+{
+  "address": "0x1000ad10", 
+  "size_bytes": 23, 
+  "calling_convention": "__fastcall", 
+  "signature": "float10 __fastcall FUN_1000ad10(undefined4 param_1, undefined4 param_2, undefined2 param_3, undefined4 param_4, undefined4 param_5, undefined4 param_6, undefined4 param_7, undefined4 param_8)", 
+  "callees": [], 
+  "global_refs": [
+    {
+      "address": "0x-0000024", 
+      "type": null, 
+      "name": "DAT_-0000024"
+    }, 
+    {
+      "address": "0x00000014", 
+      "type": null, 
+      "name": "DAT_00000014"
+    }, 
+    {
+      "address": "0x-0000014", 
+      "type": null, 
+      "name": "DAT_-0000014"
+    }, 
+    {
+      "address": "0x00000018", 
+      "type": null, 
+      "name": "DAT_00000018"
+    }, 
+    {
+      "address": "0x-0000010", 
+      "type": null, 
+      "name": "DAT_-0000010"
+    }
+  ], 
+  "has_custom_name": false, 
+  "decompiled_c": "\nfloat10 __fastcall\nFUN_1000ad10(undefined4 param_1,uint param_2,undefined2 param_3,undefined4 param_4,\n            undefined4 param_5,undefined4 param_6,undefined4 param_7,undefined4 param_8)\n\n{\n  float10 in_ST0;\n  int local_24;\n  undefined4 uStack_20;\n  undefined4 uStack_1c;\n  undefined4 uStack_18;\n  undefined4 local_14;\n  undefined4 local_10;\n  double dStack_c;\n  \n  local_14 = param_7;\n  local_10 = param_8;\n  dStack_c = (double)in_ST0;\n  uStack_1c = param_5;\n  uStack_18 = param_6;\n  uStack_20 = param_1;\n  FUN_1000ead4(param_2,&local_24,&param_3);\n  return (float10)dStack_c;\n}\n\n", 
+  "is_thunk": false, 
+  "name": "FUN_1000ad10", 
+  "assembly": "  1000ad10:  PUSH EBP\n  1000ad11:  MOV EBP,ESP\n  1000ad13:  ADD ESP,-0x20\n  1000ad16:  MOV dword ptr [EBP + -0x20],EAX\n  1000ad19:  MOV EAX,dword ptr [EBP + 0x18]\n  1000ad1c:  MOV dword ptr [EBP + -0x10],EAX\n  1000ad1f:  MOV EAX,dword ptr [EBP + 0x1c]\n  1000ad22:  MOV dword ptr [EBP + -0xc],EAX\n  1000ad25:  JMP 0x1000ad30", 
+  "callers": []
+}

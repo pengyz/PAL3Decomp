@@ -1,0 +1,45 @@
+{
+  "address": "0x10001a30", 
+  "size_bytes": 37, 
+  "calling_convention": "__thiscall", 
+  "signature": "void __thiscall SetAxisAngle(gbMatrix4 * this, gbAxis param_1, float param_2)", 
+  "callees": [
+    {
+      "address": "0x10001910", 
+      "name": "SetAxisAngle"
+    }
+  ], 
+  "global_refs": [
+    {
+      "address": "0x00000008", 
+      "type": null, 
+      "name": "DAT_00000008"
+    }, 
+    {
+      "address": "0x10012104", 
+      "type": null, 
+      "name": "DAT_10012104"
+    }, 
+    {
+      "address": "0x00000004", 
+      "type": null, 
+      "name": "DAT_00000004"
+    }, 
+    {
+      "address": "0x-0000004", 
+      "type": null, 
+      "name": "DAT_-0000004"
+    }, 
+    {
+      "address": "0x-0000008", 
+      "type": null, 
+      "name": "DAT_-0000008"
+    }
+  ], 
+  "has_custom_name": true, 
+  "decompiled_c": "\n/* public: void __thiscall gbMatrix4::SetAxisAngle(enum gbAxis,float) */\n\nvoid __thiscall gbMatrix4::SetAxisAngle(gbMatrix4 *this,gbAxis param_1,float param_2)\n\n{\n  float10 fVar1;\n  float10 fVar2;\n  \n                    /* 0x1a30  83  ?SetAxisAngle@gbMatrix4@@QAEXW4gbAxis@@M@Z */\n  fVar1 = (float10)fsin((float10)param_2 * (float10)0.017453292);\n  fVar2 = (float10)fcos((float10)param_2 * (float10)0.017453292);\n  SetAxisAngle(this,param_1,(float)fVar2,(float)fVar1);\n  return;\n}\n\n", 
+  "is_thunk": false, 
+  "name": "SetAxisAngle", 
+  "assembly": "  10001a30:  FLD dword ptr [ESP + 0x8]\n  10001a34:  FMUL dword ptr [0x10012104]\n  10001a3a:  PUSH ECX\n  10001a3b:  MOV EAX,dword ptr [ESP + 0x8]\n  10001a3f:  FLD ST0\n  10001a41:  FSIN\n  10001a43:  FSTP dword ptr [ESP]\n  10001a46:  PUSH ECX\n  10001a47:  FCOS\n  10001a49:  FSTP dword ptr [ESP]\n  10001a4c:  PUSH EAX\n  10001a4d:  CALL 0x10001910\n  10001a52:  RET 0x8", 
+  "callers": []
+}

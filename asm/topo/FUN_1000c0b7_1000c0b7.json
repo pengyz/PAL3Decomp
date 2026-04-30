@@ -1,0 +1,94 @@
+{
+  "address": "0x1000c0b7", 
+  "size_bytes": 168, 
+  "calling_convention": "__stdcall", 
+  "signature": "undefined __stdcall FUN_1000c0b7(void)", 
+  "callees": [
+    {
+      "address": "0x00000019", 
+      "name": "VirtualFree"
+    }, 
+    {
+      "address": "0x00000019", 
+      "name": "VirtualFree"
+    }, 
+    {
+      "address": "0x00000003", 
+      "name": "HeapFree"
+    }, 
+    {
+      "address": "0x00000003", 
+      "name": "HeapFree"
+    }, 
+    {
+      "address": "0x00000019", 
+      "name": "VirtualFree"
+    }, 
+    {
+      "address": "0x00000017", 
+      "name": "HeapDestroy"
+    }
+  ], 
+  "global_refs": [
+    {
+      "address": "0x100185e4", 
+      "type": "undefined4", 
+      "name": "DAT_100185e4"
+    }, 
+    {
+      "address": "0x100185d4", 
+      "type": "undefined4", 
+      "name": "DAT_100185d4"
+    }, 
+    {
+      "address": "0x10012008", 
+      "type": "pointer", 
+      "name": "DAT_10012008"
+    }, 
+    {
+      "address": "0x100185d8", 
+      "type": "undefined4", 
+      "name": "DAT_100185d8"
+    }, 
+    {
+      "address": "0x10012060", 
+      "type": "pointer", 
+      "name": "DAT_10012060"
+    }, 
+    {
+      "address": "0x100185e0", 
+      "type": "undefined4", 
+      "name": "DAT_100185e0"
+    }, 
+    {
+      "address": "0x100150e0", 
+      "type": "pointer", 
+      "name": "DAT_100150e0"
+    }, 
+    {
+      "address": "0x100150f0", 
+      "type": "undefined4", 
+      "name": "DAT_100150f0"
+    }, 
+    {
+      "address": "0x10012058", 
+      "type": "pointer", 
+      "name": "DAT_10012058"
+    }
+  ], 
+  "has_custom_name": false, 
+  "decompiled_c": "\nvoid FUN_1000c0b7(void)\n\n{\n  int iVar1;\n  undefined4 *puVar2;\n  undefined **ppuVar3;\n  \n  if (DAT_100185e4 == 3) {\n    iVar1 = 0;\n    if (0 < DAT_100185d4) {\n      puVar2 = (undefined4 *)((int)DAT_100185d8 + 0xc);\n      do {\n        VirtualFree((LPVOID)*puVar2,0x100000,0x4000);\n        VirtualFree((LPVOID)*puVar2,0,0x8000);\n        HeapFree(DAT_100185e0,0,(LPVOID)puVar2[1]);\n        puVar2 = puVar2 + 5;\n        iVar1 = iVar1 + 1;\n      } while (iVar1 < DAT_100185d4);\n    }\n    HeapFree(DAT_100185e0,0,DAT_100185d8);\n  }\n  else if (DAT_100185e4 == 2) {\n    ppuVar3 = &PTR_LOOP_100150e0;\n    do {\n      if (ppuVar3[4] != (undefined *)0x0) {\n        VirtualFree(ppuVar3[4],0,0x8000);\n      }\n      ppuVar3 = (undefined **)*ppuVar3;\n    } while (ppuVar3 != &PTR_LOOP_100150e0);\n  }\n  HeapDestroy(DAT_100185e0);\n  return;\n}\n\n", 
+  "is_thunk": false, 
+  "name": "FUN_1000c0b7", 
+  "assembly": "  1000c0b7:  MOV EAX,[0x100185e4]\n  1000c0bc:  PUSH ESI\n  1000c0bd:  CMP EAX,0x3\n  1000c0c0:  PUSH EDI\n  1000c0c1:  JNZ 0x1000c129\n  1000c0c3:  PUSH EBX\n  1000c0c4:  XOR EBX,EBX\n  1000c0c6:  CMP dword ptr [0x100185d4],EBX\n  1000c0cc:  PUSH EBP\n  1000c0cd:  MOV EBP,dword ptr [0x10012008]\n  1000c0d3:  JLE 0x1000c115\n  1000c0d5:  MOV EAX,[0x100185d8]\n  1000c0da:  MOV EDI,dword ptr [0x10012060]\n  1000c0e0:  LEA ESI,[EAX + 0xc]\n  1000c0e3:  PUSH 0x4000\n  1000c0e8:  PUSH 0x100000\n  1000c0ed:  PUSH dword ptr [ESI]\n  1000c0ef:  CALL EDI\n  1000c0f1:  PUSH 0x8000\n  1000c0f6:  PUSH 0x0\n  1000c0f8:  PUSH dword ptr [ESI]\n  1000c0fa:  CALL EDI\n  1000c0fc:  PUSH dword ptr [ESI + 0x4]\n  1000c0ff:  PUSH 0x0\n  1000c101:  PUSH dword ptr [0x100185e0]\n  1000c107:  CALL EBP\n  1000c109:  ADD ESI,0x14\n  1000c10c:  INC EBX\n  1000c10d:  CMP EBX,dword ptr [0x100185d4]\n  1000c113:  JL 0x1000c0e3\n  1000c115:  PUSH dword ptr [0x100185d8]\n  1000c11b:  PUSH 0x0\n  1000c11d:  PUSH dword ptr [0x100185e0]\n  1000c123:  CALL EBP\n  1000c125:  POP EBP\n  1000c126:  POP EBX\n  1000c127:  JMP 0x1000c150\n  1000c129:  CMP EAX,0x2\n  1000c12c:  JNZ 0x1000c150\n  1000c12e:  MOV EDI,0x100150e0\n  1000c133:  MOV ESI,EDI\n  1000c135:  MOV EAX,dword ptr [ESI + 0x10]\n  1000c138:  TEST EAX,EAX\n  1000c13a:  JZ 0x1000c14a\n  1000c13c:  PUSH 0x8000\n  1000c141:  PUSH 0x0\n  1000c143:  PUSH EAX\n  1000c144:  CALL dword ptr [0x10012060]\n  1000c14a:  MOV ESI,dword ptr [ESI]\n  1000c14c:  CMP ESI,EDI\n  1000c14e:  JNZ 0x1000c135\n  1000c150:  PUSH dword ptr [0x100185e0]\n  1000c156:  CALL dword ptr [0x10012058]\n  1000c15c:  POP EDI\n  1000c15d:  POP ESI\n  1000c15e:  RET", 
+  "callers": [
+    {
+      "address": "0x1000a4eb", 
+      "name": "FUN_1000a4eb"
+    }, 
+    {
+      "address": "0x1000a4eb", 
+      "name": "FUN_1000a4eb"
+    }
+  ]
+}

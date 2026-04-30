@@ -1,0 +1,40 @@
+{
+  "address": "0x100011c0", 
+  "size_bytes": 126, 
+  "calling_convention": "__thiscall", 
+  "signature": "void __thiscall RightMultiply(gbMatrix4 * this, gbMatrix4 * param_1)", 
+  "callees": [], 
+  "global_refs": [
+    {
+      "address": "0x-0000040", 
+      "type": null, 
+      "name": "DAT_-0000040"
+    }, 
+    {
+      "address": "0x-0000048", 
+      "type": null, 
+      "name": "DAT_-0000048"
+    }, 
+    {
+      "address": "0x-0000044", 
+      "type": null, 
+      "name": "DAT_-0000044"
+    }, 
+    {
+      "address": "0x00000004", 
+      "type": null, 
+      "name": "DAT_00000004"
+    }
+  ], 
+  "has_custom_name": true, 
+  "decompiled_c": "\n/* public: void __thiscall gbMatrix4::RightMultiply(struct gbMatrix4 const &) */\n\nvoid __thiscall gbMatrix4::RightMultiply(gbMatrix4 *this,gbMatrix4 *param_1)\n\n{\n  float fVar1;\n  float fVar2;\n  float *pfVar3;\n  int iVar4;\n  gbMatrix4 *pgVar5;\n  float *pfVar6;\n  float *pfVar7;\n  int iVar8;\n  gbMatrix4 *pgVar9;\n  int local_48;\n  float local_40 [16];\n  \n  pgVar9 = this;\n  pfVar7 = local_40;\n                    /* 0x11c0  70  ?RightMultiply@gbMatrix4@@QAEXABU1@@Z */\n  for (iVar4 = 0x10; iVar4 != 0; iVar4 = iVar4 + -1) {\n    *pfVar7 = *(float *)pgVar9;\n    pgVar9 = pgVar9 + 4;\n    pfVar7 = pfVar7 + 1;\n  }\n  pfVar7 = local_40;\n  local_48 = 4;\n  do {\n    pfVar3 = (float *)(((int)this - (int)local_40) + (int)pfVar7);\n    iVar4 = 4;\n    pgVar9 = param_1;\n    do {\n      *pfVar3 = 0.0;\n      iVar8 = 4;\n      pgVar5 = pgVar9;\n      pfVar6 = pfVar7;\n      do {\n        fVar1 = *(float *)pgVar5;\n        fVar2 = *pfVar6;\n        pgVar5 = pgVar5 + 0x10;\n        pfVar6 = pfVar6 + 1;\n        iVar8 = iVar8 + -1;\n        *pfVar3 = fVar1 * fVar2 + *pfVar3;\n      } while (iVar8 != 0);\n      pfVar3 = pfVar3 + 1;\n      pgVar9 = pgVar9 + 4;\n      iVar4 = iVar4 + -1;\n    } while (iVar4 != 0);\n    pfVar7 = pfVar7 + 4;\n    local_48 = local_48 + -1;\n  } while (local_48 != 0);\n  return;\n}\n\n", 
+  "is_thunk": false, 
+  "name": "RightMultiply", 
+  "assembly": "  100011c0:  SUB ESP,0x48\n  100011c3:  PUSH EBX\n  100011c4:  PUSH EBP\n  100011c5:  PUSH ESI\n  100011c6:  MOV EAX,ECX\n  100011c8:  PUSH EDI\n  100011c9:  MOV ECX,0x10\n  100011ce:  MOV ESI,EAX\n  100011d0:  LEA EDI,[ESP + 0x18]\n  100011d4:  MOVSD.REP ES:EDI,ESI\n  100011d6:  LEA ECX,[ESP + 0x18]\n  100011da:  LEA EBX,[ESP + 0x18]\n  100011de:  SUB EAX,ECX\n  100011e0:  MOV dword ptr [ESP + 0x10],0x4\n  100011e8:  MOV dword ptr [ESP + 0x14],EAX\n  100011ec:  JMP 0x100011f2\n  100011ee:  MOV EAX,dword ptr [ESP + 0x14]\n  100011f2:  MOV EDI,dword ptr [ESP + 0x5c]\n  100011f6:  ADD EAX,EBX\n  100011f8:  MOV EBP,0x4\n  100011fd:  MOV dword ptr [EAX],0x0\n  10001203:  MOV EDX,EBX\n  10001205:  MOV ECX,EDI\n  10001207:  MOV ESI,0x4\n  1000120c:  FLD dword ptr [ECX]\n  1000120e:  FMUL dword ptr [EDX]\n  10001210:  ADD ECX,0x10\n  10001213:  ADD EDX,0x4\n  10001216:  DEC ESI\n  10001217:  FADD dword ptr [EAX]\n  10001219:  FSTP dword ptr [EAX]\n  1000121b:  JNZ 0x1000120c\n  1000121d:  ADD EAX,0x4\n  10001220:  ADD EDI,0x4\n  10001223:  DEC EBP\n  10001224:  JNZ 0x100011fd\n  10001226:  MOV EAX,dword ptr [ESP + 0x10]\n  1000122a:  ADD EBX,0x10\n  1000122d:  DEC EAX\n  1000122e:  MOV dword ptr [ESP + 0x10],EAX\n  10001232:  JNZ 0x100011ee\n  10001234:  POP EDI\n  10001235:  POP ESI\n  10001236:  POP EBP\n  10001237:  POP EBX\n  10001238:  ADD ESP,0x48\n  1000123b:  RET 0x4", 
+  "callers": [
+    {
+      "address": "0x10001ef0", 
+      "name": "RightMultiply"
+    }
+  ]
+}

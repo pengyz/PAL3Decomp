@@ -1,0 +1,122 @@
+{
+  "address": "0x1000bf12", 
+  "size_bytes": 328, 
+  "calling_convention": "__stdcall", 
+  "signature": "int __stdcall FUN_1000bf12(void)", 
+  "callees": [
+    {
+      "address": "0x1000f530", 
+      "name": "FUN_1000f530"
+    }, 
+    {
+      "address": "0x00000016", 
+      "name": "GetVersionExA"
+    }, 
+    {
+      "address": "0x00000015", 
+      "name": "GetEnvironmentVariableA"
+    }, 
+    {
+      "address": "0x1000f4f0", 
+      "name": "_strncmp"
+    }, 
+    {
+      "address": "0x00000014", 
+      "name": "GetModuleFileNameA"
+    }, 
+    {
+      "address": "0x1000f470", 
+      "name": "_strstr"
+    }, 
+    {
+      "address": "0x1000f3b0", 
+      "name": "_strchr"
+    }, 
+    {
+      "address": "0x1000f175", 
+      "name": "FUN_1000f175"
+    }, 
+    {
+      "address": "0x1000bee5", 
+      "name": "FUN_1000bee5"
+    }
+  ], 
+  "global_refs": [
+    {
+      "address": "0x-000009c", 
+      "type": null, 
+      "name": "DAT_-000009c"
+    }, 
+    {
+      "address": "0x10012054", 
+      "type": "pointer", 
+      "name": "DAT_10012054"
+    }, 
+    {
+      "address": "0x-000008c", 
+      "type": null, 
+      "name": "DAT_-000008c"
+    }, 
+    {
+      "address": "0x-0000098", 
+      "type": null, 
+      "name": "DAT_-0000098"
+    }, 
+    {
+      "address": "0x-0001230", 
+      "type": null, 
+      "name": "DAT_-0001230"
+    }, 
+    {
+      "address": "0x10012318", 
+      "type": "string", 
+      "name": "DAT_10012318"
+    }, 
+    {
+      "address": "0x10012050", 
+      "type": "pointer", 
+      "name": "DAT_10012050"
+    }, 
+    {
+      "address": "0x-000122f", 
+      "type": null, 
+      "name": "DAT_-000122f"
+    }, 
+    {
+      "address": "0x10012300", 
+      "type": "string", 
+      "name": "DAT_10012300"
+    }, 
+    {
+      "address": "0x-00001a0", 
+      "type": null, 
+      "name": "DAT_-00001a0"
+    }, 
+    {
+      "address": "0x1001204c", 
+      "type": "pointer", 
+      "name": "DAT_1001204c"
+    }, 
+    {
+      "address": "0x-000019f", 
+      "type": null, 
+      "name": "DAT_-000019f"
+    }, 
+    {
+      "address": "0x-0000008", 
+      "type": null, 
+      "name": "DAT_-0000008"
+    }
+  ], 
+  "has_custom_name": false, 
+  "decompiled_c": "\nint FUN_1000bf12(void)\n\n{\n  char cVar1;\n  byte bVar2;\n  BOOL BVar3;\n  DWORD DVar4;\n  int iVar5;\n  byte *pbVar6;\n  char *pcVar7;\n  byte *this;\n  undefined4 unaff_EBX;\n  undefined1 unaff_BP;\n  char local_1230 [4240];\n  char local_1a0 [260];\n  DWORD local_9c;\n  uint local_98;\n  DWORD local_8c;\n  CHAR aCStackY_18 [4];\n  byte bVar8;\n  \n  FUN_1000f530(unaff_BP);\n  local_9c = 0x94;\n  BVar3 = GetVersionExA((LPOSVERSIONINFOA)&local_9c);\n  if (((BVar3 == 0) || (local_8c != 2)) || (local_98 < 5)) {\n    aCStackY_18[0] = 'l';\n    aCStackY_18[1] = -0x41;\n    aCStackY_18[2] = '\\0';\n    aCStackY_18[3] = '\\x10';\n    DVar4 = GetEnvironmentVariableA(\"__MSVCRT_HEAP_SELECT\",local_1230,0x1090);\n    bVar8 = (byte)unaff_EBX;\n    if (DVar4 != 0) {\n      pcVar7 = local_1230;\n      while (local_1230[0] != '\\0') {\n        cVar1 = *pcVar7;\n        if (('`' < cVar1) && (cVar1 < '{')) {\n          *pcVar7 = cVar1 + -0x20;\n        }\n        pcVar7 = pcVar7 + 1;\n        local_1230[0] = *pcVar7;\n      }\n      aCStackY_18[0] = -0x56;\n      aCStackY_18[1] = -0x41;\n      aCStackY_18[2] = '\\0';\n      aCStackY_18[3] = '\\x10';\n      iVar5 = _strncmp(\"__GLOBAL_HEAP_SELECTED\",local_1230,0x16);\n      bVar8 = (byte)unaff_EBX;\n      if (iVar5 == 0) {\n        pcVar7 = local_1230;\n      }\n      else {\n        aCStackY_18[0] = -0x34;\n        aCStackY_18[1] = -0x41;\n        aCStackY_18[2] = '\\0';\n        aCStackY_18[3] = '\\x10';\n        GetModuleFileNameA((HMODULE)0x0,local_1a0,0x104);\n        bVar8 = (byte)unaff_EBX;\n        pcVar7 = local_1a0;\n        while (local_1a0[0] != '\\0') {\n          cVar1 = *pcVar7;\n          if (('`' < cVar1) && (cVar1 < '{')) {\n            *pcVar7 = cVar1 + -0x20;\n          }\n          bVar8 = (byte)unaff_EBX;\n          pcVar7 = pcVar7 + 1;\n          local_1a0[0] = *pcVar7;\n        }\n        pcVar7 = _strstr(local_1230,local_1a0);\n      }\n      if ((pcVar7 != (char *)0x0) && (pcVar7 = _strchr(pcVar7,0x2c), pcVar7 != (char *)0x0)) {\n        pbVar6 = (byte *)(pcVar7 + 1);\n        bVar2 = *pbVar6;\n        this = pbVar6;\n        while (bVar2 != 0) {\n          if (*this == 0x3b) {\n            *this = 0;\n          }\n          else {\n            this = this + 1;\n          }\n          bVar2 = *this;\n        }\n        aCStackY_18[0] = '2';\n        aCStackY_18[1] = -0x40;\n        aCStackY_18[2] = '\\0';\n        aCStackY_18[3] = '\\x10';\n        iVar5 = FUN_1000f175(this,pbVar6,(int *)0x0,(void *)0xa);\n        if (iVar5 == 2) {\n          return 2;\n        }\n        if (iVar5 == 3) {\n          return 3;\n        }\n        if (iVar5 == 1) {\n          return 1;\n        }\n      }\n    }\n    FUN_1000bee5((undefined4 *)&stack0xfffffff8);\n    iVar5 = 3 - (uint)(bVar8 < 6);\n  }\n  else {\n    iVar5 = 1;\n  }\n  return iVar5;\n}\n\n", 
+  "is_thunk": false, 
+  "name": "FUN_1000bf12", 
+  "assembly": "  1000bf12:  PUSH EBP\n  1000bf13:  MOV EBP,ESP\n  1000bf15:  MOV EAX,0x122c\n  1000bf1a:  CALL 0x1000f530\n  1000bf1f:  LEA EAX,[EBP + 0xffffff68]\n  1000bf25:  PUSH EBX\n  1000bf26:  PUSH EAX\n  1000bf27:  MOV dword ptr [EBP + 0xffffff68],0x94\n  1000bf31:  CALL dword ptr [0x10012054]\n  1000bf37:  TEST EAX,EAX\n  1000bf39:  JZ 0x1000bf55\n  1000bf3b:  CMP dword ptr [EBP + 0xffffff78],0x2\n  1000bf42:  JNZ 0x1000bf55\n  1000bf44:  CMP dword ptr [EBP + 0xffffff6c],0x5\n  1000bf4b:  JC 0x1000bf55\n  1000bf4d:  PUSH 0x1\n  1000bf4f:  POP EAX\n  1000bf50:  JMP 0x1000c057\n  1000bf55:  LEA EAX,[EBP + 0xffffedd4]\n  1000bf5b:  PUSH 0x1090\n  1000bf60:  PUSH EAX\n  1000bf61:  PUSH 0x10012318\n  1000bf66:  CALL dword ptr [0x10012050]\n  1000bf6c:  TEST EAX,EAX\n  1000bf6e:  JZ 0x1000c044\n  1000bf74:  XOR EBX,EBX\n  1000bf76:  LEA ECX,[EBP + 0xffffedd4]\n  1000bf7c:  CMP byte ptr [EBP + 0xffffedd4],BL\n  1000bf82:  JZ 0x1000bf97\n  1000bf84:  MOV AL,byte ptr [ECX]\n  1000bf86:  CMP AL,0x61\n  1000bf88:  JL 0x1000bf92\n  1000bf8a:  CMP AL,0x7a\n  1000bf8c:  JG 0x1000bf92\n  1000bf8e:  SUB AL,0x20\n  1000bf90:  MOV byte ptr [ECX],AL\n  1000bf92:  INC ECX\n  1000bf93:  CMP byte ptr [ECX],BL\n  1000bf95:  JNZ 0x1000bf84\n  1000bf97:  LEA EAX,[EBP + 0xffffedd4]\n  1000bf9d:  PUSH 0x16\n  1000bf9f:  PUSH EAX\n  1000bfa0:  PUSH 0x10012300\n  1000bfa5:  CALL 0x1000f4f0\n  1000bfaa:  ADD ESP,0xc\n  1000bfad:  TEST EAX,EAX\n  1000bfaf:  JNZ 0x1000bfb9\n  1000bfb1:  LEA EAX,[EBP + 0xffffedd4]\n  1000bfb7:  JMP 0x1000c002\n  1000bfb9:  LEA EAX,[EBP + 0xfffffe64]\n  1000bfbf:  PUSH 0x104\n  1000bfc4:  PUSH EAX\n  1000bfc5:  PUSH EBX\n  1000bfc6:  CALL dword ptr [0x1001204c]\n  1000bfcc:  CMP byte ptr [EBP + 0xfffffe64],BL\n  1000bfd2:  LEA ECX,[EBP + 0xfffffe64]\n  1000bfd8:  JZ 0x1000bfed\n  1000bfda:  MOV AL,byte ptr [ECX]\n  1000bfdc:  CMP AL,0x61\n  1000bfde:  JL 0x1000bfe8\n  1000bfe0:  CMP AL,0x7a\n  1000bfe2:  JG 0x1000bfe8\n  1000bfe4:  SUB AL,0x20\n  1000bfe6:  MOV byte ptr [ECX],AL\n  1000bfe8:  INC ECX\n  1000bfe9:  CMP byte ptr [ECX],BL\n  1000bfeb:  JNZ 0x1000bfda\n  1000bfed:  LEA EAX,[EBP + 0xfffffe64]\n  1000bff3:  PUSH EAX\n  1000bff4:  LEA EAX,[EBP + 0xffffedd4]\n  1000bffa:  PUSH EAX\n  1000bffb:  CALL 0x1000f470\n  1000c000:  POP ECX\n  1000c001:  POP ECX\n  1000c002:  CMP EAX,EBX\n  1000c004:  JZ 0x1000c044\n  1000c006:  PUSH 0x2c\n  1000c008:  PUSH EAX\n  1000c009:  CALL 0x1000f3b0\n  1000c00e:  POP ECX\n  1000c00f:  CMP EAX,EBX\n  1000c011:  POP ECX\n  1000c012:  JZ 0x1000c044\n  1000c014:  INC EAX\n  1000c015:  MOV ECX,EAX\n  1000c017:  CMP byte ptr [EAX],BL\n  1000c019:  JZ 0x1000c029\n  1000c01b:  CMP byte ptr [ECX],0x3b\n  1000c01e:  JNZ 0x1000c024\n  1000c020:  MOV byte ptr [ECX],BL\n  1000c022:  JMP 0x1000c025\n  1000c024:  INC ECX\n  1000c025:  CMP byte ptr [ECX],BL\n  1000c027:  JNZ 0x1000c01b\n  1000c029:  PUSH 0xa\n  1000c02b:  PUSH EBX\n  1000c02c:  PUSH EAX\n  1000c02d:  CALL 0x1000f175\n  1000c032:  ADD ESP,0xc\n  1000c035:  CMP EAX,0x2\n  1000c038:  JZ 0x1000c057\n  1000c03a:  CMP EAX,0x3\n  1000c03d:  JZ 0x1000c057\n  1000c03f:  CMP EAX,0x1\n  1000c042:  JZ 0x1000c057\n  1000c044:  LEA EAX,[EBP + -0x4]\n  1000c047:  PUSH EAX\n  1000c048:  CALL 0x1000bee5\n  1000c04d:  CMP byte ptr [EBP + -0x4],0x6\n  1000c051:  POP ECX\n  1000c052:  SBB EAX,EAX\n  1000c054:  ADD EAX,0x3\n  1000c057:  POP EBX\n  1000c058:  LEAVE\n  1000c059:  RET", 
+  "callers": [
+    {
+      "address": "0x1000c05a", 
+      "name": "FUN_1000c05a"
+    }
+  ]
+}

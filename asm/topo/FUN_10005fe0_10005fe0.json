@@ -1,0 +1,47 @@
+{
+  "address": "0x10005fe0", 
+  "size_bytes": 38, 
+  "calling_convention": "__cdecl", 
+  "signature": "undefined4 * __cdecl FUN_10005fe0(undefined4 * param_1, undefined4 * param_2, undefined4 * param_3)", 
+  "callees": [], 
+  "global_refs": [
+    {
+      "address": "0x00000004", 
+      "type": null, 
+      "name": "DAT_00000004"
+    }, 
+    {
+      "address": "0x00000008", 
+      "type": null, 
+      "name": "DAT_00000008"
+    }, 
+    {
+      "address": "0x0000000c", 
+      "type": null, 
+      "name": "DAT_0000000c"
+    }
+  ], 
+  "has_custom_name": false, 
+  "decompiled_c": "\nundefined4 * __cdecl FUN_10005fe0(undefined4 *param_1,undefined4 *param_2,undefined4 *param_3)\n\n{\n  undefined4 uVar1;\n  \n  if (param_1 == param_2) {\n    return param_3;\n  }\n  do {\n    uVar1 = *param_1;\n    param_1 = param_1 + 1;\n    *param_3 = uVar1;\n    param_3 = param_3 + 1;\n  } while (param_1 != param_2);\n  return param_3;\n}\n\n", 
+  "is_thunk": false, 
+  "name": "FUN_10005fe0", 
+  "assembly": "  10005fe0:  MOV ECX,dword ptr [ESP + 0x4]\n  10005fe4:  MOV EDX,dword ptr [ESP + 0x8]\n  10005fe8:  CMP ECX,EDX\n  10005fea:  JZ 0x10006001\n  10005fec:  MOV EAX,dword ptr [ESP + 0xc]\n  10005ff0:  PUSH ESI\n  10005ff1:  MOV ESI,dword ptr [ECX]\n  10005ff3:  ADD ECX,0x4\n  10005ff6:  MOV dword ptr [EAX],ESI\n  10005ff8:  ADD EAX,0x4\n  10005ffb:  CMP ECX,EDX\n  10005ffd:  JNZ 0x10005ff1\n  10005fff:  POP ESI\n  10006000:  RET\n  10006001:  MOV EAX,dword ptr [ESP + 0xc]\n  10006005:  RET", 
+  "callers": [
+    {
+      "address": "0x10003fc0", 
+      "name": "FUN_10003fc0"
+    }, 
+    {
+      "address": "0x10003fc0", 
+      "name": "FUN_10003fc0"
+    }, 
+    {
+      "address": "0x100062c0", 
+      "name": "FUN_100062c0"
+    }, 
+    {
+      "address": "0x100062c0", 
+      "name": "FUN_100062c0"
+    }
+  ]
+}

@@ -1,0 +1,40 @@
+{
+  "address": "0x10009c94", 
+  "size_bytes": 45, 
+  "calling_convention": "__stdcall", 
+  "signature": "undefined __stdcall FUN_10009c94(undefined * UNRECOVERED_JUMPTABLE)", 
+  "callees": [], 
+  "global_refs": [
+    {
+      "address": "0x00000008", 
+      "type": null, 
+      "name": "DAT_00000008"
+    }, 
+    {
+      "address": "0x-0000008", 
+      "type": null, 
+      "name": "DAT_-0000008"
+    }, 
+    {
+      "address": "0xffdff000", 
+      "type": "void *32", 
+      "name": "DAT_ffdff000"
+    }, 
+    {
+      "address": "0x00000004", 
+      "type": null, 
+      "name": "DAT_00000004"
+    }
+  ], 
+  "has_custom_name": false, 
+  "decompiled_c": "\nvoid FUN_10009c94(undefined *UNRECOVERED_JUMPTABLE)\n\n{\n                    /* WARNING: Load size is inaccurate */\n  ExceptionList = *ExceptionList;\n                    /* WARNING: Could not recover jumptable at 0x10009cbf. Too many branches */\n                    /* WARNING: Treating indirect jump as call */\n  (*(code *)UNRECOVERED_JUMPTABLE)();\n  return;\n}\n\n", 
+  "is_thunk": false, 
+  "name": "FUN_10009c94", 
+  "assembly": "  10009c94:  PUSH EBP\n  10009c95:  MOV EBP,ESP\n  10009c97:  PUSH ECX\n  10009c98:  PUSH EBX\n  10009c99:  PUSH ESI\n  10009c9a:  PUSH EDI\n  10009c9b:  MOV EAX,dword ptr [EBP + 0xc]\n  10009c9e:  ADD EAX,0xc\n  10009ca1:  MOV dword ptr [EBP + -0x4],EAX\n  10009ca4:  MOV EBX,dword ptr FS:[0x0]\n  10009cab:  MOV EAX,dword ptr [EBX]\n  10009cad:  MOV FS:[0x0],EAX\n  10009cb3:  MOV EAX,dword ptr [EBP + 0x8]\n  10009cb6:  MOV EBX,dword ptr [EBP + 0xc]\n  10009cb9:  MOV ESP,dword ptr [EBX + -0x4]\n  10009cbc:  MOV EBP,dword ptr [EBP + -0x4]\n  10009cbf:  JMP EAX", 
+  "callers": [
+    {
+      "address": "0x1000b2ef", 
+      "name": "FUN_1000b2ef"
+    }
+  ]
+}

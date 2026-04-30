@@ -1,0 +1,54 @@
+{
+  "address": "0x1000d8c2", 
+  "size_bytes": 436, 
+  "calling_convention": "__cdecl", 
+  "signature": "undefined __cdecl FUN_1000d8c2(byte * param_1, undefined4 * param_2, byte * param_3, int * param_4, int * param_5)", 
+  "callees": [], 
+  "global_refs": [
+    {
+      "address": "0x00000014", 
+      "type": null, 
+      "name": "DAT_00000014"
+    }, 
+    {
+      "address": "0x00000010", 
+      "type": null, 
+      "name": "DAT_00000010"
+    }, 
+    {
+      "address": "0x0000000c", 
+      "type": null, 
+      "name": "DAT_0000000c"
+    }, 
+    {
+      "address": "0x00000008", 
+      "type": null, 
+      "name": "DAT_00000008"
+    }, 
+    {
+      "address": "0x00000004", 
+      "type": null, 
+      "name": "DAT_00000004"
+    }, 
+    {
+      "address": "0x100183a1", 
+      "type": "undefined1", 
+      "name": "DAT_100183a1"
+    }
+  ], 
+  "has_custom_name": false, 
+  "decompiled_c": "\nvoid __cdecl FUN_1000d8c2(byte *param_1,undefined4 *param_2,byte *param_3,int *param_4,int *param_5)\n\n{\n  byte bVar1;\n  bool bVar2;\n  bool bVar3;\n  byte *pbVar4;\n  byte *pbVar5;\n  uint uVar6;\n  undefined4 *puVar7;\n  \n  *param_5 = 0;\n  *param_4 = 1;\n  if (param_2 != (undefined4 *)0x0) {\n    *param_2 = param_3;\n    param_2 = param_2 + 1;\n  }\n  if (*param_1 == 0x22) {\n    while( true ) {\n      bVar1 = param_1[1];\n      pbVar4 = param_1 + 1;\n      if ((bVar1 == 0x22) || (bVar1 == 0)) break;\n      if ((((&DAT_100183a1)[bVar1] & 4) != 0) && (*param_5 = *param_5 + 1, param_3 != (byte *)0x0))\n      {\n        *param_3 = *pbVar4;\n        param_3 = param_3 + 1;\n        pbVar4 = param_1 + 2;\n      }\n      *param_5 = *param_5 + 1;\n      param_1 = pbVar4;\n      if (param_3 != (byte *)0x0) {\n        *param_3 = *pbVar4;\n        param_3 = param_3 + 1;\n      }\n    }\n    *param_5 = *param_5 + 1;\n    if (param_3 != (byte *)0x0) {\n      *param_3 = 0;\n      param_3 = param_3 + 1;\n    }\n    if (*pbVar4 == 0x22) {\n      pbVar4 = param_1 + 2;\n    }\n  }\n  else {\n    do {\n      *param_5 = *param_5 + 1;\n      if (param_3 != (byte *)0x0) {\n        *param_3 = *param_1;\n        param_3 = param_3 + 1;\n      }\n      bVar1 = *param_1;\n      pbVar4 = param_1 + 1;\n      if (((&DAT_100183a1)[bVar1] & 4) != 0) {\n        *param_5 = *param_5 + 1;\n        if (param_3 != (byte *)0x0) {\n          *param_3 = *pbVar4;\n          param_3 = param_3 + 1;\n        }\n        pbVar4 = param_1 + 2;\n      }\n      if (bVar1 == 0x20) break;\n      if (bVar1 == 0) goto LAB_1000d96d;\n      param_1 = pbVar4;\n    } while (bVar1 != 9);\n    if (bVar1 == 0) {\nLAB_1000d96d:\n      pbVar4 = pbVar4 + -1;\n    }\n    else if (param_3 != (byte *)0x0) {\n      param_3[-1] = 0;\n    }\n  }\n  bVar2 = false;\n  puVar7 = param_2;\n  while (*pbVar4 != 0) {\n    for (; (*pbVar4 == 0x20 || (*pbVar4 == 9)); pbVar4 = pbVar4 + 1) {\n    }\n    if (*pbVar4 == 0) break;\n    if (puVar7 != (undefined4 *)0x0) {\n      *puVar7 = param_3;\n      puVar7 = puVar7 + 1;\n      param_2 = puVar7;\n    }\n    *param_4 = *param_4 + 1;\n    while( true ) {\n      bVar3 = true;\n      uVar6 = 0;\n      for (; *pbVar4 == 0x5c; pbVar4 = pbVar4 + 1) {\n        uVar6 = uVar6 + 1;\n      }\n      if (*pbVar4 == 0x22) {\n        pbVar5 = pbVar4;\n        if ((uVar6 & 1) == 0) {\n          if ((!bVar2) || (pbVar5 = pbVar4 + 1, pbVar4[1] != 0x22)) {\n            bVar3 = false;\n            pbVar5 = pbVar4;\n          }\n          bVar2 = !bVar2;\n          puVar7 = param_2;\n        }\n        uVar6 = uVar6 >> 1;\n        pbVar4 = pbVar5;\n      }\n      for (; uVar6 != 0; uVar6 = uVar6 - 1) {\n        if (param_3 != (byte *)0x0) {\n          *param_3 = 0x5c;\n          param_3 = param_3 + 1;\n        }\n        *param_5 = *param_5 + 1;\n      }\n      bVar1 = *pbVar4;\n      if ((bVar1 == 0) || ((!bVar2 && ((bVar1 == 0x20 || (bVar1 == 9)))))) break;\n      if (bVar3) {\n        if (param_3 == (byte *)0x0) {\n          if (((&DAT_100183a1)[bVar1] & 4) != 0) {\n            pbVar4 = pbVar4 + 1;\n            *param_5 = *param_5 + 1;\n          }\n        }\n        else {\n          if (((&DAT_100183a1)[bVar1] & 4) != 0) {\n            *param_3 = bVar1;\n            param_3 = param_3 + 1;\n            pbVar4 = pbVar4 + 1;\n            *param_5 = *param_5 + 1;\n          }\n          *param_3 = *pbVar4;\n          param_3 = param_3 + 1;\n        }\n        *param_5 = *param_5 + 1;\n      }\n      pbVar4 = pbVar4 + 1;\n    }\n    if (param_3 != (byte *)0x0) {\n      *param_3 = 0;\n      param_3 = param_3 + 1;\n    }\n    *param_5 = *param_5 + 1;\n  }\n  if (puVar7 != (undefined4 *)0x0) {\n    *puVar7 = 0;\n  }\n  *param_4 = *param_4 + 1;\n  return;\n}\n\n", 
+  "is_thunk": false, 
+  "name": "FUN_1000d8c2", 
+  "assembly": "  1000d8c2:  PUSH EBP\n  1000d8c3:  MOV EBP,ESP\n  1000d8c5:  MOV ECX,dword ptr [EBP + 0x18]\n  1000d8c8:  MOV EAX,dword ptr [EBP + 0x14]\n  1000d8cb:  PUSH EBX\n  1000d8cc:  PUSH ESI\n  1000d8cd:  AND dword ptr [ECX],0x0\n  1000d8d0:  MOV ESI,dword ptr [EBP + 0x10]\n  1000d8d3:  PUSH EDI\n  1000d8d4:  MOV EDI,dword ptr [EBP + 0xc]\n  1000d8d7:  MOV dword ptr [EAX],0x1\n  1000d8dd:  MOV EAX,dword ptr [EBP + 0x8]\n  1000d8e0:  TEST EDI,EDI\n  1000d8e2:  JZ 0x1000d8ec\n  1000d8e4:  MOV dword ptr [EDI],ESI\n  1000d8e6:  ADD EDI,0x4\n  1000d8e9:  MOV dword ptr [EBP + 0xc],EDI\n  1000d8ec:  CMP byte ptr [EAX],0x22\n  1000d8ef:  JNZ 0x1000d935\n  1000d8f1:  MOV DL,byte ptr [EAX + 0x1]\n  1000d8f4:  INC EAX\n  1000d8f5:  CMP DL,0x22\n  1000d8f8:  JZ 0x1000d923\n  1000d8fa:  TEST DL,DL\n  1000d8fc:  JZ 0x1000d923\n  1000d8fe:  MOVZX EDX,DL\n  1000d901:  TEST byte ptr [EDX + 0x100183a1],0x4\n  1000d908:  JZ 0x1000d916\n  1000d90a:  INC dword ptr [ECX]\n  1000d90c:  TEST ESI,ESI\n  1000d90e:  JZ 0x1000d916\n  1000d910:  MOV DL,byte ptr [EAX]\n  1000d912:  MOV byte ptr [ESI],DL\n  1000d914:  INC ESI\n  1000d915:  INC EAX\n  1000d916:  INC dword ptr [ECX]\n  1000d918:  TEST ESI,ESI\n  1000d91a:  JZ 0x1000d8f1\n  1000d91c:  MOV DL,byte ptr [EAX]\n  1000d91e:  MOV byte ptr [ESI],DL\n  1000d920:  INC ESI\n  1000d921:  JMP 0x1000d8f1\n  1000d923:  INC dword ptr [ECX]\n  1000d925:  TEST ESI,ESI\n  1000d927:  JZ 0x1000d92d\n  1000d929:  AND byte ptr [ESI],0x0\n  1000d92c:  INC ESI\n  1000d92d:  CMP byte ptr [EAX],0x22\n  1000d930:  JNZ 0x1000d978\n  1000d932:  INC EAX\n  1000d933:  JMP 0x1000d978\n  1000d935:  INC dword ptr [ECX]\n  1000d937:  TEST ESI,ESI\n  1000d939:  JZ 0x1000d940\n  1000d93b:  MOV DL,byte ptr [EAX]\n  1000d93d:  MOV byte ptr [ESI],DL\n  1000d93f:  INC ESI\n  1000d940:  MOV DL,byte ptr [EAX]\n  1000d942:  INC EAX\n  1000d943:  MOVZX EBX,DL\n  1000d946:  TEST byte ptr [EBX + 0x100183a1],0x4\n  1000d94d:  JZ 0x1000d95b\n  1000d94f:  INC dword ptr [ECX]\n  1000d951:  TEST ESI,ESI\n  1000d953:  JZ 0x1000d95a\n  1000d955:  MOV BL,byte ptr [EAX]\n  1000d957:  MOV byte ptr [ESI],BL\n  1000d959:  INC ESI\n  1000d95a:  INC EAX\n  1000d95b:  CMP DL,0x20\n  1000d95e:  JZ 0x1000d969\n  1000d960:  TEST DL,DL\n  1000d962:  JZ 0x1000d96d\n  1000d964:  CMP DL,0x9\n  1000d967:  JNZ 0x1000d935\n  1000d969:  TEST DL,DL\n  1000d96b:  JNZ 0x1000d970\n  1000d96d:  DEC EAX\n  1000d96e:  JMP 0x1000d978\n  1000d970:  TEST ESI,ESI\n  1000d972:  JZ 0x1000d978\n  1000d974:  AND byte ptr [ESI + -0x1],0x0\n  1000d978:  AND dword ptr [EBP + 0x18],0x0\n  1000d97c:  CMP byte ptr [EAX],0x0\n  1000d97f:  JZ 0x1000da65\n  1000d985:  MOV DL,byte ptr [EAX]\n  1000d987:  CMP DL,0x20\n  1000d98a:  JZ 0x1000d991\n  1000d98c:  CMP DL,0x9\n  1000d98f:  JNZ 0x1000d994\n  1000d991:  INC EAX\n  1000d992:  JMP 0x1000d985\n  1000d994:  CMP byte ptr [EAX],0x0\n  1000d997:  JZ 0x1000da65\n  1000d99d:  TEST EDI,EDI\n  1000d99f:  JZ 0x1000d9a9\n  1000d9a1:  MOV dword ptr [EDI],ESI\n  1000d9a3:  ADD EDI,0x4\n  1000d9a6:  MOV dword ptr [EBP + 0xc],EDI\n  1000d9a9:  MOV EDX,dword ptr [EBP + 0x14]\n  1000d9ac:  INC dword ptr [EDX]\n  1000d9ae:  MOV dword ptr [EBP + 0x8],0x1\n  1000d9b5:  XOR EBX,EBX\n  1000d9b7:  CMP byte ptr [EAX],0x5c\n  1000d9ba:  JNZ 0x1000d9c0\n  1000d9bc:  INC EAX\n  1000d9bd:  INC EBX\n  1000d9be:  JMP 0x1000d9b7\n  1000d9c0:  CMP byte ptr [EAX],0x22\n  1000d9c3:  JNZ 0x1000d9f1\n  1000d9c5:  TEST BL,0x1\n  1000d9c8:  JNZ 0x1000d9ef\n  1000d9ca:  XOR EDI,EDI\n  1000d9cc:  CMP dword ptr [EBP + 0x18],EDI\n  1000d9cf:  JZ 0x1000d9de\n  1000d9d1:  CMP byte ptr [EAX + 0x1],0x22\n  1000d9d5:  LEA EDX,[EAX + 0x1]\n  1000d9d8:  JNZ 0x1000d9de\n  1000d9da:  MOV EAX,EDX\n  1000d9dc:  JMP 0x1000d9e1\n  1000d9de:  MOV dword ptr [EBP + 0x8],EDI\n  1000d9e1:  MOV EDI,dword ptr [EBP + 0xc]\n  1000d9e4:  XOR EDX,EDX\n  1000d9e6:  CMP dword ptr [EBP + 0x18],EDX\n  1000d9e9:  SETZ DL\n  1000d9ec:  MOV dword ptr [EBP + 0x18],EDX\n  1000d9ef:  SHR EBX,0x1\n  1000d9f1:  MOV EDX,EBX\n  1000d9f3:  DEC EBX\n  1000d9f4:  TEST EDX,EDX\n  1000d9f6:  JZ 0x1000da06\n  1000d9f8:  INC EBX\n  1000d9f9:  TEST ESI,ESI\n  1000d9fb:  JZ 0x1000da01\n  1000d9fd:  MOV byte ptr [ESI],0x5c\n  1000da00:  INC ESI\n  1000da01:  INC dword ptr [ECX]\n  1000da03:  DEC EBX\n  1000da04:  JNZ 0x1000d9f9\n  1000da06:  MOV DL,byte ptr [EAX]\n  1000da08:  TEST DL,DL\n  1000da0a:  JZ 0x1000da56\n  1000da0c:  CMP dword ptr [EBP + 0x18],0x0\n  1000da10:  JNZ 0x1000da1c\n  1000da12:  CMP DL,0x20\n  1000da15:  JZ 0x1000da56\n  1000da17:  CMP DL,0x9\n  1000da1a:  JZ 0x1000da56\n  1000da1c:  CMP dword ptr [EBP + 0x8],0x0\n  1000da20:  JZ 0x1000da50\n  1000da22:  TEST ESI,ESI\n  1000da24:  JZ 0x1000da3f\n  1000da26:  MOVZX EBX,DL\n  1000da29:  TEST byte ptr [EBX + 0x100183a1],0x4\n  1000da30:  JZ 0x1000da38\n  1000da32:  MOV byte ptr [ESI],DL\n  1000da34:  INC ESI\n  1000da35:  INC EAX\n  1000da36:  INC dword ptr [ECX]\n  1000da38:  MOV DL,byte ptr [EAX]\n  1000da3a:  MOV byte ptr [ESI],DL\n  1000da3c:  INC ESI\n  1000da3d:  JMP 0x1000da4e\n  1000da3f:  MOVZX EDX,DL\n  1000da42:  TEST byte ptr [EDX + 0x100183a1],0x4\n  1000da49:  JZ 0x1000da4e\n  1000da4b:  INC EAX\n  1000da4c:  INC dword ptr [ECX]\n  1000da4e:  INC dword ptr [ECX]\n  1000da50:  INC EAX\n  1000da51:  JMP 0x1000d9ae\n  1000da56:  TEST ESI,ESI\n  1000da58:  JZ 0x1000da5e\n  1000da5a:  AND byte ptr [ESI],0x0\n  1000da5d:  INC ESI\n  1000da5e:  INC dword ptr [ECX]\n  1000da60:  JMP 0x1000d97c\n  1000da65:  TEST EDI,EDI\n  1000da67:  JZ 0x1000da6c\n  1000da69:  AND dword ptr [EDI],0x0\n  1000da6c:  MOV EAX,dword ptr [EBP + 0x14]\n  1000da6f:  POP EDI\n  1000da70:  POP ESI\n  1000da71:  POP EBX\n  1000da72:  INC dword ptr [EAX]\n  1000da74:  POP EBP\n  1000da75:  RET", 
+  "callers": [
+    {
+      "address": "0x1000d829", 
+      "name": "FUN_1000d829"
+    }, 
+    {
+      "address": "0x1000d829", 
+      "name": "FUN_1000d829"
+    }
+  ]
+}

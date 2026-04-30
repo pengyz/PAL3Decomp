@@ -1,0 +1,52 @@
+{
+  "address": "0x1000ec24", 
+  "size_bytes": 28, 
+  "calling_convention": "__cdecl", 
+  "signature": "bool __cdecl FUN_1000ec24(LPVOID param_1, UINT_PTR param_2)", 
+  "callees": [
+    {
+      "address": "0x0000001b", 
+      "name": "IsBadWritePtr"
+    }
+  ], 
+  "global_refs": [
+    {
+      "address": "0x00000008", 
+      "type": null, 
+      "name": "DAT_00000008"
+    }, 
+    {
+      "address": "0x00000004", 
+      "type": null, 
+      "name": "DAT_00000004"
+    }, 
+    {
+      "address": "0x10012068", 
+      "type": "pointer", 
+      "name": "DAT_10012068"
+    }
+  ], 
+  "has_custom_name": false, 
+  "decompiled_c": "\nbool __cdecl FUN_1000ec24(LPVOID param_1,UINT_PTR param_2)\n\n{\n  BOOL BVar1;\n  \n  BVar1 = IsBadWritePtr(param_1,param_2);\n  return BVar1 == 0;\n}\n\n", 
+  "is_thunk": false, 
+  "name": "FUN_1000ec24", 
+  "assembly": "  1000ec24:  PUSH ESI\n  1000ec25:  PUSH 0x1\n  1000ec27:  POP ESI\n  1000ec28:  PUSH dword ptr [ESP + 0xc]\n  1000ec2c:  PUSH dword ptr [ESP + 0xc]\n  1000ec30:  CALL dword ptr [0x10012068]\n  1000ec36:  TEST EAX,EAX\n  1000ec38:  JZ 0x1000ec3c\n  1000ec3a:  XOR ESI,ESI\n  1000ec3c:  MOV EAX,ESI\n  1000ec3e:  POP ESI\n  1000ec3f:  RET", 
+  "callers": [
+    {
+      "address": "0x1000b4af", 
+      "name": "FUN_1000b4af"
+    }, 
+    {
+      "address": "0x1000b4af", 
+      "name": "FUN_1000b4af"
+    }, 
+    {
+      "address": "0x1000b4af", 
+      "name": "FUN_1000b4af"
+    }, 
+    {
+      "address": "0x1000b4af", 
+      "name": "FUN_1000b4af"
+    }
+  ]
+}

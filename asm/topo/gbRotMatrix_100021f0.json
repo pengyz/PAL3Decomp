@@ -1,0 +1,19 @@
+{
+  "address": "0x100021f0", 
+  "size_bytes": 12, 
+  "calling_convention": "__thiscall", 
+  "signature": "undefined __thiscall gbRotMatrix(gbRotMatrix * this)", 
+  "callees": [
+    {
+      "address": "0x10002300", 
+      "name": "LoadIdentity"
+    }
+  ], 
+  "global_refs": [], 
+  "has_custom_name": true, 
+  "decompiled_c": "\n/* public: __thiscall gbRotMatrix::gbRotMatrix(void) */\n\ngbRotMatrix * __thiscall gbRotMatrix::gbRotMatrix(gbRotMatrix *this)\n\n{\n                    /* 0x21f0  4  ??0gbRotMatrix@@QAE@XZ */\n  LoadIdentity(this);\n  return this;\n}\n\n", 
+  "is_thunk": false, 
+  "name": "gbRotMatrix", 
+  "assembly": "  100021f0:  PUSH ESI\n  100021f1:  MOV ESI,ECX\n  100021f3:  CALL 0x10002300\n  100021f8:  MOV EAX,ESI\n  100021fa:  POP ESI\n  100021fb:  RET", 
+  "callers": []
+}

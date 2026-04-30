@@ -1,0 +1,14 @@
+{
+  "address": "0x10001680", 
+  "size_bytes": 31, 
+  "calling_convention": "__thiscall", 
+  "signature": "float __thiscall LengthSquare(gbVec3D * this)", 
+  "callees": [], 
+  "global_refs": [], 
+  "has_custom_name": true, 
+  "decompiled_c": "\n/* public: float __thiscall gbVec3D::LengthSquare(void)const  */\n\nfloat __thiscall gbVec3D::LengthSquare(gbVec3D *this)\n\n{\n                    /* 0x1680  57  ?LengthSquare@gbVec3D@@QBEMXZ */\n  return *(float *)(this + 8) * *(float *)(this + 8) +\n         *(float *)(this + 4) * *(float *)(this + 4) + *(float *)this * *(float *)this;\n}\n\n", 
+  "is_thunk": false, 
+  "name": "LengthSquare", 
+  "assembly": "  10001680:  FLD dword ptr [ECX + 0x8]\n  10001683:  FLD dword ptr [ECX + 0x4]\n  10001686:  FLD dword ptr [ECX]\n  10001688:  FLD ST0\n  1000168a:  FMUL ST1\n  1000168c:  FLD ST2\n  1000168e:  FMUL ST3\n  10001690:  FADDP\n  10001692:  FLD ST3\n  10001694:  FMUL ST4\n  10001696:  FADDP\n  10001698:  FSTP ST3\n  1000169a:  FSTP ST0\n  1000169c:  FSTP ST0\n  1000169e:  RET", 
+  "callers": []
+}

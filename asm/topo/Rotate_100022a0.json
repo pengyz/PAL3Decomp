@@ -1,0 +1,25 @@
+{
+  "address": "0x100022a0", 
+  "size_bytes": 81, 
+  "calling_convention": "__thiscall", 
+  "signature": "void __thiscall Rotate(gbRotMatrix * this, gbVec3D * param_1, gbVec3D * param_2)", 
+  "callees": [], 
+  "global_refs": [
+    {
+      "address": "0x00000004", 
+      "type": null, 
+      "name": "DAT_00000004"
+    }, 
+    {
+      "address": "0x00000008", 
+      "type": null, 
+      "name": "DAT_00000008"
+    }
+  ], 
+  "has_custom_name": true, 
+  "decompiled_c": "\n/* public: void __thiscall gbRotMatrix::Rotate(struct gbVec3D *,struct gbVec3D *) */\n\nvoid __thiscall gbRotMatrix::Rotate(gbRotMatrix *this,gbVec3D *param_1,gbVec3D *param_2)\n\n{\n                    /* 0x22a0  78  ?Rotate@gbRotMatrix@@QAEXPAUgbVec3D@@0@Z */\n  *(float *)param_2 =\n       *(float *)param_1 * *(float *)this +\n       *(float *)(this + 0x18) * *(float *)(param_1 + 8) +\n       *(float *)(this + 0xc) * *(float *)(param_1 + 4);\n  *(float *)(param_2 + 4) =\n       *(float *)(this + 0x1c) * *(float *)(param_1 + 8) +\n       *(float *)(this + 0x10) * *(float *)(param_1 + 4) + *(float *)(this + 4) * *(float *)param_1;\n  *(float *)(param_2 + 8) =\n       *(float *)(this + 0x20) * *(float *)(param_1 + 8) +\n       *(float *)(this + 0x14) * *(float *)(param_1 + 4) + *(float *)(this + 8) * *(float *)param_1;\n  return;\n}\n\n", 
+  "is_thunk": false, 
+  "name": "Rotate", 
+  "assembly": "  100022a0:  MOV EAX,dword ptr [ESP + 0x4]\n  100022a4:  MOV EDX,dword ptr [ESP + 0x8]\n  100022a8:  FLD dword ptr [ECX + 0xc]\n  100022ab:  FMUL dword ptr [EAX + 0x4]\n  100022ae:  FLD dword ptr [ECX + 0x18]\n  100022b1:  FMUL dword ptr [EAX + 0x8]\n  100022b4:  FADDP\n  100022b6:  FLD dword ptr [EAX]\n  100022b8:  FMUL dword ptr [ECX]\n  100022ba:  FADDP\n  100022bc:  FSTP dword ptr [EDX]\n  100022be:  FLD dword ptr [ECX + 0x4]\n  100022c1:  FMUL dword ptr [EAX]\n  100022c3:  FLD dword ptr [ECX + 0x10]\n  100022c6:  FMUL dword ptr [EAX + 0x4]\n  100022c9:  FADDP\n  100022cb:  FLD dword ptr [ECX + 0x1c]\n  100022ce:  FMUL dword ptr [EAX + 0x8]\n  100022d1:  FADDP\n  100022d3:  FSTP dword ptr [EDX + 0x4]\n  100022d6:  FLD dword ptr [ECX + 0x8]\n  100022d9:  FMUL dword ptr [EAX]\n  100022db:  FLD dword ptr [ECX + 0x14]\n  100022de:  FMUL dword ptr [EAX + 0x4]\n  100022e1:  FADDP\n  100022e3:  FLD dword ptr [ECX + 0x20]\n  100022e6:  FMUL dword ptr [EAX + 0x8]\n  100022e9:  FADDP\n  100022eb:  FSTP dword ptr [EDX + 0x8]\n  100022ee:  RET 0x8", 
+  "callers": []
+}

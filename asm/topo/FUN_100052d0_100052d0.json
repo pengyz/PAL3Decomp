@@ -1,0 +1,30 @@
+{
+  "address": "0x100052d0", 
+  "size_bytes": 56, 
+  "calling_convention": "__thiscall", 
+  "signature": "undefined __thiscall FUN_100052d0(void * this, undefined4 * param_1, undefined4 * param_2)", 
+  "callees": [], 
+  "global_refs": [
+    {
+      "address": "0x00000008", 
+      "type": null, 
+      "name": "DAT_00000008"
+    }, 
+    {
+      "address": "0x00000004", 
+      "type": null, 
+      "name": "DAT_00000004"
+    }
+  ], 
+  "has_custom_name": false, 
+  "decompiled_c": "\nvoid __thiscall FUN_100052d0(void *this,undefined4 *param_1,undefined4 *param_2)\n\n{\n  undefined4 *puVar1;\n  undefined4 *puVar2;\n  \n  puVar1 = *(undefined4 **)((int)this + 8);\n  if (param_2 != puVar1) {\n    do {\n      puVar2 = param_2 + 2;\n      *param_1 = *param_2;\n      param_1[1] = param_2[1];\n      param_1 = param_1 + 2;\n      param_2 = puVar2;\n    } while (puVar2 != puVar1);\n  }\n  *(undefined4 **)((int)this + 8) = param_1;\n  return;\n}\n\n", 
+  "is_thunk": false, 
+  "name": "FUN_100052d0", 
+  "assembly": "  100052d0:  MOV EDX,dword ptr [ESP + 0x8]\n  100052d4:  MOV EAX,dword ptr [ESP + 0x4]\n  100052d8:  PUSH ESI\n  100052d9:  PUSH EDI\n  100052da:  MOV EDI,dword ptr [ECX + 0x8]\n  100052dd:  MOV ESI,EAX\n  100052df:  CMP EDX,EDI\n  100052e1:  JZ 0x100052f9\n  100052e3:  PUSH EBX\n  100052e4:  MOV EBX,dword ptr [EDX]\n  100052e6:  ADD EDX,0x8\n  100052e9:  MOV dword ptr [ESI],EBX\n  100052eb:  MOV EBX,dword ptr [EDX + -0x4]\n  100052ee:  MOV dword ptr [ESI + 0x4],EBX\n  100052f1:  ADD ESI,0x8\n  100052f4:  CMP EDX,EDI\n  100052f6:  JNZ 0x100052e4\n  100052f8:  POP EBX\n  100052f9:  MOV EDX,dword ptr [ECX + 0x8]\n  100052fc:  MOV dword ptr [ECX + 0x8],ESI\n  100052ff:  POP EDI\n  10005300:  MOV dword ptr [ESP + 0x8],EDX\n  10005304:  POP ESI\n  10005305:  RET 0x8", 
+  "callers": [
+    {
+      "address": "0x100042b0", 
+      "name": "FUN_100042b0"
+    }
+  ]
+}

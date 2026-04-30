@@ -1,0 +1,20 @@
+{
+  "address": "0x100014b0", 
+  "size_bytes": 31, 
+  "calling_convention": "__thiscall", 
+  "signature": "void __thiscall operator+=(gbVec3D * this, gbVec3D * param_1)", 
+  "callees": [], 
+  "global_refs": [
+    {
+      "address": "0x00000004", 
+      "type": null, 
+      "name": "DAT_00000004"
+    }
+  ], 
+  "has_custom_name": true, 
+  "decompiled_c": "\n/* public: void __thiscall gbVec3D::operator+=(struct gbVec3D const &) */\n\nvoid __thiscall gbVec3D::operator+=(gbVec3D *this,gbVec3D *param_1)\n\n{\n                    /* 0x14b0  20  ??YgbVec3D@@QAEXABU0@@Z */\n  *(float *)this = *(float *)param_1 + *(float *)this;\n  *(float *)(this + 4) = *(float *)(param_1 + 4) + *(float *)(this + 4);\n  *(float *)(this + 8) = *(float *)(param_1 + 8) + *(float *)(this + 8);\n  return;\n}\n\n", 
+  "is_thunk": false, 
+  "name": "operator+=", 
+  "assembly": "  100014b0:  MOV EAX,dword ptr [ESP + 0x4]\n  100014b4:  FLD dword ptr [EAX]\n  100014b6:  FADD dword ptr [ECX]\n  100014b8:  FSTP dword ptr [ECX]\n  100014ba:  FLD dword ptr [EAX + 0x4]\n  100014bd:  FADD dword ptr [ECX + 0x4]\n  100014c0:  FSTP dword ptr [ECX + 0x4]\n  100014c3:  FLD dword ptr [EAX + 0x8]\n  100014c6:  FADD dword ptr [ECX + 0x8]\n  100014c9:  FSTP dword ptr [ECX + 0x8]\n  100014cc:  RET 0x4", 
+  "callers": []
+}

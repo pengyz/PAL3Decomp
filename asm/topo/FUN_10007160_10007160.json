@@ -1,0 +1,79 @@
+{
+  "address": "0x10007160", 
+  "size_bytes": 295, 
+  "calling_convention": "__fastcall", 
+  "signature": "undefined __fastcall FUN_10007160(int param_1)", 
+  "callees": [
+    {
+      "address": "0x10001080", 
+      "name": "CrossProduct"
+    }, 
+    {
+      "address": "0x100010c0", 
+      "name": "Normalize"
+    }
+  ], 
+  "global_refs": [
+    {
+      "address": "0x-0000024", 
+      "type": null, 
+      "name": "DAT_-0000024"
+    }, 
+    {
+      "address": "0x-0000020", 
+      "type": null, 
+      "name": "DAT_-0000020"
+    }, 
+    {
+      "address": "0x-000001c", 
+      "type": null, 
+      "name": "DAT_-000001c"
+    }, 
+    {
+      "address": "0x-0000030", 
+      "type": null, 
+      "name": "DAT_-0000030"
+    }, 
+    {
+      "address": "0x-000002c", 
+      "type": null, 
+      "name": "DAT_-000002c"
+    }, 
+    {
+      "address": "0x-0000028", 
+      "type": null, 
+      "name": "DAT_-0000028"
+    }, 
+    {
+      "address": "0x-0000014", 
+      "type": null, 
+      "name": "DAT_-0000014"
+    }, 
+    {
+      "address": "0x-0000010", 
+      "type": null, 
+      "name": "DAT_-0000010"
+    }, 
+    {
+      "address": "0x-0000008", 
+      "type": null, 
+      "name": "DAT_-0000008"
+    }, 
+    {
+      "address": "0x-0000004", 
+      "type": null, 
+      "name": "DAT_-0000004"
+    }
+  ], 
+  "has_custom_name": false, 
+  "decompiled_c": "\nvoid __fastcall FUN_10007160(int param_1)\n\n{\n  int *piVar1;\n  float *pfVar2;\n  float *pfVar3;\n  int iVar4;\n  uint uVar5;\n  int *piVar6;\n  float local_30;\n  float local_2c;\n  float local_28;\n  float local_24;\n  float local_20;\n  float local_1c;\n  float local_14;\n  float local_10;\n  float local_8;\n  float local_4;\n  \n  iVar4 = 0;\n  for (uVar5 = 0;\n      (*(int *)(param_1 + 8) != 0 &&\n      (uVar5 < (uint)((*(int *)(param_1 + 0xc) - *(int *)(param_1 + 8)) / 0x30))); uVar5 = uVar5 + 1\n      ) {\n    piVar1 = *(int **)(param_1 + 0x14);\n    piVar6 = (int *)(*(int *)(param_1 + 8) + iVar4);\n    pfVar2 = (float *)(piVar1[8] * *piVar6 + piVar1[1] + *piVar1);\n    pfVar3 = (float *)(piVar1[8] * piVar6[1] + piVar1[1] + *piVar1);\n    local_24 = *pfVar3 - *pfVar2;\n    local_20 = pfVar3[1] - pfVar2[1];\n    local_1c = pfVar3[2] - pfVar2[2];\n    pfVar2 = (float *)(piVar1[8] * *piVar6 + piVar1[1] + *piVar1);\n    pfVar3 = (float *)(piVar1[8] * piVar6[2] + piVar1[1] + *piVar1);\n    local_30 = *pfVar3 - *pfVar2;\n    local_2c = pfVar3[1] - pfVar2[1];\n    local_28 = pfVar3[2] - pfVar2[2];\n    local_14 = local_20;\n    local_10 = local_1c;\n    local_8 = local_2c;\n    local_4 = local_28;\n    gbVec3D::CrossProduct((gbVec3D *)&local_24,(gbVec3D *)&local_30,(gbVec3D *)(piVar6 + 9));\n    gbVec3D::Normalize((gbVec3D *)(piVar6 + 9));\n    iVar4 = iVar4 + 0x30;\n  }\n  return;\n}\n\n", 
+  "is_thunk": false, 
+  "name": "FUN_10007160", 
+  "assembly": "  10007160:  SUB ESP,0x30\n  10007163:  PUSH EBX\n  10007164:  PUSH EBP\n  10007165:  PUSH ESI\n  10007166:  PUSH EDI\n  10007167:  XOR EBP,EBP\n  10007169:  MOV EDI,ECX\n  1000716b:  MOV dword ptr [ESP + 0x1c],0x0\n  10007173:  MOV dword ptr [ESP + 0x20],0x0\n  1000717b:  MOV dword ptr [ESP + 0x24],0x0\n  10007183:  MOV dword ptr [ESP + 0x10],0x0\n  1000718b:  MOV dword ptr [ESP + 0x14],0x0\n  10007193:  MOV dword ptr [ESP + 0x18],0x0\n  1000719b:  XOR EBX,EBX\n  1000719d:  MOV EAX,dword ptr [EDI + 0x8]\n  100071a0:  TEST EAX,EAX\n  100071a2:  JZ 0x1000727f\n  100071a8:  MOV ECX,dword ptr [EDI + 0xc]\n  100071ab:  SUB ECX,EAX\n  100071ad:  MOV EAX,0x2aaaaaab\n  100071b2:  IMUL ECX\n  100071b4:  SAR EDX,0x3\n  100071b7:  MOV EAX,EDX\n  100071b9:  SHR EAX,0x1f\n  100071bc:  ADD EDX,EAX\n  100071be:  CMP EBP,EDX\n  100071c0:  JNC 0x1000727f\n  100071c6:  MOV ESI,dword ptr [EDI + 0x8]\n  100071c9:  MOV EAX,dword ptr [EDI + 0x14]\n  100071cc:  ADD ESI,EBX\n  100071ce:  MOV ECX,dword ptr [EAX + 0x20]\n  100071d1:  MOV EDX,dword ptr [EAX + 0x4]\n  100071d4:  IMUL ECX,dword ptr [ESI]\n  100071d7:  ADD ECX,EDX\n  100071d9:  MOV EDX,dword ptr [EAX]\n  100071db:  ADD ECX,EDX\n  100071dd:  MOV EDX,dword ptr [EAX + 0x20]\n  100071e0:  IMUL EDX,dword ptr [ESI + 0x4]\n  100071e4:  ADD EDX,dword ptr [EAX + 0x4]\n  100071e7:  ADD ESI,0x24\n  100071ea:  PUSH ESI\n  100071eb:  ADD EDX,dword ptr [EAX]\n  100071ed:  FLD dword ptr [EDX]\n  100071ef:  FSUB dword ptr [ECX]\n  100071f1:  FLD dword ptr [EDX + 0x4]\n  100071f4:  FSUB dword ptr [ECX + 0x4]\n  100071f7:  FSTP dword ptr [ESP + 0x30]\n  100071fb:  FLD dword ptr [EDX + 0x8]\n  100071fe:  FSUB dword ptr [ECX + 0x8]\n  10007201:  MOV ECX,dword ptr [ESP + 0x30]\n  10007205:  MOV dword ptr [ESP + 0x24],ECX\n  10007209:  FSTP dword ptr [ESP + 0x34]\n  1000720d:  MOV EDX,dword ptr [ESP + 0x34]\n  10007211:  FSTP dword ptr [ESP + 0x20]\n  10007215:  MOV dword ptr [ESP + 0x28],EDX\n  10007219:  MOV ECX,dword ptr [EAX + 0x20]\n  1000721c:  IMUL ECX,dword ptr [ESI + -0x24]\n  10007220:  MOV EDX,dword ptr [EAX + 0x4]\n  10007223:  ADD ECX,EDX\n  10007225:  MOV EDX,dword ptr [EAX]\n  10007227:  ADD ECX,EDX\n  10007229:  MOV EDX,dword ptr [EAX + 0x20]\n  1000722c:  IMUL EDX,dword ptr [ESI + -0x1c]\n  10007230:  ADD EDX,dword ptr [EAX + 0x4]\n  10007233:  ADD EDX,dword ptr [EAX]\n  10007235:  FLD dword ptr [EDX]\n  10007237:  FSUB dword ptr [ECX]\n  10007239:  FLD dword ptr [EDX + 0x4]\n  1000723c:  FSUB dword ptr [ECX + 0x4]\n  1000723f:  FSTP dword ptr [ESP + 0x3c]\n  10007243:  FLD dword ptr [EDX + 0x8]\n  10007246:  FSUB dword ptr [ECX + 0x8]\n  10007249:  MOV EAX,dword ptr [ESP + 0x3c]\n  1000724d:  LEA EDX,[ESP + 0x14]\n  10007251:  PUSH EDX\n  10007252:  MOV dword ptr [ESP + 0x1c],EAX\n  10007256:  FSTP dword ptr [ESP + 0x44]\n  1000725a:  MOV ECX,dword ptr [ESP + 0x44]\n  1000725e:  FSTP dword ptr [ESP + 0x18]\n  10007262:  MOV dword ptr [ESP + 0x20],ECX\n  10007266:  LEA ECX,[ESP + 0x24]\n  1000726a:  CALL 0x10001080\n  1000726f:  MOV ECX,ESI\n  10007271:  CALL 0x100010c0\n  10007276:  INC EBP\n  10007277:  ADD EBX,0x30\n  1000727a:  JMP 0x1000719d\n  1000727f:  POP EDI\n  10007280:  POP ESI\n  10007281:  POP EBP\n  10007282:  POP EBX\n  10007283:  ADD ESP,0x30\n  10007286:  RET", 
+  "callers": [
+    {
+      "address": "0x10006b40", 
+      "name": "FUN_10006b40"
+    }
+  ]
+}

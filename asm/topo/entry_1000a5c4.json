@@ -1,0 +1,57 @@
+{
+  "address": "0x1000a5c4", 
+  "size_bytes": 157, 
+  "calling_convention": "__stdcall", 
+  "signature": "int __stdcall entry(undefined4 param_1, int param_2, undefined4 param_3)", 
+  "callees": [
+    {
+      "address": "0x1000a4eb", 
+      "name": "FUN_1000a4eb"
+    }, 
+    {
+      "address": "0x100034a0", 
+      "name": "FUN_100034a0"
+    }, 
+    {
+      "address": "0x1000a4eb", 
+      "name": "FUN_1000a4eb"
+    }, 
+    {
+      "address": "0x1000a4eb", 
+      "name": "FUN_1000a4eb"
+    }
+  ], 
+  "global_refs": [
+    {
+      "address": "0x00000004", 
+      "type": null, 
+      "name": "DAT_00000004"
+    }, 
+    {
+      "address": "0x00000008", 
+      "type": null, 
+      "name": "DAT_00000008"
+    }, 
+    {
+      "address": "0x0000000c", 
+      "type": null, 
+      "name": "DAT_0000000c"
+    }, 
+    {
+      "address": "0x10017f14", 
+      "type": "undefined4", 
+      "name": "DAT_10017f14"
+    }, 
+    {
+      "address": "0x100185fc", 
+      "type": "undefined4", 
+      "name": "DAT_100185fc"
+    }
+  ], 
+  "has_custom_name": true, 
+  "decompiled_c": "\nint entry(undefined4 param_1,int param_2,undefined4 param_3)\n\n{\n  int iVar1;\n  int iVar2;\n  int iVar3;\n  \n  iVar1 = param_2;\n  iVar2 = DAT_10017f14;\n  if (param_2 != 0) {\n    if ((param_2 != 1) && (param_2 != 2)) goto LAB_1000a60c;\n    if ((DAT_100185fc != (code *)0x0) &&\n       (iVar2 = (*DAT_100185fc)(param_1,param_2,param_3), iVar2 == 0)) {\n      return 0;\n    }\n    iVar2 = FUN_1000a4eb(param_1,param_2);\n  }\n  if (iVar2 == 0) {\n    return 0;\n  }\nLAB_1000a60c:\n  iVar2 = FUN_100034a0();\n  if (param_2 == 1) {\n    if (iVar2 != 0) {\n      return iVar2;\n    }\n    FUN_1000a4eb(param_1,0);\n  }\n  if ((param_2 != 0) && (param_2 != 3)) {\n    return iVar2;\n  }\n  iVar3 = FUN_1000a4eb(param_1,param_2);\n  param_2 = iVar2;\n  if (iVar3 == 0) {\n    param_2 = 0;\n  }\n  if (param_2 != 0) {\n    if (DAT_100185fc != (code *)0x0) {\n      iVar2 = (*DAT_100185fc)(param_1,iVar1,param_3);\n      return iVar2;\n    }\n    return param_2;\n  }\n  return 0;\n}\n\n", 
+  "is_thunk": false, 
+  "name": "entry", 
+  "assembly": "  1000a5c4:  PUSH EBP\n  1000a5c5:  MOV EBP,ESP\n  1000a5c7:  PUSH EBX\n  1000a5c8:  MOV EBX,dword ptr [EBP + 0x8]\n  1000a5cb:  PUSH ESI\n  1000a5cc:  MOV ESI,dword ptr [EBP + 0xc]\n  1000a5cf:  PUSH EDI\n  1000a5d0:  MOV EDI,dword ptr [EBP + 0x10]\n  1000a5d3:  TEST ESI,ESI\n  1000a5d5:  JNZ 0x1000a5e0\n  1000a5d7:  CMP dword ptr [0x10017f14],0x0\n  1000a5de:  JMP 0x1000a606\n  1000a5e0:  CMP ESI,0x1\n  1000a5e3:  JZ 0x1000a5ea\n  1000a5e5:  CMP ESI,0x2\n  1000a5e8:  JNZ 0x1000a60c\n  1000a5ea:  MOV EAX,[0x100185fc]\n  1000a5ef:  TEST EAX,EAX\n  1000a5f1:  JZ 0x1000a5fc\n  1000a5f3:  PUSH EDI\n  1000a5f4:  PUSH ESI\n  1000a5f5:  PUSH EBX\n  1000a5f6:  CALL EAX\n  1000a5f8:  TEST EAX,EAX\n  1000a5fa:  JZ 0x1000a608\n  1000a5fc:  PUSH EDI\n  1000a5fd:  PUSH ESI\n  1000a5fe:  PUSH EBX\n  1000a5ff:  CALL 0x1000a4eb\n  1000a604:  TEST EAX,EAX\n  1000a606:  JNZ 0x1000a60c\n  1000a608:  XOR EAX,EAX\n  1000a60a:  JMP 0x1000a65a\n  1000a60c:  PUSH EDI\n  1000a60d:  PUSH ESI\n  1000a60e:  PUSH EBX\n  1000a60f:  CALL 0x100034a0\n  1000a614:  CMP ESI,0x1\n  1000a617:  MOV dword ptr [EBP + 0xc],EAX\n  1000a61a:  JNZ 0x1000a628\n  1000a61c:  TEST EAX,EAX\n  1000a61e:  JNZ 0x1000a657\n  1000a620:  PUSH EDI\n  1000a621:  PUSH EAX\n  1000a622:  PUSH EBX\n  1000a623:  CALL 0x1000a4eb\n  1000a628:  TEST ESI,ESI\n  1000a62a:  JZ 0x1000a631\n  1000a62c:  CMP ESI,0x3\n  1000a62f:  JNZ 0x1000a657\n  1000a631:  PUSH EDI\n  1000a632:  PUSH ESI\n  1000a633:  PUSH EBX\n  1000a634:  CALL 0x1000a4eb\n  1000a639:  TEST EAX,EAX\n  1000a63b:  JNZ 0x1000a640\n  1000a63d:  AND dword ptr [EBP + 0xc],EAX\n  1000a640:  CMP dword ptr [EBP + 0xc],0x0\n  1000a644:  JZ 0x1000a657\n  1000a646:  MOV EAX,[0x100185fc]\n  1000a64b:  TEST EAX,EAX\n  1000a64d:  JZ 0x1000a657\n  1000a64f:  PUSH EDI\n  1000a650:  PUSH ESI\n  1000a651:  PUSH EBX\n  1000a652:  CALL EAX\n  1000a654:  MOV dword ptr [EBP + 0xc],EAX\n  1000a657:  MOV EAX,dword ptr [EBP + 0xc]\n  1000a65a:  POP EDI\n  1000a65b:  POP ESI\n  1000a65c:  POP EBX\n  1000a65d:  POP EBP\n  1000a65e:  RET 0xc", 
+  "callers": []
+}

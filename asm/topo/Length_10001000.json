@@ -1,0 +1,23 @@
+{
+  "address": "0x10001000", 
+  "size_bytes": 33, 
+  "calling_convention": "__thiscall", 
+  "signature": "float __thiscall Length(gbVec3D * this)", 
+  "callees": [], 
+  "global_refs": [], 
+  "has_custom_name": true, 
+  "decompiled_c": "\n/* public: float __thiscall gbVec3D::Length(void)const  */\n\nfloat __thiscall gbVec3D::Length(gbVec3D *this)\n\n{\n                    /* 0x1000  56  ?Length@gbVec3D@@QBEMXZ */\n  return SQRT(*(float *)(this + 8) * *(float *)(this + 8) +\n              *(float *)(this + 4) * *(float *)(this + 4) + *(float *)this * *(float *)this);\n}\n\n", 
+  "is_thunk": false, 
+  "name": "Length", 
+  "assembly": "  10001000:  FLD dword ptr [ECX + 0x8]\n  10001003:  FLD dword ptr [ECX + 0x4]\n  10001006:  FLD dword ptr [ECX]\n  10001008:  FLD ST0\n  1000100a:  FMUL ST1\n  1000100c:  FLD ST2\n  1000100e:  FMUL ST3\n  10001010:  FADDP\n  10001012:  FLD ST3\n  10001014:  FMUL ST4\n  10001016:  FADDP\n  10001018:  FSQRT\n  1000101a:  FSTP ST3\n  1000101c:  FSTP ST0\n  1000101e:  FSTP ST0\n  10001020:  RET", 
+  "callers": [
+    {
+      "address": "0x100010c0", 
+      "name": "Normalize"
+    }, 
+    {
+      "address": "0x10003590", 
+      "name": "FUN_10003590"
+    }
+  ]
+}

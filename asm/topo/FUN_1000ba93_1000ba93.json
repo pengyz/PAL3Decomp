@@ -1,0 +1,42 @@
+{
+  "address": "0x1000ba93", 
+  "size_bytes": 26, 
+  "calling_convention": "__cdecl", 
+  "signature": "undefined __cdecl FUN_1000ba93(undefined4 * param_1, undefined4 * param_2)", 
+  "callees": [], 
+  "global_refs": [
+    {
+      "address": "0x00000004", 
+      "type": null, 
+      "name": "DAT_00000004"
+    }, 
+    {
+      "address": "0x00000008", 
+      "type": null, 
+      "name": "DAT_00000008"
+    }
+  ], 
+  "has_custom_name": false, 
+  "decompiled_c": "\nvoid __cdecl FUN_1000ba93(undefined4 *param_1,undefined4 *param_2)\n\n{\n  for (; param_1 < param_2; param_1 = param_1 + 1) {\n    if ((code *)*param_1 != (code *)0x0) {\n      (*(code *)*param_1)();\n    }\n  }\n  return;\n}\n\n", 
+  "is_thunk": false, 
+  "name": "FUN_1000ba93", 
+  "assembly": "  1000ba93:  PUSH ESI\n  1000ba94:  MOV ESI,dword ptr [ESP + 0x8]\n  1000ba98:  CMP ESI,dword ptr [ESP + 0xc]\n  1000ba9c:  JNC 0x1000baab\n  1000ba9e:  MOV EAX,dword ptr [ESI]\n  1000baa0:  TEST EAX,EAX\n  1000baa2:  JZ 0x1000baa6\n  1000baa4:  CALL EAX\n  1000baa6:  ADD ESI,0x4\n  1000baa9:  JMP 0x1000ba98\n  1000baab:  POP ESI\n  1000baac:  RET", 
+  "callers": [
+    {
+      "address": "0x1000b98f", 
+      "name": "FUN_1000b98f"
+    }, 
+    {
+      "address": "0x1000b98f", 
+      "name": "FUN_1000b98f"
+    }, 
+    {
+      "address": "0x1000b9dc", 
+      "name": "FUN_1000b9dc"
+    }, 
+    {
+      "address": "0x1000b9dc", 
+      "name": "FUN_1000b9dc"
+    }
+  ]
+}

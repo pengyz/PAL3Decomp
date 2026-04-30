@@ -1,0 +1,72 @@
+{
+  "address": "0x100114e0", 
+  "size_bytes": 257, 
+  "calling_convention": "__cdecl", 
+  "signature": "void * __cdecl FUN_100114e0(byte * param_1, char * param_2, void * param_3)", 
+  "callees": [
+    {
+      "address": "0x1000d408", 
+      "name": "FUN_1000d408"
+    }, 
+    {
+      "address": "0x1000df7e", 
+      "name": "FUN_1000df7e"
+    }, 
+    {
+      "address": "0x1000df7e", 
+      "name": "FUN_1000df7e"
+    }, 
+    {
+      "address": "0x1000d469", 
+      "name": "FUN_1000d469"
+    }
+  ], 
+  "global_refs": [
+    {
+      "address": "0x0000000c", 
+      "type": null, 
+      "name": "DAT_0000000c"
+    }, 
+    {
+      "address": "0x00000004", 
+      "type": null, 
+      "name": "DAT_00000004"
+    }, 
+    {
+      "address": "0x00000008", 
+      "type": null, 
+      "name": "DAT_00000008"
+    }, 
+    {
+      "address": "0x1001811c", 
+      "type": null, 
+      "name": "DAT_1001811c"
+    }, 
+    {
+      "address": "0x10018124", 
+      "type": "undefined4", 
+      "name": "DAT_10018124"
+    }, 
+    {
+      "address": "0x10018284", 
+      "type": null, 
+      "name": "DAT_10018284"
+    }, 
+    {
+      "address": "0x10018280", 
+      "type": "undefined4", 
+      "name": "DAT_10018280"
+    }, 
+    {
+      "address": "0x-0000014", 
+      "type": null, 
+      "name": "DAT_-0000014"
+    }
+  ], 
+  "has_custom_name": false, 
+  "decompiled_c": "\n/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */\n\nvoid * __cdecl FUN_100114e0(byte *param_1,char *param_2,void *param_3)\n\n{\n  char cVar1;\n  int iVar2;\n  byte bVar3;\n  ushort uVar4;\n  uint uVar5;\n  void *this;\n  uint uVar6;\n  bool bVar7;\n  uint uVar8;\n  \n  iVar2 = _DAT_10018284;\n  if (param_3 != (void *)0x0) {\n    if (DAT_10018124 == 0) {\n      do {\n        bVar3 = *param_1;\n        cVar1 = *param_2;\n        uVar4 = CONCAT11(bVar3,cVar1);\n        if (bVar3 == 0) break;\n        uVar4 = CONCAT11(bVar3,cVar1);\n        uVar6 = (uint)uVar4;\n        if (cVar1 == '\\0') break;\n        param_1 = param_1 + 1;\n        param_2 = param_2 + 1;\n        if ((0x40 < bVar3) && (bVar3 < 0x5b)) {\n          uVar6 = (uint)CONCAT11(bVar3 + 0x20,cVar1);\n        }\n        uVar4 = (ushort)uVar6;\n        bVar3 = (byte)uVar6;\n        if ((0x40 < bVar3) && (bVar3 < 0x5b)) {\n          uVar4 = (ushort)CONCAT31((int3)(uVar6 >> 8),bVar3 + 0x20);\n        }\n        bVar3 = (byte)(uVar4 >> 8);\n        bVar7 = bVar3 < (byte)uVar4;\n        if (bVar3 != (byte)uVar4) goto LAB_1001153f;\n        param_3 = (void *)((int)param_3 + -1);\n      } while (param_3 != (void *)0x0);\n      param_3 = (void *)0x0;\n      bVar3 = (byte)(uVar4 >> 8);\n      bVar7 = bVar3 < (byte)uVar4;\n      if (bVar3 != (byte)uVar4) {\nLAB_1001153f:\n        param_3 = (void *)0xffffffff;\n        if (!bVar7) {\n          param_3 = (void *)0x1;\n        }\n      }\n    }\n    else {\n      LOCK();\n      _DAT_10018284 = _DAT_10018284 + 1;\n      UNLOCK();\n      bVar7 = 0 < DAT_10018280;\n      if (bVar7) {\n        LOCK();\n        UNLOCK();\n        _DAT_10018284 = iVar2;\n        FUN_1000d408(0x13);\n      }\n      uVar8 = (uint)bVar7;\n      uVar5 = 0;\n      uVar6 = 0;\n      do {\n        uVar5 = CONCAT31((int3)(uVar5 >> 8),*param_1);\n        uVar6 = CONCAT31((int3)(uVar6 >> 8),*param_2);\n        if ((uVar5 == 0) || (uVar6 == 0)) break;\n        param_1 = param_1 + 1;\n        param_2 = param_2 + 1;\n        uVar6 = FUN_1000df7e(param_3,uVar6);\n        uVar5 = FUN_1000df7e(this,uVar5);\n        bVar7 = uVar5 < uVar6;\n        if (uVar5 != uVar6) goto LAB_100115b5;\n        param_3 = (void *)((int)param_3 + -1);\n      } while (param_3 != (void *)0x0);\n      param_3 = (void *)0x0;\n      bVar7 = uVar5 < uVar6;\n      if (uVar5 != uVar6) {\nLAB_100115b5:\n        param_3 = (void *)0xffffffff;\n        if (!bVar7) {\n          param_3 = (void *)0x1;\n        }\n      }\n      if (uVar8 == 0) {\n        LOCK();\n        _DAT_10018284 = _DAT_10018284 + -1;\n        UNLOCK();\n      }\n      else {\n        FUN_1000d469(0x13);\n      }\n    }\n  }\n  return param_3;\n}\n\n", 
+  "is_thunk": false, 
+  "name": "FUN_100114e0", 
+  "assembly": "  100114e0:  PUSH EBP\n  100114e1:  MOV EBP,ESP\n  100114e3:  PUSH EDI\n  100114e4:  PUSH ESI\n  100114e5:  PUSH EBX\n  100114e6:  MOV ECX,dword ptr [EBP + 0x10]\n  100114e9:  OR ECX,ECX\n  100114eb:  JZ 0x100115da\n  100114f1:  MOV ESI,dword ptr [EBP + 0x8]\n  100114f4:  MOV EDI,dword ptr [EBP + 0xc]\n  100114f7:  LEA EAX,[0x1001811c]\n  100114fd:  CMP dword ptr [EAX + 0x8],0x0\n  10011501:  JNZ 0x10011551\n  10011503:  MOV BH,0x41\n  10011505:  MOV BL,0x5a\n  10011507:  MOV DH,0x20\n  10011509:  LEA ECX,[ECX]\n  1001150c:  MOV AH,byte ptr [ESI]\n  1001150e:  OR AH,AH\n  10011510:  MOV AL,byte ptr [EDI]\n  10011512:  JZ 0x10011535\n  10011514:  OR AL,AL\n  10011516:  JZ 0x10011535\n  10011518:  INC ESI\n  10011519:  INC EDI\n  1001151a:  CMP AH,BH\n  1001151c:  JC 0x10011524\n  1001151e:  CMP AH,BL\n  10011520:  JA 0x10011524\n  10011522:  ADD AH,DH\n  10011524:  CMP AL,BH\n  10011526:  JC 0x1001152e\n  10011528:  CMP AL,BL\n  1001152a:  JA 0x1001152e\n  1001152c:  ADD AL,DH\n  1001152e:  CMP AH,AL\n  10011530:  JNZ 0x1001153f\n  10011532:  DEC ECX\n  10011533:  JNZ 0x1001150c\n  10011535:  XOR ECX,ECX\n  10011537:  CMP AH,AL\n  10011539:  JZ 0x100115da\n  1001153f:  MOV ECX,0xffffffff\n  10011544:  JC 0x100115da\n  1001154a:  NEG ECX\n  1001154c:  JMP 0x100115da\n  10011551:  INC.LOCK dword ptr [0x10018284]\n  10011558:  CMP dword ptr [0x10018280],0x0\n  1001155f:  JG 0x10011565\n  10011561:  PUSH 0x0\n  10011563:  JMP 0x1001157e\n  10011565:  DEC.LOCK dword ptr [0x10018284]\n  1001156c:  MOV EBX,ECX\n  1001156e:  PUSH 0x13\n  10011570:  CALL 0x1000d408\n  10011575:  MOV dword ptr [ESP],0x1\n  1001157c:  MOV ECX,EBX\n  1001157e:  XOR EAX,EAX\n  10011580:  XOR EBX,EBX\n  10011582:  MOV EDI,EDI\n  10011584:  MOV AL,byte ptr [ESI]\n  10011586:  OR EAX,EAX\n  10011588:  MOV BL,byte ptr [EDI]\n  1001158a:  JZ 0x100115af\n  1001158c:  OR EBX,EBX\n  1001158e:  JZ 0x100115af\n  10011590:  INC ESI\n  10011591:  INC EDI\n  10011592:  PUSH ECX\n  10011593:  PUSH EAX\n  10011594:  PUSH EBX\n  10011595:  CALL 0x1000df7e\n  1001159a:  MOV EBX,EAX\n  1001159c:  ADD ESP,0x4\n  1001159f:  CALL 0x1000df7e\n  100115a4:  ADD ESP,0x4\n  100115a7:  POP ECX\n  100115a8:  CMP EAX,EBX\n  100115aa:  JNZ 0x100115b5\n  100115ac:  DEC ECX\n  100115ad:  JNZ 0x10011584\n  100115af:  XOR ECX,ECX\n  100115b1:  CMP EAX,EBX\n  100115b3:  JZ 0x100115be\n  100115b5:  MOV ECX,0xffffffff\n  100115ba:  JC 0x100115be\n  100115bc:  NEG ECX\n  100115be:  POP EAX\n  100115bf:  OR EAX,EAX\n  100115c1:  JNZ 0x100115cc\n  100115c3:  DEC.LOCK dword ptr [0x10018284]\n  100115ca:  JMP 0x100115da\n  100115cc:  MOV EBX,ECX\n  100115ce:  PUSH 0x13\n  100115d0:  CALL 0x1000d469\n  100115d5:  ADD ESP,0x4\n  100115d8:  MOV ECX,EBX\n  100115da:  MOV EAX,ECX\n  100115dc:  POP EBX\n  100115dd:  POP ESI\n  100115de:  POP EDI\n  100115df:  LEAVE\n  100115e0:  RET", 
+  "callers": []
+}

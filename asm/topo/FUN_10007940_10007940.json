@@ -1,0 +1,30 @@
+{
+  "address": "0x10007940", 
+  "size_bytes": 176, 
+  "calling_convention": "__fastcall", 
+  "signature": "undefined __fastcall FUN_10007940(int param_1)", 
+  "callees": [], 
+  "global_refs": [
+    {
+      "address": "0x-0000008", 
+      "type": null, 
+      "name": "DAT_-0000008"
+    }, 
+    {
+      "address": "0x-0000004", 
+      "type": null, 
+      "name": "DAT_-0000004"
+    }
+  ], 
+  "has_custom_name": false, 
+  "decompiled_c": "\nvoid __fastcall FUN_10007940(int param_1)\n\n{\n  int iVar1;\n  int *piVar2;\n  int *piVar3;\n  int *piVar4;\n  int *piVar5;\n  int iVar6;\n  \n  piVar5 = *(int **)(param_1 + 8);\n  if (piVar5 != *(int **)(param_1 + 0xc)) {\n    do {\n      if (((*piVar5 == piVar5[1]) || (piVar5[1] == piVar5[2])) || (piVar5[2] == *piVar5)) {\n        piVar2 = *(int **)(param_1 + 0xc);\n        if (piVar5 + 0xc != piVar2) {\n          piVar4 = piVar5 + 0x17;\n          do {\n            piVar3 = piVar4 + -0x17;\n            iVar6 = 3;\n            iVar1 = (int)piVar4 + (-0x2c - (int)piVar3);\n            do {\n              *piVar3 = *(int *)(iVar1 + (int)piVar3);\n              piVar3 = piVar3 + 1;\n              iVar6 = iVar6 + -1;\n            } while (iVar6 != 0);\n            piVar3 = piVar4 + -0x14;\n            iVar6 = 3;\n            do {\n              *piVar3 = *(int *)((int)piVar3 + iVar1);\n              piVar3[1] = *(int *)((int)piVar3 + iVar1 + 4);\n              piVar3 = piVar3 + 2;\n              iVar6 = iVar6 + -1;\n            } while (iVar6 != 0);\n            piVar4[-0xe] = piVar4[-2];\n            piVar4[-0xd] = piVar4[-1];\n            piVar4[-0xc] = *piVar4;\n            piVar3 = piVar4 + 1;\n            piVar4 = piVar4 + 0xc;\n          } while (piVar3 != piVar2);\n        }\n        *(int *)(param_1 + 0xc) = *(int *)(param_1 + 0xc) + -0x30;\n      }\n      else {\n        piVar5 = piVar5 + 0xc;\n      }\n    } while (piVar5 != *(int **)(param_1 + 0xc));\n  }\n  return;\n}\n\n", 
+  "is_thunk": false, 
+  "name": "FUN_10007940", 
+  "assembly": "  10007940:  SUB ESP,0x8\n  10007943:  MOV EAX,dword ptr [ECX + 0xc]\n  10007946:  PUSH EBX\n  10007947:  MOV EBX,dword ptr [ECX + 0x8]\n  1000794a:  MOV dword ptr [ESP + 0x4],ECX\n  1000794e:  CMP EBX,EAX\n  10007950:  JZ 0x100079eb\n  10007956:  PUSH EBP\n  10007957:  PUSH ESI\n  10007958:  PUSH EDI\n  10007959:  MOV ESI,dword ptr [EBX]\n  1000795b:  MOV EAX,dword ptr [EBX + 0x4]\n  1000795e:  CMP ESI,EAX\n  10007960:  JZ 0x10007972\n  10007962:  MOV EDX,dword ptr [EBX + 0x8]\n  10007965:  CMP EAX,EDX\n  10007967:  JZ 0x10007972\n  10007969:  CMP EDX,ESI\n  1000796b:  JZ 0x10007972\n  1000796d:  ADD EBX,0x30\n  10007970:  JMP 0x100079df\n  10007972:  MOV EBP,dword ptr [ECX + 0xc]\n  10007975:  LEA EAX,[EBX + 0x30]\n  10007978:  CMP EAX,EBP\n  1000797a:  JZ 0x100079d2\n  1000797c:  LEA EDX,[EBX + 0x5c]\n  1000797f:  LEA EAX,[EDX + -0x5c]\n  10007982:  MOV ECX,EDX\n  10007984:  SUB ECX,EAX\n  10007986:  MOV EDI,0x3\n  1000798b:  LEA ESI,[ECX + -0x2c]\n  1000798e:  MOV ECX,dword ptr [ESI + EAX*0x1]\n  10007991:  MOV dword ptr [EAX],ECX\n  10007993:  ADD EAX,0x4\n  10007996:  DEC EDI\n  10007997:  JNZ 0x1000798e\n  10007999:  LEA EAX,[EDX + -0x50]\n  1000799c:  MOV EDI,0x3\n  100079a1:  MOV ECX,dword ptr [EAX + ESI*0x1]\n  100079a4:  MOV dword ptr [EAX],ECX\n  100079a6:  MOV ECX,dword ptr [EAX + ESI*0x1 + 0x4]\n  100079aa:  MOV dword ptr [EAX + 0x4],ECX\n  100079ad:  ADD EAX,0x8\n  100079b0:  DEC EDI\n  100079b1:  JNZ 0x100079a1\n  100079b3:  MOV EAX,dword ptr [EDX + -0x8]\n  100079b6:  MOV dword ptr [EDX + -0x38],EAX\n  100079b9:  MOV ECX,dword ptr [EDX + -0x4]\n  100079bc:  MOV dword ptr [EDX + -0x34],ECX\n  100079bf:  MOV EAX,dword ptr [EDX]\n  100079c1:  MOV dword ptr [EDX + -0x30],EAX\n  100079c4:  ADD EDX,0x30\n  100079c7:  LEA ECX,[EDX + -0x2c]\n  100079ca:  CMP ECX,EBP\n  100079cc:  JNZ 0x1000797f\n  100079ce:  MOV ECX,dword ptr [ESP + 0x10]\n  100079d2:  MOV EAX,dword ptr [ECX + 0xc]\n  100079d5:  ADD EAX,-0x30\n  100079d8:  MOV dword ptr [ESP + 0x14],EAX\n  100079dc:  MOV dword ptr [ECX + 0xc],EAX\n  100079df:  CMP EBX,dword ptr [ECX + 0xc]\n  100079e2:  JNZ 0x10007959\n  100079e8:  POP EDI\n  100079e9:  POP ESI\n  100079ea:  POP EBP\n  100079eb:  POP EBX\n  100079ec:  ADD ESP,0x8\n  100079ef:  RET", 
+  "callers": [
+    {
+      "address": "0x10006b40", 
+      "name": "FUN_10006b40"
+    }
+  ]
+}

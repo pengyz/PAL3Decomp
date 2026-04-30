@@ -1,0 +1,35 @@
+{
+  "address": "0x100090c0", 
+  "size_bytes": 55, 
+  "calling_convention": "__stdcall", 
+  "signature": "undefined __stdcall FUN_100090c0(int param_1, int param_2)", 
+  "callees": [
+    {
+      "address": "0x10009c7b", 
+      "name": "FUN_10009c7b"
+    }
+  ], 
+  "global_refs": [
+    {
+      "address": "0x00000008", 
+      "type": null, 
+      "name": "DAT_00000008"
+    }, 
+    {
+      "address": "0x00000004", 
+      "type": null, 
+      "name": "DAT_00000004"
+    }
+  ], 
+  "has_custom_name": false, 
+  "decompiled_c": "\nvoid FUN_100090c0(int param_1,int param_2)\n\n{\n  if (param_1 != param_2) {\n    do {\n      FUN_10009c7b(*(undefined **)(param_1 + 4));\n      *(undefined4 *)(param_1 + 4) = 0;\n      *(undefined4 *)(param_1 + 8) = 0;\n      *(undefined4 *)(param_1 + 0xc) = 0;\n      param_1 = param_1 + 0x10;\n    } while (param_1 != param_2);\n  }\n  return;\n}\n\n", 
+  "is_thunk": false, 
+  "name": "FUN_100090c0", 
+  "assembly": "  100090c0:  PUSH EBX\n  100090c1:  MOV EBX,dword ptr [ESP + 0xc]\n  100090c5:  PUSH ESI\n  100090c6:  MOV ESI,dword ptr [ESP + 0xc]\n  100090ca:  CMP ESI,EBX\n  100090cc:  JZ 0x100090f2\n  100090ce:  PUSH EDI\n  100090cf:  XOR EDI,EDI\n  100090d1:  MOV EAX,dword ptr [ESI + 0x4]\n  100090d4:  PUSH EAX\n  100090d5:  MOV dword ptr [ESP + 0x14],EAX\n  100090d9:  CALL 0x10009c7b\n  100090de:  MOV dword ptr [ESI + 0x4],EDI\n  100090e1:  MOV dword ptr [ESI + 0x8],EDI\n  100090e4:  MOV dword ptr [ESI + 0xc],EDI\n  100090e7:  ADD ESI,0x10\n  100090ea:  ADD ESP,0x4\n  100090ed:  CMP ESI,EBX\n  100090ef:  JNZ 0x100090d1\n  100090f1:  POP EDI\n  100090f2:  POP ESI\n  100090f3:  POP EBX\n  100090f4:  RET 0x8", 
+  "callers": [
+    {
+      "address": "0x100075a0", 
+      "name": "FUN_100075a0"
+    }
+  ]
+}

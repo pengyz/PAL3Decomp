@@ -1,0 +1,124 @@
+{
+  "address": "0x10001ab0", 
+  "size_bytes": 407, 
+  "calling_convention": "__thiscall", 
+  "signature": "void __thiscall Invert(gbMatrix4 * this)", 
+  "callees": [
+    {
+      "address": "0x10001110", 
+      "name": "gbMatrix4"
+    }, 
+    {
+      "address": "0x10001120", 
+      "name": "operator="
+    }
+  ], 
+  "global_refs": [
+    {
+      "address": "0x-0000040", 
+      "type": null, 
+      "name": "DAT_-0000040"
+    }, 
+    {
+      "address": "0x-0000034", 
+      "type": null, 
+      "name": "DAT_-0000034"
+    }, 
+    {
+      "address": "0x-0000024", 
+      "type": null, 
+      "name": "DAT_-0000024"
+    }, 
+    {
+      "address": "0x-0000048", 
+      "type": null, 
+      "name": "DAT_-0000048"
+    }, 
+    {
+      "address": "0x-0000044", 
+      "type": null, 
+      "name": "DAT_-0000044"
+    }, 
+    {
+      "address": "0x10012100", 
+      "type": null, 
+      "name": "DAT_10012100"
+    }, 
+    {
+      "address": "0x-000004c", 
+      "type": null, 
+      "name": "DAT_-000004c"
+    }, 
+    {
+      "address": "0x-000003c", 
+      "type": null, 
+      "name": "DAT_-000003c"
+    }, 
+    {
+      "address": "0x-0000038", 
+      "type": null, 
+      "name": "DAT_-0000038"
+    }, 
+    {
+      "address": "0x-0000030", 
+      "type": null, 
+      "name": "DAT_-0000030"
+    }, 
+    {
+      "address": "0x-000002c", 
+      "type": null, 
+      "name": "DAT_-000002c"
+    }, 
+    {
+      "address": "0x-0000028", 
+      "type": null, 
+      "name": "DAT_-0000028"
+    }, 
+    {
+      "address": "0x-0000020", 
+      "type": null, 
+      "name": "DAT_-0000020"
+    }, 
+    {
+      "address": "0x-0000014", 
+      "type": null, 
+      "name": "DAT_-0000014"
+    }, 
+    {
+      "address": "0x-0000004", 
+      "type": null, 
+      "name": "DAT_-0000004"
+    }, 
+    {
+      "address": "0x-000001c", 
+      "type": null, 
+      "name": "DAT_-000001c"
+    }, 
+    {
+      "address": "0x-0000018", 
+      "type": null, 
+      "name": "DAT_-0000018"
+    }, 
+    {
+      "address": "0x-0000010", 
+      "type": null, 
+      "name": "DAT_-0000010"
+    }, 
+    {
+      "address": "0x-000000c", 
+      "type": null, 
+      "name": "DAT_-000000c"
+    }, 
+    {
+      "address": "0x-0000008", 
+      "type": null, 
+      "name": "DAT_-0000008"
+    }
+  ], 
+  "has_custom_name": true, 
+  "decompiled_c": "\n/* public: void __thiscall gbMatrix4::Invert(void) */\n\nvoid __thiscall gbMatrix4::Invert(gbMatrix4 *this)\n\n{\n  float fVar1;\n  float local_40;\n  float local_3c;\n  float local_38;\n  undefined4 local_34;\n  float local_30;\n  float local_2c;\n  float local_28;\n  undefined4 local_24;\n  float local_20;\n  float local_1c;\n  float local_18;\n  undefined4 local_14;\n  float local_10;\n  float local_c;\n  float local_8;\n  undefined4 local_4;\n  \n                    /* 0x1ab0  40  ?Invert@gbMatrix4@@QAEXXZ */\n  gbMatrix4((gbMatrix4 *)&local_40);\n  local_34 = 0;\n  local_24 = 0;\n  local_40 = *(float *)(this + 0x14) * *(float *)(this + 0x28) -\n             *(float *)(this + 0x24) * *(float *)(this + 0x18);\n  fVar1 = *(float *)(this + 0x10) * *(float *)(this + 0x28) -\n          *(float *)(this + 0x20) * *(float *)(this + 0x18);\n  local_20 = *(float *)(this + 0x24) * *(float *)(this + 0x10) -\n             *(float *)(this + 0x20) * *(float *)(this + 0x14);\n  local_18 = 1.0 / (local_20 * *(float *)(this + 8) +\n                   (local_40 * *(float *)this - fVar1 * *(float *)(this + 4)));\n  local_40 = local_40 * local_18;\n  local_3c = -((*(float *)(this + 4) * *(float *)(this + 0x28) -\n               *(float *)(this + 0x24) * *(float *)(this + 8)) * local_18);\n  local_38 = (*(float *)(this + 4) * *(float *)(this + 0x18) -\n             *(float *)(this + 8) * *(float *)(this + 0x14)) * local_18;\n  local_30 = -(fVar1 * local_18);\n  local_2c = (*(float *)this * *(float *)(this + 0x28) -\n             *(float *)(this + 0x20) * *(float *)(this + 8)) * local_18;\n  local_28 = -((*(float *)this * *(float *)(this + 0x18) -\n               *(float *)(this + 0x10) * *(float *)(this + 8)) * local_18);\n  local_20 = local_20 * local_18;\n  local_14 = 0;\n  local_4 = 0x3f800000;\n  local_1c = -((*(float *)(this + 0x24) * *(float *)this -\n               *(float *)(this + 0x20) * *(float *)(this + 4)) * local_18);\n  local_18 = (*(float *)(this + 0x14) * *(float *)this -\n             *(float *)(this + 0x10) * *(float *)(this + 4)) * local_18;\n  local_10 = -(local_30 * *(float *)(this + 0x34) +\n              local_20 * *(float *)(this + 0x38) + local_40 * *(float *)(this + 0x30));\n  local_c = -(local_2c * *(float *)(this + 0x34) +\n             local_1c * *(float *)(this + 0x38) + local_3c * *(float *)(this + 0x30));\n  local_8 = -(local_28 * *(float *)(this + 0x34) +\n             local_18 * *(float *)(this + 0x38) + local_38 * *(float *)(this + 0x30));\n  operator=(this,(gbMatrix4 *)&local_40);\n  return;\n}\n\n", 
+  "is_thunk": false, 
+  "name": "Invert", 
+  "assembly": "  10001ab0:  SUB ESP,0x4c\n  10001ab3:  PUSH ESI\n  10001ab4:  MOV ESI,ECX\n  10001ab6:  LEA ECX,[ESP + 0x10]\n  10001aba:  CALL 0x10001110\n  10001abf:  FLD dword ptr [ESI + 0x14]\n  10001ac2:  FMUL dword ptr [ESI + 0x28]\n  10001ac5:  FLD dword ptr [ESI + 0x24]\n  10001ac8:  FMUL dword ptr [ESI + 0x18]\n  10001acb:  MOV dword ptr [ESP + 0x1c],0x0\n  10001ad3:  MOV dword ptr [ESP + 0x2c],0x0\n  10001adb:  FSUBP\n  10001add:  FLD dword ptr [ESI + 0x10]\n  10001ae0:  FMUL dword ptr [ESI + 0x28]\n  10001ae3:  FLD dword ptr [ESI + 0x20]\n  10001ae6:  FMUL dword ptr [ESI + 0x18]\n  10001ae9:  FSUBP\n  10001aeb:  FSTP dword ptr [ESP + 0x8]\n  10001aef:  FLD dword ptr [ESI + 0x24]\n  10001af2:  FMUL dword ptr [ESI + 0x10]\n  10001af5:  FLD dword ptr [ESI + 0x20]\n  10001af8:  FMUL dword ptr [ESI + 0x14]\n  10001afb:  FSUBP\n  10001afd:  FSTP dword ptr [ESP + 0xc]\n  10001b01:  FLD ST0\n  10001b03:  FMUL dword ptr [ESI]\n  10001b05:  FLD dword ptr [ESP + 0x8]\n  10001b09:  FMUL dword ptr [ESI + 0x4]\n  10001b0c:  FSUBP\n  10001b0e:  FLD dword ptr [ESP + 0xc]\n  10001b12:  FMUL dword ptr [ESI + 0x8]\n  10001b15:  FADDP\n  10001b17:  FDIVR dword ptr [0x10012100]\n  10001b1d:  FSTP dword ptr [ESP + 0x4]\n  10001b21:  FMUL dword ptr [ESP + 0x4]\n  10001b25:  FSTP dword ptr [ESP + 0x10]\n  10001b29:  FLD dword ptr [ESI + 0x4]\n  10001b2c:  FMUL dword ptr [ESI + 0x28]\n  10001b2f:  FLD dword ptr [ESI + 0x24]\n  10001b32:  FMUL dword ptr [ESI + 0x8]\n  10001b35:  FSUBP\n  10001b37:  FMUL dword ptr [ESP + 0x4]\n  10001b3b:  FCHS\n  10001b3d:  FSTP dword ptr [ESP + 0x14]\n  10001b41:  FLD dword ptr [ESI + 0x4]\n  10001b44:  FMUL dword ptr [ESI + 0x18]\n  10001b47:  FLD dword ptr [ESI + 0x8]\n  10001b4a:  FMUL dword ptr [ESI + 0x14]\n  10001b4d:  FSUBP\n  10001b4f:  FMUL dword ptr [ESP + 0x4]\n  10001b53:  FSTP dword ptr [ESP + 0x18]\n  10001b57:  FLD dword ptr [ESP + 0x8]\n  10001b5b:  FMUL dword ptr [ESP + 0x4]\n  10001b5f:  FCHS\n  10001b61:  FSTP dword ptr [ESP + 0x20]\n  10001b65:  FLD dword ptr [ESI]\n  10001b67:  FMUL dword ptr [ESI + 0x28]\n  10001b6a:  FLD dword ptr [ESI + 0x20]\n  10001b6d:  FMUL dword ptr [ESI + 0x8]\n  10001b70:  FSUBP\n  10001b72:  FMUL dword ptr [ESP + 0x4]\n  10001b76:  FSTP dword ptr [ESP + 0x24]\n  10001b7a:  FLD dword ptr [ESI]\n  10001b7c:  FMUL dword ptr [ESI + 0x18]\n  10001b7f:  FLD dword ptr [ESI + 0x10]\n  10001b82:  FMUL dword ptr [ESI + 0x8]\n  10001b85:  FSUBP\n  10001b87:  FMUL dword ptr [ESP + 0x4]\n  10001b8b:  FCHS\n  10001b8d:  FSTP dword ptr [ESP + 0x28]\n  10001b91:  FLD dword ptr [ESP + 0xc]\n  10001b95:  FMUL dword ptr [ESP + 0x4]\n  10001b99:  FSTP dword ptr [ESP + 0x30]\n  10001b9d:  FLD dword ptr [ESI + 0x24]\n  10001ba0:  FMUL dword ptr [ESI]\n  10001ba2:  FLD dword ptr [ESI + 0x20]\n  10001ba5:  FMUL dword ptr [ESI + 0x4]\n  10001ba8:  FSUBP\n  10001baa:  LEA EAX,[ESP + 0x10]\n  10001bae:  MOV ECX,ESI\n  10001bb0:  PUSH EAX\n  10001bb1:  MOV dword ptr [ESP + 0x40],0x0\n  10001bb9:  FMUL dword ptr [ESP + 0x8]\n  10001bbd:  MOV dword ptr [ESP + 0x50],0x3f800000\n  10001bc5:  FCHS\n  10001bc7:  FSTP dword ptr [ESP + 0x38]\n  10001bcb:  FLD dword ptr [ESI + 0x14]\n  10001bce:  FMUL dword ptr [ESI]\n  10001bd0:  FLD dword ptr [ESI + 0x10]\n  10001bd3:  FMUL dword ptr [ESI + 0x4]\n  10001bd6:  FSUBP\n  10001bd8:  FMUL dword ptr [ESP + 0x8]\n  10001bdc:  FSTP dword ptr [ESP + 0x3c]\n  10001be0:  FLD dword ptr [ESP + 0x14]\n  10001be4:  FMUL dword ptr [ESI + 0x30]\n  10001be7:  FLD dword ptr [ESP + 0x34]\n  10001beb:  FMUL dword ptr [ESI + 0x38]\n  10001bee:  FADDP\n  10001bf0:  FLD dword ptr [ESP + 0x24]\n  10001bf4:  FMUL dword ptr [ESI + 0x34]\n  10001bf7:  FADDP\n  10001bf9:  FCHS\n  10001bfb:  FSTP dword ptr [ESP + 0x44]\n  10001bff:  FLD dword ptr [ESP + 0x18]\n  10001c03:  FMUL dword ptr [ESI + 0x30]\n  10001c06:  FLD dword ptr [ESP + 0x38]\n  10001c0a:  FMUL dword ptr [ESI + 0x38]\n  10001c0d:  FADDP\n  10001c0f:  FLD dword ptr [ESP + 0x28]\n  10001c13:  FMUL dword ptr [ESI + 0x34]\n  10001c16:  FADDP\n  10001c18:  FCHS\n  10001c1a:  FSTP dword ptr [ESP + 0x48]\n  10001c1e:  FLD dword ptr [ESP + 0x1c]\n  10001c22:  FMUL dword ptr [ESI + 0x30]\n  10001c25:  FLD dword ptr [ESP + 0x3c]\n  10001c29:  FMUL dword ptr [ESI + 0x38]\n  10001c2c:  FADDP\n  10001c2e:  FLD dword ptr [ESP + 0x2c]\n  10001c32:  FMUL dword ptr [ESI + 0x34]\n  10001c35:  FADDP\n  10001c37:  FCHS\n  10001c39:  FSTP dword ptr [ESP + 0x4c]\n  10001c3d:  CALL 0x10001120\n  10001c42:  POP ESI\n  10001c43:  ADD ESP,0x4c\n  10001c46:  RET", 
+  "callers": []
+}

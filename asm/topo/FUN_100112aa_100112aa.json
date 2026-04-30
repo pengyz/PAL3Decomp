@@ -1,0 +1,79 @@
+{
+  "address": "0x100112aa", 
+  "size_bytes": 124, 
+  "calling_convention": "__cdecl", 
+  "signature": "undefined __cdecl FUN_100112aa(int * param_1, uint param_2, int param_3)", 
+  "callees": [
+    {
+      "address": "0x1001108a", 
+      "name": "FUN_1001108a"
+    }
+  ], 
+  "global_refs": [
+    {
+      "address": "0x10017af0", 
+      "type": null, 
+      "name": "DAT_10017af0"
+    }, 
+    {
+      "address": "0x00000008", 
+      "type": null, 
+      "name": "DAT_00000008"
+    }, 
+    {
+      "address": "0x10017c50", 
+      "type": null, 
+      "name": "DAT_10017c50"
+    }, 
+    {
+      "address": "0x0000000c", 
+      "type": null, 
+      "name": "DAT_0000000c"
+    }, 
+    {
+      "address": "0x00000004", 
+      "type": null, 
+      "name": "DAT_00000004"
+    }, 
+    {
+      "address": "0x10017c44", 
+      "type": null, 
+      "name": "DAT_10017c44"
+    }, 
+    {
+      "address": "0x-0000010", 
+      "type": null, 
+      "name": "DAT_-0000010"
+    }, 
+    {
+      "address": "0x10017c48", 
+      "type": null, 
+      "name": "DAT_10017c48"
+    }, 
+    {
+      "address": "0x10017c4c", 
+      "type": null, 
+      "name": "DAT_10017c4c"
+    }, 
+    {
+      "address": "0x-000000e", 
+      "type": null, 
+      "name": "DAT_-000000e"
+    }
+  ], 
+  "has_custom_name": false, 
+  "decompiled_c": "\nvoid __cdecl FUN_100112aa(int *param_1,uint param_2,int param_3)\n\n{\n  uint uVar1;\n  uint uVar2;\n  undefined **ppuVar3;\n  undefined **ppuVar4;\n  undefined2 local_10;\n  undefined4 local_e;\n  undefined2 uStack_a;\n  undefined *puStack_8;\n  \n  ppuVar3 = &PTR_s_November_10017a90;\n  if (param_2 != 0) {\n    if ((int)param_2 < 0) {\n      param_2 = -param_2;\n      ppuVar3 = (undefined **)0x10017bf0;\n    }\n    if (param_3 == 0) {\n      *(undefined2 *)param_1 = 0;\n    }\n    while (param_2 != 0) {\n      ppuVar3 = ppuVar3 + 0x15;\n      uVar1 = (int)param_2 >> 3;\n      uVar2 = param_2 & 7;\n      param_2 = uVar1;\n      if (uVar2 != 0) {\n        ppuVar4 = ppuVar3 + uVar2 * 3;\n        if (0x7fff < *(ushort *)(ppuVar3 + uVar2 * 3)) {\n          local_10 = SUB42(*ppuVar4,0);\n          local_e._0_2_ = (undefined2)((uint)*ppuVar4 >> 0x10);\n          local_e._2_2_ = SUB42(ppuVar4[1],0);\n          uStack_a = (undefined2)((uint)ppuVar4[1] >> 0x10);\n          puStack_8 = ppuVar4[2];\n          local_e = CONCAT22(local_e._2_2_,(undefined2)local_e) + -1;\n          ppuVar4 = (undefined **)&local_10;\n        }\n        FUN_1001108a(param_1,(int *)ppuVar4);\n      }\n    }\n  }\n  return;\n}\n\n", 
+  "is_thunk": false, 
+  "name": "FUN_100112aa", 
+  "assembly": "  100112aa:  PUSH EBP\n  100112ab:  MOV EBP,ESP\n  100112ad:  SUB ESP,0xc\n  100112b0:  PUSH EBX\n  100112b1:  MOV EBX,0x10017af0\n  100112b6:  XOR ECX,ECX\n  100112b8:  SUB EBX,0x60\n  100112bb:  CMP dword ptr [EBP + 0xc],ECX\n  100112be:  JZ 0x10011323\n  100112c0:  JGE 0x100112d2\n  100112c2:  MOV EAX,dword ptr [EBP + 0xc]\n  100112c5:  MOV EBX,0x10017c50\n  100112ca:  NEG EAX\n  100112cc:  MOV dword ptr [EBP + 0xc],EAX\n  100112cf:  SUB EBX,0x60\n  100112d2:  CMP dword ptr [EBP + 0x10],ECX\n  100112d5:  JNZ 0x100112dd\n  100112d7:  MOV EAX,dword ptr [EBP + 0x8]\n  100112da:  MOV word ptr [EAX],CX\n  100112dd:  CMP dword ptr [EBP + 0xc],ECX\n  100112e0:  JZ 0x10011323\n  100112e2:  PUSH ESI\n  100112e3:  PUSH EDI\n  100112e4:  MOV EAX,dword ptr [EBP + 0xc]\n  100112e7:  ADD EBX,0x54\n  100112ea:  SAR dword ptr [EBP + 0xc],0x3\n  100112ee:  AND EAX,0x7\n  100112f1:  CMP EAX,ECX\n  100112f3:  JZ 0x1001131c\n  100112f5:  LEA EAX,[EAX + EAX*0x2]\n  100112f8:  CMP word ptr [EBX + EAX*0x4],0x8000\n  100112fe:  LEA ESI,[EBX + EAX*0x4]\n  10011301:  JC 0x1001130f\n  10011303:  LEA EDI,[EBP + -0xc]\n  10011306:  MOVSD ES:EDI,ESI\n  10011307:  MOVSD ES:EDI,ESI\n  10011308:  MOVSD ES:EDI,ESI\n  10011309:  DEC dword ptr [EBP + -0xa]\n  1001130c:  LEA ESI,[EBP + -0xc]\n  1001130f:  PUSH ESI\n  10011310:  PUSH dword ptr [EBP + 0x8]\n  10011313:  CALL 0x1001108a\n  10011318:  POP ECX\n  10011319:  POP ECX\n  1001131a:  XOR ECX,ECX\n  1001131c:  CMP dword ptr [EBP + 0xc],ECX\n  1001131f:  JNZ 0x100112e4\n  10011321:  POP EDI\n  10011322:  POP ESI\n  10011323:  POP EBX\n  10011324:  LEAVE\n  10011325:  RET", 
+  "callers": [
+    {
+      "address": "0x100101d6", 
+      "name": "FUN_100101d6"
+    }, 
+    {
+      "address": "0x100106a7", 
+      "name": "FUN_100106a7"
+    }
+  ]
+}

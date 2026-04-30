@@ -1,0 +1,109 @@
+{
+  "address": "0x1000da76", 
+  "size_bytes": 306, 
+  "calling_convention": "__stdcall", 
+  "signature": "LPSTR __stdcall FUN_1000da76(void)", 
+  "callees": [
+    {
+      "address": "0x00000028", 
+      "name": "GetEnvironmentStringsW"
+    }, 
+    {
+      "address": "0x00000027", 
+      "name": "GetEnvironmentStrings"
+    }, 
+    {
+      "address": "0x00000028", 
+      "name": "GetEnvironmentStringsW"
+    }, 
+    {
+      "address": "0x00000026", 
+      "name": "WideCharToMultiByte"
+    }, 
+    {
+      "address": "0x1000a152", 
+      "name": "_malloc"
+    }, 
+    {
+      "address": "0x00000026", 
+      "name": "WideCharToMultiByte"
+    }, 
+    {
+      "address": "0x1000a28c", 
+      "name": "FUN_1000a28c"
+    }, 
+    {
+      "address": "0x00000025", 
+      "name": "FreeEnvironmentStringsW"
+    }, 
+    {
+      "address": "0x00000027", 
+      "name": "GetEnvironmentStrings"
+    }, 
+    {
+      "address": "0x1000a152", 
+      "name": "_malloc"
+    }, 
+    {
+      "address": "0x1000ee40", 
+      "name": "FUN_1000ee40"
+    }, 
+    {
+      "address": "0x00000024", 
+      "name": "FreeEnvironmentStringsA"
+    }
+  ], 
+  "global_refs": [
+    {
+      "address": "0x100180dc", 
+      "type": "undefined4", 
+      "name": "DAT_100180dc"
+    }, 
+    {
+      "address": "0x1001209c", 
+      "type": "pointer", 
+      "name": "DAT_1001209c"
+    }, 
+    {
+      "address": "0x10012098", 
+      "type": "pointer", 
+      "name": "DAT_10012098"
+    }, 
+    {
+      "address": "0x10012094", 
+      "type": "pointer", 
+      "name": "DAT_10012094"
+    }, 
+    {
+      "address": "0x-0000004", 
+      "type": null, 
+      "name": "DAT_-0000004"
+    }, 
+    {
+      "address": "0x-0000008", 
+      "type": null, 
+      "name": "DAT_-0000008"
+    }, 
+    {
+      "address": "0x10012090", 
+      "type": "pointer", 
+      "name": "DAT_10012090"
+    }, 
+    {
+      "address": "0x1001208c", 
+      "type": "pointer", 
+      "name": "DAT_1001208c"
+    }
+  ], 
+  "has_custom_name": false, 
+  "decompiled_c": "\nLPSTR FUN_1000da76(void)\n\n{\n  char cVar1;\n  WCHAR WVar2;\n  WCHAR *pWVar3;\n  WCHAR *pWVar4;\n  int iVar5;\n  size_t _Size;\n  LPSTR pCVar6;\n  char *pcVar7;\n  LPWCH lpWideCharStr;\n  LPCH pCVar9;\n  LPSTR local_8;\n  char *pcVar8;\n  \n  lpWideCharStr = (LPWCH)0x0;\n  pCVar9 = (LPCH)0x0;\n  if (DAT_100180dc == 0) {\n    lpWideCharStr = GetEnvironmentStringsW();\n    if (lpWideCharStr != (LPWCH)0x0) {\n      DAT_100180dc = 1;\nLAB_1000dacd:\n      if ((lpWideCharStr == (LPWCH)0x0) &&\n         (lpWideCharStr = GetEnvironmentStringsW(), lpWideCharStr == (LPWCH)0x0)) {\n        return (LPSTR)0x0;\n      }\n      WVar2 = *lpWideCharStr;\n      pWVar4 = lpWideCharStr;\n      while (WVar2 != L'\\0') {\n        do {\n          pWVar3 = pWVar4;\n          pWVar4 = pWVar3 + 1;\n        } while (*pWVar4 != L'\\0');\n        pWVar4 = pWVar3 + 2;\n        WVar2 = *pWVar4;\n      }\n      iVar5 = ((int)pWVar4 - (int)lpWideCharStr >> 1) + 1;\n      _Size = WideCharToMultiByte(0,0,lpWideCharStr,iVar5,(LPSTR)0x0,0,(LPCSTR)0x0,(LPBOOL)0x0);\n      local_8 = (LPSTR)0x0;\n      if (((_Size != 0) && (pCVar6 = (LPSTR)_malloc(_Size), pCVar6 != (LPSTR)0x0)) &&\n         (iVar5 = WideCharToMultiByte(0,0,lpWideCharStr,iVar5,pCVar6,_Size,(LPCSTR)0x0,(LPBOOL)0x0),\n         local_8 = pCVar6, iVar5 == 0)) {\n        FUN_1000a28c(pCVar6);\n        local_8 = (LPSTR)0x0;\n      }\n      FreeEnvironmentStringsW(lpWideCharStr);\n      return local_8;\n    }\n    pCVar9 = GetEnvironmentStrings();\n    if (pCVar9 == (LPCH)0x0) {\n      return (LPSTR)0x0;\n    }\n    DAT_100180dc = 2;\n  }\n  else {\n    if (DAT_100180dc == 1) goto LAB_1000dacd;\n    if (DAT_100180dc != 2) {\n      return (LPSTR)0x0;\n    }\n  }\n  if ((pCVar9 == (LPCH)0x0) && (pCVar9 = GetEnvironmentStrings(), pCVar9 == (LPCH)0x0)) {\n    return (LPSTR)0x0;\n  }\n  cVar1 = *pCVar9;\n  pcVar7 = pCVar9;\n  while (cVar1 != '\\0') {\n    do {\n      pcVar8 = pcVar7;\n      pcVar7 = pcVar8 + 1;\n    } while (*pcVar7 != '\\0');\n    pcVar7 = pcVar8 + 2;\n    cVar1 = *pcVar7;\n  }\n  pCVar6 = (LPSTR)_malloc((size_t)(pcVar7 + (1 - (int)pCVar9)));\n  if (pCVar6 == (LPSTR)0x0) {\n    pCVar6 = (LPSTR)0x0;\n  }\n  else {\n    FUN_1000ee40((undefined4 *)pCVar6,(undefined4 *)pCVar9,(uint)(pcVar7 + (1 - (int)pCVar9)));\n  }\n  FreeEnvironmentStringsA(pCVar9);\n  return pCVar6;\n}\n\n", 
+  "is_thunk": false, 
+  "name": "FUN_1000da76", 
+  "assembly": "  1000da76:  PUSH ECX\n  1000da77:  PUSH ECX\n  1000da78:  MOV EAX,[0x100180dc]\n  1000da7d:  PUSH EBX\n  1000da7e:  PUSH EBP\n  1000da7f:  MOV EBP,dword ptr [0x1001209c]\n  1000da85:  PUSH ESI\n  1000da86:  PUSH EDI\n  1000da87:  XOR EBX,EBX\n  1000da89:  XOR ESI,ESI\n  1000da8b:  XOR EDI,EDI\n  1000da8d:  CMP EAX,EBX\n  1000da8f:  JNZ 0x1000dac4\n  1000da91:  CALL EBP\n  1000da93:  MOV ESI,EAX\n  1000da95:  CMP ESI,EBX\n  1000da97:  JZ 0x1000daa5\n  1000da99:  MOV dword ptr [0x100180dc],0x1\n  1000daa3:  JMP 0x1000dacd\n  1000daa5:  CALL dword ptr [0x10012098]\n  1000daab:  MOV EDI,EAX\n  1000daad:  CMP EDI,EBX\n  1000daaf:  JZ 0x1000db9f\n  1000dab5:  MOV dword ptr [0x100180dc],0x2\n  1000dabf:  JMP 0x1000db53\n  1000dac4:  CMP EAX,0x1\n  1000dac7:  JNZ 0x1000db4e\n  1000dacd:  CMP ESI,EBX\n  1000dacf:  JNZ 0x1000dadd\n  1000dad1:  CALL EBP\n  1000dad3:  MOV ESI,EAX\n  1000dad5:  CMP ESI,EBX\n  1000dad7:  JZ 0x1000db9f\n  1000dadd:  CMP word ptr [ESI],BX\n  1000dae0:  MOV EAX,ESI\n  1000dae2:  JZ 0x1000daf2\n  1000dae4:  INC EAX\n  1000dae5:  INC EAX\n  1000dae6:  CMP word ptr [EAX],BX\n  1000dae9:  JNZ 0x1000dae4\n  1000daeb:  INC EAX\n  1000daec:  INC EAX\n  1000daed:  CMP word ptr [EAX],BX\n  1000daf0:  JNZ 0x1000dae4\n  1000daf2:  SUB EAX,ESI\n  1000daf4:  MOV EDI,dword ptr [0x10012094]\n  1000dafa:  SAR EAX,0x1\n  1000dafc:  PUSH EBX\n  1000dafd:  PUSH EBX\n  1000dafe:  INC EAX\n  1000daff:  PUSH EBX\n  1000db00:  PUSH EBX\n  1000db01:  PUSH EAX\n  1000db02:  PUSH ESI\n  1000db03:  PUSH EBX\n  1000db04:  PUSH EBX\n  1000db05:  MOV dword ptr [ESP + 0x34],EAX\n  1000db09:  CALL EDI\n  1000db0b:  MOV EBP,EAX\n  1000db0d:  CMP EBP,EBX\n  1000db0f:  JZ 0x1000db43\n  1000db11:  PUSH EBP\n  1000db12:  CALL 0x1000a152\n  1000db17:  CMP EAX,EBX\n  1000db19:  POP ECX\n  1000db1a:  MOV dword ptr [ESP + 0x10],EAX\n  1000db1e:  JZ 0x1000db43\n  1000db20:  PUSH EBX\n  1000db21:  PUSH EBX\n  1000db22:  PUSH EBP\n  1000db23:  PUSH EAX\n  1000db24:  PUSH dword ptr [ESP + 0x24]\n  1000db28:  PUSH ESI\n  1000db29:  PUSH EBX\n  1000db2a:  PUSH EBX\n  1000db2b:  CALL EDI\n  1000db2d:  TEST EAX,EAX\n  1000db2f:  JNZ 0x1000db3f\n  1000db31:  PUSH dword ptr [ESP + 0x10]\n  1000db35:  CALL 0x1000a28c\n  1000db3a:  POP ECX\n  1000db3b:  MOV dword ptr [ESP + 0x10],EBX\n  1000db3f:  MOV EBX,dword ptr [ESP + 0x10]\n  1000db43:  PUSH ESI\n  1000db44:  CALL dword ptr [0x10012090]\n  1000db4a:  MOV EAX,EBX\n  1000db4c:  JMP 0x1000dba1\n  1000db4e:  CMP EAX,0x2\n  1000db51:  JNZ 0x1000db9f\n  1000db53:  CMP EDI,EBX\n  1000db55:  JNZ 0x1000db63\n  1000db57:  CALL dword ptr [0x10012098]\n  1000db5d:  MOV EDI,EAX\n  1000db5f:  CMP EDI,EBX\n  1000db61:  JZ 0x1000db9f\n  1000db63:  CMP byte ptr [EDI],BL\n  1000db65:  MOV EAX,EDI\n  1000db67:  JZ 0x1000db73\n  1000db69:  INC EAX\n  1000db6a:  CMP byte ptr [EAX],BL\n  1000db6c:  JNZ 0x1000db69\n  1000db6e:  INC EAX\n  1000db6f:  CMP byte ptr [EAX],BL\n  1000db71:  JNZ 0x1000db69\n  1000db73:  SUB EAX,EDI\n  1000db75:  INC EAX\n  1000db76:  MOV EBP,EAX\n  1000db78:  PUSH EBP\n  1000db79:  CALL 0x1000a152\n  1000db7e:  MOV ESI,EAX\n  1000db80:  POP ECX\n  1000db81:  CMP ESI,EBX\n  1000db83:  JNZ 0x1000db89\n  1000db85:  XOR ESI,ESI\n  1000db87:  JMP 0x1000db94\n  1000db89:  PUSH EBP\n  1000db8a:  PUSH EDI\n  1000db8b:  PUSH ESI\n  1000db8c:  CALL 0x1000ee40\n  1000db91:  ADD ESP,0xc\n  1000db94:  PUSH EDI\n  1000db95:  CALL dword ptr [0x1001208c]\n  1000db9b:  MOV EAX,ESI\n  1000db9d:  JMP 0x1000dba1\n  1000db9f:  XOR EAX,EAX\n  1000dba1:  POP EDI\n  1000dba2:  POP ESI\n  1000dba3:  POP EBP\n  1000dba4:  POP EBX\n  1000dba5:  POP ECX\n  1000dba6:  POP ECX\n  1000dba7:  RET", 
+  "callers": [
+    {
+      "address": "0x1000a4eb", 
+      "name": "FUN_1000a4eb"
+    }
+  ]
+}

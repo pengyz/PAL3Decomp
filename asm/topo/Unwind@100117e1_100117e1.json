@@ -1,0 +1,19 @@
+{
+  "address": "0x100117e1", 
+  "size_bytes": 11, 
+  "calling_convention": "__stdcall", 
+  "signature": "undefined __stdcall Unwind@100117e1(void)", 
+  "callees": [
+    {
+      "address": "0x100088a0", 
+      "name": "FUN_100088a0"
+    }
+  ], 
+  "global_refs": [], 
+  "has_custom_name": true, 
+  "decompiled_c": "\nvoid Unwind_100117e1(void)\n\n{\n  int unaff_EBP;\n  \n  FUN_100088a0(*(int *)(unaff_EBP + -0x10) + 0x10);\n  return;\n}\n\n", 
+  "is_thunk": false, 
+  "name": "Unwind@100117e1", 
+  "assembly": "  100117e1:  MOV ECX,dword ptr [EBP + -0x10]\n  100117e4:  ADD ECX,0x10\n  100117e7:  JMP 0x100088a0", 
+  "callers": []
+}

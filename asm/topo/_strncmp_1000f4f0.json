@@ -1,0 +1,35 @@
+{
+  "address": "0x1000f4f0", 
+  "size_bytes": 56, 
+  "calling_convention": "__cdecl", 
+  "signature": "int __cdecl _strncmp(char * _Str1, char * _Str2, size_t _MaxCount)", 
+  "callees": [], 
+  "global_refs": [
+    {
+      "address": "0x0000000c", 
+      "type": null, 
+      "name": "DAT_0000000c"
+    }, 
+    {
+      "address": "0x00000004", 
+      "type": null, 
+      "name": "DAT_00000004"
+    }, 
+    {
+      "address": "0x00000008", 
+      "type": null, 
+      "name": "DAT_00000008"
+    }
+  ], 
+  "has_custom_name": true, 
+  "decompiled_c": "\n/* Library Function - Single Match\n    _strncmp\n   \n   Libraries: Visual Studio 1998 Debug, Visual Studio 1998 Release */\n\nint __cdecl _strncmp(char *_Str1,char *_Str2,size_t _MaxCount)\n\n{\n  char cVar1;\n  char cVar2;\n  size_t sVar3;\n  int iVar4;\n  uint uVar5;\n  char *pcVar6;\n  char *pcVar7;\n  \n  sVar3 = _MaxCount;\n  pcVar6 = _Str1;\n  if (_MaxCount != 0) {\n    do {\n      if (sVar3 == 0) break;\n      sVar3 = sVar3 - 1;\n      cVar1 = *pcVar6;\n      pcVar6 = pcVar6 + 1;\n    } while (cVar1 != '\\0');\n    iVar4 = _MaxCount - sVar3;\n    do {\n      pcVar6 = _Str2;\n      pcVar7 = _Str1;\n      if (iVar4 == 0) break;\n      iVar4 = iVar4 + -1;\n      pcVar7 = _Str1 + 1;\n      pcVar6 = _Str2 + 1;\n      cVar2 = *_Str1;\n      cVar1 = *_Str2;\n      _Str2 = pcVar6;\n      _Str1 = pcVar7;\n    } while (cVar1 == cVar2);\n    uVar5 = 0;\n    if ((byte)pcVar6[-1] <= (byte)pcVar7[-1]) {\n      if (pcVar6[-1] == pcVar7[-1]) {\n        return 0;\n      }\n      uVar5 = 0xfffffffe;\n    }\n    _MaxCount = ~uVar5;\n  }\n  return _MaxCount;\n}\n\n", 
+  "is_thunk": false, 
+  "name": "_strncmp", 
+  "assembly": "  1000f4f0:  PUSH EBP\n  1000f4f1:  MOV EBP,ESP\n  1000f4f3:  PUSH EDI\n  1000f4f4:  PUSH ESI\n  1000f4f5:  PUSH EBX\n  1000f4f6:  MOV ECX,dword ptr [EBP + 0x10]\n  1000f4f9:  JECXZ 0x1000f521\n  1000f4fb:  MOV EBX,ECX\n  1000f4fd:  MOV EDI,dword ptr [EBP + 0x8]\n  1000f500:  MOV ESI,EDI\n  1000f502:  XOR EAX,EAX\n  1000f504:  SCASB.REPNE ES:EDI\n  1000f506:  NEG ECX\n  1000f508:  ADD ECX,EBX\n  1000f50a:  MOV EDI,ESI\n  1000f50c:  MOV ESI,dword ptr [EBP + 0xc]\n  1000f50f:  CMPSB.REPE ES:EDI,ESI\n  1000f511:  MOV AL,byte ptr [ESI + -0x1]\n  1000f514:  XOR ECX,ECX\n  1000f516:  CMP AL,byte ptr [EDI + -0x1]\n  1000f519:  JA 0x1000f51f\n  1000f51b:  JZ 0x1000f521\n  1000f51d:  DEC ECX\n  1000f51e:  DEC ECX\n  1000f51f:  NOT ECX\n  1000f521:  MOV EAX,ECX\n  1000f523:  POP EBX\n  1000f524:  POP ESI\n  1000f525:  POP EDI\n  1000f526:  LEAVE\n  1000f527:  RET", 
+  "callers": [
+    {
+      "address": "0x1000bf12", 
+      "name": "FUN_1000bf12"
+    }
+  ]
+}

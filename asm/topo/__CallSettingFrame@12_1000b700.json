@@ -1,0 +1,53 @@
+{
+  "address": "0x1000b700", 
+  "size_bytes": 76, 
+  "calling_convention": "__stdcall", 
+  "signature": "undefined __stdcall __CallSettingFrame@12(undefined4 param_1, undefined4 param_2, int param_3)", 
+  "callees": [
+    {
+      "address": "0x1000a049", 
+      "name": "__NLG_Notify1"
+    }, 
+    {
+      "address": "0x1000a049", 
+      "name": "__NLG_Notify1"
+    }
+  ], 
+  "global_refs": [
+    {
+      "address": "0x00000008", 
+      "type": null, 
+      "name": "DAT_00000008"
+    }, 
+    {
+      "address": "0x-0000008", 
+      "type": null, 
+      "name": "DAT_-0000008"
+    }, 
+    {
+      "address": "0x00000004", 
+      "type": null, 
+      "name": "DAT_00000004"
+    }, 
+    {
+      "address": "0x0000000c", 
+      "type": null, 
+      "name": "DAT_0000000c"
+    }
+  ], 
+  "has_custom_name": true, 
+  "decompiled_c": "\n/* WARNING: Restarted to delay deadcode elimination for space: stack */\n/* Library Function - Single Match\n    __CallSettingFrame@12\n   \n   Libraries: Visual Studio 2017 Debug, Visual Studio 2017 Release, Visual Studio 2019 Debug, Visual\n   Studio 2019 Release */\n\nvoid __CallSettingFrame_12(undefined4 param_1,undefined4 param_2,int param_3)\n\n{\n  code *pcVar1;\n  \n  pcVar1 = (code *)__NLG_Notify1(param_3);\n  (*pcVar1)();\n  if (param_3 == 0x100) {\n    param_3 = 2;\n  }\n  __NLG_Notify1(param_3);\n  return;\n}\n\n", 
+  "is_thunk": false, 
+  "name": "__CallSettingFrame@12", 
+  "assembly": "  1000b700:  PUSH EBP\n  1000b701:  MOV EBP,ESP\n  1000b703:  SUB ESP,0x4\n  1000b706:  PUSH EBX\n  1000b707:  PUSH ECX\n  1000b708:  MOV EAX,dword ptr [EBP + 0xc]\n  1000b70b:  ADD EAX,0xc\n  1000b70e:  MOV dword ptr [EBP + -0x4],EAX\n  1000b711:  MOV EAX,dword ptr [EBP + 0x8]\n  1000b714:  PUSH EBP\n  1000b715:  PUSH dword ptr [EBP + 0x10]\n  1000b718:  MOV ECX,dword ptr [EBP + 0x10]\n  1000b71b:  MOV EBP,dword ptr [EBP + -0x4]\n  1000b71e:  CALL 0x1000a049\n  1000b723:  PUSH ESI\n  1000b724:  PUSH EDI\n  1000b725:  CALL EAX\n  1000b727:  POP EDI\n  1000b728:  POP ESI\n  1000b729:  MOV EBX,EBP\n  1000b72b:  POP EBP\n  1000b72c:  MOV ECX,dword ptr [EBP + 0x10]\n  1000b72f:  PUSH EBP\n  1000b730:  MOV EBP,EBX\n  1000b732:  CMP ECX,0x100\n  1000b738:  JNZ 0x1000b73f\n  1000b73a:  MOV ECX,0x2\n  1000b73f:  PUSH ECX\n  1000b740:  CALL 0x1000a049\n  1000b745:  POP EBP\n  1000b746:  POP ECX\n  1000b747:  POP EBX\n  1000b748:  LEAVE\n  1000b749:  RET 0xc", 
+  "callers": [
+    {
+      "address": "0x1000b251", 
+      "name": "FUN_1000b251"
+    }, 
+    {
+      "address": "0x10009d5b", 
+      "name": "FUN_10009d5b"
+    }
+  ]
+}

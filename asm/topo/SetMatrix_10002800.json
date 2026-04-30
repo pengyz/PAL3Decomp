@@ -1,0 +1,65 @@
+{
+  "address": "0x10002800", 
+  "size_bytes": 326, 
+  "calling_convention": "__thiscall", 
+  "signature": "void __thiscall SetMatrix(gbQuaternion * this, gbMatrix4 * param_1)", 
+  "callees": [], 
+  "global_refs": [
+    {
+      "address": "0x00000004", 
+      "type": null, 
+      "name": "DAT_00000004"
+    }, 
+    {
+      "address": "0x-0000014", 
+      "type": null, 
+      "name": "DAT_-0000014"
+    }, 
+    {
+      "address": "0x-0000010", 
+      "type": null, 
+      "name": "DAT_-0000010"
+    }, 
+    {
+      "address": "0x-000000c", 
+      "type": null, 
+      "name": "DAT_-000000c"
+    }, 
+    {
+      "address": "0x-0000008", 
+      "type": null, 
+      "name": "DAT_-0000008"
+    }, 
+    {
+      "address": "0x10012130", 
+      "type": null, 
+      "name": "DAT_10012130"
+    }, 
+    {
+      "address": "0x10012128", 
+      "type": null, 
+      "name": "DAT_10012128"
+    }, 
+    {
+      "address": "0x1001210c", 
+      "type": null, 
+      "name": "DAT_1001210c"
+    }, 
+    {
+      "address": "0x10012100", 
+      "type": null, 
+      "name": "DAT_10012100"
+    }, 
+    {
+      "address": "0x-0000004", 
+      "type": null, 
+      "name": "DAT_-0000004"
+    }
+  ], 
+  "has_custom_name": true, 
+  "decompiled_c": "\n/* public: void __thiscall gbQuaternion::SetMatrix(struct gbMatrix4 *) */\n\nvoid __thiscall gbQuaternion::SetMatrix(gbQuaternion *this,gbMatrix4 *param_1)\n\n{\n  float fVar1;\n  float fVar2;\n  float fVar3;\n  uint uVar4;\n  float local_10 [4];\n  \n                    /* 0x2800  86  ?SetMatrix@gbQuaternion@@QAEXPAUgbMatrix4@@@Z */\n  local_10[0] = 1.4013e-45;\n  local_10[1] = 2.8026e-45;\n  local_10[2] = 0.0;\n  fVar1 = *(float *)(param_1 + 0x14) + *(float *)param_1 + *(float *)(param_1 + 0x28);\n  if (0.0 < fVar1) {\n    fVar1 = SQRT(fVar1 + 1.0);\n    *(float *)(this + 0xc) = fVar1 * 0.5;\n    fVar1 = 0.5 / fVar1;\n    *(float *)this = (*(float *)(param_1 + 0x18) - *(float *)(param_1 + 0x24)) * fVar1;\n    *(float *)(this + 4) = (*(float *)(param_1 + 0x20) - *(float *)(param_1 + 8)) * fVar1;\n    *(float *)(this + 8) = (*(float *)(param_1 + 4) - *(float *)(param_1 + 0x10)) * fVar1;\n    return;\n  }\n  uVar4 = (uint)(*(float *)param_1 < *(float *)(param_1 + 0x14));\n  if (*(float *)(param_1 + uVar4 * 0x14) < *(float *)(param_1 + 0x28)) {\n    uVar4 = 2;\n  }\n  fVar1 = local_10[uVar4];\n  fVar2 = local_10[(int)fVar1];\n  fVar3 = SQRT((*(float *)(param_1 + uVar4 * 0x14) -\n               (*(float *)(param_1 + (int)fVar2 * 0x14) + *(float *)(param_1 + (int)fVar1 * 0x14)))\n               + 1.0);\n  local_10[uVar4] = fVar3 * 0.5;\n  if (fVar3 != 0.0) {\n    fVar3 = 0.5 / fVar3;\n  }\n  local_10[3] = (*(float *)(param_1 + ((int)fVar2 + (int)fVar1 * 4) * 4) -\n                *(float *)(param_1 + ((int)fVar1 + (int)fVar2 * 4) * 4)) * fVar3;\n  local_10[(int)fVar1] =\n       (*(float *)(param_1 + (uVar4 + (int)fVar1 * 4) * 4) +\n       *(float *)(param_1 + ((int)fVar1 + uVar4 * 4) * 4)) * fVar3;\n  local_10[(int)fVar2] =\n       (*(float *)(param_1 + (uVar4 + (int)fVar2 * 4) * 4) +\n       *(float *)(param_1 + ((int)fVar2 + uVar4 * 4) * 4)) * fVar3;\n  *(float *)this = local_10[0];\n  *(float *)(this + 4) = local_10[1];\n  *(float *)(this + 8) = local_10[2];\n  *(float *)(this + 0xc) = local_10[3];\n  return;\n}\n\n", 
+  "is_thunk": false, 
+  "name": "SetMatrix", 
+  "assembly": "  10002800:  SUB ESP,0x14\n  10002803:  MOV EDX,dword ptr [ESP + 0x18]\n  10002807:  PUSH ESI\n  10002808:  XOR ESI,ESI\n  1000280a:  MOV dword ptr [ESP + 0x4],ECX\n  1000280e:  FLD dword ptr [EDX + 0x14]\n  10002811:  FADD dword ptr [EDX]\n  10002813:  MOV dword ptr [ESP + 0x8],0x1\n  1000281b:  MOV dword ptr [ESP + 0xc],0x2\n  10002823:  MOV dword ptr [ESP + 0x10],ESI\n  10002827:  FADD dword ptr [EDX + 0x28]\n  1000282a:  FCOM qword ptr [0x10012130]\n  10002830:  FNSTSW AX\n  10002832:  TEST AH,0x41\n  10002835:  JNZ 0x10002879\n  10002837:  FADD qword ptr [0x10012128]\n  1000283d:  POP ESI\n  1000283e:  FSQRT\n  10002840:  FLD ST0\n  10002842:  FMUL dword ptr [0x1001210c]\n  10002848:  FSTP dword ptr [ECX + 0xc]\n  1000284b:  FDIVR dword ptr [0x1001210c]\n  10002851:  FLD dword ptr [EDX + 0x18]\n  10002854:  FSUB dword ptr [EDX + 0x24]\n  10002857:  FMUL ST1\n  10002859:  FSTP dword ptr [ECX]\n  1000285b:  FLD dword ptr [EDX + 0x20]\n  1000285e:  FSUB dword ptr [EDX + 0x8]\n  10002861:  FMUL ST1\n  10002863:  FSTP dword ptr [ECX + 0x4]\n  10002866:  FLD dword ptr [EDX + 0x4]\n  10002869:  FSUB dword ptr [EDX + 0x10]\n  1000286c:  FMUL ST1\n  1000286e:  FSTP dword ptr [ECX + 0x8]\n  10002871:  FSTP ST0\n  10002873:  ADD ESP,0x14\n  10002876:  RET 0x4\n  10002879:  FSTP ST0\n  1000287b:  FLD dword ptr [EDX + 0x14]\n  1000287e:  FCOMP dword ptr [EDX]\n  10002880:  FNSTSW AX\n  10002882:  TEST AH,0x41\n  10002885:  JNZ 0x1000288c\n  10002887:  MOV ESI,0x1\n  1000288c:  FLD dword ptr [EDX + 0x28]\n  1000288f:  LEA EAX,[ESI + ESI*0x4]\n  10002892:  FCOMP dword ptr [EDX + EAX*0x4]\n  10002895:  FNSTSW AX\n  10002897:  TEST AH,0x41\n  1000289a:  JNZ 0x100028a1\n  1000289c:  MOV ESI,0x2\n  100028a1:  PUSH EBX\n  100028a2:  PUSH EBP\n  100028a3:  PUSH EDI\n  100028a4:  MOV EDI,dword ptr [ESP + ESI*0x4 + 0x14]\n  100028a8:  LEA ECX,[ESI + ESI*0x4]\n  100028ab:  MOV EBX,dword ptr [ESP + EDI*0x4 + 0x14]\n  100028af:  LEA EBP,[EDI + EDI*0x4]\n  100028b2:  LEA EAX,[EBX + EBX*0x4]\n  100028b5:  FLD dword ptr [EDX + EAX*0x4]\n  100028b8:  FADD dword ptr [EDX + EBP*0x4]\n  100028bb:  FSUBR dword ptr [EDX + ECX*0x4]\n  100028be:  FADD dword ptr [0x10012100]\n  100028c4:  FSQRT\n  100028c6:  FLD ST0\n  100028c8:  FMUL dword ptr [0x1001210c]\n  100028ce:  FSTP dword ptr [ESP + ESI*0x4 + 0x14]\n  100028d2:  FCOM qword ptr [0x10012130]\n  100028d8:  FNSTSW AX\n  100028da:  TEST AH,0x40\n  100028dd:  JNZ 0x100028e5\n  100028df:  FDIVR dword ptr [0x1001210c]\n  100028e5:  LEA ECX,[EBX + EDI*0x4]\n  100028e8:  LEA EAX,[EDI + EBX*0x4]\n  100028eb:  FLD dword ptr [EDX + ECX*0x4]\n  100028ee:  FSUB dword ptr [EDX + EAX*0x4]\n  100028f1:  LEA ECX,[ESI + EDI*0x4]\n  100028f4:  LEA EAX,[EDI + ESI*0x4]\n  100028f7:  FMUL ST1\n  100028f9:  FSTP dword ptr [ESP + 0x20]\n  100028fd:  FLD dword ptr [EDX + ECX*0x4]\n  10002900:  FADD dword ptr [EDX + EAX*0x4]\n  10002903:  LEA ECX,[ESI + EBX*0x4]\n  10002906:  LEA EAX,[EBX + ESI*0x4]\n  10002909:  FMUL ST1\n  1000290b:  FSTP dword ptr [ESP + EDI*0x4 + 0x14]\n  1000290f:  FLD dword ptr [EDX + ECX*0x4]\n  10002912:  FADD dword ptr [EDX + EAX*0x4]\n  10002915:  MOV EAX,dword ptr [ESP + 0x10]\n  10002919:  POP EDI\n  1000291a:  POP EBP\n  1000291b:  FMUL ST1\n  1000291d:  FSTP dword ptr [ESP + EBX*0x4 + 0xc]\n  10002921:  MOV ECX,dword ptr [ESP + 0xc]\n  10002925:  MOV EDX,dword ptr [ESP + 0x10]\n  10002929:  MOV dword ptr [EAX],ECX\n  1000292b:  MOV ECX,dword ptr [ESP + 0x14]\n  1000292f:  MOV dword ptr [EAX + 0x4],EDX\n  10002932:  MOV EDX,dword ptr [ESP + 0x18]\n  10002936:  POP EBX\n  10002937:  MOV dword ptr [EAX + 0x8],ECX\n  1000293a:  FSTP ST0\n  1000293c:  MOV dword ptr [EAX + 0xc],EDX\n  1000293f:  POP ESI\n  10002940:  ADD ESP,0x14\n  10002943:  RET 0x4", 
+  "callers": []
+}

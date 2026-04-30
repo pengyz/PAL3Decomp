@@ -1,0 +1,14 @@
+{
+  "address": "0x10002cf0", 
+  "size_bytes": 23, 
+  "calling_convention": "__thiscall", 
+  "signature": "void __thiscall Inverse(gbQuaternion * this)", 
+  "callees": [], 
+  "global_refs": [], 
+  "has_custom_name": true, 
+  "decompiled_c": "\n/* public: void __thiscall gbQuaternion::Inverse(void) */\n\nvoid __thiscall gbQuaternion::Inverse(gbQuaternion *this)\n\n{\n                    /* 0x2cf0  37  ?Inverse@gbQuaternion@@QAEXXZ */\n  *(float *)this = -*(float *)this;\n  *(float *)(this + 4) = -*(float *)(this + 4);\n  *(float *)(this + 8) = -*(float *)(this + 8);\n  return;\n}\n\n", 
+  "is_thunk": false, 
+  "name": "Inverse", 
+  "assembly": "  10002cf0:  FLD dword ptr [ECX]\n  10002cf2:  FCHS\n  10002cf4:  FSTP dword ptr [ECX]\n  10002cf6:  FLD dword ptr [ECX + 0x4]\n  10002cf9:  FCHS\n  10002cfb:  FSTP dword ptr [ECX + 0x4]\n  10002cfe:  FLD dword ptr [ECX + 0x8]\n  10002d01:  FCHS\n  10002d03:  FSTP dword ptr [ECX + 0x8]\n  10002d06:  RET", 
+  "callers": []
+}

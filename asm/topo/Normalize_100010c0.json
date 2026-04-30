@@ -1,0 +1,70 @@
+{
+  "address": "0x100010c0", 
+  "size_bytes": 75, 
+  "calling_convention": "__thiscall", 
+  "signature": "void __thiscall Normalize(gbVec3D * this)", 
+  "callees": [
+    {
+      "address": "0x10001000", 
+      "name": "Length"
+    }
+  ], 
+  "global_refs": [
+    {
+      "address": "0x100120f8", 
+      "type": null, 
+      "name": "DAT_100120f8"
+    }
+  ], 
+  "has_custom_name": true, 
+  "decompiled_c": "\n/* public: void __thiscall gbVec3D::Normalize(void) */\n\nvoid __thiscall gbVec3D::Normalize(gbVec3D *this)\n\n{\n  float fVar1;\n  \n                    /* 0x10c0  67  ?Normalize@gbVec3D@@QAEXXZ */\n  fVar1 = Length(this);\n  if (ABS(fVar1) < 0.005) {\n    *(undefined4 *)(this + 8) = 0;\n    *(undefined4 *)this = 0;\n    *(undefined4 *)(this + 4) = 0x3f800000;\n    return;\n  }\n  *(float *)this = *(float *)this / fVar1;\n  *(float *)(this + 4) = *(float *)(this + 4) / fVar1;\n  *(float *)(this + 8) = *(float *)(this + 8) / fVar1;\n  return;\n}\n\n", 
+  "is_thunk": false, 
+  "name": "Normalize", 
+  "assembly": "  100010c0:  PUSH ESI\n  100010c1:  MOV ESI,ECX\n  100010c3:  CALL 0x10001000\n  100010c8:  FLD ST0\n  100010ca:  FABS\n  100010cc:  FCOMP qword ptr [0x100120f8]\n  100010d2:  FNSTSW AX\n  100010d4:  TEST AH,0x1\n  100010d7:  JZ 0x100010f1\n  100010d9:  MOV dword ptr [ESI + 0x8],0x0\n  100010e0:  MOV dword ptr [ESI],0x0\n  100010e6:  MOV dword ptr [ESI + 0x4],0x3f800000\n  100010ed:  POP ESI\n  100010ee:  FSTP ST0\n  100010f0:  RET\n  100010f1:  FLD dword ptr [ESI]\n  100010f3:  FDIV ST0,ST1\n  100010f5:  FSTP dword ptr [ESI]\n  100010f7:  FLD dword ptr [ESI + 0x4]\n  100010fa:  FDIV ST0,ST1\n  100010fc:  FSTP dword ptr [ESI + 0x4]\n  100010ff:  FLD dword ptr [ESI + 0x8]\n  10001102:  FDIV ST0,ST1\n  10001104:  FSTP dword ptr [ESI + 0x8]\n  10001107:  POP ESI\n  10001108:  FSTP ST0\n  1000110a:  RET", 
+  "callers": [
+    {
+      "address": "0x10001760", 
+      "name": "IsOrthonormal"
+    }, 
+    {
+      "address": "0x10001760", 
+      "name": "IsOrthonormal"
+    }, 
+    {
+      "address": "0x10001e20", 
+      "name": "MakeMatrix"
+    }, 
+    {
+      "address": "0x10002350", 
+      "name": "IsOrthonormal"
+    }, 
+    {
+      "address": "0x10002350", 
+      "name": "IsOrthonormal"
+    }, 
+    {
+      "address": "0x100025c0", 
+      "name": "SetTwoVector"
+    }, 
+    {
+      "address": "0x10003fc0", 
+      "name": "FUN_10003fc0"
+    }, 
+    {
+      "address": "0x10003590", 
+      "name": "FUN_10003590"
+    }, 
+    {
+      "address": "0x10007160", 
+      "name": "FUN_10007160"
+    }, 
+    {
+      "address": "0x10007fb0", 
+      "name": "FUN_10007fb0"
+    }, 
+    {
+      "address": "0x100042b0", 
+      "name": "FUN_100042b0"
+    }
+  ]
+}

@@ -1,0 +1,42 @@
+{
+  "address": "0x10009bb0", 
+  "size_bytes": 20, 
+  "calling_convention": "__stdcall", 
+  "signature": "undefined __stdcall FUN_10009bb0(void)", 
+  "callees": [
+    {
+      "address": "0x1000adf8", 
+      "name": "FUN_1000adf8"
+    }, 
+    {
+      "address": "0x10009bcd", 
+      "name": "FUN_10009bcd"
+    }
+  ], 
+  "global_refs": [
+    {
+      "address": "0x-0000008", 
+      "type": null, 
+      "name": "DAT_-0000008"
+    }
+  ], 
+  "has_custom_name": false, 
+  "decompiled_c": "\nvoid FUN_10009bb0(void)\n\n{\n  float10 in_ST0;\n  double dVar1;\n  \n  dVar1 = (double)in_ST0;\n  FUN_1000adf8(SUB84(dVar1,0),(uint)((ulonglong)dVar1 >> 0x20));\n  FUN_10009bcd(SUB84(dVar1,0),(uint)((ulonglong)dVar1 >> 0x20));\n  return;\n}\n\n", 
+  "is_thunk": false, 
+  "name": "FUN_10009bb0", 
+  "assembly": "  10009bb0:  SUB ESP,0x8\n  10009bb3:  FST qword ptr [ESP]\n  10009bb6:  CALL 0x1000adf8\n  10009bbb:  CALL 0x10009bcd\n  10009bc0:  ADD ESP,0x8\n  10009bc3:  RET", 
+  "callers": [
+    {
+      "address": "0x100025c0", 
+      "name": "SetTwoVector"
+    }, 
+    {
+      "address": "0x10002680", 
+      "name": "GetAxisAngle"
+    }, 
+    {
+      "address": "0x10002a30", 
+      "name": "Slerp"
+    }
+  ]
+}

@@ -1,0 +1,43 @@
+{
+  "address": "0x10002eb0", 
+  "size_bytes": 68, 
+  "calling_convention": "__thiscall", 
+  "signature": "void __thiscall Rotate(gbMatrixStack * this, float param_1, gbVec3D * param_2)", 
+  "callees": [
+    {
+      "address": "0x10001110", 
+      "name": "gbMatrix4"
+    }, 
+    {
+      "address": "0x10001a60", 
+      "name": "SetAxisAngle"
+    }, 
+    {
+      "address": "0x10001240", 
+      "name": "LeftMultiply"
+    }
+  ], 
+  "global_refs": [
+    {
+      "address": "0x-0000040", 
+      "type": null, 
+      "name": "DAT_-0000040"
+    }, 
+    {
+      "address": "0x00000004", 
+      "type": null, 
+      "name": "DAT_00000004"
+    }, 
+    {
+      "address": "0x00000008", 
+      "type": null, 
+      "name": "DAT_00000008"
+    }
+  ], 
+  "has_custom_name": true, 
+  "decompiled_c": "\n/* public: void __thiscall gbMatrixStack::Rotate(float,struct gbVec3D &) */\n\nvoid __thiscall gbMatrixStack::Rotate(gbMatrixStack *this,float param_1,gbVec3D *param_2)\n\n{\n  gbMatrix4 local_40 [64];\n  \n                    /* 0x2eb0  77  ?Rotate@gbMatrixStack@@QAEXMAAUgbVec3D@@@Z */\n  gbMatrix4::gbMatrix4(local_40);\n  gbMatrix4::SetAxisAngle(local_40,param_2,param_1);\n  gbMatrix4::LeftMultiply((gbMatrix4 *)(*(int *)(this + 8) * 0x40 + *(int *)this),local_40);\n  *(undefined4 *)(this + 0xc) = 0;\n  return;\n}\n\n", 
+  "is_thunk": false, 
+  "name": "Rotate", 
+  "assembly": "  10002eb0:  SUB ESP,0x40\n  10002eb3:  PUSH ESI\n  10002eb4:  MOV ESI,ECX\n  10002eb6:  LEA ECX,[ESP + 0x4]\n  10002eba:  CALL 0x10001110\n  10002ebf:  MOV EAX,dword ptr [ESP + 0x48]\n  10002ec3:  MOV ECX,dword ptr [ESP + 0x4c]\n  10002ec7:  PUSH EAX\n  10002ec8:  PUSH ECX\n  10002ec9:  LEA ECX,[ESP + 0xc]\n  10002ecd:  CALL 0x10001a60\n  10002ed2:  MOV ECX,dword ptr [ESI + 0x8]\n  10002ed5:  MOV EAX,dword ptr [ESI]\n  10002ed7:  LEA EDX,[ESP + 0x4]\n  10002edb:  SHL ECX,0x6\n  10002ede:  PUSH EDX\n  10002edf:  ADD ECX,EAX\n  10002ee1:  CALL 0x10001240\n  10002ee6:  MOV dword ptr [ESI + 0xc],0x0\n  10002eed:  POP ESI\n  10002eee:  ADD ESP,0x40\n  10002ef1:  RET 0x8", 
+  "callers": []
+}

@@ -1,0 +1,50 @@
+{
+  "address": "0x10008d10", 
+  "size_bytes": 139, 
+  "calling_convention": "__thiscall", 
+  "signature": "undefined __thiscall FUN_10008d10(void * this, int param_1)", 
+  "callees": [
+    {
+      "address": "0x1000a152", 
+      "name": "_malloc"
+    }, 
+    {
+      "address": "0x1000a28c", 
+      "name": "FUN_1000a28c"
+    }
+  ], 
+  "global_refs": [
+    {
+      "address": "0x00000004", 
+      "type": null, 
+      "name": "DAT_00000004"
+    }
+  ], 
+  "has_custom_name": false, 
+  "decompiled_c": "\nvoid __thiscall FUN_10008d10(void *this,int param_1)\n\n{\n  int iVar1;\n  int iVar2;\n  undefined4 *puVar3;\n  int iVar4;\n  uint uVar5;\n  uint uVar6;\n  undefined4 *puVar7;\n  undefined4 *puVar8;\n  \n  if (param_1 <= *(int *)((int)this + 0x28)) {\n    *(int *)((int)this + 0x24) = param_1;\n    return;\n  }\n  iVar1 = *(int *)((int)this + 0x28) * 2;\n  iVar4 = iVar1;\n  if (iVar1 < 0x11) {\n    iVar4 = 0x10;\n  }\n  iVar2 = param_1;\n  if ((param_1 <= iVar4) && (iVar2 = iVar1, iVar1 < 0x11)) {\n    iVar2 = 0x10;\n  }\n  *(int *)((int)this + 0x28) = iVar2;\n  puVar3 = (undefined4 *)_malloc(*(int *)((int)this + 0x20) * iVar2);\n                    /* WARNING: Load size is inaccurate */\n  if (*this != (undefined4 *)0x0) {\n    if (*(int *)((int)this + 0x24) != 0) {\n      uVar5 = *(int *)((int)this + 0x20) * *(int *)((int)this + 0x24);\n      puVar7 = *this;\n      puVar8 = puVar3;\n      for (uVar6 = uVar5 >> 2; uVar6 != 0; uVar6 = uVar6 - 1) {\n        *puVar8 = *puVar7;\n        puVar7 = puVar7 + 1;\n        puVar8 = puVar8 + 1;\n      }\n      for (uVar5 = uVar5 & 3; uVar5 != 0; uVar5 = uVar5 - 1) {\n        *(undefined *)puVar8 = *(undefined *)puVar7;\n        puVar7 = (undefined4 *)((int)puVar7 + 1);\n        puVar8 = (undefined4 *)((int)puVar8 + 1);\n      }\n    }\n                    /* WARNING: Load size is inaccurate */\n    FUN_1000a28c(*this);\n  }\n  *(undefined4 **)this = puVar3;\n  *(int *)((int)this + 0x24) = param_1;\n  return;\n}\n\n", 
+  "is_thunk": false, 
+  "name": "FUN_10008d10", 
+  "assembly": "  10008d10:  PUSH EBX\n  10008d11:  MOV EBX,ECX\n  10008d13:  PUSH EDI\n  10008d14:  MOV EDI,dword ptr [ESP + 0xc]\n  10008d18:  MOV EAX,dword ptr [EBX + 0x28]\n  10008d1b:  CMP EDI,EAX\n  10008d1d:  JLE 0x10008d93\n  10008d1f:  ADD EAX,EAX\n  10008d21:  CMP EAX,0x10\n  10008d24:  MOV ECX,EAX\n  10008d26:  JG 0x10008d2d\n  10008d28:  MOV ECX,0x10\n  10008d2d:  CMP EDI,ECX\n  10008d2f:  JLE 0x10008d35\n  10008d31:  MOV EAX,EDI\n  10008d33:  JMP 0x10008d3f\n  10008d35:  CMP EAX,0x10\n  10008d38:  JG 0x10008d3f\n  10008d3a:  MOV EAX,0x10\n  10008d3f:  MOV ECX,dword ptr [EBX + 0x20]\n  10008d42:  PUSH EBP\n  10008d43:  IMUL ECX,EAX\n  10008d46:  PUSH ESI\n  10008d47:  PUSH ECX\n  10008d48:  MOV dword ptr [EBX + 0x28],EAX\n  10008d4b:  CALL 0x1000a152\n  10008d50:  MOV ESI,dword ptr [EBX]\n  10008d52:  ADD ESP,0x4\n  10008d55:  TEST ESI,ESI\n  10008d57:  MOV EBP,EAX\n  10008d59:  JZ 0x10008d87\n  10008d5b:  MOV EAX,dword ptr [EBX + 0x24]\n  10008d5e:  TEST EAX,EAX\n  10008d60:  JZ 0x10008d7c\n  10008d62:  MOV ECX,dword ptr [EBX + 0x20]\n  10008d65:  MOV EDI,EBP\n  10008d67:  IMUL ECX,EAX\n  10008d6a:  MOV EDX,ECX\n  10008d6c:  SHR ECX,0x2\n  10008d6f:  MOVSD.REP ES:EDI,ESI\n  10008d71:  MOV ECX,EDX\n  10008d73:  AND ECX,0x3\n  10008d76:  MOVSB.REP ES:EDI,ESI\n  10008d78:  MOV EDI,dword ptr [ESP + 0x14]\n  10008d7c:  MOV EAX,dword ptr [EBX]\n  10008d7e:  PUSH EAX\n  10008d7f:  CALL 0x1000a28c\n  10008d84:  ADD ESP,0x4\n  10008d87:  MOV dword ptr [EBX],EBP\n  10008d89:  POP ESI\n  10008d8a:  MOV dword ptr [EBX + 0x24],EDI\n  10008d8d:  POP EBP\n  10008d8e:  POP EDI\n  10008d8f:  POP EBX\n  10008d90:  RET 0x4\n  10008d93:  MOV dword ptr [EBX + 0x24],EDI\n  10008d96:  POP EDI\n  10008d97:  POP EBX\n  10008d98:  RET 0x4", 
+  "callers": [
+    {
+      "address": "0x10006b40", 
+      "name": "FUN_10006b40"
+    }, 
+    {
+      "address": "0x10006b40", 
+      "name": "FUN_10006b40"
+    }, 
+    {
+      "address": "0x100075a0", 
+      "name": "FUN_100075a0"
+    }, 
+    {
+      "address": "0x10008090", 
+      "name": "FUN_10008090"
+    }, 
+    {
+      "address": "0x10008370", 
+      "name": "FUN_10008370"
+    }
+  ]
+}

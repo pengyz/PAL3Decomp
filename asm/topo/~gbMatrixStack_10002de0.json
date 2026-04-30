@@ -1,0 +1,19 @@
+{
+  "address": "0x10002de0", 
+  "size_bytes": 10, 
+  "calling_convention": "__thiscall", 
+  "signature": "void __thiscall ~gbMatrixStack(gbMatrixStack * this)", 
+  "callees": [
+    {
+      "address": "0x10009c7b", 
+      "name": "FUN_10009c7b"
+    }
+  ], 
+  "global_refs": [], 
+  "has_custom_name": true, 
+  "decompiled_c": "\n/* public: __thiscall gbMatrixStack::~gbMatrixStack(void) */\n\nvoid __thiscall gbMatrixStack::~gbMatrixStack(gbMatrixStack *this)\n\n{\n                    /* 0x2de0  6  ??1gbMatrixStack@@QAE@XZ */\n  FUN_10009c7b(*(undefined **)this);\n  return;\n}\n\n", 
+  "is_thunk": false, 
+  "name": "~gbMatrixStack", 
+  "assembly": "  10002de0:  MOV EAX,dword ptr [ECX]\n  10002de2:  PUSH EAX\n  10002de3:  CALL 0x10009c7b\n  10002de8:  POP ECX\n  10002de9:  RET", 
+  "callers": []
+}

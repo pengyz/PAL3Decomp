@@ -1,0 +1,40 @@
+{
+  "address": "0x1000b1f4", 
+  "size_bytes": 93, 
+  "calling_convention": "__cdecl", 
+  "signature": "undefined4 __cdecl FUN_1000b1f4(byte * param_1, byte * param_2, uint * param_3)", 
+  "callees": [
+    {
+      "address": "0x1000ec60", 
+      "name": "_strcmp"
+    }
+  ], 
+  "global_refs": [
+    {
+      "address": "0x00000004", 
+      "type": null, 
+      "name": "DAT_00000004"
+    }, 
+    {
+      "address": "0x00000008", 
+      "type": null, 
+      "name": "DAT_00000008"
+    }, 
+    {
+      "address": "0x0000000c", 
+      "type": null, 
+      "name": "DAT_0000000c"
+    }
+  ], 
+  "has_custom_name": false, 
+  "decompiled_c": "\nundefined4 __cdecl FUN_1000b1f4(byte *param_1,byte *param_2,uint *param_3)\n\n{\n  int iVar1;\n  undefined4 uVar2;\n  \n  iVar1 = *(int *)(param_1 + 4);\n  if ((iVar1 == 0) || (*(char *)(iVar1 + 8) == '\\0')) {\nLAB_1000b24b:\n    uVar2 = 1;\n  }\n  else {\n    if (iVar1 == *(int *)(param_2 + 4)) {\nLAB_1000b225:\n      if (((((*param_2 & 2) == 0) || ((*param_1 & 8) != 0)) &&\n          (((*param_3 & 1) == 0 || ((*param_1 & 1) != 0)))) &&\n         (((*param_3 & 2) == 0 || ((*param_1 & 2) != 0)))) goto LAB_1000b24b;\n    }\n    else {\n      iVar1 = _strcmp((char *)(iVar1 + 8),(char *)(*(int *)(param_2 + 4) + 8));\n      if (iVar1 == 0) goto LAB_1000b225;\n    }\n    uVar2 = 0;\n  }\n  return uVar2;\n}\n\n", 
+  "is_thunk": false, 
+  "name": "FUN_1000b1f4", 
+  "assembly": "  1000b1f4:  PUSH ESI\n  1000b1f5:  PUSH EDI\n  1000b1f6:  MOV EDI,dword ptr [ESP + 0xc]\n  1000b1fa:  MOV EAX,dword ptr [EDI + 0x4]\n  1000b1fd:  TEST EAX,EAX\n  1000b1ff:  JZ 0x1000b24b\n  1000b201:  CMP byte ptr [EAX + 0x8],0x0\n  1000b205:  LEA EDX,[EAX + 0x8]\n  1000b208:  JZ 0x1000b24b\n  1000b20a:  MOV ESI,dword ptr [ESP + 0x10]\n  1000b20e:  MOV ECX,dword ptr [ESI + 0x4]\n  1000b211:  CMP EAX,ECX\n  1000b213:  JZ 0x1000b225\n  1000b215:  ADD ECX,0x8\n  1000b218:  PUSH ECX\n  1000b219:  PUSH EDX\n  1000b21a:  CALL 0x1000ec60\n  1000b21f:  POP ECX\n  1000b220:  TEST EAX,EAX\n  1000b222:  POP ECX\n  1000b223:  JNZ 0x1000b247\n  1000b225:  TEST byte ptr [ESI],0x2\n  1000b228:  JZ 0x1000b22f\n  1000b22a:  TEST byte ptr [EDI],0x8\n  1000b22d:  JZ 0x1000b247\n  1000b22f:  MOV EAX,dword ptr [ESP + 0x14]\n  1000b233:  MOV EAX,dword ptr [EAX]\n  1000b235:  TEST AL,0x1\n  1000b237:  JZ 0x1000b23e\n  1000b239:  TEST byte ptr [EDI],0x1\n  1000b23c:  JZ 0x1000b247\n  1000b23e:  TEST AL,0x2\n  1000b240:  JZ 0x1000b24b\n  1000b242:  TEST byte ptr [EDI],0x2\n  1000b245:  JNZ 0x1000b24b\n  1000b247:  XOR EAX,EAX\n  1000b249:  JMP 0x1000b24e\n  1000b24b:  PUSH 0x1\n  1000b24d:  POP EAX\n  1000b24e:  POP EDI\n  1000b24f:  POP ESI\n  1000b250:  RET", 
+  "callers": [
+    {
+      "address": "0x1000af97", 
+      "name": "FUN_1000af97"
+    }
+  ]
+}

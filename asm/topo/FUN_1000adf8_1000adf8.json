@@ -1,0 +1,25 @@
+{
+  "address": "0x1000adf8", 
+  "size_bytes": 22, 
+  "calling_convention": "__cdecl", 
+  "signature": "uint __cdecl FUN_1000adf8(undefined4 param_1, uint param_2)", 
+  "callees": [], 
+  "global_refs": [
+    {
+      "address": "0x00000008", 
+      "type": null, 
+      "name": "DAT_00000008"
+    }
+  ], 
+  "has_custom_name": false, 
+  "decompiled_c": "\nuint __cdecl FUN_1000adf8(undefined4 param_1,uint param_2)\n\n{\n  if ((param_2 & 0x7ff00000) != 0x7ff00000) {\n    return param_2 & 0x7ff00000;\n  }\n  return param_2;\n}\n\n", 
+  "is_thunk": false, 
+  "name": "FUN_1000adf8", 
+  "assembly": "  1000adf8:  MOV EAX,dword ptr [ESP + 0x8]\n  1000adfc:  AND EAX,0x7ff00000\n  1000ae01:  CMP EAX,0x7ff00000\n  1000ae06:  JZ 0x1000ae09\n  1000ae08:  RET\n  1000ae09:  MOV EAX,dword ptr [ESP + 0x8]\n  1000ae0d:  RET", 
+  "callers": [
+    {
+      "address": "0x10009bb0", 
+      "name": "FUN_10009bb0"
+    }
+  ]
+}

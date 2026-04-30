@@ -1,0 +1,35 @@
+{
+  "address": "0x10010e4c", 
+  "size_bytes": 35, 
+  "calling_convention": "__stdcall", 
+  "signature": "int __stdcall FUN_10010e4c(undefined4 param_1, undefined4 param_2)", 
+  "callees": [], 
+  "global_refs": [
+    {
+      "address": "0x-0000008", 
+      "type": null, 
+      "name": "DAT_-0000008"
+    }, 
+    {
+      "address": "0x00000008", 
+      "type": null, 
+      "name": "DAT_00000008"
+    }, 
+    {
+      "address": "0x00000004", 
+      "type": null, 
+      "name": "DAT_00000004"
+    }
+  ], 
+  "has_custom_name": false, 
+  "decompiled_c": "\nint FUN_10010e4c(undefined4 param_1,undefined4 param_2)\n\n{\n  short in_FPUControlWord;\n  \n  return (int)in_FPUControlWord;\n}\n\n", 
+  "is_thunk": false, 
+  "name": "FUN_10010e4c", 
+  "assembly": "  10010e4c:  PUSH EBP\n  10010e4d:  MOV EBP,ESP\n  10010e4f:  PUSH ECX\n  10010e50:  FSTCW word ptr [EBP + -0x4]\n  10010e54:  MOV EAX,dword ptr [EBP + 0xc]\n  10010e57:  MOV ECX,EAX\n  10010e59:  AND EAX,dword ptr [EBP + 0x8]\n  10010e5c:  NOT ECX\n  10010e5e:  AND ECX,dword ptr [EBP + -0x4]\n  10010e61:  OR ECX,EAX\n  10010e63:  MOV dword ptr [EBP + 0xc],ECX\n  10010e66:  FLDCW word ptr [EBP + 0xc]\n  10010e69:  MOVSX EAX,word ptr [EBP + -0x4]\n  10010e6d:  LEAVE\n  10010e6e:  RET", 
+  "callers": [
+    {
+      "address": "0x1000ead4", 
+      "name": "FUN_1000ead4"
+    }
+  ]
+}

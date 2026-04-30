@@ -1,0 +1,38 @@
+{
+  "address": "0x10009b60", 
+  "size_bytes": 23, 
+  "calling_convention": "__stdcall", 
+  "signature": "undefined __stdcall FUN_10009b60(void)", 
+  "callees": [
+    {
+      "address": "0x10009b78", 
+      "name": "FUN_10009b78"
+    }, 
+    {
+      "address": "0x1000a6e4", 
+      "name": "FUN_1000a6e4"
+    }, 
+    {
+      "address": "0x1000a694", 
+      "name": "FUN_1000a694"
+    }
+  ], 
+  "global_refs": [
+    {
+      "address": "0x10017f10", 
+      "type": null, 
+      "name": "DAT_10017f10"
+    }
+  ], 
+  "has_custom_name": false, 
+  "decompiled_c": "\n/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */\n\nvoid FUN_10009b60(void)\n\n{\n  void *extraout_ECX;\n  \n  FUN_10009b78();\n  _DAT_10017f10 = FUN_1000a6e4();\n  FUN_1000a694(extraout_ECX);\n  return;\n}\n\n", 
+  "is_thunk": false, 
+  "name": "FUN_10009b60", 
+  "assembly": "  10009b60:  CALL 0x10009b78\n  10009b65:  CALL 0x1000a6e4\n  10009b6a:  MOV [0x10017f10],EAX\n  10009b6f:  CALL 0x1000a694\n  10009b74:  FNCLEX\n  10009b76:  RET", 
+  "callers": [
+    {
+      "address": "0x1000b98f", 
+      "name": "FUN_1000b98f"
+    }
+  ]
+}

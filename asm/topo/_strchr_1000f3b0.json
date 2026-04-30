@@ -1,0 +1,30 @@
+{
+  "address": "0x1000f3b0", 
+  "size_bytes": 193, 
+  "calling_convention": "__cdecl", 
+  "signature": "char * __cdecl _strchr(char * _Str, int _Val)", 
+  "callees": [], 
+  "global_refs": [
+    {
+      "address": "0x00000008", 
+      "type": null, 
+      "name": "DAT_00000008"
+    }, 
+    {
+      "address": "0x00000004", 
+      "type": null, 
+      "name": "DAT_00000004"
+    }
+  ], 
+  "has_custom_name": true, 
+  "decompiled_c": "\n/* Library Function - Single Match\n    _strchr\n   \n   Libraries: Visual Studio 1998 Debug, Visual Studio 1998 Release */\n\nchar * __cdecl _strchr(char *_Str,int _Val)\n\n{\n  uint uVar1;\n  char cVar2;\n  uint uVar3;\n  uint uVar4;\n  uint *puVar5;\n  \n  uVar1 = (uint)_Str & 3;\n  while (uVar1 != 0) {\n    if (*_Str == (char)_Val) {\n      return (char *)(uint *)_Str;\n    }\n    if (*_Str == '\\0') {\n      return (char *)0x0;\n    }\n    uVar1 = (uint)((int)_Str + 1) & 3;\n    _Str = (char *)((int)_Str + 1);\n  }\n  while( true ) {\n    while( true ) {\n      uVar1 = *(uint *)_Str;\n      uVar4 = uVar1 ^ CONCAT22(CONCAT11((char)_Val,(char)_Val),CONCAT11((char)_Val,(char)_Val));\n      uVar3 = uVar1 ^ 0xffffffff ^ uVar1 + 0x7efefeff;\n      puVar5 = (uint *)((int)_Str + 4);\n      if (((uVar4 ^ 0xffffffff ^ uVar4 + 0x7efefeff) & 0x81010100) != 0) break;\n      _Str = (char *)puVar5;\n      if ((uVar3 & 0x81010100) != 0) {\n        if ((uVar3 & 0x1010100) != 0) {\n          return (char *)0x0;\n        }\n        if ((uVar1 + 0x7efefeff & 0x80000000) == 0) {\n          return (char *)0x0;\n        }\n      }\n    }\n    uVar1 = *(uint *)_Str;\n    if ((char)uVar1 == (char)_Val) {\n      return (char *)(uint *)_Str;\n    }\n    if ((char)uVar1 == '\\0') {\n      return (char *)0x0;\n    }\n    cVar2 = (char)(uVar1 >> 8);\n    if (cVar2 == (char)_Val) {\n      return (char *)((int)_Str + 1);\n    }\n    if (cVar2 == '\\0') break;\n    cVar2 = (char)(uVar1 >> 0x10);\n    if (cVar2 == (char)_Val) {\n      return (char *)((int)_Str + 2);\n    }\n    if (cVar2 == '\\0') {\n      return (char *)0x0;\n    }\n    cVar2 = (char)(uVar1 >> 0x18);\n    if (cVar2 == (char)_Val) {\n      return (char *)((int)_Str + 3);\n    }\n    _Str = (char *)puVar5;\n    if (cVar2 == '\\0') {\n      return (char *)0x0;\n    }\n  }\n  return (char *)0x0;\n}\n\n", 
+  "is_thunk": false, 
+  "name": "_strchr", 
+  "assembly": "  1000f3a0:  LEA EAX,[EDX + -0x1]\n  1000f3a3:  POP EBX\n  1000f3a4:  RET\n  1000f3b0:  XOR EAX,EAX\n  1000f3b2:  MOV AL,byte ptr [ESP + 0x8]\n  1000f3b6:  PUSH EBX\n  1000f3b7:  MOV EBX,EAX\n  1000f3b9:  SHL EAX,0x8\n  1000f3bc:  MOV EDX,dword ptr [ESP + 0x8]\n  1000f3c0:  TEST EDX,0x3\n  1000f3c6:  JZ 0x1000f3db\n  1000f3c8:  MOV CL,byte ptr [EDX]\n  1000f3ca:  INC EDX\n  1000f3cb:  CMP CL,BL\n  1000f3cd:  JZ 0x1000f3a0\n  1000f3cf:  TEST CL,CL\n  1000f3d1:  JZ 0x1000f424\n  1000f3d3:  TEST EDX,0x3\n  1000f3d9:  JNZ 0x1000f3c8\n  1000f3db:  OR EBX,EAX\n  1000f3dd:  PUSH EDI\n  1000f3de:  MOV EAX,EBX\n  1000f3e0:  SHL EBX,0x10\n  1000f3e3:  PUSH ESI\n  1000f3e4:  OR EBX,EAX\n  1000f3e6:  MOV ECX,dword ptr [EDX]\n  1000f3e8:  MOV EDI,0x7efefeff\n  1000f3ed:  MOV EAX,ECX\n  1000f3ef:  MOV ESI,EDI\n  1000f3f1:  XOR ECX,EBX\n  1000f3f3:  ADD ESI,EAX\n  1000f3f5:  ADD EDI,ECX\n  1000f3f7:  XOR ECX,0xffffffff\n  1000f3fa:  XOR EAX,0xffffffff\n  1000f3fd:  XOR ECX,EDI\n  1000f3ff:  XOR EAX,ESI\n  1000f401:  ADD EDX,0x4\n  1000f404:  AND ECX,0x81010100\n  1000f40a:  JNZ 0x1000f428\n  1000f40c:  AND EAX,0x81010100\n  1000f411:  JZ 0x1000f3e6\n  1000f413:  AND EAX,0x1010100\n  1000f418:  JNZ 0x1000f422\n  1000f41a:  AND ESI,0x80000000\n  1000f420:  JNZ 0x1000f3e6\n  1000f422:  POP ESI\n  1000f423:  POP EDI\n  1000f424:  POP EBX\n  1000f425:  XOR EAX,EAX\n  1000f427:  RET\n  1000f428:  MOV EAX,dword ptr [EDX + -0x4]\n  1000f42b:  CMP AL,BL\n  1000f42d:  JZ 0x1000f465\n  1000f42f:  TEST AL,AL\n  1000f431:  JZ 0x1000f422\n  1000f433:  CMP AH,BL\n  1000f435:  JZ 0x1000f45e\n  1000f437:  TEST AH,AH\n  1000f439:  JZ 0x1000f422\n  1000f43b:  SHR EAX,0x10\n  1000f43e:  CMP AL,BL\n  1000f440:  JZ 0x1000f457\n  1000f442:  TEST AL,AL\n  1000f444:  JZ 0x1000f422\n  1000f446:  CMP AH,BL\n  1000f448:  JZ 0x1000f450\n  1000f44a:  TEST AH,AH\n  1000f44c:  JZ 0x1000f422\n  1000f44e:  JMP 0x1000f3e6\n  1000f450:  POP ESI\n  1000f451:  POP EDI\n  1000f452:  LEA EAX,[EDX + -0x1]\n  1000f455:  POP EBX\n  1000f456:  RET\n  1000f457:  LEA EAX,[EDX + -0x2]\n  1000f45a:  POP ESI\n  1000f45b:  POP EDI\n  1000f45c:  POP EBX\n  1000f45d:  RET\n  1000f45e:  LEA EAX,[EDX + -0x3]\n  1000f461:  POP ESI\n  1000f462:  POP EDI\n  1000f463:  POP EBX\n  1000f464:  RET\n  1000f465:  LEA EAX,[EDX + -0x4]\n  1000f468:  POP ESI\n  1000f469:  POP EDI\n  1000f46a:  POP EBX\n  1000f46b:  RET", 
+  "callers": [
+    {
+      "address": "0x1000bf12", 
+      "name": "FUN_1000bf12"
+    }
+  ]
+}

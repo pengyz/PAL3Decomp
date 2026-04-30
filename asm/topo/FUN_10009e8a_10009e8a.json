@@ -1,0 +1,39 @@
+{
+  "address": "0x10009e8a", 
+  "size_bytes": 114, 
+  "calling_convention": "__cdecl", 
+  "signature": "undefined4 __cdecl FUN_10009e8a(PEXCEPTION_RECORD param_1, PVOID param_2, DWORD param_3)", 
+  "callees": [
+    {
+      "address": "0x1000aefc", 
+      "name": "FUN_1000aefc"
+    }, 
+    {
+      "address": "0x10009cd6", 
+      "name": "FUN_10009cd6"
+    }
+  ], 
+  "global_refs": [
+    {
+      "address": "0x00000004", 
+      "type": null, 
+      "name": "DAT_00000004"
+    }, 
+    {
+      "address": "0x00000008", 
+      "type": null, 
+      "name": "DAT_00000008"
+    }, 
+    {
+      "address": "0x0000000c", 
+      "type": null, 
+      "name": "DAT_0000000c"
+    }
+  ], 
+  "has_custom_name": false, 
+  "decompiled_c": "\nundefined4 __cdecl FUN_10009e8a(PEXCEPTION_RECORD param_1,PVOID param_2,DWORD param_3)\n\n{\n  undefined4 uVar1;\n  \n  if ((param_1->ExceptionFlags & 0x66) != 0) {\n    *(undefined4 *)((int)param_2 + 0x24) = 1;\n    return 1;\n  }\n  FUN_1000aefc(param_1,*(PVOID *)((int)param_2 + 0xc),param_3,0,*(int **)((int)param_2 + 8),\n               *(int *)((int)param_2 + 0x10),*(PVOID *)((int)param_2 + 0x14),'\\x01');\n  if (*(int *)((int)param_2 + 0x24) == 0) {\n    FUN_10009cd6(param_2,param_1);\n  }\n                    /* WARNING: Could not recover jumptable at 0x10009ef4. Too many branches */\n                    /* WARNING: Treating indirect jump as call */\n  uVar1 = (**(code **)((int)param_2 + 0x18))();\n  return uVar1;\n}\n\n", 
+  "is_thunk": false, 
+  "name": "FUN_10009e8a", 
+  "assembly": "  10009e8a:  PUSH EBP\n  10009e8b:  MOV EBP,ESP\n  10009e8d:  PUSH EBX\n  10009e8e:  PUSH ESI\n  10009e8f:  PUSH EDI\n  10009e90:  CLD\n  10009e91:  MOV EAX,dword ptr [EBP + 0x8]\n  10009e94:  MOV EAX,dword ptr [EAX + 0x4]\n  10009e97:  AND EAX,0x66\n  10009e9a:  TEST EAX,EAX\n  10009e9c:  JZ 0x10009ead\n  10009e9e:  MOV EAX,dword ptr [EBP + 0xc]\n  10009ea1:  MOV dword ptr [EAX + 0x24],0x1\n  10009ea8:  PUSH 0x1\n  10009eaa:  POP EAX\n  10009eab:  JMP 0x10009efa\n  10009ead:  PUSH 0x1\n  10009eaf:  MOV EAX,dword ptr [EBP + 0xc]\n  10009eb2:  PUSH dword ptr [EAX + 0x14]\n  10009eb5:  MOV EAX,dword ptr [EBP + 0xc]\n  10009eb8:  PUSH dword ptr [EAX + 0x10]\n  10009ebb:  MOV EAX,dword ptr [EBP + 0xc]\n  10009ebe:  PUSH dword ptr [EAX + 0x8]\n  10009ec1:  PUSH 0x0\n  10009ec3:  PUSH dword ptr [EBP + 0x10]\n  10009ec6:  MOV EAX,dword ptr [EBP + 0xc]\n  10009ec9:  PUSH dword ptr [EAX + 0xc]\n  10009ecc:  PUSH dword ptr [EBP + 0x8]\n  10009ecf:  CALL 0x1000aefc\n  10009ed4:  ADD ESP,0x20\n  10009ed7:  MOV EAX,dword ptr [EBP + 0xc]\n  10009eda:  CMP dword ptr [EAX + 0x24],0x0\n  10009ede:  JNZ 0x10009eeb\n  10009ee0:  PUSH dword ptr [EBP + 0x8]\n  10009ee3:  PUSH dword ptr [EBP + 0xc]\n  10009ee6:  CALL 0x10009cd6\n  10009eeb:  MOV EBX,dword ptr [EBP + 0xc]\n  10009eee:  MOV ESP,dword ptr [EBX + 0x1c]\n  10009ef1:  MOV EBP,dword ptr [EBX + 0x20]\n  10009ef4:  JMP dword ptr [EBX + 0x18]\n  10009efa:  POP EDI\n  10009efb:  POP ESI\n  10009efc:  POP EBX\n  10009efd:  POP EBP\n  10009efe:  RET", 
+  "callers": []
+}

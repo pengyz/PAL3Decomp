@@ -1,0 +1,37 @@
+{
+  "address": "0x10004ff0", 
+  "size_bytes": 24, 
+  "calling_convention": "__thiscall", 
+  "signature": "undefined __thiscall FUN_10004ff0(void * this, undefined * param_1)", 
+  "callees": [], 
+  "global_refs": [
+    {
+      "address": "0x00000004", 
+      "type": null, 
+      "name": "DAT_00000004"
+    }
+  ], 
+  "has_custom_name": false, 
+  "decompiled_c": "\nvoid __thiscall FUN_10004ff0(void *this,undefined *param_1)\n\n{\n  *(undefined *)this = *param_1;\n  *(undefined4 *)((int)this + 4) = 0;\n  *(undefined4 *)((int)this + 8) = 0;\n  *(undefined4 *)((int)this + 0xc) = 0;\n  return;\n}\n\n", 
+  "is_thunk": false, 
+  "name": "FUN_10004ff0", 
+  "assembly": "  10004ff0:  MOV EAX,ECX\n  10004ff2:  MOV ECX,dword ptr [ESP + 0x4]\n  10004ff6:  MOV DL,byte ptr [ECX]\n  10004ff8:  XOR ECX,ECX\n  10004ffa:  MOV byte ptr [EAX],DL\n  10004ffc:  MOV dword ptr [EAX + 0x4],ECX\n  10004fff:  MOV dword ptr [EAX + 0x8],ECX\n  10005002:  MOV dword ptr [EAX + 0xc],ECX\n  10005005:  RET 0x4", 
+  "callers": [
+    {
+      "address": "0x10004bc0", 
+      "name": "FUN_10004bc0"
+    }, 
+    {
+      "address": "0x10004bc0", 
+      "name": "FUN_10004bc0"
+    }, 
+    {
+      "address": "0x10004bc0", 
+      "name": "FUN_10004bc0"
+    }, 
+    {
+      "address": "0x10008370", 
+      "name": "FUN_10008370"
+    }
+  ]
+}

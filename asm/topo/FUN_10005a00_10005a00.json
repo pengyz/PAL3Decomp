@@ -1,0 +1,61 @@
+{
+  "address": "0x10005a00", 
+  "size_bytes": 222, 
+  "calling_convention": "__thiscall", 
+  "signature": "undefined4 * __thiscall FUN_10005a00(void * this, undefined4 * param_1, undefined4 * param_2)", 
+  "callees": [
+    {
+      "address": "0x100099c0", 
+      "name": "FUN_100099c0"
+    }, 
+    {
+      "address": "0x10005870", 
+      "name": "FUN_10005870"
+    }, 
+    {
+      "address": "0x10005870", 
+      "name": "FUN_10005870"
+    }, 
+    {
+      "address": "0x100099c0", 
+      "name": "FUN_100099c0"
+    }, 
+    {
+      "address": "0x10004e60", 
+      "name": "FUN_10004e60"
+    }
+  ], 
+  "global_refs": [
+    {
+      "address": "0x00000004", 
+      "type": null, 
+      "name": "DAT_00000004"
+    }, 
+    {
+      "address": "0x00000008", 
+      "type": null, 
+      "name": "DAT_00000008"
+    }, 
+    {
+      "address": "0x-0000008", 
+      "type": null, 
+      "name": "DAT_-0000008"
+    }, 
+    {
+      "address": "0x-0000004", 
+      "type": null, 
+      "name": "DAT_-0000004"
+    }
+  ], 
+  "has_custom_name": false, 
+  "decompiled_c": "\nundefined4 * __thiscall FUN_10005a00(void *this,undefined4 *param_1,undefined4 *param_2)\n\n{\n  undefined4 *puVar1;\n  undefined4 *puVar2;\n  undefined4 *puVar3;\n  undefined4 *puVar4;\n  undefined4 *puVar5;\n  \n  puVar2 = *(undefined4 **)((int)this + 8);\n  puVar3 = param_1;\n  if (param_2 != puVar2) {\n    puVar5 = param_1 + 0x15;\n    puVar4 = param_2 + 2;\n    do {\n      *puVar3 = puVar4[-2];\n      puVar3[1] = puVar4[-1];\n      puVar5[-0x13] = *puVar4;\n      puVar5[-0x12] = puVar4[1];\n      FUN_100099c0(puVar5 + -0x11,(int)(puVar4 + 2));\n      FUN_10005870(puVar5 + -0xd,(int)(puVar4 + 6));\n      FUN_10005870(puVar5 + -9,(int)(puVar4 + 10));\n      FUN_100099c0(puVar5 + -5,(int)(puVar4 + 0xe));\n      puVar5[-1] = puVar4[0x12];\n      *puVar5 = *(undefined4 *)((int)puVar5 + ((int)param_2 - (int)param_1));\n      puVar5[1] = puVar4[0x14];\n      puVar5[2] = puVar4[0x15];\n      puVar1 = puVar4 + 0x16;\n      puVar3 = puVar3 + 0x18;\n      puVar5 = puVar5 + 0x18;\n      puVar4 = puVar4 + 0x18;\n    } while (puVar1 != puVar2);\n  }\n  puVar2 = *(undefined4 **)((int)this + 8);\n  puVar5 = puVar3;\n  if (puVar3 == puVar2) {\n    *(undefined4 **)((int)this + 8) = puVar3;\n    return param_1;\n  }\n  do {\n    FUN_10004e60((int)puVar5);\n    puVar5 = puVar5 + 0x18;\n  } while (puVar5 != puVar2);\n  *(undefined4 **)((int)this + 8) = puVar3;\n  return param_1;\n}\n\n", 
+  "is_thunk": false, 
+  "name": "FUN_10005a00", 
+  "assembly": "  10005a00:  SUB ESP,0x8\n  10005a03:  MOV EDX,dword ptr [ECX + 0x8]\n  10005a06:  MOV EAX,dword ptr [ESP + 0xc]\n  10005a0a:  PUSH EBX\n  10005a0b:  PUSH EBP\n  10005a0c:  MOV EBP,dword ptr [ESP + 0x18]\n  10005a10:  PUSH ESI\n  10005a11:  CMP EBP,EDX\n  10005a13:  PUSH EDI\n  10005a14:  MOV dword ptr [ESP + 0x10],ECX\n  10005a18:  MOV dword ptr [ESP + 0x14],EDX\n  10005a1c:  MOV EBX,EAX\n  10005a1e:  JZ 0x10005aa5\n  10005a24:  LEA ESI,[EBP + 0x8]\n  10005a27:  LEA EDI,[EAX + 0x54]\n  10005a2a:  SUB EBP,EAX\n  10005a2c:  MOV EAX,dword ptr [ESI + -0x8]\n  10005a2f:  MOV dword ptr [EBX],EAX\n  10005a31:  MOV ECX,dword ptr [ESI + -0x4]\n  10005a34:  MOV dword ptr [EBX + 0x4],ECX\n  10005a37:  MOV EDX,dword ptr [ESI]\n  10005a39:  LEA ECX,[ESI + 0x8]\n  10005a3c:  MOV dword ptr [EDI + -0x4c],EDX\n  10005a3f:  MOV EAX,dword ptr [ESI + 0x4]\n  10005a42:  PUSH ECX\n  10005a43:  LEA ECX,[EDI + -0x44]\n  10005a46:  MOV dword ptr [EDI + -0x48],EAX\n  10005a49:  CALL 0x100099c0\n  10005a4e:  LEA EDX,[ESI + 0x18]\n  10005a51:  LEA ECX,[EDI + -0x34]\n  10005a54:  PUSH EDX\n  10005a55:  CALL 0x10005870\n  10005a5a:  LEA EAX,[ESI + 0x28]\n  10005a5d:  LEA ECX,[EDI + -0x24]\n  10005a60:  PUSH EAX\n  10005a61:  CALL 0x10005870\n  10005a66:  LEA ECX,[ESI + 0x38]\n  10005a69:  PUSH ECX\n  10005a6a:  LEA ECX,[EDI + -0x14]\n  10005a6d:  CALL 0x100099c0\n  10005a72:  MOV EDX,dword ptr [ESI + 0x48]\n  10005a75:  ADD ESI,0x60\n  10005a78:  MOV dword ptr [EDI + -0x4],EDX\n  10005a7b:  MOV EAX,dword ptr [EDI + EBP*0x1]\n  10005a7e:  MOV dword ptr [EDI],EAX\n  10005a80:  MOV ECX,dword ptr [ESI + -0x10]\n  10005a83:  MOV dword ptr [EDI + 0x4],ECX\n  10005a86:  MOV EDX,dword ptr [ESI + -0xc]\n  10005a89:  MOV ECX,dword ptr [ESP + 0x14]\n  10005a8d:  MOV dword ptr [EDI + 0x8],EDX\n  10005a90:  LEA EAX,[ESI + -0x8]\n  10005a93:  ADD EBX,0x60\n  10005a96:  ADD EDI,0x60\n  10005a99:  CMP EAX,ECX\n  10005a9b:  JNZ 0x10005a2c\n  10005a9d:  MOV ECX,dword ptr [ESP + 0x10]\n  10005aa1:  MOV EAX,dword ptr [ESP + 0x1c]\n  10005aa5:  MOV EDI,dword ptr [ECX + 0x8]\n  10005aa8:  MOV ESI,EBX\n  10005aaa:  CMP EBX,EDI\n  10005aac:  JZ 0x10005ad1\n  10005aae:  MOV ECX,ESI\n  10005ab0:  CALL 0x10004e60\n  10005ab5:  ADD ESI,0x60\n  10005ab8:  CMP ESI,EDI\n  10005aba:  JNZ 0x10005aae\n  10005abc:  MOV ECX,dword ptr [ESP + 0x10]\n  10005ac0:  MOV EAX,dword ptr [ESP + 0x1c]\n  10005ac4:  POP EDI\n  10005ac5:  POP ESI\n  10005ac6:  MOV dword ptr [ECX + 0x8],EBX\n  10005ac9:  POP EBP\n  10005aca:  POP EBX\n  10005acb:  ADD ESP,0x8\n  10005ace:  RET 0x8\n  10005ad1:  POP EDI\n  10005ad2:  POP ESI\n  10005ad3:  MOV dword ptr [ECX + 0x8],EBX\n  10005ad6:  POP EBP\n  10005ad7:  POP EBX\n  10005ad8:  ADD ESP,0x8\n  10005adb:  RET 0x8", 
+  "callers": [
+    {
+      "address": "0x10004bc0", 
+      "name": "FUN_10004bc0"
+    }
+  ]
+}

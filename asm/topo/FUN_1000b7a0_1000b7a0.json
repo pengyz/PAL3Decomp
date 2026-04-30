@@ -1,0 +1,39 @@
+{
+  "address": "0x1000b7a0", 
+  "size_bytes": 30, 
+  "calling_convention": "__stdcall", 
+  "signature": "undefined __stdcall FUN_1000b7a0(void)", 
+  "callees": [
+    {
+      "address": "0x1000d39c", 
+      "name": "FUN_1000d39c"
+    }, 
+    {
+      "address": "0x0000000b", 
+      "name": "TlsFree"
+    }
+  ], 
+  "global_refs": [
+    {
+      "address": "0x100150d0", 
+      "type": "undefined4", 
+      "name": "DAT_100150d0"
+    }, 
+    {
+      "address": "0x10012028", 
+      "type": "pointer", 
+      "name": "DAT_10012028"
+    }
+  ], 
+  "has_custom_name": false, 
+  "decompiled_c": "\nvoid FUN_1000b7a0(void)\n\n{\n  FUN_1000d39c();\n  if (DAT_100150d0 != 0xffffffff) {\n    TlsFree(DAT_100150d0);\n    DAT_100150d0 = 0xffffffff;\n  }\n  return;\n}\n\n", 
+  "is_thunk": false, 
+  "name": "FUN_1000b7a0", 
+  "assembly": "  1000b7a0:  CALL 0x1000d39c\n  1000b7a5:  MOV EAX,[0x100150d0]\n  1000b7aa:  CMP EAX,-0x1\n  1000b7ad:  JZ 0x1000b7bd\n  1000b7af:  PUSH EAX\n  1000b7b0:  CALL dword ptr [0x10012028]\n  1000b7b6:  OR dword ptr [0x100150d0],0xffffffff\n  1000b7bd:  RET", 
+  "callers": [
+    {
+      "address": "0x1000a4eb", 
+      "name": "FUN_1000a4eb"
+    }
+  ]
+}

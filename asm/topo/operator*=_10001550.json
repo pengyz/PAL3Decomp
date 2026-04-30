@@ -1,0 +1,20 @@
+{
+  "address": "0x10001550", 
+  "size_bytes": 31, 
+  "calling_convention": "__thiscall", 
+  "signature": "void __thiscall operator*=(gbVec3D * this, float param_1)", 
+  "callees": [], 
+  "global_refs": [
+    {
+      "address": "0x00000004", 
+      "type": null, 
+      "name": "DAT_00000004"
+    }
+  ], 
+  "has_custom_name": true, 
+  "decompiled_c": "\n/* public: void __thiscall gbVec3D::operator*=(float) */\n\nvoid __thiscall gbVec3D::operator*=(gbVec3D *this,float param_1)\n\n{\n                    /* 0x1550  19  ??XgbVec3D@@QAEXM@Z */\n  *(float *)this = param_1 * *(float *)this;\n  *(float *)(this + 4) = param_1 * *(float *)(this + 4);\n  *(float *)(this + 8) = param_1 * *(float *)(this + 8);\n  return;\n}\n\n", 
+  "is_thunk": false, 
+  "name": "operator*=", 
+  "assembly": "  10001550:  FLD dword ptr [ESP + 0x4]\n  10001554:  FMUL dword ptr [ECX]\n  10001556:  FSTP dword ptr [ECX]\n  10001558:  FLD dword ptr [ESP + 0x4]\n  1000155c:  FMUL dword ptr [ECX + 0x4]\n  1000155f:  FSTP dword ptr [ECX + 0x4]\n  10001562:  FLD dword ptr [ESP + 0x4]\n  10001566:  FMUL dword ptr [ECX + 0x8]\n  10001569:  FSTP dword ptr [ECX + 0x8]\n  1000156c:  RET 0x4", 
+  "callers": []
+}

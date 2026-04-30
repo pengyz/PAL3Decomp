@@ -1,0 +1,74 @@
+{
+  "address": "0x1000b8d8", 
+  "size_bytes": 86, 
+  "calling_convention": "__stdcall", 
+  "signature": "undefined __stdcall FUN_1000b8d8(void)", 
+  "callees": [
+    {
+      "address": "0x1000b7d1", 
+      "name": "FUN_1000b7d1"
+    }, 
+    {
+      "address": "0x1000b7d1", 
+      "name": "FUN_1000b7d1"
+    }, 
+    {
+      "address": "0x1000ee21", 
+      "name": "FUN_1000ee21"
+    }
+  ], 
+  "global_refs": [
+    {
+      "address": "0x100122a0", 
+      "type": null, 
+      "name": "DAT_100122a0"
+    }, 
+    {
+      "address": "0x1000d488", 
+      "type": null, 
+      "name": "DAT_1000d488"
+    }, 
+    {
+      "address": "0xffdff000", 
+      "type": "void *32", 
+      "name": "DAT_ffdff000"
+    }, 
+    {
+      "address": "0x-000001c", 
+      "type": null, 
+      "name": "DAT_-000001c"
+    }, 
+    {
+      "address": "0x-0000008", 
+      "type": null, 
+      "name": "DAT_-0000008"
+    }
+  ], 
+  "has_custom_name": false, 
+  "decompiled_c": "\nvoid FUN_1000b8d8(void)\n\n{\n  DWORD *pDVar1;\n  void *pvStack_14;\n  undefined *puStack_10;\n  undefined *puStack_c;\n  undefined4 local_8;\n  \n  puStack_c = &DAT_100122a0;\n  puStack_10 = &LAB_1000d488;\n  pvStack_14 = ExceptionList;\n  local_8 = 0;\n  ExceptionList = &pvStack_14;\n  pDVar1 = FUN_1000b7d1();\n  if (pDVar1[0x18] != 0) {\n    local_8 = 1;\n    pDVar1 = FUN_1000b7d1();\n    (*(code *)pDVar1[0x18])();\n  }\n  local_8 = 0xffffffff;\n  FUN_1000ee21();\n  return;\n}\n\n", 
+  "is_thunk": false, 
+  "name": "FUN_1000b8d8", 
+  "assembly": "  1000b8d8:  PUSH EBP\n  1000b8d9:  MOV EBP,ESP\n  1000b8db:  PUSH -0x1\n  1000b8dd:  PUSH 0x100122a0\n  1000b8e2:  PUSH 0x1000d488\n  1000b8e7:  MOV EAX,FS:[0x0]\n  1000b8ed:  PUSH EAX\n  1000b8ee:  MOV dword ptr FS:[0x0],ESP\n  1000b8f5:  PUSH ECX\n  1000b8f6:  PUSH ECX\n  1000b8f7:  PUSH EBX\n  1000b8f8:  PUSH ESI\n  1000b8f9:  PUSH EDI\n  1000b8fa:  MOV dword ptr [EBP + -0x18],ESP\n  1000b8fd:  XOR ESI,ESI\n  1000b8ff:  MOV dword ptr [EBP + -0x4],ESI\n  1000b902:  CALL 0x1000b7d1\n  1000b907:  CMP dword ptr [EAX + 0x60],ESI\n  1000b90a:  JZ 0x1000b92b\n  1000b90c:  MOV dword ptr [EBP + -0x4],0x1\n  1000b913:  CALL 0x1000b7d1\n  1000b918:  CALL dword ptr [EAX + 0x60]\n  1000b91b:  MOV dword ptr [EBP + -0x4],ESI\n  1000b91e:  JMP 0x1000b92b\n  1000b92b:  OR dword ptr [EBP + -0x4],0xffffffff\n  1000b92f:  CALL 0x1000b934\n  1000b934:  JMP 0x1000ee21", 
+  "callers": [
+    {
+      "address": "0x1000af97", 
+      "name": "FUN_1000af97"
+    }, 
+    {
+      "address": "0x1000b939", 
+      "name": "FUN_1000b939"
+    }, 
+    {
+      "address": "0x1000eba4", 
+      "name": "FUN_1000eba4"
+    }, 
+    {
+      "address": "0x1000b939", 
+      "name": "FUN_1000b939"
+    }, 
+    {
+      "address": "0x1000a453", 
+      "name": "FUN_1000a453"
+    }
+  ]
+}

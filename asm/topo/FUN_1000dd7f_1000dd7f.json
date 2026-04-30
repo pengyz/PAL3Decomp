@@ -1,0 +1,25 @@
+{
+  "address": "0x1000dd7f", 
+  "size_bytes": 146, 
+  "calling_convention": "__cdecl", 
+  "signature": "uint __cdecl FUN_1000dd7f(uint param_1)", 
+  "callees": [], 
+  "global_refs": [
+    {
+      "address": "0x00000004", 
+      "type": null, 
+      "name": "DAT_00000004"
+    }
+  ], 
+  "has_custom_name": false, 
+  "decompiled_c": "\nuint __cdecl FUN_1000dd7f(uint param_1)\n\n{\n  uint uVar1;\n  uint uVar2;\n  \n  uVar1 = 0;\n  if ((param_1 & 1) != 0) {\n    uVar1 = 0x10;\n  }\n  if ((param_1 & 4) != 0) {\n    uVar1 = uVar1 | 8;\n  }\n  if ((param_1 & 8) != 0) {\n    uVar1 = uVar1 | 4;\n  }\n  if ((param_1 & 0x10) != 0) {\n    uVar1 = uVar1 | 2;\n  }\n  if ((param_1 & 0x20) != 0) {\n    uVar1 = uVar1 | 1;\n  }\n  if ((param_1 & 2) != 0) {\n    uVar1 = uVar1 | 0x80000;\n  }\n  uVar2 = param_1 & 0xc00;\n  if (uVar2 != 0) {\n    if (uVar2 == 0x400) {\n      uVar1 = uVar1 | 0x100;\n    }\n    else if (uVar2 == 0x800) {\n      uVar1 = uVar1 | 0x200;\n    }\n    else if (uVar2 == 0xc00) {\n      uVar1 = uVar1 | 0x300;\n    }\n  }\n  if ((param_1 & 0x300) == 0) {\n    uVar1 = uVar1 | 0x20000;\n  }\n  else if ((param_1 & 0x300) == 0x200) {\n    uVar1 = uVar1 | 0x10000;\n  }\n  if ((param_1 & 0x1000) != 0) {\n    uVar1 = uVar1 | 0x40000;\n  }\n  return uVar1;\n}\n\n", 
+  "is_thunk": false, 
+  "name": "FUN_1000dd7f", 
+  "assembly": "  1000dd7f:  PUSH EBX\n  1000dd80:  MOV EBX,dword ptr [ESP + 0x8]\n  1000dd84:  XOR EAX,EAX\n  1000dd86:  PUSH EBP\n  1000dd87:  TEST BL,0x1\n  1000dd8a:  PUSH EDI\n  1000dd8b:  JZ 0x1000dd90\n  1000dd8d:  PUSH 0x10\n  1000dd8f:  POP EAX\n  1000dd90:  TEST BL,0x4\n  1000dd93:  JZ 0x1000dd97\n  1000dd95:  OR AL,0x8\n  1000dd97:  TEST BL,0x8\n  1000dd9a:  JZ 0x1000dd9e\n  1000dd9c:  OR AL,0x4\n  1000dd9e:  TEST BL,0x10\n  1000dda1:  JZ 0x1000dda5\n  1000dda3:  OR AL,0x2\n  1000dda5:  TEST BL,0x20\n  1000dda8:  JZ 0x1000ddac\n  1000ddaa:  OR AL,0x1\n  1000ddac:  TEST BL,0x2\n  1000ddaf:  JZ 0x1000ddb6\n  1000ddb1:  OR EAX,0x80000\n  1000ddb6:  MOVZX ECX,BX\n  1000ddb9:  PUSH ESI\n  1000ddba:  MOV EDX,ECX\n  1000ddbc:  MOV ESI,0xc00\n  1000ddc1:  MOV EDI,0x300\n  1000ddc6:  AND EDX,ESI\n  1000ddc8:  MOV EBP,0x200\n  1000ddcd:  JZ 0x1000ddee\n  1000ddcf:  CMP EDX,0x400\n  1000ddd5:  JZ 0x1000ddeb\n  1000ddd7:  CMP EDX,0x800\n  1000dddd:  JZ 0x1000dde7\n  1000dddf:  CMP EDX,ESI\n  1000dde1:  JNZ 0x1000ddee\n  1000dde3:  OR EAX,EDI\n  1000dde5:  JMP 0x1000ddee\n  1000dde7:  OR EAX,EBP\n  1000dde9:  JMP 0x1000ddee\n  1000ddeb:  OR AH,0x1\n  1000ddee:  AND ECX,EDI\n  1000ddf0:  POP ESI\n  1000ddf1:  JZ 0x1000ddfe\n  1000ddf3:  CMP ECX,EBP\n  1000ddf5:  JNZ 0x1000de03\n  1000ddf7:  OR EAX,0x10000\n  1000ddfc:  JMP 0x1000de03\n  1000ddfe:  OR EAX,0x20000\n  1000de03:  POP EDI\n  1000de04:  POP EBP\n  1000de05:  TEST BH,0x10\n  1000de08:  POP EBX\n  1000de09:  JZ 0x1000de10\n  1000de0b:  OR EAX,0x40000\n  1000de10:  RET", 
+  "callers": [
+    {
+      "address": "0x1000dd34", 
+      "name": "FUN_1000dd34"
+    }
+  ]
+}

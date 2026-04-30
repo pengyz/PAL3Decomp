@@ -1,0 +1,50 @@
+{
+  "address": "0x10002680", 
+  "size_bytes": 122, 
+  "calling_convention": "__thiscall", 
+  "signature": "void __thiscall GetAxisAngle(gbQuaternion * this, gbVec3D * param_1, float * param_2)", 
+  "callees": [
+    {
+      "address": "0x10009bb0", 
+      "name": "FUN_10009bb0"
+    }
+  ], 
+  "global_refs": [
+    {
+      "address": "0x10012108", 
+      "type": null, 
+      "name": "DAT_10012108"
+    }, 
+    {
+      "address": "0x10012110", 
+      "type": null, 
+      "name": "DAT_10012110"
+    }, 
+    {
+      "address": "0x10012104", 
+      "type": null, 
+      "name": "DAT_10012104"
+    }, 
+    {
+      "address": "0x00000004", 
+      "type": null, 
+      "name": "DAT_00000004"
+    }, 
+    {
+      "address": "0x10012100", 
+      "type": null, 
+      "name": "DAT_10012100"
+    }, 
+    {
+      "address": "0x00000008", 
+      "type": null, 
+      "name": "DAT_00000008"
+    }
+  ], 
+  "has_custom_name": true, 
+  "decompiled_c": "\n/* public: void __thiscall gbQuaternion::GetAxisAngle(struct gbVec3D *,float *) */\n\nvoid __thiscall gbQuaternion::GetAxisAngle(gbQuaternion *this,gbVec3D *param_1,float *param_2)\n\n{\n  float10 fVar1;\n  float10 fVar2;\n  \n                    /* 0x2680  28  ?GetAxisAngle@gbQuaternion@@QAEXPAUgbVec3D@@PAM@Z */\n  fVar1 = (float10)FUN_10009bb0();\n  fVar1 = fVar1 * (float10)57.295776;\n  if ((float10)1e-05 < fVar1) {\n    fVar2 = (float10)fsin(fVar1 * (float10)0.017453292);\n    fVar2 = (float10)1.0 / fVar2;\n    *(float *)param_1 = (float)(fVar2 * (float10)*(float *)this);\n    *(float *)(param_1 + 4) = (float)(fVar2 * (float10)*(float *)(this + 4));\n    *(float *)(param_1 + 8) = (float)(fVar2 * (float10)*(float *)(this + 8));\n    *param_2 = (float)(fVar1 + fVar1);\n    return;\n  }\n  *(undefined4 *)(param_1 + 4) = 0;\n  *(undefined4 *)param_1 = 0;\n  *(undefined4 *)(param_1 + 8) = 0x3f800000;\n  *param_2 = 0.0;\n  return;\n}\n\n", 
+  "is_thunk": false, 
+  "name": "GetAxisAngle", 
+  "assembly": "  10002680:  PUSH ESI\n  10002681:  MOV ESI,ECX\n  10002683:  FLD dword ptr [ESI + 0xc]\n  10002686:  CALL 0x10009bb0\n  1000268b:  FMUL dword ptr [0x10012108]\n  10002691:  FCOM qword ptr [0x10012110]\n  10002697:  FNSTSW AX\n  10002699:  TEST AH,0x41\n  1000269c:  JNZ 0x100026d2\n  1000269e:  FLD ST0\n  100026a0:  FMUL dword ptr [0x10012104]\n  100026a6:  MOV EAX,dword ptr [ESP + 0x8]\n  100026aa:  FSIN\n  100026ac:  FDIVR dword ptr [0x10012100]\n  100026b2:  FLD ST0\n  100026b4:  FMUL dword ptr [ESI]\n  100026b6:  FSTP dword ptr [EAX]\n  100026b8:  FLD ST0\n  100026ba:  FMUL dword ptr [ESI + 0x4]\n  100026bd:  FSTP dword ptr [EAX + 0x4]\n  100026c0:  FMUL dword ptr [ESI + 0x8]\n  100026c3:  POP ESI\n  100026c4:  FSTP dword ptr [EAX + 0x8]\n  100026c7:  MOV EAX,dword ptr [ESP + 0x8]\n  100026cb:  FADD ST0,ST0\n  100026cd:  FSTP dword ptr [EAX]\n  100026cf:  RET 0x8\n  100026d2:  MOV EAX,dword ptr [ESP + 0x8]\n  100026d6:  MOV ECX,dword ptr [ESP + 0xc]\n  100026da:  FSTP ST0\n  100026dc:  MOV dword ptr [EAX + 0x4],0x0\n  100026e3:  MOV dword ptr [EAX],0x0\n  100026e9:  MOV dword ptr [EAX + 0x8],0x3f800000\n  100026f0:  MOV dword ptr [ECX],0x0\n  100026f6:  POP ESI\n  100026f7:  RET 0x8", 
+  "callers": []
+}

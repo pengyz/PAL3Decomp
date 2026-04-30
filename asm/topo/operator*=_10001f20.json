@@ -1,0 +1,43 @@
+{
+  "address": "0x10001f20", 
+  "size_bytes": 48, 
+  "calling_convention": "__thiscall", 
+  "signature": "void __thiscall operator*=(gbMatrix4 * this, gbQuaternion * param_1)", 
+  "callees": [
+    {
+      "address": "0x10001110", 
+      "name": "gbMatrix4"
+    }, 
+    {
+      "address": "0x10002950", 
+      "name": "GetMatrix"
+    }, 
+    {
+      "address": "0x10001240", 
+      "name": "LeftMultiply"
+    }
+  ], 
+  "global_refs": [
+    {
+      "address": "0x-0000040", 
+      "type": null, 
+      "name": "DAT_-0000040"
+    }, 
+    {
+      "address": "0x00000004", 
+      "type": null, 
+      "name": "DAT_00000004"
+    }
+  ], 
+  "has_custom_name": true, 
+  "decompiled_c": "\n/* public: void __thiscall gbMatrix4::operator*=(struct gbQuaternion const &) */\n\nvoid __thiscall gbMatrix4::operator*=(gbMatrix4 *this,gbQuaternion *param_1)\n\n{\n  gbMatrix4 local_40 [64];\n  \n                    /* 0x1f20  16  ??XgbMatrix4@@QAEXABUgbQuaternion@@@Z\n                       0x1f20  52  ?LeftMultiply@gbMatrix4@@QAEXABUgbQuaternion@@@Z */\n  gbMatrix4(local_40);\n  gbQuaternion::GetMatrix(param_1,local_40);\n  LeftMultiply(this,local_40);\n  return;\n}\n\n", 
+  "is_thunk": false, 
+  "name": "operator*=", 
+  "assembly": "  10001f20:  SUB ESP,0x40\n  10001f23:  PUSH ESI\n  10001f24:  MOV ESI,ECX\n  10001f26:  LEA ECX,[ESP + 0x4]\n  10001f2a:  CALL 0x10001110\n  10001f2f:  MOV ECX,dword ptr [ESP + 0x48]\n  10001f33:  LEA EAX,[ESP + 0x4]\n  10001f37:  PUSH EAX\n  10001f38:  CALL 0x10002950\n  10001f3d:  LEA ECX,[ESP + 0x4]\n  10001f41:  PUSH ECX\n  10001f42:  MOV ECX,ESI\n  10001f44:  CALL 0x10001240\n  10001f49:  POP ESI\n  10001f4a:  ADD ESP,0x40\n  10001f4d:  RET 0x4", 
+  "callers": [
+    {
+      "address": "0x10002f00", 
+      "name": "Rotate"
+    }
+  ]
+}

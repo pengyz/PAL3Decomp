@@ -1,0 +1,64 @@
+{
+  "address": "0x1000cdea", 
+  "size_bytes": 86, 
+  "calling_convention": "__cdecl", 
+  "signature": "undefined __cdecl FUN_1000cdea(undefined * * param_1)", 
+  "callees": [
+    {
+      "address": "0x00000019", 
+      "name": "VirtualFree"
+    }, 
+    {
+      "address": "0x00000003", 
+      "name": "HeapFree"
+    }
+  ], 
+  "global_refs": [
+    {
+      "address": "0x00000004", 
+      "type": null, 
+      "name": "DAT_00000004"
+    }, 
+    {
+      "address": "0x10012060", 
+      "type": "pointer", 
+      "name": "DAT_10012060"
+    }, 
+    {
+      "address": "0x10017100", 
+      "type": "pointer", 
+      "name": "DAT_10017100"
+    }, 
+    {
+      "address": "0x100150e0", 
+      "type": "pointer", 
+      "name": "DAT_100150e0"
+    }, 
+    {
+      "address": "0x100185e0", 
+      "type": "undefined4", 
+      "name": "DAT_100185e0"
+    }, 
+    {
+      "address": "0x10012008", 
+      "type": "pointer", 
+      "name": "DAT_10012008"
+    }, 
+    {
+      "address": "0x100150f0", 
+      "type": "undefined4", 
+      "name": "DAT_100150f0"
+    }
+  ], 
+  "has_custom_name": false, 
+  "decompiled_c": "\nvoid __cdecl FUN_1000cdea(undefined **param_1)\n\n{\n  VirtualFree(param_1[4],0,0x8000);\n  if ((undefined **)PTR_LOOP_10017100 == param_1) {\n    PTR_LOOP_10017100 = param_1[1];\n  }\n  if (param_1 != &PTR_LOOP_100150e0) {\n    *(undefined **)param_1[1] = *param_1;\n    *(undefined **)(*param_1 + 4) = param_1[1];\n    HeapFree(DAT_100185e0,0,param_1);\n    return;\n  }\n  DAT_100150f0 = 0xffffffff;\n  return;\n}\n\n", 
+  "is_thunk": false, 
+  "name": "FUN_1000cdea", 
+  "assembly": "  1000cdea:  PUSH ESI\n  1000cdeb:  MOV ESI,dword ptr [ESP + 0x8]\n  1000cdef:  PUSH 0x8000\n  1000cdf4:  PUSH 0x0\n  1000cdf6:  PUSH dword ptr [ESI + 0x10]\n  1000cdf9:  CALL dword ptr [0x10012060]\n  1000cdff:  CMP dword ptr [0x10017100],ESI\n  1000ce05:  JNZ 0x1000ce0f\n  1000ce07:  MOV EAX,dword ptr [ESI + 0x4]\n  1000ce0a:  MOV [0x10017100],EAX\n  1000ce0f:  CMP ESI,0x100150e0\n  1000ce15:  JZ 0x1000ce37\n  1000ce17:  MOV EAX,dword ptr [ESI + 0x4]\n  1000ce1a:  MOV ECX,dword ptr [ESI]\n  1000ce1c:  PUSH ESI\n  1000ce1d:  PUSH 0x0\n  1000ce1f:  MOV dword ptr [EAX],ECX\n  1000ce21:  MOV EAX,dword ptr [ESI]\n  1000ce23:  MOV ECX,dword ptr [ESI + 0x4]\n  1000ce26:  MOV dword ptr [EAX + 0x4],ECX\n  1000ce29:  PUSH dword ptr [0x100185e0]\n  1000ce2f:  CALL dword ptr [0x10012008]\n  1000ce35:  POP ESI\n  1000ce36:  RET\n  1000ce37:  OR dword ptr [0x100150f0],0xffffffff\n  1000ce3e:  POP ESI\n  1000ce3f:  RET", 
+  "callers": [
+    {
+      "address": "0x1000ce40", 
+      "name": "FUN_1000ce40"
+    }
+  ]
+}

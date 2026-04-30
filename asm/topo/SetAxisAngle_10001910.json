@@ -1,0 +1,35 @@
+{
+  "address": "0x10001910", 
+  "size_bytes": 143, 
+  "calling_convention": "__thiscall", 
+  "signature": "void __thiscall SetAxisAngle(gbMatrix4 * this, gbAxis param_1, float param_2, float param_3)", 
+  "callees": [], 
+  "global_refs": [
+    {
+      "address": "0x00000004", 
+      "type": null, 
+      "name": "DAT_00000004"
+    }, 
+    {
+      "address": "0x00000008", 
+      "type": null, 
+      "name": "DAT_00000008"
+    }, 
+    {
+      "address": "0x0000000c", 
+      "type": null, 
+      "name": "DAT_0000000c"
+    }
+  ], 
+  "has_custom_name": true, 
+  "decompiled_c": "\n/* public: void __thiscall gbMatrix4::SetAxisAngle(enum gbAxis,float,float) */\n\nvoid __thiscall gbMatrix4::SetAxisAngle(gbMatrix4 *this,gbAxis param_1,float param_2,float param_3)\n\n{\n  int iVar1;\n  gbMatrix4 *pgVar2;\n  \n  pgVar2 = this;\n                    /* 0x1910  84  ?SetAxisAngle@gbMatrix4@@QAEXW4gbAxis@@MM@Z */\n  for (iVar1 = 0x10; iVar1 != 0; iVar1 = iVar1 + -1) {\n    *(undefined4 *)pgVar2 = 0;\n    pgVar2 = pgVar2 + 4;\n  }\n  *(undefined4 *)(this + 0x3c) = 0x3f800000;\n  if (param_1 == 0) {\n    *(undefined4 *)this = 0x3f800000;\n    *(float *)(this + 0x14) = param_2;\n    *(float *)(this + 0x18) = param_3;\n    *(float *)(this + 0x24) = -param_3;\n    *(float *)(this + 0x28) = param_2;\n  }\n  else {\n    if (param_1 == 1) {\n      *(undefined4 *)(this + 0x14) = 0x3f800000;\n      *(float *)this = param_2;\n      *(float *)(this + 0x20) = param_3;\n      *(float *)(this + 8) = -param_3;\n      *(float *)(this + 0x28) = param_2;\n      return;\n    }\n    if (param_1 == 2) {\n      *(undefined4 *)(this + 0x28) = 0x3f800000;\n      *(float *)this = param_2;\n      *(float *)(this + 4) = param_3;\n      *(float *)(this + 0x10) = -param_3;\n      *(float *)(this + 0x14) = param_2;\n      return;\n    }\n  }\n  return;\n}\n\n", 
+  "is_thunk": false, 
+  "name": "SetAxisAngle", 
+  "assembly": "  10001910:  MOV EDX,ECX\n  10001912:  PUSH EDI\n  10001913:  MOV ECX,0x10\n  10001918:  XOR EAX,EAX\n  1000191a:  MOV EDI,EDX\n  1000191c:  STOSD.REP ES:EDI\n  1000191e:  MOV EAX,dword ptr [ESP + 0x8]\n  10001922:  MOV ECX,0x3f800000\n  10001927:  SUB EAX,0x0\n  1000192a:  MOV dword ptr [EDX + 0x3c],ECX\n  1000192d:  POP EDI\n  1000192e:  JZ 0x1000197c\n  10001930:  DEC EAX\n  10001931:  JZ 0x10001959\n  10001933:  DEC EAX\n  10001934:  JNZ 0x1000199c\n  10001936:  MOV EAX,dword ptr [ESP + 0x8]\n  1000193a:  MOV dword ptr [EDX + 0x28],ECX\n  1000193d:  FLD dword ptr [ESP + 0xc]\n  10001941:  MOV dword ptr [EDX],EAX\n  10001943:  MOV EAX,dword ptr [ESP + 0xc]\n  10001947:  MOV dword ptr [EDX + 0x4],EAX\n  1000194a:  MOV EAX,dword ptr [ESP + 0x8]\n  1000194e:  FCHS\n  10001950:  FSTP dword ptr [EDX + 0x10]\n  10001953:  MOV dword ptr [EDX + 0x14],EAX\n  10001956:  RET 0xc\n  10001959:  MOV EAX,dword ptr [ESP + 0x8]\n  1000195d:  MOV dword ptr [EDX + 0x14],ECX\n  10001960:  FLD dword ptr [ESP + 0xc]\n  10001964:  MOV dword ptr [EDX],EAX\n  10001966:  MOV EAX,dword ptr [ESP + 0xc]\n  1000196a:  MOV dword ptr [EDX + 0x20],EAX\n  1000196d:  MOV EAX,dword ptr [ESP + 0x8]\n  10001971:  FCHS\n  10001973:  FSTP dword ptr [EDX + 0x8]\n  10001976:  MOV dword ptr [EDX + 0x28],EAX\n  10001979:  RET 0xc\n  1000197c:  MOV EAX,dword ptr [ESP + 0x8]\n  10001980:  MOV dword ptr [EDX],ECX\n  10001982:  FLD dword ptr [ESP + 0xc]\n  10001986:  MOV dword ptr [EDX + 0x14],EAX\n  10001989:  MOV EAX,dword ptr [ESP + 0xc]\n  1000198d:  MOV dword ptr [EDX + 0x18],EAX\n  10001990:  MOV EAX,dword ptr [ESP + 0x8]\n  10001994:  FCHS\n  10001996:  FSTP dword ptr [EDX + 0x24]\n  10001999:  MOV dword ptr [EDX + 0x28],EAX\n  1000199c:  RET 0xc", 
+  "callers": [
+    {
+      "address": "0x10001a30", 
+      "name": "SetAxisAngle"
+    }
+  ]
+}

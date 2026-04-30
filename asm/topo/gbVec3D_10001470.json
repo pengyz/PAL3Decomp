@@ -1,0 +1,55 @@
+{
+  "address": "0x10001470", 
+  "size_bytes": 25, 
+  "calling_convention": "__thiscall", 
+  "signature": "undefined __thiscall gbVec3D(gbVec3D * this, float param_1, float param_2, float param_3)", 
+  "callees": [], 
+  "global_refs": [
+    {
+      "address": "0x00000008", 
+      "type": null, 
+      "name": "DAT_00000008"
+    }, 
+    {
+      "address": "0x00000004", 
+      "type": null, 
+      "name": "DAT_00000004"
+    }, 
+    {
+      "address": "0x0000000c", 
+      "type": null, 
+      "name": "DAT_0000000c"
+    }
+  ], 
+  "has_custom_name": true, 
+  "decompiled_c": "\n/* public: __thiscall gbVec3D::gbVec3D(float,float,float) */\n\nvoid __thiscall gbVec3D::gbVec3D(gbVec3D *this,float param_1,float param_2,float param_3)\n\n{\n                    /* 0x1470  5  ??0gbVec3D@@QAE@MMM@Z */\n  *(float *)this = param_1;\n  *(float *)(this + 4) = param_2;\n  *(float *)(this + 8) = param_3;\n  return;\n}\n\n", 
+  "is_thunk": false, 
+  "name": "gbVec3D", 
+  "assembly": "  10001470:  MOV EDX,dword ptr [ESP + 0x8]\n  10001474:  MOV EAX,ECX\n  10001476:  MOV ECX,dword ptr [ESP + 0x4]\n  1000147a:  MOV dword ptr [EAX],ECX\n  1000147c:  MOV ECX,dword ptr [ESP + 0xc]\n  10001480:  MOV dword ptr [EAX + 0x4],EDX\n  10001483:  MOV dword ptr [EAX + 0x8],ECX\n  10001486:  RET 0xc", 
+  "callers": [
+    {
+      "address": "0x10003fc0", 
+      "name": "FUN_10003fc0"
+    }, 
+    {
+      "address": "0x10003fc0", 
+      "name": "FUN_10003fc0"
+    }, 
+    {
+      "address": "0x10003fc0", 
+      "name": "FUN_10003fc0"
+    }, 
+    {
+      "address": "0x10003fc0", 
+      "name": "FUN_10003fc0"
+    }, 
+    {
+      "address": "0x10004bc0", 
+      "name": "FUN_10004bc0"
+    }, 
+    {
+      "address": "0x100042b0", 
+      "name": "FUN_100042b0"
+    }
+  ]
+}

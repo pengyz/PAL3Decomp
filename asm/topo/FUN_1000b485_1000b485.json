@@ -1,0 +1,20 @@
+{
+  "address": "0x1000b485", 
+  "size_bytes": 42, 
+  "calling_convention": "__cdecl", 
+  "signature": "undefined4 __cdecl FUN_1000b485(int * param_1)", 
+  "callees": [], 
+  "global_refs": [
+    {
+      "address": "0x00000004", 
+      "type": null, 
+      "name": "DAT_00000004"
+    }
+  ], 
+  "has_custom_name": false, 
+  "decompiled_c": "\nundefined4 __cdecl FUN_1000b485(int *param_1)\n\n{\n  int *piVar1;\n  \n  piVar1 = (int *)*param_1;\n  if ((((*piVar1 == -0x1f928c9d) && (piVar1[4] == 3)) && (piVar1[5] == 0x19930520)) &&\n     (piVar1[7] == 0)) {\n    return 1;\n  }\n  return 0;\n}\n\n", 
+  "is_thunk": false, 
+  "name": "FUN_1000b485", 
+  "assembly": "  1000b485:  MOV EAX,dword ptr [ESP + 0x4]\n  1000b489:  MOV EAX,dword ptr [EAX]\n  1000b48b:  CMP dword ptr [EAX],0xe06d7363\n  1000b491:  JNZ 0x1000b4ac\n  1000b493:  CMP dword ptr [EAX + 0x10],0x3\n  1000b497:  JNZ 0x1000b4ac\n  1000b499:  CMP dword ptr [EAX + 0x14],0x19930520\n  1000b4a0:  JNZ 0x1000b4ac\n  1000b4a2:  CMP dword ptr [EAX + 0x1c],0x0\n  1000b4a6:  JNZ 0x1000b4ac\n  1000b4a8:  PUSH 0x1\n  1000b4aa:  POP EAX\n  1000b4ab:  RET\n  1000b4ac:  XOR EAX,EAX\n  1000b4ae:  RET", 
+  "callers": []
+}

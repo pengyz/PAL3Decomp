@@ -1,0 +1,30 @@
+{
+  "address": "0x1000e049", 
+  "size_bytes": 73, 
+  "calling_convention": "__cdecl", 
+  "signature": "undefined4 __cdecl FUN_1000e049(int param_1, int param_2)", 
+  "callees": [], 
+  "global_refs": [
+    {
+      "address": "0x00000008", 
+      "type": null, 
+      "name": "DAT_00000008"
+    }, 
+    {
+      "address": "0x00000004", 
+      "type": null, 
+      "name": "DAT_00000004"
+    }
+  ], 
+  "has_custom_name": false, 
+  "decompiled_c": "\nundefined4 __cdecl FUN_1000e049(int param_1,int param_2)\n\n{\n  int *piVar1;\n  int iVar2;\n  \n  if ((*(uint *)(param_1 + (param_2 / 0x20) * 4) & ~(-1 << (0x1fU - (char)(param_2 % 0x20) & 0x1f)))\n      != 0) {\n    return 0;\n  }\n  iVar2 = param_2 / 0x20 + 1;\n  if (iVar2 < 3) {\n    piVar1 = (int *)(param_1 + iVar2 * 4);\n    do {\n      if (*piVar1 != 0) {\n        return 0;\n      }\n      iVar2 = iVar2 + 1;\n      piVar1 = piVar1 + 1;\n    } while (iVar2 < 3);\n  }\n  return 1;\n}\n\n", 
+  "is_thunk": false, 
+  "name": "FUN_1000e049", 
+  "assembly": "  1000e049:  MOV EAX,dword ptr [ESP + 0x8]\n  1000e04d:  PUSH ESI\n  1000e04e:  PUSH 0x20\n  1000e050:  CDQ\n  1000e051:  POP ECX\n  1000e052:  IDIV ECX\n  1000e054:  PUSH 0x1f\n  1000e056:  MOV ESI,EAX\n  1000e058:  MOV EAX,dword ptr [ESP + 0x10]\n  1000e05c:  CDQ\n  1000e05d:  IDIV ECX\n  1000e05f:  POP ECX\n  1000e060:  MOV EAX,dword ptr [ESP + 0x8]\n  1000e064:  SUB ECX,EDX\n  1000e066:  OR EDX,0xffffffff\n  1000e069:  SHL EDX,CL\n  1000e06b:  NOT EDX\n  1000e06d:  TEST dword ptr [EAX + ESI*0x4],EDX\n  1000e070:  JNZ 0x1000e08e\n  1000e072:  INC ESI\n  1000e073:  CMP ESI,0x3\n  1000e076:  JGE 0x1000e089\n  1000e078:  LEA EAX,[EAX + ESI*0x4]\n  1000e07b:  CMP dword ptr [EAX],0x0\n  1000e07e:  JNZ 0x1000e08e\n  1000e080:  INC ESI\n  1000e081:  ADD EAX,0x4\n  1000e084:  CMP ESI,0x3\n  1000e087:  JL 0x1000e07b\n  1000e089:  PUSH 0x1\n  1000e08b:  POP EAX\n  1000e08c:  POP ESI\n  1000e08d:  RET\n  1000e08e:  XOR EAX,EAX\n  1000e090:  POP ESI\n  1000e091:  RET", 
+  "callers": [
+    {
+      "address": "0x1000e0e8", 
+      "name": "FUN_1000e0e8"
+    }
+  ]
+}

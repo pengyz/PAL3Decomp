@@ -1,0 +1,80 @@
+{
+  "address": "0x100098b0", 
+  "size_bytes": 163, 
+  "calling_convention": "__cdecl", 
+  "signature": "undefined __cdecl FUN_100098b0(undefined * param_1, undefined * param_2)", 
+  "callees": [
+    {
+      "address": "0x10009c86", 
+      "name": "operator_new"
+    }
+  ], 
+  "global_refs": [
+    {
+      "address": "0x10011901", 
+      "type": null, 
+      "name": "DAT_10011901"
+    }, 
+    {
+      "address": "0xffdff000", 
+      "type": "void *32", 
+      "name": "DAT_ffdff000"
+    }, 
+    {
+      "address": "0x00000004", 
+      "type": null, 
+      "name": "DAT_00000004"
+    }, 
+    {
+      "address": "0x-0000010", 
+      "type": null, 
+      "name": "DAT_-0000010"
+    }, 
+    {
+      "address": "0x-0000004", 
+      "type": null, 
+      "name": "DAT_-0000004"
+    }, 
+    {
+      "address": "0x00000008", 
+      "type": null, 
+      "name": "DAT_00000008"
+    }, 
+    {
+      "address": "0x-000000c", 
+      "type": null, 
+      "name": "DAT_-000000c"
+    }
+  ], 
+  "has_custom_name": false, 
+  "decompiled_c": "\nvoid __cdecl FUN_100098b0(undefined *param_1,undefined *param_2)\n\n{\n  undefined4 *puVar1;\n  int iVar2;\n  undefined4 *puVar3;\n  undefined4 *puVar4;\n  void *local_c;\n  undefined *puStack_8;\n  undefined4 local_4;\n  \n  puStack_8 = &LAB_10011901;\n  local_c = ExceptionList;\n  local_4 = 0;\n  if (param_1 != (undefined *)0x0) {\n    ExceptionList = &local_c;\n    *param_1 = *param_2;\n    if (*(int *)(param_2 + 4) == 0) {\n      iVar2 = 0;\n    }\n    else {\n      iVar2 = *(int *)(param_2 + 8) - *(int *)(param_2 + 4) >> 2;\n    }\n    if (iVar2 < 0) {\n      iVar2 = 0;\n    }\n    puVar3 = (undefined4 *)operator_new(iVar2 * 4);\n    *(undefined4 **)(param_1 + 4) = puVar3;\n    puVar1 = *(undefined4 **)(param_2 + 8);\n    for (puVar4 = *(undefined4 **)(param_2 + 4); puVar4 != puVar1; puVar4 = puVar4 + 1) {\n      if (puVar3 != (undefined4 *)0x0) {\n        *puVar3 = *puVar4;\n      }\n      puVar3 = puVar3 + 1;\n    }\n    *(undefined4 **)(param_1 + 8) = puVar3;\n    *(undefined4 **)(param_1 + 0xc) = puVar3;\n    *(undefined4 *)(param_1 + 0x10) = *(undefined4 *)(param_2 + 0x10);\n    *(undefined4 *)(param_1 + 0x14) = *(undefined4 *)(param_2 + 0x14);\n  }\n  ExceptionList = local_c;\n  return;\n}\n\n", 
+  "is_thunk": false, 
+  "name": "FUN_100098b0", 
+  "assembly": "  100098b0:  PUSH -0x1\n  100098b2:  PUSH 0x10011901\n  100098b7:  MOV EAX,FS:[0x0]\n  100098bd:  PUSH EAX\n  100098be:  MOV dword ptr FS:[0x0],ESP\n  100098c5:  PUSH ECX\n  100098c6:  PUSH EDI\n  100098c7:  MOV EDI,dword ptr [ESP + 0x18]\n  100098cb:  MOV dword ptr [ESP + 0x4],EDI\n  100098cf:  TEST EDI,EDI\n  100098d1:  MOV dword ptr [ESP + 0x10],0x0\n  100098d9:  JZ 0x10009943\n  100098db:  PUSH ESI\n  100098dc:  MOV ESI,dword ptr [ESP + 0x20]\n  100098e0:  MOV AL,byte ptr [ESI]\n  100098e2:  MOV byte ptr [EDI],AL\n  100098e4:  MOV ECX,dword ptr [ESI + 0x4]\n  100098e7:  TEST ECX,ECX\n  100098e9:  JNZ 0x100098ef\n  100098eb:  XOR EAX,EAX\n  100098ed:  JMP 0x100098f7\n  100098ef:  MOV EAX,dword ptr [ESI + 0x8]\n  100098f2:  SUB EAX,ECX\n  100098f4:  SAR EAX,0x2\n  100098f7:  TEST EAX,EAX\n  100098f9:  JGE 0x100098fd\n  100098fb:  XOR EAX,EAX\n  100098fd:  LEA ECX,[EAX*0x4 + 0x0]\n  10009904:  PUSH ECX\n  10009905:  CALL 0x10009c86\n  1000990a:  MOV dword ptr [EDI + 0x4],EAX\n  1000990d:  MOV EDX,dword ptr [ESI + 0x8]\n  10009910:  MOV ECX,EAX\n  10009912:  MOV EAX,dword ptr [ESI + 0x4]\n  10009915:  ADD ESP,0x4\n  10009918:  CMP EAX,EDX\n  1000991a:  JZ 0x10009930\n  1000991c:  PUSH EBX\n  1000991d:  TEST ECX,ECX\n  1000991f:  JZ 0x10009925\n  10009921:  MOV EBX,dword ptr [EAX]\n  10009923:  MOV dword ptr [ECX],EBX\n  10009925:  ADD EAX,0x4\n  10009928:  ADD ECX,0x4\n  1000992b:  CMP EAX,EDX\n  1000992d:  JNZ 0x1000991d\n  1000992f:  POP EBX\n  10009930:  MOV dword ptr [EDI + 0x8],ECX\n  10009933:  MOV dword ptr [EDI + 0xc],ECX\n  10009936:  MOV EDX,dword ptr [ESI + 0x10]\n  10009939:  MOV dword ptr [EDI + 0x10],EDX\n  1000993c:  MOV EAX,dword ptr [ESI + 0x14]\n  1000993f:  MOV dword ptr [EDI + 0x14],EAX\n  10009942:  POP ESI\n  10009943:  MOV ECX,dword ptr [ESP + 0x8]\n  10009947:  POP EDI\n  10009948:  MOV dword ptr FS:[0x0],ECX\n  1000994f:  ADD ESP,0x10\n  10009952:  RET", 
+  "callers": [
+    {
+      "address": "0x100092b0", 
+      "name": "FUN_100092b0"
+    }, 
+    {
+      "address": "0x100092b0", 
+      "name": "FUN_100092b0"
+    }, 
+    {
+      "address": "0x100092b0", 
+      "name": "FUN_100092b0"
+    }, 
+    {
+      "address": "0x100092b0", 
+      "name": "FUN_100092b0"
+    }, 
+    {
+      "address": "0x100092b0", 
+      "name": "FUN_100092b0"
+    }, 
+    {
+      "address": "0x100092b0", 
+      "name": "FUN_100092b0"
+    }
+  ]
+}

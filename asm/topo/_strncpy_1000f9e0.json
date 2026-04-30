@@ -1,0 +1,35 @@
+{
+  "address": "0x1000f9e0", 
+  "size_bytes": 254, 
+  "calling_convention": "__cdecl", 
+  "signature": "char * __cdecl _strncpy(char * _Dest, char * _Source, size_t _Count)", 
+  "callees": [], 
+  "global_refs": [
+    {
+      "address": "0x0000000c", 
+      "type": null, 
+      "name": "DAT_0000000c"
+    }, 
+    {
+      "address": "0x00000008", 
+      "type": null, 
+      "name": "DAT_00000008"
+    }, 
+    {
+      "address": "0x00000004", 
+      "type": null, 
+      "name": "DAT_00000004"
+    }
+  ], 
+  "has_custom_name": true, 
+  "decompiled_c": "\n/* Library Function - Single Match\n    _strncpy\n   \n   Libraries: Visual Studio 1998 Debug, Visual Studio 1998 Release */\n\nchar * __cdecl _strncpy(char *_Dest,char *_Source,size_t _Count)\n\n{\n  uint uVar1;\n  uint uVar2;\n  char cVar3;\n  uint uVar4;\n  uint *puVar5;\n  \n  if (_Count == 0) {\n    return _Dest;\n  }\n  puVar5 = (uint *)_Dest;\n  if (((uint)_Source & 3) != 0) {\n    while( true ) {\n      cVar3 = *_Source;\n      _Source = (char *)((int)_Source + 1);\n      *(char *)puVar5 = cVar3;\n      puVar5 = (uint *)((int)puVar5 + 1);\n      _Count = _Count - 1;\n      if (_Count == 0) {\n        return _Dest;\n      }\n      if (cVar3 == '\\0') break;\n      if (((uint)_Source & 3) == 0) {\n        uVar4 = _Count >> 2;\n        goto joined_r0x1000fa1e;\n      }\n    }\n    do {\n      if (((uint)puVar5 & 3) == 0) {\n        uVar4 = _Count >> 2;\n        cVar3 = '\\0';\n        if (uVar4 == 0) goto LAB_1000fa5b;\n        goto LAB_1000fac9;\n      }\n      *(char *)puVar5 = '\\0';\n      puVar5 = (uint *)((int)puVar5 + 1);\n      _Count = _Count - 1;\n    } while (_Count != 0);\n    return _Dest;\n  }\n  uVar4 = _Count >> 2;\n  if (uVar4 != 0) {\n    do {\n      uVar1 = *(uint *)_Source;\n      uVar2 = *(uint *)_Source;\n      _Source = (char *)((int)_Source + 4);\n      if (((uVar1 ^ 0xffffffff ^ uVar1 + 0x7efefeff) & 0x81010100) != 0) {\n        if ((char)uVar2 == '\\0') {\n          *puVar5 = 0;\njoined_r0x1000fac5:\n          while( true ) {\n            uVar4 = uVar4 - 1;\n            puVar5 = puVar5 + 1;\n            if (uVar4 == 0) break;\nLAB_1000fac9:\n            *puVar5 = 0;\n          }\n          cVar3 = '\\0';\n          _Count = _Count & 3;\n          if (_Count != 0) goto LAB_1000fa5b;\n          return _Dest;\n        }\n        if ((char)(uVar2 >> 8) == '\\0') {\n          *puVar5 = uVar2 & 0xff;\n          goto joined_r0x1000fac5;\n        }\n        if ((uVar2 & 0xff0000) == 0) {\n          *puVar5 = uVar2 & 0xffff;\n          goto joined_r0x1000fac5;\n        }\n        if ((uVar2 & 0xff000000) == 0) {\n          *puVar5 = uVar2;\n          goto joined_r0x1000fac5;\n        }\n      }\n      *puVar5 = uVar2;\n      puVar5 = puVar5 + 1;\n      uVar4 = uVar4 - 1;\njoined_r0x1000fa1e:\n    } while (uVar4 != 0);\n    _Count = _Count & 3;\n    if (_Count == 0) {\n      return _Dest;\n    }\n  }\n  do {\n    cVar3 = *_Source;\n    _Source = (char *)((int)_Source + 1);\n    *(char *)puVar5 = cVar3;\n    puVar5 = (uint *)((int)puVar5 + 1);\n    if (cVar3 == '\\0') {\n      while (_Count = _Count - 1, _Count != 0) {\nLAB_1000fa5b:\n        *(char *)puVar5 = cVar3;\n        puVar5 = (uint *)((int)puVar5 + 1);\n      }\n      return _Dest;\n    }\n    _Count = _Count - 1;\n  } while (_Count != 0);\n  return _Dest;\n}\n\n", 
+  "is_thunk": false, 
+  "name": "_strncpy", 
+  "assembly": "  1000f9e0:  MOV ECX,dword ptr [ESP + 0xc]\n  1000f9e4:  PUSH EDI\n  1000f9e5:  TEST ECX,ECX\n  1000f9e7:  JZ 0x1000fa63\n  1000f9e9:  PUSH ESI\n  1000f9ea:  PUSH EBX\n  1000f9eb:  MOV EBX,ECX\n  1000f9ed:  MOV ESI,dword ptr [ESP + 0x14]\n  1000f9f1:  TEST ESI,0x3\n  1000f9f7:  MOV EDI,dword ptr [ESP + 0x10]\n  1000f9fb:  JNZ 0x1000fa04\n  1000f9fd:  SHR ECX,0x2\n  1000fa00:  JNZ 0x1000fa71\n  1000fa02:  JMP 0x1000fa25\n  1000fa04:  MOV AL,byte ptr [ESI]\n  1000fa06:  INC ESI\n  1000fa07:  MOV byte ptr [EDI],AL\n  1000fa09:  INC EDI\n  1000fa0a:  DEC ECX\n  1000fa0b:  JZ 0x1000fa32\n  1000fa0d:  TEST AL,AL\n  1000fa0f:  JZ 0x1000fa3a\n  1000fa11:  TEST ESI,0x3\n  1000fa17:  JNZ 0x1000fa04\n  1000fa19:  MOV EBX,ECX\n  1000fa1b:  SHR ECX,0x2\n  1000fa1e:  JNZ 0x1000fa71\n  1000fa20:  AND EBX,0x3\n  1000fa23:  JZ 0x1000fa32\n  1000fa25:  MOV AL,byte ptr [ESI]\n  1000fa27:  INC ESI\n  1000fa28:  MOV byte ptr [EDI],AL\n  1000fa2a:  INC EDI\n  1000fa2b:  TEST AL,AL\n  1000fa2d:  JZ 0x1000fa5e\n  1000fa2f:  DEC EBX\n  1000fa30:  JNZ 0x1000fa25\n  1000fa32:  MOV EAX,dword ptr [ESP + 0x10]\n  1000fa36:  POP EBX\n  1000fa37:  POP ESI\n  1000fa38:  POP EDI\n  1000fa39:  RET\n  1000fa3a:  TEST EDI,0x3\n  1000fa40:  JZ 0x1000fa54\n  1000fa42:  MOV byte ptr [EDI],AL\n  1000fa44:  INC EDI\n  1000fa45:  DEC ECX\n  1000fa46:  JZ 0x1000fad6\n  1000fa4c:  TEST EDI,0x3\n  1000fa52:  JNZ 0x1000fa42\n  1000fa54:  MOV EBX,ECX\n  1000fa56:  SHR ECX,0x2\n  1000fa59:  JNZ 0x1000fac7\n  1000fa5b:  MOV byte ptr [EDI],AL\n  1000fa5d:  INC EDI\n  1000fa5e:  DEC EBX\n  1000fa5f:  JNZ 0x1000fa5b\n  1000fa61:  POP EBX\n  1000fa62:  POP ESI\n  1000fa63:  MOV EAX,dword ptr [ESP + 0x8]\n  1000fa67:  POP EDI\n  1000fa68:  RET\n  1000fa69:  MOV dword ptr [EDI],EDX\n  1000fa6b:  ADD EDI,0x4\n  1000fa6e:  DEC ECX\n  1000fa6f:  JZ 0x1000fa20\n  1000fa71:  MOV EDX,0x7efefeff\n  1000fa76:  MOV EAX,dword ptr [ESI]\n  1000fa78:  ADD EDX,EAX\n  1000fa7a:  XOR EAX,0xffffffff\n  1000fa7d:  XOR EAX,EDX\n  1000fa7f:  MOV EDX,dword ptr [ESI]\n  1000fa81:  ADD ESI,0x4\n  1000fa84:  TEST EAX,0x81010100\n  1000fa89:  JZ 0x1000fa69\n  1000fa8b:  TEST DL,DL\n  1000fa8d:  JZ 0x1000fabb\n  1000fa8f:  TEST DH,DH\n  1000fa91:  JZ 0x1000fab1\n  1000fa93:  TEST EDX,0xff0000\n  1000fa99:  JZ 0x1000faa7\n  1000fa9b:  TEST EDX,0xff000000\n  1000faa1:  JNZ 0x1000fa69\n  1000faa3:  MOV dword ptr [EDI],EDX\n  1000faa5:  JMP 0x1000fabf\n  1000faa7:  AND EDX,0xffff\n  1000faad:  MOV dword ptr [EDI],EDX\n  1000faaf:  JMP 0x1000fabf\n  1000fab1:  AND EDX,0xff\n  1000fab7:  MOV dword ptr [EDI],EDX\n  1000fab9:  JMP 0x1000fabf\n  1000fabb:  XOR EDX,EDX\n  1000fabd:  MOV dword ptr [EDI],EDX\n  1000fabf:  ADD EDI,0x4\n  1000fac2:  XOR EAX,EAX\n  1000fac4:  DEC ECX\n  1000fac5:  JZ 0x1000fad1\n  1000fac7:  XOR EAX,EAX\n  1000fac9:  MOV dword ptr [EDI],EAX\n  1000facb:  ADD EDI,0x4\n  1000face:  DEC ECX\n  1000facf:  JNZ 0x1000fac9\n  1000fad1:  AND EBX,0x3\n  1000fad4:  JNZ 0x1000fa5b\n  1000fad6:  MOV EAX,dword ptr [ESP + 0x10]\n  1000fada:  POP EBX\n  1000fadb:  POP ESI\n  1000fadc:  POP EDI\n  1000fadd:  RET", 
+  "callers": [
+    {
+      "address": "0x1000dbe1", 
+      "name": "FUN_1000dbe1"
+    }
+  ]
+}

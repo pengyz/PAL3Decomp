@@ -1,0 +1,28 @@
+{
+  "address": "0x100088d0", 
+  "size_bytes": 56, 
+  "calling_convention": "__fastcall", 
+  "signature": "undefined __fastcall FUN_100088d0(int param_1)", 
+  "callees": [
+    {
+      "address": "0x100088a0", 
+      "name": "FUN_100088a0"
+    }, 
+    {
+      "address": "0x10009c7b", 
+      "name": "FUN_10009c7b"
+    }
+  ], 
+  "global_refs": [], 
+  "has_custom_name": false, 
+  "decompiled_c": "\nvoid __fastcall FUN_100088d0(int param_1)\n\n{\n  int iVar1;\n  int iVar2;\n  \n  iVar1 = *(int *)(param_1 + 8);\n  for (iVar2 = *(int *)(param_1 + 4); iVar2 != iVar1; iVar2 = iVar2 + 0x18) {\n    FUN_100088a0(iVar2);\n  }\n  FUN_10009c7b(*(undefined **)(param_1 + 4));\n  *(undefined4 *)(param_1 + 4) = 0;\n  *(undefined4 *)(param_1 + 8) = 0;\n  *(undefined4 *)(param_1 + 0xc) = 0;\n  return;\n}\n\n", 
+  "is_thunk": false, 
+  "name": "FUN_100088d0", 
+  "assembly": "  100088d0:  PUSH EBX\n  100088d1:  PUSH ESI\n  100088d2:  PUSH EDI\n  100088d3:  MOV EDI,ECX\n  100088d5:  MOV EBX,dword ptr [EDI + 0x8]\n  100088d8:  MOV ESI,dword ptr [EDI + 0x4]\n  100088db:  CMP ESI,EBX\n  100088dd:  JZ 0x100088ed\n  100088df:  MOV ECX,ESI\n  100088e1:  CALL 0x100088a0\n  100088e6:  ADD ESI,0x18\n  100088e9:  CMP ESI,EBX\n  100088eb:  JNZ 0x100088df\n  100088ed:  MOV EAX,dword ptr [EDI + 0x4]\n  100088f0:  PUSH EAX\n  100088f1:  CALL 0x10009c7b\n  100088f6:  ADD ESP,0x4\n  100088f9:  XOR EAX,EAX\n  100088fb:  MOV dword ptr [EDI + 0x4],EAX\n  100088fe:  MOV dword ptr [EDI + 0x8],EAX\n  10008901:  MOV dword ptr [EDI + 0xc],EAX\n  10008904:  POP EDI\n  10008905:  POP ESI\n  10008906:  POP EBX\n  10008907:  RET", 
+  "callers": [
+    {
+      "address": "0x100118b0", 
+      "name": "Unwind@100118b0"
+    }
+  ]
+}

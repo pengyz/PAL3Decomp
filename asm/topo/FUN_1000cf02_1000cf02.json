@@ -1,0 +1,58 @@
+{
+  "address": "0x1000cf02", 
+  "size_bytes": 87, 
+  "calling_convention": "__cdecl", 
+  "signature": "int __cdecl FUN_1000cf02(undefined * param_1, undefined4 * param_2, uint * param_3)", 
+  "callees": [], 
+  "global_refs": [
+    {
+      "address": "0x00000004", 
+      "type": null, 
+      "name": "DAT_00000004"
+    }, 
+    {
+      "address": "0x100150e0", 
+      "type": "pointer", 
+      "name": "DAT_100150e0"
+    }, 
+    {
+      "address": "0x100150f0", 
+      "type": "undefined4", 
+      "name": "DAT_100150f0"
+    }, 
+    {
+      "address": "0x100150f4", 
+      "type": "undefined4", 
+      "name": "DAT_100150f4"
+    }, 
+    {
+      "address": "0x00000008", 
+      "type": null, 
+      "name": "DAT_00000008"
+    }, 
+    {
+      "address": "0x0000000c", 
+      "type": null, 
+      "name": "DAT_0000000c"
+    }
+  ], 
+  "has_custom_name": false, 
+  "decompiled_c": "\nint __cdecl FUN_1000cf02(undefined *param_1,undefined4 *param_2,uint *param_3)\n\n{\n  undefined **ppuVar1;\n  uint uVar2;\n  \n  ppuVar1 = &PTR_LOOP_100150e0;\n  while ((param_1 <= ppuVar1[4] || (ppuVar1[5] <= param_1))) {\n    ppuVar1 = (undefined **)*ppuVar1;\n    if (ppuVar1 == &PTR_LOOP_100150e0) {\n      return 0;\n    }\n  }\n  if (((uint)param_1 & 0xf) != 0) {\n    return 0;\n  }\n  if (((uint)param_1 & 0xfff) < 0x100) {\n    return 0;\n  }\n  *param_2 = ppuVar1;\n  uVar2 = (uint)param_1 & 0xfffff000;\n  *param_3 = uVar2;\n  return ((int)(param_1 + (-0x100 - uVar2)) >> 4) + 8 + uVar2;\n}\n\n", 
+  "is_thunk": false, 
+  "name": "FUN_1000cf02", 
+  "assembly": "  1000cf02:  MOV EAX,dword ptr [ESP + 0x4]\n  1000cf06:  MOV EDX,0x100150e0\n  1000cf0b:  PUSH ESI\n  1000cf0c:  MOV ECX,EDX\n  1000cf0e:  CMP EAX,dword ptr [ECX + 0x10]\n  1000cf11:  JBE 0x1000cf18\n  1000cf13:  CMP EAX,dword ptr [ECX + 0x14]\n  1000cf16:  JC 0x1000cf20\n  1000cf18:  MOV ECX,dword ptr [ECX]\n  1000cf1a:  CMP ECX,EDX\n  1000cf1c:  JZ 0x1000cf55\n  1000cf1e:  JMP 0x1000cf0e\n  1000cf20:  TEST AL,0xf\n  1000cf22:  JNZ 0x1000cf55\n  1000cf24:  MOV ESI,EAX\n  1000cf26:  MOV EDX,0x100\n  1000cf2b:  AND ESI,0xfff\n  1000cf31:  CMP ESI,EDX\n  1000cf33:  JC 0x1000cf55\n  1000cf35:  MOV ESI,dword ptr [ESP + 0xc]\n  1000cf39:  MOV dword ptr [ESI],ECX\n  1000cf3b:  MOV ESI,dword ptr [ESP + 0x10]\n  1000cf3f:  MOV ECX,EAX\n  1000cf41:  AND CX,0xf000\n  1000cf46:  SUB EAX,ECX\n  1000cf48:  MOV dword ptr [ESI],ECX\n  1000cf4a:  SUB EAX,EDX\n  1000cf4c:  POP ESI\n  1000cf4d:  SAR EAX,0x4\n  1000cf50:  LEA EAX,[EAX + ECX*0x1 + 0x8]\n  1000cf54:  RET\n  1000cf55:  XOR EAX,EAX\n  1000cf57:  POP ESI\n  1000cf58:  RET", 
+  "callers": [
+    {
+      "address": "0x1000a28c", 
+      "name": "FUN_1000a28c"
+    }, 
+    {
+      "address": "0x1000baad", 
+      "name": "FUN_1000baad"
+    }, 
+    {
+      "address": "0x1000bddc", 
+      "name": "FUN_1000bddc"
+    }
+  ]
+}

@@ -1,0 +1,49 @@
+{
+  "address": "0x1000a7cd", 
+  "size_bytes": 62, 
+  "calling_convention": "__cdecl", 
+  "signature": "void __cdecl __fassign(int flag, char * argument, char * number)", 
+  "callees": [
+    {
+      "address": "0x1000e3db", 
+      "name": "FUN_1000e3db"
+    }, 
+    {
+      "address": "0x1000e408", 
+      "name": "FUN_1000e408"
+    }
+  ], 
+  "global_refs": [
+    {
+      "address": "0x00000004", 
+      "type": null, 
+      "name": "DAT_00000004"
+    }, 
+    {
+      "address": "0x0000000c", 
+      "type": null, 
+      "name": "DAT_0000000c"
+    }, 
+    {
+      "address": "0x-000000c", 
+      "type": null, 
+      "name": "DAT_-000000c"
+    }, 
+    {
+      "address": "0x00000008", 
+      "type": null, 
+      "name": "DAT_00000008"
+    }, 
+    {
+      "address": "0x-0000008", 
+      "type": null, 
+      "name": "DAT_-0000008"
+    }
+  ], 
+  "has_custom_name": true, 
+  "decompiled_c": "\n/* Library Function - Single Match\n    __fassign\n   \n   Library: Visual Studio 2003 Release */\n\nvoid __cdecl __fassign(int flag,char *argument,char *number)\n\n{\n  void *in_ECX;\n  void *local_c;\n  void *local_8;\n  \n  if (flag != 0) {\n    local_c = in_ECX;\n    local_8 = in_ECX;\n    FUN_1000e3db(in_ECX,(uint *)&local_c,(byte *)number);\n    *(void **)argument = local_c;\n    *(void **)(argument + 4) = local_8;\n    return;\n  }\n  FUN_1000e408(in_ECX,(uint *)&number,(byte *)number);\n  *(char **)argument = number;\n  return;\n}\n\n", 
+  "is_thunk": false, 
+  "name": "__fassign", 
+  "assembly": "  1000a7cd:  PUSH EBP\n  1000a7ce:  MOV EBP,ESP\n  1000a7d0:  PUSH ECX\n  1000a7d1:  PUSH ECX\n  1000a7d2:  CMP dword ptr [EBP + 0x8],0x0\n  1000a7d6:  PUSH dword ptr [EBP + 0x10]\n  1000a7d9:  JZ 0x1000a7f6\n  1000a7db:  LEA EAX,[EBP + -0x8]\n  1000a7de:  PUSH EAX\n  1000a7df:  CALL 0x1000e3db\n  1000a7e4:  MOV EAX,dword ptr [EBP + 0xc]\n  1000a7e7:  POP ECX\n  1000a7e8:  POP ECX\n  1000a7e9:  MOV ECX,dword ptr [EBP + -0x8]\n  1000a7ec:  MOV dword ptr [EAX],ECX\n  1000a7ee:  MOV ECX,dword ptr [EBP + -0x4]\n  1000a7f1:  MOV dword ptr [EAX + 0x4],ECX\n  1000a7f4:  LEAVE\n  1000a7f5:  RET\n  1000a7f6:  LEA EAX,[EBP + 0x10]\n  1000a7f9:  PUSH EAX\n  1000a7fa:  CALL 0x1000e408\n  1000a7ff:  MOV EAX,dword ptr [EBP + 0xc]\n  1000a802:  POP ECX\n  1000a803:  POP ECX\n  1000a804:  MOV ECX,dword ptr [EBP + 0x10]\n  1000a807:  MOV dword ptr [EAX],ECX\n  1000a809:  LEAVE\n  1000a80a:  RET", 
+  "callers": []
+}

@@ -1,0 +1,40 @@
+{
+  "address": "0x10002c90", 
+  "size_bytes": 84, 
+  "calling_convention": "__thiscall", 
+  "signature": "float __thiscall Normalize(gbQuaternion * this)", 
+  "callees": [
+    {
+      "address": "0x10002c60", 
+      "name": "Magnitude"
+    }
+  ], 
+  "global_refs": [
+    {
+      "address": "0x10012110", 
+      "type": null, 
+      "name": "DAT_10012110"
+    }, 
+    {
+      "address": "0x10012138", 
+      "type": null, 
+      "name": "DAT_10012138"
+    }, 
+    {
+      "address": "0x100120f0", 
+      "type": null, 
+      "name": "DAT_100120f0"
+    }, 
+    {
+      "address": "0x10012100", 
+      "type": null, 
+      "name": "DAT_10012100"
+    }
+  ], 
+  "has_custom_name": true, 
+  "decompiled_c": "\n/* public: float __thiscall gbQuaternion::Normalize(void) */\n\nfloat __thiscall gbQuaternion::Normalize(gbQuaternion *this)\n\n{\n  float fVar1;\n  float fVar2;\n  \n                    /* 0x2c90  66  ?Normalize@gbQuaternion@@QAEMXZ */\n  fVar2 = Magnitude(this);\n  fVar2 = SQRT(fVar2);\n  if ((fVar2 < 1e-05) && (-1e-05 < fVar2)) {\n    return 0.0;\n  }\n  fVar1 = 1.0 / fVar2;\n  *(float *)(this + 0xc) = fVar1 * *(float *)(this + 0xc);\n  *(float *)this = fVar1 * *(float *)this;\n  *(float *)(this + 4) = fVar1 * *(float *)(this + 4);\n  *(float *)(this + 8) = fVar1 * *(float *)(this + 8);\n  return fVar2;\n}\n\n", 
+  "is_thunk": false, 
+  "name": "Normalize", 
+  "assembly": "  10002c90:  PUSH ESI\n  10002c91:  MOV ESI,ECX\n  10002c93:  CALL 0x10002c60\n  10002c98:  FSQRT\n  10002c9a:  FCOM qword ptr [0x10012110]\n  10002ca0:  FNSTSW AX\n  10002ca2:  TEST AH,0x1\n  10002ca5:  JZ 0x10002cbe\n  10002ca7:  FCOM qword ptr [0x10012138]\n  10002cad:  FNSTSW AX\n  10002caf:  TEST AH,0x41\n  10002cb2:  JNZ 0x10002cbe\n  10002cb4:  FSTP ST0\n  10002cb6:  FLD dword ptr [0x100120f0]\n  10002cbc:  POP ESI\n  10002cbd:  RET\n  10002cbe:  FLD dword ptr [0x10012100]\n  10002cc4:  FDIV ST0,ST1\n  10002cc6:  FLD ST0\n  10002cc8:  FMUL dword ptr [ESI + 0xc]\n  10002ccb:  FSTP dword ptr [ESI + 0xc]\n  10002cce:  FLD ST0\n  10002cd0:  FMUL dword ptr [ESI]\n  10002cd2:  FSTP dword ptr [ESI]\n  10002cd4:  FLD ST0\n  10002cd6:  FMUL dword ptr [ESI + 0x4]\n  10002cd9:  FSTP dword ptr [ESI + 0x4]\n  10002cdc:  FMUL dword ptr [ESI + 0x8]\n  10002cdf:  FSTP dword ptr [ESI + 0x8]\n  10002ce2:  POP ESI\n  10002ce3:  RET", 
+  "callers": []
+}

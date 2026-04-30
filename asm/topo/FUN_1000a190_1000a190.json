@@ -1,0 +1,109 @@
+{
+  "address": "0x1000a190", 
+  "size_bytes": 231, 
+  "calling_convention": "__cdecl", 
+  "signature": "undefined __cdecl FUN_1000a190(uint * param_1)", 
+  "callees": [
+    {
+      "address": "0x1000d408", 
+      "name": "FUN_1000d408"
+    }, 
+    {
+      "address": "0x1000c4fb", 
+      "name": "FUN_1000c4fb"
+    }, 
+    {
+      "address": "0x1000a1f7", 
+      "name": "FUN_1000a1f7"
+    }, 
+    {
+      "address": "0x1000d408", 
+      "name": "FUN_1000d408"
+    }, 
+    {
+      "address": "0x1000cf9e", 
+      "name": "FUN_1000cf9e"
+    }, 
+    {
+      "address": "0x1000a256", 
+      "name": "FUN_1000a256"
+    }, 
+    {
+      "address": "0x00000002", 
+      "name": "HeapAlloc"
+    }
+  ], 
+  "global_refs": [
+    {
+      "address": "0x10012168", 
+      "type": null, 
+      "name": "DAT_10012168"
+    }, 
+    {
+      "address": "0x1000d488", 
+      "type": null, 
+      "name": "DAT_1000d488"
+    }, 
+    {
+      "address": "0xffdff000", 
+      "type": "void *32", 
+      "name": "DAT_ffdff000"
+    }, 
+    {
+      "address": "0x100185e4", 
+      "type": "undefined4", 
+      "name": "DAT_100185e4"
+    }, 
+    {
+      "address": "0x00000004", 
+      "type": null, 
+      "name": "DAT_00000004"
+    }, 
+    {
+      "address": "0x100185dc", 
+      "type": "undefined4", 
+      "name": "DAT_100185dc"
+    }, 
+    {
+      "address": "0x-0000008", 
+      "type": null, 
+      "name": "DAT_-0000008"
+    }, 
+    {
+      "address": "0x-0000020", 
+      "type": null, 
+      "name": "DAT_-0000020"
+    }, 
+    {
+      "address": "0x10017104", 
+      "type": "undefined4", 
+      "name": "DAT_10017104"
+    }, 
+    {
+      "address": "0x100185e0", 
+      "type": "undefined4", 
+      "name": "DAT_100185e0"
+    }, 
+    {
+      "address": "0x10012004", 
+      "type": "pointer", 
+      "name": "DAT_10012004"
+    }, 
+    {
+      "address": "0x-0000014", 
+      "type": null, 
+      "name": "DAT_-0000014"
+    }
+  ], 
+  "has_custom_name": false, 
+  "decompiled_c": "\nvoid __cdecl FUN_1000a190(uint *param_1)\n\n{\n  int *piVar1;\n  uint dwBytes;\n  void *local_14;\n  undefined *puStack_10;\n  undefined *puStack_c;\n  undefined4 local_8;\n  \n  local_8 = 0xffffffff;\n  puStack_c = &DAT_10012168;\n  puStack_10 = &LAB_1000d488;\n  local_14 = ExceptionList;\n  if (DAT_100185e4 == 3) {\n    ExceptionList = &local_14;\n    if (param_1 <= DAT_100185dc) {\n      ExceptionList = &local_14;\n      FUN_1000d408(9);\n      local_8 = 0;\n      piVar1 = FUN_1000c4fb(param_1);\n      local_8 = 0xffffffff;\n      FUN_1000a1f7();\n      if (piVar1 != (int *)0x0) {\n        ExceptionList = local_14;\n        return;\n      }\n    }\n  }\n  else {\n    ExceptionList = &local_14;\n    if (DAT_100185e4 == 2) {\n      if (param_1 == (uint *)0x0) {\n        dwBytes = 0x10;\n      }\n      else {\n        dwBytes = (int)param_1 + 0xfU & 0xfffffff0;\n      }\n      ExceptionList = &local_14;\n      if (dwBytes <= DAT_10017104) {\n        ExceptionList = &local_14;\n        FUN_1000d408(9);\n        local_8 = 1;\n        piVar1 = FUN_1000cf9e(dwBytes >> 4);\n        local_8 = 0xffffffff;\n        FUN_1000a256();\n        if (piVar1 != (int *)0x0) {\n          ExceptionList = local_14;\n          return;\n        }\n      }\n      goto LAB_1000a26f;\n    }\n  }\n  if (param_1 == (uint *)0x0) {\n    param_1 = (uint *)0x1;\n  }\n  dwBytes = (int)param_1 + 0xfU & 0xfffffff0;\nLAB_1000a26f:\n  HeapAlloc(DAT_100185e0,0,dwBytes);\n  ExceptionList = local_14;\n  return;\n}\n\n", 
+  "is_thunk": false, 
+  "name": "FUN_1000a190", 
+  "assembly": "  1000a190:  PUSH EBP\n  1000a191:  MOV EBP,ESP\n  1000a193:  PUSH -0x1\n  1000a195:  PUSH 0x10012168\n  1000a19a:  PUSH 0x1000d488\n  1000a19f:  MOV EAX,FS:[0x0]\n  1000a1a5:  PUSH EAX\n  1000a1a6:  MOV dword ptr FS:[0x0],ESP\n  1000a1ad:  SUB ESP,0xc\n  1000a1b0:  PUSH EBX\n  1000a1b1:  PUSH ESI\n  1000a1b2:  PUSH EDI\n  1000a1b3:  MOV EAX,[0x100185e4]\n  1000a1b8:  CMP EAX,0x3\n  1000a1bb:  JNZ 0x1000a200\n  1000a1bd:  MOV ESI,dword ptr [EBP + 0x8]\n  1000a1c0:  CMP ESI,dword ptr [0x100185dc]\n  1000a1c6:  JA 0x1000a25f\n  1000a1cc:  PUSH 0x9\n  1000a1ce:  CALL 0x1000d408\n  1000a1d3:  POP ECX\n  1000a1d4:  AND dword ptr [EBP + -0x4],0x0\n  1000a1d8:  PUSH ESI\n  1000a1d9:  CALL 0x1000c4fb\n  1000a1de:  POP ECX\n  1000a1df:  MOV dword ptr [EBP + -0x1c],EAX\n  1000a1e2:  OR dword ptr [EBP + -0x4],0xffffffff\n  1000a1e6:  CALL 0x1000a1f7\n  1000a1eb:  MOV EAX,dword ptr [EBP + -0x1c]\n  1000a1ee:  TEST EAX,EAX\n  1000a1f0:  JZ 0x1000a25f\n  1000a1f2:  JMP 0x1000a27d\n  1000a200:  CMP EAX,0x2\n  1000a203:  JNZ 0x1000a25f\n  1000a205:  MOV EAX,dword ptr [EBP + 0x8]\n  1000a208:  TEST EAX,EAX\n  1000a20a:  JZ 0x1000a214\n  1000a20c:  LEA ESI,[EAX + 0xf]\n  1000a20f:  AND ESI,0xfffffff0\n  1000a212:  JMP 0x1000a217\n  1000a214:  PUSH 0x10\n  1000a216:  POP ESI\n  1000a217:  MOV dword ptr [EBP + 0x8],ESI\n  1000a21a:  CMP ESI,dword ptr [0x10017104]\n  1000a220:  JA 0x1000a250\n  1000a222:  PUSH 0x9\n  1000a224:  CALL 0x1000d408\n  1000a229:  POP ECX\n  1000a22a:  MOV dword ptr [EBP + -0x4],0x1\n  1000a231:  MOV EAX,ESI\n  1000a233:  SHR EAX,0x4\n  1000a236:  PUSH EAX\n  1000a237:  CALL 0x1000cf9e\n  1000a23c:  POP ECX\n  1000a23d:  MOV dword ptr [EBP + -0x1c],EAX\n  1000a240:  OR dword ptr [EBP + -0x4],0xffffffff\n  1000a244:  CALL 0x1000a256\n  1000a249:  MOV EAX,dword ptr [EBP + -0x1c]\n  1000a24c:  TEST EAX,EAX\n  1000a24e:  JNZ 0x1000a27d\n  1000a250:  PUSH ESI\n  1000a251:  JMP 0x1000a26f\n  1000a25f:  MOV EAX,dword ptr [EBP + 0x8]\n  1000a262:  TEST EAX,EAX\n  1000a264:  JNZ 0x1000a269\n  1000a266:  PUSH 0x1\n  1000a268:  POP EAX\n  1000a269:  ADD EAX,0xf\n  1000a26c:  AND AL,0xf0\n  1000a26e:  PUSH EAX\n  1000a26f:  PUSH 0x0\n  1000a271:  PUSH dword ptr [0x100185e0]\n  1000a277:  CALL dword ptr [0x10012004]\n  1000a27d:  MOV ECX,dword ptr [EBP + -0x10]\n  1000a280:  MOV dword ptr FS:[0x0],ECX\n  1000a287:  POP EDI\n  1000a288:  POP ESI\n  1000a289:  POP EBX\n  1000a28a:  LEAVE\n  1000a28b:  RET", 
+  "callers": [
+    {
+      "address": "0x1000a164", 
+      "name": "__nh_malloc"
+    }
+  ]
+}

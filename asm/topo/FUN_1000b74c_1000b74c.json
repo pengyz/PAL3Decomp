@@ -1,0 +1,65 @@
+{
+  "address": "0x1000b74c", 
+  "size_bytes": 84, 
+  "calling_convention": "__stdcall", 
+  "signature": "undefined4 __stdcall FUN_1000b74c(void)", 
+  "callees": [
+    {
+      "address": "0x1000d373", 
+      "name": "FUN_1000d373"
+    }, 
+    {
+      "address": "0x0000000a", 
+      "name": "TlsAlloc"
+    }, 
+    {
+      "address": "0x1000ece4", 
+      "name": "FUN_1000ece4"
+    }, 
+    {
+      "address": "0x00000009", 
+      "name": "TlsSetValue"
+    }, 
+    {
+      "address": "0x1000b7be", 
+      "name": "FUN_1000b7be"
+    }, 
+    {
+      "address": "0x00000008", 
+      "name": "GetCurrentThreadId"
+    }
+  ], 
+  "global_refs": [
+    {
+      "address": "0x10012024", 
+      "type": "pointer", 
+      "name": "DAT_10012024"
+    }, 
+    {
+      "address": "0x100150d0", 
+      "type": "undefined4", 
+      "name": "DAT_100150d0"
+    }, 
+    {
+      "address": "0x10012020", 
+      "type": "pointer", 
+      "name": "DAT_10012020"
+    }, 
+    {
+      "address": "0x1001201c", 
+      "type": "pointer", 
+      "name": "DAT_1001201c"
+    }
+  ], 
+  "has_custom_name": false, 
+  "decompiled_c": "\nundefined4 FUN_1000b74c(void)\n\n{\n  DWORD *lpTlsValue;\n  BOOL BVar1;\n  DWORD DVar2;\n  \n  FUN_1000d373();\n  DAT_100150d0 = TlsAlloc();\n  if (DAT_100150d0 != 0xffffffff) {\n    lpTlsValue = (DWORD *)FUN_1000ece4(1,0x74);\n    if (lpTlsValue != (DWORD *)0x0) {\n      BVar1 = TlsSetValue(DAT_100150d0,lpTlsValue);\n      if (BVar1 != 0) {\n        FUN_1000b7be((int)lpTlsValue);\n        DVar2 = GetCurrentThreadId();\n        lpTlsValue[1] = 0xffffffff;\n        *lpTlsValue = DVar2;\n        return 1;\n      }\n    }\n  }\n  return 0;\n}\n\n", 
+  "is_thunk": false, 
+  "name": "FUN_1000b74c", 
+  "assembly": "  1000b74c:  PUSH ESI\n  1000b74d:  CALL 0x1000d373\n  1000b752:  CALL dword ptr [0x10012024]\n  1000b758:  CMP EAX,-0x1\n  1000b75b:  MOV [0x100150d0],EAX\n  1000b760:  JZ 0x1000b79c\n  1000b762:  PUSH 0x74\n  1000b764:  PUSH 0x1\n  1000b766:  CALL 0x1000ece4\n  1000b76b:  MOV ESI,EAX\n  1000b76d:  POP ECX\n  1000b76e:  TEST ESI,ESI\n  1000b770:  POP ECX\n  1000b771:  JZ 0x1000b79c\n  1000b773:  PUSH ESI\n  1000b774:  PUSH dword ptr [0x100150d0]\n  1000b77a:  CALL dword ptr [0x10012020]\n  1000b780:  TEST EAX,EAX\n  1000b782:  JZ 0x1000b79c\n  1000b784:  PUSH ESI\n  1000b785:  CALL 0x1000b7be\n  1000b78a:  POP ECX\n  1000b78b:  CALL dword ptr [0x1001201c]\n  1000b791:  OR dword ptr [ESI + 0x4],0xffffffff\n  1000b795:  PUSH 0x1\n  1000b797:  MOV dword ptr [ESI],EAX\n  1000b799:  POP EAX\n  1000b79a:  POP ESI\n  1000b79b:  RET\n  1000b79c:  XOR EAX,EAX\n  1000b79e:  POP ESI\n  1000b79f:  RET", 
+  "callers": [
+    {
+      "address": "0x1000a4eb", 
+      "name": "FUN_1000a4eb"
+    }
+  ]
+}

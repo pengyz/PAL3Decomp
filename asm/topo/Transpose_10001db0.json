@@ -1,0 +1,14 @@
+{
+  "address": "0x10001db0", 
+  "size_bytes": 60, 
+  "calling_convention": "__thiscall", 
+  "signature": "void __thiscall Transpose(gbMatrix4 * this)", 
+  "callees": [], 
+  "global_refs": [], 
+  "has_custom_name": true, 
+  "decompiled_c": "\n/* public: void __thiscall gbMatrix4::Transpose(void) */\n\nvoid __thiscall gbMatrix4::Transpose(gbMatrix4 *this)\n\n{\n  undefined4 uVar1;\n  gbMatrix4 *pgVar2;\n  gbMatrix4 *pgVar3;\n  int iVar4;\n  gbMatrix4 *pgVar5;\n  int iVar6;\n  gbMatrix4 *pgVar7;\n  \n                    /* 0x1db0  98  ?Transpose@gbMatrix4@@QAEXXZ */\n  iVar6 = 1;\n  pgVar5 = this + 4;\n  pgVar7 = this + 0x10;\n  do {\n    pgVar2 = pgVar5;\n    pgVar3 = pgVar7;\n    iVar4 = iVar6;\n    if (0 < iVar6) {\n      do {\n        uVar1 = *(undefined4 *)pgVar3;\n        *(undefined4 *)pgVar3 = *(undefined4 *)pgVar2;\n        *(undefined4 *)pgVar2 = uVar1;\n        iVar4 = iVar4 + -1;\n        pgVar2 = pgVar2 + 0x10;\n        pgVar3 = pgVar3 + 4;\n      } while (iVar4 != 0);\n    }\n    iVar6 = iVar6 + 1;\n    pgVar7 = pgVar7 + 0x10;\n    pgVar5 = pgVar5 + 4;\n  } while (iVar6 < 4);\n  return;\n}\n\n", 
+  "is_thunk": false, 
+  "name": "Transpose", 
+  "assembly": "  10001db0:  PUSH EBX\n  10001db1:  PUSH EBP\n  10001db2:  PUSH ESI\n  10001db3:  PUSH EDI\n  10001db4:  MOV ESI,0x1\n  10001db9:  LEA EBX,[ECX + 0x4]\n  10001dbc:  LEA EDI,[ECX + 0x10]\n  10001dbf:  TEST ESI,ESI\n  10001dc1:  JLE 0x10001ddb\n  10001dc3:  MOV ECX,EDI\n  10001dc5:  MOV EAX,EBX\n  10001dc7:  MOV EDX,ESI\n  10001dc9:  FLD dword ptr [ECX]\n  10001dcb:  MOV EBP,dword ptr [EAX]\n  10001dcd:  ADD EAX,0x10\n  10001dd0:  MOV dword ptr [ECX],EBP\n  10001dd2:  ADD ECX,0x4\n  10001dd5:  FSTP dword ptr [EAX + -0x10]\n  10001dd8:  DEC EDX\n  10001dd9:  JNZ 0x10001dc9\n  10001ddb:  INC ESI\n  10001ddc:  ADD EDI,0x10\n  10001ddf:  ADD EBX,0x4\n  10001de2:  CMP ESI,0x4\n  10001de5:  JL 0x10001dbf\n  10001de7:  POP EDI\n  10001de8:  POP ESI\n  10001de9:  POP EBP\n  10001dea:  POP EBX\n  10001deb:  RET", 
+  "callers": []
+}

@@ -1,0 +1,24 @@
+{
+  "address": "0x1000bd86", 
+  "size_bytes": 11, 
+  "calling_convention": "__stdcall", 
+  "signature": "undefined __stdcall FUN_1000bd86(void)", 
+  "callees": [
+    {
+      "address": "0x1000d469", 
+      "name": "FUN_1000d469"
+    }
+  ], 
+  "global_refs": [], 
+  "has_custom_name": false, 
+  "decompiled_c": "\nvoid FUN_1000bd86(void)\n\n{\n  FUN_1000d469(9);\n  return;\n}\n\n", 
+  "is_thunk": false, 
+  "name": "FUN_1000bd86", 
+  "assembly": "  1000bd86:  PUSH 0x9\n  1000bd88:  CALL 0x1000d469\n  1000bd8d:  POP ECX\n  1000bd8e:  XOR EDI,EDI\n  1000bd90:  RET", 
+  "callers": [
+    {
+      "address": "0x1000baad", 
+      "name": "FUN_1000baad"
+    }
+  ]
+}

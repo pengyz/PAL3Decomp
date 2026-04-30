@@ -1,0 +1,32 @@
+{
+  "address": "0x10010ec5", 
+  "size_bytes": 9, 
+  "calling_convention": "__stdcall", 
+  "signature": "DWORD * __stdcall FUN_10010ec5(void)", 
+  "callees": [
+    {
+      "address": "0x1000b7d1", 
+      "name": "FUN_1000b7d1"
+    }
+  ], 
+  "global_refs": [], 
+  "has_custom_name": false, 
+  "decompiled_c": "\nDWORD * FUN_10010ec5(void)\n\n{\n  DWORD *pDVar1;\n  \n  pDVar1 = FUN_1000b7d1();\n  return pDVar1 + 2;\n}\n\n", 
+  "is_thunk": false, 
+  "name": "FUN_10010ec5", 
+  "assembly": "  10010ec5:  CALL 0x1000b7d1\n  10010eca:  ADD EAX,0x8\n  10010ecd:  RET", 
+  "callers": [
+    {
+      "address": "0x1000f18c", 
+      "name": "FUN_1000f18c"
+    }, 
+    {
+      "address": "0x10010e04", 
+      "name": "FUN_10010e04"
+    }, 
+    {
+      "address": "0x10010e04", 
+      "name": "FUN_10010e04"
+    }
+  ]
+}

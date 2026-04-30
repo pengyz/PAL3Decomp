@@ -1,0 +1,25 @@
+{
+  "address": "0x100016c0", 
+  "size_bytes": 60, 
+  "calling_convention": "__thiscall", 
+  "signature": "int __thiscall IsNormal(gbVec3D * this)", 
+  "callees": [], 
+  "global_refs": [
+    {
+      "address": "0x10012100", 
+      "type": null, 
+      "name": "DAT_10012100"
+    }, 
+    {
+      "address": "0x100120f8", 
+      "type": null, 
+      "name": "DAT_100120f8"
+    }
+  ], 
+  "has_custom_name": true, 
+  "decompiled_c": "\n/* public: int __thiscall gbVec3D::IsNormal(void) */\n\nint __thiscall gbVec3D::IsNormal(gbVec3D *this)\n\n{\n                    /* 0x16c0  43  ?IsNormal@gbVec3D@@QAEHXZ */\n  if (ABS((*(float *)(this + 8) * *(float *)(this + 8) +\n          *(float *)(this + 4) * *(float *)(this + 4) + *(float *)this * *(float *)this) - 1.0) <\n      0.005) {\n    return 1;\n  }\n  return 0;\n}\n\n", 
+  "is_thunk": false, 
+  "name": "IsNormal", 
+  "assembly": "  100016c0:  FLD dword ptr [ECX + 0x8]\n  100016c3:  FLD dword ptr [ECX + 0x4]\n  100016c6:  FLD dword ptr [ECX]\n  100016c8:  FLD ST0\n  100016ca:  FMUL ST1\n  100016cc:  FLD ST2\n  100016ce:  FMUL ST3\n  100016d0:  FADDP\n  100016d2:  FLD ST3\n  100016d4:  FMUL ST4\n  100016d6:  FADDP\n  100016d8:  FSUB dword ptr [0x10012100]\n  100016de:  FABS\n  100016e0:  FCOMP qword ptr [0x100120f8]\n  100016e6:  FSTP ST0\n  100016e8:  FNSTSW AX\n  100016ea:  FSTP ST0\n  100016ec:  TEST AH,0x1\n  100016ef:  FSTP ST0\n  100016f1:  JZ 0x100016f9\n  100016f3:  MOV EAX,0x1\n  100016f8:  RET\n  100016f9:  XOR EAX,EAX\n  100016fb:  RET", 
+  "callers": []
+}

@@ -1,0 +1,123 @@
+{
+  "address": "0x1000bddc", 
+  "size_bytes": 214, 
+  "calling_convention": "__cdecl", 
+  "signature": "SIZE_T __cdecl FUN_1000bddc(undefined * param_1)", 
+  "callees": [
+    {
+      "address": "0x1000d408", 
+      "name": "FUN_1000d408"
+    }, 
+    {
+      "address": "0x1000c1a7", 
+      "name": "FUN_1000c1a7"
+    }, 
+    {
+      "address": "0x1000be46", 
+      "name": "FUN_1000be46"
+    }, 
+    {
+      "address": "0x1000d408", 
+      "name": "FUN_1000d408"
+    }, 
+    {
+      "address": "0x1000cf02", 
+      "name": "FUN_1000cf02"
+    }, 
+    {
+      "address": "0x1000bec1", 
+      "name": "FUN_1000bec1"
+    }, 
+    {
+      "address": "0x00000013", 
+      "name": "HeapSize"
+    }
+  ], 
+  "global_refs": [
+    {
+      "address": "0x100122e8", 
+      "type": null, 
+      "name": "DAT_100122e8"
+    }, 
+    {
+      "address": "0x1000d488", 
+      "type": null, 
+      "name": "DAT_1000d488"
+    }, 
+    {
+      "address": "0xffdff000", 
+      "type": "void *32", 
+      "name": "DAT_ffdff000"
+    }, 
+    {
+      "address": "0x100185e4", 
+      "type": "undefined4", 
+      "name": "DAT_100185e4"
+    }, 
+    {
+      "address": "0x-0000008", 
+      "type": null, 
+      "name": "DAT_-0000008"
+    }, 
+    {
+      "address": "0x00000004", 
+      "type": null, 
+      "name": "DAT_00000004"
+    }, 
+    {
+      "address": "0x-0000020", 
+      "type": null, 
+      "name": "DAT_-0000020"
+    }, 
+    {
+      "address": "0x-0000024", 
+      "type": null, 
+      "name": "DAT_-0000024"
+    }, 
+    {
+      "address": "0x-0000028", 
+      "type": null, 
+      "name": "DAT_-0000028"
+    }, 
+    {
+      "address": "0x-0000030", 
+      "type": null, 
+      "name": "DAT_-0000030"
+    }, 
+    {
+      "address": "0x-000002c", 
+      "type": null, 
+      "name": "DAT_-000002c"
+    }, 
+    {
+      "address": "0x100185e0", 
+      "type": "undefined4", 
+      "name": "DAT_100185e0"
+    }, 
+    {
+      "address": "0x10012048", 
+      "type": "pointer", 
+      "name": "DAT_10012048"
+    }, 
+    {
+      "address": "0x-0000014", 
+      "type": null, 
+      "name": "DAT_-0000014"
+    }
+  ], 
+  "has_custom_name": false, 
+  "decompiled_c": "\nSIZE_T __cdecl FUN_1000bddc(undefined *param_1)\n\n{\n  byte *pbVar1;\n  SIZE_T SVar2;\n  undefined4 local_30;\n  byte *local_2c;\n  uint local_28;\n  SIZE_T local_24;\n  byte *local_20;\n  void *local_14;\n  undefined *puStack_10;\n  undefined *puStack_c;\n  undefined4 local_8;\n  \n  local_8 = 0xffffffff;\n  puStack_c = &DAT_100122e8;\n  puStack_10 = &LAB_1000d488;\n  local_14 = ExceptionList;\n  if (DAT_100185e4 == 3) {\n    ExceptionList = &local_14;\n    FUN_1000d408(9);\n    local_8 = 0;\n    local_20 = (byte *)FUN_1000c1a7((int)param_1);\n    if (local_20 != (byte *)0x0) {\n      local_24 = *(int *)(param_1 + -4) - 9;\n    }\n    SVar2 = local_24;\n    local_8 = 0xffffffff;\n    FUN_1000be46();\n    pbVar1 = local_20;\n  }\n  else {\n    ExceptionList = &local_14;\n    if (DAT_100185e4 != 2) goto LAB_1000be9a;\n    ExceptionList = &local_14;\n    FUN_1000d408(9);\n    local_8 = 1;\n    local_2c = (byte *)FUN_1000cf02(param_1,&local_30,&local_28);\n    if (local_2c != (byte *)0x0) {\n      local_24 = (uint)*local_2c << 4;\n    }\n    SVar2 = local_24;\n    local_8 = 0xffffffff;\n    FUN_1000bec1();\n    pbVar1 = local_2c;\n  }\n  if (pbVar1 != (byte *)0x0) {\n    ExceptionList = local_14;\n    return SVar2;\n  }\nLAB_1000be9a:\n  SVar2 = HeapSize(DAT_100185e0,0,param_1);\n  ExceptionList = local_14;\n  return SVar2;\n}\n\n", 
+  "is_thunk": false, 
+  "name": "FUN_1000bddc", 
+  "assembly": "  1000bddc:  PUSH EBP\n  1000bddd:  MOV EBP,ESP\n  1000bddf:  PUSH -0x1\n  1000bde1:  PUSH 0x100122e8\n  1000bde6:  PUSH 0x1000d488\n  1000bdeb:  MOV EAX,FS:[0x0]\n  1000bdf1:  PUSH EAX\n  1000bdf2:  MOV dword ptr FS:[0x0],ESP\n  1000bdf9:  SUB ESP,0x1c\n  1000bdfc:  PUSH EBX\n  1000bdfd:  PUSH ESI\n  1000bdfe:  PUSH EDI\n  1000bdff:  MOV EAX,[0x100185e4]\n  1000be04:  CMP EAX,0x3\n  1000be07:  JNZ 0x1000be4f\n  1000be09:  PUSH 0x9\n  1000be0b:  CALL 0x1000d408\n  1000be10:  POP ECX\n  1000be11:  AND dword ptr [EBP + -0x4],0x0\n  1000be15:  MOV ESI,dword ptr [EBP + 0x8]\n  1000be18:  PUSH ESI\n  1000be19:  CALL 0x1000c1a7\n  1000be1e:  POP ECX\n  1000be1f:  MOV dword ptr [EBP + -0x1c],EAX\n  1000be22:  TEST EAX,EAX\n  1000be24:  JZ 0x1000be31\n  1000be26:  MOV ESI,dword ptr [ESI + -0x4]\n  1000be29:  SUB ESI,0x9\n  1000be2c:  MOV dword ptr [EBP + -0x20],ESI\n  1000be2f:  JMP 0x1000be34\n  1000be31:  MOV ESI,dword ptr [EBP + -0x20]\n  1000be34:  OR dword ptr [EBP + -0x4],0xffffffff\n  1000be38:  CALL 0x1000be46\n  1000be3d:  CMP dword ptr [EBP + -0x1c],0x0\n  1000be41:  JMP 0x1000be98\n  1000be4f:  CMP EAX,0x2\n  1000be52:  JNZ 0x1000be9a\n  1000be54:  PUSH 0x9\n  1000be56:  CALL 0x1000d408\n  1000be5b:  POP ECX\n  1000be5c:  MOV dword ptr [EBP + -0x4],0x1\n  1000be63:  LEA EAX,[EBP + -0x24]\n  1000be66:  PUSH EAX\n  1000be67:  LEA EAX,[EBP + -0x2c]\n  1000be6a:  PUSH EAX\n  1000be6b:  PUSH dword ptr [EBP + 0x8]\n  1000be6e:  CALL 0x1000cf02\n  1000be73:  ADD ESP,0xc\n  1000be76:  MOV dword ptr [EBP + -0x28],EAX\n  1000be79:  TEST EAX,EAX\n  1000be7b:  JZ 0x1000be88\n  1000be7d:  MOVZX ESI,byte ptr [EAX]\n  1000be80:  SHL ESI,0x4\n  1000be83:  MOV dword ptr [EBP + -0x20],ESI\n  1000be86:  JMP 0x1000be8b\n  1000be88:  MOV ESI,dword ptr [EBP + -0x20]\n  1000be8b:  OR dword ptr [EBP + -0x4],0xffffffff\n  1000be8f:  CALL 0x1000bec1\n  1000be94:  CMP dword ptr [EBP + -0x28],0x0\n  1000be98:  JNZ 0x1000bead\n  1000be9a:  PUSH dword ptr [EBP + 0x8]\n  1000be9d:  PUSH 0x0\n  1000be9f:  PUSH dword ptr [0x100185e0]\n  1000bea5:  CALL dword ptr [0x10012048]\n  1000beab:  MOV ESI,EAX\n  1000bead:  MOV EAX,ESI\n  1000beaf:  MOV ECX,dword ptr [EBP + -0x10]\n  1000beb2:  MOV dword ptr FS:[0x0],ECX\n  1000beb9:  POP EDI\n  1000beba:  POP ESI\n  1000bebb:  POP EBX\n  1000bebc:  LEAVE\n  1000bebd:  RET", 
+  "callers": [
+    {
+      "address": "0x1000a093", 
+      "name": "FUN_1000a093"
+    }, 
+    {
+      "address": "0x1000a093", 
+      "name": "FUN_1000a093"
+    }
+  ]
+}

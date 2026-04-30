@@ -1,0 +1,14 @@
+{
+  "address": "0x10002df0", 
+  "size_bytes": 41, 
+  "calling_convention": "__thiscall", 
+  "signature": "void __thiscall Push(gbMatrixStack * this)", 
+  "callees": [], 
+  "global_refs": [], 
+  "has_custom_name": true, 
+  "decompiled_c": "\n/* public: void __thiscall gbMatrixStack::Push(void) */\n\nvoid __thiscall gbMatrixStack::Push(gbMatrixStack *this)\n\n{\n  int iVar1;\n  undefined4 *puVar2;\n  undefined4 *puVar3;\n  \n                    /* 0x2df0  69  ?Push@gbMatrixStack@@QAEXXZ */\n  puVar2 = (undefined4 *)(*(int *)(this + 8) * 0x40 + *(int *)this);\n  puVar3 = (undefined4 *)((*(int *)(this + 8) + 1) * 0x40 + *(int *)this);\n  for (iVar1 = 0x10; iVar1 != 0; iVar1 = iVar1 + -1) {\n    *puVar3 = *puVar2;\n    puVar2 = puVar2 + 1;\n    puVar3 = puVar3 + 1;\n  }\n  *(int *)(this + 8) = *(int *)(this + 8) + 1;\n  return;\n}\n\n", 
+  "is_thunk": false, 
+  "name": "Push", 
+  "assembly": "  10002df0:  MOV EAX,ECX\n  10002df2:  PUSH ESI\n  10002df3:  PUSH EDI\n  10002df4:  MOV ECX,dword ptr [EAX + 0x8]\n  10002df7:  MOV EDX,dword ptr [EAX]\n  10002df9:  MOV ESI,ECX\n  10002dfb:  LEA EDI,[ECX + 0x1]\n  10002dfe:  MOV ECX,0x10\n  10002e03:  SHL ESI,0x6\n  10002e06:  SHL EDI,0x6\n  10002e09:  ADD ESI,EDX\n  10002e0b:  ADD EDI,EDX\n  10002e0d:  MOVSD.REP ES:EDI,ESI\n  10002e0f:  MOV ECX,dword ptr [EAX + 0x8]\n  10002e12:  POP EDI\n  10002e13:  INC ECX\n  10002e14:  POP ESI\n  10002e15:  MOV dword ptr [EAX + 0x8],ECX\n  10002e18:  RET", 
+  "callers": []
+}

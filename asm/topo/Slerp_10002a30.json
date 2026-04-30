@@ -1,0 +1,80 @@
+{
+  "address": "0x10002a30", 
+  "size_bytes": 320, 
+  "calling_convention": "__thiscall", 
+  "signature": "void __thiscall Slerp(gbQuaternion * this, gbQuaternion * param_1, gbQuaternion * param_2, float param_3)", 
+  "callees": [
+    {
+      "address": "0x10009bb0", 
+      "name": "FUN_10009bb0"
+    }
+  ], 
+  "global_refs": [
+    {
+      "address": "0x00000004", 
+      "type": null, 
+      "name": "DAT_00000004"
+    }, 
+    {
+      "address": "0x00000008", 
+      "type": null, 
+      "name": "DAT_00000008"
+    }, 
+    {
+      "address": "0x100120f0", 
+      "type": null, 
+      "name": "DAT_100120f0"
+    }, 
+    {
+      "address": "0x-0000010", 
+      "type": null, 
+      "name": "DAT_-0000010"
+    }, 
+    {
+      "address": "0x-000000c", 
+      "type": null, 
+      "name": "DAT_-000000c"
+    }, 
+    {
+      "address": "0x-0000008", 
+      "type": null, 
+      "name": "DAT_-0000008"
+    }, 
+    {
+      "address": "0x-0000004", 
+      "type": null, 
+      "name": "DAT_-0000004"
+    }, 
+    {
+      "address": "0x10012100", 
+      "type": null, 
+      "name": "DAT_10012100"
+    }, 
+    {
+      "address": "0x10012110", 
+      "type": null, 
+      "name": "DAT_10012110"
+    }, 
+    {
+      "address": "0x10012108", 
+      "type": null, 
+      "name": "DAT_10012108"
+    }, 
+    {
+      "address": "0x10012104", 
+      "type": null, 
+      "name": "DAT_10012104"
+    }, 
+    {
+      "address": "0x0000000c", 
+      "type": null, 
+      "name": "DAT_0000000c"
+    }
+  ], 
+  "has_custom_name": true, 
+  "decompiled_c": "\n/* public: void __thiscall gbQuaternion::Slerp(struct gbQuaternion *,struct gbQuaternion *,float) */\n\nvoid __thiscall\ngbQuaternion::Slerp(gbQuaternion *this,gbQuaternion *param_1,gbQuaternion *param_2,float param_3)\n\n{\n  float fVar1;\n  gbQuaternion *pgVar2;\n  float10 fVar3;\n  float10 fVar4;\n  float10 fVar5;\n  float local_10;\n  float local_c;\n  float local_8;\n  float local_4;\n  \n                    /* 0x2a30  91  ?Slerp@gbQuaternion@@QAEXPAU1@0M@Z */\n  pgVar2 = param_1;\n  param_1 = (gbQuaternion *)\n            (*(float *)param_1 * *(float *)param_2 +\n            *(float *)(param_1 + 4) * *(float *)(param_2 + 4) +\n            *(float *)(param_2 + 8) * *(float *)(param_1 + 8) +\n            *(float *)(param_2 + 0xc) * *(float *)(param_1 + 0xc));\n  if (0.0 <= (float)param_1) {\n    local_10 = *(float *)param_2;\n    local_c = *(float *)(param_2 + 4);\n    local_8 = *(float *)(param_2 + 8);\n    local_4 = *(float *)(param_2 + 0xc);\n  }\n  else {\n    param_1 = (gbQuaternion *)-(float)param_1;\n    local_10 = -*(float *)param_2;\n    local_c = -*(float *)(param_2 + 4);\n    local_8 = -*(float *)(param_2 + 8);\n    local_4 = -*(float *)(param_2 + 0xc);\n  }\n  if (1.0 - (float)param_1 <= 1e-05) {\n    fVar3 = (float10)1.0 - (float10)param_3;\n    fVar5 = (float10)param_3;\n  }\n  else {\n    fVar3 = (float10)FUN_10009bb0();\n    fVar1 = (float)(fVar3 * (float10)57.295776);\n    fVar4 = (float10)fsin(fVar3 * (float10)57.295776 * (float10)0.017453292);\n    fVar3 = (float10)fsin(((float10)1.0 - (float10)param_3) * (float10)fVar1 * (float10)0.017453292)\n    ;\n    fVar3 = fVar3 / (float10)(float)fVar4;\n    fVar5 = (float10)fsin((float10)fVar1 * (float10)param_3 * (float10)0.017453292);\n    fVar5 = fVar5 / (float10)(float)fVar4;\n  }\n  *(float *)this = (float)(fVar5 * (float10)local_10 + fVar3 * (float10)*(float *)pgVar2);\n  *(float *)(this + 4) = (float)(fVar5 * (float10)local_c + fVar3 * (float10)*(float *)(pgVar2 + 4))\n  ;\n  *(float *)(this + 8) = (float)(fVar5 * (float10)local_8 + fVar3 * (float10)*(float *)(pgVar2 + 8))\n  ;\n  *(float *)(this + 0xc) =\n       (float)(fVar5 * (float10)local_4 + fVar3 * (float10)*(float *)(pgVar2 + 0xc));\n  return;\n}\n\n", 
+  "is_thunk": false, 
+  "name": "Slerp", 
+  "assembly": "  10002a30:  SUB ESP,0x10\n  10002a33:  PUSH ESI\n  10002a34:  MOV ESI,dword ptr [ESP + 0x18]\n  10002a38:  PUSH EDI\n  10002a39:  MOV EDI,ECX\n  10002a3b:  MOV ECX,dword ptr [ESP + 0x20]\n  10002a3f:  FLD dword ptr [ECX + 0xc]\n  10002a42:  FMUL dword ptr [ESI + 0xc]\n  10002a45:  FLD dword ptr [ECX + 0x8]\n  10002a48:  FMUL dword ptr [ESI + 0x8]\n  10002a4b:  FADDP\n  10002a4d:  FLD dword ptr [ESI + 0x4]\n  10002a50:  FMUL dword ptr [ECX + 0x4]\n  10002a53:  FADDP\n  10002a55:  FLD dword ptr [ESI]\n  10002a57:  FMUL dword ptr [ECX]\n  10002a59:  FADDP\n  10002a5b:  FST dword ptr [ESP + 0x1c]\n  10002a5f:  FCOMP dword ptr [0x100120f0]\n  10002a65:  FNSTSW AX\n  10002a67:  TEST AH,0x1\n  10002a6a:  JZ 0x10002a9b\n  10002a6c:  FLD dword ptr [ESP + 0x1c]\n  10002a70:  FCHS\n  10002a72:  FSTP dword ptr [ESP + 0x1c]\n  10002a76:  FLD dword ptr [ECX]\n  10002a78:  FCHS\n  10002a7a:  FSTP dword ptr [ESP + 0x8]\n  10002a7e:  FLD dword ptr [ECX + 0x4]\n  10002a81:  FCHS\n  10002a83:  FSTP dword ptr [ESP + 0xc]\n  10002a87:  FLD dword ptr [ECX + 0x8]\n  10002a8a:  FCHS\n  10002a8c:  FSTP dword ptr [ESP + 0x10]\n  10002a90:  FLD dword ptr [ECX + 0xc]\n  10002a93:  FCHS\n  10002a95:  FSTP dword ptr [ESP + 0x14]\n  10002a99:  JMP 0x10002ab6\n  10002a9b:  MOV EAX,dword ptr [ECX]\n  10002a9d:  MOV EDX,dword ptr [ECX + 0x4]\n  10002aa0:  MOV dword ptr [ESP + 0x8],EAX\n  10002aa4:  MOV EAX,dword ptr [ECX + 0x8]\n  10002aa7:  MOV ECX,dword ptr [ECX + 0xc]\n  10002aaa:  MOV dword ptr [ESP + 0xc],EDX\n  10002aae:  MOV dword ptr [ESP + 0x10],EAX\n  10002ab2:  MOV dword ptr [ESP + 0x14],ECX\n  10002ab6:  FLD dword ptr [0x10012100]\n  10002abc:  FSUB dword ptr [ESP + 0x1c]\n  10002ac0:  FCOMP qword ptr [0x10012110]\n  10002ac6:  FNSTSW AX\n  10002ac8:  TEST AH,0x41\n  10002acb:  JNZ 0x10002b1c\n  10002acd:  FLD dword ptr [ESP + 0x1c]\n  10002ad1:  CALL 0x10009bb0\n  10002ad6:  FMUL dword ptr [0x10012108]\n  10002adc:  FST dword ptr [ESP + 0x1c]\n  10002ae0:  FMUL dword ptr [0x10012104]\n  10002ae6:  FSIN\n  10002ae8:  FSTP dword ptr [ESP + 0x20]\n  10002aec:  FLD dword ptr [0x10012100]\n  10002af2:  FSUB dword ptr [ESP + 0x24]\n  10002af6:  FMUL dword ptr [ESP + 0x1c]\n  10002afa:  FMUL dword ptr [0x10012104]\n  10002b00:  FSIN\n  10002b02:  FDIV dword ptr [ESP + 0x20]\n  10002b06:  FLD dword ptr [ESP + 0x1c]\n  10002b0a:  FMUL dword ptr [ESP + 0x24]\n  10002b0e:  FMUL dword ptr [0x10012104]\n  10002b14:  FSIN\n  10002b16:  FDIV dword ptr [ESP + 0x20]\n  10002b1a:  JMP 0x10002b2a\n  10002b1c:  FLD dword ptr [0x10012100]\n  10002b22:  FSUB dword ptr [ESP + 0x24]\n  10002b26:  FLD dword ptr [ESP + 0x24]\n  10002b2a:  FLD ST1\n  10002b2c:  FMUL dword ptr [ESI]\n  10002b2e:  FLD ST1\n  10002b30:  FMUL dword ptr [ESP + 0x8]\n  10002b34:  FADDP\n  10002b36:  FSTP dword ptr [EDI]\n  10002b38:  FLD ST1\n  10002b3a:  FMUL dword ptr [ESI + 0x4]\n  10002b3d:  FLD ST1\n  10002b3f:  FMUL dword ptr [ESP + 0xc]\n  10002b43:  FADDP\n  10002b45:  FSTP dword ptr [EDI + 0x4]\n  10002b48:  FLD ST1\n  10002b4a:  FMUL dword ptr [ESI + 0x8]\n  10002b4d:  FLD ST1\n  10002b4f:  FMUL dword ptr [ESP + 0x10]\n  10002b53:  FADDP\n  10002b55:  FSTP dword ptr [EDI + 0x8]\n  10002b58:  FXCH\n  10002b5a:  FMUL dword ptr [ESI + 0xc]\n  10002b5d:  FXCH\n  10002b5f:  FMUL dword ptr [ESP + 0x14]\n  10002b63:  FADDP\n  10002b65:  FSTP dword ptr [EDI + 0xc]\n  10002b68:  POP EDI\n  10002b69:  POP ESI\n  10002b6a:  ADD ESP,0x10\n  10002b6d:  RET 0xc", 
+  "callers": []
+}

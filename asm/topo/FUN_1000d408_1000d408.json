@@ -1,0 +1,137 @@
+{
+  "address": "0x1000d408", 
+  "size_bytes": 97, 
+  "calling_convention": "__cdecl", 
+  "signature": "undefined __cdecl FUN_1000d408(int param_1)", 
+  "callees": [
+    {
+      "address": "0x1000a152", 
+      "name": "_malloc"
+    }, 
+    {
+      "address": "0x1000a661", 
+      "name": "__amsg_exit"
+    }, 
+    {
+      "address": "0x1000d408", 
+      "name": "FUN_1000d408"
+    }, 
+    {
+      "address": "0x0000001c", 
+      "name": "InitializeCriticalSection"
+    }, 
+    {
+      "address": "0x1000a28c", 
+      "name": "FUN_1000a28c"
+    }, 
+    {
+      "address": "0x1000d469", 
+      "name": "FUN_1000d469"
+    }, 
+    {
+      "address": "0x0000001e", 
+      "name": "EnterCriticalSection"
+    }
+  ], 
+  "global_refs": [
+    {
+      "address": "0x00000004", 
+      "type": null, 
+      "name": "DAT_00000004"
+    }, 
+    {
+      "address": "0x10017108", 
+      "type": "undefined4", 
+      "name": "DAT_10017108"
+    }, 
+    {
+      "address": "0x1001206c", 
+      "type": "pointer", 
+      "name": "DAT_1001206c"
+    }, 
+    {
+      "address": "0x10012074", 
+      "type": "pointer", 
+      "name": "DAT_10012074"
+    }
+  ], 
+  "has_custom_name": false, 
+  "decompiled_c": "\nvoid __cdecl FUN_1000d408(int param_1)\n\n{\n  int *piVar1;\n  LPCRITICAL_SECTION lpCriticalSection;\n  \n  piVar1 = &DAT_10017108 + param_1;\n  if ((&DAT_10017108)[param_1] == 0) {\n    lpCriticalSection = (LPCRITICAL_SECTION)_malloc(0x18);\n    if (lpCriticalSection == (LPCRITICAL_SECTION)0x0) {\n      __amsg_exit(0x11);\n    }\n    FUN_1000d408(0x11);\n    if (*piVar1 == 0) {\n      InitializeCriticalSection(lpCriticalSection);\n      *piVar1 = (int)lpCriticalSection;\n    }\n    else {\n      FUN_1000a28c((undefined *)lpCriticalSection);\n    }\n    FUN_1000d469(0x11);\n  }\n  EnterCriticalSection((LPCRITICAL_SECTION)*piVar1);\n  return;\n}\n\n", 
+  "is_thunk": false, 
+  "name": "FUN_1000d408", 
+  "assembly": "  1000d408:  PUSH EBP\n  1000d409:  MOV EBP,ESP\n  1000d40b:  MOV EAX,dword ptr [EBP + 0x8]\n  1000d40e:  PUSH ESI\n  1000d40f:  CMP dword ptr [EAX*0x4 + 0x10017108],0x0\n  1000d417:  LEA ESI,[EAX*0x4 + 0x10017108]\n  1000d41e:  JNZ 0x1000d45e\n  1000d420:  PUSH EDI\n  1000d421:  PUSH 0x18\n  1000d423:  CALL 0x1000a152\n  1000d428:  MOV EDI,EAX\n  1000d42a:  POP ECX\n  1000d42b:  TEST EDI,EDI\n  1000d42d:  JNZ 0x1000d437\n  1000d42f:  PUSH 0x11\n  1000d431:  CALL 0x1000a661\n  1000d436:  POP ECX\n  1000d437:  PUSH 0x11\n  1000d439:  CALL 0x1000d408\n  1000d43e:  CMP dword ptr [ESI],0x0\n  1000d441:  POP ECX\n  1000d442:  PUSH EDI\n  1000d443:  JNZ 0x1000d44f\n  1000d445:  CALL dword ptr [0x1001206c]\n  1000d44b:  MOV dword ptr [ESI],EDI\n  1000d44d:  JMP 0x1000d455\n  1000d44f:  CALL 0x1000a28c\n  1000d454:  POP ECX\n  1000d455:  PUSH 0x11\n  1000d457:  CALL 0x1000d469\n  1000d45c:  POP ECX\n  1000d45d:  POP EDI\n  1000d45e:  PUSH dword ptr [ESI]\n  1000d460:  CALL dword ptr [0x10012074]\n  1000d466:  POP ESI\n  1000d467:  POP EBP\n  1000d468:  RET", 
+  "callers": [
+    {
+      "address": "0x1000a28c", 
+      "name": "FUN_1000a28c"
+    }, 
+    {
+      "address": "0x1000a28c", 
+      "name": "FUN_1000a28c"
+    }, 
+    {
+      "address": "0x1000d408", 
+      "name": "FUN_1000d408"
+    }, 
+    {
+      "address": "0x1000a190", 
+      "name": "FUN_1000a190"
+    }, 
+    {
+      "address": "0x1000a190", 
+      "name": "FUN_1000a190"
+    }, 
+    {
+      "address": "0x1000ba81", 
+      "name": "FUN_1000ba81"
+    }, 
+    {
+      "address": "0x1000ece4", 
+      "name": "FUN_1000ece4"
+    }, 
+    {
+      "address": "0x1000ece4", 
+      "name": "FUN_1000ece4"
+    }, 
+    {
+      "address": "0x1000f55f", 
+      "name": "FUN_1000f55f"
+    }, 
+    {
+      "address": "0x10010ece", 
+      "name": "FUN_10010ece"
+    }, 
+    {
+      "address": "0x1000baad", 
+      "name": "FUN_1000baad"
+    }, 
+    {
+      "address": "0x1000baad", 
+      "name": "FUN_1000baad"
+    }, 
+    {
+      "address": "0x1000bddc", 
+      "name": "FUN_1000bddc"
+    }, 
+    {
+      "address": "0x1000bddc", 
+      "name": "FUN_1000bddc"
+    }, 
+    {
+      "address": "0x1000fade", 
+      "name": "FUN_1000fade"
+    }, 
+    {
+      "address": "0x10011410", 
+      "name": "FUN_10011410"
+    }, 
+    {
+      "address": "0x100114e0", 
+      "name": "FUN_100114e0"
+    }, 
+    {
+      "address": "0x1000df0f", 
+      "name": "FUN_1000df0f"
+    }
+  ]
+}

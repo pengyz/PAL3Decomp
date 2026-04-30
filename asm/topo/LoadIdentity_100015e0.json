@@ -1,0 +1,27 @@
+{
+  "address": "0x100015e0", 
+  "size_bytes": 32, 
+  "calling_convention": "__thiscall", 
+  "signature": "void __thiscall LoadIdentity(gbMatrix4 * this)", 
+  "callees": [], 
+  "global_refs": [], 
+  "has_custom_name": true, 
+  "decompiled_c": "\n/* public: void __thiscall gbMatrix4::LoadIdentity(void) */\n\nvoid __thiscall gbMatrix4::LoadIdentity(gbMatrix4 *this)\n\n{\n  int iVar1;\n  gbMatrix4 *pgVar2;\n  \n  pgVar2 = this;\n                    /* 0x15e0  58  ?LoadIdentity@gbMatrix4@@QAEXXZ */\n  for (iVar1 = 0x10; iVar1 != 0; iVar1 = iVar1 + -1) {\n    *(undefined4 *)pgVar2 = 0;\n    pgVar2 = pgVar2 + 4;\n  }\n  *(undefined4 *)(this + 0x3c) = 0x3f800000;\n  *(undefined4 *)(this + 0x28) = 0x3f800000;\n  *(undefined4 *)(this + 0x14) = 0x3f800000;\n  *(undefined4 *)this = 0x3f800000;\n  return;\n}\n\n", 
+  "is_thunk": false, 
+  "name": "LoadIdentity", 
+  "assembly": "  100015e0:  MOV EDX,ECX\n  100015e2:  PUSH EDI\n  100015e3:  MOV ECX,0x10\n  100015e8:  XOR EAX,EAX\n  100015ea:  MOV EDI,EDX\n  100015ec:  STOSD.REP ES:EDI\n  100015ee:  MOV EAX,0x3f800000\n  100015f3:  POP EDI\n  100015f4:  MOV dword ptr [EDX + 0x3c],EAX\n  100015f7:  MOV dword ptr [EDX + 0x28],EAX\n  100015fa:  MOV dword ptr [EDX + 0x14],EAX\n  100015fd:  MOV dword ptr [EDX],EAX\n  100015ff:  RET", 
+  "callers": [
+    {
+      "address": "0x10001110", 
+      "name": "gbMatrix4"
+    }, 
+    {
+      "address": "0x10002d50", 
+      "name": "gbMatrixStack"
+    }, 
+    {
+      "address": "0x10002e30", 
+      "name": "LoadIdentity"
+    }
+  ]
+}

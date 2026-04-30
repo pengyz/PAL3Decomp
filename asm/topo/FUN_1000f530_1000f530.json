@@ -1,0 +1,52 @@
+{
+  "address": "0x1000f530", 
+  "size_bytes": 47, 
+  "calling_convention": "__stdcall", 
+  "signature": "undefined __stdcall FUN_1000f530(undefined1 param_1)", 
+  "callees": [], 
+  "global_refs": [
+    {
+      "address": "0x00000004", 
+      "type": null, 
+      "name": "DAT_00000004"
+    }, 
+    {
+      "address": "0x-0000ffc", 
+      "type": null, 
+      "name": "DAT_-0000ffc"
+    }, 
+    {
+      "address": "0x-0000004", 
+      "type": null, 
+      "name": "DAT_-0000004"
+    }, 
+    {
+      "address": "0x00000000", 
+      "type": null, 
+      "name": "DAT_00000000"
+    }
+  ], 
+  "has_custom_name": false, 
+  "decompiled_c": "\n/* WARNING: Unable to track spacebase fully for stack */\n\nvoid FUN_1000f530(undefined1 param_1)\n\n{\n  uint in_EAX;\n  undefined1 *puVar1;\n  undefined4 unaff_retaddr;\n  \n  puVar1 = &param_1;\n  if (0xfff < in_EAX) {\n    do {\n      puVar1 = puVar1 + -0x1000;\n      in_EAX = in_EAX - 0x1000;\n    } while (0xfff < in_EAX);\n  }\n  *(undefined4 *)(puVar1 + (-4 - in_EAX)) = unaff_retaddr;\n  return;\n}\n\n", 
+  "is_thunk": false, 
+  "name": "FUN_1000f530", 
+  "assembly": "  1000f530:  PUSH ECX\n  1000f531:  CMP EAX,0x1000\n  1000f536:  LEA ECX,[ESP + 0x8]\n  1000f53a:  JC 0x1000f550\n  1000f53c:  SUB ECX,0x1000\n  1000f542:  SUB EAX,0x1000\n  1000f547:  TEST dword ptr [ECX],EAX\n  1000f549:  CMP EAX,0x1000\n  1000f54e:  JNC 0x1000f53c\n  1000f550:  SUB ECX,EAX\n  1000f552:  MOV EAX,ESP\n  1000f554:  TEST dword ptr [ECX],EAX\n  1000f556:  MOV ESP,ECX\n  1000f558:  MOV ECX,dword ptr [EAX]\n  1000f55a:  MOV EAX,dword ptr [EAX + 0x4]\n  1000f55d:  PUSH EAX\n  1000f55e:  RET", 
+  "callers": [
+    {
+      "address": "0x1000bf12", 
+      "name": "FUN_1000bf12"
+    }, 
+    {
+      "address": "0x1000fc9d", 
+      "name": "FUN_1000fc9d"
+    }, 
+    {
+      "address": "0x1000fde6", 
+      "name": "FUN_1000fde6"
+    }, 
+    {
+      "address": "0x1000fde6", 
+      "name": "FUN_1000fde6"
+    }
+  ]
+}

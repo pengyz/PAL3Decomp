@@ -1,0 +1,19 @@
+{
+  "address": "0x10006540", 
+  "size_bytes": 19, 
+  "calling_convention": "__fastcall", 
+  "signature": "int __fastcall FUN_10006540(int param_1)", 
+  "callees": [], 
+  "global_refs": [], 
+  "has_custom_name": false, 
+  "decompiled_c": "\nint __fastcall FUN_10006540(int param_1)\n\n{\n  if (*(int *)(param_1 + 4) == 0) {\n    return 0;\n  }\n  return *(int *)(param_1 + 0xc) - *(int *)(param_1 + 4) >> 3;\n}\n\n", 
+  "is_thunk": false, 
+  "name": "FUN_10006540", 
+  "assembly": "  10006540:  MOV EDX,dword ptr [ECX + 0x4]\n  10006543:  TEST EDX,EDX\n  10006545:  JNZ 0x1000654a\n  10006547:  XOR EAX,EAX\n  10006549:  RET\n  1000654a:  MOV EAX,dword ptr [ECX + 0xc]\n  1000654d:  SUB EAX,EDX\n  1000654f:  SAR EAX,0x3\n  10006552:  RET", 
+  "callers": [
+    {
+      "address": "0x100062c0", 
+      "name": "FUN_100062c0"
+    }
+  ]
+}

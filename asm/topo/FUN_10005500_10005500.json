@@ -1,0 +1,35 @@
+{
+  "address": "0x10005500", 
+  "size_bytes": 37, 
+  "calling_convention": "__stdcall", 
+  "signature": "undefined __stdcall FUN_10005500(undefined4 * param_1, int param_2, undefined4 * param_3)", 
+  "callees": [], 
+  "global_refs": [
+    {
+      "address": "0x00000008", 
+      "type": null, 
+      "name": "DAT_00000008"
+    }, 
+    {
+      "address": "0x0000000c", 
+      "type": null, 
+      "name": "DAT_0000000c"
+    }, 
+    {
+      "address": "0x00000004", 
+      "type": null, 
+      "name": "DAT_00000004"
+    }
+  ], 
+  "has_custom_name": false, 
+  "decompiled_c": "\nvoid FUN_10005500(undefined4 *param_1,int param_2,undefined4 *param_3)\n\n{\n  if (param_2 != 0) {\n    do {\n      if (param_1 != (undefined4 *)0x0) {\n        *param_1 = *param_3;\n      }\n      param_1 = param_1 + 1;\n      param_2 = param_2 + -1;\n    } while (param_2 != 0);\n  }\n  return;\n}\n\n", 
+  "is_thunk": false, 
+  "name": "FUN_10005500", 
+  "assembly": "  10005500:  MOV EAX,dword ptr [ESP + 0x8]\n  10005504:  TEST EAX,EAX\n  10005506:  JBE 0x10005522\n  10005508:  MOV EDX,dword ptr [ESP + 0xc]\n  1000550c:  MOV ECX,EAX\n  1000550e:  MOV EAX,dword ptr [ESP + 0x4]\n  10005512:  PUSH ESI\n  10005513:  TEST EAX,EAX\n  10005515:  JZ 0x1000551b\n  10005517:  MOV ESI,dword ptr [EDX]\n  10005519:  MOV dword ptr [EAX],ESI\n  1000551b:  ADD EAX,0x4\n  1000551e:  DEC ECX\n  1000551f:  JNZ 0x10005513\n  10005521:  POP ESI\n  10005522:  RET 0xc", 
+  "callers": [
+    {
+      "address": "0x10005330", 
+      "name": "FUN_10005330"
+    }
+  ]
+}

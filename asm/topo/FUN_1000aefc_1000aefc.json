@@ -1,0 +1,81 @@
+{
+  "address": "0x1000aefc", 
+  "size_bytes": 155, 
+  "calling_convention": "__cdecl", 
+  "signature": "undefined4 __cdecl FUN_1000aefc(PEXCEPTION_RECORD param_1, PVOID param_2, DWORD param_3, undefined4 param_4, int * param_5, int param_6, PVOID param_7, char param_8)", 
+  "callees": [
+    {
+      "address": "0x1000b939", 
+      "name": "FUN_1000b939"
+    }, 
+    {
+      "address": "0x1000b251", 
+      "name": "FUN_1000b251"
+    }, 
+    {
+      "address": "0x1000af97", 
+      "name": "FUN_1000af97"
+    }
+  ], 
+  "global_refs": [
+    {
+      "address": "0x00000014", 
+      "type": null, 
+      "name": "DAT_00000014"
+    }, 
+    {
+      "address": "0x00000004", 
+      "type": null, 
+      "name": "DAT_00000004"
+    }, 
+    {
+      "address": "0x00000018", 
+      "type": null, 
+      "name": "DAT_00000018"
+    }, 
+    {
+      "address": "0x00000010", 
+      "type": null, 
+      "name": "DAT_00000010"
+    }, 
+    {
+      "address": "0x00000008", 
+      "type": null, 
+      "name": "DAT_00000008"
+    }, 
+    {
+      "address": "0x00000020", 
+      "type": null, 
+      "name": "DAT_00000020"
+    }, 
+    {
+      "address": "0x0000001c", 
+      "type": null, 
+      "name": "DAT_0000001c"
+    }, 
+    {
+      "address": "0x0000000c", 
+      "type": null, 
+      "name": "DAT_0000000c"
+    }
+  ], 
+  "has_custom_name": false, 
+  "decompiled_c": "\nundefined4 __cdecl\nFUN_1000aefc(PEXCEPTION_RECORD param_1,PVOID param_2,DWORD param_3,undefined4 param_4,int *param_5,\n            int param_6,PVOID param_7,char param_8)\n\n{\n  code *pcVar1;\n  undefined4 uVar2;\n  \n  if (*param_5 != 0x19930520) {\n    FUN_1000b939();\n  }\n  if ((*(byte *)&param_1->ExceptionFlags & 0x66) == 0) {\n    if (param_5[3] != 0) {\n      if (((param_1->ExceptionCode == 0xe06d7363) && (0x19930520 < param_1->ExceptionInformation[0])\n          ) && (pcVar1 = *(code **)(param_1->ExceptionInformation[2] + 8), pcVar1 != (code *)0x0)) {\n        uVar2 = (*pcVar1)(param_1,param_2,param_3,param_4,param_5,param_6,param_7,param_8);\n        return uVar2;\n      }\n      FUN_1000af97(param_1,param_2,param_3,param_4,(uint)param_5,param_8,param_6,param_7);\n    }\n  }\n  else if ((param_5[1] != 0) && (param_6 == 0)) {\n    FUN_1000b251((int)param_2,param_4,(int)param_5,-1);\n  }\n  return 1;\n}\n\n", 
+  "is_thunk": false, 
+  "name": "FUN_1000aefc", 
+  "assembly": "  1000aefc:  PUSH EBP\n  1000aefd:  MOV EBP,ESP\n  1000aeff:  PUSH ESI\n  1000af00:  MOV ESI,dword ptr [EBP + 0x18]\n  1000af03:  PUSH EDI\n  1000af04:  MOV EDI,0x19930520\n  1000af09:  CMP dword ptr [ESI],EDI\n  1000af0b:  JZ 0x1000af12\n  1000af0d:  CALL 0x1000b939\n  1000af12:  MOV EAX,dword ptr [EBP + 0x8]\n  1000af15:  TEST byte ptr [EAX + 0x4],0x66\n  1000af19:  JZ 0x1000af3a\n  1000af1b:  CMP dword ptr [ESI + 0x4],0x0\n  1000af1f:  JZ 0x1000af90\n  1000af21:  CMP dword ptr [EBP + 0x1c],0x0\n  1000af25:  JNZ 0x1000af90\n  1000af27:  PUSH -0x1\n  1000af29:  PUSH ESI\n  1000af2a:  PUSH dword ptr [EBP + 0x14]\n  1000af2d:  PUSH dword ptr [EBP + 0xc]\n  1000af30:  CALL 0x1000b251\n  1000af35:  ADD ESP,0x10\n  1000af38:  JMP 0x1000af90\n  1000af3a:  CMP dword ptr [ESI + 0xc],0x0\n  1000af3e:  JZ 0x1000af90\n  1000af40:  CMP dword ptr [EAX],0xe06d7363\n  1000af46:  JNZ 0x1000af74\n  1000af48:  CMP dword ptr [EAX + 0x14],EDI\n  1000af4b:  JBE 0x1000af74\n  1000af4d:  MOV ECX,dword ptr [EAX + 0x1c]\n  1000af50:  MOV ECX,dword ptr [ECX + 0x8]\n  1000af53:  TEST ECX,ECX\n  1000af55:  JZ 0x1000af74\n  1000af57:  MOVZX EDX,byte ptr [EBP + 0x24]\n  1000af5b:  PUSH EDX\n  1000af5c:  PUSH dword ptr [EBP + 0x20]\n  1000af5f:  PUSH dword ptr [EBP + 0x1c]\n  1000af62:  PUSH ESI\n  1000af63:  PUSH dword ptr [EBP + 0x14]\n  1000af66:  PUSH dword ptr [EBP + 0x10]\n  1000af69:  PUSH dword ptr [EBP + 0xc]\n  1000af6c:  PUSH EAX\n  1000af6d:  CALL ECX\n  1000af6f:  ADD ESP,0x20\n  1000af72:  JMP 0x1000af93\n  1000af74:  PUSH dword ptr [EBP + 0x20]\n  1000af77:  PUSH dword ptr [EBP + 0x1c]\n  1000af7a:  PUSH dword ptr [EBP + 0x24]\n  1000af7d:  PUSH ESI\n  1000af7e:  PUSH dword ptr [EBP + 0x14]\n  1000af81:  PUSH dword ptr [EBP + 0x10]\n  1000af84:  PUSH dword ptr [EBP + 0xc]\n  1000af87:  PUSH EAX\n  1000af88:  CALL 0x1000af97\n  1000af8d:  ADD ESP,0x20\n  1000af90:  PUSH 0x1\n  1000af92:  POP EAX\n  1000af93:  POP EDI\n  1000af94:  POP ESI\n  1000af95:  POP EBP\n  1000af96:  RET", 
+  "callers": [
+    {
+      "address": "0x10009d25", 
+      "name": "FUN_10009d25"
+    }, 
+    {
+      "address": "0x10009daf", 
+      "name": "FUN_10009daf"
+    }, 
+    {
+      "address": "0x10009e8a", 
+      "name": "FUN_10009e8a"
+    }
+  ]
+}

@@ -1,0 +1,77 @@
+{
+  "address": "0x1000aa2a", 
+  "size_bytes": 147, 
+  "calling_convention": "__cdecl", 
+  "signature": "undefined __cdecl FUN_1000aa2a(undefined8 * param_1, char * param_2, size_t param_3, int param_4)", 
+  "callees": [
+    {
+      "address": "0x1000e4ac", 
+      "name": "FUN_1000e4ac"
+    }, 
+    {
+      "address": "0x1000e435", 
+      "name": "FUN_1000e435"
+    }, 
+    {
+      "address": "0x1000a983", 
+      "name": "FUN_1000a983"
+    }, 
+    {
+      "address": "0x1000a86c", 
+      "name": "FUN_1000a86c"
+    }
+  ], 
+  "global_refs": [
+    {
+      "address": "0x-000002c", 
+      "type": null, 
+      "name": "DAT_-000002c"
+    }, 
+    {
+      "address": "0x-0000014", 
+      "type": null, 
+      "name": "DAT_-0000014"
+    }, 
+    {
+      "address": "0x00000004", 
+      "type": null, 
+      "name": "DAT_00000004"
+    }, 
+    {
+      "address": "0x-0000048", 
+      "type": null, 
+      "name": "DAT_-0000048"
+    }, 
+    {
+      "address": "0x-0000010", 
+      "type": null, 
+      "name": "DAT_-0000010"
+    }, 
+    {
+      "address": "0x0000000c", 
+      "type": null, 
+      "name": "DAT_0000000c"
+    }, 
+    {
+      "address": "0x00000008", 
+      "type": null, 
+      "name": "DAT_00000008"
+    }, 
+    {
+      "address": "0x00000010", 
+      "type": null, 
+      "name": "DAT_00000010"
+    }
+  ], 
+  "has_custom_name": false, 
+  "decompiled_c": "\nvoid __cdecl FUN_1000aa2a(undefined8 *param_1,char *param_2,size_t param_3,int param_4)\n\n{\n  int iVar1;\n  char *pcVar2;\n  char *pcVar3;\n  uint local_2c [6];\n  int local_14;\n  int local_10;\n  \n  FUN_1000e4ac((int)*param_1,(int)((ulonglong)*param_1 >> 0x20),&local_14,local_2c);\n  iVar1 = local_10 + -1;\n  FUN_1000e435(param_2 + (local_14 == 0x2d),param_3,(int)&local_14);\n  local_10 = local_10 + -1;\n  if ((local_10 < -4) || ((int)param_3 <= local_10)) {\n    FUN_1000a86c(param_2,param_3,param_4,&local_14,'\\x01');\n  }\n  else {\n    pcVar2 = param_2 + (local_14 == 0x2d);\n    if (iVar1 < local_10) {\n      do {\n        pcVar3 = pcVar2;\n        pcVar2 = pcVar3 + 1;\n      } while (*pcVar3 != '\\0');\n      pcVar3[-1] = '\\0';\n    }\n    FUN_1000a983(param_2,param_3,&local_14,'\\x01');\n  }\n  return;\n}\n\n", 
+  "is_thunk": false, 
+  "name": "FUN_1000aa2a", 
+  "assembly": "  1000aa2a:  PUSH EBP\n  1000aa2b:  MOV EBP,ESP\n  1000aa2d:  SUB ESP,0x28\n  1000aa30:  PUSH EBX\n  1000aa31:  PUSH ESI\n  1000aa32:  LEA EAX,[EBP + -0x28]\n  1000aa35:  PUSH EDI\n  1000aa36:  PUSH EAX\n  1000aa37:  LEA EAX,[EBP + -0x10]\n  1000aa3a:  PUSH EAX\n  1000aa3b:  MOV EAX,dword ptr [EBP + 0x8]\n  1000aa3e:  PUSH ECX\n  1000aa3f:  PUSH ECX\n  1000aa40:  FLD qword ptr [EAX]\n  1000aa42:  FSTP qword ptr [ESP]\n  1000aa45:  CALL 0x1000e4ac\n  1000aa4a:  MOV EAX,dword ptr [EBP + -0xc]\n  1000aa4d:  MOV EBX,dword ptr [EBP + 0x10]\n  1000aa50:  LEA ESI,[EAX + -0x1]\n  1000aa53:  XOR EAX,EAX\n  1000aa55:  CMP dword ptr [EBP + -0x10],0x2d\n  1000aa59:  SETZ AL\n  1000aa5c:  ADD EAX,dword ptr [EBP + 0xc]\n  1000aa5f:  MOV EDI,EAX\n  1000aa61:  LEA EAX,[EBP + -0x10]\n  1000aa64:  PUSH EAX\n  1000aa65:  PUSH EBX\n  1000aa66:  PUSH EDI\n  1000aa67:  CALL 0x1000e435\n  1000aa6c:  MOV EAX,dword ptr [EBP + -0xc]\n  1000aa6f:  ADD ESP,0x1c\n  1000aa72:  DEC EAX\n  1000aa73:  CMP ESI,EAX\n  1000aa75:  SETL CL\n  1000aa78:  CMP EAX,-0x4\n  1000aa7b:  JL 0x1000aaa3\n  1000aa7d:  CMP EAX,EBX\n  1000aa7f:  JGE 0x1000aaa3\n  1000aa81:  TEST CL,CL\n  1000aa83:  JZ 0x1000aa8f\n  1000aa85:  MOV AL,byte ptr [EDI]\n  1000aa87:  INC EDI\n  1000aa88:  TEST AL,AL\n  1000aa8a:  JNZ 0x1000aa85\n  1000aa8c:  AND byte ptr [EDI + -0x2],AL\n  1000aa8f:  LEA EAX,[EBP + -0x10]\n  1000aa92:  PUSH 0x1\n  1000aa94:  PUSH EAX\n  1000aa95:  PUSH EBX\n  1000aa96:  PUSH dword ptr [EBP + 0xc]\n  1000aa99:  CALL 0x1000a983\n  1000aa9e:  ADD ESP,0x10\n  1000aaa1:  JMP 0x1000aab8\n  1000aaa3:  LEA EAX,[EBP + -0x10]\n  1000aaa6:  PUSH 0x1\n  1000aaa8:  PUSH EAX\n  1000aaa9:  PUSH dword ptr [EBP + 0x14]\n  1000aaac:  PUSH EBX\n  1000aaad:  PUSH dword ptr [EBP + 0xc]\n  1000aab0:  CALL 0x1000a86c\n  1000aab5:  ADD ESP,0x14\n  1000aab8:  POP EDI\n  1000aab9:  POP ESI\n  1000aaba:  POP EBX\n  1000aabb:  LEAVE\n  1000aabc:  RET", 
+  "callers": [
+    {
+      "address": "0x1000aabd", 
+      "name": "__cfltcvt"
+    }
+  ]
+}

@@ -1,0 +1,107 @@
+{
+  "address": "0x1000a152", 
+  "size_bytes": 18, 
+  "calling_convention": "__cdecl", 
+  "signature": "void * __cdecl _malloc(size_t _Size)", 
+  "callees": [
+    {
+      "address": "0x1000a164", 
+      "name": "__nh_malloc"
+    }
+  ], 
+  "global_refs": [
+    {
+      "address": "0x10017f6c", 
+      "type": "undefined4", 
+      "name": "DAT_10017f6c"
+    }, 
+    {
+      "address": "0x00000004", 
+      "type": null, 
+      "name": "DAT_00000004"
+    }
+  ], 
+  "has_custom_name": true, 
+  "decompiled_c": "\n/* Library Function - Single Match\n    _malloc\n   \n   Library: Visual Studio 2003 Release */\n\nvoid * __cdecl _malloc(size_t _Size)\n\n{\n  void *pvVar1;\n  \n  pvVar1 = __nh_malloc(_Size,DAT_10017f6c);\n  return pvVar1;\n}\n\n", 
+  "is_thunk": false, 
+  "name": "_malloc", 
+  "assembly": "  1000a152:  PUSH dword ptr [0x10017f6c]\n  1000a158:  PUSH dword ptr [ESP + 0x8]\n  1000a15c:  CALL 0x1000a164\n  1000a161:  POP ECX\n  1000a162:  POP ECX\n  1000a163:  RET", 
+  "callers": [
+    {
+      "address": "0x1000d408", 
+      "name": "FUN_1000d408"
+    }, 
+    {
+      "address": "0x1000d560", 
+      "name": "FUN_1000d560"
+    }, 
+    {
+      "address": "0x1000d560", 
+      "name": "FUN_1000d560"
+    }, 
+    {
+      "address": "0x1000d770", 
+      "name": "FUN_1000d770"
+    }, 
+    {
+      "address": "0x1000d770", 
+      "name": "FUN_1000d770"
+    }, 
+    {
+      "address": "0x1000d829", 
+      "name": "FUN_1000d829"
+    }, 
+    {
+      "address": "0x1000da76", 
+      "name": "FUN_1000da76"
+    }, 
+    {
+      "address": "0x1000da76", 
+      "name": "FUN_1000da76"
+    }, 
+    {
+      "address": "0x10006590", 
+      "name": "FUN_10006590"
+    }, 
+    {
+      "address": "0x10006590", 
+      "name": "FUN_10006590"
+    }, 
+    {
+      "address": "0x1000baad", 
+      "name": "FUN_1000baad"
+    }, 
+    {
+      "address": "0x10006ec0", 
+      "name": "FUN_10006ec0"
+    }, 
+    {
+      "address": "0x10006ec0", 
+      "name": "FUN_10006ec0"
+    }, 
+    {
+      "address": "0x100075a0", 
+      "name": "FUN_100075a0"
+    }, 
+    {
+      "address": "0x100079f0", 
+      "name": "FUN_100079f0"
+    }, 
+    {
+      "address": "0x100079f0", 
+      "name": "FUN_100079f0"
+    }, 
+    {
+      "address": "0x10008090", 
+      "name": "FUN_10008090"
+    }, 
+    {
+      "address": "0x10008d10", 
+      "name": "FUN_10008d10"
+    }, 
+    {
+      "address": "0x10008370", 
+      "name": "FUN_10008370"
+    }
+  ]
+}

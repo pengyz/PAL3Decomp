@@ -1,0 +1,58 @@
+{
+  "address": "0x1000b98f", 
+  "size_bytes": 45, 
+  "calling_convention": "__stdcall", 
+  "signature": "undefined __stdcall FUN_1000b98f(void)", 
+  "callees": [
+    {
+      "address": "0x10009b60", 
+      "name": "FUN_10009b60"
+    }, 
+    {
+      "address": "0x1000ba93", 
+      "name": "FUN_1000ba93"
+    }, 
+    {
+      "address": "0x1000ba93", 
+      "name": "FUN_1000ba93"
+    }
+  ], 
+  "global_refs": [
+    {
+      "address": "0x10015038", 
+      "type": "undefined *", 
+      "name": "DAT_10015038"
+    }, 
+    {
+      "address": "0x10015018", 
+      "type": null, 
+      "name": "DAT_10015018"
+    }, 
+    {
+      "address": "0x10015008", 
+      "type": null, 
+      "name": "DAT_10015008"
+    }, 
+    {
+      "address": "0x10015004", 
+      "type": null, 
+      "name": "DAT_10015004"
+    }, 
+    {
+      "address": "0x10015000", 
+      "type": null, 
+      "name": "DAT_10015000"
+    }
+  ], 
+  "has_custom_name": false, 
+  "decompiled_c": "\nvoid FUN_1000b98f(void)\n\n{\n  if (PTR_FUN_10015038 != (undefined *)0x0) {\n    (*(code *)PTR_FUN_10015038)();\n  }\n  FUN_1000ba93((undefined4 *)&DAT_10015008,(undefined4 *)&DAT_10015018);\n  FUN_1000ba93((undefined4 *)&DAT_10015000,(undefined4 *)&DAT_10015004);\n  return;\n}\n\n", 
+  "is_thunk": false, 
+  "name": "FUN_1000b98f", 
+  "assembly": "  1000b98f:  MOV EAX,[0x10015038]\n  1000b994:  TEST EAX,EAX\n  1000b996:  JZ 0x1000b99a\n  1000b998:  CALL EAX\n  1000b99a:  PUSH 0x10015018\n  1000b99f:  PUSH 0x10015008\n  1000b9a4:  CALL 0x1000ba93\n  1000b9a9:  PUSH 0x10015004\n  1000b9ae:  PUSH 0x10015000\n  1000b9b3:  CALL 0x1000ba93\n  1000b9b8:  ADD ESP,0x10\n  1000b9bb:  RET", 
+  "callers": [
+    {
+      "address": "0x1000a4eb", 
+      "name": "FUN_1000a4eb"
+    }
+  ]
+}
