@@ -24,26 +24,7 @@
 
 /* Project headers */
 #include "pal3_types.h"
+#include "pal3_structs.h"
 #include "pal3_globals.h"
-
-/* ========================================================================
- * Forward Declarations
- * Add as classes/structs are discovered
- * ======================================================================== */
-
-/* Core engine */
-/* struct RenderDevice; */
-/* struct InputManager; */
-/* struct AudioSystem; */
-/* struct FileSystem; */
-
-/* Game logic */
-/* struct GameState; */
-/* struct Character; */
-/* struct BattleSystem; */
-
-/* Script engine */
-/* struct ScriptVM; */
-/* struct ScriptContext; */
 
 #endif /* PAL3_H */

@@ -15,10 +15,25 @@ compiler (MSVC), generates byte-identical machine code to the original binary.
   - `script/` - Script engine (SCE interpreter)
   - `third_party/` - Third-party library stubs
 - `include/` - Header files and struct definitions
+  - `pal3.h` - Master header (include this everywhere)
+  - `pal3_config.h` - Compiler/platform macros
+  - `pal3_types.h` - Fundamental types
+  - `pal3_structs.h` - Game structures (from reverse engineering)
+  - `pal3_globals.h` - Known global variables with addresses
 - `tools/` - Automation scripts (export, compare, progress)
 - `asm/` - Ghidra-exported function data (JSON per function)
 - `build/` - Compilation output and comparison results
 - `docs/` - Research notes and structure documentation
+
+## Known Technical Details (from community RE)
+
+- **Graphics**: DirectX 9 (IDirect3DDevice9)
+- **Audio**: Miles Sound System (AIL)
+- **Video**: Bink Video (.bik)
+- **Input**: DirectInput 8
+- **File System**: CPK archive (LZO compression, CRC32 hashing)
+- **Script**: SCE bytecode VM (~140 opcodes)
+- **Compiler**: MSVC (exact version TBD from Rich Header)
 
 ## Workflow for Decompiling a Function
 
@@ -45,13 +60,14 @@ compiler (MSVC), generates byte-identical machine code to the original binary.
    - Local variable declaration order - affects stack layout
    - Cast expressions - may change instruction selection
 4. Mark uncertain parts with `/* UNCERTAIN */`
-5. Record any new struct definitions in `docs/structs.md`
+5. Record any new struct definitions in `include/pal3_structs.h`
 
 ## Tools (Cross-platform)
 
 All commands use `python run.py <command>`, works on both Windows and Linux:
 
 - `python run.py check` - Check environment is ready
+- `python run.py setup-ghidra` - Auto-install Ghidra + Java
 - `python run.py pe-info` - Analyze the original exe (Rich Header)
 - `python run.py imports` - Parse import table, detect libraries
 - `python run.py progress` - Show decompilation progress
@@ -63,6 +79,17 @@ All commands use `python run.py <command>`, works on both Windows and Linux:
 
 ## Important Context Files
 
-- `docs/structs.md` - All known data structures
-- `build/project_config.json` - Project metadata (compiler, total functions, etc.)
+- `docs/community_structs.md` - All known structures, addresses, RTTI classes
+- `docs/sce_opcodes.md` - Complete SCE script opcode table
+- `docs/file_formats.md` - CPK, SCN, SCE binary format documentation
+- `include/pal3_structs.h` - C struct definitions ready for decompilation
+- `include/pal3_globals.h` - Global variables with original addresses
+- `build/project_config.json` - Project metadata
 - `build/progress.json` - Function-level progress tracking
+
+## Community Projects (Reference)
+
+- **PAL3patch** (zhangboyang): C-based game patches, has all major struct definitions
+  - `/tmp/PAL3patch/src/PAL3patch/include/PAL3patch/pal3.h` - 1872 lines of RE data
+- **OpenPAL3** (dontpanic92): Rust reimplementation with full file format parsers
+  - `/tmp/OpenPAL3/yaobow/shared/src/scripting/sce/` - SCE VM implementation

@@ -22,7 +22,10 @@ from pathlib import Path
 PROJECT_ROOT = Path(__file__).parent.parent
 BUILD_DIR = PROJECT_ROOT / "build"
 CONFIG_FILE = BUILD_DIR / "project_config.json"
-ORIGINAL_EXE = PROJECT_ROOT / "original" / "PAL3.exe"
+
+# 添加 tools 目录到模块搜索路径
+sys.path.insert(0, str(Path(__file__).parent))
+from project_config import get_exe_path, require_exe_path
 
 
 def check_tool(name, cmd, expected_in_output=""):
@@ -92,12 +95,19 @@ def check_environment():
     print("-" * 50)
 
     # Check original exe
-    if ORIGINAL_EXE.exists():
-        size = ORIGINAL_EXE.stat().st_size
+    exe_path = get_exe_path()
+    if exe_path is None:
+        # 向后兼容
+        fallback = PROJECT_ROOT / "original" / "PAL3.exe"
+        if fallback.exists():
+            exe_path = fallback
+    if exe_path and exe_path.exists():
+        size = exe_path.stat().st_size
         print("  [+] PAL3.exe found ({:,} bytes)".format(size))
+        print("      {}".format(exe_path))
     else:
         print("  [!] PAL3.exe NOT FOUND")
-        print("      Place original PAL3.exe in: {}".format(ORIGINAL_EXE))
+        print("      配置方法: 编辑 local_config.json 设置 game_dir")
         all_ok = False
 
     # Check directory structure
@@ -298,16 +308,20 @@ def parse_pe_info(exe_path: str) -> dict:
 
 def analyze_exe():
     """Analyze PAL3.exe and display information."""
-    if not ORIGINAL_EXE.exists():
-        print("ERROR: PAL3.exe not found at {}".format(ORIGINAL_EXE))
-        print("Place the original game executable there first.")
-        return
+    exe_path = get_exe_path()
+    if exe_path is None:
+        # 向后兼容：也检查 original/ 目录
+        fallback = PROJECT_ROOT / "original" / "PAL3.exe"
+        if fallback.exists():
+            exe_path = fallback
+        else:
+            exe_path = require_exe_path()  # 会打印错误并退出
 
-    print("Analyzing PAL3.exe...")
+    print("Analyzing {}...".format(exe_path))
     print("=" * 60)
 
     # PE info
-    pe_info = parse_pe_info(str(ORIGINAL_EXE))
+    pe_info = parse_pe_info(str(exe_path))
     print("\nPE Header Information:")
     print("-" * 40)
     print("  Machine:       {}".format(pe_info.get('machine', '?')))
@@ -327,7 +341,7 @@ def analyze_exe():
     # Rich header
     print("\nRich Header (Compiler Detection):")
     print("-" * 40)
-    rich_info = parse_rich_header(str(ORIGINAL_EXE))
+    rich_info = parse_rich_header(str(exe_path))
 
     if rich_info.get('error'):
         print("  Error: {}".format(rich_info['error']))
@@ -347,7 +361,7 @@ def analyze_exe():
     results = {
         'pe_info': pe_info,
         'rich_header': rich_info,
-        'file_size': ORIGINAL_EXE.stat().st_size,
+        'file_size': exe_path.stat().st_size,
     }
     results_path = BUILD_DIR / "exe_analysis.json"
     with open(results_path, 'w') as f:
