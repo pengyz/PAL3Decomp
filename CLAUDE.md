@@ -47,12 +47,19 @@ compiler (MSVC), generates byte-identical machine code to the original binary.
 4. Mark uncertain parts with `/* UNCERTAIN */`
 5. Record any new struct definitions in `docs/structs.md`
 
-## Tools
+## Tools (Cross-platform)
 
-- `python tools/configure.py pe-info` - Analyze the original exe
-- `python tools/progress.py` - Show decompilation progress
-- `python tools/compare.py -s <file> -a <addr> -z <size>` - Compile and compare
-- `python tools/ai_decompile.py process -f <json>` - Full pipeline for one function
+All commands use `python run.py <command>`, works on both Windows and Linux:
+
+- `python run.py check` - Check environment is ready
+- `python run.py pe-info` - Analyze the original exe (Rich Header)
+- `python run.py imports` - Parse import table, detect libraries
+- `python run.py progress` - Show decompilation progress
+- `python run.py queue` - Show prioritized work queue
+- `python run.py decompile <json> [--dry-run]` - AI decompile one function
+- `python run.py batch [--count N]` - Batch AI decompile
+- `python run.py compare <src> <addr> <size>` - Compile and compare
+- `python run.py rename` - Suggest function names
 
 ## Important Context Files
 
