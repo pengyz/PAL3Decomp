@@ -74,8 +74,23 @@ compiler (MSVC), generates byte-identical machine code to the original binary.
 
 ## Tools (Cross-platform)
 
-All commands use `python run.py <command>`, works on both Windows and Linux:
+### Build & Verification
+- `./run_verify.bat` (Windows) - Build topo.dll and verify compilation
+- `python verify_build.py` - Build verification script
 
+### Progress Tracking
+- `python tools/progress_report.py` - Show detailed progress report
+  - Implemented vs total functions
+  - Breakdown by source file
+  - List of TODOs/stubs
+  
+### Binary Comparison
+- `python tools/compare_function.py <address> [size]` - Compare specific function
+  - Example: `python tools/compare_function.py 0x10001110 12`
+  - Byte-by-byte comparison with original binary
+  - Match rate calculation
+
+### Legacy Tools (python run.py)
 - `python run.py check` - Check environment is ready
 - `python run.py setup-ghidra` - Auto-install Ghidra + Java
 - `python run.py pe-info` - Analyze the original exe (Rich Header)
@@ -87,8 +102,22 @@ All commands use `python run.py <command>`, works on both Windows and Linux:
 - `python run.py compare <src> <addr> <size>` - Compile and compare
 - `python run.py rename` - Suggest function names
 
+## Current Progress (2026-05-01)
+
+```
+topo.dll:     114/414 functions (27%) ✅ Compiles successfully
+gbengine.dll: Not started
+PAL3.exe:     Not started
+```
+
+### Active TODOs
+1. TopoFaceVector_Insert (0x10008940) - 714 bytes, complex STL-like vector insert
+2. vtable pointers - Need actual vtable definitions for TopoGeom classes
+3. Remaining 300 topo.dll functions
+
 ## Important Context Files
 
+- `docs/decompilation_workflow.md` - **Detailed workflow guide for matching decompilation**
 - `docs/community_structs.md` - All known structures, addresses, RTTI classes
 - `docs/sce_opcodes.md` - Complete SCE script opcode table
 - `docs/file_formats.md` - CPK, SCN, SCE binary format documentation
@@ -98,6 +127,7 @@ All commands use `python run.py <command>`, works on both Windows and Linux:
 - `build/project_config.json` - Project metadata
 - `build/progress.json` - Function-level progress tracking
 - `build/gbengine_exports.json` - gbengine.dll 1019 个 C++ 导出函数
+- `build/topo_exports.json` - topo.dll 100 个导出函数
 - `build/topo_exports.json` - topo.dll 100 个导出函数
 
 ## Community Projects (Reference)
