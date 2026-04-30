@@ -190,10 +190,15 @@ def get_global_refs(func, program):
 def decompile_function(decompiler, func, monitor):
     """Decompile a single function and return the C code."""
     results = decompiler.decompileFunction(func, 60, monitor)
-    if results and results.depiledFunction():
-        return results.getDecompiledFunction().getC()
-    elif results:
-        return results.getDecompiledFunction().getC() if results.getDecompiledFunction() else None
+    if results is not None:
+        decomp_func = results.getDecompiledFunction()
+        if decomp_func is not None:
+            return decomp_func.getC()
+        # Try alternative: check if decompilation completed successfully
+        if results.decompileCompleted():
+            c_markup = results.getCCodeMarkup()
+            if c_markup is not None:
+                return c_markup.toString()
     return None
 
 
@@ -245,8 +250,8 @@ def export_function(func, decompiler, program, listing, monitor, output_dir):
     filename = "{}_{}.json".format(info['name'], addr_str)
     filepath = os.path.join(output_dir, filename)
 
-    with open(filepath, 'w', encoding='utf-8') as f:
-        json.dump(export_data, f, indent=2, ensure_ascii=False)
+    with open(filepath, 'w') as f:
+        json.dump(export_data, f, indent=2)
 
     return filepath
 
@@ -278,7 +283,8 @@ def run():
         script_dir = os.path.dirname(os.path.abspath(sourceFile.getAbsolutePath()))  # noqa: F821
         output_dir = os.path.join(os.path.dirname(script_dir), 'asm')
 
-    os.makedirs(output_dir, exist_ok=True)
+    if not os.path.exists(output_dir):
+        os.makedirs(output_dir)
 
     # Get program references (Ghidra globals)
     program = currentProgram  # noqa: F821
@@ -331,7 +337,7 @@ def run():
 
         # Write summary
         summary_path = os.path.join(output_dir, '_function_list.json')
-        with open(summary_path, 'w', encoding='utf-8') as f:
+        with open(summary_path, 'w') as f:
             json.dump(summary, f, indent=2)
         print("[*] Function list written to: {}".format(summary_path))
         return
@@ -343,11 +349,12 @@ def run():
         try:
             filepath = export_function(func, decompiler, program, listing, monitor, output_dir)
             exported += 1
-            if (i + 1) % 50 == 0:
+            if (i + 1) % 200 == 0:
                 print("[*] Progress: {}/{} functions exported".format(i + 1, len(functions)))
         except Exception as e:
             errors += 1
-            print("[!] Error exporting {}: {}".format(func.getName(), str(e)))
+            if errors <= 10:
+                print("[!] Error exporting {}: {}".format(func.getName(), str(e)))
 
     print("[*] Export complete: {} exported, {} errors".format(exported, errors))
 
