@@ -705,3 +705,100 @@ void __cdecl CopyIfNotNull_8B(void *pDst, void *pSrc)
         ((int *)pDst)[1] = ((int *)pSrc)[1];
     }
 }
+
+// ============================================================================
+// 0x10008DA0  Vector_Size_Div16  (19 bytes)
+// int __fastcall FUN_10008da0(int param_1)
+//
+// Returns size of vector (measured in 16-byte elements).
+// Returns 0 if vector is empty.
+// Vector layout: +0x04=begin, +0x08=end
+// ============================================================================
+int __fastcall Vector_Size_Div16(int pVec)
+{
+    int *vec = (int *)pVec;
+    if (vec[1] == 0) {  /* begin pointer at +0x04 */
+        return 0;
+    }
+    return (vec[2] - vec[1]) >> 4;  /* (end - begin) / 16 */
+}
+
+// ============================================================================
+// 0x10004FF0  InitStructWithByte  (24 bytes)
+// void __thiscall FUN_10004ff0(void *this, undefined *param_1)
+//
+// Initializes a structure: copies first byte from param_1, zeros rest.
+// Structure layout: +0x00=byte, +0x04=int, +0x08=int, +0x0C=int
+// Note: __thiscall in C++ is implicit for member functions
+// ============================================================================
+void __fastcall InitStructWithByte(void *pThis, int edx, void *pByte)
+{
+    struct InitData {
+        unsigned char flag;
+        int field_04;
+        int field_08;
+        int field_0C;
+    };
+    struct InitData *pData = (struct InitData *)pThis;
+    pData->flag = *(unsigned char *)pByte;
+    pData->field_04 = 0;
+    pData->field_08 = 0;
+    pData->field_0C = 0;
+}
+
+// ============================================================================
+// 0x100060A0  CopyIfNotNull_12B  (29 bytes)
+// void __cdecl FUN_100060a0(undefined4 *param_1, undefined4 *param_2)
+//
+// Copies 12 bytes from param_2 to param_1 if param_1 is not NULL.
+// Simple conditional copy helper.
+// ============================================================================
+void __cdecl CopyIfNotNull_12B(void *pDst, void *pSrc)
+{
+    if (pDst != NULL) {
+        ((int *)pDst)[0] = ((int *)pSrc)[0];
+        ((int *)pDst)[1] = ((int *)pSrc)[1];
+        ((int *)pDst)[2] = ((int *)pSrc)[2];
+    }
+}
+
+// ============================================================================
+// 0x100066D0  FreeMeshData  (30 bytes)
+// void __fastcall FUN_100066d0(undefined4 *param_1)
+//
+// Frees mesh data buffer and zeros counters.
+// Called from cleanup/destructor paths.
+// param_1[0] = vertex buffer pointer
+// param_1[9] = vertexCount (at +0x24)
+// param_1[10] = allocRowCount (at +0x28)
+// ============================================================================
+void __fastcall FreeMeshData(void *pMesh)
+{
+    extern void __cdecl operator_delete_wrapper(void *p);
+    int **pData = (int **)pMesh;
+
+    if (pData[0] != NULL) {
+        operator_delete_wrapper(pData[0]);
+    }
+    pData[9] = 0;  /* vertexCount at +0x24 */
+    pData[10] = 0; /* allocRowCount at +0x28 */
+}
+
+// ============================================================================
+// 0x10005040  Vector_Size_Div12  (32 bytes)
+// int __fastcall FUN_10005040(int param_1)
+//
+// Returns size of vector (measured in 12-byte elements).
+// Returns 0 if vector is empty.
+// Uses magic multiply for division by 12.
+// Vector layout: +0x04=begin, +0x08=end
+// ============================================================================
+int __fastcall Vector_Size_Div12(int pVec)
+{
+    int *vec = (int *)pVec;
+    int begin = vec[1];  /* begin pointer at +0x04 */
+    if (begin == 0) {
+        return 0;
+    }
+    return (vec[2] - begin) / 12;  /* (end - begin) / 12 */
+}
