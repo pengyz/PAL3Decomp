@@ -12,18 +12,25 @@
 - 文件系统：CPK 自定义压缩包（LZO 压缩）
 - 脚本：SCE 字节码虚拟机
 
-## PE 内存布局
+## PE 内存布局（脱壳后）
+
+PAL3.exe 原版使用 StarForce 加壳保护，脱壳后为标准 PE 结构：
 
 ```
 Section   Base Address    End Address    Size
 -------   -----------    -----------    --------
-.text     0x00401000     0x00569018     0x168018 (代码段)
-.rdata    0x0056A000     0x0057F1F2     0x0151F2 (只读数据)
-.data     0x00580000     0x0060C000     0x08C000 (数据段)
-.rsrc     0x01897000     0x0189833C     0x00133C (资源)
-.rsrc2    0x0189833C     0x0189C3CA     0x00408E (资源2)
-.brick    0x0189E000     0x018BFCA4     0x021CA4 (加密/保护?)
+.text     0x00401000     0x00569018     0x168018 (代码段, ~1.4 MB)
+.rdata    0x0056A000     0x0057F1F2     0x0151F2 (只读数据, IAT)
+.data     0x00580000     0x0060C000     0x08C000 (全局数据)
+.rsrc     0x01897000     0x0189C3CA     0x0053CA (资源)
 ```
+
+Entry Point (OEP): `0x0055507C`
+Import DLLs: ADVAPI32, binkw32, dinput8, gbengine, KERNEL32, USER32, WINMM
+
+**加壳版**（原始文件）包含 StarForce 段：`.sforce`, `.brick`, `.start` 等，
+entry point 指向 `.start` 段 (`0x0189D000`)，导入表为空。
+详见 `docs/unpacking.md`。
 
 ## 已确认结构体大小
 

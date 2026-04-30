@@ -25,6 +25,16 @@ compiler (MSVC), generates byte-identical machine code to the original binary.
 - `build/` - Compilation output and comparison results
 - `docs/` - Research notes and structure documentation
 
+## Decompilation Targets
+
+| Binary | Size | Status | Notes |
+|--------|------|--------|-------|
+| PAL3.exe | 1.8 MB | StarForce 加壳，需脱壳 | 游戏逻辑，MSVC 7.0 编译 |
+| gbengine.dll | 1.2 MB | 无壳，可直接分析 | 引擎核心，74类1019导出，MSVC 6.0 SP5 |
+| topo.dll | 104 KB | 无壳，可直接分析 | 数学库，6类100导出，MSVC 6.0 SP5 |
+
+**优先级**: topo.dll (小、纯数学) → gbengine.dll (有符号) → PAL3.exe (需脱壳)
+
 ## Known Technical Details (from community RE)
 
 - **Graphics**: DirectX 9 (IDirect3DDevice9)
@@ -33,7 +43,8 @@ compiler (MSVC), generates byte-identical machine code to the original binary.
 - **Input**: DirectInput 8
 - **File System**: CPK archive (LZO compression, CRC32 hashing)
 - **Script**: SCE bytecode VM (~140 opcodes)
-- **Compiler**: MSVC (exact version TBD from Rich Header)
+- **Compiler**: MSVC 6.0 SP5 (gbengine/topo), MSVC 7.0 (PAL3.exe code)
+- **Linker**: MSVC 7.1 (VS2003)
 
 ## Workflow for Decompiling a Function
 
@@ -82,10 +93,13 @@ All commands use `python run.py <command>`, works on both Windows and Linux:
 - `docs/community_structs.md` - All known structures, addresses, RTTI classes
 - `docs/sce_opcodes.md` - Complete SCE script opcode table
 - `docs/file_formats.md` - CPK, SCN, SCE binary format documentation
+- `docs/unpacking.md` - StarForce 脱壳指南和流程
 - `include/pal3_structs.h` - C struct definitions ready for decompilation
 - `include/pal3_globals.h` - Global variables with original addresses
 - `build/project_config.json` - Project metadata
 - `build/progress.json` - Function-level progress tracking
+- `build/gbengine_exports.json` - gbengine.dll 1019 个 C++ 导出函数
+- `build/topo_exports.json` - topo.dll 100 个导出函数
 
 ## Community Projects (Reference)
 
