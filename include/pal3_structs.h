@@ -607,6 +607,73 @@ struct tagPlayerSet {
 /* sizeof = 0x34 */
 
 /* ========================================================================
+ * Topology Structures (topo.dll)
+ * ======================================================================== */
+
+// Forward declaration
+struct TopoMeshData;
+
+// ============================================================================
+// TopoFace - Single Face Data (0x30 bytes = 48 bytes)
+// ============================================================================
+struct TopoFace {
+    int indices[3];      // +0x00: 顶点索引 (3 个 int)
+    int adjacency[3][2]; // +0x0C: 邻接信息 (3组，每组2个int)
+    int extra[3];        // +0x24: 额外数据 (3 个 int)
+};
+/* sizeof = 0x30 */
+
+// ============================================================================
+// TopoFaceVector - STL-like Vector for TopoFace (12 bytes)
+// ============================================================================
+struct TopoFaceVector {
+    struct TopoFace* pBegin;    // +0x00: 起始指针
+    struct TopoFace* pEnd;      // +0x04: 结束指针 (当前元素尾后)
+    struct TopoFace* pCapacity; // +0x08: 容量指针 (分配的内存尾后)
+
+    // Helper methods
+    inline int size() const {
+        return (int)((char*)pEnd - (char*)pBegin) / sizeof(struct TopoFace);
+    }
+    inline int capacity() const {
+        return (int)((char*)pCapacity - (char*)pBegin) / sizeof(struct TopoFace);
+    }
+};
+/* sizeof = 0x0C (12) */
+
+// ============================================================================
+// TopoMeshData - Mesh Data (0x34 bytes = 52 bytes)
+// ============================================================================
+struct TopoMeshData {
+    void* pVertexBuffer;    // +0x00: 顶点缓冲区指针
+    int vertexStride;       // +0x04: 顶点步长 (字节)
+    int vertexFlags;        // +0x08: 顶点格式标志
+    int field_0C;           // +0x0C: 未知字段
+    int field_10;           // +0x10: 未知字段
+    int field_14;           // +0x14: 未知字段
+    int field_18;           // +0x18: 未知字段
+    int field_1C;           // +0x1C: 未知字段
+    int bufferRowSize;      // +0x20: 缓冲区行大小
+    int vertexCount;        // +0x24: 顶点数量
+    int allocRowCount;      // +0x28: 已分配行数
+    int field_2C;           // +0x2C: 未知字段
+    int field_30;           // +0x30: 未知字段
+};
+/* sizeof = 0x34 */
+
+// ============================================================================
+// TopoGeom - Topology Geometry Object (base class)
+// ============================================================================
+struct TopoGeom {
+    void* vtable;                      // +0x00: 虚函数表指针
+    int type;                          // +0x04: 几何类型 (0=Simple, 1=Complex)
+    struct TopoFaceVector faceVector;  // +0x08: 面向量 (内嵌，12字节)
+    struct TopoMeshData* pMeshData;    // +0x14: 网格数据指针
+    // Total size: 0x18 = 24 bytes
+};
+/* sizeof = 0x18 */
+
+/* ========================================================================
  * Compile-time Structure Size Verification
  * ======================================================================== */
 
@@ -620,6 +687,10 @@ struct tagPlayerSet {
     assert(sizeof(struct UICursor) == 0x20); \
     assert(sizeof(struct tagCmdData) == 0x2C); \
     assert(sizeof(struct tagPlayerSet) == 0x34); \
+    assert(sizeof(struct TopoFace) == 0x30); \
+    assert(sizeof(struct TopoFaceVector) == 0x0C); \
+    assert(sizeof(struct TopoMeshData) == 0x34); \
+    assert(sizeof(struct TopoGeom) == 0x18); \
 } while (0)
 
 #endif /* PAL3_VERIFY_STRUCT_SIZES */
