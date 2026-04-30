@@ -37,54 +37,20 @@ if(MSVC)
         message(WARNING "Modern MSVC detected (version ${MSVC_VERSION}). Binary matching NOT guaranteed.")
         set(COMPILER_VERSION "MODERN")
     endif()
-
-    # Base flags for all targets
-    set(CMAKE_C_FLAGS "/nologo /W3")
-    set(CMAKE_CXX_FLAGS "/nologo /W3")
-
-    # Target-specific flags
-    if(BUILD_TARGET STREQUAL "topo" OR BUILD_TARGET STREQUAL "gbengine")
-        # VC6 flags for DLLs
-        set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} /GX")  # Enable C++ exceptions (VC6 style)
-        set(CMAKE_C_FLAGS_RELEASE "/O2 /Ob1 /DNDEBUG /DWIN32 /D_WINDOWS /D_MBCS")
-        set(CMAKE_CXX_FLAGS_RELEASE "/O2 /Ob1 /DNDEBUG /DWIN32 /D_WINDOWS /D_MBCS")
-
-        if(COMPILER_VERSION STREQUAL "VC6")
-            # Verified VC6 settings
-            add_compile_options(/GF)  # String pooling
-            add_compile_options(/Gy)  # Function-level linking
-        endif()
-    elseif(BUILD_TARGET STREQUAL "pal3")
-        # VC7.0/VS2003 flags for PAL3.exe
-        set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} /EHsc /GR")  # Modern exception handling + RTTI
-        set(CMAKE_C_FLAGS_RELEASE "/O2 /DNDEBUG /DWIN32 /D_WINDOWS /MD")
-        set(CMAKE_CXX_FLAGS_RELEASE "/O2 /DNDEBUG /DWIN32 /D_WINDOWS /MD")
-
-        if(COMPILER_VERSION STREQUAL "VS2003" OR COMPILER_VERSION STREQUAL "VS2002")
-            # Link-time code generation (if supported)
-            # add_compile_options(/GL)
-            # set(CMAKE_EXE_LINKER_FLAGS "${CMAKE_EXE_LINKER_FLAGS} /LTCG")
-        endif()
-    endif()
-
-    # Debug flags (for development/testing)
-    set(CMAKE_C_FLAGS_DEBUG "/Od /Zi /DDEBUG /DWIN32 /D_WINDOWS")
-    set(CMAKE_CXX_FLAGS_DEBUG "/Od /Zi /DDEBUG /DWIN32 /D_WINDOWS")
-
-    # Calling convention: __cdecl (default for MSVC)
-    add_compile_options(/Gd)
-
-    # Disable modern MSVC security features not present in original
-    add_compile_options(/GS-)
-
-    # Struct packing (8-byte default, verify from RE)
-    # add_compile_options(/Zp8)
 else()
     message(WARNING
         "Non-MSVC compiler detected. Binary matching will NOT work. "
         "This configuration is for development/testing only.")
     set(CMAKE_C_FLAGS "-m32 -Wall")
     set(CMAKE_CXX_FLAGS "-m32 -Wall")
+endif()
+
+# Set CMAKE_MODULE_PATH for find_package to locate custom modules
+list(APPEND CMAKE_MODULE_PATH "${CMAKE_SOURCE_DIR}/cmake")
+
+# Include MSVC-specific settings (flags, optimizations)
+if(MSVC)
+    include(MSVCSettings)
 endif()
 
 # Include paths

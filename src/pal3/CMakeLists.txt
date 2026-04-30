@@ -183,24 +183,8 @@ target_link_libraries(PAL3 PRIVATE
 # 编译选项
 # ========================================================================
 
-# 由于 PAL3.exe 使用 VC7.0，我们需要一些特定的标志
+# 链接器标志 - 必须设置 /SUBSYSTEM:WINDOWS 用于 WinMain 入口点
 if(MSVC)
-    # 添加 PAL3.exe 特定的标志
-    target_compile_options(PAL3 PRIVATE
-        /EHsc               # C++ 异常处理（VC7 风格）
-        /GR                 # RTTI
-        /O2                 # 最大速度优化
-        /Ob2                # 内联
-        /Oi                 # 内部函数
-        /Ot                 # 优先速度
-        /Oy                 # 省略帧指针
-        /GF                 # 字符串池
-        /Gy                 # 函数级链接
-        /FD                 # 完整程序数据库
-        /MD                 # 多线程 DLL 运行时
-    )
-
-    # 链接器标志 - 必须设置 /SUBSYSTEM:WINDOWS 用于 WinMain 入口点
     target_link_options(PAL3 PRIVATE
         /SUBSYSTEM:WINDOWS
         /INCREMENTAL:NO
