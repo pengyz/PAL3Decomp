@@ -859,3 +859,57 @@ void __fastcall FreeVectorAndClear(void *pVec)
     vec[2] = 0;  /* end = NULL */
     vec[3] = 0;  /* alloc_end = NULL */
 }
+
+// ============================================================================
+// 0x10004FD0  Vector_Size_Div4_V2  (19 bytes)
+// int __fastcall FUN_10004fd0(int param_1)
+//
+// Alternative implementation of vector size / 4.
+// Returns number of 4-byte elements in vector.
+// ============================================================================
+int __fastcall Vector_Size_Div4_V2(int pVec)
+{
+    int *vec = (int *)pVec;
+
+    if (vec[1] == 0) {  /* if (begin == NULL) */
+        return 0;
+    }
+    return (vec[2] - vec[1]) >> 2;  /* (end - begin) / 4 */
+}
+
+// ============================================================================
+// 0x10004FF0  InitStructWithByteAndClearInts  (24 bytes)
+// void __thiscall FUN_10004ff0(void *this, unsigned char *param_1)
+//
+// Initializes first byte from parameter, then zeros 3 int fields.
+// Used for structures that start with a byte flag followed by pointers.
+// ============================================================================
+void __thiscall InitStructWithByteAndClearInts(void *pThis, unsigned char *pByte)
+{
+    unsigned char *p = (unsigned char *)pThis;
+    int *pi = (int *)pThis;
+
+    p[0] = *pByte;  /* Copy first byte */
+    pi[1] = 0;      /* Clear int at +0x04 */
+    pi[2] = 0;      /* Clear int at +0x08 */
+    pi[3] = 0;      /* Clear int at +0x0c */
+}
+
+// ============================================================================
+// 0x10005060  Vector_Size_Div8_V2  (21 bytes)
+// int __fastcall FUN_10005060(int param_1)
+//
+// Alternative implementation of vector size / 8.
+// Returns number of 8-byte elements in vector.
+// ============================================================================
+int __fastcall Vector_Size_Div8_V2(int pVec)
+{
+    int *vec = (int *)pVec;
+    int size;
+
+    if (vec[1] == 0) {  /* if (begin == NULL) */
+        return 0;
+    }
+    size = vec[2] - vec[1];  /* end - begin */
+    return size >> 3;  /* / 8 */
+}
