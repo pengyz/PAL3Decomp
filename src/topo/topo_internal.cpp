@@ -128,7 +128,6 @@ int __fastcall TopoFaceVector_Size(void *pThis)
 int *__fastcall TopoFaceVector_Erase(void *pThis, int edx, int *pFirst, int *pLast)
 {
     struct TopoFaceVector *pVec = (struct TopoFaceVector *)pThis;
-    struct TopoFace *pBegin = pVec->pBegin;
     struct TopoFace *pEnd = pVec->pEnd;
     struct TopoFace *pFirstFace = (struct TopoFace *)pFirst;
     struct TopoFace *pLastFace = (struct TopoFace *)pLast;
