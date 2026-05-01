@@ -129,6 +129,7 @@ elseif(BUILD_TARGET STREQUAL "pal3")
     set(PAL3_SOURCES
         src/pal3/winmain.cpp
         src/pal3/pal3_stubs.cpp
+        src/pal3/pal3_classes.cpp
         src/pal3/gbengine_dynamic.cpp
     )
 
