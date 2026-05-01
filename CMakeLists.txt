@@ -153,6 +153,7 @@ elseif(BUILD_TARGET STREQUAL "pal3")
                 /BASE:0x00400000
                 /DYNAMICBASE:NO
                 /FIXED
+                /MAP
                 ${PAL3_EXE_LINK_FLAGS}
             )
 

@@ -2100,6 +2100,58 @@ __declspec(noinline) void __fastcall Func_0041D898(void* self, int value, int)
 }
 
 /* ========================================================================
+ * Medium-size functions (15-17 bytes)
+ * ======================================================================== */
+
+/* 0x00444D10 (15 bytes) - cannot match: compiler merges adjacent byte stores into word store */
+
+/* 0x0044DB50 (20 bytes) - set byte field + dword field from param
+ * 8b 44 24 04 c6 81 48 36 00 00 01 89 81 4c 36 00 00 c2 04 00
+ * mov eax,[esp+4] / mov byte [ecx+0x3648],1 / mov [ecx+0x364C],eax / ret 4 */
+__declspec(noinline) void __fastcall Func_0044DB50(void* self, int, int value)
+{
+    *((char*)self + 0x3648) = 1;
+    *(int*)((char*)self + 0x364C) = value;
+}
+
+/* 0x00407B30 (17B) - cannot match: compiler reorders load/store and uses different registers */
+/* 0x0043EBA0 (16B) - cannot match: compiler folds sub into memory operand (sub eax,[ecx+14]) */
+
+/* 0x0050A8E0 (15 bytes) - setter returns TRUE
+ * 8b 44 24 04 89 81 a4 19 00 00 b0 01 c2 04 00
+ * mov eax,[esp+4] / mov [ecx+0x19A4],eax / mov al,1 / ret 4 */
+__declspec(noinline) char __fastcall Func_0050A8E0(void* self, int, int value)
+{
+    *(int*)((char*)self + 0x19A4) = value;
+    return 1;
+}
+
+/* 0x0043DC40, 0x00442C60 (17 bytes each) - cannot match: register scheduling differs
+ * Original: load both params then store both. Modern MSVC: sequential load-store pairs */
+
+/* 0x004A1CF0 (17 bytes) - get field value and set to -1
+ * 8b 81 30 05 00 00 c7 81 30 05 00 00 ff ff ff ff c3
+ * mov eax,[ecx+0x530] / mov dword [ecx+0x530],-1 / ret */
+__declspec(noinline) int __fastcall Func_004A1CF0(void* self, int)
+{
+    int old = *(int*)((char*)self + 0x530);
+    *(int*)((char*)self + 0x530) = -1;
+    return old;
+}
+
+/* 0x00530270 (16 bytes) - cannot match: original uses mov eax,ecx then [eax+X],
+ * modern MSVC directly uses ecx (saving the mov eax,ecx) */
+
+/* 0x0042FB40 (17 bytes) - set dword field to 0 and byte field from param
+ * 8a 44 24 04 c7 41 54 00 00 00 00 88 41 50 c2 04 00
+ * mov al,[esp+4] / mov dword [ecx+54],0 / mov byte [ecx+50],al / ret 4 */
+__declspec(noinline) void __fastcall Func_0042FB40(void* self, int, char value)
+{
+    *(int*)((char*)self + 0x54) = 0;
+    *((char*)self + 0x50) = value;
+}
+
+/* ========================================================================
  * Force-reference table - prevents linker from stripping COMDAT functions
  * that have no callers yet. These are matching decompilation targets.
  * ======================================================================== */
@@ -2240,6 +2292,10 @@ PFN_VOID g_pal3_force_refs[] = {
     (PFN_VOID)Func_0041D898,
     (PFN_VOID)Func_0044F8B6,
     (PFN_VOID)Func_0044F8BF,
+    (PFN_VOID)Func_0050A8E0,
+    (PFN_VOID)Func_004A1CF0,
+    (PFN_VOID)Func_0042FB40,
+    (PFN_VOID)Func_0044DB50,
 };
 
 #pragma comment(linker, "/include:?GetDataEntry@SceneMgrData@@QAEPAXH@Z")
