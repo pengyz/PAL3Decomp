@@ -20,6 +20,21 @@ PROJECT_ROOT = Path(__file__).parent.parent
 LOCAL_CONFIG_FILE = PROJECT_ROOT / "local_config.json"
 BUILD_CONFIG_FILE = PROJECT_ROOT / "build" / "project_config.json"
 
+TARGET_DEFAULTS = {
+    'pal3': {
+        'game_dir_key': 'game_dir',
+        'exe_name_key': 'exe_name',
+        'default_exe_name': 'PAL3.exe',
+        'pdb_path_key': 'pdb_path',
+    },
+    'pal3a': {
+        'game_dir_key': 'pal3a_game_dir',
+        'exe_name_key': 'pal3a_exe_name',
+        'default_exe_name': 'PAL3A.exe',
+        'pdb_path_key': 'pal3a_pdb_path',
+    },
+}
+
 
 def load_local_config():
     """读取 local_config.json"""
@@ -44,34 +59,73 @@ def save_build_config(config):
         json.dump(config, f, indent=2, ensure_ascii=False)
 
 
+def get_target_game_dir(target='pal3'):
+    keys = TARGET_DEFAULTS[target]
+    env_key = f"{target.upper()}_GAME_DIR"
+    env_dir = os.environ.get(env_key)
+    if env_dir:
+        p = Path(env_dir)
+        if p.exists():
+            return p
+
+    local = load_local_config()
+    if keys['game_dir_key'] in local:
+        p = Path(local[keys['game_dir_key']])
+        if p.exists():
+            return p
+
+    build = load_build_config()
+    if keys['game_dir_key'] in build:
+        p = Path(build[keys['game_dir_key']])
+        if p.exists():
+            return p
+
+    return None
+
+
+def get_target_exe_path(target='pal3'):
+    keys = TARGET_DEFAULTS[target]
+    game_dir = get_target_game_dir(target)
+    if game_dir is None:
+        return None
+
+    local = load_local_config()
+    exe_name = local.get(keys['exe_name_key'], keys['default_exe_name'])
+    exe_path = game_dir / exe_name
+    if exe_path.exists():
+        return exe_path
+
+    for f in game_dir.iterdir():
+        if f.name.lower() == exe_name.lower():
+            return f
+    return None
+
+
+def get_target_pdb_path(target='pal3a'):
+    keys = TARGET_DEFAULTS[target]
+    local = load_local_config()
+    if keys['pdb_path_key'] in local:
+        p = Path(local[keys['pdb_path_key']])
+        if p.exists():
+            return p
+
+    game_dir = get_target_game_dir(target)
+    if game_dir is None:
+        return None
+
+    candidate = game_dir / f"{keys['default_exe_name'].rsplit('.', 1)[0]}.pdb"
+    if candidate.exists():
+        return candidate
+    return None
+
+
 def get_game_dir():
     """获取游戏安装目录
 
     Returns:
         Path 对象，或 None（如果未配置）
     """
-    # 优先级 1: 环境变量
-    env_dir = os.environ.get('PAL3_GAME_DIR')
-    if env_dir:
-        p = Path(env_dir)
-        if p.exists():
-            return p
-
-    # 优先级 2: local_config.json
-    local = load_local_config()
-    if 'game_dir' in local:
-        p = Path(local['game_dir'])
-        if p.exists():
-            return p
-
-    # 优先级 3: build/project_config.json
-    build = load_build_config()
-    if 'game_dir' in build:
-        p = Path(build['game_dir'])
-        if p.exists():
-            return p
-
-    return None
+    return get_target_game_dir('pal3')
 
 
 def get_exe_path():
@@ -80,24 +134,7 @@ def get_exe_path():
     Returns:
         Path 对象，或 None
     """
-    game_dir = get_game_dir()
-    if game_dir is None:
-        return None
-
-    # 读取配置中的 exe 名
-    local = load_local_config()
-    exe_name = local.get('exe_name', 'PAL3.exe')
-
-    exe_path = game_dir / exe_name
-    if exe_path.exists():
-        return exe_path
-
-    # 尝试大小写不敏感查找
-    for f in game_dir.iterdir():
-        if f.name.lower() == exe_name.lower():
-            return f
-
-    return None
+    return get_target_exe_path('pal3')
 
 
 def get_dll_path(dll_name):
