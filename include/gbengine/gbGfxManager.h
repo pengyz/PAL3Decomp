@@ -52,13 +52,20 @@ struct gbGfxCaps {
 };
 
 // ============================================================================
-// gbGfxStatistic
+// gbGfxStatistic - sizeof = 0x30 (from PAL3A PDB)
 // ============================================================================
 struct gbGfxStatistic {
-    int numTriangles;
-    int numVertices;
-    int numDrawCalls;
-    int numTexChanges;
+    int nRFaces;
+    int nRVerts;
+    int nStaticVerts;
+    int nStaticIndex;
+    int nSrcVerts;
+    int nSrcIndex;
+    int nTexSwitch;
+    float FPS;
+    double TimeAccum;
+    unsigned int Frame;
+    unsigned int PrevFrame;
 };
 
 // ============================================================================
@@ -133,8 +140,7 @@ public:
     double CurTime;                            // +0x1F8
     unsigned int LastTick;                      // +0x200
     unsigned int CurTick;                      // +0x204
-    gbGfxStatistic Stat;                       // +0x208 (0x10)
-    char _frameStats[0x20];                    // +0x218: fps, accumulated time, frame counters
+    gbGfxStatistic Stat;                       // +0x208 (0x30)
     gbLight AllLight[8];                       // +0x238 (0x68 × 8 = 0x340)
     int LightEnable[8];                        // +0x578 (0x20)
     gbFogParam FogParam;                       // +0x598 (0x34)

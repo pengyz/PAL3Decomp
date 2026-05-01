@@ -4,6 +4,7 @@
  */
 
 #include "gbengine/gbSceneGraph.h"
+#include "gbengine/gbVisNode.h"
 #include "gbengine/gbChain.h"
 #include "gbengine/gbengine_internal.h"
 #include <stdlib.h>
@@ -86,7 +87,7 @@ void gbLightObj::Compute(gbVolModNode* volmod) {
     // For directional lights: rotates direction and sets position = -dir * 100000
 
     // Get the world matrix from gbVolModNode (at offset +0x98)
-    gbMatrix4* worldMatrix = (gbMatrix4*)((char*)volmod + 0x98);
+    gbMatrix4* worldMatrix = &volmod->worldMatrix;
 
     // Set D3D light type
     if (lightType == 0) {
@@ -274,8 +275,8 @@ void gbSceneGraph::CalEffectiveVolMod(gbRenderInfoObj* renderInfo, const gbVec3D
     }
 
     // Assign results to render info (up to 2 of each type)
-    int* pSlotA = (int*)((char*)renderInfo + 0x60);
-    int* pSlotB = (int*)((char*)renderInfo + 0x68);
+    int* pSlotA = renderInfo->volModSlotA;
+    int* pSlotB = renderInfo->volModSlotB;
     int countA = 0, countB = 0;
 
     for (int i = 0; i < numEntries; i++) {
@@ -309,20 +310,15 @@ void gbSceneGraph::End(void) {
 
 void gbSceneGraph::AddVisNode(gbVisNode* node) {
     if (!rootNode || !node) return;
-    // Add node to root's child chain (gbChain1D at rootNode + 0x0C)
-    gbChain1D* chain = (gbChain1D*)((char*)rootNode + 0x0C);
-    chain->AddNode((gbChain1DNode*)node);
-    // Set parent pointer (node + 0x08 = parent)
-    *(void**)((char*)node + 8) = rootNode;
+    rootNode->children.AddNode((gbChain1DNode*)node);
+    node->pParent = (gbNBTreeNode*)rootNode;
 }
 
 void gbSceneGraph::DelVisNode(gbVisNode* node) {
     if (!node) return;
-    // Get parent from node+0x08, remove from parent's chain at parent+0x0C
-    void* parent = *(void**)((char*)node + 8);
+    gbNBTreeNode* parent = node->pParent;
     if (!parent) return;
-    gbChain1D* chain = (gbChain1D*)((char*)parent + 0x0C);
-    chain->DelNodeFromChain((gbChain1DNode*)node);
+    parent->children.DelNodeFromChain((gbChain1DNode*)node);
 }
 
 void gbSceneGraph::SetBladeTimeScale(float scale) {

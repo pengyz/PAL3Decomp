@@ -4,6 +4,7 @@
  */
 
 #include "gbengine/gbMesh.h"
+#include "gbengine/gbGfxManager.h"
 #include <string.h>
 
 // Global statics
@@ -615,8 +616,8 @@ gbVertPoolMgr::gbVertPoolMgr(gbGfxManager* mgr, int p2, int p3, int p4, int p5) 
     this->indexPoolList.nCount = 0;
     this->indexPoolList.pIterator = nullptr;
 
-    // Initialize src vert pool chain array
-    memset((char*)this + 0x390, 0, 0x10 * 0x20);
+    // Initialize dynamic vert buf area
+    memset(&this->dynVertBufList, 0, 0x10 * 0x20);
 
     this->maxVertexPoolSize = p2;
     this->maxIndexPoolSize = p3;
@@ -691,7 +692,7 @@ int gbVertPoolMgr::FindVertexPoolIndex(unsigned int* fvf, unsigned int type) {
 // NewVertexBubble: 0x100212e0
 gbVertexBubble* gbVertPoolMgr::NewVertexBubble(unsigned int fvf, int count) {
     // Update statistics
-    int* pStatCount = (int*)((char*)this->pGfxManager + 0x214);
+    int* pStatCount = &this->pGfxManager->Stat.nStaticIndex;
     *pStatCount += count;
 
     // Try existing pools
@@ -748,7 +749,7 @@ void gbVertPoolMgr::DelSrcVertBub(gbVertexBubble* bubble) {
 // NewIndexBubble: 0x10021590
 gbIndexBubble* gbVertPoolMgr::NewIndexBubble(gbPrimType prim, int count) {
     // Update statistics
-    int* pStatCount = (int*)((char*)this->pGfxManager + 0x214);
+    int* pStatCount = &this->pGfxManager->Stat.nStaticIndex;
     *pStatCount += count;
 
     // Try existing pools

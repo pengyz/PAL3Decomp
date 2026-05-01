@@ -207,7 +207,7 @@ void gbActor::Render(gbRenderInfoObj* renderInfo) {
 
     gbMatrixStack* matStack = pGfxMgr->pMatrixStack[1];
     matStack->Push();
-    matStack->LoadMatrix((gbMatrix4*)((char*)renderInfo + 0x20));
+    matStack->LoadMatrix(&renderInfo->worldMatrix);
 
     // Call actorDef vtable[0x14] - Render
     void** defVtable = *(void***)m_pActorDef;
@@ -224,7 +224,7 @@ void gbActor::RenderShadowVolume(gbRenderInfoObj* renderInfo) {
 
     gbMatrixStack* matStack = pGfxMgr->pMatrixStack[1];
     matStack->Push();
-    matStack->LoadMatrix((gbMatrix4*)((char*)renderInfo + 0x20));
+    matStack->LoadMatrix(&renderInfo->worldMatrix);
 
     // Call actorDef vtable[0x18] - RenderShadowVolume
     void** defVtable = *(void***)m_pActorDef;

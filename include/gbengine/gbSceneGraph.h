@@ -32,12 +32,17 @@ struct gbLight {
 
 // ============================================================================
 // gbRenderInfoObj - render object info in scene graph pool
+// sizeof = 0x70 (deduced from usage patterns)
 // ============================================================================
 struct gbRenderInfoObj {
-    gbVisNode* node;
-    void* renderData;
-    int flags;
-    float distance;
+    gbVisNode* node;            // +0x00
+    void* renderData;           // +0x04
+    int flags;                  // +0x08
+    float distance;             // +0x0C
+    int _reserved10[4];         // +0x10
+    gbMatrix4 worldMatrix;      // +0x20 (64 bytes)
+    int volModSlotA[2];         // +0x60
+    int volModSlotB[2];         // +0x68
 };
 
 // ============================================================================

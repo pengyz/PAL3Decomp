@@ -294,9 +294,9 @@ void gbVisNode::SetBlendRecursive(NodeBlend mode, float value) {
 void gbVisNode::GetTotalBoundSphere(gbSphere* sphere) {
     GetBoundSphere(sphere);
 
-    int childCount = *(int*)((char*)this + 0x14);
+    int childCount = children.nCount;
     for (int i = 0; i < childCount; i++) {
-        gbChain1DNode* childNode = ((gbChain1D*)((char*)this + 0x0c))->operator[](i);
+        gbChain1DNode* childNode = children[i];
         if (!childNode) continue;
 
         gbSphere childSphere;
