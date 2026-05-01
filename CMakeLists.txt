@@ -124,22 +124,43 @@ elseif(BUILD_TARGET STREQUAL "gbengine")
 
 elseif(BUILD_TARGET STREQUAL "pal3")
     message(STATUS "Configuring PAL3.exe build")
-    file(GLOB_RECURSE PAL3_SOURCES "src/pal3/*.cpp" "src/pal3/*.c")
+
+    # Explicit source file list for PAL3.exe
+    set(PAL3_SOURCES
+        src/pal3/winmain.cpp
+        src/pal3/pal3_stubs.cpp
+        src/pal3/gbengine_dynamic.cpp
+    )
 
     if(PAL3_SOURCES)
-        add_executable(pal3 ${PAL3_SOURCES})
+        add_executable(pal3 WIN32 ${PAL3_SOURCES})
         target_include_directories(pal3 PUBLIC include)
         set_target_properties(pal3 PROPERTIES
             OUTPUT_NAME "PAL3"
             SUFFIX ".exe"
         )
 
-        target_link_libraries(pal3 ${PLATFORM_LIBS})
-
+        # Apply PAL3-specific compile flags from MSVCSettings.cmake
         if(MSVC)
+            target_compile_options(pal3 PRIVATE ${PAL3_COMPILE_FLAGS})
+
+            # Apply PAL3-specific link flags
+            # Note: /FIXED requires /DYNAMICBASE:NO for modern MSVC
+            target_link_options(pal3 PRIVATE
+                /SUBSYSTEM:WINDOWS
+                /ENTRY:WinMainCRTStartup
+                /BASE:0x00400000
+                /DYNAMICBASE:NO
+                /FIXED
+                ${PAL3_EXE_LINK_FLAGS}
+            )
+
+            # Generate assembly listings for comparison
             file(MAKE_DIRECTORY ${CMAKE_BINARY_DIR}/asm)
             target_compile_options(pal3 PRIVATE /FAcs /Fa${CMAKE_BINARY_DIR}/asm/)
         endif()
+
+        target_link_libraries(pal3 ${PLATFORM_LIBS} advapi32)
 
         message(STATUS "PAL3.exe: ${CMAKE_CURRENT_LIST_FILE} source files")
     else()
