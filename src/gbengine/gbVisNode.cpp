@@ -4,12 +4,11 @@
  */
 
 #include "gbengine/gbengine_types.h"
+#include "gbengine/gbChain.h"
 #include <string.h>
 #include <stdlib.h>
 
 // Forward declarations
-class gbChain1DNode;
-class gbChain1D;
 class gbVisNode;
 class gbRenderEffect;
 class gbGfxManager;
@@ -17,8 +16,7 @@ class gbSceneGraph;
 
 
 // Structs
-struct gbSphere;
-struct gbAABBox;
+struct gbRenderInfoObj;
 
 struct gbNodeMsgObj {
     int data[4];  // 16 bytes message object
@@ -28,35 +26,6 @@ enum NodeBlend {
     BLEND_NONE = 0,
     BLEND_ALPHA = 1,
     BLEND_ADD = 2
-};
-
-// gbChain1D forward declarations (defined in gbChain.cpp)
-class gbChain1DNode {
-public:
-    void* vtable;
-    gbChain1DNode* pNext;
-
-    gbChain1DNode();
-    virtual ~gbChain1DNode();
-};
-
-class gbChain1D {
-public:
-    gbChain1DNode* pHead;
-    gbChain1DNode* pTail;
-    int count;
-    gbChain1DNode* pIterator;
-
-    gbChain1D();
-    ~gbChain1D();
-};
-
-// gbNBTreeNode (intermediate base class)
-class gbNBTreeNode : public gbChain1DNode {
-public:
-    gbVisNode* parent;      // +0x08
-    gbChain1D children;     // +0x0c (16 bytes)
-    gbVisNode* iterator;    // +0x18
 };
 
 /* ======== gbVisNode ======== */
@@ -69,11 +38,11 @@ public:
     int msgOverflow;             // +0x28 - overflow flag
     int msgReadIndex;            // +0x2c - read index
     int msgWriteIndex;           // +0x30 - write index
-    void* unknown34;             // +0x34
+    int renderPriority;          // +0x34
     float timeScale;             // +0x38 - time scale (default 1.0)
     int visible;                 // +0x3c - visibility flag (default 1)
-    void* unknown40;             // +0x40
-    void* unknown44;             // +0x44
+    gbVisNode* cullNext;         // +0x40 - cull list next
+    gbVisNode* cullPrev;         // +0x44 - cull list prev
     void* unknown48;             // +0x48
     void* unknown4c;             // +0x4c
     float blendValue;            // +0x50 - blend value
@@ -90,11 +59,19 @@ public:
     void PushMessage(gbNodeMsgObj& msg);
     int PopMessage(gbNodeMsgObj& msg);
     virtual int Attach(gbRenderEffect* effect);
+    virtual void AttachSelf(gbRenderEffect* effect);
+    virtual void Render(gbRenderInfoObj* renderInfo);
+    virtual void RenderShadowVolume(gbRenderInfoObj* renderInfo);
     virtual void Update();
     virtual void Reset(float time);
     void ShowNode(int show);
     void SetTimeScale(float scale);
+    float GetTimeScale();
+    int IsNodeShow();
+    int GetRenderPriority();
     void SetRenderPriority(int priority);
+    gbVisNode* GetCullNext();
+    gbVisNode* GetCullPrev();
     virtual void GetBoundSphere(gbSphere* sphere);
     virtual void EnableShadow(int enable);
     void SetBlend(NodeBlend mode, float value);
@@ -114,12 +91,12 @@ gbSceneGraph* gbVisNode::pSceneGraph = NULL;
 gbVisNode::gbVisNode() {
     // Base class gbChain1DNode constructor called first (vtable set)
     // Then gbNBTreeNode fields initialized
-    parent = NULL;
+    pParent = NULL;
 
     // Initialize gbChain1D for children
     children.pHead = NULL;
     children.pTail = NULL;
-    children.count = 0;
+    children.nCount = 0;
     children.pIterator = NULL;
 
     // gbVisNode fields
@@ -129,12 +106,12 @@ gbVisNode::gbVisNode() {
     msgBuffer = (gbNodeMsgObj*)operator new(128);  // 8 * 16 bytes
     msgReadIndex = 0;
     msgWriteIndex = 0;
-    unknown34 = NULL;
-    unknown40 = NULL;
-    unknown44 = NULL;
+    renderPriority = 0;
+    cullNext = NULL;
+    cullPrev = NULL;
     unknown4c = NULL;
     unknown48 = NULL;
-    unknown34 = NULL;
+    renderPriority = 0;
 
     // vtable updated to gbVisNode
     timeScale = 1.0f;
@@ -147,9 +124,9 @@ gbVisNode::gbVisNode(const gbVisNode& other) : gbNBTreeNode() {
     pNext = other.pNext;
 
     // Copy gbNBTreeNode fields
-    parent = other.parent;
+    pParent = other.pParent;
     children = other.children;
-    iterator = other.iterator;
+    pChildIterator = other.pChildIterator;
 
     // Copy gbVisNode fields
     // Copy 6 dwords starting at +0x1c
@@ -160,17 +137,15 @@ gbVisNode::gbVisNode(const gbVisNode& other) : gbNBTreeNode() {
     msgReadIndex = other.msgReadIndex;
     msgWriteIndex = other.msgWriteIndex;
 
-    unknown34 = other.unknown34;
+    renderPriority = other.renderPriority;
     timeScale = other.timeScale;
     visible = other.visible;
-    unknown40 = other.unknown40;
-    unknown44 = other.unknown44;
+    cullNext = other.cullNext;
+    cullPrev = other.cullPrev;
     unknown48 = other.unknown48;
     unknown4c = other.unknown4c;
-    *(void**)((char*)this + 0x50) = *(void**)((char*)&other + 0x50);
-    unknown34 = other.unknown34;
-
-    // vtable updated to gbVisNode
+    blendValue = other.blendValue;
+    blendMode = other.blendMode;
 }
 
 // Destructor - 0x100049c0
@@ -256,7 +231,7 @@ int gbVisNode::Attach(gbRenderEffect* effect) {
 void gbVisNode::Update() {
     // Iterate through children and call Update on each
     gbVisNode* child = (gbVisNode*)children.pHead;
-    iterator = child;
+    pChildIterator = (gbNBTreeNode*)child;
 
     while (child != NULL) {
         // Call virtual Update through vtable
@@ -265,8 +240,8 @@ void gbVisNode::Update() {
         UpdateFunc updateFunc = (UpdateFunc)vtable[5];  // Update is at vtable+0x14
         updateFunc(child);
 
-        child = (gbVisNode*)iterator->pNext;
-        iterator = child;
+        child = (gbVisNode*)pChildIterator->pNext;
+        pChildIterator = (gbNBTreeNode*)child;
     }
 }
 
@@ -281,12 +256,12 @@ void gbVisNode::ShowNode(int show) {
 
     // Recursively apply to children
     gbVisNode* child = (gbVisNode*)children.pHead;
-    iterator = child;
+    pChildIterator = (gbNBTreeNode*)child;
 
     while (child != NULL) {
         child->ShowNode(show);
-        child = (gbVisNode*)iterator->pNext;
-        iterator = child;
+        child = (gbVisNode*)pChildIterator->pNext;
+        pChildIterator = (gbNBTreeNode*)child;
     }
 }
 
@@ -296,18 +271,58 @@ void gbVisNode::SetTimeScale(float scale) {
 
     // Recursively apply to children
     gbVisNode* child = (gbVisNode*)children.pHead;
-    iterator = child;
+    pChildIterator = (gbNBTreeNode*)child;
 
     while (child != NULL) {
         child->SetTimeScale(scale);
-        child = (gbVisNode*)iterator->pNext;
-        iterator = child;
+        child = (gbVisNode*)pChildIterator->pNext;
+        pChildIterator = (gbNBTreeNode*)child;
     }
+}
+
+// AttachSelf - virtual
+void gbVisNode::AttachSelf(gbRenderEffect* effect) {
+    // Base implementation does nothing
+}
+
+// Render - virtual
+void gbVisNode::Render(gbRenderInfoObj* renderInfo) {
+    // Base implementation does nothing
+}
+
+// RenderShadowVolume - virtual
+void gbVisNode::RenderShadowVolume(gbRenderInfoObj* renderInfo) {
+    // Base implementation does nothing
+}
+
+// GetTimeScale
+float gbVisNode::GetTimeScale() {
+    return timeScale;
+}
+
+// IsNodeShow
+int gbVisNode::IsNodeShow() {
+    return visible;
+}
+
+// GetRenderPriority
+int gbVisNode::GetRenderPriority() {
+    return renderPriority;
 }
 
 // SetRenderPriority - 0x100167f0
 void gbVisNode::SetRenderPriority(int priority) {
-    // Base implementation does nothing
+    renderPriority = priority;
+}
+
+// GetCullNext
+gbVisNode* gbVisNode::GetCullNext() {
+    return cullNext;
+}
+
+// GetCullPrev
+gbVisNode* gbVisNode::GetCullPrev() {
+    return cullPrev;
 }
 
 // GetBoundSphere - 0x10016820 (virtual, base implementation does nothing)
@@ -338,12 +353,12 @@ void gbVisNode::SetBlendRecursive(NodeBlend mode, float value) {
 
     // Recursively apply to children
     gbVisNode* child = (gbVisNode*)children.pHead;
-    iterator = child;
+    pChildIterator = (gbNBTreeNode*)child;
 
     while (child != NULL) {
         child->SetBlendRecursive(mode, value);
-        child = (gbVisNode*)iterator->pNext;
-        iterator = child;
+        child = (gbVisNode*)pChildIterator->pNext;
+        pChildIterator = (gbNBTreeNode*)child;
     }
 }
 
@@ -363,20 +378,20 @@ gbVisNode& gbVisNode::operator=(const gbVisNode& other) {
     if (this != &other) {
         // Copy all fields
         pNext = other.pNext;
-        parent = other.parent;
+        pParent = other.pParent;
         children = other.children;
-        iterator = other.iterator;
+        pChildIterator = other.pChildIterator;
         msgBuffer = other.msgBuffer;
         msgCapacity = other.msgCapacity;
         msgUnused = other.msgUnused;
         msgOverflow = other.msgOverflow;
         msgReadIndex = other.msgReadIndex;
         msgWriteIndex = other.msgWriteIndex;
-        unknown34 = other.unknown34;
+        renderPriority = other.renderPriority;
         timeScale = other.timeScale;
         visible = other.visible;
-        unknown40 = other.unknown40;
-        unknown44 = other.unknown44;
+        cullNext = other.cullNext;
+        cullPrev = other.cullPrev;
         unknown48 = other.unknown48;
         unknown4c = other.unknown4c;
         blendValue = other.blendValue;

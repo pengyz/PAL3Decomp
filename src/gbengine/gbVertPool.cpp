@@ -4,12 +4,11 @@
  */
 
 #include "gbengine/gbengine_types.h"
+#include "gbengine/gbChain.h"
 #include <d3d9.h>
 #include <string.h>
 
 // Forward declarations
-class gbChain1D;
-class gbChain1DNode;
 class gbGfxManager;
 class gbDynVertBuf;
 
@@ -28,30 +27,6 @@ enum gbPoolType {
     GB_POOL_MANAGED = 1,
     GB_POOL_SYSTEMMEM = 2,
     GB_POOL_SCRATCH = 3
-};
-
-// gbChain1D - simple linked list manager
-class gbChain1D {
-public:
-    gbChain1DNode* pHead;
-    gbChain1DNode* pTail;
-    int count;
-    gbChain1DNode* pIterator;
-
-    gbChain1D();
-    ~gbChain1D();
-    void AddNode(gbChain1DNode* node);
-    void DelNodeFromChain(gbChain1DNode* node);
-    void InsertAfter(gbChain1DNode* node, gbChain1DNode* after);
-};
-
-// gbChain1DNode - base class for linked list nodes
-class gbChain1DNode {
-public:
-    void** vtable;
-    gbChain1DNode* pNext;
-
-    virtual ~gbChain1DNode() {}
 };
 
 // Global statics
@@ -77,13 +52,13 @@ public:
     void Set(int start, int cnt, int used);
     void SetRange(int start, int cnt);
     unsigned short* Lock16();
+    unsigned int* Lock32();
     void Unlock();
     gbIndexBubble& operator=(const gbIndexBubble& other);
 };
 
 // Constructor: 0x10003b50
 gbIndexBubble::gbIndexBubble(gbIndexPool* pool, gbPrimType prim, int start, int cnt, int used) {
-    this->vtable = NULL;
     this->pPool = pool;
     this->primType = prim;
     this->startIndex = cnt;
@@ -95,7 +70,6 @@ gbIndexBubble::gbIndexBubble(gbIndexPool* pool, gbPrimType prim, int start, int 
 
 // Copy constructor: 0x10003bd0
 gbIndexBubble::gbIndexBubble(const gbIndexBubble& other) {
-    this->vtable = NULL;
     this->pPool = other.pPool;
     this->primType = other.primType;
     this->startIndex = other.startIndex;
@@ -127,8 +101,12 @@ void gbIndexBubble::SetRange(int start, int cnt) {
 unsigned short* gbIndexBubble::Lock16() {
     // Lock the index buffer for this bubble's range
     IDirect3DIndexBuffer9* pIB = nullptr;
-    // Get IB from pool (implementation depends on pool structure)
-    // For now, return null - needs proper D3D9 integration
+    return nullptr;
+}
+
+// Lock32
+unsigned int* gbIndexBubble::Lock32() {
+    // Lock the index buffer for 32-bit indices
     return nullptr;
 }
 
@@ -181,21 +159,19 @@ public:
 
 // Constructor: 0x10020930
 gbIndexPool::gbIndexPool(gbPoolType type, int indexSz, int total) {
-    this->vtable = NULL;
 
     // Initialize free list
     this->freeList.pHead = nullptr;
     this->freeList.pTail = nullptr;
-    this->freeList.count = 0;
+    this->freeList.nCount = 0;
     this->freeList.pIterator = nullptr;
 
     // Initialize used list
     this->usedList.pHead = nullptr;
     this->usedList.pTail = nullptr;
-    this->usedList.count = 0;
+    this->usedList.nCount = 0;
     this->usedList.pIterator = nullptr;
 
-    this->vtable = NULL;
     this->poolType = type;
     this->indexSize = indexSz;
     this->totalSize = total;
@@ -204,7 +180,6 @@ gbIndexPool::gbIndexPool(gbPoolType type, int indexSz, int total) {
     // Create initial free bubble covering entire pool
     gbIndexBubble* bubble = (gbIndexBubble*)operator new(0x24);
     if (bubble) {
-        bubble->vtable = NULL;
         bubble->pPool = this;
         bubble->primType = (gbPrimType)0;
         bubble->startIndex = 0;
@@ -267,7 +242,6 @@ gbIndexBubble* gbIndexPool::NewBubble(gbPrimType prim, int count) {
     // Split the bubble - create new bubble for allocated region
     gbIndexBubble* newBubble = (gbIndexBubble*)operator new(0x24);
     if (newBubble) {
-        newBubble->vtable = NULL;
         newBubble->pPool = this;
         newBubble->primType = prim;
         newBubble->startIndex = count;
@@ -361,7 +335,7 @@ void* gbIndexPool::GetInternalMemBuf() {
 
 // IsEmpty: 0x10003cd0
 int gbIndexPool::IsEmpty() {
-    return this->usedList.count == 0;
+    return this->usedList.nCount == 0;
 }
 
 // operator=: 0x10003d60
@@ -404,7 +378,6 @@ public:
 
 // Constructor: 0x10003df0
 gbVertexBubble::gbVertexBubble(gbVertexPool* pool, int start, int count, int used) {
-    this->vtable = NULL;
     this->pPool = pool;
     this->startVertex = start;
     this->vertexCount = count;
@@ -499,22 +472,20 @@ gbGfxManager* gbVertexPool::pGfxMgr = nullptr;
 
 // Constructor: 0x10020d90
 gbVertexPool::gbVertexPool(gbPoolType type, unsigned int vertType, int total) {
-    this->vtable = NULL;
 
     // Initialize free list
     this->freeList.pHead = nullptr;
     this->freeList.pTail = nullptr;
-    this->freeList.count = 0;
+    this->freeList.nCount = 0;
     this->freeList.pIterator = nullptr;
 
     // Initialize used list
     this->usedList.pHead = nullptr;
     this->usedList.pTail = nullptr;
-    this->usedList.count = 0;
+    this->usedList.nCount = 0;
     this->usedList.pIterator = nullptr;
 
     this->poolType = type;
-    this->vtable = NULL;
     this->fvf = vertType;
     this->totalSize = total;
 
@@ -540,7 +511,6 @@ gbVertexPool::gbVertexPool(gbPoolType type, unsigned int vertType, int total) {
     // Create initial free bubble
     gbVertexBubble* bubble = (gbVertexBubble*)operator new(0x38);
     if (bubble) {
-        bubble->vtable = NULL;
         bubble->pPool = this;
         bubble->startVertex = 0;
         bubble->vertexCount = total;
@@ -607,7 +577,6 @@ gbVertexBubble* gbVertexPool::NewBubble(int count) {
     gbVertexBubble* result = nullptr;
 
     if (newBubble) {
-        newBubble->vtable = NULL;
         newBubble->pPool = this;
         newBubble->startVertex = bestFit->startVertex;
         newBubble->vertexCount = count;
@@ -701,7 +670,7 @@ unsigned int gbVertexPool::GetVertType() {
 
 // IsEmpty: 0x10003fb0
 int gbVertexPool::IsEmpty() {
-    return this->usedList.count == 0;
+    return this->usedList.nCount == 0;
 }
 
 // operator=: 0x10004040
@@ -734,7 +703,6 @@ public:
 
     int OnLostDevice();
     int OnResetDevice();
-    int FindVertexPoolIndex(unsigned int* fvf, unsigned int type);
     gbVertexBubble* NewVertexBubble(unsigned int fvf, int count);
     void DelVertexBubble(gbVertexBubble* bubble);
     gbVertexBubble* NewSrcVertBub(unsigned int fvf, int count);
@@ -743,6 +711,9 @@ public:
     void DelIndexBubble(gbIndexBubble* bubble);
     gbDynVertBuf* GetDynVertBuf(unsigned int fvf);
     gbVertPoolMgr& operator=(const gbVertPoolMgr& other);
+
+private:
+    int FindVertexPoolIndex(unsigned int* fvf, unsigned int type);
 };
 
 // Constructor: 0x100210c0
@@ -753,7 +724,7 @@ gbVertPoolMgr::gbVertPoolMgr(gbGfxManager* mgr, int p2, int p3, int p4, int p5) 
     // Initialize index pool list
     this->indexPoolList.pHead = nullptr;
     this->indexPoolList.pTail = nullptr;
-    this->indexPoolList.count = 0;
+    this->indexPoolList.nCount = 0;
     this->indexPoolList.pIterator = nullptr;
 
     // Initialize src vert pool chain array
@@ -938,67 +909,4 @@ gbVertPoolMgr& gbVertPoolMgr::operator=(const gbVertPoolMgr& other) {
 }
 
 
-// Stub implementations for gbChain1D methods
-gbChain1D::gbChain1D() {
-    pHead = nullptr;
-    pTail = nullptr;
-    count = 0;
-    pIterator = nullptr;
-}
-
-gbChain1D::~gbChain1D() {
-    // Cleanup nodes
-}
-
-void gbChain1D::AddNode(gbChain1DNode* node) {
-    if (!node) return;
-
-    node->pNext = nullptr;
-
-    if (!pHead) {
-        pHead = node;
-        pTail = node;
-    } else {
-        pTail->pNext = node;
-        pTail = node;
-    }
-    count++;
-}
-
-void gbChain1D::DelNodeFromChain(gbChain1DNode* node) {
-    if (!node || !pHead) return;
-
-    if (pHead == node) {
-        pHead = node->pNext;
-        if (!pHead) pTail = nullptr;
-        count--;
-        return;
-    }
-
-    gbChain1DNode* prev = pHead;
-    while (prev && prev->pNext != node) {
-        prev = prev->pNext;
-    }
-
-    if (prev) {
-        prev->pNext = node->pNext;
-        if (pTail == node) pTail = prev;
-        count--;
-    }
-}
-
-void gbChain1D::InsertAfter(gbChain1DNode* node, gbChain1DNode* after) {
-    if (!node) return;
-
-    if (!after) {
-        // Insert at head
-        node->pNext = pHead;
-        pHead = node;
-        if (!pTail) pTail = node;
-    } else {
-        node->pNext = after->pNext;
-        after->pNext = node;
-        if (pTail == after) pTail = node;
-    }
-    count++;
-}
+// gbChain1D and gbChain1DNode methods defined in gbChain.cpp
