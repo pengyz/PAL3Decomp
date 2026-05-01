@@ -16,6 +16,7 @@ import argparse
 import csv
 import json
 import os
+import subprocess
 import sys
 from collections import defaultdict
 from datetime import datetime, timedelta
@@ -29,11 +30,34 @@ SRC_DIR = PROJECT_ROOT / "src"
 PROGRESS_DB = BUILD_DIR / "progress.json"
 CONFIG_FILE = BUILD_DIR / "project_config.json"
 
+TARGET_DEFAULTS = {
+    'pal3': {
+        'asm_dir': ASM_DIR / 'pal3',
+        'src_dir': SRC_DIR / 'pal3',
+        'progress_db': BUILD_DIR / 'progress.json',
+    },
+    'pal3a': {
+        'asm_dir': ASM_DIR / 'pal3a',
+        'src_dir': SRC_DIR / 'pal3a',
+        'progress_db': BUILD_DIR / 'pal3a' / 'translation_status.json',
+    },
+}
 
-def load_progress() -> dict:
+LEGACY_TARGET_TO_SCRIPT = {
+    'topo': 'progress_report.py',
+    'gbengine': 'gbengine_progress.py',
+}
+
+
+def get_target_defaults(target: str) -> dict:
+    return TARGET_DEFAULTS[target]
+
+
+def load_progress(target: str = 'pal3') -> dict:
     """Load the progress database."""
-    if PROGRESS_DB.exists():
-        with open(PROGRESS_DB, 'r') as f:
+    progress_db = get_target_defaults(target)['progress_db']
+    if progress_db.exists():
+        with open(progress_db, 'r') as f:
             return json.load(f)
     return {'functions': {}, 'last_updated': ''}
 
@@ -57,32 +81,34 @@ def save_config(config: dict):
         json.dump(config, f, indent=2)
 
 
-def count_exported_functions() -> int:
-    """Count JSON files in the asm/ directory."""
-    if not ASM_DIR.exists():
+def count_exported_functions(target: str = 'pal3') -> int:
+    """Count JSON files in the target asm/ directory."""
+    asm_dir = get_target_defaults(target)['asm_dir']
+    if not asm_dir.exists():
         return 0
-    json_files = list(ASM_DIR.glob("*.json"))
+    json_files = list(asm_dir.glob("*.json"))
     # Exclude summary/meta files
     return len([f for f in json_files if not f.name.startswith('_')])
 
 
-def count_source_files() -> dict:
+def count_source_files(target: str = 'pal3') -> dict:
     """Count decompiled source files by module."""
+    src_dir = get_target_defaults(target)['src_dir']
     counts = defaultdict(int)
-    for src_file in SRC_DIR.rglob("*.c"):
+    for src_file in src_dir.rglob("*.c"):
         module = src_file.parent.name
         counts[module] += 1
-    for src_file in SRC_DIR.rglob("*.cpp"):
+    for src_file in src_dir.rglob("*.cpp"):
         module = src_file.parent.name
         counts[module] += 1
     return dict(counts)
 
 
-def get_progress_stats(progress: dict, config: dict) -> dict:
+def get_progress_stats(progress: dict, config: dict, target: str = 'pal3') -> dict:
     """Calculate progress statistics."""
     functions = progress.get('functions', {})
     total_known = config.get('total_functions', 0)
-    exported = count_exported_functions()
+    exported = count_exported_functions(target)
 
     stats = {
         'total_functions': total_known,
@@ -282,6 +308,7 @@ def main():
     parser = argparse.ArgumentParser(
         description="PAL3 Decompilation Progress Tracker"
     )
+    parser.add_argument('--target', default='pal3', choices=sorted(set(TARGET_DEFAULTS.keys()) | set(LEGACY_TARGET_TO_SCRIPT.keys())))
     parser.add_argument('--module', '-m',
                         help='Filter by module')
     parser.add_argument('--detail', '-d', action='store_true',
@@ -297,6 +324,13 @@ def main():
 
     args = parser.parse_args()
 
+    if args.target in LEGACY_TARGET_TO_SCRIPT:
+        script = PROJECT_ROOT / 'tools' / LEGACY_TARGET_TO_SCRIPT[args.target]
+        legacy_args = sys.argv[1:]
+        legacy_args = [arg for arg in legacy_args if arg != '--target' and arg != args.target]
+        subprocess.run([sys.executable, str(script)] + legacy_args, check=False)
+        return
+
     # Handle configuration updates
     config = load_config()
     if args.set_total:
@@ -311,8 +345,8 @@ def main():
         return
 
     # Load data
-    progress = load_progress()
-    stats = get_progress_stats(progress, config)
+    progress = load_progress(args.target)
+    stats = get_progress_stats(progress, config, args.target)
 
     # Filter by module if requested
     if args.module:
@@ -322,7 +356,7 @@ def main():
             if args.module in source:
                 filtered_funcs[addr] = func
         progress = {'functions': filtered_funcs}
-        stats = get_progress_stats(progress, config)
+        stats = get_progress_stats(progress, config, args.target)
 
     # Output
     if args.export == 'csv':

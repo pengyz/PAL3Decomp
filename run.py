@@ -79,23 +79,11 @@ def cmd_stubs():
 
 
 def cmd_progress(args):
-    """查看整体进度"""
-    target = 'topo'
-    if "--target" in args:
-        idx = args.index("--target")
-        if idx + 1 < len(args):
-            target = args[idx + 1]
-
-    if target == 'pal3':
-        run_tool("progress_pal3.py")
-    elif target == 'gbengine':
-        run_tool("gbengine_progress.py")
-    elif target == 'topo':
-        run_tool("progress_report.py")
-    elif target == 'pal3a':
-        run_tool("progress_pal3.py")
-    else:
-        run_tool("progress_report.py")
+    extra = []
+    if '--target' in args:
+        idx = args.index('--target')
+        extra.extend(['--target', args[idx + 1]])
+    run_tool('progress.py', extra)
 
 
 def cmd_queue(args):
