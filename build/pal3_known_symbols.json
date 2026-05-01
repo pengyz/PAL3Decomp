@@ -1,0 +1,625 @@
+{
+  "description": "Known symbols from PAL3patch reverse engineering",
+  "source": "extra/PAL3patch/src/PAL3patch/include/PAL3patch/pal3.h + src/*.c",
+  "symbols": {
+    "0x005536a9": {
+      "name": "pal3malloc",
+      "type": "function",
+      "signature": "malloc_funcptr_t",
+      "source": "pal3.h"
+    },
+    "0x00552f55": {
+      "name": "pal3free",
+      "type": "function",
+      "signature": "free_funcptr_t",
+      "source": "pal3.h"
+    },
+    "0x01895058": {
+      "name": "ui_tex_color_gbf",
+      "type": "global",
+      "datatype": "struct gbRenderEffect *",
+      "source": "pal3.h"
+    },
+    "0x00bfda60": {
+      "name": "GB_GfxMgr",
+      "type": "global",
+      "datatype": "struct gbGfxManager_D3D *",
+      "source": "pal3.h"
+    },
+    "0x00bfdab0": {
+      "name": "g_msgbk",
+      "type": "global",
+      "datatype": "struct UIStaticFlex",
+      "source": "pal3.h"
+    },
+    "0x00bfda6c": {
+      "name": "PAL3_s_gamestate",
+      "type": "global",
+      "datatype": "int",
+      "source": "pal3.h"
+    },
+    "0x00bfd6c8": {
+      "name": "PAL3_s_drvinfo",
+      "type": "global",
+      "datatype": "struct gbGfxDriverInfo",
+      "source": "pal3.h"
+    },
+    "0x005833b8": {
+      "name": "PAL3_s_bActive",
+      "type": "global",
+      "datatype": "int",
+      "source": "pal3.h"
+    },
+    "0x005833bc": {
+      "name": "PAL3_s_flag",
+      "type": "global",
+      "datatype": "unsigned",
+      "source": "pal3.h"
+    },
+    "0x00bfdaa0": {
+      "name": "PAL3_m_gametime",
+      "type": "global",
+      "datatype": "float",
+      "source": "pal3.h"
+    },
+    "0x00bfda74": {
+      "name": "PAL3_m_pCBSystem",
+      "type": "global",
+      "datatype": "struct CCBSystem *",
+      "source": "pal3.h"
+    },
+    "0x008acc10": {
+      "name": "PAL3_m_screenImg",
+      "type": "global",
+      "datatype": "struct gbImage2D",
+      "source": "pal3.h"
+    },
+    "0x00db9fd0": {
+      "name": "g_gamefrm",
+      "type": "global",
+      "datatype": "struct UIGameFrm",
+      "source": "pal3.h"
+    },
+    "0x00a3a7d8": {
+      "name": "g_bink",
+      "type": "global",
+      "datatype": "struct gbBinkVideo",
+      "source": "pal3.h"
+    },
+    "0x00bfad70": {
+      "name": "g_input",
+      "type": "global",
+      "datatype": "struct GRPinput",
+      "source": "pal3.h"
+    },
+    "0x00c12b20": {
+      "name": "g_lastupdateloading",
+      "type": "global",
+      "datatype": "DWORD",
+      "source": "pal3.h"
+    },
+    "0x00445fa0": {
+      "name": "UIWnd_SetRect",
+      "type": "method",
+      "source": "pal3.h"
+    },
+    "0x0053c710": {
+      "name": "gbBinkVideo_Width",
+      "type": "method",
+      "source": "pal3.h"
+    },
+    "0x0053c720": {
+      "name": "gbBinkVideo_Height",
+      "type": "method",
+      "source": "pal3.h"
+    },
+    "0x0053c530": {
+      "name": "gbBinkVideo_DrawFrameEx",
+      "type": "method",
+      "source": "pal3.h"
+    },
+    "0x0053c460": {
+      "name": "gbBinkVideo_BinkWait",
+      "type": "method",
+      "source": "pal3.h"
+    },
+    "0x004d61c0": {
+      "name": "C2DSpark_Render",
+      "type": "method",
+      "source": "pal3.h"
+    },
+    "0x004d5ec0": {
+      "name": "C2DSpark_CreateSingle",
+      "type": "method",
+      "source": "pal3.h"
+    },
+    "0x004d6050": {
+      "name": "C2DSpark_CreateStars",
+      "type": "method",
+      "source": "pal3.h"
+    },
+    "0x005163d0": {
+      "name": "CCBUI_Create",
+      "type": "method",
+      "source": "pal3.h"
+    },
+    "0x0043ddf0": {
+      "name": "UIFrameWnd_Render",
+      "type": "method",
+      "source": "pal3.h"
+    },
+    "0x00445b90": {
+      "name": "UIWnd_Create",
+      "type": "method",
+      "source": "pal3.h"
+    },
+    "0x00445d20": {
+      "name": "UIWnd_MoveWindow",
+      "type": "method",
+      "source": "pal3.h"
+    },
+    "0x00541710": {
+      "name": "UICursor_Show",
+      "type": "method",
+      "source": "pal3.h"
+    },
+    "0x00541640": {
+      "name": "UICursor_IRender",
+      "type": "method",
+      "source": "pal3.h"
+    },
+    "0x00439850": {
+      "name": "UI3DCtrl_SetOriginPt_XY",
+      "type": "method",
+      "source": "pal3.h"
+    },
+    "0x00439930": {
+      "name": "UI3DCtrl_SetOriginPt_XYFromY",
+      "type": "method",
+      "source": "pal3.h"
+    },
+    "0x00439410": {
+      "name": "UI3DCtrl_Render",
+      "type": "method",
+      "source": "pal3.h"
+    },
+    "0x00439a20": {
+      "name": "UI3DCtrl_Update",
+      "type": "method",
+      "source": "pal3.h"
+    },
+    "0x00439fe0": {
+      "name": "UI3DCtrl_GetMouseRay",
+      "type": "method",
+      "source": "pal3.h"
+    },
+    "0x00483650": {
+      "name": "LineupUI_Create",
+      "type": "method",
+      "source": "pal3.h"
+    },
+    "0x00442e90": {
+      "name": "UIStaticEX_Render",
+      "type": "method",
+      "source": "pal3.h"
+    },
+    "0x00443200": {
+      "name": "UIStaticEXA_Render",
+      "type": "method",
+      "source": "pal3.h"
+    },
+    "0x0044f130": {
+      "name": "UIGameFrm_Create",
+      "type": "method",
+      "source": "pal3.h"
+    },
+    "0x0043a270": {
+      "name": "UIAnimateCtrl_Render",
+      "type": "method",
+      "source": "pal3.h"
+    },
+    "0x00445cd0": {
+      "name": "UIWnd_Render_rewrited",
+      "type": "method",
+      "source": "pal3.h"
+    },
+    "0x00450f90": {
+      "name": "UIRoleDialog_Create",
+      "type": "method",
+      "source": "pal3.h"
+    },
+    "0x00451360": {
+      "name": "UIRoleDialog_SetFace",
+      "type": "method",
+      "source": "pal3.h"
+    },
+    "0x0052beb0": {
+      "name": "UIEncampment_Create",
+      "type": "method",
+      "source": "pal3.h"
+    },
+    "0x00531f50": {
+      "name": "UISkee_Create",
+      "type": "method",
+      "source": "pal3.h"
+    },
+    "0x004500f0": {
+      "name": "UIGameOver_Create",
+      "type": "method",
+      "source": "pal3.h"
+    },
+    "0x00540f60": {
+      "name": "UIRenderObj_Ctor",
+      "type": "method",
+      "source": "pal3.h"
+    },
+    "0x00540fa0": {
+      "name": "UIRenderObj_Dtor",
+      "type": "method",
+      "source": "pal3.h"
+    },
+    "0x00402d20": {
+      "name": "HeadMsg_Render",
+      "type": "method",
+      "source": "pal3.h"
+    },
+    "0x0053f960": {
+      "name": "_TextureLib_Data_GetLibInfo",
+      "type": "method",
+      "source": "pal3.h"
+    },
+    "0x00402310": {
+      "name": "GRPinput_AcquireMouse",
+      "type": "method",
+      "source": "pal3.h"
+    },
+    "0x00402380": {
+      "name": "GRPinput_AcquireKeyboard",
+      "type": "method",
+      "source": "pal3.h"
+    },
+    "0x004c6460": {
+      "name": "CTrail_Create",
+      "type": "method",
+      "source": "pal3.h"
+    },
+    "0x004c65f0": {
+      "name": "CTrail_Begin",
+      "type": "method",
+      "source": "pal3.h"
+    },
+    "0x0053dd70": {
+      "name": "SoundMgr_Create",
+      "type": "method",
+      "source": "pal3.h"
+    },
+    "0x0053def0": {
+      "name": "SoundMgr_Destroy",
+      "type": "method",
+      "source": "pal3.h"
+    },
+    "0x00529e40": {
+      "name": "UIKillFlyer_Update",
+      "type": "method",
+      "source": "pal3.h"
+    },
+    "0x00536560": {
+      "name": "UIRowing_Create",
+      "type": "method",
+      "source": "pal3.h"
+    },
+    "0x004b6e20": {
+      "name": "GrayScale_End",
+      "type": "method",
+      "source": "pal3.h"
+    },
+    "0x004ed010": {
+      "name": "CCBRoleState_IsAlive",
+      "type": "method",
+      "source": "pal3.h"
+    },
+    "0x00538500": {
+      "name": "Archive_Save",
+      "type": "method",
+      "source": "pal3.h"
+    },
+    "0x004142e0": {
+      "name": "Role_OnBehaviourFinish",
+      "type": "method",
+      "source": "pal3.h"
+    },
+    "0x00411e00": {
+      "name": "Role_UpdateMove",
+      "type": "method",
+      "source": "pal3.h"
+    },
+    "0x00404840": {
+      "name": "call_site_PAL3_InitGFX_wrapper",
+      "type": "call_site",
+      "wrapper": "PAL3_InitGFX_wrapper",
+      "source": "hook.c"
+    },
+    "0x00541ac0": {
+      "name": "call_site_PAL3_Create_wrapper",
+      "type": "call_site",
+      "wrapper": "PAL3_Create_wrapper",
+      "source": "hook.c"
+    },
+    "0x00541bc0": {
+      "name": "call_site_PAL3_Update_wrapper",
+      "type": "call_site",
+      "wrapper": "PAL3_Update_wrapper",
+      "source": "hook.c"
+    },
+    "0x0053c440": {
+      "name": "patched_by_gbBinkVideo_OpenFile",
+      "type": "patch_site",
+      "target": "gbBinkVideo_OpenFile",
+      "source": "hook.c"
+    },
+    "0x004022e0": {
+      "name": "patched_by_GetCursorPos_wrapper",
+      "type": "patch_site",
+      "target": "GetCursorPos_wrapper",
+      "source": "hook.c"
+    },
+    "0x00402497": {
+      "name": "patched_by_GetCursorPos_wrapper",
+      "type": "patch_site",
+      "target": "GetCursorPos_wrapper",
+      "source": "hook.c"
+    },
+    "0x004021c1": {
+      "name": "patched_by_GetCursorPos_wrapper",
+      "type": "patch_site",
+      "target": "GetCursorPos_wrapper",
+      "source": "hook.c"
+    },
+    "0x004d6216": {
+      "name": "patched_by_GetCursorPos_wrapper",
+      "type": "patch_site",
+      "target": "GetCursorPos_wrapper",
+      "source": "hook.c"
+    },
+    "0x00402290": {
+      "name": "patched_by_SetCursorPos_wrapper",
+      "type": "patch_site",
+      "target": "SetCursorPos_wrapper",
+      "source": "hook.c"
+    },
+    "0x0044f19a": {
+      "name": "call_site__TextureLib_Data_GetLibInfo_wrapper",
+      "type": "call_site",
+      "wrapper": "_TextureLib_Data_GetLibInfo_wrapper",
+      "source": "patch_clampuilib.c"
+    },
+    "0x00402150": {
+      "name": "call_site_GRPinput_AcquireMouse_wrapper",
+      "type": "call_site",
+      "wrapper": "GRPinput_AcquireMouse_wrapper",
+      "source": "patch_fixacquire.c"
+    },
+    "0x00402198": {
+      "name": "call_site_GRPinput_AcquireKeyboard_wrapper",
+      "type": "call_site",
+      "wrapper": "GRPinput_AcquireKeyboard_wrapper",
+      "source": "patch_fixacquire.c"
+    },
+    "0x004dba60": {
+      "name": "patched_by_CCBAttackSequen_RunOneStep",
+      "type": "patch_site",
+      "target": "CCBAttackSequen_RunOneStep",
+      "source": "patch_fixattacksequen.c"
+    },
+    "0x00513141": {
+      "name": "call_site_C2DSpark_Render_wrapper",
+      "type": "call_site",
+      "wrapper": "C2DSpark_Render_wrapper",
+      "source": "patch_fixcombatui.c"
+    },
+    "0x0051270b": {
+      "name": "call_site_CCBUI_Create_wrapper",
+      "type": "call_site",
+      "wrapper": "CCBUI_Create_wrapper",
+      "source": "patch_fixcombatui.c"
+    },
+    "0x0051b920": {
+      "name": "patched_by_CCBLineupWindow_Render",
+      "type": "patch_site",
+      "target": "CCBLineupWindow_Render",
+      "source": "patch_fixcombatui.c"
+    },
+    "0x0051b950": {
+      "name": "patched_by_CCBLineupWindow_IsPtOnFace",
+      "type": "patch_site",
+      "target": "CCBLineupWindow_IsPtOnFace",
+      "source": "patch_fixcombatui.c"
+    },
+    "0x004a46f8": {
+      "name": "call_site_LineupUI_Create_wrapper",
+      "type": "call_site",
+      "wrapper": "LineupUI_Create_wrapper",
+      "source": "patch_fixlineupui.c"
+    },
+    "0x0041fa84": {
+      "name": "call_site_UpdateLoading_wrapper",
+      "type": "call_site",
+      "wrapper": "UpdateLoading_wrapper",
+      "source": "patch_fixloading.c"
+    },
+    "0x004b6fde": {
+      "name": "patched_by_gb_mem_allocator",
+      "type": "patch_site",
+      "target": "gb_mem_allocator",
+      "source": "patch_fixmemfree.c"
+    },
+    "0x0053d41e": {
+      "name": "patched_by_gb_mem_allocator",
+      "type": "patch_site",
+      "target": "gb_mem_allocator",
+      "source": "patch_fixmemfree.c"
+    },
+    "0x0053ddd7": {
+      "name": "patched_by_gbAudioManager_Ctor_wrapper",
+      "type": "patch_site",
+      "target": "gbAudioManager_Ctor_wrapper",
+      "source": "patch_fixnosndcrash.c"
+    },
+    "0x0040c7f4": {
+      "name": "call_site_HeadMsg_Render_wrapper",
+      "type": "call_site",
+      "wrapper": "HeadMsg_Render_wrapper",
+      "source": "patch_fixsceneui.c"
+    },
+    "0x00405fe0": {
+      "name": "call_site_PlayerMgr_DrawMsg_hookpart1",
+      "type": "call_site",
+      "wrapper": "PlayerMgr_DrawMsg_hookpart1",
+      "source": "patch_fixsceneui.c"
+    },
+    "0x0040c808": {
+      "name": "call_site_PlayerMgr_DrawMsg_hookpart2",
+      "type": "call_site",
+      "wrapper": "PlayerMgr_DrawMsg_hookpart2",
+      "source": "patch_fixsceneui.c"
+    },
+    "0x00452ceb": {
+      "name": "call_site_UISceneMap_Render_hookpart2",
+      "type": "call_site",
+      "wrapper": "UISceneMap_Render_hookpart2",
+      "source": "patch_fixsceneui.c"
+    },
+    "0x0044f2e9": {
+      "name": "call_site_UIRoleDialog_Create_wrapper",
+      "type": "call_site",
+      "wrapper": "UIRoleDialog_Create_wrapper",
+      "source": "patch_fixsceneui.c"
+    },
+    "0x0052ee78": {
+      "name": "call_site_UISkee_Create_wrapper",
+      "type": "call_site",
+      "wrapper": "UISkee_Create_wrapper",
+      "source": "patch_fixsceneui.c"
+    },
+    "0x0053529f": {
+      "name": "call_site_UIRowing_Create_wrapper",
+      "type": "call_site",
+      "wrapper": "UIRowing_Create_wrapper",
+      "source": "patch_fixsceneui.c"
+    },
+    "0x00405f84": {
+      "name": "call_site_GrayScale_End_wrapper",
+      "type": "call_site",
+      "wrapper": "GrayScale_End_wrapper",
+      "source": "patch_fixsceneui.c"
+    },
+    "0x004fc3e1": {
+      "name": "call_site_CTrail_Begin_wrapper",
+      "type": "call_site",
+      "wrapper": "CTrail_Begin_wrapper",
+      "source": "patch_fixtrail.c"
+    },
+    "0x004061d2": {
+      "name": "call_site_UICursor_IRender_wrapper",
+      "type": "call_site",
+      "wrapper": "UICursor_IRender_wrapper",
+      "source": "patch_fixui.c"
+    },
+    "0x00445c60": {
+      "name": "patched_by_UIWnd_Update",
+      "type": "patch_site",
+      "target": "UIWnd_Update",
+      "source": "patch_fixui.c"
+    },
+    "0x004bdccf": {
+      "name": "patched_by_gbCamera_SetDimention_wrapper_for_RenderTarget_Begin",
+      "type": "patch_site",
+      "target": "gbCamera_SetDimention_wrapper_for_RenderTarget_Begin",
+      "source": "patch_fixui.c"
+    },
+    "0x004063a7": {
+      "name": "patched_by_RegisterClass_wrapper",
+      "type": "patch_site",
+      "target": "RegisterClass_wrapper",
+      "source": "patch_graphicspatch.c"
+    },
+    "0x00406564": {
+      "name": "patched_by_CreateWindowExA_wrapper",
+      "type": "patch_site",
+      "target": "CreateWindowExA_wrapper",
+      "source": "patch_graphicspatch.c"
+    },
+    "0x0040637f": {
+      "name": "patched_by_WndProc_wrapper",
+      "type": "patch_site",
+      "target": "WndProc_wrapper",
+      "source": "patch_graphicspatch.c"
+    },
+    "0x00404f8d": {
+      "name": "patched_by_DefWindowProcA_wrapper",
+      "type": "patch_site",
+      "target": "DefWindowProcA_wrapper",
+      "source": "patch_graphicspatch.c"
+    },
+    "0x004066ad": {
+      "name": "patched_by_scursor_PAL3_HasCommandLineParam",
+      "type": "patch_site",
+      "target": "scursor_PAL3_HasCommandLineParam",
+      "source": "patch_graphicspatch.c"
+    },
+    "0x00405013": {
+      "name": "patched_by_gbCreateGraphManager_wrapper",
+      "type": "patch_site",
+      "target": "gbCreateGraphManager_wrapper",
+      "source": "patch_graphicspatch.c"
+    },
+    "0x00553a81": {
+      "name": "patched_by_my_fopen",
+      "type": "patch_site",
+      "target": "my_fopen",
+      "source": "patch_improvearchive.c"
+    },
+    "0x004b295a": {
+      "name": "call_site_Archive_Save_wrapper",
+      "type": "call_site",
+      "wrapper": "Archive_Save_wrapper",
+      "source": "patch_improvearchive.c"
+    },
+    "0x0053c470": {
+      "name": "patched_by_gbBinkVideo_DrawFrame",
+      "type": "patch_site",
+      "target": "gbBinkVideo_DrawFrame",
+      "source": "patch_nolockablebackbuffer.c"
+    },
+    "0x0053c544": {
+      "name": "patched_by_BinkDoFrame_wrapper",
+      "type": "patch_site",
+      "target": "BinkDoFrame_wrapper",
+      "source": "patch_nolockablebackbuffer.c"
+    },
+    "0x0053c571": {
+      "name": "patched_by_BinkCopyToBuffer_wrapper",
+      "type": "patch_site",
+      "target": "BinkCopyToBuffer_wrapper",
+      "source": "patch_nolockablebackbuffer.c"
+    },
+    "0x0053c672": {
+      "name": "call_site_gbBinkVideo_BinkWait_wrapper",
+      "type": "call_site",
+      "wrapper": "gbBinkVideo_BinkWait_wrapper",
+      "source": "patch_nolockablebackbuffer.c"
+    },
+    "0x00406230": {
+      "name": "patched_by_do_exit",
+      "type": "patch_site",
+      "target": "do_exit",
+      "source": "patch_terminateatexit.c"
+    },
+    "0x0055514a": {
+      "name": "patched_by_do_exit",
+      "type": "patch_site",
+      "target": "do_exit",
+      "source": "patch_terminateatexit.c"
+    }
+  }
+}
