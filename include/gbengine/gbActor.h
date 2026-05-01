@@ -31,16 +31,17 @@ struct gbMixActInfo {
     int mixDuration;
 };
 
-// Actor action state
+// Actor action state (stride = 0x24 = 36 bytes)
 struct gbActionState {
-    int state;          // 0=inactive, 1=fade-in, 2=fade-out
-    int actionIndex;    // Current action
-    float weight;       // Blend weight
-    int currentFrame;   // Current frame
-    int startFrame;     // Start frame
-    int endFrame;       // End frame
-    char* eventData;    // Event data
-    int reserved[3];
+    int state;                  // +0x00: 0=inactive, 1=active, 2=fade-out, 3=locked
+    unsigned int actionCrc;     // +0x04: CRC32 of action name
+    float weight;               // +0x08: blend weight
+    unsigned int currentFrame;  // +0x0C
+    unsigned int startFrame;    // +0x10
+    unsigned int endFrame;      // +0x14
+    void* eventData;            // +0x18: event notification flag/data
+    int loopFlag;               // +0x1C
+    unsigned long transition;   // +0x20
 };
 
 

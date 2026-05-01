@@ -5,6 +5,7 @@
 
 #include "gbengine/gbSceneGraph.h"
 #include "gbengine/gbChain.h"
+#include "gbengine/gbengine_internal.h"
 #include <stdlib.h>
 #include <string.h>
 #include <math.h>
@@ -259,7 +260,7 @@ void gbSceneGraph::CalEffectiveVolMod(gbRenderInfoObj* renderInfo, const gbVec3D
         void** vmVtable = *(void***)vm;
         typedef float (__thiscall *GetEffectFn)(void*, const gbVec3D*, int);
         // Access the modifier object at offset 0xD8 in the vol mod node
-        void* modObj = *(void**)((char*)vm + 0xD8);
+        void* modObj = vm->pVolMod;
         if (!modObj) continue;
         void** modVtable = *(void***)modObj;
         GetEffectFn getEffect = (GetEffectFn)modVtable[3];
@@ -279,7 +280,7 @@ void gbSceneGraph::CalEffectiveVolMod(gbRenderInfoObj* renderInfo, const gbVec3D
 
     for (int i = 0; i < numEntries; i++) {
         gbVolModNode* vm = (gbVolModNode*)(int)entries[i].volMod;
-        void* modObj = *(void**)((char*)vm + 0xD8);
+        void* modObj = vm->pVolMod;
         void** modVtable = *(void***)modObj;
         typedef int (__thiscall *GetTypeFn)(void*);
         GetTypeFn getType = (GetTypeFn)modVtable[1];

@@ -75,9 +75,9 @@ gbCamSpringControl::gbCamSpringControl(void) : gbCamControler() {
     springConstant = 10.0f;
     damping = 5.0f;
     targetDist = 10.0f;
-    velocity.x = 0.0f;
-    velocity.y = 0.0f;
-    velocity.z = 0.0f;
+    velX = 0.0f;
+    velY = 0.0f;
+    targetPos.x = 0.0f;
 }
 
 // 0x10005bc0 (111B) - Copy constructor
@@ -85,7 +85,11 @@ gbCamSpringControl::gbCamSpringControl(const gbCamSpringControl& other) : gbCamC
     springConstant = other.springConstant;
     damping = other.damping;
     targetDist = other.targetDist;
-    velocity = other.velocity;
+    velX = other.velX;
+    velY = other.velY;
+    targetPos = other.targetPos;
+    targetQuat = other.targetQuat;
+    speed = other.speed;
 }
 
 // 0x10005c30 - operator=
@@ -95,43 +99,36 @@ gbCamSpringControl& gbCamSpringControl::operator=(const gbCamSpringControl& othe
         springConstant = other.springConstant;
         damping = other.damping;
         targetDist = other.targetDist;
-        velocity = other.velocity;
+        velX = other.velX;
+        velY = other.velY;
+        targetPos = other.targetPos;
+        targetQuat = other.targetQuat;
+        speed = other.speed;
     }
     return *this;
 }
 
 // 0x10021700 (295B) - Spring update
 void gbCamSpringControl::Update(double deltaTime) {
-    float* camPos = (float*)((char*)pCamera + 0x15c);
-    float* camQuat = (float*)((char*)pCamera + 0x168);
-    float* targetPos = (float*)((char*)this + 0x20);
-    float* targetQuat = (float*)((char*)this + 0x2c);
-    float speed = *(float*)((char*)this + 0x3c);
+    gbVec3D* camPos = &pCamera->eyeLoc;
+    gbQuaternion* camQuat = &pCamera->eyeDir;
 
     if (speed < 0.0f) {
-        camPos[0] = targetPos[0];
-        camPos[1] = targetPos[1];
-        camPos[2] = targetPos[2];
-        camQuat[0] = targetQuat[0];
-        camQuat[1] = targetQuat[1];
-        camQuat[2] = targetQuat[2];
-        camQuat[3] = targetQuat[3];
+        *camPos = targetPos;
+        *camQuat = targetQuat;
         return;
     }
 
     float t = speed * (float)deltaTime;
     if (t > 1.0f) t = 1.0f;
 
-    camPos[0] = (targetPos[0] - camPos[0]) * t + camPos[0];
-    camPos[1] = (targetPos[1] - camPos[1]) * t + camPos[1];
-    camPos[2] = (targetPos[2] - camPos[2]) * t + camPos[2];
+    camPos->x = (targetPos.x - camPos->x) * t + camPos->x;
+    camPos->y = (targetPos.y - camPos->y) * t + camPos->y;
+    camPos->z = (targetPos.z - camPos->z) * t + camPos->z;
 
     gbQuaternion result;
-    result.Slerp((gbQuaternion*)camQuat, (gbQuaternion*)targetQuat, t);
-    camQuat[0] = result.x;
-    camQuat[1] = result.y;
-    camQuat[2] = result.z;
-    camQuat[3] = result.w;
+    result.Slerp(camQuat, &targetQuat, t);
+    *camQuat = result;
 }
 
 
@@ -142,62 +139,54 @@ void gbCamSpringControl::Update(double deltaTime) {
 // 0x10005c90 (29B) - Default constructor
 gbCamQuakeControl::gbCamQuakeControl(void) : gbCamControler() {
     type = 2;
-    amplitude = 0.0f;
-    frequency = 0.0f;
-    duration = 0.0f;
-    elapsed = 0.0f;
-    offset.x = 0.0f;
-    offset.y = 0.0f;
-    offset.z = 0.0f;
+    quakeFlags = 0;
+    elapsed = 0.0;
+    duration = 0.0;
+    basePosition.x = 0.0f;
+    basePosition.y = 0.0f;
+    basePosition.z = 0.0f;
+    amplitude.x = 0.0f;
+    amplitude.y = 0.0f;
+    amplitude.z = 0.0f;
+    angle = 0.0;
 }
 
 // 0x10005cb0 (111B) - Copy constructor
 gbCamQuakeControl::gbCamQuakeControl(const gbCamQuakeControl& other) : gbCamControler(other) {
-    amplitude = other.amplitude;
-    frequency = other.frequency;
-    duration = other.duration;
+    quakeFlags = other.quakeFlags;
     elapsed = other.elapsed;
-    offset = other.offset;
+    duration = other.duration;
+    basePosition = other.basePosition;
+    amplitude = other.amplitude;
+    angle = other.angle;
 }
 
 // 0x10005d20 - operator=
 gbCamQuakeControl& gbCamQuakeControl::operator=(const gbCamQuakeControl& other) {
     if (this != &other) {
         gbCamControler::operator=(other);
-        amplitude = other.amplitude;
-        frequency = other.frequency;
-        duration = other.duration;
+        quakeFlags = other.quakeFlags;
         elapsed = other.elapsed;
-        offset = other.offset;
+        duration = other.duration;
+        basePosition = other.basePosition;
+        amplitude = other.amplitude;
+        angle = other.angle;
     }
     return *this;
 }
 
 // 0x10021830 (149B) - Quake update
 void gbCamQuakeControl::Update(double deltaTime) {
-    float* camPos = (float*)((char*)pCamera + 0x15c);
-
-    double totalDuration = *(double*)((char*)this + 0x18);
-    double elapsedTime = *(double*)((char*)this + 0x10);
-    double factor = (totalDuration - elapsedTime) / totalDuration;
+    double factor = (duration - elapsed) / duration;
     float factorSq = (float)(factor * factor);
 
-    float ampX = *(float*)((char*)this + 0x2c);
-    float ampY = *(float*)((char*)this + 0x30);
-    float ampZ = *(float*)((char*)this + 0x34);
-
-    double angle = *(double*)((char*)this + 0x38);
     float sinVal = (float)sin(angle * 0.017453293);
 
-    float baseX = *(float*)((char*)this + 0x20);
-    float baseY = *(float*)((char*)this + 0x24);
-    float baseZ = *(float*)((char*)this + 0x28);
+    pCamera->eyeLoc.x = factorSq * amplitude.x * sinVal + basePosition.x;
+    pCamera->eyeLoc.y = factorSq * amplitude.y * sinVal + basePosition.y;
+    pCamera->eyeLoc.z = factorSq * amplitude.z * sinVal + basePosition.z;
 
-    camPos[0] = factorSq * ampX * sinVal + baseX;
-    camPos[1] = factorSq * ampY * sinVal + baseY;
-    camPos[2] = factorSq * ampZ * sinVal + baseZ;
-
-    *(double*)((char*)this + 0x38) = deltaTime * 3600.0 + angle;
+    angle = deltaTime * 3600.0 + angle;
 }
 
 

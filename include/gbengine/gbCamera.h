@@ -45,10 +45,14 @@ public:
 
 class gbCamSpringControl : public gbCamControler {
 public:
-    float springConstant;
-    float damping;
-    float targetDist;
-    gbVec3D velocity;
+    float springConstant;   // +0x0C
+    float damping;          // +0x10
+    float targetDist;       // +0x14
+    float velX;             // +0x18
+    float velY;             // +0x1C
+    gbVec3D targetPos;      // +0x20
+    gbQuaternion targetQuat; // +0x2C
+    float speed;            // +0x3C
 
     gbCamSpringControl(void);
     gbCamSpringControl(const gbCamSpringControl& other);
@@ -65,11 +69,12 @@ public:
 
 class gbCamQuakeControl : public gbCamControler {
 public:
-    float amplitude;
-    float frequency;
-    float duration;
-    float elapsed;
-    gbVec3D offset;
+    int quakeFlags;         // +0x0C
+    double elapsed;         // +0x10
+    double duration;        // +0x18
+    gbVec3D basePosition;   // +0x20
+    gbVec3D amplitude;      // +0x2C
+    double angle;           // +0x38
 
     gbCamQuakeControl(void);
     gbCamQuakeControl(const gbCamQuakeControl& other);

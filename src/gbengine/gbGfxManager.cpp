@@ -45,7 +45,7 @@ gbGfxManager* g_pGfxManager = NULL;
 // 0x1001d910 (394B) - Constructor
 gbGfxManager::gbGfxManager(int& result, gbGfxDriverInfo* driverInfo) {
     m_nState = 0;
-    m_bInScene = 0;
+    hGfxWnd = 0;
 
     if (driverInfo) {
         memcpy(&DrvInfo, driverInfo, sizeof(gbGfxDriverInfo));
@@ -58,43 +58,23 @@ gbGfxManager::gbGfxManager(int& result, gbGfxDriverInfo* driverInfo) {
     pTexResMgr = NULL;
     pFontMgr = NULL;
     pSceneGraph = NULL;
-    pCamera = NULL;
 
     memset(pMatrixStack, 0, sizeof(pMatrixStack));
 
-    m_ambientLight.r = 0.2f;
-    m_ambientLight.g = 0.2f;
-    m_ambientLight.b = 0.2f;
-    m_ambientLight.a = 1.0f;
+    AmbientLight.r = 0.2f;
+    AmbientLight.g = 0.2f;
+    AmbientLight.b = 0.2f;
+    AmbientLight.a = 1.0f;
 
-    m_bEmissiveEnable = 0;
-    m_fEmissiveFactor = 1.0f;
+    fSelfIllum = 0.0f;
 
-    m_lastTime = 0.0;
-    m_deltaTime = 0.0;
-    m_lastTick = 0;
-    m_deltaTick = 0;
+    LastTime = 0.0;
+    CurTime = 0.0;
+    LastTick = 0;
+    CurTick = 0;
 
-    // Initialize world matrix to identity
-    memset(&m_worldMatrix, 0, sizeof(gbMatrix4));
-    m_worldMatrix.m[0][0] = 1.0f;
-    m_worldMatrix.m[1][1] = 1.0f;
-    m_worldMatrix.m[2][2] = 1.0f;
-    m_worldMatrix.m[3][3] = 1.0f;
-
-    memset(&m_viewMatrix, 0, sizeof(gbMatrix4));
-    m_viewMatrix.m[0][0] = 1.0f;
-    m_viewMatrix.m[1][1] = 1.0f;
-    m_viewMatrix.m[2][2] = 1.0f;
-    m_viewMatrix.m[3][3] = 1.0f;
-
-    memset(&m_projMatrix, 0, sizeof(gbMatrix4));
-    m_projMatrix.m[0][0] = 1.0f;
-    m_projMatrix.m[1][1] = 1.0f;
-    m_projMatrix.m[2][2] = 1.0f;
-    m_projMatrix.m[3][3] = 1.0f;
-
-    m_nWireMode = 0;
+    CurZBias = 0;
+    bWireMode = 0;
 
     result = 1; // success
 }
@@ -105,33 +85,19 @@ gbGfxManager::~gbGfxManager() {
 
 // 0x1001db10 (222B) - Begin a rendering scene
 int gbGfxManager::BeginScene(void) {
-    if (m_bInScene)
+    if (m_nState)
         return 0;
 
-    // Update time tracking
-    double currentTime = g_CurrentTime;
-    m_deltaTime = currentTime - m_lastTime;
-    m_lastTime = currentTime;
-
-    unsigned int currentTick = g_CurrentTick;
-    m_deltaTick = currentTick - m_lastTick;
-    m_lastTick = currentTick;
-
-    // In the real D3D implementation, this calls IDirect3DDevice9::BeginScene()
-    // and clears the render target. The actual D3D calls are in gbGfxManager_D3D.
-    m_bInScene = 1;
+    m_nState = 1;
     return 1;
 }
 
 // EndScene: finish the rendering scene
 void gbGfxManager::EndScene(void) {
-    if (!m_bInScene)
+    if (!m_nState)
         return;
 
-    // In gbGfxManager_D3D, this calls:
-    //   m_pd3dDevice->EndScene();
-    //   m_pd3dDevice->Present(NULL, NULL, NULL, NULL);
-    m_bInScene = 0;
+    m_nState = 0;
 }
 
 // SetTransform: set a transform matrix (world/view/projection)
@@ -141,18 +107,15 @@ void gbGfxManager::SetTransform(int type, gbMatrix4* matrix) {
 
     switch (type) {
     case GB_TM_WORLD:
-        memcpy(&m_worldMatrix, matrix, sizeof(gbMatrix4));
+        memcpy(&WorldMatrix, matrix, sizeof(gbMatrix4));
         break;
     case GB_TM_VIEW:
-        memcpy(&m_viewMatrix, matrix, sizeof(gbMatrix4));
+        memcpy(&ViewMatrix, matrix, sizeof(gbMatrix4));
         break;
     case GB_TM_PROJECTION:
-        memcpy(&m_projMatrix, matrix, sizeof(gbMatrix4));
+        memcpy(&InvViewMatrix, matrix, sizeof(gbMatrix4));
         break;
     }
-
-    // In the real engine, this also calls IDirect3DDevice9::SetTransform()
-    // with the appropriate D3DTRANSFORMSTATETYPE
 }
 
 // 0x1001e220 (158B) - Clip a bounding volume against the view frustum
@@ -187,37 +150,38 @@ int gbGfxManager::ClipBoundVolume(gbAABBox* box) {
 
 // 0x10004ff0 (34B) - Enable/disable emissive lighting
 void gbGfxManager::EnableEmissive(int enable) {
-    m_bEmissiveEnable = enable;
-    // In the real engine, this also sets D3D render state
-    // D3DRS_EMISSIVEMATERIALSOURCE etc.
+    if (enable) {
+        fSelfIllum = 1.0f;
+    } else {
+        fSelfIllum = 0.0f;
+    }
 }
 
 // 0x10005020 (13B) - Set emissive factor
 void gbGfxManager::SetEmissiveFactor(float factor) {
-    m_fEmissiveFactor = factor;
+    fSelfIllum = factor;
 }
 
 // 0x10004fc0 (39B) - Get ambient light color
 gbColorFlt gbGfxManager::GetAmbientLight(void) {
-    return m_ambientLight;
+    return AmbientLight;
 }
 
 // 0x10004f90 (35B) - Set ambient light color
 void gbGfxManager::SetAmbientLight(const gbColorFlt& color) {
-    m_ambientLight = color;
-
-    // In the real engine, this converts to D3DCOLOR and calls
-    // IDirect3DDevice9::SetRenderState(D3DRS_AMBIENT, d3dColor)
+    AmbientLight = color;
 }
 
 // 0x1001dac0 (34B) - Get delta time since last frame
 double gbGfxManager::GetDeltaTime(void) {
-    return m_deltaTime;
+    double dt = CurTime - LastTime;
+    if (dt > 0.5) dt = 0.5;
+    return dt;
 }
 
 // 0x1001daf0 (27B) - Get delta tick since last frame
 unsigned int gbGfxManager::GetDeltaTick(void) {
-    return m_deltaTick;
+    return CurTick - LastTick;
 }
 
 // 0x10004ea0 (13B) - Set scene graph
@@ -239,12 +203,12 @@ gbPrintFont* gbGfxManager::GetPrintFont(int fontType) {
 
 // 0x10004f50 (20B) - Get light object by index
 const gbLight* gbGfxManager::GetLight(int index) const {
-    return &m_lights[index];
+    return &AllLight[index];
 }
 
 // 0x10004f70 (14B) - Check if a light is enabled
 int gbGfxManager::IsLightEnable(int index) const {
-    return m_lightEnable[index];
+    return LightEnable[index];
 }
 
 // 0x1001df40 (37B) - Get a combined transform matrix
@@ -253,25 +217,25 @@ void gbGfxManager::GetTMMatrix(int type, gbMatrix4* out) {
         return;
     switch (type) {
     case GB_TM_WORLD:
-        memcpy(out, &m_worldMatrix, sizeof(gbMatrix4));
+        memcpy(out, &WorldMatrix, sizeof(gbMatrix4));
         break;
     case GB_TM_VIEW:
-        memcpy(out, &m_viewMatrix, sizeof(gbMatrix4));
+        memcpy(out, &ViewMatrix, sizeof(gbMatrix4));
         break;
     case GB_TM_PROJECTION:
-        memcpy(out, &m_projMatrix, sizeof(gbMatrix4));
+        memcpy(out, &InvViewMatrix, sizeof(gbMatrix4));
         break;
     }
 }
 
 // 0x1001e070 (24B) - Get current viewport
 void gbGfxManager::GetViewport(gbViewPort& pViewport) {
-    memcpy(&pViewport, &m_viewport, sizeof(gbViewPort));
+    memcpy(&pViewport, &Viewport, sizeof(gbViewPort));
 }
 
 // 0x1001e090 (35B) - Set clear parameters (color, depth, stencil)
 void gbGfxManager::SetClearParam(gbClearParam* pParam) {
-    memcpy(&m_clearParam, pParam, sizeof(gbClearParam));
+    memcpy(&ClearParam, pParam, sizeof(gbClearParam));
 }
 
 // 0x1001e160 (189B) - Create a new mesh resource
@@ -288,56 +252,48 @@ gbBaseMesh* gbGfxManager::NewMesh(const char* name, gbMeshType type) {
 
 // 0x1001e2c0 (36B) - Offset Z-buffer for decal rendering
 void gbGfxManager::OffsetZBuffer(int enable) {
-    if (enable != m_zBufferOffset) {
-        m_zBufferOffset = enable;
+    if (enable != CurZBias) {
+        CurZBias = enable;
     }
 }
 
 // 0x1001e2f0 (13B) - Set wireframe rendering mode
 void gbGfxManager::SetWireMode(int mode) {
-    m_nWireMode = mode;
-    // In real engine: SetRenderState(D3DRS_FILLMODE, mode ? D3DFILL_WIREFRAME : D3DFILL_SOLID)
+    bWireMode = mode;
 }
 
 // 0x1001e300 (38B) - Set fog parameters
 void gbGfxManager::SetFog(gbFogParam* pFogParam) {
     if (pFogParam == NULL) {
-        m_fogParam.enable = 0;
+        FogParam.enable = 0;
         return;
     }
-    memcpy(&m_fogParam, pFogParam, sizeof(gbFogParam));
+    memcpy(&FogParam, pFogParam, sizeof(gbFogParam));
 }
 
 // 0x1001e330 (55B) - Get world matrix (const reference)
 const gbMatrix4& gbGfxManager::GetWorldMatrix(void) {
-    return m_worldMatrix;
+    return WorldMatrix;
 }
 
 // Exported: GetViewMatrix
 const gbMatrix4& gbGfxManager::GetViewMatrix(void) {
-    return m_viewMatrix;
+    return ViewMatrix;
 }
 
 // 0x1001e380 (19B) - Reset world matrix to identity
 void gbGfxManager::IdentityWorldMatrix(void) {
-    memset(&m_worldMatrix, 0, sizeof(gbMatrix4));
-    m_worldMatrix.m[0][0] = 1.0f;
-    m_worldMatrix.m[1][1] = 1.0f;
-    m_worldMatrix.m[2][2] = 1.0f;
-    m_worldMatrix.m[3][3] = 1.0f;
-
-    // Also set on the D3D device
-    // SetTransform(GB_TM_WORLD, &m_worldMatrix);
+    memset(&WorldMatrix, 0, sizeof(gbMatrix4));
+    WorldMatrix.m[0][0] = 1.0f;
+    WorldMatrix.m[1][1] = 1.0f;
+    WorldMatrix.m[2][2] = 1.0f;
+    WorldMatrix.m[3][3] = 1.0f;
 }
 
 // 0x1001e3a0 (43B) - Set view and projection matrices from camera
 void gbGfxManager::SetCameraMatrix(const gbMatrix4& view, const gbMatrix4& proj) {
-    memcpy(&m_viewMatrix, &view, sizeof(gbMatrix4));
-    memcpy(&m_projMatrix, &proj, sizeof(gbMatrix4));
-
-    // In the real engine, also calls:
-    // IDirect3DDevice9::SetTransform(D3DTS_VIEW, (D3DMATRIX*)view)
-    // IDirect3DDevice9::SetTransform(D3DTS_PROJECTION, (D3DMATRIX*)proj)
+    memcpy(&ViewMatrix, &view, sizeof(gbMatrix4));
+    memcpy(&InvViewMatrix, &proj, sizeof(gbMatrix4));
 }
 
 // Exported: GetGfxCaps
@@ -349,12 +305,12 @@ int gbGfxManager::GetGfxCaps(gbGfxCaps* caps) {
 
 // Exported: GetCurTick
 unsigned int gbGfxManager::GetCurTick(void) {
-    return m_lastTick;
+    return CurTick;
 }
 
 // Exported: GetCurTime
 double gbGfxManager::GetCurTime(void) {
-    return m_lastTime;
+    return CurTime;
 }
 
 // Exported: GetDriverInfo
@@ -369,12 +325,12 @@ gbEffectMgr* gbGfxManager::GetEffectMgr(void) {
 
 // Exported: GetEmissiveFactor
 float gbGfxManager::GetEmissiveFactor(void) {
-    return m_fEmissiveFactor;
+    return fSelfIllum;
 }
 
 // Exported: GetFog
 gbFogParam* gbGfxManager::GetFog(void) {
-    return &m_fogParam;
+    return &FogParam;
 }
 
 // Exported: GetGraphWnd
@@ -399,7 +355,7 @@ gbSceneGraph* gbGfxManager::GetSceneGraph(void) {
 
 // Exported: GetStatistic
 gbGfxStatistic* gbGfxManager::GetStatistic(void) {
-    return &m_statistic;
+    return &Stat;
 }
 
 // Exported: GetVertPoolMgr
@@ -409,7 +365,7 @@ gbVertPoolMgr* gbGfxManager::GetVertPoolMgr(void) {
 
 // Exported: IsWireMode
 int gbGfxManager::IsWireMode(void) {
-    return m_nWireMode;
+    return bWireMode;
 }
 
 

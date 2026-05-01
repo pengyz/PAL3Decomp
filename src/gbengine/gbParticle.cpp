@@ -36,11 +36,16 @@ static int RandomInt(int imin, int imax) {
 
 /* ======== gbPartParamControl ======== */
 
+// Ghidra: gbPartParamControl_1000cd90 (93 bytes)
 gbPartParamControl::gbPartParamControl(void) {
-    controlType = 0;
-    numKeys = 0;
-    memset(keys, 0, sizeof(keys));
-    memset(values, 0, sizeof(values));
+    memset(stateData, 0, sizeof(stateData));
+    memset(curveConfig, 0, sizeof(curveConfig));
+    memset(ch0Keys, 0, sizeof(ch0Keys));
+    ch0Pad = 0;
+    memset(ch1Keys, 0, sizeof(ch1Keys));
+    memset(ch2Keys, 0, sizeof(ch2Keys));
+    ch2LastValue = 0.0f;
+    ch2LastTangentIn = 0.0f;
 }
 
 gbPartParamControl& gbPartParamControl::operator=(const gbPartParamControl& other) {
@@ -56,29 +61,32 @@ void gbPartParamControl::LoadFromFile(gbVFile* vfile) {
     numKeys = 0;
 }
 
+// Ghidra: GetValue_100299b0 (252 bytes)
 void gbPartParamControl::GetValue(float* result, float t) {
-    if (numKeys == 0) {
-        result[0] = 0.0f;
+    if (t <= ch0Keys[0].time) {
+        result[0] = ch0Keys[0].value;
+        result[1] = ch1Keys[0].value;
+        result[2] = ch2Keys[0].value;
         return;
     }
 
-    if (t <= keys[0]) {
-        result[0] = values[0][0];
-        return;
-    }
+    int i = 1;
+    do {
+        if (t < ch0Keys[i].time) {
+            float factor = (t - ch0Keys[i - 1].time) / (ch0Keys[i].time - ch0Keys[i - 1].time);
+            float invFactor = 1.0f - factor;
 
-    if (t >= keys[numKeys - 1]) {
-        result[0] = values[numKeys - 1][0];
-        return;
-    }
-
-    for (int i = 0; i < numKeys - 1; i++) {
-        if (t >= keys[i] && t <= keys[i + 1]) {
-            float factor = (t - keys[i]) / (keys[i + 1] - keys[i]);
-            result[0] = values[i][0] + (values[i + 1][0] - values[i][0]) * factor;
+            result[0] = factor * ch0Keys[i].value + invFactor * ch0Keys[i - 1].value;
+            result[1] = factor * ch1Keys[i].value + invFactor * ch1Keys[i - 1].value;
+            result[2] = factor * ch2Keys[i].value + invFactor * ch2Keys[i - 1].value;
             return;
         }
-    }
+        i++;
+    } while (i <= 0x64);
+
+    result[0] = ch0Keys[GB_PARTCTRL_MAX_KEYS - 1].value;
+    result[1] = ch1Keys[GB_PARTCTRL_MAX_KEYS - 1].value;
+    result[2] = ch2LastValue;
 }
 
 /* ======== gbPartGroupParam ======== */
@@ -110,22 +118,20 @@ void gbPartGroupParam::ComputeAirResist(gbParticleUnit* particle, float deltaTim
 
     if (speed <= airResistance) return;
 
-    int turbFlag = *(int*)((char*)this + 0x30);
-    float dragCoeff = *(float*)((char*)this + 0x34);
     float turbX = 0.0f, turbY = 0.0f, turbZ = 0.0f;
 
-    if (turbFlag == 0) {
+    if (turbulenceFlag == 0) {
         turbX = turbY = turbZ = 0.0f;
     } else {
-        float turbForce = particle->size * dragCoeff;
+        float turbForce = particle->size * dragCoefficient;
         turbX = invSpeed * vel[0] * turbForce;
         turbY = invSpeed * vel[1] * turbForce;
         turbZ = invSpeed * vel[2] * turbForce;
     }
 
-    vel[0] -= (dragCoeff * vel[0] * deltaTime + turbX * deltaTime);
-    vel[1] -= (turbY * deltaTime + dragCoeff * vel[1] * deltaTime);
-    vel[2] -= (turbZ * deltaTime + dragCoeff * vel[2] * deltaTime);
+    vel[0] -= (dragCoefficient * vel[0] * deltaTime + turbX * deltaTime);
+    vel[1] -= (turbY * deltaTime + dragCoefficient * vel[1] * deltaTime);
+    vel[2] -= (turbZ * deltaTime + dragCoefficient * vel[2] * deltaTime);
 }
 
 void gbPartGroupParam::ComputeParticleParam(gbParticleUnit* particle, float lifeFactor, float deltaTime) {
@@ -139,20 +145,15 @@ void gbPartGroupParam::ComputeParticleParam(gbParticleUnit* particle, float life
     sizeControl.GetValue(val, lifeFactor);
     particle->size = val[0];
 
-    gbPartParamControl* rotCtrl = (gbPartParamControl*)((char*)this + 0x134C);
-    rotCtrl->GetValue(val, lifeFactor);
-    int rotRandMin = *(int*)((char*)this + 0x148);
-    int rotRandMax = *(int*)((char*)this + 0x14C);
+    rotControl.GetValue(val, lifeFactor);
     int randDev = RandomInt(rotRandMin, rotRandMax);
     particle->rotation = ((float)randDev + val[0]) * deltaTime + particle->rotation;
     particle->rotation *= particle->rotationDir;
 
-    gbPartParamControl* alphaCtrl = (gbPartParamControl*)((char*)this + 0x2530);
-    alphaCtrl->GetValue(val, lifeFactor);
+    alphaControl.GetValue(val, lifeFactor);
     float alphaVal = val[0];
 
-    gbPartParamControl* colorCtrl = (gbPartParamControl*)((char*)this + 0x3714);
-    colorCtrl->GetValue(val, lifeFactor);
+    colorControl.GetValue(val, lifeFactor);
     particle->colorR = (unsigned char)(int)val[0];
     particle->colorG = (unsigned char)(int)val[1];
     particle->colorB = (unsigned char)(int)val[2];
@@ -166,16 +167,13 @@ void gbPartGroupParam::InitParticleParam(gbParticleUnit* particle) {
     sizeControl.GetValue(val, 0.0f);
     particle->size = val[0];
 
-    gbPartParamControl* rotCtrl = (gbPartParamControl*)((char*)this + 0x134C);
-    rotCtrl->GetValue(val, 0.0f);
+    rotControl.GetValue(val, 0.0f);
     particle->rotation = 0.0f;
 
-    gbPartParamControl* alphaCtrl = (gbPartParamControl*)((char*)this + 0x2530);
-    alphaCtrl->GetValue(val, 0.0f);
+    alphaControl.GetValue(val, 0.0f);
     float alphaInit = val[0];
 
-    gbPartParamControl* colorCtrl = (gbPartParamControl*)((char*)this + 0x3714);
-    colorCtrl->GetValue(val, 0.0f);
+    colorControl.GetValue(val, 0.0f);
     particle->colorR = (unsigned char)(int)val[0];
     particle->colorG = (unsigned char)(int)val[1];
     particle->colorB = (unsigned char)(int)val[2];
@@ -193,7 +191,7 @@ gbRenderEffect* gbPartGroupParam::GetRenderEffect(void) {
 /* ======== gbPartEmitter ======== */
 
 gbPartEmitter::gbPartEmitter(void) {
-    memset(data, 0, sizeof(data));
+    memset(this, 0, sizeof(gbPartEmitter));
 }
 
 gbPartEmitter::~gbPartEmitter(void) {
@@ -208,7 +206,7 @@ gbPartEmitter& gbPartEmitter::operator=(const gbPartEmitter& other) {
 
 void gbPartEmitter::LoadFromFile(gbVFile* vfile) {
     if (!vfile) return;
-    memset(data, 0, sizeof(data));
+    memset(this, 0, sizeof(gbPartEmitter));
 }
 
 int gbPartEmitter::ComputeEmitterData(gbEmitterData* emitData, double time, double deltaTime) {
@@ -217,54 +215,41 @@ int gbPartEmitter::ComputeEmitterData(gbEmitterData* emitData, double time, doub
 }
 
 void gbPartEmitter::ComputeParticleInitPos(gbParticleUnit* particle) {
-    int emitType = *(int*)((char*)data + 0x98);
-    float* basePos = (float*)((char*)data + 0x40);
-
     if (emitType == 0) {
-        float* rangeMin = (float*)((char*)data + 0xAC);
-        float* rangeMax = (float*)((char*)data + 0xB8);
-        particle->position.x = RandomFloat(rangeMin[0], rangeMax[0]) + basePos[0];
-        particle->position.y = RandomFloat(rangeMin[1], rangeMax[1]) + basePos[1];
-        particle->position.z = RandomFloat(rangeMin[2], rangeMax[2]) + basePos[2];
+        particle->position.x = RandomFloat(boxMin.x, boxMax.x) + basePosition.x;
+        particle->position.y = RandomFloat(boxMin.y, boxMax.y) + basePosition.y;
+        particle->position.z = RandomFloat(boxMin.z, boxMax.z) + basePosition.z;
     } else if (emitType == 1) {
-        float radius = *(float*)((char*)data + 0xC4);
-        float radiusVar = *(float*)((char*)data + 0xC8);
-        float r = RandomFloat(0.0f, (rand() & 1) ? radius : radius + radiusVar);
+        float r = RandomFloat(0.0f, (rand() & 1) ? sphereRadius : sphereRadius + sphereRadiusVar);
         float theta = RandomFloat(0.0f, 180.0f);
         float phi = RandomFloat(0.0f, 360.0f);
         float sinTheta = sinf(theta * DEG2RAD);
         float sinPhi = sinf(phi * DEG2RAD);
-        particle->position.x = sinPhi * sinTheta * r + basePos[0];
-        particle->position.y = cosf(theta * DEG2RAD) * r + basePos[1];
-        particle->position.z = cosf(phi * DEG2RAD) * sinTheta * r + basePos[2];
+        particle->position.x = sinPhi * sinTheta * r + basePosition.x;
+        particle->position.y = cosf(theta * DEG2RAD) * r + basePosition.y;
+        particle->position.z = cosf(phi * DEG2RAD) * sinTheta * r + basePosition.z;
     } else if (emitType == 2) {
-        int numVerts = *(int*)((char*)data + 0xD4);
-        int idx = RandomInt(0, numVerts - 1);
-        gbVec3D* verts = *(gbVec3D**)((char*)data + 0xCC);
-        gbMatrix4* mat = (gbMatrix4*)((char*)data + 0xD8);
+        int idx = RandomInt(0, numMeshVertices - 1);
         gbVec3D pos;
-        pos.x = mat->m[0][0] * verts[idx].x + mat->m[1][0] * verts[idx].y + mat->m[2][0] * verts[idx].z + mat->m[3][0];
-        pos.y = mat->m[0][1] * verts[idx].x + mat->m[1][1] * verts[idx].y + mat->m[2][1] * verts[idx].z + mat->m[3][1];
-        pos.z = mat->m[0][2] * verts[idx].x + mat->m[1][2] * verts[idx].y + mat->m[2][2] * verts[idx].z + mat->m[3][2];
-        particle->position.x = pos.x + basePos[0];
-        particle->position.y = pos.y + basePos[1];
-        particle->position.z = pos.z + basePos[2];
+        pos.x = meshTransform.m[0][0] * pMeshVertices[idx].x + meshTransform.m[1][0] * pMeshVertices[idx].y + meshTransform.m[2][0] * pMeshVertices[idx].z + meshTransform.m[3][0];
+        pos.y = meshTransform.m[0][1] * pMeshVertices[idx].x + meshTransform.m[1][1] * pMeshVertices[idx].y + meshTransform.m[2][1] * pMeshVertices[idx].z + meshTransform.m[3][1];
+        pos.z = meshTransform.m[0][2] * pMeshVertices[idx].x + meshTransform.m[1][2] * pMeshVertices[idx].y + meshTransform.m[2][2] * pMeshVertices[idx].z + meshTransform.m[3][2];
+        particle->position.x = pos.x + basePosition.x;
+        particle->position.y = pos.y + basePosition.y;
+        particle->position.z = pos.z + basePosition.z;
     }
 }
 
 void gbPartEmitter::ComputeParticleInitVel(gbEmitterData* emitData, gbParticleUnit* particle) {
-    float speedMin = *(float*)((char*)emitData + 0x0C);
-    float speedMax = *(float*)((char*)emitData + 0x10);
-    float speed = RandomFloat(speedMin, speedMax);
-    float* randDeviation = (float*)((char*)data + 0x4C);
+    float speed = RandomFloat(emitData->speedScale, emitData->speedVariance);
 
-    particle->velocity.x = speed * emitData->velocity.x + RandomFloat(-randDeviation[0], randDeviation[0]);
-    particle->velocity.y = speed * emitData->velocity.y + RandomFloat(-randDeviation[1], randDeviation[1]);
-    particle->velocity.z = speed * emitData->velocity.z + RandomFloat(-randDeviation[2], randDeviation[2]);
+    particle->velocity.x = speed * emitData->velocity.x + RandomFloat(-velocityDeviation.x, velocityDeviation.x);
+    particle->velocity.y = speed * emitData->velocity.y + RandomFloat(-velocityDeviation.y, velocityDeviation.y);
+    particle->velocity.z = speed * emitData->velocity.z + RandomFloat(-velocityDeviation.z, velocityDeviation.z);
 }
 
 void gbPartEmitter::SetLoopEmit(bool loop) {
-    *(int*)((char*)data + 0x9C) = loop ? 1 : 0;
+    loopFlag = loop ? 1 : 0;
 }
 
 /* ======== gbParticleUnit ======== */
@@ -538,6 +523,7 @@ float gbParticleEffect::GetSpaceScale(void) {
 // ============================================================
 
 #include "gbengine/gbVFileSystem.h"
+#include "gbengine/gbGfxManager.h"
 
 extern gbVFileSystem* g_pVFileSys;
 extern char* gbVfgetdir(char* path, char* dir, int maxLen);
@@ -545,71 +531,20 @@ extern char* gbVfgetdir(char* path, char* dir, int maxLen);
 #pragma optimize("", off)
 #pragma auto_inline(off)
 
-// Class definitions needed for moved functions
-class gbAnimNodeGroup {
-public:
-    void* pNode;              // +0x00: pointer to root animation node
-    int field_04;             // +0x04
-    int field_08;             // +0x08
-    float field_0c;           // +0x0c: some float (init -1.0f)
-    int field_10;             // +0x10
-    int field_14;             // +0x14
-    int field_18;             // +0x18
-    int field_1c;             // +0x1c
-    int field_20;             // +0x20
-    int field_24;             // +0x24
-    int field_28;             // +0x28
-    int isDead;               // +0x2c: dead flag
-    int field_30;             // +0x30: active/priority flag
-    gbMatrix4 posMatrix;      // +0x34: position matrix (64 bytes)
-    // total: 0x74 = 116 bytes
-
-    static void* s_pGfxMgr;  // stored at DAT_101379b0
-
-public:
-    gbAnimNodeGroup(class gbGfxManager * p0);
-    ~gbAnimNodeGroup();
-    class gbAnimNodeGroup & operator=(class gbAnimNodeGroup const & p0);
-    void Attach();
-    class gbAnimNodeGroup * Clone();
-    int IsDead();
-    void LoadFromFile(char * p0);
-    void Reset();
-    void SetPosition(struct gbMatrix4 const & p0);
-    void SetPosition(struct gbVec3D const & p0);
-    void SetPriority(int p0);
-    static void SetSoundFileDir(char * p0);
-    void SetToDead();
-    void ShowGroup(int p0);
-    void Update();
-};
-
-struct gbEmitterSquare {
-    char _stub_data[128];
-
-public:
-    gbEmitterSquare();
-
-public:
-    struct gbEmitterSquare & operator=(struct gbEmitterSquare const & p0);
-
-};
+#include "gbengine/gbengine_internal.h"
 
 // Static member definition
-void* gbAnimNodeGroup::s_pGfxMgr = 0;
+gbGfxManager* gbAnimNodeGroup::s_pGfxMgr = 0;
 
 // ---- gbAnimNodeGroup ----
 gbAnimNodeGroup::gbAnimNodeGroup(class gbGfxManager * p0) {
-    // posMatrix constructed automatically via gbMatrix4 default ctor (identity)
-    // Initialize fields per Ghidra at 0x1000C3C0
     pNode = 0;
     field_24 = 0;
     s_pGfxMgr = p0;
     field_04 = 0;
-    field_08 = 0;
-    field_10 = 0;
-    field_0c = -1.0f;  // 0xBFF00000
-    field_14 = 0;
+    ((int*)&lastTime)[0] = 0;
+    ((float*)&lastTime)[1] = -1.0f;
+    elapsedTime = 0.0;
     field_18 = 0;
     field_28 = 0;
     isDead = 0;
@@ -651,10 +586,9 @@ void gbAnimNodeGroup::LoadFromFile(char * p0) {
 }
 
 void gbAnimNodeGroup::Reset() {
-    field_08 = 0;
-    field_10 = 0;
-    field_0c = -1.0f;
-    field_14 = 0;
+    ((int*)&lastTime)[0] = 0;
+    ((float*)&lastTime)[1] = -1.0f;
+    elapsedTime = 0.0;
     field_18 = 0;
     field_28 = 0;
     isDead = 1;
@@ -695,30 +629,29 @@ void gbAnimNodeGroup::Update() {
     if (isDead == 0) return;
     if (field_30 == 0) return;
 
-    double curTime = *(double*)((char*)s_pGfxMgr + 0x1f8);
-    double startTime = *(double*)((char*)this + 0x08);
-    double elapsed = *(double*)((char*)this + 0x10);
+    double curTime = s_pGfxMgr->CurTime;
+    double prevTime = lastTime;
+    double elapsed = elapsedTime;
     int loopPlay = 0;
 
     double delta = 0.0;
-    if (startTime < 0.0) {
+    if (prevTime < 0.0) {
         loopPlay = 1;
     } else {
-        delta = curTime - startTime;
+        delta = curTime - prevTime;
         if (delta >= 1.0) {
             delta = 0.0;
         }
     }
 
-    *(double*)((char*)this + 0x08) = curTime;
-    *(double*)((char*)this + 0x10) = elapsed + delta;
+    lastTime = curTime;
+    elapsedTime = elapsed + delta;
 
     int frames = (int)(elapsed + delta);
     if (frames >= 2) frames = 1;
 
     if (frames >= 1) {
-        field_10 = 0;
-        field_14 = 0;
+        elapsedTime = 0.0;
         field_18 = field_18 + frames;
         if (field_20 <= field_18) {
             field_18 = 0;

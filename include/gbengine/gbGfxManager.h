@@ -104,61 +104,43 @@ struct gbGfxDriverInfo {
 
 // ============================================================================
 // gbGfxManager - main graphics manager
-//
-// Layout from PAL3patch (sizeof gbGfxManager_D3D = 0x8F0):
-//   +0x00: vtable
-//   +0x04: flags/state
-//   +0x08: scene state
-//   +0x0C: gbGfxDriverInfo DrvInfo (0xA4 bytes)
-//   +0xB0: gbVertPoolMgr*
-//   +0xB4: gbEffectMgr*
-//   +0xB8: gbResManager* pTexResMgr
-//   +0xBC: gbPrintFontMgr*
-//   +0xC0: gbMatrixStack* pMatrixStack[4]
-//   ... many more fields in derived gbGfxManager_D3D ...
-//   +0x84C: IDirect3DDevice9* m_pd3dDevice (in D3D subclass)
+// sizeof = 0x5F0 (from PAL3A PDB), derived gbGfxManager_D3D = 0x8F0
+// Field layout verified against Ghidra disassembly and PAL3A PDB symbols.
 // ============================================================================
 class gbGfxManager {
 public:
-    // Vtable pointer is implicit in C++
-    int m_nState;               // +0x04: general state flags
-    int m_bInScene;             // +0x08: true while between BeginScene/EndScene
-
-    gbGfxDriverInfo DrvInfo;    // +0x0C: driver info (0xA4 bytes)
-
-    gbVertPoolMgr* pVertPoolMgr;        // +0xB0
-    gbEffectMgr* pEffectMgr;            // +0xB4
-    gbResManager* pTexResMgr;           // +0xB8
-    gbPrintFontMgr* pFontMgr;          // +0xBC
-    gbMatrixStack* pMatrixStack[4];     // +0xC0
-
-    gbSceneGraph* pSceneGraph;          // scene graph
-    gbCamera* pCamera;                  // active camera
-
-    gbColorFlt m_ambientLight;          // ambient light color
-    int m_bEmissiveEnable;              // emissive lighting flag
-    float m_fEmissiveFactor;            // emissive scale factor
-
-    double m_lastTime;                  // last frame time
-    double m_deltaTime;                 // time between frames
-    unsigned int m_lastTick;            // last tick count
-    unsigned int m_deltaTick;           // tick delta
-
-    gbMatrix4 m_worldMatrix;            // current world transform
-    gbMatrix4 m_viewMatrix;             // current view transform
-    gbMatrix4 m_projMatrix;             // current projection transform
-
-    gbViewPort m_viewport;              // current viewport
-    gbClearParam m_clearParam;          // clear parameters
-    int m_zBufferOffset;                // depth bias state
-
-    gbLight m_lights[8];                // light array (0x68 bytes each)
-    int m_lightEnable[8];               // light enable flags
-
-    gbFogParam m_fogParam;              // fog parameters (13 dwords)
-    gbGfxStatistic m_statistic;         // rendering statistics
-
-    int m_nWireMode;                    // wireframe rendering mode
+    // vtable implicit                          // +0x00
+    int m_nState;                               // +0x04
+    unsigned int hGfxWnd;                       // +0x08
+    gbGfxDriverInfo DrvInfo;                    // +0x0C (0xB8 bytes)
+    gbVertPoolMgr* pVertPoolMgr;               // +0xC4
+    gbEffectMgr* pEffectMgr;                   // +0xC8
+    gbResManager* pTexResMgr;                  // +0xCC
+    gbPrintFontMgr* pFontMgr;                 // +0xD0
+    gbMatrixStack* pMatrixStack[4];            // +0xD4
+    gbMatrix4 ViewMatrix;                      // +0xE4
+    gbMatrix4 InvViewMatrix;                   // +0x124
+    gbMatrix4 WorldMatrix;                     // +0x164
+    int CurZBias;                              // +0x1A4
+    int bWireMode;                             // +0x1A8
+    gbColorFlt AmbientLight;                   // +0x1AC
+    float fSelfIllum;                          // +0x1BC
+    gbSceneGraph* pSceneGraph;                 // +0x1C0
+    gbViewPort Viewport;                       // +0x1C4
+    gbClearParam ClearParam;                   // +0x1DC
+    int _pad1EC;                               // +0x1EC: alignment padding for double
+    double LastTime;                            // +0x1F0
+    double CurTime;                            // +0x1F8
+    unsigned int LastTick;                      // +0x200
+    unsigned int CurTick;                      // +0x204
+    gbGfxStatistic Stat;                       // +0x208 (0x10)
+    char _frameStats[0x20];                    // +0x218: fps, accumulated time, frame counters
+    gbLight AllLight[8];                       // +0x238 (0x68 × 8 = 0x340)
+    int LightEnable[8];                        // +0x578 (0x20)
+    gbFogParam FogParam;                       // +0x598 (0x34)
+    gbTexture* m_pCurTexture[8];               // +0x5CC (0x20)
+    char _pad5EC[4];                           // +0x5EC
+    // total sizeof = 0x5F0
 
     // 0x1001d910 (394B) - Constructor
     gbGfxManager(int& result, gbGfxDriverInfo* driverInfo);

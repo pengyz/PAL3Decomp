@@ -5,18 +5,10 @@
 
 #include "gbengine/gbActor.h"
 #include "gbengine/gbMisc.h"
+#include "gbengine/gbGfxManager.h"
+#include "gbengine/gbengine_internal.h"
 #include <cstring>
 #include <cstdlib>
-
-// Forward declarations
-class gbEffectMgr;
-
-class gbMatrixStack {
-public:
-    void Push(void);
-    void Pop(void);
-    void LoadMatrix(gbMatrix4* mat);
-};
 
 // Global variables
 extern gbGfxManager* g_pGfxManager;
@@ -47,7 +39,7 @@ gbActor::gbActor(gbActorDef* actorDef) : gbVisNode() {
 
         for (int i = 0; i < m_numActions; i++) {
             m_pActions[i].state = 0;
-            m_pActions[i].actionIndex = *((int*)&buffer1[i * 4 - 0xC]);
+            m_pActions[i].actionCrc = *((unsigned int*)&buffer1[i * 4 - 0xC]);
             m_pActions[i].endFrame = *((int*)&buffer2[i * 4 + 4]);
             m_pActions[i].weight = 0.0f;
             m_pActions[i].currentFrame = 0;
@@ -213,7 +205,7 @@ void gbActor::Update() {
 void gbActor::Render(gbRenderInfoObj* renderInfo) {
     if (!m_pActorDef || !renderInfo) return;
 
-    gbMatrixStack* matStack = *(gbMatrixStack**)((char*)pGfxMgr + 0xd8);
+    gbMatrixStack* matStack = pGfxMgr->pMatrixStack[1];
     matStack->Push();
     matStack->LoadMatrix((gbMatrix4*)((char*)renderInfo + 0x20));
 
@@ -230,7 +222,7 @@ void gbActor::Render(gbRenderInfoObj* renderInfo) {
 void gbActor::RenderShadowVolume(gbRenderInfoObj* renderInfo) {
     if (!m_pActorDef || !renderInfo) return;
 
-    gbMatrixStack* matStack = *(gbMatrixStack**)((char*)pGfxMgr + 0xd8);
+    gbMatrixStack* matStack = pGfxMgr->pMatrixStack[1];
     matStack->Push();
     matStack->LoadMatrix((gbMatrix4*)((char*)renderInfo + 0x20));
 
@@ -281,10 +273,8 @@ void gbActor::GotoAction(char* action1, char* action2, char* action3) {
     // Find action index by CRC
     int actionIdx = 0;
     if (m_numActions > 0) {
-        unsigned int* pCrc = (unsigned int*)((char*)m_pActions + 4);
-        while (*pCrc != crc) {
+        while (m_pActions[actionIdx].actionCrc != crc) {
             actionIdx++;
-            pCrc = (unsigned int*)((char*)pCrc + 0x24);
             if (actionIdx >= m_numActions) break;
         }
     }
@@ -342,22 +332,21 @@ void gbActor::GotoAction(unsigned long actionCrc, int loop, unsigned int startFr
 
     int actionIdx = 0;
     for (int i = 0; i < m_numActions; i++) {
-        gbActionState* action = (gbActionState*)((char*)m_pActions + i * 0x24);
+        gbActionState* action = &m_pActions[i];
 
-        if (*(unsigned int*)((char*)action + 4) == actionCrc) {
-            // Activate this action
-            *(int*)action = 1;  // state = 1 (active)
-            *(float*)((char*)action + 8) = 1.0f;  // weight = 1.0
+        if (action->actionCrc == actionCrc) {
+            action->state = 1;
+            action->weight = 1.0f;
 
             if (endFrame < startFrame) {
-                *(unsigned int*)((char*)action + 0xc) = 0;  // currentFrame = 0
+                action->currentFrame = 0;
             } else {
-                *(unsigned int*)((char*)action + 0xc) = startFrame;  // currentFrame = startFrame
+                action->currentFrame = startFrame;
             }
-            *(unsigned int*)((char*)action + 0x10) = startFrame;
-            *(unsigned int*)((char*)action + 0x14) = endFrame;
-            *(unsigned long*)((char*)action + 0x20) = transition;
-            *(int*)((char*)action + 0x1c) = 1;  // loop flag
+            action->startFrame = startFrame;
+            action->endFrame = endFrame;
+            action->transition = transition;
+            action->loopFlag = 1;
 
             // Call actorDef vtable[0x48] - set active action
             typedef void (__thiscall *SetActiveFn)(void*, int);
@@ -366,9 +355,8 @@ void gbActor::GotoAction(unsigned long actionCrc, int loop, unsigned int startFr
 
             UpdateExportNodes();
         } else {
-            // Deactivate other actions
-            *(int*)action = 0;  // state = 0 (inactive)
-            *(float*)((char*)action + 8) = 0.0f;  // weight = 0
+            action->state = 0;
+            action->weight = 0.0f;
         }
         actionIdx++;
     }
@@ -377,33 +365,23 @@ void gbActor::GotoAction(unsigned long actionCrc, int loop, unsigned int startFr
 // Lock action blend weight
 void gbActor::LockAction(char* actionName, float weight) {
     unsigned int crc = gbCrc32Compute(actionName);
-    int i = 0;
-    if (m_numActions > 0) {
-        unsigned int* pCrc = (unsigned int*)((char*)m_pActions + 4);
-        while (*pCrc != crc) {
-            i++;
-            pCrc = (unsigned int*)((char*)pCrc + 0x24);
-            if (i >= m_numActions) return;
+    for (int i = 0; i < m_numActions; i++) {
+        if (m_pActions[i].actionCrc == crc) {
+            m_pActions[i].state = 3;
+            m_pActions[i].weight = weight;
+            return;
         }
-        // Set state = 3 (locked), weight = param
-        *(int*)((char*)m_pActions + i * 0x24) = 3;
-        *(float*)((char*)m_pActions + i * 0x24 + 8) = weight;
     }
 }
 
 // Unlock action (set to fade-out state)
 void gbActor::UnlockAction(char* actionName) {
     unsigned int crc = gbCrc32Compute(actionName);
-    int i = 0;
-    if (m_numActions > 0) {
-        unsigned int* pCrc = (unsigned int*)((char*)m_pActions + 4);
-        while (*pCrc != crc) {
-            i++;
-            pCrc = (unsigned int*)((char*)pCrc + 0x24);
-            if (i >= m_numActions) return;
+    for (int i = 0; i < m_numActions; i++) {
+        if (m_pActions[i].actionCrc == crc) {
+            m_pActions[i].state = 2;
+            return;
         }
-        // Set state = 2 (fade out)
-        *(int*)((char*)m_pActions + i * 0x24) = 2;
     }
 }
 
@@ -423,19 +401,13 @@ unsigned int gbActor::GetEventTime(char* actionName, char* eventName) {
     unsigned int actionCrc = gbCrc32Compute(actionName);
     unsigned int eventCrc = gbCrc32Compute(eventName);
 
-    int i = 0;
-    if (m_numActions > 0) {
-        unsigned int* pCrc = (unsigned int*)((char*)m_pActions + 4);
-        while (*pCrc != actionCrc) {
-            i++;
-            pCrc = (unsigned int*)((char*)pCrc + 0x24);
-            if (i >= m_numActions) return 0xFFFFFFFF;
+    for (int i = 0; i < m_numActions; i++) {
+        if (m_pActions[i].actionCrc == actionCrc) {
+            void** defVtable = *(void***)m_pActorDef;
+            typedef unsigned int (__thiscall *GetEventFn)(void*, unsigned int, int);
+            GetEventFn getEvent = (GetEventFn)((void**)defVtable)[0x44 / 4];
+            return getEvent(m_pActorDef, eventCrc, i);
         }
-        // Found action, query event time via actorDef vtable[0x44]
-        void** defVtable = *(void***)m_pActorDef;
-        typedef unsigned int (__thiscall *GetEventFn)(void*, unsigned int, int);
-        GetEventFn getEvent = (GetEventFn)((void**)defVtable)[0x44 / 4];
-        return getEvent(m_pActorDef, eventCrc, i);
     }
     return 0xFFFFFFFF;
 }
@@ -445,8 +417,8 @@ int gbActor::GetTagNodeTM(gbMatrix4* matrix, char* tagName) {
     if (!m_pExportNodeData) return 0;
 
     unsigned int crc = gbCrc32Compute(tagName);
-    int numNodes = *(int*)((char*)this + 0x6c);  // m_maxExportNodes
-    unsigned int* nodeArray = *(unsigned int**)((char*)this + 0x68);  // m_pExportNodeData
+    int numNodes = m_maxExportNodes;
+    unsigned int* nodeArray = (unsigned int*)m_pExportNodeData;
 
     for (int i = 0; i < numNodes; i++) {
         // Each export node entry is 0x84 bytes (stride), CRC at offset 0
@@ -540,19 +512,14 @@ void gbActor::EnableActionTransMtl(char* actionName, bool enable) {
     if (!m_pActorDef) return;
 
     unsigned int crc = gbCrc32Compute(actionName);
-    int i = 0;
-    if (m_numActions > 0) {
-        unsigned int* pCrc = (unsigned int*)((char*)m_pActions + 4);
-        while (*pCrc != crc) {
-            i++;
-            pCrc = (unsigned int*)((char*)pCrc + 0x24);
-            if (i >= m_numActions) return;
+    for (int i = 0; i < m_numActions; i++) {
+        if (m_pActions[i].actionCrc == crc) {
+            void** defVtable = *(void***)m_pActorDef;
+            typedef void (__thiscall *EnableTransFn)(void*, int, bool);
+            EnableTransFn enableTrans = (EnableTransFn)((void**)defVtable)[0x4 / 4];
+            enableTrans(m_pActorDef, i, enable);
+            return;
         }
-        // Found action, call actorDef vtable[0x4]
-        void** defVtable = *(void***)m_pActorDef;
-        typedef void (__thiscall *EnableTransFn)(void*, int, bool);
-        EnableTransFn enableTrans = (EnableTransFn)((void**)defVtable)[0x4 / 4];
-        enableTrans(m_pActorDef, i, enable);
     }
 }
 

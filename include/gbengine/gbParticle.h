@@ -29,12 +29,37 @@ struct gbEmitterData {
 
 /* ======== gbPartParamControl ======== */
 
+// sizeof = 0x11E4 (4580 bytes)
+// Keyframe-based parameter control with 3 output channels and up to 101 keys.
+// GetValue interpolates across channels, returning result[0..2].
+
+#define GB_PARTCTRL_MAX_KEYS 101
+
+struct gbPartKeyframeCh0 {
+    float time;
+    float value;
+    float tangent;
+};
+
+struct gbPartKeyframeCh1 {
+    float value;
+    float tangentIn;
+    float tangentOut;
+};
+
 class gbPartParamControl {
 public:
-    int controlType;           // +0x00
-    int numKeys;               // +0x04
-    float keys[16];            // +0x08
-    float values[16][4];       // +0x48
+    int controlType;                        // +0x00
+    int numKeys;                            // +0x04
+    char configData[0xC0];                  // +0x08
+    char stateData[0x18];                   // +0xC8
+    char curveConfig[0x2D0];                // +0xE0
+    gbPartKeyframeCh0 ch0Keys[GB_PARTCTRL_MAX_KEYS]; // +0x3B0: {time,value,tangent} × 101
+    int ch0Pad;                             // +0x86C
+    gbPartKeyframeCh1 ch1Keys[GB_PARTCTRL_MAX_KEYS]; // +0x870: {value,tangentIn,tangentOut} × 101
+    gbPartKeyframeCh1 ch2Keys[GB_PARTCTRL_MAX_KEYS - 1]; // +0xD2C: {value,tangentIn,tangentOut} × 100
+    float ch2LastValue;                     // +0x11DC: entry 100 value
+    float ch2LastTangentIn;                 // +0x11E0: entry 100 tangentIn
 
     gbPartParamControl(void);
     gbPartParamControl& operator=(const gbPartParamControl& other);
@@ -79,27 +104,29 @@ struct gbPartGroupParam {
     int flags;                         // +0x20
     float gravity;                     // +0x24
     float airResistance;               // +0x28
-    float unused1;                     // +0x2c
-    float unused2;                     // +0x30
-    float unused3;                     // +0x34
+    float unused1;                     // +0x2C
+    int turbulenceFlag;                // +0x30
+    float dragCoefficient;             // +0x34
     char textureName[256];             // +0x38
     int blendMode;                     // +0x138
-    int unused4;                       // +0x13c
+    int unused4;                       // +0x13C
     int unused5;                       // +0x140
     int unused6;                       // +0x144
-    int unused7;                       // +0x148
-    int unused8;                       // +0x14c
+    int rotRandMin;                    // +0x148
+    int rotRandMax;                    // +0x14C
     int randomRotation;                // +0x150
     int unused9;                       // +0x154
     int unused10;                      // +0x158
-    int unused11;                      // +0x15c
+    int unused11;                      // +0x15C
     int numFrames;                     // +0x160
     int blendType;                     // +0x164
-    gbPartParamControl sizeControl;    // +0x168
-    char padding[0x3790];              // remaining controls
-    gbTexture* pTexture;               // +0x48f8
-    int textureLoaded;                 // +0x4938
-    gbRenderEffect* pRenderEffect;     // +0x493c
+    gbPartParamControl sizeControl;    // +0x168 (0x11E4 bytes)
+    gbPartParamControl rotControl;     // +0x134C (0x11E4 bytes)
+    gbPartParamControl alphaControl;   // +0x2530 (0x11E4 bytes)
+    gbPartParamControl colorControl;   // +0x3714 (0x11E4 bytes)
+    gbTexture* pTexture;               // +0x48F8
+    int textureLoaded;                 // +0x48FC
+    gbRenderEffect* pRenderEffect;     // +0x4900
 
     gbPartGroupParam(void);
     ~gbPartGroupParam(void);
@@ -118,7 +145,22 @@ struct gbPartGroupParam {
 
 class gbPartEmitter {
 public:
-    char data[0x520];
+    char configData[0x40];          // +0x00: emitter config
+    gbVec3D basePosition;           // +0x40: emission origin
+    gbVec3D velocityDeviation;      // +0x4C: random velocity spread
+    char reserved1[0x40];           // +0x58: gap
+    int emitType;                   // +0x98: 0=box, 1=sphere, 2=mesh
+    int loopFlag;                   // +0x9C
+    char reserved2[0x0C];           // +0xA0: gap
+    gbVec3D boxMin;                 // +0xAC: box emitter min bounds
+    gbVec3D boxMax;                 // +0xB8: box emitter max bounds
+    float sphereRadius;             // +0xC4: sphere emitter radius
+    float sphereRadiusVar;          // +0xC8: sphere radius variance
+    gbVec3D* pMeshVertices;         // +0xCC: mesh emitter vertices
+    int reserved3;                  // +0xD0
+    int numMeshVertices;            // +0xD4: mesh vertex count
+    gbMatrix4 meshTransform;        // +0xD8: mesh emitter transform (64 bytes)
+    char remaining[0x408];          // +0x118: remaining data
 
     gbPartEmitter(void);
     ~gbPartEmitter(void);
