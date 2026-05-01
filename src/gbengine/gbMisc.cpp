@@ -692,18 +692,10 @@ double gbTimeCounter_Off(gbTimeCounter* This)
 
 // ======== gbPixelFormat Class ========
 
-enum gbPixelFmtType {
-    PIXFMT_UNKNOWN = 0,
-    PIXFMT_R8G8B8 = 1,
-    PIXFMT_A8R8G8B8 = 2,
-    PIXFMT_X8R8G8B8 = 3,
-    PIXFMT_R5G6B5 = 4,
-    PIXFMT_X1R5G5B5 = 5,
-    PIXFMT_A1R5G5B5 = 6,
-    PIXFMT_A4R4G4B4 = 7,
-    PIXFMT_A8 = 8,
-    PIXFMT_PALETTE8 = 9
-};
+// gbPixelFmtType enum is in gbengine_types.h
+// Local aliases for this file's switch statements
+#define PIXFMT_A8R8G8B8 GB_PFT_A8R8G8B8
+#define PIXFMT_R8G8B8   GB_PFT_R8G8B8
 
 struct gbPixelFormatImpl {
     int bpp;
