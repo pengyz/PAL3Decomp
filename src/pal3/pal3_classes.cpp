@@ -2323,6 +2323,137 @@ __declspec(noinline) void __fastcall Setter_004B73D0(void* self, int, int v)
 /* 0x00436701 (8B) - uses ret instead of ret 4 (non-standard calling convention, skip) */
 
 /* ========================================================================
+ * Conditional branch functions (11-17 bytes)
+ * Pattern: load field, test, branch, then load/store
+ * ======================================================================== */
+
+/* 0x0053c710 (11B) - gbBinkVideo::GetWidth
+ * 8b 41 0c 85 c0 75 01 c3 8b 00 c3
+ * mov eax,[ecx+0xc] / test eax,eax / jnz +1 / ret / mov eax,[eax] / ret */
+__declspec(noinline) int __fastcall gbBinkVideo_GetWidth(void* self, int)
+{
+    int* hBink = *(int**)((char*)self + 0x0C);
+    if (!hBink)
+        return 0;
+    return *hBink;
+}
+
+/* 0x0053c720 (12B) - gbBinkVideo::GetHeight
+ * 8b 41 0c 85 c0 75 01 c3 8b 40 04 c3
+ * mov eax,[ecx+0xc] / test eax,eax / jnz +1 / ret / mov eax,[eax+4] / ret */
+__declspec(noinline) int __fastcall gbBinkVideo_GetHeight(void* self, int)
+{
+    int* hBink = *(int**)((char*)self + 0x0C);
+    if (!hBink)
+        return 0;
+    return *(hBink + 1);
+}
+
+/* 0x0043EBA0 (16B) - cannot match: original loads field14 into edx then sub,
+ * modern MSVC uses direct sub eax,[ecx+14] (mem operand) */
+
+/* 0x00535E50 (17B) - conditional store: if(param!=0) this->fieldE0 = param
+ * 8b 44 24 04 85 c0 74 06 89 81 e0 00 00 00 c2 04 00 */
+__declspec(noinline) void __fastcall Func_00535E50(void* self, int, int param)
+{
+    if (param != 0) {
+        *(int*)((char*)self + 0xE0) = param;
+    }
+}
+
+/* 0x00411220 (17B) - cannot match: register allocation differs (ecx vs eax for first param) */
+
+/* 0x00444D10 (15B) - cannot match: compiler merges two adjacent byte stores into word store */
+
+/* 0x0046EC30 (18B) - conditional store with compare: if(param < 2) store
+ * 8b 44 24 04 83 f8 02 7d 06 89 81 cc 70 00 00 c2 04 00 */
+__declspec(noinline) void __fastcall Func_0046EC30(void* self, int, int param)
+{
+    if (param < 2) {
+        *(int*)((char*)self + 0x70CC) = param;
+    }
+}
+
+/* 0x00472A80 (18B) - same pattern as 0046EC30 but different offset
+ * 8b 44 24 04 83 f8 02 7d 06 89 81 58 e5 01 00 c2 04 00 */
+__declspec(noinline) void __fastcall Func_00472A80(void* self, int, int param)
+{
+    if (param < 2) {
+        *(int*)((char*)self + 0x1E558) = param;
+    }
+}
+
+/* 0x004022C0 (18B) - cannot match: original uses mov+and 0xFFFF then 16-bit movzx,
+ * modern MSVC uses movzx word first then 8-bit movzx */
+
+/* 0x00535960 (14B) - conditional store to disp8: if(param) this->4 = param
+ * 8b 44 24 04 85 c0 74 03 89 41 04 c2 04 00 */
+__declspec(noinline) void __fastcall Func_00535960(void* self, int, int param)
+{
+    if (param != 0) {
+        *(int*)((char*)self + 0x04) = param;
+    }
+}
+
+/* 0x0040F030 (19B) - vector::size pattern: if(!field4) return 0; else (field8-field4)>>2
+ * 8b 51 04 85 d2 75 03 33 c0 c3 8b 41 08 2b c2 c1 f8 02 c3 */
+__declspec(noinline) int __fastcall Func_0040F030(void* self, int)
+{
+    int base = *(int*)((char*)self + 0x04);
+    if (!base)
+        return 0;
+    return (*(int*)((char*)self + 0x08) - base) >> 2;
+}
+
+/* 0x005372B0 (19B) - vector::size: same pattern as 0040F030
+ * 8b 51 04 85 d2 75 03 33 c0 c3 8b 41 08 2b c2 c1 f8 02 c3 */
+__declspec(noinline) int __fastcall Func_005372B0(void* self, int)
+{
+    int base = *(int*)((char*)self + 0x04);
+    if (!base)
+        return 0;
+    return (*(int*)((char*)self + 0x08) - base) >> 2;
+}
+
+/* 0x004209F0 (23B) - cannot match: register allocation differs
+ * (modern uses edx for stride, original uses eax) */
+
+/* ========================================================================
+ * rep stosd zero-init functions (18B each)
+ * Pattern: mov edx,ecx / push edi / mov ecx,N / xor eax,eax /
+ *          mov edi,edx / rep stosd / mov eax,edx / pop edi / ret
+ * These clear N dwords starting at this pointer and return this.
+ * ======================================================================== */
+
+/* 0x0043F650 (20B) - cannot match: load field then test, field value not used in branches
+ * (compiler optimizes to cmp [mem],0 instead of mov+test) */
+
+/* 0x0043DED0 (18B) - rep stosd zero-init: clear 18 dwords from this, return this
+ * These are likely compiler-generated constructor zero-init code from MSVC 7.0.
+ * Modern MSVC generates different patterns for memset/loop, unlikely to match. */
+
+/* 0x0041CBD0 (22B) - cannot match: modern MSVC uses fld+fcompp instead of fcomp [mem],
+ * and inverts branch condition (test ah,41/jnz vs test ah,01/jz) */
+
+/* 0x004FCDE0 (21B) - cannot match: compiler optimizes away redundant branch
+ * (both paths store same thing, compiler collapses to one store) */
+
+/* 0x00402D00 (20B) - cannot match: original uses mov al,[ecx+4]/test al,al
+ * but modern MSVC emits cmp byte [ecx+4],0 */
+
+/* 0x0043FD90 (21B) - cannot match: original uses mov eax,[esp+4]/test eax,eax
+ * but modern MSVC emits cmp dword [esp+4],0 */
+
+/* 0x00445e50 (17B) - cannot match: original uses mov eax,[ecx+34]/test eax,eax
+ * but modern MSVC emits cmp dword [ecx+34],0 (different encoding) */
+
+/* 0x00445fe0 (36B) - cannot match: original uses push esi/add ecx,0x10/mov via esi
+ * but modern MSVC does sequential load-store without esi register */
+
+/* 0x0053c6f0 (17B) - cannot match: load-all-then-store-all pattern
+ * Original loads both params into eax+edx first, modern does load1-store1-load2-store2 */
+
+/* ========================================================================
  * Force-reference table - prevents linker from stripping COMDAT functions
  * that have no callers yet. These are matching decompilation targets.
  * ======================================================================== */
@@ -2485,6 +2616,14 @@ PFN_VOID g_pal3_force_refs[] = {
     (PFN_VOID)Func_0053EDD0,
     (PFN_VOID)Func_00532D40,
     (PFN_VOID)Setter_004B73D0,
+    (PFN_VOID)gbBinkVideo_GetWidth,
+    (PFN_VOID)gbBinkVideo_GetHeight,
+    (PFN_VOID)Func_00535E50,
+    (PFN_VOID)Func_0046EC30,
+    (PFN_VOID)Func_00472A80,
+    (PFN_VOID)Func_00535960,
+    (PFN_VOID)Func_0040F030,
+    (PFN_VOID)Func_005372B0,
 };
 
 #pragma comment(linker, "/include:?GetDataEntry@SceneMgrData@@QAEPAXH@Z")
