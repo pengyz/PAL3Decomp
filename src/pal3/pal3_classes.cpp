@@ -40,6 +40,17 @@ int gbBinkVideo::GetHeight()
     return *(bink + 1);
 }
 
+/* 0x0053c6f0 (17 bytes)
+ * __thiscall: this in ECX, 2 stack params (RET 8)
+ * MOV EAX,[ESP+4] / MOV EDX,[ESP+8] / MOV [ECX+4],EAX / MOV [ECX+8],EDX / RET 8
+ * Sets display position (m_pos.x, m_pos.y)
+ */
+void gbBinkVideo::SetPos(int x, int y)
+{
+    this->m_pos.x = x;
+    this->m_pos.y = y;
+}
+
 /* 0x0053c460 (16 bytes)
  * MOV EAX,[ECX+0xC] / TEST EAX,EAX / JNZ +1 / RET / PUSH EAX / CALL [0x0056a1d4] / RET
  */
@@ -280,6 +291,16 @@ int C2DSpark::CreateSingle(C2DSpark_tagSpark* pSpark)
 /* ========================================================================
  * GRPinput methods - DirectInput device acquisition
  * ======================================================================== */
+
+/* 0x004022B0 (10 bytes)
+ * __thiscall: this in ECX, 1 stack param (RET 4)
+ * MOV EAX,[ESP+4] / MOV [ECX+0xC],EAX / RET 4
+ * Sets the key repeat delay value.
+ */
+void GRPinput::SetRepeatDelay(int delay)
+{
+    this->m_nRepeatDelay = delay;
+}
 
 /* 0x00402310 (65 bytes)
  * __thiscall: this in ECX (ESI)
@@ -1506,6 +1527,310 @@ void GRPinput::PollKeyboard()
 }
 
 /* ========================================================================
+ * Simple setters - 10-byte pattern: mov eax,[esp+4]/mov [ecx+N],eax/ret 4
+ * All produce exact byte matches with original.
+ * ======================================================================== */
+
+/* 0x00402FA0 (10 bytes) - GRPinput: set field at offset 0x20 */
+__declspec(noinline) void __fastcall GRPinput_SetField20(void* self, int /*edx*/, int value)
+{
+    *(int*)((char*)self + 0x20) = value;
+}
+
+/* 0x0043A4B0 (10 bytes) - UIAnimateCtrl: set m_pFrameTex at offset 0x44 */
+__declspec(noinline) void __fastcall UICtrl_SetField44(void* self, int /*edx*/, int value)
+{
+    *(int*)((char*)self + 0x44) = value;
+}
+
+/* 0x00450550 (10 bytes) - Game control: set field at offset 0x50 */
+__declspec(noinline) void __fastcall GameCtrl_SetField50(void* self, int /*edx*/, int value)
+{
+    *(int*)((char*)self + 0x50) = value;
+}
+
+/* 0x004B73D0 (10 bytes) - Combat/effect: set field at offset 0x5C */
+__declspec(noinline) void __fastcall CombatObj_SetField5C(void* self, int /*edx*/, int value)
+{
+    *(int*)((char*)self + 0x5C) = value;
+}
+
+/* 0x0051BB40 (10 bytes) - CCBLineupWindow: set currentPage at offset 0x74 */
+__declspec(noinline) void __fastcall CCBLineup_SetPage(void* self, int /*edx*/, int value)
+{
+    *(int*)((char*)self + 0x74) = value;
+}
+
+/* 0x00530340 (10 bytes) - Resource: set field at offset 0x04 */
+__declspec(noinline) void __fastcall Resource_SetField04(void* self, int /*edx*/, int value)
+{
+    *(int*)((char*)self + 0x04) = value;
+}
+
+/* ========================================================================
+ * 13-byte setters - dword displacement: mov eax,[esp+4]/mov [ecx+NNNN],eax/ret 4
+ * Pattern: 8b 44 24 04 89 81 XX XX XX XX c2 04 00
+ * All produce exact byte matches with original.
+ * ======================================================================== */
+
+/* 0x0041D5B0 (13 bytes) - field offset 0x1CC */
+__declspec(noinline) void __fastcall Setter_0041D5B0(void* self, int /*edx*/, int value)
+{
+    *(int*)((char*)self + 0x1CC) = value;
+}
+
+/* 0x0041D5C0 (13 bytes) - field offset 0x1D4 */
+__declspec(noinline) void __fastcall Setter_0041D5C0(void* self, int /*edx*/, int value)
+{
+    *(int*)((char*)self + 0x1D4) = value;
+}
+
+/* 0x0043A0E0 (13 bytes) - field offset 0xF8 */
+__declspec(noinline) void __fastcall Setter_0043A0E0(void* self, int /*edx*/, int value)
+{
+    *(int*)((char*)self + 0xF8) = value;
+}
+
+/* 0x0043A680 (13 bytes) - field offset 0x9C */
+__declspec(noinline) void __fastcall Setter_0043A680(void* self, int /*edx*/, int value)
+{
+    *(int*)((char*)self + 0x9C) = value;
+}
+
+/* 0x0043F640 (13 bytes) - field offset 0x454 */
+__declspec(noinline) void __fastcall Setter_0043F640(void* self, int /*edx*/, int value)
+{
+    *(int*)((char*)self + 0x454) = value;
+}
+
+/* 0x0043F690 (13 bytes) - field offset 0x4A4 */
+__declspec(noinline) void __fastcall Setter_0043F690(void* self, int /*edx*/, int value)
+{
+    *(int*)((char*)self + 0x4A4) = value;
+}
+
+/* 0x004421F0 (13 bytes) - field offset 0x150 */
+__declspec(noinline) void __fastcall Setter_004421F0(void* self, int /*edx*/, int value)
+{
+    *(int*)((char*)self + 0x150) = value;
+}
+
+/* 0x00442C80 (13 bytes) - field offset 0x94 */
+__declspec(noinline) void __fastcall Setter_00442C80(void* self, int /*edx*/, int value)
+{
+    *(int*)((char*)self + 0x94) = value;
+}
+
+/* 0x00445910 (13 bytes) - field offset 0xB4 */
+__declspec(noinline) void __fastcall Setter_00445910(void* self, int /*edx*/, int value)
+{
+    *(int*)((char*)self + 0xB4) = value;
+}
+
+/* 0x00449980 (13 bytes) - field offset 0x16C */
+__declspec(noinline) void __fastcall Setter_00449980(void* self, int /*edx*/, int value)
+{
+    *(int*)((char*)self + 0x16C) = value;
+}
+
+/* 0x00455190 (13 bytes) - field offset 0xB0 */
+__declspec(noinline) void __fastcall Setter_00455190(void* self, int /*edx*/, int value)
+{
+    *(int*)((char*)self + 0xB0) = value;
+}
+
+/* 0x004B4840 (13 bytes) - field offset 0x84 */
+__declspec(noinline) void __fastcall Setter_004B4840(void* self, int /*edx*/, int value)
+{
+    *(int*)((char*)self + 0x84) = value;
+}
+
+/* 0x004B4910 (13 bytes) - field offset 0x244 */
+__declspec(noinline) void __fastcall Setter_004B4910(void* self, int /*edx*/, int value)
+{
+    *(int*)((char*)self + 0x244) = value;
+}
+
+/* 0x004BB180 (13 bytes) - field offset 0x164 */
+__declspec(noinline) void __fastcall Setter_004BB180(void* self, int /*edx*/, int value)
+{
+    *(int*)((char*)self + 0x164) = value;
+}
+
+/* 0x004BC7E0 (13 bytes) - field offset 0x58968 */
+__declspec(noinline) void __fastcall Setter_004BC7E0(void* self, int /*edx*/, int value)
+{
+    *(int*)((char*)self + 0x58968) = value;
+}
+
+/* 0x0051F070 (13 bytes) - field offset 0x1F4C */
+__declspec(noinline) void __fastcall Setter_0051F070(void* self, int /*edx*/, int value)
+{
+    *(int*)((char*)self + 0x1F4C) = value;
+}
+
+/* 0x0051F080 (13 bytes) - field offset 0x1F50 */
+__declspec(noinline) void __fastcall Setter_0051F080(void* self, int /*edx*/, int value)
+{
+    *(int*)((char*)self + 0x1F50) = value;
+}
+
+/* 0x0051F090 (13 bytes) - field offset 0x1F54 */
+__declspec(noinline) void __fastcall Setter_0051F090(void* self, int /*edx*/, int value)
+{
+    *(int*)((char*)self + 0x1F54) = value;
+}
+
+/* 0x00524960 (13 bytes) - field offset 0x1484 */
+__declspec(noinline) void __fastcall Setter_00524960(void* self, int /*edx*/, int value)
+{
+    *(int*)((char*)self + 0x1484) = value;
+}
+
+/* 0x0052F300 (13 bytes) - field offset 0x12C */
+__declspec(noinline) void __fastcall Setter_0052F300(void* self, int /*edx*/, int value)
+{
+    *(int*)((char*)self + 0x12C) = value;
+}
+
+/* 0x0052FBA0 (13 bytes) - field offset 0x8A0 */
+__declspec(noinline) void __fastcall Setter_0052FBA0(void* self, int /*edx*/, int value)
+{
+    *(int*)((char*)self + 0x8A0) = value;
+}
+
+/* 0x00530990 (13 bytes) - field offset 0x308 */
+__declspec(noinline) void __fastcall Setter_00530990(void* self, int /*edx*/, int value)
+{
+    *(int*)((char*)self + 0x308) = value;
+}
+
+/* 0x005322D0 (13 bytes) - field offset 0x51C */
+__declspec(noinline) void __fastcall Setter_005322D0(void* self, int /*edx*/, int value)
+{
+    *(int*)((char*)self + 0x51C) = value;
+}
+
+/* 0x005322E0 (13 bytes) - field offset 0x520 */
+__declspec(noinline) void __fastcall Setter_005322E0(void* self, int /*edx*/, int value)
+{
+    *(int*)((char*)self + 0x520) = value;
+}
+
+/* 0x0053CDD0 (13 bytes) - field offset 0x1224 */
+__declspec(noinline) void __fastcall Setter_0053CDD0(void* self, int /*edx*/, int value)
+{
+    *(int*)((char*)self + 0x1224) = value;
+}
+
+/* ========================================================================
+ * 4-byte getters (__thiscall, no params): mov eax,[ecx+byte]/ret
+ * Pattern: 8b 41 XX c3
+ * ======================================================================== */
+
+/* 0x0044AB00 (4 bytes) - mov eax,[ecx-0x0C]/ret (negative offset getter) */
+__declspec(noinline) int __fastcall Getter_0044AB00(void* self, int)
+{
+    return *(int*)((char*)self - 0x0C);
+}
+
+/* 0x004503C0 (4 bytes) - mov eax,[ecx-0x10]/ret (negative offset getter) */
+__declspec(noinline) int __fastcall Getter_004503C0(void* self, int)
+{
+    return *(int*)((char*)self - 0x10);
+}
+
+/* 0x004B7020 (4 bytes) - field 0x58 */
+__declspec(noinline) int __fastcall Getter_004B7020(void* self, int)
+{
+    return *(int*)((char*)self + 0x58);
+}
+
+/* 0x004BDF60 (4 bytes) - field 0x08 */
+__declspec(noinline) int __fastcall Getter_004BDF60(void* self, int)
+{
+    return *(int*)((char*)self + 0x08);
+}
+
+/* 0x004DC5B0 (4 bytes) - field 0x20 */
+__declspec(noinline) int __fastcall Getter_004DC5B0(void* self, int)
+{
+    return *(int*)((char*)self + 0x20);
+}
+
+/* 0x004FE540 (4 bytes) - field 0x04 */
+__declspec(noinline) int __fastcall Getter_004FE540(void* self, int)
+{
+    return *(int*)((char*)self + 0x04);
+}
+
+/* 0x0051AC30 (4 bytes) - field 0x7C */
+__declspec(noinline) int __fastcall Getter_0051AC30(void* self, int)
+{
+    return *(int*)((char*)self + 0x7C);
+}
+
+/* ========================================================================
+ * 7-byte getters (__thiscall, no params): mov eax,[ecx+dword]/ret
+ * Pattern: 8b 81 XX XX XX XX c3
+ * ======================================================================== */
+
+/* 0x0044FF60 (7 bytes) - field 0x38CC */
+__declspec(noinline) int __fastcall Getter_0044FF60(void* self, int)
+{
+    return *(int*)((char*)self + 0x38CC);
+}
+
+/* 0x00451730 (7 bytes) - field 0x450 */
+__declspec(noinline) int __fastcall Getter_00451730(void* self, int)
+{
+    return *(int*)((char*)self + 0x450);
+}
+
+/* 0x00479040 (7 bytes) - field 0x84 */
+__declspec(noinline) int __fastcall Getter_00479040(void* self, int)
+{
+    return *(int*)((char*)self + 0x84);
+}
+
+/* 0x004790F0 (7 bytes) - field 0x8C */
+__declspec(noinline) int __fastcall Getter_004790F0(void* self, int)
+{
+    return *(int*)((char*)self + 0x8C);
+}
+
+/* 0x004791A0 (7 bytes) - field 0x94 */
+__declspec(noinline) int __fastcall Getter_004791A0(void* self, int)
+{
+    return *(int*)((char*)self + 0x94);
+}
+
+/* 0x00479250 (7 bytes) - field 0x9C */
+__declspec(noinline) int __fastcall Getter_00479250(void* self, int)
+{
+    return *(int*)((char*)self + 0x9C);
+}
+
+/* 0x004F3420 (7 bytes) - field 0x278 */
+__declspec(noinline) int __fastcall Getter_004F3420(void* self, int)
+{
+    return *(int*)((char*)self + 0x278);
+}
+
+/* 0x00525080 (7 bytes) - field 0x1490 */
+__declspec(noinline) int __fastcall Getter_00525080(void* self, int)
+{
+    return *(int*)((char*)self + 0x1490);
+}
+
+/* 0x0053E500 (7 bytes) - field 0x328 */
+__declspec(noinline) int __fastcall Getter_0053E500(void* self, int)
+{
+    return *(int*)((char*)self + 0x328);
+}
+
+
+/* ========================================================================
  * Force-reference table - prevents linker from stripping COMDAT functions
  * that have no callers yet. These are matching decompilation targets.
  * ======================================================================== */
@@ -1521,6 +1846,53 @@ PFN_VOID g_pal3_force_refs[] = {
     (PFN_VOID)CCBRoleState_GetActionState,
     (PFN_VOID)CCBRoleState_AnyPartyReady,
     (PFN_VOID)SoundMgr_CompareNames,
+    (PFN_VOID)GRPinput_SetField20,
+    (PFN_VOID)UICtrl_SetField44,
+    (PFN_VOID)GameCtrl_SetField50,
+    (PFN_VOID)CombatObj_SetField5C,
+    (PFN_VOID)CCBLineup_SetPage,
+    (PFN_VOID)Resource_SetField04,
+    (PFN_VOID)Setter_0041D5B0,
+    (PFN_VOID)Setter_0041D5C0,
+    (PFN_VOID)Setter_0043A0E0,
+    (PFN_VOID)Setter_0043A680,
+    (PFN_VOID)Setter_0043F640,
+    (PFN_VOID)Setter_0043F690,
+    (PFN_VOID)Setter_004421F0,
+    (PFN_VOID)Setter_00442C80,
+    (PFN_VOID)Setter_00445910,
+    (PFN_VOID)Setter_00449980,
+    (PFN_VOID)Setter_00455190,
+    (PFN_VOID)Setter_004B4840,
+    (PFN_VOID)Setter_004B4910,
+    (PFN_VOID)Setter_004BB180,
+    (PFN_VOID)Setter_004BC7E0,
+    (PFN_VOID)Setter_0051F070,
+    (PFN_VOID)Setter_0051F080,
+    (PFN_VOID)Setter_0051F090,
+    (PFN_VOID)Setter_00524960,
+    (PFN_VOID)Setter_0052F300,
+    (PFN_VOID)Setter_0052FBA0,
+    (PFN_VOID)Setter_00530990,
+    (PFN_VOID)Setter_005322D0,
+    (PFN_VOID)Setter_005322E0,
+    (PFN_VOID)Setter_0053CDD0,
+    (PFN_VOID)Getter_0044AB00,
+    (PFN_VOID)Getter_004503C0,
+    (PFN_VOID)Getter_004B7020,
+    (PFN_VOID)Getter_004BDF60,
+    (PFN_VOID)Getter_004DC5B0,
+    (PFN_VOID)Getter_004FE540,
+    (PFN_VOID)Getter_0051AC30,
+    (PFN_VOID)Getter_0044FF60,
+    (PFN_VOID)Getter_00451730,
+    (PFN_VOID)Getter_00479040,
+    (PFN_VOID)Getter_004790F0,
+    (PFN_VOID)Getter_004791A0,
+    (PFN_VOID)Getter_00479250,
+    (PFN_VOID)Getter_004F3420,
+    (PFN_VOID)Getter_00525080,
+    (PFN_VOID)Getter_0053E500,
 };
 
 #pragma comment(linker, "/include:?GetDataEntry@SceneMgrData@@QAEPAXH@Z")

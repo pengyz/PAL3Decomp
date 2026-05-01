@@ -23,6 +23,7 @@ struct gbBinkVideo {
 
     int GetWidth();          /* 0x0053c710 (11 bytes) */
     int GetHeight();         /* 0x0053c720 (12 bytes) */
+    void SetPos(int x, int y); /* 0x0053c6f0 (17 bytes) */
     void BinkWait();         /* 0x0053c460 (16 bytes) */
     int DrawFrameEx(void* buf, int pitch, int height, int x, int y, unsigned int flags);
                              /* 0x0053c530 (106 bytes) */
@@ -361,11 +362,13 @@ struct GRPinput {
     void* m_lpDI;                    /* offset 0x00: IDirectInput8* */
     void* m_lpDIDKeyboard;           /* offset 0x04: IDirectInputDevice8* */
     void* m_lpDIDMouse;              /* offset 0x08: IDirectInputDevice8* */
-    char padding1[0x186C - 0x0C];
+    int m_nRepeatDelay;              /* offset 0x0C: key repeat delay */
+    char padding1[0x186C - 0x10];
     int m_bMouse;                    /* offset 0x186C */
     int m_bKeyboard;                 /* offset 0x1870 */
     char padding2[0x2958 - 0x1874];
 
+    void SetRepeatDelay(int delay);  /* 0x004022B0 (10 bytes) */
     void AcquireMouse();             /* 0x00402310 (65 bytes) */
     void AcquireKeyboard();          /* 0x00402380 (75 bytes) */
     void UnacquireKeyboard();        /* 0x004023D0 (33 bytes) */
