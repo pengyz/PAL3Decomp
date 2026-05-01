@@ -54,12 +54,29 @@ typedef struct gbGfxManager* (__cdecl *PFN_gbCreateGraphManager)(struct gbGfxDri
 typedef int (__thiscall *PFN_gbGfxManager_BeginScene)(struct gbGfxManager*);
 typedef void (__thiscall *PFN_gbGfxManager_EndScene)(struct gbGfxManager*);
 
+/* gbMatrixStack methods (thiscall, called from UI rendering) */
+struct gbMatrixStack;
+typedef void (__thiscall *PFN_gbMatrixStack_Push)(struct gbMatrixStack*);
+typedef void (__thiscall *PFN_gbMatrixStack_Pop)(struct gbMatrixStack*);
+typedef void (__thiscall *PFN_gbMatrixStack_LoadIdentity)(struct gbMatrixStack*);
+
+/* Bink video API (stdcall, from binkw32.dll via IAT) */
+typedef void (__stdcall *PFN_BinkDoFrame)(void* bink);
+typedef void (__stdcall *PFN_BinkCopyToBuffer)(void* bink, void* buf, int pitch, int height, int x, int y, unsigned int flags);
+typedef void (__stdcall *PFN_BinkNextFrame)(void* bink);
+
 /* ========================================================================
  * Function Pointers (resolved at runtime)
  * ======================================================================== */
 
 extern PFN_gbUpdateCurTime pfn_gbUpdateCurTime;
 extern PFN_gbCreateGraphManager pfn_gbCreateGraphManager;
+extern PFN_gbMatrixStack_Push pfn_gbMatrixStack_Push;
+extern PFN_gbMatrixStack_Pop pfn_gbMatrixStack_Pop;
+extern PFN_gbMatrixStack_LoadIdentity pfn_gbMatrixStack_LoadIdentity;
+extern PFN_BinkDoFrame pfn_BinkDoFrame;
+extern PFN_BinkCopyToBuffer pfn_BinkCopyToBuffer;
+extern PFN_BinkNextFrame pfn_BinkNextFrame;
 
 /* ========================================================================
  * Global Variable Pointers (resolved at runtime)
