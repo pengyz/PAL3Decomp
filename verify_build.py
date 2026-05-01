@@ -61,7 +61,7 @@ def verify_target(target, output_name, generator="Visual Studio 17 2022"):
 def main():
     os.chdir(Path(__file__).parent)
 
-    targets = sys.argv[1:] if len(sys.argv) > 1 else ["pal3", "topo"]
+    targets = sys.argv[1:] if len(sys.argv) > 1 else ["pal3", "topo", "pal3a"]
 
     print(f"\nPAL3 Build Verification - Targets: {', '.join(targets)}\n")
 
@@ -73,6 +73,8 @@ def main():
             results[target] = verify_target("topo", "topo.dll")
         elif target == "gbengine":
             results[target] = verify_target("gbengine", "gbengine.dll")
+        elif target == "pal3a":
+            results[target] = verify_target("pal3a", "PAL3A.exe")
 
     print(f"\n{'='*60}")
     print("RESULTS:")
