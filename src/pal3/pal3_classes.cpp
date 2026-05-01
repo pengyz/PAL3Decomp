@@ -115,6 +115,26 @@ void UIWnd::Create(int id, RECT* pRect, void* parent)
     this->bEnabled = 1;
 }
 
+/* 0x00445e50 (17 bytes)
+ * __thiscall: this in ECX, 1 stack param (RET 0x4... actually no RET 0 in asm)
+ * If focusable, sets bEnabled.
+ */
+void UIWnd::SetEnabled(int bEnable)
+{
+    if (this->m_bFocusable != 0) {
+        this->bEnabled = bEnable;
+    }
+}
+
+/* 0x00445fe0 (36 bytes)
+ * __thiscall: this in ECX, 1 stack param (RET 0x4)
+ * Copies this->rect to output RECT pointer. Returns output pointer (in EAX).
+ */
+void UIWnd::GetRect(RECT* pOut)
+{
+    *pOut = this->rect;
+}
+
 /* 0x00445d20 (28 bytes)
  * MOV EAX,[ESP+8] / MOV EDX,[ECX+0x14] / SUB EAX,EDX
  * MOV EDX,[ESP+4] / PUSH EAX / MOV EAX,[ECX+0x10] / SUB EDX,EAX
@@ -723,4 +743,90 @@ void Role::OnBehaviourFinish()
         this->m_nBehaviourType = 0;
         this->m_nBehaviourFlags = 0;
     }
+}
+
+/* ========================================================================
+ * CCBAttackSequen methods - ATB gauge update
+ * ======================================================================== */
+
+/* Global ATB speed scale factor (float constant at 0x0056AB58) */
+static float g_fATBScale = 1000.0f;
+
+/* 0x004dba60 (185 bytes)
+ * __thiscall: this in ECX (EBP)
+ * Updates ATB gauges for all 11 combat roles each frame.
+ * For each active & alive role: accumulates speed * deltaTime * scale.
+ * Clamps to max value 0x2CEC (11500). Tracks overflow transitions.
+ */
+void CCBAttackSequen::RunOneStep()
+{
+    for (int i = 0; i < 11; i++) {
+        CCBAttackEntry* entry = &this->entries[i];
+
+        if (entry->bExists == 0) {
+            continue;
+        }
+
+        /* Check if role is alive: this->m_pBattleState[0x10] = CCBRoleState* */
+        char* pState = (char*)this->m_pBattleState;
+        CCBRoleState* roleState = *(CCBRoleState**)(pState + 0x10);
+        if (roleState->IsAlive(i) == 0) {
+            continue;
+        }
+
+        if (entry->bIsBuffing != 0) {
+            /* Buff path: accumulate into atbBuff */
+            float increment = (float)entry->buffSpeed * entry->deltaTime * g_fATBScale;
+            int newVal = (int)(increment + (float)entry->atbBuff);
+            entry->atbBuff = newVal;
+            if (newVal > 0x2CEC) {
+                entry->atbBuff = 0x2CEC;
+            }
+        } else {
+            /* Normal path: accumulate into atbNormal */
+            int oldVal = entry->atbNormal;
+            float increment = (float)entry->speed * entry->deltaTime * g_fATBScale;
+            int newVal = (int)(increment + (float)oldVal);
+            entry->atbNormal = newVal;
+            if (newVal >= 0x2CEC) {
+                if (oldVal < 0x2CEC) {
+                    entry->overflowCount++;
+                }
+                entry->atbNormal = 0x2CEC;
+            }
+        }
+    }
+}
+
+/* ========================================================================
+ * Global Accessor Functions - Singleton getters and array accessors
+ * ======================================================================== */
+
+/* 0x0053df70 (6 bytes, 95 callers)
+ * __cdecl: returns pointer to static SoundMgr instance
+ * MOV EAX,0x17b41e8 / RET
+ */
+static char s_SoundMgrData[0x32C];
+void* SoundMgr_GetInstance(void)
+{
+    return (void*)s_SoundMgrData;
+}
+
+/* 0x004ee870 (28 bytes, 37 callers)
+ * __thiscall: this in ECX, 1 stack param (RET 0x4)
+ * Returns pointer to role state entry: this + 0x228 + roleIndex * 0x37C
+ * Used to access per-role combat data.
+ */
+void* CCBRoleState_GetEntry(void* self, int roleIndex)
+{
+    return (char*)self + 0x228 + roleIndex * 0x37C;
+}
+
+/* 0x00420f30 (20 bytes, 43 callers)
+ * __thiscall: this in ECX, 1 stack param (RET 0x4)
+ * Returns pointer to scene role entry: this + 0x784E8 + index * 0xA4
+ */
+void* SceneMgr_GetRoleEntry(void* self, int index)
+{
+    return (char*)self + 0x784E8 + index * 0xA4;
 }

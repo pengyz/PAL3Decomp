@@ -47,6 +47,8 @@ struct UIWnd {
     int bEnabled;      /* offset 0x3C: enabled/interactive flag */
 
     void Create(int id, RECT* pRect, void* parent);  /* 0x00445b90 (87 bytes) */
+    void SetEnabled(int bEnable);               /* 0x00445e50 (17 bytes) */
+    void GetRect(RECT* pOut);                   /* 0x00445fe0 (36 bytes) */
     void MoveWindow(int x, int y);              /* 0x00445d20 (28 bytes) */
     void SetRect(RECT* pRect);                  /* 0x00445fa0 (52 bytes) */
     void Render();                              /* 0x00445cd0 (49 bytes) */
@@ -145,6 +147,35 @@ struct Role {
 
 struct CCBRoleState {
     int IsAlive(int roleIndex);       /* 0x004ed010 (46 bytes) */
+};
+
+/* ========================================================================
+ * CCBAttackSequen - ATB (Active Time Battle) gauge manager
+ *
+ * Manages ATB timers for 11 combat roles. Each role has a 0x28-byte entry
+ * starting at this+0x0C. ATB max value = 0x2CEC (11500).
+ * ======================================================================== */
+
+struct CCBAttackEntry {
+    float deltaTime;         /* +0x00: frame delta time */
+    char padding[0x10];      /* +0x04..+0x13 */
+    int atbNormal;           /* +0x14: normal ATB accumulator */
+    int atbBuff;             /* +0x18: buff ATB accumulator */
+    int overflowCount;       /* +0x1C: times ATB crossed max */
+    unsigned char speed;     /* +0x20: normal speed */
+    unsigned char buffSpeed; /* +0x21: buff speed */
+    unsigned char bIsBuffing;/* +0x22: is receiving buff */
+    char padding2;           /* +0x23 */
+    unsigned char bExists;   /* +0x24: slot active flag */
+    char padding3[3];        /* +0x25..+0x27 */
+};
+
+struct CCBAttackSequen {
+    void* m_pBattleState;    /* offset 0x00: pointer (->+0x10 = CCBRoleState*) */
+    char padding[8];         /* offset 0x04..0x0B */
+    CCBAttackEntry entries[11];  /* offset 0x0C: 11 entries * 0x28 bytes */
+
+    void RunOneStep();       /* 0x004dba60 (185 bytes) */
 };
 
 /* ========================================================================
