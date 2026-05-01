@@ -208,7 +208,7 @@ elseif(BUILD_TARGET STREQUAL "pal3a")
     message(STATUS "PAL3A.exe: ${CMAKE_CURRENT_LIST_FILE} source files")
 
 else()
-    message(FATAL_ERROR "Invalid BUILD_TARGET: ${BUILD_TARGET}. Must be 'topo', 'gbengine', or 'pal3'")
+    message(FATAL_ERROR "Invalid BUILD_TARGET: ${BUILD_TARGET}. Must be 'topo', 'gbengine', 'pal3', or 'pal3a'")
 endif()
 
 # Custom target: compare a specific function
