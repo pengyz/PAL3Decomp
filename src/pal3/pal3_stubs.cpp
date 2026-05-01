@@ -32,6 +32,23 @@ struct gbGfxManager* GB_GfxMgr;                  /* 0x00BFDA60 */
 struct gbGfxDriverInfo PAL3_s_drvinfo;           /* 0x00BFD6C8 */
 
 /* ========================================================================
+ * Extern C stubs for functions referenced by decompiled code
+ * ======================================================================== */
+
+extern "C" void FUN_00540440(void* pRect, void* pSize, void* pStruct, int flags, int param5, int param6)
+{
+    /* Draw frame/border texture - stub (original: 0x00540440) */
+}
+
+extern "C" void pal3free(void* ptr)
+{
+    /* Original calls CRT free (0x00541d10 -> CRT) */
+    if (ptr != NULL) {
+        free(ptr);
+    }
+}
+
+/* ========================================================================
  * PAL3_Create - Initialize game systems
  * Address: 0x00404800
  *

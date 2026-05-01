@@ -22,6 +22,7 @@ PFN_gbCreateGraphManager pfn_gbCreateGraphManager = NULL;
 PFN_gbMatrixStack_Push pfn_gbMatrixStack_Push = NULL;
 PFN_gbMatrixStack_Pop pfn_gbMatrixStack_Pop = NULL;
 PFN_gbMatrixStack_LoadIdentity pfn_gbMatrixStack_LoadIdentity = NULL;
+PFN_gbCamera_SetDimention pfn_gbCamera_SetDimention = NULL;
 PFN_BinkDoFrame pfn_BinkDoFrame = NULL;
 PFN_BinkCopyToBuffer pfn_BinkCopyToBuffer = NULL;
 PFN_BinkNextFrame pfn_BinkNextFrame = NULL;
@@ -73,6 +74,10 @@ BOOL LoadGBEngine(void)
     pfn_gbMatrixStack_LoadIdentity = (PFN_gbMatrixStack_LoadIdentity)GetProcAddress(
         g_hGBEngine, "?LoadIdentity@gbMatrixStack@@QAEXXZ");
 
+    /* gbCamera methods */
+    pfn_gbCamera_SetDimention = (PFN_gbCamera_SetDimention)GetProcAddress(
+        g_hGBEngine, "?SetDimention@gbCamera@@QAEXHH@Z");
+
     if (pfn_gbUpdateCurTime == NULL || pfn_gbCreateGraphManager == NULL) {
 #ifdef PAL3_DEV_MODE
         OutputDebugStringA("PAL3 DEV: Failed to resolve gbengine functions\n");
@@ -100,6 +105,7 @@ void UnloadGBEngine(void)
     pfn_gbMatrixStack_Push = NULL;
     pfn_gbMatrixStack_Pop = NULL;
     pfn_gbMatrixStack_LoadIdentity = NULL;
+    pfn_gbCamera_SetDimention = NULL;
     pfn_BinkDoFrame = NULL;
     pfn_BinkCopyToBuffer = NULL;
     pfn_BinkNextFrame = NULL;

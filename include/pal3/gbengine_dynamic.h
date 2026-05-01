@@ -60,6 +60,9 @@ typedef void (__thiscall *PFN_gbMatrixStack_Push)(struct gbMatrixStack*);
 typedef void (__thiscall *PFN_gbMatrixStack_Pop)(struct gbMatrixStack*);
 typedef void (__thiscall *PFN_gbMatrixStack_LoadIdentity)(struct gbMatrixStack*);
 
+/* gbCamera methods (thiscall, from gbengine.dll) */
+typedef void (__thiscall *PFN_gbCamera_SetDimention)(void* camera, int width, int height);
+
 /* Bink video API (stdcall, from binkw32.dll via IAT) */
 typedef void (__stdcall *PFN_BinkDoFrame)(void* bink);
 typedef void (__stdcall *PFN_BinkCopyToBuffer)(void* bink, void* buf, int pitch, int height, int x, int y, unsigned int flags);
@@ -74,6 +77,7 @@ extern PFN_gbCreateGraphManager pfn_gbCreateGraphManager;
 extern PFN_gbMatrixStack_Push pfn_gbMatrixStack_Push;
 extern PFN_gbMatrixStack_Pop pfn_gbMatrixStack_Pop;
 extern PFN_gbMatrixStack_LoadIdentity pfn_gbMatrixStack_LoadIdentity;
+extern PFN_gbCamera_SetDimention pfn_gbCamera_SetDimention;
 extern PFN_BinkDoFrame pfn_BinkDoFrame;
 extern PFN_BinkCopyToBuffer pfn_BinkCopyToBuffer;
 extern PFN_BinkNextFrame pfn_BinkNextFrame;

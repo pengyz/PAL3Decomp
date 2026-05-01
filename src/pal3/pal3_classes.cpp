@@ -74,6 +74,47 @@ int CCBRoleState::IsAlive(int roleIndex)
  * UIWnd methods
  * ======================================================================== */
 
+/* 0x00445bf0 (24 bytes) - Add child to parent's child array */
+static void __fastcall UIWnd_AddChild(UIWnd* parent, int /*edx*/, UIWnd* child)
+{
+    if (child == NULL) {
+        return;
+    }
+    /* Inserts child at index nChildren (append) via array insert helper.
+     * Original calls FUN_00432770 on the children array at parent+0x24. */
+    /* TODO: implement array insert (FUN_00432770) */
+}
+
+/* 0x00445e10 (51 bytes) - Offset child rect by parent's position */
+static void __fastcall UIWnd_AdjustRect(UIWnd* parent, int /*edx*/, RECT* childRect)
+{
+    childRect->left += parent->rect.left;
+    childRect->right += parent->rect.left;
+    childRect->top += parent->rect.top;
+    childRect->bottom += parent->rect.top;
+}
+
+/* 0x00445b90 (87 bytes)
+ * __thiscall: this in ECX (ESI), 3 stack params (RET 0xC)
+ * Sets ID, copies rect, sets parent. If parent != NULL: adds self as child
+ * and adjusts rect to parent coordinates. Then sets 3 flags to 1.
+ */
+void UIWnd::Create(int id, RECT* pRect, void* parent)
+{
+    this->m_id = id;
+    this->rect = *pRect;
+    this->m_pParent = parent;
+
+    if (parent != NULL) {
+        UIWnd_AddChild((UIWnd*)parent, 0, this);
+        UIWnd_AdjustRect((UIWnd*)parent, 0, &this->rect);
+    }
+
+    this->m_bFocusable = 1;
+    this->bVisible = 1;
+    this->bEnabled = 1;
+}
+
 /* 0x00445d20 (28 bytes)
  * MOV EAX,[ESP+8] / MOV EDX,[ECX+0x14] / SUB EAX,EDX
  * MOV EDX,[ESP+4] / PUSH EAX / MOV EAX,[ECX+0x10] / SUB EDX,EAX
@@ -423,4 +464,263 @@ int gbBinkVideo::DrawFrameEx(void* buf, int pitch, int height, int x, int y, uns
         pfn_BinkNextFrame(this->hBink);
     }
     return 0;
+}
+
+/* ========================================================================
+ * gbBinkVideo::DrawFrame - Lock backbuffer and render Bink frame
+ * ======================================================================== */
+
+/* 0x0053c470 (190 bytes)
+ * __thiscall: this in ECX (ESI)
+ * Locks backbuffer, maps D3D surface format to Bink copy flags,
+ * calls DrawFrameEx, unlocks, then presents via renderer.
+ * Returns 1 if done/error, 0 if more frames.
+ */
+int gbBinkVideo::DrawFrame()
+{
+    if (this->hBink == NULL) {
+        return 1;
+    }
+
+    struct {
+        int format;
+        int height;
+        int width;
+        int pitch;
+        void* pBits;
+    } surfInfo;
+
+    typedef int (__thiscall *PFN_LockBackBuffer)(void*, void*, int);
+    typedef void (__thiscall *PFN_UnlockBackBuffer)(void*);
+
+    void** gfxVt = *(void***)GB_GfxMgr;
+    PFN_LockBackBuffer fnLock = (PFN_LockBackBuffer)gfxVt[0x54 / 4];
+    int result = fnLock(GB_GfxMgr, &surfInfo, 0);
+    if (result == 0) {
+        return 1;
+    }
+
+    unsigned int binkFlags;
+    if (surfInfo.format == 3) {
+        binkFlags = 10;
+    } else if (surfInfo.format == 8) {
+        binkFlags = 3;
+    } else if (surfInfo.format == 9) {
+        binkFlags = 9;
+    } else {
+        PFN_UnlockBackBuffer fnUnlock = (PFN_UnlockBackBuffer)gfxVt[0x58 / 4];
+        fnUnlock(GB_GfxMgr);
+        return 1;
+    }
+
+    int ret = this->DrawFrameEx(surfInfo.pBits, surfInfo.pitch, surfInfo.height,
+                                this->m_pos.x, this->m_pos.y, binkFlags);
+
+    PFN_UnlockBackBuffer fnUnlock = (PFN_UnlockBackBuffer)gfxVt[0x58 / 4];
+    fnUnlock(GB_GfxMgr);
+
+    /* Present: GfxMgr->m_pRenderer (offset 0x718) -> vtable[0x44/4](0,0,0,0) */
+    char* gfxBytes = (char*)GB_GfxMgr;
+    void* renderer = *(void**)(gfxBytes + 0x718);
+    typedef void (__thiscall *PFN_Present)(void*, int, int, int, int);
+    void** rendVt = *(void***)renderer;
+    PFN_Present fnPresent = (PFN_Present)rendVt[0x44 / 4];
+    fnPresent(renderer, 0, 0, 0, 0);
+
+    return ret;
+}
+
+/* ========================================================================
+ * CTrail methods - Trail/ribbon effect rendering
+ * ======================================================================== */
+
+/* 0x004c65f0 (124 bytes)
+ * __thiscall: this in ECX (ESI), 1 stack param (RET 0x4)
+ * Sets up rendering state for trail effect:
+ * - Selects buffer based on frame counter
+ * - Sets world transform from buffer
+ * - Configures renderer state (clear/depth/stencil)
+ * - Sets camera dimension to 256x192
+ */
+void CTrail::Begin(void* camera)
+{
+    if (this->bEnabled == 0) {
+        return;
+    }
+    if (this->bReady == 0) {
+        return;
+    }
+
+    if (camera != NULL) {
+        this->pCamera = camera;
+    }
+
+    unsigned int bufIdx = (unsigned int)this->nFrameCount & 7;
+    this->nCurrentBuffer = bufIdx;
+
+    /* Set world transform from selected buffer: GfxMgr->vtable[0x5c/4](bufferPtr) */
+    typedef void (__thiscall *PFN_SetTransform)(void*, void*);
+    void** gfxVt = *(void***)GB_GfxMgr;
+    PFN_SetTransform fnSetTransform = (PFN_SetTransform)gfxVt[0x5c / 4];
+    char* bufferPtr = this->buffers + bufIdx * 0x60;
+    fnSetTransform(GB_GfxMgr, bufferPtr);
+
+    /* Renderer setup: GfxMgr->m_pRenderer->vtable[0xAC/4](renderer, 0, 0, 3, 0xFF000000, 1.0f, 0) */
+    char* gfxBytes = (char*)GB_GfxMgr;
+    void* renderer = *(void**)(gfxBytes + 0x718);
+    typedef void (__thiscall *PFN_RenderSetup)(void*, int, int, int, unsigned int, float, int);
+    void** rendVt = *(void***)renderer;
+    PFN_RenderSetup fnSetup = (PFN_RenderSetup)rendVt[0xAC / 4];
+    fnSetup(renderer, 0, 0, 3, 0xFF000000, 1.0f, 0);
+
+    /* Set camera dimension to 256x192 */
+    if (this->pCamera != NULL) {
+        if (pfn_gbCamera_SetDimention != NULL) {
+            pfn_gbCamera_SetDimention(this->pCamera, 0x100, 0xC0);
+        }
+    }
+}
+
+/* ========================================================================
+ * UIFrameWnd methods - Framed window rendering
+ * ======================================================================== */
+
+/* FUN_00540440 - Draw frame/border texture (__cdecl, 6 params) */
+extern "C" void FUN_00540440(void* pRect, void* pSize, void* pStruct, int flags, int param5, int param6);
+
+/* 0x0043ddf0 (74 bytes)
+ * __thiscall: this in ECX (ESI)
+ * If visible: draw frame border (if texture exists), then render children.
+ */
+void UIFrameWnd::Render()
+{
+    if (this->bVisible == 0) {
+        return;
+    }
+
+    if (this->m_pFrameTex != 0) {
+        char localStruct[0x44];
+        memset(localStruct, 0, sizeof(localStruct));
+        *(int*)(localStruct + 0x00) = this->m_pFrameTex;
+        *(int*)(localStruct + 0x40) = 1;
+        FUN_00540440(&this->rect, (char*)this + 0x08, localStruct, 0x114, 0, 1);
+    }
+
+    /* Call base UIWnd::Render to render children */
+    typedef void (__thiscall *PFN_UIWndRender)(void*);
+    PFN_UIWndRender fnRender = (PFN_UIWndRender)0x00445cd0;
+    fnRender(this);
+}
+
+/* ========================================================================
+ * CCBLineupWindow methods - Combat lineup window
+ * ======================================================================== */
+
+/* 0x0051b920 (22 bytes)
+ * __thiscall: this in ECX (ESI)
+ * Renders frame, then renders the current page's sub-control.
+ */
+void CCBLineupWindow::Render()
+{
+    /* Call UIFrameWnd::Render (base class) */
+    typedef void (__thiscall *PFN_FrameRender)(void*);
+    PFN_FrameRender fnFrameRender = (PFN_FrameRender)0x0043ddf0;
+    fnFrameRender(this);
+
+    /* Render current page: pages[currentPage]->vtable[1]() */
+    char* base = (char*)this;
+    int pageIdx = *(int*)(base + 0x74);
+    void* page = *(void**)(base + 0x60 + pageIdx * 4);
+    typedef void (__thiscall *VFN_Render)(void*);
+    void** pageVt = *(void***)page;
+    VFN_Render fnPageRender = (VFN_Render)pageVt[1];
+    fnPageRender(page);
+}
+
+/* 0x0051b950 (80 bytes)
+ * __thiscall: this in ECX, 3 stack params (RET 0xC)
+ * Tests if point (x, y) is within the specified page's rect.
+ * Calls UIWnd::GetAbsRect (0x00445fe0) on pages[pageIdx], checks containment.
+ */
+int CCBLineupWindow::IsPtOnFace(int pageIdx, int x, int y)
+{
+    char* base = (char*)this;
+    void* page = *(void**)(base + 0x60 + pageIdx * 4);
+
+    /* Call UIWnd::GetAbsRect to get page's absolute rect */
+    typedef RECT* (__thiscall *PFN_GetAbsRect)(void*, RECT*);
+    PFN_GetAbsRect fnGetAbsRect = (PFN_GetAbsRect)0x00445fe0;
+    RECT absRect;
+    fnGetAbsRect(page, &absRect);
+
+    if (x >= absRect.left && x < absRect.right &&
+        y >= absRect.top && y < absRect.bottom) {
+        return 1;
+    }
+    return 0;
+}
+
+/* ========================================================================
+ * SoundMgr methods - Audio management
+ * ======================================================================== */
+
+/* FUN_0053e890 - Stop all sounds (__thiscall on SoundMgr) */
+static void __fastcall SoundMgr_StopAll(SoundMgr* self, int /*edx*/) {}
+
+/* FUN_00541d10 - pal3free wrapper (__cdecl) */
+extern "C" void pal3free(void* ptr);
+
+/* 0x0053def0 (49 bytes)
+ * __thiscall: this in ECX (EDI)
+ * Stops all sounds, destroys audio manager, frees memory.
+ */
+void SoundMgr::Destroy()
+{
+    /* Call internal stop-all function (0x0053e890) */
+    typedef void (__thiscall *PFN_StopAll)(void*);
+    PFN_StopAll fnStopAll = (PFN_StopAll)0x0053e890;
+    fnStopAll(this);
+
+    void* pAudio = this->m_pAudioMgr;
+    if (pAudio != NULL) {
+        /* Call gbAudioManager destructor through IAT at 0x0056a4c8 */
+        typedef void (__thiscall *PFN_Dtor)(void*);
+        PFN_Dtor fnDtor = *(PFN_Dtor*)0x0056a4c8;
+        if (fnDtor != NULL) {
+            fnDtor(pAudio);
+        }
+        pal3free(pAudio);
+        this->m_pAudioMgr = NULL;
+    }
+}
+
+/* ========================================================================
+ * Role methods - Character behavior
+ * ======================================================================== */
+
+/* 0x004142e0 (98 bytes)
+ * __thiscall: this in ECX (ESI)
+ * Resets movement/animation state when a behaviour (walk, run, etc.) completes.
+ */
+void Role::OnBehaviourFinish()
+{
+    this->m_nMoveState = 0;
+    this->m_nAnimState = 0;
+
+    /* Call internal reset function (0x00412710) - thiscall on this */
+    typedef void (__thiscall *PFN_Reset)(void*);
+    PFN_Reset fnReset = (PFN_Reset)0x00412710;
+    fnReset(this);
+
+    this->m_nTargetX = 0;
+    this->m_nTargetY = 0;
+    this->m_nTargetZ = 0;
+    this->m_nCurrentX = 0;
+    this->m_nCurrentY = this->m_nTargetY;
+    this->m_nCurrentZ = this->m_nTargetZ;
+
+    if (this->m_nBehaviourType != 0) {
+        this->m_nBehaviourType = 0;
+        this->m_nBehaviourFlags = 0;
+    }
 }

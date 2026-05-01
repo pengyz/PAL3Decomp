@@ -17,7 +17,8 @@
  * ======================================================================== */
 
 struct gbBinkVideo {
-    char padding[0x0C];
+    void** vfptr;      /* offset 0x00: vtable pointer */
+    POINT m_pos;       /* offset 0x04: display position (x, y) */
     void* hBink;       /* offset 0x0C: HBINK handle */
 
     int GetWidth();          /* 0x0053c710 (11 bytes) */
@@ -25,6 +26,7 @@ struct gbBinkVideo {
     void BinkWait();         /* 0x0053c460 (16 bytes) */
     int DrawFrameEx(void* buf, int pitch, int height, int x, int y, unsigned int flags);
                              /* 0x0053c530 (106 bytes) */
+    int DrawFrame();         /* 0x0053c470 (190 bytes) */
 };
 
 /* ========================================================================
@@ -33,19 +35,104 @@ struct gbBinkVideo {
 
 struct UIWnd {
     void** vtable;     /* offset 0x00: vtable pointer */
-    char padding1[0x0C];
+    char padding1[8];  /* offset 0x04: unknown */
+    int m_id;          /* offset 0x0C: window ID */
     RECT rect;         /* offset 0x10: window rect (left, top, right, bottom) */
-    char padding2[4];  /* offset 0x20 */
+    void* m_pParent;   /* offset 0x20: parent UIWnd* */
     void** children;   /* offset 0x24: child UIWnd* array */
     int nChildren;     /* offset 0x28: child count */
-    char padding3[0x0C];
+    char padding3[8];  /* offset 0x2C: unknown */
+    int m_bFocusable;  /* offset 0x34: focusable flag */
     int bVisible;      /* offset 0x38: visibility flag */
     int bEnabled;      /* offset 0x3C: enabled/interactive flag */
 
+    void Create(int id, RECT* pRect, void* parent);  /* 0x00445b90 (87 bytes) */
     void MoveWindow(int x, int y);              /* 0x00445d20 (28 bytes) */
     void SetRect(RECT* pRect);                  /* 0x00445fa0 (52 bytes) */
     void Render();                              /* 0x00445cd0 (49 bytes) */
     int Update(int msg, int param);             /* 0x00445c60 (99 bytes) */
+};
+
+/* ========================================================================
+ * UIFrameWnd - Framed window (extends UIWnd at 0x00..0x3F)
+ *
+ * Offset 0x40: unknown (4 bytes)
+ * Offset 0x44: m_pFrameTex (texture/resource handle for frame border)
+ * ======================================================================== */
+
+struct UIFrameWnd {
+    /* Inherits UIWnd fields at 0x00..0x3F */
+    void** vtable;     /* offset 0x00 */
+    char padding1[8];
+    int m_id;          /* offset 0x0C */
+    RECT rect;         /* offset 0x10 */
+    void* m_pParent;   /* offset 0x20 */
+    void** children;   /* offset 0x24 */
+    int nChildren;     /* offset 0x28 */
+    char padding3[8];
+    int m_bFocusable;  /* offset 0x34 */
+    int bVisible;      /* offset 0x38 */
+    int bEnabled;      /* offset 0x3C */
+    /* UIFrameWnd-specific fields */
+    int padding4;      /* offset 0x40 */
+    int m_pFrameTex;   /* offset 0x44: frame texture handle */
+
+    void Render();           /* 0x0043ddf0 (74 bytes) */
+};
+
+/* ========================================================================
+ * CCBLineupWindow - Combat lineup window (extends UIFrameWnd)
+ *
+ * Offset 0x60: pages[N] (UIWnd* array, indexed by currentPage)
+ * Offset 0x74: currentPage (int)
+ * ======================================================================== */
+
+struct CCBLineupWindow {
+    char base[0x60];         /* UIFrameWnd base + more fields */
+    void** pages;            /* offset 0x60: page UIWnd pointers (inline array) */
+    char padding_pages[0x10];
+    int currentPage;         /* offset 0x74 */
+
+    void Render();           /* 0x0051b920 (22 bytes) */
+    int IsPtOnFace(int pageIdx, int x, int y);  /* 0x0051b950 (80 bytes) */
+};
+
+/* ========================================================================
+ * SoundMgr - Sound manager
+ *
+ * Offset 0x328: m_pAudioMgr (gbAudioManager*)
+ * ======================================================================== */
+
+struct SoundMgr {
+    char padding[0x328];
+    void* m_pAudioMgr;      /* offset 0x328: gbAudioManager* */
+
+    void Destroy();          /* 0x0053def0 (49 bytes) */
+};
+
+/* ========================================================================
+ * Role - Game character/role object
+ *
+ * Large struct (>0x528 bytes), manages character movement, animation, etc.
+ * ======================================================================== */
+
+struct Role {
+    char padding0[0x278];
+    int m_nBehaviourFlags;   /* offset 0x278 */
+    char padding1[0x4f4 - 0x27C];
+    int m_nMoveState;        /* offset 0x4F4 */
+    int m_nBehaviourType;    /* offset 0x4F8 */
+    char padding2[8];
+    int m_nAnimState;        /* offset 0x504 */
+    char padding3[8];
+    int m_nTargetX;          /* offset 0x510 */
+    int m_nTargetY;          /* offset 0x514 */
+    int m_nTargetZ;          /* offset 0x518 */
+    int m_nCurrentX;         /* offset 0x51C */
+    int m_nCurrentY;         /* offset 0x520 */
+    int m_nCurrentZ;         /* offset 0x524 */
+
+    void OnBehaviourFinish();  /* 0x004142e0 (98 bytes) */
 };
 
 /* ========================================================================
@@ -104,6 +191,31 @@ struct C2DSpark {
 struct UIRenderObj {
     UIRenderObj* Ctor();             /* 0x00540f60 (58 bytes) */
     void Dtor();                     /* 0x00540fa0 (34 bytes) */
+};
+
+/* ========================================================================
+ * CTrail - Trail/ribbon effect renderer
+ *
+ * Offset 0x04: bReady (char)
+ * Offset 0x05: bEnabled (char)
+ * Offset 0x08: pCamera (gbCamera*)
+ * Offset 0x34: nFrameCount (int, incremented each frame)
+ * Offset 0x38: nCurrentBuffer (int, = nFrameCount & 7)
+ * Offset 0x3C: buffers[8] (each 0x60 bytes, matrix/transform data)
+ * ======================================================================== */
+
+struct CTrail {
+    char padding0[4];        /* offset 0x00: unknown */
+    char bReady;             /* offset 0x04 */
+    char bEnabled;           /* offset 0x05 */
+    char padding1[2];        /* offset 0x06 */
+    void* pCamera;           /* offset 0x08: gbCamera* */
+    char padding2[0x28];     /* offset 0x0C..0x33 */
+    int nFrameCount;         /* offset 0x34 */
+    int nCurrentBuffer;      /* offset 0x38 */
+    char buffers[8 * 0x60];  /* offset 0x3C: 8 transform buffers */
+
+    void Begin(void* camera);    /* 0x004c65f0 (124 bytes) */
 };
 
 /* ========================================================================
