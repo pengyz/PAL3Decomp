@@ -68,8 +68,7 @@ unsigned int* gbIndexBubble::Lock32() {
 
 // Unlock: 0x10020920
 void gbIndexBubble::Unlock() {
-    // Unlock the index buffer
-    // Implementation depends on pool structure
+    pPool->pIndexBuffer->Unlock();
 }
 
 // operator=: 0x10003c20
@@ -322,7 +321,15 @@ void* gbVertexBubble::Lock() {
 
 // Unlock: 0x10020ca0
 void gbVertexBubble::Unlock() {
-    // Unlock vertex buffer
+    bUsed = 0;
+    pVertexData = NULL;
+    field_20 = NULL;
+    field_24 = NULL;
+    field_28 = NULL;
+    field_2C = NULL;
+    field_30 = NULL;
+    field_34 = NULL;
+    pPool->pVertexBuffer->Unlock();
 }
 
 // ClearPointer: 0x10003dd0
@@ -332,7 +339,16 @@ void gbVertexBubble::ClearPointer() {
 
 // StepVertexPtr: 0x10020cd0
 void gbVertexBubble::StepVertexPtr() {
-    // Advance vertex pointer
+    unsigned int flags = pPool->fvf;
+    int s = pPool->stride;
+    if ((flags & 1) || (flags & 0x100)) { bUsed += s; }
+    if (flags & 2)   { pVertexData = (char*)pVertexData + s; }
+    if (flags & 4)   { field_20 = (char*)field_20 + s; }
+    if (flags & 8)   { field_24 = (char*)field_24 + s; }
+    if (flags & 0x10) { field_28 = (char*)field_28 + s; }
+    if (flags & 0x20) { field_2C = (char*)field_2C + s; }
+    if (flags & 0x40) { field_30 = (char*)field_30 + s; }
+    if (flags & 0x80) { field_34 = (char*)field_34 + s; }
 }
 
 // operator=: 0x10003ed0
@@ -414,6 +430,32 @@ gbVertexPool::gbVertexPool(const gbVertexPool& other) {
 // Destructor: 0x10020eb0
 gbVertexPool::~gbVertexPool() {
     // Cleanup
+}
+
+// OnLostDevice
+int gbVertexPool::OnLostDevice() {
+    if (pVertexBuffer) {
+        pVertexBuffer->Release();
+        pVertexBuffer = NULL;
+    }
+    return 1;
+}
+
+// OnResetDevice
+int gbVertexPool::OnResetDevice() {
+    if (pDevice && !pVertexBuffer) {
+        HRESULT hr = pDevice->CreateVertexBuffer(
+            totalSize * stride,
+            0,
+            fvf,
+            (D3DPOOL)poolType,
+            &pVertexBuffer,
+            NULL);
+        if (FAILED(hr)) {
+            return 0;
+        }
+    }
+    return 1;
 }
 
 // NewBubble: 0x10020f10
@@ -612,14 +654,26 @@ gbVertPoolMgr::~gbVertPoolMgr() {
 
 // OnLostDevice: 0x10021240
 int gbVertPoolMgr::OnLostDevice() {
-    // Release D3D resources when device is lost
-    return 0;
+    for (int i = 0; i < 32; i++) {
+        if (srcVertPools[i] != NULL) {
+            if (srcVertPools[i]->OnLostDevice() == 0) {
+                return 0;
+            }
+        }
+    }
+    return 1;
 }
 
 // OnResetDevice: 0x10021270
 int gbVertPoolMgr::OnResetDevice() {
-    // Recreate D3D resources when device is reset
-    return 0;
+    for (int i = 0; i < 32; i++) {
+        if (srcVertPools[i] != NULL) {
+            if (srcVertPools[i]->OnResetDevice() == 0) {
+                return 0;
+            }
+        }
+    }
+    return 1;
 }
 
 // FindVertexPoolIndex: 0x100212a0

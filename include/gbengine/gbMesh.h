@@ -145,6 +145,9 @@ public:
     gbVertexPool(const gbVertexPool& other);
     virtual ~gbVertexPool();
 
+    virtual int OnLostDevice();
+    virtual int OnResetDevice();
+
     gbVertexBubble* NewBubble(int count);
     void DelBubble(gbVertexBubble* bubble);
     int GetStride();
