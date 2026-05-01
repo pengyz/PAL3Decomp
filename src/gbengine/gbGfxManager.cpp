@@ -9,6 +9,7 @@
  */
 
 #include "gbengine/gbengine_types.h"
+#include "gbengine/gbRenderEffect.h"
 #include <windows.h>
 #include <d3d9.h>
 #include <d3dx9.h>
@@ -19,7 +20,7 @@
 // Forward declarations
 class gbTexture;
 class gbTexture_D3D;
-class gbTextureArray;
+struct gbTextureArray;
 class gbImage2D;
 class gbBaseMesh;
 class gbStaticMesh;
@@ -45,11 +46,60 @@ class gbEffectMgr;
 class gbCamControler;
 class gbSceneGraph;
 
+struct gbVertexElement;
+struct gbLight;
+
 // Pixel format enum (matches gbengine's internal enum)
 // gbPixelFmtType is defined in gbengine_types.h
 
+// Forward struct declarations
+struct gbClearParam {
+    unsigned int color;
+    float depth;
+    unsigned int stencil;
+    unsigned int flags;
+};
+
+struct gbFogParam {
+    int enable;
+    unsigned int color;
+    float start;
+    float end;
+    float density;
+    int mode;
+};
+
+struct gbGfxCaps {
+    int maxTextureWidth;
+    int maxTextureHeight;
+    int maxLights;
+    int hwTnL;
+    int vertexShaderVer;
+    int pixelShaderVer;
+};
+
+struct gbGfxStatistic {
+    int numTriangles;
+    int numVertices;
+    int numDrawCalls;
+    int numTexChanges;
+};
+
+struct gbLight;
+
+enum gbMeshType {
+    GB_MESH_STATIC = 0,
+    GB_MESH_SKIN = 1
+};
+
+enum gbFontType {
+    GB_FONT_DEFAULT = 0,
+    GB_FONT_SMALL = 1,
+    GB_FONT_LARGE = 2
+};
+
 // External globals
-extern gbGfxManager* g_pGfxManager;
+gbGfxManager* g_pGfxManager = NULL;
 extern double g_CurrentTime;
 extern unsigned int g_CurrentTick;
 
@@ -94,25 +144,6 @@ struct gbViewPort {
     float minz;
     float maxz;
 };
-
-// ============================================================================
-// gbCamControler - camera controller base
-// ============================================================================
-class gbCamControler {
-public:
-    gbCamera* pCamera;
-    int type;
-
-    gbCamControler(void) {
-        pCamera = NULL;
-        type = 0;
-    }
-
-    virtual ~gbCamControler() {}
-
-    virtual void Update(double deltaTime) {}
-};
-
 
 // ============================================================================
 // gbGfxManager - main graphics manager
@@ -168,1162 +199,548 @@ public:
     // We only model the base class here.
 
     // 0x1001d910 (394B) - Constructor
-    gbGfxManager(int& result, gbGfxDriverInfo* driverInfo) {
-        m_nState = 0;
-        m_bInScene = 0;
-
-        if (driverInfo) {
-            memcpy(&DrvInfo, driverInfo, sizeof(gbGfxDriverInfo));
-        } else {
-            memset(&DrvInfo, 0, sizeof(gbGfxDriverInfo));
-        }
-
-        pVertPoolMgr = NULL;
-        pEffectMgr = NULL;
-        pTexResMgr = NULL;
-        pFontMgr = NULL;
-        pSceneGraph = NULL;
-        pCamera = NULL;
-
-        memset(pMatrixStack, 0, sizeof(pMatrixStack));
-
-        m_ambientLight.r = 0.2f;
-        m_ambientLight.g = 0.2f;
-        m_ambientLight.b = 0.2f;
-        m_ambientLight.a = 1.0f;
-
-        m_bEmissiveEnable = 0;
-        m_fEmissiveFactor = 1.0f;
-
-        m_lastTime = 0.0;
-        m_deltaTime = 0.0;
-        m_lastTick = 0;
-        m_deltaTick = 0;
-
-        // Initialize world matrix to identity
-        memset(&m_worldMatrix, 0, sizeof(gbMatrix4));
-        m_worldMatrix.m[0][0] = 1.0f;
-        m_worldMatrix.m[1][1] = 1.0f;
-        m_worldMatrix.m[2][2] = 1.0f;
-        m_worldMatrix.m[3][3] = 1.0f;
-
-        memset(&m_viewMatrix, 0, sizeof(gbMatrix4));
-        m_viewMatrix.m[0][0] = 1.0f;
-        m_viewMatrix.m[1][1] = 1.0f;
-        m_viewMatrix.m[2][2] = 1.0f;
-        m_viewMatrix.m[3][3] = 1.0f;
-
-        memset(&m_projMatrix, 0, sizeof(gbMatrix4));
-        m_projMatrix.m[0][0] = 1.0f;
-        m_projMatrix.m[1][1] = 1.0f;
-        m_projMatrix.m[2][2] = 1.0f;
-        m_projMatrix.m[3][3] = 1.0f;
-
-        m_nWireMode = 0;
-
-        result = 1; // success
-    }
+    gbGfxManager(int& result, gbGfxDriverInfo* driverInfo);
 
     // Virtual destructor
-    virtual ~gbGfxManager() {
-        // Cleanup is handled by derived class (gbGfxManager_D3D)
-    }
+    virtual ~gbGfxManager();
 
-    // 0x1001db10 (222B) - Begin a rendering scene
-    int BeginScene(void) {
-        if (m_bInScene)
-            return 0;
-
-        // Update time tracking
-        double currentTime = g_CurrentTime;
-        m_deltaTime = currentTime - m_lastTime;
-        m_lastTime = currentTime;
-
-        unsigned int currentTick = g_CurrentTick;
-        m_deltaTick = currentTick - m_lastTick;
-        m_lastTick = currentTick;
-
-        // In the real D3D implementation, this calls IDirect3DDevice9::BeginScene()
-        // and clears the render target. The actual D3D calls are in gbGfxManager_D3D.
-        m_bInScene = 1;
-        return 1;
-    }
-
-    // EndScene: finish the rendering scene
-    // Note: The actual EndScene (0x10018F00) is in gbGfxManager_D3D and calls
-    // IDirect3DDevice9::EndScene() followed by Present(). We model the base behavior.
-    void EndScene(void) {
-        if (!m_bInScene)
-            return;
-
-        // In gbGfxManager_D3D, this calls:
-        //   m_pd3dDevice->EndScene();
-        //   m_pd3dDevice->Present(NULL, NULL, NULL, NULL);
-        m_bInScene = 0;
-    }
+    // EndScene: finish the rendering scene (declared below via virtual)
 
     // SetTransform: set a transform matrix (world/view/projection)
-    void SetTransform(int type, gbMatrix4* matrix) {
-        if (!matrix)
-            return;
-
-        switch (type) {
-        case GB_TM_WORLD:
-            memcpy(&m_worldMatrix, matrix, sizeof(gbMatrix4));
-            break;
-        case GB_TM_VIEW:
-            memcpy(&m_viewMatrix, matrix, sizeof(gbMatrix4));
-            break;
-        case GB_TM_PROJECTION:
-            memcpy(&m_projMatrix, matrix, sizeof(gbMatrix4));
-            break;
-        }
-
-        // In the real engine, this also calls IDirect3DDevice9::SetTransform()
-        // with the appropriate D3DTRANSFORMSTATETYPE
-    }
+    void SetTransform(int type, gbMatrix4* matrix);
 
     // 0x1001e220 (158B) - Clip a bounding volume against the view frustum
     // Returns: 0 = fully outside, 1 = partially inside, 2 = fully inside
-    int ClipBoundVolume(gbAABBox* box) {
-        if (!box || !pCamera)
-            return 0;
-
-        // Delegate to camera's clip method
-        // The camera maintains 6 frustum planes and tests the AABB against them
-        gbVec3D minPt, maxPt;
-        minPt = box->vMin;
-        maxPt = box->vMax;
-
-        // Quick test: call the camera's AABB clip
-        // flags parameter 0x3F means test all 6 planes
-        // Return value uses same convention: 0=out, 1=partial, 2=in
-        // We implement a simplified version here; real logic is in gbCamera::ClipAABBox
-        return 1; // assume partially visible as fallback
-    }
+    int ClipBoundVolume(gbAABBox* box);
 
     // 0x10004ff0 (34B) - Enable/disable emissive lighting
-    void EnableEmissive(int enable) {
-        m_bEmissiveEnable = enable;
-        // In the real engine, this also sets D3D render state
-        // D3DRS_EMISSIVEMATERIALSOURCE etc.
-    }
+    void EnableEmissive(int enable);
 
     // 0x10005020 (13B) - Set emissive factor
-    void SetEmissiveFactor(float factor) {
-        m_fEmissiveFactor = factor;
-    }
+    void SetEmissiveFactor(float factor);
 
     // 0x10004fc0 (39B) - Get ambient light color
-    gbColorFlt GetAmbientLight(int dummy = 0) {
-        return m_ambientLight;
-    }
+    gbColorFlt GetAmbientLight(void);
 
     // 0x10004f90 (35B) - Set ambient light color
-    void SetAmbientLight(gbColorFlt* color) {
-        if (!color)
-            return;
-        m_ambientLight = *color;
-
-        // In the real engine, this converts to D3DCOLOR and calls
-        // IDirect3DDevice9::SetRenderState(D3DRS_AMBIENT, d3dColor)
-    }
+    void SetAmbientLight(const gbColorFlt& color);
 
     // 0x1001dac0 (34B) - Get delta time since last frame
-    double GetDeltaTime(void) {
-        return m_deltaTime;
-    }
+    double GetDeltaTime(void);
 
     // 0x1001daf0 (27B) - Get delta tick since last frame
-    unsigned int GetDeltaTick(void) {
-        return m_deltaTick;
-    }
+    unsigned int GetDeltaTick(void);
 
     // 0x10004ea0 (13B) - Set scene graph
-    void SetSceneGraph(gbSceneGraph* sg) {
-        pSceneGraph = sg;
-    }
+    void SetSceneGraph(gbSceneGraph* sg);
 
     // 0x10004ed0 (14B) - Get matrix stack by index
-    gbMatrixStack* GetMatrixStack(int index) {
-        if (index < 0 || index >= 4)
-            return NULL;
-        return pMatrixStack[index];
-    }
+    gbMatrixStack* GetMatrixStack(int index);
 
     // 0x10004ee0 (16B) - Get print font by type
-    gbPrintFont* GetPrintFont(int fontType) {
-        // In the real engine, this calls pFontMgr->GetFont(fontType)
-        // We return NULL as a stub since we don't have the font manager fully defined
-        return NULL;
-    }
+    gbPrintFont* GetPrintFont(int fontType);
 
-    // 0x10004f50 (20B) - Get light object by index
-    void* GetLight(int index) {
-        // Light objects are stored in an array inside the GfxManager
-        // Stub: return NULL
-        return NULL;
-    }
+    // 0x10004f50 (20B) - Get light object by index (const method)
+    const gbLight* GetLight(int index) const;
 
-    // 0x10004f70 (14B) - Check if a light is enabled
-    int IsLightEnable(int index) {
-        return 0;
-    }
+    // 0x10004f70 (14B) - Check if a light is enabled (const method)
+    int IsLightEnable(int index) const;
 
     // 0x1001df40 (37B) - Get a combined transform matrix
-    void GetTMMatrix(int type, gbMatrix4* out) {
-        if (!out)
-            return;
-        switch (type) {
-        case GB_TM_WORLD:
-            memcpy(out, &m_worldMatrix, sizeof(gbMatrix4));
-            break;
-        case GB_TM_VIEW:
-            memcpy(out, &m_viewMatrix, sizeof(gbMatrix4));
-            break;
-        case GB_TM_PROJECTION:
-            memcpy(out, &m_projMatrix, sizeof(gbMatrix4));
-            break;
-        }
-    }
+    void GetTMMatrix(int type, gbMatrix4* out);
 
     // 0x1001e070 (24B) - Get current viewport
-    void GetViewport(void* pViewport) {
-        // In the real engine, calls IDirect3DDevice9::GetViewport()
-        // and converts to the gbViewPort structure
-    }
+    void GetViewport(gbViewPort& pViewport);
 
     // 0x1001e090 (35B) - Set clear parameters (color, depth, stencil)
-    void SetClearParam(void* pParam) {
-        // Stores clear color/depth/stencil values for BeginScene's Clear call
-    }
+    void SetClearParam(gbClearParam* pParam);
 
     // 0x1001e160 (189B) - Create a new mesh resource
-    gbBaseMesh* NewMesh(char* name, int type) {
-        // In the real engine, allocates a gbStaticMesh or derived class
-        // and registers it with the resource manager
-        return NULL;
-    }
+    virtual gbBaseMesh* NewMesh(const char* name, gbMeshType type);
 
     // 0x1001e2c0 (36B) - Offset Z-buffer for decal rendering
-    void OffsetZBuffer(int enable) {
-        // Sets D3DRS_DEPTHBIAS / D3DRS_SLOPESCALEDEPTHBIAS
-    }
+    void OffsetZBuffer(int enable);
 
     // 0x1001e2f0 (13B) - Set wireframe rendering mode
-    void SetWireMode(int mode) {
-        m_nWireMode = mode;
-        // In real engine: SetRenderState(D3DRS_FILLMODE, mode ? D3DFILL_WIREFRAME : D3DFILL_SOLID)
-    }
+    void SetWireMode(int mode);
 
     // 0x1001e300 (38B) - Set fog parameters
-    void SetFog(void* pFogParam) {
-        // Sets D3DRS_FOGENABLE, D3DRS_FOGCOLOR, D3DRS_FOGSTART, D3DRS_FOGEND, etc.
-    }
+    virtual void SetFog(gbFogParam* pFogParam);
 
-    // 0x1001e330 (55B) - Get world matrix pointer (from top of matrix stack)
-    gbMatrix4* GetWorldMatrix(void) {
-        if (pMatrixStack[0]) {
-            // In the real engine: return pMatrixStack[0]->GetTop()
-            // Simplified: return our local copy
-        }
-        return &m_worldMatrix;
-    }
+    // 0x1001e330 (55B) - Get world matrix (const reference)
+    const gbMatrix4& GetWorldMatrix(void);
 
     // 0x1001e380 (19B) - Reset world matrix to identity
-    void IdentityWorldMatrix(void) {
-        memset(&m_worldMatrix, 0, sizeof(gbMatrix4));
-        m_worldMatrix.m[0][0] = 1.0f;
-        m_worldMatrix.m[1][1] = 1.0f;
-        m_worldMatrix.m[2][2] = 1.0f;
-        m_worldMatrix.m[3][3] = 1.0f;
+    void IdentityWorldMatrix(void);
 
-        // Also set on the D3D device
-        // SetTransform(GB_TM_WORLD, &m_worldMatrix);
-    }
+    // Exported: GetViewMatrix
+    const gbMatrix4& GetViewMatrix(void);
 
     // 0x1001e3a0 (43B) - Set view and projection matrices from camera
-    void SetCameraMatrix(gbMatrix4* view, gbMatrix4* proj) {
-        if (view)
-            memcpy(&m_viewMatrix, view, sizeof(gbMatrix4));
-        if (proj)
-            memcpy(&m_projMatrix, proj, sizeof(gbMatrix4));
+    void SetCameraMatrix(const gbMatrix4& view, const gbMatrix4& proj);
 
-        // In the real engine, also calls:
-        // IDirect3DDevice9::SetTransform(D3DTS_VIEW, (D3DMATRIX*)view)
-        // IDirect3DDevice9::SetTransform(D3DTS_PROJECTION, (D3DMATRIX*)proj)
-    }
+    // Exported: GetGfxCaps
+    virtual int GetGfxCaps(gbGfxCaps* caps);
+
+    // Exported: GetCurTick
+    unsigned int GetCurTick(void);
+
+    // Exported: GetCurTime
+    double GetCurTime(void);
+
+    // Exported: GetDriverInfo
+    const gbGfxDriverInfo* GetDriverInfo(void);
+
+    // Exported: GetEffectMgr
+    gbEffectMgr* GetEffectMgr(void);
+
+    // Exported: GetEmissiveFactor
+    float GetEmissiveFactor(void);
+
+    // Exported: GetFog
+    gbFogParam* GetFog(void);
+
+    // Exported: GetGraphWnd
+    unsigned int GetGraphWnd(void);
+
+    // Exported: GetPrintFontMgr
+    gbPrintFontMgr* GetPrintFontMgr(void);
+
+    // Exported: GetResManager
+    gbResManager* GetResManager(void);
+
+    // Exported: GetSceneGraph
+    gbSceneGraph* GetSceneGraph(void);
+
+    // Exported: GetStatistic
+    gbGfxStatistic* GetStatistic(void);
+
+    // Exported: GetVertPoolMgr
+    gbVertPoolMgr* GetVertPoolMgr(void);
+
+    // Exported: IsWireMode
+    int IsWireMode(void);
+
+    // virtual BeginScene
+    virtual int BeginScene(void);
+
+    // EndScene (not in vtable in some builds)
+    void EndScene(void);
 };
 
 
+// gbCamera class is defined in gbCamera.cpp
+
+
+
+
+// gbRenderEffect and gbEffectMgr declarations are in gbRenderEffect.h
+
+
 // ============================================================================
-// gbCamera - view camera with frustum clipping
-//
-// From PAL3patch: sizeof(gbCamera) = 0x178
-//   +0x00: float fov
-//   +0x04: float OrthoSize
-//   +0x08: float Wscreen
-//   +0x0C: float Hscreen
-//   +0x10: float zNear
-//   +0x14: float zFar
-//   +0x18: gbViewPort Viewport (0x18 bytes)
-//   +0x30: float Plane[6][4] (0x60 bytes) - 6 frustum planes (nx, ny, nz, d)
-//   +0x90: int numPlane
-//   +0x94: gbMatrix4 ViewMatrix (0x40 bytes)
-//   +0xD4: gbMatrix4 InvVMatrix (0x40 bytes)
-//   +0x114: gbCamControler* pControl[16] (0x40 bytes)
-//   +0x154: int CurCtrl
-//   +0x158: gbGfxManager* pGfxMgr
-//   +0x15C: gbVec3D eyeLoc (0x0C bytes)
-//   +0x168: gbQuaternion eyeDir (0x10 bytes)
-// Total: 0x178
+// gbGfxManager method implementations
 // ============================================================================
-class gbCamera {
-public:
-    float fov;
-    float OrthoSize;
-    float Wscreen;
-    float Hscreen;
-    float zNear;
-    float zFar;
-    gbViewPort Viewport;
-    float Plane[6][4];      // 6 frustum planes: (nx, ny, nz, d)
-    int numPlane;
-    gbMatrix4 ViewMatrix;
-    gbMatrix4 InvVMatrix;   // inverse view matrix
-    gbCamControler* pControl[16];
-    int CurCtrl;
-    gbGfxManager* pGfxMgr;
-    gbVec3D eyeLoc;
-    gbQuaternion eyeDir;
 
-    // Helper: projection matrix (not stored in the original struct, but computed)
-    gbMatrix4 ProjMatrix;
+// 0x1001d910 (394B) - Constructor
+gbGfxManager::gbGfxManager(int& result, gbGfxDriverInfo* driverInfo) {
+    m_nState = 0;
+    m_bInScene = 0;
 
-    // 0x100218d0 (157B) - Constructor
-    gbCamera(gbGfxManager* gfxMgr) {
-        pGfxMgr = gfxMgr;
-
-        fov = 45.0f * 3.14159265f / 180.0f; // 45 degrees in radians
-        OrthoSize = 1.0f;
-        Wscreen = 640.0f;
-        Hscreen = 480.0f;
-        zNear = 1.0f;
-        zFar = 10000.0f;
-
-        memset(&Viewport, 0, sizeof(Viewport));
-        Viewport.width = 640;
-        Viewport.height = 480;
-        Viewport.minz = 0.0f;
-        Viewport.maxz = 1.0f;
-
-        memset(Plane, 0, sizeof(Plane));
-        numPlane = 6;
-
-        // Identity view matrix
-        memset(&ViewMatrix, 0, sizeof(gbMatrix4));
-        ViewMatrix.m[0][0] = 1.0f;
-        ViewMatrix.m[1][1] = 1.0f;
-        ViewMatrix.m[2][2] = 1.0f;
-        ViewMatrix.m[3][3] = 1.0f;
-
-        memset(&InvVMatrix, 0, sizeof(gbMatrix4));
-        InvVMatrix.m[0][0] = 1.0f;
-        InvVMatrix.m[1][1] = 1.0f;
-        InvVMatrix.m[2][2] = 1.0f;
-        InvVMatrix.m[3][3] = 1.0f;
-
-        memset(&ProjMatrix, 0, sizeof(gbMatrix4));
-        ProjMatrix.m[0][0] = 1.0f;
-        ProjMatrix.m[1][1] = 1.0f;
-        ProjMatrix.m[2][2] = 1.0f;
-        ProjMatrix.m[3][3] = 1.0f;
-
-        memset(pControl, 0, sizeof(pControl));
-        CurCtrl = 0;
-
-        eyeLoc.x = 0.0f;
-        eyeLoc.y = 0.0f;
-        eyeLoc.z = 0.0f;
-
-        eyeDir.x = 0.0f;
-        eyeDir.y = 0.0f;
-        eyeDir.z = 0.0f;
-        eyeDir.w = 1.0f;
+    if (driverInfo) {
+        memcpy(&DrvInfo, driverInfo, sizeof(gbGfxDriverInfo));
+    } else {
+        memset(&DrvInfo, 0, sizeof(gbGfxDriverInfo));
     }
 
-    // operator=
-    gbCamera& operator=(const gbCamera& other) {
-        if (this != &other) {
-            fov = other.fov;
-            OrthoSize = other.OrthoSize;
-            Wscreen = other.Wscreen;
-            Hscreen = other.Hscreen;
-            zNear = other.zNear;
-            zFar = other.zFar;
-            memcpy(&Viewport, &other.Viewport, sizeof(Viewport));
-            memcpy(Plane, other.Plane, sizeof(Plane));
-            numPlane = other.numPlane;
-            memcpy(&ViewMatrix, &other.ViewMatrix, sizeof(gbMatrix4));
-            memcpy(&InvVMatrix, &other.InvVMatrix, sizeof(gbMatrix4));
-            memcpy(&ProjMatrix, &other.ProjMatrix, sizeof(gbMatrix4));
-            memcpy(pControl, other.pControl, sizeof(pControl));
-            CurCtrl = other.CurCtrl;
-            pGfxMgr = other.pGfxMgr;
-            eyeLoc = other.eyeLoc;
-            eyeDir = other.eyeDir;
-        }
-        return *this;
-    }
-
-    // --- FOV ---
-
-    // 0x10005940 (16B) - Set field of view (in radians)
-    void SetFov(float f) {
-        fov = f;
-    }
-
-    float GetFov(void) {
-        return fov;
-    }
-
-    // --- Aspect ---
-
-    void SetAspect(float aspect) {
-        if (aspect > 0.0f) {
-            Wscreen = Hscreen * aspect;
-        }
-    }
-
-    float GetAspect(void) {
-        if (Hscreen > 0.0f)
-            return Wscreen / Hscreen;
-        return 1.0f;
-    }
-
-    // --- Position ---
-
-    void SetPos(gbVec3D* pos) {
-        if (pos) {
-            eyeLoc = *pos;
-        }
-    }
-
-    gbVec3D GetPos(void) {
-        return eyeLoc;
-    }
-
-    // --- Target ---
-    // The camera target is derived from eyeLoc + forward direction from eyeDir quaternion.
-    // For get/set we store it implicitly via the view matrix.
-
-    void SetTarget(gbVec3D* target) {
-        if (!target)
-            return;
-        // Recompute eye direction from current position to target
-        // This would update eyeDir quaternion. Simplified:
-        // In the real engine, SetLookAt computes the full view matrix.
-    }
-
-    gbVec3D GetTarget(void) {
-        // Derive from view matrix: target = eyeLoc + forward
-        gbVec3D target;
-        // Forward direction is the third row of the inverse view matrix
-        target.x = eyeLoc.x + InvVMatrix.m[2][0];
-        target.y = eyeLoc.y + InvVMatrix.m[2][1];
-        target.z = eyeLoc.z + InvVMatrix.m[2][2];
-        return target;
-    }
-
-    // --- Up ---
-
-    void SetUp(gbVec3D* up) {
-        if (!up)
-            return;
-        // Store up vector; will be used when MakeView() is called
-    }
-
-    gbVec3D GetUp(void) {
-        // Up direction is the second row of the inverse view matrix
-        gbVec3D up;
-        up.x = InvVMatrix.m[1][0];
-        up.y = InvVMatrix.m[1][1];
-        up.z = InvVMatrix.m[1][2];
-        return up;
-    }
-
-    // --- Z Range ---
-
-    // 0x10005950 (17B)
-    void SetZRange(float nearZ, float farZ) {
-        zNear = nearZ;
-        zFar = farZ;
-    }
-
-    float GetZNear(void) {
-        return zNear;
-    }
-
-    float GetZFar(void) {
-        return zFar;
-    }
-
-    // --- View / Projection matrix construction ---
-
-    // Build the view matrix from eye position, target, and up
-    void MakeView(void) {
-        // The real engine builds the view matrix from eyeLoc and eyeDir quaternion.
-        // It constructs a rotation matrix from the quaternion, then combines with translation.
-        // We use the D3DX helper as a reference for the math:
-
-        gbVec3D target = GetTarget();
-        gbVec3D up = GetUp();
-
-        // Compute forward (z-axis): normalize(target - eye)
-        float fx = target.x - eyeLoc.x;
-        float fy = target.y - eyeLoc.y;
-        float fz = target.z - eyeLoc.z;
-        float flen = (float)sqrt(fx * fx + fy * fy + fz * fz);
-        if (flen < 1e-6f)
-            return;
-        fx /= flen; fy /= flen; fz /= flen;
-
-        // Compute right (x-axis): normalize(cross(up, forward))
-        float rx = up.y * fz - up.z * fy;
-        float ry = up.z * fx - up.x * fz;
-        float rz = up.x * fy - up.y * fx;
-        float rlen = (float)sqrt(rx * rx + ry * ry + rz * rz);
-        if (rlen < 1e-6f)
-            return;
-        rx /= rlen; ry /= rlen; rz /= rlen;
-
-        // Recompute up: cross(forward, right)
-        float ux = fy * rz - fz * ry;
-        float uy = fz * rx - fx * rz;
-        float uz = fx * ry - fy * rx;
-
-        // Build view matrix (row-major, matches D3D convention)
-        ViewMatrix.m[0][0] = rx;  ViewMatrix.m[0][1] = ux;  ViewMatrix.m[0][2] = fx;  ViewMatrix.m[0][3] = 0.0f;
-        ViewMatrix.m[1][0] = ry;  ViewMatrix.m[1][1] = uy;  ViewMatrix.m[1][2] = fy;  ViewMatrix.m[1][3] = 0.0f;
-        ViewMatrix.m[2][0] = rz;  ViewMatrix.m[2][1] = uz;  ViewMatrix.m[2][2] = fz;  ViewMatrix.m[2][3] = 0.0f;
-        ViewMatrix.m[3][0] = -(rx * eyeLoc.x + ry * eyeLoc.y + rz * eyeLoc.z);
-        ViewMatrix.m[3][1] = -(ux * eyeLoc.x + uy * eyeLoc.y + uz * eyeLoc.z);
-        ViewMatrix.m[3][2] = -(fx * eyeLoc.x + fy * eyeLoc.y + fz * eyeLoc.z);
-        ViewMatrix.m[3][3] = 1.0f;
-
-        // Inverse view matrix (transpose of rotation part, negate translation)
-        InvVMatrix.m[0][0] = rx;  InvVMatrix.m[0][1] = ry;  InvVMatrix.m[0][2] = rz;  InvVMatrix.m[0][3] = 0.0f;
-        InvVMatrix.m[1][0] = ux;  InvVMatrix.m[1][1] = uy;  InvVMatrix.m[1][2] = uz;  InvVMatrix.m[1][3] = 0.0f;
-        InvVMatrix.m[2][0] = fx;  InvVMatrix.m[2][1] = fy;  InvVMatrix.m[2][2] = fz;  InvVMatrix.m[2][3] = 0.0f;
-        InvVMatrix.m[3][0] = eyeLoc.x;
-        InvVMatrix.m[3][1] = eyeLoc.y;
-        InvVMatrix.m[3][2] = eyeLoc.z;
-        InvVMatrix.m[3][3] = 1.0f;
-
-        // Extract frustum planes from view-projection matrix
-        BuildFrustumPlanes();
-    }
-
-    // Build perspective projection matrix
-    void MakeProj(void) {
-        float aspect = GetAspect();
-        float h = 1.0f / (float)tan(fov * 0.5f);
-        float w = h / aspect;
-        float Q = zFar / (zFar - zNear);
-
-        memset(&ProjMatrix, 0, sizeof(gbMatrix4));
-        ProjMatrix.m[0][0] = w;
-        ProjMatrix.m[1][1] = h;
-        ProjMatrix.m[2][2] = Q;
-        ProjMatrix.m[2][3] = 1.0f;
-        ProjMatrix.m[3][2] = -Q * zNear;
-        ProjMatrix.m[3][3] = 0.0f;
-
-        // After building projection, update frustum planes
-        BuildFrustumPlanes();
-    }
-
-    gbMatrix4* GetViewMatrix(void) {
-        return &ViewMatrix;
-    }
-
-    gbMatrix4* GetProjMatrix(void) {
-        return &ProjMatrix;
-    }
-
-    // --- Frustum Clipping ---
-
-    // Helper: extract 6 frustum planes from the combined view-projection matrix
-    void BuildFrustumPlanes(void) {
-        // Combine view * projection
-        // M = ViewMatrix * ProjMatrix
-        float combo[4][4];
-        for (int i = 0; i < 4; i++) {
-            for (int j = 0; j < 4; j++) {
-                combo[i][j] = ViewMatrix.m[i][0] * ProjMatrix.m[0][j]
-                            + ViewMatrix.m[i][1] * ProjMatrix.m[1][j]
-                            + ViewMatrix.m[i][2] * ProjMatrix.m[2][j]
-                            + ViewMatrix.m[i][3] * ProjMatrix.m[3][j];
-            }
-        }
-
-        // Left plane: row3 + row0
-        Plane[0][0] = combo[0][3] + combo[0][0];
-        Plane[0][1] = combo[1][3] + combo[1][0];
-        Plane[0][2] = combo[2][3] + combo[2][0];
-        Plane[0][3] = combo[3][3] + combo[3][0];
-
-        // Right plane: row3 - row0
-        Plane[1][0] = combo[0][3] - combo[0][0];
-        Plane[1][1] = combo[1][3] - combo[1][0];
-        Plane[1][2] = combo[2][3] - combo[2][0];
-        Plane[1][3] = combo[3][3] - combo[3][0];
-
-        // Bottom plane: row3 + row1
-        Plane[2][0] = combo[0][3] + combo[0][1];
-        Plane[2][1] = combo[1][3] + combo[1][1];
-        Plane[2][2] = combo[2][3] + combo[2][1];
-        Plane[2][3] = combo[3][3] + combo[3][1];
-
-        // Top plane: row3 - row1
-        Plane[3][0] = combo[0][3] - combo[0][1];
-        Plane[3][1] = combo[1][3] - combo[1][1];
-        Plane[3][2] = combo[2][3] - combo[2][1];
-        Plane[3][3] = combo[3][3] - combo[3][1];
-
-        // Near plane: row2
-        Plane[4][0] = combo[0][2];
-        Plane[4][1] = combo[1][2];
-        Plane[4][2] = combo[2][2];
-        Plane[4][3] = combo[3][2];
-
-        // Far plane: row3 - row2
-        Plane[5][0] = combo[0][3] - combo[0][2];
-        Plane[5][1] = combo[1][3] - combo[1][2];
-        Plane[5][2] = combo[2][3] - combo[2][2];
-        Plane[5][3] = combo[3][3] - combo[3][2];
-
-        // Normalize all planes
-        for (int p = 0; p < 6; p++) {
-            float len = (float)sqrt(Plane[p][0] * Plane[p][0]
-                                  + Plane[p][1] * Plane[p][1]
-                                  + Plane[p][2] * Plane[p][2]);
-            if (len > 1e-6f) {
-                Plane[p][0] /= len;
-                Plane[p][1] /= len;
-                Plane[p][2] /= len;
-                Plane[p][3] /= len;
-            }
-        }
-        numPlane = 6;
-    }
-
-    // 0x10021c80 (253B) - Clip AABB against frustum
-    // Returns bitmask: 0 = fully outside, non-zero = at least partially inside
-    // flags indicates which planes to test (bit per plane)
-    unsigned int ClipAABBox(gbVec3D* vMin, gbVec3D* vMax, unsigned int flags) {
-        if (!vMin || !vMax)
-            return 0;
-
-        unsigned int result = 0;
-
-        for (int i = 0; i < numPlane; i++) {
-            if (!(flags & (1 << i)))
-                continue;
-
-            float nx = Plane[i][0];
-            float ny = Plane[i][1];
-            float nz = Plane[i][2];
-            float d  = Plane[i][3];
-
-            // Find the positive vertex (farthest along the plane normal)
-            float px = (nx >= 0.0f) ? vMax->x : vMin->x;
-            float py = (ny >= 0.0f) ? vMax->y : vMin->y;
-            float pz = (nz >= 0.0f) ? vMax->z : vMin->z;
-
-            // If the positive vertex is behind the plane, the box is fully outside
-            if (nx * px + ny * py + nz * pz + d < 0.0f)
-                return 0;
-
-            // Find the negative vertex (closest along the plane normal)
-            float qx = (nx >= 0.0f) ? vMin->x : vMax->x;
-            float qy = (ny >= 0.0f) ? vMin->y : vMax->y;
-            float qz = (nz >= 0.0f) ? vMin->z : vMax->z;
-
-            // If the negative vertex is behind the plane, box intersects this plane
-            if (nx * qx + ny * qy + nz * qz + d < 0.0f)
-                result |= (1 << i);
-        }
-
-        // If result is 0, the box is fully inside all tested planes
-        // If result is non-zero, it intersects some planes (partially visible)
-        return result;
-    }
-
-    // 0x10021d80 (381B) - Clip OBB against frustum
-    // Returns: 0 = outside, 1 = intersects or inside
-    int ClipOBBox(gbOBBox* obb) {
-        if (!obb)
-            return 0;
-
-        for (int i = 0; i < numPlane; i++) {
-            float nx = Plane[i][0];
-            float ny = Plane[i][1];
-            float nz = Plane[i][2];
-            float d  = Plane[i][3];
-
-            // Distance from OBB center to plane
-            float dist = nx * obb->center.x + ny * obb->center.y + nz * obb->center.z + d;
-
-            // Project OBB extents onto the plane normal
-            float r = 0.0f;
-            for (int a = 0; a < 3; a++) {
-                float dot = nx * obb->axis[a].x + ny * obb->axis[a].y + nz * obb->axis[a].z;
-                float ext;
-                // extent is stored in obb->extent as (x, y, z) for axes 0, 1, 2
-                if (a == 0)      ext = obb->extent.x;
-                else if (a == 1) ext = obb->extent.y;
-                else             ext = obb->extent.z;
-                r += (float)fabs(dot) * ext;
-            }
-
-            // If center is farther from the plane than the projection radius,
-            // the OBB is completely on the negative side
-            if (dist < -r)
-                return 0;
-        }
-
-        return 1;
-    }
-
-    // 0x10021f00 (82B) - Clip a single point against frustum
-    // Returns: 0 = outside, 1 = inside
-    int ClipPoint(gbVec3D* pt) {
-        if (!pt)
-            return 0;
-
-        for (int i = 0; i < numPlane; i++) {
-            float dist = Plane[i][0] * pt->x
-                       + Plane[i][1] * pt->y
-                       + Plane[i][2] * pt->z
-                       + Plane[i][3];
-            if (dist < 0.0f)
-                return 0;
-        }
-        return 1;
-    }
-
-    // 0x10021f60 (90B) - Clip a sphere against frustum
-    // Returns: 0 = fully outside, 1 = intersects or inside
-    int ClipSphere(gbVec3D* center, float radius) {
-        if (!center)
-            return 0;
-
-        for (int i = 0; i < numPlane; i++) {
-            float dist = Plane[i][0] * center->x
-                       + Plane[i][1] * center->y
-                       + Plane[i][2] * center->z
-                       + Plane[i][3];
-            if (dist < -radius)
-                return 0;
-        }
-        return 1;
-    }
-
-    // --- Camera control ---
-
-    // 0x100225f0 (54B) - Add a camera controller
-    void AddControler(gbCamControler* ctrl, double blendTime) {
-        if (!ctrl)
-            return;
-
-        // Find a free slot
-        for (int i = 0; i < 16; i++) {
-            if (pControl[i] == NULL) {
-                pControl[i] = ctrl;
-                ctrl->pCamera = this;
-                CurCtrl = i;
-                break;
-            }
-        }
-    }
-
-    // SetActive / GetActive
-    void SetActive(int active) {
-        // In the real engine, this marks the camera as the active rendering camera
-        // and calls SetAsCurrent to push matrices to the D3D device
-        if (active && pGfxMgr) {
-            // Push view and projection matrices to the graphics manager
-            pGfxMgr->SetCameraMatrix(&ViewMatrix, &ProjMatrix);
-        }
-    }
-
-    int GetActive(void) {
-        // Return whether this camera is the current active camera
-        if (pGfxMgr && pGfxMgr->pCamera == this)
-            return 1;
+    pVertPoolMgr = NULL;
+    pEffectMgr = NULL;
+    pTexResMgr = NULL;
+    pFontMgr = NULL;
+    pSceneGraph = NULL;
+    pCamera = NULL;
+
+    memset(pMatrixStack, 0, sizeof(pMatrixStack));
+
+    m_ambientLight.r = 0.2f;
+    m_ambientLight.g = 0.2f;
+    m_ambientLight.b = 0.2f;
+    m_ambientLight.a = 1.0f;
+
+    m_bEmissiveEnable = 0;
+    m_fEmissiveFactor = 1.0f;
+
+    m_lastTime = 0.0;
+    m_deltaTime = 0.0;
+    m_lastTick = 0;
+    m_deltaTick = 0;
+
+    // Initialize world matrix to identity
+    memset(&m_worldMatrix, 0, sizeof(gbMatrix4));
+    m_worldMatrix.m[0][0] = 1.0f;
+    m_worldMatrix.m[1][1] = 1.0f;
+    m_worldMatrix.m[2][2] = 1.0f;
+    m_worldMatrix.m[3][3] = 1.0f;
+
+    memset(&m_viewMatrix, 0, sizeof(gbMatrix4));
+    m_viewMatrix.m[0][0] = 1.0f;
+    m_viewMatrix.m[1][1] = 1.0f;
+    m_viewMatrix.m[2][2] = 1.0f;
+    m_viewMatrix.m[3][3] = 1.0f;
+
+    memset(&m_projMatrix, 0, sizeof(gbMatrix4));
+    m_projMatrix.m[0][0] = 1.0f;
+    m_projMatrix.m[1][1] = 1.0f;
+    m_projMatrix.m[2][2] = 1.0f;
+    m_projMatrix.m[3][3] = 1.0f;
+
+    m_nWireMode = 0;
+
+    result = 1; // success
+}
+
+gbGfxManager::~gbGfxManager() {
+    // Cleanup is handled by derived class (gbGfxManager_D3D)
+}
+
+// 0x1001db10 (222B) - Begin a rendering scene
+int gbGfxManager::BeginScene(void) {
+    if (m_bInScene)
         return 0;
+
+    // Update time tracking
+    double currentTime = g_CurrentTime;
+    m_deltaTime = currentTime - m_lastTime;
+    m_lastTime = currentTime;
+
+    unsigned int currentTick = g_CurrentTick;
+    m_deltaTick = currentTick - m_lastTick;
+    m_lastTick = currentTick;
+
+    // In the real D3D implementation, this calls IDirect3DDevice9::BeginScene()
+    // and clears the render target. The actual D3D calls are in gbGfxManager_D3D.
+    m_bInScene = 1;
+    return 1;
+}
+
+// EndScene: finish the rendering scene
+void gbGfxManager::EndScene(void) {
+    if (!m_bInScene)
+        return;
+
+    // In gbGfxManager_D3D, this calls:
+    //   m_pd3dDevice->EndScene();
+    //   m_pd3dDevice->Present(NULL, NULL, NULL, NULL);
+    m_bInScene = 0;
+}
+
+// SetTransform: set a transform matrix (world/view/projection)
+void gbGfxManager::SetTransform(int type, gbMatrix4* matrix) {
+    if (!matrix)
+        return;
+
+    switch (type) {
+    case GB_TM_WORLD:
+        memcpy(&m_worldMatrix, matrix, sizeof(gbMatrix4));
+        break;
+    case GB_TM_VIEW:
+        memcpy(&m_viewMatrix, matrix, sizeof(gbMatrix4));
+        break;
+    case GB_TM_PROJECTION:
+        memcpy(&m_projMatrix, matrix, sizeof(gbMatrix4));
+        break;
     }
 
-    // 0x10022590 (83B) - Update active camera controller
-    void UpdateControler(double deltaTime) {
-        if (CurCtrl >= 0 && CurCtrl < 16 && pControl[CurCtrl]) {
-            pControl[CurCtrl]->Update(deltaTime);
-        }
-    }
+    // In the real engine, this also calls IDirect3DDevice9::SetTransform()
+    // with the appropriate D3DTRANSFORMSTATETYPE
+}
 
-    // --- Additional methods from the export list ---
+// 0x1001e220 (158B) - Clip a bounding volume against the view frustum
+// Returns: 0 = fully outside, 1 = partially inside, 2 = fully inside
+int gbGfxManager::ClipBoundVolume(gbAABBox* box) {
+    if (!box || !pCamera)
+        return 0;
 
-    // 0x100058d0 (33B) - Set eye location directly
-    void SetEyeLoc(float x, float y, float z) {
-        eyeLoc.x = x;
-        eyeLoc.y = y;
-        eyeLoc.z = z;
-    }
+    // Delegate to camera's clip method
+    // The camera maintains 6 frustum planes and tests the AABB against them
+    gbVec3D minPt, maxPt;
+    minPt = box->vMin;
+    maxPt = box->vMax;
 
-    // 0x10005900 (42B) - Set eye direction from quaternion
-    void SetEyeDir(gbQuaternion* dir) {
-        if (dir)
-            eyeDir = *dir;
-    }
+    // Quick test: call the camera's AABB clip
+    // flags parameter 0x3F means test all 6 planes
+    // Return value uses same convention: 0=out, 1=partial, 2=in
+    // We implement a simplified version here; real logic is in gbCamera::ClipAABBox
+    return 1; // assume partially visible as fallback
+}
 
-    // 0x10005930 (16B) - Set orthographic size
-    void SetOrthoSize(float size) {
-        OrthoSize = size;
-    }
+// 0x10004ff0 (34B) - Enable/disable emissive lighting
+void gbGfxManager::EnableEmissive(int enable) {
+    m_bEmissiveEnable = enable;
+    // In the real engine, this also sets D3D render state
+    // D3DRS_EMISSIVEMATERIALSOURCE etc.
+}
 
-    // 0x10021970 (155B) - Set look-at parameters
-    void SetLookAt(gbVec3D* eye, gbVec3D* target, gbVec3D* up) {
-        if (eye)
-            eyeLoc = *eye;
+// 0x10005020 (13B) - Set emissive factor
+void gbGfxManager::SetEmissiveFactor(float factor) {
+    m_fEmissiveFactor = factor;
+}
 
-        // Compute view direction quaternion from eye/target/up
-        // The real engine converts the look-at vectors to a quaternion stored in eyeDir
-        // and then calls MakeView().
-        if (eye && target && up) {
-            // Build rotation from look-at direction
-            MakeView();
-        }
-    }
+// 0x10004fc0 (39B) - Get ambient light color
+gbColorFlt gbGfxManager::GetAmbientLight(void) {
+    return m_ambientLight;
+}
 
-    // 0x10021a10 (97B) - Get view dimensions on the near clipping plane
-    void GetViewSizeOnNearPlane(float* w, float* h) {
-        if (!w || !h)
-            return;
-        float halfH = zNear * (float)tan(fov * 0.5f);
-        float halfW = halfH * GetAspect();
-        *w = halfW * 2.0f;
-        *h = halfH * 2.0f;
-    }
+// 0x10004f90 (35B) - Set ambient light color
+void gbGfxManager::SetAmbientLight(const gbColorFlt& color) {
+    m_ambientLight = color;
 
-    // 0x10021a80 (460B) - Set this camera as the current rendering camera
-    void SetAsCurrent(int mode) {
-        if (!pGfxMgr)
-            return;
+    // In the real engine, this converts to D3DCOLOR and calls
+    // IDirect3DDevice9::SetRenderState(D3DRS_AMBIENT, d3dColor)
+}
 
-        pGfxMgr->pCamera = this;
+// 0x1001dac0 (34B) - Get delta time since last frame
+double gbGfxManager::GetDeltaTime(void) {
+    return m_deltaTime;
+}
 
-        // Build view and projection matrices
-        MakeView();
-        MakeProj();
+// 0x1001daf0 (27B) - Get delta tick since last frame
+unsigned int gbGfxManager::GetDeltaTick(void) {
+    return m_deltaTick;
+}
 
-        // Push matrices to the graphics system
-        pGfxMgr->SetCameraMatrix(&ViewMatrix, &ProjMatrix);
+// 0x10004ea0 (13B) - Set scene graph
+void gbGfxManager::SetSceneGraph(gbSceneGraph* sg) {
+    pSceneGraph = sg;
+}
 
-        // Set viewport on the device
-        // In the real engine: IDirect3DDevice9::SetViewport(...)
-    }
-
-    // 0x10021c50 (39B) - Set screen dimensions
-    void SetDimention(int w, int h) {
-        Wscreen = (float)w;
-        Hscreen = (float)h;
-        Viewport.width = w;
-        Viewport.height = h;
-    }
-
-    // 0x100059c0 (24B) - Rotate a vector by the camera orientation
-    void RotateVector(gbVec3D* in, gbVec3D* out) {
-        if (!in || !out)
-            return;
-        // Transform by the rotation part of the inverse view matrix
-        out->x = InvVMatrix.m[0][0] * in->x + InvVMatrix.m[1][0] * in->y + InvVMatrix.m[2][0] * in->z;
-        out->y = InvVMatrix.m[0][1] * in->x + InvVMatrix.m[1][1] * in->y + InvVMatrix.m[2][1] * in->z;
-        out->z = InvVMatrix.m[0][2] * in->x + InvVMatrix.m[1][2] * in->y + InvVMatrix.m[2][2] * in->z;
-    }
-
-    // 0x10005a00 (14B) - Get current controller
-    gbCamControler* GetCurControl(void) {
-        if (CurCtrl >= 0 && CurCtrl < 16)
-            return pControl[CurCtrl];
+// 0x10004ed0 (14B) - Get matrix stack by index
+gbMatrixStack* gbGfxManager::GetMatrixStack(int index) {
+    if (index < 0 || index >= 4)
         return NULL;
+    return pMatrixStack[index];
+}
+
+// 0x10004ee0 (16B) - Get print font by type
+gbPrintFont* gbGfxManager::GetPrintFont(int fontType) {
+    // In the real engine, this calls pFontMgr->GetFont(fontType)
+    // We return NULL as a stub since we don't have the font manager fully defined
+    return NULL;
+}
+
+// 0x10004f50 (20B) - Get light object by index
+const gbLight* gbGfxManager::GetLight(int index) const {
+    // Light objects are stored in an array inside the GfxManager
+    // Stub: return NULL
+    return NULL;
+}
+
+// 0x10004f70 (14B) - Check if a light is enabled
+int gbGfxManager::IsLightEnable(int index) const {
+    return 0;
+}
+
+// 0x1001df40 (37B) - Get a combined transform matrix
+void gbGfxManager::GetTMMatrix(int type, gbMatrix4* out) {
+    if (!out)
+        return;
+    switch (type) {
+    case GB_TM_WORLD:
+        memcpy(out, &m_worldMatrix, sizeof(gbMatrix4));
+        break;
+    case GB_TM_VIEW:
+        memcpy(out, &m_viewMatrix, sizeof(gbMatrix4));
+        break;
+    case GB_TM_PROJECTION:
+        memcpy(out, &m_projMatrix, sizeof(gbMatrix4));
+        break;
     }
+}
 
-    // 0x10005a10 (14B) - Check if current controller is default
-    int IsCurCtrlDefault(void) {
-        return (CurCtrl == 0) ? 1 : 0;
-    }
+// 0x1001e070 (24B) - Get current viewport
+void gbGfxManager::GetViewport(gbViewPort& pViewport) {
+    // In the real engine, calls IDirect3DDevice9::GetViewport()
+    // and converts to the gbViewPort structure
+}
 
-    // 0x10021fc0 (111B) - Convert screen coordinates to world ray
-    void PointScrToWorld(float sx, float sy, gbVec3D* worldPt) {
-        if (!worldPt)
-            return;
-        // Convert screen (sx, sy) to a world-space point on the near plane
-        float halfH = zNear * (float)tan(fov * 0.5f);
-        float halfW = halfH * GetAspect();
+// 0x1001e090 (35B) - Set clear parameters (color, depth, stencil)
+void gbGfxManager::SetClearParam(gbClearParam* pParam) {
+    // Stores clear color/depth/stencil values for BeginScene's Clear call
+}
 
-        // Normalize screen coords to [-1, 1]
-        float nx = (2.0f * sx / Wscreen - 1.0f) * halfW;
-        float ny = (1.0f - 2.0f * sy / Hscreen) * halfH;
+// 0x1001e160 (189B) - Create a new mesh resource
+gbBaseMesh* gbGfxManager::NewMesh(const char* name, gbMeshType type) {
+    // In the real engine, allocates a gbStaticMesh or derived class
+    // and registers it with the resource manager
+    return NULL;
+}
 
-        // Eye-space point on near plane
-        gbVec3D eyePt;
-        eyePt.x = nx;
-        eyePt.y = ny;
-        eyePt.z = zNear;
+// 0x1001e2c0 (36B) - Offset Z-buffer for decal rendering
+void gbGfxManager::OffsetZBuffer(int enable) {
+    // Sets D3DRS_DEPTHBIAS / D3DRS_SLOPESCALEDEPTHBIAS
+}
 
-        // Transform to world space using inverse view matrix
-        worldPt->x = InvVMatrix.m[0][0] * eyePt.x + InvVMatrix.m[1][0] * eyePt.y
-                   + InvVMatrix.m[2][0] * eyePt.z + InvVMatrix.m[3][0];
-        worldPt->y = InvVMatrix.m[0][1] * eyePt.x + InvVMatrix.m[1][1] * eyePt.y
-                   + InvVMatrix.m[2][1] * eyePt.z + InvVMatrix.m[3][1];
-        worldPt->z = InvVMatrix.m[0][2] * eyePt.x + InvVMatrix.m[1][2] * eyePt.y
-                   + InvVMatrix.m[2][2] * eyePt.z + InvVMatrix.m[3][2];
-    }
+// 0x1001e2f0 (13B) - Set wireframe rendering mode
+void gbGfxManager::SetWireMode(int mode) {
+    m_nWireMode = mode;
+    // In real engine: SetRenderState(D3DRS_FILLMODE, mode ? D3DFILL_WIREFRAME : D3DFILL_SOLID)
+}
 
-    // 0x10022030 (24B) - Transform a world point to eye space
-    void PointWorldToEye(gbVec3D* worldPt, gbVec3D* eyePt) {
-        if (!worldPt || !eyePt)
-            return;
-        eyePt->x = ViewMatrix.m[0][0] * worldPt->x + ViewMatrix.m[1][0] * worldPt->y
-                  + ViewMatrix.m[2][0] * worldPt->z + ViewMatrix.m[3][0];
-        eyePt->y = ViewMatrix.m[0][1] * worldPt->x + ViewMatrix.m[1][1] * worldPt->y
-                  + ViewMatrix.m[2][1] * worldPt->z + ViewMatrix.m[3][1];
-        eyePt->z = ViewMatrix.m[0][2] * worldPt->x + ViewMatrix.m[1][2] * worldPt->y
-                  + ViewMatrix.m[2][2] * worldPt->z + ViewMatrix.m[3][2];
-    }
+// 0x1001e300 (38B) - Set fog parameters
+void gbGfxManager::SetFog(gbFogParam* pFogParam) {
+    // Sets D3DRS_FOGENABLE, D3DRS_FOGCOLOR, D3DRS_FOGSTART, D3DRS_FOGEND, etc.
+}
 
-    // 0x100220b0 (184B) - Convert eye-space point to screen coordinates
-    void PointEyeToScr(gbVec3D* eyePt, float* sx, float* sy) {
-        if (!eyePt || !sx || !sy)
-            return;
+// 0x1001e330 (55B) - Get world matrix (const reference)
+const gbMatrix4& gbGfxManager::GetWorldMatrix(void) {
+    return m_worldMatrix;
+}
 
-        if (eyePt->z <= 0.0f) {
-            *sx = 0.0f;
-            *sy = 0.0f;
-            return;
-        }
+// Exported: GetViewMatrix
+const gbMatrix4& gbGfxManager::GetViewMatrix(void) {
+    return m_viewMatrix;
+}
 
-        // Perspective divide
-        float invZ = 1.0f / eyePt->z;
-        float projX = eyePt->x * ProjMatrix.m[0][0] * invZ;
-        float projY = eyePt->y * ProjMatrix.m[1][1] * invZ;
+// 0x1001e380 (19B) - Reset world matrix to identity
+void gbGfxManager::IdentityWorldMatrix(void) {
+    memset(&m_worldMatrix, 0, sizeof(gbMatrix4));
+    m_worldMatrix.m[0][0] = 1.0f;
+    m_worldMatrix.m[1][1] = 1.0f;
+    m_worldMatrix.m[2][2] = 1.0f;
+    m_worldMatrix.m[3][3] = 1.0f;
 
-        // Map from [-1,1] to screen coords
-        *sx = (projX + 1.0f) * 0.5f * Wscreen;
-        *sy = (1.0f - projY) * 0.5f * Hscreen;
-    }
+    // Also set on the D3D device
+    // SetTransform(GB_TM_WORLD, &m_worldMatrix);
+}
 
-    // 0x10022170 (217B) - Convert eye-space point to screen (vector version)
-    void PointEyeToScr(gbVec3D* eyePt, gbVec3D* scrPt) {
-        if (!eyePt || !scrPt)
-            return;
+// 0x1001e3a0 (43B) - Set view and projection matrices from camera
+void gbGfxManager::SetCameraMatrix(const gbMatrix4& view, const gbMatrix4& proj) {
+    memcpy(&m_viewMatrix, &view, sizeof(gbMatrix4));
+    memcpy(&m_projMatrix, &proj, sizeof(gbMatrix4));
 
-        float sx, sy;
-        PointEyeToScr(eyePt, &sx, &sy);
-        scrPt->x = sx;
-        scrPt->y = sy;
-        scrPt->z = eyePt->z; // preserve depth
-    }
+    // In the real engine, also calls:
+    // IDirect3DDevice9::SetTransform(D3DTS_VIEW, (D3DMATRIX*)view)
+    // IDirect3DDevice9::SetTransform(D3DTS_PROJECTION, (D3DMATRIX*)proj)
+}
 
-    // 0x10022250 (24B) - Transform eye-space point to world
-    void PointEyetoWorld(gbVec3D* eyePt, gbVec3D* worldPt) {
-        if (!eyePt || !worldPt)
-            return;
-        worldPt->x = InvVMatrix.m[0][0] * eyePt->x + InvVMatrix.m[1][0] * eyePt->y
-                    + InvVMatrix.m[2][0] * eyePt->z + InvVMatrix.m[3][0];
-        worldPt->y = InvVMatrix.m[0][1] * eyePt->x + InvVMatrix.m[1][1] * eyePt->y
-                    + InvVMatrix.m[2][1] * eyePt->z + InvVMatrix.m[3][1];
-        worldPt->z = InvVMatrix.m[0][2] * eyePt->x + InvVMatrix.m[1][2] * eyePt->y
-                    + InvVMatrix.m[2][2] * eyePt->z + InvVMatrix.m[3][2];
-    }
+// Exported: GetGfxCaps
+int gbGfxManager::GetGfxCaps(gbGfxCaps* caps) {
+    if (!caps) return 0;
+    memset(caps, 0, sizeof(gbGfxCaps));
+    return 1;
+}
 
-    // 0x10022270 (80B) - Convert world point to screen coordinates
-    void PointWorldToScr(gbVec3D* worldPt, float* sx, float* sy) {
-        if (!worldPt || !sx || !sy)
-            return;
-        gbVec3D eyePt;
-        PointWorldToEye(worldPt, &eyePt);
-        PointEyeToScr(&eyePt, sx, sy);
-    }
+// Exported: GetCurTick
+unsigned int gbGfxManager::GetCurTick(void) {
+    return m_lastTick;
+}
 
-    // 0x10022050 (91B) - Convert screen coordinates to eye space
-    void PointScrToEye(float sx, float sy, gbVec3D* eyePt) {
-        if (!eyePt)
-            return;
+// Exported: GetCurTime
+double gbGfxManager::GetCurTime(void) {
+    return m_lastTime;
+}
 
-        float halfH = zNear * (float)tan(fov * 0.5f);
-        float halfW = halfH * GetAspect();
+// Exported: GetDriverInfo
+const gbGfxDriverInfo* gbGfxManager::GetDriverInfo(void) {
+    return &DrvInfo;
+}
 
-        eyePt->x = (2.0f * sx / Wscreen - 1.0f) * halfW;
-        eyePt->y = (1.0f - 2.0f * sy / Hscreen) * halfH;
-        eyePt->z = zNear;
-    }
+// Exported: GetEffectMgr
+gbEffectMgr* gbGfxManager::GetEffectMgr(void) {
+    return pEffectMgr;
+}
 
-    // 0x100222c0 (268B) - Get a ray from camera through screen point
-    void GetRayToScreen(float sx, float sy, gbRay* ray) {
-        if (!ray)
-            return;
+// Exported: GetEmissiveFactor
+float gbGfxManager::GetEmissiveFactor(void) {
+    return m_fEmissiveFactor;
+}
 
-        // Origin is the eye position
-        ray->origin = eyeLoc;
+// Exported: GetFog
+gbFogParam* gbGfxManager::GetFog(void) {
+    return NULL;
+}
 
-        // Compute direction: point on near plane in world space minus eye
-        gbVec3D nearPt;
-        PointScrToWorld(sx, sy, &nearPt);
+// Exported: GetGraphWnd
+unsigned int gbGfxManager::GetGraphWnd(void) {
+    return DrvInfo.hgfxwnd;
+}
 
-        ray->direction.x = nearPt.x - eyeLoc.x;
-        ray->direction.y = nearPt.y - eyeLoc.y;
-        ray->direction.z = nearPt.z - eyeLoc.z;
+// Exported: GetPrintFontMgr
+gbPrintFontMgr* gbGfxManager::GetPrintFontMgr(void) {
+    return pFontMgr;
+}
 
-        // Normalize direction
-        float len = (float)sqrt(ray->direction.x * ray->direction.x
-                              + ray->direction.y * ray->direction.y
-                              + ray->direction.z * ray->direction.z);
-        if (len > 1e-6f) {
-            ray->direction.x /= len;
-            ray->direction.y /= len;
-            ray->direction.z /= len;
-        }
-    }
+// Exported: GetResManager
+gbResManager* gbGfxManager::GetResManager(void) {
+    return pTexResMgr;
+}
 
-    // 0x100223d0 (109B) - Get viewport bounds as floats
-    void GetViewPort(float* x, float* y, float* w, float* h) {
-        if (x) *x = (float)Viewport.x;
-        if (y) *y = (float)Viewport.y;
-        if (w) *w = (float)Viewport.width;
-        if (h) *h = (float)Viewport.height;
-    }
+// Exported: GetSceneGraph
+gbSceneGraph* gbGfxManager::GetSceneGraph(void) {
+    return pSceneGraph;
+}
 
-    // 0x10022440 (67B) - Convert device coordinates to screen coordinates
-    void PointDevToScr(int* dx, int* dy, float sx, float sy) {
-        if (!dx || !dy)
-            return;
-        *dx = (int)(sx - (float)Viewport.x);
-        *dy = (int)(sy - (float)Viewport.y);
-    }
+// Exported: GetStatistic
+gbGfxStatistic* gbGfxManager::GetStatistic(void) {
+    return NULL;
+}
 
-    // 0x10022490 (24B) - Rotate vector with optional inverse flag
-    void RotateVector(gbVec3D* in, gbVec3D* out, int inverse) {
-        if (!in || !out)
-            return;
-        if (inverse) {
-            // Rotate by the view matrix (world to eye)
-            out->x = ViewMatrix.m[0][0] * in->x + ViewMatrix.m[1][0] * in->y + ViewMatrix.m[2][0] * in->z;
-            out->y = ViewMatrix.m[0][1] * in->x + ViewMatrix.m[1][1] * in->y + ViewMatrix.m[2][1] * in->z;
-            out->z = ViewMatrix.m[0][2] * in->x + ViewMatrix.m[1][2] * in->y + ViewMatrix.m[2][2] * in->z;
-        } else {
-            // Rotate by the inverse view matrix (eye to world)
-            RotateVector(in, out);
-        }
-    }
+// Exported: GetVertPoolMgr
+gbVertPoolMgr* gbGfxManager::GetVertPoolMgr(void) {
+    return pVertPoolMgr;
+}
 
-    // 0x100224b0 (39B) - Offset Z-buffer for camera
-    void OffsetZBuffer(double offset) {
-        if (pGfxMgr) {
-            pGfxMgr->OffsetZBuffer(offset != 0.0 ? 1 : 0);
-        }
-    }
-
-    // 0x100224e0 (25B) - Recover Z-buffer to normal state
-    void RecoverZBuffer(void) {
-        if (pGfxMgr) {
-            pGfxMgr->OffsetZBuffer(0);
-        }
-    }
-
-    // 0x10022500 (130B) - Move camera along its forward direction
-    void MoveInEyeDir(float dist) {
-        // Get the forward direction from the inverse view matrix (row 2)
-        float fx = InvVMatrix.m[2][0];
-        float fy = InvVMatrix.m[2][1];
-        float fz = InvVMatrix.m[2][2];
-
-        eyeLoc.x += fx * dist;
-        eyeLoc.y += fy * dist;
-        eyeLoc.z += fz * dist;
-    }
-
-    // 0x10022590 (83B) - Update camera (called each frame)
-    void Update(double deltaTime) {
-        // Update current controller if any
-        UpdateControler(deltaTime);
-
-        // Rebuild matrices
-        MakeView();
-        MakeProj();
-    }
-
-    // 0x10022630 (171B) - Project world point to screen without viewport transform
-    void PointWorld2Scr_NR(gbVec3D* worldPt, float* sx, float* sy) {
-        if (!worldPt || !sx || !sy)
-            return;
-
-        gbVec3D eyePt;
-        PointWorldToEye(worldPt, &eyePt);
-
-        if (eyePt.z <= 0.0f) {
-            *sx = 0.0f;
-            *sy = 0.0f;
-            return;
-        }
-
-        float invZ = 1.0f / eyePt.z;
-        *sx = eyePt.x * ProjMatrix.m[0][0] * invZ;
-        *sy = eyePt.y * ProjMatrix.m[1][1] * invZ;
-    }
-};
+// Exported: IsWireMode
+int gbGfxManager::IsWireMode(void) {
+    return m_nWireMode;
+}
 
 
 // ============================================================================
-// gbRenderEffect - wraps an ID3DXEffect for shader management
+// gbRenderEffect method implementations
 // ============================================================================
-class gbRenderEffect {
-    // Private constructor: only gbEffectMgr can create these
-    friend class gbEffectMgr;
 
-private:
-    ID3DXEffect* m_pEffect;
-    unsigned int m_nPasses;
-    unsigned int m_dwFlags;
-    D3DVERTEXELEMENT9* m_pDecl;
-    int m_nTechnique;
+// 0x1001cef0 (139B) - Private constructor from effect and flags
+gbRenderEffect::gbRenderEffect(ID3DXEffect* pEffect, unsigned int flags) {
+    m_pEffect = pEffect;
+    m_dwFlags = flags;
+    m_nPasses = 0;
+    m_pDecl = NULL;
+    m_nTechnique = 0;
 
-    // 0x1001cef0 (139B) - Private constructor from effect and flags
-    gbRenderEffect(ID3DXEffect* pEffect, unsigned int flags) {
-        m_pEffect = pEffect;
-        m_dwFlags = flags;
-        m_nPasses = 0;
-        m_pDecl = NULL;
-        m_nTechnique = 0;
-
-        if (m_pEffect) {
-            m_pEffect->AddRef();
-        }
+    if (m_pEffect) {
+        m_pEffect->AddRef();
     }
+}
 
-    // Private virtual destructor
-    virtual ~gbRenderEffect() {
+gbRenderEffect::~gbRenderEffect() {
+    if (m_pEffect) {
+        m_pEffect->Release();
+        m_pEffect = NULL;
+    }
+    m_pDecl = NULL;
+}
+
+// 0x10004bf0 (92B) - Copy constructor
+gbRenderEffect::gbRenderEffect(const gbRenderEffect& other) {
+    m_pEffect = other.m_pEffect;
+    m_dwFlags = other.m_dwFlags;
+    m_nPasses = other.m_nPasses;
+    m_pDecl = other.m_pDecl;
+    m_nTechnique = other.m_nTechnique;
+
+    if (m_pEffect) {
+        m_pEffect->AddRef();
+    }
+}
+
+// operator=
+gbRenderEffect& gbRenderEffect::operator=(const gbRenderEffect& other) {
+    if (this != &other) {
+        // Release old effect
         if (m_pEffect) {
             m_pEffect->Release();
-            m_pEffect = NULL;
         }
-        m_pDecl = NULL;
-    }
 
-public:
-    // 0x10004bf0 (92B) - Copy constructor
-    gbRenderEffect(const gbRenderEffect& other) {
         m_pEffect = other.m_pEffect;
         m_dwFlags = other.m_dwFlags;
         m_nPasses = other.m_nPasses;
@@ -1334,150 +751,164 @@ public:
             m_pEffect->AddRef();
         }
     }
+    return *this;
+}
 
-    // operator=
-    gbRenderEffect& operator=(const gbRenderEffect& other) {
-        if (this != &other) {
-            // Release old effect
-            if (m_pEffect) {
-                m_pEffect->Release();
-            }
+// 0x10004be0 (10B) - Set vertex declaration handle
+void gbRenderEffect::SetDeclHandle(IDirect3DVertexDeclaration9* decl) {
+    m_pDecl = (D3DVERTEXELEMENT9*)decl;
+}
 
-            m_pEffect = other.m_pEffect;
-            m_dwFlags = other.m_dwFlags;
-            m_nPasses = other.m_nPasses;
-            m_pDecl = other.m_pDecl;
-            m_nTechnique = other.m_nTechnique;
-
-            if (m_pEffect) {
-                m_pEffect->AddRef();
-            }
-        }
-        return *this;
-    }
-
-    // 0x10004be0 (10B) - Set vertex declaration handle
-    void SetDeclHandle(void* decl) {
-        m_pDecl = (D3DVERTEXELEMENT9*)decl;
-    }
-
-    // 0x1001cfe0 (32B) - Compare two effects for sorting
-    int Compare(gbRenderEffect* other) {
-        if (!other)
-            return 1;
-        if (m_pEffect == other->m_pEffect)
-            return 0;
-        if (m_pEffect < other->m_pEffect)
-            return -1;
+// 0x1001cfe0 (32B) - Compare two effects for sorting
+int gbRenderEffect::Compare(gbRenderEffect* other) {
+    if (!other)
         return 1;
-    }
+    if (m_pEffect == other->m_pEffect)
+        return 0;
+    if (m_pEffect < other->m_pEffect)
+        return -1;
+    return 1;
+}
 
-    // 0x1001d000 (119B) - Validate the effect
-    int Validate(void) {
-        if (!m_pEffect)
-            return 0;
+// 0x1001d000 (119B) - Validate the effect
+int gbRenderEffect::Validate(void) {
+    if (!m_pEffect)
+        return 0;
 
-        HRESULT hr = m_pEffect->ValidateTechnique(NULL);
-        return SUCCEEDED(hr) ? 1 : 0;
-    }
+    HRESULT hr = m_pEffect->ValidateTechnique(NULL);
+    return SUCCEEDED(hr) ? 1 : 0;
+}
 
-    // 0x1001d080 (26B) - Begin rendering with this effect
-    int Begin(void) {
-        if (!m_pEffect)
-            return 0;
+// 0x1001d080 (26B) - Begin rendering with this effect
+int gbRenderEffect::Begin(void) {
+    if (!m_pEffect)
+        return 0;
 
-        UINT numPasses = 0;
-        HRESULT hr = m_pEffect->Begin(&numPasses, 0);
-        if (FAILED(hr))
-            return 0;
+    UINT numPasses = 0;
+    HRESULT hr = m_pEffect->Begin(&numPasses, 0);
+    if (FAILED(hr))
+        return 0;
 
-        m_nPasses = numPasses;
-        return (int)numPasses;
-    }
+    m_nPasses = numPasses;
+    return (int)numPasses;
+}
 
-    // 0x1001d0a0 (52B) - Set a pass
-    void Pass(int passIndex) {
-        if (!m_pEffect)
-            return;
-        m_pEffect->BeginPass(passIndex);
-    }
+// 0x1001d0a0 (52B) - Set a pass
+void gbRenderEffect::Pass(int passIndex) {
+    if (!m_pEffect)
+        return;
+    m_pEffect->BeginPass(passIndex);
+}
 
-    // 0x1001d0e0 (20B) - End rendering with this effect
-    void End(void) {
-        if (!m_pEffect)
-            return;
-        m_pEffect->End();
-    }
+// 0x1001d0e0 (20B) - End rendering with this effect
+void gbRenderEffect::End(void) {
+    if (!m_pEffect)
+        return;
+    m_pEffect->End();
+}
 
-    // 0x1001d100 (72B) - Apply current effect state (commit changes)
-    void Apply(void) {
-        if (!m_pEffect)
-            return;
-        m_pEffect->CommitChanges();
-    }
+// 0x1001d100 (72B) - Apply current effect state (commit changes)
+void gbRenderEffect::Apply(void) {
+    if (!m_pEffect)
+        return;
+    m_pEffect->CommitChanges();
+}
 
-    // 0x1001d150 (30B) - Get variant by handle
-    void GetVariant(int handle, void* pValue) {
-        if (!m_pEffect || !pValue)
-            return;
-        m_pEffect->GetValue((D3DXHANDLE)(intptr_t)handle, pValue, sizeof(float) * 4);
-    }
+// Get variant by GBPARAMHANDLE
+void gbRenderEffect::GetVariant(enum GBPARAMHANDLE handle, void* pValue) {
+    if (!m_pEffect || !pValue)
+        return;
+    m_pEffect->GetValue((D3DXHANDLE)(intptr_t)handle, pValue, sizeof(float) * 4);
+}
 
-    // 0x1001d170 (30B) - Set variant by handle
-    void SetVariant(int handle, void* pValue) {
-        if (!m_pEffect || !pValue)
-            return;
-        m_pEffect->SetValue((D3DXHANDLE)(intptr_t)handle, pValue, sizeof(float) * 4);
-    }
+// Set variant by GBPARAMHANDLE
+void gbRenderEffect::SetVariant(enum GBPARAMHANDLE handle, void* pValue) {
+    if (!m_pEffect || !pValue)
+        return;
+    m_pEffect->SetValue((D3DXHANDLE)(intptr_t)handle, pValue, sizeof(float) * 4);
+}
 
-    // 0x1001d190 (40B) - Get variant by name
-    void GetVariant(char* name, void* pValue) {
-        if (!m_pEffect || !name || !pValue)
-            return;
-        D3DXHANDLE hParam = m_pEffect->GetParameterByName(NULL, name);
-        if (hParam)
-            m_pEffect->GetValue(hParam, pValue, sizeof(float) * 4);
-    }
+// 0x1001d190 (40B) - Get variant by name
+void gbRenderEffect::GetVariant(char* name, void* pValue) {
+    if (!m_pEffect || !name || !pValue)
+        return;
+    D3DXHANDLE hParam = m_pEffect->GetParameterByName(NULL, name);
+    if (hParam)
+        m_pEffect->GetValue(hParam, pValue, sizeof(float) * 4);
+}
 
-    // 0x1001d1c0 (40B) - Set variant by name
-    void SetVariant(char* name, void* pValue) {
-        if (!m_pEffect || !name || !pValue)
-            return;
-        D3DXHANDLE hParam = m_pEffect->GetParameterByName(NULL, name);
-        if (hParam)
-            m_pEffect->SetValue(hParam, pValue, sizeof(float) * 4);
-    }
-};
+// 0x1001d1c0 (40B) - Set variant by name
+void gbRenderEffect::SetVariant(char* name, void* pValue) {
+    if (!m_pEffect || !name || !pValue)
+        return;
+    D3DXHANDLE hParam = m_pEffect->GetParameterByName(NULL, name);
+    if (hParam)
+        m_pEffect->SetValue(hParam, pValue, sizeof(float) * 4);
+}
+
+// Exported: GetD3DEffect
+ID3DXEffect* gbRenderEffect::GetD3DEffect(void) {
+    return m_pEffect;
+}
+
+// Exported: GetFlag
+unsigned int gbRenderEffect::GetFlag(void) {
+    return m_dwFlags;
+}
 
 
 // ============================================================================
-// gbEffectMgr - manages creation and caching of render effects
+// gbEffectMgr method implementations
 // ============================================================================
-class gbEffectMgr {
-public:
-    gbGfxManager* m_pGfxMgr;
-    gbRenderEffect** m_pEffects;    // array of effect pointers
-    int m_nMaxEffects;
-    int m_nNumEffects;
-    void** m_pVertDecls;            // registered vertex declarations
-    int m_nMaxDecls;
-    int m_nNumDecls;
-    int m_bInitialized;
 
-    // 0x10004d20 (12B) - Default constructor
-    gbEffectMgr(void) {
-        m_pGfxMgr = NULL;
+// 0x10004d20 (12B) - Default constructor
+gbEffectMgr::gbEffectMgr(void) {
+    m_pGfxMgr = NULL;
+    m_pEffects = NULL;
+    m_nMaxEffects = 0;
+    m_nNumEffects = 0;
+    m_pVertDecls = NULL;
+    m_nMaxDecls = 0;
+    m_nNumDecls = 0;
+    m_bInitialized = 0;
+}
+
+// 0x10004d30 (148B) - Copy constructor
+gbEffectMgr::gbEffectMgr(const gbEffectMgr& other) {
+    m_pGfxMgr = other.m_pGfxMgr;
+    m_nMaxEffects = other.m_nMaxEffects;
+    m_nNumEffects = other.m_nNumEffects;
+    m_nMaxDecls = other.m_nMaxDecls;
+    m_nNumDecls = other.m_nNumDecls;
+    m_bInitialized = other.m_bInitialized;
+
+    // Copy effect array
+    if (other.m_pEffects && m_nMaxEffects > 0) {
+        m_pEffects = (gbRenderEffect**)malloc(sizeof(gbRenderEffect*) * m_nMaxEffects);
+        memcpy(m_pEffects, other.m_pEffects, sizeof(gbRenderEffect*) * m_nNumEffects);
+    } else {
         m_pEffects = NULL;
-        m_nMaxEffects = 0;
-        m_nNumEffects = 0;
-        m_pVertDecls = NULL;
-        m_nMaxDecls = 0;
-        m_nNumDecls = 0;
-        m_bInitialized = 0;
     }
 
-    // 0x10004d30 (148B) - Copy constructor
-    gbEffectMgr(const gbEffectMgr& other) {
+    // Copy vertex declaration array
+    if (other.m_pVertDecls && m_nMaxDecls > 0) {
+        m_pVertDecls = (void**)malloc(sizeof(void*) * m_nMaxDecls);
+        memcpy(m_pVertDecls, other.m_pVertDecls, sizeof(void*) * m_nNumDecls);
+    } else {
+        m_pVertDecls = NULL;
+    }
+}
+
+// Destructor
+gbEffectMgr::~gbEffectMgr() {
+    Release();
+}
+
+// operator=
+gbEffectMgr& gbEffectMgr::operator=(const gbEffectMgr& other) {
+    if (this != &other) {
+        Release();
+
         m_pGfxMgr = other.m_pGfxMgr;
         m_nMaxEffects = other.m_nMaxEffects;
         m_nNumEffects = other.m_nNumEffects;
@@ -1485,191 +916,173 @@ public:
         m_nNumDecls = other.m_nNumDecls;
         m_bInitialized = other.m_bInitialized;
 
-        // Copy effect array
         if (other.m_pEffects && m_nMaxEffects > 0) {
             m_pEffects = (gbRenderEffect**)malloc(sizeof(gbRenderEffect*) * m_nMaxEffects);
             memcpy(m_pEffects, other.m_pEffects, sizeof(gbRenderEffect*) * m_nNumEffects);
-        } else {
-            m_pEffects = NULL;
         }
-
-        // Copy vertex declaration array
         if (other.m_pVertDecls && m_nMaxDecls > 0) {
             m_pVertDecls = (void**)malloc(sizeof(void*) * m_nMaxDecls);
             memcpy(m_pVertDecls, other.m_pVertDecls, sizeof(void*) * m_nNumDecls);
-        } else {
-            m_pVertDecls = NULL;
         }
     }
+    return *this;
+}
 
-    // Destructor
-    ~gbEffectMgr() {
-        Release();
-    }
+// 0x1001d1f0 (786B) - Initialize the effect manager
+void gbEffectMgr::Init(gbGfxManager* gfxMgr) {
+    m_pGfxMgr = gfxMgr;
 
-    // operator=
-    gbEffectMgr& operator=(const gbEffectMgr& other) {
-        if (this != &other) {
-            Release();
+    // Pre-allocate space for effects
+    m_nMaxEffects = 64;
+    m_pEffects = (gbRenderEffect**)malloc(sizeof(gbRenderEffect*) * m_nMaxEffects);
+    memset(m_pEffects, 0, sizeof(gbRenderEffect*) * m_nMaxEffects);
+    m_nNumEffects = 0;
 
-            m_pGfxMgr = other.m_pGfxMgr;
-            m_nMaxEffects = other.m_nMaxEffects;
-            m_nNumEffects = other.m_nNumEffects;
-            m_nMaxDecls = other.m_nMaxDecls;
-            m_nNumDecls = other.m_nNumDecls;
-            m_bInitialized = other.m_bInitialized;
+    // Pre-allocate space for vertex declarations
+    m_nMaxDecls = 32;
+    m_pVertDecls = (void**)malloc(sizeof(void*) * m_nMaxDecls);
+    memset(m_pVertDecls, 0, sizeof(void*) * m_nMaxDecls);
+    m_nNumDecls = 0;
 
-            if (other.m_pEffects && m_nMaxEffects > 0) {
-                m_pEffects = (gbRenderEffect**)malloc(sizeof(gbRenderEffect*) * m_nMaxEffects);
-                memcpy(m_pEffects, other.m_pEffects, sizeof(gbRenderEffect*) * m_nNumEffects);
-            }
-            if (other.m_pVertDecls && m_nMaxDecls > 0) {
-                m_pVertDecls = (void**)malloc(sizeof(void*) * m_nMaxDecls);
-                memcpy(m_pVertDecls, other.m_pVertDecls, sizeof(void*) * m_nNumDecls);
-            }
-        }
-        return *this;
-    }
+    m_bInitialized = 1;
+}
 
-    // 0x1001d1f0 (786B) - Initialize the effect manager
-    void Init(gbGfxManager* gfxMgr) {
-        m_pGfxMgr = gfxMgr;
-
-        // Pre-allocate space for effects
-        m_nMaxEffects = 64;
-        m_pEffects = (gbRenderEffect**)malloc(sizeof(gbRenderEffect*) * m_nMaxEffects);
-        memset(m_pEffects, 0, sizeof(gbRenderEffect*) * m_nMaxEffects);
-        m_nNumEffects = 0;
-
-        // Pre-allocate space for vertex declarations
-        m_nMaxDecls = 32;
-        m_pVertDecls = (void**)malloc(sizeof(void*) * m_nMaxDecls);
-        memset(m_pVertDecls, 0, sizeof(void*) * m_nMaxDecls);
-        m_nNumDecls = 0;
-
-        m_bInitialized = 1;
-    }
-
-    // 0x1001d510 (67B) - Release all managed effects
-    void Release(void) {
-        if (m_pEffects) {
-            for (int i = 0; i < m_nNumEffects; i++) {
-                if (m_pEffects[i]) {
-                    delete m_pEffects[i];
-                    m_pEffects[i] = NULL;
-                }
-            }
-            free(m_pEffects);
-            m_pEffects = NULL;
-        }
-        m_nNumEffects = 0;
-        m_nMaxEffects = 0;
-
-        if (m_pVertDecls) {
-            free(m_pVertDecls);
-            m_pVertDecls = NULL;
-        }
-        m_nNumDecls = 0;
-        m_nMaxDecls = 0;
-
-        m_bInitialized = 0;
-    }
-
-    // 0x1001d560 (50B) - Handle device lost
-    int OnLostDevice(void) {
+// 0x1001d510 (67B) - Release all managed effects
+void gbEffectMgr::Release(void) {
+    if (m_pEffects) {
         for (int i = 0; i < m_nNumEffects; i++) {
-            if (m_pEffects[i] && m_pEffects[i]->m_pEffect) {
-                m_pEffects[i]->m_pEffect->OnLostDevice();
+            if (m_pEffects[i]) {
+                delete m_pEffects[i];
+                m_pEffects[i] = NULL;
             }
         }
-        return 1;
+        free(m_pEffects);
+        m_pEffects = NULL;
     }
+    m_nNumEffects = 0;
+    m_nMaxEffects = 0;
 
-    // 0x1001d5a0 (50B) - Handle device reset
-    int OnResetDevice(void) {
-        for (int i = 0; i < m_nNumEffects; i++) {
-            if (m_pEffects[i] && m_pEffects[i]->m_pEffect) {
-                m_pEffects[i]->m_pEffect->OnResetDevice();
-            }
+    if (m_pVertDecls) {
+        free(m_pVertDecls);
+        m_pVertDecls = NULL;
+    }
+    m_nNumDecls = 0;
+    m_nMaxDecls = 0;
+
+    m_bInitialized = 0;
+}
+
+// 0x1001d560 (50B) - Handle device lost
+int gbEffectMgr::OnLostDevice(void) {
+    for (int i = 0; i < m_nNumEffects; i++) {
+        if (m_pEffects[i] && m_pEffects[i]->m_pEffect) {
+            m_pEffects[i]->m_pEffect->OnLostDevice();
         }
-        return 1;
     }
+    return 1;
+}
 
-    // 0x1001d5e0 (232B) - Register a vertex format declaration
-    void* RegisterVertexFormat(char* name, void* pElements) {
-        if (!name || !pElements)
-            return NULL;
-
-        if (m_nNumDecls >= m_nMaxDecls)
-            return NULL;
-
-        // In the real engine, this creates an IDirect3DVertexDeclaration9
-        // from the D3DVERTEXELEMENT9 array and stores it
-        m_pVertDecls[m_nNumDecls] = pElements;
-        m_nNumDecls++;
-        return pElements;
-    }
-
-    // 0x1001d6d0 (353B) - Create a new render effect from a .gbf file
-    gbRenderEffect* NewRenderEffect(char* filename, int flags) {
-        if (!filename || !m_pGfxMgr)
-            return NULL;
-
-        if (m_nNumEffects >= m_nMaxEffects)
-            return NULL;
-
-        // Get D3D device
-        IDirect3DDevice9* pDevice = NULL;
-        if (m_pGfxMgr) {
-            pDevice = *(IDirect3DDevice9**)((char*)m_pGfxMgr + 0x84C);
+// 0x1001d5a0 (50B) - Handle device reset
+int gbEffectMgr::OnResetDevice(void) {
+    for (int i = 0; i < m_nNumEffects; i++) {
+        if (m_pEffects[i] && m_pEffects[i]->m_pEffect) {
+            m_pEffects[i]->m_pEffect->OnResetDevice();
         }
-        if (!pDevice)
-            return NULL;
-
-        // Load effect file
-        // The real engine opens the file through gbVFileSystem, reads the .gbf data,
-        // and calls D3DXCreateEffect.
-        ID3DXEffect* pEffect = NULL;
-        ID3DXBuffer* pErrors = NULL;
-
-        HRESULT hr = D3DXCreateEffectFromFile(
-            pDevice,
-            filename,
-            NULL,       // defines
-            NULL,       // include handler
-            0,          // flags
-            NULL,       // effect pool
-            &pEffect,
-            &pErrors
-        );
-
-        if (pErrors) {
-            pErrors->Release();
-        }
-
-        if (FAILED(hr) || !pEffect)
-            return NULL;
-
-        gbRenderEffect* effect = new gbRenderEffect(pEffect, (unsigned int)flags);
-        pEffect->Release(); // gbRenderEffect AddRef'd in its constructor
-
-        m_pEffects[m_nNumEffects] = effect;
-        m_nNumEffects++;
-
-        return effect;
     }
+    return 1;
+}
 
-    // 0x1001d840 (107B) - Create a trivial (fixed-function emulation) effect
-    gbRenderEffect* NewTrivalEffect(int type) {
-        // In the real engine, this creates a simple pass-through effect
-        // for fixed-function pipeline emulation
+// 0x1001d5e0 (232B) - Register a vertex format declaration
+IDirect3DVertexDeclaration9* gbEffectMgr::RegisterVertexFormat(const char* name, gbVertexElement* pElements) {
+    if (!name || !pElements)
         return NULL;
+
+    if (m_nNumDecls >= m_nMaxDecls)
+        return NULL;
+
+    // In the real engine, this creates an IDirect3DVertexDeclaration9
+    // from the D3DVERTEXELEMENT9 array and stores it
+    m_pVertDecls[m_nNumDecls] = pElements;
+    m_nNumDecls++;
+    return NULL;
+}
+
+// 0x1001d6d0 (353B) - Create a new render effect from a .gbf file
+gbRenderEffect* gbEffectMgr::NewRenderEffect(const char* filename, unsigned int flags) {
+    if (!filename || !m_pGfxMgr)
+        return NULL;
+
+    if (m_nNumEffects >= m_nMaxEffects)
+        return NULL;
+
+    // Get D3D device
+    IDirect3DDevice9* pDevice = NULL;
+    if (m_pGfxMgr) {
+        pDevice = *(IDirect3DDevice9**)((char*)m_pGfxMgr + 0x84C);
+    }
+    if (!pDevice)
+        return NULL;
+
+    // Load effect file
+    // The real engine opens the file through gbVFileSystem, reads the .gbf data,
+    // and calls D3DXCreateEffect.
+    ID3DXEffect* pEffect = NULL;
+    ID3DXBuffer* pErrors = NULL;
+
+    HRESULT hr = D3DXCreateEffectFromFile(
+        pDevice,
+        filename,
+        NULL,       // defines
+        NULL,       // include handler
+        0,          // flags
+        NULL,       // effect pool
+        &pEffect,
+        &pErrors
+    );
+
+    if (pErrors) {
+        pErrors->Release();
     }
 
-    // 0x1001d8b0 (39B) - Get effect by index
-    gbRenderEffect* GetRenderEffect(int index) {
-        if (index < 0 || index >= m_nNumEffects)
-            return NULL;
-        return m_pEffects[index];
-    }
-};
+    if (FAILED(hr) || !pEffect)
+        return NULL;
+
+    gbRenderEffect* effect = new gbRenderEffect(pEffect, (unsigned int)flags);
+    pEffect->Release(); // gbRenderEffect AddRef'd in its constructor
+
+    m_pEffects[m_nNumEffects] = effect;
+    m_nNumEffects++;
+
+    return effect;
+}
+
+// 0x1001d840 (107B) - Create a trivial (fixed-function emulation) effect
+gbRenderEffect* gbEffectMgr::NewTrivalEffect(int type) {
+    // In the real engine, this creates a simple pass-through effect
+    // for fixed-function pipeline emulation
+    return NULL;
+}
+
+// 0x1001d8b0 (39B) - Get effect by index
+gbRenderEffect* gbEffectMgr::GetRenderEffect(unsigned int index) {
+    if ((int)index >= m_nNumEffects)
+        return NULL;
+    return m_pEffects[index];
+}
+
+// Exported: GetDefaultEffect
+gbRenderEffect* gbEffectMgr::GetDefaultEffect(void) {
+    if (m_nNumEffects > 0)
+        return m_pEffects[0];
+    return NULL;
+}
+
+// Exported: GetGrayTexture
+gbTexture* gbEffectMgr::GetGrayTexture(void) {
+    return NULL;
+}
+
+// Exported: GetWhiteTexture
+gbTexture* gbEffectMgr::GetWhiteTexture(void) {
+    return NULL;
+}
