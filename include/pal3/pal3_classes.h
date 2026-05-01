@@ -78,6 +78,22 @@ struct UICursor {
 extern "C" UICursor* UICursor_Inst(void);  /* 0x005415F0 */
 
 /* ========================================================================
+ * C2DSpark - 2D particle/spark effect system
+ *
+ * Particle array at offset 0x00, each particle is 0x2C bytes.
+ * Max 0x200 (512) particles.
+ * Offset 0x29 per particle: bActive (char)
+ * Offset 0x5808: nHighWaterMark (int) - highest active index + 1
+ * ======================================================================== */
+
+struct C2DSpark {
+    char particles[0x2C * 0x200];    /* offset 0x00: particle array */
+    int nHighWaterMark;              /* offset 0x5808: tracks highest used slot */
+
+    int CreateSingle(void* sparkData);    /* 0x004d5ec0 (83 bytes) */
+};
+
+/* ========================================================================
  * UIRenderObj - UI rendering scope helper (push/pop matrix stacks)
  *
  * Ctor pushes projection + view matrix stacks, loads identity.

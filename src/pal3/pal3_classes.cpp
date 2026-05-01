@@ -191,6 +191,33 @@ void UIWnd::Render()
 }
 
 /* ========================================================================
+ * C2DSpark methods - 2D particle effects
+ * ======================================================================== */
+
+/* 0x004d5ec0 (83 bytes)
+ * __thiscall: this in ECX (EBX), 1 stack param (sparkData ptr, RET 0x4)
+ * Finds first free particle slot (bActive==0), copies 0x2C bytes, marks active.
+ * Returns 1 if slot found, 0 if full.
+ */
+int C2DSpark::CreateSingle(void* sparkData)
+{
+    char* base = (char*)this;
+
+    for (unsigned int i = 0; i < 0x200; i++) {
+        char* slot = base + i * 0x2C;
+        if (*(slot + 0x29) == 0) {
+            memcpy(slot, sparkData, 0x2C);
+            *(slot + 0x29) = 1;
+            if ((int)i >= this->nHighWaterMark) {
+                this->nHighWaterMark = i + 1;
+            }
+            return 1;
+        }
+    }
+    return 0;
+}
+
+/* ========================================================================
  * GRPinput methods - DirectInput device acquisition
  * ======================================================================== */
 
