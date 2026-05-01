@@ -9,6 +9,8 @@
 #include "pal3/pal3_game.h"
 #include "pal3/gbengine_dynamic.h"
 #include <string.h>
+#include <stdlib.h>
+#include <stdio.h>
 
 /* ========================================================================
  * gbBinkVideo methods
@@ -121,7 +123,7 @@ void UIWnd::Create(int id, RECT* pRect, void* parent)
  */
 void UIWnd::SetEnabled(int bEnable)
 {
-    if (this->m_bFocusable != 0) {
+    if (this->m_bFocusable) {
         this->bEnabled = bEnable;
     }
 }
@@ -260,17 +262,14 @@ void UIWnd::Render()
  * Finds first free particle slot (bActive==0), copies 0x2C bytes, marks active.
  * Returns 1 if slot found, 0 if full.
  */
-int C2DSpark::CreateSingle(void* sparkData)
+int C2DSpark::CreateSingle(C2DSpark_tagSpark* pSpark)
 {
-    char* base = (char*)this;
-
     for (unsigned int i = 0; i < 0x200; i++) {
-        char* slot = base + i * 0x2C;
-        if (*(slot + 0x29) == 0) {
-            memcpy(slot, sparkData, 0x2C);
-            *(slot + 0x29) = 1;
-            if ((int)i >= this->nHighWaterMark) {
-                this->nHighWaterMark = i + 1;
+        if (this->m_Spark[i].bValid == 0) {
+            memcpy(&this->m_Spark[i], pSpark, sizeof(C2DSpark_tagSpark));
+            this->m_Spark[i].bValid = 1;
+            if ((int)i >= this->m_nCurrentSpark) {
+                this->m_nCurrentSpark = i + 1;
             }
             return 1;
         }
@@ -881,4 +880,416 @@ void* CCBRoleState_GetEntry(void* self, int roleIndex)
 void* SceneMgr_GetRoleEntry(void* self, int index)
 {
     return (char*)self + 0x784E8 + index * 0xA4;
+}
+
+/* ========================================================================
+ * UI3DCtrl methods - 3D viewport embedded in UI
+ * ======================================================================== */
+
+/* 0x00439FE0 (140 bytes)
+ * __thiscall: this in ECX
+ * Converts screen POINT to a ray in 3D space using the control's camera.
+ * gbx = x*2/width - 1.0, gby = 1.0 - y*2/height
+ * Then calls gbCamera::GetRayToScreen(gbx, gby, &ray)
+ */
+gbRay* UI3DCtrl::GetMouseRay(gbRay* mray, POINT* cursorpt)
+{
+    gbRay localRay;
+    memset(&localRay, 0, sizeof(localRay));
+
+    float gby = 1.0f - (float)(cursorpt->y * 2) / (float)PAL3_s_drvinfo.height;
+    float gbx = (float)(cursorpt->x * 2) / (float)PAL3_s_drvinfo.width - 1.0f;
+
+    if (pfn_gbCamera_GetRayToScreen != NULL) {
+        pfn_gbCamera_GetRayToScreen(this->m_camera, gbx, gby, &localRay);
+    }
+
+    memcpy(mray, &localRay, sizeof(gbRay));
+    return mray;
+}
+
+/* 0x00439850 (224 bytes)
+ * __thiscall: this in ECX
+ * Converts screen (x,y) to normalized device coords, scales by orthosize,
+ * builds eye/lookAt/up vectors, calls SetLookAt on camera,
+ * then computes and normalizes the view direction into m_raydir.
+ */
+void UI3DCtrl::SetOriginPt_XY(int x, int y)
+{
+    float gbx = (float)(x * 2) / (float)PAL3_s_drvinfo.width - 1.0f;
+    float gby = 1.0f - (float)(y * 2) / (float)PAL3_s_drvinfo.height;
+
+    float sx = gbx * this->m_orthosize;
+    float sy = gby * this->m_orthosize;
+
+    gbVec3D vFrom;
+    vFrom.x = -sy;
+    vFrom.y = 0.0f;
+    vFrom.z = -sx;
+
+    gbVec3D vLookAt;
+    vLookAt.x = 0.0f;
+    vLookAt.y = 1.0f;
+    vLookAt.z = 0.0f;
+
+    gbVec3D vUp;
+    vUp.x = 0.0f;
+    vUp.y = 0.0f;
+    vUp.z = 1600.0f;
+
+    if (pfn_gbCamera_SetLookAt != NULL) {
+        pfn_gbCamera_SetLookAt(this->m_camera, &vFrom, &vLookAt, &vUp);
+    }
+
+    this->m_raydir.x = vFrom.x;
+    this->m_raydir.y = vFrom.y;
+    this->m_raydir.z = vFrom.z;
+
+    this->m_raydir.x -= -sy;
+    this->m_raydir.y -= 0.0f;
+    this->m_raydir.z -= -sx;
+
+    if (pfn_gbVec3D_Normalize != NULL) {
+        pfn_gbVec3D_Normalize(&this->m_raydir);
+    }
+}
+
+/* 0x00439930 (232 bytes)
+ * __thiscall: this in ECX
+ * Like SetOriginPt_XY but with explicit from_y parameter for vertical offset.
+ */
+void UI3DCtrl::SetOriginPt_XYFromY(int x, int y, int from_y)
+{
+    float gbx = (float)(x * 2) / (float)PAL3_s_drvinfo.width - 1.0f;
+    float gby = 1.0f - (float)(y * 2) / (float)PAL3_s_drvinfo.height;
+    float gbFromY = 1.0f - (float)(from_y * 2) / (float)PAL3_s_drvinfo.height;
+
+    float sx = gbx * this->m_orthosize;
+    float sy = gby * this->m_orthosize;
+    float sfrom_y = gbFromY * this->m_orthosize;
+
+    gbVec3D vFrom;
+    vFrom.x = -sfrom_y;
+    vFrom.y = 0.0f;
+    vFrom.z = -sx;
+
+    gbVec3D vLookAt;
+    vLookAt.x = -sy;
+    vLookAt.y = 1.0f;
+    vLookAt.z = -sx;
+
+    gbVec3D vUp;
+    vUp.x = 0.0f;
+    vUp.y = 0.0f;
+    vUp.z = 1600.0f;
+
+    if (pfn_gbCamera_SetLookAt != NULL) {
+        pfn_gbCamera_SetLookAt(this->m_camera, &vFrom, &vLookAt, &vUp);
+    }
+
+    this->m_raydir.x = vLookAt.x - vFrom.x;
+    this->m_raydir.y = vLookAt.y - vFrom.y;
+    this->m_raydir.z = vLookAt.z - vFrom.z;
+
+    if (pfn_gbVec3D_Normalize != NULL) {
+        pfn_gbVec3D_Normalize(&this->m_raydir);
+    }
+}
+
+/* ========================================================================
+ * C2DSpark methods - 2D particle star effects
+ * ======================================================================== */
+
+/* 0x004D6050 (330 bytes)
+ * __thiscall: this in ECX
+ * Creates a single "star" particle at position (x,y) with random velocity/gravity.
+ * Builds a C2DSpark_tagSpark struct and calls CreateSingle.
+ *
+ * Constants from original binary:
+ *   0.5f (0x56a610), 250.0f (0x56fb84), 19.0f (0x56fb80)
+ *   Inline floats: 200.0 (lum), -10.0 (vx range), -50.0 (ay), -100.0 (lumInc)
+ */
+void C2DSpark::CreateStars(int x, int y, int nWidth, float fStarSize)
+{
+    C2DSpark_tagSpark spark;
+
+    spark.fSize = fStarSize;
+    spark.fLum = 200.0f;
+    spark.fVx = 0.0f;
+    spark.fVy = -10.0f;
+    spark.fAx = 0.0f;
+    spark.fAy = -50.0f;
+    spark.fLumInc = -100.0f;
+    spark.fSizeInc = 0.0f;
+    spark.byColor = 2;
+
+    float halfWidth = (float)nWidth * 0.5f;
+    float halfHeight = (float)y * 0.5f;
+
+    /* Random luminosity offset: rand() % 50, subtract from 250 */
+    int rLum = pal3_rand() % 50;
+    spark.fLum = 250.0f - (float)rLum;
+
+    /* Random X position: base + rand() % nWidth, offset by halfWidth */
+    float fHalfW = (float)nWidth;
+    int rX = pal3_rand();
+    int modX = rX % nWidth;
+    spark.fx = (float)modX + (float)x * 0.5f - halfWidth;
+
+    /* Random Y position: rand() % (nWidth*2), offset */
+    int rY = pal3_rand();
+    int modY = rY % (nWidth * 2);
+    spark.fy = (float)modY + halfHeight - fHalfW;
+
+    /* Random vertical acceleration based on fStarSize comparison with 19.0f */
+    if (fStarSize < 19.0f) {
+        int rA = pal3_rand() % 50;
+        spark.fAy = (float)(-rA);
+    } else {
+        int rA = pal3_rand() % 100;
+        spark.fAy = (float)(-rA);
+    }
+
+    this->CreateSingle(&spark);
+}
+
+/* ========================================================================
+ * Memory Management Wrappers
+ * ======================================================================== */
+
+/* pal3free (0x00541D10) is defined in pal3_stubs.cpp */
+
+/* ========================================================================
+ * UIWnd::Ctor - Zero-initialize UIWnd struct (0x44 bytes = 17 DWORDs)
+ * ======================================================================== */
+
+/* 0x00445EA0 (18 bytes)
+ * __thiscall: this in ECX
+ * MOV EDX,ECX / PUSH EDI / MOV ECX,0x11 / XOR EAX,EAX
+ * MOV EDI,EDX / REP STOSD / MOV EAX,EDX / POP EDI / RET
+ */
+static void* __fastcall UIWnd_Ctor(void* self, int /*edx*/)
+{
+    memset(self, 0, 0x44);
+    return self;
+}
+
+/* ========================================================================
+ * UIWnd::SetVisible - Set visibility flag with vtable notification
+ * ======================================================================== */
+
+/* 0x00445E70 (37 bytes)
+ * __thiscall: this in ECX, 1 stack param (RET 4)
+ * If not focusable: return. If new value == old value: return.
+ * Otherwise: store new value, call vtable[6](this, 0x3E8, newVal, 0)
+ */
+static void __fastcall UIWnd_SetVisible(UIWnd* self, int /*edx*/, int bShow)
+{
+    if (self->m_bFocusable == 0) {
+        return;
+    }
+    if (self->bVisible == bShow) {
+        return;
+    }
+    self->bVisible = bShow;
+    typedef void (__thiscall *VFN)(void*, int, int, int);
+    VFN fn = (VFN)self->vtable[6];
+    fn(self, 0x3E8, bShow, 0);
+}
+
+/* ========================================================================
+ * UIWnd_MoveInternal - Move rect by delta and notify
+ * ======================================================================== */
+
+/* 0x00445D40 (66 bytes)
+ * __thiscall: this in ECX, 2 stack params (dx, dy) (RET 8)
+ * Offsets all 4 rect fields, then calls vtable[6](this, 0x3FE, 0, 0)
+ * Also recursively moves children (iterates children array).
+ */
+static void __fastcall UIWnd_MoveInternal(UIWnd* self, int /*edx*/, int dx, int dy)
+{
+    self->rect.left += dx;
+    self->rect.top += dy;
+    self->rect.right += dx;
+    self->rect.bottom += dy;
+
+    if (self != NULL) {
+        typedef void (__thiscall *VFN)(void*, int, int, int);
+        VFN fn = (VFN)self->vtable[6];
+        fn(self, 0x3FE, 0, 0);
+    }
+
+    for (int i = 0; i < self->nChildren; i++) {
+        UIWnd* child = (UIWnd*)self->children[i];
+        UIWnd_MoveInternal(child, 0, dx, dy);
+    }
+}
+
+/* ========================================================================
+ * C2DSpark::ResetBigLum - Reset luminosity counter and set color mode
+ * ======================================================================== */
+
+/* 0x004D5F20 (21 bytes)
+ * __thiscall: this in ECX, 1 stack param (RET 4)
+ * MOV AL,[ESP+4] / MOV [ECX+0x580C],0 / MOV [ECX+0x5818],AL / RET 4
+ * Resets m_fBigLum to 0 and sets byte at offset 0x5818 (color mode)
+ */
+void C2DSpark::ResetBigLum(char colorMode)
+{
+    *(int*)((char*)this + 0x580C) = 0;
+    *((char*)this + 0x5818) = colorMode;
+}
+
+/* ========================================================================
+ * UICursor::Ctor - Initialize cursor instance fields
+ * ======================================================================== */
+
+/* 0x00541470 (31 bytes)
+ * __thiscall: this in ECX
+ * MOV EAX,ECX / XOR ECX,ECX / LEA EDX,[EAX+0x10]
+ * MOV [EAX+0xC],3 / MOV [EAX+0x1D],0 / MOV [EAX+0x1C],1
+ * MOV [EDX],ECX / MOV [EDX+4],ECX / MOV [EDX+8],ECX / RET
+ */
+static void __fastcall UICursor_Ctor(UICursor* self, int /*edx*/)
+{
+    char* base = (char*)self;
+    *(int*)(base + 0x0C) = 3;
+    *(char*)(base + 0x1D) = 0;
+    self->bVisible = 1;
+    *(int*)(base + 0x10) = 0;
+    *(int*)(base + 0x14) = 0;
+    *(int*)(base + 0x18) = 0;
+}
+
+/* ========================================================================
+ * GRPinput::GetKeyState - Read key state by scan code
+ * ======================================================================== */
+
+/* 0x004022C0 (16 bytes)
+ * __thiscall: this in ECX, 1 stack param (RET 4)
+ * MOV EAX,[ESP+4] / AND EAX,0xFFFF / MOVZX AX,[EAX+ECX+0x68] / RET 4
+ * Returns byte value from m_keyStates[keyCode & 0xFFFF]
+ */
+unsigned short GRPinput::GetKeyState(int keyCode)
+{
+    int idx = keyCode & 0xFFFF;
+    unsigned char val = *((unsigned char*)this + 0x68 + idx);
+    return val;
+}
+
+/* ========================================================================
+ * GRPinput::GetShiftedKeyState - Read shifted key state
+ * ======================================================================== */
+
+/* Similar pattern at likely 0x004022D0, reading from +0x176 */
+
+/* ========================================================================
+ * PAL3_GameLoop helpers
+ * ======================================================================== */
+
+/* 0x00404610 (10 bytes)
+ * MOV ECX,0x8ACD40 / JMP 0x457340
+ * Jumps to a method on the global at 0x8ACD40 - likely a scene/state update
+ */
+
+/* 0x00404630 (10 bytes)
+ * MOV ECX,0x8ACD30 / JMP 0x430180
+ * Jumps to a method on the global at 0x8ACD30 - likely a UI update
+ */
+
+/* ========================================================================
+ * UIWnd::GetChild - Get child by index with bounds check
+ * ======================================================================== */
+
+/* 0x00445F60 (20 bytes)
+ * __thiscall: this in ECX, 1 stack param (RET 4)
+ * MOV EAX,[ESP+4] / TEST EAX,EAX / JL fail
+ * CMP EAX,0x10 / JGE fail / MOV EAX,[ECX+EAX*4] / RET 4
+ * fail: (returns garbage/0)
+ * Note: This accesses this+index*4 directly, suggesting a small inline array.
+ */
+static void* __fastcall UIWnd_GetChild(void* self, int /*edx*/, int index)
+{
+    if (index < 0) {
+        return NULL;
+    }
+    if (index >= 0x10) {
+        return NULL;
+    }
+    return ((void**)self)[index];
+}
+
+/* PAL3_CheckCD (0x541860) and PAL3_OpenRegistry (0x541C40) are in winmain.cpp */
+
+/* ========================================================================
+ * GRPinput::UnacquireKeyboard - Release keyboard and clear states
+ * ======================================================================== */
+
+/* 0x004023D0 (33 bytes)
+ * __thiscall: this in ECX (ESI)
+ * Calls ClearKeyStates, sets m_bKeyboard=0,
+ * then calls IDirectInputDevice8::Unacquire on keyboard device.
+ */
+void GRPinput::UnacquireKeyboard()
+{
+    this->ClearKeyStates();
+    this->m_bKeyboard = 0;
+
+    void* pDev = this->m_lpDIDKeyboard;
+    if (pDev != NULL) {
+        typedef long (__stdcall *PFNUNACQUIRE)(void*);
+        void** vtable = *(void***)pDev;
+        PFNUNACQUIRE fnUnacquire = (PFNUNACQUIRE)vtable[0x20 / 4];
+        fnUnacquire(pDev);
+    }
+}
+
+/* ========================================================================
+ * GRPinput::UnacquireMouse - Release mouse device
+ * ======================================================================== */
+
+/* 0x004023F4 (27 bytes, estimated)
+ * __thiscall: this in ECX (ESI)
+ * Sets m_bMouse=0, then calls IDirectInputDevice8::Unacquire on mouse.
+ */
+void GRPinput::UnacquireMouse()
+{
+    this->m_bMouse = 0;
+
+    void* pDev = this->m_lpDIDMouse;
+    if (pDev != NULL) {
+        typedef long (__stdcall *PFNUNACQUIRE)(void*);
+        void** vtable = *(void***)pDev;
+        PFNUNACQUIRE fnUnacquire = (PFNUNACQUIRE)vtable[0x20 / 4];
+        fnUnacquire(pDev);
+    }
+}
+
+/* ========================================================================
+ * GRPinput::Poll - Read keyboard state via GetDeviceState
+ * ======================================================================== */
+
+/* 0x00402400 (59 bytes)
+ * __thiscall: this in ECX (ESI)
+ * If keyboard active: call IDirectInputDevice8::GetDeviceState(256, &shiftedKeys)
+ * On failure: calls AcquireKeyboard to re-acquire.
+ * On success: proceeds to compare old/new key states (continues at 0x40243B+)
+ */
+void GRPinput::PollKeyboard()
+{
+    if (this->m_bKeyboard == 0) {
+        return;
+    }
+
+    void* pDev = this->m_lpDIDKeyboard;
+    char* destBuf = (char*)this + 0x176;
+
+    typedef long (__stdcall *PFNGETDEVICESTATE)(void*, int, void*);
+    void** vtable = *(void***)pDev;
+    PFNGETDEVICESTATE fnGetState = (PFNGETDEVICESTATE)vtable[0x24 / 4];
+
+    long hr = fnGetState(pDev, 0x100, destBuf);
+    if (hr != 0) {
+        this->AcquireKeyboard();
+    }
 }

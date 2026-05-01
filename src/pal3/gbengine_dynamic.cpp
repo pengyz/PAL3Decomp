@@ -23,6 +23,9 @@ PFN_gbMatrixStack_Push pfn_gbMatrixStack_Push = NULL;
 PFN_gbMatrixStack_Pop pfn_gbMatrixStack_Pop = NULL;
 PFN_gbMatrixStack_LoadIdentity pfn_gbMatrixStack_LoadIdentity = NULL;
 PFN_gbCamera_SetDimention pfn_gbCamera_SetDimention = NULL;
+PFN_gbCamera_SetLookAt pfn_gbCamera_SetLookAt = NULL;
+PFN_gbCamera_GetRayToScreen pfn_gbCamera_GetRayToScreen = NULL;
+PFN_gbVec3D_Normalize pfn_gbVec3D_Normalize = NULL;
 PFN_BinkDoFrame pfn_BinkDoFrame = NULL;
 PFN_BinkCopyToBuffer pfn_BinkCopyToBuffer = NULL;
 PFN_BinkNextFrame pfn_BinkNextFrame = NULL;
@@ -77,6 +80,14 @@ BOOL LoadGBEngine(void)
     /* gbCamera methods */
     pfn_gbCamera_SetDimention = (PFN_gbCamera_SetDimention)GetProcAddress(
         g_hGBEngine, "?SetDimention@gbCamera@@QAEXHH@Z");
+    pfn_gbCamera_SetLookAt = (PFN_gbCamera_SetLookAt)GetProcAddress(
+        g_hGBEngine, "?SetLookAt@gbCamera@@QAEXPAUgbVec3D@@00@Z");
+    pfn_gbCamera_GetRayToScreen = (PFN_gbCamera_GetRayToScreen)GetProcAddress(
+        g_hGBEngine, "?GetRayToScreen@gbCamera@@QAEXMMPAUgbRay@@@Z");
+
+    /* gbVec3D methods */
+    pfn_gbVec3D_Normalize = (PFN_gbVec3D_Normalize)GetProcAddress(
+        g_hGBEngine, "?Normalize@gbVec3D@@QAEXXZ");
 
     if (pfn_gbUpdateCurTime == NULL || pfn_gbCreateGraphManager == NULL) {
 #ifdef PAL3_DEV_MODE
@@ -106,6 +117,9 @@ void UnloadGBEngine(void)
     pfn_gbMatrixStack_Pop = NULL;
     pfn_gbMatrixStack_LoadIdentity = NULL;
     pfn_gbCamera_SetDimention = NULL;
+    pfn_gbCamera_SetLookAt = NULL;
+    pfn_gbCamera_GetRayToScreen = NULL;
+    pfn_gbVec3D_Normalize = NULL;
     pfn_BinkDoFrame = NULL;
     pfn_BinkCopyToBuffer = NULL;
     pfn_BinkNextFrame = NULL;

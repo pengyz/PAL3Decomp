@@ -62,6 +62,11 @@ typedef void (__thiscall *PFN_gbMatrixStack_LoadIdentity)(struct gbMatrixStack*)
 
 /* gbCamera methods (thiscall, from gbengine.dll) */
 typedef void (__thiscall *PFN_gbCamera_SetDimention)(void* camera, int width, int height);
+typedef void (__thiscall *PFN_gbCamera_SetLookAt)(void* camera, void* from, void* to, void* up);
+typedef void (__thiscall *PFN_gbCamera_GetRayToScreen)(void* camera, float gbx, float gby, void* outRay);
+
+/* gbVec3D methods (thiscall, from gbengine.dll) */
+typedef void (__thiscall *PFN_gbVec3D_Normalize)(void* vec);
 
 /* Bink video API (stdcall, from binkw32.dll via IAT) */
 typedef void (__stdcall *PFN_BinkDoFrame)(void* bink);
@@ -78,6 +83,9 @@ extern PFN_gbMatrixStack_Push pfn_gbMatrixStack_Push;
 extern PFN_gbMatrixStack_Pop pfn_gbMatrixStack_Pop;
 extern PFN_gbMatrixStack_LoadIdentity pfn_gbMatrixStack_LoadIdentity;
 extern PFN_gbCamera_SetDimention pfn_gbCamera_SetDimention;
+extern PFN_gbCamera_SetLookAt pfn_gbCamera_SetLookAt;
+extern PFN_gbCamera_GetRayToScreen pfn_gbCamera_GetRayToScreen;
+extern PFN_gbVec3D_Normalize pfn_gbVec3D_Normalize;
 extern PFN_BinkDoFrame pfn_BinkDoFrame;
 extern PFN_BinkCopyToBuffer pfn_BinkCopyToBuffer;
 extern PFN_BinkNextFrame pfn_BinkNextFrame;

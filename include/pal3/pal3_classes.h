@@ -196,19 +196,112 @@ struct UICursor {
 extern "C" UICursor* UICursor_Inst(void);  /* 0x005415F0 */
 
 /* ========================================================================
+ * gbVec3D / gbRay - Basic 3D geometry types (from gbengine.dll)
+ * ======================================================================== */
+
+struct gbVec3D {
+    float x, y, z;
+};
+
+struct gbRay {
+    gbVec3D origin;
+    gbVec3D direction;
+};
+
+/* ========================================================================
+ * UI3DCtrl - 3D control embedded in UI (sizeof=0x134)
+ *
+ * Inherits UIWnd. Manages an embedded 3D viewport with camera control.
+ * Offset 0xE8: m_orthosize (float)
+ * Offset 0x124: m_camera (gbCamera*)
+ * Offset 0x128: m_raydir (gbVec3D)
+ * ======================================================================== */
+
+struct UI3DCtrl {
+    char base[0x40];             /* UIWnd base */
+    char padding_mid[0xA8];      /* offset 0x40..0xE7 */
+    float m_orthosize;           /* offset 0xE8 */
+    char padding2[0x124 - 0xEC]; /* offset 0xEC..0x123 */
+    void* m_camera;              /* offset 0x124: gbCamera* */
+    gbVec3D m_raydir;            /* offset 0x128 */
+
+    void SetOriginPt_XY(int x, int y);               /* 0x00439850 (224 bytes) */
+    void SetOriginPt_XYFromY(int x, int y, int from_y); /* 0x00439930 (232 bytes) */
+    gbRay* GetMouseRay(gbRay* mray, POINT* cursorpt); /* 0x00439FE0 (140 bytes) */
+};
+
+/* ========================================================================
+ * UIAnimateCtrl - Animated texture control (extends UIWnd)
+ *
+ * Offset 0x40: m_FPS (float)
+ * Offset 0x44: m_passtime (float)
+ * Offset 0x4C: m_texarray (UITextureArray, internal)
+ * Offset 0x90: m_curframe (int)
+ * Offset 0x94: m_numframe (int)
+ * Offset 0xA0: m_mode (int)
+ * ======================================================================== */
+
+struct UIAnimateCtrl {
+    /* UIWnd base: 0x00..0x3F */
+    void** vtable;
+    char uiwnd_padding[0x34];
+    int bVisible;                /* offset 0x38 */
+    int bEnabled;                /* offset 0x3C */
+    /* UIAnimateCtrl-specific */
+    float m_FPS;                 /* offset 0x40 */
+    float m_passtime;            /* offset 0x44 */
+    char padding_tex[4];         /* offset 0x48 */
+    char m_texarray[0x44];       /* offset 0x4C: UITextureArray */
+    int m_curframe;              /* offset 0x90 */
+    int m_numframe;              /* offset 0x94 */
+    int m_looppassed;            /* offset 0x98 */
+    int m_nLoop;                 /* offset 0x9C */
+    int m_mode;                  /* offset 0xA0 */
+
+    void Render();               /* 0x0043A270 (363 bytes) */
+};
+
+/* ========================================================================
+ * C2DSpark_tagSpark - Single spark/particle data (0x2C bytes)
+ * ======================================================================== */
+
+struct C2DSpark_tagSpark {
+    float fx;           /* +0x00 */
+    float fy;           /* +0x04 */
+    float fVx;          /* +0x08 */
+    float fVy;          /* +0x0C */
+    float fAx;          /* +0x10 */
+    float fAy;          /* +0x14 */
+    float fLum;         /* +0x18 */
+    float fLumInc;      /* +0x1C */
+    float fSize;        /* +0x20 */
+    float fSizeInc;     /* +0x24 */
+    char byColor;       /* +0x28 */
+    char bValid;        /* +0x29 */
+    char padding[2];    /* +0x2A */
+};
+
+/* ========================================================================
  * C2DSpark - 2D particle/spark effect system
  *
- * Particle array at offset 0x00, each particle is 0x2C bytes.
- * Max 0x200 (512) particles.
- * Offset 0x29 per particle: bActive (char)
- * Offset 0x5808: nHighWaterMark (int) - highest active index + 1
+ * 512 particles, each 0x2C bytes.
+ * Offset 0x5800: m_fDisplayWidth
+ * Offset 0x5804: m_fDisplayHeight
+ * Offset 0x5808: m_nCurrentSpark
+ * Offset 0x580C: m_fBigLum
  * ======================================================================== */
 
 struct C2DSpark {
-    char particles[0x2C * 0x200];    /* offset 0x00: particle array */
-    int nHighWaterMark;              /* offset 0x5808: tracks highest used slot */
+    C2DSpark_tagSpark m_Spark[512]; /* offset 0x00: 512 * 0x2C = 0x5800 */
+    float m_fDisplayWidth;          /* offset 0x5800 */
+    float m_fDisplayHeight;         /* offset 0x5804 */
+    int m_nCurrentSpark;            /* offset 0x5808 */
+    float m_fBigLum;                /* offset 0x580C */
 
-    int CreateSingle(void* sparkData);    /* 0x004d5ec0 (83 bytes) */
+    int CreateSingle(C2DSpark_tagSpark* pSpark); /* 0x004d5ec0 (83 bytes) */
+    void CreateStars(int x, int y, int nWidth, float fStarSize); /* 0x004D6050 (330 bytes) */
+    void ResetBigLum(char colorMode);            /* 0x004D5F20 (21 bytes) */
+    void Render();                               /* 0x004D61C0 (421 bytes) */
 };
 
 /* ========================================================================
@@ -275,7 +368,11 @@ struct GRPinput {
 
     void AcquireMouse();             /* 0x00402310 (65 bytes) */
     void AcquireKeyboard();          /* 0x00402380 (75 bytes) */
+    void UnacquireKeyboard();        /* 0x004023D0 (33 bytes) */
+    void UnacquireMouse();           /* 0x004023F4 (27 bytes) */
+    void PollKeyboard();             /* 0x00402400 (59 bytes) */
     void ClearKeyStates();           /* 0x00402220 (77 bytes) */
     void GetCursorPos(POINT* pt);    /* 0x004022e0 (14 bytes) */
     void SetCursorPos(int x, int y); /* 0x00402290 (19 bytes) */
+    unsigned short GetKeyState(int keyCode); /* 0x004022C0 (16 bytes) */
 };
