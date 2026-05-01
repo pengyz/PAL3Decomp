@@ -4,7 +4,7 @@
  * Functions: 46 exports
  */
 
-#include "gbengine/gbengine_types.h"
+#include "gbengine/gbAudio.h"
 #include <windows.h>
 #include <string.h>
 #include <stdlib.h>
@@ -75,91 +75,60 @@ static unsigned int AIL_stream_status(HSTREAM stream) { return SMP_DONE; }
 static void* AIL_file_read(const char* filename, void* dest) { return NULL; }
 static void AIL_mem_free_lock(void* ptr) {}
 
-// Forward declarations
-class gbAudioManager;
-class gbSound3DNode;
-class gbSound2DNode;
-class gbSoundData;
-class gbResource;
-class gbRefObject;
-class gbResManager;
-
 // External functions (from gbResManager.cpp)
 extern unsigned int gbCrc32Compute(const char* str);
 
-
-/* ======== gbResManager (opaque stub for embedding) ======== */
-
-// This stub matches the layout of gbResManager (3 pointers/ints = 12 bytes)
-// The real implementation is in gbResManager.cpp
-struct gbResManagerStub {
-    void** array;    // +0x00
-    int capacity;    // +0x04
-    int count;       // +0x08
-
-    void Init() { array = NULL; capacity = 0; count = 0; }
-    void Destroy() { if (array != NULL) { free(array); array = NULL; } }
-};
+// gbResManagerStub method implementations
+void gbResManagerStub::Init() { array = NULL; capacity = 0; count = 0; }
+void gbResManagerStub::Destroy() { if (array != NULL) { free(array); array = NULL; } }
 
 
-/* ======== gbSoundData ======== */
+/* ======== gbSoundData implementation ======== */
 
-// gbSoundData is a resource type that holds loaded audio file data
-// Layout: vtable(4) + refCount(4) + name(4) + nameCrc(4) + unknown(4) + manager(4) + fileData(4) = 0x1C
-class gbSoundData {
-public:
-    int refCount;            // +0x04 (vtable at +0x00 implied by virtual)
-    char* name;              // +0x08
-    unsigned int nameCrc;    // +0x0C
-    void* unknown10;         // +0x10
-    void* manager;           // +0x14
-    void* fileData;          // +0x18 (loaded WAV/sound data pointer)
+gbSoundData::gbSoundData() {
+    refCount = 1;
+    name = NULL;
+    nameCrc = 0;
+    unknown10 = NULL;
+    manager = NULL;
+    fileData = NULL;
+}
 
-    gbSoundData() {
-        refCount = 1;
-        name = NULL;
-        nameCrc = 0;
-        unknown10 = NULL;
-        manager = NULL;
+gbSoundData::~gbSoundData() {
+    if (fileData != NULL) {
+        AIL_mem_free_lock(fileData);
         fileData = NULL;
     }
-
-    ~gbSoundData() {
-        if (fileData != NULL) {
-            AIL_mem_free_lock(fileData);
-            fileData = NULL;
-        }
-        if (name != NULL) {
-            free(name);
-            name = NULL;
-        }
+    if (name != NULL) {
+        free(name);
+        name = NULL;
     }
+}
 
-    void SetName(const char* newName) {
-        if (name != NULL) {
-            free(name);
-        }
-        if (newName == NULL || newName[0] == '\0') {
-            name = NULL;
-            nameCrc = 0;
-            return;
-        }
-        size_t len = strlen(newName) + 1;
-        size_t allocSize = (len < 16) ? 16 : len;
-        name = (char*)malloc(allocSize);
-        strcpy(name, newName);
-        nameCrc = gbCrc32Compute(newName);
+void gbSoundData::SetName(const char* newName) {
+    if (name != NULL) {
+        free(name);
     }
-
-    void IncRef() { refCount++; }
-
-    void Release() {
-        refCount--;
-        if (refCount == 0) {
-            delete this;
-        }
+    if (newName == NULL || newName[0] == '\0') {
+        name = NULL;
+        nameCrc = 0;
+        return;
     }
-};
+    size_t len = strlen(newName) + 1;
+    size_t allocSize = (len < 16) ? 16 : len;
+    name = (char*)malloc(allocSize);
+    strcpy(name, newName);
+    nameCrc = gbCrc32Compute(newName);
+}
+
+void gbSoundData::IncRef() { refCount++; }
+
+void gbSoundData::Release() {
+    refCount--;
+    if (refCount == 0) {
+        delete this;
+    }
+}
 
 // Helper: find sound resource by name in the embedded resource manager
 static gbSoundData* FindSoundByName(gbResManagerStub* mgr, const char* name) {
@@ -198,18 +167,7 @@ static void AddSoundResource(gbResManagerStub* mgr, gbSoundData* snd) {
 }
 
 
-/* ======== gbAudioMgrDesc ======== */
-
-class GBAPI gbAudioMgrDesc {
-public:
-    int freq;             // +0x00
-    int bits;             // +0x04
-    int channels;         // +0x08
-    char providerName;    // +0x0C (first char of provider string; 0 = use default)
-
-    gbAudioMgrDesc();
-    gbAudioMgrDesc& operator=(const gbAudioMgrDesc& other);
-};
+/* ======== gbAudioMgrDesc implementation ======== */
 
 // Constructor - 0x10001000 (27B)
 gbAudioMgrDesc::gbAudioMgrDesc() {
@@ -229,174 +187,10 @@ gbAudioMgrDesc& gbAudioMgrDesc::operator=(const gbAudioMgrDesc& other) {
 }
 
 
-/* ======== 3D/2D sample slot structures ======== */
 
-struct gb3DSampleSlot {
-    H3DSAMPLE handle;       // +0x00
-    gbSound3DNode* node;    // +0x04
-    int flags;              // +0x08
-};
-
-struct gb2DSampleSlot {
-    HSAMPLE handle;         // +0x00
-    gbSound2DNode* node;    // +0x04
-    int flags;              // +0x08
-};
-
-#define MAX_3D_SAMPLES 10
-#define MAX_2D_SAMPLES 4
-#define MAX_STREAMS    3
-
-
-/* ======== gbAudioManager ======== */
-
-class GBAPI gbAudioManager {
-public:
-    HSTREAM streams[MAX_STREAMS];          // +0x00
-    int streamStatus[MAX_STREAMS];         // +0x0C
-    HDIGDRIVER digitalDriver;              // +0x18
-    H3DPROVIDER provider3D;                // +0x1C
-    int num3DSamples;                      // +0x20
-    gb3DSampleSlot slots3D[MAX_3D_SAMPLES];// +0x24 (10*12 = 120 bytes, ends at +0x9C)
-    int num2DSamples;                      // +0x9C
-    gb2DSampleSlot slots2D[MAX_2D_SAMPLES];// +0xA0 (4*12 = 48 bytes, ends at +0xD0)
-    float musicVolume;                     // +0xD0
-    H3DLISTENER listener;                  // +0xD4
-    float volume2D;                        // +0xD8
-    float volume3D;                        // +0xDC
-    float musicMasterVolume;               // +0xE0
-    int reserved;                          // +0xE4
-    gbResManagerStub soundResManager;      // +0xE8 (12 bytes)
-
-    // Constructor - 0x10001120 (675B)
-    gbAudioManager(int& result, gbAudioMgrDesc* desc);
-    // Copy constructor - 0x10002240 (276B)
-    gbAudioManager(const gbAudioManager& other);
-    // Destructor
-    ~gbAudioManager();
-    // operator=
-    gbAudioManager& operator=(const gbAudioManager& other);
-
-    // 0x10001020 (250B)
-    unsigned long Get3DProvider(char* providerName);
-    // 0x10001560 (125B)
-    gbSoundData* LoadSoundFile(char* filename);
-    // 0x100015f0 (12B)
-    void DeleteSoundData(gbSoundData* data);
-    // 0x10001620 (392B)
-    void AttachSampleHandle(gbSound3DNode* node);
-    // 0x100018d0 (58B)
-    void DetachSampleHandle(gbSound3DNode* node);
-    // 0x10001970 (54B)
-    void DetachAll3D();
-    // 0x10001a10 (240B)
-    void AttachSampleHandle(gbSound2DNode* node);
-    // 0x10001b00 (61B)
-    void DetachSampleHandle(gbSound2DNode* node);
-    // 0x10001da0 (115B)
-    int CanBeHeard(gbSound3DNode* node);
-
-    // Stream functions
-    // 0x10001bc0 (136B)
-    void PlaySoundStream(int index, char* filename, int loop);
-    // 0x10001b70 (78B)
-    void ReStartSoundStream(int index);
-    // 0x10001c50 (42B)
-    void StopSoundStream(int index);
-    // 0x10001cd0 (23B)
-    void PauseSoundStream(int index);
-    // 0x10001cf0 (23B)
-    void ResumeSoundStream(int index);
-    // 0x10001d10 (11B)
-    int GetStreamStatus(int index);
-
-    // Listener
-    // 0x10001d20 (62B)
-    void SetListenerPosition(const gbVec3D& pos);
-    // 0x10001d60 (56B)
-    void SetListenerOrientation(gbVec3D& front, gbVec3D& top);
-    // 0x10002210 (33B)
-    void GetListenerPosition(gbVec3D& pos);
-
-    // Volume
-    // 0x100021c0 (13B)
-    void Set2DMasterVolume(float vol);
-    float Get2DMasterVolume();
-    // 0x100021e0 (13B)
-    void Set3DMasterVolume(float vol);
-    float Get3DMasterVolume();
-    // 0x10001c80 (67B)
-    void SetMusicMasterVolume(float vol);
-    float GetMusicMasterVolume();
-};
-
-
-/* ======== gbSound3DNode ======== */
-
-class gbSound3DNode {
-public:
-    gbSoundData* soundData;   // +0x00
-    H3DSAMPLE sampleHandle;   // +0x04
-    gbVec3D position;         // +0x08
-    gbVec3D orientation;      // +0x14
-    gbVec3D velocity;         // +0x20
-    int attached;             // +0x2C
-    float volume;             // +0x30
-    int loopCount;            // +0x34
-    float minDist;            // +0x38
-    float maxDist;            // +0x3C
-
-    static gbAudioManager* pAudioMgr;
-
-    gbSound3DNode();
-    ~gbSound3DNode();
-    gbSound3DNode& operator=(const gbSound3DNode& other);
-
-    int LoadFromFile(char* filename);
-    void Play();
-    void Stop();
-    int IsPlaying();
-    void SetPosition(gbVec3D& pos);
-    void GetPosition(gbVec3D& pos);
-    void SetOrientation(gbVec3D& ori);
-    void SetVelocity(gbVec3D& vel);
-    void SetVolume(float vol);
-    void SetLoopNum(int num);
-    void SetDistParam(float minD, float maxD);
-    float GetMinDist();
-    float GetMaxDist();
-    int GetPlayLoop();
-    int IfAttached();
-    int Update(double deltaTime);
-};
 
 gbAudioManager* gbSound3DNode::pAudioMgr = NULL;
 
-
-/* ======== gbSound2DNode ======== */
-
-class gbSound2DNode {
-public:
-    gbSoundData* soundData;   // +0x00
-    HSAMPLE sampleHandle;     // +0x04
-    int loopCount;            // +0x08
-    float volume;             // +0x0C
-
-    static gbAudioManager* pAudioMgr;
-
-    gbSound2DNode();
-    ~gbSound2DNode();
-    gbSound2DNode& operator=(const gbSound2DNode& other);
-
-    int LoadFromFile(char* filename);
-    void Play();
-    void Stop();
-    int IsPlaying();
-    void Pause();
-    void Resume();
-    void SetLoopNum(int num);
-    void SetVolume(float vol);
-};
 
 gbAudioManager* gbSound2DNode::pAudioMgr = NULL;
 
@@ -1201,8 +995,8 @@ int gbSound3DNode::GetPlayLoop() {
 }
 
 // IfAttached - 0x100024d0 (11B)
-int gbSound3DNode::IfAttached() {
-    return attached;
+bool gbSound3DNode::IfAttached() {
+    return attached != 0;
 }
 
 // Update - 0x10002860 (110B)
@@ -1316,12 +1110,12 @@ void gbSound2DNode::Stop() {
 }
 
 // IsPlaying - 0x100029f0 (28B)
-int gbSound2DNode::IsPlaying() {
+bool gbSound2DNode::IsPlaying() {
     if (sampleHandle == NULL) {
-        return 0;
+        return false;
     }
     unsigned int status = AIL_sample_status(sampleHandle);
-    return (status == SMP_PLAYING) ? 1 : 0;
+    return (status == SMP_PLAYING);
 }
 
 // Pause - 0x10002a10 (24B)
