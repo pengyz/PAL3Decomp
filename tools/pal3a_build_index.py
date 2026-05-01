@@ -4,11 +4,18 @@ import json
 from pathlib import Path
 
 
+def normalize_address(value):
+    text = str(value).strip()
+    if text.lower().startswith('0x'):
+        text = text[2:]
+    return f"0x{int(text, 16):08X}"
+
+
 def build_index(payload):
     return {
-        'image_base': payload['image_base'],
+        'image_base': normalize_address(payload['image_base']),
         'functions': {
-            item['address']: {
+            normalize_address(item['address']): {
                 'name': item['name'],
                 'source_file': item.get('source_file', ''),
                 'return_type': item.get('return_type', ''),
@@ -18,7 +25,7 @@ def build_index(payload):
             for item in payload.get('functions', [])
         },
         'globals': {
-            item['address']: {
+            normalize_address(item['address']): {
                 'name': item['name'],
                 'datatype': item.get('datatype', ''),
             }

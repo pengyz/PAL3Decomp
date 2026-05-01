@@ -140,3 +140,13 @@ def test_pal3a_build_release(project_root):
 def test_pal3a_exe_exists():
     exe_path = os.path.join(PAL3A_BUILD_DIR, 'Release', 'PAL3A.exe')
     assert os.path.exists(exe_path), exe_path
+
+
+def test_verify_build_rejects_unknown_target(project_root):
+    result = subprocess.run(
+        [sys.executable, os.path.join(project_root, 'verify_build.py'), 'not-a-target'],
+        capture_output=True,
+        text=True,
+    )
+    assert result.returncode == 1
+    assert 'Unknown target(s): not-a-target' in result.stdout

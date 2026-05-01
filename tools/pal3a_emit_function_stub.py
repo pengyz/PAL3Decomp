@@ -3,6 +3,8 @@ import argparse
 import json
 from pathlib import Path
 
+from pal3a_build_index import normalize_address
+
 
 def build_signature(meta):
     params = ', '.join(meta.get('parameters', [])) or 'void'
@@ -28,7 +30,7 @@ def main():
     args = parser.parse_args()
 
     index = json.loads(Path(args.index).read_text(encoding='utf-8'))
-    meta = index['functions'][args.address]
+    meta = index['functions'][normalize_address(args.address)]
     out_path = Path(args.output)
     prefix = out_path.read_text(encoding='utf-8') if out_path.exists() else ''
     body = build_body(meta)

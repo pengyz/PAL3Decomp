@@ -35,11 +35,21 @@ TARGET_DEFAULTS = {
         'asm_dir': ASM_DIR / 'pal3',
         'src_dir': SRC_DIR / 'pal3',
         'progress_db': BUILD_DIR / 'progress.json',
+        'config_keys': {
+            'total_functions': 'total_functions',
+            'text_section_size': 'text_section_size',
+        },
+        'display_name': 'PAL3',
     },
     'pal3a': {
         'asm_dir': ASM_DIR / 'pal3a',
         'src_dir': SRC_DIR / 'pal3a',
         'progress_db': BUILD_DIR / 'pal3a' / 'translation_status.json',
+        'config_keys': {
+            'total_functions': 'pal3a_total_functions',
+            'text_section_size': 'pal3a_text_section_size',
+        },
+        'display_name': 'PAL3A',
     },
 }
 
@@ -70,6 +80,8 @@ def load_config() -> dict:
     return {
         'total_functions': 0,
         'text_section_size': 0,
+        'pal3a_total_functions': 0,
+        'pal3a_text_section_size': 0,
         'modules': {},
     }
 
@@ -104,13 +116,24 @@ def count_source_files(target: str = 'pal3') -> dict:
     return dict(counts)
 
 
+def get_target_config_value(config: dict, target: str, field: str, default=0):
+    keys = get_target_defaults(target)['config_keys']
+    return config.get(keys[field], default)
+
+
+def set_target_config_value(config: dict, target: str, field: str, value):
+    keys = get_target_defaults(target)['config_keys']
+    config[keys[field]] = value
+
+
 def get_progress_stats(progress: dict, config: dict, target: str = 'pal3') -> dict:
     """Calculate progress statistics."""
     functions = progress.get('functions', {})
-    total_known = config.get('total_functions', 0)
+    total_known = get_target_config_value(config, target, 'total_functions', 0)
     exported = count_exported_functions(target)
 
     stats = {
+        'display_name': get_target_defaults(target)['display_name'],
         'total_functions': total_known,
         'exported': exported,
         'processed': len(functions),
@@ -174,7 +197,7 @@ def print_summary(stats: dict):
 
     print()
     print("=" * 60)
-    print("  PAL3 Decompilation Progress")
+    print("  {} Decompilation Progress".format(stats.get('display_name', 'PAL3')))
     print("=" * 60)
     print()
 
@@ -334,14 +357,14 @@ def main():
     # Handle configuration updates
     config = load_config()
     if args.set_total:
-        config['total_functions'] = args.set_total
+        set_target_config_value(config, args.target, 'total_functions', args.set_total)
         save_config(config)
-        print("Set total functions to: {}".format(args.set_total))
+        print("Set total functions for {} to: {}".format(args.target, args.set_total))
         return
     if args.set_text_size:
-        config['text_section_size'] = args.set_text_size
+        set_target_config_value(config, args.target, 'text_section_size', args.set_text_size)
         save_config(config)
-        print("Set .text section size to: {} bytes".format(args.set_text_size))
+        print("Set .text section size for {} to: {} bytes".format(args.target, args.set_text_size))
         return
 
     # Load data
