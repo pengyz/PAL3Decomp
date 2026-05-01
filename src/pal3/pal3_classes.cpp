@@ -1831,6 +1831,75 @@ __declspec(noinline) int __fastcall Getter_0053E500(void* self, int)
 
 
 /* ========================================================================
+ * Miscellaneous small functions from Ghidra exports
+ * ======================================================================== */
+
+/* 6-byte constant return functions: mov eax,imm32 / ret */
+
+__declspec(noinline) int __cdecl Func_00407D40() { return -3; }
+__declspec(noinline) int __cdecl Func_004126F9() { return 52; }
+__declspec(noinline) int __cdecl Func_004126FF() { return 50; }
+__declspec(noinline) int __cdecl Func_0041EB66() { return 3; }
+__declspec(noinline) int __cdecl Func_0041EB6C() { return 1; }
+__declspec(noinline) int __cdecl Func_0041EB72() { return 2; }
+__declspec(noinline) int __cdecl Func_0042C024() { return 1; }
+__declspec(noinline) int __cdecl Func_00434CD8() { return 1; }
+__declspec(noinline) int __cdecl Func_00434F75() { return 2; }
+__declspec(noinline) int __cdecl Func_00434F7B() { return 1; }
+__declspec(noinline) int __cdecl Func_0053833E() { return 1; }
+
+/* 8-byte constant return with stack cleanup: mov eax,imm32 / ret N
+ * These are __thiscall methods returning constants (this in ECX, params on stack) */
+
+/* ret 4 = 1 stack param after this */
+__declspec(noinline) int __fastcall Func_004B73E0(void*, int, int) { return 1; }
+__declspec(noinline) int __fastcall Func_004DF381(void*, int, int) { return 16; }
+__declspec(noinline) int __fastcall Func_004DF389(void*, int, int) { return 2; }
+__declspec(noinline) int __fastcall Func_004DF391(void*, int, int) { return 3; }
+__declspec(noinline) int __fastcall Func_004DF399(void*, int, int) { return 5; }
+__declspec(noinline) int __fastcall Func_004DF3A1(void*, int, int) { return 9; }
+__declspec(noinline) int __fastcall Func_004DF3A9(void*, int, int) { return 17; }
+__declspec(noinline) int __fastcall Func_004F3C0F(void*, int, int) { return 1; }
+__declspec(noinline) int __fastcall Func_004F3C17(void*, int, int) { return 2; }
+__declspec(noinline) int __fastcall Func_004FA6B1(void*, int, int) { return 3; }
+__declspec(noinline) int __fastcall Func_004FA6B9(void*, int, int) { return 5; }
+__declspec(noinline) int __fastcall Func_004FA6C1(void*, int, int) { return 1; }
+__declspec(noinline) int __fastcall Func_004FA6C9(void*, int, int) { return 2; }
+__declspec(noinline) int __fastcall Func_004FA6D1(void*, int, int) { return 4; }
+__declspec(noinline) int __fastcall Func_004FA711(void*, int, int) { return 5; }
+__declspec(noinline) int __fastcall Func_004FA719(void*, int, int) { return 1; }
+__declspec(noinline) int __fastcall Func_004FA721(void*, int, int) { return 2; }
+
+/* 0x0041BDE0 (16 bytes) - zero-init 4 dwords (RECT or similar)
+ * mov eax,ecx / xor ecx,ecx / mov [eax],ecx / mov [eax+4],ecx / mov [eax+8],ecx / mov [eax+0c],ecx / ret
+ * __thiscall - zeros the first 16 bytes of a struct */
+struct ZeroInit16 { void Clear(); };
+__declspec(noinline) void ZeroInit16::Clear()
+{
+    int* p = (int*)this;
+    p[0] = 0;
+    p[1] = 0;
+    p[2] = 0;
+    p[3] = 0;
+}
+
+/* 0x0040F030 (19 bytes) - vector element count
+ * if (ptr == 0) return 0; else return (end - begin) >> 2;
+ * __thiscall: this->+4 = begin, this->+8 = end */
+struct VectorCountObj {
+    int vtable;
+    int* begin;
+    int* end;
+    int GetCount();
+};
+__declspec(noinline) int VectorCountObj::GetCount()
+{
+    if (this->begin == 0)
+        return 0;
+    return (int)((char*)this->end - (char*)this->begin) >> 2;
+}
+
+/* ========================================================================
  * Force-reference table - prevents linker from stripping COMDAT functions
  * that have no callers yet. These are matching decompilation targets.
  * ======================================================================== */
@@ -1893,6 +1962,36 @@ PFN_VOID g_pal3_force_refs[] = {
     (PFN_VOID)Getter_004F3420,
     (PFN_VOID)Getter_00525080,
     (PFN_VOID)Getter_0053E500,
+    (PFN_VOID)Func_00407D40,
+    (PFN_VOID)Func_004126F9,
+    (PFN_VOID)Func_004126FF,
+    (PFN_VOID)Func_0041EB66,
+    (PFN_VOID)Func_0041EB6C,
+    (PFN_VOID)Func_0041EB72,
+    (PFN_VOID)Func_0042C024,
+    (PFN_VOID)Func_00434CD8,
+    (PFN_VOID)Func_00434F75,
+    (PFN_VOID)Func_00434F7B,
+    (PFN_VOID)Func_0053833E,
+    (PFN_VOID)Func_004B73E0,
+    (PFN_VOID)Func_004DF381,
+    (PFN_VOID)Func_004DF389,
+    (PFN_VOID)Func_004DF391,
+    (PFN_VOID)Func_004DF399,
+    (PFN_VOID)Func_004DF3A1,
+    (PFN_VOID)Func_004DF3A9,
+    (PFN_VOID)Func_004F3C0F,
+    (PFN_VOID)Func_004F3C17,
+    (PFN_VOID)Func_004FA6B1,
+    (PFN_VOID)Func_004FA6B9,
+    (PFN_VOID)Func_004FA6C1,
+    (PFN_VOID)Func_004FA6C9,
+    (PFN_VOID)Func_004FA6D1,
+    (PFN_VOID)Func_004FA711,
+    (PFN_VOID)Func_004FA719,
+    (PFN_VOID)Func_004FA721,
 };
 
 #pragma comment(linker, "/include:?GetDataEntry@SceneMgrData@@QAEPAXH@Z")
+#pragma comment(linker, "/include:?Clear@ZeroInit16@@QAEXXZ")
+#pragma comment(linker, "/include:?GetCount@VectorCountObj@@QAEHXZ")
