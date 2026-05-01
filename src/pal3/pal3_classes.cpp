@@ -1222,6 +1222,217 @@ static void* __fastcall UIWnd_GetChild(void* self, int /*edx*/, int index)
 /* PAL3_CheckCD (0x541860) and PAL3_OpenRegistry (0x541C40) are in winmain.cpp */
 
 /* ========================================================================
+ * UIWnd - Simple field setters (COMDAT)
+ * ======================================================================== */
+
+/* 0x00446010 (10 bytes)
+ * __thiscall: this in ECX, 1 stack param (RECT* ptr, RET 4)
+ * MOV EAX,[ESP+4] / MOV EDX,[EAX] / MOV [ECX+4],EDX / RET 4
+ * Copies first DWORD from pointed-to struct into this+4
+ */
+__declspec(noinline) void __fastcall UIWnd_SetPadding1(void* self, int /*edx*/, int* pVal)
+{
+    int val = *pVal;
+    *(int*)((char*)self + 4) = val;
+}
+
+/* 0x00446020 (10 bytes)
+ * __thiscall: this in ECX, 1 stack param (int, RET 4)
+ * MOV EAX,[ESP+4] / MOV [ECX+8],EAX / RET 4
+ * Sets field at offset 0x08
+ */
+__declspec(noinline) void __fastcall UIWnd_SetField08(void* self, int /*edx*/, int value)
+{
+    *(int*)((char*)self + 8) = value;
+}
+
+/* ========================================================================
+ * SceneMgr - Scene data accessor
+ * ======================================================================== */
+
+/* 0x00420F50 (17 bytes)
+ * __thiscall: this in ECX, 1 stack param (RET 4)
+ * MOV EAX,[ESP+4] / ADD EAX,0x7863 / SHL EAX,4 / ADD EAX,ECX / RET 4
+ * Returns pointer to scene data entry: this + (index + 0x7863) * 16
+ */
+struct SceneMgrData {
+    void* GetDataEntry(int index);
+};
+__declspec(noinline) void* SceneMgrData::GetDataEntry(int index)
+{
+    return (char*)this + ((index + 0x7863) << 4);
+}
+
+/* ========================================================================
+ * CCBRoleState - Combat ATB readiness check
+ * ======================================================================== */
+
+/* 0x004ED100 (104 bytes)
+ * __thiscall: this in ECX, 1 stack param (char bCheckEnemies, RET 4)
+ * Checks if all enemies (or allies) have their ATB gauge full.
+ * If bCheckEnemies: checks roles 5-10, tests bExists(offset-0xB), ATB>0, and extraFlag(+0x34C)
+ * If !bCheckEnemies: checks roles 5-10 differently (bAlive at -1, bAlive==1, extraFlag+0x356)
+ * Returns 0 if any qualifying role found with flag==0, else returns 1.
+ *
+ * Layout per entry (stride 0x37C from CCBRoleState base):
+ *   Base for role 5: this + 0x13B8  (= 0x228 + 5*0x37C + some offset)
+ *   [base - 0x0B] = bExists
+ *   [base + 0x00] = ATB value (int)
+ *   [base + 0x34C] = flag for bCheckEnemies path
+ *   For !bCheckEnemies path, starts at this+0x13AE:
+ *   [base - 0x01] = bExists
+ *   [base + 0x00] = bAlive (must == 1)
+ *   [base + 0x356] = flag
+ */
+__declspec(noinline) int __fastcall CCBRoleState_AllReady(void* self, int /*edx*/, char bCheckEnemies)
+{
+    char* base;
+    int i;
+
+    if (bCheckEnemies) {
+        base = (char*)self + 0x13B8;
+        for (i = 5; i < 11; i++) {
+            if (*(base - 0x0B) != 0) {
+                if (*(int*)base > 0) {
+                    if (*(base + 0x34C) == 0) {
+                        return 0;
+                    }
+                }
+            }
+            base += 0x37C;
+        }
+    } else {
+        base = (char*)self + 0x13AE;
+        for (i = 5; i < 11; i++) {
+            if (*(base - 1) != 0) {
+                if (*base == 1) {
+                    if (*(base + 0x356) == 0) {
+                        return 0;
+                    }
+                }
+            }
+            base += 0x37C;
+        }
+    }
+    return 1;
+}
+
+/* ========================================================================
+ * SoundMgr - String comparison helper for name sorting
+ * ======================================================================== */
+
+/* 0x0053DF80 (48 bytes)
+ * __cdecl: 2 stack params (pointers to structs with char* at offset +4)
+ * If either +4 is NULL, uses static empty string at 0x56a634.
+ * Calls _stricmp and returns (result > 0) ? 0 : 1
+ */
+__declspec(noinline) int __cdecl SoundMgr_CompareNames(void* a, void* b)
+{
+    static char s_empty[4] = {0};
+    char* nameA = *(char**)((char*)a + 4);
+    char* nameB = *(char**)((char*)b + 4);
+
+    if (nameB == NULL) nameB = s_empty;
+    if (nameA == NULL) nameA = s_empty;
+
+    int result = _stricmp(nameA, nameB);
+    if (result > 0) return 0;
+    return 1;
+}
+
+/* ========================================================================
+ * CCBRoleState - Additional combat role accessors
+ * ======================================================================== */
+
+/* 0x004ED040 (26 bytes)
+ * __thiscall: this in ECX, 1 stack param (RET 4)
+ * Returns byte at this + roleIndex*0x37C + 0x243
+ * (Role flag: e.g. "is defending" or "is acting")
+ */
+__declspec(noinline) char __fastcall CCBRoleState_GetFlag243(void* self, int /*edx*/, int roleIndex)
+{
+    char* base = (char*)self;
+    int offset = roleIndex * 0x37C;
+    return *(base + offset + 0x243);
+}
+
+/* 0x004ED060 (58 bytes)
+ * __thiscall: this in ECX, 1 stack param (RET 4)
+ * If !bExists: return 0
+ * If [+0x243] == 1: return 0
+ * Else: return byte at [+0x244]
+ */
+__declspec(noinline) char __fastcall CCBRoleState_GetActionState(void* self, int /*edx*/, int roleIndex)
+{
+    char* base = (char*)self;
+    int offset = roleIndex * 0x37C;
+
+    if (*(base + offset + 0x241) == 0) {
+        return 0;
+    }
+    if (*(unsigned char*)(base + offset + 0x243) == 1) {
+        return 0;
+    }
+    return *(base + offset + 0x244);
+}
+
+/* 0x004ED0A0 (82 bytes)
+ * __thiscall: this in ECX, 1 stack param (char bCheckEnemies, RET 4)
+ * Checks player party (roles 0-4) for ATB readiness.
+ * If bCheckEnemies: checks bExists and ATB>0
+ * If !bCheckEnemies: checks bAlive and bAlive==1
+ * Returns 0 if any qualifying role found, else 1.
+ */
+__declspec(noinline) int __fastcall CCBRoleState_AnyPartyReady(void* self, int /*edx*/, char bCheckEnemies)
+{
+    char* base;
+    int i;
+
+    if (bCheckEnemies) {
+        base = (char*)self + 0x24C;
+        for (i = 0; i < 5; i++) {
+            if (*(base - 0x0B) != 0) {
+                if (*(int*)base > 0) {
+                    return 0;
+                }
+            }
+            base += 0x37C;
+        }
+    } else {
+        base = (char*)self + 0x242;
+        for (i = 0; i < 5; i++) {
+            if (*(base - 1) != 0) {
+                if (*base == 1) {
+                    return 0;
+                }
+            }
+            base += 0x37C;
+        }
+    }
+    return 1;
+}
+
+/* ========================================================================
+ * Game Loop Thunks - Thin wrappers that set ECX to global and jump
+ * ======================================================================== */
+
+/* 0x00404610 (10 bytes) - MOV ECX,0x8ACD40 / JMP 0x457340
+ * Dispatches to CGameState::Update on global game state object */
+
+/* 0x00404630 (10 bytes) - MOV ECX,0x8ACD30 / JMP 0x430180
+ * Dispatches to CUIManager::Update on global UI manager object */
+
+/* 0x00404650 (10 bytes) - MOV ECX,0x8ACD30 / JMP 0x430230
+ * Dispatches to CUIManager::Render on global UI manager object */
+
+/* 0x00404670 (10 bytes) - MOV ECX,0x8ACC10 / JMP target
+ * Dispatches to another global object method */
+
+/* Note: These thunks cannot be implemented as standalone C functions since
+ * they use tail-call jumps (JMP instead of CALL+RET). They need inline asm
+ * or naked functions which require the original compiler for byte-matching. */
+
+/* ========================================================================
  * GRPinput::UnacquireKeyboard - Release keyboard and clear states
  * ======================================================================== */
 
@@ -1293,3 +1504,23 @@ void GRPinput::PollKeyboard()
         this->AcquireKeyboard();
     }
 }
+
+/* ========================================================================
+ * Force-reference table - prevents linker from stripping COMDAT functions
+ * that have no callers yet. These are matching decompilation targets.
+ * ======================================================================== */
+
+typedef void (*PFN_VOID)(void);
+#pragma section(".pal3ref", read)
+__declspec(allocate(".pal3ref"))
+PFN_VOID g_pal3_force_refs[] = {
+    (PFN_VOID)UIWnd_SetPadding1,
+    (PFN_VOID)UIWnd_SetField08,
+    (PFN_VOID)CCBRoleState_AllReady,
+    (PFN_VOID)CCBRoleState_GetFlag243,
+    (PFN_VOID)CCBRoleState_GetActionState,
+    (PFN_VOID)CCBRoleState_AnyPartyReady,
+    (PFN_VOID)SoundMgr_CompareNames,
+};
+
+#pragma comment(linker, "/include:?GetDataEntry@SceneMgrData@@QAEPAXH@Z")
