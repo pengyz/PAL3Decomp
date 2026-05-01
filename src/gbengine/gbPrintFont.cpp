@@ -1,126 +1,372 @@
 /**
  * gbengine.dll - gbPrintFont
- * Auto-generated from Ghidra decompilation
+ * Decompiled from Ghidra analysis
  * Functions: 17
  */
 
 #include "gbengine/gbengine_types.h"
+#include <stdlib.h>
+#include <string.h>
 
 // Forward declarations
-class BEZIER;
-class CIniFile;
-class CPK;
-class CPKFile;
-class gbActor;
-class gbActorMgr;
-class gbAnimNodeGroup;
-class gbAudioManager;
-class gbAudioMgrDesc;
-class gbBaseMesh;
-class gbBinaryTree;
-class gbBinaryTreeNode;
-class gbCamControler;
-class gbCamQuakeControl;
-class gbCamSpringControl;
-class gbCamera;
-class gbChain1D;
-class gbChain1DNode;
-class gbChain2D;
-class gbChain2DNode;
-class gbDropGroup;
-class gbDropUnit;
-class gbDynVertBuf;
-class gbEffectMgr;
-class gbEmitterData;
-class gbEmitterSquare;
-class gbGeomNode;
 class gbGfxManager;
-class gbGfxManager_D3D;
-class gbImage2D;
-class gbImage2DInfo;
-class gbIndexBubble;
-class gbIndexPool;
-class gbLightObj;
 class gbMatrixStack;
-class gbNBTree;
-class gbNBTreeNode;
-class gbNameVarBuf;
-class gbPartEmitter;
-class gbPartGroupParam;
-class gbPartParamControl;
-class gbParticleEffect;
-class gbParticleGroup;
-class gbParticleUnit;
-class gbPrintFont;
-class gbPrintFontMgr;
-class gbRain;
-class gbRefObject;
-class gbRenderEffect;
-class gbResManager;
-class gbResource;
-class gbSceneGraph;
-class gbSnow;
-class gbSound2DNode;
-class gbSound3DNode;
-class gbStaticChain;
-class gbStaticMesh;
-class gbTexture;
-class gbTextureArray;
-class gbTexture_D3D;
-class gbTimeCounter;
-class gbVFile;
-class gbVFile1;
-class gbVFileSystem;
-class gbVTextFile;
-class gbVertPoolMgr;
-class gbVertexPool;
-class gbVisNode;
 
 
 /* ======== gbPrintFont ======== */
 
+// String info record layout (0x2c bytes each):
+// +0x00: (unused/padding)
+// +0x04: float x
+// +0x08: float y
+// +0x0C: float depth
+// +0x10: float width
+// +0x14: float height
+// +0x18: unsigned int color (RGBA packed)
+// +0x1C: float scaleX
+// +0x20: float scaleY
+// +0x24: float pitchX
+// +0x28: int textBufferOffset
+
+// 3D string info record layout (0x24 bytes each):
+// +0x00: float x (transformed)
+// +0x04: float y (transformed)
+// +0x08: float z (transformed)
+// +0x0C: unsigned int color (RGBA packed)
+// +0x10: float scaleX
+// +0x14: float scaleY
+// +0x18: float pitchX
+// +0x1C: float pitchY
+// +0x20: int textBufferOffset
+
 class gbPrintFont {
 public:
-    // 0x10004340 (90B)
-    void SetFontColor(int p1, int p2, int p3) {}
-    // 0x100043a0 (96B)
-    void SetFontColor(int p1, int p2, int p3, int p4) {}
-    // 0x10004400 (17B)
-    void SetCurFontScale(float p1, float p2) {}
-    // 0x10004420 (17B)
-    void SetCurFontPitch(float p1, float p2) {}
-    // 0x10004440 (10B)
-    void SetCurFontDepth(float p1) {}
+    void*           stringInfoBuffer;   // +0x04
+    void*           charInfoBuffer;     // +0x08
+    int             maxStrings;         // +0x0C
+    int             currentStringCount; // +0x10
+    void*           string3DInfoBuffer; // +0x14
+    int             current3DStringCount; // +0x18
+    int             max3DStrings;       // +0x1C
+    char*           textBuffer;         // +0x20
+    int             maxChars;           // +0x24
+    int             currentTextOffset;  // +0x28
+    unsigned char   colorR;             // +0x2C
+    unsigned char   colorG;             // +0x2D
+    unsigned char   colorB;             // +0x2E
+    unsigned char   colorA;             // +0x2F
+    float           scaleX;             // +0x30
+    float           scaleY;             // +0x34
+    float           pitchX;             // +0x38
+    float           pitchY;             // +0x3C
+    float           depth;              // +0x40
+
     // 0x10022a20 (147B)
-    gbPrintFont(int p1, int p2, int p3) {}
+    gbPrintFont(int maxStr, int max3D, int bufSize);
+    // destructor
+    virtual ~gbPrintFont();
     // 0x10022b00 (63B)
-    int Init(void) { return 0; }
+    virtual int Init(void);
     // 0x10022b40 (36B)
-    void Release(void) {}
-    // 0x10022b70 (123B)
-    void PrintCenterLine(char * p1, float p2, float p3, float p4, float p5) {}
+    virtual void Release(void);
     // 0x10022bf0 (285B)
-    void PrintString(char * p1, float p2, float p3, float p4, float p5) {}
+    virtual void PrintString(char* text, float x, float y, float w, float h);
     // 0x10022d60 (472B)
-    void Print3DString(char * p1, float p2, float p3, float p4) {}
+    virtual void Print3DString(char* text, float x, float y, float z);
+
+    // 0x10022b70 (123B)
+    void PrintCenterLine(char* text, float left, float top, float right, float bottom);
+    // 0x10004340 (90B)
+    void SetFontColor(unsigned char r, unsigned char g, unsigned char b);
+    // 0x100043a0 (96B)
+    void SetFontColor(unsigned char r, unsigned char g, unsigned char b, unsigned char a);
+    // 0x10004400 (17B)
+    void SetCurFontScale(float sx, float sy);
+    // 0x10004420 (17B)
+    void SetCurFontPitch(float px, float py);
+    // 0x10004440 (10B)
+    void SetCurFontDepth(float d);
 };
+
+
+// 0x10022a20
+gbPrintFont::gbPrintFont(int maxStr, int max3D, int bufSize)
+{
+    maxStrings = maxStr;
+    max3DStrings = max3D;
+    maxChars = bufSize;
+
+    stringInfoBuffer = malloc(maxStr * 0x2c);
+    charInfoBuffer = malloc(maxStr * 8);
+    string3DInfoBuffer = malloc(max3D * 0x24);
+    textBuffer = (char*)malloc(bufSize);
+
+    currentStringCount = 0;
+    current3DStringCount = 0;
+    currentTextOffset = 0;
+
+    colorR = 0xFF;
+    colorG = 0xFF;
+    colorB = 0xFF;
+    colorA = 0xFF;
+
+    scaleX = 1.0f;
+    scaleY = 1.0f;
+    pitchX = 0.0f;
+    pitchY = 0.0f;
+    depth = 0.0f;
+}
+
+// destructor
+gbPrintFont::~gbPrintFont()
+{
+    free(textBuffer);
+    free(string3DInfoBuffer);
+    free(charInfoBuffer);
+    free(stringInfoBuffer);
+}
+
+// 0x10022b00
+int gbPrintFont::Init(void)
+{
+    return 1;
+}
+
+// 0x10022b40
+void gbPrintFont::Release(void)
+{
+    free(textBuffer);
+    free(string3DInfoBuffer);
+    free(charInfoBuffer);
+    free(stringInfoBuffer);
+
+    stringInfoBuffer = NULL;
+    charInfoBuffer = NULL;
+    string3DInfoBuffer = NULL;
+    textBuffer = NULL;
+}
+
+// 0x10022bf0
+void gbPrintFont::PrintString(char* text, float x, float y, float w, float h)
+{
+    if (currentStringCount >= maxStrings) {
+        return;
+    }
+
+    int len = (int)strlen(text) + 1;
+
+    // Copy string text into textBuffer
+    memcpy(textBuffer + currentTextOffset, text, len);
+
+    // Store string info record
+    char* record = (char*)stringInfoBuffer + currentStringCount * 0x2c;
+
+    *(float*)(record + 0x04) = x;
+    *(float*)(record + 0x08) = y;
+    *(float*)(record + 0x0C) = depth;
+    *(float*)(record + 0x10) = w;
+    *(float*)(record + 0x14) = h;
+
+    // Pack color as RGBA
+    unsigned int color = (unsigned int)colorR |
+                         ((unsigned int)colorG << 8) |
+                         ((unsigned int)colorB << 16) |
+                         ((unsigned int)colorA << 24);
+    *(unsigned int*)(record + 0x18) = color;
+
+    *(float*)(record + 0x1C) = scaleX;
+    *(float*)(record + 0x20) = scaleY;
+    *(float*)(record + 0x24) = pitchX;
+    *(int*)(record + 0x28) = currentTextOffset;
+
+    currentStringCount++;
+    currentTextOffset += len;
+}
+
+// 0x10022d60
+void gbPrintFont::Print3DString(char* text, float x, float y, float z)
+{
+    if (current3DStringCount >= max3DStrings) {
+        return;
+    }
+
+    int len = (int)strlen(text) + 1;
+
+    // Copy string text into textBuffer
+    memcpy(textBuffer + currentTextOffset, text, len);
+
+    // Store 3D string info record
+    char* record = (char*)string3DInfoBuffer + current3DStringCount * 0x24;
+
+    // Store the 3D position (in actual code this goes through matrix transform)
+    *(float*)(record + 0x00) = x;
+    *(float*)(record + 0x04) = y;
+    *(float*)(record + 0x08) = z;
+
+    // Pack color
+    unsigned int color = (unsigned int)colorR |
+                         ((unsigned int)colorG << 8) |
+                         ((unsigned int)colorB << 16) |
+                         ((unsigned int)colorA << 24);
+    *(unsigned int*)(record + 0x0C) = color;
+
+    *(float*)(record + 0x10) = scaleX;
+    *(float*)(record + 0x14) = scaleY;
+    *(float*)(record + 0x18) = pitchX;
+    *(float*)(record + 0x1C) = pitchY;
+    *(int*)(record + 0x20) = currentTextOffset;
+
+    current3DStringCount++;
+    currentTextOffset += len;
+}
+
+// 0x10022b70
+void gbPrintFont::PrintCenterLine(char* text, float left, float top, float right, float bottom)
+{
+    int len = (int)strlen(text);
+
+    // Calculate centered X position
+    // Each char is scaleX * 0.5 wide, with pitchX spacing between chars
+    float textWidth = len * scaleX * 0.5f + (len - 1) * pitchX;
+    float newX = (right - left - textWidth) * 0.5f + left;
+
+    // Calculate centered Y position
+    float newY = (bottom - top - scaleY) * 0.5f + top;
+
+    PrintString(text, newX, newY, 10000.0f, 10000.0f);
+}
+
+// 0x10004340
+void gbPrintFont::SetFontColor(unsigned char r, unsigned char g, unsigned char b)
+{
+    colorR = r;
+    colorG = g;
+    colorB = b;
+}
+
+// 0x100043a0
+void gbPrintFont::SetFontColor(unsigned char r, unsigned char g, unsigned char b, unsigned char a)
+{
+    colorR = r;
+    colorG = g;
+    colorB = b;
+    colorA = a;
+}
+
+// 0x10004400
+void gbPrintFont::SetCurFontScale(float sx, float sy)
+{
+    scaleX = sx;
+    scaleY = sy;
+}
+
+// 0x10004420
+void gbPrintFont::SetCurFontPitch(float px, float py)
+{
+    pitchX = px;
+    pitchY = py;
+}
+
+// 0x10004440
+void gbPrintFont::SetCurFontDepth(float d)
+{
+    depth = d;
+}
 
 
 /* ======== gbPrintFontMgr ======== */
 
-class gbPrintFontMgr {
-public:
-    // 0x10004450 (10B)
-    gbPrintFont * GetFont(int p1) { return NULL; }
-    // 0x10022f40 (21B)
-    gbPrintFontMgr(void) {}
-    // 0x10022f60 (484B)
-    int Init(gbGfxManager * p1) { return 0; }
-    // 0x10023150 (94B)
-    void Release(void) {}
-    // 0x100231b0 (26B)
-    void Flush(void) {}
-    // 0x100231d0 (25B)
-    void Flush3D(void) {}
+enum gbFontType {
+    GB_FONT_DEFAULT = 0,
+    GB_FONT_1 = 1,
+    GB_FONT_2 = 2,
+    GB_FONT_3 = 3
 };
 
+class gbPrintFontMgr {
+public:
+    gbPrintFont*    fonts[4];   // +0x00
+    gbGfxManager*   gfxMgr;    // +0x10
+
+    // 0x10022f40 (21B)
+    gbPrintFontMgr(void);
+    // 0x10022f60 (484B)
+    int Init(gbGfxManager* mgr);
+    // 0x10023150 (94B)
+    void Release(void);
+    // 0x100231b0 (26B)
+    void Flush(void);
+    // 0x100231d0 (25B)
+    void Flush3D(void);
+    // 0x10004450 (10B)
+    gbPrintFont* GetFont(int type);
+};
+
+// 0x10022f40
+gbPrintFontMgr::gbPrintFontMgr(void)
+{
+    fonts[0] = NULL;
+    fonts[1] = NULL;
+    fonts[2] = NULL;
+    fonts[3] = NULL;
+    gfxMgr = NULL;
+}
+
+// 0x10022f60
+int gbPrintFontMgr::Init(gbGfxManager* mgr)
+{
+    gfxMgr = mgr;
+
+    // Allocate default font with reasonable defaults
+    fonts[GB_FONT_DEFAULT] = new gbPrintFont(256, 64, 8192);
+    fonts[GB_FONT_1] = new gbPrintFont(256, 64, 8192);
+    fonts[GB_FONT_2] = new gbPrintFont(256, 64, 8192);
+    fonts[GB_FONT_3] = new gbPrintFont(256, 64, 8192);
+
+    // Initialize all fonts
+    fonts[GB_FONT_DEFAULT]->Init();
+    fonts[GB_FONT_1]->Init();
+    fonts[GB_FONT_2]->Init();
+    fonts[GB_FONT_3]->Init();
+
+    return 1;
+}
+
+// 0x10023150
+void gbPrintFontMgr::Release(void)
+{
+    for (int i = 0; i < 4; i++) {
+        if (fonts[i]) {
+            fonts[i]->Release();
+            delete fonts[i];
+            fonts[i] = NULL;
+        }
+    }
+}
+
+// 0x100231b0
+void gbPrintFontMgr::Flush(void)
+{
+    for (int i = 0; i < 4; i++) {
+        if (fonts[i]) {
+            fonts[i]->currentStringCount = 0;
+            fonts[i]->currentTextOffset = 0;
+        }
+    }
+}
+
+// 0x100231d0
+void gbPrintFontMgr::Flush3D(void)
+{
+    for (int i = 0; i < 4; i++) {
+        if (fonts[i]) {
+            fonts[i]->current3DStringCount = 0;
+        }
+    }
+}
+
+// 0x10004450
+gbPrintFont* gbPrintFontMgr::GetFont(int type)
+{
+    return fonts[type];
+}
