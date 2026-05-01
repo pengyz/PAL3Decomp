@@ -133,48 +133,11 @@ int gbConvertToSBC(void * p1, int p2, void * p3, int p4)
     return 0;
 }
 
-// 0x10027730 (55B)
-void gbCrc32Init(void)
-{
-}
+// gbCrc32Init, gbCrc32Compute - moved to gbMisc.cpp
 
-// 0x10027770 (106B)
-unsigned int gbCrc32Compute(char * p1, int p2)
-{
-    return 0;
-}
+// gbIntersectTriangle - moved to gbMath.cpp
 
-// 0x100277e0 (118B)
-unsigned int gbCrc32Compute(char * p1)
-{
-    return 0;
-}
-
-// 0x10028f80 (1067B)
-int gbIntersectTriangle(gbVec3D * p1, gbVec3D * p2, gbVec3D * p3, gbVec3D * p4, gbVec3D * p5, gbVec3D * p6)
-{
-    return 0;
-}
-
-// 0x1002e930 (72B)
-void gbLogInfo(char * p1, int)
-{
-}
-
-// 0x1002e980 (79B)
-void gbReportError(char * p1, int)
-{
-}
-
-// 0x1002e9d0 (79B)
-void gbPopErrorBox(char * p1, int)
-{
-}
-
-// 0x1002ed50 (34B)
-void gbMemCopy(void * p1, void * p2, int p3)
-{
-}
+// gbLogInfo, gbReportError, gbPopErrorBox, gbMemCopy - moved to gbMisc.cpp
 
 // 0x1002f0b0 (179B)
 void gbInitDispSetting(void)
@@ -230,29 +193,7 @@ int gbGetCPU_MHZ(void)
     return 0;
 }
 
-// 0x1002f9d0 (37B)
-char * gbstrchr(char * p1, char p2)
-{
-    return NULL;
-}
-
-// 0x1002fa00 (85B)
-char * gbstrindex(char * p1, int p2)
-{
-    return NULL;
-}
-
-// 0x1002fa60 (59B)
-char * gbStrChr(char * p1, char * p2)
-{
-    return NULL;
-}
-
-// 0x1002faa0 (75B)
-char * gbStrRChr(char * p1, char * p2)
-{
-    return NULL;
-}
+// gbstrchr, gbstrindex, gbStrChr, gbStrRChr - moved to gbMisc.cpp
 
 // 0x1002faf0 (108B)
 int gbGetINIValue(char * p1, char * p2, char * p3)
@@ -260,46 +201,9 @@ int gbGetINIValue(char * p1, char * p2, char * p3)
     return 0;
 }
 
-// 0x1002fb60 (43B)
-void gbStrToLowCase(char * p1, char * p2)
-{
-}
+// gbStrToLowCase, gbstricmp, gbIsMultiChar, gbIsMultiCharHead, gbIsMultiCharTail - moved to gbMisc.cpp
 
-// 0x1002fb90 (206B)
-int gbstricmp(char * p1, char * p2)
-{
-    return 0;
-}
-
-// 0x1002fc60 (83B)
-int gbIsMultiChar(char * p1, int p2)
-{
-    return 0;
-}
-
-// 0x1002fcc0 (79B)
-int gbIsMultiCharHead(char * p1, int p2)
-{
-    return 0;
-}
-
-// 0x1002fd10 (84B)
-int gbIsMultiCharTail(char * p1, int p2)
-{
-    return 0;
-}
-
-// 0x1002fe90 (100B)
-double gbUpdateCurTime(void)
-{
-    return 0.0f;
-}
-
-// 0x10030000 (50B)
-float gbGetDeltaTime(void)
-{
-    return 0.0f;
-}
+// gbUpdateCurTime, gbGetDeltaTime - moved to gbMisc.cpp
 
 // 0x10030040 (125B)
 void gbGetRealWorldTime(void * p1)
@@ -318,23 +222,5 @@ char * gbVfgetname(char * p1, char * p2, int p3)
     return NULL;
 }
 
-// 0x10031750 (46B)
-void ProfileInit(void)
-{
-}
-
-// 0x10031780 (258B)
-void ProfileBegin(char * p1)
-{
-}
-
-// 0x10031890 (277B)
-void ProfileEnd(char * p1)
-{
-}
-
-// 0x100319b0 (79B)
-void ProfileDumpOutputToFile(char * p1)
-{
-}
+// ProfileInit, ProfileBegin, ProfileEnd, ProfileDumpOutputToFile - moved to gbMisc.cpp
 
