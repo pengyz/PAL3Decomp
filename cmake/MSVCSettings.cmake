@@ -29,7 +29,6 @@ set(PAL3_COMMON_COMPILE_FLAGS
     /W3                  # 警告级别 3
     /GS-                 # 禁用缓冲区溢出检查（原版没有）
     /Gd                  # __cdecl 调用约定（默认，显式指定）
-    /Zp4                 # 结构体对齐 4 字节
     /Zc:wchar_t          # wchar_t 是内置类型（VC7+ 默认）
 )
 

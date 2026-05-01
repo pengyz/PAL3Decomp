@@ -879,12 +879,12 @@ int __fastcall Vector_Size_Div4_V2(int pVec)
 
 // ============================================================================
 // 0x10004FF0  InitStructWithByteAndClearInts  (24 bytes)
-// void __thiscall FUN_10004ff0(void *this, unsigned char *param_1)
+// void __cdecl FUN_10004ff0(void *this, unsigned char *param_1)
 //
 // Initializes first byte from parameter, then zeros 3 int fields.
 // Used for structures that start with a byte flag followed by pointers.
 // ============================================================================
-void __thiscall InitStructWithByteAndClearInts(void *pThis, unsigned char *pByte)
+void InitStructWithByteAndClearInts(void *pThis, unsigned char *pByte)
 {
     unsigned char *p = (unsigned char *)pThis;
     int *pi = (int *)pThis;
