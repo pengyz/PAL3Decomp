@@ -110,7 +110,23 @@ elseif(BUILD_TARGET STREQUAL "gbengine")
         )
 
         # Link DirectX and other dependencies
-        target_link_libraries(gbengine ${PLATFORM_LIBS})
+        target_link_libraries(gbengine ${PLATFORM_LIBS}
+            ${CMAKE_SOURCE_DIR}/lib/ijl15.lib
+        )
+
+        # Use .def file for exports (matching original DLL export table)
+        # /FORCE:MULTIPLE allows duplicate symbols from stubs and implementation files
+        set_target_properties(gbengine PROPERTIES
+            LINK_FLAGS "/DEF:\"${CMAKE_SOURCE_DIR}/src/gbengine/gbengine.def\" /FORCE:MULTIPLE"
+        )
+
+        # Disable inlining for the stubs file so class-inline methods
+        # produce standalone symbols required by the .def exports
+        if(MSVC)
+            set_source_files_properties(src/gbengine/gbengine_stubs.cpp
+                PROPERTIES COMPILE_FLAGS "/Ob0"
+            )
+        endif()
 
         if(MSVC)
             file(MAKE_DIRECTORY ${CMAKE_BINARY_DIR}/asm)

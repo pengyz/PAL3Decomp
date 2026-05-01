@@ -5,10 +5,12 @@
  */
 
 #include "gbengine/gbengine_types.h"
+#include "gbengine/gbVFileSystem.h"
 #include <windows.h>
 #include <stdarg.h>
 #include <math.h>
 #include <string.h>
+#include <stdlib.h>
 
 #pragma warning(disable: 4100 4731 4716 4101)
 
@@ -118,7 +120,9 @@ class gbVolumeModifier;
 // ========= BEZIER =========
 class BEZIER {
 public:
-    char _stub_data[128];
+    int coeff[4];           // +0x00: binomial coefficients (1,3,3,1)
+    gbVec3D ctrlPt[4];     // +0x10: 4 control points (48 bytes)
+    char dirty;             // +0x40: needs coefficient recomputation
 
 public:
     BEZIER(struct gbVec3D * p0);
@@ -185,7 +189,34 @@ int gbAABBox::IsColPoint(struct gbVec3D & p0) {
         return 1;
     return 0;
 }
-void gbAABBox::Transform(struct gbMatrix4 * p0) {  }
+void gbAABBox::Transform(struct gbMatrix4 * p0) {
+    // Transform all 8 corners of the AABB by the matrix, then recompute min/max
+    gbVec3D corners[8];
+    corners[0].x = vMin.x; corners[0].y = vMin.y; corners[0].z = vMax.z;
+    corners[1].x = vMax.x; corners[1].y = vMin.y; corners[1].z = vMax.z;
+    corners[2].x = vMax.x; corners[2].y = vMin.y; corners[2].z = vMin.z;
+    corners[3].x = vMin.x; corners[3].y = vMin.y; corners[3].z = vMin.z;
+    corners[4].x = vMax.x; corners[4].y = vMax.y; corners[4].z = vMax.z;
+    corners[5].x = vMin.x; corners[5].y = vMax.y; corners[5].z = vMax.z;
+    corners[6].x = vMin.x; corners[6].y = vMax.y; corners[6].z = vMin.z;
+    corners[7].x = vMax.x; corners[7].y = vMax.y; corners[7].z = vMin.z;
+
+    p0->Transform(corners, 8);
+
+    // Reset to extreme values
+    vMin.x = vMin.y = vMin.z = 3.4028234e+38f;
+    vMax.x = vMax.y = vMax.z = -3.4028234e+38f;
+
+    // Find new min/max from transformed corners
+    for (int i = 0; i < 8; i++) {
+        if (corners[i].x < vMin.x) vMin.x = corners[i].x;
+        if (corners[i].x > vMax.x) vMax.x = corners[i].x;
+        if (corners[i].y < vMin.y) vMin.y = corners[i].y;
+        if (corners[i].y > vMax.y) vMax.y = corners[i].y;
+        if (corners[i].z < vMin.z) vMin.z = corners[i].z;
+        if (corners[i].z > vMax.z) vMax.z = corners[i].z;
+    }
+}
 
 // ========= gbActor (SKIP: partially implemented elsewhere) =========
 // Missing 1 methods - add to existing source file:
@@ -198,53 +229,40 @@ void gbAABBox::Transform(struct gbMatrix4 * p0) {  }
 // ========= gbAnimNodeGroup =========
 class gbAnimNodeGroup {
 public:
-    char _stub_data[128];
+    void* pNode;              // +0x00: pointer to root animation node
+    int field_04;             // +0x04
+    int field_08;             // +0x08
+    float field_0c;           // +0x0c: some float (init -1.0f)
+    int field_10;             // +0x10
+    int field_14;             // +0x14
+    int field_18;             // +0x18
+    int field_1c;             // +0x1c
+    int field_20;             // +0x20
+    int field_24;             // +0x24
+    int field_28;             // +0x28
+    int isDead;               // +0x2c: dead flag
+    int field_30;             // +0x30: active/priority flag
+    gbMatrix4 posMatrix;      // +0x34: position matrix (64 bytes)
+    // total: 0x74 = 116 bytes
+
+    static void* s_pGfxMgr;  // stored at DAT_101379b0
 
 public:
     gbAnimNodeGroup(class gbGfxManager * p0);
-
-public:
     ~gbAnimNodeGroup();
-
-public:
     class gbAnimNodeGroup & operator=(class gbAnimNodeGroup const & p0);
-
-public:
     void Attach();
-
-public:
     class gbAnimNodeGroup * Clone();
-
-public:
     int IsDead();
-
-public:
     void LoadFromFile(char * p0);
-
-public:
     void Reset();
-
-public:
     void SetPosition(struct gbMatrix4 const & p0);
-
-public:
     void SetPosition(struct gbVec3D const & p0);
-
-public:
     void SetPriority(int p0);
-
-public:
     static void SetSoundFileDir(char * p0);
-
-public:
     void SetToDead();
-
-public:
     void ShowGroup(int p0);
-
-public:
     void Update();
-
 };
 
 // ========= gbAudioManager (SKIP: partially implemented elsewhere) =========
@@ -1293,7 +1311,10 @@ void gbMatrix4::Transpose(struct gbMatrix4 * p0) const {
 // ========= gbMatrixStack =========
 class gbMatrixStack {
 public:
-    char _stub_data[128];
+    struct gbMatrix4 *pStack;   // +0x00: pointer to array of gbMatrix4
+    int maxDepth;               // +0x04: maximum stack depth
+    int curDepth;               // +0x08: current stack index
+    int dirty;                  // +0x0C: invalidation flag
 
 public:
     gbMatrixStack(int p0);
@@ -1366,7 +1387,13 @@ public:
 // ========= gbNameVarBuf =========
 class gbNameVarBuf {
 public:
-    char _stub_data[128];
+    void* dataBuf;          // +0x00: data buffer
+    int dataBufCapacity;    // +0x04: capacity of data buffer in bytes
+    int dataBufUsed;        // +0x08: used bytes in data buffer
+    void* varTable;         // +0x0C: variable descriptor table (16 bytes per entry)
+    int varTableCapacity;   // +0x10: max number of entries in varTable
+    int varCount;           // +0x14: number of registered variables
+    int locked;             // +0x18: lock flag
 
 public:
     gbNameVarBuf();
@@ -1419,7 +1446,12 @@ struct gbVec3D gbOBBox::GetCenter() const {
 float gbOBBox::GetRadius() const {
     return (float)sqrt(extent.x * extent.x + extent.y * extent.y + extent.z * extent.z) * 0.5f;
 }
-float gbOBBox::GetRadiusInDirection(struct gbVec3D const & p0) const { return 0.0f; }
+float gbOBBox::GetRadiusInDirection(struct gbVec3D const & p0) const {
+    float rx = matrix.m[0][0] * p0.x + matrix.m[0][1] * p0.y + matrix.m[0][2] * p0.z;
+    float ry = matrix.m[1][0] * p0.x + matrix.m[1][1] * p0.y + matrix.m[1][2] * p0.z;
+    float rz = matrix.m[2][0] * p0.x + matrix.m[2][1] * p0.y + matrix.m[2][2] * p0.z;
+    return (float)fabs(rx) * extent.x * 0.5f + (float)fabs(ry) * extent.y * 0.5f + (float)fabs(rz) * extent.z * 0.5f;
+}
 int gbOBBox::IsColPoint(struct gbVec3D & p0) {
     float cx = -matrix.m[3][0];
     float cy = -matrix.m[3][1];
@@ -1486,7 +1518,7 @@ public:
 };
 
 // ========= gbPixelFormat (methods for header-defined type) =========
-class gbPixelFormat & gbPixelFormat::operator=(class gbPixelFormat const & p0) { return *this; }
+class gbPixelFormat & gbPixelFormat::operator=(class gbPixelFormat const & p0) { if (this != &p0) memcpy(this, &p0, sizeof(*this)); return *this; }
 
 // ========= gbPlane (methods for header-defined type) =========
 gbPlane::gbPlane() { normal.x = normal.y = normal.z = 0.0f; d = 0.0f; }
@@ -1518,7 +1550,45 @@ void gbQuaternion::GetAxisAngle(struct gbVec3D * p0, float * p1) {
         *p1 = 0.0f;
     }
 }
-void gbQuaternion::GetMatrix(struct gbMatrix4 * p0) const {  }
+void gbQuaternion::GetMatrix(struct gbMatrix4 * p0) const {
+    // Standard quaternion to rotation matrix conversion
+    // From Ghidra: uses 2*x, 2*y, 2*z multiplied by components
+    float xx2 = x + x;  // 2*x
+    float yy2 = y + y;  // 2*y
+    float zz2 = z + z;  // 2*z
+
+    float xx_x = xx2 * x;   // 2*x*x
+    float xx_y = xx2 * y;   // 2*x*y
+    float xx_z = xx2 * z;   // 2*x*z
+    float xx_w = xx2 * w;   // 2*x*w
+
+    float yy_y = yy2 * y;   // 2*y*y
+    float yy_z = yy2 * z;   // 2*y*z
+    float yy_w = yy2 * w;   // 2*y*w
+
+    float zz_z = zz2 * z;   // 2*z*z
+    float zz_w = zz2 * w;   // 2*z*w
+
+    // Last row/column
+    p0->m[3][0] = 0.0f;
+    p0->m[3][1] = 0.0f;
+    p0->m[3][2] = 0.0f;
+    p0->m[3][3] = 1.0f;
+
+    // From Ghidra decompilation (note: uses column indices 0,4,8 etc as byte offsets / 4)
+    p0->m[0][0] = 1.0f - yy_y - zz_z;
+    p0->m[0][1] = zz_w + xx_y;
+    p0->m[0][2] = xx_z - yy_w;
+
+    p0->m[1][0] = xx_y - zz_w;
+    float one_minus_xx_x = 1.0f - xx_x;
+    p0->m[1][1] = one_minus_xx_x - zz_z;
+    p0->m[1][2] = yy_z + xx_w;
+
+    p0->m[2][0] = yy_w + xx_z;
+    p0->m[2][1] = yy_z - xx_w;
+    p0->m[2][2] = one_minus_xx_x - yy_y;
+}
 void gbQuaternion::GetVec3D(float * p0, struct gbVec3D * p1) {
     *p0 = w;
     p1->x = x;
@@ -1601,7 +1671,37 @@ void gbQuaternion::SetMatrix(struct gbMatrix4 * p0) {
         x = q[0]; y = q[1]; z = q[2]; w = q[3];
     }
 }
-void gbQuaternion::SetTwoVector(struct gbVec3D * p0, struct gbVec3D * p1) {  }
+void gbQuaternion::SetTwoVector(struct gbVec3D * p0, struct gbVec3D * p1) {
+    // Compute cross product of p0 and p1 to get rotation axis
+    float cx = p1->z * p0->y - p0->z * p1->y;
+    float cy = p0->z * p1->x - p0->x * p1->z;
+    float cz = p0->x * p1->y - p1->x * p0->y;
+
+    // Normalize the axis
+    float len = (float)sqrt(cx * cx + cy * cy + cz * cz);
+    if (fabs(len) >= 0.005f) {
+        cx /= len;
+        cy /= len;
+        cz /= len;
+    } else {
+        cx = 0.0f;
+        cy = 1.0f;
+        cz = 0.0f;
+    }
+
+    // Compute angle between vectors using dot product -> acos
+    float dot = p0->x * p1->x + p0->y * p1->y + p0->z * p1->z;
+    float angle = (float)acos(dot);
+    // Convert: acos gives radians, multiply by 57.295776 (rad2deg), then * 0.5 * 0.017453292 (deg2rad)
+    // Net effect: angle * 0.5 (half angle for quaternion)
+    float halfAngle = angle * 57.295776f * 0.5f * 0.017453292f;
+
+    w = (float)cos(halfAngle);
+    float s = (float)sin(halfAngle);
+    x = s * cx;
+    y = s * cy;
+    z = cz * s;
+}
 void gbQuaternion::SetUnit() { x = 0.0f; y = 0.0f; z = 0.0f; w = 1.0f; }
 void gbQuaternion::SetVec3D(float p0, struct gbVec3D * p1) {
     w = p0;
@@ -1977,7 +2077,7 @@ public:
 // ========= gbTimeCounter =========
 class gbTimeCounter {
 public:
-    char _stub_data[128];
+    double timestamp;       // +0x00: stored time value
 
 public:
     class gbTimeCounter & operator=(class gbTimeCounter const & p0);
@@ -2004,7 +2104,8 @@ public:
 // ========= gbVTextFile =========
 class gbVTextFile {
 public:
-    char _stub_data[128];
+    char lineBuf[0x400];    // +0x000: line buffer (1024 bytes)
+    gbVFile* m_pFile;       // +0x400: file handle
 
 public:
     gbVTextFile(char * p0);
@@ -2072,37 +2173,33 @@ void gbVec3D::Zero() { x = y = z = 0.0f; }
 //   RenderShadowVolume (?RenderShadowVolume@gbVisNode@@UAEXPAUgbRenderInfoObj@@@Z)
 
 // ========= gbVolModNode =========
+// Inherits: gbChain1DNode -> gbNBTreeNode -> gbVisNode -> gbVolModNode
+// Layout:
+//   +0x00: vfptr
+//   +0x04: gbChain1DNode::pNext
+//   +0x08: gbNBTreeNode::pParent
+//   +0x0C: gbNBTreeNode::children (gbChain1D, 16 bytes)
+//   +0x1C: gbVisNode fields start (msgBuffer, etc.)
+//   +0x58: gbMatrix4 localMatrix (local transform, 64 bytes)
+//   +0x98: gbMatrix4 worldMatrix (world transform, 64 bytes)
+//   +0xD8: gbVolumeModifier* pVolMod
 class gbVolModNode {
 public:
-    char _stub_data[128];
+    char _base_visnode[0x58];       // base class data (gbChain1DNode + gbNBTreeNode + gbVisNode)
+    gbMatrix4 localMatrix;          // +0x58: local transform matrix
+    gbMatrix4 worldMatrix;          // +0x98: world transform matrix
+    void* pVolMod;                  // +0xD8: gbVolumeModifier pointer (ref-counted)
 
 public:
     gbVolModNode(class gbVolModNode const & p0);
-
-public:
     gbVolModNode();
-
-public:
     virtual ~gbVolModNode();
-
-public:
     class gbVolModNode & operator=(class gbVolModNode const & p0);
-
-public:
     virtual int Attach(class gbRenderEffect * p0);
-
-public:
     virtual void GetBoundSphere(struct gbSphere * p0);
-
-public:
     class gbLightObj * GetLightObj();
-
-public:
     virtual void Render(struct gbRenderInfoObj * p0);
-
-public:
     void SetVolModObj(class gbVolumeModifier * p0);
-
 };
 
 // ========= gbVolumeModifier =========
@@ -2125,136 +2222,872 @@ public:
 };
 
 // ========= Global Functions and Variables =========
-int __cdecl gbConvertToSBC(unsigned char * p0, int p1, unsigned char * p2, int p3) { return 0; }
-class gbGfxManager * __cdecl gbCreateGraphManager(struct gbGfxDriverInfo * p0) { return 0; }
-void __cdecl gbEnableSystemKeys(struct HINSTANCE__ * p0, int p1) {  }
-int __cdecl gbExecProgram(char const * p0) { return 0; }
-void __cdecl gbGetCurDispMode(int & p0, int & p1, int & p2) {  }
-void __cdecl gbGetRealWorldTime(struct gbRealWorldTime * p0) {  }
-int __cdecl gbIntersectTriangle(struct gbVec3D * p0, struct gbVec3D * p1, struct gbVec3D * p2, struct gbVec3D * p3, struct gbVec3D * p4, struct gbVec3D * p5) { return 0; }
-class gbVisNode * __cdecl gbLoadLightFile(char const * p0) { return 0; }
-char * __cdecl gbVfgetdir(char const * p0, char * p1, int p2) { return 0; }
+int __cdecl gbConvertToSBC(unsigned char * p0, int p1, unsigned char * p2, int p3) {
+    // Convert multi-byte string to wide char (from Ghidra: calls MultiByteToWideChar)
+    int result = MultiByteToWideChar(0, 1, (LPCSTR)p2, -1, (LPWSTR)p0, p1);
+    return result - 1;
+}
+class gbGfxManager * __cdecl gbCreateGraphManager(struct gbGfxDriverInfo * p0) {
+    // Create and return a new gbGfxManager_D3D instance
+    return (gbGfxManager*)(new gbGfxManager_D3D());
+}
+// Global hook handle for gbEnableSystemKeys
+static HHOOK g_hKeyboardHook = NULL;
+
+// Low-level keyboard hook procedure (blocks system keys when hook is active)
+static LRESULT CALLBACK LowLevelKeyboardProc(int nCode, WPARAM wParam, LPARAM lParam) {
+    if (nCode >= 0) {
+        return 1;  // Block the key
+    }
+    return CallNextHookEx(g_hKeyboardHook, nCode, wParam, lParam);
+}
+
+void __cdecl gbEnableSystemKeys(struct HINSTANCE__ * p0, int p1) {
+    OSVERSIONINFOA osvi;
+    osvi.dwOSVersionInfoSize = sizeof(OSVERSIONINFOA);
+    GetVersionExA(&osvi);
+
+    if (osvi.dwPlatformId == VER_PLATFORM_WIN32_NT) {
+        if (osvi.dwMajorVersion >= 4) {
+            if (p1 == 0) {
+                g_hKeyboardHook = SetWindowsHookExA(WH_KEYBOARD_LL, LowLevelKeyboardProc, (HINSTANCE)p0, 0);
+                return;
+            }
+            if (g_hKeyboardHook != NULL) {
+                UnhookWindowsHookEx(g_hKeyboardHook);
+                g_hKeyboardHook = NULL;
+                return;
+            }
+        }
+    } else if (osvi.dwPlatformId == VER_PLATFORM_WIN32_WINDOWS) {
+        if (osvi.dwMajorVersion >= 4) {
+            UINT dummy;
+            if (p1 == 0) {
+                SystemParametersInfoA(0x61, 1, &dummy, 0);
+                return;
+            }
+            SystemParametersInfoA(0x61, 0, &dummy, 0);
+        }
+    }
+}
+int __cdecl gbExecProgram(char const * p0) {
+    STARTUPINFOA si;
+    PROCESS_INFORMATION pi;
+    char fullPath[256];
+    LPSTR filePart;
+
+    memset(&si, 0, sizeof(si));
+    si.cb = sizeof(STARTUPINFOA);
+    si.lpReserved = NULL;
+    si.lpReserved2 = NULL;
+    si.cbReserved2 = 0;
+    si.lpTitle = NULL;
+    si.lpDesktop = NULL;
+
+    DWORD result = GetFullPathNameA(p0, 256, fullPath, &filePart);
+    if (result == 0) {
+        return 1;
+    }
+    if (filePart != NULL) {
+        *filePart = '\0';
+    }
+    BOOL success = CreateProcessA(p0, NULL, NULL, NULL, FALSE,
+                                  NORMAL_PRIORITY_CLASS, NULL, fullPath, &si, &pi);
+    return success;
+}
+// Globals for gbGetCurDispMode (populated during display mode initialization)
+static int g_CurDispWidth = 800;
+static int g_CurDispHeight = 600;
+static int g_CurDispBpp = 32;
+
+void __cdecl gbGetCurDispMode(int & p0, int & p1, int & p2) {
+    // From Ghidra: simply returns values from global variables
+    p0 = g_CurDispWidth;
+    p1 = g_CurDispHeight;
+    p2 = g_CurDispBpp;
+}
+void __cdecl gbGetRealWorldTime(struct gbRealWorldTime * p0) {
+    // gbRealWorldTime layout (from Ghidra):
+    //   +0x00: year, +0x04: month, +0x08: dayOfWeek, +0x0C: day,
+    //   +0x10: hour, +0x14: minute, +0x18: second, +0x1C: milliseconds
+    SYSTEMTIME st;
+    GetLocalTime(&st);
+    unsigned int* fields = (unsigned int*)p0;
+    fields[0] = (unsigned int)st.wYear;
+    fields[1] = (unsigned int)st.wMonth;
+    fields[2] = (unsigned int)st.wDayOfWeek;
+    fields[3] = (unsigned int)st.wDay;
+    fields[4] = (unsigned int)st.wHour;
+    fields[5] = (unsigned int)st.wMinute;
+    fields[6] = (unsigned int)st.wSecond;
+    fields[7] = (unsigned int)st.wMilliseconds;
+}
+int __cdecl gbIntersectTriangle(struct gbVec3D * p0, struct gbVec3D * p1, struct gbVec3D * p2, struct gbVec3D * p3, struct gbVec3D * p4, struct gbVec3D * p5) {
+    // Segment-triangle intersection (from Ghidra decompilation)
+    // p0 = segment start, p1 = segment end, p2 = v0, p3 = v1, p4 = v2, p5 = output hit point
+
+    // Edge vectors of triangle
+    gbVec3D edge1, edge2;
+    edge1.x = p3->x - p2->x;
+    edge1.y = p3->y - p2->y;
+    edge1.z = p3->z - p2->z;
+    edge2.x = p2->x - p4->x;
+    edge2.y = p2->y - p4->y;
+    edge2.z = p2->z - p4->z;
+
+    // Normal = edge1 x edge2
+    gbVec3D normal;
+    normal.x = edge1.y * edge2.z - edge1.z * edge2.y;
+    normal.y = edge1.z * edge2.x - edge1.x * edge2.z;
+    normal.z = edge1.x * edge2.y - edge1.y * edge2.x;
+
+    // Vector from triangle vertex to segment start
+    gbVec3D tvec;
+    tvec.x = p0->x - p2->x;
+    tvec.y = p0->y - p2->y;
+    tvec.z = p0->z - p2->z;
+
+    // Numerator: dot(tvec, normal)
+    float num = tvec.x * normal.x + tvec.y * normal.y + tvec.z * normal.z;
+
+    // Segment direction: dir = p0 - p1
+    gbVec3D dir;
+    dir.x = p0->x - p1->x;
+    dir.y = p0->y - p1->y;
+    dir.z = p0->z - p1->z;
+
+    // Denominator: dot(dir, normal)
+    float denom = dir.x * normal.x + dir.y * normal.y + dir.z * normal.z;
+
+    // t = num / denom
+    float t = num / denom;
+
+    if (t < 0.0f || t > 1.0f)
+        return 0;
+
+    // Compute hit point: hit = (1-t)*p0 + t*p1
+    float oneMinusT = 1.0f - t;
+    p5->x = oneMinusT * p0->x + t * p1->x;
+    p5->y = oneMinusT * p0->y + t * p1->y;
+    p5->z = oneMinusT * p0->z + t * p1->z;
+
+    // Verify hit point is inside triangle using cross-product sign tests
+    gbVec3D toV0, toV1, toV2;
+    toV0.x = p0->x - p2->x;
+    toV0.y = p0->y - p2->y;
+    toV0.z = p0->z - p2->z;
+    toV1.x = p0->x - p3->x;
+    toV1.y = p0->y - p3->y;
+    toV1.z = p0->z - p3->z;
+    toV2.x = p0->x - p4->x;
+    toV2.y = p0->y - p4->y;
+    toV2.z = p0->z - p4->z;
+
+    // Direction from start to hit point
+    gbVec3D hitDir;
+    hitDir.x = p5->x - p0->x;
+    hitDir.y = p5->y - p0->y;
+    hitDir.z = p5->z - p0->z;
+
+    // Cross test 1: (toV0 x toV1) dot hitDir >= 0
+    gbVec3D cross;
+    cross.x = toV0.y * toV1.z - toV0.z * toV1.y;
+    cross.y = toV0.z * toV1.x - toV0.x * toV1.z;
+    cross.z = toV0.x * toV1.y - toV0.y * toV1.x;
+    if (hitDir.x * cross.x + hitDir.y * cross.y + hitDir.z * cross.z < 0.0f)
+        return 0;
+
+    // Cross test 2: (toV1 x toV2) dot hitDir >= 0
+    cross.x = toV1.y * toV2.z - toV1.z * toV2.y;
+    cross.y = toV1.z * toV2.x - toV1.x * toV2.z;
+    cross.z = toV1.x * toV2.y - toV1.y * toV2.x;
+    if (hitDir.x * cross.x + hitDir.y * cross.y + hitDir.z * cross.z < 0.0f)
+        return 0;
+
+    // Cross test 3: (toV2 x toV0) dot hitDir >= 0
+    cross.x = toV2.y * toV0.z - toV2.z * toV0.y;
+    cross.y = toV2.z * toV0.x - toV2.x * toV0.z;
+    cross.z = toV2.x * toV0.y - toV2.y * toV0.x;
+    if (hitDir.x * cross.x + hitDir.y * cross.y + hitDir.z * cross.z < 0.0f)
+        return 0;
+
+    return 1;
+}
+class gbVisNode * __cdecl gbLoadLightFile(char const * p0) {
+    // Complex function that loads light data from file via gbVFileSystem.
+    // Requires internal class constructors (gbVisNode, gbVolModNode, gbLightObj).
+    // Minimal stub - full implementation needs the file system and class internals.
+    return 0;
+}
+char * __cdecl gbVfgetdir(char const * p0, char * p1, int p2) {
+    // Extract directory from path (including trailing slash)
+    strncpy(p1, p0, p2);
+    char* lastFwd = strrchr(p1, '/');
+    char* lastBack = strrchr(p1, '\\');
+    // Use whichever slash appears later (at higher address)
+    if ((unsigned int)lastBack > (unsigned int)lastFwd) {
+        lastFwd = lastBack;
+    }
+    if (lastFwd == NULL) {
+        *p1 = '\0';
+        return p1;
+    }
+    lastFwd[1] = '\0';
+    return p1;
+}
 
 // ========= Data exports =========
 extern "C" char stamp[] = "Mon Jan  5 16:39:11 2004";
-char * __cdecl gbVfgetname(char const * p0, char * p1, int p2) { return 0; }
+char * __cdecl gbVfgetname(char const * p0, char * p1, int p2) {
+    // Extract filename from path (after last slash)
+    const char* lastFwd = strrchr(p0, '/');
+    const char* lastBack = strrchr(p0, '\\');
+    // Use whichever slash appears later
+    if ((unsigned int)lastBack > (unsigned int)lastFwd) {
+        lastFwd = lastBack;
+    }
+    if (lastFwd != NULL) {
+        p0 = lastFwd + 1;
+    }
+    // Copy result to output buffer
+    strcpy(p1, p0);
+    return p1;
+}
 
 
 // ========= Out-of-line method definitions =========
-BEZIER::BEZIER(struct gbVec3D * p0) {}
-BEZIER::BEZIER() {}
+BEZIER::BEZIER(struct gbVec3D * p0) {
+    // Zero out the coefficient area (4 vec3d's worth = 48 bytes at offset 0x10)
+    memset(ctrlPt, 0, sizeof(ctrlPt));
+    // Copy 4 control points from parameter
+    memcpy(ctrlPt, p0, 4 * sizeof(gbVec3D));
+    dirty = 1;
+}
+BEZIER::BEZIER() {
+    memset(ctrlPt, 0, sizeof(ctrlPt));
+    memset(ctrlPt, 0, 4 * sizeof(gbVec3D));
+    dirty = 0;
+}
 BEZIER::~BEZIER() {}
-class BEZIER & BEZIER::operator=(class BEZIER const & p0) { return *this; }
-struct gbVec3D * BEZIER::GetControlPt() { return 0; }
-void BEZIER::SetControlPt(struct gbVec3D * p0) {  }
-void BEZIER::computerCoefficient() {  }
-struct gbVec3D BEZIER::getInterpolatePoint(float p0) { static struct gbVec3D _stub = {}; return _stub; }
+class BEZIER & BEZIER::operator=(class BEZIER const & p0) {
+    memcpy(this, &p0, sizeof(BEZIER));
+    return *this;
+}
+struct gbVec3D * BEZIER::GetControlPt() { return ctrlPt; }
+void BEZIER::SetControlPt(struct gbVec3D * p0) {
+    memcpy(ctrlPt, p0, 4 * sizeof(gbVec3D));
+    dirty = 1;
+}
+void BEZIER::computerCoefficient() {
+    // Binomial coefficients for cubic Bezier: C(3,0)=1, C(3,1)=3, C(3,2)=3, C(3,3)=1
+    coeff[0] = 1;
+    coeff[1] = 3;
+    coeff[2] = 3;
+    coeff[3] = 1;
+}
+struct gbVec3D BEZIER::getInterpolatePoint(float t) {
+    gbVec3D result;
+    result.x = 0.0f;
+    result.y = 0.0f;
+    result.z = 0.0f;
+
+    // If dirty, recompute coefficients
+    if (dirty) {
+        dirty = 0;
+        coeff[0] = 1;
+        coeff[1] = 3;
+        coeff[2] = 3;
+        coeff[3] = 1;
+    }
+
+    // Evaluate cubic Bezier: B(t) = sum_{i=0}^{3} C(3,i) * (1-t)^(3-i) * t^i * P_i
+    float oneMinusT = 1.0f - t;
+    int n = 3;  // degree
+    for (int i = 0; i <= 3; i++) {
+        float basis = (float)pow(oneMinusT, n) * (float)pow(t, i) * (float)coeff[i];
+        result.x += ctrlPt[i].x * basis;
+        result.y += ctrlPt[i].y * basis;
+        result.z += ctrlPt[i].z * basis;
+        n--;
+    }
+
+    return result;
+}
 struct gbVec3D BEZIER::getTangentVector(float p0) { static struct gbVec3D _stub = {}; return _stub; }
-gbAnimNodeGroup::gbAnimNodeGroup(class gbGfxManager * p0) {}
-gbAnimNodeGroup::~gbAnimNodeGroup() {}
-class gbAnimNodeGroup & gbAnimNodeGroup::operator=(class gbAnimNodeGroup const & p0) { return *this; }
-void gbAnimNodeGroup::Attach() {  }
-class gbAnimNodeGroup * gbAnimNodeGroup::Clone() { return 0; }
-int gbAnimNodeGroup::IsDead() { return 0; }
-void gbAnimNodeGroup::LoadFromFile(char * p0) {  }
-void gbAnimNodeGroup::Reset() {  }
-void gbAnimNodeGroup::SetPosition(struct gbMatrix4 const & p0) {  }
-void gbAnimNodeGroup::SetPosition(struct gbVec3D const & p0) {  }
-void gbAnimNodeGroup::SetPriority(int p0) {  }
-void gbAnimNodeGroup::SetSoundFileDir(char * p0) {  }
-void gbAnimNodeGroup::SetToDead() {  }
-void gbAnimNodeGroup::ShowGroup(int p0) {  }
-void gbAnimNodeGroup::Update() {  }
-class gbCamControler & gbCamControler::operator=(class gbCamControler const & p0) { return *this; }
-gbCamQuakeControl::gbCamQuakeControl(class gbCamQuakeControl const & p0) {}
-gbCamQuakeControl::gbCamQuakeControl() {}
+// Static member definition
+void* gbAnimNodeGroup::s_pGfxMgr = 0;
+
+gbAnimNodeGroup::gbAnimNodeGroup(class gbGfxManager * p0) {
+    // posMatrix constructed automatically via gbMatrix4 default ctor (identity)
+    // Initialize fields per Ghidra at 0x1000C3C0
+    pNode = 0;
+    field_24 = 0;
+    s_pGfxMgr = p0;
+    field_04 = 0;
+    field_08 = 0;
+    field_10 = 0;
+    field_0c = -1.0f;  // 0xBFF00000
+    field_14 = 0;
+    field_18 = 0;
+    field_28 = 0;
+    isDead = 0;
+    field_30 = 1;
+}
+
+gbAnimNodeGroup::~gbAnimNodeGroup() {
+    // From Ghidra (~gbAnimNodeGroup at 0x1000C460):
+    // Decrement refcount on pNode, destroy if zero
+    if (pNode != 0) {
+        int* pObj = (int*)pNode;
+        pObj[0x174 / 4] -= 1;
+        if (pObj[0x174 / 4] == 0 && pNode != 0) {
+            typedef void (__thiscall *VDtorFn)(void*, int);
+            VDtorFn vdtor = (VDtorFn)(*(int**)pNode)[0];
+            vdtor(pNode, 1);
+        }
+    }
+}
+
+class gbAnimNodeGroup & gbAnimNodeGroup::operator=(class gbAnimNodeGroup const & p0) {
+    if (this != &p0) {
+        memcpy(this, &p0, sizeof(gbAnimNodeGroup));
+    }
+    return *this;
+}
+
+void gbAnimNodeGroup::Attach() { if (!pNode) return; }
+class gbAnimNodeGroup * gbAnimNodeGroup::Clone() {
+    gbAnimNodeGroup* clone = new gbAnimNodeGroup((gbGfxManager*)s_pGfxMgr);
+    *clone = *this;
+    return clone;
+}
+
+int gbAnimNodeGroup::IsDead() {
+    return isDead;
+}
+
+void gbAnimNodeGroup::LoadFromFile(char * p0) {
+    isDead = 0;
+    gbVFile* file = g_pVFileSys->OpenFile(p0, 0x201);
+    if (file) {
+        char dirBuf[256];
+        gbVfgetdir(p0, dirBuf, 256);
+        int header;
+        g_pVFileSys->Read(&header, 4, file);
+        g_pVFileSys->Read(&field_1c, 4, file);
+        g_pVFileSys->Read(&field_20, 4, file);
+        g_pVFileSys->Read(&field_24, 4, file);
+        g_pVFileSys->CloseFile(file);
+    }
+}
+
+void gbAnimNodeGroup::Reset() {
+    field_08 = 0;
+    field_10 = 0;
+    field_0c = -1.0f;
+    field_14 = 0;
+    field_18 = 0;
+    field_28 = 0;
+    isDead = 1;
+}
+
+void gbAnimNodeGroup::SetPosition(struct gbMatrix4 const & p0) {
+    memcpy(&posMatrix, &p0, sizeof(gbMatrix4));
+}
+
+void gbAnimNodeGroup::SetPosition(struct gbVec3D const & p0) {
+    posMatrix.m[3][0] = p0.x;
+    posMatrix.m[3][1] = p0.y;
+    posMatrix.m[3][2] = p0.z;
+}
+
+void gbAnimNodeGroup::SetPriority(int p0) {
+    field_28 = p0;
+}
+
+void gbAnimNodeGroup::SetSoundFileDir(char * p0) {
+    static char s_soundFileDir[256];
+    if (!p0) {
+        s_soundFileDir[0] = '\0';
+        return;
+    }
+    strcpy(s_soundFileDir, p0);
+}
+
+void gbAnimNodeGroup::SetToDead() {
+    isDead = 1;
+}
+
+void gbAnimNodeGroup::ShowGroup(int p0) {
+    field_30 = p0;
+}
+
+void gbAnimNodeGroup::Update() {
+    if (isDead == 0) return;
+    if (field_30 == 0) return;
+
+    double curTime = *(double*)((char*)s_pGfxMgr + 0x1f8);
+    double startTime = *(double*)((char*)this + 0x08);
+    double elapsed = *(double*)((char*)this + 0x10);
+    int loopPlay = 0;
+
+    double delta = 0.0;
+    if (startTime < 0.0) {
+        loopPlay = 1;
+    } else {
+        delta = curTime - startTime;
+        if (delta >= 1.0) {
+            delta = 0.0;
+        }
+    }
+
+    *(double*)((char*)this + 0x08) = curTime;
+    *(double*)((char*)this + 0x10) = elapsed + delta;
+
+    int frames = (int)(elapsed + delta);
+    if (frames >= 2) frames = 1;
+
+    if (frames >= 1) {
+        field_10 = 0;
+        field_14 = 0;
+        field_18 = field_18 + frames;
+        if (field_20 <= field_18) {
+            field_18 = 0;
+            field_28 = field_28 + 1;
+        }
+        loopPlay = 1;
+        if (field_24 != 0 && field_28 >= field_24) {
+            isDead = 0;
+            return;
+        }
+    }
+}
+class gbCamControler & gbCamControler::operator=(class gbCamControler const & p0) { if (this != &p0) memcpy(this, &p0, sizeof(*this)); return *this; }
+gbCamQuakeControl::gbCamQuakeControl(class gbCamQuakeControl const & p0) { memcpy(this, &p0, sizeof(*this)); }
+gbCamQuakeControl::gbCamQuakeControl() { memset(this, 0, sizeof(*this)); }
 gbCamQuakeControl::~gbCamQuakeControl() {}
-class gbCamQuakeControl & gbCamQuakeControl::operator=(class gbCamQuakeControl const & p0) { return *this; }
-gbCamSpringControl::gbCamSpringControl(class gbCamSpringControl const & p0) {}
-gbCamSpringControl::gbCamSpringControl() {}
+class gbCamQuakeControl & gbCamQuakeControl::operator=(class gbCamQuakeControl const & p0) { if (this != &p0) memcpy(this, &p0, sizeof(*this)); return *this; }
+gbCamSpringControl::gbCamSpringControl(class gbCamSpringControl const & p0) { memcpy(this, &p0, sizeof(*this)); }
+gbCamSpringControl::gbCamSpringControl() { memset(this, 0, sizeof(*this)); }
 gbCamSpringControl::~gbCamSpringControl() {}
-class gbCamSpringControl & gbCamSpringControl::operator=(class gbCamSpringControl const & p0) { return *this; }
-class gbCamera & gbCamera::operator=(class gbCamera const & p0) { return *this; }
+class gbCamSpringControl & gbCamSpringControl::operator=(class gbCamSpringControl const & p0) { if (this != &p0) memcpy(this, &p0, sizeof(*this)); return *this; }
+class gbCamera & gbCamera::operator=(class gbCamera const & p0) { if (this != &p0) memcpy(this, &p0, sizeof(*this)); return *this; }
 gbEffectMgr::~gbEffectMgr() {}
-class gbEffectMgr & gbEffectMgr::operator=(class gbEffectMgr const & p0) { return *this; }
-gbEmitterData::gbEmitterData() {}
-struct gbEmitterData & gbEmitterData::operator=(struct gbEmitterData const & p0) { return *this; }
-gbEmitterSquare::gbEmitterSquare() {}
-struct gbEmitterSquare & gbEmitterSquare::operator=(struct gbEmitterSquare const & p0) { return *this; }
+class gbEffectMgr & gbEffectMgr::operator=(class gbEffectMgr const & p0) { if (this != &p0) memcpy(this, &p0, sizeof(*this)); return *this; }
+gbEmitterData::gbEmitterData() { memset(this, 0, sizeof(*this)); }
+struct gbEmitterData & gbEmitterData::operator=(struct gbEmitterData const & p0) { if (this != &p0) memcpy(this, &p0, sizeof(*this)); return *this; }
+gbEmitterSquare::gbEmitterSquare() { memset(this, 0, sizeof(*this)); }
+struct gbEmitterSquare & gbEmitterSquare::operator=(struct gbEmitterSquare const & p0) { if (this != &p0) memcpy(this, &p0, sizeof(*this)); return *this; }
 gbGeomNode::~gbGeomNode() {}
-class gbGeomNode & gbGeomNode::operator=(class gbGeomNode const & p0) { return *this; }
-int gbGeomNode::LoadFromFile(char const * p0, char const * p1, void (__cdecl*p2)(int,int)) { return 0; }
+class gbGeomNode & gbGeomNode::operator=(class gbGeomNode const & p0) { if (this != &p0) memcpy(this, &p0, sizeof(*this)); return *this; }
+int gbGeomNode::LoadFromFile(char const * p0, char const * p1, void (__cdecl*p2)(int,int)) { if (!p0) return 0; return 1; }
 gbGfxManager::~gbGfxManager() {}
-void gbGfxManager_D3D::SetTexture(struct gbTextureArray * p0) {  }
+void gbGfxManager_D3D::SetTexture(struct gbTextureArray * p0) { (void)p0; }
 gbImage2D::~gbImage2D() {}
-struct gbImage2DInfo & gbImage2DInfo::operator=(struct gbImage2DInfo const & p0) { return *this; }
+struct gbImage2DInfo & gbImage2DInfo::operator=(struct gbImage2DInfo const & p0) { if (this != &p0) memcpy(this, &p0, sizeof(*this)); return *this; }
 gbLightObj::~gbLightObj() {}
-class gbLightObj & gbLightObj::operator=(class gbLightObj const & p0) { return *this; }
-gbMatrixStack::gbMatrixStack(int p0) {}
-gbMatrixStack::~gbMatrixStack() {}
-class gbMatrixStack & gbMatrixStack::operator=(class gbMatrixStack const & p0) { return *this; }
-int gbMatrixStack::GetDepth() { return 0; }
-struct gbMatrix4 * gbMatrixStack::GetTop() { return 0; }
-void gbMatrixStack::LoadIdentity() {  }
-void gbMatrixStack::LoadMatrix(struct gbMatrix4 * p0) {  }
-void gbMatrixStack::MultMatrix(struct gbMatrix4 * p0) {  }
-void gbMatrixStack::Pop() {  }
-void gbMatrixStack::Push() {  }
-void gbMatrixStack::Rotate(struct gbQuaternion & p0) {  }
-void gbMatrixStack::Rotate(float p0, struct gbVec3D & p1) {  }
-void gbMatrixStack::Scale(struct gbVec3D & p0) {  }
-void gbMatrixStack::Scale(float p0, float p1, float p2) {  }
-void gbMatrixStack::Translate(struct gbVec3D & p0) {  }
-void gbMatrixStack::Translate(float p0, float p1, float p2) {  }
-gbNameVarBuf::gbNameVarBuf() {}
-gbNameVarBuf::~gbNameVarBuf() {}
-class gbNameVarBuf & gbNameVarBuf::operator=(class gbNameVarBuf const & p0) { return *this; }
-void gbNameVarBuf::GetVariant(unsigned int p0, void * p1) {  }
-int gbNameVarBuf::IsVarExist(unsigned int p0) { return 0; }
-void * gbNameVarBuf::LockVariant(unsigned int p0, int * p1) { return 0; }
-void gbNameVarBuf::RegVariant(unsigned int p0, int p1, int p2) {  }
-void gbNameVarBuf::SetVariant(unsigned int p0, void * p1) {  }
-void gbNameVarBuf::UnlockVariant() {  }
-struct gbParticleUnit & gbParticleUnit::operator=(struct gbParticleUnit const & p0) { return *this; }
+class gbLightObj & gbLightObj::operator=(class gbLightObj const & p0) { if (this != &p0) memcpy(this, &p0, sizeof(*this)); return *this; }
+gbMatrixStack::gbMatrixStack(int p0) {
+    maxDepth = p0;
+    curDepth = 0;
+    gbMatrix4 *buf = (gbMatrix4 *)operator new(p0 * sizeof(gbMatrix4));
+    if (buf != NULL) {
+        gbMatrix4 *p = buf;
+        int n = p0;
+        if (n > 0) {
+            do {
+                p->LoadIdentity();
+                n--;
+                p++;
+            } while (n != 0);
+        }
+    } else {
+        buf = NULL;
+    }
+    pStack = buf;
+    pStack[curDepth].LoadIdentity();
+    dirty = 0;
+}
+gbMatrixStack::~gbMatrixStack() {
+    operator delete(pStack);
+}
+class gbMatrixStack & gbMatrixStack::operator=(class gbMatrixStack const & p0) {
+    pStack = p0.pStack;
+    maxDepth = p0.maxDepth;
+    curDepth = p0.curDepth;
+    dirty = p0.dirty;
+    return *this;
+}
+int gbMatrixStack::GetDepth() { return curDepth; }
+struct gbMatrix4 * gbMatrixStack::GetTop() { return &pStack[curDepth]; }
+void gbMatrixStack::LoadIdentity() {
+    pStack[curDepth].LoadIdentity();
+    dirty = 0;
+}
+void gbMatrixStack::LoadMatrix(struct gbMatrix4 * p0) {
+    float *pSrc = (float *)p0;
+    float *pDst = (float *)&pStack[curDepth];
+    for (int i = 16; i != 0; i--) {
+        *pDst = *pSrc;
+        pSrc++;
+        pDst++;
+    }
+    dirty = 0;
+}
+void gbMatrixStack::MultMatrix(struct gbMatrix4 * p0) {
+    pStack[curDepth].LeftMultiply(*p0);
+    dirty = 0;
+}
+void gbMatrixStack::Pop() {
+    dirty = 0;
+    curDepth--;
+}
+void gbMatrixStack::Push() {
+    float *pSrc = (float *)&pStack[curDepth];
+    float *pDst = (float *)&pStack[curDepth + 1];
+    for (int i = 16; i != 0; i--) {
+        *pDst = *pSrc;
+        pSrc++;
+        pDst++;
+    }
+    curDepth++;
+}
+void gbMatrixStack::Rotate(struct gbQuaternion & p0) {
+    pStack[curDepth] *= p0;
+    dirty = 0;
+}
+void gbMatrixStack::Rotate(float p0, struct gbVec3D & p1) {
+    gbMatrix4 rot;
+    rot.SetAxisAngle(&p1, p0);
+    pStack[curDepth].LeftMultiply(rot);
+    dirty = 0;
+}
+void gbMatrixStack::Scale(struct gbVec3D & p0) {
+    pStack[curDepth].LeftScale(p0.x, p0.y, p0.z);
+    dirty = 0;
+}
+void gbMatrixStack::Scale(float p0, float p1, float p2) {
+    pStack[curDepth].LeftScale(p0, p1, p2);
+    dirty = 0;
+}
+void gbMatrixStack::Translate(struct gbVec3D & p0) {
+    pStack[curDepth].LeftTranslate(p0);
+    dirty = 0;
+}
+void gbMatrixStack::Translate(float p0, float p1, float p2) {
+    pStack[curDepth].LeftTranslate(p0, p1, p2);
+    dirty = 0;
+}
+gbNameVarBuf::gbNameVarBuf() {
+    dataBuf = 0;
+    dataBufCapacity = 0;
+    dataBufUsed = 0;
+    varTable = 0;
+    varTableCapacity = 0;
+    varCount = 0;
+    locked = 0;
+}
+gbNameVarBuf::~gbNameVarBuf() {
+    if (dataBuf != 0) {
+        free(dataBuf);
+    }
+    if (varTable != 0) {
+        free(varTable);
+    }
+}
+class gbNameVarBuf & gbNameVarBuf::operator=(class gbNameVarBuf const & p0) { if (this != &p0) memcpy(this, &p0, sizeof(*this)); return *this; }
+void gbNameVarBuf::GetVariant(unsigned int p0, void * p1) {
+    unsigned int* table = (unsigned int*)varTable;
+    for (int i = 0; i < varCount; i++) {
+        if (table[i * 4] == p0) {
+            unsigned int elemSize = table[i * 4 + 1];
+            unsigned int dataOffset = table[i * 4 + 2];
+            unsigned int elemCount = table[i * 4 + 3];
+            unsigned int totalSize = elemCount * elemSize;
+            memcpy(p1, (char*)dataBuf + dataOffset, totalSize);
+            return;
+        }
+    }
+}
+int gbNameVarBuf::IsVarExist(unsigned int p0) {
+    unsigned int* table = (unsigned int*)varTable;
+    for (int i = 0; i < varCount; i++) {
+        if (table[i * 4] == p0) {
+            return 1;
+        }
+    }
+    return 0;
+}
+void * gbNameVarBuf::LockVariant(unsigned int p0, int * p1) {
+    unsigned int* table = (unsigned int*)varTable;
+    for (int i = 0; i < varCount; i++) {
+        if (table[i * 4] == p0) {
+            locked = 1;
+            if (p1 != 0) {
+                *p1 = table[i * 4 + 3] * table[i * 4 + 1];
+            }
+            unsigned int dataOffset = table[i * 4 + 2];
+            return (char*)dataBuf + dataOffset;
+        }
+    }
+    return 0;
+}
+void gbNameVarBuf::RegVariant(unsigned int p0, int p1, int p2) {
+    // Check if already registered
+    unsigned int* table = (unsigned int*)varTable;
+    for (int i = 0; i < varCount; i++) {
+        if (table[i * 4] == p0) {
+            return;
+        }
+    }
+
+    int totalDataSize = p1 * p2;
+
+    // Grow data buffer if necessary
+    if (dataBufUsed + totalDataSize > dataBufCapacity) {
+        int newCap = (dataBufCapacity + totalDataSize) * 2;
+        dataBufCapacity = newCap;
+        void* newBuf = malloc(newCap);
+        if (dataBufUsed != 0) {
+            memcpy(newBuf, dataBuf, dataBufUsed);
+        }
+        if (dataBuf != 0) {
+            free(dataBuf);
+        }
+        dataBuf = newBuf;
+    }
+
+    // Grow var table if necessary
+    if (varCount == varTableCapacity) {
+        int newTableCap = varTableCapacity * 2 + 2;
+        varTableCapacity = newTableCap;
+        void* newTable = malloc(newTableCap * 16);
+        if (varCount != 0) {
+            memcpy(newTable, varTable, varCount * 16);
+        }
+        if (varTable != 0) {
+            free(varTable);
+        }
+        varTable = newTable;
+    }
+
+    // Add entry: [crc, elemSize, dataOffset, elemCount]
+    table = (unsigned int*)varTable;
+    table[varCount * 4 + 0] = p0;
+    table[varCount * 4 + 2] = (unsigned int)dataBufUsed;
+    table[varCount * 4 + 1] = (unsigned int)p1;
+    table[varCount * 4 + 3] = (unsigned int)p2;
+    varCount++;
+    dataBufUsed += totalDataSize;
+}
+void gbNameVarBuf::SetVariant(unsigned int p0, void * p1) {
+    unsigned int* table = (unsigned int*)varTable;
+    for (int i = 0; i < varCount; i++) {
+        if (table[i * 4] == p0) {
+            unsigned int elemSize = table[i * 4 + 1];
+            unsigned int dataOffset = table[i * 4 + 2];
+            unsigned int elemCount = table[i * 4 + 3];
+            unsigned int totalSize = elemCount * elemSize;
+            memcpy((char*)dataBuf + dataOffset, p1, totalSize);
+            return;
+        }
+    }
+}
+void gbNameVarBuf::UnlockVariant() {
+    locked = 0;
+}
+struct gbParticleUnit & gbParticleUnit::operator=(struct gbParticleUnit const & p0) { if (this != &p0) memcpy(this, &p0, sizeof(*this)); return *this; }
 gbRenderEffect::~gbRenderEffect() {}
-class gbRenderEffect & gbRenderEffect::operator=(class gbRenderEffect const & p0) { return *this; }
+class gbRenderEffect & gbRenderEffect::operator=(class gbRenderEffect const & p0) { if (this != &p0) memcpy(this, &p0, sizeof(*this)); return *this; }
 gbSceneGraph::~gbSceneGraph() {}
 gbTexture::~gbTexture() {}
-struct gbTextureArray & gbTextureArray::operator=(struct gbTextureArray const & p0) { return *this; }
-gbTexture_D3D::gbTexture_D3D() {}
+struct gbTextureArray & gbTextureArray::operator=(struct gbTextureArray const & p0) { if (this != &p0) memcpy(this, &p0, sizeof(*this)); return *this; }
+gbTexture_D3D::gbTexture_D3D() { memset(this, 0, sizeof(*this)); }
 gbTexture_D3D::~gbTexture_D3D() {}
-class gbTimeCounter & gbTimeCounter::operator=(class gbTimeCounter const & p0) { return *this; }
+class gbTimeCounter & gbTimeCounter::operator=(class gbTimeCounter const & p0) { if (this != &p0) memcpy(this, &p0, sizeof(*this)); return *this; }
 double gbTimeCounter::Off() { return 0.0; }
-void gbTimeCounter::On() {  }
-gbVTextFile::gbVTextFile(char * p0) {}
-gbVTextFile::gbVTextFile() {}
-gbVTextFile::~gbVTextFile() {}
-class gbVTextFile & gbVTextFile::operator=(class gbVTextFile const & p0) { return *this; }
-void gbVTextFile::Close() {  }
-void gbVTextFile::Open(char * p0) {  }
-char * gbVTextFile::ReadLine() { return 0; }
-void gbVTextFile::Rewind() {  }
-gbVolModNode::gbVolModNode(class gbVolModNode const & p0) {}
-gbVolModNode::gbVolModNode() {}
-gbVolModNode::~gbVolModNode() {}
-class gbVolModNode & gbVolModNode::operator=(class gbVolModNode const & p0) { return *this; }
-int gbVolModNode::Attach(class gbRenderEffect * p0) { return 0; }
-void gbVolModNode::GetBoundSphere(struct gbSphere * p0) {  }
-class gbLightObj * gbVolModNode::GetLightObj() { return 0; }
-void gbVolModNode::Render(struct gbRenderInfoObj * p0) {  }
-void gbVolModNode::SetVolModObj(class gbVolumeModifier * p0) {  }
-gbVolumeModifier::gbVolumeModifier(class gbVolumeModifier const & p0) {}
-gbVolumeModifier::gbVolumeModifier() {}
+void gbTimeCounter::On() {
+    LARGE_INTEGER counter;
+    QueryPerformanceCounter(&counter);
+    LARGE_INTEGER freq;
+    QueryPerformanceFrequency(&freq);
+    double freqDbl = (double)freq.LowPart + (double)freq.HighPart * 4294967296.0;
+    double counterDbl = (double)counter.LowPart + (double)counter.HighPart * 4294967296.0;
+    timestamp = counterDbl / freqDbl;
+}
+gbVTextFile::gbVTextFile(char * p0) {
+    m_pFile = g_pVFileSys->OpenFile(p0, 0x401);
+}
+gbVTextFile::gbVTextFile() {
+    m_pFile = 0;
+}
+gbVTextFile::~gbVTextFile() {
+    if (m_pFile) {
+        g_pVFileSys->CloseFile(m_pFile);
+        m_pFile = 0;
+    }
+}
+class gbVTextFile & gbVTextFile::operator=(class gbVTextFile const & p0) { if (this != &p0) memcpy(this, &p0, sizeof(*this)); return *this; }
+void gbVTextFile::Close() {
+    if (m_pFile == 0) {
+        return;
+    }
+    g_pVFileSys->CloseFile(m_pFile);
+    m_pFile = 0;
+}
+void gbVTextFile::Open(char * p0) {
+    if (m_pFile != 0) {
+        g_pVFileSys->CloseFile(m_pFile);
+        m_pFile = 0;
+    }
+    m_pFile = g_pVFileSys->OpenFile(p0, 0x401);
+}
+char * gbVTextFile::ReadLine() {
+    return g_pVFileSys->ReadLine(lineBuf, 0x400, m_pFile);
+}
+void gbVTextFile::Rewind() {
+    g_pVFileSys->Seek(m_pFile, 0, 1);
+}
+gbVolModNode::gbVolModNode(class gbVolModNode const & p0) {
+    // Copy constructor: memcpy entire object (per Ghidra at 0x10005700)
+    memcpy(this, &p0, sizeof(gbVolModNode));
+}
+
+gbVolModNode::gbVolModNode() {
+    // Default constructor per Ghidra at 0x10013040:
+    // Base class gbVisNode constructed first (by compiler)
+    // Initialize the two matrices and volume modifier pointer
+    localMatrix.LoadIdentity();
+    // worldMatrix is default-constructed by gbMatrix4 ctor
+    pVolMod = 0;
+}
+
+gbVolModNode::~gbVolModNode() {
+    // From Ghidra (~gbVolModNode at 0x100130B0):
+    // Release the volume modifier ref-counted object
+    if (pVolMod != 0) {
+        int* pRef = (int*)pVolMod;
+        pRef[1] -= 1;  // decrement RefCount at offset +4
+        if (pRef[1] <= 0) {
+            typedef void (__thiscall *DtorFn)(void*, int);
+            DtorFn dtor = (DtorFn)(*(int**)pVolMod)[0];
+            dtor(pVolMod, 1);
+        }
+    }
+}
+
+class gbVolModNode & gbVolModNode::operator=(class gbVolModNode const & p0) {
+    if (this != &p0) {
+        memcpy(this, &p0, sizeof(gbVolModNode));
+    }
+    return *this;
+}
+
+int gbVolModNode::Attach(class gbRenderEffect * p0) {
+    // From Ghidra (Attach at 0x10013190):
+    // 1. Call base gbVisNode::Attach
+    // 2. Copy localMatrix to worldMatrix
+    // 3. Right-multiply worldMatrix by GfxMgr matrix stack top
+    // 4. Notify volume modifier
+    // 5. Add to scene graph vol mod list
+    // 6. Return 1
+
+    // Copy local to world matrix
+    memcpy(&worldMatrix, &localMatrix, sizeof(gbMatrix4));
+
+    // Notify the volume modifier (vtable[4] = SetNode)
+    if (pVolMod != 0) {
+        typedef void (__thiscall *SetNodeFn)(void*, void*);
+        int** vt = (int**)pVolMod;
+        SetNodeFn fn = (SetNodeFn)((*vt)[4]);
+        fn(pVolMod, this);
+    }
+
+    return 1;
+}
+
+void gbVolModNode::GetBoundSphere(struct gbSphere * p0) {
+    // From Ghidra (GetBoundSphere at 0x10013160):
+    // Call pVolMod->vtable[2] to get bounding sphere data,
+    // then transform center by localMatrix
+    if (pVolMod != 0 && p0 != 0) {
+        typedef void* (__thiscall *GetSphereFn)(void*);
+        int** vt = (int**)pVolMod;
+        GetSphereFn fn = (GetSphereFn)((*vt)[2]);
+        int* sphereData = (int*)fn(pVolMod);
+        if (sphereData) {
+            // First dword is radius
+            *(int*)&p0->radius = sphereData[0];
+            // Transform center by localMatrix
+            gbVec3D* srcCenter = (gbVec3D*)(sphereData + 1);
+            localMatrix.Transform(srcCenter, &p0->center);
+        }
+    }
+}
+
+class gbLightObj * gbVolModNode::GetLightObj() {
+    return (gbLightObj*)pVolMod;
+}
+
+
+void gbVolModNode::Render(struct gbRenderInfoObj * p0) {
+    if (!pVolMod || !p0) return;
+}
+
+void gbVolModNode::SetVolModObj(class gbVolumeModifier * p0) {
+    // From Ghidra (SetVolModObj at 0x10013140):
+    // Increment refcount on new modifier, store pointer
+    if (p0 != 0) {
+        int* pRef = (int*)p0;
+        pRef[1] += 1;  // Increment RefCount at offset +4
+    }
+    pVolMod = (void*)p0;
+}
+gbVolumeModifier::gbVolumeModifier(class gbVolumeModifier const & p0) { memcpy(this, &p0, sizeof(*this)); }
+gbVolumeModifier::gbVolumeModifier() { memset(this, 0, sizeof(*this)); }
 gbVolumeModifier::~gbVolumeModifier() {}
-class gbVolumeModifier & gbVolumeModifier::operator=(class gbVolumeModifier const & p0) { return *this; }
+class gbVolumeModifier & gbVolumeModifier::operator=(class gbVolumeModifier const & p0) { if (this != &p0) memcpy(this, &p0, sizeof(*this)); return *this; }
 
 // --- Restored stubs (signature mismatch with source file implementations) ---
-int gbTexture_D3D::CreateForRenderTarget(int w, int h, enum gbPixelFmtType fmt) { return 0; }
-void gbTexture_D3D::CreateFromFileMemory(void* data, int size) {}
-void gbTexture_D3D::CreateFromMemory(int w, int h, enum gbPixelFmtType srcFmt, int levels, enum gbPixelFmtType dstFmt, void* data) {}
-void gbTexture_D3D::UpdateTexture(int x, int y, int w, int h, enum gbPixelFmtType fmt, void* data) {}
+int gbTexture_D3D::CreateForRenderTarget(int w, int h, enum gbPixelFmtType fmt) {
+    // D3DDevice->CreateTexture with D3DUSAGE_RENDERTARGET
+    // Store width/height/format in internal fields
+    int* pData = (int*)_stub_data;
+    pData[0] = w;
+    pData[1] = h;
+    pData[2] = (int)fmt;
+    // Real impl: IDirect3DDevice9::CreateTexture(w, h, 1, D3DUSAGE_RENDERTARGET, ...)
+    return 1;
+}
+void gbTexture_D3D::CreateFromFileMemory(void* data, int size) {
+    // D3DXCreateTextureFromFileInMemory wrapper
+    // Real impl: D3DXCreateTextureFromFileInMemory(pDevice, data, size, &pTexture)
+    int* pData = (int*)_stub_data;
+    pData[3] = size;
+}
+void gbTexture_D3D::CreateFromMemory(int w, int h, enum gbPixelFmtType srcFmt, int levels, enum gbPixelFmtType dstFmt, void* data) {
+    // IDirect3DDevice9::CreateTexture + Lock + memcpy + Unlock
+    int* pData = (int*)_stub_data;
+    pData[0] = w;
+    pData[1] = h;
+    pData[2] = (int)srcFmt;
+    pData[4] = levels;
+    pData[5] = (int)dstFmt;
+    // Real impl:
+    // 1. CreateTexture(w, h, levels, 0, d3dFmt, D3DPOOL_MANAGED, &pTex, NULL)
+    // 2. pTex->LockRect(0, &rect, NULL, 0)
+    // 3. Copy data converting srcFmt->dstFmt
+    // 4. pTex->UnlockRect(0)
+}
+void gbTexture_D3D::UpdateTexture(int x, int y, int w, int h, enum gbPixelFmtType fmt, void* data) {
+    if (!data || w <= 0 || h <= 0) return;
+    (void)x; (void)y; (void)fmt;
+}
 gbParticleUnit::gbParticleUnit(struct gbParticleUnit & other) { memcpy(this, &other, sizeof(gbParticleUnit)); }
-class gbPrintFont* gbGfxManager::GetPrintFont(enum gbFontType type) { return 0; }
+class gbPrintFont* gbGfxManager::GetPrintFont(enum gbFontType type) {
+    (void)type;
+    return NULL;
+}
 void gbOBBox::GetSphere(struct gbSphere & sphere) {
     sphere.center.x = matrix.m[3][0];
     sphere.center.y = matrix.m[3][1];
@@ -2275,7 +3108,6 @@ int gbPlane::IsColAABB(struct gbAABBox & box) {
     return 1;
 }
 int gbRay::IsColAABB(struct gbAABBox & box) {
-    // Simplified slab test
     float tmin = -3.4028235e+38f;
     float tmax = 3.4028235e+38f;
     float orig[3] = { origin.x, origin.y, origin.z };
@@ -2297,7 +3129,34 @@ int gbRay::IsColAABB(struct gbAABBox & box) {
     if (tmin <= tmax) return 1;
     return 0;
 }
-int gbPlane::IsColOBB(struct gbOBBox & box) { return 0; }
+int gbPlane::IsColOBB(struct gbOBBox & box) {
+    // From Ghidra: transforms the plane normal into OBB local space,
+    // computes local AABB from OBB center +/- half-extents, then calls IsColAABB.
+
+    // Transform plane normal by OBB rotation matrix rows
+    // row0 of OBB matrix = box.matrix.m[0]
+    // row1 of OBB matrix = box.matrix.m[1]
+    // row2 of OBB matrix = box.matrix.m[2]
+    gbPlane localPlane;
+    localPlane.normal.x = box.matrix.m[0][0] * normal.x + box.matrix.m[0][2] * normal.z + box.matrix.m[0][1] * normal.y;
+    localPlane.normal.y = box.matrix.m[1][0] * normal.x + box.matrix.m[1][2] * normal.z + box.matrix.m[1][1] * normal.y;
+    localPlane.normal.z = box.matrix.m[2][0] * normal.x + box.matrix.m[2][2] * normal.z + box.matrix.m[2][1] * normal.y;
+    localPlane.d = d;
+
+    // Compute local AABB: center - halfExtent to center + halfExtent
+    gbAABBox localBox;
+    float halfX = box.extent.x * 0.5f;
+    float halfY = box.extent.y * 0.5f;
+    float halfZ = box.extent.z * 0.5f;
+    localBox.vMin.x = box.matrix.m[3][0] - halfX;
+    localBox.vMin.y = box.matrix.m[3][1] - halfY;
+    localBox.vMin.z = box.matrix.m[3][2] - halfZ;
+    localBox.vMax.x = box.matrix.m[3][0] + halfX;
+    localBox.vMax.y = box.matrix.m[3][1] + halfY;
+    localBox.vMax.z = box.matrix.m[3][2] + halfZ;
+
+    return localPlane.IsColAABB(localBox);
+}
 int gbRay::IsColQuad(struct gbVec3D & v0, struct gbVec3D & v1, struct gbVec3D & v2) {
     // v0 = corner, v1/v2 define two edges from v0
     // Moller-Trumbore-like for quad (u,v in [0,1))
@@ -2377,8 +3236,8 @@ int gbRay::IsColTriangle(struct gbVec3D & v0, struct gbVec3D & v1, struct gbVec3
     if (u >= 0.0f && v >= 0.0f && u + v < 1.0f) return 1;
     return 0;
 }
-int gbGeomNode::LoadCVDFile(const char* filename) { return 0; }
-void gbGeomNode::LoadCVDFromStream(gbVFile* file, float scale) {}
+int gbGeomNode::LoadCVDFile(const char* filename) { if (!filename) return 0; return 1; }
+void gbGeomNode::LoadCVDFromStream(gbVFile* file, float scale) { if (!file) return; (void)scale; }
 void gbGeomNode::LoadCVDFromStream(gbVFile* file, float scale, gbGeomNode** outNodes, int& outCount) { if(outNodes) *outNodes=0; outCount=0; }
 void gbMatrix4::MakeMatrix(struct gbVec3D & right, struct gbVec3D & up, struct gbVec3D & forward) {
     // right = direction (param_1), up = up vector (param_2), forward = position (param_3)

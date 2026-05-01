@@ -62,8 +62,7 @@ gbCamControler& gbCamControler::operator=(const gbCamControler& other) {
 // Virtual destructor
 gbCamControler::~gbCamControler() {}
 
-// Virtual Update (base does nothing)
-void gbCamControler::Update(double deltaTime) {}
+void gbCamControler::Update(double deltaTime) { (void)deltaTime; }
 
 
 /* ======================================================================== */
@@ -103,9 +102,36 @@ gbCamSpringControl& gbCamSpringControl::operator=(const gbCamSpringControl& othe
 
 // 0x10021700 (295B) - Spring update
 void gbCamSpringControl::Update(double deltaTime) {
-    // Spring-based camera follow logic
-    // The real implementation computes spring force, applies damping,
-    // and updates the camera position based on the spring model.
+    float* camPos = (float*)((char*)pCamera + 0x15c);
+    float* camQuat = (float*)((char*)pCamera + 0x168);
+    float* targetPos = (float*)((char*)this + 0x20);
+    float* targetQuat = (float*)((char*)this + 0x2c);
+    float speed = *(float*)((char*)this + 0x3c);
+
+    if (speed < 0.0f) {
+        camPos[0] = targetPos[0];
+        camPos[1] = targetPos[1];
+        camPos[2] = targetPos[2];
+        camQuat[0] = targetQuat[0];
+        camQuat[1] = targetQuat[1];
+        camQuat[2] = targetQuat[2];
+        camQuat[3] = targetQuat[3];
+        return;
+    }
+
+    float t = speed * (float)deltaTime;
+    if (t > 1.0f) t = 1.0f;
+
+    camPos[0] = (targetPos[0] - camPos[0]) * t + camPos[0];
+    camPos[1] = (targetPos[1] - camPos[1]) * t + camPos[1];
+    camPos[2] = (targetPos[2] - camPos[2]) * t + camPos[2];
+
+    gbQuaternion result;
+    result.Slerp((gbQuaternion*)camQuat, (gbQuaternion*)targetQuat, t);
+    camQuat[0] = result.x;
+    camQuat[1] = result.y;
+    camQuat[2] = result.z;
+    camQuat[3] = result.w;
 }
 
 
@@ -149,15 +175,29 @@ gbCamQuakeControl& gbCamQuakeControl::operator=(const gbCamQuakeControl& other) 
 
 // 0x10021830 (149B) - Quake update
 void gbCamQuakeControl::Update(double deltaTime) {
-    // Camera shake logic
-    // The real implementation applies sinusoidal offset based on
-    // amplitude, frequency, and elapsed time.
-    elapsed += (float)deltaTime;
-    if (elapsed >= duration) {
-        offset.x = 0.0f;
-        offset.y = 0.0f;
-        offset.z = 0.0f;
-    }
+    float* camPos = (float*)((char*)pCamera + 0x15c);
+
+    double totalDuration = *(double*)((char*)this + 0x18);
+    double elapsedTime = *(double*)((char*)this + 0x10);
+    double factor = (totalDuration - elapsedTime) / totalDuration;
+    float factorSq = (float)(factor * factor);
+
+    float ampX = *(float*)((char*)this + 0x2c);
+    float ampY = *(float*)((char*)this + 0x30);
+    float ampZ = *(float*)((char*)this + 0x34);
+
+    double angle = *(double*)((char*)this + 0x38);
+    float sinVal = (float)sin(angle * 0.017453293);
+
+    float baseX = *(float*)((char*)this + 0x20);
+    float baseY = *(float*)((char*)this + 0x24);
+    float baseZ = *(float*)((char*)this + 0x28);
+
+    camPos[0] = factorSq * ampX * sinVal + baseX;
+    camPos[1] = factorSq * ampY * sinVal + baseY;
+    camPos[2] = factorSq * ampZ * sinVal + baseZ;
+
+    *(double*)((char*)this + 0x38) = deltaTime * 3600.0 + angle;
 }
 
 

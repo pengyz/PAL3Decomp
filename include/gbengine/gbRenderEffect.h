@@ -91,6 +91,8 @@ public:
 class gbEffectMgr {
 public:
     gbGfxManager* m_pGfxMgr;
+    gbTexture* m_pWhiteTexture;
+    gbTexture* m_pGrayTexture;
     gbRenderEffect** m_pEffects;    // array of effect pointers
     int m_nMaxEffects;
     int m_nNumEffects;

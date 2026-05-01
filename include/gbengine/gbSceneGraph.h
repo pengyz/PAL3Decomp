@@ -87,13 +87,14 @@ public:
     int renderObjPoolUsed;                // +0x04
     void* volModNodePool;                 // +0x08
     gbVisNode* rootNode;                  // +0x0c
-    gbMatrix4 matrixPool1[16];            // +0x10 to +0xb10
-    gbMatrix4 matrixPool2[256];           // +0xb14 to +0x4b14
-    gbGfxManager* pGfxManager;            // +0x4b18
-    gbCamera* activeCamera;               // +0x4b1c
-    gbRenderEffect* shadowQuadEffect;     // +0x4b20
-    int unused3;                          // +0x4b24
-    gbBladeMgr* bladeMgr;                 // +0x4b28
+    gbMatrix4 matrixPool1[16];
+    gbVolModNode* volModNodes[4352];      // volume modifier node array
+    int numVolModNodes;                   // volume modifier count
+    gbGfxManager* pGfxManager;
+    gbVisNode* skyBoxNode;                // sky box node
+    gbRenderEffect* shadowQuadEffect;
+    gbCamera* activeCamera;
+    gbBladeMgr* bladeMgr;
 
     gbSceneGraph(gbGfxManager* gfxMgr, const gbVec3D& param2, float param3);
     ~gbSceneGraph(void);

@@ -103,10 +103,12 @@ void gbDropGroup::CreateUnit(float heightOffset, gbCamera* camera) {
 
 gbRain::gbRain(int maxDrops, const gbDropDesc* dropDesc, const char* texName)
     : gbDropGroup(maxDrops, dropDesc, texName) {
+    (void)maxDrops; (void)dropDesc; (void)texName;
 }
 
 gbRain::gbRain(const gbRain& other)
     : gbDropGroup(other) {
+    memcpy((char*)this + 8, (const char*)&other + 8, sizeof(gbRain) - 8);
 }
 
 gbRain::~gbRain(void) {

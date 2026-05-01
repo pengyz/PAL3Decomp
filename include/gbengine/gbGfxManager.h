@@ -3,6 +3,7 @@
 #include "gbengine/gbengine_types.h"
 #include "gbengine/gbCamera.h"
 #include "gbengine/gbMesh.h"
+#include "gbengine/gbSceneGraph.h"
 #include <d3d9.h>
 
 // Forward declarations
@@ -12,11 +13,8 @@ class gbVertPoolMgr;
 class gbPrintFontMgr;
 class gbPrintFont;
 class gbMatrixStack;
-class gbSceneGraph;
 class gbBaseMesh;
 class gbRenderEffect;
-
-struct gbLight;
 
 // ============================================================================
 // gbClearParam
@@ -38,6 +36,7 @@ struct gbFogParam {
     float end;
     float density;
     int mode;
+    int reserved[7];
 };
 
 // ============================================================================
@@ -149,12 +148,17 @@ public:
     gbMatrix4 m_viewMatrix;             // current view transform
     gbMatrix4 m_projMatrix;             // current projection transform
 
-    int m_nWireMode;                    // wireframe rendering mode
+    gbViewPort m_viewport;              // current viewport
+    gbClearParam m_clearParam;          // clear parameters
+    int m_zBufferOffset;                // depth bias state
 
-    // Padding to approximate real struct size
-    // gbGfxManager_D3D is 0x8F0 bytes total; the D3D-specific fields
-    // (IDirect3D9*, IDirect3DDevice9*, D3DCAPS9, etc.) live in the derived class.
-    // We only model the base class here.
+    gbLight m_lights[8];                // light array (0x68 bytes each)
+    int m_lightEnable[8];               // light enable flags
+
+    gbFogParam m_fogParam;              // fog parameters (13 dwords)
+    gbGfxStatistic m_statistic;         // rendering statistics
+
+    int m_nWireMode;                    // wireframe rendering mode
 
     // 0x1001d910 (394B) - Constructor
     gbGfxManager(int& result, gbGfxDriverInfo* driverInfo);

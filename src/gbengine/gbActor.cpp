@@ -521,9 +521,9 @@ const gbMixActInfo* gbActor::GetMixInfo() {
     return nullptr;
 }
 
-// Get number of mix infos
 int gbActor::GetNumMixInfo() {
-    return 0;
+    int numMix = *(int*)((char*)m_pActorDef + 0x9c);
+    return numMix;
 }
 
 // Set current material - delegates to actorDef vtable[0x3c]

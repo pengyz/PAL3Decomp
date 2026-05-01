@@ -89,13 +89,22 @@ def analyze_cpp_file(filepath):
             for k in range(brace_line, min(brace_line + 500, len(lines))):
                 depth += lines[k].count('{') - lines[k].count('}')
                 body_lines.append(lines[k])
-                if depth == 0 and k > brace_line:
+                if depth == 0:
                     end_line = k
                     break
 
             # Classify
-            non_empty = [l.strip() for l in body_lines[1:-1]
-                         if l.strip() and not l.strip().startswith('//')]
+            # Handle single-line functions: extract body between { and }
+            if len(body_lines) == 1:
+                line_content = body_lines[0]
+                brace_start = line_content.index('{')
+                brace_end = line_content.rindex('}')
+                inner = line_content[brace_start+1:brace_end].strip()
+                # Split by semicolons to get statements
+                non_empty = [s.strip() for s in inner.split(';') if s.strip()]
+            else:
+                non_empty = [l.strip() for l in body_lines[1:-1]
+                             if l.strip() and not l.strip().startswith('//')]
             has_marker = any(MARKER_RE.search(l) for l in body_lines)
 
             if len(non_empty) == 0:

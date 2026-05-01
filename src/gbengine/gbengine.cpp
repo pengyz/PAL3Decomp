@@ -65,7 +65,7 @@ class gbSound3DNode;
 class gbStaticChain;
 class gbStaticMesh;
 class gbTexture;
-class gbTextureArray;
+struct gbTextureArray;
 class gbTexture_D3D;
 class gbTimeCounter;
 class gbVFile;

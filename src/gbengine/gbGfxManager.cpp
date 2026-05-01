@@ -582,6 +582,8 @@ unsigned int gbRenderEffect::GetFlag(void) {
 // 0x10004d20 (12B) - Default constructor
 gbEffectMgr::gbEffectMgr(void) {
     m_pGfxMgr = NULL;
+    m_pWhiteTexture = NULL;
+    m_pGrayTexture = NULL;
     m_pEffects = NULL;
     m_nMaxEffects = 0;
     m_nNumEffects = 0;
@@ -811,15 +813,11 @@ gbRenderEffect* gbEffectMgr::GetDefaultEffect(void) {
 // Exported: GetGrayTexture
 // Returns cached gray texture from internal field (not yet mapped in header)
 gbTexture* gbEffectMgr::GetGrayTexture(void) {
-    // TODO: return m_pGrayTexture once field is added to gbEffectMgr
-    (void)0;
-    return NULL;
+    return m_pGrayTexture;
 }
 
 // Exported: GetWhiteTexture
 // Returns cached white texture from internal field (not yet mapped in header)
 gbTexture* gbEffectMgr::GetWhiteTexture(void) {
-    // TODO: return m_pWhiteTexture once field is added to gbEffectMgr
-    (void)0;
-    return NULL;
+    return m_pWhiteTexture;
 }

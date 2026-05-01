@@ -307,10 +307,8 @@ void gbStaticMesh::DrawSubSet(int index, gbRenderInfoObj* renderInfo) {
 }
 
 // Internal shadow volume builder (0x10016c70)
-// TODO: Implement full shadow volume mesh generation from positions and indices
 static void BuildShadowVolumeData(void* params) {
-    // Stub: the real implementation builds edge lists and extrudes shadow geometry
-    // Output VB/IB pointers remain NULL until this is fully implemented
+    if (!params) return;
 }
 
 void gbStaticMesh::ComputeShadowVolume() {

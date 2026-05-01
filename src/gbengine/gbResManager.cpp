@@ -216,6 +216,7 @@ public:
     int count;           // +0x08
 
     gbResManager();
+    gbResManager(const gbResManager& other);
     ~gbResManager();
 
     void AddResource(gbResource* res);
@@ -231,6 +232,13 @@ gbResManager::gbResManager() {
     array = NULL;
     capacity = 0;
     count = 0;
+}
+
+// Copy constructor
+gbResManager::gbResManager(const gbResManager& other) {
+    array = other.array;
+    capacity = other.capacity;
+    count = other.count;
 }
 
 // Destructor - 0x100201a0

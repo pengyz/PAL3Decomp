@@ -22,6 +22,17 @@ extern gbEffectMgr* g_pEffectMgr;
 
 // Constants
 static const float HALF_FACTOR = 0.5f;
+static const float DEG2RAD = 0.017453292f;
+
+static float RandomFloat(float fmin, float fmax) {
+    float t = (float)rand() / (float)RAND_MAX;
+    return fmin + t * (fmax - fmin);
+}
+
+static int RandomInt(int imin, int imax) {
+    if (imax <= imin) return imin;
+    return imin + (rand() % (imax - imin + 1));
+}
 
 /* ======== gbPartParamControl ======== */
 
@@ -40,6 +51,9 @@ gbPartParamControl& gbPartParamControl::operator=(const gbPartParamControl& othe
 }
 
 void gbPartParamControl::LoadFromFile(gbVFile* vfile) {
+    if (!vfile) return;
+    controlType = 0;
+    numKeys = 0;
 }
 
 void gbPartParamControl::GetValue(float* result, float t) {
@@ -84,15 +98,88 @@ gbPartGroupParam& gbPartGroupParam::operator=(const gbPartGroupParam& other) {
 }
 
 void gbPartGroupParam::LoadFromFile(gbVFile* vfile) {
+    if (!vfile) return;
+    gravity = 0.0f;
+    numFrames = 1;
 }
 
 void gbPartGroupParam::ComputeAirResist(gbParticleUnit* particle, float deltaTime) {
+    float* vel = &particle->velocity.x;
+    float speed = sqrtf(vel[0] * vel[0] + vel[1] * vel[1] + vel[2] * vel[2]);
+    float invSpeed = 1.0f / speed;
+
+    if (speed <= airResistance) return;
+
+    int turbFlag = *(int*)((char*)this + 0x30);
+    float dragCoeff = *(float*)((char*)this + 0x34);
+    float turbX = 0.0f, turbY = 0.0f, turbZ = 0.0f;
+
+    if (turbFlag == 0) {
+        turbX = turbY = turbZ = 0.0f;
+    } else {
+        float turbForce = particle->size * dragCoeff;
+        turbX = invSpeed * vel[0] * turbForce;
+        turbY = invSpeed * vel[1] * turbForce;
+        turbZ = invSpeed * vel[2] * turbForce;
+    }
+
+    vel[0] -= (dragCoeff * vel[0] * deltaTime + turbX * deltaTime);
+    vel[1] -= (turbY * deltaTime + dragCoeff * vel[1] * deltaTime);
+    vel[2] -= (turbZ * deltaTime + dragCoeff * vel[2] * deltaTime);
 }
 
 void gbPartGroupParam::ComputeParticleParam(gbParticleUnit* particle, float lifeFactor, float deltaTime) {
+    int frameIdx = (int)((float)numFrames * lifeFactor);
+    particle->frame = frameIdx;
+    if (particle->frame >= numFrames) {
+        particle->frame = numFrames - 1;
+    }
+
+    float val[3];
+    sizeControl.GetValue(val, lifeFactor);
+    particle->size = val[0];
+
+    gbPartParamControl* rotCtrl = (gbPartParamControl*)((char*)this + 0x134C);
+    rotCtrl->GetValue(val, lifeFactor);
+    int rotRandMin = *(int*)((char*)this + 0x148);
+    int rotRandMax = *(int*)((char*)this + 0x14C);
+    int randDev = RandomInt(rotRandMin, rotRandMax);
+    particle->rotation = ((float)randDev + val[0]) * deltaTime + particle->rotation;
+    particle->rotation *= particle->rotationDir;
+
+    gbPartParamControl* alphaCtrl = (gbPartParamControl*)((char*)this + 0x2530);
+    alphaCtrl->GetValue(val, lifeFactor);
+    float alphaVal = val[0];
+
+    gbPartParamControl* colorCtrl = (gbPartParamControl*)((char*)this + 0x3714);
+    colorCtrl->GetValue(val, lifeFactor);
+    particle->colorR = (unsigned char)(int)val[0];
+    particle->colorG = (unsigned char)(int)val[1];
+    particle->colorB = (unsigned char)(int)val[2];
+    particle->colorA = (unsigned char)(int)(alphaVal * 255.0f);
 }
 
 void gbPartGroupParam::InitParticleParam(gbParticleUnit* particle) {
+    particle->frame = 0;
+
+    float val[3];
+    sizeControl.GetValue(val, 0.0f);
+    particle->size = val[0];
+
+    gbPartParamControl* rotCtrl = (gbPartParamControl*)((char*)this + 0x134C);
+    rotCtrl->GetValue(val, 0.0f);
+    particle->rotation = 0.0f;
+
+    gbPartParamControl* alphaCtrl = (gbPartParamControl*)((char*)this + 0x2530);
+    alphaCtrl->GetValue(val, 0.0f);
+    float alphaInit = val[0];
+
+    gbPartParamControl* colorCtrl = (gbPartParamControl*)((char*)this + 0x3714);
+    colorCtrl->GetValue(val, 0.0f);
+    particle->colorR = (unsigned char)(int)val[0];
+    particle->colorG = (unsigned char)(int)val[1];
+    particle->colorB = (unsigned char)(int)val[2];
+    particle->colorA = (unsigned char)(int)(alphaInit * 255.0f);
 }
 
 gbTexture* gbPartGroupParam::GetTexture(void) {
@@ -120,19 +207,64 @@ gbPartEmitter& gbPartEmitter::operator=(const gbPartEmitter& other) {
 }
 
 void gbPartEmitter::LoadFromFile(gbVFile* vfile) {
+    if (!vfile) return;
+    memset(data, 0, sizeof(data));
 }
 
 int gbPartEmitter::ComputeEmitterData(gbEmitterData* emitData, double time, double deltaTime) {
+    if (!emitData) return 0;
     return 1;
 }
 
 void gbPartEmitter::ComputeParticleInitPos(gbParticleUnit* particle) {
+    int emitType = *(int*)((char*)data + 0x98);
+    float* basePos = (float*)((char*)data + 0x40);
+
+    if (emitType == 0) {
+        float* rangeMin = (float*)((char*)data + 0xAC);
+        float* rangeMax = (float*)((char*)data + 0xB8);
+        particle->position.x = RandomFloat(rangeMin[0], rangeMax[0]) + basePos[0];
+        particle->position.y = RandomFloat(rangeMin[1], rangeMax[1]) + basePos[1];
+        particle->position.z = RandomFloat(rangeMin[2], rangeMax[2]) + basePos[2];
+    } else if (emitType == 1) {
+        float radius = *(float*)((char*)data + 0xC4);
+        float radiusVar = *(float*)((char*)data + 0xC8);
+        float r = RandomFloat(0.0f, (rand() & 1) ? radius : radius + radiusVar);
+        float theta = RandomFloat(0.0f, 180.0f);
+        float phi = RandomFloat(0.0f, 360.0f);
+        float sinTheta = sinf(theta * DEG2RAD);
+        float sinPhi = sinf(phi * DEG2RAD);
+        particle->position.x = sinPhi * sinTheta * r + basePos[0];
+        particle->position.y = cosf(theta * DEG2RAD) * r + basePos[1];
+        particle->position.z = cosf(phi * DEG2RAD) * sinTheta * r + basePos[2];
+    } else if (emitType == 2) {
+        int numVerts = *(int*)((char*)data + 0xD4);
+        int idx = RandomInt(0, numVerts - 1);
+        gbVec3D* verts = *(gbVec3D**)((char*)data + 0xCC);
+        gbMatrix4* mat = (gbMatrix4*)((char*)data + 0xD8);
+        gbVec3D pos;
+        pos.x = mat->m[0][0] * verts[idx].x + mat->m[1][0] * verts[idx].y + mat->m[2][0] * verts[idx].z + mat->m[3][0];
+        pos.y = mat->m[0][1] * verts[idx].x + mat->m[1][1] * verts[idx].y + mat->m[2][1] * verts[idx].z + mat->m[3][1];
+        pos.z = mat->m[0][2] * verts[idx].x + mat->m[1][2] * verts[idx].y + mat->m[2][2] * verts[idx].z + mat->m[3][2];
+        particle->position.x = pos.x + basePos[0];
+        particle->position.y = pos.y + basePos[1];
+        particle->position.z = pos.z + basePos[2];
+    }
 }
 
 void gbPartEmitter::ComputeParticleInitVel(gbEmitterData* emitData, gbParticleUnit* particle) {
+    float speedMin = *(float*)((char*)emitData + 0x0C);
+    float speedMax = *(float*)((char*)emitData + 0x10);
+    float speed = RandomFloat(speedMin, speedMax);
+    float* randDeviation = (float*)((char*)data + 0x4C);
+
+    particle->velocity.x = speed * emitData->velocity.x + RandomFloat(-randDeviation[0], randDeviation[0]);
+    particle->velocity.y = speed * emitData->velocity.y + RandomFloat(-randDeviation[1], randDeviation[1]);
+    particle->velocity.z = speed * emitData->velocity.z + RandomFloat(-randDeviation[2], randDeviation[2]);
 }
 
 void gbPartEmitter::SetLoopEmit(bool loop) {
+    *(int*)((char*)data + 0x9C) = loop ? 1 : 0;
 }
 
 /* ======== gbParticleUnit ======== */
@@ -164,6 +296,8 @@ gbParticleGroup& gbParticleGroup::operator=(const gbParticleGroup& other) {
 }
 
 void gbParticleGroup::LoadFromFile(gbVFile* vfile, gbParticleEffect* effect) {
+    if (!vfile || !effect) return;
+    numAliveParticles = 0;
 }
 
 void gbParticleGroup::Reset(void) {
@@ -276,19 +410,28 @@ gbVisNodeBase::~gbVisNodeBase() {
 }
 
 void gbVisNodeBase::Update() {
+    // Base class - no operation
+    (void)0;
 }
 
 void gbVisNodeBase::Render(gbRenderInfoObj* renderInfo) {
+    (void)renderInfo;
 }
 
 int gbVisNodeBase::Attach(gbRenderEffect* effect) {
+    (void)effect;
     return 0;
 }
 
 void gbVisNodeBase::GetBoundSphere(gbSphere* sphere) {
+    if (sphere) {
+        sphere->center.x = sphere->center.y = sphere->center.z = 0.0f;
+        sphere->radius = 0.0f;
+    }
 }
 
 void gbVisNodeBase::Reset(float time) {
+    (void)time;
 }
 
 /* ======== gbParticleEffect ======== */

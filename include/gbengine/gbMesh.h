@@ -194,10 +194,8 @@ private:
 
 /* ======== Mesh types ======== */
 
-// Render info structure
-struct gbRenderInfoObj {
-    void* data;
-};
+// Forward declaration (full definition in gbSceneGraph.h)
+struct gbRenderInfoObj;
 
 // Geometry node description
 struct GeomNodeDesc {
@@ -320,14 +318,23 @@ private:
 
 /* ======== gbDynVertBuf ======== */
 
-// Geometry quad structure (local helper for gbDynVertBuf rendering)
-struct gbGeomQuad {
-    void* data;
+// UI quad structure (40 bytes / 10 floats per quad)
+// [0] x1 (left), [1] y1 (top), [2] x2 (right), [3] y2 (bottom)
+// [4] u1, [5] v1, [6] u2, [7] v2, [8] z (depth), [9] color (as uint)
+struct gbUIQuad {
+    float x1, y1, x2, y2;
+    float u1, v1, u2, v2;
+    float z;
+    unsigned int color;
 };
 
-// UI quad structure (local helper for gbDynVertBuf rendering)
-struct gbUIQuad {
-    void* data;
+// Geometry quad structure (68 bytes / 17 dwords per quad)
+// [0-2] v0 xyz, [3-5] v1 xyz, [6-8] v2 xyz, [9-11] v3 xyz
+// [12] u1, [13] v1, [14] u2, [15] v2, [16] color
+struct gbGeomQuad {
+    gbVec3D verts[4];       // 4 corner positions (48 bytes)
+    float u1, v1, u2, v2;   // texture coordinates (16 bytes)
+    unsigned int color;      // vertex color (4 bytes)
 };
 
 class gbDynVertBuf {
@@ -337,6 +344,11 @@ public:
     virtual ~gbDynVertBuf();
 
     gbDynVertBuf& operator=(const gbDynVertBuf& other);
+
+    // Virtual methods for buffer management
+    virtual float* Lock(int numVerts);
+    virtual void Unlock();
+    virtual void Draw(int primType, int numPrims, gbRenderEffect* effect);
 
     float* GetXYZ();
     float* GetNormal();
@@ -354,16 +366,18 @@ public:
     void RenderLineStrip(gbColorQuad color, gbVec3D* points, int numPoints, gbRenderEffect* effect);
 
     static gbGfxManager* pGfxMgr;
+    static gbRenderEffect* pLineEffect;
 
+    unsigned int m_fvfFlags;    // +0x04: FVF flags passed at construction
 private:
-    void* m_vertexBuffer;       // +0x04
-    int m_maxVertices;          // +0x08
-    int m_currentVertex;        // +0x0C
-    int m_vertexStride;         // +0x10
-    float* m_pXYZ;              // +0x14
-    float* m_pNormal;           // +0x18
-    gbColorQuad* m_pColor1;     // +0x1C
-    gbColorQuad* m_pColor2;     // +0x20
-    float* m_pUV;               // +0x24
-    int m_vertNum;              // +0x28
+    void* m_vertexBuffer;       // +0x08
+    int m_maxVertices;          // +0x0C
+    int m_currentVertex;        // +0x10
+    int m_vertexStride;         // +0x14
+    float* m_pXYZ;              // +0x18
+    float* m_pNormal;           // +0x1C
+    gbColorQuad* m_pColor1;     // +0x20
+    gbColorQuad* m_pColor2;     // +0x24
+    float* m_pUV;               // +0x28
+    int m_vertNum;              // +0x2C
 };
