@@ -4,6 +4,7 @@
  */
 
 #include "gbengine/gbMisc.h"
+#include "gbengine/gbTexture.h"
 #include <stdio.h>
 #include <string.h>
 #include <stdarg.h>
@@ -756,17 +757,22 @@ gbUIRect& gbUIRect::operator=(const gbUIRect& other) {
 }
 
 void gbUIRect::Init(char* textureName, float inLeft, float inTop, float inRight, float inBottom, gbGfxManager* gfx) {
+    m_pGfx = gfx;
+    m_pTexture = NULL;
     left = inLeft;
     top = inTop;
-    right = inRight;
-    bottom = inBottom;
+    width = inRight - inLeft;
+    height = inBottom - inTop;
 }
 
 void gbUIRect::Release(void) {
+    if (m_pTexture) {
+        m_pTexture->refObj.Release();
+        m_pTexture = NULL;
+    }
 }
 
 void gbUIRect::Render(int flags) {
-    // Stub - rendering not implemented
 }
 
 // ======== gbVec3D default constructor closure ========

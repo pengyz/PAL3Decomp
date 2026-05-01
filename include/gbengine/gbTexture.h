@@ -12,6 +12,9 @@ class gbResManager;
 struct gbRefObject {
     void* vfptr;    // vtable pointer
     int RefCount;
+
+    void Release(void);
+    void IncRef(void);
 };
 
 

@@ -15,6 +15,7 @@ struct gbAABBox;
 struct gbOBBox;
 struct gbSphere;
 class gbGfxManager;
+class gbTexture;
 
 enum gbAxis {
     GB_AXIS_X = 0,
@@ -233,7 +234,12 @@ struct gbPlane {
 
 class gbUIRect {
 public:
-    float left, top, right, bottom;
+    gbTexture* m_pTexture;  // +0x00
+    gbGfxManager* m_pGfx;  // +0x04
+    float left;             // +0x08
+    float top;              // +0x0C
+    float width;            // +0x10
+    float height;           // +0x14
 
     // Methods (auto-generated)
     gbUIRect & operator=(gbUIRect const & p0);
