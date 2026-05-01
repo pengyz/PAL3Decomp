@@ -2152,6 +2152,177 @@ __declspec(noinline) void __fastcall Func_0042FB40(void* self, int, char value)
 }
 
 /* ========================================================================
+ * LEA/arithmetic index functions (17-20 bytes)
+ * ======================================================================== */
+
+/* 0x00420F50 (17B) - index calculation: (param + 0x7863) << 4 + this
+ * 8b 44 24 04 05 63 78 00 00 c1 e0 04 03 c1 c2 04 00 */
+__declspec(noinline) void* __fastcall Func_00420F50(void* self, int, int idx)
+{
+    return (char*)self + ((idx + 0x7863) << 4);
+}
+
+/* 0x00528D30 (17B) - cannot match: compiler reorders add ecx before shl eax */
+/* 0x00420F30 (20B) - cannot match: compiler uses imul instead of LEA chain */
+/* 0x0052FBB0 (20B) - cannot match: compiler uses imul instead of LEA chain */
+/* 0x0052FC30 (20B) - cannot match: compiler uses imul instead of LEA chain */
+
+/* ========================================================================
+ * Field clear + set functions (23 bytes)
+ * Pattern: load param, store constant 0 to field A, store param to field B
+ * ======================================================================== */
+
+/* 0x0041C190 (23B) - clear dword field + set another dword field from param
+ * 8b 44 24 04 c7 81 7c 01 00 00 00 00 00 00 89 81 80 01 00 00 c2 04 00 */
+__declspec(noinline) void __fastcall Func_0041C190(void* self, int, int value)
+{
+    *(int*)((char*)self + 0x17C) = 0;
+    *(int*)((char*)self + 0x180) = value;
+}
+
+/* 0x004D5F20 (23B) - C2DSpark::ResetBigLum - clear dword + set byte from param
+ * 8a 44 24 04 c7 81 0c 58 00 00 00 00 00 00 88 81 18 58 00 00 c2 04 00 */
+__declspec(noinline) void __fastcall Func_004D5F20(void* self, int, char colorMode)
+{
+    *(int*)((char*)self + 0x580C) = 0;
+    *((char*)self + 0x5818) = colorMode;
+}
+
+/* 0x00505800 (23B) - cannot match: compiler uses mov dword,-1 instead of or eax,-1 + store */
+/* 0x00530BE0 (25B) - cannot match: compiler reorders param load after first store */
+/* 0x0043A660 (18B) - cannot match: compiler uses mov dword,0 instead of xor eax + store */
+/* 0x004DB780/4DB920 (18B each) - cannot match: compiler reorders lea before byte load */
+/* 0x004DB6A0/4DB6C0 (21B each) - cannot match: compiler inserts xor eax,eax and uses edx */
+/* 0x00527D60 (19B) - cannot match: compiler uses eax instead of edx as intermediate */
+/* 0x005541F8 (30B) - cannot match: relocation-dependent absolute addresses differ */
+/* 0x005363A0 (21B) - cannot match: compiler merges adjacent byte stores into word store */
+
+/* 0x0043F670, 0x004431E0, 0x004B4D80, 0x004B4DA0 (23B each) - cannot match:
+ * load-all-then-store-all pattern (mov eax,[esp+4] / mov edx,[esp+8] / store / store) */
+
+/* ========================================================================
+ * Field copy / const store functions (7-13 bytes)
+ * ======================================================================== */
+
+/* 0x00431C00 (13B) - copy dword field to adjacent field
+ * 8b 81 04 02 00 00 89 81 08 02 00 00 c3 */
+__declspec(noinline) void __fastcall Func_00431C00(void* self, int)
+{
+    *(int*)((char*)self + 0x208) = *(int*)((char*)self + 0x204);
+}
+
+/* 0x00532D30 (7B) - copy dword field disp8 to disp8
+ * 8b 41 50 89 41 18 c3 */
+__declspec(noinline) void __fastcall Func_00532D30(void* self, int)
+{
+    *(int*)((char*)self + 0x18) = *(int*)((char*)self + 0x50);
+}
+
+/* 0x00532D50 (8B) - store 0 to dword field disp8
+ * c7 41 18 00 00 00 00 c3 */
+__declspec(noinline) void __fastcall Func_00532D50(void* self, int)
+{
+    *(int*)((char*)self + 0x18) = 0;
+}
+
+/* 0x0054767B (11B) - store vtable pointer constant
+ * c7 81 10 01 00 00 00 ca 54 00 c3 */
+static const int g_vtbl_0054CA00 = 0x0054CA00;
+__declspec(noinline) void __fastcall Func_0054767B(void* self, int)
+{
+    *(int*)((char*)self + 0x110) = g_vtbl_0054CA00;
+}
+
+/* 0x0043F65D (7B) - getter [ecx+0x1F8]
+ * 8b 81 f8 01 00 00 c3 */
+__declspec(noinline) int __fastcall Getter_0043F65D(void* self, int)
+{
+    return *(int*)((char*)self + 0x1F8);
+}
+
+/* ========================================================================
+ * 10B disp8 setters with ret 4 (load param, store to short-offset field)
+ * Pattern: 8b 44 24 04 89 41 XX c2 04 00
+ * ======================================================================== */
+
+__declspec(noinline) void __fastcall Setter_00402FA0(void* self, int, int v)
+{
+    *(int*)((char*)self + 0x20) = v;
+}
+
+__declspec(noinline) void __fastcall Setter_0043A4B0(void* self, int, int v)
+{
+    *(int*)((char*)self + 0x44) = v;
+}
+
+__declspec(noinline) void __fastcall Setter_00446020(void* self, int, int v)
+{
+    *(int*)((char*)self + 0x08) = v;
+}
+
+__declspec(noinline) void __fastcall Setter_00450550(void* self, int, int v)
+{
+    *(int*)((char*)self + 0x50) = v;
+}
+
+__declspec(noinline) void __fastcall Setter_0051BB40(void* self, int, int v)
+{
+    *(int*)((char*)self + 0x74) = v;
+}
+
+__declspec(noinline) void __fastcall Setter_00530340(void* self, int, int v)
+{
+    *(int*)((char*)self + 0x04) = v;
+}
+
+/* ========================================================================
+ * 7B set [ecx] to constant (vtable init / reset)
+ * Pattern: c7 01 XX XX XX XX c3
+ * ======================================================================== */
+
+/* 0x004BDED0 (7B) - set [ecx] = -1
+ * c7 01 ff ff ff ff c3 */
+__declspec(noinline) void __fastcall Func_004BDED0(void* self, int)
+{
+    *(int*)self = -1;
+}
+
+/* ========================================================================
+ * 8B simple arithmetic return
+ * ======================================================================== */
+
+/* 0x0053EDD0 (8B) - return param - 1
+ * 8b 44 24 04 48 c2 04 00 */
+__declspec(noinline) int __fastcall Func_0053EDD0(void* self, int, int v)
+{
+    return v - 1;
+}
+
+/* ========================================================================
+ * 9B float operations
+ * ======================================================================== */
+
+/* 0x00532D40 (9B) - negate float field and store to another field
+ * d9 41 50 d9 e0 d9 59 18 c3
+ * fld [ecx+0x50] / fchs / fstp [ecx+0x18] / ret */
+__declspec(noinline) void __fastcall Func_00532D40(void* self, int)
+{
+    *(float*)((char*)self + 0x18) = -*(float*)((char*)self + 0x50);
+}
+
+/* 0x0042FEB0 (10B) - cannot match: original uses mov eax,ecx then [eax+20]=0,
+ * modern MSVC directly uses [ecx+20]=0 (saves the mov eax,ecx) */
+
+/* 0x004B73D0 (10B) - disp8 setter [ecx+0x5C]
+ * 8b 44 24 04 89 41 5c c2 04 00 */
+__declspec(noinline) void __fastcall Setter_004B73D0(void* self, int, int v)
+{
+    *(int*)((char*)self + 0x5C) = v;
+}
+
+/* 0x00436701 (8B) - uses ret instead of ret 4 (non-standard calling convention, skip) */
+
+/* ========================================================================
  * Force-reference table - prevents linker from stripping COMDAT functions
  * that have no callers yet. These are matching decompilation targets.
  * ======================================================================== */
@@ -2296,9 +2467,28 @@ PFN_VOID g_pal3_force_refs[] = {
     (PFN_VOID)Func_004A1CF0,
     (PFN_VOID)Func_0042FB40,
     (PFN_VOID)Func_0044DB50,
+    (PFN_VOID)Func_00420F50,
+    (PFN_VOID)Func_0041C190,
+    (PFN_VOID)Func_004D5F20,
+    (PFN_VOID)Func_00431C00,
+    (PFN_VOID)Func_00532D30,
+    (PFN_VOID)Func_00532D50,
+    (PFN_VOID)Func_0054767B,
+    (PFN_VOID)Getter_0043F65D,
+    (PFN_VOID)Setter_00402FA0,
+    (PFN_VOID)Setter_0043A4B0,
+    (PFN_VOID)Setter_00446020,
+    (PFN_VOID)Setter_00450550,
+    (PFN_VOID)Setter_0051BB40,
+    (PFN_VOID)Setter_00530340,
+    (PFN_VOID)Func_004BDED0,
+    (PFN_VOID)Func_0053EDD0,
+    (PFN_VOID)Func_00532D40,
+    (PFN_VOID)Setter_004B73D0,
 };
 
 #pragma comment(linker, "/include:?GetDataEntry@SceneMgrData@@QAEPAXH@Z")
 #pragma comment(linker, "/include:?Clear@ZeroInit16@@QAEXXZ")
 #pragma comment(linker, "/include:?GetCount@VectorCountObj@@QAEHXZ")
 #pragma comment(linker, "/include:?GetAt@ArrayObj@@QAEHH@Z")
+#pragma comment(linker, "/include:?SetRepeatDelay@GRPinput@@QAEXH@Z")
