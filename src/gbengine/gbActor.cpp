@@ -3,7 +3,7 @@
  * Character model with skeletal animation
  */
 
-#include "gbengine/gbengine_types.h"
+#include "gbengine/gbVisNode.h"
 #include <cstring>
 #include <cstdlib>
 
@@ -12,24 +12,14 @@ class gbActor;
 class gbActorDef;
 class gbAnimNodeGroup;
 class gbEffectMgr;
-class gbGfxManager;
-class gbRenderEffect;
 class gbResManager;
 class gbResource;
 class gbTexture;
-class gbVisNode;
 class gbVFileSystem;
 
 // Global variables
 extern gbGfxManager* g_pGfxManager;
 extern gbVFileSystem* g_pVFileSys;
-
-// Message structure
-struct gbNodeMsgObj {
-    int type;
-    int data1;
-    void* data2;
-};
 
 // Render info structure
 struct gbRenderInfoObj {
@@ -63,27 +53,6 @@ struct gbActionState {
     int endFrame;       // End frame
     char* eventData;    // Event data
     int reserved[3];
-};
-
-
-/* ======== gbVisNode (base class layout for inheritance) ======== */
-
-class gbVisNode {
-public:
-    virtual ~gbVisNode();
-    virtual void Update();
-    virtual void Render(gbRenderInfoObj* renderInfo);
-    void PushMessage(gbNodeMsgObj& msg);
-    virtual void EnableShadow(int enable);
-    virtual void GetBoundSphere(gbSphere* sphere);
-    virtual int Attach(gbRenderEffect* effect);
-    virtual void Reset(float time);
-
-    gbVisNode();
-
-protected:
-    void* vftable;
-    char data[0x54];
 };
 
 
@@ -140,6 +109,8 @@ public:
     // Material/texture control
     void SetCurMaterial(char* materialName);
     void EnableActionTransMtl(char* actionName, bool enable);
+
+    gbActor& operator=(const gbActor& other);
 
     // Static methods
     static void SetSunDirection(gbVec3D* direction);
@@ -315,9 +286,9 @@ void gbActor::Update() {
                 // Send action complete message
                 if (action->eventData) {
                     gbNodeMsgObj msg;
-                    msg.type = 1;
-                    msg.data1 = i;
-                    msg.data2 = this;
+                    msg.data[0] = 1;
+                    msg.data[1] = i;
+                    msg.data[2] = (int)this;
                     PushMessage(msg);
                 }
             }
@@ -332,9 +303,9 @@ void gbActor::Update() {
     // Send message if dominant action changed
     if (dominantAction) {
         gbNodeMsgObj msg;
-        msg.type = 1;
-        msg.data1 = (int)dominantAction;
-        msg.data2 = this;
+        msg.data[0] = 1;
+        msg.data[1] = (int)dominantAction;
+        msg.data[2] = (int)this;
         PushMessage(msg);
     }
 }
@@ -472,6 +443,19 @@ void gbActor::SetSunDirection(gbVec3D* direction) {
     }
 }
 
+// operator=
+gbActor& gbActor::operator=(const gbActor& other) {
+    if (this != &other) {
+        gbVisNode::operator=(other);
+        m_pActorDef = other.m_pActorDef;
+        m_pActions = other.m_pActions;
+        m_numActions = other.m_numActions;
+        m_pExportNodeData = other.m_pExportNodeData;
+        m_maxExportNodes = other.m_maxExportNodes;
+    }
+    return *this;
+}
+
 
 /* ======== gbResManager (base class stub) ======== */
 
@@ -493,6 +477,8 @@ public:
     gbActorMgr(gbGfxManager* gfxMgr);
     gbActorMgr(const gbActorMgr& other);
     ~gbActorMgr();
+
+    gbActorMgr& operator=(const gbActorMgr& other);
 
     gbActor* LoadActorFile(char* filename);
     void DestroyActor(gbActor* actor);
@@ -524,6 +510,16 @@ gbActorMgr::gbActorMgr(const gbActorMgr& other) {
 // Destructor
 gbActorMgr::~gbActorMgr() {
     // Release shadow effects
+}
+
+// operator=
+gbActorMgr& gbActorMgr::operator=(const gbActorMgr& other) {
+    if (this != &other) {
+        m_pGfxManager = other.m_pGfxManager;
+        m_pSkinShadowEffect1 = other.m_pSkinShadowEffect1;
+        m_pSkinShadowEffect2 = other.m_pSkinShadowEffect2;
+    }
+    return *this;
 }
 
 // Load actor from file
