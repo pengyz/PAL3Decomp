@@ -179,6 +179,8 @@ elseif(BUILD_TARGET STREQUAL "pal3a")
         src/pal3a/winmain.cpp
         src/pal3a/pal3a_stubs.cpp
         src/pal3a/script/script_entry.cpp
+        src/pal3a/script/sce_runtime.cpp
+        src/pal3a/script/sce_dispatch.cpp
     )
 
     add_executable(pal3a WIN32 ${PAL3A_SOURCES})
