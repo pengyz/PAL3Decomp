@@ -3,59 +3,15 @@
  * Vertex and Index buffer pool management
  */
 
-#include "gbengine/gbengine_types.h"
-#include "gbengine/gbChain.h"
-#include <d3d9.h>
+#include "gbengine/gbMesh.h"
 #include <string.h>
-
-// Forward declarations
-class gbGfxManager;
-class gbDynVertBuf;
-
-// Enums
-enum gbPrimType {
-    GB_PRIM_POINTLIST = 1,
-    GB_PRIM_LINELIST = 2,
-    GB_PRIM_LINESTRIP = 3,
-    GB_PRIM_TRIANGLELIST = 4,
-    GB_PRIM_TRIANGLESTRIP = 5,
-    GB_PRIM_TRIANGLEFAN = 6
-};
-
-enum gbPoolType {
-    GB_POOL_DEFAULT = 0,
-    GB_POOL_MANAGED = 1,
-    GB_POOL_SYSTEMMEM = 2,
-    GB_POOL_SCRATCH = 3
-};
 
 // Global statics
 static gbGfxManager* g_gbVertexPool_pGfxMgr = NULL;
 static gbGfxManager* g_gbDynVertBuf_pGfxMgr = NULL;
 
+
 /* ======== gbIndexBubble ======== */
-
-class gbIndexBubble : public gbChain1DNode {
-public:
-    class gbIndexPool* pPool;      // +0x08
-    gbPrimType primType;            // +0x0C
-    int startIndex;                 // +0x10
-    int count;                      // +0x14
-    int bUsed;                      // +0x18
-    int field_1C;                   // +0x1C
-    int field_20;                   // +0x20
-
-    gbIndexBubble(gbIndexPool* pool, gbPrimType prim, int start, int cnt, int used);
-    gbIndexBubble(const gbIndexBubble& other);
-    virtual ~gbIndexBubble();
-
-    void Set(int start, int cnt, int used);
-    void SetRange(int start, int cnt);
-    unsigned short* Lock16();
-    unsigned int* Lock32();
-    void Unlock();
-    gbIndexBubble& operator=(const gbIndexBubble& other);
-};
 
 // Constructor: 0x10003b50
 gbIndexBubble::gbIndexBubble(gbIndexPool* pool, gbPrimType prim, int start, int cnt, int used) {
@@ -132,30 +88,6 @@ gbIndexBubble& gbIndexBubble::operator=(const gbIndexBubble& other) {
 
 
 /* ======== gbIndexPool ======== */
-
-class gbIndexPool : public gbChain1DNode {
-public:
-    gbPoolType poolType;            // +0x08
-    int indexSize;                  // +0x0C
-    int currentSize;                // +0x10
-    int totalSize;                  // +0x14
-    gbChain1D freeList;             // +0x18
-    gbChain1D usedList;             // +0x28
-    gbChain1DNode* pIterator;       // +0x38
-    IDirect3DDevice9* pDevice;
-    IDirect3DIndexBuffer9* pIndexBuffer;
-
-    gbIndexPool(gbPoolType type, int indexSz, int total);
-    gbIndexPool(const gbIndexPool& other);
-    virtual ~gbIndexPool();
-
-    gbIndexBubble* NewBubble(gbPrimType prim, int count);
-    void DelBubble(gbIndexBubble* bubble);
-    int GetIndexSize();
-    void* GetInternalMemBuf();
-    int IsEmpty();
-    gbIndexPool& operator=(const gbIndexPool& other);
-};
 
 // Constructor: 0x10020930
 gbIndexPool::gbIndexPool(gbPoolType type, int indexSz, int total) {
@@ -349,33 +281,6 @@ gbIndexPool& gbIndexPool::operator=(const gbIndexPool& other) {
 
 /* ======== gbVertexBubble ======== */
 
-class gbVertexBubble : public gbChain1DNode {
-public:
-    class gbVertexPool* pPool;      // +0x08
-    int startVertex;                // +0x0C
-    int vertexCount;                // +0x10
-    int countUsed;                  // +0x14
-    int bUsed;                      // +0x18
-    void* pVertexData;              // +0x1C
-    void* field_20;
-    void* field_24;
-    void* field_28;
-    void* field_2C;
-    void* field_30;
-    void* field_34;
-
-    gbVertexBubble(gbVertexPool* pool, int start, int count, int used);
-    gbVertexBubble(const gbVertexBubble& other);
-    virtual ~gbVertexBubble();
-
-    void Set(int start, int count, int used);
-    void* Lock();
-    void Unlock();
-    void ClearPointer();
-    void StepVertexPtr();
-    gbVertexBubble& operator=(const gbVertexBubble& other);
-};
-
 // Constructor: 0x10003df0
 gbVertexBubble::gbVertexBubble(gbVertexPool* pool, int start, int count, int used) {
     this->pPool = pool;
@@ -440,33 +345,6 @@ gbVertexBubble& gbVertexBubble::operator=(const gbVertexBubble& other) {
 
 
 /* ======== gbVertexPool ======== */
-
-class gbVertexPool : public gbChain1DNode {
-public:
-    gbPoolType poolType;            // +0x08
-    int currentSize;                // +0x0C
-    int totalSize;                  // +0x10
-    unsigned int fvf;               // +0x14
-    int stride;                     // +0x18
-    gbChain1D freeList;             // +0x1C
-    gbChain1D usedList;             // +0x2C
-    gbChain1DNode* pIterator;
-    IDirect3DDevice9* pDevice;
-    IDirect3DVertexBuffer9* pVertexBuffer;
-
-    static gbGfxManager* pGfxMgr;
-
-    gbVertexPool(gbPoolType type, unsigned int vertType, int total);
-    gbVertexPool(const gbVertexPool& other);
-    virtual ~gbVertexPool();
-
-    gbVertexBubble* NewBubble(int count);
-    void DelBubble(gbVertexBubble* bubble);
-    int GetStride();
-    unsigned int GetVertType();
-    int IsEmpty();
-    gbVertexPool& operator=(const gbVertexPool& other);
-};
 
 gbGfxManager* gbVertexPool::pGfxMgr = nullptr;
 
@@ -684,38 +562,6 @@ gbVertexPool& gbVertexPool::operator=(const gbVertexPool& other) {
 
 /* ======== gbVertPoolMgr ======== */
 
-class gbVertPoolMgr {
-public:
-    gbVertexPool* vertexPools[32];      // +0x000 to +0x280
-    gbChain1D indexPoolList;             // +0x280
-    gbChain1DNode* pIndexIterator;       // +0x28C
-    gbVertexPool* srcVertPools[32];      // +0x290 to +0x390
-    gbChain1D dynVertBufList;            // +0x390
-    gbDynVertBuf* dynVertBufs[32];       // +0x3A0 to +0x590
-    int maxVertexPoolSize;               // +0x610
-    int maxIndexPoolSize;                // +0x614
-    int field_618;                       // +0x618
-    int field_61C;                       // +0x61C
-    gbGfxManager* pGfxManager;           // +0x620
-
-    gbVertPoolMgr(gbGfxManager* mgr, int p2, int p3, int p4, int p5);
-    ~gbVertPoolMgr();
-
-    int OnLostDevice();
-    int OnResetDevice();
-    gbVertexBubble* NewVertexBubble(unsigned int fvf, int count);
-    void DelVertexBubble(gbVertexBubble* bubble);
-    gbVertexBubble* NewSrcVertBub(unsigned int fvf, int count);
-    void DelSrcVertBub(gbVertexBubble* bubble);
-    gbIndexBubble* NewIndexBubble(gbPrimType prim, int count);
-    void DelIndexBubble(gbIndexBubble* bubble);
-    gbDynVertBuf* GetDynVertBuf(unsigned int fvf);
-    gbVertPoolMgr& operator=(const gbVertPoolMgr& other);
-
-private:
-    int FindVertexPoolIndex(unsigned int* fvf, unsigned int type);
-};
-
 // Constructor: 0x100210c0
 gbVertPoolMgr::gbVertPoolMgr(gbGfxManager* mgr, int p2, int p3, int p4, int p5) {
     // Initialize vertex pool chain array (32 x gbChain1D, each 16 bytes)
@@ -907,6 +753,3 @@ gbVertPoolMgr& gbVertPoolMgr::operator=(const gbVertPoolMgr& other) {
     }
     return *this;
 }
-
-
-// gbChain1D and gbChain1DNode methods defined in gbChain.cpp
