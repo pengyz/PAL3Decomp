@@ -51,7 +51,7 @@ def classify_function(func_info):
         tuple: (category, priority) where priority 1 is highest, 5 is lowest
     """
     name = func_info.get('name', '')
-    size = func_info.get('size', 0)
+    size = func_info.get('size_bytes', func_info.get('size', 0))
     is_thunk = func_info.get('is_thunk', False)
 
     if is_thunk:
@@ -187,7 +187,7 @@ def main():
 
         print("\n=== Top 10 Priority Functions ===")
         for i, func in enumerate(classified[:10], 1):
-            print(f"  {i}. [{func['category']}] {func['name']} - {func['size']} bytes (priority {func['priority']})")
+            print(f"  {i}. [{func['category']}] {func['name']} - {func.get('size_bytes', func.get('size', 0))} bytes (priority {func['priority']})")
     else:
         output = {
             'total_functions': len(classified),

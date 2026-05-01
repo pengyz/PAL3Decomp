@@ -40,8 +40,7 @@ static LRESULT CALLBACK KbdHookProc(int nCode, WPARAM wParam, LPARAM lParam);
 static int IsOurGameWindow(HWND hwnd);
 static void CleanupObject(void* ptr);
 
-/* External stubs */
-void FrameRender(void);
+/* FrameRender declared in pal3_game.h */
 
 /* ========================================================================
  * WinMain - Main entry point

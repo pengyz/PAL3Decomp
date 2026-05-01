@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """
-PAL3 Decompilation - 持续验证工作流
-确保每次提交的代码都是可编译的
+PAL3 Decompilation - Build Verification
+Verifies that all targets compile successfully.
 """
 
 import subprocess
@@ -10,7 +10,6 @@ import os
 from pathlib import Path
 
 def run_command(cmd, description):
-    """运行命令并检查结果"""
     print(f"\n{'='*60}")
     print(f"[*] {description}")
     print(f"{'='*60}")
@@ -19,84 +18,71 @@ def run_command(cmd, description):
 
     if result.returncode != 0:
         print(f"[FAIL] {description}")
-        print(result.stdout)
-        print(result.stderr)
+        print(result.stdout[-500:] if result.stdout else "")
+        print(result.stderr[-500:] if result.stderr else "")
         return False
 
     print(f"[PASS] {description}")
-    if result.stdout:
-        print(result.stdout[:500])  # 只显示前500字符
     return True
 
-def verify_build():
-    """验证构建流程"""
 
-    print("""
-===============================================================╗
-|          PAL3 持续验证 - 增量构建验证                       |
-===============================================================╝
+def verify_target(target, output_name, generator="Visual Studio 17 2022"):
+    """Verify a single build target."""
+    build_dir = f"build_{target}"
 
-工作流程：
-  1. 编译现有代码
-  2. 运行语法检查
-  3. 验证头文件
-  4. 生成构建报告
-
-此脚本确保代码库始终处于可编译状态。
-""")
-
-    # 检查环境
-    if not run_command("cl.exe 2>&1", "检查 MSVC 编译器"):
-        print("\n[WARNING]  未找到 MSVC 编译器")
-        print("   请先运行: setup_env.bat")
-        return False
-
-    # 清理旧构建
-    print("\n[1/4] 清理旧构建...")
-    if os.path.exists("build/verify"):
-        import shutil
-        shutil.rmtree("build/verify")
-
-    # 配置 CMake
-    if not run_command(
-        'cmake -B build/verify -S . -G "NMake Makefiles" -DCMAKE_BUILD_TYPE=Release -DBUILD_TARGET=topo',
-        "[2/4] 配置 CMake"
-    ):
-        return False
-
-    # 编译
-    if not run_command(
-        'cmake --build build/verify',
-        "[3/4] 编译代码"
-    ):
-        return False
-
-    # 检查输出
-    print("\n[4/4] 检查输出文件...")
-    dll_path = Path("build/verify/topo.dll")
-    lib_path = Path("build/verify/topo.lib")
-
-    if dll_path.exists():
-        size = dll_path.stat().st_size
-        print(f"[OK] topo.dll generated successfully ({size:,} bytes)")
+    # Configure
+    if generator == "Visual Studio 17 2022":
+        cfg_cmd = f'cmake -B {build_dir} -S . -G "{generator}" -A Win32 -DBUILD_TARGET={target}'
     else:
-        print("[FAIL] topo.dll not generated")
+        cfg_cmd = f'cmake -B {build_dir} -S . -G "{generator}" -DCMAKE_BUILD_TYPE=Release -DBUILD_TARGET={target}'
+
+    if not run_command(cfg_cmd, f"Configure {target}"):
         return False
 
-    print("""
-===============================================================╗
-|                    [OK] 验证通过                              |
-===============================================================╝
+    # Build
+    if not run_command(f'cmake --build {build_dir} --config Release', f"Build {target}"):
+        return False
 
-代码库处于可编译状态，可以安全地添加新代码。
-""")
-    return True
+    # Check output
+    output_path = Path(build_dir) / "Release" / output_name
+    if not output_path.exists():
+        # Try without Release subdir (NMake)
+        output_path = Path(build_dir) / output_name
+
+    if output_path.exists():
+        size = output_path.stat().st_size
+        print(f"  [OK] {output_name} ({size:,} bytes)")
+        return True
+    else:
+        print(f"  [FAIL] {output_name} not found")
+        return False
+
 
 def main():
     os.chdir(Path(__file__).parent)
 
-    success = verify_build()
-    sys.exit(0 if success else 1)
+    targets = sys.argv[1:] if len(sys.argv) > 1 else ["pal3", "topo"]
+
+    print(f"\nPAL3 Build Verification - Targets: {', '.join(targets)}\n")
+
+    results = {}
+    for target in targets:
+        if target == "pal3":
+            results[target] = verify_target("pal3", "PAL3.exe")
+        elif target == "topo":
+            results[target] = verify_target("topo", "topo.dll")
+        elif target == "gbengine":
+            results[target] = verify_target("gbengine", "gbengine.dll")
+
+    print(f"\n{'='*60}")
+    print("RESULTS:")
+    for t, ok in results.items():
+        status = "PASS" if ok else "FAIL"
+        print(f"  [{status}] {t}")
+    print(f"{'='*60}")
+
+    sys.exit(0 if all(results.values()) else 1)
+
 
 if __name__ == "__main__":
     main()

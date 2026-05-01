@@ -79,14 +79,15 @@ set(PAL3_DEFINES
     WIN32               # Windows 平台
     _WINDOWS            # Windows 应用程序
     _MBCS               # 多字节字符集
+    _CRT_SECURE_NO_WARNINGS  # 原版代码使用标准 C 函数
 )
 
 # ========================================================================
 # Release 配置特定标志
 # ========================================================================
 
-set(CMAKE_C_FLAGS_RELEASE "/DNDEBUG /DWIN32 /D_WINDOWS /D_MBCS")
-set(CMAKE_CXX_FLAGS_RELEASE "/DNDEBUG /DWIN32 /D_WINDOWS /D_MBCS")
+set(CMAKE_C_FLAGS_RELEASE "/DNDEBUG /DWIN32 /D_WINDOWS /D_MBCS /D_CRT_SECURE_NO_WARNINGS")
+set(CMAKE_CXX_FLAGS_RELEASE "/DNDEBUG /DWIN32 /D_WINDOWS /D_MBCS /D_CRT_SECURE_NO_WARNINGS")
 
 # ========================================================================
 # Debug 配置特定标志（用于开发/测试）
