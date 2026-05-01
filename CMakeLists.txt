@@ -160,6 +160,9 @@ elseif(BUILD_TARGET STREQUAL "pal3")
             target_compile_options(pal3 PRIVATE /FAcs /Fa${CMAKE_BINARY_DIR}/asm/)
         endif()
 
+        # Dev mode: skip CD check for development builds
+        target_compile_definitions(pal3 PRIVATE PAL3_DEV_MODE)
+
         target_link_libraries(pal3 ${PLATFORM_LIBS} advapi32)
 
         message(STATUS "PAL3.exe: ${CMAKE_CURRENT_LIST_FILE} source files")

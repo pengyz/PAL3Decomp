@@ -34,12 +34,17 @@ BOOL LoadGBEngine(void)
 {
     g_hGBEngine = LoadLibraryA("gbengine.dll");
     if (g_hGBEngine == NULL) {
+#ifdef PAL3_DEV_MODE
+        OutputDebugStringA("PAL3 DEV: gbengine.dll not found, running without graphics\n");
+        return FALSE;
+#else
         MessageBoxA(NULL,
             "Failed to load gbengine.dll.\n"
             "Please ensure gbengine.dll is in the same directory as PAL3.exe.",
             "PAL3 Error",
             MB_OK | MB_ICONERROR);
         return FALSE;
+#endif
     }
 
     /* ?gbUpdateCurTime@@YANXZ */
@@ -55,10 +60,14 @@ BOOL LoadGBEngine(void)
         g_hGBEngine, "?g_CurrentTime@@3NA");
 
     if (pfn_gbUpdateCurTime == NULL || pfn_gbCreateGraphManager == NULL) {
+#ifdef PAL3_DEV_MODE
+        OutputDebugStringA("PAL3 DEV: Failed to resolve gbengine functions\n");
+#else
         MessageBoxA(NULL,
             "Failed to resolve required functions from gbengine.dll.",
             "PAL3 Error",
             MB_OK | MB_ICONERROR);
+#endif
         UnloadGBEngine();
         return FALSE;
     }

@@ -51,11 +51,13 @@ int APIENTRY WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLi
     MSG msg;
     HWND hwndExisting;
     char moviePath[260];
-    char driveLetter;
-    char errorMsg[280];
     char* lastSlash;
     double currentTime;
     float deltaTime;
+#ifndef PAL3_DEV_MODE
+    char driveLetter;
+    char errorMsg[280];
+#endif
 
     /* Save command line */
     g_cmdLine = lpCmdLine;
@@ -67,8 +69,10 @@ int APIENTRY WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLi
         return 0;
     }
 
+#ifndef PAL3_DEV_MODE
     /* Install low-level keyboard hook */
     g_hKeyboardHook = SetWindowsHookExA(WH_KEYBOARD_LL, KbdHookProc, hInstance, 0);
+#endif
 
     /* Zero-fill CD drive path buffer */
     memset(g_cdDrivePath, 0, sizeof(g_cdDrivePath));
@@ -88,12 +92,14 @@ int APIENTRY WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLi
 
     /* Build movie path and check if it exists */
     sprintf(moviePath, "%sMovie", g_cdDrivePath);
+#ifndef PAL3_DEV_MODE
     while (!CheckFileExists(moviePath)) {
         /* Movie folder not found, prompt user to insert disc */
         driveLetter = g_cdDrivePath[0];
         sprintf(errorMsg, "Please Insert Disc4 to Dirver %c", driveLetter);
         MessageBoxA(NULL, errorMsg, "PAL3", MB_OK | MB_ICONWARNING);
     }
+#endif
 
     /* Get executable path */
     memset(g_exePath, 0, sizeof(g_exePath));
@@ -108,8 +114,16 @@ int APIENTRY WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLi
     /* Initialize game */
     PAL3_Create(hInstance);
 
-    /* Load gbengine.dll (may fail, but we'll try) */
-    LoadGBEngine();
+    /* Load gbengine.dll */
+    if (!LoadGBEngine()) {
+#ifdef PAL3_DEV_MODE
+        MessageBoxA(NULL,
+            "PAL3 Dev Build\n\n"
+            "gbengine.dll not found. Running in stub mode.\n"
+            "Place gbengine.dll next to PAL3.exe for full functionality.",
+            "PAL3 Dev", MB_OK | MB_ICONINFORMATION);
+#endif
+    }
 
     /* Initialize frame timing */
     if (pfn_gbUpdateCurTime != NULL) {

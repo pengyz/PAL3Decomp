@@ -91,11 +91,7 @@ void PAL3_InitGFX(void)
 
     GB_GfxMgr = pfn_gbCreateGraphManager(&PAL3_s_drvinfo);
     if (GB_GfxMgr == NULL) {
-        MessageBoxA(NULL,
-            "Failed to create graphics manager.\n"
-            "Please check your DirectX installation.",
-            "PAL3 Error",
-            MB_OK | MB_ICONERROR);
+        OutputDebugStringA("PAL3_InitGFX: gbCreateGraphManager returned NULL\n");
     }
 
     /* Store the window handle from drvinfo after creation */
