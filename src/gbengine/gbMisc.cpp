@@ -3,25 +3,11 @@
  * Utility functions and classes for gbengine
  */
 
-#include "gbengine/gbengine_types.h"
-#include <windows.h>
+#include "gbengine/gbMisc.h"
 #include <stdio.h>
 #include <string.h>
 #include <stdarg.h>
 #include <mmsystem.h>
-
-// Forward declarations for types used in this file
-struct gbTimeCounter {
-    LARGE_INTEGER startTime;
-    LARGE_INTEGER freq;
-    double elapsed;
-};
-
-struct gbNameVarBuf {
-    void* impl;
-};
-
-class gbGfxManager;
 
 // CRC32 table
 static unsigned int gbCrc32Table[256];
@@ -690,143 +676,107 @@ double gbTimeCounter_Off(gbTimeCounter* This)
     return This->elapsed;
 }
 
-// ======== gbPixelFormat Class ========
+// ======== gbPixelFormat Method Implementations ========
+// gbPixelFormat is declared in gbengine_types.h
 
-// gbPixelFmtType enum is in gbengine_types.h
-// Local aliases for this file's switch statements
-#define PIXFMT_A8R8G8B8 GB_PFT_A8R8G8B8
-#define PIXFMT_R8G8B8   GB_PFT_R8G8B8
-
-struct gbPixelFormatImpl {
-    int bpp;
-    unsigned int rMask, gMask, bMask, aMask;
-    int rShift, gShift, bShift, aShift;
-    int rBits, gBits, bBits, aBits;
-    gbColorQuad* palette;
-};
-
-gbPixelFormat* gbPixelFormat_Assign(gbPixelFormat* This, const gbPixelFormat* other)
-{
-    memcpy(This, other, sizeof(gbPixelFormatImpl));
-    return This;
+gbPixelFormat& gbPixelFormat::operator=(const gbPixelFormat& other) {
+    if (this != &other) {
+        memcpy(this, &other, sizeof(gbPixelFormat));
+    }
+    return *this;
 }
 
-void gbPixelFormat_Init_Masks(gbPixelFormat* This, int bpp, unsigned int rMask, unsigned int gMask, unsigned int bMask, unsigned int aMask)
-{
-    gbPixelFormatImpl* impl = (gbPixelFormatImpl*)This;
-    impl->bpp = bpp;
-    impl->rMask = rMask;
-    impl->gMask = gMask;
-    impl->bMask = bMask;
-    impl->aMask = aMask;
-    impl->palette = NULL;
-
-    // Calculate shifts and bits (simplified)
-    impl->rShift = 0;
-    impl->gShift = 0;
-    impl->bShift = 0;
-    impl->aShift = 0;
-    impl->rBits = 8;
-    impl->gBits = 8;
-    impl->bBits = 8;
-    impl->aBits = 8;
+void gbPixelFormat::Init(gbPixelFormat* other) {
+    memcpy(this, other, sizeof(gbPixelFormat));
 }
 
-void gbPixelFormat_Init_Palette(gbPixelFormat* This, int bpp, gbColorQuad* palette)
-{
-    gbPixelFormatImpl* impl = (gbPixelFormatImpl*)This;
-    impl->bpp = bpp;
-    impl->palette = palette;
-    impl->rMask = impl->gMask = impl->bMask = impl->aMask = 0;
+void gbPixelFormat::Init(int inBpp, unsigned int inRMask, unsigned int inGMask, unsigned int inBMask, unsigned int inAMask) {
+    Bpp = inBpp;
+    r_mask = inRMask;
+    g_mask = inGMask;
+    b_mask = inBMask;
+    a_mask = inAMask;
+    Pal = NULL;
+    r_shift = 0;
+    g_shift = 0;
+    b_shift = 0;
+    a_shift = 0;
 }
 
-void gbPixelFormat_Init_Copy(gbPixelFormat* This, gbPixelFormat* other)
-{
-    memcpy(This, other, sizeof(gbPixelFormatImpl));
+void gbPixelFormat::Init(int inBpp, gbColorQuad* inPalette) {
+    Bpp = inBpp;
+    Pal = inPalette;
+    r_mask = g_mask = b_mask = a_mask = 0;
 }
 
-void gbPixelFormat_Init_Type(gbPixelFormat* This, gbPixelFmtType type)
-{
-    gbPixelFormatImpl* impl = (gbPixelFormatImpl*)This;
-
+void gbPixelFormat::Init(gbPixelFmtType type) {
     switch (type) {
-    case PIXFMT_A8R8G8B8:
-        impl->bpp = 32;
-        impl->aMask = 0xFF000000;
-        impl->rMask = 0x00FF0000;
-        impl->gMask = 0x0000FF00;
-        impl->bMask = 0x000000FF;
+    case GB_PFT_A8R8G8B8:
+        Bpp = 32;
+        a_mask = 0xFF000000;
+        r_mask = 0x00FF0000;
+        g_mask = 0x0000FF00;
+        b_mask = 0x000000FF;
         break;
-    case PIXFMT_R8G8B8:
-        impl->bpp = 24;
-        impl->rMask = 0x00FF0000;
-        impl->gMask = 0x0000FF00;
-        impl->bMask = 0x000000FF;
-        impl->aMask = 0;
+    case GB_PFT_R8G8B8:
+        Bpp = 24;
+        r_mask = 0x00FF0000;
+        g_mask = 0x0000FF00;
+        b_mask = 0x000000FF;
+        a_mask = 0;
         break;
     default:
-        impl->bpp = 0;
-        impl->rMask = impl->gMask = impl->bMask = impl->aMask = 0;
+        Bpp = 0;
+        r_mask = g_mask = b_mask = a_mask = 0;
         break;
     }
-
-    impl->palette = NULL;
+    Pal = NULL;
 }
 
-void gbPixelFormat_Convert(gbPixelFormat* This, unsigned char* dst, gbPixelFormat* dstFmt, unsigned char* src, int pixelCount)
-{
-    // Stub - pixel format conversion is complex
-    // For now just do a simple copy
-    gbPixelFormatImpl* srcImpl = (gbPixelFormatImpl*)This;
-    gbPixelFormatImpl* dstImpl = (gbPixelFormatImpl*)dstFmt;
-
-    int srcBytes = (srcImpl->bpp / 8) * pixelCount;
-    int dstBytes = (dstImpl->bpp / 8) * pixelCount;
+void gbPixelFormat::Convert(unsigned char* dst, gbPixelFormat* dstFmt, unsigned char* src, int pixelCount) {
+    int srcBytes = (Bpp / 8) * pixelCount;
+    int dstBytes = (dstFmt->Bpp / 8) * pixelCount;
     int copyBytes = (srcBytes < dstBytes) ? srcBytes : dstBytes;
-
     memcpy(dst, src, copyBytes);
 }
 
-void gbPixelFormat_Release(gbPixelFormat* This)
-{
-    gbPixelFormatImpl* impl = (gbPixelFormatImpl*)This;
-    impl->palette = NULL;
-    impl->bpp = 0;
+void gbPixelFormat::Release(void) {
+    Pal = NULL;
+    Bpp = 0;
 }
 
-// ======== gbUIRect Class ========
+// ======== gbUIRect Method Implementations ========
+// gbUIRect is declared in gbengine_types.h
 
-struct gbUIRectImpl {
-    float left, top, right, bottom;
-    void* texture;
-    void* gfxMgr;
-};
-
-gbUIRect* gbUIRect_Assign(gbUIRect* This, const gbUIRect* other)
-{
-    memcpy(This, other, sizeof(gbUIRectImpl));
-    return This;
+gbUIRect& gbUIRect::operator=(const gbUIRect& other) {
+    if (this != &other) {
+        memcpy(this, &other, sizeof(gbUIRect));
+    }
+    return *this;
 }
 
-void gbUIRect_Init(gbUIRect* This, char* textureName, float left, float top, float right, float bottom, void* gfx)
-{
-    gbUIRectImpl* impl = (gbUIRectImpl*)This;
-    impl->left = left;
-    impl->top = top;
-    impl->right = right;
-    impl->bottom = bottom;
-    impl->texture = NULL;
-    impl->gfxMgr = gfx;
+void gbUIRect::Init(char* textureName, float inLeft, float inTop, float inRight, float inBottom, gbGfxManager* gfx) {
+    left = inLeft;
+    top = inTop;
+    right = inRight;
+    bottom = inBottom;
 }
 
-void gbUIRect_Release(gbUIRect* This)
-{
-    gbUIRectImpl* impl = (gbUIRectImpl*)This;
-    impl->texture = NULL;
-    impl->gfxMgr = NULL;
+void gbUIRect::Release(void) {
 }
 
-void gbUIRect_Render(gbUIRect* This, int flags)
-{
+void gbUIRect::Render(int flags) {
     // Stub - rendering not implemented
 }
+
+// ======== gbVec3D default constructor closure ========
+// MSVC 6.0 generates ??_FgbVec3D@@QAEXXZ (default constructor closure) for
+// gbVec3D when it's used as a member in classes with virtual base classes.
+// Modern MSVC doesn't generate this symbol automatically, so we provide it
+// directly using inline assembly with the exact mangled name via a linker alias.
+
+// Define a no-op function (since gbVec3D default ctor is empty, the closure is a no-op)
+extern "C" void __cdecl _gbVec3D_dcc_impl(void) {}
+
+// Use alternatename to alias the missing mangled symbol to our implementation
+#pragma comment(linker, "/alternatename:??_FgbVec3D@@QAEXXZ=__gbVec3D_dcc_impl")
