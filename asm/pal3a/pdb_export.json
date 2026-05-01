@@ -1,0 +1,26 @@
+{
+  "image_base": "0x00400000",
+  "functions": [
+    {
+      "address": "0x00401000",
+      "name": "Sce_RunOpcode",
+      "source_file": "script\\sceexec.cpp",
+      "return_type": "int",
+      "parameters": ["PAL3A_SceContext *ctx", "int opcode"]
+    }
+  ],
+  "globals": [
+    {
+      "address": "0x00600000",
+      "name": "g_SceContext",
+      "datatype": "PAL3A_SceContext *"
+    }
+  ],
+  "types": [
+    {
+      "name": "PAL3A_SceContext",
+      "kind": "struct",
+      "size": 64
+    }
+  ]
+}
