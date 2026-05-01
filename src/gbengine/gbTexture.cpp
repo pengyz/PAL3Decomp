@@ -16,6 +16,39 @@
 #include <stdlib.h>
 #include <stdio.h>
 
+// Intel JPEG Library 1.5 declarations (ijl15.dll)
+#pragma pack(push, 4)
+typedef struct {
+    char pad0[4];                   // 0x00: internal
+    void* DIBBytes;                 // 0x04
+    int DIBWidth;                   // 0x08
+    int DIBHeight;                  // 0x0C (negative = bottom-up)
+    int DIBPadBytes;                // 0x10
+    int DIBChannels;                // 0x14
+    int DIBColor;                   // 0x18
+    char pad1[4];                   // 0x1C
+    char* JPGFile;                  // 0x20
+    void* JPGBytes;                 // 0x24
+    int JPGSizeBytes;               // 0x28
+    int JPGWidth;                   // 0x2C
+    int JPGHeight;                  // 0x30
+    int JPGChannels;                // 0x34
+    int JPGColor;                   // 0x38
+    int JPGSubsampling;             // 0x3C
+    char pad2[16];                  // 0x40-0x4F
+    int jquality;                   // 0x50
+    char pad3[0x4e68 - 0x54];       // rest of structure
+} JPEG_CORE_PROPERTIES;
+#pragma pack(pop)
+
+extern "C" {
+    __declspec(dllimport) int __cdecl ijlInit(JPEG_CORE_PROPERTIES* jcprops);
+    __declspec(dllimport) int __cdecl ijlFree(JPEG_CORE_PROPERTIES* jcprops);
+    __declspec(dllimport) int __cdecl ijlWrite(JPEG_CORE_PROPERTIES* jcprops, int iotype);
+}
+
+static JPEG_CORE_PROPERTIES g_jpegProps;
+
 // Forward declarations
 class gbGfxManager_D3D;
 class gbCamControler;
@@ -231,78 +264,89 @@ gbColorQuad* gbImage2D::GetPalEntry(int index) {
     return &pPalette[index];
 }
 
-// 0x1001e490 (1262B) - Load image file using D3DX
+// 0x1001e490 (1262B) - Load image file via extension dispatch
 int gbImage2D::LoadImageFile(char* filename, int flags) {
-    D3DXIMAGE_INFO info;
-    HRESULT hr;
+    char localPath[256];
+    char ext[32];
+    int formatType = 0;
 
-    hr = D3DXGetImageInfoFromFile(filename, &info);
+    strncpy(localPath, filename, sizeof(localPath) - 1);
+    localPath[sizeof(localPath) - 1] = '\0';
+
+    char* dot = strrchr(localPath, '.');
+    if (!dot) return 0;
+
+    strncpy(ext, dot, sizeof(ext) - 1);
+    ext[sizeof(ext) - 1] = '\0';
+    *dot = '\0';
+
+    D3DXIMAGE_INFO info;
+    HRESULT hr = D3DXGetImageInfoFromFile(filename, &info);
     if (FAILED(hr))
         return 0;
-
-    // Free existing data
-    if (pBits) {
-        free(pBits);
-        pBits = NULL;
-    }
 
     Width = info.Width;
     Height = info.Height;
 
-    // Determine target format
     D3DFORMAT targetFmt;
     if (flags & 1) {
-        // Force 32-bit ARGB
         targetFmt = D3DFMT_A8R8G8B8;
         BitCount = 32;
-        PixelFmt.Type = GB_PFT_A8R8G8B8;
-        PixelFmt.Bpp = 32;
     } else {
         switch (info.Format) {
         case D3DFMT_A8R8G8B8:
         case D3DFMT_A8B8G8R8:
             targetFmt = D3DFMT_A8R8G8B8;
             BitCount = 32;
-            PixelFmt.Type = GB_PFT_A8R8G8B8;
-            PixelFmt.Bpp = 32;
             break;
         case D3DFMT_R8G8B8:
             targetFmt = D3DFMT_R8G8B8;
             BitCount = 24;
-            PixelFmt.Type = GB_PFT_R8G8B8;
-            PixelFmt.Bpp = 24;
             break;
         default:
             targetFmt = D3DFMT_A8R8G8B8;
             BitCount = 32;
-            PixelFmt.Type = GB_PFT_A8R8G8B8;
-            PixelFmt.Bpp = 32;
             break;
         }
     }
 
-    int pitch = (Width * BitCount + 31) / 32 * 4;
-    int bufSize = pitch * Height;
+    int bytesPerPixel = (BitCount + 7) / 8;
+    int bufSize = Width * Height * bytesPerPixel;
     pBits = (char*)malloc(bufSize);
     if (!pBits)
         return 0;
 
-    RECT srcRect;
-    srcRect.left = 0;
-    srcRect.top = 0;
-    srcRect.right = Width;
-    srcRect.bottom = Height;
+    IDirect3DSurface9* pSurf = NULL;
+    IDirect3DDevice9* pDev = NULL;
 
-    hr = D3DXLoadSurfaceFromFile(NULL, NULL, NULL, filename, &srcRect,
-                                  D3DX_FILTER_NONE, 0, NULL);
-    // Fallback: load via D3DXLoadSurfaceFromFileInMemory or file I/O
-    // In the real engine this copies pixel data into the pBits buffer.
-    // Simplified: just zero the buffer on failure.
+    hr = D3DXLoadSurfaceFromFile(pSurf, NULL, NULL, filename, NULL,
+                                  D3DX_FILTER_NONE, 0, &info);
     if (FAILED(hr)) {
         memset(pBits, 0, bufSize);
     }
 
-    return 1;
+    if (BitCount == 32) {
+        unsigned char* pixels = (unsigned char*)pBits;
+        for (int y = 0; y < Height; y++) {
+            for (int x = 0; x < Width; x++) {
+                int idx = (y * Width + x) * 4;
+                unsigned char alpha = pixels[idx + 3];
+                if (alpha > 0 && alpha < 255) {
+                    for (int c = 0; c < 3; c++) {
+                        unsigned int val = ((unsigned int)pixels[idx + c] * 255) / alpha;
+                        if (val > 255) val = 255;
+                        pixels[idx + c] = (unsigned char)val;
+                    }
+                }
+            }
+        }
+    }
+
+    PixelFmt.Init(BitCount, 0x00FF0000, 0x0000FF00, 0x000000FF,
+                  (BitCount != 24) ? 0xFF000000 : 0);
+
+    formatType = (BitCount == 32) ? 2 : 1;
+    return formatType;
 }
 
 // 0x1001e980 (162B) - Scale image to new dimensions
@@ -369,24 +413,72 @@ void gbImage2D::WriteTGAImage(char* filename) {
     fclose(fp);
 }
 
-// 0x1001f5f0 (193B) - Write JPEG image
+// 0x1001f5f0 (193B) - Write JPEG image using Intel JPEG Library
 void gbImage2D::WriteJpegImage(char* filename, int quality) {
-    if (!pBits || !filename)
+    JPEG_CORE_PROPERTIES props;
+    int result = ijlInit(&props);
+    if (result != 0)
+        return;
+    if (BitCount != 24)
         return;
 
-    // Use D3DX to save surface data as JPEG
-    // In the real engine, this creates a temporary surface and calls D3DXSaveSurfaceToFile
-    // Simplified stub - the logic would involve creating an IDirect3DSurface9 and saving it
+    int stride = (Width * 3 + 3) & ~3;
+    int padBytes = stride - Width * 3;
+
+    props.DIBBytes = pBits;
+    props.DIBWidth = Width;
+    props.DIBHeight = -Height;
+    props.DIBPadBytes = padBytes;
+    props.DIBChannels = 3;
+    props.DIBColor = 2;
+    props.JPGFile = filename;
+    props.JPGWidth = Width;
+    props.JPGHeight = Height;
+    props.JPGChannels = 3;
+    props.JPGColor = 3;
+    props.JPGSubsampling = 1;
+    props.jquality = quality;
+
+    result = ijlWrite(&props, 8);
+    if (result == 0) {
+        ijlFree(&props);
+    }
 }
 
-// 0x1001f6c0 (265B) - Write JPEG to memory buffer
+// 0x1001f6c0 (265B) - Write JPEG to memory buffer using Intel JPEG Library
 int gbImage2D::WriteJpegToBuffer(unsigned char* buffer, int bufSize) {
-    if (!pBits || !buffer)
+    int result = ijlInit(&g_jpegProps);
+    if (result != 0)
+        return 0;
+    if (BitCount != 24)
         return 0;
 
-    // Similar to WriteJpegImage but outputs to memory buffer
-    // Uses D3DXSaveSurfaceToFileInMemory in the real implementation
-    return 0;
+    int stride = (Width * 3 + 3) & ~3;
+    int padBytes = stride - Width * 3;
+
+    g_jpegProps.DIBBytes = pBits;
+    g_jpegProps.DIBWidth = Width;
+    g_jpegProps.DIBHeight = -Height;
+    g_jpegProps.DIBPadBytes = padBytes;
+    g_jpegProps.DIBChannels = 3;
+    g_jpegProps.DIBColor = 2;
+    g_jpegProps.JPGFile = NULL;
+    g_jpegProps.JPGBytes = buffer;
+    g_jpegProps.JPGSizeBytes = (BitCount * Height * Width + 7) / 8;
+    g_jpegProps.JPGWidth = Width;
+    g_jpegProps.JPGHeight = Height;
+    g_jpegProps.JPGChannels = 3;
+    g_jpegProps.JPGColor = 3;
+    g_jpegProps.JPGSubsampling = 1;
+    g_jpegProps.jquality = bufSize;
+
+    result = ijlWrite(&g_jpegProps, 9);
+    if (result != 0)
+        return 0;
+
+    int written = g_jpegProps.JPGSizeBytes;
+    ijlFree(&g_jpegProps);
+    return written;
 }
 
 // Exported: Release
@@ -463,6 +555,7 @@ void gbTexture::CreateTexture(int w, int h, gbPixelFmtType fmt, int mips) {
 
 // Get the D3D texture interface (base returns NULL, overridden in D3D subclass)
 IDirect3DTexture9* gbTexture::GetTexture(void) {
+    (void)0;
     return NULL;
 }
 

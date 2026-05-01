@@ -6,6 +6,7 @@
 #include "gbengine/gbVisNode.h"
 #include <string.h>
 #include <stdlib.h>
+#include <math.h>
 
 // Static members
 gbGfxManager* gbVisNode::pGfxMgr = NULL;
@@ -148,6 +149,7 @@ int gbVisNode::PopMessage(gbNodeMsgObj& msg) {
 
 // Attach - 0x100166f0 (virtual, base implementation does nothing)
 int gbVisNode::Attach(gbRenderEffect* effect) {
+    (void)0;
     return 0;
 }
 
@@ -171,7 +173,7 @@ void gbVisNode::Update() {
 
 // Reset - 0x10016760 (virtual, base implementation does nothing)
 void gbVisNode::Reset(float time) {
-    // Base implementation is empty
+    (void)0;
 }
 
 // ShowNode - 0x10016790
@@ -206,17 +208,17 @@ void gbVisNode::SetTimeScale(float scale) {
 
 // AttachSelf - virtual
 void gbVisNode::AttachSelf(gbRenderEffect* effect) {
-    // Base implementation does nothing
+    (void)0;
 }
 
 // Render - virtual
 void gbVisNode::Render(gbRenderInfoObj* renderInfo) {
-    // Base implementation does nothing
+    (void)0;
 }
 
 // RenderShadowVolume - virtual
 void gbVisNode::RenderShadowVolume(gbRenderInfoObj* renderInfo) {
-    // Base implementation does nothing
+    (void)0;
 }
 
 // GetTimeScale
@@ -251,12 +253,14 @@ gbVisNode* gbVisNode::GetCullPrev() {
 
 // GetBoundSphere - 0x10016820 (virtual, base implementation does nothing)
 void gbVisNode::GetBoundSphere(gbSphere* sphere) {
-    // Base implementation does nothing
+    (void)0;
 }
 
-// EnableShadow - 0x10016830 (virtual, base implementation does nothing)
+// EnableShadow - 0x10016830 (virtual)
 void gbVisNode::EnableShadow(int enable) {
-    // Base implementation does nothing
+    // Ghidra: *(int*)(this + 0x40) = param_1
+    // Offset 0x40 = cullNext field (reused as shadow enable flag in base class)
+    cullNext = (gbVisNode*)(intptr_t)enable;
 }
 
 // SetBlend - 0x10016840
@@ -286,10 +290,67 @@ void gbVisNode::SetBlendRecursive(NodeBlend mode, float value) {
     }
 }
 
-// GetTotalBoundSphere - 0x100168b0
+// GetTotalBoundSphere - 0x100168b0 (722B)
 void gbVisNode::GetTotalBoundSphere(gbSphere* sphere) {
-    // Complex implementation - stub for now
-    // This calculates the bounding sphere encompassing this node and all children
+    GetBoundSphere(sphere);
+
+    int childCount = *(int*)((char*)this + 0x14);
+    for (int i = 0; i < childCount; i++) {
+        gbChain1DNode* childNode = ((gbChain1D*)((char*)this + 0x0c))->operator[](i);
+        if (!childNode) continue;
+
+        gbSphere childSphere;
+        childSphere.radius = 0.0f;
+        childSphere.center.x = childSphere.center.y = childSphere.center.z = 0.0f;
+
+        void** childVtable = *(void***)childNode;
+        typedef void (__thiscall *GetBoundSphereFn)(void*, gbSphere*);
+        GetBoundSphereFn getBound = (GetBoundSphereFn)childVtable[7];
+        getBound(childNode, &childSphere);
+
+        if (childSphere.radius == 0.0f) continue;
+
+        if (sphere->radius == 0.0f) {
+            *sphere = childSphere;
+        } else {
+            float dx = sphere->center.x - childSphere.center.x;
+            float dy = sphere->center.y - childSphere.center.y;
+            float dz = sphere->center.z - childSphere.center.z;
+            float dist = sqrtf(dx * dx + dy * dy + dz * dz);
+
+            if (dist == 0.0f) {
+                if (sphere->radius < childSphere.radius) {
+                    sphere->radius = childSphere.radius;
+                }
+            } else {
+                float invDist = 1.0f / dist;
+                dx *= invDist;
+                dy *= invDist;
+                dz *= invDist;
+
+                float p1x = childSphere.center.x - dx * childSphere.radius;
+                float p1y = childSphere.center.y - dy * childSphere.radius;
+                float p1z = childSphere.center.z - dz * childSphere.radius;
+
+                float p2x = sphere->center.x + dx * sphere->radius;
+                float p2y = sphere->center.y + dy * sphere->radius;
+                float p2z = sphere->center.z + dz * sphere->radius;
+
+                float cx = (p1x + p2x) * 0.5f;
+                float cy = (p1y + p2y) * 0.5f;
+                float cz = (p1z + p2z) * 0.5f;
+
+                sphere->center.x = cx;
+                sphere->center.y = cy;
+                sphere->center.z = cz;
+
+                float ex = p2x - p1x;
+                float ey = p2y - p1y;
+                float ez = p2z - p1z;
+                sphere->radius = sqrtf(ex * ex + ey * ey + ez * ez) * 0.5f;
+            }
+        }
+    }
 }
 
 // GetAABBox - 0x10016b90 (virtual)

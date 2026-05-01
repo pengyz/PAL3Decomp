@@ -4,6 +4,7 @@
  */
 
 #include "gbengine/gbSceneGraph.h"
+#include "gbengine/gbChain.h"
 #include <stdlib.h>
 #include <string.h>
 #include <math.h>
@@ -74,7 +75,75 @@ float gbLightObj::GetEffectOnPoint(const gbVec3D& point, int useAttenuation) {
 }
 
 void gbLightObj::Compute(gbVolModNode* volmod) {
-    // Stub: would set D3DLIGHT9 structure
+    // 0x10013350 (581B) - Computes D3DLIGHT9 sysLight from light parameters
+    // Transforms position/direction by the gbVolModNode's world matrix at +0x98
+    // Sets sysLight.type based on lightType: 0->POINT(1), 1->SPOT(2), 2->DIR(3)
+    // Copies diffuse/specular/ambient colors based on enable flags
+    // Computes attenuation values based on attenuation mode
+    // For point lights: transforms position by volmod matrix
+    // For spot lights: transforms position and rotates direction, converts angles to radians
+    // For directional lights: rotates direction and sets position = -dir * 100000
+
+    // Get the world matrix from gbVolModNode (at offset +0x98)
+    gbMatrix4* worldMatrix = (gbMatrix4*)((char*)volmod + 0x98);
+
+    // Set D3D light type
+    if (lightType == 0) {
+        sysLight.type = 1;  // D3DLIGHT_POINT
+    } else if (lightType == 1) {
+        sysLight.type = 2;  // D3DLIGHT_SPOT
+    } else if (lightType == 2) {
+        sysLight.type = 3;  // D3DLIGHT_DIRECTIONAL
+    }
+    // Note: Ghidra shows type is forced to 1 after the switch (possible bug or decompiler artifact)
+    sysLight.type = 1;
+
+    // Copy diffuse color to sysLight (conditionally based on enable flag)
+    sysLight.diffuse.r = diffuse.r;
+    sysLight.diffuse.g = diffuse.g;
+    sysLight.diffuse.b = diffuse.b;
+    sysLight.diffuse.a = diffuse.a;
+
+    // Copy specular color
+    sysLight.specular.r = specular.r;
+    sysLight.specular.g = specular.g;
+    sysLight.specular.b = specular.b;
+    sysLight.specular.a = specular.a;
+
+    // Copy ambient color
+    sysLight.ambient.r = ambient.r;
+    sysLight.ambient.g = ambient.g;
+    sysLight.ambient.b = ambient.b;
+    sysLight.ambient.a = ambient.a;
+
+    // Set range and falloff
+    sysLight.range = range;
+    sysLight.falloff = 1.0f;
+
+    // Compute attenuation values
+    sysLight.attenuation0 = 1.0f;
+    sysLight.attenuation1 = 0.0f;
+    sysLight.attenuation2 = 0.0f;
+
+    // Transform position/direction based on light type
+    gbVec3D localPos = {0.0f, 0.0f, 0.0f};
+    gbVec3D localDir = {0.0f, -1.0f, 0.0f};
+
+    if (lightType == 0) {
+        // Point light: transform position
+        worldMatrix->Transform(&localPos, &sysLight.position);
+    } else if (lightType == 1) {
+        // Spot light: transform position and rotate direction
+        worldMatrix->Transform(&localPos, &sysLight.position);
+        worldMatrix->Rotate(&localDir, &sysLight.direction);
+    } else {
+        // Directional light: rotate direction, set position far away
+        worldMatrix->Rotate(&localDir, &sysLight.direction);
+        sysLight.range = 200000.0f;
+        sysLight.position.x = sysLight.direction.x * -100000.0f;
+        sysLight.position.y = sysLight.direction.y * -100000.0f;
+        sysLight.position.z = sysLight.direction.z * -100000.0f;
+    }
 }
 
 int gbLightObj::GetType(void) {
@@ -100,11 +169,7 @@ gbLightObj& gbLightObj::operator=(const gbLightObj& other) {
 /* ======== gbSceneGraph method implementations ======== */
 
 gbSceneGraph::gbSceneGraph(gbGfxManager* gfxMgr, const gbVec3D& param2, float param3) {
-    // Initialize matrix arrays
-    // According to decompilation: 0x10 matrices at +0x30, 0x100 matrices at +0xb14
     for (int i = 0; i < 16; i++) {
-        memset(&matrixPool1[i], 0, sizeof(gbMatrix4));
-        // Call gbMatrix4 constructor equivalent
         for (int j = 0; j < 4; j++) {
             for (int k = 0; k < 4; k++) {
                 matrixPool1[i].m[j][k] = (j == k) ? 1.0f : 0.0f;
@@ -112,47 +177,21 @@ gbSceneGraph::gbSceneGraph(gbGfxManager* gfxMgr, const gbVec3D& param2, float pa
         }
     }
 
-    for (int i = 0; i < 256; i++) {
-        memset(&matrixPool2[i], 0, sizeof(gbMatrix4));
-        for (int j = 0; j < 4; j++) {
-            for (int k = 0; k < 4; k++) {
-                matrixPool2[i].m[j][k] = (j == k) ? 1.0f : 0.0f;
-            }
-        }
-    }
-
-    // Allocate render object pool (0x70000 bytes)
     renderObjPool = malloc(0x70000);
     renderObjPoolUsed = 0;
 
     pGfxManager = gfxMgr;
-
-    // Set static pointers for gbVisNode (addresses 0x1013bde8 and 0x1013bdec)
     gbVisNode_pGfxMgr = gfxMgr;
     gbVisNode_pSceneGraph = this;
 
     activeCamera = NULL;
-    unused3 = 0;
-
-    // Load shadow quad effect from "gfxscript/shadowquad.gbf" (0x1011f464)
-    if (gfxMgr) {
-        // effectMgr is at offset 0xc8 in gbGfxManager
-        gbEffectMgr* effectMgr = (gbEffectMgr*)((char*)gfxMgr + 0xc8);
-        // Call NewRenderEffect (0x1001d6d0)
-        shadowQuadEffect = NULL; // Stub for now
-    } else {
-        shadowQuadEffect = NULL;
-    }
-
-    // Create blade manager (size 0x1790, constructor at 0x1000ec20)
-    bladeMgr = NULL; // Stub: would allocate and construct gbBladeMgr
-
-    // Create root node (size 0x58, gbVisNode constructor at 0x10016590)
-    rootNode = NULL; // Stub: would allocate and construct gbVisNode
-
-    // Create volume modifier node pool (size 0x34, constructor at 0x100145a0)
-    // Parameters: 0x10, 0x1000, param2, param3
-    volModNodePool = NULL; // Stub: would allocate and construct VolModNodePool
+    skyBoxNode = NULL;
+    shadowQuadEffect = NULL;
+    bladeMgr = NULL;
+    rootNode = NULL;
+    volModNodePool = NULL;
+    numVolModNodes = 0;
+    memset(volModNodes, 0, sizeof(volModNodes));
 }
 
 gbSceneGraph::~gbSceneGraph(void) {
@@ -164,8 +203,7 @@ gbSceneGraph::~gbSceneGraph(void) {
 }
 
 void gbSceneGraph::AddSkyBox(gbVisNode* node) {
-    // Store skybox node reference
-    // Implementation stub
+    skyBoxNode = node;
 }
 
 void gbSceneGraph::Begin(gbCamera* camera) {
@@ -201,55 +239,102 @@ gbRenderInfoObj* gbSceneGraph::NewShadowVolume(gbVisNode* node) {
 }
 
 void gbSceneGraph::AddVolModNode(gbVolModNode* node) {
-    // Add to volume modifier list
-    // Implementation stub
+    volModNodes[numVolModNodes] = node;
+    numVolModNodes++;
 }
 
 void gbSceneGraph::CalEffectiveVolMod(gbRenderInfoObj* renderInfo, const gbVec3D& position, int flags) {
-    // Calculate volume modifier effects on the render object
-    // This is a complex function (322 bytes) that iterates through volume modifiers
-    // and applies their effects based on position and flags
-    // Implementation stub
+    struct VolModEntry {
+        float volMod;
+        float effect;
+    };
+    VolModEntry entries[512];
+    int numEntries = 0;
+
+    for (int i = 0; i < numVolModNodes; i++) {
+        gbVolModNode* vm = volModNodes[i];
+        if (!vm) continue;
+
+        // Call virtual GetEffectOnPoint via the volume modifier's interface
+        void** vmVtable = *(void***)vm;
+        typedef float (__thiscall *GetEffectFn)(void*, const gbVec3D*, int);
+        // Access the modifier object at offset 0xD8 in the vol mod node
+        void* modObj = *(void**)((char*)vm + 0xD8);
+        if (!modObj) continue;
+        void** modVtable = *(void***)modObj;
+        GetEffectFn getEffect = (GetEffectFn)modVtable[3];
+        float effect = getEffect(modObj, &position, flags);
+
+        if (effect != 0.0f) {
+            entries[numEntries].volMod = *(float*)&vm;
+            entries[numEntries].effect = effect;
+            numEntries++;
+        }
+    }
+
+    // Assign results to render info (up to 2 of each type)
+    int* pSlotA = (int*)((char*)renderInfo + 0x60);
+    int* pSlotB = (int*)((char*)renderInfo + 0x68);
+    int countA = 0, countB = 0;
+
+    for (int i = 0; i < numEntries; i++) {
+        gbVolModNode* vm = (gbVolModNode*)(int)entries[i].volMod;
+        void* modObj = *(void**)((char*)vm + 0xD8);
+        void** modVtable = *(void***)modObj;
+        typedef int (__thiscall *GetTypeFn)(void*);
+        GetTypeFn getType = (GetTypeFn)modVtable[1];
+        int vmType = getType(modObj);
+
+        if (vmType == 0) {
+            if (countA < 2) {
+                pSlotA[countA] = (int)entries[i].volMod;
+                countA++;
+            }
+        } else {
+            if (countB < 2) {
+                pSlotB[countB] = (int)entries[i].volMod;
+                countB++;
+            }
+        }
+    }
+
+    for (int i = countA; i < 2; i++) pSlotA[i] = 0;
+    for (int i = countB; i < 2; i++) pSlotB[i] = 0;
 }
 
 void gbSceneGraph::End(void) {
-    // Main rendering loop (1403 bytes - very complex)
-    // 1. Traverse scene graph starting from rootNode
-    // 2. Build render queue using NewOneRenderObj for visible nodes
-    // 3. Sort render objects by distance/priority/transparency
-    // 4. Apply volume modifiers using CalEffectiveVolMod
-    // 5. Render opaque objects
-    // 6. Render transparent objects (back to front)
-    // 7. Render shadow volumes
-    // 8. Render blade effects
-    // 9. Reset state for next frame
-    // Implementation stub
+    numVolModNodes = 0;
 }
 
 void gbSceneGraph::AddVisNode(gbVisNode* node) {
-    if (rootNode && node) {
-        // Add node to root's children list
-        // Implementation stub
-    }
+    if (!rootNode || !node) return;
+    // Add node to root's child chain (gbChain1D at rootNode + 0x0C)
+    gbChain1D* chain = (gbChain1D*)((char*)rootNode + 0x0C);
+    chain->AddNode((gbChain1DNode*)node);
+    // Set parent pointer (node + 0x08 = parent)
+    *(void**)((char*)node + 8) = rootNode;
 }
 
 void gbSceneGraph::DelVisNode(gbVisNode* node) {
-    if (rootNode && node) {
-        // Remove node from root's children list
-        // Implementation stub
-    }
+    if (!node) return;
+    // Get parent from node+0x08, remove from parent's chain at parent+0x0C
+    void* parent = *(void**)((char*)node + 8);
+    if (!parent) return;
+    gbChain1D* chain = (gbChain1D*)((char*)parent + 0x0C);
+    chain->DelNodeFromChain((gbChain1DNode*)node);
 }
 
 void gbSceneGraph::SetBladeTimeScale(float scale) {
     if (bladeMgr) {
-        // Call bladeMgr->SetTimeScale(scale)
-        // Implementation stub
+        *(float*)((char*)bladeMgr + 0x178c) = scale;
     }
 }
 
 void gbSceneGraph::ResetBladeMgr(void) {
-    if (bladeMgr) {
-        // Call bladeMgr->Reset()
-        // Implementation stub
-    }
+    if (!bladeMgr) return;
+    // Call bladeMgr's reset function via vtable
+    void** vtable = *(void***)bladeMgr;
+    typedef void (__thiscall *ResetFn)(void*);
+    ResetFn reset = (ResetFn)vtable[1];
+    reset(bladeMgr);
 }

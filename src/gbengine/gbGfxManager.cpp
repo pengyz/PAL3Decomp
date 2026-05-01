@@ -156,22 +156,33 @@ void gbGfxManager::SetTransform(int type, gbMatrix4* matrix) {
 }
 
 // 0x1001e220 (158B) - Clip a bounding volume against the view frustum
-// Returns: 0 = fully outside, 1 = partially inside, 2 = fully inside
+// Returns: 1 = outside frustum (clipped), 0 = inside (visible)
 int gbGfxManager::ClipBoundVolume(gbAABBox* box) {
-    if (!box || !pCamera)
-        return 0;
+    float planes[24];
+    float* pBox = (float*)box;
 
-    // Delegate to camera's clip method
-    // The camera maintains 6 frustum planes and tests the AABB against them
-    gbVec3D minPt, maxPt;
-    minPt = box->vMin;
-    maxPt = box->vMax;
+    // Get frustum planes from camera via virtual call (vtable offset 0x40 = slot 16)
+    // This retrieves 6 planes, each with (nx, ny, nz, d) = 24 floats
+    typedef void (__thiscall *GetFrustumPlanesFn)(void*, float*, int);
+    void** vtable = *(void***)this;
+    GetFrustumPlanesFn getFrustumPlanes = (GetFrustumPlanesFn)vtable[16];
+    getFrustumPlanes(this, planes, 0);
 
-    // Quick test: call the camera's AABB clip
-    // flags parameter 0x3F means test all 6 planes
-    // Return value uses same convention: 0=out, 1=partial, 2=in
-    // We implement a simplified version here; real logic is in gbCamera::ClipAABBox
-    return 1; // assume partially visible as fallback
+    for (int i = 0; i < 6; i++) {
+        float nx = planes[i * 4 + 0];
+        float ny = planes[i * 4 + 1];
+        float nz = planes[i * 4 + 2];
+        float d  = planes[i * 4 + 3];
+
+        float px = (nx <= 0.0f) ? pBox[0] : pBox[3];
+        float py = (ny <= 0.0f) ? pBox[1] : pBox[4];
+        float pz = (nz <= 0.0f) ? pBox[2] : pBox[5];
+
+        if (px * nx + py * ny + pz * nz + d < 0.0f) {
+            return 1;
+        }
+    }
+    return 0;
 }
 
 // 0x10004ff0 (34B) - Enable/disable emissive lighting
@@ -223,21 +234,17 @@ gbMatrixStack* gbGfxManager::GetMatrixStack(int index) {
 
 // 0x10004ee0 (16B) - Get print font by type
 gbPrintFont* gbGfxManager::GetPrintFont(int fontType) {
-    // In the real engine, this calls pFontMgr->GetFont(fontType)
-    // We return NULL as a stub since we don't have the font manager fully defined
-    return NULL;
+    return ((gbPrintFont**)pFontMgr)[fontType];
 }
 
 // 0x10004f50 (20B) - Get light object by index
 const gbLight* gbGfxManager::GetLight(int index) const {
-    // Light objects are stored in an array inside the GfxManager
-    // Stub: return NULL
-    return NULL;
+    return &m_lights[index];
 }
 
 // 0x10004f70 (14B) - Check if a light is enabled
 int gbGfxManager::IsLightEnable(int index) const {
-    return 0;
+    return m_lightEnable[index];
 }
 
 // 0x1001df40 (37B) - Get a combined transform matrix
@@ -259,25 +266,31 @@ void gbGfxManager::GetTMMatrix(int type, gbMatrix4* out) {
 
 // 0x1001e070 (24B) - Get current viewport
 void gbGfxManager::GetViewport(gbViewPort& pViewport) {
-    // In the real engine, calls IDirect3DDevice9::GetViewport()
-    // and converts to the gbViewPort structure
+    memcpy(&pViewport, &m_viewport, sizeof(gbViewPort));
 }
 
 // 0x1001e090 (35B) - Set clear parameters (color, depth, stencil)
 void gbGfxManager::SetClearParam(gbClearParam* pParam) {
-    // Stores clear color/depth/stencil values for BeginScene's Clear call
+    memcpy(&m_clearParam, pParam, sizeof(gbClearParam));
 }
 
 // 0x1001e160 (189B) - Create a new mesh resource
 gbBaseMesh* gbGfxManager::NewMesh(const char* name, gbMeshType type) {
-    // In the real engine, allocates a gbStaticMesh or derived class
-    // and registers it with the resource manager
+    if (type == MESH_STATIC) {
+        gbStaticMesh* mesh = new gbStaticMesh(this);
+        return mesh;
+    } else if (type == MESH_SKINNED) {
+        gbStaticMesh* mesh = new gbStaticMesh(this);
+        return mesh;
+    }
     return NULL;
 }
 
 // 0x1001e2c0 (36B) - Offset Z-buffer for decal rendering
 void gbGfxManager::OffsetZBuffer(int enable) {
-    // Sets D3DRS_DEPTHBIAS / D3DRS_SLOPESCALEDEPTHBIAS
+    if (enable != m_zBufferOffset) {
+        m_zBufferOffset = enable;
+    }
 }
 
 // 0x1001e2f0 (13B) - Set wireframe rendering mode
@@ -288,7 +301,11 @@ void gbGfxManager::SetWireMode(int mode) {
 
 // 0x1001e300 (38B) - Set fog parameters
 void gbGfxManager::SetFog(gbFogParam* pFogParam) {
-    // Sets D3DRS_FOGENABLE, D3DRS_FOGCOLOR, D3DRS_FOGSTART, D3DRS_FOGEND, etc.
+    if (pFogParam == NULL) {
+        m_fogParam.enable = 0;
+        return;
+    }
+    memcpy(&m_fogParam, pFogParam, sizeof(gbFogParam));
 }
 
 // 0x1001e330 (55B) - Get world matrix (const reference)
@@ -357,7 +374,7 @@ float gbGfxManager::GetEmissiveFactor(void) {
 
 // Exported: GetFog
 gbFogParam* gbGfxManager::GetFog(void) {
-    return NULL;
+    return &m_fogParam;
 }
 
 // Exported: GetGraphWnd
@@ -382,7 +399,7 @@ gbSceneGraph* gbGfxManager::GetSceneGraph(void) {
 
 // Exported: GetStatistic
 gbGfxStatistic* gbGfxManager::GetStatistic(void) {
-    return NULL;
+    return &m_statistic;
 }
 
 // Exported: GetVertPoolMgr
@@ -759,8 +776,21 @@ gbRenderEffect* gbEffectMgr::NewRenderEffect(const char* filename, unsigned int 
 
 // 0x1001d840 (107B) - Create a trivial (fixed-function emulation) effect
 gbRenderEffect* gbEffectMgr::NewTrivalEffect(int type) {
-    // In the real engine, this creates a simple pass-through effect
-    // for fixed-function pipeline emulation
+    if (type == 0) {
+        return NewRenderEffect("gfxscript\\ui.gbf", 0);
+    }
+    if (type == 1) {
+        return NewRenderEffect("gfxscript\\font.gbf", 0);
+    }
+    if (type == 2) {
+        return NewRenderEffect("gfxscript\\geom.gbf", 0);
+    }
+    if (type == 3) {
+        return NewRenderEffect("gfxscript\\line.gbf", 0);
+    }
+    if (type == 4) {
+        return NewRenderEffect("gfxscript\\sprite.gbf", 0);
+    }
     return NULL;
 }
 
@@ -779,11 +809,17 @@ gbRenderEffect* gbEffectMgr::GetDefaultEffect(void) {
 }
 
 // Exported: GetGrayTexture
+// Returns cached gray texture from internal field (not yet mapped in header)
 gbTexture* gbEffectMgr::GetGrayTexture(void) {
+    // TODO: return m_pGrayTexture once field is added to gbEffectMgr
+    (void)0;
     return NULL;
 }
 
 // Exported: GetWhiteTexture
+// Returns cached white texture from internal field (not yet mapped in header)
 gbTexture* gbEffectMgr::GetWhiteTexture(void) {
+    // TODO: return m_pWhiteTexture once field is added to gbEffectMgr
+    (void)0;
     return NULL;
 }

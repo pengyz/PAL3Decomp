@@ -7,6 +7,8 @@
 #include "gbengine/gbengine_types.h"
 #include <windows.h>
 #include <stdarg.h>
+#include <math.h>
+#include <string.h>
 
 #pragma warning(disable: 4100 4731 4716 4101)
 
@@ -168,10 +170,21 @@ public:
 //   Unload (?Unload@CPK@@QAE_NXZ)
 
 // ========= gbAABBox (methods for header-defined type) =========
-gbAABBox::gbAABBox() {}
-struct gbAABBox & gbAABBox::operator=(struct gbAABBox const & p0) { return *this; }
-int gbAABBox::IsColAABB(struct gbAABBox & p0) { return 0; }
-int gbAABBox::IsColPoint(struct gbVec3D & p0) { return 0; }
+gbAABBox::gbAABBox() { vMin.x = vMin.y = vMin.z = 0.0f; vMax.x = vMax.y = vMax.z = 0.0f; }
+struct gbAABBox & gbAABBox::operator=(struct gbAABBox const & p0) { vMin = p0.vMin; vMax = p0.vMax; return *this; }
+int gbAABBox::IsColAABB(struct gbAABBox & p0) {
+    if (p0.vMin.x <= vMax.x && vMin.x <= p0.vMax.x &&
+        p0.vMin.y <= vMax.y && vMin.y <= p0.vMax.y &&
+        p0.vMin.z <= vMax.z && vMin.z <= p0.vMax.z)
+        return 1;
+    return 0;
+}
+int gbAABBox::IsColPoint(struct gbVec3D & p0) {
+    if (vMin.x <= p0.x && vMin.y <= p0.y && vMin.z <= p0.z &&
+        p0.x <= vMax.x && p0.y <= vMax.y && p0.z <= vMax.z)
+        return 1;
+    return 0;
+}
 void gbAABBox::Transform(struct gbMatrix4 * p0) {  }
 
 // ========= gbActor (SKIP: partially implemented elsewhere) =========
@@ -469,19 +482,25 @@ public:
 // ========= gbChain2DNode (implemented in gbChain.cpp) =========
 
 // ========= gbColorFlt (methods for header-defined type) =========
-gbColorFlt::gbColorFlt(float p0, float p1, float p2) {}
-gbColorFlt::gbColorFlt(float p0, float p1, float p2, float p3) {}
-gbColorFlt::gbColorFlt() {}
-struct gbColorFlt & gbColorFlt::operator=(struct gbColorFlt const & p0) { return *this; }
-int gbColorFlt::operator!=(struct gbColorFlt & p0) { return 0; }
-void gbColorFlt::operator+=(struct gbColorFlt const & p0) {  }
+gbColorFlt::gbColorFlt(float p0, float p1, float p2) { r = p0; g = p1; b = p2; a = 1.0f; }
+gbColorFlt::gbColorFlt(float p0, float p1, float p2, float p3) { r = p0; g = p1; b = p2; a = p3; }
+gbColorFlt::gbColorFlt() { r = g = b = a = 0.0f; }
+struct gbColorFlt & gbColorFlt::operator=(struct gbColorFlt const & p0) { r = p0.r; g = p0.g; b = p0.b; a = p0.a; return *this; }
+int gbColorFlt::operator!=(struct gbColorFlt & p0) { return (r != p0.r || g != p0.g || b != p0.b || a != p0.a) ? 1 : 0; }
+void gbColorFlt::operator+=(struct gbColorFlt const & p0) { r += p0.r; g += p0.g; b += p0.b; a += p0.a; }
 
 // ========= gbColorQuad (methods for header-defined type) =========
-gbColorQuad::gbColorQuad(struct gbColorQuad & p0) {}
-gbColorQuad::gbColorQuad(unsigned char p0, unsigned char p1, unsigned char p2) {}
-gbColorQuad::gbColorQuad(unsigned char p0, unsigned char p1, unsigned char p2, unsigned char p3) {}
-gbColorQuad::gbColorQuad() {}
-struct gbColorQuad & gbColorQuad::operator=(struct gbColorQuad const & p0) { return *this; }
+gbColorQuad::gbColorQuad(struct gbColorQuad & p0) { *(unsigned int*)this = *(unsigned int*)&p0; }
+gbColorQuad::gbColorQuad(unsigned char p0, unsigned char p1, unsigned char p2) {
+    if (ColorQuadFmt == 0) { r = p0; g = p1; b = p2; a = 0xFF; }
+    else { b = p2; g = p1; r = p0; a = 0xFF; }
+}
+gbColorQuad::gbColorQuad(unsigned char p0, unsigned char p1, unsigned char p2, unsigned char p3) {
+    if (ColorQuadFmt == 0) { r = p0; g = p1; b = p2; a = p3; }
+    else { b = p2; g = p1; r = p0; a = p3; }
+}
+gbColorQuad::gbColorQuad() { b = g = r = a = 0; }
+struct gbColorQuad & gbColorQuad::operator=(struct gbColorQuad const & p0) { *(unsigned int*)this = *(unsigned int*)&p0; return *this; }
 int gbColorQuad::ColorQuadFmt;
 
 // ========= gbDropGroup (SKIP: partially implemented elsewhere) =========
@@ -934,43 +953,342 @@ public:
 };
 
 // ========= gbMatrix4 (methods for header-defined type) =========
-gbMatrix4::gbMatrix4() {}
-void gbMatrix4::operator=(struct gbMatrix4 const & p0) {  }
-float gbMatrix4::operator()(int p0, int p1) { return 0.0f; }
-void gbMatrix4::operator*=(struct gbMatrix4 const & p0) {  }
-void gbMatrix4::operator*=(struct gbQuaternion const & p0) {  }
-void gbMatrix4::operator*=(float const * p0) {  }
-struct gbVec3D * gbMatrix4::GetColumn(struct gbVec3D * p0, int p1) const { return 0; }
-struct gbVec4D * gbMatrix4::GetColumn(struct gbVec4D * p0, int p1) const { return 0; }
-struct gbVec3D * gbMatrix4::GetRow(struct gbVec3D * p0, int p1) const { return 0; }
-struct gbVec4D * gbMatrix4::GetRow(struct gbVec4D * p0, int p1) const { return 0; }
-void gbMatrix4::Invert(struct gbMatrix4 * p0) const {  }
-bool gbMatrix4::IsIdentity() const { return false; }
-bool gbMatrix4::IsOrthonormal() const { return false; }
-bool gbMatrix4::IsValid() const { return false; }
-void gbMatrix4::LeftMultiply(struct gbMatrix4 const & p0) {  }
-void gbMatrix4::LeftMultiply(struct gbQuaternion const & p0) {  }
-void gbMatrix4::LeftScale(float p0, float p1, float p2) {  }
-void gbMatrix4::LeftTranslate(struct gbVec3D & p0) {  }
-void gbMatrix4::LeftTranslate(float p0, float p1, float p2) {  }
-void gbMatrix4::LoadIdentity() {  }
-void gbMatrix4::MakeMatrix(struct gbVec3D & p0, struct gbVec3D & p1, struct gbVec3D & p2) {  }
-void gbMatrix4::RightMultiply(struct gbMatrix4 const & p0) {  }
-void gbMatrix4::RightMultiply(struct gbQuaternion const & p0) {  }
-void gbMatrix4::RightScale(float p0, float p1, float p2) {  }
-void gbMatrix4::RightTranslate(struct gbVec3D & p0) {  }
-void gbMatrix4::RightTranslate(float p0, float p1, float p2) {  }
-void gbMatrix4::Rotate(struct gbVec3D const * p0, struct gbVec3D * p1) const {  }
-void gbMatrix4::RotateIn(struct gbVec3D * p0) {  }
-void gbMatrix4::SetAxisAngle(struct gbVec3D * p0, float p1) {  }
-void gbMatrix4::SetAxisAngle(enum gbAxis p0, float p1) {  }
-void gbMatrix4::SetAxisAngle(enum gbAxis p0, float p1, float p2) {  }
-void gbMatrix4::Transform(struct gbVec3D * p0, struct gbVec3D * p1, int p2) const {  }
-void gbMatrix4::Transform(struct gbVec3D * p0, int p1) const {  }
-void gbMatrix4::Transform(struct gbVec3D const * p0, struct gbVec3D * p1) const {  }
-void gbMatrix4::TransformPlane(float * const p0) {  }
-void gbMatrix4::Transform_W(struct gbVec3D * p0, struct gbVec3D * p1, int p2) const {  }
-void gbMatrix4::Transpose(struct gbMatrix4 * p0) const {  }
+gbMatrix4::gbMatrix4() {
+    memset(m, 0, sizeof(m));
+    m[0][0] = 1.0f;
+    m[1][1] = 1.0f;
+    m[2][2] = 1.0f;
+    m[3][3] = 1.0f;
+}
+
+void gbMatrix4::operator=(struct gbMatrix4 const & p0) {
+    memcpy(m, p0.m, sizeof(m));
+}
+
+float gbMatrix4::operator()(int p0, int p1) { return m[p0][p1]; }
+
+void gbMatrix4::operator*=(struct gbMatrix4 const & p0) {
+    RightMultiply(p0);
+}
+
+void gbMatrix4::operator*=(struct gbQuaternion const & p0) {
+    RightMultiply(p0);
+}
+
+void gbMatrix4::operator*=(float const * p0) {
+    float tmp[4][4];
+    memcpy(tmp, m, sizeof(tmp));
+    for (int i = 0; i < 4; i++) {
+        for (int j = 0; j < 4; j++) {
+            m[i][j] = 0.0f;
+            for (int k = 0; k < 4; k++) {
+                m[i][j] += tmp[i][k] * p0[k * 4 + j];
+            }
+        }
+    }
+}
+
+struct gbVec3D * gbMatrix4::GetColumn(struct gbVec3D * p0, int p1) const {
+    p0->x = m[0][p1];
+    p0->y = m[1][p1];
+    p0->z = m[2][p1];
+    return p0;
+}
+
+struct gbVec4D * gbMatrix4::GetColumn(struct gbVec4D * p0, int p1) const {
+    p0->x = m[0][p1];
+    p0->y = m[1][p1];
+    p0->z = m[2][p1];
+    p0->w = m[3][p1];
+    return p0;
+}
+
+struct gbVec3D * gbMatrix4::GetRow(struct gbVec3D * p0, int p1) const {
+    p0->x = m[p1][0];
+    p0->y = m[p1][1];
+    p0->z = m[p1][2];
+    return p0;
+}
+
+struct gbVec4D * gbMatrix4::GetRow(struct gbVec4D * p0, int p1) const {
+    p0->x = m[p1][0];
+    p0->y = m[p1][1];
+    p0->z = m[p1][2];
+    p0->w = m[p1][3];
+    return p0;
+}
+
+void gbMatrix4::Invert(struct gbMatrix4 * p0) const {
+    float cofactor00 = m[1][1] * m[2][2] - m[2][1] * m[1][2];
+    float cofactor10 = -(m[1][0] * m[2][2] - m[2][0] * m[1][2]);
+    float cofactor20 = m[2][1] * m[1][0] - m[2][0] * m[1][1];
+
+    float det = cofactor00 * m[0][0] + cofactor10 * m[0][1] + cofactor20 * m[0][2];
+    float invDet = 1.0f / det;
+
+    p0->m[0][0] = cofactor00 * invDet;
+    p0->m[0][1] = -((m[0][1] * m[2][2] - m[2][1] * m[0][2]) * invDet);
+    p0->m[0][2] = (m[0][1] * m[1][2] - m[0][2] * m[1][1]) * invDet;
+    p0->m[0][3] = 0.0f;
+
+    p0->m[1][0] = cofactor10 * invDet;
+    p0->m[1][1] = (m[0][0] * m[2][2] - m[2][0] * m[0][2]) * invDet;
+    p0->m[1][2] = -((m[0][0] * m[1][2] - m[1][0] * m[0][2]) * invDet);
+    p0->m[1][3] = 0.0f;
+
+    p0->m[2][0] = cofactor20 * invDet;
+    p0->m[2][1] = -((m[2][1] * m[0][0] - m[2][0] * m[0][1]) * invDet);
+    p0->m[2][2] = (m[1][1] * m[0][0] - m[1][0] * m[0][1]) * invDet;
+    p0->m[2][3] = 0.0f;
+
+    p0->m[3][0] = -(p0->m[0][0] * m[3][0] + p0->m[1][0] * m[3][1] + p0->m[2][0] * m[3][2]);
+    p0->m[3][1] = -(p0->m[0][1] * m[3][0] + p0->m[1][1] * m[3][1] + p0->m[2][1] * m[3][2]);
+    p0->m[3][2] = -(p0->m[0][2] * m[3][0] + p0->m[1][2] * m[3][1] + p0->m[2][2] * m[3][2]);
+    p0->m[3][3] = 1.0f;
+}
+
+bool gbMatrix4::IsIdentity() const {
+    float *p = (float *)m;
+    for (int i = 0; i < 4; i++) {
+        for (int j = 0; j < 4; j++) {
+            if (i == j) {
+                if (*p != 1.0f) return false;
+            } else {
+                if (*p != 0.0f) return false;
+            }
+            p++;
+        }
+    }
+    return true;
+}
+
+bool gbMatrix4::IsOrthonormal() const {
+    float zx = m[0][2], zy = m[1][2], zz = m[2][2];
+    float zlen = (float)sqrt(zx * zx + zy * zy + zz * zz);
+    if (fabs(zlen) >= 0.005f) {
+        zx /= zlen; zy /= zlen; zz /= zlen;
+    } else {
+        zx = 0.0f; zy = 1.0f; zz = 0.0f;
+    }
+
+    float cx = m[2][1] * m[1][0] - m[1][1] * m[2][0];
+    float cy = m[0][1] * m[2][0] - m[2][1] * m[0][0];
+    float cz = m[1][1] * m[0][0] - m[0][1] * m[1][0];
+    float clen = (float)sqrt(cx * cx + cy * cy + cz * cz);
+    if (fabs(clen) >= 0.005f) {
+        cx /= clen; cy /= clen; cz /= clen;
+    } else {
+        cx = 0.0f; cy = 1.0f; cz = 0.0f;
+    }
+
+    bool bVar3;
+    if (fabs(cx - zx) < 0.005f && fabs(cy - zy) < 0.005f && fabs(cz - zz) < 0.005f) {
+        bVar3 = true;
+    } else if (fabs(cx - (-zx)) < 0.005f && fabs(cy - (-zy)) < 0.005f && fabs(cz - (-zz)) < 0.005f) {
+        bVar3 = true;
+    } else {
+        bVar3 = false;
+    }
+
+    if (m[3][0] * m[3][0] >= 0.0f && m[3][1] * m[3][1] >= 0.0f && m[3][2] * m[3][2] >= 0.0f) {
+        return bVar3;
+    }
+    return false;
+}
+
+bool gbMatrix4::IsValid() const {
+    if (this == 0) return false;
+    float *p = (float *)m;
+    for (int i = 0; i < 16; i++) {
+        if (p[i] * p[i] < 0.0f) return false;
+    }
+    return true;
+}
+
+void gbMatrix4::LeftMultiply(struct gbMatrix4 const & p0) {
+    float tmp[4][4];
+    memcpy(tmp, m, sizeof(tmp));
+    for (int i = 0; i < 4; i++) {
+        for (int j = 0; j < 4; j++) {
+            m[i][j] = 0.0f;
+            for (int k = 0; k < 4; k++) {
+                m[i][j] += p0.m[i][k] * tmp[k][j];
+            }
+        }
+    }
+}
+
+void gbMatrix4::LeftMultiply(struct gbQuaternion const & p0) {
+    gbMatrix4 qm;
+    p0.GetMatrix(&qm);
+    LeftMultiply(qm);
+}
+
+void gbMatrix4::LeftScale(float p0, float p1, float p2) {
+    m[0][0] *= p0; m[0][1] *= p0; m[0][2] *= p0;
+    m[1][0] *= p1; m[1][1] *= p1; m[1][2] *= p1;
+    m[2][0] *= p2; m[2][1] *= p2; m[2][2] *= p2;
+}
+
+void gbMatrix4::LeftTranslate(struct gbVec3D & p0) {
+    m[3][0] += p0.x * m[0][0] + p0.y * m[1][0] + p0.z * m[2][0];
+    m[3][1] += p0.x * m[0][1] + p0.y * m[1][1] + p0.z * m[2][1];
+    m[3][2] += p0.x * m[0][2] + p0.y * m[1][2] + p0.z * m[2][2];
+}
+
+void gbMatrix4::LeftTranslate(float p0, float p1, float p2) {
+    m[3][0] += p0 * m[0][0] + p1 * m[1][0] + p2 * m[2][0];
+    m[3][1] += p0 * m[0][1] + p1 * m[1][1] + p2 * m[2][1];
+    m[3][2] += p0 * m[0][2] + p1 * m[1][2] + p2 * m[2][2];
+}
+
+void gbMatrix4::LoadIdentity() {
+    memset(m, 0, sizeof(m));
+    m[0][0] = 1.0f;
+    m[1][1] = 1.0f;
+    m[2][2] = 1.0f;
+    m[3][3] = 1.0f;
+}
+
+void gbMatrix4::RightMultiply(struct gbMatrix4 const & p0) {
+    float tmp[4][4];
+    memcpy(tmp, m, sizeof(tmp));
+    for (int i = 0; i < 4; i++) {
+        for (int j = 0; j < 4; j++) {
+            m[i][j] = 0.0f;
+            for (int k = 0; k < 4; k++) {
+                m[i][j] += tmp[i][k] * p0.m[k][j];
+            }
+        }
+    }
+}
+
+void gbMatrix4::RightMultiply(struct gbQuaternion const & p0) {
+    gbMatrix4 qm;
+    p0.GetMatrix(&qm);
+    RightMultiply(qm);
+}
+
+void gbMatrix4::RightScale(float p0, float p1, float p2) {
+    m[0][0] *= p0; m[1][0] *= p0; m[2][0] *= p0; m[3][0] *= p0;
+    m[0][1] *= p1; m[1][1] *= p1; m[2][1] *= p1; m[3][1] *= p1;
+    m[0][2] *= p2; m[1][2] *= p2; m[2][2] *= p2; m[3][2] *= p2;
+}
+
+void gbMatrix4::RightTranslate(struct gbVec3D & p0) {
+    m[3][0] += p0.x;
+    m[3][1] += p0.y;
+    m[3][2] += p0.z;
+}
+
+void gbMatrix4::RightTranslate(float p0, float p1, float p2) {
+    m[3][0] += p0;
+    m[3][1] += p1;
+    m[3][2] += p2;
+}
+
+void gbMatrix4::Rotate(struct gbVec3D const * p0, struct gbVec3D * p1) const {
+    p1->x = p0->x * m[0][0] + p0->y * m[1][0] + p0->z * m[2][0];
+    p1->y = p0->x * m[0][1] + p0->y * m[1][1] + p0->z * m[2][1];
+    p1->z = p0->x * m[0][2] + p0->y * m[1][2] + p0->z * m[2][2];
+}
+
+void gbMatrix4::RotateIn(struct gbVec3D * p0) {
+    float x = p0->x, y = p0->y;
+    p0->x = x * m[0][0] + y * m[1][0] + p0->z * m[2][0];
+    p0->y = x * m[0][1] + y * m[1][1] + p0->z * m[2][1];
+    p0->z = x * m[0][2] + y * m[1][2] + p0->z * m[2][2];
+}
+
+void gbMatrix4::SetAxisAngle(struct gbVec3D * p0, float p1) {
+    float halfRad = p1 * 0.5f * 0.017453292f;
+    float cosA = (float)cos(halfRad);
+    float sinA = (float)sin(halfRad);
+    gbQuaternion q;
+    q.x = sinA * p0->x;
+    q.y = sinA * p0->y;
+    q.z = sinA * p0->z;
+    q.w = cosA;
+    q.GetMatrix(this);
+}
+
+void gbMatrix4::SetAxisAngle(enum gbAxis p0, float p1) {
+    float rad = p1 * 0.017453292f;
+    float c = (float)cos(rad);
+    float s = (float)sin(rad);
+    SetAxisAngle(p0, c, s);
+}
+
+void gbMatrix4::SetAxisAngle(enum gbAxis p0, float p1, float p2) {
+    memset(m, 0, sizeof(m));
+    m[3][3] = 1.0f;
+    if (p0 == GB_AXIS_X) {
+        m[0][0] = 1.0f;
+        m[1][1] = p1;
+        m[1][2] = p2;
+        m[2][1] = -p2;
+        m[2][2] = p1;
+    } else if (p0 == GB_AXIS_Y) {
+        m[1][1] = 1.0f;
+        m[0][0] = p1;
+        m[2][0] = p2;
+        m[0][2] = -p2;
+        m[2][2] = p1;
+    } else if (p0 == GB_AXIS_Z) {
+        m[2][2] = 1.0f;
+        m[0][0] = p1;
+        m[0][1] = p2;
+        m[1][0] = -p2;
+        m[1][1] = p1;
+    }
+}
+
+void gbMatrix4::Transform(struct gbVec3D * p0, struct gbVec3D * p1, int p2) const {
+    if (p2 <= 0) return;
+    for (int i = 0; i < p2; i++) {
+        p1[i].x = p0[i].x * m[0][0] + p0[i].y * m[1][0] + p0[i].z * m[2][0] + m[3][0];
+        p1[i].y = p0[i].x * m[0][1] + p0[i].y * m[1][1] + p0[i].z * m[2][1] + m[3][1];
+        p1[i].z = p0[i].x * m[0][2] + p0[i].y * m[1][2] + p0[i].z * m[2][2] + m[3][2];
+    }
+}
+
+void gbMatrix4::Transform(struct gbVec3D * p0, int p1) const {
+    if (p1 <= 0) return;
+    for (int i = 0; i < p1; i++) {
+        float x = p0[i].x, y = p0[i].y, z = p0[i].z;
+        p0[i].x = x * m[0][0] + y * m[1][0] + z * m[2][0] + m[3][0];
+        p0[i].y = x * m[0][1] + y * m[1][1] + z * m[2][1] + m[3][1];
+        p0[i].z = x * m[0][2] + y * m[1][2] + z * m[2][2] + m[3][2];
+    }
+}
+
+void gbMatrix4::Transform(struct gbVec3D const * p0, struct gbVec3D * p1) const {
+    p1->x = p0->x * m[0][0] + p0->y * m[1][0] + p0->z * m[2][0] + m[3][0];
+    p1->y = p0->x * m[0][1] + p0->y * m[1][1] + p0->z * m[2][1] + m[3][1];
+    p1->z = p0->x * m[0][2] + p0->y * m[1][2] + p0->z * m[2][2] + m[3][2];
+}
+
+void gbMatrix4::Transform_W(struct gbVec3D * p0, struct gbVec3D * p1, int p2) const {
+    if (p2 <= 0) return;
+    for (int i = 0; i < p2; i++) {
+        float x = p0[i].x, y = p0[i].y, z = p0[i].z;
+        p1[i].x = x * m[0][0] + y * m[1][0] + z * m[2][0] + m[3][0];
+        p1[i].y = x * m[0][1] + y * m[1][1] + z * m[2][1] + m[3][1];
+        p1[i].z = x * m[0][2] + y * m[1][2] + z * m[2][2] + m[3][2];
+        float w = x * m[0][3] + y * m[1][3] + z * m[2][3] + m[3][3];
+        p1[i].x /= w;
+        p1[i].y /= w;
+        p1[i].z /= w;
+    }
+}
+
+void gbMatrix4::Transpose(struct gbMatrix4 * p0) const {
+    for (int i = 0; i < 4; i++) {
+        for (int j = 0; j < 4; j++) {
+            p0->m[j][i] = m[i][j];
+        }
+    }
+}
 
 // ========= gbMatrixStack =========
 class gbMatrixStack {
@@ -1080,15 +1398,40 @@ public:
 };
 
 // ========= gbOBBox (methods for header-defined type) =========
-gbOBBox::gbOBBox() {}
-struct gbOBBox & gbOBBox::operator=(struct gbOBBox const & p0) { return *this; }
-void gbOBBox::GetAABBox(struct gbAABBox & p0) {  }
-struct gbVec3D gbOBBox::GetCenter() const { static struct gbVec3D _stub = {}; return _stub; }
-float gbOBBox::GetRadius() const { return 0.0f; }
+gbOBBox::gbOBBox() { memset(&matrix, 0, sizeof(matrix)); extent.x = extent.y = extent.z = 0.0f; }
+struct gbOBBox & gbOBBox::operator=(struct gbOBBox const & p0) { memcpy(this, &p0, sizeof(gbOBBox)); return *this; }
+void gbOBBox::GetAABBox(struct gbAABBox & p0) {
+    p0.vMin.x = extent.x * -0.5f;
+    p0.vMin.y = extent.y * -0.5f;
+    p0.vMin.z = extent.z * -0.5f;
+    p0.vMax.x = extent.x * 0.5f;
+    p0.vMax.y = extent.y * 0.5f;
+    p0.vMax.z = extent.z * 0.5f;
+    p0.Transform(&matrix);
+}
+struct gbVec3D gbOBBox::GetCenter() const {
+    gbVec3D c;
+    c.x = matrix.m[3][0];
+    c.y = matrix.m[3][1];
+    c.z = matrix.m[3][2];
+    return c;
+}
+float gbOBBox::GetRadius() const {
+    return (float)sqrt(extent.x * extent.x + extent.y * extent.y + extent.z * extent.z) * 0.5f;
+}
 float gbOBBox::GetRadiusInDirection(struct gbVec3D const & p0) const { return 0.0f; }
-void gbOBBox::GetSphere(struct gbSphere & p0) {  }
-int gbOBBox::IsColOBB(struct gbOBBox * p0) { return 0; }
-int gbOBBox::IsColPoint(struct gbVec3D & p0) { return 0; }
+int gbOBBox::IsColPoint(struct gbVec3D & p0) {
+    float cx = -matrix.m[3][0];
+    float cy = -matrix.m[3][1];
+    float cz = -matrix.m[3][2];
+    float d0 = (cx * matrix.m[0][0] + cy * matrix.m[0][1] + cz * matrix.m[0][2]) * 2.0f;
+    float d1 = (cx * matrix.m[1][0] + cy * matrix.m[1][1] + cz * matrix.m[1][2]) * 2.0f;
+    float d2 = (cx * matrix.m[2][0] + cy * matrix.m[2][1] + cz * matrix.m[2][2]) * 2.0f;
+    if (-extent.x < d0 && -extent.y < d1 && -extent.z < d2 &&
+        d0 < extent.x && d1 < extent.y && d2 < extent.z)
+        return 1;
+    return 0;
+}
 
 // ========= gbPartEmitter (SKIP: partially implemented elsewhere) =========
 // Missing 1 methods - add to existing source file:
@@ -1144,18 +1487,10 @@ public:
 
 // ========= gbPixelFormat (methods for header-defined type) =========
 class gbPixelFormat & gbPixelFormat::operator=(class gbPixelFormat const & p0) { return *this; }
-void gbPixelFormat::Convert(unsigned char * p0, class gbPixelFormat * p1, unsigned char * p2, int p3) {  }
-void gbPixelFormat::Init(int p0, unsigned int p1, unsigned int p2, unsigned int p3, unsigned int p4) {  }
-void gbPixelFormat::Init(int p0, struct gbColorQuad * p1) {  }
-void gbPixelFormat::Init(class gbPixelFormat * p0) {  }
-void gbPixelFormat::Init(enum gbPixelFmtType p0) {  }
-void gbPixelFormat::Release() {  }
 
 // ========= gbPlane (methods for header-defined type) =========
-gbPlane::gbPlane() {}
-struct gbPlane & gbPlane::operator=(struct gbPlane const & p0) { return *this; }
-int gbPlane::IsColAABB(struct gbAABBox & p0) { return 0; }
-int gbPlane::IsColOBB(struct gbOBBox & p0) { return 0; }
+gbPlane::gbPlane() { normal.x = normal.y = normal.z = 0.0f; d = 0.0f; }
+struct gbPlane & gbPlane::operator=(struct gbPlane const & p0) { normal = p0.normal; d = p0.d; return *this; }
 
 // ========= gbPrintFont (SKIP: partially implemented elsewhere) =========
 // Missing 1 methods - add to existing source file:
@@ -1166,26 +1501,157 @@ int gbPlane::IsColOBB(struct gbOBBox & p0) { return 0; }
 //   GetFont (?GetFont@gbPrintFontMgr@@QAEPAVgbPrintFont@@W4gbFontType@@@Z)
 
 // ========= gbQuaternion (methods for header-defined type) =========
-gbQuaternion::gbQuaternion() {}
-struct gbQuaternion & gbQuaternion::operator=(struct gbQuaternion const & p0) { return *this; }
-void gbQuaternion::GetAxisAngle(struct gbVec3D * p0, float * p1) {  }
+gbQuaternion::gbQuaternion() { x = 0.0f; y = 0.0f; z = 0.0f; w = 1.0f; }
+struct gbQuaternion & gbQuaternion::operator=(struct gbQuaternion const & p0) { x = p0.x; y = p0.y; z = p0.z; w = p0.w; return *this; }
+void gbQuaternion::GetAxisAngle(struct gbVec3D * p0, float * p1) {
+    float angle = (float)acos(w) * 57.295776f;
+    if (angle > 1e-05f) {
+        float s = 1.0f / (float)sin(angle * 0.017453292f);
+        p0->x = x * s;
+        p0->y = y * s;
+        p0->z = z * s;
+        *p1 = angle + angle;
+    } else {
+        p0->x = 0.0f;
+        p0->y = 0.0f;
+        p0->z = 1.0f;
+        *p1 = 0.0f;
+    }
+}
 void gbQuaternion::GetMatrix(struct gbMatrix4 * p0) const {  }
-void gbQuaternion::GetVec3D(float * p0, struct gbVec3D * p1) {  }
-void gbQuaternion::Inverse() {  }
-int gbQuaternion::IsNormal() { return 0; }
-bool const gbQuaternion::IsUnit() const { return 0; }
-bool const gbQuaternion::IsValid() const { return 0; }
-float const gbQuaternion::Magnitude() { return 0; }
-void gbQuaternion::MultiplyBy(struct gbQuaternion * p0, struct gbQuaternion * p1) {  }
-float gbQuaternion::Normalize() { return 0.0f; }
-void gbQuaternion::RotateVector(struct gbVec3D * p0, struct gbVec3D * p1) {  }
-void gbQuaternion::SetAxisAngle(struct gbVec3D * p0, float p1) {  }
-void gbQuaternion::SetMatrix(struct gbMatrix4 * p0) {  }
+void gbQuaternion::GetVec3D(float * p0, struct gbVec3D * p1) {
+    *p0 = w;
+    p1->x = x;
+    p1->y = y;
+    p1->z = z;
+}
+void gbQuaternion::Inverse() { x = -x; y = -y; z = -z; }
+int gbQuaternion::IsNormal() {
+    float mag = Magnitude();
+    if (fabs(mag - 1.0f) < 0.005f) return 1;
+    return 0;
+}
+bool const gbQuaternion::IsUnit() const {
+    return (x == 0.0f && y == 0.0f && z == 0.0f && w == 1.0f);
+}
+bool const gbQuaternion::IsValid() const {
+    // Check for NaN/Inf
+    unsigned int* p = (unsigned int*)this;
+    for (int i = 0; i < 4; i++) {
+        if ((p[i] & 0x7F800000) == 0x7F800000) return false;
+    }
+    return true;
+}
+float const gbQuaternion::Magnitude() {
+    return (float)sqrt(x*x + y*y + z*z + w*w);
+}
+void gbQuaternion::MultiplyBy(struct gbQuaternion * p0, struct gbQuaternion * p1) {
+    float ax = x, ay = y, az = z, aw = w;
+    float bx = p0->x, by = p0->y, bz = p0->z, bw = p0->w;
+    p1->w = bw * aw - bx * ax - by * ay - bz * az;
+    p1->x = bx * aw + ax * bw + bz * ay - az * by;
+    p1->y = by * aw + az * bx + ay * bw - bz * ax;
+    p1->z = az * bw + bz * aw + by * ax - ay * bx;
+}
+float gbQuaternion::Normalize() {
+    float mag = Magnitude();
+    if (mag > 0.0f) { float inv = 1.0f / mag; x *= inv; y *= inv; z *= inv; w *= inv; }
+    return mag;
+}
+void gbQuaternion::RotateVector(struct gbVec3D * p0, struct gbVec3D * p1) {
+    gbMatrix4 mat;
+    memset(&mat, 0, sizeof(mat));
+    mat.m[0][0] = 1.0f; mat.m[1][1] = 1.0f; mat.m[2][2] = 1.0f; mat.m[3][3] = 1.0f;
+    GetMatrix(&mat);
+    p1->x = mat.m[0][0] * p0->x + mat.m[1][0] * p0->y + mat.m[2][0] * p0->z;
+    p1->y = mat.m[0][1] * p0->x + mat.m[1][1] * p0->y + mat.m[2][1] * p0->z;
+    p1->z = mat.m[0][2] * p0->x + mat.m[1][2] * p0->y + mat.m[2][2] * p0->z;
+}
+void gbQuaternion::SetAxisAngle(struct gbVec3D * p0, float p1) {
+    float halfAngle = p1 * 0.5f * 0.017453292f;
+    float s = (float)sin(halfAngle);
+    x = p0->x * s;
+    y = p0->y * s;
+    z = p0->z * s;
+    w = (float)cos(halfAngle);
+}
+void gbQuaternion::SetMatrix(struct gbMatrix4 * p0) {
+    float trace = p0->m[0][0] + p0->m[1][1] + p0->m[2][2];
+    if (trace > 0.0f) {
+        float s = (float)sqrt(trace + 1.0f);
+        w = s * 0.5f;
+        s = 0.5f / s;
+        x = (p0->m[1][2] - p0->m[2][1]) * s;
+        y = (p0->m[2][0] - p0->m[0][2]) * s;
+        z = (p0->m[0][1] - p0->m[1][0]) * s;
+    } else {
+        int nxt[3] = {1, 2, 0};
+        int i = 0;
+        if (p0->m[1][1] > p0->m[0][0]) i = 1;
+        if (p0->m[2][2] > p0->m[i][i]) i = 2;
+        int j = nxt[i];
+        int k = nxt[j];
+        float s = (float)sqrt(p0->m[i][i] - (p0->m[j][j] + p0->m[k][k]) + 1.0f);
+        float q[4];
+        q[i] = s * 0.5f;
+        if (s != 0.0f) s = 0.5f / s;
+        q[3] = (p0->m[j][k] - p0->m[k][j]) * s;
+        q[j] = (p0->m[i][j] + p0->m[j][i]) * s;
+        q[k] = (p0->m[i][k] + p0->m[k][i]) * s;
+        x = q[0]; y = q[1]; z = q[2]; w = q[3];
+    }
+}
 void gbQuaternion::SetTwoVector(struct gbVec3D * p0, struct gbVec3D * p1) {  }
-void gbQuaternion::SetUnit() {  }
-void gbQuaternion::SetVec3D(float p0, struct gbVec3D * p1) {  }
-void gbQuaternion::SetYawPitchRoll(float p0, float p1, float p2) {  }
-void gbQuaternion::Slerp(struct gbQuaternion * p0, struct gbQuaternion * p1, float p2) {  }
+void gbQuaternion::SetUnit() { x = 0.0f; y = 0.0f; z = 0.0f; w = 1.0f; }
+void gbQuaternion::SetVec3D(float p0, struct gbVec3D * p1) {
+    w = p0;
+    x = p1->x;
+    y = p1->y;
+    z = p1->z;
+}
+void gbQuaternion::SetYawPitchRoll(float p0, float p1, float p2) {
+    float hp = p1 * 0.5f * 0.017453292f;
+    float sp = (float)sin(hp);
+    float cp = (float)cos(hp);
+    float hy = p0 * 0.5f * 0.017453292f;
+    float sy = (float)sin(hy);
+    float cy = (float)cos(hy);
+    float hr = p2 * 0.5f * 0.017453292f;
+    float sr = (float)sin(hr);
+    float cr = (float)cos(hr);
+    float cpsy = cp * sy;
+    float spcy = sp * cy;
+    float cycp = cy * cp;
+    float sysp = sy * sp;
+    w = cycp * cr - sysp * sr;
+    x = spcy * cr + cpsy * sr;
+    y = cpsy * cr - spcy * sr;
+    z = cycp * sr + sysp * cr;
+}
+void gbQuaternion::Slerp(struct gbQuaternion * p0, struct gbQuaternion * p1, float p2) {
+    float dot = p0->x * p1->x + p0->y * p1->y + p0->z * p1->z + p0->w * p1->w;
+    float bx, by, bz, bw;
+    if (dot >= 0.0f) {
+        bx = p1->x; by = p1->y; bz = p1->z; bw = p1->w;
+    } else {
+        dot = -dot;
+        bx = -p1->x; by = -p1->y; bz = -p1->z; bw = -p1->w;
+    }
+    float s0, s1;
+    if (1.0f - dot <= 1e-05f) {
+        s0 = 1.0f - p2;
+        s1 = p2;
+    } else {
+        float angle = (float)acos(dot) * 57.295776f;
+        float sinA = (float)sin(angle * 0.017453292f);
+        s0 = (float)sin((1.0f - p2) * angle * 0.017453292f) / sinA;
+        s1 = (float)sin(p2 * angle * 0.017453292f) / sinA;
+    }
+    x = s0 * p0->x + s1 * bx;
+    y = s0 * p0->y + s1 * by;
+    z = s0 * p0->z + s1 * bz;
+    w = s0 * p0->w + s1 * bw;
+}
 
 // ========= gbRain (SKIP: partially implemented elsewhere) =========
 // Missing 4 methods - add to existing source file:
@@ -1195,16 +1661,14 @@ void gbQuaternion::Slerp(struct gbQuaternion * p0, struct gbQuaternion * p1, flo
 //   Update (?Update@gbRain@@EAEXM@Z)
 
 // ========= gbRay (methods for header-defined type) =========
-gbRay::gbRay() {}
-struct gbRay & gbRay::operator=(struct gbRay const & p0) { return *this; }
-float gbRay::IntersectPlane(struct gbVec3D & p0, struct gbVec3D & p1) { return 0.0f; }
-int gbRay::IsColAABB(struct gbAABBox & p0) { return 0; }
-int gbRay::IsColOBB(struct gbOBBox & p0) { return 0; }
-int gbRay::IsColOBB_H(struct gbOBBox & p0) { return 0; }
-int gbRay::IsColQuad(struct gbVec3D & p0, struct gbVec3D & p1, struct gbVec3D & p2) { return 0; }
-int gbRay::IsColSphere(struct gbSphere & p0) { return 0; }
-int gbRay::IsColTriangle(struct gbVec3D & p0, struct gbVec3D & p1, struct gbVec3D & p2, struct gbVec3D & p3) { return 0; }
-int gbRay::IsColTriangle(struct gbVec3D & p0, struct gbVec3D & p1, struct gbVec3D & p2) { return 0; }
+gbRay::gbRay() { origin.x = origin.y = origin.z = 0.0f; direction.x = direction.y = direction.z = 0.0f; }
+struct gbRay & gbRay::operator=(struct gbRay const & p0) { origin = p0.origin; direction = p0.direction; return *this; }
+float gbRay::IntersectPlane(struct gbVec3D & p0, struct gbVec3D & p1) {
+    // p0 = plane normal, p1 = point on plane
+    float denom = direction.x * p0.x + direction.y * p0.y + direction.z * p0.z;
+    if (denom < 1e-06f && denom > -1e-06f) return 3.4028235e+38f;
+    return ((p1.x - origin.x) * p0.x + (p1.y - origin.y) * p0.y + (p1.z - origin.z) * p0.z) / denom;
+}
 
 // ========= gbRenderEffect =========
 class gbRenderEffect {
@@ -1269,13 +1733,43 @@ public:
 //   gbResManager (??0gbResManager@@QAE@ABV0@@Z)
 
 // ========= gbRotMatrix (methods for header-defined type) =========
-gbRotMatrix::gbRotMatrix() {}
-void gbRotMatrix::operator=(struct gbRotMatrix & p0) {  }
-void gbRotMatrix::operator*=(struct gbRotMatrix & p0) {  }
-bool const gbRotMatrix::IsOrthonormal() { return 0; }
-bool const gbRotMatrix::IsValid() { return 0; }
-void gbRotMatrix::LoadIdentity() {  }
-void gbRotMatrix::Rotate(struct gbVec3D * p0, struct gbVec3D * p1) {  }
+gbRotMatrix::gbRotMatrix() {
+    memset(m, 0, sizeof(m));
+    m[0][0] = 1.0f; m[1][1] = 1.0f; m[2][2] = 1.0f;
+}
+void gbRotMatrix::operator=(struct gbRotMatrix & p0) { memcpy(m, p0.m, sizeof(m)); }
+void gbRotMatrix::operator*=(struct gbRotMatrix & p0) {
+    float tmp[3][3];
+    for (int i = 0; i < 3; i++)
+        for (int j = 0; j < 3; j++)
+            tmp[i][j] = m[i][0]*p0.m[0][j] + m[i][1]*p0.m[1][j] + m[i][2]*p0.m[2][j];
+    memcpy(m, tmp, sizeof(m));
+}
+bool const gbRotMatrix::IsOrthonormal() {
+    // Check that columns are unit length and orthogonal
+    for (int i = 0; i < 3; i++) {
+        float len = m[i][0]*m[i][0] + m[i][1]*m[i][1] + m[i][2]*m[i][2];
+        if (fabs(len - 1.0f) > 0.01f) return false;
+    }
+    return true;
+}
+bool const gbRotMatrix::IsValid() {
+    float* f = (float*)m;
+    for (int i = 0; i < 9; i++) {
+        unsigned int bits = *(unsigned int*)&f[i];
+        if ((bits & 0x7F800000) == 0x7F800000) return false;
+    }
+    return true;
+}
+void gbRotMatrix::LoadIdentity() {
+    memset(m, 0, sizeof(m));
+    m[0][0] = 1.0f; m[1][1] = 1.0f; m[2][2] = 1.0f;
+}
+void gbRotMatrix::Rotate(struct gbVec3D * p0, struct gbVec3D * p1) {
+    p1->x = m[0][0]*p0->x + m[1][0]*p0->y + m[2][0]*p0->z;
+    p1->y = m[0][1]*p0->x + m[1][1]*p0->y + m[2][1]*p0->z;
+    p1->z = m[0][2]*p0->x + m[1][2]*p0->y + m[2][2]*p0->z;
+}
 
 // ========= gbSceneGraph =========
 class gbSceneGraph {
@@ -1339,11 +1833,35 @@ public:
 //   IfAttached (?IfAttached@gbSound3DNode@@QAE_NXZ)
 
 // ========= gbSphere (methods for header-defined type) =========
-gbSphere::gbSphere() {}
-struct gbSphere & gbSphere::operator=(struct gbSphere const & p0) { return *this; }
-int gbSphere::IsColPoint(struct gbVec3D & p0) { return 0; }
-int gbSphere::IsColSphere(struct gbVec3D & p0, float p1) { return 0; }
-int gbSphere::IsColTriangle(struct gbVec3D & p0, struct gbVec3D & p1, struct gbVec3D & p2) { return 0; }
+gbSphere::gbSphere() { center.x = 0.0f; center.y = 0.0f; center.z = 0.0f; radius = 0.0f; }
+struct gbSphere & gbSphere::operator=(struct gbSphere const & p0) { center = p0.center; radius = p0.radius; return *this; }
+int gbSphere::IsColPoint(struct gbVec3D & p0) {
+    float dx = p0.x - center.x;
+    float dy = p0.y - center.y;
+    float dz = p0.z - center.z;
+    if (dx*dx + dy*dy + dz*dz < radius * radius) return 1;
+    return 0;
+}
+int gbSphere::IsColSphere(struct gbVec3D & p0, float p1) {
+    float dx = center.x - p0.x;
+    float dy = center.y - p0.y;
+    float dz = center.z - p0.z;
+    float dist = (float)sqrt(dx*dx + dy*dy + dz*dz);
+    if (dist < p1 + radius) return 1;
+    return 0;
+}
+int gbSphere::IsColTriangle(struct gbVec3D & p0, struct gbVec3D & p1, struct gbVec3D & p2) {
+    float r2 = radius * radius;
+    int count = 0;
+    float dx, dy, dz;
+    dx = p0.x - center.x; dy = p0.y - center.y; dz = p0.z - center.z;
+    if (dx*dx + dy*dy + dz*dz <= r2) count++;
+    dx = p1.x - center.x; dy = p1.y - center.y; dz = p1.z - center.z;
+    if (dx*dx + dy*dy + dz*dz <= r2) count++;
+    dx = p2.x - center.x; dy = p2.y - center.y; dz = p2.z - center.z;
+    if (dx*dx + dy*dy + dz*dz <= r2) count++;
+    return (count > 0) ? 1 : 0;
+}
 
 // ========= gbStaticChain (implemented in gbChain.cpp) =========
 
@@ -1515,18 +2033,28 @@ public:
 };
 
 // ========= gbVec3D (methods for header-defined type) =========
-void gbVec3D::operator=(struct gbVec3D const & p0) {  }
-bool gbVec3D::operator==(struct gbVec3D const & p0) { return false; }
-struct gbVec3D gbVec3D::operator-() const { static struct gbVec3D _stub = {}; return _stub; }
-void gbVec3D::operator*=(float p0) {  }
-void gbVec3D::operator+=(struct gbVec3D const & p0) {  }
-void gbVec3D::operator-=(struct gbVec3D const & p0) {  }
-void gbVec3D::operator/=(float p0) {  }
-void gbVec3D::Inverse() {  }
-int gbVec3D::IsNormal() { return 0; }
-bool gbVec3D::IsValid() const { return false; }
-float gbVec3D::LengthSquare() const { return 0.0f; }
-void gbVec3D::Zero() {  }
+void gbVec3D::operator=(struct gbVec3D const & p0) { x = p0.x; y = p0.y; z = p0.z; }
+bool gbVec3D::operator==(struct gbVec3D const & p0) { return (x == p0.x && y == p0.y && z == p0.z); }
+struct gbVec3D gbVec3D::operator-() const { gbVec3D r; r.x = -x; r.y = -y; r.z = -z; return r; }
+void gbVec3D::operator*=(float p0) { x *= p0; y *= p0; z *= p0; }
+void gbVec3D::operator+=(struct gbVec3D const & p0) { x += p0.x; y += p0.y; z += p0.z; }
+void gbVec3D::operator-=(struct gbVec3D const & p0) { x -= p0.x; y -= p0.y; z -= p0.z; }
+void gbVec3D::operator/=(float p0) { x /= p0; y /= p0; z /= p0; }
+void gbVec3D::Inverse() { x = -x; y = -y; z = -z; }
+int gbVec3D::IsNormal() {
+    float lenSq = x*x + y*y + z*z;
+    if (fabs(lenSq - 1.0f) < 0.005f) return 1;
+    return 0;
+}
+bool gbVec3D::IsValid() const {
+    unsigned int* p = (unsigned int*)this;
+    for (int i = 0; i < 3; i++) {
+        if ((p[i] & 0x7F800000) == 0x7F800000) return false;
+    }
+    return true;
+}
+float gbVec3D::LengthSquare() const { return x*x + y*y + z*z; }
+void gbVec3D::Zero() { x = y = z = 0.0f; }
 
 // ========= gbVertPoolMgr (SKIP: partially implemented elsewhere) =========
 // Missing 1 methods - add to existing source file:
@@ -1637,180 +2165,31 @@ void gbAnimNodeGroup::SetSoundFileDir(char * p0) {  }
 void gbAnimNodeGroup::SetToDead() {  }
 void gbAnimNodeGroup::ShowGroup(int p0) {  }
 void gbAnimNodeGroup::Update() {  }
-gbCamControler::gbCamControler(class gbCamControler const & p0) {}
-gbCamControler::gbCamControler() {}
 class gbCamControler & gbCamControler::operator=(class gbCamControler const & p0) { return *this; }
 gbCamQuakeControl::gbCamQuakeControl(class gbCamQuakeControl const & p0) {}
 gbCamQuakeControl::gbCamQuakeControl() {}
 gbCamQuakeControl::~gbCamQuakeControl() {}
 class gbCamQuakeControl & gbCamQuakeControl::operator=(class gbCamQuakeControl const & p0) { return *this; }
-void gbCamQuakeControl::Update(double p0) {  }
 gbCamSpringControl::gbCamSpringControl(class gbCamSpringControl const & p0) {}
 gbCamSpringControl::gbCamSpringControl() {}
 gbCamSpringControl::~gbCamSpringControl() {}
 class gbCamSpringControl & gbCamSpringControl::operator=(class gbCamSpringControl const & p0) { return *this; }
-void gbCamSpringControl::Update(double p0) {  }
-gbCamera::gbCamera(class gbGfxManager * p0) {}
 class gbCamera & gbCamera::operator=(class gbCamera const & p0) { return *this; }
-void gbCamera::AddControler(class gbCamControler * p0, double p1) {  }
-unsigned int gbCamera::ClipAABBox(struct gbVec3D * p0, struct gbVec3D * p1, unsigned int p2) { return 0; }
-int gbCamera::ClipOBBox(struct gbOBBox * p0) { return 0; }
-int gbCamera::ClipPoint(struct gbVec3D * p0) { return 0; }
-int gbCamera::ClipSphere(struct gbVec3D * p0, float p1) { return 0; }
-float gbCamera::GetAspect() { return 0.0f; }
-class gbCamControler * gbCamera::GetCurControl() { return 0; }
-float gbCamera::GetFOV() { return 0.0f; }
-struct gbMatrix4 * gbCamera::GetInvViewMatrix() { return 0; }
-float gbCamera::GetOrthoSize() { return 0.0f; }
-void gbCamera::GetRayToScreen(float p0, float p1, struct gbRay * p2) {  }
-struct gbMatrix4 * gbCamera::GetViewMatrix() { return 0; }
-void gbCamera::GetViewPort(float & p0, float & p1, float & p2, float & p3) {  }
-void gbCamera::GetViewSizeOnNearPlane(float & p0, float & p1) {  }
-float gbCamera::GetZFar() { return 0.0f; }
-float gbCamera::GetZNear() { return 0.0f; }
-int gbCamera::IsCurCtrlDefault() { return 0; }
-void gbCamera::MoveInEyeDir(float p0) {  }
-void gbCamera::OffsetZBuffer(double p0) {  }
-void gbCamera::PointDevToScr(int * p0, int * p1, float p2, float p3) {  }
-void gbCamera::PointEyeToScr(struct gbVec3D * p0, struct gbVec3D * p1) {  }
-void gbCamera::PointEyeToScr(struct gbVec3D * p0, float & p1, float & p2) {  }
-void gbCamera::PointEyetoWorld(struct gbVec3D * p0, struct gbVec3D * p1) {  }
-void gbCamera::PointScrToEye(float p0, float p1, struct gbVec3D * p2) {  }
-void gbCamera::PointScrToWorld(float p0, float p1, struct gbVec3D * p2) {  }
-void gbCamera::PointWorld2Scr_NR(struct gbVec3D * p0, float & p1, float & p2) {  }
-void gbCamera::PointWorldToEye(struct gbVec3D * p0, struct gbVec3D * p1) {  }
-void gbCamera::PointWorldToScr(struct gbVec3D * p0, float & p1, float & p2) {  }
-void gbCamera::RecoverZBuffer() {  }
-void gbCamera::RotateVector(struct gbVec3D * p0, struct gbVec3D * p1) {  }
-void gbCamera::RotateVector(struct gbVec3D * p0, struct gbVec3D * p1, enum gbAxis p2) {  }
-void gbCamera::SetAsCurrent(int p0) {  }
-void gbCamera::SetDimention(int p0, int p1) {  }
-void gbCamera::SetEyeDir(struct gbQuaternion * p0) {  }
-void gbCamera::SetEyeLoc(float p0, float p1, float p2) {  }
-void gbCamera::SetFOV(float p0) {  }
-void gbCamera::SetLookAt(struct gbVec3D * p0, struct gbVec3D * p1, struct gbVec3D * p2) {  }
-void gbCamera::SetOrthoSize(float p0) {  }
-void gbCamera::SetZRange(float p0, float p1) {  }
-void gbCamera::Update(double p0) {  }
-gbEffectMgr::gbEffectMgr(class gbEffectMgr const & p0) {}
-gbEffectMgr::gbEffectMgr() {}
 gbEffectMgr::~gbEffectMgr() {}
 class gbEffectMgr & gbEffectMgr::operator=(class gbEffectMgr const & p0) { return *this; }
-class gbRenderEffect * gbEffectMgr::GetDefaultEffect() { return 0; }
-class gbTexture * gbEffectMgr::GetGrayTexture() { return 0; }
-class gbRenderEffect * gbEffectMgr::GetRenderEffect(unsigned int p0) { return 0; }
-class gbTexture * gbEffectMgr::GetWhiteTexture() { return 0; }
-void gbEffectMgr::Init(class gbGfxManager * p0) {  }
-class gbRenderEffect * gbEffectMgr::NewRenderEffect(char const * p0, unsigned int p1) { return 0; }
-class gbRenderEffect * gbEffectMgr::NewTrivalEffect(int p0) { return 0; }
-int gbEffectMgr::OnLostDevice() { return 0; }
-int gbEffectMgr::OnResetDevice() { return 0; }
-struct IDirect3DVertexDeclaration9 * gbEffectMgr::RegisterVertexFormat(char const * p0, struct gbVertexElement * p1) { return 0; }
-void gbEffectMgr::Release() {  }
 gbEmitterData::gbEmitterData() {}
 struct gbEmitterData & gbEmitterData::operator=(struct gbEmitterData const & p0) { return *this; }
 gbEmitterSquare::gbEmitterSquare() {}
 struct gbEmitterSquare & gbEmitterSquare::operator=(struct gbEmitterSquare const & p0) { return *this; }
-gbGeomNode::gbGeomNode(class gbGeomNode const & p0) {}
-gbGeomNode::gbGeomNode() {}
 gbGeomNode::~gbGeomNode() {}
 class gbGeomNode & gbGeomNode::operator=(class gbGeomNode const & p0) { return *this; }
-int gbGeomNode::Attach(class gbRenderEffect * p0) { return 0; }
-void gbGeomNode::AttachSelf(class gbRenderEffect * p0) {  }
-void gbGeomNode::EnableBlade(int p0) {  }
-void gbGeomNode::EnableShadow(int p0) {  }
-int gbGeomNode::GetAABBox(struct gbAABBox * p0) { return 0; }
-float gbGeomNode::GetAnimMaxTime() { return 0.0f; }
-void gbGeomNode::GetBoundSphere(struct gbSphere * p0) {  }
-struct gbMatrix4 * gbGeomNode::GetCacheToWorld() { return 0; }
-struct gbVec3D * gbGeomNode::GetLastBladePos(class gbGeomNode * p0) { return 0; }
-int gbGeomNode::GetLoopPast() { return 0; }
-class gbBaseMesh * gbGeomNode::GetMesh() { return 0; }
-struct gbOBBox * gbGeomNode::GetOBBox(struct gbOBBox * p0) { return 0; }
-struct gbOBBox * gbGeomNode::GetTotalOBBox(struct gbOBBox * p0) { return 0; }
-int gbGeomNode::LoadCVDFile(char const * p0) { return 0; }
-void gbGeomNode::LoadCVDFromStream(class gbVFile * p0, float p1) {  }
-void gbGeomNode::LoadCVDFromStream(class gbVFile * p0, float p1, class gbGeomNode * * p2, int & p3) {  }
 int gbGeomNode::LoadFromFile(char const * p0, char const * p1, void (__cdecl*p2)(int,int)) { return 0; }
-void gbGeomNode::Render(struct gbRenderInfoObj * p0) {  }
-void gbGeomNode::RenderShadowVolume(struct gbRenderInfoObj * p0) {  }
-void gbGeomNode::ReplaceTexture(class gbTexture * p0) {  }
-void gbGeomNode::ReplaceTexture(char const * p0) {  }
-void gbGeomNode::Reset(float p0) {  }
-void gbGeomNode::SetAnimLoop(int p0) {  }
-void gbGeomNode::SetBladeTime(float p0) {  }
-void gbGeomNode::SetBladeTimeScale(float p0) {  }
-void gbGeomNode::Update() {  }
-gbGfxManager::gbGfxManager(int & p0, struct gbGfxDriverInfo * p1) {}
 gbGfxManager::~gbGfxManager() {}
-int gbGfxManager::BeginScene() { return 0; }
-int gbGfxManager::ClipBoundVolume(struct gbAABBox * p0) { return 0; }
-void gbGfxManager::EnableEmissive(int p0) {  }
-unsigned int gbGfxManager::GetCurTick() { return 0; }
-double gbGfxManager::GetCurTime() { return 0.0; }
-unsigned int gbGfxManager::GetDeltaTick() { return 0; }
-double gbGfxManager::GetDeltaTime() { return 0.0; }
-struct gbGfxDriverInfo const * gbGfxManager::GetDriverInfo() { return 0; }
-class gbEffectMgr * gbGfxManager::GetEffectMgr() { return 0; }
-float gbGfxManager::GetEmissiveFactor() { return 0.0f; }
-struct gbFogParam * gbGfxManager::GetFog() { return 0; }
-int gbGfxManager::GetGfxCaps(struct gbGfxCaps * p0) { return 0; }
-unsigned int gbGfxManager::GetGraphWnd() { return 0; }
-struct gbLight const * gbGfxManager::GetLight(int p0) const { return 0; }
-class gbMatrixStack * gbGfxManager::GetMatrixStack(int p0) { return 0; }
-class gbPrintFont * gbGfxManager::GetPrintFont(enum gbFontType p0) { return 0; }
-class gbPrintFontMgr * gbGfxManager::GetPrintFontMgr() { return 0; }
-class gbResManager * gbGfxManager::GetResManager() { return 0; }
-class gbSceneGraph * gbGfxManager::GetSceneGraph() { return 0; }
-struct gbGfxStatistic * gbGfxManager::GetStatistic() { return 0; }
-void gbGfxManager::GetTMMatrix(int p0, struct gbMatrix4 * p1) {  }
-class gbVertPoolMgr * gbGfxManager::GetVertPoolMgr() { return 0; }
-struct gbMatrix4 const & gbGfxManager::GetViewMatrix() { static struct gbMatrix4 const _stub; return _stub; }
-void gbGfxManager::GetViewport(struct gbViewPort & p0) {  }
-struct gbMatrix4 const & gbGfxManager::GetWorldMatrix() { static struct gbMatrix4 const _stub; return _stub; }
-void gbGfxManager::IdentityWorldMatrix() {  }
-int gbGfxManager::IsLightEnable(int p0) const { return 0; }
-int gbGfxManager::IsWireMode() { return 0; }
-class gbBaseMesh * gbGfxManager::NewMesh(char const * p0, enum gbMeshType p1) { return 0; }
-void gbGfxManager::OffsetZBuffer(int p0) {  }
-void gbGfxManager::SetAmbientLight(struct gbColorFlt const & p0) {  }
-void gbGfxManager::SetCameraMatrix(struct gbMatrix4 const & p0, struct gbMatrix4 const & p1) {  }
-void gbGfxManager::SetClearParam(struct gbClearParam * p0) {  }
-void gbGfxManager::SetEmissiveFactor(float p0) {  }
-void gbGfxManager::SetFog(struct gbFogParam * p0) {  }
-void gbGfxManager::SetSceneGraph(class gbSceneGraph * p0) {  }
-void gbGfxManager::SetWireMode(int p0) {  }
 void gbGfxManager_D3D::SetTexture(struct gbTextureArray * p0) {  }
-gbImage2D::gbImage2D() {}
 gbImage2D::~gbImage2D() {}
-unsigned char * gbImage2D::CreateImage(int p0, int p1, int p2) { return 0; }
-int gbImage2D::GetBitCount() { return 0; }
-unsigned char * gbImage2D::GetBits(int p0, int p1) { return 0; }
-unsigned char * gbImage2D::GetBits() { return 0; }
-int gbImage2D::GetHeight() { return 0; }
-struct gbImage2DInfo * gbImage2D::GetImgInfo() { return 0; }
-struct gbColorQuad * gbImage2D::GetPalEntry(int p0) { return 0; }
-enum gbPixelFmtType gbImage2D::GetPixelFmtType() { return (enum gbPixelFmtType)(0); }
-int gbImage2D::GetWidth() { return 0; }
-int gbImage2D::LoadImageFile(char * p0, int p1) { return 0; }
-void gbImage2D::Release() {  }
-void gbImage2D::ScaleTo(int p0, int p1) {  }
-void gbImage2D::WriteJpegImage(char * p0, int p1) {  }
-int gbImage2D::WriteJpegToBuffer(unsigned char * p0, int p1) { return 0; }
-void gbImage2D::WriteTGAImage(char * p0) {  }
 struct gbImage2DInfo & gbImage2DInfo::operator=(struct gbImage2DInfo const & p0) { return *this; }
-int gbImage2DInfo::IsPreferAlpha() { return 0; }
-gbLightObj::gbLightObj(class gbLightObj const & p0) {}
-gbLightObj::gbLightObj() {}
 gbLightObj::~gbLightObj() {}
 class gbLightObj & gbLightObj::operator=(class gbLightObj const & p0) { return *this; }
-void gbLightObj::Compute(class gbVolModNode * p0) {  }
-void gbLightObj::ComputeBoundSphere() {  }
-struct gbSphere const * gbLightObj::GetBoundSphere() { return 0; }
-float gbLightObj::GetEffectOnPoint(struct gbVec3D const & p0, int p1) { return 0.0f; }
-struct gbLight * gbLightObj::GetSysLight() { return 0; }
-int gbLightObj::GetType() { return 0; }
-void gbLightObj::Init(enum gbLightObj::LIGHT_TYPE p0) {  }
 gbMatrixStack::gbMatrixStack(int p0) {}
 gbMatrixStack::~gbMatrixStack() {}
 class gbMatrixStack & gbMatrixStack::operator=(class gbMatrixStack const & p0) { return *this; }
@@ -1836,67 +2215,14 @@ void * gbNameVarBuf::LockVariant(unsigned int p0, int * p1) { return 0; }
 void gbNameVarBuf::RegVariant(unsigned int p0, int p1, int p2) {  }
 void gbNameVarBuf::SetVariant(unsigned int p0, void * p1) {  }
 void gbNameVarBuf::UnlockVariant() {  }
-gbParticleUnit::gbParticleUnit(struct gbParticleUnit & p0) {}
-gbParticleUnit::gbParticleUnit() {}
 struct gbParticleUnit & gbParticleUnit::operator=(struct gbParticleUnit const & p0) { return *this; }
-gbRenderEffect::gbRenderEffect(struct ID3DXEffect * p0, unsigned int p1) {}
-gbRenderEffect::gbRenderEffect(class gbRenderEffect const & p0) {}
 gbRenderEffect::~gbRenderEffect() {}
 class gbRenderEffect & gbRenderEffect::operator=(class gbRenderEffect const & p0) { return *this; }
-void gbRenderEffect::Apply() {  }
-int gbRenderEffect::Begin() { return 0; }
-int gbRenderEffect::Compare(class gbRenderEffect * p0) { return 0; }
-void gbRenderEffect::End() {  }
-struct ID3DXEffect * gbRenderEffect::GetD3DEffect() { return 0; }
-unsigned int gbRenderEffect::GetFlag() { return 0; }
-void gbRenderEffect::GetVariant(char * p0, void * p1) {  }
-void gbRenderEffect::GetVariant(enum GBPARAMHANDLE p0, void * p1) {  }
-void gbRenderEffect::Pass(int p0) {  }
-void gbRenderEffect::SetDeclHandle(struct IDirect3DVertexDeclaration9 * p0) {  }
-void gbRenderEffect::SetVariant(char * p0, void * p1) {  }
-void gbRenderEffect::SetVariant(enum GBPARAMHANDLE p0, void * p1) {  }
-int gbRenderEffect::Validate() { return 0; }
-gbSceneGraph::gbSceneGraph(class gbGfxManager * p0, struct gbVec3D const & p1, float p2) {}
 gbSceneGraph::~gbSceneGraph() {}
-void gbSceneGraph::AddSkyBox(class gbVisNode * p0) {  }
-void gbSceneGraph::AddVisNode(class gbVisNode * p0) {  }
-void gbSceneGraph::AddVolModNode(class gbVolModNode * p0) {  }
-void gbSceneGraph::Begin(class gbCamera * p0) {  }
-void gbSceneGraph::CalEffectiveVolMod(struct gbRenderInfoObj * p0, struct gbVec3D const & p1, int p2) {  }
-void gbSceneGraph::DelVisNode(class gbVisNode * p0) {  }
-void gbSceneGraph::End() {  }
-struct gbRenderInfoObj * gbSceneGraph::NewOneRenderObj(class gbVisNode * p0) { return 0; }
-struct gbRenderInfoObj * gbSceneGraph::NewShadowVolume(class gbVisNode * p0) { return 0; }
-void gbSceneGraph::ResetBladeMgr() {  }
-void gbSceneGraph::SetBladeTimeScale(float p0) {  }
-gbTexture::gbTexture() {}
 gbTexture::~gbTexture() {}
-void gbTexture::CreateTexture(int p0, int p1, enum gbPixelFmtType p2, int p3) {  }
-unsigned char * gbTexture::GetBits() { return 0; }
-int gbTexture::GetHeight() { return 0; }
-enum gbPixelFmtType gbTexture::GetInternalFormat(class gbImage2D * p0) { return (enum gbPixelFmtType)(0); }
-int gbTexture::GetLevels() { return 0; }
-unsigned char gbTexture::GetPixelChannel(int p0, int p1, int p2) { return 0; }
-int gbTexture::GetWidth() { return 0; }
-int gbTexture::IsInit() { return 0; }
-void gbTexture::LoadFromImage2D(class gbImage2D * p0) {  }
-void gbTexture::LoadTexture(int p0) {  }
-void gbTexture::UpdateTexture(int p0, int p1, class gbImage2D * p2) {  }
-void gbTexture::UpdateTexture(class gbImage2D * p0) {  }
-gbTextureArray::gbTextureArray(class gbTexture * p0, class gbTexture * p1) {}
-gbTextureArray::gbTextureArray(class gbTexture * p0) {}
-gbTextureArray::gbTextureArray() {}
 struct gbTextureArray & gbTextureArray::operator=(struct gbTextureArray const & p0) { return *this; }
-void gbTextureArray::SetTexture(class gbTexture * p0) {  }
 gbTexture_D3D::gbTexture_D3D() {}
 gbTexture_D3D::~gbTexture_D3D() {}
-int gbTexture_D3D::CreateForRenderTarget(int p0, int p1, enum gbPixelFmtType p2) { return 0; }
-void gbTexture_D3D::CreateFromFileMemory(void * p0, int p1) {  }
-void gbTexture_D3D::CreateFromMemory(int p0, int p1, enum gbPixelFmtType p2, int p3, enum gbPixelFmtType p4, void * p5) {  }
-unsigned char gbTexture_D3D::GetByte(int p0, int p1) { return 0; }
-struct IDirect3DSurface9 * gbTexture_D3D::GetMiscTexName() { return 0; }
-struct IDirect3DBaseTexture9 * gbTexture_D3D::GetTexName() { return 0; }
-void gbTexture_D3D::UpdateTexture(int p0, int p1, int p2, int p3, enum gbPixelFmtType p4, void * p5) {  }
 class gbTimeCounter & gbTimeCounter::operator=(class gbTimeCounter const & p0) { return *this; }
 double gbTimeCounter::Off() { return 0.0; }
 void gbTimeCounter::On() {  }
@@ -1921,3 +2247,192 @@ gbVolumeModifier::gbVolumeModifier(class gbVolumeModifier const & p0) {}
 gbVolumeModifier::gbVolumeModifier() {}
 gbVolumeModifier::~gbVolumeModifier() {}
 class gbVolumeModifier & gbVolumeModifier::operator=(class gbVolumeModifier const & p0) { return *this; }
+
+// --- Restored stubs (signature mismatch with source file implementations) ---
+int gbTexture_D3D::CreateForRenderTarget(int w, int h, enum gbPixelFmtType fmt) { return 0; }
+void gbTexture_D3D::CreateFromFileMemory(void* data, int size) {}
+void gbTexture_D3D::CreateFromMemory(int w, int h, enum gbPixelFmtType srcFmt, int levels, enum gbPixelFmtType dstFmt, void* data) {}
+void gbTexture_D3D::UpdateTexture(int x, int y, int w, int h, enum gbPixelFmtType fmt, void* data) {}
+gbParticleUnit::gbParticleUnit(struct gbParticleUnit & other) { memcpy(this, &other, sizeof(gbParticleUnit)); }
+class gbPrintFont* gbGfxManager::GetPrintFont(enum gbFontType type) { return 0; }
+void gbOBBox::GetSphere(struct gbSphere & sphere) {
+    sphere.center.x = matrix.m[3][0];
+    sphere.center.y = matrix.m[3][1];
+    sphere.center.z = matrix.m[3][2];
+    sphere.radius = (float)sqrt(extent.x*extent.x + extent.y*extent.y + extent.z*extent.z) * 0.5f;
+}
+void gbCamera::GetViewSizeOnNearPlane(float & w, float & h) { w = 1.0f; h = 1.0f; }
+int gbPlane::IsColAABB(struct gbAABBox & box) {
+    float nearX, farX, nearY, farY, nearZ, farZ;
+    if (normal.x < 0.0f) { nearX = box.vMax.x; farX = box.vMin.x; }
+    else { nearX = box.vMin.x; farX = box.vMax.x; }
+    if (normal.y < 0.0f) { nearY = box.vMax.y; farY = box.vMin.y; }
+    else { nearY = box.vMin.y; farY = box.vMax.y; }
+    if (normal.z < 0.0f) { nearZ = box.vMax.z; farZ = box.vMin.z; }
+    else { nearZ = box.vMin.z; farZ = box.vMax.z; }
+    if (nearX * normal.x + nearY * normal.y + nearZ * normal.z > d) return 0;
+    if (farX * normal.x + farY * normal.y + farZ * normal.z < d) return 0;
+    return 1;
+}
+int gbRay::IsColAABB(struct gbAABBox & box) {
+    // Simplified slab test
+    float tmin = -3.4028235e+38f;
+    float tmax = 3.4028235e+38f;
+    float orig[3] = { origin.x, origin.y, origin.z };
+    float dir[3] = { direction.x, direction.y, direction.z };
+    float bmin[3] = { box.vMin.x, box.vMin.y, box.vMin.z };
+    float bmax[3] = { box.vMax.x, box.vMax.y, box.vMax.z };
+    for (int i = 0; i < 3; i++) {
+        if (dir[i] >= 1e-06f || dir[i] <= -1e-06f) {
+            float t1 = (bmin[i] - orig[i]) / dir[i];
+            float t2 = (bmax[i] - orig[i]) / dir[i];
+            if (t1 > t2) { float tmp = t1; t1 = t2; t2 = tmp; }
+            if (t1 > tmin) tmin = t1;
+            if (t2 < tmax) tmax = t2;
+        } else {
+            if (orig[i] < bmin[i] || orig[i] > bmax[i]) return 0;
+        }
+    }
+    if (tmax < 0.0f) return 0;
+    if (tmin <= tmax) return 1;
+    return 0;
+}
+int gbPlane::IsColOBB(struct gbOBBox & box) { return 0; }
+int gbRay::IsColQuad(struct gbVec3D & v0, struct gbVec3D & v1, struct gbVec3D & v2) {
+    // v0 = corner, v1/v2 define two edges from v0
+    // Moller-Trumbore-like for quad (u,v in [0,1))
+    float e1x = v1.x - v0.x, e1y = v1.y - v0.y, e1z = v1.z - v0.z;
+    float e2x = v2.x - v0.x, e2y = v2.y - v0.y, e2z = v2.z - v0.z;
+    // pvec = dir x e2
+    float px = direction.y * e2z - direction.z * e2y;
+    float py = direction.z * e2x - direction.x * e2z;
+    float pz = direction.x * e2y - direction.y * e2x;
+    float det = e1x*px + e1y*py + e1z*pz;
+    if (det == 0.0f) return 0;
+    float invDet = 1.0f / det;
+    float tx = origin.x - v0.x, ty = origin.y - v0.y, tz = origin.z - v0.z;
+    float u = (tx*px + ty*py + tz*pz) * invDet;
+    // qvec = tvec x e1
+    float qx = ty*e1z - tz*e1y;
+    float qy = tz*e1x - tx*e1z;
+    float qz = tx*e1y - ty*e1x;
+    float v = (direction.x*qx + direction.y*qy + direction.z*qz) * invDet;
+    if (u >= 0.0f && v >= 0.0f && u < 1.0f && v < 1.0f) return 1;
+    return 0;
+}
+int gbRay::IsColSphere(struct gbSphere & sphere) {
+    float dx = sphere.center.x - origin.x;
+    float dy = sphere.center.y - origin.y;
+    float dz = sphere.center.z - origin.z;
+    float proj = dx * direction.x + dy * direction.y + dz * direction.z;
+    if (proj > 0.0f) {
+        dx -= proj * direction.x;
+        dy -= proj * direction.y;
+        dz -= proj * direction.z;
+    }
+    if (dx*dx + dy*dy + dz*dz <= sphere.radius * sphere.radius) return 1;
+    return 0;
+}
+int gbRay::IsColTriangle(struct gbVec3D & v0, struct gbVec3D & v1, struct gbVec3D & v2, struct gbVec3D & outPt) {
+    // Moller-Trumbore with hit point output
+    float e1x = v1.x - v0.x, e1y = v1.y - v0.y, e1z = v1.z - v0.z;
+    float e2x = v2.x - v0.x, e2y = v2.y - v0.y, e2z = v2.z - v0.z;
+    float px = direction.y * e2z - direction.z * e2y;
+    float py = direction.z * e2x - direction.x * e2z;
+    float pz = direction.x * e2y - direction.y * e2x;
+    float det = e1x*px + e1y*py + e1z*pz;
+    if (det == 0.0f) return 0;
+    float invDet = 1.0f / det;
+    float tx = origin.x - v0.x, ty = origin.y - v0.y, tz = origin.z - v0.z;
+    float u = (tx*px + ty*py + tz*pz) * invDet;
+    float qx = ty*e1z - tz*e1y;
+    float qy = tz*e1x - tx*e1z;
+    float qz = tx*e1y - ty*e1x;
+    float v = (direction.x*qx + direction.y*qy + direction.z*qz) * invDet;
+    if (u >= 0.0f && v >= 0.0f && u + v <= 1.0f) {
+        float w = 1.0f - u - v;
+        outPt.x = w * v0.x + u * v1.x + v * v2.x;
+        outPt.y = w * v0.y + u * v1.y + v * v2.y;
+        outPt.z = w * v0.z + u * v1.z + v * v2.z;
+        return 1;
+    }
+    return 0;
+}
+int gbRay::IsColTriangle(struct gbVec3D & v0, struct gbVec3D & v1, struct gbVec3D & v2) {
+    // Moller-Trumbore without hit point
+    float e1x = v1.x - v0.x, e1y = v1.y - v0.y, e1z = v1.z - v0.z;
+    float e2x = v2.x - v0.x, e2y = v2.y - v0.y, e2z = v2.z - v0.z;
+    float px = direction.y * e2z - direction.z * e2y;
+    float py = direction.z * e2x - direction.x * e2z;
+    float pz = direction.x * e2y - direction.y * e2x;
+    float det = e1x*px + e1y*py + e1z*pz;
+    if (det == 0.0f) return 0;
+    float invDet = 1.0f / det;
+    float tx = origin.x - v0.x, ty = origin.y - v0.y, tz = origin.z - v0.z;
+    float u = (tx*px + ty*py + tz*pz) * invDet;
+    float qx = ty*e1z - tz*e1y;
+    float qy = tz*e1x - tx*e1z;
+    float qz = tx*e1y - ty*e1x;
+    float v = (direction.x*qx + direction.y*qy + direction.z*qz) * invDet;
+    if (u >= 0.0f && v >= 0.0f && u + v < 1.0f) return 1;
+    return 0;
+}
+int gbGeomNode::LoadCVDFile(const char* filename) { return 0; }
+void gbGeomNode::LoadCVDFromStream(gbVFile* file, float scale) {}
+void gbGeomNode::LoadCVDFromStream(gbVFile* file, float scale, gbGeomNode** outNodes, int& outCount) { if(outNodes) *outNodes=0; outCount=0; }
+void gbMatrix4::MakeMatrix(struct gbVec3D & right, struct gbVec3D & up, struct gbVec3D & forward) {
+    // right = direction (param_1), up = up vector (param_2), forward = position (param_3)
+    // Compute cross product: up x right = side vector
+    float sx = up.y * right.z - right.y * up.z;
+    float sy = right.x * up.z - up.x * right.z;
+    float sz = right.y * up.x - right.x * up.y;
+    float slen = (float)sqrt(sx * sx + sy * sy + sz * sz);
+    if (fabs(slen) >= 0.005f) {
+        sx /= slen; sy /= slen; sz /= slen;
+    } else {
+        sx = 0.0f; sy = 1.0f; sz = 0.0f;
+    }
+    // Row 0: side vector (sx, sy, sz, 0)
+    m[0][0] = sx;
+    m[0][1] = sy;
+    m[0][2] = sz;
+    m[0][3] = 0.0f;
+    // Row 1: cross of side x right = orthogonal up
+    m[1][0] = sz * right.y - sy * right.z;
+    m[1][1] = sx * right.z - sz * right.x;
+    m[1][2] = sy * right.x - sx * right.y;
+    m[1][3] = 0.0f;
+    // Row 2: right (direction)
+    m[2][0] = right.x;
+    m[2][1] = right.y;
+    m[2][2] = right.z;
+    m[2][3] = 0.0f;
+    // Row 3: position
+    m[3][0] = forward.x;
+    m[3][1] = forward.y;
+    m[3][2] = forward.z;
+    m[3][3] = 1.0f;
+}
+void gbMatrix4::TransformPlane(float* const plane) {
+    // plane = [nx, ny, nz, d] where nx*x + ny*y + nz*z + d = 0
+    // Compute a point on the plane: pt = -normal * d
+    float ptx = -(plane[0] * plane[3]);
+    float pty = -(plane[1] * plane[3]);
+    float ptz = -(plane[2] * plane[3]);
+
+    // Transform the point by the full matrix
+    float tpx = ptx * m[0][0] + pty * m[1][0] + ptz * m[2][0] + m[3][0];
+    float tpy = ptx * m[0][1] + pty * m[1][1] + ptz * m[2][1] + m[3][1];
+    float tpz = ptx * m[0][2] + pty * m[1][2] + ptz * m[2][2] + m[3][2];
+
+    // Transform normal by 3x3 rotation only
+    float tnx = plane[0] * m[0][0] + plane[1] * m[1][0] + plane[2] * m[2][0];
+    float tny = plane[0] * m[0][1] + plane[1] * m[1][1] + plane[2] * m[2][1];
+    float tnz = plane[0] * m[0][2] + plane[1] * m[1][2] + plane[2] * m[2][2];
+
+    // Recompute d = -(transformed_normal dot transformed_point)
+    plane[0] = tnx;
+    plane[1] = tny;
+    plane[2] = tnz;
+    plane[3] = -(tpx * tnx + tpy * tny + tpz * tnz);
+}

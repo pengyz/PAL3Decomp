@@ -773,6 +773,9 @@ void gbUIRect::Release(void) {
 }
 
 void gbUIRect::Render(int flags) {
+    // TODO: Renders a textured quad using m_pGfx and m_pTexture
+    // No Ghidra data available for this function
+    (void)0;
 }
 
 // ======== gbVec3D default constructor closure ========

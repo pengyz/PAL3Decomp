@@ -845,13 +845,21 @@ void gbCamera::RotateVector(gbVec3D* in, gbVec3D* out, gbAxis axis) {
 
 // 0x100224b0 (39B) - Offset Z-buffer
 void gbCamera::OffsetZBuffer(double offset) {
-    // In the real engine, delegates to gbGfxManager::OffsetZBuffer
-    // which sets D3DRS_DEPTHBIAS / D3DRS_SLOPESCALEDEPTHBIAS
+    // Ghidra: Viewport.maxz = (float)(1.0 - offset * 1.52587890625e-05)
+    // Then calls pGfxMgr->vtable[9](&Viewport) to apply viewport to D3D
+    Viewport.maxz = (float)(1.0 - offset * 1.52587890625e-05);
+    typedef void (__thiscall *ApplyViewportFn)(gbGfxManager*, gbViewPort*);
+    ApplyViewportFn fn = (ApplyViewportFn)(*(void***)(pGfxMgr))[9];
+    fn(pGfxMgr, &Viewport);
 }
 
 // 0x100224e0 (25B) - Recover Z-buffer to normal state
 void gbCamera::RecoverZBuffer(void) {
-    // In the real engine, resets depth bias to 0
+    // Ghidra: Viewport.maxz = 1.0f, then calls pGfxMgr->vtable[9](&Viewport)
+    Viewport.maxz = 1.0f;
+    typedef void (__thiscall *ApplyViewportFn)(gbGfxManager*, gbViewPort*);
+    ApplyViewportFn fn = (ApplyViewportFn)(*(void***)(pGfxMgr))[9];
+    fn(pGfxMgr, &Viewport);
 }
 
 // 0x10022500 (130B) - Move camera along its forward direction
