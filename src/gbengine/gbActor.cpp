@@ -4,15 +4,26 @@
  */
 
 #include "gbengine/gbActor.h"
+#include "gbengine/gbMisc.h"
 #include <cstring>
 #include <cstdlib>
 
 // Forward declarations
 class gbEffectMgr;
 
+class gbMatrixStack {
+public:
+    void Push(void);
+    void Pop(void);
+    void LoadMatrix(gbMatrix4* mat);
+};
+
 // Global variables
 extern gbGfxManager* g_pGfxManager;
 extern gbVFileSystem* g_pVFileSys;
+
+// Animation frame rate conversion factor (seconds to frame ticks)
+static const float ANIM_FRAME_RATE = 30.0f;
 
 // Static variable for sun direction
 static gbVec3D s_sunDirection = {0.0f, -1.0f, 0.0f};
@@ -198,15 +209,38 @@ void gbActor::Update() {
     }
 }
 
-// Render actor
+// Render actor - push matrix stack, load world matrix, delegate to actorDef
 void gbActor::Render(gbRenderInfoObj* renderInfo) {
-    // Rendering would be handled by submitting draw calls to D3D9
-    // This is a stub for now
+    if (!m_pActorDef || !renderInfo) return;
+
+    gbMatrixStack* matStack = *(gbMatrixStack**)((char*)pGfxMgr + 0xd8);
+    matStack->Push();
+    matStack->LoadMatrix((gbMatrix4*)((char*)renderInfo + 0x20));
+
+    // Call actorDef vtable[0x14] - Render
+    void** defVtable = *(void***)m_pActorDef;
+    typedef void (__thiscall *RenderDefFn)(void*, void*, gbRenderInfoObj*);
+    RenderDefFn renderDef = (RenderDefFn)((void**)defVtable)[0x14 / 4];
+    renderDef(m_pActorDef, this, renderInfo);
+
+    matStack->Pop();
 }
 
-// Render shadow volume
+// Render shadow volume - same pattern as Render but vtable[0x18]
 void gbActor::RenderShadowVolume(gbRenderInfoObj* renderInfo) {
-    // Shadow volume rendering
+    if (!m_pActorDef || !renderInfo) return;
+
+    gbMatrixStack* matStack = *(gbMatrixStack**)((char*)pGfxMgr + 0xd8);
+    matStack->Push();
+    matStack->LoadMatrix((gbMatrix4*)((char*)renderInfo + 0x20));
+
+    // Call actorDef vtable[0x18] - RenderShadowVolume
+    void** defVtable = *(void***)m_pActorDef;
+    typedef void (__thiscall *RenderShadowFn)(void*, void*, gbRenderInfoObj*);
+    RenderShadowFn renderShadow = (RenderShadowFn)((void**)defVtable)[0x18 / 4];
+    renderShadow(m_pActorDef, this, renderInfo);
+
+    matStack->Pop();
 }
 
 // Attach render effect
@@ -226,67 +260,245 @@ void gbActor::Reset(float time) {
 
 // Go to action (simple)
 void gbActor::GotoAction(char* actionName, int loop) {
-    // Find action by name and activate it
+    unsigned int crc = gbCrc32Compute(actionName);
+    GotoAction(crc, loop, 1, 0, 0x6f766572);
 }
 
-// Go to action with time range
+// Go to action with time range (converts time to frame indices)
 void gbActor::GotoAction(char* actionName, float startTime, float endTime) {
-    // Set action with specific time range
+    unsigned int endFrame = (unsigned int)(endTime * ANIM_FRAME_RATE);
+    unsigned int startFrame = (unsigned int)(startTime * ANIM_FRAME_RATE);
+    unsigned int crc = gbCrc32Compute(actionName);
+    GotoAction(crc, 2, startFrame, endFrame, 0x6f766572);
 }
 
-// Go to action with three names (blend)
+// Go to action with three names (action + start marker + end marker)
 void gbActor::GotoAction(char* action1, char* action2, char* action3) {
-    // Set up action blending
+    if (!m_pActorDef) return;
+
+    unsigned int crc = gbCrc32Compute(action1);
+
+    // Find action index by CRC
+    int actionIdx = 0;
+    if (m_numActions > 0) {
+        unsigned int* pCrc = (unsigned int*)((char*)m_pActions + 4);
+        while (*pCrc != crc) {
+            actionIdx++;
+            pCrc = (unsigned int*)((char*)pCrc + 0x24);
+            if (actionIdx >= m_numActions) break;
+        }
+    }
+
+    // Resolve start marker to frame number via actorDef vtable[0x44]
+    unsigned int startFrame = 0;
+    if (action2 != NULL) {
+        void** defVtable = *(void***)m_pActorDef;
+        typedef unsigned int (__thiscall *GetMarkerFn)(void*, unsigned int, int);
+        GetMarkerFn getMarker = (GetMarkerFn)((void**)defVtable)[0x44 / 4];
+        unsigned int crc2 = gbCrc32Compute(action2);
+        startFrame = getMarker(m_pActorDef, crc2, actionIdx);
+    }
+
+    // Resolve end marker to frame number
+    unsigned int endFrame;
+    unsigned long transition;
+    if (action3 != NULL) {
+        unsigned int crc3 = gbCrc32Compute(action3);
+        void** defVtable = *(void***)m_pActorDef;
+        typedef unsigned int (__thiscall *GetMarkerFn)(void*, unsigned int, int);
+        GetMarkerFn getMarker = (GetMarkerFn)((void**)defVtable)[0x44 / 4];
+        endFrame = getMarker(m_pActorDef, crc3, actionIdx);
+        if (endFrame != 0) {
+            transition = endFrame;
+            goto doGoto;
+        }
+        // Log warning if marker not found
+        char* defName = *(char**)((char*)m_pActorDef + 8);
+        gbLogInfo((char*)"  Action msg not find actor:%s action:%s event:%s\n", defName, action1, action3);
+    }
+
+    // Fallback: get total duration via actorDef vtable[0x8]
+    {
+        void** defVtable = *(void***)m_pActorDef;
+        typedef unsigned int (__thiscall *GetDurationFn)(void*, char*);
+        GetDurationFn getDuration = (GetDurationFn)((void**)defVtable)[0x8 / 4];
+        endFrame = getDuration(m_pActorDef, action1);
+        transition = 0x6f766572;
+    }
+
+doGoto:
+    GotoAction(crc, 2, startFrame, endFrame, transition);
 }
 
-// Go to action with raw parameters
-void gbActor::GotoAction(unsigned long p1, int p2, unsigned int p3, unsigned int p4, unsigned long p5) {
-    // Direct action setup
+// Go to action with raw parameters (core implementation)
+void gbActor::GotoAction(unsigned long actionCrc, int loop, unsigned int startFrame, unsigned int endFrame, unsigned long transition) {
+    if (!m_pActorDef) return;
+
+    // Call actorDef vtable[0x38] - prepare for action change
+    void** defVtable = *(void***)m_pActorDef;
+    typedef void (__thiscall *PrepareFn)(void*);
+    PrepareFn prepare = (PrepareFn)((void**)defVtable)[0x38 / 4];
+    prepare(m_pActorDef);
+
+    int actionIdx = 0;
+    for (int i = 0; i < m_numActions; i++) {
+        gbActionState* action = (gbActionState*)((char*)m_pActions + i * 0x24);
+
+        if (*(unsigned int*)((char*)action + 4) == actionCrc) {
+            // Activate this action
+            *(int*)action = 1;  // state = 1 (active)
+            *(float*)((char*)action + 8) = 1.0f;  // weight = 1.0
+
+            if (endFrame < startFrame) {
+                *(unsigned int*)((char*)action + 0xc) = 0;  // currentFrame = 0
+            } else {
+                *(unsigned int*)((char*)action + 0xc) = startFrame;  // currentFrame = startFrame
+            }
+            *(unsigned int*)((char*)action + 0x10) = startFrame;
+            *(unsigned int*)((char*)action + 0x14) = endFrame;
+            *(unsigned long*)((char*)action + 0x20) = transition;
+            *(int*)((char*)action + 0x1c) = 1;  // loop flag
+
+            // Call actorDef vtable[0x48] - set active action
+            typedef void (__thiscall *SetActiveFn)(void*, int);
+            SetActiveFn setActive = (SetActiveFn)((void**)defVtable)[0x48 / 4];
+            setActive(m_pActorDef, actionIdx);
+
+            UpdateExportNodes();
+        } else {
+            // Deactivate other actions
+            *(int*)action = 0;  // state = 0 (inactive)
+            *(float*)((char*)action + 8) = 0.0f;  // weight = 0
+        }
+        actionIdx++;
+    }
 }
 
 // Lock action blend weight
 void gbActor::LockAction(char* actionName, float weight) {
-    // Lock action at specific weight
+    unsigned int crc = gbCrc32Compute(actionName);
+    int i = 0;
+    if (m_numActions > 0) {
+        unsigned int* pCrc = (unsigned int*)((char*)m_pActions + 4);
+        while (*pCrc != crc) {
+            i++;
+            pCrc = (unsigned int*)((char*)pCrc + 0x24);
+            if (i >= m_numActions) return;
+        }
+        // Set state = 3 (locked), weight = param
+        *(int*)((char*)m_pActions + i * 0x24) = 3;
+        *(float*)((char*)m_pActions + i * 0x24 + 8) = weight;
+    }
 }
 
-// Unlock action
+// Unlock action (set to fade-out state)
 void gbActor::UnlockAction(char* actionName) {
-    // Unlock action
+    unsigned int crc = gbCrc32Compute(actionName);
+    int i = 0;
+    if (m_numActions > 0) {
+        unsigned int* pCrc = (unsigned int*)((char*)m_pActions + 4);
+        while (*pCrc != crc) {
+            i++;
+            pCrc = (unsigned int*)((char*)pCrc + 0x24);
+            if (i >= m_numActions) return;
+        }
+        // Set state = 2 (fade out)
+        *(int*)((char*)m_pActions + i * 0x24) = 2;
+    }
 }
 
-// Get action duration in milliseconds
+// Get action duration - delegates to actorDef vtable[0x8]
 unsigned int gbActor::GetActionDuration(char* actionName) {
-    return 0;
+    if (!m_pActorDef) return 0;
+    void** defVtable = *(void***)m_pActorDef;
+    typedef unsigned int (__thiscall *GetDurationFn)(void*, char*);
+    GetDurationFn getDuration = (GetDurationFn)((void**)defVtable)[0x8 / 4];
+    return getDuration(m_pActorDef, actionName);
 }
 
-// Get event time for action
+// Get event time for action - find action by CRC, then query actorDef
 unsigned int gbActor::GetEventTime(char* actionName, char* eventName) {
-    return 0;
+    if (!m_pActorDef) return 0xFFFFFFFF;
+
+    unsigned int actionCrc = gbCrc32Compute(actionName);
+    unsigned int eventCrc = gbCrc32Compute(eventName);
+
+    int i = 0;
+    if (m_numActions > 0) {
+        unsigned int* pCrc = (unsigned int*)((char*)m_pActions + 4);
+        while (*pCrc != actionCrc) {
+            i++;
+            pCrc = (unsigned int*)((char*)pCrc + 0x24);
+            if (i >= m_numActions) return 0xFFFFFFFF;
+        }
+        // Found action, query event time via actorDef vtable[0x44]
+        void** defVtable = *(void***)m_pActorDef;
+        typedef unsigned int (__thiscall *GetEventFn)(void*, unsigned int, int);
+        GetEventFn getEvent = (GetEventFn)((void**)defVtable)[0x44 / 4];
+        return getEvent(m_pActorDef, eventCrc, i);
+    }
+    return 0xFFFFFFFF;
 }
 
-// Get transform matrix for named tag node
+// Get transform matrix for named tag node (export node lookup)
 int gbActor::GetTagNodeTM(gbMatrix4* matrix, char* tagName) {
+    if (!m_pExportNodeData) return 0;
+
+    unsigned int crc = gbCrc32Compute(tagName);
+    int numNodes = *(int*)((char*)this + 0x6c);  // m_maxExportNodes
+    unsigned int* nodeArray = *(unsigned int**)((char*)this + 0x68);  // m_pExportNodeData
+
+    for (int i = 0; i < numNodes; i++) {
+        // Each export node entry is 0x84 bytes (stride), CRC at offset 0
+        unsigned int* entry = (unsigned int*)((char*)nodeArray + i * 0x84);
+        if (*entry == crc) {
+            // Copy 16 dwords (64 bytes = gbMatrix4) from entry + 4
+            unsigned int* src = entry + 1;
+            unsigned int* dst = (unsigned int*)matrix;
+            for (int j = 0; j < 16; j++) {
+                dst[j] = src[j];
+            }
+            return 1;
+        }
+    }
     return 0;
 }
 
 // Enable/disable shadow casting
 void gbActor::EnableShadow(int enable) {
-    // Enable/disable shadow
-}
-
-// Get bounding sphere
-void gbActor::GetBoundSphere(gbSphere* sphere) {
-    if (sphere) {
-        sphere->center.x = 0.0f;
-        sphere->center.y = 0.0f;
-        sphere->center.z = 0.0f;
-        sphere->radius = 1.0f;
+    gbVisNode::EnableShadow(enable);
+    if (enable != 0 && m_pActorDef) {
+        void** defVtable = *(void***)m_pActorDef;
+        typedef void (__thiscall *EnableShadowDefFn)(void*);
+        EnableShadowDefFn enableShadowDef = (EnableShadowDefFn)((void**)defVtable)[0x10 / 4];
+        enableShadowDef(m_pActorDef);
     }
 }
 
-// Get collision AABB
+// Get bounding sphere - delegates to actorDef vtable[0x20]
+void gbActor::GetBoundSphere(gbSphere* sphere) {
+    if (!m_pActorDef || !sphere) return;
+
+    void** defVtable = *(void***)m_pActorDef;
+    typedef gbSphere* (__thiscall *GetBoundFn)(void*);
+    GetBoundFn getBound = (GetBoundFn)((void**)defVtable)[0x20 / 4];
+    gbSphere* src = getBound(m_pActorDef);
+
+    unsigned int* pSrc = (unsigned int*)src;
+    unsigned int* pDst = (unsigned int*)sphere;
+    pDst[0] = pSrc[0];
+    pDst[1] = pSrc[1];
+    pDst[2] = pSrc[2];
+    pDst[3] = pSrc[3];
+}
+
+// Get collision AABB - delegates to actorDef vtable[0x24]
 gbAABBox* gbActor::GetCollideAABBox() {
-    return nullptr;
+    if (!m_pActorDef) return nullptr;
+    void** defVtable = *(void***)m_pActorDef;
+    typedef gbAABBox* (__thiscall *GetAABBFn)(void*);
+    GetAABBFn getAABB = (GetAABBFn)((void**)defVtable)[0x24 / 4];
+    return getAABB(m_pActorDef);
 }
 
 // Get collision OBB
@@ -314,14 +526,34 @@ int gbActor::GetNumMixInfo() {
     return 0;
 }
 
-// Set current material
+// Set current material - delegates to actorDef vtable[0x3c]
 void gbActor::SetCurMaterial(char* materialName) {
-    // Set material by name
+    if (!m_pActorDef) return;
+    void** defVtable = *(void***)m_pActorDef;
+    typedef void (__thiscall *SetMtlFn)(void*, char*);
+    SetMtlFn setMtl = (SetMtlFn)((void**)defVtable)[0x3c / 4];
+    setMtl(m_pActorDef, materialName);
 }
 
-// Enable action material transition
+// Enable action material transition - find action then delegate to actorDef vtable[0x4]
 void gbActor::EnableActionTransMtl(char* actionName, bool enable) {
-    // Enable/disable material transition for action
+    if (!m_pActorDef) return;
+
+    unsigned int crc = gbCrc32Compute(actionName);
+    int i = 0;
+    if (m_numActions > 0) {
+        unsigned int* pCrc = (unsigned int*)((char*)m_pActions + 4);
+        while (*pCrc != crc) {
+            i++;
+            pCrc = (unsigned int*)((char*)pCrc + 0x24);
+            if (i >= m_numActions) return;
+        }
+        // Found action, call actorDef vtable[0x4]
+        void** defVtable = *(void***)m_pActorDef;
+        typedef void (__thiscall *EnableTransFn)(void*, int, bool);
+        EnableTransFn enableTrans = (EnableTransFn)((void**)defVtable)[0x4 / 4];
+        enableTrans(m_pActorDef, i, enable);
+    }
 }
 
 // Set sun direction for lighting
