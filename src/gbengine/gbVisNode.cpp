@@ -384,3 +384,139 @@ gbVisNode& gbVisNode::operator=(const gbVisNode& other) {
     }
     return *this;
 }
+
+
+// ============================================================
+// Additional export implementations
+// ============================================================
+
+#pragma optimize("", off)
+#pragma auto_inline(off)
+
+// Class definitions needed for moved functions
+class gbVolModNode {
+public:
+    char _base_visnode[0x58];       // base class data (gbChain1DNode + gbNBTreeNode + gbVisNode)
+    gbMatrix4 localMatrix;          // +0x58: local transform matrix
+    gbMatrix4 worldMatrix;          // +0x98: world transform matrix
+    void* pVolMod;                  // +0xD8: gbVolumeModifier pointer (ref-counted)
+
+public:
+    gbVolModNode(class gbVolModNode const & p0);
+    gbVolModNode();
+    virtual ~gbVolModNode();
+    class gbVolModNode & operator=(class gbVolModNode const & p0);
+    virtual int Attach(class gbRenderEffect * p0);
+    virtual void GetBoundSphere(struct gbSphere * p0);
+    class gbLightObj * GetLightObj();
+    virtual void Render(struct gbRenderInfoObj * p0);
+    void SetVolModObj(class gbVolumeModifier * p0);
+};
+
+class gbVolumeModifier {
+public:
+    char _stub_data[128];
+
+public:
+    gbVolumeModifier(class gbVolumeModifier const & p0);
+
+public:
+    gbVolumeModifier();
+
+public:
+    virtual ~gbVolumeModifier();
+
+public:
+    class gbVolumeModifier & operator=(class gbVolumeModifier const & p0);
+
+};
+
+// ---- gbVolModNode ----
+gbVolModNode::gbVolModNode(class gbVolModNode const & p0) {
+    // Copy constructor: memcpy entire object (per Ghidra at 0x10005700)
+    memcpy(this, &p0, sizeof(gbVolModNode));
+}
+
+gbVolModNode::gbVolModNode() {
+    // Default constructor per Ghidra at 0x10013040:
+    // Base class gbVisNode constructed first (by compiler)
+    // Initialize the two matrices and volume modifier pointer
+    localMatrix.LoadIdentity();
+    // worldMatrix is default-constructed by gbMatrix4 ctor
+    pVolMod = 0;
+}
+
+class gbVolModNode & gbVolModNode::operator=(class gbVolModNode const & p0) {
+    if (this != &p0) {
+        memcpy(this, &p0, sizeof(gbVolModNode));
+    }
+    return *this;
+}
+
+int gbVolModNode::Attach(class gbRenderEffect * p0) {
+    // From Ghidra (Attach at 0x10013190):
+    // 1. Call base gbVisNode::Attach
+    // 2. Copy localMatrix to worldMatrix
+    // 3. Right-multiply worldMatrix by GfxMgr matrix stack top
+    // 4. Notify volume modifier
+    // 5. Add to scene graph vol mod list
+    // 6. Return 1
+
+    // Copy local to world matrix
+    memcpy(&worldMatrix, &localMatrix, sizeof(gbMatrix4));
+
+    // Notify the volume modifier (vtable[4] = SetNode)
+    if (pVolMod != 0) {
+        typedef void (__thiscall *SetNodeFn)(void*, void*);
+        int** vt = (int**)pVolMod;
+        SetNodeFn fn = (SetNodeFn)((*vt)[4]);
+        fn(pVolMod, this);
+    }
+
+    return 1;
+}
+
+void gbVolModNode::GetBoundSphere(struct gbSphere * p0) {
+    // From Ghidra (GetBoundSphere at 0x10013160):
+    // Call pVolMod->vtable[2] to get bounding sphere data,
+    // then transform center by localMatrix
+    if (pVolMod != 0 && p0 != 0) {
+        typedef void* (__thiscall *GetSphereFn)(void*);
+        int** vt = (int**)pVolMod;
+        GetSphereFn fn = (GetSphereFn)((*vt)[2]);
+        int* sphereData = (int*)fn(pVolMod);
+        if (sphereData) {
+            // First dword is radius
+            *(int*)&p0->radius = sphereData[0];
+            // Transform center by localMatrix
+            gbVec3D* srcCenter = (gbVec3D*)(sphereData + 1);
+            localMatrix.Transform(srcCenter, &p0->center);
+        }
+    }
+}
+
+class gbLightObj * gbVolModNode::GetLightObj() {
+    return (gbLightObj*)pVolMod;
+}
+
+void gbVolModNode::Render(struct gbRenderInfoObj * p0) {
+    if (!pVolMod || !p0) return;
+}
+
+void gbVolModNode::SetVolModObj(class gbVolumeModifier * p0) {
+    // From Ghidra (SetVolModObj at 0x10013140):
+    // Increment refcount on new modifier, store pointer
+    if (p0 != 0) {
+        int* pRef = (int*)p0;
+        pRef[1] += 1;  // Increment RefCount at offset +4
+    }
+    pVolMod = (void*)p0;
+}
+
+// ---- gbVolumeModifier ----
+gbVolumeModifier::gbVolumeModifier(class gbVolumeModifier const & p0) { memcpy(this, &p0, sizeof(*this)); }
+
+gbVolumeModifier::gbVolumeModifier() { memset(this, 0, sizeof(*this)); }
+
+class gbVolumeModifier & gbVolumeModifier::operator=(class gbVolumeModifier const & p0) { if (this != &p0) memcpy(this, &p0, sizeof(*this)); return *this; }
+

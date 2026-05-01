@@ -5,14 +5,39 @@
 
 // ======== Struct Declarations ========
 
-struct gbTimeCounter {
-    LARGE_INTEGER startTime;
-    LARGE_INTEGER freq;
-    double elapsed;
+class gbTimeCounter {
+public:
+    LARGE_INTEGER startTime;  // +0x00
+    LARGE_INTEGER freq;       // +0x08
+    double elapsed;           // +0x10
+    double timestamp;         // +0x18: stored time value (used by C++ methods)
+
+public:
+    gbTimeCounter& operator=(const gbTimeCounter& p0);
+    double Off();
+    void On();
 };
 
-struct gbNameVarBuf {
-    void* impl;
+class gbNameVarBuf {
+public:
+    void* dataBuf;          // +0x00: data buffer
+    int dataBufCapacity;    // +0x04: capacity of data buffer in bytes
+    int dataBufUsed;        // +0x08: used bytes in data buffer
+    void* varTable;         // +0x0C: variable descriptor table (16 bytes per entry)
+    int varTableCapacity;   // +0x10: max number of entries in varTable
+    int varCount;           // +0x14: number of registered variables
+    int locked;             // +0x18: lock flag
+
+public:
+    gbNameVarBuf();
+    ~gbNameVarBuf();
+    gbNameVarBuf& operator=(const gbNameVarBuf& p0);
+    void GetVariant(unsigned int p0, void* p1);
+    int IsVarExist(unsigned int p0);
+    void* LockVariant(unsigned int p0, int* p1);
+    void RegVariant(unsigned int p0, int p1, int p2);
+    void SetVariant(unsigned int p0, void* p1);
+    void UnlockVariant();
 };
 
 // ======== CRC32 Functions ========

@@ -531,3 +531,218 @@ void gbParticleEffect::SetSpaceScale(float scale) {
 float gbParticleEffect::GetSpaceScale(void) {
     return spaceScale;
 }
+
+
+// ============================================================
+// Additional export implementations
+// ============================================================
+
+#include "gbengine/gbVFileSystem.h"
+
+extern gbVFileSystem* g_pVFileSys;
+extern char* gbVfgetdir(char* path, char* dir, int maxLen);
+
+#pragma optimize("", off)
+#pragma auto_inline(off)
+
+// Class definitions needed for moved functions
+class gbAnimNodeGroup {
+public:
+    void* pNode;              // +0x00: pointer to root animation node
+    int field_04;             // +0x04
+    int field_08;             // +0x08
+    float field_0c;           // +0x0c: some float (init -1.0f)
+    int field_10;             // +0x10
+    int field_14;             // +0x14
+    int field_18;             // +0x18
+    int field_1c;             // +0x1c
+    int field_20;             // +0x20
+    int field_24;             // +0x24
+    int field_28;             // +0x28
+    int isDead;               // +0x2c: dead flag
+    int field_30;             // +0x30: active/priority flag
+    gbMatrix4 posMatrix;      // +0x34: position matrix (64 bytes)
+    // total: 0x74 = 116 bytes
+
+    static void* s_pGfxMgr;  // stored at DAT_101379b0
+
+public:
+    gbAnimNodeGroup(class gbGfxManager * p0);
+    ~gbAnimNodeGroup();
+    class gbAnimNodeGroup & operator=(class gbAnimNodeGroup const & p0);
+    void Attach();
+    class gbAnimNodeGroup * Clone();
+    int IsDead();
+    void LoadFromFile(char * p0);
+    void Reset();
+    void SetPosition(struct gbMatrix4 const & p0);
+    void SetPosition(struct gbVec3D const & p0);
+    void SetPriority(int p0);
+    static void SetSoundFileDir(char * p0);
+    void SetToDead();
+    void ShowGroup(int p0);
+    void Update();
+};
+
+struct gbEmitterSquare {
+    char _stub_data[128];
+
+public:
+    gbEmitterSquare();
+
+public:
+    struct gbEmitterSquare & operator=(struct gbEmitterSquare const & p0);
+
+};
+
+// Static member definition
+void* gbAnimNodeGroup::s_pGfxMgr = 0;
+
+// ---- gbAnimNodeGroup ----
+gbAnimNodeGroup::gbAnimNodeGroup(class gbGfxManager * p0) {
+    // posMatrix constructed automatically via gbMatrix4 default ctor (identity)
+    // Initialize fields per Ghidra at 0x1000C3C0
+    pNode = 0;
+    field_24 = 0;
+    s_pGfxMgr = p0;
+    field_04 = 0;
+    field_08 = 0;
+    field_10 = 0;
+    field_0c = -1.0f;  // 0xBFF00000
+    field_14 = 0;
+    field_18 = 0;
+    field_28 = 0;
+    isDead = 0;
+    field_30 = 1;
+}
+
+class gbAnimNodeGroup & gbAnimNodeGroup::operator=(class gbAnimNodeGroup const & p0) {
+    if (this != &p0) {
+        memcpy(this, &p0, sizeof(gbAnimNodeGroup));
+    }
+    return *this;
+}
+
+void gbAnimNodeGroup::Attach() { if (!pNode) return; }
+
+class gbAnimNodeGroup * gbAnimNodeGroup::Clone() {
+    gbAnimNodeGroup* clone = new gbAnimNodeGroup((gbGfxManager*)s_pGfxMgr);
+    *clone = *this;
+    return clone;
+}
+
+int gbAnimNodeGroup::IsDead() {
+    return isDead;
+}
+
+void gbAnimNodeGroup::LoadFromFile(char * p0) {
+    isDead = 0;
+    gbVFile* file = g_pVFileSys->OpenFile(p0, 0x201);
+    if (file) {
+        char dirBuf[256];
+        gbVfgetdir(p0, dirBuf, 256);
+        int header;
+        g_pVFileSys->Read(&header, 4, file);
+        g_pVFileSys->Read(&field_1c, 4, file);
+        g_pVFileSys->Read(&field_20, 4, file);
+        g_pVFileSys->Read(&field_24, 4, file);
+        g_pVFileSys->CloseFile(file);
+    }
+}
+
+void gbAnimNodeGroup::Reset() {
+    field_08 = 0;
+    field_10 = 0;
+    field_0c = -1.0f;
+    field_14 = 0;
+    field_18 = 0;
+    field_28 = 0;
+    isDead = 1;
+}
+
+void gbAnimNodeGroup::SetPosition(struct gbMatrix4 const & p0) {
+    memcpy(&posMatrix, &p0, sizeof(gbMatrix4));
+}
+
+void gbAnimNodeGroup::SetPosition(struct gbVec3D const & p0) {
+    posMatrix.m[3][0] = p0.x;
+    posMatrix.m[3][1] = p0.y;
+    posMatrix.m[3][2] = p0.z;
+}
+
+void gbAnimNodeGroup::SetPriority(int p0) {
+    field_28 = p0;
+}
+
+void gbAnimNodeGroup::SetSoundFileDir(char * p0) {
+    static char s_soundFileDir[256];
+    if (!p0) {
+        s_soundFileDir[0] = '\0';
+        return;
+    }
+    strcpy(s_soundFileDir, p0);
+}
+
+void gbAnimNodeGroup::SetToDead() {
+    isDead = 1;
+}
+
+void gbAnimNodeGroup::ShowGroup(int p0) {
+    field_30 = p0;
+}
+
+void gbAnimNodeGroup::Update() {
+    if (isDead == 0) return;
+    if (field_30 == 0) return;
+
+    double curTime = *(double*)((char*)s_pGfxMgr + 0x1f8);
+    double startTime = *(double*)((char*)this + 0x08);
+    double elapsed = *(double*)((char*)this + 0x10);
+    int loopPlay = 0;
+
+    double delta = 0.0;
+    if (startTime < 0.0) {
+        loopPlay = 1;
+    } else {
+        delta = curTime - startTime;
+        if (delta >= 1.0) {
+            delta = 0.0;
+        }
+    }
+
+    *(double*)((char*)this + 0x08) = curTime;
+    *(double*)((char*)this + 0x10) = elapsed + delta;
+
+    int frames = (int)(elapsed + delta);
+    if (frames >= 2) frames = 1;
+
+    if (frames >= 1) {
+        field_10 = 0;
+        field_14 = 0;
+        field_18 = field_18 + frames;
+        if (field_20 <= field_18) {
+            field_18 = 0;
+            field_28 = field_28 + 1;
+        }
+        loopPlay = 1;
+        if (field_24 != 0 && field_28 >= field_24) {
+            isDead = 0;
+            return;
+        }
+    }
+}
+
+// ---- gbEmitterData ----
+gbEmitterData::gbEmitterData() { memset(this, 0, sizeof(*this)); }
+
+struct gbEmitterData & gbEmitterData::operator=(struct gbEmitterData const & p0) { if (this != &p0) memcpy(this, &p0, sizeof(*this)); return *this; }
+
+// ---- gbEmitterSquare ----
+gbEmitterSquare::gbEmitterSquare() { memset(this, 0, sizeof(*this)); }
+
+struct gbEmitterSquare & gbEmitterSquare::operator=(struct gbEmitterSquare const & p0) { if (this != &p0) memcpy(this, &p0, sizeof(*this)); return *this; }
+
+// ---- gbParticleUnit ----
+gbParticleUnit::gbParticleUnit(struct gbParticleUnit & other) { memcpy(this, &other, sizeof(gbParticleUnit)); }
+struct gbParticleUnit & gbParticleUnit::operator=(struct gbParticleUnit const & p0) { if (this != &p0) memcpy(this, &p0, sizeof(*this)); return *this; }
+

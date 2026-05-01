@@ -22,6 +22,9 @@ struct gbEmitterData {
     float unused2;           // +0x18
     float lifetime;          // +0x1c
     float lifetimeVariance;  // +0x20
+
+    gbEmitterData();
+    gbEmitterData& operator=(const gbEmitterData& p0);
 };
 
 /* ======== gbPartParamControl ======== */
@@ -65,6 +68,8 @@ struct gbParticleUnit {
 
     gbParticleUnit(void);
     gbParticleUnit(const gbParticleUnit& other);
+    gbParticleUnit(gbParticleUnit& other);
+    gbParticleUnit& operator=(const gbParticleUnit& p0);
 };
 
 /* ======== gbPartGroupParam ======== */

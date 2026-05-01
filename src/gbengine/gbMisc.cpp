@@ -788,3 +788,181 @@ extern "C" void __cdecl _gbVec3D_dcc_impl(void) {}
 
 // Use alternatename to alias the missing mangled symbol to our implementation
 #pragma comment(linker, "/alternatename:??_FgbVec3D@@QAEXXZ=__gbVec3D_dcc_impl")
+
+
+// ============================================================
+// Additional export implementations
+// ============================================================
+
+// Build timestamp (exported as DATA symbol)
+extern "C" char stamp[] = "Mon Jan  5 16:39:11 2004";
+
+#pragma optimize("", off)
+#pragma auto_inline(off)
+
+int gbColorQuad::ColorQuadFmt;
+
+// ---- gbColorFlt ----
+gbColorFlt::gbColorFlt(float p0, float p1, float p2) { r = p0; g = p1; b = p2; a = 1.0f; }
+
+gbColorFlt::gbColorFlt(float p0, float p1, float p2, float p3) { r = p0; g = p1; b = p2; a = p3; }
+
+gbColorFlt::gbColorFlt() { r = g = b = a = 0.0f; }
+
+struct gbColorFlt & gbColorFlt::operator=(struct gbColorFlt const & p0) { r = p0.r; g = p0.g; b = p0.b; a = p0.a; return *this; }
+
+int gbColorFlt::operator!=(struct gbColorFlt & p0) { return (r != p0.r || g != p0.g || b != p0.b || a != p0.a) ? 1 : 0; }
+
+void gbColorFlt::operator+=(struct gbColorFlt const & p0) { r += p0.r; g += p0.g; b += p0.b; a += p0.a; }
+
+// ---- gbColorQuad ----
+gbColorQuad::gbColorQuad(struct gbColorQuad & p0) { *(unsigned int*)this = *(unsigned int*)&p0; }
+
+gbColorQuad::gbColorQuad(unsigned char p0, unsigned char p1, unsigned char p2) {
+    if (ColorQuadFmt == 0) { r = p0; g = p1; b = p2; a = 0xFF; }
+    else { b = p2; g = p1; r = p0; a = 0xFF; }
+}
+
+gbColorQuad::gbColorQuad(unsigned char p0, unsigned char p1, unsigned char p2, unsigned char p3) {
+    if (ColorQuadFmt == 0) { r = p0; g = p1; b = p2; a = p3; }
+    else { b = p2; g = p1; r = p0; a = p3; }
+}
+
+gbColorQuad::gbColorQuad() { b = g = r = a = 0; }
+
+struct gbColorQuad & gbColorQuad::operator=(struct gbColorQuad const & p0) { *(unsigned int*)this = *(unsigned int*)&p0; return *this; }
+
+// ---- gbNameVarBuf ----
+gbNameVarBuf::gbNameVarBuf() {
+    dataBuf = 0;
+    dataBufCapacity = 0;
+    dataBufUsed = 0;
+    varTable = 0;
+    varTableCapacity = 0;
+    varCount = 0;
+    locked = 0;
+}
+
+class gbNameVarBuf & gbNameVarBuf::operator=(class gbNameVarBuf const & p0) { if (this != &p0) memcpy(this, &p0, sizeof(*this)); return *this; }
+
+void gbNameVarBuf::GetVariant(unsigned int p0, void * p1) {
+    unsigned int* table = (unsigned int*)varTable;
+    for (int i = 0; i < varCount; i++) {
+        if (table[i * 4] == p0) {
+            unsigned int elemSize = table[i * 4 + 1];
+            unsigned int dataOffset = table[i * 4 + 2];
+            unsigned int elemCount = table[i * 4 + 3];
+            unsigned int totalSize = elemCount * elemSize;
+            memcpy(p1, (char*)dataBuf + dataOffset, totalSize);
+            return;
+        }
+    }
+}
+
+int gbNameVarBuf::IsVarExist(unsigned int p0) {
+    unsigned int* table = (unsigned int*)varTable;
+    for (int i = 0; i < varCount; i++) {
+        if (table[i * 4] == p0) {
+            return 1;
+        }
+    }
+    return 0;
+}
+
+void * gbNameVarBuf::LockVariant(unsigned int p0, int * p1) {
+    unsigned int* table = (unsigned int*)varTable;
+    for (int i = 0; i < varCount; i++) {
+        if (table[i * 4] == p0) {
+            locked = 1;
+            if (p1 != 0) {
+                *p1 = table[i * 4 + 3] * table[i * 4 + 1];
+            }
+            unsigned int dataOffset = table[i * 4 + 2];
+            return (char*)dataBuf + dataOffset;
+        }
+    }
+    return 0;
+}
+
+void gbNameVarBuf::RegVariant(unsigned int p0, int p1, int p2) {
+    // Check if already registered
+    unsigned int* table = (unsigned int*)varTable;
+    for (int i = 0; i < varCount; i++) {
+        if (table[i * 4] == p0) {
+            return;
+        }
+    }
+
+    int totalDataSize = p1 * p2;
+
+    // Grow data buffer if necessary
+    if (dataBufUsed + totalDataSize > dataBufCapacity) {
+        int newCap = (dataBufCapacity + totalDataSize) * 2;
+        dataBufCapacity = newCap;
+        void* newBuf = malloc(newCap);
+        if (dataBufUsed != 0) {
+            memcpy(newBuf, dataBuf, dataBufUsed);
+        }
+        if (dataBuf != 0) {
+            free(dataBuf);
+        }
+        dataBuf = newBuf;
+    }
+
+    // Grow var table if necessary
+    if (varCount == varTableCapacity) {
+        int newTableCap = varTableCapacity * 2 + 2;
+        varTableCapacity = newTableCap;
+        void* newTable = malloc(newTableCap * 16);
+        if (varCount != 0) {
+            memcpy(newTable, varTable, varCount * 16);
+        }
+        if (varTable != 0) {
+            free(varTable);
+        }
+        varTable = newTable;
+    }
+
+    // Add entry: [crc, elemSize, dataOffset, elemCount]
+    table = (unsigned int*)varTable;
+    table[varCount * 4 + 0] = p0;
+    table[varCount * 4 + 2] = (unsigned int)dataBufUsed;
+    table[varCount * 4 + 1] = (unsigned int)p1;
+    table[varCount * 4 + 3] = (unsigned int)p2;
+    varCount++;
+    dataBufUsed += totalDataSize;
+}
+
+void gbNameVarBuf::SetVariant(unsigned int p0, void * p1) {
+    unsigned int* table = (unsigned int*)varTable;
+    for (int i = 0; i < varCount; i++) {
+        if (table[i * 4] == p0) {
+            unsigned int elemSize = table[i * 4 + 1];
+            unsigned int dataOffset = table[i * 4 + 2];
+            unsigned int elemCount = table[i * 4 + 3];
+            unsigned int totalSize = elemCount * elemSize;
+            memcpy((char*)dataBuf + dataOffset, p1, totalSize);
+            return;
+        }
+    }
+}
+
+void gbNameVarBuf::UnlockVariant() {
+    locked = 0;
+}
+
+// ---- gbTimeCounter ----
+class gbTimeCounter & gbTimeCounter::operator=(class gbTimeCounter const & p0) { if (this != &p0) memcpy(this, &p0, sizeof(*this)); return *this; }
+
+double gbTimeCounter::Off() { return 0.0; }
+
+void gbTimeCounter::On() {
+    LARGE_INTEGER counter;
+    QueryPerformanceCounter(&counter);
+    LARGE_INTEGER freq;
+    QueryPerformanceFrequency(&freq);
+    double freqDbl = (double)freq.LowPart + (double)freq.HighPart * 4294967296.0;
+    double counterDbl = (double)counter.LowPart + (double)counter.HighPart * 4294967296.0;
+    timestamp = counterDbl / freqDbl;
+}
+

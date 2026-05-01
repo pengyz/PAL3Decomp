@@ -821,3 +821,39 @@ gbTexture* gbEffectMgr::GetGrayTexture(void) {
 gbTexture* gbEffectMgr::GetWhiteTexture(void) {
     return m_pWhiteTexture;
 }
+
+
+// ============================================================
+// Additional export implementations
+// ============================================================
+
+#pragma optimize("", off)
+#pragma auto_inline(off)
+
+// Class definitions needed for moved functions
+class gbGfxManager_D3D {
+public:
+    char _stub_data[128];
+
+public:
+    void SetTexture(struct gbTextureArray * p0);
+
+};
+
+struct gbImage2DInfo {
+    char _stub_data[128];
+
+public:
+    struct gbImage2DInfo & operator=(struct gbImage2DInfo const & p0);
+
+public:
+    int IsPreferAlpha();
+
+};
+
+// ---- gbGfxManager_D3D ----
+void gbGfxManager_D3D::SetTexture(struct gbTextureArray * p0) { (void)p0; }
+
+// ---- gbImage2DInfo ----
+struct gbImage2DInfo & gbImage2DInfo::operator=(struct gbImage2DInfo const & p0) { if (this != &p0) memcpy(this, &p0, sizeof(*this)); return *this; }
+

@@ -1469,3 +1469,79 @@ gbVFile* CIniFile::GetFilePointer()
 {
     return m_pFile;
 }
+
+
+// ============================================================
+// Additional export implementations
+// ============================================================
+
+#pragma optimize("", off)
+#pragma auto_inline(off)
+
+// Class definitions needed for moved functions
+class gbVTextFile {
+public:
+    char lineBuf[0x400];    // +0x000: line buffer (1024 bytes)
+    gbVFile* m_pFile;       // +0x400: file handle
+
+public:
+    gbVTextFile(char * p0);
+
+public:
+    gbVTextFile();
+
+public:
+    ~gbVTextFile();
+
+public:
+    class gbVTextFile & operator=(class gbVTextFile const & p0);
+
+public:
+    void Close();
+
+public:
+    void Open(char * p0);
+
+public:
+    char * ReadLine();
+
+public:
+    void Rewind();
+
+};
+
+// ---- gbVTextFile ----
+gbVTextFile::gbVTextFile(char * p0) {
+    m_pFile = g_pVFileSys->OpenFile(p0, 0x401);
+}
+
+gbVTextFile::gbVTextFile() {
+    m_pFile = 0;
+}
+
+class gbVTextFile & gbVTextFile::operator=(class gbVTextFile const & p0) { if (this != &p0) memcpy(this, &p0, sizeof(*this)); return *this; }
+
+void gbVTextFile::Close() {
+    if (m_pFile == 0) {
+        return;
+    }
+    g_pVFileSys->CloseFile(m_pFile);
+    m_pFile = 0;
+}
+
+void gbVTextFile::Open(char * p0) {
+    if (m_pFile != 0) {
+        g_pVFileSys->CloseFile(m_pFile);
+        m_pFile = 0;
+    }
+    m_pFile = g_pVFileSys->OpenFile(p0, 0x401);
+}
+
+char * gbVTextFile::ReadLine() {
+    return g_pVFileSys->ReadLine(lineBuf, 0x400, m_pFile);
+}
+
+void gbVTextFile::Rewind() {
+    g_pVFileSys->Seek(m_pFile, 0, 1);
+}
+
