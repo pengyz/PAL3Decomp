@@ -12,7 +12,8 @@
  *   sizeof(gbVFileSystem) == 0xE01D4
  */
 
-#include <windows.h>
+#include "gbengine/gbVFileSystem.h"
+
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
@@ -41,279 +42,12 @@ extern "C" {
 // LZO work memory size
 #define LZO1X_1_MEM_COMPRESS (16384 * sizeof(unsigned char*))
 
-// ============================================================================
-// CPK Constants and Flags
-// ============================================================================
-
-#define CPK_LABEL           0x1A545352  // "RST\x1A"
-#define CPK_MAX_TABLE_NUM   0x8000
-#define CPK_MAX_OPEN_FILES  8
-
-#define CPK_FLAG_ISFILE         0x00000001
-#define CPK_FLAG_ISDIR          0x00000002
-#define CPK_FLAG_UNKNOWN1       0x00000004
-#define CPK_FLAG_UNKNOWN2       0x00000008
-#define CPK_FLAG_ISDELETED      0x00000010
-#define CPK_FLAG_NOTCOMPRESSED  0x00010000
-
-// ============================================================================
-// ECPKMode enum
-// ============================================================================
-
-enum ECPKMode {
-    CPKM_Null = 0,
-    CPKM_Normal = 1,
-    CPKM_FileMapping = 2,
-    CPKM_Overlapped = 3,
-    CPKM_End = 4
-};
-
-// ============================================================================
-// CPKHeader (0x80 = 128 bytes, with reserved padding)
-// ============================================================================
-
-struct CPKHeader {
-    unsigned long dwLable;          // 0x00: magic 0x1A545352
-    unsigned long dwVersion;        // 0x04
-    unsigned long dwTableStart;     // 0x08
-    unsigned long dwDataStart;      // 0x0C
-    unsigned long dwMaxFileNum;     // 0x10
-    unsigned long dwFileNum;        // 0x14
-    unsigned long dwIsFormatted;    // 0x18
-    unsigned long dwSizeOfHeader;   // 0x1C
-    unsigned long dwValidTableNum;  // 0x20
-    unsigned long dwMaxTableNum;    // 0x24
-    unsigned long dwFragmentNum;    // 0x28
-    unsigned long dwPackageSize;    // 0x2C
-    unsigned long dwReserved[0x14]; // 0x30: 80 bytes reserved
-};
-
-// ============================================================================
-// CPKTable (0x1C = 28 bytes per entry)
-// ============================================================================
-
-struct CPKTable {
-    unsigned long dwCRC;            // 0x00: filename CRC32
-    unsigned long dwFlag;           // 0x04: flags
-    unsigned long dwFatherCRC;      // 0x08: parent directory CRC32
-    unsigned long dwStartPos;       // 0x0C: data offset in archive
-    unsigned long dwPackedSize;     // 0x10: compressed size
-    unsigned long dwOriginSize;     // 0x14: original size
-    unsigned long dwExtraInfoSize;  // 0x18: extra info size (filename length)
-};
-
-// ============================================================================
-// CPKFile class - Handle for an opened file within a CPK archive
-// ============================================================================
-
-class CPKFile {
-public:
-    unsigned char bValid;           // +0x00: is this handle in use
-    unsigned long dwCRC;            // +0x04: file CRC
-    unsigned long dwFatherCRC;      // +0x08: parent CRC
-    int           nTableIndex;      // +0x0C: index into CPK file table
-    void*         lpMapAddress;     // +0x10: memory-mapped base address
-    void*         lpStartAddress;   // +0x14: start of file data in mapping
-    unsigned long dwOffset;         // +0x18: offset for mapping alignment
-    unsigned char bCompressed;      // +0x1C: is the data compressed
-    void*         lpMem;            // +0x20: decompressed data buffer
-    unsigned long dwFileSize;       // +0x24: original file size
-    unsigned long dwPointer;        // +0x28: current read position
-    CPKTable*     pTableItem;       // +0x2C: pointer to table entry
-
-    // Padding to reach ~0x140 bytes (original size from Ghidra)
-    unsigned char _reserved[0x140 - 0x30];
-
-    CPKFile();
-    ~CPKFile();
-    CPKFile& operator=(const CPKFile& other);
-    void* GetRealData();
-};
-
-// ============================================================================
-// CPK class - CPK archive reader
-// sizeof(CPK) == 0xE01BC
-// ============================================================================
-
-class CPK {
-public:
-    unsigned long   m_dwAllocGranularity;           // +0x00
-    ECPKMode        m_eMode;                        // +0x04
-    CPKHeader       m_CPKHeader;                    // +0x08 (0x80 bytes)
-    CPKTable        m_CPKTable[CPK_MAX_TABLE_NUM];  // +0x88 (0x8000 * 0x1C = 0xE0000 bytes)
-    CPKFile*        m_pCPKFile[CPK_MAX_OPEN_FILES]; // +0xE0088 (8 pointers)
-    unsigned char   m_bLoaded;                      // +0xE00A8
-    unsigned long   m_dwCPKHandle;                  // +0xE00AC (HANDLE as DWORD)
-    unsigned long   m_dwCPKMappingHandle;           // +0xE00B0
-    char            m_szCPKFileName[0x104];          // +0xE00B4
-    int             m_nOpenedFileNum;               // +0xE01B8
-
-    // Static CRC table
-    static unsigned long CrcTable[256];
-    static int s_bCrcTableInitialized;
-
-    CPK();
-    ~CPK();
-    CPK& operator=(const CPK& other);
-
-    // Public methods
-    static void InitCrcTable();
-    static unsigned long Crc(const char* str);
-    int  Load(const char* filename);
-    int  Unload();
-    int  IsValidCPK(const char* filename);
-    int  IsFileExist(const char* filename);
-    int  IsLoaded();
-    CPKFile* Open(const char* filename);
-    int  Close(CPKFile* pFile);
-    int  Read(void* buffer, unsigned long size, CPKFile* pFile);
-    int  ReadChar(CPKFile* pFile);
-    char* ReadLine(char* buffer, int maxLen, CPKFile* pFile);
-    unsigned long LoadFile(void* buffer, const char* filename);
-    unsigned long Compress(void* dst, void* src, unsigned long srcLen);
-    unsigned long DeCompress(void* dst, void* src, unsigned long srcLen);
-    unsigned long GetSize(CPKFile* pFile);
-    unsigned long GetCPKHandle();
-    unsigned long Seek(CPKFile* pFile, int offset, int origin);
-    unsigned long Tell(CPKFile* pFile);
-    void Rewind(CPKFile* pFile);
-    void SetOpenMode(ECPKMode mode);
-
-    // These are private in the original binary but we keep them accessible
-    // for use by gbVFileSystem methods in the same translation unit.
-    void Reset();
-    int  GetFileSize(unsigned long& packedSize, unsigned long& originSize, unsigned long tableIndex);
-    int  GetTableIndex(const char* filename);
-    int  GetTableIndexFromCRC(unsigned long crc);
-    unsigned long GetAllocationGranularity();
-    int  IsDir(unsigned long tableIndex);
-};
-
 // Static member definitions
 unsigned long CPK::CrcTable[256];
 int CPK::s_bCrcTableInitialized = 0;
 
-// ============================================================================
-// gbVFile class - Virtual file handle
-// ============================================================================
-
-class gbVFile {
-public:
-    unsigned char   bValid;         // +0x00: handle is active
-    unsigned long   dwCRC;          // +0x04
-    unsigned long   dwFatherCRC;    // +0x08
-    int             nTableIndex;    // +0x0C
-    void*           lpMapAddress;   // +0x10
-    void*           lpStartAddress; // +0x14
-    unsigned long   dwOffset;       // +0x18
-    unsigned char   bCompressed;    // +0x1C
-    void*           lpMem;          // +0x20
-    unsigned long   dwFileSize;     // +0x24
-    unsigned long   dwPointer;      // +0x28
-    CPKTable*       pTableItem;     // +0x2C
-
-    // Disk file handle (for non-CPK mode)
-    HANDLE          hFile;          // +0x30
-    int             openMode;       // +0x34: 0=CPK, 1=disk
-
-    gbVFile();
-    ~gbVFile();
-    gbVFile& operator=(const gbVFile& other);
-};
-
-// ============================================================================
-// gbVFile1 class - Extended file info with path manipulation
-// ============================================================================
-
-class gbVFile1 {
-public:
-    char fullPath[260];     // +0x00: MAX_PATH
-
-    gbVFile1& operator=(const gbVFile1& other);
-    char* GetFullPath();
-    char* GetFileName(char* buf, int bufLen);
-    char* GetDir(char* buf, int bufLen);
-    char* GetTitle(char* buf, int bufLen);
-    char* GetEntry();
-};
-
-// ============================================================================
-// gbVFileSystem class - Virtual file system
-// sizeof(gbVFileSystem) == 0xE01D4
-// ============================================================================
-
-enum gbVFSType {
-    VFSYS_DISKFILE = 0,
-    VFSYS_PACKFILE = 1,
-    VFSYS_MEMIMAGE = 2
-};
-
-class gbVFileSystem {
-public:
-    int             IsInit;         // +0x00
-    char*           rtDirectory;    // +0x04
-    gbVFile*        pFileBuffer;    // +0x08
-    gbVFSType       Type;           // +0x0C
-    FILE*           m_pckfp;        // +0x10
-    unsigned int    m_itemcount;    // +0x14
-    CPK             m_cpk;          // +0x18
-
-    gbVFileSystem();
-    ~gbVFileSystem();
-    gbVFileSystem& operator=(const gbVFileSystem& other);
-
-    int     Init(char* path);
-    void    Release();
-    gbVFile* OpenFile(const char* filename, unsigned int flags);
-    void    CloseFile(gbVFile* pFile);
-    gbVFile* NewFileEntry();
-    void    DelFileEntry(gbVFile* pFile);
-    int     Read(void* buffer, unsigned int size, gbVFile* pFile);
-    int     Write(void* buffer, unsigned int size, gbVFile* pFile);
-    int     ReadChar(gbVFile* pFile);
-    char*   ReadLine(char* buffer, int maxLen, gbVFile* pFile);
-    void    Seek(gbVFile* pFile, long offset, int origin);
-    void    Rewind(gbVFile* pFile);
-    long    TellPos(gbVFile* pFile);
-    long    GetFileSize(gbVFile* pFile);
-    int     FileExistNum(char* filename);
-    int     FindItem(const char* filename);
-};
-
 // Global pointer to the virtual file system
 gbVFileSystem* g_pVFileSys = NULL;
-
-// ============================================================================
-// CIniFile class - INI file reader/writer using gbVFileSystem
-// ============================================================================
-
-class CIniFile {
-public:
-    gbVFile*    m_pFile;        // +0x00: file handle
-    int         m_nState;       // +0x04: state (-1 = not opened)
-
-    CIniFile();
-    ~CIniFile();
-    CIniFile& operator=(const CIniFile& other);
-
-    int  OpenFileRead(const char* filename);
-    int  OpenFileWrite(const char* filename);
-    void CloseFile();
-    int  ReadSection(char* sectionName);
-    void ReadStart();
-    int  ReadLine(const char* key, char* value, int maxLen);
-    int  ReadLine(const char* key, int* value);
-    int  ReadLine(const char* key, float* value);
-    int  ReadLine(const char* key, double* value);
-    void WriteLine(const char* key, const char* value);
-    void WriteLine(const char* key, int value);
-    void WriteLine(const char* key, float value);
-    void WriteLine(const char* key, double value);
-    void WriteLineSeperator();
-    void WriteSection(const char* section);
-    int  IfRead();
-    gbVFile* GetFilePointer();
-};
 
 
 // ############################################################################
@@ -455,7 +189,7 @@ unsigned long CPK::Crc(const char* str)
     return ~x;
 }
 
-int CPK::Load(const char* filename)
+bool CPK::Load(const char* filename)
 {
     if (m_bLoaded)
         return 0;
@@ -512,7 +246,7 @@ int CPK::Load(const char* filename)
     return 1;
 }
 
-int CPK::Unload()
+bool CPK::Unload()
 {
     if (!m_bLoaded)
         return 0;
@@ -555,7 +289,7 @@ void CPK::SetOpenMode(ECPKMode mode)
     m_eMode = mode;
 }
 
-int CPK::IsValidCPK(const char* filename)
+bool CPK::IsValidCPK(const char* filename)
 {
     HANDLE hFile = CreateFileA(filename, GENERIC_READ, FILE_SHARE_READ,
                                NULL, OPEN_EXISTING, FILE_ATTRIBUTE_NORMAL, NULL);
@@ -576,7 +310,7 @@ int CPK::IsValidCPK(const char* filename)
     return 1;
 }
 
-int CPK::IsFileExist(const char* filename)
+bool CPK::IsFileExist(const char* filename)
 {
     if (!m_bLoaded)
         return 0;
@@ -603,7 +337,7 @@ int CPK::IsFileExist(const char* filename)
     return 0;
 }
 
-int CPK::IsLoaded()
+bool CPK::IsLoaded()
 {
     return m_bLoaded;
 }
@@ -718,7 +452,7 @@ CPKFile* CPK::Open(const char* filename)
     return pFile;
 }
 
-int CPK::Close(CPKFile* pFile)
+bool CPK::Close(CPKFile* pFile)
 {
     if (!pFile || !pFile->bValid)
         return 0;
@@ -750,7 +484,7 @@ int CPK::Close(CPKFile* pFile)
     return 1;
 }
 
-int CPK::Read(void* buffer, unsigned long size, CPKFile* pFile)
+bool CPK::Read(void* buffer, unsigned long size, CPKFile* pFile)
 {
     if (!pFile || !pFile->bValid || !buffer)
         return 0;
@@ -891,7 +625,7 @@ void CPK::Rewind(CPKFile* pFile)
     }
 }
 
-unsigned long CPK::Seek(CPKFile* pFile, int offset, int origin)
+unsigned long CPK::Seek(CPKFile* pFile, int offset, unsigned long origin)
 {
     if (!pFile || !pFile->bValid)
         return (unsigned long)-1;
@@ -920,7 +654,7 @@ unsigned long CPK::Seek(CPKFile* pFile, int offset, int origin)
     return pFile->dwPointer;
 }
 
-int CPK::GetFileSize(unsigned long& packedSize, unsigned long& originSize, unsigned long tableIndex)
+bool CPK::GetFileSize(unsigned long& packedSize, unsigned long& originSize, unsigned long tableIndex)
 {
     if (tableIndex >= m_CPKHeader.dwValidTableNum)
         return 0;
@@ -963,7 +697,7 @@ unsigned long CPK::GetAllocationGranularity()
     return m_dwAllocGranularity;
 }
 
-int CPK::IsDir(unsigned long tableIndex)
+bool CPK::IsDir(unsigned long tableIndex)
 {
     if (tableIndex >= m_CPKHeader.dwValidTableNum)
         return 0;
@@ -1078,13 +812,13 @@ char* gbVFile1::GetTitle(char* buf, int bufLen)
     return buf;
 }
 
-char* gbVFile1::GetEntry()
+unsigned int gbVFile1::GetEntry()
 {
-    // Return the file extension (including the dot)
+    // Return the file extension as a hash/ID
     char* dot = strrchr(fullPath, '.');
     if (dot)
-        return dot;
-    return NULL;
+        return (unsigned int)(dot - fullPath);
+    return 0;
 }
 
 
@@ -1295,22 +1029,21 @@ void gbVFileSystem::CloseFile(gbVFile* pFile)
     DelFileEntry(pFile);
 }
 
-int gbVFileSystem::Read(void* buffer, unsigned int size, gbVFile* pFile)
+void gbVFileSystem::Read(void* buffer, unsigned int size, gbVFile* pFile)
 {
     if (!pFile || !pFile->bValid || !buffer)
-        return 0;
+        return;
 
     if (pFile->openMode == 1) {
         // Disk file
         DWORD bytesRead = 0;
         ReadFile(pFile->hFile, buffer, size, &bytesRead, NULL);
         pFile->dwPointer += bytesRead;
-        return (int)bytesRead;
     } else {
         // CPK file - read from memory
         void* pData = pFile->lpMem ? pFile->lpMem : pFile->lpStartAddress;
         if (!pData)
-            return 0;
+            return;
 
         unsigned long remaining = pFile->dwFileSize - pFile->dwPointer;
         if (size > remaining)
@@ -1318,25 +1051,20 @@ int gbVFileSystem::Read(void* buffer, unsigned int size, gbVFile* pFile)
 
         memcpy(buffer, (unsigned char*)pData + pFile->dwPointer, size);
         pFile->dwPointer += size;
-        return (int)size;
     }
 }
 
-int gbVFileSystem::Write(void* buffer, unsigned int size, gbVFile* pFile)
+void gbVFileSystem::Write(void* buffer, unsigned int size, gbVFile* pFile)
 {
     if (!pFile || !pFile->bValid || !buffer)
-        return 0;
+        return;
 
     if (pFile->openMode == 1) {
         // Disk file
         DWORD bytesWritten = 0;
         WriteFile(pFile->hFile, buffer, size, &bytesWritten, NULL);
         pFile->dwPointer += bytesWritten;
-        return (int)bytesWritten;
     }
-
-    // Cannot write to CPK files
-    return 0;
 }
 
 int gbVFileSystem::ReadChar(gbVFile* pFile)
@@ -1344,9 +1072,10 @@ int gbVFileSystem::ReadChar(gbVFile* pFile)
     if (!pFile || !pFile->bValid)
         return -1;
 
-    unsigned char ch;
-    int bytesRead = Read(&ch, 1, pFile);
-    if (bytesRead > 0)
+    unsigned char ch = 0;
+    unsigned int prevPos = pFile->dwPointer;
+    Read(&ch, 1, pFile);
+    if (pFile->dwPointer > prevPos)
         return (int)ch;
 
     return -1;
