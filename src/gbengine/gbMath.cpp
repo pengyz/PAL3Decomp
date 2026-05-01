@@ -809,8 +809,8 @@ struct gbRay {
     }
 
     bool IsColAABB(const gbAABBox* box, gbVec3D* point) const;
-    bool IsColOBB(const gbOBBox* box, gbVec3D* point) const;
-    bool IsColOBB_H(const gbOBBox* box) const;
+    int IsColOBB(gbOBBox& param_1);
+    int IsColOBB_H(gbOBBox& param_1);
     bool IsColQuad(const gbVec3D* v0, const gbVec3D* v1, const gbVec3D* v2, const gbVec3D* v3, gbVec3D* point) const;
     bool IsColSphere(const gbSphere* sphere, gbVec3D* point) const;
     bool IsColTriangle(const gbVec3D* v0, const gbVec3D* v1, const gbVec3D* v2, gbVec3D* point) const;
@@ -874,50 +874,61 @@ struct gbAABBox {
 
 // ========== gbOBBox ==========
 struct gbOBBox {
-    gbVec3D center;
-    gbVec3D axis[3];
-    gbVec3D extent;
+    gbMatrix4 matrix;    // axis directions in rows 0-2, center in row 3
+    gbVec3D extent;      // half-extents at +0x40
 
-    gbOBBox() : center(0, 0, 0), extent(1, 1, 1) {
-        axis[0] = gbVec3D(1, 0, 0);
-        axis[1] = gbVec3D(0, 1, 0);
-        axis[2] = gbVec3D(0, 0, 1);
+    gbOBBox() : extent(1, 1, 1) {
     }
 
     gbOBBox& operator=(const gbOBBox& box) {
-        center = box.center;
-        axis[0] = box.axis[0];
-        axis[1] = box.axis[1];
-        axis[2] = box.axis[2];
+        matrix = box.matrix;
         extent = box.extent;
         return *this;
     }
 
     // 0x10027c00 (61B) - GetCenter
-    void GetCenter(gbVec3D* v) const {
-        *v = center;
+    gbVec3D GetCenter() const {
+        gbVec3D v;
+        v.x = matrix.m[3][0];
+        v.y = matrix.m[3][1];
+        v.z = matrix.m[3][2];
+        return v;
     }
 
     // 0x10027c40 (245B) - IsColPoint
-    bool IsColPoint(const gbVec3D* point) const {
-        gbVec3D d(point->x - center.x, point->y - center.y, point->z - center.z);
-        float proj[3];
+    int IsColPoint(gbVec3D& point) {
+        gbVec3D center;
+        center.x = matrix.m[3][0];
+        center.y = matrix.m[3][1];
+        center.z = matrix.m[3][2];
+        gbVec3D d(point.x - center.x, point.y - center.y, point.z - center.z);
         for (int i = 0; i < 3; i++) {
-            proj[i] = d.DotProduct(&axis[i]);
-            if (fabsf(proj[i]) > extent.x * (i == 0 ? 1.0f : (i == 1 ? 1.0f : 1.0f))) return false;
+            gbVec3D row;
+            matrix.GetRow(i, &row);
+            float proj = d.DotProduct(&row);
+            float halfExt = ((float*)&extent)[i] * 0.5f;
+            if (fabsf(proj) > halfExt) return 0;
         }
-        return true;
+        return 1;
     }
 
     // 0x10027d10 (76B) - GetSphere
     void GetSphere(gbSphere* sphere) const;
 
     // 0x10027d60 (92B) - GetAABBox
-    void GetAABBox(gbAABBox* box) const {
+    void GetAABBox(gbAABBox* box) {
+        gbVec3D row0, row1, row2;
+        matrix.GetRow(0, &row0);
+        matrix.GetRow(1, &row1);
+        matrix.GetRow(2, &row2);
+        gbVec3D center;
+        center.x = matrix.m[3][0];
+        center.y = matrix.m[3][1];
+        center.z = matrix.m[3][2];
         gbVec3D e(
-            extent.x * fabsf(axis[0].x) + extent.y * fabsf(axis[1].x) + extent.z * fabsf(axis[2].x),
-            extent.x * fabsf(axis[0].y) + extent.y * fabsf(axis[1].y) + extent.z * fabsf(axis[2].y),
-            extent.x * fabsf(axis[0].z) + extent.y * fabsf(axis[1].z) + extent.z * fabsf(axis[2].z)
+            extent.x * fabsf(row0.x) + extent.y * fabsf(row1.x) + extent.z * fabsf(row2.x),
+            extent.x * fabsf(row0.y) + extent.y * fabsf(row1.y) + extent.z * fabsf(row2.y),
+            extent.x * fabsf(row0.z) + extent.y * fabsf(row1.z) + extent.z * fabsf(row2.z)
         );
         box->vMin.x = center.x - e.x;
         box->vMin.y = center.y - e.y;
@@ -936,14 +947,16 @@ struct gbOBBox {
     float GetRadiusInDirection(const gbVec3D* dir) const {
         float r = 0;
         for (int i = 0; i < 3; i++) {
-            float proj = fabsf(dir->DotProduct(&axis[i]));
-            r += proj * (i == 0 ? extent.x : (i == 1 ? extent.y : extent.z));
+            gbVec3D row;
+            ((gbMatrix4*)&matrix)->GetRow(i, &row);
+            float proj = fabsf(dir->DotProduct(&row));
+            r += proj * ((float*)&extent)[i];
         }
         return r;
     }
 
     // 0x10027ec0 (1009B) - IsColOBB
-    bool IsColOBB(const gbOBBox* box) const;
+    int IsColOBB(gbOBBox* box);
 };
 
 // ========== gbSphere ==========
@@ -996,7 +1009,9 @@ struct gbSphere {
 
 // Implement gbOBBox::GetSphere
 void gbOBBox::GetSphere(gbSphere* sphere) const {
-    sphere->center = center;
+    sphere->center.x = matrix.m[3][0];
+    sphere->center.y = matrix.m[3][1];
+    sphere->center.z = matrix.m[3][2];
     sphere->radius = extent.Length();
 }
 
@@ -1361,38 +1376,63 @@ bool gbPlane::IsColAABB(const gbAABBox* box) const {
 }
 
 bool gbPlane::IsColOBB(const gbOBBox* box) const {
-    float r = box->extent.x * fabsf(normal.DotProduct(&box->axis[0])) +
-              box->extent.y * fabsf(normal.DotProduct(&box->axis[1])) +
-              box->extent.z * fabsf(normal.DotProduct(&box->axis[2]));
+    gbVec3D row0, row1, row2;
+    ((gbMatrix4*)&box->matrix)->GetRow(0, &row0);
+    ((gbMatrix4*)&box->matrix)->GetRow(1, &row1);
+    ((gbMatrix4*)&box->matrix)->GetRow(2, &row2);
+    float r = box->extent.x * fabsf(normal.DotProduct(&row0)) +
+              box->extent.y * fabsf(normal.DotProduct(&row1)) +
+              box->extent.z * fabsf(normal.DotProduct(&row2));
 
-    float s = normal.DotProduct(&box->center) + d;
+    gbVec3D center;
+    center.x = box->matrix.m[3][0];
+    center.y = box->matrix.m[3][1];
+    center.z = box->matrix.m[3][2];
+    float s = normal.DotProduct(&center) + d;
     return fabsf(s) <= r;
 }
 
-bool gbOBBox::IsColOBB(const gbOBBox* box) const {
+int gbOBBox::IsColOBB(gbOBBox* param_1) {
     // Separating Axis Theorem (SAT) for OBB-OBB collision
-    // Simplified implementation
-    gbVec3D T(box->center.x - center.x, box->center.y - center.y, box->center.z - center.z);
+    // Phase 1: Test 3 axes of this OBB and 3 axes of other OBB (interleaved)
+    gbVec3D T;
+    T.x = param_1->matrix.m[3][0] - matrix.m[3][0];
+    T.y = param_1->matrix.m[3][1] - matrix.m[3][1];
+    T.z = param_1->matrix.m[3][2] - matrix.m[3][2];
 
-    // Test axes from this OBB
     for (int i = 0; i < 3; i++) {
-        float ra = (i == 0 ? extent.x : (i == 1 ? extent.y : extent.z));
-        float rb = box->extent.x * fabsf(axis[i].DotProduct(&box->axis[0])) +
-                   box->extent.y * fabsf(axis[i].DotProduct(&box->axis[1])) +
-                   box->extent.z * fabsf(axis[i].DotProduct(&box->axis[2]));
-        if (fabsf(T.DotProduct(&axis[i])) > ra + rb) return false;
+        // Test this->axis[i]
+        gbVec3D row;
+        matrix.GetRow(i, &row);
+        float dot = row.x * T.x + row.y * T.y + row.z * T.z;
+        float radiusB = param_1->GetRadiusInDirection(&row);
+        float radiusA = ((float*)&extent)[i] * 0.5f;
+        if (fabsf(dot) > radiusA + radiusB) return 0;
+
+        // Test param_1->axis[i]
+        param_1->matrix.GetRow(i, &row);
+        dot = row.x * T.x + row.y * T.y + row.z * T.z;
+        radiusA = GetRadiusInDirection(&row);
+        radiusB = ((float*)&param_1->extent)[i] * 0.5f;
+        if (fabsf(dot) > radiusA + radiusB) return 0;
     }
 
-    // Test axes from other OBB
+    // Phase 2: Test 9 cross-product axes
     for (int i = 0; i < 3; i++) {
-        float ra = extent.x * fabsf(box->axis[i].DotProduct(&axis[0])) +
-                   extent.y * fabsf(box->axis[i].DotProduct(&axis[1])) +
-                   extent.z * fabsf(box->axis[i].DotProduct(&axis[2]));
-        float rb = (i == 0 ? box->extent.x : (i == 1 ? box->extent.y : box->extent.z));
-        if (fabsf(T.DotProduct(&box->axis[i])) > ra + rb) return false;
+        gbVec3D axisA;
+        matrix.GetRow(i, &axisA);
+        for (int j = 0; j < 3; j++) {
+            gbVec3D axisB;
+            param_1->matrix.GetRow(j, &axisB);
+            gbVec3D cross;
+            axisA.CrossProduct(&axisB, &cross);
+            float dot = cross.x * T.x + cross.y * T.y + cross.z * T.z;
+            float radiusSum = param_1->GetRadiusInDirection(&cross) + GetRadiusInDirection(&cross);
+            if (fabsf(dot) > radiusSum) return 1;
+        }
     }
 
-    return true;
+    return 1;
 }
 
 bool gbRay::IsColAABB(const gbAABBox* box, gbVec3D* point) const {
@@ -1425,12 +1465,74 @@ bool gbRay::IsColAABB(const gbAABBox* box, gbVec3D* point) const {
     return tmin >= 0;
 }
 
-bool gbRay::IsColOBB(const gbOBBox* box, gbVec3D* point) const {
-    return false; // Placeholder
+int gbRay::IsColOBB(gbOBBox& param_1) {
+    // Slab-based ray-OBB intersection
+    // Transform ray to OBB local space, then test against AABB defined by extents
+    gbVec3D center;
+    center.x = param_1.matrix.m[3][0];
+    center.y = param_1.matrix.m[3][1];
+    center.z = param_1.matrix.m[3][2];
+
+    gbVec3D delta;
+    delta.x = center.x - origin.x;
+    delta.y = center.y - origin.y;
+    delta.z = center.z - origin.z;
+
+    float tMin = -FLT_MAX;
+    float tMax = FLT_MAX;
+
+    for (int i = 0; i < 3; i++) {
+        gbVec3D axis;
+        param_1.matrix.GetRow(i, &axis);
+        float halfExt = ((float*)&param_1.extent)[i] * 0.5f;
+
+        float e = axis.x * delta.x + axis.y * delta.y + axis.z * delta.z;
+        float f = axis.x * direction.x + axis.y * direction.y + axis.z * direction.z;
+
+        if (fabsf(f) > 1e-6f) {
+            float t1 = (e + halfExt) / f;
+            float t2 = (e - halfExt) / f;
+            if (t1 > t2) { float tmp = t1; t1 = t2; t2 = tmp; }
+            if (t1 > tMin) tMin = t1;
+            if (t2 < tMax) tMax = t2;
+            if (tMin > tMax) return 0;
+            if (tMax < 0.0f) return 0;
+        } else {
+            if (-e - halfExt > 0.0f || -e + halfExt < 0.0f) return 0;
+        }
+    }
+
+    return 1;
 }
 
-bool gbRay::IsColOBB_H(const gbOBBox* box) const {
-    return false; // Placeholder
+int gbRay::IsColOBB_H(gbOBBox& param_1) {
+    // Transform ray to OBB's local space, then do AABB test
+    gbVec3D localOrigin;
+    localOrigin.x = 0; localOrigin.y = 0; localOrigin.z = 0;
+    gbVec3D localDir;
+    localDir.x = 0; localDir.y = 0; localDir.z = 0;
+
+    gbMatrix4 invMatrix = param_1.matrix;
+    invMatrix.Invert();
+    invMatrix.Transform(origin, &localOrigin);
+    invMatrix.Rotate(direction, &localDir);
+
+    float halfX = param_1.extent.x * 0.5f;
+    float halfY = param_1.extent.y * 0.5f;
+    float halfZ = param_1.extent.z * 0.5f;
+
+    gbAABBox localBox;
+    localBox.vMin.x = -halfX;
+    localBox.vMin.y = -halfY;
+    localBox.vMin.z = -halfZ;
+    localBox.vMax.x = halfX;
+    localBox.vMax.y = halfY;
+    localBox.vMax.z = halfZ;
+
+    gbRay localRay;
+    localRay.origin = localOrigin;
+    localRay.direction = localDir;
+    return localRay.IsColAABB(&localBox, NULL) ? 1 : 0;
 }
 
 bool gbRay::IsColQuad(const gbVec3D* v0, const gbVec3D* v1, const gbVec3D* v2, const gbVec3D* v3, gbVec3D* point) const {

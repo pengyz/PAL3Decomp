@@ -610,15 +610,12 @@ int gbCamera::ClipOBBox(gbOBBox* obb) {
         float nz = Plane[i][2];
         float d  = Plane[i][3];
 
-        float dist = nx * obb->center.x + ny * obb->center.y + nz * obb->center.z + d;
+        float dist = nx * obb->matrix.m[3][0] + ny * obb->matrix.m[3][1] + nz * obb->matrix.m[3][2] + d;
 
         float r = 0.0f;
         for (int a = 0; a < 3; a++) {
-            float dot = nx * obb->axis[a].x + ny * obb->axis[a].y + nz * obb->axis[a].z;
-            float ext;
-            if (a == 0)      ext = obb->extent.x;
-            else if (a == 1) ext = obb->extent.y;
-            else             ext = obb->extent.z;
+            float dot = nx * obb->matrix.m[a][0] + ny * obb->matrix.m[a][1] + nz * obb->matrix.m[a][2];
+            float ext = ((float*)&obb->extent)[a];
             r += (float)fabs(dot) * ext;
         }
 
