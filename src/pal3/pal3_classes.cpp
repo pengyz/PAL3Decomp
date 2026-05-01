@@ -1904,6 +1904,41 @@ __declspec(noinline) int __fastcall Func_004E110C(void*, int, int, int, int, int
 __declspec(noinline) int __fastcall Func_004E1134(void*, int, int, int, int, int) { return 0; }
 __declspec(noinline) int __fastcall Func_004E2471(void*, int, int, int, int, int) { return 0; }
 
+/* ========================================================================
+ * 7-byte float getters: fld dword ptr [ecx+dword]/ret
+ * Pattern: d9 81 XX XX XX XX c3
+ * ======================================================================== */
+
+/* 0x0052E8FB (7 bytes) - float field 0x10C */
+__declspec(noinline) float __fastcall FloatGetter_0052E8FB(void* self, int)
+{
+    return *(float*)((char*)self + 0x10C);
+}
+
+/* 0x0052E97B (7 bytes) - float field 0x110 */
+__declspec(noinline) float __fastcall FloatGetter_0052E97B(void* self, int)
+{
+    return *(float*)((char*)self + 0x110);
+}
+
+/* 0x0052E9FB (7 bytes) - float field 0x114 */
+__declspec(noinline) float __fastcall FloatGetter_0052E9FB(void* self, int)
+{
+    return *(float*)((char*)self + 0x114);
+}
+
+/* 0x0052EA7B (7 bytes) - float field 0x118 */
+__declspec(noinline) float __fastcall FloatGetter_0052EA7B(void* self, int)
+{
+    return *(float*)((char*)self + 0x118);
+}
+
+/* 0x00534CA5 (7 bytes) - float field 0x2E0 */
+__declspec(noinline) float __fastcall FloatGetter_00534CA5(void* self, int)
+{
+    return *(float*)((char*)self + 0x2E0);
+}
+
 /* 0x0040F050 (13 bytes) - array element access: return this->array[index]
  * mov eax,[ecx+4] / mov ecx,[esp+4] / mov eax,[eax+ecx*4] / ret 4 */
 struct ArrayObj { int pad; int** pArray; int GetAt(int index); };
@@ -1939,6 +1974,129 @@ __declspec(noinline) int VectorCountObj::GetCount()
     if (this->begin == 0)
         return 0;
     return (int)((char*)this->end - (char*)this->begin) >> 2;
+}
+
+/* ========================================================================
+ * 6-byte cdecl constant returns: mov eax,imm32 / ret (C3)
+ * Pattern: b8 XX XX XX XX c3
+ * ======================================================================== */
+
+__declspec(noinline) int __cdecl Func_0055910B() { return 0x404; }
+__declspec(noinline) int __cdecl Func_00559111() { return 0x412; }
+__declspec(noinline) int __cdecl Func_00559117() { return 0x804; }
+__declspec(noinline) int __cdecl Func_0055911D() { return 0x411; }
+
+/* ========================================================================
+ * 3-byte cdecl return 0: xor eax,eax / ret (C3)
+ * Pattern: 33 c0 c3
+ * ======================================================================== */
+
+__declspec(noinline) int __cdecl Func_00416545() { return 0; }
+__declspec(noinline) int __cdecl Func_0041CBE3() { return 0; }
+__declspec(noinline) int __cdecl Func_004235F8() { return 0; }
+__declspec(noinline) int __cdecl Func_0042C1B7() { return 0; }
+__declspec(noinline) int __cdecl Func_00434D33() { return 0; }
+__declspec(noinline) int __cdecl Func_0052F346() { return 0; }
+__declspec(noinline) int __cdecl Func_0053D2E4() { return 0; }
+__declspec(noinline) int __cdecl Func_00555860() { return 0; }
+__declspec(noinline) int __cdecl Func_00556514() { return 0; }
+__declspec(noinline) int __cdecl Func_005579A5() { return 0; }
+
+/* ========================================================================
+ * 3-byte return this: mov eax,ecx / ret
+ * Pattern: 8b c1 c3
+ * ======================================================================== */
+
+__declspec(noinline) void* __fastcall Func_00408BC0(void* self, int)
+{
+    return self;
+}
+
+/* ========================================================================
+ * 4-byte LEA getters: lea eax,[ecx+disp8] / ret
+ * Pattern: 8d 41 XX c3
+ * Returns pointer to a field within this
+ * ======================================================================== */
+
+__declspec(noinline) void* __fastcall Func_004BDEC0(void* self, int)
+{
+    return (char*)self + 0x64;
+}
+
+__declspec(noinline) void* __fastcall Func_004BDEC4(void* self, int)
+{
+    return (char*)self + 0x04;
+}
+
+/* ========================================================================
+ * 7-byte mov al getters: mov al,[ecx+OFFSET32] / ret
+ * Pattern: 8a 81 XX XX XX XX c3
+ * Returns a byte field (char return value)
+ * ======================================================================== */
+
+__declspec(noinline) char __fastcall Func_00469D40(void* self, int)
+{
+    return *((char*)self + 0xCD4);
+}
+
+__declspec(noinline) char __fastcall Func_004B4830(void* self, int)
+{
+    return *((char*)self + 0x80);
+}
+
+/* 0x0047DD60 (9 bytes) - xor eax,eax / mov al,[ecx+0xEAD] / ret
+ * Cannot match with modern MSVC (generates movzx instead of xor+mov al) */
+
+/* ========================================================================
+ * 9-byte getters with ret 4: mov eax,[ecx+OFF32] / ret 4
+ * Pattern: 8b 81 XX XX XX XX c2 04 00
+ * __thiscall getter with 1 unused stack param
+ * ======================================================================== */
+
+__declspec(noinline) int __fastcall Func_0044F8B6(void* self, int, int)
+{
+    return *(int*)((char*)self + 0x6E14);
+}
+
+__declspec(noinline) int __fastcall Func_0044F8BF(void* self, int, int)
+{
+    return *(int*)((char*)self + 0x6E10);
+}
+
+/* ========================================================================
+ * 5-byte byte setters: mov byte ptr [ecx+disp8],imm8 / ret
+ * Pattern: c6 41 XX YY c3
+ * ======================================================================== */
+
+__declspec(noinline) void __fastcall Func_0042AF96(void* self, int)
+{
+    *((char*)self + 0x50) = 0;
+}
+
+__declspec(noinline) void __fastcall Func_004531F0(void* self, int)
+{
+    *((char*)self + 0x64) = 1;
+}
+
+/* ========================================================================
+ * 8-byte byte setter (32-bit offset): mov byte ptr [ecx+OFF32],imm8 / ret
+ * Pattern: c6 81 XX XX XX XX YY c3
+ * ======================================================================== */
+
+__declspec(noinline) void __fastcall Func_00444D20(void* self, int)
+{
+    *((char*)self + 0xAE) = 1;
+}
+
+/* ========================================================================
+ * 6-byte short dword setter: mov [ecx+disp8],edx / ret 4
+ * Pattern: 89 51 XX c2 04 00
+ * __thiscall with 1 stack param (value in edx via __fastcall)
+ * ======================================================================== */
+
+__declspec(noinline) void __fastcall Func_0041D898(void* self, int value, int)
+{
+    *(int*)((char*)self + 0x08) = value;
 }
 
 /* ========================================================================
@@ -2052,6 +2210,36 @@ PFN_VOID g_pal3_force_refs[] = {
     (PFN_VOID)Func_004E110C,
     (PFN_VOID)Func_004E1134,
     (PFN_VOID)Func_004E2471,
+    (PFN_VOID)FloatGetter_0052E8FB,
+    (PFN_VOID)FloatGetter_0052E97B,
+    (PFN_VOID)FloatGetter_0052E9FB,
+    (PFN_VOID)FloatGetter_0052EA7B,
+    (PFN_VOID)FloatGetter_00534CA5,
+    (PFN_VOID)Func_0055910B,
+    (PFN_VOID)Func_00559111,
+    (PFN_VOID)Func_00559117,
+    (PFN_VOID)Func_0055911D,
+    (PFN_VOID)Func_00416545,
+    (PFN_VOID)Func_0041CBE3,
+    (PFN_VOID)Func_004235F8,
+    (PFN_VOID)Func_0042C1B7,
+    (PFN_VOID)Func_00434D33,
+    (PFN_VOID)Func_0052F346,
+    (PFN_VOID)Func_0053D2E4,
+    (PFN_VOID)Func_00555860,
+    (PFN_VOID)Func_00556514,
+    (PFN_VOID)Func_005579A5,
+    (PFN_VOID)Func_00408BC0,
+    (PFN_VOID)Func_004BDEC0,
+    (PFN_VOID)Func_004BDEC4,
+    (PFN_VOID)Func_00469D40,
+    (PFN_VOID)Func_004B4830,
+    (PFN_VOID)Func_0042AF96,
+    (PFN_VOID)Func_004531F0,
+    (PFN_VOID)Func_00444D20,
+    (PFN_VOID)Func_0041D898,
+    (PFN_VOID)Func_0044F8B6,
+    (PFN_VOID)Func_0044F8BF,
 };
 
 #pragma comment(linker, "/include:?GetDataEntry@SceneMgrData@@QAEPAXH@Z")
