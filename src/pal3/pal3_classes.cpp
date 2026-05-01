@@ -1870,6 +1870,40 @@ __declspec(noinline) int __fastcall Func_004FA711(void*, int, int) { return 5; }
 __declspec(noinline) int __fastcall Func_004FA719(void*, int, int) { return 1; }
 __declspec(noinline) int __fastcall Func_004FA721(void*, int, int) { return 2; }
 
+/* ret 12 = 3 stack params (thiscall with 3 extra params) */
+__declspec(noinline) int __fastcall Func_0047E536(void*, int, int, int, int) { return 1; }
+__declspec(noinline) int __fastcall Func_004B3A25(void*, int, int, int, int) { return 1; }
+__declspec(noinline) int __fastcall Func_005329BE(void*, int, int, int, int) { return 1; }
+
+/* ret 16 = 4 stack params (thiscall with 4 extra params) */
+__declspec(noinline) int __fastcall Func_004E114F(void*, int, int, int, int, int) { return 1; }
+
+/* 5-byte return-0 functions: xor eax,eax / ret N */
+
+/* ret 4 (1 stack param) */
+__declspec(noinline) int __fastcall Func_00445F73(void*, int, int) { return 0; }
+__declspec(noinline) int __fastcall Func_00479075(void*, int, int) { return 0; }
+__declspec(noinline) int __fastcall Func_00479121(void*, int, int) { return 0; }
+__declspec(noinline) int __fastcall Func_004791D2(void*, int, int) { return 0; }
+__declspec(noinline) int __fastcall Func_0047927F(void*, int, int) { return 0; }
+__declspec(noinline) int __fastcall Func_004CA447(void*, int, int) { return 0; }
+__declspec(noinline) int __fastcall Func_004D364D(void*, int, int) { return 0; }
+__declspec(noinline) int __fastcall Func_004FA6D9(void*, int, int) { return 0; }
+__declspec(noinline) int __fastcall Func_004FA739(void*, int, int) { return 0; }
+
+/* ret 8 (2 stack params) */
+__declspec(noinline) int __fastcall Func_004014E0(void*, int, int, int) { return 0; }
+__declspec(noinline) int __fastcall Func_00418DB8(void*, int, int, int) { return 0; }
+__declspec(noinline) int __fastcall Func_0043A40F(void*, int, int, int) { return 0; }
+
+/* ret 12 (3 stack params) */
+__declspec(noinline) int __fastcall Func_00445D10(void*, int, int, int, int) { return 0; }
+
+/* ret 16 (4 stack params) */
+__declspec(noinline) int __fastcall Func_004E110C(void*, int, int, int, int, int) { return 0; }
+__declspec(noinline) int __fastcall Func_004E1134(void*, int, int, int, int, int) { return 0; }
+__declspec(noinline) int __fastcall Func_004E2471(void*, int, int, int, int, int) { return 0; }
+
 /* 0x0041BDE0 (16 bytes) - zero-init 4 dwords (RECT or similar)
  * mov eax,ecx / xor ecx,ecx / mov [eax],ecx / mov [eax+4],ecx / mov [eax+8],ecx / mov [eax+0c],ecx / ret
  * __thiscall - zeros the first 16 bytes of a struct */
@@ -1990,6 +2024,26 @@ PFN_VOID g_pal3_force_refs[] = {
     (PFN_VOID)Func_004FA711,
     (PFN_VOID)Func_004FA719,
     (PFN_VOID)Func_004FA721,
+    (PFN_VOID)Func_0047E536,
+    (PFN_VOID)Func_004B3A25,
+    (PFN_VOID)Func_005329BE,
+    (PFN_VOID)Func_004E114F,
+    (PFN_VOID)Func_00445F73,
+    (PFN_VOID)Func_00479075,
+    (PFN_VOID)Func_00479121,
+    (PFN_VOID)Func_004791D2,
+    (PFN_VOID)Func_0047927F,
+    (PFN_VOID)Func_004CA447,
+    (PFN_VOID)Func_004D364D,
+    (PFN_VOID)Func_004FA6D9,
+    (PFN_VOID)Func_004FA739,
+    (PFN_VOID)Func_004014E0,
+    (PFN_VOID)Func_00418DB8,
+    (PFN_VOID)Func_0043A40F,
+    (PFN_VOID)Func_00445D10,
+    (PFN_VOID)Func_004E110C,
+    (PFN_VOID)Func_004E1134,
+    (PFN_VOID)Func_004E2471,
 };
 
 #pragma comment(linker, "/include:?GetDataEntry@SceneMgrData@@QAEPAXH@Z")
