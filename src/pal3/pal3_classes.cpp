@@ -2438,6 +2438,12 @@ __declspec(noinline) int __fastcall Func_005372B0(void* self, int)
 /* 0x004FCDE0 (21B) - cannot match: compiler optimizes away redundant branch
  * (both paths store same thing, compiler collapses to one store) */
 
+/* 0x0046EC50 (30B) - cannot match: 1 byte off - compiler uses JS (78) instead of JL (7C)
+ * after 'test eax,eax' for < 0 check. MSVC version difference in opcode selection. */
+
+/* 0x004164E0 (27B) - cannot match: compiler restructures to merged compare pattern
+ * instead of loading edx separately */
+
 /* 0x00402D00 (20B) - cannot match: original uses mov al,[ecx+4]/test al,al
  * but modern MSVC emits cmp byte [ecx+4],0 */
 
