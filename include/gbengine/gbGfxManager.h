@@ -2,6 +2,7 @@
 
 #include "gbengine/gbengine_types.h"
 #include "gbengine/gbCamera.h"
+#include "gbengine/gbMesh.h"
 #include <d3d9.h>
 
 // Forward declarations
@@ -59,14 +60,6 @@ struct gbGfxStatistic {
     int numVertices;
     int numDrawCalls;
     int numTexChanges;
-};
-
-// ============================================================================
-// gbMeshType
-// ============================================================================
-enum gbMeshType {
-    GB_MESH_STATIC = 0,
-    GB_MESH_SKIN = 1
 };
 
 // ============================================================================
