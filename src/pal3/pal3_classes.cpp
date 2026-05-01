@@ -799,6 +799,58 @@ void CCBAttackSequen::RunOneStep()
 }
 
 /* ========================================================================
+ * Sound System - Audio playback helpers
+ * ======================================================================== */
+
+/* 0x0053dfb0 - Look up sound node by ID */
+extern "C" void* SoundMgr_FindNode(int soundId);
+
+/* 0x0053e2e0 (45 bytes, 67 callers)
+ * __stdcall: 2 stack params (RET 0x8)
+ * If sound enabled: find sound by ID, set param, play.
+ */
+void __stdcall SoundMgr_PlaySound(int soundId, int param)
+{
+    extern unsigned int PAL3_s_flag;
+
+    if ((PAL3_s_flag & 1) == 0) {
+        return;
+    }
+
+    void* node = SoundMgr_FindNode(soundId);
+    if (node == NULL) {
+        return;
+    }
+
+    /* node+0x10 = gbSound2DNode*, set [+0x08] = param (volume/loop) */
+    void* soundNode = *(void**)((char*)node + 0x10);
+    *(int*)((char*)soundNode + 0x08) = param;
+
+    /* Call gbSound2DNode::Play through IAT at 0x0056a2f4 */
+    typedef void (__thiscall *PFN_Play)(void*);
+    PFN_Play fnPlay = *(PFN_Play*)0x0056a2f4;
+    if (fnPlay != NULL) {
+        fnPlay(soundNode);
+    }
+}
+
+/* ========================================================================
+ * CRT/Utility Functions - Low-level runtime support
+ * ======================================================================== */
+
+/* 0x005541f8 (30 bytes, 69 callers)
+ * MSVC CRT rand() implementation - Linear Congruential Generator.
+ * seed = seed * 0x343FD + 0x269EC3; return (seed >> 16) & 0x7FFF;
+ */
+static unsigned int g_randSeed = 1;
+
+int pal3_rand(void)
+{
+    g_randSeed = g_randSeed * 0x343FD + 0x269EC3;
+    return (g_randSeed >> 16) & 0x7FFF;
+}
+
+/* ========================================================================
  * Global Accessor Functions - Singleton getters and array accessors
  * ======================================================================== */
 

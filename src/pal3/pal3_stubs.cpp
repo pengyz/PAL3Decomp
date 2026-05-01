@@ -48,6 +48,12 @@ extern "C" void pal3free(void* ptr)
     }
 }
 
+extern "C" void* SoundMgr_FindNode(int soundId)
+{
+    /* Original: 0x0053dfb0 - looks up sound in SoundMgr by ID */
+    return NULL;
+}
+
 /* ========================================================================
  * PAL3_Create - Initialize game systems
  * Address: 0x00404800
