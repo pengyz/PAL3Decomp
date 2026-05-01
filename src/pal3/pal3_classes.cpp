@@ -1904,6 +1904,14 @@ __declspec(noinline) int __fastcall Func_004E110C(void*, int, int, int, int, int
 __declspec(noinline) int __fastcall Func_004E1134(void*, int, int, int, int, int) { return 0; }
 __declspec(noinline) int __fastcall Func_004E2471(void*, int, int, int, int, int) { return 0; }
 
+/* 0x0040F050 (13 bytes) - array element access: return this->array[index]
+ * mov eax,[ecx+4] / mov ecx,[esp+4] / mov eax,[eax+ecx*4] / ret 4 */
+struct ArrayObj { int pad; int** pArray; int GetAt(int index); };
+__declspec(noinline) int ArrayObj::GetAt(int index)
+{
+    return (int)(this->pArray[index]);
+}
+
 /* 0x0041BDE0 (16 bytes) - zero-init 4 dwords (RECT or similar)
  * mov eax,ecx / xor ecx,ecx / mov [eax],ecx / mov [eax+4],ecx / mov [eax+8],ecx / mov [eax+0c],ecx / ret
  * __thiscall - zeros the first 16 bytes of a struct */
@@ -2049,3 +2057,4 @@ PFN_VOID g_pal3_force_refs[] = {
 #pragma comment(linker, "/include:?GetDataEntry@SceneMgrData@@QAEPAXH@Z")
 #pragma comment(linker, "/include:?Clear@ZeroInit16@@QAEXXZ")
 #pragma comment(linker, "/include:?GetCount@VectorCountObj@@QAEHXZ")
+#pragma comment(linker, "/include:?GetAt@ArrayObj@@QAEHH@Z")
