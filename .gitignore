@@ -48,3 +48,16 @@ build/verify/
 
 # Claude Code metadata
 .claude/
+
+# Ghidra project databases (large binary, regenerable)
+*.rep/
+*.gpr
+
+# Build output directories (CMake)
+build_*/
+
+# Tool binaries (downloaded separately)
+tools/ghidra/
+tools/mingw/
+tools/tcc/
+tools/tcc.zip
