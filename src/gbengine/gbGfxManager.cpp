@@ -694,7 +694,7 @@ gbRenderEffect* gbEffectMgr::NewRenderEffect(const char* filename, unsigned int 
     // Get D3D device
     IDirect3DDevice9* pDevice = NULL;
     if (m_pGfxMgr) {
-        pDevice = *(IDirect3DDevice9**)((char*)m_pGfxMgr + 0x84C);
+        pDevice = ((gbGfxManager_D3D*)m_pGfxMgr)->m_pd3dDevice;
     }
     if (!pDevice)
         return NULL;
@@ -786,15 +786,7 @@ gbTexture* gbEffectMgr::GetWhiteTexture(void) {
 #pragma optimize("", off)
 #pragma auto_inline(off)
 
-// Class definitions needed for moved functions
-class gbGfxManager_D3D {
-public:
-    char _stub_data[128];
-
-public:
-    void SetTexture(struct gbTextureArray * p0);
-
-};
+// gbGfxManager_D3D: full definition in gbGfxManager.h
 
 struct gbImage2DInfo {
     char _stub_data[128];

@@ -9,6 +9,7 @@
  */
 
 #include "gbengine/gbTexture.h"
+#include "gbengine/gbGfxManager.h"
 #include <windows.h>
 #include <d3d9.h>
 #include <d3dx9.h>
@@ -702,7 +703,7 @@ void gbTexture_D3D::CreateFromMemory(int w, int h, gbPixelFmtType srcFmt, int le
         // Access device at known offset in gbGfxManager_D3D
         // gbGfxManager_D3D has m_pd3dDevice at a large offset after many fields
         // We use a cast to access it (offset determined from PAL3patch struct layout)
-        pDevice = *(IDirect3DDevice9**)((char*)g_pGfxManager + 0x84C);
+        pDevice = ((gbGfxManager_D3D*)g_pGfxManager)->m_pd3dDevice;
     }
     if (!pDevice)
         return;
@@ -794,7 +795,7 @@ void gbTexture_D3D::CreateFromFileMemory(void* data, int size) {
 
     IDirect3DDevice9* pDevice = NULL;
     if (g_pGfxManager) {
-        pDevice = *(IDirect3DDevice9**)((char*)g_pGfxManager + 0x84C);
+        pDevice = ((gbGfxManager_D3D*)g_pGfxManager)->m_pd3dDevice;
     }
     if (!pDevice)
         return;
@@ -832,7 +833,7 @@ int gbTexture_D3D::CreateForRenderTarget(int w, int h, gbPixelFmtType fmt) {
 
     IDirect3DDevice9* pDevice = NULL;
     if (g_pGfxManager) {
-        pDevice = *(IDirect3DDevice9**)((char*)g_pGfxManager + 0x84C);
+        pDevice = ((gbGfxManager_D3D*)g_pGfxManager)->m_pd3dDevice;
     }
     if (!pDevice)
         return 0;

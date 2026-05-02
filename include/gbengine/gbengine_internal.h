@@ -100,15 +100,7 @@ public:
 
 };
 
-// ========= gbGfxManager_D3D =========
-class gbGfxManager_D3D {
-public:
-    char _stub_data[128];
-
-public:
-    void SetTexture(struct gbTextureArray * p0);
-
-};
+// gbGfxManager_D3D: full definition in gbGfxManager.h
 
 // ========= gbMatrixStack =========
 class gbMatrixStack {
