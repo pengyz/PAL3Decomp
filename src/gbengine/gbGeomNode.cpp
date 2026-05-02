@@ -429,7 +429,7 @@ gbBaseMesh* gbGeomNode::GetMesh() {
 
 float gbGeomNode::GetAnimMaxTime() {
     if (animController) {
-        return *(float*)((char*)animController + 0x10);
+        return animController->maxTime;
     }
     return 0.0f;
 }

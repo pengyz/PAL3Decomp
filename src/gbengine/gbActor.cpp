@@ -48,27 +48,18 @@ gbActor::gbActor(gbActorDef* actorDef) : gbVisNode() {
         }
     }
 
-    // Allocate export node matrix data (4 nodes, each with 2 matrices)
+    // Allocate export node data (4 nodes, each 0x84 bytes = sizeof(gbExpNodeData))
     m_maxExportNodes = 4;
-    size_t exportDataSize = m_maxExportNodes * (sizeof(gbMatrix4) * 2 + 0x24);
-    m_pExportNodeData = malloc(exportDataSize);
+    size_t exportDataSize = m_maxExportNodes * sizeof(gbExpNodeData);
+    m_pExportNodeData = (gbExpNodeData*)malloc(exportDataSize);
 
     if (m_pExportNodeData) {
         memset(m_pExportNodeData, 0, exportDataSize);
 
-        // Initialize matrices to identity
-        gbMatrix4* matrices = (gbMatrix4*)((char*)m_pExportNodeData + 0x44);
+        // Initialize matrices to identity (per Ghidra: calls gbMatrix4 constructor on each)
         for (int i = 0; i < m_maxExportNodes; i++) {
-            // Initialize two matrices per node
-            gbMatrix4* m1 = &matrices[i * 2];
-            gbMatrix4* m2 = &matrices[i * 2 + 1];
-
-            for (int r = 0; r < 4; r++) {
-                for (int c = 0; c < 4; c++) {
-                    m1->m[r][c] = (r == c) ? 1.0f : 0.0f;
-                    m2->m[r][c] = (r == c) ? 1.0f : 0.0f;
-                }
-            }
+            m_pExportNodeData[i].localMatrix.LoadIdentity();
+            m_pExportNodeData[i].worldMatrix.LoadIdentity();
         }
     }
 
@@ -89,8 +80,8 @@ gbActor::gbActor(const gbActor& other) : gbVisNode() {
     }
 
     if (other.m_pExportNodeData) {
-        size_t size = m_maxExportNodes * (sizeof(gbMatrix4) * 2 + 0x24);
-        m_pExportNodeData = malloc(size);
+        size_t size = m_maxExportNodes * sizeof(gbExpNodeData);
+        m_pExportNodeData = (gbExpNodeData*)malloc(size);
         memcpy(m_pExportNodeData, other.m_pExportNodeData, size);
     } else {
         m_pExportNodeData = nullptr;
@@ -303,7 +294,7 @@ void gbActor::GotoAction(char* action1, char* action2, char* action3) {
             goto doGoto;
         }
         // Log warning if marker not found
-        char* defName = *(char**)((char*)m_pActorDef + 8);
+        char* defName = m_pActorDef->pName;
         gbLogInfo((char*)"  Action msg not find actor:%s action:%s event:%s\n", defName, action1, action3);
     }
 
@@ -418,18 +409,10 @@ int gbActor::GetTagNodeTM(gbMatrix4* matrix, char* tagName) {
 
     unsigned int crc = gbCrc32Compute(tagName);
     int numNodes = m_maxExportNodes;
-    unsigned int* nodeArray = (unsigned int*)m_pExportNodeData;
 
     for (int i = 0; i < numNodes; i++) {
-        // Each export node entry is 0x84 bytes (stride), CRC at offset 0
-        unsigned int* entry = (unsigned int*)((char*)nodeArray + i * 0x84);
-        if (*entry == crc) {
-            // Copy 16 dwords (64 bytes = gbMatrix4) from entry + 4
-            unsigned int* src = entry + 1;
-            unsigned int* dst = (unsigned int*)matrix;
-            for (int j = 0; j < 16; j++) {
-                dst[j] = src[j];
-            }
+        if (m_pExportNodeData[i].nameCrc == crc) {
+            *matrix = m_pExportNodeData[i].localMatrix;
             return 1;
         }
     }
@@ -478,9 +461,9 @@ void gbActor::GetCollideOBB(gbOBBox& obb) {
     memset(&obb, 0, sizeof(obb));
 }
 
-// Get all export nodes
+// Get all export nodes (returns raw pointer to internal data)
 gbActorExpNode* gbActor::GetAllExpNode() {
-    return (gbActorExpNode*)m_pExportNodeData;
+    return (gbActorExpNode*)(void*)m_pExportNodeData;
 }
 
 // Get number of export nodes
@@ -494,7 +477,7 @@ const gbMixActInfo* gbActor::GetMixInfo() {
 }
 
 int gbActor::GetNumMixInfo() {
-    int numMix = *(int*)((char*)m_pActorDef + 0x9c);
+    int numMix = m_pActorDef->numMixInfo;
     return numMix;
 }
 

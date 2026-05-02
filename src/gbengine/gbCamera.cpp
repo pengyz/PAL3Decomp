@@ -27,6 +27,8 @@
  */
 
 #include "gbengine/gbCamera.h"
+#include "gbengine/gbGfxManager.h"
+#include "gbengine/gbengine_internal.h"
 #include <math.h>
 #include <string.h>
 
@@ -549,33 +551,74 @@ void gbCamera::SetAsCurrent(int mode) {
     if (!pGfxMgr)
         return;
 
-    // Set this camera as the active camera in the gfx manager
-    // pGfxMgr->pCamera = this;
-    // Access pCamera field at known offset in gbGfxManager
-    gbCamera** ppCam = (gbCamera**)((char*)pGfxMgr + 0xD8);
-    *ppCam = this;
-
-    // Build view matrix from quaternion orientation
-    BuildViewFromQuaternion();
-
-    // Build projection matrix
-    gbMatrix4 projMatrix;
-    BuildProjMatrix(&projMatrix);
-
-    // Build combined view-projection for frustum planes
-    gbMatrix4 viewProj;
-    for (int i = 0; i < 4; i++) {
-        for (int j = 0; j < 4; j++) {
-            viewProj.m[i][j] = ViewMatrix.m[i][0] * projMatrix.m[0][j]
-                             + ViewMatrix.m[i][1] * projMatrix.m[1][j]
-                             + ViewMatrix.m[i][2] * projMatrix.m[2][j]
-                             + ViewMatrix.m[i][3] * projMatrix.m[3][j];
-        }
+    // Compute half-size for projection
+    float halfSize;
+    if (fov == 0.0f) {
+        halfSize = OrthoSize;
+    } else {
+        float sinVal = (float)sin(fov * 0.008726646f);
+        float cosVal = (float)cos(fov * 0.008726646f);
+        halfSize = (sinVal * zNear) / cosVal;
     }
-    BuildFrustumPlanes(&viewProj);
+    float aspectHalf = ((float)Viewport.height * halfSize) / (float)Viewport.width;
 
-    // Push view and projection to the graphics manager
-    // In the real engine this calls SetTransform on the D3D device
+    if (mode & 1) {
+        // Load identity into world matrix stack (pMatrixStack[0])
+        pGfxMgr->pMatrixStack[0]->LoadIdentity();
+
+        // Call virtual function on GfxMgr to set projection parameters
+        // vtable[7] = SetPerspective (fov != 0), vtable[8] = SetOrtho (fov == 0)
+        if (fov == 0.0f) {
+            typedef void (__thiscall *SetOrthoFn)(gbGfxManager*, double, double, double, double, double, double);
+            void** vt = *(void***)pGfxMgr;
+            SetOrthoFn fn = (SetOrthoFn)vt[8];
+            fn(pGfxMgr, (double)-halfSize, (double)halfSize, (double)-aspectHalf, (double)aspectHalf,
+               (double)zNear, (double)zFar);
+        } else {
+            typedef void (__thiscall *SetPerspFn)(gbGfxManager*, double, double, double, double, double, double);
+            void** vt = *(void***)pGfxMgr;
+            SetPerspFn fn = (SetPerspFn)vt[7];
+            fn(pGfxMgr, (double)-halfSize, (double)halfSize, (double)-aspectHalf, (double)aspectHalf,
+               (double)zNear, (double)zFar);
+        }
+
+        // Call virtual function to set viewport (vtable[9])
+        typedef void (__thiscall *SetViewportFn)(gbGfxManager*, gbViewPort*, int);
+        void** vt = *(void***)pGfxMgr;
+        SetViewportFn vpFn = (SetViewportFn)vt[9];
+        vpFn(pGfxMgr, &Viewport, 1);
+    }
+
+    if (mode & 2) {
+        // Get rotation matrix from quaternion → InvVMatrix
+        eyeDir.GetMatrix(&InvVMatrix);
+
+        // Build translation matrix and multiply
+        gbMatrix4 transMat;
+        transMat.LoadIdentity();
+        transMat.m[3][0] = eyeLoc.x;
+        transMat.m[3][1] = eyeLoc.y;
+        transMat.m[3][2] = eyeLoc.z;
+        transMat *= InvVMatrix;
+        InvVMatrix = transMat;
+
+        // Invert to get ViewMatrix
+        InvVMatrix.Invert(&ViewMatrix);
+
+        // Set camera matrices in GfxManager
+        pGfxMgr->SetCameraMatrix(InvVMatrix, ViewMatrix);
+
+        // Load ViewMatrix into projection matrix stack (pMatrixStack[1])
+        pGfxMgr->pMatrixStack[1]->LoadMatrix(&ViewMatrix);
+    }
+
+    // Call virtual function +0x40 (vtable[16]) to finalize (sets viewport + clip planes)
+    typedef void (__thiscall *FinalizeFn)(gbGfxManager*, gbViewPort*, int);
+    void** vt = *(void***)pGfxMgr;
+    FinalizeFn finFn = (FinalizeFn)vt[16];
+    finFn(pGfxMgr, &Viewport, 1);
+
+    numPlane = 6;
 }
 
 // 0x10021c50 (39B) - Set screen dimensions

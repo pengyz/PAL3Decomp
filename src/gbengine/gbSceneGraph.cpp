@@ -323,7 +323,7 @@ void gbSceneGraph::DelVisNode(gbVisNode* node) {
 
 void gbSceneGraph::SetBladeTimeScale(float scale) {
     if (bladeMgr) {
-        *(float*)((char*)bladeMgr + 0x178c) = scale;
+        bladeMgr->globalTimeScale = scale;
     }
 }
 

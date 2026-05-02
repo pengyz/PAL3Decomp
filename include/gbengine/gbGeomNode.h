@@ -10,6 +10,16 @@ class gbTexture;
 class gbVFile;
 struct gbRenderInfoObj;
 
+// Animation controller - minimal layout from Ghidra analysis
+// Used by gbGeomNode for mesh animation playback
+struct gbAnimCtrl {
+    void* vtable;           // +0x00
+    float curTime;          // +0x04
+    float startTime;        // +0x08
+    float endTime;          // +0x0C
+    float maxTime;          // +0x10: total animation duration
+};
+
 /* ======== gbGeomNode ======== */
 
 class gbGeomNode : public gbVisNode {
@@ -18,7 +28,7 @@ public:
     gbMatrix4 localTransform;              // +0x58 (64 bytes)
     gbMatrix4 worldTransform;              // +0x98 (64 bytes)
     gbBaseMesh* mesh;                      // +0xd8
-    void* animController;                  // +0xdc
+    gbAnimCtrl* animController;             // +0xdc
     void* materialData;                    // +0xe0
     float animTime;                        // +0xe4
     void* bladeEffect;                     // +0xe8

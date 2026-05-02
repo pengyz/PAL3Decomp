@@ -9,7 +9,23 @@ class gbCamera;
 class gbRenderEffect;
 class gbEffectMgr;
 class gbVolModNode;
-class gbBladeMgr;
+// gbBladeMgr - blade trail effect manager
+// Contains 32 blade entries (each 0xBC bytes) followed by global state
+// Total entries array = 32 * 0xBC = 0x1780 bytes
+struct gbBladeEntry {
+    void* pGeomNode;        // +0x00: associated geom node pointer
+    char _pad04[0xAC];      // +0x04..+0xAF
+    float timeScale;        // +0xB0: per-blade time scale
+    char _padB4[0x08];      // +0xB4..+0xBB
+    // sizeof = 0xBC
+};
+
+class gbBladeMgr {
+public:
+    gbBladeEntry entries[32];   // +0x0000 (32 * 0xBC = 0x1780)
+    char _pad1780[0x0C];        // +0x1780..+0x178B
+    float globalTimeScale;      // +0x178C: global time scale factor
+};
 
 // ============================================================================
 // gbLight - light parameters structure (maps to D3DLIGHT9)

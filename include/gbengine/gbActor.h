@@ -14,7 +14,7 @@ class gbResource;
 class gbTexture;
 class gbVFileSystem;
 
-// Actor export node (attachment points)
+// Actor export node (attachment points) - external query result
 struct gbActorExpNode {
     int flags;
     int nodeIndex;
@@ -22,6 +22,15 @@ struct gbActorExpNode {
     int startFrame;
     int endFrame;
     char name[32];
+};
+
+// Internal export node data (sizeof = 0x84)
+// Allocated as array of 4 (total 0x210 bytes)
+struct gbExpNodeData {
+    unsigned int nameCrc;   // +0x00: CRC32 of node name (used for lookup)
+    gbMatrix4 localMatrix;  // +0x04: local transform (64 bytes)
+    gbMatrix4 worldMatrix;  // +0x44: world transform (64 bytes)
+    // sizeof = 0x84
 };
 
 // Mix action info (animation blending)
@@ -46,6 +55,15 @@ struct gbActionState {
 
 
 /* ======== gbActorDef (resource) ======== */
+// gbActorDef layout from Ghidra + gbResource base analysis:
+//   +0x00: vtable (virtual class)
+//   +0x04: RefCount
+//   +0x08: pName (char*) — from gbResource::SetName
+//   +0x0C: NameCrc32
+//   +0x10: IsLoaded
+//   +0x14: pMgr (gbResManager*)
+//   +0x9C: numMixInfo (int)
+// Two concrete subclasses: non-MV3 (sizeof=0xE0), MV3 (sizeof=0x108)
 
 class gbActorDef {
 public:
@@ -55,8 +73,13 @@ public:
     virtual void UpdateBones(gbActor* actor) = 0;
     virtual int GetEventList(void* buffer, int fromFrame, int toFrame, void* eventData) = 0;
 
-    void* vftable;
-    char data[0x100];
+    int RefCount;               // +0x04
+    char* pName;                // +0x08: resource name (set via gbResource::SetName)
+    unsigned int NameCrc32;     // +0x0C
+    int IsLoaded;               // +0x10
+    void* pMgr;                 // +0x14: gbResManager*
+    char _pad18[0x84];          // +0x18..+0x9B
+    int numMixInfo;             // +0x9C: number of mix action entries
 };
 
 
@@ -110,7 +133,7 @@ private:
     gbActorDef* m_pActorDef;       // +0x58
     gbActionState* m_pActions;     // +0x60
     int m_numActions;              // +0x64
-    void* m_pExportNodeData;       // +0x68
+    gbExpNodeData* m_pExportNodeData; // +0x68
     int m_maxExportNodes;          // +0x70 (usually 4)
     char m_reserved[8];
 };
