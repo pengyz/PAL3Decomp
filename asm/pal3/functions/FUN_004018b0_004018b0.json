@@ -1,0 +1,90 @@
+{
+  "address": "0x004018b0", 
+  "size_bytes": 250, 
+  "calling_convention": "unknown", 
+  "signature": "undefined FUN_004018b0(void)", 
+  "callees": [
+    {
+      "address": "0x0000015f", 
+      "name": "NewRenderEffect"
+    }, 
+    {
+      "address": "0x00401f50", 
+      "name": "FUN_00401f50"
+    }, 
+    {
+      "address": "0x00553082", 
+      "name": "FUN_00553082"
+    }, 
+    {
+      "address": "0x00000162", 
+      "name": "FileExistNum"
+    }, 
+    {
+      "address": "0x00000160", 
+      "name": "LoadTexture"
+    }, 
+    {
+      "address": "0x00401f90", 
+      "name": "FUN_00401f90"
+    }
+  ], 
+  "global_refs": [
+    {
+      "address": "0x0055f02b", 
+      "type": null, 
+      "name": "LAB_0055f02b"
+    }, 
+    {
+      "address": "0xffdff000", 
+      "type": null, 
+      "name": "ExceptionList"
+    }, 
+    {
+      "address": "0x00bfda60", 
+      "type": null, 
+      "name": "DAT_00bfda60"
+    }, 
+    {
+      "address": "0x00580aa0", 
+      "type": null, 
+      "name": "s_gfxscript\\sprite.gbf_00580aa0"
+    }, 
+    {
+      "address": "0x0056a590", 
+      "type": null, 
+      "name": "PTR_NewRenderEffect_0056a590"
+    }, 
+    {
+      "address": "0x0056a594", 
+      "type": null, 
+      "name": "PTR_LoadTexture_0056a594"
+    }, 
+    {
+      "address": "0x00580a88", 
+      "type": null, 
+      "name": "s_object\\BB%02d_%02d.tga_00580a88"
+    }, 
+    {
+      "address": "0x0056a598", 
+      "type": null, 
+      "name": "PTR_g_pVFileSys_0056a598"
+    }, 
+    {
+      "address": "0x0056a59c", 
+      "type": null, 
+      "name": "PTR_FileExistNum_0056a59c"
+    }
+  ], 
+  "has_custom_name": false, 
+  "decompiled_c": "\r\nvoid __thiscall FUN_004018b0(undefined4 *param_1,undefined4 param_2,undefined4 *param_3)\r\n\r\n{\r\n  gbRenderEffect *pgVar1;\r\n  int iVar2;\r\n  gbTexture *this;\r\n  undefined4 *puVar3;\r\n  int iVar4;\r\n  char acStack_110 [260];\r\n  void *pvStack_c;\r\n  undefined *puStack_8;\r\n  undefined4 uStack_4;\r\n  \r\n  uStack_4 = 0xffffffff;\r\n  puStack_8 = &LAB_0055f02b;\r\n  pvStack_c = ExceptionList;\r\n  iVar4 = 0;\r\n  ExceptionList = &pvStack_c;\r\n  pgVar1 = gbEffectMgr::NewRenderEffect\r\n                     ((gbEffectMgr *)DAT_00bfda60[0x32],s_gfxscript_sprite_gbf_00580aa0,0);\r\n  param_1[0x16] = pgVar1;\r\n  param_1[0x12] = param_2;\r\n  param_1[0x13] = *param_3;\r\n  param_1[0x14] = param_3[1];\r\n  param_1[0x15] = param_3[2];\r\n  param_1[0x11] = 0;\r\n  FUN_00401f50();\r\n  uStack_4 = 0;\r\n  puVar3 = param_1;\r\n  do {\r\n    FUN_00553082(acStack_110,s_HBobject_BB_02d__02d_tga_00580a86 + 2,param_1[0x12],iVar4);\r\n    iVar2 = gbVFileSystem::FileExistNum(*(gbVFileSystem **)g_pVFileSys_exref,acStack_110);\r\n    if (iVar2 == 0) break;\r\n    this = (gbTexture *)(**(code **)(*DAT_00bfda60 + 8))(acStack_110);\r\n    *puVar3 = this;\r\n    gbTexture::LoadTexture(this,1);\r\n    iVar4 = iVar4 + 1;\r\n    puVar3 = puVar3 + 1;\r\n  } while (iVar4 < 0x10);\r\n  param_1[0x10] = iVar4;\r\n  uStack_4 = 0xffffffff;\r\n  FUN_00401f90();\r\n  ExceptionList = pvStack_c;\r\n  return;\r\n}\r\n\r\n", 
+  "is_thunk": false, 
+  "name": "FUN_004018b0", 
+  "assembly": "  004018b0:  PUSH -0x1\n  004018b2:  PUSH 0x55f02b\n  004018b7:  MOV EAX,FS:[0x0]\n  004018bd:  PUSH EAX\n  004018be:  MOV dword ptr FS:[0x0],ESP\n  004018c5:  SUB ESP,0x108\n  004018cb:  MOV EAX,[0x00bfda60]\n  004018d0:  PUSH EBX\n  004018d1:  PUSH EBP\n  004018d2:  PUSH ESI\n  004018d3:  PUSH EDI\n  004018d4:  XOR EDI,EDI\n  004018d6:  MOV ESI,ECX\n  004018d8:  PUSH EDI\n  004018d9:  MOV ECX,dword ptr [EAX + 0xc8]\n  004018df:  PUSH 0x580aa0\n  004018e4:  CALL dword ptr [0x0056a590]\n  004018ea:  MOV ECX,dword ptr [ESP + 0x128]\n  004018f1:  MOV dword ptr [ESI + 0x58],EAX\n  004018f4:  MOV EAX,dword ptr [ESP + 0x12c]\n  004018fb:  MOV dword ptr [ESI + 0x48],ECX\n  004018fe:  MOV EDX,dword ptr [EAX]\n  00401900:  MOV dword ptr [ESI + 0x4c],EDX\n  00401903:  MOV ECX,dword ptr [EAX + 0x4]\n  00401906:  MOV dword ptr [ESI + 0x50],ECX\n  00401909:  MOV EDX,dword ptr [EAX + 0x8]\n  0040190c:  MOV dword ptr [ESI + 0x54],EDX\n  0040190f:  LEA ECX,[ESP + 0x10]\n  00401913:  MOV dword ptr [ESI + 0x44],EDI\n  00401916:  CALL 0x00401f50\n  0040191b:  MOV EBP,dword ptr [0x0056a594]\n  00401921:  MOV dword ptr [ESP + 0x120],EDI\n  00401928:  MOV EBX,ESI\n  0040192a:  MOV EAX,dword ptr [ESI + 0x48]\n  0040192d:  PUSH EDI\n  0040192e:  PUSH EAX\n  0040192f:  LEA ECX,[ESP + 0x1c]\n  00401933:  PUSH 0x580a88\n  00401938:  PUSH ECX\n  00401939:  CALL 0x00553082\n  0040193e:  MOV EAX,[0x0056a598]\n  00401943:  ADD ESP,0x10\n  00401946:  LEA EDX,[ESP + 0x14]\n  0040194a:  MOV ECX,dword ptr [EAX]\n  0040194c:  PUSH EDX\n  0040194d:  CALL dword ptr [0x0056a59c]\n  00401953:  TEST EAX,EAX\n  00401955:  JZ 0x00401978\n  00401957:  MOV ECX,dword ptr [0x00bfda60]\n  0040195d:  LEA EAX,[ESP + 0x14]\n  00401961:  PUSH EAX\n  00401962:  MOV EDX,dword ptr [ECX]\n  00401964:  CALL dword ptr [EDX + 0x8]\n  00401967:  PUSH 0x1\n  00401969:  MOV ECX,EAX\n  0040196b:  MOV dword ptr [EBX],EAX\n  0040196d:  CALL EBP\n  0040196f:  INC EDI\n  00401970:  ADD EBX,0x4\n  00401973:  CMP EDI,0x10\n  00401976:  JL 0x0040192a\n  00401978:  LEA ECX,[ESP + 0x10]\n  0040197c:  MOV dword ptr [ESI + 0x40],EDI\n  0040197f:  MOV dword ptr [ESP + 0x120],0xffffffff\n  0040198a:  CALL 0x00401f90\n  0040198f:  MOV ECX,dword ptr [ESP + 0x118]\n  00401996:  POP EDI\n  00401997:  POP ESI\n  00401998:  POP EBP\n  00401999:  POP EBX\n  0040199a:  MOV dword ptr FS:[0x0],ECX\n  004019a1:  ADD ESP,0x114\n  004019a7:  RET 0x8", 
+  "callers": [
+    {
+      "address": "0x0041fa90", 
+      "name": "FUN_0041fa90"
+    }
+  ]
+}

@@ -1,0 +1,167 @@
+{
+  "address": "0x00535710", 
+  "size_bytes": 541, 
+  "calling_convention": "unknown", 
+  "signature": "undefined FUN_00535710(undefined4 param_1, undefined4 param_2)", 
+  "callees": [
+    {
+      "address": "0x00422950", 
+      "name": "FUN_00422950"
+    }, 
+    {
+      "address": "0x004226f0", 
+      "name": "FUN_004226f0"
+    }, 
+    {
+      "address": "0x00401df0", 
+      "name": "FUN_00401df0"
+    }, 
+    {
+      "address": "0x00553082", 
+      "name": "FUN_00553082"
+    }, 
+    {
+      "address": "0x00000162", 
+      "name": "FileExistNum"
+    }, 
+    {
+      "address": "0x0055353b", 
+      "name": "operator_new"
+    }, 
+    {
+      "address": "0x000000e7", 
+      "name": "gbVisNode"
+    }, 
+    {
+      "address": "0x000000c1", 
+      "name": "gbLoadLightFile"
+    }, 
+    {
+      "address": "0x00431870", 
+      "name": "FUN_00431870"
+    }, 
+    {
+      "address": "0x004318b0", 
+      "name": "FUN_004318b0"
+    }, 
+    {
+      "address": "0x004319f0", 
+      "name": "FUN_004319f0"
+    }, 
+    {
+      "address": "0x00431c10", 
+      "name": "FUN_00431c10"
+    }, 
+    {
+      "address": "0x004318a0", 
+      "name": "thunk_FUN_004319c0"
+    }, 
+    {
+      "address": "0x00401f40", 
+      "name": "FUN_00401f40"
+    }
+  ], 
+  "global_refs": [
+    {
+      "address": "0x00568a74", 
+      "type": null, 
+      "name": "LAB_00568a74"
+    }, 
+    {
+      "address": "0xffdff000", 
+      "type": null, 
+      "name": "ExceptionList"
+    }, 
+    {
+      "address": "0x00000004", 
+      "type": null, 
+      "name": "DAT_00000004"
+    }, 
+    {
+      "address": "0x00000008", 
+      "type": null, 
+      "name": "DAT_00000008"
+    }, 
+    {
+      "address": "0x005708dc", 
+      "type": null, 
+      "name": "PTR_s_scene\\_005708dc"
+    }, 
+    {
+      "address": "0x-000031c", 
+      "type": null, 
+      "name": "DAT_-000031c"
+    }, 
+    {
+      "address": "0x-0000424", 
+      "type": null, 
+      "name": "DAT_-0000424"
+    }, 
+    {
+      "address": "0x-000041b", 
+      "type": null, 
+      "name": "DAT_-000041b"
+    }, 
+    {
+      "address": "0x-000041c", 
+      "type": null, 
+      "name": "DAT_-000041c"
+    }, 
+    {
+      "address": "0x0058b790", 
+      "type": null, 
+      "name": "s_%s\\%s.lgt_0058b790"
+    }, 
+    {
+      "address": "0x-0000004", 
+      "type": null, 
+      "name": "DAT_-0000004"
+    }, 
+    {
+      "address": "0x0056a598", 
+      "type": null, 
+      "name": "PTR_g_pVFileSys_0056a598"
+    }, 
+    {
+      "address": "0x0056a59c", 
+      "type": null, 
+      "name": "PTR_FileExistNum_0056a59c"
+    }, 
+    {
+      "address": "0x0056a3b0", 
+      "type": null, 
+      "name": "PTR_gbVisNode_0056a3b0"
+    }, 
+    {
+      "address": "0x00570794", 
+      "type": null, 
+      "name": "PTR_FUN_00570794"
+    }, 
+    {
+      "address": "0x0056a318", 
+      "type": null, 
+      "name": "PTR_gbLoadLightFile_0056a318"
+    }, 
+    {
+      "address": "0x0059b08c", 
+      "type": null, 
+      "name": "s_datascript\\SceneName.txt_0059b08c"
+    }, 
+    {
+      "address": "0x00583aa8", 
+      "type": null, 
+      "name": "s_default_00583aa8"
+    }
+  ], 
+  "has_custom_name": false, 
+  "decompiled_c": "\r\nvoid __thiscall FUN_00535710(int *param_1_00,char *param_1,undefined4 param_2)\r\n\r\n{\r\n  undefined *puVar1;\r\n  char cVar2;\r\n  int iVar3;\r\n  gbVisNode *pgVar4;\r\n  uint uVar5;\r\n  uint uVar6;\r\n  char *pcVar7;\r\n  char *pcVar8;\r\n  char *pcVar9;\r\n  undefined4 *puVar10;\r\n  char local_41c;\r\n  undefined4 local_41b;\r\n  char local_31c [784];\r\n  void *pvStack_c;\r\n  undefined *puStack_8;\r\n  uint local_4;\r\n  \r\n  local_4 = 0xffffffff;\r\n  puStack_8 = &LAB_00568a74;\r\n  pvStack_c = ExceptionList;\r\n  ExceptionList = &pvStack_c;\r\n  FUN_00422950(param_1,param_2,1,1);\r\n  iVar3 = FUN_004226f0();\r\n  *param_1_00 = iVar3;\r\n  uVar5 = 0xffffffff;\r\n  pcVar7 = PTR_s_scene__005708dc;\r\n  do {\r\n    pcVar9 = pcVar7;\r\n    if (uVar5 == 0) break;\r\n    uVar5 = uVar5 - 1;\r\n    pcVar9 = pcVar7 + 1;\r\n    cVar2 = *pcVar7;\r\n    pcVar7 = pcVar9;\r\n  } while (cVar2 != '\\0');\r\n  uVar5 = ~uVar5;\r\n  pcVar7 = pcVar9 + -uVar5;\r\n  pcVar9 = local_31c;\r\n  for (uVar6 = uVar5 >> 2; uVar6 != 0; uVar6 = uVar6 - 1) {\r\n    *(undefined4 *)pcVar9 = *(undefined4 *)pcVar7;\r\n    pcVar7 = pcVar7 + 4;\r\n    pcVar9 = pcVar9 + 4;\r\n  }\r\n  for (uVar5 = uVar5 & 3; uVar5 != 0; uVar5 = uVar5 - 1) {\r\n    *pcVar9 = *pcVar7;\r\n    pcVar7 = pcVar7 + 1;\r\n    pcVar9 = pcVar9 + 1;\r\n  }\r\n  uVar5 = 0xffffffff;\r\n  do {\r\n    pcVar7 = param_1;\r\n    if (uVar5 == 0) break;\r\n    uVar5 = uVar5 - 1;\r\n    pcVar7 = param_1 + 1;\r\n    cVar2 = *param_1;\r\n    param_1 = pcVar7;\r\n  } while (cVar2 != '\\0');\r\n  uVar5 = ~uVar5;\r\n  iVar3 = -1;\r\n  pcVar9 = local_31c;\r\n  do {\r\n    pcVar8 = pcVar9;\r\n    if (iVar3 == 0) break;\r\n    iVar3 = iVar3 + -1;\r\n    pcVar8 = pcVar9 + 1;\r\n    cVar2 = *pcVar9;\r\n    pcVar9 = pcVar8;\r\n  } while (cVar2 != '\\0');\r\n  pcVar7 = pcVar7 + -uVar5;\r\n  pcVar9 = pcVar8 + -1;\r\n  for (uVar6 = uVar5 >> 2; uVar6 != 0; uVar6 = uVar6 - 1) {\r\n    *(undefined4 *)pcVar9 = *(undefined4 *)pcVar7;\r\n    pcVar7 = pcVar7 + 4;\r\n    pcVar9 = pcVar9 + 4;\r\n  }\r\n  for (uVar5 = uVar5 & 3; uVar5 != 0; uVar5 = uVar5 - 1) {\r\n    *pcVar9 = *pcVar7;\r\n    pcVar7 = pcVar7 + 1;\r\n    pcVar9 = pcVar9 + 1;\r\n  }\r\n  FUN_00401df0(local_31c);\r\n  local_41c = '\\0';\r\n  puVar10 = &local_41b;\r\n  for (iVar3 = 0x3f; iVar3 != 0; iVar3 = iVar3 + -1) {\r\n    *puVar10 = 0;\r\n    puVar10 = puVar10 + 1;\r\n  }\r\n  *(undefined2 *)puVar10 = 0;\r\n  local_4 = 0;\r\n  *(undefined *)((int)puVar10 + 2) = 0;\r\n  FUN_00553082(&local_41c,s__s__s_lgt_0058b790,param_2,param_2);\r\n  iVar3 = gbVFileSystem::FileExistNum(*(gbVFileSystem **)g_pVFileSys_exref,&local_41c);\r\n  if (iVar3 != 0) {\r\n    if ((undefined4 *)param_1_00[0x324] != (undefined4 *)0x0) {\r\n      (*(code *)**(undefined4 **)param_1_00[0x324])(1);\r\n      param_1_00[0x324] = 0;\r\n    }\r\n    pgVar4 = (gbVisNode *)operator_new(0x58);\r\n    local_4._0_1_ = 1;\r\n    if (pgVar4 == (gbVisNode *)0x0) {\r\n      pgVar4 = (gbVisNode *)0x0;\r\n    }\r\n    else {\r\n      gbVisNode::gbVisNode(pgVar4);\r\n      *(undefined ***)pgVar4 = &PTR_FUN_00570794;\r\n    }\r\n    local_4 = (uint)local_4._1_3_ << 8;\r\n    param_1_00[0x324] = (int)pgVar4;\r\n    pgVar4 = gbLoadLightFile(&local_41c);\r\n    param_1_00[0x324] = (int)pgVar4;\r\n  }\r\n  puVar1 = (undefined *)((int)param_1_00 + 0xc0d);\r\n  *(undefined *)(param_1_00 + 0x303) = 1;\r\n  *puVar1 = 0;\r\n  FUN_00431870();\r\n  local_4 = CONCAT31(local_4._1_3_,2);\r\n  FUN_004318b0(s_datascript_SceneName_txt_0059b08c);\r\n  FUN_004319f0(*param_1_00);\r\n  cVar2 = FUN_00431c10(*param_1_00 + 0x20,puVar1,0x80);\r\n  if (cVar2 == '\\0') {\r\n    FUN_00431c10(s_default_00583aa8,puVar1,0x80);\r\n  }\r\n  local_4 = local_4 & 0xffffff00;\r\n  thunk_FUN_004319c0();\r\n  local_4 = 0xffffffff;\r\n  FUN_00401f40();\r\n  ExceptionList = pvStack_c;\r\n  return;\r\n}\r\n\r\n", 
+  "is_thunk": false, 
+  "name": "FUN_00535710", 
+  "assembly": "  00535710:  PUSH -0x1\n  00535712:  PUSH 0x568a74\n  00535717:  MOV EAX,FS:[0x0]\n  0053571d:  PUSH EAX\n  0053571e:  MOV dword ptr FS:[0x0],ESP\n  00535725:  SUB ESP,0x418\n  0053572b:  MOV EAX,dword ptr [ESP + 0x428]\n  00535732:  PUSH EBX\n  00535733:  MOV EBX,dword ptr [ESP + 0x430]\n  0053573a:  PUSH EBP\n  0053573b:  PUSH ESI\n  0053573c:  PUSH EDI\n  0053573d:  PUSH 0x1\n  0053573f:  PUSH 0x1\n  00535741:  PUSH EBX\n  00535742:  MOV EBP,ECX\n  00535744:  PUSH EAX\n  00535745:  CALL 0x00422950\n  0053574a:  ADD ESP,0x10\n  0053574d:  CALL 0x004226f0\n  00535752:  MOV dword ptr [EBP],EAX\n  00535755:  MOV EDI,dword ptr [0x005708dc]\n  0053575b:  OR ECX,0xffffffff\n  0053575e:  XOR EAX,EAX\n  00535760:  SCASB.REPNE ES:EDI\n  00535762:  NOT ECX\n  00535764:  SUB EDI,ECX\n  00535766:  LEA EDX,[ESP + 0x118]\n  0053576d:  MOV EAX,ECX\n  0053576f:  MOV ESI,EDI\n  00535771:  MOV EDI,EDX\n  00535773:  LEA EDX,[ESP + 0x118]\n  0053577a:  SHR ECX,0x2\n  0053577d:  MOVSD.REP ES:EDI,ESI\n  0053577f:  MOV ECX,EAX\n  00535781:  XOR EAX,EAX\n  00535783:  AND ECX,0x3\n  00535786:  MOVSB.REP ES:EDI,ESI\n  00535788:  MOV EDI,dword ptr [ESP + 0x438]\n  0053578f:  OR ECX,0xffffffff\n  00535792:  SCASB.REPNE ES:EDI\n  00535794:  NOT ECX\n  00535796:  SUB EDI,ECX\n  00535798:  MOV ESI,EDI\n  0053579a:  MOV EDI,EDX\n  0053579c:  MOV EDX,ECX\n  0053579e:  OR ECX,0xffffffff\n  005357a1:  SCASB.REPNE ES:EDI\n  005357a3:  MOV ECX,EDX\n  005357a5:  DEC EDI\n  005357a6:  SHR ECX,0x2\n  005357a9:  MOVSD.REP ES:EDI,ESI\n  005357ab:  MOV ECX,EDX\n  005357ad:  LEA EAX,[ESP + 0x118]\n  005357b4:  AND ECX,0x3\n  005357b7:  PUSH EAX\n  005357b8:  MOVSB.REP ES:EDI,ESI\n  005357ba:  LEA ECX,[ESP + 0x14]\n  005357be:  CALL 0x00401df0\n  005357c3:  MOV ECX,0x3f\n  005357c8:  XOR EAX,EAX\n  005357ca:  LEA EDI,[ESP + 0x19]\n  005357ce:  MOV byte ptr [ESP + 0x18],0x0\n  005357d3:  STOSD.REP ES:EDI\n  005357d5:  STOSW ES:EDI\n  005357d7:  PUSH EBX\n  005357d8:  PUSH EBX\n  005357d9:  LEA ECX,[ESP + 0x20]\n  005357dd:  XOR ESI,ESI\n  005357df:  PUSH 0x58b790\n  005357e4:  PUSH ECX\n  005357e5:  MOV dword ptr [ESP + 0x440],ESI\n  005357ec:  STOSB ES:EDI\n  005357ed:  CALL 0x00553082\n  005357f2:  MOV EAX,[0x0056a598]\n  005357f7:  ADD ESP,0x10\n  005357fa:  LEA EDX,[ESP + 0x18]\n  005357fe:  MOV ECX,dword ptr [EAX]\n  00535800:  PUSH EDX\n  00535801:  CALL dword ptr [0x0056a59c]\n  00535807:  CMP EAX,ESI\n  00535809:  JZ 0x00535871\n  0053580b:  MOV ECX,dword ptr [EBP + 0xc90]\n  00535811:  CMP ECX,ESI\n  00535813:  JZ 0x00535821\n  00535815:  MOV EDX,dword ptr [ECX]\n  00535817:  PUSH 0x1\n  00535819:  CALL dword ptr [EDX]\n  0053581b:  MOV dword ptr [EBP + 0xc90],ESI\n  00535821:  PUSH 0x58\n  00535823:  CALL 0x0055353b\n  00535828:  MOV EDI,EAX\n  0053582a:  ADD ESP,0x4\n  0053582d:  MOV dword ptr [ESP + 0x14],EDI\n  00535831:  CMP EDI,ESI\n  00535833:  MOV byte ptr [ESP + 0x430],0x1\n  0053583b:  JZ 0x0053584d\n  0053583d:  MOV ECX,EDI\n  0053583f:  CALL dword ptr [0x0056a3b0]\n  00535845:  MOV dword ptr [EDI],0x570794\n  0053584b:  JMP 0x0053584f\n  0053584d:  XOR EDI,EDI\n  0053584f:  LEA EAX,[ESP + 0x18]\n  00535853:  MOV byte ptr [ESP + 0x430],0x0\n  0053585b:  PUSH EAX\n  0053585c:  MOV dword ptr [EBP + 0xc90],EDI\n  00535862:  CALL dword ptr [0x0056a318]\n  00535868:  ADD ESP,0x4\n  0053586b:  MOV dword ptr [EBP + 0xc90],EAX\n  00535871:  LEA ESI,[EBP + 0xc0d]\n  00535877:  LEA ECX,[ESP + 0x21c]\n  0053587e:  MOV byte ptr [EBP + 0xc0c],0x1\n  00535885:  MOV byte ptr [ESI],0x0\n  00535888:  CALL 0x00431870\n  0053588d:  PUSH 0x59b08c\n  00535892:  LEA ECX,[ESP + 0x220]\n  00535899:  MOV byte ptr [ESP + 0x434],0x2\n  005358a1:  CALL 0x004318b0\n  005358a6:  MOV ECX,dword ptr [EBP]\n  005358a9:  PUSH ECX\n  005358aa:  LEA ECX,[ESP + 0x220]\n  005358b1:  CALL 0x004319f0\n  005358b6:  MOV EDX,dword ptr [EBP]\n  005358b9:  PUSH 0x80\n  005358be:  ADD EDX,0x20\n  005358c1:  PUSH ESI\n  005358c2:  PUSH EDX\n  005358c3:  LEA ECX,[ESP + 0x228]\n  005358ca:  CALL 0x00431c10\n  005358cf:  TEST AL,AL\n  005358d1:  JNZ 0x005358ea\n  005358d3:  PUSH 0x80\n  005358d8:  PUSH ESI\n  005358d9:  PUSH 0x583aa8\n  005358de:  LEA ECX,[ESP + 0x228]\n  005358e5:  CALL 0x00431c10\n  005358ea:  LEA ECX,[ESP + 0x21c]\n  005358f1:  MOV byte ptr [ESP + 0x430],0x0\n  005358f9:  CALL 0x004318a0\n  005358fe:  LEA ECX,[ESP + 0x10]\n  00535902:  MOV dword ptr [ESP + 0x430],0xffffffff\n  0053590d:  CALL 0x00401f40\n  00535912:  MOV ECX,dword ptr [ESP + 0x428]\n  00535919:  POP EDI\n  0053591a:  POP ESI\n  0053591b:  POP EBP\n  0053591c:  POP EBX\n  0053591d:  MOV dword ptr FS:[0x0],ECX\n  00535924:  ADD ESP,0x424\n  0053592a:  RET 0x8", 
+  "callers": [
+    {
+      "address": "0x00535930", 
+      "name": "FUN_00535930"
+    }
+  ]
+}

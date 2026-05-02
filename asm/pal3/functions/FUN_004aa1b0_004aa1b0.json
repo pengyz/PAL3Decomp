@@ -1,0 +1,23 @@
+{
+  "address": "0x004aa1b0", 
+  "size_bytes": 121, 
+  "calling_convention": "unknown", 
+  "signature": "undefined FUN_004aa1b0(void)", 
+  "callees": [
+    {
+      "address": "0x004aa230", 
+      "name": "FUN_004aa230"
+    }, 
+    {
+      "address": "0x0043f360", 
+      "name": "FUN_0043f360"
+    }
+  ], 
+  "global_refs": [], 
+  "has_custom_name": false, 
+  "decompiled_c": "\r\nvoid __fastcall FUN_004aa1b0(int param_1)\r\n\r\n{\r\n  FUN_004aa230();\r\n  *(undefined4 *)(param_1 + 0x208) = 0;\r\n  *(undefined4 *)(param_1 + 0x204) = 0;\r\n  *(undefined4 *)(param_1 + 0x218) = 0;\r\n  *(undefined4 *)(param_1 + 0x214) = 0;\r\n  *(undefined4 *)(param_1 + 0x210) = 0;\r\n  *(undefined4 *)(param_1 + 0x20c) = 0;\r\n  *(undefined4 *)(param_1 + 0x220) = 0;\r\n  *(undefined4 *)(param_1 + 0x21c) = 0;\r\n  *(undefined4 *)(param_1 + 0x5b98) = 0;\r\n  FUN_0043f360();\r\n  FUN_0043f360();\r\n  FUN_0043f360();\r\n  FUN_0043f360();\r\n  FUN_0043f360();\r\n  return;\r\n}\r\n\r\n", 
+  "is_thunk": false, 
+  "name": "FUN_004aa1b0", 
+  "assembly": "  004aa1b0:  PUSH ESI\n  004aa1b1:  MOV ESI,ECX\n  004aa1b3:  CALL 0x004aa230\n  004aa1b8:  XOR EAX,EAX\n  004aa1ba:  LEA ECX,[ESI + 0x5f360]\n  004aa1c0:  MOV dword ptr [ESI + 0x208],EAX\n  004aa1c6:  MOV dword ptr [ESI + 0x204],EAX\n  004aa1cc:  MOV dword ptr [ESI + 0x218],EAX\n  004aa1d2:  MOV dword ptr [ESI + 0x214],EAX\n  004aa1d8:  MOV dword ptr [ESI + 0x210],EAX\n  004aa1de:  MOV dword ptr [ESI + 0x20c],EAX\n  004aa1e4:  MOV dword ptr [ESI + 0x220],EAX\n  004aa1ea:  MOV dword ptr [ESI + 0x21c],EAX\n  004aa1f0:  MOV dword ptr [ESI + 0x5b98],EAX\n  004aa1f6:  CALL 0x0043f360\n  004aa1fb:  LEA ECX,[ESI + 0x5f818]\n  004aa201:  CALL 0x0043f360\n  004aa206:  LEA ECX,[ESI + 0x5fcd0]\n  004aa20c:  CALL 0x0043f360\n  004aa211:  LEA ECX,[ESI + 0x60188]\n  004aa217:  CALL 0x0043f360\n  004aa21c:  LEA ECX,[ESI + 0x60640]\n  004aa222:  CALL 0x0043f360\n  004aa227:  POP ESI\n  004aa228:  RET", 
+  "callers": []
+}

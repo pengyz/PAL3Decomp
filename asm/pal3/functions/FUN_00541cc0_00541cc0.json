@@ -1,0 +1,120 @@
+{
+  "address": "0x00541cc0", 
+  "size_bytes": 22, 
+  "calling_convention": "unknown", 
+  "signature": "undefined FUN_00541cc0(void)", 
+  "callees": [
+    {
+      "address": "0x00000139", 
+      "name": "gbUpdateCurTime"
+    }
+  ], 
+  "global_refs": [
+    {
+      "address": "0x0056a4f8", 
+      "type": null, 
+      "name": "PTR_gbUpdateCurTime_0056a4f8"
+    }, 
+    {
+      "address": "0x0056a4f4", 
+      "type": null, 
+      "name": "PTR_g_CurrentTime_0056a4f4"
+    }, 
+    {
+      "address": "0x01895070", 
+      "type": null, 
+      "name": "DAT_01895070"
+    }
+  ], 
+  "has_custom_name": false, 
+  "decompiled_c": "\r\n/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */\r\n\r\nvoid FUN_00541cc0(void)\r\n\r\n{\r\n  gbUpdateCurTime();\r\n  _DAT_01895070 = *(undefined8 *)g_CurrentTime_exref;\r\n  return;\r\n}\r\n\r\n", 
+  "is_thunk": false, 
+  "name": "FUN_00541cc0", 
+  "assembly": "  00541cc0:  CALL dword ptr [0x0056a4f8]\n  00541cc6:  MOV EAX,[0x0056a4f4]\n  00541ccb:  FSTP ST0\n  00541ccd:  FLD qword ptr [EAX]\n  00541ccf:  FSTP qword ptr [0x01895070]\n  00541cd5:  RET", 
+  "callers": [
+    {
+      "address": "0x00512f40", 
+      "name": "FUN_00512f40"
+    }, 
+    {
+      "address": "0x00422950", 
+      "name": "FUN_00422950"
+    }, 
+    {
+      "address": "0x00439230", 
+      "name": "FUN_00439230"
+    }, 
+    {
+      "address": "0x0044c120", 
+      "name": "FUN_0044c120"
+    }, 
+    {
+      "address": "0x0044dfc0", 
+      "name": "FUN_0044dfc0"
+    }, 
+    {
+      "address": "0x0053c5a0", 
+      "name": "FUN_0053c5a0"
+    }, 
+    {
+      "address": "0x004593c0", 
+      "name": "FUN_004593c0"
+    }, 
+    {
+      "address": "0x00473520", 
+      "name": "FUN_00473520"
+    }, 
+    {
+      "address": "0x0047be20", 
+      "name": "FUN_0047be20"
+    }, 
+    {
+      "address": "0x0049aea0", 
+      "name": "FUN_0049aea0"
+    }, 
+    {
+      "address": "0x005232b0", 
+      "name": "FUN_005232b0"
+    }, 
+    {
+      "address": "0x0052ed30", 
+      "name": "FUN_0052ed30"
+    }, 
+    {
+      "address": "0x00532b40", 
+      "name": "FUN_00532b40"
+    }, 
+    {
+      "address": "0x005350c0", 
+      "name": "FUN_005350c0"
+    }, 
+    {
+      "address": "0x00535120", 
+      "name": "FUN_00535120"
+    }, 
+    {
+      "address": "0x004462c0", 
+      "name": "FUN_004462c0"
+    }, 
+    {
+      "address": "0x004a6120", 
+      "name": "FUN_004a6120"
+    }, 
+    {
+      "address": "0x00485df0", 
+      "name": "FUN_00485df0"
+    }, 
+    {
+      "address": "0x004b3470", 
+      "name": "FUN_004b3470"
+    }, 
+    {
+      "address": "0x00480600", 
+      "name": "FUN_00480600"
+    }, 
+    {
+      "address": "0x00494d70", 
+      "name": "FUN_00494d70"
+    }
+  ]
+}

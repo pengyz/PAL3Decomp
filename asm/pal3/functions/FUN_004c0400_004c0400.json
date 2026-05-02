@@ -1,0 +1,14 @@
+{
+  "address": "0x004c0400", 
+  "size_bytes": 65, 
+  "calling_convention": "unknown", 
+  "signature": "undefined FUN_004c0400(void)", 
+  "callees": [], 
+  "global_refs": [], 
+  "has_custom_name": false, 
+  "decompiled_c": "\r\nvoid __fastcall FUN_004c0400(int param_1)\r\n\r\n{\r\n  int *piVar1;\r\n  \r\n  piVar1 = *(int **)(param_1 + 8);\r\n  if (piVar1 != (int *)0x0) {\r\n    (**(code **)(*piVar1 + 8))(piVar1);\r\n    *(undefined4 *)(param_1 + 8) = 0;\r\n  }\r\n  piVar1 = *(int **)(param_1 + 4);\r\n  if (piVar1 != (int *)0x0) {\r\n    (**(code **)(*piVar1 + 8))(piVar1);\r\n    *(undefined4 *)(param_1 + 4) = 0;\r\n  }\r\n  piVar1 = *(int **)(param_1 + 0xc);\r\n  if (piVar1 != (int *)0x0) {\r\n    (**(code **)(*piVar1 + 8))(piVar1);\r\n    *(undefined4 *)(param_1 + 0xc) = 0;\r\n  }\r\n  return;\r\n}\r\n\r\n", 
+  "is_thunk": false, 
+  "name": "FUN_004c0400", 
+  "assembly": "  004c0400:  PUSH ESI\n  004c0401:  MOV ESI,ECX\n  004c0403:  MOV EAX,dword ptr [ESI + 0x8]\n  004c0406:  TEST EAX,EAX\n  004c0408:  JZ 0x004c0417\n  004c040a:  MOV ECX,dword ptr [EAX]\n  004c040c:  PUSH EAX\n  004c040d:  CALL dword ptr [ECX + 0x8]\n  004c0410:  MOV dword ptr [ESI + 0x8],0x0\n  004c0417:  MOV EAX,dword ptr [ESI + 0x4]\n  004c041a:  TEST EAX,EAX\n  004c041c:  JZ 0x004c042b\n  004c041e:  MOV EDX,dword ptr [EAX]\n  004c0420:  PUSH EAX\n  004c0421:  CALL dword ptr [EDX + 0x8]\n  004c0424:  MOV dword ptr [ESI + 0x4],0x0\n  004c042b:  MOV EAX,dword ptr [ESI + 0xc]\n  004c042e:  TEST EAX,EAX\n  004c0430:  JZ 0x004c043f\n  004c0432:  MOV ECX,dword ptr [EAX]\n  004c0434:  PUSH EAX\n  004c0435:  CALL dword ptr [ECX + 0x8]\n  004c0438:  MOV dword ptr [ESI + 0xc],0x0\n  004c043f:  POP ESI\n  004c0440:  RET", 
+  "callers": []
+}

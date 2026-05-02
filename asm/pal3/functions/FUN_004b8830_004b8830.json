@@ -1,0 +1,29 @@
+{
+  "address": "0x004b8830", 
+  "size_bytes": 85, 
+  "calling_convention": "unknown", 
+  "signature": "undefined FUN_004b8830(void)", 
+  "callees": [], 
+  "global_refs": [
+    {
+      "address": "0x005d41f0", 
+      "type": null, 
+      "name": "s_Untitled_emission_control_005d41f0"
+    }
+  ], 
+  "has_custom_name": false, 
+  "decompiled_c": "\r\nvoid __fastcall FUN_004b8830(char *param_1)\r\n\r\n{\r\n  char cVar1;\r\n  int iVar2;\r\n  uint uVar3;\r\n  uint uVar4;\r\n  char *pcVar5;\r\n  char *pcVar6;\r\n  \r\n  pcVar5 = param_1 + 0x60;\r\n  for (iVar2 = 0x5c; iVar2 != 0; iVar2 = iVar2 + -1) {\r\n    pcVar5[0] = '\\0';\r\n    pcVar5[1] = '\\0';\r\n    pcVar5[2] = '\\0';\r\n    pcVar5[3] = '\\0';\r\n    pcVar5 = pcVar5 + 4;\r\n  }\r\n  pcVar5 = param_1 + 0x9020;\r\n  for (iVar2 = 0xb; iVar2 != 0; iVar2 = iVar2 + -1) {\r\n    pcVar5[0] = '\\0';\r\n    pcVar5[1] = '\\0';\r\n    pcVar5[2] = '\\0';\r\n    pcVar5[3] = '\\0';\r\n    pcVar5 = pcVar5 + 4;\r\n  }\r\n  uVar3 = 0xffffffff;\r\n  pcVar5 = s_Untitled_emission_control_005d41f0;\r\n  do {\r\n    pcVar6 = pcVar5;\r\n    if (uVar3 == 0) break;\r\n    uVar3 = uVar3 - 1;\r\n    pcVar6 = pcVar5 + 1;\r\n    cVar1 = *pcVar5;\r\n    pcVar5 = pcVar6;\r\n  } while (cVar1 != '\\0');\r\n  uVar3 = ~uVar3;\r\n  pcVar5 = pcVar6 + -uVar3;\r\n  pcVar6 = param_1;\r\n  for (uVar4 = uVar3 >> 2; uVar4 != 0; uVar4 = uVar4 - 1) {\r\n    *(undefined4 *)pcVar6 = *(undefined4 *)pcVar5;\r\n    pcVar5 = pcVar5 + 4;\r\n    pcVar6 = pcVar6 + 4;\r\n  }\r\n  for (uVar3 = uVar3 & 3; uVar3 != 0; uVar3 = uVar3 - 1) {\r\n    *pcVar6 = *pcVar5;\r\n    pcVar5 = pcVar5 + 1;\r\n    pcVar6 = pcVar6 + 1;\r\n  }\r\n  param_1[0x40] = '\\0';\r\n  param_1[0x41] = '\\0';\r\n  param_1[0x42] = '\\0';\r\n  param_1[0x43] = '\\0';\r\n  param_1[0x44] = '\\0';\r\n  param_1[0x45] = '\\0';\r\n  param_1[0x46] = '\\0';\r\n  param_1[0x47] = '\\0';\r\n  param_1[0x50] = -0x70;\r\n  param_1[0x51] = '\\x01';\r\n  param_1[0x52] = '\\0';\r\n  param_1[0x53] = '\\0';\r\n  param_1[0x9054] = '\\0';\r\n  param_1[0x9055] = '\\0';\r\n  param_1[0x9056] = '\\0';\r\n  param_1[0x9057] = '\\0';\r\n  return;\r\n}\r\n\r\n", 
+  "is_thunk": false, 
+  "name": "FUN_004b8830", 
+  "assembly": "  004b8830:  MOV EDX,ECX\n  004b8832:  PUSH ESI\n  004b8833:  PUSH EDI\n  004b8834:  MOV ECX,0x5c\n  004b8839:  XOR EAX,EAX\n  004b883b:  LEA EDI,[EDX + 0x60]\n  004b883e:  STOSD.REP ES:EDI\n  004b8840:  MOV ECX,0xb\n  004b8845:  LEA EDI,[EDX + 0x9020]\n  004b884b:  STOSD.REP ES:EDI\n  004b884d:  MOV EDI,0x5d41f0\n  004b8852:  OR ECX,0xffffffff\n  004b8855:  SCASB.REPNE ES:EDI\n  004b8857:  NOT ECX\n  004b8859:  SUB EDI,ECX\n  004b885b:  MOV EAX,ECX\n  004b885d:  MOV ESI,EDI\n  004b885f:  MOV EDI,EDX\n  004b8861:  SHR ECX,0x2\n  004b8864:  MOVSD.REP ES:EDI,ESI\n  004b8866:  MOV ECX,EAX\n  004b8868:  XOR EAX,EAX\n  004b886a:  AND ECX,0x3\n  004b886d:  MOVSB.REP ES:EDI,ESI\n  004b886f:  POP EDI\n  004b8870:  MOV dword ptr [EDX + 0x40],EAX\n  004b8873:  MOV dword ptr [EDX + 0x44],EAX\n  004b8876:  MOV dword ptr [EDX + 0x50],0x190\n  004b887d:  MOV dword ptr [EDX + 0x9054],EAX\n  004b8883:  POP ESI\n  004b8884:  RET", 
+  "callers": [
+    {
+      "address": "0x004b8820", 
+      "name": "FUN_004b8820"
+    }, 
+    {
+      "address": "0x004ba3d0", 
+      "name": "FUN_004ba3d0"
+    }
+  ]
+}

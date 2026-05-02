@@ -1,0 +1,31 @@
+{
+  "address": "0x00435080", 
+  "size_bytes": 101, 
+  "calling_convention": "unknown", 
+  "signature": "undefined FUN_00435080(void)", 
+  "callees": [
+    {
+      "address": "0x00434c00", 
+      "name": "FUN_00434c00"
+    }, 
+    {
+      "address": "0x00434bd0", 
+      "name": "FUN_00434bd0"
+    }, 
+    {
+      "address": "0x00414f90", 
+      "name": "FUN_00414f90"
+    }, 
+    {
+      "address": "0x00434c40", 
+      "name": "FUN_00434c40"
+    }
+  ], 
+  "global_refs": [], 
+  "has_custom_name": false, 
+  "decompiled_c": "\r\nvoid FUN_00435080(void)\r\n\r\n{\r\n  int iVar1;\r\n  int iVar2;\r\n  int iVar3;\r\n  \r\n  iVar1 = FUN_00434c00();\r\n  iVar2 = FUN_00434c00();\r\n  iVar3 = FUN_00434c00();\r\n  if (((iVar1 != 0) && (iVar2 != 0)) && (iVar3 != 0)) {\r\n    iVar1 = FUN_00434bd0(*(undefined2 *)(iVar1 + 4));\r\n    if ((iVar1 != 0) && (iVar3 = *(int *)(iVar3 + 4), iVar3 != 0)) {\r\n      FUN_00414f90(*(undefined4 *)(iVar2 + 4),iVar3);\r\n      if ((0 < iVar3) || (iVar3 == -2)) {\r\n        FUN_00434c40(iVar1 + 0x38);\r\n      }\r\n    }\r\n  }\r\n  return;\r\n}\r\n\r\n", 
+  "is_thunk": false, 
+  "name": "FUN_00435080", 
+  "assembly": "  00435080:  PUSH EBX\n  00435081:  PUSH EBP\n  00435082:  PUSH ESI\n  00435083:  PUSH EDI\n  00435084:  CALL 0x00434c00\n  00435089:  MOV ESI,EAX\n  0043508b:  CALL 0x00434c00\n  00435090:  MOV EBP,EAX\n  00435092:  CALL 0x00434c00\n  00435097:  TEST ESI,ESI\n  00435099:  MOV EBX,EAX\n  0043509b:  JZ 0x004350e0\n  0043509d:  TEST EBP,EBP\n  0043509f:  JZ 0x004350e0\n  004350a1:  TEST EBX,EBX\n  004350a3:  JZ 0x004350e0\n  004350a5:  MOV AX,word ptr [ESI + 0x4]\n  004350a9:  PUSH EAX\n  004350aa:  CALL 0x00434bd0\n  004350af:  MOV EDI,EAX\n  004350b1:  ADD ESP,0x4\n  004350b4:  TEST EDI,EDI\n  004350b6:  JZ 0x004350e0\n  004350b8:  MOV ESI,dword ptr [EBX + 0x4]\n  004350bb:  TEST ESI,ESI\n  004350bd:  JZ 0x004350e0\n  004350bf:  MOV ECX,dword ptr [EBP + 0x4]\n  004350c2:  PUSH ESI\n  004350c3:  PUSH ECX\n  004350c4:  MOV ECX,EDI\n  004350c6:  CALL 0x00414f90\n  004350cb:  TEST ESI,ESI\n  004350cd:  JG 0x004350d4\n  004350cf:  CMP ESI,-0x2\n  004350d2:  JNZ 0x004350e0\n  004350d4:  ADD EDI,0x38\n  004350d7:  PUSH EDI\n  004350d8:  CALL 0x00434c40\n  004350dd:  ADD ESP,0x4\n  004350e0:  POP EDI\n  004350e1:  POP ESI\n  004350e2:  POP EBP\n  004350e3:  POP EBX\n  004350e4:  RET", 
+  "callers": []
+}

@@ -1,0 +1,122 @@
+{
+  "address": "0x00511110", 
+  "size_bytes": 409, 
+  "calling_convention": "unknown", 
+  "signature": "undefined FUN_00511110(void)", 
+  "callees": [
+    {
+      "address": "0x000000ed", 
+      "name": "gbVec3D"
+    }, 
+    {
+      "address": "0x0041cac0", 
+      "name": "FUN_0041cac0"
+    }, 
+    {
+      "address": "0x000000b7", 
+      "name": "IntersectPlane"
+    }, 
+    {
+      "address": "0x00000148", 
+      "name": "Length"
+    }
+  ], 
+  "global_refs": [
+    {
+      "address": "0x-0000050", 
+      "type": null, 
+      "name": "DAT_-0000050"
+    }, 
+    {
+      "address": "0x-0000054", 
+      "type": null, 
+      "name": "DAT_-0000054"
+    }, 
+    {
+      "address": "0x-000004c", 
+      "type": null, 
+      "name": "DAT_-000004c"
+    }, 
+    {
+      "address": "0x-0000038", 
+      "type": null, 
+      "name": "DAT_-0000038"
+    }, 
+    {
+      "address": "0x-000003c", 
+      "type": null, 
+      "name": "DAT_-000003c"
+    }, 
+    {
+      "address": "0x-0000034", 
+      "type": null, 
+      "name": "DAT_-0000034"
+    }, 
+    {
+      "address": "0x-0000044", 
+      "type": null, 
+      "name": "DAT_-0000044"
+    }, 
+    {
+      "address": "0x-000000c", 
+      "type": null, 
+      "name": "DAT_-000000c"
+    }, 
+    {
+      "address": "0x-0000048", 
+      "type": null, 
+      "name": "DAT_-0000048"
+    }, 
+    {
+      "address": "0x-0000040", 
+      "type": null, 
+      "name": "DAT_-0000040"
+    }, 
+    {
+      "address": "0x-0000018", 
+      "type": null, 
+      "name": "DAT_-0000018"
+    }, 
+    {
+      "address": "0x-0000014", 
+      "type": null, 
+      "name": "DAT_-0000014"
+    }, 
+    {
+      "address": "0x-0000010", 
+      "type": null, 
+      "name": "DAT_-0000010"
+    }, 
+    {
+      "address": "0x0056a3c8", 
+      "type": null, 
+      "name": "PTR_gbVec3D_0056a3c8"
+    }, 
+    {
+      "address": "0x0056a2f0", 
+      "type": null, 
+      "name": "PTR_IntersectPlane_0056a2f0"
+    }, 
+    {
+      "address": "0x0056a534", 
+      "type": null, 
+      "name": "PTR_Length_0056a534"
+    }, 
+    {
+      "address": "0x0056aa78", 
+      "type": null, 
+      "name": "DAT_0056aa78"
+    }
+  ], 
+  "has_custom_name": false, 
+  "decompiled_c": "\r\n/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */\r\n\r\nint __fastcall FUN_00511110(int *param_1)\r\n\r\n{\r\n  float *pfVar1;\r\n  uint3 uVar2;\r\n  float fVar3;\r\n  float fVar4;\r\n  float fStack_60;\r\n  float fStack_5c;\r\n  float local_54;\r\n  float local_50;\r\n  float local_4c;\r\n  undefined4 local_48;\r\n  undefined4 local_44;\r\n  undefined4 local_40;\r\n  undefined4 local_3c;\r\n  undefined4 local_38;\r\n  undefined4 local_34;\r\n  float fStack_30;\r\n  float fStack_2c;\r\n  float fStack_28;\r\n  float local_18;\r\n  float local_14;\r\n  float local_10;\r\n  float local_c;\r\n  float fStack_8;\r\n  float fStack_4;\r\n  \r\n  local_38 = 0x3f800000;\r\n  local_3c = 0;\r\n  local_34 = 0;\r\n  local_44 = 0;\r\n  local_48 = 0x3f800000;\r\n  local_40 = 0x3f800000;\r\n  local_54 = 0.0;\r\n  local_50 = 0.0;\r\n  local_4c = 0.0;\r\n  local_18 = 0.0;\r\n  local_14 = 0.0;\r\n  local_10 = 0.0;\r\n  gbVec3D::gbVec3D((gbVec3D *)&local_c,0.0,0.0,0.0);\r\n  fStack_60 = *(float *)(*param_1 + 0x50);\r\n  fStack_5c = *(float *)(*param_1 + 0x54);\r\n  pfVar1 = (float *)FUN_0041cac0(&fStack_30,&fStack_60);\r\n  local_18 = *pfVar1;\r\n  local_14 = pfVar1[1];\r\n  local_10 = pfVar1[2];\r\n  local_c = pfVar1[3];\r\n  fStack_8 = pfVar1[4];\r\n  fStack_4 = pfVar1[5];\r\n  fVar3 = gbRay::IntersectPlane((gbRay *)&local_18,(gbVec3D *)&local_3c,(gbVec3D *)&local_48);\r\n  fStack_60 = local_c * fVar3;\r\n  fStack_5c = fStack_8 * fVar3;\r\n  fStack_30 = fStack_60 + local_18;\r\n  local_54 = (float)param_1[0xde] - fStack_30;\r\n  local_50 = (float)param_1[0xdf] - (local_14 + fStack_5c);\r\n  fVar3 = (float)param_1[0xe0] - (fVar3 * fStack_4 + local_10);\r\n  local_4c = fVar3;\r\n  fStack_2c = local_50;\r\n  fStack_28 = fVar3;\r\n  fVar4 = gbVec3D::Length((gbVec3D *)&local_54);\r\n  uVar2 = (uint3)(CONCAT22((short)((uint)fVar3 >> 0x10),\r\n                           (ushort)(fVar4 < _DAT_0056aa78) << 8 |\r\n                           (ushort)(NAN(fVar4) || NAN(_DAT_0056aa78)) << 10 |\r\n                           (ushort)(fVar4 == _DAT_0056aa78) << 0xe) >> 8);\r\n  if (fVar4 < _DAT_0056aa78) {\r\n    return CONCAT31(uVar2,1);\r\n  }\r\n  return (uint)uVar2 << 8;\r\n}\r\n\r\n", 
+  "is_thunk": false, 
+  "name": "FUN_00511110", 
+  "assembly": "  00511110:  SUB ESP,0x60\n  00511113:  PUSH ESI\n  00511114:  MOV ESI,ECX\n  00511116:  MOV dword ptr [ESP + 0x14],0x3f800000\n  0051111e:  MOV ECX,dword ptr [ESP + 0x14]\n  00511122:  MOV dword ptr [ESP + 0x10],0x0\n  0051112a:  MOV EAX,dword ptr [ESP + 0x10]\n  0051112e:  MOV dword ptr [ESP + 0x18],0x0\n  00511136:  MOV EDX,dword ptr [ESP + 0x18]\n  0051113a:  MOV dword ptr [ESP + 0x2c],ECX\n  0051113e:  MOV dword ptr [ESP + 0x14],0x0\n  00511146:  MOV ECX,dword ptr [ESP + 0x14]\n  0051114a:  MOV dword ptr [ESP + 0x28],EAX\n  0051114e:  MOV dword ptr [ESP + 0x30],EDX\n  00511152:  MOV dword ptr [ESP + 0x10],0x3f800000\n  0051115a:  MOV EAX,dword ptr [ESP + 0x10]\n  0051115e:  MOV dword ptr [ESP + 0x18],0x3f800000\n  00511166:  MOV EDX,dword ptr [ESP + 0x18]\n  0051116a:  PUSH 0x0\n  0051116c:  MOV dword ptr [ESP + 0x24],ECX\n  00511170:  PUSH 0x0\n  00511172:  PUSH 0x0\n  00511174:  LEA ECX,[ESP + 0x64]\n  00511178:  MOV dword ptr [ESP + 0x28],EAX\n  0051117c:  MOV dword ptr [ESP + 0x30],EDX\n  00511180:  MOV dword ptr [ESP + 0x1c],0x0\n  00511188:  MOV dword ptr [ESP + 0x20],0x0\n  00511190:  MOV dword ptr [ESP + 0x24],0x0\n  00511198:  MOV dword ptr [ESP + 0x58],0x0\n  005111a0:  MOV dword ptr [ESP + 0x5c],0x0\n  005111a8:  MOV dword ptr [ESP + 0x60],0x0\n  005111b0:  CALL dword ptr [0x0056a3c8]\n  005111b6:  MOV EAX,dword ptr [ESI]\n  005111b8:  MOV ECX,dword ptr [EAX + 0x50]\n  005111bb:  MOV dword ptr [ESP + 0x4],ECX\n  005111bf:  MOV EDX,dword ptr [EAX + 0x54]\n  005111c2:  MOV dword ptr [ESP + 0x8],EDX\n  005111c6:  MOV EAX,dword ptr [EAX + 0xc]\n  005111c9:  LEA ECX,[ESP + 0x4]\n  005111cd:  LEA EDX,[ESP + 0x34]\n  005111d1:  PUSH ECX\n  005111d2:  PUSH EDX\n  005111d3:  MOV ECX,EAX\n  005111d5:  CALL 0x0041cac0\n  005111da:  MOV ECX,dword ptr [EAX]\n  005111dc:  MOV dword ptr [ESP + 0x4c],ECX\n  005111e0:  MOV EDX,dword ptr [EAX + 0x4]\n  005111e3:  MOV dword ptr [ESP + 0x50],EDX\n  005111e7:  MOV ECX,dword ptr [EAX + 0x8]\n  005111ea:  MOV dword ptr [ESP + 0x54],ECX\n  005111ee:  MOV EDX,dword ptr [EAX + 0xc]\n  005111f1:  MOV dword ptr [ESP + 0x58],EDX\n  005111f5:  MOV ECX,dword ptr [EAX + 0x10]\n  005111f8:  MOV dword ptr [ESP + 0x5c],ECX\n  005111fc:  MOV EDX,dword ptr [EAX + 0x14]\n  005111ff:  LEA EAX,[ESP + 0x1c]\n  00511203:  LEA ECX,[ESP + 0x28]\n  00511207:  PUSH EAX\n  00511208:  PUSH ECX\n  00511209:  LEA ECX,[ESP + 0x54]\n  0051120d:  MOV dword ptr [ESP + 0x68],EDX\n  00511211:  CALL dword ptr [0x0056a2f0]\n  00511217:  FLD dword ptr [ESP + 0x58]\n  0051121b:  FMUL ST1\n  0051121d:  FSTP dword ptr [ESP + 0x4]\n  00511221:  FLD dword ptr [ESP + 0x5c]\n  00511225:  FMUL ST1\n  00511227:  FSTP dword ptr [ESP + 0x8]\n  0051122b:  FMUL dword ptr [ESP + 0x60]\n  0051122f:  FLD dword ptr [ESP + 0x4]\n  00511233:  FADD dword ptr [ESP + 0x4c]\n  00511237:  FSTP dword ptr [ESP + 0x34]\n  0051123b:  FLD dword ptr [ESP + 0x50]\n  0051123f:  FADD dword ptr [ESP + 0x8]\n  00511243:  FSTP dword ptr [ESP + 0x38]\n  00511247:  FADD dword ptr [ESP + 0x54]\n  0051124b:  FLD dword ptr [ESI + 0x378]\n  00511251:  FSUB dword ptr [ESP + 0x34]\n  00511255:  FLD dword ptr [ESI + 0x37c]\n  0051125b:  FSUB dword ptr [ESP + 0x38]\n  0051125f:  LEA ECX,[ESP + 0x10]\n  00511263:  FSTP dword ptr [ESP + 0x38]\n  00511267:  FLD dword ptr [ESI + 0x380]\n  0051126d:  FSUB ST0,ST2\n  0051126f:  MOV EDX,dword ptr [ESP + 0x38]\n  00511273:  MOV dword ptr [ESP + 0x14],EDX\n  00511277:  FSTP dword ptr [ESP + 0x3c]\n  0051127b:  MOV EAX,dword ptr [ESP + 0x3c]\n  0051127f:  FSTP dword ptr [ESP + 0x10]\n  00511283:  MOV dword ptr [ESP + 0x18],EAX\n  00511287:  FSTP ST0\n  00511289:  CALL dword ptr [0x0056a534]\n  0051128f:  FCOMP dword ptr [0x0056aa78]\n  00511295:  POP ESI\n  00511296:  FNSTSW AX\n  00511298:  TEST AH,0x1\n  0051129b:  JZ 0x005112a3\n  0051129d:  MOV AL,0x1\n  0051129f:  ADD ESP,0x60\n  005112a2:  RET\n  005112a3:  XOR AL,AL\n  005112a5:  ADD ESP,0x60\n  005112a8:  RET", 
+  "callers": [
+    {
+      "address": "0x00513150", 
+      "name": "FUN_00513150"
+    }
+  ]
+}

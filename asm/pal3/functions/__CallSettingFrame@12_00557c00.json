@@ -1,0 +1,49 @@
+{
+  "address": "0x00557c00", 
+  "size_bytes": 76, 
+  "calling_convention": "unknown", 
+  "signature": "undefined __CallSettingFrame@12(undefined4 param_1, undefined4 param_2, undefined4 param_3)", 
+  "callees": [
+    {
+      "address": "0x00553485", 
+      "name": "__NLG_Notify1"
+    }
+  ], 
+  "global_refs": [
+    {
+      "address": "0x00000008", 
+      "type": null, 
+      "name": "DAT_00000008"
+    }, 
+    {
+      "address": "0x-0000008", 
+      "type": null, 
+      "name": "DAT_-0000008"
+    }, 
+    {
+      "address": "0x00000004", 
+      "type": null, 
+      "name": "DAT_00000004"
+    }, 
+    {
+      "address": "0x0000000c", 
+      "type": null, 
+      "name": "DAT_0000000c"
+    }
+  ], 
+  "has_custom_name": true, 
+  "decompiled_c": "\r\n/* WARNING: Restarted to delay deadcode elimination for space: stack */\r\n/* Library Function - Single Match\r\n    __CallSettingFrame@12\r\n   \r\n   Libraries: Visual Studio 2017 Debug, Visual Studio 2017 Release, Visual Studio 2019 Debug, Visual\r\n   Studio 2019 Release */\r\n\r\nvoid __CallSettingFrame_12(undefined4 param_1,undefined4 param_2,int param_3)\r\n\r\n{\r\n  code *pcVar1;\r\n  \r\n  pcVar1 = (code *)__NLG_Notify1(param_3);\r\n  (*pcVar1)();\r\n  if (param_3 == 0x100) {\r\n    param_3 = 2;\r\n  }\r\n  __NLG_Notify1(param_3);\r\n  return;\r\n}\r\n\r\n", 
+  "is_thunk": false, 
+  "name": "__CallSettingFrame@12", 
+  "assembly": "  00557c00:  PUSH EBP\n  00557c01:  MOV EBP,ESP\n  00557c03:  SUB ESP,0x4\n  00557c06:  PUSH EBX\n  00557c07:  PUSH ECX\n  00557c08:  MOV EAX,dword ptr [EBP + 0xc]\n  00557c0b:  ADD EAX,0xc\n  00557c0e:  MOV dword ptr [EBP + -0x4],EAX\n  00557c11:  MOV EAX,dword ptr [EBP + 0x8]\n  00557c14:  PUSH EBP\n  00557c15:  PUSH dword ptr [EBP + 0x10]\n  00557c18:  MOV ECX,dword ptr [EBP + 0x10]\n  00557c1b:  MOV EBP,dword ptr [EBP + -0x4]\n  00557c1e:  CALL 0x00553485\n  00557c23:  PUSH ESI\n  00557c24:  PUSH EDI\n  00557c25:  CALL EAX\n  00557c27:  POP EDI\n  00557c28:  POP ESI\n  00557c29:  MOV EBX,EBP\n  00557c2b:  POP EBP\n  00557c2c:  MOV ECX,dword ptr [EBP + 0x10]\n  00557c2f:  PUSH EBP\n  00557c30:  MOV EBP,EBX\n  00557c32:  CMP ECX,0x100\n  00557c38:  JNZ 0x00557c3f\n  00557c3a:  MOV ECX,0x2\n  00557c3f:  PUSH ECX\n  00557c40:  CALL 0x00553485\n  00557c45:  POP EBP\n  00557c46:  POP ECX\n  00557c47:  POP EBX\n  00557c48:  LEAVE\n  00557c49:  RET 0xc", 
+  "callers": [
+    {
+      "address": "0x00557743", 
+      "name": "FUN_00557743"
+    }, 
+    {
+      "address": "0x0055319b", 
+      "name": "FUN_0055319b"
+    }
+  ]
+}

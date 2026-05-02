@@ -1,0 +1,38 @@
+{
+  "address": "0x004bb190", 
+  "size_bytes": 103, 
+  "calling_convention": "unknown", 
+  "signature": "undefined FUN_004bb190(undefined4 param_1)", 
+  "callees": [
+    {
+      "address": "0x004bb0f0", 
+      "name": "FUN_004bb0f0"
+    }, 
+    {
+      "address": "0x004bb180", 
+      "name": "FUN_004bb180"
+    }
+  ], 
+  "global_refs": [
+    {
+      "address": "0x00000004", 
+      "type": null, 
+      "name": "DAT_00000004"
+    }
+  ], 
+  "has_custom_name": false, 
+  "decompiled_c": "\r\nvoid __thiscall FUN_004bb190(int param_1_00,undefined4 param_1)\r\n\r\n{\r\n  int iVar1;\r\n  \r\n  iVar1 = 0;\r\n  if (0 < *(int *)(param_1_00 + 0x108)) {\r\n    do {\r\n      FUN_004bb0f0(param_1);\r\n      iVar1 = iVar1 + 1;\r\n    } while (iVar1 < *(int *)(param_1_00 + 0x108));\r\n  }\r\n  iVar1 = 0;\r\n  if (0 < *(int *)(param_1_00 + 0x104)) {\r\n    do {\r\n      FUN_004bb180(param_1);\r\n      iVar1 = iVar1 + 1;\r\n    } while (iVar1 < *(int *)(param_1_00 + 0x104));\r\n  }\r\n  return;\r\n}\r\n\r\n", 
+  "is_thunk": false, 
+  "name": "FUN_004bb190", 
+  "assembly": "  004bb190:  PUSH EBX\n  004bb191:  PUSH EBP\n  004bb192:  MOV EBP,dword ptr [ESP + 0xc]\n  004bb196:  PUSH ESI\n  004bb197:  MOV ESI,ECX\n  004bb199:  PUSH EDI\n  004bb19a:  XOR EDI,EDI\n  004bb19c:  MOV EAX,dword ptr [ESI + 0x108]\n  004bb1a2:  TEST EAX,EAX\n  004bb1a4:  JLE 0x004bb1c5\n  004bb1a6:  LEA EBX,[ESI + 0x3939c]\n  004bb1ac:  PUSH EBP\n  004bb1ad:  MOV ECX,EBX\n  004bb1af:  CALL 0x004bb0f0\n  004bb1b4:  MOV EAX,dword ptr [ESI + 0x108]\n  004bb1ba:  INC EDI\n  004bb1bb:  ADD EBX,0x7d58\n  004bb1c1:  CMP EDI,EAX\n  004bb1c3:  JL 0x004bb1ac\n  004bb1c5:  MOV EAX,dword ptr [ESI + 0x104]\n  004bb1cb:  XOR EDI,EDI\n  004bb1cd:  TEST EAX,EAX\n  004bb1cf:  JLE 0x004bb1f0\n  004bb1d1:  LEA EBX,[ESI + 0x2428c]\n  004bb1d7:  PUSH EBP\n  004bb1d8:  MOV ECX,EBX\n  004bb1da:  CALL 0x004bb180\n  004bb1df:  MOV EAX,dword ptr [ESI + 0x104]\n  004bb1e5:  INC EDI\n  004bb1e6:  ADD EBX,0x5444\n  004bb1ec:  CMP EDI,EAX\n  004bb1ee:  JL 0x004bb1d7\n  004bb1f0:  POP EDI\n  004bb1f1:  POP ESI\n  004bb1f2:  POP EBP\n  004bb1f3:  POP EBX\n  004bb1f4:  RET 0x4", 
+  "callers": [
+    {
+      "address": "0x004ba510", 
+      "name": "FUN_004ba510"
+    }, 
+    {
+      "address": "0x004bd7c0", 
+      "name": "FUN_004bd7c0"
+    }
+  ]
+}

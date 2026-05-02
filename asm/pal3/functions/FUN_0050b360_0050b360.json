@@ -1,0 +1,129 @@
+{
+  "address": "0x0050b360", 
+  "size_bytes": 194, 
+  "calling_convention": "unknown", 
+  "signature": "undefined FUN_0050b360(void)", 
+  "callees": [
+    {
+      "address": "0x00536cc0", 
+      "name": "FUN_00536cc0"
+    }
+  ], 
+  "global_refs": [
+    {
+      "address": "0x0056fe20", 
+      "type": null, 
+      "name": "PTR_DAT_0056fe20"
+    }, 
+    {
+      "address": "0x00588918", 
+      "type": null, 
+      "name": "DAT_00588918"
+    }, 
+    {
+      "address": "0x0056fe3c", 
+      "type": null, 
+      "name": "PTR_DAT_0056fe3c"
+    }, 
+    {
+      "address": "0x005888f8", 
+      "type": null, 
+      "name": "DAT_005888f8"
+    }, 
+    {
+      "address": "0x0056fe38", 
+      "type": null, 
+      "name": "PTR_DAT_0056fe38"
+    }, 
+    {
+      "address": "0x005888fc", 
+      "type": null, 
+      "name": "DAT_005888fc"
+    }, 
+    {
+      "address": "0x0056fe28", 
+      "type": null, 
+      "name": "PTR_DAT_0056fe28"
+    }, 
+    {
+      "address": "0x00588910", 
+      "type": null, 
+      "name": "DAT_00588910"
+    }, 
+    {
+      "address": "0x0056fe2c", 
+      "type": null, 
+      "name": "PTR_DAT_0056fe2c"
+    }, 
+    {
+      "address": "0x0058890c", 
+      "type": null, 
+      "name": "DAT_0058890c"
+    }, 
+    {
+      "address": "0x0056fe30", 
+      "type": null, 
+      "name": "PTR_DAT_0056fe30"
+    }, 
+    {
+      "address": "0x00588908", 
+      "type": null, 
+      "name": "DAT_00588908"
+    }, 
+    {
+      "address": "0x0056fe5c", 
+      "type": null, 
+      "name": "PTR_DAT_0056fe5c"
+    }, 
+    {
+      "address": "0x005888d0", 
+      "type": null, 
+      "name": "DAT_005888d0"
+    }, 
+    {
+      "address": "0x0056fe64", 
+      "type": null, 
+      "name": "PTR_DAT_0056fe64"
+    }, 
+    {
+      "address": "0x005888c8", 
+      "type": null, 
+      "name": "DAT_005888c8"
+    }, 
+    {
+      "address": "0x0056fe68", 
+      "type": null, 
+      "name": "PTR_DAT_0056fe68"
+    }, 
+    {
+      "address": "0x005888c4", 
+      "type": null, 
+      "name": "DAT_005888c4"
+    }, 
+    {
+      "address": "0x0056fe70", 
+      "type": null, 
+      "name": "PTR_DAT_0056fe70"
+    }, 
+    {
+      "address": "0x005888bc", 
+      "type": null, 
+      "name": "DAT_005888bc"
+    }
+  ], 
+  "has_custom_name": false, 
+  "decompiled_c": "\r\nvoid __fastcall FUN_0050b360(int param_1)\r\n\r\n{\r\n  if (*(int *)(param_1 + 0x11c) < 5) {\r\n    FUN_00536cc0(PTR_DAT_0056fe20);\r\n    FUN_00536cc0(PTR_DAT_0056fe3c);\r\n    FUN_00536cc0(PTR_DAT_0056fe38);\r\n    FUN_00536cc0(PTR_DAT_0056fe28);\r\n    FUN_00536cc0(PTR_DAT_0056fe2c);\r\n    FUN_00536cc0(PTR_DAT_0056fe30);\r\n    FUN_00536cc0(PTR_DAT_0056fe5c);\r\n    FUN_00536cc0(PTR_DAT_0056fe64);\r\n    FUN_00536cc0(PTR_DAT_0056fe68);\r\n    FUN_00536cc0(PTR_DAT_0056fe70);\r\n  }\r\n  return;\r\n}\r\n\r\n", 
+  "is_thunk": false, 
+  "name": "FUN_0050b360", 
+  "assembly": "  0050b360:  PUSH ESI\n  0050b361:  MOV ESI,ECX\n  0050b363:  CMP dword ptr [ESI + 0x11c],0x5\n  0050b36a:  JGE 0x0050b420\n  0050b370:  MOV EAX,[0x0056fe20]\n  0050b375:  MOV ECX,dword ptr [ESI + 0x124]\n  0050b37b:  PUSH EAX\n  0050b37c:  CALL 0x00536cc0\n  0050b381:  MOV ECX,dword ptr [0x0056fe3c]\n  0050b387:  PUSH ECX\n  0050b388:  MOV ECX,dword ptr [ESI + 0x124]\n  0050b38e:  CALL 0x00536cc0\n  0050b393:  MOV EDX,dword ptr [0x0056fe38]\n  0050b399:  MOV ECX,dword ptr [ESI + 0x124]\n  0050b39f:  PUSH EDX\n  0050b3a0:  CALL 0x00536cc0\n  0050b3a5:  MOV EAX,[0x0056fe28]\n  0050b3aa:  MOV ECX,dword ptr [ESI + 0x124]\n  0050b3b0:  PUSH EAX\n  0050b3b1:  CALL 0x00536cc0\n  0050b3b6:  MOV ECX,dword ptr [0x0056fe2c]\n  0050b3bc:  PUSH ECX\n  0050b3bd:  MOV ECX,dword ptr [ESI + 0x124]\n  0050b3c3:  CALL 0x00536cc0\n  0050b3c8:  MOV EDX,dword ptr [0x0056fe30]\n  0050b3ce:  MOV ECX,dword ptr [ESI + 0x124]\n  0050b3d4:  PUSH EDX\n  0050b3d5:  CALL 0x00536cc0\n  0050b3da:  MOV EAX,[0x0056fe5c]\n  0050b3df:  MOV ECX,dword ptr [ESI + 0x124]\n  0050b3e5:  PUSH EAX\n  0050b3e6:  CALL 0x00536cc0\n  0050b3eb:  MOV ECX,dword ptr [0x0056fe64]\n  0050b3f1:  PUSH ECX\n  0050b3f2:  MOV ECX,dword ptr [ESI + 0x124]\n  0050b3f8:  CALL 0x00536cc0\n  0050b3fd:  MOV EDX,dword ptr [0x0056fe68]\n  0050b403:  MOV ECX,dword ptr [ESI + 0x124]\n  0050b409:  PUSH EDX\n  0050b40a:  CALL 0x00536cc0\n  0050b40f:  MOV EAX,[0x0056fe70]\n  0050b414:  MOV ECX,dword ptr [ESI + 0x124]\n  0050b41a:  PUSH EAX\n  0050b41b:  CALL 0x00536cc0\n  0050b420:  POP ESI\n  0050b421:  RET", 
+  "callers": [
+    {
+      "address": "0x005096d0", 
+      "name": "FUN_005096d0"
+    }, 
+    {
+      "address": "0x00509540", 
+      "name": "FUN_00509540"
+    }
+  ]
+}

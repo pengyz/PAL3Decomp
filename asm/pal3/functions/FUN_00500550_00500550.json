@@ -1,0 +1,86 @@
+{
+  "address": "0x00500550", 
+  "size_bytes": 582, 
+  "calling_convention": "unknown", 
+  "signature": "undefined FUN_00500550(void)", 
+  "callees": [
+    {
+      "address": "0x0050a980", 
+      "name": "FUN_0050a980"
+    }, 
+    {
+      "address": "0x0050a6f0", 
+      "name": "FUN_0050a6f0"
+    }, 
+    {
+      "address": "0x004f6ad0", 
+      "name": "FUN_004f6ad0"
+    }, 
+    {
+      "address": "0x0050ad30", 
+      "name": "FUN_0050ad30"
+    }, 
+    {
+      "address": "0x00508880", 
+      "name": "FUN_00508880"
+    }, 
+    {
+      "address": "0x00508930", 
+      "name": "FUN_00508930"
+    }, 
+    {
+      "address": "0x004f7050", 
+      "name": "FUN_004f7050"
+    }, 
+    {
+      "address": "0x004ce580", 
+      "name": "FUN_004ce580"
+    }, 
+    {
+      "address": "0x004ed010", 
+      "name": "FUN_004ed010"
+    }, 
+    {
+      "address": "0x004ef8b0", 
+      "name": "FUN_004ef8b0"
+    }
+  ], 
+  "global_refs": [
+    {
+      "address": "0x0050f150", 
+      "type": null, 
+      "name": "FUN_0050f150"
+    }, 
+    {
+      "address": "0x0050f200", 
+      "type": null, 
+      "name": "FUN_0050f200"
+    }, 
+    {
+      "address": "0x-0000030", 
+      "type": null, 
+      "name": "DAT_-0000030"
+    }, 
+    {
+      "address": "0x-000002c", 
+      "type": null, 
+      "name": "DAT_-000002c"
+    }, 
+    {
+      "address": "0x-0000028", 
+      "type": null, 
+      "name": "DAT_-0000028"
+    }, 
+    {
+      "address": "0x-0000024", 
+      "type": null, 
+      "name": "DAT_-0000024"
+    }
+  ], 
+  "has_custom_name": false, 
+  "decompiled_c": "\r\nundefined4 __fastcall FUN_00500550(int *param_1)\r\n\r\n{\r\n  int *piVar1;\r\n  int iVar2;\r\n  int iVar3;\r\n  char cVar4;\r\n  int iVar5;\r\n  int iVar6;\r\n  int iVar7;\r\n  code *pcVar8;\r\n  int *piVar9;\r\n  \r\n  iVar2 = param_1[0x28];\r\n  iVar3 = param_1[0x29];\r\n  piVar1 = param_1 + iVar2 * 0x292 + 0x2b0;\r\n  iVar7 = iVar3 * 0x50 + iVar2 * 0xa48;\r\n  cVar4 = FUN_0050a980(param_1[iVar2 * 0x292 + 0x2ae]);\r\n  if (cVar4 == '\\0') {\r\n    param_1[iVar2 * 0x292 + iVar3 * 0x14 + 0x32] = 4;\r\n    return 0;\r\n  }\r\n  if (*(char *)((int)param_1 + iVar7 + 0xe1) == '\\0') {\r\n    cVar4 = FUN_0050a6f0();\r\n    if (cVar4 != '\\x01') {\r\n      return 0;\r\n    }\r\n    *(undefined4 *)(param_1[piVar1[2] + 6] + 0x19e8) =\r\n         *(undefined4 *)(param_1[piVar1[2] + 6] + 0x19ec);\r\n    cVar4 = FUN_004f6ad0(piVar1[1]);\r\n    if (cVar4 == '\\0') {\r\n      pcVar8 = FUN_0050f200;\r\n      piVar9 = piVar1;\r\n    }\r\n    else {\r\n      pcVar8 = FUN_0050f150;\r\n      piVar9 = (int *)0x0;\r\n    }\r\n    FUN_0050ad30(pcVar8,0,0,0,param_1[param_1[0x28] * 0x292 + 0x2ae],0,piVar9,1);\r\n    *(undefined *)((int)param_1 + iVar7 + 0xe1) = 1;\r\n    iVar5 = FUN_00508880(piVar1[1]);\r\n    param_1[iVar2 * 0x292 + iVar3 * 0x14 + 0x3c] = iVar5;\r\n    *(undefined *)((int)param_1 + iVar7 + 0xf6) = 0;\r\n    *(undefined *)((int)param_1 + iVar7 + 0xf5) = 0;\r\n    *(undefined *)(param_1 + iVar2 * 0x292 + iVar3 * 0x14 + 0x3d) = 0;\r\n    param_1[iVar2 * 0x292 + iVar3 * 0x14 + 0x3f] = 0;\r\n    param_1[iVar2 * 0x292 + iVar3 * 0x14 + 0x3e] = 0;\r\n  }\r\n  iVar5 = param_1[0x13] + 0x98c + param_1[iVar2 * 0x292 + iVar3 * 0x14 + 0x3c] * 0x3c;\r\n  if ((*(char *)(param_1 + iVar2 * 0x292 + iVar3 * 0x14 + 0x3d) == '\\0') &&\r\n     (*(float *)(iVar5 + 0x18) <=\r\n      *(float *)(*param_1 + 0x50) - (float)param_1[iVar2 * 0x292 + iVar3 * 0x14 + 0x34])) {\r\n    iVar6 = FUN_00508930(param_1[iVar2 * 0x292 + iVar3 * 0x14 + 0x3c],1,piVar1);\r\n    param_1[iVar2 * 0x292 + iVar3 * 0x14 + 0x3e] = iVar6;\r\n    *(undefined *)(param_1 + iVar2 * 0x292 + iVar3 * 0x14 + 0x3d) = 1;\r\n  }\r\n  if ((*(char *)((int)param_1 + iVar7 + 0xf5) == '\\0') &&\r\n     (*(float *)(iVar5 + 0x34) <=\r\n      *(float *)(*param_1 + 0x50) - (float)param_1[iVar2 * 0x292 + iVar3 * 0x14 + 0x34])) {\r\n    iVar5 = FUN_00508930(param_1[iVar2 * 0x292 + iVar3 * 0x14 + 0x3c],2,piVar1);\r\n    param_1[iVar2 * 0x292 + iVar3 * 0x14 + 0x3f] = iVar5;\r\n    *(undefined *)((int)param_1 + iVar7 + 0xf5) = 1;\r\n  }\r\n  if (((*(char *)((int)param_1 + iVar7 + 0xf6) == '\\0') &&\r\n      (*(float *)(param_1[0x13] + 0x9a8 + param_1[iVar2 * 0x292 + iVar3 * 0x14 + 0x3c] * 0x3c) <=\r\n       *(float *)(*param_1 + 0x50) - (float)param_1[iVar2 * 0x292 + iVar3 * 0x14 + 0x34])) &&\r\n     (*(char *)(param_1 + iVar2 * 0x292 + iVar3 * 0x14 + 0x3d) != '\\0')) {\r\n    cVar4 = FUN_004f7050(piVar1);\r\n    if (cVar4 == '\\0') {\r\n      cVar4 = FUN_004ed010(piVar1[2]);\r\n    }\r\n    else {\r\n      cVar4 = FUN_004ce580(param_1[iVar2 * 0x292 + iVar3 * 0x14 + 0x3e]);\r\n      if (cVar4 != '\\0') goto LAB_00500765;\r\n      cVar4 = FUN_004ed010(piVar1[2]);\r\n    }\r\n    if (cVar4 != '\\0') {\r\n      FUN_004ef8b0(param_1 + param_1[0x28] * 0x292 + 0x2b0);\r\n    }\r\n    *(undefined *)((int)param_1 + iVar7 + 0xf6) = 1;\r\n  }\r\nLAB_00500765:\r\n  cVar4 = FUN_0050a6f0();\r\n  if ((cVar4 == '\\x01') && (*(char *)((int)param_1 + iVar7 + 0xf6) != '\\0')) {\r\n    param_1[iVar2 * 0x292 + iVar3 * 0x14 + 0x32] = 4;\r\n  }\r\n  if (*(char *)((int)param_1 + iVar7 + 0xe3) == '\\x01') {\r\n    param_1[iVar2 * 0x292 + iVar3 * 0x14 + 0x32] = 4;\r\n  }\r\n  return 0;\r\n}\r\n\r\n", 
+  "is_thunk": false, 
+  "name": "FUN_00500550", 
+  "assembly": "  00500550:  PUSH EBX\n  00500551:  PUSH EBP\n  00500552:  PUSH ESI\n  00500553:  MOV ESI,ECX\n  00500555:  PUSH EDI\n  00500556:  MOV EAX,dword ptr [ESI + 0xa0]\n  0050055c:  LEA ECX,[EAX + EAX*0x4]\n  0050055f:  LEA EDX,[EAX + ECX*0x8]\n  00500562:  MOV ECX,dword ptr [ESI + 0xa4]\n  00500568:  LEA EAX,[EAX + EDX*0x8]\n  0050056b:  LEA ECX,[ECX + ECX*0x4]\n  0050056e:  SHL EAX,0x3\n  00500571:  SHL ECX,0x4\n  00500574:  MOV EDX,dword ptr [EAX + ESI*0x1 + 0xab8]\n  0050057b:  LEA EBP,[EAX + ESI*0x1 + 0xac0]\n  00500582:  ADD ECX,EAX\n  00500584:  PUSH EDX\n  00500585:  MOV EAX,dword ptr [EBP + 0x8]\n  00500588:  LEA EDI,[ECX + ESI*0x1 + 0xb8]\n  0050058f:  MOV ECX,dword ptr [ESI + EAX*0x4 + 0x18]\n  00500593:  CALL 0x0050a980\n  00500598:  TEST AL,AL\n  0050059a:  JNZ 0x005005ac\n  0050059c:  MOV dword ptr [EDI + 0x10],0x4\n  005005a3:  XOR EAX,EAX\n  005005a5:  POP EDI\n  005005a6:  POP ESI\n  005005a7:  POP EBP\n  005005a8:  POP EBX\n  005005a9:  RET 0x4\n  005005ac:  MOV AL,byte ptr [EDI + 0x29]\n  005005af:  TEST AL,AL\n  005005b1:  JNZ 0x00500662\n  005005b7:  MOV ECX,dword ptr [EBP + 0x8]\n  005005ba:  MOV ECX,dword ptr [ESI + ECX*0x4 + 0x18]\n  005005be:  CALL 0x0050a6f0\n  005005c3:  CMP AL,0x1\n  005005c5:  JNZ 0x0050078d\n  005005cb:  MOV EDX,dword ptr [EBP + 0x8]\n  005005ce:  MOV EAX,dword ptr [ESI + EDX*0x4 + 0x18]\n  005005d2:  MOV ECX,dword ptr [EAX + 0x19ec]\n  005005d8:  MOV dword ptr [EAX + 0x19e8],ECX\n  005005de:  MOV EDX,dword ptr [EBP + 0x4]\n  005005e1:  MOV ECX,dword ptr [ESI + 0x4]\n  005005e4:  PUSH EDX\n  005005e5:  CALL 0x004f6ad0\n  005005ea:  TEST AL,AL\n  005005ec:  JZ 0x005005fa\n  005005ee:  XOR EDX,EDX\n  005005f0:  PUSH 0x1\n  005005f2:  MOV ECX,0x50f150\n  005005f7:  PUSH EDX\n  005005f8:  JMP 0x00500604\n  005005fa:  PUSH 0x1\n  005005fc:  MOV ECX,0x50f200\n  00500601:  XOR EDX,EDX\n  00500603:  PUSH EBP\n  00500604:  MOV EAX,dword ptr [ESI + 0xa0]\n  0050060a:  PUSH 0x0\n  0050060c:  LEA EBX,[EAX + EAX*0x4]\n  0050060f:  LEA EBX,[EAX + EBX*0x8]\n  00500612:  LEA EAX,[EAX + EBX*0x8]\n  00500615:  MOV EAX,dword ptr [ESI + EAX*0x8 + 0xab8]\n  0050061c:  PUSH EAX\n  0050061d:  XOR EAX,EAX\n  0050061f:  SUB ESP,0x10\n  00500622:  MOV EBX,ESP\n  00500624:  MOV dword ptr [EBX],ECX\n  00500626:  MOV ECX,dword ptr [EBP + 0x8]\n  00500629:  MOV ECX,dword ptr [ESI + ECX*0x4 + 0x18]\n  0050062d:  MOV dword ptr [EBX + 0x4],EDX\n  00500630:  MOV dword ptr [EBX + 0x8],EAX\n  00500633:  MOV dword ptr [EBX + 0xc],EAX\n  00500636:  CALL 0x0050ad30\n  0050063b:  MOV byte ptr [EDI + 0x29],0x1\n  0050063f:  MOV EDX,dword ptr [EBP + 0x4]\n  00500642:  MOV ECX,dword ptr [ESI + 0x4c]\n  00500645:  PUSH EDX\n  00500646:  CALL 0x00508880\n  0050064b:  MOV dword ptr [EDI + 0x38],EAX\n  0050064e:  XOR EAX,EAX\n  00500650:  MOV byte ptr [EDI + 0x3e],0x0\n  00500654:  MOV byte ptr [EDI + 0x3d],0x0\n  00500658:  MOV byte ptr [EDI + 0x3c],0x0\n  0050065c:  MOV dword ptr [EDI + 0x44],EAX\n  0050065f:  MOV dword ptr [EDI + 0x40],EAX\n  00500662:  MOV EDX,dword ptr [EDI + 0x38]\n  00500665:  MOV ECX,dword ptr [ESI + 0x4c]\n  00500668:  LEA EAX,[EDX + EDX*0x2]\n  0050066b:  LEA EAX,[EAX + EAX*0x4]\n  0050066e:  LEA EBX,[ECX + EAX*0x4 + 0x98c]\n  00500675:  MOV AL,byte ptr [EDI + 0x3c]\n  00500678:  TEST AL,AL\n  0050067a:  JNZ 0x0050069e\n  0050067c:  MOV EAX,dword ptr [ESI]\n  0050067e:  FLD dword ptr [EAX + 0x50]\n  00500681:  FSUB dword ptr [EDI + 0x18]\n  00500684:  FCOMP dword ptr [EBX + 0x18]\n  00500687:  FNSTSW AX\n  00500689:  TEST AH,0x1\n  0050068c:  JNZ 0x0050069e\n  0050068e:  PUSH EBP\n  0050068f:  PUSH 0x1\n  00500691:  PUSH EDX\n  00500692:  CALL 0x00508930\n  00500697:  MOV dword ptr [EDI + 0x40],EAX\n  0050069a:  MOV byte ptr [EDI + 0x3c],0x1\n  0050069e:  MOV AL,byte ptr [EDI + 0x3d]\n  005006a1:  TEST AL,AL\n  005006a3:  JNZ 0x005006cd\n  005006a5:  MOV ECX,dword ptr [ESI]\n  005006a7:  FLD dword ptr [ECX + 0x50]\n  005006aa:  FSUB dword ptr [EDI + 0x18]\n  005006ad:  FCOMP dword ptr [EBX + 0x34]\n  005006b0:  FNSTSW AX\n  005006b2:  TEST AH,0x1\n  005006b5:  JNZ 0x005006cd\n  005006b7:  MOV EDX,dword ptr [EDI + 0x38]\n  005006ba:  MOV ECX,dword ptr [ESI + 0x4c]\n  005006bd:  PUSH EBP\n  005006be:  PUSH 0x2\n  005006c0:  PUSH EDX\n  005006c1:  CALL 0x00508930\n  005006c6:  MOV dword ptr [EDI + 0x44],EAX\n  005006c9:  MOV byte ptr [EDI + 0x3d],0x1\n  005006cd:  MOV AL,byte ptr [EDI + 0x3e]\n  005006d0:  TEST AL,AL\n  005006d2:  JNZ 0x00500765\n  005006d8:  MOV ECX,dword ptr [ESI]\n  005006da:  MOV EAX,dword ptr [EDI + 0x38]\n  005006dd:  MOV EDX,dword ptr [ESI + 0x4c]\n  005006e0:  FLD dword ptr [ECX + 0x50]\n  005006e3:  LEA EAX,[EAX + EAX*0x2]\n  005006e6:  FSUB dword ptr [EDI + 0x18]\n  005006e9:  LEA EAX,[EAX + EAX*0x4]\n  005006ec:  FCOMP dword ptr [EDX + EAX*0x4 + 0x9a8]\n  005006f3:  FNSTSW AX\n  005006f5:  TEST AH,0x1\n  005006f8:  JNZ 0x00500765\n  005006fa:  MOV AL,byte ptr [EDI + 0x3c]\n  005006fd:  TEST AL,AL\n  005006ff:  JZ 0x00500765\n  00500701:  MOV ECX,dword ptr [ECX + 0x10]\n  00500704:  PUSH EBP\n  00500705:  CALL 0x004f7050\n  0050070a:  TEST AL,AL\n  0050070c:  JZ 0x00500732\n  0050070e:  MOV EAX,dword ptr [ESI]\n  00500710:  MOV EDX,dword ptr [EDI + 0x40]\n  00500713:  PUSH EDX\n  00500714:  MOV ECX,dword ptr [EAX + 0x2c]\n  00500717:  CALL 0x004ce580\n  0050071c:  TEST AL,AL\n  0050071e:  JNZ 0x00500765\n  00500720:  MOV EAX,dword ptr [EBP + 0x8]\n  00500723:  MOV ECX,dword ptr [ESI + 0x4]\n  00500726:  PUSH EAX\n  00500727:  CALL 0x004ed010\n  0050072c:  TEST AL,AL\n  0050072e:  JZ 0x00500761\n  00500730:  JMP 0x00500742\n  00500732:  MOV EDX,dword ptr [EBP + 0x8]\n  00500735:  MOV ECX,dword ptr [ESI + 0x4]\n  00500738:  PUSH EDX\n  00500739:  CALL 0x004ed010\n  0050073e:  TEST AL,AL\n  00500740:  JZ 0x00500761\n  00500742:  MOV EAX,dword ptr [ESI + 0xa0]\n  00500748:  LEA ECX,[EAX + EAX*0x4]\n  0050074b:  LEA EDX,[EAX + ECX*0x8]\n  0050074e:  LEA EAX,[EAX + EDX*0x8]\n  00500751:  LEA ECX,[ESI + EAX*0x8 + 0xac0]\n  00500758:  PUSH ECX\n  00500759:  MOV ECX,dword ptr [ESI + 0x4]\n  0050075c:  CALL 0x004ef8b0\n  00500761:  MOV byte ptr [EDI + 0x3e],0x1\n  00500765:  MOV EDX,dword ptr [EBP + 0x8]\n  00500768:  MOV ECX,dword ptr [ESI + EDX*0x4 + 0x18]\n  0050076c:  CALL 0x0050a6f0\n  00500771:  CMP AL,0x1\n  00500773:  MOV ECX,0x4\n  00500778:  JNZ 0x00500784\n  0050077a:  MOV AL,byte ptr [EDI + 0x3e]\n  0050077d:  TEST AL,AL\n  0050077f:  JZ 0x00500784\n  00500781:  MOV dword ptr [EDI + 0x10],ECX\n  00500784:  CMP byte ptr [EDI + 0x2b],0x1\n  00500788:  JNZ 0x0050078d\n  0050078a:  MOV dword ptr [EDI + 0x10],ECX\n  0050078d:  POP EDI\n  0050078e:  POP ESI\n  0050078f:  POP EBP\n  00500790:  XOR EAX,EAX\n  00500792:  POP EBX\n  00500793:  RET 0x4", 
+  "callers": []
+}

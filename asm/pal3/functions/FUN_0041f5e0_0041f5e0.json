@@ -1,0 +1,82 @@
+{
+  "address": "0x0041f5e0", 
+  "size_bytes": 160, 
+  "calling_convention": "unknown", 
+  "signature": "undefined FUN_0041f5e0(void)", 
+  "callees": [
+    {
+      "address": "0x00401f50", 
+      "name": "FUN_00401f50"
+    }, 
+    {
+      "address": "0x00000160", 
+      "name": "LoadTexture"
+    }, 
+    {
+      "address": "0x0000015f", 
+      "name": "NewRenderEffect"
+    }, 
+    {
+      "address": "0x00401f90", 
+      "name": "FUN_00401f90"
+    }
+  ], 
+  "global_refs": [
+    {
+      "address": "0x0055f488", 
+      "type": null, 
+      "name": "LAB_0055f488"
+    }, 
+    {
+      "address": "0xffdff000", 
+      "type": null, 
+      "name": "ExceptionList"
+    }, 
+    {
+      "address": "0x-0000010", 
+      "type": null, 
+      "name": "DAT_-0000010"
+    }, 
+    {
+      "address": "0x00bfda60", 
+      "type": null, 
+      "name": "DAT_00bfda60"
+    }, 
+    {
+      "address": "0x0058b4bc", 
+      "type": null, 
+      "name": "s_shadow.tga_0058b4bc"
+    }, 
+    {
+      "address": "0x-0000004", 
+      "type": null, 
+      "name": "DAT_-0000004"
+    }, 
+    {
+      "address": "0x0056a594", 
+      "type": null, 
+      "name": "PTR_LoadTexture_0056a594"
+    }, 
+    {
+      "address": "0x0056a590", 
+      "type": null, 
+      "name": "PTR_NewRenderEffect_0056a590"
+    }, 
+    {
+      "address": "0x0058b4a4", 
+      "type": null, 
+      "name": "s_gfxscript\\shadow.gbf_0058b4a4"
+    }, 
+    {
+      "address": "0x0058b48c", 
+      "type": null, 
+      "name": "s_gfxscript\\shadow_F2.gbf_0058b48c"
+    }
+  ], 
+  "has_custom_name": false, 
+  "decompiled_c": "\r\nvoid __fastcall FUN_0041f5e0(void *param_1)\r\n\r\n{\r\n  gbTexture *this;\r\n  gbRenderEffect *pgVar1;\r\n  void *pvStack_c;\r\n  undefined *puStack_8;\r\n  undefined4 local_4;\r\n  \r\n  local_4 = 0xffffffff;\r\n  puStack_8 = &LAB_0055f488;\r\n  pvStack_c = ExceptionList;\r\n  ExceptionList = &pvStack_c;\r\n  FUN_00401f50();\r\n  local_4 = 0;\r\n  this = (gbTexture *)(**(code **)(*DAT_00bfda60 + 8))(s_shadow_tga_0058b4bc);\r\n  *(gbTexture **)((int)param_1 + 4) = this;\r\n  gbTexture::LoadTexture(this,1);\r\n  pgVar1 = gbEffectMgr::NewRenderEffect\r\n                     ((gbEffectMgr *)DAT_00bfda60[0x32],s_gfxscript_shadow_gbf_0058b4a4,0);\r\n  *(gbRenderEffect **)((int)param_1 + 8) = pgVar1;\r\n  pgVar1 = gbEffectMgr::NewRenderEffect\r\n                     ((gbEffectMgr *)DAT_00bfda60[0x32],s_gfxscript_shadow_F2_gbf_0058b48c,0);\r\n  *(gbRenderEffect **)((int)param_1 + 0xc) = pgVar1;\r\n  puStack_8 = (undefined *)0xffffffff;\r\n  FUN_00401f90();\r\n  ExceptionList = param_1;\r\n  return;\r\n}\r\n\r\n", 
+  "is_thunk": false, 
+  "name": "FUN_0041f5e0", 
+  "assembly": "  0041f5e0:  PUSH -0x1\n  0041f5e2:  PUSH 0x55f488\n  0041f5e7:  MOV EAX,FS:[0x0]\n  0041f5ed:  PUSH EAX\n  0041f5ee:  MOV dword ptr FS:[0x0],ESP\n  0041f5f5:  PUSH ECX\n  0041f5f6:  PUSH ESI\n  0041f5f7:  MOV ESI,ECX\n  0041f5f9:  PUSH EDI\n  0041f5fa:  LEA ECX,[ESP + 0x8]\n  0041f5fe:  CALL 0x00401f50\n  0041f603:  MOV ECX,dword ptr [0x00bfda60]\n  0041f609:  PUSH 0x58b4bc\n  0041f60e:  MOV dword ptr [ESP + 0x18],0x0\n  0041f616:  MOV EAX,dword ptr [ECX]\n  0041f618:  CALL dword ptr [EAX + 0x8]\n  0041f61b:  PUSH 0x1\n  0041f61d:  MOV ECX,EAX\n  0041f61f:  MOV dword ptr [ESI + 0x4],EAX\n  0041f622:  CALL dword ptr [0x0056a594]\n  0041f628:  MOV ECX,dword ptr [0x00bfda60]\n  0041f62e:  MOV EDI,dword ptr [0x0056a590]\n  0041f634:  PUSH 0x0\n  0041f636:  PUSH 0x58b4a4\n  0041f63b:  MOV ECX,dword ptr [ECX + 0xc8]\n  0041f641:  CALL EDI\n  0041f643:  MOV dword ptr [ESI + 0x8],EAX\n  0041f646:  MOV EDX,dword ptr [0x00bfda60]\n  0041f64c:  PUSH 0x0\n  0041f64e:  PUSH 0x58b48c\n  0041f653:  MOV ECX,dword ptr [EDX + 0xc8]\n  0041f659:  CALL EDI\n  0041f65b:  LEA ECX,[ESP + 0x8]\n  0041f65f:  MOV dword ptr [ESI + 0xc],EAX\n  0041f662:  MOV dword ptr [ESP + 0x14],0xffffffff\n  0041f66a:  CALL 0x00401f90\n  0041f66f:  MOV ECX,dword ptr [ESP + 0xc]\n  0041f673:  POP EDI\n  0041f674:  POP ESI\n  0041f675:  MOV dword ptr FS:[0x0],ECX\n  0041f67c:  ADD ESP,0x10\n  0041f67f:  RET", 
+  "callers": []
+}

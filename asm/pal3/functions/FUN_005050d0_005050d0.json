@@ -1,0 +1,48 @@
+{
+  "address": "0x005050d0", 
+  "size_bytes": 169, 
+  "calling_convention": "unknown", 
+  "signature": "undefined FUN_005050d0(undefined4 param_1, undefined4 param_2, undefined4 param_3)", 
+  "callees": [
+    {
+      "address": "0x00505290", 
+      "name": "FUN_00505290"
+    }, 
+    {
+      "address": "0x00505060", 
+      "name": "FUN_00505060"
+    }, 
+    {
+      "address": "0x005052c0", 
+      "name": "FUN_005052c0"
+    }
+  ], 
+  "global_refs": [
+    {
+      "address": "0x00000004", 
+      "type": null, 
+      "name": "DAT_00000004"
+    }, 
+    {
+      "address": "0x00000008", 
+      "type": null, 
+      "name": "DAT_00000008"
+    }, 
+    {
+      "address": "0x0000000c", 
+      "type": null, 
+      "name": "DAT_0000000c"
+    }
+  ], 
+  "has_custom_name": false, 
+  "decompiled_c": "\r\nundefined4 __thiscall FUN_005050d0(int param_1_00,int param_1,int param_2,undefined4 *param_3)\r\n\r\n{\r\n  int iVar1;\r\n  undefined4 uVar2;\r\n  int iVar3;\r\n  undefined4 *puVar4;\r\n  \r\n  iVar1 = FUN_00505290(param_1);\r\n  if (iVar1 <= param_2) {\r\n    uVar2 = FUN_00505060(param_1,param_3);\r\n    return uVar2;\r\n  }\r\n  if (iVar1 < 0x32) {\r\n    iVar1 = FUN_005052c0();\r\n    if (iVar1 != -1) {\r\n      if (param_2 < 0x31) {\r\n        puVar4 = (undefined4 *)(param_1_00 + 0x64254 + param_1 * 200);\r\n        iVar3 = 0x31 - param_2;\r\n        do {\r\n          *puVar4 = puVar4[-1];\r\n          puVar4 = puVar4 + -1;\r\n          iVar3 = iVar3 + -1;\r\n        } while (iVar3 != 0);\r\n      }\r\n      *(int *)(param_1_00 + (param_2 + (param_1 * 5 + 0x280a) * 10) * 4) = iVar1;\r\n      *(undefined *)(iVar1 + 0x639c0 + param_1_00) = 1;\r\n      puVar4 = (undefined4 *)(param_1_00 + iVar1 * 0xcc);\r\n      for (iVar3 = 0x33; iVar3 != 0; iVar3 = iVar3 + -1) {\r\n        *puVar4 = *param_3;\r\n        param_3 = param_3 + 1;\r\n        puVar4 = puVar4 + 1;\r\n      }\r\n      return 1;\r\n    }\r\n    return 0;\r\n  }\r\n  return 0;\r\n}\r\n\r\n", 
+  "is_thunk": false, 
+  "name": "FUN_005050d0", 
+  "assembly": "  005050d0:  PUSH EBX\n  005050d1:  PUSH ESI\n  005050d2:  PUSH EDI\n  005050d3:  MOV EDI,dword ptr [ESP + 0x10]\n  005050d7:  MOV ESI,ECX\n  005050d9:  PUSH EDI\n  005050da:  CALL 0x00505290\n  005050df:  MOV EBX,dword ptr [ESP + 0x14]\n  005050e3:  CMP EBX,EAX\n  005050e5:  JL 0x005050fa\n  005050e7:  MOV EAX,dword ptr [ESP + 0x18]\n  005050eb:  MOV ECX,ESI\n  005050ed:  PUSH EAX\n  005050ee:  PUSH EDI\n  005050ef:  CALL 0x00505060\n  005050f4:  POP EDI\n  005050f5:  POP ESI\n  005050f6:  POP EBX\n  005050f7:  RET 0xc\n  005050fa:  CMP EAX,0x32\n  005050fd:  JL 0x00505107\n  005050ff:  POP EDI\n  00505100:  POP ESI\n  00505101:  XOR AL,AL\n  00505103:  POP EBX\n  00505104:  RET 0xc\n  00505107:  MOV ECX,ESI\n  00505109:  CALL 0x005052c0\n  0050510e:  CMP EAX,-0x1\n  00505111:  JNZ 0x0050511b\n  00505113:  POP EDI\n  00505114:  POP ESI\n  00505115:  XOR AL,AL\n  00505117:  POP EBX\n  00505118:  RET 0xc\n  0050511b:  CMP EBX,0x31\n  0050511e:  JGE 0x00505141\n  00505120:  LEA ECX,[EDI + EDI*0x4]\n  00505123:  PUSH EBP\n  00505124:  LEA ECX,[ECX + ECX*0x4]\n  00505127:  LEA EDX,[ESI + ECX*0x8 + 0x64254]\n  0050512e:  MOV ECX,0x31\n  00505133:  SUB ECX,EBX\n  00505135:  MOV EBP,dword ptr [EDX + -0x4]\n  00505138:  MOV dword ptr [EDX],EBP\n  0050513a:  ADD EDX,-0x4\n  0050513d:  DEC ECX\n  0050513e:  JNZ 0x00505135\n  00505140:  POP EBP\n  00505141:  LEA ECX,[EDI + EDI*0x4 + 0x280a]\n  00505148:  LEA EDX,[ECX + ECX*0x4]\n  0050514b:  LEA ECX,[EBX + EDX*0x2]\n  0050514e:  MOV dword ptr [ESI + ECX*0x4],EAX\n  00505151:  MOV ECX,EAX\n  00505153:  SHL ECX,0x4\n  00505156:  ADD ECX,EAX\n  00505158:  MOV byte ptr [EAX + ESI*0x1 + 0x639c0],0x1\n  00505160:  MOV AL,0x1\n  00505162:  LEA EDX,[ECX + ECX*0x2]\n  00505165:  MOV ECX,0x33\n  0050516a:  LEA EDI,[ESI + EDX*0x4]\n  0050516d:  MOV ESI,dword ptr [ESP + 0x18]\n  00505171:  MOVSD.REP ES:EDI,ESI\n  00505173:  POP EDI\n  00505174:  POP ESI\n  00505175:  POP EBX\n  00505176:  RET 0xc", 
+  "callers": [
+    {
+      "address": "0x004e6020", 
+      "name": "FUN_004e6020"
+    }
+  ]
+}

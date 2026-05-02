@@ -1,0 +1,44 @@
+{
+  "address": "0x0043b500", 
+  "size_bytes": 110, 
+  "calling_convention": "unknown", 
+  "signature": "undefined FUN_0043b500(undefined4 param_1, undefined4 param_2, undefined4 param_3)", 
+  "callees": [
+    {
+      "address": "0x00445f60", 
+      "name": "FUN_00445f60"
+    }, 
+    {
+      "address": "0x000000db", 
+      "name": "GetByte"
+    }
+  ], 
+  "global_refs": [
+    {
+      "address": "0x00000004", 
+      "type": null, 
+      "name": "DAT_00000004"
+    }, 
+    {
+      "address": "0x00000008", 
+      "type": null, 
+      "name": "DAT_00000008"
+    }, 
+    {
+      "address": "0x0000000c", 
+      "type": null, 
+      "name": "DAT_0000000c"
+    }, 
+    {
+      "address": "0x0056a380", 
+      "type": null, 
+      "name": "PTR_GetByte_0056a380"
+    }
+  ], 
+  "has_custom_name": false, 
+  "decompiled_c": "\r\nuchar __thiscall FUN_0043b500(int param_1_00,uint param_1,uint param_2,int param_3)\r\n\r\n{\r\n  uchar uVar1;\r\n  int iVar2;\r\n  gbTexture_D3D *this;\r\n  \r\n  if ((((-1 < (int)param_1) &&\r\n       (iVar2 = *(int *)(param_1_00 + 0xb8), param_1 < *(uint *)(iVar2 + 0x410))) &&\r\n      (-1 < (int)param_2)) && (param_2 < *(uint *)(iVar2 + 0x414))) {\r\n    param_3 = param_3 + (param_1 + *(int *)(iVar2 + 0x408)) * 4;\r\n    iVar2 = ((*(int *)(iVar2 + 0x40c) - *(int *)(iVar2 + 0x404)) - param_2) + 0x400;\r\n    this = (gbTexture_D3D *)FUN_00445f60(0);\r\n    uVar1 = gbTexture_D3D::GetByte(this,iVar2,param_3);\r\n    return uVar1;\r\n  }\r\n  return '\\0';\r\n}\r\n\r\n", 
+  "is_thunk": false, 
+  "name": "FUN_0043b500", 
+  "assembly": "  0043b500:  PUSH ESI\n  0043b501:  MOV ESI,dword ptr [ESP + 0x8]\n  0043b505:  TEST ESI,ESI\n  0043b507:  PUSH EDI\n  0043b508:  JL 0x0043b567\n  0043b50a:  MOV EDX,dword ptr [ECX + 0xb8]\n  0043b510:  CMP ESI,dword ptr [EDX + 0x410]\n  0043b516:  JNC 0x0043b567\n  0043b518:  MOV EDI,dword ptr [ESP + 0x10]\n  0043b51c:  TEST EDI,EDI\n  0043b51e:  JL 0x0043b567\n  0043b520:  CMP EDI,dword ptr [EDX + 0x414]\n  0043b526:  JNC 0x0043b567\n  0043b528:  MOV EAX,dword ptr [EDX + 0x408]\n  0043b52e:  PUSH EBX\n  0043b52f:  MOV EBX,dword ptr [EDX + 0x404]\n  0043b535:  ADD ESI,EAX\n  0043b537:  MOV EAX,dword ptr [EDX + 0x40c]\n  0043b53d:  MOV EDX,dword ptr [ESP + 0x18]\n  0043b541:  SUB EAX,EBX\n  0043b543:  ADD ECX,0x74\n  0043b546:  SUB EAX,EDI\n  0043b548:  LEA EDX,[EDX + ESI*0x4]\n  0043b54b:  ADD EAX,0x400\n  0043b550:  PUSH EDX\n  0043b551:  PUSH EAX\n  0043b552:  PUSH 0x0\n  0043b554:  CALL 0x00445f60\n  0043b559:  MOV ECX,EAX\n  0043b55b:  CALL dword ptr [0x0056a380]\n  0043b561:  POP EBX\n  0043b562:  POP EDI\n  0043b563:  POP ESI\n  0043b564:  RET 0xc\n  0043b567:  POP EDI\n  0043b568:  XOR AL,AL\n  0043b56a:  POP ESI\n  0043b56b:  RET 0xc", 
+  "callers": []
+}

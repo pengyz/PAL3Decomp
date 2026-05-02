@@ -1,0 +1,40 @@
+{
+  "address": "0x004cac70", 
+  "size_bytes": 155, 
+  "calling_convention": "unknown", 
+  "signature": "undefined FUN_004cac70(void)", 
+  "callees": [
+    {
+      "address": "0x004cad10", 
+      "name": "FUN_004cad10"
+    }
+  ], 
+  "global_refs": [
+    {
+      "address": "0x-0000008", 
+      "type": null, 
+      "name": "DAT_-0000008"
+    }, 
+    {
+      "address": "0x0056aa0c", 
+      "type": null, 
+      "name": "DAT_0056aa0c"
+    }, 
+    {
+      "address": "0x-0000004", 
+      "type": null, 
+      "name": "DAT_-0000004"
+    }, 
+    {
+      "address": "0x0056a610", 
+      "type": null, 
+      "name": "DAT_0056a610"
+    }
+  ], 
+  "has_custom_name": false, 
+  "decompiled_c": "\r\n/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */\r\n\r\nvoid __fastcall FUN_004cac70(int param_1)\r\n\r\n{\r\n  float fVar1;\r\n  float fVar2;\r\n  float fVar3;\r\n  int iVar4;\r\n  int iVar5;\r\n  int iVar6;\r\n  int iVar7;\r\n  undefined4 local_8;\r\n  \r\n  iVar4 = *(int *)(param_1 + 0x70);\r\n  iVar6 = *(int *)(param_1 + 0x74);\r\n  iVar7 = 0;\r\n  fVar2 = (float)iVar4 * *(float *)(param_1 + 0x78) * _DAT_0056aa0c;\r\n  local_8 = 0;\r\n  fVar3 = (float)iVar6 * *(float *)(param_1 + 0x78) * _DAT_0056a610;\r\n  if (iVar6 != -1 && -1 < iVar6 + 1) {\r\n    do {\r\n      iVar6 = 0;\r\n      if (iVar4 != -1 && -1 < iVar4 + 1) {\r\n        iVar5 = iVar7 * 0xc;\r\n        fVar1 = fVar2;\r\n        do {\r\n          iVar4 = *(int *)(param_1 + 0x34);\r\n          *(undefined4 *)(iVar4 + 4 + iVar5) = 0;\r\n          *(float *)(iVar4 + iVar5) = fVar1;\r\n          iVar4 = iVar4 + iVar5;\r\n          iVar7 = iVar7 + 1;\r\n          iVar5 = iVar5 + 0xc;\r\n          iVar6 = iVar6 + 1;\r\n          *(float *)(iVar4 + 8) = fVar3;\r\n          iVar4 = *(int *)(param_1 + 0x70);\r\n          fVar1 = fVar1 + *(float *)(param_1 + 0x78);\r\n        } while (iVar6 < iVar4 + 1);\r\n      }\r\n      local_8 = local_8 + 1;\r\n      fVar3 = fVar3 - *(float *)(param_1 + 0x78);\r\n    } while (local_8 < *(int *)(param_1 + 0x74) + 1);\r\n  }\r\n  FUN_004cad10();\r\n  return;\r\n}\r\n\r\n", 
+  "is_thunk": false, 
+  "name": "FUN_004cac70", 
+  "assembly": "  004cac70:  SUB ESP,0x8\n  004cac73:  MOV EAX,dword ptr [ECX + 0x70]\n  004cac76:  MOV EDX,dword ptr [ECX + 0x74]\n  004cac79:  MOV dword ptr [ESP],EAX\n  004cac7d:  PUSH EBX\n  004cac7e:  FILD dword ptr [ESP + 0x4]\n  004cac82:  MOV dword ptr [ESP + 0x4],EDX\n  004cac86:  PUSH EDI\n  004cac87:  XOR EBX,EBX\n  004cac89:  XOR EDI,EDI\n  004cac8b:  FMUL dword ptr [ECX + 0x78]\n  004cac8e:  INC EDX\n  004cac8f:  TEST EDX,EDX\n  004cac91:  FMUL dword ptr [0x0056aa0c]\n  004cac97:  FSTP dword ptr [ESP + 0xc]\n  004cac9b:  FILD dword ptr [ESP + 0x8]\n  004cac9f:  MOV dword ptr [ESP + 0x8],EBX\n  004caca3:  FMUL dword ptr [ECX + 0x78]\n  004caca6:  FMUL dword ptr [0x0056a610]\n  004cacac:  JLE 0x004cacfe\n  004cacae:  PUSH EBP\n  004cacaf:  PUSH ESI\n  004cacb0:  FLD dword ptr [ESP + 0x14]\n  004cacb4:  LEA EDX,[EAX + 0x1]\n  004cacb7:  XOR ESI,ESI\n  004cacb9:  TEST EDX,EDX\n  004cacbb:  JLE 0x004cace6\n  004cacbd:  LEA EDX,[EDI + EDI*0x2]\n  004cacc0:  SHL EDX,0x2\n  004cacc3:  MOV EAX,dword ptr [ECX + 0x34]\n  004cacc6:  MOV dword ptr [EAX + EDX*0x1 + 0x4],EBX\n  004cacca:  FST dword ptr [EAX + EDX*0x1]\n  004caccd:  ADD EAX,EDX\n  004caccf:  INC EDI\n  004cacd0:  FLD ST1\n  004cacd2:  ADD EDX,0xc\n  004cacd5:  INC ESI\n  004cacd6:  FSTP dword ptr [EAX + 0x8]\n  004cacd9:  MOV EAX,dword ptr [ECX + 0x70]\n  004cacdc:  FADD dword ptr [ECX + 0x78]\n  004cacdf:  LEA EBP,[EAX + 0x1]\n  004cace2:  CMP ESI,EBP\n  004cace4:  JL 0x004cacc3\n  004cace6:  MOV EDX,dword ptr [ESP + 0x10]\n  004cacea:  MOV ESI,dword ptr [ECX + 0x74]\n  004caced:  INC EDX\n  004cacee:  INC ESI\n  004cacef:  FSTP ST0\n  004cacf1:  FSUB dword ptr [ECX + 0x78]\n  004cacf4:  CMP EDX,ESI\n  004cacf6:  MOV dword ptr [ESP + 0x10],EDX\n  004cacfa:  JL 0x004cacb0\n  004cacfc:  POP ESI\n  004cacfd:  POP EBP\n  004cacfe:  FSTP ST0\n  004cad00:  CALL 0x004cad10\n  004cad05:  POP EDI\n  004cad06:  POP EBX\n  004cad07:  ADD ESP,0x8\n  004cad0a:  RET", 
+  "callers": []
+}

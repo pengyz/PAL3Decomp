@@ -1,0 +1,29 @@
+{
+  "address": "0x00534c50", 
+  "size_bytes": 147, 
+  "calling_convention": "unknown", 
+  "signature": "undefined FUN_00534c50(void)", 
+  "callees": [], 
+  "global_refs": [
+    {
+      "address": "0x0056a644", 
+      "type": null, 
+      "name": "DAT_0056a644"
+    }
+  ], 
+  "has_custom_name": false, 
+  "decompiled_c": "\r\n/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */\r\n\r\nfloat10 __fastcall FUN_00534c50(int param_1)\r\n\r\n{\r\n  float fVar1;\r\n  \r\n  if (*(float *)(param_1 + 0x2c8) <= _DAT_0056a644) {\r\n    return (float10)_DAT_0056a644;\r\n  }\r\n  if (*(char *)(param_1 + 0x2d2) == '\\0') {\r\n    fVar1 = *(float *)(param_1 + 0x2e0) - *(float *)(param_1 + 0x2d4);\r\n    *(float *)(param_1 + 0x2e0) = fVar1;\r\n    if (ABS(fVar1) <= *(float *)(param_1 + 0x2c8)) {\r\n      *(undefined4 *)(param_1 + 0x2e0) = 0;\r\n      *(undefined *)(param_1 + 0x2d2) = 1;\r\n    }\r\n  }\r\n  else {\r\n    fVar1 = *(float *)(param_1 + 0x2d4) + *(float *)(param_1 + 0x2e0);\r\n    *(float *)(param_1 + 0x2e0) = fVar1;\r\n    if (*(float *)(param_1 + 0x2c8) <= ABS(fVar1)) {\r\n      *(undefined4 *)(param_1 + 0x2e0) = 0;\r\n      *(undefined *)(param_1 + 0x2d2) = 0;\r\n      return (float10)*(float *)(param_1 + 0x2e0);\r\n    }\r\n  }\r\n  return (float10)*(float *)(param_1 + 0x2e0);\r\n}\r\n\r\n", 
+  "is_thunk": false, 
+  "name": "FUN_00534c50", 
+  "assembly": "  00534c50:  FLD dword ptr [ECX + 0x2c8]\n  00534c56:  FCOMP dword ptr [0x0056a644]\n  00534c5c:  FNSTSW AX\n  00534c5e:  TEST AH,0x41\n  00534c61:  JZ 0x00534c6a\n  00534c63:  FLD dword ptr [0x0056a644]\n  00534c69:  RET\n  00534c6a:  MOV AL,byte ptr [ECX + 0x2d2]\n  00534c70:  XOR EDX,EDX\n  00534c72:  CMP AL,DL\n  00534c74:  JZ 0x00534cac\n  00534c76:  FLD dword ptr [ECX + 0x2d4]\n  00534c7c:  FADD dword ptr [ECX + 0x2e0]\n  00534c82:  FST dword ptr [ECX + 0x2e0]\n  00534c88:  FABS\n  00534c8a:  FLD dword ptr [ECX + 0x2c8]\n  00534c90:  FCOMPP\n  00534c92:  FNSTSW AX\n  00534c94:  TEST AH,0x41\n  00534c97:  JZ 0x00534cdc\n  00534c99:  MOV dword ptr [ECX + 0x2e0],EDX\n  00534c9f:  MOV byte ptr [ECX + 0x2d2],DL\n  00534ca5:  FLD dword ptr [ECX + 0x2e0]\n  00534cab:  RET\n  00534cac:  FLD dword ptr [ECX + 0x2e0]\n  00534cb2:  FSUB dword ptr [ECX + 0x2d4]\n  00534cb8:  FST dword ptr [ECX + 0x2e0]\n  00534cbe:  FABS\n  00534cc0:  FLD dword ptr [ECX + 0x2c8]\n  00534cc6:  FCOMPP\n  00534cc8:  FNSTSW AX\n  00534cca:  TEST AH,0x1\n  00534ccd:  JNZ 0x00534cdc\n  00534ccf:  MOV dword ptr [ECX + 0x2e0],EDX\n  00534cd5:  MOV byte ptr [ECX + 0x2d2],0x1\n  00534cdc:  FLD dword ptr [ECX + 0x2e0]\n  00534ce2:  RET", 
+  "callers": [
+    {
+      "address": "0x00534450", 
+      "name": "FUN_00534450"
+    }, 
+    {
+      "address": "0x00534810", 
+      "name": "FUN_00534810"
+    }
+  ]
+}

@@ -1,0 +1,40 @@
+{
+  "address": "0x00497450", 
+  "size_bytes": 66, 
+  "calling_convention": "unknown", 
+  "signature": "undefined FUN_00497450(undefined4 param_1, undefined4 param_2)", 
+  "callees": [
+    {
+      "address": "0x00446020", 
+      "name": "FUN_00446020"
+    }
+  ], 
+  "global_refs": [
+    {
+      "address": "0x00000008", 
+      "type": null, 
+      "name": "DAT_00000008"
+    }, 
+    {
+      "address": "0x-000000c", 
+      "type": null, 
+      "name": "DAT_-000000c"
+    }, 
+    {
+      "address": "0x00000004", 
+      "type": null, 
+      "name": "DAT_00000004"
+    }
+  ], 
+  "has_custom_name": false, 
+  "decompiled_c": "\r\nvoid FUN_00497450(undefined4 param_1,undefined4 param_2)\r\n\r\n{\r\n  FUN_00446020(param_2);\r\n  FUN_00446020(param_2);\r\n  return;\r\n}\r\n\r\n", 
+  "is_thunk": false, 
+  "name": "FUN_00497450", 
+  "assembly": "  00497450:  PUSH ESI\n  00497451:  PUSH EDI\n  00497452:  MOV EDI,dword ptr [ESP + 0x10]\n  00497456:  PUSH ECX\n  00497457:  MOV EAX,ESP\n  00497459:  MOV dword ptr [EAX],EDI\n  0049745b:  MOV EAX,dword ptr [ESP + 0x10]\n  0049745f:  MOV EDX,EAX\n  00497461:  SHL EDX,0x5\n  00497464:  SUB EDX,EAX\n  00497466:  LEA EDX,[EAX + EDX*0x8]\n  00497469:  LEA EAX,[EAX + EDX*0x2]\n  0049746c:  LEA EAX,[EAX + EAX*0x4]\n  0049746f:  LEA ESI,[ECX + EAX*0x4]\n  00497472:  LEA ECX,[ESI + 0x25c24]\n  00497478:  CALL 0x00446020\n  0049747d:  PUSH ECX\n  0049747e:  LEA ECX,[ESI + 0x26778]\n  00497484:  MOV EAX,ESP\n  00497486:  MOV dword ptr [EAX],EDI\n  00497488:  CALL 0x00446020\n  0049748d:  POP EDI\n  0049748e:  POP ESI\n  0049748f:  RET 0x8", 
+  "callers": [
+    {
+      "address": "0x004a6030", 
+      "name": "FUN_004a6030"
+    }
+  ]
+}

@@ -1,0 +1,113 @@
+{
+  "address": "0x00553d20", 
+  "size_bytes": 664, 
+  "calling_convention": "unknown", 
+  "signature": "undefined FUN_00553d20(undefined4 param_1, undefined4 param_2, undefined4 param_3)", 
+  "callees": [], 
+  "global_refs": [
+    {
+      "address": "0x00000008", 
+      "type": null, 
+      "name": "DAT_00000008"
+    }, 
+    {
+      "address": "0x0000000c", 
+      "type": null, 
+      "name": "DAT_0000000c"
+    }, 
+    {
+      "address": "0x00000004", 
+      "type": null, 
+      "name": "DAT_00000004"
+    }, 
+    {
+      "address": "0x00553e68", 
+      "type": null, 
+      "name": "switchdataD_00553e68"
+    }, 
+    {
+      "address": "0x00553d84", 
+      "type": null, 
+      "name": "switchdataD_00553d84"
+    }, 
+    {
+      "address": "0x00553dfc", 
+      "type": null, 
+      "name": "switchdataD_00553dfc"
+    }, 
+    {
+      "address": "0x00554000", 
+      "type": null, 
+      "name": "switchdataD_00554000"
+    }, 
+    {
+      "address": "0x00553fb0", 
+      "type": null, 
+      "name": "PTR_caseD_0_00553fb0"
+    }, 
+    {
+      "address": "0x00553f0c", 
+      "type": null, 
+      "name": "switchdataD_00553f0c"
+    }
+  ], 
+  "has_custom_name": false, 
+  "decompiled_c": "\r\nundefined4 * FUN_00553d20(undefined4 *param_1,undefined4 *param_2,uint param_3)\r\n\r\n{\r\n  uint uVar1;\r\n  undefined4 *puVar2;\r\n  \r\n  if ((param_2 < param_1) && (param_1 < (undefined4 *)(param_3 + (int)param_2))) {\r\n    param_2 = (undefined4 *)((param_3 - 4) + (int)param_2);\r\n    puVar2 = (undefined4 *)((param_3 - 4) + (int)param_1);\r\n    if (((uint)puVar2 & 3) == 0) {\r\n      uVar1 = param_3 >> 2;\r\n      param_3 = param_3 & 3;\r\n      if (7 < uVar1) {\r\n        for (; uVar1 != 0; uVar1 = uVar1 - 1) {\r\n          *puVar2 = *param_2;\r\n          param_2 = param_2 + -1;\r\n          puVar2 = puVar2 + -1;\r\n        }\r\n        switch(param_3) {\r\n        case 0:\r\n          return param_1;\r\n        case 2:\r\n          goto switchD_00553ed7_caseD_2;\r\n        case 3:\r\n          goto switchD_00553ed7_caseD_3;\r\n        }\r\n        goto switchD_00553ed7_caseD_1;\r\n      }\r\n    }\r\n    else {\r\n      switch(param_3) {\r\n      case 0:\r\n        goto switchD_00553ed7_caseD_0;\r\n      case 1:\r\n        goto switchD_00553ed7_caseD_1;\r\n      case 2:\r\n        goto switchD_00553ed7_caseD_2;\r\n      case 3:\r\n        goto switchD_00553ed7_caseD_3;\r\n      default:\r\n        uVar1 = param_3 - ((uint)puVar2 & 3);\r\n        switch((uint)puVar2 & 3) {\r\n        case 1:\r\n          param_3 = uVar1 & 3;\r\n          *(undefined *)((int)puVar2 + 3) = *(undefined *)((int)param_2 + 3);\r\n          param_2 = (undefined4 *)((int)param_2 + -1);\r\n          uVar1 = uVar1 >> 2;\r\n          puVar2 = (undefined4 *)((int)puVar2 - 1);\r\n          if (7 < uVar1) {\r\n            for (; uVar1 != 0; uVar1 = uVar1 - 1) {\r\n              *puVar2 = *param_2;\r\n              param_2 = param_2 + -1;\r\n              puVar2 = puVar2 + -1;\r\n            }\r\n            switch(param_3) {\r\n            case 0:\r\n              return param_1;\r\n            case 2:\r\n              goto switchD_00553ed7_caseD_2;\r\n            case 3:\r\n              goto switchD_00553ed7_caseD_3;\r\n            }\r\n            goto switchD_00553ed7_caseD_1;\r\n          }\r\n          break;\r\n        case 2:\r\n          param_3 = uVar1 & 3;\r\n          *(undefined *)((int)puVar2 + 3) = *(undefined *)((int)param_2 + 3);\r\n          uVar1 = uVar1 >> 2;\r\n          *(undefined *)((int)puVar2 + 2) = *(undefined *)((int)param_2 + 2);\r\n          param_2 = (undefined4 *)((int)param_2 + -2);\r\n          puVar2 = (undefined4 *)((int)puVar2 - 2);\r\n          if (7 < uVar1) {\r\n            for (; uVar1 != 0; uVar1 = uVar1 - 1) {\r\n              *puVar2 = *param_2;\r\n              param_2 = param_2 + -1;\r\n              puVar2 = puVar2 + -1;\r\n            }\r\n            switch(param_3) {\r\n            case 0:\r\n              return param_1;\r\n            case 2:\r\n              goto switchD_00553ed7_caseD_2;\r\n            case 3:\r\n              goto switchD_00553ed7_caseD_3;\r\n            }\r\n            goto switchD_00553ed7_caseD_1;\r\n          }\r\n          break;\r\n        case 3:\r\n          param_3 = uVar1 & 3;\r\n          *(undefined *)((int)puVar2 + 3) = *(undefined *)((int)param_2 + 3);\r\n          *(undefined *)((int)puVar2 + 2) = *(undefined *)((int)param_2 + 2);\r\n          uVar1 = uVar1 >> 2;\r\n          *(undefined *)((int)puVar2 + 1) = *(undefined *)((int)param_2 + 1);\r\n          param_2 = (undefined4 *)((int)param_2 + -3);\r\n          puVar2 = (undefined4 *)((int)puVar2 - 3);\r\n          if (7 < uVar1) {\r\n            for (; uVar1 != 0; uVar1 = uVar1 - 1) {\r\n              *puVar2 = *param_2;\r\n              param_2 = param_2 + -1;\r\n              puVar2 = puVar2 + -1;\r\n            }\r\n            switch(param_3) {\r\n            case 0:\r\n              return param_1;\r\n            case 2:\r\n              goto switchD_00553ed7_caseD_2;\r\n            case 3:\r\n              goto switchD_00553ed7_caseD_3;\r\n            }\r\n            goto switchD_00553ed7_caseD_1;\r\n          }\r\n        }\r\n      }\r\n    }\r\n    switch(uVar1) {\r\n    case 7:\r\n      puVar2[7 - uVar1] = param_2[7 - uVar1];\r\n    case 6:\r\n      puVar2[6 - uVar1] = param_2[6 - uVar1];\r\n    case 5:\r\n      puVar2[5 - uVar1] = param_2[5 - uVar1];\r\n    case 4:\r\n      puVar2[4 - uVar1] = param_2[4 - uVar1];\r\n    case 3:\r\n      puVar2[3 - uVar1] = param_2[3 - uVar1];\r\n    case 2:\r\n      puVar2[2 - uVar1] = param_2[2 - uVar1];\r\n    case 1:\r\n      puVar2[1 - uVar1] = param_2[1 - uVar1];\r\n      param_2 = param_2 + -uVar1;\r\n      puVar2 = puVar2 + -uVar1;\r\n    }\r\n    switch(param_3) {\r\n    case 1:\r\nswitchD_00553ed7_caseD_1:\r\n      *(undefined *)((int)puVar2 + 3) = *(undefined *)((int)param_2 + 3);\r\n      return param_1;\r\n    case 2:\r\nswitchD_00553ed7_caseD_2:\r\n      *(undefined *)((int)puVar2 + 3) = *(undefined *)((int)param_2 + 3);\r\n      *(undefined *)((int)puVar2 + 2) = *(undefined *)((int)param_2 + 2);\r\n      return param_1;\r\n    case 3:\r\nswitchD_00553ed7_caseD_3:\r\n      *(undefined *)((int)puVar2 + 3) = *(undefined *)((int)param_2 + 3);\r\n      *(undefined *)((int)puVar2 + 2) = *(undefined *)((int)param_2 + 2);\r\n      *(undefined *)((int)puVar2 + 1) = *(undefined *)((int)param_2 + 1);\r\n      return param_1;\r\n    }\r\nswitchD_00553ed7_caseD_0:\r\n    return param_1;\r\n  }\r\n  puVar2 = param_1;\r\n  if (((uint)param_1 & 3) == 0) {\r\n    uVar1 = param_3 >> 2;\r\n    param_3 = param_3 & 3;\r\n    if (7 < uVar1) {\r\n      for (; uVar1 != 0; uVar1 = uVar1 - 1) {\r\n        *puVar2 = *param_2;\r\n        param_2 = param_2 + 1;\r\n        puVar2 = puVar2 + 1;\r\n      }\r\n      switch(param_3) {\r\n      case 0:\r\n        return param_1;\r\n      case 2:\r\n        goto switchD_00553d55_caseD_2;\r\n      case 3:\r\n        goto switchD_00553d55_caseD_3;\r\n      }\r\n      goto switchD_00553d55_caseD_1;\r\n    }\r\n  }\r\n  else {\r\n    switch(param_3) {\r\n    case 0:\r\n      goto switchD_00553d55_caseD_0;\r\n    case 1:\r\n      goto switchD_00553d55_caseD_1;\r\n    case 2:\r\n      goto switchD_00553d55_caseD_2;\r\n    case 3:\r\n      goto switchD_00553d55_caseD_3;\r\n    default:\r\n      uVar1 = (param_3 - 4) + ((uint)param_1 & 3);\r\n      switch((uint)param_1 & 3) {\r\n      case 1:\r\n        param_3 = uVar1 & 3;\r\n        *(undefined *)param_1 = *(undefined *)param_2;\r\n        *(undefined *)((int)param_1 + 1) = *(undefined *)((int)param_2 + 1);\r\n        uVar1 = uVar1 >> 2;\r\n        *(undefined *)((int)param_1 + 2) = *(undefined *)((int)param_2 + 2);\r\n        param_2 = (undefined4 *)((int)param_2 + 3);\r\n        puVar2 = (undefined4 *)((int)param_1 + 3);\r\n        if (7 < uVar1) {\r\n          for (; uVar1 != 0; uVar1 = uVar1 - 1) {\r\n            *puVar2 = *param_2;\r\n            param_2 = param_2 + 1;\r\n            puVar2 = puVar2 + 1;\r\n          }\r\n          switch(param_3) {\r\n          case 0:\r\n            return param_1;\r\n          case 2:\r\n            goto switchD_00553d55_caseD_2;\r\n          case 3:\r\n            goto switchD_00553d55_caseD_3;\r\n          }\r\n          goto switchD_00553d55_caseD_1;\r\n        }\r\n        break;\r\n      case 2:\r\n        param_3 = uVar1 & 3;\r\n        *(undefined *)param_1 = *(undefined *)param_2;\r\n        uVar1 = uVar1 >> 2;\r\n        *(undefined *)((int)param_1 + 1) = *(undefined *)((int)param_2 + 1);\r\n        param_2 = (undefined4 *)((int)param_2 + 2);\r\n        puVar2 = (undefined4 *)((int)param_1 + 2);\r\n        if (7 < uVar1) {\r\n          for (; uVar1 != 0; uVar1 = uVar1 - 1) {\r\n            *puVar2 = *param_2;\r\n            param_2 = param_2 + 1;\r\n            puVar2 = puVar2 + 1;\r\n          }\r\n          switch(param_3) {\r\n          case 0:\r\n            return param_1;\r\n          case 2:\r\n            goto switchD_00553d55_caseD_2;\r\n          case 3:\r\n            goto switchD_00553d55_caseD_3;\r\n          }\r\n          goto switchD_00553d55_caseD_1;\r\n        }\r\n        break;\r\n      case 3:\r\n        param_3 = uVar1 & 3;\r\n        *(undefined *)param_1 = *(undefined *)param_2;\r\n        param_2 = (undefined4 *)((int)param_2 + 1);\r\n        uVar1 = uVar1 >> 2;\r\n        puVar2 = (undefined4 *)((int)param_1 + 1);\r\n        if (7 < uVar1) {\r\n          for (; uVar1 != 0; uVar1 = uVar1 - 1) {\r\n            *puVar2 = *param_2;\r\n            param_2 = param_2 + 1;\r\n            puVar2 = puVar2 + 1;\r\n          }\r\n          switch(param_3) {\r\n          case 0:\r\n            return param_1;\r\n          case 2:\r\n            goto switchD_00553d55_caseD_2;\r\n          case 3:\r\n            goto switchD_00553d55_caseD_3;\r\n          }\r\n          goto switchD_00553d55_caseD_1;\r\n        }\r\n      }\r\n    }\r\n  }\r\n  switch(uVar1) {\r\n  case 7:\r\n    puVar2[uVar1 - 7] = param_2[uVar1 - 7];\r\n  case 6:\r\n    puVar2[uVar1 - 6] = param_2[uVar1 - 6];\r\n  case 5:\r\n    puVar2[uVar1 - 5] = param_2[uVar1 - 5];\r\n  case 4:\r\n    puVar2[uVar1 - 4] = param_2[uVar1 - 4];\r\n  case 3:\r\n    puVar2[uVar1 - 3] = param_2[uVar1 - 3];\r\n  case 2:\r\n    puVar2[uVar1 - 2] = param_2[uVar1 - 2];\r\n  case 1:\r\n    puVar2[uVar1 - 1] = param_2[uVar1 - 1];\r\n    param_2 = param_2 + uVar1;\r\n    puVar2 = puVar2 + uVar1;\r\n  }\r\n  switch(param_3) {\r\n  case 1:\r\nswitchD_00553d55_caseD_1:\r\n    *(undefined *)puVar2 = *(undefined *)param_2;\r\n    return param_1;\r\n  case 2:\r\nswitchD_00553d55_caseD_2:\r\n    *(undefined *)puVar2 = *(undefined *)param_2;\r\n    *(undefined *)((int)puVar2 + 1) = *(undefined *)((int)param_2 + 1);\r\n    return param_1;\r\n  case 3:\r\nswitchD_00553d55_caseD_3:\r\n    *(undefined *)puVar2 = *(undefined *)param_2;\r\n    *(undefined *)((int)puVar2 + 1) = *(undefined *)((int)param_2 + 1);\r\n    *(undefined *)((int)puVar2 + 2) = *(undefined *)((int)param_2 + 2);\r\n    return param_1;\r\n  }\r\nswitchD_00553d55_caseD_0:\r\n  return param_1;\r\n}\r\n\r\n", 
+  "is_thunk": false, 
+  "name": "FUN_00553d20", 
+  "assembly": "  00553d20:  PUSH EBP\n  00553d21:  MOV EBP,ESP\n  00553d23:  PUSH EDI\n  00553d24:  PUSH ESI\n  00553d25:  MOV ESI,dword ptr [EBP + 0xc]\n  00553d28:  MOV ECX,dword ptr [EBP + 0x10]\n  00553d2b:  MOV EDI,dword ptr [EBP + 0x8]\n  00553d2e:  MOV EAX,ECX\n  00553d30:  MOV EDX,ECX\n  00553d32:  ADD EAX,ESI\n  00553d34:  CMP EDI,ESI\n  00553d36:  JBE 0x00553d40\n  00553d38:  CMP EDI,EAX\n  00553d3a:  JC 0x00553eb8\n  00553d40:  TEST EDI,0x3\n  00553d46:  JNZ 0x00553d5c\n  00553d48:  SHR ECX,0x2\n  00553d4b:  AND EDX,0x3\n  00553d4e:  CMP ECX,0x8\n  00553d51:  JC 0x00553d7c\n  00553d53:  MOVSD.REP ES:EDI,ESI\n  00553d55:  JMP dword ptr [EDX*0x4 + 0x553e68]\n  00553d5c:  MOV EAX,EDI\n  00553d5e:  MOV EDX,0x3\n  00553d63:  SUB ECX,0x4\n  00553d66:  JC 0x00553d74\n  00553d68:  AND EAX,0x3\n  00553d6b:  ADD ECX,EAX\n  00553d6d:  JMP dword ptr [EAX*0x4 + 0x553d80]\n  00553d74:  JMP dword ptr [ECX*0x4 + 0x553e78]\n  00553d7c:  JMP dword ptr [ECX*0x4 + 0x553dfc]\n  00553d90:  AND EDX,ECX\n  00553d92:  MOV AL,byte ptr [ESI]\n  00553d94:  MOV byte ptr [EDI],AL\n  00553d96:  MOV AL,byte ptr [ESI + 0x1]\n  00553d99:  MOV byte ptr [EDI + 0x1],AL\n  00553d9c:  MOV AL,byte ptr [ESI + 0x2]\n  00553d9f:  SHR ECX,0x2\n  00553da2:  MOV byte ptr [EDI + 0x2],AL\n  00553da5:  ADD ESI,0x3\n  00553da8:  ADD EDI,0x3\n  00553dab:  CMP ECX,0x8\n  00553dae:  JC 0x00553d7c\n  00553db0:  MOVSD.REP ES:EDI,ESI\n  00553db2:  JMP dword ptr [EDX*0x4 + 0x553e68]\n  00553dbc:  AND EDX,ECX\n  00553dbe:  MOV AL,byte ptr [ESI]\n  00553dc0:  MOV byte ptr [EDI],AL\n  00553dc2:  MOV AL,byte ptr [ESI + 0x1]\n  00553dc5:  SHR ECX,0x2\n  00553dc8:  MOV byte ptr [EDI + 0x1],AL\n  00553dcb:  ADD ESI,0x2\n  00553dce:  ADD EDI,0x2\n  00553dd1:  CMP ECX,0x8\n  00553dd4:  JC 0x00553d7c\n  00553dd6:  MOVSD.REP ES:EDI,ESI\n  00553dd8:  JMP dword ptr [EDX*0x4 + 0x553e68]\n  00553de0:  AND EDX,ECX\n  00553de2:  MOV AL,byte ptr [ESI]\n  00553de4:  MOV byte ptr [EDI],AL\n  00553de6:  INC ESI\n  00553de7:  SHR ECX,0x2\n  00553dea:  INC EDI\n  00553deb:  CMP ECX,0x8\n  00553dee:  JC 0x00553d7c\n  00553df0:  MOVSD.REP ES:EDI,ESI\n  00553df2:  JMP dword ptr [EDX*0x4 + 0x553e68]\n  00553e1c:  MOV EAX,dword ptr [ESI + ECX*0x4 + -0x1c]\n  00553e20:  MOV dword ptr [EDI + ECX*0x4 + -0x1c],EAX\n  00553e24:  MOV EAX,dword ptr [ESI + ECX*0x4 + -0x18]\n  00553e28:  MOV dword ptr [EDI + ECX*0x4 + -0x18],EAX\n  00553e2c:  MOV EAX,dword ptr [ESI + ECX*0x4 + -0x14]\n  00553e30:  MOV dword ptr [EDI + ECX*0x4 + -0x14],EAX\n  00553e34:  MOV EAX,dword ptr [ESI + ECX*0x4 + -0x10]\n  00553e38:  MOV dword ptr [EDI + ECX*0x4 + -0x10],EAX\n  00553e3c:  MOV EAX,dword ptr [ESI + ECX*0x4 + -0xc]\n  00553e40:  MOV dword ptr [EDI + ECX*0x4 + -0xc],EAX\n  00553e44:  MOV EAX,dword ptr [ESI + ECX*0x4 + -0x8]\n  00553e48:  MOV dword ptr [EDI + ECX*0x4 + -0x8],EAX\n  00553e4c:  MOV EAX,dword ptr [ESI + ECX*0x4 + -0x4]\n  00553e50:  MOV dword ptr [EDI + ECX*0x4 + -0x4],EAX\n  00553e54:  LEA EAX,[ECX*0x4 + 0x0]\n  00553e5b:  ADD ESI,EAX\n  00553e5d:  ADD EDI,EAX\n  00553e5f:  JMP dword ptr [EDX*0x4 + 0x553e68]\n  00553e78:  MOV EAX,dword ptr [EBP + 0x8]\n  00553e7b:  POP ESI\n  00553e7c:  POP EDI\n  00553e7d:  LEAVE\n  00553e7e:  RET\n  00553e80:  MOV AL,byte ptr [ESI]\n  00553e82:  MOV byte ptr [EDI],AL\n  00553e84:  MOV EAX,dword ptr [EBP + 0x8]\n  00553e87:  POP ESI\n  00553e88:  POP EDI\n  00553e89:  LEAVE\n  00553e8a:  RET\n  00553e8c:  MOV AL,byte ptr [ESI]\n  00553e8e:  MOV byte ptr [EDI],AL\n  00553e90:  MOV AL,byte ptr [ESI + 0x1]\n  00553e93:  MOV byte ptr [EDI + 0x1],AL\n  00553e96:  MOV EAX,dword ptr [EBP + 0x8]\n  00553e99:  POP ESI\n  00553e9a:  POP EDI\n  00553e9b:  LEAVE\n  00553e9c:  RET\n  00553ea0:  MOV AL,byte ptr [ESI]\n  00553ea2:  MOV byte ptr [EDI],AL\n  00553ea4:  MOV AL,byte ptr [ESI + 0x1]\n  00553ea7:  MOV byte ptr [EDI + 0x1],AL\n  00553eaa:  MOV AL,byte ptr [ESI + 0x2]\n  00553ead:  MOV byte ptr [EDI + 0x2],AL\n  00553eb0:  MOV EAX,dword ptr [EBP + 0x8]\n  00553eb3:  POP ESI\n  00553eb4:  POP EDI\n  00553eb5:  LEAVE\n  00553eb6:  RET\n  00553eb8:  LEA ESI,[ECX + ESI*0x1 + -0x4]\n  00553ebc:  LEA EDI,[ECX + EDI*0x1 + -0x4]\n  00553ec0:  TEST EDI,0x3\n  00553ec6:  JNZ 0x00553eec\n  00553ec8:  SHR ECX,0x2\n  00553ecb:  AND EDX,0x3\n  00553ece:  CMP ECX,0x8\n  00553ed1:  JC 0x00553ee0\n  00553ed3:  STD\n  00553ed4:  MOVSD.REP ES:EDI,ESI\n  00553ed6:  CLD\n  00553ed7:  JMP dword ptr [EDX*0x4 + 0x554000]\n  00553ee0:  NEG ECX\n  00553ee2:  JMP dword ptr [ECX*0x4 + 0x553fb0]\n  00553eec:  MOV EAX,EDI\n  00553eee:  MOV EDX,0x3\n  00553ef3:  CMP ECX,0x4\n  00553ef6:  JC 0x00553f04\n  00553ef8:  AND EAX,0x3\n  00553efb:  SUB ECX,EAX\n  00553efd:  JMP dword ptr [EAX*0x4 + 0x553f08]\n  00553f04:  JMP dword ptr [ECX*0x4 + 0x554000]\n  00553f18:  MOV AL,byte ptr [ESI + 0x3]\n  00553f1b:  AND EDX,ECX\n  00553f1d:  MOV byte ptr [EDI + 0x3],AL\n  00553f20:  DEC ESI\n  00553f21:  SHR ECX,0x2\n  00553f24:  DEC EDI\n  00553f25:  CMP ECX,0x8\n  00553f28:  JC 0x00553ee0\n  00553f2a:  STD\n  00553f2b:  MOVSD.REP ES:EDI,ESI\n  00553f2d:  CLD\n  00553f2e:  JMP dword ptr [EDX*0x4 + 0x554000]\n  00553f38:  MOV AL,byte ptr [ESI + 0x3]\n  00553f3b:  AND EDX,ECX\n  00553f3d:  MOV byte ptr [EDI + 0x3],AL\n  00553f40:  MOV AL,byte ptr [ESI + 0x2]\n  00553f43:  SHR ECX,0x2\n  00553f46:  MOV byte ptr [EDI + 0x2],AL\n  00553f49:  SUB ESI,0x2\n  00553f4c:  SUB EDI,0x2\n  00553f4f:  CMP ECX,0x8\n  00553f52:  JC 0x00553ee0\n  00553f54:  STD\n  00553f55:  MOVSD.REP ES:EDI,ESI\n  00553f57:  CLD\n  00553f58:  JMP dword ptr [EDX*0x4 + 0x554000]\n  00553f60:  MOV AL,byte ptr [ESI + 0x3]\n  00553f63:  AND EDX,ECX\n  00553f65:  MOV byte ptr [EDI + 0x3],AL\n  00553f68:  MOV AL,byte ptr [ESI + 0x2]\n  00553f6b:  MOV byte ptr [EDI + 0x2],AL\n  00553f6e:  MOV AL,byte ptr [ESI + 0x1]\n  00553f71:  SHR ECX,0x2\n  00553f74:  MOV byte ptr [EDI + 0x1],AL\n  00553f77:  SUB ESI,0x3\n  00553f7a:  SUB EDI,0x3\n  00553f7d:  CMP ECX,0x8\n  00553f80:  JC 0x00553ee0\n  00553f86:  STD\n  00553f87:  MOVSD.REP ES:EDI,ESI\n  00553f89:  CLD\n  00553f8a:  JMP dword ptr [EDX*0x4 + 0x554000]\n  00553fb4:  MOV EAX,dword ptr [ESI + ECX*0x4 + 0x1c]\n  00553fb8:  MOV dword ptr [EDI + ECX*0x4 + 0x1c],EAX\n  00553fbc:  MOV EAX,dword ptr [ESI + ECX*0x4 + 0x18]\n  00553fc0:  MOV dword ptr [EDI + ECX*0x4 + 0x18],EAX\n  00553fc4:  MOV EAX,dword ptr [ESI + ECX*0x4 + 0x14]\n  00553fc8:  MOV dword ptr [EDI + ECX*0x4 + 0x14],EAX\n  00553fcc:  MOV EAX,dword ptr [ESI + ECX*0x4 + 0x10]\n  00553fd0:  MOV dword ptr [EDI + ECX*0x4 + 0x10],EAX\n  00553fd4:  MOV EAX,dword ptr [ESI + ECX*0x4 + 0xc]\n  00553fd8:  MOV dword ptr [EDI + ECX*0x4 + 0xc],EAX\n  00553fdc:  MOV EAX,dword ptr [ESI + ECX*0x4 + 0x8]\n  00553fe0:  MOV dword ptr [EDI + ECX*0x4 + 0x8],EAX\n  00553fe4:  MOV EAX,dword ptr [ESI + ECX*0x4 + 0x4]\n  00553fe8:  MOV dword ptr [EDI + ECX*0x4 + 0x4],EAX\n  00553fec:  LEA EAX,[ECX*0x4 + 0x0]\n  00553ff3:  ADD ESI,EAX\n  00553ff5:  ADD EDI,EAX\n  00553ff7:  JMP dword ptr [EDX*0x4 + 0x554000]\n  00554010:  MOV EAX,dword ptr [EBP + 0x8]\n  00554013:  POP ESI\n  00554014:  POP EDI\n  00554015:  LEAVE\n  00554016:  RET\n  00554018:  MOV AL,byte ptr [ESI + 0x3]\n  0055401b:  MOV byte ptr [EDI + 0x3],AL\n  0055401e:  MOV EAX,dword ptr [EBP + 0x8]\n  00554021:  POP ESI\n  00554022:  POP EDI\n  00554023:  LEAVE\n  00554024:  RET\n  00554028:  MOV AL,byte ptr [ESI + 0x3]\n  0055402b:  MOV byte ptr [EDI + 0x3],AL\n  0055402e:  MOV AL,byte ptr [ESI + 0x2]\n  00554031:  MOV byte ptr [EDI + 0x2],AL\n  00554034:  MOV EAX,dword ptr [EBP + 0x8]\n  00554037:  POP ESI\n  00554038:  POP EDI\n  00554039:  LEAVE\n  0055403a:  RET\n  0055403c:  MOV AL,byte ptr [ESI + 0x3]\n  0055403f:  MOV byte ptr [EDI + 0x3],AL\n  00554042:  MOV AL,byte ptr [ESI + 0x2]\n  00554045:  MOV byte ptr [EDI + 0x2],AL\n  00554048:  MOV AL,byte ptr [ESI + 0x1]\n  0055404b:  MOV byte ptr [EDI + 0x1],AL\n  0055404e:  MOV EAX,dword ptr [EBP + 0x8]\n  00554051:  POP ESI\n  00554052:  POP EDI\n  00554053:  LEAVE\n  00554054:  RET", 
+  "callers": [
+    {
+      "address": "0x00555908", 
+      "name": "FUN_00555908"
+    }, 
+    {
+      "address": "0x0053cc70", 
+      "name": "FUN_0053cc70"
+    }, 
+    {
+      "address": "0x004327b0", 
+      "name": "FUN_004327b0"
+    }, 
+    {
+      "address": "0x004307d0", 
+      "name": "FUN_004307d0"
+    }, 
+    {
+      "address": "0x0053f060", 
+      "name": "FUN_0053f060"
+    }, 
+    {
+      "address": "0x00430670", 
+      "name": "FUN_00430670"
+    }, 
+    {
+      "address": "0x00431640", 
+      "name": "FUN_00431640"
+    }, 
+    {
+      "address": "0x004538e0", 
+      "name": "FUN_004538e0"
+    }, 
+    {
+      "address": "0x005579a8", 
+      "name": "FUN_005579a8"
+    }, 
+    {
+      "address": "0x0055686d", 
+      "name": "FUN_0055686d"
+    }, 
+    {
+      "address": "0x0055bb0e", 
+      "name": "FUN_0055bb0e"
+    }, 
+    {
+      "address": "0x00406b80", 
+      "name": "FUN_00406b80"
+    }, 
+    {
+      "address": "0x00453a70", 
+      "name": "FUN_00453a70"
+    }
+  ]
+}

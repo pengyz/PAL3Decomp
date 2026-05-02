@@ -1,0 +1,30 @@
+{
+  "address": "0x00418d90", 
+  "size_bytes": 45, 
+  "calling_convention": "unknown", 
+  "signature": "undefined FUN_00418d90(undefined4 param_1, undefined4 param_2)", 
+  "callees": [], 
+  "global_refs": [
+    {
+      "address": "0x00000004", 
+      "type": null, 
+      "name": "DAT_00000004"
+    }, 
+    {
+      "address": "0x00000008", 
+      "type": null, 
+      "name": "DAT_00000008"
+    }
+  ], 
+  "has_custom_name": false, 
+  "decompiled_c": "\r\nundefined4 __thiscall FUN_00418d90(int param_1_00,int param_1,int param_2)\r\n\r\n{\r\n  if ((((-1 < param_1) && (param_1 < *(int *)(param_1_00 + 0x98))) && (-1 < param_2)) &&\r\n     (param_2 < *(int *)(param_1_00 + 0x9c))) {\r\n    return 1;\r\n  }\r\n  return 0;\r\n}\r\n\r\n", 
+  "is_thunk": false, 
+  "name": "FUN_00418d90", 
+  "assembly": "  00418d90:  MOV EAX,dword ptr [ESP + 0x4]\n  00418d94:  TEST EAX,EAX\n  00418d96:  JL 0x00418db8\n  00418d98:  CMP EAX,dword ptr [ECX + 0x98]\n  00418d9e:  JGE 0x00418db8\n  00418da0:  MOV EAX,dword ptr [ESP + 0x8]\n  00418da4:  TEST EAX,EAX\n  00418da6:  JL 0x00418db8\n  00418da8:  CMP EAX,dword ptr [ECX + 0x9c]\n  00418dae:  JGE 0x00418db8\n  00418db0:  MOV EAX,0x1\n  00418db5:  RET 0x8\n  00418db8:  XOR EAX,EAX\n  00418dba:  RET 0x8", 
+  "callers": [
+    {
+      "address": "0x004189c0", 
+      "name": "FUN_004189c0"
+    }
+  ]
+}

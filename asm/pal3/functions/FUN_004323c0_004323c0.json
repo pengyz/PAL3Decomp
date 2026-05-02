@@ -1,0 +1,60 @@
+{
+  "address": "0x004323c0", 
+  "size_bytes": 181, 
+  "calling_convention": "unknown", 
+  "signature": "undefined FUN_004323c0(undefined4 param_1)", 
+  "callees": [
+    {
+      "address": "0x004322c0", 
+      "name": "FUN_004322c0"
+    }, 
+    {
+      "address": "0x00431cd0", 
+      "name": "FUN_00431cd0"
+    }, 
+    {
+      "address": "0x00541d10", 
+      "name": "FUN_00541d10"
+    }, 
+    {
+      "address": "0x004327b0", 
+      "name": "FUN_004327b0"
+    }
+  ], 
+  "global_refs": [
+    {
+      "address": "0x00d8c32c", 
+      "type": null, 
+      "name": "DAT_00d8c32c"
+    }, 
+    {
+      "address": "0x00d8c328", 
+      "type": null, 
+      "name": "DAT_00d8c328"
+    }, 
+    {
+      "address": "0x00000004", 
+      "type": null, 
+      "name": "DAT_00000004"
+    }
+  ], 
+  "has_custom_name": false, 
+  "decompiled_c": "\r\nvoid FUN_004323c0(undefined4 param_1)\r\n\r\n{\r\n  bool bVar1;\r\n  int iVar2;\r\n  int iVar3;\r\n  int iVar4;\r\n  int iVar5;\r\n  \r\n  iVar4 = DAT_00d8c32c;\r\n  bVar1 = false;\r\n  iVar3 = 0;\r\n  if (0 < DAT_00d8c32c) {\r\n    do {\r\n      if ((iVar3 < 0) || (DAT_00d8c32c <= iVar3)) {\r\n        iVar5 = 0;\r\n      }\r\n      else {\r\n        iVar5 = *(int *)(DAT_00d8c328 + iVar3 * 4);\r\n      }\r\n      iVar2 = FUN_004322c0(param_1);\r\n      if (iVar2 != 0) {\r\n        if (iVar5 != 0) {\r\n          FUN_00431cd0();\r\n          FUN_00541d10(iVar5);\r\n        }\r\n        if ((-1 < iVar3) && (iVar3 < DAT_00d8c32c)) {\r\n          *(undefined4 *)(DAT_00d8c328 + iVar3 * 4) = 0;\r\n        }\r\n        bVar1 = true;\r\n      }\r\n      iVar3 = iVar3 + 1;\r\n    } while (iVar3 < iVar4);\r\n    if ((bVar1) && (iVar4 = 0, 0 < DAT_00d8c32c)) {\r\n      do {\r\n        if ((iVar4 < 0) || ((DAT_00d8c32c <= iVar4 || (*(int *)(DAT_00d8c328 + iVar4 * 4) == 0)))) {\r\n          FUN_004327b0(iVar4,1);\r\n        }\r\n        else {\r\n          iVar4 = iVar4 + 1;\r\n        }\r\n      } while (iVar4 < DAT_00d8c32c);\r\n    }\r\n  }\r\n  return;\r\n}\r\n\r\n", 
+  "is_thunk": false, 
+  "name": "FUN_004323c0", 
+  "assembly": "  004323c0:  PUSH EBX\n  004323c1:  PUSH EBP\n  004323c2:  MOV EBP,dword ptr [0x00d8c32c]\n  004323c8:  PUSH ESI\n  004323c9:  XOR EBX,EBX\n  004323cb:  XOR ESI,ESI\n  004323cd:  TEST EBP,EBP\n  004323cf:  JLE 0x00432471\n  004323d5:  PUSH EDI\n  004323d6:  TEST ESI,ESI\n  004323d8:  JL 0x004323ec\n  004323da:  CMP ESI,dword ptr [0x00d8c32c]\n  004323e0:  JGE 0x004323ec\n  004323e2:  MOV EAX,[0x00d8c328]\n  004323e7:  MOV EDI,dword ptr [EAX + ESI*0x4]\n  004323ea:  JMP 0x004323ee\n  004323ec:  XOR EDI,EDI\n  004323ee:  MOV ECX,dword ptr [ESP + 0x14]\n  004323f2:  PUSH ECX\n  004323f3:  MOV ECX,EDI\n  004323f5:  CALL 0x004322c0\n  004323fa:  TEST EAX,EAX\n  004323fc:  JZ 0x00432430\n  004323fe:  TEST EDI,EDI\n  00432400:  JZ 0x00432412\n  00432402:  MOV ECX,EDI\n  00432404:  CALL 0x00431cd0\n  00432409:  PUSH EDI\n  0043240a:  CALL 0x00541d10\n  0043240f:  ADD ESP,0x4\n  00432412:  TEST ESI,ESI\n  00432414:  JL 0x0043242b\n  00432416:  CMP ESI,dword ptr [0x00d8c32c]\n  0043241c:  JGE 0x0043242b\n  0043241e:  MOV EDX,dword ptr [0x00d8c328]\n  00432424:  MOV dword ptr [EDX + ESI*0x4],0x0\n  0043242b:  MOV EBX,0x1\n  00432430:  INC ESI\n  00432431:  CMP ESI,EBP\n  00432433:  JL 0x004323d6\n  00432435:  TEST EBX,EBX\n  00432437:  POP EDI\n  00432438:  JZ 0x00432471\n  0043243a:  MOV EAX,[0x00d8c32c]\n  0043243f:  XOR ESI,ESI\n  00432441:  TEST EAX,EAX\n  00432443:  JLE 0x00432471\n  00432445:  TEST ESI,ESI\n  00432447:  JL 0x00432458\n  00432449:  CMP ESI,EAX\n  0043244b:  JGE 0x00432458\n  0043244d:  MOV EAX,[0x00d8c328]\n  00432452:  CMP dword ptr [EAX + ESI*0x4],0x0\n  00432456:  JNZ 0x00432467\n  00432458:  PUSH 0x1\n  0043245a:  PUSH ESI\n  0043245b:  MOV ECX,0xd8c328\n  00432460:  CALL 0x004327b0\n  00432465:  JMP 0x00432468\n  00432467:  INC ESI\n  00432468:  MOV EAX,[0x00d8c32c]\n  0043246d:  CMP ESI,EAX\n  0043246f:  JL 0x00432445\n  00432471:  POP ESI\n  00432472:  POP EBP\n  00432473:  POP EBX\n  00432474:  RET", 
+  "callers": [
+    {
+      "address": "0x0044a1b0", 
+      "name": "FUN_0044a1b0"
+    }, 
+    {
+      "address": "0x0047c3a0", 
+      "name": "FUN_0047c3a0"
+    }, 
+    {
+      "address": "0x0052f350", 
+      "name": "FUN_0052f350"
+    }
+  ]
+}

@@ -1,0 +1,57 @@
+{
+  "address": "0x0044f8a0", 
+  "size_bytes": 40, 
+  "calling_convention": "unknown", 
+  "signature": "undefined FUN_0044f8a0(undefined4 param_1)", 
+  "callees": [], 
+  "global_refs": [
+    {
+      "address": "0x00000004", 
+      "type": null, 
+      "name": "DAT_00000004"
+    }
+  ], 
+  "has_custom_name": false, 
+  "decompiled_c": "\r\nundefined4 __thiscall FUN_0044f8a0(int param_1_00,int param_1)\r\n\r\n{\r\n  if (param_1 == 0) {\r\n    return *(undefined4 *)(param_1_00 + 0x6e10);\r\n  }\r\n  if (param_1 != 5) {\r\n    return *(undefined4 *)(param_1_00 + 0x38c4);\r\n  }\r\n  return *(undefined4 *)(param_1_00 + 0x6e14);\r\n}\r\n\r\n", 
+  "is_thunk": false, 
+  "name": "FUN_0044f8a0", 
+  "assembly": "  0044f8a0:  MOV EAX,dword ptr [ESP + 0x4]\n  0044f8a4:  TEST EAX,EAX\n  0044f8a6:  JZ 0x0044f8bf\n  0044f8a8:  CMP EAX,0x5\n  0044f8ab:  JZ 0x0044f8b6\n  0044f8ad:  MOV EAX,dword ptr [ECX + 0x38c4]\n  0044f8b3:  RET 0x4\n  0044f8b6:  MOV EAX,dword ptr [ECX + 0x6e14]\n  0044f8bc:  RET 0x4\n  0044f8bf:  MOV EAX,dword ptr [ECX + 0x6e10]\n  0044f8c5:  RET 0x4", 
+  "callers": [
+    {
+      "address": "0x00422950", 
+      "name": "FUN_00422950"
+    }, 
+    {
+      "address": "0x0040e5f0", 
+      "name": "FUN_0040e5f0"
+    }, 
+    {
+      "address": "0x0052c480", 
+      "name": "FUN_0052c480"
+    }, 
+    {
+      "address": "0x00407790", 
+      "name": "FUN_00407790"
+    }, 
+    {
+      "address": "0x00406ff0", 
+      "name": "FUN_00406ff0"
+    }, 
+    {
+      "address": "0x004072d0", 
+      "name": "FUN_004072d0"
+    }, 
+    {
+      "address": "0x004071c0", 
+      "name": "FUN_004071c0"
+    }, 
+    {
+      "address": "0x00407300", 
+      "name": "FUN_00407300"
+    }, 
+    {
+      "address": "0x00426eb0", 
+      "name": "FUN_00426eb0"
+    }
+  ]
+}

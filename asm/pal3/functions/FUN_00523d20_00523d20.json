@@ -1,0 +1,38 @@
+{
+  "address": "0x00523d20", 
+  "size_bytes": 77, 
+  "calling_convention": "unknown", 
+  "signature": "undefined FUN_00523d20(undefined4 param_1)", 
+  "callees": [
+    {
+      "address": "0x00523cb0", 
+      "name": "FUN_00523cb0"
+    }, 
+    {
+      "address": "0x0046d890", 
+      "name": "FUN_0046d890"
+    }, 
+    {
+      "address": "0x004712d0", 
+      "name": "FUN_004712d0"
+    }
+  ], 
+  "global_refs": [
+    {
+      "address": "0x00000004", 
+      "type": null, 
+      "name": "DAT_00000004"
+    }
+  ], 
+  "has_custom_name": false, 
+  "decompiled_c": "\r\nvoid FUN_00523d20(undefined4 param_1)\r\n\r\n{\r\n  int iVar1;\r\n  \r\n  iVar1 = FUN_00523cb0();\r\n  if (4 < iVar1) {\r\n    FUN_0046d890(0);\r\n    FUN_004712d0(0);\r\n    return;\r\n  }\r\n  FUN_0046d890(param_1);\r\n  FUN_004712d0(param_1);\r\n  return;\r\n}\r\n\r\n", 
+  "is_thunk": false, 
+  "name": "FUN_00523d20", 
+  "assembly": "  00523d20:  PUSH ESI\n  00523d21:  MOV ESI,ECX\n  00523d23:  CALL 0x00523cb0\n  00523d28:  CMP EAX,0x5\n  00523d2b:  JL 0x00523d4b\n  00523d2d:  MOV ECX,dword ptr [ESI + 0x6d4]\n  00523d33:  PUSH 0x0\n  00523d35:  CALL 0x0046d890\n  00523d3a:  MOV ECX,dword ptr [ESI + 0x6d0]\n  00523d40:  PUSH 0x0\n  00523d42:  CALL 0x004712d0\n  00523d47:  POP ESI\n  00523d48:  RET 0x4\n  00523d4b:  MOV ECX,dword ptr [ESI + 0x6d4]\n  00523d51:  PUSH EDI\n  00523d52:  MOV EDI,dword ptr [ESP + 0xc]\n  00523d56:  PUSH EDI\n  00523d57:  CALL 0x0046d890\n  00523d5c:  MOV ECX,dword ptr [ESI + 0x6d0]\n  00523d62:  PUSH EDI\n  00523d63:  CALL 0x004712d0\n  00523d68:  POP EDI\n  00523d69:  POP ESI\n  00523d6a:  RET 0x4", 
+  "callers": [
+    {
+      "address": "0x0044f8d0", 
+      "name": "FUN_0044f8d0"
+    }
+  ]
+}

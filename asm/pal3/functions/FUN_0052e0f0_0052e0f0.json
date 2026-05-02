@@ -1,0 +1,40 @@
+{
+  "address": "0x0052e0f0", 
+  "size_bytes": 46, 
+  "calling_convention": "unknown", 
+  "signature": "undefined FUN_0052e0f0(undefined4 param_1, undefined4 param_2, undefined4 param_3)", 
+  "callees": [
+    {
+      "address": "0x0052e140", 
+      "name": "FUN_0052e140"
+    }
+  ], 
+  "global_refs": [
+    {
+      "address": "0x00000004", 
+      "type": null, 
+      "name": "DAT_00000004"
+    }, 
+    {
+      "address": "0x00000008", 
+      "type": null, 
+      "name": "DAT_00000008"
+    }, 
+    {
+      "address": "0x0000000c", 
+      "type": null, 
+      "name": "DAT_0000000c"
+    }
+  ], 
+  "has_custom_name": false, 
+  "decompiled_c": "\r\nvoid __thiscall\r\nFUN_0052e0f0(int param_1_00,undefined4 param_1,undefined4 param_2,undefined4 param_3)\r\n\r\n{\r\n  *(undefined4 *)(param_1_00 + 0x34) = param_1;\r\n  *(undefined4 *)(param_1_00 + 0x44) = param_1;\r\n  *(undefined4 *)(param_1_00 + 0x38) = param_2;\r\n  *(undefined4 *)(param_1_00 + 0x48) = param_2;\r\n  *(undefined4 *)(param_1_00 + 0x3c) = param_3;\r\n  *(undefined4 *)(param_1_00 + 0x4c) = param_3;\r\n  FUN_0052e140(1);\r\n  return;\r\n}\r\n\r\n", 
+  "is_thunk": false, 
+  "name": "FUN_0052e0f0", 
+  "assembly": "  0052e0f0:  MOV EAX,dword ptr [ESP + 0x4]\n  0052e0f4:  PUSH 0x1\n  0052e0f6:  MOV dword ptr [ECX + 0x34],EAX\n  0052e0f9:  MOV EDX,EAX\n  0052e0fb:  MOV EAX,dword ptr [ESP + 0xc]\n  0052e0ff:  MOV dword ptr [ECX + 0x44],EDX\n  0052e102:  MOV dword ptr [ECX + 0x38],EAX\n  0052e105:  MOV EDX,EAX\n  0052e107:  MOV EAX,dword ptr [ESP + 0x10]\n  0052e10b:  MOV dword ptr [ECX + 0x48],EDX\n  0052e10e:  MOV EDX,EAX\n  0052e110:  MOV dword ptr [ECX + 0x3c],EAX\n  0052e113:  MOV dword ptr [ECX + 0x4c],EDX\n  0052e116:  CALL 0x0052e140\n  0052e11b:  RET 0xc", 
+  "callers": [
+    {
+      "address": "0x00531260", 
+      "name": "FUN_00531260"
+    }
+  ]
+}

@@ -1,0 +1,53 @@
+{
+  "address": "0x004353f0", 
+  "size_bytes": 113, 
+  "calling_convention": "unknown", 
+  "signature": "undefined FUN_004353f0(void)", 
+  "callees": [
+    {
+      "address": "0x00434c00", 
+      "name": "FUN_00434c00"
+    }, 
+    {
+      "address": "0x0041cf20", 
+      "name": "FUN_0041cf20"
+    }, 
+    {
+      "address": "0x00434c40", 
+      "name": "FUN_00434c40"
+    }
+  ], 
+  "global_refs": [
+    {
+      "address": "0x0056a9f0", 
+      "type": null, 
+      "name": "DAT_0056a9f0"
+    }, 
+    {
+      "address": "0x00bfda68", 
+      "type": null, 
+      "name": "DAT_00bfda68"
+    }, 
+    {
+      "address": "0x-0000018", 
+      "type": null, 
+      "name": "DAT_-0000018"
+    }, 
+    {
+      "address": "0x00d8e4c0", 
+      "type": null, 
+      "name": "DAT_00d8e4c0"
+    }, 
+    {
+      "address": "0x-000001c", 
+      "type": null, 
+      "name": "DAT_-000001c"
+    }
+  ], 
+  "has_custom_name": false, 
+  "decompiled_c": "\r\n/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */\r\n\r\nvoid FUN_004353f0(void)\r\n\r\n{\r\n  int iVar1;\r\n  int iVar2;\r\n  int iVar3;\r\n  int iVar4;\r\n  \r\n  iVar1 = FUN_00434c00();\r\n  iVar2 = FUN_00434c00();\r\n  iVar3 = FUN_00434c00();\r\n  iVar4 = FUN_00434c00();\r\n  if ((((iVar1 != 0) && (iVar2 != 0)) && (iVar3 != 0)) && (iVar4 != 0)) {\r\n    FUN_0041cf20(DAT_00bfda68,*(float *)(iVar1 + 4) * _DAT_0056a9f0,\r\n                 *(float *)(iVar2 + 4) * _DAT_0056a9f0,*(undefined4 *)(iVar3 + 4),\r\n                 *(undefined4 *)(iVar4 + 4));\r\n    FUN_00434c40(&DAT_00d8e4c0);\r\n  }\r\n  return;\r\n}\r\n\r\n", 
+  "is_thunk": false, 
+  "name": "FUN_004353f0", 
+  "assembly": "  004353f0:  PUSH EBX\n  004353f1:  PUSH ESI\n  004353f2:  PUSH EDI\n  004353f3:  CALL 0x00434c00\n  004353f8:  MOV ESI,EAX\n  004353fa:  CALL 0x00434c00\n  004353ff:  MOV EDI,EAX\n  00435401:  CALL 0x00434c00\n  00435406:  MOV EBX,EAX\n  00435408:  CALL 0x00434c00\n  0043540d:  TEST ESI,ESI\n  0043540f:  JZ 0x0043545d\n  00435411:  TEST EDI,EDI\n  00435413:  JZ 0x0043545d\n  00435415:  TEST EBX,EBX\n  00435417:  JZ 0x0043545d\n  00435419:  TEST EAX,EAX\n  0043541b:  JZ 0x0043545d\n  0043541d:  MOV EAX,dword ptr [EAX + 0x4]\n  00435420:  MOV ECX,dword ptr [EBX + 0x4]\n  00435423:  FLD dword ptr [EDI + 0x4]\n  00435426:  FMUL dword ptr [0x0056a9f0]\n  0043542c:  PUSH EAX\n  0043542d:  PUSH ECX\n  0043542e:  PUSH ECX\n  0043542f:  MOV EDX,dword ptr [0x00bfda68]\n  00435435:  FSTP dword ptr [ESP]\n  00435438:  FLD dword ptr [ESI + 0x4]\n  0043543b:  FMUL dword ptr [0x0056a9f0]\n  00435441:  PUSH ECX\n  00435442:  MOV ECX,0xd8e4c0\n  00435447:  FSTP dword ptr [ESP]\n  0043544a:  PUSH EDX\n  0043544b:  CALL 0x0041cf20\n  00435450:  PUSH 0xd8e4c0\n  00435455:  CALL 0x00434c40\n  0043545a:  ADD ESP,0x4\n  0043545d:  POP EDI\n  0043545e:  POP ESI\n  0043545f:  POP EBX\n  00435460:  RET", 
+  "callers": []
+}

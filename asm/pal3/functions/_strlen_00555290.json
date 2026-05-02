@@ -1,0 +1,61 @@
+{
+  "address": "0x00555290", 
+  "size_bytes": 123, 
+  "calling_convention": "__cdecl", 
+  "signature": "size_t _strlen(char * _Str)", 
+  "callees": [], 
+  "global_refs": [
+    {
+      "address": "0x00000004", 
+      "type": null, 
+      "name": "DAT_00000004"
+    }
+  ], 
+  "has_custom_name": true, 
+  "decompiled_c": "\r\n/* Library Function - Single Match\r\n    _strlen\r\n   \r\n   Libraries: Visual Studio 1998 Debug, Visual Studio 1998 Release */\r\n\r\nsize_t __cdecl _strlen(char *_Str)\r\n\r\n{\r\n  char cVar1;\r\n  uint uVar2;\r\n  uint *puVar3;\r\n  uint *puVar4;\r\n  \r\n  uVar2 = (uint)_Str & 3;\r\n  puVar3 = (uint *)_Str;\r\n  while (uVar2 != 0) {\r\n    cVar1 = *(char *)puVar3;\r\n    puVar3 = (uint *)((int)puVar3 + 1);\r\n    if (cVar1 == '\\0') goto LAB_005552e3;\r\n    uVar2 = (uint)puVar3 & 3;\r\n  }\r\n  do {\r\n    do {\r\n      puVar4 = puVar3;\r\n      puVar3 = puVar4 + 1;\r\n    } while (((*puVar4 ^ 0xffffffff ^ *puVar4 + 0x7efefeff) & 0x81010100) == 0);\r\n    uVar2 = *puVar4;\r\n    if ((char)uVar2 == '\\0') {\r\n      return (int)puVar4 - (int)_Str;\r\n    }\r\n    if ((char)(uVar2 >> 8) == '\\0') {\r\n      return (size_t)((int)puVar4 + (1 - (int)_Str));\r\n    }\r\n    if ((uVar2 & 0xff0000) == 0) {\r\n      return (size_t)((int)puVar4 + (2 - (int)_Str));\r\n    }\r\n  } while ((uVar2 & 0xff000000) != 0);\r\nLAB_005552e3:\r\n  return (size_t)((int)puVar3 + (-1 - (int)_Str));\r\n}\r\n\r\n", 
+  "is_thunk": false, 
+  "name": "_strlen", 
+  "assembly": "  00555290:  MOV ECX,dword ptr [ESP + 0x4]\n  00555294:  TEST ECX,0x3\n  0055529a:  JZ 0x005552b0\n  0055529c:  MOV AL,byte ptr [ECX]\n  0055529e:  INC ECX\n  0055529f:  TEST AL,AL\n  005552a1:  JZ 0x005552e3\n  005552a3:  TEST ECX,0x3\n  005552a9:  JNZ 0x0055529c\n  005552ab:  ADD EAX,0x0\n  005552b0:  MOV EAX,dword ptr [ECX]\n  005552b2:  MOV EDX,0x7efefeff\n  005552b7:  ADD EDX,EAX\n  005552b9:  XOR EAX,0xffffffff\n  005552bc:  XOR EAX,EDX\n  005552be:  ADD ECX,0x4\n  005552c1:  TEST EAX,0x81010100\n  005552c6:  JZ 0x005552b0\n  005552c8:  MOV EAX,dword ptr [ECX + -0x4]\n  005552cb:  TEST AL,AL\n  005552cd:  JZ 0x00555301\n  005552cf:  TEST AH,AH\n  005552d1:  JZ 0x005552f7\n  005552d3:  TEST EAX,0xff0000\n  005552d8:  JZ 0x005552ed\n  005552da:  TEST EAX,0xff000000\n  005552df:  JZ 0x005552e3\n  005552e1:  JMP 0x005552b0\n  005552e3:  LEA EAX,[ECX + -0x1]\n  005552e6:  MOV ECX,dword ptr [ESP + 0x4]\n  005552ea:  SUB EAX,ECX\n  005552ec:  RET\n  005552ed:  LEA EAX,[ECX + -0x2]\n  005552f0:  MOV ECX,dword ptr [ESP + 0x4]\n  005552f4:  SUB EAX,ECX\n  005552f6:  RET\n  005552f7:  LEA EAX,[ECX + -0x3]\n  005552fa:  MOV ECX,dword ptr [ESP + 0x4]\n  005552fe:  SUB EAX,ECX\n  00555300:  RET\n  00555301:  LEA EAX,[ECX + -0x4]\n  00555304:  MOV ECX,dword ptr [ESP + 0x4]\n  00555308:  SUB EAX,ECX\n  0055530a:  RET", 
+  "callers": [
+    {
+      "address": "0x0055a863", 
+      "name": "FUN_0055a863"
+    }, 
+    {
+      "address": "0x0055acd4", 
+      "name": "FUN_0055acd4"
+    }, 
+    {
+      "address": "0x00556bf2", 
+      "name": "FUN_00556bf2"
+    }, 
+    {
+      "address": "0x00541d1b", 
+      "name": "FUN_00541d1b"
+    }, 
+    {
+      "address": "0x00541f47", 
+      "name": "FUN_00541f47"
+    }, 
+    {
+      "address": "0x005551d7", 
+      "name": "FUN_005551d7"
+    }, 
+    {
+      "address": "0x005544fb", 
+      "name": "FUN_005544fb"
+    }, 
+    {
+      "address": "0x00555214", 
+      "name": "FUN_00555214"
+    }, 
+    {
+      "address": "0x0055686d", 
+      "name": "FUN_0055686d"
+    }, 
+    {
+      "address": "0x0055bb0e", 
+      "name": "FUN_0055bb0e"
+    }
+  ]
+}

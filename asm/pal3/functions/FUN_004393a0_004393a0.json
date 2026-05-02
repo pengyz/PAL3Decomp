@@ -1,0 +1,49 @@
+{
+  "address": "0x004393a0", 
+  "size_bytes": 97, 
+  "calling_convention": "unknown", 
+  "signature": "undefined FUN_004393a0(void)", 
+  "callees": [
+    {
+      "address": "0x000000aa", 
+      "name": "PopMessage"
+    }, 
+    {
+      "address": "0x000000a2", 
+      "name": "gbCrc32Compute"
+    }
+  ], 
+  "global_refs": [
+    {
+      "address": "0x0056a2bc", 
+      "type": null, 
+      "name": "PTR_PopMessage_0056a2bc"
+    }, 
+    {
+      "address": "0x-0000010", 
+      "type": null, 
+      "name": "DAT_-0000010"
+    }, 
+    {
+      "address": "0x0056a29c", 
+      "type": null, 
+      "name": "PTR_gbCrc32Compute_0056a29c"
+    }, 
+    {
+      "address": "0x005889bc", 
+      "type": null, 
+      "name": "DAT_005889bc"
+    }, 
+    {
+      "address": "0x-000000c", 
+      "type": null, 
+      "name": "DAT_-000000c"
+    }
+  ], 
+  "has_custom_name": false, 
+  "decompiled_c": "\r\nundefined4 __fastcall FUN_004393a0(int param_1)\r\n\r\n{\r\n  int iVar1;\r\n  uint uVar2;\r\n  int local_10;\r\n  uint local_c;\r\n  \r\n  if (*(int *)(param_1 + 0xc) == 3) {\r\n    iVar1 = gbVisNode::PopMessage(*(gbVisNode **)(param_1 + 0x10),(gbNodeMsgObj *)&local_10);\r\n    while (iVar1 != 0) {\r\n      if ((local_10 == 1) && (uVar2 = gbCrc32Compute(&DAT_005889bc), local_c == uVar2)) {\r\n        return 1;\r\n      }\r\n      iVar1 = gbVisNode::PopMessage(*(gbVisNode **)(param_1 + 0x10),(gbNodeMsgObj *)&local_10);\r\n    }\r\n  }\r\n  return 0;\r\n}\r\n\r\n", 
+  "is_thunk": false, 
+  "name": "FUN_004393a0", 
+  "assembly": "  004393a0:  SUB ESP,0x10\n  004393a3:  PUSH EBP\n  004393a4:  PUSH ESI\n  004393a5:  MOV ESI,ECX\n  004393a7:  PUSH EDI\n  004393a8:  CMP dword ptr [ESI + 0xc],0x3\n  004393ac:  JNZ 0x004393ef\n  004393ae:  MOV ECX,dword ptr [ESI + 0x10]\n  004393b1:  MOV EDI,dword ptr [0x0056a2bc]\n  004393b7:  LEA EAX,[ESP + 0xc]\n  004393bb:  PUSH EAX\n  004393bc:  CALL EDI\n  004393be:  TEST EAX,EAX\n  004393c0:  JZ 0x004393ef\n  004393c2:  MOV EBP,dword ptr [0x0056a29c]\n  004393c8:  CMP dword ptr [ESP + 0xc],0x1\n  004393cd:  JNZ 0x004393e1\n  004393cf:  PUSH 0x5889bc\n  004393d4:  CALL EBP\n  004393d6:  MOV ECX,dword ptr [ESP + 0x14]\n  004393da:  ADD ESP,0x4\n  004393dd:  CMP ECX,EAX\n  004393df:  JZ 0x004393f8\n  004393e1:  LEA ECX,[ESP + 0xc]\n  004393e5:  PUSH ECX\n  004393e6:  MOV ECX,dword ptr [ESI + 0x10]\n  004393e9:  CALL EDI\n  004393eb:  TEST EAX,EAX\n  004393ed:  JNZ 0x004393c8\n  004393ef:  POP EDI\n  004393f0:  POP ESI\n  004393f1:  XOR AL,AL\n  004393f3:  POP EBP\n  004393f4:  ADD ESP,0x10\n  004393f7:  RET\n  004393f8:  POP EDI\n  004393f9:  POP ESI\n  004393fa:  MOV AL,0x1\n  004393fc:  POP EBP\n  004393fd:  ADD ESP,0x10\n  00439400:  RET", 
+  "callers": []
+}

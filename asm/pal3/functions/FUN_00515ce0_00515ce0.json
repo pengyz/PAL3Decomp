@@ -1,0 +1,25 @@
+{
+  "address": "0x00515ce0", 
+  "size_bytes": 48, 
+  "calling_convention": "unknown", 
+  "signature": "undefined FUN_00515ce0(undefined4 param_1)", 
+  "callees": [], 
+  "global_refs": [
+    {
+      "address": "0x00000004", 
+      "type": null, 
+      "name": "DAT_00000004"
+    }
+  ], 
+  "has_custom_name": false, 
+  "decompiled_c": "\r\nuint __thiscall FUN_00515ce0(int param_1_00,int param_1)\r\n\r\n{\r\n  int *piVar1;\r\n  int iVar2;\r\n  \r\n  piVar1 = (int *)(param_1_00 + 0xa8);\r\n  iVar2 = 0;\r\n  while ((*(char *)(piVar1 + 5) == '\\0' || (*piVar1 != param_1))) {\r\n    iVar2 = iVar2 + 1;\r\n    piVar1 = piVar1 + 0x16;\r\n    if (0x3ff < iVar2) {\r\n      return (uint)piVar1 & 0xffffff00;\r\n    }\r\n  }\r\n  return CONCAT31((int3)((uint)piVar1 >> 8),1);\r\n}\r\n\r\n", 
+  "is_thunk": false, 
+  "name": "FUN_00515ce0", 
+  "assembly": "  00515ce0:  LEA EAX,[ECX + 0xa8]\n  00515ce6:  MOV ECX,dword ptr [ESP + 0x4]\n  00515cea:  PUSH EBX\n  00515ceb:  XOR EDX,EDX\n  00515ced:  MOV BL,byte ptr [EAX + 0x14]\n  00515cf0:  TEST BL,BL\n  00515cf2:  JZ 0x00515cf8\n  00515cf4:  CMP dword ptr [EAX],ECX\n  00515cf6:  JZ 0x00515d0a\n  00515cf8:  INC EDX\n  00515cf9:  ADD EAX,0x58\n  00515cfc:  CMP EDX,0x400\n  00515d02:  JL 0x00515ced\n  00515d04:  XOR AL,AL\n  00515d06:  POP EBX\n  00515d07:  RET 0x4\n  00515d0a:  MOV AL,0x1\n  00515d0c:  POP EBX\n  00515d0d:  RET 0x4", 
+  "callers": [
+    {
+      "address": "0x004d93d0", 
+      "name": "FUN_004d93d0"
+    }
+  ]
+}

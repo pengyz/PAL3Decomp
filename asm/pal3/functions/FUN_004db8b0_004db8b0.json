@@ -1,0 +1,25 @@
+{
+  "address": "0x004db8b0", 
+  "size_bytes": 36, 
+  "calling_convention": "unknown", 
+  "signature": "undefined FUN_004db8b0(undefined4 param_1)", 
+  "callees": [], 
+  "global_refs": [
+    {
+      "address": "0x00000004", 
+      "type": null, 
+      "name": "DAT_00000004"
+    }
+  ], 
+  "has_custom_name": false, 
+  "decompiled_c": "\r\nvoid __thiscall FUN_004db8b0(int param_1_00,int param_1)\r\n\r\n{\r\n  int iVar1;\r\n  \r\n  iVar1 = param_1_00 + param_1 * 0x28;\r\n  if (*(char *)(param_1_00 + 0x2e + param_1 * 0x28) != '\\0') {\r\n    *(undefined4 *)(iVar1 + 0x24) = 0;\r\n    *(undefined4 *)(iVar1 + 0x20) = 0x1676;\r\n    *(undefined *)(iVar1 + 0x2e) = 0;\r\n  }\r\n  return;\r\n}\r\n\r\n", 
+  "is_thunk": false, 
+  "name": "FUN_004db8b0", 
+  "assembly": "  004db8b0:  MOV EAX,dword ptr [ESP + 0x4]\n  004db8b4:  LEA EAX,[EAX + EAX*0x4]\n  004db8b7:  MOV DL,byte ptr [ECX + EAX*0x8 + 0x2e]\n  004db8bb:  LEA EAX,[ECX + EAX*0x8]\n  004db8be:  XOR ECX,ECX\n  004db8c0:  CMP DL,CL\n  004db8c2:  JZ 0x004db8d1\n  004db8c4:  MOV dword ptr [EAX + 0x24],ECX\n  004db8c7:  MOV dword ptr [EAX + 0x20],0x1676\n  004db8ce:  MOV byte ptr [EAX + 0x2e],CL\n  004db8d1:  RET 0x4", 
+  "callers": [
+    {
+      "address": "0x004f0a10", 
+      "name": "FUN_004f0a10"
+    }
+  ]
+}

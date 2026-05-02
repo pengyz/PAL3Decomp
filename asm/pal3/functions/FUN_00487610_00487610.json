@@ -1,0 +1,39 @@
+{
+  "address": "0x00487610", 
+  "size_bytes": 49, 
+  "calling_convention": "unknown", 
+  "signature": "undefined FUN_00487610(void)", 
+  "callees": [], 
+  "global_refs": [
+    {
+      "address": "0x00c01fb0", 
+      "type": null, 
+      "name": "DAT_00c01fb0"
+    }, 
+    {
+      "address": "0x00c01fb4", 
+      "type": null, 
+      "name": "DAT_00c01fb4"
+    }, 
+    {
+      "address": "0x00c02050", 
+      "type": null, 
+      "name": "DAT_00c02050"
+    }
+  ], 
+  "has_custom_name": false, 
+  "decompiled_c": "\r\nvoid __fastcall FUN_00487610(int param_1)\r\n\r\n{\r\n  undefined4 uVar1;\r\n  undefined4 *puVar2;\r\n  undefined4 *puVar3;\r\n  int iVar4;\r\n  undefined4 *puVar5;\r\n  \r\n  puVar2 = &DAT_00c01fb0;\r\n  puVar5 = (undefined4 *)(param_1 + 0x4b0);\r\n  do {\r\n    iVar4 = 5;\r\n    puVar3 = puVar5;\r\n    do {\r\n      uVar1 = *puVar2;\r\n      puVar2 = puVar2 + 1;\r\n      *puVar3 = uVar1;\r\n      puVar3 = puVar3 + 1;\r\n      iVar4 = iVar4 + -1;\r\n    } while (iVar4 != 0);\r\n    puVar5 = puVar5 + 0x4b;\r\n  } while ((int)puVar2 < 0xc02050);\r\n  return;\r\n}\r\n\r\n", 
+  "is_thunk": false, 
+  "name": "FUN_00487610", 
+  "assembly": "  00487610:  PUSH ESI\n  00487611:  PUSH EDI\n  00487612:  MOV EAX,0xc01fb0\n  00487617:  LEA ESI,[ECX + 0x4b0]\n  0048761d:  MOV ECX,ESI\n  0048761f:  MOV EDX,0x5\n  00487624:  MOV EDI,dword ptr [EAX]\n  00487626:  ADD EAX,0x4\n  00487629:  MOV dword ptr [ECX],EDI\n  0048762b:  ADD ECX,0x4\n  0048762e:  DEC EDX\n  0048762f:  JNZ 0x00487624\n  00487631:  ADD ESI,0x12c\n  00487637:  CMP EAX,0xc02050\n  0048763c:  JL 0x0048761d\n  0048763e:  POP EDI\n  0048763f:  POP ESI\n  00487640:  RET", 
+  "callers": [
+    {
+      "address": "0x0048b8f0", 
+      "name": "FUN_0048b8f0"
+    }, 
+    {
+      "address": "0x0048a010", 
+      "name": "FUN_0048a010"
+    }
+  ]
+}

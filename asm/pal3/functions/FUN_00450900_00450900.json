@@ -1,0 +1,59 @@
+{
+  "address": "0x00450900", 
+  "size_bytes": 129, 
+  "calling_convention": "unknown", 
+  "signature": "undefined FUN_00450900(undefined4 param_1, undefined4 param_2)", 
+  "callees": [
+    {
+      "address": "0x0043fbc0", 
+      "name": "FUN_0043fbc0"
+    }, 
+    {
+      "address": "0x00445c60", 
+      "name": "FUN_00445c60"
+    }
+  ], 
+  "global_refs": [
+    {
+      "address": "0x0056a9fc", 
+      "type": null, 
+      "name": "DAT_0056a9fc"
+    }, 
+    {
+      "address": "0x005a623c", 
+      "type": null, 
+      "name": "PTR_s_UI\\Loading\\loading_3.tga_005a623c"
+    }, 
+    {
+      "address": "0x0058b714", 
+      "type": null, 
+      "name": "s_UI\\Loading\\loading_3.tga_0058b714"
+    }, 
+    {
+      "address": "0x005a6244", 
+      "type": null, 
+      "name": "PTR_s_UI\\Loading\\loading_5.tga_005a6244"
+    }, 
+    {
+      "address": "0x0058b6dc", 
+      "type": null, 
+      "name": "s_UI\\Loading\\loading_5.tga_0058b6dc"
+    }, 
+    {
+      "address": "0x00000004", 
+      "type": null, 
+      "name": "DAT_00000004"
+    }, 
+    {
+      "address": "0x00000008", 
+      "type": null, 
+      "name": "DAT_00000008"
+    }
+  ], 
+  "has_custom_name": false, 
+  "decompiled_c": "\r\n/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */\r\n\r\nvoid __thiscall FUN_00450900(int param_1_00,float param_1,undefined4 param_2)\r\n\r\n{\r\n  uint uVar1;\r\n  undefined *puVar2;\r\n  \r\n  if (_DAT_0056a9fc <= *(float *)(param_1_00 + 0x13c)) {\r\n    uVar1 = (uint)(*(int *)(param_1_00 + 0x140) == 0);\r\n    *(undefined4 *)(param_1_00 + 0x13c) = 0;\r\n    *(uint *)(param_1_00 + 0x140) = uVar1;\r\n    puVar2 = PTR_s_UI_Loading_loading_5_tga_005a6244;\r\n    if (uVar1 != 0) {\r\n      puVar2 = PTR_s_UI_Loading_loading_3_tga_005a623c;\r\n    }\r\n    FUN_0043fbc0(puVar2,0);\r\n  }\r\n  *(float *)(param_1_00 + 0x13c) = param_1 + *(float *)(param_1_00 + 0x13c);\r\n  *(undefined *)(param_1_00 + 0x148) = *(undefined *)(param_1_00 + 0xe8);\r\n  FUN_00445c60(param_1,param_2);\r\n  return;\r\n}\r\n\r\n", 
+  "is_thunk": false, 
+  "name": "FUN_00450900", 
+  "assembly": "  00450900:  PUSH ESI\n  00450901:  MOV ESI,ECX\n  00450903:  FLD dword ptr [ESI + 0x13c]\n  00450909:  FCOMP dword ptr [0x0056a9fc]\n  0045090f:  FNSTSW AX\n  00450911:  TEST AH,0x1\n  00450914:  JNZ 0x00450950\n  00450916:  MOV EDX,dword ptr [ESI + 0x140]\n  0045091c:  XOR EAX,EAX\n  0045091e:  TEST EDX,EDX\n  00450920:  SETZ AL\n  00450923:  TEST EAX,EAX\n  00450925:  MOV dword ptr [ESI + 0x13c],0x0\n  0045092f:  MOV dword ptr [ESI + 0x140],EAX\n  00450935:  PUSH 0x0\n  00450937:  JZ 0x00450941\n  00450939:  MOV EAX,[0x005a623c]\n  0045093e:  PUSH EAX\n  0045093f:  JMP 0x00450948\n  00450941:  MOV ECX,dword ptr [0x005a6244]\n  00450947:  PUSH ECX\n  00450948:  LEA ECX,[ESI + 0x48]\n  0045094b:  CALL 0x0043fbc0\n  00450950:  FLD dword ptr [ESP + 0x8]\n  00450954:  FADD dword ptr [ESI + 0x13c]\n  0045095a:  MOV EAX,dword ptr [ESP + 0xc]\n  0045095e:  MOV ECX,dword ptr [ESP + 0x8]\n  00450962:  PUSH EAX\n  00450963:  PUSH ECX\n  00450964:  MOV ECX,ESI\n  00450966:  FSTP dword ptr [ESI + 0x13c]\n  0045096c:  MOV DL,byte ptr [ESI + 0xe8]\n  00450972:  MOV byte ptr [ESI + 0x148],DL\n  00450978:  CALL 0x00445c60\n  0045097d:  POP ESI\n  0045097e:  RET 0x8", 
+  "callers": []
+}

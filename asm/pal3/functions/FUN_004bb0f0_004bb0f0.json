@@ -1,0 +1,30 @@
+{
+  "address": "0x004bb0f0", 
+  "size_bytes": 141, 
+  "calling_convention": "unknown", 
+  "signature": "undefined FUN_004bb0f0(undefined4 param_1)", 
+  "callees": [], 
+  "global_refs": [
+    {
+      "address": "0x0056a63c", 
+      "type": null, 
+      "name": "DAT_0056a63c"
+    }, 
+    {
+      "address": "0x00000004", 
+      "type": null, 
+      "name": "DAT_00000004"
+    }
+  ], 
+  "has_custom_name": false, 
+  "decompiled_c": "\r\n/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */\r\n\r\nvoid __thiscall FUN_004bb0f0(int param_1_00,float param_1)\r\n\r\n{\r\n  float fVar1;\r\n  \r\n  fVar1 = _DAT_0056a63c / *(float *)(param_1_00 + 0xb0);\r\n  *(float *)(param_1_00 + 0x4c) = fVar1 * *(float *)(param_1_00 + 0x4c);\r\n  *(float *)(param_1_00 + 0x50) = fVar1 * *(float *)(param_1_00 + 0x50);\r\n  *(float *)(param_1_00 + 0x54) = fVar1 * *(float *)(param_1_00 + 0x54);\r\n  fVar1 = _DAT_0056a63c / *(float *)(param_1_00 + 0xb0);\r\n  *(float *)(param_1_00 + 0x40) = fVar1 * *(float *)(param_1_00 + 0x40);\r\n  *(float *)(param_1_00 + 0x44) = fVar1 * *(float *)(param_1_00 + 0x44);\r\n  *(float *)(param_1_00 + 0x48) = fVar1 * *(float *)(param_1_00 + 0x48);\r\n  *(float *)(param_1_00 + 0x4c) = param_1 * *(float *)(param_1_00 + 0x4c);\r\n  *(float *)(param_1_00 + 0x50) = param_1 * *(float *)(param_1_00 + 0x50);\r\n  *(float *)(param_1_00 + 0x54) = param_1 * *(float *)(param_1_00 + 0x54);\r\n  *(float *)(param_1_00 + 0x40) = param_1 * *(float *)(param_1_00 + 0x40);\r\n  *(float *)(param_1_00 + 0x44) = param_1 * *(float *)(param_1_00 + 0x44);\r\n  *(float *)(param_1_00 + 0x48) = param_1 * *(float *)(param_1_00 + 0x48);\r\n  *(float *)(param_1_00 + 0xb0) = param_1;\r\n  return;\r\n}\r\n\r\n", 
+  "is_thunk": false, 
+  "name": "FUN_004bb0f0", 
+  "assembly": "  004bb0f0:  FLD dword ptr [ECX + 0xb0]\n  004bb0f6:  FDIVR dword ptr [0x0056a63c]\n  004bb0fc:  MOV EAX,dword ptr [ESP + 0x4]\n  004bb100:  FLD ST0\n  004bb102:  FMUL dword ptr [ECX + 0x4c]\n  004bb105:  FSTP dword ptr [ECX + 0x4c]\n  004bb108:  FLD ST0\n  004bb10a:  FMUL dword ptr [ECX + 0x50]\n  004bb10d:  FSTP dword ptr [ECX + 0x50]\n  004bb110:  FMUL dword ptr [ECX + 0x54]\n  004bb113:  FSTP dword ptr [ECX + 0x54]\n  004bb116:  FLD dword ptr [ECX + 0xb0]\n  004bb11c:  FDIVR dword ptr [0x0056a63c]\n  004bb122:  FLD ST0\n  004bb124:  FMUL dword ptr [ECX + 0x40]\n  004bb127:  FSTP dword ptr [ECX + 0x40]\n  004bb12a:  FLD ST0\n  004bb12c:  FMUL dword ptr [ECX + 0x44]\n  004bb12f:  FSTP dword ptr [ECX + 0x44]\n  004bb132:  FMUL dword ptr [ECX + 0x48]\n  004bb135:  FSTP dword ptr [ECX + 0x48]\n  004bb138:  FLD dword ptr [ESP + 0x4]\n  004bb13c:  FMUL dword ptr [ECX + 0x4c]\n  004bb13f:  FSTP dword ptr [ECX + 0x4c]\n  004bb142:  FLD dword ptr [ESP + 0x4]\n  004bb146:  FMUL dword ptr [ECX + 0x50]\n  004bb149:  FSTP dword ptr [ECX + 0x50]\n  004bb14c:  FLD dword ptr [ESP + 0x4]\n  004bb150:  FMUL dword ptr [ECX + 0x54]\n  004bb153:  FSTP dword ptr [ECX + 0x54]\n  004bb156:  FLD dword ptr [ESP + 0x4]\n  004bb15a:  FMUL dword ptr [ECX + 0x40]\n  004bb15d:  FSTP dword ptr [ECX + 0x40]\n  004bb160:  FLD dword ptr [ESP + 0x4]\n  004bb164:  FMUL dword ptr [ECX + 0x44]\n  004bb167:  FSTP dword ptr [ECX + 0x44]\n  004bb16a:  FLD dword ptr [ESP + 0x4]\n  004bb16e:  FMUL dword ptr [ECX + 0x48]\n  004bb171:  FSTP dword ptr [ECX + 0x48]\n  004bb174:  MOV dword ptr [ECX + 0xb0],EAX\n  004bb17a:  RET 0x4", 
+  "callers": [
+    {
+      "address": "0x004bb190", 
+      "name": "FUN_004bb190"
+    }
+  ]
+}

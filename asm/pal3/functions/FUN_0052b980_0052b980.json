@@ -1,0 +1,29 @@
+{
+  "address": "0x0052b980", 
+  "size_bytes": 31, 
+  "calling_convention": "unknown", 
+  "signature": "undefined FUN_0052b980(void)", 
+  "callees": [
+    {
+      "address": "0x0000011d", 
+      "name": "~gbVisNode"
+    }, 
+    {
+      "address": "0x00541d10", 
+      "name": "FUN_00541d10"
+    }
+  ], 
+  "global_refs": [
+    {
+      "address": "0x0056a488", 
+      "type": null, 
+      "name": "PTR_~gbVisNode_0056a488"
+    }
+  ], 
+  "has_custom_name": false, 
+  "decompiled_c": "\r\ngbVisNode * __thiscall FUN_0052b980(gbVisNode *param_1,byte param_2)\r\n\r\n{\r\n  gbVisNode::~gbVisNode(param_1);\r\n  if ((param_2 & 1) != 0) {\r\n    FUN_00541d10(param_1);\r\n  }\r\n  return param_1;\r\n}\r\n\r\n", 
+  "is_thunk": false, 
+  "name": "FUN_0052b980", 
+  "assembly": "  0052b980:  PUSH ESI\n  0052b981:  MOV ESI,ECX\n  0052b983:  CALL dword ptr [0x0056a488]\n  0052b989:  TEST byte ptr [ESP + 0x8],0x1\n  0052b98e:  JZ 0x0052b999\n  0052b990:  PUSH ESI\n  0052b991:  CALL 0x00541d10\n  0052b996:  ADD ESP,0x4\n  0052b999:  MOV EAX,ESI\n  0052b99b:  POP ESI\n  0052b99c:  RET 0x4", 
+  "callers": []
+}

@@ -1,0 +1,20 @@
+{
+  "address": "0x0042c700", 
+  "size_bytes": 35, 
+  "calling_convention": "unknown", 
+  "signature": "undefined FUN_0042c700(void)", 
+  "callees": [], 
+  "global_refs": [
+    {
+      "address": "0x005833bc", 
+      "type": null, 
+      "name": "DAT_005833bc"
+    }
+  ], 
+  "has_custom_name": false, 
+  "decompiled_c": "\r\nvoid __fastcall FUN_0042c700(int param_1)\r\n\r\n{\r\n  if (((*(char *)(param_1 + 0xf4) == '+') &&\r\n      (*(gbSound3DNode **)(param_1 + 0x36c) != (gbSound3DNode *)0x0)) && ((DAT_005833bc & 1) != 0))\r\n  {\r\n                    /* WARNING: Could not recover jumptable at 0x0042c71c. Too many branches */\r\n                    /* WARNING: Treating indirect jump as call */\r\n    gbSound3DNode::Stop(*(gbSound3DNode **)(param_1 + 0x36c));\r\n    return;\r\n  }\r\n  return;\r\n}\r\n\r\n", 
+  "is_thunk": false, 
+  "name": "FUN_0042c700", 
+  "assembly": "  0042c700:  CMP byte ptr [ECX + 0xf4],0x2b\n  0042c707:  JNZ 0x0042c722\n  0042c709:  MOV ECX,dword ptr [ECX + 0x36c]\n  0042c70f:  TEST ECX,ECX\n  0042c711:  JZ 0x0042c722\n  0042c713:  TEST byte ptr [0x005833bc],0x1\n  0042c71a:  JZ 0x0042c722\n  0042c71c:  JMP dword ptr [0x0056a364]\n  0042c722:  RET", 
+  "callers": []
+}

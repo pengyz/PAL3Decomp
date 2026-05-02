@@ -1,0 +1,45 @@
+{
+  "address": "0x004206f0", 
+  "size_bytes": 62, 
+  "calling_convention": "unknown", 
+  "signature": "undefined FUN_004206f0(void)", 
+  "callees": [
+    {
+      "address": "0x004204b0", 
+      "name": "FUN_004204b0"
+    }
+  ], 
+  "global_refs": [
+    {
+      "address": "0x-0000020", 
+      "type": null, 
+      "name": "DAT_-0000020"
+    }, 
+    {
+      "address": "0x-000001c", 
+      "type": null, 
+      "name": "DAT_-000001c"
+    }, 
+    {
+      "address": "0x-0000018", 
+      "type": null, 
+      "name": "DAT_-0000018"
+    }, 
+    {
+      "address": "0x-0000014", 
+      "type": null, 
+      "name": "DAT_-0000014"
+    }
+  ], 
+  "has_custom_name": false, 
+  "decompiled_c": "\r\nvoid __fastcall FUN_004206f0(int param_1)\r\n\r\n{\r\n  FUN_004204b0(0,0,*(undefined4 *)(*(int *)(param_1 + 0x100) + 0x98),\r\n               *(undefined4 *)(*(int *)(param_1 + 0x100) + 0x9c),0);\r\n  *(undefined *)(param_1 + 0x104) = 1;\r\n  return;\r\n}\r\n\r\n", 
+  "is_thunk": false, 
+  "name": "FUN_004206f0", 
+  "assembly": "  004206f0:  PUSH EBX\n  004206f1:  PUSH ESI\n  004206f2:  XOR EDX,EDX\n  004206f4:  PUSH EDI\n  004206f5:  PUSH EDX\n  004206f6:  MOV ESI,ECX\n  004206f8:  SUB ESP,0x10\n  004206fb:  XOR ECX,ECX\n  004206fd:  MOV EAX,dword ptr [ESI + 0x100]\n  00420703:  MOV EBX,ESP\n  00420705:  MOV EDI,dword ptr [EAX + 0x98]\n  0042070b:  MOV EAX,dword ptr [EAX + 0x9c]\n  00420711:  MOV dword ptr [EBX],EDX\n  00420713:  MOV dword ptr [EBX + 0x4],ECX\n  00420716:  MOV ECX,ESI\n  00420718:  MOV dword ptr [EBX + 0x8],EDI\n  0042071b:  MOV dword ptr [EBX + 0xc],EAX\n  0042071e:  CALL 0x004204b0\n  00420723:  MOV byte ptr [ESI + 0x104],0x1\n  0042072a:  POP EDI\n  0042072b:  POP ESI\n  0042072c:  POP EBX\n  0042072d:  RET", 
+  "callers": [
+    {
+      "address": "0x00422950", 
+      "name": "FUN_00422950"
+    }
+  ]
+}

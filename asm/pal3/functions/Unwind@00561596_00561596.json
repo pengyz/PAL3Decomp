@@ -1,0 +1,25 @@
+{
+  "address": "0x00561596", 
+  "size_bytes": 27, 
+  "calling_convention": "unknown", 
+  "signature": "undefined Unwind@00561596(void)", 
+  "callees": [
+    {
+      "address": "0x00553549", 
+      "name": "FUN_00553549"
+    }
+  ], 
+  "global_refs": [
+    {
+      "address": "0x00442390", 
+      "type": null, 
+      "name": "FUN_00442390"
+    }
+  ], 
+  "has_custom_name": true, 
+  "decompiled_c": "\r\nvoid Unwind_00561596(void)\r\n\r\n{\r\n  int unaff_EBP;\r\n  \r\n  FUN_00553549(*(int *)(unaff_EBP + -0x10) + 0x17a9c,0x98,0xd,FUN_00442390);\r\n  return;\r\n}\r\n\r\n", 
+  "is_thunk": false, 
+  "name": "Unwind@00561596", 
+  "assembly": "  00561596:  PUSH 0x442390\n  0056159b:  PUSH 0xd\n  0056159d:  PUSH 0x98\n  005615a2:  MOV EAX,dword ptr [EBP + -0x10]\n  005615a5:  ADD EAX,0x17a9c\n  005615aa:  PUSH EAX\n  005615ab:  CALL 0x00553549\n  005615b0:  RET", 
+  "callers": []
+}

@@ -1,0 +1,44 @@
+{
+  "address": "0x00541bd2", 
+  "size_bytes": 38, 
+  "calling_convention": "unknown", 
+  "signature": "undefined Catch@00541bd2(void)", 
+  "callees": [
+    {
+      "address": "0x00408bc0", 
+      "name": "FUN_00408bc0"
+    }, 
+    {
+      "address": "0x0000004b", 
+      "name": "MessageBoxA"
+    }
+  ], 
+  "global_refs": [
+    {
+      "address": "0x00608fc8", 
+      "type": null, 
+      "name": "s_Pal3::Exception_..._00608fc8"
+    }, 
+    {
+      "address": "0x00bfd774", 
+      "type": null, 
+      "name": "DAT_00bfd774"
+    }, 
+    {
+      "address": "0x0056a134", 
+      "type": null, 
+      "name": "PTR_MessageBoxA_0056a134"
+    }, 
+    {
+      "address": "0x00541bf8", 
+      "type": null, 
+      "name": "DAT_00541bf8"
+    }
+  ], 
+  "has_custom_name": true, 
+  "decompiled_c": "\r\nundefined * Catch_00541bd2(void)\r\n\r\n{\r\n  LPCSTR lpText;\r\n  char *lpCaption;\r\n  UINT uType;\r\n  \r\n  uType = 0;\r\n  lpCaption = s_Pal3__Exception_____00608fc8;\r\n  lpText = (LPCSTR)FUN_00408bc0();\r\n  MessageBoxA(DAT_00bfd774,lpText,lpCaption,uType);\r\n  return &DAT_00541bf8;\r\n}\r\n\r\n", 
+  "is_thunk": false, 
+  "name": "Catch@00541bd2", 
+  "assembly": "  00541bd2:  PUSH 0x0\n  00541bd4:  PUSH 0x608fc8\n  00541bd9:  LEA ECX,[EBP + 0xfffff974]\n  00541bdf:  CALL 0x00408bc0\n  00541be4:  MOV ECX,dword ptr [0x00bfd774]\n  00541bea:  PUSH EAX\n  00541beb:  PUSH ECX\n  00541bec:  CALL dword ptr [0x0056a134]\n  00541bf2:  MOV EAX,0x541bf8\n  00541bf7:  RET", 
+  "callers": []
+}

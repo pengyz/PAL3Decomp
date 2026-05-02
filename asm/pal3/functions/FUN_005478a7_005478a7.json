@@ -1,0 +1,45 @@
+{
+  "address": "0x005478a7", 
+  "size_bytes": 202, 
+  "calling_convention": "unknown", 
+  "signature": "undefined FUN_005478a7(undefined4 param_1, undefined4 param_2)", 
+  "callees": [], 
+  "global_refs": [
+    {
+      "address": "0x00000004", 
+      "type": null, 
+      "name": "DAT_00000004"
+    }, 
+    {
+      "address": "0x00000008", 
+      "type": null, 
+      "name": "DAT_00000008"
+    }, 
+    {
+      "address": "0x-000000c", 
+      "type": null, 
+      "name": "DAT_-000000c"
+    }, 
+    {
+      "address": "0x-0000008", 
+      "type": null, 
+      "name": "DAT_-0000008"
+    }, 
+    {
+      "address": "0x00609300", 
+      "type": null, 
+      "name": "DAT_00609300"
+    }, 
+    {
+      "address": "0x00609304", 
+      "type": null, 
+      "name": "DAT_00609304"
+    }
+  ], 
+  "has_custom_name": false, 
+  "decompiled_c": "\r\nfloat * FUN_005478a7(float *param_1,float *param_2)\r\n\r\n{\r\n  float fVar1;\r\n  float fVar2;\r\n  float fVar3;\r\n  uint uVar4;\r\n  float10 fVar5;\r\n  \r\n  fVar5 = (float10)*param_2 * (float10)*param_2 + (float10)param_2[1] * (float10)param_2[1] +\r\n          (float10)param_2[2] * (float10)param_2[2];\r\n  fVar1 = (float)fVar5;\r\n  if (fVar1 == 0.0) {\r\n    ffree(fVar5);\r\n    *param_1 = 0.0;\r\n    param_1[1] = 0.0;\r\n    param_1[2] = 0.0;\r\n  }\r\n  else if ((uint)ABS((float)(fVar5 - (float10)1)) < 0x3727c5ad) {\r\n    if (param_1 != param_2) {\r\n      *param_1 = *param_2;\r\n      param_1[1] = param_2[1];\r\n      param_1[2] = param_2[2];\r\n    }\r\n  }\r\n  else {\r\n    uVar4 = (uint)fVar1 >> 0xc & 0xff8;\r\n    fVar3 = ((float)((uint)fVar1 & 0xffffff | 0x3f000000) * *(float *)(&DAT_00609300 + uVar4) +\r\n            *(float *)(&DAT_00609304 + uVar4)) * (float)(0xbeffffffU - (int)fVar1 >> 1 & 0xff800000)\r\n    ;\r\n    fVar1 = param_2[1];\r\n    fVar2 = param_2[2];\r\n    *param_1 = *param_2 * fVar3;\r\n    param_1[1] = fVar1 * fVar3;\r\n    param_1[2] = fVar2 * fVar3;\r\n  }\r\n  return param_1;\r\n}\r\n\r\n", 
+  "is_thunk": false, 
+  "name": "FUN_005478a7", 
+  "assembly": "  005478a7:  PUSH EBP\n  005478a8:  MOV EBP,ESP\n  005478aa:  PUSH ECX\n  005478ab:  PUSH ECX\n  005478ac:  PUSH EDI\n  005478ad:  MOV ECX,dword ptr [EBP + 0x8]\n  005478b0:  MOV EDX,dword ptr [EBP + 0xc]\n  005478b3:  FLD dword ptr [EDX]\n  005478b5:  FMUL dword ptr [EDX]\n  005478b7:  FLD dword ptr [EDX + 0x4]\n  005478ba:  FMUL dword ptr [EDX + 0x4]\n  005478bd:  FLD dword ptr [EDX + 0x8]\n  005478c0:  FMUL dword ptr [EDX + 0x8]\n  005478c3:  FXCH ST2\n  005478c5:  FADDP\n  005478c7:  FADDP\n  005478c9:  FST dword ptr [EBP + -0x8]\n  005478cc:  MOV EAX,dword ptr [EBP + -0x8]\n  005478cf:  TEST EAX,EAX\n  005478d1:  JNZ 0x005478e2\n  005478d3:  FFREE ST0\n  005478d5:  MOV dword ptr [ECX],EAX\n  005478d7:  MOV dword ptr [ECX + 0x4],EAX\n  005478da:  MOV dword ptr [ECX + 0x8],EAX\n  005478dd:  JMP 0x00547969\n  005478e2:  FLD1\n  005478e4:  FSUBP\n  005478e6:  FSTP dword ptr [EBP + -0x4]\n  005478e9:  MOV EAX,dword ptr [EBP + -0x4]\n  005478ec:  AND EAX,0x7fffffff\n  005478f1:  CMP EAX,0x3727c5ac\n  005478f6:  JG 0x0054790e\n  005478f8:  CMP ECX,EDX\n  005478fa:  JZ 0x00547969\n  005478fc:  MOV EAX,dword ptr [EDX]\n  005478fe:  MOV dword ptr [ECX],EAX\n  00547900:  MOV EAX,dword ptr [EDX + 0x4]\n  00547903:  MOV dword ptr [ECX + 0x4],EAX\n  00547906:  MOV EAX,dword ptr [EDX + 0x8]\n  00547909:  MOV dword ptr [ECX + 0x8],EAX\n  0054790c:  JMP 0x00547969\n  0054790e:  MOV EAX,dword ptr [EBP + -0x8]\n  00547911:  MOV EDI,EAX\n  00547913:  SHR EDI,0xc\n  00547916:  AND EAX,0xffffff\n  0054791b:  AND EDI,0xff8\n  00547921:  OR EAX,0x3f000000\n  00547926:  MOV dword ptr [EBP + -0x4],EAX\n  00547929:  FLD dword ptr [EBP + -0x4]\n  0054792c:  FMUL dword ptr [EDI + 0x609300]\n  00547932:  MOV EAX,0xbeffffff\n  00547937:  SUB EAX,dword ptr [EBP + -0x8]\n  0054793a:  FADD dword ptr [EDI + 0x609304]\n  00547940:  SHR EAX,0x1\n  00547942:  AND EAX,0xff800000\n  00547947:  MOV dword ptr [EBP + -0x4],EAX\n  0054794a:  FMUL dword ptr [EBP + -0x4]\n  0054794d:  FLD dword ptr [EDX]\n  0054794f:  FMUL ST1\n  00547951:  FLD dword ptr [EDX + 0x4]\n  00547954:  FMUL ST2\n  00547956:  FLD dword ptr [EDX + 0x8]\n  00547959:  FMUL ST3\n  0054795b:  FXCH ST2\n  0054795d:  FSTP dword ptr [ECX]\n  0054795f:  FSTP dword ptr [ECX + 0x4]\n  00547962:  FSTP dword ptr [ECX + 0x8]\n  00547965:  FSTP ST0\n  00547967:  JMP 0x00547969\n  00547969:  MOV EAX,dword ptr [EBP + 0x8]\n  0054796c:  POP EDI\n  0054796d:  LEAVE\n  0054796e:  RET 0x8", 
+  "callers": []
+}

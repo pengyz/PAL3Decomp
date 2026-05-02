@@ -1,0 +1,35 @@
+{
+  "address": "0x004be460", 
+  "size_bytes": 57, 
+  "calling_convention": "unknown", 
+  "signature": "undefined FUN_004be460(undefined4 param_1)", 
+  "callees": [], 
+  "global_refs": [
+    {
+      "address": "0x-0000010", 
+      "type": null, 
+      "name": "DAT_-0000010"
+    }, 
+    {
+      "address": "0x-000000c", 
+      "type": null, 
+      "name": "DAT_-000000c"
+    }, 
+    {
+      "address": "0x-0000004", 
+      "type": null, 
+      "name": "DAT_-0000004"
+    }, 
+    {
+      "address": "0x00000004", 
+      "type": null, 
+      "name": "DAT_00000004"
+    }
+  ], 
+  "has_custom_name": false, 
+  "decompiled_c": "\r\nvoid __thiscall FUN_004be460(int param_1_00,undefined4 param_1)\r\n\r\n{\r\n  if (*(int *)(param_1_00 + 0x94) != 0) {\r\n    (**(code **)(*(int *)**(undefined4 **)(param_1_00 + 0x74) + 0x14))\r\n              (param_1,*(undefined4 *)(param_1_00 + 0x6c),*(undefined4 *)(param_1_00 + 0x70));\r\n  }\r\n  return;\r\n}\r\n\r\n", 
+  "is_thunk": false, 
+  "name": "FUN_004be460", 
+  "assembly": "  004be460:  MOV EAX,dword ptr [ECX + 0x94]\n  004be466:  SUB ESP,0x10\n  004be469:  TEST EAX,EAX\n  004be46b:  JZ 0x004be493\n  004be46d:  ADD ECX,0x6c\n  004be470:  MOV EAX,dword ptr [ECX]\n  004be472:  MOV dword ptr [ESP],EAX\n  004be476:  MOV EDX,dword ptr [ECX + 0x4]\n  004be479:  MOV dword ptr [ESP + 0x4],EDX\n  004be47d:  MOV EAX,dword ptr [ECX + 0x8]\n  004be480:  MOV ECX,dword ptr [ECX + 0xc]\n  004be483:  MOV dword ptr [ESP + 0xc],ECX\n  004be487:  MOV ECX,dword ptr [EAX]\n  004be489:  MOV EAX,dword ptr [ESP + 0x14]\n  004be48d:  MOV EDX,dword ptr [ECX]\n  004be48f:  PUSH EAX\n  004be490:  CALL dword ptr [EDX + 0x14]\n  004be493:  ADD ESP,0x10\n  004be496:  RET 0x4", 
+  "callers": []
+}

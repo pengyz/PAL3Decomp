@@ -1,0 +1,49 @@
+{
+  "address": "0x00530f70", 
+  "size_bytes": 157, 
+  "calling_convention": "unknown", 
+  "signature": "undefined FUN_00530f70(undefined4 param_1)", 
+  "callees": [
+    {
+      "address": "0x00536ac0", 
+      "name": "FUN_00536ac0"
+    }, 
+    {
+      "address": "0x00530be0", 
+      "name": "FUN_00530be0"
+    }
+  ], 
+  "global_refs": [
+    {
+      "address": "0x00000004", 
+      "type": null, 
+      "name": "DAT_00000004"
+    }, 
+    {
+      "address": "0x0056a644", 
+      "type": null, 
+      "name": "DAT_0056a644"
+    }, 
+    {
+      "address": "0x005f50b4", 
+      "type": null, 
+      "name": "PTR_DAT_005f50b4"
+    }, 
+    {
+      "address": "0x005834c8", 
+      "type": null, 
+      "name": "DAT_005834c8"
+    }
+  ], 
+  "has_custom_name": false, 
+  "decompiled_c": "\r\n/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */\r\n\r\nvoid __thiscall FUN_00530f70(int param_1_00,float param_1)\r\n\r\n{\r\n  if (*(char *)(param_1_00 + 0x31d) == '\\0') {\r\n    param_1 = param_1 * *(float *)(param_1_00 + 0x318);\r\n    if (*(char *)(param_1_00 + 0x31c) == '\\0') {\r\n      param_1 = param_1 + *(float *)(param_1_00 + 0x294);\r\n      *(float *)(param_1_00 + 0x294) = param_1;\r\n      if (*(float *)(param_1_00 + 0x29c) <= param_1) {\r\n        *(undefined *)(param_1_00 + 0x31c) = 1;\r\n        *(undefined4 *)(param_1_00 + 0x294) = *(undefined4 *)(param_1_00 + 0x29c);\r\n        *(undefined *)(param_1_00 + 0x31d) = 1;\r\n      }\r\n      *(undefined *)(param_1_00 + 799) = 1;\r\n    }\r\n    else {\r\n      param_1 = *(float *)(param_1_00 + 0x294) - param_1;\r\n      *(float *)(param_1_00 + 0x294) = param_1;\r\n      if (param_1 <= _DAT_0056a644) {\r\n        *(undefined *)(param_1_00 + 0x31c) = 0;\r\n        FUN_00536ac0(PTR_DAT_005f50b4,0);\r\n        FUN_00530be0(0);\r\n        return;\r\n      }\r\n    }\r\n  }\r\n  return;\r\n}\r\n\r\n", 
+  "is_thunk": false, 
+  "name": "FUN_00530f70", 
+  "assembly": "  00530f70:  PUSH ESI\n  00530f71:  MOV ESI,ECX\n  00530f73:  MOV AL,byte ptr [ESI + 0x31d]\n  00530f79:  TEST AL,AL\n  00530f7b:  JNZ 0x00531009\n  00530f81:  MOV AL,byte ptr [ESI + 0x31c]\n  00530f87:  FLD dword ptr [ESP + 0x8]\n  00530f8b:  FMUL dword ptr [ESI + 0x318]\n  00530f91:  TEST AL,AL\n  00530f93:  JZ 0x00530fd1\n  00530f95:  FSUBR dword ptr [ESI + 0x294]\n  00530f9b:  FST dword ptr [ESI + 0x294]\n  00530fa1:  FCOMP dword ptr [0x0056a644]\n  00530fa7:  FNSTSW AX\n  00530fa9:  TEST AH,0x41\n  00530fac:  JZ 0x00531009\n  00530fae:  MOV ECX,dword ptr [ESI]\n  00530fb0:  MOV byte ptr [ESI + 0x31c],0x0\n  00530fb7:  MOV EAX,[0x005f50b4]\n  00530fbc:  PUSH 0x0\n  00530fbe:  PUSH EAX\n  00530fbf:  CALL 0x00536ac0\n  00530fc4:  PUSH 0x0\n  00530fc6:  MOV ECX,ESI\n  00530fc8:  CALL 0x00530be0\n  00530fcd:  POP ESI\n  00530fce:  RET 0x4\n  00530fd1:  FADD dword ptr [ESI + 0x294]\n  00530fd7:  MOV CL,0x1\n  00530fd9:  FST dword ptr [ESI + 0x294]\n  00530fdf:  FCOMP dword ptr [ESI + 0x29c]\n  00530fe5:  FNSTSW AX\n  00530fe7:  TEST CL,AH\n  00530fe9:  JNZ 0x00531003\n  00530feb:  MOV EDX,dword ptr [ESI + 0x29c]\n  00530ff1:  MOV byte ptr [ESI + 0x31c],CL\n  00530ff7:  MOV dword ptr [ESI + 0x294],EDX\n  00530ffd:  MOV byte ptr [ESI + 0x31d],CL\n  00531003:  MOV byte ptr [ESI + 0x31f],CL\n  00531009:  POP ESI\n  0053100a:  RET 0x4", 
+  "callers": [
+    {
+      "address": "0x00531260", 
+      "name": "FUN_00531260"
+    }
+  ]
+}

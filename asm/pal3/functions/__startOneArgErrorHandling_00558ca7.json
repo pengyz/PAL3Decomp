@@ -1,0 +1,77 @@
+{
+  "address": "0x00558ca7", 
+  "size_bytes": 60, 
+  "calling_convention": "unknown", 
+  "signature": "undefined __startOneArgErrorHandling(undefined2 param_1, undefined param_2, undefined4 param_3, undefined4 param_4)", 
+  "callees": [
+    {
+      "address": "0x0055c015", 
+      "name": "FUN_0055c015"
+    }
+  ], 
+  "global_refs": [
+    {
+      "address": "0x-0000024", 
+      "type": null, 
+      "name": "DAT_-0000024"
+    }, 
+    {
+      "address": "0x-000000c", 
+      "type": null, 
+      "name": "DAT_-000000c"
+    }, 
+    {
+      "address": "0x-0000020", 
+      "type": null, 
+      "name": "DAT_-0000020"
+    }, 
+    {
+      "address": "0x0000000c", 
+      "type": null, 
+      "name": "DAT_0000000c"
+    }, 
+    {
+      "address": "0x00000010", 
+      "type": null, 
+      "name": "DAT_00000010"
+    }, 
+    {
+      "address": "0x-000001c", 
+      "type": null, 
+      "name": "DAT_-000001c"
+    }, 
+    {
+      "address": "0x-0000018", 
+      "type": null, 
+      "name": "DAT_-0000018"
+    }, 
+    {
+      "address": "0x00000004", 
+      "type": null, 
+      "name": "DAT_00000004"
+    }
+  ], 
+  "has_custom_name": true, 
+  "decompiled_c": "\r\n/* Library Function - Single Match\r\n    __startOneArgErrorHandling\r\n   \r\n   Library: Visual Studio */\r\n\r\nfloat10 __fastcall\r\n__startOneArgErrorHandling\r\n          (undefined4 param_1_00,undefined4 param_2_00,undefined2 param_1,undefined4 param_2,\r\n          undefined4 param_3,undefined4 param_4)\r\n\r\n{\r\n  float10 in_ST0;\r\n  undefined local_24 [8];\r\n  undefined4 local_1c;\r\n  undefined4 local_18;\r\n  double local_c;\r\n  \r\n  local_c = (double)in_ST0;\r\n  local_1c = param_3;\r\n  local_18 = param_4;\r\n  FUN_0055c015(param_2_00,local_24,&param_1);\r\n  return (float10)local_c;\r\n}\r\n\r\n", 
+  "is_thunk": false, 
+  "name": "__startOneArgErrorHandling", 
+  "assembly": "  00558ca7:  PUSH EBP\n  00558ca8:  MOV EBP,ESP\n  00558caa:  ADD ESP,-0x20\n  00558cad:  MOV dword ptr [EBP + -0x20],EAX\n  00558cb0:  FSTP qword ptr [EBP + -0x8]\n  00558cb3:  MOV dword ptr [EBP + -0x1c],ECX\n  00558cb6:  MOV EAX,dword ptr [EBP + 0x10]\n  00558cb9:  MOV ECX,dword ptr [EBP + 0x14]\n  00558cbc:  MOV dword ptr [EBP + -0x18],EAX\n  00558cbf:  MOV dword ptr [EBP + -0x14],ECX\n  00558cc2:  LEA EAX,[EBP + 0x8]\n  00558cc5:  LEA ECX,[EBP + -0x20]\n  00558cc8:  PUSH EAX\n  00558cc9:  PUSH ECX\n  00558cca:  PUSH EDX\n  00558ccb:  CALL 0x0055c015\n  00558cd0:  ADD ESP,0xc\n  00558cd3:  FLD qword ptr [EBP + -0x8]\n  00558cd6:  CMP word ptr [EBP + 0x8],0x27f\n  00558cdc:  JZ 0x00558ce1\n  00558cde:  FLDCW word ptr [EBP + 0x8]\n  00558ce1:  LEAVE\n  00558ce2:  RET", 
+  "callers": [
+    {
+      "address": "0x0055437d", 
+      "name": "FUN_0055437d"
+    }, 
+    {
+      "address": "0x00558d9b", 
+      "name": "__math_exit"
+    }, 
+    {
+      "address": "0x0055444d", 
+      "name": "FUN_0055444d"
+    }, 
+    {
+      "address": "0x00558dd9", 
+      "name": "FUN_00558dd9"
+    }
+  ]
+}

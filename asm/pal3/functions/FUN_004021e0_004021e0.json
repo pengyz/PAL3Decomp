@@ -1,0 +1,42 @@
+{
+  "address": "0x004021e0", 
+  "size_bytes": 63, 
+  "calling_convention": "unknown", 
+  "signature": "undefined FUN_004021e0(undefined4 param_1, undefined4 param_2)", 
+  "callees": [
+    {
+      "address": "0x00402310", 
+      "name": "FUN_00402310"
+    }, 
+    {
+      "address": "0x00402360", 
+      "name": "FUN_00402360"
+    }, 
+    {
+      "address": "0x00402380", 
+      "name": "FUN_00402380"
+    }, 
+    {
+      "address": "0x004023d0", 
+      "name": "FUN_004023d0"
+    }
+  ], 
+  "global_refs": [
+    {
+      "address": "0x00000004", 
+      "type": null, 
+      "name": "DAT_00000004"
+    }, 
+    {
+      "address": "0x00000008", 
+      "type": null, 
+      "name": "DAT_00000008"
+    }
+  ], 
+  "has_custom_name": false, 
+  "decompiled_c": "\r\nvoid __thiscall FUN_004021e0(int param_1_00,int param_1,int param_2)\r\n\r\n{\r\n  *(int *)(param_1_00 + 0x186c) = param_1;\r\n  if (param_1 == 0) {\r\n    FUN_00402360();\r\n  }\r\n  else {\r\n    FUN_00402310();\r\n  }\r\n  *(int *)(param_1_00 + 0x1870) = param_2;\r\n  if (param_2 != 0) {\r\n    FUN_00402380();\r\n    return;\r\n  }\r\n  FUN_004023d0();\r\n  return;\r\n}\r\n\r\n", 
+  "is_thunk": false, 
+  "name": "FUN_004021e0", 
+  "assembly": "  004021e0:  MOV EAX,dword ptr [ESP + 0x4]\n  004021e4:  PUSH ESI\n  004021e5:  MOV ESI,ECX\n  004021e7:  TEST EAX,EAX\n  004021e9:  MOV dword ptr [ESI + 0x186c],EAX\n  004021ef:  JZ 0x004021f8\n  004021f1:  CALL 0x00402310\n  004021f6:  JMP 0x004021fd\n  004021f8:  CALL 0x00402360\n  004021fd:  MOV EAX,dword ptr [ESP + 0xc]\n  00402201:  MOV ECX,ESI\n  00402203:  TEST EAX,EAX\n  00402205:  MOV dword ptr [ESI + 0x1870],EAX\n  0040220b:  JZ 0x00402216\n  0040220d:  CALL 0x00402380\n  00402212:  POP ESI\n  00402213:  RET 0xc\n  00402216:  CALL 0x004023d0\n  0040221b:  POP ESI\n  0040221c:  RET 0xc", 
+  "callers": []
+}

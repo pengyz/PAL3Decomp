@@ -1,0 +1,48 @@
+{
+  "address": "0x00511030", 
+  "size_bytes": 128, 
+  "calling_convention": "unknown", 
+  "signature": "undefined FUN_00511030(void)", 
+  "callees": [
+    {
+      "address": "0x0000015b", 
+      "name": "GetDynVertBuf"
+    }, 
+    {
+      "address": "0x0000015c", 
+      "name": "RenderGeomQuad"
+    }
+  ], 
+  "global_refs": [
+    {
+      "address": "0x00bfda60", 
+      "type": null, 
+      "name": "DAT_00bfda60"
+    }, 
+    {
+      "address": "0x0056a580", 
+      "type": null, 
+      "name": "PTR_GetDynVertBuf_0056a580"
+    }, 
+    {
+      "address": "0x0056a584", 
+      "type": null, 
+      "name": "PTR_RenderGeomQuad_0056a584"
+    }
+  ], 
+  "has_custom_name": false, 
+  "decompiled_c": "\r\nvoid __thiscall FUN_00511030(int param_1,undefined param_2)\r\n\r\n{\r\n  gbDynVertBuf *this;\r\n  \r\n  this = gbVertPoolMgr::GetDynVertBuf(*(gbVertPoolMgr **)(DAT_00bfda60 + 0xc4),0x15);\r\n  *(undefined *)(param_1 + 0x2ee) = 0xff;\r\n  *(undefined *)(param_1 + 0x2ed) = 0xff;\r\n  *(undefined *)(param_1 + 0x2ec) = 0xff;\r\n  *(undefined *)(param_1 + 0x2ef) = param_2;\r\n  *(undefined *)(param_1 + 0x333) = param_2;\r\n  gbDynVertBuf::RenderGeomQuad\r\n            (this,(gbGeomQuad *)(param_1 + 0x2ac),1,*(gbRenderEffect **)(param_1 + 0x298),\r\n             *(gbTextureArray **)(param_1 + 0x2a0));\r\n  gbDynVertBuf::RenderGeomQuad\r\n            (this,(gbGeomQuad *)(param_1 + 0x2f0),1,*(gbRenderEffect **)(param_1 + 0x298),\r\n             *(gbTextureArray **)(param_1 + 0x2a8));\r\n  return;\r\n}\r\n\r\n", 
+  "is_thunk": false, 
+  "name": "FUN_00511030", 
+  "assembly": "  00511030:  MOV EAX,[0x00bfda60]\n  00511035:  PUSH EBX\n  00511036:  PUSH ESI\n  00511037:  MOV ESI,ECX\n  00511039:  MOV ECX,dword ptr [EAX + 0xc4]\n  0051103f:  PUSH EDI\n  00511040:  PUSH 0x15\n  00511042:  CALL dword ptr [0x0056a580]\n  00511048:  MOV ECX,dword ptr [ESI + 0x2a0]\n  0051104e:  MOV EDX,dword ptr [ESI + 0x298]\n  00511054:  MOV EDI,EAX\n  00511056:  MOV AL,0xff\n  00511058:  MOV EBX,dword ptr [0x0056a584]\n  0051105e:  MOV byte ptr [ESI + 0x2ee],AL\n  00511064:  MOV byte ptr [ESI + 0x2ed],AL\n  0051106a:  MOV byte ptr [ESI + 0x2ec],AL\n  00511070:  MOV AL,byte ptr [ESP + 0x10]\n  00511074:  PUSH ECX\n  00511075:  MOV byte ptr [ESI + 0x2ef],AL\n  0051107b:  MOV byte ptr [ESI + 0x333],AL\n  00511081:  PUSH EDX\n  00511082:  LEA EAX,[ESI + 0x2ac]\n  00511088:  PUSH 0x1\n  0051108a:  PUSH EAX\n  0051108b:  MOV ECX,EDI\n  0051108d:  CALL EBX\n  0051108f:  MOV ECX,dword ptr [ESI + 0x2a8]\n  00511095:  MOV EDX,dword ptr [ESI + 0x298]\n  0051109b:  PUSH ECX\n  0051109c:  PUSH EDX\n  0051109d:  ADD ESI,0x2f0\n  005110a3:  PUSH 0x1\n  005110a5:  PUSH ESI\n  005110a6:  MOV ECX,EDI\n  005110a8:  CALL EBX\n  005110aa:  POP EDI\n  005110ab:  POP ESI\n  005110ac:  POP EBX\n  005110ad:  RET 0x4", 
+  "callers": [
+    {
+      "address": "0x004fc3a0", 
+      "name": "FUN_004fc3a0"
+    }, 
+    {
+      "address": "0x004dfa10", 
+      "name": "FUN_004dfa10"
+    }
+  ]
+}

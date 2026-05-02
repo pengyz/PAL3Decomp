@@ -1,0 +1,30 @@
+{
+  "address": "0x0051b9a0", 
+  "size_bytes": 69, 
+  "calling_convention": "unknown", 
+  "signature": "undefined FUN_0051b9a0(undefined4 param_1, undefined4 param_2)", 
+  "callees": [
+    {
+      "address": "0x0051b950", 
+      "name": "FUN_0051b950"
+    }
+  ], 
+  "global_refs": [
+    {
+      "address": "0x00000008", 
+      "type": null, 
+      "name": "DAT_00000008"
+    }, 
+    {
+      "address": "0x00000004", 
+      "type": null, 
+      "name": "DAT_00000004"
+    }
+  ], 
+  "has_custom_name": false, 
+  "decompiled_c": "\r\nint __thiscall FUN_0051b9a0(int param_1_00,undefined4 param_1,undefined4 param_2)\r\n\r\n{\r\n  char cVar1;\r\n  int iVar2;\r\n  int *piVar3;\r\n  \r\n  iVar2 = 0;\r\n  piVar3 = (int *)(param_1_00 + 0x60);\r\n  do {\r\n    if (*(int *)(*piVar3 + 0x38) == 1) {\r\n      cVar1 = FUN_0051b950(iVar2,param_1,param_2);\r\n      if (cVar1 != '\\0') {\r\n        return iVar2;\r\n      }\r\n    }\r\n    iVar2 = iVar2 + 1;\r\n    piVar3 = piVar3 + 1;\r\n  } while (iVar2 < 5);\r\n  return -1;\r\n}\r\n\r\n", 
+  "is_thunk": false, 
+  "name": "FUN_0051b9a0", 
+  "assembly": "  0051b9a0:  PUSH EBX\n  0051b9a1:  PUSH EBP\n  0051b9a2:  MOV EBP,dword ptr [ESP + 0x10]\n  0051b9a6:  MOV EBX,ECX\n  0051b9a8:  PUSH ESI\n  0051b9a9:  PUSH EDI\n  0051b9aa:  XOR ESI,ESI\n  0051b9ac:  LEA EDI,[EBX + 0x60]\n  0051b9af:  MOV EAX,dword ptr [EDI]\n  0051b9b1:  CMP dword ptr [EAX + 0x38],0x1\n  0051b9b5:  JNZ 0x0051b9c9\n  0051b9b7:  MOV ECX,dword ptr [ESP + 0x14]\n  0051b9bb:  PUSH EBP\n  0051b9bc:  PUSH ECX\n  0051b9bd:  PUSH ESI\n  0051b9be:  MOV ECX,EBX\n  0051b9c0:  CALL 0x0051b950\n  0051b9c5:  TEST AL,AL\n  0051b9c7:  JNZ 0x0051b9dc\n  0051b9c9:  INC ESI\n  0051b9ca:  ADD EDI,0x4\n  0051b9cd:  CMP ESI,0x5\n  0051b9d0:  JL 0x0051b9af\n  0051b9d2:  POP EDI\n  0051b9d3:  POP ESI\n  0051b9d4:  POP EBP\n  0051b9d5:  OR EAX,0xffffffff\n  0051b9d8:  POP EBX\n  0051b9d9:  RET 0x8\n  0051b9dc:  MOV EAX,ESI\n  0051b9de:  POP EDI\n  0051b9df:  POP ESI\n  0051b9e0:  POP EBP\n  0051b9e1:  POP EBX\n  0051b9e2:  RET 0x8", 
+  "callers": []
+}

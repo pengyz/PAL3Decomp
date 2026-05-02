@@ -1,0 +1,30 @@
+{
+  "address": "0x004f07d0", 
+  "size_bytes": 94, 
+  "calling_convention": "unknown", 
+  "signature": "undefined FUN_004f07d0(undefined4 param_1, undefined4 param_2)", 
+  "callees": [], 
+  "global_refs": [
+    {
+      "address": "0x00000004", 
+      "type": null, 
+      "name": "DAT_00000004"
+    }, 
+    {
+      "address": "0x00000008", 
+      "type": null, 
+      "name": "DAT_00000008"
+    }
+  ], 
+  "has_custom_name": false, 
+  "decompiled_c": "\r\nundefined4 FUN_004f07d0(int param_1,int param_2)\r\n\r\n{\r\n  if (param_1 == 1) {\r\n    if (param_2 == 1) {\r\n      return 1;\r\n    }\r\n  }\r\n  else if (param_1 == 2) {\r\n    if (param_2 == 2) {\r\n      return 1;\r\n    }\r\n  }\r\n  else if (param_1 == 4) {\r\n    if (param_2 == 4) {\r\n      return 1;\r\n    }\r\n  }\r\n  else if (param_1 == 3) {\r\n    if (param_2 == 3) {\r\n      return 1;\r\n    }\r\n  }\r\n  else if ((param_1 == 5) && (param_2 == 5)) {\r\n    return 1;\r\n  }\r\n  return 0;\r\n}\r\n\r\n", 
+  "is_thunk": false, 
+  "name": "FUN_004f07d0", 
+  "assembly": "  004f07d0:  MOV EAX,dword ptr [ESP + 0x4]\n  004f07d4:  CMP EAX,0x1\n  004f07d7:  JNZ 0x004f07e5\n  004f07d9:  CMP dword ptr [ESP + 0x8],0x1\n  004f07de:  JNZ 0x004f0829\n  004f07e0:  MOV AL,0x1\n  004f07e2:  RET 0x8\n  004f07e5:  CMP EAX,0x2\n  004f07e8:  JNZ 0x004f07f6\n  004f07ea:  CMP dword ptr [ESP + 0x8],0x2\n  004f07ef:  JNZ 0x004f0829\n  004f07f1:  MOV AL,0x1\n  004f07f3:  RET 0x8\n  004f07f6:  CMP EAX,0x4\n  004f07f9:  JNZ 0x004f0807\n  004f07fb:  CMP dword ptr [ESP + 0x8],0x4\n  004f0800:  JNZ 0x004f0829\n  004f0802:  MOV AL,0x1\n  004f0804:  RET 0x8\n  004f0807:  CMP EAX,0x3\n  004f080a:  JNZ 0x004f0818\n  004f080c:  CMP dword ptr [ESP + 0x8],0x3\n  004f0811:  JNZ 0x004f0829\n  004f0813:  MOV AL,0x1\n  004f0815:  RET 0x8\n  004f0818:  CMP EAX,0x5\n  004f081b:  JNZ 0x004f0829\n  004f081d:  CMP dword ptr [ESP + 0x8],0x5\n  004f0822:  JNZ 0x004f0829\n  004f0824:  MOV AL,0x1\n  004f0826:  RET 0x8\n  004f0829:  XOR AL,AL\n  004f082b:  RET 0x8", 
+  "callers": [
+    {
+      "address": "0x004f98b0", 
+      "name": "FUN_004f98b0"
+    }
+  ]
+}

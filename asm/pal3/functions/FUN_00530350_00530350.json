@@ -1,0 +1,71 @@
+{
+  "address": "0x00530350", 
+  "size_bytes": 98, 
+  "calling_convention": "unknown", 
+  "signature": "undefined FUN_00530350(void)", 
+  "callees": [
+    {
+      "address": "0x0000008d", 
+      "name": "Begin"
+    }, 
+    {
+      "address": "0x000000b2", 
+      "name": "SetAsCurrent"
+    }, 
+    {
+      "address": "0x00000159", 
+      "name": "Push"
+    }, 
+    {
+      "address": "0x0000015d", 
+      "name": "Pop"
+    }, 
+    {
+      "address": "0x00000086", 
+      "name": "End"
+    }
+  ], 
+  "global_refs": [
+    {
+      "address": "0x00bfda60", 
+      "type": null, 
+      "name": "DAT_00bfda60"
+    }, 
+    {
+      "address": "0x0056a248", 
+      "type": null, 
+      "name": "PTR_Begin_0056a248"
+    }, 
+    {
+      "address": "0x0056a2dc", 
+      "type": null, 
+      "name": "PTR_SetAsCurrent_0056a2dc"
+    }, 
+    {
+      "address": "0x0056a578", 
+      "type": null, 
+      "name": "PTR_Push_0056a578"
+    }, 
+    {
+      "address": "0x0056a588", 
+      "type": null, 
+      "name": "PTR_Pop_0056a588"
+    }, 
+    {
+      "address": "0x0056a22c", 
+      "type": null, 
+      "name": "PTR_End_0056a22c"
+    }
+  ], 
+  "has_custom_name": false, 
+  "decompiled_c": "\r\nvoid __fastcall FUN_00530350(undefined4 *param_1)\r\n\r\n{\r\n  gbSceneGraph *this;\r\n  gbMatrixStack *this_00;\r\n  \r\n  this = *(gbSceneGraph **)(DAT_00bfda60 + 0x1c0);\r\n  gbSceneGraph::Begin(this,*(gbCamera **)param_1[1]);\r\n  this[0x4b2c] = (gbSceneGraph)0x0;\r\n  this_00 = *(gbMatrixStack **)(DAT_00bfda60 + 0xd8);\r\n  gbCamera::SetAsCurrent(*(gbCamera **)param_1[1],3);\r\n  gbMatrixStack::Push(this_00);\r\n  (**(code **)(*(int *)*param_1 + 0x10))(0);\r\n  gbMatrixStack::Pop(this_00);\r\n  gbSceneGraph::End(this);\r\n  return;\r\n}\r\n\r\n", 
+  "is_thunk": false, 
+  "name": "FUN_00530350", 
+  "assembly": "  00530350:  MOV EAX,[0x00bfda60]\n  00530355:  PUSH EBX\n  00530356:  PUSH ESI\n  00530357:  MOV ESI,ECX\n  00530359:  PUSH EDI\n  0053035a:  MOV EDI,dword ptr [EAX + 0x1c0]\n  00530360:  MOV ECX,dword ptr [ESI + 0x4]\n  00530363:  MOV EDX,dword ptr [ECX]\n  00530365:  MOV ECX,EDI\n  00530367:  PUSH EDX\n  00530368:  CALL dword ptr [0x0056a248]\n  0053036e:  MOV byte ptr [EDI + 0x4b2c],0x0\n  00530375:  MOV ECX,dword ptr [ESI + 0x4]\n  00530378:  MOV EAX,[0x00bfda60]\n  0053037d:  PUSH 0x3\n  0053037f:  MOV ECX,dword ptr [ECX]\n  00530381:  MOV EBX,dword ptr [EAX + 0xd8]\n  00530387:  CALL dword ptr [0x0056a2dc]\n  0053038d:  MOV ECX,EBX\n  0053038f:  CALL dword ptr [0x0056a578]\n  00530395:  MOV ECX,dword ptr [ESI]\n  00530397:  PUSH 0x0\n  00530399:  MOV EDX,dword ptr [ECX]\n  0053039b:  CALL dword ptr [EDX + 0x10]\n  0053039e:  MOV ECX,EBX\n  005303a0:  CALL dword ptr [0x0056a588]\n  005303a6:  MOV ECX,EDI\n  005303a8:  CALL dword ptr [0x0056a22c]\n  005303ae:  POP EDI\n  005303af:  POP ESI\n  005303b0:  POP EBX\n  005303b1:  RET", 
+  "callers": [
+    {
+      "address": "0x0052f2e0", 
+      "name": "FUN_0052f2e0"
+    }
+  ]
+}

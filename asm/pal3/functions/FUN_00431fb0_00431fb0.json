@@ -1,0 +1,91 @@
+{
+  "address": "0x00431fb0", 
+  "size_bytes": 233, 
+  "calling_convention": "unknown", 
+  "signature": "undefined FUN_00431fb0(void)", 
+  "callees": [
+    {
+      "address": "0x00432480", 
+      "name": "FUN_00432480"
+    }, 
+    {
+      "address": "0x00432990", 
+      "name": "FUN_00432990"
+    }, 
+    {
+      "address": "0x0053cef0", 
+      "name": "FUN_0053cef0"
+    }, 
+    {
+      "address": "0x005534d7", 
+      "name": "__CxxThrowException@8"
+    }, 
+    {
+      "address": "0x004344f0", 
+      "name": "FUN_004344f0"
+    }
+  ], 
+  "global_refs": [
+    {
+      "address": "0x00592e44", 
+      "type": null, 
+      "name": "s_init.scs_00592e44"
+    }, 
+    {
+      "address": "0x00592e1c", 
+      "type": null, 
+      "name": "s_D:\\Project\\PAL3\\script\\PalScript_00592e1c"
+    }, 
+    {
+      "address": "0x00592e04", 
+      "type": null, 
+      "name": "s_Script_sys_init_failed._00592e04"
+    }, 
+    {
+      "address": "0x00573e50", 
+      "type": null, 
+      "name": "DAT_00573e50"
+    }, 
+    {
+      "address": "0x00592df8", 
+      "type": null, 
+      "name": "s_init.sce_00592df8"
+    }, 
+    {
+      "address": "0x00d8c2e8", 
+      "type": null, 
+      "name": "DAT_00d8c2e8"
+    }, 
+    {
+      "address": "0x00592ddc", 
+      "type": null, 
+      "name": "s_System_script_load_failed._00592ddc"
+    }, 
+    {
+      "address": "0x00592dc4", 
+      "type": null, 
+      "name": "s_ui\\bigmap\\bigmap.sce_00592dc4"
+    }, 
+    {
+      "address": "0x00d8c2c8", 
+      "type": null, 
+      "name": "DAT_00d8c2c8"
+    }, 
+    {
+      "address": "0x00592da8", 
+      "type": null, 
+      "name": "s_BigMap_script_load_failed._00592da8"
+    }
+  ], 
+  "has_custom_name": false, 
+  "decompiled_c": "\r\nvoid FUN_00431fb0(void)\r\n\r\n{\r\n  int iVar1;\r\n  undefined4 *puVar2;\r\n  undefined4 *puVar3;\r\n  undefined4 auStack_800 [512];\r\n  \r\n  FUN_00432480();\r\n  iVar1 = FUN_00432990(s_init_scs_00592e44);\r\n  if (iVar1 == 0) {\r\n    puVar2 = (undefined4 *)\r\n             FUN_0053cef0(s_Script_sys_init_failed__00592e04,\r\n                          s_D__Project_PAL3_script_PalScript_00592e1c,0x47);\r\n    puVar3 = auStack_800;\r\n    for (iVar1 = 0x100; iVar1 != 0; iVar1 = iVar1 + -1) {\r\n      *puVar3 = *puVar2;\r\n      puVar2 = puVar2 + 1;\r\n      puVar3 = puVar3 + 1;\r\n    }\r\n                    /* WARNING: Subroutine does not return */\r\n    __CxxThrowException_8(auStack_800,&DAT_00573e50);\r\n  }\r\n  iVar1 = FUN_004344f0(s_init_sce_00592df8);\r\n  if (iVar1 == 0) {\r\n    puVar2 = (undefined4 *)\r\n             FUN_0053cef0(s_System_script_load_failed__00592ddc,\r\n                          s_D__Project_PAL3_script_PalScript_00592e1c,0x49);\r\n    puVar3 = auStack_800;\r\n    for (iVar1 = 0x100; iVar1 != 0; iVar1 = iVar1 + -1) {\r\n      *puVar3 = *puVar2;\r\n      puVar2 = puVar2 + 1;\r\n      puVar3 = puVar3 + 1;\r\n    }\r\n                    /* WARNING: Subroutine does not return */\r\n    __CxxThrowException_8(auStack_800,&DAT_00573e50);\r\n  }\r\n  iVar1 = FUN_004344f0(s_ui_bigmap_bigmap_sce_00592dc4);\r\n  if (iVar1 == 0) {\r\n    puVar2 = (undefined4 *)\r\n             FUN_0053cef0(s_BigMap_script_load_failed__00592da8,\r\n                          s_D__Project_PAL3_script_PalScript_00592e1c,0x4b);\r\n    puVar3 = auStack_800;\r\n    for (iVar1 = 0x100; iVar1 != 0; iVar1 = iVar1 + -1) {\r\n      *puVar3 = *puVar2;\r\n      puVar2 = puVar2 + 1;\r\n      puVar3 = puVar3 + 1;\r\n    }\r\n                    /* WARNING: Subroutine does not return */\r\n    __CxxThrowException_8(auStack_800,&DAT_00573e50);\r\n  }\r\n  return;\r\n}\r\n\r\n", 
+  "is_thunk": false, 
+  "name": "FUN_00431fb0", 
+  "assembly": "  00431fb0:  SUB ESP,0x800\n  00431fb6:  PUSH ESI\n  00431fb7:  PUSH EDI\n  00431fb8:  CALL 0x00432480\n  00431fbd:  PUSH 0x592e44\n  00431fc2:  CALL 0x00432990\n  00431fc7:  ADD ESP,0x4\n  00431fca:  TEST EAX,EAX\n  00431fcc:  JNZ 0x00432002\n  00431fce:  PUSH 0x47\n  00431fd0:  PUSH 0x592e1c\n  00431fd5:  PUSH 0x592e04\n  00431fda:  LEA ECX,[ESP + 0x414]\n  00431fe1:  CALL 0x0053cef0\n  00431fe6:  MOV ESI,EAX\n  00431fe8:  MOV ECX,0x100\n  00431fed:  LEA EDI,[ESP + 0x8]\n  00431ff1:  LEA EAX,[ESP + 0x8]\n  00431ff5:  PUSH 0x573e50\n  00431ffa:  PUSH EAX\n  00431ffb:  MOVSD.REP ES:EDI,ESI\n  00431ffd:  CALL 0x005534d7\n  00432002:  PUSH 0x592df8\n  00432007:  MOV ECX,0xd8c2e8\n  0043200c:  CALL 0x004344f0\n  00432011:  TEST EAX,EAX\n  00432013:  JNZ 0x00432049\n  00432015:  PUSH 0x49\n  00432017:  PUSH 0x592e1c\n  0043201c:  PUSH 0x592ddc\n  00432021:  LEA ECX,[ESP + 0x414]\n  00432028:  CALL 0x0053cef0\n  0043202d:  MOV ECX,0x100\n  00432032:  MOV ESI,EAX\n  00432034:  LEA EDI,[ESP + 0x8]\n  00432038:  PUSH 0x573e50\n  0043203d:  MOVSD.REP ES:EDI,ESI\n  0043203f:  LEA ECX,[ESP + 0xc]\n  00432043:  PUSH ECX\n  00432044:  CALL 0x005534d7\n  00432049:  PUSH 0x592dc4\n  0043204e:  MOV ECX,0xd8c2c8\n  00432053:  CALL 0x004344f0\n  00432058:  TEST EAX,EAX\n  0043205a:  JNZ 0x00432090\n  0043205c:  PUSH 0x4b\n  0043205e:  PUSH 0x592e1c\n  00432063:  PUSH 0x592da8\n  00432068:  LEA ECX,[ESP + 0x414]\n  0043206f:  CALL 0x0053cef0\n  00432074:  MOV ECX,0x100\n  00432079:  MOV ESI,EAX\n  0043207b:  LEA EDI,[ESP + 0x8]\n  0043207f:  LEA EDX,[ESP + 0x8]\n  00432083:  PUSH 0x573e50\n  00432088:  PUSH EDX\n  00432089:  MOVSD.REP ES:EDI,ESI\n  0043208b:  CALL 0x005534d7\n  00432090:  POP EDI\n  00432091:  POP ESI\n  00432092:  ADD ESP,0x800\n  00432098:  RET", 
+  "callers": [
+    {
+      "address": "0x00407790", 
+      "name": "FUN_00407790"
+    }
+  ]
+}

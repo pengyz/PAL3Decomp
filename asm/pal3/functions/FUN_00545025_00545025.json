@@ -1,0 +1,40 @@
+{
+  "address": "0x00545025", 
+  "size_bytes": 60, 
+  "calling_convention": "unknown", 
+  "signature": "undefined FUN_00545025(undefined4 param_1, undefined4 param_2, undefined4 param_3)", 
+  "callees": [], 
+  "global_refs": [
+    {
+      "address": "0x0000000c", 
+      "type": null, 
+      "name": "DAT_0000000c"
+    }, 
+    {
+      "address": "0x00000008", 
+      "type": null, 
+      "name": "DAT_00000008"
+    }, 
+    {
+      "address": "0x-000000c", 
+      "type": null, 
+      "name": "DAT_-000000c"
+    }, 
+    {
+      "address": "0x00000004", 
+      "type": null, 
+      "name": "DAT_00000004"
+    }, 
+    {
+      "address": "0x-0000008", 
+      "type": null, 
+      "name": "DAT_-0000008"
+    }
+  ], 
+  "has_custom_name": false, 
+  "decompiled_c": "\r\nvoid FUN_00545025(float *param_1,float *param_2,float *param_3)\r\n\r\n{\r\n  float fVar1;\r\n  float fVar2;\r\n  float fVar3;\r\n  float fVar4;\r\n  \r\n  fVar1 = param_3[1];\r\n  fVar2 = *param_2;\r\n  fVar3 = param_3[5];\r\n  fVar4 = param_2[1];\r\n  *param_1 = *param_2 * *param_3 + param_3[4] * param_2[1];\r\n  param_1[1] = fVar3 * fVar4 + fVar1 * fVar2;\r\n  return;\r\n}\r\n\r\n", 
+  "is_thunk": false, 
+  "name": "FUN_00545025", 
+  "assembly": "  00545025:  PUSH EBP\n  00545026:  MOV EBP,ESP\n  00545028:  PUSH ECX\n  00545029:  PUSH ECX\n  0054502a:  MOV ECX,dword ptr [EBP + 0x10]\n  0054502d:  MOV EAX,dword ptr [EBP + 0xc]\n  00545030:  FLD dword ptr [ECX + 0x10]\n  00545033:  FMUL dword ptr [EAX + 0x4]\n  00545036:  FLD dword ptr [EAX]\n  00545038:  FMUL dword ptr [ECX]\n  0054503a:  FADDP\n  0054503c:  FSTP dword ptr [EBP + -0x8]\n  0054503f:  FLD dword ptr [ECX + 0x4]\n  00545042:  FMUL dword ptr [EAX]\n  00545044:  FLD dword ptr [ECX + 0x14]\n  00545047:  MOV ECX,dword ptr [EBP + -0x8]\n  0054504a:  FMUL dword ptr [EAX + 0x4]\n  0054504d:  MOV EAX,dword ptr [EBP + 0x8]\n  00545050:  MOV dword ptr [EAX],ECX\n  00545052:  FADDP\n  00545054:  FSTP dword ptr [EBP + -0x4]\n  00545057:  MOV ECX,dword ptr [EBP + -0x4]\n  0054505a:  MOV dword ptr [EAX + 0x4],ECX\n  0054505d:  LEAVE\n  0054505e:  RET 0xc", 
+  "callers": []
+}

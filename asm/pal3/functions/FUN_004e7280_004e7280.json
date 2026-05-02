@@ -1,0 +1,72 @@
+{
+  "address": "0x004e7280", 
+  "size_bytes": 194, 
+  "calling_convention": "unknown", 
+  "signature": "undefined FUN_004e7280(void)", 
+  "callees": [
+    {
+      "address": "0x00000060", 
+      "name": "GetDlgItem"
+    }, 
+    {
+      "address": "0x0000005e", 
+      "name": "SendMessageA"
+    }, 
+    {
+      "address": "0x00553082", 
+      "name": "FUN_00553082"
+    }, 
+    {
+      "address": "0x00505290", 
+      "name": "FUN_00505290"
+    }
+  ], 
+  "global_refs": [
+    {
+      "address": "0x-0000028", 
+      "type": null, 
+      "name": "DAT_-0000028"
+    }, 
+    {
+      "address": "0x00bfda54", 
+      "type": null, 
+      "name": "DAT_00bfda54"
+    }, 
+    {
+      "address": "0x0056a188", 
+      "type": null, 
+      "name": "PTR_GetDlgItem_0056a188"
+    }, 
+    {
+      "address": "0x0056a180", 
+      "type": null, 
+      "name": "PTR_SendMessageA_0056a180"
+    }, 
+    {
+      "address": "0x00583948", 
+      "type": null, 
+      "name": "DAT_00583948"
+    }, 
+    {
+      "address": "0x017a94e4", 
+      "type": null, 
+      "name": "DAT_017a94e4"
+    }, 
+    {
+      "address": "0x00583ab0", 
+      "type": null, 
+      "name": "DAT_00583ab0"
+    }
+  ], 
+  "has_custom_name": false, 
+  "decompiled_c": "\r\nvoid FUN_004e7280(void)\r\n\r\n{\r\n  HWND hWnd;\r\n  undefined4 uVar1;\r\n  int iVar2;\r\n  int *piVar3;\r\n  int local_28 [5];\r\n  undefined *puStack_14;\r\n  \r\n  piVar3 = local_28;\r\n  for (iVar2 = 10; iVar2 != 0; iVar2 = iVar2 + -1) {\r\n    *piVar3 = 0;\r\n    piVar3 = piVar3 + 1;\r\n  }\r\n  hWnd = GetDlgItem(DAT_00bfda54,0x47f);\r\n  SendMessageA(hWnd,0x1009,0,0);\r\n  iVar2 = 0;\r\n  do {\r\n    local_28[0] = 1;\r\n    puStack_14 = &DAT_017a94e4;\r\n    local_28[2] = 0;\r\n    local_28[1] = iVar2;\r\n    FUN_00553082(&DAT_017a94e4,&DAT_00583948,iVar2);\r\n    SendMessageA(hWnd,0x1007,0,(LPARAM)local_28);\r\n    local_28[2] = 1;\r\n    uVar1 = FUN_00505290(iVar2);\r\n    FUN_00553082(&DAT_017a94e4,&DAT_00583ab0,uVar1);\r\n    SendMessageA(hWnd,0x1006,0,(LPARAM)local_28);\r\n    iVar2 = iVar2 + 1;\r\n  } while (iVar2 < 100);\r\n  return;\r\n}\r\n\r\n", 
+  "is_thunk": false, 
+  "name": "FUN_004e7280", 
+  "assembly": "  004e7280:  SUB ESP,0x28\n  004e7283:  XOR EAX,EAX\n  004e7285:  PUSH EBX\n  004e7286:  PUSH EBP\n  004e7287:  PUSH ESI\n  004e7288:  MOV EBP,ECX\n  004e728a:  PUSH EDI\n  004e728b:  MOV ECX,0xa\n  004e7290:  LEA EDI,[ESP + 0x10]\n  004e7294:  PUSH 0x47f\n  004e7299:  STOSD.REP ES:EDI\n  004e729b:  MOV EAX,[0x00bfda54]\n  004e72a0:  PUSH EAX\n  004e72a1:  CALL dword ptr [0x0056a188]\n  004e72a7:  MOV EBX,dword ptr [0x0056a180]\n  004e72ad:  PUSH 0x0\n  004e72af:  MOV EDI,EAX\n  004e72b1:  PUSH 0x0\n  004e72b3:  PUSH 0x1009\n  004e72b8:  PUSH EDI\n  004e72b9:  CALL EBX\n  004e72bb:  XOR ESI,ESI\n  004e72bd:  PUSH ESI\n  004e72be:  PUSH 0x583948\n  004e72c3:  PUSH 0x17a94e4\n  004e72c8:  MOV dword ptr [ESP + 0x1c],0x1\n  004e72d0:  MOV dword ptr [ESP + 0x30],0x17a94e4\n  004e72d8:  MOV dword ptr [ESP + 0x20],ESI\n  004e72dc:  MOV dword ptr [ESP + 0x24],0x0\n  004e72e4:  CALL 0x00553082\n  004e72e9:  ADD ESP,0xc\n  004e72ec:  LEA ECX,[ESP + 0x10]\n  004e72f0:  PUSH ECX\n  004e72f1:  PUSH 0x0\n  004e72f3:  PUSH 0x1007\n  004e72f8:  PUSH EDI\n  004e72f9:  CALL EBX\n  004e72fb:  MOV EDX,dword ptr [EBP]\n  004e72fe:  MOV dword ptr [ESP + 0x18],0x1\n  004e7306:  PUSH ESI\n  004e7307:  MOV EAX,dword ptr [EDX + 0x14]\n  004e730a:  MOV ECX,dword ptr [EAX + 0x10]\n  004e730d:  CALL 0x00505290\n  004e7312:  PUSH EAX\n  004e7313:  PUSH 0x583ab0\n  004e7318:  PUSH 0x17a94e4\n  004e731d:  CALL 0x00553082\n  004e7322:  ADD ESP,0xc\n  004e7325:  LEA ECX,[ESP + 0x10]\n  004e7329:  PUSH ECX\n  004e732a:  PUSH 0x0\n  004e732c:  PUSH 0x1006\n  004e7331:  PUSH EDI\n  004e7332:  CALL EBX\n  004e7334:  INC ESI\n  004e7335:  CMP ESI,0x64\n  004e7338:  JL 0x004e72bd\n  004e733a:  POP EDI\n  004e733b:  POP ESI\n  004e733c:  POP EBP\n  004e733d:  POP EBX\n  004e733e:  ADD ESP,0x28\n  004e7341:  RET", 
+  "callers": [
+    {
+      "address": "0x004e6020", 
+      "name": "FUN_004e6020"
+    }
+  ]
+}

@@ -1,0 +1,44 @@
+{
+  "address": "0x00501410", 
+  "size_bytes": 202, 
+  "calling_convention": "unknown", 
+  "signature": "undefined FUN_00501410(void)", 
+  "callees": [
+    {
+      "address": "0x0050aae0", 
+      "name": "FUN_0050aae0"
+    }, 
+    {
+      "address": "0x0050ab10", 
+      "name": "FUN_0050ab10"
+    }
+  ], 
+  "global_refs": [
+    {
+      "address": "0x0056fd38", 
+      "type": null, 
+      "name": "DAT_0056fd38"
+    }, 
+    {
+      "address": "0x0056a63c", 
+      "type": null, 
+      "name": "DAT_0056a63c"
+    }, 
+    {
+      "address": "0x0056a710", 
+      "type": null, 
+      "name": "DAT_0056a710"
+    }, 
+    {
+      "address": "0x-000000c", 
+      "type": null, 
+      "name": "DAT_-000000c"
+    }
+  ], 
+  "has_custom_name": false, 
+  "decompiled_c": "\r\n/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */\r\n\r\nundefined4 __fastcall FUN_00501410(int *param_1)\r\n\r\n{\r\n  int iVar1;\r\n  int iVar2;\r\n  float10 fVar3;\r\n  float fVar4;\r\n  float10 fVar5;\r\n  \r\n  iVar1 = param_1[0x28];\r\n  iVar2 = param_1[0x29];\r\n  if (*(char *)((int)param_1 + iVar1 * 0xa48 + iVar2 * 0x50 + 0xe1) == '\\0') {\r\n    fVar5 = (float10)FUN_0050aae0();\r\n    param_1[iVar2 * 0x14 + iVar1 * 0x292 + 0x3e] = (int)(float)fVar5;\r\n    fVar3 = (float10)_DAT_0056fd38;\r\n    *(undefined *)((int)param_1 + iVar1 * 0xa48 + iVar2 * 0x50 + 0xe1) = 1;\r\n    if (fVar3 <= fVar5) goto LAB_005014cc;\r\n  }\r\n  fVar4 = (*(float *)(*param_1 + 0x50) - (float)param_1[iVar2 * 0x14 + iVar1 * 0x292 + 0x34]) /\r\n          (float)param_1[iVar2 * 0x14 + iVar1 * 0x292 + 0x36];\r\n  if (_DAT_0056a63c < fVar4) {\r\n    fVar4 = _DAT_0056a63c;\r\n  }\r\n  FUN_0050ab10(1,fVar4 * ((float)_DAT_0056a710 - (float)param_1[iVar2 * 0x14 + iVar1 * 0x292 + 0x3e]\r\n                         ) + (float)param_1[iVar2 * 0x14 + iVar1 * 0x292 + 0x3e]);\r\n  if (*(float *)(*param_1 + 0x50) - (float)param_1[iVar2 * 0x14 + iVar1 * 0x292 + 0x34] <=\r\n      (float)param_1[iVar2 * 0x14 + iVar1 * 0x292 + 0x36]) {\r\n    return 0;\r\n  }\r\n  FUN_0050ab10(0,0x3f800000);\r\nLAB_005014cc:\r\n  param_1[iVar2 * 0x14 + iVar1 * 0x292 + 0x32] = 4;\r\n  return 0;\r\n}\r\n\r\n", 
+  "is_thunk": false, 
+  "name": "FUN_00501410", 
+  "assembly": "  00501410:  PUSH ESI\n  00501411:  PUSH EDI\n  00501412:  MOV EDI,ECX\n  00501414:  MOV EAX,dword ptr [EDI + 0xa0]\n  0050141a:  LEA ECX,[EAX + EAX*0x4]\n  0050141d:  LEA EDX,[EAX + ECX*0x8]\n  00501420:  LEA ECX,[EAX + EDX*0x8]\n  00501423:  MOV EAX,dword ptr [EDI + 0xa4]\n  00501429:  LEA EDX,[EAX + EAX*0x4]\n  0050142c:  MOV EAX,EDI\n  0050142e:  SHL EDX,0x4\n  00501431:  ADD EAX,EDX\n  00501433:  LEA ESI,[EAX + ECX*0x8 + 0xb8]\n  0050143a:  MOV AL,byte ptr [EAX + ECX*0x8 + 0xe1]\n  00501441:  TEST AL,AL\n  00501443:  JNZ 0x00501465\n  00501445:  MOV ECX,dword ptr [ESI + 0x30]\n  00501448:  MOV ECX,dword ptr [EDI + ECX*0x4 + 0x18]\n  0050144c:  CALL 0x0050aae0\n  00501451:  FST dword ptr [ESI + 0x40]\n  00501454:  FCOMP dword ptr [0x0056fd38]\n  0050145a:  MOV byte ptr [ESI + 0x29],0x1\n  0050145e:  FNSTSW AX\n  00501460:  TEST AH,0x1\n  00501463:  JZ 0x005014cc\n  00501465:  MOV EDX,dword ptr [EDI]\n  00501467:  FLD dword ptr [EDX + 0x50]\n  0050146a:  FSUB dword ptr [ESI + 0x18]\n  0050146d:  FDIV dword ptr [ESI + 0x20]\n  00501470:  FCOM dword ptr [0x0056a63c]\n  00501476:  FNSTSW AX\n  00501478:  TEST AH,0x41\n  0050147b:  JNZ 0x00501485\n  0050147d:  FSTP ST0\n  0050147f:  FLD dword ptr [0x0056a63c]\n  00501485:  FLD dword ptr [ESI + 0x40]\n  00501488:  FSUBR qword ptr [0x0056a710]\n  0050148e:  FXCH\n  00501490:  MOV EAX,dword ptr [ESI + 0x30]\n  00501493:  PUSH ECX\n  00501494:  FMULP\n  00501496:  MOV ECX,dword ptr [EDI + EAX*0x4 + 0x18]\n  0050149a:  FADD dword ptr [ESI + 0x40]\n  0050149d:  FSTP dword ptr [ESP]\n  005014a0:  PUSH 0x1\n  005014a2:  CALL 0x0050ab10\n  005014a7:  MOV ECX,dword ptr [EDI]\n  005014a9:  FLD dword ptr [ECX + 0x50]\n  005014ac:  FSUB dword ptr [ESI + 0x18]\n  005014af:  FCOMP dword ptr [ESI + 0x20]\n  005014b2:  FNSTSW AX\n  005014b4:  TEST AH,0x41\n  005014b7:  JNZ 0x005014d3\n  005014b9:  MOV EDX,dword ptr [ESI + 0x30]\n  005014bc:  PUSH 0x3f800000\n  005014c1:  PUSH 0x0\n  005014c3:  MOV ECX,dword ptr [EDI + EDX*0x4 + 0x18]\n  005014c7:  CALL 0x0050ab10\n  005014cc:  MOV dword ptr [ESI + 0x10],0x4\n  005014d3:  POP EDI\n  005014d4:  XOR EAX,EAX\n  005014d6:  POP ESI\n  005014d7:  RET 0x4", 
+  "callers": []
+}

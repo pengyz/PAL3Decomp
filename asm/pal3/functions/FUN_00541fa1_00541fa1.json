@@ -1,0 +1,38 @@
+{
+  "address": "0x00541fa1", 
+  "size_bytes": 61, 
+  "calling_convention": "unknown", 
+  "signature": "undefined FUN_00541fa1(void)", 
+  "callees": [
+    {
+      "address": "0x0055530c", 
+      "name": "FUN_0055530c"
+    }, 
+    {
+      "address": "0x00402fb0", 
+      "name": "FUN_00402fb0"
+    }, 
+    {
+      "address": "0x0055525e", 
+      "name": "~exception"
+    }
+  ], 
+  "global_refs": [
+    {
+      "address": "0x00569004", 
+      "type": null, 
+      "name": "LAB_00569004"
+    }, 
+    {
+      "address": "0x00570a98", 
+      "type": null, 
+      "name": "PTR_FUN_00570a98"
+    }
+  ], 
+  "has_custom_name": false, 
+  "decompiled_c": "\r\nvoid FUN_00541fa1(void)\r\n\r\n{\r\n  exception *this;\r\n  int unaff_EBP;\r\n  undefined4 *unaff_FS_OFFSET;\r\n  \r\n  FUN_0055530c();\r\n  *(exception **)(unaff_EBP + -0x10) = this;\r\n  *(undefined ***)this = &PTR_FUN_00570a98;\r\n  *(undefined4 *)(unaff_EBP + -4) = 0;\r\n  FUN_00402fb0(1);\r\n  *(undefined4 *)(unaff_EBP + -4) = 0xffffffff;\r\n  exception::~exception(this);\r\n  *unaff_FS_OFFSET = *(undefined4 *)(unaff_EBP + -0xc);\r\n  return;\r\n}\r\n\r\n", 
+  "is_thunk": false, 
+  "name": "FUN_00541fa1", 
+  "assembly": "  00541fa1:  MOV EAX,0x569004\n  00541fa6:  CALL 0x0055530c\n  00541fab:  PUSH ECX\n  00541fac:  PUSH ESI\n  00541fad:  MOV ESI,ECX\n  00541faf:  MOV dword ptr [EBP + -0x10],ESI\n  00541fb2:  MOV dword ptr [ESI],0x570a98\n  00541fb8:  AND dword ptr [EBP + -0x4],0x0\n  00541fbc:  PUSH 0x1\n  00541fbe:  LEA ECX,[ESI + 0xc]\n  00541fc1:  CALL 0x00402fb0\n  00541fc6:  OR dword ptr [EBP + -0x4],0xffffffff\n  00541fca:  MOV ECX,ESI\n  00541fcc:  CALL 0x0055525e\n  00541fd1:  MOV ECX,dword ptr [EBP + -0xc]\n  00541fd4:  POP ESI\n  00541fd5:  MOV dword ptr FS:[0x0],ECX\n  00541fdc:  LEAVE\n  00541fdd:  RET", 
+  "callers": []
+}

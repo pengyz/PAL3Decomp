@@ -1,0 +1,45 @@
+{
+  "address": "0x00557399", 
+  "size_bytes": 56, 
+  "calling_convention": "unknown", 
+  "signature": "undefined FUN_00557399(undefined4 param_1, undefined4 param_2, undefined4 param_3, undefined4 param_4)", 
+  "callees": [
+    {
+      "address": "0x00557333", 
+      "name": "FUN_00557333"
+    }
+  ], 
+  "global_refs": [
+    {
+      "address": "0x00000008", 
+      "type": null, 
+      "name": "DAT_00000008"
+    }, 
+    {
+      "address": "0x00000010", 
+      "type": null, 
+      "name": "DAT_00000010"
+    }, 
+    {
+      "address": "0x00000004", 
+      "type": null, 
+      "name": "DAT_00000004"
+    }, 
+    {
+      "address": "0x0000000c", 
+      "type": null, 
+      "name": "DAT_0000000c"
+    }
+  ], 
+  "has_custom_name": false, 
+  "decompiled_c": "\r\nvoid FUN_00557399(char *param_1,int param_2,undefined4 param_3,int *param_4)\r\n\r\n{\r\n  char cVar1;\r\n  \r\n  if (0 < param_2) {\r\n    do {\r\n      param_2 = param_2 + -1;\r\n      cVar1 = *param_1;\r\n      param_1 = param_1 + 1;\r\n      FUN_00557333((int)cVar1,param_3,param_4);\r\n      if (*param_4 == -1) {\r\n        return;\r\n      }\r\n    } while (0 < param_2);\r\n  }\r\n  return;\r\n}\r\n\r\n", 
+  "is_thunk": false, 
+  "name": "FUN_00557399", 
+  "assembly": "  00557399:  PUSH EBX\n  0055739a:  MOV EBX,dword ptr [ESP + 0xc]\n  0055739e:  MOV EAX,EBX\n  005573a0:  DEC EBX\n  005573a1:  PUSH ESI\n  005573a2:  PUSH EDI\n  005573a3:  TEST EAX,EAX\n  005573a5:  JLE 0x005573cd\n  005573a7:  MOV EDI,dword ptr [ESP + 0x1c]\n  005573ab:  MOV ESI,dword ptr [ESP + 0x10]\n  005573af:  MOVSX EAX,byte ptr [ESI]\n  005573b2:  PUSH EDI\n  005573b3:  INC ESI\n  005573b4:  PUSH dword ptr [ESP + 0x1c]\n  005573b8:  PUSH EAX\n  005573b9:  CALL 0x00557333\n  005573be:  ADD ESP,0xc\n  005573c1:  CMP dword ptr [EDI],-0x1\n  005573c4:  JZ 0x005573cd\n  005573c6:  MOV EAX,EBX\n  005573c8:  DEC EBX\n  005573c9:  TEST EAX,EAX\n  005573cb:  JG 0x005573af\n  005573cd:  POP EDI\n  005573ce:  POP ESI\n  005573cf:  POP EBX\n  005573d0:  RET", 
+  "callers": [
+    {
+      "address": "0x00556bf2", 
+      "name": "FUN_00556bf2"
+    }
+  ]
+}

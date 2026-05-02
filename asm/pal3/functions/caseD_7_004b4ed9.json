@@ -1,0 +1,40 @@
+{
+  "address": "0x004b4ed9", 
+  "size_bytes": 30, 
+  "calling_convention": "unknown", 
+  "signature": "undefined caseD_7(void)", 
+  "callees": [
+    {
+      "address": "0x004b5830", 
+      "name": "FUN_004b5830"
+    }
+  ], 
+  "global_refs": [
+    {
+      "address": "0x-0000010", 
+      "type": null, 
+      "name": "DAT_-0000010"
+    }, 
+    {
+      "address": "0x-000000c", 
+      "type": null, 
+      "name": "DAT_-000000c"
+    }, 
+    {
+      "address": "0x-0000008", 
+      "type": null, 
+      "name": "DAT_-0000008"
+    }, 
+    {
+      "address": "0x-0000004", 
+      "type": null, 
+      "name": "DAT_-0000004"
+    }
+  ], 
+  "has_custom_name": true, 
+  "decompiled_c": "\r\nvoid switchD_004b4e1e::caseD_7(void)\r\n\r\n{\r\n  undefined4 in_EAX;\r\n  undefined4 unaff_EBX;\r\n  undefined4 unaff_EBP;\r\n  undefined4 unaff_EDI;\r\n  \r\n  FUN_004b5830(unaff_EBX,unaff_EDI,unaff_EBP,in_EAX);\r\n  return;\r\n}\r\n\r\n", 
+  "is_thunk": false, 
+  "name": "caseD_7", 
+  "assembly": "  004b4ed9:  SUB ESP,0x10\n  004b4edc:  MOV ECX,ESI\n  004b4ede:  MOV EDX,ESP\n  004b4ee0:  MOV dword ptr [EDX],EBX\n  004b4ee2:  MOV dword ptr [EDX + 0x4],EDI\n  004b4ee5:  MOV dword ptr [EDX + 0x8],EBP\n  004b4ee8:  MOV dword ptr [EDX + 0xc],EAX\n  004b4eeb:  CALL 0x004b5830\n  004b4ef0:  POP EDI\n  004b4ef1:  POP ESI\n  004b4ef2:  POP EBP\n  004b4ef3:  POP EBX\n  004b4ef4:  RET 0x4", 
+  "callers": []
+}

@@ -1,0 +1,25 @@
+{
+  "address": "0x005548f5", 
+  "size_bytes": 40, 
+  "calling_convention": "unknown", 
+  "signature": "undefined FUN_005548f5(void)", 
+  "callees": [], 
+  "global_refs": [
+    {
+      "address": "0x0060ac90", 
+      "type": null, 
+      "name": "DAT_0060ac90"
+    }
+  ], 
+  "has_custom_name": false, 
+  "decompiled_c": "\r\n/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */\r\n\r\nvoid FUN_005548f5(void)\r\n\r\n{\r\n  float10 in_ST0;\r\n  \r\n  if (ROUND(in_ST0) == in_ST0) {\r\n    return;\r\n  }\r\n  return;\r\n}\r\n\r\n", 
+  "is_thunk": false, 
+  "name": "FUN_005548f5", 
+  "assembly": "  005548f5:  FLD ST0\n  005548f7:  FRNDINT\n  005548f9:  FCOMP\n  005548fb:  MOV CL,0x0\n  005548fd:  FSTSW AX\n  00554900:  SAHF\n  00554901:  JNZ 0x0055491a\n  00554903:  FMUL qword ptr [0x0060ac90]\n  00554909:  INC CL\n  0055490b:  FLD ST0\n  0055490d:  FRNDINT\n  0055490f:  FCOMPP\n  00554911:  FSTSW AX\n  00554914:  SAHF\n  00554915:  JNZ 0x00554919\n  00554917:  INC CL\n  00554919:  RET\n  0055491a:  FSTP ST0\n  0055491c:  RET", 
+  "callers": [
+    {
+      "address": "0x00554722", 
+      "name": "FUN_00554722"
+    }
+  ]
+}

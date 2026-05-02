@@ -1,0 +1,35 @@
+{
+  "address": "0x0040f6f0", 
+  "size_bytes": 99, 
+  "calling_convention": "unknown", 
+  "signature": "undefined FUN_0040f6f0(undefined4 param_1)", 
+  "callees": [
+    {
+      "address": "0x00553957", 
+      "name": "FUN_00553957"
+    }
+  ], 
+  "global_refs": [
+    {
+      "address": "0x-0000004", 
+      "type": null, 
+      "name": "DAT_-0000004"
+    }, 
+    {
+      "address": "0x00000004", 
+      "type": null, 
+      "name": "DAT_00000004"
+    }
+  ], 
+  "has_custom_name": false, 
+  "decompiled_c": "\r\nvoid __thiscall FUN_0040f6f0(int param_1_00,undefined4 param_1)\r\n\r\n{\r\n  int iVar1;\r\n  int local_4;\r\n  \r\n  iVar1 = 0;\r\n  if (*(int *)(param_1_00 + 4) == 0) {\r\n    local_4 = 0;\r\n  }\r\n  else {\r\n    local_4 = *(int *)(param_1_00 + 8) - *(int *)(param_1_00 + 4) >> 2;\r\n  }\r\n  FUN_00553957(&local_4,4,1,param_1);\r\n  if (0 < local_4) {\r\n    do {\r\n      FUN_00553957(*(int *)(param_1_00 + 4) + iVar1 * 4,4,1,param_1);\r\n      iVar1 = iVar1 + 1;\r\n    } while (iVar1 < local_4);\r\n  }\r\n  return;\r\n}\r\n\r\n", 
+  "is_thunk": false, 
+  "name": "FUN_0040f6f0", 
+  "assembly": "  0040f6f0:  PUSH ECX\n  0040f6f1:  PUSH EBX\n  0040f6f2:  MOV EBX,ECX\n  0040f6f4:  PUSH ESI\n  0040f6f5:  XOR ESI,ESI\n  0040f6f7:  MOV EAX,dword ptr [EBX + 0x4]\n  0040f6fa:  PUSH EDI\n  0040f6fb:  CMP EAX,ESI\n  0040f6fd:  JNZ 0x0040f705\n  0040f6ff:  MOV dword ptr [ESP + 0xc],ESI\n  0040f703:  JMP 0x0040f711\n  0040f705:  MOV ECX,dword ptr [EBX + 0x8]\n  0040f708:  SUB ECX,EAX\n  0040f70a:  SAR ECX,0x2\n  0040f70d:  MOV dword ptr [ESP + 0xc],ECX\n  0040f711:  MOV EDI,dword ptr [ESP + 0x14]\n  0040f715:  LEA EDX,[ESP + 0xc]\n  0040f719:  PUSH EDI\n  0040f71a:  PUSH 0x1\n  0040f71c:  PUSH 0x4\n  0040f71e:  PUSH EDX\n  0040f71f:  CALL 0x00553957\n  0040f724:  MOV EAX,dword ptr [ESP + 0x1c]\n  0040f728:  ADD ESP,0x10\n  0040f72b:  CMP EAX,ESI\n  0040f72d:  JLE 0x0040f74c\n  0040f72f:  MOV EAX,dword ptr [EBX + 0x4]\n  0040f732:  PUSH EDI\n  0040f733:  PUSH 0x1\n  0040f735:  PUSH 0x4\n  0040f737:  LEA ECX,[EAX + ESI*0x4]\n  0040f73a:  PUSH ECX\n  0040f73b:  CALL 0x00553957\n  0040f740:  MOV EAX,dword ptr [ESP + 0x1c]\n  0040f744:  ADD ESP,0x10\n  0040f747:  INC ESI\n  0040f748:  CMP ESI,EAX\n  0040f74a:  JL 0x0040f72f\n  0040f74c:  POP EDI\n  0040f74d:  POP ESI\n  0040f74e:  POP EBX\n  0040f74f:  POP ECX\n  0040f750:  RET 0x4", 
+  "callers": [
+    {
+      "address": "0x0040f0c0", 
+      "name": "FUN_0040f0c0"
+    }
+  ]
+}

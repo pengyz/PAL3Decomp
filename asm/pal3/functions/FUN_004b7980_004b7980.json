@@ -1,0 +1,120 @@
+{
+  "address": "0x004b7980", 
+  "size_bytes": 363, 
+  "calling_convention": "unknown", 
+  "signature": "undefined FUN_004b7980(void)", 
+  "callees": [
+    {
+      "address": "0x0000015f", 
+      "name": "NewRenderEffect"
+    }, 
+    {
+      "address": "0x00553082", 
+      "name": "FUN_00553082"
+    }, 
+    {
+      "address": "0x00000160", 
+      "name": "LoadTexture"
+    }, 
+    {
+      "address": "0x0055353b", 
+      "name": "operator_new"
+    }, 
+    {
+      "address": "0x0000013b", 
+      "name": "gbGeomNode"
+    }, 
+    {
+      "address": "0x0000013c", 
+      "name": "LoadFromFile"
+    }
+  ], 
+  "global_refs": [
+    {
+      "address": "0x005663ce", 
+      "type": null, 
+      "name": "LAB_005663ce"
+    }, 
+    {
+      "address": "0xffdff000", 
+      "type": null, 
+      "name": "ExceptionList"
+    }, 
+    {
+      "address": "0x00bfda60", 
+      "type": null, 
+      "name": "DAT_00bfda60"
+    }, 
+    {
+      "address": "0x005d4144", 
+      "type": null, 
+      "name": "s_gfxscript\\AdditiveBlend.gbf_005d4144"
+    }, 
+    {
+      "address": "0x0056a590", 
+      "type": null, 
+      "name": "PTR_NewRenderEffect_0056a590"
+    }, 
+    {
+      "address": "0x005d4128", 
+      "type": null, 
+      "name": "s_EffectScn\\Candle\\%03d.tga_005d4128"
+    }, 
+    {
+      "address": "0x005d4108", 
+      "type": null, 
+      "name": "s_EffectScn\\Fire1\\torch%02d.tga_005d4108"
+    }, 
+    {
+      "address": "0x005d40ec", 
+      "type": null, 
+      "name": "s_EffectScn\\Fire2\\%02d.tga_005d40ec"
+    }, 
+    {
+      "address": "0x005d40d0", 
+      "type": null, 
+      "name": "s_EffectScn\\Fire4\\%02d.tga_005d40d0"
+    }, 
+    {
+      "address": "0x0056a594", 
+      "type": null, 
+      "name": "PTR_LoadTexture_0056a594"
+    }, 
+    {
+      "address": "0x0056a500", 
+      "type": null, 
+      "name": "PTR_gbGeomNode_0056a500"
+    }, 
+    {
+      "address": "0x0056a66c", 
+      "type": null, 
+      "name": "PTR_FUN_0056a66c"
+    }, 
+    {
+      "address": "0x005d40b4", 
+      "type": null, 
+      "name": "s_EffectScn\\Candle\\Candle.pol_005d40b4"
+    }, 
+    {
+      "address": "0x005d409c", 
+      "type": null, 
+      "name": "s_EffectScn\\Lamp\\Lamp.pol_005d409c"
+    }, 
+    {
+      "address": "0x0056a504", 
+      "type": null, 
+      "name": "PTR_LoadFromFile_0056a504"
+    }, 
+    {
+      "address": "0x005d4088", 
+      "type": null, 
+      "name": "s_effect\\Flare4.bmp_005d4088"
+    }
+  ], 
+  "has_custom_name": false, 
+  "decompiled_c": "\r\nvoid __thiscall FUN_004b7980(int param_1,int param_2)\r\n\r\n{\r\n  gbRenderEffect *pgVar1;\r\n  int iVar2;\r\n  gbTexture *pgVar3;\r\n  gbGeomNode *pgVar4;\r\n  undefined4 *puVar5;\r\n  char *pcVar6;\r\n  char *apcStack_128 [4];\r\n  char *pcStack_118;\r\n  gbGeomNode *pgStack_114;\r\n  undefined auStack_110 [260];\r\n  void *pvStack_c;\r\n  undefined *puStack_8;\r\n  undefined4 uStack_4;\r\n  \r\n  uStack_4 = 0xffffffff;\r\n  puStack_8 = &LAB_005663ce;\r\n  pvStack_c = ExceptionList;\r\n  ExceptionList = &pvStack_c;\r\n  pgVar1 = gbEffectMgr::NewRenderEffect\r\n                     ((gbEffectMgr *)DAT_00bfda60[0x32],s_gfxscript_AdditiveBlend_gbf_005d4144,0);\r\n  *(gbRenderEffect **)(param_1 + 100) = pgVar1;\r\n  apcStack_128[0] = s_EffectScn_Fire1_torch_02d_tga_005d4108;\r\n  apcStack_128[1] = s_EffectScn_Fire2__02d_tga_005d40ec;\r\n  apcStack_128[2] = s_EffectScn_Candle__03d_tga_005d4128;\r\n  apcStack_128[3] = s_EffectScn_Fire4__02d_tga_005d40d0;\r\n  pcStack_118 = s_EffectScn_Candle__03d_tga_005d4128;\r\n  pcVar6 = apcStack_128[param_2];\r\n  iVar2 = 0;\r\n  puVar5 = (undefined4 *)(param_1 + 0x68);\r\n  do {\r\n    iVar2 = iVar2 + 1;\r\n    FUN_00553082(auStack_110,pcVar6,iVar2);\r\n    pgVar3 = (gbTexture *)(**(code **)(*DAT_00bfda60 + 8))(auStack_110);\r\n    *puVar5 = pgVar3;\r\n    gbTexture::LoadTexture(pgVar3,1);\r\n    puVar5 = puVar5 + 1;\r\n  } while (iVar2 < 0x10);\r\n  *(undefined4 *)(param_1 + 0x5c) = 0;\r\n  if (((param_2 != 2) && (param_2 != 4)) && (param_2 != 0)) goto LAB_004b7aca;\r\n  pgVar4 = (gbGeomNode *)operator_new(0x118);\r\n  uStack_4 = 0;\r\n  pgStack_114 = pgVar4;\r\n  if (pgVar4 == (gbGeomNode *)0x0) {\r\n    pgVar4 = (gbGeomNode *)0x0;\r\n  }\r\n  else {\r\n    gbGeomNode::gbGeomNode(pgVar4);\r\n    *(undefined ***)pgVar4 = &PTR_FUN_0056a66c;\r\n  }\r\n  uStack_4 = 0xffffffff;\r\n  *(gbGeomNode **)(param_1 + 0xf0) = pgVar4;\r\n  if (param_2 == 2) {\r\n    pcVar6 = s_EffectScn_Candle_Candle_pol_005d40b4;\r\nLAB_004b7aa4:\r\n    gbGeomNode::LoadFromFile(pgVar4,pcVar6,(char *)0x0,(_func_void_int_int *)0x0);\r\n  }\r\n  else if (param_2 == 4) {\r\n    pcVar6 = s_EffectScn_Lamp_Lamp_pol_005d409c;\r\n    goto LAB_004b7aa4;\r\n  }\r\n  pgVar3 = (gbTexture *)(**(code **)(*DAT_00bfda60 + 8))(s_effect_Flare4_bmp_005d4088);\r\n  *(gbTexture **)(param_1 + 0xec) = pgVar3;\r\n  gbTexture::LoadTexture(pgVar3,1);\r\nLAB_004b7aca:\r\n  *(int *)(param_1 + 0xf4) = param_2;\r\n  ExceptionList = pvStack_c;\r\n  return;\r\n}\r\n\r\n", 
+  "is_thunk": false, 
+  "name": "FUN_004b7980", 
+  "assembly": "  004b7980:  PUSH -0x1\n  004b7982:  PUSH 0x5663ce\n  004b7987:  MOV EAX,FS:[0x0]\n  004b798d:  PUSH EAX\n  004b798e:  MOV dword ptr FS:[0x0],ESP\n  004b7995:  SUB ESP,0x11c\n  004b799b:  MOV EAX,[0x00bfda60]\n  004b79a0:  PUSH EBX\n  004b79a1:  PUSH EBP\n  004b79a2:  PUSH ESI\n  004b79a3:  PUSH EDI\n  004b79a4:  MOV EBX,ECX\n  004b79a6:  MOV ECX,dword ptr [EAX + 0xc8]\n  004b79ac:  PUSH 0x0\n  004b79ae:  PUSH 0x5d4144\n  004b79b3:  CALL dword ptr [0x0056a590]\n  004b79b9:  MOV ECX,dword ptr [ESP + 0x13c]\n  004b79c0:  MOV dword ptr [EBX + 0x64],EAX\n  004b79c3:  MOV EAX,0x5d4128\n  004b79c8:  MOV dword ptr [ESP + 0x10],0x5d4108\n  004b79d0:  MOV dword ptr [ESP + 0x14],0x5d40ec\n  004b79d8:  MOV dword ptr [ESP + 0x18],EAX\n  004b79dc:  MOV dword ptr [ESP + 0x1c],0x5d40d0\n  004b79e4:  MOV dword ptr [ESP + 0x20],EAX\n  004b79e8:  MOV EBP,dword ptr [ESP + ECX*0x4 + 0x10]\n  004b79ec:  XOR EAX,EAX\n  004b79ee:  LEA EDI,[EBX + 0x68]\n  004b79f1:  LEA ESI,[EAX + 0x1]\n  004b79f4:  LEA EDX,[ESP + 0x28]\n  004b79f8:  PUSH ESI\n  004b79f9:  PUSH EBP\n  004b79fa:  PUSH EDX\n  004b79fb:  CALL 0x00553082\n  004b7a00:  MOV ECX,dword ptr [0x00bfda60]\n  004b7a06:  ADD ESP,0xc\n  004b7a09:  LEA EDX,[ESP + 0x28]\n  004b7a0d:  MOV EAX,dword ptr [ECX]\n  004b7a0f:  PUSH EDX\n  004b7a10:  CALL dword ptr [EAX + 0x8]\n  004b7a13:  PUSH 0x1\n  004b7a15:  MOV ECX,EAX\n  004b7a17:  MOV dword ptr [EDI],EAX\n  004b7a19:  CALL dword ptr [0x0056a594]\n  004b7a1f:  MOV EAX,ESI\n  004b7a21:  ADD EDI,0x4\n  004b7a24:  CMP EAX,0x10\n  004b7a27:  JL 0x004b79f1\n  004b7a29:  MOV ESI,dword ptr [ESP + 0x13c]\n  004b7a30:  XOR EBP,EBP\n  004b7a32:  CMP ESI,0x2\n  004b7a35:  MOV dword ptr [EBX + 0x5c],EBP\n  004b7a38:  JZ 0x004b7a47\n  004b7a3a:  CMP ESI,0x4\n  004b7a3d:  JZ 0x004b7a47\n  004b7a3f:  CMP ESI,EBP\n  004b7a41:  JNZ 0x004b7aca\n  004b7a47:  PUSH 0x118\n  004b7a4c:  CALL 0x0055353b\n  004b7a51:  MOV EDI,EAX\n  004b7a53:  ADD ESP,0x4\n  004b7a56:  MOV dword ptr [ESP + 0x24],EDI\n  004b7a5a:  CMP EDI,EBP\n  004b7a5c:  MOV dword ptr [ESP + 0x134],EBP\n  004b7a63:  JZ 0x004b7a77\n  004b7a65:  MOV ECX,EDI\n  004b7a67:  CALL dword ptr [0x0056a500]\n  004b7a6d:  MOV dword ptr [EDI],0x56a66c\n  004b7a73:  MOV ECX,EDI\n  004b7a75:  JMP 0x004b7a79\n  004b7a77:  XOR ECX,ECX\n  004b7a79:  CMP ESI,0x2\n  004b7a7c:  MOV dword ptr [ESP + 0x134],0xffffffff\n  004b7a87:  MOV dword ptr [EBX + 0xf0],ECX\n  004b7a8d:  JNZ 0x004b7a98\n  004b7a8f:  PUSH EBP\n  004b7a90:  PUSH EBP\n  004b7a91:  PUSH 0x5d40b4\n  004b7a96:  JMP 0x004b7aa4\n  004b7a98:  CMP ESI,0x4\n  004b7a9b:  JNZ 0x004b7aaa\n  004b7a9d:  PUSH EBP\n  004b7a9e:  PUSH EBP\n  004b7a9f:  PUSH 0x5d409c\n  004b7aa4:  CALL dword ptr [0x0056a504]\n  004b7aaa:  MOV ECX,dword ptr [0x00bfda60]\n  004b7ab0:  PUSH 0x5d4088\n  004b7ab5:  MOV EAX,dword ptr [ECX]\n  004b7ab7:  CALL dword ptr [EAX + 0x8]\n  004b7aba:  PUSH 0x1\n  004b7abc:  MOV ECX,EAX\n  004b7abe:  MOV dword ptr [EBX + 0xec],EAX\n  004b7ac4:  CALL dword ptr [0x0056a594]\n  004b7aca:  MOV ECX,dword ptr [ESP + 0x12c]\n  004b7ad1:  MOV dword ptr [EBX + 0xf4],ESI\n  004b7ad7:  POP EDI\n  004b7ad8:  POP ESI\n  004b7ad9:  POP EBP\n  004b7ada:  POP EBX\n  004b7adb:  MOV dword ptr FS:[0x0],ECX\n  004b7ae2:  ADD ESP,0x128\n  004b7ae8:  RET 0x4", 
+  "callers": []
+}

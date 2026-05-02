@@ -1,0 +1,33 @@
+{
+  "address": "0x0040dd80", 
+  "size_bytes": 129, 
+  "calling_convention": "unknown", 
+  "signature": "undefined FUN_0040dd80(void)", 
+  "callees": [], 
+  "global_refs": [
+    {
+      "address": "0x-0000004", 
+      "type": null, 
+      "name": "DAT_-0000004"
+    }
+  ], 
+  "has_custom_name": false, 
+  "decompiled_c": "\r\n/* WARNING: Removing unreachable block (ram,0x0040dd9f) */\r\n/* WARNING: Removing unreachable block (ram,0x0040ddd3) */\r\n\r\nvoid __fastcall FUN_0040dd80(int param_1)\r\n\r\n{\r\n  *(undefined4 *)(param_1 + 0x10) = 0xffffffff;\r\n  *(undefined4 *)(param_1 + 0x24) = 0;\r\n  *(undefined4 *)(param_1 + 8) = *(undefined4 *)(param_1 + 4);\r\n  *(undefined4 *)(param_1 + 0x1c) = *(undefined4 *)(param_1 + 0x18);\r\n  return;\r\n}\r\n\r\n", 
+  "is_thunk": false, 
+  "name": "FUN_0040dd80", 
+  "assembly": "  0040dd80:  PUSH ECX\n  0040dd81:  PUSH EBX\n  0040dd82:  MOV EDX,dword ptr [ECX + 0x4]\n  0040dd85:  PUSH EBP\n  0040dd86:  PUSH ESI\n  0040dd87:  MOV ESI,dword ptr [ECX + 0x8]\n  0040dd8a:  PUSH EDI\n  0040dd8b:  MOV EAX,ESI\n  0040dd8d:  MOV dword ptr [ECX + 0x10],0xffffffff\n  0040dd94:  CMP EAX,ESI\n  0040dd96:  MOV dword ptr [ECX + 0x24],0x0\n  0040dd9d:  JZ 0x0040ddbd\n  0040dd9f:  MOV EDI,EAX\n  0040dda1:  MOV EBX,EDX\n  0040dda3:  ADD EAX,0xc\n  0040dda6:  ADD EDX,0xc\n  0040dda9:  MOV EBP,dword ptr [EDI]\n  0040ddab:  CMP EAX,ESI\n  0040ddad:  MOV dword ptr [EBX],EBP\n  0040ddaf:  MOV EBP,dword ptr [EDI + 0x4]\n  0040ddb2:  MOV dword ptr [EBX + 0x4],EBP\n  0040ddb5:  MOV EDI,dword ptr [EDI + 0x8]\n  0040ddb8:  MOV dword ptr [EBX + 0x8],EDI\n  0040ddbb:  JNZ 0x0040dd9f\n  0040ddbd:  MOV EAX,dword ptr [ECX + 0x8]\n  0040ddc0:  MOV dword ptr [ECX + 0x8],EDX\n  0040ddc3:  MOV ESI,dword ptr [ECX + 0x1c]\n  0040ddc6:  MOV EDX,dword ptr [ECX + 0x18]\n  0040ddc9:  MOV dword ptr [ESP + 0x10],EAX\n  0040ddcd:  MOV EAX,ESI\n  0040ddcf:  CMP EAX,ESI\n  0040ddd1:  JZ 0x0040ddf1\n  0040ddd3:  MOV EDI,EAX\n  0040ddd5:  MOV EBX,EDX\n  0040ddd7:  ADD EAX,0xc\n  0040ddda:  ADD EDX,0xc\n  0040dddd:  MOV EBP,dword ptr [EDI]\n  0040dddf:  CMP EAX,ESI\n  0040dde1:  MOV dword ptr [EBX],EBP\n  0040dde3:  MOV EBP,dword ptr [EDI + 0x4]\n  0040dde6:  MOV dword ptr [EBX + 0x4],EBP\n  0040dde9:  MOV EDI,dword ptr [EDI + 0x8]\n  0040ddec:  MOV dword ptr [EBX + 0x8],EDI\n  0040ddef:  JNZ 0x0040ddd3\n  0040ddf1:  MOV EAX,dword ptr [ECX + 0x1c]\n  0040ddf4:  POP EDI\n  0040ddf5:  POP ESI\n  0040ddf6:  POP EBP\n  0040ddf7:  MOV dword ptr [ESP + 0x4],EAX\n  0040ddfb:  MOV dword ptr [ECX + 0x1c],EDX\n  0040ddfe:  POP EBX\n  0040ddff:  POP ECX\n  0040de00:  RET", 
+  "callers": [
+    {
+      "address": "0x004a9870", 
+      "name": "FUN_004a9870"
+    }, 
+    {
+      "address": "0x00408fd0", 
+      "name": "FUN_00408fd0"
+    }, 
+    {
+      "address": "0x004e24c0", 
+      "name": "FUN_004e24c0"
+    }
+  ]
+}

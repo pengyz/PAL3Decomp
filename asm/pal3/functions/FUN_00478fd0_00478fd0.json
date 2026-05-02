@@ -1,0 +1,109 @@
+{
+  "address": "0x00478fd0", 
+  "size_bytes": 105, 
+  "calling_convention": "unknown", 
+  "signature": "undefined FUN_00478fd0(undefined4 param_1)", 
+  "callees": [], 
+  "global_refs": [
+    {
+      "address": "0x00000004", 
+      "type": null, 
+      "name": "DAT_00000004"
+    }
+  ], 
+  "has_custom_name": false, 
+  "decompiled_c": "\r\nint __thiscall FUN_00478fd0(int param_1_00,int param_1)\r\n\r\n{\r\n  int iVar1;\r\n  \r\n  if (param_1 != 0) {\r\n    *(undefined4 *)(param_1_00 + 0xc4810) = 0;\r\n    if (0 < *(int *)(param_1_00 + 0x84)) {\r\n      do {\r\n        if (param_1 == *(int *)(param_1_00 + 0xa0 + *(int *)(param_1_00 + 0xc4810) * 0x354)) {\r\n          return param_1_00 + 0xa0 + *(int *)(param_1_00 + 0xc4810) * 0x354;\r\n        }\r\n        iVar1 = *(int *)(param_1_00 + 0xc4810) + 1;\r\n        *(int *)(param_1_00 + 0xc4810) = iVar1;\r\n      } while (iVar1 < *(int *)(param_1_00 + 0x84));\r\n    }\r\n  }\r\n  return 0;\r\n}\r\n\r\n", 
+  "is_thunk": false, 
+  "name": "FUN_00478fd0", 
+  "assembly": "  00478fd0:  PUSH ESI\n  00478fd1:  PUSH EDI\n  00478fd2:  MOV EDI,dword ptr [ESP + 0xc]\n  00478fd6:  TEST EDI,EDI\n  00478fd8:  JZ 0x00479015\n  00478fda:  MOV ESI,dword ptr [ECX + 0x84]\n  00478fe0:  MOV dword ptr [ECX + 0xc4810],0x0\n  00478fea:  TEST ESI,ESI\n  00478fec:  JLE 0x00479015\n  00478fee:  MOV EDX,dword ptr [ECX + 0xc4810]\n  00478ff4:  LEA EAX,[EDX + EDX*0x8]\n  00478ff7:  SHL EAX,0x3\n  00478ffa:  SUB EAX,EDX\n  00478ffc:  LEA EAX,[EAX + EAX*0x2]\n  00478fff:  CMP EDI,dword ptr [ECX + EAX*0x4 + 0xa0]\n  00479006:  JZ 0x0047901c\n  00479008:  LEA EAX,[EDX + 0x1]\n  0047900b:  CMP EAX,ESI\n  0047900d:  MOV dword ptr [ECX + 0xc4810],EAX\n  00479013:  JL 0x00478fee\n  00479015:  POP EDI\n  00479016:  POP ESI\n  00479017:  XOR EAX,EAX\n  00479019:  RET 0x4\n  0047901c:  MOV EDX,dword ptr [ECX + 0xc4810]\n  00479022:  POP EDI\n  00479023:  POP ESI\n  00479024:  LEA EAX,[EDX + EDX*0x8]\n  00479027:  SHL EAX,0x3\n  0047902a:  SUB EAX,EDX\n  0047902c:  LEA EDX,[EAX + EAX*0x2]\n  0047902f:  LEA EAX,[ECX + EDX*0x4 + 0xa0]\n  00479036:  RET 0x4", 
+  "callers": [
+    {
+      "address": "0x004ed250", 
+      "name": "FUN_004ed250"
+    }, 
+    {
+      "address": "0x004ed8c0", 
+      "name": "FUN_004ed8c0"
+    }, 
+    {
+      "address": "0x004edd60", 
+      "name": "FUN_004edd60"
+    }, 
+    {
+      "address": "0x00417040", 
+      "name": "FUN_00417040"
+    }, 
+    {
+      "address": "0x0047f450", 
+      "name": "FUN_0047f450"
+    }, 
+    {
+      "address": "0x004f4da0", 
+      "name": "FUN_004f4da0"
+    }, 
+    {
+      "address": "0x004f4aa0", 
+      "name": "FUN_004f4aa0"
+    }, 
+    {
+      "address": "0x004f5070", 
+      "name": "FUN_004f5070"
+    }, 
+    {
+      "address": "0x004f6370", 
+      "name": "FUN_004f6370"
+    }, 
+    {
+      "address": "0x004f6da0", 
+      "name": "FUN_004f6da0"
+    }, 
+    {
+      "address": "0x004f6e80", 
+      "name": "FUN_004f6e80"
+    }, 
+    {
+      "address": "0x004f5d00", 
+      "name": "FUN_004f5d00"
+    }, 
+    {
+      "address": "0x004fb370", 
+      "name": "FUN_004fb370"
+    }, 
+    {
+      "address": "0x004f8bb0", 
+      "name": "FUN_004f8bb0"
+    }, 
+    {
+      "address": "0x004f1070", 
+      "name": "FUN_004f1070"
+    }, 
+    {
+      "address": "0x004f1420", 
+      "name": "FUN_004f1420"
+    }, 
+    {
+      "address": "0x004f5330", 
+      "name": "FUN_004f5330"
+    }, 
+    {
+      "address": "0x00482140", 
+      "name": "FUN_00482140"
+    }, 
+    {
+      "address": "0x004f76c0", 
+      "name": "FUN_004f76c0"
+    }, 
+    {
+      "address": "0x004e2c50", 
+      "name": "FUN_004e2c50"
+    }, 
+    {
+      "address": "0x004e5b20", 
+      "name": "FUN_004e5b20"
+    }, 
+    {
+      "address": "0x004e5e00", 
+      "name": "FUN_004e5e00"
+    }
+  ]
+}

@@ -1,0 +1,55 @@
+{
+  "address": "0x0041c9a0", 
+  "size_bytes": 136, 
+  "calling_convention": "unknown", 
+  "signature": "undefined FUN_0041c9a0(undefined4 param_1, undefined4 param_2, undefined4 param_3, undefined4 param_4, undefined4 param_5, undefined4 param_6, undefined4 param_7)", 
+  "callees": [
+    {
+      "address": "0x0041c710", 
+      "name": "FUN_0041c710"
+    }
+  ], 
+  "global_refs": [
+    {
+      "address": "0x00000008", 
+      "type": null, 
+      "name": "DAT_00000008"
+    }, 
+    {
+      "address": "0x00000004", 
+      "type": null, 
+      "name": "DAT_00000004"
+    }, 
+    {
+      "address": "0x0000000c", 
+      "type": null, 
+      "name": "DAT_0000000c"
+    }, 
+    {
+      "address": "0x0000001c", 
+      "type": null, 
+      "name": "DAT_0000001c"
+    }, 
+    {
+      "address": "0x00000010", 
+      "type": null, 
+      "name": "DAT_00000010"
+    }, 
+    {
+      "address": "0x00000014", 
+      "type": null, 
+      "name": "DAT_00000014"
+    }, 
+    {
+      "address": "0x00000018", 
+      "type": null, 
+      "name": "DAT_00000018"
+    }
+  ], 
+  "has_custom_name": false, 
+  "decompiled_c": "\r\nvoid __thiscall\r\nFUN_0041c9a0(int param_1_00,undefined4 param_1,undefined4 param_2,undefined4 param_3,\r\n            undefined4 param_4,undefined4 param_5,undefined4 param_6,int param_7)\r\n\r\n{\r\n  *(undefined4 *)(param_1_00 + 0x1c4) = param_2;\r\n  *(undefined4 *)(param_1_00 + 0x1d4) = param_3;\r\n  *(undefined4 *)(param_1_00 + 0x1c8) = param_1;\r\n  *(undefined4 *)(param_1_00 + 0x1cc) = 0;\r\n  if (param_7 != 0) {\r\n    *(undefined4 *)(param_1_00 + 0x1ec) = param_4;\r\n    *(undefined4 *)(param_1_00 + 0x1f0) = param_5;\r\n    *(undefined4 *)(param_1_00 + 500) = param_6;\r\n    FUN_0041c710(param_7 == 0);\r\n    return;\r\n  }\r\n  *(undefined4 *)(param_1_00 + 0x1e0) = param_4;\r\n  *(undefined4 *)(param_1_00 + 0x1e4) = param_5;\r\n  *(undefined4 *)(param_1_00 + 0x1e8) = param_6;\r\n  FUN_0041c710(1);\r\n  return;\r\n}\r\n\r\n", 
+  "is_thunk": false, 
+  "name": "FUN_0041c9a0", 
+  "assembly": "  0041c9a0:  MOV EAX,dword ptr [ESP + 0x8]\n  0041c9a4:  MOV EDX,dword ptr [ESP + 0x4]\n  0041c9a8:  MOV dword ptr [ECX + 0x1c4],EAX\n  0041c9ae:  MOV EAX,dword ptr [ESP + 0xc]\n  0041c9b2:  MOV dword ptr [ECX + 0x1d4],EAX\n  0041c9b8:  MOV EAX,dword ptr [ESP + 0x1c]\n  0041c9bc:  MOV dword ptr [ECX + 0x1c8],EDX\n  0041c9c2:  MOV EDX,dword ptr [ESP + 0x10]\n  0041c9c6:  TEST EAX,EAX\n  0041c9c8:  MOV dword ptr [ECX + 0x1cc],0x0\n  0041c9d2:  JZ 0x0041c9fe\n  0041c9d4:  MOV dword ptr [ECX + 0x1ec],EDX\n  0041c9da:  MOV EDX,dword ptr [ESP + 0x14]\n  0041c9de:  MOV dword ptr [ECX + 0x1f0],EDX\n  0041c9e4:  MOV EDX,dword ptr [ESP + 0x18]\n  0041c9e8:  MOV dword ptr [ECX + 0x1f4],EDX\n  0041c9ee:  XOR EDX,EDX\n  0041c9f0:  TEST EAX,EAX\n  0041c9f2:  SETZ DL\n  0041c9f5:  PUSH EDX\n  0041c9f6:  CALL 0x0041c710\n  0041c9fb:  RET 0x1c\n  0041c9fe:  MOV dword ptr [ECX + 0x1e0],EDX\n  0041ca04:  MOV EDX,dword ptr [ESP + 0x14]\n  0041ca08:  MOV dword ptr [ECX + 0x1e4],EDX\n  0041ca0e:  MOV EDX,dword ptr [ESP + 0x18]\n  0041ca12:  MOV dword ptr [ECX + 0x1e8],EDX\n  0041ca18:  XOR EDX,EDX\n  0041ca1a:  TEST EAX,EAX\n  0041ca1c:  SETZ DL\n  0041ca1f:  PUSH EDX\n  0041ca20:  CALL 0x0041c710\n  0041ca25:  RET 0x1c", 
+  "callers": []
+}

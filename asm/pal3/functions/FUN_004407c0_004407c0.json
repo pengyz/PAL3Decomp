@@ -1,0 +1,299 @@
+{
+  "address": "0x004407c0", 
+  "size_bytes": 79, 
+  "calling_convention": "unknown", 
+  "signature": "undefined FUN_004407c0(void)", 
+  "callees": [
+    {
+      "address": "0x00440ba0", 
+      "name": "FUN_00440ba0"
+    }, 
+    {
+      "address": "0x00445b40", 
+      "name": "FUN_00445b40"
+    }
+  ], 
+  "global_refs": [
+    {
+      "address": "0x0055fed8", 
+      "type": null, 
+      "name": "LAB_0055fed8"
+    }, 
+    {
+      "address": "0xffdff000", 
+      "type": null, 
+      "name": "ExceptionList"
+    }, 
+    {
+      "address": "0x-0000010", 
+      "type": null, 
+      "name": "DAT_-0000010"
+    }, 
+    {
+      "address": "0x0056ad88", 
+      "type": null, 
+      "name": "PTR_FUN_0056ad88"
+    }, 
+    {
+      "address": "0x-0000004", 
+      "type": null, 
+      "name": "DAT_-0000004"
+    }, 
+    {
+      "address": "0x-000000c", 
+      "type": null, 
+      "name": "DAT_-000000c"
+    }
+  ], 
+  "has_custom_name": false, 
+  "decompiled_c": "\r\nvoid __fastcall FUN_004407c0(undefined4 *param_1)\r\n\r\n{\r\n  void *local_c;\r\n  undefined *puStack_8;\r\n  undefined4 local_4;\r\n  \r\n  puStack_8 = &LAB_0055fed8;\r\n  local_c = ExceptionList;\r\n  ExceptionList = &local_c;\r\n  *param_1 = &PTR_FUN_0056ad88;\r\n  local_4 = 0;\r\n  FUN_00440ba0();\r\n  local_4 = 0xffffffff;\r\n  FUN_00445b40();\r\n  ExceptionList = local_c;\r\n  return;\r\n}\r\n\r\n", 
+  "is_thunk": false, 
+  "name": "FUN_004407c0", 
+  "assembly": "  004407c0:  PUSH -0x1\n  004407c2:  PUSH 0x55fed8\n  004407c7:  MOV EAX,FS:[0x0]\n  004407cd:  PUSH EAX\n  004407ce:  MOV dword ptr FS:[0x0],ESP\n  004407d5:  PUSH ECX\n  004407d6:  PUSH ESI\n  004407d7:  MOV ESI,ECX\n  004407d9:  MOV dword ptr [ESP + 0x4],ESI\n  004407dd:  MOV dword ptr [ESI],0x56ad88\n  004407e3:  MOV dword ptr [ESP + 0x10],0x0\n  004407eb:  CALL 0x00440ba0\n  004407f0:  MOV ECX,ESI\n  004407f2:  MOV dword ptr [ESP + 0x10],0xffffffff\n  004407fa:  CALL 0x00445b40\n  004407ff:  MOV ECX,dword ptr [ESP + 0x8]\n  00440803:  POP ESI\n  00440804:  MOV dword ptr FS:[0x0],ECX\n  0044080b:  ADD ESP,0x10\n  0044080e:  RET", 
+  "callers": [
+    {
+      "address": "0x00562981", 
+      "name": "Unwind@00562981"
+    }, 
+    {
+      "address": "0x0056298f", 
+      "name": "Unwind@0056298f"
+    }, 
+    {
+      "address": "0x0056299d", 
+      "name": "Unwind@0056299d"
+    }, 
+    {
+      "address": "0x005629ab", 
+      "name": "Unwind@005629ab"
+    }, 
+    {
+      "address": "0x005629b9", 
+      "name": "Unwind@005629b9"
+    }, 
+    {
+      "address": "0x005629c7", 
+      "name": "Unwind@005629c7"
+    }, 
+    {
+      "address": "0x00562be1", 
+      "name": "Unwind@00562be1"
+    }, 
+    {
+      "address": "0x00562bef", 
+      "name": "Unwind@00562bef"
+    }, 
+    {
+      "address": "0x00562bfd", 
+      "name": "Unwind@00562bfd"
+    }, 
+    {
+      "address": "0x00562c0b", 
+      "name": "Unwind@00562c0b"
+    }, 
+    {
+      "address": "0x00562c19", 
+      "name": "Unwind@00562c19"
+    }, 
+    {
+      "address": "0x00562c27", 
+      "name": "Unwind@00562c27"
+    }, 
+    {
+      "address": "0x00565f4c", 
+      "name": "Unwind@00565f4c"
+    }, 
+    {
+      "address": "0x00565f5a", 
+      "name": "Unwind@00565f5a"
+    }, 
+    {
+      "address": "0x0056619c", 
+      "name": "Unwind@0056619c"
+    }, 
+    {
+      "address": "0x005661aa", 
+      "name": "Unwind@005661aa"
+    }, 
+    {
+      "address": "0x00567679", 
+      "name": "Unwind@00567679"
+    }, 
+    {
+      "address": "0x005676b1", 
+      "name": "Unwind@005676b1"
+    }, 
+    {
+      "address": "0x005676bf", 
+      "name": "Unwind@005676bf"
+    }, 
+    {
+      "address": "0x005676cd", 
+      "name": "Unwind@005676cd"
+    }, 
+    {
+      "address": "0x005676db", 
+      "name": "Unwind@005676db"
+    }, 
+    {
+      "address": "0x005676e9", 
+      "name": "Unwind@005676e9"
+    }, 
+    {
+      "address": "0x005676f7", 
+      "name": "Unwind@005676f7"
+    }, 
+    {
+      "address": "0x00567705", 
+      "name": "Unwind@00567705"
+    }, 
+    {
+      "address": "0x00567713", 
+      "name": "Unwind@00567713"
+    }, 
+    {
+      "address": "0x00567721", 
+      "name": "Unwind@00567721"
+    }, 
+    {
+      "address": "0x0056772f", 
+      "name": "Unwind@0056772f"
+    }, 
+    {
+      "address": "0x0056773d", 
+      "name": "Unwind@0056773d"
+    }, 
+    {
+      "address": "0x0056774b", 
+      "name": "Unwind@0056774b"
+    }, 
+    {
+      "address": "0x00567759", 
+      "name": "Unwind@00567759"
+    }, 
+    {
+      "address": "0x00567767", 
+      "name": "Unwind@00567767"
+    }, 
+    {
+      "address": "0x00567775", 
+      "name": "Unwind@00567775"
+    }, 
+    {
+      "address": "0x00567783", 
+      "name": "Unwind@00567783"
+    }, 
+    {
+      "address": "0x00567791", 
+      "name": "Unwind@00567791"
+    }, 
+    {
+      "address": "0x00567829", 
+      "name": "Unwind@00567829"
+    }, 
+    {
+      "address": "0x00567861", 
+      "name": "Unwind@00567861"
+    }, 
+    {
+      "address": "0x0056786f", 
+      "name": "Unwind@0056786f"
+    }, 
+    {
+      "address": "0x0056787d", 
+      "name": "Unwind@0056787d"
+    }, 
+    {
+      "address": "0x0056788b", 
+      "name": "Unwind@0056788b"
+    }, 
+    {
+      "address": "0x00567899", 
+      "name": "Unwind@00567899"
+    }, 
+    {
+      "address": "0x005678a7", 
+      "name": "Unwind@005678a7"
+    }, 
+    {
+      "address": "0x005678b5", 
+      "name": "Unwind@005678b5"
+    }, 
+    {
+      "address": "0x005678c3", 
+      "name": "Unwind@005678c3"
+    }, 
+    {
+      "address": "0x005678d1", 
+      "name": "Unwind@005678d1"
+    }, 
+    {
+      "address": "0x005678df", 
+      "name": "Unwind@005678df"
+    }, 
+    {
+      "address": "0x005678ed", 
+      "name": "Unwind@005678ed"
+    }, 
+    {
+      "address": "0x005678fb", 
+      "name": "Unwind@005678fb"
+    }, 
+    {
+      "address": "0x00567909", 
+      "name": "Unwind@00567909"
+    }, 
+    {
+      "address": "0x00567917", 
+      "name": "Unwind@00567917"
+    }, 
+    {
+      "address": "0x00567925", 
+      "name": "Unwind@00567925"
+    }, 
+    {
+      "address": "0x00567933", 
+      "name": "Unwind@00567933"
+    }, 
+    {
+      "address": "0x00567941", 
+      "name": "Unwind@00567941"
+    }, 
+    {
+      "address": "0x00567bb8", 
+      "name": "Unwind@00567bb8"
+    }, 
+    {
+      "address": "0x00567bc6", 
+      "name": "Unwind@00567bc6"
+    }, 
+    {
+      "address": "0x00567db8", 
+      "name": "Unwind@00567db8"
+    }, 
+    {
+      "address": "0x00567dc6", 
+      "name": "Unwind@00567dc6"
+    }, 
+    {
+      "address": "0x004407a0", 
+      "name": "FUN_004407a0"
+    }, 
+    {
+      "address": "0x0047e910", 
+      "name": "FUN_0047e910"
+    }, 
+    {
+      "address": "0x004b0540", 
+      "name": "FUN_004b0540"
+    }, 
+    {
+      "address": "0x0051dda0", 
+      "name": "FUN_0051dda0"
+    }, 
+    {
+      "address": "0x00525540", 
+      "name": "FUN_00525540"
+    }
+  ]
+}

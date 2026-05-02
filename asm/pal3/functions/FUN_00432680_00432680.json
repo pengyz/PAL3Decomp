@@ -1,0 +1,68 @@
+{
+  "address": "0x00432680", 
+  "size_bytes": 26, 
+  "calling_convention": "unknown", 
+  "signature": "undefined FUN_00432680(void)", 
+  "callees": [
+    {
+      "address": "0x00552f55", 
+      "name": "FUN_00552f55"
+    }
+  ], 
+  "global_refs": [], 
+  "has_custom_name": false, 
+  "decompiled_c": "\r\nvoid __fastcall FUN_00432680(int *param_1)\r\n\r\n{\r\n  if (*param_1 != 0) {\r\n    FUN_00552f55(*param_1);\r\n    *param_1 = 0;\r\n  }\r\n  return;\r\n}\r\n\r\n", 
+  "is_thunk": false, 
+  "name": "FUN_00432680", 
+  "assembly": "  00432680:  PUSH ESI\n  00432681:  MOV ESI,ECX\n  00432683:  MOV EAX,dword ptr [ESI]\n  00432685:  TEST EAX,EAX\n  00432687:  JZ 0x00432698\n  00432689:  PUSH EAX\n  0043268a:  CALL 0x00552f55\n  0043268f:  ADD ESP,0x4\n  00432692:  MOV dword ptr [ESI],0x0\n  00432698:  POP ESI\n  00432699:  RET", 
+  "callers": [
+    {
+      "address": "0x00445b40", 
+      "name": "FUN_00445b40"
+    }, 
+    {
+      "address": "0x0055f4a0", 
+      "name": "Unwind@0055f4a0"
+    }, 
+    {
+      "address": "0x0055f510", 
+      "name": "Unwind@0055f510"
+    }, 
+    {
+      "address": "0x0055f9c0", 
+      "name": "Unwind@0055f9c0"
+    }, 
+    {
+      "address": "0x0055fd40", 
+      "name": "Unwind@0055fd40"
+    }, 
+    {
+      "address": "0x00560160", 
+      "name": "Unwind@00560160"
+    }, 
+    {
+      "address": "0x00568d60", 
+      "name": "Unwind@00568d60"
+    }, 
+    {
+      "address": "0x00568d80", 
+      "name": "Unwind@00568d80"
+    }, 
+    {
+      "address": "0x0041f800", 
+      "name": "FUN_0041f800"
+    }, 
+    {
+      "address": "0x00431cd0", 
+      "name": "FUN_00431cd0"
+    }, 
+    {
+      "address": "0x0043df20", 
+      "name": "FUN_0043df20"
+    }, 
+    {
+      "address": "0x0053d100", 
+      "name": "FUN_0053d100"
+    }
+  ]
+}

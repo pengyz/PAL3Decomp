@@ -1,0 +1,30 @@
+{
+  "address": "0x00533f50", 
+  "size_bytes": 128, 
+  "calling_convention": "unknown", 
+  "signature": "undefined FUN_00533f50(undefined4 param_1)", 
+  "callees": [], 
+  "global_refs": [
+    {
+      "address": "0x00000004", 
+      "type": null, 
+      "name": "DAT_00000004"
+    }, 
+    {
+      "address": "0x0056a644", 
+      "type": null, 
+      "name": "DAT_0056a644"
+    }
+  ], 
+  "has_custom_name": false, 
+  "decompiled_c": "\r\n/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */\r\n\r\nvoid __thiscall FUN_00533f50(int param_1_00,float param_1)\r\n\r\n{\r\n  param_1 = param_1 + *(float *)(param_1_00 + 0x26c);\r\n  *(float *)(param_1_00 + 0x26c) = param_1;\r\n  if (*(float *)(param_1_00 + 0x268) <= ABS(param_1)) {\r\n    if (_DAT_0056a644 < param_1) {\r\n      *(undefined *)(param_1_00 + 0x27c) = 0;\r\n    }\r\n    else {\r\n      *(undefined *)(param_1_00 + 0x27c) = 1;\r\n    }\r\n    *(float *)(param_1_00 + 0x270) = param_1;\r\n    *(undefined4 *)(param_1_00 + 0x26c) = 0;\r\n    *(undefined *)(param_1_00 + 0x264) = 1;\r\n    *(undefined4 *)(param_1_00 + 600) = *(undefined4 *)(param_1_00 + 0x24c);\r\n    *(undefined4 *)(param_1_00 + 0x25c) = *(undefined4 *)(param_1_00 + 0x250);\r\n    *(undefined4 *)(param_1_00 + 0x260) = *(undefined4 *)(param_1_00 + 0x254);\r\n    return;\r\n  }\r\n  return;\r\n}\r\n\r\n", 
+  "is_thunk": false, 
+  "name": "FUN_00533f50", 
+  "assembly": "  00533f50:  FLD dword ptr [ESP + 0x4]\n  00533f54:  FADD dword ptr [ECX + 0x26c]\n  00533f5a:  FST dword ptr [ECX + 0x26c]\n  00533f60:  FLD ST0\n  00533f62:  FABS\n  00533f64:  FLD dword ptr [ECX + 0x268]\n  00533f6a:  FCOMPP\n  00533f6c:  FNSTSW AX\n  00533f6e:  TEST AH,0x41\n  00533f71:  JZ 0x00533fcb\n  00533f73:  FCOM dword ptr [0x0056a644]\n  00533f79:  XOR EDX,EDX\n  00533f7b:  FNSTSW AX\n  00533f7d:  TEST AH,0x41\n  00533f80:  JZ 0x00533f8b\n  00533f82:  MOV byte ptr [ECX + 0x27c],0x1\n  00533f89:  JMP 0x00533f91\n  00533f8b:  MOV byte ptr [ECX + 0x27c],DL\n  00533f91:  FSTP dword ptr [ECX + 0x270]\n  00533f97:  MOV dword ptr [ECX + 0x26c],EDX\n  00533f9d:  MOV byte ptr [ECX + 0x264],0x1\n  00533fa4:  MOV EAX,dword ptr [ECX + 0x24c]\n  00533faa:  MOV dword ptr [ECX + 0x258],EAX\n  00533fb0:  MOV EDX,dword ptr [ECX + 0x250]\n  00533fb6:  MOV dword ptr [ECX + 0x25c],EDX\n  00533fbc:  MOV EAX,dword ptr [ECX + 0x254]\n  00533fc2:  MOV dword ptr [ECX + 0x260],EAX\n  00533fc8:  RET 0x4\n  00533fcb:  FSTP ST0\n  00533fcd:  RET 0x4", 
+  "callers": [
+    {
+      "address": "0x005353a0", 
+      "name": "FUN_005353a0"
+    }
+  ]
+}

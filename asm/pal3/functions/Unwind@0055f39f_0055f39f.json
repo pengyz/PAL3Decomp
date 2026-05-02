@@ -1,0 +1,19 @@
+{
+  "address": "0x0055f39f", 
+  "size_bytes": 39, 
+  "calling_convention": "unknown", 
+  "signature": "undefined Unwind@0055f39f(void)", 
+  "callees": [
+    {
+      "address": "0x004b6ca0", 
+      "name": "FUN_004b6ca0"
+    }
+  ], 
+  "global_refs": [], 
+  "has_custom_name": true, 
+  "decompiled_c": "\r\nvoid Unwind_0055f39f(void)\r\n\r\n{\r\n  int unaff_EBP;\r\n  \r\n  if (*(int *)(unaff_EBP + -0x20) == 0) {\r\n    *(undefined4 *)(unaff_EBP + -0x24) = 0;\r\n  }\r\n  else {\r\n    *(int *)(unaff_EBP + -0x24) = *(int *)(unaff_EBP + -0x20) + 0x40;\r\n  }\r\n  FUN_004b6ca0();\r\n  return;\r\n}\r\n\r\n", 
+  "is_thunk": false, 
+  "name": "Unwind@0055f39f", 
+  "assembly": "  0055f39f:  CMP dword ptr [EBP + -0x20],0x0\n  0055f3a3:  JZ 0x0055f3b7\n  0055f3a9:  MOV EAX,dword ptr [EBP + -0x20]\n  0055f3ac:  ADD EAX,0x40\n  0055f3af:  MOV dword ptr [EBP + -0x24],EAX\n  0055f3b2:  JMP 0x0055f3be\n  0055f3b7:  MOV dword ptr [EBP + -0x24],0x0\n  0055f3be:  MOV ECX,dword ptr [EBP + -0x24]\n  0055f3c1:  JMP 0x004b6ca0", 
+  "callers": []
+}

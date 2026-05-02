@@ -1,0 +1,38 @@
+{
+  "address": "0x004e56e0", 
+  "size_bytes": 40, 
+  "calling_convention": "unknown", 
+  "signature": "undefined FUN_004e56e0(undefined4 param_1, undefined4 param_2)", 
+  "callees": [], 
+  "global_refs": [
+    {
+      "address": "0x00000004", 
+      "type": null, 
+      "name": "DAT_00000004"
+    }, 
+    {
+      "address": "0x00000008", 
+      "type": null, 
+      "name": "DAT_00000008"
+    }
+  ], 
+  "has_custom_name": false, 
+  "decompiled_c": "\r\nuint __thiscall FUN_004e56e0(int param_1_00,int param_1,uint *param_2)\r\n\r\n{\r\n  uint uVar1;\r\n  int *piVar2;\r\n  \r\n  uVar1 = 0;\r\n  piVar2 = (int *)(param_1_00 + 8);\r\n  do {\r\n    if (*piVar2 == param_1) {\r\n      *param_2 = uVar1;\r\n      return CONCAT31((int3)(uVar1 >> 8),1);\r\n    }\r\n    uVar1 = uVar1 + 1;\r\n    piVar2 = piVar2 + 4;\r\n  } while ((int)uVar1 < 500);\r\n  return uVar1 & 0xffffff00;\r\n}\r\n\r\n", 
+  "is_thunk": false, 
+  "name": "FUN_004e56e0", 
+  "assembly": "  004e56e0:  MOV EDX,dword ptr [ESP + 0x4]\n  004e56e4:  XOR EAX,EAX\n  004e56e6:  ADD ECX,0x8\n  004e56e9:  CMP dword ptr [ECX],EDX\n  004e56eb:  JZ 0x004e56fd\n  004e56ed:  INC EAX\n  004e56ee:  ADD ECX,0x10\n  004e56f1:  CMP EAX,0x1f4\n  004e56f6:  JL 0x004e56e9\n  004e56f8:  XOR AL,AL\n  004e56fa:  RET 0x8\n  004e56fd:  MOV ECX,dword ptr [ESP + 0x8]\n  004e5701:  MOV dword ptr [ECX],EAX\n  004e5703:  MOV AL,0x1\n  004e5705:  RET 0x8", 
+  "callers": [
+    {
+      "address": "0x004e5710", 
+      "name": "FUN_004e5710"
+    }, 
+    {
+      "address": "0x004e5760", 
+      "name": "FUN_004e5760"
+    }, 
+    {
+      "address": "0x004e57b0", 
+      "name": "FUN_004e57b0"
+    }
+  ]
+}

@@ -1,0 +1,58 @@
+{
+  "address": "0x00537a30", 
+  "size_bytes": 82, 
+  "calling_convention": "unknown", 
+  "signature": "undefined FUN_00537a30(void)", 
+  "callees": [
+    {
+      "address": "0x00541d10", 
+      "name": "FUN_00541d10"
+    }
+  ], 
+  "global_refs": [
+    {
+      "address": "0x-0000004", 
+      "type": null, 
+      "name": "DAT_-0000004"
+    }
+  ], 
+  "has_custom_name": false, 
+  "decompiled_c": "\r\nvoid __fastcall FUN_00537a30(int param_1)\r\n\r\n{\r\n  FUN_00541d10(*(undefined4 *)(param_1 + 0x98));\r\n  *(undefined4 *)(param_1 + 0x98) = 0;\r\n  *(undefined4 *)(param_1 + 0x9c) = 0;\r\n  *(undefined4 *)(param_1 + 0xa0) = 0;\r\n  FUN_00541d10(*(undefined4 *)(param_1 + 0x88));\r\n  *(undefined4 *)(param_1 + 0x88) = 0;\r\n  *(undefined4 *)(param_1 + 0x8c) = 0;\r\n  *(undefined4 *)(param_1 + 0x90) = 0;\r\n  return;\r\n}\r\n\r\n", 
+  "is_thunk": false, 
+  "name": "FUN_00537a30", 
+  "assembly": "  00537a30:  PUSH ECX\n  00537a31:  PUSH ESI\n  00537a32:  MOV ESI,ECX\n  00537a34:  PUSH EDI\n  00537a35:  MOV EAX,dword ptr [ESI + 0x98]\n  00537a3b:  PUSH EAX\n  00537a3c:  MOV dword ptr [ESP + 0xc],EAX\n  00537a40:  CALL 0x00541d10\n  00537a45:  XOR EDI,EDI\n  00537a47:  MOV dword ptr [ESI + 0x98],EDI\n  00537a4d:  MOV dword ptr [ESI + 0x9c],EDI\n  00537a53:  MOV dword ptr [ESI + 0xa0],EDI\n  00537a59:  MOV EAX,dword ptr [ESI + 0x88]\n  00537a5f:  PUSH EAX\n  00537a60:  MOV dword ptr [ESP + 0x10],EAX\n  00537a64:  CALL 0x00541d10\n  00537a69:  ADD ESP,0x8\n  00537a6c:  MOV dword ptr [ESI + 0x88],EDI\n  00537a72:  MOV dword ptr [ESI + 0x8c],EDI\n  00537a78:  MOV dword ptr [ESI + 0x90],EDI\n  00537a7e:  POP EDI\n  00537a7f:  POP ESI\n  00537a80:  POP ECX\n  00537a81:  RET", 
+  "callers": [
+    {
+      "address": "0x00568bf8", 
+      "name": "Unwind@00568bf8"
+    }, 
+    {
+      "address": "0x00568c48", 
+      "name": "Unwind@00568c48"
+    }, 
+    {
+      "address": "0x00568c6b", 
+      "name": "Unwind@00568c6b"
+    }, 
+    {
+      "address": "0x00568c81", 
+      "name": "Unwind@00568c81"
+    }, 
+    {
+      "address": "0x0053a310", 
+      "name": "FUN_0053a310"
+    }, 
+    {
+      "address": "0x0053a8d0", 
+      "name": "FUN_0053a8d0"
+    }, 
+    {
+      "address": "0x005399e0", 
+      "name": "FUN_005399e0"
+    }, 
+    {
+      "address": "0x00539d60", 
+      "name": "FUN_00539d60"
+    }
+  ]
+}

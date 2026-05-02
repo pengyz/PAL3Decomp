@@ -1,0 +1,77 @@
+{
+  "address": "0x004142e0",
+  "size_bytes": 98,
+  "calling_convention": "unknown",
+  "signature": "undefined FUN_004142e0(void)",
+  "callees": [
+    {
+      "address": "0x00412710",
+      "name": "FUN_00412710"
+    }
+  ],
+  "global_refs": [],
+  "has_custom_name": false,
+  "decompiled_c": "\r\nvoid __fastcall FUN_004142e0(int param_1)\r\n\r\n{\r\n  *(undefined4 *)(param_1 + 0x4f4) = 0;\r\n  *(undefined4 *)(param_1 + 0x504) = 0;\r\n  FUN_00412710();\r\n  *(undefined4 *)(param_1 + 0x510) = 0;\r\n  *(undefined4 *)(param_1 + 0x514) = 0;\r\n  *(undefined4 *)(param_1 + 0x518) = 0;\r\n  *(undefined4 *)(param_1 + 0x51c) = 0;\r\n  *(undefined4 *)(param_1 + 0x520) = *(undefined4 *)(param_1 + 0x514);\r\n  *(undefined4 *)(param_1 + 0x524) = *(undefined4 *)(param_1 + 0x518);\r\n  if (*(int *)(param_1 + 0x4f8) != 0) {\r\n    *(undefined4 *)(param_1 + 0x4f8) = 0;\r\n    *(undefined4 *)(param_1 + 0x278) = 0;\r\n  }\r\n  return;\r\n}\r\n\r\n",
+  "is_thunk": false,
+  "name": "Role_OnBehaviourFinish",
+  "assembly": "  004142e0:  PUSH ESI\n  004142e1:  PUSH EDI\n  004142e2:  MOV ESI,ECX\n  004142e4:  XOR EDI,EDI\n  004142e6:  MOV dword ptr [ESI + 0x4f4],EDI\n  004142ec:  MOV dword ptr [ESI + 0x504],EDI\n  004142f2:  CALL 0x00412710\n  004142f7:  MOV EAX,EDI\n  004142f9:  MOV dword ptr [ESI + 0x510],EDI\n  004142ff:  MOV dword ptr [ESI + 0x514],EDI\n  00414305:  MOV dword ptr [ESI + 0x518],EDI\n  0041430b:  MOV dword ptr [ESI + 0x51c],EAX\n  00414311:  MOV ECX,dword ptr [ESI + 0x514]\n  00414317:  MOV dword ptr [ESI + 0x520],ECX\n  0041431d:  MOV EDX,dword ptr [ESI + 0x518]\n  00414323:  MOV dword ptr [ESI + 0x524],EDX\n  00414329:  MOV EAX,dword ptr [ESI + 0x4f8]\n  0041432f:  CMP EAX,EDI\n  00414331:  JZ 0x0041433f\n  00414333:  MOV dword ptr [ESI + 0x4f8],EDI\n  00414339:  MOV dword ptr [ESI + 0x278],EDI\n  0041433f:  POP EDI\n  00414340:  POP ESI\n  00414341:  RET",
+  "callers": [
+    {
+      "address": "0x0040ca40",
+      "name": "FUN_0040ca40"
+    },
+    {
+      "address": "0x00416fe0",
+      "name": "FUN_00416fe0"
+    },
+    {
+      "address": "0x004181e0",
+      "name": "FUN_004181e0"
+    },
+    {
+      "address": "0x00417bc0",
+      "name": "FUN_00417bc0"
+    },
+    {
+      "address": "0x00412d90",
+      "name": "FUN_00412d90"
+    },
+    {
+      "address": "0x00411f60",
+      "name": "FUN_00411f60"
+    },
+    {
+      "address": "0x00414350",
+      "name": "FUN_00414350"
+    },
+    {
+      "address": "0x00413010",
+      "name": "FUN_00413010"
+    },
+    {
+      "address": "0x0042f460",
+      "name": "FUN_0042f460"
+    },
+    {
+      "address": "0x00417c50",
+      "name": "FUN_00417c50"
+    },
+    {
+      "address": "0x00417420",
+      "name": "FUN_00417420"
+    },
+    {
+      "address": "0x00413cd0",
+      "name": "FUN_00413cd0"
+    },
+    {
+      "address": "0x004150c0",
+      "name": "FUN_004150c0"
+    }
+  ],
+  "pal3patch_info": {
+    "name": "Role_OnBehaviourFinish",
+    "type": "method",
+    "source": "pal3.h"
+  }
+}

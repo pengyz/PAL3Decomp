@@ -1,0 +1,48 @@
+{
+  "address": "0x00413390", 
+  "size_bytes": 142, 
+  "calling_convention": "unknown", 
+  "signature": "undefined FUN_00413390(void)", 
+  "callees": [
+    {
+      "address": "0x00000148", 
+      "name": "Length"
+    }, 
+    {
+      "address": "0x00414250", 
+      "name": "FUN_00414250"
+    }
+  ], 
+  "global_refs": [
+    {
+      "address": "0x-0000008", 
+      "type": null, 
+      "name": "DAT_-0000008"
+    }, 
+    {
+      "address": "0x-0000004", 
+      "type": null, 
+      "name": "DAT_-0000004"
+    }, 
+    {
+      "address": "0x0056a534", 
+      "type": null, 
+      "name": "PTR_Length_0056a534"
+    }
+  ], 
+  "has_custom_name": false, 
+  "decompiled_c": "\r\nvoid __thiscall FUN_00413390(int param_1,float param_2)\r\n\r\n{\r\n  gbVec3D *this;\r\n  float fVar1;\r\n  \r\n  this = (gbVec3D *)(param_1 + 0x51c);\r\n  *(float *)(param_1 + 0x520) = *(float *)(param_1 + 0x544) - *(float *)(param_1 + 8);\r\n  *(float *)this = *(float *)(param_1 + 0x540) - *(float *)(param_1 + 4);\r\n  *(float *)(param_1 + 0x524) = *(float *)(param_1 + 0x548) - *(float *)(param_1 + 0xc);\r\n  fVar1 = gbVec3D::Length(this);\r\n  fVar1 = *(float *)(param_1 + 0x508) / fVar1;\r\n  *(float *)this = fVar1 * *(float *)this;\r\n  *(float *)(param_1 + 0x520) = fVar1 * *(float *)(param_1 + 0x520);\r\n  *(float *)(param_1 + 0x524) = fVar1 * *(float *)(param_1 + 0x524);\r\n  *(float *)this = param_2 * *(float *)this;\r\n  *(float *)(param_1 + 0x520) = param_2 * *(float *)(param_1 + 0x520);\r\n  *(float *)(param_1 + 0x524) = param_2 * *(float *)(param_1 + 0x524);\r\n  FUN_00414250(this);\r\n  return;\r\n}\r\n\r\n", 
+  "is_thunk": false, 
+  "name": "FUN_00413390", 
+  "assembly": "  00413390:  SUB ESP,0xc\n  00413393:  PUSH ESI\n  00413394:  PUSH EDI\n  00413395:  MOV EDI,ECX\n  00413397:  FLD dword ptr [EDI + 0x540]\n  0041339d:  FSUB dword ptr [EDI + 0x4]\n  004133a0:  FLD dword ptr [EDI + 0x544]\n  004133a6:  FSUB dword ptr [EDI + 0x8]\n  004133a9:  LEA ESI,[EDI + 0x51c]\n  004133af:  FSTP dword ptr [ESP + 0xc]\n  004133b3:  FLD dword ptr [EDI + 0x548]\n  004133b9:  FSUB dword ptr [EDI + 0xc]\n  004133bc:  MOV EAX,dword ptr [ESP + 0xc]\n  004133c0:  MOV dword ptr [ESI + 0x4],EAX\n  004133c3:  FSTP dword ptr [ESP + 0x10]\n  004133c7:  MOV ECX,dword ptr [ESP + 0x10]\n  004133cb:  FSTP dword ptr [ESI]\n  004133cd:  MOV dword ptr [ESI + 0x8],ECX\n  004133d0:  MOV ECX,ESI\n  004133d2:  CALL dword ptr [0x0056a534]\n  004133d8:  FDIVR dword ptr [EDI + 0x508]\n  004133de:  PUSH ESI\n  004133df:  MOV ECX,EDI\n  004133e1:  FLD ST0\n  004133e3:  FMUL dword ptr [ESI]\n  004133e5:  FSTP dword ptr [ESI]\n  004133e7:  FLD ST0\n  004133e9:  FMUL dword ptr [ESI + 0x4]\n  004133ec:  FSTP dword ptr [ESI + 0x4]\n  004133ef:  FMUL dword ptr [ESI + 0x8]\n  004133f2:  FSTP dword ptr [ESI + 0x8]\n  004133f5:  FLD dword ptr [ESP + 0x1c]\n  004133f9:  FMUL dword ptr [ESI]\n  004133fb:  FSTP dword ptr [ESI]\n  004133fd:  FLD dword ptr [ESP + 0x1c]\n  00413401:  FMUL dword ptr [ESI + 0x4]\n  00413404:  FSTP dword ptr [ESI + 0x4]\n  00413407:  FLD dword ptr [ESP + 0x1c]\n  0041340b:  FMUL dword ptr [ESI + 0x8]\n  0041340e:  FSTP dword ptr [ESI + 0x8]\n  00413411:  CALL 0x00414250\n  00413416:  POP EDI\n  00413417:  POP ESI\n  00413418:  ADD ESP,0xc\n  0041341b:  RET 0x4", 
+  "callers": [
+    {
+      "address": "0x0041a1a0", 
+      "name": "FUN_0041a1a0"
+    }, 
+    {
+      "address": "0x00413cd0", 
+      "name": "FUN_00413cd0"
+    }
+  ]
+}

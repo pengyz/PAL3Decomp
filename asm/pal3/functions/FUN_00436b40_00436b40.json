@@ -1,0 +1,42 @@
+{
+  "address": "0x00436b40", 
+  "size_bytes": 131, 
+  "calling_convention": "unknown", 
+  "signature": "undefined FUN_00436b40(void)", 
+  "callees": [
+    {
+      "address": "0x00434c00", 
+      "name": "FUN_00434c00"
+    }, 
+    {
+      "address": "0x00434bd0", 
+      "name": "FUN_00434bd0"
+    }, 
+    {
+      "address": "0x00536d20", 
+      "name": "FUN_00536d20"
+    }, 
+    {
+      "address": "0x00412710", 
+      "name": "FUN_00412710"
+    }
+  ], 
+  "global_refs": [
+    {
+      "address": "0x00596200", 
+      "type": null, 
+      "name": "DAT_00596200"
+    }, 
+    {
+      "address": "0x00586194", 
+      "type": null, 
+      "name": "DAT_00586194"
+    }
+  ], 
+  "has_custom_name": false, 
+  "decompiled_c": "\r\nvoid FUN_00436b40(void)\r\n\r\n{\r\n  char cVar1;\r\n  int iVar2;\r\n  int iVar3;\r\n  uint uVar4;\r\n  uint uVar5;\r\n  char *pcVar6;\r\n  char *pcVar7;\r\n  \r\n  iVar2 = FUN_00434c00();\r\n  if (iVar2 != 0) {\r\n    iVar3 = FUN_00434bd0(2);\r\n    if (*(int *)(iVar2 + 4) == 0) {\r\n      FUN_00536d20(&DAT_00586194,0);\r\n      pcVar6 = (char *)&DAT_00586194;\r\n    }\r\n    else {\r\n      FUN_00536d20(&DAT_00596200,0);\r\n      pcVar6 = &DAT_00596200;\r\n    }\r\n    uVar4 = 0xffffffff;\r\n    do {\r\n      pcVar7 = pcVar6;\r\n      if (uVar4 == 0) break;\r\n      uVar4 = uVar4 - 1;\r\n      pcVar7 = pcVar6 + 1;\r\n      cVar1 = *pcVar6;\r\n      pcVar6 = pcVar7;\r\n    } while (cVar1 != '\\0');\r\n    uVar4 = ~uVar4;\r\n    pcVar6 = pcVar7 + -uVar4;\r\n    pcVar7 = (char *)(iVar3 + 0xae);\r\n    for (uVar5 = uVar4 >> 2; uVar5 != 0; uVar5 = uVar5 - 1) {\r\n      *(undefined4 *)pcVar7 = *(undefined4 *)pcVar6;\r\n      pcVar6 = pcVar6 + 4;\r\n      pcVar7 = pcVar7 + 4;\r\n    }\r\n    for (uVar4 = uVar4 & 3; uVar4 != 0; uVar4 = uVar4 - 1) {\r\n      *pcVar7 = *pcVar6;\r\n      pcVar6 = pcVar6 + 1;\r\n      pcVar7 = pcVar7 + 1;\r\n    }\r\n    FUN_00412710();\r\n  }\r\n  return;\r\n}\r\n\r\n", 
+  "is_thunk": false, 
+  "name": "FUN_00436b40", 
+  "assembly": "  00436b40:  PUSH EBX\n  00436b41:  PUSH ESI\n  00436b42:  PUSH EDI\n  00436b43:  CALL 0x00434c00\n  00436b48:  MOV ESI,EAX\n  00436b4a:  TEST ESI,ESI\n  00436b4c:  JZ 0x00436bbf\n  00436b4e:  PUSH 0x2\n  00436b50:  CALL 0x00434bd0\n  00436b55:  MOV EBX,EAX\n  00436b57:  MOV EAX,dword ptr [ESI + 0x4]\n  00436b5a:  ADD ESP,0x4\n  00436b5d:  TEST EAX,EAX\n  00436b5f:  PUSH 0x0\n  00436b61:  JZ 0x00436b80\n  00436b63:  PUSH 0x596200\n  00436b68:  LEA ECX,[EBX + 0x2a8]\n  00436b6e:  CALL 0x00536d20\n  00436b73:  LEA EDX,[EBX + 0xae]\n  00436b79:  MOV EDI,0x596200\n  00436b7e:  JMP 0x00436b9b\n  00436b80:  PUSH 0x586194\n  00436b85:  LEA ECX,[EBX + 0x2a8]\n  00436b8b:  CALL 0x00536d20\n  00436b90:  LEA EDX,[EBX + 0xae]\n  00436b96:  MOV EDI,0x586194\n  00436b9b:  OR ECX,0xffffffff\n  00436b9e:  XOR EAX,EAX\n  00436ba0:  SCASB.REPNE ES:EDI\n  00436ba2:  NOT ECX\n  00436ba4:  SUB EDI,ECX\n  00436ba6:  MOV EAX,ECX\n  00436ba8:  MOV ESI,EDI\n  00436baa:  MOV EDI,EDX\n  00436bac:  SHR ECX,0x2\n  00436baf:  MOVSD.REP ES:EDI,ESI\n  00436bb1:  MOV ECX,EAX\n  00436bb3:  AND ECX,0x3\n  00436bb6:  MOVSB.REP ES:EDI,ESI\n  00436bb8:  MOV ECX,EBX\n  00436bba:  CALL 0x00412710\n  00436bbf:  POP EDI\n  00436bc0:  POP ESI\n  00436bc1:  POP EBX\n  00436bc2:  RET", 
+  "callers": []
+}

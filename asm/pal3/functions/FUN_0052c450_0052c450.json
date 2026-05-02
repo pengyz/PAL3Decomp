@@ -1,0 +1,27 @@
+{
+  "address": "0x0052c450", 
+  "size_bytes": 42, 
+  "calling_convention": "unknown", 
+  "signature": "undefined FUN_0052c450(void)", 
+  "callees": [
+    {
+      "address": "0x004be590", 
+      "name": "FUN_004be590"
+    }, 
+    {
+      "address": "0x004be1a0", 
+      "name": "FUN_004be1a0"
+    }, 
+    {
+      "address": "0x0043ddf0", 
+      "name": "FUN_0043ddf0"
+    }
+  ], 
+  "global_refs": [], 
+  "has_custom_name": false, 
+  "decompiled_c": "\r\nvoid __fastcall FUN_0052c450(int param_1)\r\n\r\n{\r\n  undefined4 uVar1;\r\n  \r\n  if (*(int *)(param_1 + 0x3294) == 0) {\r\n    uVar1 = 2;\r\n    FUN_004be590(2);\r\n    uVar1 = FUN_004be1a0(uVar1);\r\n    *(undefined4 *)(param_1 + 0x3294) = uVar1;\r\n  }\r\n  FUN_0043ddf0();\r\n  return;\r\n}\r\n\r\n", 
+  "is_thunk": false, 
+  "name": "FUN_0052c450", 
+  "assembly": "  0052c450:  PUSH ESI\n  0052c451:  MOV ESI,ECX\n  0052c453:  MOV EAX,dword ptr [ESI + 0x3294]\n  0052c459:  TEST EAX,EAX\n  0052c45b:  JNZ 0x0052c471\n  0052c45d:  PUSH 0x2\n  0052c45f:  CALL 0x004be590\n  0052c464:  MOV ECX,EAX\n  0052c466:  CALL 0x004be1a0\n  0052c46b:  MOV dword ptr [ESI + 0x3294],EAX\n  0052c471:  MOV ECX,ESI\n  0052c473:  CALL 0x0043ddf0\n  0052c478:  POP ESI\n  0052c479:  RET", 
+  "callers": []
+}

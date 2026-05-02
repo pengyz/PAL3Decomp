@@ -1,0 +1,60 @@
+{
+  "address": "0x00443a00", 
+  "size_bytes": 129, 
+  "calling_convention": "unknown", 
+  "signature": "undefined FUN_00443a00(void)", 
+  "callees": [
+    {
+      "address": "0x00540440", 
+      "name": "FUN_00540440"
+    }
+  ], 
+  "global_refs": [
+    {
+      "address": "0x-0000044", 
+      "type": null, 
+      "name": "DAT_-0000044"
+    }, 
+    {
+      "address": "0x0056a558", 
+      "type": null, 
+      "name": "PTR_ColorQuadFmt_0056a558"
+    }, 
+    {
+      "address": "0x-0000004", 
+      "type": null, 
+      "name": "DAT_-0000004"
+    }, 
+    {
+      "address": "0x-0000048", 
+      "type": null, 
+      "name": "DAT_-0000048"
+    }, 
+    {
+      "address": "0x-0000046", 
+      "type": null, 
+      "name": "DAT_-0000046"
+    }, 
+    {
+      "address": "0x-0000047", 
+      "type": null, 
+      "name": "DAT_-0000047"
+    }, 
+    {
+      "address": "0x-0000045", 
+      "type": null, 
+      "name": "DAT_-0000045"
+    }
+  ], 
+  "has_custom_name": false, 
+  "decompiled_c": "\r\nvoid __fastcall FUN_00443a00(int param_1)\r\n\r\n{\r\n  char *pcVar1;\r\n  int iVar2;\r\n  int iVar3;\r\n  undefined local_48;\r\n  undefined local_47;\r\n  undefined local_46;\r\n  undefined local_45;\r\n  int local_44 [16];\r\n  undefined4 local_4;\r\n  \r\n  iVar2 = 0;\r\n  if (0 < *(int *)(param_1 + 0x6c)) {\r\n    iVar3 = 0;\r\n    do {\r\n      pcVar1 = (char *)(iVar3 + *(int *)(param_1 + 0x70));\r\n      local_44[0] = *(int *)(pcVar1 + 0x2c);\r\n      if ((local_44[0] != 0) && (*pcVar1 != '\\0')) {\r\n        local_4 = 1;\r\n        local_46 = 0xff;\r\n        local_47 = 0xff;\r\n        local_48 = 0xff;\r\n        local_45 = 0xff;\r\n        FUN_00540440(pcVar1 + 4,&local_48,local_44,0x114,0,1);\r\n      }\r\n      iVar2 = iVar2 + 1;\r\n      iVar3 = iVar3 + 0x50;\r\n    } while (iVar2 < *(int *)(param_1 + 0x6c));\r\n  }\r\n  return;\r\n}\r\n\r\n", 
+  "is_thunk": false, 
+  "name": "FUN_00443a00", 
+  "assembly": "  00443a00:  SUB ESP,0x48\n  00443a03:  PUSH EBP\n  00443a04:  PUSH ESI\n  00443a05:  MOV ESI,ECX\n  00443a07:  XOR EBP,EBP\n  00443a09:  MOV EAX,dword ptr [ESI + 0x6c]\n  00443a0c:  TEST EAX,EAX\n  00443a0e:  JLE 0x00443a7b\n  00443a10:  PUSH EBX\n  00443a11:  PUSH EDI\n  00443a12:  XOR EDI,EDI\n  00443a14:  MOV BL,0xff\n  00443a16:  MOV ECX,dword ptr [ESI + 0x70]\n  00443a19:  MOV EAX,EDI\n  00443a1b:  ADD EAX,ECX\n  00443a1d:  MOV ECX,dword ptr [EAX + 0x2c]\n  00443a20:  TEST ECX,ECX\n  00443a22:  JZ 0x00443a6e\n  00443a24:  CMP byte ptr [EAX],0x0\n  00443a27:  JZ 0x00443a6e\n  00443a29:  MOV dword ptr [ESP + 0x14],ECX\n  00443a2d:  MOV ECX,dword ptr [0x0056a558]\n  00443a33:  MOV dword ptr [ESP + 0x54],0x1\n  00443a3b:  PUSH 0x1\n  00443a3d:  MOV EDX,dword ptr [ECX]\n  00443a3f:  PUSH 0x0\n  00443a41:  TEST EDX,EDX\n  00443a43:  LEA EDX,[ESP + 0x1c]\n  00443a47:  PUSH 0x114\n  00443a4c:  LEA ECX,[ESP + 0x1c]\n  00443a50:  PUSH EDX\n  00443a51:  ADD EAX,0x4\n  00443a54:  PUSH ECX\n  00443a55:  PUSH EAX\n  00443a56:  MOV byte ptr [ESP + 0x2a],BL\n  00443a5a:  MOV byte ptr [ESP + 0x29],BL\n  00443a5e:  MOV byte ptr [ESP + 0x28],BL\n  00443a62:  MOV byte ptr [ESP + 0x2b],BL\n  00443a66:  CALL 0x00540440\n  00443a6b:  ADD ESP,0x18\n  00443a6e:  MOV EAX,dword ptr [ESI + 0x6c]\n  00443a71:  INC EBP\n  00443a72:  ADD EDI,0x50\n  00443a75:  CMP EBP,EAX\n  00443a77:  JL 0x00443a16\n  00443a79:  POP EDI\n  00443a7a:  POP EBX\n  00443a7b:  POP ESI\n  00443a7c:  POP EBP\n  00443a7d:  ADD ESP,0x48\n  00443a80:  RET", 
+  "callers": [
+    {
+      "address": "0x00443950", 
+      "name": "FUN_00443950"
+    }
+  ]
+}

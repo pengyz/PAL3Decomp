@@ -1,0 +1,44 @@
+{
+  "address": "0x0055bab4", 
+  "size_bytes": 45, 
+  "calling_convention": "unknown", 
+  "signature": "undefined FUN_0055bab4(undefined4 param_1, undefined4 param_2)", 
+  "callees": [
+    {
+      "address": "0x0055c0e5", 
+      "name": "FUN_0055c0e5"
+    }, 
+    {
+      "address": "0x0055ba88", 
+      "name": "FUN_0055ba88"
+    }
+  ], 
+  "global_refs": [
+    {
+      "address": "0x00000008", 
+      "type": null, 
+      "name": "DAT_00000008"
+    }, 
+    {
+      "address": "0x-0000010", 
+      "type": null, 
+      "name": "DAT_-0000010"
+    }, 
+    {
+      "address": "0x00000004", 
+      "type": null, 
+      "name": "DAT_00000004"
+    }
+  ], 
+  "has_custom_name": false, 
+  "decompiled_c": "\r\nvoid FUN_0055bab4(undefined4 param_1,undefined4 param_2)\r\n\r\n{\r\n  undefined local_10 [12];\r\n  \r\n  FUN_0055c0e5(local_10,&param_2,param_2,0,0,0,0);\r\n  FUN_0055ba88(local_10,param_1);\r\n  return;\r\n}\r\n\r\n", 
+  "is_thunk": false, 
+  "name": "FUN_0055bab4", 
+  "assembly": "  0055bab4:  PUSH EBP\n  0055bab5:  MOV EBP,ESP\n  0055bab7:  SUB ESP,0xc\n  0055baba:  XOR EAX,EAX\n  0055babc:  PUSH EAX\n  0055babd:  PUSH EAX\n  0055babe:  PUSH EAX\n  0055babf:  PUSH EAX\n  0055bac0:  PUSH dword ptr [EBP + 0xc]\n  0055bac3:  LEA EAX,[EBP + 0xc]\n  0055bac6:  PUSH EAX\n  0055bac7:  LEA EAX,[EBP + -0xc]\n  0055baca:  PUSH EAX\n  0055bacb:  CALL 0x0055c0e5\n  0055bad0:  PUSH dword ptr [EBP + 0x8]\n  0055bad3:  LEA EAX,[EBP + -0xc]\n  0055bad6:  PUSH EAX\n  0055bad7:  CALL 0x0055ba88\n  0055badc:  ADD ESP,0x24\n  0055badf:  LEAVE\n  0055bae0:  RET", 
+  "callers": [
+    {
+      "address": "0x00556517", 
+      "name": "__fassign"
+    }
+  ]
+}

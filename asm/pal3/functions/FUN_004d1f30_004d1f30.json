@@ -1,0 +1,62 @@
+{
+  "address": "0x004d1f30", 
+  "size_bytes": 152, 
+  "calling_convention": "unknown", 
+  "signature": "undefined FUN_004d1f30(undefined4 param_1)", 
+  "callees": [
+    {
+      "address": "0x00000160", 
+      "name": "LoadTexture"
+    }, 
+    {
+      "address": "0x0055353b", 
+      "name": "operator_new"
+    }, 
+    {
+      "address": "0x0053cef0", 
+      "name": "FUN_0053cef0"
+    }, 
+    {
+      "address": "0x005534d7", 
+      "name": "__CxxThrowException@8"
+    }
+  ], 
+  "global_refs": [
+    {
+      "address": "0x00000004", 
+      "type": null, 
+      "name": "DAT_00000004"
+    }, 
+    {
+      "address": "0x0056a594", 
+      "type": null, 
+      "name": "PTR_LoadTexture_0056a594"
+    }, 
+    {
+      "address": "0x005d5618", 
+      "type": null, 
+      "name": "s_D:\\Project\\PAL3\\combat\\EffQuad.c_005d5618"
+    }, 
+    {
+      "address": "0x005d50f4", 
+      "type": null, 
+      "name": "s_C++_new_failed!_005d50f4"
+    }, 
+    {
+      "address": "0x00573e50", 
+      "type": null, 
+      "name": "DAT_00573e50"
+    }
+  ], 
+  "has_custom_name": false, 
+  "decompiled_c": "\r\nvoid __thiscall FUN_004d1f30(int param_1_00,undefined4 param_1)\r\n\r\n{\r\n  undefined4 uVar1;\r\n  gbTexture *this;\r\n  undefined4 *puVar2;\r\n  int iVar3;\r\n  undefined4 *puVar4;\r\n  undefined4 uStack_808;\r\n  \r\n  uStack_808 = param_1;\r\n  puVar4 = &uStack_808;\r\n  this = (gbTexture *)(**(code **)(*(int *)**(undefined4 **)(param_1_00 + 4) + 8))();\r\n  *(gbTexture **)(param_1_00 + 0x10a8) = this;\r\n  gbTexture::LoadTexture(this,1);\r\n  puVar2 = (undefined4 *)operator_new(0x44);\r\n  if (puVar2 == (undefined4 *)0x0) {\r\n    puVar2 = (undefined4 *)0x0;\r\n  }\r\n  else {\r\n    uVar1 = *(undefined4 *)(param_1_00 + 0x10a8);\r\n    puVar2[0x10] = 1;\r\n    *puVar2 = uVar1;\r\n  }\r\n  *(undefined4 **)(param_1_00 + 0x10ac) = puVar2;\r\n  if (puVar2 == (undefined4 *)0x0) {\r\n    puVar2 = (undefined4 *)\r\n             FUN_0053cef0(s_C___new_failed__005d50f4,s_D__Project_PAL3_combat_EffQuad_c_005d5618,\r\n                          0x21c);\r\n    for (iVar3 = 0x100; puVar4 = puVar4 + 1, iVar3 != 0; iVar3 = iVar3 + -1) {\r\n      *puVar4 = *puVar2;\r\n      puVar2 = puVar2 + 1;\r\n    }\r\n                    /* WARNING: Subroutine does not return */\r\n    __CxxThrowException_8(&stack0xfffff7fc,&DAT_00573e50);\r\n  }\r\n  return;\r\n}\r\n\r\n", 
+  "is_thunk": false, 
+  "name": "FUN_004d1f30", 
+  "assembly": "  004d1f30:  SUB ESP,0x800\n  004d1f36:  PUSH ESI\n  004d1f37:  MOV ESI,ECX\n  004d1f39:  MOV EAX,dword ptr [ESI + 0x4]\n  004d1f3c:  MOV ECX,dword ptr [EAX]\n  004d1f3e:  MOV EAX,dword ptr [ESP + 0x808]\n  004d1f45:  PUSH EAX\n  004d1f46:  MOV EDX,dword ptr [ECX]\n  004d1f48:  CALL dword ptr [EDX + 0x8]\n  004d1f4b:  PUSH 0x1\n  004d1f4d:  MOV ECX,EAX\n  004d1f4f:  MOV dword ptr [ESI + 0x10a8],EAX\n  004d1f55:  CALL dword ptr [0x0056a594]\n  004d1f5b:  PUSH 0x44\n  004d1f5d:  CALL 0x0055353b\n  004d1f62:  ADD ESP,0x4\n  004d1f65:  TEST EAX,EAX\n  004d1f67:  JZ 0x004d1f7a\n  004d1f69:  MOV ECX,dword ptr [ESI + 0x10a8]\n  004d1f6f:  MOV dword ptr [EAX + 0x40],0x1\n  004d1f76:  MOV dword ptr [EAX],ECX\n  004d1f78:  JMP 0x004d1f7c\n  004d1f7a:  XOR EAX,EAX\n  004d1f7c:  TEST EAX,EAX\n  004d1f7e:  MOV dword ptr [ESI + 0x10ac],EAX\n  004d1f84:  JNZ 0x004d1fbf\n  004d1f86:  PUSH EDI\n  004d1f87:  PUSH 0x21c\n  004d1f8c:  PUSH 0x5d5618\n  004d1f91:  PUSH 0x5d50f4\n  004d1f96:  LEA ECX,[ESP + 0x414]\n  004d1f9d:  CALL 0x0053cef0\n  004d1fa2:  MOV ECX,0x100\n  004d1fa7:  MOV ESI,EAX\n  004d1fa9:  LEA EDI,[ESP + 0x8]\n  004d1fad:  PUSH 0x573e50\n  004d1fb2:  MOVSD.REP ES:EDI,ESI\n  004d1fb4:  LEA ECX,[ESP + 0xc]\n  004d1fb8:  PUSH ECX\n  004d1fb9:  CALL 0x005534d7\n  004d1fbf:  POP ESI\n  004d1fc0:  ADD ESP,0x800\n  004d1fc6:  RET 0x4", 
+  "callers": [
+    {
+      "address": "0x004d1090", 
+      "name": "FUN_004d1090"
+    }
+  ]
+}

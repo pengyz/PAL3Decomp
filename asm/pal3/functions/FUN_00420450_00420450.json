@@ -1,0 +1,63 @@
+{
+  "address": "0x00420450", 
+  "size_bytes": 85, 
+  "calling_convention": "unknown", 
+  "signature": "undefined FUN_00420450(void)", 
+  "callees": [
+    {
+      "address": "0x004208a0", 
+      "name": "FUN_004208a0"
+    }, 
+    {
+      "address": "0x00000142", 
+      "name": "~gbImage2D"
+    }, 
+    {
+      "address": "0x00420290", 
+      "name": "FUN_00420290"
+    }
+  ], 
+  "global_refs": [
+    {
+      "address": "0x0055f624", 
+      "type": null, 
+      "name": "LAB_0055f624"
+    }, 
+    {
+      "address": "0xffdff000", 
+      "type": null, 
+      "name": "ExceptionList"
+    }, 
+    {
+      "address": "0x-0000010", 
+      "type": null, 
+      "name": "DAT_-0000010"
+    }, 
+    {
+      "address": "0x0056aae4", 
+      "type": null, 
+      "name": "PTR_FUN_0056aae4"
+    }, 
+    {
+      "address": "0x-0000004", 
+      "type": null, 
+      "name": "DAT_-0000004"
+    }, 
+    {
+      "address": "0x0056a51c", 
+      "type": null, 
+      "name": "PTR_~gbImage2D_0056a51c"
+    }
+  ], 
+  "has_custom_name": false, 
+  "decompiled_c": "\r\nvoid __fastcall FUN_00420450(undefined4 *param_1)\r\n\r\n{\r\n  void *pvStack_c;\r\n  undefined *puStack_8;\r\n  uint local_4;\r\n  \r\n  puStack_8 = &LAB_0055f624;\r\n  pvStack_c = ExceptionList;\r\n  ExceptionList = &pvStack_c;\r\n  *param_1 = &PTR_FUN_0056aae4;\r\n  local_4 = 1;\r\n  FUN_004208a0();\r\n  local_4 = local_4 & 0xffffff00;\r\n  gbImage2D::~gbImage2D((gbImage2D *)(param_1 + 0xe));\r\n  FUN_00420290();\r\n  ExceptionList = pvStack_c;\r\n  return;\r\n}\r\n\r\n", 
+  "is_thunk": false, 
+  "name": "FUN_00420450", 
+  "assembly": "  00420450:  PUSH -0x1\n  00420452:  PUSH 0x55f624\n  00420457:  MOV EAX,FS:[0x0]\n  0042045d:  PUSH EAX\n  0042045e:  MOV dword ptr FS:[0x0],ESP\n  00420465:  PUSH ECX\n  00420466:  PUSH ESI\n  00420467:  MOV ESI,ECX\n  00420469:  MOV dword ptr [ESP + 0x4],ESI\n  0042046d:  MOV dword ptr [ESI],0x56aae4\n  00420473:  MOV dword ptr [ESP + 0x10],0x1\n  0042047b:  CALL 0x004208a0\n  00420480:  LEA ECX,[ESI + 0x38]\n  00420483:  MOV byte ptr [ESP + 0x10],0x0\n  00420488:  CALL dword ptr [0x0056a51c]\n  0042048e:  MOV ECX,ESI\n  00420490:  CALL 0x00420290\n  00420495:  MOV ECX,dword ptr [ESP + 0x8]\n  00420499:  POP ESI\n  0042049a:  MOV dword ptr FS:[0x0],ECX\n  004204a1:  ADD ESP,0x10\n  004204a4:  RET", 
+  "callers": [
+    {
+      "address": "0x00420430", 
+      "name": "FUN_00420430"
+    }
+  ]
+}

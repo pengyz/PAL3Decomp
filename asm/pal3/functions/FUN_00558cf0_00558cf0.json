@@ -1,0 +1,19 @@
+{
+  "address": "0x00558cf0", 
+  "size_bytes": 21, 
+  "calling_convention": "unknown", 
+  "signature": "undefined FUN_00558cf0(void)", 
+  "callees": [], 
+  "global_refs": [], 
+  "has_custom_name": false, 
+  "decompiled_c": "\r\nunkbyte10 FUN_00558cf0(void)\r\n\r\n{\r\n  float10 in_ST0;\r\n  float10 fVar1;\r\n  unkbyte10 Var2;\r\n  \r\n  fVar1 = (float10)f2xm1(-(ROUND(in_ST0) - in_ST0));\r\n  Var2 = fscale((float10)1 + fVar1,ROUND(in_ST0));\r\n  return Var2;\r\n}\r\n\r\n", 
+  "is_thunk": false, 
+  "name": "FUN_00558cf0", 
+  "assembly": "  00558cf0:  FLD ST0\n  00558cf2:  FRNDINT\n  00558cf4:  FSUBR ST1,ST0\n  00558cf6:  FXCH\n  00558cf8:  FCHS\n  00558cfa:  F2XM1\n  00558cfc:  FLD1\n  00558cfe:  FADDP\n  00558d00:  FSCALE\n  00558d02:  FSTP ST1\n  00558d04:  RET", 
+  "callers": [
+    {
+      "address": "0x00554722", 
+      "name": "FUN_00554722"
+    }
+  ]
+}

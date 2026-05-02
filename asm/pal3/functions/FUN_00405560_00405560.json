@@ -1,0 +1,29 @@
+{
+  "address": "0x00405560", 
+  "size_bytes": 31, 
+  "calling_convention": "unknown", 
+  "signature": "undefined FUN_00405560(void)", 
+  "callees": [
+    {
+      "address": "0x00000082", 
+      "name": "~gbSnow"
+    }, 
+    {
+      "address": "0x00541d10", 
+      "name": "FUN_00541d10"
+    }
+  ], 
+  "global_refs": [
+    {
+      "address": "0x0056a21c", 
+      "type": null, 
+      "name": "PTR_~gbSnow_0056a21c"
+    }
+  ], 
+  "has_custom_name": false, 
+  "decompiled_c": "\r\ngbSnow * __thiscall FUN_00405560(gbSnow *param_1,byte param_2)\r\n\r\n{\r\n  gbSnow::~gbSnow(param_1);\r\n  if ((param_2 & 1) != 0) {\r\n    FUN_00541d10(param_1);\r\n  }\r\n  return param_1;\r\n}\r\n\r\n", 
+  "is_thunk": false, 
+  "name": "FUN_00405560", 
+  "assembly": "  00405560:  PUSH ESI\n  00405561:  MOV ESI,ECX\n  00405563:  CALL dword ptr [0x0056a21c]\n  00405569:  TEST byte ptr [ESP + 0x8],0x1\n  0040556e:  JZ 0x00405579\n  00405570:  PUSH ESI\n  00405571:  CALL 0x00541d10\n  00405576:  ADD ESP,0x4\n  00405579:  MOV EAX,ESI\n  0040557b:  POP ESI\n  0040557c:  RET 0x4", 
+  "callers": []
+}

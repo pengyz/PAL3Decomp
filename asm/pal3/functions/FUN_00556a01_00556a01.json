@@ -1,0 +1,116 @@
+{
+  "address": "0x00556a01", 
+  "size_bytes": 153, 
+  "calling_convention": "unknown", 
+  "signature": "undefined FUN_00556a01(undefined4 param_1, undefined4 param_2, undefined4 param_3)", 
+  "callees": [
+    {
+      "address": "0x00000032", 
+      "name": "GetCurrentProcess"
+    }, 
+    {
+      "address": "0x00000034", 
+      "name": "TerminateProcess"
+    }, 
+    {
+      "address": "0x00556a9a", 
+      "name": "FUN_00556a9a"
+    }, 
+    {
+      "address": "0x0000002c", 
+      "name": "ExitProcess"
+    }
+  ], 
+  "global_refs": [
+    {
+      "address": "0x01895384", 
+      "type": null, 
+      "name": "DAT_01895384"
+    }, 
+    {
+      "address": "0x00000004", 
+      "type": null, 
+      "name": "DAT_00000004"
+    }, 
+    {
+      "address": "0x0056a0cc", 
+      "type": null, 
+      "name": "PTR_GetCurrentProcess_0056a0cc"
+    }, 
+    {
+      "address": "0x0056a0d4", 
+      "type": null, 
+      "name": "PTR_TerminateProcess_0056a0d4"
+    }, 
+    {
+      "address": "0x00000008", 
+      "type": null, 
+      "name": "DAT_00000008"
+    }, 
+    {
+      "address": "0x0000000c", 
+      "type": null, 
+      "name": "DAT_0000000c"
+    }, 
+    {
+      "address": "0x01895380", 
+      "type": null, 
+      "name": "DAT_01895380"
+    }, 
+    {
+      "address": "0x0189537c", 
+      "type": null, 
+      "name": "DAT_0189537c"
+    }, 
+    {
+      "address": "0x01896cf0", 
+      "type": null, 
+      "name": "DAT_01896cf0"
+    }, 
+    {
+      "address": "0x01896cec", 
+      "type": null, 
+      "name": "DAT_01896cec"
+    }, 
+    {
+      "address": "0x00580a0c", 
+      "type": null, 
+      "name": "DAT_00580a0c"
+    }, 
+    {
+      "address": "0x00580a04", 
+      "type": null, 
+      "name": "DAT_00580a04"
+    }, 
+    {
+      "address": "0x00580a18", 
+      "type": null, 
+      "name": "DAT_00580a18"
+    }, 
+    {
+      "address": "0x00580a10", 
+      "type": null, 
+      "name": "DAT_00580a10"
+    }, 
+    {
+      "address": "0x0056a0b4", 
+      "type": null, 
+      "name": "PTR_ExitProcess_0056a0b4"
+    }
+  ], 
+  "has_custom_name": false, 
+  "decompiled_c": "\r\n/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */\r\n\r\nvoid FUN_00556a01(UINT param_1,int param_2,int param_3)\r\n\r\n{\r\n  HANDLE hProcess;\r\n  undefined4 *puVar1;\r\n  UINT uExitCode;\r\n  \r\n  if (DAT_01895384 == 1) {\r\n    uExitCode = param_1;\r\n    hProcess = GetCurrentProcess();\r\n    TerminateProcess(hProcess,uExitCode);\r\n  }\r\n  _DAT_01895380 = 1;\r\n  DAT_0189537c = (undefined)param_3;\r\n  if (param_2 == 0) {\r\n    if ((DAT_01896cf0 != (undefined4 *)0x0) &&\r\n       (puVar1 = (undefined4 *)(DAT_01896cec - 4), DAT_01896cf0 <= puVar1)) {\r\n      do {\r\n        if ((code *)*puVar1 != (code *)0x0) {\r\n          (*(code *)*puVar1)();\r\n        }\r\n        puVar1 = puVar1 + -1;\r\n      } while (DAT_01896cf0 <= puVar1);\r\n    }\r\n    FUN_00556a9a(&DAT_00580a04,&DAT_00580a0c);\r\n  }\r\n  FUN_00556a9a(&DAT_00580a10,&DAT_00580a18);\r\n  if (param_3 != 0) {\r\n    return;\r\n  }\r\n  DAT_01895384 = 1;\r\n                    /* WARNING: Subroutine does not return */\r\n  ExitProcess(param_1);\r\n}\r\n\r\n", 
+  "is_thunk": false, 
+  "name": "FUN_00556a01", 
+  "assembly": "  00556a01:  PUSH EDI\n  00556a02:  PUSH 0x1\n  00556a04:  POP EDI\n  00556a05:  CMP dword ptr [0x01895384],EDI\n  00556a0b:  JNZ 0x00556a1e\n  00556a0d:  PUSH dword ptr [ESP + 0x8]\n  00556a11:  CALL dword ptr [0x0056a0cc]\n  00556a17:  PUSH EAX\n  00556a18:  CALL dword ptr [0x0056a0d4]\n  00556a1e:  CMP dword ptr [ESP + 0xc],0x0\n  00556a23:  PUSH EBX\n  00556a24:  MOV EBX,dword ptr [ESP + 0x14]\n  00556a28:  MOV dword ptr [0x01895380],EDI\n  00556a2e:  MOV byte ptr [0x0189537c],BL\n  00556a34:  JNZ 0x00556a72\n  00556a36:  MOV EAX,[0x01896cf0]\n  00556a3b:  TEST EAX,EAX\n  00556a3d:  JZ 0x00556a61\n  00556a3f:  MOV ECX,dword ptr [0x01896cec]\n  00556a45:  PUSH ESI\n  00556a46:  LEA ESI,[ECX + -0x4]\n  00556a49:  CMP ESI,EAX\n  00556a4b:  JC 0x00556a60\n  00556a4d:  MOV EAX,dword ptr [ESI]\n  00556a4f:  TEST EAX,EAX\n  00556a51:  JZ 0x00556a55\n  00556a53:  CALL EAX\n  00556a55:  SUB ESI,0x4\n  00556a58:  CMP ESI,dword ptr [0x01896cf0]\n  00556a5e:  JNC 0x00556a4d\n  00556a60:  POP ESI\n  00556a61:  PUSH 0x580a0c\n  00556a66:  PUSH 0x580a04\n  00556a6b:  CALL 0x00556a9a\n  00556a70:  POP ECX\n  00556a71:  POP ECX\n  00556a72:  PUSH 0x580a18\n  00556a77:  PUSH 0x580a10\n  00556a7c:  CALL 0x00556a9a\n  00556a81:  POP ECX\n  00556a82:  POP ECX\n  00556a83:  TEST EBX,EBX\n  00556a85:  POP EBX\n  00556a86:  JNZ 0x00556a98\n  00556a88:  PUSH dword ptr [ESP + 0x8]\n  00556a8c:  MOV dword ptr [0x01895384],EDI\n  00556a92:  CALL dword ptr [0x0056a0b4]\n  00556a98:  POP EDI\n  00556a99:  RET", 
+  "callers": [
+    {
+      "address": "0x005569df", 
+      "name": "FUN_005569df"
+    }, 
+    {
+      "address": "0x005569f0", 
+      "name": "__exit"
+    }
+  ]
+}

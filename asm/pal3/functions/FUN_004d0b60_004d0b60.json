@@ -1,0 +1,30 @@
+{
+  "address": "0x004d0b60", 
+  "size_bytes": 109, 
+  "calling_convention": "unknown", 
+  "signature": "undefined FUN_004d0b60(void)", 
+  "callees": [
+    {
+      "address": "0x00541d10", 
+      "name": "FUN_00541d10"
+    }
+  ], 
+  "global_refs": [
+    {
+      "address": "0x0056fa18", 
+      "type": null, 
+      "name": "PTR_LAB_0056fa18"
+    }
+  ], 
+  "has_custom_name": false, 
+  "decompiled_c": "\r\nvoid __fastcall FUN_004d0b60(undefined4 *param_1)\r\n\r\n{\r\n  int iVar1;\r\n  int iVar2;\r\n  \r\n  *param_1 = &PTR_LAB_0056fa18;\r\n  if ((param_1[7] != 0) || (param_1[8] != 0)) {\r\n    iVar1 = 0;\r\n    if (0 < (int)param_1[7]) {\r\n      iVar2 = 0;\r\n      do {\r\n        FUN_00541d10(*(undefined4 *)(param_1[3] + iVar2));\r\n        iVar1 = iVar1 + 1;\r\n        *(undefined4 *)(param_1[3] + iVar2) = 0;\r\n        iVar2 = iVar2 + 0x98;\r\n      } while (iVar1 < (int)param_1[7]);\r\n    }\r\n    FUN_00541d10(param_1[3]);\r\n    param_1[3] = 0;\r\n    param_1[7] = 0;\r\n    param_1[8] = 0;\r\n  }\r\n  return;\r\n}\r\n\r\n", 
+  "is_thunk": false, 
+  "name": "FUN_004d0b60", 
+  "assembly": "  004d0b60:  PUSH ESI\n  004d0b61:  MOV ESI,ECX\n  004d0b63:  MOV EAX,dword ptr [ESI + 0x1c]\n  004d0b66:  MOV dword ptr [ESI],0x56fa18\n  004d0b6c:  TEST EAX,EAX\n  004d0b6e:  JNZ 0x004d0b77\n  004d0b70:  MOV ECX,dword ptr [ESI + 0x20]\n  004d0b73:  TEST ECX,ECX\n  004d0b75:  JZ 0x004d0bcb\n  004d0b77:  PUSH EBX\n  004d0b78:  XOR EBX,EBX\n  004d0b7a:  TEST EAX,EAX\n  004d0b7c:  JLE 0x004d0ba9\n  004d0b7e:  PUSH EDI\n  004d0b7f:  XOR EDI,EDI\n  004d0b81:  MOV EAX,dword ptr [ESI + 0xc]\n  004d0b84:  MOV ECX,dword ptr [EAX + EDI*0x1]\n  004d0b87:  PUSH ECX\n  004d0b88:  CALL 0x00541d10\n  004d0b8d:  MOV EDX,dword ptr [ESI + 0xc]\n  004d0b90:  ADD ESP,0x4\n  004d0b93:  INC EBX\n  004d0b94:  MOV dword ptr [EDX + EDI*0x1],0x0\n  004d0b9b:  MOV EAX,dword ptr [ESI + 0x1c]\n  004d0b9e:  ADD EDI,0x98\n  004d0ba4:  CMP EBX,EAX\n  004d0ba6:  JL 0x004d0b81\n  004d0ba8:  POP EDI\n  004d0ba9:  MOV EAX,dword ptr [ESI + 0xc]\n  004d0bac:  PUSH EAX\n  004d0bad:  CALL 0x00541d10\n  004d0bb2:  ADD ESP,0x4\n  004d0bb5:  MOV dword ptr [ESI + 0xc],0x0\n  004d0bbc:  MOV dword ptr [ESI + 0x1c],0x0\n  004d0bc3:  MOV dword ptr [ESI + 0x20],0x0\n  004d0bca:  POP EBX\n  004d0bcb:  POP ESI\n  004d0bcc:  RET", 
+  "callers": [
+    {
+      "address": "0x00566a88", 
+      "name": "Unwind@00566a88"
+    }
+  ]
+}

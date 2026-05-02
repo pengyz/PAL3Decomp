@@ -1,0 +1,53 @@
+{
+  "address": "0x00449b90", 
+  "size_bytes": 66, 
+  "calling_convention": "unknown", 
+  "signature": "undefined FUN_00449b90(void)", 
+  "callees": [
+    {
+      "address": "0x0055ef90", 
+      "name": "__strcmpi"
+    }, 
+    {
+      "address": "0x00449ab0", 
+      "name": "FUN_00449ab0"
+    }, 
+    {
+      "address": "0x00449be0", 
+      "name": "FUN_00449be0"
+    }
+  ], 
+  "global_refs": [
+    {
+      "address": "0x00598c14", 
+      "type": null, 
+      "name": "DAT_00598c14"
+    }, 
+    {
+      "address": "0x00c12b48", 
+      "type": null, 
+      "name": "DAT_00c12b48"
+    }, 
+    {
+      "address": "0x00598c54", 
+      "type": null, 
+      "name": "DAT_00598c54"
+    }, 
+    {
+      "address": "0x00599594", 
+      "type": null, 
+      "name": "PTR_s_UI\\BigMap\\Map\\BigMap_00599594"
+    }
+  ], 
+  "has_custom_name": false, 
+  "decompiled_c": "\r\nvoid FUN_00449b90(void)\r\n\r\n{\r\n  int iVar1;\r\n  char *_Str1;\r\n  int iVar2;\r\n  \r\n  iVar2 = 0;\r\n  _Str1 = &DAT_00598c14;\r\n  do {\r\n    iVar1 = __strcmpi(_Str1,&DAT_00c12b48);\r\n    if (iVar1 == 0) {\r\n      FUN_00449ab0(iVar2);\r\n      FUN_00449be0(iVar2);\r\n      return;\r\n    }\r\n    _Str1 = _Str1 + 0x40;\r\n    iVar2 = iVar2 + 1;\r\n  } while ((int)_Str1 < 0x599594);\r\n  return;\r\n}\r\n\r\n", 
+  "is_thunk": false, 
+  "name": "FUN_00449b90", 
+  "assembly": "  00449b90:  PUSH EBX\n  00449b91:  PUSH ESI\n  00449b92:  PUSH EDI\n  00449b93:  MOV EBX,ECX\n  00449b95:  XOR EDI,EDI\n  00449b97:  MOV ESI,0x598c14\n  00449b9c:  PUSH 0xc12b48\n  00449ba1:  PUSH ESI\n  00449ba2:  CALL 0x0055ef90\n  00449ba7:  ADD ESP,0x8\n  00449baa:  TEST EAX,EAX\n  00449bac:  JZ 0x00449bbe\n  00449bae:  ADD ESI,0x40\n  00449bb1:  INC EDI\n  00449bb2:  CMP ESI,0x599594\n  00449bb8:  JL 0x00449b9c\n  00449bba:  POP EDI\n  00449bbb:  POP ESI\n  00449bbc:  POP EBX\n  00449bbd:  RET\n  00449bbe:  PUSH EDI\n  00449bbf:  MOV ECX,EBX\n  00449bc1:  CALL 0x00449ab0\n  00449bc6:  PUSH EDI\n  00449bc7:  MOV ECX,EBX\n  00449bc9:  CALL 0x00449be0\n  00449bce:  POP EDI\n  00449bcf:  POP ESI\n  00449bd0:  POP EBX\n  00449bd1:  RET", 
+  "callers": [
+    {
+      "address": "0x0044a3d0", 
+      "name": "FUN_0044a3d0"
+    }
+  ]
+}

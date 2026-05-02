@@ -1,0 +1,14 @@
+{
+  "address": "0x005687b0", 
+  "size_bytes": 12, 
+  "calling_convention": "unknown", 
+  "signature": "undefined Unwind@005687b0(void)", 
+  "callees": [], 
+  "global_refs": [], 
+  "has_custom_name": true, 
+  "decompiled_c": "\r\nvoid Unwind_005687b0(void)\r\n\r\n{\r\n  int unaff_EBP;\r\n  \r\n                    /* WARNING: Could not recover jumptable at 0x005687b6. Too many branches */\r\n                    /* WARNING: Treating indirect jump as call */\r\n  gbVolModNode::~gbVolModNode((gbVolModNode *)(*(int *)(unaff_EBP + -0x10) + 8));\r\n  return;\r\n}\r\n\r\n", 
+  "is_thunk": false, 
+  "name": "Unwind@005687b0", 
+  "assembly": "  005687b0:  MOV ECX,dword ptr [EBP + -0x10]\n  005687b3:  ADD ECX,0x8\n  005687b6:  JMP dword ptr [0x0056a524]", 
+  "callers": []
+}

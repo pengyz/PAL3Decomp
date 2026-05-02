@@ -1,0 +1,35 @@
+{
+  "address": "0x004ed870", 
+  "size_bytes": 77, 
+  "calling_convention": "unknown", 
+  "signature": "undefined FUN_004ed870(void)", 
+  "callees": [
+    {
+      "address": "0x004f34e0", 
+      "name": "FUN_004f34e0"
+    }
+  ], 
+  "global_refs": [
+    {
+      "address": "0x00c0476c", 
+      "type": null, 
+      "name": "DAT_00c0476c"
+    }, 
+    {
+      "address": "0x00c062ec", 
+      "type": null, 
+      "name": "DAT_00c062ec"
+    }
+  ], 
+  "has_custom_name": false, 
+  "decompiled_c": "\r\nvoid __fastcall FUN_004ed870(int param_1)\r\n\r\n{\r\n  int iVar1;\r\n  int *piVar2;\r\n  int *piVar3;\r\n  \r\n  iVar1 = 0;\r\n  piVar3 = &DAT_00c0476c;\r\n  piVar2 = (int *)(param_1 + 0x24c);\r\n  do {\r\n    if (*(char *)((int)piVar2 + -0xb) != '\\0') {\r\n      if (*piVar2 < 1) {\r\n        *piVar2 = 1;\r\n        FUN_004f34e0(iVar1,0xfffffffe);\r\n      }\r\n      *piVar3 = *piVar2;\r\n    }\r\n    piVar3 = piVar3 + 0x160;\r\n    iVar1 = iVar1 + 1;\r\n    piVar2 = piVar2 + 0xdf;\r\n  } while ((int)piVar3 < 0xc062ec);\r\n  return;\r\n}\r\n\r\n", 
+  "is_thunk": false, 
+  "name": "FUN_004ed870", 
+  "assembly": "  004ed870:  PUSH EBX\n  004ed871:  PUSH EBP\n  004ed872:  MOV EBP,ECX\n  004ed874:  PUSH ESI\n  004ed875:  PUSH EDI\n  004ed876:  XOR EBX,EBX\n  004ed878:  MOV EDI,0xc0476c\n  004ed87d:  LEA ESI,[EBP + 0x24c]\n  004ed883:  MOV AL,byte ptr [ESI + -0xb]\n  004ed886:  TEST AL,AL\n  004ed888:  JZ 0x004ed8a3\n  004ed88a:  CMP dword ptr [ESI],0x0\n  004ed88d:  JG 0x004ed89f\n  004ed88f:  PUSH -0x2\n  004ed891:  PUSH EBX\n  004ed892:  MOV ECX,EBP\n  004ed894:  MOV dword ptr [ESI],0x1\n  004ed89a:  CALL 0x004f34e0\n  004ed89f:  MOV EAX,dword ptr [ESI]\n  004ed8a1:  MOV dword ptr [EDI],EAX\n  004ed8a3:  ADD EDI,0x580\n  004ed8a9:  INC EBX\n  004ed8aa:  ADD ESI,0x37c\n  004ed8b0:  CMP EDI,0xc062ec\n  004ed8b6:  JL 0x004ed883\n  004ed8b8:  POP EDI\n  004ed8b9:  POP ESI\n  004ed8ba:  POP EBP\n  004ed8bb:  POP EBX\n  004ed8bc:  RET", 
+  "callers": [
+    {
+      "address": "0x004f7910", 
+      "name": "FUN_004f7910"
+    }
+  ]
+}

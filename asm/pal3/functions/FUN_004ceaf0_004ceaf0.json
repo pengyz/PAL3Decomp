@@ -1,0 +1,19 @@
+{
+  "address": "0x004ceaf0", 
+  "size_bytes": 104, 
+  "calling_convention": "unknown", 
+  "signature": "undefined FUN_004ceaf0(void)", 
+  "callees": [], 
+  "global_refs": [], 
+  "has_custom_name": false, 
+  "decompiled_c": "\r\nvoid __fastcall FUN_004ceaf0(int param_1)\r\n\r\n{\r\n  int iVar1;\r\n  int *piVar2;\r\n  \r\n  iVar1 = 0x800;\r\n  piVar2 = (int *)(param_1 + 0x92c);\r\n  do {\r\n    if ((*(char *)(piVar2 + -1) != '\\0') && (*(char *)((int)piVar2 + -3) != '\\0')) {\r\n      (**(code **)(*(int *)*piVar2 + 0xc))();\r\n      if ((*(char *)((int)piVar2 + -2) == '\\0') && ((undefined4 *)*piVar2 != (undefined4 *)0x0)) {\r\n        (*(code *)**(undefined4 **)*piVar2)(1);\r\n      }\r\n      *(int *)(param_1 + 0xa91c) = *(int *)(param_1 + 0xa91c) + -1;\r\n      *piVar2 = 0;\r\n      piVar2[-4] = 0;\r\n      piVar2[-3] = 0;\r\n      piVar2[-2] = 0;\r\n      piVar2[-1] = 0;\r\n      *piVar2 = 0;\r\n    }\r\n    piVar2 = piVar2 + 5;\r\n    iVar1 = iVar1 + -1;\r\n  } while (iVar1 != 0);\r\n  return;\r\n}\r\n\r\n", 
+  "is_thunk": false, 
+  "name": "FUN_004ceaf0", 
+  "assembly": "  004ceaf0:  PUSH EBX\n  004ceaf1:  PUSH ESI\n  004ceaf2:  PUSH EDI\n  004ceaf3:  MOV EDI,ECX\n  004ceaf5:  MOV EBX,0x800\n  004ceafa:  LEA ESI,[EDI + 0x92c]\n  004ceb00:  MOV AL,byte ptr [ESI + -0x4]\n  004ceb03:  TEST AL,AL\n  004ceb05:  JZ 0x004ceb4e\n  004ceb07:  MOV AL,byte ptr [ESI + -0x3]\n  004ceb0a:  TEST AL,AL\n  004ceb0c:  JZ 0x004ceb4e\n  004ceb0e:  MOV ECX,dword ptr [ESI]\n  004ceb10:  MOV EAX,dword ptr [ECX]\n  004ceb12:  CALL dword ptr [EAX + 0xc]\n  004ceb15:  MOV AL,byte ptr [ESI + -0x2]\n  004ceb18:  TEST AL,AL\n  004ceb1a:  JNZ 0x004ceb28\n  004ceb1c:  MOV ECX,dword ptr [ESI]\n  004ceb1e:  TEST ECX,ECX\n  004ceb20:  JZ 0x004ceb28\n  004ceb22:  MOV EDX,dword ptr [ECX]\n  004ceb24:  PUSH 0x1\n  004ceb26:  CALL dword ptr [EDX]\n  004ceb28:  MOV EAX,dword ptr [EDI + 0xa91c]\n  004ceb2e:  LEA ECX,[ESI + -0x10]\n  004ceb31:  DEC EAX\n  004ceb32:  MOV dword ptr [EDI + 0xa91c],EAX\n  004ceb38:  XOR EAX,EAX\n  004ceb3a:  MOV dword ptr [ESI],0x0\n  004ceb40:  MOV dword ptr [ECX],EAX\n  004ceb42:  MOV dword ptr [ECX + 0x4],EAX\n  004ceb45:  MOV dword ptr [ECX + 0x8],EAX\n  004ceb48:  MOV dword ptr [ECX + 0xc],EAX\n  004ceb4b:  MOV dword ptr [ECX + 0x10],EAX\n  004ceb4e:  ADD ESI,0x14\n  004ceb51:  DEC EBX\n  004ceb52:  JNZ 0x004ceb00\n  004ceb54:  POP EDI\n  004ceb55:  POP ESI\n  004ceb56:  POP EBX\n  004ceb57:  RET", 
+  "callers": [
+    {
+      "address": "0x004cdca0", 
+      "name": "FUN_004cdca0"
+    }
+  ]
+}

@@ -1,0 +1,74 @@
+{
+  "address": "0x004e5390", 
+  "size_bytes": 44, 
+  "calling_convention": "unknown", 
+  "signature": "undefined FUN_004e5390(undefined4 param_1, undefined4 param_2)", 
+  "callees": [
+    {
+      "address": "0x00553082", 
+      "name": "FUN_00553082"
+    }, 
+    {
+      "address": "0x0000005e", 
+      "name": "SendMessageA"
+    }
+  ], 
+  "global_refs": [
+    {
+      "address": "0x00000008", 
+      "type": null, 
+      "name": "DAT_00000008"
+    }, 
+    {
+      "address": "0x00583ab0", 
+      "type": null, 
+      "name": "DAT_00583ab0"
+    }, 
+    {
+      "address": "0x017a94e4", 
+      "type": null, 
+      "name": "DAT_017a94e4"
+    }, 
+    {
+      "address": "0x00000004", 
+      "type": null, 
+      "name": "DAT_00000004"
+    }, 
+    {
+      "address": "0x0056a180", 
+      "type": null, 
+      "name": "PTR_SendMessageA_0056a180"
+    }
+  ], 
+  "has_custom_name": false, 
+  "decompiled_c": "\r\nvoid FUN_004e5390(HWND param_1,undefined4 param_2)\r\n\r\n{\r\n  FUN_00553082(&DAT_017a94e4,&DAT_00583ab0,param_2);\r\n  SendMessageA(param_1,0xc,0,0x17a94e4);\r\n  return;\r\n}\r\n\r\n", 
+  "is_thunk": false, 
+  "name": "FUN_004e5390", 
+  "assembly": "  004e5390:  MOV EAX,dword ptr [ESP + 0x8]\n  004e5394:  PUSH EAX\n  004e5395:  PUSH 0x583ab0\n  004e539a:  PUSH 0x17a94e4\n  004e539f:  CALL 0x00553082\n  004e53a4:  MOV ECX,dword ptr [ESP + 0x10]\n  004e53a8:  ADD ESP,0xc\n  004e53ab:  PUSH 0x17a94e4\n  004e53b0:  PUSH 0x0\n  004e53b2:  PUSH 0xc\n  004e53b4:  PUSH ECX\n  004e53b5:  CALL dword ptr [0x0056a180]\n  004e53bb:  RET", 
+  "callers": [
+    {
+      "address": "0x004e2c10", 
+      "name": "FUN_004e2c10"
+    }, 
+    {
+      "address": "0x004ebd30", 
+      "name": "FUN_004ebd30"
+    }, 
+    {
+      "address": "0x004e7d70", 
+      "name": "FUN_004e7d70"
+    }, 
+    {
+      "address": "0x004e9c50", 
+      "name": "FUN_004e9c50"
+    }, 
+    {
+      "address": "0x004ea5c0", 
+      "name": "FUN_004ea5c0"
+    }, 
+    {
+      "address": "0x004ea6d0", 
+      "name": "FUN_004ea6d0"
+    }
+  ]
+}

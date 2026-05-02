@@ -1,0 +1,40 @@
+{
+  "address": "0x00450390", 
+  "size_bytes": 34, 
+  "calling_convention": "unknown", 
+  "signature": "undefined FUN_00450390(void)", 
+  "callees": [
+    {
+      "address": "0x0043bbb0", 
+      "name": "FUN_0043bbb0"
+    }
+  ], 
+  "global_refs": [
+    {
+      "address": "0x0056b0e0", 
+      "type": null, 
+      "name": "PTR_FUN_0056b0e0"
+    }, 
+    {
+      "address": "0x0056b0d4", 
+      "type": null, 
+      "name": "PTR_LAB_0056b0d4"
+    }, 
+    {
+      "address": "0x0056a9c0", 
+      "type": null, 
+      "name": "PTR_LAB_0056a9c0"
+    }
+  ], 
+  "has_custom_name": false, 
+  "decompiled_c": "\r\nvoid __fastcall FUN_00450390(undefined4 *param_1)\r\n\r\n{\r\n  *param_1 = &PTR_FUN_0056b0e0;\r\n  param_1[0x12] = &PTR_LAB_0056b0d4;\r\n  *(undefined ***)(-(uint)(param_1 != (undefined4 *)0x0) & (uint)(param_1 + 0x12)) =\r\n       &PTR_LAB_0056a9c0;\r\n  FUN_0043bbb0();\r\n  return;\r\n}\r\n\r\n", 
+  "is_thunk": false, 
+  "name": "FUN_00450390", 
+  "assembly": "  00450390:  MOV EAX,ECX\n  00450392:  LEA EDX,[ECX + 0x48]\n  00450395:  NEG EAX\n  00450397:  SBB EAX,EAX\n  00450399:  MOV dword ptr [ECX],0x56b0e0\n  0045039f:  AND EAX,EDX\n  004503a1:  MOV dword ptr [EDX],0x56b0d4\n  004503a7:  MOV dword ptr [EAX],0x56a9c0\n  004503ad:  JMP 0x0043bbb0", 
+  "callers": [
+    {
+      "address": "0x00450370", 
+      "name": "FUN_00450370"
+    }
+  ]
+}

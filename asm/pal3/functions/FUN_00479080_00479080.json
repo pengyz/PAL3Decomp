@@ -1,0 +1,221 @@
+{
+  "address": "0x00479080", 
+  "size_bytes": 97, 
+  "calling_convention": "unknown", 
+  "signature": "undefined FUN_00479080(undefined4 param_1)", 
+  "callees": [], 
+  "global_refs": [
+    {
+      "address": "0x00000004", 
+      "type": null, 
+      "name": "DAT_00000004"
+    }
+  ], 
+  "has_custom_name": false, 
+  "decompiled_c": "\r\nint __thiscall FUN_00479080(int param_1_00,int param_1)\r\n\r\n{\r\n  int iVar1;\r\n  \r\n  if (param_1 != 0) {\r\n    *(undefined4 *)(param_1_00 + 0xc4810) = 0;\r\n    if (0 < *(int *)(param_1_00 + 0x8c)) {\r\n      do {\r\n        if (param_1 == *(int *)(param_1_00 + 0x29a40 + *(int *)(param_1_00 + 0xc4810) * 0x2f8)) {\r\n          return param_1_00 + 0x29a40 + *(int *)(param_1_00 + 0xc4810) * 0x2f8;\r\n        }\r\n        iVar1 = *(int *)(param_1_00 + 0xc4810) + 1;\r\n        *(int *)(param_1_00 + 0xc4810) = iVar1;\r\n      } while (iVar1 < *(int *)(param_1_00 + 0x8c));\r\n    }\r\n  }\r\n  return 0;\r\n}\r\n\r\n", 
+  "is_thunk": false, 
+  "name": "FUN_00479080", 
+  "assembly": "  00479080:  PUSH ESI\n  00479081:  MOV ESI,dword ptr [ESP + 0x8]\n  00479085:  PUSH EDI\n  00479086:  TEST ESI,ESI\n  00479088:  JZ 0x004790c0\n  0047908a:  MOV EDX,dword ptr [ECX + 0x8c]\n  00479090:  MOV dword ptr [ECX + 0xc4810],0x0\n  0047909a:  TEST EDX,EDX\n  0047909c:  JLE 0x004790c0\n  0047909e:  MOV EAX,dword ptr [ECX + 0xc4810]\n  004790a4:  LEA EDI,[EAX + EAX*0x2]\n  004790a7:  SHL EDI,0x5\n  004790aa:  SUB EDI,EAX\n  004790ac:  CMP ESI,dword ptr [ECX + EDI*0x8 + 0x29a40]\n  004790b3:  JZ 0x004790c7\n  004790b5:  INC EAX\n  004790b6:  CMP EAX,EDX\n  004790b8:  MOV dword ptr [ECX + 0xc4810],EAX\n  004790be:  JL 0x0047909e\n  004790c0:  POP EDI\n  004790c1:  POP ESI\n  004790c2:  XOR EAX,EAX\n  004790c4:  RET 0x4\n  004790c7:  MOV EAX,dword ptr [ECX + 0xc4810]\n  004790cd:  POP EDI\n  004790ce:  POP ESI\n  004790cf:  LEA EDX,[EAX + EAX*0x2]\n  004790d2:  SHL EDX,0x5\n  004790d5:  SUB EDX,EAX\n  004790d7:  LEA EAX,[ECX + EDX*0x8 + 0x29a40]\n  004790de:  RET 0x4", 
+  "callers": [
+    {
+      "address": "0x0040eb90", 
+      "name": "FUN_0040eb90"
+    }, 
+    {
+      "address": "0x0040ff70", 
+      "name": "FUN_0040ff70"
+    }, 
+    {
+      "address": "0x0040f4b0", 
+      "name": "FUN_0040f4b0"
+    }, 
+    {
+      "address": "0x004ab6b0", 
+      "name": "FUN_004ab6b0"
+    }, 
+    {
+      "address": "0x0049cf80", 
+      "name": "FUN_0049cf80"
+    }, 
+    {
+      "address": "0x0049ca70", 
+      "name": "FUN_0049ca70"
+    }, 
+    {
+      "address": "0x004f0830", 
+      "name": "FUN_004f0830"
+    }, 
+    {
+      "address": "0x004f4da0", 
+      "name": "FUN_004f4da0"
+    }, 
+    {
+      "address": "0x004f4aa0", 
+      "name": "FUN_004f4aa0"
+    }, 
+    {
+      "address": "0x004f5070", 
+      "name": "FUN_004f5070"
+    }, 
+    {
+      "address": "0x004f6370", 
+      "name": "FUN_004f6370"
+    }, 
+    {
+      "address": "0x004f6d30", 
+      "name": "FUN_004f6d30"
+    }, 
+    {
+      "address": "0x004f7500", 
+      "name": "FUN_004f7500"
+    }, 
+    {
+      "address": "0x004f7200", 
+      "name": "FUN_004f7200"
+    }, 
+    {
+      "address": "0x004f7480", 
+      "name": "FUN_004f7480"
+    }, 
+    {
+      "address": "0x004f55d0", 
+      "name": "FUN_004f55d0"
+    }, 
+    {
+      "address": "0x004f57a0", 
+      "name": "FUN_004f57a0"
+    }, 
+    {
+      "address": "0x004f5d00", 
+      "name": "FUN_004f5d00"
+    }, 
+    {
+      "address": "0x004f6000", 
+      "name": "FUN_004f6000"
+    }, 
+    {
+      "address": "0x004f6690", 
+      "name": "FUN_004f6690"
+    }, 
+    {
+      "address": "0x004f6a40", 
+      "name": "FUN_004f6a40"
+    }, 
+    {
+      "address": "0x004f6a60", 
+      "name": "FUN_004f6a60"
+    }, 
+    {
+      "address": "0x004f6cd0", 
+      "name": "FUN_004f6cd0"
+    }, 
+    {
+      "address": "0x004fa930", 
+      "name": "FUN_004fa930"
+    }, 
+    {
+      "address": "0x004ee990", 
+      "name": "FUN_004ee990"
+    }, 
+    {
+      "address": "0x004f1070", 
+      "name": "FUN_004f1070"
+    }, 
+    {
+      "address": "0x004ef4a0", 
+      "name": "FUN_004ef4a0"
+    }, 
+    {
+      "address": "0x004f2350", 
+      "name": "FUN_004f2350"
+    }, 
+    {
+      "address": "0x004f2910", 
+      "name": "FUN_004f2910"
+    }, 
+    {
+      "address": "0x004f1420", 
+      "name": "FUN_004f1420"
+    }, 
+    {
+      "address": "0x004f05a0", 
+      "name": "FUN_004f05a0"
+    }, 
+    {
+      "address": "0x004eef20", 
+      "name": "FUN_004eef20"
+    }, 
+    {
+      "address": "0x004f6a80", 
+      "name": "FUN_004f6a80"
+    }, 
+    {
+      "address": "0x004f6a20", 
+      "name": "FUN_004f6a20"
+    }, 
+    {
+      "address": "0x004f98b0", 
+      "name": "FUN_004f98b0"
+    }, 
+    {
+      "address": "0x004ef6c0", 
+      "name": "FUN_004ef6c0"
+    }, 
+    {
+      "address": "0x004f5330", 
+      "name": "FUN_004f5330"
+    }, 
+    {
+      "address": "0x00408fd0", 
+      "name": "FUN_00408fd0"
+    }, 
+    {
+      "address": "0x0040ec20", 
+      "name": "FUN_0040ec20"
+    }, 
+    {
+      "address": "0x00482140", 
+      "name": "FUN_00482140"
+    }, 
+    {
+      "address": "0x0040e840", 
+      "name": "FUN_0040e840"
+    }, 
+    {
+      "address": "0x004f69f0", 
+      "name": "FUN_004f69f0"
+    }, 
+    {
+      "address": "0x004eb8d0", 
+      "name": "FUN_004eb8d0"
+    }, 
+    {
+      "address": "0x004ac8b0", 
+      "name": "FUN_004ac8b0"
+    }, 
+    {
+      "address": "0x00489ba0", 
+      "name": "FUN_00489ba0"
+    }, 
+    {
+      "address": "0x004ec1f0", 
+      "name": "FUN_004ec1f0"
+    }, 
+    {
+      "address": "0x004f91b0", 
+      "name": "FUN_004f91b0"
+    }, 
+    {
+      "address": "0x004f9390", 
+      "name": "FUN_004f9390"
+    }, 
+    {
+      "address": "0x004e3a20", 
+      "name": "FUN_004e3a20"
+    }, 
+    {
+      "address": "0x004e3d90", 
+      "name": "FUN_004e3d90"
+    }
+  ]
+}

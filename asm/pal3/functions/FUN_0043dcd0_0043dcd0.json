@@ -1,0 +1,194 @@
+{
+  "address": "0x0043dcd0", 
+  "size_bytes": 25, 
+  "calling_convention": "unknown", 
+  "signature": "undefined FUN_0043dcd0(void)", 
+  "callees": [
+    {
+      "address": "0x00445aa0", 
+      "name": "FUN_00445aa0"
+    }
+  ], 
+  "global_refs": [
+    {
+      "address": "0x0056ad20", 
+      "type": null, 
+      "name": "PTR_FUN_0056ad20"
+    }
+  ], 
+  "has_custom_name": false, 
+  "decompiled_c": "\r\nundefined4 * __fastcall FUN_0043dcd0(undefined4 *param_1)\r\n\r\n{\r\n  FUN_00445aa0();\r\n  *param_1 = &PTR_FUN_0056ad20;\r\n  param_1[0x11] = 0;\r\n  return param_1;\r\n}\r\n\r\n", 
+  "is_thunk": false, 
+  "name": "FUN_0043dcd0", 
+  "assembly": "  0043dcd0:  PUSH ESI\n  0043dcd1:  MOV ESI,ECX\n  0043dcd3:  CALL 0x00445aa0\n  0043dcd8:  MOV dword ptr [ESI],0x56ad20\n  0043dcde:  MOV dword ptr [ESI + 0x44],0x0\n  0043dce5:  MOV EAX,ESI\n  0043dce7:  POP ESI\n  0043dce8:  RET", 
+  "callers": [
+    {
+      "address": "0x004460d0", 
+      "name": "FUN_004460d0"
+    }, 
+    {
+      "address": "0x0044ba60", 
+      "name": "FUN_0044ba60"
+    }, 
+    {
+      "address": "0x00453d10", 
+      "name": "FUN_00453d10"
+    }, 
+    {
+      "address": "0x00454830", 
+      "name": "FUN_00454830"
+    }, 
+    {
+      "address": "0x00456ab0", 
+      "name": "FUN_00456ab0"
+    }, 
+    {
+      "address": "0x00452580", 
+      "name": "FUN_00452580"
+    }, 
+    {
+      "address": "0x0047dca0", 
+      "name": "FUN_0047dca0"
+    }, 
+    {
+      "address": "0x004a1e40", 
+      "name": "FUN_004a1e40"
+    }, 
+    {
+      "address": "0x0047e5c0", 
+      "name": "FUN_0047e5c0"
+    }, 
+    {
+      "address": "0x00482ed0", 
+      "name": "FUN_00482ed0"
+    }, 
+    {
+      "address": "0x004867f0", 
+      "name": "FUN_004867f0"
+    }, 
+    {
+      "address": "0x004909f0", 
+      "name": "FUN_004909f0"
+    }, 
+    {
+      "address": "0x00498820", 
+      "name": "FUN_00498820"
+    }, 
+    {
+      "address": "0x004a6f10", 
+      "name": "FUN_004a6f10"
+    }, 
+    {
+      "address": "0x004b01d0", 
+      "name": "FUN_004b01d0"
+    }, 
+    {
+      "address": "0x0044ffe0", 
+      "name": "FUN_0044ffe0"
+    }, 
+    {
+      "address": "0x00450710", 
+      "name": "FUN_00450710"
+    }, 
+    {
+      "address": "0x004590d0", 
+      "name": "FUN_004590d0"
+    }, 
+    {
+      "address": "0x0045a7b0", 
+      "name": "FUN_0045a7b0"
+    }, 
+    {
+      "address": "0x0046d140", 
+      "name": "FUN_0046d140"
+    }, 
+    {
+      "address": "0x00470a60", 
+      "name": "FUN_00470a60"
+    }, 
+    {
+      "address": "0x00479300", 
+      "name": "FUN_00479300"
+    }, 
+    {
+      "address": "0x0047bbf0", 
+      "name": "FUN_0047bbf0"
+    }, 
+    {
+      "address": "0x005160a0", 
+      "name": "FUN_005160a0"
+    }, 
+    {
+      "address": "0x00519310", 
+      "name": "FUN_00519310"
+    }, 
+    {
+      "address": "0x00519af0", 
+      "name": "FUN_00519af0"
+    }, 
+    {
+      "address": "0x0051a340", 
+      "name": "FUN_0051a340"
+    }, 
+    {
+      "address": "0x0051ac40", 
+      "name": "FUN_0051ac40"
+    }, 
+    {
+      "address": "0x0051b110", 
+      "name": "FUN_0051b110"
+    }, 
+    {
+      "address": "0x0051b620", 
+      "name": "FUN_0051b620"
+    }, 
+    {
+      "address": "0x0051bb90", 
+      "name": "FUN_0051bb90"
+    }, 
+    {
+      "address": "0x0051c210", 
+      "name": "FUN_0051c210"
+    }, 
+    {
+      "address": "0x0051d710", 
+      "name": "FUN_0051d710"
+    }, 
+    {
+      "address": "0x00523130", 
+      "name": "FUN_00523130"
+    }, 
+    {
+      "address": "0x00523f30", 
+      "name": "FUN_00523f30"
+    }, 
+    {
+      "address": "0x00525120", 
+      "name": "FUN_00525120"
+    }, 
+    {
+      "address": "0x00527950", 
+      "name": "FUN_00527950"
+    }, 
+    {
+      "address": "0x005282e0", 
+      "name": "FUN_005282e0"
+    }, 
+    {
+      "address": "0x005295f0", 
+      "name": "FUN_005295f0"
+    }, 
+    {
+      "address": "0x0052ba10", 
+      "name": "FUN_0052ba10"
+    }, 
+    {
+      "address": "0x00531d20", 
+      "name": "FUN_00531d20"
+    }, 
+    {
+      "address": "0x00536260", 
+      "name": "FUN_00536260"
+    }
+  ]
+}

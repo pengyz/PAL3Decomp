@@ -1,0 +1,25 @@
+{
+  "address": "0x004f9340", 
+  "size_bytes": 73, 
+  "calling_convention": "unknown", 
+  "signature": "undefined FUN_004f9340(undefined4 param_1, undefined4 param_2)", 
+  "callees": [], 
+  "global_refs": [
+    {
+      "address": "0x00000004", 
+      "type": null, 
+      "name": "DAT_00000004"
+    }, 
+    {
+      "address": "0x00000008", 
+      "type": null, 
+      "name": "DAT_00000008"
+    }
+  ], 
+  "has_custom_name": false, 
+  "decompiled_c": "\r\nundefined4 __thiscall FUN_004f9340(int param_1_00,int param_1,int param_2)\r\n\r\n{\r\n  undefined4 *puVar1;\r\n  int iVar2;\r\n  int iVar3;\r\n  \r\n  iVar3 = 0;\r\n  iVar2 = 0;\r\n  param_1_00 = param_1_00 + param_1 * 0x37c;\r\n  puVar1 = (undefined4 *)(param_1_00 + 0x2c8);\r\n  while( true ) {\r\n    if (*(char *)(param_1_00 + 0x2e0 + iVar2) != '\\0') {\r\n      iVar3 = iVar3 + 1;\r\n    }\r\n    if (iVar3 == param_2 + 1) break;\r\n    iVar2 = iVar2 + 1;\r\n    puVar1 = puVar1 + 1;\r\n    if (5 < iVar2) {\r\n      return 0;\r\n    }\r\n  }\r\n  return *puVar1;\r\n}\r\n\r\n", 
+  "is_thunk": false, 
+  "name": "FUN_004f9340", 
+  "assembly": "  004f9340:  MOV EAX,dword ptr [ESP + 0x4]\n  004f9344:  PUSH EBX\n  004f9345:  MOV EBX,dword ptr [ESP + 0xc]\n  004f9349:  PUSH ESI\n  004f934a:  LEA ESI,[EAX*0x8 + 0x0]\n  004f9351:  PUSH EDI\n  004f9352:  SUB ESI,EAX\n  004f9354:  INC EBX\n  004f9355:  SHL ESI,0x5\n  004f9358:  XOR EDI,EDI\n  004f935a:  XOR EDX,EDX\n  004f935c:  SUB ESI,EAX\n  004f935e:  LEA ESI,[ECX + ESI*0x4]\n  004f9361:  LEA ECX,[ESI + 0x2c8]\n  004f9367:  CMP byte ptr [ESI + EDX*0x1 + 0x2e0],0x0\n  004f936f:  MOV EAX,dword ptr [ECX]\n  004f9371:  JZ 0x004f9374\n  004f9373:  INC EDI\n  004f9374:  CMP EDI,EBX\n  004f9376:  JZ 0x004f9383\n  004f9378:  INC EDX\n  004f9379:  ADD ECX,0x4\n  004f937c:  CMP EDX,0x6\n  004f937f:  JL 0x004f9367\n  004f9381:  XOR EAX,EAX\n  004f9383:  POP EDI\n  004f9384:  POP ESI\n  004f9385:  POP EBX\n  004f9386:  RET 0x8", 
+  "callers": []
+}

@@ -1,0 +1,44 @@
+{
+  "address": "0x004f2310", 
+  "size_bytes": 52, 
+  "calling_convention": "unknown", 
+  "signature": "undefined FUN_004f2310(undefined4 param_1, undefined4 param_2)", 
+  "callees": [
+    {
+      "address": "0x00479130", 
+      "name": "FUN_00479130"
+    }, 
+    {
+      "address": "0x004f1fa0", 
+      "name": "FUN_004f1fa0"
+    }
+  ], 
+  "global_refs": [
+    {
+      "address": "0x00000004", 
+      "type": null, 
+      "name": "DAT_00000004"
+    }, 
+    {
+      "address": "0x00975ed8", 
+      "type": null, 
+      "name": "DAT_00975ed8"
+    }, 
+    {
+      "address": "0x00000008", 
+      "type": null, 
+      "name": "DAT_00000008"
+    }
+  ], 
+  "has_custom_name": false, 
+  "decompiled_c": "\r\nvoid FUN_004f2310(int param_1,undefined4 param_2)\r\n\r\n{\r\n  int iVar1;\r\n  \r\n  iVar1 = FUN_00479130(*(undefined4 *)(param_1 + 4));\r\n  FUN_004f1fa0(*(undefined4 *)(param_1 + 8),param_2,*(undefined *)(iVar1 + 0x274));\r\n  return;\r\n}\r\n\r\n", 
+  "is_thunk": false, 
+  "name": "FUN_004f2310", 
+  "assembly": "  004f2310:  PUSH ESI\n  004f2311:  PUSH EDI\n  004f2312:  MOV EDI,dword ptr [ESP + 0xc]\n  004f2316:  MOV ESI,ECX\n  004f2318:  MOV ECX,0x975ed8\n  004f231d:  MOV EAX,dword ptr [EDI + 0x4]\n  004f2320:  PUSH EAX\n  004f2321:  CALL 0x00479130\n  004f2326:  MOV EDX,dword ptr [ESP + 0x10]\n  004f232a:  XOR ECX,ECX\n  004f232c:  MOV CL,byte ptr [EAX + 0x274]\n  004f2332:  MOV EAX,dword ptr [EDI + 0x8]\n  004f2335:  PUSH ECX\n  004f2336:  PUSH EDX\n  004f2337:  PUSH EAX\n  004f2338:  MOV ECX,ESI\n  004f233a:  CALL 0x004f1fa0\n  004f233f:  POP EDI\n  004f2340:  POP ESI\n  004f2341:  RET 0x8", 
+  "callers": [
+    {
+      "address": "0x004f2750", 
+      "name": "FUN_004f2750"
+    }
+  ]
+}

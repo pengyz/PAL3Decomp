@@ -1,0 +1,45 @@
+{
+  "address": "0x00445f80", 
+  "size_bytes": 31, 
+  "calling_convention": "unknown", 
+  "signature": "undefined FUN_00445f80(undefined4 param_1, undefined4 param_2, undefined4 param_3, undefined4 param_4)", 
+  "callees": [
+    {
+      "address": "0x000000dc", 
+      "name": "GetPixelChannel"
+    }
+  ], 
+  "global_refs": [
+    {
+      "address": "0x00000010", 
+      "type": null, 
+      "name": "DAT_00000010"
+    }, 
+    {
+      "address": "0x0000000c", 
+      "type": null, 
+      "name": "DAT_0000000c"
+    }, 
+    {
+      "address": "0x00000008", 
+      "type": null, 
+      "name": "DAT_00000008"
+    }, 
+    {
+      "address": "0x00000004", 
+      "type": null, 
+      "name": "DAT_00000004"
+    }, 
+    {
+      "address": "0x0056a384", 
+      "type": null, 
+      "name": "PTR_GetPixelChannel_0056a384"
+    }
+  ], 
+  "has_custom_name": false, 
+  "decompiled_c": "\r\nvoid __thiscall FUN_00445f80(int param_1_00,int param_1,int param_2,int param_3,int param_4)\r\n\r\n{\r\n  gbTexture::GetPixelChannel(*(gbTexture **)(param_1_00 + param_1 * 4),param_2,param_3,param_4);\r\n  return;\r\n}\r\n\r\n", 
+  "is_thunk": false, 
+  "name": "FUN_00445f80", 
+  "assembly": "  00445f80:  MOV EAX,dword ptr [ESP + 0x10]\n  00445f84:  MOV EDX,dword ptr [ESP + 0xc]\n  00445f88:  PUSH EAX\n  00445f89:  MOV EAX,dword ptr [ESP + 0xc]\n  00445f8d:  PUSH EDX\n  00445f8e:  MOV EDX,dword ptr [ESP + 0xc]\n  00445f92:  PUSH EAX\n  00445f93:  MOV ECX,dword ptr [ECX + EDX*0x4]\n  00445f96:  CALL dword ptr [0x0056a384]\n  00445f9c:  RET 0x10", 
+  "callers": []
+}

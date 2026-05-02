@@ -1,0 +1,42 @@
+{
+  "address": "0x004b6630", 
+  "size_bytes": 123, 
+  "calling_convention": "unknown", 
+  "signature": "undefined FUN_004b6630(void)", 
+  "callees": [
+    {
+      "address": "0x004b66b0", 
+      "name": "FUN_004b66b0"
+    }, 
+    {
+      "address": "0x00000094", 
+      "name": "SetVariant"
+    }, 
+    {
+      "address": "0x004b67b0", 
+      "name": "FUN_004b67b0"
+    }, 
+    {
+      "address": "0x004b6820", 
+      "name": "FUN_004b6820"
+    }
+  ], 
+  "global_refs": [
+    {
+      "address": "0x0056a264", 
+      "type": null, 
+      "name": "PTR_SetVariant_0056a264"
+    }
+  ], 
+  "has_custom_name": false, 
+  "decompiled_c": "\r\nvoid __fastcall FUN_004b6630(int param_1)\r\n\r\n{\r\n  int iVar1;\r\n  char cVar2;\r\n  uint uVar3;\r\n  \r\n  cVar2 = FUN_004b66b0();\r\n  if (cVar2 != '\\0') {\r\n    for (uVar3 = 0;\r\n        (iVar1 = *(int *)(param_1 + 0x10), iVar1 != 0 &&\r\n        (uVar3 < (uint)(*(int *)(param_1 + 0x14) - iVar1 >> 2))); uVar3 = uVar3 + 1) {\r\n      gbRenderEffect::SetVariant\r\n                (*(gbRenderEffect **)(param_1 + 4),6,(void *)(*(int *)(iVar1 + uVar3 * 4) + 0x10));\r\n      (**(code **)(**(int **)(*(int *)(param_1 + 0x10) + uVar3 * 4) + 4))\r\n                (*(undefined4 *)(param_1 + 4));\r\n    }\r\n    FUN_004b67b0();\r\n    for (uVar3 = 0;\r\n        (iVar1 = *(int *)(param_1 + 0x10), iVar1 != 0 &&\r\n        (uVar3 < (uint)(*(int *)(param_1 + 0x14) - iVar1 >> 2))); uVar3 = uVar3 + 1) {\r\n      FUN_004b6820(*(undefined4 *)(iVar1 + uVar3 * 4));\r\n    }\r\n  }\r\n  return;\r\n}\r\n\r\n", 
+  "is_thunk": false, 
+  "name": "FUN_004b6630", 
+  "assembly": "  004b6630:  PUSH ESI\n  004b6631:  PUSH EDI\n  004b6632:  MOV ESI,ECX\n  004b6634:  CALL 0x004b66b0\n  004b6639:  TEST AL,AL\n  004b663b:  JZ 0x004b66a8\n  004b663d:  PUSH EBX\n  004b663e:  MOV EBX,dword ptr [0x0056a264]\n  004b6644:  XOR EDI,EDI\n  004b6646:  MOV EAX,dword ptr [ESI + 0x10]\n  004b6649:  TEST EAX,EAX\n  004b664b:  JZ 0x004b667b\n  004b664d:  MOV ECX,dword ptr [ESI + 0x14]\n  004b6650:  SUB ECX,EAX\n  004b6652:  SAR ECX,0x2\n  004b6655:  CMP EDI,ECX\n  004b6657:  JNC 0x004b667b\n  004b6659:  MOV EDX,EAX\n  004b665b:  MOV ECX,dword ptr [ESI + 0x4]\n  004b665e:  MOV EAX,dword ptr [EDX + EDI*0x4]\n  004b6661:  ADD EAX,0x10\n  004b6664:  PUSH EAX\n  004b6665:  PUSH 0x6\n  004b6667:  CALL EBX\n  004b6669:  MOV ECX,dword ptr [ESI + 0x10]\n  004b666c:  MOV EAX,dword ptr [ESI + 0x4]\n  004b666f:  PUSH EAX\n  004b6670:  MOV ECX,dword ptr [ECX + EDI*0x4]\n  004b6673:  MOV EDX,dword ptr [ECX]\n  004b6675:  CALL dword ptr [EDX + 0x4]\n  004b6678:  INC EDI\n  004b6679:  JMP 0x004b6646\n  004b667b:  MOV ECX,ESI\n  004b667d:  CALL 0x004b67b0\n  004b6682:  XOR EDI,EDI\n  004b6684:  POP EBX\n  004b6685:  MOV EAX,dword ptr [ESI + 0x10]\n  004b6688:  TEST EAX,EAX\n  004b668a:  JZ 0x004b66a8\n  004b668c:  MOV ECX,dword ptr [ESI + 0x14]\n  004b668f:  SUB ECX,EAX\n  004b6691:  SAR ECX,0x2\n  004b6694:  CMP EDI,ECX\n  004b6696:  JNC 0x004b66a8\n  004b6698:  MOV EDX,EAX\n  004b669a:  MOV ECX,ESI\n  004b669c:  MOV EAX,dword ptr [EDX + EDI*0x4]\n  004b669f:  PUSH EAX\n  004b66a0:  CALL 0x004b6820\n  004b66a5:  INC EDI\n  004b66a6:  JMP 0x004b6685\n  004b66a8:  POP EDI\n  004b66a9:  POP ESI\n  004b66aa:  RET", 
+  "callers": [
+    {
+      "address": "0x00405c00", 
+      "name": "FUN_00405c00"
+    }
+  ]
+}

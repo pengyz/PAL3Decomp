@@ -1,0 +1,59 @@
+{
+  "address": "0x00522030", 
+  "size_bytes": 166, 
+  "calling_convention": "unknown", 
+  "signature": "undefined FUN_00522030(void)", 
+  "callees": [
+    {
+      "address": "0x00431870", 
+      "name": "FUN_00431870"
+    }, 
+    {
+      "address": "0x00401810", 
+      "name": "FUN_00401810"
+    }
+  ], 
+  "global_refs": [
+    {
+      "address": "0x0056797b", 
+      "type": null, 
+      "name": "LAB_0056797b"
+    }, 
+    {
+      "address": "0xffdff000", 
+      "type": null, 
+      "name": "ExceptionList"
+    }, 
+    {
+      "address": "0x-0000010", 
+      "type": null, 
+      "name": "DAT_-0000010"
+    }, 
+    {
+      "address": "0x-0000004", 
+      "type": null, 
+      "name": "DAT_-0000004"
+    }, 
+    {
+      "address": "0x005220e0", 
+      "type": null, 
+      "name": "LAB_005220e0"
+    }, 
+    {
+      "address": "0x-000000c", 
+      "type": null, 
+      "name": "DAT_-000000c"
+    }
+  ], 
+  "has_custom_name": false, 
+  "decompiled_c": "\r\nundefined * __fastcall FUN_00522030(undefined *param_1)\r\n\r\n{\r\n  int iVar1;\r\n  int iVar2;\r\n  undefined *puVar3;\r\n  undefined4 *puVar4;\r\n  void *local_c;\r\n  undefined *puStack_8;\r\n  undefined4 local_4;\r\n  \r\n  local_4 = 0xffffffff;\r\n  puStack_8 = &LAB_0056797b;\r\n  local_c = ExceptionList;\r\n  ExceptionList = &local_c;\r\n  *param_1 = 0;\r\n  FUN_00431870();\r\n  *(undefined4 *)(param_1 + 0x210) = 0;\r\n  local_4 = 0;\r\n  puVar3 = param_1 + 0x214;\r\n  iVar2 = 5;\r\n  do {\r\n    puVar4 = (undefined4 *)(puVar3 + 0x18);\r\n    FUN_00401810(puVar4,0x30,4,&LAB_005220e0);\r\n    *puVar3 = 0;\r\n    puVar3[1] = 0;\r\n    puVar3[2] = 0;\r\n    puVar3[3] = 0;\r\n    puVar3[4] = 0;\r\n    puVar3[5] = 0;\r\n    puVar3[6] = 0;\r\n    *(undefined4 *)(puVar3 + 8) = 0x3f800000;\r\n    *(undefined4 *)(puVar3 + 0xc) = 0;\r\n    *(undefined4 *)(puVar3 + 0x10) = 0;\r\n    *(undefined4 *)(puVar3 + 0x14) = 0;\r\n    *(undefined4 *)(puVar3 + 0xd8) = 0;\r\n    puVar3 = puVar3 + 0xdc;\r\n    iVar2 = iVar2 + -1;\r\n    for (iVar1 = 0x30; iVar1 != 0; iVar1 = iVar1 + -1) {\r\n      *puVar4 = 0;\r\n      puVar4 = puVar4 + 1;\r\n    }\r\n  } while (iVar2 != 0);\r\n  ExceptionList = local_c;\r\n  return param_1;\r\n}\r\n\r\n", 
+  "is_thunk": false, 
+  "name": "FUN_00522030", 
+  "assembly": "  00522030:  PUSH -0x1\n  00522032:  PUSH 0x56797b\n  00522037:  MOV EAX,FS:[0x0]\n  0052203d:  PUSH EAX\n  0052203e:  MOV dword ptr FS:[0x0],ESP\n  00522045:  PUSH ECX\n  00522046:  PUSH EBX\n  00522047:  PUSH EBP\n  00522048:  PUSH ESI\n  00522049:  MOV ESI,ECX\n  0052204b:  XOR EBX,EBX\n  0052204d:  PUSH EDI\n  0052204e:  LEA ECX,[ESI + 0x4]\n  00522051:  MOV dword ptr [ESP + 0x10],ESI\n  00522055:  MOV byte ptr [ESI],BL\n  00522057:  CALL 0x00431870\n  0052205c:  MOV dword ptr [ESI + 0x210],EBX\n  00522062:  MOV dword ptr [ESP + 0x1c],EBX\n  00522066:  ADD ESI,0x214\n  0052206c:  MOV EBP,0x5\n  00522071:  PUSH 0x5220e0\n  00522076:  LEA EDI,[ESI + 0x18]\n  00522079:  PUSH 0x4\n  0052207b:  PUSH 0x30\n  0052207d:  PUSH EDI\n  0052207e:  CALL 0x00401810\n  00522083:  MOV byte ptr [ESI],BL\n  00522085:  MOV byte ptr [ESI + 0x1],BL\n  00522088:  MOV byte ptr [ESI + 0x2],BL\n  0052208b:  MOV byte ptr [ESI + 0x3],BL\n  0052208e:  MOV byte ptr [ESI + 0x4],BL\n  00522091:  MOV byte ptr [ESI + 0x5],BL\n  00522094:  MOV byte ptr [ESI + 0x6],BL\n  00522097:  MOV dword ptr [ESI + 0x8],0x3f800000\n  0052209e:  MOV dword ptr [ESI + 0xc],EBX\n  005220a1:  MOV dword ptr [ESI + 0x10],EBX\n  005220a4:  MOV dword ptr [ESI + 0x14],EBX\n  005220a7:  MOV dword ptr [ESI + 0xd8],EBX\n  005220ad:  MOV ECX,0x30\n  005220b2:  XOR EAX,EAX\n  005220b4:  ADD ESI,0xdc\n  005220ba:  DEC EBP\n  005220bb:  STOSD.REP ES:EDI\n  005220bd:  JNZ 0x00522071\n  005220bf:  MOV ECX,dword ptr [ESP + 0x14]\n  005220c3:  MOV EAX,dword ptr [ESP + 0x10]\n  005220c7:  POP EDI\n  005220c8:  POP ESI\n  005220c9:  POP EBP\n  005220ca:  POP EBX\n  005220cb:  MOV dword ptr FS:[0x0],ECX\n  005220d2:  ADD ESP,0x10\n  005220d5:  RET", 
+  "callers": [
+    {
+      "address": "0x00523f30", 
+      "name": "FUN_00523f30"
+    }
+  ]
+}

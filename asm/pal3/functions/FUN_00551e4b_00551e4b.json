@@ -1,0 +1,35 @@
+{
+  "address": "0x00551e4b", 
+  "size_bytes": 100, 
+  "calling_convention": "unknown", 
+  "signature": "undefined FUN_00551e4b(undefined4 param_1, undefined4 param_2)", 
+  "callees": [], 
+  "global_refs": [
+    {
+      "address": "0x00000008", 
+      "type": null, 
+      "name": "DAT_00000008"
+    }, 
+    {
+      "address": "0x00572bf8", 
+      "type": null, 
+      "name": "DAT_00572bf8"
+    }, 
+    {
+      "address": "0x00572c18", 
+      "type": null, 
+      "name": "PTR_DAT_00572c18"
+    }, 
+    {
+      "address": "0x00000004", 
+      "type": null, 
+      "name": "DAT_00000004"
+    }
+  ], 
+  "has_custom_name": false, 
+  "decompiled_c": "\r\n/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */\r\n\r\nvoid FUN_00551e4b(undefined8 *param_1,ulonglong *param_2)\r\n\r\n{\r\n  ulonglong uVar1;\r\n  undefined8 uVar2;\r\n  ulonglong uVar3;\r\n  undefined8 uVar4;\r\n  undefined8 in_MM4;\r\n  undefined8 uVar5;\r\n  \r\n  uVar1 = *param_2;\r\n  uVar3 = param_2[1] & _DAT_00572bf8;\r\n  uVar2 = PackedFloatingMUL(uVar1,uVar1);\r\n  uVar4 = PackedFloatingMUL(uVar3,uVar3);\r\n  uVar2 = PackedFloatingADD(uVar2,uVar4);\r\n  uVar2 = PackedFloatingAccumulate(uVar2,uVar2);\r\n  uVar5 = PackedFloatingReciprocalSQRAprox(in_MM4,uVar2);\r\n  uVar3 = PackedFloatingCompareGT(uVar2,_PTR_DAT_00572c18);\r\n  uVar4 = PackedFloatingMUL(uVar5,uVar5);\r\n  uVar2 = PackedFloatingReciprocalSQRIter1(uVar2,uVar4);\r\n  uVar2 = PackedFloatingReciprocalIter2(uVar2,uVar5);\r\n  uVar4 = PackedFloatingMUL(uVar1 & uVar3,uVar2);\r\n  uVar2 = PackedFloatingMUL(param_2[1] & uVar3,uVar2);\r\n  *param_1 = uVar4;\r\n  param_1[1] = uVar2;\r\n  FastExitMediaState();\r\n  return;\r\n}\r\n\r\n", 
+  "is_thunk": false, 
+  "name": "FUN_00551e4b", 
+  "assembly": "  00551e4b:  MOV EDX,dword ptr [ESP + 0x8]\n  00551e4f:  MOVQ MM0,qword ptr [EDX]\n  00551e52:  MOVQ MM2,qword ptr [EDX + 0x8]\n  00551e56:  MOVQ MM1,MM0\n  00551e59:  MOVQ MM3,MM2\n  00551e5c:  PAND MM2,qword ptr [0x00572bf8]\n  00551e63:  PFMUL MM0,MM0\n  00551e67:  PFMUL MM2,MM2\n  00551e6b:  PFADD MM0,MM2\n  00551e6f:  PFACC MM0,MM0\n  00551e73:  MOVQ MM5,MM0\n  00551e76:  PFRSQRT MM4,MM0\n  00551e7a:  PFCMPGT MM5,qword ptr [0x00572c18]\n  00551e82:  MOVQ MM2,MM4\n  00551e85:  PFMUL MM2,MM4\n  00551e89:  PFRSQIT1 MM0,MM2\n  00551e8d:  MOV EAX,dword ptr [ESP + 0x4]\n  00551e91:  PAND MM1,MM5\n  00551e94:  PAND MM3,MM5\n  00551e97:  PFRCPIT2 MM0,MM4\n  00551e9b:  PFMUL MM1,MM0\n  00551e9f:  PFMUL MM3,MM0\n  00551ea3:  MOVQ qword ptr [EAX],MM1\n  00551ea6:  MOVQ qword ptr [EAX + 0x8],MM3\n  00551eaa:  FEMMS\n  00551eac:  RET 0x8", 
+  "callers": []
+}

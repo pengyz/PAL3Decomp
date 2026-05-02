@@ -1,0 +1,75 @@
+{
+  "address": "0x0047bd20", 
+  "size_bytes": 204, 
+  "calling_convention": "unknown", 
+  "signature": "undefined FUN_0047bd20(void)", 
+  "callees": [
+    {
+      "address": "0x0047bdf0", 
+      "name": "FUN_0047bdf0"
+    }, 
+    {
+      "address": "0x0044b890", 
+      "name": "FUN_0044b890"
+    }, 
+    {
+      "address": "0x0043a810", 
+      "name": "FUN_0043a810"
+    }, 
+    {
+      "address": "0x00553549", 
+      "name": "FUN_00553549"
+    }, 
+    {
+      "address": "0x00442390", 
+      "name": "FUN_00442390"
+    }, 
+    {
+      "address": "0x0043dd10", 
+      "name": "FUN_0043dd10"
+    }
+  ], 
+  "global_refs": [
+    {
+      "address": "0x005625e7", 
+      "type": null, 
+      "name": "LAB_005625e7"
+    }, 
+    {
+      "address": "0xffdff000", 
+      "type": null, 
+      "name": "ExceptionList"
+    }, 
+    {
+      "address": "0x-0000010", 
+      "type": null, 
+      "name": "DAT_-0000010"
+    }, 
+    {
+      "address": "0x0056b850", 
+      "type": null, 
+      "name": "PTR_FUN_0056b850"
+    }, 
+    {
+      "address": "0x-0000004", 
+      "type": null, 
+      "name": "DAT_-0000004"
+    }, 
+    {
+      "address": "0x00442390", 
+      "type": null, 
+      "name": "FUN_00442390"
+    }
+  ], 
+  "has_custom_name": false, 
+  "decompiled_c": "\r\nvoid __fastcall FUN_0047bd20(undefined4 *param_1)\r\n\r\n{\r\n  void *pvStack_c;\r\n  undefined *puStack_8;\r\n  int local_4;\r\n  \r\n  puStack_8 = &LAB_005625e7;\r\n  pvStack_c = ExceptionList;\r\n  ExceptionList = &pvStack_c;\r\n  *param_1 = &PTR_FUN_0056b850;\r\n  local_4 = 7;\r\n  FUN_0047bdf0();\r\n  local_4._0_1_ = 6;\r\n  FUN_0044b890();\r\n  local_4._0_1_ = 5;\r\n  FUN_0043a810();\r\n  local_4._0_1_ = 4;\r\n  FUN_0043a810();\r\n  local_4._0_1_ = 3;\r\n  FUN_0043a810();\r\n  local_4._0_1_ = 2;\r\n  FUN_00553549(param_1 + 0x6c,0x98,3,FUN_00442390);\r\n  local_4._0_1_ = 1;\r\n  FUN_00442390();\r\n  local_4 = (uint)local_4._1_3_ << 8;\r\n  FUN_00442390();\r\n  local_4 = 0xffffffff;\r\n  FUN_0043dd10();\r\n  ExceptionList = pvStack_c;\r\n  return;\r\n}\r\n\r\n", 
+  "is_thunk": false, 
+  "name": "FUN_0047bd20", 
+  "assembly": "  0047bd20:  PUSH -0x1\n  0047bd22:  PUSH 0x5625e7\n  0047bd27:  MOV EAX,FS:[0x0]\n  0047bd2d:  PUSH EAX\n  0047bd2e:  MOV dword ptr FS:[0x0],ESP\n  0047bd35:  PUSH ECX\n  0047bd36:  PUSH ESI\n  0047bd37:  MOV ESI,ECX\n  0047bd39:  MOV dword ptr [ESP + 0x4],ESI\n  0047bd3d:  MOV dword ptr [ESI],0x56b850\n  0047bd43:  MOV dword ptr [ESP + 0x10],0x7\n  0047bd4b:  CALL 0x0047bdf0\n  0047bd50:  LEA ECX,[ESI + 0x780]\n  0047bd56:  MOV byte ptr [ESP + 0x10],0x6\n  0047bd5b:  CALL 0x0044b890\n  0047bd60:  LEA ECX,[ESI + 0x628]\n  0047bd66:  MOV byte ptr [ESP + 0x10],0x5\n  0047bd6b:  CALL 0x0043a810\n  0047bd70:  LEA ECX,[ESI + 0x4d0]\n  0047bd76:  MOV byte ptr [ESP + 0x10],0x4\n  0047bd7b:  CALL 0x0043a810\n  0047bd80:  LEA ECX,[ESI + 0x378]\n  0047bd86:  MOV byte ptr [ESP + 0x10],0x3\n  0047bd8b:  CALL 0x0043a810\n  0047bd90:  PUSH 0x442390\n  0047bd95:  PUSH 0x3\n  0047bd97:  LEA EAX,[ESI + 0x1b0]\n  0047bd9d:  PUSH 0x98\n  0047bda2:  PUSH EAX\n  0047bda3:  MOV byte ptr [ESP + 0x20],0x2\n  0047bda8:  CALL 0x00553549\n  0047bdad:  LEA ECX,[ESI + 0x118]\n  0047bdb3:  MOV byte ptr [ESP + 0x10],0x1\n  0047bdb8:  CALL 0x00442390\n  0047bdbd:  LEA ECX,[ESI + 0x80]\n  0047bdc3:  MOV byte ptr [ESP + 0x10],0x0\n  0047bdc8:  CALL 0x00442390\n  0047bdcd:  MOV ECX,ESI\n  0047bdcf:  MOV dword ptr [ESP + 0x10],0xffffffff\n  0047bdd7:  CALL 0x0043dd10\n  0047bddc:  MOV ECX,dword ptr [ESP + 0x8]\n  0047bde0:  POP ESI\n  0047bde1:  MOV dword ptr FS:[0x0],ECX\n  0047bde8:  ADD ESP,0x10\n  0047bdeb:  RET", 
+  "callers": [
+    {
+      "address": "0x0047bd00", 
+      "name": "FUN_0047bd00"
+    }
+  ]
+}

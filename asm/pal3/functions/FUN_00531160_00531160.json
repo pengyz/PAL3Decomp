@@ -1,0 +1,52 @@
+{
+  "address": "0x00531160", 
+  "size_bytes": 241, 
+  "calling_convention": "unknown", 
+  "signature": "undefined FUN_00531160(void)", 
+  "callees": [
+    {
+      "address": "0x0052dc40", 
+      "name": "FUN_0052dc40"
+    }, 
+    {
+      "address": "0x0052fb00", 
+      "name": "FUN_0052fb00"
+    }, 
+    {
+      "address": "0x00530c00", 
+      "name": "FUN_00530c00"
+    }, 
+    {
+      "address": "0x0000014e", 
+      "name": "Normalize"
+    }
+  ], 
+  "global_refs": [
+    {
+      "address": "0x-0000008", 
+      "type": null, 
+      "name": "DAT_-0000008"
+    }, 
+    {
+      "address": "0x-0000004", 
+      "type": null, 
+      "name": "DAT_-0000004"
+    }, 
+    {
+      "address": "0x0056a54c", 
+      "type": null, 
+      "name": "PTR_Normalize_0056a54c"
+    }
+  ], 
+  "has_custom_name": false, 
+  "decompiled_c": "\r\nvoid __fastcall FUN_00531160(int param_1)\r\n\r\n{\r\n  float fVar1;\r\n  float fVar2;\r\n  float *pfVar3;\r\n  \r\n  pfVar3 = (float *)FUN_0052dc40(*(undefined4 *)(param_1 + 0x290));\r\n  if (pfVar3 == (float *)0x0) {\r\n    *(undefined *)(param_1 + 0x2ac) = 0;\r\n    FUN_0052fb00(0,0);\r\n    *(undefined *)(param_1 + 0x305) = 1;\r\n    FUN_00530c00(0);\r\n    return;\r\n  }\r\n  fVar1 = *pfVar3;\r\n  fVar2 = pfVar3[2];\r\n  *(float *)(param_1 + 0x288) = pfVar3[1] - *(float *)(param_1 + 0x27c);\r\n  *(float *)(param_1 + 0x284) = fVar1 - *(float *)(param_1 + 0x278);\r\n  *(float *)(param_1 + 0x28c) = fVar2 - *(float *)(param_1 + 0x280);\r\n  gbVec3D::Normalize((gbVec3D *)(param_1 + 0x284));\r\n  *(undefined4 *)(param_1 + 0x248) = *(undefined4 *)(param_1 + 0x254);\r\n  *(undefined4 *)(param_1 + 0x24c) = *(undefined4 *)(param_1 + 600);\r\n  *(undefined4 *)(param_1 + 0x250) = *(undefined4 *)(param_1 + 0x25c);\r\n  *(undefined4 *)(param_1 + 0x254) = *(undefined4 *)(param_1 + 0x278);\r\n  *(undefined4 *)(param_1 + 600) = *(undefined4 *)(param_1 + 0x27c);\r\n  *(undefined4 *)(param_1 + 0x25c) = *(undefined4 *)(param_1 + 0x280);\r\n  *(float *)(param_1 + 0x278) = *pfVar3;\r\n  *(float *)(param_1 + 0x27c) = pfVar3[1];\r\n  *(float *)(param_1 + 0x280) = pfVar3[2];\r\n  return;\r\n}\r\n\r\n", 
+  "is_thunk": false, 
+  "name": "FUN_00531160", 
+  "assembly": "  00531160:  SUB ESP,0xc\n  00531163:  PUSH ESI\n  00531164:  MOV ESI,ECX\n  00531166:  PUSH EDI\n  00531167:  MOV EAX,dword ptr [ESI + 0x290]\n  0053116d:  LEA ECX,[ESI + 0x234]\n  00531173:  PUSH EAX\n  00531174:  CALL 0x0052dc40\n  00531179:  MOV EDI,EAX\n  0053117b:  TEST EDI,EDI\n  0053117d:  JNZ 0x005311a9\n  0053117f:  MOV ECX,dword ptr [ESI + 0x308]\n  00531185:  PUSH EAX\n  00531186:  PUSH EAX\n  00531187:  MOV byte ptr [ESI + 0x2ac],AL\n  0053118d:  CALL 0x0052fb00\n  00531192:  PUSH EDI\n  00531193:  MOV ECX,ESI\n  00531195:  MOV byte ptr [ESI + 0x305],0x1\n  0053119c:  CALL 0x00530c00\n  005311a1:  POP EDI\n  005311a2:  POP ESI\n  005311a3:  ADD ESP,0xc\n  005311a6:  RET 0x4\n  005311a9:  FLD dword ptr [EDI]\n  005311ab:  FSUB dword ptr [ESI + 0x278]\n  005311b1:  FLD dword ptr [EDI + 0x4]\n  005311b4:  FSUB dword ptr [ESI + 0x27c]\n  005311ba:  LEA ECX,[ESI + 0x284]\n  005311c0:  FSTP dword ptr [ESP + 0xc]\n  005311c4:  FLD dword ptr [EDI + 0x8]\n  005311c7:  FSUB dword ptr [ESI + 0x280]\n  005311cd:  MOV EDX,dword ptr [ESP + 0xc]\n  005311d1:  MOV dword ptr [ECX + 0x4],EDX\n  005311d4:  FSTP dword ptr [ESP + 0x10]\n  005311d8:  MOV EAX,dword ptr [ESP + 0x10]\n  005311dc:  FSTP dword ptr [ECX]\n  005311de:  MOV dword ptr [ECX + 0x8],EAX\n  005311e1:  CALL dword ptr [0x0056a54c]\n  005311e7:  MOV ECX,dword ptr [ESI + 0x254]\n  005311ed:  MOV EDX,dword ptr [ESI + 0x258]\n  005311f3:  MOV EAX,dword ptr [ESI + 0x25c]\n  005311f9:  MOV dword ptr [ESI + 0x248],ECX\n  005311ff:  MOV ECX,dword ptr [ESI + 0x278]\n  00531205:  MOV dword ptr [ESI + 0x24c],EDX\n  0053120b:  MOV EDX,dword ptr [ESI + 0x27c]\n  00531211:  MOV dword ptr [ESI + 0x250],EAX\n  00531217:  MOV EAX,dword ptr [ESI + 0x280]\n  0053121d:  MOV dword ptr [ESI + 0x254],ECX\n  00531223:  MOV dword ptr [ESI + 0x258],EDX\n  00531229:  MOV dword ptr [ESI + 0x25c],EAX\n  0053122f:  MOV ECX,dword ptr [EDI]\n  00531231:  MOV dword ptr [ESI + 0x278],ECX\n  00531237:  MOV EDX,dword ptr [EDI + 0x4]\n  0053123a:  MOV dword ptr [ESI + 0x27c],EDX\n  00531240:  MOV EAX,dword ptr [EDI + 0x8]\n  00531243:  MOV dword ptr [ESI + 0x280],EAX\n  00531249:  POP EDI\n  0053124a:  POP ESI\n  0053124b:  ADD ESP,0xc\n  0053124e:  RET 0x4", 
+  "callers": [
+    {
+      "address": "0x00531260", 
+      "name": "FUN_00531260"
+    }
+  ]
+}

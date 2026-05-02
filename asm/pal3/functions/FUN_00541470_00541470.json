@@ -1,0 +1,19 @@
+{
+  "address": "0x00541470", 
+  "size_bytes": 31, 
+  "calling_convention": "unknown", 
+  "signature": "undefined FUN_00541470(void)", 
+  "callees": [], 
+  "global_refs": [], 
+  "has_custom_name": false, 
+  "decompiled_c": "\r\nvoid __fastcall FUN_00541470(int param_1)\r\n\r\n{\r\n  *(undefined4 *)(param_1 + 0xc) = 3;\r\n  *(undefined *)(param_1 + 0x1d) = 0;\r\n  *(undefined *)(param_1 + 0x1c) = 1;\r\n  *(undefined4 *)(param_1 + 0x10) = 0;\r\n  *(undefined4 *)(param_1 + 0x14) = 0;\r\n  *(undefined4 *)(param_1 + 0x18) = 0;\r\n  return;\r\n}\r\n\r\n", 
+  "is_thunk": false, 
+  "name": "FUN_00541470", 
+  "assembly": "  00541470:  MOV EAX,ECX\n  00541472:  XOR ECX,ECX\n  00541474:  LEA EDX,[EAX + 0x10]\n  00541477:  MOV dword ptr [EAX + 0xc],0x3\n  0054147e:  MOV byte ptr [EAX + 0x1d],0x0\n  00541482:  MOV byte ptr [EAX + 0x1c],0x1\n  00541486:  MOV dword ptr [EDX],ECX\n  00541488:  MOV dword ptr [EDX + 0x4],ECX\n  0054148b:  MOV dword ptr [EDX + 0x8],ECX\n  0054148e:  RET", 
+  "callers": [
+    {
+      "address": "0x005415f0", 
+      "name": "FUN_005415f0"
+    }
+  ]
+}

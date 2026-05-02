@@ -1,0 +1,55 @@
+{
+  "address": "0x0043b3e0", 
+  "size_bytes": 194, 
+  "calling_convention": "unknown", 
+  "signature": "undefined FUN_0043b3e0(void)", 
+  "callees": [
+    {
+      "address": "0x0043a770", 
+      "name": "FUN_0043a770"
+    }
+  ], 
+  "global_refs": [
+    {
+      "address": "0x0056a558", 
+      "type": null, 
+      "name": "PTR_ColorQuadFmt_0056a558"
+    }, 
+    {
+      "address": "0x-0000002", 
+      "type": null, 
+      "name": "DAT_-0000002"
+    }, 
+    {
+      "address": "0x-0000003", 
+      "type": null, 
+      "name": "DAT_-0000003"
+    }, 
+    {
+      "address": "0x-0000004", 
+      "type": null, 
+      "name": "DAT_-0000004"
+    }, 
+    {
+      "address": "0x-0000001", 
+      "type": null, 
+      "name": "DAT_-0000001"
+    }, 
+    {
+      "address": "0x0056ac90", 
+      "type": null, 
+      "name": "PTR_FUN_0056ac90"
+    }
+  ], 
+  "has_custom_name": false, 
+  "decompiled_c": "\r\nundefined4 * __fastcall FUN_0043b3e0(undefined4 *param_1)\r\n\r\n{\r\n  undefined3 uVar1;\r\n  undefined4 local_4;\r\n  \r\n  FUN_0043a770();\r\n  param_1[0x59] = 0x20;\r\n  param_1[0x56] = 0;\r\n  param_1[0x57] = 0;\r\n  param_1[0x58] = 0;\r\n  param_1[0x5a] = 1;\r\n  if (*(int *)ColorQuadFmt_exref == 0) {\r\n    uVar1 = 0x804444;\r\n  }\r\n  else {\r\n    uVar1 = 0x444480;\r\n  }\r\n  local_4 = CONCAT13(0xff,uVar1);\r\n  param_1[0x5b] = local_4;\r\n  param_1[0x5c] = 0xff000000;\r\n  param_1[0x5d] = 0xff0a0a0a;\r\n  *param_1 = &PTR_FUN_0056ac90;\r\n  return param_1;\r\n}\r\n\r\n", 
+  "is_thunk": false, 
+  "name": "FUN_0043b3e0", 
+  "assembly": "  0043b3e0:  PUSH ECX\n  0043b3e1:  PUSH ESI\n  0043b3e2:  MOV ESI,ECX\n  0043b3e4:  CALL 0x0043a770\n  0043b3e9:  XOR EAX,EAX\n  0043b3eb:  MOV dword ptr [ESI + 0x164],0x20\n  0043b3f5:  MOV dword ptr [ESI + 0x158],EAX\n  0043b3fb:  MOV dword ptr [ESI + 0x15c],EAX\n  0043b401:  MOV dword ptr [ESI + 0x160],EAX\n  0043b407:  MOV dword ptr [ESI + 0x168],0x1\n  0043b411:  MOV ECX,dword ptr [0x0056a558]\n  0043b417:  CMP dword ptr [ECX],EAX\n  0043b419:  JNZ 0x0043b42c\n  0043b41b:  MOV CL,0x44\n  0043b41d:  MOV byte ptr [ESP + 0x6],0x80\n  0043b422:  MOV byte ptr [ESP + 0x5],CL\n  0043b426:  MOV byte ptr [ESP + 0x4],CL\n  0043b42a:  JMP 0x0043b43b\n  0043b42c:  MOV CL,0x44\n  0043b42e:  MOV byte ptr [ESP + 0x4],0x80\n  0043b433:  MOV byte ptr [ESP + 0x6],CL\n  0043b437:  MOV byte ptr [ESP + 0x5],CL\n  0043b43b:  MOV CL,0xff\n  0043b43d:  PUSH EDI\n  0043b43e:  MOV byte ptr [ESP + 0xb],CL\n  0043b442:  MOV EDX,dword ptr [ESP + 0x8]\n  0043b446:  MOV dword ptr [ESI + 0x16c],EDX\n  0043b44c:  MOV EDX,dword ptr [0x0056a558]\n  0043b452:  MOV byte ptr [ESP + 0xa],AL\n  0043b456:  MOV byte ptr [ESP + 0x9],AL\n  0043b45a:  MOV EDI,dword ptr [EDX]\n  0043b45c:  MOV byte ptr [ESP + 0x8],AL\n  0043b460:  MOV byte ptr [ESP + 0xb],CL\n  0043b464:  MOV EDX,dword ptr [ESP + 0x8]\n  0043b468:  MOV dword ptr [ESI + 0x170],EDX\n  0043b46e:  MOV EDX,dword ptr [0x0056a558]\n  0043b474:  CMP EDI,EAX\n  0043b476:  MOV byte ptr [ESP + 0xb],CL\n  0043b47a:  MOV EDI,dword ptr [EDX]\n  0043b47c:  CMP EDI,EAX\n  0043b47e:  MOV AL,0xa\n  0043b480:  MOV byte ptr [ESP + 0xa],AL\n  0043b484:  MOV byte ptr [ESP + 0x9],AL\n  0043b488:  MOV byte ptr [ESP + 0x8],AL\n  0043b48c:  MOV EAX,dword ptr [ESP + 0x8]\n  0043b490:  MOV dword ptr [ESI + 0x174],EAX\n  0043b496:  POP EDI\n  0043b497:  MOV dword ptr [ESI],0x56ac90\n  0043b49d:  MOV EAX,ESI\n  0043b49f:  POP ESI\n  0043b4a0:  POP ECX\n  0043b4a1:  RET", 
+  "callers": [
+    {
+      "address": "0x004461b0", 
+      "name": "FUN_004461b0"
+    }
+  ]
+}

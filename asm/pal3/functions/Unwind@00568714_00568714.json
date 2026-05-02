@@ -1,0 +1,14 @@
+{
+  "address": "0x00568714", 
+  "size_bytes": 15, 
+  "calling_convention": "unknown", 
+  "signature": "undefined Unwind@00568714(void)", 
+  "callees": [], 
+  "global_refs": [], 
+  "has_custom_name": true, 
+  "decompiled_c": "\r\nvoid Unwind_00568714(void)\r\n\r\n{\r\n  int unaff_EBP;\r\n  \r\n                    /* WARNING: Could not recover jumptable at 0x0056871d. Too many branches */\r\n                    /* WARNING: Treating indirect jump as call */\r\n  gbGeomNode::~gbGeomNode((gbGeomNode *)(*(int *)(unaff_EBP + -0x10) + 0xd08));\r\n  return;\r\n}\r\n\r\n", 
+  "is_thunk": false, 
+  "name": "Unwind@00568714", 
+  "assembly": "  00568714:  MOV ECX,dword ptr [EBP + -0x10]\n  00568717:  ADD ECX,0xd08\n  0056871d:  JMP dword ptr [0x0056a5bc]", 
+  "callers": []
+}

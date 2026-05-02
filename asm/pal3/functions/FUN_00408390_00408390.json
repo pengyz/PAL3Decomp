@@ -1,0 +1,30 @@
+{
+  "address": "0x00408390", 
+  "size_bytes": 30, 
+  "calling_convention": "unknown", 
+  "signature": "undefined FUN_00408390(void)", 
+  "callees": [
+    {
+      "address": "0x00401000", 
+      "name": "FUN_00401000"
+    }
+  ], 
+  "global_refs": [
+    {
+      "address": "0x0056a6d0", 
+      "type": null, 
+      "name": "PTR_FUN_0056a6d0"
+    }
+  ], 
+  "has_custom_name": false, 
+  "decompiled_c": "\r\nundefined4 * __fastcall FUN_00408390(undefined4 *param_1)\r\n\r\n{\r\n  FUN_00401000();\r\n  *param_1 = &PTR_FUN_0056a6d0;\r\n  param_1[6] = 0;\r\n  param_1[7] = 0;\r\n  *(undefined *)(param_1 + 8) = 0xff;\r\n  return param_1;\r\n}\r\n\r\n", 
+  "is_thunk": false, 
+  "name": "FUN_00408390", 
+  "assembly": "  00408390:  PUSH ESI\n  00408391:  MOV ESI,ECX\n  00408393:  CALL 0x00401000\n  00408398:  XOR EAX,EAX\n  0040839a:  MOV dword ptr [ESI],0x56a6d0\n  004083a0:  MOV dword ptr [ESI + 0x18],EAX\n  004083a3:  MOV dword ptr [ESI + 0x1c],EAX\n  004083a6:  MOV byte ptr [ESI + 0x20],0xff\n  004083aa:  MOV EAX,ESI\n  004083ac:  POP ESI\n  004083ad:  RET", 
+  "callers": [
+    {
+      "address": "0x004117a0", 
+      "name": "FUN_004117a0"
+    }
+  ]
+}

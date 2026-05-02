@@ -1,0 +1,117 @@
+{
+  "address": "0x0053e510", 
+  "size_bytes": 357, 
+  "calling_convention": "unknown", 
+  "signature": "undefined FUN_0053e510(undefined4 param_1, undefined4 param_2)", 
+  "callees": [
+    {
+      "address": "0x00000084", 
+      "name": "StopSoundStream"
+    }, 
+    {
+      "address": "0x004319f0", 
+      "name": "FUN_004319f0"
+    }, 
+    {
+      "address": "0x00553082", 
+      "name": "FUN_00553082"
+    }, 
+    {
+      "address": "0x00431c10", 
+      "name": "FUN_00431c10"
+    }, 
+    {
+      "address": "0x0055ef90", 
+      "name": "__strcmpi"
+    }, 
+    {
+      "address": "0x00000132", 
+      "name": "GetStreamStatus"
+    }, 
+    {
+      "address": "0x0053ea80", 
+      "name": "FUN_0053ea80"
+    }, 
+    {
+      "address": "0x000000dd", 
+      "name": "PauseSoundStream"
+    }
+  ], 
+  "global_refs": [
+    {
+      "address": "0x005833bc", 
+      "type": null, 
+      "name": "DAT_005833bc"
+    }, 
+    {
+      "address": "0x0056a224", 
+      "type": null, 
+      "name": "PTR_StopSoundStream_0056a224"
+    }, 
+    {
+      "address": "0x00608b1c", 
+      "type": null, 
+      "name": "s_scene_00608b1c"
+    }, 
+    {
+      "address": "0x00000008", 
+      "type": null, 
+      "name": "DAT_00000008"
+    }, 
+    {
+      "address": "0x00000004", 
+      "type": null, 
+      "name": "DAT_00000004"
+    }, 
+    {
+      "address": "0x-0000100", 
+      "type": null, 
+      "name": "DAT_-0000100"
+    }, 
+    {
+      "address": "0x00583ab4", 
+      "type": null, 
+      "name": "s_%s_%s_00583ab4"
+    }, 
+    {
+      "address": "0x-0000200", 
+      "type": null, 
+      "name": "DAT_-0000200"
+    }, 
+    {
+      "address": "0x00608b0c", 
+      "type": null, 
+      "name": "s_music\\%s.mp3_00608b0c"
+    }, 
+    {
+      "address": "0x0056a4dc", 
+      "type": null, 
+      "name": "PTR_GetStreamStatus_0056a4dc"
+    }, 
+    {
+      "address": "0x005b7468", 
+      "type": null, 
+      "name": "DAT_005b7468"
+    }, 
+    {
+      "address": "0x0056a388", 
+      "type": null, 
+      "name": "PTR_PauseSoundStream_0056a388"
+    }
+  ], 
+  "has_custom_name": false, 
+  "decompiled_c": "\r\nvoid __thiscall FUN_0053e510(int param_1_00,undefined4 param_1,undefined4 param_2,int param_4)\r\n\r\n{\r\n  char cVar1;\r\n  int iVar2;\r\n  uint uVar3;\r\n  uint uVar4;\r\n  char *pcVar5;\r\n  char *pcVar6;\r\n  char local_200 [256];\r\n  undefined local_100 [256];\r\n  \r\n  if ((DAT_005833bc & 4) != 0) {\r\n    gbAudioManager::StopSoundStream(*(gbAudioManager **)(param_1_00 + 0x328),1);\r\n    gbAudioManager::StopSoundStream(*(gbAudioManager **)(param_1_00 + 0x328),2);\r\n    FUN_004319f0(s_scene_00608b1c);\r\n    FUN_00553082(local_100,s__s__s_00583ab4,param_1,param_2);\r\n    cVar1 = FUN_00431c10(local_100,local_200,0x100);\r\n    if ((cVar1 == '\\0') && (cVar1 = FUN_00431c10(param_1,local_200,0x100), cVar1 == '\\0')) {\r\n      return;\r\n    }\r\n    FUN_00553082(local_100,s_music__s_mp3_00608b0c,local_200);\r\n    iVar2 = __strcmpi(local_200,(char *)(param_1_00 + 0x1c));\r\n    if ((iVar2 == 0) &&\r\n       (iVar2 = gbAudioManager::GetStreamStatus(*(gbAudioManager **)(param_1_00 + 0x328),0),\r\n       iVar2 == 1)) {\r\n      return;\r\n    }\r\n    uVar3 = 0xffffffff;\r\n    pcVar5 = local_200;\r\n    do {\r\n      pcVar6 = pcVar5;\r\n      if (uVar3 == 0) break;\r\n      uVar3 = uVar3 - 1;\r\n      pcVar6 = pcVar5 + 1;\r\n      cVar1 = *pcVar5;\r\n      pcVar5 = pcVar6;\r\n    } while (cVar1 != '\\0');\r\n    uVar3 = ~uVar3;\r\n    pcVar5 = pcVar6 + -uVar3;\r\n    pcVar6 = (char *)(param_1_00 + 0x1c);\r\n    for (uVar4 = uVar3 >> 2; uVar4 != 0; uVar4 = uVar4 - 1) {\r\n      *(undefined4 *)pcVar6 = *(undefined4 *)pcVar5;\r\n      pcVar5 = pcVar5 + 4;\r\n      pcVar6 = pcVar6 + 4;\r\n    }\r\n    for (uVar3 = uVar3 & 3; uVar3 != 0; uVar3 = uVar3 - 1) {\r\n      *pcVar6 = *pcVar5;\r\n      pcVar5 = pcVar5 + 1;\r\n      pcVar6 = pcVar6 + 1;\r\n    }\r\n    iVar2 = __strcmpi(local_200,&DAT_005b7468);\r\n    if (iVar2 == 0) {\r\n      gbAudioManager::StopSoundStream(*(gbAudioManager **)(param_1_00 + 0x328),0);\r\n      return;\r\n    }\r\n    FUN_0053ea80(0,local_100,0);\r\n    if (param_4 != 0) {\r\n      gbAudioManager::PauseSoundStream(*(gbAudioManager **)(param_1_00 + 0x328),0);\r\n    }\r\n  }\r\n  return;\r\n}\r\n\r\n", 
+  "is_thunk": false, 
+  "name": "FUN_0053e510", 
+  "assembly": "  0053e510:  MOV AL,[0x005833bc]\n  0053e515:  SUB ESP,0x200\n  0053e51b:  TEST AL,0x4\n  0053e51d:  PUSH EBX\n  0053e51e:  PUSH EBP\n  0053e51f:  PUSH ESI\n  0053e520:  PUSH EDI\n  0053e521:  MOV EBX,ECX\n  0053e523:  JZ 0x0053e668\n  0053e529:  MOV ECX,dword ptr [EBX + 0x328]\n  0053e52f:  MOV EBP,dword ptr [0x0056a224]\n  0053e535:  PUSH 0x1\n  0053e537:  CALL EBP\n  0053e539:  MOV ECX,dword ptr [EBX + 0x328]\n  0053e53f:  PUSH 0x2\n  0053e541:  CALL EBP\n  0053e543:  LEA ESI,[EBX + 0x11c]\n  0053e549:  PUSH 0x608b1c\n  0053e54e:  MOV ECX,ESI\n  0053e550:  CALL 0x004319f0\n  0053e555:  MOV EAX,dword ptr [ESP + 0x218]\n  0053e55c:  MOV EDI,dword ptr [ESP + 0x214]\n  0053e563:  PUSH EAX\n  0053e564:  PUSH EDI\n  0053e565:  LEA ECX,[ESP + 0x118]\n  0053e56c:  PUSH 0x583ab4\n  0053e571:  PUSH ECX\n  0053e572:  CALL 0x00553082\n  0053e577:  ADD ESP,0x10\n  0053e57a:  LEA EDX,[ESP + 0x10]\n  0053e57e:  LEA EAX,[ESP + 0x110]\n  0053e585:  MOV ECX,ESI\n  0053e587:  PUSH 0x100\n  0053e58c:  PUSH EDX\n  0053e58d:  PUSH EAX\n  0053e58e:  CALL 0x00431c10\n  0053e593:  TEST AL,AL\n  0053e595:  JNZ 0x0053e5b1\n  0053e597:  LEA ECX,[ESP + 0x10]\n  0053e59b:  PUSH 0x100\n  0053e5a0:  PUSH ECX\n  0053e5a1:  PUSH EDI\n  0053e5a2:  MOV ECX,ESI\n  0053e5a4:  CALL 0x00431c10\n  0053e5a9:  TEST AL,AL\n  0053e5ab:  JZ 0x0053e668\n  0053e5b1:  LEA EDX,[ESP + 0x10]\n  0053e5b5:  LEA EAX,[ESP + 0x110]\n  0053e5bc:  PUSH EDX\n  0053e5bd:  PUSH 0x608b0c\n  0053e5c2:  PUSH EAX\n  0053e5c3:  CALL 0x00553082\n  0053e5c8:  LEA EAX,[EBX + 0x1c]\n  0053e5cb:  LEA ECX,[ESP + 0x1c]\n  0053e5cf:  PUSH EAX\n  0053e5d0:  PUSH ECX\n  0053e5d1:  CALL 0x0055ef90\n  0053e5d6:  ADD ESP,0x14\n  0053e5d9:  TEST EAX,EAX\n  0053e5db:  JNZ 0x0053e5ef\n  0053e5dd:  MOV ECX,dword ptr [EBX + 0x328]\n  0053e5e3:  PUSH EAX\n  0053e5e4:  CALL dword ptr [0x0056a4dc]\n  0053e5ea:  CMP EAX,0x1\n  0053e5ed:  JZ 0x0053e668\n  0053e5ef:  LEA EDI,[ESP + 0x10]\n  0053e5f3:  OR ECX,0xffffffff\n  0053e5f6:  XOR EAX,EAX\n  0053e5f8:  PUSH 0x5b7468\n  0053e5fd:  SCASB.REPNE ES:EDI\n  0053e5ff:  NOT ECX\n  0053e601:  SUB EDI,ECX\n  0053e603:  LEA EAX,[ESP + 0x14]\n  0053e607:  MOV EDX,ECX\n  0053e609:  MOV ESI,EDI\n  0053e60b:  LEA EDI,[EBX + 0x1c]\n  0053e60e:  PUSH EAX\n  0053e60f:  SHR ECX,0x2\n  0053e612:  MOVSD.REP ES:EDI,ESI\n  0053e614:  MOV ECX,EDX\n  0053e616:  AND ECX,0x3\n  0053e619:  MOVSB.REP ES:EDI,ESI\n  0053e61b:  CALL 0x0055ef90\n  0053e620:  ADD ESP,0x8\n  0053e623:  TEST EAX,EAX\n  0053e625:  PUSH 0x0\n  0053e627:  JNZ 0x0053e63e\n  0053e629:  MOV ECX,dword ptr [EBX + 0x328]\n  0053e62f:  CALL EBP\n  0053e631:  POP EDI\n  0053e632:  POP ESI\n  0053e633:  POP EBP\n  0053e634:  POP EBX\n  0053e635:  ADD ESP,0x200\n  0053e63b:  RET 0xc\n  0053e63e:  LEA ECX,[ESP + 0x114]\n  0053e645:  PUSH ECX\n  0053e646:  PUSH 0x0\n  0053e648:  MOV ECX,EBX\n  0053e64a:  CALL 0x0053ea80\n  0053e64f:  MOV EAX,dword ptr [ESP + 0x21c]\n  0053e656:  TEST EAX,EAX\n  0053e658:  JZ 0x0053e668\n  0053e65a:  MOV ECX,dword ptr [EBX + 0x328]\n  0053e660:  PUSH 0x0\n  0053e662:  CALL dword ptr [0x0056a388]\n  0053e668:  POP EDI\n  0053e669:  POP ESI\n  0053e66a:  POP EBP\n  0053e66b:  POP EBX\n  0053e66c:  ADD ESP,0x200\n  0053e672:  RET 0xc", 
+  "callers": [
+    {
+      "address": "0x00422950", 
+      "name": "FUN_00422950"
+    }, 
+    {
+      "address": "0x0053e950", 
+      "name": "FUN_0053e950"
+    }
+  ]
+}

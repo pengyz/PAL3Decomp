@@ -1,0 +1,29 @@
+{
+  "address": "0x0041d7f0", 
+  "size_bytes": 174, 
+  "calling_convention": "unknown", 
+  "signature": "undefined FUN_0041d7f0(undefined4 param_1)", 
+  "callees": [], 
+  "global_refs": [
+    {
+      "address": "0x00000004", 
+      "type": null, 
+      "name": "DAT_00000004"
+    }
+  ], 
+  "has_custom_name": false, 
+  "decompiled_c": "\r\nvoid __thiscall FUN_0041d7f0(int *param_1_00,int param_1)\r\n\r\n{\r\n  int iVar1;\r\n  uint uVar2;\r\n  uint uVar3;\r\n  int *piVar4;\r\n  \r\n  iVar1 = param_1_00[2] + param_1 * 0x1c;\r\n  uVar2 = (iVar1 - *param_1_00) / 0x1c;\r\n  if ((int)uVar2 < 0) {\r\n    uVar3 = -((0x91 - uVar2) / 0x92);\r\n  }\r\n  else {\r\n    uVar3 = uVar2 / 0x92;\r\n  }\r\n  if (uVar3 == 0) {\r\n    param_1_00[2] = iVar1;\r\n    return;\r\n  }\r\n  piVar4 = (int *)(param_1_00[3] + uVar3 * 4);\r\n  param_1_00[3] = (int)piVar4;\r\n  iVar1 = *piVar4;\r\n  *param_1_00 = iVar1;\r\n  param_1_00[1] = iVar1 + 0xff8;\r\n  param_1_00[2] = *param_1_00 + (uVar2 + uVar3 * -0x92) * 0x1c;\r\n  return;\r\n}\r\n\r\n", 
+  "is_thunk": false, 
+  "name": "FUN_0041d7f0", 
+  "assembly": "  0041d7f0:  MOV EAX,dword ptr [ESP + 0x4]\n  0041d7f4:  PUSH EBX\n  0041d7f5:  PUSH ESI\n  0041d7f6:  PUSH EDI\n  0041d7f7:  LEA EDX,[EAX*0x8 + 0x0]\n  0041d7fe:  SUB EDX,EAX\n  0041d800:  MOV EAX,dword ptr [ECX + 0x8]\n  0041d803:  LEA EBX,[EAX + EDX*0x4]\n  0041d806:  MOV EAX,dword ptr [ECX]\n  0041d808:  MOV ESI,EBX\n  0041d80a:  SUB ESI,EAX\n  0041d80c:  MOV EAX,0x92492493\n  0041d811:  IMUL ESI\n  0041d813:  ADD EDX,ESI\n  0041d815:  SAR EDX,0x4\n  0041d818:  MOV EAX,EDX\n  0041d81a:  SHR EAX,0x1f\n  0041d81d:  ADD EDX,EAX\n  0041d81f:  MOV EDI,EDX\n  0041d821:  JS 0x0041d837\n  0041d823:  MOV EAX,0xc0e07039\n  0041d828:  MUL EDI\n  0041d82a:  MOV EAX,EDI\n  0041d82c:  SUB EAX,EDX\n  0041d82e:  SHR EAX,0x1\n  0041d830:  ADD EAX,EDX\n  0041d832:  SHR EAX,0x7\n  0041d835:  JMP 0x0041d852\n  0041d837:  MOV ESI,0x91\n  0041d83c:  MOV EAX,0xc0e07039\n  0041d841:  SUB ESI,EDI\n  0041d843:  MUL ESI\n  0041d845:  SUB ESI,EDX\n  0041d847:  SHR ESI,0x1\n  0041d849:  ADD ESI,EDX\n  0041d84b:  SHR ESI,0x7\n  0041d84e:  MOV EAX,ESI\n  0041d850:  NEG EAX\n  0041d852:  TEST EAX,EAX\n  0041d854:  JNZ 0x0041d85f\n  0041d856:  POP EDI\n  0041d857:  MOV dword ptr [ECX + 0x8],EBX\n  0041d85a:  POP ESI\n  0041d85b:  POP EBX\n  0041d85c:  RET 0x4\n  0041d85f:  MOV EBX,dword ptr [ECX + 0xc]\n  0041d862:  LEA EDX,[EAX*0x4 + 0x0]\n  0041d869:  ADD EBX,EDX\n  0041d86b:  MOV EDX,EBX\n  0041d86d:  MOV dword ptr [ECX + 0xc],EBX\n  0041d870:  MOV EDX,dword ptr [EDX]\n  0041d872:  MOV dword ptr [ECX],EDX\n  0041d874:  ADD EDX,0xff8\n  0041d87a:  MOV dword ptr [ECX + 0x4],EDX\n  0041d87d:  LEA EDX,[EAX + EAX*0x8]\n  0041d880:  LEA EAX,[EAX + EDX*0x8]\n  0041d883:  SHL EAX,0x1\n  0041d885:  SUB EDI,EAX\n  0041d887:  MOV EAX,dword ptr [ECX]\n  0041d889:  LEA EDX,[EDI*0x8 + 0x0]\n  0041d890:  SUB EDX,EDI\n  0041d892:  POP EDI\n  0041d893:  POP ESI\n  0041d894:  POP EBX\n  0041d895:  LEA EDX,[EAX + EDX*0x4]\n  0041d898:  MOV dword ptr [ECX + 0x8],EDX\n  0041d89b:  RET 0x4", 
+  "callers": [
+    {
+      "address": "0x00538500", 
+      "name": "FUN_00538500"
+    }, 
+    {
+      "address": "0x0041d410", 
+      "name": "FUN_0041d410"
+    }
+  ]
+}

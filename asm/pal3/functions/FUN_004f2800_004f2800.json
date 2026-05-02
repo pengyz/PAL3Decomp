@@ -1,0 +1,68 @@
+{
+  "address": "0x004f2800", 
+  "size_bytes": 260, 
+  "calling_convention": "unknown", 
+  "signature": "undefined FUN_004f2800(undefined4 param_1, undefined4 param_2)", 
+  "callees": [
+    {
+      "address": "0x004791e0", 
+      "name": "FUN_004791e0"
+    }, 
+    {
+      "address": "0x004fa5f0", 
+      "name": "FUN_004fa5f0"
+    }, 
+    {
+      "address": "0x004ef7e0", 
+      "name": "FUN_004ef7e0"
+    }
+  ], 
+  "global_refs": [
+    {
+      "address": "0x00000004", 
+      "type": null, 
+      "name": "DAT_00000004"
+    }, 
+    {
+      "address": "0x00975ed8", 
+      "type": null, 
+      "name": "DAT_00975ed8"
+    }, 
+    {
+      "address": "0x00000008", 
+      "type": null, 
+      "name": "DAT_00000008"
+    }, 
+    {
+      "address": "0x005dfdeb", 
+      "type": null, 
+      "name": "DAT_005dfdeb"
+    }, 
+    {
+      "address": "0x0056a624", 
+      "type": null, 
+      "name": "DAT_0056a624"
+    }, 
+    {
+      "address": "0x005dfdec", 
+      "type": null, 
+      "name": "DAT_005dfdec"
+    }, 
+    {
+      "address": "0x017ad310", 
+      "type": null, 
+      "name": "DAT_017ad310"
+    }
+  ], 
+  "has_custom_name": false, 
+  "decompiled_c": "\r\n/* WARNING: Removing unreachable block (ram,0x004f28e0) */\r\n/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */\r\n\r\nint FUN_004f2800(int param_1,undefined4 param_2)\r\n\r\n{\r\n  int iVar1;\r\n  int iVar2;\r\n  undefined4 uVar3;\r\n  uint uVar4;\r\n  int *piVar5;\r\n  int iVar6;\r\n  \r\n  iVar6 = 0;\r\n  iVar2 = FUN_004791e0(*(undefined4 *)(param_1 + 4));\r\n  piVar5 = (int *)(iVar2 + 0x24);\r\n  param_1 = 4;\r\n  do {\r\n    if (*piVar5 != 0) {\r\n      uVar3 = FUN_004fa5f0(*piVar5);\r\n      iVar2 = FUN_004ef7e0(uVar3,param_2,0);\r\n      iVar6 = iVar6 + iVar2;\r\n    }\r\n    piVar5 = piVar5 + 1;\r\n    param_1 = param_1 + -1;\r\n  } while (param_1 != 0);\r\n  iVar6 = iVar6 * 2;\r\n  if ((DAT_005dfdeb != '\\0') &&\r\n     (uVar4 = (int)ROUND((float)iVar6 * _DAT_0056a624) >> 0x1f,\r\n     iVar2 = ((int)ROUND((float)iVar6 * _DAT_0056a624) ^ uVar4) - uVar4, iVar2 != 0)) {\r\n    iVar1 = DAT_005dfdec * 0x343fd + 0x269ec3;\r\n    iVar2 = (int)((longlong)(ulonglong)(iVar1 >> 0x10 & 0x7fff) % (longlong)iVar2);\r\n    DAT_017ad310 = DAT_017ad310 + 2;\r\n    DAT_005dfdec = iVar1 * 0x343fd + 0x269ec3;\r\n    if (0x1ff < (DAT_005dfdec >> 0x10 & 0x3ffU)) {\r\n      return iVar6 + iVar2;\r\n    }\r\n    iVar6 = iVar6 - iVar2;\r\n  }\r\n  return iVar6;\r\n}\r\n\r\n", 
+  "is_thunk": false, 
+  "name": "FUN_004f2800", 
+  "assembly": "  004f2800:  PUSH EBP\n  004f2801:  MOV EBP,ESP\n  004f2803:  MOV EAX,dword ptr [EBP + 0x8]\n  004f2806:  PUSH EBX\n  004f2807:  PUSH ESI\n  004f2808:  MOV ESI,ECX\n  004f280a:  MOV ECX,dword ptr [EAX + 0x4]\n  004f280d:  PUSH EDI\n  004f280e:  PUSH ECX\n  004f280f:  MOV ECX,0x975ed8\n  004f2814:  XOR EDI,EDI\n  004f2816:  CALL 0x004791e0\n  004f281b:  LEA EBX,[EAX + 0x24]\n  004f281e:  MOV dword ptr [EBP + 0x8],0x4\n  004f2825:  MOV EAX,dword ptr [EBX]\n  004f2827:  TEST EAX,EAX\n  004f2829:  JZ 0x004f2843\n  004f282b:  PUSH EAX\n  004f282c:  MOV ECX,ESI\n  004f282e:  CALL 0x004fa5f0\n  004f2833:  MOV EDX,dword ptr [EBP + 0xc]\n  004f2836:  PUSH 0x0\n  004f2838:  PUSH EDX\n  004f2839:  PUSH EAX\n  004f283a:  MOV ECX,ESI\n  004f283c:  CALL 0x004ef7e0\n  004f2841:  ADD EDI,EAX\n  004f2843:  MOV EAX,dword ptr [EBP + 0x8]\n  004f2846:  ADD EBX,0x4\n  004f2849:  DEC EAX\n  004f284a:  MOV dword ptr [EBP + 0x8],EAX\n  004f284d:  JNZ 0x004f2825\n  004f284f:  MOV AL,[0x005dfdeb]\n  004f2854:  ADD EDI,EDI\n  004f2856:  TEST AL,AL\n  004f2858:  MOV dword ptr [EBP + 0x8],EDI\n  004f285b:  JZ 0x004f28fb\n  004f2861:  FILD dword ptr [EBP + 0x8]\n  004f2864:  FMUL dword ptr [0x0056a624]\n  004f286a:  FSTP dword ptr [EBP + 0x8]\n  004f286d:  FLD dword ptr [EBP + 0x8]\n  004f2870:  FISTP dword ptr [EBP + 0xc]\n  004f2873:  MOV EAX,dword ptr [EBP + 0xc]\n  004f2876:  CDQ\n  004f2877:  MOV ESI,EAX\n  004f2879:  XOR ESI,EDX\n  004f287b:  SUB ESI,EDX\n  004f287d:  JZ 0x004f28fb\n  004f287f:  MOV EAX,[0x005dfdec]\n  004f2884:  LEA ECX,[EAX + EAX*0x2]\n  004f2887:  LEA EDX,[EAX + ECX*0x4]\n  004f288a:  SHL EDX,0x4\n  004f288d:  ADD EDX,EAX\n  004f288f:  SHL EDX,0x8\n  004f2892:  SUB EDX,EAX\n  004f2894:  LEA ECX,[EAX + EDX*0x4 + 0x269ec3]\n  004f289b:  MOV EAX,ECX\n  004f289d:  SAR EAX,0x10\n  004f28a0:  AND EAX,0x7fff\n  004f28a5:  CDQ\n  004f28a6:  IDIV ESI\n  004f28a8:  MOV EAX,[0x017ad310]\n  004f28ad:  ADD EAX,0x2\n  004f28b0:  MOV [0x017ad310],EAX\n  004f28b5:  LEA EAX,[ECX + ECX*0x2]\n  004f28b8:  LEA EAX,[ECX + EAX*0x4]\n  004f28bb:  SHL EAX,0x4\n  004f28be:  ADD EAX,ECX\n  004f28c0:  SHL EAX,0x8\n  004f28c3:  SUB EAX,ECX\n  004f28c5:  LEA EAX,[ECX + EAX*0x4 + 0x269ec3]\n  004f28cc:  MOV [0x005dfdec],EAX\n  004f28d1:  SAR EAX,0x10\n  004f28d4:  AND EAX,0x7fff\n  004f28d9:  AND EAX,0x800003ff\n  004f28de:  JNS 0x004f28e7\n  004f28e0:  DEC EAX\n  004f28e1:  OR EAX,0xfffffc00\n  004f28e6:  INC EAX\n  004f28e7:  CMP EAX,0x200\n  004f28ec:  JL 0x004f28f9\n  004f28ee:  ADD EDI,EDX\n  004f28f0:  MOV EAX,EDI\n  004f28f2:  POP EDI\n  004f28f3:  POP ESI\n  004f28f4:  POP EBX\n  004f28f5:  POP EBP\n  004f28f6:  RET 0x8\n  004f28f9:  SUB EDI,EDX\n  004f28fb:  MOV EAX,EDI\n  004f28fd:  POP EDI\n  004f28fe:  POP ESI\n  004f28ff:  POP EBX\n  004f2900:  POP EBP\n  004f2901:  RET 0x8", 
+  "callers": [
+    {
+      "address": "0x004eef20", 
+      "name": "FUN_004eef20"
+    }
+  ]
+}

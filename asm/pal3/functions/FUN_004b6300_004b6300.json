@@ -1,0 +1,64 @@
+{
+  "address": "0x004b6300", 
+  "size_bytes": 137, 
+  "calling_convention": "unknown", 
+  "signature": "undefined FUN_004b6300(undefined4 param_1, undefined4 param_2, undefined4 param_3, undefined4 param_4)", 
+  "callees": [
+    {
+      "address": "0x005407a0", 
+      "name": "FUN_005407a0"
+    }, 
+    {
+      "address": "0x00553514", 
+      "name": "__ftol"
+    }
+  ], 
+  "global_refs": [
+    {
+      "address": "0x-0000044", 
+      "type": null, 
+      "name": "DAT_-0000044"
+    }, 
+    {
+      "address": "0x00000010", 
+      "type": null, 
+      "name": "DAT_00000010"
+    }, 
+    {
+      "address": "0x0000000c", 
+      "type": null, 
+      "name": "DAT_0000000c"
+    }, 
+    {
+      "address": "0x00000008", 
+      "type": null, 
+      "name": "DAT_00000008"
+    }, 
+    {
+      "address": "0x00000004", 
+      "type": null, 
+      "name": "DAT_00000004"
+    }, 
+    {
+      "address": "0x-0000004", 
+      "type": null, 
+      "name": "DAT_-0000004"
+    }, 
+    {
+      "address": "0x0056a644", 
+      "type": null, 
+      "name": "DAT_0056a644"
+    }
+  ], 
+  "has_custom_name": false, 
+  "decompiled_c": "\r\n/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */\r\n\r\nvoid __thiscall\r\nFUN_004b6300(int param_1_00,undefined4 param_1,undefined4 param_2,undefined4 param_3,\r\n            undefined4 param_4)\r\n\r\n{\r\n  undefined uVar1;\r\n  undefined4 local_44 [16];\r\n  undefined4 local_4;\r\n  \r\n  local_44[0] = *(undefined4 *)(param_1_00 + 0x1a0);\r\n  local_4 = 1;\r\n  FUN_005407a0(param_1,param_2,param_3,param_4,param_1_00 + 0x7c,local_44,0);\r\n  if ((float)*(byte *)(param_1_00 + 0x7f) -\r\n      *(float *)(param_1_00 + 0x244) * *(float *)(param_1_00 + 0x84) <= _DAT_0056a644) {\r\n    *(undefined *)(param_1_00 + 0x80) = 0;\r\n    *(undefined *)(param_1_00 + 0x7f) = 0;\r\n  }\r\n  uVar1 = __ftol();\r\n  *(undefined *)(param_1_00 + 0x7f) = uVar1;\r\n  return;\r\n}\r\n\r\n", 
+  "is_thunk": false, 
+  "name": "FUN_004b6300", 
+  "assembly": "  004b6300:  SUB ESP,0x44\n  004b6303:  PUSH ESI\n  004b6304:  MOV ESI,ECX\n  004b6306:  LEA ECX,[ESP + 0x4]\n  004b630a:  PUSH 0x0\n  004b630c:  MOV EAX,dword ptr [ESI + 0x1a0]\n  004b6312:  LEA EDX,[ESI + 0x7c]\n  004b6315:  MOV dword ptr [ESP + 0x8],EAX\n  004b6319:  MOV EAX,dword ptr [ESP + 0x5c]\n  004b631d:  PUSH ECX\n  004b631e:  MOV ECX,dword ptr [ESP + 0x5c]\n  004b6322:  PUSH EDX\n  004b6323:  MOV EDX,dword ptr [ESP + 0x5c]\n  004b6327:  PUSH EAX\n  004b6328:  MOV EAX,dword ptr [ESP + 0x5c]\n  004b632c:  PUSH ECX\n  004b632d:  PUSH EDX\n  004b632e:  PUSH EAX\n  004b632f:  MOV dword ptr [ESP + 0x60],0x1\n  004b6337:  CALL 0x005407a0\n  004b633c:  XOR ECX,ECX\n  004b633e:  ADD ESP,0x1c\n  004b6341:  MOV CL,byte ptr [ESI + 0x7f]\n  004b6344:  MOV dword ptr [ESP + 0x4c],ECX\n  004b6348:  FILD dword ptr [ESP + 0x4c]\n  004b634c:  FLD dword ptr [ESI + 0x244]\n  004b6352:  FMUL dword ptr [ESI + 0x84]\n  004b6358:  FSUBP\n  004b635a:  FCOM dword ptr [0x0056a644]\n  004b6360:  FNSTSW AX\n  004b6362:  TEST AH,0x41\n  004b6365:  JZ 0x004b637a\n  004b6367:  FSTP ST0\n  004b6369:  FLD dword ptr [0x0056a644]\n  004b636f:  MOV byte ptr [ESI + 0x80],0x0\n  004b6376:  MOV byte ptr [ESI + 0x7f],0x0\n  004b637a:  CALL 0x00553514\n  004b637f:  MOV byte ptr [ESI + 0x7f],AL\n  004b6382:  POP ESI\n  004b6383:  ADD ESP,0x44\n  004b6386:  RET 0x10", 
+  "callers": [
+    {
+      "address": "0x004b4f8d", 
+      "name": "caseD_d"
+    }
+  ]
+}

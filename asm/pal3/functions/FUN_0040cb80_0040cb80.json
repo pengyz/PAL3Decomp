@@ -1,0 +1,35 @@
+{
+  "address": "0x0040cb80", 
+  "size_bytes": 37, 
+  "calling_convention": "unknown", 
+  "signature": "undefined FUN_0040cb80(undefined4 param_1)", 
+  "callees": [], 
+  "global_refs": [
+    {
+      "address": "0x00000004", 
+      "type": null, 
+      "name": "DAT_00000004"
+    }, 
+    {
+      "address": "0x00c020f8", 
+      "type": null, 
+      "name": "DAT_00c020f8"
+    }, 
+    {
+      "address": "0x00c05f60", 
+      "type": null, 
+      "name": "DAT_00c05f60"
+    }
+  ], 
+  "has_custom_name": false, 
+  "decompiled_c": "\r\nundefined * FUN_0040cb80(ushort param_1)\r\n\r\n{\r\n  if (param_1 == 5) {\r\n    return &DAT_00c020f8;\r\n  }\r\n  return &DAT_00c05f60 + (uint)param_1 * 0x2200;\r\n}\r\n\r\n", 
+  "is_thunk": false, 
+  "name": "FUN_0040cb80", 
+  "assembly": "  0040cb80:  MOV EAX,dword ptr [ESP + 0x4]\n  0040cb84:  CMP AX,0x5\n  0040cb88:  JNZ 0x0040cb90\n  0040cb8a:  MOV EAX,0xc020f8\n  0040cb8f:  RET\n  0040cb90:  AND EAX,0xffff\n  0040cb95:  MOV ECX,EAX\n  0040cb97:  SHL EAX,0x4\n  0040cb9a:  ADD EAX,ECX\n  0040cb9c:  SHL EAX,0x9\n  0040cb9f:  ADD EAX,0xc05f60\n  0040cba4:  RET", 
+  "callers": [
+    {
+      "address": "0x00434bd0", 
+      "name": "FUN_00434bd0"
+    }
+  ]
+}

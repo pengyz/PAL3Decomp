@@ -1,0 +1,19 @@
+{
+  "address": "0x00568c48", 
+  "size_bytes": 11, 
+  "calling_convention": "unknown", 
+  "signature": "undefined Unwind@00568c48(void)", 
+  "callees": [
+    {
+      "address": "0x00537a30", 
+      "name": "FUN_00537a30"
+    }
+  ], 
+  "global_refs": [], 
+  "has_custom_name": true, 
+  "decompiled_c": "\r\nvoid Unwind_00568c48(void)\r\n\r\n{\r\n  FUN_00537a30();\r\n  return;\r\n}\r\n\r\n", 
+  "is_thunk": false, 
+  "name": "Unwind@00568c48", 
+  "assembly": "  00568c48:  LEA ECX,[EBP + 0xffffff50]\n  00568c4e:  JMP 0x00537a30", 
+  "callers": []
+}

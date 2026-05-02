@@ -1,0 +1,20 @@
+{
+  "address": "0x004db6a0", 
+  "size_bytes": 21, 
+  "calling_convention": "unknown", 
+  "signature": "undefined FUN_004db6a0(undefined4 param_1)", 
+  "callees": [], 
+  "global_refs": [
+    {
+      "address": "0x00000004", 
+      "type": null, 
+      "name": "DAT_00000004"
+    }
+  ], 
+  "has_custom_name": false, 
+  "decompiled_c": "\r\nundefined4 __thiscall FUN_004db6a0(int param_1_00,int param_1)\r\n\r\n{\r\n  return CONCAT31((int3)((uint)(param_1 * 5) >> 8),\r\n                  0x2ceb < *(int *)(param_1_00 + 0x20 + param_1 * 0x28));\r\n}\r\n\r\n", 
+  "is_thunk": false, 
+  "name": "FUN_004db6a0", 
+  "assembly": "  004db6a0:  MOV EAX,dword ptr [ESP + 0x4]\n  004db6a4:  LEA EAX,[EAX + EAX*0x4]\n  004db6a7:  CMP dword ptr [ECX + EAX*0x8 + 0x20],0x2cec\n  004db6af:  SETGE AL\n  004db6b2:  RET 0x4", 
+  "callers": []
+}

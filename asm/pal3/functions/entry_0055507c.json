@@ -1,0 +1,186 @@
+{
+  "address": "0x0055507c", 
+  "size_bytes": 235, 
+  "calling_convention": "unknown", 
+  "signature": "undefined entry(void)", 
+  "callees": [
+    {
+      "address": "0x0000002e", 
+      "name": "GetVersion"
+    }, 
+    {
+      "address": "0x00555863", 
+      "name": "FUN_00555863"
+    }, 
+    {
+      "address": "0x00555197", 
+      "name": "FUN_00555197"
+    }, 
+    {
+      "address": "0x00557ead", 
+      "name": "FUN_00557ead"
+    }, 
+    {
+      "address": "0x0000001a", 
+      "name": "GetCommandLineA"
+    }, 
+    {
+      "address": "0x0055ab69", 
+      "name": "FUN_0055ab69"
+    }, 
+    {
+      "address": "0x0055a91c", 
+      "name": "FUN_0055a91c"
+    }, 
+    {
+      "address": "0x0055a863", 
+      "name": "FUN_0055a863"
+    }, 
+    {
+      "address": "0x005569b2", 
+      "name": "FUN_005569b2"
+    }, 
+    {
+      "address": "0x0000002a", 
+      "name": "GetStartupInfoA"
+    }, 
+    {
+      "address": "0x0055a80b", 
+      "name": "FUN_0055a80b"
+    }, 
+    {
+      "address": "0x00000022", 
+      "name": "GetModuleHandleA"
+    }, 
+    {
+      "address": "0x00541900", 
+      "name": "FUN_00541900"
+    }, 
+    {
+      "address": "0x005569df", 
+      "name": "FUN_005569df"
+    }, 
+    {
+      "address": "0x0055a687", 
+      "name": "FUN_0055a687"
+    }
+  ], 
+  "global_refs": [
+    {
+      "address": "0x00573228", 
+      "type": null, 
+      "name": "DAT_00573228"
+    }, 
+    {
+      "address": "0x00555714", 
+      "type": null, 
+      "name": "LAB_00555714"
+    }, 
+    {
+      "address": "0xffdff000", 
+      "type": null, 
+      "name": "ExceptionList"
+    }, 
+    {
+      "address": "0x-000001c", 
+      "type": null, 
+      "name": "DAT_-000001c"
+    }, 
+    {
+      "address": "0x0056a0bc", 
+      "type": null, 
+      "name": "PTR_GetVersion_0056a0bc"
+    }, 
+    {
+      "address": "0x01895354", 
+      "type": null, 
+      "name": "DAT_01895354"
+    }, 
+    {
+      "address": "0x01895350", 
+      "type": null, 
+      "name": "DAT_01895350"
+    }, 
+    {
+      "address": "0x0189534c", 
+      "type": null, 
+      "name": "DAT_0189534c"
+    }, 
+    {
+      "address": "0x01895348", 
+      "type": null, 
+      "name": "DAT_01895348"
+    }, 
+    {
+      "address": "0x-0000008", 
+      "type": null, 
+      "name": "DAT_-0000008"
+    }, 
+    {
+      "address": "0x0056a06c", 
+      "type": null, 
+      "name": "PTR_GetCommandLineA_0056a06c"
+    }, 
+    {
+      "address": "0x01896d10", 
+      "type": null, 
+      "name": "DAT_01896d10"
+    }, 
+    {
+      "address": "0x01895318", 
+      "type": null, 
+      "name": "DAT_01895318"
+    }, 
+    {
+      "address": "0x-0000034", 
+      "type": null, 
+      "name": "DAT_-0000034"
+    }, 
+    {
+      "address": "0x-0000060", 
+      "type": null, 
+      "name": "DAT_-0000060"
+    }, 
+    {
+      "address": "0x0056a0ac", 
+      "type": null, 
+      "name": "PTR_GetStartupInfoA_0056a0ac"
+    }, 
+    {
+      "address": "0x-0000068", 
+      "type": null, 
+      "name": "DAT_-0000068"
+    }, 
+    {
+      "address": "0x-0000030", 
+      "type": null, 
+      "name": "DAT_-0000030"
+    }, 
+    {
+      "address": "0x0056a08c", 
+      "type": null, 
+      "name": "PTR_GetModuleHandleA_0056a08c"
+    }, 
+    {
+      "address": "0x-0000064", 
+      "type": null, 
+      "name": "DAT_-0000064"
+    }, 
+    {
+      "address": "0x-0000018", 
+      "type": null, 
+      "name": "DAT_-0000018"
+    }, 
+    {
+      "address": "0x-000006c", 
+      "type": null, 
+      "name": "DAT_-000006c"
+    }
+  ], 
+  "has_custom_name": true, 
+  "decompiled_c": "\r\n/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */\r\n\r\nvoid entry(void)\r\n\r\n{\r\n  DWORD DVar1;\r\n  int iVar2;\r\n  undefined4 uVar3;\r\n  uint uVar4;\r\n  HMODULE pHVar5;\r\n  undefined4 uVar6;\r\n  _STARTUPINFOA local_60;\r\n  undefined *local_1c;\r\n  undefined4 *local_18;\r\n  void *pvStack_14;\r\n  undefined *puStack_10;\r\n  undefined *puStack_c;\r\n  undefined4 local_8;\r\n  \r\n  local_8 = 0xffffffff;\r\n  puStack_c = &DAT_00573228;\r\n  puStack_10 = &LAB_00555714;\r\n  pvStack_14 = ExceptionList;\r\n  local_1c = &stack0xffffff88;\r\n  ExceptionList = &pvStack_14;\r\n  DVar1 = GetVersion();\r\n  _DAT_01895354 = DVar1 >> 8 & 0xff;\r\n  _DAT_01895350 = DVar1 & 0xff;\r\n  _DAT_0189534c = _DAT_01895350 * 0x100 + _DAT_01895354;\r\n  _DAT_01895348 = DVar1 >> 0x10;\r\n  iVar2 = FUN_00555863(0);\r\n  if (iVar2 == 0) {\r\n    FUN_00555197(0x1c);\r\n  }\r\n  local_8 = 0;\r\n  FUN_00557ead();\r\n  DAT_01896d10 = GetCommandLineA();\r\n  DAT_01895318 = FUN_0055ab69();\r\n  FUN_0055a91c();\r\n  FUN_0055a863();\r\n  FUN_005569b2();\r\n  local_60.dwFlags = 0;\r\n  GetStartupInfoA(&local_60);\r\n  uVar3 = FUN_0055a80b();\r\n  if ((local_60.dwFlags & 1) == 0) {\r\n    uVar4 = 10;\r\n  }\r\n  else {\r\n    uVar4 = (uint)local_60.wShowWindow;\r\n  }\r\n  uVar6 = 0;\r\n  pHVar5 = GetModuleHandleA((LPCSTR)0x0);\r\n  uVar3 = FUN_00541900(pHVar5,uVar6,uVar3,uVar4);\r\n  FUN_005569df(uVar3);\r\n  FUN_0055a687(*(undefined4 *)*local_18,local_18);\r\n  return;\r\n}\r\n\r\n", 
+  "is_thunk": false, 
+  "name": "entry", 
+  "assembly": "  0055507c:  PUSH EBP\n  0055507d:  MOV EBP,ESP\n  0055507f:  PUSH -0x1\n  00555081:  PUSH 0x573228\n  00555086:  PUSH 0x555714\n  0055508b:  MOV EAX,FS:[0x0]\n  00555091:  PUSH EAX\n  00555092:  MOV dword ptr FS:[0x0],ESP\n  00555099:  SUB ESP,0x58\n  0055509c:  PUSH EBX\n  0055509d:  PUSH ESI\n  0055509e:  PUSH EDI\n  0055509f:  MOV dword ptr [EBP + -0x18],ESP\n  005550a2:  CALL dword ptr [0x0056a0bc]\n  005550a8:  XOR EDX,EDX\n  005550aa:  MOV DL,AH\n  005550ac:  MOV dword ptr [0x01895354],EDX\n  005550b2:  MOV ECX,EAX\n  005550b4:  AND ECX,0xff\n  005550ba:  MOV dword ptr [0x01895350],ECX\n  005550c0:  SHL ECX,0x8\n  005550c3:  ADD ECX,EDX\n  005550c5:  MOV dword ptr [0x0189534c],ECX\n  005550cb:  SHR EAX,0x10\n  005550ce:  MOV [0x01895348],EAX\n  005550d3:  XOR ESI,ESI\n  005550d5:  PUSH ESI\n  005550d6:  CALL 0x00555863\n  005550db:  POP ECX\n  005550dc:  TEST EAX,EAX\n  005550de:  JNZ 0x005550e8\n  005550e0:  PUSH 0x1c\n  005550e2:  CALL 0x00555197\n  005550e7:  POP ECX\n  005550e8:  MOV dword ptr [EBP + -0x4],ESI\n  005550eb:  CALL 0x00557ead\n  005550f0:  CALL dword ptr [0x0056a06c]\n  005550f6:  MOV [0x01896d10],EAX\n  005550fb:  CALL 0x0055ab69\n  00555100:  MOV [0x01895318],EAX\n  00555105:  CALL 0x0055a91c\n  0055510a:  CALL 0x0055a863\n  0055510f:  CALL 0x005569b2\n  00555114:  MOV dword ptr [EBP + -0x30],ESI\n  00555117:  LEA EAX,[EBP + -0x5c]\n  0055511a:  PUSH EAX\n  0055511b:  CALL dword ptr [0x0056a0ac]\n  00555121:  CALL 0x0055a80b\n  00555126:  MOV dword ptr [EBP + -0x64],EAX\n  00555129:  TEST byte ptr [EBP + -0x30],0x1\n  0055512d:  JZ 0x00555135\n  0055512f:  MOVZX EAX,word ptr [EBP + -0x2c]\n  00555133:  JMP 0x00555138\n  00555135:  PUSH 0xa\n  00555137:  POP EAX\n  00555138:  PUSH EAX\n  00555139:  PUSH dword ptr [EBP + -0x64]\n  0055513c:  PUSH ESI\n  0055513d:  PUSH ESI\n  0055513e:  CALL dword ptr [0x0056a08c]\n  00555144:  PUSH EAX\n  00555145:  CALL 0x00541900\n  0055514a:  MOV dword ptr [EBP + -0x60],EAX\n  0055514d:  PUSH EAX\n  0055514e:  CALL 0x005569df\n  00555153:  MOV EAX,dword ptr [EBP + -0x14]\n  00555156:  MOV ECX,dword ptr [EAX]\n  00555158:  MOV ECX,dword ptr [ECX]\n  0055515a:  MOV dword ptr [EBP + -0x68],ECX\n  0055515d:  PUSH EAX\n  0055515e:  PUSH ECX\n  0055515f:  CALL 0x0055a687\n  00555164:  POP ECX\n  00555165:  POP ECX\n  00555166:  RET", 
+  "callers": []
+}

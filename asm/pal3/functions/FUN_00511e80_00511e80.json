@@ -1,0 +1,24 @@
+{
+  "address": "0x00511e80", 
+  "size_bytes": 88, 
+  "calling_convention": "unknown", 
+  "signature": "undefined FUN_00511e80(void)", 
+  "callees": [
+    {
+      "address": "0x00512240", 
+      "name": "FUN_00512240"
+    }
+  ], 
+  "global_refs": [], 
+  "has_custom_name": false, 
+  "decompiled_c": "\r\nvoid __fastcall FUN_00511e80(int param_1)\r\n\r\n{\r\n  undefined4 *puVar1;\r\n  int iVar2;\r\n  \r\n  puVar1 = (undefined4 *)(param_1 + 0x44);\r\n  iVar2 = 0xb;\r\n  do {\r\n    puVar1[-1] = 0;\r\n    *puVar1 = 0;\r\n    puVar1[1] = 0x3f800000;\r\n    puVar1[2] = 0x3f800000;\r\n    puVar1[0xba] = 0;\r\n    puVar1[0xbb] = 0;\r\n    puVar1[0xbc] = 0x3f800000;\r\n    puVar1[0xbd] = 0x3f800000;\r\n    *(undefined *)((int)puVar1 + 0x2fa) = 0xff;\r\n    *(undefined *)((int)puVar1 + 0x2f9) = 0xff;\r\n    *(undefined *)(puVar1 + 0xbe) = 0xff;\r\n    puVar1 = puVar1 + 0x11;\r\n    iVar2 = iVar2 + -1;\r\n  } while (iVar2 != 0);\r\n  FUN_00512240();\r\n  return;\r\n}\r\n\r\n", 
+  "is_thunk": false, 
+  "name": "FUN_00511e80", 
+  "assembly": "  00511e80:  PUSH EBX\n  00511e81:  PUSH ESI\n  00511e82:  PUSH EDI\n  00511e83:  LEA EAX,[ECX + 0x44]\n  00511e86:  MOV EDI,0xb\n  00511e8b:  XOR ESI,ESI\n  00511e8d:  MOV EDX,0x3f800000\n  00511e92:  MOV BL,0xff\n  00511e94:  MOV dword ptr [EAX + -0x4],ESI\n  00511e97:  MOV dword ptr [EAX],ESI\n  00511e99:  MOV dword ptr [EAX + 0x4],EDX\n  00511e9c:  MOV dword ptr [EAX + 0x8],EDX\n  00511e9f:  MOV dword ptr [EAX + 0x2e8],ESI\n  00511ea5:  MOV dword ptr [EAX + 0x2ec],ESI\n  00511eab:  MOV dword ptr [EAX + 0x2f0],EDX\n  00511eb1:  MOV dword ptr [EAX + 0x2f4],EDX\n  00511eb7:  MOV byte ptr [EAX + 0x2fa],BL\n  00511ebd:  MOV byte ptr [EAX + 0x2f9],BL\n  00511ec3:  MOV byte ptr [EAX + 0x2f8],BL\n  00511ec9:  ADD EAX,0x44\n  00511ecc:  DEC EDI\n  00511ecd:  JNZ 0x00511e94\n  00511ecf:  CALL 0x00512240\n  00511ed4:  POP EDI\n  00511ed5:  POP ESI\n  00511ed6:  POP EBX\n  00511ed7:  RET", 
+  "callers": [
+    {
+      "address": "0x00511fc0", 
+      "name": "FUN_00511fc0"
+    }
+  ]
+}

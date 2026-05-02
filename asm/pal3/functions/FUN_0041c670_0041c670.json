@@ -1,0 +1,65 @@
+{
+  "address": "0x0041c670", 
+  "size_bytes": 145, 
+  "calling_convention": "unknown", 
+  "signature": "undefined FUN_0041c670(undefined4 param_1, undefined4 param_2, undefined4 param_3, undefined4 param_4)", 
+  "callees": [], 
+  "global_refs": [
+    {
+      "address": "0x00000004", 
+      "type": null, 
+      "name": "DAT_00000004"
+    }, 
+    {
+      "address": "0x-0000018", 
+      "type": null, 
+      "name": "DAT_-0000018"
+    }, 
+    {
+      "address": "0x-0000014", 
+      "type": null, 
+      "name": "DAT_-0000014"
+    }, 
+    {
+      "address": "0x-000000c", 
+      "type": null, 
+      "name": "DAT_-000000c"
+    }, 
+    {
+      "address": "0x-0000008", 
+      "type": null, 
+      "name": "DAT_-0000008"
+    }, 
+    {
+      "address": "0x00000008", 
+      "type": null, 
+      "name": "DAT_00000008"
+    }, 
+    {
+      "address": "0x0000000c", 
+      "type": null, 
+      "name": "DAT_0000000c"
+    }, 
+    {
+      "address": "0x00000010", 
+      "type": null, 
+      "name": "DAT_00000010"
+    }, 
+    {
+      "address": "0x-0000010", 
+      "type": null, 
+      "name": "DAT_-0000010"
+    }
+  ], 
+  "has_custom_name": false, 
+  "decompiled_c": "\r\nvoid __thiscall\r\nFUN_0041c670(int param_1_00,float *param_1,float param_2,float param_3,float param_4)\r\n\r\n{\r\n  float10 fVar1;\r\n  float10 fVar2;\r\n  float10 fVar3;\r\n  float10 fVar4;\r\n  float10 fVar5;\r\n  \r\n  fVar1 = (float10)fcos((float10)*(float *)(param_1_00 + 0x1c4));\r\n  fVar2 = (float10)fsin((float10)*(float *)(param_1_00 + 0x1c8));\r\n  fVar3 = (float10)fsin((float10)*(float *)(param_1_00 + 0x1c4));\r\n  fVar4 = (float10)fcos((float10)*(float *)(param_1_00 + 0x1c8));\r\n  fVar5 = (float10)*(float *)(param_1_00 + 0x1d4);\r\n  *param_1 = param_2 - (float)(fVar5 * (float10)(float)(fVar2 * fVar1));\r\n  param_1[1] = param_3 - (float)(fVar5 * (float10)(float)fVar3);\r\n  param_1[2] = (float)((float10)param_4 - fVar5 * -(fVar4 * fVar1));\r\n  return;\r\n}\r\n\r\n", 
+  "is_thunk": false, 
+  "name": "FUN_0041c670", 
+  "assembly": "  0041c670:  SUB ESP,0x18\n  0041c673:  FLD dword ptr [ECX + 0x1c4]\n  0041c679:  FCOS\n  0041c67b:  MOV EAX,dword ptr [ESP + 0x1c]\n  0041c67f:  FLD dword ptr [ECX + 0x1c8]\n  0041c685:  FSIN\n  0041c687:  FMUL ST1\n  0041c689:  FSTP dword ptr [ESP]\n  0041c68d:  FLD dword ptr [ECX + 0x1c4]\n  0041c693:  FSIN\n  0041c695:  FSTP dword ptr [ESP + 0x4]\n  0041c699:  FLD dword ptr [ECX + 0x1c8]\n  0041c69f:  FCOS\n  0041c6a1:  FMULP\n  0041c6a3:  FCHS\n  0041c6a5:  FLD dword ptr [ECX + 0x1d4]\n  0041c6ab:  FLD ST0\n  0041c6ad:  FMUL dword ptr [ESP]\n  0041c6b1:  MOV ECX,EAX\n  0041c6b3:  FSTP dword ptr [ESP + 0xc]\n  0041c6b7:  FLD ST0\n  0041c6b9:  FMUL dword ptr [ESP + 0x4]\n  0041c6bd:  FSTP dword ptr [ESP + 0x10]\n  0041c6c1:  FMULP\n  0041c6c3:  FLD dword ptr [ESP + 0x20]\n  0041c6c7:  FSUB dword ptr [ESP + 0xc]\n  0041c6cb:  FSTP dword ptr [ESP]\n  0041c6cf:  FLD dword ptr [ESP + 0x24]\n  0041c6d3:  FSUB dword ptr [ESP + 0x10]\n  0041c6d7:  MOV EDX,dword ptr [ESP]\n  0041c6db:  MOV dword ptr [ECX],EDX\n  0041c6dd:  FSTP dword ptr [ESP + 0x4]\n  0041c6e1:  FLD dword ptr [ESP + 0x28]\n  0041c6e5:  MOV EDX,dword ptr [ESP + 0x4]\n  0041c6e9:  FSUB ST0,ST1\n  0041c6eb:  MOV dword ptr [ECX + 0x4],EDX\n  0041c6ee:  FSTP dword ptr [ESP + 0x8]\n  0041c6f2:  MOV EDX,dword ptr [ESP + 0x8]\n  0041c6f6:  FSTP ST0\n  0041c6f8:  MOV dword ptr [ECX + 0x8],EDX\n  0041c6fb:  ADD ESP,0x18\n  0041c6fe:  RET 0x10", 
+  "callers": [
+    {
+      "address": "0x0042e2c0", 
+      "name": "FUN_0042e2c0"
+    }
+  ]
+}

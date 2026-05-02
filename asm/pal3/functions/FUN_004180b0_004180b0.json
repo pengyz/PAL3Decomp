@@ -1,0 +1,48 @@
+{
+  "address": "0x004180b0", 
+  "size_bytes": 115, 
+  "calling_convention": "unknown", 
+  "signature": "undefined FUN_004180b0(void)", 
+  "callees": [
+    {
+      "address": "0x000000a5", 
+      "name": "gbMatrix4"
+    }, 
+    {
+      "address": "0x00536fd0", 
+      "name": "FUN_00536fd0"
+    }, 
+    {
+      "address": "0x000000ab", 
+      "name": "IsColOBB_H"
+    }
+  ], 
+  "global_refs": [
+    {
+      "address": "0x-000004c", 
+      "type": null, 
+      "name": "DAT_-000004c"
+    }, 
+    {
+      "address": "0x0056a2a8", 
+      "type": null, 
+      "name": "PTR_gbMatrix4_0056a2a8"
+    }, 
+    {
+      "address": "0x0056a2c0", 
+      "type": null, 
+      "name": "PTR_IsColOBB_H_0056a2c0"
+    }
+  ], 
+  "has_custom_name": false, 
+  "decompiled_c": "\r\nint __thiscall FUN_004180b0(int param_1,gbRay *param_2)\r\n\r\n{\r\n  int iVar1;\r\n  gbMatrix4 local_4c [48];\r\n  float fStack_1c;\r\n  float fStack_18;\r\n  float fStack_14;\r\n  \r\n  if (*(int *)(param_1 + 0x278) == 0) {\r\n    return 0;\r\n  }\r\n  gbMatrix4::gbMatrix4(local_4c);\r\n  FUN_00536fd0(local_4c);\r\n  fStack_1c = fStack_1c + *(float *)(param_1 + 0xa0);\r\n  fStack_18 = fStack_18 + *(float *)(param_1 + 0xa4);\r\n  fStack_14 = fStack_14 + *(float *)(param_1 + 0xa8);\r\n  iVar1 = gbRay::IsColOBB_H(param_2,(gbOBBox *)local_4c);\r\n  return iVar1;\r\n}\r\n\r\n", 
+  "is_thunk": false, 
+  "name": "FUN_004180b0", 
+  "assembly": "  004180b0:  SUB ESP,0x4c\n  004180b3:  PUSH ESI\n  004180b4:  MOV ESI,ECX\n  004180b6:  MOV EAX,dword ptr [ESI + 0x278]\n  004180bc:  TEST EAX,EAX\n  004180be:  JNZ 0x004180c9\n  004180c0:  XOR EAX,EAX\n  004180c2:  POP ESI\n  004180c3:  ADD ESP,0x4c\n  004180c6:  RET 0x4\n  004180c9:  LEA ECX,[ESP + 0x4]\n  004180cd:  CALL dword ptr [0x0056a2a8]\n  004180d3:  LEA EAX,[ESP + 0x4]\n  004180d7:  LEA ECX,[ESI + 0x2a8]\n  004180dd:  PUSH EAX\n  004180de:  CALL 0x00536fd0\n  004180e3:  FLD dword ptr [ESP + 0x34]\n  004180e7:  FADD dword ptr [ESI + 0xa0]\n  004180ed:  LEA ECX,[ESP + 0x4]\n  004180f1:  PUSH ECX\n  004180f2:  MOV ECX,dword ptr [ESP + 0x58]\n  004180f6:  FSTP dword ptr [ESP + 0x38]\n  004180fa:  FLD dword ptr [ESP + 0x3c]\n  004180fe:  FADD dword ptr [ESI + 0xa4]\n  00418104:  FSTP dword ptr [ESP + 0x3c]\n  00418108:  FLD dword ptr [ESP + 0x40]\n  0041810c:  FADD dword ptr [ESI + 0xa8]\n  00418112:  FSTP dword ptr [ESP + 0x40]\n  00418116:  CALL dword ptr [0x0056a2c0]\n  0041811c:  POP ESI\n  0041811d:  ADD ESP,0x4c\n  00418120:  RET 0x4", 
+  "callers": [
+    {
+      "address": "0x004232d0", 
+      "name": "FUN_004232d0"
+    }
+  ]
+}

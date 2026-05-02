@@ -1,0 +1,60 @@
+{
+  "address": "0x004f7140", 
+  "size_bytes": 161, 
+  "calling_convention": "unknown", 
+  "signature": "undefined FUN_004f7140(undefined4 param_1)", 
+  "callees": [], 
+  "global_refs": [
+    {
+      "address": "0x00000004", 
+      "type": null, 
+      "name": "DAT_00000004"
+    }, 
+    {
+      "address": "0x004f71e4", 
+      "type": null, 
+      "name": "switchdataD_004f71e4"
+    }, 
+    {
+      "address": "0x00bfdb73", 
+      "type": null, 
+      "name": "DAT_00bfdb73"
+    }, 
+    {
+      "address": "0x00bfdb74", 
+      "type": null, 
+      "name": "DAT_00bfdb74"
+    }, 
+    {
+      "address": "0x00bfdb71", 
+      "type": null, 
+      "name": "DAT_00bfdb71"
+    }, 
+    {
+      "address": "0x00bfdb72", 
+      "type": null, 
+      "name": "DAT_00bfdb72"
+    }, 
+    {
+      "address": "0x00bfdb75", 
+      "type": null, 
+      "name": "DAT_00bfdb75"
+    }, 
+    {
+      "address": "0x00bfdb77", 
+      "type": null, 
+      "name": "DAT_00bfdb77"
+    }, 
+    {
+      "address": "0x00bfdb76", 
+      "type": null, 
+      "name": "DAT_00bfdb76"
+    }
+  ], 
+  "has_custom_name": false, 
+  "decompiled_c": "\r\nvoid FUN_004f7140(int param_1)\r\n\r\n{\r\n  switch(*(undefined4 *)(param_1 + 4)) {\r\n  case 0x17e7:\r\n    if (DAT_00bfdb73 != '\\0') {\r\n      DAT_00bfdb73 = DAT_00bfdb73 + -1;\r\n      return;\r\n    }\r\n    break;\r\n  case 0x17e8:\r\n    if (DAT_00bfdb74 != '\\0') {\r\n      DAT_00bfdb74 = DAT_00bfdb74 + -1;\r\n      return;\r\n    }\r\n    break;\r\n  case 0x17e9:\r\n    if (DAT_00bfdb71 != '\\0') {\r\n      DAT_00bfdb71 = DAT_00bfdb71 + -1;\r\n      return;\r\n    }\r\n    break;\r\n  case 0x17ea:\r\n    if (DAT_00bfdb72 != '\\0') {\r\n      DAT_00bfdb72 = DAT_00bfdb72 + -1;\r\n      return;\r\n    }\r\n    break;\r\n  case 0x17eb:\r\n    if (DAT_00bfdb75 != '\\0') {\r\n      DAT_00bfdb75 = DAT_00bfdb75 + -1;\r\n      return;\r\n    }\r\n    break;\r\n  case 0x17ec:\r\n    if (DAT_00bfdb77 != '\\0') {\r\n      DAT_00bfdb77 = DAT_00bfdb77 + -1;\r\n      return;\r\n    }\r\n    break;\r\n  case 0x17ed:\r\n    if (DAT_00bfdb76 != '\\0') {\r\n      DAT_00bfdb76 = DAT_00bfdb76 + -1;\r\n    }\r\n  }\r\n  return;\r\n}\r\n\r\n", 
+  "is_thunk": false, 
+  "name": "FUN_004f7140", 
+  "assembly": "  004f7140:  MOV EAX,dword ptr [ESP + 0x4]\n  004f7144:  MOV EAX,dword ptr [EAX + 0x4]\n  004f7147:  ADD EAX,0xffffe819\n  004f714c:  CMP EAX,0x6\n  004f714f:  JA 0x004f71de\n  004f7155:  JMP dword ptr [EAX*0x4 + 0x4f71e4]\n  004f715c:  MOV AL,[0x00bfdb73]\n  004f7161:  TEST AL,AL\n  004f7163:  JBE 0x004f71de\n  004f7165:  DEC AL\n  004f7167:  MOV [0x00bfdb73],AL\n  004f716c:  RET 0x4\n  004f716f:  MOV AL,[0x00bfdb74]\n  004f7174:  TEST AL,AL\n  004f7176:  JBE 0x004f71de\n  004f7178:  DEC AL\n  004f717a:  MOV [0x00bfdb74],AL\n  004f717f:  RET 0x4\n  004f7182:  MOV AL,[0x00bfdb71]\n  004f7187:  TEST AL,AL\n  004f7189:  JBE 0x004f71de\n  004f718b:  DEC AL\n  004f718d:  MOV [0x00bfdb71],AL\n  004f7192:  RET 0x4\n  004f7195:  MOV AL,[0x00bfdb72]\n  004f719a:  TEST AL,AL\n  004f719c:  JBE 0x004f71de\n  004f719e:  DEC AL\n  004f71a0:  MOV [0x00bfdb72],AL\n  004f71a5:  RET 0x4\n  004f71a8:  MOV AL,[0x00bfdb75]\n  004f71ad:  TEST AL,AL\n  004f71af:  JBE 0x004f71de\n  004f71b1:  DEC AL\n  004f71b3:  MOV [0x00bfdb75],AL\n  004f71b8:  RET 0x4\n  004f71bb:  MOV AL,[0x00bfdb77]\n  004f71c0:  TEST AL,AL\n  004f71c2:  JBE 0x004f71de\n  004f71c4:  DEC AL\n  004f71c6:  MOV [0x00bfdb77],AL\n  004f71cb:  RET 0x4\n  004f71ce:  MOV AL,[0x00bfdb76]\n  004f71d3:  TEST AL,AL\n  004f71d5:  JBE 0x004f71de\n  004f71d7:  DEC AL\n  004f71d9:  MOV [0x00bfdb76],AL\n  004f71de:  RET 0x4", 
+  "callers": []
+}

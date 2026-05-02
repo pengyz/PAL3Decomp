@@ -1,0 +1,96 @@
+{
+  "address": "0x00444f60", 
+  "size_bytes": 138, 
+  "calling_convention": "unknown", 
+  "signature": "undefined FUN_00444f60(void)", 
+  "callees": [
+    {
+      "address": "0x00445aa0", 
+      "name": "FUN_00445aa0"
+    }, 
+    {
+      "address": "0x00445ea0", 
+      "name": "FUN_00445ea0"
+    }
+  ], 
+  "global_refs": [
+    {
+      "address": "0x00560113", 
+      "type": null, 
+      "name": "LAB_00560113"
+    }, 
+    {
+      "address": "0xffdff000", 
+      "type": null, 
+      "name": "ExceptionList"
+    }, 
+    {
+      "address": "0x-0000010", 
+      "type": null, 
+      "name": "DAT_-0000010"
+    }, 
+    {
+      "address": "0x-0000011", 
+      "type": null, 
+      "name": "DAT_-0000011"
+    }, 
+    {
+      "address": "0x-0000004", 
+      "type": null, 
+      "name": "DAT_-0000004"
+    }, 
+    {
+      "address": "0x-000000c", 
+      "type": null, 
+      "name": "DAT_-000000c"
+    }, 
+    {
+      "address": "0x0056aea4", 
+      "type": null, 
+      "name": "PTR_FUN_0056aea4"
+    }
+  ], 
+  "has_custom_name": false, 
+  "decompiled_c": "\r\nundefined4 * __fastcall FUN_00444f60(undefined4 *param_1)\r\n\r\n{\r\n  undefined local_11;\r\n  void *local_c;\r\n  undefined *puStack_8;\r\n  undefined4 local_4;\r\n  \r\n  local_4 = 0xffffffff;\r\n  puStack_8 = &LAB_00560113;\r\n  local_c = ExceptionList;\r\n  ExceptionList = &local_c;\r\n  FUN_00445aa0();\r\n  *(undefined *)(param_1 + 0x12) = local_11;\r\n  param_1[0x13] = 0;\r\n  param_1[0x14] = 0;\r\n  param_1[0x15] = 0;\r\n  local_4 = 1;\r\n  FUN_00445ea0();\r\n  param_1[0x2c] = 0;\r\n  *(undefined *)((int)param_1 + 6) = 0xff;\r\n  *(undefined *)((int)param_1 + 5) = 0xff;\r\n  param_1[0x2f] = 0;\r\n  *param_1 = &PTR_FUN_0056aea4;\r\n  param_1[0x2b] = 2;\r\n  *(undefined *)(param_1 + 1) = 0xfa;\r\n  param_1[0x11] = 0x3f000000;\r\n  ExceptionList = local_c;\r\n  return param_1;\r\n}\r\n\r\n", 
+  "is_thunk": false, 
+  "name": "FUN_00444f60", 
+  "assembly": "  00444f60:  PUSH -0x1\n  00444f62:  PUSH 0x560113\n  00444f67:  MOV EAX,FS:[0x0]\n  00444f6d:  PUSH EAX\n  00444f6e:  MOV dword ptr FS:[0x0],ESP\n  00444f75:  SUB ESP,0x8\n  00444f78:  PUSH ESI\n  00444f79:  MOV ESI,ECX\n  00444f7b:  PUSH EDI\n  00444f7c:  MOV dword ptr [ESP + 0xc],ESI\n  00444f80:  CALL 0x00445aa0\n  00444f85:  MOV AL,byte ptr [ESP + 0xb]\n  00444f89:  XOR EDI,EDI\n  00444f8b:  MOV dword ptr [ESP + 0x18],EDI\n  00444f8f:  MOV byte ptr [ESI + 0x48],AL\n  00444f92:  MOV dword ptr [ESI + 0x4c],EDI\n  00444f95:  MOV dword ptr [ESI + 0x50],EDI\n  00444f98:  MOV dword ptr [ESI + 0x54],EDI\n  00444f9b:  LEA ECX,[ESI + 0x68]\n  00444f9e:  MOV byte ptr [ESP + 0x18],0x1\n  00444fa3:  CALL 0x00445ea0\n  00444fa8:  MOV ECX,dword ptr [ESP + 0x10]\n  00444fac:  MOV AL,0xff\n  00444fae:  MOV dword ptr [ESI + 0xb0],EDI\n  00444fb4:  MOV byte ptr [ESI + 0x6],AL\n  00444fb7:  MOV byte ptr [ESI + 0x5],AL\n  00444fba:  MOV dword ptr [ESI + 0xbc],EDI\n  00444fc0:  MOV dword ptr [ESI],0x56aea4\n  00444fc6:  MOV dword ptr [ESI + 0xac],0x2\n  00444fd0:  MOV byte ptr [ESI + 0x4],0xfa\n  00444fd4:  MOV dword ptr [ESI + 0x44],0x3f000000\n  00444fdb:  MOV EAX,ESI\n  00444fdd:  POP EDI\n  00444fde:  POP ESI\n  00444fdf:  MOV dword ptr FS:[0x0],ECX\n  00444fe6:  ADD ESP,0x14\n  00444fe9:  RET", 
+  "callers": [
+    {
+      "address": "0x004a12f0", 
+      "name": "FUN_004a12f0"
+    }, 
+    {
+      "address": "0x00450a60", 
+      "name": "FUN_00450a60"
+    }, 
+    {
+      "address": "0x00450dc0", 
+      "name": "FUN_00450dc0"
+    }, 
+    {
+      "address": "0x00451850", 
+      "name": "FUN_00451850"
+    }, 
+    {
+      "address": "0x00452790", 
+      "name": "FUN_00452790"
+    }, 
+    {
+      "address": "0x0047dca0", 
+      "name": "FUN_0047dca0"
+    }, 
+    {
+      "address": "0x00525120", 
+      "name": "FUN_00525120"
+    }, 
+    {
+      "address": "0x005295f0", 
+      "name": "FUN_005295f0"
+    }, 
+    {
+      "address": "0x00408b90", 
+      "name": "FUN_00408b90"
+    }
+  ]
+}

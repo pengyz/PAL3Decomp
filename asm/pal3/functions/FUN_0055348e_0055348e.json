@@ -1,0 +1,40 @@
+{
+  "address": "0x0055348e", 
+  "size_bytes": 24, 
+  "calling_convention": "unknown", 
+  "signature": "undefined FUN_0055348e(void)", 
+  "callees": [], 
+  "global_refs": [
+    {
+      "address": "0x0060ac2c", 
+      "type": null, 
+      "name": "DAT_0060ac2c"
+    }, 
+    {
+      "address": "0x0060ac34", 
+      "type": null, 
+      "name": "DAT_0060ac34"
+    }, 
+    {
+      "address": "0x0060ac30", 
+      "type": null, 
+      "name": "DAT_0060ac30"
+    }, 
+    {
+      "address": "0x0060ac38", 
+      "type": null, 
+      "name": "DAT_0060ac38"
+    }
+  ], 
+  "has_custom_name": false, 
+  "decompiled_c": "\r\nvoid FUN_0055348e(void)\r\n\r\n{\r\n  undefined4 in_EAX;\r\n  int unaff_EBP;\r\n  \r\n  DAT_0060ac34 = *(undefined4 *)(unaff_EBP + 8);\r\n  DAT_0060ac30 = in_EAX;\r\n  DAT_0060ac38 = unaff_EBP;\r\n  return;\r\n}\r\n\r\n", 
+  "is_thunk": false, 
+  "name": "FUN_0055348e", 
+  "assembly": "  0055348e:  PUSH EBX\n  0055348f:  PUSH ECX\n  00553490:  MOV EBX,0x60ac2c\n  00553495:  MOV ECX,dword ptr [EBP + 0x8]\n  00553498:  MOV dword ptr [EBX + 0x8],ECX\n  0055349b:  MOV dword ptr [EBX + 0x4],EAX\n  0055349e:  MOV dword ptr [EBX + 0xc],EBP\n  005534a1:  POP ECX\n  005534a2:  POP EBX\n  005534a3:  RET 0x4", 
+  "callers": [
+    {
+      "address": "0x005533fa", 
+      "name": "__local_unwind2"
+    }
+  ]
+}

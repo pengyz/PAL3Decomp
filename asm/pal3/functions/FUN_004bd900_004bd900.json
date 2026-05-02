@@ -1,0 +1,25 @@
+{
+  "address": "0x004bd900", 
+  "size_bytes": 66, 
+  "calling_convention": "unknown", 
+  "signature": "undefined FUN_004bd900(void)", 
+  "callees": [
+    {
+      "address": "0x000000f4", 
+      "name": "GetParticleGroup"
+    }
+  ], 
+  "global_refs": [
+    {
+      "address": "0x0056a3e4", 
+      "type": null, 
+      "name": "PTR_GetParticleGroup_0056a3e4"
+    }
+  ], 
+  "has_custom_name": false, 
+  "decompiled_c": "\r\nvoid __fastcall FUN_004bd900(int param_1)\r\n\r\n{\r\n  gbParticleGroup *pgVar1;\r\n  \r\n  if (*(int *)(param_1 + 0x58) == 0) {\r\n    (**(code **)(**(int **)(param_1 + 0x5c) + 0x14))();\r\n  }\r\n  else if (*(int *)(param_1 + 0x58) == 1) {\r\n    (**(code **)(**(int **)(param_1 + 0x5c) + 0x14))();\r\n    pgVar1 = gbParticleEffect::GetParticleGroup(*(gbParticleEffect **)(param_1 + 0x5c),0);\r\n    if (*(int *)(pgVar1 + 0x88) < 1) {\r\n      *(undefined4 *)(param_1 + 0x58) = 0xffffffff;\r\n      return;\r\n    }\r\n  }\r\n  return;\r\n}\r\n\r\n", 
+  "is_thunk": false, 
+  "name": "FUN_004bd900", 
+  "assembly": "  004bd900:  PUSH ESI\n  004bd901:  MOV ESI,ECX\n  004bd903:  MOV EAX,dword ptr [ESI + 0x58]\n  004bd906:  SUB EAX,0x0\n  004bd909:  JZ 0x004bd936\n  004bd90b:  DEC EAX\n  004bd90c:  JNZ 0x004bd93e\n  004bd90e:  MOV ECX,dword ptr [ESI + 0x5c]\n  004bd911:  MOV EAX,dword ptr [ECX]\n  004bd913:  CALL dword ptr [EAX + 0x14]\n  004bd916:  MOV ECX,dword ptr [ESI + 0x5c]\n  004bd919:  PUSH 0x0\n  004bd91b:  CALL dword ptr [0x0056a3e4]\n  004bd921:  MOV ECX,dword ptr [EAX + 0x88]\n  004bd927:  TEST ECX,ECX\n  004bd929:  JG 0x004bd93e\n  004bd92b:  MOV dword ptr [ESI + 0x58],0xffffffff\n  004bd932:  POP ESI\n  004bd933:  RET 0x4\n  004bd936:  MOV ECX,dword ptr [ESI + 0x5c]\n  004bd939:  MOV EDX,dword ptr [ECX]\n  004bd93b:  CALL dword ptr [EDX + 0x14]\n  004bd93e:  POP ESI\n  004bd93f:  RET 0x4", 
+  "callers": []
+}

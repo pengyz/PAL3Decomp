@@ -1,0 +1,84 @@
+{
+  "address": "0x0053d150", 
+  "size_bytes": 51, 
+  "calling_convention": "unknown", 
+  "signature": "undefined FUN_0053d150(void)", 
+  "callees": [
+    {
+      "address": "0x0053d0b0", 
+      "name": "FUN_0053d0b0"
+    }, 
+    {
+      "address": "0x00553041", 
+      "name": "FUN_00553041"
+    }
+  ], 
+  "global_refs": [
+    {
+      "address": "0x017b3ed0", 
+      "type": null, 
+      "name": "DAT_017b3ed0"
+    }, 
+    {
+      "address": "0x017b3eb0", 
+      "type": null, 
+      "name": "DAT_017b3eb0"
+    }, 
+    {
+      "address": "0x0053d190", 
+      "type": null, 
+      "name": "LAB_0053d190"
+    }
+  ], 
+  "has_custom_name": false, 
+  "decompiled_c": "\r\nundefined * FUN_0053d150(void)\r\n\r\n{\r\n  if ((DAT_017b3ed0 & 1) == 0) {\r\n    DAT_017b3ed0 = DAT_017b3ed0 | 1;\r\n    FUN_0053d0b0();\r\n    FUN_00553041(&LAB_0053d190);\r\n  }\r\n  return &DAT_017b3eb0;\r\n}\r\n\r\n", 
+  "is_thunk": false, 
+  "name": "FUN_0053d150", 
+  "assembly": "  0053d150:  MOV CL,byte ptr [0x017b3ed0]\n  0053d156:  MOV AL,0x1\n  0053d158:  TEST AL,CL\n  0053d15a:  JNZ 0x0053d17d\n  0053d15c:  MOV DL,CL\n  0053d15e:  MOV ECX,0x17b3eb0\n  0053d163:  OR DL,AL\n  0053d165:  MOV byte ptr [0x017b3ed0],DL\n  0053d16b:  CALL 0x0053d0b0\n  0053d170:  PUSH 0x53d190\n  0053d175:  CALL 0x00553041\n  0053d17a:  ADD ESP,0x4\n  0053d17d:  MOV EAX,0x17b3eb0\n  0053d182:  RET", 
+  "callers": [
+    {
+      "address": "0x00569110", 
+      "name": "FUN_00569110"
+    }, 
+    {
+      "address": "0x00424570", 
+      "name": "FUN_00424570"
+    }, 
+    {
+      "address": "0x00424c20", 
+      "name": "FUN_00424c20"
+    }, 
+    {
+      "address": "0x0042ebe0", 
+      "name": "FUN_0042ebe0"
+    }, 
+    {
+      "address": "0x004071c0", 
+      "name": "FUN_004071c0"
+    }, 
+    {
+      "address": "0x0041d9a0", 
+      "name": "FUN_0041d9a0"
+    }, 
+    {
+      "address": "0x00416790", 
+      "name": "FUN_00416790"
+    }, 
+    {
+      "address": "0x00422e40", 
+      "name": "FUN_00422e40"
+    }, 
+    {
+      "address": "0x00417420", 
+      "name": "FUN_00417420"
+    }, 
+    {
+      "address": "0x00416bc0", 
+      "name": "FUN_00416bc0"
+    }, 
+    {
+      "address": "0x00426eb0", 
+      "name": "FUN_00426eb0"
+    }
+  ]
+}

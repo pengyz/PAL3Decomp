@@ -1,0 +1,40 @@
+{
+  "address": "0x00511690", 
+  "size_bytes": 54, 
+  "calling_convention": "unknown", 
+  "signature": "undefined FUN_00511690(void)", 
+  "callees": [], 
+  "global_refs": [
+    {
+      "address": "0xffdff000", 
+      "type": null, 
+      "name": "ExceptionList"
+    }, 
+    {
+      "address": "0x00566f39", 
+      "type": null, 
+      "name": "LAB_00566f39"
+    }, 
+    {
+      "address": "0x005833bc", 
+      "type": null, 
+      "name": "DAT_005833bc"
+    }, 
+    {
+      "address": "0x-000000c", 
+      "type": null, 
+      "name": "DAT_-000000c"
+    }
+  ], 
+  "has_custom_name": false, 
+  "decompiled_c": "\r\nundefined4 __fastcall FUN_00511690(int *param_1)\r\n\r\n{\r\n  int iVar1;\r\n  int iVar2;\r\n  CIniFile aCStack_14 [8];\r\n  void *local_c;\r\n  undefined *puStack_8;\r\n  undefined4 uStack_4;\r\n  \r\n  uStack_4 = 0xffffffff;\r\n  puStack_8 = &LAB_00566f39;\r\n  local_c = ExceptionList;\r\n  if ((DAT_005833bc & 2) != 0) {\r\n    return 1;\r\n  }\r\n  ExceptionList = &local_c;\r\n  CIniFile::CIniFile(aCStack_14);\r\n  iVar2 = 0;\r\n  uStack_4 = 0;\r\n  CIniFile::OpenFileWrite(aCStack_14,PTR_s_datascript_combat_ini_0056fff0);\r\n  CIniFile::WriteSection(aCStack_14,s_RolePos_005dc080);\r\n  iVar1 = 0x18;\r\n  do {\r\n    FUN_00553082(&DAT_017abe00,s_Role_d_x_005dc074,iVar2);\r\n    CIniFile::WriteLine(aCStack_14,&DAT_017abe00,*(float *)(*(int *)(iVar1 + *param_1) + 0x19b8));\r\n    FUN_00553082(&DAT_017abe00,s_Role_d_z_005dc068,iVar2);\r\n    CIniFile::WriteLine(aCStack_14,&DAT_017abe00,*(float *)(*(int *)(iVar1 + *param_1) + 0x19c0));\r\n    iVar1 = iVar1 + 4;\r\n    iVar2 = iVar2 + 1;\r\n  } while (iVar1 < 0x44);\r\n  uStack_4 = 0xffffffff;\r\n  CIniFile::~CIniFile(aCStack_14);\r\n  ExceptionList = local_c;\r\n  return 1;\r\n}\r\n\r\n", 
+  "is_thunk": false, 
+  "name": "FUN_00511690", 
+  "assembly": "  00511690:  MOV EAX,FS:[0x0]\n  00511696:  PUSH -0x1\n  00511698:  PUSH 0x566f39\n  0051169d:  PUSH EAX\n  0051169e:  MOV AL,[0x005833bc]\n  005116a3:  MOV dword ptr FS:[0x0],ESP\n  005116aa:  SUB ESP,0x8\n  005116ad:  TEST AL,0x2\n  005116af:  PUSH EBP\n  005116b0:  MOV EBP,ECX\n  005116b2:  JZ 0x005116c6\n  005116b4:  MOV AL,0x1\n  005116b6:  POP EBP\n  005116b7:  MOV ECX,dword ptr [ESP + 0x8]\n  005116bb:  MOV dword ptr FS:[0x0],ECX\n  005116c2:  ADD ESP,0x14\n  005116c5:  RET", 
+  "callers": [
+    {
+      "address": "0x004e0690", 
+      "name": "FUN_004e0690"
+    }
+  ]
+}

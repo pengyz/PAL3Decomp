@@ -1,0 +1,74 @@
+{
+  "address": "0x0054270c", 
+  "size_bytes": 47, 
+  "calling_convention": "unknown", 
+  "signature": "undefined FUN_0054270c(undefined4 param_1, undefined4 param_2, undefined4 param_3, undefined4 param_4, undefined4 param_5, undefined4 param_6)", 
+  "callees": [
+    {
+      "address": "0x00546f41", 
+      "name": "FUN_00546f41"
+    }, 
+    {
+      "address": "0x0054270c", 
+      "name": "FUN_0054270c"
+    }
+  ], 
+  "global_refs": [
+    {
+      "address": "0x00000018", 
+      "type": null, 
+      "name": "DAT_00000018"
+    }, 
+    {
+      "address": "0x-0000008", 
+      "type": null, 
+      "name": "DAT_-0000008"
+    }, 
+    {
+      "address": "0x00000014", 
+      "type": null, 
+      "name": "DAT_00000014"
+    }, 
+    {
+      "address": "0x-000000c", 
+      "type": null, 
+      "name": "DAT_-000000c"
+    }, 
+    {
+      "address": "0x00000010", 
+      "type": null, 
+      "name": "DAT_00000010"
+    }, 
+    {
+      "address": "0x0000000c", 
+      "type": null, 
+      "name": "DAT_0000000c"
+    }, 
+    {
+      "address": "0x00000008", 
+      "type": null, 
+      "name": "DAT_00000008"
+    }, 
+    {
+      "address": "0x00000004", 
+      "type": null, 
+      "name": "DAT_00000004"
+    }, 
+    {
+      "address": "0x00609174", 
+      "type": null, 
+      "name": "PTR_FUN_00609174"
+    }
+  ], 
+  "has_custom_name": false, 
+  "decompiled_c": "\r\nvoid FUN_0054270c(undefined4 param_1,undefined4 param_2,undefined4 param_3,undefined4 param_4,\r\n                 undefined4 param_5,undefined4 param_6)\r\n\r\n{\r\n  FUN_00546f41(1);\r\n  (*(code *)PTR_FUN_00609174)(param_1,param_2,param_3,param_4,param_5,param_6);\r\n  return;\r\n}\r\n\r\n", 
+  "is_thunk": false, 
+  "name": "FUN_0054270c", 
+  "assembly": "  0054270c:  PUSH EBP\n  0054270d:  MOV EBP,ESP\n  0054270f:  PUSH 0x1\n  00542711:  CALL 0x00546f41\n  00542716:  FLD dword ptr [EBP + 0x1c]\n  00542719:  PUSH ECX\n  0054271a:  PUSH ECX\n  0054271b:  FSTP dword ptr [ESP + 0x4]\n  0054271f:  FLD dword ptr [EBP + 0x18]\n  00542722:  FSTP dword ptr [ESP]\n  00542725:  PUSH dword ptr [EBP + 0x14]\n  00542728:  PUSH dword ptr [EBP + 0x10]\n  0054272b:  PUSH dword ptr [EBP + 0xc]\n  0054272e:  PUSH dword ptr [EBP + 0x8]\n  00542731:  CALL dword ptr [0x00609174]\n  00542737:  POP EBP\n  00542738:  RET 0x18", 
+  "callers": [
+    {
+      "address": "0x0054270c", 
+      "name": "FUN_0054270c"
+    }
+  ]
+}

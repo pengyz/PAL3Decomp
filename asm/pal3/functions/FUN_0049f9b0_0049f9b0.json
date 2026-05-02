@@ -1,0 +1,34 @@
+{
+  "address": "0x0049f9b0", 
+  "size_bytes": 91, 
+  "calling_convention": "unknown", 
+  "signature": "undefined FUN_0049f9b0(undefined4 param_1)", 
+  "callees": [
+    {
+      "address": "0x00445e50", 
+      "name": "FUN_00445e50"
+    }
+  ], 
+  "global_refs": [
+    {
+      "address": "0x00000004", 
+      "type": null, 
+      "name": "DAT_00000004"
+    }
+  ], 
+  "has_custom_name": false, 
+  "decompiled_c": "\r\nvoid FUN_0049f9b0(undefined param_1)\r\n\r\n{\r\n  FUN_00445e50(param_1);\r\n  FUN_00445e50(param_1);\r\n  FUN_00445e50(param_1);\r\n  FUN_00445e50(param_1);\r\n  FUN_00445e50(param_1);\r\n  FUN_00445e50(param_1);\r\n  return;\r\n}\r\n\r\n", 
+  "is_thunk": false, 
+  "name": "FUN_0049f9b0", 
+  "assembly": "  0049f9b0:  PUSH ESI\n  0049f9b1:  MOV ESI,dword ptr [ESP + 0x8]\n  0049f9b5:  PUSH EDI\n  0049f9b6:  MOV EDI,ECX\n  0049f9b8:  AND ESI,0xff\n  0049f9be:  PUSH ESI\n  0049f9bf:  LEA ECX,[EDI + 0x2db10]\n  0049f9c5:  CALL 0x00445e50\n  0049f9ca:  PUSH ESI\n  0049f9cb:  LEA ECX,[EDI + 0x2dfc8]\n  0049f9d1:  CALL 0x00445e50\n  0049f9d6:  PUSH ESI\n  0049f9d7:  LEA ECX,[EDI + 0x2e480]\n  0049f9dd:  CALL 0x00445e50\n  0049f9e2:  PUSH ESI\n  0049f9e3:  LEA ECX,[EDI + 0x2e938]\n  0049f9e9:  CALL 0x00445e50\n  0049f9ee:  PUSH ESI\n  0049f9ef:  LEA ECX,[EDI + 0x2edf0]\n  0049f9f5:  CALL 0x00445e50\n  0049f9fa:  PUSH ESI\n  0049f9fb:  LEA ECX,[EDI + 0x2f2a8]\n  0049fa01:  CALL 0x00445e50\n  0049fa06:  POP EDI\n  0049fa07:  POP ESI\n  0049fa08:  RET 0x4", 
+  "callers": [
+    {
+      "address": "0x0049aea0", 
+      "name": "FUN_0049aea0"
+    }, 
+    {
+      "address": "0x0049cf80", 
+      "name": "FUN_0049cf80"
+    }
+  ]
+}

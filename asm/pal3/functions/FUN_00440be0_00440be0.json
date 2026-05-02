@@ -1,0 +1,113 @@
+{
+  "address": "0x00440be0", 
+  "size_bytes": 255, 
+  "calling_convention": "unknown", 
+  "signature": "undefined FUN_00440be0(undefined4 param_1, undefined1 param_2)", 
+  "callees": [
+    {
+      "address": "0x00401f50", 
+      "name": "FUN_00401f50"
+    }, 
+    {
+      "address": "0x0000015e", 
+      "name": "Release"
+    }, 
+    {
+      "address": "0x00553082", 
+      "name": "FUN_00553082"
+    }, 
+    {
+      "address": "0x0053fcf0", 
+      "name": "FUN_0053fcf0"
+    }, 
+    {
+      "address": "0x0053fdd0", 
+      "name": "FUN_0053fdd0"
+    }, 
+    {
+      "address": "0x00000160", 
+      "name": "LoadTexture"
+    }, 
+    {
+      "address": "0x00401f90", 
+      "name": "FUN_00401f90"
+    }
+  ], 
+  "global_refs": [
+    {
+      "address": "0x0055ff7b", 
+      "type": null, 
+      "name": "LAB_0055ff7b"
+    }, 
+    {
+      "address": "0xffdff000", 
+      "type": null, 
+      "name": "ExceptionList"
+    }, 
+    {
+      "address": "0x-0000114", 
+      "type": null, 
+      "name": "DAT_-0000114"
+    }, 
+    {
+      "address": "0x00000008", 
+      "type": null, 
+      "name": "DAT_00000008"
+    }, 
+    {
+      "address": "0x-0000004", 
+      "type": null, 
+      "name": "DAT_-0000004"
+    }, 
+    {
+      "address": "0x0056a58c", 
+      "type": null, 
+      "name": "PTR_Release_0056a58c"
+    }, 
+    {
+      "address": "0x00000004", 
+      "type": null, 
+      "name": "DAT_00000004"
+    }, 
+    {
+      "address": "0x-0000110", 
+      "type": null, 
+      "name": "DAT_-0000110"
+    }, 
+    {
+      "address": "0x005965a4", 
+      "type": null, 
+      "name": "s_%s%d.tga_005965a4"
+    }, 
+    {
+      "address": "0x00bfda60", 
+      "type": null, 
+      "name": "DAT_00bfda60"
+    }, 
+    {
+      "address": "0x01894b78", 
+      "type": null, 
+      "name": "DAT_01894b78"
+    }, 
+    {
+      "address": "0x0056a594", 
+      "type": null, 
+      "name": "PTR_LoadTexture_0056a594"
+    }
+  ], 
+  "has_custom_name": false, 
+  "decompiled_c": "\r\nvoid __thiscall FUN_00440be0(int param_1_00,undefined4 param_1,char param_2)\r\n\r\n{\r\n  int iVar1;\r\n  undefined4 uVar2;\r\n  undefined4 *puVar3;\r\n  int iVar4;\r\n  undefined local_110 [260];\r\n  void *pvStack_c;\r\n  undefined *puStack_8;\r\n  undefined4 local_4;\r\n  \r\n  local_4 = 0xffffffff;\r\n  puStack_8 = &LAB_0055ff7b;\r\n  pvStack_c = ExceptionList;\r\n  ExceptionList = &pvStack_c;\r\n  FUN_00401f50();\r\n  iVar4 = 0;\r\n  local_4 = 0;\r\n  puVar3 = (undefined4 *)(param_1_00 + 0x54);\r\n  do {\r\n    if ((gbRefObject *)*puVar3 != (gbRefObject *)0x0) {\r\n      gbRefObject::Release((gbRefObject *)*puVar3);\r\n    }\r\n    FUN_00553082(local_110,s__s_d_tga_005965a4,param_1,iVar4);\r\n    if (param_2 == '\\0') {\r\n      uVar2 = (**(code **)(*DAT_00bfda60 + 8))(local_110);\r\n      *puVar3 = uVar2;\r\n    }\r\n    else {\r\n      iVar1 = *DAT_00bfda60;\r\n      uVar2 = FUN_0053fcf0(local_110);\r\n      uVar2 = (**(code **)(iVar1 + 8))(uVar2);\r\n      *puVar3 = uVar2;\r\n      uVar2 = FUN_0053fdd0(local_110);\r\n      puVar3[2] = uVar2;\r\n    }\r\n    if ((gbTexture *)*puVar3 != (gbTexture *)0x0) {\r\n      gbTexture::LoadTexture((gbTexture *)*puVar3,1);\r\n    }\r\n    iVar4 = iVar4 + 1;\r\n    puVar3 = puVar3 + 1;\r\n  } while (iVar4 < 2);\r\n  local_4 = 0xffffffff;\r\n  FUN_00401f90();\r\n  ExceptionList = pvStack_c;\r\n  return;\r\n}\r\n\r\n", 
+  "is_thunk": false, 
+  "name": "FUN_00440be0", 
+  "assembly": "  00440be0:  PUSH -0x1\n  00440be2:  PUSH 0x55ff7b\n  00440be7:  MOV EAX,FS:[0x0]\n  00440bed:  PUSH EAX\n  00440bee:  MOV dword ptr FS:[0x0],ESP\n  00440bf5:  SUB ESP,0x108\n  00440bfb:  PUSH EBX\n  00440bfc:  PUSH EBP\n  00440bfd:  PUSH ESI\n  00440bfe:  MOV ESI,ECX\n  00440c00:  PUSH EDI\n  00440c01:  LEA ECX,[ESP + 0x10]\n  00440c05:  CALL 0x00401f50\n  00440c0a:  MOV BL,byte ptr [ESP + 0x12c]\n  00440c11:  XOR EDI,EDI\n  00440c13:  MOV dword ptr [ESP + 0x120],0x0\n  00440c1e:  ADD ESI,0x54\n  00440c21:  MOV ECX,dword ptr [ESI]\n  00440c23:  TEST ECX,ECX\n  00440c25:  JZ 0x00440c2d\n  00440c27:  CALL dword ptr [0x0056a58c]\n  00440c2d:  MOV EAX,dword ptr [ESP + 0x128]\n  00440c34:  PUSH EDI\n  00440c35:  PUSH EAX\n  00440c36:  LEA ECX,[ESP + 0x1c]\n  00440c3a:  PUSH 0x5965a4\n  00440c3f:  PUSH ECX\n  00440c40:  CALL 0x00553082\n  00440c45:  ADD ESP,0x10\n  00440c48:  TEST BL,BL\n  00440c4a:  JZ 0x00440c83\n  00440c4c:  MOV EDX,dword ptr [0x00bfda60]\n  00440c52:  LEA EAX,[ESP + 0x14]\n  00440c56:  PUSH EAX\n  00440c57:  MOV ECX,0x1894b78\n  00440c5c:  MOV EBP,dword ptr [EDX]\n  00440c5e:  CALL 0x0053fcf0\n  00440c63:  MOV ECX,dword ptr [0x00bfda60]\n  00440c69:  PUSH EAX\n  00440c6a:  CALL dword ptr [EBP + 0x8]\n  00440c6d:  LEA ECX,[ESP + 0x14]\n  00440c71:  MOV dword ptr [ESI],EAX\n  00440c73:  PUSH ECX\n  00440c74:  MOV ECX,0x1894b78\n  00440c79:  CALL 0x0053fdd0\n  00440c7e:  MOV dword ptr [ESI + 0x8],EAX\n  00440c81:  JMP 0x00440c95\n  00440c83:  MOV ECX,dword ptr [0x00bfda60]\n  00440c89:  LEA EAX,[ESP + 0x14]\n  00440c8d:  PUSH EAX\n  00440c8e:  MOV EDX,dword ptr [ECX]\n  00440c90:  CALL dword ptr [EDX + 0x8]\n  00440c93:  MOV dword ptr [ESI],EAX\n  00440c95:  MOV ECX,dword ptr [ESI]\n  00440c97:  TEST ECX,ECX\n  00440c99:  JZ 0x00440ca3\n  00440c9b:  PUSH 0x1\n  00440c9d:  CALL dword ptr [0x0056a594]\n  00440ca3:  INC EDI\n  00440ca4:  ADD ESI,0x4\n  00440ca7:  CMP EDI,0x2\n  00440caa:  JL 0x00440c21\n  00440cb0:  LEA ECX,[ESP + 0x10]\n  00440cb4:  MOV dword ptr [ESP + 0x120],0xffffffff\n  00440cbf:  CALL 0x00401f90\n  00440cc4:  MOV ECX,dword ptr [ESP + 0x118]\n  00440ccb:  POP EDI\n  00440ccc:  POP ESI\n  00440ccd:  POP EBP\n  00440cce:  POP EBX\n  00440ccf:  MOV dword ptr FS:[0x0],ECX\n  00440cd6:  ADD ESP,0x114\n  00440cdc:  RET 0x8", 
+  "callers": [
+    {
+      "address": "0x004819a0", 
+      "name": "FUN_004819a0"
+    }, 
+    {
+      "address": "0x0047fd90", 
+      "name": "FUN_0047fd90"
+    }
+  ]
+}

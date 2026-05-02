@@ -1,0 +1,40 @@
+{
+  "address": "0x00555fed", 
+  "size_bytes": 251, 
+  "calling_convention": "unknown", 
+  "signature": "undefined FUN_00555fed(undefined4 param_1)", 
+  "callees": [
+    {
+      "address": "0x00000010", 
+      "name": "VirtualAlloc"
+    }
+  ], 
+  "global_refs": [
+    {
+      "address": "0x00000004", 
+      "type": null, 
+      "name": "DAT_00000004"
+    }, 
+    {
+      "address": "0x-0000008", 
+      "type": null, 
+      "name": "DAT_-0000008"
+    }, 
+    {
+      "address": "0x0056a044", 
+      "type": null, 
+      "name": "PTR_VirtualAlloc_0056a044"
+    }
+  ], 
+  "has_custom_name": false, 
+  "decompiled_c": "\r\nint FUN_00555fed(int param_1)\r\n\r\n{\r\n  int *piVar1;\r\n  char cVar2;\r\n  int iVar3;\r\n  int iVar4;\r\n  int iVar5;\r\n  LPVOID pvVar6;\r\n  int *piVar7;\r\n  int iVar8;\r\n  int iVar9;\r\n  int *lpAddress;\r\n  \r\n  iVar3 = *(int *)(param_1 + 0x10);\r\n  iVar9 = 0;\r\n  for (iVar4 = *(int *)(param_1 + 8); -1 < iVar4; iVar4 = iVar4 << 1) {\r\n    iVar9 = iVar9 + 1;\r\n  }\r\n  iVar8 = 0x3f;\r\n  iVar4 = iVar9 * 0x204 + 0x144 + iVar3;\r\n  iVar5 = iVar4;\r\n  do {\r\n    *(int *)(iVar5 + 8) = iVar5;\r\n    *(int *)(iVar5 + 4) = iVar5;\r\n    iVar5 = iVar5 + 8;\r\n    iVar8 = iVar8 + -1;\r\n  } while (iVar8 != 0);\r\n  lpAddress = (int *)(iVar9 * 0x8000 + *(int *)(param_1 + 0xc));\r\n  pvVar6 = VirtualAlloc(lpAddress,0x8000,0x1000,4);\r\n  if (pvVar6 == (LPVOID)0x0) {\r\n    iVar9 = -1;\r\n  }\r\n  else {\r\n    if (lpAddress <= lpAddress + 0x1c00) {\r\n      piVar7 = lpAddress + 4;\r\n      do {\r\n        piVar7[-2] = -1;\r\n        piVar7[0x3fb] = -1;\r\n        piVar7[-1] = 0xff0;\r\n        *piVar7 = (int)(piVar7 + 0x3ff);\r\n        piVar7[1] = (int)(piVar7 + -0x401);\r\n        piVar7[0x3fa] = 0xff0;\r\n        piVar1 = piVar7 + 0x3fc;\r\n        piVar7 = piVar7 + 0x400;\r\n      } while (piVar1 <= lpAddress + 0x1c00);\r\n    }\r\n    *(int **)(iVar4 + 0x1fc) = lpAddress + 3;\r\n    lpAddress[5] = iVar4 + 0x1f8;\r\n    *(int **)(iVar4 + 0x200) = lpAddress + 0x1c03;\r\n    lpAddress[0x1c04] = iVar4 + 0x1f8;\r\n    *(undefined4 *)(iVar3 + 0x44 + iVar9 * 4) = 0;\r\n    *(undefined4 *)(iVar3 + 0xc4 + iVar9 * 4) = 1;\r\n    cVar2 = *(char *)(iVar3 + 0x43);\r\n    *(char *)(iVar3 + 0x43) = cVar2 + '\\x01';\r\n    if (cVar2 == '\\0') {\r\n      *(uint *)(param_1 + 4) = *(uint *)(param_1 + 4) | 1;\r\n    }\r\n    *(uint *)(param_1 + 8) = *(uint *)(param_1 + 8) & ~(0x80000000U >> ((byte)iVar9 & 0x1f));\r\n  }\r\n  return iVar9;\r\n}\r\n\r\n", 
+  "is_thunk": false, 
+  "name": "FUN_00555fed", 
+  "assembly": "  00555fed:  PUSH EBP\n  00555fee:  MOV EBP,ESP\n  00555ff0:  PUSH ECX\n  00555ff1:  MOV ECX,dword ptr [EBP + 0x8]\n  00555ff4:  PUSH EBX\n  00555ff5:  PUSH ESI\n  00555ff6:  PUSH EDI\n  00555ff7:  MOV ESI,dword ptr [ECX + 0x10]\n  00555ffa:  MOV EAX,dword ptr [ECX + 0x8]\n  00555ffd:  XOR EBX,EBX\n  00555fff:  TEST EAX,EAX\n  00556001:  JL 0x00556008\n  00556003:  SHL EAX,0x1\n  00556005:  INC EBX\n  00556006:  JMP 0x00555fff\n  00556008:  MOV EAX,EBX\n  0055600a:  PUSH 0x3f\n  0055600c:  IMUL EAX,EAX,0x204\n  00556012:  POP EDX\n  00556013:  LEA EAX,[EAX + ESI*0x1 + 0x144]\n  0055601a:  MOV dword ptr [EBP + -0x4],EAX\n  0055601d:  MOV dword ptr [EAX + 0x8],EAX\n  00556020:  MOV dword ptr [EAX + 0x4],EAX\n  00556023:  ADD EAX,0x8\n  00556026:  DEC EDX\n  00556027:  JNZ 0x0055601d\n  00556029:  MOV EDI,EBX\n  0055602b:  PUSH 0x4\n  0055602d:  SHL EDI,0xf\n  00556030:  ADD EDI,dword ptr [ECX + 0xc]\n  00556033:  PUSH 0x1000\n  00556038:  PUSH 0x8000\n  0055603d:  PUSH EDI\n  0055603e:  CALL dword ptr [0x0056a044]\n  00556044:  TEST EAX,EAX\n  00556046:  JNZ 0x00556050\n  00556048:  OR EAX,0xffffffff\n  0055604b:  JMP 0x005560e3\n  00556050:  LEA EDX,[EDI + 0x7000]\n  00556056:  CMP EDI,EDX\n  00556058:  JA 0x00556096\n  0055605a:  LEA EAX,[EDI + 0x10]\n  0055605d:  OR dword ptr [EAX + -0x8],0xffffffff\n  00556061:  OR dword ptr [EAX + 0xfec],0xffffffff\n  00556068:  LEA ECX,[EAX + 0xffc]\n  0055606e:  MOV dword ptr [EAX + -0x4],0xff0\n  00556075:  MOV dword ptr [EAX],ECX\n  00556077:  LEA ECX,[EAX + 0xffffeffc]\n  0055607d:  MOV dword ptr [EAX + 0x4],ECX\n  00556080:  MOV dword ptr [EAX + 0xfe8],0xff0\n  0055608a:  ADD EAX,0x1000\n  0055608f:  LEA ECX,[EAX + -0x10]\n  00556092:  CMP ECX,EDX\n  00556094:  JBE 0x0055605d\n  00556096:  MOV EAX,dword ptr [EBP + -0x4]\n  00556099:  LEA ECX,[EDI + 0xc]\n  0055609c:  ADD EAX,0x1f8\n  005560a1:  PUSH 0x1\n  005560a3:  POP EDI\n  005560a4:  MOV dword ptr [EAX + 0x4],ECX\n  005560a7:  MOV dword ptr [ECX + 0x8],EAX\n  005560aa:  LEA ECX,[EDX + 0xc]\n  005560ad:  MOV dword ptr [EAX + 0x8],ECX\n  005560b0:  MOV dword ptr [ECX + 0x4],EAX\n  005560b3:  AND dword ptr [ESI + EBX*0x4 + 0x44],0x0\n  005560b8:  MOV dword ptr [ESI + EBX*0x4 + 0xc4],EDI\n  005560bf:  MOV AL,byte ptr [ESI + 0x43]\n  005560c2:  MOV CL,AL\n  005560c4:  INC CL\n  005560c6:  TEST AL,AL\n  005560c8:  MOV EAX,dword ptr [EBP + 0x8]\n  005560cb:  MOV byte ptr [ESI + 0x43],CL\n  005560ce:  JNZ 0x005560d3\n  005560d0:  OR dword ptr [EAX + 0x4],EDI\n  005560d3:  MOV EDX,0x80000000\n  005560d8:  MOV ECX,EBX\n  005560da:  SHR EDX,CL\n  005560dc:  NOT EDX\n  005560de:  AND dword ptr [EAX + 0x8],EDX\n  005560e1:  MOV EAX,EBX\n  005560e3:  POP EDI\n  005560e4:  POP ESI\n  005560e5:  POP EBX\n  005560e6:  LEAVE\n  005560e7:  RET", 
+  "callers": [
+    {
+      "address": "0x00555c33", 
+      "name": "FUN_00555c33"
+    }
+  ]
+}

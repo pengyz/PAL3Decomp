@@ -1,0 +1,40 @@
+{
+  "address": "0x0053ee30", 
+  "size_bytes": 41, 
+  "calling_convention": "unknown", 
+  "signature": "undefined FUN_0053ee30(undefined4 param_1, undefined4 param_2, undefined4 param_3)", 
+  "callees": [
+    {
+      "address": "0x0053f060", 
+      "name": "FUN_0053f060"
+    }
+  ], 
+  "global_refs": [
+    {
+      "address": "0x00000008", 
+      "type": null, 
+      "name": "DAT_00000008"
+    }, 
+    {
+      "address": "0x0000000c", 
+      "type": null, 
+      "name": "DAT_0000000c"
+    }, 
+    {
+      "address": "0x00000004", 
+      "type": null, 
+      "name": "DAT_00000004"
+    }
+  ], 
+  "has_custom_name": false, 
+  "decompiled_c": "\r\nvoid FUN_0053ee30(int param_1,int param_2,undefined4 param_3)\r\n\r\n{\r\n  if (param_2 != 0) {\r\n    do {\r\n      FUN_0053f060(param_1,param_3);\r\n      param_1 = param_1 + 0x14;\r\n      param_2 = param_2 + -1;\r\n    } while (param_2 != 0);\r\n  }\r\n  return;\r\n}\r\n\r\n", 
+  "is_thunk": false, 
+  "name": "FUN_0053ee30", 
+  "assembly": "  0053ee30:  PUSH EDI\n  0053ee31:  MOV EDI,dword ptr [ESP + 0xc]\n  0053ee35:  TEST EDI,EDI\n  0053ee37:  JBE 0x0053ee55\n  0053ee39:  PUSH EBX\n  0053ee3a:  MOV EBX,dword ptr [ESP + 0x14]\n  0053ee3e:  PUSH ESI\n  0053ee3f:  MOV ESI,dword ptr [ESP + 0x10]\n  0053ee43:  PUSH EBX\n  0053ee44:  PUSH ESI\n  0053ee45:  CALL 0x0053f060\n  0053ee4a:  ADD ESP,0x8\n  0053ee4d:  ADD ESI,0x14\n  0053ee50:  DEC EDI\n  0053ee51:  JNZ 0x0053ee43\n  0053ee53:  POP ESI\n  0053ee54:  POP EBX\n  0053ee55:  POP EDI\n  0053ee56:  RET 0xc", 
+  "callers": [
+    {
+      "address": "0x0053eb90", 
+      "name": "FUN_0053eb90"
+    }
+  ]
+}

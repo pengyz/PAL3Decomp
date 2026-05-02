@@ -1,0 +1,78 @@
+{
+  "address": "0x00456500", 
+  "size_bytes": 144, 
+  "calling_convention": "unknown", 
+  "signature": "undefined FUN_00456500(undefined4 param_1, undefined4 param_2)", 
+  "callees": [
+    {
+      "address": "0x004562c0", 
+      "name": "FUN_004562c0"
+    }, 
+    {
+      "address": "0x00456280", 
+      "name": "FUN_00456280"
+    }, 
+    {
+      "address": "0x00455c40", 
+      "name": "FUN_00455c40"
+    }, 
+    {
+      "address": "0x004a1cf0", 
+      "name": "FUN_004a1cf0"
+    }, 
+    {
+      "address": "0x00456590", 
+      "name": "FUN_00456590"
+    }, 
+    {
+      "address": "0x0053df70", 
+      "name": "FUN_0053df70"
+    }, 
+    {
+      "address": "0x0053e2e0", 
+      "name": "FUN_0053e2e0"
+    }, 
+    {
+      "address": "0x00445c60", 
+      "name": "FUN_00445c60"
+    }
+  ], 
+  "global_refs": [
+    {
+      "address": "0x005b0c20", 
+      "type": null, 
+      "name": "DAT_005b0c20"
+    }, 
+    {
+      "address": "0x005b0c04", 
+      "type": null, 
+      "name": "s_SOFTWARE\\SOFTSTAR\\PAL3_SAVE_005b0c04"
+    }, 
+    {
+      "address": "0x005ae3c4", 
+      "type": null, 
+      "name": "PTR_s_wa030_005ae3c4"
+    }, 
+    {
+      "address": "0x005836c4", 
+      "type": null, 
+      "name": "s_wa030_005836c4"
+    }, 
+    {
+      "address": "0x00000008", 
+      "type": null, 
+      "name": "DAT_00000008"
+    }, 
+    {
+      "address": "0x00000004", 
+      "type": null, 
+      "name": "DAT_00000004"
+    }
+  ], 
+  "has_custom_name": false, 
+  "decompiled_c": "\r\nundefined4 __thiscall FUN_00456500(int param_1_00,undefined4 param_1,undefined4 param_2)\r\n\r\n{\r\n  int iVar1;\r\n  undefined *puVar2;\r\n  undefined4 uVar3;\r\n  \r\n  if (*(int *)(param_1_00 + 0x1fd38) != 0) {\r\n    return 1;\r\n  }\r\n  FUN_004562c0();\r\n  FUN_00456280();\r\n  FUN_00455c40();\r\n  iVar1 = FUN_004a1cf0();\r\n  if (iVar1 == 0) {\r\n    FUN_00456590(s_SOFTWARE_SOFTSTAR_PAL3_SAVE_005b0c04,&DAT_005b0c20,\r\n                 *(undefined4 *)(param_1_00 + 0x1fd34));\r\n    *(undefined4 *)(param_1_00 + 0x1fd38) = 1;\r\n    uVar3 = 1;\r\n    puVar2 = PTR_s_wa030_005ae3c4;\r\n    FUN_0053df70(PTR_s_wa030_005ae3c4,1);\r\n    FUN_0053e2e0(puVar2,uVar3);\r\n    return 1;\r\n  }\r\n  uVar3 = FUN_00445c60(param_1,param_2);\r\n  return uVar3;\r\n}\r\n\r\n", 
+  "is_thunk": false, 
+  "name": "FUN_00456500", 
+  "assembly": "  00456500:  PUSH ESI\n  00456501:  MOV ESI,ECX\n  00456503:  MOV EAX,dword ptr [ESI + 0x1fd38]\n  00456509:  TEST EAX,EAX\n  0045650b:  JZ 0x00456516\n  0045650d:  MOV EAX,0x1\n  00456512:  POP ESI\n  00456513:  RET 0x8\n  00456516:  MOV ECX,ESI\n  00456518:  CALL 0x004562c0\n  0045651d:  MOV ECX,ESI\n  0045651f:  CALL 0x00456280\n  00456524:  MOV ECX,ESI\n  00456526:  CALL 0x00455c40\n  0045652b:  LEA ECX,[ESI + 0x1fd3c]\n  00456531:  CALL 0x004a1cf0\n  00456536:  TEST EAX,EAX\n  00456538:  JNZ 0x0045657b\n  0045653a:  MOV EAX,dword ptr [ESI + 0x1fd34]\n  00456540:  PUSH EAX\n  00456541:  PUSH 0x5b0c20\n  00456546:  PUSH 0x5b0c04\n  0045654b:  CALL 0x00456590\n  00456550:  ADD ESP,0xc\n  00456553:  MOV dword ptr [ESI + 0x1fd38],0x1\n  0045655d:  MOV ECX,dword ptr [0x005ae3c4]\n  00456563:  PUSH 0x1\n  00456565:  PUSH ECX\n  00456566:  CALL 0x0053df70\n  0045656b:  MOV ECX,EAX\n  0045656d:  CALL 0x0053e2e0\n  00456572:  MOV EAX,0x1\n  00456577:  POP ESI\n  00456578:  RET 0x8\n  0045657b:  MOV EDX,dword ptr [ESP + 0xc]\n  0045657f:  MOV EAX,dword ptr [ESP + 0x8]\n  00456583:  PUSH EDX\n  00456584:  PUSH EAX\n  00456585:  MOV ECX,ESI\n  00456587:  CALL 0x00445c60\n  0045658c:  POP ESI\n  0045658d:  RET 0x8", 
+  "callers": []
+}

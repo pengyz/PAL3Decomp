@@ -1,0 +1,126 @@
+{
+  "address": "0x0052f350", 
+  "size_bytes": 535, 
+  "calling_convention": "unknown", 
+  "signature": "undefined FUN_0052f350(undefined4 param_1)", 
+  "callees": [
+    {
+      "address": "0x004323c0", 
+      "name": "FUN_004323c0"
+    }, 
+    {
+      "address": "0x0052f570", 
+      "name": "FUN_0052f570"
+    }, 
+    {
+      "address": "0x0044f610", 
+      "name": "FUN_0044f610"
+    }, 
+    {
+      "address": "0x00432170", 
+      "name": "FUN_00432170"
+    }, 
+    {
+      "address": "0x0053df70", 
+      "name": "FUN_0053df70"
+    }, 
+    {
+      "address": "0x0053e500", 
+      "name": "FUN_0053e500"
+    }, 
+    {
+      "address": "0x00000084", 
+      "name": "StopSoundStream"
+    }, 
+    {
+      "address": "0x0053ea60", 
+      "name": "FUN_0053ea60"
+    }, 
+    {
+      "address": "0x0053e950", 
+      "name": "FUN_0053e950"
+    }, 
+    {
+      "address": "0x004be590", 
+      "name": "FUN_004be590"
+    }, 
+    {
+      "address": "0x004be1a0", 
+      "name": "FUN_004be1a0"
+    }, 
+    {
+      "address": "0x0052ebe0", 
+      "name": "FUN_0052ebe0"
+    }, 
+    {
+      "address": "0x00531260", 
+      "name": "FUN_00531260"
+    }, 
+    {
+      "address": "0x005303c0", 
+      "name": "FUN_005303c0"
+    }, 
+    {
+      "address": "0x0052fe30", 
+      "name": "FUN_0052fe30"
+    }
+  ], 
+  "global_refs": [
+    {
+      "address": "0x00000004", 
+      "type": null, 
+      "name": "DAT_00000004"
+    }, 
+    {
+      "address": "0x005a0d68", 
+      "type": null, 
+      "name": "s_S_GAME_C_005a0d68"
+    }, 
+    {
+      "address": "0x00583a28", 
+      "type": null, 
+      "name": "s_SOFTWARE\\SOFTSTAR\\PAL3_S_GAME_00583a28"
+    }, 
+    {
+      "address": "0x00db9fd0", 
+      "type": null, 
+      "name": "DAT_00db9fd0"
+    }, 
+    {
+      "address": "0x00dba254", 
+      "type": null, 
+      "name": "DAT_00dba254"
+    }, 
+    {
+      "address": "0x005833bc", 
+      "type": null, 
+      "name": "DAT_005833bc"
+    }, 
+    {
+      "address": "0x0056a224", 
+      "type": null, 
+      "name": "PTR_StopSoundStream_0056a224"
+    }, 
+    {
+      "address": "0x-0000008", 
+      "type": null, 
+      "name": "DAT_-0000008"
+    }, 
+    {
+      "address": "0x-0000004", 
+      "type": null, 
+      "name": "DAT_-0000004"
+    }, 
+    {
+      "address": "0x005f4b9c", 
+      "type": null, 
+      "name": "DAT_005f4b9c"
+    }
+  ], 
+  "has_custom_name": false, 
+  "decompiled_c": "\r\n/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */\r\n\r\nvoid __thiscall FUN_0052f350(int param_1_00,float param_1)\r\n\r\n{\r\n  float fVar1;\r\n  uint uVar2;\r\n  int iVar3;\r\n  gbAudioManager *this;\r\n  float *pfVar4;\r\n  uint uVar5;\r\n  undefined4 uVar6;\r\n  \r\n  FUN_004323c0(param_1);\r\n  if (*(char *)(param_1_00 + 0x18) == '\\0') {\r\n    if (*(char *)(param_1_00 + 0x125) == '\\0') {\r\n      if (*(char *)(param_1_00 + 0x124) != '\\0') {\r\n        *(undefined *)(param_1_00 + 0x124) = 0;\r\n      }\r\n      *(float *)(*(int *)(param_1_00 + 0x114) + *(int *)(param_1_00 + 0x11c) * 4) = param_1;\r\n      uVar5 = *(int *)(param_1_00 + 0x11c) + 1;\r\n      *(uint *)(param_1_00 + 0x11c) = uVar5;\r\n      if (*(char *)(param_1_00 + 0x126) == '\\0') {\r\n        *(bool *)(param_1_00 + 0x126) = *(uint *)(param_1_00 + 0x110) <= uVar5;\r\n      }\r\n      uVar2 = *(uint *)(param_1_00 + 0x110);\r\n      *(undefined4 *)(param_1_00 + 0x118) = 0;\r\n      *(uint *)(param_1_00 + 0x11c) = -(uint)(uVar5 < uVar2) & uVar5;\r\n      if (uVar2 != 0) {\r\n        pfVar4 = *(float **)(param_1_00 + 0x114);\r\n        uVar5 = uVar2;\r\n        do {\r\n          fVar1 = *pfVar4;\r\n          pfVar4 = pfVar4 + 1;\r\n          uVar5 = uVar5 - 1;\r\n          *(float *)(param_1_00 + 0x118) = fVar1 + *(float *)(param_1_00 + 0x118);\r\n        } while (uVar5 != 0);\r\n      }\r\n      param_1 = *(float *)(param_1_00 + 0x118) / (float)uVar2;\r\n    }\r\n    if (*(char *)(param_1_00 + 0x128) == '\\0') {\r\n      if (*(char *)(param_1_00 + 0x126) == '\\0') {\r\n        param_1 = 1.0;\r\n      }\r\n      else {\r\n        param_1 = _DAT_005f4b9c * param_1;\r\n        *(undefined *)(param_1_00 + 0x128) = 1;\r\n      }\r\n    }\r\n    else {\r\n      param_1 = _DAT_005f4b9c * param_1;\r\n    }\r\n    FUN_0052ebe0(param_1);\r\n    FUN_00531260(param_1);\r\n    FUN_005303c0(param_1);\r\n    FUN_0052fe30(param_1);\r\n  }\r\n  else if ((*(int **)(param_1_00 + 0x14) != (int *)0x0) &&\r\n          (iVar3 = (**(code **)(**(int **)(param_1_00 + 0x14) + 4))(), iVar3 == 0)) {\r\n    FUN_0052f570(s_SOFTWARE_SOFTSTAR_PAL3_S_GAME_00583a28,s_S_GAME_C_005a0d68,1);\r\n    FUN_0044f610(*(undefined4 *)(param_1_00 + 300));\r\n    if (*(int *)(param_1_00 + 300) != 0) {\r\n      uVar6 = 2;\r\n      FUN_004be590(2);\r\n      FUN_004be1a0(uVar6);\r\n      return;\r\n    }\r\n    FUN_00432170(DAT_00dba254,0);\r\n    if ((DAT_005833bc & 4) != 0) {\r\n      FUN_0053df70();\r\n      this = (gbAudioManager *)FUN_0053e500();\r\n      if (this != (gbAudioManager *)0x0) {\r\n        gbAudioManager::StopSoundStream(this,1);\r\n        gbAudioManager::StopSoundStream(this,2);\r\n      }\r\n      iVar3 = FUN_0053df70();\r\n      if (*(char *)(iVar3 + 4) == '\\0') {\r\n        FUN_0053df70();\r\n        FUN_0053e950();\r\n        return;\r\n      }\r\n      FUN_0053df70();\r\n      FUN_0053ea60();\r\n      return;\r\n    }\r\n  }\r\n  return;\r\n}\r\n\r\n", 
+  "is_thunk": false, 
+  "name": "FUN_0052f350", 
+  "assembly": "  0052f350:  MOV EAX,dword ptr [ESP + 0x4]\n  0052f354:  SUB ESP,0x8\n  0052f357:  PUSH ESI\n  0052f358:  PUSH EDI\n  0052f359:  MOV ESI,ECX\n  0052f35b:  PUSH EAX\n  0052f35c:  CALL 0x004323c0\n  0052f361:  MOV AL,byte ptr [ESI + 0x18]\n  0052f364:  ADD ESP,0x4\n  0052f367:  TEST AL,AL\n  0052f369:  JZ 0x0052f442\n  0052f36f:  MOV ECX,dword ptr [ESI + 0x14]\n  0052f372:  TEST ECX,ECX\n  0052f374:  JZ 0x0052f55f\n  0052f37a:  MOV EDX,dword ptr [ECX]\n  0052f37c:  CALL dword ptr [EDX + 0x4]\n  0052f37f:  TEST EAX,EAX\n  0052f381:  JNZ 0x0052f55f\n  0052f387:  PUSH 0x1\n  0052f389:  PUSH 0x5a0d68\n  0052f38e:  PUSH 0x583a28\n  0052f393:  CALL 0x0052f570\n  0052f398:  MOV EAX,dword ptr [ESI + 0x12c]\n  0052f39e:  ADD ESP,0xc\n  0052f3a1:  MOV ECX,0xdb9fd0\n  0052f3a6:  PUSH EAX\n  0052f3a7:  CALL 0x0044f610\n  0052f3ac:  MOV EAX,dword ptr [ESI + 0x12c]\n  0052f3b2:  TEST EAX,EAX\n  0052f3b4:  JNZ 0x0052f42c\n  0052f3b6:  MOV ECX,dword ptr [0x00dba254]\n  0052f3bc:  PUSH 0x0\n  0052f3be:  PUSH ECX\n  0052f3bf:  CALL 0x00432170\n  0052f3c4:  MOV AL,[0x005833bc]\n  0052f3c9:  ADD ESP,0x8\n  0052f3cc:  TEST AL,0x4\n  0052f3ce:  JZ 0x0052f55f\n  0052f3d4:  CALL 0x0053df70\n  0052f3d9:  MOV ECX,EAX\n  0052f3db:  CALL 0x0053e500\n  0052f3e0:  MOV ESI,EAX\n  0052f3e2:  TEST ESI,ESI\n  0052f3e4:  JZ 0x0052f3f8\n  0052f3e6:  MOV EDI,dword ptr [0x0056a224]\n  0052f3ec:  PUSH 0x1\n  0052f3ee:  MOV ECX,ESI\n  0052f3f0:  CALL EDI\n  0052f3f2:  PUSH 0x2\n  0052f3f4:  MOV ECX,ESI\n  0052f3f6:  CALL EDI\n  0052f3f8:  CALL 0x0053df70\n  0052f3fd:  MOV CL,byte ptr [EAX + 0x4]\n  0052f400:  TEST CL,CL\n  0052f402:  JZ 0x0052f418\n  0052f404:  CALL 0x0053df70\n  0052f409:  MOV ECX,EAX\n  0052f40b:  CALL 0x0053ea60\n  0052f410:  POP EDI\n  0052f411:  POP ESI\n  0052f412:  ADD ESP,0x8\n  0052f415:  RET 0x4\n  0052f418:  CALL 0x0053df70\n  0052f41d:  MOV ECX,EAX\n  0052f41f:  CALL 0x0053e950\n  0052f424:  POP EDI\n  0052f425:  POP ESI\n  0052f426:  ADD ESP,0x8\n  0052f429:  RET 0x4\n  0052f42c:  PUSH 0x2\n  0052f42e:  CALL 0x004be590\n  0052f433:  MOV ECX,EAX\n  0052f435:  CALL 0x004be1a0\n  0052f43a:  POP EDI\n  0052f43b:  POP ESI\n  0052f43c:  ADD ESP,0x8\n  0052f43f:  RET 0x4\n  0052f442:  MOV AL,byte ptr [ESI + 0x125]\n  0052f448:  TEST AL,AL\n  0052f44a:  JZ 0x0052f455\n  0052f44c:  FLD dword ptr [ESP + 0x14]\n  0052f450:  JMP 0x0052f4f3\n  0052f455:  MOV AL,byte ptr [ESI + 0x124]\n  0052f45b:  TEST AL,AL\n  0052f45d:  JZ 0x0052f466\n  0052f45f:  MOV byte ptr [ESI + 0x124],0x0\n  0052f466:  MOV EDX,dword ptr [ESI + 0x11c]\n  0052f46c:  MOV EAX,dword ptr [ESI + 0x114]\n  0052f472:  FLD dword ptr [ESP + 0x14]\n  0052f476:  FSTP dword ptr [EAX + EDX*0x4]\n  0052f479:  MOV ECX,dword ptr [ESI + 0x11c]\n  0052f47f:  MOV AL,byte ptr [ESI + 0x126]\n  0052f485:  INC ECX\n  0052f486:  TEST AL,AL\n  0052f488:  MOV dword ptr [ESI + 0x11c],ECX\n  0052f48e:  MOV EDX,ECX\n  0052f490:  JNZ 0x0052f4a1\n  0052f492:  CMP EDX,dword ptr [ESI + 0x110]\n  0052f498:  SETNC CL\n  0052f49b:  MOV byte ptr [ESI + 0x126],CL\n  0052f4a1:  MOV ECX,dword ptr [ESI + 0x110]\n  0052f4a7:  MOV dword ptr [ESI + 0x118],0x0\n  0052f4b1:  CMP EDX,ECX\n  0052f4b3:  SBB EAX,EAX\n  0052f4b5:  AND EAX,EDX\n  0052f4b7:  TEST ECX,ECX\n  0052f4b9:  MOV dword ptr [ESI + 0x11c],EAX\n  0052f4bf:  JBE 0x0052f4dd\n  0052f4c1:  MOV EAX,dword ptr [ESI + 0x114]\n  0052f4c7:  MOV EDX,ECX\n  0052f4c9:  FLD dword ptr [EAX]\n  0052f4cb:  FADD dword ptr [ESI + 0x118]\n  0052f4d1:  ADD EAX,0x4\n  0052f4d4:  DEC EDX\n  0052f4d5:  FSTP dword ptr [ESI + 0x118]\n  0052f4db:  JNZ 0x0052f4c9\n  0052f4dd:  MOV dword ptr [ESP + 0x8],ECX\n  0052f4e1:  MOV dword ptr [ESP + 0xc],0x0\n  0052f4e9:  FILD qword ptr [ESP + 0x8]\n  0052f4ed:  FDIVR dword ptr [ESI + 0x118]\n  0052f4f3:  MOV AL,byte ptr [ESI + 0x128]\n  0052f4f9:  TEST AL,AL\n  0052f4fb:  JNZ 0x0052f52a\n  0052f4fd:  MOV AL,byte ptr [ESI + 0x126]\n  0052f503:  TEST AL,AL\n  0052f505:  JNZ 0x0052f513\n  0052f507:  FSTP ST0\n  0052f509:  MOV dword ptr [ESP + 0x14],0x3f800000\n  0052f511:  JMP 0x0052f538\n  0052f513:  FLD dword ptr [0x005f4b9c]\n  0052f519:  FMUL ST1\n  0052f51b:  MOV byte ptr [ESI + 0x128],0x1\n  0052f522:  FSTP dword ptr [ESP + 0x14]\n  0052f526:  FSTP ST0\n  0052f528:  JMP 0x0052f538\n  0052f52a:  FLD dword ptr [0x005f4b9c]\n  0052f530:  FMUL ST1\n  0052f532:  FSTP dword ptr [ESP + 0x14]\n  0052f536:  FSTP ST0\n  0052f538:  MOV EDI,dword ptr [ESP + 0x14]\n  0052f53c:  MOV ECX,dword ptr [ESI + 0x4]\n  0052f53f:  PUSH EDI\n  0052f540:  CALL 0x0052ebe0\n  0052f545:  MOV ECX,dword ptr [ESI]\n  0052f547:  PUSH EDI\n  0052f548:  CALL 0x00531260\n  0052f54d:  MOV ECX,dword ptr [ESI + 0xc]\n  0052f550:  PUSH EDI\n  0052f551:  CALL 0x005303c0\n  0052f556:  MOV ECX,dword ptr [ESI + 0x10]\n  0052f559:  PUSH EDI\n  0052f55a:  CALL 0x0052fe30\n  0052f55f:  POP EDI\n  0052f560:  POP ESI\n  0052f561:  ADD ESP,0x8\n  0052f564:  RET 0x4", 
+  "callers": []
+}

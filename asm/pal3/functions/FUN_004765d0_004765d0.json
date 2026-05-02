@@ -1,0 +1,19 @@
+{
+  "address": "0x004765d0", 
+  "size_bytes": 23, 
+  "calling_convention": "unknown", 
+  "signature": "undefined FUN_004765d0(void)", 
+  "callees": [
+    {
+      "address": "0x00476010", 
+      "name": "FUN_00476010"
+    }
+  ], 
+  "global_refs": [], 
+  "has_custom_name": false, 
+  "decompiled_c": "\r\nvoid FUN_004765d0(void)\r\n\r\n{\r\n  int iVar1;\r\n  \r\n  iVar1 = 0;\r\n  do {\r\n    FUN_00476010(iVar1);\r\n    iVar1 = iVar1 + 1;\r\n  } while (iVar1 < 6);\r\n  return;\r\n}\r\n\r\n", 
+  "is_thunk": false, 
+  "name": "FUN_004765d0", 
+  "assembly": "  004765d0:  PUSH ESI\n  004765d1:  PUSH EDI\n  004765d2:  MOV EDI,ECX\n  004765d4:  XOR ESI,ESI\n  004765d6:  PUSH ESI\n  004765d7:  MOV ECX,EDI\n  004765d9:  CALL 0x00476010\n  004765de:  INC ESI\n  004765df:  CMP ESI,0x6\n  004765e2:  JL 0x004765d6\n  004765e4:  POP EDI\n  004765e5:  POP ESI\n  004765e6:  RET", 
+  "callers": []
+}

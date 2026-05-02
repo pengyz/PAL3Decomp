@@ -1,0 +1,129 @@
+{
+  "address": "0x004d6050",
+  "size_bytes": 330,
+  "calling_convention": "unknown",
+  "signature": "undefined FUN_004d6050(undefined4 param_1, undefined4 param_2, undefined4 param_3, undefined4 param_4)",
+  "callees": [
+    {
+      "address": "0x005541f8",
+      "name": "FUN_005541f8"
+    },
+    {
+      "address": "0x004d5ec0",
+      "name": "FUN_004d5ec0"
+    }
+  ],
+  "global_refs": [
+    {
+      "address": "0x00000010",
+      "type": null,
+      "name": "DAT_00000010"
+    },
+    {
+      "address": "0x0056a610",
+      "type": null,
+      "name": "DAT_0056a610"
+    },
+    {
+      "address": "0x00000004",
+      "type": null,
+      "name": "DAT_00000004"
+    },
+    {
+      "address": "0x017a8170",
+      "type": null,
+      "name": "DAT_017a8170"
+    },
+    {
+      "address": "0x017a8168",
+      "type": null,
+      "name": "DAT_017a8168"
+    },
+    {
+      "address": "0x017a8158",
+      "type": null,
+      "name": "DAT_017a8158"
+    },
+    {
+      "address": "0x017a815c",
+      "type": null,
+      "name": "DAT_017a815c"
+    },
+    {
+      "address": "0x017a8160",
+      "type": null,
+      "name": "DAT_017a8160"
+    },
+    {
+      "address": "0x017a8164",
+      "type": null,
+      "name": "DAT_017a8164"
+    },
+    {
+      "address": "0x-0000004",
+      "type": null,
+      "name": "DAT_-0000004"
+    },
+    {
+      "address": "0x00000008",
+      "type": null,
+      "name": "DAT_00000008"
+    },
+    {
+      "address": "0x017a816c",
+      "type": null,
+      "name": "DAT_017a816c"
+    },
+    {
+      "address": "0x017a8174",
+      "type": null,
+      "name": "DAT_017a8174"
+    },
+    {
+      "address": "0x017a8178",
+      "type": null,
+      "name": "DAT_017a8178"
+    },
+    {
+      "address": "0x0056fb84",
+      "type": null,
+      "name": "DAT_0056fb84"
+    },
+    {
+      "address": "0x0000000c",
+      "type": null,
+      "name": "DAT_0000000c"
+    },
+    {
+      "address": "0x017a8150",
+      "type": null,
+      "name": "DAT_017a8150"
+    },
+    {
+      "address": "0x017a8154",
+      "type": null,
+      "name": "DAT_017a8154"
+    },
+    {
+      "address": "0x0056fb80",
+      "type": null,
+      "name": "DAT_0056fb80"
+    }
+  ],
+  "has_custom_name": false,
+  "decompiled_c": "\r\n/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */\r\n\r\nvoid FUN_004d6050(int param_1,int param_2,int param_3,float param_4)\r\n\r\n{\r\n  float fVar1;\r\n  int iVar2;\r\n  \r\n  fVar1 = param_4 * _DAT_0056a610;\r\n  _DAT_017a8170 = param_4;\r\n  _DAT_017a8168 = 200.0;\r\n  _DAT_017a8158 = 0;\r\n  _DAT_017a815c = 0xc1200000;\r\n  _DAT_017a8160 = 0;\r\n  _DAT_017a8164 = -50.0;\r\n  _DAT_017a816c = 0xc2c80000;\r\n  _DAT_017a8174 = 0;\r\n  DAT_017a8178 = 2;\r\n  iVar2 = FUN_005541f8();\r\n  _DAT_017a8168 = _DAT_0056fb84 - (float)(iVar2 % 0x32);\r\n  iVar2 = FUN_005541f8();\r\n  _DAT_017a8150 =\r\n       (((float)param_1 - fVar1) - (float)param_3 * _DAT_0056a610) + (float)(iVar2 % param_3);\r\n  iVar2 = FUN_005541f8();\r\n  _DAT_017a8154 = (((float)param_2 - fVar1) - (float)param_3) + (float)(iVar2 % (param_3 * 2));\r\n  if (_DAT_0056fb80 <= param_4) {\r\n    iVar2 = FUN_005541f8();\r\n    iVar2 = iVar2 % 100;\r\n  }\r\n  else {\r\n    iVar2 = FUN_005541f8();\r\n    iVar2 = iVar2 % 0x32;\r\n  }\r\n  _DAT_017a8164 = (float)-iVar2;\r\n  FUN_004d5ec0(&DAT_017a8150);\r\n  return;\r\n}\r\n\r\n",
+  "is_thunk": false,
+  "name": "C2DSpark_CreateStars",
+  "assembly": "  004d6050:  PUSH ECX\n  004d6051:  FLD dword ptr [ESP + 0x14]\n  004d6055:  FMUL dword ptr [0x0056a610]\n  004d605b:  FILD dword ptr [ESP + 0x8]\n  004d605f:  MOV EAX,dword ptr [ESP + 0x14]\n  004d6063:  PUSH ESI\n  004d6064:  PUSH EDI\n  004d6065:  MOV EDI,ECX\n  004d6067:  FSUB ST0,ST1\n  004d6069:  MOV [0x017a8170],EAX\n  004d606e:  MOV dword ptr [0x017a8168],0x43480000\n  004d6078:  MOV dword ptr [0x017a8158],0x0\n  004d6082:  MOV dword ptr [0x017a815c],0xc1200000\n  004d608c:  MOV dword ptr [0x017a8160],0x0\n  004d6096:  MOV dword ptr [0x017a8164],0xc2480000\n  004d60a0:  FSTP dword ptr [ESP + 0x8]\n  004d60a4:  FILD dword ptr [ESP + 0x14]\n  004d60a8:  MOV dword ptr [0x017a816c],0xc2c80000\n  004d60b2:  MOV dword ptr [0x017a8174],0x0\n  004d60bc:  MOV byte ptr [0x017a8178],0x2\n  004d60c3:  FSUB ST0,ST1\n  004d60c5:  FSTP dword ptr [ESP + 0x14]\n  004d60c9:  FSTP ST0\n  004d60cb:  CALL 0x005541f8\n  004d60d0:  CDQ\n  004d60d1:  MOV ECX,0x32\n  004d60d6:  IDIV ECX\n  004d60d8:  MOV dword ptr [ESP + 0x10],EDX\n  004d60dc:  FILD dword ptr [ESP + 0x10]\n  004d60e0:  FSUBR dword ptr [0x0056fb84]\n  004d60e6:  FSTP dword ptr [0x017a8168]\n  004d60ec:  FILD dword ptr [ESP + 0x18]\n  004d60f0:  FSTP dword ptr [ESP + 0x10]\n  004d60f4:  CALL 0x005541f8\n  004d60f9:  MOV ESI,dword ptr [ESP + 0x18]\n  004d60fd:  CDQ\n  004d60fe:  IDIV ESI\n  004d6100:  MOV dword ptr [ESP + 0x18],EDX\n  004d6104:  FILD dword ptr [ESP + 0x18]\n  004d6108:  FLD dword ptr [ESP + 0x10]\n  004d610c:  FMUL dword ptr [0x0056a610]\n  004d6112:  FSUBR dword ptr [ESP + 0x8]\n  004d6116:  FADDP\n  004d6118:  FSTP dword ptr [0x017a8150]\n  004d611e:  CALL 0x005541f8\n  004d6123:  CDQ\n  004d6124:  LEA ECX,[ESI + ESI*0x1]\n  004d6127:  IDIV ECX\n  004d6129:  MOV dword ptr [ESP + 0x18],EDX\n  004d612d:  FILD dword ptr [ESP + 0x18]\n  004d6131:  FLD dword ptr [ESP + 0x14]\n  004d6135:  FSUB dword ptr [ESP + 0x10]\n  004d6139:  FADDP\n  004d613b:  FSTP dword ptr [0x017a8154]\n  004d6141:  FLD dword ptr [ESP + 0x1c]\n  004d6145:  FCOMP dword ptr [0x0056fb80]\n  004d614b:  FNSTSW AX\n  004d614d:  TEST AH,0x1\n  004d6150:  JZ 0x004d616b\n  004d6152:  CALL 0x005541f8\n  004d6157:  CDQ\n  004d6158:  MOV ECX,0x32\n  004d615d:  IDIV ECX\n  004d615f:  NEG EDX\n  004d6161:  MOV dword ptr [ESP + 0x1c],EDX\n  004d6165:  FILD dword ptr [ESP + 0x1c]\n  004d6169:  JMP 0x004d6182\n  004d616b:  CALL 0x005541f8\n  004d6170:  CDQ\n  004d6171:  MOV ECX,0x64\n  004d6176:  IDIV ECX\n  004d6178:  NEG EDX\n  004d617a:  MOV dword ptr [ESP + 0x1c],EDX\n  004d617e:  FILD dword ptr [ESP + 0x1c]\n  004d6182:  FSTP dword ptr [0x017a8164]\n  004d6188:  PUSH 0x17a8150\n  004d618d:  MOV ECX,EDI\n  004d618f:  CALL 0x004d5ec0\n  004d6194:  POP EDI\n  004d6195:  POP ESI\n  004d6196:  POP ECX\n  004d6197:  RET 0x10",
+  "callers": [
+    {
+      "address": "0x004f8480",
+      "name": "FUN_004f8480"
+    }
+  ],
+  "pal3patch_info": {
+    "name": "C2DSpark_CreateStars",
+    "type": "method",
+    "source": "pal3.h"
+  }
+}

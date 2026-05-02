@@ -1,0 +1,133 @@
+{
+  "address": "0x004507f0", 
+  "size_bytes": 268, 
+  "calling_convention": "unknown", 
+  "signature": "undefined FUN_004507f0(void)", 
+  "callees": [
+    {
+      "address": "0x0043dd60", 
+      "name": "FUN_0043dd60"
+    }, 
+    {
+      "address": "0x0043fa00", 
+      "name": "FUN_0043fa00"
+    }, 
+    {
+      "address": "0x0043fae0", 
+      "name": "FUN_0043fae0"
+    }, 
+    {
+      "address": "0x0043fbc0", 
+      "name": "FUN_0043fbc0"
+    }, 
+    {
+      "address": "0x0043fdb0", 
+      "name": "FUN_0043fdb0"
+    }, 
+    {
+      "address": "0x0043fdd0", 
+      "name": "FUN_0043fdd0"
+    }, 
+    {
+      "address": "0x0043fde0", 
+      "name": "FUN_0043fde0"
+    }, 
+    {
+      "address": "0x0043fdc0", 
+      "name": "FUN_0043fdc0"
+    }
+  ], 
+  "global_refs": [
+    {
+      "address": "0x00bfd6d0", 
+      "type": null, 
+      "name": "DAT_00bfd6d0"
+    }, 
+    {
+      "address": "0x00bfd6d4", 
+      "type": null, 
+      "name": "DAT_00bfd6d4"
+    }, 
+    {
+      "address": "0x-0000030", 
+      "type": null, 
+      "name": "DAT_-0000030"
+    }, 
+    {
+      "address": "0x-000002c", 
+      "type": null, 
+      "name": "DAT_-000002c"
+    }, 
+    {
+      "address": "0x-0000028", 
+      "type": null, 
+      "name": "DAT_-0000028"
+    }, 
+    {
+      "address": "0x-0000024", 
+      "type": null, 
+      "name": "DAT_-0000024"
+    }, 
+    {
+      "address": "0x-0000010", 
+      "type": null, 
+      "name": "DAT_-0000010"
+    }, 
+    {
+      "address": "0x-000000c", 
+      "type": null, 
+      "name": "DAT_-000000c"
+    }, 
+    {
+      "address": "0x-0000008", 
+      "type": null, 
+      "name": "DAT_-0000008"
+    }, 
+    {
+      "address": "0x-0000004", 
+      "type": null, 
+      "name": "DAT_-0000004"
+    }, 
+    {
+      "address": "0x005a6234", 
+      "type": null, 
+      "name": "PTR_s_UI\\Loading\\loading_1.tga_005a6234"
+    }, 
+    {
+      "address": "0x0058b74c", 
+      "type": null, 
+      "name": "s_UI\\Loading\\loading_1.tga_0058b74c"
+    }, 
+    {
+      "address": "0x005a6238", 
+      "type": null, 
+      "name": "PTR_s_UI\\Loading\\loading_2.tga_005a6238"
+    }, 
+    {
+      "address": "0x0058b730", 
+      "type": null, 
+      "name": "s_UI\\Loading\\loading_2.tga_0058b730"
+    }, 
+    {
+      "address": "0x005a623c", 
+      "type": null, 
+      "name": "PTR_s_UI\\Loading\\loading_3.tga_005a623c"
+    }, 
+    {
+      "address": "0x0058b714", 
+      "type": null, 
+      "name": "s_UI\\Loading\\loading_3.tga_0058b714"
+    }
+  ], 
+  "has_custom_name": false, 
+  "decompiled_c": "\r\nvoid __fastcall FUN_004507f0(int param_1)\r\n\r\n{\r\n  undefined4 local_10;\r\n  undefined4 local_c;\r\n  undefined4 local_8;\r\n  undefined4 local_4;\r\n  \r\n  FUN_0043dd60(0,0,0,DAT_00bfd6d0,DAT_00bfd6d4,0);\r\n  local_c = 0x208;\r\n  local_10 = 0xce;\r\n  local_8 = 0x23a;\r\n  local_4 = 0x224;\r\n  (**(code **)(*(int *)(param_1 + 0x48) + 0x10))(0,&local_10,param_1);\r\n  FUN_0043fa00(PTR_s_UI_Loading_loading_1_tga_005a6234,0);\r\n  FUN_0043fae0(PTR_s_UI_Loading_loading_2_tga_005a6238,0);\r\n  FUN_0043fbc0(PTR_s_UI_Loading_loading_3_tga_005a623c,0);\r\n  *(undefined4 *)(param_1 + 0x10c) = 0x58;\r\n  *(undefined4 *)(param_1 + 0x110) = 0x40;\r\n  *(undefined4 *)(param_1 + 0x114) = 0;\r\n  *(undefined4 *)(param_1 + 0x118) = 0xffffffec;\r\n  FUN_0043fdb0(4);\r\n  FUN_0043fdd0(10);\r\n  FUN_0043fde0(6);\r\n  FUN_0043fdc0(6);\r\n  *(undefined4 *)(param_1 + 0xb8) = 0x40c00000;\r\n  *(undefined *)(param_1 + 0x148) = 0;\r\n  *(undefined4 *)(param_1 + 0x13c) = 0;\r\n  *(undefined4 *)(param_1 + 0x140) = 1;\r\n  return;\r\n}\r\n\r\n", 
+  "is_thunk": false, 
+  "name": "FUN_004507f0", 
+  "assembly": "  004507f0:  SUB ESP,0x10\n  004507f3:  PUSH EBP\n  004507f4:  PUSH ESI\n  004507f5:  PUSH EDI\n  004507f6:  MOV EDI,ECX\n  004507f8:  XOR ECX,ECX\n  004507fa:  MOV EDX,dword ptr [0x00bfd6d0]\n  00450800:  PUSH ECX\n  00450801:  MOV ESI,dword ptr [0x00bfd6d4]\n  00450807:  SUB ESP,0x10\n  0045080a:  XOR EAX,EAX\n  0045080c:  MOV EBP,ESP\n  0045080e:  PUSH ECX\n  0045080f:  MOV dword ptr [EBP],ECX\n  00450812:  MOV ECX,EDI\n  00450814:  MOV dword ptr [EBP + 0x4],EAX\n  00450817:  MOV dword ptr [EBP + 0x8],EDX\n  0045081a:  MOV dword ptr [EBP + 0xc],ESI\n  0045081d:  CALL 0x0043dd60\n  00450822:  MOV EAX,dword ptr [EDI + 0x48]\n  00450825:  LEA ESI,[EDI + 0x48]\n  00450828:  LEA ECX,[ESP + 0xc]\n  0045082c:  PUSH EDI\n  0045082d:  PUSH ECX\n  0045082e:  PUSH 0x0\n  00450830:  MOV ECX,ESI\n  00450832:  MOV dword ptr [ESP + 0x1c],0x208\n  0045083a:  MOV dword ptr [ESP + 0x18],0xce\n  00450842:  MOV dword ptr [ESP + 0x20],0x23a\n  0045084a:  MOV dword ptr [ESP + 0x24],0x224\n  00450852:  CALL dword ptr [EAX + 0x10]\n  00450855:  MOV EDX,dword ptr [0x005a6234]\n  0045085b:  PUSH 0x0\n  0045085d:  PUSH EDX\n  0045085e:  MOV ECX,ESI\n  00450860:  CALL 0x0043fa00\n  00450865:  MOV EAX,[0x005a6238]\n  0045086a:  PUSH 0x0\n  0045086c:  PUSH EAX\n  0045086d:  MOV ECX,ESI\n  0045086f:  CALL 0x0043fae0\n  00450874:  MOV ECX,dword ptr [0x005a623c]\n  0045087a:  PUSH 0x0\n  0045087c:  PUSH ECX\n  0045087d:  MOV ECX,ESI\n  0045087f:  CALL 0x0043fbc0\n  00450884:  MOV dword ptr [ESI + 0xc4],0x58\n  0045088e:  MOV dword ptr [ESI + 0xc8],0x40\n  00450898:  PUSH 0x4\n  0045089a:  MOV ECX,ESI\n  0045089c:  MOV dword ptr [ESI + 0xcc],0x0\n  004508a6:  MOV dword ptr [ESI + 0xd0],0xffffffec\n  004508b0:  CALL 0x0043fdb0\n  004508b5:  PUSH 0xa\n  004508b7:  MOV ECX,ESI\n  004508b9:  CALL 0x0043fdd0\n  004508be:  PUSH 0x6\n  004508c0:  MOV ECX,ESI\n  004508c2:  CALL 0x0043fde0\n  004508c7:  PUSH 0x6\n  004508c9:  MOV ECX,ESI\n  004508cb:  CALL 0x0043fdc0\n  004508d0:  MOV dword ptr [EDI + 0xb8],0x40c00000\n  004508da:  MOV byte ptr [EDI + 0x148],0x0\n  004508e1:  MOV dword ptr [EDI + 0x13c],0x0\n  004508eb:  MOV dword ptr [EDI + 0x140],0x1\n  004508f5:  POP EDI\n  004508f6:  POP ESI\n  004508f7:  POP EBP\n  004508f8:  ADD ESP,0x10\n  004508fb:  RET", 
+  "callers": [
+    {
+      "address": "0x0044f8d0", 
+      "name": "FUN_0044f8d0"
+    }
+  ]
+}

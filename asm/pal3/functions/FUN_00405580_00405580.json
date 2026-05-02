@@ -1,0 +1,29 @@
+{
+  "address": "0x00405580", 
+  "size_bytes": 31, 
+  "calling_convention": "unknown", 
+  "signature": "undefined FUN_00405580(void)", 
+  "callees": [
+    {
+      "address": "0x00000083", 
+      "name": "~gbRain"
+    }, 
+    {
+      "address": "0x00541d10", 
+      "name": "FUN_00541d10"
+    }
+  ], 
+  "global_refs": [
+    {
+      "address": "0x0056a220", 
+      "type": null, 
+      "name": "PTR_~gbRain_0056a220"
+    }
+  ], 
+  "has_custom_name": false, 
+  "decompiled_c": "\r\ngbRain * __thiscall FUN_00405580(gbRain *param_1,byte param_2)\r\n\r\n{\r\n  gbRain::~gbRain(param_1);\r\n  if ((param_2 & 1) != 0) {\r\n    FUN_00541d10(param_1);\r\n  }\r\n  return param_1;\r\n}\r\n\r\n", 
+  "is_thunk": false, 
+  "name": "FUN_00405580", 
+  "assembly": "  00405580:  PUSH ESI\n  00405581:  MOV ESI,ECX\n  00405583:  CALL dword ptr [0x0056a220]\n  00405589:  TEST byte ptr [ESP + 0x8],0x1\n  0040558e:  JZ 0x00405599\n  00405590:  PUSH ESI\n  00405591:  CALL 0x00541d10\n  00405596:  ADD ESP,0x4\n  00405599:  MOV EAX,ESI\n  0040559b:  POP ESI\n  0040559c:  RET 0x4", 
+  "callers": []
+}

@@ -1,0 +1,365 @@
+{
+  "address": "0x0043e120", 
+  "size_bytes": 160, 
+  "calling_convention": "unknown", 
+  "signature": "undefined FUN_0043e120(void)", 
+  "callees": [
+    {
+      "address": "0x0043e520", 
+      "name": "FUN_0043e520"
+    }, 
+    {
+      "address": "0x00541d10", 
+      "name": "FUN_00541d10"
+    }, 
+    {
+      "address": "0x00553549", 
+      "name": "FUN_00553549"
+    }, 
+    {
+      "address": "0x004411d0", 
+      "name": "FUN_004411d0"
+    }, 
+    {
+      "address": "0x00445b40", 
+      "name": "FUN_00445b40"
+    }
+  ], 
+  "global_refs": [
+    {
+      "address": "0x0055fdb9", 
+      "type": null, 
+      "name": "LAB_0055fdb9"
+    }, 
+    {
+      "address": "0xffdff000", 
+      "type": null, 
+      "name": "ExceptionList"
+    }, 
+    {
+      "address": "0x-0000014", 
+      "type": null, 
+      "name": "DAT_-0000014"
+    }, 
+    {
+      "address": "0x0056ad40", 
+      "type": null, 
+      "name": "PTR_FUN_0056ad40"
+    }, 
+    {
+      "address": "0x-0000004", 
+      "type": null, 
+      "name": "DAT_-0000004"
+    }, 
+    {
+      "address": "0x-0000010", 
+      "type": null, 
+      "name": "DAT_-0000010"
+    }, 
+    {
+      "address": "0x0043df20", 
+      "type": null, 
+      "name": "FUN_0043df20"
+    }, 
+    {
+      "address": "0x-000000c", 
+      "type": null, 
+      "name": "DAT_-000000c"
+    }
+  ], 
+  "has_custom_name": false, 
+  "decompiled_c": "\r\nvoid __fastcall FUN_0043e120(undefined4 *param_1)\r\n\r\n{\r\n  void *local_c;\r\n  undefined *puStack_8;\r\n  int local_4;\r\n  \r\n  puStack_8 = &LAB_0055fdb9;\r\n  local_c = ExceptionList;\r\n  ExceptionList = &local_c;\r\n  *param_1 = &PTR_FUN_0056ad40;\r\n  local_4 = 3;\r\n  FUN_0043e520();\r\n  FUN_00541d10(param_1[299]);\r\n  local_4._0_1_ = 1;\r\n  param_1[299] = 0;\r\n  param_1[300] = 0;\r\n  param_1[0x12d] = 0;\r\n  FUN_00553549(param_1 + 0x6d,0x54,8,FUN_0043df20);\r\n  local_4 = (uint)local_4._1_3_ << 8;\r\n  FUN_004411d0();\r\n  local_4 = 0xffffffff;\r\n  FUN_00445b40();\r\n  ExceptionList = local_c;\r\n  return;\r\n}\r\n\r\n", 
+  "is_thunk": false, 
+  "name": "FUN_0043e120", 
+  "assembly": "  0043e120:  PUSH -0x1\n  0043e122:  PUSH 0x55fdb9\n  0043e127:  MOV EAX,FS:[0x0]\n  0043e12d:  PUSH EAX\n  0043e12e:  MOV dword ptr FS:[0x0],ESP\n  0043e135:  SUB ESP,0x8\n  0043e138:  PUSH EBX\n  0043e139:  PUSH ESI\n  0043e13a:  MOV ESI,ECX\n  0043e13c:  MOV dword ptr [ESP + 0x8],ESI\n  0043e140:  MOV dword ptr [ESI],0x56ad40\n  0043e146:  MOV dword ptr [ESP + 0x18],0x3\n  0043e14e:  CALL 0x0043e520\n  0043e153:  MOV EAX,dword ptr [ESI + 0x4ac]\n  0043e159:  PUSH EAX\n  0043e15a:  MOV dword ptr [ESP + 0x10],EAX\n  0043e15e:  CALL 0x00541d10\n  0043e163:  ADD ESP,0x4\n  0043e166:  LEA EAX,[ESI + 0x1b4]\n  0043e16c:  XOR EBX,EBX\n  0043e16e:  MOV byte ptr [ESP + 0x18],0x1\n  0043e173:  PUSH 0x43df20\n  0043e178:  PUSH 0x8\n  0043e17a:  PUSH 0x54\n  0043e17c:  PUSH EAX\n  0043e17d:  MOV dword ptr [ESI + 0x4ac],EBX\n  0043e183:  MOV dword ptr [ESI + 0x4b0],EBX\n  0043e189:  MOV dword ptr [ESI + 0x4b4],EBX\n  0043e18f:  CALL 0x00553549\n  0043e194:  LEA ECX,[ESI + 0x50]\n  0043e197:  MOV byte ptr [ESP + 0x18],BL\n  0043e19b:  CALL 0x004411d0\n  0043e1a0:  MOV ECX,ESI\n  0043e1a2:  MOV dword ptr [ESP + 0x18],0xffffffff\n  0043e1aa:  CALL 0x00445b40\n  0043e1af:  MOV ECX,dword ptr [ESP + 0x10]\n  0043e1b3:  POP ESI\n  0043e1b4:  POP EBX\n  0043e1b5:  MOV dword ptr FS:[0x0],ECX\n  0043e1bc:  ADD ESP,0x14\n  0043e1bf:  RET", 
+  "callers": [
+    {
+      "address": "0x00451900", 
+      "name": "FUN_00451900"
+    }, 
+    {
+      "address": "0x00560b53", 
+      "name": "Unwind@00560b53"
+    }, 
+    {
+      "address": "0x00560b9f", 
+      "name": "Unwind@00560b9f"
+    }, 
+    {
+      "address": "0x005615cd", 
+      "name": "Unwind@005615cd"
+    }, 
+    {
+      "address": "0x0056187d", 
+      "name": "Unwind@0056187d"
+    }, 
+    {
+      "address": "0x00561a90", 
+      "name": "Unwind@00561a90"
+    }, 
+    {
+      "address": "0x00561c50", 
+      "name": "Unwind@00561c50"
+    }, 
+    {
+      "address": "0x00561e38", 
+      "name": "Unwind@00561e38"
+    }, 
+    {
+      "address": "0x00561e46", 
+      "name": "Unwind@00561e46"
+    }, 
+    {
+      "address": "0x00561e54", 
+      "name": "Unwind@00561e54"
+    }, 
+    {
+      "address": "0x00561e62", 
+      "name": "Unwind@00561e62"
+    }, 
+    {
+      "address": "0x00561e70", 
+      "name": "Unwind@00561e70"
+    }, 
+    {
+      "address": "0x00561e7e", 
+      "name": "Unwind@00561e7e"
+    }, 
+    {
+      "address": "0x00562068", 
+      "name": "Unwind@00562068"
+    }, 
+    {
+      "address": "0x00562076", 
+      "name": "Unwind@00562076"
+    }, 
+    {
+      "address": "0x00562084", 
+      "name": "Unwind@00562084"
+    }, 
+    {
+      "address": "0x00562092", 
+      "name": "Unwind@00562092"
+    }, 
+    {
+      "address": "0x005620a0", 
+      "name": "Unwind@005620a0"
+    }, 
+    {
+      "address": "0x005620ae", 
+      "name": "Unwind@005620ae"
+    }, 
+    {
+      "address": "0x005622a0", 
+      "name": "Unwind@005622a0"
+    }, 
+    {
+      "address": "0x00562450", 
+      "name": "Unwind@00562450"
+    }, 
+    {
+      "address": "0x0056337e", 
+      "name": "Unwind@0056337e"
+    }, 
+    {
+      "address": "0x0056338c", 
+      "name": "Unwind@0056338c"
+    }, 
+    {
+      "address": "0x0056339a", 
+      "name": "Unwind@0056339a"
+    }, 
+    {
+      "address": "0x005633a8", 
+      "name": "Unwind@005633a8"
+    }, 
+    {
+      "address": "0x005633b6", 
+      "name": "Unwind@005633b6"
+    }, 
+    {
+      "address": "0x005633c4", 
+      "name": "Unwind@005633c4"
+    }, 
+    {
+      "address": "0x005633d2", 
+      "name": "Unwind@005633d2"
+    }, 
+    {
+      "address": "0x005633e0", 
+      "name": "Unwind@005633e0"
+    }, 
+    {
+      "address": "0x0056397e", 
+      "name": "Unwind@0056397e"
+    }, 
+    {
+      "address": "0x0056398c", 
+      "name": "Unwind@0056398c"
+    }, 
+    {
+      "address": "0x0056399a", 
+      "name": "Unwind@0056399a"
+    }, 
+    {
+      "address": "0x005639a8", 
+      "name": "Unwind@005639a8"
+    }, 
+    {
+      "address": "0x005639b6", 
+      "name": "Unwind@005639b6"
+    }, 
+    {
+      "address": "0x005639c4", 
+      "name": "Unwind@005639c4"
+    }, 
+    {
+      "address": "0x005639d2", 
+      "name": "Unwind@005639d2"
+    }, 
+    {
+      "address": "0x005639e0", 
+      "name": "Unwind@005639e0"
+    }, 
+    {
+      "address": "0x00563cbe", 
+      "name": "Unwind@00563cbe"
+    }, 
+    {
+      "address": "0x005642de", 
+      "name": "Unwind@005642de"
+    }, 
+    {
+      "address": "0x0056454a", 
+      "name": "Unwind@0056454a"
+    }, 
+    {
+      "address": "0x00564558", 
+      "name": "Unwind@00564558"
+    }, 
+    {
+      "address": "0x00564566", 
+      "name": "Unwind@00564566"
+    }, 
+    {
+      "address": "0x00564574", 
+      "name": "Unwind@00564574"
+    }, 
+    {
+      "address": "0x00564582", 
+      "name": "Unwind@00564582"
+    }, 
+    {
+      "address": "0x00564590", 
+      "name": "Unwind@00564590"
+    }, 
+    {
+      "address": "0x00564b2a", 
+      "name": "Unwind@00564b2a"
+    }, 
+    {
+      "address": "0x00564b38", 
+      "name": "Unwind@00564b38"
+    }, 
+    {
+      "address": "0x00564b46", 
+      "name": "Unwind@00564b46"
+    }, 
+    {
+      "address": "0x00564b54", 
+      "name": "Unwind@00564b54"
+    }, 
+    {
+      "address": "0x00564b62", 
+      "name": "Unwind@00564b62"
+    }, 
+    {
+      "address": "0x00564b70", 
+      "name": "Unwind@00564b70"
+    }, 
+    {
+      "address": "0x005657a0", 
+      "name": "Unwind@005657a0"
+    }, 
+    {
+      "address": "0x005657ae", 
+      "name": "Unwind@005657ae"
+    }, 
+    {
+      "address": "0x005657bc", 
+      "name": "Unwind@005657bc"
+    }, 
+    {
+      "address": "0x005657ca", 
+      "name": "Unwind@005657ca"
+    }, 
+    {
+      "address": "0x005657d8", 
+      "name": "Unwind@005657d8"
+    }, 
+    {
+      "address": "0x005657e6", 
+      "name": "Unwind@005657e6"
+    }, 
+    {
+      "address": "0x00565c80", 
+      "name": "Unwind@00565c80"
+    }, 
+    {
+      "address": "0x00565c8e", 
+      "name": "Unwind@00565c8e"
+    }, 
+    {
+      "address": "0x00565c9c", 
+      "name": "Unwind@00565c9c"
+    }, 
+    {
+      "address": "0x00565caa", 
+      "name": "Unwind@00565caa"
+    }, 
+    {
+      "address": "0x00565cb8", 
+      "name": "Unwind@00565cb8"
+    }, 
+    {
+      "address": "0x00565cc6", 
+      "name": "Unwind@00565cc6"
+    }, 
+    {
+      "address": "0x0043e100", 
+      "name": "FUN_0043e100"
+    }, 
+    {
+      "address": "0x0045ae60", 
+      "name": "FUN_0045ae60"
+    }, 
+    {
+      "address": "0x0046d4e0", 
+      "name": "FUN_0046d4e0"
+    }, 
+    {
+      "address": "0x00470f40", 
+      "name": "FUN_00470f40"
+    }, 
+    {
+      "address": "0x00479680", 
+      "name": "FUN_00479680"
+    }, 
+    {
+      "address": "0x004870c0", 
+      "name": "FUN_004870c0"
+    }, 
+    {
+      "address": "0x004912d0", 
+      "name": "FUN_004912d0"
+    }, 
+    {
+      "address": "0x00499030", 
+      "name": "FUN_00499030"
+    }, 
+    {
+      "address": "0x004a7690", 
+      "name": "FUN_004a7690"
+    }
+  ]
+}

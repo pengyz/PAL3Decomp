@@ -1,0 +1,55 @@
+{
+  "address": "0x00545061", 
+  "size_bytes": 84, 
+  "calling_convention": "unknown", 
+  "signature": "undefined FUN_00545061(undefined4 param_1, undefined4 param_2, undefined4 param_3, undefined4 param_4, undefined4 param_5, undefined4 param_6)", 
+  "callees": [], 
+  "global_refs": [
+    {
+      "address": "0x00000004", 
+      "type": null, 
+      "name": "DAT_00000004"
+    }, 
+    {
+      "address": "0x00000018", 
+      "type": null, 
+      "name": "DAT_00000018"
+    }, 
+    {
+      "address": "0x00000014", 
+      "type": null, 
+      "name": "DAT_00000014"
+    }, 
+    {
+      "address": "0x0000000c", 
+      "type": null, 
+      "name": "DAT_0000000c"
+    }, 
+    {
+      "address": "0x-000000c", 
+      "type": null, 
+      "name": "DAT_-000000c"
+    }, 
+    {
+      "address": "0x00000010", 
+      "type": null, 
+      "name": "DAT_00000010"
+    }, 
+    {
+      "address": "0x-0000008", 
+      "type": null, 
+      "name": "DAT_-0000008"
+    }, 
+    {
+      "address": "0x00000008", 
+      "type": null, 
+      "name": "DAT_00000008"
+    }
+  ], 
+  "has_custom_name": false, 
+  "decompiled_c": "\r\nfloat * FUN_00545061(float *param_1,int param_2,float *param_3,int param_4,float *param_5,\r\n                    int param_6)\r\n\r\n{\r\n  float *pfVar1;\r\n  float fVar2;\r\n  float fVar3;\r\n  float fVar4;\r\n  float fVar5;\r\n  float fVar6;\r\n  float *pfVar7;\r\n  \r\n  pfVar7 = param_1;\r\n  if (param_6 != 0) {\r\n    do {\r\n      pfVar1 = param_3 + 1;\r\n      fVar2 = *param_3;\r\n      fVar3 = param_5[1];\r\n      fVar4 = *param_3;\r\n      fVar5 = param_5[5];\r\n      fVar6 = param_3[1];\r\n      param_3 = (float *)((int)param_3 + param_4);\r\n      *param_1 = fVar2 * *param_5 + param_5[4] * *pfVar1;\r\n      param_1[1] = fVar5 * fVar6 + fVar3 * fVar4;\r\n      param_1 = (float *)((int)param_1 + param_2);\r\n      param_6 = param_6 + -1;\r\n    } while (param_6 != 0);\r\n  }\r\n  return pfVar7;\r\n}\r\n\r\n", 
+  "is_thunk": false, 
+  "name": "FUN_00545061", 
+  "assembly": "  00545061:  PUSH EBP\n  00545062:  MOV EBP,ESP\n  00545064:  PUSH ECX\n  00545065:  PUSH ECX\n  00545066:  PUSH ESI\n  00545067:  MOV ESI,dword ptr [EBP + 0x8]\n  0054506a:  PUSH EDI\n  0054506b:  MOV EDI,dword ptr [EBP + 0x1c]\n  0054506e:  TEST EDI,EDI\n  00545070:  MOV EAX,ESI\n  00545072:  JBE 0x005450af\n  00545074:  MOV EDX,dword ptr [EBP + 0x18]\n  00545077:  MOV ECX,dword ptr [EBP + 0x10]\n  0054507a:  PUSH EBX\n  0054507b:  FLD dword ptr [EDX + 0x10]\n  0054507e:  FMUL dword ptr [ECX + 0x4]\n  00545081:  FLD dword ptr [ECX]\n  00545083:  FMUL dword ptr [EDX]\n  00545085:  FADDP\n  00545087:  FSTP dword ptr [EBP + -0x8]\n  0054508a:  MOV EBX,dword ptr [EBP + -0x8]\n  0054508d:  FLD dword ptr [EDX + 0x4]\n  00545090:  FMUL dword ptr [ECX]\n  00545092:  FLD dword ptr [EDX + 0x14]\n  00545095:  FMUL dword ptr [ECX + 0x4]\n  00545098:  ADD ECX,dword ptr [EBP + 0x14]\n  0054509b:  MOV dword ptr [ESI],EBX\n  0054509d:  FADDP\n  0054509f:  FSTP dword ptr [EBP + -0x4]\n  005450a2:  MOV EBX,dword ptr [EBP + -0x4]\n  005450a5:  MOV dword ptr [ESI + 0x4],EBX\n  005450a8:  ADD ESI,dword ptr [EBP + 0xc]\n  005450ab:  DEC EDI\n  005450ac:  JNZ 0x0054507b\n  005450ae:  POP EBX\n  005450af:  POP EDI\n  005450b0:  POP ESI\n  005450b1:  LEAVE\n  005450b2:  RET 0x18", 
+  "callers": []
+}

@@ -1,0 +1,69 @@
+{
+  "address": "0x005439cd", 
+  "size_bytes": 46, 
+  "calling_convention": "unknown", 
+  "signature": "undefined FUN_005439cd(undefined4 param_1, undefined4 param_2, undefined4 param_3, undefined4 param_4)", 
+  "callees": [
+    {
+      "address": "0x00546f41", 
+      "name": "FUN_00546f41"
+    }, 
+    {
+      "address": "0x005439cd", 
+      "name": "FUN_005439cd"
+    }
+  ], 
+  "global_refs": [
+    {
+      "address": "0x00000010", 
+      "type": null, 
+      "name": "DAT_00000010"
+    }, 
+    {
+      "address": "0x-0000004", 
+      "type": null, 
+      "name": "DAT_-0000004"
+    }, 
+    {
+      "address": "0x0000000c", 
+      "type": null, 
+      "name": "DAT_0000000c"
+    }, 
+    {
+      "address": "0x-0000008", 
+      "type": null, 
+      "name": "DAT_-0000008"
+    }, 
+    {
+      "address": "0x00000008", 
+      "type": null, 
+      "name": "DAT_00000008"
+    }, 
+    {
+      "address": "0x-000000c", 
+      "type": null, 
+      "name": "DAT_-000000c"
+    }, 
+    {
+      "address": "0x00000004", 
+      "type": null, 
+      "name": "DAT_00000004"
+    }, 
+    {
+      "address": "0x00609110", 
+      "type": null, 
+      "name": "PTR_FUN_00609110"
+    }
+  ], 
+  "has_custom_name": false, 
+  "decompiled_c": "\r\nvoid FUN_005439cd(undefined4 param_1,undefined4 param_2,undefined4 param_3,undefined4 param_4)\r\n\r\n{\r\n  FUN_00546f41(1);\r\n  (*(code *)PTR_FUN_00609110)(param_1,param_2,param_3,param_4);\r\n  return;\r\n}\r\n\r\n", 
+  "is_thunk": false, 
+  "name": "FUN_005439cd", 
+  "assembly": "  005439cd:  PUSH 0x1\n  005439cf:  CALL 0x00546f41\n  005439d4:  FLD dword ptr [ESP + 0x10]\n  005439d8:  SUB ESP,0xc\n  005439db:  FSTP dword ptr [ESP + 0x8]\n  005439df:  FLD dword ptr [ESP + 0x18]\n  005439e3:  FSTP dword ptr [ESP + 0x4]\n  005439e7:  FLD dword ptr [ESP + 0x14]\n  005439eb:  FSTP dword ptr [ESP]\n  005439ee:  PUSH dword ptr [ESP + 0x10]\n  005439f2:  CALL dword ptr [0x00609110]\n  005439f8:  RET 0x10", 
+  "callers": [
+    {
+      "address": "0x005439cd", 
+      "name": "FUN_005439cd"
+    }
+  ]
+}

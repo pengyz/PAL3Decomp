@@ -1,0 +1,68 @@
+{
+  "address": "0x004034e0", 
+  "size_bytes": 113, 
+  "calling_convention": "unknown", 
+  "signature": "undefined FUN_004034e0(void)", 
+  "callees": [
+    {
+      "address": "0x00403560", 
+      "name": "FUN_00403560"
+    }, 
+    {
+      "address": "0x00553549", 
+      "name": "FUN_00553549"
+    }
+  ], 
+  "global_refs": [
+    {
+      "address": "0x0055f0b1", 
+      "type": null, 
+      "name": "LAB_0055f0b1"
+    }, 
+    {
+      "address": "0xffdff000", 
+      "type": null, 
+      "name": "ExceptionList"
+    }, 
+    {
+      "address": "0x-0000010", 
+      "type": null, 
+      "name": "DAT_-0000010"
+    }, 
+    {
+      "address": "0x-0000004", 
+      "type": null, 
+      "name": "DAT_-0000004"
+    }, 
+    {
+      "address": "0x00403410", 
+      "type": null, 
+      "name": "FUN_00403410"
+    }, 
+    {
+      "address": "0x004034b0", 
+      "type": null, 
+      "name": "LAB_004034b0"
+    }, 
+    {
+      "address": "0x-000000c", 
+      "type": null, 
+      "name": "DAT_-000000c"
+    }
+  ], 
+  "has_custom_name": false, 
+  "decompiled_c": "\r\nvoid __fastcall FUN_004034e0(int param_1)\r\n\r\n{\r\n  void *local_c;\r\n  undefined *puStack_8;\r\n  uint local_4;\r\n  \r\n  puStack_8 = &LAB_0055f0b1;\r\n  local_c = ExceptionList;\r\n  local_4 = 1;\r\n  ExceptionList = &local_c;\r\n  FUN_00403560();\r\n  local_4 = local_4 & 0xffffff00;\r\n  FUN_00553549(param_1 + 0x14c,0x10,2,FUN_00403410);\r\n  local_4 = 0xffffffff;\r\n  FUN_00553549(param_1 + 4,0xa4,2,&LAB_004034b0);\r\n  ExceptionList = local_c;\r\n  return;\r\n}\r\n\r\n", 
+  "is_thunk": false, 
+  "name": "FUN_004034e0", 
+  "assembly": "  004034e0:  PUSH -0x1\n  004034e2:  PUSH 0x55f0b1\n  004034e7:  MOV EAX,FS:[0x0]\n  004034ed:  PUSH EAX\n  004034ee:  MOV dword ptr FS:[0x0],ESP\n  004034f5:  PUSH ECX\n  004034f6:  PUSH ESI\n  004034f7:  MOV ESI,ECX\n  004034f9:  MOV dword ptr [ESP + 0x4],ESI\n  004034fd:  MOV dword ptr [ESP + 0x10],0x1\n  00403505:  CALL 0x00403560\n  0040350a:  PUSH 0x403410\n  0040350f:  PUSH 0x2\n  00403511:  LEA EAX,[ESI + 0x14c]\n  00403517:  PUSH 0x10\n  00403519:  PUSH EAX\n  0040351a:  MOV byte ptr [ESP + 0x20],0x0\n  0040351f:  CALL 0x00553549\n  00403524:  PUSH 0x4034b0\n  00403529:  PUSH 0x2\n  0040352b:  ADD ESI,0x4\n  0040352e:  PUSH 0xa4\n  00403533:  PUSH ESI\n  00403534:  MOV dword ptr [ESP + 0x20],0xffffffff\n  0040353c:  CALL 0x00553549\n  00403541:  MOV ECX,dword ptr [ESP + 0x8]\n  00403545:  POP ESI\n  00403546:  MOV dword ptr FS:[0x0],ECX\n  0040354d:  ADD ESP,0x10\n  00403550:  RET", 
+  "callers": [
+    {
+      "address": "0x0055f56c", 
+      "name": "Unwind@0055f56c"
+    }, 
+    {
+      "address": "0x0041f800", 
+      "name": "FUN_0041f800"
+    }
+  ]
+}

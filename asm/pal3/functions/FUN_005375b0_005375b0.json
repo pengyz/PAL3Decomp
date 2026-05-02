@@ -1,0 +1,25 @@
+{
+  "address": "0x005375b0", 
+  "size_bytes": 54, 
+  "calling_convention": "unknown", 
+  "signature": "undefined FUN_005375b0(void)", 
+  "callees": [], 
+  "global_refs": [
+    {
+      "address": "0x-0000001", 
+      "type": null, 
+      "name": "DAT_-0000001"
+    }
+  ], 
+  "has_custom_name": false, 
+  "decompiled_c": "\r\nvoid __fastcall FUN_005375b0(undefined *param_1)\r\n\r\n{\r\n  undefined local_1;\r\n  \r\n  local_1 = (undefined)((uint)param_1 >> 0x18);\r\n  *param_1 = local_1;\r\n  *(undefined4 *)(param_1 + 4) = 0;\r\n  *(undefined4 *)(param_1 + 8) = 0;\r\n  *(undefined4 *)(param_1 + 0xc) = 0;\r\n  param_1[0x10] = local_1;\r\n  *(undefined4 *)(param_1 + 0x14) = 0;\r\n  *(undefined4 *)(param_1 + 0x18) = 0;\r\n  *(undefined4 *)(param_1 + 0x1c) = 0;\r\n  param_1[0x20] = local_1;\r\n  *(undefined4 *)(param_1 + 0x24) = 0;\r\n  *(undefined4 *)(param_1 + 0x28) = 0;\r\n  *(undefined4 *)(param_1 + 0x2c) = 0;\r\n  return;\r\n}\r\n\r\n", 
+  "is_thunk": false, 
+  "name": "FUN_005375b0", 
+  "assembly": "  005375b0:  PUSH ECX\n  005375b1:  MOV DL,byte ptr [ESP + 0x3]\n  005375b5:  MOV EAX,ECX\n  005375b7:  MOV CL,byte ptr [ESP + 0x3]\n  005375bb:  MOV byte ptr [EAX],CL\n  005375bd:  XOR ECX,ECX\n  005375bf:  MOV dword ptr [EAX + 0x4],ECX\n  005375c2:  MOV dword ptr [EAX + 0x8],ECX\n  005375c5:  MOV dword ptr [EAX + 0xc],ECX\n  005375c8:  MOV byte ptr [EAX + 0x10],DL\n  005375cb:  MOV DL,byte ptr [ESP + 0x3]\n  005375cf:  MOV dword ptr [EAX + 0x14],ECX\n  005375d2:  MOV dword ptr [EAX + 0x18],ECX\n  005375d5:  MOV dword ptr [EAX + 0x1c],ECX\n  005375d8:  MOV byte ptr [EAX + 0x20],DL\n  005375db:  MOV dword ptr [EAX + 0x24],ECX\n  005375de:  MOV dword ptr [EAX + 0x28],ECX\n  005375e1:  MOV dword ptr [EAX + 0x2c],ECX\n  005375e4:  POP ECX\n  005375e5:  RET", 
+  "callers": [
+    {
+      "address": "0x005394f0", 
+      "name": "FUN_005394f0"
+    }
+  ]
+}

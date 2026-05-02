@@ -1,0 +1,45 @@
+{
+  "address": "0x00543b09", 
+  "size_bytes": 123, 
+  "calling_convention": "unknown", 
+  "signature": "undefined FUN_00543b09(undefined4 param_1, undefined4 param_2)", 
+  "callees": [], 
+  "global_refs": [
+    {
+      "address": "0x-0000008", 
+      "type": null, 
+      "name": "DAT_-0000008"
+    }, 
+    {
+      "address": "0x-0000010", 
+      "type": null, 
+      "name": "DAT_-0000010"
+    }, 
+    {
+      "address": "0x-000000c", 
+      "type": null, 
+      "name": "DAT_-000000c"
+    }, 
+    {
+      "address": "0x-0000014", 
+      "type": null, 
+      "name": "DAT_-0000014"
+    }, 
+    {
+      "address": "0x00000008", 
+      "type": null, 
+      "name": "DAT_00000008"
+    }, 
+    {
+      "address": "0x00000004", 
+      "type": null, 
+      "name": "DAT_00000004"
+    }
+  ], 
+  "has_custom_name": false, 
+  "decompiled_c": "\r\nvoid FUN_00543b09(float *param_1,float param_2)\r\n\r\n{\r\n  float10 fVar1;\r\n  float10 fVar2;\r\n  \r\n  fVar1 = (float10)fcos((float10)param_2);\r\n  fVar2 = (float10)fsin((float10)param_2);\r\n  *param_1 = (float)fVar1;\r\n  param_1[1] = 0.0;\r\n  param_1[2] = -(float)fVar2;\r\n  param_1[3] = 0.0;\r\n  param_1[4] = 0.0;\r\n  param_1[5] = 1.0;\r\n  param_1[6] = 0.0;\r\n  param_1[7] = 0.0;\r\n  param_1[8] = (float)fVar2;\r\n  param_1[9] = 0.0;\r\n  param_1[10] = (float)fVar1;\r\n  param_1[0xb] = 0.0;\r\n  param_1[0xc] = 0.0;\r\n  param_1[0xd] = 0.0;\r\n  param_1[0xe] = 0.0;\r\n  param_1[0xf] = 1.0;\r\n  return;\r\n}\r\n\r\n", 
+  "is_thunk": false, 
+  "name": "FUN_00543b09", 
+  "assembly": "  00543b09:  PUSH EBP\n  00543b0a:  MOV EBP,ESP\n  00543b0c:  SUB ESP,0x10\n  00543b0f:  LEA EAX,[EBP + -0x4]\n  00543b12:  MOV dword ptr [EBP + -0xc],EAX\n  00543b15:  LEA EAX,[EBP + -0x8]\n  00543b18:  MOV dword ptr [EBP + -0x10],EAX\n  00543b1b:  MOV EAX,dword ptr [EBP + -0x10]\n  00543b1e:  MOV EDX,dword ptr [EBP + -0xc]\n  00543b21:  FLD dword ptr [EBP + 0xc]\n  00543b24:  FSINCOS\n  00543b26:  FSTP dword ptr [EDX]\n  00543b28:  FSTP dword ptr [EAX]\n  00543b2a:  FLD dword ptr [EBP + -0x4]\n  00543b2d:  MOV EAX,dword ptr [EBP + 0x8]\n  00543b30:  FLD ST0\n  00543b32:  FSTP dword ptr [EAX]\n  00543b34:  FLDZ\n  00543b36:  FSTP dword ptr [EAX + 0x4]\n  00543b39:  FLD dword ptr [EBP + -0x8]\n  00543b3c:  FLD ST0\n  00543b3e:  FCHS\n  00543b40:  FSTP dword ptr [EAX + 0x8]\n  00543b43:  FLDZ\n  00543b45:  FSTP dword ptr [EAX + 0xc]\n  00543b48:  FLDZ\n  00543b4a:  FSTP dword ptr [EAX + 0x10]\n  00543b4d:  FLD1\n  00543b4f:  FSTP dword ptr [EAX + 0x14]\n  00543b52:  FLDZ\n  00543b54:  FSTP dword ptr [EAX + 0x18]\n  00543b57:  FLDZ\n  00543b59:  FSTP dword ptr [EAX + 0x1c]\n  00543b5c:  FSTP dword ptr [EAX + 0x20]\n  00543b5f:  FLDZ\n  00543b61:  FSTP dword ptr [EAX + 0x24]\n  00543b64:  FSTP dword ptr [EAX + 0x28]\n  00543b67:  FLDZ\n  00543b69:  FSTP dword ptr [EAX + 0x2c]\n  00543b6c:  FLDZ\n  00543b6e:  FSTP dword ptr [EAX + 0x30]\n  00543b71:  FLDZ\n  00543b73:  FSTP dword ptr [EAX + 0x34]\n  00543b76:  FLDZ\n  00543b78:  FSTP dword ptr [EAX + 0x38]\n  00543b7b:  FLD1\n  00543b7d:  FSTP dword ptr [EAX + 0x3c]\n  00543b80:  LEAVE\n  00543b81:  RET 0x8", 
+  "callers": []
+}

@@ -1,0 +1,72 @@
+{
+  "address": "0x0055461c", 
+  "size_bytes": 81, 
+  "calling_convention": "unknown", 
+  "signature": "undefined FUN_0055461c(undefined4 param_1, undefined4 param_2, undefined4 param_3)", 
+  "callees": [
+    {
+      "address": "0x00556bf2", 
+      "name": "FUN_00556bf2"
+    }, 
+    {
+      "address": "0x00556add", 
+      "name": "FUN_00556add"
+    }
+  ], 
+  "global_refs": [
+    {
+      "address": "0x00000004", 
+      "type": null, 
+      "name": "DAT_00000004"
+    }, 
+    {
+      "address": "0x0000000c", 
+      "type": null, 
+      "name": "DAT_0000000c"
+    }, 
+    {
+      "address": "0x-000001c", 
+      "type": null, 
+      "name": "DAT_-000001c"
+    }, 
+    {
+      "address": "0x-0000024", 
+      "type": null, 
+      "name": "DAT_-0000024"
+    }, 
+    {
+      "address": "0x00000008", 
+      "type": null, 
+      "name": "DAT_00000008"
+    }, 
+    {
+      "address": "0x-0000018", 
+      "type": null, 
+      "name": "DAT_-0000018"
+    }, 
+    {
+      "address": "0x-0000020", 
+      "type": null, 
+      "name": "DAT_-0000020"
+    }
+  ], 
+  "has_custom_name": false, 
+  "decompiled_c": "\r\nundefined4 FUN_0055461c(undefined *param_1,undefined4 param_2,undefined4 param_3)\r\n\r\n{\r\n  undefined4 uVar1;\r\n  undefined *local_24;\r\n  int local_20;\r\n  undefined *local_1c;\r\n  undefined4 local_18;\r\n  \r\n  local_1c = param_1;\r\n  local_24 = param_1;\r\n  local_18 = 0x42;\r\n  local_20 = 0x7fffffff;\r\n  uVar1 = FUN_00556bf2(&local_24,param_2,param_3);\r\n  local_20 = local_20 + -1;\r\n  if (local_20 < 0) {\r\n    FUN_00556add(0,&local_24);\r\n  }\r\n  else {\r\n    *local_24 = 0;\r\n  }\r\n  return uVar1;\r\n}\r\n\r\n", 
+  "is_thunk": false, 
+  "name": "FUN_0055461c", 
+  "assembly": "  0055461c:  PUSH EBP\n  0055461d:  MOV EBP,ESP\n  0055461f:  SUB ESP,0x20\n  00554622:  MOV EAX,dword ptr [EBP + 0x8]\n  00554625:  PUSH ESI\n  00554626:  PUSH dword ptr [EBP + 0x10]\n  00554629:  MOV dword ptr [EBP + -0x18],EAX\n  0055462c:  MOV dword ptr [EBP + -0x20],EAX\n  0055462f:  LEA EAX,[EBP + -0x20]\n  00554632:  PUSH dword ptr [EBP + 0xc]\n  00554635:  MOV dword ptr [EBP + -0x14],0x42\n  0055463c:  MOV dword ptr [EBP + -0x1c],0x7fffffff\n  00554643:  PUSH EAX\n  00554644:  CALL 0x00556bf2\n  00554649:  ADD ESP,0xc\n  0055464c:  DEC dword ptr [EBP + -0x1c]\n  0055464f:  MOV ESI,EAX\n  00554651:  JS 0x0055465b\n  00554653:  MOV EAX,dword ptr [EBP + -0x20]\n  00554656:  AND byte ptr [EAX],0x0\n  00554659:  JMP 0x00554668\n  0055465b:  LEA EAX,[EBP + -0x20]\n  0055465e:  PUSH EAX\n  0055465f:  PUSH 0x0\n  00554661:  CALL 0x00556add\n  00554666:  POP ECX\n  00554667:  POP ECX\n  00554668:  MOV EAX,ESI\n  0055466a:  POP ESI\n  0055466b:  LEAVE\n  0055466c:  RET", 
+  "callers": [
+    {
+      "address": "0x0053cc70", 
+      "name": "FUN_0053cc70"
+    }, 
+    {
+      "address": "0x0053d030", 
+      "name": "FUN_0053d030"
+    }, 
+    {
+      "address": "0x004dfd20", 
+      "name": "FUN_004dfd20"
+    }
+  ]
+}

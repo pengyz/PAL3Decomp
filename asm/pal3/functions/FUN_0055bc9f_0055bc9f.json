@@ -1,0 +1,28 @@
+{
+  "address": "0x0055bc9f", 
+  "size_bytes": 9, 
+  "calling_convention": "unknown", 
+  "signature": "undefined FUN_0055bc9f(void)", 
+  "callees": [
+    {
+      "address": "0x00555172", 
+      "name": "__amsg_exit"
+    }
+  ], 
+  "global_refs": [], 
+  "has_custom_name": false, 
+  "decompiled_c": "\r\nvoid FUN_0055bc9f(void)\r\n\r\n{\r\n  __amsg_exit(2);\r\n  return;\r\n}\r\n\r\n", 
+  "is_thunk": false, 
+  "name": "FUN_0055bc9f", 
+  "assembly": "  0055bc9f:  PUSH 0x2\n  0055bca1:  CALL 0x00555172\n  0055bca6:  POP ECX\n  0055bca7:  RET", 
+  "callers": [
+    {
+      "address": "0x00559866", 
+      "name": "FUN_00559866"
+    }, 
+    {
+      "address": "0x00556bf2", 
+      "name": "FUN_00556bf2"
+    }
+  ]
+}

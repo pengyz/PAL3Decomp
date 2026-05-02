@@ -1,0 +1,24 @@
+{
+  "address": "0x0047b0e0", 
+  "size_bytes": 85, 
+  "calling_convention": "unknown", 
+  "signature": "undefined FUN_0047b0e0(void)", 
+  "callees": [
+    {
+      "address": "0x0043f6a0", 
+      "name": "FUN_0043f6a0"
+    }
+  ], 
+  "global_refs": [], 
+  "has_custom_name": false, 
+  "decompiled_c": "\r\nundefined4 __fastcall FUN_0047b0e0(int param_1)\r\n\r\n{\r\n  int *piVar1;\r\n  int iVar2;\r\n  undefined4 uVar3;\r\n  \r\n  iVar2 = 0;\r\n  if (0 < *(int *)(param_1 + 0x27c30)) {\r\n    piVar1 = (int *)(param_1 + 0x16fc);\r\n    do {\r\n      if ((piVar1[1] < 1) || (*piVar1 < 1)) {\r\n        uVar3 = 0;\r\n      }\r\n      else {\r\n        uVar3 = 1;\r\n      }\r\n      FUN_0043f6a0(iVar2,uVar3);\r\n      iVar2 = iVar2 + 1;\r\n      piVar1 = piVar1 + 199;\r\n    } while (iVar2 < *(int *)(param_1 + 0x27c30));\r\n    return CONCAT31((int3)((uint)*(int *)(param_1 + 0x27c30) >> 8),1);\r\n  }\r\n  return CONCAT31((int3)((uint)*(int *)(param_1 + 0x27c30) >> 8),1);\r\n}\r\n\r\n", 
+  "is_thunk": false, 
+  "name": "FUN_0047b0e0", 
+  "assembly": "  0047b0e0:  PUSH ESI\n  0047b0e1:  PUSH EDI\n  0047b0e2:  MOV EDI,ECX\n  0047b0e4:  XOR ESI,ESI\n  0047b0e6:  MOV EAX,dword ptr [EDI + 0x27c30]\n  0047b0ec:  TEST EAX,EAX\n  0047b0ee:  JLE 0x0047b12e\n  0047b0f0:  PUSH EBX\n  0047b0f1:  LEA EBX,[EDI + 0x16fc]\n  0047b0f7:  MOV EAX,dword ptr [EBX + 0x4]\n  0047b0fa:  TEST EAX,EAX\n  0047b0fc:  JLE 0x0047b107\n  0047b0fe:  CMP dword ptr [EBX],0x0\n  0047b101:  JLE 0x0047b107\n  0047b103:  PUSH 0x1\n  0047b105:  JMP 0x0047b109\n  0047b107:  PUSH 0x0\n  0047b109:  PUSH ESI\n  0047b10a:  LEA ECX,[EDI + 0x28d40]\n  0047b110:  CALL 0x0043f6a0\n  0047b115:  MOV EAX,dword ptr [EDI + 0x27c30]\n  0047b11b:  INC ESI\n  0047b11c:  ADD EBX,0x31c\n  0047b122:  CMP ESI,EAX\n  0047b124:  JL 0x0047b0f7\n  0047b126:  POP EBX\n  0047b127:  POP EDI\n  0047b128:  MOV AL,0x1\n  0047b12a:  POP ESI\n  0047b12b:  RET 0x4\n  0047b12e:  POP EDI\n  0047b12f:  MOV AL,0x1\n  0047b131:  POP ESI\n  0047b132:  RET 0x4", 
+  "callers": [
+    {
+      "address": "0x0047a580", 
+      "name": "FUN_0047a580"
+    }
+  ]
+}

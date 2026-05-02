@@ -1,0 +1,46 @@
+{
+  "address": "0x00402290",
+  "size_bytes": 19,
+  "calling_convention": "unknown",
+  "signature": "undefined FUN_00402290(undefined4 param_1, undefined4 param_2)",
+  "callees": [
+    {
+      "address": "0x0000006c",
+      "name": "SetCursorPos"
+    }
+  ],
+  "global_refs": [
+    {
+      "address": "0x00000008",
+      "type": null,
+      "name": "DAT_00000008"
+    },
+    {
+      "address": "0x00000004",
+      "type": null,
+      "name": "DAT_00000004"
+    },
+    {
+      "address": "0x0056a1b8",
+      "type": null,
+      "name": "PTR_SetCursorPos_0056a1b8"
+    }
+  ],
+  "has_custom_name": false,
+  "decompiled_c": "\r\nvoid FUN_00402290(int param_1,int param_2)\r\n\r\n{\r\n  SetCursorPos(param_1,param_2);\r\n  return;\r\n}\r\n\r\n",
+  "is_thunk": false,
+  "name": "patched_by_SetCursorPos_wrapper",
+  "assembly": "  00402290:  MOV EAX,dword ptr [ESP + 0x8]\n  00402294:  MOV ECX,dword ptr [ESP + 0x4]\n  00402298:  PUSH EAX\n  00402299:  PUSH ECX\n  0040229a:  CALL dword ptr [0x0056a1b8]\n  004022a0:  RET 0x8",
+  "callers": [
+    {
+      "address": "0x004dc3f0",
+      "name": "FUN_004dc3f0"
+    }
+  ],
+  "pal3patch_info": {
+    "name": "patched_by_SetCursorPos_wrapper",
+    "type": "patch_site",
+    "target": "SetCursorPos_wrapper",
+    "source": "hook.c"
+  }
+}

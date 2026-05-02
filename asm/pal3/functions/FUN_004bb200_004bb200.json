@@ -1,0 +1,86 @@
+{
+  "address": "0x004bb200", 
+  "size_bytes": 85, 
+  "calling_convention": "unknown", 
+  "signature": "undefined FUN_004bb200(undefined4 param_1, undefined4 param_2)", 
+  "callees": [], 
+  "global_refs": [
+    {
+      "address": "0x00000004", 
+      "type": null, 
+      "name": "DAT_00000004"
+    }, 
+    {
+      "address": "0x005d41b8", 
+      "type": null, 
+      "name": "DAT_005d41b8"
+    }, 
+    {
+      "address": "0x005d41bc", 
+      "type": null, 
+      "name": "DAT_005d41bc"
+    }, 
+    {
+      "address": "0x005d41b0", 
+      "type": null, 
+      "name": "DAT_005d41b0"
+    }, 
+    {
+      "address": "0x005d41b4", 
+      "type": null, 
+      "name": "DAT_005d41b4"
+    }, 
+    {
+      "address": "0x00000008", 
+      "type": null, 
+      "name": "DAT_00000008"
+    }
+  ], 
+  "has_custom_name": false, 
+  "decompiled_c": "\r\n/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */\r\n\r\nvoid __thiscall FUN_004bb200(int param_1_00,float *param_1,float *param_2)\r\n\r\n{\r\n  float fVar1;\r\n  float fVar2;\r\n  float fVar3;\r\n  float fVar4;\r\n  \r\n  fVar4 = (_DAT_005d41b8 - param_1[1]) / _DAT_005d41bc;\r\n  fVar1 = *(float *)(param_1_00 + 0xd8);\r\n  fVar2 = *(float *)(param_1_00 + 0xcc);\r\n  fVar3 = *(float *)(param_1_00 + 0xcc);\r\n  *param_2 = (*(float *)(param_1_00 + 0xd4) - *(float *)(param_1_00 + 200)) *\r\n             ((*param_1 - DAT_005d41b0) / _DAT_005d41b4) + *(float *)(param_1_00 + 200);\r\n  param_2[1] = (fVar1 - fVar2) * fVar4 + fVar3;\r\n  return;\r\n}\r\n\r\n", 
+  "is_thunk": false, 
+  "name": "FUN_004bb200", 
+  "assembly": "  004bb200:  MOV EAX,dword ptr [ESP + 0x4]\n  004bb204:  FLD dword ptr [0x005d41b8]\n  004bb20a:  FSUB dword ptr [EAX + 0x4]\n  004bb20d:  FDIV dword ptr [0x005d41bc]\n  004bb213:  FLD dword ptr [ECX + 0xd8]\n  004bb219:  FSUB dword ptr [ECX + 0xcc]\n  004bb21f:  FMULP\n  004bb221:  FADD dword ptr [ECX + 0xcc]\n  004bb227:  FLD dword ptr [EAX]\n  004bb229:  FSUB dword ptr [0x005d41b0]\n  004bb22f:  FDIV dword ptr [0x005d41b4]\n  004bb235:  MOV EAX,dword ptr [ESP + 0x8]\n  004bb239:  FLD dword ptr [ECX + 0xd4]\n  004bb23f:  FSUB dword ptr [ECX + 0xc8]\n  004bb245:  FMULP\n  004bb247:  FADD dword ptr [ECX + 0xc8]\n  004bb24d:  FSTP dword ptr [EAX]\n  004bb24f:  FSTP dword ptr [EAX + 0x4]\n  004bb252:  RET 0x8", 
+  "callers": [
+    {
+      "address": "0x004bb330", 
+      "name": "FUN_004bb330"
+    }, 
+    {
+      "address": "0x004bb4e0", 
+      "name": "FUN_004bb4e0"
+    }, 
+    {
+      "address": "0x004bb690", 
+      "name": "FUN_004bb690"
+    }, 
+    {
+      "address": "0x004bb830", 
+      "name": "FUN_004bb830"
+    }, 
+    {
+      "address": "0x004bba50", 
+      "name": "FUN_004bba50"
+    }, 
+    {
+      "address": "0x004bbca0", 
+      "name": "FUN_004bbca0"
+    }, 
+    {
+      "address": "0x004bbeb0", 
+      "name": "FUN_004bbeb0"
+    }, 
+    {
+      "address": "0x004bc0c0", 
+      "name": "FUN_004bc0c0"
+    }, 
+    {
+      "address": "0x004bc2d0", 
+      "name": "FUN_004bc2d0"
+    }, 
+    {
+      "address": "0x004bc4e0", 
+      "name": "FUN_004bc4e0"
+    }
+  ]
+}

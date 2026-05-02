@@ -1,0 +1,35 @@
+{
+  "address": "0x00432600", 
+  "size_bytes": 47, 
+  "calling_convention": "unknown", 
+  "signature": "undefined FUN_00432600(undefined4 param_1)", 
+  "callees": [], 
+  "global_refs": [
+    {
+      "address": "0x00d8c31c", 
+      "type": null, 
+      "name": "DAT_00d8c31c"
+    }, 
+    {
+      "address": "0x00d8c320", 
+      "type": null, 
+      "name": "DAT_00d8c320"
+    }, 
+    {
+      "address": "0x00000004", 
+      "type": null, 
+      "name": "DAT_00000004"
+    }
+  ], 
+  "has_custom_name": false, 
+  "decompiled_c": "\r\nuint FUN_00432600(int param_1)\r\n\r\n{\r\n  uint uVar1;\r\n  int *piVar2;\r\n  \r\n  uVar1 = 0;\r\n  piVar2 = DAT_00d8c320;\r\n  if ((DAT_00d8c31c & 0xffff) != 0) {\r\n    do {\r\n      if (*piVar2 == param_1) {\r\n        return CONCAT31((int3)(uVar1 >> 8),1);\r\n      }\r\n      uVar1 = uVar1 + 1;\r\n      piVar2 = piVar2 + 0x12;\r\n    } while ((int)uVar1 < (int)(DAT_00d8c31c & 0xffff));\r\n  }\r\n  return uVar1 & 0xffffff00;\r\n}\r\n\r\n", 
+  "is_thunk": false, 
+  "name": "FUN_00432600", 
+  "assembly": "  00432600:  MOV EDX,dword ptr [0x00d8c31c]\n  00432606:  XOR EAX,EAX\n  00432608:  PUSH ESI\n  00432609:  AND EDX,0xffff\n  0043260f:  JLE 0x00432627\n  00432611:  MOV ECX,dword ptr [0x00d8c320]\n  00432617:  MOV ESI,dword ptr [ESP + 0x8]\n  0043261b:  CMP dword ptr [ECX],ESI\n  0043261d:  JZ 0x0043262b\n  0043261f:  INC EAX\n  00432620:  ADD ECX,0x48\n  00432623:  CMP EAX,EDX\n  00432625:  JL 0x0043261b\n  00432627:  XOR AL,AL\n  00432629:  POP ESI\n  0043262a:  RET\n  0043262b:  MOV AL,0x1\n  0043262d:  POP ESI\n  0043262e:  RET", 
+  "callers": [
+    {
+      "address": "0x0049cf80", 
+      "name": "FUN_0049cf80"
+    }
+  ]
+}

@@ -1,0 +1,19 @@
+{
+  "address": "0x00443a90", 
+  "size_bytes": 83, 
+  "calling_convention": "unknown", 
+  "signature": "undefined FUN_00443a90(void)", 
+  "callees": [], 
+  "global_refs": [], 
+  "has_custom_name": false, 
+  "decompiled_c": "\r\nint __fastcall FUN_00443a90(int param_1)\r\n\r\n{\r\n  int iVar1;\r\n  undefined *puVar2;\r\n  int iVar3;\r\n  int iVar4;\r\n  \r\n  iVar1 = 0;\r\n  iVar3 = 0;\r\n  if (0 < *(int *)(param_1 + 0x6c)) {\r\n    iVar4 = 0;\r\n    do {\r\n      puVar2 = (undefined *)(*(int *)(param_1 + 0x70) + iVar4);\r\n      if ((((*(int *)(puVar2 + 0x30) < *(int *)(param_1 + 0x5c)) &&\r\n           (-0x100 < *(int *)(puVar2 + 0x30))) &&\r\n          (*(int *)(puVar2 + 0x38) < *(int *)(param_1 + 0x60))) &&\r\n         (-0x100 < *(int *)(puVar2 + 0x38))) {\r\n        *puVar2 = 1;\r\n        iVar1 = iVar1 + 1;\r\n      }\r\n      else {\r\n        *puVar2 = 0;\r\n      }\r\n      iVar3 = iVar3 + 1;\r\n      iVar4 = iVar4 + 0x50;\r\n    } while (iVar3 < *(int *)(param_1 + 0x6c));\r\n  }\r\n  return iVar1;\r\n}\r\n\r\n", 
+  "is_thunk": false, 
+  "name": "FUN_00443a90", 
+  "assembly": "  00443a90:  MOV EDX,dword ptr [ECX + 0x6c]\n  00443a93:  PUSH EBX\n  00443a94:  XOR EAX,EAX\n  00443a96:  XOR EBX,EBX\n  00443a98:  TEST EDX,EDX\n  00443a9a:  JLE 0x00443ae1\n  00443a9c:  PUSH EBP\n  00443a9d:  PUSH ESI\n  00443a9e:  PUSH EDI\n  00443a9f:  XOR EDI,EDI\n  00443aa1:  MOV EDX,dword ptr [ECX + 0x70]\n  00443aa4:  MOV EBP,dword ptr [ECX + 0x5c]\n  00443aa7:  ADD EDX,EDI\n  00443aa9:  MOV ESI,dword ptr [EDX + 0x30]\n  00443aac:  CMP ESI,EBP\n  00443aae:  JGE 0x00443ad0\n  00443ab0:  CMP ESI,0xffffff00\n  00443ab6:  JLE 0x00443ad0\n  00443ab8:  MOV ESI,dword ptr [EDX + 0x38]\n  00443abb:  MOV EBP,dword ptr [ECX + 0x60]\n  00443abe:  CMP ESI,EBP\n  00443ac0:  JGE 0x00443ad0\n  00443ac2:  CMP ESI,0xffffff00\n  00443ac8:  JLE 0x00443ad0\n  00443aca:  MOV byte ptr [EDX],0x1\n  00443acd:  INC EAX\n  00443ace:  JMP 0x00443ad3\n  00443ad0:  MOV byte ptr [EDX],0x0\n  00443ad3:  MOV EDX,dword ptr [ECX + 0x6c]\n  00443ad6:  INC EBX\n  00443ad7:  ADD EDI,0x50\n  00443ada:  CMP EBX,EDX\n  00443adc:  JL 0x00443aa1\n  00443ade:  POP EDI\n  00443adf:  POP ESI\n  00443ae0:  POP EBP\n  00443ae1:  POP EBX\n  00443ae2:  RET", 
+  "callers": [
+    {
+      "address": "0x00443970", 
+      "name": "FUN_00443970"
+    }
+  ]
+}

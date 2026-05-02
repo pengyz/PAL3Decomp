@@ -1,0 +1,42 @@
+{
+  "address": "0x004beaa0", 
+  "size_bytes": 11, 
+  "calling_convention": "unknown", 
+  "signature": "undefined FUN_004beaa0(void)", 
+  "callees": [
+    {
+      "address": "0x0041cbc0", 
+      "name": "FUN_0041cbc0"
+    }
+  ], 
+  "global_refs": [
+    {
+      "address": "0x0056f52c", 
+      "type": null, 
+      "name": "PTR_FUN_0056f52c"
+    }
+  ], 
+  "has_custom_name": false, 
+  "decompiled_c": "\r\nvoid __fastcall FUN_004beaa0(undefined4 *param_1)\r\n\r\n{\r\n  *param_1 = &PTR_FUN_0056f52c;\r\n  FUN_0041cbc0();\r\n  return;\r\n}\r\n\r\n", 
+  "is_thunk": false, 
+  "name": "FUN_004beaa0", 
+  "assembly": "  004beaa0:  MOV dword ptr [ECX],0x56f52c\n  004beaa6:  JMP 0x0041cbc0", 
+  "callers": [
+    {
+      "address": "0x0056652b", 
+      "name": "Unwind@0056652b"
+    }, 
+    {
+      "address": "0x0056655b", 
+      "name": "Unwind@0056655b"
+    }, 
+    {
+      "address": "0x004be080", 
+      "name": "FUN_004be080"
+    }, 
+    {
+      "address": "0x004bea80", 
+      "name": "FUN_004bea80"
+    }
+  ]
+}

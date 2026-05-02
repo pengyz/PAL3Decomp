@@ -1,0 +1,34 @@
+{
+  "address": "0x00541de6", 
+  "size_bytes": 29, 
+  "calling_convention": "unknown", 
+  "signature": "undefined FUN_00541de6(void)", 
+  "callees": [
+    {
+      "address": "0x00541e5c", 
+      "name": "FUN_00541e5c"
+    }, 
+    {
+      "address": "0x005534d7", 
+      "name": "__CxxThrowException@8"
+    }
+  ], 
+  "global_refs": [
+    {
+      "address": "0x-0000020", 
+      "type": null, 
+      "name": "DAT_-0000020"
+    }, 
+    {
+      "address": "0x0057b9a8", 
+      "type": null, 
+      "name": "DAT_0057b9a8"
+    }
+  ], 
+  "has_custom_name": false, 
+  "decompiled_c": "\r\nvoid __fastcall FUN_00541de6(undefined4 param_1)\r\n\r\n{\r\n  undefined local_20 [28];\r\n  \r\n  FUN_00541e5c(param_1);\r\n                    /* WARNING: Subroutine does not return */\r\n  __CxxThrowException_8(local_20,&DAT_0057b9a8);\r\n}\r\n\r\n", 
+  "is_thunk": false, 
+  "name": "FUN_00541de6", 
+  "assembly": "  00541de6:  PUSH EBP\n  00541de7:  MOV EBP,ESP\n  00541de9:  SUB ESP,0x1c\n  00541dec:  PUSH ECX\n  00541ded:  LEA ECX,[EBP + -0x1c]\n  00541df0:  CALL 0x00541e5c\n  00541df5:  LEA EAX,[EBP + -0x1c]\n  00541df8:  PUSH 0x57b9a8\n  00541dfd:  PUSH EAX\n  00541dfe:  CALL 0x005534d7", 
+  "callers": []
+}

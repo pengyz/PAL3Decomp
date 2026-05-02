@@ -1,0 +1,78 @@
+{
+  "address": "0x004125d0", 
+  "size_bytes": 163, 
+  "calling_convention": "unknown", 
+  "signature": "undefined FUN_004125d0(undefined4 param_1)", 
+  "callees": [
+    {
+      "address": "0x00412680", 
+      "name": "FUN_00412680"
+    }, 
+    {
+      "address": "0x00536d20", 
+      "name": "FUN_00536d20"
+    }, 
+    {
+      "address": "0x00412710", 
+      "name": "FUN_00412710"
+    }, 
+    {
+      "address": "0x0041aea0", 
+      "name": "FUN_0041aea0"
+    }, 
+    {
+      "address": "0x000000a5", 
+      "name": "gbMatrix4"
+    }, 
+    {
+      "address": "0x00536fd0", 
+      "name": "FUN_00536fd0"
+    }
+  ], 
+  "global_refs": [
+    {
+      "address": "0x00000004", 
+      "type": null, 
+      "name": "DAT_00000004"
+    }, 
+    {
+      "address": "0x-000004c", 
+      "type": null, 
+      "name": "DAT_-000004c"
+    }, 
+    {
+      "address": "0x0056a2a8", 
+      "type": null, 
+      "name": "PTR_gbMatrix4_0056a2a8"
+    }, 
+    {
+      "address": "0x0056a9e4", 
+      "type": null, 
+      "name": "DAT_0056a9e4"
+    }, 
+    {
+      "address": "0x0056a9e0", 
+      "type": null, 
+      "name": "DAT_0056a9e0"
+    }
+  ], 
+  "has_custom_name": false, 
+  "decompiled_c": "\r\n/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */\r\n\r\nvoid __thiscall FUN_004125d0(int param_1_00,int param_1)\r\n\r\n{\r\n  float fVar1;\r\n  gbMatrix4 local_4c [64];\r\n  float fStack_c;\r\n  float fStack_4;\r\n  \r\n  if (param_1 != 0) {\r\n    FUN_00412680();\r\n    FUN_00536d20(param_1,0);\r\n    *(undefined4 *)(param_1_00 + 0x504) = 0;\r\n    FUN_00412710();\r\n    FUN_0041aea0(0x3f800000);\r\n    gbMatrix4::gbMatrix4(local_4c);\r\n    FUN_00536fd0(local_4c);\r\n    fVar1 = SQRT(fStack_c * fStack_c + fStack_4 * fStack_4) * _DAT_0056a9e4;\r\n    *(float *)(param_1_00 + 0x10) = fVar1;\r\n    if (fVar1 < _DAT_0056a9e0) {\r\n      *(undefined4 *)(param_1_00 + 0x5b0) = 1;\r\n    }\r\n    *(undefined4 *)(param_1_00 + 0x54c) = 0;\r\n  }\r\n  return;\r\n}\r\n\r\n", 
+  "is_thunk": false, 
+  "name": "FUN_004125d0", 
+  "assembly": "  004125d0:  SUB ESP,0x4c\n  004125d3:  PUSH EBX\n  004125d4:  MOV EBX,dword ptr [ESP + 0x54]\n  004125d8:  PUSH ESI\n  004125d9:  MOV ESI,ECX\n  004125db:  TEST EBX,EBX\n  004125dd:  JZ 0x0041266b\n  004125e3:  PUSH EDI\n  004125e4:  CALL 0x00412680\n  004125e9:  LEA EDI,[ESI + 0x2a8]\n  004125ef:  PUSH 0x0\n  004125f1:  PUSH EBX\n  004125f2:  MOV ECX,EDI\n  004125f4:  CALL 0x00536d20\n  004125f9:  MOV ECX,ESI\n  004125fb:  MOV dword ptr [ESI + 0x504],0x0\n  00412605:  CALL 0x00412710\n  0041260a:  PUSH 0x3f800000\n  0041260f:  MOV ECX,ESI\n  00412611:  CALL 0x0041aea0\n  00412616:  LEA ECX,[ESP + 0xc]\n  0041261a:  CALL dword ptr [0x0056a2a8]\n  00412620:  LEA EAX,[ESP + 0xc]\n  00412624:  MOV ECX,EDI\n  00412626:  PUSH EAX\n  00412627:  CALL 0x00536fd0\n  0041262c:  FLD dword ptr [ESP + 0x54]\n  00412630:  FMUL dword ptr [ESP + 0x54]\n  00412634:  FLD dword ptr [ESP + 0x4c]\n  00412638:  FMUL dword ptr [ESP + 0x4c]\n  0041263c:  POP EDI\n  0041263d:  FADDP\n  0041263f:  FSQRT\n  00412641:  FMUL dword ptr [0x0056a9e4]\n  00412647:  FST dword ptr [ESI + 0x10]\n  0041264a:  FCOMP dword ptr [0x0056a9e0]\n  00412650:  FNSTSW AX\n  00412652:  TEST AH,0x1\n  00412655:  JZ 0x00412661\n  00412657:  MOV dword ptr [ESI + 0x5b0],0x1\n  00412661:  MOV dword ptr [ESI + 0x54c],0x0\n  0041266b:  POP ESI\n  0041266c:  POP EBX\n  0041266d:  ADD ESP,0x4c\n  00412670:  RET 0x4", 
+  "callers": [
+    {
+      "address": "0x00417040", 
+      "name": "FUN_00417040"
+    }, 
+    {
+      "address": "0x00408fd0", 
+      "name": "FUN_00408fd0"
+    }, 
+    {
+      "address": "0x00426eb0", 
+      "name": "FUN_00426eb0"
+    }
+  ]
+}

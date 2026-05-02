@@ -1,0 +1,43 @@
+{
+  "address": "0x0043f560", 
+  "size_bytes": 34, 
+  "calling_convention": "unknown", 
+  "signature": "undefined FUN_0043f560(void)", 
+  "callees": [], 
+  "global_refs": [], 
+  "has_custom_name": false, 
+  "decompiled_c": "\r\nint __fastcall FUN_0043f560(int param_1)\r\n\r\n{\r\n  if ((0 < *(int *)(param_1 + 0x1b0)) && (*(int *)(param_1 + 0x460) != -1)) {\r\n    return *(int *)(param_1 + 0x45c) + *(int *)(param_1 + 0x460);\r\n  }\r\n  return -1;\r\n}\r\n\r\n", 
+  "is_thunk": false, 
+  "name": "FUN_0043f560", 
+  "assembly": "  0043f560:  MOV EAX,dword ptr [ECX + 0x1b0]\n  0043f566:  TEST EAX,EAX\n  0043f568:  JLE 0x0043f57e\n  0043f56a:  MOV EDX,dword ptr [ECX + 0x460]\n  0043f570:  CMP EDX,-0x1\n  0043f573:  JZ 0x0043f57e\n  0043f575:  MOV EAX,dword ptr [ECX + 0x45c]\n  0043f57b:  ADD EAX,EDX\n  0043f57d:  RET\n  0043f57e:  OR EAX,0xffffffff\n  0043f581:  RET", 
+  "callers": [
+    {
+      "address": "0x0043f6a0", 
+      "name": "FUN_0043f6a0"
+    }, 
+    {
+      "address": "0x0043e5c0", 
+      "name": "FUN_0043e5c0"
+    }, 
+    {
+      "address": "0x0047b6c0", 
+      "name": "FUN_0047b6c0"
+    }, 
+    {
+      "address": "0x0043f080", 
+      "name": "FUN_0043f080"
+    }, 
+    {
+      "address": "0x0051a930", 
+      "name": "FUN_0051a930"
+    }, 
+    {
+      "address": "0x004932d0", 
+      "name": "FUN_004932d0"
+    }, 
+    {
+      "address": "0x00494d70", 
+      "name": "FUN_00494d70"
+    }
+  ]
+}

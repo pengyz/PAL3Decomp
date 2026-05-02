@@ -1,0 +1,19 @@
+{
+  "address": "0x0043df10", 
+  "size_bytes": 15, 
+  "calling_convention": "unknown", 
+  "signature": "undefined FUN_0043df10(void)", 
+  "callees": [
+    {
+      "address": "0x00432660", 
+      "name": "FUN_00432660"
+    }
+  ], 
+  "global_refs": [], 
+  "has_custom_name": false, 
+  "decompiled_c": "\r\nundefined4 __fastcall FUN_0043df10(undefined4 param_1)\r\n\r\n{\r\n  FUN_00432660();\r\n  return param_1;\r\n}\r\n\r\n", 
+  "is_thunk": false, 
+  "name": "FUN_0043df10", 
+  "assembly": "  0043df10:  PUSH ESI\n  0043df11:  MOV ESI,ECX\n  0043df13:  LEA ECX,[ESI + 0x40]\n  0043df16:  CALL 0x00432660\n  0043df1b:  MOV EAX,ESI\n  0043df1d:  POP ESI\n  0043df1e:  RET", 
+  "callers": []
+}

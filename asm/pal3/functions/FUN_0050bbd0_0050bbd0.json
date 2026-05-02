@@ -1,0 +1,40 @@
+{
+  "address": "0x0050bbd0", 
+  "size_bytes": 256, 
+  "calling_convention": "unknown", 
+  "signature": "undefined FUN_0050bbd0(void)", 
+  "callees": [
+    {
+      "address": "0x004ed040", 
+      "name": "FUN_004ed040"
+    }, 
+    {
+      "address": "0x004f3a50", 
+      "name": "FUN_004f3a50"
+    }, 
+    {
+      "address": "0x004ee870", 
+      "name": "FUN_004ee870"
+    }, 
+    {
+      "address": "0x0050aa60", 
+      "name": "FUN_0050aa60"
+    }, 
+    {
+      "address": "0x004f3d90", 
+      "name": "FUN_004f3d90"
+    }
+  ], 
+  "global_refs": [], 
+  "has_custom_name": false, 
+  "decompiled_c": "\r\nundefined4 __fastcall FUN_0050bbd0(int param_1)\r\n\r\n{\r\n  char cVar1;\r\n  int iVar2;\r\n  \r\n  iVar2 = *(int *)(param_1 + 0x11c);\r\n  if (*(char *)(*(int *)(param_1 + 4) + 0x241 + iVar2 * 0x37c) == '\\0') {\r\n    if ((-1 < iVar2) && (iVar2 < 5)) {\r\n      return 0x20;\r\n    }\r\n  }\r\n  else {\r\n    cVar1 = FUN_004ed040(iVar2);\r\n    if (cVar1 != '\\0') {\r\n      iVar2 = FUN_004f3a50(*(undefined4 *)(param_1 + 0x11c));\r\n      if (iVar2 == 5) {\r\n        return 0x2f;\r\n      }\r\n      if (*(int *)(param_1 + 0x19a4) == 4) {\r\n        return 0x22;\r\n      }\r\n      iVar2 = FUN_004ee870(*(undefined4 *)(param_1 + 0x11c));\r\n      if (*(char *)(iVar2 + 0x24c) != '\\0') {\r\n        FUN_0050aa60(0x3e800000);\r\n        return 0x2a;\r\n      }\r\n      cVar1 = FUN_004f3d90(*(undefined4 *)(param_1 + 0x11c),0x11);\r\n      if ((cVar1 == '\\0') &&\r\n         (cVar1 = FUN_004f3d90(*(undefined4 *)(param_1 + 0x11c),0xe), cVar1 == '\\0')) {\r\n        iVar2 = FUN_004f3a50(*(undefined4 *)(param_1 + 0x11c));\r\n        if (iVar2 == 4) {\r\n          return 0x2e;\r\n        }\r\n        if (iVar2 == 5) {\r\n          return 0x2f;\r\n        }\r\n        return 0x20;\r\n      }\r\n      return 0x2d;\r\n    }\r\n  }\r\n  return 0x32;\r\n}\r\n\r\n", 
+  "is_thunk": false, 
+  "name": "FUN_0050bbd0", 
+  "assembly": "  0050bbd0:  PUSH EBX\n  0050bbd1:  PUSH ESI\n  0050bbd2:  MOV ESI,ECX\n  0050bbd4:  MOV EAX,dword ptr [ESI + 0x11c]\n  0050bbda:  MOV ECX,dword ptr [ESI + 0x4]\n  0050bbdd:  LEA EDX,[EAX*0x8 + 0x0]\n  0050bbe4:  SUB EDX,EAX\n  0050bbe6:  SHL EDX,0x5\n  0050bbe9:  SUB EDX,EAX\n  0050bbeb:  MOV BL,byte ptr [ECX + EDX*0x4 + 0x241]\n  0050bbf2:  TEST BL,BL\n  0050bbf4:  JNZ 0x0050bc07\n  0050bbf6:  TEST EAX,EAX\n  0050bbf8:  JL 0x0050bc11\n  0050bbfa:  CMP EAX,0x5\n  0050bbfd:  JGE 0x0050bc11\n  0050bbff:  POP ESI\n  0050bc00:  MOV EAX,0x20\n  0050bc05:  POP EBX\n  0050bc06:  RET\n  0050bc07:  PUSH EAX\n  0050bc08:  CALL 0x004ed040\n  0050bc0d:  TEST AL,AL\n  0050bc0f:  JNZ 0x0050bc19\n  0050bc11:  POP ESI\n  0050bc12:  MOV EAX,0x32\n  0050bc17:  POP EBX\n  0050bc18:  RET\n  0050bc19:  MOV EAX,dword ptr [ESI + 0x11c]\n  0050bc1f:  MOV ECX,dword ptr [ESI + 0x4]\n  0050bc22:  PUSH EAX\n  0050bc23:  CALL 0x004f3a50\n  0050bc28:  CMP EAX,0x5\n  0050bc2b:  JNZ 0x0050bc35\n  0050bc2d:  POP ESI\n  0050bc2e:  MOV EAX,0x2f\n  0050bc33:  POP EBX\n  0050bc34:  RET\n  0050bc35:  CMP dword ptr [ESI + 0x19a4],0x4\n  0050bc3c:  JNZ 0x0050bc46\n  0050bc3e:  POP ESI\n  0050bc3f:  MOV EAX,0x22\n  0050bc44:  POP EBX\n  0050bc45:  RET\n  0050bc46:  MOV ECX,dword ptr [ESI + 0x11c]\n  0050bc4c:  PUSH ECX\n  0050bc4d:  MOV ECX,dword ptr [ESI + 0x4]\n  0050bc50:  CALL 0x004ee870\n  0050bc55:  MOV CL,byte ptr [EAX + 0x24c]\n  0050bc5b:  TEST CL,CL\n  0050bc5d:  JZ 0x0050bc73\n  0050bc5f:  PUSH 0x3e800000\n  0050bc64:  MOV ECX,ESI\n  0050bc66:  CALL 0x0050aa60\n  0050bc6b:  POP ESI\n  0050bc6c:  MOV EAX,0x2a\n  0050bc71:  POP EBX\n  0050bc72:  RET\n  0050bc73:  MOV EDX,dword ptr [ESI + 0x11c]\n  0050bc79:  MOV ECX,dword ptr [ESI + 0x4]\n  0050bc7c:  PUSH 0x11\n  0050bc7e:  PUSH EDX\n  0050bc7f:  CALL 0x004f3d90\n  0050bc84:  TEST AL,AL\n  0050bc86:  JNZ 0x0050bcc8\n  0050bc88:  MOV EAX,dword ptr [ESI + 0x11c]\n  0050bc8e:  MOV ECX,dword ptr [ESI + 0x4]\n  0050bc91:  PUSH 0xe\n  0050bc93:  PUSH EAX\n  0050bc94:  CALL 0x004f3d90\n  0050bc99:  TEST AL,AL\n  0050bc9b:  JNZ 0x0050bcc8\n  0050bc9d:  MOV ECX,dword ptr [ESI + 0x11c]\n  0050bca3:  PUSH ECX\n  0050bca4:  MOV ECX,dword ptr [ESI + 0x4]\n  0050bca7:  CALL 0x004f3a50\n  0050bcac:  SUB EAX,0x4\n  0050bcaf:  JZ 0x0050bcc0\n  0050bcb1:  DEC EAX\n  0050bcb2:  JZ 0x0050bc2d\n  0050bcb8:  POP ESI\n  0050bcb9:  MOV EAX,0x20\n  0050bcbe:  POP EBX\n  0050bcbf:  RET\n  0050bcc0:  POP ESI\n  0050bcc1:  MOV EAX,0x2e\n  0050bcc6:  POP EBX\n  0050bcc7:  RET\n  0050bcc8:  POP ESI\n  0050bcc9:  MOV EAX,0x2d\n  0050bcce:  POP EBX\n  0050bccf:  RET", 
+  "callers": [
+    {
+      "address": "0x0050b430", 
+      "name": "FUN_0050b430"
+    }
+  ]
+}

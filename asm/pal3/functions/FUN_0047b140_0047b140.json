@@ -1,0 +1,84 @@
+{
+  "address": "0x0047b140", 
+  "size_bytes": 180, 
+  "calling_convention": "unknown", 
+  "signature": "undefined FUN_0047b140(undefined4 param_1)", 
+  "callees": [
+    {
+      "address": "0x00553082", 
+      "name": "FUN_00553082"
+    }, 
+    {
+      "address": "0x00458f70", 
+      "name": "FUN_00458f70"
+    }, 
+    {
+      "address": "0x00000009", 
+      "name": "lstrlenA"
+    }, 
+    {
+      "address": "0x00000014", 
+      "name": "lstrcpyA"
+    }, 
+    {
+      "address": "0x00457f90", 
+      "name": "FUN_00457f90"
+    }, 
+    {
+      "address": "0x0000000e", 
+      "name": "lstrcatA"
+    }, 
+    {
+      "address": "0x004427c0", 
+      "name": "FUN_004427c0"
+    }
+  ], 
+  "global_refs": [
+    {
+      "address": "0x00c10d38", 
+      "type": null, 
+      "name": "DAT_00c10d38"
+    }, 
+    {
+      "address": "0x-00000ff", 
+      "type": null, 
+      "name": "DAT_-00000ff"
+    }, 
+    {
+      "address": "0x-0000100", 
+      "type": null, 
+      "name": "DAT_-0000100"
+    }, 
+    {
+      "address": "0x00000004", 
+      "type": null, 
+      "name": "DAT_00000004"
+    }, 
+    {
+      "address": "0x005b74b8", 
+      "type": null, 
+      "name": "DAT_005b74b8"
+    }, 
+    {
+      "address": "0x0056a028", 
+      "type": null, 
+      "name": "PTR_lstrlenA_0056a028"
+    }, 
+    {
+      "address": "0x0056a054", 
+      "type": null, 
+      "name": "PTR_lstrcpyA_0056a054"
+    }, 
+    {
+      "address": "0x0056a03c", 
+      "type": null, 
+      "name": "PTR_lstrcatA_0056a03c"
+    }
+  ], 
+  "has_custom_name": false, 
+  "decompiled_c": "\r\nvoid __thiscall FUN_0047b140(int param_1_00,int param_1)\r\n\r\n{\r\n  LPSTR lpString1;\r\n  LPCSTR pCVar1;\r\n  int iVar2;\r\n  undefined4 *puVar3;\r\n  undefined local_100;\r\n  undefined4 local_ff;\r\n  \r\n  lpString1 = (LPSTR)(param_1_00 + 0x68);\r\n  FUN_00553082(lpString1,&DAT_00c10d38);\r\n  local_100 = 0;\r\n  puVar3 = &local_ff;\r\n  for (iVar2 = 0x3f; iVar2 != 0; iVar2 = iVar2 + -1) {\r\n    *puVar3 = 0;\r\n    puVar3 = puVar3 + 1;\r\n  }\r\n  *(undefined2 *)puVar3 = 0;\r\n  *(undefined *)((int)puVar3 + 2) = 0;\r\n  pCVar1 = (LPCSTR)FUN_00458f70(*(int *)(param_1_00 + 0xab8 + param_1 * 0xc) + 0x60,&DAT_005b74b8,\r\n                                &local_100);\r\n  iVar2 = lstrlenA(pCVar1);\r\n  if (iVar2 < 1) {\r\n    pCVar1 = (LPCSTR)FUN_00457f90(*(undefined4 *)(param_1_00 + 0xab8 + param_1 * 0xc));\r\n    lstrcatA(lpString1,pCVar1);\r\n  }\r\n  else {\r\n    lstrcpyA(lpString1,pCVar1);\r\n  }\r\n  FUN_004427c0(lpString1,0);\r\n  FUN_004427c0(&local_100,0);\r\n  return;\r\n}\r\n\r\n", 
+  "is_thunk": false, 
+  "name": "FUN_0047b140", 
+  "assembly": "  0047b140:  SUB ESP,0x100\n  0047b146:  PUSH EBX\n  0047b147:  PUSH EBP\n  0047b148:  PUSH ESI\n  0047b149:  MOV ESI,ECX\n  0047b14b:  PUSH EDI\n  0047b14c:  PUSH 0xc10d38\n  0047b151:  LEA EBX,[ESI + 0x68]\n  0047b154:  PUSH EBX\n  0047b155:  CALL 0x00553082\n  0047b15a:  MOV ECX,0x3f\n  0047b15f:  XOR EAX,EAX\n  0047b161:  LEA EDI,[ESP + 0x19]\n  0047b165:  MOV byte ptr [ESP + 0x18],0x0\n  0047b16a:  STOSD.REP ES:EDI\n  0047b16c:  STOSW ES:EDI\n  0047b16e:  STOSB ES:EDI\n  0047b16f:  MOV EAX,dword ptr [ESP + 0x11c]\n  0047b176:  LEA ECX,[ESP + 0x18]\n  0047b17a:  PUSH ECX\n  0047b17b:  PUSH 0x5b74b8\n  0047b180:  LEA EAX,[EAX + EAX*0x2]\n  0047b183:  MOV EDX,dword ptr [ESI + EAX*0x4 + 0xab8]\n  0047b18a:  LEA EDI,[ESI + EAX*0x4 + 0xab8]\n  0047b191:  ADD EDX,0x60\n  0047b194:  PUSH EDX\n  0047b195:  CALL 0x00458f70\n  0047b19a:  ADD ESP,0x14\n  0047b19d:  MOV EBP,EAX\n  0047b19f:  PUSH EBP\n  0047b1a0:  CALL dword ptr [0x0056a028]\n  0047b1a6:  TEST EAX,EAX\n  0047b1a8:  JLE 0x0047b1b4\n  0047b1aa:  PUSH EBP\n  0047b1ab:  PUSH EBX\n  0047b1ac:  CALL dword ptr [0x0056a054]\n  0047b1b2:  JMP 0x0047b1c7\n  0047b1b4:  MOV EAX,dword ptr [EDI]\n  0047b1b6:  PUSH EAX\n  0047b1b7:  CALL 0x00457f90\n  0047b1bc:  ADD ESP,0x4\n  0047b1bf:  PUSH EAX\n  0047b1c0:  PUSH EBX\n  0047b1c1:  CALL dword ptr [0x0056a03c]\n  0047b1c7:  PUSH 0x0\n  0047b1c9:  PUSH EBX\n  0047b1ca:  LEA ECX,[ESI + 0x28160]\n  0047b1d0:  CALL 0x004427c0\n  0047b1d5:  LEA ECX,[ESP + 0x10]\n  0047b1d9:  PUSH 0x0\n  0047b1db:  PUSH ECX\n  0047b1dc:  LEA ECX,[ESI + 0x280c8]\n  0047b1e2:  CALL 0x004427c0\n  0047b1e7:  POP EDI\n  0047b1e8:  POP ESI\n  0047b1e9:  POP EBP\n  0047b1ea:  POP EBX\n  0047b1eb:  ADD ESP,0x100\n  0047b1f1:  RET 0x4", 
+  "callers": []
+}

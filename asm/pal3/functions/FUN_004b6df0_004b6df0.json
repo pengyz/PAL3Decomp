@@ -1,0 +1,25 @@
+{
+  "address": "0x004b6df0", 
+  "size_bytes": 33, 
+  "calling_convention": "unknown", 
+  "signature": "undefined FUN_004b6df0(void)", 
+  "callees": [], 
+  "global_refs": [
+    {
+      "address": "0x00bfda60", 
+      "type": null, 
+      "name": "DAT_00bfda60"
+    }
+  ], 
+  "has_custom_name": false, 
+  "decompiled_c": "\r\nvoid __fastcall FUN_004b6df0(char *param_1)\r\n\r\n{\r\n  if (*param_1 != '\\0') {\r\n    (**(code **)(**(int **)(DAT_00bfda60 + 0x718) + 0xe4))(*(int **)(DAT_00bfda60 + 0x718),0xa8,3);\r\n  }\r\n  return;\r\n}\r\n\r\n", 
+  "is_thunk": false, 
+  "name": "FUN_004b6df0", 
+  "assembly": "  004b6df0:  CMP byte ptr [ECX],0x0\n  004b6df3:  JZ 0x004b6e10\n  004b6df5:  MOV EAX,[0x00bfda60]\n  004b6dfa:  PUSH 0x3\n  004b6dfc:  PUSH 0xa8\n  004b6e01:  MOV EAX,dword ptr [EAX + 0x718]\n  004b6e07:  PUSH EAX\n  004b6e08:  MOV ECX,dword ptr [EAX]\n  004b6e0a:  CALL dword ptr [ECX + 0xe4]\n  004b6e10:  RET", 
+  "callers": [
+    {
+      "address": "0x00405c00", 
+      "name": "FUN_00405c00"
+    }
+  ]
+}

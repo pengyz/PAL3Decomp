@@ -1,0 +1,72 @@
+{
+  "address": "0x00510f50", 
+  "size_bytes": 211, 
+  "calling_convention": "unknown", 
+  "signature": "undefined FUN_00510f50(void)", 
+  "callees": [
+    {
+      "address": "0x004ee870", 
+      "name": "FUN_004ee870"
+    }, 
+    {
+      "address": "0x00553082", 
+      "name": "FUN_00553082"
+    }, 
+    {
+      "address": "0x00000150", 
+      "name": "PointWorldToScr"
+    }, 
+    {
+      "address": "0x004dfb70", 
+      "name": "FUN_004dfb70"
+    }
+  ], 
+  "global_refs": [
+    {
+      "address": "0x00bfda60", 
+      "type": null, 
+      "name": "DAT_00bfda60"
+    }, 
+    {
+      "address": "0x-0000004", 
+      "type": null, 
+      "name": "DAT_-0000004"
+    }, 
+    {
+      "address": "0x-0000008", 
+      "type": null, 
+      "name": "DAT_-0000008"
+    }, 
+    {
+      "address": "0x-000000c", 
+      "type": null, 
+      "name": "DAT_-000000c"
+    }, 
+    {
+      "address": "0x005dc018", 
+      "type": null, 
+      "name": "s_%d(%s)_005dc018"
+    }, 
+    {
+      "address": "0x017abf00", 
+      "type": null, 
+      "name": "DAT_017abf00"
+    }, 
+    {
+      "address": "0x0056a554", 
+      "type": null, 
+      "name": "PTR_PointWorldToScr_0056a554"
+    }
+  ], 
+  "has_custom_name": false, 
+  "decompiled_c": "\r\nvoid __fastcall FUN_00510f50(int *param_1)\r\n\r\n{\r\n  int iVar1;\r\n  int iVar2;\r\n  int iVar3;\r\n  char *local_c;\r\n  float local_8;\r\n  float local_4;\r\n  \r\n  local_4 = 0.0;\r\n  local_8 = 0.0;\r\n  if ((DAT_00bfda60 != 0) && (*(char *)((int)param_1 + 0x3c2) != '\\0')) {\r\n    iVar2 = 0;\r\n    iVar3 = 0x18;\r\n    local_c = (char *)(*(int *)(*(int *)*param_1 + 0x10) + 0x241);\r\n    do {\r\n      if (*local_c != '\\0') {\r\n        iVar1 = FUN_004ee870(iVar2);\r\n        FUN_00553082(&DAT_017abf00,s__d__s__005dc018,iVar2,iVar1 + 8);\r\n        gbCamera::PointWorldToScr\r\n                  ((gbCamera *)(*(int *)(*param_1 + 0xc) + 4),\r\n                   (gbVec3D *)(*(int *)(iVar3 + *param_1) + 0x19b8),&local_4,&local_8);\r\n        FUN_004dfb70(&DAT_017abf00,local_4,local_8,0x41800000);\r\n      }\r\n      iVar3 = iVar3 + 4;\r\n      iVar2 = iVar2 + 1;\r\n      local_c = local_c + 0x37c;\r\n    } while (iVar3 < 0x44);\r\n  }\r\n  return;\r\n}\r\n\r\n", 
+  "is_thunk": false, 
+  "name": "FUN_00510f50", 
+  "assembly": "  00510f50:  SUB ESP,0xc\n  00510f53:  MOV EAX,[0x00bfda60]\n  00510f58:  PUSH EBX\n  00510f59:  TEST EAX,EAX\n  00510f5b:  MOV EBX,ECX\n  00510f5d:  MOV dword ptr [ESP + 0xc],0x0\n  00510f65:  MOV dword ptr [ESP + 0x8],0x0\n  00510f6d:  JZ 0x0051101e\n  00510f73:  MOV AL,byte ptr [EBX + 0x3c2]\n  00510f79:  TEST AL,AL\n  00510f7b:  JZ 0x0051101e\n  00510f81:  MOV EAX,dword ptr [EBX]\n  00510f83:  PUSH EBP\n  00510f84:  PUSH ESI\n  00510f85:  PUSH EDI\n  00510f86:  MOV ECX,dword ptr [EAX]\n  00510f88:  XOR ESI,ESI\n  00510f8a:  MOV EDI,0x18\n  00510f8f:  MOV EBP,dword ptr [ECX + 0x10]\n  00510f92:  LEA EDX,[EBP + 0x241]\n  00510f98:  MOV dword ptr [ESP + 0x10],EDX\n  00510f9c:  MOV EAX,dword ptr [ESP + 0x10]\n  00510fa0:  CMP byte ptr [EAX],0x0\n  00510fa3:  JZ 0x00511004\n  00510fa5:  PUSH ESI\n  00510fa6:  MOV ECX,EBP\n  00510fa8:  CALL 0x004ee870\n  00510fad:  ADD EAX,0x8\n  00510fb0:  PUSH EAX\n  00510fb1:  PUSH ESI\n  00510fb2:  PUSH 0x5dc018\n  00510fb7:  PUSH 0x17abf00\n  00510fbc:  CALL 0x00553082\n  00510fc1:  MOV EAX,dword ptr [EBX]\n  00510fc3:  ADD ESP,0x10\n  00510fc6:  LEA ECX,[ESP + 0x14]\n  00510fca:  LEA EDX,[ESP + 0x18]\n  00510fce:  PUSH ECX\n  00510fcf:  MOV ECX,dword ptr [EDI + EAX*0x1]\n  00510fd2:  ADD ECX,0x19b8\n  00510fd8:  PUSH EDX\n  00510fd9:  PUSH ECX\n  00510fda:  MOV ECX,dword ptr [EAX + 0xc]\n  00510fdd:  ADD ECX,0x4\n  00510fe0:  CALL dword ptr [0x0056a554]\n  00510fe6:  MOV EDX,dword ptr [ESP + 0x14]\n  00510fea:  MOV EAX,dword ptr [ESP + 0x18]\n  00510fee:  MOV ECX,dword ptr [EBX]\n  00510ff0:  PUSH 0x41800000\n  00510ff5:  PUSH EDX\n  00510ff6:  PUSH EAX\n  00510ff7:  MOV ECX,dword ptr [ECX + 0x44]\n  00510ffa:  PUSH 0x17abf00\n  00510fff:  CALL 0x004dfb70\n  00511004:  MOV ECX,dword ptr [ESP + 0x10]\n  00511008:  ADD EDI,0x4\n  0051100b:  INC ESI\n  0051100c:  ADD ECX,0x37c\n  00511012:  CMP EDI,0x44\n  00511015:  MOV dword ptr [ESP + 0x10],ECX\n  00511019:  JL 0x00510f9c\n  0051101b:  POP EDI\n  0051101c:  POP ESI\n  0051101d:  POP EBP\n  0051101e:  POP EBX\n  0051101f:  ADD ESP,0xc\n  00511022:  RET", 
+  "callers": [
+    {
+      "address": "0x004fc3a0", 
+      "name": "FUN_004fc3a0"
+    }
+  ]
+}

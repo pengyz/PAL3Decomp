@@ -1,0 +1,35 @@
+{
+  "address": "0x00421830", 
+  "size_bytes": 53, 
+  "calling_convention": "unknown", 
+  "signature": "undefined FUN_00421830(void)", 
+  "callees": [
+    {
+      "address": "0x000000c3", 
+      "name": "AddVisNode"
+    }
+  ], 
+  "global_refs": [
+    {
+      "address": "0x00bfda60", 
+      "type": null, 
+      "name": "DAT_00bfda60"
+    }, 
+    {
+      "address": "0x0056a320", 
+      "type": null, 
+      "name": "PTR_AddVisNode_0056a320"
+    }
+  ], 
+  "has_custom_name": false, 
+  "decompiled_c": "\r\nvoid __fastcall FUN_00421830(int param_1)\r\n\r\n{\r\n  if ((*(gbVisNode **)(param_1 + 0x84) != (gbVisNode *)0x0) && (*(int *)(param_1 + 0x78658) == 0)) {\r\n    gbSceneGraph::AddVisNode\r\n              (*(gbSceneGraph **)(DAT_00bfda60 + 0x1c0),*(gbVisNode **)(param_1 + 0x84));\r\n  }\r\n  *(undefined4 *)(param_1 + 0x78658) = 1;\r\n  return;\r\n}\r\n\r\n", 
+  "is_thunk": false, 
+  "name": "FUN_00421830", 
+  "assembly": "  00421830:  PUSH ESI\n  00421831:  MOV ESI,ECX\n  00421833:  MOV EAX,dword ptr [ESI + 0x84]\n  00421839:  TEST EAX,EAX\n  0042183b:  JZ 0x00421859\n  0042183d:  MOV ECX,dword ptr [ESI + 0x78658]\n  00421843:  TEST ECX,ECX\n  00421845:  JNZ 0x00421859\n  00421847:  PUSH EAX\n  00421848:  MOV EAX,[0x00bfda60]\n  0042184d:  MOV ECX,dword ptr [EAX + 0x1c0]\n  00421853:  CALL dword ptr [0x0056a320]\n  00421859:  MOV dword ptr [ESI + 0x78658],0x1\n  00421863:  POP ESI\n  00421864:  RET", 
+  "callers": [
+    {
+      "address": "0x00422950", 
+      "name": "FUN_00422950"
+    }
+  ]
+}

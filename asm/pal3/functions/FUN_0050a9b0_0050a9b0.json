@@ -1,0 +1,90 @@
+{
+  "address": "0x0050a9b0", 
+  "size_bytes": 160, 
+  "calling_convention": "unknown", 
+  "signature": "undefined FUN_0050a9b0(void)", 
+  "callees": [
+    {
+      "address": "0x000000a5", 
+      "name": "gbMatrix4"
+    }, 
+    {
+      "address": "0x00553041", 
+      "name": "FUN_00553041"
+    }, 
+    {
+      "address": "0x0050a560", 
+      "name": "FUN_0050a560"
+    }, 
+    {
+      "address": "0x00000118", 
+      "name": "GetCenter"
+    }, 
+    {
+      "address": "0x004ee870", 
+      "name": "FUN_004ee870"
+    }
+  ], 
+  "global_refs": [
+    {
+      "address": "0x017ab874", 
+      "type": null, 
+      "name": "DAT_017ab874"
+    }, 
+    {
+      "address": "0x017ab828", 
+      "type": null, 
+      "name": "DAT_017ab828"
+    }, 
+    {
+      "address": "0x0056a2a8", 
+      "type": null, 
+      "name": "PTR_gbMatrix4_0056a2a8"
+    }, 
+    {
+      "address": "0x0050aa50", 
+      "type": null, 
+      "name": "DAT_0050aa50"
+    }, 
+    {
+      "address": "0x-000000c", 
+      "type": null, 
+      "name": "DAT_-000000c"
+    }, 
+    {
+      "address": "0x0056a474", 
+      "type": null, 
+      "name": "PTR_GetCenter_0056a474"
+    }, 
+    {
+      "address": "0x0056a610", 
+      "type": null, 
+      "name": "DAT_0056a610"
+    }, 
+    {
+      "address": "0x0056aa3c", 
+      "type": null, 
+      "name": "DAT_0056aa3c"
+    }, 
+    {
+      "address": "0x0056a77c", 
+      "type": null, 
+      "name": "DAT_0056a77c"
+    }
+  ], 
+  "has_custom_name": false, 
+  "decompiled_c": "\r\n/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */\r\n\r\nvoid __thiscall FUN_0050a9b0(int param_1,undefined4 *param_2)\r\n\r\n{\r\n  gbOBBox *pgVar1;\r\n  undefined4 *puVar2;\r\n  int *piVar3;\r\n  undefined *puVar4;\r\n  undefined local_c [12];\r\n  \r\n  if ((DAT_017ab874 & 1) == 0) {\r\n    DAT_017ab874 = DAT_017ab874 | 1;\r\n    gbMatrix4::gbMatrix4((gbMatrix4 *)&DAT_017ab828);\r\n    FUN_00553041(&DAT_0050aa50);\r\n  }\r\n  puVar4 = local_c;\r\n  pgVar1 = (gbOBBox *)FUN_0050a560(puVar4);\r\n  puVar2 = (undefined4 *)gbOBBox::GetCenter(pgVar1,puVar4);\r\n  *param_2 = *puVar2;\r\n  param_2[1] = puVar2[1];\r\n  param_2[2] = puVar2[2];\r\n  param_2[1] = *(float *)(param_1 + 0x16c) * _DAT_0056a610 + (float)param_2[1] + _DAT_0056aa3c;\r\n  piVar3 = (int *)FUN_004ee870(*(undefined4 *)(param_1 + 0x11c));\r\n  if (*piVar3 == 0x2c3) {\r\n    param_2[1] = (float)param_2[1] - _DAT_0056a77c;\r\n  }\r\n  return;\r\n}\r\n\r\n", 
+  "is_thunk": false, 
+  "name": "FUN_0050a9b0", 
+  "assembly": "  0050a9b0:  SUB ESP,0xc\n  0050a9b3:  MOV AL,0x1\n  0050a9b5:  PUSH ESI\n  0050a9b6:  PUSH EDI\n  0050a9b7:  MOV EDI,ECX\n  0050a9b9:  MOV CL,byte ptr [0x017ab874]\n  0050a9bf:  TEST AL,CL\n  0050a9c1:  JNZ 0x0050a9e5\n  0050a9c3:  MOV DL,CL\n  0050a9c5:  MOV ECX,0x17ab828\n  0050a9ca:  OR DL,AL\n  0050a9cc:  MOV byte ptr [0x017ab874],DL\n  0050a9d2:  CALL dword ptr [0x0056a2a8]\n  0050a9d8:  PUSH 0x50aa50\n  0050a9dd:  CALL 0x00553041\n  0050a9e2:  ADD ESP,0x4\n  0050a9e5:  LEA EAX,[ESP + 0x8]\n  0050a9e9:  MOV ECX,EDI\n  0050a9eb:  PUSH EAX\n  0050a9ec:  CALL 0x0050a560\n  0050a9f1:  MOV ECX,EAX\n  0050a9f3:  CALL dword ptr [0x0056a474]\n  0050a9f9:  MOV ESI,dword ptr [ESP + 0x18]\n  0050a9fd:  MOV ECX,dword ptr [EAX]\n  0050a9ff:  MOV dword ptr [ESI],ECX\n  0050aa01:  MOV EDX,dword ptr [EAX + 0x4]\n  0050aa04:  MOV dword ptr [ESI + 0x4],EDX\n  0050aa07:  MOV EAX,dword ptr [EAX + 0x8]\n  0050aa0a:  MOV dword ptr [ESI + 0x8],EAX\n  0050aa0d:  FLD dword ptr [EDI + 0x16c]\n  0050aa13:  FMUL dword ptr [0x0056a610]\n  0050aa19:  FADD dword ptr [ESI + 0x4]\n  0050aa1c:  FADD dword ptr [0x0056aa3c]\n  0050aa22:  FSTP dword ptr [ESI + 0x4]\n  0050aa25:  MOV ECX,dword ptr [EDI + 0x11c]\n  0050aa2b:  PUSH ECX\n  0050aa2c:  MOV ECX,dword ptr [EDI + 0x4]\n  0050aa2f:  CALL 0x004ee870\n  0050aa34:  CMP dword ptr [EAX],0x2c3\n  0050aa3a:  JNZ 0x0050aa48\n  0050aa3c:  FLD dword ptr [ESI + 0x4]\n  0050aa3f:  FSUB dword ptr [0x0056a77c]\n  0050aa45:  FSTP dword ptr [ESI + 0x4]\n  0050aa48:  POP EDI\n  0050aa49:  POP ESI\n  0050aa4a:  ADD ESP,0xc\n  0050aa4d:  RET 0x4", 
+  "callers": [
+    {
+      "address": "0x004fc3a0", 
+      "name": "FUN_004fc3a0"
+    }, 
+    {
+      "address": "0x00509b90", 
+      "name": "FUN_00509b90"
+    }
+  ]
+}

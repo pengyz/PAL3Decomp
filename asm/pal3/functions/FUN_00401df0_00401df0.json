@@ -1,0 +1,121 @@
+{
+  "address": "0x00401df0", 
+  "size_bytes": 328, 
+  "calling_convention": "unknown", 
+  "signature": "undefined FUN_00401df0(undefined4 param_1)", 
+  "callees": [
+    {
+      "address": "0x0055ef90", 
+      "name": "__strcmpi"
+    }, 
+    {
+      "address": "0x00000152", 
+      "name": "Release"
+    }, 
+    {
+      "address": "0x00000153", 
+      "name": "Init"
+    }, 
+    {
+      "address": "0x00553082", 
+      "name": "FUN_00553082"
+    }
+  ], 
+  "global_refs": [
+    {
+      "address": "0x00000004", 
+      "type": null, 
+      "name": "DAT_00000004"
+    }, 
+    {
+      "address": "0x008ac5d8", 
+      "type": null, 
+      "name": "DAT_008ac5d8"
+    }, 
+    {
+      "address": "0x006ebfa0", 
+      "type": null, 
+      "name": "DAT_006ebfa0"
+    }, 
+    {
+      "address": "0x0056a55c", 
+      "type": null, 
+      "name": "PTR_Release_0056a55c"
+    }, 
+    {
+      "address": "0x-0000248", 
+      "type": null, 
+      "name": "DAT_-0000248"
+    }, 
+    {
+      "address": "0x005833bc", 
+      "type": null, 
+      "name": "DAT_005833bc"
+    }, 
+    {
+      "address": "0x00580b5c", 
+      "type": null, 
+      "name": "DAT_00580b5c"
+    }, 
+    {
+      "address": "0x0056a560", 
+      "type": null, 
+      "name": "PTR_Init_0056a560"
+    }, 
+    {
+      "address": "0x-0000144", 
+      "type": null, 
+      "name": "DAT_-0000144"
+    }, 
+    {
+      "address": "0x01894970", 
+      "type": null, 
+      "name": "DAT_01894970"
+    }, 
+    {
+      "address": "0x00580b54", 
+      "type": null, 
+      "name": "DAT_00580b54"
+    }, 
+    {
+      "address": "0x0056a598", 
+      "type": null, 
+      "name": "PTR_g_pVFileSys_0056a598"
+    }
+  ], 
+  "has_custom_name": false, 
+  "decompiled_c": "\r\nundefined4 __thiscall FUN_00401df0(undefined4 param_1_00,char *param_1)\r\n\r\n{\r\n  char cVar1;\r\n  int iVar2;\r\n  uint uVar3;\r\n  uint uVar4;\r\n  char *pcVar5;\r\n  char *pcVar6;\r\n  char *pcVar7;\r\n  bool bVar8;\r\n  char local_248 [260];\r\n  undefined local_144 [324];\r\n  \r\n  iVar2 = __strcmpi(param_1,&DAT_008ac5d8);\r\n  if (iVar2 == 0) {\r\n    *(int **)g_pVFileSys_exref = &DAT_006ebfa0;\r\n    return param_1_00;\r\n  }\r\n  uVar3 = 0xffffffff;\r\n  pcVar5 = param_1;\r\n  do {\r\n    pcVar7 = pcVar5;\r\n    if (uVar3 == 0) break;\r\n    uVar3 = uVar3 - 1;\r\n    pcVar7 = pcVar5 + 1;\r\n    cVar1 = *pcVar5;\r\n    pcVar5 = pcVar7;\r\n  } while (cVar1 != '\\0');\r\n  uVar3 = ~uVar3;\r\n  pcVar5 = pcVar7 + -uVar3;\r\n  pcVar7 = &DAT_008ac5d8;\r\n  for (uVar4 = uVar3 >> 2; uVar4 != 0; uVar4 = uVar4 - 1) {\r\n    *(undefined4 *)pcVar7 = *(undefined4 *)pcVar5;\r\n    pcVar5 = pcVar5 + 4;\r\n    pcVar7 = pcVar7 + 4;\r\n  }\r\n  bVar8 = DAT_006ebfa0 != 0;\r\n  for (uVar3 = uVar3 & 3; uVar3 != 0; uVar3 = uVar3 - 1) {\r\n    *pcVar7 = *pcVar5;\r\n    pcVar5 = pcVar5 + 1;\r\n    pcVar7 = pcVar7 + 1;\r\n  }\r\n  if (bVar8) {\r\n    gbVFileSystem::Release((gbVFileSystem *)&DAT_006ebfa0);\r\n  }\r\n  uVar3 = 0xffffffff;\r\n  do {\r\n    pcVar5 = param_1;\r\n    if (uVar3 == 0) break;\r\n    uVar3 = uVar3 - 1;\r\n    pcVar5 = param_1 + 1;\r\n    cVar1 = *param_1;\r\n    param_1 = pcVar5;\r\n  } while (cVar1 != '\\0');\r\n  uVar3 = ~uVar3;\r\n  pcVar5 = pcVar5 + -uVar3;\r\n  pcVar7 = local_248;\r\n  for (uVar4 = uVar3 >> 2; uVar4 != 0; uVar4 = uVar4 - 1) {\r\n    *(undefined4 *)pcVar7 = *(undefined4 *)pcVar5;\r\n    pcVar5 = pcVar5 + 4;\r\n    pcVar7 = pcVar7 + 4;\r\n  }\r\n  for (uVar3 = uVar3 & 3; uVar3 != 0; uVar3 = uVar3 - 1) {\r\n    *pcVar7 = *pcVar5;\r\n    pcVar5 = pcVar5 + 1;\r\n    pcVar7 = pcVar7 + 1;\r\n  }\r\n  if ((DAT_005833bc & 2) != 0) {\r\n    uVar3 = 0xffffffff;\r\n    pcVar5 = &DAT_00580b5c;\r\n    do {\r\n      pcVar7 = pcVar5;\r\n      if (uVar3 == 0) break;\r\n      uVar3 = uVar3 - 1;\r\n      pcVar7 = pcVar5 + 1;\r\n      cVar1 = *pcVar5;\r\n      pcVar5 = pcVar7;\r\n    } while (cVar1 != '\\0');\r\n    uVar3 = ~uVar3;\r\n    iVar2 = -1;\r\n    pcVar5 = local_248;\r\n    do {\r\n      pcVar6 = pcVar5;\r\n      if (iVar2 == 0) break;\r\n      iVar2 = iVar2 + -1;\r\n      pcVar6 = pcVar5 + 1;\r\n      cVar1 = *pcVar5;\r\n      pcVar5 = pcVar6;\r\n    } while (cVar1 != '\\0');\r\n    pcVar5 = pcVar7 + -uVar3;\r\n    pcVar7 = pcVar6 + -1;\r\n    for (uVar4 = uVar3 >> 2; uVar4 != 0; uVar4 = uVar4 - 1) {\r\n      *(undefined4 *)pcVar7 = *(undefined4 *)pcVar5;\r\n      pcVar5 = pcVar5 + 4;\r\n      pcVar7 = pcVar7 + 4;\r\n    }\r\n    for (uVar3 = uVar3 & 3; uVar3 != 0; uVar3 = uVar3 - 1) {\r\n      *pcVar7 = *pcVar5;\r\n      pcVar5 = pcVar5 + 1;\r\n      pcVar7 = pcVar7 + 1;\r\n    }\r\n  }\r\n  iVar2 = gbVFileSystem::Init((gbVFileSystem *)&DAT_006ebfa0,local_248);\r\n  if (iVar2 == 0) {\r\n    FUN_00553082(local_144,&DAT_00580b54,&DAT_01894970,local_248);\r\n    gbVFileSystem::Init((gbVFileSystem *)&DAT_006ebfa0,local_248);\r\n    *(int **)g_pVFileSys_exref = &DAT_006ebfa0;\r\n    return param_1_00;\r\n  }\r\n  *(int **)g_pVFileSys_exref = &DAT_006ebfa0;\r\n  return param_1_00;\r\n}\r\n\r\n", 
+  "is_thunk": false, 
+  "name": "FUN_00401df0", 
+  "assembly": "  00401df0:  SUB ESP,0x248\n  00401df6:  PUSH EBX\n  00401df7:  MOV EBX,dword ptr [ESP + 0x250]\n  00401dfe:  PUSH EBP\n  00401dff:  PUSH ESI\n  00401e00:  PUSH 0x8ac5d8\n  00401e05:  MOV EBP,ECX\n  00401e07:  PUSH EBX\n  00401e08:  CALL 0x0055ef90\n  00401e0d:  ADD ESP,0x8\n  00401e10:  TEST EAX,EAX\n  00401e12:  JZ 0x00401f1f\n  00401e18:  PUSH EDI\n  00401e19:  MOV EDI,EBX\n  00401e1b:  OR ECX,0xffffffff\n  00401e1e:  XOR EAX,EAX\n  00401e20:  SCASB.REPNE ES:EDI\n  00401e22:  NOT ECX\n  00401e24:  SUB EDI,ECX\n  00401e26:  MOV EAX,ECX\n  00401e28:  MOV ESI,EDI\n  00401e2a:  MOV EDI,0x8ac5d8\n  00401e2f:  SHR ECX,0x2\n  00401e32:  MOVSD.REP ES:EDI,ESI\n  00401e34:  MOV ECX,EAX\n  00401e36:  MOV EAX,[0x006ebfa0]\n  00401e3b:  AND ECX,0x3\n  00401e3e:  TEST EAX,EAX\n  00401e40:  MOVSB.REP ES:EDI,ESI\n  00401e42:  JZ 0x00401e4f\n  00401e44:  MOV ECX,0x6ebfa0\n  00401e49:  CALL dword ptr [0x0056a55c]\n  00401e4f:  MOV EDI,EBX\n  00401e51:  OR ECX,0xffffffff\n  00401e54:  XOR EAX,EAX\n  00401e56:  LEA EDX,[ESP + 0x10]\n  00401e5a:  SCASB.REPNE ES:EDI\n  00401e5c:  NOT ECX\n  00401e5e:  SUB EDI,ECX\n  00401e60:  MOV EAX,ECX\n  00401e62:  MOV ESI,EDI\n  00401e64:  MOV EDI,EDX\n  00401e66:  SHR ECX,0x2\n  00401e69:  MOVSD.REP ES:EDI,ESI\n  00401e6b:  MOV ECX,EAX\n  00401e6d:  MOV AL,[0x005833bc]\n  00401e72:  AND ECX,0x3\n  00401e75:  TEST AL,0x2\n  00401e77:  MOVSB.REP ES:EDI,ESI\n  00401e79:  JZ 0x00401ea9\n  00401e7b:  MOV EDI,0x580b5c\n  00401e80:  OR ECX,0xffffffff\n  00401e83:  XOR EAX,EAX\n  00401e85:  LEA EDX,[ESP + 0x10]\n  00401e89:  SCASB.REPNE ES:EDI\n  00401e8b:  NOT ECX\n  00401e8d:  SUB EDI,ECX\n  00401e8f:  MOV ESI,EDI\n  00401e91:  MOV EBX,ECX\n  00401e93:  MOV EDI,EDX\n  00401e95:  OR ECX,0xffffffff\n  00401e98:  SCASB.REPNE ES:EDI\n  00401e9a:  MOV ECX,EBX\n  00401e9c:  DEC EDI\n  00401e9d:  SHR ECX,0x2\n  00401ea0:  MOVSD.REP ES:EDI,ESI\n  00401ea2:  MOV ECX,EBX\n  00401ea4:  AND ECX,0x3\n  00401ea7:  MOVSB.REP ES:EDI,ESI\n  00401ea9:  MOV ESI,dword ptr [0x0056a560]\n  00401eaf:  LEA EAX,[ESP + 0x10]\n  00401eb3:  PUSH EAX\n  00401eb4:  MOV ECX,0x6ebfa0\n  00401eb9:  CALL ESI\n  00401ebb:  TEST EAX,EAX\n  00401ebd:  POP EDI\n  00401ebe:  JNZ 0x00401f05\n  00401ec0:  LEA ECX,[ESP + 0xc]\n  00401ec4:  LEA EDX,[ESP + 0x110]\n  00401ecb:  PUSH ECX\n  00401ecc:  PUSH 0x1894970\n  00401ed1:  PUSH 0x580b54\n  00401ed6:  PUSH EDX\n  00401ed7:  CALL 0x00553082\n  00401edc:  ADD ESP,0x10\n  00401edf:  LEA EAX,[ESP + 0xc]\n  00401ee3:  MOV ECX,0x6ebfa0\n  00401ee8:  PUSH EAX\n  00401ee9:  CALL ESI\n  00401eeb:  MOV ECX,dword ptr [0x0056a598]\n  00401ef1:  MOV EAX,EBP\n  00401ef3:  POP ESI\n  00401ef4:  POP EBP\n  00401ef5:  MOV dword ptr [ECX],0x6ebfa0\n  00401efb:  POP EBX\n  00401efc:  ADD ESP,0x248\n  00401f02:  RET 0x4\n  00401f05:  MOV EDX,dword ptr [0x0056a598]\n  00401f0b:  MOV EAX,EBP\n  00401f0d:  POP ESI\n  00401f0e:  POP EBP\n  00401f0f:  MOV dword ptr [EDX],0x6ebfa0\n  00401f15:  POP EBX\n  00401f16:  ADD ESP,0x248\n  00401f1c:  RET 0x4\n  00401f1f:  MOV EAX,[0x0056a598]\n  00401f24:  POP ESI\n  00401f25:  MOV dword ptr [EAX],0x6ebfa0\n  00401f2b:  MOV EAX,EBP\n  00401f2d:  POP EBP\n  00401f2e:  POP EBX\n  00401f2f:  ADD ESP,0x248\n  00401f35:  RET 0x4", 
+  "callers": [
+    {
+      "address": "0x0041fe30", 
+      "name": "FUN_0041fe30"
+    }, 
+    {
+      "address": "0x00423a70", 
+      "name": "FUN_00423a70"
+    }, 
+    {
+      "address": "0x004221d0", 
+      "name": "FUN_004221d0"
+    }, 
+    {
+      "address": "0x00422950", 
+      "name": "FUN_00422950"
+    }, 
+    {
+      "address": "0x0042c730", 
+      "name": "FUN_0042c730"
+    }, 
+    {
+      "address": "0x00535710", 
+      "name": "FUN_00535710"
+    }, 
+    {
+      "address": "0x0042c280", 
+      "name": "FUN_0042c280"
+    }
+  ]
+}

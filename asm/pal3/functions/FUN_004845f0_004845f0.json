@@ -1,0 +1,40 @@
+{
+  "address": "0x004845f0", 
+  "size_bytes": 83, 
+  "calling_convention": "unknown", 
+  "signature": "undefined FUN_004845f0(void)", 
+  "callees": [], 
+  "global_refs": [
+    {
+      "address": "0x00c0491e", 
+      "type": null, 
+      "name": "DAT_00c0491e"
+    }, 
+    {
+      "address": "0x00484644", 
+      "type": null, 
+      "name": "switchdataD_00484644"
+    }, 
+    {
+      "address": "0x00c04e9e", 
+      "type": null, 
+      "name": "DAT_00c04e9e"
+    }, 
+    {
+      "address": "0x00c0649e", 
+      "type": null, 
+      "name": "DAT_00c0649e"
+    }
+  ], 
+  "has_custom_name": false, 
+  "decompiled_c": "\r\nvoid __fastcall FUN_004845f0(int param_1)\r\n\r\n{\r\n  undefined1 *puVar1;\r\n  int iVar2;\r\n  \r\n  iVar2 = 0;\r\n  puVar1 = &DAT_00c0491e;\r\n  do {\r\n    if (*(char *)(param_1 + 0x169 + iVar2) != '\\0') {\r\n      switch(*(undefined *)(iVar2 + 0x25c32 + param_1)) {\r\n      case 0:\r\n        *puVar1 = 1;\r\n        break;\r\n      case 1:\r\n        *puVar1 = 2;\r\n        break;\r\n      case 2:\r\n        *puVar1 = 3;\r\n        break;\r\n      case 3:\r\n        *puVar1 = 4;\r\n        break;\r\n      case 4:\r\n        *puVar1 = 5;\r\n        break;\r\n      case 5:\r\n        *puVar1 = 6;\r\n      }\r\n    }\r\n    puVar1 = puVar1 + 0x580;\r\n    iVar2 = iVar2 + 1;\r\n  } while ((int)puVar1 < 0xc0649e);\r\n  return;\r\n}\r\n\r\n", 
+  "is_thunk": false, 
+  "name": "FUN_004845f0", 
+  "assembly": "  004845f0:  PUSH ESI\n  004845f1:  XOR ESI,ESI\n  004845f3:  MOV EAX,0xc0491e\n  004845f8:  MOV DL,byte ptr [ECX + ESI*0x1 + 0x169]\n  004845ff:  TEST DL,DL\n  00484601:  JZ 0x00484634\n  00484603:  XOR EDX,EDX\n  00484605:  MOV DL,byte ptr [ESI + ECX*0x1 + 0x25c32]\n  0048460c:  CMP EDX,0x5\n  0048460f:  JA 0x00484634\n  00484611:  JMP dword ptr [EDX*0x4 + 0x484644]\n  00484618:  MOV byte ptr [EAX],0x1\n  0048461b:  JMP 0x00484634\n  0048461d:  MOV byte ptr [EAX],0x2\n  00484620:  JMP 0x00484634\n  00484622:  MOV byte ptr [EAX],0x3\n  00484625:  JMP 0x00484634\n  00484627:  MOV byte ptr [EAX],0x4\n  0048462a:  JMP 0x00484634\n  0048462c:  MOV byte ptr [EAX],0x5\n  0048462f:  JMP 0x00484634\n  00484631:  MOV byte ptr [EAX],0x6\n  00484634:  ADD EAX,0x580\n  00484639:  INC ESI\n  0048463a:  CMP EAX,0xc0649e\n  0048463f:  JL 0x004845f8\n  00484641:  POP ESI\n  00484642:  RET", 
+  "callers": [
+    {
+      "address": "0x00485cd0", 
+      "name": "FUN_00485cd0"
+    }
+  ]
+}

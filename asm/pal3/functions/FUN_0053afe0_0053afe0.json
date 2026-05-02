@@ -1,0 +1,35 @@
+{
+  "address": "0x0053afe0", 
+  "size_bytes": 48, 
+  "calling_convention": "unknown", 
+  "signature": "undefined FUN_0053afe0(undefined4 param_1, undefined4 param_2, undefined4 param_3)", 
+  "callees": [], 
+  "global_refs": [
+    {
+      "address": "0x00000008", 
+      "type": null, 
+      "name": "DAT_00000008"
+    }, 
+    {
+      "address": "0x0000000c", 
+      "type": null, 
+      "name": "DAT_0000000c"
+    }, 
+    {
+      "address": "0x00000004", 
+      "type": null, 
+      "name": "DAT_00000004"
+    }
+  ], 
+  "has_custom_name": false, 
+  "decompiled_c": "\r\nvoid FUN_0053afe0(undefined4 *param_1,int param_2,undefined4 *param_3)\r\n\r\n{\r\n  int iVar1;\r\n  undefined4 *puVar2;\r\n  undefined4 *puVar3;\r\n  \r\n  if (param_2 != 0) {\r\n    do {\r\n      if (param_1 != (undefined4 *)0x0) {\r\n        puVar2 = param_3;\r\n        puVar3 = param_1;\r\n        for (iVar1 = 0x10; iVar1 != 0; iVar1 = iVar1 + -1) {\r\n          *puVar3 = *puVar2;\r\n          puVar2 = puVar2 + 1;\r\n          puVar3 = puVar3 + 1;\r\n        }\r\n      }\r\n      param_1 = param_1 + 0x10;\r\n      param_2 = param_2 + -1;\r\n    } while (param_2 != 0);\r\n  }\r\n  return;\r\n}\r\n\r\n", 
+  "is_thunk": false, 
+  "name": "FUN_0053afe0", 
+  "assembly": "  0053afe0:  MOV EAX,dword ptr [ESP + 0x8]\n  0053afe4:  TEST EAX,EAX\n  0053afe6:  JBE 0x0053b00d\n  0053afe8:  PUSH EBX\n  0053afe9:  MOV EBX,dword ptr [ESP + 0x10]\n  0053afed:  PUSH ESI\n  0053afee:  MOV EDX,EAX\n  0053aff0:  MOV EAX,dword ptr [ESP + 0xc]\n  0053aff4:  PUSH EDI\n  0053aff5:  TEST EAX,EAX\n  0053aff7:  JZ 0x0053b004\n  0053aff9:  MOV ECX,0x10\n  0053affe:  MOV ESI,EBX\n  0053b000:  MOV EDI,EAX\n  0053b002:  MOVSD.REP ES:EDI,ESI\n  0053b004:  ADD EAX,0x40\n  0053b007:  DEC EDX\n  0053b008:  JNZ 0x0053aff5\n  0053b00a:  POP EDI\n  0053b00b:  POP ESI\n  0053b00c:  POP EBX\n  0053b00d:  RET 0xc", 
+  "callers": [
+    {
+      "address": "0x00539af0", 
+      "name": "FUN_00539af0"
+    }
+  ]
+}

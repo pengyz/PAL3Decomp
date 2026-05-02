@@ -1,0 +1,42 @@
+{
+  "address": "0x00518e30", 
+  "size_bytes": 43, 
+  "calling_convention": "unknown", 
+  "signature": "undefined FUN_00518e30(undefined4 param_1, undefined4 param_2)", 
+  "callees": [
+    {
+      "address": "0x00519180", 
+      "name": "FUN_00519180"
+    }, 
+    {
+      "address": "0x00519200", 
+      "name": "FUN_00519200"
+    }, 
+    {
+      "address": "0x00518e60", 
+      "name": "FUN_00518e60"
+    }, 
+    {
+      "address": "0x00445c60", 
+      "name": "FUN_00445c60"
+    }
+  ], 
+  "global_refs": [
+    {
+      "address": "0x00000008", 
+      "type": null, 
+      "name": "DAT_00000008"
+    }, 
+    {
+      "address": "0x00000004", 
+      "type": null, 
+      "name": "DAT_00000004"
+    }
+  ], 
+  "has_custom_name": false, 
+  "decompiled_c": "\r\nvoid FUN_00518e30(undefined4 param_1,undefined4 param_2)\r\n\r\n{\r\n  FUN_00519180();\r\n  FUN_00519200();\r\n  FUN_00518e60();\r\n  FUN_00445c60(param_1,param_2);\r\n  return;\r\n}\r\n\r\n", 
+  "is_thunk": false, 
+  "name": "FUN_00518e30", 
+  "assembly": "  00518e30:  PUSH ESI\n  00518e31:  MOV ESI,ECX\n  00518e33:  CALL 0x00519180\n  00518e38:  MOV ECX,ESI\n  00518e3a:  CALL 0x00519200\n  00518e3f:  MOV ECX,ESI\n  00518e41:  CALL 0x00518e60\n  00518e46:  MOV EAX,dword ptr [ESP + 0xc]\n  00518e4a:  MOV ECX,dword ptr [ESP + 0x8]\n  00518e4e:  PUSH EAX\n  00518e4f:  PUSH ECX\n  00518e50:  MOV ECX,ESI\n  00518e52:  CALL 0x00445c60\n  00518e57:  POP ESI\n  00518e58:  RET 0x8", 
+  "callers": []
+}

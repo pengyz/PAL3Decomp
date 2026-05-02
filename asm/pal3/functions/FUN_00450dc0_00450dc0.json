@@ -1,0 +1,89 @@
+{
+  "address": "0x00450dc0", 
+  "size_bytes": 197, 
+  "calling_convention": "unknown", 
+  "signature": "undefined FUN_00450dc0(void)", 
+  "callees": [
+    {
+      "address": "0x0043bb70", 
+      "name": "FUN_0043bb70"
+    }, 
+    {
+      "address": "0x00444f60", 
+      "name": "FUN_00444f60"
+    }, 
+    {
+      "address": "0x0043a160", 
+      "name": "FUN_0043a160"
+    }, 
+    {
+      "address": "0x00443380", 
+      "name": "FUN_00443380"
+    }, 
+    {
+      "address": "0x00452fd0", 
+      "name": "FUN_00452fd0"
+    }, 
+    {
+      "address": "0x004422e0", 
+      "name": "FUN_004422e0"
+    }, 
+    {
+      "address": "0x0043f7f0", 
+      "name": "FUN_0043f7f0"
+    }
+  ], 
+  "global_refs": [
+    {
+      "address": "0x00560aa6", 
+      "type": null, 
+      "name": "LAB_00560aa6"
+    }, 
+    {
+      "address": "0xffdff000", 
+      "type": null, 
+      "name": "ExceptionList"
+    }, 
+    {
+      "address": "0x-0000010", 
+      "type": null, 
+      "name": "DAT_-0000010"
+    }, 
+    {
+      "address": "0x-0000004", 
+      "type": null, 
+      "name": "DAT_-0000004"
+    }, 
+    {
+      "address": "0x0056a9c0", 
+      "type": null, 
+      "name": "PTR_LAB_0056a9c0"
+    }, 
+    {
+      "address": "0x-000000c", 
+      "type": null, 
+      "name": "DAT_-000000c"
+    }, 
+    {
+      "address": "0x0056b14c", 
+      "type": null, 
+      "name": "PTR_FUN_0056b14c"
+    }, 
+    {
+      "address": "0x0056b140", 
+      "type": null, 
+      "name": "PTR_LAB_0056b140"
+    }
+  ], 
+  "has_custom_name": false, 
+  "decompiled_c": "\r\nundefined4 * __fastcall FUN_00450dc0(undefined4 *param_1)\r\n\r\n{\r\n  void *local_c;\r\n  undefined *puStack_8;\r\n  undefined4 local_4;\r\n  \r\n  local_4 = 0xffffffff;\r\n  puStack_8 = &LAB_00560aa6;\r\n  local_c = ExceptionList;\r\n  ExceptionList = &local_c;\r\n  FUN_0043bb70();\r\n  param_1[0x13] = 0;\r\n  param_1[0x12] = &PTR_LAB_0056a9c0;\r\n  local_4._0_1_ = 1;\r\n  local_4._1_3_ = 0;\r\n  FUN_00444f60();\r\n  local_4._0_1_ = 2;\r\n  FUN_0043a160();\r\n  local_4._0_1_ = 3;\r\n  FUN_00443380();\r\n  local_4._0_1_ = 4;\r\n  FUN_00452fd0();\r\n  local_4._0_1_ = 5;\r\n  FUN_004422e0();\r\n  local_4 = CONCAT31(local_4._1_3_,6);\r\n  FUN_0043f7f0();\r\n  *param_1 = &PTR_FUN_0056b14c;\r\n  param_1[0x12] = &PTR_LAB_0056b140;\r\n  param_1[0x11] = 1;\r\n  param_1[0x112] = 0;\r\n  ExceptionList = local_c;\r\n  return param_1;\r\n}\r\n\r\n", 
+  "is_thunk": false, 
+  "name": "FUN_00450dc0", 
+  "assembly": "  00450dc0:  PUSH -0x1\n  00450dc2:  PUSH 0x560aa6\n  00450dc7:  MOV EAX,FS:[0x0]\n  00450dcd:  PUSH EAX\n  00450dce:  MOV dword ptr FS:[0x0],ESP\n  00450dd5:  PUSH ECX\n  00450dd6:  PUSH ESI\n  00450dd7:  MOV ESI,ECX\n  00450dd9:  MOV dword ptr [ESP + 0x4],ESI\n  00450ddd:  CALL 0x0043bb70\n  00450de2:  MOV dword ptr [ESP + 0x10],0x0\n  00450dea:  MOV dword ptr [ESI + 0x4c],0x0\n  00450df1:  MOV dword ptr [ESI + 0x48],0x56a9c0\n  00450df8:  LEA ECX,[ESI + 0x50]\n  00450dfb:  MOV byte ptr [ESP + 0x10],0x1\n  00450e00:  CALL 0x00444f60\n  00450e05:  LEA ECX,[ESI + 0x110]\n  00450e0b:  MOV byte ptr [ESP + 0x10],0x2\n  00450e10:  CALL 0x0043a160\n  00450e15:  LEA ECX,[ESI + 0x1b4]\n  00450e1b:  MOV byte ptr [ESP + 0x10],0x3\n  00450e20:  CALL 0x00443380\n  00450e25:  LEA ECX,[ESI + 0x250]\n  00450e2b:  MOV byte ptr [ESP + 0x10],0x4\n  00450e30:  CALL 0x00452fd0\n  00450e35:  LEA ECX,[ESI + 0x2b8]\n  00450e3b:  MOV byte ptr [ESP + 0x10],0x5\n  00450e40:  CALL 0x004422e0\n  00450e45:  LEA ECX,[ESI + 0x350]\n  00450e4b:  MOV byte ptr [ESP + 0x10],0x6\n  00450e50:  CALL 0x0043f7f0\n  00450e55:  MOV ECX,dword ptr [ESP + 0x8]\n  00450e59:  MOV dword ptr [ESI],0x56b14c\n  00450e5f:  MOV dword ptr [ESI + 0x48],0x56b140\n  00450e66:  MOV dword ptr [ESI + 0x44],0x1\n  00450e6d:  MOV dword ptr [ESI + 0x448],0x0\n  00450e77:  MOV EAX,ESI\n  00450e79:  POP ESI\n  00450e7a:  MOV dword ptr FS:[0x0],ECX\n  00450e81:  ADD ESP,0x10\n  00450e84:  RET", 
+  "callers": [
+    {
+      "address": "0x0044ef30", 
+      "name": "FUN_0044ef30"
+    }
+  ]
+}

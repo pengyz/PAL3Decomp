@@ -1,0 +1,30 @@
+{
+  "address": "0x00410df0", 
+  "size_bytes": 70, 
+  "calling_convention": "unknown", 
+  "signature": "undefined FUN_00410df0(undefined4 param_1, undefined4 param_2)", 
+  "callees": [], 
+  "global_refs": [
+    {
+      "address": "0x00000008", 
+      "type": null, 
+      "name": "DAT_00000008"
+    }, 
+    {
+      "address": "0x00000004", 
+      "type": null, 
+      "name": "DAT_00000004"
+    }
+  ], 
+  "has_custom_name": false, 
+  "decompiled_c": "\r\nundefined4 * __thiscall FUN_00410df0(int param_1_00,undefined4 *param_1,undefined4 *param_2)\r\n\r\n{\r\n  undefined4 *puVar1;\r\n  undefined4 *puVar2;\r\n  undefined4 *puVar3;\r\n  undefined4 *puVar4;\r\n  \r\n  puVar1 = *(undefined4 **)(param_1_00 + 8);\r\n  puVar3 = param_1;\r\n  puVar4 = param_1;\r\n  if (param_2 != puVar1) {\r\n    do {\r\n      puVar2 = param_2 + 3;\r\n      puVar4 = puVar3 + 3;\r\n      *puVar3 = *param_2;\r\n      puVar3[1] = param_2[1];\r\n      puVar3[2] = param_2[2];\r\n      param_2 = puVar2;\r\n      puVar3 = puVar4;\r\n    } while (puVar2 != puVar1);\r\n  }\r\n  *(undefined4 **)(param_1_00 + 8) = puVar4;\r\n  return param_1;\r\n}\r\n\r\n", 
+  "is_thunk": false, 
+  "name": "FUN_00410df0", 
+  "assembly": "  00410df0:  MOV EDX,dword ptr [ESP + 0x8]\n  00410df4:  PUSH ESI\n  00410df5:  MOV ESI,dword ptr [ESP + 0x8]\n  00410df9:  PUSH EDI\n  00410dfa:  MOV EDI,dword ptr [ECX + 0x8]\n  00410dfd:  CMP EDX,EDI\n  00410dff:  JZ 0x00410e23\n  00410e01:  PUSH EBX\n  00410e02:  PUSH EBP\n  00410e03:  MOV EAX,EDX\n  00410e05:  MOV EBX,ESI\n  00410e07:  ADD EDX,0xc\n  00410e0a:  ADD ESI,0xc\n  00410e0d:  MOV EBP,dword ptr [EAX]\n  00410e0f:  CMP EDX,EDI\n  00410e11:  MOV dword ptr [EBX],EBP\n  00410e13:  MOV EBP,dword ptr [EAX + 0x4]\n  00410e16:  MOV dword ptr [EBX + 0x4],EBP\n  00410e19:  MOV EAX,dword ptr [EAX + 0x8]\n  00410e1c:  MOV dword ptr [EBX + 0x8],EAX\n  00410e1f:  JNZ 0x00410e03\n  00410e21:  POP EBP\n  00410e22:  POP EBX\n  00410e23:  MOV EDX,dword ptr [ECX + 0x8]\n  00410e26:  MOV EAX,dword ptr [ESP + 0xc]\n  00410e2a:  MOV dword ptr [ECX + 0x8],ESI\n  00410e2d:  POP EDI\n  00410e2e:  MOV dword ptr [ESP + 0xc],EDX\n  00410e32:  POP ESI\n  00410e33:  RET 0x8", 
+  "callers": [
+    {
+      "address": "0x0040d010", 
+      "name": "FUN_0040d010"
+    }
+  ]
+}

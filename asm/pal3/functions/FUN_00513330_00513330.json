@@ -1,0 +1,56 @@
+{
+  "address": "0x00513330", 
+  "size_bytes": 79, 
+  "calling_convention": "unknown", 
+  "signature": "undefined FUN_00513330(undefined1 param_1)", 
+  "callees": [
+    {
+      "address": "0x0000011a", 
+      "name": "ResetBladeMgr"
+    }, 
+    {
+      "address": "0x004cea80", 
+      "name": "FUN_004cea80"
+    }, 
+    {
+      "address": "0x0053df70", 
+      "name": "FUN_0053df70"
+    }, 
+    {
+      "address": "0x0053e970", 
+      "name": "FUN_0053e970"
+    }
+  ], 
+  "global_refs": [
+    {
+      "address": "0x00000004", 
+      "type": null, 
+      "name": "DAT_00000004"
+    }, 
+    {
+      "address": "0x00bfda60", 
+      "type": null, 
+      "name": "DAT_00bfda60"
+    }, 
+    {
+      "address": "0x0056a47c", 
+      "type": null, 
+      "name": "PTR_ResetBladeMgr_0056a47c"
+    }
+  ], 
+  "has_custom_name": false, 
+  "decompiled_c": "\r\nvoid __thiscall FUN_00513330(int param_1_00,char param_1)\r\n\r\n{\r\n  *(char *)(param_1_00 + 0x74) = param_1;\r\n  if (param_1 == '\\x01') {\r\n    gbSceneGraph::ResetBladeMgr(*(gbSceneGraph **)(DAT_00bfda60 + 0x1c0));\r\n    FUN_004cea80();\r\n    FUN_004cea80();\r\n    if ((*(int *)(param_1_00 + 0x7c) == 3) &&\r\n       (*(char *)(*(int *)(param_1_00 + 0x70) + 0x48) != '\\0')) {\r\n      FUN_0053df70();\r\n      FUN_0053e970();\r\n    }\r\n  }\r\n  return;\r\n}\r\n\r\n", 
+  "is_thunk": false, 
+  "name": "FUN_00513330", 
+  "assembly": "  00513330:  MOV AL,byte ptr [ESP + 0x4]\n  00513334:  PUSH ESI\n  00513335:  MOV ESI,ECX\n  00513337:  CMP AL,0x1\n  00513339:  MOV byte ptr [ESI + 0x74],AL\n  0051333c:  JNZ 0x0051337b\n  0051333e:  MOV EAX,[0x00bfda60]\n  00513343:  MOV ECX,dword ptr [EAX + 0x1c0]\n  00513349:  CALL dword ptr [0x0056a47c]\n  0051334f:  MOV ECX,dword ptr [ESI + 0x2c]\n  00513352:  CALL 0x004cea80\n  00513357:  MOV ECX,dword ptr [ESI + 0x30]\n  0051335a:  CALL 0x004cea80\n  0051335f:  CMP dword ptr [ESI + 0x7c],0x3\n  00513363:  JNZ 0x0051337b\n  00513365:  MOV ECX,dword ptr [ESI + 0x70]\n  00513368:  MOV AL,byte ptr [ECX + 0x48]\n  0051336b:  TEST AL,AL\n  0051336d:  JZ 0x0051337b\n  0051336f:  CALL 0x0053df70\n  00513374:  MOV ECX,EAX\n  00513376:  CALL 0x0053e970\n  0051337b:  POP ESI\n  0051337c:  RET 0x4", 
+  "callers": [
+    {
+      "address": "0x004f7910", 
+      "name": "FUN_004f7910"
+    }, 
+    {
+      "address": "0x004e04c0", 
+      "name": "FUN_004e04c0"
+    }
+  ]
+}

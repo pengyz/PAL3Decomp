@@ -1,0 +1,20 @@
+{
+  "address": "0x004c5bb0", 
+  "size_bytes": 98, 
+  "calling_convention": "unknown", 
+  "signature": "undefined FUN_004c5bb0(undefined8 param_1)", 
+  "callees": [], 
+  "global_refs": [
+    {
+      "address": "0x00000004", 
+      "type": null, 
+      "name": "DAT_00000004"
+    }
+  ], 
+  "has_custom_name": false, 
+  "decompiled_c": "\r\nvoid __thiscall FUN_004c5bb0(int param_1_00,double param_1)\r\n\r\n{\r\n  float fVar1;\r\n  undefined4 *puVar2;\r\n  int iVar3;\r\n  \r\n  iVar3 = 0;\r\n  fVar1 = *(float *)(param_1_00 + 0x14c) * (float)param_1;\r\n  *(double *)(param_1_00 + 0x138) = (double)fVar1;\r\n  fVar1 = fVar1 + (float)*(double *)(param_1_00 + 0x140);\r\n  *(double *)(param_1_00 + 0x140) = (double)fVar1;\r\n  *(float *)(param_1_00 + 0x148) = fVar1;\r\n  if (0 < *(int *)(param_1_00 + 0x114)) {\r\n    puVar2 = (undefined4 *)(param_1_00 + 0x118);\r\n    do {\r\n      (**(code **)(*(int *)*puVar2 + 0x14))\r\n                (*(undefined4 *)(param_1_00 + 0x138),*(undefined4 *)(param_1_00 + 0x13c));\r\n      iVar3 = iVar3 + 1;\r\n      puVar2 = puVar2 + 1;\r\n    } while (iVar3 < *(int *)(param_1_00 + 0x114));\r\n  }\r\n  return;\r\n}\r\n\r\n", 
+  "is_thunk": false, 
+  "name": "FUN_004c5bb0", 
+  "assembly": "  004c5bb0:  PUSH ESI\n  004c5bb1:  MOV ESI,ECX\n  004c5bb3:  PUSH EDI\n  004c5bb4:  XOR EDI,EDI\n  004c5bb6:  FLD dword ptr [ESI + 0x14c]\n  004c5bbc:  FMUL qword ptr [ESP + 0xc]\n  004c5bc0:  MOV EAX,dword ptr [ESI + 0x114]\n  004c5bc6:  TEST EAX,EAX\n  004c5bc8:  FST qword ptr [ESI + 0x138]\n  004c5bce:  FADD qword ptr [ESI + 0x140]\n  004c5bd4:  FST qword ptr [ESI + 0x140]\n  004c5bda:  FSTP dword ptr [ESI + 0x148]\n  004c5be0:  JLE 0x004c5c0d\n  004c5be2:  PUSH EBX\n  004c5be3:  LEA EBX,[ESI + 0x118]\n  004c5be9:  MOV EDX,dword ptr [ESI + 0x13c]\n  004c5bef:  MOV ECX,dword ptr [EBX]\n  004c5bf1:  PUSH EDX\n  004c5bf2:  MOV EDX,dword ptr [ESI + 0x138]\n  004c5bf8:  MOV EAX,dword ptr [ECX]\n  004c5bfa:  PUSH EDX\n  004c5bfb:  CALL dword ptr [EAX + 0x14]\n  004c5bfe:  MOV EAX,dword ptr [ESI + 0x114]\n  004c5c04:  INC EDI\n  004c5c05:  ADD EBX,0x4\n  004c5c08:  CMP EDI,EAX\n  004c5c0a:  JL 0x004c5be9\n  004c5c0c:  POP EBX\n  004c5c0d:  POP EDI\n  004c5c0e:  POP ESI\n  004c5c0f:  RET 0x8", 
+  "callers": []
+}

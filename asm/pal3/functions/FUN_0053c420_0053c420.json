@@ -1,0 +1,38 @@
+{
+  "address": "0x0053c420", 
+  "size_bytes": 26, 
+  "calling_convention": "unknown", 
+  "signature": "undefined FUN_0053c420(void)", 
+  "callees": [
+    {
+      "address": "0x00000070", 
+      "name": "_BinkClose@4"
+    }
+  ], 
+  "global_refs": [
+    {
+      "address": "0x0056a1d0", 
+      "type": null, 
+      "name": "PTR__BinkClose@4_0056a1d0"
+    }
+  ], 
+  "has_custom_name": false, 
+  "decompiled_c": "\r\nvoid __fastcall FUN_0053c420(int param_1)\r\n\r\n{\r\n  if (*(int *)(param_1 + 0xc) != 0) {\r\n    _BinkClose_4(*(int *)(param_1 + 0xc));\r\n    *(undefined4 *)(param_1 + 0xc) = 0;\r\n  }\r\n  return;\r\n}\r\n\r\n", 
+  "is_thunk": false, 
+  "name": "FUN_0053c420", 
+  "assembly": "  0053c420:  PUSH ESI\n  0053c421:  MOV ESI,ECX\n  0053c423:  MOV EAX,dword ptr [ESI + 0xc]\n  0053c426:  TEST EAX,EAX\n  0053c428:  JZ 0x0053c438\n  0053c42a:  PUSH EAX\n  0053c42b:  CALL dword ptr [0x0056a1d0]\n  0053c431:  MOV dword ptr [ESI + 0xc],0x0\n  0053c438:  POP ESI\n  0053c439:  RET", 
+  "callers": [
+    {
+      "address": "0x0053c5a0", 
+      "name": "FUN_0053c5a0"
+    }, 
+    {
+      "address": "0x005694f0", 
+      "name": "FUN_005694f0"
+    }, 
+    {
+      "address": "0x0053c2d0", 
+      "name": "FUN_0053c2d0"
+    }
+  ]
+}

@@ -1,0 +1,48 @@
+{
+  "address": "0x00421ea0", 
+  "size_bytes": 117, 
+  "calling_convention": "unknown", 
+  "signature": "undefined FUN_00421ea0(void)", 
+  "callees": [
+    {
+      "address": "0x00430570", 
+      "name": "FUN_00430570"
+    }, 
+    {
+      "address": "0x00410360", 
+      "name": "FUN_00410360"
+    }, 
+    {
+      "address": "0x00424c20", 
+      "name": "FUN_00424c20"
+    }
+  ], 
+  "global_refs": [
+    {
+      "address": "0x0058b7d8", 
+      "type": null, 
+      "name": "s_XMouse_0058b7d8"
+    }, 
+    {
+      "address": "0x008acd30", 
+      "type": null, 
+      "name": "DAT_008acd30"
+    }, 
+    {
+      "address": "0x00c116ec", 
+      "type": null, 
+      "name": "DAT_00c116ec"
+    }
+  ], 
+  "has_custom_name": false, 
+  "decompiled_c": "\r\nvoid __fastcall FUN_00421ea0(int param_1)\r\n\r\n{\r\n  char *pcVar1;\r\n  undefined4 uVar2;\r\n  int iVar3;\r\n  \r\n  iVar3 = 0;\r\n  if (0 < *(int *)(param_1 + 0xdc)) {\r\n    pcVar1 = (char *)(param_1 + 0x1d4);\r\n    do {\r\n      if (((pcVar1[-0x47] != '\\0') && (*pcVar1 == '\\x18')) && (*(int *)(pcVar1 + 8) == 1)) {\r\n        FUN_00424c20(DAT_00c116ec,0xb,0,0x3a83126f);\r\n        return;\r\n      }\r\n      iVar3 = iVar3 + 1;\r\n      pcVar1 = pcVar1 + 0x380;\r\n    } while (iVar3 < *(int *)(param_1 + 0xdc));\r\n  }\r\n  uVar2 = FUN_00430570(s_XMouse_0058b7d8);\r\n  FUN_00410360(uVar2);\r\n  return;\r\n}\r\n\r\n", 
+  "is_thunk": false, 
+  "name": "FUN_00421ea0", 
+  "assembly": "  00421ea0:  PUSH EBX\n  00421ea1:  PUSH ESI\n  00421ea2:  MOV ESI,dword ptr [ECX + 0xdc]\n  00421ea8:  XOR EDX,EDX\n  00421eaa:  TEST ESI,ESI\n  00421eac:  JLE 0x00421ed0\n  00421eae:  LEA EAX,[ECX + 0x1d4]\n  00421eb4:  MOV BL,byte ptr [EAX + -0x47]\n  00421eb7:  TEST BL,BL\n  00421eb9:  JZ 0x00421ec6\n  00421ebb:  CMP byte ptr [EAX],0x18\n  00421ebe:  JNZ 0x00421ec6\n  00421ec0:  CMP dword ptr [EAX + 0x8],0x1\n  00421ec4:  JZ 0x00421eeb\n  00421ec6:  INC EDX\n  00421ec7:  ADD EAX,0x380\n  00421ecc:  CMP EDX,ESI\n  00421ece:  JL 0x00421eb4\n  00421ed0:  PUSH 0x58b7d8\n  00421ed5:  MOV ECX,0x8acd30\n  00421eda:  CALL 0x00430570\n  00421edf:  PUSH EAX\n  00421ee0:  CALL 0x00410360\n  00421ee5:  ADD ESP,0x4\n  00421ee8:  POP ESI\n  00421ee9:  POP EBX\n  00421eea:  RET\n  00421eeb:  MOV EAX,[0x00c116ec]\n  00421ef0:  PUSH 0x3a83126f\n  00421ef5:  PUSH 0x0\n  00421ef7:  PUSH 0xb\n  00421ef9:  PUSH EAX\n  00421efa:  LEA EAX,[EDX*0x8 + 0x0]\n  00421f01:  SUB EAX,EDX\n  00421f03:  SHL EAX,0x7\n  00421f06:  LEA ECX,[EAX + ECX*0x1 + 0xe0]\n  00421f0d:  CALL 0x00424c20\n  00421f12:  POP ESI\n  00421f13:  POP EBX\n  00421f14:  RET", 
+  "callers": [
+    {
+      "address": "0x0049cf80", 
+      "name": "FUN_0049cf80"
+    }
+  ]
+}

@@ -1,0 +1,75 @@
+{
+  "address": "0x004b70c0", 
+  "size_bytes": 329, 
+  "calling_convention": "unknown", 
+  "signature": "undefined FUN_004b70c0(undefined4 param_1)", 
+  "callees": [
+    {
+      "address": "0x0055353b", 
+      "name": "operator_new"
+    }, 
+    {
+      "address": "0x004bd830", 
+      "name": "FUN_004bd830"
+    }, 
+    {
+      "address": "0x004bee60", 
+      "name": "FUN_004bee60"
+    }, 
+    {
+      "address": "0x004b7c30", 
+      "name": "FUN_004b7c30"
+    }, 
+    {
+      "address": "0x004b74a0", 
+      "name": "FUN_004b74a0"
+    }, 
+    {
+      "address": "0x004b72e0", 
+      "name": "FUN_004b72e0"
+    }
+  ], 
+  "global_refs": [
+    {
+      "address": "0xffdff000", 
+      "type": null, 
+      "name": "ExceptionList"
+    }, 
+    {
+      "address": "0x00000004", 
+      "type": null, 
+      "name": "DAT_00000004"
+    }, 
+    {
+      "address": "0x00566387", 
+      "type": null, 
+      "name": "LAB_00566387"
+    }, 
+    {
+      "address": "0x004b720c", 
+      "type": null, 
+      "name": "switchdataD_004b720c"
+    }, 
+    {
+      "address": "0x-0000004", 
+      "type": null, 
+      "name": "DAT_-0000004"
+    }, 
+    {
+      "address": "0x-000000c", 
+      "type": null, 
+      "name": "DAT_-000000c"
+    }
+  ], 
+  "has_custom_name": false, 
+  "decompiled_c": "\r\nundefined4 FUN_004b70c0(undefined4 param_1)\r\n\r\n{\r\n  void *pvVar1;\r\n  undefined4 uVar2;\r\n  void *local_c;\r\n  undefined *puStack_8;\r\n  undefined4 local_4;\r\n  \r\n  local_4 = 0xffffffff;\r\n  puStack_8 = &LAB_00566387;\r\n  local_c = ExceptionList;\r\n  switch(param_1) {\r\n  case 0:\r\n    ExceptionList = &local_c;\r\n    pvVar1 = operator_new(0x60);\r\n    local_4 = 0;\r\n    if (pvVar1 != (void *)0x0) {\r\n      uVar2 = FUN_004bd830();\r\n      ExceptionList = local_c;\r\n      return uVar2;\r\n    }\r\n    break;\r\n  case 1:\r\n    ExceptionList = &local_c;\r\n    pvVar1 = operator_new(0x58dc0);\r\n    local_4 = 1;\r\n    if (pvVar1 != (void *)0x0) {\r\n      uVar2 = FUN_004bee60();\r\n      ExceptionList = local_c;\r\n      return uVar2;\r\n    }\r\n    break;\r\n  case 2:\r\n    ExceptionList = &local_c;\r\n    pvVar1 = operator_new(0x424);\r\n    local_4 = 2;\r\n    if (pvVar1 != (void *)0x0) {\r\n      uVar2 = FUN_004b7c30();\r\n      ExceptionList = local_c;\r\n      return uVar2;\r\n    }\r\n    break;\r\n  case 3:\r\n    ExceptionList = &local_c;\r\n    pvVar1 = operator_new(0xf8);\r\n    local_4 = 3;\r\n    if (pvVar1 != (void *)0x0) {\r\n      uVar2 = FUN_004b74a0();\r\n      ExceptionList = local_c;\r\n      return uVar2;\r\n    }\r\n    break;\r\n  case 4:\r\n    ExceptionList = &local_c;\r\n    pvVar1 = operator_new(0x74);\r\n    local_4 = 4;\r\n    if (pvVar1 != (void *)0x0) {\r\n      uVar2 = FUN_004b72e0();\r\n      ExceptionList = local_c;\r\n      return uVar2;\r\n    }\r\n  }\r\n  ExceptionList = local_c;\r\n  return 0;\r\n}\r\n\r\n", 
+  "is_thunk": false, 
+  "name": "FUN_004b70c0", 
+  "assembly": "  004b70c0:  MOV EAX,FS:[0x0]\n  004b70c6:  MOV ECX,dword ptr [ESP + 0x4]\n  004b70ca:  PUSH -0x1\n  004b70cc:  PUSH 0x566387\n  004b70d1:  PUSH EAX\n  004b70d2:  XOR EAX,EAX\n  004b70d4:  CMP ECX,0x4\n  004b70d7:  MOV dword ptr FS:[0x0],ESP\n  004b70de:  JA 0x004b71f8\n  004b70e4:  JMP dword ptr [ECX*0x4 + 0x4b720c]\n  004b70eb:  PUSH 0x60\n  004b70ed:  CALL 0x0055353b\n  004b70f2:  ADD ESP,0x4\n  004b70f5:  MOV dword ptr [ESP + 0x10],EAX\n  004b70f9:  TEST EAX,EAX\n  004b70fb:  MOV dword ptr [ESP + 0x8],0x0\n  004b7103:  JZ 0x004b71f6\n  004b7109:  MOV ECX,EAX\n  004b710b:  CALL 0x004bd830\n  004b7110:  MOV ECX,dword ptr [ESP]\n  004b7114:  MOV dword ptr FS:[0x0],ECX\n  004b711b:  ADD ESP,0xc\n  004b711e:  RET 0x4\n  004b7121:  PUSH 0x58dc0\n  004b7126:  CALL 0x0055353b\n  004b712b:  ADD ESP,0x4\n  004b712e:  MOV dword ptr [ESP + 0x10],EAX\n  004b7132:  TEST EAX,EAX\n  004b7134:  MOV dword ptr [ESP + 0x8],0x1\n  004b713c:  JZ 0x004b71f6\n  004b7142:  MOV ECX,EAX\n  004b7144:  CALL 0x004bee60\n  004b7149:  MOV ECX,dword ptr [ESP]\n  004b714d:  MOV dword ptr FS:[0x0],ECX\n  004b7154:  ADD ESP,0xc\n  004b7157:  RET 0x4\n  004b715a:  PUSH 0x424\n  004b715f:  CALL 0x0055353b\n  004b7164:  ADD ESP,0x4\n  004b7167:  MOV dword ptr [ESP + 0x10],EAX\n  004b716b:  TEST EAX,EAX\n  004b716d:  MOV dword ptr [ESP + 0x8],0x2\n  004b7175:  JZ 0x004b71f6\n  004b7177:  MOV ECX,EAX\n  004b7179:  CALL 0x004b7c30\n  004b717e:  MOV ECX,dword ptr [ESP]\n  004b7182:  MOV dword ptr FS:[0x0],ECX\n  004b7189:  ADD ESP,0xc\n  004b718c:  RET 0x4\n  004b718f:  PUSH 0xf8\n  004b7194:  CALL 0x0055353b\n  004b7199:  ADD ESP,0x4\n  004b719c:  MOV dword ptr [ESP + 0x10],EAX\n  004b71a0:  TEST EAX,EAX\n  004b71a2:  MOV dword ptr [ESP + 0x8],0x3\n  004b71aa:  JZ 0x004b71f6\n  004b71ac:  MOV ECX,EAX\n  004b71ae:  CALL 0x004b74a0\n  004b71b3:  MOV ECX,dword ptr [ESP]\n  004b71b7:  MOV dword ptr FS:[0x0],ECX\n  004b71be:  ADD ESP,0xc\n  004b71c1:  RET 0x4\n  004b71c4:  PUSH 0x74\n  004b71c6:  CALL 0x0055353b\n  004b71cb:  ADD ESP,0x4\n  004b71ce:  MOV dword ptr [ESP + 0x10],EAX\n  004b71d2:  TEST EAX,EAX\n  004b71d4:  MOV dword ptr [ESP + 0x8],0x4\n  004b71dc:  JZ 0x004b71f6\n  004b71de:  MOV ECX,EAX\n  004b71e0:  CALL 0x004b72e0\n  004b71e5:  MOV ECX,dword ptr [ESP]\n  004b71e9:  MOV dword ptr FS:[0x0],ECX\n  004b71f0:  ADD ESP,0xc\n  004b71f3:  RET 0x4\n  004b71f6:  XOR EAX,EAX\n  004b71f8:  MOV ECX,dword ptr [ESP]\n  004b71fc:  MOV dword ptr FS:[0x0],ECX\n  004b7203:  ADD ESP,0xc\n  004b7206:  RET 0x4", 
+  "callers": [
+    {
+      "address": "0x00429af0", 
+      "name": "FUN_00429af0"
+    }
+  ]
+}

@@ -1,0 +1,19 @@
+{
+  "address": "0x0051f130", 
+  "size_bytes": 120, 
+  "calling_convention": "unknown", 
+  "signature": "undefined FUN_0051f130(void)", 
+  "callees": [
+    {
+      "address": "0x00553514", 
+      "name": "__ftol"
+    }
+  ], 
+  "global_refs": [], 
+  "has_custom_name": false, 
+  "decompiled_c": "\r\nundefined4 __fastcall FUN_0051f130(int param_1)\r\n\r\n{\r\n  undefined4 uVar1;\r\n  \r\n  if (0 < *(int *)(param_1 + 0x1f6c)) {\r\n    uVar1 = __ftol();\r\n    *(undefined4 *)(param_1 + 0x5015c) = uVar1;\r\n    *(undefined4 *)(param_1 + 0x7be30) = uVar1;\r\n  }\r\n  uVar1 = *(undefined4 *)(param_1 + 0x5015c);\r\n  *(undefined4 *)(param_1 + 0x5015c) = 0;\r\n  return uVar1;\r\n}\r\n\r\n", 
+  "is_thunk": false, 
+  "name": "FUN_0051f130", 
+  "assembly": "  0051f130:  PUSH ESI\n  0051f131:  MOV ESI,ECX\n  0051f133:  MOV EAX,dword ptr [ESI + 0x1f6c]\n  0051f139:  TEST EAX,EAX\n  0051f13b:  JLE 0x0051f196\n  0051f13d:  MOV EAX,dword ptr [ESI + 0x5016c]\n  0051f143:  MOV EDX,dword ptr [ESI + 0x1f70]\n  0051f149:  FILD dword ptr [ESI + 0x50158]\n  0051f14f:  PUSH EDI\n  0051f150:  MOV EDI,dword ptr [ESI + 0x50164]\n  0051f156:  LEA ECX,[EAX + EAX*0x2]\n  0051f159:  LEA EAX,[EAX + EAX*0x2 + 0x3]\n  0051f15d:  SHL ECX,0x2\n  0051f160:  LEA EAX,[EDI + EAX*0x4]\n  0051f163:  MOV EDI,dword ptr [ESI + 0x50168]\n  0051f169:  ADD EDI,ECX\n  0051f16b:  FLD dword ptr [EDX + EAX*0x4]\n  0051f16e:  MOV EAX,dword ptr [ESI + 0x50160]\n  0051f174:  FADD dword ptr [EDX + EDI*0x4 + 0x3c]\n  0051f178:  ADD EAX,ECX\n  0051f17a:  FADD dword ptr [EDX + EAX*0x4 + 0x24]\n  0051f17e:  FMUL ST1\n  0051f180:  FADD ST0,ST1\n  0051f182:  CALL 0x00553514\n  0051f187:  FSTP ST0\n  0051f189:  MOV dword ptr [ESI + 0x5015c],EAX\n  0051f18f:  MOV dword ptr [ESI + 0x7be30],EAX\n  0051f195:  POP EDI\n  0051f196:  MOV EAX,dword ptr [ESI + 0x5015c]\n  0051f19c:  MOV dword ptr [ESI + 0x5015c],0x0\n  0051f1a6:  POP ESI\n  0051f1a7:  RET", 
+  "callers": []
+}

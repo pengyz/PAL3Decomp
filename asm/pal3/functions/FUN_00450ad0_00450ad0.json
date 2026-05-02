@@ -1,0 +1,66 @@
+{
+  "address": "0x00450ad0", 
+  "size_bytes": 82, 
+  "calling_convention": "unknown", 
+  "signature": "undefined FUN_00450ad0(void)", 
+  "callees": [
+    {
+      "address": "0x00445010", 
+      "name": "FUN_00445010"
+    }, 
+    {
+      "address": "0x0043bbb0", 
+      "name": "FUN_0043bbb0"
+    }
+  ], 
+  "global_refs": [
+    {
+      "address": "0x00560a38", 
+      "type": null, 
+      "name": "LAB_00560a38"
+    }, 
+    {
+      "address": "0xffdff000", 
+      "type": null, 
+      "name": "ExceptionList"
+    }, 
+    {
+      "address": "0x-0000010", 
+      "type": null, 
+      "name": "DAT_-0000010"
+    }, 
+    {
+      "address": "0x0056b120", 
+      "type": null, 
+      "name": "PTR_FUN_0056b120"
+    }, 
+    {
+      "address": "0x-0000004", 
+      "type": null, 
+      "name": "DAT_-0000004"
+    }
+  ], 
+  "has_custom_name": false, 
+  "decompiled_c": "\r\nvoid __fastcall FUN_00450ad0(undefined4 *param_1)\r\n\r\n{\r\n  void *pvStack_c;\r\n  undefined *puStack_8;\r\n  undefined4 local_4;\r\n  \r\n  puStack_8 = &LAB_00560a38;\r\n  pvStack_c = ExceptionList;\r\n  ExceptionList = &pvStack_c;\r\n  *param_1 = &PTR_FUN_0056b120;\r\n  local_4 = 0;\r\n  FUN_00445010();\r\n  local_4 = 0xffffffff;\r\n  FUN_0043bbb0();\r\n  ExceptionList = pvStack_c;\r\n  return;\r\n}\r\n\r\n", 
+  "is_thunk": false, 
+  "name": "FUN_00450ad0", 
+  "assembly": "  00450ad0:  PUSH -0x1\n  00450ad2:  PUSH 0x560a38\n  00450ad7:  MOV EAX,FS:[0x0]\n  00450add:  PUSH EAX\n  00450ade:  MOV dword ptr FS:[0x0],ESP\n  00450ae5:  PUSH ECX\n  00450ae6:  PUSH ESI\n  00450ae7:  MOV ESI,ECX\n  00450ae9:  MOV dword ptr [ESP + 0x4],ESI\n  00450aed:  MOV dword ptr [ESI],0x56b120\n  00450af3:  LEA ECX,[ESI + 0x48]\n  00450af6:  MOV dword ptr [ESP + 0x10],0x0\n  00450afe:  CALL 0x00445010\n  00450b03:  MOV ECX,ESI\n  00450b05:  MOV dword ptr [ESP + 0x10],0xffffffff\n  00450b0d:  CALL 0x0043bbb0\n  00450b12:  MOV ECX,dword ptr [ESP + 0x8]\n  00450b16:  POP ESI\n  00450b17:  MOV dword ptr FS:[0x0],ECX\n  00450b1e:  ADD ESP,0x10\n  00450b21:  RET", 
+  "callers": [
+    {
+      "address": "0x005607c6", 
+      "name": "Unwind@005607c6"
+    }, 
+    {
+      "address": "0x00560846", 
+      "name": "Unwind@00560846"
+    }, 
+    {
+      "address": "0x0044f050", 
+      "name": "FUN_0044f050"
+    }, 
+    {
+      "address": "0x00450ab0", 
+      "name": "FUN_00450ab0"
+    }
+  ]
+}

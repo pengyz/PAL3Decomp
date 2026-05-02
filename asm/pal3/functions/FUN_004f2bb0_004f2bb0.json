@@ -1,0 +1,154 @@
+{
+  "address": "0x004f2bb0", 
+  "size_bytes": 53, 
+  "calling_convention": "unknown", 
+  "signature": "undefined FUN_004f2bb0(undefined4 param_1, undefined1 param_2)", 
+  "callees": [], 
+  "global_refs": [
+    {
+      "address": "0x00000008", 
+      "type": null, 
+      "name": "DAT_00000008"
+    }, 
+    {
+      "address": "0x00000004", 
+      "type": null, 
+      "name": "DAT_00000004"
+    }
+  ], 
+  "has_custom_name": false, 
+  "decompiled_c": "\r\nundefined4 __thiscall FUN_004f2bb0(int param_1_00,int param_1,char param_2)\r\n\r\n{\r\n  if (param_2 == '\\x01') {\r\n    return *(undefined4 *)(param_1_00 + 0x250 + param_1 * 0x37c);\r\n  }\r\n  return *(undefined4 *)(param_1_00 + 0x24c + param_1 * 0x37c);\r\n}\r\n\r\n", 
+  "is_thunk": false, 
+  "name": "FUN_004f2bb0", 
+  "assembly": "  004f2bb0:  MOV AL,byte ptr [ESP + 0x8]\n  004f2bb4:  CMP AL,0x1\n  004f2bb6:  MOV EAX,dword ptr [ESP + 0x4]\n  004f2bba:  LEA EDX,[EAX*0x8 + 0x0]\n  004f2bc1:  JNZ 0x004f2bd4\n  004f2bc3:  SUB EDX,EAX\n  004f2bc5:  SHL EDX,0x5\n  004f2bc8:  SUB EDX,EAX\n  004f2bca:  MOV EAX,dword ptr [ECX + EDX*0x4 + 0x250]\n  004f2bd1:  RET 0x8\n  004f2bd4:  SUB EDX,EAX\n  004f2bd6:  SHL EDX,0x5\n  004f2bd9:  SUB EDX,EAX\n  004f2bdb:  MOV EAX,dword ptr [ECX + EDX*0x4 + 0x24c]\n  004f2be2:  RET 0x8", 
+  "callers": [
+    {
+      "address": "0x004f3a50", 
+      "name": "FUN_004f3a50"
+    }, 
+    {
+      "address": "0x004d7120", 
+      "name": "FUN_004d7120"
+    }, 
+    {
+      "address": "0x004f0210", 
+      "name": "FUN_004f0210"
+    }, 
+    {
+      "address": "0x004d9920", 
+      "name": "FUN_004d9920"
+    }, 
+    {
+      "address": "0x004d9ba0", 
+      "name": "FUN_004d9ba0"
+    }, 
+    {
+      "address": "0x004f3570", 
+      "name": "FUN_004f3570"
+    }, 
+    {
+      "address": "0x004f36d0", 
+      "name": "FUN_004f36d0"
+    }, 
+    {
+      "address": "0x004d9f50", 
+      "name": "FUN_004d9f50"
+    }, 
+    {
+      "address": "0x004da1d0", 
+      "name": "FUN_004da1d0"
+    }, 
+    {
+      "address": "0x004da4f0", 
+      "name": "FUN_004da4f0"
+    }, 
+    {
+      "address": "0x004da770", 
+      "name": "FUN_004da770"
+    }, 
+    {
+      "address": "0x004daa40", 
+      "name": "FUN_004daa40"
+    }, 
+    {
+      "address": "0x004dab70", 
+      "name": "FUN_004dab70"
+    }, 
+    {
+      "address": "0x004daca0", 
+      "name": "FUN_004daca0"
+    }, 
+    {
+      "address": "0x004f3620", 
+      "name": "FUN_004f3620"
+    }, 
+    {
+      "address": "0x004d8f20", 
+      "name": "FUN_004d8f20"
+    }, 
+    {
+      "address": "0x004ecb20", 
+      "name": "FUN_004ecb20"
+    }, 
+    {
+      "address": "0x004eed60", 
+      "name": "FUN_004eed60"
+    }, 
+    {
+      "address": "0x004eef20", 
+      "name": "FUN_004eef20"
+    }, 
+    {
+      "address": "0x004f1070", 
+      "name": "FUN_004f1070"
+    }, 
+    {
+      "address": "0x004f90f0", 
+      "name": "FUN_004f90f0"
+    }, 
+    {
+      "address": "0x004f1420", 
+      "name": "FUN_004f1420"
+    }, 
+    {
+      "address": "0x004f2690", 
+      "name": "FUN_004f2690"
+    }, 
+    {
+      "address": "0x00509b90", 
+      "name": "FUN_00509b90"
+    }, 
+    {
+      "address": "0x00512080", 
+      "name": "FUN_00512080"
+    }, 
+    {
+      "address": "0x004f48c0", 
+      "name": "FUN_004f48c0"
+    }, 
+    {
+      "address": "0x004d9e20", 
+      "name": "FUN_004d9e20"
+    }, 
+    {
+      "address": "0x004f0360", 
+      "name": "FUN_004f0360"
+    }, 
+    {
+      "address": "0x004f3ad0", 
+      "name": "FUN_004f3ad0"
+    }, 
+    {
+      "address": "0x00503680", 
+      "name": "FUN_00503680"
+    }, 
+    {
+      "address": "0x004db7a0", 
+      "name": "FUN_004db7a0"
+    }, 
+    {
+      "address": "0x004e2c50", 
+      "name": "FUN_004e2c50"
+    }
+  ]
+}

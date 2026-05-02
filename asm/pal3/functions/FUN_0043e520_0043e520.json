@@ -1,0 +1,38 @@
+{
+  "address": "0x0043e520", 
+  "size_bytes": 53, 
+  "calling_convention": "unknown", 
+  "signature": "undefined FUN_0043e520(void)", 
+  "callees": [
+    {
+      "address": "0x0043f360", 
+      "name": "FUN_0043f360"
+    }, 
+    {
+      "address": "0x0000015e", 
+      "name": "Release"
+    }, 
+    {
+      "address": "0x00445c10", 
+      "name": "FUN_00445c10"
+    }
+  ], 
+  "global_refs": [
+    {
+      "address": "0x0056a58c", 
+      "type": null, 
+      "name": "PTR_Release_0056a58c"
+    }
+  ], 
+  "has_custom_name": false, 
+  "decompiled_c": "\r\nvoid __fastcall FUN_0043e520(int param_1)\r\n\r\n{\r\n  FUN_0043f360();\r\n  *(undefined4 *)(param_1 + 0x1b0) = 0;\r\n  if (*(gbRefObject **)(param_1 + 0x478) != (gbRefObject *)0x0) {\r\n    gbRefObject::Release(*(gbRefObject **)(param_1 + 0x478));\r\n    *(undefined4 *)(param_1 + 0x478) = 0;\r\n  }\r\n  FUN_00445c10();\r\n  return;\r\n}\r\n\r\n", 
+  "is_thunk": false, 
+  "name": "FUN_0043e520", 
+  "assembly": "  0043e520:  PUSH ESI\n  0043e521:  MOV ESI,ECX\n  0043e523:  CALL 0x0043f360\n  0043e528:  MOV ECX,dword ptr [ESI + 0x478]\n  0043e52e:  MOV dword ptr [ESI + 0x1b0],0x0\n  0043e538:  TEST ECX,ECX\n  0043e53a:  JZ 0x0043e54c\n  0043e53c:  CALL dword ptr [0x0056a58c]\n  0043e542:  MOV dword ptr [ESI + 0x478],0x0\n  0043e54c:  MOV ECX,ESI\n  0043e54e:  CALL 0x00445c10\n  0043e553:  POP ESI\n  0043e554:  RET", 
+  "callers": [
+    {
+      "address": "0x0043e120", 
+      "name": "FUN_0043e120"
+    }
+  ]
+}

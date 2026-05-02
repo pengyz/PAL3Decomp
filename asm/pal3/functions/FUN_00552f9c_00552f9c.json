@@ -1,0 +1,75 @@
+{
+  "address": "0x00552f9c", 
+  "size_bytes": 56, 
+  "calling_convention": "unknown", 
+  "signature": "undefined FUN_00552f9c(void)", 
+  "callees": [], 
+  "global_refs": [
+    {
+      "address": "0x0055681c", 
+      "type": null, 
+      "name": "__cfltcvt"
+    }, 
+    {
+      "address": "0x0060acbc", 
+      "type": null, 
+      "name": "PTR_FUN_0060acbc"
+    }, 
+    {
+      "address": "0x005564b1", 
+      "type": null, 
+      "name": "LAB_005564b1"
+    }, 
+    {
+      "address": "0x0060acb8", 
+      "type": null, 
+      "name": "PTR_FUN_0060acb8"
+    }, 
+    {
+      "address": "0x0060acc0", 
+      "type": null, 
+      "name": "PTR_FUN_0060acc0"
+    }, 
+    {
+      "address": "0x00556517", 
+      "type": null, 
+      "name": "__fassign"
+    }, 
+    {
+      "address": "0x0060acc4", 
+      "type": null, 
+      "name": "PTR_FUN_0060acc4"
+    }, 
+    {
+      "address": "0x00556457", 
+      "type": null, 
+      "name": "FUN_00556457"
+    }, 
+    {
+      "address": "0x0060acc8", 
+      "type": null, 
+      "name": "PTR_FUN_0060acc8"
+    }, 
+    {
+      "address": "0x005564ff", 
+      "type": null, 
+      "name": "LAB_005564ff"
+    }, 
+    {
+      "address": "0x0060accc", 
+      "type": null, 
+      "name": "PTR_FUN_0060accc"
+    }
+  ], 
+  "has_custom_name": false, 
+  "decompiled_c": "\r\nvoid FUN_00552f9c(void)\r\n\r\n{\r\n  PTR_FUN_0060acbc = &LAB_005564b1;\r\n  PTR_FUN_0060acb8 = __cfltcvt;\r\n  PTR_FUN_0060acc0 = __fassign;\r\n  PTR_FUN_0060acc4 = FUN_00556457;\r\n  PTR_FUN_0060acc8 = &LAB_005564ff;\r\n  PTR_FUN_0060accc = __cfltcvt;\r\n  return;\r\n}\r\n\r\n", 
+  "is_thunk": false, 
+  "name": "FUN_00552f9c", 
+  "assembly": "  00552f9c:  MOV EAX,0x55681c\n  00552fa1:  MOV dword ptr [0x0060acbc],0x5564b1\n  00552fab:  MOV [0x0060acb8],EAX\n  00552fb0:  MOV dword ptr [0x0060acc0],0x556517\n  00552fba:  MOV dword ptr [0x0060acc4],0x556457\n  00552fc4:  MOV dword ptr [0x0060acc8],0x5564ff\n  00552fce:  MOV [0x0060accc],EAX\n  00552fd3:  RET", 
+  "callers": [
+    {
+      "address": "0x00552f84", 
+      "name": "FUN_00552f84"
+    }
+  ]
+}

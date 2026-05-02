@@ -1,0 +1,61 @@
+{
+  "address": "0x0043fde0", 
+  "size_bytes": 13, 
+  "calling_convention": "unknown", 
+  "signature": "undefined FUN_0043fde0(undefined4 param_1)", 
+  "callees": [], 
+  "global_refs": [
+    {
+      "address": "0x00000004", 
+      "type": null, 
+      "name": "DAT_00000004"
+    }
+  ], 
+  "has_custom_name": false, 
+  "decompiled_c": "\r\nvoid __thiscall FUN_0043fde0(int param_1_00,int param_1)\r\n\r\n{\r\n  *(float *)(param_1_00 + 0x94) = (float)param_1;\r\n  return;\r\n}\r\n\r\n", 
+  "is_thunk": false, 
+  "name": "FUN_0043fde0", 
+  "assembly": "  0043fde0:  FILD dword ptr [ESP + 0x4]\n  0043fde4:  FSTP dword ptr [ECX + 0x94]\n  0043fdea:  RET 0x4", 
+  "callers": [
+    {
+      "address": "0x00450f90", 
+      "name": "FUN_00450f90"
+    }, 
+    {
+      "address": "0x00487c40", 
+      "name": "FUN_00487c40"
+    }, 
+    {
+      "address": "0x00491c30", 
+      "name": "FUN_00491c30"
+    }, 
+    {
+      "address": "0x004999d0", 
+      "name": "FUN_004999d0"
+    }, 
+    {
+      "address": "0x004a2bd0", 
+      "name": "FUN_004a2bd0"
+    }, 
+    {
+      "address": "0x00516a30", 
+      "name": "FUN_00516a30"
+    }, 
+    {
+      "address": "0x0051bc70", 
+      "name": "FUN_0051bc70"
+    }, 
+    {
+      "address": "0x0052cd40", 
+      "name": "FUN_0052cd40"
+    }, 
+    {
+      "address": "0x00536560", 
+      "name": "FUN_00536560"
+    }, 
+    {
+      "address": "0x004507f0", 
+      "name": "FUN_004507f0"
+    }
+  ]
+}

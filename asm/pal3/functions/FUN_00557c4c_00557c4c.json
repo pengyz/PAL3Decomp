@@ -1,0 +1,63 @@
+{
+  "address": "0x00557c4c", 
+  "size_bytes": 79, 
+  "calling_convention": "unknown", 
+  "signature": "undefined FUN_00557c4c(void)", 
+  "callees": [
+    {
+      "address": "0x0055beb5", 
+      "name": "FUN_0055beb5"
+    }
+  ], 
+  "global_refs": [
+    {
+      "address": "0x00573358", 
+      "type": null, 
+      "name": "DAT_00573358"
+    }, 
+    {
+      "address": "0x00555714", 
+      "type": null, 
+      "name": "LAB_00555714"
+    }, 
+    {
+      "address": "0xffdff000", 
+      "type": null, 
+      "name": "ExceptionList"
+    }, 
+    {
+      "address": "0x-000001c", 
+      "type": null, 
+      "name": "DAT_-000001c"
+    }, 
+    {
+      "address": "0x-0000008", 
+      "type": null, 
+      "name": "DAT_-0000008"
+    }, 
+    {
+      "address": "0x01895394", 
+      "type": null, 
+      "name": "DAT_01895394"
+    }
+  ], 
+  "has_custom_name": false, 
+  "decompiled_c": "\r\nvoid FUN_00557c4c(void)\r\n\r\n{\r\n  void *pvStack_14;\r\n  undefined *puStack_10;\r\n  undefined *puStack_c;\r\n  undefined4 local_8;\r\n  \r\n  puStack_c = &DAT_00573358;\r\n  puStack_10 = &LAB_00555714;\r\n  pvStack_14 = ExceptionList;\r\n  ExceptionList = &pvStack_14;\r\n  if (DAT_01895394 != (code *)0x0) {\r\n    local_8 = 1;\r\n    ExceptionList = &pvStack_14;\r\n    (*DAT_01895394)();\r\n  }\r\n  local_8 = 0xffffffff;\r\n  FUN_0055beb5();\r\n  return;\r\n}\r\n\r\n", 
+  "is_thunk": false, 
+  "name": "FUN_00557c4c", 
+  "assembly": "  00557c4c:  PUSH EBP\n  00557c4d:  MOV EBP,ESP\n  00557c4f:  PUSH -0x1\n  00557c51:  PUSH 0x573358\n  00557c56:  PUSH 0x555714\n  00557c5b:  MOV EAX,FS:[0x0]\n  00557c61:  PUSH EAX\n  00557c62:  MOV dword ptr FS:[0x0],ESP\n  00557c69:  PUSH ECX\n  00557c6a:  PUSH ECX\n  00557c6b:  PUSH EBX\n  00557c6c:  PUSH ESI\n  00557c6d:  PUSH EDI\n  00557c6e:  MOV dword ptr [EBP + -0x18],ESP\n  00557c71:  AND dword ptr [EBP + -0x4],0x0\n  00557c75:  MOV EAX,[0x01895394]\n  00557c7a:  TEST EAX,EAX\n  00557c7c:  JZ 0x00557c94\n  00557c7e:  MOV dword ptr [EBP + -0x4],0x1\n  00557c85:  CALL EAX\n  00557c87:  JMP 0x00557c90\n  00557c90:  AND dword ptr [EBP + -0x4],0x0\n  00557c94:  OR dword ptr [EBP + -0x4],0xffffffff\n  00557c98:  CALL 0x00557c9d\n  00557c9d:  JMP 0x0055beb5", 
+  "callers": [
+    {
+      "address": "0x00557497", 
+      "name": "FUN_00557497"
+    }, 
+    {
+      "address": "0x00557ca2", 
+      "name": "FUN_00557ca2"
+    }, 
+    {
+      "address": "0x00557d84", 
+      "name": "FUN_00557d84"
+    }
+  ]
+}

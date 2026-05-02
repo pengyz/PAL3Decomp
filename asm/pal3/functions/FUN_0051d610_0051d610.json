@@ -1,0 +1,65 @@
+{
+  "address": "0x0051d610", 
+  "size_bytes": 129, 
+  "calling_convention": "unknown", 
+  "signature": "undefined FUN_0051d610(undefined4 param_1, undefined4 param_2, undefined4 param_3, undefined4 param_4, undefined4 param_5, undefined4 param_6, undefined4 param_7, undefined4 param_8, undefined4 param_9)", 
+  "callees": [], 
+  "global_refs": [
+    {
+      "address": "0x00000004", 
+      "type": null, 
+      "name": "DAT_00000004"
+    }, 
+    {
+      "address": "0x0000001c", 
+      "type": null, 
+      "name": "DAT_0000001c"
+    }, 
+    {
+      "address": "0x00000014", 
+      "type": null, 
+      "name": "DAT_00000014"
+    }, 
+    {
+      "address": "0x0000000c", 
+      "type": null, 
+      "name": "DAT_0000000c"
+    }, 
+    {
+      "address": "0x00000008", 
+      "type": null, 
+      "name": "DAT_00000008"
+    }, 
+    {
+      "address": "0x00000020", 
+      "type": null, 
+      "name": "DAT_00000020"
+    }, 
+    {
+      "address": "0x00000018", 
+      "type": null, 
+      "name": "DAT_00000018"
+    }, 
+    {
+      "address": "0x00000010", 
+      "type": null, 
+      "name": "DAT_00000010"
+    }, 
+    {
+      "address": "0x00000024", 
+      "type": null, 
+      "name": "DAT_00000024"
+    }
+  ], 
+  "has_custom_name": false, 
+  "decompiled_c": "\r\nundefined4\r\nFUN_0051d610(int param_1,int param_2,int param_3,int param_4,int param_5,int param_6,int param_7,\r\n            int param_8,int *param_9)\r\n\r\n{\r\n  if (param_1 <= param_7) {\r\n    if (param_5 <= param_3) {\r\n      if (param_2 <= param_8) {\r\n        if (param_6 <= param_4) {\r\n          if (param_5 < param_1) {\r\n            *param_9 = param_1;\r\n          }\r\n          else {\r\n            *param_9 = param_5;\r\n          }\r\n          if (param_3 < param_7) {\r\n            param_9[2] = param_3;\r\n          }\r\n          else {\r\n            param_9[2] = param_7;\r\n          }\r\n          if (param_6 < param_2) {\r\n            param_9[1] = param_2;\r\n          }\r\n          else {\r\n            param_9[1] = param_6;\r\n          }\r\n          if (param_4 < param_8) {\r\n            param_9[3] = param_4;\r\n            return 1;\r\n          }\r\n          param_9[3] = param_8;\r\n          return 1;\r\n        }\r\n      }\r\n    }\r\n  }\r\n  return 0;\r\n}\r\n\r\n", 
+  "is_thunk": false, 
+  "name": "FUN_0051d610", 
+  "assembly": "  0051d610:  MOV EDX,dword ptr [ESP + 0x4]\n  0051d614:  PUSH EBX\n  0051d615:  MOV EBX,dword ptr [ESP + 0x20]\n  0051d619:  PUSH EBP\n  0051d61a:  PUSH ESI\n  0051d61b:  CMP EDX,EBX\n  0051d61d:  PUSH EDI\n  0051d61e:  JG 0x0051d68a\n  0051d620:  MOV ECX,dword ptr [ESP + 0x24]\n  0051d624:  MOV ESI,dword ptr [ESP + 0x1c]\n  0051d628:  CMP ECX,ESI\n  0051d62a:  JG 0x0051d68a\n  0051d62c:  MOV EBP,dword ptr [ESP + 0x18]\n  0051d630:  MOV EAX,dword ptr [ESP + 0x30]\n  0051d634:  CMP EBP,EAX\n  0051d636:  JG 0x0051d68a\n  0051d638:  MOV EDI,dword ptr [ESP + 0x28]\n  0051d63c:  MOV EAX,dword ptr [ESP + 0x20]\n  0051d640:  CMP EDI,EAX\n  0051d642:  JG 0x0051d68a\n  0051d644:  MOV EAX,dword ptr [ESP + 0x34]\n  0051d648:  CMP EDX,ECX\n  0051d64a:  JLE 0x0051d650\n  0051d64c:  MOV dword ptr [EAX],EDX\n  0051d64e:  JMP 0x0051d652\n  0051d650:  MOV dword ptr [EAX],ECX\n  0051d652:  CMP ESI,EBX\n  0051d654:  JGE 0x0051d65b\n  0051d656:  MOV dword ptr [EAX + 0x8],ESI\n  0051d659:  JMP 0x0051d65e\n  0051d65b:  MOV dword ptr [EAX + 0x8],EBX\n  0051d65e:  CMP EBP,EDI\n  0051d660:  JLE 0x0051d667\n  0051d662:  MOV dword ptr [EAX + 0x4],EBP\n  0051d665:  JMP 0x0051d66a\n  0051d667:  MOV dword ptr [EAX + 0x4],EDI\n  0051d66a:  MOV ECX,dword ptr [ESP + 0x20]\n  0051d66e:  MOV EDX,dword ptr [ESP + 0x30]\n  0051d672:  CMP ECX,EDX\n  0051d674:  JGE 0x0051d680\n  0051d676:  POP EDI\n  0051d677:  POP ESI\n  0051d678:  MOV dword ptr [EAX + 0xc],ECX\n  0051d67b:  POP EBP\n  0051d67c:  MOV AL,0x1\n  0051d67e:  POP EBX\n  0051d67f:  RET\n  0051d680:  POP EDI\n  0051d681:  POP ESI\n  0051d682:  MOV dword ptr [EAX + 0xc],EDX\n  0051d685:  POP EBP\n  0051d686:  MOV AL,0x1\n  0051d688:  POP EBX\n  0051d689:  RET\n  0051d68a:  POP EDI\n  0051d68b:  POP ESI\n  0051d68c:  POP EBP\n  0051d68d:  XOR AL,AL\n  0051d68f:  POP EBX\n  0051d690:  RET", 
+  "callers": [
+    {
+      "address": "0x0051b9f0", 
+      "name": "FUN_0051b9f0"
+    }
+  ]
+}

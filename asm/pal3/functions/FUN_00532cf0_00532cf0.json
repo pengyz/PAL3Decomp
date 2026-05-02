@@ -1,0 +1,69 @@
+{
+  "address": "0x00532cf0", 
+  "size_bytes": 62, 
+  "calling_convention": "unknown", 
+  "signature": "undefined FUN_00532cf0(undefined4 param_1, undefined4 param_2, undefined4 param_3, undefined4 param_4, undefined4 param_5, undefined4 param_6)", 
+  "callees": [
+    {
+      "address": "0x0000014e", 
+      "name": "Normalize"
+    }, 
+    {
+      "address": "0x00554360", 
+      "name": "FUN_00554360"
+    }
+  ], 
+  "global_refs": [
+    {
+      "address": "0x0056a54c", 
+      "type": null, 
+      "name": "PTR_Normalize_0056a54c"
+    }, 
+    {
+      "address": "0x00000004", 
+      "type": null, 
+      "name": "DAT_00000004"
+    }, 
+    {
+      "address": "0x00000010", 
+      "type": null, 
+      "name": "DAT_00000010"
+    }, 
+    {
+      "address": "0x00000018", 
+      "type": null, 
+      "name": "DAT_00000018"
+    }, 
+    {
+      "address": "0x0000000c", 
+      "type": null, 
+      "name": "DAT_0000000c"
+    }, 
+    {
+      "address": "0x00000014", 
+      "type": null, 
+      "name": "DAT_00000014"
+    }, 
+    {
+      "address": "0x00000008", 
+      "type": null, 
+      "name": "DAT_00000008"
+    }, 
+    {
+      "address": "0x0056b870", 
+      "type": null, 
+      "name": "DAT_0056b870"
+    }
+  ], 
+  "has_custom_name": false, 
+  "decompiled_c": "\r\n/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */\r\n\r\nfloat10 FUN_00532cf0(void)\r\n\r\n{\r\n  float10 fVar1;\r\n  \r\n  gbVec3D::Normalize((gbVec3D *)&stack0x00000004);\r\n  gbVec3D::Normalize((gbVec3D *)&stack0x00000010);\r\n  fVar1 = (float10)FUN_00554360();\r\n  return fVar1 * (float10)_DAT_0056b870;\r\n}\r\n\r\n", 
+  "is_thunk": false, 
+  "name": "FUN_00532cf0", 
+  "assembly": "  00532cf0:  PUSH ESI\n  00532cf1:  MOV ESI,dword ptr [0x0056a54c]\n  00532cf7:  LEA ECX,[ESP + 0x8]\n  00532cfb:  CALL ESI\n  00532cfd:  LEA ECX,[ESP + 0x14]\n  00532d01:  CALL ESI\n  00532d03:  FLD dword ptr [ESP + 0x1c]\n  00532d07:  FMUL dword ptr [ESP + 0x10]\n  00532d0b:  FLD dword ptr [ESP + 0x18]\n  00532d0f:  FMUL dword ptr [ESP + 0xc]\n  00532d13:  FADDP\n  00532d15:  FLD dword ptr [ESP + 0x14]\n  00532d19:  FMUL dword ptr [ESP + 0x8]\n  00532d1d:  FADDP\n  00532d1f:  CALL 0x00554360\n  00532d24:  FMUL dword ptr [0x0056b870]\n  00532d2a:  POP ESI\n  00532d2b:  RET 0x18", 
+  "callers": [
+    {
+      "address": "0x00533250", 
+      "name": "FUN_00533250"
+    }
+  ]
+}

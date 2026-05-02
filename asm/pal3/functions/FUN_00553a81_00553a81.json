@@ -1,0 +1,65 @@
+{
+  "address": "0x00553a81",
+  "size_bytes": 19,
+  "calling_convention": "unknown",
+  "signature": "undefined FUN_00553a81(undefined4 param_1, undefined4 param_2)",
+  "callees": [
+    {
+      "address": "0x00553a61",
+      "name": "FUN_00553a61"
+    }
+  ],
+  "global_refs": [
+    {
+      "address": "0x00000008",
+      "type": null,
+      "name": "DAT_00000008"
+    },
+    {
+      "address": "0x00000004",
+      "type": null,
+      "name": "DAT_00000004"
+    }
+  ],
+  "has_custom_name": false,
+  "decompiled_c": "\r\nvoid FUN_00553a81(undefined4 param_1,undefined4 param_2)\r\n\r\n{\r\n  FUN_00553a61(param_1,param_2,0x40);\r\n  return;\r\n}\r\n\r\n",
+  "is_thunk": false,
+  "name": "patched_by_my_fopen",
+  "assembly": "  00553a81:  PUSH 0x40\n  00553a83:  PUSH dword ptr [ESP + 0xc]\n  00553a87:  PUSH dword ptr [ESP + 0xc]\n  00553a8b:  CALL 0x00553a61\n  00553a90:  ADD ESP,0xc\n  00553a93:  RET",
+  "callers": [
+    {
+      "address": "0x0053d030",
+      "name": "FUN_0053d030"
+    },
+    {
+      "address": "0x005376e0",
+      "name": "FUN_005376e0"
+    },
+    {
+      "address": "0x00538500",
+      "name": "FUN_00538500"
+    },
+    {
+      "address": "0x0052d7c0",
+      "name": "FUN_0052d7c0"
+    },
+    {
+      "address": "0x00537a90",
+      "name": "FUN_00537a90"
+    },
+    {
+      "address": "0x00504e70",
+      "name": "FUN_00504e70"
+    },
+    {
+      "address": "0x004ce2a0",
+      "name": "FUN_004ce2a0"
+    }
+  ],
+  "pal3patch_info": {
+    "name": "patched_by_my_fopen",
+    "type": "patch_site",
+    "target": "my_fopen",
+    "source": "patch_improvearchive.c"
+  }
+}

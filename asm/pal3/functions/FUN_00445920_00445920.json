@@ -1,0 +1,24 @@
+{
+  "address": "0x00445920", 
+  "size_bytes": 8, 
+  "calling_convention": "unknown", 
+  "signature": "undefined FUN_00445920(void)", 
+  "callees": [
+    {
+      "address": "0x00445f20", 
+      "name": "FUN_00445f20"
+    }
+  ], 
+  "global_refs": [], 
+  "has_custom_name": false, 
+  "decompiled_c": "\r\nvoid FUN_00445920(void)\r\n\r\n{\r\n  FUN_00445f20();\r\n  return;\r\n}\r\n\r\n", 
+  "is_thunk": false, 
+  "name": "FUN_00445920", 
+  "assembly": "  00445920:  ADD ECX,0x68\n  00445923:  JMP 0x00445f20", 
+  "callers": [
+    {
+      "address": "0x0040c960", 
+      "name": "FUN_0040c960"
+    }
+  ]
+}

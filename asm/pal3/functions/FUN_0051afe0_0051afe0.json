@@ -1,0 +1,19 @@
+{
+  "address": "0x0051afe0", 
+  "size_bytes": 73, 
+  "calling_convention": "unknown", 
+  "signature": "undefined FUN_0051afe0(void)", 
+  "callees": [
+    {
+      "address": "0x0043de40", 
+      "name": "FUN_0043de40"
+    }
+  ], 
+  "global_refs": [], 
+  "has_custom_name": false, 
+  "decompiled_c": "\r\nvoid __fastcall FUN_0051afe0(int param_1)\r\n\r\n{\r\n  FUN_0043de40();\r\n  if (*(int **)(param_1 + 0x50) != (int *)0x0) {\r\n    (**(code **)(**(int **)(param_1 + 0x50) + 0x14))(1);\r\n    *(undefined4 *)(param_1 + 0x50) = 0;\r\n  }\r\n  if (*(int **)(param_1 + 0x48) != (int *)0x0) {\r\n    (**(code **)(**(int **)(param_1 + 0x48) + 0x14))(1);\r\n    *(undefined4 *)(param_1 + 0x48) = 0;\r\n  }\r\n  if (*(int **)(param_1 + 0x4c) != (int *)0x0) {\r\n    (**(code **)(**(int **)(param_1 + 0x4c) + 0x14))(1);\r\n    *(undefined4 *)(param_1 + 0x4c) = 0;\r\n  }\r\n  return;\r\n}\r\n\r\n", 
+  "is_thunk": false, 
+  "name": "FUN_0051afe0", 
+  "assembly": "  0051afe0:  PUSH ESI\n  0051afe1:  MOV ESI,ECX\n  0051afe3:  CALL 0x0043de40\n  0051afe8:  MOV ECX,dword ptr [ESI + 0x50]\n  0051afeb:  TEST ECX,ECX\n  0051afed:  JZ 0x0051affd\n  0051afef:  MOV EAX,dword ptr [ECX]\n  0051aff1:  PUSH 0x1\n  0051aff3:  CALL dword ptr [EAX + 0x14]\n  0051aff6:  MOV dword ptr [ESI + 0x50],0x0\n  0051affd:  MOV ECX,dword ptr [ESI + 0x48]\n  0051b000:  TEST ECX,ECX\n  0051b002:  JZ 0x0051b012\n  0051b004:  MOV EDX,dword ptr [ECX]\n  0051b006:  PUSH 0x1\n  0051b008:  CALL dword ptr [EDX + 0x14]\n  0051b00b:  MOV dword ptr [ESI + 0x48],0x0\n  0051b012:  MOV ECX,dword ptr [ESI + 0x4c]\n  0051b015:  TEST ECX,ECX\n  0051b017:  JZ 0x0051b027\n  0051b019:  MOV EAX,dword ptr [ECX]\n  0051b01b:  PUSH 0x1\n  0051b01d:  CALL dword ptr [EAX + 0x14]\n  0051b020:  MOV dword ptr [ESI + 0x4c],0x0\n  0051b027:  POP ESI\n  0051b028:  RET", 
+  "callers": []
+}

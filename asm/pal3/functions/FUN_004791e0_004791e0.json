@@ -1,0 +1,53 @@
+{
+  "address": "0x004791e0", 
+  "size_bytes": 97, 
+  "calling_convention": "unknown", 
+  "signature": "undefined FUN_004791e0(undefined4 param_1)", 
+  "callees": [], 
+  "global_refs": [
+    {
+      "address": "0x00000004", 
+      "type": null, 
+      "name": "DAT_00000004"
+    }
+  ], 
+  "has_custom_name": false, 
+  "decompiled_c": "\r\nint __thiscall FUN_004791e0(int param_1_00,int param_1)\r\n\r\n{\r\n  int iVar1;\r\n  \r\n  if (param_1 != 0) {\r\n    *(undefined4 *)(param_1_00 + 0xc4810) = 0;\r\n    if (0 < *(int *)(param_1_00 + 0x9c)) {\r\n      do {\r\n        if (param_1 == *(int *)(param_1_00 + 0xc2f80 + *(int *)(param_1_00 + 0xc4810) * 0x278)) {\r\n          return param_1_00 + 0xc2f60 + *(int *)(param_1_00 + 0xc4810) * 0x278;\r\n        }\r\n        iVar1 = *(int *)(param_1_00 + 0xc4810) + 1;\r\n        *(int *)(param_1_00 + 0xc4810) = iVar1;\r\n      } while (iVar1 < *(int *)(param_1_00 + 0x9c));\r\n    }\r\n  }\r\n  return 0;\r\n}\r\n\r\n", 
+  "is_thunk": false, 
+  "name": "FUN_004791e0", 
+  "assembly": "  004791e0:  PUSH ESI\n  004791e1:  MOV ESI,dword ptr [ESP + 0x8]\n  004791e5:  PUSH EDI\n  004791e6:  TEST ESI,ESI\n  004791e8:  JZ 0x00479220\n  004791ea:  MOV EDX,dword ptr [ECX + 0x9c]\n  004791f0:  MOV dword ptr [ECX + 0xc4810],0x0\n  004791fa:  TEST EDX,EDX\n  004791fc:  JLE 0x00479220\n  004791fe:  MOV EAX,dword ptr [ECX + 0xc4810]\n  00479204:  LEA EDI,[EAX + EAX*0x4]\n  00479207:  SHL EDI,0x4\n  0047920a:  SUB EDI,EAX\n  0047920c:  CMP ESI,dword ptr [ECX + EDI*0x8 + 0xc2f80]\n  00479213:  JZ 0x00479227\n  00479215:  INC EAX\n  00479216:  CMP EAX,EDX\n  00479218:  MOV dword ptr [ECX + 0xc4810],EAX\n  0047921e:  JL 0x004791fe\n  00479220:  POP EDI\n  00479221:  POP ESI\n  00479222:  XOR EAX,EAX\n  00479224:  RET 0x4\n  00479227:  MOV EAX,dword ptr [ECX + 0xc4810]\n  0047922d:  POP EDI\n  0047922e:  POP ESI\n  0047922f:  LEA EDX,[EAX + EAX*0x4]\n  00479232:  SHL EDX,0x4\n  00479235:  SUB EDX,EAX\n  00479237:  LEA EAX,[ECX + EDX*0x8 + 0xc2f60]\n  0047923e:  RET 0x4", 
+  "callers": [
+    {
+      "address": "0x004f2800", 
+      "name": "FUN_004f2800"
+    }, 
+    {
+      "address": "0x004f05a0", 
+      "name": "FUN_004f05a0"
+    }, 
+    {
+      "address": "0x004eef20", 
+      "name": "FUN_004eef20"
+    }, 
+    {
+      "address": "0x004f6ab0", 
+      "name": "FUN_004f6ab0"
+    }, 
+    {
+      "address": "0x004eea70", 
+      "name": "FUN_004eea70"
+    }, 
+    {
+      "address": "0x004eb8d0", 
+      "name": "FUN_004eb8d0"
+    }, 
+    {
+      "address": "0x004f0360", 
+      "name": "FUN_004f0360"
+    }, 
+    {
+      "address": "0x004ec1f0", 
+      "name": "FUN_004ec1f0"
+    }
+  ]
+}

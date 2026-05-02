@@ -1,0 +1,47 @@
+{
+  "address": "0x00543092", 
+  "size_bytes": 6, 
+  "calling_convention": "unknown", 
+  "signature": "undefined thunk_FUN_00543085(void)", 
+  "callees": [], 
+  "global_refs": [], 
+  "has_custom_name": false, 
+  "decompiled_c": "\r\n/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */\r\n\r\nvoid thunk_FUN_00543085(void)\r\n\r\n{\r\n                    /* WARNING: Could not recover jumptable at 0x00543092. Too many branches */\r\n                    /* WARNING: Treating indirect jump as call */\r\n  (*_DAT_006090b4)();\r\n  return;\r\n}\r\n\r\n", 
+  "is_thunk": true, 
+  "name": "thunk_FUN_00543085", 
+  "assembly": "  00543092:  JMP dword ptr [0x006090b4]", 
+  "callers": [
+    {
+      "address": "0x00543ed6", 
+      "name": "FUN_00543ed6"
+    }, 
+    {
+      "address": "0x00543fe7", 
+      "name": "FUN_00543fe7"
+    }, 
+    {
+      "address": "0x00545b40", 
+      "name": "FUN_00545b40"
+    }, 
+    {
+      "address": "0x00545e5a", 
+      "name": "FUN_00545e5a"
+    }, 
+    {
+      "address": "0x005452ed", 
+      "name": "FUN_005452ed"
+    }, 
+    {
+      "address": "0x0054547a", 
+      "name": "FUN_0054547a"
+    }, 
+    {
+      "address": "0x00545820", 
+      "name": "FUN_00545820"
+    }, 
+    {
+      "address": "0x0054567a", 
+      "name": "FUN_0054567a"
+    }
+  ]
+}

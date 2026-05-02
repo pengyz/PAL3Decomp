@@ -1,0 +1,42 @@
+{
+  "address": "0x0052dc40", 
+  "size_bytes": 87, 
+  "calling_convention": "unknown", 
+  "signature": "undefined FUN_0052dc40(undefined4 param_1)", 
+  "callees": [], 
+  "global_refs": [
+    {
+      "address": "0x00000004", 
+      "type": null, 
+      "name": "DAT_00000004"
+    }, 
+    {
+      "address": "0x0056a644", 
+      "type": null, 
+      "name": "DAT_0056a644"
+    }
+  ], 
+  "has_custom_name": false, 
+  "decompiled_c": "\r\n/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */\r\n\r\nint __thiscall FUN_0052dc40(uint *param_1_00,float param_1)\r\n\r\n{\r\n  float *pfVar1;\r\n  uint uVar2;\r\n  \r\n  if ((_DAT_0056a644 <= param_1) && (param_1 <= (float)param_1_00[2])) {\r\n    uVar2 = 0;\r\n    if (*param_1_00 != 0) {\r\n      pfVar1 = (float *)(param_1_00[1] + 0xc);\r\n      do {\r\n        if (param_1 <= *pfVar1) {\r\n          return uVar2 * 0x20 + param_1_00[1];\r\n        }\r\n        uVar2 = uVar2 + 1;\r\n        pfVar1 = pfVar1 + 8;\r\n      } while (uVar2 < *param_1_00);\r\n    }\r\n  }\r\n  return 0;\r\n}\r\n\r\n", 
+  "is_thunk": false, 
+  "name": "FUN_0052dc40", 
+  "assembly": "  0052dc40:  FLD dword ptr [ESP + 0x4]\n  0052dc44:  FCOMP dword ptr [0x0056a644]\n  0052dc4a:  PUSH ESI\n  0052dc4b:  PUSH EDI\n  0052dc4c:  FNSTSW AX\n  0052dc4e:  TEST AH,0x1\n  0052dc51:  JNZ 0x0052dc84\n  0052dc53:  FLD dword ptr [ESP + 0xc]\n  0052dc57:  FCOMP dword ptr [ECX + 0x8]\n  0052dc5a:  FNSTSW AX\n  0052dc5c:  TEST AH,0x41\n  0052dc5f:  JZ 0x0052dc84\n  0052dc61:  MOV ESI,dword ptr [ECX]\n  0052dc63:  XOR EDX,EDX\n  0052dc65:  TEST ESI,ESI\n  0052dc67:  JBE 0x0052dc84\n  0052dc69:  MOV EDI,dword ptr [ECX + 0x4]\n  0052dc6c:  LEA ECX,[EDI + 0xc]\n  0052dc6f:  FLD dword ptr [ESP + 0xc]\n  0052dc73:  FCOMP dword ptr [ECX]\n  0052dc75:  FNSTSW AX\n  0052dc77:  TEST AH,0x41\n  0052dc7a:  JNZ 0x0052dc8b\n  0052dc7c:  INC EDX\n  0052dc7d:  ADD ECX,0x20\n  0052dc80:  CMP EDX,ESI\n  0052dc82:  JC 0x0052dc6f\n  0052dc84:  POP EDI\n  0052dc85:  XOR EAX,EAX\n  0052dc87:  POP ESI\n  0052dc88:  RET 0x4\n  0052dc8b:  MOV EAX,EDX\n  0052dc8d:  SHL EAX,0x5\n  0052dc90:  ADD EAX,EDI\n  0052dc92:  POP EDI\n  0052dc93:  POP ESI\n  0052dc94:  RET 0x4", 
+  "callers": [
+    {
+      "address": "0x005309a0", 
+      "name": "FUN_005309a0"
+    }, 
+    {
+      "address": "0x0052fe30", 
+      "name": "FUN_0052fe30"
+    }, 
+    {
+      "address": "0x00531260", 
+      "name": "FUN_00531260"
+    }, 
+    {
+      "address": "0x00531160", 
+      "name": "FUN_00531160"
+    }
+  ]
+}

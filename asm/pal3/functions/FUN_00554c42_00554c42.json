@@ -1,0 +1,48 @@
+{
+  "address": "0x00554c42", 
+  "size_bytes": 50, 
+  "calling_convention": "unknown", 
+  "signature": "undefined FUN_00554c42(undefined4 param_1, undefined4 param_2, undefined1 param_3)", 
+  "callees": [
+    {
+      "address": "0x0055979c", 
+      "name": "FUN_0055979c"
+    }, 
+    {
+      "address": "0x00556bf2", 
+      "name": "FUN_00556bf2"
+    }, 
+    {
+      "address": "0x00559829", 
+      "name": "FUN_00559829"
+    }
+  ], 
+  "global_refs": [
+    {
+      "address": "0x00000004", 
+      "type": null, 
+      "name": "DAT_00000004"
+    }, 
+    {
+      "address": "0x0000000c", 
+      "type": null, 
+      "name": "DAT_0000000c"
+    }, 
+    {
+      "address": "0x00000008", 
+      "type": null, 
+      "name": "DAT_00000008"
+    }
+  ], 
+  "has_custom_name": false, 
+  "decompiled_c": "\r\nundefined4 FUN_00554c42(undefined4 param_1,undefined4 param_2)\r\n\r\n{\r\n  undefined4 uVar1;\r\n  undefined4 uVar2;\r\n  \r\n  uVar1 = FUN_0055979c(param_1);\r\n  uVar2 = FUN_00556bf2(param_1,param_2,&stack0x0000000c);\r\n  FUN_00559829(uVar1,param_1);\r\n  return uVar2;\r\n}\r\n\r\n", 
+  "is_thunk": false, 
+  "name": "FUN_00554c42", 
+  "assembly": "  00554c42:  PUSH EBP\n  00554c43:  MOV EBP,ESP\n  00554c45:  PUSH ESI\n  00554c46:  PUSH EDI\n  00554c47:  PUSH dword ptr [EBP + 0x8]\n  00554c4a:  CALL 0x0055979c\n  00554c4f:  MOV ESI,EAX\n  00554c51:  LEA EAX,[EBP + 0x10]\n  00554c54:  PUSH EAX\n  00554c55:  PUSH dword ptr [EBP + 0xc]\n  00554c58:  PUSH dword ptr [EBP + 0x8]\n  00554c5b:  CALL 0x00556bf2\n  00554c60:  PUSH dword ptr [EBP + 0x8]\n  00554c63:  MOV EDI,EAX\n  00554c65:  PUSH ESI\n  00554c66:  CALL 0x00559829\n  00554c6b:  ADD ESP,0x18\n  00554c6e:  MOV EAX,EDI\n  00554c70:  POP EDI\n  00554c71:  POP ESI\n  00554c72:  POP EBP\n  00554c73:  RET", 
+  "callers": [
+    {
+      "address": "0x0053d030", 
+      "name": "FUN_0053d030"
+    }
+  ]
+}

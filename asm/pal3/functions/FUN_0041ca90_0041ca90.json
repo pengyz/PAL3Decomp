@@ -1,0 +1,44 @@
+{
+  "address": "0x0041ca90", 
+  "size_bytes": 34, 
+  "calling_convention": "unknown", 
+  "signature": "undefined FUN_0041ca90(undefined4 param_1, undefined4 param_2)", 
+  "callees": [
+    {
+      "address": "0x00000170", 
+      "name": "SetDimention"
+    }
+  ], 
+  "global_refs": [
+    {
+      "address": "0x00000004", 
+      "type": null, 
+      "name": "DAT_00000004"
+    }, 
+    {
+      "address": "0x00000008", 
+      "type": null, 
+      "name": "DAT_00000008"
+    }, 
+    {
+      "address": "0x0056a5d4", 
+      "type": null, 
+      "name": "PTR_SetDimention_0056a5d4"
+    }
+  ], 
+  "has_custom_name": false, 
+  "decompiled_c": "\r\nvoid __thiscall FUN_0041ca90(int param_1_00,int param_1,int param_2)\r\n\r\n{\r\n  *(int *)(param_1_00 + 0x1d8) = param_1;\r\n  *(int *)(param_1_00 + 0x1dc) = param_2;\r\n  gbCamera::SetDimention((gbCamera *)(param_1_00 + 4),param_1,param_2);\r\n  return;\r\n}\r\n\r\n", 
+  "is_thunk": false, 
+  "name": "FUN_0041ca90", 
+  "assembly": "  0041ca90:  MOV EAX,dword ptr [ESP + 0x4]\n  0041ca94:  MOV EDX,dword ptr [ESP + 0x8]\n  0041ca98:  MOV dword ptr [ECX + 0x1d8],EAX\n  0041ca9e:  MOV dword ptr [ECX + 0x1dc],EDX\n  0041caa4:  PUSH EDX\n  0041caa5:  PUSH EAX\n  0041caa6:  ADD ECX,0x4\n  0041caa9:  CALL dword ptr [0x0056a5d4]\n  0041caaf:  RET 0x8", 
+  "callers": [
+    {
+      "address": "0x00504540", 
+      "name": "FUN_00504540"
+    }, 
+    {
+      "address": "0x00533ea0", 
+      "name": "FUN_00533ea0"
+    }
+  ]
+}

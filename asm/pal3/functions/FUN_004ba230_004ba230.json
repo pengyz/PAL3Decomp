@@ -1,0 +1,24 @@
+{
+  "address": "0x004ba230", 
+  "size_bytes": 57, 
+  "calling_convention": "unknown", 
+  "signature": "undefined FUN_004ba230(void)", 
+  "callees": [
+    {
+      "address": "0x004b9e50", 
+      "name": "FUN_004b9e50"
+    }
+  ], 
+  "global_refs": [], 
+  "has_custom_name": false, 
+  "decompiled_c": "\r\nvoid __fastcall FUN_004ba230(int param_1)\r\n\r\n{\r\n  int iVar1;\r\n  float fVar2;\r\n  \r\n  iVar1 = *(int *)(param_1 + 0x9050);\r\n  fVar2 = *(float *)(iVar1 + 0x9c) - *(float *)(iVar1 + 0xa0);\r\n  *(float *)(param_1 + 0x58) = fVar2;\r\n  if (fVar2 < *(float *)(param_1 + 0x4c)) {\r\n    if (*(int *)(iVar1 + 0xa4) != 0) {\r\n      FUN_004b9e50();\r\n      return;\r\n    }\r\n    *(undefined4 *)(param_1 + 0x9020) = 0;\r\n  }\r\n  return;\r\n}\r\n\r\n", 
+  "is_thunk": false, 
+  "name": "FUN_004ba230", 
+  "assembly": "  004ba230:  MOV EDX,dword ptr [ECX + 0x9050]\n  004ba236:  FLD dword ptr [EDX + 0x9c]\n  004ba23c:  FSUB dword ptr [EDX + 0xa0]\n  004ba242:  FST dword ptr [ECX + 0x58]\n  004ba245:  FCOMP dword ptr [ECX + 0x4c]\n  004ba248:  FNSTSW AX\n  004ba24a:  TEST AH,0x1\n  004ba24d:  JZ 0x004ba263\n  004ba24f:  MOV EAX,dword ptr [EDX + 0xa4]\n  004ba255:  TEST EAX,EAX\n  004ba257:  JNZ 0x004ba264\n  004ba259:  MOV dword ptr [ECX + 0x9020],0x0\n  004ba263:  RET\n  004ba264:  JMP 0x004b9e50", 
+  "callers": [
+    {
+      "address": "0x004ba150", 
+      "name": "FUN_004ba150"
+    }
+  ]
+}

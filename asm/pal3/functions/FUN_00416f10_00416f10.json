@@ -1,0 +1,44 @@
+{
+  "address": "0x00416f10", 
+  "size_bytes": 140, 
+  "calling_convention": "unknown", 
+  "signature": "undefined FUN_00416f10(void)", 
+  "callees": [
+    {
+      "address": "0x00416620", 
+      "name": "FUN_00416620"
+    }, 
+    {
+      "address": "0x00412710", 
+      "name": "FUN_00412710"
+    }
+  ], 
+  "global_refs": [], 
+  "has_custom_name": false, 
+  "decompiled_c": "\r\nvoid __fastcall FUN_00416f10(int param_1)\r\n\r\n{\r\n  int iVar1;\r\n  \r\n  iVar1 = *(int *)(param_1 + 0x570);\r\n  *(undefined4 *)(param_1 + 0x56c) = 0;\r\n  if (iVar1 != 0) {\r\n    if (((*(char *)(iVar1 + 0xad) != '\\x01') && (*(int *)(iVar1 + 500) == 0)) &&\r\n       (*(int *)(iVar1 + 0x4f4) != 3)) {\r\n      *(undefined4 *)(iVar1 + 0x504) = *(undefined4 *)(param_1 + 0x57c);\r\n      *(undefined4 *)(*(int *)(param_1 + 0x570) + 0x4f4) = *(undefined4 *)(param_1 + 0x578);\r\n      FUN_00416620(*(undefined4 *)(param_1 + 0x580),1);\r\n      FUN_00412710();\r\n    }\r\n    *(undefined4 *)(*(int *)(param_1 + 0x570) + 0x56c) = 0;\r\n    *(undefined4 *)(param_1 + 0x570) = 0;\r\n  }\r\n  return;\r\n}\r\n\r\n", 
+  "is_thunk": false, 
+  "name": "FUN_00416f10", 
+  "assembly": "  00416f10:  PUSH ESI\n  00416f11:  MOV ESI,ECX\n  00416f13:  MOV EAX,dword ptr [ESI + 0x570]\n  00416f19:  MOV dword ptr [ESI + 0x56c],0x0\n  00416f23:  TEST EAX,EAX\n  00416f25:  JZ 0x00416f9a\n  00416f27:  CMP byte ptr [EAX + 0xad],0x1\n  00416f2e:  JZ 0x00416f80\n  00416f30:  MOV ECX,dword ptr [EAX + 0x1f4]\n  00416f36:  TEST ECX,ECX\n  00416f38:  JNZ 0x00416f80\n  00416f3a:  CMP dword ptr [EAX + 0x4f4],0x3\n  00416f41:  JZ 0x00416f80\n  00416f43:  MOV ECX,dword ptr [ESI + 0x57c]\n  00416f49:  PUSH 0x1\n  00416f4b:  MOV dword ptr [EAX + 0x504],ECX\n  00416f51:  MOV EDX,dword ptr [ESI + 0x570]\n  00416f57:  MOV EAX,dword ptr [ESI + 0x578]\n  00416f5d:  MOV dword ptr [EDX + 0x4f4],EAX\n  00416f63:  MOV ECX,dword ptr [ESI + 0x580]\n  00416f69:  PUSH ECX\n  00416f6a:  MOV ECX,dword ptr [ESI + 0x570]\n  00416f70:  CALL 0x00416620\n  00416f75:  MOV ECX,dword ptr [ESI + 0x570]\n  00416f7b:  CALL 0x00412710\n  00416f80:  MOV EDX,dword ptr [ESI + 0x570]\n  00416f86:  MOV dword ptr [EDX + 0x56c],0x0\n  00416f90:  MOV dword ptr [ESI + 0x570],0x0\n  00416f9a:  POP ESI\n  00416f9b:  RET", 
+  "callers": [
+    {
+      "address": "0x0041e720", 
+      "name": "FUN_0041e720"
+    }, 
+    {
+      "address": "0x0041d9a0", 
+      "name": "FUN_0041d9a0"
+    }, 
+    {
+      "address": "0x00416790", 
+      "name": "FUN_00416790"
+    }, 
+    {
+      "address": "0x00420b40", 
+      "name": "FUN_00420b40"
+    }, 
+    {
+      "address": "0x00416bc0", 
+      "name": "FUN_00416bc0"
+    }
+  ]
+}

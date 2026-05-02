@@ -1,0 +1,59 @@
+{
+  "address": "0x0051c210", 
+  "size_bytes": 73, 
+  "calling_convention": "unknown", 
+  "signature": "undefined FUN_0051c210(void)", 
+  "callees": [
+    {
+      "address": "0x0043dcd0", 
+      "name": "FUN_0043dcd0"
+    }, 
+    {
+      "address": "0x0051c2d0", 
+      "name": "FUN_0051c2d0"
+    }
+  ], 
+  "global_refs": [
+    {
+      "address": "0x00567418", 
+      "type": null, 
+      "name": "LAB_00567418"
+    }, 
+    {
+      "address": "0xffdff000", 
+      "type": null, 
+      "name": "ExceptionList"
+    }, 
+    {
+      "address": "0x-0000010", 
+      "type": null, 
+      "name": "DAT_-0000010"
+    }, 
+    {
+      "address": "0x-0000004", 
+      "type": null, 
+      "name": "DAT_-0000004"
+    }, 
+    {
+      "address": "0x0057058c", 
+      "type": null, 
+      "name": "PTR_LAB_0057058c"
+    }, 
+    {
+      "address": "0x-000000c", 
+      "type": null, 
+      "name": "DAT_-000000c"
+    }
+  ], 
+  "has_custom_name": false, 
+  "decompiled_c": "\r\nundefined4 * __fastcall FUN_0051c210(undefined4 *param_1)\r\n\r\n{\r\n  void *local_c;\r\n  undefined *puStack_8;\r\n  undefined4 local_4;\r\n  \r\n  local_4 = 0xffffffff;\r\n  puStack_8 = &LAB_00567418;\r\n  local_c = ExceptionList;\r\n  ExceptionList = &local_c;\r\n  FUN_0043dcd0();\r\n  local_4 = 0;\r\n  *param_1 = &PTR_LAB_0057058c;\r\n  FUN_0051c2d0();\r\n  ExceptionList = local_c;\r\n  return param_1;\r\n}\r\n\r\n", 
+  "is_thunk": false, 
+  "name": "FUN_0051c210", 
+  "assembly": "  0051c210:  PUSH -0x1\n  0051c212:  PUSH 0x567418\n  0051c217:  MOV EAX,FS:[0x0]\n  0051c21d:  PUSH EAX\n  0051c21e:  MOV dword ptr FS:[0x0],ESP\n  0051c225:  PUSH ECX\n  0051c226:  PUSH ESI\n  0051c227:  MOV ESI,ECX\n  0051c229:  MOV dword ptr [ESP + 0x4],ESI\n  0051c22d:  CALL 0x0043dcd0\n  0051c232:  MOV ECX,ESI\n  0051c234:  MOV dword ptr [ESP + 0x10],0x0\n  0051c23c:  MOV dword ptr [ESI],0x57058c\n  0051c242:  CALL 0x0051c2d0\n  0051c247:  MOV ECX,dword ptr [ESP + 0x8]\n  0051c24b:  MOV EAX,ESI\n  0051c24d:  POP ESI\n  0051c24e:  MOV dword ptr FS:[0x0],ECX\n  0051c255:  ADD ESP,0x10\n  0051c258:  RET", 
+  "callers": [
+    {
+      "address": "0x0051d1d0", 
+      "name": "FUN_0051d1d0"
+    }
+  ]
+}

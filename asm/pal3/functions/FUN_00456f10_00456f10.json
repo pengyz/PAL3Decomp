@@ -1,0 +1,70 @@
+{
+  "address": "0x00456f10", 
+  "size_bytes": 161, 
+  "calling_convention": "unknown", 
+  "signature": "undefined FUN_00456f10(void)", 
+  "callees": [
+    {
+      "address": "0x00456fc0", 
+      "name": "FUN_00456fc0"
+    }
+  ], 
+  "global_refs": [
+    {
+      "address": "0x00dc3304", 
+      "type": null, 
+      "name": "DAT_00dc3304"
+    }, 
+    {
+      "address": "0x-0000008", 
+      "type": null, 
+      "name": "DAT_-0000008"
+    }, 
+    {
+      "address": "0x00596284", 
+      "type": null, 
+      "name": "s_MOVIE_A_00596284"
+    }, 
+    {
+      "address": "0x00596264", 
+      "type": null, 
+      "name": "s_SOFTWARE\\SOFTSTAR\\PAL3_MOVIE_00596264"
+    }, 
+    {
+      "address": "0x-0000004", 
+      "type": null, 
+      "name": "DAT_-0000004"
+    }, 
+    {
+      "address": "0x0059625c", 
+      "type": null, 
+      "name": "s_MOVIE_B_0059625c"
+    }, 
+    {
+      "address": "0x00dc3305", 
+      "type": null, 
+      "name": "DAT_00dc3305"
+    }, 
+    {
+      "address": "0x00dc3306", 
+      "type": null, 
+      "name": "DAT_00dc3306"
+    }, 
+    {
+      "address": "0x00dc3338", 
+      "type": null, 
+      "name": "DAT_00dc3338"
+    }
+  ], 
+  "has_custom_name": false, 
+  "decompiled_c": "\r\nvoid FUN_00456f10(void)\r\n\r\n{\r\n  char cVar1;\r\n  undefined1 *puVar2;\r\n  int iVar3;\r\n  int iVar4;\r\n  undefined4 *puVar5;\r\n  uint local_8;\r\n  uint local_4;\r\n  \r\n  puVar5 = (undefined4 *)&DAT_00dc3304;\r\n  for (iVar3 = 0xd; iVar3 != 0; iVar3 = iVar3 + -1) {\r\n    *puVar5 = 0;\r\n    puVar5 = puVar5 + 1;\r\n  }\r\n  local_8 = 0;\r\n  local_4 = 0;\r\n  cVar1 = FUN_00456fc0(s_SOFTWARE_SOFTSTAR_PAL3_MOVIE_00596264,s_MOVIE_A_00596284,&local_8);\r\n  if ((cVar1 != '\\0') &&\r\n     (cVar1 = FUN_00456fc0(s_SOFTWARE_SOFTSTAR_PAL3_MOVIE_00596264,s_MOVIE_B_0059625c,&local_4),\r\n     cVar1 != '\\0')) {\r\n    iVar3 = 0;\r\n    do {\r\n      iVar4 = iVar3;\r\n      (&DAT_00dc3304)[iVar4] = (local_8 & 1 << ((byte)iVar4 & 0x1f)) != 0;\r\n      iVar3 = iVar4 + 1;\r\n    } while (iVar4 + 1 < 0x20);\r\n    iVar3 = 0;\r\n    puVar2 = &DAT_00dc3305 + iVar4;\r\n    do {\r\n      *puVar2 = (local_4 & 1 << ((byte)iVar3 & 0x1f)) != 0;\r\n      puVar2 = puVar2 + 1;\r\n      if (0xdc3337 < (int)puVar2) {\r\n        return;\r\n      }\r\n      iVar3 = iVar3 + 1;\r\n    } while (iVar3 < 0x20);\r\n  }\r\n  return;\r\n}\r\n\r\n", 
+  "is_thunk": false, 
+  "name": "FUN_00456f10", 
+  "assembly": "  00456f10:  SUB ESP,0x8\n  00456f13:  PUSH ESI\n  00456f14:  PUSH EDI\n  00456f15:  MOV ECX,0xd\n  00456f1a:  XOR EAX,EAX\n  00456f1c:  MOV EDI,0xdc3304\n  00456f21:  XOR ESI,ESI\n  00456f23:  STOSD.REP ES:EDI\n  00456f25:  LEA EAX,[ESP + 0x8]\n  00456f29:  MOV dword ptr [ESP + 0x8],ESI\n  00456f2d:  PUSH EAX\n  00456f2e:  PUSH 0x596284\n  00456f33:  PUSH 0x596264\n  00456f38:  MOV dword ptr [ESP + 0x18],ESI\n  00456f3c:  CALL 0x00456fc0\n  00456f41:  ADD ESP,0xc\n  00456f44:  TEST AL,AL\n  00456f46:  JZ 0x00456fab\n  00456f48:  LEA ECX,[ESP + 0xc]\n  00456f4c:  PUSH ECX\n  00456f4d:  PUSH 0x59625c\n  00456f52:  PUSH 0x596264\n  00456f57:  CALL 0x00456fc0\n  00456f5c:  ADD ESP,0xc\n  00456f5f:  TEST AL,AL\n  00456f61:  JZ 0x00456fab\n  00456f63:  MOV EAX,dword ptr [ESP + 0x8]\n  00456f67:  XOR ECX,ECX\n  00456f69:  MOV EDX,0x1\n  00456f6e:  SHL EDX,CL\n  00456f70:  TEST EAX,EDX\n  00456f72:  SETA DL\n  00456f75:  MOV byte ptr [ECX + 0xdc3304],DL\n  00456f7b:  INC ECX\n  00456f7c:  CMP ECX,0x20\n  00456f7f:  JL 0x00456f69\n  00456f81:  MOV ESI,dword ptr [ESP + 0xc]\n  00456f85:  MOV EAX,ECX\n  00456f87:  XOR ECX,ECX\n  00456f89:  LEA EAX,[EAX + 0xdc3304]\n  00456f8f:  MOV EDX,0x1\n  00456f94:  SHL EDX,CL\n  00456f96:  TEST ESI,EDX\n  00456f98:  SETA DL\n  00456f9b:  MOV byte ptr [EAX],DL\n  00456f9d:  INC EAX\n  00456f9e:  CMP EAX,0xdc3338\n  00456fa3:  JGE 0x00456fab\n  00456fa5:  INC ECX\n  00456fa6:  CMP ECX,0x20\n  00456fa9:  JL 0x00456f8f\n  00456fab:  POP EDI\n  00456fac:  POP ESI\n  00456fad:  ADD ESP,0x8\n  00456fb0:  RET", 
+  "callers": [
+    {
+      "address": "0x00456ee0", 
+      "name": "FUN_00456ee0"
+    }
+  ]
+}

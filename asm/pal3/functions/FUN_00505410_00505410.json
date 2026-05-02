@@ -1,0 +1,23 @@
+{
+  "address": "0x00505410", 
+  "size_bytes": 125, 
+  "calling_convention": "unknown", 
+  "signature": "undefined FUN_00505410(void)", 
+  "callees": [], 
+  "global_refs": [], 
+  "has_custom_name": false, 
+  "decompiled_c": "\r\nvoid __fastcall FUN_00505410(int param_1)\r\n\r\n{\r\n  *(undefined4 *)(param_1 + 0x68fc0) = 0;\r\n  *(undefined4 *)(param_1 + 0x68fc4) = 0;\r\n  *(undefined *)(param_1 + 0x68fbc) = 0;\r\n  *(undefined4 *)(param_1 + 0x68ffc) = 0;\r\n  *(undefined4 *)(param_1 + 0x68fc8) = 0;\r\n  *(undefined4 *)(param_1 + 0x69094) = 0;\r\n  *(undefined4 *)(param_1 + 0x6909c) = 0;\r\n  *(undefined4 *)(param_1 + 0x68fcc) = 0xffffffff;\r\n  *(undefined4 *)(param_1 + 0x68fd0) = 0xffffffff;\r\n  *(undefined4 *)(param_1 + 0x68fd4) = 0xffffffff;\r\n  *(undefined4 *)(param_1 + 0x69000) = 0x3f800000;\r\n  *(undefined4 *)(param_1 + 0x69004) = 0x42a00000;\r\n  *(undefined4 *)(param_1 + 0x69098) = 0x42480000;\r\n  *(undefined4 *)(param_1 + 0x690a0) = 0x42c80000;\r\n  *(undefined4 *)(param_1 + 0x690a4) = 0x42c80000;\r\n  *(undefined4 *)(param_1 + 0x690a8) = 0x42c80000;\r\n  return;\r\n}\r\n\r\n", 
+  "is_thunk": false, 
+  "name": "FUN_00505410", 
+  "assembly": "  00505410:  PUSH EBX\n  00505411:  LEA EBX,[ECX + 0x68fc0]\n  00505417:  XOR EAX,EAX\n  00505419:  XOR EDX,EDX\n  0050541b:  MOV dword ptr [EBX],EAX\n  0050541d:  PUSH ESI\n  0050541e:  XOR ESI,ESI\n  00505420:  PUSH EDI\n  00505421:  MOV dword ptr [EBX + 0x4],EDX\n  00505424:  OR EDI,0xffffffff\n  00505427:  MOV byte ptr [ECX + 0x68fbc],AL\n  0050542d:  MOV dword ptr [ECX + 0x68ffc],EAX\n  00505433:  MOV dword ptr [EBX + 0x8],ESI\n  00505436:  MOV dword ptr [ECX + 0x69094],EAX\n  0050543c:  MOV dword ptr [ECX + 0x6909c],EAX\n  00505442:  OR EDX,0xffffffff\n  00505445:  MOV dword ptr [EBX + 0xc],EDI\n  00505448:  MOV EAX,0x42c80000\n  0050544d:  POP EDI\n  0050544e:  POP ESI\n  0050544f:  MOV dword ptr [ECX + 0x68fd0],EDX\n  00505455:  MOV dword ptr [ECX + 0x68fd4],EDX\n  0050545b:  MOV dword ptr [ECX + 0x69000],0x3f800000\n  00505465:  MOV dword ptr [ECX + 0x69004],0x42a00000\n  0050546f:  MOV dword ptr [ECX + 0x69098],0x42480000\n  00505479:  MOV dword ptr [ECX + 0x690a0],EAX\n  0050547f:  MOV dword ptr [ECX + 0x690a4],EAX\n  00505485:  MOV dword ptr [ECX + 0x690a8],EAX\n  0050548b:  POP EBX\n  0050548c:  RET", 
+  "callers": [
+    {
+      "address": "0x005054e0", 
+      "name": "FUN_005054e0"
+    }, 
+    {
+      "address": "0x00505490", 
+      "name": "FUN_00505490"
+    }
+  ]
+}

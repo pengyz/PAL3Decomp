@@ -1,0 +1,79 @@
+{
+  "address": "0x004b63c0", 
+  "size_bytes": 274, 
+  "calling_convention": "unknown", 
+  "signature": "undefined FUN_004b63c0(undefined4 param_1, undefined4 param_2, undefined4 param_3, undefined4 param_4, undefined4 param_5, undefined param_6, undefined4 param_7)", 
+  "callees": [], 
+  "global_refs": [
+    {
+      "address": "0x00000010", 
+      "type": null, 
+      "name": "DAT_00000010"
+    }, 
+    {
+      "address": "0x0056a9dc", 
+      "type": null, 
+      "name": "DAT_0056a9dc"
+    }, 
+    {
+      "address": "0x-0000004", 
+      "type": null, 
+      "name": "DAT_-0000004"
+    }, 
+    {
+      "address": "0x-0000008", 
+      "type": null, 
+      "name": "DAT_-0000008"
+    }, 
+    {
+      "address": "0x0056a63c", 
+      "type": null, 
+      "name": "DAT_0056a63c"
+    }, 
+    {
+      "address": "0x0000001c", 
+      "type": null, 
+      "name": "DAT_0000001c"
+    }, 
+    {
+      "address": "0x0056a644", 
+      "type": null, 
+      "name": "DAT_0056a644"
+    }, 
+    {
+      "address": "0x00000014", 
+      "type": null, 
+      "name": "DAT_00000014"
+    }, 
+    {
+      "address": "0x0000000c", 
+      "type": null, 
+      "name": "DAT_0000000c"
+    }, 
+    {
+      "address": "0x00000008", 
+      "type": null, 
+      "name": "DAT_00000008"
+    }, 
+    {
+      "address": "0x00000004", 
+      "type": null, 
+      "name": "DAT_00000004"
+    }
+  ], 
+  "has_custom_name": false, 
+  "decompiled_c": "\r\n/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */\r\n\r\nvoid FUN_004b63c0(float param_1,float param_2,undefined4 param_3,int param_4,int param_5,\r\n                 undefined4 param_6,float param_7)\r\n\r\n{\r\n  float fVar1;\r\n  float fVar2;\r\n  int iVar3;\r\n  undefined4 *puVar4;\r\n  float10 fVar5;\r\n  float10 fVar6;\r\n  float10 fVar7;\r\n  float10 fVar8;\r\n  int local_4;\r\n  \r\n  fVar1 = _DAT_0056a9dc / (float)param_4;\r\n  local_4 = 0;\r\n  param_7 = _DAT_0056a63c / param_7;\r\n  if (0 < param_4) {\r\n    puVar4 = (undefined4 *)(param_5 + 4);\r\n    fVar2 = _DAT_0056a644;\r\n    do {\r\n      iVar3 = local_4 + 1;\r\n      fVar5 = (float10)local_4 * (float10)fVar1;\r\n      fVar6 = (float10)fcos(fVar5);\r\n      puVar4[-1] = (float)((float10)param_2 * fVar6);\r\n      fVar7 = (float10)fsin((float10)(float)fVar5);\r\n      puVar4[1] = (float)(fVar7 * (float10)param_2);\r\n      fVar5 = (float10)_DAT_0056a63c;\r\n      *puVar4 = 0;\r\n      fVar5 = ((float10)local_4 + fVar5) * (float10)fVar1;\r\n      fVar8 = (float10)fcos(fVar5);\r\n      puVar4[2] = (float)((float10)param_2 * fVar8);\r\n      fVar5 = (float10)fsin((float10)(float)fVar5);\r\n      puVar4[4] = (float)(fVar5 * (float10)param_2);\r\n      puVar4[3] = 0;\r\n      puVar4[5] = (float)((float10)param_1 * fVar8);\r\n      puVar4[7] = (float)fVar5 * param_1;\r\n      puVar4[6] = param_3;\r\n      puVar4[8] = (float)((float10)param_1 * fVar6);\r\n      puVar4[10] = (float)fVar7 * param_1;\r\n      puVar4[9] = param_3;\r\n      puVar4[0xb] = fVar2;\r\n      fVar2 = fVar2 + param_7;\r\n      puVar4[0xd] = fVar2;\r\n      puVar4[0xc] = 0;\r\n      puVar4[0xe] = 0x3f800000;\r\n      puVar4[0xf] = 0xffffffff;\r\n      puVar4 = puVar4 + 0x11;\r\n      local_4 = iVar3;\r\n    } while (iVar3 < param_4);\r\n    return;\r\n  }\r\n  return;\r\n}\r\n\r\n", 
+  "is_thunk": false, 
+  "name": "FUN_004b63c0", 
+  "assembly": "  004b63c0:  SUB ESP,0x8\n  004b63c3:  FILD dword ptr [ESP + 0x18]\n  004b63c7:  MOV EDX,dword ptr [ESP + 0x18]\n  004b63cb:  PUSH ESI\n  004b63cc:  XOR ESI,ESI\n  004b63ce:  XOR EAX,EAX\n  004b63d0:  FDIVR dword ptr [0x0056a9dc]\n  004b63d6:  CMP EDX,ESI\n  004b63d8:  MOV dword ptr [ESP + 0x8],EAX\n  004b63dc:  FSTP dword ptr [ESP + 0x4]\n  004b63e0:  FLD dword ptr [0x0056a63c]\n  004b63e6:  FDIV dword ptr [ESP + 0x28]\n  004b63ea:  FSTP dword ptr [ESP + 0x28]\n  004b63ee:  FLD dword ptr [0x0056a644]\n  004b63f4:  JLE 0x004b64cb\n  004b63fa:  MOV ECX,dword ptr [ESP + 0x20]\n  004b63fe:  PUSH EBP\n  004b63ff:  ADD ECX,0x4\n  004b6402:  FILD dword ptr [ESP + 0xc]\n  004b6406:  MOV EBP,dword ptr [ESP + 0x1c]\n  004b640a:  INC EAX\n  004b640b:  ADD ECX,0x44\n  004b640e:  CMP EAX,EDX\n  004b6410:  FST dword ptr [ESP + 0x24]\n  004b6414:  FMUL dword ptr [ESP + 0x8]\n  004b6418:  FST dword ptr [ESP + 0x20]\n  004b641c:  FCOS\n  004b641e:  FLD dword ptr [ESP + 0x18]\n  004b6422:  FMUL ST1\n  004b6424:  FSTP dword ptr [ECX + -0x48]\n  004b6427:  FLD dword ptr [ESP + 0x20]\n  004b642b:  FSIN\n  004b642d:  FST dword ptr [ESP + 0xc]\n  004b6431:  FMUL dword ptr [ESP + 0x18]\n  004b6435:  FSTP dword ptr [ECX + -0x40]\n  004b6438:  FLD dword ptr [ESP + 0x24]\n  004b643c:  FADD dword ptr [0x0056a63c]\n  004b6442:  MOV dword ptr [ECX + -0x44],ESI\n  004b6445:  FMUL dword ptr [ESP + 0x8]\n  004b6449:  FST dword ptr [ESP + 0x20]\n  004b644d:  FCOS\n  004b644f:  FLD dword ptr [ESP + 0x18]\n  004b6453:  FMUL ST1\n  004b6455:  FSTP dword ptr [ECX + -0x3c]\n  004b6458:  FLD dword ptr [ESP + 0x20]\n  004b645c:  FSIN\n  004b645e:  FST dword ptr [ESP + 0x20]\n  004b6462:  FMUL dword ptr [ESP + 0x18]\n  004b6466:  FSTP dword ptr [ECX + -0x34]\n  004b6469:  FLD dword ptr [ESP + 0x14]\n  004b646d:  FMUL ST1\n  004b646f:  MOV dword ptr [ECX + -0x38],ESI\n  004b6472:  FSTP dword ptr [ECX + -0x30]\n  004b6475:  FSTP ST0\n  004b6477:  FLD dword ptr [ESP + 0x20]\n  004b647b:  FMUL dword ptr [ESP + 0x14]\n  004b647f:  FSTP dword ptr [ECX + -0x28]\n  004b6482:  FLD dword ptr [ESP + 0x14]\n  004b6486:  FMUL ST1\n  004b6488:  MOV dword ptr [ECX + -0x2c],EBP\n  004b648b:  FSTP dword ptr [ECX + -0x24]\n  004b648e:  FSTP ST0\n  004b6490:  FLD dword ptr [ESP + 0xc]\n  004b6494:  FMUL dword ptr [ESP + 0x14]\n  004b6498:  MOV dword ptr [ESP + 0xc],EAX\n  004b649c:  FSTP dword ptr [ECX + -0x1c]\n  004b649f:  MOV dword ptr [ECX + -0x20],EBP\n  004b64a2:  FST dword ptr [ECX + -0x18]\n  004b64a5:  FADD dword ptr [ESP + 0x2c]\n  004b64a9:  FST dword ptr [ECX + -0x10]\n  004b64ac:  MOV dword ptr [ECX + -0x14],ESI\n  004b64af:  MOV dword ptr [ECX + -0xc],0x3f800000\n  004b64b6:  MOV dword ptr [ECX + -0x8],0xffffffff\n  004b64bd:  JL 0x004b6402\n  004b64c3:  POP EBP\n  004b64c4:  POP ESI\n  004b64c5:  FSTP ST0\n  004b64c7:  ADD ESP,0x8\n  004b64ca:  RET\n  004b64cb:  FSTP ST0\n  004b64cd:  POP ESI\n  004b64ce:  ADD ESP,0x8\n  004b64d1:  RET", 
+  "callers": [
+    {
+      "address": "0x004b7d30", 
+      "name": "FUN_004b7d30"
+    }, 
+    {
+      "address": "0x004befb0", 
+      "name": "FUN_004befb0"
+    }
+  ]
+}

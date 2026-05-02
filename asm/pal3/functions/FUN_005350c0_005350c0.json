@@ -1,0 +1,46 @@
+{
+  "address": "0x005350c0", 
+  "size_bytes": 83, 
+  "calling_convention": "unknown", 
+  "signature": "undefined FUN_005350c0(void)", 
+  "callees": [
+    {
+      "address": "0x00535930", 
+      "name": "FUN_00535930"
+    }, 
+    {
+      "address": "0x005364b0", 
+      "name": "FUN_005364b0"
+    }, 
+    {
+      "address": "0x00532b40", 
+      "name": "FUN_00532b40"
+    }, 
+    {
+      "address": "0x00534bf0", 
+      "name": "FUN_00534bf0"
+    }, 
+    {
+      "address": "0x00541cc0", 
+      "name": "FUN_00541cc0"
+    }
+  ], 
+  "global_refs": [
+    {
+      "address": "0x005a3748", 
+      "type": null, 
+      "name": "DAT_005a3748"
+    }
+  ], 
+  "has_custom_name": false, 
+  "decompiled_c": "\r\nvoid __fastcall FUN_005350c0(int param_1)\r\n\r\n{\r\n  *(undefined *)(param_1 + 0x24) = 0;\r\n  *(undefined *)(param_1 + 0x25) = 0;\r\n  if (*(int *)(param_1 + 0x10) != 0) {\r\n    if ((*(char *)(*(int *)(param_1 + 0x10) + 0x87) != '\\0') && (*(int *)(param_1 + 4) != 0)) {\r\n      FUN_00535930(DAT_005a3748);\r\n      FUN_005364b0();\r\n    }\r\n    FUN_00532b40();\r\n    FUN_00534bf0();\r\n    *(undefined *)(param_1 + 0x24) = 0;\r\n    *(undefined *)(param_1 + 0x25) = 0;\r\n  }\r\n  FUN_00541cc0();\r\n  return;\r\n}\r\n\r\n", 
+  "is_thunk": false, 
+  "name": "FUN_005350c0", 
+  "assembly": "  005350c0:  PUSH EBX\n  005350c1:  PUSH ESI\n  005350c2:  MOV ESI,ECX\n  005350c4:  XOR EBX,EBX\n  005350c6:  MOV EAX,dword ptr [ESI + 0x10]\n  005350c9:  MOV byte ptr [ESI + 0x24],BL\n  005350cc:  CMP EAX,EBX\n  005350ce:  MOV byte ptr [ESI + 0x25],BL\n  005350d1:  JZ 0x0053510b\n  005350d3:  CMP byte ptr [EAX + 0x87],BL\n  005350d9:  JZ 0x005350f5\n  005350db:  MOV ECX,dword ptr [ESI + 0x4]\n  005350de:  CMP ECX,EBX\n  005350e0:  JZ 0x005350f5\n  005350e2:  MOV EAX,[0x005a3748]\n  005350e7:  PUSH EAX\n  005350e8:  CALL 0x00535930\n  005350ed:  MOV ECX,dword ptr [ESI + 0x14]\n  005350f0:  CALL 0x005364b0\n  005350f5:  MOV ECX,dword ptr [ESI + 0x10]\n  005350f8:  CALL 0x00532b40\n  005350fd:  MOV ECX,dword ptr [ESI + 0xc]\n  00535100:  CALL 0x00534bf0\n  00535105:  MOV byte ptr [ESI + 0x24],BL\n  00535108:  MOV byte ptr [ESI + 0x25],BL\n  0053510b:  CALL 0x00541cc0\n  00535110:  POP ESI\n  00535111:  POP EBX\n  00535112:  RET", 
+  "callers": [
+    {
+      "address": "0x0044f8d0", 
+      "name": "FUN_0044f8d0"
+    }
+  ]
+}

@@ -1,0 +1,19 @@
+{
+  "address": "0x00568fac", 
+  "size_bytes": 8, 
+  "calling_convention": "unknown", 
+  "signature": "undefined Unwind@00568fac(void)", 
+  "callees": [
+    {
+      "address": "0x0055525e", 
+      "name": "~exception"
+    }
+  ], 
+  "global_refs": [], 
+  "has_custom_name": true, 
+  "decompiled_c": "\r\nvoid Unwind_00568fac(void)\r\n\r\n{\r\n  int unaff_EBP;\r\n  \r\n  exception::~exception(*(exception **)(unaff_EBP + -0x10));\r\n  return;\r\n}\r\n\r\n", 
+  "is_thunk": false, 
+  "name": "Unwind@00568fac", 
+  "assembly": "  00568fac:  MOV ECX,dword ptr [EBP + -0x10]\n  00568faf:  JMP 0x0055525e", 
+  "callers": []
+}

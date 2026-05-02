@@ -1,0 +1,20 @@
+{
+  "address": "0x00401bc0", 
+  "size_bytes": 11, 
+  "calling_convention": "unknown", 
+  "signature": "undefined FUN_00401bc0(void)", 
+  "callees": [], 
+  "global_refs": [
+    {
+      "address": "0x007cc178", 
+      "type": null, 
+      "name": "DAT_007cc178"
+    }
+  ], 
+  "has_custom_name": false, 
+  "decompiled_c": "\r\nvoid FUN_00401bc0(void)\r\n\r\n{\r\n                    /* WARNING: Could not recover jumptable at 0x00401bc5. Too many branches */\r\n                    /* WARNING: Treating indirect jump as call */\r\n  gbVFileSystem::gbVFileSystem((gbVFileSystem *)&DAT_007cc178);\r\n  return;\r\n}\r\n\r\n", 
+  "is_thunk": false, 
+  "name": "FUN_00401bc0", 
+  "assembly": "  00401bc0:  MOV ECX,0x7cc178\n  00401bc5:  JMP dword ptr [0x0056a568]", 
+  "callers": []
+}

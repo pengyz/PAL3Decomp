@@ -1,0 +1,104 @@
+{
+  "address": "0x0043dab0", 
+  "size_bytes": 400, 
+  "calling_convention": "unknown", 
+  "signature": "undefined FUN_0043dab0(undefined4 param_1, undefined4 param_2)", 
+  "callees": [
+    {
+      "address": "0x0000015b", 
+      "name": "GetDynVertBuf"
+    }, 
+    {
+      "address": "0x000000d6", 
+      "name": "RenderUIQuad"
+    }
+  ], 
+  "global_refs": [
+    {
+      "address": "0x00000004", 
+      "type": null, 
+      "name": "DAT_00000004"
+    }, 
+    {
+      "address": "0x-0000048", 
+      "type": null, 
+      "name": "DAT_-0000048"
+    }, 
+    {
+      "address": "0x-000004c", 
+      "type": null, 
+      "name": "DAT_-000004c"
+    }, 
+    {
+      "address": "0x-0000070", 
+      "type": null, 
+      "name": "DAT_-0000070"
+    }, 
+    {
+      "address": "0x-0000074", 
+      "type": null, 
+      "name": "DAT_-0000074"
+    }, 
+    {
+      "address": "0x00000008", 
+      "type": null, 
+      "name": "DAT_00000008"
+    }, 
+    {
+      "address": "0x0056a63c", 
+      "type": null, 
+      "name": "DAT_0056a63c"
+    }, 
+    {
+      "address": "0x-0000058", 
+      "type": null, 
+      "name": "DAT_-0000058"
+    }, 
+    {
+      "address": "0x-0000050", 
+      "type": null, 
+      "name": "DAT_-0000050"
+    }, 
+    {
+      "address": "0x-000005c", 
+      "type": null, 
+      "name": "DAT_-000005c"
+    }, 
+    {
+      "address": "0x0056a610", 
+      "type": null, 
+      "name": "DAT_0056a610"
+    }, 
+    {
+      "address": "0x-0000054", 
+      "type": null, 
+      "name": "DAT_-0000054"
+    }, 
+    {
+      "address": "0x00bfda60", 
+      "type": null, 
+      "name": "DAT_00bfda60"
+    }, 
+    {
+      "address": "0x0056a580", 
+      "type": null, 
+      "name": "PTR_GetDynVertBuf_0056a580"
+    }, 
+    {
+      "address": "0x0189504c", 
+      "type": null, 
+      "name": "DAT_0189504c"
+    }, 
+    {
+      "address": "0x0056a36c", 
+      "type": null, 
+      "name": "PTR_RenderUIQuad_0056a36c"
+    }
+  ], 
+  "has_custom_name": false, 
+  "decompiled_c": "\r\n/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */\r\n\r\nvoid __thiscall FUN_0043dab0(int param_1_00,int *param_1,int param_2)\r\n\r\n{\r\n  int iVar1;\r\n  float fVar2;\r\n  gbDynVertBuf *this;\r\n  float fStack_6c;\r\n  float fStack_68;\r\n  float fStack_64;\r\n  float fStack_60;\r\n  float local_5c;\r\n  float local_58;\r\n  float local_54;\r\n  float local_50;\r\n  undefined4 local_4c;\r\n  undefined4 local_48;\r\n  undefined4 auStack_44 [16];\r\n  undefined4 uStack_4;\r\n  \r\n  local_48 = 0xffffffff;\r\n  local_4c = 0;\r\n  if (*(int *)(param_1_00 + 0x50) == 0) {\r\n    iVar1 = *(int *)(param_1_00 + 0x4c);\r\n    local_5c = (float)*(int *)(param_1_00 + 0x44) / (float)*(int *)(iVar1 + 0x18);\r\n    local_54 = (float)(param_1[2] - *param_1) / (float)*(int *)(iVar1 + 0x18);\r\n    if (local_5c < local_54) {\r\n      local_54 = local_5c;\r\n    }\r\n    local_5c = (float)param_2 * local_5c;\r\n    local_54 = local_5c + local_54;\r\n    local_58 = 0.0;\r\n    local_50 = (float)(param_1[3] - param_1[1]) / (float)*(int *)(iVar1 + 0x1c) -\r\n               _DAT_0056a610 / (float)*(int *)(iVar1 + 0x1c);\r\n  }\r\n  else if (*(int *)(param_1_00 + 0x50) == 1) {\r\n    iVar1 = *(int *)(param_1_00 + 0x4c);\r\n    fVar2 = (float)*(int *)(param_1_00 + 0x48) / (float)*(int *)(iVar1 + 0x1c);\r\n    local_50 = (float)(param_1[3] - param_1[1]) / (float)*(int *)(iVar1 + 0x1c);\r\n    if (fVar2 < local_50) {\r\n      local_50 = fVar2;\r\n    }\r\n    local_58 = _DAT_0056a63c - (float)param_2 * fVar2;\r\n    local_50 = local_58 - local_50;\r\n    local_5c = 0.0;\r\n    local_54 = (float)(param_1[2] - *param_1) / (float)*(int *)(iVar1 + 0x18) -\r\n               _DAT_0056a610 / (float)*(int *)(iVar1 + 0x18);\r\n  }\r\n  this = gbVertPoolMgr::GetDynVertBuf(*(gbVertPoolMgr **)(DAT_00bfda60 + 0xc4),0x114);\r\n  fStack_6c = (float)*param_1;\r\n  auStack_44[0] = *(undefined4 *)(param_1_00 + 0x4c);\r\n  fStack_60 = (float)param_1[1];\r\n  fStack_64 = (float)param_1[2];\r\n  uStack_4 = 1;\r\n  fStack_68 = (float)param_1[3];\r\n  gbDynVertBuf::RenderUIQuad\r\n            (this,(gbUIQuad *)&fStack_6c,1,DAT_0189504c,(gbTextureArray *)auStack_44);\r\n  return;\r\n}\r\n\r\n", 
+  "is_thunk": false, 
+  "name": "FUN_0043dab0", 
+  "assembly": "  0043dab0:  SUB ESP,0x74\n  0043dab3:  PUSH ESI\n  0043dab4:  MOV ESI,dword ptr [ESP + 0x7c]\n  0043dab8:  PUSH EDI\n  0043dab9:  MOV EDI,ECX\n  0043dabb:  MOV dword ptr [ESP + 0x34],0xffffffff\n  0043dac3:  MOV dword ptr [ESP + 0x30],0x0\n  0043dacb:  MOV EAX,dword ptr [EDI + 0x50]\n  0043dace:  SUB EAX,0x0\n  0043dad1:  JZ 0x0043db60\n  0043dad7:  DEC EAX\n  0043dad8:  JNZ 0x0043dbda\n  0043dade:  MOV ECX,dword ptr [EDI + 0x4c]\n  0043dae1:  MOV EAX,dword ptr [ESI + 0xc]\n  0043dae4:  MOV EDX,dword ptr [ESI + 0x4]\n  0043dae7:  FILD dword ptr [ECX + 0x1c]\n  0043daea:  FILD dword ptr [EDI + 0x48]\n  0043daed:  SUB EAX,EDX\n  0043daef:  MOV dword ptr [ESP + 0xc],EAX\n  0043daf3:  FDIV ST0,ST1\n  0043daf5:  FSTP dword ptr [ESP + 0x8]\n  0043daf9:  FIDIVR dword ptr [ESP + 0xc]\n  0043dafd:  FLD dword ptr [ESP + 0x8]\n  0043db01:  FCOMP\n  0043db03:  FNSTSW AX\n  0043db05:  TEST AH,0x1\n  0043db08:  JZ 0x0043db10\n  0043db0a:  FSTP ST0\n  0043db0c:  FLD dword ptr [ESP + 0x8]\n  0043db10:  FILD dword ptr [ESP + 0x84]\n  0043db17:  MOV EAX,dword ptr [ESI + 0x8]\n  0043db1a:  FMUL dword ptr [ESP + 0x8]\n  0043db1e:  FSUBR dword ptr [0x0056a63c]\n  0043db24:  FST dword ptr [ESP + 0x24]\n  0043db28:  FSUB ST0,ST1\n  0043db2a:  FSTP dword ptr [ESP + 0x2c]\n  0043db2e:  MOV EDX,dword ptr [ECX + 0x18]\n  0043db31:  MOV dword ptr [ESP + 0x20],0x0\n  0043db39:  MOV dword ptr [ESP + 0x8],EDX\n  0043db3d:  MOV EDX,dword ptr [ESI]\n  0043db3f:  SUB EAX,EDX\n  0043db41:  FSTP ST0\n  0043db43:  MOV dword ptr [ESP + 0xc],EAX\n  0043db47:  FILD dword ptr [ESP + 0xc]\n  0043db4b:  FIDIV dword ptr [ECX + 0x18]\n  0043db4e:  FILD dword ptr [ESP + 0x8]\n  0043db52:  FDIVR dword ptr [0x0056a610]\n  0043db58:  FSUBP\n  0043db5a:  FSTP dword ptr [ESP + 0x28]\n  0043db5e:  JMP 0x0043dbda\n  0043db60:  MOV ECX,dword ptr [EDI + 0x4c]\n  0043db63:  MOV EDX,dword ptr [ESI + 0x8]\n  0043db66:  MOV EAX,dword ptr [ESI]\n  0043db68:  FILD dword ptr [ECX + 0x18]\n  0043db6b:  FILD dword ptr [EDI + 0x44]\n  0043db6e:  SUB EDX,EAX\n  0043db70:  MOV dword ptr [ESP + 0xc],EDX\n  0043db74:  FDIV ST0,ST1\n  0043db76:  FSTP dword ptr [ESP + 0x8]\n  0043db7a:  FIDIVR dword ptr [ESP + 0xc]\n  0043db7e:  FLD dword ptr [ESP + 0x8]\n  0043db82:  FCOMP\n  0043db84:  FNSTSW AX\n  0043db86:  TEST AH,0x1\n  0043db89:  JZ 0x0043db91\n  0043db8b:  FSTP ST0\n  0043db8d:  FLD dword ptr [ESP + 0x8]\n  0043db91:  FILD dword ptr [ESP + 0x84]\n  0043db98:  MOV EDX,dword ptr [ESI + 0xc]\n  0043db9b:  FMUL dword ptr [ESP + 0x8]\n  0043db9f:  FST dword ptr [ESP + 0x20]\n  0043dba3:  FADD ST0,ST1\n  0043dba5:  FSTP dword ptr [ESP + 0x28]\n  0043dba9:  MOV EAX,dword ptr [ECX + 0x1c]\n  0043dbac:  MOV dword ptr [ESP + 0x24],0x0\n  0043dbb4:  MOV dword ptr [ESP + 0x8],EAX\n  0043dbb8:  MOV EAX,dword ptr [ESI + 0x4]\n  0043dbbb:  SUB EDX,EAX\n  0043dbbd:  FSTP ST0\n  0043dbbf:  MOV dword ptr [ESP + 0xc],EDX\n  0043dbc3:  FILD dword ptr [ESP + 0xc]\n  0043dbc7:  FIDIV dword ptr [ECX + 0x1c]\n  0043dbca:  FILD dword ptr [ESP + 0x8]\n  0043dbce:  FDIVR dword ptr [0x0056a610]\n  0043dbd4:  FSUBP\n  0043dbd6:  FSTP dword ptr [ESP + 0x2c]\n  0043dbda:  MOV EAX,[0x00bfda60]\n  0043dbdf:  PUSH 0x114\n  0043dbe4:  MOV ECX,dword ptr [EAX + 0xc4]\n  0043dbea:  CALL dword ptr [0x0056a580]\n  0043dbf0:  FILD dword ptr [ESI]\n  0043dbf2:  MOV ECX,dword ptr [EDI + 0x4c]\n  0043dbf5:  LEA EDX,[ESP + 0x38]\n  0043dbf9:  MOV dword ptr [ESP + 0x38],ECX\n  0043dbfd:  MOV ECX,dword ptr [0x0189504c]\n  0043dc03:  FSTP dword ptr [ESP + 0x10]\n  0043dc07:  FILD dword ptr [ESI + 0x4]\n  0043dc0a:  PUSH EDX\n  0043dc0b:  PUSH ECX\n  0043dc0c:  LEA EDX,[ESP + 0x18]\n  0043dc10:  PUSH 0x1\n  0043dc12:  FSTP dword ptr [ESP + 0x28]\n  0043dc16:  FILD dword ptr [ESI + 0x8]\n  0043dc19:  PUSH EDX\n  0043dc1a:  MOV ECX,EAX\n  0043dc1c:  MOV dword ptr [ESP + 0x88],0x1\n  0043dc27:  FSTP dword ptr [ESP + 0x28]\n  0043dc2b:  FILD dword ptr [ESI + 0xc]\n  0043dc2e:  FSTP dword ptr [ESP + 0x24]\n  0043dc32:  CALL dword ptr [0x0056a36c]\n  0043dc38:  POP EDI\n  0043dc39:  POP ESI\n  0043dc3a:  ADD ESP,0x74\n  0043dc3d:  RET 0x8", 
+  "callers": []
+}

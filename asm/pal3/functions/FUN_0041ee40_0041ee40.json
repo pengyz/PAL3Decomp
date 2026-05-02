@@ -1,0 +1,51 @@
+{
+  "address": "0x0041ee40", 
+  "size_bytes": 27, 
+  "calling_convention": "unknown", 
+  "signature": "undefined FUN_0041ee40(void)", 
+  "callees": [
+    {
+      "address": "0x000000b9", 
+      "name": "Stop"
+    }
+  ], 
+  "global_refs": [
+    {
+      "address": "0x00c116f4", 
+      "type": null, 
+      "name": "DAT_00c116f4"
+    }, 
+    {
+      "address": "0x0056a2f8", 
+      "type": null, 
+      "name": "PTR_Stop_0056a2f8"
+    }
+  ], 
+  "has_custom_name": false, 
+  "decompiled_c": "\r\nvoid FUN_0041ee40(void)\r\n\r\n{\r\n  if (DAT_00c116f4 != 0) {\r\n    gbSound2DNode::Stop((gbSound2DNode *)DAT_00c116f4);\r\n    DAT_00c116f4 = 0;\r\n  }\r\n  return;\r\n}\r\n\r\n", 
+  "is_thunk": false, 
+  "name": "FUN_0041ee40", 
+  "assembly": "  0041ee40:  MOV ECX,dword ptr [0x00c116f4]\n  0041ee46:  TEST ECX,ECX\n  0041ee48:  JZ 0x0041ee5a\n  0041ee4a:  CALL dword ptr [0x0056a2f8]\n  0041ee50:  MOV dword ptr [0x00c116f4],0x0\n  0041ee5a:  RET", 
+  "callers": [
+    {
+      "address": "0x00407320", 
+      "name": "FUN_00407320"
+    }, 
+    {
+      "address": "0x0041e720", 
+      "name": "FUN_0041e720"
+    }, 
+    {
+      "address": "0x00569110", 
+      "name": "FUN_00569110"
+    }, 
+    {
+      "address": "0x00407740", 
+      "name": "FUN_00407740"
+    }, 
+    {
+      "address": "0x00426eb0", 
+      "name": "FUN_00426eb0"
+    }
+  ]
+}

@@ -1,0 +1,25 @@
+{
+  "address": "0x00542059", 
+  "size_bytes": 12, 
+  "calling_convention": "unknown", 
+  "signature": "undefined FUN_00542059(void)", 
+  "callees": [
+    {
+      "address": "0x00553041", 
+      "name": "FUN_00553041"
+    }
+  ], 
+  "global_refs": [
+    {
+      "address": "0x00401800", 
+      "type": null, 
+      "name": "FUN_00401800"
+    }
+  ], 
+  "has_custom_name": false, 
+  "decompiled_c": "\r\nvoid FUN_00542059(void)\r\n\r\n{\r\n  FUN_00553041(FUN_00401800);\r\n  return;\r\n}\r\n\r\n", 
+  "is_thunk": false, 
+  "name": "FUN_00542059", 
+  "assembly": "  00542059:  PUSH 0x401800\n  0054205e:  CALL 0x00553041\n  00542063:  POP ECX\n  00542064:  RET", 
+  "callers": []
+}

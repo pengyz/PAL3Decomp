@@ -1,0 +1,37 @@
+{
+  "address": "0x004c8830", 
+  "size_bytes": 80, 
+  "calling_convention": "unknown", 
+  "signature": "undefined FUN_004c8830(undefined4 param_1)", 
+  "callees": [], 
+  "global_refs": [
+    {
+      "address": "0x00000004", 
+      "type": null, 
+      "name": "DAT_00000004"
+    }
+  ], 
+  "has_custom_name": false, 
+  "decompiled_c": "\r\nvoid __thiscall FUN_004c8830(int param_1_00,int param_1)\r\n\r\n{\r\n  int iVar1;\r\n  int iVar2;\r\n  \r\n  param_1 = param_1 * 0x98;\r\n  *(undefined *)(*(int *)(param_1_00 + 0xc) + 0x94 + param_1) = 0;\r\n  iVar1 = 0;\r\n  if (0 < *(int *)(param_1_00 + 0x20)) {\r\n    iVar2 = 0;\r\n    do {\r\n      iVar1 = iVar1 + 1;\r\n      iVar2 = iVar2 + 0x48;\r\n      *(undefined *)(*(int *)(*(int *)(param_1_00 + 0xc) + param_1) + -8 + iVar2) = 0;\r\n    } while (iVar1 < *(int *)(param_1_00 + 0x20));\r\n  }\r\n  *(undefined4 *)(*(int *)(param_1_00 + 0xc) + 4 + param_1) = 0;\r\n  *(int *)(param_1_00 + 0x18) = *(int *)(param_1_00 + 0x18) + -1;\r\n  return;\r\n}\r\n\r\n", 
+  "is_thunk": false, 
+  "name": "FUN_004c8830", 
+  "assembly": "  004c8830:  MOV EAX,dword ptr [ESP + 0x4]\n  004c8834:  PUSH EBX\n  004c8835:  XOR EBX,EBX\n  004c8837:  PUSH ESI\n  004c8838:  LEA EDX,[EAX + EAX*0x8]\n  004c883b:  LEA EAX,[EAX + EDX*0x2]\n  004c883e:  MOV EDX,dword ptr [ECX + 0xc]\n  004c8841:  SHL EAX,0x3\n  004c8844:  MOV byte ptr [EDX + EAX*0x1 + 0x94],BL\n  004c884b:  MOV ESI,dword ptr [ECX + 0x20]\n  004c884e:  XOR EDX,EDX\n  004c8850:  CMP ESI,EBX\n  004c8852:  JLE 0x004c886d\n  004c8854:  PUSH EDI\n  004c8855:  XOR ESI,ESI\n  004c8857:  MOV EDI,dword ptr [ECX + 0xc]\n  004c885a:  INC EDX\n  004c885b:  ADD ESI,0x48\n  004c885e:  MOV EDI,dword ptr [EDI + EAX*0x1]\n  004c8861:  MOV byte ptr [EDI + ESI*0x1 + -0x8],BL\n  004c8865:  MOV EDI,dword ptr [ECX + 0x20]\n  004c8868:  CMP EDX,EDI\n  004c886a:  JL 0x004c8857\n  004c886c:  POP EDI\n  004c886d:  MOV EDX,dword ptr [ECX + 0xc]\n  004c8870:  POP ESI\n  004c8871:  MOV dword ptr [EDX + EAX*0x1 + 0x4],EBX\n  004c8875:  MOV EAX,dword ptr [ECX + 0x18]\n  004c8878:  DEC EAX\n  004c8879:  POP EBX\n  004c887a:  MOV dword ptr [ECX + 0x18],EAX\n  004c887d:  RET 0x4", 
+  "callers": [
+    {
+      "address": "0x004c45a0", 
+      "name": "FUN_004c45a0"
+    }, 
+    {
+      "address": "0x004c7150", 
+      "name": "FUN_004c7150"
+    }, 
+    {
+      "address": "0x004c9ed0", 
+      "name": "FUN_004c9ed0"
+    }, 
+    {
+      "address": "0x004cbfc0", 
+      "name": "FUN_004cbfc0"
+    }
+  ]
+}

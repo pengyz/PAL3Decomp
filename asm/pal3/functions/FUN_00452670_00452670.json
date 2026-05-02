@@ -1,0 +1,53 @@
+{
+  "address": "0x00452670", 
+  "size_bytes": 72, 
+  "calling_convention": "unknown", 
+  "signature": "undefined FUN_00452670(void)", 
+  "callees": [
+    {
+      "address": "0x0043dd60", 
+      "name": "FUN_0043dd60"
+    }, 
+    {
+      "address": "0x004528f0", 
+      "name": "FUN_004528f0"
+    }, 
+    {
+      "address": "0x00451e50", 
+      "name": "FUN_00451e50"
+    }
+  ], 
+  "global_refs": [
+    {
+      "address": "0x-0000020", 
+      "type": null, 
+      "name": "DAT_-0000020"
+    }, 
+    {
+      "address": "0x-000001c", 
+      "type": null, 
+      "name": "DAT_-000001c"
+    }, 
+    {
+      "address": "0x-0000018", 
+      "type": null, 
+      "name": "DAT_-0000018"
+    }, 
+    {
+      "address": "0x-0000014", 
+      "type": null, 
+      "name": "DAT_-0000014"
+    }
+  ], 
+  "has_custom_name": false, 
+  "decompiled_c": "\r\nvoid __fastcall FUN_00452670(undefined4 param_1)\r\n\r\n{\r\n  FUN_0043dd60(0xffffffff,0,0,800,600,0);\r\n  FUN_004528f0(100,param_1);\r\n  FUN_00451e50(param_1);\r\n  return;\r\n}\r\n\r\n", 
+  "is_thunk": false, 
+  "name": "FUN_00452670", 
+  "assembly": "  00452670:  PUSH EBX\n  00452671:  PUSH ESI\n  00452672:  MOV ESI,ECX\n  00452674:  PUSH EDI\n  00452675:  XOR ECX,ECX\n  00452677:  XOR EAX,EAX\n  00452679:  PUSH ECX\n  0045267a:  MOV EDX,0x320\n  0045267f:  SUB ESP,0x10\n  00452682:  MOV EDI,0x258\n  00452687:  MOV EBX,ESP\n  00452689:  PUSH -0x1\n  0045268b:  MOV dword ptr [EBX],EAX\n  0045268d:  MOV dword ptr [EBX + 0x4],ECX\n  00452690:  MOV ECX,ESI\n  00452692:  MOV dword ptr [EBX + 0x8],EDX\n  00452695:  MOV dword ptr [EBX + 0xc],EDI\n  00452698:  CALL 0x0043dd60\n  0045269d:  PUSH ESI\n  0045269e:  PUSH 0x64\n  004526a0:  LEA ECX,[ESI + 0x48]\n  004526a3:  CALL 0x004528f0\n  004526a8:  PUSH ESI\n  004526a9:  LEA ECX,[ESI + 0x43c]\n  004526af:  CALL 0x00451e50\n  004526b4:  POP EDI\n  004526b5:  POP ESI\n  004526b6:  POP EBX\n  004526b7:  RET", 
+  "callers": [
+    {
+      "address": "0x0044f130", 
+      "name": "FUN_0044f130"
+    }
+  ]
+}

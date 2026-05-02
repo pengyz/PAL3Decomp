@@ -1,0 +1,35 @@
+{
+  "address": "0x00554560", 
+  "size_bytes": 193, 
+  "calling_convention": "__cdecl", 
+  "signature": "char * _strchr(char * _Str, int _Val)", 
+  "callees": [], 
+  "global_refs": [
+    {
+      "address": "0x00000008", 
+      "type": null, 
+      "name": "DAT_00000008"
+    }, 
+    {
+      "address": "0x00000004", 
+      "type": null, 
+      "name": "DAT_00000004"
+    }, 
+    {
+      "address": "0x01010100", 
+      "type": null, 
+      "name": "DAT_01010100"
+    }
+  ], 
+  "has_custom_name": true, 
+  "decompiled_c": "\r\n/* Library Function - Single Match\r\n    _strchr\r\n   \r\n   Libraries: Visual Studio 1998 Debug, Visual Studio 1998 Release */\r\n\r\nchar * __cdecl _strchr(char *_Str,int _Val)\r\n\r\n{\r\n  uint uVar1;\r\n  char cVar2;\r\n  uint uVar3;\r\n  uint uVar4;\r\n  uint *puVar5;\r\n  \r\n  uVar1 = (uint)_Str & 3;\r\n  while (uVar1 != 0) {\r\n    if (*_Str == (char)_Val) {\r\n      return (char *)(uint *)_Str;\r\n    }\r\n    if (*_Str == '\\0') {\r\n      return (char *)0x0;\r\n    }\r\n    uVar1 = (uint)((int)_Str + 1) & 3;\r\n    _Str = (char *)((int)_Str + 1);\r\n  }\r\n  while( true ) {\r\n    while( true ) {\r\n      uVar1 = *(uint *)_Str;\r\n      uVar4 = uVar1 ^ CONCAT22(CONCAT11((char)_Val,(char)_Val),CONCAT11((char)_Val,(char)_Val));\r\n      uVar3 = uVar1 ^ 0xffffffff ^ uVar1 + 0x7efefeff;\r\n      puVar5 = (uint *)((int)_Str + 4);\r\n      if (((uVar4 ^ 0xffffffff ^ uVar4 + 0x7efefeff) & 0x81010100) != 0) break;\r\n      _Str = (char *)puVar5;\r\n      if ((uVar3 & 0x81010100) != 0) {\r\n        if ((uVar3 & 0x1010100) != 0) {\r\n          return (char *)0x0;\r\n        }\r\n        if ((uVar1 + 0x7efefeff & 0x80000000) == 0) {\r\n          return (char *)0x0;\r\n        }\r\n      }\r\n    }\r\n    uVar1 = *(uint *)_Str;\r\n    if ((char)uVar1 == (char)_Val) {\r\n      return (char *)(uint *)_Str;\r\n    }\r\n    if ((char)uVar1 == '\\0') {\r\n      return (char *)0x0;\r\n    }\r\n    cVar2 = (char)(uVar1 >> 8);\r\n    if (cVar2 == (char)_Val) {\r\n      return (char *)((int)_Str + 1);\r\n    }\r\n    if (cVar2 == '\\0') break;\r\n    cVar2 = (char)(uVar1 >> 0x10);\r\n    if (cVar2 == (char)_Val) {\r\n      return (char *)((int)_Str + 2);\r\n    }\r\n    if (cVar2 == '\\0') {\r\n      return (char *)0x0;\r\n    }\r\n    cVar2 = (char)(uVar1 >> 0x18);\r\n    if (cVar2 == (char)_Val) {\r\n      return (char *)((int)_Str + 3);\r\n    }\r\n    _Str = (char *)puVar5;\r\n    if (cVar2 == '\\0') {\r\n      return (char *)0x0;\r\n    }\r\n  }\r\n  return (char *)0x0;\r\n}\r\n\r\n", 
+  "is_thunk": false, 
+  "name": "_strchr", 
+  "assembly": "  00554550:  LEA EAX,[EDX + -0x1]\n  00554553:  POP EBX\n  00554554:  RET\n  00554560:  XOR EAX,EAX\n  00554562:  MOV AL,byte ptr [ESP + 0x8]\n  00554566:  PUSH EBX\n  00554567:  MOV EBX,EAX\n  00554569:  SHL EAX,0x8\n  0055456c:  MOV EDX,dword ptr [ESP + 0x8]\n  00554570:  TEST EDX,0x3\n  00554576:  JZ 0x0055458b\n  00554578:  MOV CL,byte ptr [EDX]\n  0055457a:  INC EDX\n  0055457b:  CMP CL,BL\n  0055457d:  JZ 0x00554550\n  0055457f:  TEST CL,CL\n  00554581:  JZ 0x005545d4\n  00554583:  TEST EDX,0x3\n  00554589:  JNZ 0x00554578\n  0055458b:  OR EBX,EAX\n  0055458d:  PUSH EDI\n  0055458e:  MOV EAX,EBX\n  00554590:  SHL EBX,0x10\n  00554593:  PUSH ESI\n  00554594:  OR EBX,EAX\n  00554596:  MOV ECX,dword ptr [EDX]\n  00554598:  MOV EDI,0x7efefeff\n  0055459d:  MOV EAX,ECX\n  0055459f:  MOV ESI,EDI\n  005545a1:  XOR ECX,EBX\n  005545a3:  ADD ESI,EAX\n  005545a5:  ADD EDI,ECX\n  005545a7:  XOR ECX,0xffffffff\n  005545aa:  XOR EAX,0xffffffff\n  005545ad:  XOR ECX,EDI\n  005545af:  XOR EAX,ESI\n  005545b1:  ADD EDX,0x4\n  005545b4:  AND ECX,0x81010100\n  005545ba:  JNZ 0x005545d8\n  005545bc:  AND EAX,0x81010100\n  005545c1:  JZ 0x00554596\n  005545c3:  AND EAX,0x1010100\n  005545c8:  JNZ 0x005545d2\n  005545ca:  AND ESI,0x80000000\n  005545d0:  JNZ 0x00554596\n  005545d2:  POP ESI\n  005545d3:  POP EDI\n  005545d4:  POP EBX\n  005545d5:  XOR EAX,EAX\n  005545d7:  RET\n  005545d8:  MOV EAX,dword ptr [EDX + -0x4]\n  005545db:  CMP AL,BL\n  005545dd:  JZ 0x00554615\n  005545df:  TEST AL,AL\n  005545e1:  JZ 0x005545d2\n  005545e3:  CMP AH,BL\n  005545e5:  JZ 0x0055460e\n  005545e7:  TEST AH,AH\n  005545e9:  JZ 0x005545d2\n  005545eb:  SHR EAX,0x10\n  005545ee:  CMP AL,BL\n  005545f0:  JZ 0x00554607\n  005545f2:  TEST AL,AL\n  005545f4:  JZ 0x005545d2\n  005545f6:  CMP AH,BL\n  005545f8:  JZ 0x00554600\n  005545fa:  TEST AH,AH\n  005545fc:  JZ 0x005545d2\n  005545fe:  JMP 0x00554596\n  00554600:  POP ESI\n  00554601:  POP EDI\n  00554602:  LEA EAX,[EDX + -0x1]\n  00554605:  POP EBX\n  00554606:  RET\n  00554607:  LEA EAX,[EDX + -0x2]\n  0055460a:  POP ESI\n  0055460b:  POP EDI\n  0055460c:  POP EBX\n  0055460d:  RET\n  0055460e:  LEA EAX,[EDX + -0x3]\n  00554611:  POP ESI\n  00554612:  POP EDI\n  00554613:  POP EBX\n  00554614:  RET\n  00554615:  LEA EAX,[EDX + -0x4]\n  00554618:  POP ESI\n  00554619:  POP EDI\n  0055461a:  POP EBX\n  0055461b:  RET", 
+  "callers": [
+    {
+      "address": "0x00423a70", 
+      "name": "FUN_00423a70"
+    }
+  ]
+}

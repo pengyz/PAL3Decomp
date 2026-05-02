@@ -1,0 +1,25 @@
+{
+  "address": "0x00535960", 
+  "size_bytes": 14, 
+  "calling_convention": "unknown", 
+  "signature": "undefined FUN_00535960(undefined4 param_1)", 
+  "callees": [], 
+  "global_refs": [
+    {
+      "address": "0x00000004", 
+      "type": null, 
+      "name": "DAT_00000004"
+    }
+  ], 
+  "has_custom_name": false, 
+  "decompiled_c": "\r\nvoid __thiscall FUN_00535960(int param_1_00,int param_1)\r\n\r\n{\r\n  if (param_1 != 0) {\r\n    *(int *)(param_1_00 + 4) = param_1;\r\n  }\r\n  return;\r\n}\r\n\r\n", 
+  "is_thunk": false, 
+  "name": "FUN_00535960", 
+  "assembly": "  00535960:  MOV EAX,dword ptr [ESP + 0x4]\n  00535964:  TEST EAX,EAX\n  00535966:  JZ 0x0053596b\n  00535968:  MOV dword ptr [ECX + 0x4],EAX\n  0053596b:  RET 0x4", 
+  "callers": [
+    {
+      "address": "0x00535120", 
+      "name": "FUN_00535120"
+    }
+  ]
+}

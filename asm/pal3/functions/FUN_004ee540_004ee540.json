@@ -1,0 +1,138 @@
+{
+  "address": "0x004ee540", 
+  "size_bytes": 529, 
+  "calling_convention": "unknown", 
+  "signature": "undefined FUN_004ee540(undefined param_1, undefined param_2, undefined param_3, undefined param_4, undefined param_5, undefined param_6, undefined param_7, undefined param_8, undefined param_9, undefined param_10, undefined1 param_11)", 
+  "callees": [
+    {
+      "address": "0x00553bd0", 
+      "name": "FUN_00553bd0"
+    }, 
+    {
+      "address": "0x00553082", 
+      "name": "FUN_00553082"
+    }, 
+    {
+      "address": "0x0055353b", 
+      "name": "operator_new"
+    }, 
+    {
+      "address": "0x0000013b", 
+      "name": "gbGeomNode"
+    }, 
+    {
+      "address": "0x0000013c", 
+      "name": "LoadFromFile"
+    }, 
+    {
+      "address": "0x000000af", 
+      "name": "ReplaceTexture"
+    }, 
+    {
+      "address": "0x0053cef0", 
+      "name": "FUN_0053cef0"
+    }, 
+    {
+      "address": "0x005534d7", 
+      "name": "__CxxThrowException@8"
+    }
+  ], 
+  "global_refs": [
+    {
+      "address": "0xffdff000", 
+      "type": null, 
+      "name": "ExceptionList"
+    }, 
+    {
+      "address": "0x00566c0c", 
+      "type": null, 
+      "name": "LAB_00566c0c"
+    }, 
+    {
+      "address": "0x00c04738", 
+      "type": null, 
+      "name": "DAT_00c04738"
+    }, 
+    {
+      "address": "0x00c04730", 
+      "type": null, 
+      "name": "DAT_00c04730"
+    }, 
+    {
+      "address": "0x-0000008", 
+      "type": null, 
+      "name": "DAT_-0000008"
+    }, 
+    {
+      "address": "0x00588a28", 
+      "type": null, 
+      "name": "s_weapon\\%s\\%s.pol_00588a28"
+    }, 
+    {
+      "address": "0x000000f8", 
+      "type": null, 
+      "name": "DAT_000000f8"
+    }, 
+    {
+      "address": "0x00588a14", 
+      "type": null, 
+      "name": "s_weapon\\%s\\%s%s.tga_00588a14"
+    }, 
+    {
+      "address": "0x-000000c", 
+      "type": null, 
+      "name": "DAT_-000000c"
+    }, 
+    {
+      "address": "0x0056a500", 
+      "type": null, 
+      "name": "PTR_gbGeomNode_0056a500"
+    }, 
+    {
+      "address": "0x0056a66c", 
+      "type": null, 
+      "name": "PTR_FUN_0056a66c"
+    }, 
+    {
+      "address": "0x0056a504", 
+      "type": null, 
+      "name": "PTR_LoadFromFile_0056a504"
+    }, 
+    {
+      "address": "0x0056a2d0", 
+      "type": null, 
+      "name": "PTR_ReplaceTexture_0056a2d0"
+    }, 
+    {
+      "address": "0x00c062b8", 
+      "type": null, 
+      "name": "DAT_00c062b8"
+    }, 
+    {
+      "address": "0x005d8e70", 
+      "type": null, 
+      "name": "s_D:\\Project\\PAL3\\Combat\\CBRoleSta_005d8e70"
+    }, 
+    {
+      "address": "0x005d8e50", 
+      "type": null, 
+      "name": "s_Fail_to_create_weapon_model!_005d8e50"
+    }, 
+    {
+      "address": "0x00573e50", 
+      "type": null, 
+      "name": "DAT_00573e50"
+    }
+  ], 
+  "has_custom_name": false, 
+  "decompiled_c": "\r\nvoid FUN_004ee540(void)\r\n\r\n{\r\n  gbGeomNode *pgVar1;\r\n  int extraout_ECX;\r\n  int iVar2;\r\n  undefined4 *puVar3;\r\n  int *piVar4;\r\n  undefined4 *puVar5;\r\n  void *in_stack_000011f8;\r\n  gbGeomNode *local_c;\r\n  undefined *local_8;\r\n  undefined4 uStack_4;\r\n  \r\n  uStack_4 = 0xffffffff;\r\n  local_8 = &LAB_00566c0c;\r\n  local_c = (gbGeomNode *)ExceptionList;\r\n  ExceptionList = &local_c;\r\n  FUN_00553bd0();\r\n  puVar3 = &DAT_00c04738;\r\n  piVar4 = (int *)(extraout_ECX + 0x578);\r\n  do {\r\n    if ((*(char *)((int)piVar4 + -0x337) != '\\0') && (puVar3[-2] != 0)) {\r\n      FUN_00553082();\r\n      FUN_00553082();\r\n      pgVar1 = (gbGeomNode *)operator_new(0x118);\r\n      local_c = pgVar1;\r\n      if (pgVar1 == (gbGeomNode *)0x0) {\r\n        pgVar1 = (gbGeomNode *)0x0;\r\n      }\r\n      else {\r\n        gbGeomNode::gbGeomNode(pgVar1);\r\n        *(undefined ***)pgVar1 = &PTR_FUN_0056a66c;\r\n      }\r\n      *piVar4 = (int)pgVar1;\r\n      if (pgVar1 == (gbGeomNode *)0x0) {\r\n        puVar3 = (undefined4 *)FUN_0053cef0();\r\n        puVar5 = (undefined4 *)&stack0x000001f8;\r\n        for (iVar2 = 0x100; iVar2 != 0; iVar2 = iVar2 + -1) {\r\n          *puVar5 = *puVar3;\r\n          puVar3 = puVar3 + 1;\r\n          puVar5 = puVar5 + 1;\r\n        }\r\n                    /* WARNING: Subroutine does not return */\r\n        __CxxThrowException_8();\r\n      }\r\n      gbGeomNode::LoadFromFile(pgVar1,(char *)&local_8,(char *)0x0,(_func_void_int_int *)0x0);\r\n      gbGeomNode::ReplaceTexture((gbGeomNode *)*piVar4,&stack0x000000f8);\r\n      pgVar1 = (gbGeomNode *)operator_new(0x118);\r\n      local_c = pgVar1;\r\n      if (pgVar1 == (gbGeomNode *)0x0) {\r\n        pgVar1 = (gbGeomNode *)0x0;\r\n      }\r\n      else {\r\n        gbGeomNode::gbGeomNode(pgVar1);\r\n        *(undefined ***)pgVar1 = &PTR_FUN_0056a66c;\r\n      }\r\n      piVar4[3] = (int)pgVar1;\r\n      if (pgVar1 == (gbGeomNode *)0x0) {\r\n        puVar3 = (undefined4 *)FUN_0053cef0();\r\n        puVar5 = (undefined4 *)&stack0x000005f8;\r\n        for (iVar2 = 0x100; iVar2 != 0; iVar2 = iVar2 + -1) {\r\n          *puVar5 = *puVar3;\r\n          puVar3 = puVar3 + 1;\r\n          puVar5 = puVar5 + 1;\r\n        }\r\n                    /* WARNING: Subroutine does not return */\r\n        __CxxThrowException_8();\r\n      }\r\n      gbGeomNode::LoadFromFile(pgVar1,(char *)&local_8,(char *)0x0,(_func_void_int_int *)0x0);\r\n      gbGeomNode::ReplaceTexture((gbGeomNode *)piVar4[3],&stack0x000000f8);\r\n      *(undefined4 *)(*piVar4 + 0x104) = 1;\r\n      *(undefined4 *)(piVar4[3] + 0x104) = 1;\r\n    }\r\n    puVar3 = puVar3 + 0x160;\r\n    piVar4 = piVar4 + 0xdf;\r\n    if (0xc062b7 < (int)puVar3) {\r\n      ExceptionList = in_stack_000011f8;\r\n      return;\r\n    }\r\n  } while( true );\r\n}\r\n\r\n", 
+  "is_thunk": false, 
+  "name": "FUN_004ee540", 
+  "assembly": "  004ee540:  MOV EAX,FS:[0x0]\n  004ee546:  PUSH -0x1\n  004ee548:  PUSH 0x566c0c\n  004ee54d:  PUSH EAX\n  004ee54e:  MOV EAX,0x1204\n  004ee553:  MOV dword ptr FS:[0x0],ESP\n  004ee55a:  CALL 0x00553bd0\n  004ee55f:  PUSH EBP\n  004ee560:  PUSH ESI\n  004ee561:  PUSH EDI\n  004ee562:  MOV EBP,0xc04738\n  004ee567:  LEA EDI,[ECX + 0x578]\n  004ee56d:  MOV AL,byte ptr [EDI + 0xfffffcc9]\n  004ee573:  TEST AL,AL\n  004ee575:  JZ 0x004ee6a7\n  004ee57b:  MOV EAX,dword ptr [EBP + -0x8]\n  004ee57e:  TEST EAX,EAX\n  004ee580:  JZ 0x004ee6a7\n  004ee586:  MOV EAX,dword ptr [EBP]\n  004ee589:  ADD EAX,0x24\n  004ee58c:  PUSH EAX\n  004ee58d:  PUSH EAX\n  004ee58e:  LEA EAX,[ESP + 0x18]\n  004ee592:  PUSH 0x588a28\n  004ee597:  PUSH EAX\n  004ee598:  CALL 0x00553082\n  004ee59d:  MOV EAX,dword ptr [EBP]\n  004ee5a0:  LEA ECX,[EAX + 0x24]\n  004ee5a3:  ADD EAX,0x42\n  004ee5a6:  PUSH EAX\n  004ee5a7:  PUSH ECX\n  004ee5a8:  PUSH ECX\n  004ee5a9:  LEA ECX,[ESP + 0x12c]\n  004ee5b0:  PUSH 0x588a14\n  004ee5b5:  PUSH ECX\n  004ee5b6:  CALL 0x00553082\n  004ee5bb:  PUSH 0x118\n  004ee5c0:  CALL 0x0055353b\n  004ee5c5:  MOV ESI,EAX\n  004ee5c7:  ADD ESP,0x28\n  004ee5ca:  MOV dword ptr [ESP + 0xc],ESI\n  004ee5ce:  TEST ESI,ESI\n  004ee5d0:  MOV dword ptr [ESP + 0x1218],0x0\n  004ee5db:  JZ 0x004ee5ef\n  004ee5dd:  MOV ECX,ESI\n  004ee5df:  CALL dword ptr [0x0056a500]\n  004ee5e5:  MOV dword ptr [ESI],0x56a66c\n  004ee5eb:  MOV ECX,ESI\n  004ee5ed:  JMP 0x004ee5f1\n  004ee5ef:  XOR ECX,ECX\n  004ee5f1:  TEST ECX,ECX\n  004ee5f3:  MOV dword ptr [ESP + 0x1218],0xffffffff\n  004ee5fe:  MOV dword ptr [EDI],ECX\n  004ee600:  JZ 0x004ee6d7\n  004ee606:  PUSH 0x0\n  004ee608:  LEA EDX,[ESP + 0x14]\n  004ee60c:  PUSH 0x0\n  004ee60e:  PUSH EDX\n  004ee60f:  CALL dword ptr [0x0056a504]\n  004ee615:  MOV ECX,dword ptr [EDI]\n  004ee617:  LEA EAX,[ESP + 0x110]\n  004ee61e:  PUSH EAX\n  004ee61f:  CALL dword ptr [0x0056a2d0]\n  004ee625:  PUSH 0x118\n  004ee62a:  CALL 0x0055353b\n  004ee62f:  MOV ESI,EAX\n  004ee631:  ADD ESP,0x4\n  004ee634:  MOV dword ptr [ESP + 0xc],ESI\n  004ee638:  TEST ESI,ESI\n  004ee63a:  MOV dword ptr [ESP + 0x1218],0x1\n  004ee645:  JZ 0x004ee659\n  004ee647:  MOV ECX,ESI\n  004ee649:  CALL dword ptr [0x0056a500]\n  004ee64f:  MOV dword ptr [ESI],0x56a66c\n  004ee655:  MOV ECX,ESI\n  004ee657:  JMP 0x004ee65b\n  004ee659:  XOR ECX,ECX\n  004ee65b:  TEST ECX,ECX\n  004ee65d:  MOV dword ptr [ESP + 0x1218],0xffffffff\n  004ee668:  MOV dword ptr [EDI + 0xc],ECX\n  004ee66b:  JZ 0x004ee714\n  004ee671:  PUSH 0x0\n  004ee673:  LEA EDX,[ESP + 0x14]\n  004ee677:  PUSH 0x0\n  004ee679:  PUSH EDX\n  004ee67a:  CALL dword ptr [0x0056a504]\n  004ee680:  MOV ECX,dword ptr [EDI + 0xc]\n  004ee683:  LEA EAX,[ESP + 0x110]\n  004ee68a:  PUSH EAX\n  004ee68b:  CALL dword ptr [0x0056a2d0]\n  004ee691:  MOV ECX,dword ptr [EDI]\n  004ee693:  MOV EAX,0x1\n  004ee698:  MOV dword ptr [ECX + 0x104],EAX\n  004ee69e:  MOV EDX,dword ptr [EDI + 0xc]\n  004ee6a1:  MOV dword ptr [EDX + 0x104],EAX\n  004ee6a7:  ADD EBP,0x580\n  004ee6ad:  ADD EDI,0x37c\n  004ee6b3:  CMP EBP,0xc062b8\n  004ee6b9:  JL 0x004ee56d\n  004ee6bf:  MOV ECX,dword ptr [ESP + 0x1210]\n  004ee6c6:  POP EDI\n  004ee6c7:  POP ESI\n  004ee6c8:  POP EBP\n  004ee6c9:  MOV dword ptr FS:[0x0],ECX\n  004ee6d0:  ADD ESP,0x1210\n  004ee6d6:  RET\n  004ee6d7:  PUSH 0x5cc\n  004ee6dc:  PUSH 0x5d8e70\n  004ee6e1:  PUSH 0x5d8e50\n  004ee6e6:  LEA ECX,[ESP + 0xa1c]\n  004ee6ed:  CALL 0x0053cef0\n  004ee6f2:  MOV ESI,EAX\n  004ee6f4:  MOV ECX,0x100\n  004ee6f9:  LEA EDI,[ESP + 0x210]\n  004ee700:  LEA EAX,[ESP + 0x210]\n  004ee707:  PUSH 0x573e50\n  004ee70c:  PUSH EAX\n  004ee70d:  MOVSD.REP ES:EDI,ESI\n  004ee70f:  CALL 0x005534d7\n  004ee714:  PUSH 0x5d6\n  004ee719:  PUSH 0x5d8e70\n  004ee71e:  PUSH 0x5d8e50\n  004ee723:  LEA ECX,[ESP + 0xe1c]\n  004ee72a:  CALL 0x0053cef0\n  004ee72f:  MOV ECX,0x100\n  004ee734:  MOV ESI,EAX\n  004ee736:  LEA EDI,[ESP + 0x610]\n  004ee73d:  PUSH 0x573e50\n  004ee742:  MOVSD.REP ES:EDI,ESI\n  004ee744:  LEA ECX,[ESP + 0x614]\n  004ee74b:  PUSH ECX\n  004ee74c:  CALL 0x005534d7", 
+  "callers": [
+    {
+      "address": "0x004ec830", 
+      "name": "FUN_004ec830"
+    }
+  ]
+}

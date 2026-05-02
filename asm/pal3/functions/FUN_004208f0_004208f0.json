@@ -1,0 +1,25 @@
+{
+  "address": "0x004208f0", 
+  "size_bytes": 25, 
+  "calling_convention": "unknown", 
+  "signature": "undefined FUN_004208f0(void)", 
+  "callees": [
+    {
+      "address": "0x00420250", 
+      "name": "FUN_00420250"
+    }
+  ], 
+  "global_refs": [
+    {
+      "address": "0x0056aaf0", 
+      "type": null, 
+      "name": "PTR_LAB_0056aaf0"
+    }
+  ], 
+  "has_custom_name": false, 
+  "decompiled_c": "\r\nundefined4 * __fastcall FUN_004208f0(undefined4 *param_1)\r\n\r\n{\r\n  FUN_00420250();\r\n  *param_1 = &PTR_LAB_0056aaf0;\r\n  param_1[4] = 0;\r\n  return param_1;\r\n}\r\n\r\n", 
+  "is_thunk": false, 
+  "name": "FUN_004208f0", 
+  "assembly": "  004208f0:  PUSH ESI\n  004208f1:  MOV ESI,ECX\n  004208f3:  CALL 0x00420250\n  004208f8:  MOV dword ptr [ESI],0x56aaf0\n  004208fe:  MOV dword ptr [ESI + 0x10],0x0\n  00420905:  MOV EAX,ESI\n  00420907:  POP ESI\n  00420908:  RET", 
+  "callers": []
+}

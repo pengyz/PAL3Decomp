@@ -1,0 +1,24 @@
+{
+  "address": "0x0050b4c0", 
+  "size_bytes": 36, 
+  "calling_convention": "unknown", 
+  "signature": "undefined FUN_0050b4c0(void)", 
+  "callees": [
+    {
+      "address": "0x0050b290", 
+      "name": "FUN_0050b290"
+    }
+  ], 
+  "global_refs": [], 
+  "has_custom_name": false, 
+  "decompiled_c": "\r\nvoid __fastcall FUN_0050b4c0(int param_1)\r\n\r\n{\r\n  char *pcVar1;\r\n  int iVar2;\r\n  \r\n  iVar2 = 0;\r\n  pcVar1 = (char *)(param_1 + 0x1f9);\r\n  while ((pcVar1[-1] != '\\x01' || (*pcVar1 != '\\x01'))) {\r\n    iVar2 = iVar2 + 1;\r\n    pcVar1 = pcVar1 + 0x60;\r\n    if (0x3f < iVar2) {\r\n      return;\r\n    }\r\n  }\r\n  FUN_0050b290(iVar2);\r\n  return;\r\n}\r\n\r\n", 
+  "is_thunk": false, 
+  "name": "FUN_0050b4c0", 
+  "assembly": "  0050b4c0:  XOR EDX,EDX\n  0050b4c2:  LEA EAX,[ECX + 0x1f9]\n  0050b4c8:  CMP byte ptr [EAX + -0x1],0x1\n  0050b4cc:  JNZ 0x0050b4d3\n  0050b4ce:  CMP byte ptr [EAX],0x1\n  0050b4d1:  JZ 0x0050b4dd\n  0050b4d3:  INC EDX\n  0050b4d4:  ADD EAX,0x60\n  0050b4d7:  CMP EDX,0x40\n  0050b4da:  JL 0x0050b4c8\n  0050b4dc:  RET\n  0050b4dd:  PUSH EDX\n  0050b4de:  CALL 0x0050b290\n  0050b4e3:  RET", 
+  "callers": [
+    {
+      "address": "0x0050a180", 
+      "name": "FUN_0050a180"
+    }
+  ]
+}

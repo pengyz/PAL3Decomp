@@ -1,0 +1,24 @@
+{
+  "address": "0x00402310",
+  "size_bytes": 65,
+  "calling_convention": "unknown",
+  "signature": "undefined FUN_00402310(void)",
+  "callees": [],
+  "global_refs": [],
+  "has_custom_name": false,
+  "decompiled_c": "\r\nvoid __fastcall FUN_00402310(int param_1)\r\n\r\n{\r\n  int *piVar1;\r\n  int iVar2;\r\n  int iVar3;\r\n  \r\n  piVar1 = *(int **)(param_1 + 8);\r\n  if (piVar1 != (int *)0x0) {\r\n    *(undefined4 *)(param_1 + 0x186c) = 1;\r\n    iVar2 = (**(code **)(*piVar1 + 0x1c))(piVar1);\r\n    if (iVar2 != 0) {\r\n      iVar2 = 0;\r\n      do {\r\n        iVar3 = (**(code **)(**(int **)(param_1 + 8) + 0x1c))(*(int **)(param_1 + 8));\r\n        if (iVar3 == 0) {\r\n          return;\r\n        }\r\n        iVar2 = iVar2 + 1;\r\n      } while (iVar2 < 0x32);\r\n      *(undefined4 *)(param_1 + 0x186c) = 0;\r\n    }\r\n  }\r\n  return;\r\n}\r\n\r\n",
+  "is_thunk": false,
+  "name": "GRPinput_AcquireMouse",
+  "assembly": "  00402310:  PUSH ESI\n  00402311:  MOV ESI,ECX\n  00402313:  PUSH EDI\n  00402314:  MOV EAX,dword ptr [ESI + 0x8]\n  00402317:  TEST EAX,EAX\n  00402319:  JZ 0x0040234e\n  0040231b:  MOV dword ptr [ESI + 0x186c],0x1\n  00402325:  MOV ECX,dword ptr [EAX]\n  00402327:  PUSH EAX\n  00402328:  CALL dword ptr [ECX + 0x1c]\n  0040232b:  TEST EAX,EAX\n  0040232d:  JZ 0x0040234e\n  0040232f:  XOR EDI,EDI\n  00402331:  MOV EAX,dword ptr [ESI + 0x8]\n  00402334:  PUSH EAX\n  00402335:  MOV EDX,dword ptr [EAX]\n  00402337:  CALL dword ptr [EDX + 0x1c]\n  0040233a:  TEST EAX,EAX\n  0040233c:  JZ 0x0040234e\n  0040233e:  INC EDI\n  0040233f:  CMP EDI,0x32\n  00402342:  JL 0x00402331\n  00402344:  MOV dword ptr [ESI + 0x186c],0x0\n  0040234e:  POP EDI\n  0040234f:  POP ESI\n  00402350:  RET",
+  "callers": [
+    {
+      "address": "0x004021e0",
+      "name": "FUN_004021e0"
+    }
+  ],
+  "pal3patch_info": {
+    "name": "GRPinput_AcquireMouse",
+    "type": "method",
+    "source": "pal3.h"
+  }
+}

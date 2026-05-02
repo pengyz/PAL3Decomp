@@ -1,0 +1,20 @@
+{
+  "address": "0x004fc8b0", 
+  "size_bytes": 57, 
+  "calling_convention": "unknown", 
+  "signature": "undefined FUN_004fc8b0(undefined4 param_1)", 
+  "callees": [], 
+  "global_refs": [
+    {
+      "address": "0x00000004", 
+      "type": null, 
+      "name": "DAT_00000004"
+    }
+  ], 
+  "has_custom_name": false, 
+  "decompiled_c": "\r\nundefined4 __thiscall FUN_004fc8b0(int param_1_00,int param_1)\r\n\r\n{\r\n  undefined *puVar1;\r\n  int iVar2;\r\n  \r\n  param_1_00 = param_1_00 + param_1 * 0xa48;\r\n  iVar2 = 0x20;\r\n  puVar1 = (undefined *)(param_1_00 + 0xe3);\r\n  do {\r\n    if (puVar1[-3] != '\\0') {\r\n      *puVar1 = 1;\r\n    }\r\n    puVar1 = puVar1 + 0x50;\r\n    iVar2 = iVar2 + -1;\r\n  } while (iVar2 != 0);\r\n  *(undefined *)(param_1_00 + 0xaed) = 1;\r\n  return CONCAT31((int3)((uint)puVar1 >> 8),1);\r\n}\r\n\r\n", 
+  "is_thunk": false, 
+  "name": "FUN_004fc8b0", 
+  "assembly": "  004fc8b0:  MOV EAX,dword ptr [ESP + 0x4]\n  004fc8b4:  PUSH EBX\n  004fc8b5:  LEA EDX,[EAX + EAX*0x4]\n  004fc8b8:  LEA EDX,[EAX + EDX*0x8]\n  004fc8bb:  LEA EAX,[EAX + EDX*0x8]\n  004fc8be:  LEA EDX,[ECX + EAX*0x8]\n  004fc8c1:  MOV ECX,0x20\n  004fc8c6:  LEA EAX,[EDX + 0xe3]\n  004fc8cc:  MOV BL,byte ptr [EAX + -0x3]\n  004fc8cf:  TEST BL,BL\n  004fc8d1:  JZ 0x004fc8d6\n  004fc8d3:  MOV byte ptr [EAX],0x1\n  004fc8d6:  ADD EAX,0x50\n  004fc8d9:  DEC ECX\n  004fc8da:  JNZ 0x004fc8cc\n  004fc8dc:  MOV byte ptr [EDX + 0xaed],0x1\n  004fc8e3:  MOV AL,0x1\n  004fc8e5:  POP EBX\n  004fc8e6:  RET 0x4", 
+  "callers": []
+}

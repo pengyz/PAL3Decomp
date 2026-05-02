@@ -1,0 +1,30 @@
+{
+  "address": "0x00558400", 
+  "size_bytes": 224, 
+  "calling_convention": "unknown", 
+  "signature": "undefined FUN_00558400(undefined4 param_1, undefined4 param_2)", 
+  "callees": [], 
+  "global_refs": [
+    {
+      "address": "0x00000004", 
+      "type": null, 
+      "name": "DAT_00000004"
+    }, 
+    {
+      "address": "0x00000008", 
+      "type": null, 
+      "name": "DAT_00000008"
+    }
+  ], 
+  "has_custom_name": false, 
+  "decompiled_c": "\r\nuint * FUN_00558400(uint *param_1,uint *param_2)\r\n\r\n{\r\n  byte bVar1;\r\n  uint uVar2;\r\n  uint *puVar3;\r\n  uint uVar4;\r\n  uint *puVar5;\r\n  \r\n  uVar4 = (uint)param_1 & 3;\r\n  puVar3 = param_1;\r\n  while (uVar4 != 0) {\r\n    bVar1 = *(byte *)puVar3;\r\n    puVar3 = (uint *)((int)puVar3 + 1);\r\n    if (bVar1 == 0) goto LAB_0055844f;\r\n    uVar4 = (uint)puVar3 & 3;\r\n  }\r\n  do {\r\n    do {\r\n      puVar5 = puVar3;\r\n      puVar3 = puVar5 + 1;\r\n    } while (((*puVar5 ^ 0xffffffff ^ *puVar5 + 0x7efefeff) & 0x81010100) == 0);\r\n    uVar4 = *puVar5;\r\n    if ((char)uVar4 == '\\0') goto LAB_00558461;\r\n    if ((char)(uVar4 >> 8) == '\\0') {\r\n      puVar5 = (uint *)((int)puVar5 + 1);\r\n      goto LAB_00558461;\r\n    }\r\n    if ((uVar4 & 0xff0000) == 0) {\r\n      puVar5 = (uint *)((int)puVar5 + 2);\r\n      goto LAB_00558461;\r\n    }\r\n  } while ((uVar4 & 0xff000000) != 0);\r\nLAB_0055844f:\r\n  puVar5 = (uint *)((int)puVar3 + -1);\r\nLAB_00558461:\r\n  uVar4 = (uint)param_2 & 3;\r\n  while (uVar4 != 0) {\r\n    bVar1 = *(byte *)param_2;\r\n    uVar4 = (uint)bVar1;\r\n    param_2 = (uint *)((int)param_2 + 1);\r\n    if (bVar1 == 0) goto LAB_005584d8;\r\n    *(byte *)puVar5 = bVar1;\r\n    puVar5 = (uint *)((int)puVar5 + 1);\r\n    uVar4 = (uint)param_2 & 3;\r\n  }\r\n  do {\r\n    uVar2 = *param_2;\r\n    uVar4 = *param_2;\r\n    param_2 = param_2 + 1;\r\n    if (((uVar2 ^ 0xffffffff ^ uVar2 + 0x7efefeff) & 0x81010100) != 0) {\r\n      if ((char)uVar4 == '\\0') {\r\nLAB_005584d8:\r\n        *(byte *)puVar5 = (byte)uVar4;\r\n        return param_1;\r\n      }\r\n      if ((char)(uVar4 >> 8) == '\\0') {\r\n        *(short *)puVar5 = (short)uVar4;\r\n        return param_1;\r\n      }\r\n      if ((uVar4 & 0xff0000) == 0) {\r\n        *(short *)puVar5 = (short)uVar4;\r\n        *(byte *)((int)puVar5 + 2) = 0;\r\n        return param_1;\r\n      }\r\n      if ((uVar4 & 0xff000000) == 0) {\r\n        *puVar5 = uVar4;\r\n        return param_1;\r\n      }\r\n    }\r\n    *puVar5 = uVar4;\r\n    puVar5 = puVar5 + 1;\r\n  } while( true );\r\n}\r\n\r\n", 
+  "is_thunk": false, 
+  "name": "FUN_00558400", 
+  "assembly": "  00558400:  MOV ECX,dword ptr [ESP + 0x4]\n  00558404:  PUSH EDI\n  00558405:  TEST ECX,0x3\n  0055840b:  JZ 0x0055841c\n  0055840d:  MOV AL,byte ptr [ECX]\n  0055840f:  INC ECX\n  00558410:  TEST AL,AL\n  00558412:  JZ 0x0055844f\n  00558414:  TEST ECX,0x3\n  0055841a:  JNZ 0x0055840d\n  0055841c:  MOV EAX,dword ptr [ECX]\n  0055841e:  MOV EDX,0x7efefeff\n  00558423:  ADD EDX,EAX\n  00558425:  XOR EAX,0xffffffff\n  00558428:  XOR EAX,EDX\n  0055842a:  ADD ECX,0x4\n  0055842d:  TEST EAX,0x81010100\n  00558432:  JZ 0x0055841c\n  00558434:  MOV EAX,dword ptr [ECX + -0x4]\n  00558437:  TEST AL,AL\n  00558439:  JZ 0x0055845e\n  0055843b:  TEST AH,AH\n  0055843d:  JZ 0x00558459\n  0055843f:  TEST EAX,0xff0000\n  00558444:  JZ 0x00558454\n  00558446:  TEST EAX,0xff000000\n  0055844b:  JZ 0x0055844f\n  0055844d:  JMP 0x0055841c\n  0055844f:  LEA EDI,[ECX + -0x1]\n  00558452:  JMP 0x00558461\n  00558454:  LEA EDI,[ECX + -0x2]\n  00558457:  JMP 0x00558461\n  00558459:  LEA EDI,[ECX + -0x3]\n  0055845c:  JMP 0x00558461\n  0055845e:  LEA EDI,[ECX + -0x4]\n  00558461:  MOV ECX,dword ptr [ESP + 0xc]\n  00558465:  TEST ECX,0x3\n  0055846b:  JZ 0x00558486\n  0055846d:  MOV DL,byte ptr [ECX]\n  0055846f:  INC ECX\n  00558470:  TEST DL,DL\n  00558472:  JZ 0x005584d8\n  00558474:  MOV byte ptr [EDI],DL\n  00558476:  INC EDI\n  00558477:  TEST ECX,0x3\n  0055847d:  JNZ 0x0055846d\n  0055847f:  JMP 0x00558486\n  00558481:  MOV dword ptr [EDI],EDX\n  00558483:  ADD EDI,0x4\n  00558486:  MOV EDX,0x7efefeff\n  0055848b:  MOV EAX,dword ptr [ECX]\n  0055848d:  ADD EDX,EAX\n  0055848f:  XOR EAX,0xffffffff\n  00558492:  XOR EAX,EDX\n  00558494:  MOV EDX,dword ptr [ECX]\n  00558496:  ADD ECX,0x4\n  00558499:  TEST EAX,0x81010100\n  0055849e:  JZ 0x00558481\n  005584a0:  TEST DL,DL\n  005584a2:  JZ 0x005584d8\n  005584a4:  TEST DH,DH\n  005584a6:  JZ 0x005584cf\n  005584a8:  TEST EDX,0xff0000\n  005584ae:  JZ 0x005584c2\n  005584b0:  TEST EDX,0xff000000\n  005584b6:  JZ 0x005584ba\n  005584b8:  JMP 0x00558481\n  005584ba:  MOV dword ptr [EDI],EDX\n  005584bc:  MOV EAX,dword ptr [ESP + 0x8]\n  005584c0:  POP EDI\n  005584c1:  RET\n  005584c2:  MOV word ptr [EDI],DX\n  005584c5:  MOV EAX,dword ptr [ESP + 0x8]\n  005584c9:  MOV byte ptr [EDI + 0x2],0x0\n  005584cd:  POP EDI\n  005584ce:  RET\n  005584cf:  MOV word ptr [EDI],DX\n  005584d2:  MOV EAX,dword ptr [ESP + 0x8]\n  005584d6:  POP EDI\n  005584d7:  RET\n  005584d8:  MOV byte ptr [EDI],DL\n  005584da:  MOV EAX,dword ptr [ESP + 0x8]\n  005584de:  POP EDI\n  005584df:  RET", 
+  "callers": [
+    {
+      "address": "0x0055acd4", 
+      "name": "FUN_0055acd4"
+    }
+  ]
+}

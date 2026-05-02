@@ -1,0 +1,100 @@
+{
+  "address": "0x004ec700", 
+  "size_bytes": 203, 
+  "calling_convention": "unknown", 
+  "signature": "undefined FUN_004ec700(void)", 
+  "callees": [
+    {
+      "address": "0x0000010d", 
+      "name": "CIniFile"
+    }, 
+    {
+      "address": "0x0000010c", 
+      "name": "OpenFileRead"
+    }, 
+    {
+      "address": "0x0000010b", 
+      "name": "ReadSection"
+    }, 
+    {
+      "address": "0x00553082", 
+      "name": "FUN_00553082"
+    }, 
+    {
+      "address": "0x0000010a", 
+      "name": "ReadLine"
+    }, 
+    {
+      "address": "0x00000109", 
+      "name": "~CIniFile"
+    }
+  ], 
+  "global_refs": [
+    {
+      "address": "0x00566bd9", 
+      "type": null, 
+      "name": "LAB_00566bd9"
+    }, 
+    {
+      "address": "0xffdff000", 
+      "type": null, 
+      "name": "ExceptionList"
+    }, 
+    {
+      "address": "0x-000001c", 
+      "type": null, 
+      "name": "DAT_-000001c"
+    }, 
+    {
+      "address": "0x0056a448", 
+      "type": null, 
+      "name": "PTR_CIniFile_0056a448"
+    }, 
+    {
+      "address": "0x0056fcc0", 
+      "type": null, 
+      "name": "PTR_s_datascript\\combat.ini_0056fcc0"
+    }, 
+    {
+      "address": "0x005d8e00", 
+      "type": null, 
+      "name": "s_datascript\\combat.ini_005d8e00"
+    }, 
+    {
+      "address": "0x0056a444", 
+      "type": null, 
+      "name": "PTR_OpenFileRead_0056a444"
+    }, 
+    {
+      "address": "0x005d8e18", 
+      "type": null, 
+      "name": "s_Level_005d8e18"
+    }, 
+    {
+      "address": "0x0056a440", 
+      "type": null, 
+      "name": "PTR_ReadSection_0056a440"
+    }, 
+    {
+      "address": "0x0056a43c", 
+      "type": null, 
+      "name": "PTR_ReadLine_0056a43c"
+    }, 
+    {
+      "address": "0x00583ab0", 
+      "type": null, 
+      "name": "DAT_00583ab0"
+    }, 
+    {
+      "address": "0x0056a438", 
+      "type": null, 
+      "name": "PTR_~CIniFile_0056a438"
+    }
+  ], 
+  "has_custom_name": false, 
+  "decompiled_c": "\r\nundefined4 __fastcall FUN_004ec700(int param_1)\r\n\r\n{\r\n  int iVar1;\r\n  int *piVar2;\r\n  int iStack_20;\r\n  CIniFile local_1c [8];\r\n  char acStack_14 [8];\r\n  void *pvStack_c;\r\n  undefined *puStack_8;\r\n  undefined4 uStack_4;\r\n  \r\n  uStack_4 = 0xffffffff;\r\n  puStack_8 = &LAB_00566bd9;\r\n  pvStack_c = ExceptionList;\r\n  ExceptionList = &pvStack_c;\r\n  CIniFile::CIniFile(local_1c);\r\n  uStack_4 = 0;\r\n  CIniFile::OpenFileRead(local_1c,PTR_s_datascript_combat_ini_0056fcc0);\r\n  CIniFile::ReadSection(local_1c,s_Level_005d8e18);\r\n  iVar1 = 0;\r\n  piVar2 = (int *)(param_1 + 0x4ed0);\r\n  do {\r\n    iVar1 = iVar1 + 1;\r\n    FUN_00553082(acStack_14,&DAT_00583ab0,iVar1);\r\n    CIniFile::ReadLine(local_1c,acStack_14,&iStack_20);\r\n    *piVar2 = iStack_20;\r\n    piVar2 = piVar2 + 1;\r\n  } while (iVar1 < 99);\r\n  *(undefined4 *)(param_1 + 0x505c) = 0x7fffffff;\r\n  *(undefined *)(param_1 + 0x204) = 1;\r\n  uStack_4 = 0xffffffff;\r\n  CIniFile::~CIniFile(local_1c);\r\n  ExceptionList = pvStack_c;\r\n  return 1;\r\n}\r\n\r\n", 
+  "is_thunk": false, 
+  "name": "FUN_004ec700", 
+  "assembly": "  004ec700:  PUSH -0x1\n  004ec702:  PUSH 0x566bd9\n  004ec707:  MOV EAX,FS:[0x0]\n  004ec70d:  PUSH EAX\n  004ec70e:  MOV dword ptr FS:[0x0],ESP\n  004ec715:  SUB ESP,0x14\n  004ec718:  PUSH EBX\n  004ec719:  PUSH EBP\n  004ec71a:  MOV EBP,ECX\n  004ec71c:  PUSH ESI\n  004ec71d:  PUSH EDI\n  004ec71e:  LEA ECX,[ESP + 0x14]\n  004ec722:  CALL dword ptr [0x0056a448]\n  004ec728:  MOV EAX,[0x0056fcc0]\n  004ec72d:  LEA ECX,[ESP + 0x14]\n  004ec731:  PUSH EAX\n  004ec732:  MOV dword ptr [ESP + 0x30],0x0\n  004ec73a:  CALL dword ptr [0x0056a444]\n  004ec740:  PUSH 0x5d8e18\n  004ec745:  LEA ECX,[ESP + 0x18]\n  004ec749:  CALL dword ptr [0x0056a440]\n  004ec74f:  MOV EBX,dword ptr [0x0056a43c]\n  004ec755:  XOR EAX,EAX\n  004ec757:  LEA EDI,[EBP + 0x4ed0]\n  004ec75d:  LEA ESI,[EAX + 0x1]\n  004ec760:  LEA ECX,[ESP + 0x1c]\n  004ec764:  PUSH ESI\n  004ec765:  PUSH 0x583ab0\n  004ec76a:  PUSH ECX\n  004ec76b:  CALL 0x00553082\n  004ec770:  ADD ESP,0xc\n  004ec773:  LEA EDX,[ESP + 0x10]\n  004ec777:  LEA EAX,[ESP + 0x1c]\n  004ec77b:  LEA ECX,[ESP + 0x14]\n  004ec77f:  PUSH EDX\n  004ec780:  PUSH EAX\n  004ec781:  CALL EBX\n  004ec783:  MOV ECX,dword ptr [ESP + 0x10]\n  004ec787:  MOV EAX,ESI\n  004ec789:  MOV dword ptr [EDI],ECX\n  004ec78b:  ADD EDI,0x4\n  004ec78e:  CMP EAX,0x63\n  004ec791:  JL 0x004ec75d\n  004ec793:  LEA ECX,[ESP + 0x14]\n  004ec797:  MOV dword ptr [EBP + 0x505c],0x7fffffff\n  004ec7a1:  MOV byte ptr [EBP + 0x204],0x1\n  004ec7a8:  MOV dword ptr [ESP + 0x2c],0xffffffff\n  004ec7b0:  CALL dword ptr [0x0056a438]\n  004ec7b6:  MOV ECX,dword ptr [ESP + 0x24]\n  004ec7ba:  POP EDI\n  004ec7bb:  POP ESI\n  004ec7bc:  POP EBP\n  004ec7bd:  MOV AL,0x1\n  004ec7bf:  POP EBX\n  004ec7c0:  MOV dword ptr FS:[0x0],ECX\n  004ec7c7:  ADD ESP,0x20\n  004ec7ca:  RET", 
+  "callers": []
+}

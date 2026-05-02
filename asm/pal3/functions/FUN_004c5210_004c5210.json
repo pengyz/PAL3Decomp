@@ -1,0 +1,45 @@
+{
+  "address": "0x004c5210", 
+  "size_bytes": 171, 
+  "calling_convention": "unknown", 
+  "signature": "undefined FUN_004c5210(undefined4 param_1, undefined4 param_2)", 
+  "callees": [], 
+  "global_refs": [
+    {
+      "address": "0x00000008", 
+      "type": null, 
+      "name": "DAT_00000008"
+    }, 
+    {
+      "address": "0x-0000008", 
+      "type": null, 
+      "name": "DAT_-0000008"
+    }, 
+    {
+      "address": "0x00000004", 
+      "type": null, 
+      "name": "DAT_00000004"
+    }, 
+    {
+      "address": "0x-0000004", 
+      "type": null, 
+      "name": "DAT_-0000004"
+    }, 
+    {
+      "address": "0x0056a63c", 
+      "type": null, 
+      "name": "DAT_0056a63c"
+    }
+  ], 
+  "has_custom_name": false, 
+  "decompiled_c": "\r\n/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */\r\n\r\nvoid __thiscall FUN_004c5210(int param_1_00,int param_1,int param_2)\r\n\r\n{\r\n  float fVar1;\r\n  float fVar2;\r\n  float fVar3;\r\n  float fVar4;\r\n  float *pfVar5;\r\n  float *pfVar6;\r\n  int local_8;\r\n  int local_4;\r\n  \r\n  local_8 = 0;\r\n  if (0 < param_2) {\r\n    pfVar5 = (float *)(param_1_00 + 0xcc);\r\n    do {\r\n      local_4 = 0;\r\n      pfVar6 = pfVar5;\r\n      if (0 < param_1) {\r\n        pfVar6 = pfVar5 + param_1 * 4;\r\n        fVar1 = _DAT_0056a63c / (float)param_1;\r\n        fVar3 = (float)local_8 / (float)param_2;\r\n        fVar4 = _DAT_0056a63c - (_DAT_0056a63c / (float)param_2 + fVar3);\r\n        fVar3 = _DAT_0056a63c - fVar3;\r\n        do {\r\n          fVar2 = (float)local_4;\r\n          local_4 = local_4 + 1;\r\n          fVar2 = fVar2 / (float)param_1;\r\n          pfVar5[-2] = fVar2;\r\n          *pfVar5 = fVar1 + fVar2;\r\n          pfVar5[-1] = fVar4;\r\n          pfVar5[1] = fVar3;\r\n          pfVar5 = pfVar5 + 4;\r\n        } while (local_4 < param_1);\r\n      }\r\n      local_8 = local_8 + 1;\r\n      pfVar5 = pfVar6;\r\n    } while (local_8 < param_2);\r\n  }\r\n  return;\r\n}\r\n\r\n", 
+  "is_thunk": false, 
+  "name": "FUN_004c5210", 
+  "assembly": "  004c5210:  SUB ESP,0x8\n  004c5213:  PUSH EBX\n  004c5214:  PUSH EBP\n  004c5215:  MOV EBP,dword ptr [ESP + 0x18]\n  004c5219:  XOR EBX,EBX\n  004c521b:  TEST EBP,EBP\n  004c521d:  MOV dword ptr [ESP + 0x8],EBX\n  004c5221:  JLE 0x004c52b3\n  004c5227:  MOV EDX,dword ptr [ESP + 0x14]\n  004c522b:  PUSH ESI\n  004c522c:  MOV ESI,EDX\n  004c522e:  PUSH EDI\n  004c522f:  SHL ESI,0x4\n  004c5232:  LEA EDI,[ECX + 0xcc]\n  004c5238:  XOR ECX,ECX\n  004c523a:  TEST EDX,EDX\n  004c523c:  MOV dword ptr [ESP + 0x14],ECX\n  004c5240:  JLE 0x004c52a8\n  004c5242:  FILD dword ptr [ESP + 0x1c]\n  004c5246:  FLD dword ptr [0x0056a63c]\n  004c524c:  MOV EAX,EDI\n  004c524e:  ADD EDI,ESI\n  004c5250:  FDIV ST0,ST1\n  004c5252:  FILD dword ptr [ESP + 0x20]\n  004c5256:  FILD dword ptr [ESP + 0x10]\n  004c525a:  FDIV ST0,ST1\n  004c525c:  FSTP dword ptr [ESP + 0x10]\n  004c5260:  FDIVR dword ptr [0x0056a63c]\n  004c5266:  FADD dword ptr [ESP + 0x10]\n  004c526a:  FSUBR dword ptr [0x0056a63c]\n  004c5270:  FLD dword ptr [0x0056a63c]\n  004c5276:  FSUB dword ptr [ESP + 0x10]\n  004c527a:  FILD dword ptr [ESP + 0x14]\n  004c527e:  ADD EAX,0x10\n  004c5281:  INC ECX\n  004c5282:  CMP ECX,EDX\n  004c5284:  MOV dword ptr [ESP + 0x14],ECX\n  004c5288:  FDIV ST0,ST4\n  004c528a:  FST dword ptr [EAX + -0x18]\n  004c528d:  FLD ST3\n  004c528f:  FADD ST0,ST1\n  004c5291:  FSTP dword ptr [EAX + -0x10]\n  004c5294:  FSTP ST0\n  004c5296:  FLD ST1\n  004c5298:  FSTP dword ptr [EAX + -0x14]\n  004c529b:  FST dword ptr [EAX + -0xc]\n  004c529e:  JL 0x004c527a\n  004c52a0:  FSTP ST0\n  004c52a2:  FSTP ST0\n  004c52a4:  FSTP ST0\n  004c52a6:  FSTP ST0\n  004c52a8:  INC EBX\n  004c52a9:  CMP EBX,EBP\n  004c52ab:  MOV dword ptr [ESP + 0x10],EBX\n  004c52af:  JL 0x004c5238\n  004c52b1:  POP EDI\n  004c52b2:  POP ESI\n  004c52b3:  POP EBP\n  004c52b4:  POP EBX\n  004c52b5:  ADD ESP,0x8\n  004c52b8:  RET 0x8", 
+  "callers": [
+    {
+      "address": "0x004c4060", 
+      "name": "FUN_004c4060"
+    }
+  ]
+}

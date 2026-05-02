@@ -1,0 +1,47 @@
+{
+  "address": "0x0041ee60", 
+  "size_bytes": 128, 
+  "calling_convention": "unknown", 
+  "signature": "undefined FUN_0041ee60(void)", 
+  "callees": [
+    {
+      "address": "0x004226f0", 
+      "name": "FUN_004226f0"
+    }, 
+    {
+      "address": "0x00420f30", 
+      "name": "FUN_00420f30"
+    }, 
+    {
+      "address": "0x00553514", 
+      "name": "__ftol"
+    }, 
+    {
+      "address": "0x00420a10", 
+      "name": "FUN_00420a10"
+    }
+  ], 
+  "global_refs": [
+    {
+      "address": "0x00c116ec", 
+      "type": null, 
+      "name": "DAT_00c116ec"
+    }, 
+    {
+      "address": "0x00c116c4", 
+      "type": null, 
+      "name": "DAT_00c116c4"
+    }
+  ], 
+  "has_custom_name": false, 
+  "decompiled_c": "\r\nundefined4 FUN_0041ee60(void)\r\n\r\n{\r\n  undefined4 uVar1;\r\n  undefined4 uVar2;\r\n  int iVar3;\r\n  undefined4 uVar4;\r\n  \r\n  uVar4 = *(undefined4 *)(DAT_00c116ec + 0x274);\r\n  FUN_004226f0(uVar4);\r\n  FUN_00420f30(uVar4);\r\n  iVar3 = DAT_00c116ec;\r\n  uVar1 = __ftol();\r\n  uVar2 = __ftol();\r\n  uVar4 = *(undefined4 *)(iVar3 + 0x274);\r\n  FUN_004226f0(uVar4,uVar1,uVar2);\r\n  iVar3 = FUN_00420a10(uVar4,uVar1,uVar2);\r\n  if (iVar3 == 0) {\r\n    return 0;\r\n  }\r\n  if ((*(char *)(iVar3 + 0xf4) != ',') && (*(char *)(iVar3 + 0xf4) != '&')) {\r\n    return 0;\r\n  }\r\n  return 1;\r\n}\r\n\r\n", 
+  "is_thunk": false, 
+  "name": "FUN_0041ee60", 
+  "assembly": "  0041ee60:  MOV EAX,[0x00c116ec]\n  0041ee65:  PUSH EBX\n  0041ee66:  PUSH ESI\n  0041ee67:  PUSH EDI\n  0041ee68:  MOV ECX,dword ptr [EAX + 0x274]\n  0041ee6e:  PUSH ECX\n  0041ee6f:  CALL 0x004226f0\n  0041ee74:  MOV ECX,EAX\n  0041ee76:  CALL 0x00420f30\n  0041ee7b:  MOV EDI,dword ptr [0x00c116ec]\n  0041ee81:  MOV ESI,EAX\n  0041ee83:  FLD dword ptr [EDI + 0x4]\n  0041ee86:  FSUB dword ptr [ESI + 0x80]\n  0041ee8c:  FDIV dword ptr [0x00c116c4]\n  0041ee92:  CALL 0x00553514\n  0041ee97:  FLD dword ptr [EDI + 0xc]\n  0041ee9a:  FSUB dword ptr [ESI + 0x88]\n  0041eea0:  MOV EBX,EAX\n  0041eea2:  FDIV dword ptr [0x00c116c4]\n  0041eea8:  CALL 0x00553514\n  0041eead:  MOV EDX,dword ptr [EDI + 0x274]\n  0041eeb3:  PUSH EAX\n  0041eeb4:  PUSH EBX\n  0041eeb5:  PUSH EDX\n  0041eeb6:  CALL 0x004226f0\n  0041eebb:  MOV ECX,EAX\n  0041eebd:  CALL 0x00420a10\n  0041eec2:  POP EDI\n  0041eec3:  POP ESI\n  0041eec4:  TEST EAX,EAX\n  0041eec6:  POP EBX\n  0041eec7:  JNZ 0x0041eecc\n  0041eec9:  XOR AL,AL\n  0041eecb:  RET\n  0041eecc:  MOV AL,byte ptr [EAX + 0xf4]\n  0041eed2:  CMP AL,0x2c\n  0041eed4:  JZ 0x0041eedd\n  0041eed6:  CMP AL,0x26\n  0041eed8:  JZ 0x0041eedd\n  0041eeda:  XOR AL,AL\n  0041eedc:  RET\n  0041eedd:  MOV AL,0x1\n  0041eedf:  RET", 
+  "callers": [
+    {
+      "address": "0x0041d9a0", 
+      "name": "FUN_0041d9a0"
+    }
+  ]
+}

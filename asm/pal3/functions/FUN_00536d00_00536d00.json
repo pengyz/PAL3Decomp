@@ -1,0 +1,63 @@
+{
+  "address": "0x00536d00", 
+  "size_bytes": 17, 
+  "calling_convention": "unknown", 
+  "signature": "undefined FUN_00536d00(undefined4 param_1)", 
+  "callees": [
+    {
+      "address": "0x0000016f", 
+      "name": "SetTimeScale"
+    }
+  ], 
+  "global_refs": [
+    {
+      "address": "0x00000004", 
+      "type": null, 
+      "name": "DAT_00000004"
+    }, 
+    {
+      "address": "0x0056a5d0", 
+      "type": null, 
+      "name": "PTR_SetTimeScale_0056a5d0"
+    }
+  ], 
+  "has_custom_name": false, 
+  "decompiled_c": "\r\nvoid __thiscall FUN_00536d00(int param_1_00,float param_1)\r\n\r\n{\r\n  gbVisNode::SetTimeScale(*(gbVisNode **)(param_1_00 + 0x10),param_1);\r\n  return;\r\n}\r\n\r\n", 
+  "is_thunk": false, 
+  "name": "FUN_00536d00", 
+  "assembly": "  00536d00:  MOV EAX,dword ptr [ESP + 0x4]\n  00536d04:  MOV ECX,dword ptr [ECX + 0x10]\n  00536d07:  PUSH EAX\n  00536d08:  CALL dword ptr [0x0056a5d0]\n  00536d0e:  RET 0x4", 
+  "callers": [
+    {
+      "address": "0x00412940", 
+      "name": "FUN_00412940"
+    }, 
+    {
+      "address": "0x00417bc0", 
+      "name": "FUN_00417bc0"
+    }, 
+    {
+      "address": "0x00414f90", 
+      "name": "FUN_00414f90"
+    }, 
+    {
+      "address": "0x00417040", 
+      "name": "FUN_00417040"
+    }, 
+    {
+      "address": "0x00414a30", 
+      "name": "FUN_00414a30"
+    }, 
+    {
+      "address": "0x005099a0", 
+      "name": "FUN_005099a0"
+    }, 
+    {
+      "address": "0x0041a450", 
+      "name": "FUN_0041a450"
+    }, 
+    {
+      "address": "0x004150c0", 
+      "name": "FUN_004150c0"
+    }
+  ]
+}

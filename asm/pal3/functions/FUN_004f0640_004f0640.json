@@ -1,0 +1,25 @@
+{
+  "address": "0x004f0640", 
+  "size_bytes": 116, 
+  "calling_convention": "unknown", 
+  "signature": "undefined FUN_004f0640(undefined4 param_1)", 
+  "callees": [], 
+  "global_refs": [
+    {
+      "address": "0x00000004", 
+      "type": null, 
+      "name": "DAT_00000004"
+    }
+  ], 
+  "has_custom_name": false, 
+  "decompiled_c": "\r\nuint __thiscall FUN_004f0640(int param_1_00,int param_1)\r\n\r\n{\r\n  int *piVar1;\r\n  int iVar2;\r\n  \r\n  iVar2 = *(int *)(param_1 + 0xc);\r\n  if ((iVar2 < 0) || (10 < iVar2)) {\r\n    iVar2 = 0;\r\n    piVar1 = (int *)(param_1_00 + 0x24c);\r\n    do {\r\n      if ((((*(char *)(param_1 + 0x1d + iVar2) != '\\0') && (*(char *)((int)piVar1 + -0xb) != '\\0'))\r\n          && (0 < *piVar1)) && (*(char *)(piVar1 + 0xd3) == '\\0')) goto LAB_004f0677;\r\n      iVar2 = iVar2 + 1;\r\n      piVar1 = piVar1 + 0xdf;\r\n    } while (iVar2 < 0xb);\r\n  }\r\n  else {\r\n    piVar1 = (int *)(param_1_00 + iVar2 * 0x37c);\r\n    if ((0 < *(int *)(param_1_00 + 0x24c + iVar2 * 0x37c)) && (*(char *)(piVar1 + 0x166) == '\\0')) {\r\nLAB_004f0677:\r\n      return (uint)piVar1 & 0xffffff00;\r\n    }\r\n  }\r\n  return CONCAT31((int3)((uint)piVar1 >> 8),1);\r\n}\r\n\r\n", 
+  "is_thunk": false, 
+  "name": "FUN_004f0640", 
+  "assembly": "  004f0640:  PUSH ESI\n  004f0641:  MOV ESI,dword ptr [ESP + 0x8]\n  004f0645:  MOV EAX,dword ptr [ESI + 0xc]\n  004f0648:  TEST EAX,EAX\n  004f064a:  JL 0x004f067d\n  004f064c:  CMP EAX,0xb\n  004f064f:  JGE 0x004f067d\n  004f0651:  LEA EDX,[EAX*0x8 + 0x0]\n  004f0658:  SUB EDX,EAX\n  004f065a:  SHL EDX,0x5\n  004f065d:  SUB EDX,EAX\n  004f065f:  LEA EAX,[ECX + EDX*0x4]\n  004f0662:  MOV ECX,dword ptr [ECX + EDX*0x4 + 0x24c]\n  004f0669:  TEST ECX,ECX\n  004f066b:  JLE 0x004f06ae\n  004f066d:  MOV CL,byte ptr [EAX + 0x598]\n  004f0673:  TEST CL,CL\n  004f0675:  JNZ 0x004f06ae\n  004f0677:  XOR AL,AL\n  004f0679:  POP ESI\n  004f067a:  RET 0x4\n  004f067d:  XOR EDX,EDX\n  004f067f:  LEA EAX,[ECX + 0x24c]\n  004f0685:  MOV CL,byte ptr [ESI + EDX*0x1 + 0x1d]\n  004f0689:  TEST CL,CL\n  004f068b:  JZ 0x004f06a3\n  004f068d:  MOV CL,byte ptr [EAX + -0xb]\n  004f0690:  TEST CL,CL\n  004f0692:  JZ 0x004f06a3\n  004f0694:  CMP dword ptr [EAX],0x0\n  004f0697:  JLE 0x004f06a3\n  004f0699:  MOV CL,byte ptr [EAX + 0x34c]\n  004f069f:  TEST CL,CL\n  004f06a1:  JZ 0x004f0677\n  004f06a3:  INC EDX\n  004f06a4:  ADD EAX,0x37c\n  004f06a9:  CMP EDX,0xb\n  004f06ac:  JL 0x004f0685\n  004f06ae:  MOV AL,0x1\n  004f06b0:  POP ESI\n  004f06b1:  RET 0x4", 
+  "callers": [
+    {
+      "address": "0x004d9130", 
+      "name": "FUN_004d9130"
+    }
+  ]
+}

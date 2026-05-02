@@ -1,0 +1,30 @@
+{
+  "address": "0x005534a6", 
+  "size_bytes": 21, 
+  "calling_convention": "unknown", 
+  "signature": "undefined FUN_005534a6(void)", 
+  "callees": [
+    {
+      "address": "0x00552f55", 
+      "name": "FUN_00552f55"
+    }
+  ], 
+  "global_refs": [
+    {
+      "address": "0x005731d4", 
+      "type": null, 
+      "name": "vftable"
+    }
+  ], 
+  "has_custom_name": false, 
+  "decompiled_c": "\r\nvoid __fastcall FUN_005534a6(undefined4 *param_1)\r\n\r\n{\r\n  *param_1 = &type_info::vftable;\r\n  if (param_1[1] != 0) {\r\n    FUN_00552f55(param_1[1]);\r\n  }\r\n  return;\r\n}\r\n\r\n", 
+  "is_thunk": false, 
+  "name": "FUN_005534a6", 
+  "assembly": "  005534a6:  MOV dword ptr [ECX],0x5731d4\n  005534ac:  MOV ECX,dword ptr [ECX + 0x4]\n  005534af:  TEST ECX,ECX\n  005534b1:  JZ 0x005534ba\n  005534b3:  PUSH ECX\n  005534b4:  CALL 0x00552f55\n  005534b9:  POP ECX\n  005534ba:  RET", 
+  "callers": [
+    {
+      "address": "0x005534bb", 
+      "name": "FUN_005534bb"
+    }
+  ]
+}

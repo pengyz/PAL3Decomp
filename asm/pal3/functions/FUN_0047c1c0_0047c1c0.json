@@ -1,0 +1,50 @@
+{
+  "address": "0x0047c1c0", 
+  "size_bytes": 159, 
+  "calling_convention": "unknown", 
+  "signature": "undefined FUN_0047c1c0(void)", 
+  "callees": [
+    {
+      "address": "0x004bdb10", 
+      "name": "FUN_004bdb10"
+    }, 
+    {
+      "address": "0x004bdc10", 
+      "name": "FUN_004bdc10"
+    }, 
+    {
+      "address": "0x004bdc40", 
+      "name": "FUN_004bdc40"
+    }, 
+    {
+      "address": "0x00405c00", 
+      "name": "FUN_00405c00"
+    }, 
+    {
+      "address": "0x004bdd90", 
+      "name": "FUN_004bdd90"
+    }, 
+    {
+      "address": "0x004bdeb0", 
+      "name": "FUN_004bdeb0"
+    }
+  ], 
+  "global_refs": [
+    {
+      "address": "0x005833c2", 
+      "type": null, 
+      "name": "DAT_005833c2"
+    }
+  ], 
+  "has_custom_name": false, 
+  "decompiled_c": "\r\nvoid __fastcall FUN_0047c1c0(int param_1)\r\n\r\n{\r\n  undefined uVar1;\r\n  char cVar2;\r\n  int *piVar3;\r\n  int iVar4;\r\n  undefined4 uVar5;\r\n  undefined4 uVar6;\r\n  \r\n  uVar5 = 1;\r\n  FUN_004bdb10(1);\r\n  FUN_004bdc10(uVar5);\r\n  piVar3 = (int *)FUN_004bdb10();\r\n  uVar5 = 0x3f400000;\r\n  if (*piVar3 != 0) {\r\n    uVar5 = 0x3f800000;\r\n  }\r\n  uVar6 = 1;\r\n  *(undefined4 *)(param_1 + 0xf9c) = uVar5;\r\n  *(undefined4 *)(param_1 + 0xf98) = uVar5;\r\n  FUN_004bdb10(1);\r\n  cVar2 = FUN_004bdc40(uVar6);\r\n  uVar1 = DAT_005833c2;\r\n  if (cVar2 == '\\0') {\r\n    *(undefined4 *)(param_1 + 0xf94) = 0;\r\n    return;\r\n  }\r\n  DAT_005833c2 = 0;\r\n  FUN_00405c00();\r\n  DAT_005833c2 = uVar1;\r\n  FUN_004bdb10();\r\n  FUN_004bdd90();\r\n  *(undefined4 *)(param_1 + 0xf94) = 0;\r\n  FUN_004bdb10();\r\n  iVar4 = FUN_004bdeb0();\r\n  if ((iVar4 != 0) && (*(int *)(iVar4 + 0x54) != 0)) {\r\n    *(int *)(param_1 + 0xf94) = iVar4;\r\n  }\r\n  return;\r\n}\r\n\r\n", 
+  "is_thunk": false, 
+  "name": "FUN_0047c1c0", 
+  "assembly": "  0047c1c0:  PUSH ESI\n  0047c1c1:  MOV ESI,ECX\n  0047c1c3:  PUSH 0x1\n  0047c1c5:  CALL 0x004bdb10\n  0047c1ca:  MOV ECX,EAX\n  0047c1cc:  CALL 0x004bdc10\n  0047c1d1:  CALL 0x004bdb10\n  0047c1d6:  MOV ECX,dword ptr [EAX]\n  0047c1d8:  MOV EAX,0x3f400000\n  0047c1dd:  TEST ECX,ECX\n  0047c1df:  JZ 0x0047c1e6\n  0047c1e1:  MOV EAX,0x3f800000\n  0047c1e6:  PUSH 0x1\n  0047c1e8:  MOV dword ptr [ESI + 0xf9c],EAX\n  0047c1ee:  MOV dword ptr [ESI + 0xf98],EAX\n  0047c1f4:  CALL 0x004bdb10\n  0047c1f9:  MOV ECX,EAX\n  0047c1fb:  CALL 0x004bdc40\n  0047c200:  TEST AL,AL\n  0047c202:  JNZ 0x0047c210\n  0047c204:  MOV dword ptr [ESI + 0xf94],0x0\n  0047c20e:  POP ESI\n  0047c20f:  RET\n  0047c210:  PUSH EBX\n  0047c211:  MOV BL,byte ptr [0x005833c2]\n  0047c217:  MOV byte ptr [0x005833c2],0x0\n  0047c21e:  CALL 0x00405c00\n  0047c223:  MOV byte ptr [0x005833c2],BL\n  0047c229:  CALL 0x004bdb10\n  0047c22e:  MOV ECX,EAX\n  0047c230:  CALL 0x004bdd90\n  0047c235:  MOV dword ptr [ESI + 0xf94],0x0\n  0047c23f:  CALL 0x004bdb10\n  0047c244:  MOV ECX,EAX\n  0047c246:  CALL 0x004bdeb0\n  0047c24b:  TEST EAX,EAX\n  0047c24d:  POP EBX\n  0047c24e:  JZ 0x0047c25d\n  0047c250:  MOV ECX,dword ptr [EAX + 0x54]\n  0047c253:  TEST ECX,ECX\n  0047c255:  JZ 0x0047c25d\n  0047c257:  MOV dword ptr [ESI + 0xf94],EAX\n  0047c25d:  POP ESI\n  0047c25e:  RET", 
+  "callers": [
+    {
+      "address": "0x0047be20", 
+      "name": "FUN_0047be20"
+    }
+  ]
+}

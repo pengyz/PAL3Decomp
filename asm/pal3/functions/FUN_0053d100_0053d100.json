@@ -1,0 +1,45 @@
+{
+  "address": "0x0053d100", 
+  "size_bytes": 76, 
+  "calling_convention": "unknown", 
+  "signature": "undefined FUN_0053d100(void)", 
+  "callees": [
+    {
+      "address": "0x00432680", 
+      "name": "FUN_00432680"
+    }
+  ], 
+  "global_refs": [
+    {
+      "address": "0x00568d88", 
+      "type": null, 
+      "name": "LAB_00568d88"
+    }, 
+    {
+      "address": "0xffdff000", 
+      "type": null, 
+      "name": "ExceptionList"
+    }, 
+    {
+      "address": "0x-0000010", 
+      "type": null, 
+      "name": "DAT_-0000010"
+    }, 
+    {
+      "address": "0x-0000004", 
+      "type": null, 
+      "name": "DAT_-0000004"
+    }, 
+    {
+      "address": "0x-000000c", 
+      "type": null, 
+      "name": "DAT_-000000c"
+    }
+  ], 
+  "has_custom_name": false, 
+  "decompiled_c": "\r\nvoid FUN_0053d100(void)\r\n\r\n{\r\n  void *local_c;\r\n  undefined *puStack_8;\r\n  undefined4 local_4;\r\n  \r\n  puStack_8 = &LAB_00568d88;\r\n  local_c = ExceptionList;\r\n  local_4 = 0;\r\n  ExceptionList = &local_c;\r\n  FUN_00432680();\r\n  local_4 = 0xffffffff;\r\n  FUN_00432680();\r\n  ExceptionList = local_c;\r\n  return;\r\n}\r\n\r\n", 
+  "is_thunk": false, 
+  "name": "FUN_0053d100", 
+  "assembly": "  0053d100:  PUSH -0x1\n  0053d102:  PUSH 0x568d88\n  0053d107:  MOV EAX,FS:[0x0]\n  0053d10d:  PUSH EAX\n  0053d10e:  MOV dword ptr FS:[0x0],ESP\n  0053d115:  PUSH ECX\n  0053d116:  PUSH ESI\n  0053d117:  MOV ESI,ECX\n  0053d119:  MOV dword ptr [ESP + 0x4],ESI\n  0053d11d:  LEA ECX,[ESI + 0x10]\n  0053d120:  MOV dword ptr [ESP + 0x10],0x0\n  0053d128:  CALL 0x00432680\n  0053d12d:  MOV ECX,ESI\n  0053d12f:  MOV dword ptr [ESP + 0x10],0xffffffff\n  0053d137:  CALL 0x00432680\n  0053d13c:  MOV ECX,dword ptr [ESP + 0x8]\n  0053d140:  POP ESI\n  0053d141:  MOV dword ptr FS:[0x0],ECX\n  0053d148:  ADD ESP,0x10\n  0053d14b:  RET", 
+  "callers": []
+}

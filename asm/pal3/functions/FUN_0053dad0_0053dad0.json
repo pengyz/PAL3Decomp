@@ -1,0 +1,44 @@
+{
+  "address": "0x0053dad0", 
+  "size_bytes": 51, 
+  "calling_convention": "unknown", 
+  "signature": "undefined FUN_0053dad0(void)", 
+  "callees": [
+    {
+      "address": "0x0053d3a0", 
+      "name": "FUN_0053d3a0"
+    }, 
+    {
+      "address": "0x00553041", 
+      "name": "FUN_00553041"
+    }
+  ], 
+  "global_refs": [
+    {
+      "address": "0x017b3f58", 
+      "type": null, 
+      "name": "DAT_017b3f58"
+    }, 
+    {
+      "address": "0x017b3ed8", 
+      "type": null, 
+      "name": "DAT_017b3ed8"
+    }, 
+    {
+      "address": "0x0053db10", 
+      "type": null, 
+      "name": "LAB_0053db10"
+    }
+  ], 
+  "has_custom_name": false, 
+  "decompiled_c": "\r\nundefined * FUN_0053dad0(void)\r\n\r\n{\r\n  if ((DAT_017b3f58 & 1) == 0) {\r\n    DAT_017b3f58 = DAT_017b3f58 | 1;\r\n    FUN_0053d3a0();\r\n    FUN_00553041(&LAB_0053db10);\r\n  }\r\n  return &DAT_017b3ed8;\r\n}\r\n\r\n", 
+  "is_thunk": false, 
+  "name": "FUN_0053dad0", 
+  "assembly": "  0053dad0:  MOV CL,byte ptr [0x017b3f58]\n  0053dad6:  MOV AL,0x1\n  0053dad8:  TEST AL,CL\n  0053dada:  JNZ 0x0053dafd\n  0053dadc:  MOV DL,CL\n  0053dade:  MOV ECX,0x17b3ed8\n  0053dae3:  OR DL,AL\n  0053dae5:  MOV byte ptr [0x017b3f58],DL\n  0053daeb:  CALL 0x0053d3a0\n  0053daf0:  PUSH 0x53db10\n  0053daf5:  CALL 0x00553041\n  0053dafa:  ADD ESP,0x4\n  0053dafd:  MOV EAX,0x17b3ed8\n  0053db02:  RET", 
+  "callers": [
+    {
+      "address": "0x00422950", 
+      "name": "FUN_00422950"
+    }
+  ]
+}

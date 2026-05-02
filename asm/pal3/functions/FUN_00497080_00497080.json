@@ -1,0 +1,25 @@
+{
+  "address": "0x00497080", 
+  "size_bytes": 45, 
+  "calling_convention": "unknown", 
+  "signature": "undefined FUN_00497080(undefined4 param_1)", 
+  "callees": [], 
+  "global_refs": [
+    {
+      "address": "0x00000004", 
+      "type": null, 
+      "name": "DAT_00000004"
+    }
+  ], 
+  "has_custom_name": false, 
+  "decompiled_c": "\r\nint __thiscall FUN_00497080(int param_1_00,int *param_1)\r\n\r\n{\r\n  int iVar1;\r\n  \r\n  *param_1 = *param_1 + -1;\r\n  while ((iVar1 = *param_1, *(char *)(iVar1 + 0x169 + param_1_00) == '\\0' || (iVar1 < 0))) {\r\n    *param_1 = iVar1 + -1;\r\n    if (iVar1 + -1 < 0) {\r\n      *param_1 = 4;\r\n    }\r\n  }\r\n  return *param_1;\r\n}\r\n\r\n", 
+  "is_thunk": false, 
+  "name": "FUN_00497080", 
+  "assembly": "  00497080:  MOV EDX,dword ptr [ESP + 0x4]\n  00497084:  PUSH EBX\n  00497085:  DEC dword ptr [EDX]\n  00497087:  MOV EAX,dword ptr [EDX]\n  00497089:  MOV BL,byte ptr [EAX + ECX*0x1 + 0x169]\n  00497090:  TEST BL,BL\n  00497092:  JZ 0x00497098\n  00497094:  TEST EAX,EAX\n  00497096:  JGE 0x004970a7\n  00497098:  DEC EAX\n  00497099:  TEST EAX,EAX\n  0049709b:  MOV dword ptr [EDX],EAX\n  0049709d:  JGE 0x00497087\n  0049709f:  MOV dword ptr [EDX],0x4\n  004970a5:  JMP 0x00497087\n  004970a7:  MOV EAX,dword ptr [EDX]\n  004970a9:  POP EBX\n  004970aa:  RET 0x4", 
+  "callers": [
+    {
+      "address": "0x004970b0", 
+      "name": "FUN_004970b0"
+    }
+  ]
+}

@@ -1,0 +1,29 @@
+{
+  "address": "0x00553108", 
+  "size_bytes": 7, 
+  "calling_convention": "unknown", 
+  "signature": "undefined FUN_00553108(undefined param_1, undefined4 param_2)", 
+  "callees": [], 
+  "global_refs": [
+    {
+      "address": "0x00000008", 
+      "type": null, 
+      "name": "DAT_00000008"
+    }
+  ], 
+  "has_custom_name": false, 
+  "decompiled_c": "\r\nvoid FUN_00553108(undefined4 param_1,code *param_2)\r\n\r\n{\r\n  LOCK();\r\n  UNLOCK();\r\n                    /* WARNING: Could not recover jumptable at 0x0055310d. Too many branches */\r\n                    /* WARNING: Treating indirect jump as call */\r\n  (*param_2)();\r\n  return;\r\n}\r\n\r\n", 
+  "is_thunk": false, 
+  "name": "FUN_00553108", 
+  "assembly": "  00553108:  POP EAX\n  00553109:  POP ECX\n  0055310a:  XCHG dword ptr [ESP],EAX\n  0055310d:  JMP EAX", 
+  "callers": [
+    {
+      "address": "0x005579a8", 
+      "name": "FUN_005579a8"
+    }, 
+    {
+      "address": "0x00557b6c", 
+      "name": "FUN_00557b6c"
+    }
+  ]
+}

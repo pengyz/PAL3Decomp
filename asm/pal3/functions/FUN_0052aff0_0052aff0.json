@@ -1,0 +1,53 @@
+{
+  "address": "0x0052aff0", 
+  "size_bytes": 57, 
+  "calling_convention": "unknown", 
+  "signature": "undefined FUN_0052aff0(undefined4 param_1)", 
+  "callees": [
+    {
+      "address": "0x00000159", 
+      "name": "Push"
+    }, 
+    {
+      "address": "0x00000093", 
+      "name": "Translate"
+    }, 
+    {
+      "address": "0x0000015d", 
+      "name": "Pop"
+    }
+  ], 
+  "global_refs": [
+    {
+      "address": "0x00000004", 
+      "type": null, 
+      "name": "DAT_00000004"
+    }, 
+    {
+      "address": "0x0056a578", 
+      "type": null, 
+      "name": "PTR_Push_0056a578"
+    }, 
+    {
+      "address": "0x0056a260", 
+      "type": null, 
+      "name": "PTR_Translate_0056a260"
+    }, 
+    {
+      "address": "0x0056a588", 
+      "type": null, 
+      "name": "PTR_Pop_0056a588"
+    }
+  ], 
+  "has_custom_name": false, 
+  "decompiled_c": "\r\nvoid __thiscall FUN_0052aff0(int param_1_00,gbMatrixStack *param_1)\r\n\r\n{\r\n  gbMatrixStack::Push(param_1);\r\n  gbMatrixStack::Translate(param_1,(gbVec3D *)(param_1_00 + 0x10c));\r\n  (**(code **)(**(int **)(param_1_00 + 0x108) + 0x10))(0);\r\n  gbMatrixStack::Pop(param_1);\r\n  return;\r\n}\r\n\r\n", 
+  "is_thunk": false, 
+  "name": "FUN_0052aff0", 
+  "assembly": "  0052aff0:  PUSH ESI\n  0052aff1:  PUSH EDI\n  0052aff2:  MOV EDI,dword ptr [ESP + 0xc]\n  0052aff6:  MOV ESI,ECX\n  0052aff8:  MOV ECX,EDI\n  0052affa:  CALL dword ptr [0x0056a578]\n  0052b000:  LEA EAX,[ESI + 0x10c]\n  0052b006:  MOV ECX,EDI\n  0052b008:  PUSH EAX\n  0052b009:  CALL dword ptr [0x0056a260]\n  0052b00f:  MOV ECX,dword ptr [ESI + 0x108]\n  0052b015:  PUSH 0x0\n  0052b017:  MOV EDX,dword ptr [ECX]\n  0052b019:  CALL dword ptr [EDX + 0x10]\n  0052b01c:  MOV ECX,EDI\n  0052b01e:  CALL dword ptr [0x0056a588]\n  0052b024:  POP EDI\n  0052b025:  POP ESI\n  0052b026:  RET 0x4", 
+  "callers": [
+    {
+      "address": "0x0052afc0", 
+      "name": "FUN_0052afc0"
+    }
+  ]
+}

@@ -1,0 +1,39 @@
+{
+  "address": "0x00530f20", 
+  "size_bytes": 69, 
+  "calling_convention": "unknown", 
+  "signature": "undefined FUN_00530f20(void)", 
+  "callees": [
+    {
+      "address": "0x0052fbd0", 
+      "name": "FUN_0052fbd0"
+    }, 
+    {
+      "address": "0x0000011f", 
+      "name": "GetRadius"
+    }
+  ], 
+  "global_refs": [
+    {
+      "address": "0x-0000008", 
+      "type": null, 
+      "name": "DAT_-0000008"
+    }, 
+    {
+      "address": "0x0056a490", 
+      "type": null, 
+      "name": "PTR_GetRadius_0056a490"
+    }
+  ], 
+  "has_custom_name": false, 
+  "decompiled_c": "\r\nint __fastcall FUN_00530f20(int param_1)\r\n\r\n{\r\n  float fVar1;\r\n  gbOBBox *this;\r\n  uint3 uVar2;\r\n  float fVar3;\r\n  \r\n  fVar1 = ABS(*(float *)(param_1 + 0x290) - *(float *)(*(int *)(param_1 + 0x308) + 0xe90));\r\n  this = (gbOBBox *)FUN_0052fbd0();\r\n  fVar3 = gbOBBox::GetRadius(this);\r\n  uVar2 = (uint3)(CONCAT22((short)((uint)this >> 0x10),\r\n                           (ushort)(fVar3 < fVar1) << 8 | (ushort)(NAN(fVar3) || NAN(fVar1)) << 10 |\r\n                           (ushort)(fVar3 == fVar1) << 0xe) >> 8);\r\n  if (fVar3 >= fVar1 && (fVar3 == fVar1) == 0) {\r\n    return CONCAT31(uVar2,1);\r\n  }\r\n  return (uint)uVar2 << 8;\r\n}\r\n\r\n", 
+  "is_thunk": false, 
+  "name": "FUN_00530f20", 
+  "assembly": "  00530f20:  SUB ESP,0x8\n  00530f23:  MOV EAX,ECX\n  00530f25:  MOV ECX,dword ptr [EAX + 0x308]\n  00530f2b:  FLD dword ptr [ECX + 0xe90]\n  00530f31:  FLD dword ptr [EAX + 0x290]\n  00530f37:  FSUB ST0,ST1\n  00530f39:  FABS\n  00530f3b:  FSTP qword ptr [ESP]\n  00530f3f:  FSTP ST0\n  00530f41:  CALL 0x0052fbd0\n  00530f46:  MOV ECX,EAX\n  00530f48:  CALL dword ptr [0x0056a490]\n  00530f4e:  FCOMP qword ptr [ESP]\n  00530f52:  FNSTSW AX\n  00530f54:  TEST AH,0x41\n  00530f57:  JNZ 0x00530f5f\n  00530f59:  MOV AL,0x1\n  00530f5b:  ADD ESP,0x8\n  00530f5e:  RET\n  00530f5f:  XOR AL,AL\n  00530f61:  ADD ESP,0x8\n  00530f64:  RET", 
+  "callers": [
+    {
+      "address": "0x00531260", 
+      "name": "FUN_00531260"
+    }
+  ]
+}

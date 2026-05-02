@@ -1,0 +1,45 @@
+{
+  "address": "0x004b73f0", 
+  "size_bytes": 63, 
+  "calling_convention": "unknown", 
+  "signature": "undefined FUN_004b73f0(undefined4 param_1, undefined4 param_2, undefined4 param_3)", 
+  "callees": [
+    {
+      "address": "0x004ce340", 
+      "name": "FUN_004ce340"
+    }
+  ], 
+  "global_refs": [
+    {
+      "address": "0x00000004", 
+      "type": null, 
+      "name": "DAT_00000004"
+    }, 
+    {
+      "address": "0x0000000c", 
+      "type": null, 
+      "name": "DAT_0000000c"
+    }, 
+    {
+      "address": "0x00000008", 
+      "type": null, 
+      "name": "DAT_00000008"
+    }, 
+    {
+      "address": "0x00bfda78", 
+      "type": null, 
+      "name": "DAT_00bfda78"
+    }
+  ], 
+  "has_custom_name": false, 
+  "decompiled_c": "\r\nvoid __thiscall\r\nFUN_004b73f0(int param_1_00,undefined4 param_1,undefined4 param_2,undefined4 param_3)\r\n\r\n{\r\n  undefined4 uVar1;\r\n  \r\n  *(undefined4 *)(param_1_00 + 100) = param_1;\r\n  *(undefined4 *)(param_1_00 + 0x68) = param_2;\r\n  *(undefined4 *)(param_1_00 + 0x6c) = param_3;\r\n  uVar1 = FUN_004ce340(*(undefined4 *)(param_1_00 + 0x5c),*(undefined4 *)(param_1_00 + 100),param_2,\r\n                       param_3,0);\r\n  *(undefined4 *)(param_1_00 + 0x60) = uVar1;\r\n  *(undefined4 *)(param_1_00 + 0x70) = 0;\r\n  return;\r\n}\r\n\r\n", 
+  "is_thunk": false, 
+  "name": "FUN_004b73f0", 
+  "assembly": "  004b73f0:  MOV EAX,dword ptr [ESP + 0x4]\n  004b73f4:  MOV EDX,dword ptr [ESP + 0xc]\n  004b73f8:  PUSH ESI\n  004b73f9:  MOV ESI,ECX\n  004b73fb:  MOV ECX,dword ptr [ESP + 0xc]\n  004b73ff:  PUSH 0x0\n  004b7401:  MOV dword ptr [ESI + 0x64],EAX\n  004b7404:  MOV EAX,EDX\n  004b7406:  MOV dword ptr [ESI + 0x68],ECX\n  004b7409:  MOV dword ptr [ESI + 0x6c],EDX\n  004b740c:  MOV EDX,dword ptr [ESI + 0x64]\n  004b740f:  PUSH EAX\n  004b7410:  MOV EAX,dword ptr [ESI + 0x5c]\n  004b7413:  PUSH ECX\n  004b7414:  MOV ECX,dword ptr [0x00bfda78]\n  004b741a:  PUSH EDX\n  004b741b:  PUSH EAX\n  004b741c:  CALL 0x004ce340\n  004b7421:  MOV dword ptr [ESI + 0x60],EAX\n  004b7424:  MOV dword ptr [ESI + 0x70],0x0\n  004b742b:  POP ESI\n  004b742c:  RET 0xc", 
+  "callers": [
+    {
+      "address": "0x00423a70", 
+      "name": "FUN_00423a70"
+    }
+  ]
+}

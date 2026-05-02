@@ -1,0 +1,62 @@
+{
+  "address": "0x0053cc70", 
+  "size_bytes": 128, 
+  "calling_convention": "unknown", 
+  "signature": "undefined FUN_0053cc70(undefined4 param_1, undefined4 param_2, undefined1 param_3)", 
+  "callees": [
+    {
+      "address": "0x0055461c", 
+      "name": "FUN_0055461c"
+    }, 
+    {
+      "address": "0x00553d20", 
+      "name": "FUN_00553d20"
+    }, 
+    {
+      "address": "0x005540f0", 
+      "name": "_strncpy"
+    }
+  ], 
+  "global_refs": [
+    {
+      "address": "0x00000008", 
+      "type": null, 
+      "name": "DAT_00000008"
+    }, 
+    {
+      "address": "0x0000000c", 
+      "type": null, 
+      "name": "DAT_0000000c"
+    }, 
+    {
+      "address": "0x017b1cc0", 
+      "type": null, 
+      "name": "DAT_017b1cc0"
+    }, 
+    {
+      "address": "0x00000004", 
+      "type": null, 
+      "name": "DAT_00000004"
+    }, 
+    {
+      "address": "0x017b1d23", 
+      "type": null, 
+      "name": "DAT_017b1d23"
+    }
+  ], 
+  "has_custom_name": false, 
+  "decompiled_c": "\r\nvoid FUN_0053cc70(int param_1,undefined4 param_2)\r\n\r\n{\r\n  char cVar1;\r\n  uint uVar2;\r\n  char *pcVar3;\r\n  \r\n  FUN_0055461c(&DAT_017b1cc0,param_2,&stack0x0000000c);\r\n  FUN_00553d20(param_1 + 0x1294,param_1 + 0x12f8,0x640);\r\n  _strncpy((char *)(param_1 + 0x18d4),&DAT_017b1cc0,99);\r\n  uVar2 = 0xffffffff;\r\n  pcVar3 = &DAT_017b1cc0;\r\n  do {\r\n    if (uVar2 == 0) break;\r\n    uVar2 = uVar2 - 1;\r\n    cVar1 = *pcVar3;\r\n    pcVar3 = pcVar3 + 1;\r\n  } while (cVar1 != '\\0');\r\n  if (~uVar2 != 100 && -1 < (int)(~uVar2 - 100)) {\r\n    FUN_00553d20(param_1 + 0x1294,param_1 + 0x12f8,0x640);\r\n    _strncpy((char *)(param_1 + 0x18d4),&DAT_017b1d23,99);\r\n  }\r\n  return;\r\n}\r\n\r\n", 
+  "is_thunk": false, 
+  "name": "FUN_0053cc70", 
+  "assembly": "  0053cc70:  MOV ECX,dword ptr [ESP + 0x8]\n  0053cc74:  PUSH EBX\n  0053cc75:  PUSH EBP\n  0053cc76:  PUSH ESI\n  0053cc77:  LEA EAX,[ESP + 0x18]\n  0053cc7b:  PUSH EDI\n  0053cc7c:  PUSH EAX\n  0053cc7d:  PUSH ECX\n  0053cc7e:  PUSH 0x17b1cc0\n  0053cc83:  CALL 0x0055461c\n  0053cc88:  MOV ESI,dword ptr [ESP + 0x20]\n  0053cc8c:  PUSH 0x640\n  0053cc91:  LEA EBX,[ESI + 0x12f8]\n  0053cc97:  LEA EBP,[ESI + 0x1294]\n  0053cc9d:  PUSH EBX\n  0053cc9e:  PUSH EBP\n  0053cc9f:  CALL 0x00553d20\n  0053cca4:  ADD ESI,0x18d4\n  0053ccaa:  PUSH 0x63\n  0053ccac:  PUSH 0x17b1cc0\n  0053ccb1:  PUSH ESI\n  0053ccb2:  CALL 0x005540f0\n  0053ccb7:  MOV EDI,0x17b1cc0\n  0053ccbc:  OR ECX,0xffffffff\n  0053ccbf:  XOR EAX,EAX\n  0053ccc1:  ADD ESP,0x24\n  0053ccc4:  SCASB.REPNE ES:EDI\n  0053ccc6:  NOT ECX\n  0053ccc8:  ADD ECX,-0x64\n  0053cccb:  TEST ECX,ECX\n  0053cccd:  JLE 0x0053cceb\n  0053cccf:  PUSH 0x640\n  0053ccd4:  PUSH EBX\n  0053ccd5:  PUSH EBP\n  0053ccd6:  CALL 0x00553d20\n  0053ccdb:  PUSH 0x63\n  0053ccdd:  PUSH 0x17b1d23\n  0053cce2:  PUSH ESI\n  0053cce3:  CALL 0x005540f0\n  0053cce8:  ADD ESP,0x18\n  0053cceb:  POP EDI\n  0053ccec:  POP ESI\n  0053cced:  POP EBP\n  0053ccee:  POP EBX\n  0053ccef:  RET", 
+  "callers": [
+    {
+      "address": "0x00407546", 
+      "name": "Catch@00407546"
+    }, 
+    {
+      "address": "0x0053cc10", 
+      "name": "FUN_0053cc10"
+    }
+  ]
+}

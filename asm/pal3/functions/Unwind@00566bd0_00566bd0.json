@@ -1,0 +1,14 @@
+{
+  "address": "0x00566bd0", 
+  "size_bytes": 9, 
+  "calling_convention": "unknown", 
+  "signature": "undefined Unwind@00566bd0(void)", 
+  "callees": [], 
+  "global_refs": [], 
+  "has_custom_name": true, 
+  "decompiled_c": "\r\nvoid Unwind_00566bd0(void)\r\n\r\n{\r\n  int unaff_EBP;\r\n  \r\n                    /* WARNING: Could not recover jumptable at 0x00566bd3. Too many branches */\r\n                    /* WARNING: Treating indirect jump as call */\r\n  CIniFile::~CIniFile((CIniFile *)(unaff_EBP + -0x1c));\r\n  return;\r\n}\r\n\r\n", 
+  "is_thunk": false, 
+  "name": "Unwind@00566bd0", 
+  "assembly": "  00566bd0:  LEA ECX,[EBP + -0x1c]\n  00566bd3:  JMP dword ptr [0x0056a438]", 
+  "callers": []
+}

@@ -1,0 +1,35 @@
+{
+  "address": "0x0053afa0", 
+  "size_bytes": 58, 
+  "calling_convention": "unknown", 
+  "signature": "undefined FUN_0053afa0(undefined4 param_1, undefined4 param_2, undefined4 param_3)", 
+  "callees": [], 
+  "global_refs": [
+    {
+      "address": "0x00000004", 
+      "type": null, 
+      "name": "DAT_00000004"
+    }, 
+    {
+      "address": "0x00000008", 
+      "type": null, 
+      "name": "DAT_00000008"
+    }, 
+    {
+      "address": "0x0000000c", 
+      "type": null, 
+      "name": "DAT_0000000c"
+    }
+  ], 
+  "has_custom_name": false, 
+  "decompiled_c": "\r\nundefined4 * FUN_0053afa0(undefined4 *param_1,undefined4 *param_2,undefined4 *param_3)\r\n\r\n{\r\n  int iVar1;\r\n  undefined4 *puVar2;\r\n  undefined4 *puVar3;\r\n  \r\n  if (param_1 == param_2) {\r\n    return param_3;\r\n  }\r\n  do {\r\n    if (param_3 != (undefined4 *)0x0) {\r\n      puVar2 = param_1;\r\n      puVar3 = param_3;\r\n      for (iVar1 = 0x10; iVar1 != 0; iVar1 = iVar1 + -1) {\r\n        *puVar3 = *puVar2;\r\n        puVar2 = puVar2 + 1;\r\n        puVar3 = puVar3 + 1;\r\n      }\r\n    }\r\n    param_1 = param_1 + 0x10;\r\n    param_3 = param_3 + 0x10;\r\n  } while (param_1 != param_2);\r\n  return param_3;\r\n}\r\n\r\n", 
+  "is_thunk": false, 
+  "name": "FUN_0053afa0", 
+  "assembly": "  0053afa0:  MOV EDX,dword ptr [ESP + 0x4]\n  0053afa4:  PUSH EBX\n  0053afa5:  MOV EBX,dword ptr [ESP + 0xc]\n  0053afa9:  CMP EDX,EBX\n  0053afab:  JZ 0x0053afd2\n  0053afad:  MOV EAX,dword ptr [ESP + 0x10]\n  0053afb1:  PUSH ESI\n  0053afb2:  PUSH EDI\n  0053afb3:  TEST EAX,EAX\n  0053afb5:  JZ 0x0053afc2\n  0053afb7:  MOV ECX,0x10\n  0053afbc:  MOV ESI,EDX\n  0053afbe:  MOV EDI,EAX\n  0053afc0:  MOVSD.REP ES:EDI,ESI\n  0053afc2:  ADD EDX,0x40\n  0053afc5:  ADD EAX,0x40\n  0053afc8:  CMP EDX,EBX\n  0053afca:  JNZ 0x0053afb3\n  0053afcc:  POP EDI\n  0053afcd:  POP ESI\n  0053afce:  POP EBX\n  0053afcf:  RET 0xc\n  0053afd2:  MOV EAX,dword ptr [ESP + 0x10]\n  0053afd6:  POP EBX\n  0053afd7:  RET 0xc", 
+  "callers": [
+    {
+      "address": "0x00539af0", 
+      "name": "FUN_00539af0"
+    }
+  ]
+}

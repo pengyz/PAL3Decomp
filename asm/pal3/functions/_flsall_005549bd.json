@@ -1,0 +1,40 @@
+{
+  "address": "0x005549bd", 
+  "size_bytes": 109, 
+  "calling_convention": "unknown", 
+  "signature": "undefined _flsall(undefined4 param_1)", 
+  "callees": [
+    {
+      "address": "0x0055491d", 
+      "name": "FUN_0055491d"
+    }
+  ], 
+  "global_refs": [
+    {
+      "address": "0x018969a0", 
+      "type": null, 
+      "name": "DAT_018969a0"
+    }, 
+    {
+      "address": "0x01895990", 
+      "type": null, 
+      "name": "DAT_01895990"
+    }, 
+    {
+      "address": "0x00000004", 
+      "type": null, 
+      "name": "DAT_00000004"
+    }
+  ], 
+  "has_custom_name": true, 
+  "decompiled_c": "\r\n/* Library Function - Single Match\r\n    _flsall\r\n   \r\n   Library: Visual Studio 2003 Release */\r\n\r\nint _flsall(int param_1)\r\n\r\n{\r\n  int iVar1;\r\n  int iVar2;\r\n  int iVar3;\r\n  int iVar4;\r\n  \r\n  iVar3 = 0;\r\n  iVar2 = 0;\r\n  iVar4 = 0;\r\n  if (0 < DAT_018969a0) {\r\n    do {\r\n      iVar1 = *(int *)(DAT_01895990 + iVar3 * 4);\r\n      if ((iVar1 != 0) && ((*(uint *)(iVar1 + 0xc) & 0x83) != 0)) {\r\n        if (param_1 == 1) {\r\n          iVar1 = FUN_0055491d(iVar1);\r\n          if (iVar1 != -1) {\r\n            iVar2 = iVar2 + 1;\r\n          }\r\n        }\r\n        else if ((param_1 == 0) && ((*(uint *)(iVar1 + 0xc) & 2) != 0)) {\r\n          iVar1 = FUN_0055491d(iVar1);\r\n          if (iVar1 == -1) {\r\n            iVar4 = -1;\r\n          }\r\n        }\r\n      }\r\n      iVar3 = iVar3 + 1;\r\n    } while (iVar3 < DAT_018969a0);\r\n  }\r\n  if (param_1 != 1) {\r\n    iVar2 = iVar4;\r\n  }\r\n  return iVar2;\r\n}\r\n\r\n", 
+  "is_thunk": false, 
+  "name": "_flsall", 
+  "assembly": "  005549bd:  PUSH EBX\n  005549be:  PUSH ESI\n  005549bf:  PUSH EDI\n  005549c0:  XOR ESI,ESI\n  005549c2:  XOR EBX,EBX\n  005549c4:  XOR EDI,EDI\n  005549c6:  CMP dword ptr [0x018969a0],ESI\n  005549cc:  JLE 0x00554a1b\n  005549ce:  MOV EAX,[0x01895990]\n  005549d3:  MOV EAX,dword ptr [EAX + ESI*0x4]\n  005549d6:  TEST EAX,EAX\n  005549d8:  JZ 0x00554a12\n  005549da:  MOV ECX,dword ptr [EAX + 0xc]\n  005549dd:  TEST CL,0x83\n  005549e0:  JZ 0x00554a12\n  005549e2:  CMP dword ptr [ESP + 0x10],0x1\n  005549e7:  JNZ 0x005549f8\n  005549e9:  PUSH EAX\n  005549ea:  CALL 0x0055491d\n  005549ef:  CMP EAX,-0x1\n  005549f2:  POP ECX\n  005549f3:  JZ 0x00554a12\n  005549f5:  INC EBX\n  005549f6:  JMP 0x00554a12\n  005549f8:  CMP dword ptr [ESP + 0x10],0x0\n  005549fd:  JNZ 0x00554a12\n  005549ff:  TEST CL,0x2\n  00554a02:  JZ 0x00554a12\n  00554a04:  PUSH EAX\n  00554a05:  CALL 0x0055491d\n  00554a0a:  CMP EAX,-0x1\n  00554a0d:  POP ECX\n  00554a0e:  JNZ 0x00554a12\n  00554a10:  OR EDI,EAX\n  00554a12:  INC ESI\n  00554a13:  CMP ESI,dword ptr [0x018969a0]\n  00554a19:  JL 0x005549ce\n  00554a1b:  CMP dword ptr [ESP + 0x10],0x1\n  00554a20:  MOV EAX,EBX\n  00554a22:  JZ 0x00554a26\n  00554a24:  MOV EAX,EDI\n  00554a26:  POP EDI\n  00554a27:  POP ESI\n  00554a28:  POP EBX\n  00554a29:  RET", 
+  "callers": [
+    {
+      "address": "0x0055491d", 
+      "name": "FUN_0055491d"
+    }
+  ]
+}

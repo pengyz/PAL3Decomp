@@ -1,0 +1,53 @@
+{
+  "address": "0x0055681c", 
+  "size_bytes": 81, 
+  "calling_convention": "__cdecl", 
+  "signature": "errno_t __cfltcvt(double * arg, char * buffer, size_t sizeInBytes, int format, int precision, int caps)", 
+  "callees": [
+    {
+      "address": "0x00556659", 
+      "name": "FUN_00556659"
+    }, 
+    {
+      "address": "0x00556737", 
+      "name": "FUN_00556737"
+    }, 
+    {
+      "address": "0x00556555", 
+      "name": "FUN_00556555"
+    }
+  ], 
+  "global_refs": [
+    {
+      "address": "0x0000000c", 
+      "type": null, 
+      "name": "DAT_0000000c"
+    }, 
+    {
+      "address": "0x00000010", 
+      "type": null, 
+      "name": "DAT_00000010"
+    }, 
+    {
+      "address": "0x00000008", 
+      "type": null, 
+      "name": "DAT_00000008"
+    }, 
+    {
+      "address": "0x00000004", 
+      "type": null, 
+      "name": "DAT_00000004"
+    }, 
+    {
+      "address": "0x00000014", 
+      "type": null, 
+      "name": "DAT_00000014"
+    }
+  ], 
+  "has_custom_name": true, 
+  "decompiled_c": "\r\n/* Library Function - Single Match\r\n    __cfltcvt\r\n   \r\n   Library: Visual Studio 2003 Release */\r\n\r\nerrno_t __cdecl\r\n__cfltcvt(double *arg,char *buffer,size_t sizeInBytes,int format,int precision,int caps)\r\n\r\n{\r\n  errno_t eVar1;\r\n  \r\n  if ((sizeInBytes == 0x65) || (sizeInBytes == 0x45)) {\r\n    eVar1 = FUN_00556555(arg,buffer,format,precision);\r\n  }\r\n  else {\r\n    if (sizeInBytes == 0x66) {\r\n      eVar1 = FUN_00556659(arg,buffer,format);\r\n      return eVar1;\r\n    }\r\n    eVar1 = FUN_00556737(arg,buffer,format,precision);\r\n  }\r\n  return eVar1;\r\n}\r\n\r\n", 
+  "is_thunk": false, 
+  "name": "__cfltcvt", 
+  "assembly": "  0055681c:  PUSH EBP\n  0055681d:  MOV EBP,ESP\n  0055681f:  CMP dword ptr [EBP + 0x10],0x65\n  00556823:  JZ 0x00556857\n  00556825:  CMP dword ptr [EBP + 0x10],0x45\n  00556829:  JZ 0x00556857\n  0055682b:  CMP dword ptr [EBP + 0x10],0x66\n  0055682f:  JNZ 0x00556844\n  00556831:  PUSH dword ptr [EBP + 0x14]\n  00556834:  PUSH dword ptr [EBP + 0xc]\n  00556837:  PUSH dword ptr [EBP + 0x8]\n  0055683a:  CALL 0x00556659\n  0055683f:  ADD ESP,0xc\n  00556842:  POP EBP\n  00556843:  RET\n  00556844:  PUSH dword ptr [EBP + 0x18]\n  00556847:  PUSH dword ptr [EBP + 0x14]\n  0055684a:  PUSH dword ptr [EBP + 0xc]\n  0055684d:  PUSH dword ptr [EBP + 0x8]\n  00556850:  CALL 0x00556737\n  00556855:  JMP 0x00556868\n  00556857:  PUSH dword ptr [EBP + 0x18]\n  0055685a:  PUSH dword ptr [EBP + 0x14]\n  0055685d:  PUSH dword ptr [EBP + 0xc]\n  00556860:  PUSH dword ptr [EBP + 0x8]\n  00556863:  CALL 0x00556555\n  00556868:  ADD ESP,0x10\n  0055686b:  POP EBP\n  0055686c:  RET", 
+  "callers": []
+}

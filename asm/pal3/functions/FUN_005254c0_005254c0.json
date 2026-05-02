@@ -1,0 +1,30 @@
+{
+  "address": "0x005254c0", 
+  "size_bytes": 87, 
+  "calling_convention": "unknown", 
+  "signature": "undefined FUN_005254c0(void)", 
+  "callees": [
+    {
+      "address": "0x00000014", 
+      "name": "lstrcpyA"
+    }
+  ], 
+  "global_refs": [
+    {
+      "address": "0x0056a054", 
+      "type": null, 
+      "name": "PTR_lstrcpyA_0056a054"
+    }, 
+    {
+      "address": "0x00c10d38", 
+      "type": null, 
+      "name": "DAT_00c10d38"
+    }
+  ], 
+  "has_custom_name": false, 
+  "decompiled_c": "\r\nundefined4 * __fastcall FUN_005254c0(undefined4 *param_1)\r\n\r\n{\r\n  int iVar1;\r\n  undefined4 *puVar2;\r\n  \r\n  *param_1 = 0;\r\n  lstrcpyA((LPSTR)(param_1 + 1),&DAT_00c10d38);\r\n  lstrcpyA((LPSTR)(param_1 + 9),&DAT_00c10d38);\r\n  lstrcpyA((LPSTR)((int)param_1 + 0x42),&DAT_00c10d38);\r\n  lstrcpyA((LPSTR)(param_1 + 0x18),&DAT_00c10d38);\r\n  *(undefined *)(param_1 + 0x99) = 0;\r\n  puVar2 = param_1 + 0xa1;\r\n  for (iVar1 = 6; iVar1 != 0; iVar1 = iVar1 + -1) {\r\n    *puVar2 = 0;\r\n    puVar2 = puVar2 + 1;\r\n  }\r\n  return param_1;\r\n}\r\n\r\n", 
+  "is_thunk": false, 
+  "name": "FUN_005254c0", 
+  "assembly": "  005254c0:  PUSH ESI\n  005254c1:  MOV ESI,ECX\n  005254c3:  PUSH EDI\n  005254c4:  MOV EDI,dword ptr [0x0056a054]\n  005254ca:  LEA EAX,[ESI + 0x4]\n  005254cd:  PUSH 0xc10d38\n  005254d2:  PUSH EAX\n  005254d3:  MOV dword ptr [ESI],0x0\n  005254d9:  CALL EDI\n  005254db:  LEA ECX,[ESI + 0x24]\n  005254de:  PUSH 0xc10d38\n  005254e3:  PUSH ECX\n  005254e4:  CALL EDI\n  005254e6:  LEA EDX,[ESI + 0x42]\n  005254e9:  PUSH 0xc10d38\n  005254ee:  PUSH EDX\n  005254ef:  CALL EDI\n  005254f1:  LEA EAX,[ESI + 0x60]\n  005254f4:  PUSH 0xc10d38\n  005254f9:  PUSH EAX\n  005254fa:  CALL EDI\n  005254fc:  MOV ECX,0x6\n  00525501:  XOR EAX,EAX\n  00525503:  LEA EDI,[ESI + 0x284]\n  00525509:  MOV byte ptr [ESI + 0x264],0x0\n  00525510:  STOSD.REP ES:EDI\n  00525512:  MOV EAX,ESI\n  00525514:  POP EDI\n  00525515:  POP ESI\n  00525516:  RET", 
+  "callers": []
+}

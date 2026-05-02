@@ -1,0 +1,30 @@
+{
+  "address": "0x0055d34b", 
+  "size_bytes": 18, 
+  "calling_convention": "unknown", 
+  "signature": "undefined __frnd(undefined8 param_1)", 
+  "callees": [], 
+  "global_refs": [
+    {
+      "address": "0x00000004", 
+      "type": null, 
+      "name": "DAT_00000004"
+    }, 
+    {
+      "address": "0x-000000c", 
+      "type": null, 
+      "name": "DAT_-000000c"
+    }
+  ], 
+  "has_custom_name": true, 
+  "decompiled_c": "\r\n/* Library Function - Single Match\r\n    __frnd\r\n   \r\n   Libraries: Visual Studio 2008 Release, Visual Studio 2010 Release, Visual Studio 2012 Release,\r\n   Visual Studio 2019 Release */\r\n\r\nfloat10 __frnd(double param_1)\r\n\r\n{\r\n  return (float10)ROUND(param_1);\r\n}\r\n\r\n", 
+  "is_thunk": false, 
+  "name": "__frnd", 
+  "assembly": "  0055d34b:  PUSH EBP\n  0055d34c:  MOV EBP,ESP\n  0055d34e:  PUSH ECX\n  0055d34f:  PUSH ECX\n  0055d350:  FLD qword ptr [EBP + 0x8]\n  0055d353:  FRNDINT\n  0055d355:  FSTP qword ptr [EBP + -0x8]\n  0055d358:  FLD qword ptr [EBP + -0x8]\n  0055d35b:  LEAVE\n  0055d35c:  RET", 
+  "callers": [
+    {
+      "address": "0x00559627", 
+      "name": "FUN_00559627"
+    }
+  ]
+}

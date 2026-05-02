@@ -1,0 +1,155 @@
+{
+  "address": "0x0055acd4", 
+  "size_bytes": 339, 
+  "calling_convention": "unknown", 
+  "signature": "undefined FUN_0055acd4(undefined4 param_1)", 
+  "callees": [
+    {
+      "address": "0x0000000c", 
+      "name": "GetModuleFileNameA"
+    }, 
+    {
+      "address": "0x005583f0", 
+      "name": "FUN_005583f0"
+    }, 
+    {
+      "address": "0x00555290", 
+      "name": "_strlen"
+    }, 
+    {
+      "address": "0x005540f0", 
+      "name": "_strncpy"
+    }, 
+    {
+      "address": "0x00558400", 
+      "name": "FUN_00558400"
+    }, 
+    {
+      "address": "0x0055d5f5", 
+      "name": "FUN_0055d5f5"
+    }, 
+    {
+      "address": "0x00000047", 
+      "name": "GetStdHandle"
+    }, 
+    {
+      "address": "0x00000046", 
+      "name": "WriteFile"
+    }
+  ], 
+  "global_refs": [
+    {
+      "address": "0x00000004", 
+      "type": null, 
+      "name": "DAT_00000004"
+    }, 
+    {
+      "address": "0x0060b538", 
+      "type": null, 
+      "name": "DAT_0060b538"
+    }, 
+    {
+      "address": "0x0060b540", 
+      "type": null, 
+      "name": "DAT_0060b540"
+    }, 
+    {
+      "address": "0x0060b5c8", 
+      "type": null, 
+      "name": "DAT_0060b5c8"
+    }, 
+    {
+      "address": "0x01895320", 
+      "type": null, 
+      "name": "DAT_01895320"
+    }, 
+    {
+      "address": "0x0060aca4", 
+      "type": null, 
+      "name": "DAT_0060aca4"
+    }, 
+    {
+      "address": "0x-00001a8", 
+      "type": null, 
+      "name": "DAT_-00001a8"
+    }, 
+    {
+      "address": "0x0056a034", 
+      "type": null, 
+      "name": "PTR_GetModuleFileNameA_0056a034"
+    }, 
+    {
+      "address": "0x005736cc", 
+      "type": null, 
+      "name": "s_<program_name_unknown>_005736cc"
+    }, 
+    {
+      "address": "0x005736c8", 
+      "type": null, 
+      "name": "DAT_005736c8"
+    }, 
+    {
+      "address": "0x-00000a4", 
+      "type": null, 
+      "name": "DAT_-00000a4"
+    }, 
+    {
+      "address": "0x005736ac", 
+      "type": null, 
+      "name": "s_Runtime_Error!_Program:_005736ac"
+    }, 
+    {
+      "address": "0x005736a8", 
+      "type": null, 
+      "name": "DAT_005736a8"
+    }, 
+    {
+      "address": "0x0060b544", 
+      "type": null, 
+      "name": "PTR_s_R6008_-_not_enough_space_for_arg_0060b544"
+    }, 
+    {
+      "address": "0x0057362c", 
+      "type": null, 
+      "name": "s_R6008_-_not_enough_space_for_arg_0057362c"
+    }, 
+    {
+      "address": "0x00573680", 
+      "type": null, 
+      "name": "s_Microsoft_Visual_C++_Runtime_Lib_00573680"
+    }, 
+    {
+      "address": "0x0056a120", 
+      "type": null, 
+      "name": "PTR_GetStdHandle_0056a120"
+    }, 
+    {
+      "address": "0x0056a11c", 
+      "type": null, 
+      "name": "PTR_WriteFile_0056a11c"
+    }
+  ], 
+  "has_custom_name": false, 
+  "decompiled_c": "\r\nvoid FUN_0055acd4(DWORD param_1)\r\n\r\n{\r\n  undefined4 *puVar1;\r\n  DWORD *pDVar2;\r\n  DWORD DVar3;\r\n  size_t sVar4;\r\n  HANDLE hFile;\r\n  int iVar5;\r\n  char acStackY_1e3 [7];\r\n  undefined *puStackY_1dc;\r\n  char *pcStackY_1d8;\r\n  undefined4 uStackY_1d4;\r\n  undefined *puStackY_1d0;\r\n  undefined4 uStackY_1cc;\r\n  undefined *puStackY_1c8;\r\n  undefined *puStackY_1c4;\r\n  LPCVOID lpBuffer;\r\n  LPDWORD lpNumberOfBytesWritten;\r\n  LPOVERLAPPED lpOverlapped;\r\n  CHAR local_1a8 [260];\r\n  undefined local_a4 [160];\r\n  \r\n  iVar5 = 0;\r\n  pDVar2 = &DAT_0060b538;\r\n  do {\r\n    if (param_1 == *pDVar2) break;\r\n    pDVar2 = pDVar2 + 2;\r\n    iVar5 = iVar5 + 1;\r\n  } while ((int)pDVar2 < 0x60b5c8);\r\n  if (param_1 == (&DAT_0060b538)[iVar5 * 2]) {\r\n    if ((DAT_01895320 == 1) || ((DAT_01895320 == 0 && (DAT_0060aca4 == 1)))) {\r\n      lpNumberOfBytesWritten = &param_1;\r\n      puVar1 = (undefined4 *)(iVar5 * 8 + 0x60b53c);\r\n      lpOverlapped = (LPOVERLAPPED)0x0;\r\n      sVar4 = _strlen((char *)*puVar1);\r\n      lpBuffer = (LPCVOID)*puVar1;\r\n      puStackY_1c4 = (undefined *)0x55ae1d;\r\n      hFile = GetStdHandle(0xfffffff4);\r\n      puStackY_1c4 = (undefined *)0x55ae24;\r\n      WriteFile(hFile,lpBuffer,sVar4,lpNumberOfBytesWritten,lpOverlapped);\r\n    }\r\n    else if (param_1 != 0xfc) {\r\n      DVar3 = GetModuleFileNameA((HMODULE)0x0,local_1a8,0x104);\r\n      if (DVar3 == 0) {\r\n        FUN_005583f0();\r\n      }\r\n      sVar4 = _strlen(local_1a8);\r\n      if (0x3c < sVar4 + 1) {\r\n        sVar4 = _strlen(local_1a8);\r\n        puStackY_1c4 = (undefined *)0x55ad9e;\r\n        _strncpy(acStackY_1e3 + sVar4,\"...\",3);\r\n      }\r\n      FUN_005583f0();\r\n      puStackY_1c4 = (undefined *)0x55adbf;\r\n      FUN_00558400();\r\n      puStackY_1c8 = local_a4;\r\n      puStackY_1c4 = &DAT_005736a8;\r\n      uStackY_1cc = 0x55add0;\r\n      FUN_00558400();\r\n      uStackY_1cc = *(undefined4 *)(iVar5 * 8 + 0x60b53c);\r\n      puStackY_1d0 = local_a4;\r\n      uStackY_1d4 = 0x55ade2;\r\n      FUN_00558400();\r\n      uStackY_1d4 = 0x12010;\r\n      puStackY_1dc = local_a4;\r\n      pcStackY_1d8 = \"Microsoft Visual C++ Runtime Library\";\r\n      acStackY_1e3[3] = -8;\r\n      acStackY_1e3[4] = -0x53;\r\n      acStackY_1e3[5] = 'U';\r\n      acStackY_1e3[6] = '\\0';\r\n      FUN_0055d5f5();\r\n    }\r\n  }\r\n  return;\r\n}\r\n\r\n", 
+  "is_thunk": false, 
+  "name": "FUN_0055acd4", 
+  "assembly": "  0055acd4:  PUSH EBP\n  0055acd5:  MOV EBP,ESP\n  0055acd7:  SUB ESP,0x1a4\n  0055acdd:  MOV EDX,dword ptr [EBP + 0x8]\n  0055ace0:  XOR ECX,ECX\n  0055ace2:  MOV EAX,0x60b538\n  0055ace7:  CMP EDX,dword ptr [EAX]\n  0055ace9:  JZ 0x0055acf6\n  0055aceb:  ADD EAX,0x8\n  0055acee:  INC ECX\n  0055acef:  CMP EAX,0x60b5c8\n  0055acf4:  JL 0x0055ace7\n  0055acf6:  PUSH ESI\n  0055acf7:  MOV ESI,ECX\n  0055acf9:  SHL ESI,0x3\n  0055acfc:  CMP EDX,dword ptr [ESI + 0x60b538]\n  0055ad02:  JNZ 0x0055ae24\n  0055ad08:  MOV EAX,[0x01895320]\n  0055ad0d:  CMP EAX,0x1\n  0055ad10:  JZ 0x0055adfe\n  0055ad16:  TEST EAX,EAX\n  0055ad18:  JNZ 0x0055ad27\n  0055ad1a:  CMP dword ptr [0x0060aca4],0x1\n  0055ad21:  JZ 0x0055adfe\n  0055ad27:  CMP EDX,0xfc\n  0055ad2d:  JZ 0x0055ae24\n  0055ad33:  LEA EAX,[EBP + 0xfffffe5c]\n  0055ad39:  PUSH 0x104\n  0055ad3e:  PUSH EAX\n  0055ad3f:  PUSH 0x0\n  0055ad41:  CALL dword ptr [0x0056a034]\n  0055ad47:  TEST EAX,EAX\n  0055ad49:  JNZ 0x0055ad5e\n  0055ad4b:  LEA EAX,[EBP + 0xfffffe5c]\n  0055ad51:  PUSH 0x5736cc\n  0055ad56:  PUSH EAX\n  0055ad57:  CALL 0x005583f0\n  0055ad5c:  POP ECX\n  0055ad5d:  POP ECX\n  0055ad5e:  LEA EAX,[EBP + 0xfffffe5c]\n  0055ad64:  PUSH EDI\n  0055ad65:  PUSH EAX\n  0055ad66:  LEA EDI,[EBP + 0xfffffe5c]\n  0055ad6c:  CALL 0x00555290\n  0055ad71:  INC EAX\n  0055ad72:  POP ECX\n  0055ad73:  CMP EAX,0x3c\n  0055ad76:  JBE 0x0055ada1\n  0055ad78:  LEA EAX,[EBP + 0xfffffe5c]\n  0055ad7e:  PUSH EAX\n  0055ad7f:  CALL 0x00555290\n  0055ad84:  MOV EDI,EAX\n  0055ad86:  LEA EAX,[EBP + 0xfffffe5c]\n  0055ad8c:  SUB EAX,0x3b\n  0055ad8f:  PUSH 0x3\n  0055ad91:  ADD EDI,EAX\n  0055ad93:  PUSH 0x5736c8\n  0055ad98:  PUSH EDI\n  0055ad99:  CALL 0x005540f0\n  0055ad9e:  ADD ESP,0x10\n  0055ada1:  LEA EAX,[EBP + 0xffffff60]\n  0055ada7:  PUSH 0x5736ac\n  0055adac:  PUSH EAX\n  0055adad:  CALL 0x005583f0\n  0055adb2:  LEA EAX,[EBP + 0xffffff60]\n  0055adb8:  PUSH EDI\n  0055adb9:  PUSH EAX\n  0055adba:  CALL 0x00558400\n  0055adbf:  LEA EAX,[EBP + 0xffffff60]\n  0055adc5:  PUSH 0x5736a8\n  0055adca:  PUSH EAX\n  0055adcb:  CALL 0x00558400\n  0055add0:  PUSH dword ptr [ESI + 0x60b53c]\n  0055add6:  LEA EAX,[EBP + 0xffffff60]\n  0055addc:  PUSH EAX\n  0055addd:  CALL 0x00558400\n  0055ade2:  PUSH 0x12010\n  0055ade7:  LEA EAX,[EBP + 0xffffff60]\n  0055aded:  PUSH 0x573680\n  0055adf2:  PUSH EAX\n  0055adf3:  CALL 0x0055d5f5\n  0055adf8:  ADD ESP,0x2c\n  0055adfb:  POP EDI\n  0055adfc:  JMP 0x0055ae24\n  0055adfe:  LEA EAX,[EBP + 0x8]\n  0055ae01:  LEA ESI,[ESI + 0x60b53c]\n  0055ae07:  PUSH 0x0\n  0055ae09:  PUSH EAX\n  0055ae0a:  PUSH dword ptr [ESI]\n  0055ae0c:  CALL 0x00555290\n  0055ae11:  POP ECX\n  0055ae12:  PUSH EAX\n  0055ae13:  PUSH dword ptr [ESI]\n  0055ae15:  PUSH -0xc\n  0055ae17:  CALL dword ptr [0x0056a120]\n  0055ae1d:  PUSH EAX\n  0055ae1e:  CALL dword ptr [0x0056a11c]\n  0055ae24:  POP ESI\n  0055ae25:  LEAVE\n  0055ae26:  RET", 
+  "callers": [
+    {
+      "address": "0x00555197", 
+      "name": "FUN_00555197"
+    }, 
+    {
+      "address": "0x00555172", 
+      "name": "__amsg_exit"
+    }, 
+    {
+      "address": "0x0055ac9b", 
+      "name": "FUN_0055ac9b"
+    }, 
+    {
+      "address": "0x0055beb5", 
+      "name": "FUN_0055beb5"
+    }
+  ]
+}

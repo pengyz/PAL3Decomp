@@ -1,0 +1,35 @@
+{
+  "address": "0x00532960", 
+  "size_bytes": 49, 
+  "calling_convention": "unknown", 
+  "signature": "undefined FUN_00532960(undefined4 param_1, undefined4 param_2, undefined4 param_3)", 
+  "callees": [], 
+  "global_refs": [
+    {
+      "address": "0x00000004", 
+      "type": null, 
+      "name": "DAT_00000004"
+    }, 
+    {
+      "address": "0x00000008", 
+      "type": null, 
+      "name": "DAT_00000008"
+    }, 
+    {
+      "address": "0x0000000c", 
+      "type": null, 
+      "name": "DAT_0000000c"
+    }
+  ], 
+  "has_custom_name": false, 
+  "decompiled_c": "\r\nvoid FUN_00532960(int param_1,int *param_2,int *param_3)\r\n\r\n{\r\n  *param_2 = param_1 / 10;\r\n  *param_3 = 0;\r\n  *param_3 = param_1 + *param_2 * -10;\r\n  return;\r\n}\r\n\r\n", 
+  "is_thunk": false, 
+  "name": "FUN_00532960", 
+  "assembly": "  00532960:  MOV ECX,dword ptr [ESP + 0x4]\n  00532964:  MOV EAX,0x66666667\n  00532969:  IMUL ECX\n  0053296b:  SAR EDX,0x2\n  0053296e:  MOV EAX,EDX\n  00532970:  SHR EAX,0x1f\n  00532973:  ADD EDX,EAX\n  00532975:  MOV EAX,dword ptr [ESP + 0x8]\n  00532979:  MOV dword ptr [EAX],EDX\n  0053297b:  MOV EDX,dword ptr [ESP + 0xc]\n  0053297f:  MOV dword ptr [EDX],0x0\n  00532985:  MOV EAX,dword ptr [EAX]\n  00532987:  LEA EAX,[EAX + EAX*0x4]\n  0053298a:  SHL EAX,0x1\n  0053298c:  SUB ECX,EAX\n  0053298e:  MOV dword ptr [EDX],ECX\n  00532990:  RET", 
+  "callers": [
+    {
+      "address": "0x00532710", 
+      "name": "FUN_00532710"
+    }
+  ]
+}

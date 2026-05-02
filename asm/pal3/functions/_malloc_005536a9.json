@@ -1,0 +1,119 @@
+{
+  "address": "0x005536a9", 
+  "size_bytes": 18, 
+  "calling_convention": "__cdecl", 
+  "signature": "void * _malloc(size_t _Size)", 
+  "callees": [
+    {
+      "address": "0x005536bb", 
+      "name": "__nh_malloc"
+    }
+  ], 
+  "global_refs": [
+    {
+      "address": "0x01895328", 
+      "type": null, 
+      "name": "DAT_01895328"
+    }, 
+    {
+      "address": "0x00000004", 
+      "type": null, 
+      "name": "DAT_00000004"
+    }
+  ], 
+  "has_custom_name": true, 
+  "decompiled_c": "\r\n/* Library Function - Single Match\r\n    _malloc\r\n   \r\n   Library: Visual Studio 2003 Release */\r\n\r\nvoid * __cdecl _malloc(size_t _Size)\r\n\r\n{\r\n  void *pvVar1;\r\n  \r\n  pvVar1 = __nh_malloc(_Size,DAT_01895328);\r\n  return pvVar1;\r\n}\r\n\r\n", 
+  "is_thunk": false, 
+  "name": "_malloc", 
+  "assembly": "  005536a9:  PUSH dword ptr [0x01895328]\n  005536af:  PUSH dword ptr [ESP + 0x8]\n  005536b3:  CALL 0x005536bb\n  005536b8:  POP ECX\n  005536b9:  POP ECX\n  005536ba:  RET", 
+  "callers": [
+    {
+      "address": "0x0055bca8", 
+      "name": "FUN_0055bca8"
+    }, 
+    {
+      "address": "0x004326a0", 
+      "name": "FUN_004326a0"
+    }, 
+    {
+      "address": "0x00557ead", 
+      "name": "FUN_00557ead"
+    }, 
+    {
+      "address": "0x0055a863", 
+      "name": "FUN_0055a863"
+    }, 
+    {
+      "address": "0x0055a91c", 
+      "name": "FUN_0055a91c"
+    }, 
+    {
+      "address": "0x0055ab69", 
+      "name": "FUN_0055ab69"
+    }, 
+    {
+      "address": "0x00403640", 
+      "name": "FUN_00403640"
+    }, 
+    {
+      "address": "0x00558375", 
+      "name": "FUN_00558375"
+    }, 
+    {
+      "address": "0x0055979c", 
+      "name": "FUN_0055979c"
+    }, 
+    {
+      "address": "0x0055a37e", 
+      "name": "FUN_0055a37e"
+    }, 
+    {
+      "address": "0x00553c80", 
+      "name": "FUN_00553c80"
+    }, 
+    {
+      "address": "0x00556892", 
+      "name": "FUN_00556892"
+    }, 
+    {
+      "address": "0x004318b0", 
+      "name": "FUN_004318b0"
+    }, 
+    {
+      "address": "0x004202a0", 
+      "name": "FUN_004202a0"
+    }, 
+    {
+      "address": "0x00433dc0", 
+      "name": "FUN_00433dc0"
+    }, 
+    {
+      "address": "0x00434760", 
+      "name": "FUN_00434760"
+    }, 
+    {
+      "address": "0x004344f0", 
+      "name": "FUN_004344f0"
+    }, 
+    {
+      "address": "0x004348e0", 
+      "name": "FUN_004348e0"
+    }, 
+    {
+      "address": "0x00433c50", 
+      "name": "FUN_00433c50"
+    }, 
+    {
+      "address": "0x0053f960", 
+      "name": "FUN_0053f960"
+    }, 
+    {
+      "address": "0x004339f0", 
+      "name": "FUN_004339f0"
+    }, 
+    {
+      "address": "0x004ce100", 
+      "name": "FUN_004ce100"
+    }
+  ]
+}

@@ -1,0 +1,109 @@
+{
+  "address": "0x00439030", 
+  "size_bytes": 209, 
+  "calling_convention": "unknown", 
+  "signature": "undefined FUN_00439030(void)", 
+  "callees": [
+    {
+      "address": "0x00445aa0", 
+      "name": "FUN_00445aa0"
+    }, 
+    {
+      "address": "0x00553627", 
+      "name": "FUN_00553627"
+    }
+  ], 
+  "global_refs": [
+    {
+      "address": "0x0055fa98", 
+      "type": null, 
+      "name": "LAB_0055fa98"
+    }, 
+    {
+      "address": "0xffdff000", 
+      "type": null, 
+      "name": "ExceptionList"
+    }, 
+    {
+      "address": "0x-0000010", 
+      "type": null, 
+      "name": "DAT_-0000010"
+    }, 
+    {
+      "address": "0x00408bd0", 
+      "type": null, 
+      "name": "FUN_00408bd0"
+    }, 
+    {
+      "address": "0x004391a0", 
+      "type": null, 
+      "name": "LAB_004391a0"
+    }, 
+    {
+      "address": "0x-0000004", 
+      "type": null, 
+      "name": "DAT_-0000004"
+    }, 
+    {
+      "address": "0x-000000c", 
+      "type": null, 
+      "name": "DAT_-000000c"
+    }, 
+    {
+      "address": "0x0056ac20", 
+      "type": null, 
+      "name": "PTR_FUN_0056ac20"
+    }
+  ], 
+  "has_custom_name": false, 
+  "decompiled_c": "\r\nundefined4 * __fastcall FUN_00439030(undefined4 *param_1)\r\n\r\n{\r\n  void *local_c;\r\n  undefined *puStack_8;\r\n  undefined4 local_4;\r\n  \r\n  local_4 = 0xffffffff;\r\n  puStack_8 = &LAB_0055fa98;\r\n  local_c = ExceptionList;\r\n  ExceptionList = &local_c;\r\n  FUN_00445aa0();\r\n  local_4 = 0;\r\n  FUN_00553627(param_1 + 0x12,0x20,5,&LAB_004391a0,FUN_00408bd0);\r\n  param_1[0x4a] = 0;\r\n  param_1[0x4b] = 0;\r\n  param_1[0x4c] = 0;\r\n  param_1[0x47] = 0x3f800000;\r\n  param_1[0x46] = 0x3f800000;\r\n  param_1[0x45] = 0x3f800000;\r\n  *param_1 = &PTR_FUN_0056ac20;\r\n  param_1[0x49] = 0;\r\n  param_1[0x11] = 0;\r\n  param_1[0x3b] = 0;\r\n  param_1[0x3f] = 0;\r\n  param_1[0x3e] = 0;\r\n  param_1[0x41] = 0;\r\n  param_1[0x40] = 0;\r\n  param_1[0x44] = 0;\r\n  param_1[0x43] = 0;\r\n  param_1[0x42] = 0;\r\n  *(undefined *)(param_1 + 0x3c) = 0;\r\n  param_1[0x3d] = 0x62;\r\n  param_1[0x48] = 0;\r\n  ExceptionList = local_c;\r\n  return param_1;\r\n}\r\n\r\n", 
+  "is_thunk": false, 
+  "name": "FUN_00439030", 
+  "assembly": "  00439030:  PUSH -0x1\n  00439032:  PUSH 0x55fa98\n  00439037:  MOV EAX,FS:[0x0]\n  0043903d:  PUSH EAX\n  0043903e:  MOV dword ptr FS:[0x0],ESP\n  00439045:  PUSH ECX\n  00439046:  PUSH EBX\n  00439047:  PUSH ESI\n  00439048:  MOV ESI,ECX\n  0043904a:  MOV dword ptr [ESP + 0x8],ESI\n  0043904e:  CALL 0x00445aa0\n  00439053:  PUSH 0x408bd0\n  00439058:  PUSH 0x4391a0\n  0043905d:  PUSH 0x5\n  0043905f:  LEA EAX,[ESI + 0x48]\n  00439062:  XOR EBX,EBX\n  00439064:  PUSH 0x20\n  00439066:  PUSH EAX\n  00439067:  MOV dword ptr [ESP + 0x28],EBX\n  0043906b:  CALL 0x00553627\n  00439070:  MOV ECX,dword ptr [ESP + 0xc]\n  00439074:  MOV EAX,0x3f800000\n  00439079:  MOV dword ptr [ESI + 0x128],EBX\n  0043907f:  MOV dword ptr [ESI + 0x12c],EBX\n  00439085:  MOV dword ptr [ESI + 0x130],EBX\n  0043908b:  MOV dword ptr [ESI + 0x11c],EAX\n  00439091:  MOV dword ptr [ESI + 0x118],EAX\n  00439097:  MOV dword ptr [ESI + 0x114],EAX\n  0043909d:  MOV dword ptr [ESI],0x56ac20\n  004390a3:  MOV dword ptr [ESI + 0x124],EBX\n  004390a9:  MOV dword ptr [ESI + 0x44],EBX\n  004390ac:  MOV dword ptr [ESI + 0xec],EBX\n  004390b2:  MOV dword ptr [ESI + 0xfc],EBX\n  004390b8:  MOV dword ptr [ESI + 0xf8],EBX\n  004390be:  MOV dword ptr [ESI + 0x104],EBX\n  004390c4:  MOV dword ptr [ESI + 0x100],EBX\n  004390ca:  MOV dword ptr [ESI + 0x110],EBX\n  004390d0:  MOV dword ptr [ESI + 0x10c],EBX\n  004390d6:  MOV dword ptr [ESI + 0x108],EBX\n  004390dc:  MOV byte ptr [ESI + 0xf0],BL\n  004390e2:  MOV dword ptr [ESI + 0xf4],0x62\n  004390ec:  MOV dword ptr [ESI + 0x120],EBX\n  004390f2:  MOV EAX,ESI\n  004390f4:  POP ESI\n  004390f5:  POP EBX\n  004390f6:  MOV dword ptr FS:[0x0],ECX\n  004390fd:  ADD ESP,0x10\n  00439100:  RET", 
+  "callers": [
+    {
+      "address": "0x0047e5c0", 
+      "name": "FUN_0047e5c0"
+    }, 
+    {
+      "address": "0x004867f0", 
+      "name": "FUN_004867f0"
+    }, 
+    {
+      "address": "0x004909f0", 
+      "name": "FUN_004909f0"
+    }, 
+    {
+      "address": "0x00498820", 
+      "name": "FUN_00498820"
+    }, 
+    {
+      "address": "0x004a6f10", 
+      "name": "FUN_004a6f10"
+    }, 
+    {
+      "address": "0x0045a7b0", 
+      "name": "FUN_0045a7b0"
+    }, 
+    {
+      "address": "0x0046d140", 
+      "name": "FUN_0046d140"
+    }, 
+    {
+      "address": "0x00470a60", 
+      "name": "FUN_00470a60"
+    }, 
+    {
+      "address": "0x00479300", 
+      "name": "FUN_00479300"
+    }, 
+    {
+      "address": "0x00525120", 
+      "name": "FUN_00525120"
+    }, 
+    {
+      "address": "0x005282e0", 
+      "name": "FUN_005282e0"
+    }
+  ]
+}

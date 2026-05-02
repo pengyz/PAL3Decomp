@@ -1,0 +1,45 @@
+{
+  "address": "0x0054273b", 
+  "size_bytes": 93, 
+  "calling_convention": "unknown", 
+  "signature": "undefined FUN_0054273b(undefined4 param_1, undefined4 param_2, undefined4 param_3, undefined4 param_4, undefined4 param_5, undefined4 param_6)", 
+  "callees": [], 
+  "global_refs": [
+    {
+      "address": "0x00000008", 
+      "type": null, 
+      "name": "DAT_00000008"
+    }, 
+    {
+      "address": "0x0000000c", 
+      "type": null, 
+      "name": "DAT_0000000c"
+    }, 
+    {
+      "address": "0x00000004", 
+      "type": null, 
+      "name": "DAT_00000004"
+    }, 
+    {
+      "address": "0x00000010", 
+      "type": null, 
+      "name": "DAT_00000010"
+    }, 
+    {
+      "address": "0x00000014", 
+      "type": null, 
+      "name": "DAT_00000014"
+    }, 
+    {
+      "address": "0x00000018", 
+      "type": null, 
+      "name": "DAT_00000018"
+    }
+  ], 
+  "has_custom_name": false, 
+  "decompiled_c": "\r\nvoid FUN_0054273b(float *param_1,float *param_2,float *param_3,float *param_4,float param_5,\r\n                 float param_6)\r\n\r\n{\r\n  *param_1 = (*param_4 - *param_2) * param_6 + (*param_3 - *param_2) * param_5 + *param_2;\r\n  param_1[1] = (param_4[1] - param_2[1]) * param_6 + (param_3[1] - param_2[1]) * param_5 +\r\n               param_2[1];\r\n  param_1[2] = (param_4[2] - param_2[2]) * param_6 + (param_3[2] - param_2[2]) * param_5 +\r\n               param_2[2];\r\n  return;\r\n}\r\n\r\n", 
+  "is_thunk": false, 
+  "name": "FUN_0054273b", 
+  "assembly": "  0054273b:  PUSH EBP\n  0054273c:  MOV EBP,ESP\n  0054273e:  MOV ECX,dword ptr [EBP + 0xc]\n  00542741:  MOV EDX,dword ptr [EBP + 0x10]\n  00542744:  FLD dword ptr [EDX]\n  00542746:  MOV EAX,dword ptr [EBP + 0x8]\n  00542749:  FSUB dword ptr [ECX]\n  0054274b:  PUSH ESI\n  0054274c:  MOV ESI,dword ptr [EBP + 0x14]\n  0054274f:  FMUL dword ptr [EBP + 0x18]\n  00542752:  FLD dword ptr [ESI]\n  00542754:  FSUB dword ptr [ECX]\n  00542756:  FMUL dword ptr [EBP + 0x1c]\n  00542759:  FADDP\n  0054275b:  FADD dword ptr [ECX]\n  0054275d:  FSTP dword ptr [EAX]\n  0054275f:  FLD dword ptr [EDX + 0x4]\n  00542762:  FSUB dword ptr [ECX + 0x4]\n  00542765:  FMUL dword ptr [EBP + 0x18]\n  00542768:  FLD dword ptr [ESI + 0x4]\n  0054276b:  FSUB dword ptr [ECX + 0x4]\n  0054276e:  FMUL dword ptr [EBP + 0x1c]\n  00542771:  FADDP\n  00542773:  FADD dword ptr [ECX + 0x4]\n  00542776:  FSTP dword ptr [EAX + 0x4]\n  00542779:  FLD dword ptr [EDX + 0x8]\n  0054277c:  FSUB dword ptr [ECX + 0x8]\n  0054277f:  FMUL dword ptr [EBP + 0x18]\n  00542782:  FLD dword ptr [ESI + 0x8]\n  00542785:  POP ESI\n  00542786:  FSUB dword ptr [ECX + 0x8]\n  00542789:  FMUL dword ptr [EBP + 0x1c]\n  0054278c:  FADDP\n  0054278e:  FADD dword ptr [ECX + 0x8]\n  00542791:  FSTP dword ptr [EAX + 0x8]\n  00542794:  POP EBP\n  00542795:  RET 0x18", 
+  "callers": []
+}

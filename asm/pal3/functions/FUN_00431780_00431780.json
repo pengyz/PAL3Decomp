@@ -1,0 +1,38 @@
+{
+  "address": "0x00431780", 
+  "size_bytes": 80, 
+  "calling_convention": "unknown", 
+  "signature": "undefined FUN_00431780(undefined4 param_1)", 
+  "callees": [], 
+  "global_refs": [
+    {
+      "address": "0x00000004", 
+      "type": null, 
+      "name": "DAT_00000004"
+    }, 
+    {
+      "address": "0x0056a634", 
+      "type": null, 
+      "name": "DAT_0056a634"
+    }
+  ], 
+  "has_custom_name": false, 
+  "decompiled_c": "\r\nuint __thiscall FUN_00431780(int param_1_00,int param_1)\r\n\r\n{\r\n  uint uVar1;\r\n  uint uVar2;\r\n  byte *pbVar3;\r\n  uint uVar4;\r\n  uint uVar5;\r\n  byte *pbVar6;\r\n  bool bVar7;\r\n  bool bVar8;\r\n  \r\n  uVar1 = *(uint *)(param_1 + 8);\r\n  pbVar3 = *(byte **)(param_1 + 4);\r\n  if (pbVar3 == (byte *)0x0) {\r\n    pbVar3 = &DAT_0056a634;\r\n  }\r\n  uVar2 = *(uint *)(param_1_00 + 8);\r\n  uVar5 = uVar2;\r\n  if (uVar1 <= uVar2) {\r\n    uVar5 = uVar1;\r\n  }\r\n  bVar7 = false;\r\n  uVar4 = 0;\r\n  bVar8 = true;\r\n  pbVar6 = *(byte **)(param_1_00 + 4);\r\n  do {\r\n    if (uVar5 == 0) break;\r\n    uVar5 = uVar5 - 1;\r\n    bVar7 = *pbVar6 < *pbVar3;\r\n    bVar8 = *pbVar6 == *pbVar3;\r\n    pbVar6 = pbVar6 + 1;\r\n    pbVar3 = pbVar3 + 1;\r\n  } while (bVar8);\r\n  if (!bVar8) {\r\n    uVar4 = (1 - (uint)bVar7) - (uint)(bVar7 != 0);\r\n  }\r\n  if (uVar4 == 0) {\r\n    if (uVar2 < uVar1) {\r\n      return 0xffffffff;\r\n    }\r\n    uVar4 = (uint)(uVar2 != uVar1);\r\n  }\r\n  return uVar4;\r\n}\r\n\r\n", 
+  "is_thunk": false, 
+  "name": "FUN_00431780", 
+  "assembly": "  00431780:  MOV EAX,dword ptr [ESP + 0x4]\n  00431784:  PUSH EBX\n  00431785:  PUSH ESI\n  00431786:  MOV ESI,ECX\n  00431788:  MOV EBX,dword ptr [EAX + 0x8]\n  0043178b:  MOV EAX,dword ptr [EAX + 0x4]\n  0043178e:  TEST EAX,EAX\n  00431790:  JNZ 0x00431797\n  00431792:  MOV EAX,0x56a634\n  00431797:  MOV EDX,dword ptr [ESI + 0x8]\n  0043179a:  CMP EDX,EBX\n  0043179c:  MOV ECX,EDX\n  0043179e:  JC 0x004317a2\n  004317a0:  MOV ECX,EBX\n  004317a2:  MOV ESI,dword ptr [ESI + 0x4]\n  004317a5:  PUSH EDI\n  004317a6:  MOV EDI,EAX\n  004317a8:  XOR EAX,EAX\n  004317aa:  CMPSB.REPE ES:EDI,ESI\n  004317ac:  POP EDI\n  004317ad:  JZ 0x004317b4\n  004317af:  SBB EAX,EAX\n  004317b1:  SBB EAX,-0x1\n  004317b4:  TEST EAX,EAX\n  004317b6:  JNZ 0x004317cb\n  004317b8:  CMP EDX,EBX\n  004317ba:  JNC 0x004317c4\n  004317bc:  POP ESI\n  004317bd:  OR EAX,0xffffffff\n  004317c0:  POP EBX\n  004317c1:  RET 0x4\n  004317c4:  XOR EAX,EAX\n  004317c6:  CMP EDX,EBX\n  004317c8:  SETNZ AL\n  004317cb:  POP ESI\n  004317cc:  POP EBX\n  004317cd:  RET 0x4", 
+  "callers": [
+    {
+      "address": "0x00430570", 
+      "name": "FUN_00430570"
+    }, 
+    {
+      "address": "0x004309d0", 
+      "name": "FUN_004309d0"
+    }, 
+    {
+      "address": "0x00431100", 
+      "name": "FUN_00431100"
+    }
+  ]
+}

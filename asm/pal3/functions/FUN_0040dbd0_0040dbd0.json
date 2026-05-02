@@ -1,0 +1,39 @@
+{
+  "address": "0x0040dbd0", 
+  "size_bytes": 222, 
+  "calling_convention": "unknown", 
+  "signature": "undefined FUN_0040dbd0(undefined4 param_1, undefined4 param_2)", 
+  "callees": [], 
+  "global_refs": [
+    {
+      "address": "0x0040dcb0", 
+      "type": null, 
+      "name": "switchdataD_0040dcb0"
+    }, 
+    {
+      "address": "0x00000004", 
+      "type": null, 
+      "name": "DAT_00000004"
+    }, 
+    {
+      "address": "0x00000008", 
+      "type": null, 
+      "name": "DAT_00000008"
+    }
+  ], 
+  "has_custom_name": false, 
+  "decompiled_c": "\r\nuint __thiscall FUN_0040dbd0(uint *param_1_00,uint *param_1,uint *param_2)\r\n\r\n{\r\n  switch(*param_1_00) {\r\n  case 0:\r\n    return CONCAT31((int3)(param_2[2] >> 8),\r\n                    *(int *)(param_1[2] + 0x260) < *(int *)(param_2[2] + 0x260));\r\n  case 1:\r\n    return CONCAT31((int3)(param_2[2] >> 8),\r\n                    *(int *)(param_1[2] + 0x270) < *(int *)(param_2[2] + 0x270));\r\n  case 2:\r\n    return (uint)((int)param_1[1] < (int)param_2[1]);\r\n  case 3:\r\n    return (uint)(*param_1 < *param_2);\r\n  case 4:\r\n    return (uint)(*(byte *)(param_1[2] + 0x264) < *(byte *)(param_2[2] + 0x264));\r\n  case 5:\r\n    return (uint)(*(byte *)(param_1[2] + 0x265) < *(byte *)(param_2[2] + 0x265));\r\n  default:\r\n    return *param_1_00 & 0xffffff00;\r\n  }\r\n}\r\n\r\n", 
+  "is_thunk": false, 
+  "name": "FUN_0040dbd0", 
+  "assembly": "  0040dbd0:  MOV EAX,dword ptr [ECX]\n  0040dbd2:  PUSH ESI\n  0040dbd3:  CMP EAX,0x5\n  0040dbd6:  JA 0x0040dca8\n  0040dbdc:  JMP dword ptr [EAX*0x4 + 0x40dcb0]\n  0040dbe3:  MOV EAX,dword ptr [ESP + 0x8]\n  0040dbe7:  MOV EDX,dword ptr [ESP + 0xc]\n  0040dbeb:  MOV ECX,dword ptr [EAX + 0x8]\n  0040dbee:  MOV EAX,dword ptr [EDX + 0x8]\n  0040dbf1:  XOR EDX,EDX\n  0040dbf3:  MOV ECX,dword ptr [ECX + 0x260]\n  0040dbf9:  MOV ESI,dword ptr [EAX + 0x260]\n  0040dbff:  CMP ECX,ESI\n  0040dc01:  POP ESI\n  0040dc02:  SETL DL\n  0040dc05:  MOV AL,DL\n  0040dc07:  RET 0x8\n  0040dc0a:  MOV EAX,dword ptr [ESP + 0x8]\n  0040dc0e:  MOV EDX,dword ptr [ESP + 0xc]\n  0040dc12:  MOV ECX,dword ptr [EAX + 0x8]\n  0040dc15:  MOV EAX,dword ptr [EDX + 0x8]\n  0040dc18:  XOR EDX,EDX\n  0040dc1a:  MOV ECX,dword ptr [ECX + 0x270]\n  0040dc20:  MOV ESI,dword ptr [EAX + 0x270]\n  0040dc26:  CMP ECX,ESI\n  0040dc28:  POP ESI\n  0040dc29:  SETL DL\n  0040dc2c:  MOV AL,DL\n  0040dc2e:  RET 0x8\n  0040dc31:  MOV EAX,dword ptr [ESP + 0x8]\n  0040dc35:  MOV EDX,dword ptr [ESP + 0xc]\n  0040dc39:  MOV ECX,dword ptr [EAX + 0x4]\n  0040dc3c:  MOV ESI,dword ptr [EDX + 0x4]\n  0040dc3f:  XOR EAX,EAX\n  0040dc41:  CMP ECX,ESI\n  0040dc43:  SETL AL\n  0040dc46:  POP ESI\n  0040dc47:  RET 0x8\n  0040dc4a:  MOV EAX,dword ptr [ESP + 0x8]\n  0040dc4e:  MOV EDX,dword ptr [ESP + 0xc]\n  0040dc52:  MOV ECX,dword ptr [EAX]\n  0040dc54:  MOV ESI,dword ptr [EDX]\n  0040dc56:  CMP ECX,ESI\n  0040dc58:  POP ESI\n  0040dc59:  SBB EAX,EAX\n  0040dc5b:  NEG EAX\n  0040dc5d:  RET 0x8\n  0040dc60:  MOV EAX,dword ptr [ESP + 0x8]\n  0040dc64:  MOV EDX,dword ptr [ESP + 0xc]\n  0040dc68:  POP ESI\n  0040dc69:  MOV ECX,dword ptr [EAX + 0x8]\n  0040dc6c:  MOV EAX,dword ptr [EDX + 0x8]\n  0040dc6f:  MOV CL,byte ptr [ECX + 0x264]\n  0040dc75:  MOV DL,byte ptr [EAX + 0x264]\n  0040dc7b:  CMP CL,DL\n  0040dc7d:  SBB EAX,EAX\n  0040dc7f:  NEG EAX\n  0040dc81:  RET 0x8\n  0040dc84:  MOV EDX,dword ptr [ESP + 0x8]\n  0040dc88:  MOV ECX,dword ptr [ESP + 0xc]\n  0040dc8c:  POP ESI\n  0040dc8d:  MOV EAX,dword ptr [EDX + 0x8]\n  0040dc90:  MOV EDX,dword ptr [ECX + 0x8]\n  0040dc93:  MOV AL,byte ptr [EAX + 0x265]\n  0040dc99:  MOV CL,byte ptr [EDX + 0x265]\n  0040dc9f:  CMP AL,CL\n  0040dca1:  SBB EAX,EAX\n  0040dca3:  NEG EAX\n  0040dca5:  RET 0x8\n  0040dca8:  XOR AL,AL\n  0040dcaa:  POP ESI\n  0040dcab:  RET 0x8", 
+  "callers": [
+    {
+      "address": "0x0040d6b0", 
+      "name": "FUN_0040d6b0"
+    }, 
+    {
+      "address": "0x00411290", 
+      "name": "FUN_00411290"
+    }
+  ]
+}

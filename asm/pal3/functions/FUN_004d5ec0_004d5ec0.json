@@ -1,0 +1,38 @@
+{
+  "address": "0x004d5ec0",
+  "size_bytes": 83,
+  "calling_convention": "unknown",
+  "signature": "undefined FUN_004d5ec0(undefined4 param_1)",
+  "callees": [],
+  "global_refs": [
+    {
+      "address": "0x00000004",
+      "type": null,
+      "name": "DAT_00000004"
+    }
+  ],
+  "has_custom_name": false,
+  "decompiled_c": "\r\nuint __thiscall FUN_004d5ec0(int param_1_00,undefined4 *param_1)\r\n\r\n{\r\n  undefined4 *puVar1;\r\n  uint uVar2;\r\n  char *pcVar3;\r\n  int iVar4;\r\n  undefined4 *puVar5;\r\n  \r\n  uVar2 = 0;\r\n  pcVar3 = (char *)(param_1_00 + 0x29);\r\n  do {\r\n    if (*pcVar3 == '\\0') {\r\n      puVar1 = (undefined4 *)(param_1_00 + uVar2 * 0x2c);\r\n      puVar5 = puVar1;\r\n      for (iVar4 = 0xb; iVar4 != 0; iVar4 = iVar4 + -1) {\r\n        *puVar5 = *param_1;\r\n        param_1 = param_1 + 1;\r\n        puVar5 = puVar5 + 1;\r\n      }\r\n      *(undefined *)((int)puVar1 + 0x29) = 1;\r\n      if (*(int *)(param_1_00 + 0x5808) <= (int)uVar2) {\r\n        uVar2 = uVar2 + 1;\r\n        *(uint *)(param_1_00 + 0x5808) = uVar2;\r\n      }\r\n      return CONCAT31((int3)(uVar2 >> 8),1);\r\n    }\r\n    uVar2 = uVar2 + 1;\r\n    pcVar3 = pcVar3 + 0x2c;\r\n  } while ((int)uVar2 < 0x200);\r\n  return uVar2 & 0xffffff00;\r\n}\r\n\r\n",
+  "is_thunk": false,
+  "name": "C2DSpark_CreateSingle",
+  "assembly": "  004d5ec0:  PUSH EBX\n  004d5ec1:  MOV EBX,ECX\n  004d5ec3:  XOR EAX,EAX\n  004d5ec5:  LEA ECX,[EBX + 0x29]\n  004d5ec8:  CMP byte ptr [ECX],0x0\n  004d5ecb:  JZ 0x004d5ede\n  004d5ecd:  INC EAX\n  004d5ece:  ADD ECX,0x2c\n  004d5ed1:  CMP EAX,0x200\n  004d5ed6:  JL 0x004d5ec8\n  004d5ed8:  XOR AL,AL\n  004d5eda:  POP EBX\n  004d5edb:  RET 0x4\n  004d5ede:  LEA ECX,[EAX + EAX*0x4]\n  004d5ee1:  PUSH ESI\n  004d5ee2:  MOV ESI,dword ptr [ESP + 0xc]\n  004d5ee6:  PUSH EDI\n  004d5ee7:  LEA EDX,[EAX + ECX*0x2]\n  004d5eea:  MOV ECX,0xb\n  004d5eef:  LEA EDX,[EBX + EDX*0x4]\n  004d5ef2:  MOV EDI,EDX\n  004d5ef4:  MOVSD.REP ES:EDI,ESI\n  004d5ef6:  MOV byte ptr [EDX + 0x29],0x1\n  004d5efa:  MOV ECX,dword ptr [EBX + 0x5808]\n  004d5f00:  POP EDI\n  004d5f01:  CMP EAX,ECX\n  004d5f03:  POP ESI\n  004d5f04:  JL 0x004d5f0d\n  004d5f06:  INC EAX\n  004d5f07:  MOV dword ptr [EBX + 0x5808],EAX\n  004d5f0d:  MOV AL,0x1\n  004d5f0f:  POP EBX\n  004d5f10:  RET 0x4",
+  "callers": [
+    {
+      "address": "0x004d6050",
+      "name": "FUN_004d6050"
+    },
+    {
+      "address": "0x004d5f40",
+      "name": "FUN_004d5f40"
+    },
+    {
+      "address": "0x004d6380",
+      "name": "FUN_004d6380"
+    }
+  ],
+  "pal3patch_info": {
+    "name": "C2DSpark_CreateSingle",
+    "type": "method",
+    "source": "pal3.h"
+  }
+}

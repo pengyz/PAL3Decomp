@@ -1,0 +1,23 @@
+{
+  "address": "0x00442000", 
+  "size_bytes": 95, 
+  "calling_convention": "unknown", 
+  "signature": "undefined FUN_00442000(void)", 
+  "callees": [], 
+  "global_refs": [], 
+  "has_custom_name": false, 
+  "decompiled_c": "\r\nint __fastcall FUN_00442000(int param_1)\r\n\r\n{\r\n  int iVar1;\r\n  \r\n  iVar1 = *(int *)(param_1 + 0xa8) - *(int *)(param_1 + 0xa4);\r\n  if (iVar1 < 1) {\r\n    return *(int *)(param_1 + 0x9c) + *(int *)(param_1 + 0x14);\r\n  }\r\n  return ((((*(int *)(param_1 + 0x154) * -2 - *(int *)(param_1 + 0x15c) / 2) +\r\n           *(int *)(param_1 + 0x144)) - *(int *)(param_1 + 0x13c)) * *(int *)(param_1 + 0xac)) /\r\n         iVar1 + *(int *)(param_1 + 0x13c) + *(int *)(param_1 + 0x154);\r\n}\r\n\r\n", 
+  "is_thunk": false, 
+  "name": "FUN_00442000", 
+  "assembly": "  00442000:  MOV EDX,dword ptr [ECX + 0xa4]\n  00442006:  PUSH EBX\n  00442007:  MOV EBX,dword ptr [ECX + 0xa8]\n  0044200d:  SUB EBX,EDX\n  0044200f:  TEST EBX,EBX\n  00442011:  JG 0x00442020\n  00442013:  MOV EAX,dword ptr [ECX + 0x9c]\n  00442019:  MOV EDX,dword ptr [ECX + 0x14]\n  0044201c:  ADD EAX,EDX\n  0044201e:  POP EBX\n  0044201f:  RET\n  00442020:  MOV EAX,dword ptr [ECX + 0x15c]\n  00442026:  PUSH ESI\n  00442027:  MOV ESI,dword ptr [ECX + 0x154]\n  0044202d:  PUSH EDI\n  0044202e:  CDQ\n  0044202f:  SUB EAX,EDX\n  00442031:  MOV EDI,dword ptr [ECX + 0x13c]\n  00442037:  MOV EDX,EAX\n  00442039:  MOV EAX,ESI\n  0044203b:  NEG EAX\n  0044203d:  SAR EDX,0x1\n  0044203f:  SHL EAX,0x1\n  00442041:  SUB EAX,EDX\n  00442043:  MOV EDX,dword ptr [ECX + 0x144]\n  00442049:  ADD EAX,EDX\n  0044204b:  SUB EAX,EDI\n  0044204d:  IMUL EAX,dword ptr [ECX + 0xac]\n  00442054:  CDQ\n  00442055:  IDIV EBX\n  00442057:  ADD EAX,EDI\n  00442059:  POP EDI\n  0044205a:  ADD EAX,ESI\n  0044205c:  POP ESI\n  0044205d:  POP EBX\n  0044205e:  RET", 
+  "callers": [
+    {
+      "address": "0x00441240", 
+      "name": "FUN_00441240"
+    }, 
+    {
+      "address": "0x00442060", 
+      "name": "FUN_00442060"
+    }
+  ]
+}

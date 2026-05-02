@@ -1,0 +1,19 @@
+{
+  "address": "0x004b6d20", 
+  "size_bytes": 13, 
+  "calling_convention": "unknown", 
+  "signature": "undefined FUN_004b6d20(void)", 
+  "callees": [], 
+  "global_refs": [], 
+  "has_custom_name": false, 
+  "decompiled_c": "\r\nvoid __fastcall FUN_004b6d20(undefined *param_1)\r\n\r\n{\r\n  *(undefined4 *)(param_1 + 4) = 0;\r\n  *param_1 = 0;\r\n  return;\r\n}\r\n\r\n", 
+  "is_thunk": false, 
+  "name": "FUN_004b6d20", 
+  "assembly": "  004b6d20:  MOV EAX,ECX\n  004b6d22:  MOV dword ptr [EAX + 0x4],0x0\n  004b6d29:  MOV byte ptr [EAX],0x0\n  004b6d2c:  RET", 
+  "callers": [
+    {
+      "address": "0x004b6d30", 
+      "name": "FUN_004b6d30"
+    }
+  ]
+}

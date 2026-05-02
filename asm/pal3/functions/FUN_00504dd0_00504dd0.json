@@ -1,0 +1,28 @@
+{
+  "address": "0x00504dd0", 
+  "size_bytes": 74, 
+  "calling_convention": "unknown", 
+  "signature": "undefined FUN_00504dd0(void)", 
+  "callees": [
+    {
+      "address": "0x00504e30", 
+      "name": "FUN_00504e30"
+    }, 
+    {
+      "address": "0x00504e60", 
+      "name": "FUN_00504e60"
+    }
+  ], 
+  "global_refs": [], 
+  "has_custom_name": false, 
+  "decompiled_c": "\r\nint __fastcall FUN_00504dd0(int param_1)\r\n\r\n{\r\n  undefined4 *puVar1;\r\n  int iVar2;\r\n  \r\n  iVar2 = 2000;\r\n  puVar1 = (undefined4 *)(param_1 + 0x28);\r\n  do {\r\n    puVar1[-2] = 0;\r\n    puVar1[-1] = 0;\r\n    *puVar1 = 0;\r\n    puVar1[1] = 0;\r\n    puVar1[2] = 0;\r\n    puVar1[3] = 0;\r\n    puVar1[4] = 0;\r\n    puVar1[5] = 0;\r\n    puVar1[6] = 0;\r\n    puVar1[7] = 0;\r\n    puVar1[8] = 0;\r\n    puVar1[9] = 0;\r\n    puVar1 = puVar1 + 0x33;\r\n    iVar2 = iVar2 + -1;\r\n  } while (iVar2 != 0);\r\n  FUN_00504e30();\r\n  FUN_00504e60();\r\n  return param_1;\r\n}\r\n\r\n", 
+  "is_thunk": false, 
+  "name": "FUN_00504dd0", 
+  "assembly": "  00504dd0:  PUSH ESI\n  00504dd1:  MOV ESI,ECX\n  00504dd3:  MOV EDX,0x7d0\n  00504dd8:  XOR ECX,ECX\n  00504dda:  LEA EAX,[ESI + 0x28]\n  00504ddd:  MOV dword ptr [EAX + -0x8],ECX\n  00504de0:  MOV dword ptr [EAX + -0x4],ECX\n  00504de3:  MOV dword ptr [EAX],ECX\n  00504de5:  MOV dword ptr [EAX + 0x4],ECX\n  00504de8:  MOV dword ptr [EAX + 0x8],ECX\n  00504deb:  MOV dword ptr [EAX + 0xc],ECX\n  00504dee:  MOV dword ptr [EAX + 0x10],ECX\n  00504df1:  MOV dword ptr [EAX + 0x14],ECX\n  00504df4:  MOV dword ptr [EAX + 0x18],ECX\n  00504df7:  MOV dword ptr [EAX + 0x1c],ECX\n  00504dfa:  MOV dword ptr [EAX + 0x20],ECX\n  00504dfd:  MOV dword ptr [EAX + 0x24],ECX\n  00504e00:  ADD EAX,0xcc\n  00504e05:  DEC EDX\n  00504e06:  JNZ 0x00504ddd\n  00504e08:  MOV ECX,ESI\n  00504e0a:  CALL 0x00504e30\n  00504e0f:  MOV ECX,ESI\n  00504e11:  CALL 0x00504e60\n  00504e16:  MOV EAX,ESI\n  00504e18:  POP ESI\n  00504e19:  RET", 
+  "callers": [
+    {
+      "address": "0x005052e0", 
+      "name": "FUN_005052e0"
+    }
+  ]
+}

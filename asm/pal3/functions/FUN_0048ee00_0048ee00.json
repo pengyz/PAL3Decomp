@@ -1,0 +1,25 @@
+{
+  "address": "0x0048ee00", 
+  "size_bytes": 47, 
+  "calling_convention": "unknown", 
+  "signature": "undefined FUN_0048ee00(undefined4 param_1)", 
+  "callees": [], 
+  "global_refs": [
+    {
+      "address": "0x00000004", 
+      "type": null, 
+      "name": "DAT_00000004"
+    }
+  ], 
+  "has_custom_name": false, 
+  "decompiled_c": "\r\nint __thiscall FUN_0048ee00(int param_1_00,int *param_1)\r\n\r\n{\r\n  int iVar1;\r\n  \r\n  *param_1 = *param_1 + 1;\r\n  while ((iVar1 = *param_1, *(char *)(iVar1 + 0x36d + param_1_00) == '\\0' || (4 < iVar1))) {\r\n    *param_1 = iVar1 + 1;\r\n    if (4 < iVar1 + 1) {\r\n      *param_1 = 0;\r\n    }\r\n  }\r\n  return *param_1;\r\n}\r\n\r\n", 
+  "is_thunk": false, 
+  "name": "FUN_0048ee00", 
+  "assembly": "  0048ee00:  MOV EDX,dword ptr [ESP + 0x4]\n  0048ee04:  PUSH EBX\n  0048ee05:  INC dword ptr [EDX]\n  0048ee07:  MOV EAX,dword ptr [EDX]\n  0048ee09:  MOV BL,byte ptr [EAX + ECX*0x1 + 0x36d]\n  0048ee10:  TEST BL,BL\n  0048ee12:  JZ 0x0048ee19\n  0048ee14:  CMP EAX,0x4\n  0048ee17:  JLE 0x0048ee29\n  0048ee19:  INC EAX\n  0048ee1a:  CMP EAX,0x4\n  0048ee1d:  MOV dword ptr [EDX],EAX\n  0048ee1f:  JLE 0x0048ee07\n  0048ee21:  MOV dword ptr [EDX],0x0\n  0048ee27:  JMP 0x0048ee07\n  0048ee29:  MOV EAX,dword ptr [EDX]\n  0048ee2b:  POP EBX\n  0048ee2c:  RET 0x4", 
+  "callers": [
+    {
+      "address": "0x0048ee60", 
+      "name": "FUN_0048ee60"
+    }
+  ]
+}

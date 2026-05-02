@@ -1,0 +1,76 @@
+{
+  "address": "0x004e0690", 
+  "size_bytes": 166, 
+  "calling_convention": "unknown", 
+  "signature": "undefined FUN_004e0690(void)", 
+  "callees": [
+    {
+      "address": "0x00511690", 
+      "name": "FUN_00511690"
+    }, 
+    {
+      "address": "0x00511ae0", 
+      "name": "FUN_00511ae0"
+    }, 
+    {
+      "address": "0x005159a0", 
+      "name": "FUN_005159a0"
+    }, 
+    {
+      "address": "0x00504240", 
+      "name": "FUN_00504240"
+    }, 
+    {
+      "address": "0x00553082", 
+      "name": "FUN_00553082"
+    }
+  ], 
+  "global_refs": [
+    {
+      "address": "0x017a9930", 
+      "type": null, 
+      "name": "DAT_017a9930"
+    }, 
+    {
+      "address": "0x005d8864", 
+      "type": null, 
+      "name": "DAT_005d8864"
+    }, 
+    {
+      "address": "0x017a9932", 
+      "type": null, 
+      "name": "DAT_017a9932"
+    }, 
+    {
+      "address": "0x017a9931", 
+      "type": null, 
+      "name": "DAT_017a9931"
+    }, 
+    {
+      "address": "0x017a9933", 
+      "type": null, 
+      "name": "DAT_017a9933"
+    }, 
+    {
+      "address": "0x-0000080", 
+      "type": null, 
+      "name": "DAT_-0000080"
+    }, 
+    {
+      "address": "0x005d8848", 
+      "type": null, 
+      "name": "DAT_005d8848"
+    }
+  ], 
+  "has_custom_name": false, 
+  "decompiled_c": "\r\nvoid FUN_004e0690(void)\r\n\r\n{\r\n  undefined4 uVar1;\r\n  undefined local_80 [128];\r\n  \r\n  if (DAT_017a9930 != '\\0') {\r\n    FUN_00511690();\r\n    FUN_00511ae0();\r\n    FUN_005159a0(&DAT_005d8864,0,0x40);\r\n    DAT_017a9930 = '\\0';\r\n  }\r\n  if (DAT_017a9932 != '\\0') {\r\n    DAT_017a9932 = '\\0';\r\n  }\r\n  if (DAT_017a9931 != '\\0') {\r\n    DAT_017a9931 = '\\0';\r\n  }\r\n  if (DAT_017a9933 != '\\0') {\r\n    uVar1 = FUN_00504240();\r\n    FUN_00553082(local_80,&DAT_005d8848,uVar1);\r\n    FUN_005159a0(local_80,0,0x40);\r\n    DAT_017a9933 = '\\0';\r\n  }\r\n  return;\r\n}\r\n\r\n", 
+  "is_thunk": false, 
+  "name": "FUN_004e0690", 
+  "assembly": "  004e0690:  MOV AL,[0x017a9930]\n  004e0695:  SUB ESP,0x80\n  004e069b:  PUSH EBX\n  004e069c:  XOR EBX,EBX\n  004e069e:  PUSH ESI\n  004e069f:  CMP AL,BL\n  004e06a1:  MOV ESI,ECX\n  004e06a3:  JZ 0x004e06d4\n  004e06a5:  MOV EAX,dword ptr [ESI]\n  004e06a7:  MOV ECX,dword ptr [EAX + 0x14]\n  004e06aa:  MOV ECX,dword ptr [ECX + 0x14]\n  004e06ad:  CALL 0x00511690\n  004e06b2:  MOV EDX,dword ptr [ESI]\n  004e06b4:  MOV EAX,dword ptr [EDX + 0x14]\n  004e06b7:  MOV ECX,dword ptr [EAX + 0x14]\n  004e06ba:  CALL 0x00511ae0\n  004e06bf:  MOV ECX,dword ptr [ESI]\n  004e06c1:  PUSH 0x40\n  004e06c3:  PUSH EBX\n  004e06c4:  PUSH 0x5d8864\n  004e06c9:  CALL 0x005159a0\n  004e06ce:  MOV byte ptr [0x017a9930],BL\n  004e06d4:  CMP byte ptr [0x017a9932],BL\n  004e06da:  JZ 0x004e06e2\n  004e06dc:  MOV byte ptr [0x017a9932],BL\n  004e06e2:  CMP byte ptr [0x017a9931],BL\n  004e06e8:  JZ 0x004e06f0\n  004e06ea:  MOV byte ptr [0x017a9931],BL\n  004e06f0:  CMP byte ptr [0x017a9933],BL\n  004e06f6:  JZ 0x004e072d\n  004e06f8:  MOV ECX,dword ptr [ESI]\n  004e06fa:  MOV EDX,dword ptr [ECX + 0x14]\n  004e06fd:  MOV ECX,dword ptr [EDX + 0xc]\n  004e0700:  CALL 0x00504240\n  004e0705:  PUSH EAX\n  004e0706:  LEA EAX,[ESP + 0xc]\n  004e070a:  PUSH 0x5d8848\n  004e070f:  PUSH EAX\n  004e0710:  CALL 0x00553082\n  004e0715:  ADD ESP,0xc\n  004e0718:  LEA ECX,[ESP + 0x8]\n  004e071c:  PUSH 0x40\n  004e071e:  PUSH EBX\n  004e071f:  PUSH ECX\n  004e0720:  MOV ECX,dword ptr [ESI]\n  004e0722:  CALL 0x005159a0\n  004e0727:  MOV byte ptr [0x017a9933],BL\n  004e072d:  POP ESI\n  004e072e:  POP EBX\n  004e072f:  ADD ESP,0x80\n  004e0735:  RET", 
+  "callers": [
+    {
+      "address": "0x004e04c0", 
+      "name": "FUN_004e04c0"
+    }
+  ]
+}

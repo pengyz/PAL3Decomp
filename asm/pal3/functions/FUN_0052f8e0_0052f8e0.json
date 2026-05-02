@@ -1,0 +1,124 @@
+{
+  "address": "0x0052f8e0", 
+  "size_bytes": 367, 
+  "calling_convention": "unknown", 
+  "signature": "undefined FUN_0052f8e0(void)", 
+  "callees": [
+    {
+      "address": "0x00401f50", 
+      "name": "FUN_00401f50"
+    }, 
+    {
+      "address": "0x000000a5", 
+      "name": "gbMatrix4"
+    }, 
+    {
+      "address": "0x00479130", 
+      "name": "FUN_00479130"
+    }, 
+    {
+      "address": "0x00553082", 
+      "name": "FUN_00553082"
+    }, 
+    {
+      "address": "0x0000013c", 
+      "name": "LoadFromFile"
+    }, 
+    {
+      "address": "0x000000d3", 
+      "name": "GetOBBox"
+    }, 
+    {
+      "address": "0x00401f90", 
+      "name": "FUN_00401f90"
+    }
+  ], 
+  "global_refs": [
+    {
+      "address": "0x0056875b", 
+      "type": null, 
+      "name": "LAB_0056875b"
+    }, 
+    {
+      "address": "0xffdff000", 
+      "type": null, 
+      "name": "ExceptionList"
+    }, 
+    {
+      "address": "0x-000015c", 
+      "type": null, 
+      "name": "DAT_-000015c"
+    }, 
+    {
+      "address": "0x-0000058", 
+      "type": null, 
+      "name": "DAT_-0000058"
+    }, 
+    {
+      "address": "0x-0000004", 
+      "type": null, 
+      "name": "DAT_-0000004"
+    }, 
+    {
+      "address": "0x0056a2a8", 
+      "type": null, 
+      "name": "PTR_gbMatrix4_0056a2a8"
+    }, 
+    {
+      "address": "0x00975ed8", 
+      "type": null, 
+      "name": "DAT_00975ed8"
+    }, 
+    {
+      "address": "0x00c10d38", 
+      "type": null, 
+      "name": "DAT_00c10d38"
+    }, 
+    {
+      "address": "0x00c10d3a", 
+      "type": null, 
+      "name": "DAT_00c10d3a"
+    }, 
+    {
+      "address": "0x00c10d39", 
+      "type": null, 
+      "name": "DAT_00c10d39"
+    }, 
+    {
+      "address": "0x005b7468", 
+      "type": null, 
+      "name": "DAT_005b7468"
+    }, 
+    {
+      "address": "0x005967b0", 
+      "type": null, 
+      "name": "DAT_005967b0"
+    }, 
+    {
+      "address": "0x005b7458", 
+      "type": null, 
+      "name": "s_Item\\%s\\%s.pol_005b7458"
+    }, 
+    {
+      "address": "0x0056a504", 
+      "type": null, 
+      "name": "PTR_LoadFromFile_0056a504"
+    }, 
+    {
+      "address": "0x0056a360", 
+      "type": null, 
+      "name": "PTR_GetOBBox_0056a360"
+    }
+  ], 
+  "has_custom_name": false, 
+  "decompiled_c": "\r\nvoid __fastcall FUN_0052f8e0(int param_1)\r\n\r\n{\r\n  byte *pbVar1;\r\n  byte bVar2;\r\n  byte *pbVar3;\r\n  int iVar4;\r\n  undefined4 *puVar5;\r\n  byte *pbVar6;\r\n  undefined4 *puVar7;\r\n  gbGeomNode *this;\r\n  bool bVar8;\r\n  gbOBBox *pgStack_164;\r\n  int iStack_160;\r\n  char cStack_158;\r\n  undefined4 uStack_157;\r\n  gbMatrix4 local_58 [76];\r\n  void *pvStack_c;\r\n  undefined *puStack_8;\r\n  undefined4 local_4;\r\n  \r\n  local_4 = 0xffffffff;\r\n  puStack_8 = &LAB_0056875b;\r\n  pvStack_c = ExceptionList;\r\n  puVar5 = (undefined4 *)(param_1 + 0x8a4);\r\n  ExceptionList = &pvStack_c;\r\n  *(undefined4 *)(param_1 + 0x8a8) = 0x178d;\r\n  *(undefined4 *)(param_1 + 0x8ac) = 0x1781;\r\n  *puVar5 = 0x1783;\r\n  FUN_00401f50();\r\n  local_4 = 0;\r\n  gbMatrix4::gbMatrix4(local_58);\r\n  cStack_158 = '\\0';\r\n  puVar7 = &uStack_157;\r\n  for (iVar4 = 0x3f; iVar4 != 0; iVar4 = iVar4 + -1) {\r\n    *puVar7 = 0;\r\n    puVar7 = puVar7 + 1;\r\n  }\r\n  *(undefined2 *)puVar7 = 0;\r\n  *(undefined *)((int)puVar7 + 2) = 0;\r\n  this = (gbGeomNode *)(param_1 + 0x8b0);\r\n  pgStack_164 = (gbOBBox *)(param_1 + 0xc1c);\r\n  iStack_160 = 3;\r\n  do {\r\n    iVar4 = FUN_00479130(*puVar5);\r\n    pbVar1 = (byte *)(iVar4 + 0x24);\r\n    pbVar6 = &DAT_00c10d38;\r\n    pbVar3 = pbVar1;\r\n    do {\r\n      bVar2 = *pbVar3;\r\n      bVar8 = bVar2 < *pbVar6;\r\n      if (bVar2 != *pbVar6) {\r\nLAB_0052f9ad:\r\n        iVar4 = (1 - (uint)bVar8) - (uint)(bVar8 != 0);\r\n        goto LAB_0052f9b2;\r\n      }\r\n      if (bVar2 == 0) break;\r\n      bVar2 = pbVar3[1];\r\n      bVar8 = bVar2 < pbVar6[1];\r\n      if (bVar2 != pbVar6[1]) goto LAB_0052f9ad;\r\n      pbVar3 = pbVar3 + 2;\r\n      pbVar6 = pbVar6 + 2;\r\n    } while (bVar2 != 0);\r\n    iVar4 = 0;\r\nLAB_0052f9b2:\r\n    if (iVar4 == 0) {\r\n      FUN_00553082(&cStack_158,&DAT_005967b0,&DAT_005b7468);\r\n    }\r\n    else {\r\n      FUN_00553082(&cStack_158,s_Item__s__s_pol_005b7458,pbVar1,pbVar1);\r\n    }\r\n    gbGeomNode::LoadFromFile(this,&cStack_158,(char *)0x0,(_func_void_int_int *)0x0);\r\n    gbGeomNode::GetOBBox(this,pgStack_164);\r\n    puVar5 = puVar5 + 1;\r\n    pgStack_164 = pgStack_164 + 0x4c;\r\n    this = this + 0x118;\r\n    iStack_160 = iStack_160 + -1;\r\n    if (iStack_160 == 0) {\r\n      local_4 = 0xffffffff;\r\n      FUN_00401f90();\r\n      ExceptionList = pvStack_c;\r\n      return;\r\n    }\r\n  } while( true );\r\n}\r\n\r\n", 
+  "is_thunk": false, 
+  "name": "FUN_0052f8e0", 
+  "assembly": "  0052f8e0:  PUSH -0x1\n  0052f8e2:  PUSH 0x56875b\n  0052f8e7:  MOV EAX,FS:[0x0]\n  0052f8ed:  PUSH EAX\n  0052f8ee:  MOV dword ptr FS:[0x0],ESP\n  0052f8f5:  SUB ESP,0x158\n  0052f8fb:  PUSH EBX\n  0052f8fc:  PUSH EBP\n  0052f8fd:  PUSH ESI\n  0052f8fe:  MOV ESI,ECX\n  0052f900:  PUSH EDI\n  0052f901:  LEA ECX,[ESP + 0x18]\n  0052f905:  LEA EBP,[ESI + 0x8a4]\n  0052f90b:  MOV dword ptr [ESI + 0x8a8],0x178d\n  0052f915:  MOV dword ptr [ESI + 0x8ac],0x1781\n  0052f91f:  MOV dword ptr [EBP],0x1783\n  0052f926:  CALL 0x00401f50\n  0052f92b:  LEA ECX,[ESP + 0x11c]\n  0052f932:  MOV dword ptr [ESP + 0x170],0x0\n  0052f93d:  CALL dword ptr [0x0056a2a8]\n  0052f943:  MOV ECX,0x3f\n  0052f948:  XOR EAX,EAX\n  0052f94a:  LEA EDI,[ESP + 0x1d]\n  0052f94e:  MOV byte ptr [ESP + 0x1c],0x0\n  0052f953:  STOSD.REP ES:EDI\n  0052f955:  STOSW ES:EDI\n  0052f957:  STOSB ES:EDI\n  0052f958:  LEA EDI,[ESI + 0x8b0]\n  0052f95e:  ADD ESI,0xc1c\n  0052f964:  MOV dword ptr [ESP + 0x10],ESI\n  0052f968:  MOV EBX,EBP\n  0052f96a:  MOV dword ptr [ESP + 0x14],0x3\n  0052f972:  MOV EAX,dword ptr [EBX]\n  0052f974:  MOV ECX,0x975ed8\n  0052f979:  PUSH EAX\n  0052f97a:  CALL 0x00479130\n  0052f97f:  LEA EBP,[EAX + 0x24]\n  0052f982:  MOV ESI,0xc10d38\n  0052f987:  MOV EAX,EBP\n  0052f989:  MOV DL,byte ptr [EAX]\n  0052f98b:  MOV CL,DL\n  0052f98d:  CMP DL,byte ptr [ESI]\n  0052f98f:  JNZ 0x0052f9ad\n  0052f991:  TEST CL,CL\n  0052f993:  JZ 0x0052f9a9\n  0052f995:  MOV DL,byte ptr [EAX + 0x1]\n  0052f998:  MOV CL,DL\n  0052f99a:  CMP DL,byte ptr [ESI + 0x1]\n  0052f99d:  JNZ 0x0052f9ad\n  0052f99f:  ADD EAX,0x2\n  0052f9a2:  ADD ESI,0x2\n  0052f9a5:  TEST CL,CL\n  0052f9a7:  JNZ 0x0052f989\n  0052f9a9:  XOR EAX,EAX\n  0052f9ab:  JMP 0x0052f9b2\n  0052f9ad:  SBB EAX,EAX\n  0052f9af:  SBB EAX,-0x1\n  0052f9b2:  TEST EAX,EAX\n  0052f9b4:  JNZ 0x0052f9cf\n  0052f9b6:  PUSH 0x5b7468\n  0052f9bb:  LEA EAX,[ESP + 0x20]\n  0052f9bf:  PUSH 0x5967b0\n  0052f9c4:  PUSH EAX\n  0052f9c5:  CALL 0x00553082\n  0052f9ca:  ADD ESP,0xc\n  0052f9cd:  JMP 0x0052f9e3\n  0052f9cf:  PUSH EBP\n  0052f9d0:  PUSH EBP\n  0052f9d1:  LEA ECX,[ESP + 0x24]\n  0052f9d5:  PUSH 0x5b7458\n  0052f9da:  PUSH ECX\n  0052f9db:  CALL 0x00553082\n  0052f9e0:  ADD ESP,0x10\n  0052f9e3:  PUSH 0x0\n  0052f9e5:  LEA EDX,[ESP + 0x20]\n  0052f9e9:  PUSH 0x0\n  0052f9eb:  PUSH EDX\n  0052f9ec:  MOV ECX,EDI\n  0052f9ee:  CALL dword ptr [0x0056a504]\n  0052f9f4:  MOV ESI,dword ptr [ESP + 0x10]\n  0052f9f8:  MOV ECX,EDI\n  0052f9fa:  PUSH ESI\n  0052f9fb:  CALL dword ptr [0x0056a360]\n  0052fa01:  MOV EAX,dword ptr [ESP + 0x14]\n  0052fa05:  ADD EBX,0x4\n  0052fa08:  ADD ESI,0x4c\n  0052fa0b:  ADD EDI,0x118\n  0052fa11:  DEC EAX\n  0052fa12:  MOV dword ptr [ESP + 0x10],ESI\n  0052fa16:  MOV dword ptr [ESP + 0x14],EAX\n  0052fa1a:  JNZ 0x0052f972\n  0052fa20:  LEA ECX,[ESP + 0x18]\n  0052fa24:  MOV dword ptr [ESP + 0x170],0xffffffff\n  0052fa2f:  CALL 0x00401f90\n  0052fa34:  MOV ECX,dword ptr [ESP + 0x168]\n  0052fa3b:  POP EDI\n  0052fa3c:  POP ESI\n  0052fa3d:  POP EBP\n  0052fa3e:  POP EBX\n  0052fa3f:  MOV dword ptr FS:[0x0],ECX\n  0052fa46:  ADD ESP,0x164\n  0052fa4c:  RET 0x4", 
+  "callers": [
+    {
+      "address": "0x0052fb70", 
+      "name": "FUN_0052fb70"
+    }
+  ]
+}

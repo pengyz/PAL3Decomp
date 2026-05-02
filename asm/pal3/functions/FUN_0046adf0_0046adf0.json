@@ -1,0 +1,45 @@
+{
+  "address": "0x0046adf0", 
+  "size_bytes": 169, 
+  "calling_convention": "unknown", 
+  "signature": "undefined FUN_0046adf0(void)", 
+  "callees": [], 
+  "global_refs": [
+    {
+      "address": "0x00bfc664", 
+      "type": null, 
+      "name": "DAT_00bfc664"
+    }, 
+    {
+      "address": "0x00bfc694", 
+      "type": null, 
+      "name": "DAT_00bfc694"
+    }, 
+    {
+      "address": "0x00bfc684", 
+      "type": null, 
+      "name": "DAT_00bfc684"
+    }, 
+    {
+      "address": "0x00bfc654", 
+      "type": null, 
+      "name": "DAT_00bfc654"
+    }, 
+    {
+      "address": "0x00bfc674", 
+      "type": null, 
+      "name": "DAT_00bfc674"
+    }
+  ], 
+  "has_custom_name": false, 
+  "decompiled_c": "\r\nvoid __fastcall FUN_0046adf0(int *param_1)\r\n\r\n{\r\n  if (*(char *)((int)param_1 + 0x17421) == '\\0') {\r\n    if (DAT_00bfc664 == 1) {\r\n      (**(code **)(*param_1 + 0x18))(0x3e9,0x106,0);\r\n    }\r\n    if (DAT_00bfc694 == 1) {\r\n      (**(code **)(*param_1 + 0x18))(0x3e9,0x195,0);\r\n      return;\r\n    }\r\n    if (DAT_00bfc684 == 1) {\r\n      (**(code **)(*param_1 + 0x18))(0x3e9,0x196,0);\r\n      return;\r\n    }\r\n    if (DAT_00bfc654 == 1) {\r\n      (**(code **)(*param_1 + 0x18))(0x3f1,0x109,0x1d8027c);\r\n      return;\r\n    }\r\n    if (DAT_00bfc674 == 1) {\r\n      (**(code **)(*param_1 + 0x18))(0x108,0,0);\r\n    }\r\n  }\r\n  return;\r\n}\r\n\r\n", 
+  "is_thunk": false, 
+  "name": "FUN_0046adf0", 
+  "assembly": "  0046adf0:  PUSH ESI\n  0046adf1:  MOV ESI,ECX\n  0046adf3:  PUSH EDI\n  0046adf4:  MOV AL,byte ptr [ESI + 0x17421]\n  0046adfa:  TEST AL,AL\n  0046adfc:  JNZ 0x0046ae96\n  0046ae02:  MOV EAX,[0x00bfc664]\n  0046ae07:  MOV EDI,0x1\n  0046ae0c:  CMP EAX,EDI\n  0046ae0e:  JNZ 0x0046ae21\n  0046ae10:  MOV EAX,dword ptr [ESI]\n  0046ae12:  PUSH 0x0\n  0046ae14:  PUSH 0x106\n  0046ae19:  PUSH 0x3e9\n  0046ae1e:  CALL dword ptr [EAX + 0x18]\n  0046ae21:  CMP dword ptr [0x00bfc694],EDI\n  0046ae27:  JNZ 0x0046ae3f\n  0046ae29:  MOV EDX,dword ptr [ESI]\n  0046ae2b:  PUSH 0x0\n  0046ae2d:  PUSH 0x195\n  0046ae32:  PUSH 0x3e9\n  0046ae37:  MOV ECX,ESI\n  0046ae39:  CALL dword ptr [EDX + 0x18]\n  0046ae3c:  POP EDI\n  0046ae3d:  POP ESI\n  0046ae3e:  RET\n  0046ae3f:  CMP dword ptr [0x00bfc684],EDI\n  0046ae45:  JNZ 0x0046ae5d\n  0046ae47:  MOV EAX,dword ptr [ESI]\n  0046ae49:  PUSH 0x0\n  0046ae4b:  PUSH 0x196\n  0046ae50:  PUSH 0x3e9\n  0046ae55:  MOV ECX,ESI\n  0046ae57:  CALL dword ptr [EAX + 0x18]\n  0046ae5a:  POP EDI\n  0046ae5b:  POP ESI\n  0046ae5c:  RET\n  0046ae5d:  CMP dword ptr [0x00bfc654],EDI\n  0046ae63:  JNZ 0x0046ae7e\n  0046ae65:  MOV EDX,dword ptr [ESI]\n  0046ae67:  PUSH 0x1d8027c\n  0046ae6c:  PUSH 0x109\n  0046ae71:  PUSH 0x3f1\n  0046ae76:  MOV ECX,ESI\n  0046ae78:  CALL dword ptr [EDX + 0x18]\n  0046ae7b:  POP EDI\n  0046ae7c:  POP ESI\n  0046ae7d:  RET\n  0046ae7e:  CMP dword ptr [0x00bfc674],EDI\n  0046ae84:  JNZ 0x0046ae96\n  0046ae86:  MOV EAX,dword ptr [ESI]\n  0046ae88:  PUSH 0x0\n  0046ae8a:  PUSH 0x0\n  0046ae8c:  PUSH 0x108\n  0046ae91:  MOV ECX,ESI\n  0046ae93:  CALL dword ptr [EAX + 0x18]\n  0046ae96:  POP EDI\n  0046ae97:  POP ESI\n  0046ae98:  RET", 
+  "callers": [
+    {
+      "address": "0x0046b040", 
+      "name": "FUN_0046b040"
+    }
+  ]
+}

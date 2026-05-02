@@ -1,0 +1,20 @@
+{
+  "address": "0x004ce0d0", 
+  "size_bytes": 11, 
+  "calling_convention": "unknown", 
+  "signature": "undefined FUN_004ce0d0(void)", 
+  "callees": [], 
+  "global_refs": [
+    {
+      "address": "0x00de9cb0", 
+      "type": null, 
+      "name": "DAT_00de9cb0"
+    }
+  ], 
+  "has_custom_name": false, 
+  "decompiled_c": "\r\nvoid FUN_004ce0d0(void)\r\n\r\n{\r\n                    /* WARNING: Could not recover jumptable at 0x004ce0d5. Too many branches */\r\n                    /* WARNING: Treating indirect jump as call */\r\n  CPK::CPK((CPK *)&DAT_00de9cb0);\r\n  return;\r\n}\r\n\r\n", 
+  "is_thunk": false, 
+  "name": "FUN_004ce0d0", 
+  "assembly": "  004ce0d0:  MOV ECX,0xde9cb0\n  004ce0d5:  JMP dword ptr [0x0056a428]", 
+  "callers": []
+}

@@ -1,0 +1,32 @@
+{
+  "address": "0x0047cee0", 
+  "size_bytes": 84, 
+  "calling_convention": "unknown", 
+  "signature": "undefined FUN_0047cee0(void)", 
+  "callees": [
+    {
+      "address": "0x0040ee00", 
+      "name": "FUN_0040ee00"
+    }, 
+    {
+      "address": "0x00541d10", 
+      "name": "FUN_00541d10"
+    }
+  ], 
+  "global_refs": [], 
+  "has_custom_name": false, 
+  "decompiled_c": "\r\nvoid __fastcall FUN_0047cee0(undefined *param_1)\r\n\r\n{\r\n  int iVar1;\r\n  \r\n  iVar1 = *(int *)(param_1 + 4);\r\n  if (iVar1 != 1) {\r\n    if (iVar1 == 2) {\r\n      iVar1 = *(int *)(param_1 + 8);\r\n      if (iVar1 != 0) {\r\n        FUN_0040ee00();\r\n        FUN_00541d10(iVar1);\r\n        *(undefined4 *)(param_1 + 8) = 0;\r\n        *param_1 = 0;\r\n        return;\r\n      }\r\n      goto LAB_0047cf2e;\r\n    }\r\n    if (iVar1 != 3) {\r\n      *param_1 = 0;\r\n      return;\r\n    }\r\n  }\r\n  if (*(undefined4 **)(param_1 + 8) != (undefined4 *)0x0) {\r\n    (**(code **)**(undefined4 **)(param_1 + 8))(1);\r\n    *(undefined4 *)(param_1 + 8) = 0;\r\n  }\r\nLAB_0047cf2e:\r\n  *param_1 = 0;\r\n  return;\r\n}\r\n\r\n", 
+  "is_thunk": false, 
+  "name": "FUN_0047cee0", 
+  "assembly": "  0047cee0:  PUSH ESI\n  0047cee1:  MOV ESI,ECX\n  0047cee3:  PUSH EDI\n  0047cee4:  MOV EAX,dword ptr [ESI + 0x4]\n  0047cee7:  DEC EAX\n  0047cee8:  JZ 0x0047cf1a\n  0047ceea:  DEC EAX\n  0047ceeb:  JZ 0x0047cef6\n  0047ceed:  DEC EAX\n  0047ceee:  JZ 0x0047cf1a\n  0047cef0:  MOV byte ptr [ESI],0x0\n  0047cef3:  POP EDI\n  0047cef4:  POP ESI\n  0047cef5:  RET\n  0047cef6:  MOV EDI,dword ptr [ESI + 0x8]\n  0047cef9:  TEST EDI,EDI\n  0047cefb:  JZ 0x0047cf2e\n  0047cefd:  MOV ECX,EDI\n  0047ceff:  CALL 0x0040ee00\n  0047cf04:  PUSH EDI\n  0047cf05:  CALL 0x00541d10\n  0047cf0a:  ADD ESP,0x4\n  0047cf0d:  MOV dword ptr [ESI + 0x8],0x0\n  0047cf14:  MOV byte ptr [ESI],0x0\n  0047cf17:  POP EDI\n  0047cf18:  POP ESI\n  0047cf19:  RET\n  0047cf1a:  MOV ECX,dword ptr [ESI + 0x8]\n  0047cf1d:  TEST ECX,ECX\n  0047cf1f:  JZ 0x0047cf2e\n  0047cf21:  MOV EAX,dword ptr [ECX]\n  0047cf23:  PUSH 0x1\n  0047cf25:  CALL dword ptr [EAX]\n  0047cf27:  MOV dword ptr [ESI + 0x8],0x0\n  0047cf2e:  MOV byte ptr [ESI],0x0\n  0047cf31:  POP EDI\n  0047cf32:  POP ESI\n  0047cf33:  RET", 
+  "callers": [
+    {
+      "address": "0x0047cb70", 
+      "name": "FUN_0047cb70"
+    }, 
+    {
+      "address": "0x0047cb90", 
+      "name": "FUN_0047cb90"
+    }
+  ]
+}

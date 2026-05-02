@@ -1,0 +1,85 @@
+{
+  "address": "0x0055319b", 
+  "size_bytes": 84, 
+  "calling_convention": "unknown", 
+  "signature": "undefined FUN_0055319b(undefined4 param_1, undefined4 param_2, undefined4 param_3, undefined4 param_4, undefined4 param_5)", 
+  "callees": [
+    {
+      "address": "0x00557c00", 
+      "name": "__CallSettingFrame@12"
+    }
+  ], 
+  "global_refs": [
+    {
+      "address": "0x00000008", 
+      "type": null, 
+      "name": "DAT_00000008"
+    }, 
+    {
+      "address": "0x-0000018", 
+      "type": null, 
+      "name": "DAT_-0000018"
+    }, 
+    {
+      "address": "0x00000004", 
+      "type": null, 
+      "name": "DAT_00000004"
+    }, 
+    {
+      "address": "0x-0000010", 
+      "type": null, 
+      "name": "DAT_-0000010"
+    }, 
+    {
+      "address": "0x00000010", 
+      "type": null, 
+      "name": "DAT_00000010"
+    }, 
+    {
+      "address": "0x005531ef", 
+      "type": null, 
+      "name": "FUN_005531ef"
+    }, 
+    {
+      "address": "0x-0000014", 
+      "type": null, 
+      "name": "DAT_-0000014"
+    }, 
+    {
+      "address": "0x-000000c", 
+      "type": null, 
+      "name": "DAT_-000000c"
+    }, 
+    {
+      "address": "0x-0000008", 
+      "type": null, 
+      "name": "DAT_-0000008"
+    }, 
+    {
+      "address": "0xffdff000", 
+      "type": null, 
+      "name": "ExceptionList"
+    }, 
+    {
+      "address": "0x00000014", 
+      "type": null, 
+      "name": "DAT_00000014"
+    }, 
+    {
+      "address": "0x0000000c", 
+      "type": null, 
+      "name": "DAT_0000000c"
+    }
+  ], 
+  "has_custom_name": false, 
+  "decompiled_c": "\r\nundefined4\r\nFUN_0055319b(undefined4 param_1,undefined4 param_2,undefined4 param_3,int param_4,undefined4 param_5\r\n            )\r\n\r\n{\r\n  undefined4 uVar1;\r\n  void *local_18;\r\n  code *local_14;\r\n  undefined4 local_10;\r\n  undefined4 local_c;\r\n  int local_8;\r\n  \r\n  local_10 = param_2;\r\n  local_14 = FUN_005531ef;\r\n  local_8 = param_4 + 1;\r\n  local_c = param_1;\r\n  local_18 = ExceptionList;\r\n  ExceptionList = &local_18;\r\n  uVar1 = __CallSettingFrame_12(param_3,param_1,param_5);\r\n  ExceptionList = local_18;\r\n  return uVar1;\r\n}\r\n\r\n", 
+  "is_thunk": false, 
+  "name": "FUN_0055319b", 
+  "assembly": "  0055319b:  PUSH EBP\n  0055319c:  MOV EBP,ESP\n  0055319e:  SUB ESP,0x14\n  005531a1:  MOV EAX,dword ptr [EBP + 0xc]\n  005531a4:  AND dword ptr [EBP + -0x14],0x0\n  005531a8:  MOV ECX,dword ptr [EBP + 0x8]\n  005531ab:  MOV dword ptr [EBP + -0xc],EAX\n  005531ae:  MOV EAX,dword ptr [EBP + 0x14]\n  005531b1:  MOV dword ptr [EBP + -0x10],0x5531ef\n  005531b8:  INC EAX\n  005531b9:  MOV dword ptr [EBP + -0x8],ECX\n  005531bc:  MOV dword ptr [EBP + -0x4],EAX\n  005531bf:  MOV EAX,FS:[0x0]\n  005531c5:  MOV dword ptr [EBP + -0x14],EAX\n  005531c8:  LEA EAX,[EBP + 0xffffffec]\n  005531ce:  MOV FS:[0x0],EAX\n  005531d4:  PUSH dword ptr [EBP + 0x18]\n  005531d7:  PUSH ECX\n  005531d8:  PUSH dword ptr [EBP + 0x10]\n  005531db:  CALL 0x00557c00\n  005531e0:  MOV ECX,EAX\n  005531e2:  MOV EAX,dword ptr [EBP + -0x14]\n  005531e5:  MOV FS:[0x0],EAX\n  005531eb:  MOV EAX,ECX\n  005531ed:  LEAVE\n  005531ee:  RET", 
+  "callers": [
+    {
+      "address": "0x00557872", 
+      "name": "FUN_00557872"
+    }
+  ]
+}

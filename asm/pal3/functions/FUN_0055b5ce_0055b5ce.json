@@ -1,0 +1,25 @@
+{
+  "address": "0x0055b5ce", 
+  "size_bytes": 137, 
+  "calling_convention": "unknown", 
+  "signature": "undefined FUN_0055b5ce(undefined4 param_1)", 
+  "callees": [], 
+  "global_refs": [
+    {
+      "address": "0x00000004", 
+      "type": null, 
+      "name": "DAT_00000004"
+    }
+  ], 
+  "has_custom_name": false, 
+  "decompiled_c": "\r\nuint FUN_0055b5ce(uint param_1)\r\n\r\n{\r\n  uint uVar1;\r\n  uint uVar2;\r\n  \r\n  uVar1 = (uint)((param_1 & 0x10) != 0);\r\n  if ((param_1 & 8) != 0) {\r\n    uVar1 = uVar1 | 4;\r\n  }\r\n  if ((param_1 & 4) != 0) {\r\n    uVar1 = uVar1 | 8;\r\n  }\r\n  if ((param_1 & 2) != 0) {\r\n    uVar1 = uVar1 | 0x10;\r\n  }\r\n  if ((param_1 & 1) != 0) {\r\n    uVar1 = uVar1 | 0x20;\r\n  }\r\n  if ((param_1 & 0x80000) != 0) {\r\n    uVar1 = uVar1 | 2;\r\n  }\r\n  uVar2 = param_1 & 0x300;\r\n  if (uVar2 != 0) {\r\n    if (uVar2 == 0x100) {\r\n      uVar1 = uVar1 | 0x400;\r\n    }\r\n    else if (uVar2 == 0x200) {\r\n      uVar1 = uVar1 | 0x800;\r\n    }\r\n    else if (uVar2 == 0x300) {\r\n      uVar1 = uVar1 | 0xc00;\r\n    }\r\n  }\r\n  if ((param_1 & 0x30000) == 0) {\r\n    uVar1 = uVar1 | 0x300;\r\n  }\r\n  else if ((param_1 & 0x30000) == 0x10000) {\r\n    uVar1 = uVar1 | 0x200;\r\n  }\r\n  if ((param_1 & 0x40000) != 0) {\r\n    uVar1 = uVar1 | 0x1000;\r\n  }\r\n  return uVar1;\r\n}\r\n\r\n", 
+  "is_thunk": false, 
+  "name": "FUN_0055b5ce", 
+  "assembly": "  0055b5ce:  PUSH EBX\n  0055b5cf:  MOV EBX,dword ptr [ESP + 0x8]\n  0055b5d3:  XOR EAX,EAX\n  0055b5d5:  PUSH ESI\n  0055b5d6:  TEST BL,0x10\n  0055b5d9:  JZ 0x0055b5de\n  0055b5db:  PUSH 0x1\n  0055b5dd:  POP EAX\n  0055b5de:  TEST BL,0x8\n  0055b5e1:  JZ 0x0055b5e5\n  0055b5e3:  OR AL,0x4\n  0055b5e5:  TEST BL,0x4\n  0055b5e8:  JZ 0x0055b5ec\n  0055b5ea:  OR AL,0x8\n  0055b5ec:  TEST BL,0x2\n  0055b5ef:  JZ 0x0055b5f3\n  0055b5f1:  OR AL,0x10\n  0055b5f3:  TEST BL,0x1\n  0055b5f6:  JZ 0x0055b5fa\n  0055b5f8:  OR AL,0x20\n  0055b5fa:  TEST EBX,0x80000\n  0055b600:  JZ 0x0055b604\n  0055b602:  OR AL,0x2\n  0055b604:  MOV ECX,EBX\n  0055b606:  MOV EDX,0x300\n  0055b60b:  AND ECX,EDX\n  0055b60d:  MOV ESI,0x200\n  0055b612:  JZ 0x0055b631\n  0055b614:  CMP ECX,0x100\n  0055b61a:  JZ 0x0055b62e\n  0055b61c:  CMP ECX,ESI\n  0055b61e:  JZ 0x0055b629\n  0055b620:  CMP ECX,EDX\n  0055b622:  JNZ 0x0055b631\n  0055b624:  OR AH,0xc\n  0055b627:  JMP 0x0055b631\n  0055b629:  OR AH,0x8\n  0055b62c:  JMP 0x0055b631\n  0055b62e:  OR AH,0x4\n  0055b631:  MOV ECX,EBX\n  0055b633:  AND ECX,0x30000\n  0055b639:  JZ 0x0055b647\n  0055b63b:  CMP ECX,0x10000\n  0055b641:  JNZ 0x0055b649\n  0055b643:  OR EAX,ESI\n  0055b645:  JMP 0x0055b649\n  0055b647:  OR EAX,EDX\n  0055b649:  POP ESI\n  0055b64a:  TEST EBX,0x40000\n  0055b650:  POP EBX\n  0055b651:  JZ 0x0055b656\n  0055b653:  OR AH,0x10\n  0055b656:  RET", 
+  "callers": [
+    {
+      "address": "0x0055b4f1", 
+      "name": "FUN_0055b4f1"
+    }
+  ]
+}

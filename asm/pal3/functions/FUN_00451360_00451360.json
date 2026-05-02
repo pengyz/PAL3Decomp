@@ -1,0 +1,57 @@
+{
+  "address": "0x00451360",
+  "size_bytes": 569,
+  "calling_convention": "unknown",
+  "signature": "undefined FUN_00451360(undefined4 param_1)",
+  "callees": [
+    {
+      "address": "0x004517a0",
+      "name": "FUN_004517a0"
+    },
+    {
+      "address": "0x00445fa0",
+      "name": "FUN_00445fa0"
+    },
+    {
+      "address": "0x004426b0",
+      "name": "FUN_004426b0"
+    }
+  ],
+  "global_refs": [
+    {
+      "address": "0x00000004",
+      "type": null,
+      "name": "DAT_00000004"
+    },
+    {
+      "address": "0x00bfd6d4",
+      "type": null,
+      "name": "DAT_00bfd6d4"
+    },
+    {
+      "address": "0x00bfd6d0",
+      "type": null,
+      "name": "DAT_00bfd6d0"
+    }
+  ],
+  "has_custom_name": false,
+  "decompiled_c": "\r\nvoid __thiscall FUN_00451360(int param_1_00,int param_1)\r\n\r\n{\r\n  if (param_1 == 0) {\r\n    (*(code *)**(undefined4 **)(param_1_00 + 0x1b4))(0);\r\n    FUN_004517a0(&stack0xffffffec,1);\r\n    FUN_00445fa0(&stack0xffffffec);\r\n    FUN_00445fa0(&stack0xffffffec);\r\n    return;\r\n  }\r\n  (*(code *)**(undefined4 **)(param_1_00 + 0x1b4))(1);\r\n  FUN_004426b0(param_1,0);\r\n  if (param_1 == 0) {\r\n    FUN_00445fa0(&stack0xffffffec);\r\n    *(undefined4 *)(param_1_00 + 0x24c) = 0;\r\n    FUN_004517a0(&stack0xffffffec,1);\r\n    FUN_00445fa0(&stack0xffffffec);\r\n    FUN_00445fa0(&stack0xffffffec);\r\n    return;\r\n  }\r\n  FUN_00445fa0(&stack0xffffffec);\r\n  *(undefined4 *)(param_1_00 + 0x24c) = 1;\r\n  FUN_004517a0(&stack0xffffffec,0);\r\n  FUN_00445fa0(&stack0xffffffec);\r\n  FUN_00445fa0(&stack0xffffffec);\r\n  FUN_004517a0(&stack0xffffffec,0);\r\n  FUN_00445fa0(&stack0xffffffec);\r\n  return;\r\n}\r\n\r\n",
+  "is_thunk": false,
+  "name": "UIRoleDialog_SetFace",
+  "assembly": "  00451360:  SUB ESP,0x10\n  00451363:  PUSH EBX\n  00451364:  MOV EBX,dword ptr [ESP + 0x18]\n  00451368:  PUSH EBP\n  00451369:  XOR EBP,EBP\n  0045136b:  PUSH ESI\n  0045136c:  CMP EBX,EBP\n  0045136e:  PUSH EDI\n  0045136f:  MOV ESI,ECX\n  00451371:  JNZ 0x00451417\n  00451377:  MOV EAX,dword ptr [ESI + 0x1b4]\n  0045137d:  LEA ECX,[ESI + 0x1b4]\n  00451383:  PUSH EBP\n  00451384:  CALL dword ptr [EAX]\n  00451386:  LEA ECX,[ESI + 0x10]\n  00451389:  PUSH 0x1\n  0045138b:  MOV EDX,dword ptr [ECX]\n  0045138d:  MOV dword ptr [ESP + 0x14],EDX\n  00451391:  MOV EAX,dword ptr [ECX + 0x4]\n  00451394:  MOV dword ptr [ESP + 0x18],EAX\n  00451398:  MOV EDX,dword ptr [ECX + 0x8]\n  0045139b:  MOV dword ptr [ESP + 0x1c],EDX\n  0045139f:  LEA EDX,[ESP + 0x14]\n  004513a3:  MOV EAX,dword ptr [ECX + 0xc]\n  004513a6:  MOV ECX,dword ptr [0x00bfd6d4]\n  004513ac:  MOV dword ptr [ESP + 0x20],EAX\n  004513b0:  PUSH EDX\n  004513b1:  LEA EAX,[ECX + -0x2]\n  004513b4:  MOV ECX,ESI\n  004513b6:  MOV dword ptr [ESP + 0x24],EAX\n  004513ba:  ADD EAX,0xffffff78\n  004513bf:  MOV dword ptr [ESP + 0x1c],EAX\n  004513c3:  CALL 0x004517a0\n  004513c8:  LEA EAX,[ESP + 0x10]\n  004513cc:  LEA ECX,[ESI + 0x110]\n  004513d2:  PUSH EAX\n  004513d3:  CALL 0x00445fa0\n  004513d8:  MOV ECX,dword ptr [ESP + 0x10]\n  004513dc:  LEA EDX,[ESP + 0x10]\n  004513e0:  PUSH EDX\n  004513e1:  LEA EAX,[ECX + -0x4]\n  004513e4:  LEA ECX,[ESI + 0x250]\n  004513ea:  MOV dword ptr [ESP + 0x1c],EAX\n  004513ee:  ADD EAX,0xfffffd30\n  004513f3:  MOV dword ptr [ESP + 0x14],EAX\n  004513f7:  MOV EAX,dword ptr [ESI + 0x14]\n  004513fa:  ADD EAX,0x10\n  004513fd:  MOV dword ptr [ESP + 0x18],EAX\n  00451401:  ADD EAX,0x78\n  00451404:  MOV dword ptr [ESP + 0x20],EAX\n  00451408:  CALL 0x00445fa0\n  0045140d:  POP EDI\n  0045140e:  POP ESI\n  0045140f:  POP EBP\n  00451410:  POP EBX\n  00451411:  ADD ESP,0x10\n  00451414:  RET 0x8\n  00451417:  MOV EAX,dword ptr [ESI + 0x1b4]\n  0045141d:  LEA EDI,[ESI + 0x1b4]\n  00451423:  PUSH 0x1\n  00451425:  MOV ECX,EDI\n  00451427:  CALL dword ptr [EAX]\n  00451429:  PUSH EBP\n  0045142a:  PUSH EBX\n  0045142b:  MOV ECX,EDI\n  0045142d:  CALL 0x004426b0\n  00451432:  CMP dword ptr [ESP + 0x28],EBP\n  00451436:  JNZ 0x004514c9\n  0045143c:  MOV EAX,[0x00bfd6d4]\n  00451441:  LEA ECX,[ESP + 0x10]\n  00451445:  MOV dword ptr [ESP + 0x1c],EAX\n  00451449:  ADD EAX,0xfffffe00\n  0045144e:  PUSH ECX\n  0045144f:  MOV ECX,EDI\n  00451451:  MOV dword ptr [ESP + 0x14],EBP\n  00451455:  MOV dword ptr [ESP + 0x1c],0x100\n  0045145d:  MOV dword ptr [ESP + 0x18],EAX\n  00451461:  CALL 0x00445fa0\n  00451466:  LEA EDX,[ESP + 0x10]\n  0045146a:  PUSH 0x1\n  0045146c:  PUSH EDX\n  0045146d:  MOV ECX,ESI\n  0045146f:  MOV dword ptr [ESI + 0x24c],EBP\n  00451475:  CALL 0x004517a0\n  0045147a:  LEA EAX,[ESP + 0x10]\n  0045147e:  LEA ECX,[ESI + 0x110]\n  00451484:  PUSH EAX\n  00451485:  CALL 0x00445fa0\n  0045148a:  MOV ECX,dword ptr [ESP + 0x10]\n  0045148e:  LEA EDX,[ESP + 0x10]\n  00451492:  PUSH EDX\n  00451493:  LEA EAX,[ECX + -0x4]\n  00451496:  LEA ECX,[ESI + 0x250]\n  0045149c:  MOV dword ptr [ESP + 0x1c],EAX\n  004514a0:  ADD EAX,0xfffffe20\n  004514a5:  MOV dword ptr [ESP + 0x14],EAX\n  004514a9:  MOV EAX,dword ptr [ESI + 0x14]\n  004514ac:  ADD EAX,0x10\n  004514af:  MOV dword ptr [ESP + 0x18],EAX\n  004514b3:  ADD EAX,0x78\n  004514b6:  MOV dword ptr [ESP + 0x20],EAX\n  004514ba:  CALL 0x00445fa0\n  004514bf:  POP EDI\n  004514c0:  POP ESI\n  004514c1:  POP EBP\n  004514c2:  POP EBX\n  004514c3:  ADD ESP,0x10\n  004514c6:  RET 0x8\n  004514c9:  MOV EAX,[0x00bfd6d0]\n  004514ce:  MOV ECX,EDI\n  004514d0:  MOV dword ptr [ESP + 0x18],EAX\n  004514d4:  ADD EAX,0xffffff00\n  004514d9:  MOV dword ptr [ESP + 0x10],EAX\n  004514dd:  MOV EAX,[0x00bfd6d4]\n  004514e2:  MOV dword ptr [ESP + 0x1c],EAX\n  004514e6:  ADD EAX,0xfffffe00\n  004514eb:  MOV dword ptr [ESP + 0x14],EAX\n  004514ef:  LEA EAX,[ESP + 0x10]\n  004514f3:  PUSH EAX\n  004514f4:  CALL 0x00445fa0\n  004514f9:  LEA ECX,[ESP + 0x10]\n  004514fd:  PUSH EBP\n  004514fe:  PUSH ECX\n  004514ff:  MOV ECX,ESI\n  00451501:  MOV dword ptr [ESI + 0x24c],0x1\n  0045150b:  CALL 0x004517a0\n  00451510:  LEA EBX,[ESI + 0x110]\n  00451516:  LEA EDX,[ESP + 0x10]\n  0045151a:  PUSH EDX\n  0045151b:  MOV ECX,EBX\n  0045151d:  CALL 0x00445fa0\n  00451522:  MOV EAX,dword ptr [ESP + 0x18]\n  00451526:  MOV ECX,dword ptr [ESP + 0x10]\n  0045152a:  MOV EDI,EAX\n  0045152c:  SUB EDI,ECX\n  0045152e:  LEA ECX,[EAX + 0x4]\n  00451531:  MOV EAX,dword ptr [ESI + 0x14]\n  00451534:  ADD EAX,0x10\n  00451537:  LEA EDX,[ECX + 0x1e0]\n  0045153d:  MOV dword ptr [ESP + 0x14],EAX\n  00451541:  ADD EAX,0x78\n  00451544:  MOV dword ptr [ESP + 0x1c],EAX\n  00451548:  SUB ECX,EDI\n  0045154a:  LEA EAX,[ESP + 0x10]\n  0045154e:  MOV dword ptr [ESP + 0x10],ECX\n  00451552:  SUB EDX,EDI\n  00451554:  PUSH EAX\n  00451555:  LEA ECX,[ESI + 0x250]\n  0045155b:  MOV dword ptr [ESP + 0x1c],EDX\n  0045155f:  CALL 0x00445fa0\n  00451564:  MOV EBP,dword ptr [ESP + 0x18]\n  00451568:  LEA ECX,[ESP + 0x10]\n  0045156c:  PUSH 0x0\n  0045156e:  PUSH ECX\n  0045156f:  MOV ECX,ESI\n  00451571:  CALL 0x004517a0\n  00451576:  ADD EBP,0x4\n  00451579:  LEA EDX,[ESP + 0x10]\n  0045157d:  ADD EDI,EBP\n  0045157f:  PUSH EDX\n  00451580:  MOV ECX,EBX\n  00451582:  MOV dword ptr [ESP + 0x14],EBP\n  00451586:  MOV dword ptr [ESP + 0x1c],EDI\n  0045158a:  CALL 0x00445fa0\n  0045158f:  POP EDI\n  00451590:  POP ESI\n  00451591:  POP EBP\n  00451592:  POP EBX\n  00451593:  ADD ESP,0x10\n  00451596:  RET 0x8",
+  "callers": [
+    {
+      "address": "0x00451740",
+      "name": "FUN_00451740"
+    },
+    {
+      "address": "0x004515a0",
+      "name": "FUN_004515a0"
+    }
+  ],
+  "pal3patch_info": {
+    "name": "UIRoleDialog_SetFace",
+    "type": "method",
+    "source": "pal3.h"
+  }
+}

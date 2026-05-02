@@ -1,0 +1,30 @@
+{
+  "address": "0x0052dca0", 
+  "size_bytes": 79, 
+  "calling_convention": "unknown", 
+  "signature": "undefined FUN_0052dca0(undefined4 param_1)", 
+  "callees": [], 
+  "global_refs": [
+    {
+      "address": "0x00000004", 
+      "type": null, 
+      "name": "DAT_00000004"
+    }, 
+    {
+      "address": "0x0056a644", 
+      "type": null, 
+      "name": "DAT_0056a644"
+    }
+  ], 
+  "has_custom_name": false, 
+  "decompiled_c": "\r\n/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */\r\n\r\nuint __thiscall FUN_0052dca0(uint *param_1_00,float param_1)\r\n\r\n{\r\n  float *pfVar1;\r\n  uint uVar2;\r\n  \r\n  if ((_DAT_0056a644 <= param_1) && (param_1 <= (float)param_1_00[2])) {\r\n    uVar2 = 0;\r\n    if (*param_1_00 != 0) {\r\n      pfVar1 = (float *)(param_1_00[1] + 0xc);\r\n      do {\r\n        if (param_1 <= *pfVar1) {\r\n          return uVar2;\r\n        }\r\n        uVar2 = uVar2 + 1;\r\n        pfVar1 = pfVar1 + 8;\r\n      } while (uVar2 < *param_1_00);\r\n    }\r\n  }\r\n  return 0;\r\n}\r\n\r\n", 
+  "is_thunk": false, 
+  "name": "FUN_0052dca0", 
+  "assembly": "  0052dca0:  FLD dword ptr [ESP + 0x4]\n  0052dca4:  FCOMP dword ptr [0x0056a644]\n  0052dcaa:  PUSH ESI\n  0052dcab:  FNSTSW AX\n  0052dcad:  TEST AH,0x1\n  0052dcb0:  JNZ 0x0052dce3\n  0052dcb2:  FLD dword ptr [ESP + 0x8]\n  0052dcb6:  FCOMP dword ptr [ECX + 0x8]\n  0052dcb9:  FNSTSW AX\n  0052dcbb:  TEST AH,0x41\n  0052dcbe:  JZ 0x0052dce3\n  0052dcc0:  MOV ESI,dword ptr [ECX]\n  0052dcc2:  XOR EDX,EDX\n  0052dcc4:  TEST ESI,ESI\n  0052dcc6:  JBE 0x0052dce3\n  0052dcc8:  MOV ECX,dword ptr [ECX + 0x4]\n  0052dccb:  ADD ECX,0xc\n  0052dcce:  FLD dword ptr [ESP + 0x8]\n  0052dcd2:  FCOMP dword ptr [ECX]\n  0052dcd4:  FNSTSW AX\n  0052dcd6:  TEST AH,0x41\n  0052dcd9:  JNZ 0x0052dce9\n  0052dcdb:  INC EDX\n  0052dcdc:  ADD ECX,0x20\n  0052dcdf:  CMP EDX,ESI\n  0052dce1:  JC 0x0052dcce\n  0052dce3:  XOR EAX,EAX\n  0052dce5:  POP ESI\n  0052dce6:  RET 0x4\n  0052dce9:  MOV EAX,EDX\n  0052dceb:  POP ESI\n  0052dcec:  RET 0x4", 
+  "callers": [
+    {
+      "address": "0x00531260", 
+      "name": "FUN_00531260"
+    }
+  ]
+}

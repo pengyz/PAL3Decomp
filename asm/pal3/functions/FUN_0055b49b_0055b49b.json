@@ -1,0 +1,40 @@
+{
+  "address": "0x0055b49b", 
+  "size_bytes": 86, 
+  "calling_convention": "unknown", 
+  "signature": "undefined FUN_0055b49b(undefined4 param_1)", 
+  "callees": [], 
+  "global_refs": [
+    {
+      "address": "0x00000004", 
+      "type": null, 
+      "name": "DAT_00000004"
+    }, 
+    {
+      "address": "0x0060b6c8", 
+      "type": null, 
+      "name": "DAT_0060b6c8"
+    }, 
+    {
+      "address": "0x-000000c", 
+      "type": null, 
+      "name": "DAT_-000000c"
+    }, 
+    {
+      "address": "0x0060b6d4", 
+      "type": null, 
+      "name": "DAT_0060b6d4"
+    }
+  ], 
+  "has_custom_name": false, 
+  "decompiled_c": "\r\n/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */\r\n\r\nvoid FUN_0055b49b(void)\r\n\r\n{\r\n  return;\r\n}\r\n\r\n", 
+  "is_thunk": false, 
+  "name": "FUN_0055b49b", 
+  "assembly": "  0055b49b:  PUSH EBP\n  0055b49c:  MOV EBP,ESP\n  0055b49e:  PUSH ECX\n  0055b49f:  PUSH ECX\n  0055b4a0:  MOV CL,byte ptr [EBP + 0x8]\n  0055b4a3:  TEST CL,0x1\n  0055b4a6:  JZ 0x0055b4b2\n  0055b4a8:  FLD tword ptr [0x0060b6c8]\n  0055b4ae:  FISTP dword ptr [EBP + 0x8]\n  0055b4b1:  WAIT\n  0055b4b2:  TEST CL,0x8\n  0055b4b5:  JZ 0x0055b4c7\n  0055b4b7:  FSTSW AX\n  0055b4ba:  FLD tword ptr [0x0060b6c8]\n  0055b4c0:  FSTP qword ptr [EBP + -0x8]\n  0055b4c3:  WAIT\n  0055b4c4:  FSTSW AX\n  0055b4c7:  TEST CL,0x10\n  0055b4ca:  JZ 0x0055b4d6\n  0055b4cc:  FLD tword ptr [0x0060b6d4]\n  0055b4d2:  FSTP qword ptr [EBP + -0x8]\n  0055b4d5:  WAIT\n  0055b4d6:  TEST CL,0x4\n  0055b4d9:  JZ 0x0055b4e4\n  0055b4db:  FLDZ\n  0055b4dd:  FLD1\n  0055b4df:  FDIVRP\n  0055b4e1:  FSTP ST0\n  0055b4e3:  WAIT\n  0055b4e4:  TEST CL,0x20\n  0055b4e7:  JZ 0x0055b4ef\n  0055b4e9:  FLDPI\n  0055b4eb:  FSTP qword ptr [EBP + -0x8]\n  0055b4ee:  WAIT\n  0055b4ef:  LEAVE\n  0055b4f0:  RET", 
+  "callers": [
+    {
+      "address": "0x0055b21e", 
+      "name": "FUN_0055b21e"
+    }
+  ]
+}

@@ -1,0 +1,19 @@
+{
+  "address": "0x0052d780", 
+  "size_bytes": 5, 
+  "calling_convention": "unknown", 
+  "signature": "undefined thunk_FUN_0052d790(void)", 
+  "callees": [], 
+  "global_refs": [], 
+  "has_custom_name": false, 
+  "decompiled_c": "\r\nvoid __fastcall thunk_FUN_0052d790(int *param_1)\r\n\r\n{\r\n  if (*param_1 != 0) {\r\n    if (param_1[1] != 0) {\r\n      FUN_00541d10(param_1[1]);\r\n      param_1[1] = 0;\r\n    }\r\n    *param_1 = 0;\r\n  }\r\n  return;\r\n}\r\n\r\n", 
+  "is_thunk": true, 
+  "name": "thunk_FUN_0052d790", 
+  "assembly": "  0052d780:  JMP 0x0052d790", 
+  "callers": [
+    {
+      "address": "0x005687bc", 
+      "name": "Unwind@005687bc"
+    }
+  ]
+}

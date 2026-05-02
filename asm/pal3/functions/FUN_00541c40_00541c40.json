@@ -1,0 +1,53 @@
+{
+  "address": "0x00541c40", 
+  "size_bytes": 114, 
+  "calling_convention": "unknown", 
+  "signature": "undefined FUN_00541c40(undefined4 param_1)", 
+  "callees": [
+    {
+      "address": "0x00000003", 
+      "name": "RegOpenKeyExA"
+    }, 
+    {
+      "address": "0x00000006", 
+      "name": "RegQueryValueExA"
+    }, 
+    {
+      "address": "0x00000005", 
+      "name": "RegCloseKey"
+    }
+  ], 
+  "global_refs": [
+    {
+      "address": "0x00000004", 
+      "type": null, 
+      "name": "DAT_00000004"
+    }, 
+    {
+      "address": "0x0056a008", 
+      "type": null, 
+      "name": "PTR_RegOpenKeyExA_0056a008"
+    }, 
+    {
+      "address": "0x0056a014", 
+      "type": null, 
+      "name": "PTR_RegQueryValueExA_0056a014"
+    }, 
+    {
+      "address": "0x0056a010", 
+      "type": null, 
+      "name": "PTR_RegCloseKey_0056a010"
+    }
+  ], 
+  "has_custom_name": false, 
+  "decompiled_c": "\r\nundefined4 FUN_00541c40(HKEY param_1,LPCSTR param_2,LPBYTE param_3)\r\n\r\n{\r\n  LSTATUS LVar1;\r\n  DWORD aDStack_8 [2];\r\n  \r\n  LVar1 = RegOpenKeyExA((HKEY)0x80000002,(LPCSTR)param_1,0,0x20019,&param_1);\r\n  if (LVar1 != 0) {\r\n    *param_3 = '\\0';\r\n    return 0;\r\n  }\r\n  aDStack_8[0] = 0x144;\r\n  aDStack_8[1] = 1;\r\n  RegQueryValueExA(param_1,param_2,(LPDWORD)0x0,aDStack_8 + 1,param_3,aDStack_8);\r\n  RegCloseKey(param_1);\r\n  return 1;\r\n}\r\n\r\n", 
+  "is_thunk": false, 
+  "name": "FUN_00541c40", 
+  "assembly": "  00541c40:  MOV ECX,dword ptr [ESP + 0x4]\n  00541c44:  SUB ESP,0x8\n  00541c47:  LEA EAX,[ESP + 0xc]\n  00541c4b:  PUSH EAX\n  00541c4c:  PUSH 0x20019\n  00541c51:  PUSH 0x0\n  00541c53:  PUSH ECX\n  00541c54:  PUSH 0x80000002\n  00541c59:  CALL dword ptr [0x0056a008]\n  00541c5f:  TEST EAX,EAX\n  00541c61:  JZ 0x00541c70\n  00541c63:  MOV EDX,dword ptr [ESP + 0x14]\n  00541c67:  XOR AL,AL\n  00541c69:  MOV byte ptr [EDX],0x0\n  00541c6c:  ADD ESP,0x8\n  00541c6f:  RET\n  00541c70:  MOV ECX,dword ptr [ESP + 0x14]\n  00541c74:  LEA EAX,[ESP]\n  00541c78:  PUSH EAX\n  00541c79:  MOV EAX,dword ptr [ESP + 0x14]\n  00541c7d:  LEA EDX,[ESP + 0x8]\n  00541c81:  PUSH ECX\n  00541c82:  MOV ECX,dword ptr [ESP + 0x14]\n  00541c86:  PUSH EDX\n  00541c87:  PUSH 0x0\n  00541c89:  PUSH EAX\n  00541c8a:  PUSH ECX\n  00541c8b:  MOV dword ptr [ESP + 0x18],0x144\n  00541c93:  MOV dword ptr [ESP + 0x1c],0x1\n  00541c9b:  CALL dword ptr [0x0056a014]\n  00541ca1:  MOV EDX,dword ptr [ESP + 0xc]\n  00541ca5:  PUSH EDX\n  00541ca6:  CALL dword ptr [0x0056a010]\n  00541cac:  MOV AL,0x1\n  00541cae:  ADD ESP,0x8\n  00541cb1:  RET", 
+  "callers": [
+    {
+      "address": "0x00541900", 
+      "name": "FUN_00541900"
+    }
+  ]
+}

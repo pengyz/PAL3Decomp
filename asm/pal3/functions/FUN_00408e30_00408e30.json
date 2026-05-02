@@ -1,0 +1,39 @@
+{
+  "address": "0x00408e30", 
+  "size_bytes": 74, 
+  "calling_convention": "unknown", 
+  "signature": "undefined FUN_00408e30(undefined4 param_1, undefined4 param_2)", 
+  "callees": [], 
+  "global_refs": [
+    {
+      "address": "0x00000004", 
+      "type": null, 
+      "name": "DAT_00000004"
+    }, 
+    {
+      "address": "0x00408e7c", 
+      "type": null, 
+      "name": "switchdataD_00408e7c"
+    }, 
+    {
+      "address": "0x00000008", 
+      "type": null, 
+      "name": "DAT_00000008"
+    }
+  ], 
+  "has_custom_name": false, 
+  "decompiled_c": "\r\nint FUN_00408e30(undefined4 param_1,int param_2)\r\n\r\n{\r\n  int iVar1;\r\n  \r\n  iVar1 = 0;\r\n  switch(param_1) {\r\n  case 0:\r\n    return param_2 * 4 + 0x19;\r\n  case 1:\r\n    return param_2 * 5 + 0x19;\r\n  case 2:\r\n    return param_2 * 4 + 0x16;\r\n  case 3:\r\n    return (param_2 * 3 + 0xf) * 2;\r\n  case 4:\r\n    iVar1 = param_2 * 4 + 0x14;\r\n  }\r\n  return iVar1;\r\n}\r\n\r\n", 
+  "is_thunk": false, 
+  "name": "FUN_00408e30", 
+  "assembly": "  00408e30:  MOV ECX,dword ptr [ESP + 0x4]\n  00408e34:  XOR EAX,EAX\n  00408e36:  CMP ECX,0x4\n  00408e39:  JA 0x00408e79\n  00408e3b:  JMP dword ptr [ECX*0x4 + 0x408e7c]\n  00408e42:  MOV EAX,dword ptr [ESP + 0x8]\n  00408e46:  LEA EAX,[EAX*0x4 + 0x19]\n  00408e4d:  RET\n  00408e4e:  MOV EAX,dword ptr [ESP + 0x8]\n  00408e52:  LEA EAX,[EAX + EAX*0x4 + 0x19]\n  00408e56:  RET\n  00408e57:  MOV ECX,dword ptr [ESP + 0x8]\n  00408e5b:  LEA EAX,[ECX*0x4 + 0x16]\n  00408e62:  RET\n  00408e63:  MOV EAX,dword ptr [ESP + 0x8]\n  00408e67:  LEA EAX,[EAX + EAX*0x2 + 0xf]\n  00408e6b:  SHL EAX,0x1\n  00408e6d:  RET\n  00408e6e:  MOV EDX,dword ptr [ESP + 0x8]\n  00408e72:  LEA EAX,[EDX*0x4 + 0x14]\n  00408e79:  RET", 
+  "callers": [
+    {
+      "address": "0x0049cf80", 
+      "name": "FUN_0049cf80"
+    }, 
+    {
+      "address": "0x00408fd0", 
+      "name": "FUN_00408fd0"
+    }
+  ]
+}

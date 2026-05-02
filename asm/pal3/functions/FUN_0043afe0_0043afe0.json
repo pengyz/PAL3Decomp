@@ -1,0 +1,49 @@
+{
+  "address": "0x0043afe0", 
+  "size_bytes": 115, 
+  "calling_convention": "unknown", 
+  "signature": "undefined FUN_0043afe0(undefined4 param_1, undefined4 param_2, undefined4 param_3, undefined4 param_4)", 
+  "callees": [
+    {
+      "address": "0x00445f60", 
+      "name": "FUN_00445f60"
+    }, 
+    {
+      "address": "0x000000db", 
+      "name": "GetByte"
+    }
+  ], 
+  "global_refs": [
+    {
+      "address": "0x00000008", 
+      "type": null, 
+      "name": "DAT_00000008"
+    }, 
+    {
+      "address": "0x00000004", 
+      "type": null, 
+      "name": "DAT_00000004"
+    }, 
+    {
+      "address": "0x0000000c", 
+      "type": null, 
+      "name": "DAT_0000000c"
+    }, 
+    {
+      "address": "0x00000010", 
+      "type": null, 
+      "name": "DAT_00000010"
+    }, 
+    {
+      "address": "0x0056a380", 
+      "type": null, 
+      "name": "PTR_GetByte_0056a380"
+    }
+  ], 
+  "has_custom_name": false, 
+  "decompiled_c": "\r\nuchar __thiscall FUN_0043afe0(int param_1_00,int param_1,uint param_2,uint param_3,int param_4)\r\n\r\n{\r\n  uchar uVar1;\r\n  int iVar2;\r\n  gbTexture_D3D *this;\r\n  \r\n  if (-1 < (int)param_2) {\r\n    iVar2 = *(int *)(param_1_00 + 0xb8 + param_1 * 4);\r\n    if (((param_2 < *(uint *)(iVar2 + 0x410)) && (-1 < (int)param_3)) &&\r\n       (param_3 < *(uint *)(iVar2 + 0x414))) {\r\n      param_4 = param_4 + (param_2 + *(int *)(iVar2 + 0x408)) * 4;\r\n      iVar2 = ((*(int *)(iVar2 + 0x40c) - *(int *)(iVar2 + 0x404)) - param_3) + 0x400;\r\n      this = (gbTexture_D3D *)FUN_00445f60(0);\r\n      uVar1 = gbTexture_D3D::GetByte(this,iVar2,param_4);\r\n      return uVar1;\r\n    }\r\n  }\r\n  return '\\0';\r\n}\r\n\r\n", 
+  "is_thunk": false, 
+  "name": "FUN_0043afe0", 
+  "assembly": "  0043afe0:  PUSH ESI\n  0043afe1:  MOV ESI,dword ptr [ESP + 0xc]\n  0043afe5:  TEST ESI,ESI\n  0043afe7:  PUSH EDI\n  0043afe8:  JL 0x0043b04c\n  0043afea:  MOV EAX,dword ptr [ESP + 0xc]\n  0043afee:  MOV EDX,dword ptr [ECX + EAX*0x4 + 0xb8]\n  0043aff5:  CMP ESI,dword ptr [EDX + 0x410]\n  0043affb:  JNC 0x0043b04c\n  0043affd:  MOV EDI,dword ptr [ESP + 0x14]\n  0043b001:  TEST EDI,EDI\n  0043b003:  JL 0x0043b04c\n  0043b005:  CMP EDI,dword ptr [EDX + 0x414]\n  0043b00b:  JNC 0x0043b04c\n  0043b00d:  MOV EAX,dword ptr [EDX + 0x408]\n  0043b013:  PUSH EBX\n  0043b014:  MOV EBX,dword ptr [EDX + 0x404]\n  0043b01a:  ADD ESI,EAX\n  0043b01c:  MOV EAX,dword ptr [EDX + 0x40c]\n  0043b022:  MOV EDX,dword ptr [ESP + 0x1c]\n  0043b026:  SUB EAX,EBX\n  0043b028:  ADD ECX,0x74\n  0043b02b:  SUB EAX,EDI\n  0043b02d:  LEA EDX,[EDX + ESI*0x4]\n  0043b030:  ADD EAX,0x400\n  0043b035:  PUSH EDX\n  0043b036:  PUSH EAX\n  0043b037:  PUSH 0x0\n  0043b039:  CALL 0x00445f60\n  0043b03e:  MOV ECX,EAX\n  0043b040:  CALL dword ptr [0x0056a380]\n  0043b046:  POP EBX\n  0043b047:  POP EDI\n  0043b048:  POP ESI\n  0043b049:  RET 0x10\n  0043b04c:  POP EDI\n  0043b04d:  XOR AL,AL\n  0043b04f:  POP ESI\n  0043b050:  RET 0x10", 
+  "callers": []
+}

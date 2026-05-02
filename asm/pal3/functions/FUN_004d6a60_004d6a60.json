@@ -1,0 +1,25 @@
+{
+  "address": "0x004d6a60", 
+  "size_bytes": 86, 
+  "calling_convention": "unknown", 
+  "signature": "undefined FUN_004d6a60(undefined4 param_1)", 
+  "callees": [], 
+  "global_refs": [
+    {
+      "address": "0x00000004", 
+      "type": null, 
+      "name": "DAT_00000004"
+    }
+  ], 
+  "has_custom_name": false, 
+  "decompiled_c": "\r\nuint __thiscall FUN_004d6a60(int param_1_00,undefined4 *param_1)\r\n\r\n{\r\n  undefined4 *puVar1;\r\n  uint uVar2;\r\n  char *pcVar3;\r\n  int iVar4;\r\n  undefined4 *puVar5;\r\n  \r\n  uVar2 = 0;\r\n  pcVar3 = (char *)(param_1_00 + 0x35);\r\n  do {\r\n    if (*pcVar3 == '\\0') {\r\n      puVar1 = (undefined4 *)(param_1_00 + uVar2 * 0x38);\r\n      puVar5 = puVar1;\r\n      for (iVar4 = 0xe; iVar4 != 0; iVar4 = iVar4 + -1) {\r\n        *puVar5 = *param_1;\r\n        param_1 = param_1 + 1;\r\n        puVar5 = puVar5 + 1;\r\n      }\r\n      *(undefined *)((int)puVar1 + 0x35) = 1;\r\n      if (*(int *)(param_1_00 + 0x1c00) <= (int)uVar2) {\r\n        uVar2 = uVar2 + 1;\r\n        *(uint *)(param_1_00 + 0x1c00) = uVar2;\r\n      }\r\n      return CONCAT31((int3)(uVar2 >> 8),1);\r\n    }\r\n    uVar2 = uVar2 + 1;\r\n    pcVar3 = pcVar3 + 0x38;\r\n  } while ((int)uVar2 < 0x80);\r\n  return uVar2 & 0xffffff00;\r\n}\r\n\r\n", 
+  "is_thunk": false, 
+  "name": "FUN_004d6a60", 
+  "assembly": "  004d6a60:  PUSH EBX\n  004d6a61:  MOV EBX,ECX\n  004d6a63:  XOR EAX,EAX\n  004d6a65:  LEA ECX,[EBX + 0x35]\n  004d6a68:  CMP byte ptr [ECX],0x0\n  004d6a6b:  JZ 0x004d6a7e\n  004d6a6d:  INC EAX\n  004d6a6e:  ADD ECX,0x38\n  004d6a71:  CMP EAX,0x80\n  004d6a76:  JL 0x004d6a68\n  004d6a78:  XOR AL,AL\n  004d6a7a:  POP EBX\n  004d6a7b:  RET 0x4\n  004d6a7e:  LEA ECX,[EAX*0x8 + 0x0]\n  004d6a85:  PUSH ESI\n  004d6a86:  MOV ESI,dword ptr [ESP + 0xc]\n  004d6a8a:  SUB ECX,EAX\n  004d6a8c:  PUSH EDI\n  004d6a8d:  LEA EDX,[EBX + ECX*0x8]\n  004d6a90:  MOV ECX,0xe\n  004d6a95:  MOV EDI,EDX\n  004d6a97:  MOVSD.REP ES:EDI,ESI\n  004d6a99:  MOV byte ptr [EDX + 0x35],0x1\n  004d6a9d:  MOV ECX,dword ptr [EBX + 0x1c00]\n  004d6aa3:  POP EDI\n  004d6aa4:  CMP EAX,ECX\n  004d6aa6:  POP ESI\n  004d6aa7:  JL 0x004d6ab0\n  004d6aa9:  INC EAX\n  004d6aaa:  MOV dword ptr [EBX + 0x1c00],EAX\n  004d6ab0:  MOV AL,0x1\n  004d6ab2:  POP EBX\n  004d6ab3:  RET 0x4", 
+  "callers": [
+    {
+      "address": "0x004d6ac0", 
+      "name": "FUN_004d6ac0"
+    }
+  ]
+}

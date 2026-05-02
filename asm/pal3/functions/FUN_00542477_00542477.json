@@ -1,0 +1,45 @@
+{
+  "address": "0x00542477", 
+  "size_bytes": 67, 
+  "calling_convention": "unknown", 
+  "signature": "undefined FUN_00542477(undefined4 param_1, undefined4 param_2, undefined4 param_3, undefined4 param_4, undefined4 param_5, undefined4 param_6)", 
+  "callees": [], 
+  "global_refs": [
+    {
+      "address": "0x00000008", 
+      "type": null, 
+      "name": "DAT_00000008"
+    }, 
+    {
+      "address": "0x0000000c", 
+      "type": null, 
+      "name": "DAT_0000000c"
+    }, 
+    {
+      "address": "0x00000004", 
+      "type": null, 
+      "name": "DAT_00000004"
+    }, 
+    {
+      "address": "0x00000010", 
+      "type": null, 
+      "name": "DAT_00000010"
+    }, 
+    {
+      "address": "0x00000014", 
+      "type": null, 
+      "name": "DAT_00000014"
+    }, 
+    {
+      "address": "0x00000018", 
+      "type": null, 
+      "name": "DAT_00000018"
+    }
+  ], 
+  "has_custom_name": false, 
+  "decompiled_c": "\r\nvoid FUN_00542477(float *param_1,float *param_2,float *param_3,float *param_4,float param_5,\r\n                 float param_6)\r\n\r\n{\r\n  *param_1 = (*param_4 - *param_2) * param_6 + (*param_3 - *param_2) * param_5 + *param_2;\r\n  param_1[1] = (param_4[1] - param_2[1]) * param_6 + (param_3[1] - param_2[1]) * param_5 +\r\n               param_2[1];\r\n  return;\r\n}\r\n\r\n", 
+  "is_thunk": false, 
+  "name": "FUN_00542477", 
+  "assembly": "  00542477:  PUSH EBP\n  00542478:  MOV EBP,ESP\n  0054247a:  MOV ECX,dword ptr [EBP + 0xc]\n  0054247d:  MOV EDX,dword ptr [EBP + 0x10]\n  00542480:  FLD dword ptr [EDX]\n  00542482:  MOV EAX,dword ptr [EBP + 0x8]\n  00542485:  FSUB dword ptr [ECX]\n  00542487:  PUSH ESI\n  00542488:  MOV ESI,dword ptr [EBP + 0x14]\n  0054248b:  FMUL dword ptr [EBP + 0x18]\n  0054248e:  FLD dword ptr [ESI]\n  00542490:  FSUB dword ptr [ECX]\n  00542492:  FMUL dword ptr [EBP + 0x1c]\n  00542495:  FADDP\n  00542497:  FADD dword ptr [ECX]\n  00542499:  FSTP dword ptr [EAX]\n  0054249b:  FLD dword ptr [EDX + 0x4]\n  0054249e:  FSUB dword ptr [ECX + 0x4]\n  005424a1:  FMUL dword ptr [EBP + 0x18]\n  005424a4:  FLD dword ptr [ESI + 0x4]\n  005424a7:  POP ESI\n  005424a8:  FSUB dword ptr [ECX + 0x4]\n  005424ab:  FMUL dword ptr [EBP + 0x1c]\n  005424ae:  FADDP\n  005424b0:  FADD dword ptr [ECX + 0x4]\n  005424b3:  FSTP dword ptr [EAX + 0x4]\n  005424b6:  POP EBP\n  005424b7:  RET 0x18", 
+  "callers": []
+}

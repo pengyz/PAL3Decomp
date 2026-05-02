@@ -1,0 +1,40 @@
+{
+  "address": "0x0051d5f0", 
+  "size_bytes": 24, 
+  "calling_convention": "unknown", 
+  "signature": "undefined FUN_0051d5f0(void)", 
+  "callees": [
+    {
+      "address": "0x0000006d", 
+      "name": "timeGetTime"
+    }
+  ], 
+  "global_refs": [
+    {
+      "address": "0x0056a1c0", 
+      "type": null, 
+      "name": "PTR_timeGetTime_0056a1c0"
+    }, 
+    {
+      "address": "0x005dfdec", 
+      "type": null, 
+      "name": "DAT_005dfdec"
+    }, 
+    {
+      "address": "0x017ad310", 
+      "type": null, 
+      "name": "DAT_017ad310"
+    }
+  ], 
+  "has_custom_name": false, 
+  "decompiled_c": "\r\nundefined4 FUN_0051d5f0(void)\r\n\r\n{\r\n  DAT_005dfdec = timeGetTime();\r\n  DAT_017ad310 = 0;\r\n  return 1;\r\n}\r\n\r\n", 
+  "is_thunk": false, 
+  "name": "FUN_0051d5f0", 
+  "assembly": "  0051d5f0:  CALL dword ptr [0x0056a1c0]\n  0051d5f6:  MOV [0x005dfdec],EAX\n  0051d5fb:  MOV dword ptr [0x017ad310],0x0\n  0051d605:  MOV AL,0x1\n  0051d607:  RET", 
+  "callers": [
+    {
+      "address": "0x00512d60", 
+      "name": "FUN_00512d60"
+    }
+  ]
+}

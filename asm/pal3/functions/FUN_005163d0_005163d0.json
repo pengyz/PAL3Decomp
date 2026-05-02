@@ -1,0 +1,97 @@
+{
+  "address": "0x005163d0",
+  "size_bytes": 244,
+  "calling_convention": "unknown",
+  "signature": "undefined FUN_005163d0(void)",
+  "callees": [
+    {
+      "address": "0x0043dd60",
+      "name": "FUN_0043dd60"
+    },
+    {
+      "address": "0x00516940",
+      "name": "FUN_00516940"
+    },
+    {
+      "address": "0x00516a30",
+      "name": "FUN_00516a30"
+    },
+    {
+      "address": "0x00517650",
+      "name": "FUN_00517650"
+    },
+    {
+      "address": "0x00517a50",
+      "name": "FUN_00517a50"
+    },
+    {
+      "address": "0x00517ac0",
+      "name": "FUN_00517ac0"
+    },
+    {
+      "address": "0x00517b30",
+      "name": "FUN_00517b30"
+    },
+    {
+      "address": "0x00517ba0",
+      "name": "FUN_00517ba0"
+    },
+    {
+      "address": "0x00517c10",
+      "name": "FUN_00517c10"
+    },
+    {
+      "address": "0x00517c80",
+      "name": "FUN_00517c80"
+    },
+    {
+      "address": "0x00517cf0",
+      "name": "FUN_00517cf0"
+    },
+    {
+      "address": "0x00517d60",
+      "name": "FUN_00517d60"
+    },
+    {
+      "address": "0x00517df0",
+      "name": "FUN_00517df0"
+    },
+    {
+      "address": "0x005177b0",
+      "name": "FUN_005177b0"
+    }
+  ],
+  "global_refs": [
+    {
+      "address": "0x-0000020",
+      "type": null,
+      "name": "DAT_-0000020"
+    },
+    {
+      "address": "0x-000001c",
+      "type": null,
+      "name": "DAT_-000001c"
+    },
+    {
+      "address": "0x-0000018",
+      "type": null,
+      "name": "DAT_-0000018"
+    },
+    {
+      "address": "0x-0000014",
+      "type": null,
+      "name": "DAT_-0000014"
+    }
+  ],
+  "has_custom_name": false,
+  "decompiled_c": "\r\nbool FUN_005163d0(void)\r\n\r\n{\r\n  char cVar1;\r\n  \r\n  FUN_0043dd60(0x7fffffff,0,0,800,600,0);\r\n  cVar1 = FUN_00516940();\r\n  if (cVar1 == '\\0') {\r\n    return false;\r\n  }\r\n  cVar1 = FUN_00516a30();\r\n  if (cVar1 == '\\0') {\r\n    return false;\r\n  }\r\n  cVar1 = FUN_00517650();\r\n  if (cVar1 == '\\0') {\r\n    return false;\r\n  }\r\n  cVar1 = FUN_00517a50();\r\n  if (cVar1 == '\\0') {\r\n    return false;\r\n  }\r\n  cVar1 = FUN_00517ac0();\r\n  if (cVar1 == '\\0') {\r\n    return false;\r\n  }\r\n  cVar1 = FUN_00517b30();\r\n  if (cVar1 == '\\0') {\r\n    return false;\r\n  }\r\n  cVar1 = FUN_00517ba0();\r\n  if (cVar1 == '\\0') {\r\n    return false;\r\n  }\r\n  cVar1 = FUN_00517c10();\r\n  if (cVar1 == '\\0') {\r\n    return false;\r\n  }\r\n  cVar1 = FUN_00517c80();\r\n  if (cVar1 == '\\0') {\r\n    return false;\r\n  }\r\n  cVar1 = FUN_00517cf0();\r\n  if (cVar1 == '\\0') {\r\n    return false;\r\n  }\r\n  cVar1 = FUN_00517d60();\r\n  if (cVar1 == '\\0') {\r\n    return false;\r\n  }\r\n  cVar1 = FUN_00517df0();\r\n  if (cVar1 == '\\0') {\r\n    return false;\r\n  }\r\n  cVar1 = FUN_005177b0();\r\n  return cVar1 != '\\0';\r\n}\r\n\r\n",
+  "is_thunk": false,
+  "name": "CCBUI_Create",
+  "assembly": "  005163d0:  PUSH EBX\n  005163d1:  PUSH ESI\n  005163d2:  MOV ESI,ECX\n  005163d4:  PUSH EDI\n  005163d5:  XOR ECX,ECX\n  005163d7:  XOR EAX,EAX\n  005163d9:  PUSH ECX\n  005163da:  MOV EDX,0x320\n  005163df:  SUB ESP,0x10\n  005163e2:  MOV EDI,0x258\n  005163e7:  MOV EBX,ESP\n  005163e9:  PUSH 0x7fffffff\n  005163ee:  MOV dword ptr [EBX],EAX\n  005163f0:  MOV dword ptr [EBX + 0x4],ECX\n  005163f3:  MOV ECX,ESI\n  005163f5:  MOV dword ptr [EBX + 0x8],EDX\n  005163f8:  MOV dword ptr [EBX + 0xc],EDI\n  005163fb:  CALL 0x0043dd60\n  00516400:  MOV ECX,ESI\n  00516402:  CALL 0x00516940\n  00516407:  TEST AL,AL\n  00516409:  JNZ 0x0051640f\n  0051640b:  POP EDI\n  0051640c:  POP ESI\n  0051640d:  POP EBX\n  0051640e:  RET\n  0051640f:  MOV ECX,ESI\n  00516411:  CALL 0x00516a30\n  00516416:  TEST AL,AL\n  00516418:  JNZ 0x0051641e\n  0051641a:  POP EDI\n  0051641b:  POP ESI\n  0051641c:  POP EBX\n  0051641d:  RET\n  0051641e:  MOV ECX,ESI\n  00516420:  CALL 0x00517650\n  00516425:  TEST AL,AL\n  00516427:  JNZ 0x0051642d\n  00516429:  POP EDI\n  0051642a:  POP ESI\n  0051642b:  POP EBX\n  0051642c:  RET\n  0051642d:  MOV ECX,ESI\n  0051642f:  CALL 0x00517a50\n  00516434:  TEST AL,AL\n  00516436:  JNZ 0x0051643c\n  00516438:  POP EDI\n  00516439:  POP ESI\n  0051643a:  POP EBX\n  0051643b:  RET\n  0051643c:  MOV ECX,ESI\n  0051643e:  CALL 0x00517ac0\n  00516443:  TEST AL,AL\n  00516445:  JNZ 0x0051644b\n  00516447:  POP EDI\n  00516448:  POP ESI\n  00516449:  POP EBX\n  0051644a:  RET\n  0051644b:  MOV ECX,ESI\n  0051644d:  CALL 0x00517b30\n  00516452:  TEST AL,AL\n  00516454:  JNZ 0x0051645a\n  00516456:  POP EDI\n  00516457:  POP ESI\n  00516458:  POP EBX\n  00516459:  RET\n  0051645a:  MOV ECX,ESI\n  0051645c:  CALL 0x00517ba0\n  00516461:  TEST AL,AL\n  00516463:  JNZ 0x00516469\n  00516465:  POP EDI\n  00516466:  POP ESI\n  00516467:  POP EBX\n  00516468:  RET\n  00516469:  MOV ECX,ESI\n  0051646b:  CALL 0x00517c10\n  00516470:  TEST AL,AL\n  00516472:  JNZ 0x00516478\n  00516474:  POP EDI\n  00516475:  POP ESI\n  00516476:  POP EBX\n  00516477:  RET\n  00516478:  MOV ECX,ESI\n  0051647a:  CALL 0x00517c80\n  0051647f:  TEST AL,AL\n  00516481:  JNZ 0x00516487\n  00516483:  POP EDI\n  00516484:  POP ESI\n  00516485:  POP EBX\n  00516486:  RET\n  00516487:  MOV ECX,ESI\n  00516489:  CALL 0x00517cf0\n  0051648e:  TEST AL,AL\n  00516490:  JNZ 0x00516496\n  00516492:  POP EDI\n  00516493:  POP ESI\n  00516494:  POP EBX\n  00516495:  RET\n  00516496:  MOV ECX,ESI\n  00516498:  CALL 0x00517d60\n  0051649d:  TEST AL,AL\n  0051649f:  JNZ 0x005164a5\n  005164a1:  POP EDI\n  005164a2:  POP ESI\n  005164a3:  POP EBX\n  005164a4:  RET\n  005164a5:  MOV ECX,ESI\n  005164a7:  CALL 0x00517df0\n  005164ac:  TEST AL,AL\n  005164ae:  JNZ 0x005164b4\n  005164b0:  POP EDI\n  005164b1:  POP ESI\n  005164b2:  POP EBX\n  005164b3:  RET\n  005164b4:  MOV ECX,ESI\n  005164b6:  CALL 0x005177b0\n  005164bb:  TEST AL,AL\n  005164bd:  POP EDI\n  005164be:  POP ESI\n  005164bf:  SETNZ AL\n  005164c2:  POP EBX\n  005164c3:  RET",
+  "callers": [],
+  "pal3patch_info": {
+    "name": "CCBUI_Create",
+    "type": "method",
+    "source": "pal3.h"
+  }
+}

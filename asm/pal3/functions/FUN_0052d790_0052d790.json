@@ -1,0 +1,19 @@
+{
+  "address": "0x0052d790", 
+  "size_bytes": 39, 
+  "calling_convention": "unknown", 
+  "signature": "undefined FUN_0052d790(void)", 
+  "callees": [
+    {
+      "address": "0x00541d10", 
+      "name": "FUN_00541d10"
+    }
+  ], 
+  "global_refs": [], 
+  "has_custom_name": false, 
+  "decompiled_c": "\r\nvoid __fastcall FUN_0052d790(int *param_1)\r\n\r\n{\r\n  if (*param_1 != 0) {\r\n    if (param_1[1] != 0) {\r\n      FUN_00541d10(param_1[1]);\r\n      param_1[1] = 0;\r\n    }\r\n    *param_1 = 0;\r\n  }\r\n  return;\r\n}\r\n\r\n", 
+  "is_thunk": false, 
+  "name": "FUN_0052d790", 
+  "assembly": "  0052d790:  PUSH ESI\n  0052d791:  MOV ESI,ECX\n  0052d793:  CMP dword ptr [ESI],0x0\n  0052d796:  JBE 0x0052d7b5\n  0052d798:  MOV EAX,dword ptr [ESI + 0x4]\n  0052d79b:  TEST EAX,EAX\n  0052d79d:  JZ 0x0052d7af\n  0052d79f:  PUSH EAX\n  0052d7a0:  CALL 0x00541d10\n  0052d7a5:  ADD ESP,0x4\n  0052d7a8:  MOV dword ptr [ESI + 0x4],0x0\n  0052d7af:  MOV dword ptr [ESI],0x0\n  0052d7b5:  POP ESI\n  0052d7b6:  RET", 
+  "callers": []
+}

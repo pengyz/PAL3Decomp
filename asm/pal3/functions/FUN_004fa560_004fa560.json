@@ -1,0 +1,65 @@
+{
+  "address": "0x004fa560", 
+  "size_bytes": 121, 
+  "calling_convention": "unknown", 
+  "signature": "undefined FUN_004fa560(undefined4 param_1, undefined4 param_2)", 
+  "callees": [
+    {
+      "address": "0x00553082", 
+      "name": "FUN_00553082"
+    }
+  ], 
+  "global_refs": [
+    {
+      "address": "0x00000004", 
+      "type": null, 
+      "name": "DAT_00000004"
+    }, 
+    {
+      "address": "0x004fa5dc", 
+      "type": null, 
+      "name": "switchdataD_004fa5dc"
+    }, 
+    {
+      "address": "0x00000008", 
+      "type": null, 
+      "name": "DAT_00000008"
+    }, 
+    {
+      "address": "0x00592e84", 
+      "type": null, 
+      "name": "s_Jingtian_00592e84"
+    }, 
+    {
+      "address": "0x00592e7c", 
+      "type": null, 
+      "name": "s_Xuejian_00592e7c"
+    }, 
+    {
+      "address": "0x00592e74", 
+      "type": null, 
+      "name": "s_Longkui_00592e74"
+    }, 
+    {
+      "address": "0x00592e6c", 
+      "type": null, 
+      "name": "s_Zixuan_00592e6c"
+    }, 
+    {
+      "address": "0x00592e60", 
+      "type": null, 
+      "name": "s_Changqing_00592e60"
+    }
+  ], 
+  "has_custom_name": false, 
+  "decompiled_c": "\r\nvoid FUN_004fa560(undefined4 param_1,undefined4 param_2)\r\n\r\n{\r\n  switch(param_1) {\r\n  case 0:\r\n    FUN_00553082(param_2,s_Jingtian_00592e84);\r\n    return;\r\n  case 1:\r\n    FUN_00553082(param_2,s_Xuejian_00592e7c);\r\n    return;\r\n  case 2:\r\n    FUN_00553082(param_2,s_Longkui_00592e74);\r\n    return;\r\n  case 3:\r\n    FUN_00553082(param_2,s_Zixuan_00592e6c);\r\n    return;\r\n  case 4:\r\n    FUN_00553082(param_2,s_Changqing_00592e60);\r\n  }\r\n  return;\r\n}\r\n\r\n", 
+  "is_thunk": false, 
+  "name": "FUN_004fa560", 
+  "assembly": "  004fa560:  MOV EAX,dword ptr [ESP + 0x4]\n  004fa564:  CMP EAX,0x4\n  004fa567:  JA 0x004fa5d6\n  004fa569:  JMP dword ptr [EAX*0x4 + 0x4fa5dc]\n  004fa570:  MOV EAX,dword ptr [ESP + 0x8]\n  004fa574:  PUSH 0x592e84\n  004fa579:  PUSH EAX\n  004fa57a:  CALL 0x00553082\n  004fa57f:  ADD ESP,0x8\n  004fa582:  RET 0x8\n  004fa585:  MOV ECX,dword ptr [ESP + 0x8]\n  004fa589:  PUSH 0x592e7c\n  004fa58e:  PUSH ECX\n  004fa58f:  CALL 0x00553082\n  004fa594:  ADD ESP,0x8\n  004fa597:  RET 0x8\n  004fa59a:  MOV EDX,dword ptr [ESP + 0x8]\n  004fa59e:  PUSH 0x592e74\n  004fa5a3:  PUSH EDX\n  004fa5a4:  CALL 0x00553082\n  004fa5a9:  ADD ESP,0x8\n  004fa5ac:  RET 0x8\n  004fa5af:  MOV EAX,dword ptr [ESP + 0x8]\n  004fa5b3:  PUSH 0x592e6c\n  004fa5b8:  PUSH EAX\n  004fa5b9:  CALL 0x00553082\n  004fa5be:  ADD ESP,0x8\n  004fa5c1:  RET 0x8\n  004fa5c4:  MOV ECX,dword ptr [ESP + 0x8]\n  004fa5c8:  PUSH 0x592e60\n  004fa5cd:  PUSH ECX\n  004fa5ce:  CALL 0x00553082\n  004fa5d3:  ADD ESP,0x8\n  004fa5d6:  RET 0x8", 
+  "callers": [
+    {
+      "address": "0x004f7fc0", 
+      "name": "FUN_004f7fc0"
+    }
+  ]
+}

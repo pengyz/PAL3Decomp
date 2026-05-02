@@ -1,0 +1,108 @@
+{
+  "address": "0x0047cd70", 
+  "size_bytes": 361, 
+  "calling_convention": "unknown", 
+  "signature": "undefined FUN_0047cd70(undefined4 param_1)", 
+  "callees": [
+    {
+      "address": "0x005540f0", 
+      "name": "_strncpy"
+    }, 
+    {
+      "address": "0x00401f50", 
+      "name": "FUN_00401f50"
+    }, 
+    {
+      "address": "0x0055ef90", 
+      "name": "__strcmpi"
+    }, 
+    {
+      "address": "0x0055353b", 
+      "name": "operator_new"
+    }, 
+    {
+      "address": "0x0000013b", 
+      "name": "gbGeomNode"
+    }, 
+    {
+      "address": "0x0000013c", 
+      "name": "LoadFromFile"
+    }, 
+    {
+      "address": "0x0000016f", 
+      "name": "SetTimeScale"
+    }, 
+    {
+      "address": "0x00401f90", 
+      "name": "FUN_00401f90"
+    }
+  ], 
+  "global_refs": [
+    {
+      "address": "0xffdff000", 
+      "type": null, 
+      "name": "ExceptionList"
+    }, 
+    {
+      "address": "0x0056269e", 
+      "type": null, 
+      "name": "LAB_0056269e"
+    }, 
+    {
+      "address": "0x00000004", 
+      "type": null, 
+      "name": "DAT_00000004"
+    }, 
+    {
+      "address": "0x-0000014", 
+      "type": null, 
+      "name": "DAT_-0000014"
+    }, 
+    {
+      "address": "0x00596424", 
+      "type": null, 
+      "name": "PTR_DAT_00596424"
+    }, 
+    {
+      "address": "0x0056a500", 
+      "type": null, 
+      "name": "PTR_gbGeomNode_0056a500"
+    }, 
+    {
+      "address": "0x0056a66c", 
+      "type": null, 
+      "name": "PTR_FUN_0056a66c"
+    }, 
+    {
+      "address": "0x0056a504", 
+      "type": null, 
+      "name": "PTR_LoadFromFile_0056a504"
+    }, 
+    {
+      "address": "0x00596420", 
+      "type": null, 
+      "name": "PTR_DAT_00596420"
+    }, 
+    {
+      "address": "0x0056a5d0", 
+      "type": null, 
+      "name": "PTR_SetTimeScale_0056a5d0"
+    }, 
+    {
+      "address": "0x-000000c", 
+      "type": null, 
+      "name": "DAT_-000000c"
+    }
+  ], 
+  "has_custom_name": false, 
+  "decompiled_c": "\r\nvoid __thiscall FUN_0047cd70(char *param_1_00,char *param_1)\r\n\r\n{\r\n  char cVar1;\r\n  void *pvVar2;\r\n  int iVar3;\r\n  gbGeomNode *pgVar4;\r\n  uint uVar5;\r\n  char *pcVar6;\r\n  char local_14 [8];\r\n  void *local_c;\r\n  undefined *puStack_8;\r\n  int iStack_4;\r\n  \r\n  pvVar2 = ExceptionList;\r\n  iStack_4 = 0xffffffff;\r\n  puStack_8 = &LAB_0056269e;\r\n  local_c = ExceptionList;\r\n  ExceptionList = &local_c;\r\n  param_1_00[0x14] = '\\0';\r\n  param_1_00[0x15] = '\\0';\r\n  if (*param_1_00 == '\\0') {\r\n    ExceptionList = pvVar2;\r\n    return;\r\n  }\r\n  if (*(undefined4 **)(param_1_00 + 0xc) != (undefined4 *)0x0) {\r\n    (**(code **)**(undefined4 **)(param_1_00 + 0xc))(1);\r\n    param_1_00[0xc] = '\\0';\r\n    param_1_00[0xd] = '\\0';\r\n    param_1_00[0xe] = '\\0';\r\n    param_1_00[0xf] = '\\0';\r\n  }\r\n  uVar5 = 0xffffffff;\r\n  pcVar6 = param_1;\r\n  do {\r\n    if (uVar5 == 0) break;\r\n    uVar5 = uVar5 - 1;\r\n    cVar1 = *pcVar6;\r\n    pcVar6 = pcVar6 + 1;\r\n  } while (cVar1 != '\\0');\r\n  local_14[0] = '\\0';\r\n  local_14[1] = '\\0';\r\n  local_14[2] = '\\0';\r\n  local_14[3] = '\\0';\r\n  _strncpy(local_14,param_1 + (~uVar5 - 4),3);\r\n  FUN_00401f50();\r\n  iStack_4 = 0;\r\n  iVar3 = __strcmpi(local_14,(char *)&PTR_DAT_00596424);\r\n  if (iVar3 == 0) {\r\n    param_1_00[0x10] = '\\x01';\r\n    param_1_00[0x11] = '\\0';\r\n    param_1_00[0x12] = '\\0';\r\n    param_1_00[0x13] = '\\0';\r\n    pgVar4 = (gbGeomNode *)operator_new(0x118);\r\n    iStack_4._0_1_ = 1;\r\n    if (pgVar4 == (gbGeomNode *)0x0) {\r\n      pgVar4 = (gbGeomNode *)0x0;\r\n    }\r\n    else {\r\n      gbGeomNode::gbGeomNode(pgVar4);\r\n      *(undefined ***)pgVar4 = &PTR_FUN_0056a66c;\r\n    }\r\n    iStack_4 = (uint)iStack_4._1_3_ << 8;\r\n    *(gbGeomNode **)(param_1_00 + 0xc) = pgVar4;\r\n    gbGeomNode::LoadFromFile(pgVar4,param_1,(char *)0x0,(_func_void_int_int *)0x0);\r\n  }\r\n  else {\r\n    iVar3 = __strcmpi(local_14,(char *)&PTR_DAT_00596420);\r\n    if (iVar3 != 0) goto LAB_0047ceb3;\r\n    param_1_00[0x10] = '\\x03';\r\n    param_1_00[0x11] = '\\0';\r\n    param_1_00[0x12] = '\\0';\r\n    param_1_00[0x13] = '\\0';\r\n    pgVar4 = (gbGeomNode *)operator_new(0x118);\r\n    iStack_4._0_1_ = 2;\r\n    if (pgVar4 == (gbGeomNode *)0x0) {\r\n      pgVar4 = (gbGeomNode *)0x0;\r\n    }\r\n    else {\r\n      gbGeomNode::gbGeomNode(pgVar4);\r\n      *(undefined ***)pgVar4 = &PTR_FUN_0056a66c;\r\n    }\r\n    iStack_4 = (uint)iStack_4._1_3_ << 8;\r\n    *(gbGeomNode **)(param_1_00 + 0xc) = pgVar4;\r\n    gbGeomNode::LoadFromFile(pgVar4,param_1,(char *)0x0,(_func_void_int_int *)0x0);\r\n    gbVisNode::SetTimeScale(*(gbVisNode **)(param_1_00 + 0xc),1.0);\r\n  }\r\n  param_1_00[0x14] = '\\x01';\r\nLAB_0047ceb3:\r\n  iStack_4 = 0xffffffff;\r\n  FUN_00401f90();\r\n  ExceptionList = local_c;\r\n  return;\r\n}\r\n\r\n", 
+  "is_thunk": false, 
+  "name": "FUN_0047cd70", 
+  "assembly": "  0047cd70:  MOV EAX,FS:[0x0]\n  0047cd76:  PUSH -0x1\n  0047cd78:  PUSH 0x56269e\n  0047cd7d:  PUSH EAX\n  0047cd7e:  MOV dword ptr FS:[0x0],ESP\n  0047cd85:  SUB ESP,0x8\n  0047cd88:  PUSH EBX\n  0047cd89:  PUSH ESI\n  0047cd8a:  MOV ESI,ECX\n  0047cd8c:  XOR EBX,EBX\n  0047cd8e:  MOV AL,byte ptr [ESI]\n  0047cd90:  MOV byte ptr [ESI + 0x14],BL\n  0047cd93:  CMP AL,BL\n  0047cd95:  MOV byte ptr [ESI + 0x15],BL\n  0047cd98:  JZ 0x0047cec6\n  0047cd9e:  MOV ECX,dword ptr [ESI + 0xc]\n  0047cda1:  CMP ECX,EBX\n  0047cda3:  JZ 0x0047cdae\n  0047cda5:  MOV EAX,dword ptr [ECX]\n  0047cda7:  PUSH 0x1\n  0047cda9:  CALL dword ptr [EAX]\n  0047cdab:  MOV dword ptr [ESI + 0xc],EBX\n  0047cdae:  PUSH EBP\n  0047cdaf:  MOV EBP,dword ptr [ESP + 0x24]\n  0047cdb3:  PUSH EDI\n  0047cdb4:  MOV EDI,EBP\n  0047cdb6:  OR ECX,0xffffffff\n  0047cdb9:  XOR EAX,EAX\n  0047cdbb:  SCASB.REPNE ES:EDI\n  0047cdbd:  NOT ECX\n  0047cdbf:  DEC ECX\n  0047cdc0:  PUSH 0x3\n  0047cdc2:  LEA EDX,[ESP + 0x14]\n  0047cdc6:  MOV dword ptr [ESP + 0x14],EBX\n  0047cdca:  LEA ECX,[ECX + EBP*0x1 + -0x3]\n  0047cdce:  PUSH ECX\n  0047cdcf:  PUSH EDX\n  0047cdd0:  CALL 0x005540f0\n  0047cdd5:  ADD ESP,0xc\n  0047cdd8:  LEA ECX,[ESP + 0x14]\n  0047cddc:  CALL 0x00401f50\n  0047cde1:  LEA EAX,[ESP + 0x10]\n  0047cde5:  PUSH 0x596424\n  0047cdea:  PUSH EAX\n  0047cdeb:  MOV dword ptr [ESP + 0x28],EBX\n  0047cdef:  CALL 0x0055ef90\n  0047cdf4:  ADD ESP,0x8\n  0047cdf7:  TEST EAX,EAX\n  0047cdf9:  JNZ 0x0047ce44\n  0047cdfb:  PUSH 0x118\n  0047ce00:  MOV dword ptr [ESI + 0x10],0x1\n  0047ce07:  CALL 0x0055353b\n  0047ce0c:  MOV EDI,EAX\n  0047ce0e:  ADD ESP,0x4\n  0047ce11:  MOV dword ptr [ESP + 0x28],EDI\n  0047ce15:  CMP EDI,EBX\n  0047ce17:  MOV byte ptr [ESP + 0x20],0x1\n  0047ce1c:  JZ 0x0047ce30\n  0047ce1e:  MOV ECX,EDI\n  0047ce20:  CALL dword ptr [0x0056a500]\n  0047ce26:  MOV dword ptr [EDI],0x56a66c\n  0047ce2c:  MOV ECX,EDI\n  0047ce2e:  JMP 0x0047ce32\n  0047ce30:  XOR ECX,ECX\n  0047ce32:  PUSH EBX\n  0047ce33:  PUSH EBX\n  0047ce34:  PUSH EBP\n  0047ce35:  MOV byte ptr [ESP + 0x2c],BL\n  0047ce39:  MOV dword ptr [ESI + 0xc],ECX\n  0047ce3c:  CALL dword ptr [0x0056a504]\n  0047ce42:  JMP 0x0047ceaf\n  0047ce44:  LEA ECX,[ESP + 0x10]\n  0047ce48:  PUSH 0x596420\n  0047ce4d:  PUSH ECX\n  0047ce4e:  CALL 0x0055ef90\n  0047ce53:  ADD ESP,0x8\n  0047ce56:  TEST EAX,EAX\n  0047ce58:  JNZ 0x0047ceb3\n  0047ce5a:  PUSH 0x118\n  0047ce5f:  MOV dword ptr [ESI + 0x10],0x3\n  0047ce66:  CALL 0x0055353b\n  0047ce6b:  MOV EDI,EAX\n  0047ce6d:  ADD ESP,0x4\n  0047ce70:  MOV dword ptr [ESP + 0x28],EDI\n  0047ce74:  CMP EDI,EBX\n  0047ce76:  MOV byte ptr [ESP + 0x20],0x2\n  0047ce7b:  JZ 0x0047ce8f\n  0047ce7d:  MOV ECX,EDI\n  0047ce7f:  CALL dword ptr [0x0056a500]\n  0047ce85:  MOV dword ptr [EDI],0x56a66c\n  0047ce8b:  MOV ECX,EDI\n  0047ce8d:  JMP 0x0047ce91\n  0047ce8f:  XOR ECX,ECX\n  0047ce91:  PUSH EBX\n  0047ce92:  PUSH EBX\n  0047ce93:  PUSH EBP\n  0047ce94:  MOV byte ptr [ESP + 0x2c],BL\n  0047ce98:  MOV dword ptr [ESI + 0xc],ECX\n  0047ce9b:  CALL dword ptr [0x0056a504]\n  0047cea1:  MOV ECX,dword ptr [ESI + 0xc]\n  0047cea4:  PUSH 0x3f800000\n  0047cea9:  CALL dword ptr [0x0056a5d0]\n  0047ceaf:  MOV byte ptr [ESI + 0x14],0x1\n  0047ceb3:  LEA ECX,[ESP + 0x14]\n  0047ceb7:  MOV dword ptr [ESP + 0x20],0xffffffff\n  0047cebf:  CALL 0x00401f90\n  0047cec4:  POP EDI\n  0047cec5:  POP EBP\n  0047cec6:  MOV ECX,dword ptr [ESP + 0x10]\n  0047ceca:  POP ESI\n  0047cecb:  POP EBX\n  0047cecc:  MOV dword ptr FS:[0x0],ECX\n  0047ced3:  ADD ESP,0x14\n  0047ced6:  RET 0x8", 
+  "callers": [
+    {
+      "address": "0x00483650", 
+      "name": "FUN_00483650"
+    }
+  ]
+}

@@ -1,0 +1,27 @@
+{
+  "address": "0x004357e0", 
+  "size_bytes": 77, 
+  "calling_convention": "unknown", 
+  "signature": "undefined FUN_004357e0(void)", 
+  "callees": [
+    {
+      "address": "0x00434c00", 
+      "name": "FUN_00434c00"
+    }, 
+    {
+      "address": "0x0040cbb0", 
+      "name": "FUN_0040cbb0"
+    }, 
+    {
+      "address": "0x0040cbd0", 
+      "name": "FUN_0040cbd0"
+    }
+  ], 
+  "global_refs": [], 
+  "has_custom_name": false, 
+  "decompiled_c": "\r\nvoid FUN_004357e0(void)\r\n\r\n{\r\n  int iVar1;\r\n  int iVar2;\r\n  int iVar3;\r\n  int iVar4;\r\n  undefined2 extraout_var;\r\n  undefined2 extraout_var_00;\r\n  \r\n  iVar1 = FUN_00434c00();\r\n  iVar2 = FUN_00434c00();\r\n  iVar3 = FUN_00434c00();\r\n  if (((iVar1 != 0) && (iVar2 != 0)) && (iVar3 != 0)) {\r\n    iVar4 = FUN_0040cbb0(CONCAT22(extraout_var,*(undefined2 *)(iVar1 + 4)),\r\n                         *(undefined4 *)(iVar2 + 4));\r\n    FUN_0040cbd0(CONCAT22(extraout_var_00,*(undefined2 *)(iVar1 + 4)),*(undefined4 *)(iVar2 + 4),\r\n                 *(int *)(iVar3 + 4) + iVar4);\r\n  }\r\n  return;\r\n}\r\n\r\n", 
+  "is_thunk": false, 
+  "name": "FUN_004357e0", 
+  "assembly": "  004357e0:  PUSH EBX\n  004357e1:  PUSH ESI\n  004357e2:  PUSH EDI\n  004357e3:  CALL 0x00434c00\n  004357e8:  MOV ESI,EAX\n  004357ea:  CALL 0x00434c00\n  004357ef:  MOV EDI,EAX\n  004357f1:  CALL 0x00434c00\n  004357f6:  TEST ESI,ESI\n  004357f8:  MOV EBX,EAX\n  004357fa:  JZ 0x00435829\n  004357fc:  TEST EDI,EDI\n  004357fe:  JZ 0x00435829\n  00435800:  TEST EBX,EBX\n  00435802:  JZ 0x00435829\n  00435804:  MOV EAX,dword ptr [EDI + 0x4]\n  00435807:  MOV CX,word ptr [ESI + 0x4]\n  0043580b:  PUSH EAX\n  0043580c:  PUSH ECX\n  0043580d:  CALL 0x0040cbb0\n  00435812:  MOV EDX,dword ptr [EBX + 0x4]\n  00435815:  MOV CX,word ptr [ESI + 0x4]\n  00435819:  ADD EDX,EAX\n  0043581b:  MOV EAX,dword ptr [EDI + 0x4]\n  0043581e:  PUSH EDX\n  0043581f:  PUSH EAX\n  00435820:  PUSH ECX\n  00435821:  CALL 0x0040cbd0\n  00435826:  ADD ESP,0x14\n  00435829:  POP EDI\n  0043582a:  POP ESI\n  0043582b:  POP EBX\n  0043582c:  RET", 
+  "callers": []
+}

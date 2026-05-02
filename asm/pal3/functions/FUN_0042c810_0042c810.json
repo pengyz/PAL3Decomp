@@ -1,0 +1,34 @@
+{
+  "address": "0x0042c810", 
+  "size_bytes": 129, 
+  "calling_convention": "unknown", 
+  "signature": "undefined FUN_0042c810(void)", 
+  "callees": [
+    {
+      "address": "0x0042c280", 
+      "name": "FUN_0042c280"
+    }
+  ], 
+  "global_refs": [
+    {
+      "address": "0x00d8bc38", 
+      "type": null, 
+      "name": "DAT_00d8bc38"
+    }
+  ], 
+  "has_custom_name": false, 
+  "decompiled_c": "\r\nvoid __fastcall FUN_0042c810(int param_1)\r\n\r\n{\r\n  int iVar1;\r\n  int iVar2;\r\n  int iVar3;\r\n  bool bVar4;\r\n  \r\n  if (*(char *)(param_1 + 0xae) != -1) {\r\n    *(char *)(param_1 + 0xae) = *(char *)(param_1 + 0xae) + -1;\r\n  }\r\n  bVar4 = *(char *)(param_1 + 0xaf) == '\\0';\r\n  *(bool *)(param_1 + 0xaf) = bVar4;\r\n  if (*(int *)(param_1 + 0x100) == 1) {\r\n    DAT_00d8bc38 = !bVar4;\r\n    iVar2 = 0;\r\n    iVar1 = *(int *)(*(int *)(param_1 + 0x31c) + 0x10);\r\n    if (0 < *(int *)(iVar1 + 0xdc)) {\r\n      iVar3 = iVar1 + 0xe0;\r\n      do {\r\n        if (*(char *)(iVar3 + 0xf4) == '%') {\r\n          FUN_0042c280(DAT_00d8bc38);\r\n        }\r\n        iVar2 = iVar2 + 1;\r\n        iVar3 = iVar3 + 0x380;\r\n      } while (iVar2 < *(int *)(iVar1 + 0xdc));\r\n    }\r\n  }\r\n  return;\r\n}\r\n\r\n", 
+  "is_thunk": false, 
+  "name": "FUN_0042c810", 
+  "assembly": "  0042c810:  MOV AL,byte ptr [ECX + 0xae]\n  0042c816:  CMP AL,0xff\n  0042c818:  JZ 0x0042c822\n  0042c81a:  DEC AL\n  0042c81c:  MOV byte ptr [ECX + 0xae],AL\n  0042c822:  MOV AL,byte ptr [ECX + 0xaf]\n  0042c828:  MOV EDX,dword ptr [ECX + 0x100]\n  0042c82e:  TEST AL,AL\n  0042c830:  SETZ AL\n  0042c833:  PUSH EBP\n  0042c834:  CMP EDX,0x1\n  0042c837:  PUSH EDI\n  0042c838:  MOV byte ptr [ECX + 0xaf],AL\n  0042c83e:  JNZ 0x0042c88e\n  0042c840:  TEST AL,AL\n  0042c842:  SETZ byte ptr [0x00d8bc38]\n  0042c849:  MOV EAX,dword ptr [ECX + 0x31c]\n  0042c84f:  XOR EBP,EBP\n  0042c851:  MOV EDI,dword ptr [EAX + 0x10]\n  0042c854:  MOV EAX,dword ptr [EDI + 0xdc]\n  0042c85a:  TEST EAX,EAX\n  0042c85c:  JLE 0x0042c88e\n  0042c85e:  PUSH ESI\n  0042c85f:  LEA ESI,[EDI + 0xe0]\n  0042c865:  CMP byte ptr [ESI + 0xf4],0x25\n  0042c86c:  JNZ 0x0042c87c\n  0042c86e:  MOV CL,byte ptr [0x00d8bc38]\n  0042c874:  PUSH ECX\n  0042c875:  MOV ECX,ESI\n  0042c877:  CALL 0x0042c280\n  0042c87c:  MOV EAX,dword ptr [EDI + 0xdc]\n  0042c882:  INC EBP\n  0042c883:  ADD ESI,0x380\n  0042c889:  CMP EBP,EAX\n  0042c88b:  JL 0x0042c865\n  0042c88d:  POP ESI\n  0042c88e:  POP EDI\n  0042c88f:  POP EBP\n  0042c890:  RET", 
+  "callers": [
+    {
+      "address": "0x00424c20", 
+      "name": "FUN_00424c20"
+    }, 
+    {
+      "address": "0x00426eb0", 
+      "name": "FUN_00426eb0"
+    }
+  ]
+}

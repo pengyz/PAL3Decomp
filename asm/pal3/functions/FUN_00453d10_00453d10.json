@@ -1,0 +1,81 @@
+{
+  "address": "0x00453d10", 
+  "size_bytes": 313, 
+  "calling_convention": "unknown", 
+  "signature": "undefined FUN_00453d10(void)", 
+  "callees": [
+    {
+      "address": "0x0043dcd0", 
+      "name": "FUN_0043dcd0"
+    }, 
+    {
+      "address": "0x004422e0", 
+      "name": "FUN_004422e0"
+    }, 
+    {
+      "address": "0x00553627", 
+      "name": "FUN_00553627"
+    }, 
+    {
+      "address": "0x0043a770", 
+      "name": "FUN_0043a770"
+    }, 
+    {
+      "address": "0x004a12f0", 
+      "name": "FUN_004a12f0"
+    }
+  ], 
+  "global_refs": [
+    {
+      "address": "0x00560e3d", 
+      "type": null, 
+      "name": "LAB_00560e3d"
+    }, 
+    {
+      "address": "0xffdff000", 
+      "type": null, 
+      "name": "ExceptionList"
+    }, 
+    {
+      "address": "0x-0000010", 
+      "type": null, 
+      "name": "DAT_-0000010"
+    }, 
+    {
+      "address": "0x-0000004", 
+      "type": null, 
+      "name": "DAT_-0000004"
+    }, 
+    {
+      "address": "0x0043b4d0", 
+      "type": null, 
+      "name": "FUN_0043b4d0"
+    }, 
+    {
+      "address": "0x0043b3e0", 
+      "type": null, 
+      "name": "FUN_0043b3e0"
+    }, 
+    {
+      "address": "0x-000000c", 
+      "type": null, 
+      "name": "DAT_-000000c"
+    }, 
+    {
+      "address": "0x0056b22c", 
+      "type": null, 
+      "name": "PTR_FUN_0056b22c"
+    }
+  ], 
+  "has_custom_name": false, 
+  "decompiled_c": "\r\nundefined4 * __fastcall FUN_00453d10(undefined4 *param_1)\r\n\r\n{\r\n  void *local_c;\r\n  undefined *puStack_8;\r\n  undefined4 local_4;\r\n  \r\n  local_4 = 0xffffffff;\r\n  puStack_8 = &LAB_00560e3d;\r\n  local_c = ExceptionList;\r\n  ExceptionList = &local_c;\r\n  FUN_0043dcd0();\r\n  local_4 = 0;\r\n  FUN_004422e0();\r\n  local_4._0_1_ = 1;\r\n  FUN_004422e0();\r\n  local_4._0_1_ = 2;\r\n  FUN_00553627(param_1 + 0xa6,0x178,3,FUN_0043b3e0,FUN_0043b4d0);\r\n  local_4._0_1_ = 3;\r\n  FUN_0043a770();\r\n  local_4._0_1_ = 4;\r\n  FUN_004422e0();\r\n  local_4._0_1_ = 5;\r\n  FUN_004422e0();\r\n  local_4._0_1_ = 6;\r\n  FUN_004422e0();\r\n  local_4._0_1_ = 7;\r\n  FUN_004422e0();\r\n  local_4._0_1_ = 8;\r\n  FUN_004422e0();\r\n  local_4._0_1_ = 9;\r\n  FUN_0043a770();\r\n  local_4._0_1_ = 10;\r\n  FUN_0043a770();\r\n  local_4._0_1_ = 0xb;\r\n  FUN_0043a770();\r\n  local_4 = CONCAT31(local_4._1_3_,0xc);\r\n  FUN_004a12f0();\r\n  param_1[0x530] = 0;\r\n  param_1[0x13] = 0;\r\n  param_1[0x12] = 0;\r\n  *param_1 = &PTR_FUN_0056b22c;\r\n  param_1[0x14] = 800;\r\n  param_1[0x15] = 600;\r\n  ExceptionList = local_c;\r\n  return param_1;\r\n}\r\n\r\n", 
+  "is_thunk": false, 
+  "name": "FUN_00453d10", 
+  "assembly": "  00453d10:  PUSH -0x1\n  00453d12:  PUSH 0x560e3d\n  00453d17:  MOV EAX,FS:[0x0]\n  00453d1d:  PUSH EAX\n  00453d1e:  MOV dword ptr FS:[0x0],ESP\n  00453d25:  PUSH ECX\n  00453d26:  PUSH ESI\n  00453d27:  MOV ESI,ECX\n  00453d29:  PUSH EDI\n  00453d2a:  MOV dword ptr [ESP + 0x8],ESI\n  00453d2e:  CALL 0x0043dcd0\n  00453d33:  XOR EDI,EDI\n  00453d35:  LEA ECX,[ESI + 0x168]\n  00453d3b:  MOV dword ptr [ESP + 0x14],EDI\n  00453d3f:  CALL 0x004422e0\n  00453d44:  LEA ECX,[ESI + 0x200]\n  00453d4a:  MOV byte ptr [ESP + 0x14],0x1\n  00453d4f:  CALL 0x004422e0\n  00453d54:  PUSH 0x43b4d0\n  00453d59:  PUSH 0x43b3e0\n  00453d5e:  PUSH 0x3\n  00453d60:  LEA EAX,[ESI + 0x298]\n  00453d66:  PUSH 0x178\n  00453d6b:  PUSH EAX\n  00453d6c:  MOV byte ptr [ESP + 0x28],0x2\n  00453d71:  CALL 0x00553627\n  00453d76:  LEA ECX,[ESI + 0x700]\n  00453d7c:  MOV byte ptr [ESP + 0x14],0x3\n  00453d81:  CALL 0x0043a770\n  00453d86:  LEA ECX,[ESI + 0x858]\n  00453d8c:  MOV byte ptr [ESP + 0x14],0x4\n  00453d91:  CALL 0x004422e0\n  00453d96:  LEA ECX,[ESI + 0x8f0]\n  00453d9c:  MOV byte ptr [ESP + 0x14],0x5\n  00453da1:  CALL 0x004422e0\n  00453da6:  LEA ECX,[ESI + 0x988]\n  00453dac:  MOV byte ptr [ESP + 0x14],0x6\n  00453db1:  CALL 0x004422e0\n  00453db6:  LEA ECX,[ESI + 0xa20]\n  00453dbc:  MOV byte ptr [ESP + 0x14],0x7\n  00453dc1:  CALL 0x004422e0\n  00453dc6:  LEA ECX,[ESI + 0xab8]\n  00453dcc:  MOV byte ptr [ESP + 0x14],0x8\n  00453dd1:  CALL 0x004422e0\n  00453dd6:  LEA ECX,[ESI + 0xb50]\n  00453ddc:  MOV byte ptr [ESP + 0x14],0x9\n  00453de1:  CALL 0x0043a770\n  00453de6:  LEA ECX,[ESI + 0xca8]\n  00453dec:  MOV byte ptr [ESP + 0x14],0xa\n  00453df1:  CALL 0x0043a770\n  00453df6:  LEA ECX,[ESI + 0xe00]\n  00453dfc:  MOV byte ptr [ESP + 0x14],0xb\n  00453e01:  CALL 0x0043a770\n  00453e06:  LEA ECX,[ESI + 0xf58]\n  00453e0c:  MOV byte ptr [ESP + 0x14],0xc\n  00453e11:  CALL 0x004a12f0\n  00453e16:  MOV ECX,dword ptr [ESP + 0xc]\n  00453e1a:  MOV dword ptr [ESI + 0x14c0],EDI\n  00453e20:  MOV dword ptr [ESI + 0x4c],EDI\n  00453e23:  MOV dword ptr [ESI + 0x48],EDI\n  00453e26:  MOV dword ptr [ESI],0x56b22c\n  00453e2c:  MOV dword ptr [ESI + 0x50],0x320\n  00453e33:  MOV dword ptr [ESI + 0x54],0x258\n  00453e3a:  MOV EAX,ESI\n  00453e3c:  POP EDI\n  00453e3d:  POP ESI\n  00453e3e:  MOV dword ptr FS:[0x0],ECX\n  00453e45:  ADD ESP,0x10\n  00453e48:  RET", 
+  "callers": [
+    {
+      "address": "0x0044c120", 
+      "name": "FUN_0044c120"
+    }
+  ]
+}

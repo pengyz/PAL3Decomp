@@ -1,0 +1,25 @@
+{
+  "address": "0x00404760", 
+  "size_bytes": 10, 
+  "calling_convention": "unknown", 
+  "signature": "undefined FUN_00404760(void)", 
+  "callees": [
+    {
+      "address": "0x00404790", 
+      "name": "FUN_00404790"
+    }
+  ], 
+  "global_refs": [
+    {
+      "address": "0x008acbf0", 
+      "type": null, 
+      "name": "DAT_008acbf0"
+    }
+  ], 
+  "has_custom_name": false, 
+  "decompiled_c": "\r\nvoid FUN_00404760(void)\r\n\r\n{\r\n  FUN_00404790();\r\n  return;\r\n}\r\n\r\n", 
+  "is_thunk": false, 
+  "name": "FUN_00404760", 
+  "assembly": "  00404760:  MOV ECX,0x8acbf0\n  00404765:  JMP 0x00404790", 
+  "callers": []
+}

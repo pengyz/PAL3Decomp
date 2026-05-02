@@ -1,0 +1,19 @@
+{
+  "address": "0x00566788", 
+  "size_bytes": 39, 
+  "calling_convention": "unknown", 
+  "signature": "undefined Unwind@00566788(void)", 
+  "callees": [
+    {
+      "address": "0x004cb210", 
+      "name": "FUN_004cb210"
+    }
+  ], 
+  "global_refs": [], 
+  "has_custom_name": true, 
+  "decompiled_c": "\r\nvoid Unwind_00566788(void)\r\n\r\n{\r\n  int unaff_EBP;\r\n  \r\n  if (*(int *)(unaff_EBP + -0x10) == 0) {\r\n    *(undefined4 *)(unaff_EBP + -0x20) = 0;\r\n  }\r\n  else {\r\n    *(int *)(unaff_EBP + -0x20) = *(int *)(unaff_EBP + -0x10) + 0xc;\r\n  }\r\n  FUN_004cb210();\r\n  return;\r\n}\r\n\r\n", 
+  "is_thunk": false, 
+  "name": "Unwind@00566788", 
+  "assembly": "  00566788:  CMP dword ptr [EBP + -0x10],0x0\n  0056678c:  JZ 0x005667a0\n  00566792:  MOV EAX,dword ptr [EBP + -0x10]\n  00566795:  ADD EAX,0xc\n  00566798:  MOV dword ptr [EBP + -0x20],EAX\n  0056679b:  JMP 0x005667a7\n  005667a0:  MOV dword ptr [EBP + -0x20],0x0\n  005667a7:  MOV ECX,dword ptr [EBP + -0x20]\n  005667aa:  JMP 0x004cb210", 
+  "callers": []
+}

@@ -1,0 +1,71 @@
+{
+  "address": "0x004e5350", 
+  "size_bytes": 49, 
+  "calling_convention": "unknown", 
+  "signature": "undefined FUN_004e5350(undefined4 param_1, undefined4 param_2)", 
+  "callees": [
+    {
+      "address": "0x00553082", 
+      "name": "FUN_00553082"
+    }, 
+    {
+      "address": "0x0000005e", 
+      "name": "SendMessageA"
+    }
+  ], 
+  "global_refs": [
+    {
+      "address": "0x00000008", 
+      "type": null, 
+      "name": "DAT_00000008"
+    }, 
+    {
+      "address": "0x-0000008", 
+      "type": null, 
+      "name": "DAT_-0000008"
+    }, 
+    {
+      "address": "0x005d89b4", 
+      "type": null, 
+      "name": "s_%1.5f_005d89b4"
+    }, 
+    {
+      "address": "0x017a94e4", 
+      "type": null, 
+      "name": "DAT_017a94e4"
+    }, 
+    {
+      "address": "0x00000004", 
+      "type": null, 
+      "name": "DAT_00000004"
+    }, 
+    {
+      "address": "0x0056a180", 
+      "type": null, 
+      "name": "PTR_SendMessageA_0056a180"
+    }
+  ], 
+  "has_custom_name": false, 
+  "decompiled_c": "\r\nvoid FUN_004e5350(HWND param_1,float param_2)\r\n\r\n{\r\n  FUN_00553082(&DAT_017a94e4,s__1_5f_005d89b4,(double)param_2);\r\n  SendMessageA(param_1,0xc,0,0x17a94e4);\r\n  return;\r\n}\r\n\r\n", 
+  "is_thunk": false, 
+  "name": "FUN_004e5350", 
+  "assembly": "  004e5350:  FLD dword ptr [ESP + 0x8]\n  004e5354:  SUB ESP,0x8\n  004e5357:  FSTP qword ptr [ESP]\n  004e535a:  PUSH 0x5d89b4\n  004e535f:  PUSH 0x17a94e4\n  004e5364:  CALL 0x00553082\n  004e5369:  MOV EAX,dword ptr [ESP + 0x14]\n  004e536d:  ADD ESP,0x10\n  004e5370:  PUSH 0x17a94e4\n  004e5375:  PUSH 0x0\n  004e5377:  PUSH 0xc\n  004e5379:  PUSH EAX\n  004e537a:  CALL dword ptr [0x0056a180]\n  004e5380:  RET", 
+  "callers": [
+    {
+      "address": "0x004ebd30", 
+      "name": "FUN_004ebd30"
+    }, 
+    {
+      "address": "0x004e7d70", 
+      "name": "FUN_004e7d70"
+    }, 
+    {
+      "address": "0x004e9c50", 
+      "name": "FUN_004e9c50"
+    }, 
+    {
+      "address": "0x004ea6d0", 
+      "name": "FUN_004ea6d0"
+    }
+  ]
+}

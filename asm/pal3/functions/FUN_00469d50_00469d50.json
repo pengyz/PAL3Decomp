@@ -1,0 +1,40 @@
+{
+  "address": "0x00469d50", 
+  "size_bytes": 64, 
+  "calling_convention": "unknown", 
+  "signature": "undefined FUN_00469d50(undefined4 param_1, undefined4 param_2, undefined4 param_3, undefined4 param_4)", 
+  "callees": [], 
+  "global_refs": [
+    {
+      "address": "0x00000008", 
+      "type": null, 
+      "name": "DAT_00000008"
+    }, 
+    {
+      "address": "0x0000000c", 
+      "type": null, 
+      "name": "DAT_0000000c"
+    }, 
+    {
+      "address": "0x00000010", 
+      "type": null, 
+      "name": "DAT_00000010"
+    }, 
+    {
+      "address": "0x00000004", 
+      "type": null, 
+      "name": "DAT_00000004"
+    }
+  ], 
+  "has_custom_name": false, 
+  "decompiled_c": "\r\nvoid __thiscall FUN_00469d50(int param_1_00,undefined4 *param_1,int param_2,int param_3,int param_4)\r\n\r\n{\r\n  undefined4 *puVar1;\r\n  \r\n  puVar1 = (undefined4 *)((param_4 + (param_3 + param_2 * 6) * 8) * 0x10 + 0xf574 + param_1_00);\r\n  *param_1 = *puVar1;\r\n  param_1[1] = puVar1[1];\r\n  param_1[2] = puVar1[2];\r\n  param_1[3] = puVar1[3];\r\n  return;\r\n}\r\n\r\n", 
+  "is_thunk": false, 
+  "name": "FUN_00469d50", 
+  "assembly": "  00469d50:  MOV EAX,dword ptr [ESP + 0x8]\n  00469d54:  MOV EDX,dword ptr [ESP + 0xc]\n  00469d58:  PUSH ESI\n  00469d59:  LEA EAX,[EAX + EAX*0x2]\n  00469d5c:  LEA EAX,[EDX + EAX*0x2]\n  00469d5f:  MOV EDX,dword ptr [ESP + 0x14]\n  00469d63:  LEA EAX,[EDX + EAX*0x8]\n  00469d66:  SHL EAX,0x4\n  00469d69:  LEA ECX,[EAX + ECX*0x1 + 0xf574]\n  00469d70:  MOV EAX,dword ptr [ESP + 0x8]\n  00469d74:  MOV EDX,EAX\n  00469d76:  MOV ESI,dword ptr [ECX]\n  00469d78:  MOV dword ptr [EDX],ESI\n  00469d7a:  MOV ESI,dword ptr [ECX + 0x4]\n  00469d7d:  MOV dword ptr [EDX + 0x4],ESI\n  00469d80:  MOV ESI,dword ptr [ECX + 0x8]\n  00469d83:  MOV dword ptr [EDX + 0x8],ESI\n  00469d86:  POP ESI\n  00469d87:  MOV ECX,dword ptr [ECX + 0xc]\n  00469d8a:  MOV dword ptr [EDX + 0xc],ECX\n  00469d8d:  RET 0x10", 
+  "callers": [
+    {
+      "address": "0x004623a0", 
+      "name": "FUN_004623a0"
+    }
+  ]
+}

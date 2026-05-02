@@ -1,0 +1,82 @@
+{
+  "address": "0x00401f40", 
+  "size_bytes": 12, 
+  "calling_convention": "unknown", 
+  "signature": "undefined FUN_00401f40(void)", 
+  "callees": [], 
+  "global_refs": [
+    {
+      "address": "0x0056a598", 
+      "type": null, 
+      "name": "PTR_g_pVFileSys_0056a598"
+    }, 
+    {
+      "address": "0x007cc178", 
+      "type": null, 
+      "name": "DAT_007cc178"
+    }
+  ], 
+  "has_custom_name": false, 
+  "decompiled_c": "\r\nvoid FUN_00401f40(void)\r\n\r\n{\r\n  *(undefined4 **)g_pVFileSys_exref = &DAT_007cc178;\r\n  return;\r\n}\r\n\r\n", 
+  "is_thunk": false, 
+  "name": "FUN_00401f40", 
+  "assembly": "  00401f40:  MOV EAX,[0x0056a598]\n  00401f45:  MOV dword ptr [EAX],0x7cc178\n  00401f4b:  RET", 
+  "callers": [
+    {
+      "address": "0x0055f5b0", 
+      "name": "Unwind@0055f5b0"
+    }, 
+    {
+      "address": "0x0055f630", 
+      "name": "Unwind@0055f630"
+    }, 
+    {
+      "address": "0x0055f650", 
+      "name": "Unwind@0055f650"
+    }, 
+    {
+      "address": "0x0055f70e", 
+      "name": "Unwind@0055f70e"
+    }, 
+    {
+      "address": "0x0055f800", 
+      "name": "Unwind@0055f800"
+    }, 
+    {
+      "address": "0x0055f820", 
+      "name": "Unwind@0055f820"
+    }, 
+    {
+      "address": "0x00568a50", 
+      "name": "Unwind@00568a50"
+    }, 
+    {
+      "address": "0x0041fe30", 
+      "name": "FUN_0041fe30"
+    }, 
+    {
+      "address": "0x00423a70", 
+      "name": "FUN_00423a70"
+    }, 
+    {
+      "address": "0x004221d0", 
+      "name": "FUN_004221d0"
+    }, 
+    {
+      "address": "0x00422950", 
+      "name": "FUN_00422950"
+    }, 
+    {
+      "address": "0x0042c730", 
+      "name": "FUN_0042c730"
+    }, 
+    {
+      "address": "0x00535710", 
+      "name": "FUN_00535710"
+    }, 
+    {
+      "address": "0x0042c280", 
+      "name": "FUN_0042c280"
+    }
+  ]
+}

@@ -1,0 +1,65 @@
+{
+  "address": "0x004038f0", 
+  "size_bytes": 216, 
+  "calling_convention": "unknown", 
+  "signature": "undefined FUN_004038f0(undefined4 param_1, undefined4 param_2)", 
+  "callees": [], 
+  "global_refs": [
+    {
+      "address": "0x0056a654", 
+      "type": null, 
+      "name": "DAT_0056a654"
+    }, 
+    {
+      "address": "0x00000008", 
+      "type": null, 
+      "name": "DAT_00000008"
+    }, 
+    {
+      "address": "0x-0000018", 
+      "type": null, 
+      "name": "DAT_-0000018"
+    }, 
+    {
+      "address": "0x-0000004", 
+      "type": null, 
+      "name": "DAT_-0000004"
+    }, 
+    {
+      "address": "0x-0000014", 
+      "type": null, 
+      "name": "DAT_-0000014"
+    }, 
+    {
+      "address": "0x-0000010", 
+      "type": null, 
+      "name": "DAT_-0000010"
+    }, 
+    {
+      "address": "0x-000000c", 
+      "type": null, 
+      "name": "DAT_-000000c"
+    }, 
+    {
+      "address": "0x-0000008", 
+      "type": null, 
+      "name": "DAT_-0000008"
+    }, 
+    {
+      "address": "0x00000004", 
+      "type": null, 
+      "name": "DAT_00000004"
+    }
+  ], 
+  "has_custom_name": false, 
+  "decompiled_c": "\r\n/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */\r\n\r\nvoid FUN_004038f0(float *param_1,int param_2)\r\n\r\n{\r\n  float *pfVar1;\r\n  int iVar2;\r\n  float local_18 [6];\r\n  \r\n  local_18[0] = 3.4028235e+38;\r\n  local_18[1] = 3.4028235e+38;\r\n  local_18[2] = 3.4028235e+38;\r\n  local_18[3] = -3.4028235e+38;\r\n  local_18[4] = -3.4028235e+38;\r\n  pfVar1 = (float *)(param_2 + 8);\r\n  iVar2 = 3;\r\n  local_18[5] = _DAT_0056a654;\r\n  do {\r\n    if (pfVar1[-2] < local_18[0]) {\r\n      local_18[0] = pfVar1[-2];\r\n    }\r\n    if (pfVar1[-1] < local_18[1]) {\r\n      local_18[1] = pfVar1[-1];\r\n    }\r\n    if (*pfVar1 < local_18[2]) {\r\n      local_18[2] = *pfVar1;\r\n    }\r\n    if (local_18[3] < pfVar1[-2]) {\r\n      local_18[3] = pfVar1[-2];\r\n    }\r\n    if (local_18[4] < pfVar1[-1]) {\r\n      local_18[4] = pfVar1[-1];\r\n    }\r\n    if (local_18[5] < *pfVar1) {\r\n      local_18[5] = *pfVar1;\r\n    }\r\n    pfVar1 = pfVar1 + 3;\r\n    iVar2 = iVar2 + -1;\r\n  } while (iVar2 != 0);\r\n  pfVar1 = local_18;\r\n  for (iVar2 = 6; iVar2 != 0; iVar2 = iVar2 + -1) {\r\n    *param_1 = *pfVar1;\r\n    pfVar1 = pfVar1 + 1;\r\n    param_1 = param_1 + 1;\r\n  }\r\n  return;\r\n}\r\n\r\n", 
+  "is_thunk": false, 
+  "name": "FUN_004038f0", 
+  "assembly": "  004038f0:  SUB ESP,0x18\n  004038f3:  FLD dword ptr [0x0056a654]\n  004038f9:  MOV EAX,dword ptr [ESP + 0x20]\n  004038fd:  MOV dword ptr [ESP],0x7f7fffff\n  00403905:  FST dword ptr [ESP + 0x14]\n  00403909:  MOV dword ptr [ESP + 0x4],0x7f7fffff\n  00403911:  MOV dword ptr [ESP + 0x8],0x7f7fffff\n  00403919:  MOV dword ptr [ESP + 0xc],0xff7fffff\n  00403921:  MOV dword ptr [ESP + 0x10],0xff7fffff\n  00403929:  LEA ECX,[EAX + 0x8]\n  0040392c:  MOV EDX,0x3\n  00403931:  FLD dword ptr [ECX + -0x8]\n  00403934:  FCOMP dword ptr [ESP]\n  00403938:  FNSTSW AX\n  0040393a:  TEST AH,0x1\n  0040393d:  JZ 0x00403946\n  0040393f:  MOV EAX,dword ptr [ECX + -0x8]\n  00403942:  MOV dword ptr [ESP],EAX\n  00403946:  FLD dword ptr [ECX + -0x4]\n  00403949:  FCOMP dword ptr [ESP + 0x4]\n  0040394d:  FNSTSW AX\n  0040394f:  TEST AH,0x1\n  00403952:  JZ 0x0040395b\n  00403954:  MOV EAX,dword ptr [ECX + -0x4]\n  00403957:  MOV dword ptr [ESP + 0x4],EAX\n  0040395b:  FLD dword ptr [ECX]\n  0040395d:  FCOMP dword ptr [ESP + 0x8]\n  00403961:  FNSTSW AX\n  00403963:  TEST AH,0x1\n  00403966:  JZ 0x0040396e\n  00403968:  MOV EAX,dword ptr [ECX]\n  0040396a:  MOV dword ptr [ESP + 0x8],EAX\n  0040396e:  FLD dword ptr [ECX + -0x8]\n  00403971:  FCOMP dword ptr [ESP + 0xc]\n  00403975:  FNSTSW AX\n  00403977:  TEST AH,0x41\n  0040397a:  JNZ 0x00403983\n  0040397c:  MOV EAX,dword ptr [ECX + -0x8]\n  0040397f:  MOV dword ptr [ESP + 0xc],EAX\n  00403983:  FLD dword ptr [ECX + -0x4]\n  00403986:  FCOMP dword ptr [ESP + 0x10]\n  0040398a:  FNSTSW AX\n  0040398c:  TEST AH,0x41\n  0040398f:  JNZ 0x00403998\n  00403991:  MOV EAX,dword ptr [ECX + -0x4]\n  00403994:  MOV dword ptr [ESP + 0x10],EAX\n  00403998:  FCOM dword ptr [ECX]\n  0040399a:  FNSTSW AX\n  0040399c:  TEST AH,0x1\n  0040399f:  JZ 0x004039a5\n  004039a1:  FSTP ST0\n  004039a3:  FLD dword ptr [ECX]\n  004039a5:  ADD ECX,0xc\n  004039a8:  DEC EDX\n  004039a9:  JNZ 0x00403931\n  004039ab:  MOV EAX,dword ptr [ESP + 0x1c]\n  004039af:  PUSH ESI\n  004039b0:  FSTP dword ptr [ESP + 0x18]\n  004039b4:  PUSH EDI\n  004039b5:  MOV ECX,0x6\n  004039ba:  LEA ESI,[ESP + 0x8]\n  004039be:  MOV EDI,EAX\n  004039c0:  MOVSD.REP ES:EDI,ESI\n  004039c2:  POP EDI\n  004039c3:  POP ESI\n  004039c4:  ADD ESP,0x18\n  004039c7:  RET", 
+  "callers": [
+    {
+      "address": "0x00403b80", 
+      "name": "FUN_00403b80"
+    }
+  ]
+}

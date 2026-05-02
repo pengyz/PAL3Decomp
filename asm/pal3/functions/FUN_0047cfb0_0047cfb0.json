@@ -1,0 +1,72 @@
+{
+  "address": "0x0047cfb0", 
+  "size_bytes": 114, 
+  "calling_convention": "unknown", 
+  "signature": "undefined FUN_0047cfb0(undefined4 param_1, undefined4 param_2, undefined4 param_3, undefined4 param_4, undefined4 param_5, undefined4 param_6)", 
+  "callees": [
+    {
+      "address": "0x00554360", 
+      "name": "FUN_00554360"
+    }
+  ], 
+  "global_refs": [
+    {
+      "address": "0x00000018", 
+      "type": null, 
+      "name": "DAT_00000018"
+    }, 
+    {
+      "address": "0x0000000c", 
+      "type": null, 
+      "name": "DAT_0000000c"
+    }, 
+    {
+      "address": "0x00000014", 
+      "type": null, 
+      "name": "DAT_00000014"
+    }, 
+    {
+      "address": "0x00000008", 
+      "type": null, 
+      "name": "DAT_00000008"
+    }, 
+    {
+      "address": "0x00000010", 
+      "type": null, 
+      "name": "DAT_00000010"
+    }, 
+    {
+      "address": "0x00000004", 
+      "type": null, 
+      "name": "DAT_00000004"
+    }, 
+    {
+      "address": "0x0056b870", 
+      "type": null, 
+      "name": "DAT_0056b870"
+    }
+  ], 
+  "has_custom_name": false, 
+  "decompiled_c": "\r\n/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */\r\n\r\nfloat10 FUN_0047cfb0(float param_1,float param_2,float param_3)\r\n\r\n{\r\n  float10 fVar1;\r\n  float param_4;\r\n  \r\n  param_4 = SQRT(param_1 * param_1 + param_2 * param_2 + param_3 * param_3);\r\n  fVar1 = (float10)FUN_00554360();\r\n  return fVar1 * (float10)_DAT_0056b870;\r\n}\r\n\r\n", 
+  "is_thunk": false, 
+  "name": "FUN_0047cfb0", 
+  "assembly": "  0047cfb0:  FLD dword ptr [ESP + 0x18]\n  0047cfb4:  FMUL dword ptr [ESP + 0xc]\n  0047cfb8:  FLD dword ptr [ESP + 0x14]\n  0047cfbc:  FMUL dword ptr [ESP + 0x8]\n  0047cfc0:  FADDP\n  0047cfc2:  FLD dword ptr [ESP + 0x10]\n  0047cfc6:  FMUL dword ptr [ESP + 0x4]\n  0047cfca:  FADDP\n  0047cfcc:  FLD dword ptr [ESP + 0x18]\n  0047cfd0:  FMUL dword ptr [ESP + 0x18]\n  0047cfd4:  FLD dword ptr [ESP + 0x14]\n  0047cfd8:  FMUL dword ptr [ESP + 0x14]\n  0047cfdc:  FADDP\n  0047cfde:  FLD dword ptr [ESP + 0x10]\n  0047cfe2:  FMUL dword ptr [ESP + 0x10]\n  0047cfe6:  FADDP\n  0047cfe8:  FSQRT\n  0047cfea:  FST dword ptr [ESP + 0x10]\n  0047cfee:  FLD dword ptr [ESP + 0xc]\n  0047cff2:  FMUL dword ptr [ESP + 0xc]\n  0047cff6:  FLD dword ptr [ESP + 0x8]\n  0047cffa:  FMUL dword ptr [ESP + 0x8]\n  0047cffe:  FADDP\n  0047d000:  FLD dword ptr [ESP + 0x4]\n  0047d004:  FMUL dword ptr [ESP + 0x4]\n  0047d008:  FADDP\n  0047d00a:  FSQRT\n  0047d00c:  FST dword ptr [ESP + 0x10]\n  0047d010:  FMULP\n  0047d012:  FDIVP\n  0047d014:  CALL 0x00554360\n  0047d019:  FMUL dword ptr [0x0056b870]\n  0047d01f:  RET 0x18", 
+  "callers": [
+    {
+      "address": "0x0047d030", 
+      "name": "FUN_0047d030"
+    }, 
+    {
+      "address": "0x0047d130", 
+      "name": "FUN_0047d130"
+    }, 
+    {
+      "address": "0x0047d230", 
+      "name": "FUN_0047d230"
+    }, 
+    {
+      "address": "0x0047d320", 
+      "name": "FUN_0047d320"
+    }
+  ]
+}

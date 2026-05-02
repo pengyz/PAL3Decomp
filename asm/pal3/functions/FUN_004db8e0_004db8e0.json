@@ -1,0 +1,38 @@
+{
+  "address": "0x004db8e0", 
+  "size_bytes": 46, 
+  "calling_convention": "unknown", 
+  "signature": "undefined FUN_004db8e0(undefined4 param_1)", 
+  "callees": [
+    {
+      "address": "0x004db910", 
+      "name": "FUN_004db910"
+    }, 
+    {
+      "address": "0x004db940", 
+      "name": "FUN_004db940"
+    }
+  ], 
+  "global_refs": [
+    {
+      "address": "0x00000004", 
+      "type": null, 
+      "name": "DAT_00000004"
+    }
+  ], 
+  "has_custom_name": false, 
+  "decompiled_c": "\r\nvoid __thiscall FUN_004db8e0(int param_1_00,undefined4 param_1)\r\n\r\n{\r\n  char cVar1;\r\n  \r\n  cVar1 = (char)param_1;\r\n  if (cVar1 != *(char *)(param_1_00 + 0x1c4)) {\r\n    *(char *)(param_1_00 + 0x1c4) = cVar1;\r\n    FUN_004db910(cVar1 == '\\0');\r\n    FUN_004db940(param_1);\r\n  }\r\n  return;\r\n}\r\n\r\n", 
+  "is_thunk": false, 
+  "name": "FUN_004db8e0", 
+  "assembly": "  004db8e0:  PUSH EBX\n  004db8e1:  MOV EBX,dword ptr [ESP + 0x8]\n  004db8e5:  PUSH ESI\n  004db8e6:  MOV ESI,ECX\n  004db8e8:  CMP BL,byte ptr [ESI + 0x1c4]\n  004db8ee:  JZ 0x004db909\n  004db8f0:  TEST BL,BL\n  004db8f2:  SETZ AL\n  004db8f5:  PUSH EAX\n  004db8f6:  MOV byte ptr [ESI + 0x1c4],BL\n  004db8fc:  CALL 0x004db910\n  004db901:  PUSH EBX\n  004db902:  MOV ECX,ESI\n  004db904:  CALL 0x004db940\n  004db909:  POP ESI\n  004db90a:  POP EBX\n  004db90b:  RET 0x4", 
+  "callers": [
+    {
+      "address": "0x004e5490", 
+      "name": "FUN_004e5490"
+    }, 
+    {
+      "address": "0x004e0a60", 
+      "name": "FUN_004e0a60"
+    }
+  ]
+}

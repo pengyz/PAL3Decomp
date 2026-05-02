@@ -1,0 +1,80 @@
+{
+  "address": "0x00510e00", 
+  "size_bytes": 334, 
+  "calling_convention": "unknown", 
+  "signature": "undefined FUN_00510e00(void)", 
+  "callees": [
+    {
+      "address": "0x00000115", 
+      "name": "NewTrivalEffect"
+    }, 
+    {
+      "address": "0x00000156", 
+      "name": "`default_constructor_closure'"
+    }, 
+    {
+      "address": "0x0000015b", 
+      "name": "GetDynVertBuf"
+    }, 
+    {
+      "address": "0x000000d9", 
+      "name": "gbColorQuad"
+    }, 
+    {
+      "address": "0x00000114", 
+      "name": "RenderLineStrip"
+    }, 
+    {
+      "address": "0x0000015e", 
+      "name": "Release"
+    }
+  ], 
+  "global_refs": [
+    {
+      "address": "0x00bfda60", 
+      "type": null, 
+      "name": "DAT_00bfda60"
+    }, 
+    {
+      "address": "0x0056a468", 
+      "type": null, 
+      "name": "PTR_NewTrivalEffect_0056a468"
+    }, 
+    {
+      "address": "0x0056a56c", 
+      "type": null, 
+      "name": "PTR_`default_constructor_closure'_0056a56c"
+    }, 
+    {
+      "address": "0x0056a580", 
+      "type": null, 
+      "name": "PTR_GetDynVertBuf_0056a580"
+    }, 
+    {
+      "address": "0x0056a378", 
+      "type": null, 
+      "name": "PTR_gbColorQuad_0056a378"
+    }, 
+    {
+      "address": "0x0056a464", 
+      "type": null, 
+      "name": "PTR_RenderLineStrip_0056a464"
+    }, 
+    {
+      "address": "0x0056a58c", 
+      "type": null, 
+      "name": "PTR_Release_0056a58c"
+    }
+  ], 
+  "has_custom_name": false, 
+  "decompiled_c": "\r\nvoid __fastcall FUN_00510e00(int param_1)\r\n\r\n{\r\n  gbRenderEffect *this;\r\n  gbDynVertBuf *pgVar1;\r\n  int iVar2;\r\n  gbVec3D *this_00;\r\n  undefined4 *puStack_3c;\r\n  undefined4 *puStack_38;\r\n  undefined4 uStack_34;\r\n  gbColorQuad gStack_1c;\r\n  undefined uStack_1b;\r\n  undefined uStack_1a;\r\n  undefined uStack_19;\r\n  undefined4 uStack_18;\r\n  undefined4 uStack_14;\r\n  undefined4 uStack_10;\r\n  undefined4 uStack_c;\r\n  undefined4 uStack_8;\r\n  undefined4 uStack_4;\r\n  \r\n  if ((DAT_00bfda60 != 0) && (*(char *)(param_1 + 0x3c1) != '\\0')) {\r\n    uStack_34 = 0x510e30;\r\n    this = gbEffectMgr::NewTrivalEffect(*(gbEffectMgr **)(DAT_00bfda60 + 200),3);\r\n    uStack_19 = 0x50;\r\n    this_00 = (gbVec3D *)&uStack_18;\r\n    iVar2 = 2;\r\n    do {\r\n      gbVec3D::_default_constructor_closure_(this_00);\r\n      this_00 = this_00 + 0xc;\r\n      iVar2 = iVar2 + -1;\r\n    } while (iVar2 != 0);\r\n    uStack_18 = 0;\r\n    uStack_14 = 0;\r\n    uStack_10 = 0;\r\n    uStack_34 = 0x510e79;\r\n    pgVar1 = gbVertPoolMgr::GetDynVertBuf(*(gbVertPoolMgr **)(DAT_00bfda60 + 0xc4),5);\r\n    puStack_3c = &uStack_18;\r\n    uStack_34 = 2;\r\n    gStack_1c = (gbColorQuad)0xff;\r\n    uStack_1b = 0;\r\n    uStack_1a = 0;\r\n    uStack_8 = 0;\r\n    uStack_c = 0;\r\n    uStack_4 = 0x461c4000;\r\n    puStack_38 = puStack_3c;\r\n    gbColorQuad::gbColorQuad((gbColorQuad *)&puStack_3c,&gStack_1c);\r\n    gbDynVertBuf::RenderLineStrip(pgVar1);\r\n    puStack_38 = &uStack_18;\r\n    uStack_34 = 2;\r\n    uStack_1a = 0xff;\r\n    gStack_1c = (gbColorQuad)0x0;\r\n    uStack_1b = 0;\r\n    uStack_4 = 0;\r\n    uStack_8 = 0;\r\n    uStack_c = 0x461c4000;\r\n    gbColorQuad::gbColorQuad((gbColorQuad *)&puStack_3c,&gStack_1c);\r\n    gbDynVertBuf::RenderLineStrip(pgVar1);\r\n    puStack_38 = &uStack_18;\r\n    uStack_34 = 2;\r\n    uStack_1b = 0xff;\r\n    gStack_1c = (gbColorQuad)0x0;\r\n    uStack_1a = 0;\r\n    uStack_4 = 0;\r\n    uStack_c = 0;\r\n    uStack_8 = 0x461c4000;\r\n    gbColorQuad::gbColorQuad((gbColorQuad *)&puStack_3c,&gStack_1c);\r\n    gbDynVertBuf::RenderLineStrip(pgVar1);\r\n    gbRefObject::Release((gbRefObject *)this);\r\n  }\r\n  return;\r\n}\r\n\r\n", 
+  "is_thunk": false, 
+  "name": "FUN_00510e00", 
+  "assembly": "  00510e00:  MOV EAX,[0x00bfda60]\n  00510e05:  SUB ESP,0x1c\n  00510e08:  PUSH EBX\n  00510e09:  XOR EBX,EBX\n  00510e0b:  PUSH EBP\n  00510e0c:  PUSH ESI\n  00510e0d:  CMP EAX,EBX\n  00510e0f:  PUSH EDI\n  00510e10:  JZ 0x00510f46\n  00510e16:  CMP byte ptr [ECX + 0x3c1],BL\n  00510e1c:  JZ 0x00510f46\n  00510e22:  MOV ECX,dword ptr [EAX + 0xc8]\n  00510e28:  PUSH 0x3\n  00510e2a:  CALL dword ptr [0x0056a468]\n  00510e30:  MOV ESI,EAX\n  00510e32:  MOV byte ptr [ESP + 0x13],0x50\n  00510e37:  LEA EDI,[ESP + 0x14]\n  00510e3b:  MOV EBP,0x2\n  00510e40:  MOV ECX,EDI\n  00510e42:  CALL dword ptr [0x0056a56c]\n  00510e48:  ADD EDI,0xc\n  00510e4b:  DEC EBP\n  00510e4c:  JNZ 0x00510e40\n  00510e4e:  MOV EAX,[0x00bfda60]\n  00510e53:  MOV dword ptr [ESP + 0x14],0x0\n  00510e5b:  MOV dword ptr [ESP + 0x18],0x0\n  00510e63:  MOV dword ptr [ESP + 0x1c],0x0\n  00510e6b:  MOV ECX,dword ptr [EAX + 0xc4]\n  00510e71:  PUSH 0x5\n  00510e73:  CALL dword ptr [0x0056a580]\n  00510e79:  PUSH ESI\n  00510e7a:  LEA ECX,[ESP + 0x18]\n  00510e7e:  PUSH 0x2\n  00510e80:  PUSH ECX\n  00510e81:  PUSH ECX\n  00510e82:  LEA EDX,[ESP + 0x20]\n  00510e86:  MOV ECX,ESP\n  00510e88:  PUSH EDX\n  00510e89:  MOV EDI,EAX\n  00510e8b:  MOV byte ptr [ESP + 0x24],0xff\n  00510e90:  MOV byte ptr [ESP + 0x25],BL\n  00510e94:  MOV byte ptr [ESP + 0x26],BL\n  00510e98:  MOV dword ptr [ESP + 0x38],0x0\n  00510ea0:  MOV dword ptr [ESP + 0x34],0x0\n  00510ea8:  MOV dword ptr [ESP + 0x3c],0x461c4000\n  00510eb0:  CALL dword ptr [0x0056a378]\n  00510eb6:  MOV EBP,dword ptr [0x0056a464]\n  00510ebc:  MOV ECX,EDI\n  00510ebe:  CALL EBP\n  00510ec0:  PUSH ESI\n  00510ec1:  LEA EAX,[ESP + 0x18]\n  00510ec5:  PUSH 0x2\n  00510ec7:  PUSH EAX\n  00510ec8:  PUSH ECX\n  00510ec9:  LEA EDX,[ESP + 0x20]\n  00510ecd:  MOV ECX,ESP\n  00510ecf:  PUSH EDX\n  00510ed0:  MOV byte ptr [ESP + 0x26],0xff\n  00510ed5:  MOV byte ptr [ESP + 0x24],BL\n  00510ed9:  MOV byte ptr [ESP + 0x25],BL\n  00510edd:  MOV dword ptr [ESP + 0x3c],0x0\n  00510ee5:  MOV dword ptr [ESP + 0x38],0x0\n  00510eed:  MOV dword ptr [ESP + 0x34],0x461c4000\n  00510ef5:  CALL dword ptr [0x0056a378]\n  00510efb:  MOV ECX,EDI\n  00510efd:  CALL EBP\n  00510eff:  PUSH ESI\n  00510f00:  LEA EAX,[ESP + 0x18]\n  00510f04:  PUSH 0x2\n  00510f06:  PUSH EAX\n  00510f07:  PUSH ECX\n  00510f08:  LEA EDX,[ESP + 0x20]\n  00510f0c:  MOV ECX,ESP\n  00510f0e:  PUSH EDX\n  00510f0f:  MOV byte ptr [ESP + 0x25],0xff\n  00510f14:  MOV byte ptr [ESP + 0x24],BL\n  00510f18:  MOV byte ptr [ESP + 0x26],BL\n  00510f1c:  MOV dword ptr [ESP + 0x3c],0x0\n  00510f24:  MOV dword ptr [ESP + 0x34],0x0\n  00510f2c:  MOV dword ptr [ESP + 0x38],0x461c4000\n  00510f34:  CALL dword ptr [0x0056a378]\n  00510f3a:  MOV ECX,EDI\n  00510f3c:  CALL EBP\n  00510f3e:  MOV ECX,ESI\n  00510f40:  CALL dword ptr [0x0056a58c]\n  00510f46:  POP EDI\n  00510f47:  POP ESI\n  00510f48:  POP EBP\n  00510f49:  POP EBX\n  00510f4a:  ADD ESP,0x1c\n  00510f4d:  RET", 
+  "callers": [
+    {
+      "address": "0x004fc3a0", 
+      "name": "FUN_004fc3a0"
+    }
+  ]
+}

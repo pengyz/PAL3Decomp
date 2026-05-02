@@ -1,0 +1,61 @@
+{
+  "address": "0x00519fe0", 
+  "size_bytes": 173, 
+  "calling_convention": "unknown", 
+  "signature": "undefined FUN_00519fe0(undefined4 param_1, undefined4 param_2, undefined4 param_3)", 
+  "callees": [
+    {
+      "address": "0x0053df70", 
+      "name": "FUN_0053df70"
+    }, 
+    {
+      "address": "0x0053e2e0", 
+      "name": "FUN_0053e2e0"
+    }, 
+    {
+      "address": "0x0051a2b0", 
+      "name": "FUN_0051a2b0"
+    }, 
+    {
+      "address": "0x004dc5c0", 
+      "name": "FUN_004dc5c0"
+    }, 
+    {
+      "address": "0x00445d10", 
+      "name": "FUN_00445d10"
+    }
+  ], 
+  "global_refs": [
+    {
+      "address": "0x0000000c", 
+      "type": null, 
+      "name": "DAT_0000000c"
+    }, 
+    {
+      "address": "0x00000004", 
+      "type": null, 
+      "name": "DAT_00000004"
+    }, 
+    {
+      "address": "0x00000008", 
+      "type": null, 
+      "name": "DAT_00000008"
+    }, 
+    {
+      "address": "0x00583744", 
+      "type": null, 
+      "name": "s_wa002_00583744"
+    }, 
+    {
+      "address": "0x0058374c", 
+      "type": null, 
+      "name": "s_wa001_0058374c"
+    }
+  ], 
+  "has_custom_name": false, 
+  "decompiled_c": "\r\nvoid FUN_00519fe0(int param_1,uint param_2,int param_3)\r\n\r\n{\r\n  char *pcVar1;\r\n  undefined4 uVar2;\r\n  \r\n  if (param_1 == 0x3e9) {\r\n    if ((param_2 < 0xb5) || (0xb7 < param_2)) goto LAB_0051a07c;\r\n    FUN_0051a2b0(param_2 - 0xb5);\r\n    uVar2 = 1;\r\n    pcVar1 = s_wa001_0058374c;\r\n    FUN_0053df70(s_wa001_0058374c,1);\r\n    FUN_0053e2e0(pcVar1,uVar2);\r\n    uVar2 = 0;\r\n  }\r\n  else if (param_1 == 0x3ee) {\r\n    if (param_3 == -1) goto LAB_0051a07c;\r\n    uVar2 = 1;\r\n  }\r\n  else {\r\n    if ((param_1 != 0x3ef) || (param_3 == -1)) goto LAB_0051a07c;\r\n    uVar2 = 1;\r\n    pcVar1 = s_wa002_00583744;\r\n    FUN_0053df70(s_wa002_00583744,1);\r\n    FUN_0053e2e0(pcVar1,uVar2);\r\n    uVar2 = 0;\r\n  }\r\n  FUN_004dc5c0(param_2,param_3,uVar2);\r\nLAB_0051a07c:\r\n  FUN_00445d10(param_1,param_2,param_3);\r\n  return;\r\n}\r\n\r\n", 
+  "is_thunk": false, 
+  "name": "FUN_00519fe0", 
+  "assembly": "  00519fe0:  PUSH EBX\n  00519fe1:  MOV EBX,dword ptr [ESP + 0x10]\n  00519fe5:  PUSH EBP\n  00519fe6:  MOV EBP,dword ptr [ESP + 0xc]\n  00519fea:  MOV EAX,EBP\n  00519fec:  PUSH ESI\n  00519fed:  PUSH EDI\n  00519fee:  MOV EDI,dword ptr [ESP + 0x18]\n  00519ff2:  SUB EAX,0x3e9\n  00519ff7:  MOV ESI,ECX\n  00519ff9:  JZ 0x0051a036\n  00519ffb:  SUB EAX,0x5\n  00519ffe:  JZ 0x0051a02d\n  0051a000:  DEC EAX\n  0051a001:  JNZ 0x0051a07c\n  0051a003:  CMP EBX,-0x1\n  0051a006:  JZ 0x0051a07c\n  0051a008:  PUSH 0x1\n  0051a00a:  PUSH 0x583744\n  0051a00f:  CALL 0x0053df70\n  0051a014:  MOV ECX,EAX\n  0051a016:  CALL 0x0053e2e0\n  0051a01b:  MOV EAX,dword ptr [ESI + 0x20]\n  0051a01e:  PUSH 0x0\n  0051a020:  PUSH EBX\n  0051a021:  PUSH EDI\n  0051a022:  MOV ECX,dword ptr [EAX + 0x488]\n  0051a028:  MOV ECX,dword ptr [ECX + 0x8]\n  0051a02b:  JMP 0x0051a077\n  0051a02d:  CMP EBX,-0x1\n  0051a030:  JZ 0x0051a07c\n  0051a032:  PUSH 0x1\n  0051a034:  JMP 0x0051a069\n  0051a036:  CMP EDI,0xb5\n  0051a03c:  JC 0x0051a07c\n  0051a03e:  CMP EDI,0xb7\n  0051a044:  JA 0x0051a07c\n  0051a046:  LEA ECX,[EDI + 0xffffff4b]\n  0051a04c:  PUSH ECX\n  0051a04d:  MOV ECX,ESI\n  0051a04f:  CALL 0x0051a2b0\n  0051a054:  PUSH 0x1\n  0051a056:  PUSH 0x58374c\n  0051a05b:  CALL 0x0053df70\n  0051a060:  MOV ECX,EAX\n  0051a062:  CALL 0x0053e2e0\n  0051a067:  PUSH 0x0\n  0051a069:  MOV EDX,dword ptr [ESI + 0x20]\n  0051a06c:  PUSH EBX\n  0051a06d:  PUSH EDI\n  0051a06e:  MOV EAX,dword ptr [EDX + 0x488]\n  0051a074:  MOV ECX,dword ptr [EAX + 0x8]\n  0051a077:  CALL 0x004dc5c0\n  0051a07c:  PUSH EBX\n  0051a07d:  PUSH EDI\n  0051a07e:  PUSH EBP\n  0051a07f:  MOV ECX,ESI\n  0051a081:  CALL 0x00445d10\n  0051a086:  POP EDI\n  0051a087:  POP ESI\n  0051a088:  POP EBP\n  0051a089:  POP EBX\n  0051a08a:  RET 0xc", 
+  "callers": []
+}

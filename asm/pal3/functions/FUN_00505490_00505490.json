@@ -1,0 +1,27 @@
+{
+  "address": "0x00505490", 
+  "size_bytes": 26, 
+  "calling_convention": "unknown", 
+  "signature": "undefined FUN_00505490(void)", 
+  "callees": [
+    {
+      "address": "0x00505410", 
+      "name": "FUN_00505410"
+    }, 
+    {
+      "address": "0x00504f40", 
+      "name": "FUN_00504f40"
+    }, 
+    {
+      "address": "0x005060d0", 
+      "name": "FUN_005060d0"
+    }
+  ], 
+  "global_refs": [], 
+  "has_custom_name": false, 
+  "decompiled_c": "\r\nundefined FUN_00505490(void)\r\n\r\n{\r\n  FUN_00505410();\r\n  FUN_00504f40();\r\n  FUN_005060d0();\r\n  return 1;\r\n}\r\n\r\n", 
+  "is_thunk": false, 
+  "name": "FUN_00505490", 
+  "assembly": "  00505490:  PUSH ESI\n  00505491:  MOV ESI,ECX\n  00505493:  CALL 0x00505410\n  00505498:  MOV ECX,ESI\n  0050549a:  CALL 0x00504f40\n  0050549f:  MOV ECX,ESI\n  005054a1:  CALL 0x005060d0\n  005054a6:  MOV AL,0x1\n  005054a8:  POP ESI\n  005054a9:  RET", 
+  "callers": []
+}

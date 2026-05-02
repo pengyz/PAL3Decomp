@@ -1,0 +1,19 @@
+{
+  "address": "0x004c5840", 
+  "size_bytes": 5, 
+  "calling_convention": "unknown", 
+  "signature": "undefined thunk_FUN_004c5910(void)", 
+  "callees": [], 
+  "global_refs": [], 
+  "has_custom_name": false, 
+  "decompiled_c": "\r\nvoid __fastcall thunk_FUN_004c5910(int param_1)\r\n\r\n{\r\n  int iVar1;\r\n  \r\n  iVar1 = 0;\r\n  if (0 < *(int *)(param_1 + 0x114)) {\r\n    do {\r\n      FUN_004c5b30(iVar1);\r\n      iVar1 = iVar1 + 1;\r\n    } while (iVar1 < *(int *)(param_1 + 0x114));\r\n  }\r\n  FUN_004c5850();\r\n  return;\r\n}\r\n\r\n", 
+  "is_thunk": true, 
+  "name": "thunk_FUN_004c5910", 
+  "assembly": "  004c5840:  JMP 0x004c5910", 
+  "callers": [
+    {
+      "address": "0x004055a0", 
+      "name": "FUN_004055a0"
+    }
+  ]
+}

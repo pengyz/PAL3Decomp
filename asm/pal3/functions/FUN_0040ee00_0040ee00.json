@@ -1,0 +1,54 @@
+{
+  "address": "0x0040ee00", 
+  "size_bytes": 34, 
+  "calling_convention": "unknown", 
+  "signature": "undefined FUN_0040ee00(void)", 
+  "callees": [
+    {
+      "address": "0x00541d10", 
+      "name": "FUN_00541d10"
+    }
+  ], 
+  "global_refs": [
+    {
+      "address": "0x-0000004", 
+      "type": null, 
+      "name": "DAT_-0000004"
+    }
+  ], 
+  "has_custom_name": false, 
+  "decompiled_c": "\r\nvoid __fastcall FUN_0040ee00(int param_1)\r\n\r\n{\r\n  FUN_00541d10(*(undefined4 *)(param_1 + 4));\r\n  *(undefined4 *)(param_1 + 4) = 0;\r\n  *(undefined4 *)(param_1 + 8) = 0;\r\n  *(undefined4 *)(param_1 + 0xc) = 0;\r\n  return;\r\n}\r\n\r\n", 
+  "is_thunk": false, 
+  "name": "FUN_0040ee00", 
+  "assembly": "  0040ee00:  PUSH ECX\n  0040ee01:  PUSH ESI\n  0040ee02:  MOV ESI,ECX\n  0040ee04:  MOV EAX,dword ptr [ESI + 0x4]\n  0040ee07:  PUSH EAX\n  0040ee08:  MOV dword ptr [ESP + 0x8],EAX\n  0040ee0c:  CALL 0x00541d10\n  0040ee11:  ADD ESP,0x4\n  0040ee14:  XOR EAX,EAX\n  0040ee16:  MOV dword ptr [ESI + 0x4],EAX\n  0040ee19:  MOV dword ptr [ESI + 0x8],EAX\n  0040ee1c:  MOV dword ptr [ESI + 0xc],EAX\n  0040ee1f:  POP ESI\n  0040ee20:  POP ECX\n  0040ee21:  RET", 
+  "callers": [
+    {
+      "address": "0x004391d0", 
+      "name": "FUN_004391d0"
+    }, 
+    {
+      "address": "0x0047cee0", 
+      "name": "FUN_0047cee0"
+    }, 
+    {
+      "address": "0x0055f349", 
+      "name": "Unwind@0055f349"
+    }, 
+    {
+      "address": "0x0055f3d1", 
+      "name": "Unwind@0055f3d1"
+    }, 
+    {
+      "address": "0x00411ca0", 
+      "name": "FUN_00411ca0"
+    }, 
+    {
+      "address": "0x00509690", 
+      "name": "FUN_00509690"
+    }, 
+    {
+      "address": "0x00530660", 
+      "name": "FUN_00530660"
+    }
+  ]
+}

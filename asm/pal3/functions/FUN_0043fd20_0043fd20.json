@@ -1,0 +1,25 @@
+{
+  "address": "0x0043fd20", 
+  "size_bytes": 103, 
+  "calling_convention": "unknown", 
+  "signature": "undefined FUN_0043fd20(undefined4 param_1)", 
+  "callees": [], 
+  "global_refs": [
+    {
+      "address": "0x00000004", 
+      "type": null, 
+      "name": "DAT_00000004"
+    }
+  ], 
+  "has_custom_name": false, 
+  "decompiled_c": "\r\nvoid __thiscall FUN_0043fd20(int param_1_00,int param_1)\r\n\r\n{\r\n  float fVar1;\r\n  float fVar2;\r\n  \r\n  *(int *)(param_1_00 + 0x44) = param_1;\r\n  if (param_1 == 0) {\r\n    fVar1 = ((float)*(int *)(param_1_00 + 0x18) - *(float *)(param_1_00 + 0x8c)) -\r\n            *(float *)(param_1_00 + 0x84);\r\n    fVar2 = (float)*(int *)(param_1_00 + 0x10) + *(float *)(param_1_00 + 0x88);\r\n  }\r\n  else {\r\n    if (param_1 != 1) goto LAB_0043fd6c;\r\n    fVar1 = ((float)*(int *)(param_1_00 + 0x1c) - *(float *)(param_1_00 + 0x94)) -\r\n            *(float *)(param_1_00 + 0x84);\r\n    fVar2 = (float)*(int *)(param_1_00 + 0x14) + *(float *)(param_1_00 + 0x90);\r\n  }\r\n  *(float *)(param_1_00 + 0x78) = fVar1 - (fVar2 + *(float *)(param_1_00 + 0x84));\r\nLAB_0043fd6c:\r\n  *(float *)(param_1_00 + 0x80) = *(float *)(param_1_00 + 0x78) / *(float *)(param_1_00 + 0x7c);\r\n  *(float *)(param_1_00 + 0x98) = *(float *)(param_1_00 + 0x7c) / *(float *)(param_1_00 + 0x78);\r\n  return;\r\n}\r\n\r\n", 
+  "is_thunk": false, 
+  "name": "FUN_0043fd20", 
+  "assembly": "  0043fd20:  MOV EAX,dword ptr [ESP + 0x4]\n  0043fd24:  MOV dword ptr [ECX + 0x44],EAX\n  0043fd27:  SUB EAX,0x0\n  0043fd2a:  JZ 0x0043fd49\n  0043fd2c:  DEC EAX\n  0043fd2d:  JNZ 0x0043fd6c\n  0043fd2f:  FILD dword ptr [ECX + 0x1c]\n  0043fd32:  FSUB dword ptr [ECX + 0x94]\n  0043fd38:  FSUB dword ptr [ECX + 0x84]\n  0043fd3e:  FILD dword ptr [ECX + 0x14]\n  0043fd41:  FADD dword ptr [ECX + 0x90]\n  0043fd47:  JMP 0x0043fd61\n  0043fd49:  FILD dword ptr [ECX + 0x18]\n  0043fd4c:  FSUB dword ptr [ECX + 0x8c]\n  0043fd52:  FSUB dword ptr [ECX + 0x84]\n  0043fd58:  FILD dword ptr [ECX + 0x10]\n  0043fd5b:  FADD dword ptr [ECX + 0x88]\n  0043fd61:  FADD dword ptr [ECX + 0x84]\n  0043fd67:  FSUBP\n  0043fd69:  FSTP dword ptr [ECX + 0x78]\n  0043fd6c:  FLD dword ptr [ECX + 0x78]\n  0043fd6f:  FDIV dword ptr [ECX + 0x7c]\n  0043fd72:  FSTP dword ptr [ECX + 0x80]\n  0043fd78:  FLD dword ptr [ECX + 0x7c]\n  0043fd7b:  FDIV dword ptr [ECX + 0x78]\n  0043fd7e:  FSTP dword ptr [ECX + 0x98]\n  0043fd84:  RET 0x4", 
+  "callers": [
+    {
+      "address": "0x00516a30", 
+      "name": "FUN_00516a30"
+    }
+  ]
+}

@@ -1,0 +1,100 @@
+{
+  "address": "0x0052f800", 
+  "size_bytes": 214, 
+  "calling_convention": "unknown", 
+  "signature": "undefined FUN_0052f800(void)", 
+  "callees": [
+    {
+      "address": "0x00401f50", 
+      "name": "FUN_00401f50"
+    }, 
+    {
+      "address": "0x000000a5", 
+      "name": "gbMatrix4"
+    }, 
+    {
+      "address": "0x00553082", 
+      "name": "FUN_00553082"
+    }, 
+    {
+      "address": "0x0000013c", 
+      "name": "LoadFromFile"
+    }, 
+    {
+      "address": "0x000000d3", 
+      "name": "GetOBBox"
+    }, 
+    {
+      "address": "0x00401f90", 
+      "name": "FUN_00401f90"
+    }
+  ], 
+  "global_refs": [
+    {
+      "address": "0x0056873b", 
+      "type": null, 
+      "name": "LAB_0056873b"
+    }, 
+    {
+      "address": "0xffdff000", 
+      "type": null, 
+      "name": "ExceptionList"
+    }, 
+    {
+      "address": "0x-000015c", 
+      "type": null, 
+      "name": "DAT_-000015c"
+    }, 
+    {
+      "address": "0x-0000058", 
+      "type": null, 
+      "name": "DAT_-0000058"
+    }, 
+    {
+      "address": "0x-0000004", 
+      "type": null, 
+      "name": "DAT_-0000004"
+    }, 
+    {
+      "address": "0x0056a2a8", 
+      "type": null, 
+      "name": "PTR_gbMatrix4_0056a2a8"
+    }, 
+    {
+      "address": "0x005f4d20", 
+      "type": null, 
+      "name": "PTR_s_SubGame\\Skee\\SkeeScene\\Obstruct\\_005f4d20"
+    }, 
+    {
+      "address": "0x005833f8", 
+      "type": null, 
+      "name": "s_SubGame\\Skee\\SkeeScene\\Obstruct\\_005833f8"
+    }, 
+    {
+      "address": "0x005f4d28", 
+      "type": null, 
+      "name": "s_%s%s%d.pol_005f4d28"
+    }, 
+    {
+      "address": "0x0056a504", 
+      "type": null, 
+      "name": "PTR_LoadFromFile_0056a504"
+    }, 
+    {
+      "address": "0x0056a360", 
+      "type": null, 
+      "name": "PTR_GetOBBox_0056a360"
+    }
+  ], 
+  "has_custom_name": false, 
+  "decompiled_c": "\r\nvoid __thiscall FUN_0052f800(gbGeomNode *param_1,undefined4 param_2)\r\n\r\n{\r\n  int iVar1;\r\n  gbOBBox *pgVar2;\r\n  int iVar3;\r\n  undefined4 *puVar4;\r\n  char cStack_158;\r\n  undefined4 uStack_157;\r\n  gbMatrix4 local_58 [76];\r\n  void *pvStack_c;\r\n  undefined *puStack_8;\r\n  undefined4 local_4;\r\n  \r\n  local_4 = 0xffffffff;\r\n  puStack_8 = &LAB_0056873b;\r\n  pvStack_c = ExceptionList;\r\n  ExceptionList = &pvStack_c;\r\n  FUN_00401f50();\r\n  iVar3 = 0;\r\n  local_4 = 0;\r\n  gbMatrix4::gbMatrix4(local_58);\r\n  cStack_158 = '\\0';\r\n  puVar4 = &uStack_157;\r\n  for (iVar1 = 0x3f; iVar1 != 0; iVar1 = iVar1 + -1) {\r\n    *puVar4 = 0;\r\n    puVar4 = puVar4 + 1;\r\n  }\r\n  *(undefined2 *)puVar4 = 0;\r\n  *(undefined *)((int)puVar4 + 2) = 0;\r\n  pgVar2 = (gbOBBox *)(param_1 + 0x6d8);\r\n  do {\r\n    FUN_00553082(&cStack_158,s__s_s_d_pol_005f4d28,PTR_s_SubGame_Skee_SkeeScene_Obstruct__005f4d20,\r\n                 param_2,iVar3);\r\n    gbGeomNode::LoadFromFile(param_1,&cStack_158,(char *)0x0,(_func_void_int_int *)0x0);\r\n    gbGeomNode::GetOBBox(param_1,pgVar2);\r\n    iVar3 = iVar3 + 1;\r\n    pgVar2 = pgVar2 + 0x4c;\r\n    param_1 = param_1 + 0x118;\r\n  } while (iVar3 < 6);\r\n  local_4 = 0xffffffff;\r\n  FUN_00401f90();\r\n  ExceptionList = pvStack_c;\r\n  return;\r\n}\r\n\r\n", 
+  "is_thunk": false, 
+  "name": "FUN_0052f800", 
+  "assembly": "  0052f800:  PUSH -0x1\n  0052f802:  PUSH 0x56873b\n  0052f807:  MOV EAX,FS:[0x0]\n  0052f80d:  PUSH EAX\n  0052f80e:  MOV dword ptr FS:[0x0],ESP\n  0052f815:  SUB ESP,0x150\n  0052f81b:  PUSH EBX\n  0052f81c:  PUSH EBP\n  0052f81d:  MOV EBP,ECX\n  0052f81f:  PUSH ESI\n  0052f820:  PUSH EDI\n  0052f821:  LEA ECX,[ESP + 0x10]\n  0052f825:  CALL 0x00401f50\n  0052f82a:  XOR ESI,ESI\n  0052f82c:  LEA ECX,[ESP + 0x114]\n  0052f833:  MOV dword ptr [ESP + 0x168],ESI\n  0052f83a:  CALL dword ptr [0x0056a2a8]\n  0052f840:  MOV ECX,0x3f\n  0052f845:  XOR EAX,EAX\n  0052f847:  LEA EDI,[ESP + 0x15]\n  0052f84b:  MOV byte ptr [ESP + 0x14],0x0\n  0052f850:  STOSD.REP ES:EDI\n  0052f852:  MOV EBX,dword ptr [ESP + 0x170]\n  0052f859:  STOSW ES:EDI\n  0052f85b:  STOSB ES:EDI\n  0052f85c:  MOV EDI,EBP\n  0052f85e:  ADD EBP,0x6d8\n  0052f864:  MOV EAX,[0x005f4d20]\n  0052f869:  PUSH ESI\n  0052f86a:  PUSH EBX\n  0052f86b:  PUSH EAX\n  0052f86c:  LEA ECX,[ESP + 0x20]\n  0052f870:  PUSH 0x5f4d28\n  0052f875:  PUSH ECX\n  0052f876:  CALL 0x00553082\n  0052f87b:  ADD ESP,0x14\n  0052f87e:  LEA EDX,[ESP + 0x14]\n  0052f882:  MOV ECX,EDI\n  0052f884:  PUSH 0x0\n  0052f886:  PUSH 0x0\n  0052f888:  PUSH EDX\n  0052f889:  CALL dword ptr [0x0056a504]\n  0052f88f:  PUSH EBP\n  0052f890:  MOV ECX,EDI\n  0052f892:  CALL dword ptr [0x0056a360]\n  0052f898:  INC ESI\n  0052f899:  ADD EBP,0x4c\n  0052f89c:  ADD EDI,0x118\n  0052f8a2:  CMP ESI,0x6\n  0052f8a5:  JL 0x0052f864\n  0052f8a7:  LEA ECX,[ESP + 0x10]\n  0052f8ab:  MOV dword ptr [ESP + 0x168],0xffffffff\n  0052f8b6:  CALL 0x00401f90\n  0052f8bb:  MOV ECX,dword ptr [ESP + 0x160]\n  0052f8c2:  POP EDI\n  0052f8c3:  POP ESI\n  0052f8c4:  POP EBP\n  0052f8c5:  POP EBX\n  0052f8c6:  MOV dword ptr FS:[0x0],ECX\n  0052f8cd:  ADD ESP,0x15c\n  0052f8d3:  RET 0x4", 
+  "callers": [
+    {
+      "address": "0x0052fb70", 
+      "name": "FUN_0052fb70"
+    }
+  ]
+}

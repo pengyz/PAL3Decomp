@@ -1,0 +1,90 @@
+{
+  "address": "0x00439fe0",
+  "size_bytes": 140,
+  "calling_convention": "unknown",
+  "signature": "undefined FUN_00439fe0(undefined param_1, undefined4 param_2)",
+  "callees": [
+    {
+      "address": "0x000000b6",
+      "name": "GetRayToScreen"
+    }
+  ],
+  "global_refs": [
+    {
+      "address": "0x-0000018",
+      "type": null,
+      "name": "DAT_-0000018"
+    },
+    {
+      "address": "0x00000008",
+      "type": null,
+      "name": "DAT_00000008"
+    },
+    {
+      "address": "0x-0000014",
+      "type": null,
+      "name": "DAT_-0000014"
+    },
+    {
+      "address": "0x-0000010",
+      "type": null,
+      "name": "DAT_-0000010"
+    },
+    {
+      "address": "0x-000000c",
+      "type": null,
+      "name": "DAT_-000000c"
+    },
+    {
+      "address": "0x-0000008",
+      "type": null,
+      "name": "DAT_-0000008"
+    },
+    {
+      "address": "0x-0000004",
+      "type": null,
+      "name": "DAT_-0000004"
+    },
+    {
+      "address": "0x00bfd6d4",
+      "type": null,
+      "name": "DAT_00bfd6d4"
+    },
+    {
+      "address": "0x0056a63c",
+      "type": null,
+      "name": "DAT_0056a63c"
+    },
+    {
+      "address": "0x-0000028",
+      "type": null,
+      "name": "DAT_-0000028"
+    },
+    {
+      "address": "0x00bfd6d0",
+      "type": null,
+      "name": "DAT_00bfd6d0"
+    },
+    {
+      "address": "0x-000002c",
+      "type": null,
+      "name": "DAT_-000002c"
+    },
+    {
+      "address": "0x0056a2ec",
+      "type": null,
+      "name": "PTR_GetRayToScreen_0056a2ec"
+    }
+  ],
+  "has_custom_name": false,
+  "decompiled_c": "\r\n/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */\r\n\r\nvoid __thiscall FUN_00439fe0(int param_1_00,undefined4 *param_1,int *param_2)\r\n\r\n{\r\n  int iVar1;\r\n  undefined4 *puVar2;\r\n  undefined4 local_18 [6];\r\n  \r\n  local_18[0] = 0;\r\n  local_18[1] = 0;\r\n  local_18[2] = 0;\r\n  local_18[3] = 0;\r\n  local_18[4] = 0;\r\n  local_18[5] = 0;\r\n  gbCamera::GetRayToScreen\r\n            (*(gbCamera **)(param_1_00 + 0x124),\r\n             ((float)*param_2 + (float)*param_2) / (float)DAT_00bfd6d0 - _DAT_0056a63c,\r\n             _DAT_0056a63c - ((float)param_2[1] + (float)param_2[1]) / (float)DAT_00bfd6d4,\r\n             (gbRay *)local_18);\r\n  puVar2 = local_18;\r\n  for (iVar1 = 6; iVar1 != 0; iVar1 = iVar1 + -1) {\r\n    *param_1 = *puVar2;\r\n    puVar2 = puVar2 + 1;\r\n    param_1 = param_1 + 1;\r\n  }\r\n  return;\r\n}\r\n\r\n",
+  "is_thunk": false,
+  "name": "UI3DCtrl_GetMouseRay",
+  "assembly": "  00439fe0:  SUB ESP,0x18\n  00439fe3:  PUSH ESI\n  00439fe4:  LEA EAX,[ESP + 0x4]\n  00439fe8:  PUSH EDI\n  00439fe9:  PUSH EAX\n  00439fea:  MOV EAX,dword ptr [ESP + 0x2c]\n  00439fee:  PUSH ECX\n  00439fef:  MOV dword ptr [ESP + 0x10],0x0\n  00439ff7:  MOV dword ptr [ESP + 0x14],0x0\n  00439fff:  FILD dword ptr [EAX + 0x4]\n  0043a002:  MOV dword ptr [ESP + 0x18],0x0\n  0043a00a:  MOV dword ptr [ESP + 0x1c],0x0\n  0043a012:  MOV dword ptr [ESP + 0x20],0x0\n  0043a01a:  MOV dword ptr [ESP + 0x24],0x0\n  0043a022:  FADD ST0,ST0\n  0043a024:  FIDIV dword ptr [0x00bfd6d4]\n  0043a02a:  FSUBR dword ptr [0x0056a63c]\n  0043a030:  FSTP dword ptr [ESP]\n  0043a033:  FILD dword ptr [EAX]\n  0043a035:  PUSH ECX\n  0043a036:  MOV ECX,dword ptr [ECX + 0x124]\n  0043a03c:  FADD ST0,ST0\n  0043a03e:  FIDIV dword ptr [0x00bfd6d0]\n  0043a044:  FSUB dword ptr [0x0056a63c]\n  0043a04a:  FSTP dword ptr [ESP]\n  0043a04d:  CALL dword ptr [0x0056a2ec]\n  0043a053:  MOV EAX,dword ptr [ESP + 0x24]\n  0043a057:  MOV ECX,0x6\n  0043a05c:  LEA ESI,[ESP + 0x8]\n  0043a060:  MOV EDI,EAX\n  0043a062:  MOVSD.REP ES:EDI,ESI\n  0043a064:  POP EDI\n  0043a065:  POP ESI\n  0043a066:  ADD ESP,0x18\n  0043a069:  RET 0x8",
+  "callers": [],
+  "pal3patch_info": {
+    "name": "UI3DCtrl_GetMouseRay",
+    "type": "method",
+    "source": "pal3.h"
+  }
+}

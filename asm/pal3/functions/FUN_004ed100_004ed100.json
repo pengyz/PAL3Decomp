@@ -1,0 +1,29 @@
+{
+  "address": "0x004ed100", 
+  "size_bytes": 106, 
+  "calling_convention": "unknown", 
+  "signature": "undefined FUN_004ed100(undefined1 param_1)", 
+  "callees": [], 
+  "global_refs": [
+    {
+      "address": "0x00000004", 
+      "type": null, 
+      "name": "DAT_00000004"
+    }
+  ], 
+  "has_custom_name": false, 
+  "decompiled_c": "\r\nuint __thiscall FUN_004ed100(int param_1_00,char param_1)\r\n\r\n{\r\n  int *piVar1;\r\n  int iVar2;\r\n  \r\n  iVar2 = 5;\r\n  if (param_1 == '\\0') {\r\n    piVar1 = (int *)(param_1_00 + 0x13ae);\r\n    while (((*(char *)((int)piVar1 + -1) == '\\0' || (*(char *)piVar1 != '\\x01')) ||\r\n           (*(char *)((int)piVar1 + 0x356) != '\\0'))) {\r\n      iVar2 = iVar2 + 1;\r\n      piVar1 = piVar1 + 0xdf;\r\n      if (10 < iVar2) {\r\n        return CONCAT31((int3)((uint)piVar1 >> 8),1);\r\n      }\r\n    }\r\n  }\r\n  else {\r\n    piVar1 = (int *)(param_1_00 + 0x13b8);\r\n    while (((*(char *)((int)piVar1 + -0xb) == '\\0' || (*piVar1 < 1)) ||\r\n           (*(char *)(piVar1 + 0xd3) != '\\0'))) {\r\n      iVar2 = iVar2 + 1;\r\n      piVar1 = piVar1 + 0xdf;\r\n      if (10 < iVar2) {\r\n        return CONCAT31((int3)((uint)piVar1 >> 8),1);\r\n      }\r\n    }\r\n  }\r\n  return (uint)piVar1 & 0xffffff00;\r\n}\r\n\r\n", 
+  "is_thunk": false, 
+  "name": "FUN_004ed100", 
+  "assembly": "  004ed100:  MOV AL,byte ptr [ESP + 0x4]\n  004ed104:  MOV EDX,0x5\n  004ed109:  TEST AL,AL\n  004ed10b:  JZ 0x004ed139\n  004ed10d:  LEA EAX,[ECX + 0x13b8]\n  004ed113:  MOV CL,byte ptr [EAX + -0xb]\n  004ed116:  TEST CL,CL\n  004ed118:  JZ 0x004ed129\n  004ed11a:  CMP dword ptr [EAX],0x0\n  004ed11d:  JLE 0x004ed129\n  004ed11f:  MOV CL,byte ptr [EAX + 0x34c]\n  004ed125:  TEST CL,CL\n  004ed127:  JZ 0x004ed165\n  004ed129:  INC EDX\n  004ed12a:  ADD EAX,0x37c\n  004ed12f:  CMP EDX,0xb\n  004ed132:  JL 0x004ed113\n  004ed134:  MOV AL,0x1\n  004ed136:  RET 0x4\n  004ed139:  LEA EAX,[ECX + 0x13ae]\n  004ed13f:  MOV CL,byte ptr [EAX + -0x1]\n  004ed142:  TEST CL,CL\n  004ed144:  JZ 0x004ed155\n  004ed146:  CMP byte ptr [EAX],0x1\n  004ed149:  JNZ 0x004ed155\n  004ed14b:  MOV CL,byte ptr [EAX + 0x356]\n  004ed151:  TEST CL,CL\n  004ed153:  JZ 0x004ed165\n  004ed155:  INC EDX\n  004ed156:  ADD EAX,0x37c\n  004ed15b:  CMP EDX,0xb\n  004ed15e:  JL 0x004ed13f\n  004ed160:  MOV AL,0x1\n  004ed162:  RET 0x4\n  004ed165:  XOR AL,AL\n  004ed167:  RET 0x4", 
+  "callers": [
+    {
+      "address": "0x004f7910", 
+      "name": "FUN_004f7910"
+    }, 
+    {
+      "address": "0x0050f4c0", 
+      "name": "FUN_0050f4c0"
+    }
+  ]
+}

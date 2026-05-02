@@ -1,0 +1,57 @@
+{
+  "address": "0x004b8200", 
+  "size_bytes": 66, 
+  "calling_convention": "unknown", 
+  "signature": "undefined FUN_004b8200(undefined4 param_1, undefined4 param_2)", 
+  "callees": [
+    {
+      "address": "0x005541f8", 
+      "name": "FUN_005541f8"
+    }
+  ], 
+  "global_refs": [
+    {
+      "address": "0x00000004", 
+      "type": null, 
+      "name": "DAT_00000004"
+    }, 
+    {
+      "address": "0x00000008", 
+      "type": null, 
+      "name": "DAT_00000008"
+    }, 
+    {
+      "address": "0x-0000004", 
+      "type": null, 
+      "name": "DAT_-0000004"
+    }, 
+    {
+      "address": "0x0056f494", 
+      "type": null, 
+      "name": "DAT_0056f494"
+    }
+  ], 
+  "has_custom_name": false, 
+  "decompiled_c": "\r\nuint __thiscall FUN_004b8200(undefined4 param_1_00,float param_1,float param_2)\r\n\r\n{\r\n  int iVar1;\r\n  \r\n  if ((param_1 == param_2) != 0) {\r\n    return (uint)(ushort)((ushort)(param_1 < param_2) << 8 |\r\n                          (ushort)(NAN(param_1) || NAN(param_2)) << 10 |\r\n                         (ushort)(param_1 == param_2) << 0xe);\r\n  }\r\n  iVar1 = FUN_005541f8(param_1_00);\r\n  return iVar1 / 10000;\r\n}\r\n\r\n", 
+  "is_thunk": false, 
+  "name": "FUN_004b8200", 
+  "assembly": "  004b8200:  PUSH ECX\n  004b8201:  FLD dword ptr [ESP + 0x8]\n  004b8205:  FCOMP dword ptr [ESP + 0xc]\n  004b8209:  FNSTSW AX\n  004b820b:  TEST AH,0x40\n  004b820e:  JZ 0x004b8216\n  004b8210:  FLD dword ptr [ESP + 0x8]\n  004b8214:  POP ECX\n  004b8215:  RET\n  004b8216:  CALL 0x005541f8\n  004b821b:  CDQ\n  004b821c:  MOV ECX,0x2710\n  004b8221:  IDIV ECX\n  004b8223:  INC EDX\n  004b8224:  MOV dword ptr [ESP],EDX\n  004b8228:  FILD dword ptr [ESP]\n  004b822c:  FLD dword ptr [ESP + 0xc]\n  004b8230:  FSUB dword ptr [ESP + 0x8]\n  004b8234:  FMULP\n  004b8236:  FMUL dword ptr [0x0056f494]\n  004b823c:  FADD dword ptr [ESP + 0x8]\n  004b8240:  POP ECX\n  004b8241:  RET", 
+  "callers": [
+    {
+      "address": "0x004b9ea0", 
+      "name": "FUN_004b9ea0"
+    }, 
+    {
+      "address": "0x004b91e0", 
+      "name": "FUN_004b91e0"
+    }, 
+    {
+      "address": "0x004ba800", 
+      "name": "FUN_004ba800"
+    }, 
+    {
+      "address": "0x004babc0", 
+      "name": "FUN_004babc0"
+    }
+  ]
+}

@@ -1,0 +1,60 @@
+{
+  "address": "0x00438eb0", 
+  "size_bytes": 92, 
+  "calling_convention": "unknown", 
+  "signature": "undefined FUN_00438eb0(void)", 
+  "callees": [], 
+  "global_refs": [
+    {
+      "address": "0x0055fa78", 
+      "type": null, 
+      "name": "LAB_0055fa78"
+    }, 
+    {
+      "address": "0xffdff000", 
+      "type": null, 
+      "name": "ExceptionList"
+    }, 
+    {
+      "address": "0x-0000010", 
+      "type": null, 
+      "name": "DAT_-0000010"
+    }, 
+    {
+      "address": "0x0056ac08", 
+      "type": null, 
+      "name": "PTR_FUN_0056ac08"
+    }, 
+    {
+      "address": "0x00bfda34", 
+      "type": null, 
+      "name": "DAT_00bfda34"
+    }, 
+    {
+      "address": "0x-0000004", 
+      "type": null, 
+      "name": "DAT_-0000004"
+    }, 
+    {
+      "address": "0x-000000c", 
+      "type": null, 
+      "name": "DAT_-000000c"
+    }, 
+    {
+      "address": "0x0056a9c0", 
+      "type": null, 
+      "name": "PTR_LAB_0056a9c0"
+    }
+  ], 
+  "has_custom_name": false, 
+  "decompiled_c": "\r\nvoid __fastcall FUN_00438eb0(undefined4 *param_1)\r\n\r\n{\r\n  void *local_c;\r\n  undefined *puStack_8;\r\n  undefined4 local_4;\r\n  \r\n  puStack_8 = &LAB_0055fa78;\r\n  local_c = ExceptionList;\r\n  ExceptionList = &local_c;\r\n  *param_1 = &PTR_FUN_0056ac08;\r\n  local_4 = 0;\r\n  if (DAT_00bfda34 != (int *)0x0) {\r\n    (**(code **)(*DAT_00bfda34 + 0x14))(1);\r\n  }\r\n  DAT_00bfda34 = (int *)0x0;\r\n  *param_1 = &PTR_LAB_0056a9c0;\r\n  ExceptionList = local_c;\r\n  return;\r\n}\r\n\r\n", 
+  "is_thunk": false, 
+  "name": "FUN_00438eb0", 
+  "assembly": "  00438eb0:  PUSH -0x1\n  00438eb2:  PUSH 0x55fa78\n  00438eb7:  MOV EAX,FS:[0x0]\n  00438ebd:  PUSH EAX\n  00438ebe:  MOV dword ptr FS:[0x0],ESP\n  00438ec5:  PUSH ECX\n  00438ec6:  PUSH ESI\n  00438ec7:  MOV ESI,ECX\n  00438ec9:  MOV dword ptr [ESP + 0x4],ESI\n  00438ecd:  MOV dword ptr [ESI],0x56ac08\n  00438ed3:  MOV ECX,dword ptr [0x00bfda34]\n  00438ed9:  MOV dword ptr [ESP + 0x10],0x0\n  00438ee1:  TEST ECX,ECX\n  00438ee3:  JZ 0x00438eec\n  00438ee5:  MOV EAX,dword ptr [ECX]\n  00438ee7:  PUSH 0x1\n  00438ee9:  CALL dword ptr [EAX + 0x14]\n  00438eec:  MOV ECX,dword ptr [ESP + 0x8]\n  00438ef0:  MOV dword ptr [0x00bfda34],0x0\n  00438efa:  MOV dword ptr [ESI],0x56a9c0\n  00438f00:  POP ESI\n  00438f01:  MOV dword ptr FS:[0x0],ECX\n  00438f08:  ADD ESP,0x10\n  00438f0b:  RET", 
+  "callers": [
+    {
+      "address": "0x00438e90", 
+      "name": "FUN_00438e90"
+    }
+  ]
+}

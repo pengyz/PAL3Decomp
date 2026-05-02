@@ -1,0 +1,30 @@
+{
+  "address": "0x004b7f00", 
+  "size_bytes": 93, 
+  "calling_convention": "unknown", 
+  "signature": "undefined FUN_004b7f00(void)", 
+  "callees": [
+    {
+      "address": "0x0000015e", 
+      "name": "Release"
+    }
+  ], 
+  "global_refs": [
+    {
+      "address": "0x0056a58c", 
+      "type": null, 
+      "name": "PTR_Release_0056a58c"
+    }
+  ], 
+  "has_custom_name": false, 
+  "decompiled_c": "\r\nvoid __fastcall FUN_004b7f00(int param_1)\r\n\r\n{\r\n  if (*(undefined4 **)(param_1 + 0x420) != (undefined4 *)0x0) {\r\n    (**(code **)**(undefined4 **)(param_1 + 0x420))(1);\r\n    *(undefined4 *)(param_1 + 0x420) = 0;\r\n  }\r\n  if (*(gbRefObject **)(param_1 + 0xa8) != (gbRefObject *)0x0) {\r\n    gbRefObject::Release(*(gbRefObject **)(param_1 + 0xa8));\r\n    *(undefined4 *)(param_1 + 0xa8) = 0;\r\n  }\r\n  if (*(gbRefObject **)(param_1 + 0xa4) != (gbRefObject *)0x0) {\r\n    gbRefObject::Release(*(gbRefObject **)(param_1 + 0xa4));\r\n    *(undefined4 *)(param_1 + 0xa4) = 0;\r\n  }\r\n  if (*(gbRefObject **)(param_1 + 0x60) != (gbRefObject *)0x0) {\r\n    gbRefObject::Release(*(gbRefObject **)(param_1 + 0x60));\r\n    *(undefined4 *)(param_1 + 0x60) = 0;\r\n  }\r\n  *(undefined4 *)(param_1 + 0xa0) = 0;\r\n  return;\r\n}\r\n\r\n", 
+  "is_thunk": false, 
+  "name": "FUN_004b7f00", 
+  "assembly": "  004b7f00:  PUSH EBX\n  004b7f01:  PUSH ESI\n  004b7f02:  MOV ESI,ECX\n  004b7f04:  PUSH EDI\n  004b7f05:  XOR EDI,EDI\n  004b7f07:  MOV ECX,dword ptr [ESI + 0x420]\n  004b7f0d:  CMP ECX,EDI\n  004b7f0f:  JZ 0x004b7f1d\n  004b7f11:  MOV EAX,dword ptr [ECX]\n  004b7f13:  PUSH 0x1\n  004b7f15:  CALL dword ptr [EAX]\n  004b7f17:  MOV dword ptr [ESI + 0x420],EDI\n  004b7f1d:  MOV ECX,dword ptr [ESI + 0xa8]\n  004b7f23:  MOV EBX,dword ptr [0x0056a58c]\n  004b7f29:  CMP ECX,EDI\n  004b7f2b:  JZ 0x004b7f35\n  004b7f2d:  CALL EBX\n  004b7f2f:  MOV dword ptr [ESI + 0xa8],EDI\n  004b7f35:  MOV ECX,dword ptr [ESI + 0xa4]\n  004b7f3b:  CMP ECX,EDI\n  004b7f3d:  JZ 0x004b7f47\n  004b7f3f:  CALL EBX\n  004b7f41:  MOV dword ptr [ESI + 0xa4],EDI\n  004b7f47:  MOV ECX,dword ptr [ESI + 0x60]\n  004b7f4a:  CMP ECX,EDI\n  004b7f4c:  JZ 0x004b7f53\n  004b7f4e:  CALL EBX\n  004b7f50:  MOV dword ptr [ESI + 0x60],EDI\n  004b7f53:  MOV dword ptr [ESI + 0xa0],EDI\n  004b7f59:  POP EDI\n  004b7f5a:  POP ESI\n  004b7f5b:  POP EBX\n  004b7f5c:  RET", 
+  "callers": [
+    {
+      "address": "0x004b7ce0", 
+      "name": "FUN_004b7ce0"
+    }
+  ]
+}

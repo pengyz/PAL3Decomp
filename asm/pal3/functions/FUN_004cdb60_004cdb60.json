@@ -1,0 +1,24 @@
+{
+  "address": "0x004cdb60", 
+  "size_bytes": 8, 
+  "calling_convention": "unknown", 
+  "signature": "undefined FUN_004cdb60(void)", 
+  "callees": [
+    {
+      "address": "0x004cea80", 
+      "name": "FUN_004cea80"
+    }
+  ], 
+  "global_refs": [], 
+  "has_custom_name": false, 
+  "decompiled_c": "\r\nundefined FUN_004cdb60(void)\r\n\r\n{\r\n  FUN_004cea80();\r\n  return 1;\r\n}\r\n\r\n", 
+  "is_thunk": false, 
+  "name": "FUN_004cdb60", 
+  "assembly": "  004cdb60:  CALL 0x004cea80\n  004cdb65:  MOV AL,0x1\n  004cdb67:  RET", 
+  "callers": [
+    {
+      "address": "0x00512d60", 
+      "name": "FUN_00512d60"
+    }
+  ]
+}

@@ -1,0 +1,55 @@
+{
+  "address": "0x004ee430", 
+  "size_bytes": 246, 
+  "calling_convention": "unknown", 
+  "signature": "undefined FUN_004ee430(undefined4 param_1, undefined4 param_2)", 
+  "callees": [], 
+  "global_refs": [
+    {
+      "address": "0x00000008", 
+      "type": null, 
+      "name": "DAT_00000008"
+    }, 
+    {
+      "address": "0x00000004", 
+      "type": null, 
+      "name": "DAT_00000004"
+    }, 
+    {
+      "address": "0x004ee528", 
+      "type": null, 
+      "name": "switchdataD_004ee528"
+    }, 
+    {
+      "address": "0x0056a744", 
+      "type": null, 
+      "name": "DAT_0056a744"
+    }, 
+    {
+      "address": "0x0056f448", 
+      "type": null, 
+      "name": "DAT_0056f448"
+    }, 
+    {
+      "address": "0x0056aa3c", 
+      "type": null, 
+      "name": "DAT_0056aa3c"
+    }, 
+    {
+      "address": "0x0056a630", 
+      "type": null, 
+      "name": "DAT_0056a630"
+    }
+  ], 
+  "has_custom_name": false, 
+  "decompiled_c": "\r\n/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */\r\n\r\nvoid __thiscall FUN_004ee430(int param_1_00,int param_1,undefined4 param_2)\r\n\r\n{\r\n  int iVar1;\r\n  \r\n  switch(param_2) {\r\n  case 0x14:\r\n    *(float *)(param_1_00 + 0x2ac + param_1 * 0x37c) =\r\n         *(float *)(param_1_00 + 0x2ac + param_1 * 0x37c) + _DAT_0056a744;\r\n    return;\r\n  case 0x15:\r\n    iVar1 = param_1_00 + param_1 * 0x37c;\r\n    *(float *)(iVar1 + 0x2ac) = *(float *)(param_1_00 + 0x2ac + param_1 * 0x37c) + _DAT_0056f448;\r\n    *(float *)(iVar1 + 0x2b0) = *(float *)(iVar1 + 0x2b0) + _DAT_0056a744;\r\n  case 0x16:\r\n    *(float *)(param_1_00 + 0x2b4 + param_1 * 0x37c) =\r\n         *(float *)(param_1_00 + 0x2b4 + param_1 * 0x37c) + _DAT_0056aa3c;\r\n    return;\r\n  case 0x17:\r\n    *(int *)(param_1_00 + 0x2b8 + param_1 * 0x37c) =\r\n         *(int *)(param_1_00 + 0x2b8 + param_1 * 0x37c) + 5;\r\n    return;\r\n  case 0x18:\r\n    *(float *)(param_1_00 + 0x2ac + param_1 * 0x37c) =\r\n         *(float *)(param_1_00 + 0x2ac + param_1 * 0x37c) + _DAT_0056a630;\r\n  default:\r\n    return;\r\n  }\r\n}\r\n\r\n", 
+  "is_thunk": false, 
+  "name": "FUN_004ee430", 
+  "assembly": "  004ee430:  MOV EAX,dword ptr [ESP + 0x8]\n  004ee434:  LEA EDX,[EAX + -0x14]\n  004ee437:  CMP EDX,0x4\n  004ee43a:  JA 0x004ee523\n  004ee440:  MOV EAX,dword ptr [ESP + 0x4]\n  004ee444:  JMP dword ptr [EDX*0x4 + 0x4ee528]\n  004ee44b:  MOV EAX,dword ptr [ESP + 0x4]\n  004ee44f:  LEA EDX,[EAX*0x8 + 0x0]\n  004ee456:  SUB EDX,EAX\n  004ee458:  SHL EDX,0x5\n  004ee45b:  SUB EDX,EAX\n  004ee45d:  FLD dword ptr [ECX + EDX*0x4 + 0x2ac]\n  004ee464:  FADD dword ptr [0x0056a744]\n  004ee46a:  LEA EAX,[ECX + EDX*0x4 + 0x2ac]\n  004ee471:  FSTP dword ptr [EAX]\n  004ee473:  RET 0x8\n  004ee476:  LEA EDX,[EAX*0x8 + 0x0]\n  004ee47d:  SUB EDX,EAX\n  004ee47f:  SHL EDX,0x5\n  004ee482:  SUB EDX,EAX\n  004ee484:  FLD dword ptr [ECX + EDX*0x4 + 0x2ac]\n  004ee48b:  FADD dword ptr [0x0056f448]\n  004ee491:  LEA EDX,[ECX + EDX*0x4]\n  004ee494:  FSTP dword ptr [EDX + 0x2ac]\n  004ee49a:  FLD dword ptr [EDX + 0x2b0]\n  004ee4a0:  FADD dword ptr [0x0056a744]\n  004ee4a6:  FSTP dword ptr [EDX + 0x2b0]\n  004ee4ac:  LEA EDX,[EAX*0x8 + 0x0]\n  004ee4b3:  SUB EDX,EAX\n  004ee4b5:  SHL EDX,0x5\n  004ee4b8:  SUB EDX,EAX\n  004ee4ba:  FLD dword ptr [ECX + EDX*0x4 + 0x2b4]\n  004ee4c1:  FADD dword ptr [0x0056aa3c]\n  004ee4c7:  LEA EAX,[ECX + EDX*0x4 + 0x2b4]\n  004ee4ce:  FSTP dword ptr [EAX]\n  004ee4d0:  RET 0x8\n  004ee4d3:  MOV EAX,dword ptr [ESP + 0x4]\n  004ee4d7:  LEA EDX,[EAX*0x8 + 0x0]\n  004ee4de:  SUB EDX,EAX\n  004ee4e0:  SHL EDX,0x5\n  004ee4e3:  SUB EDX,EAX\n  004ee4e5:  LEA EAX,[ECX + EDX*0x4 + 0x2b8]\n  004ee4ec:  MOV ECX,dword ptr [ECX + EDX*0x4 + 0x2b8]\n  004ee4f3:  ADD ECX,0x5\n  004ee4f6:  MOV dword ptr [EAX],ECX\n  004ee4f8:  RET 0x8\n  004ee4fb:  MOV EAX,dword ptr [ESP + 0x4]\n  004ee4ff:  LEA EDX,[EAX*0x8 + 0x0]\n  004ee506:  SUB EDX,EAX\n  004ee508:  SHL EDX,0x5\n  004ee50b:  SUB EDX,EAX\n  004ee50d:  FLD dword ptr [ECX + EDX*0x4 + 0x2ac]\n  004ee514:  FADD dword ptr [0x0056a630]\n  004ee51a:  LEA EAX,[ECX + EDX*0x4 + 0x2ac]\n  004ee521:  FSTP dword ptr [EAX]\n  004ee523:  RET 0x8", 
+  "callers": [
+    {
+      "address": "0x004edf10", 
+      "name": "FUN_004edf10"
+    }
+  ]
+}

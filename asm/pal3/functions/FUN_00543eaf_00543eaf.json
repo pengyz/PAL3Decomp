@@ -1,0 +1,64 @@
+{
+  "address": "0x00543eaf", 
+  "size_bytes": 39, 
+  "calling_convention": "unknown", 
+  "signature": "undefined FUN_00543eaf(undefined4 param_1, undefined4 param_2, undefined4 param_3, undefined4 param_4, undefined4 param_5)", 
+  "callees": [
+    {
+      "address": "0x00546f41", 
+      "name": "FUN_00546f41"
+    }, 
+    {
+      "address": "0x00543eaf", 
+      "name": "FUN_00543eaf"
+    }
+  ], 
+  "global_refs": [
+    {
+      "address": "0x00000008", 
+      "type": null, 
+      "name": "DAT_00000008"
+    }, 
+    {
+      "address": "0x00000014", 
+      "type": null, 
+      "name": "DAT_00000014"
+    }, 
+    {
+      "address": "0x00000010", 
+      "type": null, 
+      "name": "DAT_00000010"
+    }, 
+    {
+      "address": "0x0000000c", 
+      "type": null, 
+      "name": "DAT_0000000c"
+    }, 
+    {
+      "address": "0x-0000014", 
+      "type": null, 
+      "name": "DAT_-0000014"
+    }, 
+    {
+      "address": "0x00000004", 
+      "type": null, 
+      "name": "DAT_00000004"
+    }, 
+    {
+      "address": "0x0060914c", 
+      "type": null, 
+      "name": "PTR_FUN_0060914c"
+    }
+  ], 
+  "has_custom_name": false, 
+  "decompiled_c": "\r\nvoid FUN_00543eaf(undefined4 param_1,undefined4 param_2,undefined4 param_3,undefined4 param_4,\r\n                 undefined4 param_5)\r\n\r\n{\r\n  FUN_00546f41(1);\r\n  (*(code *)PTR_FUN_0060914c)(param_1,param_2,param_3,param_4,param_5);\r\n  return;\r\n}\r\n\r\n", 
+  "is_thunk": false, 
+  "name": "FUN_00543eaf", 
+  "assembly": "  00543eaf:  PUSH EBP\n  00543eb0:  MOV EBP,ESP\n  00543eb2:  PUSH 0x1\n  00543eb4:  CALL 0x00546f41\n  00543eb9:  FLD dword ptr [EBP + 0xc]\n  00543ebc:  PUSH dword ptr [EBP + 0x18]\n  00543ebf:  PUSH dword ptr [EBP + 0x14]\n  00543ec2:  PUSH dword ptr [EBP + 0x10]\n  00543ec5:  PUSH ECX\n  00543ec6:  FSTP dword ptr [ESP]\n  00543ec9:  PUSH dword ptr [EBP + 0x8]\n  00543ecc:  CALL dword ptr [0x0060914c]\n  00543ed2:  POP EBP\n  00543ed3:  RET 0x14", 
+  "callers": [
+    {
+      "address": "0x00543eaf", 
+      "name": "FUN_00543eaf"
+    }
+  ]
+}

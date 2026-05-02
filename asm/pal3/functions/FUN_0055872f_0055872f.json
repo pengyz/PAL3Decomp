@@ -1,0 +1,98 @@
+{
+  "address": "0x0055872f", 
+  "size_bytes": 117, 
+  "calling_convention": "unknown", 
+  "signature": "undefined FUN_0055872f(undefined4 param_1, undefined4 param_2)", 
+  "callees": [
+    {
+      "address": "0x0055becc", 
+      "name": "FUN_0055becc"
+    }
+  ], 
+  "global_refs": [
+    {
+      "address": "0x00000004", 
+      "type": null, 
+      "name": "DAT_00000004"
+    }, 
+    {
+      "address": "0x0060ad00", 
+      "type": null, 
+      "name": "PTR_DAT_0060ad00"
+    }, 
+    {
+      "address": "0x0060ad0a", 
+      "type": null, 
+      "name": "DAT_0060ad0a"
+    }, 
+    {
+      "address": "0x0060ad0b", 
+      "type": null, 
+      "name": "DAT_0060ad0b"
+    }, 
+    {
+      "address": "0x-0000006", 
+      "type": null, 
+      "name": "DAT_-0000006"
+    }, 
+    {
+      "address": "0x-0000008", 
+      "type": null, 
+      "name": "DAT_-0000008"
+    }, 
+    {
+      "address": "0x-0000007", 
+      "type": null, 
+      "name": "DAT_-0000007"
+    }, 
+    {
+      "address": "0x00000006", 
+      "type": null, 
+      "name": "DAT_00000006"
+    }, 
+    {
+      "address": "0x00000008", 
+      "type": null, 
+      "name": "DAT_00000008"
+    }
+  ], 
+  "has_custom_name": false, 
+  "decompiled_c": "\r\nuint __thiscall FUN_0055872f(undefined4 param_1_00,int param_1,uint param_2)\r\n\r\n{\r\n  int iVar1;\r\n  undefined4 uVar2;\r\n  undefined4 local_8;\r\n  \r\n  if (param_1 + 1U < 0x101) {\r\n    param_1._2_2_ = *(ushort *)(PTR_DAT_0060ad00 + param_1 * 2);\r\n  }\r\n  else {\r\n    if ((PTR_DAT_0060ad00[(param_1 >> 8 & 0xffU) * 2 + 1] & 0x80) == 0) {\r\n      local_8 = CONCAT31((int3)((uint)param_1_00 >> 8),(char)param_1) & 0xffff00ff;\r\n      uVar2 = 1;\r\n    }\r\n    else {\r\n      local_8._0_2_ = CONCAT11((char)param_1,(char)((uint)param_1 >> 8));\r\n      local_8 = CONCAT22((short)((uint)param_1_00 >> 0x10),(undefined2)local_8) & 0xff00ffff;\r\n      uVar2 = 2;\r\n    }\r\n    iVar1 = FUN_0055becc(1,&local_8,uVar2,(int)&param_1 + 2,0,0,1);\r\n    if (iVar1 == 0) {\r\n      return 0;\r\n    }\r\n  }\r\n  return param_1._2_2_ & param_2;\r\n}\r\n\r\n", 
+  "is_thunk": false, 
+  "name": "FUN_0055872f", 
+  "assembly": "  0055872f:  PUSH EBP\n  00558730:  MOV EBP,ESP\n  00558732:  PUSH ECX\n  00558733:  MOV EAX,dword ptr [EBP + 0x8]\n  00558736:  LEA ECX,[EAX + 0x1]\n  00558739:  CMP ECX,0x100\n  0055873f:  JA 0x0055874d\n  00558741:  MOV ECX,dword ptr [0x0060ad00]\n  00558747:  MOVZX EAX,word ptr [ECX + EAX*0x2]\n  0055874b:  JMP 0x0055879f\n  0055874d:  MOV ECX,EAX\n  0055874f:  PUSH ESI\n  00558750:  MOV ESI,dword ptr [0x0060ad00]\n  00558756:  SAR ECX,0x8\n  00558759:  MOVZX EDX,CL\n  0055875c:  TEST byte ptr [ESI + EDX*0x2 + 0x1],0x80\n  00558761:  POP ESI\n  00558762:  JZ 0x00558772\n  00558764:  AND byte ptr [EBP + -0x2],0x0\n  00558768:  MOV byte ptr [EBP + -0x4],CL\n  0055876b:  MOV byte ptr [EBP + -0x3],AL\n  0055876e:  PUSH 0x2\n  00558770:  JMP 0x0055877b\n  00558772:  AND byte ptr [EBP + -0x3],0x0\n  00558776:  MOV byte ptr [EBP + -0x4],AL\n  00558779:  PUSH 0x1\n  0055877b:  POP EAX\n  0055877c:  LEA ECX,[EBP + 0xa]\n  0055877f:  PUSH 0x1\n  00558781:  PUSH 0x0\n  00558783:  PUSH 0x0\n  00558785:  PUSH ECX\n  00558786:  PUSH EAX\n  00558787:  LEA EAX,[EBP + -0x4]\n  0055878a:  PUSH EAX\n  0055878b:  PUSH 0x1\n  0055878d:  CALL 0x0055becc\n  00558792:  ADD ESP,0x1c\n  00558795:  TEST EAX,EAX\n  00558797:  JNZ 0x0055879b\n  00558799:  LEAVE\n  0055879a:  RET\n  0055879b:  MOVZX EAX,word ptr [EBP + 0xa]\n  0055879f:  AND EAX,dword ptr [EBP + 0xc]\n  005587a2:  LEAVE\n  005587a3:  RET", 
+  "callers": [
+    {
+      "address": "0x00554055", 
+      "name": "FUN_00554055"
+    }, 
+    {
+      "address": "0x0055b657", 
+      "name": "FUN_0055b657"
+    }, 
+    {
+      "address": "0x005544fb", 
+      "name": "FUN_005544fb"
+    }, 
+    {
+      "address": "0x00559866", 
+      "name": "FUN_00559866"
+    }, 
+    {
+      "address": "0x0055a28b", 
+      "name": "FUN_0055a28b"
+    }, 
+    {
+      "address": "0x0055d47d", 
+      "name": "FUN_0055d47d"
+    }, 
+    {
+      "address": "0x0055c0e5", 
+      "name": "FUN_0055c0e5"
+    }, 
+    {
+      "address": "0x00556457", 
+      "name": "FUN_00556457"
+    }
+  ]
+}

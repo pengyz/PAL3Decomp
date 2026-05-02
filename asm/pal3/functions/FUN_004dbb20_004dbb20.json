@@ -1,0 +1,49 @@
+{
+  "address": "0x004dbb20", 
+  "size_bytes": 91, 
+  "calling_convention": "unknown", 
+  "signature": "undefined FUN_004dbb20(void)", 
+  "callees": [
+    {
+      "address": "0x00553514", 
+      "name": "__ftol"
+    }, 
+    {
+      "address": "0x00445d20", 
+      "name": "FUN_00445d20"
+    }
+  ], 
+  "global_refs": [
+    {
+      "address": "0x0056fbe0", 
+      "type": null, 
+      "name": "DAT_0056fbe0"
+    }, 
+    {
+      "address": "0x0056fbdc", 
+      "type": null, 
+      "name": "DAT_0056fbdc"
+    }, 
+    {
+      "address": "0x0056fbd8", 
+      "type": null, 
+      "name": "DAT_0056fbd8"
+    }, 
+    {
+      "address": "0x0056f2bc", 
+      "type": null, 
+      "name": "DAT_0056f2bc"
+    }
+  ], 
+  "has_custom_name": false, 
+  "decompiled_c": "\r\nvoid __fastcall FUN_004dbb20(int param_1)\r\n\r\n{\r\n  undefined4 uVar1;\r\n  int iVar2;\r\n  \r\n  iVar2 = 0x4c;\r\n  param_1 = param_1 + 0x2e;\r\n  do {\r\n    if (*(char *)(param_1 + 2) != '\\0') {\r\n      uVar1 = __ftol();\r\n      FUN_00445d20(uVar1,8);\r\n    }\r\n    iVar2 = iVar2 + 4;\r\n    param_1 = param_1 + 0x28;\r\n  } while (iVar2 < 0x78);\r\n  return;\r\n}\r\n\r\n", 
+  "is_thunk": false, 
+  "name": "FUN_004dbb20", 
+  "assembly": "  004dbb20:  PUSH EBX\n  004dbb21:  MOV EBX,ECX\n  004dbb23:  PUSH ESI\n  004dbb24:  PUSH EDI\n  004dbb25:  MOV EDI,0x4c\n  004dbb2a:  LEA ESI,[EBX + 0x2e]\n  004dbb2d:  MOV AL,byte ptr [ESI + 0x2]\n  004dbb30:  TEST AL,AL\n  004dbb32:  JZ 0x004dbb6c\n  004dbb34:  CMP byte ptr [ESI],0x0\n  004dbb37:  JZ 0x004dbb4a\n  004dbb39:  FILD dword ptr [ESI + -0xa]\n  004dbb3c:  FMUL dword ptr [0x0056fbe0]\n  004dbb42:  FADD dword ptr [0x0056fbdc]\n  004dbb48:  JMP 0x004dbb59\n  004dbb4a:  FILD dword ptr [ESI + -0xe]\n  004dbb4d:  FMUL dword ptr [0x0056fbd8]\n  004dbb53:  FADD dword ptr [0x0056f2bc]\n  004dbb59:  CALL 0x00553514\n  004dbb5e:  PUSH 0x8\n  004dbb60:  PUSH EAX\n  004dbb61:  MOV EAX,dword ptr [EBX + 0x4]\n  004dbb64:  MOV ECX,dword ptr [EAX + EDI*0x1]\n  004dbb67:  CALL 0x00445d20\n  004dbb6c:  ADD EDI,0x4\n  004dbb6f:  ADD ESI,0x28\n  004dbb72:  CMP EDI,0x78\n  004dbb75:  JL 0x004dbb2d\n  004dbb77:  POP EDI\n  004dbb78:  POP ESI\n  004dbb79:  POP EBX\n  004dbb7a:  RET", 
+  "callers": [
+    {
+      "address": "0x004db5c0", 
+      "name": "FUN_004db5c0"
+    }
+  ]
+}

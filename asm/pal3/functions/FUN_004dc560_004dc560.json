@@ -1,0 +1,90 @@
+{
+  "address": "0x004dc560", 
+  "size_bytes": 74, 
+  "calling_convention": "unknown", 
+  "signature": "undefined FUN_004dc560(void)", 
+  "callees": [
+    {
+      "address": "0x004dc650", 
+      "name": "FUN_004dc650"
+    }
+  ], 
+  "global_refs": [
+    {
+      "address": "0x004df2f0", 
+      "type": null, 
+      "name": "FUN_004df2f0"
+    }, 
+    {
+      "address": "0x-0000028", 
+      "type": null, 
+      "name": "DAT_-0000028"
+    }, 
+    {
+      "address": "0x-0000024", 
+      "type": null, 
+      "name": "DAT_-0000024"
+    }, 
+    {
+      "address": "0x-0000020", 
+      "type": null, 
+      "name": "DAT_-0000020"
+    }, 
+    {
+      "address": "0x-000001c", 
+      "type": null, 
+      "name": "DAT_-000001c"
+    }, 
+    {
+      "address": "0x-0000038", 
+      "type": null, 
+      "name": "DAT_-0000038"
+    }, 
+    {
+      "address": "0x-0000034", 
+      "type": null, 
+      "name": "DAT_-0000034"
+    }, 
+    {
+      "address": "0x-0000030", 
+      "type": null, 
+      "name": "DAT_-0000030"
+    }, 
+    {
+      "address": "0x-000002c", 
+      "type": null, 
+      "name": "DAT_-000002c"
+    }
+  ], 
+  "has_custom_name": false, 
+  "decompiled_c": "\r\nvoid __fastcall FUN_004dc560(int param_1)\r\n\r\n{\r\n  if (*(char *)(param_1 + 0x25) == '\\0') {\r\n    *(undefined *)(param_1 + 0x25) = 1;\r\n    FUN_004dc650(FUN_004df2f0,0,0,0,0,0,0,0xffffffff,0,0);\r\n  }\r\n  return;\r\n}\r\n\r\n", 
+  "is_thunk": false, 
+  "name": "FUN_004dc560", 
+  "assembly": "  004dc560:  MOV AL,byte ptr [ECX + 0x25]\n  004dc563:  PUSH EBX\n  004dc564:  PUSH EBP\n  004dc565:  PUSH ESI\n  004dc566:  TEST AL,AL\n  004dc568:  PUSH EDI\n  004dc569:  JNZ 0x004dc5a5\n  004dc56b:  XOR ESI,ESI\n  004dc56d:  XOR EAX,EAX\n  004dc56f:  PUSH ESI\n  004dc570:  PUSH ESI\n  004dc571:  SUB ESP,0x10\n  004dc574:  XOR EDX,EDX\n  004dc576:  MOV EBP,ESP\n  004dc578:  SUB ESP,0x10\n  004dc57b:  OR EDI,0xffffffff\n  004dc57e:  MOV EBX,0x4df2f0\n  004dc583:  MOV dword ptr [EBP],EAX\n  004dc586:  MOV byte ptr [ECX + 0x25],0x1\n  004dc58a:  MOV dword ptr [EBP + 0x4],EDX\n  004dc58d:  MOV EDX,ESP\n  004dc58f:  MOV dword ptr [EBP + 0x8],ESI\n  004dc592:  MOV dword ptr [EBP + 0xc],EDI\n  004dc595:  MOV dword ptr [EDX],EBX\n  004dc597:  MOV dword ptr [EDX + 0x4],EAX\n  004dc59a:  MOV dword ptr [EDX + 0x8],EAX\n  004dc59d:  MOV dword ptr [EDX + 0xc],EAX\n  004dc5a0:  CALL 0x004dc650\n  004dc5a5:  POP EDI\n  004dc5a6:  POP ESI\n  004dc5a7:  POP EBP\n  004dc5a8:  POP EBX\n  004dc5a9:  RET", 
+  "callers": [
+    {
+      "address": "0x004e5490", 
+      "name": "FUN_004e5490"
+    }, 
+    {
+      "address": "0x004f8af0", 
+      "name": "FUN_004f8af0"
+    }, 
+    {
+      "address": "0x005136d0", 
+      "name": "FUN_005136d0"
+    }, 
+    {
+      "address": "0x004f4820", 
+      "name": "FUN_004f4820"
+    }, 
+    {
+      "address": "0x00500d50", 
+      "name": "FUN_00500d50"
+    }, 
+    {
+      "address": "0x004f2390", 
+      "name": "FUN_004f2390"
+    }
+  ]
+}

@@ -1,0 +1,29 @@
+{
+  "address": "0x00402380",
+  "size_bytes": 75,
+  "calling_convention": "unknown",
+  "signature": "undefined FUN_00402380(void)",
+  "callees": [
+    {
+      "address": "0x00402220",
+      "name": "FUN_00402220"
+    }
+  ],
+  "global_refs": [],
+  "has_custom_name": false,
+  "decompiled_c": "\r\nvoid __fastcall FUN_00402380(int param_1)\r\n\r\n{\r\n  int *piVar1;\r\n  int iVar2;\r\n  int iVar3;\r\n  \r\n  piVar1 = *(int **)(param_1 + 4);\r\n  if (piVar1 != (int *)0x0) {\r\n    *(undefined4 *)(param_1 + 0x1870) = 1;\r\n    iVar2 = (**(code **)(*piVar1 + 0x1c))(piVar1);\r\n    if (iVar2 == 0) {\r\nLAB_0040239f:\r\n      FUN_00402220();\r\n      return;\r\n    }\r\n    iVar2 = 0;\r\n    do {\r\n      iVar3 = (**(code **)(**(int **)(param_1 + 4) + 0x1c))(*(int **)(param_1 + 4));\r\n      if (iVar3 == 0) goto LAB_0040239f;\r\n      iVar2 = iVar2 + 1;\r\n    } while (iVar2 < 0x32);\r\n    *(undefined4 *)(param_1 + 0x1870) = 0;\r\n  }\r\n  return;\r\n}\r\n\r\n",
+  "is_thunk": false,
+  "name": "GRPinput_AcquireKeyboard",
+  "assembly": "  00402380:  PUSH ESI\n  00402381:  MOV ESI,ECX\n  00402383:  PUSH EDI\n  00402384:  MOV EAX,dword ptr [ESI + 0x4]\n  00402387:  TEST EAX,EAX\n  00402389:  JZ 0x004023c8\n  0040238b:  MOV dword ptr [ESI + 0x1870],0x1\n  00402395:  MOV ECX,dword ptr [EAX]\n  00402397:  PUSH EAX\n  00402398:  CALL dword ptr [ECX + 0x1c]\n  0040239b:  TEST EAX,EAX\n  0040239d:  JNZ 0x004023a9\n  0040239f:  MOV ECX,ESI\n  004023a1:  CALL 0x00402220\n  004023a6:  POP EDI\n  004023a7:  POP ESI\n  004023a8:  RET\n  004023a9:  XOR EDI,EDI\n  004023ab:  MOV EAX,dword ptr [ESI + 0x4]\n  004023ae:  PUSH EAX\n  004023af:  MOV EDX,dword ptr [EAX]\n  004023b1:  CALL dword ptr [EDX + 0x1c]\n  004023b4:  TEST EAX,EAX\n  004023b6:  JZ 0x0040239f\n  004023b8:  INC EDI\n  004023b9:  CMP EDI,0x32\n  004023bc:  JL 0x004023ab\n  004023be:  MOV dword ptr [ESI + 0x1870],0x0\n  004023c8:  POP EDI\n  004023c9:  POP ESI\n  004023ca:  RET",
+  "callers": [
+    {
+      "address": "0x004021e0",
+      "name": "FUN_004021e0"
+    }
+  ],
+  "pal3patch_info": {
+    "name": "GRPinput_AcquireKeyboard",
+    "type": "method",
+    "source": "pal3.h"
+  }
+}

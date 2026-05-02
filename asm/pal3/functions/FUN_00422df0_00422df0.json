@@ -1,0 +1,52 @@
+{
+  "address": "0x00422df0", 
+  "size_bytes": 67, 
+  "calling_convention": "unknown", 
+  "signature": "undefined FUN_00422df0(void)", 
+  "callees": [
+    {
+      "address": "0x004226f0", 
+      "name": "FUN_004226f0"
+    }, 
+    {
+      "address": "0x00421870", 
+      "name": "FUN_00421870"
+    }, 
+    {
+      "address": "0x0041f8c0", 
+      "name": "FUN_0041f8c0"
+    }, 
+    {
+      "address": "0x004208a0", 
+      "name": "FUN_004208a0"
+    }
+  ], 
+  "global_refs": [
+    {
+      "address": "0x00c21fe8", 
+      "type": null, 
+      "name": "DAT_00c21fe8"
+    }, 
+    {
+      "address": "0x00d8b314", 
+      "type": null, 
+      "name": "DAT_00d8b314"
+    }, 
+    {
+      "address": "0x00d8b318", 
+      "type": null, 
+      "name": "DAT_00d8b318"
+    }, 
+    {
+      "address": "0x00d8b938", 
+      "type": null, 
+      "name": "DAT_00d8b938"
+    }
+  ], 
+  "has_custom_name": false, 
+  "decompiled_c": "\r\nvoid FUN_00422df0(void)\r\n\r\n{\r\n  undefined *puVar1;\r\n  \r\n  FUN_004226f0();\r\n  FUN_00421870();\r\n  puVar1 = &DAT_00c21fe8;\r\n  do {\r\n    FUN_0041f8c0();\r\n    puVar1 = puVar1 + 0x78664;\r\n  } while ((int)puVar1 < 0xd8b314);\r\n  puVar1 = &DAT_00d8b318;\r\n  do {\r\n    FUN_004208a0();\r\n    puVar1 = puVar1 + 0x188;\r\n  } while ((int)puVar1 < 0xd8b938);\r\n  return;\r\n}\r\n\r\n", 
+  "is_thunk": false, 
+  "name": "FUN_00422df0", 
+  "assembly": "  00422df0:  PUSH ESI\n  00422df1:  CALL 0x004226f0\n  00422df6:  MOV ECX,EAX\n  00422df8:  CALL 0x00421870\n  00422dfd:  MOV ESI,0xc21fe8\n  00422e02:  MOV ECX,ESI\n  00422e04:  CALL 0x0041f8c0\n  00422e09:  ADD ESI,0x78664\n  00422e0f:  CMP ESI,0xd8b314\n  00422e15:  JL 0x00422e02\n  00422e17:  MOV ESI,0xd8b318\n  00422e1c:  MOV ECX,ESI\n  00422e1e:  CALL 0x004208a0\n  00422e23:  ADD ESI,0x188\n  00422e29:  CMP ESI,0xd8b938\n  00422e2f:  JL 0x00422e1c\n  00422e31:  POP ESI\n  00422e32:  RET", 
+  "callers": []
+}

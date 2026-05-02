@@ -1,0 +1,37 @@
+{
+  "address": "0x004791b0", 
+  "size_bytes": 39, 
+  "calling_convention": "unknown", 
+  "signature": "undefined FUN_004791b0(undefined4 param_1)", 
+  "callees": [], 
+  "global_refs": [
+    {
+      "address": "0x00000004", 
+      "type": null, 
+      "name": "DAT_00000004"
+    }
+  ], 
+  "has_custom_name": false, 
+  "decompiled_c": "\r\nundefined4 __thiscall FUN_004791b0(int param_1_00,int param_1)\r\n\r\n{\r\n  if ((-1 < param_1) && (param_1 < 0x1f5)) {\r\n    return *(undefined4 *)(param_1 * 800 + 0x614e0 + param_1_00);\r\n  }\r\n  return 0;\r\n}\r\n\r\n", 
+  "is_thunk": false, 
+  "name": "FUN_004791b0", 
+  "assembly": "  004791b0:  MOV EAX,dword ptr [ESP + 0x4]\n  004791b4:  TEST EAX,EAX\n  004791b6:  JL 0x004791d2\n  004791b8:  CMP EAX,0x1f4\n  004791bd:  JG 0x004791d2\n  004791bf:  LEA EAX,[EAX + EAX*0x4]\n  004791c2:  LEA EAX,[EAX + EAX*0x4]\n  004791c5:  SHL EAX,0x5\n  004791c8:  MOV EAX,dword ptr [EAX + ECX*0x1 + 0x614e0]\n  004791cf:  RET 0x4\n  004791d2:  XOR EAX,EAX\n  004791d4:  RET 0x4", 
+  "callers": [
+    {
+      "address": "0x0051f1b0", 
+      "name": "FUN_0051f1b0"
+    }, 
+    {
+      "address": "0x004eb8d0", 
+      "name": "FUN_004eb8d0"
+    }, 
+    {
+      "address": "0x004e24c0", 
+      "name": "FUN_004e24c0"
+    }, 
+    {
+      "address": "0x004e50b0", 
+      "name": "FUN_004e50b0"
+    }
+  ]
+}

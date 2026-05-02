@@ -1,0 +1,40 @@
+{
+  "address": "0x004fb6b0", 
+  "size_bytes": 131, 
+  "calling_convention": "unknown", 
+  "signature": "undefined FUN_004fb6b0(undefined4 param_1)", 
+  "callees": [], 
+  "global_refs": [
+    {
+      "address": "0x00000004", 
+      "type": null, 
+      "name": "DAT_00000004"
+    }, 
+    {
+      "address": "0x017ad310", 
+      "type": null, 
+      "name": "DAT_017ad310"
+    }, 
+    {
+      "address": "0x005dfdec", 
+      "type": null, 
+      "name": "DAT_005dfdec"
+    }, 
+    {
+      "address": "0x004fb734", 
+      "type": null, 
+      "name": "switchdataD_004fb734"
+    }
+  ], 
+  "has_custom_name": false, 
+  "decompiled_c": "\r\nint FUN_004fb6b0(int param_1)\r\n\r\n{\r\n  if (param_1 == 0x1e1f) {\r\n    DAT_017ad310 = DAT_017ad310 + 1;\r\n    DAT_005dfdec = DAT_005dfdec * 0x343fd + 0x269ec3;\r\n    switch((DAT_005dfdec >> 0x10 & 0x7fffU) % 5) {\r\n    case 0:\r\n      return 0xcf;\r\n    case 1:\r\n      return 0xd7;\r\n    case 2:\r\n      return 0xe8;\r\n    case 3:\r\n      return 0xe0;\r\n    case 4:\r\n      return 0xf0;\r\n    }\r\n  }\r\n  return param_1;\r\n}\r\n\r\n", 
+  "is_thunk": false, 
+  "name": "FUN_004fb6b0", 
+  "assembly": "  004fb6b0:  MOV ECX,dword ptr [ESP + 0x4]\n  004fb6b4:  CMP ECX,0x1e1f\n  004fb6ba:  JNZ 0x004fb72e\n  004fb6bc:  MOV EAX,[0x017ad310]\n  004fb6c1:  PUSH ESI\n  004fb6c2:  INC EAX\n  004fb6c3:  MOV ESI,0x5\n  004fb6c8:  MOV [0x017ad310],EAX\n  004fb6cd:  MOV EAX,[0x005dfdec]\n  004fb6d2:  LEA EDX,[EAX + EAX*0x2]\n  004fb6d5:  LEA EDX,[EAX + EDX*0x4]\n  004fb6d8:  SHL EDX,0x4\n  004fb6db:  ADD EDX,EAX\n  004fb6dd:  SHL EDX,0x8\n  004fb6e0:  SUB EDX,EAX\n  004fb6e2:  LEA EAX,[EAX + EDX*0x4 + 0x269ec3]\n  004fb6e9:  MOV [0x005dfdec],EAX\n  004fb6ee:  SAR EAX,0x10\n  004fb6f1:  AND EAX,0x7fff\n  004fb6f6:  CDQ\n  004fb6f7:  IDIV ESI\n  004fb6f9:  POP ESI\n  004fb6fa:  CMP EDX,0x4\n  004fb6fd:  JA 0x004fb72e\n  004fb6ff:  JMP dword ptr [EDX*0x4 + 0x4fb734]\n  004fb706:  MOV EAX,0xcf\n  004fb70b:  RET 0x4\n  004fb70e:  MOV EAX,0xd7\n  004fb713:  RET 0x4\n  004fb716:  MOV EAX,0xe8\n  004fb71b:  RET 0x4\n  004fb71e:  MOV EAX,0xe0\n  004fb723:  RET 0x4\n  004fb726:  MOV EAX,0xf0\n  004fb72b:  RET 0x4\n  004fb72e:  MOV EAX,ECX\n  004fb730:  RET 0x4", 
+  "callers": [
+    {
+      "address": "0x004d9ba0", 
+      "name": "FUN_004d9ba0"
+    }
+  ]
+}

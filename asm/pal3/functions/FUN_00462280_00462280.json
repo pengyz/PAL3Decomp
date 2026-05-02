@@ -1,0 +1,30 @@
+{
+  "address": "0x00462280", 
+  "size_bytes": 172, 
+  "calling_convention": "unknown", 
+  "signature": "undefined FUN_00462280(undefined4 param_1)", 
+  "callees": [
+    {
+      "address": "0x00444d10", 
+      "name": "FUN_00444d10"
+    }
+  ], 
+  "global_refs": [
+    {
+      "address": "0x00000004", 
+      "type": null, 
+      "name": "DAT_00000004"
+    }, 
+    {
+      "address": "0x0046232c", 
+      "type": null, 
+      "name": "switchdataD_0046232c"
+    }
+  ], 
+  "has_custom_name": false, 
+  "decompiled_c": "\r\nvoid __thiscall FUN_00462280(int param_1_00,int param_1)\r\n\r\n{\r\n  char cVar1;\r\n  int iVar2;\r\n  int iVar3;\r\n  \r\n  iVar2 = *(int *)(param_1_00 + 0x3e08 + param_1 * 4);\r\n  iVar3 = 0;\r\n  do {\r\n    switch(*(undefined *)(iVar2 + 0x264)) {\r\n    case 7:\r\n      cVar1 = *(char *)(iVar3 + 0x266 + iVar2);\r\n      break;\r\n    case 8:\r\n      cVar1 = *(char *)(iVar3 + 0x266 + iVar2);\r\n      break;\r\n    case 9:\r\n      cVar1 = *(char *)(iVar3 + 0x266 + iVar2);\r\n      break;\r\n    case 10:\r\n      if (*(char *)(iVar3 + 0x266 + iVar2) == '\\0') goto switchD_004622a6_caseD_5;\r\n      FUN_00444d10();\r\n      goto LAB_00462311;\r\n    case 0xb:\r\n      cVar1 = *(char *)(iVar3 + 0x266 + iVar2);\r\n      break;\r\n    default:\r\n      goto switchD_004622a6_caseD_5;\r\n    }\r\n    if (cVar1 != '\\0') {\r\nLAB_00462311:\r\n      FUN_00444d10();\r\n    }\r\nswitchD_004622a6_caseD_5:\r\n    iVar3 = iVar3 + 1;\r\n    if (4 < iVar3) {\r\n      return;\r\n    }\r\n  } while( true );\r\n}\r\n\r\n", 
+  "is_thunk": false, 
+  "name": "FUN_00462280", 
+  "assembly": "  00462280:  MOV EAX,dword ptr [ESP + 0x4]\n  00462284:  PUSH EBX\n  00462285:  PUSH ESI\n  00462286:  PUSH EDI\n  00462287:  MOV EDI,dword ptr [ECX + EAX*0x4 + 0x3e08]\n  0046228e:  XOR ESI,ESI\n  00462290:  LEA EBX,[ECX + 0x14834]\n  00462296:  XOR EAX,EAX\n  00462298:  MOV AL,byte ptr [EDI + 0x264]\n  0046229e:  ADD EAX,-0x7\n  004622a1:  CMP EAX,0x4\n  004622a4:  JA 0x00462316\n  004622a6:  JMP dword ptr [EAX*0x4 + 0x46232c]\n  004622ad:  MOV AL,byte ptr [ESI + EDI*0x1 + 0x266]\n  004622b4:  TEST AL,AL\n  004622b6:  JZ 0x00462316\n  004622b8:  LEA ECX,[EBX + 0xfffffde4]\n  004622be:  JMP 0x00462311\n  004622c0:  MOV AL,byte ptr [ESI + EDI*0x1 + 0x266]\n  004622c7:  TEST AL,AL\n  004622c9:  JZ 0x00462316\n  004622cb:  MOV ECX,EBX\n  004622cd:  JMP 0x00462311\n  004622cf:  MOV AL,byte ptr [ESI + EDI*0x1 + 0x266]\n  004622d6:  TEST AL,AL\n  004622d8:  JZ 0x00462316\n  004622da:  LEA ECX,[EBX + 0xb4]\n  004622e0:  JMP 0x00462311\n  004622e2:  MOV AL,byte ptr [ESI + EDI*0x1 + 0x266]\n  004622e9:  TEST AL,AL\n  004622eb:  JZ 0x00462316\n  004622ed:  LEA ECX,[EBX + 0xffffff4c]\n  004622f3:  CALL 0x00444d10\n  004622f8:  LEA ECX,[EBX + 0x168]\n  004622fe:  JMP 0x00462311\n  00462300:  MOV AL,byte ptr [ESI + EDI*0x1 + 0x266]\n  00462307:  TEST AL,AL\n  00462309:  JZ 0x00462316\n  0046230b:  LEA ECX,[EBX + 0xfffffe98]\n  00462311:  CALL 0x00444d10\n  00462316:  INC ESI\n  00462317:  ADD EBX,0x438\n  0046231d:  CMP ESI,0x5\n  00462320:  JL 0x00462296\n  00462326:  POP EDI\n  00462327:  POP ESI\n  00462328:  POP EBX\n  00462329:  RET 0x4", 
+  "callers": []
+}

@@ -1,0 +1,45 @@
+{
+  "address": "0x0055d53d", 
+  "size_bytes": 118, 
+  "calling_convention": "unknown", 
+  "signature": "undefined FUN_0055d53d(undefined4 param_1, undefined4 param_2)", 
+  "callees": [], 
+  "global_refs": [
+    {
+      "address": "0x00000004", 
+      "type": null, 
+      "name": "DAT_00000004"
+    }, 
+    {
+      "address": "0x01896ce0", 
+      "type": null, 
+      "name": "DAT_01896ce0"
+    }, 
+    {
+      "address": "0x01896be0", 
+      "type": null, 
+      "name": "DAT_01896be0"
+    }, 
+    {
+      "address": "0x00000008", 
+      "type": null, 
+      "name": "DAT_00000008"
+    }, 
+    {
+      "address": "0x0189533c", 
+      "type": null, 
+      "name": "DAT_0189533c"
+    }
+  ], 
+  "has_custom_name": false, 
+  "decompiled_c": "\r\n/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */\r\n\r\nint FUN_0055d53d(uint param_1,int param_2)\r\n\r\n{\r\n  byte bVar1;\r\n  byte bVar2;\r\n  \r\n  if (param_1 < DAT_01896ce0) {\r\n    bVar1 = *(byte *)((&DAT_01896be0)[(int)param_1 >> 5] + 4 + (param_1 & 0x1f) * 8);\r\n    if ((bVar1 & 1) != 0) {\r\n      if (param_2 == 0x8000) {\r\n        bVar2 = bVar1 & 0x7f;\r\n      }\r\n      else {\r\n        if (param_2 != 0x4000) {\r\n          _DAT_0189533c = 0x16;\r\n          return -1;\r\n        }\r\n        bVar2 = bVar1 | 0x80;\r\n      }\r\n      *(byte *)((&DAT_01896be0)[(int)param_1 >> 5] + 4 + (param_1 & 0x1f) * 8) = bVar2;\r\n      return (-(uint)((bVar1 & 0x80) != 0) & 0xffffc000) + 0x8000;\r\n    }\r\n  }\r\n  _DAT_0189533c = 9;\r\n  return -1;\r\n}\r\n\r\n", 
+  "is_thunk": false, 
+  "name": "FUN_0055d53d", 
+  "assembly": "  0055d53d:  MOV EAX,dword ptr [ESP + 0x4]\n  0055d541:  PUSH ESI\n  0055d542:  CMP EAX,dword ptr [0x01896ce0]\n  0055d548:  JNC 0x0055d5a4\n  0055d54a:  MOV ECX,EAX\n  0055d54c:  AND EAX,0x1f\n  0055d54f:  SAR ECX,0x5\n  0055d552:  MOV ECX,dword ptr [ECX*0x4 + 0x1896be0]\n  0055d559:  LEA EDX,[ECX + EAX*0x8 + 0x4]\n  0055d55d:  MOV CL,byte ptr [ECX + EAX*0x8 + 0x4]\n  0055d561:  TEST CL,0x1\n  0055d564:  JZ 0x0055d5a4\n  0055d566:  MOV AL,CL\n  0055d568:  MOV ESI,0x8000\n  0055d56d:  AND EAX,0x80\n  0055d572:  CMP dword ptr [ESP + 0xc],ESI\n  0055d576:  JNZ 0x0055d57d\n  0055d578:  AND CL,0x7f\n  0055d57b:  JMP 0x0055d58a\n  0055d57d:  CMP dword ptr [ESP + 0xc],0x4000\n  0055d585:  JNZ 0x0055d598\n  0055d587:  OR CL,0x80\n  0055d58a:  NEG EAX\n  0055d58c:  SBB EAX,EAX\n  0055d58e:  MOV byte ptr [EDX],CL\n  0055d590:  AND AX,0xc000\n  0055d594:  ADD EAX,ESI\n  0055d596:  POP ESI\n  0055d597:  RET\n  0055d598:  MOV dword ptr [0x0189533c],0x16\n  0055d5a2:  JMP 0x0055d5ae\n  0055d5a4:  MOV dword ptr [0x0189533c],0x9\n  0055d5ae:  OR EAX,0xffffffff\n  0055d5b1:  POP ESI\n  0055d5b2:  RET", 
+  "callers": [
+    {
+      "address": "0x0055a541", 
+      "name": "FUN_0055a541"
+    }
+  ]
+}

@@ -1,0 +1,50 @@
+{
+  "address": "0x005533fa", 
+  "size_bytes": 104, 
+  "calling_convention": "unknown", 
+  "signature": "undefined __local_unwind2(undefined4 param_1, undefined4 param_2)", 
+  "callees": [
+    {
+      "address": "0x0055348e", 
+      "name": "FUN_0055348e"
+    }
+  ], 
+  "global_refs": [
+    {
+      "address": "0x00000004", 
+      "type": null, 
+      "name": "DAT_00000004"
+    }, 
+    {
+      "address": "0x005533d8", 
+      "type": null, 
+      "name": "LAB_005533d8"
+    }, 
+    {
+      "address": "0xffdff000", 
+      "type": null, 
+      "name": "ExceptionList"
+    }, 
+    {
+      "address": "0x00000008", 
+      "type": null, 
+      "name": "DAT_00000008"
+    }, 
+    {
+      "address": "0x-0000014", 
+      "type": null, 
+      "name": "DAT_-0000014"
+    }
+  ], 
+  "has_custom_name": true, 
+  "decompiled_c": "\r\n/* Library Function - Single Match\r\n    __local_unwind2\r\n   \r\n   Libraries: Visual Studio 1998 Debug, Visual Studio 1998 Release, Visual Studio 2003 Debug, Visual\r\n   Studio 2003 Release */\r\n\r\nvoid __local_unwind2(int param_1,int param_2)\r\n\r\n{\r\n  int iVar1;\r\n  int iVar2;\r\n  void *pvStack_1c;\r\n  undefined *puStack_18;\r\n  undefined4 local_14;\r\n  int iStack_10;\r\n  \r\n  iStack_10 = param_1;\r\n  puStack_18 = &LAB_005533d8;\r\n  pvStack_1c = ExceptionList;\r\n  ExceptionList = &pvStack_1c;\r\n  while( true ) {\r\n    iVar1 = *(int *)(param_1 + 8);\r\n    iVar2 = *(int *)(param_1 + 0xc);\r\n    if ((iVar2 == -1) || (iVar2 == param_2)) break;\r\n    local_14 = *(undefined4 *)(iVar1 + iVar2 * 0xc);\r\n    *(undefined4 *)(param_1 + 0xc) = local_14;\r\n    if (*(int *)(iVar1 + 4 + iVar2 * 0xc) == 0) {\r\n      FUN_0055348e(0x101);\r\n      (**(code **)(iVar1 + 8 + iVar2 * 0xc))();\r\n    }\r\n  }\r\n  ExceptionList = pvStack_1c;\r\n  return;\r\n}\r\n\r\n", 
+  "is_thunk": false, 
+  "name": "__local_unwind2", 
+  "assembly": "  005533fa:  PUSH EBX\n  005533fb:  PUSH ESI\n  005533fc:  PUSH EDI\n  005533fd:  MOV EAX,dword ptr [ESP + 0x10]\n  00553401:  PUSH EAX\n  00553402:  PUSH -0x2\n  00553404:  PUSH 0x5533d8\n  00553409:  PUSH dword ptr FS:[0x0]\n  00553410:  MOV dword ptr FS:[0x0],ESP\n  00553417:  MOV EAX,dword ptr [ESP + 0x20]\n  0055341b:  MOV EBX,dword ptr [EAX + 0x8]\n  0055341e:  MOV ESI,dword ptr [EAX + 0xc]\n  00553421:  CMP ESI,-0x1\n  00553424:  JZ 0x00553454\n  00553426:  CMP ESI,dword ptr [ESP + 0x24]\n  0055342a:  JZ 0x00553454\n  0055342c:  LEA ESI,[ESI + ESI*0x2]\n  0055342f:  MOV ECX,dword ptr [EBX + ESI*0x4]\n  00553432:  MOV dword ptr [ESP + 0x8],ECX\n  00553436:  MOV dword ptr [EAX + 0xc],ECX\n  00553439:  CMP dword ptr [EBX + ESI*0x4 + 0x4],0x0\n  0055343e:  JNZ 0x00553452\n  00553440:  PUSH 0x101\n  00553445:  MOV EAX,dword ptr [EBX + ESI*0x4 + 0x8]\n  00553449:  CALL 0x0055348e\n  0055344e:  CALL dword ptr [EBX + ESI*0x4 + 0x8]\n  00553452:  JMP 0x00553417\n  00553454:  POP dword ptr FS:[0x0]\n  0055345b:  ADD ESP,0xc\n  0055345e:  POP EDI\n  0055345f:  POP ESI\n  00553460:  POP EBX\n  00553461:  RET", 
+  "callers": [
+    {
+      "address": "0x005557d1", 
+      "name": "FUN_005557d1"
+    }
+  ]
+}

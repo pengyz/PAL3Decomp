@@ -1,0 +1,61 @@
+{
+  "address": "0x00404150", 
+  "size_bytes": 371, 
+  "calling_convention": "unknown", 
+  "signature": "undefined FUN_00404150(undefined4 param_1)", 
+  "callees": [
+    {
+      "address": "0x00000146", 
+      "name": "IsColAABB"
+    }, 
+    {
+      "address": "0x00000147", 
+      "name": "IsColTriangle"
+    }, 
+    {
+      "address": "0x00000148", 
+      "name": "Length"
+    }, 
+    {
+      "address": "0x00404150", 
+      "name": "FUN_00404150"
+    }
+  ], 
+  "global_refs": [
+    {
+      "address": "0x00000004", 
+      "type": null, 
+      "name": "DAT_00000004"
+    }, 
+    {
+      "address": "0x0056a52c", 
+      "type": null, 
+      "name": "PTR_IsColAABB_0056a52c"
+    }, 
+    {
+      "address": "0x0056a530", 
+      "type": null, 
+      "name": "PTR_IsColTriangle_0056a530"
+    }, 
+    {
+      "address": "0x0056a534", 
+      "type": null, 
+      "name": "PTR_Length_0056a534"
+    }
+  ], 
+  "has_custom_name": false, 
+  "decompiled_c": "\r\nvoid __thiscall FUN_00404150(gbAABBox *param_1_00,gbRay *param_1,float *param_3)\r\n\r\n{\r\n  int iVar1;\r\n  float *pfVar2;\r\n  gbVec3D *pgVar3;\r\n  gbVec3D *pgVar4;\r\n  float fVar5;\r\n  uint uStack_2c;\r\n  int iStack_28;\r\n  float fStack_24;\r\n  float fStack_20;\r\n  float fStack_1c;\r\n  float fStack_18;\r\n  float fStack_14;\r\n  float fStack_10;\r\n  float fStack_c;\r\n  float fStack_8;\r\n  float fStack_4;\r\n  \r\n  iVar1 = gbRay::IsColAABB(param_1,param_1_00);\r\n  if (iVar1 != 0) {\r\n    fStack_24 = 0.0;\r\n    fStack_20 = 0.0;\r\n    fStack_1c = 0.0;\r\n    iStack_28 = 0;\r\n    for (uStack_2c = 0;\r\n        (*(int *)(param_1_00 + 0x1c) != 0 &&\r\n        (uStack_2c < (uint)((*(int *)(param_1_00 + 0x20) - *(int *)(param_1_00 + 0x1c)) / 0x24)));\r\n        uStack_2c = uStack_2c + 1) {\r\n      pgVar4 = (gbVec3D *)(*(int *)(param_1_00 + 0x1c) + iStack_28);\r\n      param_3[5] = (float)((int)param_3[5] + 1);\r\n      iVar1 = gbRay::IsColTriangle(param_1,pgVar4,pgVar4 + 0xc,pgVar4 + 0x18,(gbVec3D *)&fStack_24);\r\n      if (iVar1 != 0) {\r\n        fStack_18 = fStack_24 - *(float *)param_1;\r\n        fStack_14 = fStack_20 - *(float *)(param_1 + 4);\r\n        fStack_10 = fStack_1c - *(float *)(param_1 + 8);\r\n        fStack_c = fStack_18;\r\n        fStack_8 = fStack_14;\r\n        fStack_4 = fStack_10;\r\n        fVar5 = gbVec3D::Length((gbVec3D *)&fStack_c);\r\n        if (fVar5 < *param_3) {\r\n          *param_3 = fVar5;\r\n          *(undefined *)(param_3 + 4) = 1;\r\n          param_3[2] = fStack_20;\r\n          param_3[1] = fStack_24;\r\n          param_3[3] = fStack_1c;\r\n          pfVar2 = param_3 + 7;\r\n          iVar1 = 3;\r\n          pgVar3 = pgVar4;\r\n          do {\r\n            pfVar2[-1] = *(float *)pgVar3;\r\n            *pfVar2 = *(float *)(((int)pgVar4 - (int)(param_3 + 6)) + (int)pfVar2);\r\n            pfVar2[1] = *(float *)(pgVar3 + 8);\r\n            pfVar2 = pfVar2 + 3;\r\n            iVar1 = iVar1 + -1;\r\n            pgVar3 = pgVar3 + 0xc;\r\n          } while (iVar1 != 0);\r\n        }\r\n      }\r\n      iStack_28 = iStack_28 + 0x24;\r\n    }\r\n    param_1_00 = param_1_00 + 0x2c;\r\n    iVar1 = 4;\r\n    do {\r\n      if (*(int *)param_1_00 != 0) {\r\n        FUN_00404150((gbAABBox *)param_1,param_3);\r\n      }\r\n      param_1_00 = param_1_00 + 4;\r\n      iVar1 = iVar1 + -1;\r\n    } while (iVar1 != 0);\r\n  }\r\n  return;\r\n}\r\n\r\n", 
+  "is_thunk": false, 
+  "name": "FUN_00404150", 
+  "assembly": "  00404150:  SUB ESP,0x2c\n  00404153:  PUSH EBX\n  00404154:  MOV EBX,dword ptr [ESP + 0x34]\n  00404158:  PUSH EBP\n  00404159:  MOV EBP,ECX\n  0040415b:  PUSH EBP\n  0040415c:  MOV ECX,EBX\n  0040415e:  CALL dword ptr [0x0056a52c]\n  00404164:  TEST EAX,EAX\n  00404166:  JZ 0x004042bb\n  0040416c:  XOR EAX,EAX\n  0040416e:  PUSH ESI\n  0040416f:  MOV ESI,dword ptr [ESP + 0x40]\n  00404173:  PUSH EDI\n  00404174:  MOV dword ptr [ESP + 0x18],0x0\n  0040417c:  MOV dword ptr [ESP + 0x1c],0x0\n  00404184:  MOV dword ptr [ESP + 0x20],0x0\n  0040418c:  MOV dword ptr [ESP + 0x10],EAX\n  00404190:  MOV dword ptr [ESP + 0x14],EAX\n  00404194:  MOV EAX,dword ptr [EBP + 0x1c]\n  00404197:  TEST EAX,EAX\n  00404199:  JZ 0x0040429e\n  0040419f:  MOV ECX,dword ptr [EBP + 0x20]\n  004041a2:  SUB ECX,EAX\n  004041a4:  MOV EAX,0x38e38e39\n  004041a9:  IMUL ECX\n  004041ab:  SAR EDX,0x3\n  004041ae:  MOV EAX,EDX\n  004041b0:  SHR EAX,0x1f\n  004041b3:  ADD EDX,EAX\n  004041b5:  MOV EAX,dword ptr [ESP + 0x10]\n  004041b9:  CMP EAX,EDX\n  004041bb:  JNC 0x0040429e\n  004041c1:  MOV EDI,dword ptr [EBP + 0x1c]\n  004041c4:  MOV ECX,dword ptr [ESP + 0x14]\n  004041c8:  MOV EAX,dword ptr [ESI + 0x14]\n  004041cb:  ADD EDI,ECX\n  004041cd:  INC EAX\n  004041ce:  LEA ECX,[ESP + 0x18]\n  004041d2:  MOV dword ptr [ESI + 0x14],EAX\n  004041d5:  LEA EDX,[EDI + 0x18]\n  004041d8:  PUSH ECX\n  004041d9:  LEA EAX,[EDI + 0xc]\n  004041dc:  PUSH EDX\n  004041dd:  PUSH EAX\n  004041de:  PUSH EDI\n  004041df:  MOV ECX,EBX\n  004041e1:  CALL dword ptr [0x0056a530]\n  004041e7:  TEST EAX,EAX\n  004041e9:  JZ 0x00404281\n  004041ef:  FLD dword ptr [ESP + 0x18]\n  004041f3:  FSUB dword ptr [EBX]\n  004041f5:  FSTP dword ptr [ESP + 0x24]\n  004041f9:  FLD dword ptr [ESP + 0x1c]\n  004041fd:  FSUB dword ptr [EBX + 0x4]\n  00404200:  MOV ECX,dword ptr [ESP + 0x24]\n  00404204:  MOV dword ptr [ESP + 0x30],ECX\n  00404208:  LEA ECX,[ESP + 0x30]\n  0040420c:  FSTP dword ptr [ESP + 0x28]\n  00404210:  FLD dword ptr [ESP + 0x20]\n  00404214:  FSUB dword ptr [EBX + 0x8]\n  00404217:  MOV EDX,dword ptr [ESP + 0x28]\n  0040421b:  MOV dword ptr [ESP + 0x34],EDX\n  0040421f:  FSTP dword ptr [ESP + 0x2c]\n  00404223:  MOV EAX,dword ptr [ESP + 0x2c]\n  00404227:  MOV dword ptr [ESP + 0x38],EAX\n  0040422b:  CALL dword ptr [0x0056a534]\n  00404231:  FCOM dword ptr [ESI]\n  00404233:  FNSTSW AX\n  00404235:  TEST AH,0x1\n  00404238:  JZ 0x0040429a\n  0040423a:  MOV EDX,dword ptr [ESP + 0x1c]\n  0040423e:  MOV ECX,dword ptr [ESP + 0x18]\n  00404242:  FSTP dword ptr [ESI]\n  00404244:  MOV EAX,dword ptr [ESP + 0x20]\n  00404248:  MOV byte ptr [ESI + 0x10],0x1\n  0040424c:  MOV dword ptr [ESI + 0x8],EDX\n  0040424f:  LEA EDX,[ESI + 0x18]\n  00404252:  MOV dword ptr [ESI + 0x4],ECX\n  00404255:  MOV dword ptr [ESI + 0xc],EAX\n  00404258:  MOV ECX,EDI\n  0040425a:  LEA EAX,[EDX + 0x4]\n  0040425d:  SUB EDI,EDX\n  0040425f:  MOV EDX,0x3\n  00404264:  MOV EBX,dword ptr [ECX]\n  00404266:  ADD ECX,0xc\n  00404269:  MOV dword ptr [EAX + -0x4],EBX\n  0040426c:  MOV EBX,dword ptr [EDI + EAX*0x1]\n  0040426f:  MOV dword ptr [EAX],EBX\n  00404271:  MOV EBX,dword ptr [ECX + -0x4]\n  00404274:  MOV dword ptr [EAX + 0x4],EBX\n  00404277:  ADD EAX,0xc\n  0040427a:  DEC EDX\n  0040427b:  JNZ 0x00404264\n  0040427d:  MOV EBX,dword ptr [ESP + 0x40]\n  00404281:  MOV ECX,dword ptr [ESP + 0x10]\n  00404285:  MOV EAX,dword ptr [ESP + 0x14]\n  00404289:  INC ECX\n  0040428a:  ADD EAX,0x24\n  0040428d:  MOV dword ptr [ESP + 0x10],ECX\n  00404291:  MOV dword ptr [ESP + 0x14],EAX\n  00404295:  JMP 0x00404194\n  0040429a:  FSTP ST0\n  0040429c:  JMP 0x00404281\n  0040429e:  LEA EDI,[EBP + 0x2c]\n  004042a1:  MOV EBP,0x4\n  004042a6:  MOV ECX,dword ptr [EDI]\n  004042a8:  TEST ECX,ECX\n  004042aa:  JZ 0x004042b3\n  004042ac:  PUSH ESI\n  004042ad:  PUSH EBX\n  004042ae:  CALL 0x00404150\n  004042b3:  ADD EDI,0x4\n  004042b6:  DEC EBP\n  004042b7:  JNZ 0x004042a6\n  004042b9:  POP EDI\n  004042ba:  POP ESI\n  004042bb:  POP EBP\n  004042bc:  POP EBX\n  004042bd:  ADD ESP,0x2c\n  004042c0:  RET 0x8", 
+  "callers": [
+    {
+      "address": "0x004031d0", 
+      "name": "FUN_004031d0"
+    }, 
+    {
+      "address": "0x00404150", 
+      "name": "FUN_00404150"
+    }
+  ]
+}

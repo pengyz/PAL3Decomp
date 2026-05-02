@@ -1,0 +1,49 @@
+{
+  "address": "0x005052e0", 
+  "size_bytes": 276, 
+  "calling_convention": "unknown", 
+  "signature": "undefined FUN_005052e0(void)", 
+  "callees": [
+    {
+      "address": "0x00504dd0", 
+      "name": "FUN_00504dd0"
+    }, 
+    {
+      "address": "0x000000a5", 
+      "name": "gbMatrix4"
+    }
+  ], 
+  "global_refs": [
+    {
+      "address": "0x00566d78", 
+      "type": null, 
+      "name": "LAB_00566d78"
+    }, 
+    {
+      "address": "0xffdff000", 
+      "type": null, 
+      "name": "ExceptionList"
+    }, 
+    {
+      "address": "0x-0000010", 
+      "type": null, 
+      "name": "DAT_-0000010"
+    }, 
+    {
+      "address": "0x-0000004", 
+      "type": null, 
+      "name": "DAT_-0000004"
+    }, 
+    {
+      "address": "0x0056a2a8", 
+      "type": null, 
+      "name": "PTR_gbMatrix4_0056a2a8"
+    }
+  ], 
+  "has_custom_name": false, 
+  "decompiled_c": "\r\nint __thiscall FUN_005052e0(int param_1,undefined4 *param_2,undefined4 param_3)\r\n\r\n{\r\n  undefined4 uVar1;\r\n  void *pvStack_c;\r\n  undefined *puStack_8;\r\n  undefined4 local_4;\r\n  \r\n  local_4 = 0xffffffff;\r\n  puStack_8 = &LAB_00566d78;\r\n  pvStack_c = ExceptionList;\r\n  ExceptionList = &pvStack_c;\r\n  FUN_00504dd0();\r\n  *(undefined4 *)(param_1 + 0x68fe0) = 0;\r\n  *(undefined4 *)(param_1 + 0x68fe4) = 0;\r\n  *(undefined4 *)(param_1 + 0x68fe8) = 0;\r\n  *(undefined4 *)(param_1 + 0x68fec) = 0;\r\n  *(undefined4 *)(param_1 + 0x68ff0) = 0;\r\n  *(undefined4 *)(param_1 + 0x68ff4) = 0;\r\n  *(undefined4 *)(param_1 + 0x69008) = 0;\r\n  *(undefined4 *)(param_1 + 0x6900c) = 0;\r\n  *(undefined4 *)(param_1 + 0x69010) = 0;\r\n  *(undefined4 *)(param_1 + 0x69014) = 0;\r\n  *(undefined4 *)(param_1 + 0x69018) = 0;\r\n  *(undefined4 *)(param_1 + 0x6901c) = 0;\r\n  *(undefined4 *)(param_1 + 0x69020) = 0;\r\n  *(undefined4 *)(param_1 + 0x69024) = 0;\r\n  *(undefined4 *)(param_1 + 0x69028) = 0;\r\n  *(undefined4 *)(param_1 + 0x6902c) = 0;\r\n  *(undefined4 *)(param_1 + 0x69030) = 0;\r\n  *(undefined4 *)(param_1 + 0x69034) = 0;\r\n  local_4 = 0;\r\n  *(undefined4 *)(param_1 + 0x69038) = 0;\r\n  *(undefined4 *)(param_1 + 0x6903c) = 0;\r\n  *(undefined4 *)(param_1 + 0x69040) = 0;\r\n  gbMatrix4::gbMatrix4((gbMatrix4 *)(param_1 + 0x69044));\r\n  *(undefined4 *)(param_1 + 0x69094) = 0;\r\n  *(undefined4 *)(param_1 + 0x69098) = 0;\r\n  *(undefined4 *)(param_1 + 0x6909c) = 0;\r\n  *(undefined4 *)(param_1 + 0x690a0) = 0;\r\n  *(undefined4 *)(param_1 + 0x690a4) = 0;\r\n  *(undefined4 *)(param_1 + 0x690a8) = 0;\r\n  *(undefined4 **)(param_1 + 430000) = param_2;\r\n  *(undefined4 *)(param_1 + 0x68fb4) = param_3;\r\n  uVar1 = *(undefined4 *)*param_2;\r\n  *(undefined4 *)(param_1 + 0x68fd4) = 0xffffffff;\r\n  *(undefined4 *)(param_1 + 0x68fb8) = uVar1;\r\n  ExceptionList = pvStack_c;\r\n  return param_1;\r\n}\r\n\r\n", 
+  "is_thunk": false, 
+  "name": "FUN_005052e0", 
+  "assembly": "  005052e0:  PUSH -0x1\n  005052e2:  PUSH 0x566d78\n  005052e7:  MOV EAX,FS:[0x0]\n  005052ed:  PUSH EAX\n  005052ee:  MOV dword ptr FS:[0x0],ESP\n  005052f5:  PUSH ECX\n  005052f6:  PUSH ESI\n  005052f7:  MOV ESI,ECX\n  005052f9:  PUSH EDI\n  005052fa:  MOV dword ptr [ESP + 0x8],ESI\n  005052fe:  CALL 0x00504dd0\n  00505303:  XOR EDI,EDI\n  00505305:  LEA ECX,[ESI + 0x69044]\n  0050530b:  MOV dword ptr [ESI + 0x68fe0],EDI\n  00505311:  MOV dword ptr [ESI + 0x68fe4],EDI\n  00505317:  MOV dword ptr [ESI + 0x68fe8],EDI\n  0050531d:  MOV dword ptr [ESI + 0x68fec],EDI\n  00505323:  MOV dword ptr [ESI + 0x68ff0],EDI\n  00505329:  MOV dword ptr [ESI + 0x68ff4],EDI\n  0050532f:  MOV dword ptr [ESI + 0x69008],EDI\n  00505335:  MOV dword ptr [ESI + 0x6900c],EDI\n  0050533b:  MOV dword ptr [ESI + 0x69010],EDI\n  00505341:  MOV dword ptr [ESI + 0x69014],EDI\n  00505347:  MOV dword ptr [ESI + 0x69018],EDI\n  0050534d:  MOV dword ptr [ESI + 0x6901c],EDI\n  00505353:  MOV dword ptr [ESI + 0x69020],EDI\n  00505359:  MOV dword ptr [ESI + 0x69024],EDI\n  0050535f:  MOV dword ptr [ESI + 0x69028],EDI\n  00505365:  MOV dword ptr [ESI + 0x6902c],EDI\n  0050536b:  MOV dword ptr [ESI + 0x69030],EDI\n  00505371:  MOV dword ptr [ESI + 0x69034],EDI\n  00505377:  MOV dword ptr [ESP + 0x14],EDI\n  0050537b:  MOV dword ptr [ESI + 0x69038],EDI\n  00505381:  MOV dword ptr [ESI + 0x6903c],EDI\n  00505387:  MOV dword ptr [ESI + 0x69040],EDI\n  0050538d:  CALL dword ptr [0x0056a2a8]\n  00505393:  MOV EAX,dword ptr [ESP + 0x1c]\n  00505397:  MOV ECX,dword ptr [ESP + 0x20]\n  0050539b:  MOV dword ptr [ESI + 0x69094],EDI\n  005053a1:  MOV dword ptr [ESI + 0x69098],EDI\n  005053a7:  MOV dword ptr [ESI + 0x6909c],EDI\n  005053ad:  MOV dword ptr [ESI + 0x690a0],EDI\n  005053b3:  MOV dword ptr [ESI + 0x690a4],EDI\n  005053b9:  MOV dword ptr [ESI + 0x690a8],EDI\n  005053bf:  MOV dword ptr [ESI + 0x68fb0],EAX\n  005053c5:  MOV dword ptr [ESI + 0x68fb4],ECX\n  005053cb:  MOV EDX,dword ptr [EAX]\n  005053cd:  MOV ECX,dword ptr [ESP + 0xc]\n  005053d1:  POP EDI\n  005053d2:  MOV EAX,dword ptr [EDX]\n  005053d4:  MOV dword ptr [ESI + 0x68fd4],0xffffffff\n  005053de:  MOV dword ptr [ESI + 0x68fb8],EAX\n  005053e4:  MOV EAX,ESI\n  005053e6:  POP ESI\n  005053e7:  MOV dword ptr FS:[0x0],ECX\n  005053ee:  ADD ESP,0x10\n  005053f1:  RET 0x8", 
+  "callers": []
+}

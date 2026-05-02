@@ -1,0 +1,30 @@
+{
+  "address": "0x004bf170", 
+  "size_bytes": 65, 
+  "calling_convention": "unknown", 
+  "signature": "undefined FUN_004bf170(void)", 
+  "callees": [
+    {
+      "address": "0x0000015e", 
+      "name": "Release"
+    }
+  ], 
+  "global_refs": [
+    {
+      "address": "0x0056a58c", 
+      "type": null, 
+      "name": "PTR_Release_0056a58c"
+    }
+  ], 
+  "has_custom_name": false, 
+  "decompiled_c": "\r\nvoid __fastcall FUN_004bf170(int param_1)\r\n\r\n{\r\n  if (*(gbRefObject **)(param_1 + 0xa8) != (gbRefObject *)0x0) {\r\n    gbRefObject::Release(*(gbRefObject **)(param_1 + 0xa8));\r\n    *(undefined4 *)(param_1 + 0xa8) = 0;\r\n  }\r\n  if (*(gbRefObject **)(param_1 + 100) != (gbRefObject *)0x0) {\r\n    gbRefObject::Release(*(gbRefObject **)(param_1 + 100));\r\n    *(undefined4 *)(param_1 + 100) = 0;\r\n  }\r\n  *(undefined4 *)(param_1 + 0xa4) = 0;\r\n  if (*(gbRefObject **)(param_1 + 0x60) != (gbRefObject *)0x0) {\r\n    gbRefObject::Release(*(gbRefObject **)(param_1 + 0x60));\r\n    *(undefined4 *)(param_1 + 0x60) = 0;\r\n  }\r\n  return;\r\n}\r\n\r\n", 
+  "is_thunk": false, 
+  "name": "FUN_004bf170", 
+  "assembly": "  004bf170:  PUSH EBX\n  004bf171:  PUSH ESI\n  004bf172:  MOV ESI,ECX\n  004bf174:  XOR EBX,EBX\n  004bf176:  PUSH EDI\n  004bf177:  MOV EDI,dword ptr [0x0056a58c]\n  004bf17d:  MOV ECX,dword ptr [ESI + 0xa8]\n  004bf183:  CMP ECX,EBX\n  004bf185:  JZ 0x004bf18f\n  004bf187:  CALL EDI\n  004bf189:  MOV dword ptr [ESI + 0xa8],EBX\n  004bf18f:  MOV ECX,dword ptr [ESI + 0x64]\n  004bf192:  CMP ECX,EBX\n  004bf194:  JZ 0x004bf19b\n  004bf196:  CALL EDI\n  004bf198:  MOV dword ptr [ESI + 0x64],EBX\n  004bf19b:  MOV ECX,dword ptr [ESI + 0x60]\n  004bf19e:  MOV dword ptr [ESI + 0xa4],EBX\n  004bf1a4:  CMP ECX,EBX\n  004bf1a6:  JZ 0x004bf1ad\n  004bf1a8:  CALL EDI\n  004bf1aa:  MOV dword ptr [ESI + 0x60],EBX\n  004bf1ad:  POP EDI\n  004bf1ae:  POP ESI\n  004bf1af:  POP EBX\n  004bf1b0:  RET", 
+  "callers": [
+    {
+      "address": "0x004bef50", 
+      "name": "FUN_004bef50"
+    }
+  ]
+}

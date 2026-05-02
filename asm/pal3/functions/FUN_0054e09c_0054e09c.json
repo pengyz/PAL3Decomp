@@ -1,0 +1,85 @@
+{
+  "address": "0x0054e09c", 
+  "size_bytes": 146, 
+  "calling_convention": "unknown", 
+  "signature": "undefined FUN_0054e09c(undefined4 param_1, undefined4 param_2, undefined4 param_3, undefined4 param_4, undefined4 param_5, undefined4 param_6)", 
+  "callees": [
+    {
+      "address": "0x0054ded8", 
+      "name": "FUN_0054ded8"
+    }
+  ], 
+  "global_refs": [
+    {
+      "address": "0x00000018", 
+      "type": null, 
+      "name": "DAT_00000018"
+    }, 
+    {
+      "address": "0x00000014", 
+      "type": null, 
+      "name": "DAT_00000014"
+    }, 
+    {
+      "address": "0x00000008", 
+      "type": null, 
+      "name": "DAT_00000008"
+    }, 
+    {
+      "address": "0x-0000024", 
+      "type": null, 
+      "name": "DAT_-0000024"
+    }, 
+    {
+      "address": "0x-0000020", 
+      "type": null, 
+      "name": "DAT_-0000020"
+    }, 
+    {
+      "address": "0x-0000028", 
+      "type": null, 
+      "name": "DAT_-0000028"
+    }, 
+    {
+      "address": "0x-000002c", 
+      "type": null, 
+      "name": "DAT_-000002c"
+    }, 
+    {
+      "address": "0x-0000030", 
+      "type": null, 
+      "name": "DAT_-0000030"
+    }, 
+    {
+      "address": "0x00000010", 
+      "type": null, 
+      "name": "DAT_00000010"
+    }, 
+    {
+      "address": "0x0000000c", 
+      "type": null, 
+      "name": "DAT_0000000c"
+    }, 
+    {
+      "address": "0x-0000010", 
+      "type": null, 
+      "name": "DAT_-0000010"
+    }, 
+    {
+      "address": "0x00000004", 
+      "type": null, 
+      "name": "DAT_00000004"
+    }, 
+    {
+      "address": "0x00572bb0", 
+      "type": null, 
+      "name": "DAT_00572bb0"
+    }
+  ], 
+  "has_custom_name": false, 
+  "decompiled_c": "\r\n/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */\r\n\r\nvoid FUN_0054e09c(undefined4 param_1,undefined4 param_2,undefined4 param_3,undefined4 param_4,\r\n                 undefined4 param_5,uint param_6)\r\n\r\n{\r\n  ulonglong uVar1;\r\n  undefined8 uVar2;\r\n  undefined local_20 [16];\r\n  undefined local_10 [16];\r\n  \r\n  FUN_0054ded8(local_20,param_2,param_5,param_6);\r\n  FUN_0054ded8(local_10,param_3,param_4,param_6);\r\n  uVar1 = (ulonglong)param_6;\r\n  uVar2 = PackedFloatingMUL(uVar1,uVar1);\r\n  uVar2 = PackedFloatingSUB(uVar1,uVar2);\r\n  uVar2 = PackedFloatingMUL(uVar2,_DAT_00572bb0);\r\n  FUN_0054ded8(param_1,local_20,local_10,(int)uVar2);\r\n  FastExitMediaState();\r\n  return;\r\n}\r\n\r\n", 
+  "is_thunk": false, 
+  "name": "FUN_0054e09c", 
+  "assembly": "  0054e09c:  SUB ESP,0x30\n  0054e09f:  MOV EAX,dword ptr [ESP + 0x48]\n  0054e0a3:  MOV EDX,dword ptr [ESP + 0x44]\n  0054e0a7:  MOV ECX,dword ptr [ESP + 0x38]\n  0054e0ab:  MOV dword ptr [ESP + 0xc],EAX\n  0054e0af:  LEA EAX,[ESP + 0x10]\n  0054e0b3:  MOV dword ptr [ESP + 0x8],EDX\n  0054e0b7:  MOV dword ptr [ESP + 0x4],ECX\n  0054e0bb:  MOV dword ptr [ESP],EAX\n  0054e0be:  CALL 0x0054ded8\n  0054e0c3:  SUB ESP,0x10\n  0054e0c6:  MOV EAX,dword ptr [ESP + 0x48]\n  0054e0ca:  MOV EDX,dword ptr [ESP + 0x40]\n  0054e0ce:  MOV ECX,dword ptr [ESP + 0x3c]\n  0054e0d2:  MOV dword ptr [ESP + 0xc],EAX\n  0054e0d6:  LEA EAX,[ESP + 0x20]\n  0054e0da:  MOV dword ptr [ESP + 0x8],EDX\n  0054e0de:  MOV dword ptr [ESP + 0x4],ECX\n  0054e0e2:  MOV dword ptr [ESP],EAX\n  0054e0e5:  CALL 0x0054ded8\n  0054e0ea:  SUB ESP,0x10\n  0054e0ed:  MOVD MM0,dword ptr [ESP + 0x48]\n  0054e0f2:  MOV EAX,dword ptr [ESP + 0x34]\n  0054e0f6:  MOVQ MM1,MM0\n  0054e0f9:  LEA EDX,[ESP + 0x20]\n  0054e0fd:  PFMUL MM0,MM0\n  0054e101:  LEA ECX,[ESP + 0x10]\n  0054e105:  PFSUB MM1,MM0\n  0054e109:  MOV dword ptr [ESP],EAX\n  0054e10c:  MOV dword ptr [ESP + 0x8],EDX\n  0054e110:  MOV dword ptr [ESP + 0x4],ECX\n  0054e114:  PFMUL MM1,qword ptr [0x00572bb0]\n  0054e11c:  MOVD dword ptr [ESP + 0xc],MM1\n  0054e121:  CALL 0x0054ded8\n  0054e126:  ADD ESP,0x20\n  0054e129:  FEMMS\n  0054e12b:  RET 0x18", 
+  "callers": []
+}

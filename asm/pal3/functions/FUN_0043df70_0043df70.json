@@ -1,0 +1,36 @@
+{
+  "address": "0x0043df70", 
+  "size_bytes": 73, 
+  "calling_convention": "unknown", 
+  "signature": "undefined FUN_0043df70(void)", 
+  "callees": [
+    {
+      "address": "0x0043def0", 
+      "name": "FUN_0043def0"
+    }, 
+    {
+      "address": "0x00541d10", 
+      "name": "FUN_00541d10"
+    }, 
+    {
+      "address": "0x004326a0", 
+      "name": "FUN_004326a0"
+    }
+  ], 
+  "global_refs": [], 
+  "has_custom_name": false, 
+  "decompiled_c": "\r\nvoid __fastcall FUN_0043df70(int param_1)\r\n\r\n{\r\n  int iVar1;\r\n  int iVar2;\r\n  \r\n  iVar2 = 0;\r\n  if (0 < *(int *)(param_1 + 0x44)) {\r\n    do {\r\n      if (((-1 < iVar2) && (iVar2 < *(int *)(param_1 + 0x44))) &&\r\n         (iVar1 = *(int *)(*(int *)(param_1 + 0x40) + iVar2 * 4), iVar1 != 0)) {\r\n        FUN_0043def0();\r\n        FUN_00541d10(iVar1);\r\n      }\r\n      iVar2 = iVar2 + 1;\r\n    } while (iVar2 < *(int *)(param_1 + 0x44));\r\n  }\r\n  FUN_004326a0(0,0xffffffff);\r\n  return;\r\n}\r\n\r\n", 
+  "is_thunk": false, 
+  "name": "FUN_0043df70", 
+  "assembly": "  0043df70:  PUSH ESI\n  0043df71:  PUSH EDI\n  0043df72:  MOV EDI,ECX\n  0043df74:  XOR ESI,ESI\n  0043df76:  MOV EAX,dword ptr [EDI + 0x44]\n  0043df79:  TEST EAX,EAX\n  0043df7b:  JLE 0x0043dfaa\n  0043df7d:  PUSH EBX\n  0043df7e:  TEST ESI,ESI\n  0043df80:  JL 0x0043dfa1\n  0043df82:  CMP ESI,dword ptr [EDI + 0x44]\n  0043df85:  JGE 0x0043dfa1\n  0043df87:  MOV EAX,dword ptr [EDI + 0x40]\n  0043df8a:  MOV EBX,dword ptr [EAX + ESI*0x4]\n  0043df8d:  TEST EBX,EBX\n  0043df8f:  JZ 0x0043dfa1\n  0043df91:  MOV ECX,EBX\n  0043df93:  CALL 0x0043def0\n  0043df98:  PUSH EBX\n  0043df99:  CALL 0x00541d10\n  0043df9e:  ADD ESP,0x4\n  0043dfa1:  MOV EAX,dword ptr [EDI + 0x44]\n  0043dfa4:  INC ESI\n  0043dfa5:  CMP ESI,EAX\n  0043dfa7:  JL 0x0043df7e\n  0043dfa9:  POP EBX\n  0043dfaa:  PUSH -0x1\n  0043dfac:  PUSH 0x0\n  0043dfae:  LEA ECX,[EDI + 0x40]\n  0043dfb1:  CALL 0x004326a0\n  0043dfb6:  POP EDI\n  0043dfb7:  POP ESI\n  0043dfb8:  RET", 
+  "callers": [
+    {
+      "address": "0x0043f360", 
+      "name": "FUN_0043f360"
+    }, 
+    {
+      "address": "0x0043df20", 
+      "name": "FUN_0043df20"
+    }
+  ]
+}

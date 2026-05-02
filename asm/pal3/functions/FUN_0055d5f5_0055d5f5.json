@@ -1,0 +1,74 @@
+{
+  "address": "0x0055d5f5", 
+  "size_bytes": 137, 
+  "calling_convention": "unknown", 
+  "signature": "undefined FUN_0055d5f5(void)", 
+  "callees": [
+    {
+      "address": "0x0000001d", 
+      "name": "LoadLibraryA"
+    }, 
+    {
+      "address": "0x0000001e", 
+      "name": "GetProcAddress"
+    }
+  ], 
+  "global_refs": [
+    {
+      "address": "0x01895538", 
+      "type": null, 
+      "name": "DAT_01895538"
+    }, 
+    {
+      "address": "0x005737d4", 
+      "type": null, 
+      "name": "s_user32.dll_005737d4"
+    }, 
+    {
+      "address": "0x0056a078", 
+      "type": null, 
+      "name": "PTR_LoadLibraryA_0056a078"
+    }, 
+    {
+      "address": "0x0056a07c", 
+      "type": null, 
+      "name": "PTR_GetProcAddress_0056a07c"
+    }, 
+    {
+      "address": "0x005737c8", 
+      "type": null, 
+      "name": "s_MessageBoxA_005737c8"
+    }, 
+    {
+      "address": "0x005737b8", 
+      "type": null, 
+      "name": "s_GetActiveWindow_005737b8"
+    }, 
+    {
+      "address": "0x005737a4", 
+      "type": null, 
+      "name": "s_GetLastActivePopup_005737a4"
+    }, 
+    {
+      "address": "0x0189553c", 
+      "type": null, 
+      "name": "DAT_0189553c"
+    }, 
+    {
+      "address": "0x01895540", 
+      "type": null, 
+      "name": "DAT_01895540"
+    }
+  ], 
+  "has_custom_name": false, 
+  "decompiled_c": "\r\nint FUN_0055d5f5(undefined4 param_1,undefined4 param_2,undefined4 param_3)\r\n\r\n{\r\n  HMODULE hModule;\r\n  int iVar1;\r\n  \r\n  iVar1 = 0;\r\n  if (DAT_01895538 == (FARPROC)0x0) {\r\n    hModule = LoadLibraryA(\"user32.dll\");\r\n    if (hModule != (HMODULE)0x0) {\r\n      DAT_01895538 = GetProcAddress(hModule,\"MessageBoxA\");\r\n      if (DAT_01895538 != (FARPROC)0x0) {\r\n        DAT_0189553c = GetProcAddress(hModule,\"GetActiveWindow\");\r\n        DAT_01895540 = GetProcAddress(hModule,\"GetLastActivePopup\");\r\n        goto LAB_0055d644;\r\n      }\r\n    }\r\n    iVar1 = 0;\r\n  }\r\n  else {\r\nLAB_0055d644:\r\n    if (DAT_0189553c != (FARPROC)0x0) {\r\n      iVar1 = (*DAT_0189553c)();\r\n      if ((iVar1 != 0) && (DAT_01895540 != (FARPROC)0x0)) {\r\n        iVar1 = (*DAT_01895540)(iVar1);\r\n      }\r\n    }\r\n    iVar1 = (*DAT_01895538)(iVar1,param_1,param_2,param_3);\r\n  }\r\n  return iVar1;\r\n}\r\n\r\n", 
+  "is_thunk": false, 
+  "name": "FUN_0055d5f5", 
+  "assembly": "  0055d5f5:  PUSH EBX\n  0055d5f6:  XOR EBX,EBX\n  0055d5f8:  CMP dword ptr [0x01895538],EBX\n  0055d5fe:  PUSH ESI\n  0055d5ff:  PUSH EDI\n  0055d600:  JNZ 0x0055d644\n  0055d602:  PUSH 0x5737d4\n  0055d607:  CALL dword ptr [0x0056a078]\n  0055d60d:  MOV EDI,EAX\n  0055d60f:  CMP EDI,EBX\n  0055d611:  JZ 0x0055d67a\n  0055d613:  MOV ESI,dword ptr [0x0056a07c]\n  0055d619:  PUSH 0x5737c8\n  0055d61e:  PUSH EDI\n  0055d61f:  CALL ESI\n  0055d621:  TEST EAX,EAX\n  0055d623:  MOV [0x01895538],EAX\n  0055d628:  JZ 0x0055d67a\n  0055d62a:  PUSH 0x5737b8\n  0055d62f:  PUSH EDI\n  0055d630:  CALL ESI\n  0055d632:  PUSH 0x5737a4\n  0055d637:  PUSH EDI\n  0055d638:  MOV [0x0189553c],EAX\n  0055d63d:  CALL ESI\n  0055d63f:  MOV [0x01895540],EAX\n  0055d644:  MOV EAX,[0x0189553c]\n  0055d649:  TEST EAX,EAX\n  0055d64b:  JZ 0x0055d663\n  0055d64d:  CALL EAX\n  0055d64f:  MOV EBX,EAX\n  0055d651:  TEST EBX,EBX\n  0055d653:  JZ 0x0055d663\n  0055d655:  MOV EAX,[0x01895540]\n  0055d65a:  TEST EAX,EAX\n  0055d65c:  JZ 0x0055d663\n  0055d65e:  PUSH EBX\n  0055d65f:  CALL EAX\n  0055d661:  MOV EBX,EAX\n  0055d663:  PUSH dword ptr [ESP + 0x18]\n  0055d667:  PUSH dword ptr [ESP + 0x18]\n  0055d66b:  PUSH dword ptr [ESP + 0x18]\n  0055d66f:  PUSH EBX\n  0055d670:  CALL dword ptr [0x01895538]\n  0055d676:  POP EDI\n  0055d677:  POP ESI\n  0055d678:  POP EBX\n  0055d679:  RET\n  0055d67a:  XOR EAX,EAX\n  0055d67c:  JMP 0x0055d676", 
+  "callers": [
+    {
+      "address": "0x0055acd4", 
+      "name": "FUN_0055acd4"
+    }
+  ]
+}

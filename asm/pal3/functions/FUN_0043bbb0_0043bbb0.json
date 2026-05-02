@@ -1,0 +1,82 @@
+{
+  "address": "0x0043bbb0", 
+  "size_bytes": 11, 
+  "calling_convention": "unknown", 
+  "signature": "undefined FUN_0043bbb0(void)", 
+  "callees": [
+    {
+      "address": "0x00445b40", 
+      "name": "FUN_00445b40"
+    }
+  ], 
+  "global_refs": [
+    {
+      "address": "0x0056acb8", 
+      "type": null, 
+      "name": "PTR_FUN_0056acb8"
+    }
+  ], 
+  "has_custom_name": false, 
+  "decompiled_c": "\r\nvoid __fastcall FUN_0043bbb0(undefined4 *param_1)\r\n\r\n{\r\n  *param_1 = &PTR_FUN_0056acb8;\r\n  FUN_00445b40();\r\n  return;\r\n}\r\n\r\n", 
+  "is_thunk": false, 
+  "name": "FUN_0043bbb0", 
+  "assembly": "  0043bbb0:  MOV dword ptr [ECX],0x56acb8\n  0043bbb6:  JMP 0x00445b40", 
+  "callers": [
+    {
+      "address": "0x004a1410", 
+      "name": "FUN_004a1410"
+    }, 
+    {
+      "address": "0x00450ad0", 
+      "name": "FUN_00450ad0"
+    }, 
+    {
+      "address": "0x00451900", 
+      "name": "FUN_00451900"
+    }, 
+    {
+      "address": "0x00450eb0", 
+      "name": "FUN_00450eb0"
+    }, 
+    {
+      "address": "0x00560a10", 
+      "name": "Unwind@00560a10"
+    }, 
+    {
+      "address": "0x00560a30", 
+      "name": "Unwind@00560a30"
+    }, 
+    {
+      "address": "0x00560a50", 
+      "name": "Unwind@00560a50"
+    }, 
+    {
+      "address": "0x00560ab0", 
+      "name": "Unwind@00560ab0"
+    }, 
+    {
+      "address": "0x00560b40", 
+      "name": "Unwind@00560b40"
+    }, 
+    {
+      "address": "0x00560b70", 
+      "name": "Unwind@00560b70"
+    }, 
+    {
+      "address": "0x00564c00", 
+      "name": "Unwind@00564c00"
+    }, 
+    {
+      "address": "0x00564c60", 
+      "name": "Unwind@00564c60"
+    }, 
+    {
+      "address": "0x0043bb90", 
+      "name": "FUN_0043bb90"
+    }, 
+    {
+      "address": "0x00450390", 
+      "name": "FUN_00450390"
+    }
+  ]
+}

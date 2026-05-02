@@ -1,0 +1,25 @@
+{
+  "address": "0x00422050", 
+  "size_bytes": 70, 
+  "calling_convention": "unknown", 
+  "signature": "undefined FUN_00422050(undefined1 param_1)", 
+  "callees": [], 
+  "global_refs": [
+    {
+      "address": "0x00000004", 
+      "type": null, 
+      "name": "DAT_00000004"
+    }
+  ], 
+  "has_custom_name": false, 
+  "decompiled_c": "\r\nint __thiscall FUN_00422050(int param_1_00,char param_1)\r\n\r\n{\r\n  int iVar1;\r\n  char *pcVar2;\r\n  \r\n  iVar1 = 0;\r\n  if (0 < *(int *)(param_1_00 + 0xe0e0)) {\r\n    pcVar2 = (char *)(param_1_00 + 0xe190);\r\n    do {\r\n      if (*pcVar2 == param_1) {\r\n        return iVar1 * 0x2200 + 0xe0e4 + param_1_00;\r\n      }\r\n      iVar1 = iVar1 + 1;\r\n      pcVar2 = pcVar2 + 0x2200;\r\n    } while (iVar1 < *(int *)(param_1_00 + 0xe0e0));\r\n  }\r\n  return 0;\r\n}\r\n\r\n", 
+  "is_thunk": false, 
+  "name": "FUN_00422050", 
+  "assembly": "  00422050:  PUSH ESI\n  00422051:  PUSH EDI\n  00422052:  MOV EDI,ECX\n  00422054:  XOR EAX,EAX\n  00422056:  MOV ESI,dword ptr [EDI + 0xe0e0]\n  0042205c:  TEST ESI,ESI\n  0042205e:  JLE 0x00422079\n  00422060:  MOV CL,byte ptr [ESP + 0xc]\n  00422064:  LEA EDX,[EDI + 0xe190]\n  0042206a:  CMP byte ptr [EDX],CL\n  0042206c:  JZ 0x00422080\n  0042206e:  INC EAX\n  0042206f:  ADD EDX,0x2200\n  00422075:  CMP EAX,ESI\n  00422077:  JL 0x0042206a\n  00422079:  POP EDI\n  0042207a:  POP ESI\n  0042207b:  XOR EAX,EAX\n  0042207d:  RET 0x4\n  00422080:  MOV ECX,EAX\n  00422082:  SHL ECX,0x4\n  00422085:  ADD ECX,EAX\n  00422087:  SHL ECX,0x9\n  0042208a:  LEA EAX,[ECX + EDI*0x1 + 0xe0e4]\n  00422091:  POP EDI\n  00422092:  POP ESI\n  00422093:  RET 0x4", 
+  "callers": [
+    {
+      "address": "0x00538d60", 
+      "name": "FUN_00538d60"
+    }
+  ]
+}

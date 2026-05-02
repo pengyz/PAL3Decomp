@@ -1,0 +1,19 @@
+{
+  "address": "0x005322f0", 
+  "size_bytes": 111, 
+  "calling_convention": "unknown", 
+  "signature": "undefined FUN_005322f0(void)", 
+  "callees": [], 
+  "global_refs": [], 
+  "has_custom_name": false, 
+  "decompiled_c": "\r\nvoid __thiscall FUN_005322f0(int param_1,int param_2)\r\n\r\n{\r\n  undefined4 *puVar1;\r\n  int iVar2;\r\n  \r\n  puVar1 = (undefined4 *)(param_1 + 0xbac);\r\n  iVar2 = 10;\r\n  do {\r\n    (**(code **)puVar1[-0x17c])(0);\r\n    (**(code **)*puVar1)(0);\r\n    puVar1 = puVar1 + 0x26;\r\n    iVar2 = iVar2 + -1;\r\n  } while (iVar2 != 0);\r\n  (*(code *)**(undefined4 **)(param_1 + 0x5bc + param_2 * 0x98))(1);\r\n  (*(code *)**(undefined4 **)(param_1 + 0xbac + param_2 * 0x98))(1);\r\n  return;\r\n}\r\n\r\n", 
+  "is_thunk": false, 
+  "name": "FUN_005322f0", 
+  "assembly": "  005322f0:  PUSH EBX\n  005322f1:  MOV EBX,ECX\n  005322f3:  PUSH ESI\n  005322f4:  PUSH EDI\n  005322f5:  LEA ESI,[EBX + 0xbac]\n  005322fb:  MOV EDI,0xa\n  00532300:  MOV EAX,dword ptr [ESI + 0xfffffa10]\n  00532306:  LEA ECX,[ESI + 0xfffffa10]\n  0053230c:  PUSH 0x0\n  0053230e:  CALL dword ptr [EAX]\n  00532310:  MOV EDX,dword ptr [ESI]\n  00532312:  PUSH 0x0\n  00532314:  MOV ECX,ESI\n  00532316:  CALL dword ptr [EDX]\n  00532318:  ADD ESI,0x98\n  0053231e:  DEC EDI\n  0053231f:  JNZ 0x00532300\n  00532321:  MOV EAX,dword ptr [ESP + 0x10]\n  00532325:  PUSH 0x1\n  00532327:  LEA ECX,[EAX + EAX*0x8]\n  0053232a:  LEA EDX,[EAX + ECX*0x2]\n  0053232d:  MOV EAX,dword ptr [EBX + EDX*0x8 + 0x5bc]\n  00532334:  LEA ECX,[EBX + EDX*0x8 + 0x5bc]\n  0053233b:  CALL dword ptr [EAX]\n  0053233d:  MOV EAX,dword ptr [ESP + 0x14]\n  00532341:  PUSH 0x1\n  00532343:  LEA ECX,[EAX + EAX*0x8]\n  00532346:  LEA EDX,[EAX + ECX*0x2]\n  00532349:  MOV EAX,dword ptr [EBX + EDX*0x8 + 0xbac]\n  00532350:  LEA ECX,[EBX + EDX*0x8 + 0xbac]\n  00532357:  CALL dword ptr [EAX]\n  00532359:  POP EDI\n  0053235a:  POP ESI\n  0053235b:  POP EBX\n  0053235c:  RET 0x8", 
+  "callers": [
+    {
+      "address": "0x00532710", 
+      "name": "FUN_00532710"
+    }
+  ]
+}

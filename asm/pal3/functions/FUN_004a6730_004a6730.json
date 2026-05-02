@@ -1,0 +1,60 @@
+{
+  "address": "0x004a6730", 
+  "size_bytes": 120, 
+  "calling_convention": "unknown", 
+  "signature": "undefined FUN_004a6730(void)", 
+  "callees": [
+    {
+      "address": "0x00000143", 
+      "name": "gbImage2D"
+    }
+  ], 
+  "global_refs": [
+    {
+      "address": "0x0056536c", 
+      "type": null, 
+      "name": "LAB_0056536c"
+    }, 
+    {
+      "address": "0xffdff000", 
+      "type": null, 
+      "name": "ExceptionList"
+    }, 
+    {
+      "address": "0x0056a520", 
+      "type": null, 
+      "name": "PTR_gbImage2D_0056a520"
+    }, 
+    {
+      "address": "0x-0000010", 
+      "type": null, 
+      "name": "DAT_-0000010"
+    }, 
+    {
+      "address": "0x-0000004", 
+      "type": null, 
+      "name": "DAT_-0000004"
+    }, 
+    {
+      "address": "0x-0000011", 
+      "type": null, 
+      "name": "DAT_-0000011"
+    }, 
+    {
+      "address": "0x-000000c", 
+      "type": null, 
+      "name": "DAT_-000000c"
+    }
+  ], 
+  "has_custom_name": false, 
+  "decompiled_c": "\r\nundefined4 * __fastcall FUN_004a6730(undefined4 *param_1)\r\n\r\n{\r\n  undefined local_11;\r\n  void *local_c;\r\n  undefined *puStack_8;\r\n  undefined4 local_4;\r\n  \r\n  local_4 = 0xffffffff;\r\n  puStack_8 = &LAB_0056536c;\r\n  local_c = ExceptionList;\r\n  ExceptionList = &local_c;\r\n  gbImage2D::gbImage2D((gbImage2D *)(param_1 + 1));\r\n  local_4 = 0;\r\n  gbImage2D::gbImage2D((gbImage2D *)(param_1 + 0x33));\r\n  *(undefined *)(param_1 + 0x66) = local_11;\r\n  param_1[0x67] = 0;\r\n  param_1[0x68] = 0;\r\n  param_1[0x69] = 0;\r\n  *param_1 = 0;\r\n  param_1[0x65] = 0;\r\n  *(undefined *)(param_1 + 0x6a) = 0;\r\n  ExceptionList = local_c;\r\n  return param_1;\r\n}\r\n\r\n", 
+  "is_thunk": false, 
+  "name": "FUN_004a6730", 
+  "assembly": "  004a6730:  PUSH -0x1\n  004a6732:  PUSH 0x56536c\n  004a6737:  MOV EAX,FS:[0x0]\n  004a673d:  PUSH EAX\n  004a673e:  MOV dword ptr FS:[0x0],ESP\n  004a6745:  SUB ESP,0x8\n  004a6748:  PUSH EBX\n  004a6749:  PUSH ESI\n  004a674a:  MOV ESI,ECX\n  004a674c:  PUSH EDI\n  004a674d:  MOV EDI,dword ptr [0x0056a520]\n  004a6753:  MOV dword ptr [ESP + 0x10],ESI\n  004a6757:  LEA ECX,[ESI + 0x4]\n  004a675a:  CALL EDI\n  004a675c:  XOR EBX,EBX\n  004a675e:  LEA ECX,[ESI + 0xcc]\n  004a6764:  MOV dword ptr [ESP + 0x1c],EBX\n  004a6768:  CALL EDI\n  004a676a:  MOV AL,byte ptr [ESP + 0xf]\n  004a676e:  MOV ECX,dword ptr [ESP + 0x14]\n  004a6772:  MOV byte ptr [ESI + 0x198],AL\n  004a6778:  MOV dword ptr [ESI + 0x19c],EBX\n  004a677e:  MOV dword ptr [ESI + 0x1a0],EBX\n  004a6784:  MOV dword ptr [ESI + 0x1a4],EBX\n  004a678a:  MOV dword ptr [ESI],EBX\n  004a678c:  MOV dword ptr [ESI + 0x194],EBX\n  004a6792:  MOV byte ptr [ESI + 0x1a8],BL\n  004a6798:  MOV EAX,ESI\n  004a679a:  POP EDI\n  004a679b:  POP ESI\n  004a679c:  POP EBX\n  004a679d:  MOV dword ptr FS:[0x0],ECX\n  004a67a4:  ADD ESP,0x14\n  004a67a7:  RET", 
+  "callers": [
+    {
+      "address": "0x004a6f10", 
+      "name": "FUN_004a6f10"
+    }
+  ]
+}

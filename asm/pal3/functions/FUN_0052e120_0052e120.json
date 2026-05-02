@@ -1,0 +1,34 @@
+{
+  "address": "0x0052e120", 
+  "size_bytes": 17, 
+  "calling_convention": "unknown", 
+  "signature": "undefined FUN_0052e120(undefined4 param_1)", 
+  "callees": [
+    {
+      "address": "0x0052e140", 
+      "name": "FUN_0052e140"
+    }
+  ], 
+  "global_refs": [
+    {
+      "address": "0x00000004", 
+      "type": null, 
+      "name": "DAT_00000004"
+    }
+  ], 
+  "has_custom_name": false, 
+  "decompiled_c": "\r\nvoid __thiscall FUN_0052e120(int param_1_00,undefined4 param_1)\r\n\r\n{\r\n  *(undefined4 *)(param_1_00 + 0x40) = param_1;\r\n  FUN_0052e140(1);\r\n  return;\r\n}\r\n\r\n", 
+  "is_thunk": false, 
+  "name": "FUN_0052e120", 
+  "assembly": "  0052e120:  MOV EAX,dword ptr [ESP + 0x4]\n  0052e124:  PUSH 0x1\n  0052e126:  MOV dword ptr [ECX + 0x40],EAX\n  0052e129:  CALL 0x0052e140\n  0052e12e:  RET 0x4", 
+  "callers": [
+    {
+      "address": "0x00530960", 
+      "name": "FUN_00530960"
+    }, 
+    {
+      "address": "0x00531260", 
+      "name": "FUN_00531260"
+    }
+  ]
+}

@@ -1,0 +1,20 @@
+{
+  "address": "0x0053d2f0", 
+  "size_bytes": 57, 
+  "calling_convention": "unknown", 
+  "signature": "undefined FUN_0053d2f0(undefined4 param_1)", 
+  "callees": [], 
+  "global_refs": [
+    {
+      "address": "0x00000004", 
+      "type": null, 
+      "name": "DAT_00000004"
+    }
+  ], 
+  "has_custom_name": false, 
+  "decompiled_c": "\r\nuint __thiscall FUN_0053d2f0(int param_1_00,int param_1)\r\n\r\n{\r\n  uint uVar1;\r\n  int iVar2;\r\n  \r\n  uVar1 = 0;\r\n  if (0 < *(int *)(param_1_00 + 0x14)) {\r\n    do {\r\n      if (((int)uVar1 < 0) || (*(int *)(param_1_00 + 0x14) <= (int)uVar1)) {\r\n        iVar2 = 0;\r\n      }\r\n      else {\r\n        iVar2 = *(int *)(*(int *)(param_1_00 + 0x10) + uVar1 * 4);\r\n      }\r\n      if (param_1 == iVar2) {\r\n        return CONCAT31((int3)(uVar1 >> 8),1);\r\n      }\r\n      uVar1 = uVar1 + 1;\r\n    } while ((int)uVar1 < *(int *)(param_1_00 + 0x14));\r\n  }\r\n  return uVar1 & 0xffffff00;\r\n}\r\n\r\n", 
+  "is_thunk": false, 
+  "name": "FUN_0053d2f0", 
+  "assembly": "  0053d2f0:  PUSH ESI\n  0053d2f1:  MOV ESI,dword ptr [ECX + 0x14]\n  0053d2f4:  XOR EAX,EAX\n  0053d2f6:  PUSH EDI\n  0053d2f7:  TEST ESI,ESI\n  0053d2f9:  JLE 0x0053d31b\n  0053d2fb:  MOV EDI,dword ptr [ESP + 0xc]\n  0053d2ff:  TEST EAX,EAX\n  0053d301:  JL 0x0053d310\n  0053d303:  CMP EAX,dword ptr [ECX + 0x14]\n  0053d306:  JGE 0x0053d310\n  0053d308:  MOV EDX,dword ptr [ECX + 0x10]\n  0053d30b:  MOV EDX,dword ptr [EDX + EAX*0x4]\n  0053d30e:  JMP 0x0053d312\n  0053d310:  XOR EDX,EDX\n  0053d312:  CMP EDI,EDX\n  0053d314:  JZ 0x0053d322\n  0053d316:  INC EAX\n  0053d317:  CMP EAX,ESI\n  0053d319:  JL 0x0053d2ff\n  0053d31b:  POP EDI\n  0053d31c:  XOR AL,AL\n  0053d31e:  POP ESI\n  0053d31f:  RET 0x4\n  0053d322:  POP EDI\n  0053d323:  MOV AL,0x1\n  0053d325:  POP ESI\n  0053d326:  RET 0x4", 
+  "callers": []
+}

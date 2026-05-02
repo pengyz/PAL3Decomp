@@ -1,0 +1,25 @@
+{
+  "address": "0x00403059", 
+  "size_bytes": 33, 
+  "calling_convention": "unknown", 
+  "signature": "undefined Catch@00403059(void)", 
+  "callees": [
+    {
+      "address": "0x0055353b", 
+      "name": "operator_new"
+    }
+  ], 
+  "global_refs": [
+    {
+      "address": "0x0040307a", 
+      "type": null, 
+      "name": "DAT_0040307a"
+    }
+  ], 
+  "has_custom_name": true, 
+  "decompiled_c": "\r\nundefined * Catch_00403059(void)\r\n\r\n{\r\n  uint uVar1;\r\n  void *pvVar2;\r\n  int unaff_EBP;\r\n  \r\n  *(int *)(unaff_EBP + -0x14) = *(int *)(unaff_EBP + 8);\r\n  uVar1 = *(int *)(unaff_EBP + 8) + 2;\r\n  if ((int)uVar1 < 0) {\r\n    uVar1 = 0;\r\n  }\r\n  pvVar2 = operator_new(uVar1);\r\n  *(void **)(unaff_EBP + 8) = pvVar2;\r\n  return &DAT_0040307a;\r\n}\r\n\r\n", 
+  "is_thunk": false, 
+  "name": "Catch@00403059", 
+  "assembly": "  00403059:  MOV EAX,dword ptr [EBP + 0x8]\n  0040305c:  MOV dword ptr [EBP + -0x14],EAX\n  0040305f:  ADD EAX,0x2\n  00403062:  TEST EAX,EAX\n  00403064:  JGE 0x00403068\n  00403066:  XOR EAX,EAX\n  00403068:  PUSH EAX\n  00403069:  CALL 0x0055353b\n  0040306e:  MOV dword ptr [EBP + 0x8],EAX\n  00403071:  ADD ESP,0x4\n  00403074:  MOV EAX,0x40307a\n  00403079:  RET", 
+  "callers": []
+}

@@ -1,0 +1,80 @@
+{
+  "address": "0x0054e00f", 
+  "size_bytes": 141, 
+  "calling_convention": "unknown", 
+  "signature": "undefined FUN_0054e00f(undefined4 param_1, undefined4 param_2, undefined4 param_3, undefined4 param_4, undefined4 param_5, undefined4 param_6)", 
+  "callees": [
+    {
+      "address": "0x0054ded8", 
+      "name": "FUN_0054ded8"
+    }
+  ], 
+  "global_refs": [
+    {
+      "address": "0x-0000004", 
+      "type": null, 
+      "name": "DAT_-0000004"
+    }, 
+    {
+      "address": "0x00000014", 
+      "type": null, 
+      "name": "DAT_00000014"
+    }, 
+    {
+      "address": "0x00000018", 
+      "type": null, 
+      "name": "DAT_00000018"
+    }, 
+    {
+      "address": "0x-000002c", 
+      "type": null, 
+      "name": "DAT_-000002c"
+    }, 
+    {
+      "address": "0x0000000c", 
+      "type": null, 
+      "name": "DAT_0000000c"
+    }, 
+    {
+      "address": "0x00000008", 
+      "type": null, 
+      "name": "DAT_00000008"
+    }, 
+    {
+      "address": "0x-0000018", 
+      "type": null, 
+      "name": "DAT_-0000018"
+    }, 
+    {
+      "address": "0x00000010", 
+      "type": null, 
+      "name": "DAT_00000010"
+    }, 
+    {
+      "address": "0x-0000028", 
+      "type": null, 
+      "name": "DAT_-0000028"
+    }, 
+    {
+      "address": "0x-0000030", 
+      "type": null, 
+      "name": "DAT_-0000030"
+    }, 
+    {
+      "address": "0x-0000034", 
+      "type": null, 
+      "name": "DAT_-0000034"
+    }, 
+    {
+      "address": "0x00000004", 
+      "type": null, 
+      "name": "DAT_00000004"
+    }
+  ], 
+  "has_custom_name": false, 
+  "decompiled_c": "\r\nundefined4\r\nFUN_0054e00f(undefined4 param_1,undefined4 param_2,undefined4 param_3,undefined4 param_4,\r\n            uint param_5,uint param_6)\r\n\r\n{\r\n  ulonglong uVar1;\r\n  undefined8 uVar2;\r\n  undefined8 in_MM2;\r\n  undefined8 uVar3;\r\n  undefined local_28 [16];\r\n  undefined local_18 [20];\r\n  \r\n  FastExitMediaState();\r\n  uVar1 = PackedFloatingADD((ulonglong)param_5,(ulonglong)param_6);\r\n  FUN_0054ded8(local_28,param_2,param_3,(int)uVar1);\r\n  FUN_0054ded8(local_18,param_2,param_4,(int)uVar1);\r\n  uVar3 = FloatingReciprocalAprox(in_MM2,uVar1 & 0xffffffff);\r\n  uVar2 = PackedFloatingReciprocalIter1(uVar1 & 0xffffffff,uVar3);\r\n  uVar2 = PackedFloatingReciprocalIter2(uVar2,uVar3);\r\n  uVar2 = PackedFloatingMUL(uVar2,(ulonglong)param_6);\r\n  FUN_0054ded8(param_1,local_28,local_18,(int)uVar2);\r\n  FastExitMediaState();\r\n  return param_1;\r\n}\r\n\r\n", 
+  "is_thunk": false, 
+  "name": "FUN_0054e00f", 
+  "assembly": "  0054e00f:  SUB ESP,0x24\n  0054e012:  MOV dword ptr [ESP + 0x20],EBP\n  0054e016:  MOV EBP,ESP\n  0054e018:  AND ESP,0xfffffff8\n  0054e01b:  MOV EDX,ESP\n  0054e01d:  FEMMS\n  0054e01f:  MOVD MM0,dword ptr [EBP + 0x38]\n  0054e023:  MOVD MM1,dword ptr [EBP + 0x3c]\n  0054e027:  PFADD MM0,MM1\n  0054e02b:  MOVD dword ptr [EBP + 0x38],MM0\n  0054e02f:  SUB ESP,0x4\n  0054e032:  MOVD dword ptr [ESP],MM0\n  0054e036:  PUSH dword ptr [EBP + 0x30]\n  0054e039:  PUSH dword ptr [EBP + 0x2c]\n  0054e03c:  PUSH EDX\n  0054e03d:  CALL 0x0054ded8\n  0054e042:  LEA EDX,[ESP + 0x10]\n  0054e046:  PUSH dword ptr [EBP + 0x38]\n  0054e049:  PUSH dword ptr [EBP + 0x34]\n  0054e04c:  PUSH dword ptr [EBP + 0x2c]\n  0054e04f:  PUSH EDX\n  0054e050:  CALL 0x0054ded8\n  0054e055:  MOVD MM0,dword ptr [EBP + 0x38]\n  0054e059:  MOVD MM1,dword ptr [EBP + 0x3c]\n  0054e05d:  LEA EDX,[ESP + 0x10]\n  0054e061:  LEA ECX,[ESP]\n  0054e064:  PFRCP MM2,MM0\n  0054e068:  PFRCPIT1 MM0,MM2\n  0054e06c:  PFRCPIT2 MM0,MM2\n  0054e070:  PFMUL MM0,MM1\n  0054e074:  SUB ESP,0xc\n  0054e077:  MOV dword ptr [ESP + 0x4],EDX\n  0054e07b:  MOV dword ptr [ESP],ECX\n  0054e07e:  MOVD dword ptr [ESP + 0x8],MM0\n  0054e083:  PUSH dword ptr [EBP + 0x28]\n  0054e086:  CALL 0x0054ded8\n  0054e08b:  MOV EAX,dword ptr [EBP + 0x28]\n  0054e08e:  FEMMS\n  0054e090:  MOV ESP,EBP\n  0054e092:  MOV EBP,dword ptr [ESP + 0x20]\n  0054e096:  ADD ESP,0x24\n  0054e099:  RET 0x18", 
+  "callers": []
+}

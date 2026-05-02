@@ -1,0 +1,60 @@
+{
+  "address": "0x00555172", 
+  "size_bytes": 34, 
+  "calling_convention": "__cdecl", 
+  "signature": "void __amsg_exit(int param_1)", 
+  "callees": [
+    {
+      "address": "0x0055ac9b", 
+      "name": "FUN_0055ac9b"
+    }, 
+    {
+      "address": "0x0055acd4", 
+      "name": "FUN_0055acd4"
+    }, 
+    {
+      "address": "0x005569f0", 
+      "name": "__exit"
+    }
+  ], 
+  "global_refs": [
+    {
+      "address": "0x01895320", 
+      "type": null, 
+      "name": "DAT_01895320"
+    }, 
+    {
+      "address": "0x00000004", 
+      "type": null, 
+      "name": "DAT_00000004"
+    }, 
+    {
+      "address": "0x0060aca0", 
+      "type": null, 
+      "name": "PTR___exit_0060aca0"
+    }
+  ], 
+  "has_custom_name": true, 
+  "decompiled_c": "\r\n/* Library Function - Single Match\r\n    __amsg_exit\r\n   \r\n   Library: Visual Studio 2003 Release */\r\n\r\nvoid __cdecl __amsg_exit(int param_1)\r\n\r\n{\r\n  if (DAT_01895320 == 1) {\r\n    FUN_0055ac9b();\r\n  }\r\n  FUN_0055acd4(param_1);\r\n  (*(code *)PTR___exit_0060aca0)(0xff);\r\n  return;\r\n}\r\n\r\n", 
+  "is_thunk": false, 
+  "name": "__amsg_exit", 
+  "assembly": "  00555172:  CMP dword ptr [0x01895320],0x1\n  00555179:  JNZ 0x00555180\n  0055517b:  CALL 0x0055ac9b\n  00555180:  PUSH dword ptr [ESP + 0x4]\n  00555184:  CALL 0x0055acd4\n  00555189:  PUSH 0xff\n  0055518e:  CALL dword ptr [0x0060aca0]", 
+  "callers": [
+    {
+      "address": "0x00557ead", 
+      "name": "FUN_00557ead"
+    }, 
+    {
+      "address": "0x0055a863", 
+      "name": "FUN_0055a863"
+    }, 
+    {
+      "address": "0x0055a91c", 
+      "name": "FUN_0055a91c"
+    }, 
+    {
+      "address": "0x0055bc9f", 
+      "name": "FUN_0055bc9f"
+    }
+  ]
+}

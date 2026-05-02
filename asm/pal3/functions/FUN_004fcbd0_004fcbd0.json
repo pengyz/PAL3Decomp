@@ -1,0 +1,30 @@
+{
+  "address": "0x004fcbd0", 
+  "size_bytes": 58, 
+  "calling_convention": "unknown", 
+  "signature": "undefined FUN_004fcbd0(undefined4 param_1, undefined4 param_2)", 
+  "callees": [], 
+  "global_refs": [
+    {
+      "address": "0x00000004", 
+      "type": null, 
+      "name": "DAT_00000004"
+    }, 
+    {
+      "address": "0x00000008", 
+      "type": null, 
+      "name": "DAT_00000008"
+    }
+  ], 
+  "has_custom_name": false, 
+  "decompiled_c": "\r\nundefined4 __thiscall FUN_004fcbd0(int *param_1_00,int param_1,int param_2)\r\n\r\n{\r\n  int *piVar1;\r\n  \r\n  piVar1 = param_1_00 + param_2 * 0x14 + param_1 * 0x292;\r\n  piVar1[0x32] = 3;\r\n  piVar1[0x34] = *(int *)(*param_1_00 + 0x50);\r\n  return CONCAT31((int3)((uint)piVar1 >> 8),1);\r\n}\r\n\r\n", 
+  "is_thunk": false, 
+  "name": "FUN_004fcbd0", 
+  "assembly": "  004fcbd0:  MOV EAX,dword ptr [ESP + 0x4]\n  004fcbd4:  PUSH ESI\n  004fcbd5:  MOV ESI,ECX\n  004fcbd7:  LEA EDX,[EAX + EAX*0x4]\n  004fcbda:  LEA EDX,[EAX + EDX*0x8]\n  004fcbdd:  LEA EDX,[EAX + EDX*0x8]\n  004fcbe0:  MOV EAX,dword ptr [ESP + 0xc]\n  004fcbe4:  LEA EAX,[EAX + EAX*0x4]\n  004fcbe7:  SHL EAX,0x4\n  004fcbea:  ADD ESI,EAX\n  004fcbec:  LEA EAX,[ESI + EDX*0x8]\n  004fcbef:  POP ESI\n  004fcbf0:  MOV dword ptr [EAX + 0xc8],0x3\n  004fcbfa:  MOV ECX,dword ptr [ECX]\n  004fcbfc:  FLD dword ptr [ECX + 0x50]\n  004fcbff:  FSTP dword ptr [EAX + 0xd0]\n  004fcc05:  MOV AL,0x1\n  004fcc07:  RET 0x8", 
+  "callers": [
+    {
+      "address": "0x004fca80", 
+      "name": "FUN_004fca80"
+    }
+  ]
+}

@@ -1,0 +1,14 @@
+{
+  "address": "0x004cd3a0", 
+  "size_bytes": 37, 
+  "calling_convention": "unknown", 
+  "signature": "undefined FUN_004cd3a0(void)", 
+  "callees": [], 
+  "global_refs": [], 
+  "has_custom_name": false, 
+  "decompiled_c": "\r\nvoid __fastcall FUN_004cd3a0(int param_1)\r\n\r\n{\r\n  undefined4 *puVar1;\r\n  \r\n  for (puVar1 = *(undefined4 **)(param_1 + 0x14); puVar1 != (undefined4 *)0x0;\r\n      puVar1 = (undefined4 *)puVar1[8]) {\r\n    *(undefined *)(puVar1 + 6) = 0;\r\n    puVar1[3] = 0;\r\n    puVar1[5] = 0;\r\n    puVar1[4] = 0;\r\n    *puVar1 = 0;\r\n    puVar1[1] = 0;\r\n    puVar1[2] = 0;\r\n  }\r\n  return;\r\n}\r\n\r\n", 
+  "is_thunk": false, 
+  "name": "FUN_004cd3a0", 
+  "assembly": "  004cd3a0:  MOV EAX,dword ptr [ECX + 0x14]\n  004cd3a3:  XOR ECX,ECX\n  004cd3a5:  CMP EAX,ECX\n  004cd3a7:  JZ 0x004cd3c4\n  004cd3a9:  MOV byte ptr [EAX + 0x18],CL\n  004cd3ac:  MOV dword ptr [EAX + 0xc],ECX\n  004cd3af:  MOV dword ptr [EAX + 0x14],ECX\n  004cd3b2:  MOV dword ptr [EAX + 0x10],ECX\n  004cd3b5:  MOV dword ptr [EAX],ECX\n  004cd3b7:  MOV dword ptr [EAX + 0x4],ECX\n  004cd3ba:  MOV dword ptr [EAX + 0x8],ECX\n  004cd3bd:  MOV EAX,dword ptr [EAX + 0x20]\n  004cd3c0:  CMP EAX,ECX\n  004cd3c2:  JNZ 0x004cd3a9\n  004cd3c4:  RET", 
+  "callers": []
+}

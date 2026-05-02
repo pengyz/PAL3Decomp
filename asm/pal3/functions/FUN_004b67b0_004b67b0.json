@@ -1,0 +1,43 @@
+{
+  "address": "0x004b67b0", 
+  "size_bytes": 47, 
+  "calling_convention": "unknown", 
+  "signature": "undefined FUN_004b67b0(void)", 
+  "callees": [
+    {
+      "address": "0x00000086", 
+      "name": "End"
+    }, 
+    {
+      "address": "0x004bdb10", 
+      "name": "FUN_004bdb10"
+    }, 
+    {
+      "address": "0x004bdd90", 
+      "name": "FUN_004bdd90"
+    }
+  ], 
+  "global_refs": [
+    {
+      "address": "0x00bfda60", 
+      "type": null, 
+      "name": "DAT_00bfda60"
+    }, 
+    {
+      "address": "0x0056a22c", 
+      "type": null, 
+      "name": "PTR_End_0056a22c"
+    }
+  ], 
+  "has_custom_name": false, 
+  "decompiled_c": "\r\nvoid FUN_004b67b0(void)\r\n\r\n{\r\n  gbSceneGraph::End(*(gbSceneGraph **)(DAT_00bfda60 + 0x1c0));\r\n  FUN_004bdb10();\r\n  FUN_004bdd90();\r\n                    /* WARNING: Could not recover jumptable at 0x004b67d9. Too many branches */\r\n                    /* WARNING: Treating indirect jump as call */\r\n  gbMatrixStack::Pop(*(gbMatrixStack **)(DAT_00bfda60 + 0xd8));\r\n  return;\r\n}\r\n\r\n", 
+  "is_thunk": false, 
+  "name": "FUN_004b67b0", 
+  "assembly": "  004b67b0:  MOV EAX,[0x00bfda60]\n  004b67b5:  MOV ECX,dword ptr [EAX + 0x1c0]\n  004b67bb:  CALL dword ptr [0x0056a22c]\n  004b67c1:  CALL 0x004bdb10\n  004b67c6:  MOV ECX,EAX\n  004b67c8:  CALL 0x004bdd90\n  004b67cd:  MOV ECX,dword ptr [0x00bfda60]\n  004b67d3:  MOV ECX,dword ptr [ECX + 0xd8]\n  004b67d9:  JMP dword ptr [0x0056a588]", 
+  "callers": [
+    {
+      "address": "0x004b6630", 
+      "name": "FUN_004b6630"
+    }
+  ]
+}

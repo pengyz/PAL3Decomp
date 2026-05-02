@@ -1,0 +1,30 @@
+{
+  "address": "0x00407546", 
+  "size_bytes": 24, 
+  "calling_convention": "unknown", 
+  "signature": "undefined Catch@00407546(void)", 
+  "callees": [
+    {
+      "address": "0x0053cc70", 
+      "name": "FUN_0053cc70"
+    }
+  ], 
+  "global_refs": [
+    {
+      "address": "0x00583a78", 
+      "type": null, 
+      "name": "s_!!Exception:Init_combat_error.._00583a78"
+    }, 
+    {
+      "address": "0x017b1ec0", 
+      "type": null, 
+      "name": "DAT_017b1ec0"
+    }
+  ], 
+  "has_custom_name": true, 
+  "decompiled_c": "\r\nundefined4 Catch_00407546(void)\r\n\r\n{\r\n  FUN_0053cc70(&DAT_017b1ec0,s___Exception_Init_combat_error___00583a78);\r\n  return 0x407535;\r\n}\r\n\r\n", 
+  "is_thunk": false, 
+  "name": "Catch@00407546", 
+  "assembly": "  00407546:  PUSH 0x583a78\n  0040754b:  PUSH 0x17b1ec0\n  00407550:  CALL 0x0053cc70\n  00407555:  ADD ESP,0x8\n  00407558:  MOV EAX,0x407535\n  0040755d:  RET", 
+  "callers": []
+}

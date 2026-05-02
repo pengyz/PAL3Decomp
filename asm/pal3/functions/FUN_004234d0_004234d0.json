@@ -1,0 +1,24 @@
+{
+  "address": "0x004234d0", 
+  "size_bytes": 44, 
+  "calling_convention": "unknown", 
+  "signature": "undefined FUN_004234d0(void)", 
+  "callees": [
+    {
+      "address": "0x004226f0", 
+      "name": "FUN_004226f0"
+    }
+  ], 
+  "global_refs": [], 
+  "has_custom_name": false, 
+  "decompiled_c": "\r\nundefined4 FUN_004234d0(void)\r\n\r\n{\r\n  int iVar1;\r\n  \r\n  iVar1 = FUN_004226f0();\r\n  if (*(int *)(iVar1 + 0x88) == 0) {\r\n    return 0;\r\n  }\r\n  iVar1 = FUN_004226f0();\r\n  (**(code **)(**(int **)(iVar1 + 0x88) + 0x10))(0);\r\n  return 1;\r\n}\r\n\r\n", 
+  "is_thunk": false, 
+  "name": "FUN_004234d0", 
+  "assembly": "  004234d0:  CALL 0x004226f0\n  004234d5:  MOV ECX,dword ptr [EAX + 0x88]\n  004234db:  TEST ECX,ECX\n  004234dd:  JNZ 0x004234e2\n  004234df:  XOR EAX,EAX\n  004234e1:  RET\n  004234e2:  CALL 0x004226f0\n  004234e7:  MOV EAX,dword ptr [EAX + 0x88]\n  004234ed:  PUSH 0x0\n  004234ef:  MOV ECX,EAX\n  004234f1:  MOV EDX,dword ptr [EAX]\n  004234f3:  CALL dword ptr [EDX + 0x10]\n  004234f6:  MOV EAX,0x1\n  004234fb:  RET", 
+  "callers": [
+    {
+      "address": "0x00405c00", 
+      "name": "FUN_00405c00"
+    }
+  ]
+}

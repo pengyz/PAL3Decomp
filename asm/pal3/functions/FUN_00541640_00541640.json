@@ -1,0 +1,117 @@
+{
+  "address": "0x00541640",
+  "size_bytes": 203,
+  "calling_convention": "unknown",
+  "signature": "undefined FUN_00541640(void)",
+  "callees": [
+    {
+      "address": "0x00540f60",
+      "name": "FUN_00540f60"
+    },
+    {
+      "address": "0x004022e0",
+      "name": "FUN_004022e0"
+    },
+    {
+      "address": "0x00540440",
+      "name": "FUN_00540440"
+    },
+    {
+      "address": "0x00540fa0",
+      "name": "FUN_00540fa0"
+    }
+  ],
+  "global_refs": [
+    {
+      "address": "0xffdff000",
+      "type": null,
+      "name": "ExceptionList"
+    },
+    {
+      "address": "0x00568f58",
+      "type": null,
+      "name": "LAB_00568f58"
+    },
+    {
+      "address": "0x-000006c",
+      "type": null,
+      "name": "DAT_-000006c"
+    },
+    {
+      "address": "0x-0000068",
+      "type": null,
+      "name": "DAT_-0000068"
+    },
+    {
+      "address": "0x00bfad70",
+      "type": null,
+      "name": "DAT_00bfad70"
+    },
+    {
+      "address": "0x-0000004",
+      "type": null,
+      "name": "DAT_-0000004"
+    },
+    {
+      "address": "0x-0000064",
+      "type": null,
+      "name": "DAT_-0000064"
+    },
+    {
+      "address": "0x-000005c",
+      "type": null,
+      "name": "DAT_-000005c"
+    },
+    {
+      "address": "0x-0000060",
+      "type": null,
+      "name": "DAT_-0000060"
+    },
+    {
+      "address": "0x-0000054",
+      "type": null,
+      "name": "DAT_-0000054"
+    },
+    {
+      "address": "0x-0000058",
+      "type": null,
+      "name": "DAT_-0000058"
+    },
+    {
+      "address": "0x-0000070",
+      "type": null,
+      "name": "DAT_-0000070"
+    },
+    {
+      "address": "0x-0000050",
+      "type": null,
+      "name": "DAT_-0000050"
+    },
+    {
+      "address": "0x-0000010",
+      "type": null,
+      "name": "DAT_-0000010"
+    },
+    {
+      "address": "0x-000000c",
+      "type": null,
+      "name": "DAT_-000000c"
+    }
+  ],
+  "has_custom_name": false,
+  "decompiled_c": "\r\nvoid __fastcall FUN_00541640(int param_1)\r\n\r\n{\r\n  undefined4 local_70 [2];\r\n  int local_68;\r\n  int local_64;\r\n  int local_60;\r\n  int local_5c;\r\n  int local_58;\r\n  int local_54;\r\n  undefined4 local_50 [16];\r\n  undefined4 local_10;\r\n  void *local_c;\r\n  undefined *puStack_8;\r\n  undefined4 local_4;\r\n  \r\n  local_4 = 0xffffffff;\r\n  puStack_8 = &LAB_00568f58;\r\n  local_c = ExceptionList;\r\n  if ((*(char *)(param_1 + 0x1d) != '\\0') && (*(char *)(param_1 + 0x1c) != '\\0')) {\r\n    ExceptionList = &local_c;\r\n    FUN_00540f60();\r\n    local_4 = 0;\r\n    FUN_004022e0(&local_68);\r\n    local_5c = local_64;\r\n    local_54 = local_64 + 0x20;\r\n    local_60 = local_68;\r\n    local_58 = local_68 + 0x20;\r\n    local_70[0] = 0xffffffff;\r\n    local_50[0] = *(undefined4 *)(param_1 + 0x10 + *(int *)(param_1 + 0xc) * 4);\r\n    local_10 = 1;\r\n    FUN_00540440(&local_60,local_70,local_50,0x114,0,1);\r\n    local_4 = 0xffffffff;\r\n    FUN_00540fa0();\r\n  }\r\n  ExceptionList = local_c;\r\n  return;\r\n}\r\n\r\n",
+  "is_thunk": false,
+  "name": "UICursor_IRender",
+  "assembly": "  00541640:  MOV EAX,FS:[0x0]\n  00541646:  PUSH -0x1\n  00541648:  PUSH 0x568f58\n  0054164d:  PUSH EAX\n  0054164e:  MOV dword ptr FS:[0x0],ESP\n  00541655:  SUB ESP,0x64\n  00541658:  PUSH ESI\n  00541659:  MOV ESI,ECX\n  0054165b:  MOV AL,byte ptr [ESI + 0x1d]\n  0054165e:  TEST AL,AL\n  00541660:  JZ 0x005416fb\n  00541666:  MOV AL,byte ptr [ESI + 0x1c]\n  00541669:  TEST AL,AL\n  0054166b:  JZ 0x005416fb\n  00541671:  LEA ECX,[ESP + 0x8]\n  00541675:  CALL 0x00540f60\n  0054167a:  LEA EAX,[ESP + 0xc]\n  0054167e:  MOV ECX,0xbfad70\n  00541683:  PUSH EAX\n  00541684:  MOV dword ptr [ESP + 0x74],0x0\n  0054168c:  CALL 0x004022e0\n  00541691:  MOV ECX,dword ptr [ESP + 0x10]\n  00541695:  MOV EAX,dword ptr [ESP + 0xc]\n  00541699:  MOV dword ptr [ESP + 0x18],ECX\n  0054169d:  ADD ECX,0x20\n  005416a0:  MOV dword ptr [ESP + 0x14],EAX\n  005416a4:  MOV dword ptr [ESP + 0x20],ECX\n  005416a8:  MOV ECX,dword ptr [ESI + 0xc]\n  005416ab:  ADD EAX,0x20\n  005416ae:  PUSH 0x1\n  005416b0:  MOV dword ptr [ESP + 0x20],EAX\n  005416b4:  MOV dword ptr [ESP + 0x8],0xffffffff\n  005416bc:  MOV ESI,dword ptr [ESI + ECX*0x4 + 0x10]\n  005416c0:  PUSH 0x0\n  005416c2:  LEA EDX,[ESP + 0x2c]\n  005416c6:  PUSH 0x114\n  005416cb:  LEA EAX,[ESP + 0x10]\n  005416cf:  PUSH EDX\n  005416d0:  LEA ECX,[ESP + 0x24]\n  005416d4:  PUSH EAX\n  005416d5:  PUSH ECX\n  005416d6:  MOV dword ptr [ESP + 0x7c],0x1\n  005416de:  MOV dword ptr [ESP + 0x3c],ESI\n  005416e2:  CALL 0x00540440\n  005416e7:  ADD ESP,0x18\n  005416ea:  LEA ECX,[ESP + 0x8]\n  005416ee:  MOV dword ptr [ESP + 0x70],0xffffffff\n  005416f6:  CALL 0x00540fa0\n  005416fb:  MOV ECX,dword ptr [ESP + 0x68]\n  005416ff:  POP ESI\n  00541700:  MOV dword ptr FS:[0x0],ECX\n  00541707:  ADD ESP,0x70\n  0054170a:  RET",
+  "callers": [
+    {
+      "address": "0x00405c00",
+      "name": "FUN_00405c00"
+    }
+  ],
+  "pal3patch_info": {
+    "name": "UICursor_IRender",
+    "type": "method",
+    "source": "pal3.h"
+  }
+}

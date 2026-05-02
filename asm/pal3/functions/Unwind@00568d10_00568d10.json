@@ -1,0 +1,14 @@
+{
+  "address": "0x00568d10", 
+  "size_bytes": 12, 
+  "calling_convention": "unknown", 
+  "signature": "undefined Unwind@00568d10(void)", 
+  "callees": [], 
+  "global_refs": [], 
+  "has_custom_name": true, 
+  "decompiled_c": "\r\nvoid Unwind_00568d10(void)\r\n\r\n{\r\n  int unaff_EBP;\r\n  \r\n                    /* WARNING: Could not recover jumptable at 0x00568d16. Too many branches */\r\n                    /* WARNING: Treating indirect jump as call */\r\n  CPK::~CPK((CPK *)(*(int *)(unaff_EBP + -0x10) + 0x10));\r\n  return;\r\n}\r\n\r\n", 
+  "is_thunk": false, 
+  "name": "Unwind@00568d10", 
+  "assembly": "  00568d10:  MOV ECX,dword ptr [EBP + -0x10]\n  00568d13:  ADD ECX,0x10\n  00568d16:  JMP dword ptr [0x0056a42c]", 
+  "callers": []
+}

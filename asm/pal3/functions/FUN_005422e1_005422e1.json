@@ -1,0 +1,65 @@
+{
+  "address": "0x005422e1", 
+  "size_bytes": 142, 
+  "calling_convention": "unknown", 
+  "signature": "undefined FUN_005422e1(undefined4 param_1, undefined4 param_2, undefined4 param_3, undefined4 param_4, undefined4 param_5, undefined4 param_6)", 
+  "callees": [], 
+  "global_refs": [
+    {
+      "address": "0x00000018", 
+      "type": null, 
+      "name": "DAT_00000018"
+    }, 
+    {
+      "address": "0x00000008", 
+      "type": null, 
+      "name": "DAT_00000008"
+    }, 
+    {
+      "address": "0x0000000c", 
+      "type": null, 
+      "name": "DAT_0000000c"
+    }, 
+    {
+      "address": "0x00000004", 
+      "type": null, 
+      "name": "DAT_00000004"
+    }, 
+    {
+      "address": "0x00000010", 
+      "type": null, 
+      "name": "DAT_00000010"
+    }, 
+    {
+      "address": "0x00000014", 
+      "type": null, 
+      "name": "DAT_00000014"
+    }, 
+    {
+      "address": "0x00572afc", 
+      "type": null, 
+      "name": "DAT_00572afc"
+    }, 
+    {
+      "address": "0x00572af8", 
+      "type": null, 
+      "name": "DAT_00572af8"
+    }, 
+    {
+      "address": "0x-000000c", 
+      "type": null, 
+      "name": "DAT_-000000c"
+    }, 
+    {
+      "address": "0x-0000008", 
+      "type": null, 
+      "name": "DAT_-0000008"
+    }
+  ], 
+  "has_custom_name": false, 
+  "decompiled_c": "\r\n/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */\r\n\r\nvoid FUN_005422e1(float *param_1,float *param_2,float *param_3,float *param_4,float *param_5,\r\n                 float param_6)\r\n\r\n{\r\n  float fVar1;\r\n  float fVar2;\r\n  float fVar3;\r\n  float fVar4;\r\n  \r\n  fVar1 = param_6 * param_6;\r\n  fVar2 = param_6 * fVar1;\r\n  fVar4 = ((fVar2 + fVar2) - fVar1 * _DAT_00572afc) + _DAT_00572af8;\r\n  param_6 = (fVar2 - (fVar1 + fVar1)) + param_6;\r\n  fVar3 = fVar1 * _DAT_00572afc - (fVar2 + fVar2);\r\n  *param_1 = (fVar2 - fVar1) * *param_5 + fVar3 * *param_4 + param_6 * *param_3 + fVar4 * *param_2;\r\n  param_1[1] = fVar4 * param_2[1] +\r\n               param_6 * param_3[1] + fVar3 * param_4[1] + (fVar2 - fVar1) * param_5[1];\r\n  return;\r\n}\r\n\r\n", 
+  "is_thunk": false, 
+  "name": "FUN_005422e1", 
+  "assembly": "  005422e1:  PUSH EBP\n  005422e2:  MOV EBP,ESP\n  005422e4:  PUSH ECX\n  005422e5:  PUSH ECX\n  005422e6:  FLD dword ptr [EBP + 0x1c]\n  005422e9:  MOV ECX,dword ptr [EBP + 0xc]\n  005422ec:  FMUL dword ptr [EBP + 0x1c]\n  005422ef:  MOV EDX,dword ptr [EBP + 0x10]\n  005422f2:  FLD dword ptr [EBP + 0x1c]\n  005422f5:  MOV EAX,dword ptr [EBP + 0x8]\n  005422f8:  PUSH ESI\n  005422f9:  FMUL ST1\n  005422fb:  MOV ESI,dword ptr [EBP + 0x14]\n  005422fe:  PUSH EDI\n  005422ff:  MOV EDI,dword ptr [EBP + 0x18]\n  00542302:  FLD ST0\n  00542304:  FADD ST0,ST1\n  00542306:  FLD ST2\n  00542308:  FMUL dword ptr [0x00572afc]\n  0054230e:  FLD ST1\n  00542310:  FSUB ST0,ST1\n  00542312:  FADD dword ptr [0x00572af8]\n  00542318:  FSTP dword ptr [EBP + -0x8]\n  0054231b:  FLD ST3\n  0054231d:  FADD ST0,ST0\n  0054231f:  FSUBR ST0,ST3\n  00542321:  FADD dword ptr [EBP + 0x1c]\n  00542324:  FSTP dword ptr [EBP + -0x4]\n  00542327:  FSUB ST0,ST1\n  00542329:  FSTP dword ptr [EBP + 0x1c]\n  0054232c:  FSTP ST0\n  0054232e:  FSUBRP\n  00542330:  FLD dword ptr [EBP + -0x8]\n  00542333:  FMUL dword ptr [ECX]\n  00542335:  FLD dword ptr [EBP + -0x4]\n  00542338:  FMUL dword ptr [EDX]\n  0054233a:  FADDP\n  0054233c:  FLD dword ptr [EBP + 0x1c]\n  0054233f:  FMUL dword ptr [ESI]\n  00542341:  FADDP\n  00542343:  FLD ST1\n  00542345:  FMUL dword ptr [EDI]\n  00542347:  FADDP\n  00542349:  FSTP dword ptr [EAX]\n  0054234b:  FMUL dword ptr [EDI + 0x4]\n  0054234e:  POP EDI\n  0054234f:  FLD dword ptr [EBP + 0x1c]\n  00542352:  FMUL dword ptr [ESI + 0x4]\n  00542355:  POP ESI\n  00542356:  FADDP\n  00542358:  FLD dword ptr [EBP + -0x4]\n  0054235b:  FMUL dword ptr [EDX + 0x4]\n  0054235e:  FADDP\n  00542360:  FLD dword ptr [EBP + -0x8]\n  00542363:  FMUL dword ptr [ECX + 0x4]\n  00542366:  FADDP\n  00542368:  FSTP dword ptr [EAX + 0x4]\n  0054236b:  LEAVE\n  0054236c:  RET 0x18", 
+  "callers": []
+}

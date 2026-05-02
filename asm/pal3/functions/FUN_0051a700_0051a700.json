@@ -1,0 +1,105 @@
+{
+  "address": "0x0051a700", 
+  "size_bytes": 381, 
+  "calling_convention": "unknown", 
+  "signature": "undefined FUN_0051a700(void)", 
+  "callees": [
+    {
+      "address": "0x0051aa20", 
+      "name": "FUN_0051aa20"
+    }
+  ], 
+  "global_refs": [
+    {
+      "address": "0x005701fc", 
+      "type": null, 
+      "name": "PTR_s_ui\\combat\\control\\magiclist\\wate_005701fc"
+    }, 
+    {
+      "address": "0x-0000010", 
+      "type": null, 
+      "name": "DAT_-0000010"
+    }, 
+    {
+      "address": "0x005dfb38", 
+      "type": null, 
+      "name": "s_ui\\combat\\control\\magiclist\\wate_005dfb38"
+    }, 
+    {
+      "address": "0x-0000008", 
+      "type": null, 
+      "name": "DAT_-0000008"
+    }, 
+    {
+      "address": "0x-000000c", 
+      "type": null, 
+      "name": "DAT_-000000c"
+    }, 
+    {
+      "address": "0x-0000004", 
+      "type": null, 
+      "name": "DAT_-0000004"
+    }, 
+    {
+      "address": "0x00570200", 
+      "type": null, 
+      "name": "PTR_s_ui\\combat\\control\\magiclist\\fire_00570200"
+    }, 
+    {
+      "address": "0x005dfb14", 
+      "type": null, 
+      "name": "s_ui\\combat\\control\\magiclist\\fire_005dfb14"
+    }, 
+    {
+      "address": "0x00570204", 
+      "type": null, 
+      "name": "PTR_s_ui\\combat\\control\\magiclist\\thun_00570204"
+    }, 
+    {
+      "address": "0x005dfaf0", 
+      "type": null, 
+      "name": "s_ui\\combat\\control\\magiclist\\thun_005dfaf0"
+    }, 
+    {
+      "address": "0x00570208", 
+      "type": null, 
+      "name": "PTR_s_ui\\combat\\control\\magiclist\\wind_00570208"
+    }, 
+    {
+      "address": "0x005dfacc", 
+      "type": null, 
+      "name": "s_ui\\combat\\control\\magiclist\\wind_005dfacc"
+    }, 
+    {
+      "address": "0x0057020c", 
+      "type": null, 
+      "name": "PTR_s_ui\\combat\\control\\magiclist\\eart_0057020c"
+    }, 
+    {
+      "address": "0x005dfaa8", 
+      "type": null, 
+      "name": "s_ui\\combat\\control\\magiclist\\eart_005dfaa8"
+    }, 
+    {
+      "address": "0x00570210", 
+      "type": null, 
+      "name": "PTR_s_ui\\combat\\control\\magiclist\\doub_00570210"
+    }, 
+    {
+      "address": "0x005dfa84", 
+      "type": null, 
+      "name": "s_ui\\combat\\control\\magiclist\\doub_005dfa84"
+    }
+  ], 
+  "has_custom_name": false, 
+  "decompiled_c": "\r\nvoid __fastcall FUN_0051a700(int param_1)\r\n\r\n{\r\n  undefined *puStack_24;\r\n  undefined4 local_10;\r\n  undefined4 local_c;\r\n  undefined4 local_8;\r\n  undefined4 local_4;\r\n  \r\n  puStack_24 = PTR_s_ui_combat_control_magiclist_wate_005701fc;\r\n  local_10 = 0x28;\r\n  local_8 = 0x48;\r\n  local_c = 0x1b;\r\n  local_4 = 0x3b;\r\n  FUN_0051aa20((undefined4 *)(param_1 + 100),0xc0,&local_10);\r\n  puStack_24 = (undefined *)0x1;\r\n  (**(code **)**(undefined4 **)(param_1 + 100))();\r\n  local_c = 0x68;\r\n  local_10 = 0x1b;\r\n  local_8 = 0x3b;\r\n  FUN_0051aa20((undefined4 *)(param_1 + 0x68),0xc1,&stack0xffffffec,\r\n               PTR_s_ui_combat_control_magiclist_fire_00570200);\r\n  (**(code **)**(undefined4 **)(param_1 + 0x68))(1);\r\n  local_10 = 0x88;\r\n  local_c = 0x3b;\r\n  FUN_0051aa20((undefined4 *)(param_1 + 0x6c),0xc2,&stack0xffffffe8,\r\n               PTR_s_ui_combat_control_magiclist_thun_00570204);\r\n  (**(code **)**(undefined4 **)(param_1 + 0x6c))(1);\r\n  local_10 = 0x3b;\r\n  FUN_0051aa20((undefined4 *)(param_1 + 0x70),0xc3,&stack0xffffffe4,\r\n               PTR_s_ui_combat_control_magiclist_wind_00570208);\r\n  (**(code **)**(undefined4 **)(param_1 + 0x70))(1);\r\n  FUN_0051aa20((undefined4 *)(param_1 + 0x74),0xc4,&stack0xffffffe0,\r\n               PTR_s_ui_combat_control_magiclist_eart_0057020c);\r\n  (**(code **)**(undefined4 **)(param_1 + 0x74))(1);\r\n  puStack_24 = (undefined *)0xc8;\r\n  FUN_0051aa20((undefined4 *)(param_1 + 0x78),0xc5,&puStack_24,\r\n               PTR_s_ui_combat_control_magiclist_doub_00570210);\r\n  (**(code **)**(undefined4 **)(param_1 + 0x78))(1);\r\n  return;\r\n}\r\n\r\n", 
+  "is_thunk": false, 
+  "name": "FUN_0051a700", 
+  "assembly": "  0051a700:  SUB ESP,0x10\n  0051a703:  MOV EAX,[0x005701fc]\n  0051a708:  PUSH EBX\n  0051a709:  PUSH EBP\n  0051a70a:  PUSH ESI\n  0051a70b:  MOV ESI,ECX\n  0051a70d:  PUSH EDI\n  0051a70e:  LEA ECX,[ESP + 0x10]\n  0051a712:  PUSH EAX\n  0051a713:  LEA EDI,[ESI + 0x64]\n  0051a716:  PUSH ECX\n  0051a717:  MOV EBP,0x1b\n  0051a71c:  MOV EBX,0x3b\n  0051a721:  PUSH 0xc0\n  0051a726:  PUSH EDI\n  0051a727:  MOV ECX,ESI\n  0051a729:  MOV dword ptr [ESP + 0x20],0x28\n  0051a731:  MOV dword ptr [ESP + 0x28],0x48\n  0051a739:  MOV dword ptr [ESP + 0x24],EBP\n  0051a73d:  MOV dword ptr [ESP + 0x2c],EBX\n  0051a741:  CALL 0x0051aa20\n  0051a746:  MOV ECX,dword ptr [EDI]\n  0051a748:  PUSH 0x1\n  0051a74a:  MOV EDX,dword ptr [ECX]\n  0051a74c:  CALL dword ptr [EDX]\n  0051a74e:  MOV EAX,[0x00570200]\n  0051a753:  LEA ECX,[ESP + 0x10]\n  0051a757:  PUSH EAX\n  0051a758:  LEA EDI,[ESI + 0x68]\n  0051a75b:  PUSH ECX\n  0051a75c:  PUSH 0xc1\n  0051a761:  PUSH EDI\n  0051a762:  MOV ECX,ESI\n  0051a764:  MOV dword ptr [ESP + 0x20],0x48\n  0051a76c:  MOV dword ptr [ESP + 0x28],0x68\n  0051a774:  MOV dword ptr [ESP + 0x24],EBP\n  0051a778:  MOV dword ptr [ESP + 0x2c],EBX\n  0051a77c:  CALL 0x0051aa20\n  0051a781:  MOV ECX,dword ptr [EDI]\n  0051a783:  PUSH 0x1\n  0051a785:  MOV EDX,dword ptr [ECX]\n  0051a787:  CALL dword ptr [EDX]\n  0051a789:  MOV EAX,[0x00570204]\n  0051a78e:  LEA ECX,[ESP + 0x10]\n  0051a792:  PUSH EAX\n  0051a793:  LEA EDI,[ESI + 0x6c]\n  0051a796:  PUSH ECX\n  0051a797:  PUSH 0xc2\n  0051a79c:  PUSH EDI\n  0051a79d:  MOV ECX,ESI\n  0051a79f:  MOV dword ptr [ESP + 0x20],0x68\n  0051a7a7:  MOV dword ptr [ESP + 0x28],0x88\n  0051a7af:  MOV dword ptr [ESP + 0x24],EBP\n  0051a7b3:  MOV dword ptr [ESP + 0x2c],EBX\n  0051a7b7:  CALL 0x0051aa20\n  0051a7bc:  MOV ECX,dword ptr [EDI]\n  0051a7be:  PUSH 0x1\n  0051a7c0:  MOV EDX,dword ptr [ECX]\n  0051a7c2:  CALL dword ptr [EDX]\n  0051a7c4:  MOV EAX,[0x00570208]\n  0051a7c9:  LEA ECX,[ESP + 0x10]\n  0051a7cd:  PUSH EAX\n  0051a7ce:  LEA EDI,[ESI + 0x70]\n  0051a7d1:  PUSH ECX\n  0051a7d2:  PUSH 0xc3\n  0051a7d7:  PUSH EDI\n  0051a7d8:  MOV ECX,ESI\n  0051a7da:  MOV dword ptr [ESP + 0x20],0x88\n  0051a7e2:  MOV dword ptr [ESP + 0x28],0xa8\n  0051a7ea:  MOV dword ptr [ESP + 0x24],EBP\n  0051a7ee:  MOV dword ptr [ESP + 0x2c],EBX\n  0051a7f2:  CALL 0x0051aa20\n  0051a7f7:  MOV ECX,dword ptr [EDI]\n  0051a7f9:  PUSH 0x1\n  0051a7fb:  MOV EDX,dword ptr [ECX]\n  0051a7fd:  CALL dword ptr [EDX]\n  0051a7ff:  MOV EAX,[0x0057020c]\n  0051a804:  MOV dword ptr [ESP + 0x10],0xa8\n  0051a80c:  MOV dword ptr [ESP + 0x18],0xc8\n  0051a814:  MOV dword ptr [ESP + 0x14],EBP\n  0051a818:  MOV dword ptr [ESP + 0x1c],EBX\n  0051a81c:  LEA EDI,[ESI + 0x74]\n  0051a81f:  LEA ECX,[ESP + 0x10]\n  0051a823:  PUSH EAX\n  0051a824:  PUSH ECX\n  0051a825:  PUSH 0xc4\n  0051a82a:  PUSH EDI\n  0051a82b:  MOV ECX,ESI\n  0051a82d:  CALL 0x0051aa20\n  0051a832:  MOV ECX,dword ptr [EDI]\n  0051a834:  PUSH 0x1\n  0051a836:  MOV EDX,dword ptr [ECX]\n  0051a838:  CALL dword ptr [EDX]\n  0051a83a:  MOV EAX,[0x00570210]\n  0051a83f:  LEA ECX,[ESP + 0x10]\n  0051a843:  PUSH EAX\n  0051a844:  LEA EDI,[ESI + 0x78]\n  0051a847:  PUSH ECX\n  0051a848:  PUSH 0xc5\n  0051a84d:  PUSH EDI\n  0051a84e:  MOV ECX,ESI\n  0051a850:  MOV dword ptr [ESP + 0x20],0xc8\n  0051a858:  MOV dword ptr [ESP + 0x28],0xe8\n  0051a860:  MOV dword ptr [ESP + 0x24],EBP\n  0051a864:  MOV dword ptr [ESP + 0x2c],EBX\n  0051a868:  CALL 0x0051aa20\n  0051a86d:  MOV ECX,dword ptr [EDI]\n  0051a86f:  PUSH 0x1\n  0051a871:  MOV EDX,dword ptr [ECX]\n  0051a873:  CALL dword ptr [EDX]\n  0051a875:  POP EDI\n  0051a876:  POP ESI\n  0051a877:  POP EBP\n  0051a878:  POP EBX\n  0051a879:  ADD ESP,0x10\n  0051a87c:  RET", 
+  "callers": [
+    {
+      "address": "0x0051a430", 
+      "name": "FUN_0051a430"
+    }
+  ]
+}

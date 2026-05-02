@@ -1,0 +1,49 @@
+{
+  "address": "0x00517ac0", 
+  "size_bytes": 104, 
+  "calling_convention": "unknown", 
+  "signature": "undefined FUN_00517ac0(void)", 
+  "callees": [
+    {
+      "address": "0x0051cd90", 
+      "name": "FUN_0051cd90"
+    }, 
+    {
+      "address": "0x00519bd0", 
+      "name": "FUN_00519bd0"
+    }
+  ], 
+  "global_refs": [
+    {
+      "address": "0x-0000010", 
+      "type": null, 
+      "name": "DAT_-0000010"
+    }, 
+    {
+      "address": "0x-000000c", 
+      "type": null, 
+      "name": "DAT_-000000c"
+    }, 
+    {
+      "address": "0x-0000008", 
+      "type": null, 
+      "name": "DAT_-0000008"
+    }, 
+    {
+      "address": "0x-0000004", 
+      "type": null, 
+      "name": "DAT_-0000004"
+    }
+  ], 
+  "has_custom_name": false, 
+  "decompiled_c": "\r\nundefined __fastcall FUN_00517ac0(int param_1)\r\n\r\n{\r\n  char cVar1;\r\n  undefined4 local_10;\r\n  undefined4 local_c;\r\n  undefined4 local_8;\r\n  undefined4 local_4;\r\n  \r\n  cVar1 = FUN_0051cd90((undefined4 *)(param_1 + 0x460));\r\n  if (cVar1 == '\\0') {\r\n    return 0;\r\n  }\r\n  local_10 = 6;\r\n  local_8 = 0xff;\r\n  local_c = 0x116;\r\n  local_4 = 0x1e4;\r\n  FUN_00519bd0(&local_10,param_1);\r\n  (**(code **)**(undefined4 **)(param_1 + 0x460))(0);\r\n  return 1;\r\n}\r\n\r\n", 
+  "is_thunk": false, 
+  "name": "FUN_00517ac0", 
+  "assembly": "  00517ac0:  SUB ESP,0x10\n  00517ac3:  PUSH ESI\n  00517ac4:  PUSH EDI\n  00517ac5:  MOV EDI,ECX\n  00517ac7:  LEA ESI,[EDI + 0x460]\n  00517acd:  PUSH ESI\n  00517ace:  CALL 0x0051cd90\n  00517ad3:  TEST AL,AL\n  00517ad5:  JNZ 0x00517add\n  00517ad7:  POP EDI\n  00517ad8:  POP ESI\n  00517ad9:  ADD ESP,0x10\n  00517adc:  RET\n  00517add:  XOR EAX,EAX\n  00517adf:  LEA ECX,[ESP + 0x8]\n  00517ae3:  MOV dword ptr [ESP + 0xc],EAX\n  00517ae7:  PUSH EDI\n  00517ae8:  MOV dword ptr [ESP + 0x14],EAX\n  00517aec:  PUSH ECX\n  00517aed:  MOV ECX,dword ptr [ESI]\n  00517aef:  MOV dword ptr [ESP + 0x1c],EAX\n  00517af3:  MOV dword ptr [ESP + 0x10],0x6\n  00517afb:  MOV dword ptr [ESP + 0x18],0xff\n  00517b03:  MOV dword ptr [ESP + 0x14],0x116\n  00517b0b:  MOV dword ptr [ESP + 0x1c],0x1e4\n  00517b13:  CALL 0x00519bd0\n  00517b18:  MOV ECX,dword ptr [ESI]\n  00517b1a:  PUSH 0x0\n  00517b1c:  MOV EDX,dword ptr [ECX]\n  00517b1e:  CALL dword ptr [EDX]\n  00517b20:  POP EDI\n  00517b21:  MOV AL,0x1\n  00517b23:  POP ESI\n  00517b24:  ADD ESP,0x10\n  00517b27:  RET", 
+  "callers": [
+    {
+      "address": "0x005163d0", 
+      "name": "FUN_005163d0"
+    }
+  ]
+}

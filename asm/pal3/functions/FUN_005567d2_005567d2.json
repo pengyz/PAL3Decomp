@@ -1,0 +1,50 @@
+{
+  "address": "0x005567d2", 
+  "size_bytes": 39, 
+  "calling_convention": "unknown", 
+  "signature": "undefined FUN_005567d2(undefined4 param_1, undefined4 param_2, undefined4 param_3, undefined4 param_4)", 
+  "callees": [
+    {
+      "address": "0x00556555", 
+      "name": "FUN_00556555"
+    }
+  ], 
+  "global_refs": [
+    {
+      "address": "0x00000010", 
+      "type": null, 
+      "name": "DAT_00000010"
+    }, 
+    {
+      "address": "0x01895330", 
+      "type": null, 
+      "name": "DAT_01895330"
+    }, 
+    {
+      "address": "0x0000000c", 
+      "type": null, 
+      "name": "DAT_0000000c"
+    }, 
+    {
+      "address": "0x00000008", 
+      "type": null, 
+      "name": "DAT_00000008"
+    }, 
+    {
+      "address": "0x00000004", 
+      "type": null, 
+      "name": "DAT_00000004"
+    }
+  ], 
+  "has_custom_name": false, 
+  "decompiled_c": "\r\nvoid FUN_005567d2(undefined4 param_1,undefined4 param_2,undefined4 param_3,undefined4 param_4)\r\n\r\n{\r\n  DAT_01895330 = 1;\r\n  FUN_00556555(param_1,param_2,param_3,param_4);\r\n  DAT_01895330 = 0;\r\n  return;\r\n}\r\n\r\n", 
+  "is_thunk": false, 
+  "name": "FUN_005567d2", 
+  "assembly": "  005567d2:  PUSH dword ptr [ESP + 0x10]\n  005567d6:  MOV byte ptr [0x01895330],0x1\n  005567dd:  PUSH dword ptr [ESP + 0x10]\n  005567e1:  PUSH dword ptr [ESP + 0x10]\n  005567e5:  PUSH dword ptr [ESP + 0x10]\n  005567e9:  CALL 0x00556555\n  005567ee:  AND byte ptr [0x01895330],0x0\n  005567f5:  ADD ESP,0x10\n  005567f8:  RET", 
+  "callers": [
+    {
+      "address": "0x00556737", 
+      "name": "FUN_00556737"
+    }
+  ]
+}

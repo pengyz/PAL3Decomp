@@ -1,0 +1,73 @@
+{
+  "address": "0x004f70a0", 
+  "size_bytes": 127, 
+  "calling_convention": "unknown", 
+  "signature": "undefined FUN_004f70a0(undefined4 param_1)", 
+  "callees": [], 
+  "global_refs": [
+    {
+      "address": "0x00000004", 
+      "type": null, 
+      "name": "DAT_00000004"
+    }, 
+    {
+      "address": "0x004f7120", 
+      "type": null, 
+      "name": "switchdataD_004f7120"
+    }, 
+    {
+      "address": "0x00bfdb73", 
+      "type": null, 
+      "name": "DAT_00bfdb73"
+    }, 
+    {
+      "address": "0x00bfdb74", 
+      "type": null, 
+      "name": "DAT_00bfdb74"
+    }, 
+    {
+      "address": "0x00bfdb71", 
+      "type": null, 
+      "name": "DAT_00bfdb71"
+    }, 
+    {
+      "address": "0x00bfdb72", 
+      "type": null, 
+      "name": "DAT_00bfdb72"
+    }, 
+    {
+      "address": "0x00bfdb75", 
+      "type": null, 
+      "name": "DAT_00bfdb75"
+    }, 
+    {
+      "address": "0x00bfdb77", 
+      "type": null, 
+      "name": "DAT_00bfdb77"
+    }, 
+    {
+      "address": "0x00bfdb76", 
+      "type": null, 
+      "name": "DAT_00bfdb76"
+    }
+  ], 
+  "has_custom_name": false, 
+  "decompiled_c": "\r\nuint FUN_004f70a0(int param_1)\r\n\r\n{\r\n  uint uVar1;\r\n  undefined3 uVar2;\r\n  \r\n  uVar1 = *(int *)(param_1 + 4) - 0x17e7;\r\n  uVar2 = (undefined3)(uVar1 >> 8);\r\n  switch(uVar1) {\r\n  case 0:\r\n    uVar1 = CONCAT31(uVar2,DAT_00bfdb73);\r\n    if (DAT_00bfdb73 != '\\0') {\r\n      return CONCAT31(uVar2,1);\r\n    }\r\n    break;\r\n  case 1:\r\n    uVar1 = CONCAT31(uVar2,DAT_00bfdb74);\r\n    if (DAT_00bfdb74 != '\\0') {\r\n      return CONCAT31(uVar2,1);\r\n    }\r\n    break;\r\n  case 2:\r\n    uVar1 = CONCAT31(uVar2,DAT_00bfdb71);\r\n    if (DAT_00bfdb71 != '\\0') {\r\n      return CONCAT31(uVar2,1);\r\n    }\r\n    break;\r\n  case 3:\r\n    uVar1 = CONCAT31(uVar2,DAT_00bfdb72);\r\n    if (DAT_00bfdb72 != '\\0') {\r\n      return CONCAT31(uVar2,1);\r\n    }\r\n    break;\r\n  case 4:\r\n    uVar1 = CONCAT31(uVar2,DAT_00bfdb75);\r\n    if (DAT_00bfdb75 != '\\0') {\r\n      return CONCAT31(uVar2,1);\r\n    }\r\n    break;\r\n  case 5:\r\n    uVar1 = CONCAT31(uVar2,DAT_00bfdb77);\r\n    if (DAT_00bfdb77 != '\\0') {\r\n      return CONCAT31(uVar2,1);\r\n    }\r\n    break;\r\n  case 6:\r\n    uVar1 = CONCAT31(uVar2,DAT_00bfdb76);\r\n    if (DAT_00bfdb76 != '\\0') {\r\n      return CONCAT31(uVar2,1);\r\n    }\r\n  }\r\n  return uVar1 & 0xffffff00;\r\n}\r\n\r\n", 
+  "is_thunk": false, 
+  "name": "FUN_004f70a0", 
+  "assembly": "  004f70a0:  MOV EAX,dword ptr [ESP + 0x4]\n  004f70a4:  MOV EAX,dword ptr [EAX + 0x4]\n  004f70a7:  ADD EAX,0xffffe819\n  004f70ac:  CMP EAX,0x6\n  004f70af:  JA 0x004f711a\n  004f70b1:  JMP dword ptr [EAX*0x4 + 0x4f7120]\n  004f70b8:  MOV AL,[0x00bfdb73]\n  004f70bd:  TEST AL,AL\n  004f70bf:  JBE 0x004f711a\n  004f70c1:  MOV AL,0x1\n  004f70c3:  RET 0x4\n  004f70c6:  MOV AL,[0x00bfdb74]\n  004f70cb:  TEST AL,AL\n  004f70cd:  JBE 0x004f711a\n  004f70cf:  MOV AL,0x1\n  004f70d1:  RET 0x4\n  004f70d4:  MOV AL,[0x00bfdb71]\n  004f70d9:  TEST AL,AL\n  004f70db:  JBE 0x004f711a\n  004f70dd:  MOV AL,0x1\n  004f70df:  RET 0x4\n  004f70e2:  MOV AL,[0x00bfdb72]\n  004f70e7:  TEST AL,AL\n  004f70e9:  JBE 0x004f711a\n  004f70eb:  MOV AL,0x1\n  004f70ed:  RET 0x4\n  004f70f0:  MOV AL,[0x00bfdb75]\n  004f70f5:  TEST AL,AL\n  004f70f7:  JBE 0x004f711a\n  004f70f9:  MOV AL,0x1\n  004f70fb:  RET 0x4\n  004f70fe:  MOV AL,[0x00bfdb77]\n  004f7103:  TEST AL,AL\n  004f7105:  JBE 0x004f711a\n  004f7107:  MOV AL,0x1\n  004f7109:  RET 0x4\n  004f710c:  MOV AL,[0x00bfdb76]\n  004f7111:  TEST AL,AL\n  004f7113:  JBE 0x004f711a\n  004f7115:  MOV AL,0x1\n  004f7117:  RET 0x4\n  004f711a:  XOR AL,AL\n  004f711c:  RET 0x4", 
+  "callers": [
+    {
+      "address": "0x004f7500", 
+      "name": "FUN_004f7500"
+    }, 
+    {
+      "address": "0x004f6fb0", 
+      "name": "FUN_004f6fb0"
+    }, 
+    {
+      "address": "0x004f95f0", 
+      "name": "FUN_004f95f0"
+    }
+  ]
+}

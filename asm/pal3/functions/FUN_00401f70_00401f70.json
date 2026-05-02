@@ -1,0 +1,30 @@
+{
+  "address": "0x00401f70", 
+  "size_bytes": 25, 
+  "calling_convention": "unknown", 
+  "signature": "undefined FUN_00401f70(void)", 
+  "callees": [], 
+  "global_refs": [
+    {
+      "address": "0x0056a598", 
+      "type": null, 
+      "name": "PTR_g_pVFileSys_0056a598"
+    }, 
+    {
+      "address": "0x0060bdc8", 
+      "type": null, 
+      "name": "DAT_0060bdc8"
+    }
+  ], 
+  "has_custom_name": false, 
+  "decompiled_c": "\r\nvoid __fastcall FUN_00401f70(undefined4 *param_1)\r\n\r\n{\r\n  *param_1 = *(undefined4 *)g_pVFileSys_exref;\r\n  *(undefined **)g_pVFileSys_exref = &DAT_0060bdc8;\r\n  return;\r\n}\r\n\r\n", 
+  "is_thunk": false, 
+  "name": "FUN_00401f70", 
+  "assembly": "  00401f70:  MOV EAX,ECX\n  00401f72:  MOV ECX,dword ptr [0x0056a598]\n  00401f78:  MOV EDX,dword ptr [ECX]\n  00401f7a:  MOV dword ptr [EAX],EDX\n  00401f7c:  MOV ECX,dword ptr [0x0056a598]\n  00401f82:  MOV dword ptr [ECX],0x60bdc8\n  00401f88:  RET", 
+  "callers": [
+    {
+      "address": "0x00442540", 
+      "name": "FUN_00442540"
+    }
+  ]
+}

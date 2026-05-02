@@ -1,0 +1,25 @@
+{
+  "address": "0x00553485", 
+  "size_bytes": 9, 
+  "calling_convention": "unknown", 
+  "signature": "undefined __NLG_Notify1(void)", 
+  "callees": [], 
+  "global_refs": [
+    {
+      "address": "0x0060ac2c", 
+      "type": null, 
+      "name": "DAT_0060ac2c"
+    }
+  ], 
+  "has_custom_name": true, 
+  "decompiled_c": "\r\n/* Library Function - Single Match\r\n    __NLG_Notify1\r\n   \r\n   Libraries: Visual Studio 2017 Debug, Visual Studio 2017 Release, Visual Studio 2019 Debug, Visual\r\n   Studio 2019 Release */\r\n\r\nvoid __fastcall __NLG_Notify1(undefined4 param_1)\r\n\r\n{\r\n  undefined4 in_EAX;\r\n  undefined4 unaff_EBP;\r\n  \r\n  DAT_0060ac34 = param_1;\r\n  DAT_0060ac30 = in_EAX;\r\n  DAT_0060ac38 = unaff_EBP;\r\n  return;\r\n}\r\n\r\n", 
+  "is_thunk": false, 
+  "name": "__NLG_Notify1", 
+  "assembly": "  00553485:  PUSH EBX\n  00553486:  PUSH ECX\n  00553487:  MOV EBX,0x60ac2c\n  0055348c:  JMP 0x00553498", 
+  "callers": [
+    {
+      "address": "0x00557c00", 
+      "name": "__CallSettingFrame@12"
+    }
+  ]
+}

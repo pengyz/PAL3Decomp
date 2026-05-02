@@ -1,0 +1,84 @@
+{
+  "address": "0x00529790", 
+  "size_bytes": 213, 
+  "calling_convention": "unknown", 
+  "signature": "undefined FUN_00529790(void)", 
+  "callees": [
+    {
+      "address": "0x005415f0", 
+      "name": "FUN_005415f0"
+    }, 
+    {
+      "address": "0x00541710", 
+      "name": "FUN_00541710"
+    }, 
+    {
+      "address": "0x00445010", 
+      "name": "FUN_00445010"
+    }, 
+    {
+      "address": "0x00442390", 
+      "name": "FUN_00442390"
+    }, 
+    {
+      "address": "0x00444ac0", 
+      "name": "FUN_00444ac0"
+    }, 
+    {
+      "address": "0x00553549", 
+      "name": "FUN_00553549"
+    }, 
+    {
+      "address": "0x0043dd10", 
+      "name": "FUN_0043dd10"
+    }
+  ], 
+  "global_refs": [
+    {
+      "address": "0x005682d3", 
+      "type": null, 
+      "name": "LAB_005682d3"
+    }, 
+    {
+      "address": "0xffdff000", 
+      "type": null, 
+      "name": "ExceptionList"
+    }, 
+    {
+      "address": "0x-0000010", 
+      "type": null, 
+      "name": "DAT_-0000010"
+    }, 
+    {
+      "address": "0x0057076c", 
+      "type": null, 
+      "name": "PTR_FUN_0057076c"
+    }, 
+    {
+      "address": "0x-0000004", 
+      "type": null, 
+      "name": "DAT_-0000004"
+    }, 
+    {
+      "address": "0x00442e80", 
+      "type": null, 
+      "name": "FUN_00442e80"
+    }, 
+    {
+      "address": "0x-000000c", 
+      "type": null, 
+      "name": "DAT_-000000c"
+    }
+  ], 
+  "has_custom_name": false, 
+  "decompiled_c": "\r\nvoid __fastcall FUN_00529790(undefined4 *param_1)\r\n\r\n{\r\n  undefined4 uVar1;\r\n  void *local_c;\r\n  undefined *puStack_8;\r\n  int local_4;\r\n  \r\n  puStack_8 = &LAB_005682d3;\r\n  local_c = ExceptionList;\r\n  ExceptionList = &local_c;\r\n  *param_1 = &PTR_FUN_0057076c;\r\n  uVar1 = 1;\r\n  local_4 = 9;\r\n  FUN_005415f0(1);\r\n  FUN_00541710(uVar1);\r\n  local_4._0_1_ = 8;\r\n  FUN_00445010();\r\n  local_4._0_1_ = 7;\r\n  FUN_00442390();\r\n  local_4._0_1_ = 6;\r\n  FUN_00442390();\r\n  local_4._0_1_ = 5;\r\n  FUN_00442390();\r\n  local_4._0_1_ = 2;\r\n  FUN_00444ac0();\r\n  local_4._0_1_ = 1;\r\n  FUN_00553549(param_1 + 0x80,0xb8,3,FUN_00442e80);\r\n  local_4 = (uint)local_4._1_3_ << 8;\r\n  FUN_00442390();\r\n  local_4 = 0xffffffff;\r\n  FUN_0043dd10();\r\n  ExceptionList = local_c;\r\n  return;\r\n}\r\n\r\n", 
+  "is_thunk": false, 
+  "name": "FUN_00529790", 
+  "assembly": "  00529790:  PUSH -0x1\n  00529792:  PUSH 0x5682d3\n  00529797:  MOV EAX,FS:[0x0]\n  0052979d:  PUSH EAX\n  0052979e:  MOV dword ptr FS:[0x0],ESP\n  005297a5:  PUSH ECX\n  005297a6:  PUSH ESI\n  005297a7:  MOV ESI,ECX\n  005297a9:  MOV dword ptr [ESP + 0x4],ESI\n  005297ad:  MOV dword ptr [ESI],0x57076c\n  005297b3:  PUSH 0x1\n  005297b5:  MOV dword ptr [ESP + 0x14],0x9\n  005297bd:  CALL 0x005415f0\n  005297c2:  MOV ECX,EAX\n  005297c4:  CALL 0x00541710\n  005297c9:  LEA ECX,[ESI + 0x7c8]\n  005297cf:  MOV byte ptr [ESP + 0x10],0x8\n  005297d4:  CALL 0x00445010\n  005297d9:  LEA ECX,[ESI + 0x730]\n  005297df:  MOV byte ptr [ESP + 0x10],0x7\n  005297e4:  CALL 0x00442390\n  005297e9:  LEA ECX,[ESI + 0x59c]\n  005297ef:  MOV byte ptr [ESP + 0x10],0x6\n  005297f4:  CALL 0x00442390\n  005297f9:  LEA ECX,[ESI + 0x504]\n  005297ff:  MOV byte ptr [ESP + 0x10],0x5\n  00529804:  CALL 0x00442390\n  00529809:  LEA ECX,[ESI + 0x428]\n  0052980f:  MOV byte ptr [ESP + 0x10],0x2\n  00529814:  CALL 0x00444ac0\n  00529819:  PUSH 0x442e80\n  0052981e:  PUSH 0x3\n  00529820:  LEA EAX,[ESI + 0x200]\n  00529826:  PUSH 0xb8\n  0052982b:  PUSH EAX\n  0052982c:  MOV byte ptr [ESP + 0x20],0x1\n  00529831:  CALL 0x00553549\n  00529836:  LEA ECX,[ESI + 0x168]\n  0052983c:  MOV byte ptr [ESP + 0x10],0x0\n  00529841:  CALL 0x00442390\n  00529846:  MOV ECX,ESI\n  00529848:  MOV dword ptr [ESP + 0x10],0xffffffff\n  00529850:  CALL 0x0043dd10\n  00529855:  MOV ECX,dword ptr [ESP + 0x8]\n  00529859:  POP ESI\n  0052985a:  MOV dword ptr FS:[0x0],ECX\n  00529861:  ADD ESP,0x10\n  00529864:  RET", 
+  "callers": [
+    {
+      "address": "0x00529770", 
+      "name": "FUN_00529770"
+    }
+  ]
+}

@@ -1,0 +1,84 @@
+{
+  "address": "0x00408e90", 
+  "size_bytes": 131, 
+  "calling_convention": "unknown", 
+  "signature": "undefined FUN_00408e90(undefined4 param_1, undefined4 param_2)", 
+  "callees": [], 
+  "global_refs": [
+    {
+      "address": "0x00000008", 
+      "type": null, 
+      "name": "DAT_00000008"
+    }, 
+    {
+      "address": "0x00000004", 
+      "type": null, 
+      "name": "DAT_00000004"
+    }, 
+    {
+      "address": "0x-0000008", 
+      "type": null, 
+      "name": "DAT_-0000008"
+    }, 
+    {
+      "address": "0x00408f14", 
+      "type": null, 
+      "name": "switchdataD_00408f14"
+    }, 
+    {
+      "address": "0x0056a754", 
+      "type": null, 
+      "name": "DAT_0056a754"
+    }, 
+    {
+      "address": "0x0056a750", 
+      "type": null, 
+      "name": "DAT_0056a750"
+    }, 
+    {
+      "address": "0x0056a6c8", 
+      "type": null, 
+      "name": "DAT_0056a6c8"
+    }, 
+    {
+      "address": "0x0056a74c", 
+      "type": null, 
+      "name": "DAT_0056a74c"
+    }, 
+    {
+      "address": "0x0056a630", 
+      "type": null, 
+      "name": "DAT_0056a630"
+    }, 
+    {
+      "address": "0x0056a748", 
+      "type": null, 
+      "name": "DAT_0056a748"
+    }, 
+    {
+      "address": "0x0056a744", 
+      "type": null, 
+      "name": "DAT_0056a744"
+    }, 
+    {
+      "address": "0x0056a740", 
+      "type": null, 
+      "name": "DAT_0056a740"
+    }
+  ], 
+  "has_custom_name": false, 
+  "decompiled_c": "\r\n/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */\r\n\r\nint FUN_00408e90(undefined4 param_1,int param_2)\r\n\r\n{\r\n  float fVar1;\r\n  float local_8;\r\n  \r\n  fVar1 = (float)param_2;\r\n  local_8 = 0.0;\r\n  switch(param_1) {\r\n  case 0:\r\n    local_8 = fVar1 * _DAT_0056a754 + _DAT_0056a750;\r\n    break;\r\n  case 1:\r\n    local_8 = fVar1 * _DAT_0056a6c8 + _DAT_0056a74c;\r\n    break;\r\n  case 2:\r\n    local_8 = fVar1 * _DAT_0056a754 + _DAT_0056a630;\r\n    break;\r\n  case 3:\r\n    local_8 = fVar1 * _DAT_0056a6c8 + _DAT_0056a748;\r\n    break;\r\n  case 4:\r\n    local_8 = fVar1 * _DAT_0056a744 + _DAT_0056a740;\r\n  }\r\n  return (int)ROUND(local_8);\r\n}\r\n\r\n", 
+  "is_thunk": false, 
+  "name": "FUN_00408e90", 
+  "assembly": "  00408e90:  PUSH EBP\n  00408e91:  MOV EBP,ESP\n  00408e93:  PUSH ECX\n  00408e94:  FILD dword ptr [EBP + 0xc]\n  00408e97:  MOV EAX,dword ptr [EBP + 0x8]\n  00408e9a:  MOV dword ptr [EBP + -0x4],0x0\n  00408ea1:  CMP EAX,0x4\n  00408ea4:  FSTP dword ptr [EBP + 0xc]\n  00408ea7:  JA 0x00408f06\n  00408ea9:  JMP dword ptr [EAX*0x4 + 0x408f14]\n  00408eb0:  FLD dword ptr [EBP + 0xc]\n  00408eb3:  FMUL dword ptr [0x0056a754]\n  00408eb9:  FADD dword ptr [0x0056a750]\n  00408ebf:  JMP 0x00408f03\n  00408ec1:  FLD dword ptr [EBP + 0xc]\n  00408ec4:  FMUL dword ptr [0x0056a6c8]\n  00408eca:  FADD dword ptr [0x0056a74c]\n  00408ed0:  JMP 0x00408f03\n  00408ed2:  FLD dword ptr [EBP + 0xc]\n  00408ed5:  FMUL dword ptr [0x0056a754]\n  00408edb:  FADD dword ptr [0x0056a630]\n  00408ee1:  JMP 0x00408f03\n  00408ee3:  FLD dword ptr [EBP + 0xc]\n  00408ee6:  FMUL dword ptr [0x0056a6c8]\n  00408eec:  FADD dword ptr [0x0056a748]\n  00408ef2:  JMP 0x00408f03\n  00408ef4:  FLD dword ptr [EBP + 0xc]\n  00408ef7:  FMUL dword ptr [0x0056a744]\n  00408efd:  FADD dword ptr [0x0056a740]\n  00408f03:  FSTP dword ptr [EBP + -0x4]\n  00408f06:  FLD dword ptr [EBP + -0x4]\n  00408f09:  FISTP dword ptr [EBP + 0xc]\n  00408f0c:  MOV EAX,dword ptr [EBP + 0xc]\n  00408f0f:  MOV ESP,EBP\n  00408f11:  POP EBP\n  00408f12:  RET", 
+  "callers": [
+    {
+      "address": "0x0049cf80", 
+      "name": "FUN_0049cf80"
+    }, 
+    {
+      "address": "0x00408fd0", 
+      "name": "FUN_00408fd0"
+    }
+  ]
+}

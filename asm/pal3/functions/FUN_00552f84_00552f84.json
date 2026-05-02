@@ -1,0 +1,38 @@
+{
+  "address": "0x00552f84", 
+  "size_bytes": 23, 
+  "calling_convention": "unknown", 
+  "signature": "undefined FUN_00552f84(void)", 
+  "callees": [
+    {
+      "address": "0x00552f9c", 
+      "name": "FUN_00552f9c"
+    }, 
+    {
+      "address": "0x0055642e", 
+      "name": "FUN_0055642e"
+    }, 
+    {
+      "address": "0x005563de", 
+      "name": "FUN_005563de"
+    }
+  ], 
+  "global_refs": [
+    {
+      "address": "0x01895310", 
+      "type": null, 
+      "name": "DAT_01895310"
+    }
+  ], 
+  "has_custom_name": false, 
+  "decompiled_c": "\r\nvoid FUN_00552f84(void)\r\n\r\n{\r\n  FUN_00552f9c();\r\n  DAT_01895310 = FUN_0055642e();\r\n  FUN_005563de();\r\n  return;\r\n}\r\n\r\n", 
+  "is_thunk": false, 
+  "name": "FUN_00552f84", 
+  "assembly": "  00552f84:  CALL 0x00552f9c\n  00552f89:  CALL 0x0055642e\n  00552f8e:  MOV [0x01895310],EAX\n  00552f93:  CALL 0x005563de\n  00552f98:  FNCLEX\n  00552f9a:  RET", 
+  "callers": [
+    {
+      "address": "0x005569b2", 
+      "name": "FUN_005569b2"
+    }
+  ]
+}

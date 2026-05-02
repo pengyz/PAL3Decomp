@@ -1,0 +1,30 @@
+{
+  "address": "0x00557de8", 
+  "size_bytes": 43, 
+  "calling_convention": "__cdecl", 
+  "signature": "void __freebuf(FILE * _File)", 
+  "callees": [
+    {
+      "address": "0x00552f55", 
+      "name": "FUN_00552f55"
+    }
+  ], 
+  "global_refs": [
+    {
+      "address": "0x00000004", 
+      "type": null, 
+      "name": "DAT_00000004"
+    }
+  ], 
+  "has_custom_name": true, 
+  "decompiled_c": "\r\n/* Library Function - Single Match\r\n    __freebuf\r\n   \r\n   Library: Visual Studio 2003 Release */\r\n\r\nvoid __cdecl __freebuf(FILE *_File)\r\n\r\n{\r\n  if (((_File->_flag & 0x83U) != 0) && ((_File->_flag & 8U) != 0)) {\r\n    FUN_00552f55(_File->_base);\r\n    *(ushort *)&_File->_flag = *(ushort *)&_File->_flag & 0xfbf7;\r\n    _File->_ptr = (char *)0x0;\r\n    _File->_base = (char *)0x0;\r\n    _File->_cnt = 0;\r\n  }\r\n  return;\r\n}\r\n\r\n", 
+  "is_thunk": false, 
+  "name": "__freebuf", 
+  "assembly": "  00557de8:  PUSH ESI\n  00557de9:  MOV ESI,dword ptr [ESP + 0x8]\n  00557ded:  MOV EAX,dword ptr [ESI + 0xc]\n  00557df0:  TEST AL,0x83\n  00557df2:  JZ 0x00557e11\n  00557df4:  TEST AL,0x8\n  00557df6:  JZ 0x00557e11\n  00557df8:  PUSH dword ptr [ESI + 0x8]\n  00557dfb:  CALL 0x00552f55\n  00557e00:  AND word ptr [ESI + 0xc],0xfbf7\n  00557e06:  XOR EAX,EAX\n  00557e08:  POP ECX\n  00557e09:  MOV dword ptr [ESI],EAX\n  00557e0b:  MOV dword ptr [ESI + 0x8],EAX\n  00557e0e:  MOV dword ptr [ESI + 0x4],EAX\n  00557e11:  POP ESI\n  00557e12:  RET", 
+  "callers": [
+    {
+      "address": "0x0055371d", 
+      "name": "FUN_0055371d"
+    }
+  ]
+}

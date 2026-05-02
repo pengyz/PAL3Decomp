@@ -1,0 +1,29 @@
+{
+  "address": "0x004bc790", 
+  "size_bytes": 30, 
+  "calling_convention": "unknown", 
+  "signature": "undefined FUN_004bc790(undefined1 param_1)", 
+  "callees": [
+    {
+      "address": "0x004bc7b0", 
+      "name": "FUN_004bc7b0"
+    }, 
+    {
+      "address": "0x00541d10", 
+      "name": "FUN_00541d10"
+    }
+  ], 
+  "global_refs": [
+    {
+      "address": "0x00000004", 
+      "type": null, 
+      "name": "DAT_00000004"
+    }
+  ], 
+  "has_custom_name": false, 
+  "decompiled_c": "\r\nundefined4 __thiscall FUN_004bc790(undefined4 param_1_00,byte param_1)\r\n\r\n{\r\n  FUN_004bc7b0();\r\n  if ((param_1 & 1) != 0) {\r\n    FUN_00541d10(param_1_00);\r\n  }\r\n  return param_1_00;\r\n}\r\n\r\n", 
+  "is_thunk": false, 
+  "name": "FUN_004bc790", 
+  "assembly": "  004bc790:  PUSH ESI\n  004bc791:  MOV ESI,ECX\n  004bc793:  CALL 0x004bc7b0\n  004bc798:  TEST byte ptr [ESP + 0x8],0x1\n  004bc79d:  JZ 0x004bc7a8\n  004bc79f:  PUSH ESI\n  004bc7a0:  CALL 0x00541d10\n  004bc7a5:  ADD ESP,0x4\n  004bc7a8:  MOV EAX,ESI\n  004bc7aa:  POP ESI\n  004bc7ab:  RET 0x4", 
+  "callers": []
+}

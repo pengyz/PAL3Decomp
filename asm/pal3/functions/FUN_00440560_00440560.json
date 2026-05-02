@@ -1,0 +1,39 @@
+{
+  "address": "0x00440560", 
+  "size_bytes": 362, 
+  "calling_convention": "unknown", 
+  "signature": "undefined FUN_00440560(undefined4 param_1, undefined4 param_2)", 
+  "callees": [
+    {
+      "address": "0x00553514", 
+      "name": "__ftol"
+    }, 
+    {
+      "address": "0x00445c60", 
+      "name": "FUN_00445c60"
+    }
+  ], 
+  "global_refs": [
+    {
+      "address": "0x00000004", 
+      "type": null, 
+      "name": "DAT_00000004"
+    }, 
+    {
+      "address": "0x0056ad80", 
+      "type": null, 
+      "name": "DAT_0056ad80"
+    }, 
+    {
+      "address": "0x00000008", 
+      "type": null, 
+      "name": "DAT_00000008"
+    }
+  ], 
+  "has_custom_name": false, 
+  "decompiled_c": "\r\n/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */\r\n\r\nundefined4 __thiscall FUN_00440560(int param_1_00,float param_1,undefined4 param_2)\r\n\r\n{\r\n  float fVar1;\r\n  int iVar2;\r\n  int iVar3;\r\n  undefined4 uVar4;\r\n  \r\n  if (*(int *)(param_1_00 + 0x38) == 0) {\r\n    return 0;\r\n  }\r\n  if (*(int *)(param_1_00 + 0x3c) == 0) {\r\n    return 0;\r\n  }\r\n  if (*(float *)(param_1_00 + 0x74) <= *(float *)(param_1_00 + 0x6c)) {\r\n    if (*(float *)(param_1_00 + 0x6c) <= *(float *)(param_1_00 + 0x74)) {\r\n      *(undefined *)(param_1_00 + 0xa0) = 1;\r\n      goto LAB_004405fe;\r\n    }\r\n    fVar1 = *(float *)(param_1_00 + 0x6c) - param_1 * _DAT_0056ad80 * *(float *)(param_1_00 + 0x70);\r\n    *(float *)(param_1_00 + 0x6c) = fVar1;\r\n    if (fVar1 <= *(float *)(param_1_00 + 0x74)) {\r\n      *(undefined4 *)(param_1_00 + 0x6c) = *(undefined4 *)(param_1_00 + 0x74);\r\n    }\r\n  }\r\n  else {\r\n    fVar1 = param_1 * _DAT_0056ad80 * *(float *)(param_1_00 + 0x70) + *(float *)(param_1_00 + 0x6c);\r\n    *(float *)(param_1_00 + 0x6c) = fVar1;\r\n    if (*(float *)(param_1_00 + 0x74) <= fVar1) {\r\n      *(undefined4 *)(param_1_00 + 0x6c) = *(undefined4 *)(param_1_00 + 0x74);\r\n    }\r\n  }\r\n  *(undefined *)(param_1_00 + 0xa0) = 0;\r\n  *(float *)(param_1_00 + 0x9c) = *(float *)(param_1_00 + 0x98) * *(float *)(param_1_00 + 0x6c);\r\nLAB_004405fe:\r\n  if ((*(int *)(param_1_00 + 0xd4) == 1) && (*(char *)(param_1_00 + 0xed) != '\\0')) {\r\n    if (*(char *)(param_1_00 + 0xec) == '\\0') {\r\n      iVar3 = __ftol();\r\n      *(int *)(param_1_00 + 0xe0) = iVar3;\r\n      if (iVar3 <= *(int *)(param_1_00 + 0xe4)) {\r\n        *(int *)(param_1_00 + 0xe0) = *(int *)(param_1_00 + 0xe4);\r\n        *(undefined *)(param_1_00 + 0xec) = 1;\r\n      }\r\n    }\r\n    else {\r\n      iVar2 = __ftol();\r\n      iVar3 = *(int *)(param_1_00 + 0xdc);\r\n      *(int *)(param_1_00 + 0xe0) = iVar2;\r\n      if (iVar3 <= iVar2) {\r\n        *(int *)(param_1_00 + 0xe0) = iVar3;\r\n        *(undefined *)(param_1_00 + 0xec) = 0;\r\n        if (*(char *)(param_1_00 + 0xee) != '\\0') {\r\n          *(undefined *)(param_1_00 + 0xed) = 0;\r\n          *(int *)(param_1_00 + 0xe0) = iVar3;\r\n          *(undefined *)(param_1_00 + 0xec) = 0;\r\n          *(undefined *)(param_1_00 + 0xee) = 0;\r\n        }\r\n      }\r\n    }\r\n  }\r\n  uVar4 = FUN_00445c60(param_1,param_2);\r\n  return uVar4;\r\n}\r\n\r\n", 
+  "is_thunk": false, 
+  "name": "FUN_00440560", 
+  "assembly": "  00440560:  PUSH EBX\n  00440561:  PUSH ESI\n  00440562:  MOV ESI,ECX\n  00440564:  XOR EBX,EBX\n  00440566:  CMP dword ptr [ESI + 0x38],EBX\n  00440569:  JNZ 0x00440572\n  0044056b:  POP ESI\n  0044056c:  XOR EAX,EAX\n  0044056e:  POP EBX\n  0044056f:  RET 0x8\n  00440572:  CMP dword ptr [ESI + 0x3c],EBX\n  00440575:  JNZ 0x0044057e\n  00440577:  POP ESI\n  00440578:  XOR EAX,EAX\n  0044057a:  POP EBX\n  0044057b:  RET 0x8\n  0044057e:  FLD dword ptr [ESI + 0x6c]\n  00440581:  FCOMP dword ptr [ESI + 0x74]\n  00440584:  FNSTSW AX\n  00440586:  TEST AH,0x1\n  00440589:  JZ 0x004405c5\n  0044058b:  FLD dword ptr [ESP + 0xc]\n  0044058f:  FMUL dword ptr [0x0056ad80]\n  00440595:  FMUL dword ptr [ESI + 0x70]\n  00440598:  FADD dword ptr [ESI + 0x6c]\n  0044059b:  FST dword ptr [ESI + 0x6c]\n  0044059e:  FCOMP dword ptr [ESI + 0x74]\n  004405a1:  FNSTSW AX\n  004405a3:  TEST AH,0x1\n  004405a6:  JNZ 0x004405ae\n  004405a8:  MOV EAX,dword ptr [ESI + 0x74]\n  004405ab:  MOV dword ptr [ESI + 0x6c],EAX\n  004405ae:  FLD dword ptr [ESI + 0x98]\n  004405b4:  FMUL dword ptr [ESI + 0x6c]\n  004405b7:  MOV byte ptr [ESI + 0xa0],BL\n  004405bd:  FSTP dword ptr [ESI + 0x9c]\n  004405c3:  JMP 0x004405fe\n  004405c5:  FLD dword ptr [ESI + 0x6c]\n  004405c8:  FCOMP dword ptr [ESI + 0x74]\n  004405cb:  FNSTSW AX\n  004405cd:  TEST AH,0x41\n  004405d0:  JNZ 0x004405f7\n  004405d2:  FLD dword ptr [ESP + 0xc]\n  004405d6:  FMUL dword ptr [0x0056ad80]\n  004405dc:  FMUL dword ptr [ESI + 0x70]\n  004405df:  FSUBR dword ptr [ESI + 0x6c]\n  004405e2:  FST dword ptr [ESI + 0x6c]\n  004405e5:  FCOMP dword ptr [ESI + 0x74]\n  004405e8:  FNSTSW AX\n  004405ea:  TEST AH,0x41\n  004405ed:  JZ 0x004405ae\n  004405ef:  MOV ECX,dword ptr [ESI + 0x74]\n  004405f2:  MOV dword ptr [ESI + 0x6c],ECX\n  004405f5:  JMP 0x004405ae\n  004405f7:  MOV byte ptr [ESI + 0xa0],0x1\n  004405fe:  CMP dword ptr [ESI + 0xd4],0x1\n  00440605:  JNZ 0x004406b4\n  0044060b:  CMP byte ptr [ESI + 0xed],BL\n  00440611:  JZ 0x004406b4\n  00440617:  CMP byte ptr [ESI + 0xec],BL\n  0044061d:  JZ 0x0044067a\n  0044061f:  FLD dword ptr [ESP + 0xc]\n  00440623:  FMUL dword ptr [0x0056ad80]\n  00440629:  FMUL dword ptr [ESI + 0xe8]\n  0044062f:  FIADD dword ptr [ESI + 0xe0]\n  00440635:  CALL 0x00553514\n  0044063a:  MOV ECX,dword ptr [ESI + 0xdc]\n  00440640:  MOV dword ptr [ESI + 0xe0],EAX\n  00440646:  CMP EAX,ECX\n  00440648:  JL 0x004406b4\n  0044064a:  MOV AL,byte ptr [ESI + 0xee]\n  00440650:  MOV dword ptr [ESI + 0xe0],ECX\n  00440656:  CMP AL,BL\n  00440658:  MOV byte ptr [ESI + 0xec],BL\n  0044065e:  JZ 0x004406b4\n  00440660:  MOV byte ptr [ESI + 0xed],BL\n  00440666:  MOV dword ptr [ESI + 0xe0],ECX\n  0044066c:  MOV byte ptr [ESI + 0xec],BL\n  00440672:  MOV byte ptr [ESI + 0xee],BL\n  00440678:  JMP 0x004406b4\n  0044067a:  FILD dword ptr [ESI + 0xe0]\n  00440680:  FLD dword ptr [ESP + 0xc]\n  00440684:  FMUL dword ptr [0x0056ad80]\n  0044068a:  FMUL dword ptr [ESI + 0xe8]\n  00440690:  FSUBP\n  00440692:  CALL 0x00553514\n  00440697:  MOV ECX,dword ptr [ESI + 0xe4]\n  0044069d:  MOV dword ptr [ESI + 0xe0],EAX\n  004406a3:  CMP EAX,ECX\n  004406a5:  JG 0x004406b4\n  004406a7:  MOV dword ptr [ESI + 0xe0],ECX\n  004406ad:  MOV byte ptr [ESI + 0xec],0x1\n  004406b4:  MOV EDX,dword ptr [ESP + 0x10]\n  004406b8:  MOV EAX,dword ptr [ESP + 0xc]\n  004406bc:  PUSH EDX\n  004406bd:  PUSH EAX\n  004406be:  MOV ECX,ESI\n  004406c0:  CALL 0x00445c60\n  004406c5:  POP ESI\n  004406c6:  POP EBX\n  004406c7:  RET 0x8", 
+  "callers": []
+}

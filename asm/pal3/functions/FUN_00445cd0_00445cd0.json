@@ -1,0 +1,44 @@
+{
+  "address": "0x00445cd0",
+  "size_bytes": 49,
+  "calling_convention": "unknown",
+  "signature": "undefined FUN_00445cd0(void)",
+  "callees": [],
+  "global_refs": [],
+  "has_custom_name": false,
+  "decompiled_c": "\r\nvoid __fastcall FUN_00445cd0(int param_1)\r\n\r\n{\r\n  int *piVar1;\r\n  int iVar2;\r\n  \r\n  if ((*(int *)(param_1 + 0x38) != 0) && (iVar2 = 0, 0 < *(int *)(param_1 + 0x28))) {\r\n    do {\r\n      piVar1 = *(int **)(*(int *)(param_1 + 0x24) + iVar2 * 4);\r\n      if (piVar1[0xe] != 0) {\r\n        (**(code **)(*piVar1 + 4))();\r\n      }\r\n      iVar2 = iVar2 + 1;\r\n    } while (iVar2 < *(int *)(param_1 + 0x28));\r\n  }\r\n  return;\r\n}\r\n\r\n",
+  "is_thunk": false,
+  "name": "UIWnd_Render_rewrited",
+  "assembly": "  00445cd0:  PUSH ESI\n  00445cd1:  PUSH EDI\n  00445cd2:  MOV EDI,ECX\n  00445cd4:  MOV EAX,dword ptr [EDI + 0x38]\n  00445cd7:  TEST EAX,EAX\n  00445cd9:  JZ 0x00445cfe\n  00445cdb:  MOV EAX,dword ptr [EDI + 0x28]\n  00445cde:  XOR ESI,ESI\n  00445ce0:  TEST EAX,EAX\n  00445ce2:  JLE 0x00445cfe\n  00445ce4:  MOV EAX,dword ptr [EDI + 0x24]\n  00445ce7:  MOV ECX,dword ptr [EAX + ESI*0x4]\n  00445cea:  MOV EAX,dword ptr [ECX + 0x38]\n  00445ced:  TEST EAX,EAX\n  00445cef:  JZ 0x00445cf6\n  00445cf1:  MOV EDX,dword ptr [ECX]\n  00445cf3:  CALL dword ptr [EDX + 0x4]\n  00445cf6:  MOV EAX,dword ptr [EDI + 0x28]\n  00445cf9:  INC ESI\n  00445cfa:  CMP ESI,EAX\n  00445cfc:  JL 0x00445ce4\n  00445cfe:  POP EDI\n  00445cff:  POP ESI\n  00445d00:  RET",
+  "callers": [
+    {
+      "address": "0x0044f5b0",
+      "name": "FUN_0044f5b0"
+    },
+    {
+      "address": "0x00443950",
+      "name": "FUN_00443950"
+    },
+    {
+      "address": "0x0043ddf0",
+      "name": "FUN_0043ddf0"
+    },
+    {
+      "address": "0x004512f0",
+      "name": "FUN_004512f0"
+    },
+    {
+      "address": "0x004a1a80",
+      "name": "FUN_004a1a80"
+    },
+    {
+      "address": "0x0043a270",
+      "name": "FUN_0043a270"
+    }
+  ],
+  "pal3patch_info": {
+    "name": "UIWnd_Render_rewrited",
+    "type": "method",
+    "source": "pal3.h"
+  }
+}

@@ -1,0 +1,70 @@
+{
+  "address": "0x0040e050", 
+  "size_bytes": 69, 
+  "calling_convention": "unknown", 
+  "signature": "undefined FUN_0040e050(undefined4 param_1, undefined4 param_2, undefined4 param_3)", 
+  "callees": [], 
+  "global_refs": [
+    {
+      "address": "0x00000008", 
+      "type": null, 
+      "name": "DAT_00000008"
+    }, 
+    {
+      "address": "0x0000000c", 
+      "type": null, 
+      "name": "DAT_0000000c"
+    }, 
+    {
+      "address": "0x-000000c", 
+      "type": null, 
+      "name": "DAT_-000000c"
+    }, 
+    {
+      "address": "0x-0000008", 
+      "type": null, 
+      "name": "DAT_-0000008"
+    }, 
+    {
+      "address": "0x00000004", 
+      "type": null, 
+      "name": "DAT_00000004"
+    }, 
+    {
+      "address": "0x-0000004", 
+      "type": null, 
+      "name": "DAT_-0000004"
+    }
+  ], 
+  "has_custom_name": false, 
+  "decompiled_c": "\r\nvoid FUN_0040e050(float *param_1,float *param_2,float param_3)\r\n\r\n{\r\n  float fVar1;\r\n  float fVar2;\r\n  \r\n  fVar1 = param_2[1];\r\n  fVar2 = param_2[2];\r\n  *param_1 = param_3 * *param_2;\r\n  param_1[1] = param_3 * fVar1;\r\n  param_1[2] = param_3 * fVar2;\r\n  return;\r\n}\r\n\r\n", 
+  "is_thunk": false, 
+  "name": "FUN_0040e050", 
+  "assembly": "  0040e050:  SUB ESP,0xc\n  0040e053:  MOV EAX,dword ptr [ESP + 0x14]\n  0040e057:  FLD dword ptr [ESP + 0x18]\n  0040e05b:  FMUL dword ptr [EAX]\n  0040e05d:  FSTP dword ptr [ESP]\n  0040e061:  FLD dword ptr [ESP + 0x18]\n  0040e065:  FMUL dword ptr [EAX + 0x4]\n  0040e068:  MOV EDX,dword ptr [ESP]\n  0040e06c:  FSTP dword ptr [ESP + 0x4]\n  0040e070:  FLD dword ptr [ESP + 0x18]\n  0040e074:  FMUL dword ptr [EAX + 0x8]\n  0040e077:  MOV EAX,dword ptr [ESP + 0x10]\n  0040e07b:  MOV ECX,EAX\n  0040e07d:  FSTP dword ptr [ESP + 0x8]\n  0040e081:  MOV dword ptr [ECX],EDX\n  0040e083:  MOV EDX,dword ptr [ESP + 0x4]\n  0040e087:  MOV dword ptr [ECX + 0x4],EDX\n  0040e08a:  MOV EDX,dword ptr [ESP + 0x8]\n  0040e08e:  MOV dword ptr [ECX + 0x8],EDX\n  0040e091:  ADD ESP,0xc\n  0040e094:  RET", 
+  "callers": [
+    {
+      "address": "0x00418260", 
+      "name": "FUN_00418260"
+    }, 
+    {
+      "address": "0x00419c20", 
+      "name": "FUN_00419c20"
+    }, 
+    {
+      "address": "0x0040de10", 
+      "name": "FUN_0040de10"
+    }, 
+    {
+      "address": "0x0040e110", 
+      "name": "FUN_0040e110"
+    }, 
+    {
+      "address": "0x0040e3c0", 
+      "name": "FUN_0040e3c0"
+    }, 
+    {
+      "address": "0x00413cd0", 
+      "name": "FUN_00413cd0"
+    }
+  ]
+}

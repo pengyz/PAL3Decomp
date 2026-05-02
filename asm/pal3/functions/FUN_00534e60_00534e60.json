@@ -1,0 +1,44 @@
+{
+  "address": "0x00534e60", 
+  "size_bytes": 122, 
+  "calling_convention": "unknown", 
+  "signature": "undefined FUN_00534e60(void)", 
+  "callees": [
+    {
+      "address": "0x00534dd0", 
+      "name": "FUN_00534dd0"
+    }, 
+    {
+      "address": "0x00532d30", 
+      "name": "FUN_00532d30"
+    }, 
+    {
+      "address": "0x00532d40", 
+      "name": "FUN_00532d40"
+    }, 
+    {
+      "address": "0x00534e30", 
+      "name": "FUN_00534e30"
+    }, 
+    {
+      "address": "0x00532d50", 
+      "name": "FUN_00532d50"
+    }, 
+    {
+      "address": "0x00408bd0", 
+      "name": "FUN_00408bd0"
+    }
+  ], 
+  "global_refs": [], 
+  "has_custom_name": false, 
+  "decompiled_c": "\r\nvoid FUN_00534e60(void)\r\n\r\n{\r\n  char cVar1;\r\n  \r\n  cVar1 = FUN_00534dd0(2);\r\n  if (cVar1 == '\\0') {\r\n    cVar1 = FUN_00534dd0(3);\r\n    if (cVar1 == '\\0') {\r\n      cVar1 = FUN_00534e30(2);\r\n      if (cVar1 == '\\0') {\r\n        cVar1 = FUN_00534e30(3);\r\n        if (cVar1 == '\\0') goto LAB_00534eae;\r\n      }\r\n      FUN_00532d50();\r\n    }\r\n    else {\r\n      FUN_00532d40();\r\n    }\r\n  }\r\n  else {\r\n    FUN_00532d30();\r\n  }\r\nLAB_00534eae:\r\n  cVar1 = FUN_00534dd0(4);\r\n  if (cVar1 != '\\0') {\r\n    FUN_00408bd0();\r\n  }\r\n  cVar1 = FUN_00534dd0(5);\r\n  if (cVar1 != '\\0') {\r\n    FUN_00408bd0();\r\n  }\r\n  return;\r\n}\r\n\r\n", 
+  "is_thunk": false, 
+  "name": "FUN_00534e60", 
+  "assembly": "  00534e60:  PUSH ESI\n  00534e61:  MOV ESI,ECX\n  00534e63:  PUSH 0x2\n  00534e65:  CALL 0x00534dd0\n  00534e6a:  TEST AL,AL\n  00534e6c:  JZ 0x00534e77\n  00534e6e:  MOV ECX,dword ptr [ESI]\n  00534e70:  CALL 0x00532d30\n  00534e75:  JMP 0x00534eae\n  00534e77:  PUSH 0x3\n  00534e79:  MOV ECX,ESI\n  00534e7b:  CALL 0x00534dd0\n  00534e80:  TEST AL,AL\n  00534e82:  JZ 0x00534e8d\n  00534e84:  MOV ECX,dword ptr [ESI]\n  00534e86:  CALL 0x00532d40\n  00534e8b:  JMP 0x00534eae\n  00534e8d:  PUSH 0x2\n  00534e8f:  MOV ECX,ESI\n  00534e91:  CALL 0x00534e30\n  00534e96:  TEST AL,AL\n  00534e98:  JNZ 0x00534ea7\n  00534e9a:  PUSH 0x3\n  00534e9c:  MOV ECX,ESI\n  00534e9e:  CALL 0x00534e30\n  00534ea3:  TEST AL,AL\n  00534ea5:  JZ 0x00534eae\n  00534ea7:  MOV ECX,dword ptr [ESI]\n  00534ea9:  CALL 0x00532d50\n  00534eae:  PUSH 0x4\n  00534eb0:  MOV ECX,ESI\n  00534eb2:  CALL 0x00534dd0\n  00534eb7:  TEST AL,AL\n  00534eb9:  JZ 0x00534ec2\n  00534ebb:  MOV ECX,dword ptr [ESI]\n  00534ebd:  CALL 0x00408bd0\n  00534ec2:  PUSH 0x5\n  00534ec4:  MOV ECX,ESI\n  00534ec6:  CALL 0x00534dd0\n  00534ecb:  TEST AL,AL\n  00534ecd:  JZ 0x00534ed6\n  00534ecf:  MOV ECX,dword ptr [ESI]\n  00534ed1:  CALL 0x00408bd0\n  00534ed6:  POP ESI\n  00534ed7:  RET 0x8", 
+  "callers": [
+    {
+      "address": "0x005353a0", 
+      "name": "FUN_005353a0"
+    }
+  ]
+}

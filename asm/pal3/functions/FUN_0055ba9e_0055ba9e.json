@@ -1,0 +1,40 @@
+{
+  "address": "0x0055ba9e", 
+  "size_bytes": 22, 
+  "calling_convention": "unknown", 
+  "signature": "undefined FUN_0055ba9e(undefined4 param_1, undefined4 param_2)", 
+  "callees": [
+    {
+      "address": "0x0055b91c", 
+      "name": "FUN_0055b91c"
+    }
+  ], 
+  "global_refs": [
+    {
+      "address": "0x0060b6f8", 
+      "type": null, 
+      "name": "DAT_0060b6f8"
+    }, 
+    {
+      "address": "0x00000008", 
+      "type": null, 
+      "name": "DAT_00000008"
+    }, 
+    {
+      "address": "0x00000004", 
+      "type": null, 
+      "name": "DAT_00000004"
+    }
+  ], 
+  "has_custom_name": false, 
+  "decompiled_c": "\r\nvoid FUN_0055ba9e(undefined4 param_1,undefined4 param_2)\r\n\r\n{\r\n  FUN_0055b91c(param_1,param_2,&DAT_0060b6f8);\r\n  return;\r\n}\r\n\r\n", 
+  "is_thunk": false, 
+  "name": "FUN_0055ba9e", 
+  "assembly": "  0055ba9e:  PUSH 0x60b6f8\n  0055baa3:  PUSH dword ptr [ESP + 0xc]\n  0055baa7:  PUSH dword ptr [ESP + 0xc]\n  0055baab:  CALL 0x0055b91c\n  0055bab0:  ADD ESP,0xc\n  0055bab3:  RET", 
+  "callers": [
+    {
+      "address": "0x0055bae1", 
+      "name": "FUN_0055bae1"
+    }
+  ]
+}

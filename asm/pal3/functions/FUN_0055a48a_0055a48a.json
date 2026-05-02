@@ -1,0 +1,60 @@
+{
+  "address": "0x0055a48a", 
+  "size_bytes": 122, 
+  "calling_convention": "unknown", 
+  "signature": "undefined FUN_0055a48a(undefined4 param_1)", 
+  "callees": [
+    {
+      "address": "0x00000019", 
+      "name": "SetStdHandle"
+    }
+  ], 
+  "global_refs": [
+    {
+      "address": "0x00000004", 
+      "type": null, 
+      "name": "DAT_00000004"
+    }, 
+    {
+      "address": "0x01896ce0", 
+      "type": null, 
+      "name": "DAT_01896ce0"
+    }, 
+    {
+      "address": "0x01896be0", 
+      "type": null, 
+      "name": "DAT_01896be0"
+    }, 
+    {
+      "address": "0x0060aca4", 
+      "type": null, 
+      "name": "DAT_0060aca4"
+    }, 
+    {
+      "address": "0x0056a068", 
+      "type": null, 
+      "name": "PTR_SetStdHandle_0056a068"
+    }, 
+    {
+      "address": "0x01895340", 
+      "type": null, 
+      "name": "DAT_01895340"
+    }, 
+    {
+      "address": "0x0189533c", 
+      "type": null, 
+      "name": "DAT_0189533c"
+    }
+  ], 
+  "has_custom_name": false, 
+  "decompiled_c": "\r\n/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */\r\n\r\nundefined4 FUN_0055a48a(uint param_1)\r\n\r\n{\r\n  int *piVar1;\r\n  int iVar2;\r\n  DWORD nStdHandle;\r\n  \r\n  if (param_1 < DAT_01896ce0) {\r\n    iVar2 = (param_1 & 0x1f) * 8;\r\n    piVar1 = (int *)((&DAT_01896be0)[(int)param_1 >> 5] + iVar2);\r\n    if (((*(byte *)(piVar1 + 1) & 1) != 0) && (*piVar1 != -1)) {\r\n      if (DAT_0060aca4 == 1) {\r\n        if (param_1 == 0) {\r\n          nStdHandle = 0xfffffff6;\r\n        }\r\n        else if (param_1 == 1) {\r\n          nStdHandle = 0xfffffff5;\r\n        }\r\n        else {\r\n          if (param_1 != 2) goto LAB_0055a4e3;\r\n          nStdHandle = 0xfffffff4;\r\n        }\r\n        SetStdHandle(nStdHandle,(HANDLE)0x0);\r\n      }\r\nLAB_0055a4e3:\r\n      *(undefined4 *)((&DAT_01896be0)[(int)param_1 >> 5] + iVar2) = 0xffffffff;\r\n      return 0;\r\n    }\r\n  }\r\n  DAT_01895340 = 0;\r\n  _DAT_0189533c = 9;\r\n  return 0xffffffff;\r\n}\r\n\r\n", 
+  "is_thunk": false, 
+  "name": "FUN_0055a48a", 
+  "assembly": "  0055a48a:  MOV ECX,dword ptr [ESP + 0x4]\n  0055a48e:  PUSH ESI\n  0055a48f:  CMP ECX,dword ptr [0x01896ce0]\n  0055a495:  PUSH EDI\n  0055a496:  JNC 0x0055a4ed\n  0055a498:  MOV EAX,ECX\n  0055a49a:  MOV ESI,ECX\n  0055a49c:  SAR EAX,0x5\n  0055a49f:  AND ESI,0x1f\n  0055a4a2:  LEA EDI,[EAX*0x4 + 0x1896be0]\n  0055a4a9:  SHL ESI,0x3\n  0055a4ac:  MOV EAX,dword ptr [EDI]\n  0055a4ae:  ADD EAX,ESI\n  0055a4b0:  TEST byte ptr [EAX + 0x4],0x1\n  0055a4b4:  JZ 0x0055a4ed\n  0055a4b6:  CMP dword ptr [EAX],-0x1\n  0055a4b9:  JZ 0x0055a4ed\n  0055a4bb:  CMP dword ptr [0x0060aca4],0x1\n  0055a4c2:  JNZ 0x0055a4e3\n  0055a4c4:  XOR EAX,EAX\n  0055a4c6:  SUB ECX,EAX\n  0055a4c8:  JZ 0x0055a4da\n  0055a4ca:  DEC ECX\n  0055a4cb:  JZ 0x0055a4d5\n  0055a4cd:  DEC ECX\n  0055a4ce:  JNZ 0x0055a4e3\n  0055a4d0:  PUSH EAX\n  0055a4d1:  PUSH -0xc\n  0055a4d3:  JMP 0x0055a4dd\n  0055a4d5:  PUSH EAX\n  0055a4d6:  PUSH -0xb\n  0055a4d8:  JMP 0x0055a4dd\n  0055a4da:  PUSH EAX\n  0055a4db:  PUSH -0xa\n  0055a4dd:  CALL dword ptr [0x0056a068]\n  0055a4e3:  MOV EAX,dword ptr [EDI]\n  0055a4e5:  OR dword ptr [EAX + ESI*0x1],0xffffffff\n  0055a4e9:  XOR EAX,EAX\n  0055a4eb:  JMP 0x0055a501\n  0055a4ed:  AND dword ptr [0x01895340],0x0\n  0055a4f4:  MOV dword ptr [0x0189533c],0x9\n  0055a4fe:  OR EAX,0xffffffff\n  0055a501:  POP EDI\n  0055a502:  POP ESI\n  0055a503:  RET", 
+  "callers": [
+    {
+      "address": "0x00554c74", 
+      "name": "FUN_00554c74"
+    }
+  ]
+}

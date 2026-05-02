@@ -1,0 +1,30 @@
+{
+  "address": "0x004c65c0", 
+  "size_bytes": 40, 
+  "calling_convention": "unknown", 
+  "signature": "undefined FUN_004c65c0(undefined4 param_1)", 
+  "callees": [], 
+  "global_refs": [
+    {
+      "address": "0x00000004", 
+      "type": null, 
+      "name": "DAT_00000004"
+    }, 
+    {
+      "address": "0x0056f868", 
+      "type": null, 
+      "name": "DAT_0056f868"
+    }
+  ], 
+  "has_custom_name": false, 
+  "decompiled_c": "\r\n/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */\r\n\r\nvoid __thiscall FUN_004c65c0(float *param_1_00,float param_1)\r\n\r\n{\r\n  bool bVar1;\r\n  \r\n  param_1 = param_1 + *param_1_00;\r\n  bVar1 = _DAT_0056f868 <= param_1;\r\n  *param_1_00 = param_1;\r\n  if (bVar1) {\r\n    param_1 = param_1 - _DAT_0056f868;\r\n    param_1_00[0xd] = (float)((int)param_1_00[0xd] + 1);\r\n    *param_1_00 = param_1;\r\n    return;\r\n  }\r\n  return;\r\n}\r\n\r\n", 
+  "is_thunk": false, 
+  "name": "FUN_004c65c0", 
+  "assembly": "  004c65c0:  FLD dword ptr [ESP + 0x4]\n  004c65c4:  FADD dword ptr [ECX]\n  004c65c6:  FCOM dword ptr [0x0056f868]\n  004c65cc:  FST dword ptr [ECX]\n  004c65ce:  FNSTSW AX\n  004c65d0:  TEST AH,0x1\n  004c65d3:  JNZ 0x004c65e3\n  004c65d5:  FSUB dword ptr [0x0056f868]\n  004c65db:  INC dword ptr [ECX + 0x34]\n  004c65de:  FSTP dword ptr [ECX]\n  004c65e0:  RET 0x4\n  004c65e3:  FSTP ST0\n  004c65e5:  RET 0x4", 
+  "callers": [
+    {
+      "address": "0x004fc0a0", 
+      "name": "FUN_004fc0a0"
+    }
+  ]
+}

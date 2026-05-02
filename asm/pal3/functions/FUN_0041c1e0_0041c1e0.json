@@ -1,0 +1,38 @@
+{
+  "address": "0x0041c1e0", 
+  "size_bytes": 150, 
+  "calling_convention": "unknown", 
+  "signature": "undefined FUN_0041c1e0(void)", 
+  "callees": [
+    {
+      "address": "0x0041c710", 
+      "name": "FUN_0041c710"
+    }
+  ], 
+  "global_refs": [
+    {
+      "address": "0x00d8bbec", 
+      "type": null, 
+      "name": "DAT_00d8bbec"
+    }
+  ], 
+  "has_custom_name": false, 
+  "decompiled_c": "\r\nvoid __fastcall FUN_0041c1e0(int param_1)\r\n\r\n{\r\n  int iVar1;\r\n  undefined4 uVar2;\r\n  \r\n  iVar1 = *(int *)(param_1 + 0x17c);\r\n  if (iVar1 == 0) {\r\n    iVar1 = *(int *)(param_1 + 0x180);\r\n    if (iVar1 == 0) goto LAB_0041c22f;\r\n    *(undefined4 *)(param_1 + 0x184) = *(undefined4 *)(iVar1 + 0x28);\r\n    *(undefined4 *)(param_1 + 0x188) = *(undefined4 *)(iVar1 + 0x2c);\r\n    uVar2 = *(undefined4 *)(iVar1 + 0x30);\r\n  }\r\n  else {\r\n    *(undefined4 *)(param_1 + 0x184) = *(undefined4 *)(iVar1 + 0xa0);\r\n    *(undefined4 *)(param_1 + 0x188) = *(undefined4 *)(iVar1 + 0xa4);\r\n    uVar2 = *(undefined4 *)(iVar1 + 0xa8);\r\n  }\r\n  *(undefined4 *)(param_1 + 0x18c) = uVar2;\r\nLAB_0041c22f:\r\n  if (DAT_00d8bbec == 1) {\r\n    *(float *)(param_1 + 0x188) = *(float *)(param_1 + 0x21c) + *(float *)(param_1 + 0x188);\r\n  }\r\n  *(undefined4 *)(param_1 + 0x1e0) = *(undefined4 *)(param_1 + 0x184);\r\n  *(undefined4 *)(param_1 + 0x1e4) = *(undefined4 *)(param_1 + 0x188);\r\n  *(undefined4 *)(param_1 + 0x1e8) = *(undefined4 *)(param_1 + 0x18c);\r\n  FUN_0041c710(1);\r\n  return;\r\n}\r\n\r\n", 
+  "is_thunk": false, 
+  "name": "FUN_0041c1e0", 
+  "assembly": "  0041c1e0:  MOV EAX,dword ptr [ECX + 0x17c]\n  0041c1e6:  TEST EAX,EAX\n  0041c1e8:  JZ 0x0041c20a\n  0041c1ea:  MOV EDX,dword ptr [EAX + 0xa0]\n  0041c1f0:  MOV dword ptr [ECX + 0x184],EDX\n  0041c1f6:  MOV EDX,dword ptr [EAX + 0xa4]\n  0041c1fc:  MOV dword ptr [ECX + 0x188],EDX\n  0041c202:  MOV EAX,dword ptr [EAX + 0xa8]\n  0041c208:  JMP 0x0041c229\n  0041c20a:  MOV EAX,dword ptr [ECX + 0x180]\n  0041c210:  TEST EAX,EAX\n  0041c212:  JZ 0x0041c22f\n  0041c214:  MOV EDX,dword ptr [EAX + 0x28]\n  0041c217:  MOV dword ptr [ECX + 0x184],EDX\n  0041c21d:  MOV EDX,dword ptr [EAX + 0x2c]\n  0041c220:  MOV dword ptr [ECX + 0x188],EDX\n  0041c226:  MOV EAX,dword ptr [EAX + 0x30]\n  0041c229:  MOV dword ptr [ECX + 0x18c],EAX\n  0041c22f:  CMP dword ptr [0x00d8bbec],0x1\n  0041c236:  JNZ 0x0041c24a\n  0041c238:  FLD dword ptr [ECX + 0x21c]\n  0041c23e:  FADD dword ptr [ECX + 0x188]\n  0041c244:  FSTP dword ptr [ECX + 0x188]\n  0041c24a:  MOV EDX,dword ptr [ECX + 0x184]\n  0041c250:  PUSH 0x1\n  0041c252:  MOV dword ptr [ECX + 0x1e0],EDX\n  0041c258:  MOV EAX,dword ptr [ECX + 0x188]\n  0041c25e:  MOV dword ptr [ECX + 0x1e4],EAX\n  0041c264:  MOV EDX,dword ptr [ECX + 0x18c]\n  0041c26a:  MOV dword ptr [ECX + 0x1e8],EDX\n  0041c270:  CALL 0x0041c710\n  0041c275:  RET", 
+  "callers": [
+    {
+      "address": "0x0041d100", 
+      "name": "FUN_0041d100"
+    }, 
+    {
+      "address": "0x0041c170", 
+      "name": "FUN_0041c170"
+    }, 
+    {
+      "address": "0x004163b0", 
+      "name": "FUN_004163b0"
+    }
+  ]
+}

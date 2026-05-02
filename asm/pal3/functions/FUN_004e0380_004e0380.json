@@ -1,0 +1,74 @@
+{
+  "address": "0x004e0380", 
+  "size_bytes": 97, 
+  "calling_convention": "unknown", 
+  "signature": "undefined FUN_004e0380(void)", 
+  "callees": [
+    {
+      "address": "0x004e0340", 
+      "name": "FUN_004e0340"
+    }, 
+    {
+      "address": "0x00000061", 
+      "name": "CreateDialogParamA"
+    }
+  ], 
+  "global_refs": [
+    {
+      "address": "0x00bfda90", 
+      "type": null, 
+      "name": "DAT_00bfda90"
+    }, 
+    {
+      "address": "0x017a95f8", 
+      "type": null, 
+      "name": "DAT_017a95f8"
+    }, 
+    {
+      "address": "0x00bfda4c", 
+      "type": null, 
+      "name": "DAT_00bfda4c"
+    }, 
+    {
+      "address": "0x00bfda48", 
+      "type": null, 
+      "name": "DAT_00bfda48"
+    }, 
+    {
+      "address": "0x0056a18c", 
+      "type": null, 
+      "name": "PTR_CreateDialogParamA_0056a18c"
+    }, 
+    {
+      "address": "0x004e0a30", 
+      "type": null, 
+      "name": "LAB_004e0a30"
+    }, 
+    {
+      "address": "0x00bfda50", 
+      "type": null, 
+      "name": "DAT_00bfda50"
+    }, 
+    {
+      "address": "0x004e10e0", 
+      "type": null, 
+      "name": "LAB_004e10e0"
+    }, 
+    {
+      "address": "0x00bfda54", 
+      "type": null, 
+      "name": "DAT_00bfda54"
+    }
+  ], 
+  "has_custom_name": false, 
+  "decompiled_c": "\r\nundefined4 __fastcall FUN_004e0380(int *param_1)\r\n\r\n{\r\n  undefined3 uVar2;\r\n  HWND pHVar1;\r\n  undefined3 extraout_var;\r\n  \r\n  FUN_004e0340();\r\n  DAT_017a95f8 = *(undefined4 *)(*param_1 + 0x6c);\r\n  uVar2 = (undefined3)((uint)*param_1 >> 8);\r\n  if (DAT_00bfda90 != '\\0') {\r\n    DAT_00bfda50 = CreateDialogParamA(DAT_00bfda48,(LPCSTR)0x66,DAT_00bfda4c,(DLGPROC)&LAB_004e0a30,\r\n                                      0);\r\n    pHVar1 = CreateDialogParamA(DAT_00bfda48,(LPCSTR)0x6a,DAT_00bfda4c,(DLGPROC)&LAB_004e10e0,0);\r\n    extraout_var = (undefined3)((uint)pHVar1 >> 8);\r\n    uVar2 = extraout_var;\r\n    DAT_00bfda54._0_1_ = (char)pHVar1;\r\n    DAT_00bfda54._1_3_ = extraout_var;\r\n  }\r\n  return CONCAT31(uVar2,1);\r\n}\r\n\r\n", 
+  "is_thunk": false, 
+  "name": "FUN_004e0380", 
+  "assembly": "  004e0380:  PUSH ESI\n  004e0381:  MOV ESI,ECX\n  004e0383:  CALL 0x004e0340\n  004e0388:  MOV EAX,dword ptr [ESI]\n  004e038a:  FLD dword ptr [EAX + 0x6c]\n  004e038d:  MOV AL,[0x00bfda90]\n  004e0392:  FSTP dword ptr [0x017a95f8]\n  004e0398:  TEST AL,AL\n  004e039a:  JZ 0x004e03dd\n  004e039c:  MOV ECX,dword ptr [0x00bfda4c]\n  004e03a2:  MOV EDX,dword ptr [0x00bfda48]\n  004e03a8:  MOV ESI,dword ptr [0x0056a18c]\n  004e03ae:  PUSH 0x0\n  004e03b0:  PUSH 0x4e0a30\n  004e03b5:  PUSH ECX\n  004e03b6:  PUSH 0x66\n  004e03b8:  PUSH EDX\n  004e03b9:  CALL ESI\n  004e03bb:  MOV ECX,dword ptr [0x00bfda48]\n  004e03c1:  MOV [0x00bfda50],EAX\n  004e03c6:  MOV EAX,[0x00bfda4c]\n  004e03cb:  PUSH 0x0\n  004e03cd:  PUSH 0x4e10e0\n  004e03d2:  PUSH EAX\n  004e03d3:  PUSH 0x6a\n  004e03d5:  PUSH ECX\n  004e03d6:  CALL ESI\n  004e03d8:  MOV [0x00bfda54],EAX\n  004e03dd:  MOV AL,0x1\n  004e03df:  POP ESI\n  004e03e0:  RET", 
+  "callers": [
+    {
+      "address": "0x00515d10", 
+      "name": "FUN_00515d10"
+    }
+  ]
+}

@@ -1,0 +1,39 @@
+{
+  "address": "0x0055be9d", 
+  "size_bytes": 24, 
+  "calling_convention": "unknown", 
+  "signature": "undefined FUN_0055be9d(undefined4 param_1)", 
+  "callees": [
+    {
+      "address": "0x00000039", 
+      "name": "IsBadCodePtr"
+    }
+  ], 
+  "global_refs": [
+    {
+      "address": "0x00000004", 
+      "type": null, 
+      "name": "DAT_00000004"
+    }, 
+    {
+      "address": "0x0056a0e8", 
+      "type": null, 
+      "name": "PTR_IsBadCodePtr_0056a0e8"
+    }
+  ], 
+  "has_custom_name": false, 
+  "decompiled_c": "\r\nbool FUN_0055be9d(FARPROC param_1)\r\n\r\n{\r\n  BOOL BVar1;\r\n  \r\n  BVar1 = IsBadCodePtr(param_1);\r\n  return BVar1 == 0;\r\n}\r\n\r\n", 
+  "is_thunk": false, 
+  "name": "FUN_0055be9d", 
+  "assembly": "  0055be9d:  PUSH ESI\n  0055be9e:  PUSH 0x1\n  0055bea0:  POP ESI\n  0055bea1:  PUSH dword ptr [ESP + 0x8]\n  0055bea5:  CALL dword ptr [0x0056a0e8]\n  0055beab:  TEST EAX,EAX\n  0055bead:  JZ 0x0055beb1\n  0055beaf:  XOR ESI,ESI\n  0055beb1:  MOV EAX,ESI\n  0055beb3:  POP ESI\n  0055beb4:  RET", 
+  "callers": [
+    {
+      "address": "0x005579a8", 
+      "name": "FUN_005579a8"
+    }, 
+    {
+      "address": "0x00557d84", 
+      "name": "FUN_00557d84"
+    }
+  ]
+}

@@ -1,0 +1,70 @@
+{
+  "address": "0x00524e00", 
+  "size_bytes": 385, 
+  "calling_convention": "unknown", 
+  "signature": "undefined FUN_00524e00(undefined4 param_1)", 
+  "callees": [], 
+  "global_refs": [
+    {
+      "address": "0x00000004", 
+      "type": null, 
+      "name": "DAT_00000004"
+    }, 
+    {
+      "address": "0x00570668", 
+      "type": null, 
+      "name": "DAT_00570668"
+    }, 
+    {
+      "address": "0x0056a644", 
+      "type": null, 
+      "name": "DAT_0056a644"
+    }, 
+    {
+      "address": "0x0056a774", 
+      "type": null, 
+      "name": "DAT_0056a774"
+    }, 
+    {
+      "address": "0x00570660", 
+      "type": null, 
+      "name": "DAT_00570660"
+    }, 
+    {
+      "address": "0x00570658", 
+      "type": null, 
+      "name": "DAT_00570658"
+    }, 
+    {
+      "address": "0x0056a658", 
+      "type": null, 
+      "name": "DAT_0056a658"
+    }, 
+    {
+      "address": "0x0056a610", 
+      "type": null, 
+      "name": "DAT_0056a610"
+    }, 
+    {
+      "address": "0x00570650", 
+      "type": null, 
+      "name": "DAT_00570650"
+    }, 
+    {
+      "address": "0x0056a63c", 
+      "type": null, 
+      "name": "DAT_0056a63c"
+    }
+  ], 
+  "has_custom_name": false, 
+  "decompiled_c": "\r\n/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */\r\n\r\nvoid __thiscall FUN_00524e00(int param_1_00,undefined4 *param_1)\r\n\r\n{\r\n  undefined4 uVar1;\r\n  float fVar2;\r\n  float fVar3;\r\n  int iVar4;\r\n  undefined4 *puVar5;\r\n  undefined4 *puVar6;\r\n  \r\n  *(undefined4 *)(param_1_00 + 0x1488) = *param_1;\r\n  puVar5 = param_1 + 3;\r\n  puVar6 = (undefined4 *)(param_1_00 + 0x1498);\r\n  for (iVar4 = 0x37; iVar4 != 0; iVar4 = iVar4 + -1) {\r\n    *puVar6 = *puVar5;\r\n    puVar5 = puVar5 + 1;\r\n    puVar6 = puVar6 + 1;\r\n  }\r\n  uVar1 = param_1[2];\r\n  *(undefined4 *)(param_1_00 + 0x1490) = uVar1;\r\n  *(undefined4 *)(param_1_00 + 0x1494) = uVar1;\r\n  fVar3 = _DAT_00570658;\r\n  iVar4 = *(int *)(param_1_00 + 0x1488);\r\n  if (iVar4 < 1) {\r\n    return;\r\n  }\r\n  if (_DAT_00570668 < (float)iVar4) {\r\n    *(undefined4 *)(param_1_00 + 0x1490) = 4;\r\n    *(undefined4 *)(param_1_00 + 0x1494) = 4;\r\n    return;\r\n  }\r\n  if ((float)iVar4 <= _DAT_0056a644) {\r\n    *(undefined4 *)(param_1_00 + 0x1490) = 6;\r\n    *(undefined4 *)(param_1_00 + 0x1494) = 6;\r\n    return;\r\n  }\r\n  fVar2 = (_DAT_0056a774 / (_DAT_00570668 / (float)iVar4)) * (float)_DAT_00570660;\r\n  *(float *)(param_1_00 + 0x8b8) = fVar2;\r\n  if (fVar2 <= fVar3) {\r\n    if (fVar2 >= _DAT_0056a658) goto LAB_00524ecf;\r\n    if (_DAT_0056a610 <= fVar2) goto LAB_00524eff;\r\n  }\r\n  else {\r\n    if (fVar2 < _DAT_0056a658) goto LAB_00524eb9;\r\nLAB_00524ecf:\r\n    if (fVar2 < _DAT_0056a610) {\r\n      *(undefined4 *)(param_1_00 + 0x1490) = 1;\r\n      *(undefined4 *)(param_1_00 + 0x1494) = 1;\r\n      return;\r\n    }\r\nLAB_00524eff:\r\n    if (fVar2 < (float)_DAT_00570650) {\r\n      *(undefined4 *)(param_1_00 + 0x1490) = 2;\r\n      *(undefined4 *)(param_1_00 + 0x1494) = 2;\r\n      return;\r\n    }\r\n  }\r\n  if (fVar2 < (float)_DAT_00570650) {\r\n    if (fVar2 < _DAT_0056a63c) {\r\nLAB_00524eb9:\r\n      *(undefined4 *)(param_1_00 + 0x1490) = 0;\r\n      *(undefined4 *)(param_1_00 + 0x1494) = 0;\r\n      return;\r\n    }\r\n  }\r\n  else if (fVar2 < _DAT_0056a63c) {\r\n    *(undefined4 *)(param_1_00 + 0x1490) = 3;\r\n    *(undefined4 *)(param_1_00 + 0x1494) = 3;\r\n    return;\r\n  }\r\n  *(undefined4 *)(param_1_00 + 0x1490) = 4;\r\n  *(undefined4 *)(param_1_00 + 0x1494) = 4;\r\n  return;\r\n}\r\n\r\n", 
+  "is_thunk": false, 
+  "name": "FUN_00524e00", 
+  "assembly": "  00524e00:  MOV EAX,dword ptr [ESP + 0x4]\n  00524e04:  MOV EDX,ECX\n  00524e06:  PUSH ESI\n  00524e07:  PUSH EDI\n  00524e08:  MOV ECX,dword ptr [EAX]\n  00524e0a:  LEA ESI,[EAX + 0xc]\n  00524e0d:  MOV dword ptr [EDX + 0x1488],ECX\n  00524e13:  LEA EDI,[EDX + 0x1498]\n  00524e19:  MOV ECX,0x37\n  00524e1e:  MOVSD.REP ES:EDI,ESI\n  00524e20:  MOV EAX,dword ptr [EAX + 0x8]\n  00524e23:  POP EDI\n  00524e24:  MOV dword ptr [EDX + 0x1490],EAX\n  00524e2a:  MOV dword ptr [EDX + 0x1494],EAX\n  00524e30:  MOV EAX,dword ptr [EDX + 0x1488]\n  00524e36:  POP ESI\n  00524e37:  TEST EAX,EAX\n  00524e39:  MOV dword ptr [ESP + 0x4],EAX\n  00524e3d:  JLE 0x00524f7e\n  00524e43:  FILD dword ptr [ESP + 0x4]\n  00524e47:  FST dword ptr [ESP + 0x4]\n  00524e4b:  FCOMP dword ptr [0x00570668]\n  00524e51:  FNSTSW AX\n  00524e53:  TEST AH,0x41\n  00524e56:  JNZ 0x00524e6c\n  00524e58:  MOV EAX,0x4\n  00524e5d:  MOV dword ptr [EDX + 0x1490],EAX\n  00524e63:  MOV dword ptr [EDX + 0x1494],EAX\n  00524e69:  RET 0x4\n  00524e6c:  FLD dword ptr [ESP + 0x4]\n  00524e70:  FCOMP dword ptr [0x0056a644]\n  00524e76:  FNSTSW AX\n  00524e78:  TEST AH,0x41\n  00524e7b:  JNZ 0x00524f6d\n  00524e81:  FLD dword ptr [0x00570668]\n  00524e87:  FDIV dword ptr [ESP + 0x4]\n  00524e8b:  FDIVR dword ptr [0x0056a774]\n  00524e91:  FMUL qword ptr [0x00570660]\n  00524e97:  FCOM dword ptr [0x00570658]\n  00524e9d:  FST dword ptr [EDX + 0x8b8]\n  00524ea3:  FNSTSW AX\n  00524ea5:  FCOM dword ptr [0x0056a658]\n  00524eab:  TEST AH,0x41\n  00524eae:  FNSTSW AX\n  00524eb0:  JNZ 0x00524eca\n  00524eb2:  TEST AH,0x1\n  00524eb5:  JZ 0x00524ecf\n  00524eb7:  FSTP ST0\n  00524eb9:  XOR EAX,EAX\n  00524ebb:  MOV dword ptr [EDX + 0x1490],EAX\n  00524ec1:  MOV dword ptr [EDX + 0x1494],EAX\n  00524ec7:  RET 0x4\n  00524eca:  TEST AH,0x1\n  00524ecd:  JNZ 0x00524ef2\n  00524ecf:  FCOM dword ptr [0x0056a610]\n  00524ed5:  FNSTSW AX\n  00524ed7:  TEST AH,0x1\n  00524eda:  JZ 0x00524eff\n  00524edc:  MOV EAX,0x1\n  00524ee1:  FSTP ST0\n  00524ee3:  MOV dword ptr [EDX + 0x1490],EAX\n  00524ee9:  MOV dword ptr [EDX + 0x1494],EAX\n  00524eef:  RET 0x4\n  00524ef2:  FCOM dword ptr [0x0056a610]\n  00524ef8:  FNSTSW AX\n  00524efa:  TEST AH,0x1\n  00524efd:  JNZ 0x00524f22\n  00524eff:  FCOM qword ptr [0x00570650]\n  00524f05:  FNSTSW AX\n  00524f07:  TEST AH,0x1\n  00524f0a:  JZ 0x00524f22\n  00524f0c:  MOV EAX,0x2\n  00524f11:  FSTP ST0\n  00524f13:  MOV dword ptr [EDX + 0x1490],EAX\n  00524f19:  MOV dword ptr [EDX + 0x1494],EAX\n  00524f1f:  RET 0x4\n  00524f22:  FCOM qword ptr [0x00570650]\n  00524f28:  FNSTSW AX\n  00524f2a:  FCOMP dword ptr [0x0056a63c]\n  00524f30:  TEST AH,0x1\n  00524f33:  FNSTSW AX\n  00524f35:  JNZ 0x00524f50\n  00524f37:  TEST AH,0x1\n  00524f3a:  JZ 0x00524f59\n  00524f3c:  MOV EAX,0x3\n  00524f41:  MOV dword ptr [EDX + 0x1490],EAX\n  00524f47:  MOV dword ptr [EDX + 0x1494],EAX\n  00524f4d:  RET 0x4\n  00524f50:  TEST AH,0x1\n  00524f53:  JNZ 0x00524eb9\n  00524f59:  MOV EAX,0x4\n  00524f5e:  MOV dword ptr [EDX + 0x1490],EAX\n  00524f64:  MOV dword ptr [EDX + 0x1494],EAX\n  00524f6a:  RET 0x4\n  00524f6d:  MOV EAX,0x6\n  00524f72:  MOV dword ptr [EDX + 0x1490],EAX\n  00524f78:  MOV dword ptr [EDX + 0x1494],EAX\n  00524f7e:  RET 0x4", 
+  "callers": [
+    {
+      "address": "0x00523e80", 
+      "name": "FUN_00523e80"
+    }
+  ]
+}

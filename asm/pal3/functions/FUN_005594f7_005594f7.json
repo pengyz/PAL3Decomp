@@ -1,0 +1,85 @@
+{
+  "address": "0x005594f7", 
+  "size_bytes": 304, 
+  "calling_convention": "unknown", 
+  "signature": "undefined FUN_005594f7(undefined8 param_1, undefined8 param_2, undefined4 param_3)", 
+  "callees": [
+    {
+      "address": "0x00559627", 
+      "name": "FUN_00559627"
+    }
+  ], 
+  "global_refs": [
+    {
+      "address": "0x00000004", 
+      "type": null, 
+      "name": "DAT_00000004"
+    }, 
+    {
+      "address": "0x0056f818", 
+      "type": null, 
+      "name": "DAT_0056f818"
+    }, 
+    {
+      "address": "0x-000000c", 
+      "type": null, 
+      "name": "DAT_-000000c"
+    }, 
+    {
+      "address": "0x00000010", 
+      "type": null, 
+      "name": "DAT_00000010"
+    }, 
+    {
+      "address": "0x0000000c", 
+      "type": null, 
+      "name": "DAT_0000000c"
+    }, 
+    {
+      "address": "0x0056a710", 
+      "type": null, 
+      "name": "DAT_0056a710"
+    }, 
+    {
+      "address": "0x0060b5d0", 
+      "type": null, 
+      "name": "DAT_0060b5d0"
+    }, 
+    {
+      "address": "0x00000014", 
+      "type": null, 
+      "name": "DAT_00000014"
+    }, 
+    {
+      "address": "0x00000008", 
+      "type": null, 
+      "name": "DAT_00000008"
+    }, 
+    {
+      "address": "0x0060b5c8", 
+      "type": null, 
+      "name": "DAT_0060b5c8"
+    }, 
+    {
+      "address": "0x-0000018", 
+      "type": null, 
+      "name": "DAT_-0000018"
+    }, 
+    {
+      "address": "0x0060b5e8", 
+      "type": null, 
+      "name": "DAT_0060b5e8"
+    }
+  ], 
+  "has_custom_name": false, 
+  "decompiled_c": "\r\n/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */\r\n\r\nundefined4 FUN_005594f7(int param_1,int param_2_00,double param_2,double *param_3)\r\n\r\n{\r\n  double dVar1;\r\n  double dVar2;\r\n  int iVar3;\r\n  \r\n  dVar1 = (double)CONCAT44(param_2_00,param_1);\r\n  if ((double)CONCAT44(param_2_00,param_1) < _DAT_0056f818) {\r\n    dVar1 = -dVar1;\r\n  }\r\n  dVar2 = _DAT_0060b5c8;\r\n  if (param_2._4_4_ == 0x7ff00000) {\r\n    if (param_2._0_4_ != 0) {\r\nLAB_00559582:\r\n      if (param_2_00 == 0x7ff00000) {\r\n        if (param_1 != 0) {\r\n          return 0;\r\n        }\r\n        if (_DAT_0056f818 < param_2) goto LAB_0055961d;\r\n        if (param_2 < _DAT_0056f818) goto LAB_005595b4;\r\n      }\r\n      else {\r\n        if (param_2_00 != -0x100000) {\r\n          return 0;\r\n        }\r\n        if (param_1 != 0) {\r\n          return 0;\r\n        }\r\n        iVar3 = FUN_00559627(param_2);\r\n        if (_DAT_0056f818 < param_2) {\r\n          dVar2 = _DAT_0060b5c8;\r\n          if (iVar3 == 1) {\r\n            dVar2 = -_DAT_0060b5c8;\r\n          }\r\n          goto LAB_0055961d;\r\n        }\r\n        if (param_2 < _DAT_0056f818) {\r\n          dVar2 = _DAT_0060b5e8;\r\n          if (iVar3 != 1) {\r\n            dVar2 = 0.0;\r\n          }\r\n          goto LAB_0055961d;\r\n        }\r\n      }\r\n      dVar2 = 1.0;\r\n      goto LAB_0055961d;\r\n    }\r\n    if (_DAT_0056a710 < dVar1) goto LAB_0055961d;\r\n    if (_DAT_0056a710 <= dVar1) {\r\nLAB_00559547:\r\n      *param_3 = _DAT_0060b5d0;\r\n      return 1;\r\n    }\r\n  }\r\n  else {\r\n    if ((param_2._4_4_ != -0x100000) || (param_2._0_4_ != 0)) goto LAB_00559582;\r\n    if (dVar1 <= _DAT_0056a710) {\r\n      if (_DAT_0056a710 <= dVar1) goto LAB_00559547;\r\n      goto LAB_0055961d;\r\n    }\r\n  }\r\nLAB_005595b4:\r\n  dVar2 = 0.0;\r\nLAB_0055961d:\r\n  *param_3 = dVar2;\r\n  return 0;\r\n}\r\n\r\n", 
+  "is_thunk": false, 
+  "name": "FUN_005594f7", 
+  "assembly": "  005594f7:  PUSH EBP\n  005594f8:  MOV EBP,ESP\n  005594fa:  PUSH ECX\n  005594fb:  PUSH ECX\n  005594fc:  FLD qword ptr [EBP + 0x8]\n  005594ff:  FCOMP qword ptr [0x0056f818]\n  00559505:  FLD qword ptr [EBP + 0x8]\n  00559508:  PUSH ESI\n  00559509:  XOR EDX,EDX\n  0055950b:  XOR ESI,ESI\n  0055950d:  FNSTSW AX\n  0055950f:  SAHF\n  00559510:  JNC 0x00559514\n  00559512:  FCHS\n  00559514:  FSTP qword ptr [EBP + -0x8]\n  00559517:  MOV EAX,0x7ff00000\n  0055951c:  MOV ECX,0xfff00000\n  00559521:  CMP dword ptr [EBP + 0x14],EAX\n  00559524:  JNZ 0x0055955a\n  00559526:  CMP dword ptr [EBP + 0x10],EDX\n  00559529:  JNZ 0x00559582\n  0055952b:  FLD qword ptr [EBP + -0x8]\n  0055952e:  FCOMP qword ptr [0x0056a710]\n  00559534:  FNSTSW AX\n  00559536:  SAHF\n  00559537:  JA 0x0055959e\n  00559539:  FLD qword ptr [EBP + -0x8]\n  0055953c:  FCOMP qword ptr [0x0056a710]\n  00559542:  FNSTSW AX\n  00559544:  SAHF\n  00559545:  JC 0x005595b4\n  00559547:  FLD qword ptr [0x0060b5d0]\n  0055954d:  MOV EAX,dword ptr [EBP + 0x18]\n  00559550:  PUSH 0x1\n  00559552:  POP ESI\n  00559553:  FSTP qword ptr [EAX]\n  00559555:  JMP 0x00559622\n  0055955a:  CMP dword ptr [EBP + 0x14],ECX\n  0055955d:  JNZ 0x00559582\n  0055955f:  CMP dword ptr [EBP + 0x10],EDX\n  00559562:  JNZ 0x00559582\n  00559564:  FLD qword ptr [EBP + -0x8]\n  00559567:  FCOMP qword ptr [0x0056a710]\n  0055956d:  FNSTSW AX\n  0055956f:  SAHF\n  00559570:  JA 0x005595b4\n  00559572:  FLD qword ptr [EBP + -0x8]\n  00559575:  FCOMP qword ptr [0x0056a710]\n  0055957b:  FNSTSW AX\n  0055957d:  SAHF\n  0055957e:  JNC 0x00559547\n  00559580:  JMP 0x0055959e\n  00559582:  CMP dword ptr [EBP + 0xc],EAX\n  00559585:  JNZ 0x005595b8\n  00559587:  CMP dword ptr [EBP + 0x8],EDX\n  0055958a:  JNZ 0x00559622\n  00559590:  FLD qword ptr [EBP + 0x10]\n  00559593:  FCOMP qword ptr [0x0056f818]\n  00559599:  FNSTSW AX\n  0055959b:  SAHF\n  0055959c:  JBE 0x005595a6\n  0055959e:  FLD qword ptr [0x0060b5c8]\n  005595a4:  JMP 0x0055961d\n  005595a6:  FLD qword ptr [EBP + 0x10]\n  005595a9:  FCOMP qword ptr [0x0056f818]\n  005595af:  FNSTSW AX\n  005595b1:  SAHF\n  005595b2:  JNC 0x0055961b\n  005595b4:  FLDZ\n  005595b6:  JMP 0x0055961d\n  005595b8:  CMP dword ptr [EBP + 0xc],ECX\n  005595bb:  JNZ 0x00559622\n  005595bd:  CMP dword ptr [EBP + 0x8],EDX\n  005595c0:  JNZ 0x00559622\n  005595c2:  FLD qword ptr [EBP + 0x10]\n  005595c5:  PUSH ECX\n  005595c6:  PUSH ECX\n  005595c7:  FSTP qword ptr [ESP]\n  005595ca:  CALL 0x00559627\n  005595cf:  FLD qword ptr [EBP + 0x10]\n  005595d2:  FCOMP qword ptr [0x0056f818]\n  005595d8:  POP ECX\n  005595d9:  POP ECX\n  005595da:  MOV ECX,EAX\n  005595dc:  FNSTSW AX\n  005595de:  SAHF\n  005595df:  JBE 0x005595f6\n  005595e1:  FLD qword ptr [0x0060b5c8]\n  005595e7:  CMP ECX,0x1\n  005595ea:  JNZ 0x005595ee\n  005595ec:  FCHS\n  005595ee:  FSTP qword ptr [EBP + 0x10]\n  005595f1:  FLD qword ptr [EBP + 0x10]\n  005595f4:  JMP 0x0055961d\n  005595f6:  FLD qword ptr [EBP + 0x10]\n  005595f9:  FCOMP qword ptr [0x0056f818]\n  005595ff:  FNSTSW AX\n  00559601:  SAHF\n  00559602:  JNC 0x0055961b\n  00559604:  CMP ECX,0x1\n  00559607:  JNZ 0x00559611\n  00559609:  FLD qword ptr [0x0060b5e8]\n  0055960f:  JMP 0x00559613\n  00559611:  FLDZ\n  00559613:  FSTP qword ptr [EBP + 0x10]\n  00559616:  FLD qword ptr [EBP + 0x10]\n  00559619:  JMP 0x0055961d\n  0055961b:  FLD1\n  0055961d:  MOV EAX,dword ptr [EBP + 0x18]\n  00559620:  FSTP qword ptr [EAX]\n  00559622:  MOV EAX,ESI\n  00559624:  POP ESI\n  00559625:  LEAVE\n  00559626:  RET", 
+  "callers": [
+    {
+      "address": "0x00554722", 
+      "name": "FUN_00554722"
+    }
+  ]
+}

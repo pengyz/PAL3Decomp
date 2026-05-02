@@ -1,0 +1,111 @@
+{
+  "address": "0x0043be30", 
+  "size_bytes": 79, 
+  "calling_convention": "unknown", 
+  "signature": "undefined FUN_0043be30(void)", 
+  "callees": [
+    {
+      "address": "0x0043be80", 
+      "name": "FUN_0043be80"
+    }, 
+    {
+      "address": "0x00445b40", 
+      "name": "FUN_00445b40"
+    }
+  ], 
+  "global_refs": [
+    {
+      "address": "0x0055fc88", 
+      "type": null, 
+      "name": "LAB_0055fc88"
+    }, 
+    {
+      "address": "0xffdff000", 
+      "type": null, 
+      "name": "ExceptionList"
+    }, 
+    {
+      "address": "0x-0000010", 
+      "type": null, 
+      "name": "DAT_-0000010"
+    }, 
+    {
+      "address": "0x0056acd8", 
+      "type": null, 
+      "name": "PTR_FUN_0056acd8"
+    }, 
+    {
+      "address": "0x-0000004", 
+      "type": null, 
+      "name": "DAT_-0000004"
+    }, 
+    {
+      "address": "0x-000000c", 
+      "type": null, 
+      "name": "DAT_-000000c"
+    }
+  ], 
+  "has_custom_name": false, 
+  "decompiled_c": "\r\nvoid __fastcall FUN_0043be30(undefined4 *param_1)\r\n\r\n{\r\n  void *local_c;\r\n  undefined *puStack_8;\r\n  undefined4 local_4;\r\n  \r\n  puStack_8 = &LAB_0055fc88;\r\n  local_c = ExceptionList;\r\n  ExceptionList = &local_c;\r\n  *param_1 = &PTR_FUN_0056acd8;\r\n  local_4 = 0;\r\n  FUN_0043be80();\r\n  local_4 = 0xffffffff;\r\n  FUN_00445b40();\r\n  ExceptionList = local_c;\r\n  return;\r\n}\r\n\r\n", 
+  "is_thunk": false, 
+  "name": "FUN_0043be30", 
+  "assembly": "  0043be30:  PUSH -0x1\n  0043be32:  PUSH 0x55fc88\n  0043be37:  MOV EAX,FS:[0x0]\n  0043be3d:  PUSH EAX\n  0043be3e:  MOV dword ptr FS:[0x0],ESP\n  0043be45:  PUSH ECX\n  0043be46:  PUSH ESI\n  0043be47:  MOV ESI,ECX\n  0043be49:  MOV dword ptr [ESP + 0x4],ESI\n  0043be4d:  MOV dword ptr [ESI],0x56acd8\n  0043be53:  MOV dword ptr [ESP + 0x10],0x0\n  0043be5b:  CALL 0x0043be80\n  0043be60:  MOV ECX,ESI\n  0043be62:  MOV dword ptr [ESP + 0x10],0xffffffff\n  0043be6a:  CALL 0x00445b40\n  0043be6f:  MOV ECX,dword ptr [ESP + 0x8]\n  0043be73:  POP ESI\n  0043be74:  MOV dword ptr FS:[0x0],ECX\n  0043be7b:  ADD ESP,0x10\n  0043be7e:  RET", 
+  "callers": [
+    {
+      "address": "0x00560f97", 
+      "name": "Unwind@00560f97"
+    }, 
+    {
+      "address": "0x00561197", 
+      "name": "Unwind@00561197"
+    }, 
+    {
+      "address": "0x00565fc9", 
+      "name": "Unwind@00565fc9"
+    }, 
+    {
+      "address": "0x00565fd7", 
+      "name": "Unwind@00565fd7"
+    }, 
+    {
+      "address": "0x00565fe5", 
+      "name": "Unwind@00565fe5"
+    }, 
+    {
+      "address": "0x00566219", 
+      "name": "Unwind@00566219"
+    }, 
+    {
+      "address": "0x00566227", 
+      "name": "Unwind@00566227"
+    }, 
+    {
+      "address": "0x00566235", 
+      "name": "Unwind@00566235"
+    }, 
+    {
+      "address": "0x00567a6c", 
+      "name": "Unwind@00567a6c"
+    }, 
+    {
+      "address": "0x00567b0c", 
+      "name": "Unwind@00567b0c"
+    }, 
+    {
+      "address": "0x0043be10", 
+      "name": "FUN_0043be10"
+    }, 
+    {
+      "address": "0x00454ba0", 
+      "name": "FUN_00454ba0"
+    }, 
+    {
+      "address": "0x004b0540", 
+      "name": "FUN_004b0540"
+    }, 
+    {
+      "address": "0x00524130", 
+      "name": "FUN_00524130"
+    }
+  ]
+}

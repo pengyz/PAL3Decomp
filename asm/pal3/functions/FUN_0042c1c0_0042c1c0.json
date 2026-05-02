@@ -1,0 +1,35 @@
+{
+  "address": "0x0042c1c0", 
+  "size_bytes": 128, 
+  "calling_convention": "unknown", 
+  "signature": "undefined FUN_0042c1c0(void)", 
+  "callees": [
+    {
+      "address": "0x0042c1a0", 
+      "name": "FUN_0042c1a0"
+    }
+  ], 
+  "global_refs": [
+    {
+      "address": "0x0042c24f", 
+      "type": null, 
+      "name": "PTR_caseD_24_0042c24c+3"
+    }, 
+    {
+      "address": "0x0042c240", 
+      "type": null, 
+      "name": "switchdataD_0042c240"
+    }
+  ], 
+  "has_custom_name": false, 
+  "decompiled_c": "\r\nbool __fastcall FUN_0042c1c0(int param_1)\r\n\r\n{\r\n  undefined uVar1;\r\n  bool bVar2;\r\n  \r\n  if (*(char *)(param_1 + 0xad) == '\\0') {\r\n    return true;\r\n  }\r\n  switch(*(undefined *)(param_1 + 0xf4)) {\r\n  case 5:\r\n    if (*(int *)(param_1 + 0x368) != 0) {\r\n      return false;\r\n    }\r\n    if (*(char *)(param_1 + 0x50) == '\\0') {\r\n      return true;\r\n    }\r\n    bVar2 = *(char *)(param_1 + 0x50) == '\\x03';\r\n    break;\r\n  default:\r\n    uVar1 = FUN_0042c1a0();\r\n    return (bool)uVar1;\r\n  case 0x16:\r\n    if (*(int *)(param_1 + 0x368) != 0) {\r\n      return false;\r\n    }\r\n    if (*(char *)(param_1 + 0x50) == '\\0') {\r\n      return true;\r\n    }\r\n    bVar2 = *(char *)(param_1 + 0x50) == '\\x02';\r\n    break;\r\n  case 0x1a:\r\n    if (*(char *)(param_1 + 0x50) == '\\0') {\r\n      return true;\r\n    }\r\n    if (*(char *)(param_1 + 0x50) == '\\x01') {\r\n      return true;\r\n    }\r\n    return false;\r\n  case 0x24:\r\n    return *(int *)(param_1 + 0x368) == 0;\r\n  }\r\n  if (bVar2) {\r\n    return true;\r\n  }\r\n  return false;\r\n}\r\n\r\n", 
+  "is_thunk": false, 
+  "name": "FUN_0042c1c0", 
+  "assembly": "  0042c1c0:  MOV AL,byte ptr [ECX + 0xad]\n  0042c1c6:  TEST AL,AL\n  0042c1c8:  JNZ 0x0042c1cd\n  0042c1ca:  MOV AL,0x1\n  0042c1cc:  RET\n  0042c1cd:  XOR EAX,EAX\n  0042c1cf:  MOV AL,byte ptr [ECX + 0xf4]\n  0042c1d5:  ADD EAX,-0x5\n  0042c1d8:  CMP EAX,0x1f\n  0042c1db:  JA 0x0042c23b\n  0042c1dd:  XOR EDX,EDX\n  0042c1df:  MOV DL,byte ptr [EAX + 0x42c254]\n  0042c1e5:  JMP dword ptr [EDX*0x4 + 0x42c240]\n  0042c1ec:  MOV EAX,dword ptr [ECX + 0x368]\n  0042c1f2:  TEST EAX,EAX\n  0042c1f4:  JNZ 0x0042c22a\n  0042c1f6:  MOV CL,byte ptr [ECX + 0x50]\n  0042c1f9:  TEST CL,CL\n  0042c1fb:  JZ 0x0042c202\n  0042c1fd:  CMP CL,0x3\n  0042c200:  JNZ 0x0042c22a\n  0042c202:  MOV EAX,0x1\n  0042c207:  RET\n  0042c208:  MOV EAX,dword ptr [ECX + 0x368]\n  0042c20e:  TEST EAX,EAX\n  0042c210:  JNZ 0x0042c22a\n  0042c212:  MOV CL,byte ptr [ECX + 0x50]\n  0042c215:  TEST CL,CL\n  0042c217:  JZ 0x0042c202\n  0042c219:  CMP CL,0x2\n  0042c21c:  JMP 0x0042c200\n  0042c21e:  MOV CL,byte ptr [ECX + 0x50]\n  0042c221:  TEST CL,CL\n  0042c223:  JZ 0x0042c202\n  0042c225:  CMP CL,0x1\n  0042c228:  JZ 0x0042c202\n  0042c22a:  XOR EAX,EAX\n  0042c22c:  RET\n  0042c22d:  MOV EDX,dword ptr [ECX + 0x368]\n  0042c233:  XOR EAX,EAX\n  0042c235:  TEST EDX,EDX\n  0042c237:  SETZ AL\n  0042c23a:  RET\n  0042c23b:  JMP 0x0042c1a0", 
+  "callers": [
+    {
+      "address": "0x0053d1e0", 
+      "name": "FUN_0053d1e0"
+    }
+  ]
+}

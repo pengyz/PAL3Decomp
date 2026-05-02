@@ -1,0 +1,96 @@
+{
+  "address": "0x0051d4a0", 
+  "size_bytes": 174, 
+  "calling_convention": "unknown", 
+  "signature": "undefined FUN_0051d4a0(undefined4 param_1)", 
+  "callees": [
+    {
+      "address": "0x0055353b", 
+      "name": "operator_new"
+    }, 
+    {
+      "address": "0x0043f7f0", 
+      "name": "FUN_0043f7f0"
+    }, 
+    {
+      "address": "0x0053cef0", 
+      "name": "FUN_0053cef0"
+    }, 
+    {
+      "address": "0x005534d7", 
+      "name": "__CxxThrowException@8"
+    }
+  ], 
+  "global_refs": [
+    {
+      "address": "0x005675fe", 
+      "type": null, 
+      "name": "LAB_005675fe"
+    }, 
+    {
+      "address": "0xffdff000", 
+      "type": null, 
+      "name": "ExceptionList"
+    }, 
+    {
+      "address": "0x-0000810", 
+      "type": null, 
+      "name": "DAT_-0000810"
+    }, 
+    {
+      "address": "0x-0000004", 
+      "type": null, 
+      "name": "DAT_-0000004"
+    }, 
+    {
+      "address": "0x00000004", 
+      "type": null, 
+      "name": "DAT_00000004"
+    }, 
+    {
+      "address": "0x005dfd6c", 
+      "type": null, 
+      "name": "s_D:\\Project\\PAL3\\Combat\\CBUI.cpp_005dfd6c"
+    }, 
+    {
+      "address": "0x005838c4", 
+      "type": null, 
+      "name": "s_C++_new_failed_005838c4"
+    }, 
+    {
+      "address": "0x-000040c", 
+      "type": null, 
+      "name": "DAT_-000040c"
+    }, 
+    {
+      "address": "0x-000080c", 
+      "type": null, 
+      "name": "DAT_-000080c"
+    }, 
+    {
+      "address": "0x00573e50", 
+      "type": null, 
+      "name": "DAT_00573e50"
+    }, 
+    {
+      "address": "0x-000000c", 
+      "type": null, 
+      "name": "DAT_-000000c"
+    }
+  ], 
+  "has_custom_name": false, 
+  "decompiled_c": "\r\nundefined4 FUN_0051d4a0(int *param_1)\r\n\r\n{\r\n  void *pvVar1;\r\n  int iVar2;\r\n  undefined4 *puVar3;\r\n  undefined4 *puVar4;\r\n  undefined4 local_80c [512];\r\n  void *local_c;\r\n  undefined *puStack_8;\r\n  undefined4 local_4;\r\n  \r\n  local_4 = 0xffffffff;\r\n  puStack_8 = &LAB_005675fe;\r\n  local_c = ExceptionList;\r\n  ExceptionList = &local_c;\r\n  pvVar1 = operator_new(0xf4);\r\n  local_4 = 0;\r\n  if (pvVar1 == (void *)0x0) {\r\n    iVar2 = 0;\r\n  }\r\n  else {\r\n    iVar2 = FUN_0043f7f0(pvVar1);\r\n  }\r\n  local_4 = 0xffffffff;\r\n  *param_1 = iVar2;\r\n  if (iVar2 == 0) {\r\n    puVar3 = (undefined4 *)\r\n             FUN_0053cef0(s_C___new_failed_005838c4,s_D__Project_PAL3_Combat_CBUI_cpp_005dfd6c,\r\n                          0x10fa);\r\n    puVar4 = local_80c;\r\n    for (iVar2 = 0x100; iVar2 != 0; iVar2 = iVar2 + -1) {\r\n      *puVar4 = *puVar3;\r\n      puVar3 = puVar3 + 1;\r\n      puVar4 = puVar4 + 1;\r\n    }\r\n                    /* WARNING: Subroutine does not return */\r\n    __CxxThrowException_8(local_80c,&DAT_00573e50);\r\n  }\r\n  ExceptionList = local_c;\r\n  return 1;\r\n}\r\n\r\n", 
+  "is_thunk": false, 
+  "name": "FUN_0051d4a0", 
+  "assembly": "  0051d4a0:  PUSH -0x1\n  0051d4a2:  PUSH 0x5675fe\n  0051d4a7:  MOV EAX,FS:[0x0]\n  0051d4ad:  PUSH EAX\n  0051d4ae:  MOV dword ptr FS:[0x0],ESP\n  0051d4b5:  SUB ESP,0x804\n  0051d4bb:  PUSH 0xf4\n  0051d4c0:  CALL 0x0055353b\n  0051d4c5:  ADD ESP,0x4\n  0051d4c8:  MOV dword ptr [ESP],EAX\n  0051d4cc:  TEST EAX,EAX\n  0051d4ce:  MOV dword ptr [ESP + 0x80c],0x0\n  0051d4d9:  JZ 0x0051d4e4\n  0051d4db:  MOV ECX,EAX\n  0051d4dd:  CALL 0x0043f7f0\n  0051d4e2:  JMP 0x0051d4e6\n  0051d4e4:  XOR EAX,EAX\n  0051d4e6:  MOV ECX,dword ptr [ESP + 0x814]\n  0051d4ed:  MOV dword ptr [ESP + 0x80c],0xffffffff\n  0051d4f8:  TEST EAX,EAX\n  0051d4fa:  MOV dword ptr [ECX],EAX\n  0051d4fc:  JNZ 0x0051d539\n  0051d4fe:  PUSH ESI\n  0051d4ff:  PUSH EDI\n  0051d500:  PUSH 0x10fa\n  0051d505:  PUSH 0x5dfd6c\n  0051d50a:  PUSH 0x5838c4\n  0051d50f:  LEA ECX,[ESP + 0x418]\n  0051d516:  CALL 0x0053cef0\n  0051d51b:  MOV ECX,0x100\n  0051d520:  MOV ESI,EAX\n  0051d522:  LEA EDI,[ESP + 0xc]\n  0051d526:  LEA EDX,[ESP + 0xc]\n  0051d52a:  PUSH 0x573e50\n  0051d52f:  PUSH EDX\n  0051d530:  MOVSD.REP ES:EDI,ESI\n  0051d532:  CALL 0x005534d7\n  0051d539:  MOV ECX,dword ptr [ESP + 0x804]\n  0051d540:  MOV AL,0x1\n  0051d542:  MOV dword ptr FS:[0x0],ECX\n  0051d549:  ADD ESP,0x810\n  0051d54f:  RET", 
+  "callers": [
+    {
+      "address": "0x0051bc70", 
+      "name": "FUN_0051bc70"
+    }, 
+    {
+      "address": "0x0051c330", 
+      "name": "FUN_0051c330"
+    }
+  ]
+}

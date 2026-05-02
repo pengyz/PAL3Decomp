@@ -1,0 +1,25 @@
+{
+  "address": "0x0053ea10", 
+  "size_bytes": 78, 
+  "calling_convention": "unknown", 
+  "signature": "undefined FUN_0053ea10(void)", 
+  "callees": [
+    {
+      "address": "0x00000134", 
+      "name": "Resume"
+    }
+  ], 
+  "global_refs": [
+    {
+      "address": "0x0056a4e4", 
+      "type": null, 
+      "name": "PTR_Resume_0056a4e4"
+    }
+  ], 
+  "has_custom_name": false, 
+  "decompiled_c": "\r\nvoid __fastcall FUN_0053ea10(int param_1)\r\n\r\n{\r\n  int iVar1;\r\n  uint uVar2;\r\n  \r\n  iVar1 = 0;\r\n  for (uVar2 = 0;\r\n      (*(int *)(param_1 + 0x330) != 0 &&\r\n      (uVar2 < (uint)((*(int *)(param_1 + 0x334) - *(int *)(param_1 + 0x330)) / 0x14)));\r\n      uVar2 = uVar2 + 1) {\r\n    gbSound2DNode::Resume(*(gbSound2DNode **)(*(int *)(param_1 + 0x330) + 0x10 + iVar1));\r\n    iVar1 = iVar1 + 0x14;\r\n  }\r\n  return;\r\n}\r\n\r\n", 
+  "is_thunk": false, 
+  "name": "FUN_0053ea10", 
+  "assembly": "  0053ea10:  PUSH EBX\n  0053ea11:  PUSH EBP\n  0053ea12:  MOV EBP,dword ptr [0x0056a4e4]\n  0053ea18:  PUSH ESI\n  0053ea19:  PUSH EDI\n  0053ea1a:  XOR EDI,EDI\n  0053ea1c:  MOV ESI,ECX\n  0053ea1e:  XOR EBX,EBX\n  0053ea20:  MOV EAX,dword ptr [ESI + 0x330]\n  0053ea26:  TEST EAX,EAX\n  0053ea28:  JZ 0x0053ea59\n  0053ea2a:  MOV ECX,dword ptr [ESI + 0x334]\n  0053ea30:  SUB ECX,EAX\n  0053ea32:  MOV EAX,0x66666667\n  0053ea37:  IMUL ECX\n  0053ea39:  SAR EDX,0x3\n  0053ea3c:  MOV EAX,EDX\n  0053ea3e:  SHR EAX,0x1f\n  0053ea41:  ADD EDX,EAX\n  0053ea43:  CMP EDI,EDX\n  0053ea45:  JNC 0x0053ea59\n  0053ea47:  MOV ECX,dword ptr [ESI + 0x330]\n  0053ea4d:  MOV ECX,dword ptr [ECX + EBX*0x1 + 0x10]\n  0053ea51:  CALL EBP\n  0053ea53:  INC EDI\n  0053ea54:  ADD EBX,0x14\n  0053ea57:  JMP 0x0053ea20\n  0053ea59:  POP EDI\n  0053ea5a:  POP ESI\n  0053ea5b:  POP EBP\n  0053ea5c:  POP EBX\n  0053ea5d:  RET", 
+  "callers": []
+}

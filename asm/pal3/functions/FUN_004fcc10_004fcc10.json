@@ -1,0 +1,25 @@
+{
+  "address": "0x004fcc10", 
+  "size_bytes": 60, 
+  "calling_convention": "unknown", 
+  "signature": "undefined FUN_004fcc10(undefined4 param_1)", 
+  "callees": [], 
+  "global_refs": [
+    {
+      "address": "0x00000004", 
+      "type": null, 
+      "name": "DAT_00000004"
+    }
+  ], 
+  "has_custom_name": false, 
+  "decompiled_c": "\r\nint __thiscall FUN_004fcc10(int param_1_00,int param_1)\r\n\r\n{\r\n  int iVar1;\r\n  uint3 uVar2;\r\n  int *piVar3;\r\n  int iVar4;\r\n  \r\n  iVar4 = 0;\r\n  param_1_00 = param_1_00 + param_1 * 0xa48;\r\n  iVar1 = *(int *)(param_1_00 + 0xb0);\r\n  uVar2 = (uint3)((uint)iVar1 >> 8);\r\n  if (0 < iVar1) {\r\n    piVar3 = (int *)(param_1_00 + 200);\r\n    do {\r\n      if (*piVar3 != 4) {\r\n        return (uint)uVar2 << 8;\r\n      }\r\n      iVar4 = iVar4 + 1;\r\n      piVar3 = piVar3 + 0x14;\r\n    } while (iVar4 < iVar1);\r\n  }\r\n  return CONCAT31(uVar2,1);\r\n}\r\n\r\n", 
+  "is_thunk": false, 
+  "name": "FUN_004fcc10", 
+  "assembly": "  004fcc10:  MOV EAX,dword ptr [ESP + 0x4]\n  004fcc14:  PUSH ESI\n  004fcc15:  XOR EDX,EDX\n  004fcc17:  LEA ESI,[EAX + EAX*0x4]\n  004fcc1a:  LEA ESI,[EAX + ESI*0x8]\n  004fcc1d:  LEA EAX,[EAX + ESI*0x8]\n  004fcc20:  LEA ECX,[ECX + EAX*0x8]\n  004fcc23:  MOV EAX,dword ptr [ECX + 0xb0]\n  004fcc29:  TEST EAX,EAX\n  004fcc2b:  JLE 0x004fcc40\n  004fcc2d:  ADD ECX,0xc8\n  004fcc33:  CMP dword ptr [ECX],0x4\n  004fcc36:  JNZ 0x004fcc46\n  004fcc38:  INC EDX\n  004fcc39:  ADD ECX,0x50\n  004fcc3c:  CMP EDX,EAX\n  004fcc3e:  JL 0x004fcc33\n  004fcc40:  MOV AL,0x1\n  004fcc42:  POP ESI\n  004fcc43:  RET 0x4\n  004fcc46:  XOR AL,AL\n  004fcc48:  POP ESI\n  004fcc49:  RET 0x4", 
+  "callers": [
+    {
+      "address": "0x004fca80", 
+      "name": "FUN_004fca80"
+    }
+  ]
+}

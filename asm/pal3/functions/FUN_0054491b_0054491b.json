@@ -1,0 +1,74 @@
+{
+  "address": "0x0054491b", 
+  "size_bytes": 136, 
+  "calling_convention": "unknown", 
+  "signature": "undefined FUN_0054491b(undefined4 param_1, undefined4 param_2, undefined4 param_3, undefined4 param_4, undefined4 param_5, undefined4 param_6)", 
+  "callees": [
+    {
+      "address": "0x0054212c", 
+      "name": "FUN_0054212c"
+    }, 
+    {
+      "address": "0x00544771", 
+      "name": "thunk_FUN_0054474d"
+    }
+  ], 
+  "global_refs": [
+    {
+      "address": "0x00000014", 
+      "type": null, 
+      "name": "DAT_00000014"
+    }, 
+    {
+      "address": "0x00000018", 
+      "type": null, 
+      "name": "DAT_00000018"
+    }, 
+    {
+      "address": "0x-000002c", 
+      "type": null, 
+      "name": "DAT_-000002c"
+    }, 
+    {
+      "address": "0x-0000030", 
+      "type": null, 
+      "name": "DAT_-0000030"
+    }, 
+    {
+      "address": "0x00000008", 
+      "type": null, 
+      "name": "DAT_00000008"
+    }, 
+    {
+      "address": "0x00000004", 
+      "type": null, 
+      "name": "DAT_00000004"
+    }, 
+    {
+      "address": "0x0000000c", 
+      "type": null, 
+      "name": "DAT_0000000c"
+    }, 
+    {
+      "address": "0x-0000024", 
+      "type": null, 
+      "name": "DAT_-0000024"
+    }, 
+    {
+      "address": "0x00000010", 
+      "type": null, 
+      "name": "DAT_00000010"
+    }, 
+    {
+      "address": "0x-0000014", 
+      "type": null, 
+      "name": "DAT_-0000014"
+    }
+  ], 
+  "has_custom_name": false, 
+  "decompiled_c": "\r\nundefined4 *\r\nFUN_0054491b(undefined4 *param_1,undefined4 *param_2,undefined4 param_3,undefined4 param_4,\r\n            float param_5,float param_6)\r\n\r\n{\r\n  int iVar1;\r\n  undefined local_24 [16];\r\n  undefined local_14 [16];\r\n  \r\n  param_5 = param_5 + param_6;\r\n  iVar1 = FUN_0054212c(param_5,0);\r\n  if (iVar1 == 0) {\r\n    thunk_FUN_0054474d(local_24,param_2,param_3,param_5);\r\n    thunk_FUN_0054474d(local_14,param_2,param_4,param_5);\r\n    thunk_FUN_0054474d(param_1,local_24,local_14,param_6 / param_5);\r\n  }\r\n  else if (param_1 != param_2) {\r\n    *param_1 = *param_2;\r\n    param_1[1] = param_2[1];\r\n    param_1[2] = param_2[2];\r\n    param_1[3] = param_2[3];\r\n  }\r\n  return param_1;\r\n}\r\n\r\n", 
+  "is_thunk": false, 
+  "name": "FUN_0054491b", 
+  "assembly": "  0054491b:  PUSH EBP\n  0054491c:  MOV EBP,ESP\n  0054491e:  SUB ESP,0x20\n  00544921:  FLD dword ptr [EBP + 0x18]\n  00544924:  PUSH ESI\n  00544925:  FADD dword ptr [EBP + 0x1c]\n  00544928:  PUSH ECX\n  00544929:  PUSH ECX\n  0054492a:  FSTP dword ptr [EBP + 0x18]\n  0054492d:  FLDZ\n  0054492f:  FSTP dword ptr [ESP + 0x4]\n  00544933:  FLD dword ptr [EBP + 0x18]\n  00544936:  FSTP dword ptr [ESP]\n  00544939:  CALL 0x0054212c\n  0054493e:  TEST EAX,EAX\n  00544940:  JZ 0x00544955\n  00544942:  MOV ESI,dword ptr [EBP + 0xc]\n  00544945:  CMP dword ptr [EBP + 0x8],ESI\n  00544948:  JZ 0x0054499b\n  0054494a:  PUSH EDI\n  0054494b:  MOV EDI,dword ptr [EBP + 0x8]\n  0054494e:  MOVSD ES:EDI,ESI\n  0054494f:  MOVSD ES:EDI,ESI\n  00544950:  MOVSD ES:EDI,ESI\n  00544951:  MOVSD ES:EDI,ESI\n  00544952:  POP EDI\n  00544953:  JMP 0x0054499b\n  00544955:  FLD dword ptr [EBP + 0x18]\n  00544958:  PUSH ECX\n  00544959:  FSTP dword ptr [ESP]\n  0054495c:  PUSH dword ptr [EBP + 0x10]\n  0054495f:  LEA EAX,[EBP + -0x20]\n  00544962:  PUSH dword ptr [EBP + 0xc]\n  00544965:  PUSH EAX\n  00544966:  CALL 0x00544771\n  0054496b:  FLD dword ptr [EBP + 0x18]\n  0054496e:  PUSH ECX\n  0054496f:  FSTP dword ptr [ESP]\n  00544972:  PUSH dword ptr [EBP + 0x14]\n  00544975:  LEA EAX,[EBP + -0x10]\n  00544978:  PUSH dword ptr [EBP + 0xc]\n  0054497b:  PUSH EAX\n  0054497c:  CALL 0x00544771\n  00544981:  FLD dword ptr [EBP + 0x1c]\n  00544984:  FDIV dword ptr [EBP + 0x18]\n  00544987:  PUSH ECX\n  00544988:  LEA EAX,[EBP + -0x10]\n  0054498b:  FSTP dword ptr [ESP]\n  0054498e:  PUSH EAX\n  0054498f:  LEA EAX,[EBP + -0x20]\n  00544992:  PUSH EAX\n  00544993:  PUSH dword ptr [EBP + 0x8]\n  00544996:  CALL 0x00544771\n  0054499b:  MOV EAX,dword ptr [EBP + 0x8]\n  0054499e:  POP ESI\n  0054499f:  LEAVE\n  005449a0:  RET 0x18", 
+  "callers": []
+}

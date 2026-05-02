@@ -1,0 +1,49 @@
+{
+  "address": "0x00556517", 
+  "size_bytes": 62, 
+  "calling_convention": "__cdecl", 
+  "signature": "void __fassign(int flag, char * argument, char * number)", 
+  "callees": [
+    {
+      "address": "0x0055bab4", 
+      "name": "FUN_0055bab4"
+    }, 
+    {
+      "address": "0x0055bae1", 
+      "name": "FUN_0055bae1"
+    }
+  ], 
+  "global_refs": [
+    {
+      "address": "0x00000004", 
+      "type": null, 
+      "name": "DAT_00000004"
+    }, 
+    {
+      "address": "0x0000000c", 
+      "type": null, 
+      "name": "DAT_0000000c"
+    }, 
+    {
+      "address": "0x-000000c", 
+      "type": null, 
+      "name": "DAT_-000000c"
+    }, 
+    {
+      "address": "0x00000008", 
+      "type": null, 
+      "name": "DAT_00000008"
+    }, 
+    {
+      "address": "0x-0000008", 
+      "type": null, 
+      "name": "DAT_-0000008"
+    }
+  ], 
+  "has_custom_name": true, 
+  "decompiled_c": "\r\n/* Library Function - Single Match\r\n    __fassign\r\n   \r\n   Library: Visual Studio 2003 Release */\r\n\r\nvoid __cdecl __fassign(int flag,char *argument,char *number)\r\n\r\n{\r\n  undefined4 local_c;\r\n  undefined4 local_8;\r\n  \r\n  if (flag != 0) {\r\n    FUN_0055bab4(&local_c);\r\n    *(undefined4 *)argument = local_c;\r\n    *(undefined4 *)(argument + 4) = local_8;\r\n    return;\r\n  }\r\n  FUN_0055bae1(&number,number);\r\n  *(char **)argument = number;\r\n  return;\r\n}\r\n\r\n", 
+  "is_thunk": false, 
+  "name": "__fassign", 
+  "assembly": "  00556517:  PUSH EBP\n  00556518:  MOV EBP,ESP\n  0055651a:  PUSH ECX\n  0055651b:  PUSH ECX\n  0055651c:  CMP dword ptr [EBP + 0x8],0x0\n  00556520:  PUSH dword ptr [EBP + 0x10]\n  00556523:  JZ 0x00556540\n  00556525:  LEA EAX,[EBP + -0x8]\n  00556528:  PUSH EAX\n  00556529:  CALL 0x0055bab4\n  0055652e:  MOV EAX,dword ptr [EBP + 0xc]\n  00556531:  POP ECX\n  00556532:  POP ECX\n  00556533:  MOV ECX,dword ptr [EBP + -0x8]\n  00556536:  MOV dword ptr [EAX],ECX\n  00556538:  MOV ECX,dword ptr [EBP + -0x4]\n  0055653b:  MOV dword ptr [EAX + 0x4],ECX\n  0055653e:  LEAVE\n  0055653f:  RET\n  00556540:  LEA EAX,[EBP + 0x10]\n  00556543:  PUSH EAX\n  00556544:  CALL 0x0055bae1\n  00556549:  MOV EAX,dword ptr [EBP + 0xc]\n  0055654c:  POP ECX\n  0055654d:  POP ECX\n  0055654e:  MOV ECX,dword ptr [EBP + 0x10]\n  00556551:  MOV dword ptr [EAX],ECX\n  00556553:  LEAVE\n  00556554:  RET", 
+  "callers": []
+}

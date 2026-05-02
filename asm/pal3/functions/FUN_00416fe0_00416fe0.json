@@ -1,0 +1,34 @@
+{
+  "address": "0x00416fe0", 
+  "size_bytes": 94, 
+  "calling_convention": "unknown", 
+  "signature": "undefined FUN_00416fe0(undefined4 param_1)", 
+  "callees": [
+    {
+      "address": "0x004142e0", 
+      "name": "FUN_004142e0"
+    }, 
+    {
+      "address": "0x00412b60", 
+      "name": "FUN_00412b60"
+    }
+  ], 
+  "global_refs": [
+    {
+      "address": "0x00000004", 
+      "type": null, 
+      "name": "DAT_00000004"
+    }
+  ], 
+  "has_custom_name": false, 
+  "decompiled_c": "\r\nvoid __thiscall FUN_00416fe0(int param_1_00,undefined4 param_1)\r\n\r\n{\r\n  if (*(int *)(param_1_00 + 0x4f0) == 4) {\r\n    *(undefined4 *)(param_1_00 + 0x4f0) = *(undefined4 *)(param_1_00 + 0x4ec);\r\n    FUN_004142e0();\r\n  }\r\n  *(undefined4 *)(param_1_00 + 0x4cc) = 5;\r\n  *(undefined4 *)(param_1_00 + 0x4d0) = 0;\r\n  if (*(int *)(param_1_00 + 0x4f0) != 4) {\r\n    *(int *)(param_1_00 + 0x4ec) = *(int *)(param_1_00 + 0x4f0);\r\n  }\r\n  *(undefined4 *)(param_1_00 + 0x4f0) = 4;\r\n  FUN_00412b60(param_1,1);\r\n  return;\r\n}\r\n\r\n", 
+  "is_thunk": false, 
+  "name": "FUN_00416fe0", 
+  "assembly": "  00416fe0:  PUSH ESI\n  00416fe1:  MOV ESI,ECX\n  00416fe3:  CMP dword ptr [ESI + 0x4f0],0x4\n  00416fea:  JNZ 0x00416ffd\n  00416fec:  MOV EAX,dword ptr [ESI + 0x4ec]\n  00416ff2:  MOV dword ptr [ESI + 0x4f0],EAX\n  00416ff8:  CALL 0x004142e0\n  00416ffd:  MOV EAX,dword ptr [ESI + 0x4f0]\n  00417003:  MOV dword ptr [ESI + 0x4cc],0x5\n  0041700d:  CMP EAX,0x4\n  00417010:  MOV dword ptr [ESI + 0x4d0],0x0\n  0041701a:  JZ 0x00417022\n  0041701c:  MOV dword ptr [ESI + 0x4ec],EAX\n  00417022:  MOV ECX,dword ptr [ESP + 0x8]\n  00417026:  PUSH 0x1\n  00417028:  PUSH ECX\n  00417029:  MOV ECX,ESI\n  0041702b:  MOV dword ptr [ESI + 0x4f0],0x4\n  00417035:  CALL 0x00412b60\n  0041703a:  POP ESI\n  0041703b:  RET 0x4", 
+  "callers": [
+    {
+      "address": "0x0040e0a0", 
+      "name": "FUN_0040e0a0"
+    }
+  ]
+}

@@ -1,0 +1,275 @@
+{
+  "address": "0x00546f41", 
+  "size_bytes": 257, 
+  "calling_convention": "unknown", 
+  "signature": "undefined FUN_00546f41(undefined4 param_1)", 
+  "callees": [
+    {
+      "address": "0x00547b27", 
+      "name": "FUN_00547b27"
+    }, 
+    {
+      "address": "0x00547ae2", 
+      "name": "FUN_00547ae2"
+    }, 
+    {
+      "address": "0x00546e3f", 
+      "name": "FUN_00546e3f"
+    }, 
+    {
+      "address": "0x0000001f", 
+      "name": "IsProcessorFeaturePresent"
+    }, 
+    {
+      "address": "0x0054740c", 
+      "name": "FUN_0054740c"
+    }, 
+    {
+      "address": "0x00546e9c", 
+      "name": "FUN_00546e9c"
+    }, 
+    {
+      "address": "0x005471ba", 
+      "name": "FUN_005471ba"
+    }, 
+    {
+      "address": "0x00547042", 
+      "name": "FUN_00547042"
+    }
+  ], 
+  "global_refs": [
+    {
+      "address": "0x00000004", 
+      "type": null, 
+      "name": "DAT_00000004"
+    }, 
+    {
+      "address": "0x006091d0", 
+      "type": null, 
+      "name": "PTR_FUN_006091d0"
+    }, 
+    {
+      "address": "0x006090a8", 
+      "type": null, 
+      "name": "PTR_FUN_006090a8"
+    }, 
+    {
+      "address": "0x006092f8", 
+      "type": null, 
+      "name": "DAT_006092f8"
+    }, 
+    {
+      "address": "0x00544e22", 
+      "type": null, 
+      "name": "FUN_00544e22"
+    }, 
+    {
+      "address": "0x00572b78", 
+      "type": null, 
+      "name": "s_DisablePSGP_00572b78"
+    }, 
+    {
+      "address": "0x-0000008", 
+      "type": null, 
+      "name": "DAT_-0000008"
+    }, 
+    {
+      "address": "0x00572b68", 
+      "type": null, 
+      "name": "s_DisableD3DXPSGP_00572b68"
+    }, 
+    {
+      "address": "0x0056a080", 
+      "type": null, 
+      "name": "PTR_IsProcessorFeaturePresent_0056a080"
+    }, 
+    {
+      "address": "0x-000000c", 
+      "type": null, 
+      "name": "DAT_-000000c"
+    }
+  ], 
+  "has_custom_name": false, 
+  "decompiled_c": "\r\nint FUN_00546f41(int param_1)\r\n\r\n{\r\n  BOOL BVar1;\r\n  uint uVar2;\r\n  int iVar3;\r\n  undefined **ppuVar4;\r\n  undefined **ppuVar5;\r\n  int local_8;\r\n  \r\n  FUN_00547b27();\r\n  if (param_1 == 0) {\r\n    DAT_006092f8 = 0xffff;\r\n    ppuVar4 = &PTR_FUN_006091d0;\r\n    ppuVar5 = &PTR_FUN_006090a8;\r\n    for (iVar3 = 0x49; iVar3 != 0; iVar3 = iVar3 + -1) {\r\n      *ppuVar5 = *ppuVar4;\r\n      ppuVar4 = ppuVar4 + 1;\r\n      ppuVar5 = ppuVar5 + 1;\r\n    }\r\n  }\r\n  else if (DAT_006092f8 == 0xffff) {\r\n    DAT_006092f8 = 0;\r\n    ppuVar4 = &PTR_FUN_006091d0;\r\n    ppuVar5 = &PTR_FUN_006090a8;\r\n    for (iVar3 = 0x49; iVar3 != 0; iVar3 = iVar3 + -1) {\r\n      *ppuVar5 = *ppuVar4;\r\n      ppuVar4 = ppuVar4 + 1;\r\n      ppuVar5 = ppuVar5 + 1;\r\n    }\r\n    FUN_00547ae2(&PTR_FUN_006090a8);\r\n    iVar3 = FUN_00546e3f(4,\"DisablePSGP\",&param_1,4);\r\n    if (iVar3 == 0) {\r\n      param_1 = 0;\r\n    }\r\n    iVar3 = FUN_00546e3f(4,\"DisableD3DXPSGP\",&local_8,4);\r\n    if (iVar3 != 0) {\r\n      param_1 = local_8;\r\n    }\r\n    if (param_1 != 1) {\r\n      if ((param_1 == 2) || (BVar1 = IsProcessorFeaturePresent(7), BVar1 == 0)) {\r\n        uVar2 = FUN_00546e9c();\r\n        if ((uVar2 & 8) == 0) {\r\n          BVar1 = IsProcessorFeaturePresent(6);\r\n          if (BVar1 != 0) {\r\n            FUN_00547042(&PTR_FUN_006090a8);\r\n            DAT_006092f8 = 3;\r\n          }\r\n        }\r\n        else {\r\n          FUN_005471ba(&PTR_FUN_006090a8);\r\n          DAT_006092f8 = 2;\r\n        }\r\n      }\r\n      else {\r\n        FUN_0054740c(&PTR_FUN_006090a8);\r\n        DAT_006092f8 = 1;\r\n      }\r\n    }\r\n  }\r\n  return DAT_006092f8;\r\n}\r\n\r\n", 
+  "is_thunk": false, 
+  "name": "FUN_00546f41", 
+  "assembly": "  00546f41:  PUSH EBP\n  00546f42:  MOV EBP,ESP\n  00546f44:  PUSH ECX\n  00546f45:  PUSH ECX\n  00546f46:  PUSH ESI\n  00546f47:  PUSH EDI\n  00546f48:  CALL 0x00547b27\n  00546f4d:  CMP dword ptr [EBP + 0x8],0x0\n  00546f51:  JNZ 0x00546f71\n  00546f53:  PUSH 0x49\n  00546f55:  POP ECX\n  00546f56:  MOV ESI,0x6091d0\n  00546f5b:  MOV EDI,0x6090a8\n  00546f60:  MOV dword ptr [0x006092f8],0xffff\n  00546f6a:  MOVSD.REP ES:EDI,ESI\n  00546f6c:  JMP 0x00547037\n  00546f71:  CMP dword ptr [0x006092f8],0xffff\n  00546f7b:  JNZ 0x00547037\n  00546f81:  AND dword ptr [0x006092f8],0x0\n  00546f88:  PUSH EBX\n  00546f89:  PUSH 0x49\n  00546f8b:  POP ECX\n  00546f8c:  MOV EBX,0x6090a8\n  00546f91:  MOV ESI,0x6091d0\n  00546f96:  MOV EDI,EBX\n  00546f98:  PUSH EBX\n  00546f99:  MOVSD.REP ES:EDI,ESI\n  00546f9b:  CALL 0x00547ae2\n  00546fa0:  PUSH 0x4\n  00546fa2:  POP ESI\n  00546fa3:  PUSH ESI\n  00546fa4:  LEA EAX,[EBP + 0x8]\n  00546fa7:  PUSH EAX\n  00546fa8:  PUSH 0x572b78\n  00546fad:  PUSH ESI\n  00546fae:  CALL 0x00546e3f\n  00546fb3:  TEST EAX,EAX\n  00546fb5:  JNZ 0x00546fba\n  00546fb7:  AND dword ptr [EBP + 0x8],EAX\n  00546fba:  PUSH ESI\n  00546fbb:  LEA EAX,[EBP + -0x4]\n  00546fbe:  PUSH EAX\n  00546fbf:  PUSH 0x572b68\n  00546fc4:  PUSH ESI\n  00546fc5:  CALL 0x00546e3f\n  00546fca:  TEST EAX,EAX\n  00546fcc:  JZ 0x00546fd4\n  00546fce:  MOV EAX,dword ptr [EBP + -0x4]\n  00546fd1:  MOV dword ptr [EBP + 0x8],EAX\n  00546fd4:  CMP dword ptr [EBP + 0x8],0x1\n  00546fd8:  JZ 0x00547036\n  00546fda:  MOV ESI,dword ptr [0x0056a080]\n  00546fe0:  PUSH 0x2\n  00546fe2:  POP EDI\n  00546fe3:  CMP dword ptr [EBP + 0x8],EDI\n  00546fe6:  JZ 0x00547002\n  00546fe8:  PUSH 0x7\n  00546fea:  CALL ESI\n  00546fec:  TEST EAX,EAX\n  00546fee:  JZ 0x00547002\n  00546ff0:  PUSH EBX\n  00546ff1:  CALL 0x0054740c\n  00546ff6:  MOV dword ptr [0x006092f8],0x1\n  00547000:  JMP 0x00547035\n  00547002:  CALL 0x00546e9c\n  00547007:  AND EAX,0x8\n  0054700a:  MOV dword ptr [EBP + -0x8],EAX\n  0054700d:  JZ 0x0054701d\n  0054700f:  PUSH EBX\n  00547010:  CALL 0x005471ba\n  00547015:  MOV dword ptr [0x006092f8],EDI\n  0054701b:  JMP 0x00547035\n  0054701d:  PUSH 0x6\n  0054701f:  CALL ESI\n  00547021:  TEST EAX,EAX\n  00547023:  JZ 0x00547036\n  00547025:  PUSH EBX\n  00547026:  CALL 0x00547042\n  0054702b:  MOV dword ptr [0x006092f8],0x3\n  00547035:  POP ECX\n  00547036:  POP EBX\n  00547037:  MOV EAX,[0x006092f8]\n  0054703c:  POP EDI\n  0054703d:  POP ESI\n  0054703e:  LEAVE\n  0054703f:  RET 0x4", 
+  "callers": [
+    {
+      "address": "0x0054236f", 
+      "name": "FUN_0054236f"
+    }, 
+    {
+      "address": "0x00542448", 
+      "name": "FUN_00542448"
+    }, 
+    {
+      "address": "0x00542611", 
+      "name": "FUN_00542611"
+    }, 
+    {
+      "address": "0x0054270c", 
+      "name": "FUN_0054270c"
+    }, 
+    {
+      "address": "0x00542836", 
+      "name": "FUN_00542836"
+    }, 
+    {
+      "address": "0x00542991", 
+      "name": "FUN_00542991"
+    }, 
+    {
+      "address": "0x00542a20", 
+      "name": "FUN_00542a20"
+    }, 
+    {
+      "address": "0x00542c69", 
+      "name": "FUN_00542c69"
+    }, 
+    {
+      "address": "0x00542d86", 
+      "name": "FUN_00542d86"
+    }, 
+    {
+      "address": "0x00542ede", 
+      "name": "FUN_00542ede"
+    }, 
+    {
+      "address": "0x00543e6d", 
+      "name": "FUN_00543e6d"
+    }, 
+    {
+      "address": "0x00543eaf", 
+      "name": "FUN_00543eaf"
+    }, 
+    {
+      "address": "0x00543fbc", 
+      "name": "FUN_00543fbc"
+    }, 
+    {
+      "address": "0x0054485a", 
+      "name": "FUN_0054485a"
+    }, 
+    {
+      "address": "0x005448db", 
+      "name": "FUN_005448db"
+    }, 
+    {
+      "address": "0x00544ca6", 
+      "name": "FUN_00544ca6"
+    }, 
+    {
+      "address": "0x00544d76", 
+      "name": "FUN_00544d76"
+    }, 
+    {
+      "address": "0x00543b84", 
+      "name": "FUN_00543b84"
+    }, 
+    {
+      "address": "0x00543c22", 
+      "name": "FUN_00543c22"
+    }, 
+    {
+      "address": "0x00543d4a", 
+      "name": "FUN_00543d4a"
+    }, 
+    {
+      "address": "0x00543085", 
+      "name": "FUN_00543085"
+    }, 
+    {
+      "address": "0x005432ce", 
+      "name": "FUN_005432ce"
+    }, 
+    {
+      "address": "0x005428ee", 
+      "name": "FUN_005428ee"
+    }, 
+    {
+      "address": "0x00542918", 
+      "name": "FUN_00542918"
+    }, 
+    {
+      "address": "0x005449a3", 
+      "name": "FUN_005449a3"
+    }, 
+    {
+      "address": "0x00542e2c", 
+      "name": "FUN_00542e2c"
+    }, 
+    {
+      "address": "0x005442d7", 
+      "name": "FUN_005442d7"
+    }, 
+    {
+      "address": "0x005424ba", 
+      "name": "FUN_005424ba"
+    }, 
+    {
+      "address": "0x005424de", 
+      "name": "FUN_005424de"
+    }, 
+    {
+      "address": "0x00542502", 
+      "name": "FUN_00542502"
+    }, 
+    {
+      "address": "0x00542526", 
+      "name": "FUN_00542526"
+    }, 
+    {
+      "address": "0x0054474d", 
+      "name": "FUN_0054474d"
+    }, 
+    {
+      "address": "0x00542798", 
+      "name": "FUN_00542798"
+    }, 
+    {
+      "address": "0x00544550", 
+      "name": "FUN_00544550"
+    }, 
+    {
+      "address": "0x00542901", 
+      "name": "FUN_00542901"
+    }, 
+    {
+      "address": "0x00543591", 
+      "name": "FUN_00543591"
+    }, 
+    {
+      "address": "0x00544614", 
+      "name": "FUN_00544614"
+    }, 
+    {
+      "address": "0x005446a2", 
+      "name": "FUN_005446a2"
+    }, 
+    {
+      "address": "0x005443e4", 
+      "name": "FUN_005443e4"
+    }, 
+    {
+      "address": "0x005422b7", 
+      "name": "FUN_005422b7"
+    }, 
+    {
+      "address": "0x005439cd", 
+      "name": "FUN_005439cd"
+    }, 
+    {
+      "address": "0x00543a57", 
+      "name": "FUN_00543a57"
+    }, 
+    {
+      "address": "0x00543aed", 
+      "name": "FUN_00543aed"
+    }, 
+    {
+      "address": "0x0054425b", 
+      "name": "FUN_0054425b"
+    }
+  ]
+}

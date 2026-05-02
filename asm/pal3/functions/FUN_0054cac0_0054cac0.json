@@ -1,0 +1,60 @@
+{
+  "address": "0x0054cac0", 
+  "size_bytes": 149, 
+  "calling_convention": "unknown", 
+  "signature": "undefined FUN_0054cac0(undefined4 param_1, undefined4 param_2, undefined4 param_3, undefined4 param_4, undefined4 param_5, undefined4 param_6)", 
+  "callees": [], 
+  "global_refs": [
+    {
+      "address": "0x-0000008", 
+      "type": null, 
+      "name": "DAT_-0000008"
+    }, 
+    {
+      "address": "0x-0000004", 
+      "type": null, 
+      "name": "DAT_-0000004"
+    }, 
+    {
+      "address": "0x-000000c", 
+      "type": null, 
+      "name": "DAT_-000000c"
+    }, 
+    {
+      "address": "0x00000018", 
+      "type": null, 
+      "name": "DAT_00000018"
+    }, 
+    {
+      "address": "0x00000004", 
+      "type": null, 
+      "name": "DAT_00000004"
+    }, 
+    {
+      "address": "0x0000000c", 
+      "type": null, 
+      "name": "DAT_0000000c"
+    }, 
+    {
+      "address": "0x00000014", 
+      "type": null, 
+      "name": "DAT_00000014"
+    }, 
+    {
+      "address": "0x00000010", 
+      "type": null, 
+      "name": "DAT_00000010"
+    }, 
+    {
+      "address": "0x00000008", 
+      "type": null, 
+      "name": "DAT_00000008"
+    }
+  ], 
+  "has_custom_name": false, 
+  "decompiled_c": "\r\nfloat * FUN_0054cac0(float *param_1,int param_2,float *param_3,int param_4,float *param_5,\r\n                    int param_6)\r\n\r\n{\r\n  float fVar1;\r\n  float fVar2;\r\n  float fVar3;\r\n  float fVar4;\r\n  bool bVar5;\r\n  float fVar6;\r\n  float fVar7;\r\n  float fVar8;\r\n  float fVar9;\r\n  float fVar10;\r\n  float fVar11;\r\n  float fVar12;\r\n  float fVar13;\r\n  float fVar14;\r\n  float fVar15;\r\n  float fVar16;\r\n  float fVar17;\r\n  float fVar18;\r\n  float fVar19;\r\n  float fVar20;\r\n  float fVar21;\r\n  float *pfVar22;\r\n  int iVar23;\r\n  \r\n  if (0 < param_6) {\r\n    fVar6 = *param_5;\r\n    fVar7 = param_5[1];\r\n    fVar8 = param_5[2];\r\n    fVar9 = param_5[3];\r\n    fVar10 = param_5[4];\r\n    fVar11 = param_5[5];\r\n    fVar12 = param_5[6];\r\n    fVar13 = param_5[7];\r\n    fVar14 = param_5[8];\r\n    fVar15 = param_5[9];\r\n    fVar16 = param_5[10];\r\n    fVar17 = param_5[0xb];\r\n    fVar18 = param_5[0xc];\r\n    fVar19 = param_5[0xd];\r\n    fVar20 = param_5[0xe];\r\n    fVar21 = param_5[0xf];\r\n    pfVar22 = param_1;\r\n    do {\r\n      fVar1 = *param_3;\r\n      fVar2 = param_3[1];\r\n      fVar3 = param_3[2];\r\n      fVar4 = param_3[3];\r\n      param_3 = (float *)(param_4 + (int)param_3);\r\n      *pfVar22 = fVar1 * fVar6 + fVar2 * fVar10 + fVar3 * fVar14 + fVar4 * fVar18;\r\n      pfVar22[1] = fVar1 * fVar7 + fVar2 * fVar11 + fVar3 * fVar15 + fVar4 * fVar19;\r\n      pfVar22[2] = fVar1 * fVar8 + fVar2 * fVar12 + fVar3 * fVar16 + fVar4 * fVar20;\r\n      pfVar22[3] = fVar1 * fVar9 + fVar2 * fVar13 + fVar3 * fVar17 + fVar4 * fVar21;\r\n      pfVar22 = (float *)(param_2 + (int)pfVar22);\r\n      iVar23 = param_6 + -1;\r\n      bVar5 = 0 < param_6;\r\n      param_6 = iVar23;\r\n    } while (iVar23 != 0 && bVar5);\r\n  }\r\n  return param_1;\r\n}\r\n\r\n", 
+  "is_thunk": false, 
+  "name": "FUN_0054cac0", 
+  "assembly": "  0054cac0:  SUB ESP,0xc\n  0054cac3:  MOV dword ptr [ESP + 0x4],ESI\n  0054cac7:  MOV dword ptr [ESP + 0x8],EDI\n  0054cacb:  MOV dword ptr [ESP],EBX\n  0054cace:  MOV ECX,dword ptr [ESP + 0x24]\n  0054cad2:  MOV EAX,dword ptr [ESP + 0x10]\n  0054cad6:  MOV EBX,dword ptr [ESP + 0x18]\n  0054cada:  MOV EDX,dword ptr [ESP + 0x20]\n  0054cade:  CMP ECX,0x0\n  0054cae1:  JLE 0x0054cb40\n  0054cae3:  MOV ESI,dword ptr [ESP + 0x1c]\n  0054cae7:  MOV EDI,dword ptr [ESP + 0x14]\n  0054caeb:  MOVUPS XMM4,xmmword ptr [EDX]\n  0054caee:  MOVUPS XMM5,xmmword ptr [EDX + 0x10]\n  0054caf2:  MOVUPS XMM6,xmmword ptr [EDX + 0x20]\n  0054caf6:  MOVUPS XMM7,xmmword ptr [EDX + 0x30]\n  0054cafa:  MOVSS XMM0,dword ptr [EBX]\n  0054cafe:  SHUFPS XMM0,XMM0,0x0\n  0054cb02:  MOVSS XMM1,dword ptr [EBX + 0x4]\n  0054cb07:  SHUFPS XMM1,XMM1,0x0\n  0054cb0b:  MOVSS XMM2,dword ptr [EBX + 0x8]\n  0054cb10:  SHUFPS XMM2,XMM2,0x0\n  0054cb14:  MOVSS XMM3,dword ptr [EBX + 0xc]\n  0054cb19:  SHUFPS XMM3,XMM3,0x0\n  0054cb1d:  LEA EBX,[ESI + EBX*0x1]\n  0054cb20:  MULPS XMM0,XMM4\n  0054cb23:  MULPS XMM1,XMM5\n  0054cb26:  MULPS XMM2,XMM6\n  0054cb29:  MULPS XMM3,XMM7\n  0054cb2c:  ADDPS XMM0,XMM1\n  0054cb2f:  ADDPS XMM2,XMM3\n  0054cb32:  ADDPS XMM0,XMM2\n  0054cb35:  MOVUPS xmmword ptr [EAX],XMM0\n  0054cb38:  LEA EAX,[EDI + EAX*0x1]\n  0054cb3b:  SUB ECX,0x1\n  0054cb3e:  JG 0x0054cafa\n  0054cb40:  MOV EAX,dword ptr [ESP + 0x10]\n  0054cb44:  MOV EBX,dword ptr [ESP]\n  0054cb47:  MOV ESI,dword ptr [ESP + 0x4]\n  0054cb4b:  MOV EDI,dword ptr [ESP + 0x8]\n  0054cb4f:  ADD ESP,0xc\n  0054cb52:  RET 0x18", 
+  "callers": []
+}

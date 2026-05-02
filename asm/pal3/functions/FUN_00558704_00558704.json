@@ -1,0 +1,30 @@
+{
+  "address": "0x00558704", 
+  "size_bytes": 43, 
+  "calling_convention": "unknown", 
+  "signature": "undefined FUN_00558704(undefined4 param_1, undefined4 param_2)", 
+  "callees": [], 
+  "global_refs": [
+    {
+      "address": "0x00000008", 
+      "type": null, 
+      "name": "DAT_00000008"
+    }, 
+    {
+      "address": "0x00000004", 
+      "type": null, 
+      "name": "DAT_00000004"
+    }
+  ], 
+  "has_custom_name": false, 
+  "decompiled_c": "\r\nint FUN_00558704(char *param_1,int param_2)\r\n\r\n{\r\n  char *pcVar1;\r\n  int iVar2;\r\n  \r\n  pcVar1 = param_1;\r\n  iVar2 = param_2;\r\n  if (param_2 != 0) {\r\n    do {\r\n      iVar2 = iVar2 + -1;\r\n      if (*pcVar1 == '\\0') break;\r\n      pcVar1 = pcVar1 + 1;\r\n    } while (iVar2 != 0);\r\n  }\r\n  if (*pcVar1 == '\\0') {\r\n    return (int)pcVar1 - (int)param_1;\r\n  }\r\n  return param_2;\r\n}\r\n\r\n", 
+  "is_thunk": false, 
+  "name": "FUN_00558704", 
+  "assembly": "  00558704:  MOV EDX,dword ptr [ESP + 0x8]\n  00558708:  MOV EAX,dword ptr [ESP + 0x4]\n  0055870c:  TEST EDX,EDX\n  0055870e:  PUSH ESI\n  0055870f:  LEA ECX,[EDX + -0x1]\n  00558712:  JZ 0x00558721\n  00558714:  CMP byte ptr [EAX],0x0\n  00558717:  JZ 0x00558721\n  00558719:  INC EAX\n  0055871a:  MOV ESI,ECX\n  0055871c:  DEC ECX\n  0055871d:  TEST ESI,ESI\n  0055871f:  JNZ 0x00558714\n  00558721:  CMP byte ptr [EAX],0x0\n  00558724:  POP ESI\n  00558725:  JNZ 0x0055872c\n  00558727:  SUB EAX,dword ptr [ESP + 0x4]\n  0055872b:  RET\n  0055872c:  MOV EAX,EDX\n  0055872e:  RET", 
+  "callers": [
+    {
+      "address": "0x005584e0", 
+      "name": "FUN_005584e0"
+    }
+  ]
+}

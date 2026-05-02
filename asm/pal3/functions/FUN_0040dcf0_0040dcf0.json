@@ -1,0 +1,82 @@
+{
+  "address": "0x0040dcf0", 
+  "size_bytes": 61, 
+  "calling_convention": "unknown", 
+  "signature": "undefined FUN_0040dcf0(undefined4 param_1)", 
+  "callees": [
+    {
+      "address": "0x0040dcd0", 
+      "name": "FUN_0040dcd0"
+    }
+  ], 
+  "global_refs": [
+    {
+      "address": "0x00000004", 
+      "type": null, 
+      "name": "DAT_00000004"
+    }
+  ], 
+  "has_custom_name": false, 
+  "decompiled_c": "\r\nuint __thiscall FUN_0040dcf0(int param_1_00,undefined4 param_1)\r\n\r\n{\r\n  uint uVar1;\r\n  char cVar2;\r\n  uint uVar3;\r\n  \r\n  uVar1 = *(uint *)(param_1_00 + 8);\r\n  uVar3 = *(uint *)(param_1_00 + 4);\r\n  while ((uVar3 != uVar1 && (cVar2 = FUN_0040dcd0(uVar3,param_1), cVar2 == '\\0'))) {\r\n    uVar3 = uVar3 + 0xc;\r\n  }\r\n  return -(uint)(uVar3 != *(uint *)(param_1_00 + 8)) & uVar3;\r\n}\r\n\r\n", 
+  "is_thunk": false, 
+  "name": "FUN_0040dcf0", 
+  "assembly": "  0040dcf0:  PUSH EBX\n  0040dcf1:  PUSH EBP\n  0040dcf2:  MOV EBX,ECX\n  0040dcf4:  PUSH ESI\n  0040dcf5:  PUSH EDI\n  0040dcf6:  MOV EDI,dword ptr [EBX + 0x8]\n  0040dcf9:  MOV ESI,dword ptr [EBX + 0x4]\n  0040dcfc:  CMP ESI,EDI\n  0040dcfe:  JZ 0x0040dd19\n  0040dd00:  MOV EBP,dword ptr [ESP + 0x14]\n  0040dd04:  PUSH EBP\n  0040dd05:  PUSH ESI\n  0040dd06:  CALL 0x0040dcd0\n  0040dd0b:  ADD ESP,0x8\n  0040dd0e:  TEST AL,AL\n  0040dd10:  JNZ 0x0040dd19\n  0040dd12:  ADD ESI,0xc\n  0040dd15:  CMP ESI,EDI\n  0040dd17:  JNZ 0x0040dd04\n  0040dd19:  MOV EDI,dword ptr [EBX + 0x8]\n  0040dd1c:  MOV EAX,ESI\n  0040dd1e:  SUB EAX,EDI\n  0040dd20:  POP EDI\n  0040dd21:  NEG EAX\n  0040dd23:  SBB EAX,EAX\n  0040dd25:  AND EAX,ESI\n  0040dd27:  POP ESI\n  0040dd28:  POP EBP\n  0040dd29:  POP EBX\n  0040dd2a:  RET 0x4", 
+  "callers": [
+    {
+      "address": "0x0040cf60", 
+      "name": "FUN_0040cf60"
+    }, 
+    {
+      "address": "0x00423a70", 
+      "name": "FUN_00423a70"
+    }, 
+    {
+      "address": "0x0040ccf0", 
+      "name": "FUN_0040ccf0"
+    }, 
+    {
+      "address": "0x0048cce0", 
+      "name": "FUN_0048cce0"
+    }, 
+    {
+      "address": "0x0052ece0", 
+      "name": "FUN_0052ece0"
+    }, 
+    {
+      "address": "0x0042b5b0", 
+      "name": "FUN_0042b5b0"
+    }, 
+    {
+      "address": "0x0045b7a0", 
+      "name": "FUN_0045b7a0"
+    }, 
+    {
+      "address": "0x0046dd10", 
+      "name": "FUN_0046dd10"
+    }, 
+    {
+      "address": "0x004f2910", 
+      "name": "FUN_004f2910"
+    }, 
+    {
+      "address": "0x004f7200", 
+      "name": "FUN_004f7200"
+    }, 
+    {
+      "address": "0x0046ecc0", 
+      "name": "FUN_0046ecc0"
+    }, 
+    {
+      "address": "0x00460a90", 
+      "name": "FUN_00460a90"
+    }, 
+    {
+      "address": "0x00407640", 
+      "name": "FUN_00407640"
+    }, 
+    {
+      "address": "0x00531260", 
+      "name": "FUN_00531260"
+    }
+  ]
+}

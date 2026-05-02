@@ -1,0 +1,96 @@
+{
+  "address": "0x00556892", 
+  "size_bytes": 288, 
+  "calling_convention": "unknown", 
+  "signature": "undefined FUN_00556892(undefined4 param_1, undefined4 param_2)", 
+  "callees": [
+    {
+      "address": "0x005536a9", 
+      "name": "_malloc"
+    }, 
+    {
+      "address": "0x00552f55", 
+      "name": "FUN_00552f55"
+    }, 
+    {
+      "address": "0x005558dd", 
+      "name": "FUN_005558dd"
+    }, 
+    {
+      "address": "0x005560e8", 
+      "name": "FUN_005560e8"
+    }, 
+    {
+      "address": "0x00555c33", 
+      "name": "FUN_00555c33"
+    }, 
+    {
+      "address": "0x00555330", 
+      "name": "FUN_00555330"
+    }, 
+    {
+      "address": "0x00555908", 
+      "name": "FUN_00555908"
+    }, 
+    {
+      "address": "0x00000021", 
+      "name": "HeapAlloc"
+    }, 
+    {
+      "address": "0x0000002f", 
+      "name": "HeapReAlloc"
+    }, 
+    {
+      "address": "0x00555848", 
+      "name": "FUN_00555848"
+    }
+  ], 
+  "global_refs": [
+    {
+      "address": "0x00000004", 
+      "type": null, 
+      "name": "DAT_00000004"
+    }, 
+    {
+      "address": "0x00000008", 
+      "type": null, 
+      "name": "DAT_00000008"
+    }, 
+    {
+      "address": "0x0060acb4", 
+      "type": null, 
+      "name": "DAT_0060acb4"
+    }, 
+    {
+      "address": "0x01896d0c", 
+      "type": null, 
+      "name": "DAT_01896d0c"
+    }, 
+    {
+      "address": "0x0056a088", 
+      "type": null, 
+      "name": "PTR_HeapAlloc_0056a088"
+    }, 
+    {
+      "address": "0x0056a0c0", 
+      "type": null, 
+      "name": "PTR_HeapReAlloc_0056a0c0"
+    }, 
+    {
+      "address": "0x01895328", 
+      "type": null, 
+      "name": "DAT_01895328"
+    }
+  ], 
+  "has_custom_name": false, 
+  "decompiled_c": "\r\nvoid * FUN_00556892(LPVOID param_1,uint param_2)\r\n\r\n{\r\n  void *pvVar1;\r\n  int iVar2;\r\n  int iVar3;\r\n  uint uVar4;\r\n  LPVOID pvVar5;\r\n  \r\n  if (param_1 == (LPVOID)0x0) {\r\n    pvVar1 = _malloc(param_2);\r\n  }\r\n  else {\r\n    if (param_2 == 0) {\r\n      FUN_00552f55(param_1);\r\n    }\r\n    else {\r\n      do {\r\n        pvVar5 = (LPVOID)0x0;\r\n        if (param_2 < 0xffffffe1) {\r\n          iVar2 = FUN_005558dd(param_1);\r\n          if (iVar2 == 0) {\r\n            if (param_2 == 0) {\r\n              param_2 = 1;\r\n            }\r\n            param_2 = param_2 + 0xf & 0xfffffff0;\r\n            pvVar5 = HeapReAlloc(DAT_01896d0c,0,param_1,param_2);\r\n          }\r\n          else {\r\n            if (param_2 <= DAT_0060acb4) {\r\n              iVar3 = FUN_005560e8(iVar2,param_1,param_2);\r\n              pvVar5 = param_1;\r\n              if (iVar3 == 0) {\r\n                pvVar5 = (LPVOID)FUN_00555c33(param_2);\r\n                if (pvVar5 == (LPVOID)0x0) goto LAB_0055692b;\r\n                uVar4 = *(int *)((int)param_1 + -4) - 1;\r\n                if (param_2 <= uVar4) {\r\n                  uVar4 = param_2;\r\n                }\r\n                FUN_00555330(pvVar5,param_1,uVar4);\r\n                FUN_00555908(iVar2,param_1);\r\n              }\r\n              if (pvVar5 != (LPVOID)0x0) {\r\n                return pvVar5;\r\n              }\r\n            }\r\nLAB_0055692b:\r\n            if (param_2 == 0) {\r\n              param_2 = 1;\r\n            }\r\n            param_2 = param_2 + 0xf & 0xfffffff0;\r\n            pvVar5 = HeapAlloc(DAT_01896d0c,0,param_2);\r\n            if (pvVar5 == (LPVOID)0x0) goto LAB_0055698e;\r\n            uVar4 = *(int *)((int)param_1 + -4) - 1;\r\n            if (param_2 <= uVar4) {\r\n              uVar4 = param_2;\r\n            }\r\n            FUN_00555330(pvVar5,param_1,uVar4);\r\n            FUN_00555908(iVar2,param_1);\r\n          }\r\n          if (pvVar5 != (LPVOID)0x0) {\r\n            return pvVar5;\r\n          }\r\n        }\r\nLAB_0055698e:\r\n        if (DAT_01895328 == 0) {\r\n          return pvVar5;\r\n        }\r\n        iVar2 = FUN_00555848(param_2);\r\n      } while (iVar2 != 0);\r\n    }\r\n    pvVar1 = (void *)0x0;\r\n  }\r\n  return pvVar1;\r\n}\r\n\r\n", 
+  "is_thunk": false, 
+  "name": "FUN_00556892", 
+  "assembly": "  00556892:  PUSH EBX\n  00556893:  MOV EBX,dword ptr [ESP + 0x8]\n  00556897:  PUSH EBP\n  00556898:  PUSH ESI\n  00556899:  TEST EBX,EBX\n  0055689b:  PUSH EDI\n  0055689c:  JNZ 0x005568ad\n  0055689e:  PUSH dword ptr [ESP + 0x18]\n  005568a2:  CALL 0x005536a9\n  005568a7:  POP ECX\n  005568a8:  JMP 0x005569ad\n  005568ad:  MOV ESI,dword ptr [ESP + 0x18]\n  005568b1:  TEST ESI,ESI\n  005568b3:  JNZ 0x005568c3\n  005568b5:  PUSH EBX\n  005568b6:  CALL 0x00552f55\n  005568bb:  POP ECX\n  005568bc:  XOR EAX,EAX\n  005568be:  JMP 0x005569ad\n  005568c3:  XOR EDI,EDI\n  005568c5:  CMP ESI,-0x20\n  005568c8:  JA 0x0055698e\n  005568ce:  PUSH EBX\n  005568cf:  CALL 0x005558dd\n  005568d4:  MOV EBP,EAX\n  005568d6:  POP ECX\n  005568d7:  TEST EBP,EBP\n  005568d9:  JZ 0x0055696b\n  005568df:  CMP ESI,dword ptr [0x0060acb4]\n  005568e5:  JA 0x0055692b\n  005568e7:  PUSH ESI\n  005568e8:  PUSH EBX\n  005568e9:  PUSH EBP\n  005568ea:  CALL 0x005560e8\n  005568ef:  ADD ESP,0xc\n  005568f2:  TEST EAX,EAX\n  005568f4:  JZ 0x005568fa\n  005568f6:  MOV EDI,EBX\n  005568f8:  JMP 0x00556923\n  005568fa:  PUSH ESI\n  005568fb:  CALL 0x00555c33\n  00556900:  MOV EDI,EAX\n  00556902:  POP ECX\n  00556903:  TEST EDI,EDI\n  00556905:  JZ 0x0055692b\n  00556907:  MOV EAX,dword ptr [EBX + -0x4]\n  0055690a:  DEC EAX\n  0055690b:  CMP EAX,ESI\n  0055690d:  JC 0x00556911\n  0055690f:  MOV EAX,ESI\n  00556911:  PUSH EAX\n  00556912:  PUSH EBX\n  00556913:  PUSH EDI\n  00556914:  CALL 0x00555330\n  00556919:  PUSH EBX\n  0055691a:  PUSH EBP\n  0055691b:  CALL 0x00555908\n  00556920:  ADD ESP,0x14\n  00556923:  TEST EDI,EDI\n  00556925:  JNZ 0x005569ab\n  0055692b:  TEST ESI,ESI\n  0055692d:  JNZ 0x00556932\n  0055692f:  PUSH 0x1\n  00556931:  POP ESI\n  00556932:  ADD ESI,0xf\n  00556935:  AND ESI,0xfffffff0\n  00556938:  PUSH ESI\n  00556939:  PUSH 0x0\n  0055693b:  PUSH dword ptr [0x01896d0c]\n  00556941:  CALL dword ptr [0x0056a088]\n  00556947:  MOV EDI,EAX\n  00556949:  TEST EDI,EDI\n  0055694b:  JZ 0x0055698e\n  0055694d:  MOV EAX,dword ptr [EBX + -0x4]\n  00556950:  DEC EAX\n  00556951:  CMP EAX,ESI\n  00556953:  JC 0x00556957\n  00556955:  MOV EAX,ESI\n  00556957:  PUSH EAX\n  00556958:  PUSH EBX\n  00556959:  PUSH EDI\n  0055695a:  CALL 0x00555330\n  0055695f:  PUSH EBX\n  00556960:  PUSH EBP\n  00556961:  CALL 0x00555908\n  00556966:  ADD ESP,0x14\n  00556969:  JMP 0x0055698a\n  0055696b:  TEST ESI,ESI\n  0055696d:  JNZ 0x00556972\n  0055696f:  PUSH 0x1\n  00556971:  POP ESI\n  00556972:  ADD ESI,0xf\n  00556975:  AND ESI,0xfffffff0\n  00556978:  PUSH ESI\n  00556979:  PUSH EBX\n  0055697a:  PUSH 0x0\n  0055697c:  PUSH dword ptr [0x01896d0c]\n  00556982:  CALL dword ptr [0x0056a0c0]\n  00556988:  MOV EDI,EAX\n  0055698a:  TEST EDI,EDI\n  0055698c:  JNZ 0x005569ab\n  0055698e:  CMP dword ptr [0x01895328],0x0\n  00556995:  JZ 0x005569ab\n  00556997:  PUSH ESI\n  00556998:  CALL 0x00555848\n  0055699d:  TEST EAX,EAX\n  0055699f:  POP ECX\n  005569a0:  JNZ 0x005568c3\n  005569a6:  JMP 0x005568bc\n  005569ab:  MOV EAX,EDI\n  005569ad:  POP EDI\n  005569ae:  POP ESI\n  005569af:  POP EBP\n  005569b0:  POP EBX\n  005569b1:  RET", 
+  "callers": [
+    {
+      "address": "0x00552fd4", 
+      "name": "FUN_00552fd4"
+    }
+  ]
+}

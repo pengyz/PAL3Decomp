@@ -1,0 +1,80 @@
+{
+  "address": "0x0054c7ec", 
+  "size_bytes": 194, 
+  "calling_convention": "unknown", 
+  "signature": "undefined FUN_0054c7ec(undefined4 param_1, undefined4 param_2, undefined4 param_3, undefined4 param_4)", 
+  "callees": [
+    {
+      "address": "0x00552116", 
+      "name": "FUN_00552116"
+    }
+  ], 
+  "global_refs": [
+    {
+      "address": "0x00000010", 
+      "type": null, 
+      "name": "DAT_00000010"
+    }, 
+    {
+      "address": "0x-0000030", 
+      "type": null, 
+      "name": "DAT_-0000030"
+    }, 
+    {
+      "address": "0x0000000c", 
+      "type": null, 
+      "name": "DAT_0000000c"
+    }, 
+    {
+      "address": "0x00572ee0", 
+      "type": null, 
+      "name": "DAT_00572ee0"
+    }, 
+    {
+      "address": "0x-000002c", 
+      "type": null, 
+      "name": "DAT_-000002c"
+    }, 
+    {
+      "address": "0x00000008", 
+      "type": null, 
+      "name": "DAT_00000008"
+    }, 
+    {
+      "address": "0x-0000020", 
+      "type": null, 
+      "name": "DAT_-0000020"
+    }, 
+    {
+      "address": "0x-0000028", 
+      "type": null, 
+      "name": "DAT_-0000028"
+    }, 
+    {
+      "address": "0x00572b14", 
+      "type": null, 
+      "name": "DAT_00572b14"
+    }, 
+    {
+      "address": "0x-0000024", 
+      "type": null, 
+      "name": "DAT_-0000024"
+    }, 
+    {
+      "address": "0x00572ed0", 
+      "type": null, 
+      "name": "DAT_00572ed0"
+    }, 
+    {
+      "address": "0x00000004", 
+      "type": null, 
+      "name": "DAT_00000004"
+    }
+  ], 
+  "has_custom_name": false, 
+  "decompiled_c": "\r\n/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */\r\n\r\nvoid FUN_0054c7ec(float *param_1,float param_2,float param_3,float param_4)\r\n\r\n{\r\n  float fVar1;\r\n  float fVar2;\r\n  float fVar3;\r\n  float local_30;\r\n  float fStack_2c;\r\n  float fStack_28;\r\n  float fStack_24;\r\n  float local_20;\r\n  float fStack_1c;\r\n  float fStack_18;\r\n  \r\n  local_30 = param_4 * _DAT_00572ee0;\r\n  fStack_2c = param_3 * _UNK_00572ee4;\r\n  fStack_28 = param_2 * _UNK_00572ee8;\r\n  fStack_24 = DAT_00572b14 * _UNK_00572eec;\r\n  FUN_00552116(&local_30,&local_30,&local_20);\r\n  fVar1 = (float)((uint)(local_30 * fStack_18 * fStack_2c) ^ _UNK_00572ed4);\r\n  fVar2 = (float)((uint)(local_20 * fStack_28 * fStack_2c) ^ _UNK_00572ed8);\r\n  fVar3 = (float)((uint)(local_30 * fStack_28 * fStack_2c) ^ _UNK_00572edc);\r\n  *param_1 = local_20 * fStack_18 * fStack_2c +\r\n             (float)((uint)(local_30 * fStack_28 * fStack_1c) ^ _DAT_00572ed0);\r\n  param_1[1] = local_20 * fStack_28 * fStack_1c + fVar1;\r\n  param_1[2] = local_30 * fStack_18 * fStack_1c + fVar2;\r\n  param_1[3] = local_20 * fStack_18 * fStack_1c + fVar3;\r\n  return;\r\n}\r\n\r\n", 
+  "is_thunk": false, 
+  "name": "FUN_0054c7ec", 
+  "assembly": "  0054c7ec:  PUSH EBP\n  0054c7ed:  MOV EBP,ESP\n  0054c7ef:  AND ESP,0xfffffff0\n  0054c7f2:  SUB ESP,0x20\n  0054c7f5:  MOVSS XMM1,dword ptr [EBP + 0x14]\n  0054c7fa:  MOVSS dword ptr [ESP],XMM1\n  0054c800:  MOVSS XMM1,dword ptr [EBP + 0x10]\n  0054c805:  MOV EAX,0x572ee0\n  0054c80a:  MOVAPS XMM0,xmmword ptr [EAX]\n  0054c80d:  MOVSS dword ptr [ESP + 0x4],XMM1\n  0054c813:  MOVSS XMM1,dword ptr [EBP + 0xc]\n  0054c818:  LEA EAX,[ESP + 0x10]\n  0054c81c:  PUSH EAX\n  0054c81d:  MOVSS dword ptr [ESP + 0xc],XMM1\n  0054c823:  MOVSS XMM1,dword ptr [0x00572b14]\n  0054c82b:  LEA EAX,[ESP + 0x4]\n  0054c82f:  MOVSS dword ptr [ESP + 0x10],XMM1\n  0054c835:  MOVAPS XMM1,xmmword ptr [ESP + 0x4]\n  0054c83a:  PUSH EAX\n  0054c83b:  LEA EAX,[ESP + 0x8]\n  0054c83f:  MULPS XMM1,XMM0\n  0054c842:  PUSH EAX\n  0054c843:  MOVAPS xmmword ptr [ESP + 0xc],XMM1\n  0054c848:  CALL 0x00552116\n  0054c84d:  MOVAPS XMM0,xmmword ptr [ESP]\n  0054c852:  MOVAPS XMM1,XMM0\n  0054c855:  SHUFPS XMM1,xmmword ptr [ESP + 0x10],0x99\n  0054c85b:  SHUFPS XMM0,xmmword ptr [ESP + 0x10],0x0\n  0054c861:  MOVAPS XMM2,XMM1\n  0054c864:  SHUFPS XMM2,XMM1,0xf7\n  0054c868:  MOVAPS XMM3,XMM1\n  0054c86b:  SHUFPS XMM3,XMM1,0xa8\n  0054c86f:  SHUFPS XMM0,XMM0,0x8a\n  0054c873:  MOVAPS XMM1,XMM0\n  0054c876:  SHUFPS XMM1,XMM0,0x8a\n  0054c87a:  MOVAPS XMM5,XMM3\n  0054c87d:  MULPS XMM0,XMM2\n  0054c880:  MULPS XMM0,XMM3\n  0054c883:  SHUFPS XMM5,XMM3,0x1\n  0054c887:  MOV EAX,0x572ed0\n  0054c88c:  MOVAPS XMM4,xmmword ptr [EAX]\n  0054c88f:  MOV EAX,dword ptr [EBP + 0x8]\n  0054c892:  MOVAPS XMM3,XMM2\n  0054c895:  SHUFPS XMM3,XMM2,0x51\n  0054c899:  MULPS XMM1,XMM3\n  0054c89c:  MULPS XMM1,XMM5\n  0054c89f:  XORPS XMM1,XMM4\n  0054c8a2:  ADDPS XMM0,XMM1\n  0054c8a5:  MOVUPS xmmword ptr [EAX],XMM0\n  0054c8a8:  MOV ESP,EBP\n  0054c8aa:  POP EBP\n  0054c8ab:  RET 0x10", 
+  "callers": []
+}

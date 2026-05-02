@@ -1,0 +1,55 @@
+{
+  "address": "0x00431390", 
+  "size_bytes": 164, 
+  "calling_convention": "unknown", 
+  "signature": "undefined FUN_00431390(undefined4 param_1)", 
+  "callees": [], 
+  "global_refs": [
+    {
+      "address": "0x0055f958", 
+      "type": null, 
+      "name": "LAB_0055f958"
+    }, 
+    {
+      "address": "0xffdff000", 
+      "type": null, 
+      "name": "ExceptionList"
+    }, 
+    {
+      "address": "0x00d8c2b0", 
+      "type": null, 
+      "name": "DAT_00d8c2b0"
+    }, 
+    {
+      "address": "0x-0000010", 
+      "type": null, 
+      "name": "DAT_-0000010"
+    }, 
+    {
+      "address": "0x00000004", 
+      "type": null, 
+      "name": "DAT_00000004"
+    }, 
+    {
+      "address": "0x0056a634", 
+      "type": null, 
+      "name": "DAT_0056a634"
+    }, 
+    {
+      "address": "0x-000000c", 
+      "type": null, 
+      "name": "DAT_-000000c"
+    }
+  ], 
+  "has_custom_name": false, 
+  "decompiled_c": "\r\nundefined4 * __thiscall FUN_00431390(int param_1_00,int param_1)\r\n\r\n{\r\n  uint uVar1;\r\n  uint uVar2;\r\n  uint uVar3;\r\n  uint uVar4;\r\n  undefined4 *puVar5;\r\n  undefined4 *puVar6;\r\n  byte *pbVar7;\r\n  byte *pbVar8;\r\n  bool bVar9;\r\n  bool bVar10;\r\n  undefined4 *local_10;\r\n  \r\n  local_10 = *(undefined4 **)(param_1_00 + 4);\r\n  if ((undefined4 *)local_10[1] != DAT_00d8c2b0) {\r\n    uVar1 = *(uint *)(param_1 + 8);\r\n    puVar5 = (undefined4 *)local_10[1];\r\n    do {\r\n      pbVar8 = &DAT_0056a634;\r\n      if (*(byte **)(param_1 + 4) != (byte *)0x0) {\r\n        pbVar8 = *(byte **)(param_1 + 4);\r\n      }\r\n      uVar2 = puVar5[5];\r\n      uVar3 = uVar2;\r\n      if (uVar1 <= uVar2) {\r\n        uVar3 = uVar1;\r\n      }\r\n      bVar9 = false;\r\n      uVar4 = 0;\r\n      bVar10 = true;\r\n      pbVar7 = (byte *)puVar5[4];\r\n      do {\r\n        if (uVar3 == 0) break;\r\n        uVar3 = uVar3 - 1;\r\n        bVar9 = *pbVar7 < *pbVar8;\r\n        bVar10 = *pbVar7 == *pbVar8;\r\n        pbVar7 = pbVar7 + 1;\r\n        pbVar8 = pbVar8 + 1;\r\n      } while (bVar10);\r\n      if (!bVar10) {\r\n        uVar4 = (1 - (uint)bVar9) - (uint)(bVar9 != 0);\r\n      }\r\n      if (uVar4 == 0) {\r\n        if (uVar1 <= uVar2) {\r\n          uVar4 = (uint)(uVar2 != uVar1);\r\n          goto LAB_00431405;\r\n        }\r\nLAB_00431407:\r\n        puVar6 = (undefined4 *)puVar5[2];\r\n      }\r\n      else {\r\nLAB_00431405:\r\n        if ((int)uVar4 < 0) goto LAB_00431407;\r\n        puVar6 = (undefined4 *)*puVar5;\r\n        local_10 = puVar5;\r\n      }\r\n      puVar5 = puVar6;\r\n    } while (puVar6 != DAT_00d8c2b0);\r\n  }\r\n  return local_10;\r\n}\r\n\r\n", 
+  "is_thunk": false, 
+  "name": "FUN_00431390", 
+  "assembly": "  00431390:  PUSH -0x1\n  00431392:  PUSH 0x55f958\n  00431397:  MOV EAX,FS:[0x0]\n  0043139d:  PUSH EAX\n  0043139e:  MOV dword ptr FS:[0x0],ESP\n  004313a5:  PUSH ECX\n  004313a6:  PUSH EBP\n  004313a7:  MOV EAX,dword ptr [ECX + 0x4]\n  004313aa:  MOV ECX,dword ptr [0x00d8c2b0]\n  004313b0:  MOV dword ptr [ESP + 0x4],EAX\n  004313b4:  MOV EBP,dword ptr [EAX + 0x4]\n  004313b7:  CMP EBP,ECX\n  004313b9:  JZ 0x00431422\n  004313bb:  MOV ECX,dword ptr [ESP + 0x18]\n  004313bf:  PUSH EBX\n  004313c0:  PUSH ESI\n  004313c1:  PUSH EDI\n  004313c2:  MOV EAX,dword ptr [ECX + 0x8]\n  004313c5:  MOV ECX,dword ptr [ECX + 0x4]\n  004313c8:  MOV dword ptr [ESP + 0x24],ECX\n  004313cc:  JMP 0x004313d2\n  004313ce:  MOV ECX,dword ptr [ESP + 0x24]\n  004313d2:  TEST ECX,ECX\n  004313d4:  MOV EDI,0x56a634\n  004313d9:  JZ 0x004313dd\n  004313db:  MOV EDI,ECX\n  004313dd:  MOV EBX,dword ptr [EBP + 0x14]\n  004313e0:  CMP EBX,EAX\n  004313e2:  MOV ECX,EBX\n  004313e4:  JC 0x004313e8\n  004313e6:  MOV ECX,EAX\n  004313e8:  MOV ESI,dword ptr [EBP + 0x10]\n  004313eb:  XOR EDX,EDX\n  004313ed:  CMPSB.REPE ES:EDI,ESI\n  004313ef:  JZ 0x004313f6\n  004313f1:  SBB EDX,EDX\n  004313f3:  SBB EDX,-0x1\n  004313f6:  TEST EDX,EDX\n  004313f8:  JNZ 0x00431405\n  004313fa:  CMP EBX,EAX\n  004313fc:  JC 0x00431407\n  004313fe:  CMP EBX,EAX\n  00431400:  SETNZ DL\n  00431403:  TEST EDX,EDX\n  00431405:  JGE 0x0043140c\n  00431407:  MOV EBP,dword ptr [EBP + 0x8]\n  0043140a:  JMP 0x00431413\n  0043140c:  MOV dword ptr [ESP + 0x10],EBP\n  00431410:  MOV EBP,dword ptr [EBP]\n  00431413:  CMP EBP,dword ptr [0x00d8c2b0]\n  00431419:  JNZ 0x004313ce\n  0043141b:  MOV EAX,dword ptr [ESP + 0x10]\n  0043141f:  POP EDI\n  00431420:  POP ESI\n  00431421:  POP EBX\n  00431422:  MOV ECX,dword ptr [ESP + 0x8]\n  00431426:  POP EBP\n  00431427:  MOV dword ptr FS:[0x0],ECX\n  0043142e:  ADD ESP,0x10\n  00431431:  RET 0x4", 
+  "callers": [
+    {
+      "address": "0x00431040", 
+      "name": "FUN_00431040"
+    }
+  ]
+}

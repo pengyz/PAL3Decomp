@@ -1,0 +1,80 @@
+{
+  "address": "0x00554c74", 
+  "size_bytes": 179, 
+  "calling_convention": "unknown", 
+  "signature": "undefined FUN_00554c74(undefined4 param_1)", 
+  "callees": [
+    {
+      "address": "0x0055a504", 
+      "name": "FUN_0055a504"
+    }, 
+    {
+      "address": "0x00000027", 
+      "name": "CloseHandle"
+    }, 
+    {
+      "address": "0x00000026", 
+      "name": "GetLastError"
+    }, 
+    {
+      "address": "0x0055a48a", 
+      "name": "FUN_0055a48a"
+    }, 
+    {
+      "address": "0x0055a317", 
+      "name": "FUN_0055a317"
+    }
+  ], 
+  "global_refs": [
+    {
+      "address": "0x00000004", 
+      "type": null, 
+      "name": "DAT_00000004"
+    }, 
+    {
+      "address": "0x01896ce0", 
+      "type": null, 
+      "name": "DAT_01896ce0"
+    }, 
+    {
+      "address": "0x01896be0", 
+      "type": null, 
+      "name": "DAT_01896be0"
+    }, 
+    {
+      "address": "0x0056a0a0", 
+      "type": null, 
+      "name": "PTR_CloseHandle_0056a0a0"
+    }, 
+    {
+      "address": "0x0056a09c", 
+      "type": null, 
+      "name": "PTR_GetLastError_0056a09c"
+    }, 
+    {
+      "address": "0x01895340", 
+      "type": null, 
+      "name": "DAT_01895340"
+    }, 
+    {
+      "address": "0x0189533c", 
+      "type": null, 
+      "name": "DAT_0189533c"
+    }
+  ], 
+  "has_custom_name": false, 
+  "decompiled_c": "\r\n/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */\r\n\r\nundefined4 FUN_00554c74(uint param_1)\r\n\r\n{\r\n  int iVar1;\r\n  int iVar2;\r\n  HANDLE hObject;\r\n  BOOL BVar3;\r\n  DWORD DVar4;\r\n  int iVar5;\r\n  \r\n  if (DAT_01896ce0 <= param_1) {\r\n    DAT_01895340 = 0;\r\n    _DAT_0189533c = 9;\r\n    return 0xffffffff;\r\n  }\r\n  iVar5 = (param_1 & 0x1f) * 8;\r\n  if ((*(byte *)((&DAT_01896be0)[(int)param_1 >> 5] + 4 + iVar5) & 1) == 0) {\r\n    _DAT_0189533c = 9;\r\n    DAT_01895340 = 0;\r\n    return 0xffffffff;\r\n  }\r\n  iVar1 = FUN_0055a504(param_1);\r\n  if (iVar1 != -1) {\r\n    if ((param_1 == 1) || (param_1 == 2)) {\r\n      iVar1 = FUN_0055a504(2);\r\n      iVar2 = FUN_0055a504(1);\r\n      if (iVar2 == iVar1) goto LAB_00554ced;\r\n    }\r\n    hObject = (HANDLE)FUN_0055a504(param_1);\r\n    BVar3 = CloseHandle(hObject);\r\n    if (BVar3 == 0) {\r\n      DVar4 = GetLastError();\r\n      goto LAB_00554cef;\r\n    }\r\n  }\r\nLAB_00554ced:\r\n  DVar4 = 0;\r\nLAB_00554cef:\r\n  FUN_0055a48a(param_1);\r\n  *(undefined *)((&DAT_01896be0)[(int)param_1 >> 5] + 4 + iVar5) = 0;\r\n  if (DVar4 == 0) {\r\n    return 0;\r\n  }\r\n  FUN_0055a317(DVar4);\r\n  return 0xffffffff;\r\n}\r\n\r\n", 
+  "is_thunk": false, 
+  "name": "FUN_00554c74", 
+  "assembly": "  00554c74:  PUSH EBX\n  00554c75:  PUSH EBP\n  00554c76:  PUSH ESI\n  00554c77:  PUSH EDI\n  00554c78:  MOV EDI,dword ptr [ESP + 0x14]\n  00554c7c:  CMP EDI,dword ptr [0x01896ce0]\n  00554c82:  JNC 0x00554d0e\n  00554c88:  MOV EAX,EDI\n  00554c8a:  MOV ESI,EDI\n  00554c8c:  SAR EAX,0x5\n  00554c8f:  AND ESI,0x1f\n  00554c92:  LEA EBX,[EAX*0x4 + 0x1896be0]\n  00554c99:  SHL ESI,0x3\n  00554c9c:  MOV EAX,dword ptr [EBX]\n  00554c9e:  TEST byte ptr [EAX + ESI*0x1 + 0x4],0x1\n  00554ca3:  JZ 0x00554d0e\n  00554ca5:  PUSH EDI\n  00554ca6:  CALL 0x0055a504\n  00554cab:  CMP EAX,-0x1\n  00554cae:  POP ECX\n  00554caf:  JZ 0x00554ced\n  00554cb1:  CMP EDI,0x1\n  00554cb4:  JZ 0x00554cbb\n  00554cb6:  CMP EDI,0x2\n  00554cb9:  JNZ 0x00554cd1\n  00554cbb:  PUSH 0x2\n  00554cbd:  CALL 0x0055a504\n  00554cc2:  PUSH 0x1\n  00554cc4:  MOV EBP,EAX\n  00554cc6:  CALL 0x0055a504\n  00554ccb:  POP ECX\n  00554ccc:  CMP EAX,EBP\n  00554cce:  POP ECX\n  00554ccf:  JZ 0x00554ced\n  00554cd1:  PUSH EDI\n  00554cd2:  CALL 0x0055a504\n  00554cd7:  POP ECX\n  00554cd8:  PUSH EAX\n  00554cd9:  CALL dword ptr [0x0056a0a0]\n  00554cdf:  TEST EAX,EAX\n  00554ce1:  JNZ 0x00554ced\n  00554ce3:  CALL dword ptr [0x0056a09c]\n  00554ce9:  MOV EBP,EAX\n  00554ceb:  JMP 0x00554cef\n  00554ced:  XOR EBP,EBP\n  00554cef:  PUSH EDI\n  00554cf0:  CALL 0x0055a48a\n  00554cf5:  MOV EAX,dword ptr [EBX]\n  00554cf7:  POP ECX\n  00554cf8:  AND byte ptr [EAX + ESI*0x1 + 0x4],0x0\n  00554cfd:  TEST EBP,EBP\n  00554cff:  JZ 0x00554d0a\n  00554d01:  PUSH EBP\n  00554d02:  CALL 0x0055a317\n  00554d07:  POP ECX\n  00554d08:  JMP 0x00554d1f\n  00554d0a:  XOR EAX,EAX\n  00554d0c:  JMP 0x00554d22\n  00554d0e:  AND dword ptr [0x01895340],0x0\n  00554d15:  MOV dword ptr [0x0189533c],0x9\n  00554d1f:  OR EAX,0xffffffff\n  00554d22:  POP EDI\n  00554d23:  POP ESI\n  00554d24:  POP EBP\n  00554d25:  POP EBX\n  00554d26:  RET", 
+  "callers": [
+    {
+      "address": "0x0055371d", 
+      "name": "FUN_0055371d"
+    }, 
+    {
+      "address": "0x00554d27", 
+      "name": "FUN_00554d27"
+    }
+  ]
+}

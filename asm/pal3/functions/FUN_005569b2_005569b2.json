@@ -1,0 +1,54 @@
+{
+  "address": "0x005569b2", 
+  "size_bytes": 45, 
+  "calling_convention": "unknown", 
+  "signature": "undefined FUN_005569b2(void)", 
+  "callees": [
+    {
+      "address": "0x00552f84", 
+      "name": "FUN_00552f84"
+    }, 
+    {
+      "address": "0x00556a9a", 
+      "name": "FUN_00556a9a"
+    }
+  ], 
+  "global_refs": [
+    {
+      "address": "0x0060ac20", 
+      "type": null, 
+      "name": "PTR_FUN_0060ac20"
+    }, 
+    {
+      "address": "0x00580a00", 
+      "type": null, 
+      "name": "DAT_00580a00"
+    }, 
+    {
+      "address": "0x005809ec", 
+      "type": null, 
+      "name": "DAT_005809ec"
+    }, 
+    {
+      "address": "0x005809e8", 
+      "type": null, 
+      "name": "DAT_005809e8"
+    }, 
+    {
+      "address": "0x00580000", 
+      "type": null, 
+      "name": "DAT_00580000"
+    }
+  ], 
+  "has_custom_name": false, 
+  "decompiled_c": "\r\nvoid FUN_005569b2(void)\r\n\r\n{\r\n  if (PTR_FUN_0060ac20 != (undefined *)0x0) {\r\n    (*(code *)PTR_FUN_0060ac20)();\r\n  }\r\n  FUN_00556a9a(&DAT_005809ec,&DAT_00580a00);\r\n  FUN_00556a9a(&DAT_00580000,&DAT_005809e8);\r\n  return;\r\n}\r\n\r\n", 
+  "is_thunk": false, 
+  "name": "FUN_005569b2", 
+  "assembly": "  005569b2:  MOV EAX,[0x0060ac20]\n  005569b7:  TEST EAX,EAX\n  005569b9:  JZ 0x005569bd\n  005569bb:  CALL EAX\n  005569bd:  PUSH 0x580a00\n  005569c2:  PUSH 0x5809ec\n  005569c7:  CALL 0x00556a9a\n  005569cc:  PUSH 0x5809e8\n  005569d1:  PUSH 0x580000\n  005569d6:  CALL 0x00556a9a\n  005569db:  ADD ESP,0x10\n  005569de:  RET", 
+  "callers": [
+    {
+      "address": "0x0055507c", 
+      "name": "entry"
+    }
+  ]
+}

@@ -1,0 +1,154 @@
+{
+  "address": "0x00540650", 
+  "size_bytes": 335, 
+  "calling_convention": "unknown", 
+  "signature": "undefined FUN_00540650(undefined4 param_1, undefined4 param_2, undefined4 param_3, undefined4 param_4, undefined4 param_5, undefined4 param_6, undefined param_7, undefined4 param_8)", 
+  "callees": [
+    {
+      "address": "0x0000015b", 
+      "name": "GetDynVertBuf"
+    }, 
+    {
+      "address": "0x000000d6", 
+      "name": "RenderUIQuad"
+    }
+  ], 
+  "global_refs": [
+    {
+      "address": "0x00000014", 
+      "type": null, 
+      "name": "DAT_00000014"
+    }, 
+    {
+      "address": "0x00000018", 
+      "type": null, 
+      "name": "DAT_00000018"
+    }, 
+    {
+      "address": "0x-0000008", 
+      "type": null, 
+      "name": "DAT_-0000008"
+    }, 
+    {
+      "address": "0x00000020", 
+      "type": null, 
+      "name": "DAT_00000020"
+    }, 
+    {
+      "address": "0x-0000004", 
+      "type": null, 
+      "name": "DAT_-0000004"
+    }, 
+    {
+      "address": "0x-0000018", 
+      "type": null, 
+      "name": "DAT_-0000018"
+    }, 
+    {
+      "address": "0x-0000014", 
+      "type": null, 
+      "name": "DAT_-0000014"
+    }, 
+    {
+      "address": "0x-0000010", 
+      "type": null, 
+      "name": "DAT_-0000010"
+    }, 
+    {
+      "address": "0x-000000c", 
+      "type": null, 
+      "name": "DAT_-000000c"
+    }, 
+    {
+      "address": "0x0000000c", 
+      "type": null, 
+      "name": "DAT_0000000c"
+    }, 
+    {
+      "address": "0x00000004", 
+      "type": null, 
+      "name": "DAT_00000004"
+    }, 
+    {
+      "address": "0x00000010", 
+      "type": null, 
+      "name": "DAT_00000010"
+    }, 
+    {
+      "address": "0x00000008", 
+      "type": null, 
+      "name": "DAT_00000008"
+    }, 
+    {
+      "address": "0x00570a6c", 
+      "type": null, 
+      "name": "DAT_00570a6c"
+    }, 
+    {
+      "address": "0x-000001c", 
+      "type": null, 
+      "name": "DAT_-000001c"
+    }, 
+    {
+      "address": "0x-0000030", 
+      "type": null, 
+      "name": "DAT_-0000030"
+    }, 
+    {
+      "address": "0x-000002c", 
+      "type": null, 
+      "name": "DAT_-000002c"
+    }, 
+    {
+      "address": "0x-0000024", 
+      "type": null, 
+      "name": "DAT_-0000024"
+    }, 
+    {
+      "address": "0x00bfda60", 
+      "type": null, 
+      "name": "DAT_00bfda60"
+    }, 
+    {
+      "address": "0x-0000028", 
+      "type": null, 
+      "name": "DAT_-0000028"
+    }, 
+    {
+      "address": "0x-0000020", 
+      "type": null, 
+      "name": "DAT_-0000020"
+    }, 
+    {
+      "address": "0x0056a580", 
+      "type": null, 
+      "name": "PTR_GetDynVertBuf_0056a580"
+    }, 
+    {
+      "address": "0x01895054", 
+      "type": null, 
+      "name": "DAT_01895054"
+    }, 
+    {
+      "address": "0x01895058", 
+      "type": null, 
+      "name": "DAT_01895058"
+    }, 
+    {
+      "address": "0x0056a36c", 
+      "type": null, 
+      "name": "PTR_RenderUIQuad_0056a36c"
+    }
+  ], 
+  "has_custom_name": false, 
+  "decompiled_c": "\r\n/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */\r\n\r\nvoid FUN_00540650(int param_1,int param_2,int param_3,int param_4,undefined4 *param_5,\r\n                 gbTextureArray *param_6,int param_7,int param_8)\r\n\r\n{\r\n  gbDynVertBuf *this;\r\n  gbRenderEffect *pgVar1;\r\n  float local_28;\r\n  float local_24;\r\n  float local_20;\r\n  float local_1c;\r\n  undefined4 local_18;\r\n  undefined4 local_14;\r\n  float local_10;\r\n  float local_c;\r\n  undefined4 local_8;\r\n  undefined4 local_4;\r\n  \r\n  local_8 = 0;\r\n  local_4 = *param_5;\r\n  if (param_8 == 0) {\r\n    local_14 = 0;\r\n    local_18 = 0;\r\n    local_10 = (ABS((float)(param_3 - param_1)) + _DAT_00570a6c) /\r\n               (float)*(int *)(*(int *)param_6 + 0x18);\r\n    local_c = (ABS((float)(param_4 - param_2)) + _DAT_00570a6c) /\r\n              (float)*(int *)(*(int *)param_6 + 0x1c);\r\n  }\r\n  else {\r\n    local_18 = *(undefined4 *)(param_8 + 0x418);\r\n    local_14 = *(undefined4 *)(param_8 + 0x41c);\r\n    local_10 = *(float *)(param_8 + 0x428);\r\n    local_c = *(float *)(param_8 + 0x42c);\r\n  }\r\n  local_1c = (float)param_2;\r\n  if (param_8 == 0) {\r\n    local_20 = (float)param_3;\r\n    local_24 = (float)param_4;\r\n  }\r\n  else {\r\n    local_20 = (float)*(uint *)(param_8 + 0x410) + (float)param_1;\r\n    local_24 = (float)*(uint *)(param_8 + 0x414) + local_1c;\r\n  }\r\n  local_28 = (float)param_1 - _DAT_00570a6c;\r\n  local_20 = local_20 - _DAT_00570a6c;\r\n  this = gbVertPoolMgr::GetDynVertBuf(*(gbVertPoolMgr **)(DAT_00bfda60 + 0xc4),0x114);\r\n  if ((param_7 == 0) || (pgVar1 = DAT_01895054, param_7 != 1)) {\r\n    pgVar1 = DAT_01895058;\r\n  }\r\n  gbDynVertBuf::RenderUIQuad(this,(gbUIQuad *)&local_28,1,pgVar1,param_6);\r\n  return;\r\n}\r\n\r\n", 
+  "is_thunk": false, 
+  "name": "FUN_00540650", 
+  "assembly": "  00540650:  SUB ESP,0x30\n  00540653:  MOV EAX,dword ptr [ESP + 0x44]\n  00540657:  PUSH ESI\n  00540658:  MOV ESI,dword ptr [ESP + 0x4c]\n  0054065c:  MOV dword ptr [ESP + 0x2c],0x0\n  00540664:  MOV ECX,dword ptr [EAX]\n  00540666:  MOV EAX,dword ptr [ESP + 0x54]\n  0054066a:  TEST EAX,EAX\n  0054066c:  MOV dword ptr [ESP + 0x30],ECX\n  00540670:  JZ 0x0054069c\n  00540672:  MOV EDX,dword ptr [EAX + 0x418]\n  00540678:  MOV ECX,dword ptr [EAX + 0x41c]\n  0054067e:  MOV dword ptr [ESP + 0x1c],EDX\n  00540682:  MOV EDX,dword ptr [EAX + 0x428]\n  00540688:  MOV dword ptr [ESP + 0x20],ECX\n  0054068c:  MOV ECX,dword ptr [EAX + 0x42c]\n  00540692:  MOV dword ptr [ESP + 0x24],EDX\n  00540696:  MOV dword ptr [ESP + 0x28],ECX\n  0054069a:  JMP 0x005406f2\n  0054069c:  MOV EDX,dword ptr [ESP + 0x40]\n  005406a0:  PUSH EBX\n  005406a1:  MOV EBX,dword ptr [ESP + 0x3c]\n  005406a5:  MOV ECX,dword ptr [ESI]\n  005406a7:  SUB EDX,EBX\n  005406a9:  MOV dword ptr [ESP + 0x24],0x0\n  005406b1:  MOV dword ptr [ESP + 0x4c],EDX\n  005406b5:  MOV dword ptr [ESP + 0x20],0x0\n  005406bd:  FILD dword ptr [ESP + 0x4c]\n  005406c1:  MOV EDX,dword ptr [ESP + 0x48]\n  005406c5:  MOV EBX,dword ptr [ESP + 0x40]\n  005406c9:  SUB EDX,EBX\n  005406cb:  POP EBX\n  005406cc:  FABS\n  005406ce:  FADD dword ptr [0x00570a6c]\n  005406d4:  FIDIV dword ptr [ECX + 0x18]\n  005406d7:  MOV dword ptr [ESP + 0x48],EDX\n  005406db:  FSTP dword ptr [ESP + 0x24]\n  005406df:  FILD dword ptr [ESP + 0x48]\n  005406e3:  FABS\n  005406e5:  FADD dword ptr [0x00570a6c]\n  005406eb:  FIDIV dword ptr [ECX + 0x1c]\n  005406ee:  FSTP dword ptr [ESP + 0x28]\n  005406f2:  FILD dword ptr [ESP + 0x38]\n  005406f6:  FILD dword ptr [ESP + 0x3c]\n  005406fa:  TEST EAX,EAX\n  005406fc:  FSTP dword ptr [ESP + 0x18]\n  00540700:  JZ 0x00540736\n  00540702:  MOV ECX,dword ptr [EAX + 0x410]\n  00540708:  MOV EDX,dword ptr [EAX + 0x414]\n  0054070e:  MOV dword ptr [ESP + 0x4],ECX\n  00540712:  MOV dword ptr [ESP + 0x8],0x0\n  0054071a:  FILD qword ptr [ESP + 0x4]\n  0054071e:  MOV dword ptr [ESP + 0x4],EDX\n  00540722:  MOV dword ptr [ESP + 0x8],0x0\n  0054072a:  FADD ST0,ST1\n  0054072c:  FILD qword ptr [ESP + 0x4]\n  00540730:  FADD dword ptr [ESP + 0x18]\n  00540734:  JMP 0x0054073e\n  00540736:  FILD dword ptr [ESP + 0x40]\n  0054073a:  FILD dword ptr [ESP + 0x44]\n  0054073e:  FSTP dword ptr [ESP + 0x10]\n  00540742:  FXCH\n  00540744:  FSUB dword ptr [0x00570a6c]\n  0054074a:  MOV EAX,[0x00bfda60]\n  0054074f:  PUSH 0x114\n  00540754:  FSTP dword ptr [ESP + 0x10]\n  00540758:  FSUB dword ptr [0x00570a6c]\n  0054075e:  FSTP dword ptr [ESP + 0x18]\n  00540762:  MOV ECX,dword ptr [EAX + 0xc4]\n  00540768:  CALL dword ptr [0x0056a580]\n  0054076e:  MOV EDX,dword ptr [ESP + 0x50]\n  00540772:  MOV ECX,EAX\n  00540774:  SUB EDX,0x0\n  00540777:  JZ 0x00540785\n  00540779:  DEC EDX\n  0054077a:  PUSH ESI\n  0054077b:  JNZ 0x00540786\n  0054077d:  MOV EDX,dword ptr [0x01895054]\n  00540783:  JMP 0x0054078c\n  00540785:  PUSH ESI\n  00540786:  MOV EDX,dword ptr [0x01895058]\n  0054078c:  PUSH EDX\n  0054078d:  LEA EAX,[ESP + 0x14]\n  00540791:  PUSH 0x1\n  00540793:  PUSH EAX\n  00540794:  CALL dword ptr [0x0056a36c]\n  0054079a:  POP ESI\n  0054079b:  ADD ESP,0x30\n  0054079e:  RET", 
+  "callers": [
+    {
+      "address": "0x004b4fe0", 
+      "name": "FUN_004b4fe0"
+    }
+  ]
+}

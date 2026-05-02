@@ -1,0 +1,39 @@
+{
+  "address": "0x0051c9b0", 
+  "size_bytes": 64, 
+  "calling_convention": "unknown", 
+  "signature": "undefined FUN_0051c9b0(undefined4 param_1, undefined4 param_2, undefined4 param_3)", 
+  "callees": [
+    {
+      "address": "0x004dc5c0", 
+      "name": "FUN_004dc5c0"
+    }, 
+    {
+      "address": "0x00445d10", 
+      "name": "FUN_00445d10"
+    }
+  ], 
+  "global_refs": [
+    {
+      "address": "0x00000008", 
+      "type": null, 
+      "name": "DAT_00000008"
+    }, 
+    {
+      "address": "0x00000004", 
+      "type": null, 
+      "name": "DAT_00000004"
+    }, 
+    {
+      "address": "0x0000000c", 
+      "type": null, 
+      "name": "DAT_0000000c"
+    }
+  ], 
+  "has_custom_name": false, 
+  "decompiled_c": "\r\nvoid FUN_0051c9b0(int param_1,undefined4 param_2,undefined4 param_3)\r\n\r\n{\r\n  if (param_1 == 0x3e9) {\r\n    FUN_004dc5c0(param_2,param_3,0);\r\n  }\r\n  FUN_00445d10(param_1,param_2,param_3);\r\n  return;\r\n}\r\n\r\n", 
+  "is_thunk": false, 
+  "name": "FUN_0051c9b0", 
+  "assembly": "  0051c9b0:  PUSH EBX\n  0051c9b1:  MOV EBX,dword ptr [ESP + 0xc]\n  0051c9b5:  PUSH EBP\n  0051c9b6:  MOV EBP,dword ptr [ESP + 0xc]\n  0051c9ba:  PUSH ESI\n  0051c9bb:  PUSH EDI\n  0051c9bc:  MOV EDI,dword ptr [ESP + 0x1c]\n  0051c9c0:  CMP EBP,0x3e9\n  0051c9c6:  MOV ESI,ECX\n  0051c9c8:  JNZ 0x0051c9df\n  0051c9ca:  MOV EAX,dword ptr [ESI + 0x20]\n  0051c9cd:  PUSH 0x0\n  0051c9cf:  PUSH EDI\n  0051c9d0:  PUSH EBX\n  0051c9d1:  MOV ECX,dword ptr [EAX + 0x488]\n  0051c9d7:  MOV ECX,dword ptr [ECX + 0x8]\n  0051c9da:  CALL 0x004dc5c0\n  0051c9df:  PUSH EDI\n  0051c9e0:  PUSH EBX\n  0051c9e1:  PUSH EBP\n  0051c9e2:  MOV ECX,ESI\n  0051c9e4:  CALL 0x00445d10\n  0051c9e9:  POP EDI\n  0051c9ea:  POP ESI\n  0051c9eb:  POP EBP\n  0051c9ec:  POP EBX\n  0051c9ed:  RET 0xc", 
+  "callers": []
+}

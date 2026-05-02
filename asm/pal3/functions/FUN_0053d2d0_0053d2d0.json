@@ -1,0 +1,31 @@
+{
+  "address": "0x0053d2d0", 
+  "size_bytes": 23, 
+  "calling_convention": "unknown", 
+  "signature": "undefined FUN_0053d2d0(void)", 
+  "callees": [], 
+  "global_refs": [], 
+  "has_custom_name": false, 
+  "decompiled_c": "\r\nundefined4 __fastcall FUN_0053d2d0(int param_1)\r\n\r\n{\r\n  if ((*(int *)(param_1 + 4) < 1) && (*(int *)(param_1 + 0x14) < 1)) {\r\n    return 1;\r\n  }\r\n  return 0;\r\n}\r\n\r\n", 
+  "is_thunk": false, 
+  "name": "FUN_0053d2d0", 
+  "assembly": "  0053d2d0:  MOV EAX,dword ptr [ECX + 0x4]\n  0053d2d3:  TEST EAX,EAX\n  0053d2d5:  JG 0x0053d2e4\n  0053d2d7:  MOV EAX,dword ptr [ECX + 0x14]\n  0053d2da:  TEST EAX,EAX\n  0053d2dc:  JG 0x0053d2e4\n  0053d2de:  MOV EAX,0x1\n  0053d2e3:  RET\n  0053d2e4:  XOR EAX,EAX\n  0053d2e6:  RET", 
+  "callers": [
+    {
+      "address": "0x00424570", 
+      "name": "FUN_00424570"
+    }, 
+    {
+      "address": "0x0041d9a0", 
+      "name": "FUN_0041d9a0"
+    }, 
+    {
+      "address": "0x00422e40", 
+      "name": "FUN_00422e40"
+    }, 
+    {
+      "address": "0x00417420", 
+      "name": "FUN_00417420"
+    }
+  ]
+}

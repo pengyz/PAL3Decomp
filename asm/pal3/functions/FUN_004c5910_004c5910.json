@@ -1,0 +1,23 @@
+{
+  "address": "0x004c5910", 
+  "size_bytes": 45, 
+  "calling_convention": "unknown", 
+  "signature": "undefined FUN_004c5910(void)", 
+  "callees": [
+    {
+      "address": "0x004c5b30", 
+      "name": "FUN_004c5b30"
+    }, 
+    {
+      "address": "0x004c5850", 
+      "name": "FUN_004c5850"
+    }
+  ], 
+  "global_refs": [], 
+  "has_custom_name": false, 
+  "decompiled_c": "\r\nvoid __fastcall FUN_004c5910(int param_1)\r\n\r\n{\r\n  int iVar1;\r\n  \r\n  iVar1 = 0;\r\n  if (0 < *(int *)(param_1 + 0x114)) {\r\n    do {\r\n      FUN_004c5b30(iVar1);\r\n      iVar1 = iVar1 + 1;\r\n    } while (iVar1 < *(int *)(param_1 + 0x114));\r\n  }\r\n  FUN_004c5850();\r\n  return;\r\n}\r\n\r\n", 
+  "is_thunk": false, 
+  "name": "FUN_004c5910", 
+  "assembly": "  004c5910:  PUSH ESI\n  004c5911:  PUSH EDI\n  004c5912:  MOV EDI,ECX\n  004c5914:  XOR ESI,ESI\n  004c5916:  MOV EAX,dword ptr [EDI + 0x114]\n  004c591c:  TEST EAX,EAX\n  004c591e:  JLE 0x004c5933\n  004c5920:  PUSH ESI\n  004c5921:  MOV ECX,EDI\n  004c5923:  CALL 0x004c5b30\n  004c5928:  MOV EAX,dword ptr [EDI + 0x114]\n  004c592e:  INC ESI\n  004c592f:  CMP ESI,EAX\n  004c5931:  JL 0x004c5920\n  004c5933:  MOV ECX,EDI\n  004c5935:  CALL 0x004c5850\n  004c593a:  POP EDI\n  004c593b:  POP ESI\n  004c593c:  RET", 
+  "callers": []
+}

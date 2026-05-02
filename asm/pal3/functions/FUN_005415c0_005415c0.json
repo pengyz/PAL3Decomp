@@ -1,0 +1,25 @@
+{
+  "address": "0x005415c0", 
+  "size_bytes": 41, 
+  "calling_convention": "unknown", 
+  "signature": "undefined FUN_005415c0(void)", 
+  "callees": [
+    {
+      "address": "0x0000015e", 
+      "name": "Release"
+    }
+  ], 
+  "global_refs": [
+    {
+      "address": "0x0056a58c", 
+      "type": null, 
+      "name": "PTR_Release_0056a58c"
+    }
+  ], 
+  "has_custom_name": false, 
+  "decompiled_c": "\r\nvoid __fastcall FUN_005415c0(int param_1)\r\n\r\n{\r\n  int iVar1;\r\n  undefined4 *puVar2;\r\n  \r\n  puVar2 = (undefined4 *)(param_1 + 0x10);\r\n  iVar1 = 3;\r\n  do {\r\n    if ((gbRefObject *)*puVar2 != (gbRefObject *)0x0) {\r\n      gbRefObject::Release((gbRefObject *)*puVar2);\r\n      *puVar2 = 0;\r\n    }\r\n    puVar2 = puVar2 + 1;\r\n    iVar1 = iVar1 + -1;\r\n  } while (iVar1 != 0);\r\n  return;\r\n}\r\n\r\n", 
+  "is_thunk": false, 
+  "name": "FUN_005415c0", 
+  "assembly": "  005415c0:  PUSH EBX\n  005415c1:  PUSH ESI\n  005415c2:  PUSH EDI\n  005415c3:  MOV EDI,dword ptr [0x0056a58c]\n  005415c9:  LEA ESI,[ECX + 0x10]\n  005415cc:  MOV EBX,0x3\n  005415d1:  MOV ECX,dword ptr [ESI]\n  005415d3:  TEST ECX,ECX\n  005415d5:  JZ 0x005415df\n  005415d7:  CALL EDI\n  005415d9:  MOV dword ptr [ESI],0x0\n  005415df:  ADD ESI,0x4\n  005415e2:  DEC EBX\n  005415e3:  JNZ 0x005415d1\n  005415e5:  POP EDI\n  005415e6:  POP ESI\n  005415e7:  POP EBX\n  005415e8:  RET", 
+  "callers": []
+}

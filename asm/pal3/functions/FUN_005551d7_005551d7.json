@@ -1,0 +1,43 @@
+{
+  "address": "0x005551d7", 
+  "size_bytes": 61, 
+  "calling_convention": "unknown", 
+  "signature": "undefined FUN_005551d7(undefined4 param_1)", 
+  "callees": [
+    {
+      "address": "0x00555290", 
+      "name": "_strlen"
+    }, 
+    {
+      "address": "0x0055353b", 
+      "name": "operator_new"
+    }, 
+    {
+      "address": "0x005583f0", 
+      "name": "FUN_005583f0"
+    }
+  ], 
+  "global_refs": [
+    {
+      "address": "0x00000004", 
+      "type": null, 
+      "name": "DAT_00000004"
+    }, 
+    {
+      "address": "0x00573238", 
+      "type": null, 
+      "name": "PTR_FUN_00573238"
+    }
+  ], 
+  "has_custom_name": false, 
+  "decompiled_c": "\r\nundefined4 * __thiscall FUN_005551d7(undefined4 *param_1_00,undefined4 *param_1)\r\n\r\n{\r\n  size_t sVar1;\r\n  void *pvVar2;\r\n  \r\n  *param_1_00 = &PTR_FUN_00573238;\r\n  sVar1 = _strlen((char *)*param_1);\r\n  pvVar2 = operator_new(sVar1 + 1);\r\n  param_1_00[1] = pvVar2;\r\n  if (pvVar2 != (void *)0x0) {\r\n    FUN_005583f0(pvVar2,*param_1);\r\n  }\r\n  param_1_00[2] = 1;\r\n  return param_1_00;\r\n}\r\n\r\n", 
+  "is_thunk": false, 
+  "name": "FUN_005551d7", 
+  "assembly": "  005551d7:  PUSH ESI\n  005551d8:  PUSH EDI\n  005551d9:  MOV EDI,dword ptr [ESP + 0xc]\n  005551dd:  MOV ESI,ECX\n  005551df:  MOV dword ptr [ESI],0x573238\n  005551e5:  PUSH dword ptr [EDI]\n  005551e7:  CALL 0x00555290\n  005551ec:  INC EAX\n  005551ed:  PUSH EAX\n  005551ee:  CALL 0x0055353b\n  005551f3:  POP ECX\n  005551f4:  MOV dword ptr [ESI + 0x4],EAX\n  005551f7:  TEST EAX,EAX\n  005551f9:  POP ECX\n  005551fa:  JZ 0x00555206\n  005551fc:  PUSH dword ptr [EDI]\n  005551fe:  PUSH EAX\n  005551ff:  CALL 0x005583f0\n  00555204:  POP ECX\n  00555205:  POP ECX\n  00555206:  MOV dword ptr [ESI + 0x8],0x1\n  0055520d:  MOV EAX,ESI\n  0055520f:  POP EDI\n  00555210:  POP ESI\n  00555211:  RET 0x4", 
+  "callers": [
+    {
+      "address": "0x00541d75", 
+      "name": "FUN_00541d75"
+    }
+  ]
+}

@@ -1,0 +1,54 @@
+{
+  "address": "0x004203c0", 
+  "size_bytes": 99, 
+  "calling_convention": "unknown", 
+  "signature": "undefined FUN_004203c0(void)", 
+  "callees": [
+    {
+      "address": "0x00420250", 
+      "name": "FUN_00420250"
+    }, 
+    {
+      "address": "0x00000143", 
+      "name": "gbImage2D"
+    }
+  ], 
+  "global_refs": [
+    {
+      "address": "0x0055f5f8", 
+      "type": null, 
+      "name": "LAB_0055f5f8"
+    }, 
+    {
+      "address": "0xffdff000", 
+      "type": null, 
+      "name": "ExceptionList"
+    }, 
+    {
+      "address": "0x-0000010", 
+      "type": null, 
+      "name": "DAT_-0000010"
+    }, 
+    {
+      "address": "0x-0000004", 
+      "type": null, 
+      "name": "DAT_-0000004"
+    }, 
+    {
+      "address": "0x0056a520", 
+      "type": null, 
+      "name": "PTR_gbImage2D_0056a520"
+    }, 
+    {
+      "address": "0x0056aae4", 
+      "type": null, 
+      "name": "PTR_FUN_0056aae4"
+    }
+  ], 
+  "has_custom_name": false, 
+  "decompiled_c": "\r\nundefined4 * __fastcall FUN_004203c0(undefined4 *param_1)\r\n\r\n{\r\n  int iVar1;\r\n  undefined4 *puVar2;\r\n  void *pvStack_c;\r\n  undefined *puStack_8;\r\n  undefined4 local_4;\r\n  \r\n  local_4 = 0xffffffff;\r\n  puStack_8 = &LAB_0055f5f8;\r\n  pvStack_c = ExceptionList;\r\n  ExceptionList = &pvStack_c;\r\n  FUN_00420250();\r\n  local_4 = 0;\r\n  gbImage2D::gbImage2D((gbImage2D *)(param_1 + 0xe));\r\n  param_1[0x40] = 0;\r\n  param_1[4] = 0;\r\n  *param_1 = &PTR_FUN_0056aae4;\r\n  puVar2 = (undefined4 *)((int)param_1 + 0x105);\r\n  for (iVar1 = 0x20; iVar1 != 0; iVar1 = iVar1 + -1) {\r\n    *puVar2 = 0;\r\n    puVar2 = puVar2 + 1;\r\n  }\r\n  ExceptionList = pvStack_c;\r\n  return param_1;\r\n}\r\n\r\n", 
+  "is_thunk": false, 
+  "name": "FUN_004203c0", 
+  "assembly": "  004203c0:  PUSH -0x1\n  004203c2:  PUSH 0x55f5f8\n  004203c7:  MOV EAX,FS:[0x0]\n  004203cd:  PUSH EAX\n  004203ce:  MOV dword ptr FS:[0x0],ESP\n  004203d5:  PUSH ECX\n  004203d6:  PUSH ESI\n  004203d7:  MOV ESI,ECX\n  004203d9:  PUSH EDI\n  004203da:  MOV dword ptr [ESP + 0x8],ESI\n  004203de:  CALL 0x00420250\n  004203e3:  XOR EDI,EDI\n  004203e5:  LEA ECX,[ESI + 0x38]\n  004203e8:  MOV dword ptr [ESP + 0x14],EDI\n  004203ec:  CALL dword ptr [0x0056a520]\n  004203f2:  MOV dword ptr [ESI + 0x100],EDI\n  004203f8:  MOV dword ptr [ESI + 0x10],EDI\n  004203fb:  MOV ECX,0x20\n  00420400:  XOR EAX,EAX\n  00420402:  LEA EDI,[ESI + 0x105]\n  00420408:  MOV dword ptr [ESI],0x56aae4\n  0042040e:  STOSD.REP ES:EDI\n  00420410:  MOV ECX,dword ptr [ESP + 0xc]\n  00420414:  MOV EAX,ESI\n  00420416:  POP EDI\n  00420417:  POP ESI\n  00420418:  MOV dword ptr FS:[0x0],ECX\n  0042041f:  ADD ESP,0x10\n  00420422:  RET", 
+  "callers": []
+}

@@ -1,0 +1,69 @@
+{
+  "address": "0x0044e390", 
+  "size_bytes": 117, 
+  "calling_convention": "unknown", 
+  "signature": "undefined FUN_0044e390(undefined4 param_1)", 
+  "callees": [
+    {
+      "address": "0x0044e410", 
+      "name": "FUN_0044e410"
+    }, 
+    {
+      "address": "0x0044e2b0", 
+      "name": "FUN_0044e2b0"
+    }
+  ], 
+  "global_refs": [
+    {
+      "address": "0x00000004", 
+      "type": null, 
+      "name": "DAT_00000004"
+    }, 
+    {
+      "address": "0x00d924b4", 
+      "type": null, 
+      "name": "DAT_00d924b4"
+    }, 
+    {
+      "address": "0x00d924b5", 
+      "type": null, 
+      "name": "DAT_00d924b5"
+    }, 
+    {
+      "address": "0x00d924b6", 
+      "type": null, 
+      "name": "DAT_00d924b6"
+    }, 
+    {
+      "address": "0x00d924e8", 
+      "type": null, 
+      "name": "DAT_00d924e8"
+    }, 
+    {
+      "address": "0x00596284", 
+      "type": null, 
+      "name": "s_MOVIE_A_00596284"
+    }, 
+    {
+      "address": "0x00596264", 
+      "type": null, 
+      "name": "s_SOFTWARE\\SOFTSTAR\\PAL3_MOVIE_00596264"
+    }, 
+    {
+      "address": "0x0059625c", 
+      "type": null, 
+      "name": "s_MOVIE_B_0059625c"
+    }
+  ], 
+  "has_custom_name": false, 
+  "decompiled_c": "\r\nvoid FUN_0044e390(int param_1)\r\n\r\n{\r\n  byte *pbVar1;\r\n  int iVar2;\r\n  int iVar3;\r\n  uint uVar4;\r\n  uint uVar5;\r\n  \r\n  if (param_1 < 0x34) {\r\n    FUN_0044e410();\r\n    (&DAT_00d924b4)[param_1] = 1;\r\n    uVar5 = 0;\r\n    uVar4 = 0;\r\n    iVar3 = 0;\r\n    do {\r\n      iVar2 = iVar3;\r\n      uVar5 = uVar5 | (uint)(byte)(&DAT_00d924b4)[iVar2] << ((byte)iVar2 & 0x1f);\r\n      iVar3 = iVar2 + 1;\r\n    } while (iVar2 + 1 < 0x20);\r\n    iVar3 = 0;\r\n    pbVar1 = &DAT_00d924b5 + iVar2;\r\n    do {\r\n      uVar4 = uVar4 | (uint)*pbVar1 << ((byte)iVar3 & 0x1f);\r\n      pbVar1 = pbVar1 + 1;\r\n      if (0xd924e7 < (int)pbVar1) break;\r\n      iVar3 = iVar3 + 1;\r\n    } while (iVar3 < 0x20);\r\n    FUN_0044e2b0(s_SOFTWARE_SOFTSTAR_PAL3_MOVIE_00596264,s_MOVIE_A_00596284,uVar5);\r\n    FUN_0044e2b0(s_SOFTWARE_SOFTSTAR_PAL3_MOVIE_00596264,s_MOVIE_B_0059625c,uVar4);\r\n  }\r\n  return;\r\n}\r\n\r\n", 
+  "is_thunk": false, 
+  "name": "FUN_0044e390", 
+  "assembly": "  0044e390:  PUSH ESI\n  0044e391:  MOV ESI,dword ptr [ESP + 0x8]\n  0044e395:  CMP ESI,0x34\n  0044e398:  JGE 0x0044e403\n  0044e39a:  PUSH EDI\n  0044e39b:  CALL 0x0044e410\n  0044e3a0:  MOV byte ptr [ESI + 0xd924b4],0x1\n  0044e3a7:  XOR EDI,EDI\n  0044e3a9:  XOR ESI,ESI\n  0044e3ab:  XOR ECX,ECX\n  0044e3ad:  XOR EAX,EAX\n  0044e3af:  MOV AL,byte ptr [ECX + 0xd924b4]\n  0044e3b5:  SHL EAX,CL\n  0044e3b7:  OR EDI,EAX\n  0044e3b9:  INC ECX\n  0044e3ba:  CMP ECX,0x20\n  0044e3bd:  JL 0x0044e3ad\n  0044e3bf:  MOV EAX,ECX\n  0044e3c1:  XOR ECX,ECX\n  0044e3c3:  LEA EAX,[EAX + 0xd924b4]\n  0044e3c9:  XOR EDX,EDX\n  0044e3cb:  MOV DL,byte ptr [EAX]\n  0044e3cd:  SHL EDX,CL\n  0044e3cf:  OR ESI,EDX\n  0044e3d1:  INC EAX\n  0044e3d2:  CMP EAX,0xd924e8\n  0044e3d7:  JGE 0x0044e3df\n  0044e3d9:  INC ECX\n  0044e3da:  CMP ECX,0x20\n  0044e3dd:  JL 0x0044e3c9\n  0044e3df:  PUSH EDI\n  0044e3e0:  PUSH 0x596284\n  0044e3e5:  PUSH 0x596264\n  0044e3ea:  CALL 0x0044e2b0\n  0044e3ef:  PUSH ESI\n  0044e3f0:  PUSH 0x59625c\n  0044e3f5:  PUSH 0x596264\n  0044e3fa:  CALL 0x0044e2b0\n  0044e3ff:  ADD ESP,0x18\n  0044e402:  POP EDI\n  0044e403:  POP ESI\n  0044e404:  RET", 
+  "callers": [
+    {
+      "address": "0x0044dfc0", 
+      "name": "FUN_0044dfc0"
+    }
+  ]
+}

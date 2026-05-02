@@ -1,0 +1,24 @@
+{
+  "address": "0x005535b1", 
+  "size_bytes": 24, 
+  "calling_convention": "unknown", 
+  "signature": "undefined FUN_005535b1(void)", 
+  "callees": [
+    {
+      "address": "0x005535c9", 
+      "name": "FUN_005535c9"
+    }
+  ], 
+  "global_refs": [], 
+  "has_custom_name": false, 
+  "decompiled_c": "\r\nvoid FUN_005535b1(void)\r\n\r\n{\r\n  int unaff_EBP;\r\n  \r\n  if (*(int *)(unaff_EBP + -0x1c) == 0) {\r\n    FUN_005535c9(*(undefined4 *)(unaff_EBP + 8),*(undefined4 *)(unaff_EBP + 0xc),\r\n                 *(undefined4 *)(unaff_EBP + 0x10),*(undefined4 *)(unaff_EBP + 0x14));\r\n  }\r\n  return;\r\n}\r\n\r\n", 
+  "is_thunk": false, 
+  "name": "FUN_005535b1", 
+  "assembly": "  005535b1:  CMP dword ptr [EBP + -0x1c],0x0\n  005535b5:  JNZ 0x005535c8\n  005535b7:  PUSH dword ptr [EBP + 0x14]\n  005535ba:  PUSH dword ptr [EBP + 0x10]\n  005535bd:  PUSH dword ptr [EBP + 0xc]\n  005535c0:  PUSH dword ptr [EBP + 0x8]\n  005535c3:  CALL 0x005535c9\n  005535c8:  RET", 
+  "callers": [
+    {
+      "address": "0x00553549", 
+      "name": "FUN_00553549"
+    }
+  ]
+}

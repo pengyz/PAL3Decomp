@@ -1,0 +1,35 @@
+{
+  "address": "0x00542205", 
+  "size_bytes": 165, 
+  "calling_convention": "unknown", 
+  "signature": "undefined FUN_00542205(undefined4 param_1, undefined4 param_2, undefined4 param_3)", 
+  "callees": [], 
+  "global_refs": [
+    {
+      "address": "0x0000000c", 
+      "type": null, 
+      "name": "DAT_0000000c"
+    }, 
+    {
+      "address": "0x00000008", 
+      "type": null, 
+      "name": "DAT_00000008"
+    }, 
+    {
+      "address": "0x00000004", 
+      "type": null, 
+      "name": "DAT_00000004"
+    }
+  ], 
+  "has_custom_name": false, 
+  "decompiled_c": "\r\nint FUN_00542205(int param_1,int param_2,uint param_3)\r\n\r\n{\r\n  ushort uVar1;\r\n  uint uVar2;\r\n  uint uVar3;\r\n  uint uVar4;\r\n  int iVar5;\r\n  \r\n  uVar4 = 0;\r\n  if (param_3 != 0) {\r\n    do {\r\n      uVar1 = *(ushort *)(param_2 + uVar4 * 2);\r\n      uVar2 = (uint)uVar1;\r\n      if ((uVar1 & 0x7c00) == 0) {\r\n        if ((uVar1 & 0x3ff) == 0) {\r\n          uVar2 = (uVar2 & 0xffff8000) << 0x10;\r\n        }\r\n        else {\r\n          iVar5 = -0xe;\r\n          for (uVar3 = uVar2 & 0x3ff; (uVar3 & 0x400) == 0; uVar3 = uVar3 << 1) {\r\n            iVar5 = iVar5 + -1;\r\n          }\r\n          uVar2 = (((uVar2 & 0xffff8080) << 3 | uVar3) & 0xfffffbff) << 0xd |\r\n                  (iVar5 + 0x7f) * 0x800000;\r\n        }\r\n      }\r\n      else {\r\n        uVar2 = ((uVar2 & 0xffff8000) << 3 | uVar2 & 0x3ff) << 0xd |\r\n                ((uVar1 >> 10 & 0x1f) + 0x70) * 0x800000;\r\n      }\r\n      *(uint *)(param_1 + uVar4 * 4) = uVar2;\r\n      uVar4 = uVar4 + 1;\r\n    } while (uVar4 < param_3);\r\n  }\r\n  return param_1;\r\n}\r\n\r\n", 
+  "is_thunk": false, 
+  "name": "FUN_00542205", 
+  "assembly": "  00542205:  PUSH EBP\n  00542206:  MOV EBP,ESP\n  00542208:  PUSH EBX\n  00542209:  XOR EBX,EBX\n  0054220b:  CMP dword ptr [EBP + 0x10],EBX\n  0054220e:  JBE 0x005422a2\n  00542214:  PUSH ESI\n  00542215:  PUSH EDI\n  00542216:  MOV ESI,0x3ff\n  0054221b:  MOV EAX,0x400\n  00542220:  MOV ECX,dword ptr [EBP + 0xc]\n  00542223:  MOV DX,word ptr [ECX + EBX*0x2]\n  00542227:  MOVZX ECX,DX\n  0054222a:  TEST ECX,0xffff7c00\n  00542230:  JNZ 0x00542272\n  00542232:  TEST SI,DX\n  00542235:  JZ 0x00542267\n  00542237:  PUSH -0xe\n  00542239:  MOV EDX,ECX\n  0054223b:  POP EDI\n  0054223c:  AND EDX,ESI\n  0054223e:  JMP 0x00542243\n  00542240:  DEC EDI\n  00542241:  SHL EDX,0x1\n  00542243:  TEST EAX,EDX\n  00542245:  JZ 0x00542240\n  00542247:  AND ECX,0xffff8080\n  0054224d:  SHL ECX,0x3\n  00542250:  OR ECX,EDX\n  00542252:  AND ECX,0xfffffbff\n  00542258:  ADD EDI,0x7f\n  0054225b:  SHL ECX,0xd\n  0054225e:  SHL EDI,0x17\n  00542261:  OR ECX,EDI\n  00542263:  MOV EDX,ECX\n  00542265:  JMP 0x00542294\n  00542267:  AND ECX,0xffff8000\n  0054226d:  SHL ECX,0x10\n  00542270:  JMP 0x00542263\n  00542272:  MOV EDX,ECX\n  00542274:  MOV EDI,ECX\n  00542276:  AND EDX,0xffff8000\n  0054227c:  SHR ECX,0xa\n  0054227f:  SHL EDX,0x3\n  00542282:  AND ECX,0x1f\n  00542285:  AND EDI,ESI\n  00542287:  OR EDX,EDI\n  00542289:  ADD ECX,0x70\n  0054228c:  SHL EDX,0xd\n  0054228f:  SHL ECX,0x17\n  00542292:  OR EDX,ECX\n  00542294:  MOV ECX,dword ptr [EBP + 0x8]\n  00542297:  MOV dword ptr [ECX + EBX*0x4],EDX\n  0054229a:  INC EBX\n  0054229b:  CMP EBX,dword ptr [EBP + 0x10]\n  0054229e:  JC 0x00542220\n  005422a0:  POP EDI\n  005422a1:  POP ESI\n  005422a2:  MOV EAX,dword ptr [EBP + 0x8]\n  005422a5:  POP EBX\n  005422a6:  POP EBP\n  005422a7:  RET 0xc", 
+  "callers": [
+    {
+      "address": "0x005512c0", 
+      "name": "FUN_005512c0"
+    }
+  ]
+}

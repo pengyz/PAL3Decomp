@@ -1,0 +1,49 @@
+{
+  "address": "0x0047cf40", 
+  "size_bytes": 97, 
+  "calling_convention": "unknown", 
+  "signature": "undefined FUN_0047cf40(void)", 
+  "callees": [
+    {
+      "address": "0x000000aa", 
+      "name": "PopMessage"
+    }, 
+    {
+      "address": "0x000000a2", 
+      "name": "gbCrc32Compute"
+    }
+  ], 
+  "global_refs": [
+    {
+      "address": "0x0056a2bc", 
+      "type": null, 
+      "name": "PTR_PopMessage_0056a2bc"
+    }, 
+    {
+      "address": "0x-0000010", 
+      "type": null, 
+      "name": "DAT_-0000010"
+    }, 
+    {
+      "address": "0x0056a29c", 
+      "type": null, 
+      "name": "PTR_gbCrc32Compute_0056a29c"
+    }, 
+    {
+      "address": "0x005889bc", 
+      "type": null, 
+      "name": "DAT_005889bc"
+    }, 
+    {
+      "address": "0x-000000c", 
+      "type": null, 
+      "name": "DAT_-000000c"
+    }
+  ], 
+  "has_custom_name": false, 
+  "decompiled_c": "\r\nundefined4 __fastcall FUN_0047cf40(int param_1)\r\n\r\n{\r\n  int iVar1;\r\n  uint uVar2;\r\n  int local_10;\r\n  uint local_c;\r\n  \r\n  if (*(int *)(param_1 + 4) == 3) {\r\n    iVar1 = gbVisNode::PopMessage(*(gbVisNode **)(param_1 + 8),(gbNodeMsgObj *)&local_10);\r\n    while (iVar1 != 0) {\r\n      if ((local_10 == 1) && (uVar2 = gbCrc32Compute(&DAT_005889bc), local_c == uVar2)) {\r\n        return 1;\r\n      }\r\n      iVar1 = gbVisNode::PopMessage(*(gbVisNode **)(param_1 + 8),(gbNodeMsgObj *)&local_10);\r\n    }\r\n  }\r\n  return 0;\r\n}\r\n\r\n", 
+  "is_thunk": false, 
+  "name": "FUN_0047cf40", 
+  "assembly": "  0047cf40:  SUB ESP,0x10\n  0047cf43:  PUSH EBP\n  0047cf44:  PUSH ESI\n  0047cf45:  MOV ESI,ECX\n  0047cf47:  PUSH EDI\n  0047cf48:  CMP dword ptr [ESI + 0x4],0x3\n  0047cf4c:  JNZ 0x0047cf8f\n  0047cf4e:  MOV ECX,dword ptr [ESI + 0x8]\n  0047cf51:  MOV EDI,dword ptr [0x0056a2bc]\n  0047cf57:  LEA EAX,[ESP + 0xc]\n  0047cf5b:  PUSH EAX\n  0047cf5c:  CALL EDI\n  0047cf5e:  TEST EAX,EAX\n  0047cf60:  JZ 0x0047cf8f\n  0047cf62:  MOV EBP,dword ptr [0x0056a29c]\n  0047cf68:  CMP dword ptr [ESP + 0xc],0x1\n  0047cf6d:  JNZ 0x0047cf81\n  0047cf6f:  PUSH 0x5889bc\n  0047cf74:  CALL EBP\n  0047cf76:  MOV ECX,dword ptr [ESP + 0x14]\n  0047cf7a:  ADD ESP,0x4\n  0047cf7d:  CMP ECX,EAX\n  0047cf7f:  JZ 0x0047cf98\n  0047cf81:  LEA ECX,[ESP + 0xc]\n  0047cf85:  PUSH ECX\n  0047cf86:  MOV ECX,dword ptr [ESI + 0x8]\n  0047cf89:  CALL EDI\n  0047cf8b:  TEST EAX,EAX\n  0047cf8d:  JNZ 0x0047cf68\n  0047cf8f:  POP EDI\n  0047cf90:  POP ESI\n  0047cf91:  XOR AL,AL\n  0047cf93:  POP EBP\n  0047cf94:  ADD ESP,0x10\n  0047cf97:  RET\n  0047cf98:  POP EDI\n  0047cf99:  POP ESI\n  0047cf9a:  MOV AL,0x1\n  0047cf9c:  POP EBP\n  0047cf9d:  ADD ESP,0x10\n  0047cfa0:  RET", 
+  "callers": []
+}

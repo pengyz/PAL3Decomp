@@ -1,0 +1,45 @@
+{
+  "address": "0x0043a3e0", 
+  "size_bytes": 196, 
+  "calling_convention": "unknown", 
+  "signature": "undefined FUN_0043a3e0(undefined4 param_1, undefined4 param_2)", 
+  "callees": [
+    {
+      "address": "0x00445c60", 
+      "name": "FUN_00445c60"
+    }
+  ], 
+  "global_refs": [
+    {
+      "address": "0x0056a9f8", 
+      "type": null, 
+      "name": "DAT_0056a9f8"
+    }, 
+    {
+      "address": "0x00000004", 
+      "type": null, 
+      "name": "DAT_00000004"
+    }, 
+    {
+      "address": "0x0056a63c", 
+      "type": null, 
+      "name": "DAT_0056a63c"
+    }, 
+    {
+      "address": "0x00000008", 
+      "type": null, 
+      "name": "DAT_00000008"
+    }
+  ], 
+  "has_custom_name": false, 
+  "decompiled_c": "\r\n/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */\r\n\r\nundefined4 __thiscall FUN_0043a3e0(int param_1_00,float param_1,undefined4 param_2)\r\n\r\n{\r\n  int iVar1;\r\n  float fVar2;\r\n  undefined4 uVar3;\r\n  \r\n  if (*(int *)(param_1_00 + 0x38) == 0) {\r\n    return 0;\r\n  }\r\n  if (*(int *)(param_1_00 + 0x3c) == 0) {\r\n    return 0;\r\n  }\r\n  iVar1 = *(int *)(param_1_00 + 0x94);\r\n  if (iVar1 < 1) {\r\n    *(int *)(param_1_00 + 0x98) = *(int *)(param_1_00 + 0x98) + 1;\r\n    return 0;\r\n  }\r\n  if (_DAT_0056a9f8 <= *(float *)(param_1_00 + 0x44)) {\r\n    fVar2 = param_1 + *(float *)(param_1_00 + 0x48);\r\n    *(float *)(param_1_00 + 0x48) = fVar2;\r\n    if (_DAT_0056a63c / *(float *)(param_1_00 + 0x44) < fVar2) {\r\n      *(undefined4 *)(param_1_00 + 0x48) = 0;\r\n      *(int *)(param_1_00 + 0x90) = *(int *)(param_1_00 + 0x90) + 1;\r\n    }\r\n    if (*(int *)(param_1_00 + 0x90) < iVar1) goto LAB_0043a475;\r\n  }\r\n  *(undefined4 *)(param_1_00 + 0x90) = 0;\r\n  *(int *)(param_1_00 + 0x98) = *(int *)(param_1_00 + 0x98) + 1;\r\nLAB_0043a475:\r\n  if ((0 < *(int *)(param_1_00 + 0x9c)) &&\r\n     (*(int *)(param_1_00 + 0x9c) <= *(int *)(param_1_00 + 0x98))) {\r\n    *(int *)(param_1_00 + 0x90) = iVar1 + -1;\r\n  }\r\n  uVar3 = FUN_00445c60(param_1,param_2);\r\n  return uVar3;\r\n}\r\n\r\n", 
+  "is_thunk": false, 
+  "name": "FUN_0043a3e0", 
+  "assembly": "  0043a3e0:  MOV EAX,dword ptr [ECX + 0x38]\n  0043a3e3:  TEST EAX,EAX\n  0043a3e5:  JNZ 0x0043a3ec\n  0043a3e7:  XOR EAX,EAX\n  0043a3e9:  RET 0x8\n  0043a3ec:  MOV EAX,dword ptr [ECX + 0x3c]\n  0043a3ef:  TEST EAX,EAX\n  0043a3f1:  JNZ 0x0043a3f8\n  0043a3f3:  XOR EAX,EAX\n  0043a3f5:  RET 0x8\n  0043a3f8:  MOV EDX,dword ptr [ECX + 0x94]\n  0043a3fe:  TEST EDX,EDX\n  0043a400:  JG 0x0043a414\n  0043a402:  MOV EAX,dword ptr [ECX + 0x98]\n  0043a408:  INC EAX\n  0043a409:  MOV dword ptr [ECX + 0x98],EAX\n  0043a40f:  XOR EAX,EAX\n  0043a411:  RET 0x8\n  0043a414:  FLD dword ptr [ECX + 0x44]\n  0043a417:  FCOMP dword ptr [0x0056a9f8]\n  0043a41d:  FNSTSW AX\n  0043a41f:  TEST AH,0x1\n  0043a422:  JNZ 0x0043a45e\n  0043a424:  FLD dword ptr [ESP + 0x4]\n  0043a428:  FADD dword ptr [ECX + 0x48]\n  0043a42b:  FST dword ptr [ECX + 0x48]\n  0043a42e:  FLD dword ptr [0x0056a63c]\n  0043a434:  FDIV dword ptr [ECX + 0x44]\n  0043a437:  FXCH\n  0043a439:  FCOMPP\n  0043a43b:  FNSTSW AX\n  0043a43d:  TEST AH,0x41\n  0043a440:  JNZ 0x0043a456\n  0043a442:  MOV EAX,dword ptr [ECX + 0x90]\n  0043a448:  MOV dword ptr [ECX + 0x48],0x0\n  0043a44f:  INC EAX\n  0043a450:  MOV dword ptr [ECX + 0x90],EAX\n  0043a456:  CMP dword ptr [ECX + 0x90],EDX\n  0043a45c:  JL 0x0043a475\n  0043a45e:  MOV EAX,dword ptr [ECX + 0x98]\n  0043a464:  MOV dword ptr [ECX + 0x90],0x0\n  0043a46e:  INC EAX\n  0043a46f:  MOV dword ptr [ECX + 0x98],EAX\n  0043a475:  MOV EAX,dword ptr [ECX + 0x9c]\n  0043a47b:  TEST EAX,EAX\n  0043a47d:  JLE 0x0043a492\n  0043a47f:  PUSH ESI\n  0043a480:  MOV ESI,dword ptr [ECX + 0x98]\n  0043a486:  CMP ESI,EAX\n  0043a488:  POP ESI\n  0043a489:  JL 0x0043a492\n  0043a48b:  DEC EDX\n  0043a48c:  MOV dword ptr [ECX + 0x90],EDX\n  0043a492:  MOV EAX,dword ptr [ESP + 0x8]\n  0043a496:  MOV EDX,dword ptr [ESP + 0x4]\n  0043a49a:  PUSH EAX\n  0043a49b:  PUSH EDX\n  0043a49c:  CALL 0x00445c60\n  0043a4a1:  RET 0x8", 
+  "callers": [
+    {
+      "address": "0x0040c230", 
+      "name": "FUN_0040c230"
+    }
+  ]
+}

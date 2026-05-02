@@ -1,0 +1,25 @@
+{
+  "address": "0x004cdb70", 
+  "size_bytes": 114, 
+  "calling_convention": "unknown", 
+  "signature": "undefined FUN_004cdb70(undefined4 param_1)", 
+  "callees": [], 
+  "global_refs": [
+    {
+      "address": "0x00000004", 
+      "type": null, 
+      "name": "DAT_00000004"
+    }
+  ], 
+  "has_custom_name": false, 
+  "decompiled_c": "\r\nvoid __thiscall FUN_004cdb70(int param_1_00,float param_1)\r\n\r\n{\r\n  float fVar1;\r\n  int *piVar2;\r\n  int iVar3;\r\n  \r\n  fVar1 = *(float *)(param_1_00 + 0xa920);\r\n  *(float *)(param_1_00 + 0xa920) = param_1;\r\n  piVar2 = (int *)(param_1_00 + 0x92c);\r\n  *(float *)(param_1_00 + 0xa924) = param_1 - fVar1;\r\n  iVar3 = 0x800;\r\n  *(float *)(param_1_00 + 0xa928) =\r\n       *(float *)(param_1_00 + 0xa928) + *(float *)(param_1_00 + 0xa924);\r\n  do {\r\n    if (*(char *)(piVar2 + -1) != '\\0') {\r\n      if (*(char *)((int)piVar2 + -3) == '\\0') {\r\n        (**(code **)(*(int *)*piVar2 + 0x14))(param_1);\r\n      }\r\n      if ((*(char *)(piVar2 + -1) != '\\0') && (*(char *)(*piVar2 + 8) != '\\0')) {\r\n        *(undefined *)((int)piVar2 + -3) = 1;\r\n      }\r\n    }\r\n    piVar2 = piVar2 + 5;\r\n    iVar3 = iVar3 + -1;\r\n  } while (iVar3 != 0);\r\n  return;\r\n}\r\n\r\n", 
+  "is_thunk": false, 
+  "name": "FUN_004cdb70", 
+  "assembly": "  004cdb70:  FLD dword ptr [ESP + 0x4]\n  004cdb74:  FSUB dword ptr [ECX + 0xa920]\n  004cdb7a:  MOV EAX,dword ptr [ESP + 0x4]\n  004cdb7e:  PUSH EBP\n  004cdb7f:  PUSH ESI\n  004cdb80:  PUSH EDI\n  004cdb81:  MOV dword ptr [ECX + 0xa920],EAX\n  004cdb87:  LEA ESI,[ECX + 0x92c]\n  004cdb8d:  FSTP dword ptr [ECX + 0xa924]\n  004cdb93:  FLD dword ptr [ECX + 0xa928]\n  004cdb99:  FADD dword ptr [ECX + 0xa924]\n  004cdb9f:  MOV EDI,0x800\n  004cdba4:  MOV EBP,EAX\n  004cdba6:  FSTP dword ptr [ECX + 0xa928]\n  004cdbac:  MOV AL,byte ptr [ESI + -0x4]\n  004cdbaf:  TEST AL,AL\n  004cdbb1:  JZ 0x004cdbd6\n  004cdbb3:  MOV AL,byte ptr [ESI + -0x3]\n  004cdbb6:  TEST AL,AL\n  004cdbb8:  JNZ 0x004cdbc2\n  004cdbba:  MOV ECX,dword ptr [ESI]\n  004cdbbc:  PUSH EBP\n  004cdbbd:  MOV EDX,dword ptr [ECX]\n  004cdbbf:  CALL dword ptr [EDX + 0x14]\n  004cdbc2:  MOV AL,byte ptr [ESI + -0x4]\n  004cdbc5:  TEST AL,AL\n  004cdbc7:  JZ 0x004cdbd6\n  004cdbc9:  MOV EAX,dword ptr [ESI]\n  004cdbcb:  MOV CL,byte ptr [EAX + 0x8]\n  004cdbce:  TEST CL,CL\n  004cdbd0:  JZ 0x004cdbd6\n  004cdbd2:  MOV byte ptr [ESI + -0x3],0x1\n  004cdbd6:  ADD ESI,0x14\n  004cdbd9:  DEC EDI\n  004cdbda:  JNZ 0x004cdbac\n  004cdbdc:  POP EDI\n  004cdbdd:  POP ESI\n  004cdbde:  POP EBP\n  004cdbdf:  RET 0x4", 
+  "callers": [
+    {
+      "address": "0x00513060", 
+      "name": "FUN_00513060"
+    }
+  ]
+}

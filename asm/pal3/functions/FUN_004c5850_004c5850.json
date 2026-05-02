@@ -1,0 +1,29 @@
+{
+  "address": "0x004c5850", 
+  "size_bytes": 97, 
+  "calling_convention": "unknown", 
+  "signature": "undefined FUN_004c5850(void)", 
+  "callees": [], 
+  "global_refs": [
+    {
+      "address": "0x0056f820", 
+      "type": null, 
+      "name": "DAT_0056f820"
+    }
+  ], 
+  "has_custom_name": false, 
+  "decompiled_c": "\r\nvoid __fastcall FUN_004c5850(undefined4 *param_1)\r\n\r\n{\r\n  undefined4 uVar1;\r\n  int iVar2;\r\n  undefined4 *puVar3;\r\n  \r\n  *param_1 = 0;\r\n  *(undefined *)(param_1 + 0x44) = 0;\r\n  param_1[0x45] = 0;\r\n  puVar3 = param_1 + 0x46;\r\n  for (iVar2 = 8; iVar2 != 0; iVar2 = iVar2 + -1) {\r\n    *puVar3 = 0;\r\n    puVar3 = puVar3 + 1;\r\n  }\r\n  param_1[0x4e] = 0;\r\n  param_1[2] = 0;\r\n  param_1[3] = 0;\r\n  param_1[0x54] = 0;\r\n  param_1[0x55] = 0;\r\n  param_1[0x4f] = 0;\r\n  uVar1 = DAT_0056f820;\r\n  param_1[0x50] = 0;\r\n  param_1[0x51] = 0;\r\n  param_1[0x52] = 0;\r\n  param_1[0x53] = uVar1;\r\n  return;\r\n}\r\n\r\n", 
+  "is_thunk": false, 
+  "name": "FUN_004c5850", 
+  "assembly": "  004c5850:  MOV EDX,ECX\n  004c5852:  PUSH EBX\n  004c5853:  PUSH EDI\n  004c5854:  XOR EBX,EBX\n  004c5856:  MOV ECX,0x8\n  004c585b:  XOR EAX,EAX\n  004c585d:  LEA EDI,[EDX + 0x118]\n  004c5863:  MOV dword ptr [EDX],EBX\n  004c5865:  MOV byte ptr [EDX + 0x110],BL\n  004c586b:  MOV dword ptr [EDX + 0x114],EBX\n  004c5871:  STOSD.REP ES:EDI\n  004c5873:  MOV dword ptr [EDX + 0x138],EBX\n  004c5879:  MOV dword ptr [EDX + 0x8],EBX\n  004c587c:  MOV dword ptr [EDX + 0xc],EBX\n  004c587f:  MOV dword ptr [EDX + 0x150],EBX\n  004c5885:  MOV dword ptr [EDX + 0x154],EBX\n  004c588b:  MOV dword ptr [EDX + 0x13c],EBX\n  004c5891:  MOV EAX,[0x0056f820]\n  004c5896:  MOV dword ptr [EDX + 0x140],EBX\n  004c589c:  MOV dword ptr [EDX + 0x144],EBX\n  004c58a2:  MOV dword ptr [EDX + 0x148],EBX\n  004c58a8:  POP EDI\n  004c58a9:  MOV dword ptr [EDX + 0x14c],EAX\n  004c58af:  POP EBX\n  004c58b0:  RET", 
+  "callers": [
+    {
+      "address": "0x004c5820", 
+      "name": "FUN_004c5820"
+    }, 
+    {
+      "address": "0x004c5910", 
+      "name": "FUN_004c5910"
+    }
+  ]
+}

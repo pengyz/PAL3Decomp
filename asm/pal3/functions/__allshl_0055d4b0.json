@@ -1,0 +1,19 @@
+{
+  "address": "0x0055d4b0", 
+  "size_bytes": 31, 
+  "calling_convention": "unknown", 
+  "signature": "undefined __allshl(void)", 
+  "callees": [], 
+  "global_refs": [], 
+  "has_custom_name": true, 
+  "decompiled_c": "\r\n/* Library Function - Single Match\r\n    __allshl\r\n   \r\n   Library: Visual Studio */\r\n\r\nlonglong __fastcall __allshl(byte param_1,int param_2)\r\n\r\n{\r\n  uint in_EAX;\r\n  \r\n  if (0x3f < param_1) {\r\n    return 0;\r\n  }\r\n  if (param_1 < 0x20) {\r\n    return CONCAT44(param_2 << (param_1 & 0x1f) | in_EAX >> 0x20 - (param_1 & 0x1f),\r\n                    in_EAX << (param_1 & 0x1f));\r\n  }\r\n  return (ulonglong)(in_EAX << (param_1 & 0x1f)) << 0x20;\r\n}\r\n\r\n", 
+  "is_thunk": false, 
+  "name": "__allshl", 
+  "assembly": "  0055d4b0:  CMP CL,0x40\n  0055d4b3:  JNC 0x0055d4ca\n  0055d4b5:  CMP CL,0x20\n  0055d4b8:  JNC 0x0055d4c0\n  0055d4ba:  SHLD EDX,EAX,CL\n  0055d4bd:  SHL EAX,CL\n  0055d4bf:  RET\n  0055d4c0:  MOV EDX,EAX\n  0055d4c2:  XOR EAX,EAX\n  0055d4c4:  AND CL,0x1f\n  0055d4c7:  SHL EDX,CL\n  0055d4c9:  RET\n  0055d4ca:  XOR EAX,EAX\n  0055d4cc:  XOR EDX,EDX\n  0055d4ce:  RET", 
+  "callers": [
+    {
+      "address": "0x00559866", 
+      "name": "FUN_00559866"
+    }
+  ]
+}

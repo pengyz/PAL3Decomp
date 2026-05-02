@@ -1,0 +1,30 @@
+{
+  "address": "0x004f3dc0", 
+  "size_bytes": 85, 
+  "calling_convention": "unknown", 
+  "signature": "undefined FUN_004f3dc0(undefined4 param_1)", 
+  "callees": [
+    {
+      "address": "0x004f3c20", 
+      "name": "FUN_004f3c20"
+    }
+  ], 
+  "global_refs": [
+    {
+      "address": "0x00000004", 
+      "type": null, 
+      "name": "DAT_00000004"
+    }
+  ], 
+  "has_custom_name": false, 
+  "decompiled_c": "\r\nint __thiscall FUN_004f3dc0(int param_1_00,int param_1)\r\n\r\n{\r\n  char cVar1;\r\n  int iVar2;\r\n  \r\n  if (*(char *)(param_1_00 + 0x242) != '\\0') {\r\n    iVar2 = 1;\r\n    do {\r\n      if (*(char *)(param_1_00 + 0x475 + param_1 * 0x37c + iVar2) != '\\0') {\r\n        cVar1 = FUN_004f3c20(iVar2);\r\n        if (cVar1 == '\\0') {\r\n          return iVar2;\r\n        }\r\n      }\r\n      iVar2 = iVar2 + 1;\r\n    } while (iVar2 < 0x1b);\r\n  }\r\n  return 0;\r\n}\r\n\r\n", 
+  "is_thunk": false, 
+  "name": "FUN_004f3dc0", 
+  "assembly": "  004f3dc0:  PUSH EBX\n  004f3dc1:  PUSH ESI\n  004f3dc2:  PUSH EDI\n  004f3dc3:  MOV EDI,ECX\n  004f3dc5:  MOV AL,byte ptr [EDI + 0x242]\n  004f3dcb:  TEST AL,AL\n  004f3dcd:  JZ 0x004f3e05\n  004f3dcf:  MOV EAX,dword ptr [ESP + 0x10]\n  004f3dd3:  MOV ESI,0x1\n  004f3dd8:  LEA ECX,[EAX*0x8 + 0x0]\n  004f3ddf:  SUB ECX,EAX\n  004f3de1:  SHL ECX,0x5\n  004f3de4:  SUB ECX,EAX\n  004f3de6:  LEA EBX,[EDI + ECX*0x4 + 0x475]\n  004f3ded:  CMP byte ptr [EBX + ESI*0x1],0x0\n  004f3df1:  JZ 0x004f3dff\n  004f3df3:  PUSH ESI\n  004f3df4:  MOV ECX,EDI\n  004f3df6:  CALL 0x004f3c20\n  004f3dfb:  TEST AL,AL\n  004f3dfd:  JZ 0x004f3e0d\n  004f3dff:  INC ESI\n  004f3e00:  CMP ESI,0x1b\n  004f3e03:  JL 0x004f3ded\n  004f3e05:  POP EDI\n  004f3e06:  POP ESI\n  004f3e07:  XOR EAX,EAX\n  004f3e09:  POP EBX\n  004f3e0a:  RET 0x4\n  004f3e0d:  MOV EAX,ESI\n  004f3e0f:  POP EDI\n  004f3e10:  POP ESI\n  004f3e11:  POP EBX\n  004f3e12:  RET 0x4", 
+  "callers": [
+    {
+      "address": "0x004d94f0", 
+      "name": "FUN_004d94f0"
+    }
+  ]
+}

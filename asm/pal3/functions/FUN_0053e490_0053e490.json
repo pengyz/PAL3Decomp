@@ -1,0 +1,44 @@
+{
+  "address": "0x0053e490", 
+  "size_bytes": 71, 
+  "calling_convention": "unknown", 
+  "signature": "undefined FUN_0053e490(void)", 
+  "callees": [
+    {
+      "address": "0x00000121", 
+      "name": "SetListenerPosition"
+    }, 
+    {
+      "address": "0x00000120", 
+      "name": "SetListenerOrientation"
+    }
+  ], 
+  "global_refs": [
+    {
+      "address": "0x005833bc", 
+      "type": null, 
+      "name": "DAT_005833bc"
+    }, 
+    {
+      "address": "0x00bfda68", 
+      "type": null, 
+      "name": "DAT_00bfda68"
+    }, 
+    {
+      "address": "0x0056a498", 
+      "type": null, 
+      "name": "PTR_SetListenerPosition_0056a498"
+    }, 
+    {
+      "address": "0x0056a494", 
+      "type": null, 
+      "name": "PTR_SetListenerOrientation_0056a494"
+    }
+  ], 
+  "has_custom_name": false, 
+  "decompiled_c": "\r\nvoid __fastcall FUN_0053e490(int param_1)\r\n\r\n{\r\n  if (((DAT_005833bc & 1) != 0) && (DAT_00bfda68 != 0)) {\r\n    gbAudioManager::SetListenerPosition\r\n              (*(gbAudioManager **)(param_1 + 0x328),(gbVec3D *)(DAT_00bfda68 + 0x1ec));\r\n    gbAudioManager::SetListenerOrientation\r\n              (*(gbAudioManager **)(param_1 + 0x328),(gbVec3D *)(DAT_00bfda68 + 0x1f8),\r\n               (gbVec3D *)(DAT_00bfda68 + 0x204));\r\n  }\r\n  return;\r\n}\r\n\r\n", 
+  "is_thunk": false, 
+  "name": "FUN_0053e490", 
+  "assembly": "  0053e490:  MOV AL,[0x005833bc]\n  0053e495:  PUSH ESI\n  0053e496:  TEST AL,0x1\n  0053e498:  MOV ESI,ECX\n  0053e49a:  JZ 0x0053e4d5\n  0053e49c:  MOV EAX,[0x00bfda68]\n  0053e4a1:  TEST EAX,EAX\n  0053e4a3:  JZ 0x0053e4d5\n  0053e4a5:  MOV ECX,dword ptr [ESI + 0x328]\n  0053e4ab:  ADD EAX,0x1ec\n  0053e4b0:  PUSH EAX\n  0053e4b1:  CALL dword ptr [0x0056a498]\n  0053e4b7:  MOV EAX,[0x00bfda68]\n  0053e4bc:  LEA ECX,[EAX + 0x204]\n  0053e4c2:  ADD EAX,0x1f8\n  0053e4c7:  PUSH ECX\n  0053e4c8:  MOV ECX,dword ptr [ESI + 0x328]\n  0053e4ce:  PUSH EAX\n  0053e4cf:  CALL dword ptr [0x0056a494]\n  0053e4d5:  POP ESI\n  0053e4d6:  RET", 
+  "callers": []
+}

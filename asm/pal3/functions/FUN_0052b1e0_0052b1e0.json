@@ -1,0 +1,72 @@
+{
+  "address": "0x0052b1e0", 
+  "size_bytes": 187, 
+  "calling_convention": "unknown", 
+  "signature": "undefined FUN_0052b1e0(void)", 
+  "callees": [
+    {
+      "address": "0x00553627", 
+      "name": "FUN_00553627"
+    }, 
+    {
+      "address": "0x00000156", 
+      "name": "`default_constructor_closure'"
+    }, 
+    {
+      "address": "0x0047cad0", 
+      "name": "FUN_0047cad0"
+    }, 
+    {
+      "address": "0x0052b350", 
+      "name": "FUN_0052b350"
+    }
+  ], 
+  "global_refs": [
+    {
+      "address": "0x00568357", 
+      "type": null, 
+      "name": "LAB_00568357"
+    }, 
+    {
+      "address": "0xffdff000", 
+      "type": null, 
+      "name": "ExceptionList"
+    }, 
+    {
+      "address": "0x0047cb70", 
+      "type": null, 
+      "name": "FUN_0047cb70"
+    }, 
+    {
+      "address": "0x0047cad0", 
+      "type": null, 
+      "name": "FUN_0047cad0"
+    }, 
+    {
+      "address": "0x-0000010", 
+      "type": null, 
+      "name": "DAT_-0000010"
+    }, 
+    {
+      "address": "0x-0000004", 
+      "type": null, 
+      "name": "DAT_-0000004"
+    }, 
+    {
+      "address": "0x0056a56c", 
+      "type": null, 
+      "name": "PTR_`default_constructor_closure'_0056a56c"
+    }
+  ], 
+  "has_custom_name": false, 
+  "decompiled_c": "\r\nint __fastcall FUN_0052b1e0(int param_1)\r\n\r\n{\r\n  int iVar1;\r\n  gbVec3D *this;\r\n  void *pvStack_c;\r\n  undefined *puStack_8;\r\n  undefined4 local_4;\r\n  \r\n  local_4 = 0xffffffff;\r\n  puStack_8 = &LAB_00568357;\r\n  pvStack_c = ExceptionList;\r\n  ExceptionList = &pvStack_c;\r\n  FUN_00553627(param_1 + 0x10,0x98,5,FUN_0047cad0,FUN_0047cb70);\r\n  this = (gbVec3D *)(param_1 + 0x308);\r\n  local_4 = 0;\r\n  iVar1 = 5;\r\n  do {\r\n    gbVec3D::_default_constructor_closure_(this);\r\n    this = this + 0xc;\r\n    iVar1 = iVar1 + -1;\r\n  } while (iVar1 != 0);\r\n  FUN_0047cad0();\r\n  *(undefined4 *)(param_1 + 0x3f0) = 0;\r\n  *(undefined4 *)(param_1 + 0x3f4) = 0;\r\n  *(undefined4 *)(param_1 + 0x3f8) = 0;\r\n  *(undefined4 *)(param_1 + 0x3fc) = 0;\r\n  *(undefined4 *)(param_1 + 0x400) = 0;\r\n  *(undefined4 *)(param_1 + 0x404) = 0;\r\n  local_4 = CONCAT31(local_4._1_3_,1);\r\n  *(undefined4 *)(param_1 + 0x408) = 0;\r\n  *(undefined4 *)(param_1 + 0x40c) = 0;\r\n  *(undefined4 *)(param_1 + 0x410) = 0;\r\n  FUN_0052b350();\r\n  ExceptionList = pvStack_c;\r\n  return param_1;\r\n}\r\n\r\n", 
+  "is_thunk": false, 
+  "name": "FUN_0052b1e0", 
+  "assembly": "  0052b1e0:  PUSH -0x1\n  0052b1e2:  PUSH 0x568357\n  0052b1e7:  MOV EAX,FS:[0x0]\n  0052b1ed:  PUSH EAX\n  0052b1ee:  MOV dword ptr FS:[0x0],ESP\n  0052b1f5:  PUSH ECX\n  0052b1f6:  PUSH EBX\n  0052b1f7:  PUSH EBP\n  0052b1f8:  PUSH ESI\n  0052b1f9:  PUSH EDI\n  0052b1fa:  MOV ESI,ECX\n  0052b1fc:  PUSH 0x47cb70\n  0052b201:  PUSH 0x47cad0\n  0052b206:  PUSH 0x5\n  0052b208:  LEA EAX,[ESI + 0x10]\n  0052b20b:  PUSH 0x98\n  0052b210:  PUSH EAX\n  0052b211:  MOV dword ptr [ESP + 0x24],ESI\n  0052b215:  CALL 0x00553627\n  0052b21a:  XOR EBP,EBP\n  0052b21c:  LEA EDI,[ESI + 0x308]\n  0052b222:  MOV dword ptr [ESP + 0x1c],EBP\n  0052b226:  MOV EBX,0x5\n  0052b22b:  MOV ECX,EDI\n  0052b22d:  CALL dword ptr [0x0056a56c]\n  0052b233:  ADD EDI,0xc\n  0052b236:  DEC EBX\n  0052b237:  JNZ 0x0052b22b\n  0052b239:  LEA ECX,[ESI + 0x358]\n  0052b23f:  CALL 0x0047cad0\n  0052b244:  MOV dword ptr [ESI + 0x3f0],EBP\n  0052b24a:  MOV dword ptr [ESI + 0x3f4],EBP\n  0052b250:  MOV dword ptr [ESI + 0x3f8],EBP\n  0052b256:  MOV dword ptr [ESI + 0x3fc],EBP\n  0052b25c:  MOV dword ptr [ESI + 0x400],EBP\n  0052b262:  MOV dword ptr [ESI + 0x404],EBP\n  0052b268:  MOV ECX,ESI\n  0052b26a:  MOV byte ptr [ESP + 0x1c],0x1\n  0052b26f:  MOV dword ptr [ESI + 0x408],EBP\n  0052b275:  MOV dword ptr [ESI + 0x40c],EBP\n  0052b27b:  MOV dword ptr [ESI + 0x410],EBP\n  0052b281:  CALL 0x0052b350\n  0052b286:  MOV ECX,dword ptr [ESP + 0x14]\n  0052b28a:  MOV EAX,ESI\n  0052b28c:  POP EDI\n  0052b28d:  POP ESI\n  0052b28e:  POP EBP\n  0052b28f:  POP EBX\n  0052b290:  MOV dword ptr FS:[0x0],ECX\n  0052b297:  ADD ESP,0x10\n  0052b29a:  RET", 
+  "callers": [
+    {
+      "address": "0x0044f8d0", 
+      "name": "FUN_0044f8d0"
+    }
+  ]
+}

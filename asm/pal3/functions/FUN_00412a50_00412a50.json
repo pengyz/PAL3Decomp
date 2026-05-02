@@ -1,0 +1,42 @@
+{
+  "address": "0x00412a50", 
+  "size_bytes": 63, 
+  "calling_convention": "unknown", 
+  "signature": "undefined FUN_00412a50(void)", 
+  "callees": [
+    {
+      "address": "0x00412710", 
+      "name": "FUN_00412710"
+    }
+  ], 
+  "global_refs": [
+    {
+      "address": "0x0056a610", 
+      "type": null, 
+      "name": "DAT_0056a610"
+    }
+  ], 
+  "has_custom_name": false, 
+  "decompiled_c": "\r\n/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */\r\n\r\nvoid __fastcall FUN_00412a50(int param_1)\r\n\r\n{\r\n  *(undefined4 *)(param_1 + 0x4f4) = 1;\r\n  *(undefined4 *)(param_1 + 0x504) = 1;\r\n  FUN_00412710();\r\n  *(float *)(param_1 + 0x508) = *(float *)(param_1 + 0x508) * _DAT_0056a610;\r\n  *(float *)(param_1 + 0x50c) = *(float *)(param_1 + 0x50c) * _DAT_0056a610;\r\n  return;\r\n}\r\n\r\n", 
+  "is_thunk": false, 
+  "name": "FUN_00412a50", 
+  "assembly": "  00412a50:  PUSH ESI\n  00412a51:  MOV ESI,ECX\n  00412a53:  MOV EAX,0x1\n  00412a58:  MOV dword ptr [ESI + 0x4f4],EAX\n  00412a5e:  MOV dword ptr [ESI + 0x504],EAX\n  00412a64:  CALL 0x00412710\n  00412a69:  FLD dword ptr [ESI + 0x508]\n  00412a6f:  FMUL dword ptr [0x0056a610]\n  00412a75:  FSTP dword ptr [ESI + 0x508]\n  00412a7b:  FLD dword ptr [ESI + 0x50c]\n  00412a81:  FMUL dword ptr [0x0056a610]\n  00412a87:  FSTP dword ptr [ESI + 0x50c]\n  00412a8d:  POP ESI\n  00412a8e:  RET", 
+  "callers": [
+    {
+      "address": "0x00417040", 
+      "name": "FUN_00417040"
+    }, 
+    {
+      "address": "0x00417c50", 
+      "name": "FUN_00417c50"
+    }, 
+    {
+      "address": "0x0041a450", 
+      "name": "FUN_0041a450"
+    }, 
+    {
+      "address": "0x00417420", 
+      "name": "FUN_00417420"
+    }
+  ]
+}

@@ -1,0 +1,73 @@
+{
+  "address": "0x004ba150", 
+  "size_bytes": 221, 
+  "calling_convention": "unknown", 
+  "signature": "undefined FUN_004ba150(undefined4 param_1, undefined4 param_2)", 
+  "callees": [
+    {
+      "address": "0x004ba230", 
+      "name": "FUN_004ba230"
+    }, 
+    {
+      "address": "0x004b8890", 
+      "name": "FUN_004b8890"
+    }, 
+    {
+      "address": "0x004babc0", 
+      "name": "FUN_004babc0"
+    }, 
+    {
+      "address": "0x004b9ea0", 
+      "name": "FUN_004b9ea0"
+    }, 
+    {
+      "address": "0x004ba0b0", 
+      "name": "FUN_004ba0b0"
+    }, 
+    {
+      "address": "0x004b9fa0", 
+      "name": "FUN_004b9fa0"
+    }
+  ], 
+  "global_refs": [
+    {
+      "address": "0x00000004", 
+      "type": null, 
+      "name": "DAT_00000004"
+    }, 
+    {
+      "address": "0x0056a644", 
+      "type": null, 
+      "name": "DAT_0056a644"
+    }, 
+    {
+      "address": "0x-0000004", 
+      "type": null, 
+      "name": "DAT_-0000004"
+    }, 
+    {
+      "address": "0x00000008", 
+      "type": null, 
+      "name": "DAT_00000008"
+    }
+  ], 
+  "has_custom_name": false, 
+  "decompiled_c": "\r\n/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */\r\n\r\nvoid __thiscall FUN_004ba150(int param_1_00,float param_1,undefined4 param_2)\r\n\r\n{\r\n  int iVar1;\r\n  int iVar2;\r\n  int *piVar3;\r\n  int iVar4;\r\n  int *local_4;\r\n  \r\n  *(float *)(param_1_00 + 0x48) = param_1;\r\n  *(float *)(param_1_00 + 0x4c) = param_1 + *(float *)(param_1_00 + 0x4c);\r\n  FUN_004ba230();\r\n  FUN_004b8890();\r\n  if (_DAT_0056a644 < *(float *)(param_1_00 + 0x48)) {\r\n    iVar2 = 0;\r\n    if (*(int *)(param_1_00 + 0x9020) == 0) {\r\n      param_1 = 0.0;\r\n    }\r\n    else {\r\n      param_1 = (float)FUN_004babc0();\r\n    }\r\n    iVar4 = 0;\r\n    iVar1 = *(int *)(*(int *)(param_1_00 + 0x9054) + 0x588fc);\r\n    if (0 < iVar1) {\r\n      local_4 = (int *)(param_1_00 + 0x60);\r\n      do {\r\n        if ((int)param_1 <= iVar2) break;\r\n        if (*local_4 == 0) {\r\n          FUN_004b9ea0(iVar4,param_2);\r\n          iVar2 = iVar2 + 1;\r\n        }\r\n        iVar4 = iVar4 + 1;\r\n        local_4 = local_4 + 0x17;\r\n      } while (iVar4 < iVar1);\r\n    }\r\n    if ((iVar4 == iVar1) && (iVar2 < (int)param_1)) {\r\n      FUN_004ba0b0((int)param_1 - iVar2,param_2);\r\n    }\r\n    iVar2 = 0;\r\n    if (0 < iVar1) {\r\n      piVar3 = (int *)(param_1_00 + 0x60);\r\n      do {\r\n        if (*piVar3 != 0) {\r\n          FUN_004b9fa0(iVar2);\r\n        }\r\n        iVar2 = iVar2 + 1;\r\n        piVar3 = piVar3 + 0x17;\r\n      } while (iVar2 < iVar1);\r\n    }\r\n  }\r\n  return;\r\n}\r\n\r\n", 
+  "is_thunk": false, 
+  "name": "FUN_004ba150", 
+  "assembly": "  004ba150:  PUSH ECX\n  004ba151:  FLD dword ptr [ESP + 0x8]\n  004ba155:  PUSH EBX\n  004ba156:  PUSH EBP\n  004ba157:  PUSH ESI\n  004ba158:  MOV EAX,dword ptr [ESP + 0x14]\n  004ba15c:  PUSH EDI\n  004ba15d:  MOV EDI,ECX\n  004ba15f:  FADD dword ptr [EDI + 0x4c]\n  004ba162:  MOV dword ptr [EDI + 0x48],EAX\n  004ba165:  FSTP dword ptr [EDI + 0x4c]\n  004ba168:  CALL 0x004ba230\n  004ba16d:  MOV ECX,EDI\n  004ba16f:  CALL 0x004b8890\n  004ba174:  FLD dword ptr [EDI + 0x48]\n  004ba177:  FCOMP dword ptr [0x0056a644]\n  004ba17d:  FNSTSW AX\n  004ba17f:  TEST AH,0x41\n  004ba182:  JNZ 0x004ba225\n  004ba188:  MOV EAX,dword ptr [EDI + 0x9020]\n  004ba18e:  XOR EBP,EBP\n  004ba190:  CMP EAX,EBP\n  004ba192:  JZ 0x004ba1a1\n  004ba194:  MOV ECX,EDI\n  004ba196:  CALL 0x004babc0\n  004ba19b:  MOV dword ptr [ESP + 0x18],EAX\n  004ba19f:  JMP 0x004ba1a7\n  004ba1a1:  MOV dword ptr [ESP + 0x18],EBP\n  004ba1a5:  MOV EAX,EBP\n  004ba1a7:  MOV ECX,dword ptr [EDI + 0x9054]\n  004ba1ad:  XOR ESI,ESI\n  004ba1af:  MOV EBX,dword ptr [ECX + 0x588fc]\n  004ba1b5:  TEST EBX,EBX\n  004ba1b7:  JLE 0x004ba1ef\n  004ba1b9:  LEA EDX,[EDI + 0x60]\n  004ba1bc:  MOV dword ptr [ESP + 0x10],EDX\n  004ba1c0:  CMP EBP,EAX\n  004ba1c2:  JGE 0x004ba1ef\n  004ba1c4:  MOV ECX,dword ptr [ESP + 0x10]\n  004ba1c8:  CMP dword ptr [ECX],0x0\n  004ba1cb:  JNZ 0x004ba1df\n  004ba1cd:  MOV EDX,dword ptr [ESP + 0x1c]\n  004ba1d1:  MOV ECX,EDI\n  004ba1d3:  PUSH EDX\n  004ba1d4:  PUSH ESI\n  004ba1d5:  CALL 0x004b9ea0\n  004ba1da:  MOV EAX,dword ptr [ESP + 0x18]\n  004ba1de:  INC EBP\n  004ba1df:  MOV EDX,dword ptr [ESP + 0x10]\n  004ba1e3:  INC ESI\n  004ba1e4:  ADD EDX,0x5c\n  004ba1e7:  CMP ESI,EBX\n  004ba1e9:  MOV dword ptr [ESP + 0x10],EDX\n  004ba1ed:  JL 0x004ba1c0\n  004ba1ef:  CMP ESI,EBX\n  004ba1f1:  JNZ 0x004ba206\n  004ba1f3:  CMP EBP,EAX\n  004ba1f5:  JGE 0x004ba206\n  004ba1f7:  MOV ECX,dword ptr [ESP + 0x1c]\n  004ba1fb:  SUB EAX,EBP\n  004ba1fd:  PUSH ECX\n  004ba1fe:  PUSH EAX\n  004ba1ff:  MOV ECX,EDI\n  004ba201:  CALL 0x004ba0b0\n  004ba206:  XOR ESI,ESI\n  004ba208:  TEST EBX,EBX\n  004ba20a:  JLE 0x004ba225\n  004ba20c:  LEA EBP,[EDI + 0x60]\n  004ba20f:  CMP dword ptr [EBP],0x0\n  004ba213:  JZ 0x004ba21d\n  004ba215:  PUSH ESI\n  004ba216:  MOV ECX,EDI\n  004ba218:  CALL 0x004b9fa0\n  004ba21d:  INC ESI\n  004ba21e:  ADD EBP,0x5c\n  004ba221:  CMP ESI,EBX\n  004ba223:  JL 0x004ba20f\n  004ba225:  POP EDI\n  004ba226:  POP ESI\n  004ba227:  POP EBP\n  004ba228:  POP EBX\n  004ba229:  POP ECX\n  004ba22a:  RET 0x8", 
+  "callers": [
+    {
+      "address": "0x004ba770", 
+      "name": "FUN_004ba770"
+    }, 
+    {
+      "address": "0x004b9e50", 
+      "name": "FUN_004b9e50"
+    }, 
+    {
+      "address": "0x004bc7f0", 
+      "name": "FUN_004bc7f0"
+    }
+  ]
+}

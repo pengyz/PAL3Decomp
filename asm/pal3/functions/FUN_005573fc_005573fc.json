@@ -1,0 +1,81 @@
+{
+  "address": "0x005573fc", 
+  "size_bytes": 155, 
+  "calling_convention": "unknown", 
+  "signature": "undefined FUN_005573fc(undefined4 param_1, undefined4 param_2, undefined4 param_3, undefined4 param_4, undefined4 param_5, undefined4 param_6, undefined4 param_7, undefined4 param_8)", 
+  "callees": [
+    {
+      "address": "0x00557ca2", 
+      "name": "FUN_00557ca2"
+    }, 
+    {
+      "address": "0x00557743", 
+      "name": "FUN_00557743"
+    }, 
+    {
+      "address": "0x00557497", 
+      "name": "FUN_00557497"
+    }
+  ], 
+  "global_refs": [
+    {
+      "address": "0x00000014", 
+      "type": null, 
+      "name": "DAT_00000014"
+    }, 
+    {
+      "address": "0x00000004", 
+      "type": null, 
+      "name": "DAT_00000004"
+    }, 
+    {
+      "address": "0x00000018", 
+      "type": null, 
+      "name": "DAT_00000018"
+    }, 
+    {
+      "address": "0x00000010", 
+      "type": null, 
+      "name": "DAT_00000010"
+    }, 
+    {
+      "address": "0x00000008", 
+      "type": null, 
+      "name": "DAT_00000008"
+    }, 
+    {
+      "address": "0x00000020", 
+      "type": null, 
+      "name": "DAT_00000020"
+    }, 
+    {
+      "address": "0x0000001c", 
+      "type": null, 
+      "name": "DAT_0000001c"
+    }, 
+    {
+      "address": "0x0000000c", 
+      "type": null, 
+      "name": "DAT_0000000c"
+    }
+  ], 
+  "has_custom_name": false, 
+  "decompiled_c": "\r\nundefined4\r\nFUN_005573fc(int *param_1,undefined4 param_2,undefined4 param_3,undefined4 param_4,int *param_5,\r\n            int param_6,undefined4 param_7,uint param_8)\r\n\r\n{\r\n  undefined4 uVar1;\r\n  \r\n  if (*param_5 != 0x19930520) {\r\n    FUN_00557ca2();\r\n  }\r\n  if ((*(byte *)(param_1 + 1) & 0x66) == 0) {\r\n    if (param_5[3] != 0) {\r\n      if (((*param_1 == -0x1f928c9d) && (0x19930520 < (uint)param_1[5])) &&\r\n         (*(code **)(param_1[7] + 8) != (code *)0x0)) {\r\n        uVar1 = (**(code **)(param_1[7] + 8))\r\n                          (param_1,param_2,param_3,param_4,param_5,param_6,param_7,param_8 & 0xff);\r\n        return uVar1;\r\n      }\r\n      FUN_00557497(param_1,param_2,param_3,param_4,param_5,param_8,param_6,param_7);\r\n    }\r\n  }\r\n  else if ((param_5[1] != 0) && (param_6 == 0)) {\r\n    FUN_00557743(param_2,param_4,param_5,0xffffffff);\r\n  }\r\n  return 1;\r\n}\r\n\r\n", 
+  "is_thunk": false, 
+  "name": "FUN_005573fc", 
+  "assembly": "  005573fc:  PUSH EBP\n  005573fd:  MOV EBP,ESP\n  005573ff:  PUSH ESI\n  00557400:  MOV ESI,dword ptr [EBP + 0x18]\n  00557403:  PUSH EDI\n  00557404:  MOV EDI,0x19930520\n  00557409:  CMP dword ptr [ESI],EDI\n  0055740b:  JZ 0x00557412\n  0055740d:  CALL 0x00557ca2\n  00557412:  MOV EAX,dword ptr [EBP + 0x8]\n  00557415:  TEST byte ptr [EAX + 0x4],0x66\n  00557419:  JZ 0x0055743a\n  0055741b:  CMP dword ptr [ESI + 0x4],0x0\n  0055741f:  JZ 0x00557490\n  00557421:  CMP dword ptr [EBP + 0x1c],0x0\n  00557425:  JNZ 0x00557490\n  00557427:  PUSH -0x1\n  00557429:  PUSH ESI\n  0055742a:  PUSH dword ptr [EBP + 0x14]\n  0055742d:  PUSH dword ptr [EBP + 0xc]\n  00557430:  CALL 0x00557743\n  00557435:  ADD ESP,0x10\n  00557438:  JMP 0x00557490\n  0055743a:  CMP dword ptr [ESI + 0xc],0x0\n  0055743e:  JZ 0x00557490\n  00557440:  CMP dword ptr [EAX],0xe06d7363\n  00557446:  JNZ 0x00557474\n  00557448:  CMP dword ptr [EAX + 0x14],EDI\n  0055744b:  JBE 0x00557474\n  0055744d:  MOV ECX,dword ptr [EAX + 0x1c]\n  00557450:  MOV ECX,dword ptr [ECX + 0x8]\n  00557453:  TEST ECX,ECX\n  00557455:  JZ 0x00557474\n  00557457:  MOVZX EDX,byte ptr [EBP + 0x24]\n  0055745b:  PUSH EDX\n  0055745c:  PUSH dword ptr [EBP + 0x20]\n  0055745f:  PUSH dword ptr [EBP + 0x1c]\n  00557462:  PUSH ESI\n  00557463:  PUSH dword ptr [EBP + 0x14]\n  00557466:  PUSH dword ptr [EBP + 0x10]\n  00557469:  PUSH dword ptr [EBP + 0xc]\n  0055746c:  PUSH EAX\n  0055746d:  CALL ECX\n  0055746f:  ADD ESP,0x20\n  00557472:  JMP 0x00557493\n  00557474:  PUSH dword ptr [EBP + 0x20]\n  00557477:  PUSH dword ptr [EBP + 0x1c]\n  0055747a:  PUSH dword ptr [EBP + 0x24]\n  0055747d:  PUSH ESI\n  0055747e:  PUSH dword ptr [EBP + 0x14]\n  00557481:  PUSH dword ptr [EBP + 0x10]\n  00557484:  PUSH dword ptr [EBP + 0xc]\n  00557487:  PUSH EAX\n  00557488:  CALL 0x00557497\n  0055748d:  ADD ESP,0x20\n  00557490:  PUSH 0x1\n  00557492:  POP EAX\n  00557493:  POP EDI\n  00557494:  POP ESI\n  00557495:  POP EBP\n  00557496:  RET", 
+  "callers": [
+    {
+      "address": "0x00553165", 
+      "name": "FUN_00553165"
+    }, 
+    {
+      "address": "0x005531ef", 
+      "name": "FUN_005531ef"
+    }, 
+    {
+      "address": "0x005532c8", 
+      "name": "FUN_005532c8"
+    }
+  ]
+}

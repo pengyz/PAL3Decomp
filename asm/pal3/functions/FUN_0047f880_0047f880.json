@@ -1,0 +1,27 @@
+{
+  "address": "0x0047f880", 
+  "size_bytes": 173, 
+  "calling_convention": "unknown", 
+  "signature": "undefined FUN_0047f880(void)", 
+  "callees": [
+    {
+      "address": "0x0043ddf0", 
+      "name": "FUN_0043ddf0"
+    }, 
+    {
+      "address": "0x004b4830", 
+      "name": "FUN_004b4830"
+    }, 
+    {
+      "address": "0x004b4dc0", 
+      "name": "FUN_004b4dc0"
+    }
+  ], 
+  "global_refs": [], 
+  "has_custom_name": false, 
+  "decompiled_c": "\r\nvoid __fastcall FUN_0047f880(int param_1)\r\n\r\n{\r\n  char cVar1;\r\n  int iVar2;\r\n  \r\n  FUN_0043ddf0();\r\n  if (*(char *)(param_1 + 0x25ad8 + *(int *)(param_1 + 0x25ae0)) != '\\0') {\r\n    iVar2 = 0;\r\n    do {\r\n      cVar1 = FUN_004b4830();\r\n      if (cVar1 != '\\0') {\r\n        FUN_004b4dc0(0xb);\r\n      }\r\n      cVar1 = FUN_004b4830();\r\n      if (cVar1 != '\\0') {\r\n        FUN_004b4dc0(10);\r\n      }\r\n      iVar2 = iVar2 + 1;\r\n    } while (iVar2 < 0x10);\r\n  }\r\n  return;\r\n}\r\n\r\n", 
+  "is_thunk": false, 
+  "name": "FUN_0047f880", 
+  "assembly": "  0047f880:  PUSH ESI\n  0047f881:  MOV ESI,ECX\n  0047f883:  CALL 0x0043ddf0\n  0047f888:  MOV EAX,dword ptr [ESI + 0x25ae0]\n  0047f88e:  MOV CL,byte ptr [ESI + EAX*0x1 + 0x25ad8]\n  0047f895:  TEST CL,CL\n  0047f897:  JZ 0x0047f92b\n  0047f89d:  PUSH EDI\n  0047f89e:  XOR EDI,EDI\n  0047f8a0:  MOV EAX,dword ptr [ESI + 0x25ae0]\n  0047f8a6:  SHL EAX,0x4\n  0047f8a9:  ADD EAX,EDI\n  0047f8ab:  LEA ECX,[EAX + EAX*0x8]\n  0047f8ae:  LEA EDX,[EAX + ECX*0x8]\n  0047f8b1:  LEA ECX,[ESI + EDX*0x8 + 0x1258]\n  0047f8b8:  CALL 0x004b4830\n  0047f8bd:  TEST AL,AL\n  0047f8bf:  JZ 0x0047f8e0\n  0047f8c1:  MOV EAX,dword ptr [ESI + 0x25ae0]\n  0047f8c7:  PUSH 0xb\n  0047f8c9:  SHL EAX,0x4\n  0047f8cc:  ADD EAX,EDI\n  0047f8ce:  LEA ECX,[EAX + EAX*0x8]\n  0047f8d1:  LEA EDX,[EAX + ECX*0x8]\n  0047f8d4:  LEA ECX,[ESI + EDX*0x8 + 0x1258]\n  0047f8db:  CALL 0x004b4dc0\n  0047f8e0:  MOV EAX,dword ptr [ESI + 0x25ae0]\n  0047f8e6:  SHL EAX,0x4\n  0047f8e9:  ADD EAX,EDI\n  0047f8eb:  LEA ECX,[EAX + EAX*0x8]\n  0047f8ee:  LEA EDX,[EAX + ECX*0x8]\n  0047f8f1:  LEA ECX,[ESI + EDX*0x8 + 0x13658]\n  0047f8f8:  CALL 0x004b4830\n  0047f8fd:  TEST AL,AL\n  0047f8ff:  JZ 0x0047f920\n  0047f901:  MOV EAX,dword ptr [ESI + 0x25ae0]\n  0047f907:  PUSH 0xa\n  0047f909:  SHL EAX,0x4\n  0047f90c:  ADD EAX,EDI\n  0047f90e:  LEA ECX,[EAX + EAX*0x8]\n  0047f911:  LEA EDX,[EAX + ECX*0x8]\n  0047f914:  LEA ECX,[ESI + EDX*0x8 + 0x13658]\n  0047f91b:  CALL 0x004b4dc0\n  0047f920:  INC EDI\n  0047f921:  CMP EDI,0x10\n  0047f924:  JL 0x0047f8a0\n  0047f92a:  POP EDI\n  0047f92b:  POP ESI\n  0047f92c:  RET", 
+  "callers": []
+}

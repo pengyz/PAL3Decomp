@@ -1,0 +1,30 @@
+{
+  "address": "0x00403080", 
+  "size_bytes": 136, 
+  "calling_convention": "unknown", 
+  "signature": "undefined FUN_00403080(void)", 
+  "callees": [
+    {
+      "address": "0x00541d10", 
+      "name": "FUN_00541d10"
+    }
+  ], 
+  "global_refs": [
+    {
+      "address": "0xffdff000", 
+      "type": null, 
+      "name": "ExceptionList"
+    }
+  ], 
+  "has_custom_name": false, 
+  "decompiled_c": "\r\nvoid FUN_00403080(void)\r\n\r\n{\r\n  char cVar1;\r\n  int iVar2;\r\n  undefined *puVar3;\r\n  uint uVar4;\r\n  uint uVar5;\r\n  int unaff_EBX;\r\n  int unaff_EBP;\r\n  uint unaff_ESI;\r\n  undefined4 *puVar6;\r\n  undefined4 *puVar7;\r\n  \r\n  uVar5 = *(uint *)(unaff_EBX + 8);\r\n  if (uVar5 != 0) {\r\n    if (unaff_ESI < uVar5) {\r\n      uVar5 = unaff_ESI;\r\n    }\r\n    puVar6 = *(undefined4 **)(unaff_EBX + 4);\r\n    puVar7 = (undefined4 *)(*(int *)(unaff_EBP + 8) + 1);\r\n    for (uVar4 = uVar5 >> 2; uVar4 != 0; uVar4 = uVar4 - 1) {\r\n      *puVar7 = *puVar6;\r\n      puVar6 = puVar6 + 1;\r\n      puVar7 = puVar7 + 1;\r\n    }\r\n    for (uVar5 = uVar5 & 3; uVar5 != 0; uVar5 = uVar5 - 1) {\r\n      *(undefined *)puVar7 = *(undefined *)puVar6;\r\n      puVar6 = (undefined4 *)((int)puVar6 + 1);\r\n      puVar7 = (undefined4 *)((int)puVar7 + 1);\r\n    }\r\n    unaff_ESI = *(uint *)(unaff_EBP + -0x14);\r\n  }\r\n  iVar2 = *(int *)(unaff_EBX + 4);\r\n  uVar5 = *(uint *)(unaff_EBX + 8);\r\n  if (iVar2 != 0) {\r\n    cVar1 = *(char *)(iVar2 + -1);\r\n    if ((cVar1 == '\\0') || (cVar1 == -1)) {\r\n      FUN_00541d10((char *)(iVar2 + -1));\r\n    }\r\n    else {\r\n      *(char *)(iVar2 + -1) = cVar1 + -1;\r\n    }\r\n  }\r\n  puVar3 = *(undefined **)(unaff_EBP + 8);\r\n  *(undefined4 *)(unaff_EBX + 8) = 0;\r\n  *(undefined **)(unaff_EBX + 4) = puVar3 + 1;\r\n  *puVar3 = 0;\r\n  *(uint *)(unaff_EBX + 0xc) = unaff_ESI;\r\n  if (uVar5 <= unaff_ESI) {\r\n    unaff_ESI = uVar5;\r\n  }\r\n  *(uint *)(unaff_EBX + 8) = unaff_ESI;\r\n  *(undefined *)(*(int *)(unaff_EBX + 4) + unaff_ESI) = 0;\r\n  ExceptionList = *(void **)(unaff_EBP + -0xc);\r\n  return;\r\n}\r\n\r\n", 
+  "is_thunk": false, 
+  "name": "FUN_00403080", 
+  "assembly": "  00403080:  MOV EAX,dword ptr [EBX + 0x8]\n  00403083:  TEST EAX,EAX\n  00403085:  JBE 0x004030a9\n  00403087:  CMP EAX,ESI\n  00403089:  JBE 0x0040308d\n  0040308b:  MOV EAX,ESI\n  0040308d:  MOV ESI,dword ptr [EBX + 0x4]\n  00403090:  MOV ECX,EAX\n  00403092:  MOV EAX,dword ptr [EBP + 0x8]\n  00403095:  MOV EDX,ECX\n  00403097:  SHR ECX,0x2\n  0040309a:  LEA EDI,[EAX + 0x1]\n  0040309d:  MOVSD.REP ES:EDI,ESI\n  0040309f:  MOV ECX,EDX\n  004030a1:  AND ECX,0x3\n  004030a4:  MOVSB.REP ES:EDI,ESI\n  004030a6:  MOV ESI,dword ptr [EBP + -0x14]\n  004030a9:  MOV EAX,dword ptr [EBX + 0x4]\n  004030ac:  MOV EDI,dword ptr [EBX + 0x8]\n  004030af:  TEST EAX,EAX\n  004030b1:  JZ 0x004030d0\n  004030b3:  LEA ECX,[EAX + -0x1]\n  004030b6:  MOV AL,byte ptr [EAX + -0x1]\n  004030b9:  TEST AL,AL\n  004030bb:  JZ 0x004030c7\n  004030bd:  CMP AL,0xff\n  004030bf:  JZ 0x004030c7\n  004030c1:  DEC AL\n  004030c3:  MOV byte ptr [ECX],AL\n  004030c5:  JMP 0x004030d0\n  004030c7:  PUSH ECX\n  004030c8:  CALL 0x00541d10\n  004030cd:  ADD ESP,0x4\n  004030d0:  MOV EAX,dword ptr [EBP + 0x8]\n  004030d3:  MOV dword ptr [EBX + 0x8],0x0\n  004030da:  INC EAX\n  004030db:  CMP EDI,ESI\n  004030dd:  MOV dword ptr [EBX + 0x4],EAX\n  004030e0:  MOV byte ptr [EAX + -0x1],0x0\n  004030e4:  MOV dword ptr [EBX + 0xc],ESI\n  004030e7:  JA 0x004030eb\n  004030e9:  MOV ESI,EDI\n  004030eb:  MOV ECX,dword ptr [EBX + 0x4]\n  004030ee:  MOV dword ptr [EBX + 0x8],ESI\n  004030f1:  POP EDI\n  004030f2:  MOV byte ptr [ECX + ESI*0x1],0x0\n  004030f6:  MOV ECX,dword ptr [EBP + -0xc]\n  004030f9:  POP ESI\n  004030fa:  MOV dword ptr FS:[0x0],ECX\n  00403101:  POP EBX\n  00403102:  MOV ESP,EBP\n  00403104:  POP EBP\n  00403105:  RET 0x4", 
+  "callers": [
+    {
+      "address": "0x00403000", 
+      "name": "FUN_00403000"
+    }
+  ]
+}

@@ -1,0 +1,49 @@
+{
+  "address": "0x005536e7", 
+  "size_bytes": 54, 
+  "calling_convention": "unknown", 
+  "signature": "undefined FUN_005536e7(undefined4 param_1)", 
+  "callees": [
+    {
+      "address": "0x00555c33", 
+      "name": "FUN_00555c33"
+    }, 
+    {
+      "address": "0x00000021", 
+      "name": "HeapAlloc"
+    }
+  ], 
+  "global_refs": [
+    {
+      "address": "0x00000004", 
+      "type": null, 
+      "name": "DAT_00000004"
+    }, 
+    {
+      "address": "0x0060acb4", 
+      "type": null, 
+      "name": "DAT_0060acb4"
+    }, 
+    {
+      "address": "0x01896d0c", 
+      "type": null, 
+      "name": "DAT_01896d0c"
+    }, 
+    {
+      "address": "0x0056a088", 
+      "type": null, 
+      "name": "PTR_HeapAlloc_0056a088"
+    }
+  ], 
+  "has_custom_name": false, 
+  "decompiled_c": "\r\nvoid FUN_005536e7(uint param_1)\r\n\r\n{\r\n  int iVar1;\r\n  \r\n  if ((param_1 <= DAT_0060acb4) && (iVar1 = FUN_00555c33(param_1), iVar1 != 0)) {\r\n    return;\r\n  }\r\n  if (param_1 == 0) {\r\n    param_1 = 1;\r\n  }\r\n  HeapAlloc(DAT_01896d0c,0,param_1 + 0xf & 0xfffffff0);\r\n  return;\r\n}\r\n\r\n", 
+  "is_thunk": false, 
+  "name": "FUN_005536e7", 
+  "assembly": "  005536e7:  PUSH ESI\n  005536e8:  MOV ESI,dword ptr [ESP + 0x8]\n  005536ec:  CMP ESI,dword ptr [0x0060acb4]\n  005536f2:  JA 0x005536ff\n  005536f4:  PUSH ESI\n  005536f5:  CALL 0x00555c33\n  005536fa:  TEST EAX,EAX\n  005536fc:  POP ECX\n  005536fd:  JNZ 0x0055371b\n  005536ff:  TEST ESI,ESI\n  00553701:  JNZ 0x00553706\n  00553703:  PUSH 0x1\n  00553705:  POP ESI\n  00553706:  ADD ESI,0xf\n  00553709:  AND ESI,0xfffffff0\n  0055370c:  PUSH ESI\n  0055370d:  PUSH 0x0\n  0055370f:  PUSH dword ptr [0x01896d0c]\n  00553715:  CALL dword ptr [0x0056a088]\n  0055371b:  POP ESI\n  0055371c:  RET", 
+  "callers": [
+    {
+      "address": "0x005536bb", 
+      "name": "__nh_malloc"
+    }
+  ]
+}

@@ -1,0 +1,25 @@
+{
+  "address": "0x00434c80", 
+  "size_bytes": 21, 
+  "calling_convention": "unknown", 
+  "signature": "undefined FUN_00434c80(void)", 
+  "callees": [], 
+  "global_refs": [
+    {
+      "address": "0x00d8e468", 
+      "type": null, 
+      "name": "DAT_00d8e468"
+    }
+  ], 
+  "has_custom_name": false, 
+  "decompiled_c": "\r\nvoid FUN_00434c80(void)\r\n\r\n{\r\n  DAT_00d8e468[2] = *(int *)(*DAT_00d8e468 + 0x48) + *(int *)(*DAT_00d8e468 + 0x44);\r\n  return;\r\n}\r\n\r\n", 
+  "is_thunk": false, 
+  "name": "FUN_00434c80", 
+  "assembly": "  00434c80:  MOV EAX,[0x00d8e468]\n  00434c85:  PUSH ESI\n  00434c86:  MOV ECX,dword ptr [EAX]\n  00434c88:  MOV EDX,dword ptr [ECX + 0x48]\n  00434c8b:  MOV ESI,dword ptr [ECX + 0x44]\n  00434c8e:  ADD EDX,ESI\n  00434c90:  POP ESI\n  00434c91:  MOV dword ptr [EAX + 0x8],EDX\n  00434c94:  RET", 
+  "callers": [
+    {
+      "address": "0x00437440", 
+      "name": "FUN_00437440"
+    }
+  ]
+}

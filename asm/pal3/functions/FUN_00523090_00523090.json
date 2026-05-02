@@ -1,0 +1,25 @@
+{
+  "address": "0x00523090", 
+  "size_bytes": 33, 
+  "calling_convention": "unknown", 
+  "signature": "undefined FUN_00523090(undefined4 param_1)", 
+  "callees": [], 
+  "global_refs": [
+    {
+      "address": "0x00000004", 
+      "type": null, 
+      "name": "DAT_00000004"
+    }
+  ], 
+  "has_custom_name": false, 
+  "decompiled_c": "\r\nint __thiscall FUN_00523090(int param_1_00,int param_1)\r\n\r\n{\r\n  if (4 < param_1) {\r\n    return 0;\r\n  }\r\n  return param_1_00 + 0x214 + param_1 * 0xdc;\r\n}\r\n\r\n", 
+  "is_thunk": false, 
+  "name": "FUN_00523090", 
+  "assembly": "  00523090:  MOV EAX,dword ptr [ESP + 0x4]\n  00523094:  CMP EAX,0x5\n  00523097:  JL 0x0052309e\n  00523099:  XOR EAX,EAX\n  0052309b:  RET 0x4\n  0052309e:  LEA EDX,[EAX + EAX*0x4]\n  005230a1:  LEA EAX,[EAX + EDX*0x2]\n  005230a4:  LEA EAX,[EAX + EAX*0x4]\n  005230a7:  LEA EAX,[ECX + EAX*0x4 + 0x214]\n  005230ae:  RET 0x4", 
+  "callers": [
+    {
+      "address": "0x00525090", 
+      "name": "FUN_00525090"
+    }
+  ]
+}

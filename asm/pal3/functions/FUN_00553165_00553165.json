@@ -1,0 +1,45 @@
+{
+  "address": "0x00553165", 
+  "size_bytes": 54, 
+  "calling_convention": "unknown", 
+  "signature": "undefined FUN_00553165(undefined4 param_1, undefined4 param_2, undefined4 param_3, undefined4 param_4)", 
+  "callees": [
+    {
+      "address": "0x005573fc", 
+      "name": "FUN_005573fc"
+    }
+  ], 
+  "global_refs": [
+    {
+      "address": "0x-0000008", 
+      "type": null, 
+      "name": "DAT_-0000008"
+    }, 
+    {
+      "address": "0x00000010", 
+      "type": null, 
+      "name": "DAT_00000010"
+    }, 
+    {
+      "address": "0x0000000c", 
+      "type": null, 
+      "name": "DAT_0000000c"
+    }, 
+    {
+      "address": "0x00000008", 
+      "type": null, 
+      "name": "DAT_00000008"
+    }, 
+    {
+      "address": "0x00000004", 
+      "type": null, 
+      "name": "DAT_00000004"
+    }
+  ], 
+  "has_custom_name": false, 
+  "decompiled_c": "\r\nundefined4 FUN_00553165(undefined4 param_1,undefined4 param_2,undefined4 param_3,undefined4 param_4)\r\n\r\n{\r\n  undefined4 uVar1;\r\n  \r\n  uVar1 = FUN_005573fc(param_1,param_2,param_3,param_4);\r\n  return uVar1;\r\n}\r\n\r\n", 
+  "is_thunk": false, 
+  "name": "FUN_00553165", 
+  "assembly": "  00553165:  PUSH EBP\n  00553166:  MOV EBP,ESP\n  00553168:  SUB ESP,0x4\n  0055316b:  PUSH EBX\n  0055316c:  PUSH ESI\n  0055316d:  PUSH EDI\n  0055316e:  CLD\n  0055316f:  MOV dword ptr [EBP + -0x4],EAX\n  00553172:  XOR EAX,EAX\n  00553174:  PUSH EAX\n  00553175:  PUSH EAX\n  00553176:  PUSH EAX\n  00553177:  PUSH dword ptr [EBP + -0x4]\n  0055317a:  PUSH dword ptr [EBP + 0x14]\n  0055317d:  PUSH dword ptr [EBP + 0x10]\n  00553180:  PUSH dword ptr [EBP + 0xc]\n  00553183:  PUSH dword ptr [EBP + 0x8]\n  00553186:  CALL 0x005573fc\n  0055318b:  ADD ESP,0x20\n  0055318e:  MOV dword ptr [EBP + 0x14],EAX\n  00553191:  POP EDI\n  00553192:  POP ESI\n  00553193:  POP EBX\n  00553194:  MOV EAX,dword ptr [EBP + 0x14]\n  00553197:  MOV ESP,EBP\n  00553199:  POP EBP\n  0055319a:  RET", 
+  "callers": []
+}

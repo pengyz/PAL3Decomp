@@ -1,0 +1,74 @@
+{
+  "address": "0x00482bb0", 
+  "size_bytes": 212, 
+  "calling_convention": "unknown", 
+  "signature": "undefined FUN_00482bb0(void)", 
+  "callees": [
+    {
+      "address": "0x0043aa00", 
+      "name": "FUN_0043aa00"
+    }, 
+    {
+      "address": "0x00445e50", 
+      "name": "FUN_00445e50"
+    }
+  ], 
+  "global_refs": [
+    {
+      "address": "0x00de5f92", 
+      "type": null, 
+      "name": "DAT_00de5f92"
+    }, 
+    {
+      "address": "0x005cefa8", 
+      "type": null, 
+      "name": "DAT_005cefa8"
+    }, 
+    {
+      "address": "0x0056b904", 
+      "type": null, 
+      "name": "PTR_s_UI\\GameMainUI\\Communal\\StpCtl\\No_0056b904"
+    }, 
+    {
+      "address": "0x005c5744", 
+      "type": null, 
+      "name": "s_UI\\GameMainUI\\Communal\\StpCtl\\No_005c5744"
+    }, 
+    {
+      "address": "0x00de5f93", 
+      "type": null, 
+      "name": "DAT_00de5f93"
+    }, 
+    {
+      "address": "0x0056b908", 
+      "type": null, 
+      "name": "PTR_s_UI\\GameMainUI\\Communal\\StpCtl\\No_0056b908"
+    }, 
+    {
+      "address": "0x005c5714", 
+      "type": null, 
+      "name": "s_UI\\GameMainUI\\Communal\\StpCtl\\No_005c5714"
+    }, 
+    {
+      "address": "0x0056b900", 
+      "type": null, 
+      "name": "PTR_s_UI\\GameMainUI\\Communal\\StpCtl\\Un_0056b900"
+    }, 
+    {
+      "address": "0x005c5770", 
+      "type": null, 
+      "name": "s_UI\\GameMainUI\\Communal\\StpCtl\\Un_005c5770"
+    }
+  ], 
+  "has_custom_name": false, 
+  "decompiled_c": "\r\nvoid FUN_00482bb0(void)\r\n\r\n{\r\n  undefined4 extraout_ECX;\r\n  undefined3 uVar1;\r\n  undefined4 extraout_EDX;\r\n  bool bVar2;\r\n  undefined *puVar3;\r\n  \r\n  bVar2 = DAT_00de5f92 == '\\0';\r\n  if (bVar2) {\r\n    FUN_0043aa00(PTR_s_UI_GameMainUI_Communal_StpCtl_No_0056b904,DAT_005cefa8);\r\n  }\r\n  FUN_00445e50(!bVar2);\r\n  if (DAT_00de5f93 == '\\0') {\r\n    uVar1 = (undefined3)((uint)extraout_EDX >> 8);\r\n    puVar3 = PTR_s_UI_GameMainUI_Communal_StpCtl_No_0056b908;\r\n  }\r\n  else {\r\n    uVar1 = (undefined3)((uint)extraout_ECX >> 8);\r\n    puVar3 = PTR_s_UI_GameMainUI_Communal_StpCtl_Un_0056b900;\r\n  }\r\n  FUN_0043aa00(puVar3,CONCAT31(uVar1,DAT_005cefa8));\r\n  FUN_00445e50(0);\r\n  FUN_00445e50(1);\r\n  FUN_00445e50(1);\r\n  FUN_00445e50(1);\r\n  FUN_00445e50(1);\r\n  FUN_00445e50(1);\r\n  FUN_00445e50(1);\r\n  FUN_00445e50(1);\r\n  return;\r\n}\r\n\r\n", 
+  "is_thunk": false, 
+  "name": "FUN_00482bb0", 
+  "assembly": "  00482bb0:  MOV AL,[0x00de5f92]\n  00482bb5:  PUSH ESI\n  00482bb6:  TEST AL,AL\n  00482bb8:  PUSH EDI\n  00482bb9:  MOV ESI,ECX\n  00482bbb:  JZ 0x00482bc7\n  00482bbd:  PUSH 0x1\n  00482bbf:  LEA ECX,[ESI + 0x9c8]\n  00482bc5:  JMP 0x00482be5\n  00482bc7:  MOV AL,[0x005cefa8]\n  00482bcc:  MOV ECX,dword ptr [0x0056b904]\n  00482bd2:  LEA EDI,[ESI + 0x9c8]\n  00482bd8:  PUSH EAX\n  00482bd9:  PUSH ECX\n  00482bda:  MOV ECX,EDI\n  00482bdc:  CALL 0x0043aa00\n  00482be1:  PUSH 0x0\n  00482be3:  MOV ECX,EDI\n  00482be5:  CALL 0x00445e50\n  00482bea:  MOV AL,[0x00de5f93]\n  00482bef:  LEA EDI,[ESI + 0xb20]\n  00482bf5:  TEST AL,AL\n  00482bf7:  JNZ 0x00482c08\n  00482bf9:  MOV DL,byte ptr [0x005cefa8]\n  00482bff:  MOV EAX,[0x0056b908]\n  00482c04:  PUSH EDX\n  00482c05:  PUSH EAX\n  00482c06:  JMP 0x00482c16\n  00482c08:  MOV CL,byte ptr [0x005cefa8]\n  00482c0e:  MOV EDX,dword ptr [0x0056b900]\n  00482c14:  PUSH ECX\n  00482c15:  PUSH EDX\n  00482c16:  MOV ECX,EDI\n  00482c18:  CALL 0x0043aa00\n  00482c1d:  PUSH 0x0\n  00482c1f:  MOV ECX,EDI\n  00482c21:  CALL 0x00445e50\n  00482c26:  PUSH 0x1\n  00482c28:  LEA ECX,[ESI + 0x468]\n  00482c2e:  CALL 0x00445e50\n  00482c33:  PUSH 0x1\n  00482c35:  LEA ECX,[ESI + 0x5c0]\n  00482c3b:  CALL 0x00445e50\n  00482c40:  PUSH 0x1\n  00482c42:  LEA ECX,[ESI + 0x718]\n  00482c48:  CALL 0x00445e50\n  00482c4d:  PUSH 0x1\n  00482c4f:  LEA ECX,[ESI + 0x870]\n  00482c55:  CALL 0x00445e50\n  00482c5a:  PUSH 0x1\n  00482c5c:  LEA ECX,[ESI + 0xc78]\n  00482c62:  CALL 0x00445e50\n  00482c67:  PUSH 0x1\n  00482c69:  LEA ECX,[ESI + 0xdd0]\n  00482c6f:  CALL 0x00445e50\n  00482c74:  PUSH 0x1\n  00482c76:  LEA ECX,[ESI + 0xf28]\n  00482c7c:  CALL 0x00445e50\n  00482c81:  POP EDI\n  00482c82:  POP ESI\n  00482c83:  RET", 
+  "callers": [
+    {
+      "address": "0x00480600", 
+      "name": "FUN_00480600"
+    }
+  ]
+}

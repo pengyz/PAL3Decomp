@@ -1,0 +1,71 @@
+{
+  "address": "0x0055a317", 
+  "size_bytes": 103, 
+  "calling_convention": "unknown", 
+  "signature": "undefined FUN_0055a317(undefined4 param_1)", 
+  "callees": [], 
+  "global_refs": [
+    {
+      "address": "0x00000004", 
+      "type": null, 
+      "name": "DAT_00000004"
+    }, 
+    {
+      "address": "0x01895340", 
+      "type": null, 
+      "name": "DAT_01895340"
+    }, 
+    {
+      "address": "0x0060b348", 
+      "type": null, 
+      "name": "DAT_0060b348"
+    }, 
+    {
+      "address": "0x0060b350", 
+      "type": null, 
+      "name": "DAT_0060b350"
+    }, 
+    {
+      "address": "0x0060b4b0", 
+      "type": null, 
+      "name": "DAT_0060b4b0"
+    }, 
+    {
+      "address": "0x0189533c", 
+      "type": null, 
+      "name": "DAT_0189533c"
+    }, 
+    {
+      "address": "0x0060b34c", 
+      "type": null, 
+      "name": "DAT_0060b34c"
+    }
+  ], 
+  "has_custom_name": false, 
+  "decompiled_c": "\r\n/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */\r\n\r\nvoid FUN_0055a317(uint param_1)\r\n\r\n{\r\n  uint *puVar1;\r\n  int iVar2;\r\n  \r\n  iVar2 = 0;\r\n  DAT_01895340 = param_1;\r\n  puVar1 = &DAT_0060b348;\r\n  do {\r\n    if (param_1 == *puVar1) {\r\n      _DAT_0189533c = (&DAT_0060b34c)[iVar2 * 2];\r\n      return;\r\n    }\r\n    puVar1 = puVar1 + 2;\r\n    iVar2 = iVar2 + 1;\r\n  } while ((int)puVar1 < 0x60b4b0);\r\n  if ((0x12 < param_1) && (param_1 < 0x25)) {\r\n    _DAT_0189533c = 0xd;\r\n    return;\r\n  }\r\n  if ((param_1 < 0xbc) || (_DAT_0189533c = 8, 0xca < param_1)) {\r\n    _DAT_0189533c = 0x16;\r\n  }\r\n  return;\r\n}\r\n\r\n", 
+  "is_thunk": false, 
+  "name": "FUN_0055a317", 
+  "assembly": "  0055a317:  MOV ECX,dword ptr [ESP + 0x4]\n  0055a31b:  XOR EDX,EDX\n  0055a31d:  MOV dword ptr [0x01895340],ECX\n  0055a323:  MOV EAX,0x60b348\n  0055a328:  CMP ECX,dword ptr [EAX]\n  0055a32a:  JZ 0x0055a34c\n  0055a32c:  ADD EAX,0x8\n  0055a32f:  INC EDX\n  0055a330:  CMP EAX,0x60b4b0\n  0055a335:  JL 0x0055a328\n  0055a337:  CMP ECX,0x13\n  0055a33a:  JC 0x0055a359\n  0055a33c:  CMP ECX,0x24\n  0055a33f:  JA 0x0055a359\n  0055a341:  MOV dword ptr [0x0189533c],0xd\n  0055a34b:  RET\n  0055a34c:  MOV EAX,dword ptr [EDX*0x8 + 0x60b34c]\n  0055a353:  MOV [0x0189533c],EAX\n  0055a358:  RET\n  0055a359:  CMP ECX,0xbc\n  0055a35f:  JC 0x0055a373\n  0055a361:  CMP ECX,0xca\n  0055a367:  MOV dword ptr [0x0189533c],0x8\n  0055a371:  JBE 0x0055a37d\n  0055a373:  MOV dword ptr [0x0189533c],0x16\n  0055a37d:  RET", 
+  "callers": [
+    {
+      "address": "0x00557e13", 
+      "name": "FUN_00557e13"
+    }, 
+    {
+      "address": "0x00558058", 
+      "name": "FUN_00558058"
+    }, 
+    {
+      "address": "0x00554c74", 
+      "name": "FUN_00554c74"
+    }, 
+    {
+      "address": "0x00554d27", 
+      "name": "FUN_00554d27"
+    }, 
+    {
+      "address": "0x005588bd", 
+      "name": "FUN_005588bd"
+    }
+  ]
+}

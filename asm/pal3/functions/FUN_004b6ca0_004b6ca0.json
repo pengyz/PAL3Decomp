@@ -1,0 +1,49 @@
+{
+  "address": "0x004b6ca0", 
+  "size_bytes": 7, 
+  "calling_convention": "unknown", 
+  "signature": "undefined FUN_004b6ca0(void)", 
+  "callees": [], 
+  "global_refs": [
+    {
+      "address": "0x0056f36c", 
+      "type": null, 
+      "name": "PTR_LAB_0056f36c"
+    }
+  ], 
+  "has_custom_name": false, 
+  "decompiled_c": "\r\nvoid __fastcall FUN_004b6ca0(undefined4 *param_1)\r\n\r\n{\r\n  *param_1 = &PTR_LAB_0056f36c;\r\n  return;\r\n}\r\n\r\n", 
+  "is_thunk": false, 
+  "name": "FUN_004b6ca0", 
+  "assembly": "  004b6ca0:  MOV dword ptr [ECX],0x56f36c\n  004b6ca6:  RET", 
+  "callers": [
+    {
+      "address": "0x0055f333", 
+      "name": "Unwind@0055f333"
+    }, 
+    {
+      "address": "0x0055f39f", 
+      "name": "Unwind@0055f39f"
+    }, 
+    {
+      "address": "0x0055f678", 
+      "name": "Unwind@0055f678"
+    }, 
+    {
+      "address": "0x0055f6a8", 
+      "name": "Unwind@0055f6a8"
+    }, 
+    {
+      "address": "0x00411ca0", 
+      "name": "FUN_00411ca0"
+    }, 
+    {
+      "address": "0x00423880", 
+      "name": "FUN_00423880"
+    }, 
+    {
+      "address": "0x004b6c80", 
+      "name": "FUN_004b6c80"
+    }
+  ]
+}

@@ -1,0 +1,40 @@
+{
+  "address": "0x00515c90", 
+  "size_bytes": 76, 
+  "calling_convention": "unknown", 
+  "signature": "undefined FUN_00515c90(undefined4 param_1, undefined4 param_2, undefined4 param_3, undefined4 param_4)", 
+  "callees": [], 
+  "global_refs": [
+    {
+      "address": "0x00000004", 
+      "type": null, 
+      "name": "DAT_00000004"
+    }, 
+    {
+      "address": "0x00000008", 
+      "type": null, 
+      "name": "DAT_00000008"
+    }, 
+    {
+      "address": "0x0000000c", 
+      "type": null, 
+      "name": "DAT_0000000c"
+    }, 
+    {
+      "address": "0x00000010", 
+      "type": null, 
+      "name": "DAT_00000010"
+    }
+  ], 
+  "has_custom_name": false, 
+  "decompiled_c": "\r\nint __thiscall FUN_00515c90(int param_1_00,int param_1,int param_2,int param_3,int param_4)\r\n\r\n{\r\n  int iVar1;\r\n  int *piVar2;\r\n  int iVar3;\r\n  \r\n  iVar1 = 0;\r\n  piVar2 = (int *)(param_1_00 + 0x98);\r\n  iVar3 = 0x400;\r\n  do {\r\n    if (((*(char *)(piVar2 + 9) == '\\x01') && (param_1 == *piVar2)) &&\r\n       ((param_1 == 0 ||\r\n        (((param_2 == piVar2[1] && (param_3 == piVar2[2])) && (param_4 == piVar2[3])))))) {\r\n      iVar1 = iVar1 + 1;\r\n    }\r\n    piVar2 = piVar2 + 0x16;\r\n    iVar3 = iVar3 + -1;\r\n  } while (iVar3 != 0);\r\n  return iVar1;\r\n}\r\n\r\n", 
+  "is_thunk": false, 
+  "name": "FUN_00515c90", 
+  "assembly": "  00515c90:  MOV EDX,dword ptr [ESP + 0x4]\n  00515c94:  PUSH EBX\n  00515c95:  MOV EBX,dword ptr [ESP + 0xc]\n  00515c99:  PUSH EBP\n  00515c9a:  MOV EBP,dword ptr [ESP + 0x14]\n  00515c9e:  PUSH ESI\n  00515c9f:  PUSH EDI\n  00515ca0:  MOV EDI,dword ptr [ESP + 0x20]\n  00515ca4:  XOR EAX,EAX\n  00515ca6:  ADD ECX,0x98\n  00515cac:  MOV ESI,0x400\n  00515cb1:  CMP byte ptr [ECX + 0x24],0x1\n  00515cb5:  JNZ 0x00515ccf\n  00515cb7:  CMP EDX,dword ptr [ECX]\n  00515cb9:  JNZ 0x00515ccf\n  00515cbb:  TEST EDX,EDX\n  00515cbd:  JZ 0x00515cce\n  00515cbf:  CMP EBX,dword ptr [ECX + 0x4]\n  00515cc2:  JNZ 0x00515ccf\n  00515cc4:  CMP EBP,dword ptr [ECX + 0x8]\n  00515cc7:  JNZ 0x00515ccf\n  00515cc9:  CMP EDI,dword ptr [ECX + 0xc]\n  00515ccc:  JNZ 0x00515ccf\n  00515cce:  INC EAX\n  00515ccf:  ADD ECX,0x58\n  00515cd2:  DEC ESI\n  00515cd3:  JNZ 0x00515cb1\n  00515cd5:  POP EDI\n  00515cd6:  POP ESI\n  00515cd7:  POP EBP\n  00515cd8:  POP EBX\n  00515cd9:  RET 0x10", 
+  "callers": [
+    {
+      "address": "0x00515b20", 
+      "name": "FUN_00515b20"
+    }
+  ]
+}

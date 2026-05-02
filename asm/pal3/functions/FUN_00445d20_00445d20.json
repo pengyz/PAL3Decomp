@@ -1,0 +1,72 @@
+{
+  "address": "0x00445d20",
+  "size_bytes": 28,
+  "calling_convention": "unknown",
+  "signature": "undefined FUN_00445d20(undefined4 param_1, undefined4 param_2)",
+  "callees": [
+    {
+      "address": "0x00445d40",
+      "name": "FUN_00445d40"
+    }
+  ],
+  "global_refs": [
+    {
+      "address": "0x00000008",
+      "type": null,
+      "name": "DAT_00000008"
+    },
+    {
+      "address": "0x00000004",
+      "type": null,
+      "name": "DAT_00000004"
+    }
+  ],
+  "has_custom_name": false,
+  "decompiled_c": "\r\nvoid __thiscall FUN_00445d20(int param_1_00,int param_1,int param_2)\r\n\r\n{\r\n  FUN_00445d40(param_1 - *(int *)(param_1_00 + 0x10),param_2 - *(int *)(param_1_00 + 0x14));\r\n  return;\r\n}\r\n\r\n",
+  "is_thunk": false,
+  "name": "UIWnd_MoveWindow",
+  "assembly": "  00445d20:  MOV EAX,dword ptr [ESP + 0x8]\n  00445d24:  MOV EDX,dword ptr [ECX + 0x14]\n  00445d27:  SUB EAX,EDX\n  00445d29:  MOV EDX,dword ptr [ESP + 0x4]\n  00445d2d:  PUSH EAX\n  00445d2e:  MOV EAX,dword ptr [ECX + 0x10]\n  00445d31:  SUB EDX,EAX\n  00445d33:  PUSH EDX\n  00445d34:  CALL 0x00445d40\n  00445d39:  RET 0x8",
+  "callers": [
+    {
+      "address": "0x00445db0",
+      "name": "FUN_00445db0"
+    },
+    {
+      "address": "0x004dbb20",
+      "name": "FUN_004dbb20"
+    },
+    {
+      "address": "0x004fe290",
+      "name": "FUN_004fe290"
+    },
+    {
+      "address": "0x005184e0",
+      "name": "FUN_005184e0"
+    },
+    {
+      "address": "0x0050b580",
+      "name": "FUN_0050b580"
+    },
+    {
+      "address": "0x004ec910",
+      "name": "FUN_004ec910"
+    },
+    {
+      "address": "0x00518d40",
+      "name": "FUN_00518d40"
+    },
+    {
+      "address": "0x0051bb50",
+      "name": "FUN_0051bb50"
+    },
+    {
+      "address": "0x0041d9a0",
+      "name": "FUN_0041d9a0"
+    }
+  ],
+  "pal3patch_info": {
+    "name": "UIWnd_MoveWindow",
+    "type": "method",
+    "source": "pal3.h"
+  }
+}

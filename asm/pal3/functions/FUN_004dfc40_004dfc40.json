@@ -1,0 +1,55 @@
+{
+  "address": "0x004dfc40", 
+  "size_bytes": 222, 
+  "calling_convention": "unknown", 
+  "signature": "undefined FUN_004dfc40(undefined4 param_1, undefined4 param_2, undefined4 param_3, undefined4 param_4)", 
+  "callees": [], 
+  "global_refs": [
+    {
+      "address": "0x00000004", 
+      "type": null, 
+      "name": "DAT_00000004"
+    }, 
+    {
+      "address": "0x00000008", 
+      "type": null, 
+      "name": "DAT_00000008"
+    }, 
+    {
+      "address": "0x00bfd6d0", 
+      "type": null, 
+      "name": "DAT_00bfd6d0"
+    }, 
+    {
+      "address": "0x0056a63c", 
+      "type": null, 
+      "name": "DAT_0056a63c"
+    }, 
+    {
+      "address": "0x0000000c", 
+      "type": null, 
+      "name": "DAT_0000000c"
+    }, 
+    {
+      "address": "0x00bfd6d4", 
+      "type": null, 
+      "name": "DAT_00bfd6d4"
+    }, 
+    {
+      "address": "0x00000010", 
+      "type": null, 
+      "name": "DAT_00000010"
+    }
+  ], 
+  "has_custom_name": false, 
+  "decompiled_c": "\r\n/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */\r\n\r\nvoid __thiscall\r\nFUN_004dfc40(int param_1_00,char *param_1,int param_2,int param_3,undefined4 param_4)\r\n\r\n{\r\n  char cVar1;\r\n  uint uVar2;\r\n  uint uVar3;\r\n  char *pcVar4;\r\n  char *pcVar5;\r\n  \r\n  uVar2 = 0xffffffff;\r\n  do {\r\n    pcVar4 = param_1;\r\n    if (uVar2 == 0) break;\r\n    uVar2 = uVar2 - 1;\r\n    pcVar4 = param_1 + 1;\r\n    cVar1 = *param_1;\r\n    param_1 = pcVar4;\r\n  } while (cVar1 != '\\0');\r\n  uVar2 = ~uVar2;\r\n  pcVar4 = pcVar4 + -uVar2;\r\n  pcVar5 = (char *)(param_1_00 + 0x18 + *(int *)(param_1_00 + 0x10) * 0x118);\r\n  for (uVar3 = uVar2 >> 2; uVar3 != 0; uVar3 = uVar3 - 1) {\r\n    *(undefined4 *)pcVar5 = *(undefined4 *)pcVar4;\r\n    pcVar4 = pcVar4 + 4;\r\n    pcVar5 = pcVar5 + 4;\r\n  }\r\n  for (uVar2 = uVar2 & 3; uVar2 != 0; uVar2 = uVar2 - 1) {\r\n    *pcVar5 = *pcVar4;\r\n    pcVar4 = pcVar4 + 1;\r\n    pcVar5 = pcVar5 + 1;\r\n  }\r\n  *(float *)(param_1_00 + 0x11c + *(int *)(param_1_00 + 0x10) * 0x118) =\r\n       ((float)param_2 + (float)param_2) / (float)DAT_00bfd6d0 - _DAT_0056a63c;\r\n  *(float *)(param_1_00 + 0x120 + *(int *)(param_1_00 + 0x10) * 0x118) =\r\n       _DAT_0056a63c - ((float)param_3 + (float)param_3) / (float)DAT_00bfd6d4;\r\n  *(undefined4 *)(param_1_00 + 0x14 + *(int *)(param_1_00 + 0x10) * 0x118) = 1;\r\n  *(undefined4 *)(param_1_00 + 0x128 + *(int *)(param_1_00 + 0x10) * 0x118) = 0x41800000;\r\n  *(undefined4 *)(param_1_00 + (*(int *)(param_1_00 + 0x10) + 1) * 0x118) = param_4;\r\n  *(int *)(param_1_00 + 0x10) = *(int *)(param_1_00 + 0x10) + 1;\r\n  return;\r\n}\r\n\r\n", 
+  "is_thunk": false, 
+  "name": "FUN_004dfc40", 
+  "assembly": "  004dfc40:  MOV EDX,ECX\n  004dfc42:  PUSH EBX\n  004dfc43:  PUSH ESI\n  004dfc44:  PUSH EDI\n  004dfc45:  MOV ECX,dword ptr [EDX + 0x10]\n  004dfc48:  MOV EDI,dword ptr [ESP + 0x10]\n  004dfc4c:  FILD dword ptr [ESP + 0x14]\n  004dfc50:  LEA EAX,[ECX*0x8 + 0x0]\n  004dfc57:  SUB EAX,ECX\n  004dfc59:  OR ECX,0xffffffff\n  004dfc5c:  FADD ST0,ST0\n  004dfc5e:  LEA EAX,[EAX + EAX*0x4]\n  004dfc61:  LEA EBX,[EDX + EAX*0x8 + 0x18]\n  004dfc65:  XOR EAX,EAX\n  004dfc67:  SCASB.REPNE ES:EDI\n  004dfc69:  NOT ECX\n  004dfc6b:  SUB EDI,ECX\n  004dfc6d:  MOV EAX,ECX\n  004dfc6f:  MOV ESI,EDI\n  004dfc71:  MOV EDI,EBX\n  004dfc73:  SHR ECX,0x2\n  004dfc76:  MOVSD.REP ES:EDI,ESI\n  004dfc78:  MOV ECX,EAX\n  004dfc7a:  AND ECX,0x3\n  004dfc7d:  MOVSB.REP ES:EDI,ESI\n  004dfc7f:  FIDIV dword ptr [0x00bfd6d0]\n  004dfc85:  MOV ECX,dword ptr [EDX + 0x10]\n  004dfc88:  POP EDI\n  004dfc89:  POP ESI\n  004dfc8a:  POP EBX\n  004dfc8b:  LEA EAX,[ECX*0x8 + 0x0]\n  004dfc92:  SUB EAX,ECX\n  004dfc94:  LEA ECX,[EAX + EAX*0x4]\n  004dfc97:  FSUB dword ptr [0x0056a63c]\n  004dfc9d:  FSTP dword ptr [EDX + ECX*0x8 + 0x11c]\n  004dfca4:  FILD dword ptr [ESP + 0xc]\n  004dfca8:  MOV ECX,dword ptr [EDX + 0x10]\n  004dfcab:  FADD ST0,ST0\n  004dfcad:  LEA EAX,[ECX*0x8 + 0x0]\n  004dfcb4:  SUB EAX,ECX\n  004dfcb6:  FIDIV dword ptr [0x00bfd6d4]\n  004dfcbc:  LEA EAX,[EAX + EAX*0x4]\n  004dfcbf:  FSUBR dword ptr [0x0056a63c]\n  004dfcc5:  FSTP dword ptr [EDX + EAX*0x8 + 0x120]\n  004dfccc:  MOV ECX,dword ptr [EDX + 0x10]\n  004dfccf:  LEA EAX,[ECX*0x8 + 0x0]\n  004dfcd6:  SUB EAX,ECX\n  004dfcd8:  LEA ECX,[EAX + EAX*0x4]\n  004dfcdb:  MOV dword ptr [EDX + ECX*0x8 + 0x14],0x1\n  004dfce3:  MOV ECX,dword ptr [EDX + 0x10]\n  004dfce6:  LEA EAX,[ECX*0x8 + 0x0]\n  004dfced:  SUB EAX,ECX\n  004dfcef:  LEA EAX,[EAX + EAX*0x4]\n  004dfcf2:  MOV dword ptr [EDX + EAX*0x8 + 0x128],0x41800000\n  004dfcfd:  MOV EAX,dword ptr [EDX + 0x10]\n  004dfd00:  INC EAX\n  004dfd01:  LEA ECX,[EAX*0x8 + 0x0]\n  004dfd08:  SUB ECX,EAX\n  004dfd0a:  MOV EAX,dword ptr [ESP + 0x10]\n  004dfd0e:  LEA ECX,[ECX + ECX*0x4]\n  004dfd11:  MOV dword ptr [EDX + ECX*0x8],EAX\n  004dfd14:  MOV EAX,dword ptr [EDX + 0x10]\n  004dfd17:  INC EAX\n  004dfd18:  MOV dword ptr [EDX + 0x10],EAX\n  004dfd1b:  RET 0x10", 
+  "callers": [
+    {
+      "address": "0x00509b90", 
+      "name": "FUN_00509b90"
+    }
+  ]
+}

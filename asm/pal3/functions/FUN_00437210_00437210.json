@@ -1,0 +1,41 @@
+{
+  "address": "0x00437210", 
+  "size_bytes": 103, 
+  "calling_convention": "unknown", 
+  "signature": "undefined FUN_00437210(void)", 
+  "callees": [
+    {
+      "address": "0x00434c00", 
+      "name": "FUN_00434c00"
+    }, 
+    {
+      "address": "0x00434bd0", 
+      "name": "FUN_00434bd0"
+    }, 
+    {
+      "address": "0x0044ff20", 
+      "name": "FUN_0044ff20"
+    }, 
+    {
+      "address": "0x0044e8b0", 
+      "name": "FUN_0044e8b0"
+    }, 
+    {
+      "address": "0x00434c40", 
+      "name": "FUN_00434c40"
+    }
+  ], 
+  "global_refs": [
+    {
+      "address": "0x00db9fd0", 
+      "type": null, 
+      "name": "DAT_00db9fd0"
+    }
+  ], 
+  "has_custom_name": false, 
+  "decompiled_c": "\r\nvoid FUN_00437210(void)\r\n\r\n{\r\n  int iVar1;\r\n  int iVar2;\r\n  int iVar3;\r\n  \r\n  iVar1 = FUN_00434c00();\r\n  iVar2 = FUN_00434c00();\r\n  if ((iVar1 != 0) && (iVar2 != 0)) {\r\n    iVar1 = FUN_00434bd0(*(undefined2 *)(iVar1 + 4));\r\n    if (iVar1 != 0) {\r\n      iVar3 = FUN_0044ff20();\r\n      FUN_0044e8b0(iVar1,*(undefined4 *)(iVar2 + 4));\r\n      if (iVar3 != 0) {\r\n        FUN_00434c40(iVar3 + 0x44);\r\n        return;\r\n      }\r\n      FUN_00434c40(0);\r\n    }\r\n  }\r\n  return;\r\n}\r\n\r\n", 
+  "is_thunk": false, 
+  "name": "FUN_00437210", 
+  "assembly": "  00437210:  PUSH EBX\n  00437211:  PUSH ESI\n  00437212:  PUSH EDI\n  00437213:  CALL 0x00434c00\n  00437218:  MOV ESI,EAX\n  0043721a:  CALL 0x00434c00\n  0043721f:  TEST ESI,ESI\n  00437221:  MOV EBX,EAX\n  00437223:  JZ 0x00437273\n  00437225:  TEST EBX,EBX\n  00437227:  JZ 0x00437273\n  00437229:  MOV AX,word ptr [ESI + 0x4]\n  0043722d:  PUSH EAX\n  0043722e:  CALL 0x00434bd0\n  00437233:  MOV EDI,EAX\n  00437235:  ADD ESP,0x4\n  00437238:  TEST EDI,EDI\n  0043723a:  JZ 0x00437273\n  0043723c:  MOV ECX,0xdb9fd0\n  00437241:  CALL 0x0044ff20\n  00437246:  MOV ECX,dword ptr [EBX + 0x4]\n  00437249:  MOV ESI,EAX\n  0043724b:  PUSH ECX\n  0043724c:  PUSH EDI\n  0043724d:  MOV ECX,ESI\n  0043724f:  CALL 0x0044e8b0\n  00437254:  TEST ESI,ESI\n  00437256:  JZ 0x00437268\n  00437258:  LEA EAX,[ESI + 0x44]\n  0043725b:  PUSH EAX\n  0043725c:  CALL 0x00434c40\n  00437261:  ADD ESP,0x4\n  00437264:  POP EDI\n  00437265:  POP ESI\n  00437266:  POP EBX\n  00437267:  RET\n  00437268:  XOR EAX,EAX\n  0043726a:  PUSH EAX\n  0043726b:  CALL 0x00434c40\n  00437270:  ADD ESP,0x4\n  00437273:  POP EDI\n  00437274:  POP ESI\n  00437275:  POP EBX\n  00437276:  RET", 
+  "callers": []
+}

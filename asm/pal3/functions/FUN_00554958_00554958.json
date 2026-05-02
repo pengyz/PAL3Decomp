@@ -1,0 +1,46 @@
+{
+  "address": "0x00554958", 
+  "size_bytes": 92, 
+  "calling_convention": "unknown", 
+  "signature": "undefined FUN_00554958(undefined4 param_1)", 
+  "callees": [
+    {
+      "address": "0x00558058", 
+      "name": "FUN_00558058"
+    }
+  ], 
+  "global_refs": [
+    {
+      "address": "0x00000004", 
+      "type": null, 
+      "name": "DAT_00000004"
+    }
+  ], 
+  "has_custom_name": false, 
+  "decompiled_c": "\r\nundefined4 FUN_00554958(int *param_1)\r\n\r\n{\r\n  int iVar1;\r\n  undefined4 uVar2;\r\n  int iVar3;\r\n  \r\n  uVar2 = 0;\r\n  if ((((byte)param_1[3] & 3) == 2) && ((param_1[3] & 0x108U) != 0)) {\r\n    iVar3 = *param_1 - param_1[2];\r\n    if (0 < iVar3) {\r\n      iVar1 = FUN_00558058(param_1[4],param_1[2],iVar3);\r\n      if (iVar1 == iVar3) {\r\n        if ((param_1[3] & 0x80U) != 0) {\r\n          param_1[3] = param_1[3] & 0xfffffffd;\r\n        }\r\n      }\r\n      else {\r\n        param_1[3] = param_1[3] | 0x20;\r\n        uVar2 = 0xffffffff;\r\n      }\r\n    }\r\n  }\r\n  param_1[1] = 0;\r\n  *param_1 = param_1[2];\r\n  return uVar2;\r\n}\r\n\r\n", 
+  "is_thunk": false, 
+  "name": "FUN_00554958", 
+  "assembly": "  00554958:  PUSH EBX\n  00554959:  PUSH ESI\n  0055495a:  MOV ESI,dword ptr [ESP + 0xc]\n  0055495e:  XOR EBX,EBX\n  00554960:  PUSH EDI\n  00554961:  MOV EAX,dword ptr [ESI + 0xc]\n  00554964:  MOV ECX,EAX\n  00554966:  AND ECX,0x3\n  00554969:  CMP CL,0x2\n  0055496c:  JNZ 0x005549a5\n  0055496e:  TEST AX,0x108\n  00554972:  JZ 0x005549a5\n  00554974:  MOV EAX,dword ptr [ESI + 0x8]\n  00554977:  MOV EDI,dword ptr [ESI]\n  00554979:  SUB EDI,EAX\n  0055497b:  TEST EDI,EDI\n  0055497d:  JLE 0x005549a5\n  0055497f:  PUSH EDI\n  00554980:  PUSH EAX\n  00554981:  PUSH dword ptr [ESI + 0x10]\n  00554984:  CALL 0x00558058\n  00554989:  ADD ESP,0xc\n  0055498c:  CMP EAX,EDI\n  0055498e:  JNZ 0x0055499e\n  00554990:  MOV EAX,dword ptr [ESI + 0xc]\n  00554993:  TEST AL,0x80\n  00554995:  JZ 0x005549a5\n  00554997:  AND AL,0xfd\n  00554999:  MOV dword ptr [ESI + 0xc],EAX\n  0055499c:  JMP 0x005549a5\n  0055499e:  OR dword ptr [ESI + 0xc],0x20\n  005549a2:  OR EBX,0xffffffff\n  005549a5:  MOV EAX,dword ptr [ESI + 0x8]\n  005549a8:  AND dword ptr [ESI + 0x4],0x0\n  005549ac:  MOV dword ptr [ESI],EAX\n  005549ae:  POP EDI\n  005549af:  MOV EAX,EBX\n  005549b1:  POP ESI\n  005549b2:  POP EBX\n  005549b3:  RET", 
+  "callers": [
+    {
+      "address": "0x0055371d", 
+      "name": "FUN_0055371d"
+    }, 
+    {
+      "address": "0x00559829", 
+      "name": "FUN_00559829"
+    }, 
+    {
+      "address": "0x00553773", 
+      "name": "FUN_00553773"
+    }, 
+    {
+      "address": "0x00553957", 
+      "name": "FUN_00553957"
+    }, 
+    {
+      "address": "0x0055491d", 
+      "name": "FUN_0055491d"
+    }
+  ]
+}

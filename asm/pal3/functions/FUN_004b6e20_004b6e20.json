@@ -1,0 +1,77 @@
+{
+  "address": "0x004b6e20",
+  "size_bytes": 282,
+  "calling_convention": "unknown",
+  "signature": "undefined FUN_004b6e20(void)",
+  "callees": [
+    {
+      "address": "0x00540f60",
+      "name": "FUN_00540f60"
+    },
+    {
+      "address": "0x0000015b",
+      "name": "GetDynVertBuf"
+    },
+    {
+      "address": "0x000000d6",
+      "name": "RenderUIQuad"
+    },
+    {
+      "address": "0x00540fa0",
+      "name": "FUN_00540fa0"
+    }
+  ],
+  "global_refs": [
+    {
+      "address": "0xffdff000",
+      "type": null,
+      "name": "ExceptionList"
+    },
+    {
+      "address": "0x00566318",
+      "type": null,
+      "name": "LAB_00566318"
+    },
+    {
+      "address": "0x00bfda60",
+      "type": null,
+      "name": "DAT_00bfda60"
+    },
+    {
+      "address": "0x00c11760",
+      "type": null,
+      "name": "DAT_00c11760"
+    },
+    {
+      "address": "0x0056a580",
+      "type": null,
+      "name": "PTR_GetDynVertBuf_0056a580"
+    },
+    {
+      "address": "0x0056a36c",
+      "type": null,
+      "name": "PTR_RenderUIQuad_0056a36c"
+    },
+    {
+      "address": "0x-000000c",
+      "type": null,
+      "name": "DAT_-000000c"
+    }
+  ],
+  "has_custom_name": false,
+  "decompiled_c": "\r\nvoid __fastcall FUN_004b6e20(char *param_1)\r\n\r\n{\r\n  gbDynVertBuf *this;\r\n  undefined4 uStack_78;\r\n  undefined4 uStack_74;\r\n  undefined4 uStack_70;\r\n  undefined4 uStack_6c;\r\n  undefined4 uStack_68;\r\n  undefined4 uStack_64;\r\n  undefined4 uStack_60;\r\n  undefined4 uStack_5c;\r\n  undefined4 uStack_58;\r\n  undefined4 uStack_54;\r\n  undefined4 auStack_50 [16];\r\n  undefined4 uStack_10;\r\n  void *local_c;\r\n  undefined *puStack_8;\r\n  undefined4 uStack_4;\r\n  \r\n  uStack_4 = 0xffffffff;\r\n  puStack_8 = &LAB_00566318;\r\n  local_c = ExceptionList;\r\n  if (*param_1 != '\\0') {\r\n    ExceptionList = &local_c;\r\n    (**(code **)(**(int **)(DAT_00bfda60 + 0x718) + 0xe4))(*(int **)(DAT_00bfda60 + 0x718),0xa8,7);\r\n    if ((*(int *)(param_1 + 4) != 0) && (DAT_00c11760 != 0)) {\r\n      uStack_58 = 0;\r\n      uStack_54 = 0xffffffff;\r\n      uStack_64 = 0;\r\n      uStack_68 = 0;\r\n      uStack_60 = 0x3f800000;\r\n      uStack_5c = 0x3f800000;\r\n      uStack_78 = 0xbf800000;\r\n      uStack_6c = 0x3f800000;\r\n      uStack_70 = 0x3f800000;\r\n      uStack_74 = 0xbf800000;\r\n      FUN_00540f60();\r\n      uStack_4 = 0;\r\n      this = gbVertPoolMgr::GetDynVertBuf(*(gbVertPoolMgr **)(DAT_00bfda60 + 0xc4),0x15);\r\n      auStack_50[0] = *(undefined4 *)(param_1 + 4);\r\n      uStack_10 = 1;\r\n      gbDynVertBuf::RenderUIQuad\r\n                (this,(gbUIQuad *)&uStack_78,1,(gbRenderEffect *)DAT_00c11760,\r\n                 (gbTextureArray *)auStack_50);\r\n      uStack_4 = 0xffffffff;\r\n      FUN_00540fa0();\r\n    }\r\n  }\r\n  ExceptionList = local_c;\r\n  return;\r\n}\r\n\r\n",
+  "is_thunk": false,
+  "name": "GrayScale_End",
+  "assembly": "  004b6e20:  MOV EAX,FS:[0x0]\n  004b6e26:  PUSH -0x1\n  004b6e28:  PUSH 0x566318\n  004b6e2d:  PUSH EAX\n  004b6e2e:  MOV dword ptr FS:[0x0],ESP\n  004b6e35:  SUB ESP,0x70\n  004b6e38:  PUSH ESI\n  004b6e39:  MOV ESI,ECX\n  004b6e3b:  CMP byte ptr [ESI],0x0\n  004b6e3e:  JZ 0x004b6f2a\n  004b6e44:  MOV EAX,[0x00bfda60]\n  004b6e49:  PUSH 0x7\n  004b6e4b:  PUSH 0xa8\n  004b6e50:  MOV EAX,dword ptr [EAX + 0x718]\n  004b6e56:  PUSH EAX\n  004b6e57:  MOV ECX,dword ptr [EAX]\n  004b6e59:  CALL dword ptr [ECX + 0xe4]\n  004b6e5f:  MOV EAX,dword ptr [ESI + 0x4]\n  004b6e62:  TEST EAX,EAX\n  004b6e64:  JZ 0x004b6f2a\n  004b6e6a:  MOV EAX,[0x00c11760]\n  004b6e6f:  TEST EAX,EAX\n  004b6e71:  JZ 0x004b6f2a\n  004b6e77:  LEA ECX,[ESP + 0x4]\n  004b6e7b:  MOV dword ptr [ESP + 0x28],0x0\n  004b6e83:  MOV dword ptr [ESP + 0x2c],0xffffffff\n  004b6e8b:  MOV dword ptr [ESP + 0x1c],0x0\n  004b6e93:  MOV dword ptr [ESP + 0x18],0x0\n  004b6e9b:  MOV dword ptr [ESP + 0x20],0x3f800000\n  004b6ea3:  MOV dword ptr [ESP + 0x24],0x3f800000\n  004b6eab:  MOV dword ptr [ESP + 0x8],0xbf800000\n  004b6eb3:  MOV dword ptr [ESP + 0x14],0x3f800000\n  004b6ebb:  MOV dword ptr [ESP + 0x10],0x3f800000\n  004b6ec3:  MOV dword ptr [ESP + 0xc],0xbf800000\n  004b6ecb:  CALL 0x00540f60\n  004b6ed0:  MOV EDX,dword ptr [0x00bfda60]\n  004b6ed6:  PUSH 0x15\n  004b6ed8:  MOV dword ptr [ESP + 0x80],0x0\n  004b6ee3:  MOV ECX,dword ptr [EDX + 0xc4]\n  004b6ee9:  CALL dword ptr [0x0056a580]\n  004b6eef:  MOV EDX,dword ptr [0x00c11760]\n  004b6ef5:  MOV ESI,dword ptr [ESI + 0x4]\n  004b6ef8:  LEA ECX,[ESP + 0x30]\n  004b6efc:  MOV dword ptr [ESP + 0x70],0x1\n  004b6f04:  PUSH ECX\n  004b6f05:  PUSH EDX\n  004b6f06:  LEA ECX,[ESP + 0x10]\n  004b6f0a:  PUSH 0x1\n  004b6f0c:  PUSH ECX\n  004b6f0d:  MOV ECX,EAX\n  004b6f0f:  MOV dword ptr [ESP + 0x40],ESI\n  004b6f13:  CALL dword ptr [0x0056a36c]\n  004b6f19:  LEA ECX,[ESP + 0x4]\n  004b6f1d:  MOV dword ptr [ESP + 0x7c],0xffffffff\n  004b6f25:  CALL 0x00540fa0\n  004b6f2a:  MOV ECX,dword ptr [ESP + 0x74]\n  004b6f2e:  POP ESI\n  004b6f2f:  MOV dword ptr FS:[0x0],ECX\n  004b6f36:  ADD ESP,0x7c\n  004b6f39:  RET",
+  "callers": [
+    {
+      "address": "0x00405c00",
+      "name": "FUN_00405c00"
+    }
+  ],
+  "pal3patch_info": {
+    "name": "GrayScale_End",
+    "type": "method",
+    "source": "pal3.h"
+  }
+}

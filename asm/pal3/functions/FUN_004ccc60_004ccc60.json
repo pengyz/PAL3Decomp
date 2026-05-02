@@ -1,0 +1,45 @@
+{
+  "address": "0x004ccc60", 
+  "size_bytes": 171, 
+  "calling_convention": "unknown", 
+  "signature": "undefined FUN_004ccc60(undefined4 param_1, undefined4 param_2)", 
+  "callees": [], 
+  "global_refs": [
+    {
+      "address": "0x00000008", 
+      "type": null, 
+      "name": "DAT_00000008"
+    }, 
+    {
+      "address": "0x-0000008", 
+      "type": null, 
+      "name": "DAT_-0000008"
+    }, 
+    {
+      "address": "0x00000004", 
+      "type": null, 
+      "name": "DAT_00000004"
+    }, 
+    {
+      "address": "0x-0000004", 
+      "type": null, 
+      "name": "DAT_-0000004"
+    }, 
+    {
+      "address": "0x0056a63c", 
+      "type": null, 
+      "name": "DAT_0056a63c"
+    }
+  ], 
+  "has_custom_name": false, 
+  "decompiled_c": "\r\n/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */\r\n\r\nvoid __thiscall FUN_004ccc60(int param_1_00,int param_1,int param_2)\r\n\r\n{\r\n  float fVar1;\r\n  float fVar2;\r\n  float fVar3;\r\n  float fVar4;\r\n  float *pfVar5;\r\n  float *pfVar6;\r\n  int local_8;\r\n  int local_4;\r\n  \r\n  local_8 = 0;\r\n  if (0 < param_2) {\r\n    pfVar5 = (float *)(param_1_00 + 0xd8);\r\n    do {\r\n      local_4 = 0;\r\n      pfVar6 = pfVar5;\r\n      if (0 < param_1) {\r\n        pfVar6 = pfVar5 + param_1 * 4;\r\n        fVar1 = _DAT_0056a63c / (float)param_1;\r\n        fVar3 = (float)local_8 / (float)param_2;\r\n        fVar4 = _DAT_0056a63c - (_DAT_0056a63c / (float)param_2 + fVar3);\r\n        fVar3 = _DAT_0056a63c - fVar3;\r\n        do {\r\n          fVar2 = (float)local_4;\r\n          local_4 = local_4 + 1;\r\n          fVar2 = fVar2 / (float)param_1;\r\n          pfVar5[-2] = fVar2;\r\n          *pfVar5 = fVar1 + fVar2;\r\n          pfVar5[-1] = fVar4;\r\n          pfVar5[1] = fVar3;\r\n          pfVar5 = pfVar5 + 4;\r\n        } while (local_4 < param_1);\r\n      }\r\n      local_8 = local_8 + 1;\r\n      pfVar5 = pfVar6;\r\n    } while (local_8 < param_2);\r\n  }\r\n  return;\r\n}\r\n\r\n", 
+  "is_thunk": false, 
+  "name": "FUN_004ccc60", 
+  "assembly": "  004ccc60:  SUB ESP,0x8\n  004ccc63:  PUSH EBX\n  004ccc64:  PUSH EBP\n  004ccc65:  MOV EBP,dword ptr [ESP + 0x18]\n  004ccc69:  XOR EBX,EBX\n  004ccc6b:  TEST EBP,EBP\n  004ccc6d:  MOV dword ptr [ESP + 0x8],EBX\n  004ccc71:  JLE 0x004ccd03\n  004ccc77:  MOV EDX,dword ptr [ESP + 0x14]\n  004ccc7b:  PUSH ESI\n  004ccc7c:  MOV ESI,EDX\n  004ccc7e:  PUSH EDI\n  004ccc7f:  SHL ESI,0x4\n  004ccc82:  LEA EDI,[ECX + 0xd8]\n  004ccc88:  XOR ECX,ECX\n  004ccc8a:  TEST EDX,EDX\n  004ccc8c:  MOV dword ptr [ESP + 0x14],ECX\n  004ccc90:  JLE 0x004cccf8\n  004ccc92:  FILD dword ptr [ESP + 0x1c]\n  004ccc96:  FLD dword ptr [0x0056a63c]\n  004ccc9c:  MOV EAX,EDI\n  004ccc9e:  ADD EDI,ESI\n  004ccca0:  FDIV ST0,ST1\n  004ccca2:  FILD dword ptr [ESP + 0x20]\n  004ccca6:  FILD dword ptr [ESP + 0x10]\n  004cccaa:  FDIV ST0,ST1\n  004cccac:  FSTP dword ptr [ESP + 0x10]\n  004cccb0:  FDIVR dword ptr [0x0056a63c]\n  004cccb6:  FADD dword ptr [ESP + 0x10]\n  004cccba:  FSUBR dword ptr [0x0056a63c]\n  004cccc0:  FLD dword ptr [0x0056a63c]\n  004cccc6:  FSUB dword ptr [ESP + 0x10]\n  004cccca:  FILD dword ptr [ESP + 0x14]\n  004cccce:  ADD EAX,0x10\n  004cccd1:  INC ECX\n  004cccd2:  CMP ECX,EDX\n  004cccd4:  MOV dword ptr [ESP + 0x14],ECX\n  004cccd8:  FDIV ST0,ST4\n  004cccda:  FST dword ptr [EAX + -0x18]\n  004cccdd:  FLD ST3\n  004cccdf:  FADD ST0,ST1\n  004ccce1:  FSTP dword ptr [EAX + -0x10]\n  004ccce4:  FSTP ST0\n  004ccce6:  FLD ST1\n  004ccce8:  FSTP dword ptr [EAX + -0x14]\n  004ccceb:  FST dword ptr [EAX + -0xc]\n  004cccee:  JL 0x004cccca\n  004cccf0:  FSTP ST0\n  004cccf2:  FSTP ST0\n  004cccf4:  FSTP ST0\n  004cccf6:  FSTP ST0\n  004cccf8:  INC EBX\n  004cccf9:  CMP EBX,EBP\n  004cccfb:  MOV dword ptr [ESP + 0x10],EBX\n  004cccff:  JL 0x004ccc88\n  004ccd01:  POP EDI\n  004ccd02:  POP ESI\n  004ccd03:  POP EBP\n  004ccd04:  POP EBX\n  004ccd05:  ADD ESP,0x8\n  004ccd08:  RET 0x8", 
+  "callers": [
+    {
+      "address": "0x004cb800", 
+      "name": "FUN_004cb800"
+    }
+  ]
+}

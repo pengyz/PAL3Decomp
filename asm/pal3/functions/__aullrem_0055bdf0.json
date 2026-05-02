@@ -1,0 +1,40 @@
+{
+  "address": "0x0055bdf0", 
+  "size_bytes": 117, 
+  "calling_convention": "unknown", 
+  "signature": "undefined __aullrem(undefined4 param_1, undefined4 param_2, undefined4 param_3, undefined4 param_4)", 
+  "callees": [], 
+  "global_refs": [
+    {
+      "address": "0x00000010", 
+      "type": null, 
+      "name": "DAT_00000010"
+    }, 
+    {
+      "address": "0x0000000c", 
+      "type": null, 
+      "name": "DAT_0000000c"
+    }, 
+    {
+      "address": "0x00000008", 
+      "type": null, 
+      "name": "DAT_00000008"
+    }, 
+    {
+      "address": "0x00000004", 
+      "type": null, 
+      "name": "DAT_00000004"
+    }
+  ], 
+  "has_custom_name": true, 
+  "decompiled_c": "\r\n/* Library Function - Single Match\r\n    __aullrem\r\n   \r\n   Library: Visual Studio */\r\n\r\nundefined8 __aullrem(uint param_1,uint param_2,uint param_3,uint param_4)\r\n\r\n{\r\n  ulonglong uVar1;\r\n  longlong lVar2;\r\n  uint uVar3;\r\n  uint uVar4;\r\n  uint uVar5;\r\n  int iVar6;\r\n  int iVar7;\r\n  uint uVar8;\r\n  uint uVar9;\r\n  uint uVar10;\r\n  bool bVar11;\r\n  \r\n  uVar3 = param_1;\r\n  uVar4 = param_4;\r\n  uVar9 = param_2;\r\n  uVar10 = param_3;\r\n  if (param_4 == 0) {\r\n    iVar6 = (int)(((ulonglong)param_2 % (ulonglong)param_3 << 0x20 | (ulonglong)param_1) %\r\n                 (ulonglong)param_3);\r\n    iVar7 = 0;\r\n  }\r\n  else {\r\n    do {\r\n      uVar5 = uVar4 >> 1;\r\n      uVar10 = uVar10 >> 1 | (uint)((uVar4 & 1) != 0) << 0x1f;\r\n      uVar8 = uVar9 >> 1;\r\n      uVar3 = uVar3 >> 1 | (uint)((uVar9 & 1) != 0) << 0x1f;\r\n      uVar4 = uVar5;\r\n      uVar9 = uVar8;\r\n    } while (uVar5 != 0);\r\n    uVar1 = CONCAT44(uVar8,uVar3) / (ulonglong)uVar10;\r\n    uVar3 = (int)uVar1 * param_4;\r\n    lVar2 = (uVar1 & 0xffffffff) * (ulonglong)param_3;\r\n    uVar9 = (uint)((ulonglong)lVar2 >> 0x20);\r\n    uVar4 = (uint)lVar2;\r\n    uVar10 = uVar9 + uVar3;\r\n    if (((CARRY4(uVar9,uVar3)) || (param_2 < uVar10)) || ((param_2 <= uVar10 && (param_1 < uVar4))))\r\n    {\r\n      bVar11 = uVar4 < param_3;\r\n      uVar4 = uVar4 - param_3;\r\n      uVar10 = (uVar10 - param_4) - (uint)bVar11;\r\n    }\r\n    iVar6 = -(uVar4 - param_1);\r\n    iVar7 = -(uint)(uVar4 - param_1 != 0) - ((uVar10 - param_2) - (uint)(uVar4 < param_1));\r\n  }\r\n  return CONCAT44(iVar7,iVar6);\r\n}\r\n\r\n", 
+  "is_thunk": false, 
+  "name": "__aullrem", 
+  "assembly": "  0055bdf0:  PUSH EBX\n  0055bdf1:  MOV EAX,dword ptr [ESP + 0x14]\n  0055bdf5:  OR EAX,EAX\n  0055bdf7:  JNZ 0x0055be11\n  0055bdf9:  MOV ECX,dword ptr [ESP + 0x10]\n  0055bdfd:  MOV EAX,dword ptr [ESP + 0xc]\n  0055be01:  XOR EDX,EDX\n  0055be03:  DIV ECX\n  0055be05:  MOV EAX,dword ptr [ESP + 0x8]\n  0055be09:  DIV ECX\n  0055be0b:  MOV EAX,EDX\n  0055be0d:  XOR EDX,EDX\n  0055be0f:  JMP 0x0055be61\n  0055be11:  MOV ECX,EAX\n  0055be13:  MOV EBX,dword ptr [ESP + 0x10]\n  0055be17:  MOV EDX,dword ptr [ESP + 0xc]\n  0055be1b:  MOV EAX,dword ptr [ESP + 0x8]\n  0055be1f:  SHR ECX,0x1\n  0055be21:  RCR EBX,0x1\n  0055be23:  SHR EDX,0x1\n  0055be25:  RCR EAX,0x1\n  0055be27:  OR ECX,ECX\n  0055be29:  JNZ 0x0055be1f\n  0055be2b:  DIV EBX\n  0055be2d:  MOV ECX,EAX\n  0055be2f:  MUL dword ptr [ESP + 0x14]\n  0055be33:  XCHG EAX,ECX\n  0055be34:  MUL dword ptr [ESP + 0x10]\n  0055be38:  ADD EDX,ECX\n  0055be3a:  JC 0x0055be4a\n  0055be3c:  CMP EDX,dword ptr [ESP + 0xc]\n  0055be40:  JA 0x0055be4a\n  0055be42:  JC 0x0055be52\n  0055be44:  CMP EAX,dword ptr [ESP + 0x8]\n  0055be48:  JBE 0x0055be52\n  0055be4a:  SUB EAX,dword ptr [ESP + 0x10]\n  0055be4e:  SBB EDX,dword ptr [ESP + 0x14]\n  0055be52:  SUB EAX,dword ptr [ESP + 0x8]\n  0055be56:  SBB EDX,dword ptr [ESP + 0xc]\n  0055be5a:  NEG EDX\n  0055be5c:  NEG EAX\n  0055be5e:  SBB EDX,0x0\n  0055be61:  POP EBX\n  0055be62:  RET 0x10", 
+  "callers": [
+    {
+      "address": "0x00556bf2", 
+      "name": "FUN_00556bf2"
+    }
+  ]
+}

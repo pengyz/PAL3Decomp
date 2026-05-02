@@ -1,0 +1,27 @@
+{
+  "address": "0x00402b00", 
+  "size_bytes": 38, 
+  "calling_convention": "unknown", 
+  "signature": "undefined FUN_00402b00(void)", 
+  "callees": [], 
+  "global_refs": [], 
+  "has_custom_name": false, 
+  "decompiled_c": "\r\nundefined4 __fastcall FUN_00402b00(int param_1)\r\n\r\n{\r\n  byte *pbVar1;\r\n  int iVar2;\r\n  \r\n  iVar2 = 0;\r\n  pbVar1 = (byte *)(param_1 + 0x1878);\r\n  while ((*(int *)(pbVar1 + 0xc) != 1 || ((*pbVar1 & 3) == 0))) {\r\n    iVar2 = iVar2 + 1;\r\n    pbVar1 = pbVar1 + 0x10;\r\n    if (0x10d < iVar2) {\r\n      return 0;\r\n    }\r\n  }\r\n  return 1;\r\n}\r\n\r\n", 
+  "is_thunk": false, 
+  "name": "FUN_00402b00", 
+  "assembly": "  00402b00:  XOR EDX,EDX\n  00402b02:  ADD ECX,0x1878\n  00402b08:  MOV EAX,0x1\n  00402b0d:  CMP dword ptr [ECX + 0xc],EAX\n  00402b10:  JNZ 0x00402b17\n  00402b12:  TEST byte ptr [ECX],0x3\n  00402b15:  JNZ 0x00402b25\n  00402b17:  INC EDX\n  00402b18:  ADD ECX,0x10\n  00402b1b:  CMP EDX,0x10e\n  00402b21:  JL 0x00402b0d\n  00402b23:  XOR AL,AL\n  00402b25:  RET", 
+  "callers": [
+    {
+      "address": "0x00501e60", 
+      "name": "FUN_00501e60"
+    }, 
+    {
+      "address": "0x00501f30", 
+      "name": "FUN_00501f30"
+    }, 
+    {
+      "address": "0x00502430", 
+      "name": "FUN_00502430"
+    }
+  ]
+}

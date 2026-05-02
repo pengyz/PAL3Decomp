@@ -1,0 +1,20 @@
+{
+  "address": "0x00546ed6", 
+  "size_bytes": 12, 
+  "calling_convention": "unknown", 
+  "signature": "undefined Catch@00546ed6(void)", 
+  "callees": [], 
+  "global_refs": [
+    {
+      "address": "0x00546ee8", 
+      "type": null, 
+      "name": "DAT_00546ee8"
+    }
+  ], 
+  "has_custom_name": true, 
+  "decompiled_c": "\r\nundefined * Catch_00546ed6(void)\r\n\r\n{\r\n  int unaff_EBP;\r\n  \r\n  *(undefined4 *)(unaff_EBP + -0x3c) = *(undefined4 *)(unaff_EBP + -0x14);\r\n  return &DAT_00546ee8;\r\n}\r\n\r\n", 
+  "is_thunk": false, 
+  "name": "Catch@00546ed6", 
+  "assembly": "  00546ed6:  MOV EAX,dword ptr [EBP + -0x14]\n  00546ed9:  MOV dword ptr [EBP + -0x3c],EAX\n  00546edc:  MOV EAX,0x546ee8\n  00546ee1:  RET", 
+  "callers": []
+}

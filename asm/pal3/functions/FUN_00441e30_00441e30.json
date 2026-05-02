@@ -1,0 +1,50 @@
+{
+  "address": "0x00441e30", 
+  "size_bytes": 450, 
+  "calling_convention": "unknown", 
+  "signature": "undefined FUN_00441e30(undefined4 param_1)", 
+  "callees": [
+    {
+      "address": "0x00000065", 
+      "name": "PtInRect"
+    }
+  ], 
+  "global_refs": [
+    {
+      "address": "0x00000004", 
+      "type": null, 
+      "name": "DAT_00000004"
+    }, 
+    {
+      "address": "0x0056a19c", 
+      "type": null, 
+      "name": "PTR_PtInRect_0056a19c"
+    }, 
+    {
+      "address": "0x-0000010", 
+      "type": null, 
+      "name": "DAT_-0000010"
+    }, 
+    {
+      "address": "0x-000000c", 
+      "type": null, 
+      "name": "DAT_-000000c"
+    }, 
+    {
+      "address": "0x-0000008", 
+      "type": null, 
+      "name": "DAT_-0000008"
+    }, 
+    {
+      "address": "0x-0000004", 
+      "type": null, 
+      "name": "DAT_-0000004"
+    }
+  ], 
+  "has_custom_name": false, 
+  "decompiled_c": "\r\nundefined4 __thiscall FUN_00441e30(int param_1_00,POINT *param_1)\r\n\r\n{\r\n  RECT *lprc;\r\n  int iVar1;\r\n  BOOL BVar2;\r\n  RECT local_10;\r\n  \r\n  lprc = (RECT *)(param_1_00 + 0x10);\r\n  BVar2 = PtInRect(lprc,*param_1);\r\n  if (BVar2 != 0) {\r\n    local_10.left = *(LONG *)(param_1_00 + 0x130);\r\n    local_10.top = *(LONG *)(param_1_00 + 0x134);\r\n    local_10.right = *(LONG *)(param_1_00 + 0x138);\r\n    local_10.bottom = *(LONG *)(param_1_00 + 0x13c);\r\n    BVar2 = PtInRect(&local_10,*param_1);\r\n    if (BVar2 != 0) {\r\n      return 0;\r\n    }\r\n    local_10.left = *(LONG *)(param_1_00 + 0x140);\r\n    local_10.top = *(LONG *)(param_1_00 + 0x144);\r\n    local_10.right = *(LONG *)(param_1_00 + 0x148);\r\n    local_10.bottom = *(LONG *)(param_1_00 + 0x14c);\r\n    BVar2 = PtInRect(&local_10,*param_1);\r\n    if (BVar2 != 0) {\r\n      return 1;\r\n    }\r\n    if (*(int *)(param_1_00 + 0xa8) != *(int *)(param_1_00 + 0xa4) &&\r\n        -1 < *(int *)(param_1_00 + 0xa8) - *(int *)(param_1_00 + 0xa4)) {\r\n      iVar1 = *(int *)(param_1_00 + 0xb4);\r\n      local_10.left = lprc->left;\r\n      local_10.right = *(LONG *)(param_1_00 + 0x18);\r\n      local_10.bottom = *(int *)(param_1_00 + 0x15c) + iVar1;\r\n      local_10.top = iVar1;\r\n      BVar2 = PtInRect(&local_10,*param_1);\r\n      if (BVar2 != 0) {\r\n        return 2;\r\n      }\r\n      local_10.left = lprc->left;\r\n      local_10.right = *(LONG *)(param_1_00 + 0x18);\r\n      local_10.top = *(LONG *)(param_1_00 + 0x13c);\r\n      local_10.bottom = iVar1;\r\n      BVar2 = PtInRect(&local_10,*param_1);\r\n      if (BVar2 != 0) {\r\n        return 3;\r\n      }\r\n      local_10.left = lprc->left;\r\n      local_10.right = *(LONG *)(param_1_00 + 0x18);\r\n      local_10.bottom = *(LONG *)(param_1_00 + 0x144);\r\n      local_10.top = iVar1;\r\n      BVar2 = PtInRect(&local_10,*param_1);\r\n      if (BVar2 != 0) {\r\n        return 4;\r\n      }\r\n    }\r\n  }\r\n  return 5;\r\n}\r\n\r\n", 
+  "is_thunk": false, 
+  "name": "FUN_00441e30", 
+  "assembly": "  00441e30:  SUB ESP,0x10\n  00441e33:  PUSH EBX\n  00441e34:  PUSH EBP\n  00441e35:  PUSH ESI\n  00441e36:  MOV ESI,dword ptr [ESP + 0x20]\n  00441e3a:  MOV EBP,dword ptr [0x0056a19c]\n  00441e40:  PUSH EDI\n  00441e41:  MOV EAX,dword ptr [ESI + 0x4]\n  00441e44:  MOV EDI,ECX\n  00441e46:  MOV ECX,dword ptr [ESI]\n  00441e48:  PUSH EAX\n  00441e49:  LEA EBX,[EDI + 0x10]\n  00441e4c:  PUSH ECX\n  00441e4d:  PUSH EBX\n  00441e4e:  CALL EBP\n  00441e50:  TEST EAX,EAX\n  00441e52:  JZ 0x00441fe3\n  00441e58:  LEA EDX,[EDI + 0x130]\n  00441e5e:  MOV EAX,dword ptr [EDI + 0x130]\n  00441e64:  MOV dword ptr [ESP + 0x10],EAX\n  00441e68:  MOV ECX,dword ptr [EDX + 0x4]\n  00441e6b:  MOV dword ptr [ESP + 0x14],ECX\n  00441e6f:  MOV EAX,dword ptr [EDX + 0x8]\n  00441e72:  MOV dword ptr [ESP + 0x18],EAX\n  00441e76:  MOV EAX,dword ptr [ESI]\n  00441e78:  MOV ECX,dword ptr [EDX + 0xc]\n  00441e7b:  MOV EDX,dword ptr [ESI + 0x4]\n  00441e7e:  MOV dword ptr [ESP + 0x1c],ECX\n  00441e82:  PUSH EDX\n  00441e83:  LEA ECX,[ESP + 0x14]\n  00441e87:  PUSH EAX\n  00441e88:  PUSH ECX\n  00441e89:  CALL EBP\n  00441e8b:  TEST EAX,EAX\n  00441e8d:  JZ 0x00441e9b\n  00441e8f:  POP EDI\n  00441e90:  POP ESI\n  00441e91:  POP EBP\n  00441e92:  XOR EAX,EAX\n  00441e94:  POP EBX\n  00441e95:  ADD ESP,0x10\n  00441e98:  RET 0x4\n  00441e9b:  LEA EDX,[EDI + 0x140]\n  00441ea1:  MOV EAX,dword ptr [EDI + 0x140]\n  00441ea7:  MOV dword ptr [ESP + 0x10],EAX\n  00441eab:  MOV ECX,dword ptr [EDX + 0x4]\n  00441eae:  MOV dword ptr [ESP + 0x14],ECX\n  00441eb2:  MOV EAX,dword ptr [EDX + 0x8]\n  00441eb5:  MOV dword ptr [ESP + 0x18],EAX\n  00441eb9:  MOV EAX,dword ptr [ESI]\n  00441ebb:  MOV ECX,dword ptr [EDX + 0xc]\n  00441ebe:  MOV EDX,dword ptr [ESI + 0x4]\n  00441ec1:  MOV dword ptr [ESP + 0x1c],ECX\n  00441ec5:  PUSH EDX\n  00441ec6:  LEA ECX,[ESP + 0x14]\n  00441eca:  PUSH EAX\n  00441ecb:  PUSH ECX\n  00441ecc:  CALL EBP\n  00441ece:  TEST EAX,EAX\n  00441ed0:  JZ 0x00441ee1\n  00441ed2:  POP EDI\n  00441ed3:  POP ESI\n  00441ed4:  POP EBP\n  00441ed5:  MOV EAX,0x1\n  00441eda:  POP EBX\n  00441edb:  ADD ESP,0x10\n  00441ede:  RET 0x4\n  00441ee1:  MOV EDX,dword ptr [EDI + 0xa8]\n  00441ee7:  MOV ECX,dword ptr [EDI + 0xa4]\n  00441eed:  SUB EDX,ECX\n  00441eef:  TEST EDX,EDX\n  00441ef1:  JLE 0x00441fe3\n  00441ef7:  MOV EAX,EBX\n  00441ef9:  MOV EBP,dword ptr [EDI + 0xb4]\n  00441eff:  MOV ECX,dword ptr [EAX]\n  00441f01:  MOV dword ptr [ESP + 0x10],ECX\n  00441f05:  MOV EDX,dword ptr [EAX + 0x4]\n  00441f08:  MOV dword ptr [ESP + 0x14],EDX\n  00441f0c:  MOV dword ptr [ESP + 0x14],EBP\n  00441f10:  MOV ECX,dword ptr [EAX + 0x8]\n  00441f13:  MOV dword ptr [ESP + 0x18],ECX\n  00441f17:  MOV ECX,dword ptr [ESI + 0x4]\n  00441f1a:  MOV EDX,dword ptr [EAX + 0xc]\n  00441f1d:  MOV EAX,dword ptr [EDI + 0x15c]\n  00441f23:  ADD EAX,EBP\n  00441f25:  MOV dword ptr [ESP + 0x1c],EDX\n  00441f29:  MOV EDX,dword ptr [ESI]\n  00441f2b:  MOV dword ptr [ESP + 0x1c],EAX\n  00441f2f:  PUSH ECX\n  00441f30:  LEA EAX,[ESP + 0x14]\n  00441f34:  PUSH EDX\n  00441f35:  PUSH EAX\n  00441f36:  CALL dword ptr [0x0056a19c]\n  00441f3c:  TEST EAX,EAX\n  00441f3e:  JZ 0x00441f4f\n  00441f40:  POP EDI\n  00441f41:  POP ESI\n  00441f42:  POP EBP\n  00441f43:  MOV EAX,0x2\n  00441f48:  POP EBX\n  00441f49:  ADD ESP,0x10\n  00441f4c:  RET 0x4\n  00441f4f:  MOV ECX,EBX\n  00441f51:  MOV EDX,dword ptr [ECX]\n  00441f53:  MOV dword ptr [ESP + 0x10],EDX\n  00441f57:  MOV EAX,dword ptr [ECX + 0x4]\n  00441f5a:  MOV dword ptr [ESP + 0x14],EAX\n  00441f5e:  MOV EDX,dword ptr [ECX + 0x8]\n  00441f61:  MOV dword ptr [ESP + 0x18],EDX\n  00441f65:  MOV EDX,dword ptr [ESI + 0x4]\n  00441f68:  MOV EAX,dword ptr [ECX + 0xc]\n  00441f6b:  MOV ECX,dword ptr [EDI + 0x13c]\n  00441f71:  MOV dword ptr [ESP + 0x1c],EAX\n  00441f75:  MOV EAX,dword ptr [ESI]\n  00441f77:  MOV dword ptr [ESP + 0x14],ECX\n  00441f7b:  PUSH EDX\n  00441f7c:  LEA ECX,[ESP + 0x14]\n  00441f80:  PUSH EAX\n  00441f81:  PUSH ECX\n  00441f82:  MOV dword ptr [ESP + 0x28],EBP\n  00441f86:  CALL dword ptr [0x0056a19c]\n  00441f8c:  TEST EAX,EAX\n  00441f8e:  JZ 0x00441f9f\n  00441f90:  POP EDI\n  00441f91:  POP ESI\n  00441f92:  POP EBP\n  00441f93:  MOV EAX,0x3\n  00441f98:  POP EBX\n  00441f99:  ADD ESP,0x10\n  00441f9c:  RET 0x4\n  00441f9f:  MOV EDX,dword ptr [EBX]\n  00441fa1:  MOV EAX,dword ptr [EBX + 0x4]\n  00441fa4:  MOV ECX,dword ptr [EBX + 0x8]\n  00441fa7:  MOV dword ptr [ESP + 0x10],EDX\n  00441fab:  MOV EDX,dword ptr [EBX + 0xc]\n  00441fae:  MOV dword ptr [ESP + 0x14],EAX\n  00441fb2:  MOV EAX,dword ptr [EDI + 0x144]\n  00441fb8:  MOV dword ptr [ESP + 0x18],ECX\n  00441fbc:  MOV ECX,dword ptr [ESI + 0x4]\n  00441fbf:  MOV dword ptr [ESP + 0x1c],EDX\n  00441fc3:  MOV EDX,dword ptr [ESI]\n  00441fc5:  MOV dword ptr [ESP + 0x1c],EAX\n  00441fc9:  PUSH ECX\n  00441fca:  LEA EAX,[ESP + 0x14]\n  00441fce:  PUSH EDX\n  00441fcf:  PUSH EAX\n  00441fd0:  MOV dword ptr [ESP + 0x20],EBP\n  00441fd4:  CALL dword ptr [0x0056a19c]\n  00441fda:  TEST EAX,EAX\n  00441fdc:  MOV EAX,0x4\n  00441fe1:  JNZ 0x00441fe8\n  00441fe3:  MOV EAX,0x5\n  00441fe8:  POP EDI\n  00441fe9:  POP ESI\n  00441fea:  POP EBP\n  00441feb:  POP EBX\n  00441fec:  ADD ESP,0x10\n  00441fef:  RET 0x4", 
+  "callers": []
+}

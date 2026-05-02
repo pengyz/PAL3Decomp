@@ -1,0 +1,69 @@
+{
+  "address": "0x004a8150", 
+  "size_bytes": 219, 
+  "calling_convention": "unknown", 
+  "signature": "undefined FUN_004a8150(void)", 
+  "callees": [
+    {
+      "address": "0x0043aa00", 
+      "name": "FUN_0043aa00"
+    }, 
+    {
+      "address": "0x00445e50", 
+      "name": "FUN_00445e50"
+    }
+  ], 
+  "global_refs": [
+    {
+      "address": "0x00de5f92", 
+      "type": null, 
+      "name": "DAT_00de5f92"
+    }, 
+    {
+      "address": "0x005cefa8", 
+      "type": null, 
+      "name": "DAT_005cefa8"
+    }, 
+    {
+      "address": "0x0056f0b0", 
+      "type": null, 
+      "name": "PTR_s_UI\\GameMainUI\\Communal\\StpCtl\\Un_0056f0b0"
+    }, 
+    {
+      "address": "0x005d0e90", 
+      "type": null, 
+      "name": "s_UI\\GameMainUI\\Communal\\StpCtl\\Un_005d0e90"
+    }, 
+    {
+      "address": "0x0056f0b4", 
+      "type": null, 
+      "name": "PTR_s_UI\\GameMainUI\\Communal\\StpCtl\\No_0056f0b4"
+    }, 
+    {
+      "address": "0x005c5744", 
+      "type": null, 
+      "name": "s_UI\\GameMainUI\\Communal\\StpCtl\\No_005c5744"
+    }, 
+    {
+      "address": "0x00de5f93", 
+      "type": null, 
+      "name": "DAT_00de5f93"
+    }, 
+    {
+      "address": "0x0056f0b8", 
+      "type": null, 
+      "name": "PTR_s_UI\\GameMainUI\\Communal\\StpCtl\\No_0056f0b8"
+    }, 
+    {
+      "address": "0x005c5714", 
+      "type": null, 
+      "name": "s_UI\\GameMainUI\\Communal\\StpCtl\\No_005c5714"
+    }
+  ], 
+  "has_custom_name": false, 
+  "decompiled_c": "\r\nvoid FUN_004a8150(void)\r\n\r\n{\r\n  undefined *puVar1;\r\n  \r\n  puVar1 = PTR_s_UI_GameMainUI_Communal_StpCtl_No_0056f0b4;\r\n  if (DAT_00de5f92 != '\\0') {\r\n    puVar1 = PTR_s_UI_GameMainUI_Communal_StpCtl_Un_0056f0b0;\r\n  }\r\n  FUN_0043aa00(puVar1,DAT_005cefa8);\r\n  if (DAT_00de5f93 == '\\0') {\r\n    FUN_0043aa00(PTR_s_UI_GameMainUI_Communal_StpCtl_No_0056f0b8,DAT_005cefa8);\r\n    FUN_00445e50(0);\r\n  }\r\n  else {\r\n    FUN_00445e50(1);\r\n  }\r\n  FUN_00445e50(0);\r\n  FUN_00445e50(1);\r\n  FUN_00445e50(1);\r\n  FUN_00445e50(1);\r\n  FUN_00445e50(1);\r\n  FUN_00445e50(1);\r\n  FUN_00445e50(1);\r\n  FUN_00445e50(1);\r\n  return;\r\n}\r\n\r\n", 
+  "is_thunk": false, 
+  "name": "FUN_004a8150", 
+  "assembly": "  004a8150:  MOV AL,[0x00de5f92]\n  004a8155:  PUSH EBX\n  004a8156:  PUSH ESI\n  004a8157:  MOV ESI,ECX\n  004a8159:  TEST AL,AL\n  004a815b:  LEA EBX,[ESI + 0x63f8]\n  004a8161:  JZ 0x004a8172\n  004a8163:  MOV AL,[0x005cefa8]\n  004a8168:  MOV ECX,dword ptr [0x0056f0b0]\n  004a816e:  PUSH EAX\n  004a816f:  PUSH ECX\n  004a8170:  JMP 0x004a817f\n  004a8172:  MOV DL,byte ptr [0x005cefa8]\n  004a8178:  MOV EAX,[0x0056f0b4]\n  004a817d:  PUSH EDX\n  004a817e:  PUSH EAX\n  004a817f:  MOV ECX,EBX\n  004a8181:  CALL 0x0043aa00\n  004a8186:  MOV AL,[0x00de5f93]\n  004a818b:  TEST AL,AL\n  004a818d:  JZ 0x004a819e\n  004a818f:  PUSH 0x1\n  004a8191:  LEA ECX,[ESI + 0x6550]\n  004a8197:  CALL 0x00445e50\n  004a819c:  JMP 0x004a81c4\n  004a819e:  MOV CL,byte ptr [0x005cefa8]\n  004a81a4:  MOV EDX,dword ptr [0x0056f0b8]\n  004a81aa:  PUSH EDI\n  004a81ab:  LEA EDI,[ESI + 0x6550]\n  004a81b1:  PUSH ECX\n  004a81b2:  PUSH EDX\n  004a81b3:  MOV ECX,EDI\n  004a81b5:  CALL 0x0043aa00\n  004a81ba:  PUSH 0x0\n  004a81bc:  MOV ECX,EDI\n  004a81be:  CALL 0x00445e50\n  004a81c3:  POP EDI\n  004a81c4:  PUSH 0x0\n  004a81c6:  MOV ECX,EBX\n  004a81c8:  CALL 0x00445e50\n  004a81cd:  PUSH 0x1\n  004a81cf:  LEA ECX,[ESI + 0x5e98]\n  004a81d5:  CALL 0x00445e50\n  004a81da:  PUSH 0x1\n  004a81dc:  LEA ECX,[ESI + 0x5ff0]\n  004a81e2:  CALL 0x00445e50\n  004a81e7:  PUSH 0x1\n  004a81e9:  LEA ECX,[ESI + 0x6148]\n  004a81ef:  CALL 0x00445e50\n  004a81f4:  PUSH 0x1\n  004a81f6:  LEA ECX,[ESI + 0x62a0]\n  004a81fc:  CALL 0x00445e50\n  004a8201:  PUSH 0x1\n  004a8203:  LEA ECX,[ESI + 0x66a8]\n  004a8209:  CALL 0x00445e50\n  004a820e:  PUSH 0x1\n  004a8210:  LEA ECX,[ESI + 0x6800]\n  004a8216:  CALL 0x00445e50\n  004a821b:  PUSH 0x1\n  004a821d:  LEA ECX,[ESI + 0x6958]\n  004a8223:  CALL 0x00445e50\n  004a8228:  POP ESI\n  004a8229:  POP EBX\n  004a822a:  RET", 
+  "callers": []
+}

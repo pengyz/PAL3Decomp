@@ -1,0 +1,58 @@
+{
+  "address": "0x00432500", 
+  "size_bytes": 66, 
+  "calling_convention": "unknown", 
+  "signature": "undefined FUN_00432500(undefined4 param_1, undefined4 param_2)", 
+  "callees": [
+    {
+      "address": "0x005542fe", 
+      "name": "FUN_005542fe"
+    }, 
+    {
+      "address": "0x004325a0", 
+      "name": "FUN_004325a0"
+    }, 
+    {
+      "address": "0x00432170", 
+      "name": "FUN_00432170"
+    }
+  ], 
+  "global_refs": [
+    {
+      "address": "0x00000008", 
+      "type": null, 
+      "name": "DAT_00000008"
+    }, 
+    {
+      "address": "0x00000004", 
+      "type": null, 
+      "name": "DAT_00000004"
+    }, 
+    {
+      "address": "0x-0000040", 
+      "type": null, 
+      "name": "DAT_-0000040"
+    }, 
+    {
+      "address": "0x00592e50", 
+      "type": null, 
+      "name": "s__%s_%s_00592e50"
+    }, 
+    {
+      "address": "0x00d8c339", 
+      "type": null, 
+      "name": "DAT_00d8c339"
+    }
+  ], 
+  "has_custom_name": false, 
+  "decompiled_c": "\r\nvoid FUN_00432500(undefined4 param_1,undefined4 param_2)\r\n\r\n{\r\n  undefined4 uVar1;\r\n  int iVar2;\r\n  undefined local_40 [64];\r\n  \r\n  FUN_005542fe(local_40,0x3f,s___s__s_00592e50,param_1,param_2);\r\n  uVar1 = FUN_004325a0(local_40);\r\n  iVar2 = FUN_00432170(uVar1,0);\r\n  if (iVar2 != 0) {\r\n    DAT_00d8c339 = 1;\r\n  }\r\n  return;\r\n}\r\n\r\n", 
+  "is_thunk": false, 
+  "name": "FUN_00432500", 
+  "assembly": "  00432500:  MOV EAX,dword ptr [ESP + 0x8]\n  00432504:  MOV ECX,dword ptr [ESP + 0x4]\n  00432508:  SUB ESP,0x40\n  0043250b:  LEA EDX,[ESP]\n  0043250f:  PUSH EAX\n  00432510:  PUSH ECX\n  00432511:  PUSH 0x592e50\n  00432516:  PUSH 0x3f\n  00432518:  PUSH EDX\n  00432519:  CALL 0x005542fe\n  0043251e:  LEA EAX,[ESP + 0x14]\n  00432522:  PUSH EAX\n  00432523:  CALL 0x004325a0\n  00432528:  PUSH 0x0\n  0043252a:  PUSH EAX\n  0043252b:  CALL 0x00432170\n  00432530:  ADD ESP,0x20\n  00432533:  TEST EAX,EAX\n  00432535:  JZ 0x0043253e\n  00432537:  MOV byte ptr [0x00d8c339],0x1\n  0043253e:  ADD ESP,0x40\n  00432541:  RET", 
+  "callers": [
+    {
+      "address": "0x00422950", 
+      "name": "FUN_00422950"
+    }
+  ]
+}

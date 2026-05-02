@@ -1,0 +1,50 @@
+{
+  "address": "0x00554bbe", 
+  "size_bytes": 132, 
+  "calling_convention": "unknown", 
+  "signature": "undefined FUN_00554bbe(undefined4 param_1)", 
+  "callees": [
+    {
+      "address": "0x00000028", 
+      "name": "GetLocalTime"
+    }
+  ], 
+  "global_refs": [
+    {
+      "address": "0x-0000018", 
+      "type": null, 
+      "name": "DAT_-0000018"
+    }, 
+    {
+      "address": "0x0056a0a4", 
+      "type": null, 
+      "name": "PTR_GetLocalTime_0056a0a4"
+    }, 
+    {
+      "address": "0x-0000016", 
+      "type": null, 
+      "name": "DAT_-0000016"
+    }, 
+    {
+      "address": "0x00000004", 
+      "type": null, 
+      "name": "DAT_00000004"
+    }, 
+    {
+      "address": "0x-0000008", 
+      "type": null, 
+      "name": "DAT_-0000008"
+    }, 
+    {
+      "address": "0x-0000012", 
+      "type": null, 
+      "name": "DAT_-0000012"
+    }
+  ], 
+  "has_custom_name": false, 
+  "decompiled_c": "\r\nchar * FUN_00554bbe(char *param_1)\r\n\r\n{\r\n  _SYSTEMTIME local_18;\r\n  \r\n  GetLocalTime(&local_18);\r\n  param_1[8] = '\\0';\r\n  param_1[5] = '/';\r\n  param_1[2] = '/';\r\n  *param_1 = (char)((ulonglong)(uint)local_18.wMonth / 10) + '0';\r\n  param_1[1] = (char)((ulonglong)(uint)local_18.wMonth % 10) + '0';\r\n  param_1[3] = (char)((ulonglong)local_18.wDay / 10) + '0';\r\n  param_1[4] = (char)((ulonglong)local_18.wDay % 10) + '0';\r\n  param_1[6] = (char)(((uint)local_18.wYear % 100) / 10) + '0';\r\n  param_1[7] = (char)(((uint)local_18.wYear % 100) % 10) + '0';\r\n  return param_1;\r\n}\r\n\r\n", 
+  "is_thunk": false, 
+  "name": "FUN_00554bbe", 
+  "assembly": "  00554bbe:  PUSH EBP\n  00554bbf:  MOV EBP,ESP\n  00554bc1:  SUB ESP,0x14\n  00554bc4:  PUSH EBX\n  00554bc5:  PUSH ESI\n  00554bc6:  LEA EAX,[EBP + -0x14]\n  00554bc9:  PUSH EDI\n  00554bca:  PUSH EAX\n  00554bcb:  CALL dword ptr [0x0056a0a4]\n  00554bd1:  MOVZX EAX,word ptr [EBP + -0x14]\n  00554bd5:  PUSH 0x64\n  00554bd7:  CDQ\n  00554bd8:  POP ECX\n  00554bd9:  IDIV ECX\n  00554bdb:  MOVZX EDI,word ptr [EBP + -0x12]\n  00554bdf:  PUSH 0xa\n  00554be1:  MOV EAX,EDI\n  00554be3:  POP ESI\n  00554be4:  MOV ECX,dword ptr [EBP + 0x8]\n  00554be7:  MOV EBX,ESI\n  00554be9:  AND byte ptr [ECX + 0x8],0x0\n  00554bed:  MOV byte ptr [ECX + 0x5],0x2f\n  00554bf1:  MOV byte ptr [ECX + 0x2],0x2f\n  00554bf5:  MOV dword ptr [EBP + -0x4],EDX\n  00554bf8:  CDQ\n  00554bf9:  IDIV EBX\n  00554bfb:  MOV BL,0x30\n  00554bfd:  ADD AL,BL\n  00554bff:  MOV byte ptr [ECX],AL\n  00554c01:  MOV EAX,EDI\n  00554c03:  CDQ\n  00554c04:  MOV EDI,ESI\n  00554c06:  IDIV EDI\n  00554c08:  MOVZX EAX,word ptr [EBP + -0xe]\n  00554c0c:  ADD DL,BL\n  00554c0e:  MOV byte ptr [ECX + 0x1],DL\n  00554c11:  CDQ\n  00554c12:  IDIV EDI\n  00554c14:  ADD AL,BL\n  00554c16:  MOV byte ptr [ECX + 0x3],AL\n  00554c19:  MOVZX EAX,word ptr [EBP + -0xe]\n  00554c1d:  CDQ\n  00554c1e:  IDIV EDI\n  00554c20:  MOV EAX,dword ptr [EBP + -0x4]\n  00554c23:  ADD DL,BL\n  00554c25:  MOV byte ptr [ECX + 0x4],DL\n  00554c28:  CDQ\n  00554c29:  IDIV EDI\n  00554c2b:  POP EDI\n  00554c2c:  ADD AL,BL\n  00554c2e:  MOV byte ptr [ECX + 0x6],AL\n  00554c31:  MOV EAX,dword ptr [EBP + -0x4]\n  00554c34:  CDQ\n  00554c35:  IDIV ESI\n  00554c37:  POP ESI\n  00554c38:  MOV EAX,ECX\n  00554c3a:  ADD DL,BL\n  00554c3c:  POP EBX\n  00554c3d:  MOV byte ptr [ECX + 0x7],DL\n  00554c40:  LEAVE\n  00554c41:  RET", 
+  "callers": []
+}

@@ -1,0 +1,69 @@
+{
+  "address": "0x0054e192", 
+  "size_bytes": 167, 
+  "calling_convention": "unknown", 
+  "signature": "undefined FUN_0054e192(undefined4 param_1, undefined4 param_2)", 
+  "callees": [
+    {
+      "address": "0x00552440", 
+      "name": "FUN_00552440"
+    }, 
+    {
+      "address": "0x00552b20", 
+      "name": "FUN_00552b20"
+    }
+  ], 
+  "global_refs": [
+    {
+      "address": "0x00000004", 
+      "type": null, 
+      "name": "DAT_00000004"
+    }, 
+    {
+      "address": "0x00000008", 
+      "type": null, 
+      "name": "DAT_00000008"
+    }, 
+    {
+      "address": "0x00572c30", 
+      "type": null, 
+      "name": "DAT_00572c30"
+    }, 
+    {
+      "address": "0x-000000c", 
+      "type": null, 
+      "name": "DAT_-000000c"
+    }, 
+    {
+      "address": "0x-0000008", 
+      "type": null, 
+      "name": "DAT_-0000008"
+    }, 
+    {
+      "address": "0x-0000004", 
+      "type": null, 
+      "name": "DAT_-0000004"
+    }, 
+    {
+      "address": "0x00572be8", 
+      "type": null, 
+      "name": "DAT_00572be8"
+    }, 
+    {
+      "address": "0x00572bf0", 
+      "type": null, 
+      "name": "DAT_00572bf0"
+    }, 
+    {
+      "address": "0x00572bf8", 
+      "type": null, 
+      "name": "DAT_00572bf8"
+    }
+  ], 
+  "has_custom_name": false, 
+  "decompiled_c": "\r\n/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */\r\n\r\nvoid FUN_0054e192(undefined8 *param_1,undefined8 *param_2)\r\n\r\n{\r\n  undefined4 uVar1;\r\n  ulonglong uVar2;\r\n  undefined8 uVar3;\r\n  ulonglong uVar4;\r\n  undefined8 uVar5;\r\n  undefined8 in_MM4;\r\n  undefined8 uVar6;\r\n  \r\n  FastExitMediaState();\r\n  uVar3 = *param_2;\r\n  uVar4 = param_2[1];\r\n  uVar1 = (undefined4)(uVar4 >> 0x20);\r\n  uVar5 = PackedFloatingCompareGE(CONCAT44(uVar1,uVar1),_DAT_00572c30);\r\n  if ((int)uVar5 == 0) {\r\n    uVar1 = FUN_00552440();\r\n    uVar2 = FUN_00552b20();\r\n    uVar5 = PackedFloatingCompareGE(uVar2 & _DAT_00572be8,DAT_00572bf0);\r\n    uVar3 = *param_2;\r\n    uVar4 = param_2[1];\r\n    if ((int)uVar5 != 0) {\r\n      uVar6 = FloatingReciprocalAprox(in_MM4,uVar2);\r\n      uVar5 = PackedFloatingReciprocalIter1(uVar2,uVar6);\r\n      uVar5 = PackedFloatingReciprocalIter2(uVar5,uVar6);\r\n      uVar5 = PackedFloatingMUL(CONCAT44(uVar1,uVar1),uVar5);\r\n      uVar3 = PackedFloatingMUL(uVar3,uVar5);\r\n      uVar4 = PackedFloatingMUL(uVar4,uVar5);\r\n    }\r\n  }\r\n  uVar4 = uVar4 & _DAT_00572bf8;\r\n  *param_1 = uVar3;\r\n  param_1[1] = uVar4;\r\n  FastExitMediaState();\r\n  return;\r\n}\r\n\r\n", 
+  "is_thunk": false, 
+  "name": "FUN_0054e192", 
+  "assembly": "  0054e192:  SUB ESP,0xc\n  0054e195:  FEMMS\n  0054e197:  MOV EAX,dword ptr [ESP + 0x10]\n  0054e19b:  MOV EDX,dword ptr [ESP + 0x14]\n  0054e19f:  MOVQ MM1,qword ptr [EDX]\n  0054e1a2:  MOVQ MM2,qword ptr [EDX + 0x8]\n  0054e1a6:  MOVQ MM3,MM2\n  0054e1a9:  PUNPCKHDQ MM3,MM3\n  0054e1ac:  MOVQ MM0,MM3\n  0054e1af:  PFCMPGE MM3,qword ptr [0x00572c30]\n  0054e1b7:  MOVD ECX,MM3\n  0054e1ba:  TEST ECX,ECX\n  0054e1bc:  JNZ 0x0054e223\n  0054e1be:  CALL 0x00552440\n  0054e1c3:  MOVD dword ptr [ESP],MM0\n  0054e1c7:  MOV dword ptr [ESP + 0x4],ESI\n  0054e1cb:  MOV dword ptr [ESP + 0x8],EBX\n  0054e1cf:  CALL 0x00552b20\n  0054e1d4:  MOVQ MM3,MM0\n  0054e1d7:  MOV EDX,dword ptr [ESP + 0x14]\n  0054e1db:  MOV ESI,dword ptr [ESP + 0x4]\n  0054e1df:  PAND MM3,qword ptr [0x00572be8]\n  0054e1e6:  MOV EAX,dword ptr [ESP + 0x10]\n  0054e1ea:  MOV EBX,dword ptr [ESP + 0x8]\n  0054e1ee:  PFCMPGE MM3,qword ptr [0x00572bf0]\n  0054e1f6:  MOVD ECX,MM3\n  0054e1f9:  MOVQ MM1,qword ptr [EDX]\n  0054e1fc:  MOVQ MM2,qword ptr [EDX + 0x8]\n  0054e200:  TEST ECX,ECX\n  0054e202:  JZ 0x0054e223\n  0054e204:  MOVD MM3,dword ptr [ESP]\n  0054e208:  PFRCP MM4,MM0\n  0054e20c:  PUNPCKLDQ MM3,MM3\n  0054e20f:  PFRCPIT1 MM0,MM4\n  0054e213:  PFRCPIT2 MM0,MM4\n  0054e217:  PFMUL MM3,MM0\n  0054e21b:  PFMUL MM1,MM3\n  0054e21f:  PFMUL MM2,MM3\n  0054e223:  PAND MM2,qword ptr [0x00572bf8]\n  0054e22a:  MOVQ qword ptr [EAX],MM1\n  0054e22d:  MOVQ qword ptr [EAX + 0x8],MM2\n  0054e231:  FEMMS\n  0054e233:  ADD ESP,0xc\n  0054e236:  RET 0x8", 
+  "callers": []
+}

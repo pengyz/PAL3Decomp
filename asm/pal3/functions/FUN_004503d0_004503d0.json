@@ -1,0 +1,84 @@
+{
+  "address": "0x004503d0", 
+  "size_bytes": 106, 
+  "calling_convention": "unknown", 
+  "signature": "undefined FUN_004503d0(undefined4 param_1, undefined4 param_2, undefined4 param_3, undefined4 param_4, undefined4 param_5)", 
+  "callees": [
+    {
+      "address": "0x00445b90", 
+      "name": "FUN_00445b90"
+    }, 
+    {
+      "address": "0x00000160", 
+      "name": "LoadTexture"
+    }
+  ], 
+  "global_refs": [
+    {
+      "address": "0x00000008", 
+      "type": null, 
+      "name": "DAT_00000008"
+    }, 
+    {
+      "address": "0x00000004", 
+      "type": null, 
+      "name": "DAT_00000004"
+    }, 
+    {
+      "address": "0x0000000c", 
+      "type": null, 
+      "name": "DAT_0000000c"
+    }, 
+    {
+      "address": "0x-0000008", 
+      "type": null, 
+      "name": "DAT_-0000008"
+    }, 
+    {
+      "address": "0x00000010", 
+      "type": null, 
+      "name": "DAT_00000010"
+    }, 
+    {
+      "address": "0x-0000004", 
+      "type": null, 
+      "name": "DAT_-0000004"
+    }, 
+    {
+      "address": "0x-0000010", 
+      "type": null, 
+      "name": "DAT_-0000010"
+    }, 
+    {
+      "address": "0x-000000c", 
+      "type": null, 
+      "name": "DAT_-000000c"
+    }, 
+    {
+      "address": "0x00bfda60", 
+      "type": null, 
+      "name": "DAT_00bfda60"
+    }, 
+    {
+      "address": "0x00000014", 
+      "type": null, 
+      "name": "DAT_00000014"
+    }, 
+    {
+      "address": "0x0056a594", 
+      "type": null, 
+      "name": "PTR_LoadTexture_0056a594"
+    }
+  ], 
+  "has_custom_name": false, 
+  "decompiled_c": "\r\nvoid __thiscall\r\nFUN_004503d0(int param_1_00,undefined4 param_1,undefined4 param_2,undefined4 param_3,\r\n            undefined4 param_4,undefined4 param_5)\r\n\r\n{\r\n  gbTexture *this;\r\n  undefined4 local_10;\r\n  undefined4 local_c;\r\n  undefined4 local_8;\r\n  undefined4 local_4;\r\n  \r\n  local_8 = param_2;\r\n  *(undefined4 *)(param_1_00 + 0x54) = param_2;\r\n  *(undefined4 *)(param_1_00 + 0x58) = param_3;\r\n  local_4 = param_3;\r\n  local_c = 0;\r\n  local_10 = 0;\r\n  FUN_00445b90(param_1,&local_10,param_4);\r\n  this = (gbTexture *)(**(code **)(*DAT_00bfda60 + 8))(param_5);\r\n  *(gbTexture **)(param_1_00 + 0x5c) = this;\r\n  if (this != (gbTexture *)0x0) {\r\n    gbTexture::LoadTexture(this,1);\r\n  }\r\n  return;\r\n}\r\n\r\n", 
+  "is_thunk": false, 
+  "name": "FUN_004503d0", 
+  "assembly": "  004503d0:  SUB ESP,0x10\n  004503d3:  MOV EAX,dword ptr [ESP + 0x18]\n  004503d7:  MOV EDX,dword ptr [ESP + 0x14]\n  004503db:  PUSH ESI\n  004503dc:  MOV ESI,ECX\n  004503de:  MOV ECX,dword ptr [ESP + 0x20]\n  004503e2:  MOV dword ptr [ESP + 0xc],EAX\n  004503e6:  MOV dword ptr [ESI + 0x54],EAX\n  004503e9:  MOV EAX,dword ptr [ESP + 0x24]\n  004503ed:  MOV dword ptr [ESI + 0x58],ECX\n  004503f0:  MOV dword ptr [ESP + 0x10],ECX\n  004503f4:  LEA ECX,[ESP + 0x4]\n  004503f8:  PUSH EAX\n  004503f9:  PUSH ECX\n  004503fa:  PUSH EDX\n  004503fb:  MOV ECX,ESI\n  004503fd:  MOV dword ptr [ESP + 0x14],0x0\n  00450405:  MOV dword ptr [ESP + 0x10],0x0\n  0045040d:  CALL 0x00445b90\n  00450412:  MOV ECX,dword ptr [0x00bfda60]\n  00450418:  MOV EDX,dword ptr [ESP + 0x28]\n  0045041c:  PUSH EDX\n  0045041d:  MOV EAX,dword ptr [ECX]\n  0045041f:  CALL dword ptr [EAX + 0x8]\n  00450422:  MOV dword ptr [ESI + 0x5c],EAX\n  00450425:  POP ESI\n  00450426:  TEST EAX,EAX\n  00450428:  JZ 0x00450434\n  0045042a:  PUSH 0x1\n  0045042c:  MOV ECX,EAX\n  0045042e:  CALL dword ptr [0x0056a594]\n  00450434:  ADD ESP,0x10\n  00450437:  RET 0x14", 
+  "callers": [
+    {
+      "address": "0x0044f130", 
+      "name": "FUN_0044f130"
+    }
+  ]
+}

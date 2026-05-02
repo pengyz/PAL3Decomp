@@ -1,0 +1,53 @@
+{
+  "address": "0x005382d0", 
+  "size_bytes": 69, 
+  "calling_convention": "unknown", 
+  "signature": "undefined FUN_005382d0(undefined4 param_1)", 
+  "callees": [
+    {
+      "address": "0x0000000b", 
+      "name": "FindFirstFileA"
+    }, 
+    {
+      "address": "0x00000018", 
+      "name": "FindClose"
+    }
+  ], 
+  "global_refs": [
+    {
+      "address": "0x00000004", 
+      "type": null, 
+      "name": "DAT_00000004"
+    }, 
+    {
+      "address": "0x-0000140", 
+      "type": null, 
+      "name": "DAT_-0000140"
+    }, 
+    {
+      "address": "0x0056a030", 
+      "type": null, 
+      "name": "PTR_FindFirstFileA_0056a030"
+    }, 
+    {
+      "address": "0x0056a064", 
+      "type": null, 
+      "name": "PTR_FindClose_0056a064"
+    }
+  ], 
+  "has_custom_name": false, 
+  "decompiled_c": "\r\nbool FUN_005382d0(LPCSTR param_1)\r\n\r\n{\r\n  HANDLE hFindFile;\r\n  _WIN32_FIND_DATAA local_140;\r\n  \r\n  hFindFile = FindFirstFileA(param_1,&local_140);\r\n  if (hFindFile == (HANDLE)0xffffffff) {\r\n    return false;\r\n  }\r\n  FindClose(hFindFile);\r\n  return ((byte)local_140.dwFileAttributes & 0x10) != 0;\r\n}\r\n\r\n", 
+  "is_thunk": false, 
+  "name": "FUN_005382d0", 
+  "assembly": "  005382d0:  MOV ECX,dword ptr [ESP + 0x4]\n  005382d4:  SUB ESP,0x140\n  005382da:  LEA EAX,[ESP]\n  005382de:  PUSH ESI\n  005382df:  PUSH EAX\n  005382e0:  PUSH ECX\n  005382e1:  XOR ESI,ESI\n  005382e3:  CALL dword ptr [0x0056a030]\n  005382e9:  CMP EAX,-0x1\n  005382ec:  JNZ 0x005382f8\n  005382ee:  XOR EAX,EAX\n  005382f0:  POP ESI\n  005382f1:  ADD ESP,0x140\n  005382f7:  RET\n  005382f8:  TEST byte ptr [ESP + 0x4],0x10\n  005382fd:  JZ 0x00538304\n  005382ff:  MOV ESI,0x1\n  00538304:  PUSH EAX\n  00538305:  CALL dword ptr [0x0056a064]\n  0053830b:  MOV EAX,ESI\n  0053830d:  POP ESI\n  0053830e:  ADD ESP,0x140\n  00538314:  RET", 
+  "callers": [
+    {
+      "address": "0x00541900", 
+      "name": "FUN_00541900"
+    }, 
+    {
+      "address": "0x00538320", 
+      "name": "FUN_00538320"
+    }
+  ]
+}

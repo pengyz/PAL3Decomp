@@ -1,0 +1,34 @@
+{
+  "address": "0x00420110", 
+  "size_bytes": 62, 
+  "calling_convention": "unknown", 
+  "signature": "undefined FUN_00420110(undefined4 param_1)", 
+  "callees": [
+    {
+      "address": "0x00412400", 
+      "name": "FUN_00412400"
+    }
+  ], 
+  "global_refs": [
+    {
+      "address": "0x00000004", 
+      "type": null, 
+      "name": "DAT_00000004"
+    }
+  ], 
+  "has_custom_name": false, 
+  "decompiled_c": "\r\nvoid __thiscall FUN_00420110(int param_1_00,undefined4 param_1)\r\n\r\n{\r\n  int iVar1;\r\n  \r\n  iVar1 = 0;\r\n  if (0 < *(int *)(param_1_00 + 0xe0e0)) {\r\n    do {\r\n      FUN_00412400(param_1,0);\r\n      iVar1 = iVar1 + 1;\r\n    } while (iVar1 < *(int *)(param_1_00 + 0xe0e0));\r\n  }\r\n  return;\r\n}\r\n\r\n", 
+  "is_thunk": false, 
+  "name": "FUN_00420110", 
+  "assembly": "  00420110:  PUSH EBX\n  00420111:  MOV EBX,ECX\n  00420113:  PUSH ESI\n  00420114:  XOR ESI,ESI\n  00420116:  MOV EAX,dword ptr [EBX + 0xe0e0]\n  0042011c:  TEST EAX,EAX\n  0042011e:  JLE 0x00420149\n  00420120:  PUSH EBP\n  00420121:  MOV EBP,dword ptr [ESP + 0x10]\n  00420125:  PUSH EDI\n  00420126:  LEA EDI,[EBX + 0xe0e4]\n  0042012c:  PUSH 0x0\n  0042012e:  PUSH EBP\n  0042012f:  MOV ECX,EDI\n  00420131:  CALL 0x00412400\n  00420136:  MOV EAX,dword ptr [EBX + 0xe0e0]\n  0042013c:  INC ESI\n  0042013d:  ADD EDI,0x2200\n  00420143:  CMP ESI,EAX\n  00420145:  JL 0x0042012c\n  00420147:  POP EDI\n  00420148:  POP EBP\n  00420149:  POP ESI\n  0042014a:  POP EBX\n  0042014b:  RET 0x4", 
+  "callers": [
+    {
+      "address": "0x00405c00", 
+      "name": "FUN_00405c00"
+    }, 
+    {
+      "address": "0x00535970", 
+      "name": "FUN_00535970"
+    }
+  ]
+}

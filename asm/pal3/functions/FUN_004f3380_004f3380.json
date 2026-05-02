@@ -1,0 +1,44 @@
+{
+  "address": "0x004f3380", 
+  "size_bytes": 80, 
+  "calling_convention": "unknown", 
+  "signature": "undefined FUN_004f3380(undefined4 param_1, undefined4 param_2, undefined4 param_3)", 
+  "callees": [
+    {
+      "address": "0x004f2c30", 
+      "name": "FUN_004f2c30"
+    }, 
+    {
+      "address": "0x004f31c0", 
+      "name": "FUN_004f31c0"
+    }
+  ], 
+  "global_refs": [
+    {
+      "address": "0x0000000c", 
+      "type": null, 
+      "name": "DAT_0000000c"
+    }, 
+    {
+      "address": "0x00000004", 
+      "type": null, 
+      "name": "DAT_00000004"
+    }, 
+    {
+      "address": "0x00000008", 
+      "type": null, 
+      "name": "DAT_00000008"
+    }
+  ], 
+  "has_custom_name": false, 
+  "decompiled_c": "\r\nvoid FUN_004f3380(undefined4 param_1,undefined4 param_2,uint param_3)\r\n\r\n{\r\n  int iVar1;\r\n  int iVar2;\r\n  \r\n  iVar2 = (param_3 ^ (int)param_3 >> 0x1f) - ((int)param_3 >> 0x1f);\r\n  iVar1 = FUN_004f2c30(param_1,0);\r\n  if (iVar1 < iVar2) {\r\n    iVar2 = FUN_004f2c30(param_1,0);\r\n  }\r\n  FUN_004f31c0(param_1,-iVar2,1);\r\n  FUN_004f31c0(param_2,iVar2,1);\r\n  return;\r\n}\r\n\r\n", 
+  "is_thunk": false, 
+  "name": "FUN_004f3380", 
+  "assembly": "  004f3380:  MOV EAX,dword ptr [ESP + 0xc]\n  004f3384:  PUSH EBX\n  004f3385:  MOV EBX,dword ptr [ESP + 0x8]\n  004f3389:  PUSH ESI\n  004f338a:  CDQ\n  004f338b:  MOV ESI,EAX\n  004f338d:  PUSH EDI\n  004f338e:  XOR ESI,EDX\n  004f3390:  PUSH 0x0\n  004f3392:  MOV EDI,ECX\n  004f3394:  PUSH EBX\n  004f3395:  SUB ESI,EDX\n  004f3397:  CALL 0x004f2c30\n  004f339c:  CMP EAX,ESI\n  004f339e:  JGE 0x004f33ac\n  004f33a0:  PUSH 0x0\n  004f33a2:  PUSH EBX\n  004f33a3:  MOV ECX,EDI\n  004f33a5:  CALL 0x004f2c30\n  004f33aa:  MOV ESI,EAX\n  004f33ac:  MOV EAX,ESI\n  004f33ae:  PUSH 0x1\n  004f33b0:  NEG EAX\n  004f33b2:  PUSH EAX\n  004f33b3:  PUSH EBX\n  004f33b4:  MOV ECX,EDI\n  004f33b6:  CALL 0x004f31c0\n  004f33bb:  MOV ECX,dword ptr [ESP + 0x14]\n  004f33bf:  PUSH 0x1\n  004f33c1:  PUSH ESI\n  004f33c2:  PUSH ECX\n  004f33c3:  MOV ECX,EDI\n  004f33c5:  CALL 0x004f31c0\n  004f33ca:  POP EDI\n  004f33cb:  POP ESI\n  004f33cc:  POP EBX\n  004f33cd:  RET 0xc", 
+  "callers": [
+    {
+      "address": "0x004f1cc0", 
+      "name": "FUN_004f1cc0"
+    }
+  ]
+}

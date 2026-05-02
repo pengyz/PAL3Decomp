@@ -1,0 +1,25 @@
+{
+  "address": "0x00546ee2", 
+  "size_bytes": 90, 
+  "calling_convention": "unknown", 
+  "signature": "undefined FUN_00546ee2(void)", 
+  "callees": [], 
+  "global_refs": [
+    {
+      "address": "0xffdff000", 
+      "type": null, 
+      "name": "ExceptionList"
+    }
+  ], 
+  "has_custom_name": false, 
+  "decompiled_c": "\r\n/* WARNING: Removing unreachable block (ram,0x00546efd) */\r\n\r\nundefined4 FUN_00546ee2(void)\r\n\r\n{\r\n  undefined4 *puVar1;\r\n  undefined4 uVar2;\r\n  int unaff_EBP;\r\n  \r\n  *(undefined4 *)(unaff_EBP + -4) = 0xffffffff;\r\n  if (*(int *)(unaff_EBP + -0x2c) == 0) {\r\n    uVar2 = *(undefined4 *)(unaff_EBP + -0x14);\r\n  }\r\n  else {\r\n    puVar1 = (undefined4 *)cpuid_Version_info(1);\r\n    uVar2 = puVar1[2];\r\n    *(undefined4 *)(unaff_EBP + -0x2c) = *puVar1;\r\n    *(undefined4 *)(unaff_EBP + -0x28) = uVar2;\r\n    if ((*(uint *)(unaff_EBP + -0x28) & 0x2000000) != 0) {\r\n      *(uint *)(unaff_EBP + -0x14) = *(uint *)(unaff_EBP + -0x14) | 4;\r\n    }\r\n    if ((*(uint *)(unaff_EBP + -0x28) & 0x4000000) != 0) {\r\n      *(uint *)(unaff_EBP + -0x14) = *(uint *)(unaff_EBP + -0x14) | 8;\r\n    }\r\n    uVar2 = *(undefined4 *)(unaff_EBP + -0x14);\r\n  }\r\n  ExceptionList = *(void **)(unaff_EBP + -0xc);\r\n  return uVar2;\r\n}\r\n\r\n", 
+  "is_thunk": false, 
+  "name": "FUN_00546ee2", 
+  "assembly": "  00546ee2:  OR dword ptr [EBP + -0x4],0xffffffff\n  00546ee6:  JMP 0x00546eed\n  00546eed:  CMP dword ptr [EBP + -0x2c],0x0\n  00546ef1:  JNZ 0x00546ef8\n  00546ef3:  MOV EAX,dword ptr [EBP + -0x14]\n  00546ef6:  JMP 0x00546f32\n  00546ef8:  MOV EAX,0x1\n  00546efd:  CPUID\n  00546eff:  MOV dword ptr [EBP + -0x2c],EAX\n  00546f02:  MOV dword ptr [EBP + -0x28],EDX\n  00546f05:  MOV EAX,dword ptr [EBP + -0x28]\n  00546f08:  AND EAX,0x2000000\n  00546f0d:  TEST EAX,EAX\n  00546f0f:  JZ 0x00546f1a\n  00546f11:  MOV EAX,dword ptr [EBP + -0x14]\n  00546f14:  OR EAX,0x4\n  00546f17:  MOV dword ptr [EBP + -0x14],EAX\n  00546f1a:  MOV EAX,dword ptr [EBP + -0x28]\n  00546f1d:  AND EAX,0x4000000\n  00546f22:  TEST EAX,EAX\n  00546f24:  JZ 0x00546f2f\n  00546f26:  MOV EAX,dword ptr [EBP + -0x14]\n  00546f29:  OR EAX,0x8\n  00546f2c:  MOV dword ptr [EBP + -0x14],EAX\n  00546f2f:  MOV EAX,dword ptr [EBP + -0x14]\n  00546f32:  MOV ECX,dword ptr [EBP + -0xc]\n  00546f35:  MOV dword ptr FS:[0x0],ECX\n  00546f3c:  POP EDI\n  00546f3d:  POP ESI\n  00546f3e:  POP EBX\n  00546f3f:  LEAVE\n  00546f40:  RET", 
+  "callers": [
+    {
+      "address": "0x00546e9c", 
+      "name": "FUN_00546e9c"
+    }
+  ]
+}

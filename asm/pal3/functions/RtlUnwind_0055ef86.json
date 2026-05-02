@@ -1,0 +1,23 @@
+{
+  "address": "0x0055ef86", 
+  "size_bytes": 6, 
+  "calling_convention": "__stdcall", 
+  "signature": "void RtlUnwind(PVOID TargetFrame, PVOID TargetIp, PEXCEPTION_RECORD ExceptionRecord, PVOID ReturnValue)", 
+  "callees": [], 
+  "global_refs": [], 
+  "has_custom_name": true, 
+  "decompiled_c": "\r\nvoid RtlUnwind(PVOID TargetFrame,PVOID TargetIp,PEXCEPTION_RECORD ExceptionRecord,PVOID ReturnValue)\r\n\r\n{\r\n                    /* WARNING: Could not recover jumptable at 0x0055ef86. Too many branches */\r\n                    /* WARNING: Treating indirect jump as call */\r\n  RtlUnwind(TargetFrame,TargetIp,ExceptionRecord,ReturnValue);\r\n  return;\r\n}\r\n\r\n", 
+  "is_thunk": true, 
+  "name": "RtlUnwind", 
+  "assembly": "  0055ef86:  JMP dword ptr [0x0056a090]", 
+  "callers": [
+    {
+      "address": "0x00553116", 
+      "name": "FUN_00553116"
+    }, 
+    {
+      "address": "0x005533b8", 
+      "name": "__global_unwind2"
+    }
+  ]
+}

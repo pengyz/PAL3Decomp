@@ -1,0 +1,111 @@
+{
+  "address": "0x004318a0", 
+  "size_bytes": 5, 
+  "calling_convention": "unknown", 
+  "signature": "undefined thunk_FUN_004319c0(void)", 
+  "callees": [], 
+  "global_refs": [], 
+  "has_custom_name": false, 
+  "decompiled_c": "\r\nvoid __fastcall thunk_FUN_004319c0(int param_1)\r\n\r\n{\r\n  if (*(int *)(param_1 + 0x200) != 0) {\r\n    FUN_00552f55(*(int *)(param_1 + 0x200));\r\n    *(undefined4 *)(param_1 + 0x200) = 0;\r\n  }\r\n  *(undefined4 *)(param_1 + 0x204) = 0;\r\n  *(undefined4 *)(param_1 + 0x208) = 0;\r\n  return;\r\n}\r\n\r\n", 
+  "is_thunk": true, 
+  "name": "thunk_FUN_004319c0", 
+  "assembly": "  004318a0:  JMP 0x004319c0", 
+  "callers": [
+    {
+      "address": "0x0055f460", 
+      "name": "Unwind@0055f460"
+    }, 
+    {
+      "address": "0x0055f860", 
+      "name": "Unwind@0055f860"
+    }, 
+    {
+      "address": "0x0056024b", 
+      "name": "Unwind@0056024b"
+    }, 
+    {
+      "address": "0x00561260", 
+      "name": "Unwind@00561260"
+    }, 
+    {
+      "address": "0x00561290", 
+      "name": "Unwind@00561290"
+    }, 
+    {
+      "address": "0x00567970", 
+      "name": "Unwind@00567970"
+    }, 
+    {
+      "address": "0x00522120", 
+      "name": "FUN_00522120"
+    }, 
+    {
+      "address": "0x0056806e", 
+      "name": "Unwind@0056806e"
+    }, 
+    {
+      "address": "0x0056816e", 
+      "name": "Unwind@0056816e"
+    }, 
+    {
+      "address": "0x00568408", 
+      "name": "Unwind@00568408"
+    }, 
+    {
+      "address": "0x005685a8", 
+      "name": "Unwind@005685a8"
+    }, 
+    {
+      "address": "0x00568a69", 
+      "name": "Unwind@00568a69"
+    }, 
+    {
+      "address": "0x00568c20", 
+      "name": "Unwind@00568c20"
+    }, 
+    {
+      "address": "0x00568deb", 
+      "name": "Unwind@00568deb"
+    }, 
+    {
+      "address": "0x00568e2b", 
+      "name": "Unwind@00568e2b"
+    }, 
+    {
+      "address": "0x0041efa0", 
+      "name": "FUN_0041efa0"
+    }, 
+    {
+      "address": "0x00430290", 
+      "name": "FUN_00430290"
+    }, 
+    {
+      "address": "0x00446200", 
+      "name": "FUN_00446200"
+    }, 
+    {
+      "address": "0x00457340", 
+      "name": "FUN_00457340"
+    }, 
+    {
+      "address": "0x00538500", 
+      "name": "FUN_00538500"
+    }, 
+    {
+      "address": "0x005284e0", 
+      "name": "FUN_005284e0"
+    }, 
+    {
+      "address": "0x0052bd50", 
+      "name": "FUN_0052bd50"
+    }, 
+    {
+      "address": "0x00535710", 
+      "name": "FUN_00535710"
+    }, 
+    {
+      "address": "0x0053dc50", 
+      "name": "FUN_0053dc50"
+    }
+  ]
+}

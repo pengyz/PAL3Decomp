@@ -1,0 +1,40 @@
+{
+  "address": "0x004c5c60", 
+  "size_bytes": 104, 
+  "calling_convention": "unknown", 
+  "signature": "undefined FUN_004c5c60(undefined4 param_1, undefined4 param_2, undefined4 param_3)", 
+  "callees": [], 
+  "global_refs": [
+    {
+      "address": "0x0000000c", 
+      "type": null, 
+      "name": "DAT_0000000c"
+    }, 
+    {
+      "address": "0x00000008", 
+      "type": null, 
+      "name": "DAT_00000008"
+    }, 
+    {
+      "address": "0x00000004", 
+      "type": null, 
+      "name": "DAT_00000004"
+    }, 
+    {
+      "address": "0x0056f5d0", 
+      "type": null, 
+      "name": "DAT_0056f5d0"
+    }
+  ], 
+  "has_custom_name": false, 
+  "decompiled_c": "\r\n/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */\r\n\r\nvoid FUN_004c5c60(float *param_1,int param_2,int param_3)\r\n\r\n{\r\n  float fVar1;\r\n  float fVar2;\r\n  float fVar3;\r\n  int iVar4;\r\n  \r\n  fVar3 = (float)param_3;\r\n  iVar4 = (int)(0x100 / (longlong)param_3);\r\n  fVar1 = (float)(param_2 % iVar4) * fVar3 * _DAT_0056f5d0;\r\n  *param_1 = fVar1;\r\n  fVar2 = fVar3 * _DAT_0056f5d0;\r\n  param_1[2] = fVar2 + fVar1;\r\n  fVar1 = fVar3 * (float)(param_2 / iVar4) * _DAT_0056f5d0;\r\n  param_1[1] = fVar1;\r\n  param_1[3] = fVar1 + fVar2;\r\n  return;\r\n}\r\n\r\n", 
+  "is_thunk": false, 
+  "name": "FUN_004c5c60", 
+  "assembly": "  004c5c60:  MOV EAX,0x100\n  004c5c65:  PUSH ESI\n  004c5c66:  CDQ\n  004c5c67:  FILD dword ptr [ESP + 0x10]\n  004c5c6b:  IDIV dword ptr [ESP + 0x10]\n  004c5c6f:  PUSH EDI\n  004c5c70:  MOV EDI,dword ptr [ESP + 0x10]\n  004c5c74:  MOV ECX,dword ptr [ESP + 0xc]\n  004c5c78:  MOV ESI,EAX\n  004c5c7a:  MOV EAX,EDI\n  004c5c7c:  CDQ\n  004c5c7d:  IDIV ESI\n  004c5c7f:  MOV EAX,EDI\n  004c5c81:  POP EDI\n  004c5c82:  MOV dword ptr [ESP + 0x10],EDX\n  004c5c86:  CDQ\n  004c5c87:  FILD dword ptr [ESP + 0x10]\n  004c5c8b:  IDIV ESI\n  004c5c8d:  FMUL ST1\n  004c5c8f:  FMUL dword ptr [0x0056f5d0]\n  004c5c95:  FLD ST0\n  004c5c97:  FSTP dword ptr [ECX]\n  004c5c99:  FLD ST1\n  004c5c9b:  FMUL dword ptr [0x0056f5d0]\n  004c5ca1:  FST dword ptr [ESP + 0x10]\n  004c5ca5:  FADD ST0,ST1\n  004c5ca7:  FSTP dword ptr [ECX + 0x8]\n  004c5caa:  POP ESI\n  004c5cab:  FSTP ST0\n  004c5cad:  MOV dword ptr [ESP + 0x8],EAX\n  004c5cb1:  FIMUL dword ptr [ESP + 0x8]\n  004c5cb5:  FMUL dword ptr [0x0056f5d0]\n  004c5cbb:  FST dword ptr [ECX + 0x4]\n  004c5cbe:  FADD dword ptr [ESP + 0xc]\n  004c5cc2:  FSTP dword ptr [ECX + 0xc]\n  004c5cc5:  RET 0xc", 
+  "callers": [
+    {
+      "address": "0x004c5cd0", 
+      "name": "FUN_004c5cd0"
+    }
+  ]
+}

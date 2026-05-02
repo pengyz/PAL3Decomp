@@ -1,0 +1,49 @@
+{
+  "address": "0x0053c440", 
+  "size_bytes": 32, 
+  "calling_convention": "__thiscall", 
+  "signature": "void SetRect(CRect * this, int param_1, int param_2, int param_3, int param_4)", 
+  "callees": [
+    {
+      "address": "0x005694f0", 
+      "name": "FUN_005694f0"
+    }
+  ], 
+  "global_refs": [
+    {
+      "address": "0x00000010", 
+      "type": null, 
+      "name": "DAT_00000010"
+    }, 
+    {
+      "address": "0x0000000c", 
+      "type": null, 
+      "name": "DAT_0000000c"
+    }, 
+    {
+      "address": "0x00000008", 
+      "type": null, 
+      "name": "DAT_00000008"
+    }, 
+    {
+      "address": "0x00000004", 
+      "type": null, 
+      "name": "DAT_00000004"
+    }
+  ], 
+  "has_custom_name": true, 
+  "decompiled_c": "\r\n/* Library Function - Single Match\r\n    public: void __thiscall CRect::SetRect(int,int,int,int)\r\n   \r\n   Libraries: Visual Studio 2005 Release, Visual Studio 2008 Release */\r\n\r\nvoid __thiscall CRect::SetRect(CRect *this,int param_1,int param_2,int param_3,int param_4)\r\n\r\n{\r\n  FUN_005694f0(this,param_1,param_2,param_3,param_4);\r\n  return;\r\n}\r\n\r\n", 
+  "is_thunk": false, 
+  "name": "SetRect", 
+  "assembly": "  0053c440:  MOV EAX,dword ptr [ESP + 0x10]\n  0053c444:  MOV EDX,dword ptr [ESP + 0xc]\n  0053c448:  PUSH EAX\n  0053c449:  MOV EAX,dword ptr [ESP + 0xc]\n  0053c44d:  PUSH EDX\n  0053c44e:  MOV EDX,dword ptr [ESP + 0xc]\n  0053c452:  PUSH EAX\n  0053c453:  PUSH EDX\n  0053c454:  PUSH ECX\n  0053c455:  CALL 0x005694f0\n  0053c45a:  ADD ESP,0x14\n  0053c45d:  RET 0x10", 
+  "callers": [
+    {
+      "address": "0x004c24b0", 
+      "name": "FUN_004c24b0"
+    }, 
+    {
+      "address": "0x00457070", 
+      "name": "FUN_00457070"
+    }
+  ]
+}

@@ -1,0 +1,49 @@
+{
+  "address": "0x00434490", 
+  "size_bytes": 83, 
+  "calling_convention": "unknown", 
+  "signature": "undefined FUN_00434490(void)", 
+  "callees": [
+    {
+      "address": "0x00434670", 
+      "name": "FUN_00434670"
+    }, 
+    {
+      "address": "0x00541d10", 
+      "name": "FUN_00541d10"
+    }
+  ], 
+  "global_refs": [
+    {
+      "address": "0x0055fa0b", 
+      "type": null, 
+      "name": "LAB_0055fa0b"
+    }, 
+    {
+      "address": "0xffdff000", 
+      "type": null, 
+      "name": "ExceptionList"
+    }, 
+    {
+      "address": "0x-0000010", 
+      "type": null, 
+      "name": "DAT_-0000010"
+    }, 
+    {
+      "address": "0x-0000004", 
+      "type": null, 
+      "name": "DAT_-0000004"
+    }, 
+    {
+      "address": "0x-000000c", 
+      "type": null, 
+      "name": "DAT_-000000c"
+    }
+  ], 
+  "has_custom_name": false, 
+  "decompiled_c": "\r\nvoid __fastcall FUN_00434490(int param_1)\r\n\r\n{\r\n  void *local_c;\r\n  undefined *puStack_8;\r\n  undefined4 local_4;\r\n  \r\n  puStack_8 = &LAB_0055fa0b;\r\n  local_c = ExceptionList;\r\n  local_4 = 0;\r\n  ExceptionList = &local_c;\r\n  FUN_00434670();\r\n  FUN_00541d10(*(undefined4 *)(param_1 + 8));\r\n  *(undefined4 *)(param_1 + 8) = 0;\r\n  *(undefined4 *)(param_1 + 0xc) = 0;\r\n  *(undefined4 *)(param_1 + 0x10) = 0;\r\n  ExceptionList = local_c;\r\n  return;\r\n}\r\n\r\n", 
+  "is_thunk": false, 
+  "name": "FUN_00434490", 
+  "assembly": "  00434490:  PUSH -0x1\n  00434492:  PUSH 0x55fa0b\n  00434497:  MOV EAX,FS:[0x0]\n  0043449d:  PUSH EAX\n  0043449e:  MOV dword ptr FS:[0x0],ESP\n  004344a5:  PUSH ECX\n  004344a6:  PUSH ESI\n  004344a7:  MOV ESI,ECX\n  004344a9:  PUSH EDI\n  004344aa:  MOV dword ptr [ESP + 0x8],ESI\n  004344ae:  XOR EDI,EDI\n  004344b0:  MOV dword ptr [ESP + 0x14],EDI\n  004344b4:  CALL 0x00434670\n  004344b9:  MOV EAX,dword ptr [ESI + 0x8]\n  004344bc:  PUSH EAX\n  004344bd:  MOV dword ptr [ESP + 0xc],EAX\n  004344c1:  CALL 0x00541d10\n  004344c6:  MOV ECX,dword ptr [ESP + 0x10]\n  004344ca:  ADD ESP,0x4\n  004344cd:  MOV dword ptr [ESI + 0x8],EDI\n  004344d0:  MOV dword ptr [ESI + 0xc],EDI\n  004344d3:  MOV dword ptr [ESI + 0x10],EDI\n  004344d6:  POP EDI\n  004344d7:  POP ESI\n  004344d8:  MOV dword ptr FS:[0x0],ECX\n  004344df:  ADD ESP,0x10\n  004344e2:  RET", 
+  "callers": []
+}

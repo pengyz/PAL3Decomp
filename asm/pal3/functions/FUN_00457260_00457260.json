@@ -1,0 +1,59 @@
+{
+  "address": "0x00457260", 
+  "size_bytes": 212, 
+  "calling_convention": "unknown", 
+  "signature": "undefined FUN_00457260(void)", 
+  "callees": [
+    {
+      "address": "0x00431870", 
+      "name": "FUN_00431870"
+    }, 
+    {
+      "address": "0x00478c00", 
+      "name": "FUN_00478c00"
+    }
+  ], 
+  "global_refs": [
+    {
+      "address": "0x00561279", 
+      "type": null, 
+      "name": "LAB_00561279"
+    }, 
+    {
+      "address": "0xffdff000", 
+      "type": null, 
+      "name": "ExceptionList"
+    }, 
+    {
+      "address": "0x-0000010", 
+      "type": null, 
+      "name": "DAT_-0000010"
+    }, 
+    {
+      "address": "0x-0000004", 
+      "type": null, 
+      "name": "DAT_-0000004"
+    }, 
+    {
+      "address": "0x-000000c", 
+      "type": null, 
+      "name": "DAT_-000000c"
+    }, 
+    {
+      "address": "0x00dc3338", 
+      "type": null, 
+      "name": "DAT_00dc3338"
+    }
+  ], 
+  "has_custom_name": false, 
+  "decompiled_c": "\r\nundefined * __fastcall FUN_00457260(undefined *param_1)\r\n\r\n{\r\n  int iVar1;\r\n  undefined4 *puVar2;\r\n  void *local_c;\r\n  undefined *puStack_8;\r\n  undefined4 local_4;\r\n  \r\n  local_4 = 0xffffffff;\r\n  puStack_8 = &LAB_00561279;\r\n  local_c = ExceptionList;\r\n  ExceptionList = &local_c;\r\n  FUN_00431870();\r\n  local_4 = 0;\r\n  FUN_00478c00();\r\n  local_4 = CONCAT31(local_4._1_3_,1);\r\n  FUN_00431870();\r\n  *(undefined2 *)(param_1 + 0xc4d36) = 0;\r\n  *(undefined4 *)(param_1 + 0xc837c) = 0;\r\n  *(undefined4 *)(param_1 + 0xc8380) = 0;\r\n  puVar2 = (undefined4 *)(param_1 + 0xc8384);\r\n  for (iVar1 = 400; iVar1 != 0; iVar1 = iVar1 + -1) {\r\n    *puVar2 = 0;\r\n    puVar2 = puVar2 + 1;\r\n  }\r\n  puVar2 = (undefined4 *)(param_1 + 0xc9004);\r\n  for (iVar1 = 100; iVar1 != 0; iVar1 = iVar1 + -1) {\r\n    *puVar2 = 0;\r\n    puVar2 = puVar2 + 1;\r\n  }\r\n  puVar2 = (undefined4 *)(param_1 + 0xc89c4);\r\n  for (iVar1 = 400; iVar1 != 0; iVar1 = iVar1 + -1) {\r\n    *puVar2 = 0;\r\n    puVar2 = puVar2 + 1;\r\n  }\r\n  *(undefined4 *)(param_1 + 0xc4d34) = 0;\r\n  *(undefined4 *)(param_1 + 0xc837c) = 0;\r\n  *(undefined4 *)(param_1 + 0xc8380) = 0;\r\n  puVar2 = (undefined4 *)(param_1 + 0xc8384);\r\n  for (iVar1 = 200; iVar1 != 0; iVar1 = iVar1 + -1) {\r\n    *puVar2 = 0;\r\n    puVar2 = puVar2 + 1;\r\n  }\r\n  *param_1 = 0;\r\n  param_1[0xc4a24] = 0;\r\n  puVar2 = (undefined4 *)(param_1 + 0xc4c34);\r\n  for (iVar1 = 0x40; iVar1 != 0; iVar1 = iVar1 + -1) {\r\n    *puVar2 = 0;\r\n    puVar2 = puVar2 + 1;\r\n  }\r\n  DAT_00dc3338 = 0;\r\n  ExceptionList = local_c;\r\n  return param_1;\r\n}\r\n\r\n", 
+  "is_thunk": false, 
+  "name": "FUN_00457260", 
+  "assembly": "  00457260:  PUSH -0x1\n  00457262:  PUSH 0x561279\n  00457267:  MOV EAX,FS:[0x0]\n  0045726d:  PUSH EAX\n  0045726e:  MOV dword ptr FS:[0x0],ESP\n  00457275:  PUSH ECX\n  00457276:  PUSH EBX\n  00457277:  PUSH ESI\n  00457278:  MOV ESI,ECX\n  0045727a:  PUSH EDI\n  0045727b:  MOV dword ptr [ESP + 0xc],ESI\n  0045727f:  LEA ECX,[ESI + 0x4]\n  00457282:  CALL 0x00431870\n  00457287:  XOR EBX,EBX\n  00457289:  LEA ECX,[ESI + 0x210]\n  0045728f:  MOV dword ptr [ESP + 0x18],EBX\n  00457293:  CALL 0x00478c00\n  00457298:  LEA ECX,[ESI + 0xc4a28]\n  0045729e:  MOV byte ptr [ESP + 0x18],0x1\n  004572a3:  CALL 0x00431870\n  004572a8:  LEA ECX,[ESI + 0xc837c]\n  004572ae:  XOR EAX,EAX\n  004572b0:  MOV word ptr [ESI + 0xc4d36],BX\n  004572b7:  LEA EDI,[ESI + 0xc8384]\n  004572bd:  MOV dword ptr [ECX],EAX\n  004572bf:  XOR EDX,EDX\n  004572c1:  MOV dword ptr [ECX + 0x4],EAX\n  004572c4:  MOV ECX,0x190\n  004572c9:  STOSD.REP ES:EDI\n  004572cb:  MOV ECX,0x64\n  004572d0:  LEA EDI,[ESI + 0xc9004]\n  004572d6:  STOSD.REP ES:EDI\n  004572d8:  LEA EDI,[ESI + 0xc89c4]\n  004572de:  MOV ECX,0x190\n  004572e3:  STOSD.REP ES:EDI\n  004572e5:  LEA EAX,[ESI + 0xc837c]\n  004572eb:  MOV dword ptr [ESI + 0xc4d34],EBX\n  004572f1:  MOV ECX,0xc8\n  004572f6:  LEA EDI,[ESI + 0xc8384]\n  004572fc:  MOV dword ptr [EAX],EDX\n  004572fe:  MOV dword ptr [EAX + 0x4],EDX\n  00457301:  XOR EAX,EAX\n  00457303:  STOSD.REP ES:EDI\n  00457305:  MOV ECX,0x40\n  0045730a:  LEA EDI,[ESI + 0xc4c34]\n  00457310:  MOV byte ptr [ESI],BL\n  00457312:  MOV byte ptr [ESI + 0xc4a24],BL\n  00457318:  STOSD.REP ES:EDI\n  0045731a:  MOV ECX,dword ptr [ESP + 0x10]\n  0045731e:  MOV EAX,ESI\n  00457320:  POP EDI\n  00457321:  MOV byte ptr [0x00dc3338],BL\n  00457327:  POP ESI\n  00457328:  POP EBX\n  00457329:  MOV dword ptr FS:[0x0],ECX\n  00457330:  ADD ESP,0x10\n  00457333:  RET", 
+  "callers": [
+    {
+      "address": "0x004045f0", 
+      "name": "FUN_004045f0"
+    }
+  ]
+}

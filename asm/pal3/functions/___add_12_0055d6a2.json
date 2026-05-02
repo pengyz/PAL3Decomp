@@ -1,0 +1,39 @@
+{
+  "address": "0x0055d6a2", 
+  "size_bytes": 94, 
+  "calling_convention": "unknown", 
+  "signature": "undefined ___add_12(undefined4 param_1, undefined4 param_2)", 
+  "callees": [
+    {
+      "address": "0x0055d681", 
+      "name": "FUN_0055d681"
+    }
+  ], 
+  "global_refs": [
+    {
+      "address": "0x00000004", 
+      "type": null, 
+      "name": "DAT_00000004"
+    }, 
+    {
+      "address": "0x00000008", 
+      "type": null, 
+      "name": "DAT_00000008"
+    }
+  ], 
+  "has_custom_name": true, 
+  "decompiled_c": "\r\n/* Library Function - Single Match\r\n    ___add_12\r\n   \r\n   Library: Visual Studio 2003 Release */\r\n\r\nvoid ___add_12(undefined4 *param_1,undefined4 *param_2)\r\n\r\n{\r\n  int iVar1;\r\n  \r\n  iVar1 = FUN_0055d681(*param_1,*param_2,param_1);\r\n  if (iVar1 != 0) {\r\n    iVar1 = FUN_0055d681(param_1[1],1,param_1 + 1);\r\n    if (iVar1 != 0) {\r\n      param_1[2] = param_1[2] + 1;\r\n    }\r\n  }\r\n  iVar1 = FUN_0055d681(param_1[1],param_2[1],param_1 + 1);\r\n  if (iVar1 != 0) {\r\n    param_1[2] = param_1[2] + 1;\r\n  }\r\n  FUN_0055d681(param_1[2],param_2[2],param_1 + 2);\r\n  return;\r\n}\r\n\r\n", 
+  "is_thunk": false, 
+  "name": "___add_12", 
+  "assembly": "  0055d6a2:  PUSH ESI\n  0055d6a3:  MOV ESI,dword ptr [ESP + 0x8]\n  0055d6a7:  PUSH EDI\n  0055d6a8:  MOV EDI,dword ptr [ESP + 0x10]\n  0055d6ac:  PUSH ESI\n  0055d6ad:  PUSH dword ptr [EDI]\n  0055d6af:  PUSH dword ptr [ESI]\n  0055d6b1:  CALL 0x0055d681\n  0055d6b6:  ADD ESP,0xc\n  0055d6b9:  TEST EAX,EAX\n  0055d6bb:  JZ 0x0055d6d4\n  0055d6bd:  LEA EAX,[ESI + 0x4]\n  0055d6c0:  PUSH EAX\n  0055d6c1:  PUSH 0x1\n  0055d6c3:  PUSH dword ptr [EAX]\n  0055d6c5:  CALL 0x0055d681\n  0055d6ca:  ADD ESP,0xc\n  0055d6cd:  TEST EAX,EAX\n  0055d6cf:  JZ 0x0055d6d4\n  0055d6d1:  INC dword ptr [ESI + 0x8]\n  0055d6d4:  LEA EAX,[ESI + 0x4]\n  0055d6d7:  PUSH EAX\n  0055d6d8:  PUSH dword ptr [EDI + 0x4]\n  0055d6db:  PUSH dword ptr [EAX]\n  0055d6dd:  CALL 0x0055d681\n  0055d6e2:  ADD ESP,0xc\n  0055d6e5:  TEST EAX,EAX\n  0055d6e7:  JZ 0x0055d6ec\n  0055d6e9:  INC dword ptr [ESI + 0x8]\n  0055d6ec:  LEA EAX,[ESI + 0x8]\n  0055d6ef:  PUSH EAX\n  0055d6f0:  PUSH dword ptr [EDI + 0x8]\n  0055d6f3:  PUSH dword ptr [EAX]\n  0055d6f5:  CALL 0x0055d681\n  0055d6fa:  ADD ESP,0xc\n  0055d6fd:  POP EDI\n  0055d6fe:  POP ESI\n  0055d6ff:  RET", 
+  "callers": [
+    {
+      "address": "0x0055d75b", 
+      "name": "FUN_0055d75b"
+    }, 
+    {
+      "address": "0x0055d822", 
+      "name": "FUN_0055d822"
+    }
+  ]
+}

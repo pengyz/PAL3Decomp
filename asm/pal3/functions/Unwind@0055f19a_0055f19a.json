@@ -1,0 +1,14 @@
+{
+  "address": "0x0055f19a", 
+  "size_bytes": 12, 
+  "calling_convention": "unknown", 
+  "signature": "undefined Unwind@0055f19a(void)", 
+  "callees": [], 
+  "global_refs": [], 
+  "has_custom_name": true, 
+  "decompiled_c": "\r\nvoid Unwind_0055f19a(void)\r\n\r\n{\r\n  int unaff_EBP;\r\n  \r\n                    /* WARNING: Could not recover jumptable at 0x0055f1a0. Too many branches */\r\n                    /* WARNING: Treating indirect jump as call */\r\n  gbVolumeModifier::~gbVolumeModifier(*(gbVolumeModifier **)(unaff_EBP + -0x830));\r\n  return;\r\n}\r\n\r\n", 
+  "is_thunk": false, 
+  "name": "Unwind@0055f19a", 
+  "assembly": "  0055f19a:  MOV ECX,dword ptr [EBP + 0xfffff7d0]\n  0055f1a0:  JMP dword ptr [0x0056a5a8]", 
+  "callers": []
+}

@@ -1,0 +1,101 @@
+{
+  "address": "0x00406d70", 
+  "size_bytes": 625, 
+  "calling_convention": "unknown", 
+  "signature": "undefined FUN_00406d70(void)", 
+  "callees": [
+    {
+      "address": "0x00000143", 
+      "name": "gbImage2D"
+    }, 
+    {
+      "address": "0x00000091", 
+      "name": "CreateImage"
+    }, 
+    {
+      "address": "0x00000090", 
+      "name": "Release"
+    }, 
+    {
+      "address": "0x0000008f", 
+      "name": "ScaleTo"
+    }, 
+    {
+      "address": "0x00000142", 
+      "name": "~gbImage2D"
+    }
+  ], 
+  "global_refs": [
+    {
+      "address": "0xffdff000", 
+      "type": null, 
+      "name": "ExceptionList"
+    }, 
+    {
+      "address": "0x00bfda60", 
+      "type": null, 
+      "name": "DAT_00bfda60"
+    }, 
+    {
+      "address": "0x0055f27c", 
+      "type": null, 
+      "name": "LAB_0055f27c"
+    }, 
+    {
+      "address": "0x-00000f0", 
+      "type": null, 
+      "name": "DAT_-00000f0"
+    }, 
+    {
+      "address": "0x0056a520", 
+      "type": null, 
+      "name": "PTR_gbImage2D_0056a520"
+    }, 
+    {
+      "address": "0x0056a258", 
+      "type": null, 
+      "name": "PTR_CreateImage_0056a258"
+    }, 
+    {
+      "address": "0x008acc10", 
+      "type": null, 
+      "name": "DAT_008acc10"
+    }, 
+    {
+      "address": "0x0056a254", 
+      "type": null, 
+      "name": "PTR_Release_0056a254"
+    }, 
+    {
+      "address": "0x005833c4", 
+      "type": null, 
+      "name": "DAT_005833c4"
+    }, 
+    {
+      "address": "0x005833c8", 
+      "type": null, 
+      "name": "DAT_005833c8"
+    }, 
+    {
+      "address": "0x0056a250", 
+      "type": null, 
+      "name": "PTR_ScaleTo_0056a250"
+    }, 
+    {
+      "address": "0x0056a51c", 
+      "type": null, 
+      "name": "PTR_~gbImage2D_0056a51c"
+    }
+  ], 
+  "has_custom_name": false, 
+  "decompiled_c": "\r\nvoid FUN_00406d70(void)\r\n\r\n{\r\n  int iVar1;\r\n  uchar *puVar2;\r\n  uint uVar3;\r\n  ushort *puVar4;\r\n  ushort *puVar5;\r\n  uint uVar6;\r\n  int iVar7;\r\n  int unaff_ESI;\r\n  uchar *puVar8;\r\n  ushort *puVar9;\r\n  int unaff_EDI;\r\n  uchar *puVar10;\r\n  int local_f0;\r\n  int iStack_ec;\r\n  uchar *puStack_e8;\r\n  int iStack_e4;\r\n  int iStack_e0;\r\n  gbImage2D agStack_dc [184];\r\n  ushort *puStack_24;\r\n  void *pvStack_14;\r\n  void *pvStack_c;\r\n  undefined *puStack_8;\r\n  undefined4 uStack_4;\r\n  \r\n  uStack_4 = 0xffffffff;\r\n  puStack_8 = &LAB_0055f27c;\r\n  pvStack_c = ExceptionList;\r\n  ExceptionList = &pvStack_c;\r\n  iVar1 = (**(code **)(*DAT_00bfda60 + 0x54))(&local_f0,1);\r\n  if (iVar1 == 0) {\r\n    ExceptionList = pvStack_14;\r\n    return;\r\n  }\r\n  gbImage2D::gbImage2D(agStack_dc);\r\n  pvStack_c = (void *)0x0;\r\n  if (local_f0 == 3) {\r\nLAB_00406de5:\r\n    iVar1 = 0x10;\r\n  }\r\n  else {\r\n    if (local_f0 != 8) {\r\n      if (local_f0 != 9) {\r\n        (**(code **)(*DAT_00bfda60 + 0x58))();\r\n        goto LAB_00406fb5;\r\n      }\r\n      goto LAB_00406de5;\r\n    }\r\n    iVar1 = 0x20;\r\n  }\r\n  iStack_e4 = iVar1;\r\n  puVar2 = gbImage2D::CreateImage(agStack_dc,unaff_EDI,unaff_ESI,iVar1);\r\n  iStack_e0 = 0;\r\n  uVar3 = (int)(unaff_EDI * iVar1 + (unaff_EDI * iVar1 >> 0x1f & 7U)) >> 3;\r\n  puVar2 = puVar2 + (unaff_ESI + -1) * uVar3;\r\n  if (0 < unaff_ESI) {\r\n    do {\r\n      puVar8 = puStack_e8;\r\n      puVar10 = puVar2;\r\n      for (uVar6 = uVar3 >> 2; uVar6 != 0; uVar6 = uVar6 - 1) {\r\n        *(undefined4 *)puVar10 = *(undefined4 *)puVar8;\r\n        puVar8 = puVar8 + 4;\r\n        puVar10 = puVar10 + 4;\r\n      }\r\n      puVar2 = puVar2 + -uVar3;\r\n      for (uVar6 = uVar3 & 3; uVar6 != 0; uVar6 = uVar6 - 1) {\r\n        *puVar10 = *puVar8;\r\n        puVar8 = puVar8 + 1;\r\n        puVar10 = puVar10 + 1;\r\n      }\r\n      puStack_e8 = puStack_e8 + iStack_ec;\r\n      iStack_e0 = iStack_e0 + 1;\r\n      iVar1 = iStack_e4;\r\n    } while (iStack_e0 < unaff_ESI);\r\n  }\r\n  (**(code **)(*DAT_00bfda60 + 0x58))();\r\n  gbImage2D::Release((gbImage2D *)&DAT_008acc10);\r\n  puVar4 = (ushort *)gbImage2D::CreateImage((gbImage2D *)&DAT_008acc10,unaff_EDI,unaff_ESI,0x18);\r\n  if (iVar1 == 0x20) {\r\n    iVar1 = 0;\r\n    if (0 < unaff_ESI) {\r\n      do {\r\n        iVar7 = 0;\r\n        puVar5 = puVar4;\r\n        puVar9 = puStack_24;\r\n        if (0 < unaff_EDI) {\r\n          do {\r\n            puStack_24 = puVar9 + 2;\r\n            puVar4 = (ushort *)((int)puVar5 + 3);\r\n            iVar7 = iVar7 + 1;\r\n            *puVar5 = *puVar9;\r\n            *(char *)(puVar5 + 1) = *(char *)(puVar9 + 1);\r\n            puVar5 = puVar4;\r\n            puVar9 = puStack_24;\r\n          } while (iVar7 < unaff_EDI);\r\n        }\r\n        iVar1 = iVar1 + 1;\r\n      } while (iVar1 < unaff_ESI);\r\n    }\r\n  }\r\n  else if (local_f0 == 9) {\r\n    iVar1 = 0;\r\n    if (0 < unaff_ESI) {\r\n      do {\r\n        iVar7 = 0;\r\n        puVar5 = puStack_24;\r\n        if (0 < unaff_EDI) {\r\n          do {\r\n            puStack_24 = puVar5 + 1;\r\n            *(char *)puVar4 = *(char *)puVar5 << 3;\r\n            *(byte *)((int)puVar4 + 1) = (byte)(*puVar5 >> 2) & 0xf8;\r\n            *(char *)(puVar4 + 1) = (char)((*puVar5 & 0x7c00) >> 7);\r\n            puVar4 = (ushort *)((int)puVar4 + 3);\r\n            iVar7 = iVar7 + 1;\r\n            puVar5 = puStack_24;\r\n          } while (iVar7 < unaff_EDI);\r\n        }\r\n        iVar1 = iVar1 + 1;\r\n      } while (iVar1 < unaff_ESI);\r\n    }\r\n  }\r\n  else {\r\n    iVar1 = 0;\r\n    if (0 < unaff_ESI) {\r\n      do {\r\n        iVar7 = 0;\r\n        puVar5 = puStack_24;\r\n        if (0 < unaff_EDI) {\r\n          do {\r\n            puStack_24 = puVar5 + 1;\r\n            *(char *)puVar4 = *(char *)puVar5 << 3;\r\n            *(byte *)((int)puVar4 + 1) = (byte)(*puVar5 >> 3) & 0xfc;\r\n            *(byte *)(puVar4 + 1) = *(byte *)((int)puVar5 + 1) & 0xf8;\r\n            puVar4 = (ushort *)((int)puVar4 + 3);\r\n            iVar7 = iVar7 + 1;\r\n            puVar5 = puStack_24;\r\n          } while (iVar7 < unaff_EDI);\r\n        }\r\n        iVar1 = iVar1 + 1;\r\n      } while (iVar1 < unaff_ESI);\r\n    }\r\n  }\r\n  if ((DAT_005833c4 != -1) && (DAT_005833c8 != -1)) {\r\n    gbImage2D::ScaleTo((gbImage2D *)&DAT_008acc10,DAT_005833c4,DAT_005833c8);\r\n  }\r\n  gbImage2D::Release(agStack_dc);\r\nLAB_00406fb5:\r\n  pvStack_c = (void *)0xffffffff;\r\n  gbImage2D::~gbImage2D(agStack_dc);\r\n  ExceptionList = pvStack_14;\r\n  return;\r\n}\r\n\r\n", 
+  "is_thunk": false, 
+  "name": "FUN_00406d70", 
+  "assembly": "  00406d70:  MOV EAX,FS:[0x0]\n  00406d76:  MOV ECX,dword ptr [0x00bfda60]\n  00406d7c:  PUSH -0x1\n  00406d7e:  PUSH 0x55f27c\n  00406d83:  PUSH EAX\n  00406d84:  LEA EDX,[ESP + 0xffffff1c]\n  00406d8b:  MOV dword ptr FS:[0x0],ESP\n  00406d92:  MOV EAX,dword ptr [ECX]\n  00406d94:  SUB ESP,0xe4\n  00406d9a:  PUSH ESI\n  00406d9b:  PUSH EDI\n  00406d9c:  PUSH 0x1\n  00406d9e:  PUSH EDX\n  00406d9f:  CALL dword ptr [EAX + 0x54]\n  00406da2:  TEST EAX,EAX\n  00406da4:  JZ 0x00406fca\n  00406daa:  LEA ECX,[ESP + 0x24]\n  00406dae:  CALL dword ptr [0x0056a520]\n  00406db4:  MOV EAX,dword ptr [ESP + 0x10]\n  00406db8:  XOR ESI,ESI\n  00406dba:  SUB EAX,0x3\n  00406dbd:  MOV dword ptr [ESP + 0xf4],ESI\n  00406dc4:  JZ 0x00406de5\n  00406dc6:  SUB EAX,0x5\n  00406dc9:  JZ 0x00406dde\n  00406dcb:  DEC EAX\n  00406dcc:  JZ 0x00406de5\n  00406dce:  MOV ECX,dword ptr [0x00bfda60]\n  00406dd4:  MOV EAX,dword ptr [ECX]\n  00406dd6:  CALL dword ptr [EAX + 0x58]\n  00406dd9:  JMP 0x00406fb5\n  00406dde:  MOV EDI,0x20\n  00406de3:  JMP 0x00406dea\n  00406de5:  MOV EDI,0x10\n  00406dea:  MOV ECX,dword ptr [ESP + 0xc]\n  00406dee:  MOV EDX,dword ptr [ESP + 0x8]\n  00406df2:  PUSH EBX\n  00406df3:  PUSH EBP\n  00406df4:  PUSH EDI\n  00406df5:  PUSH ECX\n  00406df6:  PUSH EDX\n  00406df7:  LEA ECX,[ESP + 0x38]\n  00406dfb:  MOV dword ptr [ESP + 0x30],EDI\n  00406dff:  CALL dword ptr [0x0056a258]\n  00406e05:  MOV EBX,EAX\n  00406e07:  MOV EAX,dword ptr [ESP + 0x10]\n  00406e0b:  IMUL EAX,EDI\n  00406e0e:  MOV ECX,dword ptr [ESP + 0x14]\n  00406e12:  MOV dword ptr [ESP + 0x28],ESI\n  00406e16:  CDQ\n  00406e17:  AND EDX,0x7\n  00406e1a:  ADD EAX,EDX\n  00406e1c:  LEA EDX,[ECX + -0x1]\n  00406e1f:  SAR EAX,0x3\n  00406e22:  IMUL EDX,EAX\n  00406e25:  ADD EBX,EDX\n  00406e27:  MOV EDX,dword ptr [ESP + 0x20]\n  00406e2b:  CMP ECX,ESI\n  00406e2d:  JLE 0x00406e60\n  00406e2f:  MOV ECX,EAX\n  00406e31:  MOV ESI,EDX\n  00406e33:  MOV EBP,ECX\n  00406e35:  MOV EDI,EBX\n  00406e37:  SHR ECX,0x2\n  00406e3a:  MOVSD.REP ES:EDI,ESI\n  00406e3c:  MOV ECX,EBP\n  00406e3e:  SUB EBX,EAX\n  00406e40:  AND ECX,0x3\n  00406e43:  MOVSB.REP ES:EDI,ESI\n  00406e45:  MOV EBP,dword ptr [ESP + 0x1c]\n  00406e49:  MOV ECX,dword ptr [ESP + 0x28]\n  00406e4d:  MOV ESI,dword ptr [ESP + 0x14]\n  00406e51:  ADD EDX,EBP\n  00406e53:  INC ECX\n  00406e54:  CMP ECX,ESI\n  00406e56:  MOV dword ptr [ESP + 0x28],ECX\n  00406e5a:  JL 0x00406e2f\n  00406e5c:  MOV EDI,dword ptr [ESP + 0x24]\n  00406e60:  MOV ECX,dword ptr [0x00bfda60]\n  00406e66:  MOV EAX,dword ptr [ECX]\n  00406e68:  CALL dword ptr [EAX + 0x58]\n  00406e6b:  MOV ECX,0x8acc10\n  00406e70:  CALL dword ptr [0x0056a254]\n  00406e76:  MOV ECX,dword ptr [ESP + 0x14]\n  00406e7a:  MOV EDX,dword ptr [ESP + 0x10]\n  00406e7e:  PUSH 0x18\n  00406e80:  PUSH ECX\n  00406e81:  PUSH EDX\n  00406e82:  MOV ECX,0x8acc10\n  00406e87:  CALL dword ptr [0x0056a258]\n  00406e8d:  MOV ECX,dword ptr [ESP + 0xe4]\n  00406e94:  CMP EDI,0x20\n  00406e97:  MOV ESI,ECX\n  00406e99:  JNZ 0x00406ee0\n  00406e9b:  MOV ECX,dword ptr [ESP + 0x14]\n  00406e9f:  XOR EDI,EDI\n  00406ea1:  TEST ECX,ECX\n  00406ea3:  JLE 0x00406f87\n  00406ea9:  MOV EDX,dword ptr [ESP + 0x10]\n  00406ead:  XOR ECX,ECX\n  00406eaf:  TEST EDX,EDX\n  00406eb1:  JLE 0x00406ed2\n  00406eb3:  MOV EDX,ESI\n  00406eb5:  MOV EBX,EAX\n  00406eb7:  ADD ESI,0x4\n  00406eba:  ADD EAX,0x3\n  00406ebd:  MOV BP,word ptr [EDX]\n  00406ec0:  INC ECX\n  00406ec1:  MOV word ptr [EBX],BP\n  00406ec4:  MOV DL,byte ptr [EDX + 0x2]\n  00406ec7:  MOV byte ptr [EBX + 0x2],DL\n  00406eca:  MOV EDX,dword ptr [ESP + 0x10]\n  00406ece:  CMP ECX,EDX\n  00406ed0:  JL 0x00406eb3\n  00406ed2:  MOV ECX,dword ptr [ESP + 0x14]\n  00406ed6:  INC EDI\n  00406ed7:  CMP EDI,ECX\n  00406ed9:  JL 0x00406ead\n  00406edb:  JMP 0x00406f87\n  00406ee0:  CMP dword ptr [ESP + 0x18],0x9\n  00406ee5:  JNZ 0x00406f3b\n  00406ee7:  MOV EDX,dword ptr [ESP + 0x14]\n  00406eeb:  XOR EDI,EDI\n  00406eed:  TEST EDX,EDX\n  00406eef:  JLE 0x00406f87\n  00406ef5:  MOV EDX,dword ptr [ESP + 0x10]\n  00406ef9:  XOR ESI,ESI\n  00406efb:  TEST EDX,EDX\n  00406efd:  JLE 0x00406f30\n  00406eff:  MOV DL,byte ptr [ECX]\n  00406f01:  ADD ECX,0x2\n  00406f04:  SHL DL,0x3\n  00406f07:  MOV byte ptr [EAX],DL\n  00406f09:  MOV DX,word ptr [ECX + -0x2]\n  00406f0d:  SHR EDX,0x2\n  00406f10:  INC EAX\n  00406f11:  AND DL,0xf8\n  00406f14:  MOV byte ptr [EAX],DL\n  00406f16:  MOV DX,word ptr [ECX + -0x2]\n  00406f1a:  SHR EDX,0x7\n  00406f1d:  INC EAX\n  00406f1e:  AND EDX,0xf8\n  00406f24:  MOV byte ptr [EAX],DL\n  00406f26:  MOV EDX,dword ptr [ESP + 0x10]\n  00406f2a:  INC EAX\n  00406f2b:  INC ESI\n  00406f2c:  CMP ESI,EDX\n  00406f2e:  JL 0x00406eff\n  00406f30:  MOV ESI,dword ptr [ESP + 0x14]\n  00406f34:  INC EDI\n  00406f35:  CMP EDI,ESI\n  00406f37:  JL 0x00406ef9\n  00406f39:  JMP 0x00406f87\n  00406f3b:  MOV EDX,dword ptr [ESP + 0x14]\n  00406f3f:  XOR EDI,EDI\n  00406f41:  TEST EDX,EDX\n  00406f43:  JLE 0x00406f87\n  00406f45:  MOV EDX,dword ptr [ESP + 0x10]\n  00406f49:  XOR ESI,ESI\n  00406f4b:  TEST EDX,EDX\n  00406f4d:  JLE 0x00406f7e\n  00406f4f:  MOV DL,byte ptr [ECX]\n  00406f51:  ADD ECX,0x2\n  00406f54:  SHL DL,0x3\n  00406f57:  MOV byte ptr [EAX],DL\n  00406f59:  MOV DX,word ptr [ECX + -0x2]\n  00406f5d:  SHR EDX,0x3\n  00406f60:  INC EAX\n  00406f61:  AND DL,0xfc\n  00406f64:  MOV byte ptr [EAX],DL\n  00406f66:  XOR EDX,EDX\n  00406f68:  MOV DL,byte ptr [ECX + -0x1]\n  00406f6b:  INC EAX\n  00406f6c:  AND EDX,0xf8\n  00406f72:  MOV byte ptr [EAX],DL\n  00406f74:  MOV EDX,dword ptr [ESP + 0x10]\n  00406f78:  INC EAX\n  00406f79:  INC ESI\n  00406f7a:  CMP ESI,EDX\n  00406f7c:  JL 0x00406f4f\n  00406f7e:  MOV ESI,dword ptr [ESP + 0x14]\n  00406f82:  INC EDI\n  00406f83:  CMP EDI,ESI\n  00406f85:  JL 0x00406f49\n  00406f87:  MOV ECX,dword ptr [0x005833c4]\n  00406f8d:  POP EBP\n  00406f8e:  CMP ECX,-0x1\n  00406f91:  POP EBX\n  00406f92:  JZ 0x00406fab\n  00406f94:  MOV EAX,[0x005833c8]\n  00406f99:  CMP EAX,-0x1\n  00406f9c:  JZ 0x00406fab\n  00406f9e:  PUSH EAX\n  00406f9f:  PUSH ECX\n  00406fa0:  MOV ECX,0x8acc10\n  00406fa5:  CALL dword ptr [0x0056a250]\n  00406fab:  LEA ECX,[ESP + 0x24]\n  00406faf:  CALL dword ptr [0x0056a254]\n  00406fb5:  LEA ECX,[ESP + 0x24]\n  00406fb9:  MOV dword ptr [ESP + 0xf4],0xffffffff\n  00406fc4:  CALL dword ptr [0x0056a51c]\n  00406fca:  MOV ECX,dword ptr [ESP + 0xec]\n  00406fd1:  POP EDI\n  00406fd2:  POP ESI\n  00406fd3:  MOV dword ptr FS:[0x0],ECX\n  00406fda:  ADD ESP,0xf0\n  00406fe0:  RET", 
+  "callers": [
+    {
+      "address": "0x00405c00", 
+      "name": "FUN_00405c00"
+    }
+  ]
+}

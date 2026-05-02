@@ -1,0 +1,165 @@
+{
+  "address": "0x004ce100", 
+  "size_bytes": 408, 
+  "calling_convention": "unknown", 
+  "signature": "undefined FUN_004ce100(void)", 
+  "callees": [
+    {
+      "address": "0x00401f50", 
+      "name": "FUN_00401f50"
+    }, 
+    {
+      "address": "0x0000014a", 
+      "name": "OpenFile"
+    }, 
+    {
+      "address": "0x0053cef0", 
+      "name": "FUN_0053cef0"
+    }, 
+    {
+      "address": "0x005534d7", 
+      "name": "__CxxThrowException@8"
+    }, 
+    {
+      "address": "0x005536a9", 
+      "name": "_malloc"
+    }, 
+    {
+      "address": "0x0000014c", 
+      "name": "Seek"
+    }, 
+    {
+      "address": "0x0000014b", 
+      "name": "Read"
+    }, 
+    {
+      "address": "0x0000014d", 
+      "name": "CloseFile"
+    }, 
+    {
+      "address": "0x00000107", 
+      "name": "DeCompress"
+    }, 
+    {
+      "address": "0x00552f55", 
+      "name": "FUN_00552f55"
+    }, 
+    {
+      "address": "0x00401f90", 
+      "name": "FUN_00401f90"
+    }
+  ], 
+  "global_refs": [
+    {
+      "address": "0xffdff000", 
+      "type": null, 
+      "name": "ExceptionList"
+    }, 
+    {
+      "address": "0x0056688b", 
+      "type": null, 
+      "name": "LAB_0056688b"
+    }, 
+    {
+      "address": "0x017a7b50", 
+      "type": null, 
+      "name": "DAT_017a7b50"
+    }, 
+    {
+      "address": "0x-0000810", 
+      "type": null, 
+      "name": "DAT_-0000810"
+    }, 
+    {
+      "address": "0x0056a598", 
+      "type": null, 
+      "name": "PTR_g_pVFileSys_0056a598"
+    }, 
+    {
+      "address": "0x005d5558", 
+      "type": null, 
+      "name": "s_cbdata\\flexeff.data_005d5558"
+    }, 
+    {
+      "address": "0x-0000004", 
+      "type": null, 
+      "name": "DAT_-0000004"
+    }, 
+    {
+      "address": "0x0056a53c", 
+      "type": null, 
+      "name": "PTR_OpenFile_0056a53c"
+    }, 
+    {
+      "address": "0x005d5534", 
+      "type": null, 
+      "name": "s_D:\\Project\\PAL3\\combat\\EffMgr.cp_005d5534"
+    }, 
+    {
+      "address": "0x005d550c", 
+      "type": null, 
+      "name": "s_Couldn't_open_effect_define_data_005d550c"
+    }, 
+    {
+      "address": "0x00573e50", 
+      "type": null, 
+      "name": "DAT_00573e50"
+    }, 
+    {
+      "address": "0x008ddce0", 
+      "type": null, 
+      "name": "DAT_008ddce0"
+    }, 
+    {
+      "address": "0x0056a544", 
+      "type": null, 
+      "name": "PTR_Seek_0056a544"
+    }, 
+    {
+      "address": "0x0056a540", 
+      "type": null, 
+      "name": "PTR_Read_0056a540"
+    }, 
+    {
+      "address": "0x0056a548", 
+      "type": null, 
+      "name": "PTR_CloseFile_0056a548"
+    }, 
+    {
+      "address": "0x00de9cb0", 
+      "type": null, 
+      "name": "DAT_00de9cb0"
+    }, 
+    {
+      "address": "0x0056a430", 
+      "type": null, 
+      "name": "PTR_DeCompress_0056a430"
+    }, 
+    {
+      "address": "0x-000000c", 
+      "type": null, 
+      "name": "DAT_-000000c"
+    }, 
+    {
+      "address": "0x0174d330", 
+      "type": null, 
+      "name": "DAT_0174d330"
+    }, 
+    {
+      "address": "0x00ec9e70", 
+      "type": null, 
+      "name": "DAT_00ec9e70"
+    }
+  ], 
+  "has_custom_name": false, 
+  "decompiled_c": "\r\nundefined4 FUN_004ce100(void)\r\n\r\n{\r\n  undefined4 uVar1;\r\n  gbVFile *pgVar2;\r\n  undefined4 *puVar3;\r\n  void *pvVar4;\r\n  undefined *puVar5;\r\n  int iVar6;\r\n  undefined4 *puVar7;\r\n  undefined4 *puVar8;\r\n  undefined4 auStack_80c [512];\r\n  void *local_c;\r\n  undefined *puStack_8;\r\n  undefined4 local_4;\r\n  \r\n  local_4 = 0xffffffff;\r\n  puStack_8 = &LAB_0056688b;\r\n  local_c = ExceptionList;\r\n  if (DAT_017a7b50 == 0) {\r\n    ExceptionList = &local_c;\r\n    FUN_00401f50();\r\n    local_4 = 0;\r\n    pgVar2 = gbVFileSystem::OpenFile\r\n                       (*(gbVFileSystem **)g_pVFileSys_exref,s_cbdata_flexeff_data_005d5558,0x201);\r\n    if (pgVar2 == (gbVFile *)0x0) {\r\n      puVar3 = (undefined4 *)\r\n               FUN_0053cef0(s_Couldn_t_open_effect_define_data_005d550c,\r\n                            s_D__Project_PAL3_combat_EffMgr_cp_005d5534,0x1bf);\r\n      puVar7 = auStack_80c;\r\n      for (iVar6 = 0x100; iVar6 != 0; iVar6 = iVar6 + -1) {\r\n        *puVar7 = *puVar3;\r\n        puVar3 = puVar3 + 1;\r\n        puVar7 = puVar7 + 1;\r\n      }\r\n                    /* WARNING: Subroutine does not return */\r\n      __CxxThrowException_8(auStack_80c,&DAT_00573e50);\r\n    }\r\n    pvVar4 = _malloc(0x2c047);\r\n    puVar3 = (undefined4 *)_malloc(0x8ddce0);\r\n    if ((pvVar4 != (void *)0x0) && (puVar3 != (undefined4 *)0x0)) {\r\n      gbVFileSystem::Seek(*(gbVFileSystem **)g_pVFileSys_exref,pgVar2,0,1);\r\n      gbVFileSystem::Read(*(gbVFileSystem **)g_pVFileSys_exref,pvVar4,0x2c047,pgVar2);\r\n      gbVFileSystem::CloseFile(*(gbVFileSystem **)g_pVFileSys_exref,pgVar2);\r\n      puVar5 = (undefined *)CPK::DeCompress((CPK *)&DAT_00de9cb0,puVar3,pvVar4,0x2c047);\r\n      if (puVar5 == &DAT_008ddce0) {\r\n        puVar7 = puVar3;\r\n        puVar8 = &DAT_0174d330;\r\n        for (iVar6 = 0x16a08; iVar6 != 0; iVar6 = iVar6 + -1) {\r\n          *puVar8 = *puVar7;\r\n          puVar7 = puVar7 + 1;\r\n          puVar8 = puVar8 + 1;\r\n        }\r\n        puVar7 = puVar3 + 0x16a08;\r\n        puVar8 = &DAT_00ec9e70;\r\n        for (iVar6 = 0x220d30; iVar6 != 0; iVar6 = iVar6 + -1) {\r\n          *puVar8 = *puVar7;\r\n          puVar7 = puVar7 + 1;\r\n          puVar8 = puVar8 + 1;\r\n        }\r\n        FUN_00552f55(pvVar4);\r\n        FUN_00552f55(puVar3);\r\n        DAT_017a7b50 = 1;\r\n        local_4 = 0xffffffff;\r\n        FUN_00401f90();\r\n        ExceptionList = local_c;\r\n        return 1;\r\n      }\r\n      FUN_00552f55(pvVar4);\r\n      FUN_00552f55(puVar3);\r\n    }\r\n    local_4 = 0xffffffff;\r\n    FUN_00401f90();\r\n    uVar1 = 0;\r\n  }\r\n  else {\r\n    uVar1 = 1;\r\n  }\r\n  ExceptionList = local_c;\r\n  return uVar1;\r\n}\r\n\r\n", 
+  "is_thunk": false, 
+  "name": "FUN_004ce100", 
+  "assembly": "  004ce100:  MOV EAX,FS:[0x0]\n  004ce106:  PUSH -0x1\n  004ce108:  PUSH 0x56688b\n  004ce10d:  PUSH EAX\n  004ce10e:  MOV EAX,[0x017a7b50]\n  004ce113:  MOV dword ptr FS:[0x0],ESP\n  004ce11a:  SUB ESP,0x804\n  004ce120:  TEST EAX,EAX\n  004ce122:  PUSH EBX\n  004ce123:  PUSH EBP\n  004ce124:  PUSH ESI\n  004ce125:  PUSH EDI\n  004ce126:  JZ 0x004ce12f\n  004ce128:  MOV AL,0x1\n  004ce12a:  JMP 0x004ce22e\n  004ce12f:  LEA ECX,[ESP + 0x10]\n  004ce133:  CALL 0x00401f50\n  004ce138:  MOV EAX,[0x0056a598]\n  004ce13d:  PUSH 0x201\n  004ce142:  PUSH 0x5d5558\n  004ce147:  MOV dword ptr [ESP + 0x824],0x0\n  004ce152:  MOV ECX,dword ptr [EAX]\n  004ce154:  CALL dword ptr [0x0056a53c]\n  004ce15a:  MOV ESI,EAX\n  004ce15c:  TEST ESI,ESI\n  004ce15e:  JNZ 0x004ce197\n  004ce160:  PUSH 0x1bf\n  004ce165:  PUSH 0x5d5534\n  004ce16a:  PUSH 0x5d550c\n  004ce16f:  LEA ECX,[ESP + 0x420]\n  004ce176:  CALL 0x0053cef0\n  004ce17b:  MOV ECX,0x100\n  004ce180:  MOV ESI,EAX\n  004ce182:  LEA EDI,[ESP + 0x14]\n  004ce186:  PUSH 0x573e50\n  004ce18b:  MOVSD.REP ES:EDI,ESI\n  004ce18d:  LEA ECX,[ESP + 0x18]\n  004ce191:  PUSH ECX\n  004ce192:  CALL 0x005534d7\n  004ce197:  PUSH 0x2c047\n  004ce19c:  CALL 0x005536a9\n  004ce1a1:  PUSH 0x8ddce0\n  004ce1a6:  MOV EBX,EAX\n  004ce1a8:  CALL 0x005536a9\n  004ce1ad:  ADD ESP,0x8\n  004ce1b0:  MOV EBP,EAX\n  004ce1b2:  TEST EBX,EBX\n  004ce1b4:  JZ 0x004ce218\n  004ce1b6:  TEST EBP,EBP\n  004ce1b8:  JZ 0x004ce218\n  004ce1ba:  MOV EDX,dword ptr [0x0056a598]\n  004ce1c0:  PUSH 0x1\n  004ce1c2:  PUSH 0x0\n  004ce1c4:  PUSH ESI\n  004ce1c5:  MOV ECX,dword ptr [EDX]\n  004ce1c7:  CALL dword ptr [0x0056a544]\n  004ce1cd:  MOV EAX,[0x0056a598]\n  004ce1d2:  PUSH ESI\n  004ce1d3:  PUSH 0x2c047\n  004ce1d8:  PUSH EBX\n  004ce1d9:  MOV ECX,dword ptr [EAX]\n  004ce1db:  CALL dword ptr [0x0056a540]\n  004ce1e1:  MOV ECX,dword ptr [0x0056a598]\n  004ce1e7:  PUSH ESI\n  004ce1e8:  MOV ECX,dword ptr [ECX]\n  004ce1ea:  CALL dword ptr [0x0056a548]\n  004ce1f0:  PUSH 0x2c047\n  004ce1f5:  PUSH EBX\n  004ce1f6:  PUSH EBP\n  004ce1f7:  MOV ECX,0xde9cb0\n  004ce1fc:  CALL dword ptr [0x0056a430]\n  004ce202:  CMP EAX,0x8ddce0\n  004ce207:  JZ 0x004ce247\n  004ce209:  PUSH EBX\n  004ce20a:  CALL 0x00552f55\n  004ce20f:  PUSH EBP\n  004ce210:  CALL 0x00552f55\n  004ce215:  ADD ESP,0x8\n  004ce218:  LEA ECX,[ESP + 0x10]\n  004ce21c:  MOV dword ptr [ESP + 0x81c],0xffffffff\n  004ce227:  CALL 0x00401f90\n  004ce22c:  XOR AL,AL\n  004ce22e:  MOV ECX,dword ptr [ESP + 0x814]\n  004ce235:  POP EDI\n  004ce236:  POP ESI\n  004ce237:  POP EBP\n  004ce238:  POP EBX\n  004ce239:  MOV dword ptr FS:[0x0],ECX\n  004ce240:  ADD ESP,0x810\n  004ce246:  RET\n  004ce247:  MOV ECX,0x16a08\n  004ce24c:  MOV ESI,EBP\n  004ce24e:  MOV EDI,0x174d330\n  004ce253:  PUSH EBX\n  004ce254:  MOVSD.REP ES:EDI,ESI\n  004ce256:  MOV ECX,0x220d30\n  004ce25b:  LEA ESI,[EBP + 0x5a820]\n  004ce261:  MOV EDI,0xec9e70\n  004ce266:  MOVSD.REP ES:EDI,ESI\n  004ce268:  CALL 0x00552f55\n  004ce26d:  PUSH EBP\n  004ce26e:  CALL 0x00552f55\n  004ce273:  ADD ESP,0x8\n  004ce276:  LEA ECX,[ESP + 0x10]\n  004ce27a:  MOV dword ptr [0x017a7b50],0x1\n  004ce284:  MOV dword ptr [ESP + 0x81c],0xffffffff\n  004ce28f:  CALL 0x00401f90\n  004ce294:  MOV AL,0x1\n  004ce296:  JMP 0x004ce22e", 
+  "callers": [
+    {
+      "address": "0x004e8480", 
+      "name": "FUN_004e8480"
+    }
+  ]
+}

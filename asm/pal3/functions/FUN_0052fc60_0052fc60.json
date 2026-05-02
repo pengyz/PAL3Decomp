@@ -1,0 +1,94 @@
+{
+  "address": "0x0052fc60", 
+  "size_bytes": 459, 
+  "calling_convention": "unknown", 
+  "signature": "undefined FUN_0052fc60(void)", 
+  "callees": [
+    {
+      "address": "0x0000008d", 
+      "name": "Begin"
+    }, 
+    {
+      "address": "0x000000b2", 
+      "name": "SetAsCurrent"
+    }, 
+    {
+      "address": "0x00000159", 
+      "name": "Push"
+    }, 
+    {
+      "address": "0x00000093", 
+      "name": "Translate"
+    }, 
+    {
+      "address": "0x0000015d", 
+      "name": "Pop"
+    }, 
+    {
+      "address": "0x0000008c", 
+      "name": "Rotate"
+    }, 
+    {
+      "address": "0x00000086", 
+      "name": "End"
+    }
+  ], 
+  "global_refs": [
+    {
+      "address": "0x00bfda60", 
+      "type": null, 
+      "name": "DAT_00bfda60"
+    }, 
+    {
+      "address": "0x-0000010", 
+      "type": null, 
+      "name": "DAT_-0000010"
+    }, 
+    {
+      "address": "0x0056a248", 
+      "type": null, 
+      "name": "PTR_Begin_0056a248"
+    }, 
+    {
+      "address": "0x0056a2dc", 
+      "type": null, 
+      "name": "PTR_SetAsCurrent_0056a2dc"
+    }, 
+    {
+      "address": "0x0056a578", 
+      "type": null, 
+      "name": "PTR_Push_0056a578"
+    }, 
+    {
+      "address": "0x0056a260", 
+      "type": null, 
+      "name": "PTR_Translate_0056a260"
+    }, 
+    {
+      "address": "0x0056a588", 
+      "type": null, 
+      "name": "PTR_Pop_0056a588"
+    }, 
+    {
+      "address": "0x0056a244", 
+      "type": null, 
+      "name": "PTR_Rotate_0056a244"
+    }, 
+    {
+      "address": "0x0056a22c", 
+      "type": null, 
+      "name": "PTR_End_0056a22c"
+    }
+  ], 
+  "has_custom_name": false, 
+  "decompiled_c": "\r\nvoid __fastcall FUN_0052fc60(int *param_1)\r\n\r\n{\r\n  gbSceneGraph *this;\r\n  gbMatrixStack *this_00;\r\n  int *piVar1;\r\n  gbVec3D *pgVar2;\r\n  int iStack_14;\r\n  undefined4 uStack_c;\r\n  undefined4 uStack_8;\r\n  undefined4 uStack_4;\r\n  \r\n  this = *(gbSceneGraph **)(DAT_00bfda60 + 0x1c0);\r\n  gbSceneGraph::Begin(this,*(gbCamera **)param_1[0x228]);\r\n  this[0x4b2c] = (gbSceneGraph)0x0;\r\n  this_00 = *(gbMatrixStack **)(DAT_00bfda60 + 0xd8);\r\n  gbCamera::SetAsCurrent(*(gbCamera **)param_1[0x228],3);\r\n  gbMatrixStack::Push(this_00);\r\n  pgVar2 = (gbVec3D *)(param_1 + 0x1a4);\r\n  iStack_14 = 6;\r\n  piVar1 = param_1;\r\n  do {\r\n    gbMatrixStack::Push(this_00);\r\n    gbMatrixStack::Translate(this_00,pgVar2);\r\n    (**(code **)(*piVar1 + 0x10))(0);\r\n    gbMatrixStack::Pop(this_00);\r\n    pgVar2 = pgVar2 + 0xc;\r\n    piVar1 = piVar1 + 0x46;\r\n    iStack_14 = iStack_14 + -1;\r\n  } while (iStack_14 != 0);\r\n  piVar1 = param_1 + 0x22c;\r\n  iStack_14 = 0;\r\n  pgVar2 = (gbVec3D *)(param_1 + 0x2fe);\r\n  do {\r\n    if (*(char *)((int)param_1 + iStack_14 + 0xd00) != '\\0') {\r\n      gbMatrixStack::Push(this_00);\r\n      gbMatrixStack::Translate(this_00,pgVar2);\r\n      uStack_c = 0;\r\n      uStack_8 = 0x3f800000;\r\n      uStack_4 = 0;\r\n      gbMatrixStack::Rotate(this_00,(float)param_1[0x341],(gbVec3D *)&uStack_c);\r\n      (**(code **)(*piVar1 + 0x10))(0);\r\n      gbMatrixStack::Pop(this_00);\r\n    }\r\n    iStack_14 = iStack_14 + 1;\r\n    pgVar2 = pgVar2 + 0xc;\r\n    piVar1 = piVar1 + 0x46;\r\n  } while (iStack_14 < 3);\r\n  if (*(char *)(param_1 + 0x3a8) != '\\0') {\r\n    gbMatrixStack::Push(this_00);\r\n    gbMatrixStack::Translate(this_00,(gbVec3D *)(param_1 + 0x38b));\r\n    uStack_c = 0;\r\n    uStack_8 = 0x3f800000;\r\n    uStack_4 = 0;\r\n    gbMatrixStack::Rotate(this_00,(float)param_1[0x3a6],(gbVec3D *)&uStack_c);\r\n    uStack_c = 0x3f800000;\r\n    uStack_8 = 0;\r\n    uStack_4 = 0;\r\n    gbMatrixStack::Rotate(this_00,(float)param_1[0x3ac],(gbVec3D *)&uStack_c);\r\n    (**(code **)(param_1[0x342] + 0x10))(0);\r\n    gbMatrixStack::Pop(this_00);\r\n  }\r\n  gbMatrixStack::Pop(this_00);\r\n  gbSceneGraph::End(this);\r\n  return;\r\n}\r\n\r\n", 
+  "is_thunk": false, 
+  "name": "FUN_0052fc60", 
+  "assembly": "  0052fc60:  SUB ESP,0x14\n  0052fc63:  MOV EAX,[0x00bfda60]\n  0052fc68:  PUSH EBX\n  0052fc69:  PUSH EBP\n  0052fc6a:  PUSH ESI\n  0052fc6b:  MOV ESI,dword ptr [EAX + 0x1c0]\n  0052fc71:  PUSH EDI\n  0052fc72:  MOV EDI,ECX\n  0052fc74:  MOV dword ptr [ESP + 0x14],ESI\n  0052fc78:  MOV ECX,dword ptr [EDI + 0x8a0]\n  0052fc7e:  MOV EDX,dword ptr [ECX]\n  0052fc80:  MOV ECX,ESI\n  0052fc82:  PUSH EDX\n  0052fc83:  CALL dword ptr [0x0056a248]\n  0052fc89:  MOV byte ptr [ESI + 0x4b2c],0x0\n  0052fc90:  MOV ECX,dword ptr [EDI + 0x8a0]\n  0052fc96:  MOV EAX,[0x00bfda60]\n  0052fc9b:  PUSH 0x3\n  0052fc9d:  MOV ECX,dword ptr [ECX]\n  0052fc9f:  MOV ESI,dword ptr [EAX + 0xd8]\n  0052fca5:  CALL dword ptr [0x0056a2dc]\n  0052fcab:  MOV ECX,ESI\n  0052fcad:  CALL dword ptr [0x0056a578]\n  0052fcb3:  MOV EBX,EDI\n  0052fcb5:  LEA EBP,[EDI + 0x690]\n  0052fcbb:  MOV dword ptr [ESP + 0x10],0x6\n  0052fcc3:  MOV ECX,ESI\n  0052fcc5:  CALL dword ptr [0x0056a578]\n  0052fccb:  PUSH EBP\n  0052fccc:  MOV ECX,ESI\n  0052fcce:  CALL dword ptr [0x0056a260]\n  0052fcd4:  MOV EDX,dword ptr [EBX]\n  0052fcd6:  PUSH 0x0\n  0052fcd8:  MOV ECX,EBX\n  0052fcda:  CALL dword ptr [EDX + 0x10]\n  0052fcdd:  MOV ECX,ESI\n  0052fcdf:  CALL dword ptr [0x0056a588]\n  0052fce5:  MOV EAX,dword ptr [ESP + 0x10]\n  0052fce9:  ADD EBP,0xc\n  0052fcec:  ADD EBX,0x118\n  0052fcf2:  DEC EAX\n  0052fcf3:  MOV dword ptr [ESP + 0x10],EAX\n  0052fcf7:  JNZ 0x0052fcc3\n  0052fcf9:  XOR EAX,EAX\n  0052fcfb:  LEA EBX,[EDI + 0x8b0]\n  0052fd01:  MOV dword ptr [ESP + 0x10],EAX\n  0052fd05:  LEA EBP,[EDI + 0xbf8]\n  0052fd0b:  MOV CL,byte ptr [EDI + EAX*0x1 + 0xd00]\n  0052fd12:  TEST CL,CL\n  0052fd14:  JZ 0x0052fd68\n  0052fd16:  MOV ECX,ESI\n  0052fd18:  CALL dword ptr [0x0056a578]\n  0052fd1e:  PUSH EBP\n  0052fd1f:  MOV ECX,ESI\n  0052fd21:  CALL dword ptr [0x0056a260]\n  0052fd27:  MOV ECX,dword ptr [EDI + 0xd04]\n  0052fd2d:  LEA EAX,[ESP + 0x18]\n  0052fd31:  PUSH EAX\n  0052fd32:  PUSH ECX\n  0052fd33:  MOV ECX,ESI\n  0052fd35:  MOV dword ptr [ESP + 0x20],0x0\n  0052fd3d:  MOV dword ptr [ESP + 0x24],0x3f800000\n  0052fd45:  MOV dword ptr [ESP + 0x28],0x0\n  0052fd4d:  CALL dword ptr [0x0056a244]\n  0052fd53:  MOV EDX,dword ptr [EBX]\n  0052fd55:  PUSH 0x0\n  0052fd57:  MOV ECX,EBX\n  0052fd59:  CALL dword ptr [EDX + 0x10]\n  0052fd5c:  MOV ECX,ESI\n  0052fd5e:  CALL dword ptr [0x0056a588]\n  0052fd64:  MOV EAX,dword ptr [ESP + 0x10]\n  0052fd68:  INC EAX\n  0052fd69:  ADD EBP,0xc\n  0052fd6c:  ADD EBX,0x118\n  0052fd72:  CMP EAX,0x3\n  0052fd75:  MOV dword ptr [ESP + 0x10],EAX\n  0052fd79:  JL 0x0052fd0b\n  0052fd7b:  MOV AL,byte ptr [EDI + 0xea0]\n  0052fd81:  TEST AL,AL\n  0052fd83:  JZ 0x0052fe11\n  0052fd89:  MOV ECX,ESI\n  0052fd8b:  CALL dword ptr [0x0056a578]\n  0052fd91:  LEA EAX,[EDI + 0xe2c]\n  0052fd97:  MOV ECX,ESI\n  0052fd99:  PUSH EAX\n  0052fd9a:  CALL dword ptr [0x0056a260]\n  0052fda0:  MOV EDX,dword ptr [EDI + 0xe98]\n  0052fda6:  MOV EBX,dword ptr [0x0056a244]\n  0052fdac:  LEA ECX,[ESP + 0x18]\n  0052fdb0:  MOV dword ptr [ESP + 0x18],0x0\n  0052fdb8:  PUSH ECX\n  0052fdb9:  PUSH EDX\n  0052fdba:  MOV ECX,ESI\n  0052fdbc:  MOV dword ptr [ESP + 0x24],0x3f800000\n  0052fdc4:  MOV dword ptr [ESP + 0x28],0x0\n  0052fdcc:  CALL EBX\n  0052fdce:  MOV ECX,dword ptr [EDI + 0xeb0]\n  0052fdd4:  LEA EAX,[ESP + 0x18]\n  0052fdd8:  PUSH EAX\n  0052fdd9:  PUSH ECX\n  0052fdda:  MOV ECX,ESI\n  0052fddc:  MOV dword ptr [ESP + 0x20],0x3f800000\n  0052fde4:  MOV dword ptr [ESP + 0x24],0x0\n  0052fdec:  MOV dword ptr [ESP + 0x28],0x0\n  0052fdf4:  CALL EBX\n  0052fdf6:  MOV EDX,dword ptr [EDI + 0xd08]\n  0052fdfc:  ADD EDI,0xd08\n  0052fe02:  PUSH 0x0\n  0052fe04:  MOV ECX,EDI\n  0052fe06:  CALL dword ptr [EDX + 0x10]\n  0052fe09:  MOV ECX,ESI\n  0052fe0b:  CALL dword ptr [0x0056a588]\n  0052fe11:  MOV ECX,ESI\n  0052fe13:  CALL dword ptr [0x0056a588]\n  0052fe19:  MOV ECX,dword ptr [ESP + 0x14]\n  0052fe1d:  CALL dword ptr [0x0056a22c]\n  0052fe23:  POP EDI\n  0052fe24:  POP ESI\n  0052fe25:  POP EBP\n  0052fe26:  POP EBX\n  0052fe27:  ADD ESP,0x14\n  0052fe2a:  RET", 
+  "callers": [
+    {
+      "address": "0x0052f2e0", 
+      "name": "FUN_0052f2e0"
+    }
+  ]
+}

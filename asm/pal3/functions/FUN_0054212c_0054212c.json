@@ -1,0 +1,64 @@
+{
+  "address": "0x0054212c", 
+  "size_bytes": 48, 
+  "calling_convention": "unknown", 
+  "signature": "undefined FUN_0054212c(undefined4 param_1, undefined4 param_2)", 
+  "callees": [], 
+  "global_refs": [
+    {
+      "address": "0x00000004", 
+      "type": null, 
+      "name": "DAT_00000004"
+    }, 
+    {
+      "address": "0x00000008", 
+      "type": null, 
+      "name": "DAT_00000008"
+    }, 
+    {
+      "address": "0x00572af4", 
+      "type": null, 
+      "name": "DAT_00572af4"
+    }, 
+    {
+      "address": "0x00572af0", 
+      "type": null, 
+      "name": "DAT_00572af0"
+    }
+  ], 
+  "has_custom_name": false, 
+  "decompiled_c": "\r\n/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */\r\n\r\nundefined4 FUN_0054212c(float param_1,float param_2)\r\n\r\n{\r\n  undefined4 uVar1;\r\n  \r\n  param_1 = param_1 - param_2;\r\n  if ((_DAT_00572af4 < param_1 == (_DAT_00572af4 == param_1)) ||\r\n     (param_1 < _DAT_00572af0 == (param_1 == _DAT_00572af0))) {\r\n    uVar1 = 0;\r\n  }\r\n  else {\r\n    uVar1 = 1;\r\n  }\r\n  return uVar1;\r\n}\r\n\r\n", 
+  "is_thunk": false, 
+  "name": "FUN_0054212c", 
+  "assembly": "  0054212c:  FLD dword ptr [ESP + 0x4]\n  00542130:  FSUB dword ptr [ESP + 0x8]\n  00542134:  FLD dword ptr [0x00572af4]\n  0054213a:  FCOMP\n  0054213c:  FNSTSW AX\n  0054213e:  TEST AH,0x41\n  00542141:  JP 0x00542155\n  00542143:  FCOMP dword ptr [0x00572af0]\n  00542149:  FNSTSW AX\n  0054214b:  TEST AH,0x41\n  0054214e:  JP 0x00542157\n  00542150:  XOR EAX,EAX\n  00542152:  INC EAX\n  00542153:  JMP 0x00542159\n  00542155:  FSTP ST0\n  00542157:  XOR EAX,EAX\n  00542159:  RET 0x8", 
+  "callers": [
+    {
+      "address": "0x0054491b", 
+      "name": "FUN_0054491b"
+    }, 
+    {
+      "address": "0x00544f10", 
+      "name": "FUN_00544f10"
+    }, 
+    {
+      "address": "0x00544f8d", 
+      "name": "FUN_00544f8d"
+    }, 
+    {
+      "address": "0x005450b5", 
+      "name": "FUN_005450b5"
+    }, 
+    {
+      "address": "0x00545152", 
+      "name": "FUN_00545152"
+    }, 
+    {
+      "address": "0x0054520e", 
+      "name": "FUN_0054520e"
+    }, 
+    {
+      "address": "0x00545a51", 
+      "name": "FUN_00545a51"
+    }
+  ]
+}

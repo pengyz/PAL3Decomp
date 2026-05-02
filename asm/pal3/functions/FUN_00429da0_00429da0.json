@@ -1,0 +1,27 @@
+{
+  "address": "0x00429da0", 
+  "size_bytes": 5, 
+  "calling_convention": "unknown", 
+  "signature": "undefined FUN_00429da0(void)", 
+  "callees": [], 
+  "global_refs": [], 
+  "has_custom_name": false, 
+  "decompiled_c": "\r\nvoid __fastcall FUN_00429da0(undefined4 *param_1)\r\n\r\n{\r\n  switch(*param_1) {\r\n  case 1:\r\n    if ((gbActor *)param_1[1] != (gbActor *)0x0) {\r\n      gbActorMgr::DestroyActor(DAT_00bfda64,(gbActor *)param_1[1]);\r\n      param_1[1] = 0;\r\n    }\r\n  case 2:\r\n  case 3:\r\n    if ((undefined4 *)param_1[1] != (undefined4 *)0x0) {\r\n      (*(code *)**(undefined4 **)param_1[1])(1);\r\n      param_1[1] = 0;\r\n    }\r\n  case 4:\r\n    if ((undefined4 *)param_1[1] != (undefined4 *)0x0) {\r\n      (*(code *)**(undefined4 **)param_1[1])(1);\r\n      param_1[1] = 0;\r\n    }\r\n  default:\r\n    *param_1 = 0;\r\n    return;\r\n  }\r\n}\r\n\r\n", 
+  "is_thunk": false, 
+  "name": "FUN_00429da0", 
+  "assembly": "  00429da0:  JMP 0x00429ca0", 
+  "callers": [
+    {
+      "address": "0x0055f683", 
+      "name": "Unwind@0055f683"
+    }, 
+    {
+      "address": "0x0055f6cf", 
+      "name": "Unwind@0055f6cf"
+    }, 
+    {
+      "address": "0x00423880", 
+      "name": "FUN_00423880"
+    }
+  ]
+}

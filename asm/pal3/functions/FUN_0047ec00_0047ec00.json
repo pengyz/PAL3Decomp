@@ -1,0 +1,34 @@
+{
+  "address": "0x0047ec00", 
+  "size_bytes": 166, 
+  "calling_convention": "unknown", 
+  "signature": "undefined FUN_0047ec00(void)", 
+  "callees": [], 
+  "global_refs": [
+    {
+      "address": "0x01010101", 
+      "type": null, 
+      "name": "DAT_01010101"
+    }, 
+    {
+      "address": "0x0056a558", 
+      "type": null, 
+      "name": "PTR_ColorQuadFmt_0056a558"
+    }
+  ], 
+  "has_custom_name": false, 
+  "decompiled_c": "\r\nvoid __fastcall FUN_0047ec00(int param_1)\r\n\r\n{\r\n  int iVar1;\r\n  undefined4 *puVar2;\r\n  \r\n  *(undefined4 *)(param_1 + 0x27154) = 0;\r\n  *(undefined4 *)(param_1 + 0x27158) = 0;\r\n  puVar2 = (undefined4 *)(param_1 + 0x2715c);\r\n  for (iVar1 = 6; iVar1 != 0; iVar1 = iVar1 + -1) {\r\n    *puVar2 = 0;\r\n    puVar2 = puVar2 + 1;\r\n  }\r\n  puVar2 = (undefined4 *)(param_1 + 0x27174);\r\n  for (iVar1 = 600; iVar1 != 0; iVar1 = iVar1 + -1) {\r\n    *puVar2 = 0;\r\n    puVar2 = puVar2 + 1;\r\n  }\r\n  *(undefined4 *)(param_1 + 0x27ae0) = 0;\r\n  *(undefined4 *)(param_1 + 0x27adc) = 0;\r\n  *(undefined4 *)(param_1 + 0x27ad4) = 0;\r\n  *(undefined4 *)(param_1 + 0x27ad8) = 0;\r\n  *(undefined *)(param_1 + 0x27bbc) = 0;\r\n  *(undefined *)(param_1 + 0x27bbd) = 0;\r\n  *(undefined4 *)(param_1 + 0x27bc0) = 0xffffffff;\r\n  *(undefined4 *)(param_1 + 0x27bc4) = 0;\r\n  puVar2 = (undefined4 *)(param_1 + 0x27ba4);\r\n  for (iVar1 = 6; iVar1 != 0; iVar1 = iVar1 + -1) {\r\n    *puVar2 = &DAT_01010101;\r\n    puVar2 = puVar2 + 1;\r\n  }\r\n  *(undefined *)(param_1 + 0x27bd0) = 0;\r\n  *(undefined4 *)ColorQuadFmt_exref = 1;\r\n  *(undefined *)(param_1 + 0x27bca) = 0;\r\n  *(undefined *)(param_1 + 0x27bc9) = 0;\r\n  *(undefined *)(param_1 + 0x27bc8) = 0;\r\n  *(undefined4 *)(param_1 + 0x27bcc) = 0;\r\n  *(undefined *)(param_1 + 0x27bcb) = 0;\r\n  return;\r\n}\r\n\r\n", 
+  "is_thunk": false, 
+  "name": "FUN_0047ec00", 
+  "assembly": "  0047ec00:  MOV EDX,ECX\n  0047ec02:  PUSH EBX\n  0047ec03:  PUSH EDI\n  0047ec04:  XOR EBX,EBX\n  0047ec06:  MOV ECX,0x6\n  0047ec0b:  XOR EAX,EAX\n  0047ec0d:  LEA EDI,[EDX + 0x2715c]\n  0047ec13:  MOV dword ptr [EDX + 0x27154],EBX\n  0047ec19:  MOV dword ptr [EDX + 0x27158],EBX\n  0047ec1f:  STOSD.REP ES:EDI\n  0047ec21:  MOV ECX,0x258\n  0047ec26:  LEA EDI,[EDX + 0x27174]\n  0047ec2c:  STOSD.REP ES:EDI\n  0047ec2e:  MOV ECX,0x6\n  0047ec33:  MOV EAX,0x1010101\n  0047ec38:  LEA EDI,[EDX + 0x27ba4]\n  0047ec3e:  MOV dword ptr [EDX + 0x27ae0],EBX\n  0047ec44:  MOV dword ptr [EDX + 0x27adc],EBX\n  0047ec4a:  MOV dword ptr [EDX + 0x27ad4],EBX\n  0047ec50:  MOV dword ptr [EDX + 0x27ad8],EBX\n  0047ec56:  MOV byte ptr [EDX + 0x27bbc],BL\n  0047ec5c:  MOV byte ptr [EDX + 0x27bbd],BL\n  0047ec62:  MOV dword ptr [EDX + 0x27bc0],0xffffffff\n  0047ec6c:  MOV dword ptr [EDX + 0x27bc4],EBX\n  0047ec72:  STOSD.REP ES:EDI\n  0047ec74:  MOV byte ptr [EDX + 0x27bd0],BL\n  0047ec7a:  MOV EAX,[0x0056a558]\n  0047ec7f:  POP EDI\n  0047ec80:  MOV dword ptr [EAX],0x1\n  0047ec86:  MOV byte ptr [EDX + 0x27bca],BL\n  0047ec8c:  MOV byte ptr [EDX + 0x27bc9],BL\n  0047ec92:  MOV byte ptr [EDX + 0x27bc8],BL\n  0047ec98:  MOV dword ptr [EDX + 0x27bcc],EBX\n  0047ec9e:  MOV byte ptr [EDX + 0x27bcb],BL\n  0047eca4:  POP EBX\n  0047eca5:  RET", 
+  "callers": [
+    {
+      "address": "0x0047e5c0", 
+      "name": "FUN_0047e5c0"
+    }, 
+    {
+      "address": "0x0047f410", 
+      "name": "FUN_0047f410"
+    }
+  ]
+}

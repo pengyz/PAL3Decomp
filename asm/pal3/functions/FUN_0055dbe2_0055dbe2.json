@@ -1,0 +1,55 @@
+{
+  "address": "0x0055dbe2", 
+  "size_bytes": 69, 
+  "calling_convention": "unknown", 
+  "signature": "undefined FUN_0055dbe2(undefined4 param_1)", 
+  "callees": [], 
+  "global_refs": [
+    {
+      "address": "0x00000004", 
+      "type": null, 
+      "name": "DAT_00000004"
+    }, 
+    {
+      "address": "0x0060b530", 
+      "type": null, 
+      "name": "DAT_0060b530"
+    }, 
+    {
+      "address": "0x0060b4b4", 
+      "type": null, 
+      "name": "DAT_0060b4b4"
+    }, 
+    {
+      "address": "0x0060b4b0", 
+      "type": null, 
+      "name": "DAT_0060b4b0"
+    }, 
+    {
+      "address": "0x0060b528", 
+      "type": null, 
+      "name": "DAT_0060b528"
+    }, 
+    {
+      "address": "0x0060b4bc", 
+      "type": null, 
+      "name": "DAT_0060b4bc"
+    }, 
+    {
+      "address": "0x0060b4c0", 
+      "type": null, 
+      "name": "DAT_0060b4c0"
+    }
+  ], 
+  "has_custom_name": false, 
+  "decompiled_c": "\r\nundefined4 * FUN_0055dbe2(int param_1)\r\n\r\n{\r\n  int *piVar1;\r\n  undefined4 *puVar2;\r\n  undefined4 *puVar3;\r\n  \r\n  puVar2 = &DAT_0060b4b0;\r\n  if (DAT_0060b4b4 != param_1) {\r\n    puVar3 = puVar2;\r\n    do {\r\n      puVar2 = puVar3 + 3;\r\n      if (&DAT_0060b4b0 + DAT_0060b530 * 3 <= puVar2) break;\r\n      piVar1 = puVar3 + 4;\r\n      puVar3 = puVar2;\r\n    } while (*piVar1 != param_1);\r\n  }\r\n  if ((&DAT_0060b4b0 + DAT_0060b530 * 3 <= puVar2) || (puVar2[1] != param_1)) {\r\n    puVar2 = (undefined4 *)0x0;\r\n  }\r\n  return puVar2;\r\n}\r\n\r\n", 
+  "is_thunk": false, 
+  "name": "FUN_0055dbe2", 
+  "assembly": "  0055dbe2:  MOV EDX,dword ptr [ESP + 0x4]\n  0055dbe6:  MOV ECX,dword ptr [0x0060b530]\n  0055dbec:  CMP dword ptr [0x0060b4b4],EDX\n  0055dbf2:  PUSH ESI\n  0055dbf3:  MOV EAX,0x60b4b0\n  0055dbf8:  JZ 0x0055dc10\n  0055dbfa:  LEA ESI,[ECX + ECX*0x2]\n  0055dbfd:  LEA ESI,[ESI*0x4 + 0x60b4b0]\n  0055dc04:  ADD EAX,0xc\n  0055dc07:  CMP EAX,ESI\n  0055dc09:  JNC 0x0055dc10\n  0055dc0b:  CMP dword ptr [EAX + 0x4],EDX\n  0055dc0e:  JNZ 0x0055dc04\n  0055dc10:  LEA ECX,[ECX + ECX*0x2]\n  0055dc13:  POP ESI\n  0055dc14:  LEA ECX,[ECX*0x4 + 0x60b4b0]\n  0055dc1b:  CMP EAX,ECX\n  0055dc1d:  JNC 0x0055dc24\n  0055dc1f:  CMP dword ptr [EAX + 0x4],EDX\n  0055dc22:  JZ 0x0055dc26\n  0055dc24:  XOR EAX,EAX\n  0055dc26:  RET", 
+  "callers": [
+    {
+      "address": "0x0055dab5", 
+      "name": "FUN_0055dab5"
+    }
+  ]
+}

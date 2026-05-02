@@ -1,0 +1,48 @@
+{
+  "address": "0x0050aae0", 
+  "size_bytes": 47, 
+  "calling_convention": "unknown", 
+  "signature": "undefined FUN_0050aae0(void)", 
+  "callees": [
+    {
+      "address": "0x00000108", 
+      "name": "GetBlend"
+    }
+  ], 
+  "global_refs": [
+    {
+      "address": "0x-0000004", 
+      "type": null, 
+      "name": "DAT_-0000004"
+    }, 
+    {
+      "address": "0x0056a434", 
+      "type": null, 
+      "name": "PTR_GetBlend_0056a434"
+    }, 
+    {
+      "address": "0x0056a63c", 
+      "type": null, 
+      "name": "DAT_0056a63c"
+    }
+  ], 
+  "has_custom_name": false, 
+  "decompiled_c": "\r\n/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */\r\n\r\nfloat10 __fastcall FUN_0050aae0(int param_1)\r\n\r\n{\r\n  NodeBlend NVar1;\r\n  float local_4;\r\n  \r\n  local_4 = 0.0;\r\n  NVar1 = gbVisNode::GetBlend(*(gbVisNode **)(*(int *)(param_1 + 0x124) + 0x10),&local_4);\r\n  if (NVar1 == 0) {\r\n    return (float10)_DAT_0056a63c;\r\n  }\r\n  return (float10)local_4;\r\n}\r\n\r\n", 
+  "is_thunk": false, 
+  "name": "FUN_0050aae0", 
+  "assembly": "  0050aae0:  PUSH ECX\n  0050aae1:  MOV EAX,dword ptr [ECX + 0x124]\n  0050aae7:  LEA EDX,[ESP]\n  0050aaeb:  MOV dword ptr [ESP],0x0\n  0050aaf3:  PUSH EDX\n  0050aaf4:  MOV ECX,dword ptr [EAX + 0x10]\n  0050aaf7:  CALL dword ptr [0x0056a434]\n  0050aafd:  TEST EAX,EAX\n  0050aaff:  JNZ 0x0050ab09\n  0050ab01:  FLD dword ptr [0x0056a63c]\n  0050ab07:  POP ECX\n  0050ab08:  RET\n  0050ab09:  FLD dword ptr [ESP]\n  0050ab0d:  POP ECX\n  0050ab0e:  RET", 
+  "callers": [
+    {
+      "address": "0x004c0c10", 
+      "name": "FUN_004c0c10"
+    }, 
+    {
+      "address": "0x00501330", 
+      "name": "FUN_00501330"
+    }, 
+    {
+      "address": "0x00501410", 
+      "name": "FUN_00501410"
+    }
+  ]
+}

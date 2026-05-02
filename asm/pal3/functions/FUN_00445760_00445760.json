@@ -1,0 +1,108 @@
+{
+  "address": "0x00445760", 
+  "size_bytes": 244, 
+  "calling_convention": "unknown", 
+  "signature": "undefined FUN_00445760(undefined param_1, undefined4 param_2)", 
+  "callees": [
+    {
+      "address": "0x00445f60", 
+      "name": "FUN_00445f60"
+    }, 
+    {
+      "address": "0x0000015b", 
+      "name": "GetDynVertBuf"
+    }, 
+    {
+      "address": "0x000000d6", 
+      "name": "RenderUIQuad"
+    }
+  ], 
+  "global_refs": [
+    {
+      "address": "0x00000008", 
+      "type": null, 
+      "name": "DAT_00000008"
+    }, 
+    {
+      "address": "0x-0000048", 
+      "type": null, 
+      "name": "DAT_-0000048"
+    }, 
+    {
+      "address": "0x-000004c", 
+      "type": null, 
+      "name": "DAT_-000004c"
+    }, 
+    {
+      "address": "0x-0000074", 
+      "type": null, 
+      "name": "DAT_-0000074"
+    }, 
+    {
+      "address": "0x-0000070", 
+      "type": null, 
+      "name": "DAT_-0000070"
+    }, 
+    {
+      "address": "0x00bfda60", 
+      "type": null, 
+      "name": "DAT_00bfda60"
+    }, 
+    {
+      "address": "0x0056a610", 
+      "type": null, 
+      "name": "DAT_0056a610"
+    }, 
+    {
+      "address": "0x-000005c", 
+      "type": null, 
+      "name": "DAT_-000005c"
+    }, 
+    {
+      "address": "0x-0000058", 
+      "type": null, 
+      "name": "DAT_-0000058"
+    }, 
+    {
+      "address": "0x0056a63c", 
+      "type": null, 
+      "name": "DAT_0056a63c"
+    }, 
+    {
+      "address": "0x-0000054", 
+      "type": null, 
+      "name": "DAT_-0000054"
+    }, 
+    {
+      "address": "0x-0000050", 
+      "type": null, 
+      "name": "DAT_-0000050"
+    }, 
+    {
+      "address": "0x0056a580", 
+      "type": null, 
+      "name": "PTR_GetDynVertBuf_0056a580"
+    }, 
+    {
+      "address": "0x0189504c", 
+      "type": null, 
+      "name": "DAT_0189504c"
+    }, 
+    {
+      "address": "0x0056a36c", 
+      "type": null, 
+      "name": "PTR_RenderUIQuad_0056a36c"
+    }
+  ], 
+  "has_custom_name": false, 
+  "decompiled_c": "\r\n/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */\r\n\r\nvoid __thiscall FUN_00445760(int param_1_00,int *param_1,undefined4 param_2)\r\n\r\n{\r\n  int iVar1;\r\n  int iVar2;\r\n  gbDynVertBuf *this;\r\n  float fStack_6c;\r\n  float fStack_68;\r\n  float fStack_64;\r\n  float fStack_60;\r\n  undefined4 local_5c;\r\n  undefined4 local_58;\r\n  float local_54;\r\n  float local_50;\r\n  undefined4 local_4c;\r\n  undefined4 local_48;\r\n  undefined4 auStack_44 [16];\r\n  undefined4 uStack_4;\r\n  \r\n  local_48 = 0xffffffff;\r\n  local_4c = 0;\r\n  iVar1 = FUN_00445f60(param_2);\r\n  iVar1 = *(int *)(iVar1 + 0x18);\r\n  iVar2 = FUN_00445f60(param_2);\r\n  local_48 = *(undefined4 *)(param_1_00 + 8);\r\n  local_5c = 0;\r\n  local_58 = 0;\r\n  local_54 = _DAT_0056a63c - _DAT_0056a610 / (float)iVar1;\r\n  local_50 = _DAT_0056a63c - _DAT_0056a610 / (float)*(int *)(iVar2 + 0x1c);\r\n  this = gbVertPoolMgr::GetDynVertBuf(*(gbVertPoolMgr **)(DAT_00bfda60 + 0xc4),0x114);\r\n  fStack_6c = (float)*param_1;\r\n  fStack_60 = (float)param_1[1];\r\n  fStack_64 = (float)param_1[2];\r\n  fStack_68 = (float)param_1[3];\r\n  auStack_44[0] = FUN_00445f60(param_2);\r\n  uStack_4 = 1;\r\n  gbDynVertBuf::RenderUIQuad\r\n            (this,(gbUIQuad *)&fStack_6c,1,DAT_0189504c,(gbTextureArray *)auStack_44);\r\n  return;\r\n}\r\n\r\n", 
+  "is_thunk": false, 
+  "name": "FUN_00445760", 
+  "assembly": "  00445760:  SUB ESP,0x74\n  00445763:  PUSH EBX\n  00445764:  MOV EBX,dword ptr [ESP + 0x80]\n  0044576b:  PUSH ESI\n  0044576c:  PUSH EDI\n  0044576d:  MOV EDI,ECX\n  0044576f:  PUSH EBX\n  00445770:  MOV dword ptr [ESP + 0x3c],0xffffffff\n  00445778:  MOV dword ptr [ESP + 0x38],0x0\n  00445780:  LEA ESI,[EDI + 0x68]\n  00445783:  MOV ECX,ESI\n  00445785:  CALL 0x00445f60\n  0044578a:  MOV EAX,dword ptr [EAX + 0x18]\n  0044578d:  PUSH EBX\n  0044578e:  MOV ECX,ESI\n  00445790:  MOV dword ptr [ESP + 0x10],EAX\n  00445794:  CALL 0x00445f60\n  00445799:  FILD dword ptr [ESP + 0xc]\n  0044579d:  MOV ECX,dword ptr [EAX + 0x1c]\n  004457a0:  MOV EDX,dword ptr [EDI + 0x8]\n  004457a3:  MOV dword ptr [ESP + 0x10],ECX\n  004457a7:  MOV EAX,[0x00bfda60]\n  004457ac:  FDIVR dword ptr [0x0056a610]\n  004457b2:  MOV dword ptr [ESP + 0x24],0x0\n  004457ba:  MOV dword ptr [ESP + 0x28],0x0\n  004457c2:  MOV dword ptr [ESP + 0x38],EDX\n  004457c6:  PUSH 0x114\n  004457cb:  FSUBR dword ptr [0x0056a63c]\n  004457d1:  FSTP dword ptr [ESP + 0x30]\n  004457d5:  FILD dword ptr [ESP + 0x14]\n  004457d9:  FDIVR dword ptr [0x0056a610]\n  004457df:  FSUBR dword ptr [0x0056a63c]\n  004457e5:  FSTP dword ptr [ESP + 0x34]\n  004457e9:  MOV ECX,dword ptr [EAX + 0xc4]\n  004457ef:  CALL dword ptr [0x0056a580]\n  004457f5:  MOV EDI,EAX\n  004457f7:  MOV EAX,dword ptr [ESP + 0x84]\n  004457fe:  PUSH EBX\n  004457ff:  MOV ECX,ESI\n  00445801:  FILD dword ptr [EAX]\n  00445803:  FSTP dword ptr [ESP + 0x18]\n  00445807:  FILD dword ptr [EAX + 0x4]\n  0044580a:  FSTP dword ptr [ESP + 0x24]\n  0044580e:  FILD dword ptr [EAX + 0x8]\n  00445811:  FSTP dword ptr [ESP + 0x20]\n  00445815:  FILD dword ptr [EAX + 0xc]\n  00445818:  FSTP dword ptr [ESP + 0x1c]\n  0044581c:  CALL 0x00445f60\n  00445821:  MOV EDX,dword ptr [0x0189504c]\n  00445827:  LEA ECX,[ESP + 0x3c]\n  0044582b:  MOV dword ptr [ESP + 0x3c],EAX\n  0044582f:  PUSH ECX\n  00445830:  PUSH EDX\n  00445831:  LEA EAX,[ESP + 0x1c]\n  00445835:  PUSH 0x1\n  00445837:  PUSH EAX\n  00445838:  MOV ECX,EDI\n  0044583a:  MOV dword ptr [ESP + 0x8c],0x1\n  00445845:  CALL dword ptr [0x0056a36c]\n  0044584b:  POP EDI\n  0044584c:  POP ESI\n  0044584d:  POP EBX\n  0044584e:  ADD ESP,0x74\n  00445851:  RET 0x8", 
+  "callers": [
+    {
+      "address": "0x00445500", 
+      "name": "FUN_00445500"
+    }
+  ]
+}

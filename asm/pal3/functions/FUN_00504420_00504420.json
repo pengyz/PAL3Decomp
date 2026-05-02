@@ -1,0 +1,25 @@
+{
+  "address": "0x00504420", 
+  "size_bytes": 32, 
+  "calling_convention": "unknown", 
+  "signature": "undefined FUN_00504420(undefined4 param_1)", 
+  "callees": [], 
+  "global_refs": [
+    {
+      "address": "0x00000004", 
+      "type": null, 
+      "name": "DAT_00000004"
+    }
+  ], 
+  "has_custom_name": false, 
+  "decompiled_c": "\r\nvoid __thiscall FUN_00504420(int param_1_00,int param_1)\r\n\r\n{\r\n  int iVar1;\r\n  undefined4 *puVar2;\r\n  \r\n  puVar2 = (undefined4 *)(param_1_00 + (param_1 * 3 + 0x23d) * 8);\r\n  for (iVar1 = 6; iVar1 != 0; iVar1 = iVar1 + -1) {\r\n    *puVar2 = 0;\r\n    puVar2 = puVar2 + 1;\r\n  }\r\n  return;\r\n}\r\n\r\n", 
+  "is_thunk": false, 
+  "name": "FUN_00504420", 
+  "assembly": "  00504420:  PUSH ESI\n  00504421:  MOV ESI,dword ptr [ESP + 0x8]\n  00504425:  MOV EDX,ECX\n  00504427:  PUSH EDI\n  00504428:  LEA ESI,[ESI + ESI*0x2 + 0x23d]\n  0050442f:  MOV ECX,0x6\n  00504434:  XOR EAX,EAX\n  00504436:  LEA EDI,[EDX + ESI*0x8]\n  00504439:  STOSD.REP ES:EDI\n  0050443b:  POP EDI\n  0050443c:  POP ESI\n  0050443d:  RET 0x4", 
+  "callers": [
+    {
+      "address": "0x004e6020", 
+      "name": "FUN_004e6020"
+    }
+  ]
+}

@@ -1,0 +1,193 @@
+{
+  "address": "0x0055ef90", 
+  "size_bytes": 140, 
+  "calling_convention": "__cdecl", 
+  "signature": "int __strcmpi(char * _Str1, char * _Str2)", 
+  "callees": [
+    {
+      "address": "0x0055b657", 
+      "name": "FUN_0055b657"
+    }
+  ], 
+  "global_refs": [
+    {
+      "address": "0x00000008", 
+      "type": null, 
+      "name": "DAT_00000008"
+    }, 
+    {
+      "address": "0x00000004", 
+      "type": null, 
+      "name": "DAT_00000004"
+    }, 
+    {
+      "address": "0x018953a0", 
+      "type": null, 
+      "name": "DAT_018953a0"
+    }, 
+    {
+      "address": "0x018953a8", 
+      "type": null, 
+      "name": "DAT_018953a8"
+    }
+  ], 
+  "has_custom_name": true, 
+  "decompiled_c": "\r\n/* Library Function - Single Match\r\n    __strcmpi\r\n   \r\n   Libraries: Visual Studio 1998 Debug, Visual Studio 1998 Release */\r\n\r\nint __cdecl __strcmpi(char *_Str1,char *_Str2)\r\n\r\n{\r\n  char cVar1;\r\n  char cVar2;\r\n  uint uVar3;\r\n  byte bVar4;\r\n  byte bVar5;\r\n  byte bVar6;\r\n  int iVar7;\r\n  \r\n  if (DAT_018953a8 == 0) {\r\n    bVar6 = 0xff;\r\n    do {\r\n      do {\r\n        if (bVar6 == 0) goto LAB_0055efde;\r\n        bVar6 = *_Str2;\r\n        _Str2 = (char *)((byte *)_Str2 + 1);\r\n        bVar5 = *_Str1;\r\n        _Str1 = (char *)((byte *)_Str1 + 1);\r\n      } while (bVar5 == bVar6);\r\n      bVar4 = bVar6 + 0xbf + (-((byte)(bVar6 + 0xbf) < 0x1a) & 0x20U) + 0x41;\r\n      bVar5 = bVar5 + 0xbf;\r\n      bVar6 = bVar5 + (-(bVar5 < 0x1a) & 0x20U) + 0x41;\r\n    } while (bVar6 == bVar4);\r\n    bVar6 = (bVar6 < bVar4) * -2 + 1;\r\nLAB_0055efde:\r\n    iVar7 = (int)(char)bVar6;\r\n  }\r\n  else {\r\n    iVar7 = 0xff;\r\n    do {\r\n      do {\r\n        if ((char)iVar7 == '\\0') {\r\n          return iVar7;\r\n        }\r\n        cVar1 = *_Str2;\r\n        iVar7 = CONCAT31((int3)((uint)iVar7 >> 8),cVar1);\r\n        _Str2 = _Str2 + 1;\r\n        cVar2 = *_Str1;\r\n        _Str1 = _Str1 + 1;\r\n      } while (cVar1 == cVar2);\r\n      bVar6 = FUN_0055b657(cVar2,iVar7);\r\n      iVar7 = FUN_0055b657();\r\n    } while (bVar6 == (byte)iVar7);\r\n    uVar3 = (uint)(bVar6 < (byte)iVar7);\r\n    iVar7 = (1 - uVar3) - (uint)(uVar3 != 0);\r\n  }\r\n  return iVar7;\r\n}\r\n\r\n", 
+  "is_thunk": false, 
+  "name": "__strcmpi", 
+  "assembly": "  0055ef90:  PUSH EBP\n  0055ef91:  MOV EBP,ESP\n  0055ef93:  PUSH EDI\n  0055ef94:  PUSH ESI\n  0055ef95:  PUSH EBX\n  0055ef96:  MOV ESI,dword ptr [EBP + 0xc]\n  0055ef99:  MOV EDI,dword ptr [EBP + 0x8]\n  0055ef9c:  LEA EAX,[0x18953a0]\n  0055efa2:  CMP dword ptr [EAX + 0x8],0x0\n  0055efa6:  JNZ 0x0055efe3\n  0055efa8:  MOV AL,0xff\n  0055efaa:  MOV EDI,EDI\n  0055efac:  OR AL,AL\n  0055efae:  JZ 0x0055efde\n  0055efb0:  MOV AL,byte ptr [ESI]\n  0055efb2:  INC ESI\n  0055efb3:  MOV AH,byte ptr [EDI]\n  0055efb5:  INC EDI\n  0055efb6:  CMP AH,AL\n  0055efb8:  JZ 0x0055efac\n  0055efba:  SUB AL,0x41\n  0055efbc:  CMP AL,0x1a\n  0055efbe:  SBB CL,CL\n  0055efc0:  AND CL,0x20\n  0055efc3:  ADD AL,CL\n  0055efc5:  ADD AL,0x41\n  0055efc7:  XCHG AL,AH\n  0055efc9:  SUB AL,0x41\n  0055efcb:  CMP AL,0x1a\n  0055efcd:  SBB CL,CL\n  0055efcf:  AND CL,0x20\n  0055efd2:  ADD AL,CL\n  0055efd4:  ADD AL,0x41\n  0055efd6:  CMP AL,AH\n  0055efd8:  JZ 0x0055efac\n  0055efda:  SBB AL,AL\n  0055efdc:  SBB AL,0xff\n  0055efde:  MOVSX EAX,AL\n  0055efe1:  JMP 0x0055f017\n  0055efe3:  MOV EAX,0xff\n  0055efe8:  XOR EBX,EBX\n  0055efea:  MOV EDI,EDI\n  0055efec:  OR AL,AL\n  0055efee:  JZ 0x0055f017\n  0055eff0:  MOV AL,byte ptr [ESI]\n  0055eff2:  INC ESI\n  0055eff3:  MOV BL,byte ptr [EDI]\n  0055eff5:  INC EDI\n  0055eff6:  CMP AL,BL\n  0055eff8:  JZ 0x0055efec\n  0055effa:  PUSH EAX\n  0055effb:  PUSH EBX\n  0055effc:  CALL 0x0055b657\n  0055f001:  MOV EBX,EAX\n  0055f003:  ADD ESP,0x4\n  0055f006:  CALL 0x0055b657\n  0055f00b:  ADD ESP,0x4\n  0055f00e:  CMP BL,AL\n  0055f010:  JZ 0x0055efec\n  0055f012:  SBB EAX,EAX\n  0055f014:  SBB EAX,-0x1\n  0055f017:  POP EBX\n  0055f018:  POP ESI\n  0055f019:  POP EDI\n  0055f01a:  LEAVE\n  0055f01b:  RET", 
+  "callers": [
+    {
+      "address": "0x004319f0", 
+      "name": "FUN_004319f0"
+    }, 
+    {
+      "address": "0x00431c10", 
+      "name": "FUN_00431c10"
+    }, 
+    {
+      "address": "0x0053fcf0", 
+      "name": "FUN_0053fcf0"
+    }, 
+    {
+      "address": "0x0053fdd0", 
+      "name": "FUN_0053fdd0"
+    }, 
+    {
+      "address": "0x0040dd30", 
+      "name": "FUN_0040dd30"
+    }, 
+    {
+      "address": "0x0053df80", 
+      "name": "FUN_0053df80"
+    }, 
+    {
+      "address": "0x0041efa0", 
+      "name": "FUN_0041efa0"
+    }, 
+    {
+      "address": "0x0041fa90", 
+      "name": "FUN_0041fa90"
+    }, 
+    {
+      "address": "0x00401df0", 
+      "name": "FUN_00401df0"
+    }, 
+    {
+      "address": "0x00423a70", 
+      "name": "FUN_00423a70"
+    }, 
+    {
+      "address": "0x00429af0", 
+      "name": "FUN_00429af0"
+    }, 
+    {
+      "address": "0x0042ad40", 
+      "name": "FUN_0042ad40"
+    }, 
+    {
+      "address": "0x0042a010", 
+      "name": "FUN_0042a010"
+    }, 
+    {
+      "address": "0x004235b0", 
+      "name": "FUN_004235b0"
+    }, 
+    {
+      "address": "0x00538d20", 
+      "name": "FUN_00538d20"
+    }, 
+    {
+      "address": "0x004221d0", 
+      "name": "FUN_004221d0"
+    }, 
+    {
+      "address": "0x00422950", 
+      "name": "FUN_00422950"
+    }, 
+    {
+      "address": "0x0040e5f0", 
+      "name": "FUN_0040e5f0"
+    }, 
+    {
+      "address": "0x00422000", 
+      "name": "FUN_00422000"
+    }, 
+    {
+      "address": "0x004325a0", 
+      "name": "FUN_004325a0"
+    }, 
+    {
+      "address": "0x0042b5b0", 
+      "name": "FUN_0042b5b0"
+    }, 
+    {
+      "address": "0x00539a90", 
+      "name": "FUN_00539a90"
+    }, 
+    {
+      "address": "0x0053e510", 
+      "name": "FUN_0053e510"
+    }, 
+    {
+      "address": "0x00430290", 
+      "name": "FUN_00430290"
+    }, 
+    {
+      "address": "0x00414f90", 
+      "name": "FUN_00414f90"
+    }, 
+    {
+      "address": "0x0041b420", 
+      "name": "FUN_0041b420"
+    }, 
+    {
+      "address": "0x00439230", 
+      "name": "FUN_00439230"
+    }, 
+    {
+      "address": "0x00449b90", 
+      "name": "FUN_00449b90"
+    }, 
+    {
+      "address": "0x0047cb90", 
+      "name": "FUN_0047cb90"
+    }, 
+    {
+      "address": "0x0047cd70", 
+      "name": "FUN_0047cd70"
+    }, 
+    {
+      "address": "0x00529440", 
+      "name": "FUN_00529440"
+    }, 
+    {
+      "address": "0x0052be40", 
+      "name": "FUN_0052be40"
+    }, 
+    {
+      "address": "0x0053e740", 
+      "name": "FUN_0053e740"
+    }, 
+    {
+      "address": "0x00537ae3", 
+      "name": "FUN_00537ae3"
+    }, 
+    {
+      "address": "0x00457490", 
+      "name": "FUN_00457490"
+    }, 
+    {
+      "address": "0x00437d90", 
+      "name": "FUN_00437d90"
+    }, 
+    {
+      "address": "0x00426eb0", 
+      "name": "FUN_00426eb0"
+    }, 
+    {
+      "address": "0x004150c0", 
+      "name": "FUN_004150c0"
+    }
+  ]
+}

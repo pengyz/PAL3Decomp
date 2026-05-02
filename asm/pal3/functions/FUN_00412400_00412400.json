@@ -1,0 +1,153 @@
+{
+  "address": "0x00412400", 
+  "size_bytes": 406, 
+  "calling_convention": "unknown", 
+  "signature": "undefined FUN_00412400(undefined4 param_1)", 
+  "callees": [
+    {
+      "address": "0x00553041", 
+      "name": "FUN_00553041"
+    }, 
+    {
+      "address": "0x00000159", 
+      "name": "Push"
+    }, 
+    {
+      "address": "0x00000093", 
+      "name": "Translate"
+    }, 
+    {
+      "address": "0x0000008c", 
+      "name": "Rotate"
+    }, 
+    {
+      "address": "0x000000a6", 
+      "name": "Scale"
+    }, 
+    {
+      "address": "0x00536fc0", 
+      "name": "FUN_00536fc0"
+    }, 
+    {
+      "address": "0x000000a5", 
+      "name": "gbMatrix4"
+    }, 
+    {
+      "address": "0x000000a4", 
+      "name": "GetTagNodeTM"
+    }, 
+    {
+      "address": "0x000000a3", 
+      "name": "MultMatrix"
+    }, 
+    {
+      "address": "0x0000015d", 
+      "name": "Pop"
+    }
+  ], 
+  "global_refs": [
+    {
+      "address": "0x00c10d94", 
+      "type": null, 
+      "name": "DAT_00c10d94"
+    }, 
+    {
+      "address": "0x004125a0", 
+      "type": null, 
+      "name": "DAT_004125a0"
+    }, 
+    {
+      "address": "0x00c10d88", 
+      "type": null, 
+      "name": "DAT_00c10d88"
+    }, 
+    {
+      "address": "0x00c10d8c", 
+      "type": null, 
+      "name": "DAT_00c10d8c"
+    }, 
+    {
+      "address": "0x00c10d90", 
+      "type": null, 
+      "name": "DAT_00c10d90"
+    }, 
+    {
+      "address": "0x00000004", 
+      "type": null, 
+      "name": "DAT_00000004"
+    }, 
+    {
+      "address": "0x0056a578", 
+      "type": null, 
+      "name": "PTR_Push_0056a578"
+    }, 
+    {
+      "address": "0x0056a260", 
+      "type": null, 
+      "name": "PTR_Translate_0056a260"
+    }, 
+    {
+      "address": "0x0056a244", 
+      "type": null, 
+      "name": "PTR_Rotate_0056a244"
+    }, 
+    {
+      "address": "0x0056a2ac", 
+      "type": null, 
+      "name": "PTR_Scale_0056a2ac"
+    }, 
+    {
+      "address": "0x0056a2a8", 
+      "type": null, 
+      "name": "PTR_gbMatrix4_0056a2a8"
+    }, 
+    {
+      "address": "0x0056a2a4", 
+      "type": null, 
+      "name": "PTR_GetTagNodeTM_0056a2a4"
+    }, 
+    {
+      "address": "0x0056a2a0", 
+      "type": null, 
+      "name": "PTR_MultMatrix_0056a2a0"
+    }, 
+    {
+      "address": "0x005889a8", 
+      "type": null, 
+      "name": "s_tag_weapon1_005889a8"
+    }, 
+    {
+      "address": "0x0056a588", 
+      "type": null, 
+      "name": "PTR_Pop_0056a588"
+    }, 
+    {
+      "address": "0x0058899c", 
+      "type": null, 
+      "name": "s_tag_weapon2_0058899c"
+    }
+  ], 
+  "has_custom_name": false, 
+  "decompiled_c": "\r\n/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */\r\n\r\nvoid __thiscall FUN_00412400(int param_1_00,gbMatrixStack *param_1,undefined4 param_3)\r\n\r\n{\r\n  float fVar1;\r\n  undefined4 uVar2;\r\n  gbMatrix4 agStack_40 [64];\r\n  \r\n  if (*(int *)(param_1_00 + 0x278) != 0) {\r\n    if ((DAT_00c10d94 & 1) == 0) {\r\n      DAT_00c10d94 = DAT_00c10d94 | 1;\r\n      _DAT_00c10d88 = 0;\r\n      _DAT_00c10d8c = 0x3f800000;\r\n      _DAT_00c10d90 = 0;\r\n      FUN_00553041(&DAT_004125a0);\r\n    }\r\n    gbMatrixStack::Push(param_1);\r\n    gbMatrixStack::Translate(param_1,(gbVec3D *)(param_1_00 + 0xa0));\r\n    if ((*(int *)(param_1_00 + 0x4f0) == 4) && (*(int *)(param_1_00 + 0x4cc) == 0xb)) {\r\n      gbMatrixStack::Rotate(param_1,*(float *)(param_1_00 + 0x540),(gbVec3D *)(param_1_00 + 0x510));\r\n    }\r\n    gbMatrixStack::Rotate(param_1,*(float *)(param_1_00 + 0x21f0),(gbVec3D *)&DAT_00c10d88);\r\n    fVar1 = *(float *)(param_1_00 + 0x280);\r\n    gbMatrixStack::Scale(param_1,fVar1,fVar1,fVar1);\r\n    uVar2 = FUN_00536fc0(param_3);\r\n    *(undefined4 *)(param_1_00 + 0x90) = uVar2;\r\n    if (*(int *)(param_1_00 + 0x5a0) != 0) {\r\n      gbMatrix4::gbMatrix4(agStack_40);\r\n      if (*(char *)(param_1_00 + 0x5a5) != '\\0') {\r\n        gbMatrixStack::Push(param_1);\r\n        gbActor::GetTagNodeTM(*(gbActor **)(param_1_00 + 0x2b8),agStack_40,s_tag_weapon1_005889a8);\r\n        gbMatrixStack::MultMatrix(param_1,agStack_40);\r\n        (**(code **)(**(int **)(param_1_00 + 0x5a0) + 0x10))(0);\r\n        gbMatrixStack::Pop(param_1);\r\n      }\r\n      if (*(char *)(param_1_00 + 0x5a4) != '\\0') {\r\n        gbMatrixStack::Push(param_1);\r\n        gbActor::GetTagNodeTM(*(gbActor **)(param_1_00 + 0x2b8),agStack_40,s_tag_weapon2_0058899c);\r\n        gbMatrixStack::MultMatrix(param_1,agStack_40);\r\n        (**(code **)(**(int **)(param_1_00 + 0x5a0) + 0x10))(0);\r\n        gbMatrixStack::Pop(param_1);\r\n      }\r\n    }\r\n    gbMatrixStack::Pop(param_1);\r\n  }\r\n  return;\r\n}\r\n\r\n", 
+  "is_thunk": false, 
+  "name": "FUN_00412400", 
+  "assembly": "  00412400:  SUB ESP,0x40\n  00412403:  PUSH ESI\n  00412404:  MOV ESI,ECX\n  00412406:  MOV EAX,dword ptr [ESI + 0x278]\n  0041240c:  TEST EAX,EAX\n  0041240e:  JZ 0x0041258f\n  00412414:  MOV CL,byte ptr [0x00c10d94]\n  0041241a:  MOV AL,0x1\n  0041241c:  TEST AL,CL\n  0041241e:  JNZ 0x00412455\n  00412420:  MOV DL,CL\n  00412422:  PUSH 0x4125a0\n  00412427:  OR DL,AL\n  00412429:  MOV dword ptr [0x00c10d88],0x0\n  00412433:  MOV byte ptr [0x00c10d94],DL\n  00412439:  MOV dword ptr [0x00c10d8c],0x3f800000\n  00412443:  MOV dword ptr [0x00c10d90],0x0\n  0041244d:  CALL 0x00553041\n  00412452:  ADD ESP,0x4\n  00412455:  PUSH EBX\n  00412456:  PUSH EBP\n  00412457:  PUSH EDI\n  00412458:  MOV EDI,dword ptr [ESP + 0x54]\n  0041245c:  MOV ECX,EDI\n  0041245e:  CALL dword ptr [0x0056a578]\n  00412464:  LEA EAX,[ESI + 0xa0]\n  0041246a:  MOV ECX,EDI\n  0041246c:  PUSH EAX\n  0041246d:  CALL dword ptr [0x0056a260]\n  00412473:  MOV EAX,dword ptr [ESI + 0x4f0]\n  00412479:  MOV EBX,dword ptr [0x0056a244]\n  0041247f:  CMP EAX,0x4\n  00412482:  JNZ 0x0041249f\n  00412484:  CMP dword ptr [ESI + 0x4cc],0xb\n  0041248b:  JNZ 0x0041249f\n  0041248d:  MOV EDX,dword ptr [ESI + 0x540]\n  00412493:  LEA ECX,[ESI + 0x510]\n  00412499:  PUSH ECX\n  0041249a:  PUSH EDX\n  0041249b:  MOV ECX,EDI\n  0041249d:  CALL EBX\n  0041249f:  MOV EAX,dword ptr [ESI + 0x21f0]\n  004124a5:  PUSH 0xc10d88\n  004124aa:  PUSH EAX\n  004124ab:  MOV ECX,EDI\n  004124ad:  CALL EBX\n  004124af:  MOV ECX,dword ptr [ESI + 0x280]\n  004124b5:  MOV EAX,ECX\n  004124b7:  MOV dword ptr [ESP + 0x54],ECX\n  004124bb:  PUSH EAX\n  004124bc:  PUSH EAX\n  004124bd:  PUSH EAX\n  004124be:  MOV ECX,EDI\n  004124c0:  CALL dword ptr [0x0056a2ac]\n  004124c6:  MOV EDX,dword ptr [ESP + 0x58]\n  004124ca:  LEA ECX,[ESI + 0x2a8]\n  004124d0:  PUSH EDX\n  004124d1:  CALL 0x00536fc0\n  004124d6:  MOV dword ptr [ESI + 0x90],EAX\n  004124dc:  MOV EAX,dword ptr [ESI + 0x5a0]\n  004124e2:  TEST EAX,EAX\n  004124e4:  JZ 0x00412584\n  004124ea:  LEA ECX,[ESP + 0x10]\n  004124ee:  CALL dword ptr [0x0056a2a8]\n  004124f4:  MOV AL,byte ptr [ESI + 0x5a5]\n  004124fa:  MOV EBX,dword ptr [0x0056a2a4]\n  00412500:  MOV EBP,dword ptr [0x0056a2a0]\n  00412506:  TEST AL,AL\n  00412508:  JZ 0x00412542\n  0041250a:  MOV ECX,EDI\n  0041250c:  CALL dword ptr [0x0056a578]\n  00412512:  MOV ECX,dword ptr [ESI + 0x2b8]\n  00412518:  LEA EAX,[ESP + 0x10]\n  0041251c:  PUSH 0x5889a8\n  00412521:  PUSH EAX\n  00412522:  CALL EBX\n  00412524:  LEA ECX,[ESP + 0x10]\n  00412528:  PUSH ECX\n  00412529:  MOV ECX,EDI\n  0041252b:  CALL EBP\n  0041252d:  MOV ECX,dword ptr [ESI + 0x5a0]\n  00412533:  PUSH 0x0\n  00412535:  MOV EDX,dword ptr [ECX]\n  00412537:  CALL dword ptr [EDX + 0x10]\n  0041253a:  MOV ECX,EDI\n  0041253c:  CALL dword ptr [0x0056a588]\n  00412542:  MOV AL,byte ptr [ESI + 0x5a4]\n  00412548:  TEST AL,AL\n  0041254a:  JZ 0x00412584\n  0041254c:  MOV ECX,EDI\n  0041254e:  CALL dword ptr [0x0056a578]\n  00412554:  MOV ECX,dword ptr [ESI + 0x2b8]\n  0041255a:  LEA EAX,[ESP + 0x10]\n  0041255e:  PUSH 0x58899c\n  00412563:  PUSH EAX\n  00412564:  CALL EBX\n  00412566:  LEA ECX,[ESP + 0x10]\n  0041256a:  PUSH ECX\n  0041256b:  MOV ECX,EDI\n  0041256d:  CALL EBP\n  0041256f:  MOV ECX,dword ptr [ESI + 0x5a0]\n  00412575:  PUSH 0x0\n  00412577:  MOV EDX,dword ptr [ECX]\n  00412579:  CALL dword ptr [EDX + 0x10]\n  0041257c:  MOV ECX,EDI\n  0041257e:  CALL dword ptr [0x0056a588]\n  00412584:  MOV ECX,EDI\n  00412586:  CALL dword ptr [0x0056a588]\n  0041258c:  POP EDI\n  0041258d:  POP EBP\n  0041258e:  POP EBX\n  0041258f:  POP ESI\n  00412590:  ADD ESP,0x40\n  00412593:  RET 0x8", 
+  "callers": [
+    {
+      "address": "0x00420110", 
+      "name": "FUN_00420110"
+    }, 
+    {
+      "address": "0x0040c630", 
+      "name": "FUN_0040c630"
+    }, 
+    {
+      "address": "0x00410430", 
+      "name": "FUN_00410430"
+    }, 
+    {
+      "address": "0x00424570", 
+      "name": "FUN_00424570"
+    }
+  ]
+}

@@ -1,0 +1,88 @@
+{
+  "address": "0x0043ddf0",
+  "size_bytes": 74,
+  "calling_convention": "unknown",
+  "signature": "undefined FUN_0043ddf0(void)",
+  "callees": [
+    {
+      "address": "0x00540440",
+      "name": "FUN_00540440"
+    },
+    {
+      "address": "0x00445cd0",
+      "name": "FUN_00445cd0"
+    }
+  ],
+  "global_refs": [
+    {
+      "address": "0x-0000044",
+      "type": null,
+      "name": "DAT_-0000044"
+    },
+    {
+      "address": "0x-0000004",
+      "type": null,
+      "name": "DAT_-0000004"
+    }
+  ],
+  "has_custom_name": false,
+  "decompiled_c": "\r\nvoid __fastcall FUN_0043ddf0(int param_1)\r\n\r\n{\r\n  int local_44 [16];\r\n  undefined4 local_4;\r\n  \r\n  if (*(int *)(param_1 + 0x38) != 0) {\r\n    if (*(int *)(param_1 + 0x44) != 0) {\r\n      local_4 = 1;\r\n      local_44[0] = *(int *)(param_1 + 0x44);\r\n      FUN_00540440(param_1 + 0x10,param_1 + 8,local_44,0x114,0,1);\r\n    }\r\n    FUN_00445cd0();\r\n  }\r\n  return;\r\n}\r\n\r\n",
+  "is_thunk": false,
+  "name": "UIFrameWnd_Render",
+  "assembly": "  0043ddf0:  SUB ESP,0x44\n  0043ddf3:  PUSH ESI\n  0043ddf4:  MOV ESI,ECX\n  0043ddf6:  MOV EAX,dword ptr [ESI + 0x38]\n  0043ddf9:  TEST EAX,EAX\n  0043ddfb:  JZ 0x0043de35\n  0043ddfd:  MOV EAX,dword ptr [ESI + 0x44]\n  0043de00:  TEST EAX,EAX\n  0043de02:  JZ 0x0043de2e\n  0043de04:  MOV dword ptr [ESP + 0x4],EAX\n  0043de08:  PUSH 0x1\n  0043de0a:  PUSH 0x0\n  0043de0c:  LEA EAX,[ESP + 0xc]\n  0043de10:  PUSH 0x114\n  0043de15:  LEA ECX,[ESI + 0x8]\n  0043de18:  PUSH EAX\n  0043de19:  LEA EDX,[ESI + 0x10]\n  0043de1c:  PUSH ECX\n  0043de1d:  PUSH EDX\n  0043de1e:  MOV dword ptr [ESP + 0x5c],0x1\n  0043de26:  CALL 0x00540440\n  0043de2b:  ADD ESP,0x18\n  0043de2e:  MOV ECX,ESI\n  0043de30:  CALL 0x00445cd0\n  0043de35:  POP ESI\n  0043de36:  ADD ESP,0x44\n  0043de39:  RET",
+  "callers": [
+    {
+      "address": "0x00450230",
+      "name": "FUN_00450230"
+    },
+    {
+      "address": "0x0047f880",
+      "name": "FUN_0047f880"
+    },
+    {
+      "address": "0x004850e0",
+      "name": "FUN_004850e0"
+    },
+    {
+      "address": "0x00496fa0",
+      "name": "FUN_00496fa0"
+    },
+    {
+      "address": "0x004b2c70",
+      "name": "FUN_004b2c70"
+    },
+    {
+      "address": "0x0051b920",
+      "name": "FUN_0051b920"
+    },
+    {
+      "address": "0x0051caa0",
+      "name": "FUN_0051caa0"
+    },
+    {
+      "address": "0x00526660",
+      "name": "FUN_00526660"
+    },
+    {
+      "address": "0x00527d80",
+      "name": "FUN_00527d80"
+    },
+    {
+      "address": "0x0052c450",
+      "name": "FUN_0052c450"
+    },
+    {
+      "address": "0x004a5930",
+      "name": "FUN_004a5930"
+    },
+    {
+      "address": "0x00523670",
+      "name": "FUN_00523670"
+    }
+  ],
+  "pal3patch_info": {
+    "name": "UIFrameWnd_Render",
+    "type": "method",
+    "source": "pal3.h"
+  }
+}

@@ -1,0 +1,49 @@
+{
+  "address": "0x00554697", 
+  "size_bytes": 96, 
+  "calling_convention": "unknown", 
+  "signature": "undefined FUN_00554697(undefined4 param_1, undefined4 param_2)", 
+  "callees": [
+    {
+      "address": "0x00554670", 
+      "name": "_strrchr"
+    }
+  ], 
+  "global_refs": [
+    {
+      "address": "0x018969bc", 
+      "type": null, 
+      "name": "DAT_018969bc"
+    }, 
+    {
+      "address": "0x00000008", 
+      "type": null, 
+      "name": "DAT_00000008"
+    }, 
+    {
+      "address": "0x00000004", 
+      "type": null, 
+      "name": "DAT_00000004"
+    }, 
+    {
+      "address": "0x01896ac1", 
+      "type": null, 
+      "name": "DAT_01896ac1"
+    }
+  ], 
+  "has_custom_name": false, 
+  "decompiled_c": "\r\nvoid FUN_00554697(byte *param_1,uint param_2)\r\n\r\n{\r\n  byte bVar1;\r\n  ushort uVar2;\r\n  byte *pbVar3;\r\n  byte *pbVar4;\r\n  byte bVar5;\r\n  bool bVar6;\r\n  \r\n  pbVar3 = (byte *)0x0;\r\n  if (DAT_018969bc == 0) {\r\n    _strrchr((char *)param_1,param_2);\r\n    return;\r\n  }\r\n  do {\r\n    bVar5 = *param_1;\r\n    if (((&DAT_01896ac1)[bVar5] & 4) == 0) {\r\n      bVar6 = param_2 == bVar5;\r\nLAB_005546ea:\r\n      pbVar4 = param_1;\r\n      if (bVar6) {\r\n        pbVar3 = param_1;\r\n      }\r\n    }\r\n    else {\r\n      bVar1 = param_1[1];\r\n      pbVar4 = param_1 + 1;\r\n      if (bVar1 == 0) {\r\n        bVar6 = pbVar3 == (byte *)0x0;\r\n        param_1 = pbVar4;\r\n        bVar5 = bVar1;\r\n        goto LAB_005546ea;\r\n      }\r\n      uVar2 = CONCAT11(bVar5,bVar1);\r\n      bVar5 = bVar1;\r\n      if (param_2 == uVar2) {\r\n        pbVar3 = param_1;\r\n      }\r\n    }\r\n    param_1 = pbVar4 + 1;\r\n    if (bVar5 == 0) {\r\n      return;\r\n    }\r\n  } while( true );\r\n}\r\n\r\n", 
+  "is_thunk": false, 
+  "name": "FUN_00554697", 
+  "assembly": "  00554697:  PUSH EBP\n  00554698:  MOV EBP,ESP\n  0055469a:  XOR EAX,EAX\n  0055469c:  CMP dword ptr [0x018969bc],EAX\n  005546a2:  JNZ 0x005546b3\n  005546a4:  PUSH dword ptr [EBP + 0xc]\n  005546a7:  PUSH dword ptr [EBP + 0x8]\n  005546aa:  CALL 0x00554670\n  005546af:  POP ECX\n  005546b0:  POP ECX\n  005546b1:  POP EBP\n  005546b2:  RET\n  005546b3:  MOV EDX,dword ptr [EBP + 0x8]\n  005546b6:  PUSH EBX\n  005546b7:  PUSH ESI\n  005546b8:  MOV BL,byte ptr [EDX]\n  005546ba:  MOVZX ECX,BL\n  005546bd:  MOVZX ESI,CL\n  005546c0:  TEST byte ptr [ESI + 0x1896ac1],0x4\n  005546c7:  JZ 0x005546e7\n  005546c9:  MOV BL,byte ptr [EDX + 0x1]\n  005546cc:  INC EDX\n  005546cd:  TEST BL,BL\n  005546cf:  JZ 0x005546e3\n  005546d1:  MOVZX ESI,BL\n  005546d4:  SHL ECX,0x8\n  005546d7:  OR ECX,ESI\n  005546d9:  CMP dword ptr [EBP + 0xc],ECX\n  005546dc:  JNZ 0x005546ee\n  005546de:  LEA EAX,[EDX + -0x1]\n  005546e1:  JMP 0x005546ee\n  005546e3:  TEST EAX,EAX\n  005546e5:  JMP 0x005546ea\n  005546e7:  CMP dword ptr [EBP + 0xc],ECX\n  005546ea:  JNZ 0x005546ee\n  005546ec:  MOV EAX,EDX\n  005546ee:  INC EDX\n  005546ef:  TEST BL,BL\n  005546f1:  JNZ 0x005546b8\n  005546f3:  POP ESI\n  005546f4:  POP EBX\n  005546f5:  POP EBP\n  005546f6:  RET", 
+  "callers": [
+    {
+      "address": "0x004e16f0", 
+      "name": "FUN_004e16f0"
+    }, 
+    {
+      "address": "0x004e1870", 
+      "name": "FUN_004e1870"
+    }
+  ]
+}

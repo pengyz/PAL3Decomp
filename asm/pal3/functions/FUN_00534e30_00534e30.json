@@ -1,0 +1,30 @@
+{
+  "address": "0x00534e30", 
+  "size_bytes": 38, 
+  "calling_convention": "unknown", 
+  "signature": "undefined FUN_00534e30(undefined4 param_1)", 
+  "callees": [], 
+  "global_refs": [
+    {
+      "address": "0x00000004", 
+      "type": null, 
+      "name": "DAT_00000004"
+    }, 
+    {
+      "address": "0x00bfc5e8", 
+      "type": null, 
+      "name": "DAT_00bfc5e8"
+    }
+  ], 
+  "has_custom_name": false, 
+  "decompiled_c": "\r\nuint __thiscall FUN_00534e30(int param_1_00,int param_1)\r\n\r\n{\r\n  undefined4 in_EAX;\r\n  uint uVar1;\r\n  \r\n  uVar1 = CONCAT31((int3)((uint)in_EAX >> 8),*(char *)(param_1_00 + 4));\r\n  if ((*(char *)(param_1_00 + 4) != '\\0') &&\r\n     (uVar1 = param_1 * 0x10, (&DAT_00bfc5e8)[param_1 * 4] == 0)) {\r\n    *(undefined *)(param_1_00 + 4) = 0;\r\n    return CONCAT31((int3)(uVar1 >> 8),1);\r\n  }\r\n  return uVar1 & 0xffffff00;\r\n}\r\n\r\n", 
+  "is_thunk": false, 
+  "name": "FUN_00534e30", 
+  "assembly": "  00534e30:  MOV AL,byte ptr [ECX + 0x4]\n  00534e33:  TEST AL,AL\n  00534e35:  JZ 0x00534e51\n  00534e37:  MOV EAX,dword ptr [ESP + 0x4]\n  00534e3b:  SHL EAX,0x4\n  00534e3e:  MOV EDX,dword ptr [EAX + 0xbfc5e8]\n  00534e44:  TEST EDX,EDX\n  00534e46:  JNZ 0x00534e51\n  00534e48:  MOV byte ptr [ECX + 0x4],0x0\n  00534e4c:  MOV AL,0x1\n  00534e4e:  RET 0x4\n  00534e51:  XOR AL,AL\n  00534e53:  RET 0x4", 
+  "callers": [
+    {
+      "address": "0x00534e60", 
+      "name": "FUN_00534e60"
+    }
+  ]
+}

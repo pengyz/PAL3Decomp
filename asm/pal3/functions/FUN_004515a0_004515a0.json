@@ -1,0 +1,39 @@
+{
+  "address": "0x004515a0", 
+  "size_bytes": 52, 
+  "calling_convention": "unknown", 
+  "signature": "undefined FUN_004515a0(undefined4 param_1, undefined4 param_2, undefined4 param_3)", 
+  "callees": [
+    {
+      "address": "0x00451360", 
+      "name": "FUN_00451360"
+    }, 
+    {
+      "address": "0x00445d10", 
+      "name": "FUN_00445d10"
+    }
+  ], 
+  "global_refs": [
+    {
+      "address": "0x00000008", 
+      "type": null, 
+      "name": "DAT_00000008"
+    }, 
+    {
+      "address": "0x00000004", 
+      "type": null, 
+      "name": "DAT_00000004"
+    }, 
+    {
+      "address": "0x0000000c", 
+      "type": null, 
+      "name": "DAT_0000000c"
+    }
+  ], 
+  "has_custom_name": false, 
+  "decompiled_c": "\r\nvoid FUN_004515a0(int param_1,int param_2,undefined4 param_3)\r\n\r\n{\r\n  if ((param_1 == 1000) && (param_2 == 0)) {\r\n    FUN_00451360(0,0);\r\n  }\r\n  FUN_00445d10(param_1,param_2,param_3);\r\n  return;\r\n}\r\n\r\n", 
+  "is_thunk": false, 
+  "name": "FUN_004515a0", 
+  "assembly": "  004515a0:  PUSH EBX\n  004515a1:  MOV EBX,dword ptr [ESP + 0xc]\n  004515a5:  PUSH ESI\n  004515a6:  PUSH EDI\n  004515a7:  MOV EDI,dword ptr [ESP + 0x10]\n  004515ab:  MOV ESI,ECX\n  004515ad:  CMP EDI,0x3e8\n  004515b3:  JNZ 0x004515c0\n  004515b5:  TEST EBX,EBX\n  004515b7:  JNZ 0x004515c0\n  004515b9:  PUSH EBX\n  004515ba:  PUSH EBX\n  004515bb:  CALL 0x00451360\n  004515c0:  MOV EAX,dword ptr [ESP + 0x18]\n  004515c4:  MOV ECX,ESI\n  004515c6:  PUSH EAX\n  004515c7:  PUSH EBX\n  004515c8:  PUSH EDI\n  004515c9:  CALL 0x00445d10\n  004515ce:  POP EDI\n  004515cf:  POP ESI\n  004515d0:  POP EBX\n  004515d1:  RET 0xc", 
+  "callers": []
+}

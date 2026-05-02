@@ -1,0 +1,124 @@
+{
+  "address": "0x00540fa0",
+  "size_bytes": 34,
+  "calling_convention": "unknown",
+  "signature": "undefined FUN_00540fa0(void)",
+  "callees": [
+    {
+      "address": "0x0000015d",
+      "name": "Pop"
+    }
+  ],
+  "global_refs": [
+    {
+      "address": "0x00bfda60",
+      "type": null,
+      "name": "DAT_00bfda60"
+    },
+    {
+      "address": "0x0056a588",
+      "type": null,
+      "name": "PTR_Pop_0056a588"
+    }
+  ],
+  "has_custom_name": false,
+  "decompiled_c": "\r\nvoid FUN_00540fa0(void)\r\n\r\n{\r\n  gbMatrixStack *this;\r\n  \r\n  this = *(gbMatrixStack **)(DAT_00bfda60 + 0xd8);\r\n  gbMatrixStack::Pop(*(gbMatrixStack **)(DAT_00bfda60 + 0xd4));\r\n  gbMatrixStack::Pop(this);\r\n  return;\r\n}\r\n\r\n",
+  "is_thunk": false,
+  "name": "UIRenderObj_Dtor",
+  "assembly": "  00540fa0:  MOV EAX,[0x00bfda60]\n  00540fa5:  PUSH ESI\n  00540fa6:  PUSH EDI\n  00540fa7:  MOV EDI,dword ptr [0x0056a588]\n  00540fad:  MOV ECX,dword ptr [EAX + 0xd4]\n  00540fb3:  MOV ESI,dword ptr [EAX + 0xd8]\n  00540fb9:  CALL EDI\n  00540fbb:  MOV ECX,ESI\n  00540fbd:  CALL EDI\n  00540fbf:  POP EDI\n  00540fc0:  POP ESI\n  00540fc1:  RET",
+  "callers": [
+    {
+      "address": "0x0055f1f0",
+      "name": "Unwind@0055f1f0"
+    },
+    {
+      "address": "0x00563100",
+      "name": "Unwind@00563100"
+    },
+    {
+      "address": "0x00566310",
+      "name": "Unwind@00566310"
+    },
+    {
+      "address": "0x00566500",
+      "name": "Unwind@00566500"
+    },
+    {
+      "address": "0x00566580",
+      "name": "Unwind@00566580"
+    },
+    {
+      "address": "0x005665a0",
+      "name": "Unwind@005665a0"
+    },
+    {
+      "address": "0x00566620",
+      "name": "Unwind@00566620"
+    },
+    {
+      "address": "0x00566bb0",
+      "name": "Unwind@00566bb0"
+    },
+    {
+      "address": "0x00566cb0",
+      "name": "Unwind@00566cb0"
+    },
+    {
+      "address": "0x00568d40",
+      "name": "Unwind@00568d40"
+    },
+    {
+      "address": "0x00568f50",
+      "name": "Unwind@00568f50"
+    },
+    {
+      "address": "0x00405c00",
+      "name": "FUN_00405c00"
+    },
+    {
+      "address": "0x0053c990",
+      "name": "FUN_0053c990"
+    },
+    {
+      "address": "0x00541640",
+      "name": "FUN_00541640"
+    },
+    {
+      "address": "0x004bdc40",
+      "name": "FUN_004bdc40"
+    },
+    {
+      "address": "0x004850e0",
+      "name": "FUN_004850e0"
+    },
+    {
+      "address": "0x004be920",
+      "name": "FUN_004be920"
+    },
+    {
+      "address": "0x004beab0",
+      "name": "FUN_004beab0"
+    },
+    {
+      "address": "0x004bfdd0",
+      "name": "FUN_004bfdd0"
+    },
+    {
+      "address": "0x004e0010",
+      "name": "FUN_004e0010"
+    },
+    {
+      "address": "0x004fc3a0",
+      "name": "FUN_004fc3a0"
+    },
+    {
+      "address": "0x004b6e20",
+      "name": "FUN_004b6e20"
+    }
+  ],
+  "pal3patch_info": {
+    "name": "UIRenderObj_Dtor",
+    "type": "method",
+    "source": "pal3.h"
+  }
+}

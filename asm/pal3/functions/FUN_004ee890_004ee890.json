@@ -1,0 +1,56 @@
+{
+  "address": "0x004ee890", 
+  "size_bytes": 126, 
+  "calling_convention": "unknown", 
+  "signature": "undefined FUN_004ee890(undefined4 param_1)", 
+  "callees": [
+    {
+      "address": "0x004f3b90", 
+      "name": "FUN_004f3b90"
+    }
+  ], 
+  "global_refs": [
+    {
+      "address": "0x00000004", 
+      "type": null, 
+      "name": "DAT_00000004"
+    }, 
+    {
+      "address": "0x-0000004", 
+      "type": null, 
+      "name": "DAT_-0000004"
+    }, 
+    {
+      "address": "0x-0000008", 
+      "type": null, 
+      "name": "DAT_-0000008"
+    }
+  ], 
+  "has_custom_name": false, 
+  "decompiled_c": "\r\nint __thiscall FUN_004ee890(int param_1_00,undefined4 param_1)\r\n\r\n{\r\n  char *pcVar1;\r\n  int iVar2;\r\n  int local_8;\r\n  int local_4;\r\n  \r\n  local_8 = 0;\r\n  local_4 = 0;\r\n  iVar2 = 0;\r\n  FUN_004f3b90(param_1,&local_8,&local_4);\r\n  if (local_8 < local_4) {\r\n    local_4 = local_4 - local_8;\r\n    pcVar1 = (char *)(param_1_00 + 0x598 + local_8 * 0x37c);\r\n    do {\r\n      if (((pcVar1[-0x357] != '\\0') && (*pcVar1 == '\\0')) && (pcVar1[-0x356] == '\\x01')) {\r\n        iVar2 = iVar2 + 1;\r\n      }\r\n      pcVar1 = pcVar1 + 0x37c;\r\n      local_4 = local_4 + -1;\r\n    } while (local_4 != 0);\r\n  }\r\n  return iVar2;\r\n}\r\n\r\n", 
+  "is_thunk": false, 
+  "name": "FUN_004ee890", 
+  "assembly": "  004ee890:  SUB ESP,0x8\n  004ee893:  MOV EDX,dword ptr [ESP + 0xc]\n  004ee897:  PUSH ESI\n  004ee898:  MOV ESI,ECX\n  004ee89a:  LEA EAX,[ESP + 0x8]\n  004ee89e:  PUSH EDI\n  004ee89f:  LEA ECX,[ESP + 0x8]\n  004ee8a3:  PUSH EAX\n  004ee8a4:  PUSH ECX\n  004ee8a5:  PUSH EDX\n  004ee8a6:  MOV ECX,ESI\n  004ee8a8:  MOV dword ptr [ESP + 0x14],0x0\n  004ee8b0:  MOV dword ptr [ESP + 0x18],0x0\n  004ee8b8:  XOR EDI,EDI\n  004ee8ba:  CALL 0x004f3b90\n  004ee8bf:  MOV EAX,dword ptr [ESP + 0x8]\n  004ee8c3:  MOV EDX,dword ptr [ESP + 0xc]\n  004ee8c7:  CMP EAX,EDX\n  004ee8c9:  JGE 0x004ee904\n  004ee8cb:  LEA ECX,[EAX*0x8 + 0x0]\n  004ee8d2:  SUB ECX,EAX\n  004ee8d4:  SHL ECX,0x5\n  004ee8d7:  SUB ECX,EAX\n  004ee8d9:  SUB EDX,EAX\n  004ee8db:  MOV AL,0x1\n  004ee8dd:  LEA ECX,[ESI + ECX*0x4 + 0x598]\n  004ee8e4:  CMP byte ptr [ECX + 0xfffffca9],0x0\n  004ee8eb:  JZ 0x004ee8fb\n  004ee8ed:  CMP byte ptr [ECX],0x0\n  004ee8f0:  JNZ 0x004ee8fb\n  004ee8f2:  CMP byte ptr [ECX + 0xfffffcaa],AL\n  004ee8f8:  JNZ 0x004ee8fb\n  004ee8fa:  INC EDI\n  004ee8fb:  ADD ECX,0x37c\n  004ee901:  DEC EDX\n  004ee902:  JNZ 0x004ee8e4\n  004ee904:  MOV EAX,EDI\n  004ee906:  POP EDI\n  004ee907:  POP ESI\n  004ee908:  ADD ESP,0x8\n  004ee90b:  RET 0x4", 
+  "callers": [
+    {
+      "address": "0x004f7500", 
+      "name": "FUN_004f7500"
+    }, 
+    {
+      "address": "0x004fa930", 
+      "name": "FUN_004fa930"
+    }, 
+    {
+      "address": "0x004f7200", 
+      "name": "FUN_004f7200"
+    }, 
+    {
+      "address": "0x004f1fa0", 
+      "name": "FUN_004f1fa0"
+    }, 
+    {
+      "address": "0x004f8fd0", 
+      "name": "FUN_004f8fd0"
+    }
+  ]
+}

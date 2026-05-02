@@ -1,0 +1,19 @@
+{
+  "address": "0x00535ae0", 
+  "size_bytes": 183, 
+  "calling_convention": "unknown", 
+  "signature": "undefined FUN_00535ae0(void)", 
+  "callees": [], 
+  "global_refs": [], 
+  "has_custom_name": false, 
+  "decompiled_c": "\r\nvoid __fastcall FUN_00535ae0(undefined4 *param_1)\r\n\r\n{\r\n  *param_1 = 0;\r\n  param_1[1] = 0;\r\n  param_1[2] = 0;\r\n  param_1[0x38] = 0;\r\n  param_1[0x2a] = 0xc2c08f5c;\r\n  param_1[0x2b] = 0;\r\n  param_1[0x2c] = 0xc571c8f6;\r\n  param_1[0x2d] = param_1[0x2a];\r\n  param_1[0x2e] = param_1[0x2b];\r\n  param_1[0x2f] = param_1[0x2c];\r\n  param_1[0x27] = 0x3f800000;\r\n  param_1[0x28] = 0;\r\n  param_1[0x29] = 0;\r\n  param_1[0x30] = 0;\r\n  *(undefined *)(param_1 + 0x36) = 0;\r\n  *(undefined *)((int)param_1 + 0xd9) = 0;\r\n  param_1[0x32] = 0x3fcccccd;\r\n  param_1[0x33] = 0x3fa147ae;\r\n  param_1[0x34] = 0x3f2e147b;\r\n  param_1[0x35] = 0x3e8f5c29;\r\n  *(undefined *)((int)param_1 + 0xda) = 0;\r\n  *(undefined *)((int)param_1 + 0xdb) = 0;\r\n  *(undefined *)(param_1 + 0x37) = 0;\r\n  *(undefined *)((int)param_1 + 0xdd) = 0;\r\n  return;\r\n}\r\n\r\n", 
+  "is_thunk": false, 
+  "name": "FUN_00535ae0", 
+  "assembly": "  00535ae0:  XOR EAX,EAX\n  00535ae2:  MOV dword ptr [ECX],EAX\n  00535ae4:  MOV dword ptr [ECX + 0x4],EAX\n  00535ae7:  MOV dword ptr [ECX + 0x8],EAX\n  00535aea:  MOV dword ptr [ECX + 0xe0],EAX\n  00535af0:  MOV dword ptr [ECX + 0xa8],0xc2c08f5c\n  00535afa:  MOV dword ptr [ECX + 0xac],EAX\n  00535b00:  MOV dword ptr [ECX + 0xb0],0xc571c8f6\n  00535b0a:  MOV EDX,dword ptr [ECX + 0xa8]\n  00535b10:  MOV dword ptr [ECX + 0xb4],EDX\n  00535b16:  MOV EDX,dword ptr [ECX + 0xac]\n  00535b1c:  MOV dword ptr [ECX + 0xb8],EDX\n  00535b22:  MOV EDX,dword ptr [ECX + 0xb0]\n  00535b28:  MOV dword ptr [ECX + 0xbc],EDX\n  00535b2e:  MOV dword ptr [ECX + 0x9c],0x3f800000\n  00535b38:  MOV dword ptr [ECX + 0xa0],EAX\n  00535b3e:  MOV dword ptr [ECX + 0xa4],EAX\n  00535b44:  MOV dword ptr [ECX + 0xc0],EAX\n  00535b4a:  MOV byte ptr [ECX + 0xd8],AL\n  00535b50:  MOV byte ptr [ECX + 0xd9],AL\n  00535b56:  MOV dword ptr [ECX + 0xc8],0x3fcccccd\n  00535b60:  MOV dword ptr [ECX + 0xcc],0x3fa147ae\n  00535b6a:  MOV dword ptr [ECX + 0xd0],0x3f2e147b\n  00535b74:  MOV dword ptr [ECX + 0xd4],0x3e8f5c29\n  00535b7e:  MOV byte ptr [ECX + 0xda],AL\n  00535b84:  MOV byte ptr [ECX + 0xdb],AL\n  00535b8a:  MOV byte ptr [ECX + 0xdc],AL\n  00535b90:  MOV byte ptr [ECX + 0xdd],AL\n  00535b96:  RET", 
+  "callers": [
+    {
+      "address": "0x00535a70", 
+      "name": "FUN_00535a70"
+    }
+  ]
+}

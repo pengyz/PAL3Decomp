@@ -1,0 +1,38 @@
+{
+  "address": "0x004f2bf0", 
+  "size_bytes": 53, 
+  "calling_convention": "unknown", 
+  "signature": "undefined FUN_004f2bf0(undefined4 param_1, undefined1 param_2)", 
+  "callees": [], 
+  "global_refs": [
+    {
+      "address": "0x00000008", 
+      "type": null, 
+      "name": "DAT_00000008"
+    }, 
+    {
+      "address": "0x00000004", 
+      "type": null, 
+      "name": "DAT_00000004"
+    }
+  ], 
+  "has_custom_name": false, 
+  "decompiled_c": "\r\nundefined4 __thiscall FUN_004f2bf0(int param_1_00,int param_1,char param_2)\r\n\r\n{\r\n  if (param_2 == '\\x01') {\r\n    return *(undefined4 *)(param_1_00 + 600 + param_1 * 0x37c);\r\n  }\r\n  return *(undefined4 *)(param_1_00 + 0x254 + param_1 * 0x37c);\r\n}\r\n\r\n", 
+  "is_thunk": false, 
+  "name": "FUN_004f2bf0", 
+  "assembly": "  004f2bf0:  MOV AL,byte ptr [ESP + 0x8]\n  004f2bf4:  CMP AL,0x1\n  004f2bf6:  MOV EAX,dword ptr [ESP + 0x4]\n  004f2bfa:  LEA EDX,[EAX*0x8 + 0x0]\n  004f2c01:  JNZ 0x004f2c14\n  004f2c03:  SUB EDX,EAX\n  004f2c05:  SHL EDX,0x5\n  004f2c08:  SUB EDX,EAX\n  004f2c0a:  MOV EAX,dword ptr [ECX + EDX*0x4 + 0x258]\n  004f2c11:  RET 0x8\n  004f2c14:  SUB EDX,EAX\n  004f2c16:  SHL EDX,0x5\n  004f2c19:  SUB EDX,EAX\n  004f2c1b:  MOV EAX,dword ptr [ECX + EDX*0x4 + 0x254]\n  004f2c22:  RET 0x8", 
+  "callers": [
+    {
+      "address": "0x004eef20", 
+      "name": "FUN_004eef20"
+    }, 
+    {
+      "address": "0x004f33d0", 
+      "name": "FUN_004f33d0"
+    }, 
+    {
+      "address": "0x004e2c50", 
+      "name": "FUN_004e2c50"
+    }
+  ]
+}

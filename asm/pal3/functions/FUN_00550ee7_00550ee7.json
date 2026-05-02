@@ -1,0 +1,158 @@
+{
+  "address": "0x00550ee7", 
+  "size_bytes": 518, 
+  "calling_convention": "unknown", 
+  "signature": "undefined FUN_00550ee7(undefined4 param_1, undefined4 param_2, undefined4 param_3, undefined4 param_4, undefined4 param_5, undefined4 param_6)", 
+  "callees": [
+    {
+      "address": "0x00550452", 
+      "name": "FUN_00550452"
+    }, 
+    {
+      "address": "0x00550b93", 
+      "name": "FUN_00550b93"
+    }, 
+    {
+      "address": "0x00550b08", 
+      "name": "FUN_00550b08"
+    }
+  ], 
+  "global_refs": [
+    {
+      "address": "0x00000018", 
+      "type": null, 
+      "name": "DAT_00000018"
+    }, 
+    {
+      "address": "0x00000010", 
+      "type": null, 
+      "name": "DAT_00000010"
+    }, 
+    {
+      "address": "0x00000014", 
+      "type": null, 
+      "name": "DAT_00000014"
+    }, 
+    {
+      "address": "0x005510ed", 
+      "type": null, 
+      "name": "switchdataD_005510ed"
+    }, 
+    {
+      "address": "0x-000000c", 
+      "type": null, 
+      "name": "DAT_-000000c"
+    }, 
+    {
+      "address": "0x-0000010", 
+      "type": null, 
+      "name": "DAT_-0000010"
+    }, 
+    {
+      "address": "0x-0000014", 
+      "type": null, 
+      "name": "DAT_-0000014"
+    }, 
+    {
+      "address": "0x-0000018", 
+      "type": null, 
+      "name": "DAT_-0000018"
+    }, 
+    {
+      "address": "0x-0000020", 
+      "type": null, 
+      "name": "DAT_-0000020"
+    }, 
+    {
+      "address": "0x-0000024", 
+      "type": null, 
+      "name": "DAT_-0000024"
+    }, 
+    {
+      "address": "0x-0000028", 
+      "type": null, 
+      "name": "DAT_-0000028"
+    }, 
+    {
+      "address": "0x-000002c", 
+      "type": null, 
+      "name": "DAT_-000002c"
+    }, 
+    {
+      "address": "0x-0000034", 
+      "type": null, 
+      "name": "DAT_-0000034"
+    }, 
+    {
+      "address": "0x-0000038", 
+      "type": null, 
+      "name": "DAT_-0000038"
+    }, 
+    {
+      "address": "0x-000003c", 
+      "type": null, 
+      "name": "DAT_-000003c"
+    }, 
+    {
+      "address": "0x-0000040", 
+      "type": null, 
+      "name": "DAT_-0000040"
+    }, 
+    {
+      "address": "0x-0000008", 
+      "type": null, 
+      "name": "DAT_-0000008"
+    }, 
+    {
+      "address": "0x-000001c", 
+      "type": null, 
+      "name": "DAT_-000001c"
+    }, 
+    {
+      "address": "0x-0000030", 
+      "type": null, 
+      "name": "DAT_-0000030"
+    }, 
+    {
+      "address": "0x-0000044", 
+      "type": null, 
+      "name": "DAT_-0000044"
+    }, 
+    {
+      "address": "0x0000000c", 
+      "type": null, 
+      "name": "DAT_0000000c"
+    }, 
+    {
+      "address": "0x00000008", 
+      "type": null, 
+      "name": "DAT_00000008"
+    }, 
+    {
+      "address": "0x00000004", 
+      "type": null, 
+      "name": "DAT_00000004"
+    }, 
+    {
+      "address": "0x00572c40", 
+      "type": null, 
+      "name": "DAT_00572c40"
+    }, 
+    {
+      "address": "0x00572c30", 
+      "type": null, 
+      "name": "DAT_00572c30"
+    }, 
+    {
+      "address": "0x00572c28", 
+      "type": null, 
+      "name": "DAT_00572c28"
+    }
+  ], 
+  "has_custom_name": false, 
+  "decompiled_c": "\r\n/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */\r\n\r\nulonglong *\r\nFUN_00550ee7(ulonglong *param_1,ulonglong *param_2,undefined8 *param_3,int param_4,int param_5,\r\n            int param_6)\r\n\r\n{\r\n  ulonglong uVar1;\r\n  undefined8 uVar2;\r\n  undefined8 uVar3;\r\n  undefined4 uVar6;\r\n  undefined8 uVar4;\r\n  undefined8 uVar5;\r\n  undefined8 in_MM5;\r\n  undefined8 uVar7;\r\n  undefined8 in_MM6;\r\n  undefined4 local_44;\r\n  undefined4 local_40;\r\n  undefined4 local_3c;\r\n  undefined4 local_38;\r\n  undefined4 local_34;\r\n  undefined4 local_30;\r\n  undefined4 local_2c;\r\n  undefined4 local_28;\r\n  undefined4 local_24;\r\n  undefined4 local_20;\r\n  undefined4 local_1c;\r\n  undefined4 local_18;\r\n  undefined4 local_14;\r\n  undefined4 local_10;\r\n  undefined4 local_c;\r\n  undefined4 local_8;\r\n  \r\n  switch(((uint)(param_6 != 0) << 1 | (uint)(param_5 != 0)) << 1 | (uint)(param_4 != 0)) {\r\n  case 0:\r\n    local_c = 0;\r\n    local_10 = 0;\r\n    local_14 = 0;\r\n    local_18 = 0;\r\n    local_20 = 0;\r\n    local_24 = 0;\r\n    local_28 = 0;\r\n    local_2c = 0;\r\n    local_34 = 0;\r\n    local_38 = 0;\r\n    local_3c = 0;\r\n    local_40 = 0;\r\n    local_8 = 0x3f800000;\r\n    local_1c = 0x3f800000;\r\n    local_30 = 0x3f800000;\r\n    local_44 = 0x3f800000;\r\n    break;\r\n  case 1:\r\n    FastExitMediaState();\r\n    FUN_00550452(&local_44,0,param_4);\r\n    FastExitMediaState();\r\n    break;\r\n  case 2:\r\n    FastExitMediaState();\r\n    FUN_00550452(&local_44,0,param_5);\r\n    FastExitMediaState();\r\n    break;\r\n  case 3:\r\n    FastExitMediaState();\r\n    FUN_00550b93(&local_44,param_5,param_4);\r\n    FUN_00550452(&local_44,0,&local_44);\r\n    FastExitMediaState();\r\n    break;\r\n  case 4:\r\n    FastExitMediaState();\r\n    FUN_00550452(&local_44,0,param_6);\r\n    FastExitMediaState();\r\n    break;\r\n  case 5:\r\n    FastExitMediaState();\r\n    FUN_00550b93(&local_44,param_6,param_4);\r\n    FUN_00550452(&local_44,0,&local_44);\r\n    FastExitMediaState();\r\n    break;\r\n  case 6:\r\n    FastExitMediaState();\r\n    FUN_00550b93(&local_44,param_6,param_5);\r\n    FUN_00550452(&local_44,0,&local_44);\r\n    FastExitMediaState();\r\n    break;\r\n  case 7:\r\n    FastExitMediaState();\r\n    FUN_00550b93(&local_44,param_6,param_5);\r\n    FUN_00550b93(&local_44,&local_44,param_4);\r\n    FUN_00550452(&local_44,0,&local_44);\r\n    FastExitMediaState();\r\n  }\r\n  if (param_3 != (undefined8 *)0x0) {\r\n    FastExitMediaState();\r\n    uVar2 = PackedIntToFloatingDwordConv(*param_3,*param_3);\r\n    uVar5 = param_3[2];\r\n    uVar3 = PackedIntToFloatingDwordConv(param_3[1],param_3[1]);\r\n    uVar6 = (undefined4)((ulonglong)uVar3 >> 0x20);\r\n    uVar4 = CONCAT44(uVar6,uVar6);\r\n    uVar7 = FloatingReciprocalAprox(in_MM5,uVar3);\r\n    uVar4 = FloatingReciprocalAprox(uVar4,uVar4);\r\n    uVar2 = PackedFloatingSUB(*param_2,uVar2);\r\n    uVar4 = CONCAT44((int)uVar4,(int)uVar7);\r\n    uVar3 = PackedFloatingReciprocalIter1(uVar3,uVar4);\r\n    uVar3 = PackedFloatingReciprocalIter2(uVar3,uVar4);\r\n    uVar3 = PackedFloatingMUL(uVar3,DAT_00572c40);\r\n    uVar2 = PackedFloatingMUL(uVar2,uVar3);\r\n    uVar6 = (undefined4)((ulonglong)uVar5 >> 0x20);\r\n    uVar1 = PackedFloatingSUB(uVar2,_DAT_00572c30);\r\n    uVar2 = PackedFloatingSUB(CONCAT44(uVar6,uVar6),uVar5);\r\n    uVar3 = FloatingReciprocalAprox(in_MM6,uVar2);\r\n    uVar2 = PackedFloatingReciprocalIter1(uVar2,uVar3);\r\n    uVar2 = PackedFloatingReciprocalIter2(uVar2,uVar3);\r\n    uVar5 = PackedFloatingSUB((ulonglong)*(uint *)(param_2 + 1),uVar5);\r\n    uVar5 = PackedFloatingMUL(uVar5,uVar2);\r\n    *param_1 = uVar1 ^ DAT_00572c28;\r\n    *(int *)(param_1 + 1) = (int)uVar5;\r\n    FastExitMediaState();\r\n    param_2 = param_1;\r\n  }\r\n  FUN_00550b08(param_1,param_2,&local_44);\r\n  return param_1;\r\n}\r\n\r\n", 
+  "is_thunk": false, 
+  "name": "FUN_00550ee7", 
+  "assembly": "  00550ee7:  PUSH EBP\n  00550ee8:  MOV EBP,ESP\n  00550eea:  SUB ESP,0x40\n  00550eed:  MOV ECX,dword ptr [EBP + 0x1c]\n  00550ef0:  XOR EAX,EAX\n  00550ef2:  PUSH EBX\n  00550ef3:  MOV EBX,dword ptr [EBP + 0x14]\n  00550ef6:  PUSH ESI\n  00550ef7:  XOR ESI,ESI\n  00550ef9:  CMP ECX,ESI\n  00550efb:  SETNZ AL\n  00550efe:  XOR EDX,EDX\n  00550f00:  PUSH EDI\n  00550f01:  MOV EDI,dword ptr [EBP + 0x18]\n  00550f04:  SHL EAX,0x1\n  00550f06:  CMP EDI,ESI\n  00550f08:  SETNZ DL\n  00550f0b:  OR EAX,EDX\n  00550f0d:  XOR EDX,EDX\n  00550f0f:  SHL EAX,0x1\n  00550f11:  CMP EBX,ESI\n  00550f13:  SETNZ DL\n  00550f16:  OR EAX,EDX\n  00550f18:  CMP EAX,0x7\n  00550f1b:  JA 0x0055103e\n  00550f21:  JMP dword ptr [EAX*0x4 + 0x5510ed]\n  00550f28:  FLDZ\n  00550f2a:  FSTP dword ptr [EBP + -0x8]\n  00550f2d:  FLDZ\n  00550f2f:  FSTP dword ptr [EBP + -0xc]\n  00550f32:  FLDZ\n  00550f34:  FSTP dword ptr [EBP + -0x10]\n  00550f37:  FLDZ\n  00550f39:  FSTP dword ptr [EBP + -0x14]\n  00550f3c:  FLDZ\n  00550f3e:  FSTP dword ptr [EBP + -0x1c]\n  00550f41:  FLDZ\n  00550f43:  FSTP dword ptr [EBP + -0x20]\n  00550f46:  FLDZ\n  00550f48:  FSTP dword ptr [EBP + -0x24]\n  00550f4b:  FLDZ\n  00550f4d:  FSTP dword ptr [EBP + -0x28]\n  00550f50:  FLDZ\n  00550f52:  FSTP dword ptr [EBP + -0x30]\n  00550f55:  FLDZ\n  00550f57:  FSTP dword ptr [EBP + -0x34]\n  00550f5a:  FLDZ\n  00550f5c:  FSTP dword ptr [EBP + -0x38]\n  00550f5f:  FLDZ\n  00550f61:  FSTP dword ptr [EBP + -0x3c]\n  00550f64:  FLD1\n  00550f66:  FSTP dword ptr [EBP + -0x4]\n  00550f69:  FLD1\n  00550f6b:  FSTP dword ptr [EBP + -0x18]\n  00550f6e:  FLD1\n  00550f70:  FSTP dword ptr [EBP + -0x2c]\n  00550f73:  FLD1\n  00550f75:  FSTP dword ptr [EBP + -0x40]\n  00550f78:  JMP 0x0055103e\n  00550f7d:  FEMMS\n  00550f7f:  PUSH EBX\n  00550f80:  PUSH ESI\n  00550f81:  LEA EAX,[EBP + -0x40]\n  00550f84:  PUSH EAX\n  00550f85:  CALL 0x00550452\n  00550f8a:  FEMMS\n  00550f8c:  JMP 0x0055103e\n  00550f91:  FEMMS\n  00550f93:  PUSH EDI\n  00550f94:  PUSH ESI\n  00550f95:  LEA EAX,[EBP + -0x40]\n  00550f98:  PUSH EAX\n  00550f99:  CALL 0x00550452\n  00550f9e:  FEMMS\n  00550fa0:  JMP 0x0055103e\n  00550fa5:  FEMMS\n  00550fa7:  PUSH EBX\n  00550fa8:  PUSH EDI\n  00550fa9:  LEA EAX,[EBP + -0x40]\n  00550fac:  PUSH EAX\n  00550fad:  CALL 0x00550b93\n  00550fb2:  LEA EAX,[EBP + -0x40]\n  00550fb5:  PUSH EAX\n  00550fb6:  PUSH ESI\n  00550fb7:  LEA EAX,[EBP + -0x40]\n  00550fba:  PUSH EAX\n  00550fbb:  CALL 0x00550452\n  00550fc0:  FEMMS\n  00550fc2:  JMP 0x0055103e\n  00550fc4:  FEMMS\n  00550fc6:  PUSH ECX\n  00550fc7:  PUSH ESI\n  00550fc8:  LEA EAX,[EBP + -0x40]\n  00550fcb:  PUSH EAX\n  00550fcc:  CALL 0x00550452\n  00550fd1:  FEMMS\n  00550fd3:  JMP 0x0055103e\n  00550fd5:  FEMMS\n  00550fd7:  PUSH EBX\n  00550fd8:  PUSH ECX\n  00550fd9:  LEA EAX,[EBP + -0x40]\n  00550fdc:  PUSH EAX\n  00550fdd:  CALL 0x00550b93\n  00550fe2:  LEA EAX,[EBP + -0x40]\n  00550fe5:  PUSH EAX\n  00550fe6:  PUSH ESI\n  00550fe7:  LEA EAX,[EBP + -0x40]\n  00550fea:  PUSH EAX\n  00550feb:  CALL 0x00550452\n  00550ff0:  FEMMS\n  00550ff2:  JMP 0x0055103e\n  00550ff4:  FEMMS\n  00550ff6:  PUSH EDI\n  00550ff7:  PUSH ECX\n  00550ff8:  LEA EAX,[EBP + -0x40]\n  00550ffb:  PUSH EAX\n  00550ffc:  CALL 0x00550b93\n  00551001:  LEA EAX,[EBP + -0x40]\n  00551004:  PUSH EAX\n  00551005:  PUSH ESI\n  00551006:  LEA EAX,[EBP + -0x40]\n  00551009:  PUSH EAX\n  0055100a:  CALL 0x00550452\n  0055100f:  FEMMS\n  00551011:  JMP 0x0055103e\n  00551013:  FEMMS\n  00551015:  PUSH EDI\n  00551016:  PUSH ECX\n  00551017:  LEA EAX,[EBP + -0x40]\n  0055101a:  PUSH EAX\n  0055101b:  CALL 0x00550b93\n  00551020:  PUSH EBX\n  00551021:  LEA EAX,[EBP + -0x40]\n  00551024:  PUSH EAX\n  00551025:  LEA EAX,[EBP + -0x40]\n  00551028:  PUSH EAX\n  00551029:  CALL 0x00550b93\n  0055102e:  LEA EAX,[EBP + -0x40]\n  00551031:  PUSH EAX\n  00551032:  PUSH ESI\n  00551033:  LEA EAX,[EBP + -0x40]\n  00551036:  PUSH EAX\n  00551037:  CALL 0x00550452\n  0055103c:  FEMMS\n  0055103e:  CMP dword ptr [EBP + 0x10],ESI\n  00551041:  POP EDI\n  00551042:  POP ESI\n  00551043:  POP EBX\n  00551044:  JZ 0x005510d7\n  0055104a:  FEMMS\n  0055104c:  MOV EAX,dword ptr [EBP + 0x10]\n  0055104f:  MOV ECX,dword ptr [EBP + 0xc]\n  00551052:  MOV EDX,dword ptr [EBP + 0x8]\n  00551055:  MOVQ MM1,qword ptr [EAX]\n  00551058:  MOVQ MM2,qword ptr [EAX + 0x8]\n  0055105c:  MOVQ MM0,qword ptr [ECX]\n  0055105f:  PI2FD MM1,MM1\n  00551063:  MOVQ MM4,qword ptr [EAX + 0x10]\n  00551067:  PI2FD MM2,MM2\n  0055106b:  MOVQ MM3,MM2\n  0055106e:  PUNPCKHDQ MM3,MM3\n  00551071:  PFRCP MM5,MM2\n  00551075:  PFRCP MM3,MM3\n  00551079:  PFSUB MM0,MM1\n  0055107d:  PUNPCKLDQ MM5,MM3\n  00551080:  PFRCPIT1 MM2,MM5\n  00551084:  MOVD MM3,dword ptr [ECX + 0x8]\n  00551088:  PFRCPIT2 MM2,MM5\n  0055108c:  PFMUL MM2,qword ptr [0x00572c40]\n  00551094:  MOVQ MM5,MM4\n  00551097:  PFMUL MM0,MM2\n  0055109b:  PUNPCKHDQ MM5,MM5\n  0055109e:  PFSUB MM0,qword ptr [0x00572c30]\n  005510a6:  PFSUB MM5,MM4\n  005510aa:  PFRCP MM6,MM5\n  005510ae:  PXOR MM0,qword ptr [0x00572c28]\n  005510b5:  PFRCPIT1 MM5,MM6\n  005510b9:  PFRCPIT2 MM5,MM6\n  005510bd:  PFSUB MM3,MM4\n  005510c1:  PFMUL MM3,MM5\n  005510c5:  MOVQ qword ptr [EDX],MM0\n  005510c8:  MOVD dword ptr [EDX + 0x8],MM3\n  005510cc:  FEMMS\n  005510ce:  LEA EAX,[EBP + -0x40]\n  005510d1:  PUSH EAX\n  005510d2:  PUSH dword ptr [EBP + 0x8]\n  005510d5:  JMP 0x005510de\n  005510d7:  LEA EAX,[EBP + -0x40]\n  005510da:  PUSH EAX\n  005510db:  PUSH dword ptr [EBP + 0xc]\n  005510de:  PUSH dword ptr [EBP + 0x8]\n  005510e1:  CALL 0x00550b08\n  005510e6:  MOV EAX,dword ptr [EBP + 0x8]\n  005510e9:  LEAVE\n  005510ea:  RET 0x18", 
+  "callers": []
+}

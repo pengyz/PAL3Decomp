@@ -1,0 +1,67 @@
+{
+  "address": "0x00431060", 
+  "size_bytes": 157, 
+  "calling_convention": "unknown", 
+  "signature": "undefined FUN_00431060(undefined4 param_1)", 
+  "callees": [
+    {
+      "address": "0x00431060", 
+      "name": "FUN_00431060"
+    }, 
+    {
+      "address": "0x00402fb0", 
+      "name": "FUN_00402fb0"
+    }, 
+    {
+      "address": "0x00541d10", 
+      "name": "FUN_00541d10"
+    }
+  ], 
+  "global_refs": [
+    {
+      "address": "0xffdff000", 
+      "type": null, 
+      "name": "ExceptionList"
+    }, 
+    {
+      "address": "0x0055f918", 
+      "type": null, 
+      "name": "LAB_0055f918"
+    }, 
+    {
+      "address": "0x00000004", 
+      "type": null, 
+      "name": "DAT_00000004"
+    }, 
+    {
+      "address": "0x00d8c2b0", 
+      "type": null, 
+      "name": "DAT_00d8c2b0"
+    }, 
+    {
+      "address": "0x-0000004", 
+      "type": null, 
+      "name": "DAT_-0000004"
+    }, 
+    {
+      "address": "0x-000000c", 
+      "type": null, 
+      "name": "DAT_-000000c"
+    }
+  ], 
+  "has_custom_name": false, 
+  "decompiled_c": "\r\nvoid FUN_00431060(int *param_1)\r\n\r\n{\r\n  char cVar1;\r\n  int *piVar2;\r\n  int iVar3;\r\n  void *local_c;\r\n  undefined *puStack_8;\r\n  undefined4 local_4;\r\n  \r\n  puStack_8 = &LAB_0055f918;\r\n  local_c = ExceptionList;\r\n  local_4 = 0;\r\n  ExceptionList = &local_c;\r\n  if (param_1 != DAT_00d8c2b0) {\r\n    do {\r\n      FUN_00431060(param_1[2]);\r\n      piVar2 = (int *)*param_1;\r\n      FUN_00402fb0(1);\r\n      iVar3 = param_1[4];\r\n      if (iVar3 != 0) {\r\n        cVar1 = *(char *)(iVar3 + -1);\r\n        if ((cVar1 == '\\0') || (cVar1 == -1)) {\r\n          FUN_00541d10((char *)(iVar3 + -1));\r\n        }\r\n        else {\r\n          *(char *)(iVar3 + -1) = cVar1 + -1;\r\n        }\r\n      }\r\n      param_1[4] = 0;\r\n      param_1[5] = 0;\r\n      param_1[6] = 0;\r\n      FUN_00541d10(param_1);\r\n      param_1 = piVar2;\r\n    } while (piVar2 != DAT_00d8c2b0);\r\n  }\r\n  ExceptionList = local_c;\r\n  return;\r\n}\r\n\r\n", 
+  "is_thunk": false, 
+  "name": "FUN_00431060", 
+  "assembly": "  00431060:  MOV EAX,FS:[0x0]\n  00431066:  PUSH -0x1\n  00431068:  PUSH 0x55f918\n  0043106d:  PUSH EAX\n  0043106e:  MOV dword ptr FS:[0x0],ESP\n  00431075:  PUSH EBX\n  00431076:  PUSH EBP\n  00431077:  PUSH ESI\n  00431078:  PUSH EDI\n  00431079:  MOV EBP,ECX\n  0043107b:  MOV ESI,dword ptr [ESP + 0x20]\n  0043107f:  MOV EAX,[0x00d8c2b0]\n  00431084:  XOR EBX,EBX\n  00431086:  CMP ESI,EAX\n  00431088:  MOV dword ptr [ESP + 0x18],EBX\n  0043108c:  MOV EDI,ESI\n  0043108e:  JZ 0x004310e8\n  00431090:  MOV EAX,dword ptr [EDI + 0x8]\n  00431093:  MOV ECX,EBP\n  00431095:  PUSH EAX\n  00431096:  CALL 0x00431060\n  0043109b:  MOV EDI,dword ptr [EDI]\n  0043109d:  PUSH 0x1\n  0043109f:  LEA ECX,[ESI + 0x1c]\n  004310a2:  CALL 0x00402fb0\n  004310a7:  MOV EAX,dword ptr [ESI + 0x10]\n  004310aa:  CMP EAX,EBX\n  004310ac:  JZ 0x004310cb\n  004310ae:  LEA ECX,[EAX + -0x1]\n  004310b1:  MOV AL,byte ptr [EAX + -0x1]\n  004310b4:  CMP AL,BL\n  004310b6:  JZ 0x004310c2\n  004310b8:  CMP AL,0xff\n  004310ba:  JZ 0x004310c2\n  004310bc:  DEC AL\n  004310be:  MOV byte ptr [ECX],AL\n  004310c0:  JMP 0x004310cb\n  004310c2:  PUSH ECX\n  004310c3:  CALL 0x00541d10\n  004310c8:  ADD ESP,0x4\n  004310cb:  PUSH ESI\n  004310cc:  MOV dword ptr [ESI + 0x10],EBX\n  004310cf:  MOV dword ptr [ESI + 0x14],EBX\n  004310d2:  MOV dword ptr [ESI + 0x18],EBX\n  004310d5:  CALL 0x00541d10\n  004310da:  MOV EAX,[0x00d8c2b0]\n  004310df:  ADD ESP,0x4\n  004310e2:  CMP EDI,EAX\n  004310e4:  MOV ESI,EDI\n  004310e6:  JNZ 0x00431090\n  004310e8:  MOV ECX,dword ptr [ESP + 0x10]\n  004310ec:  POP EDI\n  004310ed:  POP ESI\n  004310ee:  POP EBP\n  004310ef:  MOV dword ptr FS:[0x0],ECX\n  004310f6:  POP EBX\n  004310f7:  ADD ESP,0xc\n  004310fa:  RET 0x4", 
+  "callers": [
+    {
+      "address": "0x00430b30", 
+      "name": "FUN_00430b30"
+    }, 
+    {
+      "address": "0x00431060", 
+      "name": "FUN_00431060"
+    }
+  ]
+}

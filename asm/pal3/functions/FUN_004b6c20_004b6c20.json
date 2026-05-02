@@ -1,0 +1,49 @@
+{
+  "address": "0x004b6c20", 
+  "size_bytes": 92, 
+  "calling_convention": "unknown", 
+  "signature": "undefined FUN_004b6c20(void)", 
+  "callees": [], 
+  "global_refs": [
+    {
+      "address": "0x-0000010", 
+      "type": null, 
+      "name": "DAT_-0000010"
+    }, 
+    {
+      "address": "0x-000000c", 
+      "type": null, 
+      "name": "DAT_-000000c"
+    }, 
+    {
+      "address": "0x-0000008", 
+      "type": null, 
+      "name": "DAT_-0000008"
+    }, 
+    {
+      "address": "0x-0000004", 
+      "type": null, 
+      "name": "DAT_-0000004"
+    }, 
+    {
+      "address": "0x0056f36c", 
+      "type": null, 
+      "name": "PTR_LAB_0056f36c"
+    }
+  ], 
+  "has_custom_name": false, 
+  "decompiled_c": "\r\nvoid __fastcall FUN_004b6c20(undefined4 *param_1)\r\n\r\n{\r\n  param_1[2] = 6;\r\n  param_1[3] = 6;\r\n  param_1[4] = 0x3f800000;\r\n  *param_1 = &PTR_LAB_0056f36c;\r\n  *(undefined *)(param_1 + 1) = 0;\r\n  param_1[5] = 0;\r\n  param_1[6] = 0;\r\n  param_1[7] = 0x3f800000;\r\n  return;\r\n}\r\n\r\n", 
+  "is_thunk": false, 
+  "name": "FUN_004b6c20", 
+  "assembly": "  004b6c20:  SUB ESP,0x10\n  004b6c23:  MOV EAX,ECX\n  004b6c25:  MOV dword ptr [ESP],0x3f800000\n  004b6c2d:  MOV EDX,dword ptr [ESP]\n  004b6c31:  MOV ECX,0x6\n  004b6c36:  MOV dword ptr [EAX + 0x8],ECX\n  004b6c39:  MOV dword ptr [EAX + 0xc],ECX\n  004b6c3c:  LEA ECX,[EAX + 0x10]\n  004b6c3f:  MOV dword ptr [ESP + 0x4],0x0\n  004b6c47:  MOV dword ptr [ESP + 0x8],0x0\n  004b6c4f:  MOV dword ptr [ESP + 0xc],0x3f800000\n  004b6c57:  MOV dword ptr [ECX],EDX\n  004b6c59:  MOV EDX,dword ptr [ESP + 0x4]\n  004b6c5d:  MOV dword ptr [EAX],0x56f36c\n  004b6c63:  MOV byte ptr [EAX + 0x4],0x0\n  004b6c67:  MOV dword ptr [ECX + 0x4],EDX\n  004b6c6a:  MOV EDX,dword ptr [ESP + 0x8]\n  004b6c6e:  MOV dword ptr [ECX + 0x8],EDX\n  004b6c71:  MOV EDX,dword ptr [ESP + 0xc]\n  004b6c75:  MOV dword ptr [ECX + 0xc],EDX\n  004b6c78:  ADD ESP,0x10\n  004b6c7b:  RET", 
+  "callers": [
+    {
+      "address": "0x00411900", 
+      "name": "FUN_00411900"
+    }, 
+    {
+      "address": "0x004236d0", 
+      "name": "FUN_004236d0"
+    }
+  ]
+}

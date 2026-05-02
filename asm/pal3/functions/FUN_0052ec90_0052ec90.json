@@ -1,0 +1,30 @@
+{
+  "address": "0x0052ec90", 
+  "size_bytes": 70, 
+  "calling_convention": "unknown", 
+  "signature": "undefined FUN_0052ec90(void)", 
+  "callees": [
+    {
+      "address": "0x00000145", 
+      "name": "gbVolModNode"
+    }
+  ], 
+  "global_refs": [
+    {
+      "address": "0x0056a528", 
+      "type": null, 
+      "name": "PTR_gbVolModNode_0056a528"
+    }
+  ], 
+  "has_custom_name": false, 
+  "decompiled_c": "\r\nundefined4 * __fastcall FUN_0052ec90(undefined4 *param_1)\r\n\r\n{\r\n  gbVolModNode::gbVolModNode((gbVolModNode *)(param_1 + 0xd));\r\n  param_1[0x44] = 0;\r\n  param_1[0x45] = 0;\r\n  param_1[0x47] = 0;\r\n  *(undefined *)(param_1 + 0x49) = 1;\r\n  *(undefined *)((int)param_1 + 0x125) = 1;\r\n  *(undefined *)((int)param_1 + 0x126) = 0;\r\n  *param_1 = 0;\r\n  param_1[1] = 0;\r\n  param_1[2] = 0;\r\n  param_1[3] = 0;\r\n  param_1[4] = 0;\r\n  return param_1;\r\n}\r\n\r\n", 
+  "is_thunk": false, 
+  "name": "FUN_0052ec90", 
+  "assembly": "  0052ec90:  PUSH ESI\n  0052ec91:  MOV ESI,ECX\n  0052ec93:  LEA ECX,[ESI + 0x34]\n  0052ec96:  CALL dword ptr [0x0056a528]\n  0052ec9c:  XOR EAX,EAX\n  0052ec9e:  MOV CL,0x1\n  0052eca0:  MOV dword ptr [ESI + 0x110],EAX\n  0052eca6:  MOV dword ptr [ESI + 0x114],EAX\n  0052ecac:  MOV dword ptr [ESI + 0x11c],EAX\n  0052ecb2:  MOV byte ptr [ESI + 0x124],CL\n  0052ecb8:  MOV byte ptr [ESI + 0x125],CL\n  0052ecbe:  MOV byte ptr [ESI + 0x126],AL\n  0052ecc4:  MOV dword ptr [ESI],EAX\n  0052ecc6:  MOV dword ptr [ESI + 0x4],EAX\n  0052ecc9:  MOV dword ptr [ESI + 0x8],EAX\n  0052eccc:  MOV dword ptr [ESI + 0xc],EAX\n  0052eccf:  MOV dword ptr [ESI + 0x10],EAX\n  0052ecd2:  MOV EAX,ESI\n  0052ecd4:  POP ESI\n  0052ecd5:  RET", 
+  "callers": [
+    {
+      "address": "0x0044f8d0", 
+      "name": "FUN_0044f8d0"
+    }
+  ]
+}

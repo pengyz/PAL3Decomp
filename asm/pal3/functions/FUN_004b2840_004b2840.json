@@ -1,0 +1,89 @@
+{
+  "address": "0x004b2840", 
+  "size_bytes": 209, 
+  "calling_convention": "unknown", 
+  "signature": "undefined FUN_004b2840(undefined4 param_1, undefined4 param_2)", 
+  "callees": [
+    {
+      "address": "0x00407180", 
+      "name": "FUN_00407180"
+    }, 
+    {
+      "address": "0x00000004", 
+      "name": "RegCreateKeyExA"
+    }, 
+    {
+      "address": "0x00456670", 
+      "name": "FUN_00456670"
+    }, 
+    {
+      "address": "0x00000005", 
+      "name": "RegCloseKey"
+    }, 
+    {
+      "address": "0x00000003", 
+      "name": "RegOpenKeyExA"
+    }, 
+    {
+      "address": "0x00000002", 
+      "name": "RegSetValueExA"
+    }
+  ], 
+  "global_refs": [
+    {
+      "address": "0x00000004", 
+      "type": null, 
+      "name": "DAT_00000004"
+    }, 
+    {
+      "address": "0x00000008", 
+      "type": null, 
+      "name": "DAT_00000008"
+    }, 
+    {
+      "address": "0x0056a010", 
+      "type": null, 
+      "name": "PTR_RegCloseKey_0056a010"
+    }, 
+    {
+      "address": "0x0056a00c", 
+      "type": null, 
+      "name": "PTR_RegCreateKeyExA_0056a00c"
+    }, 
+    {
+      "address": "0x00583a64", 
+      "type": null, 
+      "name": "s_Create_KEY_error_00583a64"
+    }, 
+    {
+      "address": "0x0056a008", 
+      "type": null, 
+      "name": "PTR_RegOpenKeyExA_0056a008"
+    }, 
+    {
+      "address": "0x0056a004", 
+      "type": null, 
+      "name": "PTR_RegSetValueExA_0056a004"
+    }, 
+    {
+      "address": "0x00583a54", 
+      "type": null, 
+      "name": "s_Write_Reg_Error_00583a54"
+    }
+  ], 
+  "has_custom_name": false, 
+  "decompiled_c": "\r\nundefined FUN_004b2840(HKEY param_1,LPCSTR param_2)\r\n\r\n{\r\n  HKEY lpSubKey;\r\n  LPCSTR lpValueName;\r\n  char cVar1;\r\n  LSTATUS LVar2;\r\n  \r\n  lpValueName = param_2;\r\n  lpSubKey = param_1;\r\n  if (param_1 == (HKEY)0x0) {\r\n    return 0;\r\n  }\r\n  if (param_2 == (LPCSTR)0x0) {\r\n    return 0;\r\n  }\r\n  param_2 = (LPCSTR)0x1;\r\n  cVar1 = FUN_00407180(0x80000002,param_1);\r\n  if (cVar1 == '\\0') {\r\n    LVar2 = RegCreateKeyExA((HKEY)0x80000002,(LPCSTR)lpSubKey,0,(LPSTR)0x0,0,0xf003f,\r\n                            (LPSECURITY_ATTRIBUTES)0x0,&param_1,(LPDWORD)&param_2);\r\n    cVar1 = FUN_00456670(LVar2,s_Create_KEY_error_00583a64);\r\n    if (cVar1 == '\\0') {\r\n      return 0;\r\n    }\r\n    RegCloseKey(param_1);\r\n  }\r\n  RegOpenKeyExA((HKEY)0x80000002,(LPCSTR)lpSubKey,0,0x20006,&param_1);\r\n  LVar2 = RegSetValueExA(param_1,lpValueName,0,4,&stack0x0000000c,4);\r\n  cVar1 = FUN_00456670(LVar2,s_Write_Reg_Error_00583a54);\r\n  if (cVar1 == '\\0') {\r\n    return 0;\r\n  }\r\n  RegCloseKey(param_1);\r\n  return 1;\r\n}\r\n\r\n", 
+  "is_thunk": false, 
+  "name": "FUN_004b2840", 
+  "assembly": "  004b2840:  PUSH EBX\n  004b2841:  PUSH ESI\n  004b2842:  MOV ESI,dword ptr [ESP + 0xc]\n  004b2846:  PUSH EDI\n  004b2847:  TEST ESI,ESI\n  004b2849:  JNZ 0x004b2851\n  004b284b:  POP EDI\n  004b284c:  POP ESI\n  004b284d:  XOR AL,AL\n  004b284f:  POP EBX\n  004b2850:  RET\n  004b2851:  MOV EDI,dword ptr [ESP + 0x14]\n  004b2855:  TEST EDI,EDI\n  004b2857:  JNZ 0x004b285f\n  004b2859:  POP EDI\n  004b285a:  POP ESI\n  004b285b:  XOR AL,AL\n  004b285d:  POP EBX\n  004b285e:  RET\n  004b285f:  PUSH ESI\n  004b2860:  PUSH 0x80000002\n  004b2865:  MOV dword ptr [ESP + 0x1c],0x1\n  004b286d:  CALL 0x00407180\n  004b2872:  MOV EBX,dword ptr [0x0056a010]\n  004b2878:  ADD ESP,0x8\n  004b287b:  TEST AL,AL\n  004b287d:  JNZ 0x004b28bf\n  004b287f:  LEA EAX,[ESP + 0x14]\n  004b2883:  LEA ECX,[ESP + 0x10]\n  004b2887:  PUSH EAX\n  004b2888:  PUSH ECX\n  004b2889:  PUSH 0x0\n  004b288b:  PUSH 0xf003f\n  004b2890:  PUSH 0x0\n  004b2892:  PUSH 0x0\n  004b2894:  PUSH 0x0\n  004b2896:  PUSH ESI\n  004b2897:  PUSH 0x80000002\n  004b289c:  CALL dword ptr [0x0056a00c]\n  004b28a2:  PUSH 0x583a64\n  004b28a7:  PUSH EAX\n  004b28a8:  CALL 0x00456670\n  004b28ad:  ADD ESP,0x8\n  004b28b0:  TEST AL,AL\n  004b28b2:  JNZ 0x004b28b8\n  004b28b4:  POP EDI\n  004b28b5:  POP ESI\n  004b28b6:  POP EBX\n  004b28b7:  RET\n  004b28b8:  MOV EDX,dword ptr [ESP + 0x10]\n  004b28bc:  PUSH EDX\n  004b28bd:  CALL EBX\n  004b28bf:  LEA EAX,[ESP + 0x10]\n  004b28c3:  PUSH EAX\n  004b28c4:  PUSH 0x20006\n  004b28c9:  PUSH 0x0\n  004b28cb:  PUSH ESI\n  004b28cc:  PUSH 0x80000002\n  004b28d1:  CALL dword ptr [0x0056a008]\n  004b28d7:  MOV EDX,dword ptr [ESP + 0x10]\n  004b28db:  LEA ECX,[ESP + 0x18]\n  004b28df:  PUSH 0x4\n  004b28e1:  PUSH ECX\n  004b28e2:  PUSH 0x4\n  004b28e4:  PUSH 0x0\n  004b28e6:  PUSH EDI\n  004b28e7:  PUSH EDX\n  004b28e8:  CALL dword ptr [0x0056a004]\n  004b28ee:  PUSH 0x583a54\n  004b28f3:  PUSH EAX\n  004b28f4:  CALL 0x00456670\n  004b28f9:  ADD ESP,0x8\n  004b28fc:  TEST AL,AL\n  004b28fe:  JNZ 0x004b2904\n  004b2900:  POP EDI\n  004b2901:  POP ESI\n  004b2902:  POP EBX\n  004b2903:  RET\n  004b2904:  MOV EAX,dword ptr [ESP + 0x10]\n  004b2908:  PUSH EAX\n  004b2909:  CALL EBX\n  004b290b:  POP EDI\n  004b290c:  POP ESI\n  004b290d:  MOV AL,0x1\n  004b290f:  POP EBX\n  004b2910:  RET", 
+  "callers": [
+    {
+      "address": "0x004b2920", 
+      "name": "FUN_004b2920"
+    }, 
+    {
+      "address": "0x004b2750", 
+      "name": "FUN_004b2750"
+    }
+  ]
+}

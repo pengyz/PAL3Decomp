@@ -1,0 +1,20 @@
+{
+  "address": "0x004bdf30", 
+  "size_bytes": 36, 
+  "calling_convention": "unknown", 
+  "signature": "undefined FUN_004bdf30(undefined4 param_1)", 
+  "callees": [], 
+  "global_refs": [
+    {
+      "address": "0x00000004", 
+      "type": null, 
+      "name": "DAT_00000004"
+    }
+  ], 
+  "has_custom_name": false, 
+  "decompiled_c": "\r\nvoid __thiscall FUN_004bdf30(int param_1_00,float param_1)\r\n\r\n{\r\n  param_1 = param_1 + *(float *)(param_1_00 + 0x10);\r\n  *(float *)(param_1_00 + 0x10) = param_1;\r\n  if (*(float *)(param_1_00 + 0xc) < param_1) {\r\n    *(undefined4 *)(param_1_00 + 8) = 0;\r\n    *(undefined4 *)(param_1_00 + 0x10) = *(undefined4 *)(param_1_00 + 0xc);\r\n  }\r\n  return;\r\n}\r\n\r\n", 
+  "is_thunk": false, 
+  "name": "FUN_004bdf30", 
+  "assembly": "  004bdf30:  FLD dword ptr [ESP + 0x4]\n  004bdf34:  FADD dword ptr [ECX + 0x10]\n  004bdf37:  FST dword ptr [ECX + 0x10]\n  004bdf3a:  FCOMP dword ptr [ECX + 0xc]\n  004bdf3d:  FNSTSW AX\n  004bdf3f:  TEST AH,0x41\n  004bdf42:  JNZ 0x004bdf51\n  004bdf44:  MOV EAX,dword ptr [ECX + 0xc]\n  004bdf47:  MOV dword ptr [ECX + 0x8],0x0\n  004bdf4e:  MOV dword ptr [ECX + 0x10],EAX\n  004bdf51:  RET 0x4", 
+  "callers": []
+}

@@ -1,0 +1,65 @@
+{
+  "address": "0x00544884", 
+  "size_bytes": 87, 
+  "calling_convention": "unknown", 
+  "signature": "undefined FUN_00544884(undefined4 param_1, undefined4 param_2, undefined4 param_3, undefined4 param_4, undefined4 param_5, undefined4 param_6)", 
+  "callees": [
+    {
+      "address": "0x00544771", 
+      "name": "thunk_FUN_0054474d"
+    }
+  ], 
+  "global_refs": [
+    {
+      "address": "0x00000018", 
+      "type": null, 
+      "name": "DAT_00000018"
+    }, 
+    {
+      "address": "0x-0000028", 
+      "type": null, 
+      "name": "DAT_-0000028"
+    }, 
+    {
+      "address": "0x00000014", 
+      "type": null, 
+      "name": "DAT_00000014"
+    }, 
+    {
+      "address": "0x-0000024", 
+      "type": null, 
+      "name": "DAT_-0000024"
+    }, 
+    {
+      "address": "0x00000008", 
+      "type": null, 
+      "name": "DAT_00000008"
+    }, 
+    {
+      "address": "0x00000010", 
+      "type": null, 
+      "name": "DAT_00000010"
+    }, 
+    {
+      "address": "0x-0000014", 
+      "type": null, 
+      "name": "DAT_-0000014"
+    }, 
+    {
+      "address": "0x0000000c", 
+      "type": null, 
+      "name": "DAT_0000000c"
+    }, 
+    {
+      "address": "0x00000004", 
+      "type": null, 
+      "name": "DAT_00000004"
+    }
+  ], 
+  "has_custom_name": false, 
+  "decompiled_c": "\r\nundefined4\r\nFUN_00544884(undefined4 param_1,undefined4 param_2,undefined4 param_3,undefined4 param_4,\r\n            undefined4 param_5,float param_6)\r\n\r\n{\r\n  undefined local_24 [16];\r\n  undefined local_14 [16];\r\n  \r\n  thunk_FUN_0054474d(local_24,param_2,param_5,param_6);\r\n  thunk_FUN_0054474d(local_14,param_3,param_4,param_6);\r\n  param_6 = (1.0 - param_6) * param_6;\r\n  thunk_FUN_0054474d(param_1,local_24,local_14,param_6 + param_6);\r\n  return param_1;\r\n}\r\n\r\n", 
+  "is_thunk": false, 
+  "name": "FUN_00544884", 
+  "assembly": "  00544884:  PUSH EBP\n  00544885:  MOV EBP,ESP\n  00544887:  SUB ESP,0x20\n  0054488a:  FLD dword ptr [EBP + 0x1c]\n  0054488d:  PUSH ECX\n  0054488e:  FSTP dword ptr [ESP]\n  00544891:  PUSH dword ptr [EBP + 0x18]\n  00544894:  LEA EAX,[EBP + -0x20]\n  00544897:  PUSH dword ptr [EBP + 0xc]\n  0054489a:  PUSH EAX\n  0054489b:  CALL 0x00544771\n  005448a0:  FLD dword ptr [EBP + 0x1c]\n  005448a3:  PUSH ECX\n  005448a4:  FSTP dword ptr [ESP]\n  005448a7:  PUSH dword ptr [EBP + 0x14]\n  005448aa:  LEA EAX,[EBP + -0x10]\n  005448ad:  PUSH dword ptr [EBP + 0x10]\n  005448b0:  PUSH EAX\n  005448b1:  CALL 0x00544771\n  005448b6:  FLD1\n  005448b8:  FSUB dword ptr [EBP + 0x1c]\n  005448bb:  PUSH ECX\n  005448bc:  LEA EAX,[EBP + -0x10]\n  005448bf:  FMUL dword ptr [EBP + 0x1c]\n  005448c2:  FADD ST0,ST0\n  005448c4:  FSTP dword ptr [ESP]\n  005448c7:  PUSH EAX\n  005448c8:  LEA EAX,[EBP + -0x20]\n  005448cb:  PUSH EAX\n  005448cc:  PUSH dword ptr [EBP + 0x8]\n  005448cf:  CALL 0x00544771\n  005448d4:  MOV EAX,dword ptr [EBP + 0x8]\n  005448d7:  LEAVE\n  005448d8:  RET 0x18", 
+  "callers": []
+}

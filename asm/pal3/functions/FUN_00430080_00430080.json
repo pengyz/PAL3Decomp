@@ -1,0 +1,30 @@
+{
+  "address": "0x00430080", 
+  "size_bytes": 31, 
+  "calling_convention": "unknown", 
+  "signature": "undefined FUN_00430080(undefined4 param_1, undefined4 param_2)", 
+  "callees": [], 
+  "global_refs": [
+    {
+      "address": "0x00000004", 
+      "type": null, 
+      "name": "DAT_00000004"
+    }, 
+    {
+      "address": "0x00000008", 
+      "type": null, 
+      "name": "DAT_00000008"
+    }
+  ], 
+  "has_custom_name": false, 
+  "decompiled_c": "\r\nvoid __thiscall FUN_00430080(int param_1_00,undefined4 param_1,undefined4 param_2)\r\n\r\n{\r\n  *(undefined4 *)(param_1_00 + *(int *)(param_1_00 + 0x20) * 8) = param_1;\r\n  *(undefined4 *)(param_1_00 + 4 + *(int *)(param_1_00 + 0x20) * 8) = param_2;\r\n  *(int *)(param_1_00 + 0x20) = *(int *)(param_1_00 + 0x20) + 1;\r\n  return;\r\n}\r\n\r\n", 
+  "is_thunk": false, 
+  "name": "FUN_00430080", 
+  "assembly": "  00430080:  MOV EAX,dword ptr [ECX + 0x20]\n  00430083:  MOV EDX,dword ptr [ESP + 0x4]\n  00430087:  MOV dword ptr [ECX + EAX*0x8],EDX\n  0043008a:  MOV EAX,dword ptr [ECX + 0x20]\n  0043008d:  MOV EDX,dword ptr [ESP + 0x8]\n  00430091:  MOV dword ptr [ECX + EAX*0x8 + 0x4],EDX\n  00430095:  MOV EAX,dword ptr [ECX + 0x20]\n  00430098:  INC EAX\n  00430099:  MOV dword ptr [ECX + 0x20],EAX\n  0043009c:  RET 0x8", 
+  "callers": [
+    {
+      "address": "0x0042a010", 
+      "name": "FUN_0042a010"
+    }
+  ]
+}

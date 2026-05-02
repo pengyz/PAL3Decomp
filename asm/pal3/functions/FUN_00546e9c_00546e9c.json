@@ -1,0 +1,54 @@
+{
+  "address": "0x00546e9c", 
+  "size_bytes": 58, 
+  "calling_convention": "unknown", 
+  "signature": "undefined FUN_00546e9c(void)", 
+  "callees": [
+    {
+      "address": "0x0055530c", 
+      "name": "FUN_0055530c"
+    }, 
+    {
+      "address": "0x00546ee2", 
+      "name": "FUN_00546ee2"
+    }
+  ], 
+  "global_refs": [
+    {
+      "address": "0x0056900e", 
+      "type": null, 
+      "name": "LAB_0056900e"
+    }, 
+    {
+      "address": "0x00572b58", 
+      "type": null, 
+      "name": "s_GenuineIntel_00572b58"
+    }, 
+    {
+      "address": "0x00572b5c", 
+      "type": null, 
+      "name": "s_ineIntel_00572b5c"
+    }, 
+    {
+      "address": "0x00572b60", 
+      "type": null, 
+      "name": "s_ntel_00572b60"
+    }, 
+    {
+      "address": "0x00572b64", 
+      "type": null, 
+      "name": "s__00572b64"
+    }
+  ], 
+  "has_custom_name": false, 
+  "decompiled_c": "\r\n/* WARNING: Removing unreachable block (ram,0x00546ec6) */\r\n\r\nvoid FUN_00546e9c(void)\r\n\r\n{\r\n  undefined4 *puVar1;\r\n  undefined4 uVar2;\r\n  undefined4 uVar3;\r\n  undefined4 uVar4;\r\n  int unaff_EBP;\r\n  \r\n  FUN_0055530c();\r\n  *(undefined **)(unaff_EBP + -0x10) = &stack0xffffffc4;\r\n  *(undefined4 *)(unaff_EBP + -0x14) = 0;\r\n  *(undefined4 *)(unaff_EBP + -0x24) = s_GenuineIntel_00572b58._0_4_;\r\n  *(undefined4 *)(unaff_EBP + -0x20) = s_GenuineIntel_00572b58._4_4_;\r\n  *(undefined4 *)(unaff_EBP + -0x1c) = s_GenuineIntel_00572b58._8_4_;\r\n  *(char *)(unaff_EBP + -0x18) = s_GenuineIntel_00572b58[0xc];\r\n  *(undefined4 *)(unaff_EBP + -4) = 0;\r\n  puVar1 = (undefined4 *)cpuid_basic_info(0);\r\n  uVar4 = puVar1[1];\r\n  uVar3 = puVar1[2];\r\n  uVar2 = puVar1[3];\r\n  *(undefined4 *)(unaff_EBP + -0x2c) = *puVar1;\r\n  *(undefined4 *)(unaff_EBP + -0x38) = uVar4;\r\n  *(undefined4 *)(unaff_EBP + -0x34) = uVar3;\r\n  *(undefined4 *)(unaff_EBP + -0x30) = uVar2;\r\n  FUN_00546ee2();\r\n  return;\r\n}\r\n\r\n", 
+  "is_thunk": false, 
+  "name": "FUN_00546e9c", 
+  "assembly": "  00546e9c:  MOV EAX,0x56900e\n  00546ea1:  CALL 0x0055530c\n  00546ea6:  PUSH ECX\n  00546ea7:  SUB ESP,0x2c\n  00546eaa:  PUSH EBX\n  00546eab:  PUSH ESI\n  00546eac:  PUSH EDI\n  00546ead:  MOV dword ptr [EBP + -0x10],ESP\n  00546eb0:  AND dword ptr [EBP + -0x14],0x0\n  00546eb4:  MOV ESI,0x572b58\n  00546eb9:  LEA EDI,[EBP + -0x24]\n  00546ebc:  MOVSD ES:EDI,ESI\n  00546ebd:  MOVSD ES:EDI,ESI\n  00546ebe:  MOVSD ES:EDI,ESI\n  00546ebf:  MOVSB ES:EDI,ESI\n  00546ec0:  AND dword ptr [EBP + -0x4],0x0\n  00546ec4:  XOR EAX,EAX\n  00546ec6:  CPUID\n  00546ec8:  MOV dword ptr [EBP + -0x2c],EAX\n  00546ecb:  MOV dword ptr [EBP + -0x38],EBX\n  00546ece:  MOV dword ptr [EBP + -0x34],EDX\n  00546ed1:  MOV dword ptr [EBP + -0x30],ECX\n  00546ed4:  JMP 0x00546ee2", 
+  "callers": [
+    {
+      "address": "0x00546f41", 
+      "name": "FUN_00546f41"
+    }
+  ]
+}

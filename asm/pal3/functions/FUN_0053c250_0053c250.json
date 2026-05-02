@@ -1,0 +1,60 @@
+{
+  "address": "0x0053c250", 
+  "size_bytes": 91, 
+  "calling_convention": "unknown", 
+  "signature": "undefined FUN_0053c250(void)", 
+  "callees": [
+    {
+      "address": "0x00000105", 
+      "name": "CPK"
+    }
+  ], 
+  "global_refs": [
+    {
+      "address": "0x00568cfc", 
+      "type": null, 
+      "name": "LAB_00568cfc"
+    }, 
+    {
+      "address": "0xffdff000", 
+      "type": null, 
+      "name": "ExceptionList"
+    }, 
+    {
+      "address": "0x0056a428", 
+      "type": null, 
+      "name": "PTR_CPK_0056a428"
+    }, 
+    {
+      "address": "0x-0000010", 
+      "type": null, 
+      "name": "DAT_-0000010"
+    }, 
+    {
+      "address": "0x-0000004", 
+      "type": null, 
+      "name": "DAT_-0000004"
+    }, 
+    {
+      "address": "0x-000000c", 
+      "type": null, 
+      "name": "DAT_-000000c"
+    }, 
+    {
+      "address": "0x00570a04", 
+      "type": null, 
+      "name": "PTR_FUN_00570a04"
+    }
+  ], 
+  "has_custom_name": false, 
+  "decompiled_c": "\r\nundefined4 * __fastcall FUN_0053c250(undefined4 *param_1)\r\n\r\n{\r\n  void *local_c;\r\n  undefined *puStack_8;\r\n  undefined4 local_4;\r\n  \r\n  local_4 = 0xffffffff;\r\n  puStack_8 = &LAB_00568cfc;\r\n  local_c = ExceptionList;\r\n  ExceptionList = &local_c;\r\n  CPK::CPK((CPK *)(param_1 + 4));\r\n  local_4 = 0;\r\n  CPK::CPK((CPK *)(param_1 + 0x38073));\r\n  *param_1 = &PTR_FUN_00570a04;\r\n  param_1[3] = 0;\r\n  param_1[1] = 0;\r\n  param_1[2] = 0;\r\n  ExceptionList = local_c;\r\n  return param_1;\r\n}\r\n\r\n", 
+  "is_thunk": false, 
+  "name": "FUN_0053c250", 
+  "assembly": "  0053c250:  PUSH -0x1\n  0053c252:  PUSH 0x568cfc\n  0053c257:  MOV EAX,FS:[0x0]\n  0053c25d:  PUSH EAX\n  0053c25e:  MOV dword ptr FS:[0x0],ESP\n  0053c265:  PUSH ECX\n  0053c266:  PUSH EBX\n  0053c267:  PUSH ESI\n  0053c268:  MOV ESI,ECX\n  0053c26a:  PUSH EDI\n  0053c26b:  MOV EDI,dword ptr [0x0056a428]\n  0053c271:  MOV dword ptr [ESP + 0xc],ESI\n  0053c275:  LEA ECX,[ESI + 0x10]\n  0053c278:  CALL EDI\n  0053c27a:  XOR EBX,EBX\n  0053c27c:  LEA ECX,[ESI + 0xe01cc]\n  0053c282:  MOV dword ptr [ESP + 0x18],EBX\n  0053c286:  CALL EDI\n  0053c288:  MOV ECX,dword ptr [ESP + 0x10]\n  0053c28c:  MOV dword ptr [ESI],0x570a04\n  0053c292:  MOV dword ptr [ESI + 0xc],EBX\n  0053c295:  MOV dword ptr [ESI + 0x4],EBX\n  0053c298:  MOV dword ptr [ESI + 0x8],EBX\n  0053c29b:  MOV EAX,ESI\n  0053c29d:  POP EDI\n  0053c29e:  POP ESI\n  0053c29f:  POP EBX\n  0053c2a0:  MOV dword ptr FS:[0x0],ECX\n  0053c2a7:  ADD ESP,0x10\n  0053c2aa:  RET", 
+  "callers": [
+    {
+      "address": "0x004044f0", 
+      "name": "FUN_004044f0"
+    }
+  ]
+}

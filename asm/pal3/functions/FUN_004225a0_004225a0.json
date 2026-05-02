@@ -1,0 +1,35 @@
+{
+  "address": "0x004225a0", 
+  "size_bytes": 28, 
+  "calling_convention": "unknown", 
+  "signature": "undefined FUN_004225a0(void)", 
+  "callees": [
+    {
+      "address": "0x00553627", 
+      "name": "FUN_00553627"
+    }
+  ], 
+  "global_refs": [
+    {
+      "address": "0x00420450", 
+      "type": null, 
+      "name": "FUN_00420450"
+    }, 
+    {
+      "address": "0x004203c0", 
+      "type": null, 
+      "name": "FUN_004203c0"
+    }, 
+    {
+      "address": "0x00d8b318", 
+      "type": null, 
+      "name": "DAT_00d8b318"
+    }
+  ], 
+  "has_custom_name": false, 
+  "decompiled_c": "\r\nvoid FUN_004225a0(void)\r\n\r\n{\r\n  FUN_00553627(&DAT_00d8b318,0x188,4,FUN_004203c0,FUN_00420450);\r\n  return;\r\n}\r\n\r\n", 
+  "is_thunk": false, 
+  "name": "FUN_004225a0", 
+  "assembly": "  004225a0:  PUSH 0x420450\n  004225a5:  PUSH 0x4203c0\n  004225aa:  PUSH 0x4\n  004225ac:  PUSH 0x188\n  004225b1:  PUSH 0xd8b318\n  004225b6:  CALL 0x00553627\n  004225bb:  RET", 
+  "callers": []
+}

@@ -1,0 +1,25 @@
+{
+  "address": "0x005270c0", 
+  "size_bytes": 103, 
+  "calling_convention": "unknown", 
+  "signature": "undefined FUN_005270c0(undefined4 param_1)", 
+  "callees": [], 
+  "global_refs": [
+    {
+      "address": "0x00000004", 
+      "type": null, 
+      "name": "DAT_00000004"
+    }
+  ], 
+  "has_custom_name": false, 
+  "decompiled_c": "\r\nint __thiscall FUN_005270c0(int param_1_00,int param_1)\r\n\r\n{\r\n  int iVar1;\r\n  int iVar2;\r\n  undefined *puVar3;\r\n  \r\n  iVar1 = 0;\r\n  iVar2 = 0;\r\n  puVar3 = (undefined *)(param_1_00 + 0x1a4);\r\n  do {\r\n    if (*(char *)(param_1_00 + 0x3aa5 + iVar2) == '\\0') {\r\n      iVar1 = iVar1 + 1;\r\n      *(undefined4 *)(puVar3 + 0xc) = 0;\r\n      *puVar3 = 0;\r\n    }\r\n    iVar2 = iVar2 + 1;\r\n    puVar3 = puVar3 + 0xf8;\r\n  } while (iVar2 < 5);\r\n  iVar2 = param_1_00 + 0x160 + param_1 * 0xf8;\r\n  *(undefined4 *)(iVar2 + 0x50) = 1;\r\n  *(undefined *)(iVar2 + 0x44) = 1;\r\n  if (iVar1 == 0) {\r\n    return 0;\r\n  }\r\n  if (*(char *)(param_1 + 0x3aa5 + param_1_00) != '\\0') {\r\n    iVar1 = -1;\r\n  }\r\n  return iVar1;\r\n}\r\n\r\n", 
+  "is_thunk": false, 
+  "name": "FUN_005270c0", 
+  "assembly": "  005270c0:  PUSH EBX\n  005270c1:  PUSH ESI\n  005270c2:  XOR EAX,EAX\n  005270c4:  XOR EDX,EDX\n  005270c6:  LEA ESI,[ECX + 0x1a4]\n  005270cc:  MOV BL,byte ptr [ECX + EDX*0x1 + 0x3aa5]\n  005270d3:  TEST BL,BL\n  005270d5:  JNZ 0x005270e2\n  005270d7:  INC EAX\n  005270d8:  MOV dword ptr [ESI + 0xc],0x0\n  005270df:  MOV byte ptr [ESI],0x0\n  005270e2:  INC EDX\n  005270e3:  ADD ESI,0xf8\n  005270e9:  CMP EDX,0x5\n  005270ec:  JL 0x005270cc\n  005270ee:  MOV ESI,dword ptr [ESP + 0xc]\n  005270f2:  MOV EDX,ESI\n  005270f4:  SHL EDX,0x5\n  005270f7:  SUB EDX,ESI\n  005270f9:  TEST EAX,EAX\n  005270fb:  LEA EDX,[ECX + EDX*0x8 + 0x160]\n  00527102:  MOV dword ptr [EDX + 0x50],0x1\n  00527109:  MOV byte ptr [EDX + 0x44],0x1\n  0052710d:  JNZ 0x00527114\n  0052710f:  POP ESI\n  00527110:  POP EBX\n  00527111:  RET 0x4\n  00527114:  MOV DL,byte ptr [ESI + ECX*0x1 + 0x3aa5]\n  0052711b:  TEST DL,DL\n  0052711d:  JZ 0x00527122\n  0052711f:  OR EAX,0xffffffff\n  00527122:  POP ESI\n  00527123:  POP EBX\n  00527124:  RET 0x4", 
+  "callers": [
+    {
+      "address": "0x00527510", 
+      "name": "FUN_00527510"
+    }
+  ]
+}

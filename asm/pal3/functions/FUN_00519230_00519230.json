@@ -1,0 +1,25 @@
+{
+  "address": "0x00519230", 
+  "size_bytes": 33, 
+  "calling_convention": "unknown", 
+  "signature": "undefined FUN_00519230(undefined4 param_1)", 
+  "callees": [], 
+  "global_refs": [
+    {
+      "address": "0x00000004", 
+      "type": null, 
+      "name": "DAT_00000004"
+    }
+  ], 
+  "has_custom_name": false, 
+  "decompiled_c": "\r\nundefined4 __thiscall FUN_00519230(int param_1_00,int param_1)\r\n\r\n{\r\n  int iVar1;\r\n  \r\n  *(undefined *)(param_1_00 + 0x4a0 + param_1 * 0x48) = 0;\r\n  iVar1 = *(int *)(param_1_00 + 0xa40) + -1;\r\n  *(int *)(param_1_00 + 0xa40) = iVar1;\r\n  return CONCAT31((int3)((uint)iVar1 >> 8),1);\r\n}\r\n\r\n", 
+  "is_thunk": false, 
+  "name": "FUN_00519230", 
+  "assembly": "  00519230:  MOV EAX,dword ptr [ESP + 0x4]\n  00519234:  LEA EAX,[EAX + EAX*0x8]\n  00519237:  MOV byte ptr [ECX + EAX*0x8 + 0x4a0],0x0\n  0051923f:  MOV EAX,dword ptr [ECX + 0xa40]\n  00519245:  DEC EAX\n  00519246:  MOV dword ptr [ECX + 0xa40],EAX\n  0051924c:  MOV AL,0x1\n  0051924e:  RET 0x4", 
+  "callers": [
+    {
+      "address": "0x00519200", 
+      "name": "FUN_00519200"
+    }
+  ]
+}

@@ -1,0 +1,74 @@
+{
+  "address": "0x00558dd9", 
+  "size_bytes": 163, 
+  "calling_convention": "unknown", 
+  "signature": "undefined FUN_00558dd9(void)", 
+  "callees": [
+    {
+      "address": "0x00558ca7", 
+      "name": "__startOneArgErrorHandling"
+    }, 
+    {
+      "address": "0x00558c90", 
+      "name": "FUN_00558c90"
+    }
+  ], 
+  "global_refs": [
+    {
+      "address": "0x-0000008", 
+      "type": null, 
+      "name": "DAT_-0000008"
+    }, 
+    {
+      "address": "0x-0000004", 
+      "type": null, 
+      "name": "DAT_-0000004"
+    }, 
+    {
+      "address": "0x00000000", 
+      "type": null, 
+      "name": "DAT_00000000"
+    }, 
+    {
+      "address": "0x005733dc", 
+      "type": null, 
+      "name": "DAT_005733dc"
+    }, 
+    {
+      "address": "0x005733cc", 
+      "type": null, 
+      "name": "DAT_005733cc"
+    }, 
+    {
+      "address": "0x005733ec", 
+      "type": null, 
+      "name": "DAT_005733ec"
+    }, 
+    {
+      "address": "0x005733d4", 
+      "type": null, 
+      "name": "DAT_005733d4"
+    }, 
+    {
+      "address": "0x005733c4", 
+      "type": null, 
+      "name": "DAT_005733c4"
+    }, 
+    {
+      "address": "0x005733e4", 
+      "type": null, 
+      "name": "DAT_005733e4"
+    }
+  ], 
+  "has_custom_name": false, 
+  "decompiled_c": "\r\n/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */\r\n\r\nvoid __fastcall FUN_00558dd9(undefined4 param_1,int param_2)\r\n\r\n{\r\n  ushort in_FPUStatusWord;\r\n  float10 in_ST0;\r\n  ushort unaff_retaddr;\r\n  uint uStack_4;\r\n  \r\n  uStack_4 = (uint)((ulonglong)(double)in_ST0 >> 0x20);\r\n  if (((ulonglong)(double)in_ST0 & 0x7ff0000000000000) == 0) {\r\n    fscale(in_ST0,(float10)_DAT_005733dc);\r\n  }\r\n  else if ((uStack_4 & 0x7ff00000) == 0x7ff00000) {\r\n    fscale(in_ST0,(float10)_DAT_005733d4);\r\n  }\r\n  else if (((unaff_retaddr == 0x27f) || ((unaff_retaddr & 0x20) != 0)) ||\r\n          ((in_FPUStatusWord & 0x20) == 0)) {\r\n    return;\r\n  }\r\n  if (param_2 == 0x1d) {\r\n    FUN_00558c90();\r\n    return;\r\n  }\r\n  __startOneArgErrorHandling();\r\n  return;\r\n}\r\n\r\n", 
+  "is_thunk": false, 
+  "name": "FUN_00558dd9", 
+  "assembly": "  00558dd9:  SUB ESP,0x8\n  00558ddc:  FST qword ptr [ESP]\n  00558ddf:  MOV EAX,dword ptr [ESP + 0x4]\n  00558de3:  ADD ESP,0x8\n  00558de6:  AND EAX,0x7ff00000\n  00558deb:  JZ 0x00558e2a\n  00558ded:  CMP EAX,0x7ff00000\n  00558df2:  JZ 0x00558e53\n  00558df4:  MOV AX,word ptr [ESP]\n  00558df8:  CMP AX,0x27f\n  00558dfc:  JZ 0x00558e28\n  00558dfe:  AND AX,0x20\n  00558e02:  JNZ 0x00558e25\n  00558e04:  FSTSW AX\n  00558e07:  AND AX,0x20\n  00558e0b:  JZ 0x00558e25\n  00558e0d:  MOV EAX,0x8\n  00558e12:  CMP EDX,0x1d\n  00558e15:  JZ 0x00558e1e\n  00558e17:  CALL 0x00558ca7\n  00558e1c:  POP EDX\n  00558e1d:  RET\n  00558e1e:  CALL 0x00558c90\n  00558e23:  POP EDX\n  00558e24:  RET\n  00558e25:  FLDCW word ptr [ESP]\n  00558e28:  POP EDX\n  00558e29:  RET\n  00558e2a:  FLD qword ptr [0x005733dc]\n  00558e30:  FXCH\n  00558e32:  FSCALE\n  00558e34:  FSTP ST1\n  00558e36:  FLD ST0\n  00558e38:  FABS\n  00558e3a:  FCOMP qword ptr [0x005733cc]\n  00558e40:  FSTSW AX\n  00558e43:  SAHF\n  00558e44:  MOV EAX,0x4\n  00558e49:  JNC 0x00558e12\n  00558e4b:  FMUL qword ptr [0x005733ec]\n  00558e51:  JMP 0x00558e12\n  00558e53:  FLD qword ptr [0x005733d4]\n  00558e59:  FXCH\n  00558e5b:  FSCALE\n  00558e5d:  FSTP ST1\n  00558e5f:  FLD ST0\n  00558e61:  FABS\n  00558e63:  FCOMP qword ptr [0x005733c4]\n  00558e69:  FSTSW AX\n  00558e6c:  SAHF\n  00558e6d:  MOV EAX,0x3\n  00558e72:  JBE 0x00558e12\n  00558e74:  FMUL qword ptr [0x005733e4]\n  00558e7a:  JMP 0x00558e12", 
+  "callers": [
+    {
+      "address": "0x00554722", 
+      "name": "FUN_00554722"
+    }
+  ]
+}

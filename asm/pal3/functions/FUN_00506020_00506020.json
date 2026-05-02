@@ -1,0 +1,66 @@
+{
+  "address": "0x00506020", 
+  "size_bytes": 168, 
+  "calling_convention": "unknown", 
+  "signature": "undefined FUN_00506020(void)", 
+  "callees": [
+    {
+      "address": "0x000000a5", 
+      "name": "gbMatrix4"
+    }, 
+    {
+      "address": "0x000000ce", 
+      "name": "GetTotalOBBox"
+    }, 
+    {
+      "address": "0x000000d0", 
+      "name": "RightTranslate"
+    }, 
+    {
+      "address": "0x0041cac0", 
+      "name": "FUN_0041cac0"
+    }, 
+    {
+      "address": "0x000000df", 
+      "name": "IsColOBB"
+    }
+  ], 
+  "global_refs": [
+    {
+      "address": "0x-0000064", 
+      "type": null, 
+      "name": "DAT_-0000064"
+    }, 
+    {
+      "address": "0x0056a2a8", 
+      "type": null, 
+      "name": "PTR_gbMatrix4_0056a2a8"
+    }, 
+    {
+      "address": "0x0056a34c", 
+      "type": null, 
+      "name": "PTR_GetTotalOBBox_0056a34c"
+    }, 
+    {
+      "address": "0x0056a354", 
+      "type": null, 
+      "name": "PTR_RightTranslate_0056a354"
+    }, 
+    {
+      "address": "0x0056a390", 
+      "type": null, 
+      "name": "PTR_IsColOBB_0056a390"
+    }
+  ], 
+  "has_custom_name": false, 
+  "decompiled_c": "\r\nbool __thiscall FUN_00506020(int param_1,undefined4 *param_2)\r\n\r\n{\r\n  undefined4 *puVar1;\r\n  int iVar2;\r\n  gbRay *pgVar3;\r\n  undefined4 uStack_90;\r\n  undefined4 uStack_8c;\r\n  undefined4 uStack_88;\r\n  undefined4 uStack_84;\r\n  undefined4 uStack_80;\r\n  gbRay agStack_7c [24];\r\n  gbMatrix4 local_64 [76];\r\n  undefined auStack_18 [24];\r\n  \r\n  gbMatrix4::gbMatrix4(local_64);\r\n  gbGeomNode::GetTotalOBBox(*(gbGeomNode **)(param_1 + 0x69090),(gbOBBox *)local_64);\r\n  uStack_88 = *param_2;\r\n  uStack_84 = param_2[1];\r\n  uStack_80 = param_2[2];\r\n  gbMatrix4::RightTranslate(local_64,(gbVec3D *)&uStack_88);\r\n  uStack_90 = *(undefined4 *)(*(int *)(param_1 + 430000) + 0x50);\r\n  uStack_8c = *(undefined4 *)(*(int *)(param_1 + 430000) + 0x54);\r\n  puVar1 = (undefined4 *)FUN_0041cac0(auStack_18,&uStack_90);\r\n  pgVar3 = agStack_7c;\r\n  for (iVar2 = 6; iVar2 != 0; iVar2 = iVar2 + -1) {\r\n    *(undefined4 *)pgVar3 = *puVar1;\r\n    puVar1 = puVar1 + 1;\r\n    pgVar3 = pgVar3 + 4;\r\n  }\r\n  iVar2 = gbRay::IsColOBB(agStack_7c,(gbOBBox *)local_64);\r\n  return iVar2 == 1;\r\n}\r\n\r\n", 
+  "is_thunk": false, 
+  "name": "FUN_00506020", 
+  "assembly": "  00506020:  SUB ESP,0x90\n  00506026:  PUSH ESI\n  00506027:  MOV ESI,ECX\n  00506029:  PUSH EDI\n  0050602a:  LEA ECX,[ESP + 0x34]\n  0050602e:  CALL dword ptr [0x0056a2a8]\n  00506034:  MOV ECX,dword ptr [ESI + 0x69090]\n  0050603a:  LEA EAX,[ESP + 0x34]\n  0050603e:  PUSH EAX\n  0050603f:  CALL dword ptr [0x0056a34c]\n  00506045:  MOV ECX,dword ptr [ESP + 0x9c]\n  0050604c:  MOV EDX,dword ptr [ECX]\n  0050604e:  MOV dword ptr [ESP + 0x10],EDX\n  00506052:  LEA EDX,[ESP + 0x10]\n  00506056:  MOV EAX,dword ptr [ECX + 0x4]\n  00506059:  PUSH EDX\n  0050605a:  MOV dword ptr [ESP + 0x18],EAX\n  0050605e:  MOV ECX,dword ptr [ECX + 0x8]\n  00506061:  MOV dword ptr [ESP + 0x1c],ECX\n  00506065:  LEA ECX,[ESP + 0x38]\n  00506069:  CALL dword ptr [0x0056a354]\n  0050606f:  MOV EAX,dword ptr [ESI + 0x68fb0]\n  00506075:  MOV ECX,dword ptr [EAX + 0x50]\n  00506078:  MOV dword ptr [ESP + 0x8],ECX\n  0050607c:  LEA ECX,[ESP + 0x80]\n  00506083:  MOV EDX,dword ptr [EAX + 0x54]\n  00506086:  LEA EAX,[ESP + 0x8]\n  0050608a:  PUSH EAX\n  0050608b:  PUSH ECX\n  0050608c:  MOV ECX,dword ptr [ESI + 0x68fb4]\n  00506092:  MOV dword ptr [ESP + 0x14],EDX\n  00506096:  CALL 0x0041cac0\n  0050609b:  MOV ECX,0x6\n  005060a0:  MOV ESI,EAX\n  005060a2:  LEA EDI,[ESP + 0x1c]\n  005060a6:  LEA EDX,[ESP + 0x34]\n  005060aa:  MOVSD.REP ES:EDI,ESI\n  005060ac:  PUSH EDX\n  005060ad:  LEA ECX,[ESP + 0x20]\n  005060b1:  CALL dword ptr [0x0056a390]\n  005060b7:  CMP EAX,0x1\n  005060ba:  POP EDI\n  005060bb:  SETZ AL\n  005060be:  POP ESI\n  005060bf:  ADD ESP,0x90\n  005060c5:  RET 0x4", 
+  "callers": [
+    {
+      "address": "0x00505820", 
+      "name": "FUN_00505820"
+    }
+  ]
+}

@@ -1,0 +1,71 @@
+{
+  "address": "0x00443550", 
+  "size_bytes": 79, 
+  "calling_convention": "unknown", 
+  "signature": "undefined FUN_00443550(void)", 
+  "callees": [
+    {
+      "address": "0x004438f0", 
+      "name": "FUN_004438f0"
+    }, 
+    {
+      "address": "0x00445b40", 
+      "name": "FUN_00445b40"
+    }
+  ], 
+  "global_refs": [
+    {
+      "address": "0x005600c8", 
+      "type": null, 
+      "name": "LAB_005600c8"
+    }, 
+    {
+      "address": "0xffdff000", 
+      "type": null, 
+      "name": "ExceptionList"
+    }, 
+    {
+      "address": "0x-0000010", 
+      "type": null, 
+      "name": "DAT_-0000010"
+    }, 
+    {
+      "address": "0x0056ae64", 
+      "type": null, 
+      "name": "PTR_FUN_0056ae64"
+    }, 
+    {
+      "address": "0x-0000004", 
+      "type": null, 
+      "name": "DAT_-0000004"
+    }, 
+    {
+      "address": "0x-000000c", 
+      "type": null, 
+      "name": "DAT_-000000c"
+    }
+  ], 
+  "has_custom_name": false, 
+  "decompiled_c": "\r\nvoid __fastcall FUN_00443550(undefined4 *param_1)\r\n\r\n{\r\n  void *local_c;\r\n  undefined *puStack_8;\r\n  undefined4 local_4;\r\n  \r\n  puStack_8 = &LAB_005600c8;\r\n  local_c = ExceptionList;\r\n  ExceptionList = &local_c;\r\n  *param_1 = &PTR_FUN_0056ae64;\r\n  local_4 = 0;\r\n  FUN_004438f0();\r\n  local_4 = 0xffffffff;\r\n  FUN_00445b40();\r\n  ExceptionList = local_c;\r\n  return;\r\n}\r\n\r\n", 
+  "is_thunk": false, 
+  "name": "FUN_00443550", 
+  "assembly": "  00443550:  PUSH -0x1\n  00443552:  PUSH 0x5600c8\n  00443557:  MOV EAX,FS:[0x0]\n  0044355d:  PUSH EAX\n  0044355e:  MOV dword ptr FS:[0x0],ESP\n  00443565:  PUSH ECX\n  00443566:  PUSH ESI\n  00443567:  MOV ESI,ECX\n  00443569:  MOV dword ptr [ESP + 0x4],ESI\n  0044356d:  MOV dword ptr [ESI],0x56ae64\n  00443573:  MOV dword ptr [ESP + 0x10],0x0\n  0044357b:  CALL 0x004438f0\n  00443580:  MOV ECX,ESI\n  00443582:  MOV dword ptr [ESP + 0x10],0xffffffff\n  0044358a:  CALL 0x00445b40\n  0044358f:  MOV ECX,dword ptr [ESP + 0x8]\n  00443593:  POP ESI\n  00443594:  MOV dword ptr FS:[0x0],ECX\n  0044359b:  ADD ESP,0x10\n  0044359e:  RET", 
+  "callers": [
+    {
+      "address": "0x00560188", 
+      "name": "Unwind@00560188"
+    }, 
+    {
+      "address": "0x005601f8", 
+      "name": "Unwind@005601f8"
+    }, 
+    {
+      "address": "0x00443530", 
+      "name": "FUN_00443530"
+    }, 
+    {
+      "address": "0x00446200", 
+      "name": "FUN_00446200"
+    }
+  ]
+}

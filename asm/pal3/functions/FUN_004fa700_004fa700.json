@@ -1,0 +1,34 @@
+{
+  "address": "0x004fa700", 
+  "size_bytes": 62, 
+  "calling_convention": "unknown", 
+  "signature": "undefined FUN_004fa700(undefined4 param_1)", 
+  "callees": [], 
+  "global_refs": [
+    {
+      "address": "0x00000004", 
+      "type": null, 
+      "name": "DAT_00000004"
+    }, 
+    {
+      "address": "0x004fa740", 
+      "type": null, 
+      "name": "switchdataD_004fa740"
+    }
+  ], 
+  "has_custom_name": false, 
+  "decompiled_c": "\r\nundefined4 FUN_004fa700(undefined4 param_1)\r\n\r\n{\r\n  switch(param_1) {\r\n  case 1:\r\n    return 2;\r\n  case 2:\r\n    return 4;\r\n  case 3:\r\n    return 5;\r\n  case 4:\r\n    return 3;\r\n  case 5:\r\n    return 1;\r\n  default:\r\n    return 0;\r\n  }\r\n}\r\n\r\n", 
+  "is_thunk": false, 
+  "name": "FUN_004fa700", 
+  "assembly": "  004fa700:  MOV EAX,dword ptr [ESP + 0x4]\n  004fa704:  DEC EAX\n  004fa705:  CMP EAX,0x4\n  004fa708:  JA 0x004fa739\n  004fa70a:  JMP dword ptr [EAX*0x4 + 0x4fa740]\n  004fa711:  MOV EAX,0x5\n  004fa716:  RET 0x4\n  004fa719:  MOV EAX,0x1\n  004fa71e:  RET 0x4\n  004fa721:  MOV EAX,0x2\n  004fa726:  RET 0x4\n  004fa729:  MOV EAX,0x4\n  004fa72e:  RET 0x4\n  004fa731:  MOV EAX,0x3\n  004fa736:  RET 0x4\n  004fa739:  XOR EAX,EAX\n  004fa73b:  RET 0x4", 
+  "callers": [
+    {
+      "address": "0x004f98b0", 
+      "name": "FUN_004f98b0"
+    }, 
+    {
+      "address": "0x004ef710", 
+      "name": "FUN_004ef710"
+    }
+  ]
+}

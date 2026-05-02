@@ -1,0 +1,54 @@
+{
+  "address": "0x00483300", 
+  "size_bytes": 124, 
+  "calling_convention": "unknown", 
+  "signature": "undefined FUN_00483300(void)", 
+  "callees": [
+    {
+      "address": "0x00553549", 
+      "name": "FUN_00553549"
+    }, 
+    {
+      "address": "0x00442390", 
+      "name": "FUN_00442390"
+    }
+  ], 
+  "global_refs": [
+    {
+      "address": "0x00562ea4", 
+      "type": null, 
+      "name": "LAB_00562ea4"
+    }, 
+    {
+      "address": "0xffdff000", 
+      "type": null, 
+      "name": "ExceptionList"
+    }, 
+    {
+      "address": "0x-0000010", 
+      "type": null, 
+      "name": "DAT_-0000010"
+    }, 
+    {
+      "address": "0x004407c0", 
+      "type": null, 
+      "name": "FUN_004407c0"
+    }, 
+    {
+      "address": "0x-0000004", 
+      "type": null, 
+      "name": "DAT_-0000004"
+    }, 
+    {
+      "address": "0x-000000c", 
+      "type": null, 
+      "name": "DAT_-000000c"
+    }
+  ], 
+  "has_custom_name": false, 
+  "decompiled_c": "\r\nvoid __fastcall FUN_00483300(int param_1)\r\n\r\n{\r\n  void *local_c;\r\n  undefined *puStack_8;\r\n  int local_4;\r\n  \r\n  puStack_8 = &LAB_00562ea4;\r\n  local_c = ExceptionList;\r\n  local_4 = 2;\r\n  ExceptionList = &local_c;\r\n  FUN_00553549(param_1 + 0x1c8,0xf8,6,FUN_004407c0);\r\n  local_4._0_1_ = 1;\r\n  FUN_00442390();\r\n  local_4 = (uint)local_4._1_3_ << 8;\r\n  FUN_00442390();\r\n  local_4 = 0xffffffff;\r\n  FUN_00442390();\r\n  ExceptionList = local_c;\r\n  return;\r\n}\r\n\r\n", 
+  "is_thunk": false, 
+  "name": "FUN_00483300", 
+  "assembly": "  00483300:  PUSH -0x1\n  00483302:  PUSH 0x562ea4\n  00483307:  MOV EAX,FS:[0x0]\n  0048330d:  PUSH EAX\n  0048330e:  MOV dword ptr FS:[0x0],ESP\n  00483315:  PUSH ECX\n  00483316:  PUSH ESI\n  00483317:  MOV ESI,ECX\n  00483319:  MOV dword ptr [ESP + 0x4],ESI\n  0048331d:  PUSH 0x4407c0\n  00483322:  PUSH 0x6\n  00483324:  LEA EAX,[ESI + 0x1c8]\n  0048332a:  PUSH 0xf8\n  0048332f:  PUSH EAX\n  00483330:  MOV dword ptr [ESP + 0x20],0x2\n  00483338:  CALL 0x00553549\n  0048333d:  LEA ECX,[ESI + 0x130]\n  00483343:  MOV byte ptr [ESP + 0x10],0x1\n  00483348:  CALL 0x00442390\n  0048334d:  LEA ECX,[ESI + 0x98]\n  00483353:  MOV byte ptr [ESP + 0x10],0x0\n  00483358:  CALL 0x00442390\n  0048335d:  MOV ECX,ESI\n  0048335f:  MOV dword ptr [ESP + 0x10],0xffffffff\n  00483367:  CALL 0x00442390\n  0048336c:  MOV ECX,dword ptr [ESP + 0x8]\n  00483370:  POP ESI\n  00483371:  MOV dword ptr FS:[0x0],ECX\n  00483378:  ADD ESP,0x10\n  0048337b:  RET", 
+  "callers": []
+}

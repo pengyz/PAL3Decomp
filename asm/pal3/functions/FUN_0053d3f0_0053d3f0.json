@@ -1,0 +1,78 @@
+{
+  "address": "0x0053d3f0", 
+  "size_bytes": 111, 
+  "calling_convention": "unknown", 
+  "signature": "undefined FUN_0053d3f0(void)", 
+  "callees": [
+    {
+      "address": "0x00541d10", 
+      "name": "FUN_00541d10"
+    }, 
+    {
+      "address": "0x000000e9", 
+      "name": "~gbChain1D"
+    }, 
+    {
+      "address": "0x000000e8", 
+      "name": "~gbChain1DNode"
+    }
+  ], 
+  "global_refs": [
+    {
+      "address": "0x00568da9", 
+      "type": null, 
+      "name": "LAB_00568da9"
+    }, 
+    {
+      "address": "0xffdff000", 
+      "type": null, 
+      "name": "ExceptionList"
+    }, 
+    {
+      "address": "0x-0000010", 
+      "type": null, 
+      "name": "DAT_-0000010"
+    }, 
+    {
+      "address": "0x00570a24", 
+      "type": null, 
+      "name": "PTR_FUN_00570a24"
+    }, 
+    {
+      "address": "0x0056a5c4", 
+      "type": null, 
+      "name": "PTR_`vftable'_0056a5c4"
+    }, 
+    {
+      "address": "0x0056a3bc", 
+      "type": null, 
+      "name": "PTR_`vftable'_0056a3bc"
+    }, 
+    {
+      "address": "0x-0000004", 
+      "type": null, 
+      "name": "DAT_-0000004"
+    }, 
+    {
+      "address": "0x0056a3b8", 
+      "type": null, 
+      "name": "PTR_~gbChain1D_0056a3b8"
+    }, 
+    {
+      "address": "0x0056a3b4", 
+      "type": null, 
+      "name": "PTR_~gbChain1DNode_0056a3b4"
+    }
+  ], 
+  "has_custom_name": false, 
+  "decompiled_c": "\r\nvoid __fastcall FUN_0053d3f0(gbChain1DNode *param_1)\r\n\r\n{\r\n  void *pvStack_c;\r\n  undefined *puStack_8;\r\n  undefined4 local_4;\r\n  \r\n  local_4 = 0xffffffff;\r\n  puStack_8 = &LAB_00568da9;\r\n  pvStack_c = ExceptionList;\r\n  ExceptionList = &pvStack_c;\r\n  *(undefined ***)param_1 = &PTR_FUN_00570a24;\r\n  *(code **)param_1 = _vftable__exref;\r\n  FUN_00541d10(*(undefined4 *)(param_1 + 0x1c));\r\n  *(code **)param_1 = _vftable__exref;\r\n  local_4 = 0;\r\n  gbChain1D::~gbChain1D((gbChain1D *)(param_1 + 0xc));\r\n  local_4 = 0xffffffff;\r\n  gbChain1DNode::~gbChain1DNode(param_1);\r\n  ExceptionList = pvStack_c;\r\n  return;\r\n}\r\n\r\n", 
+  "is_thunk": false, 
+  "name": "FUN_0053d3f0", 
+  "assembly": "  0053d3f0:  PUSH -0x1\n  0053d3f2:  PUSH 0x568da9\n  0053d3f7:  MOV EAX,FS:[0x0]\n  0053d3fd:  PUSH EAX\n  0053d3fe:  MOV dword ptr FS:[0x0],ESP\n  0053d405:  PUSH ECX\n  0053d406:  PUSH ESI\n  0053d407:  MOV ESI,ECX\n  0053d409:  MOV dword ptr [ESP + 0x4],ESI\n  0053d40d:  MOV dword ptr [ESI],0x570a24\n  0053d413:  MOV EAX,[0x0056a5c4]\n  0053d418:  MOV dword ptr [ESI],EAX\n  0053d41a:  MOV EAX,dword ptr [ESI + 0x1c]\n  0053d41d:  PUSH EAX\n  0053d41e:  CALL 0x00541d10\n  0053d423:  MOV ECX,dword ptr [0x0056a3bc]\n  0053d429:  ADD ESP,0x4\n  0053d42c:  MOV dword ptr [ESI],ECX\n  0053d42e:  LEA ECX,[ESI + 0xc]\n  0053d431:  MOV dword ptr [ESP + 0x10],0x0\n  0053d439:  CALL dword ptr [0x0056a3b8]\n  0053d43f:  MOV ECX,ESI\n  0053d441:  MOV dword ptr [ESP + 0x10],0xffffffff\n  0053d449:  CALL dword ptr [0x0056a3b4]\n  0053d44f:  MOV ECX,dword ptr [ESP + 0x8]\n  0053d453:  POP ESI\n  0053d454:  MOV dword ptr FS:[0x0],ECX\n  0053d45b:  ADD ESP,0x10\n  0053d45e:  RET", 
+  "callers": [
+    {
+      "address": "0x0053d3d0", 
+      "name": "FUN_0053d3d0"
+    }
+  ]
+}

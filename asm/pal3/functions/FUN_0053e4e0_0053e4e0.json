@@ -1,0 +1,35 @@
+{
+  "address": "0x0053e4e0", 
+  "size_bytes": 27, 
+  "calling_convention": "unknown", 
+  "signature": "undefined FUN_0053e4e0(undefined4 param_1, undefined4 param_2)", 
+  "callees": [
+    {
+      "address": "0x0053e2e0", 
+      "name": "FUN_0053e2e0"
+    }
+  ], 
+  "global_refs": [
+    {
+      "address": "0x005833bc", 
+      "type": null, 
+      "name": "DAT_005833bc"
+    }, 
+    {
+      "address": "0x00000008", 
+      "type": null, 
+      "name": "DAT_00000008"
+    }, 
+    {
+      "address": "0x00000004", 
+      "type": null, 
+      "name": "DAT_00000004"
+    }
+  ], 
+  "has_custom_name": false, 
+  "decompiled_c": "\r\nvoid FUN_0053e4e0(undefined4 param_1,undefined4 param_2)\r\n\r\n{\r\n  if ((DAT_005833bc & 1) != 0) {\r\n    FUN_0053e2e0(param_1,param_2);\r\n  }\r\n  return;\r\n}\r\n\r\n", 
+  "is_thunk": false, 
+  "name": "FUN_0053e4e0", 
+  "assembly": "  0053e4e0:  TEST byte ptr [0x005833bc],0x1\n  0053e4e7:  JZ 0x0053e4f8\n  0053e4e9:  MOV EAX,dword ptr [ESP + 0x8]\n  0053e4ed:  MOV EDX,dword ptr [ESP + 0x4]\n  0053e4f1:  PUSH EAX\n  0053e4f2:  PUSH EDX\n  0053e4f3:  CALL 0x0053e2e0\n  0053e4f8:  RET 0x8", 
+  "callers": []
+}

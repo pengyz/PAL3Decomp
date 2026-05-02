@@ -1,0 +1,91 @@
+{
+  "address": "0x00515d10", 
+  "size_bytes": 190, 
+  "calling_convention": "unknown", 
+  "signature": "undefined FUN_00515d10(undefined4 param_1)", 
+  "callees": [
+    {
+      "address": "0x0055353b", 
+      "name": "operator_new"
+    }, 
+    {
+      "address": "0x004e02f0", 
+      "name": "FUN_004e02f0"
+    }, 
+    {
+      "address": "0x0053cef0", 
+      "name": "FUN_0053cef0"
+    }, 
+    {
+      "address": "0x005534d7", 
+      "name": "__CxxThrowException@8"
+    }, 
+    {
+      "address": "0x004e0380", 
+      "name": "FUN_004e0380"
+    }
+  ], 
+  "global_refs": [
+    {
+      "address": "0x0056706e", 
+      "type": null, 
+      "name": "LAB_0056706e"
+    }, 
+    {
+      "address": "0xffdff000", 
+      "type": null, 
+      "name": "ExceptionList"
+    }, 
+    {
+      "address": "0x-0000810", 
+      "type": null, 
+      "name": "DAT_-0000810"
+    }, 
+    {
+      "address": "0x-0000004", 
+      "type": null, 
+      "name": "DAT_-0000004"
+    }, 
+    {
+      "address": "0x00000004", 
+      "type": null, 
+      "name": "DAT_00000004"
+    }, 
+    {
+      "address": "0x005de8fc", 
+      "type": null, 
+      "name": "s_D:\\Project\\PAL3\\Combat\\CBSystem._005de8fc"
+    }, 
+    {
+      "address": "0x005838c4", 
+      "type": null, 
+      "name": "s_C++_new_failed_005838c4"
+    }, 
+    {
+      "address": "0x-000040c", 
+      "type": null, 
+      "name": "DAT_-000040c"
+    }, 
+    {
+      "address": "0x-000080c", 
+      "type": null, 
+      "name": "DAT_-000080c"
+    }, 
+    {
+      "address": "0x00573e50", 
+      "type": null, 
+      "name": "DAT_00573e50"
+    }, 
+    {
+      "address": "0x-000000c", 
+      "type": null, 
+      "name": "DAT_-000000c"
+    }
+  ], 
+  "has_custom_name": false, 
+  "decompiled_c": "\r\nbool __thiscall FUN_00515d10(undefined4 param_1_00,int *param_1)\r\n\r\n{\r\n  char cVar1;\r\n  void *pvVar2;\r\n  int iVar3;\r\n  undefined4 *puVar4;\r\n  undefined4 *puVar5;\r\n  undefined4 local_80c [512];\r\n  void *local_c;\r\n  undefined *puStack_8;\r\n  undefined4 local_4;\r\n  \r\n  local_4 = 0xffffffff;\r\n  puStack_8 = &LAB_0056706e;\r\n  local_c = ExceptionList;\r\n  ExceptionList = &local_c;\r\n  pvVar2 = operator_new(0x2598);\r\n  local_4 = 0;\r\n  if (pvVar2 == (void *)0x0) {\r\n    iVar3 = 0;\r\n  }\r\n  else {\r\n    iVar3 = FUN_004e02f0(param_1_00);\r\n  }\r\n  local_4 = 0xffffffff;\r\n  *param_1 = iVar3;\r\n  if (iVar3 == 0) {\r\n    puVar4 = (undefined4 *)\r\n             FUN_0053cef0(s_C___new_failed_005838c4,s_D__Project_PAL3_Combat_CBSystem__005de8fc,\r\n                          0x9c8);\r\n    puVar5 = local_80c;\r\n    for (iVar3 = 0x100; iVar3 != 0; iVar3 = iVar3 + -1) {\r\n      *puVar5 = *puVar4;\r\n      puVar4 = puVar4 + 1;\r\n      puVar5 = puVar5 + 1;\r\n    }\r\n                    /* WARNING: Subroutine does not return */\r\n    __CxxThrowException_8(local_80c,&DAT_00573e50);\r\n  }\r\n  cVar1 = FUN_004e0380();\r\n  ExceptionList = local_c;\r\n  return cVar1 != '\\0';\r\n}\r\n\r\n", 
+  "is_thunk": false, 
+  "name": "FUN_00515d10", 
+  "assembly": "  00515d10:  PUSH -0x1\n  00515d12:  PUSH 0x56706e\n  00515d17:  MOV EAX,FS:[0x0]\n  00515d1d:  PUSH EAX\n  00515d1e:  MOV dword ptr FS:[0x0],ESP\n  00515d25:  SUB ESP,0x804\n  00515d2b:  PUSH ESI\n  00515d2c:  MOV ESI,ECX\n  00515d2e:  PUSH 0x2598\n  00515d33:  CALL 0x0055353b\n  00515d38:  ADD ESP,0x4\n  00515d3b:  MOV dword ptr [ESP + 0x4],EAX\n  00515d3f:  TEST EAX,EAX\n  00515d41:  MOV dword ptr [ESP + 0x810],0x0\n  00515d4c:  JZ 0x00515d58\n  00515d4e:  PUSH ESI\n  00515d4f:  MOV ECX,EAX\n  00515d51:  CALL 0x004e02f0\n  00515d56:  JMP 0x00515d5a\n  00515d58:  XOR EAX,EAX\n  00515d5a:  MOV ECX,dword ptr [ESP + 0x818]\n  00515d61:  MOV dword ptr [ESP + 0x810],0xffffffff\n  00515d6c:  TEST EAX,EAX\n  00515d6e:  MOV dword ptr [ECX],EAX\n  00515d70:  JNZ 0x00515dab\n  00515d72:  PUSH EDI\n  00515d73:  PUSH 0x9c8\n  00515d78:  PUSH 0x5de8fc\n  00515d7d:  PUSH 0x5838c4\n  00515d82:  LEA ECX,[ESP + 0x418]\n  00515d89:  CALL 0x0053cef0\n  00515d8e:  MOV ECX,0x100\n  00515d93:  MOV ESI,EAX\n  00515d95:  LEA EDI,[ESP + 0xc]\n  00515d99:  LEA EDX,[ESP + 0xc]\n  00515d9d:  PUSH 0x573e50\n  00515da2:  PUSH EDX\n  00515da3:  MOVSD.REP ES:EDI,ESI\n  00515da5:  CALL 0x005534d7\n  00515dab:  MOV ECX,EAX\n  00515dad:  CALL 0x004e0380\n  00515db2:  MOV ECX,dword ptr [ESP + 0x808]\n  00515db9:  POP ESI\n  00515dba:  TEST AL,AL\n  00515dbc:  SETNZ AL\n  00515dbf:  MOV dword ptr FS:[0x0],ECX\n  00515dc6:  ADD ESP,0x810\n  00515dcc:  RET 0x4", 
+  "callers": []
+}

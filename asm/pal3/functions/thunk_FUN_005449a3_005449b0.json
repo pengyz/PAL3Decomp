@@ -1,0 +1,23 @@
+{
+  "address": "0x005449b0", 
+  "size_bytes": 6, 
+  "calling_convention": "unknown", 
+  "signature": "undefined thunk_FUN_005449a3(void)", 
+  "callees": [], 
+  "global_refs": [], 
+  "has_custom_name": false, 
+  "decompiled_c": "\r\nvoid thunk_FUN_005449a3(void)\r\n\r\n{\r\n                    /* WARNING: Could not recover jumptable at 0x005449b0. Too many branches */\r\n                    /* WARNING: Treating indirect jump as call */\r\n  (*(code *)PTR_FUN_006090fc)();\r\n  return;\r\n}\r\n\r\n", 
+  "is_thunk": true, 
+  "name": "thunk_FUN_005449a3", 
+  "assembly": "  005449b0:  JMP dword ptr [0x006090fc]", 
+  "callers": [
+    {
+      "address": "0x005460f4", 
+      "name": "FUN_005460f4"
+    }, 
+    {
+      "address": "0x005461ce", 
+      "name": "FUN_005461ce"
+    }
+  ]
+}

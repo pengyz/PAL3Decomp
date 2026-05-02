@@ -1,0 +1,34 @@
+{
+  "address": "0x004022f0", 
+  "size_bytes": 21, 
+  "calling_convention": "unknown", 
+  "signature": "undefined FUN_004022f0(undefined4 param_1, undefined4 param_2)", 
+  "callees": [], 
+  "global_refs": [
+    {
+      "address": "0x00000004", 
+      "type": null, 
+      "name": "DAT_00000004"
+    }, 
+    {
+      "address": "0x00000008", 
+      "type": null, 
+      "name": "DAT_00000008"
+    }
+  ], 
+  "has_custom_name": false, 
+  "decompiled_c": "\r\nvoid __thiscall FUN_004022f0(int param_1_00,undefined4 *param_1,undefined4 *param_2)\r\n\r\n{\r\n  *param_1 = *(undefined4 *)(param_1_00 + 0x48);\r\n  *param_2 = *(undefined4 *)(param_1_00 + 0x4c);\r\n  return;\r\n}\r\n\r\n", 
+  "is_thunk": false, 
+  "name": "FUN_004022f0", 
+  "assembly": "  004022f0:  MOV EDX,dword ptr [ESP + 0x4]\n  004022f4:  MOV EAX,dword ptr [ECX + 0x48]\n  004022f7:  MOV dword ptr [EDX],EAX\n  004022f9:  MOV EAX,dword ptr [ECX + 0x4c]\n  004022fc:  MOV ECX,dword ptr [ESP + 0x8]\n  00402300:  MOV dword ptr [ECX],EAX\n  00402302:  RET 0x8", 
+  "callers": [
+    {
+      "address": "0x0041d9a0", 
+      "name": "FUN_0041d9a0"
+    }, 
+    {
+      "address": "0x004fc150", 
+      "name": "FUN_004fc150"
+    }
+  ]
+}

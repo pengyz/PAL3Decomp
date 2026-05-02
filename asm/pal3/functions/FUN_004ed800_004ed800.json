@@ -1,0 +1,69 @@
+{
+  "address": "0x004ed800", 
+  "size_bytes": 98, 
+  "calling_convention": "unknown", 
+  "signature": "undefined FUN_004ed800(void)", 
+  "callees": [], 
+  "global_refs": [
+    {
+      "address": "0x00c04918", 
+      "type": null, 
+      "name": "DAT_00c04918"
+    }, 
+    {
+      "address": "0x00c0491e", 
+      "type": null, 
+      "name": "DAT_00c0491e"
+    }, 
+    {
+      "address": "0x00c04919", 
+      "type": null, 
+      "name": "DAT_00c04919"
+    }, 
+    {
+      "address": "0x00c0491a", 
+      "type": null, 
+      "name": "DAT_00c0491a"
+    }, 
+    {
+      "address": "0x00c0491d", 
+      "type": null, 
+      "name": "DAT_00c0491d"
+    }, 
+    {
+      "address": "0x00c0491b", 
+      "type": null, 
+      "name": "DAT_00c0491b"
+    }, 
+    {
+      "address": "0x00c0491c", 
+      "type": null, 
+      "name": "DAT_00c0491c"
+    }, 
+    {
+      "address": "0x00c04e98", 
+      "type": null, 
+      "name": "DAT_00c04e98"
+    }, 
+    {
+      "address": "0x00c06498", 
+      "type": null, 
+      "name": "DAT_00c06498"
+    }
+  ], 
+  "has_custom_name": false, 
+  "decompiled_c": "\r\nvoid __fastcall FUN_004ed800(int param_1)\r\n\r\n{\r\n  undefined1 *puVar1;\r\n  undefined *puVar2;\r\n  \r\n  puVar1 = &DAT_00c04918;\r\n  puVar2 = (undefined *)(param_1 + 0x470);\r\n  do {\r\n    if (puVar2[-0x22f] != '\\0') {\r\n      puVar1[6] = *puVar2;\r\n      *puVar1 = puVar2[0xfd];\r\n      puVar1[1] = puVar2[0xf8];\r\n      puVar1[2] = puVar2[0xf9];\r\n      puVar1[5] = puVar2[0xfc];\r\n      puVar1[3] = puVar2[0xfa];\r\n      puVar1[4] = puVar2[0xfb];\r\n    }\r\n    puVar1 = puVar1 + 0x580;\r\n    puVar2 = puVar2 + 0x37c;\r\n  } while ((int)puVar1 < 0xc06498);\r\n  return;\r\n}\r\n\r\n", 
+  "is_thunk": false, 
+  "name": "FUN_004ed800", 
+  "assembly": "  004ed800:  MOV EAX,0xc04918\n  004ed805:  ADD ECX,0x470\n  004ed80b:  MOV DL,byte ptr [ECX + 0xfffffdd1]\n  004ed811:  TEST DL,DL\n  004ed813:  JZ 0x004ed84f\n  004ed815:  MOV DL,byte ptr [ECX]\n  004ed817:  MOV byte ptr [EAX + 0x6],DL\n  004ed81a:  MOV DL,byte ptr [ECX + 0xfd]\n  004ed820:  MOV byte ptr [EAX],DL\n  004ed822:  MOV DL,byte ptr [ECX + 0xf8]\n  004ed828:  MOV byte ptr [EAX + 0x1],DL\n  004ed82b:  MOV DL,byte ptr [ECX + 0xf9]\n  004ed831:  MOV byte ptr [EAX + 0x2],DL\n  004ed834:  MOV DL,byte ptr [ECX + 0xfc]\n  004ed83a:  MOV byte ptr [EAX + 0x5],DL\n  004ed83d:  MOV DL,byte ptr [ECX + 0xfa]\n  004ed843:  MOV byte ptr [EAX + 0x3],DL\n  004ed846:  MOV DL,byte ptr [ECX + 0xfb]\n  004ed84c:  MOV byte ptr [EAX + 0x4],DL\n  004ed84f:  ADD EAX,0x580\n  004ed854:  ADD ECX,0x37c\n  004ed85a:  CMP EAX,0xc06498\n  004ed85f:  JL 0x004ed80b\n  004ed861:  RET", 
+  "callers": [
+    {
+      "address": "0x004f7910", 
+      "name": "FUN_004f7910"
+    }, 
+    {
+      "address": "0x004ed680", 
+      "name": "FUN_004ed680"
+    }
+  ]
+}

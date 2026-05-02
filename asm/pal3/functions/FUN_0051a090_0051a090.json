@@ -1,0 +1,54 @@
+{
+  "address": "0x0051a090", 
+  "size_bytes": 91, 
+  "calling_convention": "unknown", 
+  "signature": "undefined FUN_0051a090(undefined4 param_1, undefined4 param_2)", 
+  "callees": [
+    {
+      "address": "0x004dc5c0", 
+      "name": "FUN_004dc5c0"
+    }, 
+    {
+      "address": "0x00445c60", 
+      "name": "FUN_00445c60"
+    }
+  ], 
+  "global_refs": [
+    {
+      "address": "0x00bfc6f4", 
+      "type": null, 
+      "name": "DAT_00bfc6f4"
+    }, 
+    {
+      "address": "0x00bfc6e8", 
+      "type": null, 
+      "name": "DAT_00bfc6e8"
+    }, 
+    {
+      "address": "0x00bfc704", 
+      "type": null, 
+      "name": "DAT_00bfc704"
+    }, 
+    {
+      "address": "0x00570110", 
+      "type": null, 
+      "name": "DAT_00570110"
+    }, 
+    {
+      "address": "0x00000008", 
+      "type": null, 
+      "name": "DAT_00000008"
+    }, 
+    {
+      "address": "0x00000004", 
+      "type": null, 
+      "name": "DAT_00000004"
+    }
+  ], 
+  "has_custom_name": false, 
+  "decompiled_c": "\r\nvoid __thiscall FUN_0051a090(int param_1_00,undefined4 param_1,undefined4 param_2)\r\n\r\n{\r\n  if ((*(int *)(param_1_00 + 0x38) == 1) &&\r\n     (((DAT_00bfc6f4 == 1 && (((byte)DAT_00bfc6e8 & 0xf) == 1)) || (DAT_00bfc704 == 1)))) {\r\n    FUN_004dc5c0(DAT_00570110,0xffffffff,0);\r\n  }\r\n  FUN_00445c60(param_1,param_2);\r\n  return;\r\n}\r\n\r\n", 
+  "is_thunk": false, 
+  "name": "FUN_0051a090", 
+  "assembly": "  0051a090:  PUSH ESI\n  0051a091:  MOV ESI,ECX\n  0051a093:  MOV EAX,0x1\n  0051a098:  CMP dword ptr [ESI + 0x38],EAX\n  0051a09b:  JNZ 0x0051a0d6\n  0051a09d:  CMP dword ptr [0x00bfc6f4],EAX\n  0051a0a3:  JNZ 0x0051a0b2\n  0051a0a5:  MOV ECX,dword ptr [0x00bfc6e8]\n  0051a0ab:  AND ECX,0xf\n  0051a0ae:  CMP CL,AL\n  0051a0b0:  JZ 0x0051a0ba\n  0051a0b2:  CMP dword ptr [0x00bfc704],EAX\n  0051a0b8:  JNZ 0x0051a0d6\n  0051a0ba:  MOV EAX,dword ptr [ESI + 0x20]\n  0051a0bd:  MOV EDX,dword ptr [0x00570110]\n  0051a0c3:  PUSH 0x0\n  0051a0c5:  PUSH -0x1\n  0051a0c7:  MOV ECX,dword ptr [EAX + 0x488]\n  0051a0cd:  PUSH EDX\n  0051a0ce:  MOV ECX,dword ptr [ECX + 0x8]\n  0051a0d1:  CALL 0x004dc5c0\n  0051a0d6:  MOV EDX,dword ptr [ESP + 0xc]\n  0051a0da:  MOV EAX,dword ptr [ESP + 0x8]\n  0051a0de:  PUSH EDX\n  0051a0df:  PUSH EAX\n  0051a0e0:  MOV ECX,ESI\n  0051a0e2:  CALL 0x00445c60\n  0051a0e7:  POP ESI\n  0051a0e8:  RET 0x8", 
+  "callers": []
+}

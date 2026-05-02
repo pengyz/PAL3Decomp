@@ -1,0 +1,68 @@
+{
+  "address": "0x004e50b0", 
+  "size_bytes": 94, 
+  "calling_convention": "unknown", 
+  "signature": "undefined FUN_004e50b0(void)", 
+  "callees": [
+    {
+      "address": "0x004791b0", 
+      "name": "FUN_004791b0"
+    }, 
+    {
+      "address": "0x00479130", 
+      "name": "FUN_00479130"
+    }, 
+    {
+      "address": "0x0040ccf0", 
+      "name": "FUN_0040ccf0"
+    }
+  ], 
+  "global_refs": [
+    {
+      "address": "0x-0000008", 
+      "type": null, 
+      "name": "DAT_-0000008"
+    }, 
+    {
+      "address": "0x-0000004", 
+      "type": null, 
+      "name": "DAT_-0000004"
+    }, 
+    {
+      "address": "0x005d8804", 
+      "type": null, 
+      "name": "DAT_005d8804"
+    }, 
+    {
+      "address": "0x00975ed8", 
+      "type": null, 
+      "name": "DAT_00975ed8"
+    }, 
+    {
+      "address": "0x-000000c", 
+      "type": null, 
+      "name": "DAT_-000000c"
+    }, 
+    {
+      "address": "0x00c05f30", 
+      "type": null, 
+      "name": "DAT_00c05f30"
+    }, 
+    {
+      "address": "0x017a9946", 
+      "type": null, 
+      "name": "DAT_017a9946"
+    }
+  ], 
+  "has_custom_name": false, 
+  "decompiled_c": "\r\nvoid FUN_004e50b0(void)\r\n\r\n{\r\n  undefined4 uVar1;\r\n  undefined4 local_c;\r\n  undefined4 local_8;\r\n  undefined4 local_4;\r\n  \r\n  local_8 = 0;\r\n  local_4 = 0;\r\n  local_c = 0xffff;\r\n  uVar1 = FUN_004791b0(DAT_005d8804);\r\n  local_4 = FUN_00479130(uVar1);\r\n  local_8 = 1;\r\n  local_c = uVar1;\r\n  FUN_0040ccf0(&local_c);\r\n  DAT_017a9946 = 1;\r\n  return;\r\n}\r\n\r\n", 
+  "is_thunk": false, 
+  "name": "FUN_004e50b0", 
+  "assembly": "  004e50b0:  SUB ESP,0xc\n  004e50b3:  XOR EAX,EAX\n  004e50b5:  PUSH ESI\n  004e50b6:  MOV dword ptr [ESP + 0x8],EAX\n  004e50ba:  MOV dword ptr [ESP + 0xc],EAX\n  004e50be:  MOV EAX,[0x005d8804]\n  004e50c3:  MOV ECX,0x975ed8\n  004e50c8:  PUSH EAX\n  004e50c9:  MOV dword ptr [ESP + 0x8],0xffff\n  004e50d1:  CALL 0x004791b0\n  004e50d6:  MOV ESI,EAX\n  004e50d8:  MOV ECX,0x975ed8\n  004e50dd:  PUSH ESI\n  004e50de:  CALL 0x00479130\n  004e50e3:  LEA ECX,[ESP + 0x4]\n  004e50e7:  MOV dword ptr [ESP + 0x4],ESI\n  004e50eb:  PUSH ECX\n  004e50ec:  MOV ECX,0xc05f30\n  004e50f1:  MOV dword ptr [ESP + 0x10],EAX\n  004e50f5:  MOV dword ptr [ESP + 0xc],0x1\n  004e50fd:  CALL 0x0040ccf0\n  004e5102:  MOV byte ptr [0x017a9946],0x1\n  004e5109:  POP ESI\n  004e510a:  ADD ESP,0xc\n  004e510d:  RET", 
+  "callers": [
+    {
+      "address": "0x004e0820", 
+      "name": "FUN_004e0820"
+    }
+  ]
+}

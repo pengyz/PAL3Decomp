@@ -1,0 +1,19 @@
+{
+  "address": "0x00564cd2", 
+  "size_bytes": 14, 
+  "calling_convention": "unknown", 
+  "signature": "undefined Unwind@00564cd2(void)", 
+  "callees": [
+    {
+      "address": "0x00401800", 
+      "name": "FUN_00401800"
+    }
+  ], 
+  "global_refs": [], 
+  "has_custom_name": true, 
+  "decompiled_c": "\r\nvoid Unwind_00564cd2(void)\r\n\r\n{\r\n  FUN_00401800();\r\n  return;\r\n}\r\n\r\n", 
+  "is_thunk": false, 
+  "name": "Unwind@00564cd2", 
+  "assembly": "  00564cd2:  MOV ECX,dword ptr [EBP + -0x10]\n  00564cd5:  ADD ECX,0x548\n  00564cdb:  JMP 0x00401800", 
+  "callers": []
+}

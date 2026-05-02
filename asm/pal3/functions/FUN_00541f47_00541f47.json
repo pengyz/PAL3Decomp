@@ -1,0 +1,93 @@
+{
+  "address": "0x00541f47", 
+  "size_bytes": 89, 
+  "calling_convention": "unknown", 
+  "signature": "undefined FUN_00541f47(void)", 
+  "callees": [
+    {
+      "address": "0x0055530c", 
+      "name": "FUN_0055530c"
+    }, 
+    {
+      "address": "0x00402fb0", 
+      "name": "FUN_00402fb0"
+    }, 
+    {
+      "address": "0x00555290", 
+      "name": "_strlen"
+    }, 
+    {
+      "address": "0x00453c00", 
+      "name": "FUN_00453c00"
+    }, 
+    {
+      "address": "0x00541d75", 
+      "name": "FUN_00541d75"
+    }, 
+    {
+      "address": "0x005534d7", 
+      "name": "__CxxThrowException@8"
+    }
+  ], 
+  "global_refs": [
+    {
+      "address": "0x00568ff0", 
+      "type": null, 
+      "name": "LAB_00568ff0"
+    }, 
+    {
+      "address": "0x00570ab4", 
+      "type": null, 
+      "name": "s_invalid_string_position_00570ab4"
+    }, 
+    {
+      "address": "0x0057ba60", 
+      "type": null, 
+      "name": "DAT_0057ba60"
+    }, 
+    {
+      "address": "0x00570aa8", 
+      "type": null, 
+      "name": "PTR_LAB_00570aa8"
+    }
+  ], 
+  "has_custom_name": false, 
+  "decompiled_c": "\r\nvoid FUN_00541f47(void)\r\n\r\n{\r\n  size_t sVar1;\r\n  int unaff_EBP;\r\n  \r\n  FUN_0055530c();\r\n  *(undefined *)(unaff_EBP + -0x20) = *(undefined *)(unaff_EBP + -0xd);\r\n  FUN_00402fb0(0);\r\n  sVar1 = _strlen(\"invalid string position\");\r\n  FUN_00453c00(\"invalid string position\",sVar1);\r\n  *(undefined4 *)(unaff_EBP + -4) = 0;\r\n  FUN_00541d75(unaff_EBP + -0x20);\r\n  *(undefined ***)(unaff_EBP + -0x3c) = &PTR_LAB_00570aa8;\r\n                    /* WARNING: Subroutine does not return */\r\n  __CxxThrowException_8(unaff_EBP + -0x3c,&DAT_0057ba60);\r\n}\r\n\r\n", 
+  "is_thunk": false, 
+  "name": "FUN_00541f47", 
+  "assembly": "  00541f47:  MOV EAX,0x568ff0\n  00541f4c:  CALL 0x0055530c\n  00541f51:  SUB ESP,0x30\n  00541f54:  MOV AL,byte ptr [EBP + -0xd]\n  00541f57:  PUSH ESI\n  00541f58:  PUSH 0x0\n  00541f5a:  LEA ECX,[EBP + -0x20]\n  00541f5d:  MOV byte ptr [EBP + -0x20],AL\n  00541f60:  CALL 0x00402fb0\n  00541f65:  MOV ESI,0x570ab4\n  00541f6a:  PUSH ESI\n  00541f6b:  CALL 0x00555290\n  00541f70:  POP ECX\n  00541f71:  PUSH EAX\n  00541f72:  PUSH ESI\n  00541f73:  LEA ECX,[EBP + -0x20]\n  00541f76:  CALL 0x00453c00\n  00541f7b:  AND dword ptr [EBP + -0x4],0x0\n  00541f7f:  LEA EAX,[EBP + -0x20]\n  00541f82:  PUSH EAX\n  00541f83:  LEA ECX,[EBP + -0x3c]\n  00541f86:  CALL 0x00541d75\n  00541f8b:  LEA EAX,[EBP + -0x3c]\n  00541f8e:  PUSH 0x57ba60\n  00541f93:  PUSH EAX\n  00541f94:  MOV dword ptr [EBP + -0x3c],0x570aa8\n  00541f9b:  CALL 0x005534d7", 
+  "callers": [
+    {
+      "address": "0x004307d0", 
+      "name": "FUN_004307d0"
+    }, 
+    {
+      "address": "0x0053f060", 
+      "name": "FUN_0053f060"
+    }, 
+    {
+      "address": "0x00430670", 
+      "name": "FUN_00430670"
+    }, 
+    {
+      "address": "0x00431640", 
+      "name": "FUN_00431640"
+    }, 
+    {
+      "address": "0x004317d0", 
+      "name": "FUN_004317d0"
+    }, 
+    {
+      "address": "0x004538e0", 
+      "name": "FUN_004538e0"
+    }, 
+    {
+      "address": "0x00406b80", 
+      "name": "FUN_00406b80"
+    }, 
+    {
+      "address": "0x00453a70", 
+      "name": "FUN_00453a70"
+    }
+  ]
+}

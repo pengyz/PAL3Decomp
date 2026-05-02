@@ -1,0 +1,25 @@
+{
+  "address": "0x0055b469", 
+  "size_bytes": 15, 
+  "calling_convention": "unknown", 
+  "signature": "undefined FUN_0055b469(void)", 
+  "callees": [], 
+  "global_refs": [
+    {
+      "address": "0x-0000006", 
+      "type": null, 
+      "name": "DAT_-0000006"
+    }
+  ], 
+  "has_custom_name": false, 
+  "decompiled_c": "\r\nint FUN_0055b469(void)\r\n\r\n{\r\n  short in_FPUStatusWord;\r\n  \r\n  return (int)in_FPUStatusWord;\r\n}\r\n\r\n", 
+  "is_thunk": false, 
+  "name": "FUN_0055b469", 
+  "assembly": "  0055b469:  PUSH EBP\n  0055b46a:  MOV EBP,ESP\n  0055b46c:  PUSH ECX\n  0055b46d:  FNSTSW word ptr [EBP + -0x2]\n  0055b470:  FNCLEX\n  0055b472:  MOVSX EAX,word ptr [EBP + -0x2]\n  0055b476:  LEAVE\n  0055b477:  RET", 
+  "callers": [
+    {
+      "address": "0x0055af6b", 
+      "name": "FUN_0055af6b"
+    }
+  ]
+}

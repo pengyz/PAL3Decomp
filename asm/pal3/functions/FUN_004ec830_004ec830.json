@@ -1,0 +1,68 @@
+{
+  "address": "0x004ec830", 
+  "size_bytes": 209, 
+  "calling_convention": "unknown", 
+  "signature": "undefined FUN_004ec830(void)", 
+  "callees": [
+    {
+      "address": "0x004ee760", 
+      "name": "FUN_004ee760"
+    }, 
+    {
+      "address": "0x004ec6b0", 
+      "name": "FUN_004ec6b0"
+    }, 
+    {
+      "address": "0x004ed170", 
+      "name": "FUN_004ed170"
+    }, 
+    {
+      "address": "0x004ed250", 
+      "name": "FUN_004ed250"
+    }, 
+    {
+      "address": "0x004ed8c0", 
+      "name": "FUN_004ed8c0"
+    }, 
+    {
+      "address": "0x004edc60", 
+      "name": "FUN_004edc60"
+    }, 
+    {
+      "address": "0x004edd60", 
+      "name": "FUN_004edd60"
+    }, 
+    {
+      "address": "0x004edf10", 
+      "name": "FUN_004edf10"
+    }, 
+    {
+      "address": "0x004ee540", 
+      "name": "FUN_004ee540"
+    }, 
+    {
+      "address": "0x004fa6a0", 
+      "name": "FUN_004fa6a0"
+    }, 
+    {
+      "address": "0x004fa760", 
+      "name": "FUN_004fa760"
+    }, 
+    {
+      "address": "0x004ec910", 
+      "name": "FUN_004ec910"
+    }
+  ], 
+  "global_refs": [], 
+  "has_custom_name": false, 
+  "decompiled_c": "\r\nundefined4 __fastcall FUN_004ec830(int param_1)\r\n\r\n{\r\n  undefined uVar1;\r\n  int iVar2;\r\n  undefined4 uVar3;\r\n  \r\n  *(undefined4 *)(param_1 + 0x20c) = (*(undefined4 **)(param_1 + 0x208))[5];\r\n  *(undefined4 *)(param_1 + 0x214) = **(undefined4 **)(param_1 + 0x208);\r\n  FUN_004ee760();\r\n  FUN_004ec6b0();\r\n  iVar2 = *(int *)(param_1 + 0x208);\r\n  *(undefined4 *)(param_1 + 0x200) = *(undefined4 *)(iVar2 + 0x50);\r\n  *(undefined4 *)(param_1 + 0x220) = 0;\r\n  *(undefined4 *)(param_1 + 0x21c) = *(undefined4 *)(*(int *)(iVar2 + 0x70) + 0x1c);\r\n  uVar1 = *(undefined *)(*(int *)(iVar2 + 0x70) + 0x48);\r\n  *(undefined *)(param_1 + 0x225) = 0;\r\n  *(undefined *)(param_1 + 0x224) = uVar1;\r\n  FUN_004ed170();\r\n  FUN_004ed250();\r\n  FUN_004ed8c0();\r\n  FUN_004edc60();\r\n  FUN_004edd60();\r\n  FUN_004edf10();\r\n  FUN_004ee540();\r\n  uVar3 = FUN_004fa6a0(*(undefined4 *)(*(int *)(*(int *)(param_1 + 0x208) + 0x70) + 0x40));\r\n  FUN_004fa760(uVar3);\r\n  FUN_004ec910();\r\n  *(undefined4 *)(param_1 + 0x5060) = 0;\r\n  *(undefined4 *)(param_1 + 0x50a0) = *(undefined4 *)(*(int *)(param_1 + 0x208) + 0x50);\r\n  return 1;\r\n}\r\n\r\n", 
+  "is_thunk": false, 
+  "name": "FUN_004ec830", 
+  "assembly": "  004ec830:  PUSH ESI\n  004ec831:  MOV ESI,ECX\n  004ec833:  MOV EAX,dword ptr [ESI + 0x208]\n  004ec839:  MOV ECX,dword ptr [EAX + 0x14]\n  004ec83c:  MOV dword ptr [ESI + 0x20c],ECX\n  004ec842:  MOV EDX,dword ptr [EAX]\n  004ec844:  MOV ECX,ESI\n  004ec846:  MOV dword ptr [ESI + 0x214],EDX\n  004ec84c:  CALL 0x004ee760\n  004ec851:  MOV ECX,ESI\n  004ec853:  CALL 0x004ec6b0\n  004ec858:  MOV EAX,dword ptr [ESI + 0x208]\n  004ec85e:  FLD dword ptr [EAX + 0x50]\n  004ec861:  FSTP dword ptr [ESI + 0x200]\n  004ec867:  MOV dword ptr [ESI + 0x220],0x0\n  004ec871:  MOV ECX,dword ptr [EAX + 0x70]\n  004ec874:  MOV EDX,dword ptr [ECX + 0x1c]\n  004ec877:  MOV dword ptr [ESI + 0x21c],EDX\n  004ec87d:  MOV EAX,dword ptr [EAX + 0x70]\n  004ec880:  MOV CL,byte ptr [EAX + 0x48]\n  004ec883:  MOV byte ptr [ESI + 0x225],0x0\n  004ec88a:  MOV byte ptr [ESI + 0x224],CL\n  004ec890:  MOV ECX,ESI\n  004ec892:  CALL 0x004ed170\n  004ec897:  MOV ECX,ESI\n  004ec899:  CALL 0x004ed250\n  004ec89e:  MOV ECX,ESI\n  004ec8a0:  CALL 0x004ed8c0\n  004ec8a5:  MOV ECX,ESI\n  004ec8a7:  CALL 0x004edc60\n  004ec8ac:  MOV ECX,ESI\n  004ec8ae:  CALL 0x004edd60\n  004ec8b3:  MOV ECX,ESI\n  004ec8b5:  CALL 0x004edf10\n  004ec8ba:  MOV ECX,ESI\n  004ec8bc:  CALL 0x004ee540\n  004ec8c1:  MOV EDX,dword ptr [ESI + 0x208]\n  004ec8c7:  MOV ECX,ESI\n  004ec8c9:  MOV EAX,dword ptr [EDX + 0x70]\n  004ec8cc:  MOV EAX,dword ptr [EAX + 0x40]\n  004ec8cf:  PUSH EAX\n  004ec8d0:  CALL 0x004fa6a0\n  004ec8d5:  PUSH EAX\n  004ec8d6:  MOV ECX,ESI\n  004ec8d8:  CALL 0x004fa760\n  004ec8dd:  MOV ECX,ESI\n  004ec8df:  CALL 0x004ec910\n  004ec8e4:  MOV ECX,dword ptr [ESI + 0x208]\n  004ec8ea:  MOV dword ptr [ESI + 0x5060],0x0\n  004ec8f4:  MOV AL,0x1\n  004ec8f6:  FLD dword ptr [ECX + 0x50]\n  004ec8f9:  FSTP dword ptr [ESI + 0x50a0]\n  004ec8ff:  POP ESI\n  004ec900:  RET", 
+  "callers": [
+    {
+      "address": "0x00512d60", 
+      "name": "FUN_00512d60"
+    }
+  ]
+}

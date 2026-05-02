@@ -1,0 +1,136 @@
+{
+  "address": "0x004b4920", 
+  "size_bytes": 158, 
+  "calling_convention": "unknown", 
+  "signature": "undefined FUN_004b4920(undefined4 param_1)", 
+  "callees": [
+    {
+      "address": "0x00000014", 
+      "name": "lstrcpyA"
+    }, 
+    {
+      "address": "0x0000015e", 
+      "name": "Release"
+    }, 
+    {
+      "address": "0x00401f50", 
+      "name": "FUN_00401f50"
+    }, 
+    {
+      "address": "0x00000160", 
+      "name": "LoadTexture"
+    }, 
+    {
+      "address": "0x00401f90", 
+      "name": "FUN_00401f90"
+    }
+  ], 
+  "global_refs": [
+    {
+      "address": "0xffdff000", 
+      "type": null, 
+      "name": "ExceptionList"
+    }, 
+    {
+      "address": "0x005662d8", 
+      "type": null, 
+      "name": "LAB_005662d8"
+    }, 
+    {
+      "address": "0x00000004", 
+      "type": null, 
+      "name": "DAT_00000004"
+    }, 
+    {
+      "address": "0x0056a054", 
+      "type": null, 
+      "name": "PTR_lstrcpyA_0056a054"
+    }, 
+    {
+      "address": "0x0056a58c", 
+      "type": null, 
+      "name": "PTR_Release_0056a58c"
+    }, 
+    {
+      "address": "0x00bfda60", 
+      "type": null, 
+      "name": "DAT_00bfda60"
+    }, 
+    {
+      "address": "0x0056a594", 
+      "type": null, 
+      "name": "PTR_LoadTexture_0056a594"
+    }
+  ], 
+  "has_custom_name": false, 
+  "decompiled_c": "\r\nvoid __thiscall FUN_004b4920(int param_1_00,LPCSTR param_1)\r\n\r\n{\r\n  LPSTR lpString1;\r\n  gbTexture *this;\r\n  void *pvStack_c;\r\n  undefined *puStack_8;\r\n  undefined4 uStack_4;\r\n  \r\n  uStack_4 = 0xffffffff;\r\n  puStack_8 = &LAB_005662d8;\r\n  pvStack_c = ExceptionList;\r\n  lpString1 = (LPSTR)(param_1_00 + 0xa0);\r\n  ExceptionList = &pvStack_c;\r\n  lstrcpyA(lpString1,param_1);\r\n  if (lpString1 != (LPSTR)0x0) {\r\n    if (*(gbRefObject **)(param_1_00 + 0x1a0) != (gbRefObject *)0x0) {\r\n      gbRefObject::Release(*(gbRefObject **)(param_1_00 + 0x1a0));\r\n      *(undefined4 *)(param_1_00 + 0x1a0) = 0;\r\n    }\r\n    FUN_00401f50();\r\n    uStack_4 = 0;\r\n    this = (gbTexture *)(**(code **)(*DAT_00bfda60 + 8))(lpString1);\r\n    *(gbTexture **)(param_1_00 + 0x1a0) = this;\r\n    if (this != (gbTexture *)0x0) {\r\n      gbTexture::LoadTexture(this,1);\r\n    }\r\n    uStack_4 = 0xffffffff;\r\n    FUN_00401f90();\r\n  }\r\n  ExceptionList = pvStack_c;\r\n  return;\r\n}\r\n\r\n", 
+  "is_thunk": false, 
+  "name": "FUN_004b4920", 
+  "assembly": "  004b4920:  MOV EAX,FS:[0x0]\n  004b4926:  PUSH -0x1\n  004b4928:  PUSH 0x5662d8\n  004b492d:  PUSH EAX\n  004b492e:  MOV EAX,dword ptr [ESP + 0x10]\n  004b4932:  MOV dword ptr FS:[0x0],ESP\n  004b4939:  PUSH ESI\n  004b493a:  MOV ESI,ECX\n  004b493c:  PUSH EDI\n  004b493d:  PUSH EAX\n  004b493e:  LEA EDI,[ESI + 0xa0]\n  004b4944:  PUSH EDI\n  004b4945:  CALL dword ptr [0x0056a054]\n  004b494b:  TEST EDI,EDI\n  004b494d:  JZ 0x004b49ab\n  004b494f:  MOV ECX,dword ptr [ESI + 0x1a0]\n  004b4955:  TEST ECX,ECX\n  004b4957:  JZ 0x004b4969\n  004b4959:  CALL dword ptr [0x0056a58c]\n  004b495f:  MOV dword ptr [ESI + 0x1a0],0x0\n  004b4969:  LEA ECX,[ESP + 0x18]\n  004b496d:  CALL 0x00401f50\n  004b4972:  MOV ECX,dword ptr [0x00bfda60]\n  004b4978:  PUSH EDI\n  004b4979:  MOV dword ptr [ESP + 0x14],0x0\n  004b4981:  MOV EDX,dword ptr [ECX]\n  004b4983:  CALL dword ptr [EDX + 0x8]\n  004b4986:  TEST EAX,EAX\n  004b4988:  MOV dword ptr [ESI + 0x1a0],EAX\n  004b498e:  JZ 0x004b499a\n  004b4990:  PUSH 0x1\n  004b4992:  MOV ECX,EAX\n  004b4994:  CALL dword ptr [0x0056a594]\n  004b499a:  LEA ECX,[ESP + 0x18]\n  004b499e:  MOV dword ptr [ESP + 0x10],0xffffffff\n  004b49a6:  CALL 0x00401f90\n  004b49ab:  MOV ECX,dword ptr [ESP + 0x8]\n  004b49af:  POP EDI\n  004b49b0:  MOV dword ptr FS:[0x0],ECX\n  004b49b7:  POP ESI\n  004b49b8:  ADD ESP,0xc\n  004b49bb:  RET 0x4", 
+  "callers": [
+    {
+      "address": "0x0048e600", 
+      "name": "FUN_0048e600"
+    }, 
+    {
+      "address": "0x0049fbe0", 
+      "name": "FUN_0049fbe0"
+    }, 
+    {
+      "address": "0x005263c0", 
+      "name": "FUN_005263c0"
+    }, 
+    {
+      "address": "0x0047a400", 
+      "name": "FUN_0047a400"
+    }, 
+    {
+      "address": "0x004a5760", 
+      "name": "FUN_004a5760"
+    }, 
+    {
+      "address": "0x00484f10", 
+      "name": "FUN_00484f10"
+    }, 
+    {
+      "address": "0x004b43e0", 
+      "name": "FUN_004b43e0"
+    }, 
+    {
+      "address": "0x00482c90", 
+      "name": "FUN_00482c90"
+    }, 
+    {
+      "address": "0x004acde0", 
+      "name": "FUN_004acde0"
+    }, 
+    {
+      "address": "0x004acf90", 
+      "name": "FUN_004acf90"
+    }, 
+    {
+      "address": "0x00528d50", 
+      "name": "FUN_00528d50"
+    }, 
+    {
+      "address": "0x00496dd0", 
+      "name": "FUN_00496dd0"
+    }, 
+    {
+      "address": "0x0049fa10", 
+      "name": "FUN_0049fa10"
+    }, 
+    {
+      "address": "0x004acc10", 
+      "name": "FUN_004acc10"
+    }, 
+    {
+      "address": "0x0048e780", 
+      "name": "FUN_0048e780"
+    }, 
+    {
+      "address": "0x0048e950", 
+      "name": "FUN_0048e950"
+    }
+  ]
+}

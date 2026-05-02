@@ -1,0 +1,25 @@
+{
+  "address": "0x004cdc50", 
+  "size_bytes": 79, 
+  "calling_convention": "unknown", 
+  "signature": "undefined FUN_004cdc50(undefined4 param_1)", 
+  "callees": [], 
+  "global_refs": [
+    {
+      "address": "0x00000004", 
+      "type": null, 
+      "name": "DAT_00000004"
+    }
+  ], 
+  "has_custom_name": false, 
+  "decompiled_c": "\r\nvoid __thiscall FUN_004cdc50(int param_1_00,undefined4 param_1)\r\n\r\n{\r\n  int iVar1;\r\n  undefined4 *puVar2;\r\n  \r\n  *(undefined4 *)(param_1_00 + 0xa92c) = param_1;\r\n  puVar2 = (undefined4 *)(param_1_00 + 0x92c);\r\n  iVar1 = 0x800;\r\n  do {\r\n    if (*(char *)(puVar2 + -1) != '\\0') {\r\n      if (puVar2[-4] == -0xc9963f4) {\r\n        (**(code **)(*(int *)*puVar2 + 0x2c))(param_1);\r\n      }\r\n      if (puVar2[-4] == 0x43fb6563) {\r\n        (**(code **)(*(int *)*puVar2 + 0x2c))(param_1);\r\n      }\r\n    }\r\n    puVar2 = puVar2 + 5;\r\n    iVar1 = iVar1 + -1;\r\n  } while (iVar1 != 0);\r\n  return;\r\n}\r\n\r\n", 
+  "is_thunk": false, 
+  "name": "FUN_004cdc50", 
+  "assembly": "  004cdc50:  MOV EAX,dword ptr [ESP + 0x4]\n  004cdc54:  PUSH EBX\n  004cdc55:  PUSH ESI\n  004cdc56:  PUSH EDI\n  004cdc57:  MOV dword ptr [ECX + 0xa92c],EAX\n  004cdc5d:  LEA ESI,[ECX + 0x92c]\n  004cdc63:  MOV EBX,0x800\n  004cdc68:  MOV EDI,EAX\n  004cdc6a:  MOV AL,byte ptr [ESI + -0x4]\n  004cdc6d:  TEST AL,AL\n  004cdc6f:  JZ 0x004cdc93\n  004cdc71:  CMP dword ptr [ESI + -0x10],0xf3669c0c\n  004cdc78:  JNZ 0x004cdc82\n  004cdc7a:  MOV ECX,dword ptr [ESI]\n  004cdc7c:  PUSH EDI\n  004cdc7d:  MOV EDX,dword ptr [ECX]\n  004cdc7f:  CALL dword ptr [EDX + 0x2c]\n  004cdc82:  CMP dword ptr [ESI + -0x10],0x43fb6563\n  004cdc89:  JNZ 0x004cdc93\n  004cdc8b:  MOV ECX,dword ptr [ESI]\n  004cdc8d:  PUSH EDI\n  004cdc8e:  MOV EAX,dword ptr [ECX]\n  004cdc90:  CALL dword ptr [EAX + 0x2c]\n  004cdc93:  ADD ESI,0x14\n  004cdc96:  DEC EBX\n  004cdc97:  JNZ 0x004cdc6a\n  004cdc99:  POP EDI\n  004cdc9a:  POP ESI\n  004cdc9b:  POP EBX\n  004cdc9c:  RET 0x4", 
+  "callers": [
+    {
+      "address": "0x00513600", 
+      "name": "FUN_00513600"
+    }
+  ]
+}

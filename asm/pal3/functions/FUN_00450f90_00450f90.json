@@ -1,0 +1,164 @@
+{
+  "address": "0x00450f90",
+  "size_bytes": 610,
+  "calling_convention": "unknown",
+  "signature": "undefined FUN_00450f90(undefined4 param_1, undefined4 param_2, undefined4 param_3)",
+  "callees": [
+    {
+      "address": "0x00445b90",
+      "name": "FUN_00445b90"
+    },
+    {
+      "address": "0x004450a0",
+      "name": "FUN_004450a0"
+    },
+    {
+      "address": "0x00446010",
+      "name": "FUN_00446010"
+    },
+    {
+      "address": "0x0043a4c0",
+      "name": "FUN_0043a4c0"
+    },
+    {
+      "address": "0x0043a4b0",
+      "name": "FUN_0043a4b0"
+    },
+    {
+      "address": "0x004517a0",
+      "name": "FUN_004517a0"
+    },
+    {
+      "address": "0x00445fa0",
+      "name": "FUN_00445fa0"
+    },
+    {
+      "address": "0x004426b0",
+      "name": "FUN_004426b0"
+    },
+    {
+      "address": "0x0043fec0",
+      "name": "FUN_0043fec0"
+    },
+    {
+      "address": "0x0043fa00",
+      "name": "FUN_0043fa00"
+    },
+    {
+      "address": "0x0043fae0",
+      "name": "FUN_0043fae0"
+    },
+    {
+      "address": "0x0043fca0",
+      "name": "FUN_0043fca0"
+    },
+    {
+      "address": "0x0043fdf0",
+      "name": "FUN_0043fdf0"
+    },
+    {
+      "address": "0x0043fdb0",
+      "name": "FUN_0043fdb0"
+    },
+    {
+      "address": "0x0043fdd0",
+      "name": "FUN_0043fdd0"
+    },
+    {
+      "address": "0x0043fdc0",
+      "name": "FUN_0043fdc0"
+    },
+    {
+      "address": "0x0043fde0",
+      "name": "FUN_0043fde0"
+    }
+  ],
+  "global_refs": [
+    {
+      "address": "0x0000000c",
+      "type": null,
+      "name": "DAT_0000000c"
+    },
+    {
+      "address": "0x00000008",
+      "type": null,
+      "name": "DAT_00000008"
+    },
+    {
+      "address": "0x00000004",
+      "type": null,
+      "name": "DAT_00000004"
+    },
+    {
+      "address": "0x005a6698",
+      "type": null,
+      "name": "s_ui\\flex\\dlg_005a6698"
+    },
+    {
+      "address": "0x00bfd6d4",
+      "type": null,
+      "name": "DAT_00bfd6d4"
+    },
+    {
+      "address": "0x-0000010",
+      "type": null,
+      "name": "DAT_-0000010"
+    },
+    {
+      "address": "0x-0000004",
+      "type": null,
+      "name": "DAT_-0000004"
+    },
+    {
+      "address": "0x-000000c",
+      "type": null,
+      "name": "DAT_-000000c"
+    },
+    {
+      "address": "0x-0000008",
+      "type": null,
+      "name": "DAT_-0000008"
+    },
+    {
+      "address": "0x0056a558",
+      "type": null,
+      "name": "PTR_ColorQuadFmt_0056a558"
+    },
+    {
+      "address": "0x005a6688",
+      "type": null,
+      "name": "s_ui\\scene\\page_005a6688"
+    },
+    {
+      "address": "0x005a6670",
+      "type": null,
+      "name": "s_ui\\scene\\timeclose.tga_005a6670"
+    },
+    {
+      "address": "0x005a665c",
+      "type": null,
+      "name": "s_ui\\scene\\timebk.tga_005a665c"
+    },
+    {
+      "address": "0x005a6648",
+      "type": null,
+      "name": "s_ui\\scene\\timep.tga_005a6648"
+    }
+  ],
+  "has_custom_name": false,
+  "decompiled_c": "\r\nvoid __thiscall\r\nFUN_00450f90(int param_1_00,undefined4 *param_1,undefined4 *param_2,undefined4 param_3)\r\n\r\n{\r\n  int iVar1;\r\n  undefined3 uVar2;\r\n  int iVar3;\r\n  undefined4 uStack_4c;\r\n  int *piStack_48;\r\n  int *piStack_44;\r\n  int iStack_40;\r\n  undefined4 **ppuStack_3c;\r\n  undefined4 *puStack_38;\r\n  int iStack_34;\r\n  undefined *puStack_30;\r\n  int iStack_2c;\r\n  undefined4 *puStack_28;\r\n  undefined4 *puStack_24;\r\n  char *pcStack_20;\r\n  undefined4 local_10;\r\n  int local_c;\r\n  undefined4 local_8;\r\n  int local_4;\r\n  \r\n  pcStack_20 = (char *)param_3;\r\n  puStack_24 = param_2;\r\n  *param_2 = 0;\r\n  puStack_28 = param_1;\r\n  *(undefined4 *)(param_1_00 + 0x14) = 0x1ca;\r\n  param_2[2] = 800;\r\n  param_2[3] = 0x252;\r\n  iStack_2c = 0x450fc9;\r\n  FUN_00445b90();\r\n  pcStack_20 = s_ui_flex_dlg_005a6698;\r\n  puStack_24 = (undefined4 *)0x0;\r\n  puStack_28 = param_2;\r\n  iStack_2c = 0;\r\n  puStack_30 = (undefined *)0x450fdb;\r\n  FUN_004450a0();\r\n  *(undefined4 *)(param_1_00 + 0x94) = 0x3e800000;\r\n  local_4 = DAT_00bfd6d4 + -8;\r\n  puStack_24 = &local_10;\r\n  local_c = DAT_00bfd6d4 + -0x208;\r\n  puStack_28 = (undefined4 *)0x2;\r\n  local_10 = 8;\r\n  local_8 = 0x108;\r\n  iStack_2c = 0x45101f;\r\n  pcStack_20 = (char *)param_1_00;\r\n  (**(code **)(*(int *)(param_1_00 + 0x1b4) + 0x10))();\r\n  iVar3 = *(int *)(param_1_00 + 0x18);\r\n  iVar1 = *(int *)(param_1_00 + 0x10);\r\n  puStack_30 = &stack0xffffffe4;\r\n  iStack_34 = 1;\r\n  local_10 = 0x90;\r\n  puStack_38 = (undefined4 *)0x45105c;\r\n  iStack_2c = param_1_00;\r\n  (**(code **)(*(int *)(param_1_00 + 0x250) + 0x10))();\r\n  if (*(int *)ColorQuadFmt_exref == 0) {\r\n    uVar2 = 0xfffafa;\r\n  }\r\n  else {\r\n    uVar2 = 0xfafaff;\r\n  }\r\n  puStack_38 = &local_10;\r\n  local_10 = CONCAT13(0xff,uVar2);\r\n  ppuStack_3c = (undefined4 **)0x451099;\r\n  FUN_00446010();\r\n  ppuStack_3c = &puStack_28;\r\n  iStack_40 = 2;\r\n  piStack_44 = (int *)0x4510b2;\r\n  puStack_38 = (undefined4 *)param_1_00;\r\n  (**(code **)(*(int *)(param_1_00 + 0x110) + 0x10))();\r\n  piStack_44 = (int *)s_ui_scene_page_005a6688;\r\n  piStack_48 = (int *)0x4510be;\r\n  FUN_0043a4c0();\r\n  piStack_44 = (int *)0x40000000;\r\n  piStack_48 = (int *)0x4510ca;\r\n  FUN_0043a4b0();\r\n  piStack_48 = &iStack_34;\r\n  piStack_44 = (int *)0x1;\r\n  uStack_4c = 0x4510d8;\r\n  FUN_004517a0();\r\n  piStack_44 = &iStack_34;\r\n  piStack_48 = (int *)0x4510e4;\r\n  FUN_00445fa0();\r\n  piStack_48 = &iStack_34;\r\n  iVar3 = ((iVar3 - iVar1) + -0x86) / 2;\r\n  iStack_2c = iVar3 + 0x86;\r\n  uStack_4c = 0;\r\n  puStack_28 = (undefined4 *)0x258;\r\n  puStack_30 = (undefined *)0x244;\r\n  piStack_44 = (int *)param_1_00;\r\n  iStack_34 = iVar3;\r\n  (**(code **)(*(int *)(param_1_00 + 0x2b8) + 0x10))();\r\n  FUN_00445fa0(&iStack_40);\r\n  FUN_004426b0(s_ui_scene_timeclose_tga_005a6670,0);\r\n  puStack_38 = (undefined4 *)(iVar3 + 0x86);\r\n  iStack_34 = 600;\r\n  ppuStack_3c = (undefined4 **)0x238;\r\n  iStack_40 = iVar3;\r\n  (**(code **)(*(int *)(param_1_00 + 0x350) + 0x10))(0,&iStack_40,param_1_00);\r\n  FUN_0043fec0(&uStack_4c);\r\n  FUN_0043fa00(s_ui_scene_timebk_tga_005a665c,0);\r\n  FUN_0043fae0(s_ui_scene_timep_tga_005a6648,0);\r\n  FUN_0043fca0(0x40800000);\r\n  FUN_0043fdf0(0);\r\n  *(undefined4 *)(param_1_00 + 0x3c0) = 0x42c80000;\r\n  FUN_0043fdb0(4);\r\n  FUN_0043fdd0(9);\r\n  FUN_0043fdc0(4);\r\n  FUN_0043fde0(9);\r\n  (*(code *)**(undefined4 **)(param_1_00 + 0x350))(0);\r\n  return;\r\n}\r\n\r\n",
+  "is_thunk": false,
+  "name": "UIRoleDialog_Create",
+  "assembly": "  00450f90:  SUB ESP,0x10\n  00450f93:  MOV EAX,dword ptr [ESP + 0x1c]\n  00450f97:  PUSH EBX\n  00450f98:  PUSH ESI\n  00450f99:  PUSH EDI\n  00450f9a:  MOV EDI,dword ptr [ESP + 0x24]\n  00450f9e:  MOV ESI,ECX\n  00450fa0:  MOV ECX,dword ptr [ESP + 0x20]\n  00450fa4:  PUSH EAX\n  00450fa5:  PUSH EDI\n  00450fa6:  MOV dword ptr [EDI],0x0\n  00450fac:  PUSH ECX\n  00450fad:  MOV dword ptr [ESI + 0x14],0x1ca\n  00450fb4:  MOV ECX,ESI\n  00450fb6:  MOV dword ptr [EDI + 0x8],0x320\n  00450fbd:  MOV dword ptr [EDI + 0xc],0x252\n  00450fc4:  CALL 0x00445b90\n  00450fc9:  PUSH 0x5a6698\n  00450fce:  PUSH 0x0\n  00450fd0:  PUSH EDI\n  00450fd1:  PUSH 0x0\n  00450fd3:  LEA ECX,[ESI + 0x50]\n  00450fd6:  CALL 0x004450a0\n  00450fdb:  MOV dword ptr [ESI + 0x94],0x3e800000\n  00450fe5:  MOV EDX,dword ptr [0x00bfd6d4]\n  00450feb:  LEA ECX,[ESI + 0x1b4]\n  00450ff1:  PUSH ESI\n  00450ff2:  LEA EAX,[EDX + -0x8]\n  00450ff5:  LEA EDX,[ESP + 0x10]\n  00450ff9:  MOV dword ptr [ESP + 0x1c],EAX\n  00450ffd:  ADD EAX,0xfffffe00\n  00451002:  MOV dword ptr [ESP + 0x14],EAX\n  00451006:  MOV EAX,dword ptr [ECX]\n  00451008:  MOV EDI,0x8\n  0045100d:  PUSH EDX\n  0045100e:  PUSH 0x2\n  00451010:  MOV dword ptr [ESP + 0x18],EDI\n  00451014:  MOV dword ptr [ESP + 0x20],0x108\n  0045101c:  CALL dword ptr [EAX + 0x10]\n  0045101f:  MOV EBX,dword ptr [ESI + 0x18]\n  00451022:  MOV EDX,dword ptr [ESI + 0x10]\n  00451025:  MOV EAX,dword ptr [ESI + 0x250]\n  0045102b:  MOV dword ptr [ESP + 0x10],EDI\n  0045102f:  LEA EDI,[ESI + 0x250]\n  00451035:  LEA ECX,[ESP + 0xc]\n  00451039:  PUSH ESI\n  0045103a:  PUSH ECX\n  0045103b:  PUSH 0x1\n  0045103d:  MOV ECX,EDI\n  0045103f:  SUB EBX,EDX\n  00451041:  MOV dword ptr [ESP + 0x18],0x100\n  00451049:  MOV dword ptr [ESP + 0x20],0x258\n  00451051:  MOV dword ptr [ESP + 0x24],0x90\n  00451059:  CALL dword ptr [EAX + 0x10]\n  0045105c:  MOV EDX,dword ptr [0x0056a558]\n  00451062:  CMP dword ptr [EDX],0x0\n  00451065:  JNZ 0x00451079\n  00451067:  MOV CL,0xff\n  00451069:  MOV AL,0xfa\n  0045106b:  MOV byte ptr [ESP + 0x26],CL\n  0045106f:  MOV byte ptr [ESP + 0x25],AL\n  00451073:  MOV byte ptr [ESP + 0x24],AL\n  00451077:  JMP 0x00451089\n  00451079:  MOV AL,0xfa\n  0045107b:  MOV CL,0xff\n  0045107d:  MOV byte ptr [ESP + 0x26],AL\n  00451081:  MOV byte ptr [ESP + 0x25],AL\n  00451085:  MOV byte ptr [ESP + 0x24],CL\n  00451089:  LEA EAX,[ESP + 0x24]\n  0045108d:  MOV byte ptr [ESP + 0x27],CL\n  00451091:  PUSH EAX\n  00451092:  MOV ECX,EDI\n  00451094:  CALL 0x00446010\n  00451099:  MOV EDX,dword ptr [ESI + 0x110]\n  0045109f:  LEA EDI,[ESI + 0x110]\n  004510a5:  LEA EAX,[ESP + 0xc]\n  004510a9:  PUSH ESI\n  004510aa:  PUSH EAX\n  004510ab:  PUSH 0x2\n  004510ad:  MOV ECX,EDI\n  004510af:  CALL dword ptr [EDX + 0x10]\n  004510b2:  PUSH 0x5a6688\n  004510b7:  MOV ECX,EDI\n  004510b9:  CALL 0x0043a4c0\n  004510be:  PUSH 0x40000000\n  004510c3:  MOV ECX,EDI\n  004510c5:  CALL 0x0043a4b0\n  004510ca:  LEA ECX,[ESP + 0xc]\n  004510ce:  PUSH 0x1\n  004510d0:  PUSH ECX\n  004510d1:  MOV ECX,ESI\n  004510d3:  CALL 0x004517a0\n  004510d8:  LEA EDX,[ESP + 0xc]\n  004510dc:  MOV ECX,EDI\n  004510de:  PUSH EDX\n  004510df:  CALL 0x00445fa0\n  004510e4:  LEA EAX,[EBX + 0xffffff7a]\n  004510ea:  LEA EDI,[ESI + 0x2b8]\n  004510f0:  CDQ\n  004510f1:  SUB EAX,EDX\n  004510f3:  LEA ECX,[ESP + 0xc]\n  004510f7:  MOV EBX,EAX\n  004510f9:  PUSH ESI\n  004510fa:  SAR EBX,0x1\n  004510fc:  MOV EAX,EBX\n  004510fe:  PUSH ECX\n  004510ff:  MOV dword ptr [ESP + 0x14],EAX\n  00451103:  ADD EAX,0x86\n  00451108:  MOV dword ptr [ESP + 0x1c],EAX\n  0045110c:  MOV EAX,dword ptr [EDI]\n  0045110e:  PUSH 0x0\n  00451110:  MOV ECX,EDI\n  00451112:  MOV dword ptr [ESP + 0x24],0x258\n  0045111a:  MOV dword ptr [ESP + 0x1c],0x244\n  00451122:  CALL dword ptr [EAX + 0x10]\n  00451125:  LEA EDX,[ESP + 0xc]\n  00451129:  MOV ECX,EDI\n  0045112b:  PUSH EDX\n  0045112c:  CALL 0x00445fa0\n  00451131:  PUSH 0x0\n  00451133:  PUSH 0x5a6670\n  00451138:  MOV ECX,EDI\n  0045113a:  CALL 0x004426b0\n  0045113f:  MOV EAX,dword ptr [ESI + 0x350]\n  00451145:  LEA EDI,[ESI + 0x350]\n  0045114b:  LEA ECX,[ESP + 0xc]\n  0045114f:  MOV dword ptr [ESP + 0xc],EBX\n  00451153:  PUSH ESI\n  00451154:  ADD EBX,0x86\n  0045115a:  PUSH ECX\n  0045115b:  PUSH 0x0\n  0045115d:  MOV ECX,EDI\n  0045115f:  MOV dword ptr [ESP + 0x20],EBX\n  00451163:  MOV dword ptr [ESP + 0x24],0x258\n  0045116b:  MOV dword ptr [ESP + 0x1c],0x238\n  00451173:  CALL dword ptr [EAX + 0x10]\n  00451176:  LEA EDX,[ESP + 0xc]\n  0045117a:  MOV ECX,EDI\n  0045117c:  PUSH EDX\n  0045117d:  CALL 0x0043fec0\n  00451182:  PUSH 0x0\n  00451184:  PUSH 0x5a665c\n  00451189:  MOV ECX,EDI\n  0045118b:  CALL 0x0043fa00\n  00451190:  PUSH 0x0\n  00451192:  PUSH 0x5a6648\n  00451197:  MOV ECX,EDI\n  00451199:  CALL 0x0043fae0\n  0045119e:  PUSH 0x40800000\n  004511a3:  MOV ECX,EDI\n  004511a5:  CALL 0x0043fca0\n  004511aa:  PUSH 0x0\n  004511ac:  MOV ECX,EDI\n  004511ae:  CALL 0x0043fdf0\n  004511b3:  PUSH 0x4\n  004511b5:  MOV ECX,EDI\n  004511b7:  MOV dword ptr [ESI + 0x3c0],0x42c80000\n  004511c1:  CALL 0x0043fdb0\n  004511c6:  PUSH 0x9\n  004511c8:  MOV ECX,EDI\n  004511ca:  CALL 0x0043fdd0\n  004511cf:  PUSH 0x4\n  004511d1:  MOV ECX,EDI\n  004511d3:  CALL 0x0043fdc0\n  004511d8:  PUSH 0x9\n  004511da:  MOV ECX,EDI\n  004511dc:  CALL 0x0043fde0\n  004511e1:  MOV EAX,dword ptr [EDI]\n  004511e3:  PUSH 0x0\n  004511e5:  MOV ECX,EDI\n  004511e7:  CALL dword ptr [EAX]\n  004511e9:  POP EDI\n  004511ea:  POP ESI\n  004511eb:  POP EBX\n  004511ec:  ADD ESP,0x10\n  004511ef:  RET 0x10",
+  "callers": [
+    {
+      "address": "0x0044f130",
+      "name": "FUN_0044f130"
+    }
+  ],
+  "pal3patch_info": {
+    "name": "UIRoleDialog_Create",
+    "type": "method",
+    "source": "pal3.h"
+  }
+}

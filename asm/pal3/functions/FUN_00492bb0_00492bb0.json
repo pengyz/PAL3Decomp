@@ -1,0 +1,98 @@
+{
+  "address": "0x00492bb0", 
+  "size_bytes": 577, 
+  "calling_convention": "unknown", 
+  "signature": "undefined FUN_00492bb0(undefined4 param_1)", 
+  "callees": [
+    {
+      "address": "0x00445e50", 
+      "name": "FUN_00445e50"
+    }, 
+    {
+      "address": "0x004426b0", 
+      "name": "FUN_004426b0"
+    }
+  ], 
+  "global_refs": [
+    {
+      "address": "0x00000004", 
+      "type": null, 
+      "name": "DAT_00000004"
+    }, 
+    {
+      "address": "0x00492df4", 
+      "type": null, 
+      "name": "switchdataD_00492df4"
+    }, 
+    {
+      "address": "0x005cefa8", 
+      "type": null, 
+      "name": "DAT_005cefa8"
+    }, 
+    {
+      "address": "0x0056c5e4", 
+      "type": null, 
+      "name": "PTR_s_UI\\GameMainUI\\Communal\\wq_word.t_0056c5e4"
+    }, 
+    {
+      "address": "0x005b7148", 
+      "type": null, 
+      "name": "s_UI\\GameMainUI\\Communal\\wq_word.t_005b7148"
+    }, 
+    {
+      "address": "0x0056c5dc", 
+      "type": null, 
+      "name": "PTR_s_UI\\GameMainUI\\Communal\\Equip_wor_0056c5dc"
+    }, 
+    {
+      "address": "0x005b7194", 
+      "type": null, 
+      "name": "s_UI\\GameMainUI\\Communal\\Equip_wor_005b7194"
+    }, 
+    {
+      "address": "0x0056c5ec", 
+      "type": null, 
+      "name": "PTR_s_UI\\GameMainUI\\Communal\\tb_word.t_0056c5ec"
+    }, 
+    {
+      "address": "0x005b70dc", 
+      "type": null, 
+      "name": "s_UI\\GameMainUI\\Communal\\tb_word.t_005b70dc"
+    }, 
+    {
+      "address": "0x0056c5e8", 
+      "type": null, 
+      "name": "PTR_s_UI\\GameMainUI\\Communal\\jb_word.t_0056c5e8"
+    }, 
+    {
+      "address": "0x005b7100", 
+      "type": null, 
+      "name": "s_UI\\GameMainUI\\Communal\\jb_word.t_005b7100"
+    }, 
+    {
+      "address": "0x0056c5e0", 
+      "type": null, 
+      "name": "PTR_s_UI\\GameMainUI\\Communal\\Adorn_wor_0056c5e0"
+    }, 
+    {
+      "address": "0x005b716c", 
+      "type": null, 
+      "name": "s_UI\\GameMainUI\\Communal\\Adorn_wor_005b716c"
+    }
+  ], 
+  "has_custom_name": false, 
+  "decompiled_c": "\r\nvoid __thiscall FUN_00492bb0(int param_1_00,int param_1)\r\n\r\n{\r\n  int iVar1;\r\n  undefined4 *puVar2;\r\n  undefined4 uVar3;\r\n  \r\n  if (param_1 < 6) {\r\n    puVar2 = (undefined4 *)(param_1_00 + 0x27a78);\r\n    iVar1 = 5;\r\n    do {\r\n      (**(code **)puVar2[-0x26])(0);\r\n      (**(code **)*puVar2)(0);\r\n      (**(code **)puVar2[0xac])(0);\r\n      (**(code **)puVar2[0x56])(0);\r\n      (**(code **)puVar2[0x102])(0);\r\n      (**(code **)puVar2[0x158])(0);\r\n      (**(code **)puVar2[0x1ae])(0);\r\n      puVar2 = puVar2 + 0x9bf;\r\n      iVar1 = iVar1 + -1;\r\n    } while (iVar1 != 0);\r\n    uVar3 = 1;\r\n    param_1_00 = param_1_00 + param_1 * 0x26fc;\r\n    (*(code *)**(undefined4 **)(param_1_00 + 0x279e0))();\r\n    (*(code *)**(undefined4 **)(param_1_00 + 0x27a78))(1);\r\n    (*(code *)**(undefined4 **)(param_1_00 + 0x27d28))(1);\r\n    (*(code *)**(undefined4 **)(param_1_00 + 0x27bd0))(1);\r\n    (*(code *)**(undefined4 **)(param_1_00 + 0x27e80))(1);\r\n    (*(code *)**(undefined4 **)(param_1_00 + 0x27fd8))(1);\r\n    (*(code *)**(undefined4 **)(param_1_00 + 0x28130))(1);\r\n    iVar1 = 5;\r\n    do {\r\n      FUN_00445e50(1);\r\n      iVar1 = iVar1 + -1;\r\n    } while (iVar1 != 0);\r\n    switch(uVar3) {\r\n    case 0:\r\n      FUN_00445e50(0);\r\n      FUN_004426b0(PTR_s_UI_GameMainUI_Communal_wq_word_t_0056c5e4,DAT_005cefa8);\r\n      return;\r\n    case 1:\r\n      FUN_00445e50(0);\r\n      FUN_004426b0(PTR_s_UI_GameMainUI_Communal_Equip_wor_0056c5dc,DAT_005cefa8);\r\n      return;\r\n    case 2:\r\n      FUN_00445e50(0);\r\n      FUN_004426b0(PTR_s_UI_GameMainUI_Communal_tb_word_t_0056c5ec,DAT_005cefa8);\r\n      return;\r\n    case 3:\r\n      FUN_00445e50(0);\r\n      FUN_004426b0(PTR_s_UI_GameMainUI_Communal_jb_word_t_0056c5e8,DAT_005cefa8);\r\n      return;\r\n    case 4:\r\n      FUN_00445e50(0);\r\n      FUN_004426b0(PTR_s_UI_GameMainUI_Communal_Adorn_wor_0056c5e0,DAT_005cefa8);\r\n      return;\r\n    case 5:\r\n      FUN_00445e50(0);\r\n      FUN_004426b0(PTR_s_UI_GameMainUI_Communal_Adorn_wor_0056c5e0,DAT_005cefa8);\r\n    }\r\n  }\r\n  return;\r\n}\r\n\r\n", 
+  "is_thunk": false, 
+  "name": "FUN_00492bb0", 
+  "assembly": "  00492bb0:  PUSH EBX\n  00492bb1:  PUSH EDI\n  00492bb2:  MOV EDI,dword ptr [ESP + 0xc]\n  00492bb6:  MOV EBX,ECX\n  00492bb8:  CMP EDI,0x5\n  00492bbb:  JG 0x00492dec\n  00492bc1:  PUSH EBP\n  00492bc2:  PUSH ESI\n  00492bc3:  LEA ESI,[EBX + 0x27a78]\n  00492bc9:  MOV EBP,0x5\n  00492bce:  MOV EAX,dword ptr [ESI + 0xffffff68]\n  00492bd4:  LEA ECX,[ESI + 0xffffff68]\n  00492bda:  PUSH 0x0\n  00492bdc:  CALL dword ptr [EAX]\n  00492bde:  MOV EDX,dword ptr [ESI]\n  00492be0:  PUSH 0x0\n  00492be2:  MOV ECX,ESI\n  00492be4:  CALL dword ptr [EDX]\n  00492be6:  MOV EAX,dword ptr [ESI + 0x2b0]\n  00492bec:  LEA ECX,[ESI + 0x2b0]\n  00492bf2:  PUSH 0x0\n  00492bf4:  CALL dword ptr [EAX]\n  00492bf6:  MOV EDX,dword ptr [ESI + 0x158]\n  00492bfc:  LEA ECX,[ESI + 0x158]\n  00492c02:  PUSH 0x0\n  00492c04:  CALL dword ptr [EDX]\n  00492c06:  MOV EAX,dword ptr [ESI + 0x408]\n  00492c0c:  LEA ECX,[ESI + 0x408]\n  00492c12:  PUSH 0x0\n  00492c14:  CALL dword ptr [EAX]\n  00492c16:  MOV EDX,dword ptr [ESI + 0x560]\n  00492c1c:  LEA ECX,[ESI + 0x560]\n  00492c22:  PUSH 0x0\n  00492c24:  CALL dword ptr [EDX]\n  00492c26:  MOV EAX,dword ptr [ESI + 0x6b8]\n  00492c2c:  LEA ECX,[ESI + 0x6b8]\n  00492c32:  PUSH 0x0\n  00492c34:  CALL dword ptr [EAX]\n  00492c36:  ADD ESI,0x26fc\n  00492c3c:  DEC EBP\n  00492c3d:  JNZ 0x00492bce\n  00492c3f:  MOV ECX,EDI\n  00492c41:  PUSH 0x1\n  00492c43:  SHL ECX,0x5\n  00492c46:  SUB ECX,EDI\n  00492c48:  LEA EDX,[EDI + ECX*0x8]\n  00492c4b:  LEA EAX,[EDI + EDX*0x2]\n  00492c4e:  LEA EAX,[EAX + EAX*0x4]\n  00492c51:  LEA ESI,[EBX + EAX*0x4]\n  00492c54:  MOV EDX,dword ptr [ESI + 0x279e0]\n  00492c5a:  LEA ECX,[ESI + 0x279e0]\n  00492c60:  CALL dword ptr [EDX]\n  00492c62:  MOV EAX,dword ptr [ESI + 0x27a78]\n  00492c68:  LEA ECX,[ESI + 0x27a78]\n  00492c6e:  PUSH 0x1\n  00492c70:  CALL dword ptr [EAX]\n  00492c72:  MOV EDX,dword ptr [ESI + 0x27d28]\n  00492c78:  LEA ECX,[ESI + 0x27d28]\n  00492c7e:  PUSH 0x1\n  00492c80:  CALL dword ptr [EDX]\n  00492c82:  MOV EAX,dword ptr [ESI + 0x27bd0]\n  00492c88:  LEA ECX,[ESI + 0x27bd0]\n  00492c8e:  PUSH 0x1\n  00492c90:  CALL dword ptr [EAX]\n  00492c92:  MOV EDX,dword ptr [ESI + 0x27e80]\n  00492c98:  LEA ECX,[ESI + 0x27e80]\n  00492c9e:  PUSH 0x1\n  00492ca0:  CALL dword ptr [EDX]\n  00492ca2:  MOV EAX,dword ptr [ESI + 0x27fd8]\n  00492ca8:  LEA ECX,[ESI + 0x27fd8]\n  00492cae:  PUSH 0x1\n  00492cb0:  CALL dword ptr [EAX]\n  00492cb2:  MOV EDX,dword ptr [ESI + 0x28130]\n  00492cb8:  LEA ECX,[ESI + 0x28130]\n  00492cbe:  PUSH 0x1\n  00492cc0:  CALL dword ptr [EDX]\n  00492cc2:  LEA EDI,[EBX + 0x3378c]\n  00492cc8:  MOV EBP,0x5\n  00492ccd:  MOV ESI,EDI\n  00492ccf:  PUSH 0x1\n  00492cd1:  MOV ECX,ESI\n  00492cd3:  CALL 0x00445e50\n  00492cd8:  ADD ESI,0x158\n  00492cde:  DEC EBP\n  00492cdf:  JNZ 0x00492ccf\n  00492ce1:  MOV EAX,dword ptr [ESP + 0x18]\n  00492ce5:  POP ESI\n  00492ce6:  CMP EAX,0x5\n  00492ce9:  POP EBP\n  00492cea:  JA 0x00492dec\n  00492cf0:  JMP dword ptr [EAX*0x4 + 0x492df4]\n  00492cf7:  PUSH 0x0\n  00492cf9:  MOV ECX,EDI\n  00492cfb:  CALL 0x00445e50\n  00492d00:  MOV AL,[0x005cefa8]\n  00492d05:  MOV ECX,dword ptr [0x0056c5e4]\n  00492d0b:  PUSH EAX\n  00492d0c:  PUSH ECX\n  00492d0d:  LEA ECX,[EBX + 0x320e8]\n  00492d13:  CALL 0x004426b0\n  00492d18:  POP EDI\n  00492d19:  POP EBX\n  00492d1a:  RET 0x8\n  00492d1d:  PUSH 0x0\n  00492d1f:  LEA ECX,[EBX + 0x338e4]\n  00492d25:  CALL 0x00445e50\n  00492d2a:  MOV DL,byte ptr [0x005cefa8]\n  00492d30:  MOV EAX,[0x0056c5dc]\n  00492d35:  PUSH EDX\n  00492d36:  PUSH EAX\n  00492d37:  LEA ECX,[EBX + 0x320e8]\n  00492d3d:  CALL 0x004426b0\n  00492d42:  POP EDI\n  00492d43:  POP EBX\n  00492d44:  RET 0x8\n  00492d47:  PUSH 0x0\n  00492d49:  LEA ECX,[EBX + 0x33a3c]\n  00492d4f:  CALL 0x00445e50\n  00492d54:  MOV CL,byte ptr [0x005cefa8]\n  00492d5a:  MOV EDX,dword ptr [0x0056c5ec]\n  00492d60:  PUSH ECX\n  00492d61:  PUSH EDX\n  00492d62:  LEA ECX,[EBX + 0x320e8]\n  00492d68:  CALL 0x004426b0\n  00492d6d:  POP EDI\n  00492d6e:  POP EBX\n  00492d6f:  RET 0x8\n  00492d72:  PUSH 0x0\n  00492d74:  LEA ECX,[EBX + 0x33b94]\n  00492d7a:  CALL 0x00445e50\n  00492d7f:  MOV AL,[0x005cefa8]\n  00492d84:  MOV ECX,dword ptr [0x0056c5e8]\n  00492d8a:  PUSH EAX\n  00492d8b:  PUSH ECX\n  00492d8c:  LEA ECX,[EBX + 0x320e8]\n  00492d92:  CALL 0x004426b0\n  00492d97:  POP EDI\n  00492d98:  POP EBX\n  00492d99:  RET 0x8\n  00492d9c:  PUSH 0x0\n  00492d9e:  LEA ECX,[EBX + 0x33cec]\n  00492da4:  CALL 0x00445e50\n  00492da9:  MOV DL,byte ptr [0x005cefa8]\n  00492daf:  MOV EAX,[0x0056c5e0]\n  00492db4:  PUSH EDX\n  00492db5:  PUSH EAX\n  00492db6:  LEA ECX,[EBX + 0x320e8]\n  00492dbc:  CALL 0x004426b0\n  00492dc1:  POP EDI\n  00492dc2:  POP EBX\n  00492dc3:  RET 0x8\n  00492dc6:  PUSH 0x0\n  00492dc8:  LEA ECX,[EBX + 0x33cec]\n  00492dce:  CALL 0x00445e50\n  00492dd3:  MOV CL,byte ptr [0x005cefa8]\n  00492dd9:  MOV EDX,dword ptr [0x0056c5e0]\n  00492ddf:  PUSH ECX\n  00492de0:  PUSH EDX\n  00492de1:  LEA ECX,[EBX + 0x320e8]\n  00492de7:  CALL 0x004426b0\n  00492dec:  POP EDI\n  00492ded:  POP EBX\n  00492dee:  RET 0x8", 
+  "callers": [
+    {
+      "address": "0x00494660", 
+      "name": "FUN_00494660"
+    }, 
+    {
+      "address": "0x00494d70", 
+      "name": "FUN_00494d70"
+    }
+  ]
+}

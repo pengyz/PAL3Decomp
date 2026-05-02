@@ -1,0 +1,147 @@
+{
+  "address": "0x00439740", 
+  "size_bytes": 195, 
+  "calling_convention": "unknown", 
+  "signature": "undefined FUN_00439740(undefined4 param_1, undefined4 param_2)", 
+  "callees": [
+    {
+      "address": "0x00445b90", 
+      "name": "FUN_00445b90"
+    }, 
+    {
+      "address": "0x0055353b", 
+      "name": "operator_new"
+    }, 
+    {
+      "address": "0x000000ec", 
+      "name": "gbCamera"
+    }, 
+    {
+      "address": "0x00000170", 
+      "name": "SetDimention"
+    }
+  ], 
+  "global_refs": [
+    {
+      "address": "0x0055fb2b", 
+      "type": null, 
+      "name": "LAB_0055fb2b"
+    }, 
+    {
+      "address": "0xffdff000", 
+      "type": null, 
+      "name": "ExceptionList"
+    }, 
+    {
+      "address": "0x00000008", 
+      "type": null, 
+      "name": "DAT_00000008"
+    }, 
+    {
+      "address": "0x00000004", 
+      "type": null, 
+      "name": "DAT_00000004"
+    }, 
+    {
+      "address": "0x-000001c", 
+      "type": null, 
+      "name": "DAT_-000001c"
+    }, 
+    {
+      "address": "0x-0000018", 
+      "type": null, 
+      "name": "DAT_-0000018"
+    }, 
+    {
+      "address": "0x-0000014", 
+      "type": null, 
+      "name": "DAT_-0000014"
+    }, 
+    {
+      "address": "0x-0000010", 
+      "type": null, 
+      "name": "DAT_-0000010"
+    }, 
+    {
+      "address": "0x-0000004", 
+      "type": null, 
+      "name": "DAT_-0000004"
+    }, 
+    {
+      "address": "0x00bfda60", 
+      "type": null, 
+      "name": "DAT_00bfda60"
+    }, 
+    {
+      "address": "0x0056a3c4", 
+      "type": null, 
+      "name": "PTR_gbCamera_0056a3c4"
+    }, 
+    {
+      "address": "0x00bfd6d4", 
+      "type": null, 
+      "name": "DAT_00bfd6d4"
+    }, 
+    {
+      "address": "0x00bfd6d0", 
+      "type": null, 
+      "name": "DAT_00bfd6d0"
+    }, 
+    {
+      "address": "0x0056a5d4", 
+      "type": null, 
+      "name": "PTR_SetDimention_0056a5d4"
+    }
+  ], 
+  "has_custom_name": false, 
+  "decompiled_c": "\r\nvoid __thiscall FUN_00439740(int param_1_00,undefined4 param_1,undefined4 param_2)\r\n\r\n{\r\n  undefined4 *puVar1;\r\n  gbCamera *pgVar2;\r\n  undefined4 local_1c;\r\n  undefined4 local_18;\r\n  undefined4 local_14;\r\n  undefined4 local_10;\r\n  void *pvStack_c;\r\n  undefined *puStack_8;\r\n  undefined4 local_4;\r\n  \r\n  local_4 = 0xffffffff;\r\n  puStack_8 = &LAB_0055fb2b;\r\n  pvStack_c = ExceptionList;\r\n  local_1c = 0;\r\n  local_18 = 0;\r\n  local_14 = 0;\r\n  local_10 = 0;\r\n  ExceptionList = &pvStack_c;\r\n  FUN_00445b90(param_1,&local_1c,param_2);\r\n  pgVar2 = (gbCamera *)operator_new(0x178);\r\n  local_4 = 0;\r\n  if (pgVar2 == (gbCamera *)0x0) {\r\n    pgVar2 = (gbCamera *)0x0;\r\n  }\r\n  else {\r\n    pgVar2 = (gbCamera *)gbCamera::gbCamera(pgVar2,DAT_00bfda60);\r\n  }\r\n  *(gbCamera **)(param_1_00 + 0x124) = pgVar2;\r\n  local_4 = 0xffffffff;\r\n  gbCamera::SetDimention(pgVar2,DAT_00bfd6d0,DAT_00bfd6d4);\r\n  puVar1 = *(undefined4 **)(param_1_00 + 0x124);\r\n  *(undefined4 *)(param_1_00 + 0xe8) = 0x453b8000;\r\n  puVar1[1] = 0x453b8000;\r\n  *puVar1 = 0;\r\n  *(undefined4 *)(param_1_00 + 0xf8) = 0;\r\n  ExceptionList = pvStack_c;\r\n  return;\r\n}\r\n\r\n", 
+  "is_thunk": false, 
+  "name": "FUN_00439740", 
+  "assembly": "  00439740:  PUSH -0x1\n  00439742:  PUSH 0x55fb2b\n  00439747:  MOV EAX,FS:[0x0]\n  0043974d:  PUSH EAX\n  0043974e:  MOV dword ptr FS:[0x0],ESP\n  00439755:  SUB ESP,0x10\n  00439758:  MOV EAX,dword ptr [ESP + 0x24]\n  0043975c:  MOV EDX,dword ptr [ESP + 0x20]\n  00439760:  PUSH ESI\n  00439761:  MOV ESI,ECX\n  00439763:  PUSH EDI\n  00439764:  LEA ECX,[ESP + 0x8]\n  00439768:  PUSH EAX\n  00439769:  XOR EDI,EDI\n  0043976b:  PUSH ECX\n  0043976c:  PUSH EDX\n  0043976d:  MOV ECX,ESI\n  0043976f:  MOV dword ptr [ESP + 0x14],EDI\n  00439773:  MOV dword ptr [ESP + 0x18],EDI\n  00439777:  MOV dword ptr [ESP + 0x1c],EDI\n  0043977b:  MOV dword ptr [ESP + 0x20],EDI\n  0043977f:  CALL 0x00445b90\n  00439784:  PUSH 0x178\n  00439789:  CALL 0x0055353b\n  0043978e:  ADD ESP,0x4\n  00439791:  MOV dword ptr [ESP + 0x2c],EAX\n  00439795:  CMP EAX,EDI\n  00439797:  MOV dword ptr [ESP + 0x20],EDI\n  0043979b:  JZ 0x004397ae\n  0043979d:  MOV ECX,dword ptr [0x00bfda60]\n  004397a3:  PUSH ECX\n  004397a4:  MOV ECX,EAX\n  004397a6:  CALL dword ptr [0x0056a3c4]\n  004397ac:  JMP 0x004397b0\n  004397ae:  XOR EAX,EAX\n  004397b0:  MOV dword ptr [ESI + 0x124],EAX\n  004397b6:  MOV EDX,dword ptr [0x00bfd6d4]\n  004397bc:  MOV ECX,dword ptr [0x00bfd6d0]\n  004397c2:  PUSH EDX\n  004397c3:  PUSH ECX\n  004397c4:  MOV ECX,EAX\n  004397c6:  MOV dword ptr [ESP + 0x28],0xffffffff\n  004397ce:  CALL dword ptr [0x0056a5d4]\n  004397d4:  MOV EAX,dword ptr [ESI + 0x124]\n  004397da:  MOV ECX,0x453b8000\n  004397df:  MOV dword ptr [ESI + 0xe8],ECX\n  004397e5:  MOV dword ptr [EAX + 0x4],ECX\n  004397e8:  MOV ECX,dword ptr [ESP + 0x18]\n  004397ec:  MOV dword ptr [EAX],EDI\n  004397ee:  MOV dword ptr [ESI + 0xf8],EDI\n  004397f4:  POP EDI\n  004397f5:  POP ESI\n  004397f6:  MOV dword ptr FS:[0x0],ECX\n  004397fd:  ADD ESP,0x1c\n  00439800:  RET 0x8", 
+  "callers": [
+    {
+      "address": "0x0047f590", 
+      "name": "FUN_0047f590"
+    }, 
+    {
+      "address": "0x0048d5d0", 
+      "name": "FUN_0048d5d0"
+    }, 
+    {
+      "address": "0x00496190", 
+      "name": "FUN_00496190"
+    }, 
+    {
+      "address": "0x0049f2e0", 
+      "name": "FUN_0049f2e0"
+    }, 
+    {
+      "address": "0x004ab6b0", 
+      "name": "FUN_004ab6b0"
+    }, 
+    {
+      "address": "0x0045b990", 
+      "name": "FUN_0045b990"
+    }, 
+    {
+      "address": "0x0046df40", 
+      "name": "FUN_0046df40"
+    }, 
+    {
+      "address": "0x00471590", 
+      "name": "FUN_00471590"
+    }, 
+    {
+      "address": "0x00479890", 
+      "name": "FUN_00479890"
+    }, 
+    {
+      "address": "0x005257b0", 
+      "name": "FUN_005257b0"
+    }, 
+    {
+      "address": "0x00528650", 
+      "name": "FUN_00528650"
+    }
+  ]
+}

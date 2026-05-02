@@ -1,0 +1,55 @@
+{
+  "address": "0x0054bdd4", 
+  "size_bytes": 241, 
+  "calling_convention": "unknown", 
+  "signature": "undefined FUN_0054bdd4(void)", 
+  "callees": [], 
+  "global_refs": [
+    {
+      "address": "0x0060a5a0", 
+      "type": null, 
+      "name": "DAT_0060a5a0"
+    }, 
+    {
+      "address": "0x0060a5b0", 
+      "type": null, 
+      "name": "DAT_0060a5b0"
+    }, 
+    {
+      "address": "0x0060a590", 
+      "type": null, 
+      "name": "DAT_0060a590"
+    }, 
+    {
+      "address": "0x0060a580", 
+      "type": null, 
+      "name": "DAT_0060a580"
+    }, 
+    {
+      "address": "0x0060a5c0", 
+      "type": null, 
+      "name": "DAT_0060a5c0"
+    }, 
+    {
+      "address": "0x0060a5d0", 
+      "type": null, 
+      "name": "DAT_0060a5d0"
+    }, 
+    {
+      "address": "0x0060a5e0", 
+      "type": null, 
+      "name": "DAT_0060a5e0"
+    }
+  ], 
+  "has_custom_name": false, 
+  "decompiled_c": "\r\n/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */\r\n\r\nvoid FUN_0054bdd4(void)\r\n\r\n{\r\n  ushort in_XMM0_Wa;\r\n  ushort in_XMM0_Wb;\r\n  ushort in_XMM0_Wc;\r\n  ushort in_XMM0_Wd;\r\n  ushort in_XMM0_We;\r\n  ushort in_XMM0_Wf;\r\n  ushort in_XMM0_Wg;\r\n  ushort in_XMM0_Wh;\r\n  undefined auVar1 [16];\r\n  \r\n  auVar1._0_2_ = -(ushort)((_DAT_0060a5a0 & in_XMM0_Wa) == 0);\r\n  auVar1._2_2_ = -(ushort)((uRam0060a5a2 & in_XMM0_Wb) == 0);\r\n  auVar1._4_2_ = -(ushort)((uRam0060a5a4 & in_XMM0_Wc) == 0);\r\n  auVar1._6_2_ = -(ushort)((uRam0060a5a6 & in_XMM0_Wd) == 0);\r\n  auVar1._8_2_ = -(ushort)((uRam0060a5a8 & in_XMM0_We) == 0);\r\n  auVar1._10_2_ = -(ushort)((uRam0060a5aa & in_XMM0_Wf) == 0);\r\n  auVar1._12_2_ = -(ushort)((uRam0060a5ac & in_XMM0_Wg) == 0);\r\n  auVar1._14_2_ = -(ushort)((uRam0060a5ae & in_XMM0_Wh) == 0);\r\n  if ((((((((((((((((auVar1 >> 7 & (undefined  [16])0x1) != (undefined  [16])0x0 ||\r\n                   (auVar1 >> 0xf & (undefined  [16])0x1) != (undefined  [16])0x0) ||\r\n                  (auVar1 >> 0x17 & (undefined  [16])0x1) != (undefined  [16])0x0) ||\r\n                 (auVar1 >> 0x1f & (undefined  [16])0x1) != (undefined  [16])0x0) ||\r\n                (auVar1 >> 0x27 & (undefined  [16])0x1) != (undefined  [16])0x0) ||\r\n               (auVar1 >> 0x2f & (undefined  [16])0x1) != (undefined  [16])0x0) ||\r\n              (auVar1 >> 0x37 & (undefined  [16])0x1) != (undefined  [16])0x0) ||\r\n             (auVar1 >> 0x3f & (undefined  [16])0x1) != (undefined  [16])0x0) ||\r\n            (auVar1 >> 0x47 & (undefined  [16])0x1) != (undefined  [16])0x0) ||\r\n           (auVar1 >> 0x4f & (undefined  [16])0x1) != (undefined  [16])0x0) ||\r\n          (auVar1 >> 0x57 & (undefined  [16])0x1) != (undefined  [16])0x0) ||\r\n         (auVar1 >> 0x5f & (undefined  [16])0x1) != (undefined  [16])0x0) ||\r\n        (auVar1 >> 0x67 & (undefined  [16])0x1) != (undefined  [16])0x0) ||\r\n       (auVar1 >> 0x6f & (undefined  [16])0x1) != (undefined  [16])0x0) ||\r\n      (auVar1._14_2_ >> 7 & 1) != 0) || (auVar1._14_2_ & 0x8000) != 0) {\r\n    return;\r\n  }\r\n  return;\r\n}\r\n\r\n", 
+  "is_thunk": false, 
+  "name": "FUN_0054bdd4", 
+  "assembly": "  0054bdd4:  PUSH ECX\n  0054bdd5:  PXOR XMM7,XMM7\n  0054bdd9:  MOVDQA XMM1,xmmword ptr [0x0060a5a0]\n  0054bde1:  MOVDQA XMM2,xmmword ptr [0x0060a5b0]\n  0054bde9:  PAND XMM1,XMM0\n  0054bded:  MOVDQA XMM3,XMM1\n  0054bdf1:  PAND XMM2,XMM0\n  0054bdf5:  PAND XMM0,xmmword ptr [0x0060a590]\n  0054bdfd:  PCMPEQW XMM3,XMM7\n  0054be01:  PMOVMSKB ECX,XMM3\n  0054be05:  TEST ECX,ECX\n  0054be07:  JZ 0x0054be75\n  0054be09:  PANDN XMM3,xmmword ptr [0x0060a580]\n  0054be11:  POR XMM2,XMM3\n  0054be15:  PMAXSW XMM1,xmmword ptr [0x0060a5c0]\n  0054be1d:  MOVDQA XMM4,xmmword ptr [0x0060a5d0]\n  0054be25:  MOVDQA XMM3,XMM1\n  0054be29:  PUNPCKLWD XMM1,XMM7\n  0054be2d:  PUNPCKHWD XMM3,XMM7\n  0054be31:  MOVDQA XMM5,XMM7\n  0054be35:  PUNPCKLWD XMM5,XMM0\n  0054be39:  PUNPCKHWD XMM7,XMM0\n  0054be3d:  PADDD XMM1,XMM4\n  0054be41:  PADDD XMM3,XMM4\n  0054be45:  PSLLD XMM1,0xd\n  0054be4a:  PSLLD XMM3,0xd\n  0054be4f:  POR XMM1,XMM5\n  0054be53:  POR XMM3,XMM7\n  0054be57:  PXOR XMM5,XMM5\n  0054be5b:  MOVDQA XMM7,XMM2\n  0054be5f:  PUNPCKLWD XMM2,XMM5\n  0054be63:  PUNPCKHWD XMM7,XMM5\n  0054be67:  CVTDQ2PS XMM0,XMM2\n  0054be6a:  CVTDQ2PS XMM2,XMM7\n  0054be6d:  MULPS XMM0,XMM1\n  0054be70:  MULPS XMM3,XMM2\n  0054be73:  POP ECX\n  0054be74:  RET\n  0054be75:  MOVDQA XMM6,xmmword ptr [0x0060a5e0]\n  0054be7d:  MOVDQA XMM5,XMM7\n  0054be81:  PUNPCKLWD XMM5,XMM0\n  0054be85:  PUNPCKHWD XMM7,XMM0\n  0054be89:  MOVDQA XMM3,XMM1\n  0054be8d:  PUNPCKLWD XMM1,XMM7\n  0054be91:  PUNPCKHWD XMM3,XMM7\n  0054be95:  PADDD XMM1,XMM6\n  0054be99:  PADDD XMM3,XMM6\n  0054be9d:  MOVDQA XMM0,XMM2\n  0054bea1:  PUNPCKLWD XMM0,XMM7\n  0054bea5:  PUNPCKHWD XMM2,XMM7\n  0054bea9:  POR XMM0,XMM1\n  0054bead:  POR XMM3,XMM2\n  0054beb1:  PSLLD XMM0,0xd\n  0054beb6:  PSLLD XMM3,0xd\n  0054bebb:  POR XMM0,XMM5\n  0054bebf:  POR XMM3,XMM7\n  0054bec3:  POP ECX\n  0054bec4:  RET", 
+  "callers": [
+    {
+      "address": "0x0054bec5", 
+      "name": "FUN_0054bec5"
+    }
+  ]
+}

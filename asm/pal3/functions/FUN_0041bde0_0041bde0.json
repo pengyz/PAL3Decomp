@@ -1,0 +1,31 @@
+{
+  "address": "0x0041bde0", 
+  "size_bytes": 16, 
+  "calling_convention": "unknown", 
+  "signature": "undefined FUN_0041bde0(void)", 
+  "callees": [], 
+  "global_refs": [], 
+  "has_custom_name": false, 
+  "decompiled_c": "\r\nvoid __fastcall FUN_0041bde0(undefined4 *param_1)\r\n\r\n{\r\n  *param_1 = 0;\r\n  param_1[1] = 0;\r\n  param_1[2] = 0;\r\n  param_1[3] = 0;\r\n  return;\r\n}\r\n\r\n", 
+  "is_thunk": false, 
+  "name": "FUN_0041bde0", 
+  "assembly": "  0041bde0:  MOV EAX,ECX\n  0041bde2:  XOR ECX,ECX\n  0041bde4:  MOV dword ptr [EAX],ECX\n  0041bde6:  MOV dword ptr [EAX + 0x4],ECX\n  0041bde9:  MOV dword ptr [EAX + 0x8],ECX\n  0041bdec:  MOV dword ptr [EAX + 0xc],ECX\n  0041bdef:  RET", 
+  "callers": [
+    {
+      "address": "0x00411ca0", 
+      "name": "FUN_00411ca0"
+    }, 
+    {
+      "address": "0x0041be80", 
+      "name": "FUN_0041be80"
+    }, 
+    {
+      "address": "0x0041d410", 
+      "name": "FUN_0041d410"
+    }, 
+    {
+      "address": "0x0042ebe0", 
+      "name": "FUN_0042ebe0"
+    }
+  ]
+}

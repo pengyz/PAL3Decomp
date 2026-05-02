@@ -1,0 +1,55 @@
+{
+  "address": "0x0041ca30", 
+  "size_bytes": 90, 
+  "calling_convention": "unknown", 
+  "signature": "undefined FUN_0041ca30(undefined4 param_1, undefined4 param_2, undefined4 param_3, undefined4 param_4, undefined4 param_5, undefined4 param_6)", 
+  "callees": [
+    {
+      "address": "0x0041c710", 
+      "name": "FUN_0041c710"
+    }
+  ], 
+  "global_refs": [
+    {
+      "address": "0x00000008", 
+      "type": null, 
+      "name": "DAT_00000008"
+    }, 
+    {
+      "address": "0x00000004", 
+      "type": null, 
+      "name": "DAT_00000004"
+    }, 
+    {
+      "address": "0x0000000c", 
+      "type": null, 
+      "name": "DAT_0000000c"
+    }, 
+    {
+      "address": "0x00000010", 
+      "type": null, 
+      "name": "DAT_00000010"
+    }, 
+    {
+      "address": "0x00000014", 
+      "type": null, 
+      "name": "DAT_00000014"
+    }, 
+    {
+      "address": "0x00000018", 
+      "type": null, 
+      "name": "DAT_00000018"
+    }
+  ], 
+  "has_custom_name": false, 
+  "decompiled_c": "\r\nvoid __thiscall\r\nFUN_0041ca30(int param_1_00,undefined4 param_1,undefined4 param_2,undefined4 param_3,\r\n            undefined4 param_4,undefined4 param_5,undefined4 param_6)\r\n\r\n{\r\n  *(undefined4 *)(param_1_00 + 0x1c4) = param_2;\r\n  *(undefined4 *)(param_1_00 + 0x1c8) = param_1;\r\n  *(undefined4 *)(param_1_00 + 0x1d0) = param_3;\r\n  *(undefined4 *)(param_1_00 + 0x1ec) = param_4;\r\n  *(undefined4 *)(param_1_00 + 0x1cc) = 0;\r\n  *(undefined4 *)(param_1_00 + 0x1d4) = 0x42c80000;\r\n  *(undefined4 *)(param_1_00 + 0x1f0) = param_5;\r\n  *(undefined4 *)(param_1_00 + 500) = param_6;\r\n  FUN_0041c710(0);\r\n  return;\r\n}\r\n\r\n", 
+  "is_thunk": false, 
+  "name": "FUN_0041ca30", 
+  "assembly": "  0041ca30:  MOV EAX,dword ptr [ESP + 0x8]\n  0041ca34:  MOV EDX,dword ptr [ESP + 0x4]\n  0041ca38:  MOV dword ptr [ECX + 0x1c4],EAX\n  0041ca3e:  MOV EAX,dword ptr [ESP + 0xc]\n  0041ca42:  MOV dword ptr [ECX + 0x1c8],EDX\n  0041ca48:  MOV EDX,dword ptr [ESP + 0x10]\n  0041ca4c:  MOV dword ptr [ECX + 0x1d0],EAX\n  0041ca52:  MOV EAX,dword ptr [ESP + 0x14]\n  0041ca56:  MOV dword ptr [ECX + 0x1ec],EDX\n  0041ca5c:  MOV EDX,dword ptr [ESP + 0x18]\n  0041ca60:  PUSH 0x0\n  0041ca62:  MOV dword ptr [ECX + 0x1cc],0x0\n  0041ca6c:  MOV dword ptr [ECX + 0x1d4],0x42c80000\n  0041ca76:  MOV dword ptr [ECX + 0x1f0],EAX\n  0041ca7c:  MOV dword ptr [ECX + 0x1f4],EDX\n  0041ca82:  CALL 0x0041c710\n  0041ca87:  RET 0x18", 
+  "callers": [
+    {
+      "address": "0x005044c0", 
+      "name": "FUN_005044c0"
+    }
+  ]
+}

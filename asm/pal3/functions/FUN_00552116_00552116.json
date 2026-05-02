@@ -1,0 +1,135 @@
+{
+  "address": "0x00552116", 
+  "size_bytes": 326, 
+  "calling_convention": "unknown", 
+  "signature": "undefined FUN_00552116(undefined4 param_1, undefined4 param_2, undefined4 param_3)", 
+  "callees": [], 
+  "global_refs": [
+    {
+      "address": "0x00000004", 
+      "type": null, 
+      "name": "DAT_00000004"
+    }, 
+    {
+      "address": "0x0060aab0", 
+      "type": null, 
+      "name": "DAT_0060aab0"
+    }, 
+    {
+      "address": "0x0060aaa0", 
+      "type": null, 
+      "name": "DAT_0060aaa0"
+    }, 
+    {
+      "address": "0x0060aa90", 
+      "type": null, 
+      "name": "DAT_0060aa90"
+    }, 
+    {
+      "address": "0x0060aa80", 
+      "type": null, 
+      "name": "DAT_0060aa80"
+    }, 
+    {
+      "address": "0x0060aa70", 
+      "type": null, 
+      "name": "DAT_0060aa70"
+    }, 
+    {
+      "address": "0x0060aa60", 
+      "type": null, 
+      "name": "DAT_0060aa60"
+    }, 
+    {
+      "address": "0x0060aa50", 
+      "type": null, 
+      "name": "DAT_0060aa50"
+    }, 
+    {
+      "address": "0x0060aa40", 
+      "type": null, 
+      "name": "DAT_0060aa40"
+    }, 
+    {
+      "address": "0x0060aa30", 
+      "type": null, 
+      "name": "DAT_0060aa30"
+    }, 
+    {
+      "address": "0x0060aa20", 
+      "type": null, 
+      "name": "DAT_0060aa20"
+    }, 
+    {
+      "address": "0x0060aa10", 
+      "type": null, 
+      "name": "PTR_DAT_0060aa10"
+    }, 
+    {
+      "address": "0x0060aa00", 
+      "type": null, 
+      "name": "DAT_0060aa00"
+    }, 
+    {
+      "address": "0x0060a9f0", 
+      "type": null, 
+      "name": "DAT_0060a9f0"
+    }, 
+    {
+      "address": "0x0060a9e0", 
+      "type": null, 
+      "name": "DAT_0060a9e0"
+    }, 
+    {
+      "address": "0x0060a9d0", 
+      "type": null, 
+      "name": "DAT_0060a9d0"
+    }, 
+    {
+      "address": "0x0060a9c0", 
+      "type": null, 
+      "name": "DAT_0060a9c0"
+    }, 
+    {
+      "address": "0x0060a9b0", 
+      "type": null, 
+      "name": "DAT_0060a9b0"
+    }, 
+    {
+      "address": "0x0060a9a0", 
+      "type": null, 
+      "name": "DAT_0060a9a0"
+    }, 
+    {
+      "address": "0x0060a990", 
+      "type": null, 
+      "name": "DAT_0060a990"
+    }, 
+    {
+      "address": "0x0060a980", 
+      "type": null, 
+      "name": "DAT_0060a980"
+    }, 
+    {
+      "address": "0x00000008", 
+      "type": null, 
+      "name": "DAT_00000008"
+    }, 
+    {
+      "address": "0x0000000c", 
+      "type": null, 
+      "name": "DAT_0000000c"
+    }
+  ], 
+  "has_custom_name": false, 
+  "decompiled_c": "\r\n/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */\r\n\r\nvoid FUN_00552116(uint *param_1,uint *param_2,uint *param_3)\r\n\r\n{\r\n  float fVar1;\r\n  float fVar2;\r\n  uint uVar3;\r\n  float fVar4;\r\n  float fVar5;\r\n  uint uVar6;\r\n  float fVar7;\r\n  float fVar8;\r\n  uint uVar9;\r\n  float fVar10;\r\n  float fVar11;\r\n  uint uVar12;\r\n  uint uVar13;\r\n  uint uVar14;\r\n  uint uVar15;\r\n  float fVar16;\r\n  float fVar17;\r\n  uint uVar18;\r\n  uint uVar19;\r\n  uint uVar20;\r\n  uint uVar21;\r\n  uint uVar22;\r\n  uint uVar23;\r\n  uint uVar24;\r\n  float fVar25;\r\n  float fVar26;\r\n  uint uVar27;\r\n  uint uVar28;\r\n  \r\n  fVar16 = (float)(*param_1 & _DAT_0060aab0);\r\n  fVar17 = (float)(param_1[1] & uRam0060aab4);\r\n  fVar25 = (float)(param_1[2] & uRam0060aab8);\r\n  fVar26 = (float)(param_1[3] & uRam0060aabc);\r\n  uVar13 = param_1[1] & uRam0060aaa4;\r\n  uVar14 = param_1[2] & uRam0060aaa8;\r\n  uVar15 = param_1[3] & uRam0060aaac;\r\n  fVar1 = fVar16 * _DAT_0060aa90 + _DAT_0060aa40;\r\n  fVar4 = fVar17 * fRam0060aa94 + fRam0060aa44;\r\n  fVar7 = fVar25 * fRam0060aa98 + fRam0060aa48;\r\n  fVar10 = fVar26 * fRam0060aa9c + fRam0060aa4c;\r\n  fVar2 = fVar1 - _DAT_0060aa40;\r\n  fVar5 = fVar4 - fRam0060aa44;\r\n  fVar8 = fVar7 - fRam0060aa48;\r\n  fVar11 = fVar10 - fRam0060aa4c;\r\n  fVar16 = (((fVar16 - _DAT_0060aa80 * fVar2) - _DAT_0060aa70 * fVar2) - _DAT_0060aa60 * fVar2) -\r\n           _DAT_0060aa50 * fVar2;\r\n  fVar2 = (((fVar17 - fRam0060aa84 * fVar5) - fRam0060aa74 * fVar5) - fRam0060aa64 * fVar5) -\r\n          fRam0060aa54 * fVar5;\r\n  fVar17 = (((fVar25 - fRam0060aa88 * fVar8) - fRam0060aa78 * fVar8) - fRam0060aa68 * fVar8) -\r\n           fRam0060aa58 * fVar8;\r\n  fVar5 = (((fVar26 - fRam0060aa8c * fVar11) - fRam0060aa7c * fVar11) - fRam0060aa6c * fVar11) -\r\n          fRam0060aa5c * fVar11;\r\n  fVar25 = fVar16 * fVar16;\r\n  fVar8 = fVar2 * fVar2;\r\n  fVar26 = fVar17 * fVar17;\r\n  fVar11 = fVar5 * fVar5;\r\n  uVar18 = (uint)fVar1 & (uint)PTR_DAT_0060aa10;\r\n  uVar19 = (uint)fVar4 & (uint)PTR_DAT_0060aa14;\r\n  uVar21 = (uint)fVar7 & (uint)PTR_DAT_0060aa18;\r\n  uVar23 = (uint)fVar10 & (uint)PTR_DAT_0060aa1c;\r\n  uVar3 = uVar18 & _DAT_0060aa00;\r\n  uVar6 = uVar19 & uRam0060aa04;\r\n  uVar9 = uVar21 & uRam0060aa08;\r\n  uVar12 = uVar23 & uRam0060aa0c;\r\n  uVar20 = uVar19 - uVar6 & uRam0060a9f4;\r\n  uVar22 = uVar21 - uVar9 & uRam0060a9f8;\r\n  uVar24 = uVar23 - uVar12 & uRam0060a9fc;\r\n  uVar27 = uVar18 + uVar3 & _DAT_0060a9f0;\r\n  uVar28 = uVar19 + uVar6 & uRam0060a9f4;\r\n  uVar21 = uVar21 + uVar9 & uRam0060a9f8;\r\n  uVar23 = uVar23 + uVar12 & uRam0060a9fc;\r\n  uVar19 = -(uint)((float)(uVar3 << 0x1e) != 0.0);\r\n  uVar6 = -(uint)((float)(uVar6 << 0x1e) != 0.0);\r\n  uVar9 = -(uint)((float)(uVar9 << 0x1e) != 0.0);\r\n  uVar12 = -(uint)((float)(uVar12 << 0x1e) != 0.0);\r\n  fVar16 = (((_DAT_0060aa30 * fVar25 + _DAT_0060a9e0) * fVar25 + _DAT_0060a9c0) * fVar25 +\r\n           _DAT_0060a9a0) * fVar16;\r\n  fVar2 = (((fRam0060aa34 * fVar8 + fRam0060a9e4) * fVar8 + fRam0060a9c4) * fVar8 + fRam0060a9a4) *\r\n          fVar2;\r\n  fVar17 = (((fRam0060aa38 * fVar26 + fRam0060a9e8) * fVar26 + fRam0060a9c8) * fVar26 + fRam0060a9a8\r\n           ) * fVar17;\r\n  fVar5 = (((fRam0060aa3c * fVar11 + fRam0060a9ec) * fVar11 + fRam0060a9cc) * fVar11 + fRam0060a9ac)\r\n          * fVar5;\r\n  fVar1 = (((_DAT_0060aa20 * fVar25 + _DAT_0060a9d0) * fVar25 + _DAT_0060a9b0) * fVar25 +\r\n          _DAT_0060a990) * fVar25 + _DAT_0060a980;\r\n  fVar4 = (((fRam0060aa24 * fVar8 + fRam0060a9d4) * fVar8 + fRam0060a9b4) * fVar8 + fRam0060a994) *\r\n          fVar8 + fRam0060a984;\r\n  fVar25 = (((fRam0060aa28 * fVar26 + fRam0060a9d8) * fVar26 + fRam0060a9b8) * fVar26 + fRam0060a998\r\n           ) * fVar26 + fRam0060a988;\r\n  fVar7 = (((fRam0060aa2c * fVar11 + fRam0060a9dc) * fVar11 + fRam0060a9bc) * fVar11 + fRam0060a99c)\r\n          * fVar11 + fRam0060a98c;\r\n  *param_2 = (~uVar19 & (uint)fVar16 | uVar19 & (uint)fVar1) ^\r\n             (uVar18 - uVar3 & _DAT_0060a9f0) << 0x1e ^ *param_1 & _DAT_0060aaa0;\r\n  param_2[1] = (~uVar6 & (uint)fVar2 | uVar6 & (uint)fVar4) ^ uVar20 << 0x1e ^ uVar13;\r\n  param_2[2] = (~uVar9 & (uint)fVar17 | uVar9 & (uint)fVar25) ^ uVar22 << 0x1e ^ uVar14;\r\n  param_2[3] = (~uVar12 & (uint)fVar5 | uVar12 & (uint)fVar7) ^ uVar24 << 0x1e ^ uVar15;\r\n  *param_3 = (uVar19 & (uint)fVar16 | ~uVar19 & (uint)fVar1) ^ uVar27 << 0x1e;\r\n  param_3[1] = (uVar6 & (uint)fVar2 | ~uVar6 & (uint)fVar4) ^ uVar28 << 0x1e;\r\n  param_3[2] = (uVar9 & (uint)fVar17 | ~uVar9 & (uint)fVar25) ^ uVar21 << 0x1e;\r\n  param_3[3] = (uVar12 & (uint)fVar5 | ~uVar12 & (uint)fVar7) ^ uVar23 << 0x1e;\r\n  return;\r\n}\r\n\r\n", 
+  "is_thunk": false, 
+  "name": "FUN_00552116", 
+  "assembly": "  00552116:  MOV EAX,dword ptr [ESP + 0x4]\n  0055211a:  MOVAPS XMM0,xmmword ptr [EAX]\n  0055211d:  NOP\n  0055211e:  MOVAPS XMM1,XMM0\n  00552121:  MOVAPS XMM6,XMM0\n  00552124:  PAND XMM0,xmmword ptr [0x0060aab0]\n  0055212c:  PAND XMM1,xmmword ptr [0x0060aaa0]\n  00552134:  MOVAPS XMM2,XMM0\n  00552137:  MOVAPS XMM7,XMM0\n  0055213a:  MULPS XMM0,xmmword ptr [0x0060aa90]\n  00552141:  MOVAPS XMM4,xmmword ptr [0x0060aa80]\n  00552148:  MOVAPS XMM5,xmmword ptr [0x0060aa70]\n  0055214f:  MOVAPS XMM6,xmmword ptr [0x0060aa60]\n  00552156:  MOVAPS XMM7,xmmword ptr [0x0060aa50]\n  0055215d:  ADDPS XMM0,xmmword ptr [0x0060aa40]\n  00552164:  MOVAPS XMM3,XMM0\n  00552167:  SUBPS XMM0,xmmword ptr [0x0060aa40]\n  0055216e:  MULPS XMM4,XMM0\n  00552171:  MULPS XMM5,XMM0\n  00552174:  MULPS XMM6,XMM0\n  00552177:  MULPS XMM7,XMM0\n  0055217a:  SUBPS XMM2,XMM4\n  0055217d:  SUBPS XMM2,XMM5\n  00552180:  MOVAPS XMM5,xmmword ptr [0x0060aa30]\n  00552187:  SUBPS XMM2,XMM6\n  0055218a:  MOVAPS XMM6,xmmword ptr [0x0060aa20]\n  00552191:  SUBPS XMM2,XMM7\n  00552194:  MOVAPS XMM4,XMM2\n  00552197:  MULPS XMM4,XMM4\n  0055219a:  ANDPS XMM3,xmmword ptr [0x0060aa10]\n  005521a1:  MOVAPS XMM0,XMM3\n  005521a4:  MOVAPS XMM7,XMM3\n  005521a7:  ANDPS XMM0,xmmword ptr [0x0060aa00]\n  005521ae:  PSUBD XMM3,XMM0\n  005521b2:  PADDD XMM7,XMM0\n  005521b6:  PAND XMM3,xmmword ptr [0x0060a9f0]\n  005521be:  PAND XMM7,xmmword ptr [0x0060a9f0]\n  005521c6:  PSLLD XMM3,0x1e\n  005521cb:  PSLLD XMM7,0x1e\n  005521d0:  PXOR XMM3,XMM1\n  005521d4:  PSLLD XMM0,0x1e\n  005521d9:  PXOR XMM1,XMM1\n  005521dd:  CMPNEQPS XMM0,XMM1\n  005521e1:  MULPS XMM5,XMM4\n  005521e4:  MULPS XMM6,XMM4\n  005521e7:  ADDPS XMM5,xmmword ptr [0x0060a9e0]\n  005521ee:  ADDPS XMM6,xmmword ptr [0x0060a9d0]\n  005521f5:  MULPS XMM5,XMM4\n  005521f8:  MULPS XMM6,XMM4\n  005521fb:  ADDPS XMM5,xmmword ptr [0x0060a9c0]\n  00552202:  ADDPS XMM6,xmmword ptr [0x0060a9b0]\n  00552209:  MULPS XMM5,XMM4\n  0055220c:  MULPS XMM6,XMM4\n  0055220f:  ADDPS XMM5,xmmword ptr [0x0060a9a0]\n  00552216:  ADDPS XMM6,xmmword ptr [0x0060a990]\n  0055221d:  MULPS XMM5,XMM2\n  00552220:  MULPS XMM6,XMM4\n  00552223:  ADDPS XMM6,xmmword ptr [0x0060a980]\n  0055222a:  MOVAPS XMM1,XMM0\n  0055222d:  MOVAPS XMM2,XMM0\n  00552230:  ANDNPS XMM1,XMM5\n  00552233:  ANDPS XMM2,XMM6\n  00552236:  ORPS XMM1,XMM2\n  00552239:  MOVAPS XMM2,XMM0\n  0055223c:  ANDPS XMM0,XMM5\n  0055223f:  ANDNPS XMM2,XMM6\n  00552242:  ORPS XMM0,XMM2\n  00552245:  XORPS XMM0,XMM7\n  00552248:  XORPS XMM1,XMM3\n  0055224b:  MOV EAX,dword ptr [ESP + 0x8]\n  0055224f:  MOV EDX,dword ptr [ESP + 0xc]\n  00552253:  MOVAPS xmmword ptr [EAX],XMM1\n  00552256:  MOVAPS xmmword ptr [EDX],XMM0\n  00552259:  RET 0xc", 
+  "callers": [
+    {
+      "address": "0x0054c7ec", 
+      "name": "FUN_0054c7ec"
+    }
+  ]
+}

@@ -1,0 +1,50 @@
+{
+  "address": "0x0049cec0", 
+  "size_bytes": 90, 
+  "calling_convention": "unknown", 
+  "signature": "undefined FUN_0049cec0(undefined4 param_1, undefined4 param_2)", 
+  "callees": [], 
+  "global_refs": [
+    {
+      "address": "0x00000004", 
+      "type": null, 
+      "name": "DAT_00000004"
+    }, 
+    {
+      "address": "0x00000008", 
+      "type": null, 
+      "name": "DAT_00000008"
+    }, 
+    {
+      "address": "0x00c047c8", 
+      "type": null, 
+      "name": "DAT_00c047c8"
+    }, 
+    {
+      "address": "0x00c047e8", 
+      "type": null, 
+      "name": "DAT_00c047e8"
+    }, 
+    {
+      "address": "0x00c047cc", 
+      "type": null, 
+      "name": "DAT_00c047cc"
+    }, 
+    {
+      "address": "0x00c048e8", 
+      "type": null, 
+      "name": "DAT_00c048e8"
+    }
+  ], 
+  "has_custom_name": false, 
+  "decompiled_c": "\r\nundefined FUN_0049cec0(int param_1,int param_2)\r\n\r\n{\r\n  int iVar1;\r\n  int *piVar2;\r\n  int *piVar3;\r\n  int iVar4;\r\n  \r\n  iVar4 = 0;\r\n  piVar3 = &DAT_00c047c8 + param_1 * 0x160;\r\n  do {\r\n    iVar1 = 0;\r\n    piVar2 = piVar3;\r\n    do {\r\n      if (param_2 == *piVar2) {\r\n        return *(undefined *)((int)&DAT_00c048e8 + (param_1 * 0xb0 + iVar4) * 8 + iVar1);\r\n      }\r\n      iVar1 = iVar1 + 1;\r\n      piVar2 = piVar2 + 1;\r\n    } while (iVar1 < 8);\r\n    iVar4 = iVar4 + 1;\r\n    piVar3 = piVar3 + 8;\r\n  } while (iVar4 < 6);\r\n  return 0;\r\n}\r\n\r\n", 
+  "is_thunk": false, 
+  "name": "FUN_0049cec0", 
+  "assembly": "  0049cec0:  PUSH EBX\n  0049cec1:  PUSH ESI\n  0049cec2:  PUSH EDI\n  0049cec3:  MOV EDI,dword ptr [ESP + 0x10]\n  0049cec7:  MOV EBX,dword ptr [ESP + 0x14]\n  0049cecb:  XOR ESI,ESI\n  0049cecd:  LEA EAX,[EDI + EDI*0x4]\n  0049ced0:  LEA EDX,[EDI + EAX*0x2]\n  0049ced3:  SHL EDX,0x7\n  0049ced6:  ADD EDX,0xc047c8\n  0049cedc:  XOR EAX,EAX\n  0049cede:  MOV ECX,EDX\n  0049cee0:  CMP EBX,dword ptr [ECX]\n  0049cee2:  JZ 0x0049cefe\n  0049cee4:  INC EAX\n  0049cee5:  ADD ECX,0x4\n  0049cee8:  CMP EAX,0x8\n  0049ceeb:  JL 0x0049cee0\n  0049ceed:  INC ESI\n  0049ceee:  ADD EDX,0x20\n  0049cef1:  CMP ESI,0x6\n  0049cef4:  JL 0x0049cedc\n  0049cef6:  POP EDI\n  0049cef7:  POP ESI\n  0049cef8:  XOR EAX,EAX\n  0049cefa:  POP EBX\n  0049cefb:  RET 0x8\n  0049cefe:  LEA ECX,[EDI + EDI*0x4]\n  0049cf01:  LEA EDX,[EDI + ECX*0x2]\n  0049cf04:  XOR ECX,ECX\n  0049cf06:  SHL EDX,0x4\n  0049cf09:  ADD EDX,ESI\n  0049cf0b:  POP EDI\n  0049cf0c:  POP ESI\n  0049cf0d:  MOV CL,byte ptr [EAX + EDX*0x8 + 0xc048e8]\n  0049cf14:  POP EBX\n  0049cf15:  MOV EAX,ECX\n  0049cf17:  RET 0x8", 
+  "callers": [
+    {
+      "address": "0x0049cf80", 
+      "name": "FUN_0049cf80"
+    }
+  ]
+}

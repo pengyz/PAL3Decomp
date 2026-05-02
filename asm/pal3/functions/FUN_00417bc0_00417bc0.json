@@ -1,0 +1,33 @@
+{
+  "address": "0x00417bc0", 
+  "size_bytes": 131, 
+  "calling_convention": "unknown", 
+  "signature": "undefined FUN_00417bc0(void)", 
+  "callees": [
+    {
+      "address": "0x004142e0", 
+      "name": "FUN_004142e0"
+    }, 
+    {
+      "address": "0x005371b0", 
+      "name": "FUN_005371b0"
+    }, 
+    {
+      "address": "0x00536d00", 
+      "name": "FUN_00536d00"
+    }
+  ], 
+  "global_refs": [
+    {
+      "address": "0x00588994", 
+      "type": null, 
+      "name": "DAT_00588994"
+    }
+  ], 
+  "has_custom_name": false, 
+  "decompiled_c": "\r\nvoid __fastcall FUN_00417bc0(int param_1)\r\n\r\n{\r\n  if (*(char *)(param_1 + 0x500) == '\\0') {\r\n    *(undefined4 *)(param_1 + 0x4f0) = *(undefined4 *)(param_1 + 0x4ec);\r\n    FUN_004142e0();\r\n    *(undefined *)(param_1 + 0x500) = 0;\r\n    return;\r\n  }\r\n  *(undefined4 *)(param_1 + 0x4e8) = 0;\r\n  if (*(int *)(param_1 + 0x4f0) != 4) {\r\n    *(int *)(param_1 + 0x4ec) = *(int *)(param_1 + 0x4f0);\r\n  }\r\n  *(undefined4 *)(param_1 + 0x4f0) = 4;\r\n  *(undefined4 *)(param_1 + 0x4cc) = 0x15;\r\n  FUN_005371b0(0,&DAT_00588994,0);\r\n  FUN_00536d00(0x3f800000);\r\n  *(undefined *)(param_1 + 0x500) = 0;\r\n  return;\r\n}\r\n\r\n", 
+  "is_thunk": false, 
+  "name": "FUN_00417bc0", 
+  "assembly": "  00417bc0:  PUSH ESI\n  00417bc1:  MOV ESI,ECX\n  00417bc3:  MOV AL,byte ptr [ESI + 0x500]\n  00417bc9:  TEST AL,AL\n  00417bcb:  JNZ 0x00417be7\n  00417bcd:  MOV EAX,dword ptr [ESI + 0x4ec]\n  00417bd3:  MOV dword ptr [ESI + 0x4f0],EAX\n  00417bd9:  CALL 0x004142e0\n  00417bde:  MOV byte ptr [ESI + 0x500],0x0\n  00417be5:  POP ESI\n  00417be6:  RET\n  00417be7:  MOV EAX,dword ptr [ESI + 0x4f0]\n  00417bed:  MOV dword ptr [ESI + 0x4e8],0x0\n  00417bf7:  CMP EAX,0x4\n  00417bfa:  JZ 0x00417c02\n  00417bfc:  MOV dword ptr [ESI + 0x4ec],EAX\n  00417c02:  PUSH EDI\n  00417c03:  LEA EDI,[ESI + 0x2a8]\n  00417c09:  PUSH 0x0\n  00417c0b:  PUSH 0x588994\n  00417c10:  PUSH 0x0\n  00417c12:  MOV ECX,EDI\n  00417c14:  MOV dword ptr [ESI + 0x4f0],0x4\n  00417c1e:  MOV dword ptr [ESI + 0x4cc],0x15\n  00417c28:  CALL 0x005371b0\n  00417c2d:  PUSH 0x3f800000\n  00417c32:  MOV ECX,EDI\n  00417c34:  CALL 0x00536d00\n  00417c39:  MOV byte ptr [ESI + 0x500],0x0\n  00417c40:  POP EDI\n  00417c41:  POP ESI\n  00417c42:  RET", 
+  "callers": []
+}

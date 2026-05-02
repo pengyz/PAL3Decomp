@@ -1,0 +1,139 @@
+{
+  "address": "0x00445010", 
+  "size_bytes": 139, 
+  "calling_convention": "unknown", 
+  "signature": "undefined FUN_00445010(void)", 
+  "callees": [
+    {
+      "address": "0x00445ec0", 
+      "name": "thunk_FUN_00445f20"
+    }, 
+    {
+      "address": "0x00541d10", 
+      "name": "FUN_00541d10"
+    }, 
+    {
+      "address": "0x00445b40", 
+      "name": "FUN_00445b40"
+    }
+  ], 
+  "global_refs": [
+    {
+      "address": "0x00560133", 
+      "type": null, 
+      "name": "LAB_00560133"
+    }, 
+    {
+      "address": "0xffdff000", 
+      "type": null, 
+      "name": "ExceptionList"
+    }, 
+    {
+      "address": "0x-0000010", 
+      "type": null, 
+      "name": "DAT_-0000010"
+    }, 
+    {
+      "address": "0x0056aea4", 
+      "type": null, 
+      "name": "PTR_FUN_0056aea4"
+    }, 
+    {
+      "address": "0x-0000004", 
+      "type": null, 
+      "name": "DAT_-0000004"
+    }, 
+    {
+      "address": "0x-000000c", 
+      "type": null, 
+      "name": "DAT_-000000c"
+    }
+  ], 
+  "has_custom_name": false, 
+  "decompiled_c": "\r\nvoid __fastcall FUN_00445010(undefined4 *param_1)\r\n\r\n{\r\n  char cVar1;\r\n  int iVar2;\r\n  void *local_c;\r\n  undefined *puStack_8;\r\n  undefined4 local_4;\r\n  \r\n  puStack_8 = &LAB_00560133;\r\n  local_c = ExceptionList;\r\n  ExceptionList = &local_c;\r\n  *param_1 = &PTR_FUN_0056aea4;\r\n  local_4 = 1;\r\n  thunk_FUN_00445f20();\r\n  iVar2 = param_1[0x13];\r\n  if (iVar2 != 0) {\r\n    cVar1 = *(char *)(iVar2 + -1);\r\n    if ((cVar1 == '\\0') || (cVar1 == -1)) {\r\n      FUN_00541d10((char *)(iVar2 + -1));\r\n    }\r\n    else {\r\n      *(char *)(iVar2 + -1) = cVar1 + -1;\r\n    }\r\n  }\r\n  param_1[0x13] = 0;\r\n  param_1[0x14] = 0;\r\n  param_1[0x15] = 0;\r\n  local_4 = 0xffffffff;\r\n  FUN_00445b40();\r\n  ExceptionList = local_c;\r\n  return;\r\n}\r\n\r\n", 
+  "is_thunk": false, 
+  "name": "FUN_00445010", 
+  "assembly": "  00445010:  PUSH -0x1\n  00445012:  PUSH 0x560133\n  00445017:  MOV EAX,FS:[0x0]\n  0044501d:  PUSH EAX\n  0044501e:  MOV dword ptr FS:[0x0],ESP\n  00445025:  PUSH ECX\n  00445026:  PUSH ESI\n  00445027:  MOV ESI,ECX\n  00445029:  MOV dword ptr [ESP + 0x4],ESI\n  0044502d:  MOV dword ptr [ESI],0x56aea4\n  00445033:  LEA ECX,[ESI + 0x68]\n  00445036:  MOV dword ptr [ESP + 0x10],0x1\n  0044503e:  CALL 0x00445ec0\n  00445043:  MOV EAX,dword ptr [ESI + 0x4c]\n  00445046:  TEST EAX,EAX\n  00445048:  JZ 0x00445067\n  0044504a:  LEA ECX,[EAX + -0x1]\n  0044504d:  MOV AL,byte ptr [EAX + -0x1]\n  00445050:  TEST AL,AL\n  00445052:  JZ 0x0044505e\n  00445054:  CMP AL,0xff\n  00445056:  JZ 0x0044505e\n  00445058:  DEC AL\n  0044505a:  MOV byte ptr [ECX],AL\n  0044505c:  JMP 0x00445067\n  0044505e:  PUSH ECX\n  0044505f:  CALL 0x00541d10\n  00445064:  ADD ESP,0x4\n  00445067:  MOV ECX,ESI\n  00445069:  MOV dword ptr [ESI + 0x4c],0x0\n  00445070:  MOV dword ptr [ESI + 0x50],0x0\n  00445077:  MOV dword ptr [ESI + 0x54],0x0\n  0044507e:  MOV dword ptr [ESP + 0x10],0xffffffff\n  00445086:  CALL 0x00445b40\n  0044508b:  MOV ECX,dword ptr [ESP + 0x8]\n  0044508f:  POP ESI\n  00445090:  MOV dword ptr FS:[0x0],ECX\n  00445097:  ADD ESP,0x10\n  0044509a:  RET", 
+  "callers": [
+    {
+      "address": "0x004a1410", 
+      "name": "FUN_004a1410"
+    }, 
+    {
+      "address": "0x00450ad0", 
+      "name": "FUN_00450ad0"
+    }, 
+    {
+      "address": "0x00451900", 
+      "name": "FUN_00451900"
+    }, 
+    {
+      "address": "0x00450eb0", 
+      "name": "FUN_00450eb0"
+    }, 
+    {
+      "address": "0x00452850", 
+      "name": "FUN_00452850"
+    }, 
+    {
+      "address": "0x00560a63", 
+      "name": "Unwind@00560a63"
+    }, 
+    {
+      "address": "0x00560adf", 
+      "name": "Unwind@00560adf"
+    }, 
+    {
+      "address": "0x00560cef", 
+      "name": "Unwind@00560cef"
+    }, 
+    {
+      "address": "0x00560d3f", 
+      "name": "Unwind@00560d3f"
+    }, 
+    {
+      "address": "0x005626c3", 
+      "name": "Unwind@005626c3"
+    }, 
+    {
+      "address": "0x0056273f", 
+      "name": "Unwind@0056273f"
+    }, 
+    {
+      "address": "0x00564c13", 
+      "name": "Unwind@00564c13"
+    }, 
+    {
+      "address": "0x00564c8f", 
+      "name": "Unwind@00564c8f"
+    }, 
+    {
+      "address": "0x00567c98", 
+      "name": "Unwind@00567c98"
+    }, 
+    {
+      "address": "0x00567e98", 
+      "name": "Unwind@00567e98"
+    }, 
+    {
+      "address": "0x005682c5", 
+      "name": "Unwind@005682c5"
+    }, 
+    {
+      "address": "0x00444ff0", 
+      "name": "FUN_00444ff0"
+    }, 
+    {
+      "address": "0x0047dd90", 
+      "name": "FUN_0047dd90"
+    }, 
+    {
+      "address": "0x00525540", 
+      "name": "FUN_00525540"
+    }, 
+    {
+      "address": "0x00529790", 
+      "name": "FUN_00529790"
+    }
+  ]
+}

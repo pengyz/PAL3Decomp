@@ -1,0 +1,39 @@
+{
+  "address": "0x004cea80", 
+  "size_bytes": 108, 
+  "calling_convention": "unknown", 
+  "signature": "undefined FUN_004cea80(void)", 
+  "callees": [], 
+  "global_refs": [], 
+  "has_custom_name": false, 
+  "decompiled_c": "\r\nvoid __fastcall FUN_004cea80(int param_1)\r\n\r\n{\r\n  char cVar1;\r\n  int iVar2;\r\n  int *piVar3;\r\n  \r\n  iVar2 = 0x800;\r\n  piVar3 = (int *)(param_1 + 0x92c);\r\n  do {\r\n    if (*(char *)(piVar3 + -1) != '\\0') {\r\n      (**(code **)(*(int *)*piVar3 + 0xc))();\r\n      if (*(char *)((int)piVar3 + -2) == '\\0') {\r\n        cVar1 = (**(code **)(*(int *)*piVar3 + 0x20))();\r\n        if ((cVar1 == '\\0') && ((undefined4 *)*piVar3 != (undefined4 *)0x0)) {\r\n          (*(code *)**(undefined4 **)*piVar3)(1);\r\n        }\r\n      }\r\n      *piVar3 = 0;\r\n      *(int *)(param_1 + 0xa91c) = *(int *)(param_1 + 0xa91c) + -1;\r\n      piVar3[-4] = 0;\r\n      piVar3[-3] = 0;\r\n      piVar3[-2] = 0;\r\n      piVar3[-1] = 0;\r\n      *piVar3 = 0;\r\n    }\r\n    piVar3 = piVar3 + 5;\r\n    iVar2 = iVar2 + -1;\r\n  } while (iVar2 != 0);\r\n  return;\r\n}\r\n\r\n", 
+  "is_thunk": false, 
+  "name": "FUN_004cea80", 
+  "assembly": "  004cea80:  PUSH EBX\n  004cea81:  PUSH ESI\n  004cea82:  PUSH EDI\n  004cea83:  MOV EDI,ECX\n  004cea85:  MOV EBX,0x800\n  004cea8a:  LEA ESI,[EDI + 0x92c]\n  004cea90:  MOV AL,byte ptr [ESI + -0x4]\n  004cea93:  TEST AL,AL\n  004cea95:  JZ 0x004ceae2\n  004cea97:  MOV ECX,dword ptr [ESI]\n  004cea99:  MOV EAX,dword ptr [ECX]\n  004cea9b:  CALL dword ptr [EAX + 0xc]\n  004cea9e:  MOV AL,byte ptr [ESI + -0x2]\n  004ceaa1:  TEST AL,AL\n  004ceaa3:  JNZ 0x004ceabc\n  004ceaa5:  MOV ECX,dword ptr [ESI]\n  004ceaa7:  MOV EDX,dword ptr [ECX]\n  004ceaa9:  CALL dword ptr [EDX + 0x20]\n  004ceaac:  TEST AL,AL\n  004ceaae:  JNZ 0x004ceabc\n  004ceab0:  MOV ECX,dword ptr [ESI]\n  004ceab2:  TEST ECX,ECX\n  004ceab4:  JZ 0x004ceabc\n  004ceab6:  MOV EAX,dword ptr [ECX]\n  004ceab8:  PUSH 0x1\n  004ceaba:  CALL dword ptr [EAX]\n  004ceabc:  MOV dword ptr [ESI],0x0\n  004ceac2:  MOV EAX,dword ptr [EDI + 0xa91c]\n  004ceac8:  DEC EAX\n  004ceac9:  LEA EDX,[ESI + -0x10]\n  004ceacc:  XOR ECX,ECX\n  004ceace:  MOV dword ptr [EDI + 0xa91c],EAX\n  004cead4:  MOV dword ptr [EDX],ECX\n  004cead6:  MOV dword ptr [EDX + 0x4],ECX\n  004cead9:  MOV dword ptr [EDX + 0x8],ECX\n  004ceadc:  MOV dword ptr [EDX + 0xc],ECX\n  004ceadf:  MOV dword ptr [EDX + 0x10],ECX\n  004ceae2:  ADD ESI,0x14\n  004ceae5:  DEC EBX\n  004ceae6:  JNZ 0x004cea90\n  004ceae8:  POP EDI\n  004ceae9:  POP ESI\n  004ceaea:  POP EBX\n  004ceaeb:  RET", 
+  "callers": [
+    {
+      "address": "0x004cdb60", 
+      "name": "FUN_004cdb60"
+    }, 
+    {
+      "address": "0x004cdca0", 
+      "name": "FUN_004cdca0"
+    }, 
+    {
+      "address": "0x00569110", 
+      "name": "FUN_00569110"
+    }, 
+    {
+      "address": "0x00513330", 
+      "name": "FUN_00513330"
+    }, 
+    {
+      "address": "0x004eb260", 
+      "name": "FUN_004eb260"
+    }, 
+    {
+      "address": "0x004e8480", 
+      "name": "FUN_004e8480"
+    }
+  ]
+}

@@ -1,0 +1,20 @@
+{
+  "address": "0x00555665", 
+  "size_bytes": 20, 
+  "calling_convention": "unknown", 
+  "signature": "undefined FUN_00555665(undefined param_1, undefined param_2, undefined4 param_3)", 
+  "callees": [], 
+  "global_refs": [
+    {
+      "address": "0x0000000a", 
+      "type": null, 
+      "name": "DAT_0000000a"
+    }
+  ], 
+  "has_custom_name": false, 
+  "decompiled_c": "\r\nbool FUN_00555665(undefined4 param_1,undefined4 param_2)\r\n\r\n{\r\n  return (param_2._2_2_ & 0x7ff0) != 0x7ff0;\r\n}\r\n\r\n", 
+  "is_thunk": false, 
+  "name": "FUN_00555665", 
+  "assembly": "  00555665:  MOV EAX,dword ptr [ESP + 0xa]\n  00555669:  XOR ECX,ECX\n  0055566b:  AND AX,0x7ff0\n  0055566f:  CMP AX,0x7ff0\n  00555673:  SETNZ CL\n  00555676:  MOV EAX,ECX\n  00555678:  RET", 
+  "callers": []
+}

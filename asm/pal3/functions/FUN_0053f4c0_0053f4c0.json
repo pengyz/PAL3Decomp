@@ -1,0 +1,25 @@
+{
+  "address": "0x0053f4c0", 
+  "size_bytes": 9, 
+  "calling_convention": "unknown", 
+  "signature": "undefined FUN_0053f4c0(void)", 
+  "callees": [], 
+  "global_refs": [
+    {
+      "address": "0x00570a58", 
+      "type": null, 
+      "name": "PTR_LAB_00570a58"
+    }
+  ], 
+  "has_custom_name": false, 
+  "decompiled_c": "\r\nvoid __fastcall FUN_0053f4c0(undefined4 *param_1)\r\n\r\n{\r\n  *param_1 = &PTR_LAB_00570a58;\r\n  return;\r\n}\r\n\r\n", 
+  "is_thunk": false, 
+  "name": "FUN_0053f4c0", 
+  "assembly": "  0053f4c0:  MOV EAX,ECX\n  0053f4c2:  MOV dword ptr [EAX],0x570a58\n  0053f4c8:  RET", 
+  "callers": [
+    {
+      "address": "0x0053f590", 
+      "name": "FUN_0053f590"
+    }
+  ]
+}
