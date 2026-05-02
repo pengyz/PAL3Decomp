@@ -203,16 +203,27 @@ struct GeomNodeDesc {
     int flags;
 };
 
-// Mesh section (submesh)
+// Mesh section (submesh) - sizeof = 0xBC (deduced from iteration stride)
+// Known field offsets: +0x08=textureArray, +0x48=numTextures, +0x90=indexBubble
+// m_faceCount position unknown (used via direct member access in GetNumFaces)
 class gbMeshSection {
 public:
     gbMeshSection();
 
-    int m_vertexStart;
-    int m_vertexCount;
-    int m_faceStart;
-    int m_faceCount;
-    int m_materialIndex;
+    void* _field00;                 // +0x00
+    void* _field04;                 // +0x04
+    gbTexture** m_pTextureArray;    // +0x08: array of texture pointers
+    int m_vertexStart;              // +0x0C
+    int m_vertexCount;              // +0x10
+    int m_faceStart;                // +0x14
+    int m_faceCount;                // +0x18
+    int m_materialIndex;            // +0x1C
+    char _pad20[0x28];              // +0x20..+0x47
+    int m_numTextures;              // +0x48: number of active textures
+    char _pad4C[0x44];              // +0x4C..+0x8F
+    void* m_pIndexBubble;           // +0x90: gbIndexBubble*
+    char _pad94[0x28];              // +0x94..+0xBB
+    // total sizeof = 0xBC
 };
 
 // Mesh memory cache

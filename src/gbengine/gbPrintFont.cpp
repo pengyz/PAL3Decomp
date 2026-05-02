@@ -18,9 +18,9 @@ gbPrintFont::gbPrintFont(int maxStr, int max3D, int bufSize)
     max3DStrings = max3D;
     maxChars = bufSize;
 
-    stringInfoBuffer = malloc(maxStr * 0x2c);
+    stringInfoBuffer = (gbPrintStringInfo*)malloc(maxStr * sizeof(gbPrintStringInfo));
     charInfoBuffer = malloc(maxStr * 8);
-    string3DInfoBuffer = malloc(max3D * 0x24);
+    string3DInfoBuffer = (gbPrint3DStringInfo*)malloc(max3D * sizeof(gbPrint3DStringInfo));
     textBuffer = (char*)malloc(bufSize);
 
     currentStringCount = 0;
@@ -81,25 +81,24 @@ void gbPrintFont::PrintString(char* text, float x, float y, float w, float h)
     memcpy(textBuffer + currentTextOffset, text, len);
 
     // Store string info record
-    char* record = (char*)stringInfoBuffer + currentStringCount * 0x2c;
+    gbPrintStringInfo* record = &stringInfoBuffer[currentStringCount];
 
-    *(float*)(record + 0x04) = x;
-    *(float*)(record + 0x08) = y;
-    *(float*)(record + 0x0C) = depth;
-    *(float*)(record + 0x10) = w;
-    *(float*)(record + 0x14) = h;
+    record->x = x;
+    record->y = y;
+    record->depth = depth;
+    record->width = w;
+    record->height = h;
 
     // Pack color as RGBA
-    unsigned int color = (unsigned int)colorR |
-                         ((unsigned int)colorG << 8) |
-                         ((unsigned int)colorB << 16) |
-                         ((unsigned int)colorA << 24);
-    *(unsigned int*)(record + 0x18) = color;
+    record->color = (unsigned int)colorR |
+                    ((unsigned int)colorG << 8) |
+                    ((unsigned int)colorB << 16) |
+                    ((unsigned int)colorA << 24);
 
-    *(float*)(record + 0x1C) = scaleX;
-    *(float*)(record + 0x20) = scaleY;
-    *(float*)(record + 0x24) = pitchX;
-    *(int*)(record + 0x28) = currentTextOffset;
+    record->scaleX = scaleX;
+    record->scaleY = scaleY;
+    record->pitchX = pitchX;
+    record->textBufferOffset = currentTextOffset;
 
     currentStringCount++;
     currentTextOffset += len;
@@ -118,25 +117,23 @@ void gbPrintFont::Print3DString(char* text, float x, float y, float z)
     memcpy(textBuffer + currentTextOffset, text, len);
 
     // Store 3D string info record
-    char* record = (char*)string3DInfoBuffer + current3DStringCount * 0x24;
+    gbPrint3DStringInfo* record = &string3DInfoBuffer[current3DStringCount];
 
-    // Store the 3D position (in actual code this goes through matrix transform)
-    *(float*)(record + 0x00) = x;
-    *(float*)(record + 0x04) = y;
-    *(float*)(record + 0x08) = z;
+    record->x = x;
+    record->y = y;
+    record->z = z;
 
     // Pack color
-    unsigned int color = (unsigned int)colorR |
-                         ((unsigned int)colorG << 8) |
-                         ((unsigned int)colorB << 16) |
-                         ((unsigned int)colorA << 24);
-    *(unsigned int*)(record + 0x0C) = color;
+    record->color = (unsigned int)colorR |
+                    ((unsigned int)colorG << 8) |
+                    ((unsigned int)colorB << 16) |
+                    ((unsigned int)colorA << 24);
 
-    *(float*)(record + 0x10) = scaleX;
-    *(float*)(record + 0x14) = scaleY;
-    *(float*)(record + 0x18) = pitchX;
-    *(float*)(record + 0x1C) = pitchY;
-    *(int*)(record + 0x20) = currentTextOffset;
+    record->scaleX = scaleX;
+    record->scaleY = scaleY;
+    record->pitchX = pitchX;
+    record->pitchY = pitchY;
+    record->textBufferOffset = currentTextOffset;
 
     current3DStringCount++;
     currentTextOffset += len;

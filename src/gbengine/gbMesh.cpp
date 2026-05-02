@@ -182,9 +182,9 @@ void gbBaseMesh::SetCurTime(float time) {
 
 void gbBaseMesh::SetTexture(int index, gbTexture* texture) {
     for (int i = 0; i < m_numSections; i++) {
-        char* sectionBase = (char*)m_sections + i * 0xBC;
-        gbTexture** texArray = *(gbTexture***)(sectionBase + 8);
-        int maxTex = *(int*)(sectionBase + 0x48);
+        gbMeshSection* section = &m_sections[i];
+        gbTexture** texArray = section->m_pTextureArray;
+        int maxTex = section->m_numTextures;
 
         if (index < maxTex && texArray[index] != NULL) {
             texArray[index]->refObj.Release();
@@ -195,8 +195,8 @@ void gbBaseMesh::SetTexture(int index, gbTexture* texture) {
         texArray[index] = texture;
 
         // Update max texture count if needed
-        if (*(int*)(sectionBase + 0x48) < index + 1) {
-            *(int*)(sectionBase + 0x48) = index + 1;
+        if (section->m_numTextures < index + 1) {
+            section->m_numTextures = index + 1;
         }
     }
 }
@@ -211,8 +211,8 @@ void gbBaseMesh::ReplaceTexture(const char* textureName) {
 }
 
 void gbBaseMesh::ReplaceTexture(gbTexture* texture) {
-    // Stores texture as first texture of first section (offset +8 from section base)
-    *(gbTexture**)((char*)m_sections + 8) = texture;
+    // Store texture pointer at first section's texture array field
+    m_sections[0].m_pTextureArray = (gbTexture**)texture;
 }
 
 void gbBaseMesh::ComputeShadowVolume() {
@@ -346,9 +346,8 @@ void gbStaticMesh::ComputeShadowVolume() {
     // Count total indices across all sections
     int totalIndices = 0;
     for (int i = 0; i < m_numSections; i++) {
-        char* sectionBase = (char*)m_sections + i * 0xBC;
-        // Index bubble pointer at section offset +0x90
-        gbIndexBubble* idxBubble = *(gbIndexBubble**)(sectionBase + 0x90);
+        gbMeshSection* section = &m_sections[i];
+        gbIndexBubble* idxBubble = (gbIndexBubble*)section->m_pIndexBubble;
         if (idxBubble) {
             totalIndices += idxBubble->count;
         }
@@ -362,8 +361,8 @@ void gbStaticMesh::ComputeShadowVolume() {
             // Lock each index bubble and copy indices into flat array
             int offset = 0;
             for (int i = 0; i < m_numSections; i++) {
-                char* sectionBase = (char*)m_sections + i * 0xBC;
-                gbIndexBubble* idxBubble = *(gbIndexBubble**)(sectionBase + 0x90);
+                gbMeshSection* section = &m_sections[i];
+                gbIndexBubble* idxBubble = (gbIndexBubble*)section->m_pIndexBubble;
                 if (idxBubble) {
                     unsigned short* srcIndices = idxBubble->Lock16();
                     if (srcIndices) {

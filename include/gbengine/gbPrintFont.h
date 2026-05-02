@@ -6,37 +6,41 @@
 class gbGfxManager;
 class gbMatrixStack;
 
-// String info record layout (0x2c bytes each):
-// +0x00: (unused/padding)
-// +0x04: float x
-// +0x08: float y
-// +0x0C: float depth
-// +0x10: float width
-// +0x14: float height
-// +0x18: unsigned int color (RGBA packed)
-// +0x1C: float scaleX
-// +0x20: float scaleY
-// +0x24: float pitchX
-// +0x28: int textBufferOffset
+// sizeof = 0x2C
+struct gbPrintStringInfo {
+    int _pad00;                 // +0x00
+    float x;                    // +0x04
+    float y;                    // +0x08
+    float depth;                // +0x0C
+    float width;                // +0x10
+    float height;               // +0x14
+    unsigned int color;         // +0x18 (RGBA packed)
+    float scaleX;               // +0x1C
+    float scaleY;               // +0x20
+    float pitchX;               // +0x24
+    int textBufferOffset;       // +0x28
+};
 
-// 3D string info record layout (0x24 bytes each):
-// +0x00: float x (transformed)
-// +0x04: float y (transformed)
-// +0x08: float z (transformed)
-// +0x0C: unsigned int color (RGBA packed)
-// +0x10: float scaleX
-// +0x14: float scaleY
-// +0x18: float pitchX
-// +0x1C: float pitchY
-// +0x20: int textBufferOffset
+// sizeof = 0x24
+struct gbPrint3DStringInfo {
+    float x;                    // +0x00
+    float y;                    // +0x04
+    float z;                    // +0x08
+    unsigned int color;         // +0x0C (RGBA packed)
+    float scaleX;               // +0x10
+    float scaleY;               // +0x14
+    float pitchX;               // +0x18
+    float pitchY;               // +0x1C
+    int textBufferOffset;       // +0x20
+};
 
 class gbPrintFont {
 public:
-    void*           stringInfoBuffer;   // +0x04
+    gbPrintStringInfo* stringInfoBuffer; // +0x04
     void*           charInfoBuffer;     // +0x08
     int             maxStrings;         // +0x0C
     int             currentStringCount; // +0x10
-    void*           string3DInfoBuffer; // +0x14
+    gbPrint3DStringInfo* string3DInfoBuffer; // +0x14
     int             current3DStringCount; // +0x18
     int             max3DStrings;       // +0x1C
     char*           textBuffer;         // +0x20
