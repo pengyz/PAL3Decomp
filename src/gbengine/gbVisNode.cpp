@@ -4,6 +4,7 @@
  */
 
 #include "gbengine/gbVisNode.h"
+#include "gbengine/gbTexture.h"
 #include <string.h>
 #include <stdlib.h>
 #include <math.h>
@@ -504,11 +505,8 @@ void gbVolModNode::Render(struct gbRenderInfoObj * p0) {
 }
 
 void gbVolModNode::SetVolModObj(class gbVolumeModifier * p0) {
-    // From Ghidra (SetVolModObj at 0x10013140):
-    // Increment refcount on new modifier, store pointer
     if (p0 != 0) {
-        int* pRef = (int*)p0;
-        pRef[1] += 1;  // Increment RefCount at offset +4
+        ((gbRefObject*)p0)->RefCount += 1;
     }
     pVolMod = (void*)p0;
 }

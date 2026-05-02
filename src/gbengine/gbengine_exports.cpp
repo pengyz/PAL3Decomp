@@ -2642,11 +2642,9 @@ gbVTextFile::~gbVTextFile() {
     }
 }
 gbVolModNode::~gbVolModNode() {
-    // From Ghidra (~gbVolModNode at 0x100130B0):
-    // Release the volume modifier ref-counted object
     if (pVolMod != 0) {
         int* pRef = (int*)pVolMod;
-        pRef[1] -= 1;  // decrement RefCount at offset +4
+        pRef[1] -= 1;
         if (pRef[1] <= 0) {
             typedef void (__thiscall *DtorFn)(void*, int);
             DtorFn dtor = (DtorFn)(*(int**)pVolMod)[0];
