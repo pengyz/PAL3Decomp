@@ -44,6 +44,7 @@ def get_script_args():
         'output_dir': None,
         'min_size': 8,
         'address': None,
+        'addr_file': None,
         'module': None,
         'list_only': False,
     }
@@ -64,6 +65,9 @@ def get_script_args():
             i += 2
         elif arg == '--address' and i + 1 < len(script_args):
             args['address'] = script_args[i + 1]
+            i += 2
+        elif arg == '--addr-file' and i + 1 < len(script_args):
+            args['addr_file'] = script_args[i + 1]
             i += 2
         elif arg == '--module' and i + 1 < len(script_args):
             args['module'] = script_args[i + 1]
@@ -312,6 +316,22 @@ def run():
         else:
             print("ERROR: No function found at address {}".format(args['address']))
             return
+    elif args.get('addr_file'):
+        # Export functions listed in address file
+        addr_set = set()
+        with open(args['addr_file'], 'r') as f:
+            for line in f:
+                line = line.strip()
+                if line:
+                    addr_set.add(line.lower().replace('0x', ''))
+
+        func_iter = func_mgr.getFunctions(True)
+        for func in func_iter:
+            if func.isExternal() or func.isThunk():
+                continue
+            addr_hex = "{:08x}".format(func.getEntryPoint().getOffset())
+            if addr_hex in addr_set:
+                functions.append(func)
     else:
         # Export all functions matching criteria
         func_iter = func_mgr.getFunctions(True)  # Forward iterator
