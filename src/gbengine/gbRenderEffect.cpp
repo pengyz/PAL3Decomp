@@ -20,6 +20,9 @@ gbRenderEffect::gbRenderEffect(ID3DXEffect* pEffect, unsigned int flags) {
         m_pEffect->AddRef();
 
         // Get number of passes
+        // Note: D3DXTECHNIQUE_DESC requires D3DX9 SDK
+        // If compilation fails, ensure DirectX SDK August 2007 or later is installed
+        #ifdef D3DX_SDK_VERSION
         D3DXHANDLE hTech = m_pEffect->GetCurrentTechnique();
         if (hTech) {
             D3DXTECHNIQUE_DESC desc;
@@ -27,6 +30,10 @@ gbRenderEffect::gbRenderEffect(ID3DXEffect* pEffect, unsigned int flags) {
                 m_nPasses = desc.Passes;
             }
         }
+        #else
+        // Fallback if D3DX SDK not available
+        m_nPasses = 1;
+        #endif
     }
 }
 

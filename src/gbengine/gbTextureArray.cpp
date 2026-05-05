@@ -1,44 +1,35 @@
 /**
  * gbengine.dll - gbTextureArray
- * Texture array container (up to 8 textures for multi-texturing)
+ * Texture array container (up to 2 textures for multi-texturing)
  */
 
 #include "gbengine/gbTexture.h"
 #include <string.h>
 
 gbTextureArray::gbTextureArray(void) {
-    memset(textures, 0, sizeof(textures));
-    numTextures = 0;
+    pTex[0] = NULL;
+    pTex[1] = NULL;
 }
 
 gbTextureArray::gbTextureArray(gbTexture* tex0) {
-    memset(textures, 0, sizeof(textures));
-    textures[0] = tex0;
-    numTextures = tex0 ? 1 : 0;
+    pTex[0] = tex0;
+    pTex[1] = NULL;
 }
 
 gbTextureArray::gbTextureArray(gbTexture* tex0, gbTexture* tex1) {
-    memset(textures, 0, sizeof(textures));
-    textures[0] = tex0;
-    textures[1] = tex1;
-    numTextures = 0;
-    if (tex0) numTextures++;
-    if (tex1) numTextures++;
+    pTex[0] = tex0;
+    pTex[1] = tex1;
 }
 
 gbTextureArray& gbTextureArray::operator=(const gbTextureArray& other) {
     if (this != &other) {
-        memcpy(this, &other, sizeof(gbTextureArray));
+        pTex[0] = other.pTex[0];
+        pTex[1] = other.pTex[1];
     }
     return *this;
 }
 
 void gbTextureArray::SetTexture(gbTexture* tex) {
-    if (tex) {
-        textures[0] = tex;
-        numTextures = 1;
-    } else {
-        memset(textures, 0, sizeof(textures));
-        numTextures = 0;
-    }
+    pTex[0] = tex;
+    pTex[1] = NULL;
 }

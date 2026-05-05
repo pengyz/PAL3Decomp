@@ -51,13 +51,6 @@ gbVec3D::gbVec3D(float _x, float _y, float _z)
     z = _z;
 }
 
-gbVec3D::gbVec3D(void)
-{
-    x = 0.0f;
-    y = 0.0f;
-    z = 0.0f;
-}
-
 void gbVec3D::operator=(const gbVec3D &other)
 {
     x = other.x;

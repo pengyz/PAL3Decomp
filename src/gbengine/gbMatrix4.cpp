@@ -18,6 +18,8 @@
 #include <math.h>
 #include <string.h>
 
+#define GB_FLOAT_EPSILON 0.005
+
 gbMatrix4::gbMatrix4(void)
 {
     LoadIdentity();
@@ -330,7 +332,7 @@ void gbMatrix4::Invert(void)
     *this = tmp;
 }
 
-void gbMatrix4::Invert(gbMatrix4 *out)
+void gbMatrix4::Invert(gbMatrix4 *out) const
 {
     float cofA = m[1][1] * m[2][2] - m[2][1] * m[1][2];
     float det = 1.0f / ((m[2][1] * m[1][0] - m[2][0] * m[1][1]) * m[0][2] +
@@ -424,25 +426,6 @@ void gbMatrix4::LeftScale(float sx, float sy, float sz)
     m[2][0] = sz * m[2][0];
     m[2][1] = sz * m[2][1];
     m[2][2] = sz * m[2][2];
-}
-
-float *gbMatrix4::GetRow(float *out, int row) const
-{
-    float *pRow = (float *)this + row * 4;
-    out[0] = pRow[0];
-    out[1] = pRow[1];
-    out[2] = pRow[2];
-    out[3] = pRow[3];
-    return out;
-}
-
-float *gbMatrix4::GetColumn(float *out, int col) const
-{
-    out[0] = m[0][col];
-    out[1] = m[1][col];
-    out[2] = m[2][col];
-    out[3] = m[3][col];
-    return out;
 }
 
 void gbMatrix4::Transform(gbVec3D *in, gbVec3D *out, int count) const

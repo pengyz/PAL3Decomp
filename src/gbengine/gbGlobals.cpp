@@ -1,4 +1,3 @@
-#include "pal3.h"
 #include "gbengine/gbengine_types.h"
 #include "gbengine/gbGfxManager.h"
 #include "gbengine/gbVisNode.h"

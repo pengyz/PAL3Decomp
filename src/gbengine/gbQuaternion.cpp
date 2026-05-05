@@ -75,7 +75,7 @@ void gbQuaternion::GetAxisAngle(gbVec3D *axis, float *angle)
     }
 }
 
-bool gbQuaternion::IsValid(void) const
+bool const gbQuaternion::IsValid(void) const
 {
     if (this == NULL) return false;
     if (x * x < 0.0f) return false;
@@ -85,7 +85,7 @@ bool gbQuaternion::IsValid(void) const
     return true;
 }
 
-bool gbQuaternion::IsUnit(void) const
+bool const gbQuaternion::IsUnit(void) const
 {
     float lenSq = x * x + y * y + z * z + w * w;
     if (lenSq < 1.005f && lenSq >= 0.995f) {
@@ -258,7 +258,7 @@ void gbQuaternion::MultiplyBy(gbQuaternion *other, gbQuaternion *result)
     result->z = az * bw + (bz * aw + by * ax) - ay * bx;
 }
 
-float gbQuaternion::Magnitude(void)
+float const gbQuaternion::Magnitude(void)
 {
     return x * x + y * y + z * z + w * w;
 }

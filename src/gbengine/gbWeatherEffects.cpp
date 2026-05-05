@@ -40,7 +40,7 @@ void gbRain::Update(float deltaTime) {
         // Respawn if below ground
         if (drop->position.y < 0.0f) {
             drop->position.y = 100.0f;
-            drop->velocity.y = desc.velocity.y;
+            drop->velocity.y = -desc.speed * desc.gravity;
         }
     }
 }
@@ -84,7 +84,7 @@ void gbSnow::Update(float deltaTime) {
         // Respawn if below ground
         if (flake->position.y < 0.0f) {
             flake->position.y = 100.0f;
-            flake->velocity.y = desc.velocity.y * 0.3f;
+            flake->velocity.y = -desc.speed * desc.gravity * 0.3f;
         }
     }
 }

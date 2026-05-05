@@ -89,7 +89,7 @@ void gbRotMatrix::LoadIdentity(void)
     m[2][2] = 1.0f;
 }
 
-bool gbRotMatrix::IsValid(void)
+bool const gbRotMatrix::IsValid(void)
 {
     if (this == NULL) return false;
     float *p = (float *)this;
@@ -104,7 +104,7 @@ bool gbRotMatrix::IsValid(void)
     return false;
 }
 
-bool gbRotMatrix::IsOrthonormal(void)
+bool const gbRotMatrix::IsOrthonormal(void)
 {
     gbVec3D col_x, col_y, cross, col_z;
 

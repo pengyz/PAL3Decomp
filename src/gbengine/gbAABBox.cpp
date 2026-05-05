@@ -48,7 +48,8 @@ void gbAABBox::Transform(gbMatrix4* mat) {
 
     // Transform first corner and initialize bounds
     mat->Transform(&corners[0], &corners[0]);
-    vMin = vMax = corners[0];
+    vMin = corners[0];
+    vMax = corners[0];
 
     // Transform remaining corners and expand bounds
     for (int i = 1; i < 8; i++) {

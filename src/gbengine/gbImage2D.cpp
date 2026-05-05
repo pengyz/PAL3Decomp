@@ -87,7 +87,7 @@ gbImage2DInfo* gbImage2D::GetImgInfo(void) {
 }
 
 gbPixelFmtType gbImage2D::GetPixelFmtType(void) {
-    return PixelFmt.fmtType;
+    return PixelFmt.Type;
 }
 
 unsigned char* gbImage2D::CreateImage(int w, int h, int bpp) {

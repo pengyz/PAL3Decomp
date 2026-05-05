@@ -14,7 +14,7 @@
  * pStack[curDepth] is the current "top" matrix.
  */
 
-#include "gbengine/gbengine_types.h"
+#include "gbengine/gbengine_internal.h"
 #include <string.h>
 
 extern void *operator new(unsigned int size);

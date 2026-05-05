@@ -17,7 +17,7 @@ const char* gbBaseMesh::GetObjectName(void) {
 gbMeshType gbBaseMesh::GetMeshType(void) {
     /* UNCERTAIN: Return mesh type enum */
     // return meshType;
-    return GB_MESH_STATIC;
+    return MESH_STATIC;
 }
 
 int gbBaseMesh::GetNumSection(void) {

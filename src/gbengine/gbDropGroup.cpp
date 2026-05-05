@@ -58,8 +58,9 @@ void gbDropGroup::CreateUnit(float deltaTime, gbCamera* camera) {
     /* UNCERTAIN: Drop unit initialization logic */
     spawnTimer += deltaTime;
 
-    // Spawn new drop based on spawn rate
-    if (spawnTimer >= desc.spawnRate) {
+    // Spawn new drop based on density (density controls spawn rate)
+    float spawnRate = 1.0f / (desc.density + 0.01f);
+    if (spawnTimer >= spawnRate) {
         gbDropUnit* unit = &units[numActiveUnits];
 
         // Initialize drop position relative to camera
@@ -67,7 +68,10 @@ void gbDropGroup::CreateUnit(float deltaTime, gbCamera* camera) {
         unit->position.y = 100.0f;
         unit->position.z = (float)(rand() % 200 - 100);
 
-        unit->velocity = desc.velocity;
+        // Calculate velocity from gravity and wind
+        unit->velocity.x = desc.windX;
+        unit->velocity.y = -desc.speed * desc.gravity;
+        unit->velocity.z = desc.windZ;
         unit->alive = 1;
 
         numActiveUnits++;

@@ -98,13 +98,13 @@ int gbOBBox::IsColOBB(gbOBBox* other) {
         matrix.GetRow(&axis, i);
         float dist = fabsf(T.DotProduct(&axis));
         float radiusA = ((float*)&extent)[i];
-        float radiusB = other->GetRadiusInDirection(&axis);
+        float radiusB = other->GetRadiusInDirection(axis);
         if (dist > radiusA + radiusB) return 0;
 
         // Test other->axis[i]
         other->matrix.GetRow(&axis, i);
         dist = fabsf(T.DotProduct(&axis));
-        radiusA = GetRadiusInDirection(&axis);
+        radiusA = GetRadiusInDirection(axis);
         radiusB = ((float*)&other->extent)[i];
         if (dist > radiusA + radiusB) return 0;
     }
@@ -125,8 +125,8 @@ int gbOBBox::IsColOBB(gbOBBox* other) {
             if (len < 0.0001f) continue;
 
             float dist = fabsf(T.DotProduct(&cross)) / len;
-            float radiusA = GetRadiusInDirection(&cross) / len;
-            float radiusB = other->GetRadiusInDirection(&cross) / len;
+            float radiusA = GetRadiusInDirection(cross) / len;
+            float radiusB = other->GetRadiusInDirection(cross) / len;
 
             if (dist > radiusA + radiusB) return 0;
         }

@@ -3,6 +3,7 @@
  * Volume modifier node for lighting/shadowing
  */
 
+#include "gbengine/gbengine_internal.h"
 #include "gbengine/gbVisNode.h"
 #include "gbengine/gbSceneGraph.h"
 #include <string.h>
