@@ -5,8 +5,9 @@ IDAPython: PAL3A 一键反编译质量优化 Master Pipeline
   Phase 1: 导入 PDB 结构体定义 (416 classes)
   Phase 2: 补充缺失类型 (UIWnd, NPCInfo, SaveTask, PtrArray)
   Phase 3: 修补 UI 类基类 (_gap_0 -> UIWnd)
-  Phase 4: 批量重命名高频 sub_ 函数 (15个, 影响8000+调用点)
-  Phase 5: 重新导出全部反编译结果
+  Phase 4: 批量重命名高频 sub_ 函数 (37个, 影响8000+调用点)
+  Phase 5: 应用 PDB 函数签名 (先命名再设类型, v2)
+  Phase 6: 重新导出全部反编译结果
 
 用法:
   idat.exe -A -S"ida_master_pipeline.py [options]" PAL3A.exe.i64
@@ -102,7 +103,7 @@ def main():
     ok = run_phase(4, "重命名高频未命名函数", "ida_rename_top_subs.py")
     results.append(("Phase 4: sub_ 重命名", ok))
 
-    ok = run_phase(5, "应用 PDB 函数签名 (参数类型)", "ida_apply_signatures.py")
+    ok = run_phase(5, "应用 PDB 函数签名 (先命名+设类型 v2)", "ida_apply_signatures2.py")
     results.append(("Phase 5: 函数签名应用", ok))
 
     if not SKIP_EXPORT:
