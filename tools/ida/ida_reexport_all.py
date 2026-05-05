@@ -12,8 +12,12 @@ import json
 import os
 import time
 
-OUTPUT_DIR = r"D:\workspace\project-x\asm\pal3a\decomp"
-LOG_FILE = r"D:\workspace\project-x\tools\fulldump\ida_reexport_log.txt"
+SCRIPT_DIR = os.path.dirname(os.path.abspath(__file__))
+PROJECT_ROOT = os.path.dirname(os.path.dirname(SCRIPT_DIR))
+LOG_DIR = os.path.join(SCRIPT_DIR, "_logs")
+
+OUTPUT_DIR = os.path.join(PROJECT_ROOT, "asm", "pal3a", "decomp")
+LOG_FILE = os.path.join(LOG_DIR, "ida_reexport_log.txt")
 SUMMARY_FILE = os.path.join(OUTPUT_DIR, "_export_summary.json")
 
 TEXT_START = 0x00401000

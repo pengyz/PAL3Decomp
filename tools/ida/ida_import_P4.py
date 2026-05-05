@@ -13,7 +13,9 @@ import idc
 import traceback
 import os
 
-LOG_FILE = r"D:\workspace\project-x\tools\fulldump\ida_struct_import_log.txt"
+SCRIPT_DIR = os.path.dirname(os.path.abspath(__file__))
+LOG_DIR = os.path.join(SCRIPT_DIR, "_logs")
+LOG_FILE = os.path.join(LOG_DIR, "ida_import_P4_log.txt")
 TEXT_START = 0x00401000
 TEXT_END = 0x00558000
 

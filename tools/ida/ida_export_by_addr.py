@@ -12,9 +12,13 @@ import json
 import os
 import time
 
-PDB_EXPORT = r"D:\workspace\project-x\asm\pal3a\pdb_export.json"
-OUTPUT_DIR = r"D:\workspace\project-x\asm\pal3a\decomp"
-LOG_FILE = r"D:\workspace\project-x\tools\fulldump\ida_export_by_addr_log.txt"
+SCRIPT_DIR = os.path.dirname(os.path.abspath(__file__))
+PROJECT_ROOT = os.path.dirname(os.path.dirname(SCRIPT_DIR))
+LOG_DIR = os.path.join(SCRIPT_DIR, "_logs")
+
+PDB_EXPORT = os.path.join(PROJECT_ROOT, "asm", "pal3a", "pdb_export.json")
+OUTPUT_DIR = os.path.join(PROJECT_ROOT, "asm", "pal3a", "decomp")
+LOG_FILE = os.path.join(LOG_DIR, "ida_export_by_addr_log.txt")
 
 TEXT_START = 0x00401000
 TEXT_END = 0x00558000

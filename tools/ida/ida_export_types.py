@@ -6,7 +6,7 @@ IDAPython: 导出 IDA Local Types 为 C 头文件
   idat.exe -A -S"ida_export_types.py" PAL3A.exe.i64
 
 输出:
-  tools/fulldump/pal3a_types_exported.h
+  tools/ida/pal3a_types_exported.h
 """
 
 import ida_auto
@@ -14,8 +14,12 @@ import ida_typeinf
 import idc
 import os
 
-OUTPUT_FILE = r"D:\workspace\project-x\tools\fulldump\pal3a_types_exported.h"
-LOG_FILE = r"D:\workspace\project-x\tools\fulldump\ida_export_types_log.txt"
+SCRIPT_DIR = os.path.dirname(os.path.abspath(__file__))
+PROJECT_ROOT = os.path.dirname(os.path.dirname(SCRIPT_DIR))
+LOG_DIR = os.path.join(SCRIPT_DIR, "_logs")
+
+OUTPUT_FILE = os.path.join(SCRIPT_DIR, "pal3a_types_exported.h")
+LOG_FILE = os.path.join(LOG_DIR, "ida_export_types_log.txt")
 
 
 def main():
