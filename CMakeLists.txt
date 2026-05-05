@@ -190,39 +190,42 @@ elseif(BUILD_TARGET STREQUAL "pal3")
 elseif(BUILD_TARGET STREQUAL "pal3a")
     message(STATUS "Configuring PAL3A.exe build")
 
-    set(PAL3A_SOURCES
-        src/pal3a/winmain.cpp
-        src/pal3a/pal3a_stubs.cpp
-        src/pal3a/script/script_entry.cpp
-        src/pal3a/script/sce_runtime.cpp
-        src/pal3a/script/sce_dispatch.cpp
-    )
+    file(GLOB_RECURSE PAL3A_SOURCES "src/pal3a/*.cpp" "src/pal3a/*.c")
 
-    add_executable(pal3a WIN32 ${PAL3A_SOURCES})
-    target_include_directories(pal3a PUBLIC include)
-    set_target_properties(pal3a PROPERTIES
-        OUTPUT_NAME "PAL3A"
-        SUFFIX ".exe"
-    )
-
-    if(MSVC)
-        target_compile_options(pal3a PRIVATE ${PAL3_COMPILE_FLAGS})
-        target_link_options(pal3a PRIVATE
-            /SUBSYSTEM:WINDOWS
-            /ENTRY:WinMainCRTStartup
-            /BASE:0x00400000
-            /DYNAMICBASE:NO
-            /FIXED:NO
-            /MAP
+    if(PAL3A_SOURCES)
+        add_executable(PAL3A WIN32 ${PAL3A_SOURCES})
+        target_include_directories(PAL3A PRIVATE
+            ${CMAKE_SOURCE_DIR}/src/pal3a
+            ${CMAKE_SOURCE_DIR}/include
         )
-        file(MAKE_DIRECTORY ${CMAKE_BINARY_DIR}/asm)
-        target_compile_options(pal3a PRIVATE /FAcs /Fa${CMAKE_BINARY_DIR}/asm/)
+        target_link_libraries(PAL3A
+            ${CMAKE_SOURCE_DIR}/lib/gbengine.lib
+            ${CMAKE_SOURCE_DIR}/lib/topo.lib
+            ${PLATFORM_LIBS}
+            advapi32
+        )
+
+        target_compile_definitions(PAL3A PRIVATE PAL3A_DEV_MODE)
+
+        set_target_properties(PAL3A PROPERTIES OUTPUT_NAME "PAL3A")
+
+        if(MSVC)
+            target_link_options(PAL3A PRIVATE
+                /SUBSYSTEM:WINDOWS
+                /ENTRY:WinMainCRTStartup
+                /DYNAMICBASE:NO
+                /BASE:0x00400000
+                /MAP
+            )
+            file(MAKE_DIRECTORY ${CMAKE_BINARY_DIR}/asm)
+            target_compile_options(PAL3A PRIVATE /FAcs /Fa${CMAKE_BINARY_DIR}/asm/)
+        endif()
+
+        list(LENGTH PAL3A_SOURCES PAL3A_SRC_COUNT)
+        message(STATUS "PAL3A.exe: ${PAL3A_SRC_COUNT} source files")
+    else()
+        message(WARNING "No source files found in src/pal3a/")
     endif()
-
-    target_compile_definitions(pal3a PRIVATE PAL3_DEV_MODE PAL3A_DEV_MODE)
-    target_link_libraries(pal3a ${PLATFORM_LIBS} advapi32)
-
-    message(STATUS "PAL3A.exe: ${CMAKE_CURRENT_LIST_FILE} source files")
 
 else()
     message(FATAL_ERROR "Invalid BUILD_TARGET: ${BUILD_TARGET}. Must be 'topo', 'gbengine', 'pal3', or 'pal3a'")

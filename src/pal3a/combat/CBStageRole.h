@@ -1,0 +1,116 @@
+#ifndef PAL3A_CBSTAGEROLE_H
+#define PAL3A_CBSTAGEROLE_H
+
+#include "pal3a_types.h"
+
+class CCBStageRole {
+public:
+    char _data[6848];
+
+    unsigned long ProcFlyRun(ulong dwMsg);
+    int CheckAction(ACTION_KIND ActKind);
+    bool DelAllTask();
+    void OnChangeAction();
+    unsigned long ProcFastRun(ulong __formal);
+    bool EndTask(void * fp, ulong dwTaskID);
+    bool ForceAddTask(void * fp, gbVec3D * pV1, tagCmdData * pCmd, ECBRoleTaskMode eMode);
+    void LoadWeaponModel();
+    bool IsAtInitPos();
+    void SetParam(tagParam * pParam, ulong dw1, ulong dw2, ulong dw3);
+    float GetRotAngle(gbVec3D * pvecTarget);
+    bool Grab(ulong dwStageTaskID, uchar bNormal);
+    void SetMaxBlend();
+    unsigned long ProcWin(ulong dwMsg);
+    unsigned long ProcEnemyFlee(ulong __formal);
+    unsigned long ProcUseAttackItem(ulong dwMsg);
+    unsigned long ProcPursueRole(ulong __formal);
+    void SetAlive(uchar bAlive);
+    float GetRoleHeight();
+    unsigned long ProcDodge(ulong dwMsg);
+    void Reset();
+    unsigned long ProcTurn(ulong __formal);
+    void FaceToRole(int nRoleIndex);
+    unsigned long ProcMagic(ulong dwMsg);
+    void ForceEndTaskByPFN(void * fp);
+    void DangerForceRelease();
+    unsigned long ProcFlee(ulong __formal);
+    unsigned long ProcWeaponSkill(ulong dwMsg);
+    int GetCurrentTaskIndex();
+    unsigned long ProcCatchED(ulong dwMsg);
+    bool IsUnderMouse();
+    void SetAction(ulong dwActKey, int nActIndex, uchar bReset);
+    void SetAction(int nActIndex, uchar bReset);
+    void ClearAniMsg();
+    void SetVisible(uchar bVisit);
+    bool SetRoleActState(ERoleActState eras);
+    void Reload(char * name);
+    unsigned long ProcFlingAct(ulong dwMsg);
+    void HandleThrowWeapon();
+    unsigned long ProcBlock(ulong dwMsg);
+    unsigned long ProcStartDefence(ulong dwMsg);
+    unsigned long ProcProtect(ulong dwMsg);
+    unsigned long ProcMagicWait(ulong dwMsg);
+    void GetPointerPos(gbVec3D * vec);
+    bool Destroy();
+    unsigned long ProcTurnToRole(ulong __formal);
+    unsigned long ProcWeaponFly(ulong dwMsg);
+    void PushBackAllTask();
+    unsigned GetCurrentTask();
+    void ClearBadPushTask();
+    void ForceRelease();
+    void RenderWeaponModel(gbMatrixStack * pView);
+    void Release(ulong dwStageTaskID);
+    float GetRoleRadius();
+    void Render(gbMatrixStack * pView);
+    bool TryRelease(ulong dwStageTaskID);
+    unsigned long ProcTurnToPos(ulong __formal);
+    gbOBBox * GetOBBox();
+    unsigned long ProcRotate(ulong __formal);
+    bool Init(int nIndex, ulong dwID, gbActor * pActor);
+    bool IsAtProtectPos(int nRoleIndex, int nAttacker);
+    bool AddTask(void * fp, ulong dwStageTaskID, gbVec3D * pV1, tagCmdData * pCmd, ECBRoleTaskMode eMode);
+    unsigned long ProcTransportRun(ulong dwMsg);
+    ACTION_KIND GetProperCurAction();
+    void ForceDelTaskByPFN(void * fp);
+    unsigned long ProcUpgradeAct(ulong dw);
+    bool DelTask(int nIndex);
+    unsigned long ProcJumpTo(ulong dwMsg);
+    bool IsIdle();
+    unsigned long ProcFleeWait(ulong dwMsg);
+    char * GetActionName(ulong dwActKey, int nActIndex);
+    unsigned long ProcAttack(ulong dwMsg);
+    unsigned long ProcFlyRotRun(ulong dwMsg);
+    ~CCBStageRole();
+    bool IsDoTask(void * fpTask);
+    void SetBlend(uchar bBlend, float fParam);
+    void Update();
+    void OnPlayAction();
+    unsigned long ProcRun(ulong __formal);
+    bool Create(int nIndex);
+    void SetForceFinishThrowingWeapon(uchar bForce);
+    void GetWeaponTagByACT(int nRoleIndex, ACTION_KIND ACT, uchar * left, uchar * right);
+    unsigned long ProcWait(ulong __formal);
+    void LoadAction(ulong dwActKey, int nActIndex);
+    void LoadAction(int nActIndex);
+    bool IsGrabedBy(ulong dwStageTaskID);
+    void ReplaceActor(Actor * pActor);
+    bool IsCollideRay(gbRay ray);
+    float GetBlend();
+    bool IsTaskFinished(void * fpTask, ulong dwTaskID);
+    void SetPause(uchar bPause);
+    void UnLoadWeaponModel();
+    void LoadRoleAction();
+    void DoTask(ulong dwMsg);
+    void ClearFinishedTask();
+    unsigned long ProcVarianceaAct(ulong dwMsg);
+    void ShowSpecState(int nX, int nY, uchar bShow);
+    unsigned long ProcSkill(ulong dwMsg);
+    void SetBladeTime(float fBladeTime);
+    unsigned long ProcFastRunToRoleFront(ulong __formal);
+    unsigned long ProcUseRecoverItem(ulong dwMsg);
+    void Proceed(ulong dwMsg);
+    CCBStageRole(CCBStage * pStage);
+    unsigned long ProcRunToRoleInitPos(ulong __formal);
+};
+
+#endif // PAL3A_CBSTAGEROLE_H
