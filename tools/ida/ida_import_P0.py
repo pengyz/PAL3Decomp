@@ -20,6 +20,23 @@ TEXT_START = 0x00401000
 TEXT_END = 0x00558000
 
 STRUCT_HEADER = r"""
+struct gbNodeMsgObj;
+
+struct gbDynArray_pgbResource {
+    void ** pBuffer;
+    int MaxNum;
+    int CurNum;
+};
+
+struct gbCycleQueue_gbNodeMsgObj {
+    gbNodeMsgObj * pBuffer;
+    int MaxNum;
+    int CurNum;
+    int Flags;
+    int Head;
+    int Tail;
+};
+
 struct gbResManager;
 struct gbPixelFormat;
 struct gbImage2D;
@@ -77,7 +94,7 @@ struct gbSound3DNode;
 struct gbSceneGraph;
 
 struct gbResManager {
-    gbDynArray<gbResource *> AllResPt;
+    gbDynArray_pgbResource AllResPt;
 };
 
 struct gbPixelFormat {
@@ -434,7 +451,7 @@ struct gbChain1DNode {
 
 struct gbVisNode {
     char _gap_0[28];
-    gbCycleQueue<gbNodeMsgObj> MsgBuffer;
+    gbCycleQueue_gbNodeMsgObj MsgBuffer;
     int Priority;
     float TimeScale;
     int bShow;
@@ -789,7 +806,7 @@ def main():
         # Verify
         til = ida_typeinf.get_idati()
         count = 0
-        for name in ['gbResManager', 'gbImage2D', 'gbPrintFont', 'gbPartEmitter', 'gbRefObject', 'gbEmitterShape', 'gbBinkVideo', 'gbMatrixStack', 'gbIndexPool', 'gbVertPoolMgr', 'gbPrintFontMgr', 'gbCycleQueue<gbNodeMsgObj>', 'gbPixelFormat', 'gbActorMgr', 'gbActorDef', 'gbGfxManager_D3D', 'gbTexture_D3D', 'gbNBTreeNode', 'gbCursorRes', 'gbGfxManager', 'gbPartParamControl', 'gbCamera', 'gbSound2DNode', 'CD3DSettings', 'gbResource', 'gbMeshSection', 'gbRenderEffect', 'CPK', 'gbChain1DNode', 'gbVisNode', 'gbLightObj', 'gbDynArray<gbResource *>', 'CD3DEnumeration', 'gbParticleGroup', 'gbAudioManager', 'gbChain1D', 'gbActor', 'gbVFileSystem', 'gbVertexBubble', 'gbDropGroup', 'gbSnow', 'gbKeyControler', 'gbVFile1', 'gbParticleEffect', 'gbSoundData', 'gbIndexBubble', 'gbGeomNode', 'gbTexture', 'gbEffectMgr', 'gbVertexPool', 'gbBaseMesh', 'gbAnimScript', 'gbDynVertBuf', 'gbCamControler', 'gbVolModNode', 'gbSound3DNode', 'gbSceneGraph']:
+        for name in ['gbResManager', 'gbImage2D', 'gbPrintFont', 'gbPartEmitter', 'gbRefObject', 'gbEmitterShape', 'gbBinkVideo', 'gbMatrixStack', 'gbIndexPool', 'gbVertPoolMgr', 'gbPrintFontMgr', 'gbCycleQueue_gbNodeMsgObj', 'gbPixelFormat', 'gbActorMgr', 'gbActorDef', 'gbGfxManager_D3D', 'gbTexture_D3D', 'gbNBTreeNode', 'gbCursorRes', 'gbGfxManager', 'gbPartParamControl', 'gbCamera', 'gbSound2DNode', 'CD3DSettings', 'gbResource', 'gbMeshSection', 'gbRenderEffect', 'CPK', 'gbChain1DNode', 'gbVisNode', 'gbLightObj', 'gbDynArray_pgbResource', 'CD3DEnumeration', 'gbParticleGroup', 'gbAudioManager', 'gbChain1D', 'gbActor', 'gbVFileSystem', 'gbVertexBubble', 'gbDropGroup', 'gbSnow', 'gbKeyControler', 'gbVFile1', 'gbParticleEffect', 'gbSoundData', 'gbIndexBubble', 'gbGeomNode', 'gbTexture', 'gbEffectMgr', 'gbVertexPool', 'gbBaseMesh', 'gbAnimScript', 'gbDynVertBuf', 'gbCamControler', 'gbVolModNode', 'gbSound3DNode', 'gbSceneGraph']:
             tif = ida_typeinf.tinfo_t()
             if tif.get_named_type(til, name):
                 count += 1
@@ -803,7 +820,7 @@ def main():
             name = ida_name.get_name(ea) or ""
             # Only clear functions belonging to imported classes
             cls = name.split("::")[0] if "::" in name else ""
-            if cls in {'gbResManager', 'gbImage2D', 'gbPrintFont', 'gbPartEmitter', 'gbRefObject', 'gbEmitterShape', 'gbBinkVideo', 'gbMatrixStack', 'gbIndexPool', 'gbVertPoolMgr', 'gbPrintFontMgr', 'gbCycleQueue<gbNodeMsgObj>', 'gbPixelFormat', 'gbActorMgr', 'gbActorDef', 'gbGfxManager_D3D', 'gbTexture_D3D', 'gbNBTreeNode', 'gbCursorRes', 'gbGfxManager', 'gbPartParamControl', 'gbCamera', 'gbSound2DNode', 'CD3DSettings', 'gbResource', 'gbMeshSection', 'gbRenderEffect', 'CPK', 'gbChain1DNode', 'gbVisNode', 'gbLightObj', 'gbDynArray<gbResource *>', 'CD3DEnumeration', 'gbParticleGroup', 'gbAudioManager', 'gbChain1D', 'gbActor', 'gbVFileSystem', 'gbVertexBubble', 'gbDropGroup', 'gbSnow', 'gbKeyControler', 'gbVFile1', 'gbParticleEffect', 'gbSoundData', 'gbIndexBubble', 'gbGeomNode', 'gbTexture', 'gbEffectMgr', 'gbVertexPool', 'gbBaseMesh', 'gbAnimScript', 'gbDynVertBuf', 'gbCamControler', 'gbVolModNode', 'gbSound3DNode', 'gbSceneGraph'}:
+            if cls in {'gbResManager', 'gbImage2D', 'gbPrintFont', 'gbPartEmitter', 'gbRefObject', 'gbEmitterShape', 'gbBinkVideo', 'gbMatrixStack', 'gbIndexPool', 'gbVertPoolMgr', 'gbPrintFontMgr', 'gbCycleQueue_gbNodeMsgObj', 'gbPixelFormat', 'gbActorMgr', 'gbActorDef', 'gbGfxManager_D3D', 'gbTexture_D3D', 'gbNBTreeNode', 'gbCursorRes', 'gbGfxManager', 'gbPartParamControl', 'gbCamera', 'gbSound2DNode', 'CD3DSettings', 'gbResource', 'gbMeshSection', 'gbRenderEffect', 'CPK', 'gbChain1DNode', 'gbVisNode', 'gbLightObj', 'gbDynArray_pgbResource', 'CD3DEnumeration', 'gbParticleGroup', 'gbAudioManager', 'gbChain1D', 'gbActor', 'gbVFileSystem', 'gbVertexBubble', 'gbDropGroup', 'gbSnow', 'gbKeyControler', 'gbVFile1', 'gbParticleEffect', 'gbSoundData', 'gbIndexBubble', 'gbGeomNode', 'gbTexture', 'gbEffectMgr', 'gbVertexPool', 'gbBaseMesh', 'gbAnimScript', 'gbDynVertBuf', 'gbCamControler', 'gbVolModNode', 'gbSound3DNode', 'gbSceneGraph'}:
                 try:
                     ida_hexrays.mark_cfunc_dirty(ea)
                     cleared += 1

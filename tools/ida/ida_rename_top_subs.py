@@ -67,6 +67,75 @@ RENAME_TABLE = [
 
     (0x00434523, "PlayerMgr::UpdateRolePosition",
      "复杂位置计算, 访问浮点坐标和1140偏移"),
+
+    # === 第二批: 高频 UI 系统函数 ===
+    (0x0044D15D, "UIWnd::Enable",
+     "if(this+13=bcreateok) this+15=benable=a2"),
+
+    (0x0044ACCF, "UIStatic::SetShowMode",
+     "根据bool设this+23为2或1, 影响显示模式"),
+
+    (0x0044D2DE, "UIWnd::SetFontColor",
+     "this+1 = *a2, 拷贝gbColorQuad到fontcolor"),
+
+    (0x0044D2EA, "UIWnd::SetWndColor",
+     "this+2 = a2, 设置wndcolor字段"),
+
+    (0x0044D075, "UIWnd::ScreenToClient",
+     "x - rect_left, y - rect_top, 屏幕坐标转客户区"),
+
+    (0x0044CF8C, "UIWnd::FrameMove",
+     "遍历childs.pData调vtable[2], 帧刷新"),
+
+    (0x00442BA0, "UIFrameWnd::UIFrameWnd",
+     "设vtable off_558C58, 初始化各字段, 构造函数"),
+
+    (0x00442C38, "UIFrameWnd::dtor",
+     "设vtable off_558C58, 调析构链, 析构函数"),
+
+    (0x00442DDF, "UIWnd::LoadTexture",
+     "操作gbTexture + gbVFileSystem加载纹理"),
+
+    # === 全局/工具函数 ===
+    (0x004B1618, "GetGameInstance",
+     "单例模式 Construct_18 + atexit, 返回全局对象"),
+
+    (0x004D80F1, "GetEditCtrlFloat",
+     "SendMessage(WM_GETTEXT) + atof, 从编辑框取浮点值"),
+
+    (0x00430DA7, "UIWnd::PostMsg_Cmd",
+     "构造消息结构调用SendMessage, type=3"),
+
+    # === 场景/角色搜索 ===
+    (0x0047ADA6, "Scene::FindRoleByID",
+     "200*步长遍历37个slot搜索匹配ID"),
+
+    (0x0047ACF4, "Scene::FindNPCByID",
+     "190*步长遍历35个slot搜索匹配ID"),
+
+    (0x004DF033, "CCBStageRole::IsRoleAlive",
+     "1040*a2步长读取字节flag, 判断存活"),
+
+    # === PlayerMgr/Inventory ===
+    (0x00439D3D, "PlayerMgr::SetRoleString",
+     "strlen + string::assign设置字符串属性"),
+
+    (0x004326CB, "Inventory::RefreshCount",
+     "调GetTotalNum刷新物品数量"),
+
+    (0x00446367, "PlayerMgr::SetSkillSlot",
+     "92*步长设置技能名+参数到角色数据"),
+
+    # === 战斗系统 ===
+    (0x004EDF46, "CCBStage::SetRoleDead",
+     "2632*步长设状态=3, 标记角色死亡"),
+
+    (0x0052BBAE, "ChoseCompose_OnMessage_Thunk",
+     "直接转发到ChoseCompose::OnMessage"),
+
+    # === sub_447F0F ===
+    (0x00447F0F, "UIStatic::LoadFromPath",
+     "lstrlenA + sprintf构造路径加载图片资源"),
 ]
 
 
