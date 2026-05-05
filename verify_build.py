@@ -9,6 +9,14 @@ import sys
 import os
 from pathlib import Path
 
+TARGET_OUTPUTS = {
+    "pal3": "PAL3.exe",
+    "topo": "topo.dll",
+    "gbengine": "gbengine.dll",
+    "pal3a": "PAL3A.exe",
+}
+
+
 def run_command(cmd, description):
     print(f"\n{'='*60}")
     print(f"[*] {description}")
@@ -30,7 +38,6 @@ def verify_target(target, output_name, generator="Visual Studio 17 2022"):
     """Verify a single build target."""
     build_dir = f"build_{target}"
 
-    # Configure
     if generator == "Visual Studio 17 2022":
         cfg_cmd = f'cmake -B {build_dir} -S . -G "{generator}" -A Win32 -DBUILD_TARGET={target}'
     else:
@@ -39,14 +46,11 @@ def verify_target(target, output_name, generator="Visual Studio 17 2022"):
     if not run_command(cfg_cmd, f"Configure {target}"):
         return False
 
-    # Build
     if not run_command(f'cmake --build {build_dir} --config Release', f"Build {target}"):
         return False
 
-    # Check output
     output_path = Path(build_dir) / "Release" / output_name
     if not output_path.exists():
-        # Try without Release subdir (NMake)
         output_path = Path(build_dir) / output_name
 
     if output_path.exists():
@@ -61,18 +65,18 @@ def verify_target(target, output_name, generator="Visual Studio 17 2022"):
 def main():
     os.chdir(Path(__file__).parent)
 
-    targets = sys.argv[1:] if len(sys.argv) > 1 else ["pal3", "topo"]
+    targets = sys.argv[1:] if len(sys.argv) > 1 else ["pal3", "topo", "pal3a"]
+    invalid_targets = [target for target in targets if target not in TARGET_OUTPUTS]
+    if invalid_targets:
+        print("Unknown target(s): {}".format(', '.join(invalid_targets)))
+        print("Valid targets: {}".format(', '.join(TARGET_OUTPUTS.keys())))
+        sys.exit(1)
 
     print(f"\nPAL3 Build Verification - Targets: {', '.join(targets)}\n")
 
     results = {}
     for target in targets:
-        if target == "pal3":
-            results[target] = verify_target("pal3", "PAL3.exe")
-        elif target == "topo":
-            results[target] = verify_target("topo", "topo.dll")
-        elif target == "gbengine":
-            results[target] = verify_target("gbengine", "gbengine.dll")
+        results[target] = verify_target(target, TARGET_OUTPUTS[target])
 
     print(f"\n{'='*60}")
     print("RESULTS:")

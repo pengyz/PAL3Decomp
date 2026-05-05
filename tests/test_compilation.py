@@ -15,6 +15,7 @@ import pytest
 
 PROJECT_ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 BUILD_DIR = os.path.join(PROJECT_ROOT, 'build', 'pal3_test')
+PAL3A_BUILD_DIR = os.path.join(PROJECT_ROOT, 'build', 'pal3a_test')
 
 
 def test_cmake_configure(project_root):
@@ -107,3 +108,45 @@ def test_clean_build_warnings(project_root):
 
     # This is informational, not a hard failure
     assert result.returncode == 0, "Build must succeed"
+
+
+def test_pal3a_cmake_configure(project_root):
+    os.makedirs(PAL3A_BUILD_DIR, exist_ok=True)
+    result = subprocess.run(
+        ['cmake', project_root, '-G', 'Visual Studio 17 2022', '-A', 'Win32',
+         '-DBUILD_TARGET=pal3a'],
+        cwd=PAL3A_BUILD_DIR,
+        capture_output=True,
+        text=True,
+        timeout=60,
+    )
+    assert result.returncode == 0, result.stderr
+
+
+def test_pal3a_build_release(project_root):
+    if not os.path.exists(os.path.join(PAL3A_BUILD_DIR, 'CMakeCache.txt')):
+        pytest.skip('PAL3A CMake not configured')
+    result = subprocess.run(
+        ['cmake', '--build', PAL3A_BUILD_DIR, '--config', 'Release'],
+        capture_output=True,
+        text=True,
+        encoding='utf-8',
+        errors='replace',
+        timeout=300,
+    )
+    assert result.returncode == 0, result.stderr
+
+
+def test_pal3a_exe_exists():
+    exe_path = os.path.join(PAL3A_BUILD_DIR, 'Release', 'PAL3A.exe')
+    assert os.path.exists(exe_path), exe_path
+
+
+def test_verify_build_rejects_unknown_target(project_root):
+    result = subprocess.run(
+        [sys.executable, os.path.join(project_root, 'verify_build.py'), 'not-a-target'],
+        capture_output=True,
+        text=True,
+    )
+    assert result.returncode == 1
+    assert 'Unknown target(s): not-a-target' in result.stdout

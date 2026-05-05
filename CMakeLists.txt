@@ -187,8 +187,45 @@ elseif(BUILD_TARGET STREQUAL "pal3")
         message(WARNING "No source files found in src/pal3/")
     endif()
 
+elseif(BUILD_TARGET STREQUAL "pal3a")
+    message(STATUS "Configuring PAL3A.exe build")
+
+    set(PAL3A_SOURCES
+        src/pal3a/winmain.cpp
+        src/pal3a/pal3a_stubs.cpp
+        src/pal3a/script/script_entry.cpp
+        src/pal3a/script/sce_runtime.cpp
+        src/pal3a/script/sce_dispatch.cpp
+    )
+
+    add_executable(pal3a WIN32 ${PAL3A_SOURCES})
+    target_include_directories(pal3a PUBLIC include)
+    set_target_properties(pal3a PROPERTIES
+        OUTPUT_NAME "PAL3A"
+        SUFFIX ".exe"
+    )
+
+    if(MSVC)
+        target_compile_options(pal3a PRIVATE ${PAL3_COMPILE_FLAGS})
+        target_link_options(pal3a PRIVATE
+            /SUBSYSTEM:WINDOWS
+            /ENTRY:WinMainCRTStartup
+            /BASE:0x00400000
+            /DYNAMICBASE:NO
+            /FIXED:NO
+            /MAP
+        )
+        file(MAKE_DIRECTORY ${CMAKE_BINARY_DIR}/asm)
+        target_compile_options(pal3a PRIVATE /FAcs /Fa${CMAKE_BINARY_DIR}/asm/)
+    endif()
+
+    target_compile_definitions(pal3a PRIVATE PAL3_DEV_MODE PAL3A_DEV_MODE)
+    target_link_libraries(pal3a ${PLATFORM_LIBS} advapi32)
+
+    message(STATUS "PAL3A.exe: ${CMAKE_CURRENT_LIST_FILE} source files")
+
 else()
-    message(FATAL_ERROR "Invalid BUILD_TARGET: ${BUILD_TARGET}. Must be 'topo', 'gbengine', or 'pal3'")
+    message(FATAL_ERROR "Invalid BUILD_TARGET: ${BUILD_TARGET}. Must be 'topo', 'gbengine', 'pal3', or 'pal3a'")
 endif()
 
 # Custom target: compare a specific function

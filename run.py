@@ -78,9 +78,12 @@ def cmd_stubs():
     run_tool("analyze_imports.py", ["--generate-stubs"])
 
 
-def cmd_progress():
-    """查看整体进度"""
-    run_tool("progress.py")
+def cmd_progress(args):
+    extra = []
+    if '--target' in args:
+        idx = args.index('--target')
+        extra.extend(['--target', args[idx + 1]])
+    run_tool('progress.py', extra)
 
 
 def cmd_queue(args):
@@ -245,7 +248,7 @@ PAL3 反编译项目 - 跨平台任务运行器
 
 反编译工作流:
   queue [--reasons] [--top N]   显示推荐处理队列
-  progress                      查看整体进度
+  progress [--target pal3|pal3a|topo|gbengine]  查看指定目标进度
   status                        查看 AI 处理状态
   decompile <json> [--dry-run]  单函数 AI 反编译
   batch [--count N] [--dry-run] 批量 AI 反编译（默认 5 个）
@@ -285,7 +288,7 @@ def main():
         "pe-info":       lambda: cmd_pe_info(),
         "imports":       lambda: cmd_imports(),
         "stubs":         lambda: cmd_stubs(),
-        "progress":      lambda: cmd_progress(),
+        "progress":      lambda: cmd_progress(args),
         "status":        lambda: cmd_status(),
         "queue":         lambda: cmd_queue(args),
         "decompile":     lambda: cmd_decompile(args),
