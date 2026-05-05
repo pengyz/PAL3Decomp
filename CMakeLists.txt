@@ -115,9 +115,8 @@ elseif(BUILD_TARGET STREQUAL "gbengine")
         )
 
         # Use .def file for exports (matching original DLL export table)
-        # /FORCE:MULTIPLE allows duplicate symbols from exports and implementation files
         set_target_properties(gbengine PROPERTIES
-            LINK_FLAGS "/DEF:\"${CMAKE_SOURCE_DIR}/src/gbengine/gbengine.def\" /FORCE:MULTIPLE"
+            LINK_FLAGS "/DEF:\"${CMAKE_SOURCE_DIR}/src/gbengine/gbengine.def\""
         )
 
         # Disable inlining for exports file so class-inline methods
