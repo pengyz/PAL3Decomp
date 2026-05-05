@@ -21,6 +21,9 @@ import sys
 import os
 import time
 import importlib.util
+import builtins
+
+builtins._IDA_PIPELINE_RUNNING = True
 
 SCRIPT_DIR = os.path.dirname(os.path.abspath(__file__))
 

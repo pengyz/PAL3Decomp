@@ -16,17 +16,14 @@ REM   run_pipeline.bat "D:\Program Files\IDA Professional 9.2\idat.exe" --phase=
 
 setlocal
 
-if "%~1"=="" (
-    echo 用法: run_pipeline.bat ^<IDA路径^> [options]
-    echo.
-    echo 示例:
-    echo   run_pipeline.bat "D:\Program Files\IDA Professional 9.2\idat.exe"
-    echo   run_pipeline.bat "C:\IDA\idat.exe" --skip-import --skip-export
-    exit /b 1
-)
+set DEFAULT_IDA=D:\Program Files\IDA Professional 9.2\idat.exe
 
-set IDA_PATH=%~1
-shift
+if "%~1"=="" (
+    set "IDA_PATH=%DEFAULT_IDA%"
+) else (
+    set "IDA_PATH=%~1"
+    shift
+)
 
 REM 收集剩余参数
 set EXTRA_ARGS=

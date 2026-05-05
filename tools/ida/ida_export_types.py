@@ -93,10 +93,13 @@ def main():
     with open(LOG_FILE, "w", encoding="utf-8") as f:
         f.write("\n".join(log_lines))
 
-    try:
-        idc.qexit(0)
-    except:
-        pass
+    import builtins
+    if not getattr(builtins, '_IDA_PIPELINE_RUNNING', False):
+        try:
+            idc.qexit(0)
+        except:
+            pass
 
 
-main()
+if __name__ == '__main__':
+    main()
