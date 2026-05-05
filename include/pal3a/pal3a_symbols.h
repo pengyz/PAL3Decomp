@@ -1,6 +1,0 @@
-#ifndef PAL3A_SYMBOLS_H
-#define PAL3A_SYMBOLS_H
-
-#define PAL3A_UNRESOLVED_ADDR 0u
-
-#endif
