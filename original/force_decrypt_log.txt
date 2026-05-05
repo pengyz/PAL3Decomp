@@ -1,0 +1,53 @@
+=== force_decrypt.dll started ===
+PID: 7772
+.brick range: 0x00553000 - 0x02294000 (7489 pages)
+
+[*] VEH registered (as last handler)
+[*] Waiting 2 seconds...
+[*] Phase 1: Touching all .brick pages...
+  0x00652000 (3%) ok=180 new=0 fail=76
+  0x00752000 (6%) ok=181 new=0 fail=331
+  0x00852000 (10%) ok=247 new=0 fail=521
+  0x00952000 (13%) ok=378 new=0 fail=646
+  0x00A52000 (17%) ok=573 new=0 fail=707
+  0x00B52000 (20%) ok=574 new=0 fail=962
+  0x00C52000 (23%) ok=605 new=0 fail=1187
+  0x00D52000 (27%) ok=806 new=0 fail=1242
+  0x00E52000 (30%) ok=1009 new=0 fail=1295
+  0x00F52000 (34%) ok=1212 new=0 fail=1348
+  0x01052000 (37%) ok=1293 new=0 fail=1523
+  0x01152000 (41%) ok=1432 new=0 fail=1640
+  0x01252000 (44%) ok=1608 new=0 fail=1720
+  0x01352000 (47%) ok=1762 new=0 fail=1822
+  0x01452000 (51%) ok=1905 new=0 fail=1935
+  0x01552000 (54%) ok=2076 new=0 fail=2020
+  0x01652000 (58%) ok=2232 new=0 fail=2120
+  0x01752000 (61%) ok=2335 new=0 fail=2273
+  0x01852000 (64%) ok=2373 new=0 fail=2491
+  0x01952000 (68%) ok=2495 new=0 fail=2625
+  0x01A52000 (71%) ok=2559 new=0 fail=2817
+  0x01B52000 (75%) ok=2559 new=0 fail=3073
+  0x01C52000 (78%) ok=2559 new=0 fail=3329
+  0x01D52000 (82%) ok=2559 new=0 fail=3585
+  0x01E52000 (85%) ok=2647 new=0 fail=3753
+  0x01F52000 (88%) ok=2797 new=0 fail=3859
+  0x02052000 (92%) ok=2969 new=0 fail=3943
+  0x02152000 (95%) ok=3047 new=0 fail=4121
+  0x02252000 (99%) ok=3053 new=0 fail=4371
+
+[*] Phase 1 results:
+    Touched:    7489 pages
+    Already OK: 3059
+    Decrypted:  0 (new)
+    Failed:     4430
+    Coverage:   3059 / 7489 (40%)
+
+[*] Phase 2: Retrying 4430 failed pages with VirtualProtect...
+    Phase 2 recovered: 0 pages
+
+[*] Phase 3: Dumping 0x00401000 - 0x02294000...
+
+[+] Dump complete!
+    Non-zero: 3397 pages (13 MB)
+    Zero:     4430 pages (17 MB)
+    File:     D:\workspace\project-x\original\PAL3A_fulldump.bin

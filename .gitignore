@@ -71,3 +71,11 @@ tools/fulldump/*.exe
 
 # Decompilation output (large, regenerable from IDA)
 asm/pal3a/decomp/
+
+# Original binaries - override global ignores (tracked via LFS)
+!original/*.exe
+!original/*.dll
+!original/*.pdb
+!original/*.i64
+!original/*.bin
+!original/*.xml
