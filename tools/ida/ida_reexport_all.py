@@ -21,7 +21,7 @@ LOG_FILE = os.path.join(LOG_DIR, "ida_reexport_log.txt")
 SUMMARY_FILE = os.path.join(OUTPUT_DIR, "_export_summary.json")
 
 TEXT_START = 0x00401000
-TEXT_END = 0x00558000
+TEXT_END = 0x00608000
 
 
 def main():
@@ -51,6 +51,7 @@ def main():
         exported = 0
         errors = 0
         struct_access = 0
+        error_samples = []
         t0 = time.time()
 
         for i, (ea, name, size) in enumerate(targets):
@@ -63,6 +64,8 @@ def main():
                 cfunc = ida_hexrays.decompile(ea)
                 if not cfunc:
                     errors += 1
+                    if len(error_samples) < 20:
+                        error_samples.append(f"  0x{ea:08X} {name} (decompile returned None)")
                     continue
 
                 code = str(cfunc)
@@ -73,9 +76,14 @@ def main():
                 if has_struct:
                     struct_access += 1
 
-                # Save to JSON
+                # Save to JSON - sanitize for Windows filename
                 safe_name = name.replace('::', '_').replace('<', '_').replace('>', '_')
                 safe_name = safe_name.replace('*', '_').replace(' ', '_')
+                safe_name = safe_name.replace('?', '_').replace('@', '_')
+                safe_name = safe_name.replace('$', '_').replace(',', '_')
+                # Truncate overly long names
+                if len(safe_name) > 100:
+                    safe_name = safe_name[:100]
                 filename = f"{safe_name}_{ea:08x}.json"
                 filepath = os.path.join(OUTPUT_DIR, filename)
 
@@ -94,6 +102,8 @@ def main():
 
             except Exception as e:
                 errors += 1
+                if len(error_samples) < 20:
+                    error_samples.append(f"  0x{ea:08X} {name} ({str(e)[:60]})")
 
         elapsed = time.time() - t0
         log("")
@@ -102,6 +112,11 @@ def main():
         log(f"  有结构体访问: {struct_access}")
         log(f"  错误: {errors}")
         log(f"  耗时: {elapsed:.1f}s")
+
+        if error_samples:
+            log("[*] 错误样本:")
+            for e in error_samples:
+                log(e)
 
         # Save summary
         summary = {
