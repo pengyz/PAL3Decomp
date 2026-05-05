@@ -102,9 +102,12 @@ def main():
     ok = run_phase(4, "重命名高频未命名函数", "ida_rename_top_subs.py")
     results.append(("Phase 4: sub_ 重命名", ok))
 
+    ok = run_phase(5, "应用 PDB 函数签名 (参数类型)", "ida_apply_signatures.py")
+    results.append(("Phase 5: 函数签名应用", ok))
+
     if not SKIP_EXPORT:
-        ok = run_phase(5, "重新导出反编译结果", "ida_reexport_all.py")
-        results.append(("Phase 5: 反编译导出", ok))
+        ok = run_phase(6, "重新导出反编译结果", "ida_reexport_all.py")
+        results.append(("Phase 6: 反编译导出", ok))
     else:
         results.append(("Phase 5: 反编译导出", "SKIP"))
 

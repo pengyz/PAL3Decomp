@@ -136,6 +136,70 @@ RENAME_TABLE = [
     # === sub_447F0F ===
     (0x00447F0F, "UIStatic::LoadFromPath",
      "lstrlenA + sprintf构造路径加载图片资源"),
+
+    # === 第三批: 新导出中高频 sub_ ===
+    (0x004FD9E8, "CCBSystem::IsIdle",
+     "return this+134==0, 战斗系统空闲判断"),
+
+    (0x00402B03, "GetCursorPos_Wrapper",
+     "直接转发Win32 GetCursorPos"),
+
+    (0x0040CC49, "SwordUI_SetEffect_Thunk",
+     "直接转发到SwordUI::SetSwordEffect"),
+
+    (0x005291DF, "CCBAttackSequen::Reset",
+     "SetLock_0 + 清零3个字段, 重置攻击序列"),
+
+    (0x0046E719, "Scene::SetChildVisible",
+     "通过index从PtrArray取子节点设offset+68"),
+
+    (0x0044CED7, "UIWnd::Create",
+     "设id/rect/parent/enable, 调OnCreate, 核心创建函数"),
+
+    (0x0044D2CA, "UIWnd::GetRect",
+     "拷贝this+4..+7到输出RECT, 取窗口矩形"),
+
+    (0x0044D023, "UIWnd::DefaultProc",
+     "始终return 0, 默认消息处理stub"),
+
+    (0x00528C90, "CCBControl::GetCurAction",
+     "return this+202, 取当前动作ID"),
+
+    (0x00445C1D, "UIStatic::UIStatic",
+     "设vtable off_558D08, UIStatic构造函数"),
+
+    (0x00445EAD, "UIStaticEX::UIStaticEX",
+     "设默认字体颜色, 调Role::SetArcInfo, 扩展构造"),
+
+    (0x0040779C, "GetCCBControl",
+     "单例模式 ProcForceRelease + atexit, CCB控制器"),
+
+    (0x0044855E, "UIStatic::SetImage",
+     "加载gbTexture, 设纹理到this+45区域"),
+
+    (0x0044877D, "UIStatic::SetAlpha",
+     "this+34 = (float)a2, 设透明度"),
+
+    (0x004435D0, "PlayerMgr::SetRoleName",
+     "strncpy到this+212(127字节), 设角色名"),
+
+    (0x00439809, "PlayerMgr::UpdateRoleTimer",
+     "740*步长访问, 调TimeMgr::Wait, 角色计时器"),
+
+    (0x004CF104, "CCBRoleState::SetFlag",
+     "40*a2步长设字节flag到this+47"),
+
+    (0x0040C833, "SceneMap::GetTilePos",
+     "12*步长从this+1取3个float, 取地图格坐标"),
+
+    (0x00409729, "SceneMap::GetWorldPos",
+     "从tile坐标计算世界坐标, 含flt_C01D24步长"),
+
+    (0x0052F076, "CCBStageEffect::PlayEffect",
+     "战斗特效播放相关"),
+
+    (0x0047AC42, "Scene::PostEvent_Thunk",
+     "直接转发到sub_47AC47"),
 ]
 
 
