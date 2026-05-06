@@ -204,26 +204,26 @@ struct GeomNodeDesc {
     int flags;
 };
 
-// Mesh section (submesh) - sizeof = 0xBC (deduced from iteration stride)
-// Known field offsets: +0x08=textureArray, +0x48=numTextures, +0x90=indexBubble
-// m_faceCount position unknown (used via direct member access in GetNumFaces)
+// Mesh section (submesh) - sizeof = 0xBC = 188 bytes (47 DWORDs)
+// Layout verified via IDA: LoadFromStream, AttachSelf, DrawSubSet, ~gbBaseMesh
 class gbMeshSection {
 public:
     gbMeshSection();
 
-    void* _field00;                 // +0x00
-    void* _field04;                 // +0x04
-    gbTexture** m_pTextureArray;    // +0x08: array of texture pointers
-    int m_vertexStart;              // +0x0C
-    int m_vertexCount;              // +0x10
-    int m_faceStart;                // +0x14
-    int m_faceCount;                // +0x18
-    int m_materialIndex;            // +0x1C
-    char _pad20[0x28];              // +0x20..+0x47
-    int m_numTextures;              // +0x48: number of active textures
-    char _pad4C[0x44];              // +0x4C..+0x8F
-    void* m_pIndexBubble;           // +0x90: gbIndexBubble*
-    char _pad94[0x28];              // +0x94..+0xBB
+    int m_blendMode;                // +0x00 [0]: 0=opaque, 1=alpha, 2=additive, 3=other
+    int m_hasMultiTex;              // +0x04 [1]: 1 if numTextures==2
+    gbTexture* m_textures[16];      // +0x08 [2..17]: inline texture pointer array
+    int m_numTextures;              // +0x48 [18]: active texture count
+    char m_material[0x44];          // +0x4C [19..35]: material data (68 bytes, read from file)
+    void* m_pIndexBubble;           // +0x90 [36]: gbIndexBubble*
+    int m_vertStartCount;           // +0x94 [37]: vertex start/count for indexBubble
+    int m_faceStartCount;           // +0x98 [38]: face start/count for indexBubble
+    gbVec3D m_boundCenter;          // +0x9C [39..41]: bounding center for sorting
+    void* m_overrideEffect;         // +0xA8 [42]: gbRenderEffect* override (NULL = auto)
+    void* m_animTexArray;           // +0xAC [43]: animated texture pointer array
+    int m_animTexSlot;              // +0xB0 [44]: which texture slot to animate
+    int m_numAnimFrames;            // +0xB4 [45]: number of animation frames
+    int m_animFrameInterval;        // +0xB8 [46]: frame duration in milliseconds
     // total sizeof = 0xBC
 };
 
@@ -239,6 +239,8 @@ struct gbMeshMemCache {
 /* ======== gbBaseMesh ======== */
 
 class gbBaseMesh {
+    friend class gbGeomNode;
+    friend class gbStaticMesh;
 public:
     gbBaseMesh(gbGfxManager* gfxMgr);
     gbBaseMesh(const gbBaseMesh& other);
@@ -275,23 +277,26 @@ public:
     static void SetMeshTexDir(char* dir);
 
 protected:
-    int m_refCount;                 // +0x04
-    void* m_reserved1;              // +0x08
-    void* m_reserved2;              // +0x0C
-    void* m_reserved3;              // +0x10
-    void* m_reserved4;              // +0x14
-    void* m_vertexBuffer;           // +0x18
-    void* m_reserved5[15];          // +0x1C-0x57
-    void* m_indexBuffer;            // +0x58
-    void* m_reserved6[3];           // +0x5C-0x67
-    gbAABBox m_aabb;                // +0x68 (24 bytes)
-    gbGfxManager* m_pGfxManager;    // +0x74
-    char m_objectName[16];          // +0x80
-    gbMeshSection* m_sections;      // +0x90
-    int m_numSections;              // +0x94
-    gbMeshType m_meshType;          // +0x98
-    float m_currentTime;            // +0x9C
-    gbMeshMemCache m_memCache;      // +0xA0
+    // Layout verified via IDA Hex-Rays (2026-05-06)
+    // gbBaseMesh inherits gbResource (vtable + refCount + name + crc + links)
+    int m_refCount;                 // +0x04: reference count (init 1)
+    char* m_resName;                // +0x08: resource name (malloc'd, from gbResource)
+    unsigned int m_resCrc;          // +0x0C: CRC32 of name (from gbResource)
+    void* m_resPrev;                // +0x10: resource list link (from gbResource)
+    void* m_resNext;                // +0x14: resource list link (from gbResource)
+    unsigned int m_fvf;             // +0x18: FVF flags (gbStaticMesh zeros this)
+    char m_objectName[16];          // +0x1C: fixed object name (GetObjectName)
+    void* m_field2C;                // +0x2C
+    void* m_field30;                // +0x30
+    void* m_field34;                // +0x34
+    void* m_field38;                // +0x38
+    int m_flags;                    // +0x3C: mesh flags (bit 2 = alpha test)
+    gbMeshSection* m_sections;      // +0x40: section array (stride 0xBC)
+    int m_numSections;              // +0x44: number of sections
+    gbMeshMemCache m_memCache;      // +0x48: vertex/index data cache (16 bytes)
+    gbAABBox m_aabb;                // +0x58: axis-aligned bounding box (24 bytes)
+    float m_currentTime;            // +0x70: current animation time
+    gbGfxManager* m_pGfxManager;    // +0x74: graphics manager pointer
 
     // Static members
     static int Effect_RefCount;

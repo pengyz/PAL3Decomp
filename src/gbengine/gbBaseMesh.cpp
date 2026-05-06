@@ -12,7 +12,7 @@ void gbBaseMesh::Release(void) {
 }
 
 gbMeshType gbBaseMesh::GetMeshType() {
-    return m_meshType;
+    return MESH_STATIC;
 }
 
 gbAABBox* gbBaseMesh::GetAABBox() {

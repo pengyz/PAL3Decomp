@@ -172,10 +172,10 @@ gbRenderInfoObj* gbSceneGraph::NewOneRenderObj(gbVisNode* node) {
     gbRenderInfoObj* obj = (gbRenderInfoObj*)((char*)renderObjPool + renderObjPoolUsed);
     renderObjPoolUsed += sizeof(gbRenderInfoObj);
 
-    obj->node = node;
-    obj->renderData = NULL;
-    obj->flags = 0;
-    obj->distance = 0.0f;
+    obj->pNode = node;
+    obj->pMatrixOverride = NULL;
+    obj->sectionIndex = 0;
+    obj->pEffect = NULL;
 
     return obj;
 }
@@ -219,8 +219,8 @@ void gbSceneGraph::CalEffectiveVolMod(gbRenderInfoObj* renderInfo, const gbVec3D
     }
 
     // Assign results to render info (up to 2 of each type)
-    int* pSlotA = renderInfo->volModSlotA;
-    int* pSlotB = renderInfo->volModSlotB;
+    void** pSlotA = renderInfo->volModSlotA;
+    void** pSlotB = renderInfo->volModSlotB;
     int countA = 0, countB = 0;
 
     for (int i = 0; i < numEntries; i++) {
@@ -233,12 +233,12 @@ void gbSceneGraph::CalEffectiveVolMod(gbRenderInfoObj* renderInfo, const gbVec3D
 
         if (vmType == 0) {
             if (countA < 2) {
-                pSlotA[countA] = (int)entries[i].volMod;
+                pSlotA[countA] = (void*)(int)entries[i].volMod;
                 countA++;
             }
         } else {
             if (countB < 2) {
-                pSlotB[countB] = (int)entries[i].volMod;
+                pSlotB[countB] = (void*)(int)entries[i].volMod;
                 countB++;
             }
         }

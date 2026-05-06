@@ -7,6 +7,8 @@
 #include "gbengine/gbGeomNode.h"
 #include "gbengine/gbMesh.h"
 #include "gbengine/gbGfxManager.h"
+#include "gbengine/gbRenderEffect.h"
+#include "gbengine/gbSceneGraph.h"
 #include "gbengine/gbengine_internal.h"
 #include <stdlib.h>
 #include <string.h>
@@ -165,8 +167,140 @@ void gbGeomNode::Update(void) {
 
 /* ======== Attach ======== */
 
+// Blade attach point transform buffer (static, 256 entries × 4 vec3s)
+struct gbBladeAttachPoint {
+    gbVec3D position;
+    int colorIndex;
+};
+static gbBladeAttachPoint s_bladeTransforms[256];
+static int s_bladeInitialized = 0;
+
+extern double g_CurrentTime;
+
+static void __cdecl gbBladeSystem_Submit(gbBladeAttachPoint* transforms, int count, gbGeomNode* node) {
+    /* STUB - delegates to sub_1000ED80 (blade trail subsystem) */
+}
+
+// Attach point data (48 bytes per entry in pAttachPointArray)
+struct gbAttachPointData {
+    char _pad[32];          // +0x00
+    gbVec3D position;       // +0x20 (offset 32)
+    int colorIndex;         // +0x2C (offset 44)
+};
+
 void gbGeomNode::AttachSelf(gbRenderEffect* effect) {
-    /* STUB - 754 bytes, needs full render pipeline */
+    if (!mesh)
+        return;
+
+    gbVec3D renderPos;
+    renderPos.x = 0.0f;
+    renderPos.y = 0.0f;
+    renderPos.z = 0.0f;
+    int sectionIndex = 0;
+    gbMatrix4 localMatrix;
+    localMatrix.LoadIdentity();
+
+    gbMatrixStack* matStack = (gbMatrixStack*)*(((DWORD*)gbVisNode::pGfxMgr) + 54);
+    matStack->Push();
+    matStack->MultMatrix(&worldTransform);
+
+    if (gbVisNode::pGfxMgr->ClipBoundVolume(&mesh->m_aabb)) {
+        matStack->Pop();
+        return;
+    }
+
+    // Blade attach point processing
+    if (bladeEnabled && pAttachPointArray) {
+        if (!s_bladeInitialized) {
+            s_bladeInitialized = 1;
+            memset(s_bladeTransforms, 0, sizeof(s_bladeTransforms));
+        }
+
+        const gbMatrix4& worldMat = gbVisNode::pGfxMgr->GetWorldMatrix();
+        int ap = 0;
+        if (numAttachPoints > 0) {
+            gbBladeAttachPoint* dst = s_bladeTransforms;
+            gbAttachPointData* src = (gbAttachPointData*)pAttachPointArray;
+            do {
+                worldMat.Transform(&src->position, &dst->position);
+                dst->colorIndex = src->colorIndex;
+                ++ap;
+                ++dst;
+                ++src;
+            } while (ap < numAttachPoints);
+        }
+        gbBladeSystem_Submit(s_bladeTransforms, numAttachPoints, this);
+    }
+
+    // Section iteration - submit render objects
+    int numSec = mesh->m_numSections;
+    sectionIndex = 0;
+    if (numSec > 0) {
+        gbMeshSection* sec = mesh->m_sections;
+        do {
+            gbRenderInfoObj* renderObj = gbVisNode::pSceneGraph->NewOneRenderObj(this);
+            gbMatrix4* topMat = matStack->GetTop();
+            topMat->Transform(&sec->m_boundCenter, &renderPos);
+            gbVisNode::pSceneGraph->CalEffectiveVolMod(renderObj, renderPos, sec->m_hasMultiTex);
+
+            unsigned int flags = 1;
+            if (mesh->m_flags & 4)
+                flags = 1025;
+            if (sec->m_hasMultiTex)
+                flags |= 2u;
+
+            float blendVal;
+            if (sec->m_blendMode == 1 || gbVisNode::GetBlend(blendVal)) {
+                flags |= 0x40u;
+            } else if (sec->m_blendMode == 2) {
+                flags |= 0x80u;
+            } else if (sec->m_blendMode == 3) {
+                flags |= 0x100u;
+            }
+
+            if ((flags & 0x400) == 0) {
+                if (renderObj->volModSlotA[0])
+                    flags |= 4u;
+                if (renderObj->volModSlotA[1] && (flags & 2) == 0)
+                    flags |= 8u;
+            }
+
+            int gfxMode = ((int*)gbVisNode::pGfxMgr)[358];
+            if (gfxMode == 2) {
+                flags |= 0x20u;
+            } else if (gfxMode == 1) {
+                flags |= 0x10u;
+            }
+
+            renderObj->sectionIndex = sectionIndex;
+            renderObj->isOpaque = (sec->m_blendMode == 0) ? 1 : 0;
+
+            // Animated texture frame selection
+            if (sec->m_numAnimFrames) {
+                int frameIdx = (int)(__int64)(g_CurrentTime * 1000.0) / sec->m_animFrameInterval % sec->m_numAnimFrames;
+                sec->m_textures[sec->m_animTexSlot] = *(gbTexture**)((char*)sec->m_animTexArray + 4 * frameIdx);
+            }
+
+            renderObj->renderFlags = flags;
+            renderObj->pTextureArray = &sec->m_textures[0];
+            renderObj->pMatrixOverride = (localMatrix.m[3][3] != 0.0f) ? &localMatrix : NULL;
+
+            if (sec->m_overrideEffect)
+                renderObj->pEffect = (gbRenderEffect*)sec->m_overrideEffect;
+            else
+                renderObj->pEffect = gbVisNode::pGfxMgr->GetEffectMgr()->GetRenderEffect(flags);
+
+            numSec = mesh->m_numSections;
+            ++sectionIndex;
+            ++sec;
+        } while (sectionIndex < numSec);
+    }
+
+    // Shadow volume submission
+    if (cullNext)
+        gbVisNode::pSceneGraph->NewShadowVolume(this);
+
+    matStack->Pop();
 }
 
 int gbGeomNode::Attach(gbRenderEffect* effect) {

@@ -48,17 +48,21 @@ struct gbLight {
 
 // ============================================================================
 // gbRenderInfoObj - render object info in scene graph pool
-// sizeof = 0x70 (deduced from usage patterns)
+// sizeof = 0x70 = 112 bytes (verified: pool = malloc(0x70000) / 4096 objects)
+// Layout verified via IDA: NewOneRenderObj, CalEffectiveVolMod, AttachSelf, Render
 // ============================================================================
 struct gbRenderInfoObj {
-    gbVisNode* node;            // +0x00
-    void* renderData;           // +0x04
-    int flags;                  // +0x08
-    float distance;             // +0x0C
-    int _reserved10[4];         // +0x10
-    gbMatrix4 worldMatrix;      // +0x20 (64 bytes)
-    int volModSlotA[2];         // +0x60
-    int volModSlotB[2];         // +0x68
+    gbVisNode* pNode;           // +0x00 [0]: owner node
+    void* pMatrixOverride;      // +0x04 [1]: optional matrix override
+    int sectionIndex;           // +0x08 [2]: mesh section index
+    gbRenderEffect* pEffect;    // +0x0C [3]: render effect to use
+    void* pTextureArray;        // +0x10 [4]: pointer to section texture array
+    int renderPriority;         // +0x14 [5]: from node's renderPriority
+    int isOpaque;               // +0x18 [6]: 1 if opaque, 0 if transparent
+    unsigned int renderFlags;   // +0x1C [7]: combined render flags
+    gbMatrix4 worldMatrix;      // +0x20 [8..23]: world transform (64 bytes)
+    void* volModSlotA[2];       // +0x60 [24..25]: volume modifier nodes (type A)
+    void* volModSlotB[2];       // +0x68 [26..27]: volume modifier nodes (type B)
 };
 
 // ============================================================================

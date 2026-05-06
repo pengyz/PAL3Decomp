@@ -14,11 +14,22 @@
 /* ======== gbMeshSection ======== */
 
 gbMeshSection::gbMeshSection() {
-    m_vertexStart = 0;
-    m_vertexCount = 0;
-    m_faceStart = 0;
-    m_faceCount = 0;
-    m_materialIndex = 0;
+    m_blendMode = 0;
+    m_hasMultiTex = 0;
+    memset(m_textures, 0, sizeof(m_textures));
+    m_numTextures = 0;
+    memset(m_material, 0, sizeof(m_material));
+    m_pIndexBubble = NULL;
+    m_vertStartCount = 0;
+    m_faceStartCount = 0;
+    m_boundCenter.x = 0.0f;
+    m_boundCenter.y = 0.0f;
+    m_boundCenter.z = 0.0f;
+    m_overrideEffect = NULL;
+    m_animTexArray = NULL;
+    m_animTexSlot = 0;
+    m_numAnimFrames = 0;
+    m_animFrameInterval = 0;
 }
 
 
@@ -32,27 +43,26 @@ char* gbBaseMesh::TextureDir = NULL;
 // Constructor
 gbBaseMesh::gbBaseMesh(gbGfxManager* gfxMgr) {
     m_refCount = 1;
-    m_reserved1 = NULL;
-    m_reserved2 = NULL;
-    m_reserved3 = NULL;
-    m_reserved4 = NULL;
-    m_vertexBuffer = NULL;
-    m_indexBuffer = NULL;
+    m_resName = NULL;
+    m_resCrc = 0;
+    m_resPrev = NULL;
+    m_resNext = NULL;
+    m_fvf = 0;
+    memset(m_objectName, 0, sizeof(m_objectName));
+    m_field2C = NULL;
+    m_field30 = NULL;
+    m_field34 = NULL;
+    m_field38 = NULL;
+    m_flags = 0;
     m_sections = NULL;
     m_numSections = 0;
-    m_meshType = MESH_STATIC;
+    memset(&m_memCache, 0, sizeof(m_memCache));
+    memset(&m_aabb, 0, sizeof(m_aabb));
     m_currentTime = 0.0f;
     m_pGfxManager = gfxMgr;
 
-    memset(m_reserved5, 0, sizeof(m_reserved5));
-    memset(m_reserved6, 0, sizeof(m_reserved6));
-    memset(&m_aabb, 0, sizeof(m_aabb));
-    memset(m_objectName, 0, sizeof(m_objectName));
-    memset(&m_memCache, 0, sizeof(m_memCache));
-
-    // Initialize shadow effects on first mesh creation
     if (Effect_RefCount == 0) {
-        // Load shadow effect shaders
+        // pShadowEffect = gfxMgr->GetEffectMgr()->NewRenderEffect(...)
     }
     Effect_RefCount++;
 }
@@ -60,21 +70,21 @@ gbBaseMesh::gbBaseMesh(gbGfxManager* gfxMgr) {
 // Copy constructor
 gbBaseMesh::gbBaseMesh(const gbBaseMesh& other) {
     m_refCount = 1;
-    m_reserved1 = other.m_reserved1;
-    m_reserved2 = other.m_reserved2;
-    m_reserved3 = other.m_reserved3;
-    m_reserved4 = other.m_reserved4;
-    m_vertexBuffer = other.m_vertexBuffer;
-    m_indexBuffer = other.m_indexBuffer;
+    m_resName = other.m_resName;
+    m_resCrc = other.m_resCrc;
+    m_resPrev = other.m_resPrev;
+    m_resNext = other.m_resNext;
+    m_fvf = other.m_fvf;
+    memcpy(m_objectName, other.m_objectName, sizeof(m_objectName));
+    m_field2C = other.m_field2C;
+    m_field30 = other.m_field30;
+    m_field34 = other.m_field34;
+    m_field38 = other.m_field38;
+    m_flags = other.m_flags;
     m_numSections = other.m_numSections;
-    m_meshType = other.m_meshType;
     m_currentTime = other.m_currentTime;
     m_pGfxManager = other.m_pGfxManager;
     m_aabb = other.m_aabb;
-
-    memcpy(m_reserved5, other.m_reserved5, sizeof(m_reserved5));
-    memcpy(m_reserved6, other.m_reserved6, sizeof(m_reserved6));
-    memcpy(m_objectName, other.m_objectName, sizeof(m_objectName));
     m_memCache = other.m_memCache;
 
     if (other.m_sections && m_numSections > 0) {
@@ -109,21 +119,21 @@ gbBaseMesh& gbBaseMesh::operator=(const gbBaseMesh& other) {
         delete[] m_sections;
     }
 
-    m_reserved1 = other.m_reserved1;
-    m_reserved2 = other.m_reserved2;
-    m_reserved3 = other.m_reserved3;
-    m_reserved4 = other.m_reserved4;
-    m_vertexBuffer = other.m_vertexBuffer;
-    m_indexBuffer = other.m_indexBuffer;
+    m_resName = other.m_resName;
+    m_resCrc = other.m_resCrc;
+    m_resPrev = other.m_resPrev;
+    m_resNext = other.m_resNext;
+    m_fvf = other.m_fvf;
+    memcpy(m_objectName, other.m_objectName, sizeof(m_objectName));
+    m_field2C = other.m_field2C;
+    m_field30 = other.m_field30;
+    m_field34 = other.m_field34;
+    m_field38 = other.m_field38;
+    m_flags = other.m_flags;
     m_numSections = other.m_numSections;
-    m_meshType = other.m_meshType;
     m_currentTime = other.m_currentTime;
     m_pGfxManager = other.m_pGfxManager;
     m_aabb = other.m_aabb;
-
-    memcpy(m_reserved5, other.m_reserved5, sizeof(m_reserved5));
-    memcpy(m_reserved6, other.m_reserved6, sizeof(m_reserved6));
-    memcpy(m_objectName, other.m_objectName, sizeof(m_objectName));
     m_memCache = other.m_memCache;
 
     if (other.m_sections && m_numSections > 0) {
@@ -149,7 +159,9 @@ int gbBaseMesh::GetNumSection() {
 int gbBaseMesh::GetNumFaces() {
     int totalFaces = 0;
     for (int i = 0; i < m_numSections; i++) {
-        totalFaces += m_sections[i].m_faceCount;
+        gbIndexBubble* ib = (gbIndexBubble*)m_sections[i].m_pIndexBubble;
+        if (ib)
+            totalFaces += ib->count / 3;
     }
     return totalFaces;
 }
@@ -173,18 +185,14 @@ void gbBaseMesh::SetCurTime(float time) {
 void gbBaseMesh::SetTexture(int index, gbTexture* texture) {
     for (int i = 0; i < m_numSections; i++) {
         gbMeshSection* section = &m_sections[i];
-        gbTexture** texArray = section->m_pTextureArray;
-        int maxTex = section->m_numTextures;
 
-        if (index < maxTex && texArray[index] != NULL) {
-            texArray[index]->refObj.Release();
+        if (index < section->m_numTextures && section->m_textures[index] != NULL) {
+            // Release old texture
         }
 
-        // Increment new texture refcount and assign
-        texture->refObj.RefCount++;
-        texArray[index] = texture;
+        // Assign new texture
+        section->m_textures[index] = texture;
 
-        // Update max texture count if needed
         if (section->m_numTextures < index + 1) {
             section->m_numTextures = index + 1;
         }
@@ -196,7 +204,8 @@ void gbBaseMesh::ReplaceTexture(const char* textureName) {
 }
 
 void gbBaseMesh::ReplaceTexture(gbTexture* texture) {
-    m_sections[0].m_pTextureArray = (gbTexture**)texture;
+    if (m_sections)
+        m_sections[0].m_textures[0] = texture;
 }
 
 void gbBaseMesh::ComputeShadowVolume() {
@@ -217,7 +226,7 @@ gbStaticMesh::gbStaticMesh(gbGfxManager* gfxMgr) : gbBaseMesh(gfxMgr) {
     m_pVertBubble = NULL;
     m_shadowVolumeVB = NULL;
     m_shadowVolumeIB = NULL;
-    m_vertexBuffer = NULL;
+    m_fvf = 0;
 }
 
 gbStaticMesh::gbStaticMesh(const gbStaticMesh& other) : gbBaseMesh(other) {
