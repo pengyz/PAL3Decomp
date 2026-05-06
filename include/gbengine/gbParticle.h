@@ -15,13 +15,16 @@ class gbVisNode;
 /* ======== gbEmitterData ======== */
 
 struct gbEmitterData {
-    gbVec3D velocity;        // +0x00
-    float speedScale;        // +0x0c
-    float speedVariance;     // +0x10
-    float unused1;           // +0x14
-    float unused2;           // +0x18
-    float lifetime;          // +0x1c
-    float lifetimeVariance;  // +0x20
+    gbVec3D velocity;           // +0x00: emission velocity direction
+    float speedMin;             // +0x0C: min speed (from paramControls[1])
+    float speedMax;             // +0x10: max speed
+    float lifetimeMin;          // +0x14: min lifetime (from paramControls[2])
+    float lifetimeMax;          // +0x18: max lifetime
+    float emitRateMin;          // +0x1C: min emit rate (from paramControls[3])
+    float emitRateMax;          // +0x20: max emit rate
+    int pad_24;                 // +0x24: alignment
+    double emitAccumulator;     // +0x28: fractional particle accumulator
+    // sizeof = 0x30 = 48
 
     gbEmitterData();
     gbEmitterData& operator=(const gbEmitterData& p0);
@@ -145,22 +148,27 @@ struct gbPartGroupParam {
 
 class gbPartEmitter {
 public:
-    char configData[0x40];          // +0x00: emitter config
+    char configData[0x40];          // +0x00: emitter config (timing, repeat count etc.)
     gbVec3D basePosition;           // +0x40: emission origin
     gbVec3D velocityDeviation;      // +0x4C: random velocity spread
-    char reserved1[0x40];           // +0x58: gap
+    char meshFilename[0x40];        // +0x58: mesh filename (only used when emitType==2)
     int emitType;                   // +0x98: 0=box, 1=sphere, 2=mesh
-    int loopFlag;                   // +0x9C
-    char reserved2[0x0C];           // +0xA0: gap
+    float emitDuration;             // +0x9C: total emission duration
+    float emitStartTime;            // +0xA0: emission start time offset
+    int loopFlag;                   // +0xA4: loop emission (SetLoopEmit)
+    int field_A8;                   // +0xA8
     gbVec3D boxMin;                 // +0xAC: box emitter min bounds
     gbVec3D boxMax;                 // +0xB8: box emitter max bounds
     float sphereRadius;             // +0xC4: sphere emitter radius
     float sphereRadiusVar;          // +0xC8: sphere radius variance
     gbVec3D* pMeshVertices;         // +0xCC: mesh emitter vertices
-    int reserved3;                  // +0xD0
+    int meshVertBufSize;            // +0xD0
     int numMeshVertices;            // +0xD4: mesh vertex count
     gbMatrix4 meshTransform;        // +0xD8: mesh emitter transform (64 bytes)
-    char remaining[0x408];          // +0x118: remaining data
+    int meshDataVersion;            // +0x118: mesh data version flag
+    int pad_11C;                    // +0x11C
+    gbPartParamControl paramControls[6]; // +0x120: 6 parameter control blocks (velocity, size, etc.)
+    // sizeof(gbPartEmitter) = 0x120 + 6*0x11E4 = 0x6C78 = 27768
 
     gbPartEmitter(void);
     ~gbPartEmitter(void);
@@ -179,17 +187,21 @@ class gbParticleEffect;
 
 class gbParticleGroup {
 public:
-    char padding1[0x48];
+    char baseData[0x40];                   // +0x00: base group data (read from file)
+    int field_40;                          // +0x40
+    int field_44;                          // +0x44
     char* groupName;                       // +0x48
-    int unused1;
-    int unused2;
-    char padding2[0x24];
+    int unused1;                           // +0x4C
+    int unused2;                           // +0x50
+    char padding2[0x1C];                   // +0x54
+    int field_70;                          // +0x70
+    int field_74;                          // +0x74
     gbPartGroupParam* pGroupParam;         // +0x78
-    gbPartEmitter* pEmitter;               // +0x7c
+    gbPartEmitter* pEmitter;               // +0x7C
     gbParticleUnit* particleArray;         // +0x80
     int maxParticles;                      // +0x84
     int numAliveParticles;                 // +0x88
-    void* pParticleEffect;                 // +0x8c
+    gbParticleEffect* pParticleEffect;     // +0x8C
 
     gbParticleGroup(void);
     ~gbParticleGroup(void);

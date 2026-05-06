@@ -5,13 +5,12 @@
  */
 
 #include "gbengine/gbParticle.h"
+#include "gbengine/gbVFileSystem.h"
 #include <math.h>
 #include <string.h>
 #include <stdlib.h>
 
 // Forward declarations
-class gbVFile1;
-class gbVFileSystem;
 class gbEffectMgr;
 class gbResManager;
 
@@ -56,9 +55,15 @@ gbPartParamControl& gbPartParamControl::operator=(const gbPartParamControl& othe
 }
 
 void gbPartParamControl::LoadFromFile(gbVFile* vfile) {
-    if (!vfile) return;
-    controlType = 0;
-    numKeys = 0;
+    g_pVFileSys->Read(&controlType, 4u, vfile);
+    g_pVFileSys->Read(&numKeys, 4u, vfile);
+    g_pVFileSys->Read(configData, 0x40u, vfile);
+    g_pVFileSys->Read(configData + 0x40, 0x80u, vfile);
+    g_pVFileSys->Read(stateData + 0x0C, 0x0Cu, vfile);
+    g_pVFileSys->Read(stateData, 0x0Cu, vfile);
+    g_pVFileSys->Seek(vfile, 720, 2);
+    g_pVFileSys->Read(curveConfig, 0x2D0u, vfile);
+    g_pVFileSys->Read(ch0Keys, 0xE34u, vfile);
 }
 
 // Ghidra: GetValue_100299b0 (252 bytes)
@@ -204,16 +209,91 @@ gbPartEmitter& gbPartEmitter::operator=(const gbPartEmitter& other) {
     return *this;
 }
 
+// Global particle file version (determines which fields are present in file format)
+extern unsigned int g_particleFileVersion;
+
 void gbPartEmitter::LoadFromFile(gbVFile* vfile) {
-    /* STUB */
-    if (!vfile) return;
-    memset(this, 0, sizeof(gbPartEmitter));
+    g_pVFileSys->Read(configData, 0x40u, vfile);
+    g_pVFileSys->Read(&basePosition, sizeof(gbVec3D), vfile);
+    g_pVFileSys->Read(&velocityDeviation, sizeof(gbVec3D), vfile);
+    g_pVFileSys->Read(&emitType, 4u, vfile);
+
+    if (g_particleFileVersion > 0x10000) {
+        g_pVFileSys->Read(meshFilename, 0x40u, vfile);
+        g_pVFileSys->Read(&meshDataVersion, 4u, vfile);
+    }
+
+    g_pVFileSys->Read(&emitDuration, 4u, vfile);
+    g_pVFileSys->Read(&emitStartTime, 4u, vfile);
+    g_pVFileSys->Read(&loopFlag, 4u, vfile);
+    g_pVFileSys->Read(&field_A8, 4u, vfile);
+    g_pVFileSys->Read(&sphereRadius, 8u, vfile);
+    g_pVFileSys->Read(&boxMin, 0x18u, vfile);
+
+    for (int i = 0; i < 6; i++) {
+        paramControls[i].LoadFromFile(vfile);
+    }
+
+    /* TODO: mesh emitter path loading (emitType==2)
+       Ghidra shows: gbVFile1::GetDir(vfile, path, 255) + strcat(meshFilename)
+       But gbVFile* != gbVFile1* — need to understand the actual relationship
+       before implementing this branch. */
 }
 
 int gbPartEmitter::ComputeEmitterData(gbEmitterData* emitData, double time, double deltaTime) {
-    /* STUB */
-    if (!emitData) return 0;
-    return 1;
+    float cycleDuration = emitDuration - emitStartTime;
+
+    int cycleCount = (int)(time / cycleDuration);
+    double localTime = time;
+    if (cycleCount > 1) {
+        if (!loopFlag)
+            return 0;
+        localTime = time - (double)cycleCount * cycleDuration;
+    }
+
+    float t = (float)(localTime / cycleDuration);
+
+    // paramControls[0]: velocity
+    paramControls[0].GetValue(&emitData->velocity.x, t);
+
+    // paramControls[1]: speed range
+    float speedVals[2];
+    paramControls[1].GetValue(speedVals, t);
+    if (speedVals[0] <= speedVals[1]) {
+        emitData->speedMin = speedVals[1];
+        emitData->speedMax = speedVals[0];
+    } else {
+        emitData->speedMin = speedVals[0];
+        emitData->speedMax = speedVals[1];
+    }
+
+    // paramControls[2]: lifetime range
+    float lifeVals[2];
+    paramControls[2].GetValue(lifeVals, t);
+    if (lifeVals[0] <= lifeVals[1]) {
+        emitData->lifetimeMin = lifeVals[1];
+        emitData->lifetimeMax = lifeVals[0];
+    } else {
+        emitData->lifetimeMin = lifeVals[0];
+        emitData->lifetimeMax = lifeVals[1];
+    }
+
+    // paramControls[3]: emit rate range
+    float rateVals[2];
+    paramControls[3].GetValue(rateVals, t);
+    if (rateVals[0] <= rateVals[1]) {
+        emitData->emitRateMin = rateVals[1];
+        emitData->emitRateMax = rateVals[0];
+    } else {
+        emitData->emitRateMin = rateVals[0];
+        emitData->emitRateMax = rateVals[1];
+    }
+
+    // Calculate particles to emit this frame
+    double accumulated = emitData->emitRateMax * deltaTime + emitData->emitAccumulator;
+    int numToEmit = (int)accumulated;
+    emitData->emitAccumulator = accumulated - (double)numToEmit;
+    return numToEmit;
 }
 
 void gbPartEmitter::ComputeParticleInitPos(gbParticleUnit* particle) {
@@ -243,7 +323,7 @@ void gbPartEmitter::ComputeParticleInitPos(gbParticleUnit* particle) {
 }
 
 void gbPartEmitter::ComputeParticleInitVel(gbEmitterData* emitData, gbParticleUnit* particle) {
-    float speed = RandomFloat(emitData->speedScale, emitData->speedVariance);
+    float speed = RandomFloat(emitData->speedMin, emitData->speedMax);
 
     particle->velocity.x = speed * emitData->velocity.x + RandomFloat(-velocityDeviation.x, velocityDeviation.x);
     particle->velocity.y = speed * emitData->velocity.y + RandomFloat(-velocityDeviation.y, velocityDeviation.y);
@@ -283,8 +363,34 @@ gbParticleGroup& gbParticleGroup::operator=(const gbParticleGroup& other) {
 }
 
 void gbParticleGroup::LoadFromFile(gbVFile* vfile, gbParticleEffect* effect) {
-    /* STUB */
-    if (!vfile || !effect) return;
+    int emitterIdx, groupParamIdx;
+
+    pParticleEffect = effect;
+    g_pVFileSys->Read(baseData, 0x40u, vfile);
+    g_pVFileSys->Read(&emitterIdx, 4u, vfile);
+    g_pVFileSys->Read(&groupParamIdx, 4u, vfile);
+    g_pVFileSys->Read(&maxParticles, 4u, vfile);
+
+    pEmitter = effect->GetEmitter(emitterIdx);
+    pGroupParam = effect->GetGroupParam(groupParamIdx);
+
+    gbParticleUnit* particles = (gbParticleUnit*)operator new(sizeof(gbParticleUnit) * maxParticles);
+    if (particles) {
+        for (int i = maxParticles - 1; i >= 0; i--) {
+            memset(&particles[i].velocity, 0, 9 * sizeof(int));
+        }
+    }
+    particleArray = particles;
+
+    field_40 = 0;
+    field_70 = 0;
+    field_44 = 0;
+    field_74 = 0;
+
+    for (int i = 0; i < maxParticles; i++) {
+        particleArray[i].alive = 0;
+    }
+
     numAliveParticles = 0;
 }
 
@@ -333,7 +439,7 @@ gbParticleUnit* gbParticleGroup::CreateOneParticle(gbEmitterData* emitData) {
 
     particle->age = 0.0;
     particle->alive = 1;
-    particle->lifetime = emitData->lifetime;
+    particle->lifetime = RandomFloat(emitData->lifetimeMin, emitData->lifetimeMax);
     particle->frame = 0;
     particle->rotationDir = (rand() & 1) ? -1 : 1;
     particle->velocity = emitData->velocity;
@@ -384,7 +490,7 @@ void gbParticleGroup::Update(double deltaTime) {
 }
 
 void gbParticleGroup::Render(void) {
-    /* STUB */
+    /* TODO: 885B, requires gbDynVertBuf/gbVertPoolMgr/gbMatrixStack API */
     if (!pGroupParam->GetRenderEffect()) return;
 }
 
