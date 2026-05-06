@@ -1107,44 +1107,46 @@ int __thiscall PlayerMgr::UpdateMagicByLV(void *this)
 
 
 # ============================================================
-# The two largest functions we'll provide skeleton pseudocode for
-# since they're incomplete reads (>750 bytes)
-# ============================================================
+# CCBAI::CastNormalAttack (751b) - SKIPPED: Hex-Rays auto-exported this successfully
+# (file: CCBAI__CastNormalAttack_004a2587.json)
 
-# CCBAI::CastNormalAttack (751b) - read what we can
-write_func("CCBAI::CastNormalAttack", 0x004A2587, 751,
-    "int __thiscall CCBAI::CastNormalAttack(void *this, int target)",
-    """// Combat AI: normal attack sequence (751 bytes)
-// Full implementation requires reading complete disassembly
-// Key operations: target validation, distance check, attack state machine
-int __thiscall CCBAI::CastNormalAttack(void *this, int target)
-{
-  // [Manual decompilation needed - function too large for single pass]
-  // This function handles:
-  // 1. Validate target is in range
-  // 2. Check attack cooldown
-  // 3. Set up attack animation state
-  // 4. Apply damage calculation
-  // 5. Return success/failure code
-  return 0; // placeholder
-}
-""")
-
-# CCBEditor::CheckCCTValue (850b) - the largest
+# CCBEditor::CheckCCTValue (850b) - scalar dtor + EH destructor body
 write_func("CCBEditor::CheckCCTValue", 0x00463010, 850,
-    "void __thiscall CCBEditor::CheckCCTValue(void *this)",
-    """// Editor: CCT value validation (850 bytes)
-// Full implementation requires reading complete disassembly
-// Key operations: iterate CCT entries, validate values, update UI
-void __thiscall CCBEditor::CheckCCTValue(void *this)
+    "void *__thiscall CCBEditor::CheckCCTValue(void *this, unsigned int flags)",
+    """// Scalar deleting destructor wrapping a massive EH-based destructor
+void *__thiscall CCBEditor::CheckCCTValue(void *this, unsigned int flags)
 {
-  // [Manual decompilation needed - function too large for single pass]
-  // This function handles:
-  // 1. Iterate over CCT (Character Control Table) entries
-  // 2. Validate each entry's value ranges
-  // 3. Update editor UI with validation results
-  // 4. Flag invalid entries for user attention
+  CCBEditor_dtor_body(this); // calls loc_46302C
+  if ( flags & 1 )
+    operator delete(this);
+  return this;
 }
+
+// Destructor body (EH prolog, destroys ~40 sub-objects in reverse construction order):
+// void __thiscall CCBEditor_dtor_body(void *this)
+// {
+//   *(_DWORD *)this = &CCBEditor_vtable; // off_559678
+//   // Free 4 heap pointers:
+//   if ( *(void **)((char *)this + 0x1AD7C) ) operator delete(...);
+//   if ( *(void **)((char *)this + 0x1ADF8) ) operator delete(...);
+//   if ( *(void **)((char *)this + 0x154) )   operator delete(...);
+//   if ( *(void **)((char *)this + 0x1ADFC) ) operator delete(...);
+//   *(_BYTE *)((char *)this + 0x170) = 0;
+//   *(_BYTE *)((char *)this + 0x1D6A0) = 0;
+//   MainEquipUI::SetZX(this);
+//   // Destroy sub-objects (UIFrameWnd, $E66_22_0 etc.) at offsets:
+//   // 0x1D438, 0x1D2D0, 0x1D168, 0xCFFFC, 0x1CF4C, 0x1CE9C, 0x1CDEC,
+//   // 0x1CD3C, 0x1CC9C, 0x1C9B0+0x178, 0x1C9B0+0x20, 0x1C498, 0x1C3F8,
+//   // 0x1C358, 0x1C2B8
+//   // Vector destructor iterators for arrays:
+//   //   0x1B9F8 (14 * 0xA0), 0x19A9C (30 * 0xA0), 0x18494 (30 * 0xBC),
+//   //   0x153D4 (240 * 0x34), 0x101F0 (80 * 0xA0), 0x6BF0 (240 * 0xA0),
+//   //   0x6868 (5 * 0xA0)
+//   // More sub-objects: 0x1B958, 0x1B8A8, 0x1B750, 0x1B5F8, 0x1B548,
+//   //   0x1B4A8, 0x1AF40, 0x1AE0C, 0x67C4, 0x6724, 0x6684, 0x65E4,
+//   //   0x6544, 0x64A4, 0x6450, 0x63B0
+//   MainEquipUI::SetJT(this);
+// }
 """)
 
 
@@ -1154,5 +1156,10 @@ void __thiscall CCBEditor::CheckCCTValue(void *this)
 
 if __name__ == "__main__":
     os.makedirs(OUTPUT_DIR, exist_ok=True)
+    # Remove stale placeholder if it exists
+    stale = os.path.join(OUTPUT_DIR, "CCBAI_CastNormalAttack_004a2587.json")
+    if os.path.exists(stale):
+        os.remove(stale)
+        print(f"Removed stale placeholder: {stale}")
     print(f"Generated manual decompilation JSON files in {OUTPUT_DIR}")
-    print(f"Total: 45 functions")
+    print(f"Total: 44 functions (CCBAI::CastNormalAttack auto-exported by Hex-Rays)")
