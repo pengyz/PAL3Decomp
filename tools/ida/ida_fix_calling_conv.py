@@ -31,7 +31,6 @@ import builtins
 # IDA imports
 import idc
 import ida_auto
-import ida_typeinf
 import ida_hexrays
 import ida_funcs
 import ida_name
@@ -374,9 +373,8 @@ def main():
                         log(f"[OK] 0x{addr:08X} {ida_name_str}")
                     else:
                         # Fallback: replace calling convention in current type
-                        tif = ida_typeinf.tinfo_t()
-                        if ida_typeinf.get_tinfo(tif, addr):
-                            current_type = str(tif)
+                        current_type = idc.get_type(addr)
+                        if current_type:
                             # Try to replace __userpurge with __thiscall or __usercall with __cdecl
                             if '__userpurge' in current_type:
                                 fallback_sig = current_type.replace('__userpurge', calling_conv)
