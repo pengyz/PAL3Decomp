@@ -530,22 +530,5 @@ IDirect3DSurface9* gbTexture_D3D::GetMiscTexName(void) {
 
 // ============================================================================
 // gbTextureArray method implementations
-// ============================================================================
-
-// 0x100041b0 (10B) - Default constructor
-gbTextureArray::gbTextureArray(void) {
-    pTex[0] = NULL;
-    pTex[1] = NULL;
-}
-
-// 0x100041c0 (18B) - Single texture constructor
-gbTextureArray::gbTextureArray(gbTexture* tex0) {
-    pTex[0] = tex0;
-    pTex[1] = NULL;
-}
-
-// 0x10004200 (16B) - Set single texture
-void gbTextureArray::SetTexture(gbTexture* tex) {
-    pTex[0] = tex;
-}
+// gbTextureArray methods moved to gbTextureArray.cpp
 

@@ -32,7 +32,7 @@ struct gbVec3D {
     float x, y, z;
 
     // Methods (auto-generated)
-    gbVec3D() {}
+    gbVec3D();
     gbVec3D(float p0, float p1, float p2);
     void operator=(struct gbVec3D const & p0);
     bool operator==(struct gbVec3D const & p0);

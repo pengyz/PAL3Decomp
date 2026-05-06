@@ -481,38 +481,4 @@ void gbDynVertBuf::StepVertexPtr() {
     }
 }
 
-float* gbDynVertBuf::GetNormal() {
-    return m_pNormal;
-}
-
-float* gbDynVertBuf::Lock(int numVerts) {
-    return NULL;
-}
-
-void gbDynVertBuf::Unlock() {
-}
-
-void gbDynVertBuf::Draw(int primType, gbRenderEffect* effect, gbTextureArray* textures) {
-}
-
-void gbDynVertBuf::RenderLineStrip(gbColorQuad color, gbVec3D* points, int numPoints, gbRenderEffect* effect) {
-    if (!pLineEffect) {
-        pLineEffect = pGfxMgr->pEffectMgr->NewTrivalEffect(3);
-    }
-    if (!effect) {
-        effect = pLineEffect;
-    }
-
-    float* pVerts = Lock(numPoints);
-    if (!pVerts) return;
-
-    for (int i = 0; i < numPoints; i++) {
-        *m_pXYZ = points[i].x;
-        *(m_pXYZ + 1) = points[i].y;
-        *(m_pXYZ + 2) = points[i].z;
-        *(unsigned int*)m_pColor1 = *(unsigned int*)&color;
-        StepVertexPtr();
-    }
-
-    Draw(5, effect, NULL);
-}
+// gbDynVertBuf methods moved to gbDynVertBuf.cpp

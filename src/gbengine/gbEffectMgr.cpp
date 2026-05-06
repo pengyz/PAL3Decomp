@@ -58,3 +58,74 @@ int gbEffectMgr::OnResetDevice(void) {
     return 1;
 }
 
+IDirect3DVertexDeclaration9* gbEffectMgr::RegisterVertexFormat(const char* name, gbVertexElement* pElements) {
+    if (!name || !pElements)
+        return NULL;
+
+    if (m_nNumDecls >= m_nMaxDecls)
+        return NULL;
+
+    m_pVertDecls[m_nNumDecls] = pElements;
+    m_nNumDecls++;
+    return NULL;
+}
+
+gbRenderEffect* gbEffectMgr::NewRenderEffect(const char* filename, unsigned int flags) {
+    if (!filename || !m_pGfxMgr)
+        return NULL;
+
+    if (m_nNumEffects >= m_nMaxEffects)
+        return NULL;
+
+    IDirect3DDevice9* pDevice = NULL;
+    if (m_pGfxMgr) {
+        pDevice = ((gbGfxManager_D3D*)m_pGfxMgr)->m_pd3dDevice;
+    }
+    if (!pDevice)
+        return NULL;
+
+    ID3DXEffect* pEffect = NULL;
+    ID3DXBuffer* pErrors = NULL;
+
+    HRESULT hr = D3DXCreateEffectFromFile(
+        pDevice,
+        filename,
+        NULL,
+        NULL,
+        0,
+        NULL,
+        &pEffect,
+        &pErrors
+    );
+
+    if (FAILED(hr)) {
+        if (pErrors) pErrors->Release();
+        return NULL;
+    }
+
+    gbRenderEffect* effect = new gbRenderEffect(pEffect, flags);
+
+    m_pEffects[m_nNumEffects] = effect;
+    m_nNumEffects++;
+    return effect;
+}
+
+gbRenderEffect* gbEffectMgr::NewTrivalEffect(int type) {
+    if (type == 0) {
+        return NewRenderEffect("gfxscript\\ui.gbf", 0);
+    }
+    if (type == 1) {
+        return NewRenderEffect("gfxscript\\font.gbf", 0);
+    }
+    if (type == 2) {
+        return NewRenderEffect("gfxscript\\geom.gbf", 0);
+    }
+    if (type == 3) {
+        return NewRenderEffect("gfxscript\\line.gbf", 0);
+    }
+    if (type == 4) {
+        return NewRenderEffect("gfxscript\\sprite.gbf", 0);
+    }
+    return NULL;
+}
+

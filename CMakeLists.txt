@@ -117,7 +117,6 @@ elseif(BUILD_TARGET STREQUAL "gbengine")
             "${CMAKE_SOURCE_DIR}/tools/vc6/Lib/d3dx9.lib"
             "${CMAKE_SOURCE_DIR}/tools/vc6/Lib/dinput8.lib"
             "${CMAKE_SOURCE_DIR}/lib/ijl15.lib"
-            legacy_stdio_definitions.lib
         )
 
         # Use .def file for exports (matching original DLL export table)

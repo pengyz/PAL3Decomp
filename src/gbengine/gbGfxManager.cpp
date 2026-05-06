@@ -38,6 +38,7 @@ struct gbVertexElement;
 
 // Global definition
 gbGfxManager* g_pGfxManager = NULL;
+gbGfxManager_D3D* g_pGfxManager_D3D = NULL;
 
 
 // ============================================================================
@@ -490,128 +491,7 @@ void gbEffectMgr::Release(void) {
     m_bInitialized = 0;
 }
 
-// 0x1001d560 (50B) - Handle device lost
-int gbEffectMgr::OnLostDevice(void) {
-    for (int i = 0; i < m_nNumEffects; i++) {
-        if (m_pEffects[i] && m_pEffects[i]->m_pEffect) {
-            m_pEffects[i]->m_pEffect->OnLostDevice();
-        }
-    }
-    return 1;
-}
-
-// 0x1001d5a0 (50B) - Handle device reset
-int gbEffectMgr::OnResetDevice(void) {
-    for (int i = 0; i < m_nNumEffects; i++) {
-        if (m_pEffects[i] && m_pEffects[i]->m_pEffect) {
-            m_pEffects[i]->m_pEffect->OnResetDevice();
-        }
-    }
-    return 1;
-}
-
-// 0x1001d5e0 (232B) - Register a vertex format declaration
-IDirect3DVertexDeclaration9* gbEffectMgr::RegisterVertexFormat(const char* name, gbVertexElement* pElements) {
-    if (!name || !pElements)
-        return NULL;
-
-    if (m_nNumDecls >= m_nMaxDecls)
-        return NULL;
-
-    // In the real engine, this creates an IDirect3DVertexDeclaration9
-    // from the D3DVERTEXELEMENT9 array and stores it
-    m_pVertDecls[m_nNumDecls] = pElements;
-    m_nNumDecls++;
-    return NULL;
-}
-
-// 0x1001d6d0 (353B) - Create a new render effect from a .gbf file
-gbRenderEffect* gbEffectMgr::NewRenderEffect(const char* filename, unsigned int flags) {
-    if (!filename || !m_pGfxMgr)
-        return NULL;
-
-    if (m_nNumEffects >= m_nMaxEffects)
-        return NULL;
-
-    // Get D3D device
-    IDirect3DDevice9* pDevice = NULL;
-    if (m_pGfxMgr) {
-        pDevice = ((gbGfxManager_D3D*)m_pGfxMgr)->m_pd3dDevice;
-    }
-    if (!pDevice)
-        return NULL;
-
-    // Load effect file
-    // The real engine opens the file through gbVFileSystem, reads the .gbf data,
-    // and calls D3DXCreateEffect.
-    ID3DXEffect* pEffect = NULL;
-    ID3DXBuffer* pErrors = NULL;
-
-    HRESULT hr = D3DXCreateEffectFromFile(
-        pDevice,
-        filename,
-        NULL,       // defines
-        NULL,       // include handler
-        0,          // flags
-        NULL,       // effect pool
-        &pEffect,
-        &pErrors
-    );
-
-    if (pErrors) {
-        pErrors->Release();
-    }
-
-    if (FAILED(hr) || !pEffect)
-        return NULL;
-
-    gbRenderEffect* effect = new gbRenderEffect(pEffect, (unsigned int)flags);
-    pEffect->Release(); // gbRenderEffect AddRef'd in its constructor
-
-    m_pEffects[m_nNumEffects] = effect;
-    m_nNumEffects++;
-
-    return effect;
-}
-
-// 0x1001d840 (107B) - Create a trivial (fixed-function emulation) effect
-gbRenderEffect* gbEffectMgr::NewTrivalEffect(int type) {
-    if (type == 0) {
-        return NewRenderEffect("gfxscript\\ui.gbf", 0);
-    }
-    if (type == 1) {
-        return NewRenderEffect("gfxscript\\font.gbf", 0);
-    }
-    if (type == 2) {
-        return NewRenderEffect("gfxscript\\geom.gbf", 0);
-    }
-    if (type == 3) {
-        return NewRenderEffect("gfxscript\\line.gbf", 0);
-    }
-    if (type == 4) {
-        return NewRenderEffect("gfxscript\\sprite.gbf", 0);
-    }
-    return NULL;
-}
-
-// 0x1001d8b0 (39B) - Get effect by index
-gbRenderEffect* gbEffectMgr::GetRenderEffect(unsigned int index) {
-    if ((int)index >= m_nNumEffects)
-        return NULL;
-    return m_pEffects[index];
-}
-
-// Exported: GetGrayTexture
-// Returns cached gray texture from internal field (not yet mapped in header)
-gbTexture* gbEffectMgr::GetGrayTexture(void) {
-    return m_pGrayTexture;
-}
-
-// Exported: GetWhiteTexture
-// Returns cached white texture from internal field (not yet mapped in header)
-gbTexture* gbEffectMgr::GetWhiteTexture(void) {
-    return m_pWhiteTexture;
-}
+// gbEffectMgr methods moved to gbEffectMgr.cpp
 
 
 // ============================================================

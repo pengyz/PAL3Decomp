@@ -16,6 +16,18 @@ float* gbDynVertBuf::GetNormal() {
     return m_pNormal;
 }
 
+float* gbDynVertBuf::Lock(int numVerts) {
+    m_vertNum = numVerts;
+    m_currentVertex = 0;
+    return m_pXYZ;
+}
+
+void gbDynVertBuf::Unlock() {
+}
+
+void gbDynVertBuf::Draw(int primType, gbRenderEffect* effect, gbTextureArray* textures) {
+}
+
 void gbDynVertBuf::RenderGeomQuad(gbGeomQuad* quads, int numQuads,
                                    gbRenderEffect* effect, gbTextureArray* textures) {
     // 6 vertices per quad (triangle list): V0, V1, V3, V3, V1, V2

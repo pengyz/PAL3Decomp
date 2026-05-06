@@ -78,6 +78,53 @@ void gbOBBox::GetSphere(gbSphere& sphere) {
     sphere.radius = extent.Length();
 }
 
+// OBB-OBB collision using Separating Axis Theorem
+int gbOBBox::IsColOBB(gbOBBox* other) {
+    gbVec3D T;
+    T.x = other->matrix.m[3][0] - matrix.m[3][0];
+    T.y = other->matrix.m[3][1] - matrix.m[3][1];
+    T.z = other->matrix.m[3][2] - matrix.m[3][2];
+
+    int i;
+    for (i = 0; i < 3; i++) {
+        gbVec3D axis;
+        matrix.GetRow(&axis, i);
+        float dist = fabsf(T.DotProduct(&axis));
+        float radiusA = ((float*)&extent)[i];
+        float radiusB = other->GetRadiusInDirection(axis);
+        if (dist > radiusA + radiusB) return 0;
+
+        other->matrix.GetRow(&axis, i);
+        dist = fabsf(T.DotProduct(&axis));
+        radiusA = GetRadiusInDirection(axis);
+        radiusB = ((float*)&other->extent)[i];
+        if (dist > radiusA + radiusB) return 0;
+    }
+
+    for (i = 0; i < 3; i++) {
+        gbVec3D axisA;
+        matrix.GetRow(&axisA, i);
+        for (int j = 0; j < 3; j++) {
+            gbVec3D axisB;
+            other->matrix.GetRow(&axisB, j);
+
+            gbVec3D cross;
+            axisA.CrossProduct(&axisB, &cross);
+
+            float len = cross.Length();
+            if (len < 0.0001f) continue;
+
+            float dist = fabsf(T.DotProduct(&cross)) / len;
+            float radiusA = GetRadiusInDirection(cross) / len;
+            float radiusB = other->GetRadiusInDirection(cross) / len;
+
+            if (dist > radiusA + radiusB) return 0;
+        }
+    }
+
+    return 1;
+}
+
 // Point-in-OBB test
 int gbOBBox::IsColPoint(gbVec3D& point) {
     gbVec3D center;

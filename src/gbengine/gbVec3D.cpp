@@ -10,6 +10,14 @@
 
 #define GB_FLOAT_EPSILON 0.005
 
+gbVec3D::gbVec3D()
+{
+    x = 0.0f;
+    y = 0.0f;
+    z = 0.0f;
+}
+
+
 float gbVec3D::Length(void) const
 {
     return sqrtf(x * x + y * y + z * z);
@@ -124,4 +132,11 @@ void gbVec3D::Zero(void)
     x = 0.0f;
     y = 0.0f;
     z = 0.0f;
+}
+
+void gbVec3D::CrossProduct(const gbVec3D* v, gbVec3D* result) const
+{
+    result->x = y * v->z - v->y * z;
+    result->y = v->x * z - x * v->z;
+    result->z = x * v->y - v->x * y;
 }

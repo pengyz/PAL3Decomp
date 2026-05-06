@@ -302,6 +302,13 @@ void gbMatrix4::SetAxisAngle(gbVec3D *axis, float angle)
     q.GetMatrix(this);
 }
 
+void gbMatrix4::Invert()
+{
+    gbMatrix4 tmp;
+    Invert(&tmp);
+    *this = tmp;
+}
+
 void gbMatrix4::Invert(gbMatrix4 *out) const
 {
     float cofA = m[1][1] * m[2][2] - m[2][1] * m[1][2];

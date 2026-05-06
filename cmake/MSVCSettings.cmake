@@ -49,20 +49,27 @@ add_compile_options(${PAL3_COMMON_COMPILE_FLAGS})
 # topo.dll / gbengine.dll 标志 (VC6 风格)
 # ========================================================================
 
-set(TOPO_GBENGINE_COMPILE_FLAGS
-    /GX                  # C++ 异常处理（VC6 风格）/EHsc 的别名
-    /O2                  # 最大速度优化
-    /Ob1                 # 内联函数展开（仅适当的内联）
-    /Oi                  # 启用内部函数优化
-    /Ot                  # 优先代码速度而不是大小
-    /Oy                  # 省略帧指针
-    /GF                  # 启用字符串池
-    /Gy                  # 启用函数级链接
-    /FD                  # 生成完整程序数据库信息
-    /MD                  # 多线程 DLL 运行时库
-    /Zc:sizedDealloc-    # 禁用 C++14 sized deallocation（VC6 不支持）
-    /arch:IA32           # 强制 x87 FPU（避免 SSE 内部函数）
-)
+if(MSVC_VERSION EQUAL 1200)
+    # VC6: only flags it understands
+    set(TOPO_GBENGINE_COMPILE_FLAGS
+        /GX /O2 /Ob1 /Oi /Ot /Oy /GF /Gy /FD /MD
+    )
+else()
+    set(TOPO_GBENGINE_COMPILE_FLAGS
+        /GX                  # C++ 异常处理（VC6 风格）/EHsc 的别名
+        /O2                  # 最大速度优化
+        /Ob1                 # 内联函数展开（仅适当的内联）
+        /Oi                  # 启用内部函数优化
+        /Ot                  # 优先代码速度而不是大小
+        /Oy                  # 省略帧指针
+        /GF                  # 启用字符串池
+        /Gy                  # 启用函数级链接
+        /FD                  # 生成完整程序数据库信息
+        /MD                  # 多线程 DLL 运行时库
+        /Zc:sizedDealloc-    # 禁用 C++14 sized deallocation（VC6 不支持）
+        /arch:IA32           # 强制 x87 FPU（避免 SSE 内部函数）
+    )
+endif()
 
 # ========================================================================
 # PAL3.exe 标志 (VC7 风格)

@@ -8,7 +8,7 @@
 #include <float.h>
 
 // Moller-Trumbore ray-triangle intersection algorithm
-extern "C" int __cdecl gbIntersectTriangle(
+int gbIntersectTriangle(
     gbVec3D* rayOrigin, gbVec3D* rayDir,
     gbVec3D* v0, gbVec3D* v1, gbVec3D* v2,
     gbVec3D* intersection);
@@ -66,6 +66,68 @@ int gbRay::IsColAABB(gbAABBox& box) {
     }
 
     return tmin >= 0.0f ? 1 : 0;
+}
+
+// Ray-OBB intersection (slab method in OBB local space)
+int gbRay::IsColOBB(gbOBBox& obb) {
+    gbVec3D center;
+    center.x = obb.matrix.m[3][0];
+    center.y = obb.matrix.m[3][1];
+    center.z = obb.matrix.m[3][2];
+
+    gbVec3D delta;
+    delta.x = center.x - origin.x;
+    delta.y = center.y - origin.y;
+    delta.z = center.z - origin.z;
+
+    float tMin = -FLT_MAX;
+    float tMax = FLT_MAX;
+
+    for (int i = 0; i < 3; i++) {
+        gbVec3D axis;
+        obb.matrix.GetRow(&axis, i);
+        float halfExt = ((float*)&obb.extent)[i] * 0.5f;
+
+        float e = axis.DotProduct(&delta);
+        float f = axis.DotProduct(&direction);
+
+        if (fabsf(f) > 1e-6f) {
+            float t1 = (e + halfExt) / f;
+            float t2 = (e - halfExt) / f;
+            if (t1 > t2) { float tmp = t1; t1 = t2; t2 = tmp; }
+            if (t1 > tMin) tMin = t1;
+            if (t2 < tMax) tMax = t2;
+            if (tMin > tMax) return 0;
+            if (tMax < 0.0f) return 0;
+        } else {
+            if (-e - halfExt > 0.0f || -e + halfExt < 0.0f) return 0;
+        }
+    }
+
+    return 1;
+}
+
+// Ray-OBB intersection (via inverse transform to local AABB)
+int gbRay::IsColOBB_H(gbOBBox& obb) {
+    gbMatrix4 invMatrix = obb.matrix;
+    invMatrix.Invert();
+
+    gbVec3D localOrigin, localDir;
+    invMatrix.Transform(&origin, &localOrigin);
+    invMatrix.Rotate(&direction, &localDir);
+
+    float halfX = obb.extent.x * 0.5f;
+    float halfY = obb.extent.y * 0.5f;
+    float halfZ = obb.extent.z * 0.5f;
+
+    gbAABBox localBox;
+    localBox.vMin.x = -halfX; localBox.vMin.y = -halfY; localBox.vMin.z = -halfZ;
+    localBox.vMax.x = halfX;  localBox.vMax.y = halfY;  localBox.vMax.z = halfZ;
+
+    gbRay localRay;
+    localRay.origin = localOrigin;
+    localRay.direction = localDir;
+    return localRay.IsColAABB(localBox);
 }
 
 // Ray-Quad intersection (test as two triangles)
