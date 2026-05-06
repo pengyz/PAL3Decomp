@@ -156,20 +156,34 @@ def normalize_type(pdb_type):
 def build_ida_decl(func_name, ret_type_str, class_name, params, is_method):
     """构建 IDA SetType 格式的声明字符串
 
-    所有函数统一用 __cdecl:
-      - 方法: ret __cdecl name(ClassName *this, params...)
+    类方法使用 __thiscall (this 通过 ECX 传递, 不出现在参数列表中):
+      - 方法: ret __thiscall name(params...)
+        IDA 内部知道 this 的类型通过函数所属结构体推断
+    全局函数使用 __cdecl:
       - 全局: ret __cdecl name(params...)
 
-    IDA 的 Hex-Rays 反编译器会根据实际代码分析自动检测 __thiscall
-    并修正调用约定。我们只需确保参数类型信息正确。
+    关键: __thiscall 时 this 不在显式参数列表里,
+    IDA 会自动将 ECX 映射为 this 指针并使用结构体解析成员。
+    但如果 IDA 无法推断 this 类型, 则退化为显式 this 参数 + __cdecl。
     """
     ret = normalize_type(ret_type_str) if ret_type_str else 'int'
     if not ret or ret == 'void *':
         ret = 'int'
+    # Destructors always return void
+    if '~' in func_name or 'destructor' in func_name.lower():
+        ret = 'void'
 
     param_parts = []
+
     if is_method and class_name:
+        # Use __thiscall: this is implicit (passed via ECX)
+        # But we still need to tell IDA the this type via the function's
+        # first parameter being "ClassName *this" in the declaration
+        # IDA's SetType with __thiscall expects: ret __thiscall name(ClassName *this, ...)
         param_parts.append(f'{class_name} *this')
+        callconv = '__thiscall'
+    else:
+        callconv = '__cdecl'
 
     for p in params:
         p_type = normalize_type(p.get('type', ''))
@@ -188,7 +202,7 @@ def build_ida_decl(func_name, ret_type_str, class_name, params, is_method):
 
     safe_name = func_name.replace('::', '_').replace('<', '_').replace('>', '_')
     safe_name = safe_name.replace('~', '_dtor_').replace(' ', '_')
-    return f'{ret} __cdecl {safe_name}({params_str})'
+    return f'{ret} {callconv} {safe_name}({params_str})'
 
 
 def main():

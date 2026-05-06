@@ -6,13 +6,14 @@ IDAPython: PAL3A 一键反编译质量优化 Master Pipeline
   Phase 2: 补充缺失类型 (UIWnd, NPCInfo, SaveTask, PtrArray)
   Phase 3: 修补 UI 类基类 (_gap_0 -> UIWnd)
   Phase 4: 批量重命名高频 sub_ 函数 (37个, 影响8000+调用点)
-  Phase 5: 应用 PDB 函数签名 (先命名再设类型, v2)
+  Phase 5: 应用 PDB 函数签名 (__thiscall + 正确 this 类型, v2)
   Phase 6: 重新导出全部反编译结果
+  Phase 7: 导出全局变量 (名称/类型/地址)
 
 质量修复流水线:
   Phase Q1: 质量诊断
   Phase Q2: 修正函数边界
-  Phase Q3: 导入 PDB 类型 (增强)
+  Phase Q3: 导入 PDB 类型 (增强: 拓扑排序+STL成员大小修复)
   Phase Q4: 修正调用约定
   Phase Q5: 验证并导出
 
@@ -21,7 +22,7 @@ IDAPython: PAL3A 一键反编译质量优化 Master Pipeline
 
 选项:
   --skip-import    跳过 Phase 1 (已导入过)
-  --skip-export    跳过 Phase 5 (只优化不导出)
+  --skip-export    跳过 Phase 6 (只优化不导出)
   --phase=N        只执行 Phase N
   --quality-fix    运行质量修复流水线 (诊断→修边界→导类型→修约定→导出)
   --quality-dry    质量修复 dry-run 模式 (只诊断+预览, 不实际修改)
@@ -125,7 +126,10 @@ def main():
         ok = run_phase(6, "重新导出反编译结果", "ida_reexport_all.py")
         results.append(("Phase 6: 反编译导出", ok))
     else:
-        results.append(("Phase 5: 反编译导出", "SKIP"))
+        results.append(("Phase 6: 反编译导出", "SKIP"))
+
+    ok = run_phase(7, "导出全局变量", "ida_export_globals.py")
+    results.append(("Phase 7: 全局变量导出", ok))
 
     if QUALITY_FIX or QUALITY_DRY:
         print()

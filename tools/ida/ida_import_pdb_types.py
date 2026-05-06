@@ -95,7 +95,8 @@ def pdb_type_to_c(type_str, known_structs):
     Convert PDB type string to C type declaration.
 
     Args:
-        type_str: PDB type string (e.g., "class Foo *", "char[260]")
+        type_str: PDB type string (e.g., "class Foo *", "char[260]",
+                  "gbPrintFont[5] *", "ulong[3]")
         known_structs: Set of known struct/class names
 
     Returns:
@@ -106,26 +107,53 @@ def pdb_type_to_c(type_str, known_structs):
 
     type_str = type_str.strip()
 
-    # Handle array types (e.g., "char[260]")
+    # Handle "Type[N] *" pattern (pointer to array / array pointer)
+    # e.g., "gbPrintFont[5] *" -> "gbPrintFont *" (treat as pointer to first element)
+    # e.g., "gbTexture[6] *" -> "gbTexture *"
+    arr_ptr_match = re.match(r'^(.+)\[\d+\]\s*\*$', type_str)
+    if arr_ptr_match:
+        base = arr_ptr_match.group(1).strip()
+        base = re.sub(r'^(class|struct)\s+', '', base)
+        base_c = pdb_type_to_c(base, known_structs)
+        if base_c == "void*":
+            return "void*"
+        return f"{base_c} *"
+
+    # Handle array types (e.g., "char[260]", "ulong[3]")
     array_match = re.match(r'^(.+)\[(\d+)\]$', type_str)
     if array_match:
         base_type = array_match.group(1).strip()
         array_size = array_match.group(2)
         base_c_type = pdb_type_to_c(base_type, known_structs)
+        # Don't create arrays of void*
+        if base_c_type == "void*":
+            return f"int[{array_size}]"
         return f"{base_c_type}[{array_size}]"
 
-    # Handle pointer types
-    if type_str.endswith('*'):
-        base_type = type_str[:-1].strip()
-        # Strip class/struct prefix
-        base_type = re.sub(r'^(class|struct|enum)\s+', '', base_type)
-        # Handle template/complex types
-        if '<' in base_type or '::' in base_type:
-            return "void*"
-        base_c_type = pdb_type_to_c(base_type, known_structs)
-        if base_c_type == "void*":
-            return "void*"
-        return f"{base_c_type}*"
+    # Handle pointer types (ends with " *" or " **")
+    if type_str.endswith(' *') or type_str.endswith(' **'):
+        # Count pointer depth
+        base = type_str
+        stars = ''
+        while base.endswith(' *'):
+            base = base[:-2].strip()
+            stars += '*'
+
+        # Strip class/struct/enum prefix
+        base = re.sub(r'^(class|struct|enum)\s+', '', base)
+
+        # Handle template/complex types -> void*
+        if '<' in base or '::' in base:
+            return "void" + stars
+
+        # Recurse on base
+        base_c = pdb_type_to_c(base, known_structs)
+        if base_c == "void*":
+            return "void" + stars
+        # Avoid double-pointer from recursion
+        if base_c.endswith('*'):
+            return base_c  # already a pointer
+        return f"{base_c} " + stars
 
     # Strip class/struct/enum prefix
     type_str = re.sub(r'^(class|struct|enum)\s+', '', type_str)
@@ -134,11 +162,11 @@ def pdb_type_to_c(type_str, known_structs):
     if type_str in BASIC_TYPE_MAP:
         return BASIC_TYPE_MAP[type_str]
 
-    # Handle enums (treat as int)
+    # Handle enums (treat as int) - including named enums like CURSOR_TYPE
     if '::__unnamed' in type_str or type_str.startswith('enum '):
         return "int"
 
-    # Handle templates (treat as int/void*)
+    # Handle templates (treat as byte array placeholder)
     if '<' in type_str:
         return "int"
 
@@ -148,6 +176,10 @@ def pdb_type_to_c(type_str, known_structs):
 
     # If it's a known struct, use it directly
     if type_str in known_structs:
+        return type_str
+
+    # Simple identifier that might be an enum or type we haven't imported
+    if type_str.replace('_', '').isalnum() and not type_str[0:1].isdigit():
         return type_str
 
     # Unknown type -> void*
@@ -175,43 +207,49 @@ def sanitize_member_name(name):
     return sanitized
 
 
-def estimate_type_size(c_type):
+def estimate_type_size(c_type, known_struct_sizes=None):
     """
     Estimate size of a C type in bytes.
 
     Args:
         c_type: C type string
+        known_struct_sizes: dict of struct_name -> size (optional)
 
     Returns:
         int: Estimated size in bytes
     """
-    # Remove pointer
+    # Remove pointer (any depth)
     if c_type.endswith('*'):
-        return 4  # Pointer size
+        return 4  # Pointer size on x86
 
     # Handle array
     array_match = re.match(r'^(.+)\[(\d+)\]$', c_type)
     if array_match:
         base_type = array_match.group(1).strip()
         array_size = int(array_match.group(2))
-        base_size = estimate_type_size(base_type)
+        base_size = estimate_type_size(base_type, known_struct_sizes)
         return base_size * array_size
 
     # Check known sizes
     if c_type in TYPE_SIZES:
         return TYPE_SIZES[c_type]
 
-    # Unknown type (assume pointer/int)
+    # Check known struct sizes
+    if known_struct_sizes and c_type in known_struct_sizes:
+        return known_struct_sizes[c_type]
+
+    # Unknown type (assume int-sized)
     return 4
 
 
-def build_struct_decl(cls, known_structs):
+def build_struct_decl(cls, known_structs, known_struct_sizes=None):
     """
     Build C struct declaration from PDB class data.
 
     Args:
         cls: Class dict from PDB export
         known_structs: Set of known struct/class names
+        known_struct_sizes: dict of name -> size for known structs
 
     Returns:
         str: C struct declaration, or None if invalid
@@ -227,13 +265,17 @@ def build_struct_decl(cls, known_structs):
     sorted_members = sorted(data_members, key=lambda m: m['offset'])
 
     # Build member declarations
-    lines = [f"struct {name} {{"]
+    lines = [f"#pragma pack(push, 1)", f"struct {name} {{"]
     current_offset = 0
 
-    for member in sorted_members:
+    for i, member in enumerate(sorted_members):
         member_offset = member['offset']
         member_name = sanitize_member_name(member['name'])
         member_type_str = member['type']
+
+        # Skip members at invalid offsets
+        if member_offset < current_offset:
+            continue
 
         # Insert padding for gaps
         if member_offset > current_offset:
@@ -243,6 +285,19 @@ def build_struct_decl(cls, known_structs):
 
         # Convert type
         c_type = pdb_type_to_c(member_type_str, known_structs)
+
+        # For std::vector and other STL types used by value,
+        # compute actual size from gap to next member (or struct end)
+        if c_type == 'int' and ('<' in member_type_str or member_type_str.startswith('std::')):
+            # Determine actual member size from next member offset or struct size
+            if i + 1 < len(sorted_members):
+                next_offset = sorted_members[i + 1]['offset']
+            else:
+                next_offset = size
+            actual_size = next_offset - member_offset
+            if actual_size > 4:
+                # Replace with byte array of correct size
+                c_type = f"char[{actual_size}]"
 
         # Separate array suffix
         array_suffix = ""
@@ -255,7 +310,7 @@ def build_struct_decl(cls, known_structs):
         lines.append(f"  {base_type} {member_name}{array_suffix};")
 
         # Update current offset
-        member_size = estimate_type_size(c_type)
+        member_size = estimate_type_size(c_type, known_struct_sizes)
         current_offset = member_offset + member_size
 
     # Add trailing padding to reach declared size
@@ -264,6 +319,7 @@ def build_struct_decl(cls, known_structs):
         lines.append(f"  char _pad_{current_offset:X}[{trailing_pad}];")
 
     lines.append("};")
+    lines.append("#pragma pack(pop)")
     return "\n".join(lines)
 
 
@@ -372,6 +428,77 @@ def import_enums(enums, log):
     return (success, failure)
 
 
+def topo_sort_classes(classes):
+    """
+    Topological sort: structs that are referenced by-value come first.
+
+    Args:
+        classes: List of class dicts
+
+    Returns:
+        list: Sorted class dicts (dependencies first)
+    """
+    name_set = set(c['name'] for c in classes)
+    by_name = {c['name']: c for c in classes}
+
+    # Build dependency graph: cls depends on types used by value (not pointer)
+    deps = {}
+    for cls in classes:
+        name = cls['name']
+        needed = set()
+        for m in cls.get('data_members', []):
+            m_type = m.get('type', '')
+            # Strip class/struct prefix
+            clean = re.sub(r'^(class|struct)\s+', '', m_type).strip()
+            # By-value reference (no pointer, no array-pointer)
+            if '*' not in clean and clean in name_set and clean != name:
+                needed.add(clean)
+            # Array of struct by value: "TypeName[N]"
+            arr = re.match(r'^(\w+)\[\d+\]$', clean)
+            if arr and arr.group(1) in name_set and arr.group(1) != name:
+                needed.add(arr.group(1))
+        deps[name] = needed
+
+    # Kahn's algorithm
+    in_degree = {n: 0 for n in name_set}
+    for n, d in deps.items():
+        for dep in d:
+            if dep in name_set:
+                pass  # dep is needed by n
+    # in_degree[n] = number of deps n has that are in our set
+    in_degree = {n: len(deps.get(n, set()) & name_set) for n in name_set}
+
+    # reverse: if A depends on B, then B is depended-on by A
+    reverse = {n: set() for n in name_set}
+    for n, d in deps.items():
+        for dep in d:
+            if dep in reverse:
+                reverse[dep].add(n)
+
+    queue = sorted([n for n in name_set if in_degree[n] == 0],
+                   key=lambda x: by_name[x].get('size', 0))
+    result = []
+    visited = set()
+
+    while queue:
+        n = queue.pop(0)
+        if n in visited:
+            continue
+        visited.add(n)
+        result.append(by_name[n])
+        for dependent in sorted(reverse.get(n, set())):
+            in_degree[dependent] -= 1
+            if in_degree[dependent] <= 0 and dependent not in visited:
+                queue.append(dependent)
+
+    # Remaining (circular deps) - add by size
+    for cls in sorted(classes, key=lambda c: c.get('size', 0)):
+        if cls['name'] not in visited:
+            result.append(cls)
+
+    return result
+
+
 def import_structs(classes, log):
     """
     Import structs into IDA database.
@@ -386,6 +513,7 @@ def import_structs(classes, log):
     log("\n=== Phase B: Import Structs ===\n")
 
     known_structs = set()
+    known_struct_sizes = {}
 
     # Step 1: Forward declare all
     log(f"Forward declaring {len(classes)} structs...")
@@ -394,19 +522,22 @@ def import_structs(classes, log):
         decl = f"struct {name};"
         idc.parse_decls(decl, idc.PT_TYP)
         known_structs.add(name)
+        known_struct_sizes[name] = cls.get('size', 4)
 
-    # Step 2: Sort by size (smaller first for dependency order)
-    sorted_classes = sorted(classes, key=lambda c: c['size'])
+    # Step 2: Topological sort (dependencies first)
+    sorted_classes = topo_sort_classes(classes)
+    log(f"Topological sort done: {len(sorted_classes)} classes")
 
-    # Step 3: Import actual definitions
-    log(f"Importing {len(sorted_classes)} struct definitions...")
+    # Step 3: Import actual definitions (two passes for circular deps)
+    log(f"Importing struct definitions (pass 1)...")
     success = 0
     failure = 0
+    failed_classes = []
     failure_samples = []
 
     for cls in sorted_classes:
         name = cls['name']
-        decl = build_struct_decl(cls, known_structs)
+        decl = build_struct_decl(cls, known_structs, known_struct_sizes)
 
         if not decl:
             failure += 1
@@ -416,9 +547,22 @@ def import_structs(classes, log):
         if result == 0:
             success += 1
         else:
-            failure += 1
+            failed_classes.append(cls)
             if len(failure_samples) < 10:
                 failure_samples.append(name)
+
+    # Pass 2: retry failures (deps may have been resolved in pass 1)
+    if failed_classes:
+        log(f"Retrying {len(failed_classes)} failures (pass 2)...")
+        retry_ok = 0
+        for cls in failed_classes:
+            name = cls['name']
+            decl = build_struct_decl(cls, known_structs, known_struct_sizes)
+            if decl and idc.parse_decls(decl, idc.PT_TYP) == 0:
+                retry_ok += 1
+                success += 1
+        failure = len(failed_classes) - retry_ok
+        log(f"Pass 2 recovered: {retry_ok}")
 
     log(f"Structs imported: {success}/{len(classes)} success, {failure} failures")
     if failure_samples:
