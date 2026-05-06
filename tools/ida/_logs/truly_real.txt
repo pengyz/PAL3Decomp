@@ -1,0 +1,92 @@
+Truly real functions (with prologue): 45
+Epilogue fragments (no prologue): 37
+
+============================================================
+TRULY REAL FUNCTIONS (worth manual decompilation):
+
+  0x00463010 CCBEditor::CheckCCTValue (850b) [push esi]
+  0x004A2587 CCBAI::CastNormalAttack (751b) [push ebp; mov ebp, esp]
+  0x00436BD0 PlayerMgr::UpdateMagicByLV (438b) [push eax]
+  0x004D3F72 UIWnd::Destroy (343b) [push ebx]
+  0x004CC981 UIStatic::Update (335b) [push edi]
+  0x0051F36F ConfigFile::Writef (329b) [push esi]
+  0x00525B15 CCBEditor::CheckCamEditor (265b) [push ebx]
+  0x0051740C Role::DrawView (182b) [push esi]
+  0x0054C934 unknown_libname_234 (181b) [push edx]
+  0x0054C67C unknown_libname_232 (178b) [push edx]
+  0x0054221D JusticeBookUI::DestroyMonsters (174b) [push edx]
+  0x00545109 __check_range_exit (163b) [sub esp]
+  0x0042FCA8 CCBAttackSequen::SetZeroSpeed (146b) [push ebp; mov ebp, esp]
+  0x004B93A3 UIButtonEXA::_UIButtonEXA_0 (134b) [push ebx]
+  0x004CEDF8 UIMap::CheckMoveRight_1 (118b) [push esi]
+  0x0050D09C CCBUI::CreateFiveNimbus (111b) [push ebp; mov ebp, esp]
+  0x00540649 __onexit (109b) [push esi]
+  0x0044163F Role::RotateFly (104b) [push 1]
+  0x0043CD15 std::_Insertion_sort_1_1 (94b) [push esi]
+  0x00450B75 RoleCameraCtrl::Push (86b) [push esi]
+  0x00417800 CCBMagicWindow::_CCBMagicWindow_0 (74b) [push ebp; mov ebp, esp]
+  0x004EDE1C CCBSystem::IsFriendDoSkill (72b) [push ebp; mov ebp, esp]
+  0x0043D12C std::sort_1 (70b) [push esi]
+  0x00422D40 std::bitset_48_::reference::operator__1 (67b) [push esi]
+  0x004AA1BE CCBStageScene::IsShowFiveLineup (58b) [push esi]
+  0x00525D98 CCBEditor::SceneEditorProc (53b) [push esi]
+  0x0043B280 _::size_7 (50b) [push eax]
+  0x00412B91 AStarPathFinder::_AStarPathFinder (46b) [push esi]
+  0x005479F4 __freebuf (43b) [push esi]
+  0x0043CC86 std::_Unguarded_insert_0 (36b) [push esi]
+  0x00430A75 CCBRoleState::Update (34b) [push esi]
+  0x0041FC5D GRPinput::GetMouseDeltas_0 (31b) [push esi]
+  0x00451358 CG_Scene::GetMonsterNum (28b) [push esi]
+  0x00455622 CCBSystem::SetLockCam (28b) [push esi]
+  0x00480B1F CCBEditor::_CCBEditor_2 (28b) [push esi]
+  0x0048C180 MyMdl::MyMdl_0 (28b) [push esi]
+  0x0049B858 CUtil::iRange (28b) [push esi]
+  0x0049C458 _::_Kfn::operator (28b) [push esi]
+  0x004A446B AStarPathFinder::CheckOPEN_0 (28b) [push esi]
+  0x00401042 TxtFile::_TxtFile_0 (25b) [push esi]
+  0x0043D787 std::copy_backward_7 (24b) [push dword ptr ?g_bink@@3VgbBinkVideo@@A._gap_14+78E74h]
+  0x0043B313 PtrArray::_PtrArray_8 (21b) [push esi]
+  0x0049D250 ?_Erase@?$_Tree@V?$basic_string@DU?$char_traits@D@ (18b) [push ds:off_55D494[ebx]]
+  0x0052CAD4 CCBParabolaWindow::Reset (15b) [push 1]
+  0x0052BBAE CCBAttackSequen::SetLock_0 (11b) [push [esp+lpMem]]
+
+============================================================
+EPILOGUE FRAGMENTS (delete these too):
+
+  0x0051B208 EquipUI::OnMessage (4060b) starts with: movsd 
+  0x0049F767 MainEquipUI::Update (844b) starts with: jz loc_49F928
+  0x00434F29 PlayerMgr::OnSave (641b) starts with: lea eax
+  0x004506AB RoleCameraCtrl::_RoleCameraCtrl_2 (520b) starts with: cmp [esi+0D38h]
+  0x00486A00 long_101 (320b) starts with: cmp byte ptr [eax+2CAh]
+  0x00408173 Archive::_Archive (218b) starts with: call ds:GetCommandLineA
+  0x00433299 PlayerMgr::Destroy_0 (204b) starts with: mov edx
+  0x00506CBA DealUI::Update (203b) starts with: mov al
+  0x005424E4 _asin (183b) starts with: lea edx
+  0x005350B9 CCBRoleState::CanProtect_0 (170b) starts with: addps xmm5
+  0x00540554 _sqrt (166b) starts with: lea edx
+  0x005422E4 _cos (154b) starts with: lea edx
+  0x00542394 _sin (154b) starts with: lea edx
+  0x00542444 _atan (139b) starts with: lea edx
+  0x00486D80 long_104 (126b) starts with: call GRPinput__CheckKeyEvents
+  0x004F6DC9 Actor::GetCollideOBB (119b) starts with: test ecx
+  0x00418BA0 matrix_3_1_float_::normalize (114b) starts with: mov eax
+  0x004D3C7B UIWnd::UIWnd (110b) starts with: fld 
+  0x004185C0 matrix_3_1_float_::operator__1 (102b) starts with: mov edx
+  0x00541A06 JusticeBookUI::SetTestReoccupy (95b) starts with: xor eax
+  0x00543B7C JusticeBookUI::GetAllMonsters (93b) starts with: xor eax
+  0x004C84D1 RoleTask_::construct (56b) starts with: jz loc_4C8505
+  0x0052FF90 CParticleEffect::GetParticleSystem (53b) starts with: mov ecx
+  0x00419D80 matrix_3_1_float_::matrix_3_1_float__0 (52b) starts with: fadd 
+  0x005282C6 PropUI::Update_1 (48b) starts with: cmp r
+  0x0047B157 MXSavePoint::_MXSavePoint (40b) starts with: fld 
+  0x00418E20 _::size_6 (36b) starts with: mov [eax+4]
+  0x004185A0 matrix_3_1_float_::operator__0 (27b) starts with: jmp loc_4185AC
+  0x0043B552 std::copy_backward_5 (23b) starts with: call std__fill_8
+  0x0049859B ??_??_::_??_::iterator::operator___0 (21b) starts with: mov eax
+  0x004985C5 MainPropUI::GetUsedID_0 (21b) starts with: mov eax
+  0x004985DA ??_??_::_??_::begin (21b) starts with: mov eax
+  0x004985EF ??_??_::_??_::end_0 (21b) starts with: mov eax
+  0x0051614D CCBControl::_CCBControl (19b) starts with: fld 
+  0x0041A3F0 _::end_8 (12b) starts with: call CCBAttackSequen__SetLock_0
+  0x00486F50 _::empty_0 (11b) starts with: jl loc_486E12
+  0x0041A390 _::begin_6 (10b) starts with: mov edi
