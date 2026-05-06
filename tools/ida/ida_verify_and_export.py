@@ -389,8 +389,11 @@ def generate_comparison_report(stats, old_diagnosis):
     # Quality breakdown of exported functions
     lines.append("## Exported Function Quality")
     lines.append("")
-    lines.append(f"- **Clean** (no issues): {stats['clean']} ({100 * stats['clean'] / stats['exported']:.1f}%)")
-    lines.append(f"- **Has raw memory** (soft issue): {stats['has_raw_memory']} ({100 * stats['has_raw_memory'] / stats['exported']:.1f}%)")
+    if stats['exported'] > 0:
+        lines.append(f"- **Clean** (no issues): {stats['clean']} ({100 * stats['clean'] / stats['exported']:.1f}%)")
+        lines.append(f"- **Has raw memory** (soft issue): {stats['has_raw_memory']} ({100 * stats['has_raw_memory'] / stats['exported']:.1f}%)")
+    else:
+        lines.append("- No functions exported yet")
     lines.append("")
 
     lines.append("=" * 80)
