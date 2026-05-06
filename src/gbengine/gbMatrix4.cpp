@@ -22,7 +22,6 @@
 
 gbMatrix4::gbMatrix4(void)
 {
-    /* STUB */
     LoadIdentity();
 }
 
@@ -122,7 +121,6 @@ void gbMatrix4::RightMultiply(const gbMatrix4 &param)
 
 void gbMatrix4::LeftMultiply(const gbMatrix4 &param)
 {
-    /* STUB */
     *this *= param;
 }
 
@@ -190,7 +188,6 @@ bool gbMatrix4::IsValid(void) const
 
 float gbMatrix4::operator()(int row, int col)
 {
-    /* STUB */
     return m[row][col];
 }
 

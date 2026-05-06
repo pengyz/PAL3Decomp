@@ -63,7 +63,6 @@ gbCamControler& gbCamControler::operator=(const gbCamControler& other) {
 
 // Virtual destructor
 gbCamControler::~gbCamControler() {
-    /* STUB */
 }
 
 void gbCamControler::Update(double deltaTime) { (void)deltaTime; }
@@ -480,7 +479,6 @@ gbCamControler* gbCamera::GetCurControl(void) {
 
 // 0x10005a10 (14B)
 int gbCamera::IsCurCtrlDefault(void) {
-    /* STUB */
     return (CurCtrl == 0) ? 1 : 0;
 }
 

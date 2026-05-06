@@ -23,7 +23,6 @@ gbColorFlt::gbColorFlt(float red, float green, float blue, float alpha) {
 
 // Default constructor
 gbColorFlt::gbColorFlt() {
-    /* STUB */
     r = g = b = 0.0f;
     a = 1.0f;
 }
@@ -39,7 +38,6 @@ gbColorFlt& gbColorFlt::operator=(const gbColorFlt& color) {
 
 // Inequality operator
 int gbColorFlt::operator!=(gbColorFlt& color) {
-    /* STUB */
     return (r != color.r || g != color.g || b != color.b || a != color.a) ? 1 : 0;
 }
 

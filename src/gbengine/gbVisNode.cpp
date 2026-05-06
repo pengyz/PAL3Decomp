@@ -267,9 +267,6 @@ void gbVisNode::GetBoundSphere(gbSphere* sphere) {
 
 // EnableShadow - 0x10016830 (virtual)
 void gbVisNode::EnableShadow(int enable) {
-    /* STUB */
-    // Ghidra: *(int*)(this + 0x40) = param_1
-    // Offset 0x40 = cullNext field (reused as shadow enable flag in base class)
     cullNext = (gbVisNode*)(int)enable;
 }
 
@@ -444,16 +441,10 @@ public:
 
 // ---- gbVolModNode ----
 gbVolModNode::gbVolModNode(class gbVolModNode const & p0) {
-    /* STUB */
-    // Copy constructor: memcpy entire object (per Ghidra at 0x10005700)
     memcpy(this, &p0, sizeof(gbVolModNode));
 }
 
 gbVolModNode::gbVolModNode() {
-    /* STUB */
-    // Default constructor per Ghidra at 0x10013040:
-    // Base class gbVisNode constructed first (by compiler)
-    // Initialize the two matrices and volume modifier pointer
     localMatrix.LoadIdentity();
     // worldMatrix is default-constructed by gbMatrix4 ctor
     pVolMod = 0;
@@ -502,12 +493,10 @@ void gbVolModNode::Render(struct gbRenderInfoObj * p0) {
 gbVolumeModifier::gbVolumeModifier(class gbVolumeModifier const & p0) { memcpy(this, &p0, sizeof(*this)); }
 
 gbVolumeModifier::gbVolumeModifier() {
-    /* STUB */
     memset(this, 0, sizeof(*this));
 }
 
 gbVolumeModifier::~gbVolumeModifier() {
-    /* STUB */
 }
 
 class gbVolumeModifier & gbVolumeModifier::operator=(class gbVolumeModifier const & p0) { if (this != &p0) memcpy(this, &p0, sizeof(*this)); return *this; }

@@ -80,7 +80,6 @@ extern unsigned int gbCrc32Compute(const char* str);
 
 // gbResManagerStub method implementations
 void gbResManagerStub::Init() {
-    /* STUB */
     array = NULL; capacity = 0; count = 0;
 }
 void gbResManagerStub::Destroy() { if (array != NULL) { free(array); array = NULL; } }
@@ -125,7 +124,6 @@ void gbSoundData::SetName(const char* newName) {
 }
 
 void gbSoundData::IncRef() {
-    /* STUB */
     refCount++;
 }
 
@@ -761,7 +759,6 @@ void gbAudioManager::ResumeSoundStream(int index) {
 
 // GetStreamStatus - 0x10001d10 (11B)
 int gbAudioManager::GetStreamStatus(int index) {
-    /* STUB */
     return streamStatus[index];
 }
 
@@ -1003,7 +1000,6 @@ int gbSound3DNode::GetPlayLoop() {
 
 // IfAttached - 0x100024d0 (11B)
 bool gbSound3DNode::IfAttached() {
-    /* STUB */
     return attached != 0;
 }
 

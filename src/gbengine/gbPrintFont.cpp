@@ -261,6 +261,5 @@ void gbPrintFontMgr::Flush3D(void)
 // 0x10004450
 gbPrintFont* gbPrintFontMgr::GetFont(gbFontType type)
 {
-    /* STUB */
     return fonts[type];
 }

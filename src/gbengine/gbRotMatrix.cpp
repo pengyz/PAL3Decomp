@@ -18,7 +18,6 @@
 
 gbRotMatrix::gbRotMatrix(void)
 {
-    /* STUB */
     LoadIdentity();
 }
 

@@ -7,7 +7,6 @@
 #include <string.h>
 
 gbTextureArray::gbTextureArray(gbTexture* tex0, gbTexture* tex1) {
-    /* STUB */
     pTex[0] = tex0;
     pTex[1] = tex1;
 }

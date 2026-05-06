@@ -8,7 +8,6 @@
 
 // Constructor
 gbOBBox::gbOBBox() {
-    /* STUB */
     matrix.LoadIdentity();
     extent.x = extent.y = extent.z = 1.0f;
 }
@@ -31,7 +30,6 @@ gbVec3D gbOBBox::GetCenter() const {
 
 // Get radius (distance from center to corner)
 float gbOBBox::GetRadius() const {
-    /* STUB */
     return extent.Length();
 }
 

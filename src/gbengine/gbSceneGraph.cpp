@@ -155,10 +155,8 @@ void gbSceneGraph::AddSkyBox(gbVisNode* node) {
 }
 
 void gbSceneGraph::Begin(gbCamera* camera) {
-    /* STUB */
     activeCamera = camera;
     renderObjPoolUsed = 0;
-    // Reset render state for new frame
 }
 
 gbRenderInfoObj* gbSceneGraph::NewOneRenderObj(gbVisNode* node) {
@@ -183,13 +181,10 @@ gbRenderInfoObj* gbSceneGraph::NewOneRenderObj(gbVisNode* node) {
 }
 
 gbRenderInfoObj* gbSceneGraph::NewShadowVolume(gbVisNode* node) {
-    /* STUB */
-    // Shadow volumes use same allocation as render objects
     return NewOneRenderObj(node);
 }
 
 void gbSceneGraph::AddVolModNode(gbVolModNode* node) {
-    /* STUB */
     volModNodes[numVolModNodes] = node;
     numVolModNodes++;
 }

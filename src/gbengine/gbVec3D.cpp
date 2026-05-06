@@ -12,7 +12,6 @@
 
 float gbVec3D::Length(void) const
 {
-    /* STUB */
     return sqrtf(x * x + y * y + z * z);
 }
 
@@ -82,7 +81,6 @@ void gbVec3D::operator/=(float s)
 
 bool gbVec3D::operator==(const gbVec3D &other)
 {
-    /* STUB */
     return (x == other.x && y == other.y && z == other.z);
 }
 
@@ -97,13 +95,11 @@ gbVec3D gbVec3D::operator-(void) const
 
 float gbVec3D::LengthSquare(void) const
 {
-    /* STUB */
     return x * x + y * y + z * z;
 }
 
 float gbVec3D::DotProduct(const gbVec3D *other) const
 {
-    /* STUB */
     return other->x * x + other->y * y + other->z * z;
 }
 

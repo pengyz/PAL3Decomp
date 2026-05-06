@@ -119,12 +119,10 @@ gbRain::gbRain(int maxDrops, const gbDropDesc* dropDesc, const char* texName)
 
 gbRain::gbRain(const gbRain& other)
     : gbDropGroup(other) {
-    /* STUB */
     memcpy((char*)this + 8, (const char*)&other + 8, sizeof(gbRain) - 8);
 }
 
 gbRain::~gbRain(void) {
-    /* STUB */
 }
 
 void gbRain::Update(float deltaTime) {
@@ -173,20 +171,17 @@ void gbRain::Draw(void) {
 
 gbSnow::gbSnow(int maxDrops, const gbDropDesc* dropDesc, const char* texName, float amplitude)
     : gbDropGroup(maxDrops, dropDesc, texName) {
-    /* STUB */
     swayAmplitude = amplitude;
     swayFrequency = 1.0f;
 }
 
 gbSnow::gbSnow(const gbSnow& other)
     : gbDropGroup(other) {
-    /* STUB */
     swayAmplitude = other.swayAmplitude;
     swayFrequency = other.swayFrequency;
 }
 
 gbSnow::~gbSnow(void) {
-    /* STUB */
 }
 
 void gbSnow::Update(float deltaTime) {

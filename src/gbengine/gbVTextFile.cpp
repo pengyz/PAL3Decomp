@@ -7,7 +7,6 @@
 extern gbVFileSystem* g_pVFileSys;
 
 gbVTextFile::~gbVTextFile() {
-    /* STUB */
     Close();
 }
 

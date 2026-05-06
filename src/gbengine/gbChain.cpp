@@ -14,20 +14,16 @@
  * ================================================================ */
 
 gbChain1DNode::gbChain1DNode(void) {
-    /* STUB */
 }
 
 gbChain1DNode::gbChain1DNode(const gbChain1DNode& src) {
-    /* STUB */
     pNext = src.pNext;
 }
 
 gbChain1DNode::~gbChain1DNode() {
-    /* STUB */
 }
 
 gbChain1DNode& gbChain1DNode::operator=(const gbChain1DNode& other) {
-    /* STUB */
     pNext = other.pNext;
     return *this;
 }
@@ -44,7 +40,6 @@ gbChain1D::gbChain1D(void) {
 }
 
 gbChain1D::~gbChain1D() {
-    /* STUB */
 }
 
 gbChain1D& gbChain1D::operator=(const gbChain1D& other) {
@@ -176,13 +171,11 @@ int gbChain1D::GetNumNode(void) {
 }
 
 gbChain1DNode* gbChain1D::BeginIterate(void) {
-    /* STUB */
     pIterator = pHead;
     return pIterator;
 }
 
 gbChain1DNode* gbChain1D::Iterate(void) {
-    /* STUB */
     pIterator = pIterator->pNext;
     return pIterator;
 }
@@ -207,17 +200,14 @@ gbChain1DNode* gbChain1D::operator[](int index) {
  * ================================================================ */
 
 gbChain2DNode::gbChain2DNode(void) {
-    /* STUB */
 }
 
 gbChain2DNode::gbChain2DNode(const gbChain2DNode& src) {
-    /* STUB */
     pPrev = src.pPrev;
     pNext = src.pNext;
 }
 
 gbChain2DNode::~gbChain2DNode() {
-    /* STUB */
 }
 
 gbChain2DNode& gbChain2DNode::operator=(const gbChain2DNode& other) {
@@ -238,11 +228,9 @@ gbChain2D::gbChain2D(void) {
 }
 
 gbChain2D::~gbChain2D() {
-    /* STUB */
 }
 
 gbChain2D& gbChain2D::operator=(const gbChain2D& other) {
-    /* STUB */
     memcpy(this, &other, 0x14);
     return *this;
 }
@@ -328,13 +316,11 @@ gbNBTreeNode::gbNBTreeNode(void) : gbChain1DNode() {
 }
 
 gbNBTreeNode::gbNBTreeNode(const gbNBTreeNode& src) : gbChain1DNode(src) {
-    /* STUB */
     pParent = src.pParent;
     children = src.children;
 }
 
 gbNBTreeNode::~gbNBTreeNode() {
-    /* STUB */
 }
 
 gbNBTreeNode& gbNBTreeNode::operator=(const gbNBTreeNode& other) {
@@ -345,35 +331,29 @@ gbNBTreeNode& gbNBTreeNode::operator=(const gbNBTreeNode& other) {
 }
 
 void gbNBTreeNode::AddChildOnHead(gbNBTreeNode* child) {
-    /* STUB */
     children.AddNodeOnHead((gbChain1DNode*)child);
     child->pParent = this;
 }
 
 void gbNBTreeNode::AddChildOnTail(gbNBTreeNode* child) {
-    /* STUB */
     children.AddNode((gbChain1DNode*)child);
     child->pParent = this;
 }
 
 void gbNBTreeNode::AddChild(gbNBTreeNode* child) {
-    /* STUB */
     children.AddNode((gbChain1DNode*)child);
     child->pParent = this;
 }
 
 void gbNBTreeNode::DelChildFromChain(gbNBTreeNode* child) {
-    /* STUB */
     children.DelNodeFromChain((gbChain1DNode*)child);
 }
 
 int gbNBTreeNode::IsChild(gbNBTreeNode* child) {
-    /* STUB */
     return children.IsContainNode((gbChain1DNode*)child);
 }
 
 int gbNBTreeNode::GetNumChildren(void) {
-    /* STUB */
     return children.GetNumNode();
 }
 
@@ -386,19 +366,16 @@ gbNBTreeNode* gbNBTreeNode::GetFather(void) {
 }
 
 gbNBTreeNode* gbNBTreeNode::BeginIterateChild(void) {
-    /* STUB */
     children.pIterator = children.pHead;
     return (gbNBTreeNode*)children.pIterator;
 }
 
 gbNBTreeNode* gbNBTreeNode::IterateChild(void) {
-    /* STUB */
     children.pIterator = children.pIterator->pNext;
     return (gbNBTreeNode*)children.pIterator;
 }
 
 gbNBTreeNode* gbNBTreeNode::GetChild(int index) {
-    /* STUB */
     return (gbNBTreeNode*)children[index];
 }
 
@@ -412,11 +389,9 @@ gbNBTree::gbNBTree(void) {
 }
 
 gbNBTree::~gbNBTree() {
-    /* STUB */
 }
 
 gbNBTree& gbNBTree::operator=(const gbNBTree& other) {
-    /* STUB */
     pRoot = other.pRoot;
     return *this;
 }
@@ -447,7 +422,6 @@ gbBinaryTreeNode::gbBinaryTreeNode(const gbBinaryTreeNode& src) {
 }
 
 gbBinaryTreeNode::~gbBinaryTreeNode() {
-    /* STUB */
 }
 
 gbBinaryTreeNode& gbBinaryTreeNode::operator=(const gbBinaryTreeNode& other) {
@@ -479,11 +453,9 @@ gbBinaryTree::gbBinaryTree(void) {
 }
 
 gbBinaryTree::~gbBinaryTree() {
-    /* STUB */
 }
 
 gbBinaryTree& gbBinaryTree::operator=(const gbBinaryTree& other) {
-    /* STUB */
     pRoot = other.pRoot;
     return *this;
 }
@@ -509,7 +481,6 @@ gbStaticChain::gbStaticChain(void) {
 }
 
 gbStaticChain& gbStaticChain::operator=(const gbStaticChain& other) {
-    /* STUB */
     memcpy(this, &other, 0x1C);
     return *this;
 }
@@ -544,7 +515,6 @@ void gbStaticChain::InitBuffer(int maxNodes, int nodeSize) {
 }
 
 void gbStaticChain::ReleaseBuffer(void) {
-    /* STUB */
     free(pBuffer);
 }
 
@@ -596,13 +566,11 @@ void gbStaticChain::DelOneNode(gbStaticChainNode* ptr) {
 }
 
 gbStaticChainNode* gbStaticChain::BeginIterate(void) {
-    /* STUB */
     pIterator = pUsedHead;
     return pIterator;
 }
 
 gbStaticChainNode* gbStaticChain::Iterate(void) {
-    /* STUB */
     pIterator = pIterator->pNext;
     return pIterator;
 }
@@ -624,7 +592,6 @@ gbStaticChainNode* gbStaticChain::BeginReverseIterate(void) {
 }
 
 gbStaticChainNode* gbStaticChain::ReverseIterate(void) {
-    /* STUB */
     pIterator = pIterator->pPrev;
     return pIterator;
 }
@@ -647,6 +614,5 @@ gbStaticChainNode* gbStaticChain::GetNewestNode(void) {
 }
 
 gbStaticChainNode* gbStaticChain::GetNode(int index) {
-    /* STUB */
     return (gbStaticChainNode*)((char*)pBuffer + nNodeSize * index);
 }

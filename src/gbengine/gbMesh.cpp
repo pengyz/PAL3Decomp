@@ -138,7 +138,6 @@ gbBaseMesh& gbBaseMesh::operator=(const gbBaseMesh& other) {
 
 // Out-of-line accessors
 gbMeshSection* gbBaseMesh::GetMeshSection(int index) {
-    /* STUB */
     if (index < 0 || index >= m_numSections) return nullptr;
     return &m_sections[index];
 }
@@ -438,7 +437,6 @@ gbDynVertBuf::gbDynVertBuf(const gbDynVertBuf& other) {
 }
 
 gbDynVertBuf::~gbDynVertBuf() {
-    /* STUB */
 }
 
 gbDynVertBuf& gbDynVertBuf::operator=(const gbDynVertBuf& other) {

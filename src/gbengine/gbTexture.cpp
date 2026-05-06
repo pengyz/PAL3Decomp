@@ -548,7 +548,6 @@ gbTextureArray::gbTextureArray(gbTexture* tex0) {
 
 // 0x10004200 (16B) - Set single texture
 void gbTextureArray::SetTexture(gbTexture* tex) {
-    /* STUB */
     pTex[0] = tex;
 }
 

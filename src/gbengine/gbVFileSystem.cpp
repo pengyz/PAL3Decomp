@@ -69,14 +69,11 @@ gbVFileSystem* g_pVFileSys = NULL;
 
 CPKFile::CPKFile()
 {
-    /* STUB */
     memset(this, 0, sizeof(CPKFile));
 }
 
 CPKFile::~CPKFile()
 {
-    /* STUB */
-    // Trivial destructor - memory is managed by CPK
 }
 
 CPKFile& CPKFile::operator=(const CPKFile& other)
@@ -716,14 +713,11 @@ bool CPK::IsDir(unsigned long tableIndex)
 
 gbVFile::gbVFile()
 {
-    /* STUB */
     memset(this, 0, sizeof(gbVFile));
 }
 
 gbVFile::~gbVFile()
 {
-    /* STUB */
-    // Trivial destructor
 }
 
 gbVFile& gbVFile::operator=(const gbVFile& other)
@@ -837,7 +831,6 @@ gbVFileSystem::gbVFileSystem()
 
 gbVFileSystem::~gbVFileSystem()
 {
-    /* STUB */
     Release();
 }
 
@@ -920,7 +913,6 @@ void gbVFileSystem::Release()
 
 gbVFile* gbVFileSystem::NewFileEntry()
 {
-    /* STUB */
     gbVFile* pFile = new gbVFile();
     return pFile;
 }
@@ -1245,14 +1237,12 @@ int gbVFileSystem::FindItem(const char* filename)
 
 CIniFile::CIniFile()
 {
-    /* STUB */
     m_pFile = NULL;
     m_nState = -1;  // 0xFFFFFFFF
 }
 
 CIniFile::~CIniFile()
 {
-    /* STUB */
     CloseFile();
 }
 
@@ -1464,7 +1454,6 @@ void CIniFile::WriteLineSeperator()
 
 int CIniFile::IfRead()
 {
-    /* STUB */
     return (m_nState == 0) ? 1 : 0;
 }
 
@@ -1515,7 +1504,6 @@ public:
 
 // ---- gbVTextFile ----
 gbVTextFile::gbVTextFile(char * p0) {
-    /* STUB */
     m_pFile = g_pVFileSys->OpenFile(p0, 0x401);
 }
 

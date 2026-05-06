@@ -70,10 +70,6 @@ int gbRay::IsColAABB(gbAABBox& box) {
 
 // Ray-Quad intersection (test as two triangles)
 int gbRay::IsColQuad(gbVec3D& v0, gbVec3D& v1, gbVec3D& v2) {
-    /* STUB */
-    // Quad is v0-v1-v2 forming first triangle, v0-v2-? forming second
-    // Parameters only provide 3 vertices, so this might be degenerate
-    // Try testing as triangle (3-parameter version)
     return IsColTriangle(v0, v1, v2);
 }
 
@@ -98,7 +94,6 @@ int gbRay::IsColSphere(gbSphere& sphere) {
 
 // Ray-Triangle intersection (Moller-Trumbore)
 int gbRay::IsColTriangle(gbVec3D& v0, gbVec3D& v1, gbVec3D& v2) {
-    /* STUB */
     gbVec3D intersection;
     return gbIntersectTriangle(&origin, &direction, &v0, &v1, &v2, &intersection);
 }

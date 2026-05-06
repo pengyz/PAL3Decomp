@@ -8,7 +8,6 @@
 
 // Constructor
 gbSphere::gbSphere() {
-    /* STUB */
     center.x = center.y = center.z = 0.0f;
     radius = 1.0f;
 }

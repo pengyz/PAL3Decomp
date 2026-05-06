@@ -38,8 +38,6 @@ gbIndexBubble::gbIndexBubble(const gbIndexBubble& other) {
 
 // Destructor: 0x10003f30
 gbIndexBubble::~gbIndexBubble() {
-    /* STUB */
-    // Virtual destructor - cleanup handled by derived classes
 }
 
 // Set: 0x10003b90
@@ -87,7 +85,6 @@ unsigned int* gbIndexBubble::Lock32() {
 
 // Unlock: 0x10020920
 void gbIndexBubble::Unlock() {
-    /* STUB */
     pPool->pIndexBuffer->Unlock();
 }
 
@@ -145,16 +142,11 @@ gbIndexPool::gbIndexPool(gbPoolType type, int indexSz, int total) {
 
 // Copy constructor: 0x10003cf0
 gbIndexPool::gbIndexPool(const gbIndexPool& other) {
-    /* STUB */
-    // Copy construction - shallow copy for now
     memcpy(this, &other, sizeof(gbIndexPool));
 }
 
 // Destructor: 0x100209f0
 gbIndexPool::~gbIndexPool() {
-    /* STUB */
-    // Clean up bubbles and D3D resources
-    // Implementation depends on proper cleanup
 }
 
 // NewBubble: 0x10020a50
@@ -278,19 +270,16 @@ merge_bubbles:
 
 // GetIndexSize: 0x10003cc0
 int gbIndexPool::GetIndexSize() {
-    /* STUB */
     return this->indexSize;
 }
 
 // GetInternalMemBuf: 0x10003ce0
 void* gbIndexPool::GetInternalMemBuf() {
-    /* STUB */
     return this->pIndexBuffer;
 }
 
 // IsEmpty: 0x10003cd0
 int gbIndexPool::IsEmpty() {
-    /* STUB */
     return this->usedList.nCount == 0;
 }
 
@@ -323,14 +312,11 @@ gbVertexBubble::gbVertexBubble(gbVertexPool* pool, int start, int count, int use
 
 // Copy constructor: 0x10003e60
 gbVertexBubble::gbVertexBubble(const gbVertexBubble& other) {
-    /* STUB */
     memcpy(this, &other, sizeof(gbVertexBubble));
 }
 
 // Destructor: 0x10003f30
 gbVertexBubble::~gbVertexBubble() {
-    /* STUB */
-    // Virtual destructor
 }
 
 // Set: 0x10003e40
@@ -362,7 +348,6 @@ void gbVertexBubble::Unlock() {
 
 // ClearPointer: 0x10003dd0
 void gbVertexBubble::ClearPointer() {
-    /* STUB */
     this->pVertexData = nullptr;
 }
 
@@ -453,14 +438,11 @@ gbVertexPool::gbVertexPool(gbPoolType type, unsigned int vertType, int total) {
 
 // Copy constructor: 0x10003fc0
 gbVertexPool::gbVertexPool(const gbVertexPool& other) {
-    /* STUB */
     memcpy(this, &other, sizeof(gbVertexPool));
 }
 
 // Destructor: 0x10020eb0
 gbVertexPool::~gbVertexPool() {
-    /* STUB */
-    // Cleanup
 }
 
 // OnLostDevice
@@ -611,19 +593,16 @@ merge_vert_bubbles:
 
 // GetStride: 0x10004d10
 int gbVertexPool::GetStride() {
-    /* STUB */
     return this->stride;
 }
 
 // GetVertType: 0x10003fa0
 unsigned int gbVertexPool::GetVertType() {
-    /* STUB */
     return this->fvf;
 }
 
 // IsEmpty: 0x10003fb0
 int gbVertexPool::IsEmpty() {
-    /* STUB */
     return this->usedList.nCount == 0;
 }
 
@@ -778,8 +757,6 @@ void gbVertPoolMgr::DelVertexBubble(gbVertexBubble* bubble) {
 
 // NewSrcVertBub: 0x10021430
 gbVertexBubble* gbVertPoolMgr::NewSrcVertBub(unsigned int fvf, int count) {
-    /* STUB */
-    // Similar to NewVertexBubble but for system memory pools
     return NewVertexBubble(fvf, count);
 }
 

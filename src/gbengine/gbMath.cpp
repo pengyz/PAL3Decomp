@@ -1552,7 +1552,6 @@ int gbRay::IsColOBB_H(gbOBBox& param_1) {
 }
 
 bool gbRay::IsColQuad(const gbVec3D* v0, const gbVec3D* v1, const gbVec3D* v2, const gbVec3D* v3, gbVec3D* point) const {
-    /* STUB */
     return IsColTriangle(v0, v1, v2, point) || IsColTriangle(v0, v2, v3, point);
 }
 
@@ -1579,7 +1578,6 @@ bool gbRay::IsColSphere(const gbSphere* sphere, gbVec3D* point) const {
 }
 
 bool gbRay::IsColTriangle(const gbVec3D* v0, const gbVec3D* v1, const gbVec3D* v2, gbVec3D* point) const {
-    /* STUB */
     return gbIntersectTriangle((gbVec3D*)&origin, (gbVec3D*)&direction,
                               (gbVec3D*)v0, (gbVec3D*)v1, (gbVec3D*)v2, point) != 0;
 }

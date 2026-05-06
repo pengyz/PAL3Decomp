@@ -30,8 +30,6 @@ BEZIER::BEZIER() {
 
 // Destructor
 BEZIER::~BEZIER() {
-    /* STUB */
-    // Nothing to clean up
 }
 
 // Assignment operator

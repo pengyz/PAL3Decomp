@@ -244,7 +244,6 @@ void gbActor::Reset(float time) {
 
 // Go to action (simple)
 void gbActor::GotoAction(char* actionName, int loop) {
-    /* STUB */
     unsigned int crc = gbCrc32Compute(actionName);
     GotoAction(crc, loop, 1, 0, 0x6f766572);
 }
@@ -466,7 +465,6 @@ void gbActor::GetCollideOBB(gbOBBox& obb) {
 
 // Get all export nodes (returns raw pointer to internal data)
 gbActorExpNode* gbActor::GetAllExpNode() {
-    /* STUB */
     return (gbActorExpNode*)(void*)m_pExportNodeData;
 }
 
@@ -482,9 +480,7 @@ const gbMixActInfo* gbActor::GetMixInfo() {
 }
 
 int gbActor::GetNumMixInfo() {
-    /* STUB */
-    int numMix = m_pActorDef->numMixInfo;
-    return numMix;
+    return m_pActorDef->numMixInfo;
 }
 
 // Set current material - delegates to actorDef vtable[0x3c]

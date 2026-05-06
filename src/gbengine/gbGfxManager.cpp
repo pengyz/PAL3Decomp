@@ -82,8 +82,6 @@ gbGfxManager::gbGfxManager(int& result, gbGfxDriverInfo* driverInfo) {
 }
 
 gbGfxManager::~gbGfxManager() {
-    /* STUB */
-    // Cleanup is handled by derived class (gbGfxManager_D3D)
 }
 
 // 0x1001db10 (222B) - Begin a rendering scene
@@ -184,7 +182,6 @@ double gbGfxManager::GetDeltaTime(void) {
 
 // 0x1001daf0 (27B) - Get delta tick since last frame
 unsigned int gbGfxManager::GetDeltaTick(void) {
-    /* STUB */
     return CurTick - LastTick;
 }
 
@@ -202,19 +199,16 @@ gbMatrixStack* gbGfxManager::GetMatrixStack(int index) {
 
 // 0x10004ee0 (16B) - Get print font by type
 gbPrintFont* gbGfxManager::GetPrintFont(gbFontType fontType) {
-    /* STUB */
     return ((gbPrintFont**)pFontMgr)[fontType];
 }
 
 // 0x10004f50 (20B) - Get light object by index
 const gbLight* gbGfxManager::GetLight(int index) const {
-    /* STUB */
     return &AllLight[index];
 }
 
 // 0x10004f70 (14B) - Check if a light is enabled
 int gbGfxManager::IsLightEnable(int index) const {
-    /* STUB */
     return LightEnable[index];
 }
 
@@ -237,13 +231,11 @@ void gbGfxManager::GetTMMatrix(int type, gbMatrix4* out) {
 
 // 0x1001e070 (24B) - Get current viewport
 void gbGfxManager::GetViewport(gbViewPort& pViewport) {
-    /* STUB */
     memcpy(&pViewport, &Viewport, sizeof(gbViewPort));
 }
 
 // 0x1001e090 (35B) - Set clear parameters (color, depth, stencil)
 void gbGfxManager::SetClearParam(gbClearParam* pParam) {
-    /* STUB */
     memcpy(&ClearParam, pParam, sizeof(gbClearParam));
 }
 
@@ -409,7 +401,6 @@ gbRenderEffect& gbRenderEffect::operator=(const gbRenderEffect& other) {
 
 // 0x10004be0 (10B) - Set vertex declaration handle
 void gbRenderEffect::SetDeclHandle(IDirect3DVertexDeclaration9* decl) {
-    /* STUB */
     m_pDecl = (D3DVERTEXELEMENT9*)decl;
 }
 
@@ -552,7 +543,6 @@ gbEffectMgr::gbEffectMgr(const gbEffectMgr& other) {
 
 // Destructor
 gbEffectMgr::~gbEffectMgr() {
-    /* STUB */
     Release();
 }
 

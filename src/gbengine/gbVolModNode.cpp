@@ -14,7 +14,6 @@ struct gbRefObject {
 };
 
 gbVolModNode::~gbVolModNode(void) {
-    /* STUB */
 }
 
 void gbVolModNode::SetVolModObj(class gbVolumeModifier * p0) {

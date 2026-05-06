@@ -8,7 +8,6 @@
 
 // Constructor
 gbAABBox::gbAABBox() {
-    /* STUB */
     vMin.x = vMin.y = vMin.z = 0.0f;
     vMax.x = vMax.y = vMax.z = 1.0f;
 }

@@ -42,26 +42,20 @@ gbRefObject::gbRefObject() {
 
 // Copy constructor - 0x100017c0
 gbRefObject::gbRefObject(const gbRefObject& other) {
-    /* STUB */
-    // vtable set by compiler
     refCount = other.refCount;
 }
 
 // Destructor - 0x1002f7e0 (virtual)
 gbRefObject::~gbRefObject() {
-    /* STUB */
-    // Empty virtual destructor
 }
 
-// IncRef - 0x10001600 (inlined, simple increment)
+// IncRef - 0x10001600
 void gbRefObject::IncRef() {
-    /* STUB */
     refCount++;
 }
 
-// DecRef - 0x10001610 (inlined, simple decrement)
+// DecRef - 0x10001610
 void gbRefObject::DecRef() {
-    /* STUB */
     refCount--;
 }
 

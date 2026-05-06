@@ -260,7 +260,6 @@ void gbQuaternion::MultiplyBy(gbQuaternion *other, gbQuaternion *result)
 
 float const gbQuaternion::Magnitude(void)
 {
-    /* STUB */
     return x * x + y * y + z * z + w * w;
 }
 

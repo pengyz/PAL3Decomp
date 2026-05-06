@@ -28,12 +28,10 @@ gbLightObj::gbLightObj(void) {
 }
 
 gbLightObj::gbLightObj(const gbLightObj& other) {
-    /* STUB */
     memcpy(this, &other, sizeof(gbLightObj));
 }
 
 gbLightObj::~gbLightObj(void) {
-    /* STUB */
 }
 
 gbLightObj& gbLightObj::operator=(const gbLightObj& other) {
@@ -50,7 +48,6 @@ void gbLightObj::Init(enum LIGHT_TYPE type) {
 }
 
 void gbLightObj::ComputeBoundSphere(void) {
-    /* STUB */
     boundingSphere.center = position;
     boundingSphere.radius = range;
 }
