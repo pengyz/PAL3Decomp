@@ -29,7 +29,7 @@ LOG_DIR = os.path.join(SCRIPT_DIR, "_logs")
 # ============================================================================
 
 PDB_EXPORT = os.path.join(PROJECT_ROOT, "asm", "pal3a", "pdb_export.json")
-DIAGNOSIS_REPORT = os.path.join(LOG_DIR, "ida_diagnose_quality.txt")
+DIAGNOSIS_REPORT = os.path.join(LOG_DIR, "diagnosis_report.json")
 
 # ============================================================================
 # PE Section Ranges (post-unpack PAL3A.exe)

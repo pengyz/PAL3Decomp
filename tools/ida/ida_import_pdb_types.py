@@ -26,6 +26,7 @@ import os
 import re
 import sys
 import json
+import builtins
 import idc
 import ida_funcs
 import ida_hexrays
@@ -498,7 +499,7 @@ def main():
     log("=" * 80)
 
     # Check if running in pipeline mode
-    if os.getenv("_IDA_PIPELINE_RUNNING"):
+    if getattr(builtins, '_IDA_PIPELINE_RUNNING', False):
         log("\n[Pipeline Mode] Script will exit IDA after completion.\n")
 
     # Load PDB export
@@ -550,9 +551,11 @@ def main():
     log(f"\nLog saved to: {LOG_FILE}")
 
     # Exit if running in pipeline
-    if os.getenv("_IDA_PIPELINE_RUNNING"):
-        log("\n[Pipeline Mode] Exiting IDA...")
-        idc.qexit(0)
+    if not getattr(builtins, '_IDA_PIPELINE_RUNNING', False):
+        try:
+            idc.qexit(0)
+        except:
+            pass
 
 
 if __name__ == "__main__":
