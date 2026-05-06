@@ -30,6 +30,7 @@ LABEL_CATEGORIES = {
     "SP_CORRUPT": "SP Analysis Failures",
     "USERPURGE_WRONG": "Calling Convention Issues",
     "STRUCT_NEEDED": "Missing Struct Definitions",
+    "EH_FUNCLET": "Possible Exception Handler Funclets",
 }
 
 MAX_ITEMS_PER_SECTION = 50
@@ -292,6 +293,8 @@ def generate_report(report, output_path):
                     description = "These functions have __userpurge/__usercall calling conventions that may need correction."
                 elif label == "STRUCT_NEEDED":
                     description = "These class methods need struct definitions to be properly analyzed."
+                elif label == "EH_FUNCLET":
+                    description = "These might be EH funclets (exception handlers) or might be real functions. Requires verification."
 
                 section_text = render_section(category_name, items, description)
                 lines.append(section_text)
