@@ -326,11 +326,51 @@ void gbVertexBubble::Set(int start, int count, int used) {
     this->countUsed = used;
 }
 
-// Lock: 0x10020c00
+// Lock: 0x10020c00 (160B)
 void* gbVertexBubble::Lock() {
-    /* STUB */
-    // Lock vertex buffer
-    return nullptr;
+    void* pData = pPool->Lock(startVertex, vertexCount);
+    int offset = 0;
+    unsigned int fvf = pPool->fvf;
+
+    if (fvf & 0x80000000)
+        return pData;
+
+    if (fvf & 0x1) {
+        pVertexData = (char*)pData + offset;
+        offset += 12;
+    }
+    if (fvf & 0x100) {
+        pVertexData = (char*)pData + offset;
+        offset += 16;
+    }
+    if (fvf & 0x2) {
+        field_20 = (char*)pData + offset;
+        offset += 12;
+    }
+    if (fvf & 0x4) {
+        field_24 = (char*)pData + offset;
+        offset += 4;
+    }
+    if (fvf & 0x8) {
+        field_28 = (char*)pData + offset;
+        offset += 4;
+    }
+    if (fvf & 0x10) {
+        field_2C = (char*)pData + offset;
+        offset += 8;
+    }
+    if (fvf & 0x20) {
+        field_30 = (char*)pData + offset;
+        offset += 8;
+    }
+    if (fvf & 0x40) {
+        field_34 = (char*)pData + offset;
+        offset += 8;
+    }
+    if (fvf & 0x80) {
+        *(void**)((char*)this + 0x34) = (char*)pData + offset;
+    }
+    return pData;
 }
 
 // Unlock: 0x10020ca0
@@ -443,6 +483,15 @@ gbVertexPool::gbVertexPool(const gbVertexPool& other) {
 
 // Destructor: 0x10020eb0
 gbVertexPool::~gbVertexPool() {
+}
+
+// Lock: virtual - locks portion of vertex buffer
+void* gbVertexPool::Lock(int start, int count) {
+    void* pData = NULL;
+    if (pVertexBuffer) {
+        pVertexBuffer->Lock(start * stride, count * stride, &pData, 0);
+    }
+    return pData;
 }
 
 // OnLostDevice

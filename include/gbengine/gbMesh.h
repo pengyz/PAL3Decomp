@@ -145,6 +145,7 @@ public:
     gbVertexPool(const gbVertexPool& other);
     virtual ~gbVertexPool();
 
+    virtual void* Lock(int start, int count);
     virtual int OnLostDevice();
     virtual int OnResetDevice();
 
@@ -348,7 +349,7 @@ struct gbGeomQuad {
     unsigned int color;      // vertex color (4 bytes)
 };
 
-class gbDynVertBuf {
+class gbDynVertBuf : public gbChain1DNode {
 public:
     gbDynVertBuf(unsigned int fvfFlags, int maxVertices);
     gbDynVertBuf(const gbDynVertBuf& other);
@@ -359,7 +360,7 @@ public:
     // Virtual methods for buffer management
     virtual float* Lock(int numVerts);
     virtual void Unlock();
-    virtual void Draw(int primType, int numPrims, gbRenderEffect* effect);
+    virtual void Draw(int primType, gbRenderEffect* effect, gbTextureArray* textures);
 
     float* GetXYZ();
     float* GetNormal();
@@ -379,16 +380,15 @@ public:
     static gbGfxManager* pGfxMgr;
     static gbRenderEffect* pLineEffect;
 
-    unsigned int m_fvfFlags;    // +0x04: FVF flags passed at construction
-private:
     void* m_vertexBuffer;       // +0x08
-    int m_maxVertices;          // +0x0C
-    int m_currentVertex;        // +0x10
-    int m_vertexStride;         // +0x14
-    float* m_pXYZ;              // +0x18
-    float* m_pNormal;           // +0x1C
-    gbColorQuad* m_pColor1;     // +0x20
-    gbColorQuad* m_pColor2;     // +0x24
-    float* m_pUV;               // +0x28
-    int m_vertNum;              // +0x2C
+    unsigned int m_fvfFlags;    // +0x0C
+    int m_maxVertices;          // +0x10
+    int m_currentVertex;        // +0x14
+    int m_vertexStride;         // +0x18
+    float* m_pXYZ;              // +0x1C
+    float* m_pNormal;           // +0x20
+    gbColorQuad* m_pColor1;     // +0x24
+    gbColorQuad* m_pColor2;     // +0x28
+    float* m_pUV[4];            // +0x2C..+0x38 (UV sets 0-3)
+    int m_vertNum;              // +0x3C
 };

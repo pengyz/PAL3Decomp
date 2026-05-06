@@ -418,7 +418,7 @@ gbDynVertBuf::gbDynVertBuf(unsigned int fvfFlags, int maxVertices) {
     m_pNormal = nullptr;
     m_pColor1 = nullptr;
     m_pColor2 = nullptr;
-    m_pUV = nullptr;
+    memset(m_pUV, 0, sizeof(m_pUV));
     m_vertNum = 0;
 }
 
@@ -432,7 +432,7 @@ gbDynVertBuf::gbDynVertBuf(const gbDynVertBuf& other) {
     m_pNormal = other.m_pNormal;
     m_pColor1 = other.m_pColor1;
     m_pColor2 = other.m_pColor2;
-    m_pUV = other.m_pUV;
+    memcpy(m_pUV, other.m_pUV, sizeof(m_pUV));
     m_vertNum = other.m_vertNum;
 }
 
@@ -450,7 +450,7 @@ gbDynVertBuf& gbDynVertBuf::operator=(const gbDynVertBuf& other) {
         m_pNormal = other.m_pNormal;
         m_pColor1 = other.m_pColor1;
         m_pColor2 = other.m_pColor2;
-        m_pUV = other.m_pUV;
+        memcpy(m_pUV, other.m_pUV, sizeof(m_pUV));
         m_vertNum = other.m_vertNum;
     }
     return *this;
@@ -477,8 +477,7 @@ int gbDynVertBuf::GetVertexStride() {
 }
 
 float* gbDynVertBuf::GetUV(int index) {
-    /* STUB */
-    return nullptr;
+    return m_pUV[index];
 }
 
 void gbDynVertBuf::StepVertexPtr() {
@@ -501,7 +500,7 @@ void gbDynVertBuf::Unlock() {
     (void)0;
 }
 
-void gbDynVertBuf::Draw(int primType, int numPrims, gbRenderEffect* effect) {
+void gbDynVertBuf::Draw(int primType, gbRenderEffect* effect, gbTextureArray* textures) {
     /* STUB */
     (void)0;
 }
