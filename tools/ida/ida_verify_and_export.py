@@ -496,8 +496,11 @@ def main():
     log(f"Errors: {stats['errors']}")
     log("")
     log(f"Exported function quality:")
-    log(f"  - Clean: {stats['clean']} ({100 * stats['clean'] / stats['exported']:.1f}%)")
-    log(f"  - Has raw memory: {stats['has_raw_memory']} ({100 * stats['has_raw_memory'] / stats['exported']:.1f}%)")
+    if stats['exported'] > 0:
+        log(f"  - Clean: {stats['clean']} ({100 * stats['clean'] / stats['exported']:.1f}%)")
+        log(f"  - Has raw memory: {stats['has_raw_memory']} ({100 * stats['has_raw_memory'] / stats['exported']:.1f}%)")
+    else:
+        log(f"  - No functions exported")
     log("")
     log("=" * 80)
     log("Phase 3 verification and export complete!")
