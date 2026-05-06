@@ -9,6 +9,13 @@ IDAPython: PAL3A 一键反编译质量优化 Master Pipeline
   Phase 5: 应用 PDB 函数签名 (先命名再设类型, v2)
   Phase 6: 重新导出全部反编译结果
 
+质量修复流水线:
+  Phase Q1: 质量诊断
+  Phase Q2: 修正函数边界
+  Phase Q3: 导入 PDB 类型 (增强)
+  Phase Q4: 修正调用约定
+  Phase Q5: 验证并导出
+
 用法:
   idat.exe -A -S"ida_master_pipeline.py [options]" PAL3A.exe.i64
 
@@ -16,6 +23,8 @@ IDAPython: PAL3A 一键反编译质量优化 Master Pipeline
   --skip-import    跳过 Phase 1 (已导入过)
   --skip-export    跳过 Phase 5 (只优化不导出)
   --phase=N        只执行 Phase N
+  --quality-fix    运行质量修复流水线 (诊断→修边界→导类型→修约定→导出)
+  --quality-dry    质量修复 dry-run 模式 (只诊断+预览, 不实际修改)
 """
 
 import sys
@@ -30,6 +39,8 @@ SCRIPT_DIR = os.path.dirname(os.path.abspath(__file__))
 
 SKIP_IMPORT = '--skip-import' in sys.argv
 SKIP_EXPORT = '--skip-export' in sys.argv
+QUALITY_FIX = '--quality-fix' in sys.argv
+QUALITY_DRY = '--quality-dry' in sys.argv
 PHASE_ONLY = None
 for arg in sys.argv:
     if arg.startswith('--phase='):
@@ -81,6 +92,10 @@ def main():
         print(f"  --skip-import")
     if SKIP_EXPORT:
         print(f"  --skip-export")
+    if QUALITY_FIX:
+        print(f"  --quality-fix")
+    if QUALITY_DRY:
+        print(f"  --quality-dry")
     if PHASE_ONLY:
         print(f"  --phase={PHASE_ONLY}")
     print()
@@ -111,6 +126,37 @@ def main():
         results.append(("Phase 6: 反编译导出", ok))
     else:
         results.append(("Phase 5: 反编译导出", "SKIP"))
+
+    if QUALITY_FIX or QUALITY_DRY:
+        print()
+        print("=" * 60)
+        print("  PAL3A IDA Quality Fix Pipeline")
+        print("=" * 60)
+        print()
+
+        ok = run_phase(10, "质量诊断", "ida_diagnose_quality.py")
+        results.append(("Phase Q1: 质量诊断", ok))
+
+        if not QUALITY_DRY:
+            sys.argv.append('--execute')
+
+        ok = run_phase(11, "修正函数边界", "ida_fix_boundaries.py")
+        results.append(("Phase Q2: 函数边界修复", ok))
+
+        ok = run_phase(12, "导入 PDB 类型 (增强)", "ida_import_pdb_types.py")
+        results.append(("Phase Q3: PDB 类型导入", ok))
+
+        ok = run_phase(13, "修正调用约定", "ida_fix_calling_conv.py")
+        results.append(("Phase Q4: 调用约定修复", ok))
+
+        ok = run_phase(14, "验证并导出", "ida_verify_and_export.py")
+        results.append(("Phase Q5: 验证导出", ok))
+
+        if not QUALITY_DRY:
+            try:
+                sys.argv.remove('--execute')
+            except ValueError:
+                pass
 
     elapsed_total = time.time() - t_start
     print()
