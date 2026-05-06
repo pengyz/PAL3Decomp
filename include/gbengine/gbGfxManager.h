@@ -95,9 +95,9 @@ struct gbGfxDriverInfo {
 };
 
 // ============================================================================
-// gbGfxManager - main graphics manager
+// gbGfxManager - main graphics manager (abstract base)
 // sizeof = 0x5F0 (from PAL3A PDB), derived gbGfxManager_D3D = 0x8F0
-// Field layout verified against Ghidra disassembly and PAL3A PDB symbols.
+// Vtable: 29 slots (verified from binary). Only gbGfxManager_D3D is concrete.
 // ============================================================================
 class gbGfxManager {
 public:
@@ -133,134 +133,76 @@ public:
     char _pad5EC[4];                           // +0x5EC
     // total sizeof = 0x5F0
 
-    // 0x1001d910 (394B) - Constructor
     gbGfxManager(int& result, gbGfxDriverInfo* driverInfo);
 
-    // Virtual destructor
-    virtual ~gbGfxManager();
+    // === Virtual functions (29 slots, order matches binary vtable) ===
+    virtual ~gbGfxManager() = 0;                                    // slot 0
+    virtual void _vf_EndScene() = 0;                                // slot 1
+    virtual gbTexture* NewTexture(const char* name) = 0;            // slot 2
+    virtual gbBaseMesh* NewMesh(const char* name, gbMeshType type); // slot 3
+    virtual void _vf04() = 0;                                       // slot 4
+    virtual void _vf05() = 0;                                       // slot 5
+    virtual void _vf06() = 0;                                       // slot 6
+    virtual void _vf07() = 0;                                       // slot 7
+    virtual void _vf08() = 0;                                       // slot 8
+    virtual void _vf09() = 0;                                       // slot 9
+    virtual void _vf10() = 0;                                       // slot 10
+    virtual void _vf11() = 0;                                       // slot 11
+    virtual int BeginScene(void);                                    // slot 12
+    virtual void _vf13() = 0;                                       // slot 13
+    virtual void _vf14() = 0;                                       // slot 14
+    virtual void _vf15() = 0;                                       // slot 15
+    virtual void _vf16() = 0;                                       // slot 16
+    virtual int GetGfxCaps(gbGfxCaps* caps);                         // slot 17
+    virtual void _vf18() = 0;                                       // slot 18
+    virtual void _vf19() = 0;                                       // slot 19
+    virtual void _vf20() = 0;                                       // slot 20
+    virtual void _vf21() = 0;                                       // slot 21
+    virtual void _vf22() = 0;                                       // slot 22
+    virtual void _vf23() = 0;                                       // slot 23
+    virtual void _vf24() = 0;                                       // slot 24
+    virtual void _vf25() = 0;                                       // slot 25
+    virtual void _vf26() = 0;                                       // slot 26
+    virtual void _vf27() = 0;                                       // slot 27
+    virtual void SetFog(gbFogParam* pFogParam);                      // slot 28
 
-    // EndScene: finish the rendering scene (declared below via virtual)
-
-    // SetTransform: set a transform matrix (world/view/projection)
-    void SetTransform(int type, gbMatrix4* matrix);
-
-    // 0x1001e220 (158B) - Clip a bounding volume against the view frustum
-    // Returns: 0 = fully outside, 1 = partially inside, 2 = fully inside
-    int ClipBoundVolume(gbAABBox* box);
-
-    // 0x10004ff0 (34B) - Enable/disable emissive lighting
-    void EnableEmissive(int enable);
-
-    // 0x10005020 (13B) - Set emissive factor
-    void SetEmissiveFactor(float factor);
-
-    // 0x10004fc0 (39B) - Get ambient light color
-    gbColorFlt GetAmbientLight(void);
-
-    // 0x10004f90 (35B) - Set ambient light color
-    void SetAmbientLight(const gbColorFlt& color);
-
-    // 0x1001dac0 (34B) - Get delta time since last frame
-    double GetDeltaTime(void);
-
-    // 0x1001daf0 (27B) - Get delta tick since last frame
-    unsigned int GetDeltaTick(void);
-
-    // 0x10004ea0 (13B) - Set scene graph
-    void SetSceneGraph(gbSceneGraph* sg);
-
-    // 0x10004ed0 (14B) - Get matrix stack by index
-    gbMatrixStack* GetMatrixStack(int index);
-
-    // 0x10004ee0 (16B) - Get print font by type
-    gbPrintFont* GetPrintFont(gbFontType fontType);
-
-    // 0x10004f50 (20B) - Get light object by index (const method)
-    const gbLight* GetLight(int index) const;
-
-    // 0x10004f70 (14B) - Check if a light is enabled (const method)
-    int IsLightEnable(int index) const;
-
-    // 0x1001df40 (37B) - Get a combined transform matrix
-    void GetTMMatrix(int type, gbMatrix4* out);
-
-    // 0x1001e070 (24B) - Get current viewport
-    void GetViewport(gbViewPort& pViewport);
-
-    // 0x1001e090 (35B) - Set clear parameters (color, depth, stencil)
-    void SetClearParam(gbClearParam* pParam);
-
-    // 0x1001e160 (189B) - Create a new mesh resource
-    virtual gbBaseMesh* NewMesh(const char* name, gbMeshType type);
-
-    // 0x1001e2c0 (36B) - Offset Z-buffer for decal rendering
-    void OffsetZBuffer(int enable);
-
-    // 0x1001e2f0 (13B) - Set wireframe rendering mode
-    void SetWireMode(int mode);
-
-    // 0x1001e300 (38B) - Set fog parameters
-    virtual void SetFog(gbFogParam* pFogParam);
-
-    // 0x1001e330 (55B) - Get world matrix (const reference)
-    const gbMatrix4& GetWorldMatrix(void);
-
-    // 0x1001e380 (19B) - Reset world matrix to identity
-    void IdentityWorldMatrix(void);
-
-    // Exported: GetViewMatrix
-    const gbMatrix4& GetViewMatrix(void);
-
-    // 0x1001e3a0 (43B) - Set view and projection matrices from camera
-    void SetCameraMatrix(const gbMatrix4& view, const gbMatrix4& proj);
-
-    // Exported: GetGfxCaps
-    virtual int GetGfxCaps(gbGfxCaps* caps);
-
-    // Exported: GetCurTick
-    unsigned int GetCurTick(void);
-
-    // Exported: GetCurTime
-    double GetCurTime(void);
-
-    // Exported: GetDriverInfo
-    const gbGfxDriverInfo* GetDriverInfo(void);
-
-    // Exported: GetEffectMgr
-    gbEffectMgr* GetEffectMgr(void);
-
-    // Exported: GetEmissiveFactor
-    float GetEmissiveFactor(void);
-
-    // Exported: GetFog
-    gbFogParam* GetFog(void);
-
-    // Exported: GetGraphWnd
-    unsigned int GetGraphWnd(void);
-
-    // Exported: GetPrintFontMgr
-    gbPrintFontMgr* GetPrintFontMgr(void);
-
-    // Exported: GetResManager
-    gbResManager* GetResManager(void);
-
-    // Exported: GetSceneGraph
-    gbSceneGraph* GetSceneGraph(void);
-
-    // Exported: GetStatistic
-    gbGfxStatistic* GetStatistic(void);
-
-    // Exported: GetVertPoolMgr
-    gbVertPoolMgr* GetVertPoolMgr(void);
-
-    // Exported: IsWireMode
-    int IsWireMode(void);
-
-    // virtual BeginScene
-    virtual int BeginScene(void);
-
-    // EndScene (not in vtable in some builds)
+    // === Non-virtual methods ===
     void EndScene(void);
+    void SetTransform(int type, gbMatrix4* matrix);
+    int ClipBoundVolume(gbAABBox* box);
+    void EnableEmissive(int enable);
+    void SetEmissiveFactor(float factor);
+    gbColorFlt GetAmbientLight(void);
+    void SetAmbientLight(const gbColorFlt& color);
+    double GetDeltaTime(void);
+    unsigned int GetDeltaTick(void);
+    void SetSceneGraph(gbSceneGraph* sg);
+    gbMatrixStack* GetMatrixStack(int index);
+    gbPrintFont* GetPrintFont(gbFontType fontType);
+    const gbLight* GetLight(int index) const;
+    int IsLightEnable(int index) const;
+    void GetTMMatrix(int type, gbMatrix4* out);
+    void GetViewport(gbViewPort& pViewport);
+    void SetClearParam(gbClearParam* pParam);
+    void OffsetZBuffer(int enable);
+    void SetWireMode(int mode);
+    const gbMatrix4& GetWorldMatrix(void);
+    void IdentityWorldMatrix(void);
+    const gbMatrix4& GetViewMatrix(void);
+    void SetCameraMatrix(const gbMatrix4& view, const gbMatrix4& proj);
+    unsigned int GetCurTick(void);
+    double GetCurTime(void);
+    const gbGfxDriverInfo* GetDriverInfo(void);
+    gbEffectMgr* GetEffectMgr(void);
+    float GetEmissiveFactor(void);
+    gbFogParam* GetFog(void);
+    unsigned int GetGraphWnd(void);
+    gbPrintFontMgr* GetPrintFontMgr(void);
+    gbResManager* GetResManager(void);
+    gbSceneGraph* GetSceneGraph(void);
+    gbGfxStatistic* GetStatistic(void);
+    gbVertPoolMgr* GetVertPoolMgr(void);
+    int IsWireMode(void);
 };
 
 // ============================================================================

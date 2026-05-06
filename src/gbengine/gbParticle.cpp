@@ -5,19 +5,15 @@
  */
 
 #include "gbengine/gbParticle.h"
-#include "gbengine/gbVFileSystem.h"
+#include "gbengine/gbGfxManager.h"
 #include <math.h>
 #include <string.h>
 #include <stdlib.h>
 
-// Forward declarations
-class gbEffectMgr;
-class gbResManager;
-
 // External globals
 extern gbVFileSystem* g_pVFileSys;
-extern gbResManager* g_pResMgr;
-extern gbEffectMgr* g_pEffectMgr;
+extern gbGfxManager* g_pGfxManager;
+extern char* gbVfgetname(const char* path, char* buf, int maxLen);
 
 // Constants
 static const float HALF_FACTOR = 0.5f;
@@ -48,9 +44,18 @@ gbPartParamControl::gbPartParamControl(void) {
 }
 
 gbPartParamControl& gbPartParamControl::operator=(const gbPartParamControl& other) {
-    if (this != &other) {
-        memcpy(this, &other, sizeof(gbPartParamControl));
-    }
+    int i;
+    controlType = other.controlType;
+    numKeys = other.numKeys;
+    for (i = 0; i < 0xC0; i++) configData[i] = other.configData[i];
+    for (i = 0; i < 0x18; i++) stateData[i] = other.stateData[i];
+    for (i = 0; i < 0x2D0; i++) curveConfig[i] = other.curveConfig[i];
+    for (i = 0; i < GB_PARTCTRL_MAX_KEYS; i++) ch0Keys[i] = other.ch0Keys[i];
+    ch0Pad = other.ch0Pad;
+    for (i = 0; i < GB_PARTCTRL_MAX_KEYS; i++) ch1Keys[i] = other.ch1Keys[i];
+    for (i = 0; i < GB_PARTCTRL_MAX_KEYS - 1; i++) ch2Keys[i] = other.ch2Keys[i];
+    ch2LastValue = other.ch2LastValue;
+    ch2LastTangentIn = other.ch2LastTangentIn;
     return *this;
 }
 
@@ -104,16 +109,83 @@ gbPartGroupParam::~gbPartGroupParam(void) {
 }
 
 gbPartGroupParam& gbPartGroupParam::operator=(const gbPartGroupParam& other) {
-    if (this != &other) {
-        memcpy(this, &other, sizeof(gbPartGroupParam));
-    }
+    int i;
+    for (i = 0; i < 32; i++) name[i] = other.name[i];
+    flags = other.flags;
+    gravity = other.gravity;
+    airResistance = other.airResistance;
+    unused1 = other.unused1;
+    turbulenceFlag = other.turbulenceFlag;
+    dragCoefficient = other.dragCoefficient;
+    for (i = 0; i < 256; i++) textureName[i] = other.textureName[i];
+    blendMode = other.blendMode;
+    unused4 = other.unused4;
+    unused5 = other.unused5;
+    unused6 = other.unused6;
+    rotRandMin = other.rotRandMin;
+    rotRandMax = other.rotRandMax;
+    randomRotation = other.randomRotation;
+    unused9 = other.unused9;
+    unused10 = other.unused10;
+    unused11 = other.unused11;
+    numFrames = other.numFrames;
+    blendType = other.blendType;
+    sizeControl = other.sizeControl;
+    rotControl = other.rotControl;
+    alphaControl = other.alphaControl;
+    colorControl = other.colorControl;
+    pTexture = other.pTexture;
+    textureLoaded = other.textureLoaded;
+    pRenderEffect = other.pRenderEffect;
     return *this;
 }
 
 void gbPartGroupParam::LoadFromFile(gbVFile* vfile) {
-    if (!vfile) return;
-    gravity = 0.0f;
-    numFrames = 1;
+    g_pVFileSys->Read(name, 0x20u, vfile);
+    g_pVFileSys->Read(&flags, 4u, vfile);
+    g_pVFileSys->Read(&gravity, 4u, vfile);
+    g_pVFileSys->Read(&airResistance, 4u, vfile);
+    g_pVFileSys->Read(&unused1, 4u, vfile);
+    g_pVFileSys->Read(&turbulenceFlag, 4u, vfile);
+    g_pVFileSys->Read(&dragCoefficient, 4u, vfile);
+    g_pVFileSys->Read(textureName, 0x100u, vfile);
+    g_pVFileSys->Read(&blendMode, 4u, vfile);
+    g_pVFileSys->Read(&unused4, 4u, vfile);
+    g_pVFileSys->Read(&unused5, 4u, vfile);
+    g_pVFileSys->Read(&unused6, 4u, vfile);
+    g_pVFileSys->Read(&rotRandMin, 4u, vfile);
+    g_pVFileSys->Read(&rotRandMax, 4u, vfile);
+    g_pVFileSys->Read(&randomRotation, 4u, vfile);
+    g_pVFileSys->Read(&unused9, 4u, vfile);
+    g_pVFileSys->Read(&unused10, 4u, vfile);
+    g_pVFileSys->Read(&unused11, 4u, vfile);
+    g_pVFileSys->Read(&numFrames, 4u, vfile);
+    g_pVFileSys->Read(&blendType, 4u, vfile);
+
+    sizeControl.LoadFromFile(vfile);
+    rotControl.LoadFromFile(vfile);
+    alphaControl.LoadFromFile(vfile);
+    colorControl.LoadFromFile(vfile);
+
+    char filename[256];
+    char dir[256];
+    gbVfgetname(textureName, filename, 256);
+
+    if (textureName[0]) {
+        ((gbVFile1*)vfile)->GetDir(dir, 256);
+        strcat(dir, "partexture\\");
+        strcat(dir, filename);
+
+        pTexture = g_pGfxManager->NewTexture(dir);
+        pTexture->LoadTexture(1);
+        textureLoaded = 1;
+    }
+
+    gbEffectMgr* effectMgr = g_pGfxManager->GetEffectMgr();
+    if (blendType)
+        pRenderEffect = effectMgr->NewRenderEffect("gfxscript\\p_alph.gfx", 0);
+    else
+        pRenderEffect = effectMgr->NewRenderEffect("gfxscript\\p_add_g.gfx", 0);
 }
 
 void gbPartGroupParam::ComputeAirResist(gbParticleUnit* particle, float deltaTime) {
@@ -203,9 +275,27 @@ gbPartEmitter::~gbPartEmitter(void) {
 }
 
 gbPartEmitter& gbPartEmitter::operator=(const gbPartEmitter& other) {
-    if (this != &other) {
-        memcpy(this, &other, sizeof(gbPartEmitter));
-    }
+    int i;
+    for (i = 0; i < 0x40; i++) configData[i] = other.configData[i];
+    basePosition = other.basePosition;
+    velocityDeviation = other.velocityDeviation;
+    for (i = 0; i < 0x40; i++) meshFilename[i] = other.meshFilename[i];
+    emitType = other.emitType;
+    emitDuration = other.emitDuration;
+    emitStartTime = other.emitStartTime;
+    loopFlag = other.loopFlag;
+    field_A8 = other.field_A8;
+    boxMin = other.boxMin;
+    boxMax = other.boxMax;
+    sphereRadius = other.sphereRadius;
+    sphereRadiusVar = other.sphereRadiusVar;
+    pMeshVertices = other.pMeshVertices;
+    meshVertBufSize = other.meshVertBufSize;
+    numMeshVertices = other.numMeshVertices;
+    meshTransform = other.meshTransform;
+    meshDataVersion = other.meshDataVersion;
+    pad_11C = other.pad_11C;
+    for (i = 0; i < 6; i++) paramControls[i] = other.paramControls[i];
     return *this;
 }
 
@@ -356,9 +446,22 @@ gbParticleGroup::~gbParticleGroup(void) {
 }
 
 gbParticleGroup& gbParticleGroup::operator=(const gbParticleGroup& other) {
-    if (this != &other) {
-        memcpy(this, &other, sizeof(gbParticleGroup));
-    }
+    int i;
+    for (i = 0; i < 0x40; i++) baseData[i] = other.baseData[i];
+    field_40 = other.field_40;
+    field_44 = other.field_44;
+    groupName = other.groupName;
+    unused1 = other.unused1;
+    unused2 = other.unused2;
+    for (i = 0; i < 0x1C; i++) padding2[i] = other.padding2[i];
+    field_70 = other.field_70;
+    field_74 = other.field_74;
+    pGroupParam = other.pGroupParam;
+    pEmitter = other.pEmitter;
+    particleArray = other.particleArray;
+    maxParticles = other.maxParticles;
+    numAliveParticles = other.numAliveParticles;
+    pParticleEffect = other.pParticleEffect;
     return *this;
 }
 
@@ -531,18 +634,18 @@ void gbVisNodeBase::Reset(float time) {
 /* ======== gbParticleEffect ======== */
 
 gbParticleEffect::gbParticleEffect(void) {
-    particleGroups = NULL;
+    memset(_effectBaseData, 0, sizeof(_effectBaseData));
     numGroups = 0;
-    groupParams = NULL;
     numParams = 0;
-    emitters = NULL;
     numEmitters = 0;
-    effectName = NULL;
-    unused1 = 0;
-    unused2 = 0;
-    unused3 = 0;
+    particleGroups = NULL;
+    groupParams = NULL;
+    emitters = NULL;
+    field_B0 = 0;
+    field_B4 = 0;
+    field_B8 = 0;
+    memset(_effectData2, 0, sizeof(_effectData2));
     spaceScale = 1.0f;
-    unused4 = -256.0f;
 }
 
 gbParticleEffect::gbParticleEffect(const gbParticleEffect& other) {
@@ -553,21 +656,69 @@ gbParticleEffect::~gbParticleEffect(void) {
 }
 
 gbParticleEffect& gbParticleEffect::operator=(const gbParticleEffect& other) {
-    if (this != &other) {
-        memcpy(this, &other, sizeof(gbParticleEffect));
-    }
+    int i;
+    for (i = 4; i < 0x58; i++) _visnode_data[i] = other._visnode_data[i];
+    for (i = 0; i < 64; i++) _effectBaseData[i] = other._effectBaseData[i];
+    numGroups = other.numGroups;
+    numParams = other.numParams;
+    numEmitters = other.numEmitters;
+    particleGroups = other.particleGroups;
+    groupParams = other.groupParams;
+    emitters = other.emitters;
+    field_B0 = other.field_B0;
+    field_B4 = other.field_B4;
+    field_B8 = other.field_B8;
+    for (i = 0; i < 0x5C; i++) _effectData2[i] = other._effectData2[i];
+    spaceScale = other.spaceScale;
+    worldTransform = other.worldTransform;
     return *this;
 }
 
 int gbParticleEffect::LoadFromFile(char* filename) {
+    gbVFile* vfile = g_pVFileSys->OpenFile(filename, 0x201u);
+    if (!vfile)
+        return 0;
+
+    char magic[8];
+    g_pVFileSys->Read(magic, 6u, vfile);
+    if (strcmp(magic, "SGPAR") != 0) {
+        g_pVFileSys->CloseFile(vfile);
+        return 0;
+    }
+
+    g_pVFileSys->Read(&g_particleFileVersion, 4u, vfile);
+    g_pVFileSys->Read(&field_B0, 4u, vfile);
+    g_pVFileSys->Read(&field_B4, 4u, vfile);
+    g_pVFileSys->Read(&field_B8, 4u, vfile);
+
+    if (g_particleFileVersion > 0x10000)
+        g_pVFileSys->Read(&spaceScale, 4u, vfile);
+
+    g_pVFileSys->Read(&numParams, 4u, vfile);
+    g_pVFileSys->Read(&numEmitters, 4u, vfile);
+    g_pVFileSys->Read(&numGroups, 4u, vfile);
+
+    particleGroups = new gbParticleGroup[numGroups];
+    groupParams = new gbPartGroupParam[numParams];
+    emitters = new gbPartEmitter[numEmitters];
+
+    int i;
+    for (i = 0; i < numParams; i++)
+        groupParams[i].LoadFromFile(vfile);
+
+    for (i = 0; i < numEmitters; i++)
+        emitters[i].LoadFromFile(vfile);
+
+    for (i = 0; i < numGroups; i++)
+        particleGroups[i].LoadFromFile(vfile, this);
+
+    g_pVFileSys->CloseFile(vfile);
     return 1;
 }
 
 void gbParticleEffect::Reset(float time) {
     for (int i = 0; i < numGroups; i++) {
-        if (particleGroups[i]) {
-            particleGroups[i]->Reset();
-        }
+        particleGroups[i].Reset();
     }
 }
 
@@ -578,9 +729,7 @@ void gbParticleEffect::Update(void) {
 void gbParticleEffect::UpdateInternal(void) {
     double deltaTime = 0.016;
     for (int i = 0; i < numGroups; i++) {
-        if (particleGroups[i]) {
-            particleGroups[i]->Update(deltaTime);
-        }
+        particleGroups[i].Update(deltaTime);
     }
 }
 
@@ -597,25 +746,23 @@ void gbParticleEffect::GetBoundSphere(gbSphere* sphere) {
 
 void gbParticleEffect::Render(gbRenderInfoObj* renderInfo) {
     for (int i = 0; i < numGroups; i++) {
-        if (particleGroups[i]) {
-            particleGroups[i]->Render();
-        }
+        particleGroups[i].Render();
     }
 }
 
 gbParticleGroup* gbParticleEffect::GetParticleGroup(int index) {
     if (index < 0 || index >= numGroups) return NULL;
-    return particleGroups[index];
+    return &particleGroups[index];
 }
 
 gbPartGroupParam* gbParticleEffect::GetGroupParam(int index) {
     if (index < 0 || index >= numParams) return NULL;
-    return groupParams[index];
+    return &groupParams[index];
 }
 
 gbPartEmitter* gbParticleEffect::GetEmitter(int index) {
     if (index < 0 || index >= numEmitters) return NULL;
-    return emitters[index];
+    return &emitters[index];
 }
 
 void gbParticleEffect::SetSpaceScale(float scale) {
