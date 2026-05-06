@@ -25,9 +25,11 @@ static gbVec3D s_sunDirection(0.0f, -1.0f, 0.0f);
 // Constructor from gbActorDef
 gbActor::gbActor(gbActorDef* actorDef) : gbVisNode() {
     m_pActorDef = actorDef;
+    m_field_5C = 0;
     m_pActions = NULL;
     m_numActions = 0;
     m_pExportNodeData = NULL;
+    m_numExportNodes = 0;
     m_maxExportNodes = 4;
 
     // Get export node count from actor definition
@@ -71,7 +73,9 @@ gbActor::gbActor(gbActorDef* actorDef) : gbVisNode() {
 // Copy constructor
 gbActor::gbActor(const gbActor& other) : gbVisNode() {
     m_pActorDef = other.m_pActorDef;
+    m_field_5C = other.m_field_5C;
     m_numActions = other.m_numActions;
+    m_numExportNodes = other.m_numExportNodes;
     m_maxExportNodes = other.m_maxExportNodes;
 
     if (m_numActions > 0) {
@@ -102,13 +106,48 @@ gbActor::~gbActor() {
     }
 }
 
-// Update export node transforms
+// Update export node transforms - 0x10002cd0 (256 bytes)
 void gbActor::UpdateExportNodes() {
-    /* STUB */
-    if (!m_pActorDef || !m_pExportNodeData) return;
+    unsigned int crcBuffer[256];
 
-    // Update export node matrices from skeleton
-    // This would normally update attachment point transforms
+    // Call actorDef vtable[11] (offset 44): get export node CRCs
+    void** defVtable = *(void***)m_pActorDef;
+    typedef int (__thiscall *GetExportCRCsFn)(void*, unsigned int*, int);
+    GetExportCRCsFn getExportCRCs = (GetExportCRCsFn)defVtable[44 / 4];
+    int numNodes = getExportCRCs(m_pActorDef, crcBuffer, 256);
+
+    // Reallocate if count exceeds capacity
+    if (numNodes > m_maxExportNodes) {
+        if (m_pExportNodeData)
+            operator delete(m_pExportNodeData);
+
+        m_maxExportNodes = numNodes;
+        char* mem = (char*)operator new(132 * numNodes);
+        if (mem) {
+            for (int i = 0; i < numNodes; i++) {
+                gbMatrix4* local = (gbMatrix4*)(mem + i * 132 + 4);
+                gbMatrix4* world = (gbMatrix4*)(mem + i * 132 + 68);
+                local->LoadIdentity();
+                world->LoadIdentity();
+            }
+        } else {
+            mem = 0;
+        }
+        m_pExportNodeData = (gbExpNodeData*)mem;
+    }
+
+    // Fill CRC names and init matrices
+    if (numNodes > 0) {
+        int offset = 0;
+        for (int i = 0; i < numNodes; i++) {
+            *(unsigned int*)((char*)m_pExportNodeData + offset) = crcBuffer[i];
+            gbMatrix4* local = (gbMatrix4*)((char*)m_pExportNodeData + offset + 4);
+            local->LoadIdentity();
+            offset += 132;
+        }
+    }
+
+    m_numExportNodes = numNodes;
 }
 
 // Update animation state
@@ -473,15 +512,14 @@ gbActorExpNode* gbActor::GetAllExpNode() {
     return (gbActorExpNode*)(void*)m_pExportNodeData;
 }
 
-// Get number of export nodes
+// Get number of export nodes - returns actual count at +0x6C
 int gbActor::GetNumExpNodes() {
-    return m_maxExportNodes;
+    return m_numExportNodes;
 }
 
-// Get mix info array
+// Get mix info array - returns m_pActions reinterpreted
 const gbMixActInfo* gbActor::GetMixInfo() {
-    /* STUB */
-    return NULL;
+    return (const gbMixActInfo*)m_pActions;
 }
 
 int gbActor::GetNumMixInfo() {
@@ -525,9 +563,11 @@ gbActor& gbActor::operator=(const gbActor& other) {
     if (this != &other) {
         gbVisNode::operator=(other);
         m_pActorDef = other.m_pActorDef;
+        m_field_5C = other.m_field_5C;
         m_pActions = other.m_pActions;
         m_numActions = other.m_numActions;
         m_pExportNodeData = other.m_pExportNodeData;
+        m_numExportNodes = other.m_numExportNodes;
         m_maxExportNodes = other.m_maxExportNodes;
     }
     return *this;

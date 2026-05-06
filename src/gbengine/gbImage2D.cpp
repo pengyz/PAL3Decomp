@@ -250,40 +250,21 @@ int gbImage2D::LoadImageFile(char* filename, int flags) {
     return formatType;
 }
 
+// Internal scaling function (0x100244D0, not exported)
+extern void __cdecl gbScalePixelData(int mode, int bytesPerPixel, int srcW, int srcH, void* srcData, int dstW, int dstH, void* dstData);
+
 void gbImage2D::ScaleTo(int newW, int newH) {
-    /* STUB */
-    if (!pBits || newW <= 0 || newH <= 0) return;
+    if (!pBits) return;
     if (newW == Width && newH == Height) return;
 
-    /* UNCERTAIN: Scaling algorithm */
-    // Simple nearest-neighbor scaling
-    int oldStride = (Width * BitCount + 7) / 8;
-    int newStride = (newW * BitCount + 7) / 8;
-    char* newBits = (char*)malloc(newStride * newH);
+    void* newBits = malloc(BitCount * newH * newW / 8);
+    gbScalePixelData(5, BitCount / 8, Width, Height, pBits, newW, newH, newBits);
 
-    if (newBits) {
-        for (int y = 0; y < newH; y++) {
-            int srcY = (y * Height) / newH;
-            for (int x = 0; x < newW; x++) {
-                int srcX = (x * Width) / newW;
-                int srcOffset = srcY * oldStride + (srcX * BitCount) / 8;
-                int dstOffset = y * newStride + (x * BitCount) / 8;
-
-                if (BitCount == 32) {
-                    *(unsigned int*)(newBits + dstOffset) = *(unsigned int*)(pBits + srcOffset);
-                } else if (BitCount == 24) {
-                    newBits[dstOffset] = pBits[srcOffset];
-                    newBits[dstOffset + 1] = pBits[srcOffset + 1];
-                    newBits[dstOffset + 2] = pBits[srcOffset + 2];
-                }
-            }
-        }
-
-        free(pBits);
-        pBits = newBits;
-        Width = newW;
-        Height = newH;
-    }
+    void* oldBits = pBits;
+    Width = newW;
+    Height = newH;
+    free(oldBits);
+    pBits = (char*)newBits;
 }
 
 // 0x1001efc0 (224B) - Write TGA image

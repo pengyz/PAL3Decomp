@@ -130,10 +130,11 @@ public:
 private:
     void UpdateExportNodes();
 
-    gbActorDef* m_pActorDef;       // +0x58
-    gbActionState* m_pActions;     // +0x60
-    int m_numActions;              // +0x64
-    gbExpNodeData* m_pExportNodeData; // +0x68
-    int m_maxExportNodes;          // +0x70 (usually 4)
-    char m_reserved[8];
+    gbActorDef* m_pActorDef;           // +0x58
+    int m_field_5C;                    // +0x5C
+    gbActionState* m_pActions;         // +0x60
+    int m_numActions;                  // +0x64
+    gbExpNodeData* m_pExportNodeData;  // +0x68
+    int m_numExportNodes;              // +0x6C (actual count from UpdateExportNodes)
+    int m_maxExportNodes;              // +0x70 (capacity)
 };

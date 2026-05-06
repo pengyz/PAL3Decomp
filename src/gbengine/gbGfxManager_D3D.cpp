@@ -8,27 +8,31 @@
 #include <d3d9.h>
 
 void gbGfxManager_D3D::SetTexture(gbTextureArray* texArray) {
-    /* STUB */
-    if (!texArray || !m_pd3dDevice) return;
+    int stage = 0;
 
-    // gbTextureArray supports up to 2 textures
-    for (int i = 0; i < 2; i++) {
-        IDirect3DTexture9* d3dTex = NULL;
+    if (!texArray || *((int*)texArray + 16) <= 0)
+        goto clearRemaining;
 
-        if (texArray->pTex[i]) {
-            gbTexture* tex = texArray->pTex[i];
-            // Get D3D texture from gbTexture
-            /* UNCERTAIN: gbTexture to IDirect3DTexture9 conversion */
-            // d3dTex = tex->GetD3DTexture();
+    do {
+        gbTexture* tex = ((gbTexture**)texArray)[stage];
+        if (tex != m_pCurTexture[stage]) {
+            if (tex)
+                m_pd3dDevice->SetTexture(stage, (IDirect3DBaseTexture9*)(*((DWORD*)tex + 21)));
+            else
+                m_pd3dDevice->SetTexture(stage, NULL);
+            m_pCurTexture[stage] = tex;
         }
+        stage++;
+    } while (stage < *((int*)texArray + 16));
 
-        m_pd3dDevice->SetTexture(i, d3dTex);
-        m_pCurTexture[i] = texArray->pTex[i];
-    }
+    if (stage >= 4) return;
 
-    // Clear remaining texture stages
-    for (int i = 2; i < 8; i++) {
-        m_pd3dDevice->SetTexture(i, NULL);
-        m_pCurTexture[i] = NULL;
-    }
+clearRemaining:
+    do {
+        if (m_pCurTexture[stage]) {
+            m_pd3dDevice->SetTexture(stage, NULL);
+            m_pCurTexture[stage] = NULL;
+        }
+        stage++;
+    } while (stage < 4);
 }
