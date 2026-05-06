@@ -247,33 +247,23 @@ def classify_sp_corrupt(addr):
     """
     Check if function has stack pointer corruption issues.
 
+    Only flags functions where SP analysis genuinely failed (positive SP delta),
+    not mere FPO (Frame Pointer Omission) which is normal for optimized code.
+
     Returns (is_corrupt, confidence, evidence_dict) or None if clean
     """
     func = ida_funcs.get_func(addr)
     if not func:
         return None
 
-    flags = idc.get_func_attr(addr, idc.FUNCATTR_FLAGS)
-    if flags == idc.BADADDR:
-        return None
-
-    # Check for SP analysis failure indicators
-    # FUNC_NORET (0x01): function doesn't return
-    # FUNC_FAR (0x02): far function
-    # FUNC_USERFAR (0x04): user far function
-    # FUNC_STATICDEF (0x08): static function
-    # FUNC_FRAME (0x10): function has frame pointer - if NOT set, suspicious
-    # FUNC_BOTTOMBP (0x20): BP points to bottom of frame
-
-    has_frame = bool(flags & 0x10)
-
-    if not has_frame:
-        # Missing frame pointer - potential SP corruption
+    # Check for positive SP delta at function end (actual SP analysis failure)
+    sp_delta = idc.get_spd(func.end_ea - 1)
+    if sp_delta is not None and sp_delta > 0:
         details = {
-            "flags": f"0x{flags:04X}",
-            "missing_frame": True
+            "sp_delta": sp_delta,
+            "end_ea": f"0x{func.end_ea:08X}"
         }
-        return (True, 0.7, details)
+        return (True, 0.85, details)
 
     return None
 
