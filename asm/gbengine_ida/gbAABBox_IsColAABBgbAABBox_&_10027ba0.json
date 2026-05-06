@@ -1,0 +1,8 @@
+{
+  "name": "gbAABBox::IsColAABB(gbAABBox &)",
+  "mangled_name": "?IsColAABB@gbAABBox@@QAEHAAU1@@Z",
+  "address": "0x10027BA0",
+  "size_bytes": 93,
+  "signature": "BOOL __thiscall(gbAABBox *this, struct gbAABBox *a2)",
+  "decompiled_c": "BOOL __thiscall gbAABBox::IsColAABB(gbAABBox *this, struct gbAABBox *a2)\n{\n  return *((float *)this + 3) >= (double)*(float *)a2\n      && *(float *)this <= (double)*((float *)a2 + 3)\n      && *((float *)this + 4) >= (double)*((float *)a2 + 1)\n      && *((float *)this + 1) <= (double)*((float *)a2 + 4)\n      && *((float *)this + 5) >= (double)*((float *)a2 + 2)\n      && *((float *)this + 2) <= (double)*((float *)a2 + 5);\n}\n"
+}

@@ -1,0 +1,8 @@
+{
+  "name": "__d_inttype",
+  "mangled_name": "__d_inttype",
+  "address": "0x100EBC27",
+  "size_bytes": 101,
+  "signature": "int __cdecl(double X)",
+  "decompiled_c": "int __cdecl _d_inttype(double X)\n{\n  if ( (_fpclass(X) & 0x90) != 0 )\n    return 0;\n  _frnd(X);\n  _frnd(X / 2.0);\n  return 2;\n}\n"
+}

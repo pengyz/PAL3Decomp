@@ -1,0 +1,8 @@
+{
+  "name": "ExpHypSum",
+  "mangled_name": "ExpHypSum",
+  "address": "0x100EFB19",
+  "size_bytes": 17,
+  "signature": "int __usercall@<eax>(char a1@<bh>, double a2@<st1>)",
+  "decompiled_c": "int __usercall ExpHypSum@<eax>(char a1@<bh>, double a2@<st1>)\n{\n  double v2; // st7\n\n  v2 = ExpHypCopyInv() + a2;\n  if ( a1 )\n    return ((int (*)(void))ExpHypSumReturn)();\n  else\n    return ExpHypSumReturn(v2 + 1.0 + 1.0);\n}\n"
+}

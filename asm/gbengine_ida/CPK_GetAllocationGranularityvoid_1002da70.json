@@ -1,0 +1,8 @@
+{
+  "name": "CPK::GetAllocationGranularity(void)",
+  "mangled_name": "?GetAllocationGranularity@CPK@@AAEKXZ",
+  "address": "0x1002DA70",
+  "size_bytes": 22,
+  "signature": "DWORD __thiscall(CPK *this)",
+  "decompiled_c": "DWORD __thiscall CPK::GetAllocationGranularity(CPK *this)\n{\n  struct _SYSTEM_INFO SystemInfo; // [esp+0h] [ebp-24h] BYREF\n\n  GetSystemInfo(&SystemInfo);\n  return SystemInfo.dwAllocationGranularity;\n}\n"
+}

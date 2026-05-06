@@ -1,0 +1,8 @@
+{
+  "name": "gbPlane::IsColAABB(gbAABBox &)",
+  "mangled_name": "?IsColAABB@gbPlane@@QAEHAAUgbAABBox@@@Z",
+  "address": "0x10028DE0",
+  "size_bytes": 195,
+  "signature": "BOOL __thiscall(gbPlane *this, struct gbAABBox *a2)",
+  "decompiled_c": "BOOL __thiscall gbPlane::IsColAABB(gbPlane *this, struct gbAABBox *a2)\n{\n  double v2; // st7\n  float v3; // eax\n  double v4; // st6\n  float v5; // eax\n  double v6; // st5\n  float v8; // [esp+0h] [ebp-Ch]\n  float v9; // [esp+8h] [ebp-4h]\n\n  if ( *(float *)this < 0.0 )\n  {\n    v2 = *((float *)a2 + 3);\n    v3 = *(float *)a2;\n  }\n  else\n  {\n    v2 = *(float *)a2;\n    v3 = *((float *)a2 + 3);\n  }\n  v8 = v3;\n  if ( *((float *)this + 1) < 0.0 )\n  {\n    v4 = *((float *)a2 + 4);\n    v5 = *((float *)a2 + 1);\n  }\n  else\n  {\n    v4 = *((float *)a2 + 1);\n    v5 = *((float *)a2 + 4);\n  }\n  if ( *((float *)this + 2) < 0.0 )\n  {\n    v6 = *((float *)a2 + 5);\n    v9 = *((float *)a2 + 2);\n  }\n  else\n  {\n    v6 = *((float *)a2 + 2);\n    v9 = *((float *)a2 + 5);\n  }\n  return v6 * *((float *)this + 2) + v2 * *(float *)this + v4 * *((float *)this + 1) <= *((float *)this + 3)\n      && v9 * *((float *)this + 2) + v8 * *(float *)this + v5 * *((float *)this + 1) >= *((float *)this + 3);\n}\n"
+}

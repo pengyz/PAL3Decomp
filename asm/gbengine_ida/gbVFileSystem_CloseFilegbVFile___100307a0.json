@@ -1,0 +1,8 @@
+{
+  "name": "gbVFileSystem::CloseFile(gbVFile *)",
+  "mangled_name": "?CloseFile@gbVFileSystem@@QAEXPAVgbVFile@@@Z",
+  "address": "0x100307A0",
+  "size_bytes": 111,
+  "signature": "void __thiscall(gbVFileSystem *this, void **a2)",
+  "decompiled_c": "void __thiscall gbVFileSystem::CloseFile(gbVFileSystem *this, void **a2)\n{\n  int v2; // eax\n\n  v2 = *((_DWORD *)this + 3);\n  if ( v2 == 1 )\n  {\n    if ( a2 )\n      CPK::Close((gbVFileSystem *)((char *)this + 24), (struct CPKFile *)(a2 + 68));\n    else\n      CPK::Close((gbVFileSystem *)((char *)this + 24), 0);\n  }\n  else if ( v2 )\n  {\n    if ( v2 == 2 )\n    {\n      free(a2[1]);\n      *a2 = 0;\n    }\n  }\n  else\n  {\n    fclose((FILE *)a2[1]);\n    *a2 = 0;\n  }\n}\n"
+}

@@ -1,0 +1,8 @@
+{
+  "name": "gbChain1D::InsertAfter(gbChain1DNode *,gbChain1DNode *)",
+  "mangled_name": "?InsertAfter@gbChain1D@@QAEXPAVgbChain1DNode@@0@Z",
+  "address": "0x1002EB40",
+  "size_bytes": 70,
+  "signature": "void __thiscall(gbChain1D *this, struct gbChain1DNode *a2, struct gbChain1DNode *a3)",
+  "decompiled_c": "void __thiscall gbChain1D::InsertAfter(gbChain1D *this, struct gbChain1DNode *a2, struct gbChain1DNode *a3)\n{\n  int v3; // edx\n\n  if ( a3 )\n  {\n    *((_DWORD *)a2 + 1) = *((_DWORD *)a3 + 1);\n    *((_DWORD *)a3 + 1) = a2;\n    if ( *((struct gbChain1DNode **)this + 1) == a3 )\n      *((_DWORD *)this + 1) = a2;\n  }\n  else\n  {\n    *((_DWORD *)a2 + 1) = *(_DWORD *)this;\n    v3 = *((_DWORD *)this + 1);\n    *(_DWORD *)this = a2;\n    if ( !v3 )\n    {\n      *((_DWORD *)this + 1) = a2;\n      ++*((_DWORD *)this + 2);\n      return;\n    }\n  }\n  ++*((_DWORD *)this + 2);\n}\n"
+}

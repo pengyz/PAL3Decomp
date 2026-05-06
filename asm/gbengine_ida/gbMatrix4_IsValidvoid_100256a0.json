@@ -1,0 +1,8 @@
+{
+  "name": "gbMatrix4::IsValid(void)",
+  "mangled_name": "?IsValid@gbMatrix4@@QBE_NXZ",
+  "address": "0x100256A0",
+  "size_bytes": 42,
+  "signature": "char __thiscall(gbMatrix4 *this)",
+  "decompiled_c": "char __thiscall gbMatrix4::IsValid(gbMatrix4 *this)\n{\n  int v2; // edx\n\n  if ( this )\n  {\n    v2 = 0;\n    while ( *(float *)this * *(float *)this >= 0.0 )\n    {\n      ++v2;\n      this = (gbMatrix4 *)((char *)this + 4);\n      if ( v2 >= 16 )\n        return 1;\n    }\n  }\n  return 0;\n}\n"
+}

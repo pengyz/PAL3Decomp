@@ -1,0 +1,8 @@
+{
+  "name": "gbParticleGroup::Update(double)",
+  "mangled_name": "?Update@gbParticleGroup@@QAEXN@Z",
+  "address": "0x1002B6A0",
+  "size_bytes": 204,
+  "signature": "void __thiscall(gbParticleGroup *this, double a2)",
+  "decompiled_c": "void __thiscall gbParticleGroup::Update(gbParticleGroup *this, double a2)\n{\n  double v3; // st7\n  gbPartEmitter *v4; // ecx\n  int i; // edi\n  void *v6; // edi\n  bool v7; // cc\n  int v8; // [esp+0h] [ebp-Ch]\n  int v9; // [esp+4h] [ebp-8h]\n\n  v3 = a2 + *((double *)this + 8);\n  v4 = (gbPartEmitter *)*((_DWORD *)this + 31);\n  *((double *)this + 8) = v3;\n  for ( i = gbPartEmitter::ComputeEmitterData(v4, (gbParticleGroup *)((char *)this + 72), v3, a2); i; --i )\n  {\n    if ( !gbParticleGroup::CreateOneParticle(this, v3, (gbParticleGroup *)((char *)this + 72)) )\n      break;\n  }\n  v9 = 0;\n  if ( *((int *)this + 34) > 0 )\n  {\n    v8 = 0;\n    do\n    {\n      v6 = (void *)(v8 + *((_DWORD *)this + 32));\n      if ( !gbParticleGroup::UpdateOneParticle(this, (struct gbParticleUnit *)v6, a2) )\n        qmemcpy(v6, (const void *)(*((_DWORD *)this + 32) + 88 * (*((_DWORD *)this + 34))-- - 88), 0x58u);\n      v7 = ++v9 < *((_DWORD *)this + 34);\n      v8 += 88;\n    }\n    while ( v7 );\n  }\n}\n"
+}

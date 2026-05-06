@@ -1,0 +1,8 @@
+{
+  "name": "CPK::Read(void *,ulong,CPKFile *)",
+  "mangled_name": "?Read@CPK@@QAE_NPAXKPAVCPKFile@@@Z",
+  "address": "0x1002D270",
+  "size_bytes": 105,
+  "signature": "char __thiscall(HANDLE *this, void *lpBuffer, DWORD nNumberOfBytesToRead, struct CPKFile *a4)",
+  "decompiled_c": "char __thiscall CPK::Read(HANDLE *this, void *lpBuffer, DWORD nNumberOfBytesToRead, struct CPKFile *a4)\n{\n  if ( *(this + 1) == HANDLE_FLAG_PROTECT_FROM_CLOSE )\n    qmemcpy(lpBuffer, (const void *)(*((_DWORD *)a4 + 8) + *((_DWORD *)a4 + 10)), nNumberOfBytesToRead);\n  else\n    sub_1002DB70(*(this + 229419), lpBuffer, nNumberOfBytesToRead);\n  *((_DWORD *)a4 + 10) += nNumberOfBytesToRead;\n  return 1;\n}\n"
+}

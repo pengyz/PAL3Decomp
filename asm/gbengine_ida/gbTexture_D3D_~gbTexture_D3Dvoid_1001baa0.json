@@ -1,0 +1,8 @@
+{
+  "name": "gbTexture_D3D::~gbTexture_D3D(void)",
+  "mangled_name": "??1gbTexture_D3D@@UAE@XZ",
+  "address": "0x1001BAA0",
+  "size_bytes": 100,
+  "signature": "void __thiscall(gbTexture_D3D *this)",
+  "decompiled_c": "void __thiscall gbTexture_D3D::~gbTexture_D3D(gbTexture_D3D *this)\n{\n  int v2; // eax\n  int v3; // eax\n\n  *(_DWORD *)this = &off_100F5738;\n  v2 = *((_DWORD *)this + 21);\n  if ( v2 )\n    (*(void (__stdcall **)(int))(*(_DWORD *)v2 + 8))(v2);\n  v3 = *((_DWORD *)this + 22);\n  if ( v3 )\n    (*(void (__stdcall **)(_DWORD))(*(_DWORD *)v3 + 8))(*((_DWORD *)this + 22));\n  gbTexture::~gbTexture(this);\n}\n"
+}

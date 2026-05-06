@@ -1,0 +1,8 @@
+{
+  "name": "gbGfxManager::BeginScene(void)",
+  "mangled_name": "?BeginScene@gbGfxManager@@UAEHXZ",
+  "address": "0x1001DB10",
+  "size_bytes": 222,
+  "signature": "int __thiscall(gbGfxManager *this)",
+  "decompiled_c": "int __thiscall gbGfxManager::BeginScene(gbGfxManager *this)\n{\n  int v2; // eax\n  int v3; // ecx\n  int v4; // edx\n  double updated; // st7\n  double v6; // st7\n  double v7; // st7\n  int v8; // eax\n  char v10; // c0\n  __int64 v12; // [esp+8h] [ebp-8h]\n\n  v2 = *((_DWORD *)this + 126);\n  v3 = *((_DWORD *)this + 127);\n  v4 = *((_DWORD *)this + 129);\n  *((_DWORD *)this + 124) = v2;\n  *((_DWORD *)this + 125) = v3;\n  *((_DWORD *)this + 128) = v4;\n  updated = gbUpdateCurTime();\n  *((double *)this + 63) = updated;\n  v6 = updated - *((double *)this + 62);\n  *((_DWORD *)this + 129) = g_CurrentTick;\n  v7 = v6 + *((double *)this + 69);\n  v8 = *((_DWORD *)this + 140) + 1;\n  *((_DWORD *)this + 130) = 0;\n  *((_DWORD *)this + 140) = v8;\n  *((double *)this + 69) = v7;\n  *((_DWORD *)this + 131) = 0;\n  *((_DWORD *)this + 136) = 0;\n  if ( !v10 )\n  {\n    v12 = (unsigned int)(v8 - *((_DWORD *)this + 141));\n    *((_DWORD *)this + 138) = 0;\n    *((_DWORD *)this + 139) = 0;\n    *((_DWORD *)this + 141) = v8;\n    *((float *)this + 137) = (double)v12 / v7;\n  }\n  gbRenderEffect::Apply(*(gbRenderEffect **)(*((_DWORD *)this + 50) + 24));\n  *(_DWORD *)(*((_DWORD *)this + 50) + 2084) = 0;\n  return 1;\n}\n"
+}

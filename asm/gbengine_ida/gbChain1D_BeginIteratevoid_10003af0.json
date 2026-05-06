@@ -1,0 +1,8 @@
+{
+  "name": "gbChain1D::BeginIterate(void)",
+  "mangled_name": "?BeginIterate@gbChain1D@@QAEPAVgbChain1DNode@@XZ",
+  "address": "0x10003AF0",
+  "size_bytes": 6,
+  "signature": "struct gbChain1DNode *__thiscall(gbChain1D *this)",
+  "decompiled_c": "struct gbChain1DNode *__thiscall gbChain1D::BeginIterate(gbChain1D *this)\n{\n  struct gbChain1DNode *result; // eax\n\n  result = *(struct gbChain1DNode **)this;\n  *((_DWORD *)this + 3) = *(_DWORD *)this;\n  return result;\n}\n"
+}

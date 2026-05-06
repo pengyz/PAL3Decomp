@@ -1,0 +1,8 @@
+{
+  "name": "_IsThisWindowsNT",
+  "mangled_name": "_IsThisWindowsNT",
+  "address": "0x100EF84B",
+  "size_bytes": 54,
+  "signature": "BOOL()",
+  "decompiled_c": "BOOL IsThisWindowsNT()\n{\n  struct _OSVERSIONINFOA VersionInformation; // [esp+0h] [ebp-94h] BYREF\n\n  VersionInformation.dwOSVersionInfoSize = 148;\n  return GetVersionExA(&VersionInformation) && VersionInformation.dwPlatformId == 2;\n}\n"
+}

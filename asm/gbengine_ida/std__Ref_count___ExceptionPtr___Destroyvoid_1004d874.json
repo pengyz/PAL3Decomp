@@ -1,0 +1,8 @@
+{
+  "name": "std::_Ref_count<__ExceptionPtr>::_Destroy(void)",
+  "mangled_name": "?_Destroy@?$_Ref_count@V__ExceptionPtr@@@std@@EAEXXZ",
+  "address": "0x1004D874",
+  "size_bytes": 24,
+  "signature": "void __thiscall(_DWORD *this)",
+  "decompiled_c": "void __thiscall std::_Ref_count<__ExceptionPtr>::_Destroy(_DWORD *this)\n{\n  void *v1; // esi\n\n  v1 = (void *)*(this + 3);\n  if ( v1 )\n  {\n    std::_Ref_count<__ExceptionPtr>::_Destroy(*(this + 3));\n    operator delete(v1);\n  }\n}\n"
+}

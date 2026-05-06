@@ -1,0 +1,8 @@
+{
+  "name": "gbCreateGraphManager(gbGfxDriverInfo *)",
+  "mangled_name": "?gbCreateGraphManager@@YAPAVgbGfxManager@@PAUgbGfxDriverInfo@@@Z",
+  "address": "0x1001E0C0",
+  "size_bytes": 145,
+  "signature": "struct gbGfxManager *__cdecl(struct gbGfxDriverInfo *a1)",
+  "decompiled_c": "struct gbGfxManager *__cdecl gbCreateGraphManager(struct gbGfxDriverInfo *a1)\n{\n  struct gbGfxDriverInfo *v1; // esi\n  struct gbGfxManager *result; // eax\n\n  v1 = a1;\n  if ( *(_DWORD *)a1 == 2 )\n  {\n    if ( operator new(0x8F0u) )\n      result = (struct gbGfxManager *)sub_100189A0((int *)&a1, v1);\n    else\n      result = 0;\n  }\n  else\n  {\n    result = a1;\n  }\n  if ( !a1 )\n  {\n    if ( result )\n      (**(void (__thiscall ***)(struct gbGfxManager *, int))result)(result, 1);\n    return 0;\n  }\n  return result;\n}\n"
+}

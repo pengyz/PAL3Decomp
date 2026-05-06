@@ -1,0 +1,8 @@
+{
+  "name": "__free_lc_lconv",
+  "mangled_name": "__free_lc_lconv",
+  "address": "0x100EED74",
+  "size_bytes": 78,
+  "signature": "void __cdecl(void **a1)",
+  "decompiled_c": "void __cdecl _free_lc_lconv(void **a1)\n{\n  if ( a1 )\n  {\n    if ( a1[3] != &dword_10166F3C )\n    {\n      free(a1[3]);\n      free(a1[4]);\n      free(a1[5]);\n      free(a1[6]);\n      free(a1[7]);\n      free(a1[8]);\n      free(a1[9]);\n    }\n  }\n}\n"
+}

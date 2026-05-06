@@ -1,0 +1,8 @@
+{
+  "name": "gbSnow::~gbSnow(void)",
+  "mangled_name": "??1gbSnow@@UAE@XZ",
+  "address": "0x10032120",
+  "size_bytes": 43,
+  "signature": "void __thiscall(gbSnow *this)",
+  "decompiled_c": "// Alternative name is '??1gbDropGroup@@UAE@XZ'\n// Alternative name is '??1gbRain@@UAE@XZ'\nvoid __thiscall gbSnow::~gbSnow(gbSnow *this)\n{\n  gbRefObject *v2; // ecx\n  gbRefObject *v3; // ecx\n\n  v2 = (gbRefObject *)*((_DWORD *)this + 19);\n  *(_DWORD *)this = &gbDropGroup::`vftable';\n  gbRefObject::Release(v2);\n  v3 = (gbRefObject *)*((_DWORD *)this + 18);\n  if ( v3 )\n    gbRefObject::Release(v3);\n  operator delete(*((void **)this + 17));\n}\n"
+}

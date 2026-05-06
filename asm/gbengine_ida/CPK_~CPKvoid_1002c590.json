@@ -1,0 +1,8 @@
+{
+  "name": "CPK::~CPK(void)",
+  "mangled_name": "??1CPK@@QAE@XZ",
+  "address": "0x1002C590",
+  "size_bytes": 52,
+  "signature": "void __thiscall(CPK *this)",
+  "decompiled_c": "void __thiscall CPK::~CPK(CPK *this)\n{\n  void **v1; // edi\n  int v2; // ebx\n  void *v3; // esi\n\n  v1 = (void **)((char *)this + 917640);\n  v2 = 8;\n  do\n  {\n    v3 = *v1;\n    if ( *v1 )\n    {\n      gbVFile::~gbVFile();\n      operator delete(v3);\n      *v1 = 0;\n    }\n    ++v1;\n    --v2;\n  }\n  while ( v2 );\n}\n"
+}

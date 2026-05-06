@@ -1,0 +1,8 @@
+{
+  "name": "gbVFile1::GetDir(char *,int)",
+  "mangled_name": "?GetDir@gbVFile1@@QAEPADPADH@Z",
+  "address": "0x10030180",
+  "size_bytes": 73,
+  "signature": "char *__thiscall(gbVFile1 *this, char *Str, size_t Count)",
+  "decompiled_c": "char *__thiscall gbVFile1::GetDir(gbVFile1 *this, char *Str, size_t Count)\n{\n  char *v3; // edi\n  char *v4; // eax\n\n  strncpy(Str, (const char *)this + 12, Count);\n  v3 = strrchr(Str, 47);\n  v4 = strrchr(Str, 92);\n  if ( v4 > v3 )\n    v3 = v4;\n  if ( v3 )\n    v3[1] = 0;\n  else\n    *Str = 0;\n  return Str;\n}\n"
+}

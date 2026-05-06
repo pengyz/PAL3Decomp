@@ -1,0 +1,8 @@
+{
+  "name": "gbSound2DNode::Play(void)",
+  "mangled_name": "?Play@gbSound2DNode@@QAEXXZ",
+  "address": "0x10002970",
+  "size_bytes": 85,
+  "signature": "void __thiscall(gbSound2DNode *this)",
+  "decompiled_c": "void __thiscall gbSound2DNode::Play(gbSound2DNode *this)\n{\n  gbAudioManager *v2; // ecx\n  int v3; // edi\n\n  v2 = gbSound2DNode::pAudioMgr;\n  if ( gbSound2DNode::pAudioMgr )\n  {\n    if ( !*((_DWORD *)this + 1) )\n    {\n      gbAudioManager::AttachSampleHandle(gbSound2DNode::pAudioMgr, this);\n      v2 = gbSound2DNode::pAudioMgr;\n    }\n    v3 = *((_DWORD *)this + 1);\n    AIL_set_sample_volume(v3, (__int64)(*((float *)v2 + 52) * *((float *)this + 3) * 127.0));\n    AIL_set_sample_loop_count(v3, *((_DWORD *)this + 2));\n    AIL_start_sample(v3);\n  }\n}\n"
+}

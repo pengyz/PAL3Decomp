@@ -1,0 +1,8 @@
+{
+  "name": "BEZIER::BEZIER(void)",
+  "mangled_name": "??0BEZIER@@QAE@XZ",
+  "address": "0x10024220",
+  "size_bytes": 47,
+  "signature": "BEZIER *__thiscall(BEZIER *this)",
+  "decompiled_c": "BEZIER *__thiscall BEZIER::BEZIER(BEZIER *this)\n{\n  int v2; // ecx\n  _DWORD *v3; // eax\n\n  v2 = 4;\n  v3 = (_DWORD *)((char *)this + 16);\n  do\n  {\n    *v3 = 0;\n    v3[1] = 0;\n    v3[2] = 0;\n    v3 += 3;\n    --v2;\n  }\n  while ( v2 );\n  memset((char *)this + 16, 0, 0x30u);\n  *((_BYTE *)this + 64) = 0;\n  return this;\n}\n"
+}

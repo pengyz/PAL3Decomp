@@ -1,0 +1,8 @@
+{
+  "name": "CPK::SetOpenMode(ECPKMode)",
+  "mangled_name": "?SetOpenMode@CPK@@QAEXW4ECPKMode@@@Z",
+  "address": "0x1002C640",
+  "size_bytes": 20,
+  "signature": "char __thiscall(int this, int a2)",
+  "decompiled_c": "char __thiscall CPK::SetOpenMode(int this, int a2)\n{\n  char result; // al\n\n  result = *(_BYTE *)(this + 917672);\n  if ( !result )\n  {\n    *(_DWORD *)(this + 4) = a2;\n    return a2;\n  }\n  return result;\n}\n"
+}

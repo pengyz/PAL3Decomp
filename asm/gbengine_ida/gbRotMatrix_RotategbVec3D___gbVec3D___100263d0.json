@@ -1,0 +1,8 @@
+{
+  "name": "gbRotMatrix::Rotate(gbVec3D *,gbVec3D *)",
+  "mangled_name": "?Rotate@gbRotMatrix@@QAEXPAUgbVec3D@@0@Z",
+  "address": "0x100263D0",
+  "size_bytes": 81,
+  "signature": "void __thiscall(gbRotMatrix *this, struct gbVec3D *a2, struct gbVec3D *a3)",
+  "decompiled_c": "void __thiscall gbRotMatrix::Rotate(gbRotMatrix *this, struct gbVec3D *a2, struct gbVec3D *a3)\n{\n  *(float *)a3 = *((float *)this + 3) * *((float *)a2 + 1)\n               + *((float *)this + 6) * *((float *)a2 + 2)\n               + *(float *)a2 * *(float *)this;\n  *((float *)a3 + 1) = *((float *)this + 1) * *(float *)a2\n                     + *((float *)this + 4) * *((float *)a2 + 1)\n                     + *((float *)this + 7) * *((float *)a2 + 2);\n  *((float *)a3 + 2) = *((float *)this + 2) * *(float *)a2\n                     + *((float *)this + 5) * *((float *)a2 + 1)\n                     + *((float *)this + 8) * *((float *)a2 + 2);\n}\n"
+}

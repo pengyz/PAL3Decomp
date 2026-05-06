@@ -1,0 +1,8 @@
+{
+  "name": "gbAudioManager::DeleteSoundData(gbSoundData *)",
+  "mangled_name": "?DeleteSoundData@gbAudioManager@@QAEXPAVgbSoundData@@@Z",
+  "address": "0x100015F0",
+  "size_bytes": 12,
+  "signature": "void __thiscall(gbAudioManager *this, struct gbSoundData *a2)",
+  "decompiled_c": "void __thiscall gbAudioManager::DeleteSoundData(gbAudioManager *this, struct gbSoundData *a2)\n{\n  gbRefObject::Release(a2);\n}\n"
+}

@@ -1,0 +1,8 @@
+{
+  "name": "__lock",
+  "mangled_name": "__lock",
+  "address": "0x100E8D3F",
+  "size_bytes": 97,
+  "signature": "void __cdecl(int a1)",
+  "decompiled_c": "void __cdecl _lock(int a1)\n{\n  LPCRITICAL_SECTION *v1; // esi\n  struct _RTL_CRITICAL_SECTION *v2; // edi\n\n  v1 = &dword_1012A044 + a1;\n  if ( !*v1 )\n  {\n    v2 = (struct _RTL_CRITICAL_SECTION *)malloc(0x18u);\n    if ( !v2 )\n      _amsg_exit(0x11u);\n    _lock(17);\n    if ( *v1 )\n    {\n      free(v2);\n    }\n    else\n    {\n      InitializeCriticalSection(v2);\n      *v1 = v2;\n    }\n    _unlock(17);\n  }\n  EnterCriticalSection(*v1);\n}\n"
+}

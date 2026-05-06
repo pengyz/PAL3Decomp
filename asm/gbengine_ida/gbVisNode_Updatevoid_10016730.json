@@ -1,0 +1,8 @@
+{
+  "name": "gbVisNode::Update(void)",
+  "mangled_name": "?Update@gbVisNode@@UAEXXZ",
+  "address": "0x10016730",
+  "size_bytes": 33,
+  "signature": "void __thiscall(gbVisNode *this)",
+  "decompiled_c": "void __thiscall gbVisNode::Update(gbVisNode *this)\n{\n  int v2; // ecx\n\n  v2 = *((_DWORD *)this + 3);\n  for ( *((_DWORD *)this + 6) = v2; v2; *((_DWORD *)this + 6) = v2 )\n  {\n    (*(void (__thiscall **)(int))(*(_DWORD *)v2 + 20))(v2);\n    v2 = *(_DWORD *)(*((_DWORD *)this + 6) + 4);\n  }\n}\n"
+}

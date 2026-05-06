@@ -1,0 +1,8 @@
+{
+  "name": "gbMatrix4::GetColumn(gbVec4D *,int)",
+  "mangled_name": "?GetColumn@gbMatrix4@@QBEPAUgbVec4D@@PAU2@H@Z",
+  "address": "0x100262A0",
+  "size_bytes": 39,
+  "signature": "struct gbVec4D *__thiscall(gbMatrix4 *this, struct gbVec4D *a2, int a3)",
+  "decompiled_c": "struct gbVec4D *__thiscall gbMatrix4::GetColumn(gbMatrix4 *this, struct gbVec4D *a2, int a3)\n{\n  *(_DWORD *)a2 = *((_DWORD *)this + a3);\n  *((_DWORD *)a2 + 1) = *((_DWORD *)this + a3 + 4);\n  *((_DWORD *)a2 + 2) = *((_DWORD *)this + a3 + 8);\n  *((_DWORD *)a2 + 3) = *((_DWORD *)this + a3 + 12);\n  return a2;\n}\n"
+}

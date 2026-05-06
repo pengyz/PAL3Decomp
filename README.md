@@ -1,158 +1,103 @@
 # PAL3 Decompilation Project
 
-仙剑奇侠传3（PAL3.exe）匹配反编译项目
+仙剑奇侠传3 匹配反编译项目。目标：生成与原始二进制字节相同的 C/C++ 源码。
 
-## 🚀 快速开始
+## 反编译目标
 
-### 1. 检查工具链
+| 二进制 | 编译器 | 函数数 | 源码状态 | 备注 |
+|--------|--------|--------|----------|------|
+| topo.dll | VC6 SP5 | ~414 | 7 文件, 2885 行 | 数学库，27% 匹配 |
+| gbengine.dll | VC6 SP5 | 1020 导出 | 56 文件, 17553 行, 全部编译通过 | 引擎核心 |
+| PAL3A.exe | VC7.0 | 4530 (in .text) | IDA pipeline 99.1% exported | 有完整 PDB |
+| PAL3.exe | VC7.0+7.1 | ~5000+ | 待脱壳 | StarForce 保护 |
+
+## 项目结构
+
+```
+src/
+├── topo/           # topo.dll 数学库 (gbVec3D, gbMatrix4, gbQuaternion...)
+├── gbengine/       # gbengine.dll 引擎核心 (56 .cpp, VC6 编译通过)
+└── pal3a/          # PAL3A.exe 游戏逻辑 (逐文件填充中)
+
+include/            # 头文件和结构体定义
+asm/
+├── gbengine_ida/   # gbengine.dll IDA 反编译 JSON (1344 函数)
+└── pal3a/          # PAL3A.exe 反编译数据
+
+tools/
+├── vc6/            # VC6 SP5 工具链 (Git LFS)
+├── gbengine_compare.py    # 字节比对工具
+├── gbengine_fill_stubs.py # Stub 自动填充
+├── pal3a_fill_stubs.py    # PAL3A stub 填充
+├── pal3a_file_export.py   # PAL3A 文件导出
+└── ida/            # IDA 自动化管线脚本
+
+cmake/              # CMake 构建配置 (VC6 toolchain, DirectX, MSVC flags)
+original/           # 原始二进制 (Git LFS)
+extra/PAL3patch/    # 社区补丁项目 (submodule)
+```
+
+## 构建
+
+### gbengine.dll (VC6 SP5)
 
 ```batch
-python check_toolchain.py
+# 单文件编译验证
+python tools/gbengine_compare.py --compile src/gbengine/gbCamera.cpp
+
+# 字节比对
+python tools/gbengine_compare.py --func gbCamera::SetLookAt
 ```
 
-### 2. 测试编译
+### CMake 构建 (VS2022 测试)
 
 ```batch
-test_build.bat
+cmake -B build -G "Visual Studio 17 2022" -A Win32
+cmake --build build --config Release
 ```
 
-### 3. 查看文档
-
-- **[工具链配置指南](docs/TOOLCHAIN_SETUP.md)** - 如何使用构建系统
-- **[MSVC 安装教程](docs/install_msvc.md)** - 如何安装历史版本编译器
-- **[项目总览](CLAUDE.md)** - 项目结构和工作流程
-
----
-
-## 📁 项目结构
-
-```
-├── src/              # 反编译的源代码
-│   ├── topo/         # topo.dll (数学库) ✅ 已完成
-│   ├── gbengine/     # gbengine.dll (游戏引擎) 🔄 进行中
-│   └── pal3/         # PAL3.exe (主程序) ⏳ 待开始
-├── asm/              # Ghidra 导出的函数数据 (JSON)
-├── include/          # 头文件和结构体定义
-├── docs/             # 技术文档
-└── tools/            # 自动化工具
-
-构建脚本：
-├── check_toolchain.py  # 环境检查
-├── test_build.bat      # 快速测试编译
-├── setup_env.bat       # 编译器环境配置
-└── build.bat           # 主构建脚本
-```
-
----
-
-## 🎯 反编译目标
-
-| 二进制 | 大小 | 编译器 | 状态 |
-|--------|------|--------|------|
-| topo.dll | 106 KB | VC6 SP6 | ✅ 24% (7 文件, 2340 行) |
-| PAL3A.exe | ~2 MB | VC7.0 | 🔄 IDA pipeline (99.1% exported, 逐文件填充中) |
-| gbengine.dll | 1.26 MB | VC6 SP6 | ⏳ 数据已导出 |
-| PAL3.exe | 1.87 MB | VC7.0 + VS2003 | ⏳ 需要脱壳 |
-
-### PAL3A 工作流 (当前重点)
-
-PAL3A.exe 有完整 PDB 调试符号。使用 IDA + Hex-Rays 自动反编译，逐文件验证编译。
-
-```
-选文件 → 查看 IDA 输出 → 识别问题 → IDA 侧修复 → 重新导出 → 填充 → 编译验证
-```
-
-每次 IDA 侧修复（类型标注、签名修正）都是累积收益，提升所有函数的反编译质量。
-详见 [CLAUDE.md](CLAUDE.md) 中的 "PAL3A Per-File Decompilation Workflow"。
-
----
-
-## 🛠️ 工具链
-
-### 当前可用
-- ✅ Python 3.12.1
-- ✅ Visual Studio 2022（测试用）
-- ✅ CMake 4.0.1
-- ✅ Git
-
-### 二进制匹配需要（可选）
-- ⏳ Visual C++ 6.0 SP6 - 用于 DLL
-- ⏳ Visual Studio .NET 2003 - 用于 PAL3.exe
-
-**安装指南**: [docs/install_msvc.md](docs/install_msvc.md)
-
----
-
-## 📚 文档索引
-
-| 文档 | 内容 |
-|------|------|
-| [docs/TOOLCHAIN_SETUP.md](docs/TOOLCHAIN_SETUP.md) | 工具链使用完整指南 ⭐ |
-| [docs/SETUP_COMPLETE.md](docs/SETUP_COMPLETE.md) | 配置完成报告 |
-| [docs/install_msvc.md](docs/install_msvc.md) | MSVC 安装详细步骤 |
-| [CLAUDE.md](CLAUDE.md) | 项目总体介绍 |
-| [docs/compiler_setup.md](docs/compiler_setup.md) | 编译器技术细节 |
-| [docs/unpacking.md](docs/unpacking.md) | PAL3.exe 脱壳指南 |
-
----
-
-## ⚡ 常用命令
+### VC6 原生构建
 
 ```batch
-# 环境检查
-python check_toolchain.py
-
-# 快速测试
-test_build.bat
-
-# 配置特定编译器
-setup_env.bat
-
-# 编译特定目标
-build.bat topo      # 数学库
-build.bat gbengine  # 游戏引擎
-build.bat pal3      # 主程序
-build.bat all       # 全部
-
-# 清理构建
-build.bat clean
+cmake -B build/gbengine -G "NMake Makefiles" ^
+  -DCMAKE_TOOLCHAIN_FILE=cmake/toolchain-vc6.cmake ^
+  -DBUILD_TARGET=gbengine
+cmake --build build/gbengine
 ```
 
----
+## 当前进度 (2026-05-07)
 
-## 🎓 贡献指南
+### gbengine.dll — 主要工作方向
 
-### 反编译新函数
+- 56 个 .cpp 文件全部通过 VC6 编译
+- 1020 个导出函数中约 680+ 已实现
+- 157 个函数完全字节匹配 (23.1%)
+- IDA 反编译数据完整覆盖 (1344 函数 JSON)
+- 下一步：继续实现 stub 函数，推进字节匹配率
 
-1. 找到 JSON 数据：`asm/gbengine/FunctionName_ADDRESS.json`
-2. 转换为 C++ 代码：`src/gbengine/filename.cpp`
-3. 编译验证：`build.bat gbengine`
-4. 二进制比对：`python run.py compare src/gbengine/filename.cpp 0xADDR SIZE`
+### topo.dll — 基本完成
 
----
+- 114/414 函数已实现 (27%)
+- 核心数学类 (gbVec3D, gbMatrix4, gbQuaternion) 已完成
 
-## 📊 技术栈
+### PAL3A.exe — IDA 管线就绪
 
-- **编译器**: MSVC 6.0, MSVC 7.0, MSVC 7.1
-- **构建系统**: CMake + NMake
-- **逆向工具**: Ghidra
-- **脚本语言**: Python 3, Batch
-- **版本控制**: Git
+- PDB 完整符号 (11412 函数, 1057 类, 479 源文件)
+- IDA 7-phase pipeline: 5012/5057 函数已导出 (99.1%)
+- 等待 gbengine 完成后全面推进
 
----
+## 工具链要求
 
-## 🔗 相关项目
+- Python 3.x
+- Visual C++ 6.0 SP5 (已含于 `tools/vc6/`, Git LFS)
+- DirectX SDK Summer 2003 (d3d9, d3dx9, dinput8)
+- IDA Pro 9.x (反编译管线)
 
-- [PAL3patch](https://github.com/zhangboyang/PAL3patch) - C 补丁，提供结构体定义
-- [OpenPAL3](https://github.com/dontpanic92/OpenPAL3) - Rust 重实现，提供文件格式文档
+## 参考项目
 
----
+- [PAL3patch](https://github.com/zhangboyang/PAL3patch) — 结构体定义、逆向笔记
+- [OpenPAL3](https://github.com/dontpanic92/OpenPAL3) — 文件格式文档
 
-## 📄 许可证
+## 许可证
 
 本项目用于教育和研究目的。仙剑奇侠传3 版权归原作者所有。
-
----
-
-**最后更新**: 2026-05-01  
-**工具链状态**: ✅ 已配置

@@ -1,0 +1,8 @@
+{
+  "name": "gbLightObj::GetEffectOnPoint(gbVec3D const &,int)",
+  "mangled_name": "?GetEffectOnPoint@gbLightObj@@UAEMABUgbVec3D@@H@Z",
+  "address": "0x100132A0",
+  "size_bytes": 175,
+  "signature": "double __thiscall(gbLightObj *this, const struct gbVec3D *a2, int a3)",
+  "decompiled_c": "double __thiscall gbLightObj::GetEffectOnPoint(gbLightObj *this, const struct gbVec3D *a2, int a3)\n{\n  double v5; // st7\n  double v6; // st7\n  double v7; // st7\n  float v8; // [esp+4h] [ebp-18h]\n  float v9; // [esp+8h] [ebp-14h]\n  float v10; // [esp+Ch] [ebp-10h]\n  _DWORD v11[3]; // [esp+10h] [ebp-Ch] BYREF\n\n  if ( a3 )\n    return 0.0;\n  v8 = *((float *)this + 40) - *(float *)a2;\n  v9 = *((float *)this + 41) - *((float *)a2 + 1);\n  v5 = *((float *)this + 42) - *((float *)a2 + 2);\n  *(float *)&v11[1] = v9;\n  v10 = v5;\n  *(float *)v11 = v8;\n  *(float *)&v11[2] = v10;\n  v6 = gbVec3D::Length((gbVec3D *)v11);\n  v7 = 1.0 / (v6 * (v6 * *((float *)this + 50) + *((float *)this + 49)) + *((float *)this + 48));\n  if ( v7 > 1.0 )\n    v7 = 1.0;\n  return v7 * (*((float *)this + 30) + *((float *)this + 29) + *((float *)this + 28)) * 0.33333334;\n}\n"
+}

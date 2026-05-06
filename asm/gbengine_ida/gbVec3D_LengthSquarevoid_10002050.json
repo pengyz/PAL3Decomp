@@ -1,0 +1,8 @@
+{
+  "name": "gbVec3D::LengthSquare(void)",
+  "mangled_name": "?LengthSquare@gbVec3D@@QBEMXZ",
+  "address": "0x10002050",
+  "size_bytes": 31,
+  "signature": "double __thiscall(gbVec3D *this)",
+  "decompiled_c": "double __thiscall gbVec3D::LengthSquare(gbVec3D *this)\n{\n  return *(float *)this * *(float *)this\n       + *((float *)this + 1) * *((float *)this + 1)\n       + *((float *)this + 2) * *((float *)this + 2);\n}\n"
+}

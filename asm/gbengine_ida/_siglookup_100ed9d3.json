@@ -1,0 +1,8 @@
+{
+  "name": "_siglookup",
+  "mangled_name": "_siglookup",
+  "address": "0x100ED9D3",
+  "size_bytes": 61,
+  "signature": "unsigned int __cdecl(int a1, unsigned int a2)",
+  "decompiled_c": "unsigned int __cdecl siglookup(int a1, unsigned int a2)\n{\n  unsigned int result; // eax\n\n  result = a2;\n  if ( *(_DWORD *)(a2 + 4) != a1 )\n  {\n    do\n      result += 12;\n    while ( result < a2 + 12 * dword_1012B46C && *(_DWORD *)(result + 4) != a1 );\n  }\n  if ( result >= a2 + 12 * dword_1012B46C || *(_DWORD *)(result + 4) != a1 )\n    return 0;\n  return result;\n}\n"
+}

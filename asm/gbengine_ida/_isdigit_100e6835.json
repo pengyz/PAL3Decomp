@@ -1,0 +1,8 @@
+{
+  "name": "_isdigit",
+  "mangled_name": "_isdigit",
+  "address": "0x100E6835",
+  "size_bytes": 40,
+  "signature": "int __cdecl(int C)",
+  "decompiled_c": "int __cdecl isdigit(int C)\n{\n  if ( (int)SrcSizeInBytes <= 1 )\n    return *((_BYTE *)off_1012A140 + 2 * C) & 4;\n  else\n    return _isctype(C, 4);\n}\n"
+}

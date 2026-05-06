@@ -1,0 +1,8 @@
+{
+  "name": "std::strstreambuf::~strstreambuf(void)",
+  "mangled_name": "??1strstreambuf@std@@UAE@XZ",
+  "address": "0x1001B970",
+  "size_bytes": 87,
+  "signature": "void __thiscall(std::strstreambuf *this)",
+  "decompiled_c": "void __thiscall std::strstreambuf::~strstreambuf(std::strstreambuf *this)\n{\n  int v2; // eax\n\n  *(_DWORD *)this = &off_100F5734;\n  v2 = *((_DWORD *)this + 6);\n  if ( v2 )\n    (*(void (__stdcall **)(int))(*(_DWORD *)v2 + 8))(v2);\n  gbResource::~gbResource(this);\n}\n"
+}

@@ -1,0 +1,8 @@
+{
+  "name": "gbChain1D::AddNodeOnTail(gbChain1DNode *)",
+  "mangled_name": "?AddNodeOnTail@gbChain1D@@QAEXPAVgbChain1DNode@@@Z",
+  "address": "0x1002EAA0",
+  "size_bytes": 41,
+  "signature": "void __thiscall(gbChain1D *this, struct gbChain1DNode *a2)",
+  "decompiled_c": "// Alternative name is '?AddNode@gbChain1D@@QAEXPAVgbChain1DNode@@@Z'\nvoid __thiscall gbChain1D::AddNodeOnTail(gbChain1D *this, struct gbChain1DNode *a2)\n{\n  int v2; // edx\n\n  *((_DWORD *)a2 + 1) = 0;\n  v2 = *((_DWORD *)this + 1);\n  if ( v2 )\n  {\n    *(_DWORD *)(v2 + 4) = a2;\n    *((_DWORD *)this + 1) = a2;\n  }\n  else\n  {\n    *((_DWORD *)this + 1) = a2;\n    *(_DWORD *)this = a2;\n  }\n  ++*((_DWORD *)this + 2);\n}\n"
+}

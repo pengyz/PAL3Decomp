@@ -1,0 +1,8 @@
+{
+  "name": "CPK::GetTableIndexFromCRC(ulong)",
+  "mangled_name": "?GetTableIndexFromCRC@CPK@@AAEHK@Z",
+  "address": "0x1002DA00",
+  "size_bytes": 108,
+  "signature": "int __thiscall(CPK *this, unsigned int a2)",
+  "decompiled_c": "int __thiscall CPK::GetTableIndexFromCRC(CPK *this, unsigned int a2)\n{\n  int v2; // edi\n  int v3; // esi\n  unsigned int v4; // ebp\n  int result; // eax\n  unsigned int v6; // ebx\n  int v7; // edx\n\n  v2 = *((_DWORD *)this + 10);\n  v3 = 0;\n  if ( v2 )\n  {\n    v4 = a2;\n    do\n    {\n      result = v3 + (v2 - v3) / 2;\n      v6 = *((_DWORD *)this + 7 * result + 34);\n      if ( v4 == v6 )\n      {\n        v7 = *((_DWORD *)this + 7 * result + 35);\n        if ( (v7 & 1) != 0 && (v7 & 0x10) == 0 )\n          return result;\n        v4 = a2;\n      }\n      if ( v2 == v3 + 1 )\n        break;\n      if ( v4 < v6 )\n        v2 = v3 + (v2 - v3) / 2;\n      else\n        v3 += (v2 - v3) / 2;\n    }\n    while ( v2 != v3 );\n  }\n  return -1;\n}\n"
+}

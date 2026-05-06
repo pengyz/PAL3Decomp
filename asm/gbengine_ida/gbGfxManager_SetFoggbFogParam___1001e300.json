@@ -1,0 +1,8 @@
+{
+  "name": "gbGfxManager::SetFog(gbFogParam *)",
+  "mangled_name": "?SetFog@gbGfxManager@@UAEXPAUgbFogParam@@@Z",
+  "address": "0x1001E300",
+  "size_bytes": 38,
+  "signature": "void __thiscall(gbGfxManager *this, struct gbFogParam *a2)",
+  "decompiled_c": "void __thiscall gbGfxManager::SetFog(gbGfxManager *this, struct gbFogParam *a2)\n{\n  if ( a2 )\n    qmemcpy((char *)this + 1432, a2, 0x34u);\n  else\n    *((_DWORD *)this + 358) = 0;\n}\n"
+}

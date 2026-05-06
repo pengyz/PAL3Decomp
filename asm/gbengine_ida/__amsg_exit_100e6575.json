@@ -1,0 +1,8 @@
+{
+  "name": "__amsg_exit",
+  "mangled_name": "__amsg_exit",
+  "address": "0x100E6575",
+  "size_bytes": 51,
+  "signature": "void __cdecl __noreturn(DWORD NumberOfBytesWritten)",
+  "decompiled_c": "void __cdecl __noreturn _amsg_exit(DWORD NumberOfBytesWritten)\n{\n  if ( dword_10166C7C == 1 || !dword_10166C7C && dword_10166C80 == 1 )\n    _FF_MSGBANNER();\n  _NMSG_WRITE(NumberOfBytesWritten);\n  off_10129E50(255);\n}\n"
+}

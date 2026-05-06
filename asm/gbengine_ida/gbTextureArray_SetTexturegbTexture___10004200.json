@@ -1,0 +1,8 @@
+{
+  "name": "gbTextureArray::SetTexture(gbTexture *)",
+  "mangled_name": "?SetTexture@gbTextureArray@@QAEXPAVgbTexture@@@Z",
+  "address": "0x10004200",
+  "size_bytes": 16,
+  "signature": "void __thiscall(gbTextureArray *this, struct gbTexture *a2)",
+  "decompiled_c": "void __thiscall gbTextureArray::SetTexture(gbTextureArray *this, struct gbTexture *a2)\n{\n  *((_DWORD *)this + 16) = 1;\n  *(_DWORD *)this = a2;\n}\n"
+}

@@ -1,0 +1,8 @@
+{
+  "name": "gbMatrix4::SetAxisAngle(gbAxis,float,float)",
+  "mangled_name": "?SetAxisAngle@gbMatrix4@@QAEXW4gbAxis@@MM@Z",
+  "address": "0x10025910",
+  "size_bytes": 143,
+  "signature": "int __thiscall(_DWORD *this, int a2, int a3, float a4)",
+  "decompiled_c": "int __thiscall gbMatrix4::SetAxisAngle(_DWORD *this, int a2, int a3, float a4)\n{\n  int result; // eax\n\n  memset(this, 0, 0x40u);\n  *(this + 15) = 1065353216;\n  if ( a2 )\n  {\n    if ( a2 == 1 )\n    {\n      *(this + 5) = 1065353216;\n      *this = a3;\n      *((float *)this + 8) = a4;\n      *((float *)this + 2) = -a4;\n      *(this + 10) = a3;\n      return a3;\n    }\n    else\n    {\n      result = a2 - 2;\n      if ( a2 == 2 )\n      {\n        *(this + 10) = 1065353216;\n        *this = a3;\n        *((float *)this + 1) = a4;\n        *((float *)this + 4) = -a4;\n        *(this + 5) = a3;\n        return a3;\n      }\n    }\n  }\n  else\n  {\n    *this = 1065353216;\n    *(this + 5) = a3;\n    *((float *)this + 6) = a4;\n    *((float *)this + 9) = -a4;\n    *(this + 10) = a3;\n    return a3;\n  }\n  return result;\n}\n"
+}

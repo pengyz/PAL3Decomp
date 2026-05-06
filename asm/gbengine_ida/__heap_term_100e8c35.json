@@ -1,0 +1,8 @@
+{
+  "name": "__heap_term",
+  "mangled_name": "__heap_term",
+  "address": "0x100E8C35",
+  "size_bytes": 117,
+  "signature": "BOOL()",
+  "decompiled_c": "BOOL _heap_term()\n{\n  int v0; // ebx\n  LPVOID *v1; // esi\n\n  v0 = 0;\n  if ( dword_10168758 > 0 )\n  {\n    v1 = (LPVOID *)((char *)lpMem + 12);\n    do\n    {\n      VirtualFree(*v1, 0x100000u, 0x4000u);\n      VirtualFree(*v1, 0, 0x8000u);\n      HeapFree(hHeap, 0, v1[1]);\n      v1 += 5;\n      ++v0;\n    }\n    while ( v0 < dword_10168758 );\n  }\n  HeapFree(hHeap, 0, lpMem);\n  return HeapDestroy(hHeap);\n}\n"
+}

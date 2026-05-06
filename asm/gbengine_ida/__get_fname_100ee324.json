@@ -1,0 +1,8 @@
+{
+  "name": "__get_fname",
+  "mangled_name": "__get_fname",
+  "address": "0x100EE324",
+  "size_bytes": 37,
+  "signature": "char *__cdecl(int a1)",
+  "decompiled_c": "char *__cdecl _get_fname(int a1)\n{\n  int v1; // ecx\n  int *v2; // eax\n\n  v1 = 0;\n  v2 = &dword_1012A9A0;\n  while ( *v2 != a1 )\n  {\n    v2 += 2;\n    ++v1;\n    if ( (int)v2 >= (int)&tbyte_1012AA78 )\n      return 0;\n  }\n  return (&off_1012A9A4)[2 * v1];\n}\n"
+}

@@ -1,0 +1,8 @@
+{
+  "name": "gbRefObject::Release(void)",
+  "mangled_name": "?Release@gbRefObject@@QAEXXZ",
+  "address": "0x1002F7F0",
+  "size_bytes": 20,
+  "signature": "void __thiscall(gbRefObject *this)",
+  "decompiled_c": "void __thiscall gbRefObject::Release(gbRefObject *this)\n{\n  int v1; // eax\n\n  v1 = *((_DWORD *)this + 1) - 1;\n  *((_DWORD *)this + 1) = v1;\n  if ( !v1 )\n  {\n    if ( this )\n      (**(void (__thiscall ***)(gbRefObject *, int))this)(this, 1);\n  }\n}\n"
+}

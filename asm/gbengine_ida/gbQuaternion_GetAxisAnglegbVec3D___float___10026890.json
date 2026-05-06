@@ -1,0 +1,8 @@
+{
+  "name": "gbQuaternion::GetAxisAngle(gbVec3D *,float *)",
+  "mangled_name": "?GetAxisAngle@gbQuaternion@@QAEXPAUgbVec3D@@PAM@Z",
+  "address": "0x10026890",
+  "size_bytes": 122,
+  "signature": "void __thiscall(gbQuaternion *this, struct gbVec3D *a2, float *a3)",
+  "decompiled_c": "void __thiscall gbQuaternion::GetAxisAngle(gbQuaternion *this, struct gbVec3D *a2, float *a3)\n{\n  long double v3; // st7\n  long double v4; // st6\n\n  v3 = acos(*((float *)this + 3)) * 57.295776;\n  if ( v3 <= 0.00001 )\n  {\n    *((_DWORD *)a2 + 1) = 0;\n    *(_DWORD *)a2 = 0;\n    *((_DWORD *)a2 + 2) = 1065353216;\n    *a3 = 0.0;\n  }\n  else\n  {\n    v4 = 1.0 / sin(v3 * 0.017453292);\n    *(float *)a2 = v4 * *(float *)this;\n    *((float *)a2 + 1) = v4 * *((float *)this + 1);\n    *((float *)a2 + 2) = v4 * *((float *)this + 2);\n    *a3 = v3 + v3;\n  }\n}\n"
+}

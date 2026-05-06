@@ -1,0 +1,8 @@
+{
+  "name": "gbPartParamControl::LoadFromFile(gbVFile *)",
+  "mangled_name": "?LoadFromFile@gbPartParamControl@@QAEXPAVgbVFile@@@Z",
+  "address": "0x100298E0",
+  "size_bytes": 194,
+  "signature": "void __thiscall(gbPartParamControl *this, struct gbVFile *a2)",
+  "decompiled_c": "void __thiscall gbPartParamControl::LoadFromFile(gbPartParamControl *this, struct gbVFile *a2)\n{\n  gbVFileSystem::Read(g_pVFileSys, this, 4u, a2);\n  gbVFileSystem::Read(g_pVFileSys, (char *)this + 4, 4u, a2);\n  gbVFileSystem::Read(g_pVFileSys, (char *)this + 8, 0x40u, a2);\n  gbVFileSystem::Read(g_pVFileSys, (char *)this + 72, 0x80u, a2);\n  gbVFileSystem::Read(g_pVFileSys, (char *)this + 212, 0xCu, a2);\n  gbVFileSystem::Read(g_pVFileSys, (char *)this + 200, 0xCu, a2);\n  gbVFileSystem::Seek(g_pVFileSys, a2, 720, 2);\n  gbVFileSystem::Read(g_pVFileSys, (char *)this + 224, 0x2D0u, a2);\n  gbVFileSystem::Read(g_pVFileSys, (char *)this + 944, 0xE34u, a2);\n}\n"
+}

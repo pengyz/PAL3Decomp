@@ -1,0 +1,8 @@
+{
+  "name": "CPK::CPK(void)",
+  "mangled_name": "??0CPK@@QAE@XZ",
+  "address": "0x1002C4B0",
+  "size_bytes": 211,
+  "signature": "CPK *__thiscall(CPK *this)",
+  "decompiled_c": "CPK *__thiscall CPK::CPK(CPK *this)\n{\n  int v2; // edx\n  unsigned int **v3; // ecx\n  int v4; // esi\n  int v5; // eax\n  _DWORD *v6; // esi\n  int v7; // edi\n  _BYTE *v8; // eax\n  struct _SYSTEM_INFO SystemInfo; // [esp+10h] [ebp-24h] BYREF\n\n  memset(this, 0, 0xE01BCu);\n  *((_DWORD *)this + 1) = 2;\n  GetSystemInfo(&SystemInfo);\n  *(_DWORD *)this = SystemInfo.dwAllocationGranularity;\n  if ( !byte_1014B60C )\n  {\n    v2 = 0;\n    v3 = &CPK::CrcTable;\n    do\n    {\n      v4 = 8;\n      v5 = v2 << 24;\n      do\n      {\n        if ( v5 >= 0 )\n          v5 *= 2;\n        else\n          v5 = (2 * v5) ^ 0x4C11DB7;\n        --v4;\n      }\n      while ( v4 );\n      *v3++ = (unsigned int *)v5;\n      ++v2;\n    }\n    while ( (int)v3 < (int)&byte_1014B60C );\n    byte_1014B60C = 1;\n  }\n  v6 = (_DWORD *)((char *)this + 917640);\n  v7 = 8;\n  do\n  {\n    v8 = operator new(0x140u);\n    if ( v8 )\n    {\n      v8[272] = 0;\n      *((_DWORD *)v8 + 76) = 0;\n    }\n    else\n    {\n      v8 = 0;\n    }\n    *v6 = v8;\n    if ( v8 )\n      v8[272] = 0;\n    else\n      sub_1002E850(0x10u, aErrorCeCannotA, (char)aDProjectGbengi);\n    ++v6;\n    --v7;\n  }\n  while ( v7 );\n  return this;\n}\n"
+}

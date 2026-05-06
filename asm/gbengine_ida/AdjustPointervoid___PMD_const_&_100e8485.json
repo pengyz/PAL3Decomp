@@ -1,0 +1,8 @@
+{
+  "name": "AdjustPointer(void *,PMD const &)",
+  "mangled_name": "?AdjustPointer@@YAPAXPAXABUPMD@@@Z",
+  "address": "0x100E8485",
+  "size_bytes": 35,
+  "signature": "char *__cdecl(char *a1, const struct PMD *a2)",
+  "decompiled_c": "char *__cdecl AdjustPointer(char *a1, const struct PMD *a2)\n{\n  int pdisp; // edx\n  char *result; // eax\n\n  pdisp = a2->pdisp;\n  result = &a1[a2->mdisp];\n  if ( pdisp >= 0 )\n    result += pdisp + *(_DWORD *)(*(_DWORD *)&a1[pdisp] + a2->vdisp);\n  return result;\n}\n"
+}

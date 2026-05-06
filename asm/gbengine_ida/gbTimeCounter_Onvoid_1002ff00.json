@@ -1,0 +1,8 @@
+{
+  "name": "gbTimeCounter::On(void)",
+  "mangled_name": "?On@gbTimeCounter@@QAEXXZ",
+  "address": "0x1002FF00",
+  "size_bytes": 97,
+  "signature": "void __thiscall(gbTimeCounter *this)",
+  "decompiled_c": "void __thiscall gbTimeCounter::On(gbTimeCounter *this)\n{\n  double HighPart; // st7\n  LARGE_INTEGER PerformanceCount; // [esp+4h] [ebp-8h] BYREF\n\n  if ( dword_1015D398 )\n  {\n    QueryPerformanceCounter(&PerformanceCount);\n    HighPart = (double)PerformanceCount.HighPart;\n    PerformanceCount.HighPart = 0;\n    *(double *)this = (HighPart * 4294967295.0 + (double)PerformanceCount.LowPart) / dbl_1015D390;\n  }\n  else\n  {\n    *(double *)this = (double)clock() * 1000.0;\n  }\n}\n"
+}

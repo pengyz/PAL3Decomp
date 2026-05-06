@@ -1,0 +1,8 @@
+{
+  "name": "__nan2",
+  "mangled_name": "__nan2",
+  "address": "0x100EA387",
+  "size_bytes": 63,
+  "signature": "double __usercall@<st0>(int a1@<ebp>, double a2@<st1>, double a3@<st0>)",
+  "decompiled_c": "double __usercall _nan2@<st0>(int a1@<ebp>, double a2@<st1>, double a3@<st0>)\n{\n  double v3; // st6\n  double v4; // rt0\n  double v5; // st6\n\n  *(double *)(a1 - 158) = a2;\n  v3 = *(double *)(a1 - 158);\n  if ( (*(_BYTE *)(a1 - 151) & 0x40) != 0\n    && (v4 = v3,\n        v5 = a3,\n        a3 = v4,\n        *(double *)(a1 - 158) = v5,\n        v3 = *(double *)(a1 - 158),\n        (*(_BYTE *)(a1 - 151) & 0x40) != 0) )\n  {\n    *(_BYTE *)(a1 - 144) = 7;\n  }\n  else\n  {\n    *(_BYTE *)(a1 - 144) = 1;\n  }\n  return a3 + v3;\n}\n"
+}

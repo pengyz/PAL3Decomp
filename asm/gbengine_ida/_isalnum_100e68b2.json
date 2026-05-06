@@ -1,0 +1,8 @@
+{
+  "name": "_isalnum",
+  "mangled_name": "_isalnum",
+  "address": "0x100E68B2",
+  "size_bytes": 46,
+  "signature": "int __cdecl(int C)",
+  "decompiled_c": "int __cdecl isalnum(int C)\n{\n  if ( (int)SrcSizeInBytes <= 1 )\n    return *((_WORD *)off_1012A140 + C) & 0x107;\n  else\n    return _isctype(C, 263);\n}\n"
+}

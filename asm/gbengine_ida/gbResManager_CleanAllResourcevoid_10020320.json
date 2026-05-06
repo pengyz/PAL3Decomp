@@ -1,0 +1,8 @@
+{
+  "name": "gbResManager::CleanAllResource(void)",
+  "mangled_name": "?CleanAllResource@gbResManager@@QAEXXZ",
+  "address": "0x10020320",
+  "size_bytes": 72,
+  "signature": "void __thiscall(int ***this)",
+  "decompiled_c": "void __thiscall gbResManager::CleanAllResource(int ***this)\n{\n  int *i; // esi\n\n  if ( *(this + 2) )\n  {\n    do\n    {\n      for ( i = **this; i[1] > 1; gbRefObject::Release((gbRefObject *)i) )\n        ;\n      gbRefObject::Release((gbRefObject *)i);\n    }\n    while ( *(this + 2) );\n    *(this + 2) = 0;\n  }\n  else\n  {\n    *(this + 2) = 0;\n  }\n}\n"
+}

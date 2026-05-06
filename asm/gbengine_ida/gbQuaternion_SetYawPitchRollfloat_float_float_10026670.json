@@ -1,0 +1,8 @@
+{
+  "name": "gbQuaternion::SetYawPitchRoll(float,float,float)",
+  "mangled_name": "?SetYawPitchRoll@gbQuaternion@@QAEXMMM@Z",
+  "address": "0x10026670",
+  "size_bytes": 216,
+  "signature": "void __thiscall(gbQuaternion *this, float a2, float a3, float a4)",
+  "decompiled_c": "void __thiscall gbQuaternion::SetYawPitchRoll(gbQuaternion *this, float a2, float a3, float a4)\n{\n  long double v4; // st7\n  long double v5; // st7\n  long double v6; // st6\n  long double v7; // st6\n  long double v8; // st5\n  long double v9; // st7\n  float v10; // [esp+0h] [ebp-Ch]\n  float v11; // [esp+4h] [ebp-8h]\n  float v12; // [esp+8h] [ebp-4h]\n  float v13; // [esp+10h] [ebp+4h]\n  float v14; // [esp+10h] [ebp+4h]\n  float v15; // [esp+14h] [ebp+8h]\n  float v16; // [esp+14h] [ebp+8h]\n  float v17; // [esp+18h] [ebp+Ch]\n  float v18; // [esp+18h] [ebp+Ch]\n\n  v13 = a2 * 0.5;\n  v17 = a4 * 0.5;\n  v4 = a3 * 0.5 * 0.017453292;\n  v10 = sin(v4);\n  v5 = cos(v4);\n  v6 = v13 * 0.017453292;\n  v15 = sin(v6);\n  v7 = cos(v6);\n  v8 = v17 * 0.017453292;\n  v18 = sin(v8);\n  v14 = cos(v8);\n  v12 = v7 * v5;\n  v11 = v7 * v10;\n  v9 = v5 * v15;\n  v16 = v15 * v10;\n  *((float *)this + 3) = v12 * v14 - v16 * v18;\n  *(float *)this = v11 * v14 + v9 * v18;\n  *((float *)this + 1) = v9 * v14 - v11 * v18;\n  *((float *)this + 2) = v16 * v14 + v12 * v18;\n}\n"
+}

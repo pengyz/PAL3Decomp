@@ -1,0 +1,8 @@
+{
+  "name": "gbCamera::GetViewSizeOnNearPlane(float &,float &)",
+  "mangled_name": "?GetViewSizeOnNearPlane@gbCamera@@AAEXAAM0@Z",
+  "address": "0x10021A10",
+  "size_bytes": 97,
+  "signature": "void __thiscall(gbCamera *this, float *a2, float *a3)",
+  "decompiled_c": "void __thiscall gbCamera::GetViewSizeOnNearPlane(gbCamera *this, float *a2, float *a3)\n{\n  long double v3; // st7\n  double v4; // st7\n\n  if ( *(float *)this == 0.0 )\n  {\n    v4 = *((float *)this + 1);\n    *a2 = *((float *)this + 1);\n    *a3 = (double)*((int *)this + 9) * v4 / (double)*((int *)this + 8);\n  }\n  else\n  {\n    v3 = sin(*(float *)this * 0.0087266462) * *((float *)this + 4) / cos(*(float *)this * 0.0087266462);\n    *a2 = v3;\n    *a3 = (double)*((int *)this + 9) * v3 / (double)*((int *)this + 8);\n  }\n}\n"
+}

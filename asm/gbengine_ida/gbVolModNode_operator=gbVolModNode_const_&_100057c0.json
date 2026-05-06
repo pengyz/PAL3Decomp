@@ -1,0 +1,8 @@
+{
+  "name": "gbVolModNode::operator=(gbVolModNode const &)",
+  "mangled_name": "??4gbVolModNode@@QAEAAV0@ABV0@@Z",
+  "address": "0x100057C0",
+  "size_bytes": 168,
+  "signature": "_DWORD *__thiscall(_DWORD *this, _DWORD *a2)",
+  "decompiled_c": "_DWORD *__thiscall gbVolModNode::operator=(_DWORD *this, _DWORD *a2)\n{\n  *(this + 1) = a2[1];\n  *(this + 2) = a2[2];\n  *(this + 3) = a2[3];\n  *(this + 4) = a2[4];\n  *(this + 5) = a2[5];\n  *(this + 6) = a2[6];\n  qmemcpy(this + 7, a2 + 7, 0x3Cu);\n  gbMatrix4::operator=(a2 + 22);\n  gbMatrix4::operator=(a2 + 38);\n  *(this + 54) = a2[54];\n  return this;\n}\n"
+}

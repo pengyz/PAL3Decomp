@@ -1,0 +1,8 @@
+{
+  "name": "gbSound3DNode::SetPosition(gbVec3D &)",
+  "mangled_name": "?SetPosition@gbSound3DNode@@QAEXAAUgbVec3D@@@Z",
+  "address": "0x10002500",
+  "size_bytes": 24,
+  "signature": "void __thiscall(gbSound3DNode *this, struct gbVec3D *a2)",
+  "decompiled_c": "void __thiscall gbSound3DNode::SetPosition(gbSound3DNode *this, struct gbVec3D *a2)\n{\n  *((_DWORD *)this + 2) = *(_DWORD *)a2;\n  *((_DWORD *)this + 3) = *((_DWORD *)a2 + 1);\n  *((_DWORD *)this + 4) = *((_DWORD *)a2 + 2);\n}\n"
+}

@@ -1,0 +1,8 @@
+{
+  "name": "gbTextureArray::gbTextureArray(gbTexture *,gbTexture *)",
+  "mangled_name": "??0gbTextureArray@@QAE@PAVgbTexture@@0@Z",
+  "address": "0x100041E0",
+  "size_bytes": 25,
+  "signature": "gbTextureArray *__thiscall(gbTextureArray *this, struct gbTexture *a2, struct gbTexture *a3)",
+  "decompiled_c": "gbTextureArray *__thiscall gbTextureArray::gbTextureArray(\n        gbTextureArray *this,\n        struct gbTexture *a2,\n        struct gbTexture *a3)\n{\n  *((_DWORD *)this + 16) = 2;\n  *(_DWORD *)this = a2;\n  *((_DWORD *)this + 1) = a3;\n  return this;\n}\n"
+}

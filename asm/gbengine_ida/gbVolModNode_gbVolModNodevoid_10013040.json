@@ -1,0 +1,8 @@
+{
+  "name": "gbVolModNode::gbVolModNode(void)",
+  "mangled_name": "??0gbVolModNode@@QAE@XZ",
+  "address": "0x10013040",
+  "size_bytes": 106,
+  "signature": "gbVolModNode *__thiscall(gbVolModNode *this)",
+  "decompiled_c": "gbVolModNode *__thiscall gbVolModNode::gbVolModNode(gbVolModNode *this)\n{\n  gbVisNode::gbVisNode(this);\n  gbMatrix4::gbMatrix4((gbVolModNode *)((char *)this + 88));\n  gbMatrix4::gbMatrix4((gbVolModNode *)((char *)this + 152));\n  *(_DWORD *)this = &gbVolModNode::`vftable';\n  gbMatrix4::LoadIdentity((gbVolModNode *)((char *)this + 88));\n  *((_DWORD *)this + 54) = 0;\n  return this;\n}\n"
+}

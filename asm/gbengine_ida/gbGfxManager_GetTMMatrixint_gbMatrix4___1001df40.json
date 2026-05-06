@@ -1,0 +1,8 @@
+{
+  "name": "gbGfxManager::GetTMMatrix(int,gbMatrix4 *)",
+  "mangled_name": "?GetTMMatrix@gbGfxManager@@QAEXHPAUgbMatrix4@@@Z",
+  "address": "0x1001DF40",
+  "size_bytes": 265,
+  "signature": "void __thiscall(gbGfxManager *this, int a2, struct gbMatrix4 *a3)",
+  "decompiled_c": "void __thiscall gbGfxManager::GetTMMatrix(gbGfxManager *this, int a2, struct gbMatrix4 *a3)\n{\n  gbMatrixStack *v4; // ecx\n  const struct gbMatrix4 *Top; // eax\n  gbMatrix4 *v6; // eax\n  gbMatrix4 *v7; // eax\n  gbMatrix4 *v8; // eax\n  gbMatrix4 *v9; // eax\n  _BYTE v10[64]; // [esp+Ch] [ebp-40h] BYREF\n\n  switch ( a2 )\n  {\n    case 0:\n      v4 = (gbMatrixStack *)*((_DWORD *)this + 54);\n      goto LABEL_4;\n    case 1:\n      v4 = (gbMatrixStack *)*((_DWORD *)this + 53);\nLABEL_4:\n      qmemcpy(a3, gbMatrixStack::GetTop(v4), 0x40u);\n      break;\n    case 2:\n      qmemcpy(a3, gbMatrixStack::GetTop(*((gbMatrixStack **)this + 54)), 0x40u);\n      Top = gbMatrixStack::GetTop(*((gbMatrixStack **)this + 53));\n      gbMatrix4::RightMultiply(a3, Top);\n      break;\n    case 3:\n      v6 = gbMatrixStack::GetTop(*((gbMatrixStack **)this + 53));\n      gbMatrix4::Invert(v6, a3);\n      break;\n    case 4:\n      v7 = gbMatrixStack::GetTop(*((gbMatrixStack **)this + 54));\n      gbMatrix4::Invert(v7, a3);\n      break;\n    case 5:\n      gbMatrix4::gbMatrix4((gbMatrix4 *)v10);\n      v8 = gbMatrixStack::GetTop(*((gbMatrixStack **)this + 53));\n      gbMatrix4::Invert(v8, a3);\n      v9 = gbMatrixStack::GetTop(*((gbMatrixStack **)this + 54));\n      gbMatrix4::Invert(v9, (struct gbMatrix4 *)v10);\n      gbMatrix4::RightMultiply(a3, (const struct gbMatrix4 *)v10);\n      break;\n    default:\n      return;\n  }\n}\n"
+}

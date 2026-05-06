@@ -1,0 +1,8 @@
+{
+  "name": "gbVisNode::GetAABBox(gbAABBox *)",
+  "mangled_name": "?GetAABBox@gbVisNode@@UAEHPAUgbAABBox@@@Z",
+  "address": "0x10016B90",
+  "size_bytes": 142,
+  "signature": "int __thiscall(gbVisNode *this, struct gbAABBox *a2)",
+  "decompiled_c": "int __thiscall gbVisNode::GetAABBox(gbVisNode *this, struct gbAABBox *a2)\n{\n  int v2; // eax\n  float v4; // [esp+4h] [ebp-10h] BYREF\n  float v5; // [esp+8h] [ebp-Ch]\n  float v6; // [esp+Ch] [ebp-8h]\n  float v7; // [esp+10h] [ebp-4h]\n\n  v2 = *(_DWORD *)this;\n  v5 = 0.0;\n  v6 = 0.0;\n  v7 = 0.0;\n  (*(void (__thiscall **)(gbVisNode *, float *))(v2 + 28))(this, &v4);\n  if ( v4 == 0.0 )\n    return 0;\n  *(float *)a2 = v5 - v4;\n  *((float *)a2 + 1) = v6 - v4;\n  *((float *)a2 + 2) = v7 - v4;\n  *((float *)a2 + 3) = v5 + v4;\n  *((float *)a2 + 4) = v6 + v4;\n  *((float *)a2 + 5) = v7 + v4;\n  return 1;\n}\n"
+}

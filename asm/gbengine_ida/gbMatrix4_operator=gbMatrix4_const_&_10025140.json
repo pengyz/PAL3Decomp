@@ -1,0 +1,8 @@
+{
+  "name": "gbMatrix4::operator=(gbMatrix4 const &)",
+  "mangled_name": "??4gbMatrix4@@QAEXABU0@@Z",
+  "address": "0x10025140",
+  "size_bytes": 27,
+  "signature": "int __thiscall(_DWORD *this, int a2)",
+  "decompiled_c": "int __thiscall gbMatrix4::operator=(_DWORD *this, int a2)\n{\n  int result; // eax\n  int v3; // edx\n\n  result = a2 - (_DWORD)this;\n  v3 = 16;\n  do\n  {\n    *this = *(_DWORD *)((char *)this + result);\n    ++this;\n    --v3;\n  }\n  while ( v3 );\n  return result;\n}\n"
+}

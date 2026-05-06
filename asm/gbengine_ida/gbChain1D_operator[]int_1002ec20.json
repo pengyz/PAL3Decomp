@@ -1,0 +1,8 @@
+{
+  "name": "gbChain1D::operator[](int)",
+  "mangled_name": "??AgbChain1D@@QAEPAVgbChain1DNode@@H@Z",
+  "address": "0x1002EC20",
+  "size_bytes": 32,
+  "signature": "int __thiscall(int *this, int a2)",
+  "decompiled_c": "int __thiscall gbChain1D::operator[](int *this, int a2)\n{\n  int result; // eax\n  int v3; // edx\n\n  result = *this;\n  v3 = 0;\n  if ( a2 > 0 )\n  {\n    while ( result )\n    {\n      result = *(_DWORD *)(result + 4);\n      if ( ++v3 >= a2 )\n        return result;\n    }\n    return 0;\n  }\n  return result;\n}\n"
+}

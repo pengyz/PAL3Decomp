@@ -1,0 +1,8 @@
+{
+  "name": "CIniFile::ReadSection(char *)",
+  "mangled_name": "?ReadSection@CIniFile@@QAEHPAD@Z",
+  "address": "0x10031310",
+  "size_bytes": 195,
+  "signature": "int __thiscall(struct gbVFile **this, char *String1)",
+  "decompiled_c": "int __thiscall CIniFile::ReadSection(struct gbVFile **this, char *String1)\n{\n  int v4; // edi\n  int v5; // esi\n  char Char; // al\n  char v7[256]; // [esp+10h] [ebp-100h] BYREF\n\n  if ( *this )\n  {\n    v4 = 0;\n    v5 = 0;\n    while ( 1 )\n    {\n      Char = gbVFileSystem::ReadChar(g_pVFileSys, *this);\n      if ( Char == -1 )\n        break;\n      if ( Char == 91 )\n      {\n        v4 = 1;\n      }\n      else if ( Char == 93 )\n      {\n        v7[v5] = 0;\n        v5 = 0;\n        v4 = 0;\n        if ( !_strcmpi(String1, byte_101390C4) )\n        {\n          strcpy(String1, v7);\n          return 1;\n        }\n        if ( !_strcmpi(v7, String1) )\n          return 1;\n      }\n      else if ( v4 == 1 && v5 < 256 )\n      {\n        v7[v5++] = Char;\n      }\n    }\n  }\n  return 0;\n}\n"
+}

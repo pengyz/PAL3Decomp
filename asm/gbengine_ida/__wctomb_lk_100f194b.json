@@ -1,0 +1,8 @@
+{
+  "name": "__wctomb_lk",
+  "mangled_name": "__wctomb_lk",
+  "address": "0x100F194B",
+  "size_bytes": 105,
+  "signature": "int __cdecl(LPSTR lpMultiByteStr, WCHAR WideCharStr)",
+  "decompiled_c": "int __cdecl _wctomb_lk(LPSTR lpMultiByteStr, WCHAR WideCharStr)\n{\n  int result; // eax\n\n  result = (int)lpMultiByteStr;\n  if ( lpMultiByteStr )\n  {\n    if ( !dword_10166D70 )\n    {\n      if ( WideCharStr <= 0xFFu )\n      {\n        *lpMultiByteStr = WideCharStr;\n        return 1;\n      }\n      goto LABEL_7;\n    }\n    lpMultiByteStr = 0;\n    result = WideCharToMultiByte(\n               dword_10166D80,\n               0x220u,\n               &WideCharStr,\n               1,\n               (LPSTR)result,\n               SrcSizeInBytes,\n               0,\n               (LPBOOL)&lpMultiByteStr);\n    if ( !result || lpMultiByteStr )\n    {\nLABEL_7:\n      *_errno() = 42;\n      return -1;\n    }\n  }\n  return result;\n}\n"
+}

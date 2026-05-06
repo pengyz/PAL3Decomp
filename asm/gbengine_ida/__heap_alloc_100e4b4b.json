@@ -1,0 +1,8 @@
+{
+  "name": "__heap_alloc",
+  "mangled_name": "__heap_alloc",
+  "address": "0x100E4B4B",
+  "size_bytes": 78,
+  "signature": "LPVOID __cdecl(unsigned int a1)",
+  "decompiled_c": "LPVOID __cdecl _heap_alloc(unsigned int a1)\n{\n  int v1; // esi\n  int v2; // edi\n\n  v1 = a1;\n  if ( a1 <= dword_1012A104 )\n  {\n    _lock(9);\n    v2 = __sbh_alloc_block(a1);\n    _unlock(9);\n    if ( v2 )\n      return (LPVOID)v2;\n  }\n  if ( !a1 )\n    v1 = 1;\n  return HeapAlloc(hHeap, 0, (v1 + 15) & 0xFFFFFFF0);\n}\n"
+}

@@ -1,0 +1,8 @@
+{
+  "name": "gbNBTreeNode::AddChildOnTail(gbNBTreeNode *)",
+  "mangled_name": "?AddChildOnTail@gbNBTreeNode@@QAEXPAV1@@Z",
+  "address": "0x10004540",
+  "size_bytes": 25,
+  "signature": "void __thiscall(gbNBTreeNode *this, struct gbNBTreeNode *a2)",
+  "decompiled_c": "// Alternative name is '?AddChild@gbNBTreeNode@@QAEXPAV1@@Z'\nvoid __thiscall gbNBTreeNode::AddChildOnTail(gbNBTreeNode *this, struct gbNBTreeNode *a2)\n{\n  gbChain1D::AddNodeOnTail((gbNBTreeNode *)((char *)this + 12), a2);\n  *((_DWORD *)a2 + 2) = this;\n}\n"
+}

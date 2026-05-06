@@ -1,0 +1,8 @@
+{
+  "name": "gbSound3DNode::IsPlaying(void)",
+  "mangled_name": "?IsPlaying@gbSound3DNode@@QAEHXZ",
+  "address": "0x10002830",
+  "size_bytes": 38,
+  "signature": "int __thiscall(gbSound3DNode *this)",
+  "decompiled_c": "int __thiscall gbSound3DNode::IsPlaying(gbSound3DNode *this)\n{\n  int result; // eax\n\n  if ( !gbSound3DNode::pAudioMgr )\n    return 0;\n  result = *((_DWORD *)this + 1);\n  if ( result )\n    return AIL_3D_sample_status(*((_DWORD *)this + 1)) == 4;\n  return result;\n}\n"
+}

@@ -1,0 +1,8 @@
+{
+  "name": "gbAnimNodeGroup::Attach(void)",
+  "mangled_name": "?Attach@gbAnimNodeGroup@@QAEXXZ",
+  "address": "0x1000C750",
+  "size_bytes": 68,
+  "signature": "void __thiscall(gbAnimNodeGroup *this)",
+  "decompiled_c": "void __thiscall gbAnimNodeGroup::Attach(gbAnimNodeGroup *this)\n{\n  gbMatrixStack *v2; // edi\n\n  if ( *((_DWORD *)this + 11) )\n  {\n    if ( *((_DWORD *)this + 12) )\n    {\n      v2 = *(gbMatrixStack **)(dword_101379B0 + 216);\n      gbMatrixStack::Push(v2);\n      gbMatrixStack::MultMatrix(v2, (gbAnimNodeGroup *)((char *)this + 52));\n      sub_1000C070(*((_DWORD *)this + 6));\n      gbMatrixStack::Pop(v2);\n    }\n  }\n}\n"
+}

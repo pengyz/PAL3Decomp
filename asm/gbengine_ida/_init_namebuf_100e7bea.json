@@ -1,0 +1,8 @@
+{
+  "name": "_init_namebuf",
+  "mangled_name": "_init_namebuf",
+  "address": "0x100E7BEA",
+  "size_bytes": 97,
+  "signature": "char *__cdecl(int a1)",
+  "decompiled_c": "char *__cdecl init_namebuf(int a1)\n{\n  char *v1; // esi\n  _BYTE *v2; // eax\n  DWORD CurrentProcessId; // eax\n  char *v5; // [esp-8h] [ebp-Ch]\n\n  v1 = byte_10166CD4;\n  if ( a1 )\n    v1 = &FileName;\n  strcpy(v1, asc_1011F4AC);\n  v2 = v1 + 1;\n  if ( *v1 != 92 && *v1 != 47 )\n  {\n    *v2 = 92;\n    v2 = v1 + 2;\n  }\n  if ( a1 )\n    *v2 = 116;\n  else\n    *v2 = 115;\n  v5 = v2 + 1;\n  CurrentProcessId = GetCurrentProcessId();\n  _ultoa(CurrentProcessId, v5, 32);\n  return strcat(v1, \".\");\n}\n"
+}

@@ -1,0 +1,8 @@
+{
+  "name": "__tosnan1",
+  "mangled_name": "__tosnan1",
+  "address": "0x100EA332",
+  "size_bytes": 43,
+  "signature": "double __usercall@<st0>(int a1@<ebp>, double a2@<st0>)",
+  "decompiled_c": "double __usercall _tosnan1@<st0>(int a1@<ebp>, double a2@<st0>)\n{\n  double result; // st7\n\n  *(double *)(a1 - 158) = a2;\n  result = *(double *)(a1 - 158);\n  if ( (*(_BYTE *)(a1 - 151) & 0x40) != 0 )\n  {\n    *(_BYTE *)(a1 - 144) = 7;\n  }\n  else\n  {\n    *(_BYTE *)(a1 - 144) = 1;\n    return result + dbl_1012A124;\n  }\n  return result;\n}\n"
+}

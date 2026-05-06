@@ -1,0 +1,8 @@
+{
+  "name": "gbEffectMgr::gbEffectMgr(gbEffectMgr const &)",
+  "mangled_name": "??0gbEffectMgr@@QAE@ABV0@@Z",
+  "address": "0x10004D30",
+  "size_bytes": 148,
+  "signature": "gbEffectMgr *__thiscall(gbEffectMgr *this, const struct gbEffectMgr *a2)",
+  "decompiled_c": "gbEffectMgr *__thiscall gbEffectMgr::gbEffectMgr(gbEffectMgr *this, const struct gbEffectMgr *a2)\n{\n  int v3; // eax\n  int v4; // ecx\n\n  v3 = *((_DWORD *)a2 + 1);\n  *((_DWORD *)this + 1) = v3;\n  *((_DWORD *)this + 2) = *((_DWORD *)a2 + 2);\n  if ( v3 )\n    *(_DWORD *)this = malloc(4 * v3);\n  else\n    *(_DWORD *)this = 0;\n  v4 = *((_DWORD *)this + 2);\n  if ( v4 )\n    qmemcpy(*(void **)this, *(const void **)a2, 4 * v4);\n  *((_DWORD *)this + 3) = *((_DWORD *)a2 + 3);\n  *((_DWORD *)this + 4) = *((_DWORD *)a2 + 4);\n  *((_DWORD *)this + 5) = *((_DWORD *)a2 + 5);\n  *((_DWORD *)this + 6) = *((_DWORD *)a2 + 6);\n  qmemcpy((char *)this + 28, (char *)a2 + 28, 0x80Cu);\n  return this;\n}\n"
+}

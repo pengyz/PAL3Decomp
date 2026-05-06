@@ -1,0 +1,8 @@
+{
+  "name": "_GetLcidFromDefault",
+  "mangled_name": "_GetLcidFromDefault",
+  "address": "0x100EF74A",
+  "size_bytes": 26,
+  "signature": "LCID()",
+  "decompiled_c": "LCID GetLcidFromDefault()\n{\n  LCID result; // eax\n\n  LOWORD(dword_10166F0C) = dword_10166F0C | 0x104;\n  result = GetUserDefaultLCID();\n  dword_10166F10 = result;\n  Locale = result;\n  return result;\n}\n"
+}

@@ -1,0 +1,8 @@
+{
+  "name": "___initstdio",
+  "mangled_name": "___initstdio",
+  "address": "0x100EC05F",
+  "size_bytes": 168,
+  "signature": "int()",
+  "decompiled_c": "int __initstdio()\n{\n  size_t v0; // eax\n  int v1; // ecx\n  int (**v2)[1024]; // eax\n  int v3; // ecx\n  int *v4; // edx\n  int result; // eax\n\n  v0 = Count;\n  if ( !Count )\n  {\n    v0 = 512;\nLABEL_5:\n    Count = v0;\n    goto LABEL_6;\n  }\n  if ( (int)Count < 20 )\n  {\n    v0 = 20;\n    goto LABEL_5;\n  }\nLABEL_6:\n  dword_10167504 = (int)calloc(v0, 4u);\n  if ( !dword_10167504 )\n  {\n    Count = 20;\n    dword_10167504 = (int)calloc(0x14u, 4u);\n    if ( !dword_10167504 )\n      _amsg_exit(0x1Au);\n  }\n  v1 = 0;\n  v2 = &off_1012A640;\n  do\n  {\n    *(_DWORD *)(v1 + dword_10167504) = v2;\n    v2 += 8;\n    v1 += 4;\n  }\n  while ( (int)v2 < (int)dword_1012A8C0 );\n  v3 = 0;\n  v4 = dword_1012A650;\n  do\n  {\n    result = *(_DWORD *)(dword_10167400[v3 >> 5] + 36 * (v3 & 0x1F));\n    if ( result == -1 || !result )\n      *v4 = -1;\n    v4 += 8;\n    ++v3;\n  }\n  while ( (int)v4 < (int)dword_1012A6B0 );\n  return result;\n}\n"
+}

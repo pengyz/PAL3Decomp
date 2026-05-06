@@ -1,0 +1,8 @@
+{
+  "name": "gbImage2D::ScaleTo(int,int)",
+  "mangled_name": "?ScaleTo@gbImage2D@@QAEXHH@Z",
+  "address": "0x1001E980",
+  "size_bytes": 162,
+  "signature": "void __thiscall(gbImage2D *this, int a2, int a3)",
+  "decompiled_c": "void __thiscall gbImage2D::ScaleTo(gbImage2D *this, int a2, int a3)\n{\n  void *v4; // ebp\n  void *v5; // eax\n\n  if ( *((_DWORD *)this + 46) && (a2 != *((_DWORD *)this + 32) || a3 != *((_DWORD *)this + 33)) )\n  {\n    v4 = malloc(*((_DWORD *)this + 45) * a3 * a2 / 8);\n    sub_100244D0(\n      5,\n      (void *)(*((_DWORD *)this + 45) / 8),\n      *((_DWORD *)this + 32),\n      *((_DWORD *)this + 33),\n      *((_DWORD *)this + 46),\n      a2,\n      a3,\n      (int)v4);\n    v5 = (void *)*((_DWORD *)this + 46);\n    *((_DWORD *)this + 32) = a2;\n    *((_DWORD *)this + 33) = a3;\n    free(v5);\n    *((_DWORD *)this + 46) = v4;\n  }\n}\n"
+}

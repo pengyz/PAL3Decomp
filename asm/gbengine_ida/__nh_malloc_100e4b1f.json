@@ -1,0 +1,8 @@
+{
+  "name": "__nh_malloc",
+  "mangled_name": "__nh_malloc",
+  "address": "0x100E4B1F",
+  "size_bytes": 44,
+  "signature": "int __cdecl(size_t Size, int a2)",
+  "decompiled_c": "int __cdecl _nh_malloc(size_t Size, int a2)\n{\n  int result; // eax\n\n  if ( Size > 0xFFFFFFE0 )\n    return 0;\n  while ( 1 )\n  {\n    result = _heap_alloc(Size);\n    if ( result || !a2 )\n      break;\n    if ( !_callnewh(Size) )\n      return 0;\n  }\n  return result;\n}\n"
+}

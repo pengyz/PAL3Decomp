@@ -1,0 +1,8 @@
+{
+  "name": "gbVisNode::Reset(float)",
+  "mangled_name": "?Reset@gbVisNode@@UAEXM@Z",
+  "address": "0x10016760",
+  "size_bytes": 42,
+  "signature": "void __thiscall(gbVisNode *this, float a2)",
+  "decompiled_c": "void __thiscall gbVisNode::Reset(gbVisNode *this, float a2)\n{\n  int v3; // ecx\n\n  v3 = *((_DWORD *)this + 3);\n  for ( *((_DWORD *)this + 6) = v3; v3; *((_DWORD *)this + 6) = v3 )\n  {\n    (*(void (__thiscall **)(int, _DWORD))(*(_DWORD *)v3 + 24))(v3, LODWORD(a2));\n    v3 = *(_DWORD *)(*((_DWORD *)this + 6) + 4);\n  }\n}\n"
+}

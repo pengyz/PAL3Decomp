@@ -1,0 +1,8 @@
+{
+  "name": "__mtdeletelocks",
+  "mangled_name": "__mtdeletelocks",
+  "address": "0x100E8CD3",
+  "size_bytes": 108,
+  "signature": "void()",
+  "decompiled_c": "void _mtdeletelocks()\n{\n  LPCRITICAL_SECTION *v0; // esi\n\n  v0 = &dword_1012A044;\n  do\n  {\n    if ( *v0 && v0 != &lpCriticalSection && v0 != &off_1012A078 && v0 != &off_1012A068 && v0 != &off_1012A048 )\n    {\n      DeleteCriticalSection(*v0);\n      free(*v0);\n    }\n    ++v0;\n  }\n  while ( (int)v0 < (int)&dword_1012A104 );\n  DeleteCriticalSection(off_1012A068);\n  DeleteCriticalSection(off_1012A078);\n  DeleteCriticalSection(lpCriticalSection);\n  DeleteCriticalSection(off_1012A048);\n}\n"
+}

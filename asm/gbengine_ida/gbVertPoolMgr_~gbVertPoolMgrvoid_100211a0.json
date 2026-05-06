@@ -1,0 +1,8 @@
+{
+  "name": "gbVertPoolMgr::~gbVertPoolMgr(void)",
+  "mangled_name": "??1gbVertPoolMgr@@QAE@XZ",
+  "address": "0x100211A0",
+  "size_bytes": 151,
+  "signature": "void __thiscall(gbVertPoolMgr *this)",
+  "decompiled_c": "void __thiscall gbVertPoolMgr::~gbVertPoolMgr(gbVertPoolMgr *this)\n{\n  _DWORD *v2; // edi\n  int v3; // ebx\n\n  v2 = (_DWORD *)((char *)this + 656);\n  v3 = 32;\n  do\n  {\n    if ( *v2 )\n      (**(void (__thiscall ***)(_DWORD, int))*v2)(*v2, 1);\n    ++v2;\n    --v3;\n  }\n  while ( v3 );\n  `eh vector destructor iterator'((char *)this + 912, 0x10u, 32, (void (__thiscall *)(void *))gbChain1D::~gbChain1D);\n  gbChain1D::~gbChain1D((gbVertPoolMgr *)((char *)this + 640));\n  `eh vector destructor iterator'(this, 0x10u, 32, (void (__thiscall *)(void *))gbChain1D::~gbChain1D);\n}\n"
+}

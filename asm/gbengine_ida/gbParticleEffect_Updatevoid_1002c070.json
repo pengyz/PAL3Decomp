@@ -1,0 +1,8 @@
+{
+  "name": "gbParticleEffect::Update(void)",
+  "mangled_name": "?Update@gbParticleEffect@@UAEXXZ",
+  "address": "0x1002C070",
+  "size_bytes": 92,
+  "signature": "void __thiscall(gbParticleEffect *this)",
+  "decompiled_c": "void __thiscall gbParticleEffect::Update(gbParticleEffect *this)\n{\n  double v2; // st7\n\n  if ( *((double *)this + 33) >= 0.0 )\n  {\n    v2 = gbGfxManager::GetDeltaTime(dword_101379A8) * *((float *)this + 14);\n    *((double *)this + 33) = v2 + *((double *)this + 33);\n    *((double *)this + 34) = v2 + *((double *)this + 34);\n  }\n  else\n  {\n    *((_DWORD *)this + 66) = 0;\n    *((_DWORD *)this + 68) = 0;\n    *((_DWORD *)this + 67) = 0;\n    *((_DWORD *)this + 69) = 0;\n  }\n}\n"
+}

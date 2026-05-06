@@ -1,0 +1,8 @@
+{
+  "name": "gbVec3D::DotProduct(gbVec3D const *)",
+  "mangled_name": "?DotProduct@gbVec3D@@QBEMPBU1@@Z",
+  "address": "0x10002070",
+  "size_bytes": 27,
+  "signature": "double __thiscall(gbVec3D *this, const struct gbVec3D *a2)",
+  "decompiled_c": "double __thiscall gbVec3D::DotProduct(gbVec3D *this, const struct gbVec3D *a2)\n{\n  return *((float *)a2 + 2) * *((float *)this + 2)\n       + *((float *)a2 + 1) * *((float *)this + 1)\n       + *(float *)a2 * *(float *)this;\n}\n"
+}

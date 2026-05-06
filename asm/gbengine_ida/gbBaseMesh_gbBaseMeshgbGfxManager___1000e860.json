@@ -1,0 +1,8 @@
+{
+  "name": "gbBaseMesh::gbBaseMesh(gbGfxManager *)",
+  "mangled_name": "??0gbBaseMesh@@QAE@PAVgbGfxManager@@@Z",
+  "address": "0x1000E860",
+  "size_bytes": 191,
+  "signature": "gbBaseMesh *__thiscall(gbBaseMesh *this, gbEffectMgr **a2)",
+  "decompiled_c": "gbBaseMesh *__thiscall gbBaseMesh::gbBaseMesh(gbBaseMesh *this, gbEffectMgr **a2)\n{\n  _DWORD *v3; // ecx\n\n  *((_DWORD *)this + 1) = 1;\n  *((_DWORD *)this + 2) = 0;\n  *((_DWORD *)this + 4) = 0;\n  *((_DWORD *)this + 5) = 0;\n  *((_DWORD *)this + 22) = 0;\n  *((_DWORD *)this + 23) = 0;\n  *((_DWORD *)this + 24) = 0;\n  v3 = (_DWORD *)((char *)this + 72);\n  *((_DWORD *)this + 25) = 0;\n  *((_DWORD *)this + 26) = 0;\n  *((_DWORD *)this + 27) = 0;\n  *(_DWORD *)this = &gbBaseMesh::`vftable';\n  *v3 = 0;\n  v3[1] = 0;\n  v3[2] = 0;\n  v3[3] = 0;\n  *((_DWORD *)this + 17) = 0;\n  *((_DWORD *)this + 16) = 0;\n  *((_DWORD *)this + 29) = a2;\n  if ( !gbBaseMesh::Effect_RefCount )\n  {\n    gbBaseMesh::pShadowEffect = gbEffectMgr::NewRenderEffect(a2[50], aGfxscriptMeshs, 0);\n    dword_10138FBC = gbEffectMgr::NewRenderEffect(a2[50], aGfxscriptMeshs_0, 0);\n  }\n  ++gbBaseMesh::Effect_RefCount;\n  return this;\n}\n"
+}

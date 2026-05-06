@@ -1,0 +1,8 @@
+{
+  "name": "gbPartParamControl::gbPartParamControl(void)",
+  "mangled_name": "??0gbPartParamControl@@QAE@XZ",
+  "address": "0x1000CD90",
+  "size_bytes": 93,
+  "signature": "gbPartParamControl *__thiscall(gbPartParamControl *this)",
+  "decompiled_c": "gbPartParamControl *__thiscall gbPartParamControl::gbPartParamControl(gbPartParamControl *this)\n{\n  gbPartParamControl *result; // eax\n  int v2; // esi\n  _DWORD *v3; // edx\n  _DWORD *v4; // edx\n  int v5; // esi\n\n  result = this;\n  v2 = 60;\n  *((_DWORD *)this + 50) = 0;\n  *((_DWORD *)this + 51) = 0;\n  *((_DWORD *)this + 52) = 0;\n  *((_DWORD *)this + 53) = 0;\n  *((_DWORD *)this + 54) = 0;\n  *((_DWORD *)this + 55) = 0;\n  v3 = (_DWORD *)((char *)this + 224);\n  do\n  {\n    *v3 = 0;\n    v3[1] = 0;\n    v3[2] = 0;\n    v3 += 3;\n    --v2;\n  }\n  while ( v2 );\n  v4 = (_DWORD *)((char *)this + 944);\n  v5 = 303;\n  do\n  {\n    *v4 = 0;\n    v4[1] = 0;\n    v4[2] = 0;\n    v4 += 3;\n    --v5;\n  }\n  while ( v5 );\n  return result;\n}\n"
+}

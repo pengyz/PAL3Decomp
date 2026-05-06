@@ -1,0 +1,8 @@
+{
+  "name": "gbSound3DNode::LoadFromFile(char *)",
+  "mangled_name": "?LoadFromFile@gbSound3DNode@@QAEHPAD@Z",
+  "address": "0x10002700",
+  "size_bytes": 85,
+  "signature": "int __thiscall(gbSound3DNode *this, char *a2)",
+  "decompiled_c": "int __thiscall gbSound3DNode::LoadFromFile(gbSound3DNode *this, char *a2)\n{\n  struct gbSoundData *SoundFile; // eax\n  int result; // eax\n  _BYTE v5[20]; // [esp+8h] [ebp-24h] BYREF\n  int v6; // [esp+1Ch] [ebp-10h]\n\n  if ( gbSound3DNode::pAudioMgr )\n  {\n    SoundFile = gbAudioManager::LoadSoundFile(gbSound3DNode::pAudioMgr, a2);\n    *(_DWORD *)this = SoundFile;\n    if ( SoundFile )\n    {\n      AIL_WAV_info(*((_DWORD *)SoundFile + 6), v5);\n      result = 1;\n      if ( v6 == 1 )\n        return result;\n      gbReportError(\"3D sound <%s> is stereo\", a2);\n    }\n  }\n  return 0;\n}\n"
+}

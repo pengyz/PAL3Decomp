@@ -1,0 +1,8 @@
+{
+  "name": "__stbuf",
+  "mangled_name": "__stbuf",
+  "address": "0x100EC401",
+  "size_bytes": 141,
+  "signature": "int __cdecl(int a1)",
+  "decompiled_c": "int __cdecl _stbuf(int a1)\n{\n  int v1; // eax\n  int *v2; // edi\n  void *v3; // eax\n  int v4; // edi\n\n  if ( !_isatty(*(_DWORD *)(a1 + 16)) )\n    return 0;\n  if ( (int *)a1 == dword_1012A660 )\n  {\n    v1 = 0;\n  }\n  else\n  {\n    if ( (int *)a1 != dword_1012A680 )\n      return 0;\n    v1 = 1;\n  }\n  ++dword_10166D88;\n  if ( (*(_WORD *)(a1 + 12) & 0x10C) != 0 )\n    return 0;\n  v2 = &dword_10166D8C[v1];\n  if ( *v2 || (v3 = malloc(0x1000u), (*v2 = (int)v3) != 0) )\n  {\n    v4 = *v2;\n    *(_DWORD *)(a1 + 24) = 4096;\n    *(_DWORD *)(a1 + 8) = v4;\n    *(_DWORD *)a1 = v4;\n    *(_DWORD *)(a1 + 4) = 4096;\n  }\n  else\n  {\n    *(_DWORD *)(a1 + 8) = a1 + 20;\n    *(_DWORD *)a1 = a1 + 20;\n    *(_DWORD *)(a1 + 24) = 2;\n    *(_DWORD *)(a1 + 4) = 2;\n  }\n  *(_WORD *)(a1 + 12) |= 0x1102u;\n  return 1;\n}\n"
+}

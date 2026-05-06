@@ -1,0 +1,8 @@
+{
+  "name": "CPK::Reset(void)",
+  "mangled_name": "?Reset@CPK@@AAEXXZ",
+  "address": "0x1002C5D0",
+  "size_bytes": 101,
+  "signature": "void __thiscall(CPK *this)",
+  "decompiled_c": "void __thiscall CPK::Reset(CPK *this)\n{\n  int *v1; // eax\n  int v2; // ecx\n  int v3; // edx\n\n  memset((char *)this + 8, 0, 0x80u);\n  memset((char *)this + 136, 0, 0xE0000u);\n  *((_DWORD *)this + 229419) = -1;\n  *((_DWORD *)this + 229420) = -1;\n  *((_BYTE *)this + 917672) = 0;\n  memset((char *)this + 917684, 0, 0x104u);\n  *((_DWORD *)this + 229486) = 0;\n  v1 = (int *)((char *)this + 917640);\n  v2 = 8;\n  do\n  {\n    v3 = *v1++;\n    --v2;\n    *(_BYTE *)(v3 + 272) = 0;\n  }\n  while ( v2 );\n}\n"
+}

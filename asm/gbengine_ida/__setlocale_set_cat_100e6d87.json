@@ -1,0 +1,8 @@
+{
+  "name": "__setlocale_set_cat",
+  "mangled_name": "__setlocale_set_cat",
+  "address": "0x100E6D87",
+  "size_bytes": 283,
+  "signature": "char *__cdecl(void *a1, char *Block)",
+  "decompiled_c": "char *__cdecl _setlocale_set_cat(void *a1, char *Block)\n{\n  size_t v3; // eax\n  int *v4; // ebx\n  char Str[132]; // [esp+Ch] [ebp-A4h] BYREF\n  _BYTE v7[8]; // [esp+90h] [ebp-20h] BYREF\n  int v8; // [esp+98h] [ebp-18h] BYREF\n  int v9; // [esp+9Ch] [ebp-14h]\n  _WORD Src[4]; // [esp+A0h] [ebp-10h] BYREF\n  void *v11; // [esp+A8h] [ebp-8h]\n  UINT v12; // [esp+ACh] [ebp-4h]\n  char *v13; // [esp+B8h] [ebp+8h]\n  char *Blocka; // [esp+BCh] [ebp+Ch]\n\n  if ( !_expandlocale(Block, Str, Src, &v8) )\n    return 0;\n  v3 = strlen(Str);\n  Blocka = (char *)malloc(v3 + 1);\n  if ( !Blocka )\n    return 0;\n  v4 = &dword_10166D68[(_DWORD)a1];\n  v13 = (&Destination)[3 * (_DWORD)a1];\n  v9 = *v4;\n  v11 = (char *)dword_10166ED0 + 6 * (_DWORD)a1;\n  memcpy_0(v7, v11, 6u);\n  v12 = dword_10166D80;\n  (&Destination)[3 * (_DWORD)a1] = strcpy(Blocka, Str);\n  *v4 = Src[0];\n  memcpy_0(v11, Src, 6u);\n  if ( a1 == (void *)2 )\n    dword_10166D80 = v8;\n  if ( a1 == (void *)1 )\n    dword_10166D84 = v8;\n  if ( (*(&funcs_100E6E58 + 3 * (_DWORD)a1))() )\n  {\n    (&Destination)[3 * (_DWORD)a1] = v13;\n    free(Blocka);\n    *v4 = v9;\n    dword_10166D80 = v12;\n    return 0;\n  }\n  if ( v13 != (char *)&dword_10129E54 )\n    free(v13);\n  return (&Destination)[3 * (_DWORD)a1];\n}\n"
+}

@@ -1,0 +1,8 @@
+{
+  "name": "gbCamera::PointScrToWorld(float,float,gbVec3D *)",
+  "mangled_name": "?PointScrToWorld@gbCamera@@QAEXMMPAUgbVec3D@@@Z",
+  "address": "0x10021FC0",
+  "size_bytes": 111,
+  "signature": "void __thiscall(gbCamera *this, float a2, float a3, struct gbVec3D *a4)",
+  "decompiled_c": "void __thiscall gbCamera::PointScrToWorld(gbCamera *this, float a2, float a3, struct gbVec3D *a4)\n{\n  long double v4; // st7\n  double v5; // st6\n  gbMatrix4 *v6; // ecx\n  float v7; // [esp+0h] [ebp-4h]\n\n  if ( *(float *)this == 0.0 )\n    v4 = *((float *)this + 1);\n  else\n    v4 = sin(*(float *)this * 0.0087266462) * *((float *)this + 4) / cos(*(float *)this * 0.0087266462);\n  v5 = (double)*((int *)this + 9);\n  v6 = (gbCamera *)((char *)this + 212);\n  v7 = v5 * v4 / (double)*((int *)v6 - 45);\n  *(float *)a4 = v4 * a2;\n  *((float *)a4 + 1) = v7 * a3;\n  *((float *)a4 + 2) = -*((float *)v6 - 49);\n  gbMatrix4::Transform(v6, a4, 1);\n}\n"
+}

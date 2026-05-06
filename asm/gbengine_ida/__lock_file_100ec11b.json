@@ -1,0 +1,8 @@
+{
+  "name": "__lock_file",
+  "mangled_name": "__lock_file",
+  "address": "0x100EC11B",
+  "size_bytes": 47,
+  "signature": "void __cdecl(FILE *Stream)",
+  "decompiled_c": "void __cdecl _lock_file(FILE *Stream)\n{\n  if ( Stream < (FILE *)&off_1012A640 || Stream > (FILE *)dword_1012A8A0 )\n    EnterCriticalSection((LPCRITICAL_SECTION)&Stream[1]);\n  else\n    _lock((((char *)Stream - (char *)&off_1012A640) >> 5) + 28);\n}\n"
+}

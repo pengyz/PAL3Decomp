@@ -1,0 +1,8 @@
+{
+  "name": "gbEffectMgr::Release(void)",
+  "mangled_name": "?Release@gbEffectMgr@@QAEXXZ",
+  "address": "0x1001D510",
+  "size_bytes": 67,
+  "signature": "void __thiscall(gbRefObject **this)",
+  "decompiled_c": "void __thiscall gbEffectMgr::Release(gbRefObject **this)\n{\n  int v2; // edi\n  _DWORD *v3; // ebx\n\n  gbResManager::CleanAllResource((gbResManager *)this);\n  gbRefObject::Release(*(this + 4));\n  gbRefObject::Release(*(this + 5));\n  v2 = 0;\n  if ( (int)*(this + 519) > 0 )\n  {\n    v3 = this + 14;\n    do\n    {\n      (*(void (__stdcall **)(_DWORD))(*(_DWORD *)*v3 + 8))(*v3);\n      ++v2;\n      v3 += 8;\n    }\n    while ( v2 < (int)*(this + 519) );\n  }\n}\n"
+}

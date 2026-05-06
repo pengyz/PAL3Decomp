@@ -1,0 +1,8 @@
+{
+  "name": "gbEffectMgr::NewTrivalEffect(int)",
+  "mangled_name": "?NewTrivalEffect@gbEffectMgr@@QAEPAVgbRenderEffect@@H@Z",
+  "address": "0x1001D840",
+  "size_bytes": 107,
+  "signature": "struct gbRenderEffect *__thiscall(gbEffectMgr *this, unsigned int a2)",
+  "decompiled_c": "struct gbRenderEffect *__thiscall gbEffectMgr::NewTrivalEffect(gbEffectMgr *this, unsigned int a2)\n{\n  switch ( a2 )\n  {\n    case 0u:\n      return gbEffectMgr::NewRenderEffect(this, aGfxscriptUiGbf, 0);\n    case 1u:\n      return gbEffectMgr::NewRenderEffect(this, aGfxscriptFontG, 0);\n    case 2u:\n      return gbEffectMgr::NewRenderEffect(this, aGfxscriptGeomG, 0);\n    case 3u:\n      return gbEffectMgr::NewRenderEffect(this, aGfxscriptLineG, 0);\n    case 4u:\n      return gbEffectMgr::NewRenderEffect(this, aGfxscriptSprit, 0);\n  }\n  return 0;\n}\n"
+}

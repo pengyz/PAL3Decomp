@@ -1,0 +1,8 @@
+{
+  "name": "_CRT_INIT(x,x,x)",
+  "mangled_name": "__CRT_INIT@12",
+  "address": "0x100E63FF",
+  "size_bytes": 217,
+  "signature": "int __stdcall(int a1, int a2, int a3)",
+  "decompiled_c": "int __stdcall _CRT_INIT(int a1, int a2, int a3)\n{\n  int v3; // ecx\n  int v4; // eax\n\n  if ( a2 == 1 )\n  {\n    dword_10166C94 = GetVersion();\n    if ( !_heap_init(1) )\n      return 0;\n    v3 = BYTE1(dword_10166C94);\n    v4 = (unsigned __int8)dword_10166C94;\n    dword_10166C94 = HIWORD(dword_10166C94);\n    dword_10166C9C = v4;\n    dword_10166CA0 = v3;\n    dword_10166C98 = v3 + (v4 << 8);\n    if ( !_mtinit() )\n    {\n      _heap_term();\n      return 0;\n    }\n    dword_1016877C = (int)GetCommandLineA();\n    dword_10166C74 = (char *)__crtGetEnvironmentStringsA();\n    _ioinit();\n    _setargv();\n    _setenvp();\n    _cinit();\n    ++dword_10166C70;\n  }\n  else if ( a2 )\n  {\n    if ( a2 == 3 )\n      _freeptd(0);\n  }\n  else\n  {\n    if ( dword_10166C70 <= 0 )\n      return 0;\n    --dword_10166C70;\n    if ( !dword_10166CCC )\n      _cexit();\n    _ioterm();\n    _mtterm();\n    _heap_term();\n  }\n  return 1;\n}\n"
+}

@@ -1,0 +1,8 @@
+{
+  "name": "__read",
+  "mangled_name": "__read",
+  "address": "0x100EC834",
+  "size_bytes": 101,
+  "signature": "int __cdecl(int FileHandle, void *DstBuf, unsigned int MaxCharCount)",
+  "decompiled_c": "int __cdecl _read(int FileHandle, void *DstBuf, unsigned int MaxCharCount)\n{\n  int lk; // edi\n\n  if ( FileHandle < uNumber && (*(_BYTE *)(dword_10167400[FileHandle >> 5] + 36 * (FileHandle & 0x1F) + 4) & 1) != 0 )\n  {\n    _lock_fhandle(FileHandle);\n    lk = _read_lk(FileHandle, DstBuf, MaxCharCount);\n    _unlock_fhandle(FileHandle);\n    return lk;\n  }\n  else\n  {\n    *_errno() = 9;\n    *__doserrno() = 0;\n    return -1;\n  }\n}\n"
+}

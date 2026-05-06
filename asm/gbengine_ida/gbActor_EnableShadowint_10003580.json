@@ -1,0 +1,8 @@
+{
+  "name": "gbActor::EnableShadow(int)",
+  "mangled_name": "?EnableShadow@gbActor@@UAEXH@Z",
+  "address": "0x10003580",
+  "size_bytes": 31,
+  "signature": "void __thiscall(gbActor *this, int a2)",
+  "decompiled_c": "void __thiscall gbActor::EnableShadow(gbActor *this, int a2)\n{\n  gbVisNode::EnableShadow(this, a2);\n  if ( a2 )\n    (*(void (__thiscall **)(_DWORD))(**((_DWORD **)this + 22) + 16))(*((_DWORD *)this + 22));\n}\n"
+}

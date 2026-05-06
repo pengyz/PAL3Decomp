@@ -1,0 +1,8 @@
+{
+  "name": "gbVec3D::Normalize(void)",
+  "mangled_name": "?Normalize@gbVec3D@@QAEXXZ",
+  "address": "0x100250A0",
+  "size_bytes": 97,
+  "signature": "void __thiscall(gbVec3D *this)",
+  "decompiled_c": "void __thiscall gbVec3D::Normalize(gbVec3D *this)\n{\n  long double v1; // st4\n\n  v1 = sqrt(\n         *(float *)this * *(float *)this\n       + *((float *)this + 1) * *((float *)this + 1)\n       + *((float *)this + 2) * *((float *)this + 2));\n  if ( fabs(v1) >= 0.0049999999 )\n  {\n    *(float *)this = *(float *)this / v1;\n    *((float *)this + 1) = *((float *)this + 1) / v1;\n    *((float *)this + 2) = *((float *)this + 2) / v1;\n  }\n  else\n  {\n    *((_DWORD *)this + 2) = 0;\n    *(_DWORD *)this = 0;\n    *((_DWORD *)this + 1) = 1065353216;\n  }\n}\n"
+}

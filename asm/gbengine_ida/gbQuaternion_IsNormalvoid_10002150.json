@@ -1,0 +1,8 @@
+{
+  "name": "gbQuaternion::IsNormal(void)",
+  "mangled_name": "?IsNormal@gbQuaternion@@QAEHXZ",
+  "address": "0x10002150",
+  "size_bytes": 35,
+  "signature": "BOOL __thiscall(gbQuaternion *this)",
+  "decompiled_c": "BOOL __thiscall gbQuaternion::IsNormal(gbQuaternion *this)\n{\n  return fabs(gbQuaternion::Magnitude(this) - 1.0) < 0.0049999999;\n}\n"
+}

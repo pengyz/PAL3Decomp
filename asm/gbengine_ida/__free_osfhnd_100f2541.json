@@ -1,0 +1,8 @@
+{
+  "name": "__free_osfhnd",
+  "mangled_name": "__free_osfhnd",
+  "address": "0x100F2541",
+  "size_bytes": 127,
+  "signature": "int __cdecl(int a1)",
+  "decompiled_c": "int __cdecl _free_osfhnd(int a1)\n{\n  int *v1; // edi\n  int v2; // eax\n\n  if ( a1 >= uNumber\n    || (v1 = &dword_10167400[a1 >> 5], v2 = 36 * (a1 & 0x1F) + *v1, (*(_BYTE *)(v2 + 4) & 1) == 0)\n    || *(_DWORD *)v2 == -1 )\n  {\n    *_errno() = 9;\n    *__doserrno() = 0;\n    return -1;\n  }\n  else\n  {\n    if ( dword_10166C80 == 1 )\n    {\n      if ( a1 )\n      {\n        if ( a1 == 1 )\n        {\n          SetStdHandle(0xFFFFFFF5, 0);\n        }\n        else if ( a1 == 2 )\n        {\n          SetStdHandle(0xFFFFFFF4, 0);\n        }\n      }\n      else\n      {\n        SetStdHandle(0xFFFFFFF6, 0);\n      }\n    }\n    *(_DWORD *)(*v1 + 36 * (a1 & 0x1F)) = -1;\n    return 0;\n  }\n}\n"
+}

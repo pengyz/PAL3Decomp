@@ -1,0 +1,8 @@
+{
+  "name": "__ioterm",
+  "mangled_name": "__ioterm",
+  "address": "0x100ED239",
+  "size_bytes": 84,
+  "signature": "void()",
+  "decompiled_c": "void _ioterm()\n{\n  void **v0; // esi\n  char *v1; // edi\n  struct _RTL_CRITICAL_SECTION *v2; // ebx\n\n  v0 = (void **)dword_10167400;\n  do\n  {\n    if ( *v0 )\n    {\n      v1 = (char *)*v0;\n      if ( *v0 < (char *)*v0 + 1152 )\n      {\n        v2 = (struct _RTL_CRITICAL_SECTION *)(v1 + 12);\n        do\n        {\n          if ( v2[-1].SpinCount )\n            DeleteCriticalSection(v2);\n          v1 += 36;\n          v2 = (struct _RTL_CRITICAL_SECTION *)((char *)v2 + 36);\n        }\n        while ( v1 < (char *)*v0 + 1152 );\n      }\n      free(*v0);\n      *v0 = 0;\n    }\n    ++v0;\n  }\n  while ( (int)v0 < (int)&uNumber );\n}\n"
+}

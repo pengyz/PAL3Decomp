@@ -1,0 +1,8 @@
+{
+  "name": "gbStaticChain::Iterate(void)",
+  "mangled_name": "?Iterate@gbStaticChain@@QAEPAUgbStaticChainNode@@XZ",
+  "address": "0x1002F960",
+  "size_bytes": 10,
+  "signature": "struct gbStaticChainNode *__thiscall(gbStaticChain *this)",
+  "decompiled_c": "struct gbStaticChainNode *__thiscall gbStaticChain::Iterate(gbStaticChain *this)\n{\n  struct gbStaticChainNode *result; // eax\n\n  result = *(struct gbStaticChainNode **)(*((_DWORD *)this + 3) + 4);\n  *((_DWORD *)this + 3) = result;\n  return result;\n}\n"
+}

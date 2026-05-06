@@ -1,0 +1,8 @@
+{
+  "name": "gbBaseMesh::ReplaceTexture(char const *)",
+  "mangled_name": "?ReplaceTexture@gbBaseMesh@@QAEXPBD@Z",
+  "address": "0x1000EBE0",
+  "size_bytes": 42,
+  "signature": "void __thiscall(gbBaseMesh *this, const char *a2)",
+  "decompiled_c": "void __thiscall gbBaseMesh::ReplaceTexture(gbBaseMesh *this, const char *a2)\n{\n  gbTexture *v3; // esi\n\n  v3 = (gbTexture *)(*(int (__thiscall **)(gbGfxManager *, const char *))(*(_DWORD *)dword_101379A8 + 8))(\n                      dword_101379A8,\n                      a2);\n  gbTexture::LoadTexture(v3, 1);\n  *(_DWORD *)(*((_DWORD *)this + 16) + 8) = v3;\n}\n"
+}

@@ -1,0 +1,8 @@
+{
+  "name": "gbOBBox::GetSphere(gbSphere &)",
+  "mangled_name": "?GetSphere@gbOBBox@@QAEXAAUgbSphere@@@Z",
+  "address": "0x10027D10",
+  "size_bytes": 66,
+  "signature": "void __thiscall(gbOBBox *this, struct gbSphere *a2)",
+  "decompiled_c": "void __thiscall gbOBBox::GetSphere(gbOBBox *this, struct gbSphere *a2)\n{\n  *((_DWORD *)a2 + 1) = *((_DWORD *)this + 12);\n  *((_DWORD *)a2 + 2) = *((_DWORD *)this + 13);\n  *((_DWORD *)a2 + 3) = *((_DWORD *)this + 14);\n  *(float *)a2 = sqrt(\n                   *((float *)this + 16) * *((float *)this + 16)\n                 + *((float *)this + 17) * *((float *)this + 17)\n                 + *((float *)this + 18) * *((float *)this + 18))\n               * 0.5;\n}\n"
+}

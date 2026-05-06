@@ -1,0 +1,8 @@
+{
+  "name": "std::ios_base::~ios_base(void)",
+  "mangled_name": "??1ios_base@std@@UAE@XZ_0",
+  "address": "0x10011B90",
+  "size_bytes": 206,
+  "signature": "void __thiscall(std::ios_base *this)",
+  "decompiled_c": "void __thiscall std::ios_base::~ios_base(std::ios_base *this)\n{\n  int v2; // eax\n  int v3; // edi\n  bool v4; // zf\n  int v5; // eax\n  int v6; // eax\n  int v7; // edi\n  bool v8; // zf\n  int v9; // eax\n\n  *(_DWORD *)this = &off_100F5614;\n  v2 = *((_DWORD *)this + 33);\n  v3 = 0;\n  v4 = v2 == 0;\n  if ( v2 > 0 )\n  {\n    do\n    {\n      gbVertPoolMgr::DelSrcVertBub(\n        *(gbVertPoolMgr **)(*((_DWORD *)this + 29) + 196),\n        *(struct gbVertexBubble **)(*((_DWORD *)this + 31) + 4 * v3));\n      v5 = *((_DWORD *)this + 33);\n      ++v3;\n    }\n    while ( v3 < v5 );\n    v4 = v5 == 0;\n  }\n  if ( !v4 )\n  {\n    free(*((void **)this + 31));\n    free(*((void **)this + 32));\n  }\n  v6 = *((_DWORD *)this + 17);\n  v7 = 0;\n  v8 = v6 == 0;\n  if ( v6 > 0 )\n  {\n    do\n    {\n      if ( *(_DWORD *)(*((_DWORD *)this + 34) + 8 * v7) )\n        free(*(void **)(*((_DWORD *)this + 34) + 8 * v7));\n      v9 = *((_DWORD *)this + 17);\n      ++v7;\n    }\n    while ( v7 < v9 );\n    v8 = v9 == 0;\n  }\n  if ( !v8 )\n    free(*((void **)this + 34));\n  gbBaseMesh::~gbBaseMesh((void **)this);\n}\n"
+}

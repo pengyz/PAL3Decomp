@@ -1,0 +1,8 @@
+{
+  "name": "gbPartGroupParam::ComputeParticleParam(gbParticleUnit *,float,float)",
+  "mangled_name": "?ComputeParticleParam@gbPartGroupParam@@QAEXPAUgbParticleUnit@@MM@Z",
+  "address": "0x1002AED0",
+  "size_bytes": 239,
+  "signature": "void __thiscall(gbPartGroupParam *this, struct gbParticleUnit *a2, float a3, float a4)",
+  "decompiled_c": "void __thiscall gbPartGroupParam::ComputeParticleParam(\n        gbPartGroupParam *this,\n        struct gbParticleUnit *a2,\n        float a3,\n        float a4)\n{\n  __int64 v5; // rax\n  int v6; // ecx\n  double v8; // st7\n  __int64 v9; // rax\n  double v10; // st7\n  __int64 v11; // rax\n  double v12; // st7\n  float v13[3]; // [esp+Ch] [ebp-Ch] BYREF\n  int v14; // [esp+20h] [ebp+8h]\n\n  v5 = (__int64)((double)*((int *)this + 88) * a3);\n  *((_DWORD *)a2 + 5) = v5;\n  v6 = *((_DWORD *)this + 88);\n  if ( (int)v5 >= v6 )\n    *((_DWORD *)a2 + 5) = v6 - 1;\n  gbPartParamControl::GetValue((gbPartGroupParam *)((char *)this + 360), v13, a3);\n  *((float *)a2 + 16) = v13[0];\n  gbPartParamControl::GetValue((gbPartGroupParam *)((char *)this + 4940), v13, a3);\n  v14 = sub_100275E0(*((_DWORD *)this + 82), *((_DWORD *)this + 83));\n  *((float *)a2 + 19) = (((double)v14 + v13[0]) * a4 + *((float *)a2 + 19)) * (double)*((int *)a2 + 20);\n  gbPartParamControl::GetValue((gbPartGroupParam *)((char *)this + 9520), v13, a3);\n  *((float *)a2 + 17) = v13[0];\n  gbPartParamControl::GetValue((gbPartGroupParam *)((char *)this + 14100), v13, a3);\n  v8 = v13[1];\n  *((_BYTE *)a2 + 74) = (__int64)v13[0];\n  v9 = (__int64)v8;\n  v10 = v13[2];\n  *((_BYTE *)a2 + 73) = v9;\n  v11 = (__int64)v10;\n  v12 = *((float *)a2 + 17) * 255.0;\n  *((_BYTE *)a2 + 72) = v11;\n  *((_BYTE *)a2 + 75) = (__int64)v12;\n}\n"
+}

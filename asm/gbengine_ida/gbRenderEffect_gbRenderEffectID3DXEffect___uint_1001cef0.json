@@ -1,0 +1,8 @@
+{
+  "name": "gbRenderEffect::gbRenderEffect(ID3DXEffect *,uint)",
+  "mangled_name": "??0gbRenderEffect@@AAE@PAUID3DXEffect@@I@Z",
+  "address": "0x1001CEF0",
+  "size_bytes": 139,
+  "signature": "gbRenderEffect *__thiscall(gbRenderEffect *this, struct ID3DXEffect *a2, unsigned int a3)",
+  "decompiled_c": "gbRenderEffect *__thiscall gbRenderEffect::gbRenderEffect(\n        gbRenderEffect *this,\n        struct ID3DXEffect *a2,\n        unsigned int a3)\n{\n  char **v4; // edi\n  _DWORD *v5; // ebx\n\n  *((_DWORD *)this + 1) = 1;\n  *((_DWORD *)this + 2) = 0;\n  *((_DWORD *)this + 4) = 0;\n  *((_DWORD *)this + 5) = 0;\n  *(_DWORD *)this = &gbRenderEffect::`vftable';\n  *((_DWORD *)this + 6) = a2;\n  *((_DWORD *)this + 7) = a3;\n  *((_DWORD *)this + 8) = 0;\n  v4 = off_1011FC54;\n  v5 = (_DWORD *)((char *)this + 36);\n  do\n    *v5++ = (*(int (__stdcall **)(struct ID3DXEffect *, _DWORD, _DWORD))(*(_DWORD *)a2 + 36))(a2, 0, *v4++);\n  while ( (int)v4 < (int)aLightatten );\n  return this;\n}\n"
+}

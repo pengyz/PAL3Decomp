@@ -1,0 +1,8 @@
+{
+  "name": "_LcidFromHexString",
+  "mangled_name": "_LcidFromHexString",
+  "address": "0x100EF967",
+  "size_bytes": 57,
+  "signature": "int __cdecl(char *a1)",
+  "decompiled_c": "int __cdecl LcidFromHexString(char *a1)\n{\n  int result; // eax\n  char v3; // cl\n\n  for ( result = 0; ; result = v3 + 16 * (result + 268435453) )\n  {\n    v3 = *a1++;\n    if ( !v3 )\n      break;\n    if ( v3 < 97 || v3 > 102 )\n    {\n      if ( v3 >= 65 && v3 <= 70 )\n        v3 -= 7;\n    }\n    else\n    {\n      v3 -= 39;\n    }\n  }\n  return result;\n}\n"
+}

@@ -1,0 +1,8 @@
+{
+  "name": "gbAnimNodeGroup::~gbAnimNodeGroup(void)",
+  "mangled_name": "??1gbAnimNodeGroup@@QAE@XZ",
+  "address": "0x1000C460",
+  "size_bytes": 42,
+  "signature": "void __thiscall(gbAnimNodeGroup *this)",
+  "decompiled_c": "void __thiscall gbAnimNodeGroup::~gbAnimNodeGroup(gbAnimNodeGroup *this)\n{\n  int v1; // ecx\n\n  if ( *(_DWORD *)this )\n  {\n    --*(_DWORD *)(*(_DWORD *)this + 372);\n    v1 = *(_DWORD *)this;\n    if ( !*(_DWORD *)(v1 + 372) )\n    {\n      if ( v1 )\n        (**(void (__thiscall ***)(int, int))v1)(v1, 1);\n    }\n  }\n}\n"
+}

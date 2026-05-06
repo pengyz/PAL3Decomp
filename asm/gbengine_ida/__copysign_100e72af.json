@@ -1,0 +1,8 @@
+{
+  "name": "__copysign",
+  "mangled_name": "__copysign",
+  "address": "0x100E72AF",
+  "size_bytes": 33,
+  "signature": "double __cdecl(double Number, double Sign)",
+  "decompiled_c": "double __cdecl _copysign(double Number, double Sign)\n{\n  double v3; // [esp+0h] [ebp-8h]\n\n  LODWORD(v3) = LODWORD(Number);\n  HIDWORD(v3) = HIDWORD(Sign) ^ (HIDWORD(Number) ^ HIDWORD(Sign)) & 0x7FFFFFFF;\n  return v3;\n}\n"
+}

@@ -1,0 +1,8 @@
+{
+  "name": "gbNameVarBuf::~gbNameVarBuf(void)",
+  "mangled_name": "??1gbNameVarBuf@@QAE@XZ",
+  "address": "0x1002EDA0",
+  "size_bytes": 36,
+  "signature": "void __thiscall(void **this)",
+  "decompiled_c": "void __thiscall gbNameVarBuf::~gbNameVarBuf(void **this)\n{\n  void *v2; // esi\n\n  if ( *this )\n    free(*this);\n  v2 = *(this + 3);\n  if ( v2 )\n    free(v2);\n}\n"
+}

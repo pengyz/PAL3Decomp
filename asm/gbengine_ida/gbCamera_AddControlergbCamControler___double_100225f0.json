@@ -1,0 +1,8 @@
+{
+  "name": "gbCamera::AddControler(gbCamControler *,double)",
+  "mangled_name": "?AddControler@gbCamera@@QAEXPAVgbCamControler@@N@Z",
+  "address": "0x100225F0",
+  "size_bytes": 54,
+  "signature": "void __thiscall(gbCamera *this, struct gbCamControler *a2, double a3)",
+  "decompiled_c": "void __thiscall gbCamera::AddControler(gbCamera *this, struct gbCamControler *a2, double a3)\n{\n  int v3; // eax\n\n  v3 = *((_DWORD *)this + 85) + 1;\n  *((_DWORD *)this + 85) = v3;\n  *((_DWORD *)this + v3 + 69) = a2;\n  *((_DWORD *)a2 + 2) = this;\n  *((_DWORD *)a2 + 4) = 0;\n  *((_DWORD *)a2 + 5) = 0;\n  *((double *)a2 + 3) = a3;\n}\n"
+}

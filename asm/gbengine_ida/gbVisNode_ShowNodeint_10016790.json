@@ -1,0 +1,8 @@
+{
+  "name": "gbVisNode::ShowNode(int)",
+  "mangled_name": "?ShowNode@gbVisNode@@QAEXH@Z",
+  "address": "0x10016790",
+  "size_bytes": 45,
+  "signature": "void __thiscall(gbVisNode *this, int a2)",
+  "decompiled_c": "void __thiscall gbVisNode::ShowNode(gbVisNode *this, int a2)\n{\n  gbVisNode *v3; // ecx\n\n  *((_DWORD *)this + 15) = a2;\n  v3 = (gbVisNode *)*((_DWORD *)this + 3);\n  for ( *((_DWORD *)this + 6) = v3; v3; *((_DWORD *)this + 6) = v3 )\n  {\n    gbVisNode::ShowNode(v3, a2);\n    v3 = *(gbVisNode **)(*((_DWORD *)this + 6) + 4);\n  }\n}\n"
+}

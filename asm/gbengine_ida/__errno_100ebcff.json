@@ -1,0 +1,8 @@
+{
+  "name": "__errno",
+  "mangled_name": "__errno",
+  "address": "0x100EBCFF",
+  "size_bytes": 9,
+  "signature": "int *__cdecl()",
+  "decompiled_c": "int *__cdecl _errno()\n{\n  return _getptd() + 2;\n}\n"
+}

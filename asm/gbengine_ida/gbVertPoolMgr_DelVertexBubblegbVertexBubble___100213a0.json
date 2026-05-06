@@ -1,0 +1,8 @@
+{
+  "name": "gbVertPoolMgr::DelVertexBubble(gbVertexBubble *)",
+  "mangled_name": "?DelVertexBubble@gbVertPoolMgr@@QAEXPAVgbVertexBubble@@@Z",
+  "address": "0x100213A0",
+  "size_bytes": 144,
+  "signature": "void __thiscall(gbVertPoolMgr *this, struct gbVertexBubble *a2)",
+  "decompiled_c": "void __thiscall gbVertPoolMgr::DelVertexBubble(gbVertPoolMgr *this, struct gbVertexBubble *a2)\n{\n  gbVertexPool *v3; // esi\n  char *v4; // edx\n  int v5; // eax\n  int v6; // ebx\n  _DWORD *v7; // ecx\n  _DWORD *v8; // ecx\n  int v9; // ebx\n\n  *(_DWORD *)(*((_DWORD *)this + 392) + 528) -= *((_DWORD *)a2 + 5);\n  v3 = (gbVertexPool *)*((_DWORD *)a2 + 2);\n  v4 = (char *)this + 512;\n  v5 = 0;\n  v6 = *((_DWORD *)v3 + 5);\n  v7 = (_DWORD *)((char *)this + 512);\n  while ( *v7 != v6 )\n  {\n    ++v5;\n    ++v7;\n    if ( v5 >= 32 )\n    {\n      v5 = 0;\n      v8 = v4;\n      while ( *v8 )\n      {\n        ++v5;\n        ++v8;\n        if ( v5 >= 32 )\n        {\n          v9 = -1;\n          goto LABEL_8;\n        }\n      }\n      *(_DWORD *)&v4[4 * v5] = v6;\n      break;\n    }\n  }\n  v9 = v5;\nLABEL_8:\n  gbVertexPool::DelBubble(v3, a2);\n  if ( !gbChain1D::operator[](0) )\n  {\n    gbChain1D::DelNodeFromChain((gbVertPoolMgr *)((char *)this + 16 * v9), v3);\n    if ( v3 )\n      (**(void (__thiscall ***)(gbVertexPool *, int))v3)(v3, 1);\n  }\n}\n"
+}

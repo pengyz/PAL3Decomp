@@ -1,0 +1,8 @@
+{
+  "name": "___get_qualified_locale",
+  "mangled_name": "___get_qualified_locale",
+  "address": "0x100EF11A",
+  "size_bytes": 381,
+  "signature": "int __cdecl(char *a1, _WORD *a2, int a3)",
+  "decompiled_c": "int __cdecl __get_qualified_locale(char *a1, _WORD *a2, int a3)\n{\n  char *v3; // eax\n  int v4; // edi\n\n  if ( !dword_10166F14 )\n  {\n    if ( IsThisWindowsNT() )\n      dword_10166F14 = (int (__stdcall *)(_DWORD, _DWORD, _DWORD, _DWORD))GetLocaleInfoA;\n    else\n      dword_10166F14 = (int (__stdcall *)(_DWORD, _DWORD, _DWORD, _DWORD))crtGetLocaleInfoA;\n  }\n  if ( !a1 )\n    goto LABEL_20;\n  dword_10166F04 = a1;\n  if ( *a1 )\n    TranslateName(&off_1012B000, 64, &dword_10166F04);\n  v3 = a1 + 64;\n  String1 = a1 + 64;\n  if ( a1 != (char *)-64 && *v3 )\n  {\n    TranslateName(&off_1012AF48, 22, &String1);\n    v3 = String1;\n  }\n  dword_10166F0C = 0;\n  if ( !dword_10166F04 || !*dword_10166F04 )\n  {\n    if ( v3 && *v3 )\n    {\n      GetLcidFromCountry();\n      goto LABEL_21;\n    }\nLABEL_20:\n    GetLcidFromDefault();\n    goto LABEL_21;\n  }\n  if ( v3 && *v3 )\n    GetLcidFromLangCountry();\n  else\n    GetLcidFromLanguage();\nLABEL_21:\n  if ( dword_10166F0C )\n  {\n    v4 = ProcessCodePage(a1 + 128);\n    if ( v4 )\n    {\n      if ( IsValidCodePage((unsigned __int16)v4) && IsValidLocale(Locale, 1u) )\n      {\n        if ( a2 )\n        {\n          *a2 = Locale;\n          a2[1] = dword_10166F10;\n          a2[2] = v4;\n        }\n        if ( !a3 )\n          return 1;\n        if ( dword_10166F14(Locale, 4097, a3, 64) && dword_10166F14(dword_10166F10, 4098, a3 + 64, 64) )\n        {\n          _itoa(v4, (char *)(a3 + 128), 10);\n          return 1;\n        }\n      }\n    }\n  }\n  return 0;\n}\n"
+}

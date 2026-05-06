@@ -1,0 +1,8 @@
+{
+  "name": "gbMatrix4::LeftMultiply(gbMatrix4 const &)",
+  "mangled_name": "?LeftMultiply@gbMatrix4@@QAEXABU1@@Z",
+  "address": "0x100251E0",
+  "size_bytes": 122,
+  "signature": "void __thiscall(gbMatrix4 *this, const struct gbMatrix4 *a2)",
+  "decompiled_c": "// Alternative name is '??XgbMatrix4@@QAEXABU0@@Z'\n// Alternative name is '??XgbMatrix4@@QAEXPBM@Z'\nvoid __thiscall gbMatrix4::LeftMultiply(gbMatrix4 *this, const struct gbMatrix4 *a2)\n{\n  const struct gbMatrix4 *v2; // ebx\n  int v3; // eax\n  float *v4; // edi\n  float *v5; // eax\n  int v6; // ebp\n  float *v7; // edx\n  float *v8; // ecx\n  int v9; // esi\n  double v10; // st7\n  int v11; // [esp+10h] [ebp-44h]\n  _BYTE v12[64]; // [esp+14h] [ebp-40h] BYREF\n  int v13; // [esp+58h] [ebp+4h]\n\n  v2 = a2;\n  v3 = this - a2;\n  qmemcpy(v12, this, sizeof(v12));\n  v11 = this - a2;\n  v13 = 4;\n  while ( 1 )\n  {\n    v4 = (float *)v12;\n    v5 = (float *)((char *)v2 + v3);\n    v6 = 4;\n    do\n    {\n      *v5 = 0.0;\n      v7 = (float *)v2;\n      v8 = v4;\n      v9 = 4;\n      do\n      {\n        v10 = *v7 * *v8;\n        v8 += 4;\n        ++v7;\n        --v9;\n        *v5 = v10 + *v5;\n      }\n      while ( v9 );\n      ++v5;\n      ++v4;\n      --v6;\n    }\n    while ( v6 );\n    v2 = (const struct gbMatrix4 *)((char *)v2 + 16);\n    if ( !--v13 )\n      break;\n    v3 = v11;\n  }\n}\n"
+}

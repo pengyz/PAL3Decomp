@@ -1,0 +1,8 @@
+{
+  "name": "gbTexture::GetInternalFormat(gbImage2D *)",
+  "mangled_name": "?GetInternalFormat@gbTexture@@QAE?AW4gbPixelFmtType@@PAVgbImage2D@@@Z",
+  "address": "0x10020430",
+  "size_bytes": 85,
+  "signature": "int __stdcall(int a1)",
+  "decompiled_c": "int __stdcall gbTexture::GetInternalFormat(int a1)\n{\n  int v1; // eax\n\n  v1 = *(_DWORD *)(a1 + 180);\n  if ( v1 == 24 )\n  {\n    if ( !dword_10140DB4 )\n      return 1;\n    if ( dword_10140DB4 == 1 )\n      return 3;\n  }\n  else if ( v1 == 32 )\n  {\n    if ( !dword_10140DB4 )\n      return 2;\n    if ( dword_10140DB4 == 1 )\n      return 5;\n  }\n  return 0;\n}\n"
+}

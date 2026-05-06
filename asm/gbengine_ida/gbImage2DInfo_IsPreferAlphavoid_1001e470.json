@@ -1,0 +1,8 @@
+{
+  "name": "gbImage2DInfo::IsPreferAlpha(void)",
+  "mangled_name": "?IsPreferAlpha@gbImage2DInfo@@QAEHXZ",
+  "address": "0x1001E470",
+  "size_bytes": 22,
+  "signature": "BOOL __thiscall(gbImage2DInfo *this)",
+  "decompiled_c": "BOOL __thiscall gbImage2DInfo::IsPreferAlpha(gbImage2DInfo *this)\n{\n  int v1; // eax\n\n  v1 = *((_DWORD *)this + 1);\n  return v1 == 1 || v1 == 3;\n}\n"
+}

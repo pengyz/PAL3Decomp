@@ -1,0 +1,8 @@
+{
+  "name": "gbSound3DNode::~gbSound3DNode(void)",
+  "mangled_name": "??1gbSound3DNode@@QAE@XZ",
+  "address": "0x100026B0",
+  "size_bytes": 66,
+  "signature": "void __thiscall(gbSound3DNode *this)",
+  "decompiled_c": "void __thiscall gbSound3DNode::~gbSound3DNode(gbSound3DNode *this)\n{\n  if ( *((_DWORD *)this + 1) )\n    gbAudioManager::DetachSampleHandle(gbSound3DNode::pAudioMgr, this);\n  if ( *(_DWORD *)this )\n  {\n    if ( gbSound3DNode::pAudioMgr )\n    {\n      if ( *((_DWORD *)this + 1) )\n        AIL_stop_3D_sample(*((_DWORD *)this + 1));\n    }\n    gbAudioManager::DeleteSoundData(gbSound3DNode::pAudioMgr, *(struct gbSoundData **)this);\n  }\n}\n"
+}

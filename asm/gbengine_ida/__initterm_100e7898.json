@@ -1,0 +1,8 @@
+{
+  "name": "__initterm",
+  "mangled_name": "__initterm",
+  "address": "0x100E7898",
+  "size_bytes": 26,
+  "signature": "void __cdecl(_PVFV *First, _PVFV *Last)",
+  "decompiled_c": "void __cdecl _initterm(_PVFV *First, _PVFV *Last)\n{\n  while ( First < Last )\n  {\n    if ( *First )\n      (*First)();\n    ++First;\n  }\n}\n"
+}

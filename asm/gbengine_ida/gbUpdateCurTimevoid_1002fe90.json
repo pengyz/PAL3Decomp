@@ -1,0 +1,8 @@
+{
+  "name": "gbUpdateCurTime(void)",
+  "mangled_name": "?gbUpdateCurTime@@YANXZ",
+  "address": "0x1002FE90",
+  "size_bytes": 100,
+  "signature": "double __cdecl()",
+  "decompiled_c": "double __cdecl gbUpdateCurTime()\n{\n  double HighPart; // st7\n  double result; // st7\n  LARGE_INTEGER PerformanceCount; // [esp+0h] [ebp-8h] BYREF\n\n  if ( dword_1015D398 )\n  {\n    QueryPerformanceCounter(&PerformanceCount);\n    HighPart = (double)PerformanceCount.HighPart;\n    PerformanceCount.HighPart = 0;\n    result = (HighPart * 4294967295.0 + (double)PerformanceCount.LowPart) / dbl_1015D390;\n  }\n  else\n  {\n    result = (double)clock() * 1000.0;\n  }\n  g_CurrentTime = result;\n  return result;\n}\n"
+}

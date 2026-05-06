@@ -1,0 +1,8 @@
+{
+  "name": "gbImage2D::CreateImage(int,int,int)",
+  "mangled_name": "?CreateImage@gbImage2D@@QAEPAEHHH@Z",
+  "address": "0x1001EA30",
+  "size_bytes": 131,
+  "signature": "unsigned __int8 *__thiscall(gbImage2D *this, int a2, int a3, int a4)",
+  "decompiled_c": "unsigned __int8 *__thiscall gbImage2D::CreateImage(gbImage2D *this, int a2, int a3, int a4)\n{\n  int v5; // edx\n  int v6; // eax\n  int *v7; // ecx\n  unsigned __int8 *result; // eax\n\n  v5 = 0;\n  *(_DWORD *)this = 0;\n  *((_DWORD *)this + 1) = 0;\n  *((_DWORD *)this + 2) = 8;\n  v6 = 1;\n  v7 = (int *)((char *)this + 44);\n  do\n  {\n    *(v7 - 8) = v5;\n    *v7 = v6;\n    v7[8] = v6;\n    v6 *= 2;\n    ++v5;\n    ++v7;\n  }\n  while ( v5 < *((_DWORD *)this + 2) );\n  *((_DWORD *)this + 32) = a2;\n  *((_DWORD *)this + 28) = 1;\n  *((_DWORD *)this + 45) = a4;\n  *((_DWORD *)this + 27) = 1;\n  *((_DWORD *)this + 29) = 1;\n  *((_DWORD *)this + 30) = 1;\n  *((_DWORD *)this + 31) = 1;\n  *((_DWORD *)this + 33) = a3;\n  result = (unsigned __int8 *)malloc(a4 * a3 * a2 / 8);\n  *((_DWORD *)this + 46) = result;\n  return result;\n}\n"
+}

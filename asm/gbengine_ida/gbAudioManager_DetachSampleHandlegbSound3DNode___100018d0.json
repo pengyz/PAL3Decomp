@@ -1,0 +1,8 @@
+{
+  "name": "gbAudioManager::DetachSampleHandle(gbSound3DNode *)",
+  "mangled_name": "?DetachSampleHandle@gbAudioManager@@QAEXPAVgbSound3DNode@@@Z",
+  "address": "0x100018D0",
+  "size_bytes": 58,
+  "signature": "void __thiscall(gbAudioManager *this, struct gbSound3DNode *a2)",
+  "decompiled_c": "void __thiscall gbAudioManager::DetachSampleHandle(gbAudioManager *this, struct gbSound3DNode *a2)\n{\n  struct gbSound3DNode **v2; // esi\n  int v3; // ebp\n\n  v2 = (struct gbSound3DNode **)((char *)this + 32);\n  v3 = 10;\n  do\n  {\n    if ( *v2 == a2 )\n    {\n      AIL_end_3D_sample(*((_DWORD *)a2 + 1));\n      *((_DWORD *)a2 + 1) = 0;\n      *v2 = 0;\n    }\n    v2 += 3;\n    --v3;\n  }\n  while ( v3 );\n}\n"
+}

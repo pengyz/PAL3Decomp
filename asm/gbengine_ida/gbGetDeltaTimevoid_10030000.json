@@ -1,0 +1,8 @@
+{
+  "name": "gbGetDeltaTime(void)",
+  "mangled_name": "?gbGetDeltaTime@@YAMXZ",
+  "address": "0x10030000",
+  "size_bytes": 50,
+  "signature": "double __cdecl()",
+  "decompiled_c": "double __cdecl gbGetDeltaTime()\n{\n  int v0; // esi\n  clock_t v1; // eax\n\n  v0 = dword_1015D3A0;\n  v1 = clock();\n  dword_1015D3A0 = v1;\n  if ( v0 )\n    return (double)(v1 - v0) * 0.001;\n  else\n    return 0.0;\n}\n"
+}

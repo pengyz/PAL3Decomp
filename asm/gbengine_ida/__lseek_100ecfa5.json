@@ -1,0 +1,8 @@
+{
+  "name": "__lseek",
+  "mangled_name": "__lseek",
+  "address": "0x100ECFA5",
+  "size_bytes": 101,
+  "signature": "int __cdecl(int FileHandle, int Offset, int Origin)",
+  "decompiled_c": "int __cdecl _lseek(int FileHandle, int Offset, int Origin)\n{\n  int v3; // edi\n\n  if ( FileHandle < uNumber && (*(_BYTE *)(dword_10167400[FileHandle >> 5] + 36 * (FileHandle & 0x1F) + 4) & 1) != 0 )\n  {\n    _lock_fhandle(FileHandle);\n    v3 = _lseek_lk(FileHandle, Offset, Origin);\n    _unlock_fhandle(FileHandle);\n    return v3;\n  }\n  else\n  {\n    *_errno() = 9;\n    *__doserrno() = 0;\n    return -1;\n  }\n}\n"
+}

@@ -1,0 +1,8 @@
+{
+  "name": "__mtterm",
+  "mangled_name": "__mtterm",
+  "address": "0x100E8550",
+  "size_bytes": 30,
+  "signature": "DWORD()",
+  "decompiled_c": "DWORD _mtterm()\n{\n  DWORD result; // eax\n\n  _mtdeletelocks();\n  result = dwTlsIndex;\n  if ( dwTlsIndex != -1 )\n  {\n    result = TlsFree(dwTlsIndex);\n    dwTlsIndex = -1;\n  }\n  return result;\n}\n"
+}

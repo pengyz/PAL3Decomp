@@ -1,0 +1,8 @@
+{
+  "name": "__tosnan2",
+  "mangled_name": "__tosnan2",
+  "address": "0x100EA35F",
+  "size_bytes": 40,
+  "signature": "double __usercall@<st0>(int a1@<ebp>, double a2@<st1>, double a3@<st0>)",
+  "decompiled_c": "double __usercall _tosnan2@<st0>(int a1@<ebp>, double a2@<st1>, double a3@<st0>)\n{\n  double v3; // st6\n\n  *(double *)(a1 - 158) = a2;\n  v3 = *(double *)(a1 - 158);\n  if ( (*(_BYTE *)(a1 - 151) & 0x40) != 0 )\n    *(_BYTE *)(a1 - 144) = 7;\n  else\n    *(_BYTE *)(a1 - 144) = 1;\n  return a3 + v3;\n}\n"
+}

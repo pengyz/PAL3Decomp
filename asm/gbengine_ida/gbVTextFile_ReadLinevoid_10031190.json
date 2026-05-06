@@ -1,0 +1,8 @@
+{
+  "name": "gbVTextFile::ReadLine(void)",
+  "mangled_name": "?ReadLine@gbVTextFile@@QAEPADXZ",
+  "address": "0x10031190",
+  "size_bytes": 25,
+  "signature": "char *__thiscall(gbVTextFile *this)",
+  "decompiled_c": "char *__thiscall gbVTextFile::ReadLine(gbVTextFile *this)\n{\n  return gbVFileSystem::ReadLine(g_pVFileSys, (char *)this, 1024, *((struct gbVFile **)this + 256));\n}\n"
+}

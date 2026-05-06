@@ -1,0 +1,8 @@
+{
+  "name": "gbVfgetname(char const *,char *,int)",
+  "mangled_name": "?gbVfgetname@@YAPADPBDPADH@Z",
+  "address": "0x10030F50",
+  "size_bytes": 76,
+  "signature": "char *__cdecl(char *Str, char *a2)",
+  "decompiled_c": "char *__cdecl gbVfgetname(char *Str, char *a2)\n{\n  const char *v2; // edi\n  char *v3; // esi\n  char *v4; // eax\n\n  v2 = Str;\n  v3 = strrchr(Str, 47);\n  v4 = strrchr(Str, 92);\n  if ( v4 > v3 )\n    v3 = v4;\n  if ( v3 )\n    v2 = v3 + 1;\n  return strcpy(a2, v2);\n}\n"
+}

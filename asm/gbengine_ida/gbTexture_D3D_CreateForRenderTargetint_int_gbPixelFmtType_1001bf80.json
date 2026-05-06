@@ -1,0 +1,8 @@
+{
+  "name": "gbTexture_D3D::CreateForRenderTarget(int,int,gbPixelFmtType)",
+  "mangled_name": "?CreateForRenderTarget@gbTexture_D3D@@UAEHHHW4gbPixelFmtType@@@Z",
+  "address": "0x1001BF80",
+  "size_bytes": 144,
+  "signature": "int __thiscall(_DWORD *this, int a2, int a3, int a4)",
+  "decompiled_c": "int __thiscall gbTexture_D3D::CreateForRenderTarget(_DWORD *this, int a2, int a3, int a4)\n{\n  int v4; // eax\n  int v5; // ebp\n  int v7; // ecx\n  int v8; // edi\n  int v9; // ebx\n  int v10; // eax\n  int v11; // eax\n\n  v4 = a3;\n  v5 = a2;\n  v7 = a4;\n  *(this + 6) = a2;\n  *(this + 7) = v4;\n  *(this + 20) = 1;\n  v8 = dword_10140DB8;\n  v9 = sub_1001BB10(v7, dword_10140DB8);\n  gbPixelFormat::Init(v9);\n  v10 = sub_1001AF60(v9);\n  v11 = (*(int (__stdcall **)(_DWORD, int, int, int, int, int, _DWORD, int *, _DWORD))(**(_DWORD **)(v8 + 1816) + 92))(\n          *(_DWORD *)(v8 + 1816),\n          v5,\n          a3,\n          1,\n          1,\n          v10,\n          0,\n          &a2,\n          0);\n  if ( v11 >= 0 )\n  {\n    *(this + 21) = a2;\n    return 1;\n  }\n  else\n  {\n    *(_DWORD *)(v8 + 2248) = v11;\n    *(this + 7) = 0;\n    *(this + 6) = 0;\n    return 0;\n  }\n}\n"
+}

@@ -1,0 +1,8 @@
+{
+  "name": "_isalpha",
+  "mangled_name": "_isalpha",
+  "address": "0x100E6807",
+  "size_bytes": 46,
+  "signature": "int __cdecl(int C)",
+  "decompiled_c": "int __cdecl isalpha(int C)\n{\n  if ( (int)SrcSizeInBytes <= 1 )\n    return *((_WORD *)off_1012A140 + C) & 0x103;\n  else\n    return _isctype(C, 259);\n}\n"
+}

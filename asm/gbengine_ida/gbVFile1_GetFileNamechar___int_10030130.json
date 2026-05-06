@@ -1,0 +1,8 @@
+{
+  "name": "gbVFile1::GetFileName(char *,int)",
+  "mangled_name": "?GetFileName@gbVFile1@@QAEPADPADH@Z",
+  "address": "0x10030130",
+  "size_bytes": 77,
+  "signature": "char *__thiscall(gbVFile1 *this, char *a2, int a3)",
+  "decompiled_c": "char *__thiscall gbVFile1::GetFileName(gbVFile1 *this, char *a2, int a3)\n{\n  const char *v3; // edi\n  char *v4; // esi\n  char *v5; // eax\n\n  v3 = (char *)this + 12;\n  v4 = strrchr((const char *)this + 12, 47);\n  v5 = strrchr(v3, 92);\n  if ( v5 > v4 )\n    v4 = v5;\n  if ( v4 )\n    v3 = v4 + 1;\n  return strcpy(a2, v3);\n}\n"
+}

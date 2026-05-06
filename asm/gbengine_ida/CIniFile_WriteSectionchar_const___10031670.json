@@ -1,0 +1,8 @@
+{
+  "name": "CIniFile::WriteSection(char const *)",
+  "mangled_name": "?WriteSection@CIniFile@@QAEXPBD@Z",
+  "address": "0x10031670",
+  "size_bytes": 27,
+  "signature": "void __thiscall(CIniFile *this, const char *a2)",
+  "decompiled_c": "void __thiscall CIniFile::WriteSection(CIniFile *this, const char *a2)\n{\n  fprintf(*(FILE *const *)(*(_DWORD *)this + 4), \"[%s]\\n\", a2);\n}\n"
+}

@@ -1,0 +1,8 @@
+{
+  "name": "gbSnow::gbSnow(gbSnow const &)",
+  "mangled_name": "??0gbSnow@@QAE@ABV0@@Z",
+  "address": "0x10032B30",
+  "size_bytes": 129,
+  "signature": "gbSnow *__thiscall(gbSnow *this, const struct gbSnow *a2)",
+  "decompiled_c": "gbSnow *__thiscall gbSnow::gbSnow(gbSnow *this, const struct gbSnow *a2)\n{\n  gbSnow *result; // eax\n  int v3; // ecx\n\n  result = this;\n  *((_DWORD *)this + 2) = *((_DWORD *)a2 + 2);\n  *((_DWORD *)this + 3) = *((_DWORD *)a2 + 3);\n  *((_DWORD *)this + 4) = *((_DWORD *)a2 + 4);\n  *((_DWORD *)this + 5) = *((_DWORD *)a2 + 5);\n  *((_DWORD *)this + 6) = *((_DWORD *)a2 + 6);\n  *((_DWORD *)this + 7) = *((_DWORD *)a2 + 7);\n  *((_DWORD *)this + 8) = *((_DWORD *)a2 + 8);\n  *((_DWORD *)this + 9) = *((_DWORD *)a2 + 9);\n  *((_DWORD *)this + 10) = *((_DWORD *)a2 + 10);\n  *((_DWORD *)this + 11) = *((_DWORD *)a2 + 11);\n  *((_DWORD *)this + 12) = *((_DWORD *)a2 + 12);\n  *((_DWORD *)this + 14) = *((_DWORD *)a2 + 14);\n  *((_DWORD *)this + 15) = *((_DWORD *)a2 + 15);\n  *((_DWORD *)this + 16) = *((_DWORD *)a2 + 16);\n  *((_DWORD *)this + 17) = *((_DWORD *)a2 + 17);\n  *((_DWORD *)this + 18) = *((_DWORD *)a2 + 18);\n  *((_DWORD *)this + 19) = *((_DWORD *)a2 + 19);\n  *(_DWORD *)this = &gbDropGroup::`vftable';\n  v3 = *((_DWORD *)a2 + 20);\n  *(_DWORD *)result = &gbSnow::`vftable';\n  *((_DWORD *)result + 20) = v3;\n  return result;\n}\n"
+}

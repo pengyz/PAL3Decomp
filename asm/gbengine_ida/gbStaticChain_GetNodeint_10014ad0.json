@@ -1,0 +1,8 @@
+{
+  "name": "gbStaticChain::GetNode(int)",
+  "mangled_name": "?GetNode@gbStaticChain@@AAEPAUgbStaticChainNode@@H@Z",
+  "address": "0x10014AD0",
+  "size_bytes": 15,
+  "signature": "struct gbStaticChainNode *__thiscall(gbStaticChain *this, int a2)",
+  "decompiled_c": "struct gbStaticChainNode *__thiscall gbStaticChain::GetNode(gbStaticChain *this, int a2)\n{\n  return (struct gbStaticChainNode *)(*(_DWORD *)this + a2 * *((_DWORD *)this + 5));\n}\n"
+}

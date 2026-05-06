@@ -1,0 +1,8 @@
+{
+  "name": "_TestDefaultCountry",
+  "mangled_name": "_TestDefaultCountry",
+  "address": "0x100EF7CA",
+  "size_bytes": 31,
+  "signature": "int __cdecl(__int16 a1)",
+  "decompiled_c": "int __cdecl TestDefaultCountry(__int16 a1)\n{\n  int *v1; // eax\n\n  v1 = dword_1012AF34;\n  while ( a1 != *(_WORD *)v1 )\n  {\n    v1 = (int *)((char *)v1 + 2);\n    if ( (int)v1 >= (int)&off_1012AF48 )\n      return 1;\n  }\n  return 0;\n}\n"
+}

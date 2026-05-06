@@ -1,0 +1,8 @@
+{
+  "name": "gbDynVertBuf::RenderLineStrip(gbColorQuad,gbVec3D *,int,gbRenderEffect *)",
+  "mangled_name": "?RenderLineStrip@gbDynVertBuf@@QAEXUgbColorQuad@@PAUgbVec3D@@HPAVgbRenderEffect@@@Z",
+  "address": "0x1001CE50",
+  "size_bytes": 147,
+  "signature": "int __thiscall(gbDynVertBuf *this, int a2, int a3, int a4, struct gbRenderEffect *a5)",
+  "decompiled_c": "int __thiscall gbDynVertBuf::RenderLineStrip(gbDynVertBuf *this, int a2, int a3, int a4, struct gbRenderEffect *a5)\n{\n  struct gbRenderEffect *v5; // eax\n  int v7; // ebx\n  int result; // eax\n  _DWORD *v9; // edi\n\n  v5 = (struct gbRenderEffect *)dword_1013BDFC;\n  if ( !dword_1013BDFC )\n  {\n    v5 = gbEffectMgr::NewTrivalEffect(*((gbEffectMgr **)gbDynVertBuf::pGfxMgr + 50), 3);\n    dword_1013BDFC = (int)v5;\n  }\n  if ( !a5 )\n    a5 = v5;\n  v7 = a4;\n  result = (*(int (__thiscall **)(gbDynVertBuf *, int))(*(_DWORD *)this + 12))(this, a4);\n  if ( result )\n  {\n    if ( a4 > 0 )\n    {\n      v9 = (_DWORD *)(a3 + 8);\n      do\n      {\n        **((_DWORD **)this + 7) = *(v9 - 2);\n        *(_DWORD *)(*((_DWORD *)this + 7) + 4) = *(v9 - 1);\n        *(_DWORD *)(*((_DWORD *)this + 7) + 8) = *v9;\n        **((_DWORD **)this + 9) = a2;\n        gbDynVertBuf::StepVertexPtr(this);\n        v9 += 3;\n        --v7;\n      }\n      while ( v7 );\n    }\n    return (*(int (__thiscall **)(gbDynVertBuf *, int, struct gbRenderEffect *, _DWORD))(*(_DWORD *)this + 20))(\n             this,\n             5,\n             a5,\n             0);\n  }\n  return result;\n}\n"
+}

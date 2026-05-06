@@ -1,0 +1,8 @@
+{
+  "name": "gbResource::gbResource(gbResource const &)",
+  "mangled_name": "??0gbResource@@QAE@ABV0@@Z",
+  "address": "0x10001860",
+  "size_bytes": 51,
+  "signature": "gbResource *__thiscall(gbResource *this, const struct gbResource *a2)",
+  "decompiled_c": "gbResource *__thiscall gbResource::gbResource(gbResource *this, const struct gbResource *a2)\n{\n  int v3; // edx\n\n  v3 = *((_DWORD *)a2 + 1);\n  *(_DWORD *)this = &gbRefObject::`vftable';\n  *((_DWORD *)this + 1) = v3;\n  *((_DWORD *)this + 2) = *((_DWORD *)a2 + 2);\n  *((_DWORD *)this + 3) = *((_DWORD *)a2 + 3);\n  *((_DWORD *)this + 4) = *((_DWORD *)a2 + 4);\n  *((_DWORD *)this + 5) = *((_DWORD *)a2 + 5);\n  *(_DWORD *)this = &gbResource::`vftable';\n  return this;\n}\n"
+}

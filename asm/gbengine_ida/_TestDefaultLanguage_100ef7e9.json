@@ -1,0 +1,8 @@
+{
+  "name": "_TestDefaultLanguage",
+  "mangled_name": "_TestDefaultLanguage",
+  "address": "0x100EF7E9",
+  "size_bytes": 98,
+  "signature": "BOOL __cdecl(int a1, int a2)",
+  "decompiled_c": "BOOL __cdecl TestDefaultLanguage(int a1, int a2)\n{\n  int v2; // eax\n  int PrimaryLen; // esi\n  BOOL result; // eax\n  _BYTE v5[120]; // [esp+0h] [ebp-78h] BYREF\n\n  v2 = a1 & 0x3FF;\n  BYTE1(v2) |= 4u;\n  result = 0;\n  if ( dword_10166F14(v2, 1, v5, 120) )\n  {\n    if ( a1 == LcidFromHexString(v5) )\n      return 1;\n    if ( !a2 )\n      return 1;\n    PrimaryLen = GetPrimaryLen(dword_10166F04);\n    if ( PrimaryLen != strlen(dword_10166F04) )\n      return 1;\n  }\n  return result;\n}\n"
+}

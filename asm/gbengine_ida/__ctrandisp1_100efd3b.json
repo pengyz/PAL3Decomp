@@ -1,0 +1,8 @@
+{
+  "name": "__ctrandisp1",
+  "mangled_name": "__ctrandisp1",
+  "address": "0x100EFD3B",
+  "size_bytes": 51,
+  "signature": "int __usercall@<eax>(double a1@<st0>, double a2)",
+  "decompiled_c": "int __usercall _ctrandisp1@<eax>(double a1@<st0>, double a2)\n{\n  int v2; // edx\n  __int16 v3; // cx\n  __int16 v4; // fps\n  int savedregs; // [esp+2D4h] [ebp+0h] BYREF\n\n  _fload(a2);\n  _trandisp1(v2, v3, (int)&savedregs, v4, a1);\n  return ctranexit((int)&savedregs);\n}\n"
+}

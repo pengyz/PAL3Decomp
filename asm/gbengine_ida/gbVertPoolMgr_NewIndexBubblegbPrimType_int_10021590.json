@@ -1,0 +1,8 @@
+{
+  "name": "gbVertPoolMgr::NewIndexBubble(gbPrimType,int)",
+  "mangled_name": "?NewIndexBubble@gbVertPoolMgr@@QAEPAVgbIndexBubble@@W4gbPrimType@@H@Z",
+  "address": "0x10021590",
+  "size_bytes": 135,
+  "signature": "struct gbChain1DNode *__thiscall(_DWORD *this, int a2, int a3)",
+  "decompiled_c": "struct gbChain1DNode *__thiscall gbVertPoolMgr::NewIndexBubble(_DWORD *this, int a2, int a3)\n{\n  gbChain1D *v4; // esi\n  struct gbChain1DNode **v5; // ecx\n  struct gbChain1DNode *result; // eax\n  struct gbChain1DNode *v7; // edi\n\n  v4 = (gbChain1D *)(this + 160);\n  *(_DWORD *)(*(this + 392) + 532) += a3;\n  v5 = (struct gbChain1DNode **)*(this + 160);\n  *((_DWORD *)v4 + 3) = v5;\n  if ( v5 )\n  {\n    while ( 1 )\n    {\n      result = gbIndexPool::NewBubble(v5, a2, a3);\n      if ( result )\n        break;\n      v5 = *(struct gbChain1DNode ***)(*((_DWORD *)v4 + 3) + 4);\n      *((_DWORD *)v4 + 3) = v5;\n      if ( !v5 )\n        goto LABEL_4;\n    }\n  }\n  else\n  {\nLABEL_4:\n    if ( *(this + 389) < a3 )\n      *(this + 389) = a3;\n    v7 = (struct gbChain1DNode *)(*(int (__thiscall **)(_DWORD, _DWORD, int, _DWORD))(*(_DWORD *)*(this + 392) + 20))(\n                                   *(this + 392),\n                                   0,\n                                   2,\n                                   *(this + 389));\n    gbChain1D::AddNodeOnTail(v4, v7);\n    return gbIndexPool::NewBubble((struct gbChain1DNode **)v7, a2, a3);\n  }\n  return result;\n}\n"
+}

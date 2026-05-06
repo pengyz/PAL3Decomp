@@ -1,0 +1,8 @@
+{
+  "name": "gbMatrixStack::LoadMatrix(gbMatrix4 *)",
+  "mangled_name": "?LoadMatrix@gbMatrixStack@@QAEXPAUgbMatrix4@@@Z",
+  "address": "0x10027110",
+  "size_bytes": 37,
+  "signature": "void __thiscall(gbMatrixStack *this, struct gbMatrix4 *a2)",
+  "decompiled_c": "void __thiscall gbMatrixStack::LoadMatrix(gbMatrixStack *this, struct gbMatrix4 *a2)\n{\n  qmemcpy((void *)(*(_DWORD *)this + (*((_DWORD *)this + 2) << 6)), a2, 0x40u);\n  *((_DWORD *)this + 3) = 0;\n}\n"
+}

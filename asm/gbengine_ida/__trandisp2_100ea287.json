@@ -1,0 +1,8 @@
+{
+  "name": "__trandisp2",
+  "mangled_name": "__trandisp2",
+  "address": "0x100EA287",
+  "size_bytes": 140,
+  "signature": "int __usercall@<eax>(int a1@<edx>, int a2@<ebp>, __int16 a3@<fpstat>, double _ST6@<st1>, double a5@<st0>)",
+  "decompiled_c": "int __usercall _trandisp2@<eax>(int a1@<edx>, int a2@<ebp>, __int16 a3@<fpstat>, double _ST6@<st1>, double a5@<st0>)\n{\n  __int16 v5; // bx\n  __int16 v7; // fps\n  char v9; // cl\n  __int16 v10; // cx\n  char v13; // ah\n\n  if ( *(_BYTE *)(a1 + 14) == 5 )\n  {\n    HIBYTE(v5) = HIBYTE(*(_WORD *)(a2 - 164)) & 0xFC | 2;\n    LOBYTE(v5) = 63;\n  }\n  else\n  {\n    v5 = 4927;\n  }\n  *(_WORD *)(a2 - 162) = v5;\n  _EBX = dword_1012A12C;\n  __asm { fxam }\n  *(_DWORD *)(a2 - 148) = a1;\n  *(_WORD *)(a2 - 160) = a3;\n  *(_BYTE *)(a2 - 144) = 0;\n  _ST6 = a5;\n  v9 = *(_BYTE *)(a2 - 159);\n  __asm { fxam }\n  *(_WORD *)(a2 - 160) = v7;\n  HIBYTE(v10) = __ROL1__((char)(2 * *(_BYTE *)(a2 - 159)) >> 1, 1);\n  _AL = HIBYTE(v10) & 0xF;\n  __asm { xlat }\n  v13 = _AL;\n  LOBYTE(v10) = __ROL1__((char)(2 * v9) >> 1, 1);\n  _AL = v10 & 0xF;\n  __asm { xlat }\n  return (*(int (__thiscall **)(int))((char)((4 * v13) | _AL) + a1 + 16))(v10 & 0x404);\n}\n"
+}

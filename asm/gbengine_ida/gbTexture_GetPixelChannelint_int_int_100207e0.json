@@ -1,0 +1,8 @@
+{
+  "name": "gbTexture::GetPixelChannel(int,int,int)",
+  "mangled_name": "?GetPixelChannel@gbTexture@@QAEEHHH@Z",
+  "address": "0x100207E0",
+  "size_bytes": 53,
+  "signature": "unsigned __int8 __thiscall(gbTexture *this, int a2, int a3, int a4)",
+  "decompiled_c": "unsigned __int8 __thiscall gbTexture::GetPixelChannel(gbTexture *this, int a2, int a3, int a4)\n{\n  return *(_BYTE *)(*(_DWORD *)(*((_DWORD *)this + 8) + 184)\n                  + *(_DWORD *)(*((_DWORD *)this + 8) + 180) * (a2 + a3 * *((_DWORD *)this + 6)) / 8\n                  + a4);\n}\n"
+}

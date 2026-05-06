@@ -1,0 +1,8 @@
+{
+  "name": "gbVertPoolMgr::OnLostDevice(void)",
+  "mangled_name": "?OnLostDevice@gbVertPoolMgr@@QAEHXZ",
+  "address": "0x10021240",
+  "size_bytes": 47,
+  "signature": "int __thiscall(gbVertPoolMgr *this)",
+  "decompiled_c": "int __thiscall gbVertPoolMgr::OnLostDevice(gbVertPoolMgr *this)\n{\n  int v1; // edi\n  _DWORD *i; // esi\n\n  v1 = 0;\n  for ( i = (_DWORD *)((char *)this + 656); !*i || (*(int (__thiscall **)(_DWORD))(*(_DWORD *)*i + 4))(*i); ++i )\n  {\n    if ( ++v1 >= 32 )\n      return 1;\n  }\n  return 0;\n}\n"
+}

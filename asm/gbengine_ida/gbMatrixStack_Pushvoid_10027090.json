@@ -1,0 +1,8 @@
+{
+  "name": "gbMatrixStack::Push(void)",
+  "mangled_name": "?Push@gbMatrixStack@@QAEXXZ",
+  "address": "0x10027090",
+  "size_bytes": 41,
+  "signature": "void __thiscall(gbMatrixStack *this)",
+  "decompiled_c": "void __thiscall gbMatrixStack::Push(gbMatrixStack *this)\n{\n  qmemcpy(\n    (void *)(*(_DWORD *)this + ((*((_DWORD *)this + 2) + 1) << 6)),\n    (const void *)(*(_DWORD *)this + (*((_DWORD *)this + 2) << 6)),\n    0x40u);\n  ++*((_DWORD *)this + 2);\n}\n"
+}

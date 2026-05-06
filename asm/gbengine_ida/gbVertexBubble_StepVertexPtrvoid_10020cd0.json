@@ -1,0 +1,8 @@
+{
+  "name": "gbVertexBubble::StepVertexPtr(void)",
+  "mangled_name": "?StepVertexPtr@gbVertexBubble@@QAEXXZ",
+  "address": "0x10020CD0",
+  "size_bytes": 79,
+  "signature": "void __thiscall(gbVertexBubble *this)",
+  "decompiled_c": "void __thiscall gbVertexBubble::StepVertexPtr(gbVertexBubble *this)\n{\n  int v1; // eax\n  int v2; // edx\n  int v3; // eax\n\n  v1 = *((_DWORD *)this + 2);\n  v2 = *(_DWORD *)(v1 + 20);\n  v3 = *(_DWORD *)(v1 + 24);\n  if ( (v2 & 1) != 0 || (v2 & 0x100) != 0 )\n    *((_DWORD *)this + 6) += v3;\n  if ( (v2 & 2) != 0 )\n    *((_DWORD *)this + 7) += v3;\n  if ( (v2 & 4) != 0 )\n    *((_DWORD *)this + 8) += v3;\n  if ( (v2 & 8) != 0 )\n    *((_DWORD *)this + 9) += v3;\n  if ( (v2 & 0x10) != 0 )\n    *((_DWORD *)this + 10) += v3;\n  if ( (v2 & 0x20) != 0 )\n    *((_DWORD *)this + 11) += v3;\n  if ( (v2 & 0x40) != 0 )\n    *((_DWORD *)this + 12) += v3;\n  if ( (v2 & 0x80u) != 0 )\n    *((_DWORD *)this + 13) += v3;\n}\n"
+}

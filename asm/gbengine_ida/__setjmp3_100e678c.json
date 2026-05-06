@@ -1,0 +1,8 @@
+{
+  "name": "__setjmp3",
+  "mangled_name": "__setjmp3",
+  "address": "0x100E678C",
+  "size_bytes": 123,
+  "signature": "int __usercall@<eax>(int a1@<ebx>, int a2@<ebp>, int a3@<edi>, int a4@<esi>, _DWORD *a5, int a6, struct _EXCEPTION_REGISTRATION_RECORD *a7, int a8, ...)",
+  "decompiled_c": "int __usercall _setjmp3@<eax>(\n        int a1@<ebx>,\n        int a2@<ebp>,\n        int a3@<edi>,\n        int a4@<esi>,\n        _DWORD *a5,\n        int a6,\n        struct _EXCEPTION_REGISTRATION_RECORD *a7,\n        int a8,\n        ...)\n{\n  struct _EXCEPTION_REGISTRATION_RECORD *ExceptionList; // eax\n  unsigned int v9; // ecx\n  _UNKNOWN *retaddr; // [esp+0h] [ebp+0h] BYREF\n  va_list va; // [esp+14h] [ebp+14h] BYREF\n\n  va_start(va, a8);\n  *a5 = a2;\n  a5[1] = a1;\n  a5[2] = a3;\n  a5[3] = a4;\n  a5[4] = &retaddr;\n  a5[5] = retaddr;\n  a5[8] = 1447244336;\n  a5[9] = 0;\n  ExceptionList = NtCurrentTeb()->NtTib.ExceptionList;\n  a5[6] = ExceptionList;\n  if ( ExceptionList == (struct _EXCEPTION_REGISTRATION_RECORD *)-1 )\n  {\n    a5[7] = -1;\n  }\n  else if ( a6 && (ExceptionList = a7, a5[9] = a7, a6 != 1) )\n  {\n    a5[7] = a8;\n    v9 = a6 - 2;\n    if ( a6 != 2 )\n    {\n      if ( v9 > 6 )\n        v9 = 6;\n      qmemcpy(a5 + 10, va, 4 * v9);\n    }\n  }\n  else\n  {\n    a5[7] = ExceptionList[1].Handler;\n  }\n  return 0;\n}\n"
+}

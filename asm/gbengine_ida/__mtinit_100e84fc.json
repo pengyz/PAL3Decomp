@@ -1,0 +1,8 @@
+{
+  "name": "__mtinit",
+  "mangled_name": "__mtinit",
+  "address": "0x100E84FC",
+  "size_bytes": 84,
+  "signature": "int()",
+  "decompiled_c": "int _mtinit()\n{\n  DWORD *v0; // eax\n  DWORD *v1; // esi\n  DWORD CurrentThreadId; // eax\n\n  _mtinitlocks();\n  dwTlsIndex = TlsAlloc();\n  if ( dwTlsIndex == -1 )\n    return 0;\n  v0 = (DWORD *)calloc(1u, 0x74u);\n  v1 = v0;\n  if ( !v0 || !TlsSetValue(dwTlsIndex, v0) )\n    return 0;\n  _initptd(v1);\n  CurrentThreadId = GetCurrentThreadId();\n  v1[1] = -1;\n  *v1 = CurrentThreadId;\n  return 1;\n}\n"
+}

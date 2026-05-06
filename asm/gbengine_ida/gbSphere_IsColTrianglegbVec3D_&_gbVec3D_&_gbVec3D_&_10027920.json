@@ -1,0 +1,8 @@
+{
+  "name": "gbSphere::IsColTriangle(gbVec3D &,gbVec3D &,gbVec3D &)",
+  "mangled_name": "?IsColTriangle@gbSphere@@QAEHAAUgbVec3D@@00@Z",
+  "address": "0x10027920",
+  "size_bytes": 183,
+  "signature": "BOOL __thiscall(gbSphere *this, struct gbVec3D *a2, struct gbVec3D *a3, struct gbVec3D *a4)",
+  "decompiled_c": "BOOL __thiscall gbSphere::IsColTriangle(gbSphere *this, struct gbVec3D *a2, struct gbVec3D *a3, struct gbVec3D *a4)\n{\n  unsigned __int8 v5; // c0\n  unsigned __int8 v6; // c3\n  int v7; // edx\n  unsigned __int8 v9; // c0\n  unsigned __int8 v10; // c3\n  unsigned __int8 v12; // c0\n  unsigned __int8 v13; // c3\n\n  v7 = (v5 | v6) != 0;\n  if ( v9 | v10 )\n    ++v7;\n  if ( v12 | v13 )\n    ++v7;\n  return v7 > 0;\n}\n"
+}

@@ -1,0 +1,8 @@
+{
+  "name": "gbSound2DNode::LoadFromFile(char *)",
+  "mangled_name": "?LoadFromFile@gbSound2DNode@@QAEHPAD@Z",
+  "address": "0x10002940",
+  "size_bytes": 44,
+  "signature": "BOOL __thiscall(gbSound2DNode *this, char *a2)",
+  "decompiled_c": "BOOL __thiscall gbSound2DNode::LoadFromFile(gbSound2DNode *this, char *a2)\n{\n  struct gbSoundData *SoundFile; // eax\n\n  if ( !gbSound2DNode::pAudioMgr )\n    return 0;\n  SoundFile = gbAudioManager::LoadSoundFile(gbSound2DNode::pAudioMgr, a2);\n  *(_DWORD *)this = SoundFile;\n  return SoundFile != 0;\n}\n"
+}

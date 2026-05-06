@@ -1,0 +1,8 @@
+{
+  "name": "__fsopen",
+  "mangled_name": "__fsopen",
+  "address": "0x100E5CDB",
+  "size_bytes": 49,
+  "signature": "FILE *__cdecl(const char *FileName, const char *Mode, int ShFlag)",
+  "decompiled_c": "FILE *__cdecl _fsopen(const char *FileName, const char *Mode, int ShFlag)\n{\n  FILE *result; // eax\n  FILE *v4; // esi\n  FILE *v5; // edi\n\n  result = (FILE *)_getstream();\n  v4 = result;\n  if ( result )\n  {\n    v5 = (FILE *)_openfile((char *)FileName, (int)Mode, ShFlag, (int)result);\n    _unlock_file(v4);\n    return v5;\n  }\n  return result;\n}\n"
+}

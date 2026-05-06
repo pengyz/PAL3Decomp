@@ -1,0 +1,8 @@
+{
+  "name": "__ffexpm1",
+  "mangled_name": "__ffexpm1",
+  "address": "0x100EBA4E",
+  "size_bytes": 67,
+  "signature": "void __usercall(char a1@<ch>, int _EBP@<ebp>)",
+  "decompiled_c": "// positive sp value has been detected, the output may be wrong!\nvoid __usercall _ffexpm1(char a1@<ch>, int _EBP@<ebp>)\n{\n  __asm\n  {\n    fld     st\n    fabs\n    fld     tbyte_1012A48E\n    fcompp\n    fstsw   word ptr [ebp-0A0h]\n  }\n  if ( (*(_BYTE *)(_EBP - 159) & 0x41) != 0 )\n  {\n    __asm\n    {\n      ftst\n      fstsw   word ptr [ebp-0A0h]\n    }\n    if ( (*(_BYTE *)(_EBP - 159) & 1) != 0 )\n    {\n      *(_BYTE *)(_EBP - 144) = 4;\n      __asm\n      {\n        fstp    st\n        fldz\n      }\n    }\n    else\n    {\n      __asm\n      {\n        fstp    st\n        fld     tbyte_1012A470\n      }\n      if ( a1 )\n        __asm { fchs }\n      expbigret();\n    }\n  }\n  else\n  {\n    __asm\n    {\n      fld     st\n      frndint\n      ftst\n      fstsw   word ptr [ebp-0A0h]\n    }\n    __asm\n    {\n      fxch    st(1)\n      fsub    st, st(1)\n      ftst\n      fstsw   word ptr [ebp-0A0h]\n      fabs\n      f2xm1\n    }\n  }\n}\n"
+}

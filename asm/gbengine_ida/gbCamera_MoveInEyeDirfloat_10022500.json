@@ -1,0 +1,8 @@
+{
+  "name": "gbCamera::MoveInEyeDir(float)",
+  "mangled_name": "?MoveInEyeDir@gbCamera@@QAEXM@Z",
+  "address": "0x10022500",
+  "size_bytes": 130,
+  "signature": "void __thiscall(gbCamera *this, float a2)",
+  "decompiled_c": "void __thiscall gbCamera::MoveInEyeDir(gbCamera *this, float a2)\n{\n  float v3; // [esp+4h] [ebp-18h] BYREF\n  float v4; // [esp+8h] [ebp-14h]\n  float v5; // [esp+Ch] [ebp-10h]\n  _DWORD v6[3]; // [esp+10h] [ebp-Ch] BYREF\n\n  v3 = 0.0;\n  v4 = 0.0;\n  v5 = 0.0;\n  v6[1] = 0;\n  v6[0] = 0;\n  *(float *)&v6[2] = a2;\n  gbQuaternion::RotateVector((gbCamera *)((char *)this + 360), (struct gbVec3D *)v6, (struct gbVec3D *)&v3);\n  *((float *)this + 87) = v3 + *((float *)this + 87);\n  *((float *)this + 88) = v4 + *((float *)this + 88);\n  *((float *)this + 89) = v5 + *((float *)this + 89);\n}\n"
+}

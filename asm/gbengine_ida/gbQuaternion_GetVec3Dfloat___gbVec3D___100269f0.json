@@ -1,0 +1,8 @@
+{
+  "name": "gbQuaternion::GetVec3D(float *,gbVec3D *)",
+  "mangled_name": "?GetVec3D@gbQuaternion@@QAEXPAMPAUgbVec3D@@@Z",
+  "address": "0x100269F0",
+  "size_bytes": 32,
+  "signature": "void __thiscall(gbQuaternion *this, float *a2, struct gbVec3D *a3)",
+  "decompiled_c": "void __thiscall gbQuaternion::GetVec3D(gbQuaternion *this, float *a2, struct gbVec3D *a3)\n{\n  *a2 = *((float *)this + 3);\n  *(_DWORD *)a3 = *(_DWORD *)this;\n  *((_DWORD *)a3 + 1) = *((_DWORD *)this + 1);\n  *((_DWORD *)a3 + 2) = *((_DWORD *)this + 2);\n}\n"
+}

@@ -1,0 +1,8 @@
+{
+  "name": "gbCamera::PointScrToEye(float,float,gbVec3D *)",
+  "mangled_name": "?PointScrToEye@gbCamera@@QAEXMMPAUgbVec3D@@@Z",
+  "address": "0x10022050",
+  "size_bytes": 91,
+  "signature": "void __thiscall(gbCamera *this, float a2, float a3, struct gbVec3D *a4)",
+  "decompiled_c": "void __thiscall gbCamera::PointScrToEye(gbCamera *this, float a2, float a3, struct gbVec3D *a4)\n{\n  long double v4; // st7\n  float v5; // [esp+0h] [ebp-4h]\n\n  if ( *(float *)this == 0.0 )\n    v4 = *((float *)this + 1);\n  else\n    v4 = sin(*(float *)this * 0.0087266462) * *((float *)this + 4) / cos(*(float *)this * 0.0087266462);\n  v5 = (double)*((int *)this + 9) * v4 / (double)*((int *)this + 8);\n  *(float *)a4 = v4 * a2;\n  *((float *)a4 + 1) = v5 * a3;\n  *((float *)a4 + 2) = -*((float *)this + 4);\n}\n"
+}

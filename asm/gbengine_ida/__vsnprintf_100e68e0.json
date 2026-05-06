@@ -1,0 +1,8 @@
+{
+  "name": "__vsnprintf",
+  "mangled_name": "__vsnprintf",
+  "address": "0x100E68E0",
+  "size_bytes": 80,
+  "signature": "int __cdecl(char *const Buffer, const size_t BufferCount, const char *const Format, va_list ArgList)",
+  "decompiled_c": "int __cdecl _vsnprintf(char *const Buffer, const size_t BufferCount, const char *const Format, va_list ArgList)\n{\n  int v4; // eax\n  bool v5; // sf\n  int v6; // esi\n  FILE File; // [esp+4h] [ebp-20h] BYREF\n\n  File._base = Buffer;\n  File._ptr = Buffer;\n  File._cnt = BufferCount;\n  File._flag = 66;\n  v4 = _output(&File, (int)Format, (int)ArgList);\n  v5 = --File._cnt < 0;\n  v6 = v4;\n  if ( v5 )\n    _flsbuf(0, &File);\n  else\n    *File._ptr = 0;\n  return v6;\n}\n"
+}

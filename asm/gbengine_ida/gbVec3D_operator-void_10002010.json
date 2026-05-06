@@ -1,0 +1,8 @@
+{
+  "name": "gbVec3D::operator-(void)",
+  "mangled_name": "??GgbVec3D@@QBE?AU0@XZ",
+  "address": "0x10002010",
+  "size_bytes": 61,
+  "signature": "float *__thiscall(float *this, float *a2)",
+  "decompiled_c": "float *__thiscall gbVec3D::operator-(float *this, float *a2)\n{\n  double v3; // st7\n  float v4; // [esp+0h] [ebp-Ch]\n  float v5; // [esp+4h] [ebp-8h]\n  float v6; // [esp+8h] [ebp-4h]\n\n  v4 = -*this;\n  v5 = -*(this + 1);\n  v3 = -*(this + 2);\n  *a2 = v4;\n  v6 = v3;\n  a2[1] = v5;\n  a2[2] = v6;\n  return a2;\n}\n"
+}

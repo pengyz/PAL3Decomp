@@ -1,0 +1,8 @@
+{
+  "name": "gbAudioManager::ReStartSoundStream(int)",
+  "mangled_name": "?ReStartSoundStream@gbAudioManager@@QAEXH@Z",
+  "address": "0x10001B70",
+  "size_bytes": 78,
+  "signature": "void __thiscall(gbAudioManager *this, int a2)",
+  "decompiled_c": "void __thiscall gbAudioManager::ReStartSoundStream(gbAudioManager *this, int a2)\n{\n  int v3; // eax\n\n  v3 = *((_DWORD *)this + a2);\n  if ( v3 )\n  {\n    AIL_register_stream_callback(v3, sub_10001B40);\n    AIL_start_stream(*((_DWORD *)this + a2));\n    *((_DWORD *)this + a2 + 3) = 1;\n    AIL_set_stream_volume(*((_DWORD *)this + a2), (__int64)(*((float *)this + 53) * 127.0));\n  }\n}\n"
+}

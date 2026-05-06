@@ -1,0 +1,8 @@
+{
+  "name": "_fprintf",
+  "mangled_name": "_fprintf",
+  "address": "0x100E5C9F",
+  "size_bytes": 60,
+  "signature": "int(FILE *const Stream, const char *const Format, ...)",
+  "decompiled_c": "int fprintf(FILE *const Stream, const char *const Format, ...)\n{\n  int v2; // edi\n  int v3; // ebx\n  va_list va; // [esp+18h] [ebp+Ch] BYREF\n\n  va_start(va, Format);\n  _lock_file(Stream);\n  v2 = _stbuf(Stream);\n  v3 = _output(Stream, (int)Format, (int)va);\n  _ftbuf(v2, Stream);\n  _unlock_file(Stream);\n  return v3;\n}\n"
+}

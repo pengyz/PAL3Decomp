@@ -1,0 +1,8 @@
+{
+  "name": "gbNBTreeNode::BeginIterateChild(void)",
+  "mangled_name": "?BeginIterateChild@gbNBTreeNode@@QAEPAV1@XZ",
+  "address": "0x10004590",
+  "size_bytes": 7,
+  "signature": "struct gbNBTreeNode *__thiscall(gbNBTreeNode *this)",
+  "decompiled_c": "struct gbNBTreeNode *__thiscall gbNBTreeNode::BeginIterateChild(gbNBTreeNode *this)\n{\n  struct gbNBTreeNode *result; // eax\n\n  result = (struct gbNBTreeNode *)*((_DWORD *)this + 3);\n  *((_DWORD *)this + 6) = result;\n  return result;\n}\n"
+}

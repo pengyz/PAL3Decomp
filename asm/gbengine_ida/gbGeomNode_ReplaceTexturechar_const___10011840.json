@@ -1,0 +1,8 @@
+{
+  "name": "gbGeomNode::ReplaceTexture(char const *)",
+  "mangled_name": "?ReplaceTexture@gbGeomNode@@QAEXPBD@Z",
+  "address": "0x10011840",
+  "size_bytes": 58,
+  "signature": "void __thiscall(gbGeomNode *this, char *a2)",
+  "decompiled_c": "void __thiscall gbGeomNode::ReplaceTexture(gbGeomNode *this, char *a2)\n{\n  gbBaseMesh *v3; // ecx\n  gbGeomNode *v4; // ecx\n\n  v3 = (gbBaseMesh *)*((_DWORD *)this + 66);\n  if ( v3 )\n    gbBaseMesh::ReplaceTexture(v3, a2);\n  v4 = (gbGeomNode *)*((_DWORD *)this + 3);\n  for ( *((_DWORD *)this + 6) = v4; v4; *((_DWORD *)this + 6) = v4 )\n  {\n    gbGeomNode::ReplaceTexture(v4, a2);\n    v4 = *(gbGeomNode **)(*((_DWORD *)this + 6) + 4);\n  }\n}\n"
+}

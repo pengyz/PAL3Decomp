@@ -1,0 +1,8 @@
+{
+  "name": "gbParticleEffect::Render(gbRenderInfoObj *)",
+  "mangled_name": "?Render@gbParticleEffect@@UAEXPAUgbRenderInfoObj@@@Z",
+  "address": "0x1002C2E0",
+  "size_bytes": 118,
+  "signature": "void __thiscall(gbParticleEffect *this, struct gbRenderInfoObj *a2)",
+  "decompiled_c": "void __thiscall gbParticleEffect::Render(gbParticleEffect *this, struct gbRenderInfoObj *a2)\n{\n  gbMatrixStack **v3; // esi\n  int v4; // edi\n  gbMatrixStack *v5; // ebp\n  gbParticleGroup *v6; // ecx\n\n  if ( *((_DWORD *)this + 15) )\n  {\n    v3 = (gbMatrixStack **)dword_101379A8;\n    v4 = *((_DWORD *)a2 + 2);\n    v5 = (gbMatrixStack *)*((_DWORD *)dword_101379A8 + 54);\n    gbMatrixStack::Push(v5);\n    if ( *((_DWORD *)this + 45) )\n      gbMatrixStack::LoadMatrix(v5, (struct gbRenderInfoObj *)((char *)a2 + 32));\n    else\n      gbGfxManager::IdentityWorldMatrix(v3);\n    v6 = (gbParticleGroup *)(144 * v4 + *((_DWORD *)this + 41));\n    if ( *((_DWORD *)v6 + 34) )\n      gbParticleGroup::Render(v6);\n    gbMatrixStack::Pop(v5);\n  }\n}\n"
+}

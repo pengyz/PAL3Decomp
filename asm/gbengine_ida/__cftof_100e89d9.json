@@ -1,0 +1,8 @@
+{
+  "name": "__cftof",
+  "mangled_name": "__cftof",
+  "address": "0x100E89D9",
+  "size_bytes": 85,
+  "signature": "char *__cdecl(double *a1, char *Src, size_t Size)",
+  "decompiled_c": "char *__cdecl _cftof(double *a1, char *Src, size_t Size)\n{\n  double v5; // [esp+0h] [ebp-3Ch]\n  char Destination[24]; // [esp+14h] [ebp-28h] BYREF\n  int v7[4]; // [esp+2Ch] [ebp-10h] BYREF\n\n  v5 = *a1;\n  _fltout2(SLOBYTE(v5), SHIDWORD(v5), (int)v7, Destination);\n  _fptostr(&Src[v7[0] == 45], Size + v7[1], (int)v7);\n  _cftof2(Src, Size, (int)v7, 0);\n  return Src;\n}\n"
+}

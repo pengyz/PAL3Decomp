@@ -1,0 +1,8 @@
+{
+  "name": "gbSnow::gbSnow(int,gbDropDesc const *,char const *,float)",
+  "mangled_name": "??0gbSnow@@QAE@HPBUgbDropDesc@@PBDM@Z",
+  "address": "0x100324A0",
+  "size_bytes": 44,
+  "signature": "gbSnow *__thiscall(gbSnow *this, int a2, const struct gbDropDesc *a3, char *a4, float a5)",
+  "decompiled_c": "gbSnow *__thiscall gbSnow::gbSnow(gbSnow *this, int a2, const struct gbDropDesc *a3, char *a4, float a5)\n{\n  gbDropGroup::gbDropGroup(this, a2, a3, a4);\n  *(_DWORD *)this = &gbSnow::`vftable';\n  *((float *)this + 20) = a5;\n  return this;\n}\n"
+}

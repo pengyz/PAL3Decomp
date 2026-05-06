@@ -1,0 +1,8 @@
+{
+  "name": "__setargv",
+  "mangled_name": "__setargv",
+  "address": "0x100ED346",
+  "size_bytes": 153,
+  "signature": "int()",
+  "decompiled_c": "int _setargv()\n{\n  CHAR *v0; // edi\n  char *v1; // esi\n  int v3; // [esp+Ch] [ebp-8h] BYREF\n  int v4; // [esp+10h] [ebp-4h] BYREF\n\n  if ( !dword_10168768 )\n    __initmbctable();\n  GetModuleFileNameA(0, Filename, 0x104u);\n  dword_10166CC0 = (int)Filename;\n  v0 = Filename;\n  if ( *(_BYTE *)dword_1016877C )\n    v0 = (CHAR *)dword_1016877C;\n  parse_cmdline(v0, 0, 0, &v4, &v3);\n  v1 = (char *)malloc(v3 + 4 * v4);\n  if ( !v1 )\n    _amsg_exit(8u);\n  parse_cmdline(v0, v1, &v1[4 * v4], &v4, &v3);\n  dword_10166CA8 = (int)v1;\n  dword_10166CA4 = v4 - 1;\n  return v4 - 1;\n}\n"
+}

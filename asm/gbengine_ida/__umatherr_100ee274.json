@@ -1,0 +1,8 @@
+{
+  "name": "__umatherr",
+  "mangled_name": "__umatherr",
+  "address": "0x100EE274",
+  "size_bytes": 136,
+  "signature": "double __cdecl(int Value, int a2, int a3, int a4, int a5, int a6, double a7, int a8)",
+  "decompiled_c": "double __cdecl _umatherr(int Value, int a2, int a3, int a4, int a5, int a6, double a7, int a8)\n{\n  int v9; // [esp+0h] [ebp-20h] BYREF\n  int v11; // [esp+8h] [ebp-18h]\n  int v12; // [esp+Ch] [ebp-14h]\n  int v13; // [esp+10h] [ebp-10h]\n  int v14; // [esp+14h] [ebp-Ch]\n  double v15; // [esp+18h] [ebp-8h]\n\n  if ( _get_fname(a2) )\n  {\n    v11 = a3;\n    v12 = a4;\n    v13 = a5;\n    v14 = a6;\n    v9 = Value;\n    v15 = a7;\n    _ctrlfp(a8, 0xFFFF);\n    if ( !sub_100B2854(&v9) )\n      _set_errno(Value);\n    return v15;\n  }\n  else\n  {\n    _ctrlfp(a8, 0xFFFF);\n    _set_errno(Value);\n    return a7;\n  }\n}\n"
+}

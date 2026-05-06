@@ -1,0 +1,8 @@
+{
+  "name": "gbBaseMesh::SetTexture(int,gbTexture *)",
+  "mangled_name": "?SetTexture@gbBaseMesh@@QAEXHPAVgbTexture@@@Z",
+  "address": "0x1000EB60",
+  "size_bytes": 120,
+  "signature": "void __thiscall(gbBaseMesh *this, int a2, struct gbTexture *a3)",
+  "decompiled_c": "void __thiscall gbBaseMesh::SetTexture(gbBaseMesh *this, int a2, struct gbTexture *a3)\n{\n  gbBaseMesh *v3; // edx\n  int v4; // ebx\n  int v5; // eax\n  int v6; // esi\n  gbRefObject *v7; // ecx\n  int i; // [esp+4h] [ebp-8h]\n\n  v3 = this;\n  v4 = 0;\n  for ( i = 0; i < *((_DWORD *)v3 + 17); ++i )\n  {\n    v5 = *((_DWORD *)v3 + 16);\n    v6 = v5 + v4 + 8;\n    if ( a2 < *(_DWORD *)(v5 + v4 + 72) )\n    {\n      v7 = *(gbRefObject **)(v6 + 4 * a2);\n      if ( v7 )\n      {\n        gbRefObject::Release(v7);\n        v3 = this;\n      }\n    }\n    ++*((_DWORD *)a3 + 1);\n    *(_DWORD *)(v6 + 4 * a2) = a3;\n    if ( *(_DWORD *)(v6 + 64) < a2 + 1 )\n      *(_DWORD *)(v6 + 64) = a2 + 1;\n    v4 += 188;\n  }\n}\n"
+}

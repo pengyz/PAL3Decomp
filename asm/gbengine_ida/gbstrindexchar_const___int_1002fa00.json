@@ -1,0 +1,8 @@
+{
+  "name": "gbstrindex(char const *,int)",
+  "mangled_name": "?gbstrindex@@YAPADPBDH@Z",
+  "address": "0x1002FA00",
+  "size_bytes": 85,
+  "signature": "char *__cdecl(char *a1, int a2)",
+  "decompiled_c": "char *__cdecl gbstrindex(char *a1, int a2)\n{\n  int v2; // ecx\n  char *result; // eax\n  int v4; // edi\n  int v5; // ecx\n\n  v2 = 0;\n  result = a1;\n  if ( *a1 )\n  {\n    while ( v2 != a2 )\n    {\n      if ( (unsigned __int8)*result <= 0x7Fu )\n        ++result;\n      else\n        result += 2;\n      ++v2;\n      if ( !*result )\n        goto LABEL_7;\n    }\n  }\n  else\n  {\nLABEL_7:\n    if ( a2 < 0 && (v4 = v2 + a2, v5 = 0, result = a1, *a1) )\n    {\n      while ( v5 != v4 )\n      {\n        if ( (unsigned __int8)*result <= 0x7Fu )\n          ++result;\n        else\n          result += 2;\n        ++v5;\n        if ( !*result )\n          return 0;\n      }\n    }\n    else\n    {\n      return 0;\n    }\n  }\n  return result;\n}\n"
+}

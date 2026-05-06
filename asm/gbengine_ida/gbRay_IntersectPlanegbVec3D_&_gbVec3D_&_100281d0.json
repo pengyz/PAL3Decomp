@@ -1,0 +1,8 @@
+{
+  "name": "gbRay::IntersectPlane(gbVec3D &,gbVec3D &)",
+  "mangled_name": "?IntersectPlane@gbRay@@QAEMAAUgbVec3D@@0@Z",
+  "address": "0x100281D0",
+  "size_bytes": 136,
+  "signature": "double __thiscall(gbRay *this, struct gbVec3D *a2, struct gbVec3D *a3)",
+  "decompiled_c": "double __thiscall gbRay::IntersectPlane(gbRay *this, struct gbVec3D *a2, struct gbVec3D *a3)\n{\n  double v3; // st7\n\n  v3 = *((float *)this + 4) * *((float *)a2 + 1)\n     + *((float *)this + 5) * *((float *)a2 + 2)\n     + *((float *)this + 3) * *(float *)a2;\n  if ( v3 >= 0.000001 || v3 <= -0.000001 )\n    return ((*((float *)a3 + 2) - *((float *)this + 2)) * *((float *)a2 + 2)\n          + (*(float *)a3 - *(float *)this) * *(float *)a2\n          + (*((float *)a3 + 1) - *((float *)this + 1)) * *((float *)a2 + 1))\n         / v3;\n  else\n    return 3.4028235e38;\n}\n"
+}

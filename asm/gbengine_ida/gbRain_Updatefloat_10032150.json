@@ -1,0 +1,8 @@
+{
+  "name": "gbRain::Update(float)",
+  "mangled_name": "?Update@gbRain@@EAEXM@Z",
+  "address": "0x10032150",
+  "size_bytes": 156,
+  "signature": "void __thiscall(gbRain *this, float a2)",
+  "decompiled_c": "void __thiscall gbRain::Update(gbRain *this, float a2)\n{\n  int v2; // edi\n  int v3; // esi\n  int v4; // edx\n  double v5; // st7\n  float v6; // [esp+8h] [ebp-8h]\n  float v7; // [esp+Ch] [ebp-4h]\n\n  v2 = 0;\n  if ( *((int *)this + 2) > 0 )\n  {\n    v3 = 0;\n    do\n    {\n      v4 = v3 + *((_DWORD *)this + 17);\n      if ( *(float *)v4 > 0.0 )\n      {\n        *(_DWORD *)(v4 + 28) = *(_DWORD *)(v4 + 16);\n        *(_DWORD *)(v4 + 32) = *(_DWORD *)(v4 + 20);\n        *(_DWORD *)(v4 + 36) = *(_DWORD *)(v4 + 24);\n        v6 = a2 * *(float *)(v4 + 8);\n        v7 = a2 * *(float *)(v4 + 12);\n        *(float *)(v4 + 16) = a2 * *(float *)(v4 + 4) + *(float *)(v4 + 16);\n        *(float *)(v4 + 20) = v6 + *(float *)(v4 + 20);\n        *(float *)(v4 + 24) = v7 + *(float *)(v4 + 24);\n        v5 = *(float *)v4 - a2;\n        *(float *)v4 = v5;\n        if ( v5 <= 0.0 )\n          --*((_DWORD *)this + 3);\n      }\n      ++v2;\n      v3 += 40;\n    }\n    while ( v2 < *((_DWORD *)this + 2) );\n  }\n}\n"
+}

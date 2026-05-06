@@ -1,0 +1,8 @@
+{
+  "name": "gbMatrixStack::GetTop(void)",
+  "mangled_name": "?GetTop@gbMatrixStack@@QAEPAUgbMatrix4@@XZ",
+  "address": "0x10027590",
+  "size_bytes": 11,
+  "signature": "struct gbMatrix4 *__thiscall(gbMatrixStack *this)",
+  "decompiled_c": "struct gbMatrix4 *__thiscall gbMatrixStack::GetTop(gbMatrixStack *this)\n{\n  return (struct gbMatrix4 *)(*(_DWORD *)this + (*((_DWORD *)this + 2) << 6));\n}\n"
+}

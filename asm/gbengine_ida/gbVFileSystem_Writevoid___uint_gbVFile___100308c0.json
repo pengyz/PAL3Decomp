@@ -1,0 +1,8 @@
+{
+  "name": "gbVFileSystem::Write(void *,uint,gbVFile *)",
+  "mangled_name": "?Write@gbVFileSystem@@QAEXPAXIPAVgbVFile@@@Z",
+  "address": "0x100308C0",
+  "size_bytes": 194,
+  "signature": "void __thiscall(gbVFileSystem *this, void *Buffer, size_t ElementSize, struct gbVFile *a4)",
+  "decompiled_c": "void __thiscall gbVFileSystem::Write(gbVFileSystem *this, void *Buffer, size_t ElementSize, struct gbVFile *a4)\n{\n  int v4; // eax\n  unsigned int v6; // ebp\n  unsigned int v7; // edx\n  size_t v8; // eax\n  void *v9; // eax\n  struct gbVFile *v10; // [esp+Ch] [ebp+Ch]\n\n  v4 = *((_DWORD *)this + 3);\n  if ( v4 )\n  {\n    if ( v4 == 2 )\n    {\n      v6 = *((_DWORD *)a4 + 67) - *((_DWORD *)a4 + 1);\n      v7 = ElementSize;\n      v8 = ElementSize + v6;\n      if ( ElementSize + v6 > *((_DWORD *)a4 + 2) )\n      {\n        *((_DWORD *)a4 + 2) = 2 * v8;\n        v9 = malloc(2 * v8);\n        qmemcpy(v9, *((const void **)a4 + 1), v6);\n        v10 = (struct gbVFile *)v9;\n        free(*((void **)a4 + 1));\n        v7 = ElementSize;\n        *((_DWORD *)a4 + 1) = v10;\n        *((_DWORD *)a4 + 67) = (char *)v10 + v6;\n      }\n      qmemcpy(*((void **)a4 + 67), Buffer, v7);\n      *((_DWORD *)a4 + 67) += v7;\n    }\n  }\n  else\n  {\n    sub_100E5F93(Buffer, ElementSize, 1u, *((FILE **)a4 + 1));\n  }\n}\n"
+}

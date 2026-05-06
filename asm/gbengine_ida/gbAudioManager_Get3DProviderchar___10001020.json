@@ -1,0 +1,8 @@
+{
+  "name": "gbAudioManager::Get3DProvider(char *)",
+  "mangled_name": "?Get3DProvider@gbAudioManager@@AAEKPAD@Z",
+  "address": "0x10001020",
+  "size_bytes": 250,
+  "signature": "int __thiscall(gbAudioManager *this, char *SubStr)",
+  "decompiled_c": "int __thiscall gbAudioManager::Get3DProvider(gbAudioManager *this, char *SubStr)\n{\n  int v3; // [esp+Ch] [ebp-Ch] BYREF\n  int v4; // [esp+10h] [ebp-8h] BYREF\n  char *Str; // [esp+14h] [ebp-4h] BYREF\n\n  v4 = 0;\n  if ( AIL_enumerate_3D_providers(&v4, &v3, &Str) )\n  {\n    while ( !strstr(Str, SubStr) || AIL_open_3D_provider(v3) )\n    {\n      if ( !AIL_enumerate_3D_providers(&v4, &v3, &Str) )\n        goto LABEL_5;\n    }\n    goto LABEL_9;\n  }\nLABEL_5:\n  gbReportError(\"Get3DProvider( %s ) Error\", SubStr);\n  v4 = 0;\n  if ( AIL_enumerate_3D_providers(&v4, &v3, &Str) )\n  {\n    while ( AIL_open_3D_provider(v3) )\n    {\n      if ( !AIL_enumerate_3D_providers(&v4, &v3, &Str) )\n        goto LABEL_11;\n    }\nLABEL_9:\n    AIL_close_3D_provider(v3);\n    return v3;\n  }\nLABEL_11:\n  gbReportError(aCannotFindAUsa);\n  return 0;\n}\n"
+}

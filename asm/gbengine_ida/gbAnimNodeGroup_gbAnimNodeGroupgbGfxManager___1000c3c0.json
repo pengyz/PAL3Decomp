@@ -1,0 +1,8 @@
+{
+  "name": "gbAnimNodeGroup::gbAnimNodeGroup(gbGfxManager *)",
+  "mangled_name": "??0gbAnimNodeGroup@@QAE@PAVgbGfxManager@@@Z",
+  "address": "0x1000C3C0",
+  "size_bytes": 145,
+  "signature": "gbAnimNodeGroup *__thiscall(gbAnimNodeGroup *this, struct gbGfxManager *a2)",
+  "decompiled_c": "gbAnimNodeGroup *__thiscall gbAnimNodeGroup::gbAnimNodeGroup(gbAnimNodeGroup *this, struct gbGfxManager *a2)\n{\n  int v3; // ebx\n  int v4; // edi\n  int v5; // eax\n  int v6; // eax\n\n  gbMatrix4::gbMatrix4((gbAnimNodeGroup *)((char *)this + 52));\n  v3 = 0;\n  *(_DWORD *)this = 0;\n  *((_DWORD *)this + 9) = 0;\n  dword_101379B0 = (int)a2;\n  v4 = *(_DWORD *)this;\n  *((_DWORD *)this + 2) = 0;\n  *((_DWORD *)this + 4) = 0;\n  *((_DWORD *)this + 3) = -1074790400;\n  *((_DWORD *)this + 5) = 0;\n  *((_DWORD *)this + 6) = 0;\n  *((_DWORD *)this + 10) = 0;\n  *((_DWORD *)this + 11) = 1;\n  if ( v4 )\n  {\n    v5 = *(_DWORD *)(v4 + 348);\n    if ( v5 == 3 || v5 == 1 )\n      (*(void (__thiscall **)(_DWORD, _DWORD))(**(_DWORD **)(v4 + 360) + 24))(*(_DWORD *)(v4 + 360), 0);\n    if ( *(int *)(v4 + 20) > 0 )\n    {\n      do\n      {\n        v6 = gbChain1D::operator[](v3);\n        sub_1000C310(v6);\n        ++v3;\n      }\n      while ( v3 < *(_DWORD *)(v4 + 20) );\n    }\n  }\n  *((_DWORD *)this + 11) = 0;\n  *((_DWORD *)this + 12) = 1;\n  return this;\n}\n"
+}

@@ -1,0 +1,8 @@
+{
+  "name": "gbQuaternion::Inverse(void)",
+  "mangled_name": "?Inverse@gbQuaternion@@QAEXXZ",
+  "address": "0x10026F20",
+  "size_bytes": 23,
+  "signature": "void __thiscall(gbQuaternion *this)",
+  "decompiled_c": "void __thiscall gbQuaternion::Inverse(gbQuaternion *this)\n{\n  *(float *)this = -*(float *)this;\n  *((float *)this + 1) = -*((float *)this + 1);\n  *((float *)this + 2) = -*((float *)this + 2);\n}\n"
+}

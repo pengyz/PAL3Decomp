@@ -1,0 +1,8 @@
+{
+  "name": "gbVisNode::SetTimeScale(float)",
+  "mangled_name": "?SetTimeScale@gbVisNode@@QAEXM@Z",
+  "address": "0x100167C0",
+  "size_bytes": 47,
+  "signature": "void __thiscall(gbVisNode *this, float a2)",
+  "decompiled_c": "void __thiscall gbVisNode::SetTimeScale(gbVisNode *this, float a2)\n{\n  gbVisNode *v3; // ecx\n\n  *((float *)this + 14) = a2;\n  v3 = (gbVisNode *)*((_DWORD *)this + 3);\n  for ( *((_DWORD *)this + 6) = v3; v3; *((_DWORD *)this + 6) = v3 )\n  {\n    gbVisNode::SetTimeScale(v3, a2);\n    v3 = *(gbVisNode **)(*((_DWORD *)this + 6) + 4);\n  }\n}\n"
+}

@@ -1,0 +1,8 @@
+{
+  "name": "gbVTextFile::Rewind(void)",
+  "mangled_name": "?Rewind@gbVTextFile@@QAEXXZ",
+  "address": "0x10031170",
+  "size_bytes": 23,
+  "signature": "void __thiscall(struct gbVFile **this)",
+  "decompiled_c": "void __thiscall gbVTextFile::Rewind(struct gbVFile **this)\n{\n  gbVFileSystem::Seek(g_pVFileSys, *(this + 256), 0, 1);\n}\n"
+}

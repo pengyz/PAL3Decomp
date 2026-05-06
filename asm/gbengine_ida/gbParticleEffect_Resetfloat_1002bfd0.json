@@ -1,0 +1,8 @@
+{
+  "name": "gbParticleEffect::Reset(float)",
+  "mangled_name": "?Reset@gbParticleEffect@@UAEXM@Z",
+  "address": "0x1002BFD0",
+  "size_bytes": 157,
+  "signature": "void __thiscall(gbParticleEffect *this, float a2)",
+  "decompiled_c": "void __thiscall gbParticleEffect::Reset(gbParticleEffect *this, float a2)\n{\n  int v2; // ebx\n  int v3; // edx\n  _DWORD *v4; // eax\n  int v5; // esi\n  int v6; // esi\n  int v7; // [esp+4h] [ebp-4h]\n\n  v7 = 0;\n  if ( *((int *)this + 38) > 0 )\n  {\n    v2 = 0;\n    do\n    {\n      v3 = 0;\n      v4 = (_DWORD *)(v2 + *((_DWORD *)this + 41));\n      v5 = v4[33];\n      v4[16] = 0;\n      v4[28] = 0;\n      v4[17] = 0;\n      v4[29] = 0;\n      if ( v5 > 0 )\n      {\n        v6 = 0;\n        do\n        {\n          ++v3;\n          *(_DWORD *)(v6 + v4[32]) = 0;\n          v6 += 88;\n        }\n        while ( v3 < v4[33] );\n      }\n      v4[34] = 0;\n      v2 += 144;\n      ++v7;\n    }\n    while ( v7 < *((_DWORD *)this + 38) );\n  }\n  *((_DWORD *)this + 66) = 0;\n  *((_DWORD *)this + 68) = 0;\n  *((_DWORD *)this + 67) = -1074790400;\n  *((_DWORD *)this + 69) = 0;\n  gbVisNode::Reset(this, a2);\n}\n"
+}

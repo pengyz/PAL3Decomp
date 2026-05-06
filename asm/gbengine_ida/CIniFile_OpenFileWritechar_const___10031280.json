@@ -1,0 +1,8 @@
+{
+  "name": "CIniFile::OpenFileWrite(char const *)",
+  "mangled_name": "?OpenFileWrite@CIniFile@@QAEHPBD@Z",
+  "address": "0x10031280",
+  "size_bytes": 106,
+  "signature": "int __thiscall(CIniFile *this, char *a2)",
+  "decompiled_c": "int __thiscall CIniFile::OpenFileWrite(CIniFile *this, char *a2)\n{\n  FILE *v3; // eax\n  CHAR OutputString[256]; // [esp+8h] [ebp-100h] BYREF\n\n  v3 = gbVFileSystem::OpenFile(g_pVFileSys, a2, 0x402u);\n  *(_DWORD *)this = v3;\n  if ( v3 )\n  {\n    *((_DWORD *)this + 1) = 0;\n    return 1;\n  }\n  else\n  {\n    sprintf(OutputString, \"CIniFile::OpenFileWrite() Error (0) : Could not open file for write : <%s>\\n\", a2);\n    OutputDebugStringA(OutputString);\n    return 0;\n  }\n}\n"
+}

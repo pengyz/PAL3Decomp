@@ -1,0 +1,8 @@
+{
+  "name": "__aullshr",
+  "mangled_name": "__aullshr",
+  "address": "0x100E7290",
+  "size_bytes": 31,
+  "signature": "unsigned __int64 __usercall@<edx:eax>(unsigned __int64 a1@<edx:eax>, unsigned __int8 a2@<cl>)",
+  "decompiled_c": "unsigned __int64 __usercall _aullshr@<edx:eax>(unsigned __int64 a1@<edx:eax>, unsigned __int8 a2@<cl>)\n{\n  if ( a2 >= 0x40u )\n    return 0;\n  else\n    return a1 >> a2;\n}\n"
+}

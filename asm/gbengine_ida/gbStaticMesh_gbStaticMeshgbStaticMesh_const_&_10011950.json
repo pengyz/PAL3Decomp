@@ -1,0 +1,8 @@
+{
+  "name": "gbStaticMesh::gbStaticMesh(gbStaticMesh const &)",
+  "mangled_name": "??0gbStaticMesh@@QAE@ABV0@@Z",
+  "address": "0x10011950",
+  "size_bytes": 182,
+  "signature": "gbStaticMesh *__thiscall(gbStaticMesh *this, const struct gbStaticMesh *a2)",
+  "decompiled_c": "gbStaticMesh *__thiscall gbStaticMesh::gbStaticMesh(gbStaticMesh *this, const struct gbStaticMesh *a2)\n{\n  gbStaticMesh *result; // eax\n  int v3; // ecx\n\n  result = this;\n  v3 = *((_DWORD *)a2 + 1);\n  *(_DWORD *)result = &gbRefObject::`vftable';\n  *((_DWORD *)result + 1) = v3;\n  *((_DWORD *)result + 2) = *((_DWORD *)a2 + 2);\n  *((_DWORD *)result + 3) = *((_DWORD *)a2 + 3);\n  *((_DWORD *)result + 4) = *((_DWORD *)a2 + 4);\n  *((_DWORD *)result + 5) = *((_DWORD *)a2 + 5);\n  *(_DWORD *)result = &gbResource::`vftable';\n  *((_DWORD *)result + 6) = *((_DWORD *)a2 + 6);\n  qmemcpy((char *)result + 28, (char *)a2 + 28, 0x3Cu);\n  qmemcpy((char *)result + 88, (char *)a2 + 88, 0x20u);\n  *(_DWORD *)result = &gbBaseMesh::`vftable';\n  *((_DWORD *)result + 30) = *((_DWORD *)a2 + 30);\n  *((_DWORD *)result + 31) = *((_DWORD *)a2 + 31);\n  *((_DWORD *)result + 32) = *((_DWORD *)a2 + 32);\n  *(_DWORD *)result = &gbStaticMesh::`vftable';\n  return result;\n}\n"
+}

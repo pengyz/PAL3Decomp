@@ -1,0 +1,8 @@
+{
+  "name": "gbCamera::SetLookAt(gbVec3D *,gbVec3D *,gbVec3D *)",
+  "mangled_name": "?SetLookAt@gbCamera@@QAEXPAUgbVec3D@@00@Z",
+  "address": "0x10021970",
+  "size_bytes": 155,
+  "signature": "void __thiscall(gbCamera *this, struct gbVec3D *a2, struct gbVec3D *a3, struct gbVec3D *a4)",
+  "decompiled_c": "void __thiscall gbCamera::SetLookAt(gbCamera *this, struct gbVec3D *a2, struct gbVec3D *a3, struct gbVec3D *a4)\n{\n  double v5; // st7\n  float v6; // [esp+8h] [ebp-58h]\n  float v7; // [esp+Ch] [ebp-54h]\n  float v8; // [esp+10h] [ebp-50h]\n  _DWORD v9[3]; // [esp+14h] [ebp-4Ch] BYREF\n  _BYTE v10[64]; // [esp+20h] [ebp-40h] BYREF\n\n  v6 = *(float *)a2 - *(float *)a3;\n  v7 = *((float *)a2 + 1) - *((float *)a3 + 1);\n  v5 = *((float *)a2 + 2) - *((float *)a3 + 2);\n  *(float *)&v9[1] = v7;\n  v8 = v5;\n  *(float *)v9 = v6;\n  *(float *)&v9[2] = v8;\n  gbVec3D::Normalize((gbVec3D *)v9);\n  gbMatrix4::gbMatrix4((gbMatrix4 *)v10);\n  gbMatrix4::MakeMatrix((gbMatrix4 *)v10, (struct gbVec3D *)v9, a4, a2);\n  gbQuaternion::SetMatrix((gbCamera *)((char *)this + 360), (struct gbMatrix4 *)v10);\n  *((_DWORD *)this + 87) = *(_DWORD *)a2;\n  *((_DWORD *)this + 88) = *((_DWORD *)a2 + 1);\n  *((_DWORD *)this + 89) = *((_DWORD *)a2 + 2);\n}\n"
+}

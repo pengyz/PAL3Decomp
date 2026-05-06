@@ -1,0 +1,8 @@
+{
+  "name": "gbPrintFont::gbPrintFont(int,int,int)",
+  "mangled_name": "??0gbPrintFont@@QAE@HHH@Z",
+  "address": "0x10022A20",
+  "size_bytes": 147,
+  "signature": "gbPrintFont *__thiscall(gbPrintFont *this, int a2, int a3, int a4)",
+  "decompiled_c": "gbPrintFont *__thiscall gbPrintFont::gbPrintFont(gbPrintFont *this, int a2, int a3, int a4)\n{\n  void *v5; // eax\n  size_t v6; // edx\n\n  *((_DWORD *)this + 7) = a3;\n  *((_DWORD *)this + 9) = a4;\n  *(_DWORD *)this = &off_100F5844;\n  *((_DWORD *)this + 3) = a2;\n  *((_DWORD *)this + 1) = malloc(44 * a2);\n  *((_DWORD *)this + 2) = malloc(8 * *((_DWORD *)this + 3));\n  v5 = malloc(36 * *((_DWORD *)this + 7));\n  v6 = *((_DWORD *)this + 9);\n  *((_DWORD *)this + 5) = v5;\n  *((_DWORD *)this + 8) = malloc(v6);\n  *((_BYTE *)this + 47) = -1;\n  *((_BYTE *)this + 44) = -1;\n  *((_BYTE *)this + 45) = -1;\n  *((_BYTE *)this + 46) = -1;\n  *((_DWORD *)this + 6) = 0;\n  *((_DWORD *)this + 4) = 0;\n  *((_DWORD *)this + 10) = 0;\n  *((_DWORD *)this + 15) = 0;\n  *((_DWORD *)this + 14) = 0;\n  *((_DWORD *)this + 16) = 0;\n  *((_DWORD *)this + 13) = 1065353216;\n  *((_DWORD *)this + 12) = 1065353216;\n  return this;\n}\n"
+}

@@ -4,14 +4,14 @@
 
 | 指标 | 数值 |
 |------|------|
-| 编译器 | MSVC 6.0 SP6 (cl.exe 12.00.8804) |
-| IDA 导出函数 | 1342 |
-| 源文件数 | 59 |
-| 编译通过文件 | 51/59 |
+| 编译器 | MSVC 6.0 SP5 (cl.exe 12.00.8804) |
+| IDA 导出函数 | 1344 |
+| 源文件数 | 56 |
+| 编译通过文件 | **56/56 (100%)** |
 | 验证函数总数 | 680+ |
 | 完全匹配函数 | **157 (23.1%)** |
-| 剩余 STUB 函数 | 14 |
-| 最后更新 | 2026-05-06 |
+| 剩余 STUB 函数 | 0 |
+| 最后更新 | 2026-05-07 |
 
 ## 编译选项
 
@@ -69,11 +69,11 @@ CL.EXE /c /O2 (后续可能需要 /Ob1 /GF /Gy 等微调)
 | gbVTextFile.cpp | 8 | 0 | 0% | |
 | gbActor.cpp | 34 | 5 | 14.7% | |
 | gbGeomNode.cpp | 26 | 0 | 0% | |
-| gbGfxManager.cpp | - | - | - | 编译失败: __thiscall+D3DX |
-| gbGfxManager_D3D.cpp | 1 | 0 | 0% | |
+| gbGfxManager.cpp | 40 | - | - | 编译通过 |
+| gbGfxManager_D3D.cpp | 1 | 0 | 0% | 编译通过 |
 | gbMesh.cpp | 40 | 3 | 7.5% | |
 | gbMisc.cpp | 50 | 2 | 4% | |
-| gbRenderEffect.cpp | - | - | - | 编译失败: D3DX9 |
+| gbRenderEffect.cpp | 14 | - | - | 全部实现, 编译通过 |
 | gbSceneGraph.cpp | 23 | 0 | 0% | |
 | gbVertPool.cpp | 44 | 2 | 4.5% | |
 | gbVertPoolMgr.cpp | 1 | 0 | 0% | |

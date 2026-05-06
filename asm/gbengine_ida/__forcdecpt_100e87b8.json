@@ -1,0 +1,8 @@
+{
+  "name": "__forcdecpt",
+  "mangled_name": "__forcdecpt",
+  "address": "0x100E87B8",
+  "size_bytes": 90,
+  "signature": "char __cdecl(char *a1)",
+  "decompiled_c": "char __cdecl _forcdecpt(char *a1)\n{\n  char *v1; // esi\n  int v2; // eax\n  char result; // al\n  char *v4; // esi\n  char v5; // cl\n\n  v1 = a1;\n  if ( tolower(*a1) != 101 )\n  {\n    do\n    {\n      ++v1;\n      if ( (int)SrcSizeInBytes <= 1 )\n        v2 = *((_BYTE *)off_1012A140 + 2 * *v1) & 4;\n      else\n        v2 = _isctype(*v1, 4);\n    }\n    while ( v2 );\n  }\n  result = *v1;\n  *v1 = byte_1012A350;\n  v4 = v1 + 1;\n  do\n  {\n    v5 = *v4;\n    *v4 = result;\n    result = v5;\n  }\n  while ( *v4++ );\n  return result;\n}\n"
+}

@@ -1,0 +1,8 @@
+{
+  "name": "gbVec3D::operator*=(float)",
+  "mangled_name": "??XgbVec3D@@QAEXM@Z",
+  "address": "0x10001F80",
+  "size_bytes": 31,
+  "signature": "void __thiscall(float *this, float a2)",
+  "decompiled_c": "void __thiscall gbVec3D::operator*=(float *this, float a2)\n{\n  *this = a2 * *this;\n  *(this + 1) = a2 * *(this + 1);\n  *(this + 2) = a2 * *(this + 2);\n}\n"
+}

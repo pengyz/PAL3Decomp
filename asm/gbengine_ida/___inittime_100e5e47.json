@@ -1,0 +1,8 @@
+{
+  "name": "___inittime",
+  "mangled_name": "___inittime",
+  "address": "0x100E5E47",
+  "size_bytes": 53,
+  "signature": "unsigned __int64()",
+  "decompiled_c": "unsigned __int64 __inittime()\n{\n  unsigned __int64 result; // rax\n  struct _FILETIME SystemTimeAsFileTime; // [esp+4h] [ebp-8h] BYREF\n\n  GetSystemTimeAsFileTime(&SystemTimeAsFileTime);\n  result = SystemTimeAsFileTime.dwLowDateTime + ((unsigned __int64)SystemTimeAsFileTime.dwHighDateTime << 32);\n  qword_10166C68 = result;\n  return result;\n}\n"
+}

@@ -1,0 +1,8 @@
+{
+  "name": "gbVec3D::Length(void)",
+  "mangled_name": "?Length@gbVec3D@@QBEMXZ",
+  "address": "0x10024FE0",
+  "size_bytes": 33,
+  "signature": "long double __thiscall(gbVec3D *this)",
+  "decompiled_c": "long double __thiscall gbVec3D::Length(gbVec3D *this)\n{\n  return sqrt(\n           *(float *)this * *(float *)this\n         + *((float *)this + 1) * *((float *)this + 1)\n         + *((float *)this + 2) * *((float *)this + 2));\n}\n"
+}

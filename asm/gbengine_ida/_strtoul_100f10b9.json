@@ -1,0 +1,8 @@
+{
+  "name": "_strtoul",
+  "mangled_name": "_strtoul",
+  "address": "0x100F10B9",
+  "size_bytes": 23,
+  "signature": "unsigned int __cdecl(const char *String, char **EndPtr, int Radix)",
+  "decompiled_c": "unsigned int __cdecl strtoul(const char *String, char **EndPtr, int Radix)\n{\n  return strtoxl((unsigned __int8 *)String, (unsigned __int8 **)EndPtr, Radix, 1);\n}\n"
+}

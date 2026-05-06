@@ -1,0 +1,8 @@
+{
+  "name": "gbMatrix4::RightTranslate(gbVec3D &)",
+  "mangled_name": "?RightTranslate@gbMatrix4@@QAEXAAUgbVec3D@@@Z",
+  "address": "0x10026130",
+  "size_bytes": 33,
+  "signature": "void __thiscall(gbMatrix4 *this, struct gbVec3D *a2)",
+  "decompiled_c": "void __thiscall gbMatrix4::RightTranslate(gbMatrix4 *this, struct gbVec3D *a2)\n{\n  *((float *)this + 12) = *(float *)a2 + *((float *)this + 12);\n  *((float *)this + 13) = *((float *)a2 + 1) + *((float *)this + 13);\n  *((float *)this + 14) = *((float *)a2 + 2) + *((float *)this + 14);\n}\n"
+}

@@ -1,0 +1,8 @@
+{
+  "name": "gbCrc32Init(void)",
+  "mangled_name": "?gbCrc32Init@@YAXXZ",
+  "address": "0x10027730",
+  "size_bytes": 55,
+  "signature": "void __cdecl()",
+  "decompiled_c": "void __cdecl gbCrc32Init()\n{\n  int v0; // edx\n  int *v1; // ecx\n  int v2; // esi\n  int v3; // eax\n\n  v0 = 0;\n  v1 = &dword_1014ADC8;\n  do\n  {\n    v2 = 8;\n    v3 = v0 << 24;\n    do\n    {\n      if ( v3 >= 0 )\n        v3 *= 2;\n      else\n        v3 = (2 * v3) ^ 0x4C11DB7;\n      --v2;\n    }\n    while ( v2 );\n    *v1++ = v3;\n    ++v0;\n  }\n  while ( (int)v1 < (int)dword_1014B1C8 );\n}\n"
+}

@@ -1,0 +1,8 @@
+{
+  "name": "__isatty",
+  "mangled_name": "__isatty",
+  "address": "0x100F18C9",
+  "size_bytes": 41,
+  "signature": "int __cdecl(int FileHandle)",
+  "decompiled_c": "int __cdecl _isatty(int FileHandle)\n{\n  if ( FileHandle < uNumber )\n    return *(_BYTE *)(dword_10167400[FileHandle >> 5] + 36 * (FileHandle & 0x1F) + 4) & 0x40;\n  else\n    return 0;\n}\n"
+}

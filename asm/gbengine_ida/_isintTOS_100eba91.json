@@ -1,0 +1,8 @@
+{
+  "name": "_isintTOS",
+  "mangled_name": "_isintTOS",
+  "address": "0x100EBA91",
+  "size_bytes": 37,
+  "signature": "int __usercall@<eax>(double a1@<st0>)",
+  "decompiled_c": "int __usercall isintTOS@<eax>(double a1@<st0>)\n{\n  _ST6 = a1;\n  __asm { frndint }\n  if ( _ST6 != a1 )\n    return notanint();\n  _ST5 = a1 * dbl_1012A4A2;\n  __asm { frndint }\n  if ( _ST5 == a1 * dbl_1012A4A2 )\n    return evenint();\n  else\n    return isintTOSret();\n}\n"
+}

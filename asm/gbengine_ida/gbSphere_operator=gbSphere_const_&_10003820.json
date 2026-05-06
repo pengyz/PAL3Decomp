@@ -1,0 +1,8 @@
+{
+  "name": "gbSphere::operator=(gbSphere const &)",
+  "mangled_name": "??4gbSphere@@QAEAAU0@ABU0@@Z",
+  "address": "0x10003820",
+  "size_bytes": 31,
+  "signature": "_DWORD *__thiscall(_DWORD *this, _DWORD *a2)",
+  "decompiled_c": "// Alternative name is '??4gbPlane@@QAEAAU0@ABU0@@Z'\n_DWORD *__thiscall gbSphere::operator=(_DWORD *this, _DWORD *a2)\n{\n  *this = *a2;\n  *(this + 1) = a2[1];\n  *(this + 2) = a2[2];\n  *(this + 3) = a2[3];\n  return this;\n}\n"
+}

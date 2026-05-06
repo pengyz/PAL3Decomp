@@ -1,0 +1,8 @@
+{
+  "name": "__fload_withFB",
+  "mangled_name": "__fload_withFB",
+  "address": "0x100EA495",
+  "size_bytes": 67,
+  "signature": "double __fastcall(int a1, _DWORD *a2)",
+  "decompiled_c": "double __fastcall _fload_withFB(int a1, _DWORD *a2)\n{\n  double result; // st7\n\n  if ( (a2[1] & 0x7FF00000) != 0x7FF00000 )\n    return *(double *)a2;\n  *(_QWORD *)&result = *(_QWORD *)a2 << 11;\n  return result;\n}\n"
+}

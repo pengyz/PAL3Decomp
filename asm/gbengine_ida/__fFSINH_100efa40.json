@@ -1,0 +1,8 @@
+{
+  "name": "__fFSINH",
+  "mangled_name": "__fFSINH",
+  "address": "0x100EFA40",
+  "size_bytes": 116,
+  "signature": "void __usercall(char a1@<bl>, int a2@<ebp>, double a3@<st1>)",
+  "decompiled_c": "void __usercall _fFSINH(char a1@<bl>, int a2@<ebp>, double a3@<st1>)\n{\n  *(_BYTE *)(a2 - 144) = -1;\n  fFEXPH();\n  if ( a1 )\n  {\n    __FSCALE__(ExpHypCopyInv() - a3, -1.0);\n    _rttosnpop();\n  }\n  else\n  {\n    _rtinfnpop(a2);\n    chsifnegret();\n  }\n}\n"
+}

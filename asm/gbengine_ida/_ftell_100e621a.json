@@ -1,0 +1,8 @@
+{
+  "name": "_ftell",
+  "mangled_name": "_ftell",
+  "address": "0x100E621A",
+  "size_bytes": 34,
+  "signature": "int __cdecl(FILE *Stream)",
+  "decompiled_c": "int __cdecl ftell(FILE *Stream)\n{\n  int v1; // edi\n\n  _lock_file(Stream);\n  v1 = _ftell_lk(Stream);\n  _unlock_file(Stream);\n  return v1;\n}\n"
+}

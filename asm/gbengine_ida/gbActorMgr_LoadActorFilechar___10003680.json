@@ -1,0 +1,8 @@
+{
+  "name": "gbActorMgr::LoadActorFile(char *)",
+  "mangled_name": "?LoadActorFile@gbActorMgr@@QAEPAVgbActor@@PAD@Z",
+  "address": "0x10003680",
+  "size_bytes": 337,
+  "signature": "struct gbActor *__thiscall(gbActorMgr *this, char *a2)",
+  "decompiled_c": "struct gbActor *__thiscall gbActorMgr::LoadActorFile(gbActorMgr *this, char *a2)\n{\n  gbResource *ResByName; // esi\n  struct gbVFile *v4; // esi\n  void *v5; // eax\n  int v6; // eax\n  void *v7; // eax\n  gbActor *v8; // eax\n  char Str[256]; // [esp+10h] [ebp-10Ch] BYREF\n  int v11; // [esp+118h] [ebp-4h]\n\n  ResByName = gbResManager::FindResByName(this, a2);\n  if ( !ResByName )\n  {\n    if ( !strrchr(a2, 46) )\n      return 0;\n    v4 = gbVFileSystem::OpenFile(g_pVFileSys, a2, 0x401u);\n    gbVFileSystem::ReadLine(g_pVFileSys, Str, 255, v4);\n    gbVFileSystem::CloseFile(g_pVFileSys, v4);\n    if ( strstr(Str, aMv3) )\n    {\n      v5 = operator new(0xE0u);\n      v11 = 0;\n      if ( v5 )\n      {\n        v6 = sub_100094D0(v5);\nLABEL_9:\n        ResByName = (gbResource *)v6;\n        v11 = -1;\n        (*(void (__thiscall **)(int, char *))(*(_DWORD *)v6 + 12))(v6, a2);\n        gbResource::SetName(ResByName, a2);\n        gbResManager::AddResource(this, ResByName);\n        goto LABEL_10;\n      }\n    }\n    else\n    {\n      v7 = operator new(0x108u);\n      v11 = 1;\n      if ( v7 )\n      {\n        v6 = sub_10007B30(v7);\n        goto LABEL_9;\n      }\n    }\n    v6 = 0;\n    goto LABEL_9;\n  }\nLABEL_10:\n  v8 = (gbActor *)operator new(0x74u);\n  v11 = 2;\n  if ( v8 )\n    return gbActor::gbActor(v8, ResByName);\n  return 0;\n}\n"
+}

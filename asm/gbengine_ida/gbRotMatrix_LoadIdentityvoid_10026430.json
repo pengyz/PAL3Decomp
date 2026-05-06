@@ -1,0 +1,8 @@
+{
+  "name": "gbRotMatrix::LoadIdentity(void)",
+  "mangled_name": "?LoadIdentity@gbRotMatrix@@QAEXXZ",
+  "address": "0x10026430",
+  "size_bytes": 29,
+  "signature": "void __thiscall(gbRotMatrix *this)",
+  "decompiled_c": "void __thiscall gbRotMatrix::LoadIdentity(gbRotMatrix *this)\n{\n  memset(this, 0, 0x24u);\n  *((_DWORD *)this + 8) = 1065353216;\n  *((_DWORD *)this + 4) = 1065353216;\n  *(_DWORD *)this = 1065353216;\n}\n"
+}

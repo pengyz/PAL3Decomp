@@ -1,0 +1,8 @@
+{
+  "name": "_longjmp",
+  "mangled_name": "_longjmp",
+  "address": "0x100E6710",
+  "size_bytes": 120,
+  "signature": "void __cdecl __noreturn(int *__attribute__((__org_typedef(jmp_buf))) Buf, int Value)",
+  "decompiled_c": "void __cdecl __noreturn longjmp(jmp_buf Buf, int Value)\n{\n  int v2; // ebp\n  int v3; // esi\n  void (__stdcall *v4)(int *__attribute__((__org_typedef(jmp_buf)))); // eax\n\n  v2 = *Buf;\n  v3 = Buf[6];\n  if ( v3 != __readfsdword(0) )\n    _global_unwind2((PVOID)Buf[6]);\n  if ( v3 )\n  {\n    if ( _rt_probe_read4(Buf + 8) && Buf[8] == 1447244336 )\n    {\n      v4 = (void (__stdcall *)(int *__attribute__((__org_typedef(jmp_buf)))))Buf[9];\n      if ( v4 )\n        v4(Buf);\n    }\n    else\n    {\n      _local_unwind2(v3, Buf[7]);\n    }\n  }\n  _NLG_Notify(Buf[5], v2, 0);\n  ((void (*)(void))Buf[5])();\n}\n"
+}

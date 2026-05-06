@@ -1,0 +1,8 @@
+{
+  "name": "gbActor::GetEventTime(char *,char *)",
+  "mangled_name": "?GetEventTime@gbActor@@QAEIPAD0@Z",
+  "address": "0x100034F0",
+  "size_bytes": 82,
+  "signature": "unsigned int __thiscall(gbActor *this, char *a2, char *a3)",
+  "decompiled_c": "unsigned int __thiscall gbActor::GetEventTime(gbActor *this, char *a2, char *a3)\n{\n  unsigned int v4; // ebx\n  unsigned int v5; // eax\n  int v6; // esi\n  int v7; // edx\n  _DWORD *i; // ecx\n\n  v4 = gbCrc32Compute(a2);\n  v5 = gbCrc32Compute(a3);\n  v6 = *((_DWORD *)this + 25);\n  v7 = 0;\n  if ( v6 <= 0 )\n    return -1;\n  for ( i = (_DWORD *)(*((_DWORD *)this + 24) + 4); *i != v4; i += 9 )\n  {\n    if ( ++v7 >= v6 )\n      return -1;\n  }\n  return (*(unsigned int (__thiscall **)(_DWORD, unsigned int, int))(**((_DWORD **)this + 22) + 68))(\n           *((_DWORD *)this + 22),\n           v5,\n           v7);\n}\n"
+}

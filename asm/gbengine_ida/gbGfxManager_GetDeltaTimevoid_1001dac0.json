@@ -1,0 +1,8 @@
+{
+  "name": "gbGfxManager::GetDeltaTime(void)",
+  "mangled_name": "?GetDeltaTime@gbGfxManager@@QAENXZ",
+  "address": "0x1001DAC0",
+  "size_bytes": 34,
+  "signature": "double __thiscall(gbGfxManager *this)",
+  "decompiled_c": "double __thiscall gbGfxManager::GetDeltaTime(gbGfxManager *this)\n{\n  double result; // st7\n\n  result = *((double *)this + 63) - *((double *)this + 62);\n  if ( result >= 0.5 )\n    return 0.1000000014901161;\n  return result;\n}\n"
+}

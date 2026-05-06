@@ -1,0 +1,8 @@
+{
+  "name": "gbNBTreeNode::gbNBTreeNode(gbNBTreeNode const &)",
+  "mangled_name": "??0gbNBTreeNode@@QAE@ABV0@@Z",
+  "address": "0x100045B0",
+  "size_bytes": 63,
+  "signature": "gbNBTreeNode *__thiscall(gbNBTreeNode *this, const struct gbNBTreeNode *a2)",
+  "decompiled_c": "gbNBTreeNode *__thiscall gbNBTreeNode::gbNBTreeNode(gbNBTreeNode *this, const struct gbNBTreeNode *a2)\n{\n  gbNBTreeNode *result; // eax\n  int v3; // edx\n  int v4; // ecx\n\n  result = this;\n  v3 = *((_DWORD *)a2 + 1);\n  *(_DWORD *)this = &gbChain1DNode::`vftable';\n  *((_DWORD *)this + 1) = v3;\n  *((_DWORD *)this + 2) = *((_DWORD *)a2 + 2);\n  *((_DWORD *)this + 3) = *((_DWORD *)a2 + 3);\n  *((_DWORD *)this + 4) = *((_DWORD *)a2 + 4);\n  *((_DWORD *)this + 5) = *((_DWORD *)a2 + 5);\n  v4 = *((_DWORD *)a2 + 6);\n  *(_DWORD *)result = &gbNBTreeNode::`vftable';\n  *((_DWORD *)result + 6) = v4;\n  return result;\n}\n"
+}

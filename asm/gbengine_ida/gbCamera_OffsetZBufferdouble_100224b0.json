@@ -1,0 +1,8 @@
+{
+  "name": "gbCamera::OffsetZBuffer(double)",
+  "mangled_name": "?OffsetZBuffer@gbCamera@@QAEXN@Z",
+  "address": "0x100224B0",
+  "size_bytes": 39,
+  "signature": "void __thiscall(gbCamera *this, double a2)",
+  "decompiled_c": "void __thiscall gbCamera::OffsetZBuffer(gbCamera *this, double a2)\n{\n  int v3; // ecx\n\n  v3 = *((_DWORD *)this + 86);\n  *((float *)this + 11) = 1.0 - a2 * 0.0000152587890625;\n  (*(void (__thiscall **)(int, char *))(*(_DWORD *)v3 + 36))(v3, (char *)this + 24);\n}\n"
+}

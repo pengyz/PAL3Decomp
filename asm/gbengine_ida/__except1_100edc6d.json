@@ -1,0 +1,8 @@
+{
+  "name": "__except1",
+  "mangled_name": "__except1",
+  "address": "0x100EDC6D",
+  "size_bytes": 152,
+  "signature": "double __cdecl(DWORD dwExceptionCode, int a2, double a3, double a4, int a5)",
+  "decompiled_c": "double __cdecl _except1(DWORD dwExceptionCode, int a2, double a3, double a4, int a5)\n{\n  int v5; // eax\n  double result; // st7\n  ULONG_PTR Arguments[14]; // [esp+1Ch] [ebp-58h] BYREF\n  int v8; // [esp+54h] [ebp-20h]\n\n  if ( !_handle_exc(dwExceptionCode, &a4, a5) )\n  {\n    v8 &= ~1u;\n    _raise_exc((ULONG_PTR)Arguments, (int)&a5, dwExceptionCode, a2, (int)&a3, (int)&a4);\n  }\n  v5 = _errcode(dwExceptionCode);\n  if ( dword_1012B4A0 || !v5 )\n  {\n    _set_errno(v5);\n    _ctrlfp(a5, 0xFFFF);\n    return a4;\n  }\n  else\n  {\n    result = a3;\n    _umatherr(\n      v5,\n      a2,\n      SLODWORD(a3),\n      SHIDWORD(a3),\n      COERCE_UNSIGNED_INT64(0.0),\n      HIDWORD(COERCE_UNSIGNED_INT64(0.0)),\n      a4,\n      a5);\n  }\n  return result;\n}\n"
+}

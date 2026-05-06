@@ -1,0 +1,8 @@
+{
+  "name": "gbMatrix4::Transpose(void)",
+  "mangled_name": "?Transpose@gbMatrix4@@QAEXXZ",
+  "address": "0x10025D20",
+  "size_bytes": 60,
+  "signature": "void __thiscall(gbMatrix4 *this)",
+  "decompiled_c": "void __thiscall gbMatrix4::Transpose(gbMatrix4 *this)\n{\n  int v1; // esi\n  float *v2; // ebx\n  float *v3; // edi\n  float *v4; // ecx\n  float *v5; // eax\n  int v6; // edx\n  double v7; // st7\n  float v8; // ebp\n\n  v1 = 1;\n  v2 = (float *)((char *)this + 4);\n  v3 = (float *)((char *)this + 16);\n  do\n  {\n    if ( v1 > 0 )\n    {\n      v4 = v3;\n      v5 = v2;\n      v6 = v1;\n      do\n      {\n        v7 = *v4;\n        v8 = *v5;\n        v5 += 4;\n        *v4++ = v8;\n        *(v5 - 4) = v7;\n        --v6;\n      }\n      while ( v6 );\n    }\n    ++v1;\n    v3 += 4;\n    ++v2;\n  }\n  while ( v1 < 4 );\n}\n"
+}

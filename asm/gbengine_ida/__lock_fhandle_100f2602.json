@@ -1,0 +1,8 @@
+{
+  "name": "__lock_fhandle",
+  "mangled_name": "__lock_fhandle",
+  "address": "0x100F2602",
+  "size_bytes": 95,
+  "signature": "void __cdecl(int a1)",
+  "decompiled_c": "void __cdecl _lock_fhandle(int a1)\n{\n  int v1; // edi\n  int v2; // esi\n\n  v1 = 36 * (a1 & 0x1F);\n  v2 = v1 + dword_10167400[a1 >> 5];\n  if ( !*(_DWORD *)(v2 + 8) )\n  {\n    _lock(17);\n    if ( !*(_DWORD *)(v2 + 8) )\n    {\n      InitializeCriticalSection((LPCRITICAL_SECTION)(v2 + 12));\n      ++*(_DWORD *)(v2 + 8);\n    }\n    _unlock(17);\n  }\n  EnterCriticalSection((LPCRITICAL_SECTION)(dword_10167400[a1 >> 5] + v1 + 12));\n}\n"
+}

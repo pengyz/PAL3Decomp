@@ -1,0 +1,8 @@
+{
+  "name": "__expandlocale",
+  "mangled_name": "__expandlocale",
+  "address": "0x100E6F5B",
+  "size_bytes": 280,
+  "signature": "char *__cdecl(char *Str2, char *Destination, _WORD *a3, _DWORD *a4)",
+  "decompiled_c": "char *__cdecl _expandlocale(char *Str2, char *Destination, _WORD *a3, _DWORD *a4)\n{\n  char *result; // eax\n  char Source[136]; // [esp+Ch] [ebp-88h] BYREF\n\n  if ( !Str2 )\n    return 0;\n  if ( *Str2 == 67 && !Str2[1] )\n  {\n    result = Destination;\n    Destination[1] = 0;\n    *Destination = 67;\n    if ( a3 )\n    {\n      *a3 = 0;\n      a3[1] = 0;\n      a3[2] = 0;\n    }\n    if ( a4 )\n      *a4 = 0;\n    return result;\n  }\n  if ( strcmp(Str1, Str2) && strcmp(aC_1, Str2) )\n  {\n    if ( __lc_strtolc(Source, Str2) || !__get_qualified_locale(Source, &dword_10166C84, Source) )\n      return 0;\n    dword_10166C8C = (unsigned __int16)word_10166C88;\n    __lc_lctostr(Str1, Source);\n    if ( *Str2 )\n      strcpy(aC_1, Str2);\n    else\n      strcpy(aC_1, Str1);\n  }\n  if ( a3 )\n    memcpy_0(a3, &dword_10166C84, 6u);\n  if ( a4 )\n    memcpy_0(a4, &dword_10166C8C, sizeof(_DWORD));\n  strcpy(Destination, Str1);\n  return Str1;\n}\n"
+}

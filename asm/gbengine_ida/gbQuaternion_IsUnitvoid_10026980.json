@@ -1,0 +1,8 @@
+{
+  "name": "gbQuaternion::IsUnit(void)",
+  "mangled_name": "?IsUnit@gbQuaternion@@QBE?B_NXZ",
+  "address": "0x10026980",
+  "size_bytes": 75,
+  "signature": "bool __thiscall(gbQuaternion *this)",
+  "decompiled_c": "bool __thiscall gbQuaternion::IsUnit(gbQuaternion *this)\n{\n  double v1; // st3\n\n  v1 = *(float *)this * *(float *)this\n     + *((float *)this + 1) * *((float *)this + 1)\n     + *((float *)this + 2) * *((float *)this + 2)\n     + *((float *)this + 3) * *((float *)this + 3);\n  return v1 < 1.005 && v1 > 0.995;\n}\n"
+}

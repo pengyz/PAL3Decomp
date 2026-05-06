@@ -1,0 +1,8 @@
+{
+  "name": "__cftog",
+  "mangled_name": "__cftog",
+  "address": "0x100E8AD5",
+  "size_bytes": 147,
+  "signature": "char *__cdecl(double *a1, char *Src, signed int Size, int a4)",
+  "decompiled_c": "char *__cdecl _cftog(double *a1, char *Src, signed int Size, int a4)\n{\n  int v5; // esi\n  char *v6; // edi\n  double v8; // [esp+0h] [ebp-44h]\n  char Destination[24]; // [esp+1Ch] [ebp-28h] BYREF\n  int v10; // [esp+34h] [ebp-10h] BYREF\n  int v11; // [esp+38h] [ebp-Ch]\n\n  v8 = *a1;\n  _fltout2(SLOBYTE(v8), SHIDWORD(v8), (int)&v10, Destination);\n  v5 = v11 - 1;\n  v6 = &Src[v10 == 45];\n  _fptostr(v6, Size, (int)&v10);\n  if ( v11 - 1 < -4 || v11 - 1 >= Size )\n    return _cftoe2(Src, Size, a4, (int)&v10, 1);\n  if ( v5 < v11 - 1 )\n    v6[strlen(v6) - 1] = 0;\n  return _cftof2(Src, Size, &v10, 1);\n}\n"
+}

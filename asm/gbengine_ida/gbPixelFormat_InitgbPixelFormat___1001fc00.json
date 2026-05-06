@@ -1,0 +1,8 @@
+{
+  "name": "gbPixelFormat::Init(gbPixelFormat *)",
+  "mangled_name": "?Init@gbPixelFormat@@QAEXPAV1@@Z",
+  "address": "0x1001FC00",
+  "size_bytes": 135,
+  "signature": "void __thiscall(gbPixelFormat *this, struct gbPixelFormat *a2)",
+  "decompiled_c": "void __thiscall gbPixelFormat::Init(gbPixelFormat *this, struct gbPixelFormat *a2)\n{\n  int v3; // ecx\n  size_t v4; // esi\n  void *v5; // eax\n\n  v3 = *((_DWORD *)a2 + 1);\n  *((_DWORD *)this + 1) = v3;\n  if ( *((_DWORD *)a2 + 2) )\n  {\n    v4 = 4 * (1 << v3);\n    v5 = malloc(v4);\n    *((_DWORD *)this + 2) = v5;\n    qmemcpy(v5, *((const void **)a2 + 2), v4);\n  }\n  else\n  {\n    *((_DWORD *)a2 + 2) = 0;\n  }\n  *(_DWORD *)this = *(_DWORD *)a2;\n  *((_DWORD *)this + 3) = *((_DWORD *)a2 + 3);\n  *((_DWORD *)this + 4) = *((_DWORD *)a2 + 4);\n  *((_DWORD *)this + 5) = *((_DWORD *)a2 + 5);\n  *((_DWORD *)this + 6) = *((_DWORD *)a2 + 6);\n  *((_DWORD *)this + 7) = *((_DWORD *)a2 + 7);\n  *((_DWORD *)this + 8) = *((_DWORD *)a2 + 8);\n  *((_DWORD *)this + 9) = *((_DWORD *)a2 + 9);\n  *((_DWORD *)this + 10) = *((_DWORD *)a2 + 10);\n}\n"
+}

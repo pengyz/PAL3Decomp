@@ -1,0 +1,8 @@
+{
+  "name": "gbParticleGroup::Reset(void)",
+  "mangled_name": "?Reset@gbParticleGroup@@QAEXXZ",
+  "address": "0x1002B1E0",
+  "size_bytes": 70,
+  "signature": "void __thiscall(gbParticleGroup *this)",
+  "decompiled_c": "void __thiscall gbParticleGroup::Reset(gbParticleGroup *this)\n{\n  int v1; // edx\n  int v2; // eax\n  int v3; // edx\n\n  v1 = *((_DWORD *)this + 33);\n  v2 = 0;\n  *((_DWORD *)this + 16) = 0;\n  *((_DWORD *)this + 28) = 0;\n  *((_DWORD *)this + 17) = 0;\n  *((_DWORD *)this + 29) = 0;\n  if ( v1 <= 0 )\n  {\n    *((_DWORD *)this + 34) = 0;\n  }\n  else\n  {\n    v3 = 0;\n    do\n    {\n      ++v2;\n      *(_DWORD *)(v3 + *((_DWORD *)this + 32)) = 0;\n      v3 += 88;\n    }\n    while ( v2 < *((_DWORD *)this + 33) );\n    *((_DWORD *)this + 34) = 0;\n  }\n}\n"
+}

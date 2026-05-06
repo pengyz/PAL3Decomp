@@ -1,0 +1,8 @@
+{
+  "name": "_ValidateWrite(void *,uint)",
+  "mangled_name": "?_ValidateWrite@@YAHPAXI@Z",
+  "address": "0x100F122F",
+  "size_bytes": 28,
+  "signature": "BOOL __cdecl(void *lp, UINT_PTR ucb)",
+  "decompiled_c": "BOOL __cdecl _ValidateWrite(void *lp, UINT_PTR ucb)\n{\n  return !IsBadWritePtr(lp, ucb);\n}\n"
+}

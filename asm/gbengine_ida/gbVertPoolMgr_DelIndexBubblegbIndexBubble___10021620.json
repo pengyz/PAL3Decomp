@@ -1,0 +1,8 @@
+{
+  "name": "gbVertPoolMgr::DelIndexBubble(gbIndexBubble *)",
+  "mangled_name": "?DelIndexBubble@gbVertPoolMgr@@QAEXPAVgbIndexBubble@@@Z",
+  "address": "0x10021620",
+  "size_bytes": 85,
+  "signature": "void __thiscall(gbVertPoolMgr *this, struct gbIndexBubble *a2)",
+  "decompiled_c": "void __thiscall gbVertPoolMgr::DelIndexBubble(gbVertPoolMgr *this, struct gbIndexBubble *a2)\n{\n  gbIndexPool *v3; // esi\n\n  *(_DWORD *)(*((_DWORD *)this + 392) + 532) -= *((_DWORD *)a2 + 4);\n  v3 = (gbIndexPool *)*((_DWORD *)a2 + 2);\n  gbIndexPool::DelBubble(v3, a2);\n  if ( !gbChain1D::operator[](0) )\n  {\n    gbChain1D::DelNodeFromChain((gbVertPoolMgr *)((char *)this + 640), v3);\n    if ( v3 )\n      (**(void (__thiscall ***)(gbIndexPool *, int))v3)(v3, 1);\n  }\n}\n"
+}

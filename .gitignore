@@ -62,19 +62,36 @@ tools/mingw/
 tools/tcc/
 tools/tcc.zip
 
+# VC6 SP5 installer (no longer needed)
+tools/vc6sp5/
+
+# VC6 toolchain: tracked via Git LFS (override global *.exe/*.dll rules)
+!tools/vc6/**
+
+# Fulldump utilities (local builds)
+tools/fulldump/
+
 # Obsolete/experimental scripts
 tools/_obsolete/
 
 # IDA run logs and intermediate results
 tools/ida/_logs/
+asm/pal3a/*.log
+asm/pal3a/*.lock
 
 # Decompilation output (large, regenerable from IDA)
 asm/pal3a/decomp/
 
-# Original binaries - override global ignores (tracked via LFS)
+# IDA databases and disassembly (large, local work files)
+original/*.asm
+original/*.i64
+
+# AI-generated plans and specs (not part of source)
+docs/superpowers/
+
+# Original binaries - only track exe/dll/pdb via LFS
 !original/*.exe
 !original/*.dll
 !original/*.pdb
-!original/*.i64
 !original/*.bin
 !original/*.xml

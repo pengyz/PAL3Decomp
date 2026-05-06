@@ -1,0 +1,8 @@
+{
+  "name": "gbQuaternion::SetTwoVector(gbVec3D *,gbVec3D *)",
+  "mangled_name": "?SetTwoVector@gbQuaternion@@QAEXPAUgbVec3D@@0@Z",
+  "address": "0x10026750",
+  "size_bytes": 248,
+  "signature": "void __thiscall(gbQuaternion *this, struct gbVec3D *a2, struct gbVec3D *a3)",
+  "decompiled_c": "void __thiscall gbQuaternion::SetTwoVector(gbQuaternion *this, struct gbVec3D *a2, struct gbVec3D *a3)\n{\n  double v5; // st7\n  double v6; // st6\n  long double v7; // st6\n  long double v8; // st7\n  long double v9; // st7\n  float v10; // [esp+4h] [ebp-Ch]\n  float v11; // [esp+8h] [ebp-8h]\n  float v12; // [esp+8h] [ebp-8h]\n  float v13; // [esp+Ch] [ebp-4h]\n  float v14; // [esp+Ch] [ebp-4h]\n  float v15; // [esp+14h] [ebp+4h]\n\n  v5 = *((float *)a3 + 2) * *((float *)a2 + 1) - *((float *)a2 + 2) * *((float *)a3 + 1);\n  v11 = *((float *)a2 + 2) * *(float *)a3 - *(float *)a2 * *((float *)a3 + 2);\n  v6 = *(float *)a2 * *((float *)a3 + 1) - *(float *)a3 * *((float *)a2 + 1);\n  v13 = v6;\n  v7 = sqrt(v6 * v13 + v5 * v5 + v11 * v11);\n  v15 = v7;\n  if ( fabs(v7) >= 0.0049999999 )\n  {\n    v10 = v5 / v15;\n    v12 = v11 / v15;\n    v14 = v13 / v15;\n  }\n  else\n  {\n    v14 = 0.0;\n    v10 = 0.0;\n    v12 = 1.0;\n  }\n  v8 = acos(*(float *)a2 * *(float *)a3 + *((float *)a2 + 2) * *((float *)a3 + 2) + *((float *)a2 + 1)\n                                                                                  * *((float *)a3 + 1))\n     * 57.295776\n     * 0.5\n     * 0.017453292;\n  *((float *)this + 3) = cos(v8);\n  v9 = sin(v8);\n  *(float *)this = v9 * v10;\n  *((float *)this + 1) = v9 * v12;\n  *((float *)this + 2) = v14 * v9;\n}\n"
+}

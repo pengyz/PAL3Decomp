@@ -1,0 +1,8 @@
+{
+  "name": "gbStrToLowCase(char *,char const *)",
+  "mangled_name": "?gbStrToLowCase@@YAXPADPBD@Z",
+  "address": "0x1002FB60",
+  "size_bytes": 43,
+  "signature": "void __cdecl(char *a1, const char *a2)",
+  "decompiled_c": "void __cdecl gbStrToLowCase(char *a1, const char *a2)\n{\n  char *v2; // ecx\n  int v3; // edx\n  char v4; // al\n\n  v2 = a1;\n  if ( *a2 )\n  {\n    v3 = a2 - a1;\n    do\n    {\n      v4 = v2[v3];\n      if ( v4 >= 65 && v4 <= 90 )\n        v4 += 32;\n      *v2 = v4;\n    }\n    while ( (v2++)[v3 + 1] );\n  }\n  *v2 = 0;\n}\n"
+}

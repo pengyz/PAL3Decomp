@@ -1,0 +1,8 @@
+{
+  "name": "gbVertexPool::gbVertexPool(gbVertexPool const &)",
+  "mangled_name": "??0gbVertexPool@@QAE@ABV0@@Z",
+  "address": "0x10003FC0",
+  "size_bytes": 118,
+  "signature": "gbVertexPool *__thiscall(gbVertexPool *this, const struct gbVertexPool *a2)",
+  "decompiled_c": "gbVertexPool *__thiscall gbVertexPool::gbVertexPool(gbVertexPool *this, const struct gbVertexPool *a2)\n{\n  gbVertexPool *result; // eax\n  int v3; // edx\n  int v4; // ecx\n\n  result = this;\n  v3 = *((_DWORD *)a2 + 1);\n  *(_DWORD *)this = &gbChain1DNode::`vftable';\n  *((_DWORD *)this + 1) = v3;\n  *((_DWORD *)this + 2) = *((_DWORD *)a2 + 2);\n  *((_DWORD *)this + 3) = *((_DWORD *)a2 + 3);\n  *((_DWORD *)this + 4) = *((_DWORD *)a2 + 4);\n  *((_DWORD *)this + 5) = *((_DWORD *)a2 + 5);\n  *((_DWORD *)this + 6) = *((_DWORD *)a2 + 6);\n  *((_DWORD *)this + 7) = *((_DWORD *)a2 + 7);\n  *((_DWORD *)this + 8) = *((_DWORD *)a2 + 8);\n  *((_DWORD *)this + 9) = *((_DWORD *)a2 + 9);\n  *((_DWORD *)this + 10) = *((_DWORD *)a2 + 10);\n  *((_DWORD *)this + 11) = *((_DWORD *)a2 + 11);\n  *((_DWORD *)this + 12) = *((_DWORD *)a2 + 12);\n  *((_DWORD *)this + 13) = *((_DWORD *)a2 + 13);\n  v4 = *((_DWORD *)a2 + 14);\n  *(_DWORD *)result = &gbVertexPool::`vftable';\n  *((_DWORD *)result + 14) = v4;\n  return result;\n}\n"
+}

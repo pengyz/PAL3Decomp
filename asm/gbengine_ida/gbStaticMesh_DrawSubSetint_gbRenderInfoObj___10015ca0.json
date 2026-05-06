@@ -1,0 +1,8 @@
+{
+  "name": "gbStaticMesh::DrawSubSet(int,gbRenderInfoObj *)",
+  "mangled_name": "?DrawSubSet@gbStaticMesh@@UAEXHPAUgbRenderInfoObj@@@Z",
+  "address": "0x10015CA0",
+  "size_bytes": 105,
+  "signature": "void __thiscall(gbStaticMesh *this, int a2, struct gbRenderInfoObj *a3)",
+  "decompiled_c": "void __thiscall gbStaticMesh::DrawSubSet(gbStaticMesh *this, int a2, struct gbRenderInfoObj *a3)\n{\n  int v4; // edi\n\n  v4 = *((_DWORD *)this + 16) + 188 * a2;\n  if ( *(_DWORD *)(v4 + 144) )\n  {\n    (*(void (__thiscall **)(_DWORD, int))(**((_DWORD **)this + 29) + 44))(*((_DWORD *)this + 29), v4 + 76);\n    (*(void (__thiscall **)(_DWORD))(**((_DWORD **)this + 29) + 60))(*((_DWORD *)this + 29));\n    sub_100156F0(a3, *((_DWORD *)this + 29), v4 + 76);\n    (*(void (__thiscall **)(_DWORD, _DWORD, _DWORD, _DWORD, int))(**(_DWORD **)(*((_DWORD *)this + 30) + 8) + 12))(\n      *(_DWORD *)(*((_DWORD *)this + 30) + 8),\n      *((_DWORD *)this + 30),\n      *(_DWORD *)(v4 + 144),\n      *((_DWORD *)a3 + 3),\n      v4 + 8);\n  }\n}\n"
+}

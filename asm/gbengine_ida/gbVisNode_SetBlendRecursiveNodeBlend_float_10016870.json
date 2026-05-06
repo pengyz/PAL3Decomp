@@ -1,0 +1,8 @@
+{
+  "name": "gbVisNode::SetBlendRecursive(NodeBlend,float)",
+  "mangled_name": "?SetBlendRecursive@gbVisNode@@QAEXW4NodeBlend@@M@Z",
+  "address": "0x10016870",
+  "size_bytes": 57,
+  "signature": "int __thiscall(_DWORD *this, int a2, int a3)",
+  "decompiled_c": "int __thiscall gbVisNode::SetBlendRecursive(_DWORD *this, int a2, int a3)\n{\n  int result; // eax\n  int v5; // ecx\n  int v6; // ecx\n\n  result = a3;\n  *(this + 21) = a2;\n  *(this + 20) = a3;\n  v5 = *(this + 3);\n  *(this + 6) = v5;\n  if ( v5 )\n  {\n    do\n    {\n      result = gbVisNode::SetBlendRecursive(a2, a3);\n      v6 = *(_DWORD *)(*(this + 6) + 4);\n      *(this + 6) = v6;\n    }\n    while ( v6 );\n  }\n  return result;\n}\n"
+}

@@ -1,0 +1,8 @@
+{
+  "name": "gbColorQuad::gbColorQuad(uchar,uchar,uchar,uchar)",
+  "mangled_name": "??0gbColorQuad@@QAE@EEEE@Z",
+  "address": "0x10001510",
+  "size_bytes": 72,
+  "signature": "gbColorQuad *__thiscall(gbColorQuad *this, char a2, char a3, char a4, unsigned __int8 a5)",
+  "decompiled_c": "gbColorQuad *__thiscall gbColorQuad::gbColorQuad(gbColorQuad *this, char a2, char a3, char a4, unsigned __int8 a5)\n{\n  gbColorQuad *result; // eax\n  char v6; // cl\n\n  result = this;\n  if ( gbColorQuad::ColorQuadFmt )\n  {\n    *((_BYTE *)this + 2) = a4;\n    v6 = a2;\n  }\n  else\n  {\n    *((_BYTE *)this + 2) = a2;\n    v6 = a4;\n  }\n  *((_BYTE *)result + 1) = a3;\n  *(_BYTE *)result = v6;\n  *((_BYTE *)result + 3) = a5;\n  return result;\n}\n"
+}

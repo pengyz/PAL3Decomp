@@ -1,0 +1,8 @@
+{
+  "name": "gbAudioManager::PlaySoundStream(int,char *,int)",
+  "mangled_name": "?PlaySoundStream@gbAudioManager@@QAEXHPADH@Z",
+  "address": "0x10001BC0",
+  "size_bytes": 136,
+  "signature": "void __thiscall(gbAudioManager *this, int a2, char *a3, int a4)",
+  "decompiled_c": "void __thiscall gbAudioManager::PlaySoundStream(gbAudioManager *this, int a2, char *a3, int a4)\n{\n  int v5; // eax\n  int v6; // eax\n\n  v5 = *((_DWORD *)this + a2);\n  if ( v5 )\n  {\n    AIL_register_stream_callback(v5, 0);\n    AIL_close_stream(*((_DWORD *)this + a2));\n  }\n  v6 = AIL_open_stream(*((_DWORD *)this + 6), a3, 0);\n  *((_DWORD *)this + a2) = v6;\n  if ( v6 )\n  {\n    AIL_register_stream_callback(v6, sub_10001B40);\n    AIL_start_stream(*((_DWORD *)this + a2));\n    *((_DWORD *)this + a2 + 3) = 1;\n    AIL_set_stream_volume(*((_DWORD *)this + a2), (__int64)(*((float *)this + 53) * 127.0));\n    AIL_set_stream_loop_count(*((_DWORD *)this + a2), a4);\n  }\n}\n"
+}

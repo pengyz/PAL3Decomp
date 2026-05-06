@@ -1,0 +1,8 @@
+{
+  "name": "gbRenderEffect::Apply(void)",
+  "mangled_name": "?Apply@gbRenderEffect@@QAEXXZ",
+  "address": "0x1001D100",
+  "size_bytes": 72,
+  "signature": "void __thiscall(gbRenderEffect *this)",
+  "decompiled_c": "void __thiscall gbRenderEffect::Apply(gbRenderEffect *this)\n{\n  unsigned int i; // esi\n  unsigned int v3; // [esp+14h] [ebp-4h] BYREF\n\n  (*(void (__stdcall **)(_DWORD, unsigned int *, int))(**((_DWORD **)this + 6) + 256))(*((_DWORD *)this + 6), &v3, 3);\n  for ( i = 0; i < v3; ++i )\n    (*(void (__stdcall **)(_DWORD, unsigned int))(**((_DWORD **)this + 6) + 260))(*((_DWORD *)this + 6), i);\n  (*(void (__stdcall **)(_DWORD))(**((_DWORD **)this + 6) + 264))(*((_DWORD *)this + 6));\n}\n"
+}

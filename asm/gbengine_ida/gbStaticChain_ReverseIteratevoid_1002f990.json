@@ -1,0 +1,8 @@
+{
+  "name": "gbStaticChain::ReverseIterate(void)",
+  "mangled_name": "?ReverseIterate@gbStaticChain@@QAEPAUgbStaticChainNode@@XZ",
+  "address": "0x1002F990",
+  "size_bytes": 9,
+  "signature": "struct gbStaticChainNode *__thiscall(gbStaticChain *this)",
+  "decompiled_c": "struct gbStaticChainNode *__thiscall gbStaticChain::ReverseIterate(gbStaticChain *this)\n{\n  struct gbStaticChainNode *result; // eax\n\n  result = (struct gbStaticChainNode *)**((_DWORD **)this + 3);\n  *((_DWORD *)this + 3) = result;\n  return result;\n}\n"
+}

@@ -1,0 +1,8 @@
+{
+  "name": "gbPixelFormat::Init(gbPixelFmtType)",
+  "mangled_name": "?Init@gbPixelFormat@@QAEXW4gbPixelFmtType@@@Z",
+  "address": "0x1001F820",
+  "size_bytes": 487,
+  "signature": "void __thiscall(gbPixelFormat *this, unsigned int a2)",
+  "decompiled_c": "void __thiscall gbPixelFormat::Init(gbPixelFormat *this, unsigned int a2)\n{\n  switch ( a2 )\n  {\n    case 1u:\n      gbPixelFormat::Init(this, 24, 0xFF0000u, 0xFF00u, 0xFFu, 0);\n      return;\n    case 2u:\n      goto LABEL_4;\n    case 3u:\n      gbPixelFormat::Init(this, 16, 0xF800u, 0x7E0u, 0x1Fu, 0);\n      return;\n    case 4u:\n      goto LABEL_8;\n    case 5u:\nLABEL_10:\n      gbPixelFormat::Init(this, 16, 0xF00u, 0xF0u, 0xFu, 0xF000u);\n      return;\n  }\n  if ( a2 != 6 )\n  {\n    switch ( a2 )\n    {\n      case 7u:\n        gbPixelFormat::Init(this, 8, 0, 0, 0, 0xFFu);\n        return;\n      case 8u:\nLABEL_4:\n        gbPixelFormat::Init(this, 32, 0xFF0000u, 0xFF00u, 0xFFu, 0xFF000000);\n        return;\n      case 9u:\nLABEL_8:\n        gbPixelFormat::Init(this, 16, 0x7C00u, 0x3E0u, 0x1Fu, 0x8000u);\n        return;\n      case 0xAu:\n        goto LABEL_10;\n    }\n    gbReportError(\"not supported pixel format( %d )\", a2);\n  }\n  gbPixelFormat::Init(this, a2, a2, a2, a2, a2);\n}\n"
+}

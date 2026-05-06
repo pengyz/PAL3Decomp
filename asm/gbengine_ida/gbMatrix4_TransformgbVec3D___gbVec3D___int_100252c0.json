@@ -1,0 +1,8 @@
+{
+  "name": "gbMatrix4::Transform(gbVec3D *,gbVec3D *,int)",
+  "mangled_name": "?Transform@gbMatrix4@@QBEXPAUgbVec3D@@0H@Z",
+  "address": "0x100252C0",
+  "size_bytes": 126,
+  "signature": "void __thiscall(gbMatrix4 *this, struct gbVec3D *a2, struct gbVec3D *a3, int a4)",
+  "decompiled_c": "void __thiscall gbMatrix4::Transform(gbMatrix4 *this, struct gbVec3D *a2, struct gbVec3D *a3, int a4)\n{\n  int v4; // edi\n  struct gbVec3D *v5; // esi\n  int v6; // edx\n  float *v7; // eax\n  double v8; // st7\n  double v9; // st6\n\n  v4 = a4;\n  if ( a4 > 0 )\n  {\n    v5 = a3;\n    v6 = a3 - a2;\n    v7 = (float *)((char *)a2 + 8);\n    do\n    {\n      v8 = *(v7 - 1) * *((float *)this + 4);\n      v9 = *(v7 - 2) * *(float *)this;\n      v7 += 3;\n      v5 = (struct gbVec3D *)((char *)v5 + 12);\n      --v4;\n      *((float *)v5 - 3) = v8 + v9 + *((float *)this + 8) * *(v7 - 3) + *((float *)this + 12);\n      *(float *)((char *)v7 + v6 - 16) = *((float *)this + 9) * *(v7 - 3)\n                                       + *((float *)this + 5) * *(v7 - 4)\n                                       + *(v7 - 5) * *((float *)this + 1)\n                                       + *((float *)this + 13);\n      *(float *)((char *)v7 + v6 - 12) = *((float *)this + 10) * *(v7 - 3)\n                                       + *((float *)this + 6) * *(v7 - 4)\n                                       + *(v7 - 5) * *((float *)this + 2)\n                                       + *((float *)this + 14);\n    }\n    while ( v4 );\n  }\n}\n"
+}

@@ -1,0 +1,8 @@
+{
+  "name": "gbVFileSystem::Read(void *,uint,gbVFile *)",
+  "mangled_name": "?Read@gbVFileSystem@@QAEXPAXIPAVgbVFile@@@Z",
+  "address": "0x10030810",
+  "size_bytes": 168,
+  "signature": "void __thiscall(gbVFileSystem *this, void *Buffer, size_t ElementSize, struct gbVFile *a4)",
+  "decompiled_c": "void __thiscall gbVFileSystem::Read(gbVFileSystem *this, void *Buffer, size_t ElementSize, struct gbVFile *a4)\n{\n  int v4; // eax\n  struct CPKFile *v5; // eax\n\n  v4 = *((_DWORD *)this + 3);\n  if ( v4 == 1 )\n  {\n    if ( a4 )\n      v5 = (struct gbVFile *)((char *)a4 + 272);\n    else\n      v5 = 0;\n    CPK::Read((HANDLE *)this + 6, Buffer, ElementSize, v5);\n  }\n  else if ( v4 )\n  {\n    if ( v4 == 2 )\n    {\n      qmemcpy(Buffer, *((const void **)a4 + 67), ElementSize);\n      *((_DWORD *)a4 + 67) += ElementSize;\n    }\n  }\n  else if ( sub_100E5E7C(Buffer, ElementSize, 1u, *((FILE **)a4 + 1)) != 1 )\n  {\n    gbLogInfo(\"Error on read file,path=%s\\r\\n\", (const char *)a4 + 12);\n  }\n}\n"
+}

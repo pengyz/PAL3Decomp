@@ -1,0 +1,8 @@
+{
+  "name": "gbPrintFontMgr::Release(void)",
+  "mangled_name": "?Release@gbPrintFontMgr@@QAEXXZ",
+  "address": "0x10023150",
+  "size_bytes": 94,
+  "signature": "void __thiscall(gbPrintFontMgr *this)",
+  "decompiled_c": "void __thiscall gbPrintFontMgr::Release(gbPrintFontMgr *this)\n{\n  int v2; // ebx\n  void *v3; // esi\n  void *v4; // ecx\n\n  v2 = 5;\n  do\n  {\n    if ( *(_DWORD *)this )\n    {\n      (*(void (__thiscall **)(_DWORD))(**(_DWORD **)this + 4))(*(_DWORD *)this);\n      v3 = *(void **)this;\n      if ( *(_DWORD *)this )\n      {\n        v4 = (void *)*((_DWORD *)v3 + 8);\n        *(_DWORD *)v3 = &off_100F5844;\n        free(v4);\n        free(*((void **)v3 + 5));\n        free(*((void **)v3 + 2));\n        free(*((void **)v3 + 1));\n        operator delete(v3);\n      }\n      *(_DWORD *)this = 0;\n    }\n    this = (gbPrintFontMgr *)((char *)this + 4);\n    --v2;\n  }\n  while ( v2 );\n}\n"
+}

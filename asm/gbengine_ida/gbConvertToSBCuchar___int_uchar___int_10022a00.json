@@ -1,0 +1,8 @@
+{
+  "name": "gbConvertToSBC(uchar *,int,uchar *,int)",
+  "mangled_name": "?gbConvertToSBC@@YAHPAEH0H@Z",
+  "address": "0x10022A00",
+  "size_bytes": 29,
+  "signature": "int __cdecl(LPWSTR lpWideCharStr, int cchWideChar, LPCCH lpMultiByteStr)",
+  "decompiled_c": "int __cdecl gbConvertToSBC(LPWSTR lpWideCharStr, int cchWideChar, LPCCH lpMultiByteStr)\n{\n  return MultiByteToWideChar(0, 1u, lpMultiByteStr, -1, lpWideCharStr, cchWideChar) - 1;\n}\n"
+}

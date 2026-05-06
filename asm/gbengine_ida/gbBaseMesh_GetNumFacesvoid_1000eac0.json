@@ -1,0 +1,8 @@
+{
+  "name": "gbBaseMesh::GetNumFaces(void)",
+  "mangled_name": "?GetNumFaces@gbBaseMesh@@QAEHXZ",
+  "address": "0x1000EAC0",
+  "size_bytes": 55,
+  "signature": "int __thiscall(gbBaseMesh *this)",
+  "decompiled_c": "int __thiscall gbBaseMesh::GetNumFaces(gbBaseMesh *this)\n{\n  int v1; // edi\n  int v2; // esi\n  int *v3; // ecx\n  int v4; // eax\n\n  v1 = *((_DWORD *)this + 17);\n  v2 = 0;\n  if ( v1 > 0 )\n  {\n    v3 = (int *)(*((_DWORD *)this + 16) + 144);\n    do\n    {\n      v4 = *v3;\n      v3 += 47;\n      v2 += *(_DWORD *)(v4 + 16) / 3;\n      --v1;\n    }\n    while ( v1 );\n  }\n  return v2;\n}\n"
+}

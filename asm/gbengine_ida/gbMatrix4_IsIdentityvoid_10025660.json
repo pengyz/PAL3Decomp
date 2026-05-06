@@ -1,0 +1,8 @@
+{
+  "name": "gbMatrix4::IsIdentity(void)",
+  "mangled_name": "?IsIdentity@gbMatrix4@@QBE_NXZ",
+  "address": "0x10025660",
+  "size_bytes": 57,
+  "signature": "char __thiscall(gbMatrix4 *this)",
+  "decompiled_c": "char __thiscall gbMatrix4::IsIdentity(gbMatrix4 *this)\n{\n  int v1; // esi\n  int i; // edx\n\n  v1 = 0;\n  while ( 2 )\n  {\n    for ( i = 0; i < 4; ++i )\n    {\n      if ( v1 == i )\n      {\n        if ( *(_DWORD *)this != 1065353216 )\n          return 0;\n      }\n      else if ( *(float *)this != 0.0 )\n      {\n        return 0;\n      }\n      this = (gbMatrix4 *)((char *)this + 4);\n    }\n    if ( ++v1 < 4 )\n      continue;\n    break;\n  }\n  return 1;\n}\n"
+}

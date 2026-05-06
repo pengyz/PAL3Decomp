@@ -1,0 +1,8 @@
+{
+  "name": "_mbtowc",
+  "mangled_name": "_mbtowc",
+  "address": "0x100F211F",
+  "size_bytes": 93,
+  "signature": "int __cdecl(wchar_t *DstCh, const char *SrcCh, size_t SrcSizeInBytes)",
+  "decompiled_c": "int __cdecl mbtowc(wchar_t *DstCh, const char *SrcCh, size_t SrcSizeInBytes)\n{\n  int v3; // ebx\n  size_t SrcSizeInBytesa; // [esp+1Ch] [ebp+10h]\n\n  InterlockedIncrement(&Addend);\n  v3 = 0;\n  if ( dword_10168774 )\n  {\n    InterlockedDecrement(&Addend);\n    _lock(19);\n    v3 = 1;\n  }\n  SrcSizeInBytesa = _mbtowc_lk(DstCh, SrcCh, SrcSizeInBytes);\n  if ( v3 )\n    _unlock(19);\n  else\n    InterlockedDecrement(&Addend);\n  return SrcSizeInBytesa;\n}\n"
+}

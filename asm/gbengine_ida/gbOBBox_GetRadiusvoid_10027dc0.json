@@ -1,0 +1,8 @@
+{
+  "name": "gbOBBox::GetRadius(void)",
+  "mangled_name": "?GetRadius@gbOBBox@@QBEMXZ",
+  "address": "0x10027DC0",
+  "size_bytes": 40,
+  "signature": "long double __thiscall(gbOBBox *this)",
+  "decompiled_c": "long double __thiscall gbOBBox::GetRadius(gbOBBox *this)\n{\n  return sqrt(\n           *((float *)this + 16) * *((float *)this + 16)\n         + *((float *)this + 17) * *((float *)this + 17)\n         + *((float *)this + 18) * *((float *)this + 18))\n       * 0.5;\n}\n"
+}

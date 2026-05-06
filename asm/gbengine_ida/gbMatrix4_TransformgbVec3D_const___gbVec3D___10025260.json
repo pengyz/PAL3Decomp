@@ -1,0 +1,8 @@
+{
+  "name": "gbMatrix4::Transform(gbVec3D const *,gbVec3D *)",
+  "mangled_name": "?Transform@gbMatrix4@@QBEXPBUgbVec3D@@PAU2@@Z",
+  "address": "0x10025260",
+  "size_bytes": 90,
+  "signature": "void __thiscall(gbMatrix4 *this, const struct gbVec3D *a2, struct gbVec3D *a3)",
+  "decompiled_c": "void __thiscall gbMatrix4::Transform(gbMatrix4 *this, const struct gbVec3D *a2, struct gbVec3D *a3)\n{\n  *(float *)a3 = *((float *)this + 4) * *((float *)a2 + 1)\n               + *((float *)this + 8) * *((float *)a2 + 2)\n               + *(float *)a2 * *(float *)this\n               + *((float *)this + 12);\n  *((float *)a3 + 1) = *((float *)this + 1) * *(float *)a2\n                     + *((float *)this + 5) * *((float *)a2 + 1)\n                     + *((float *)this + 9) * *((float *)a2 + 2)\n                     + *((float *)this + 13);\n  *((float *)a3 + 2) = *((float *)this + 2) * *(float *)a2\n                     + *((float *)this + 6) * *((float *)a2 + 1)\n                     + *((float *)this + 10) * *((float *)a2 + 2)\n                     + *((float *)this + 14);\n}\n"
+}

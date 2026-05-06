@@ -1,0 +1,8 @@
+{
+  "name": "gbCamera::SetDimention(int,int)",
+  "mangled_name": "?SetDimention@gbCamera@@QAEXHH@Z",
+  "address": "0x10021C50",
+  "size_bytes": 39,
+  "signature": "void __thiscall(gbCamera *this, int a2, int a3)",
+  "decompiled_c": "void __thiscall gbCamera::SetDimention(gbCamera *this, int a2, int a3)\n{\n  *((_DWORD *)this + 6) = 0;\n  *((_DWORD *)this + 7) = 0;\n  *((float *)this + 2) = (float)a2;\n  *((_DWORD *)this + 9) = a3;\n  *((_DWORD *)this + 8) = a2;\n  *((float *)this + 3) = (float)a3;\n}\n"
+}

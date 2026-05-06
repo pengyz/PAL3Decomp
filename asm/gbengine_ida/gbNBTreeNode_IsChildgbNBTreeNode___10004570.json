@@ -1,0 +1,8 @@
+{
+  "name": "gbNBTreeNode::IsChild(gbNBTreeNode *)",
+  "mangled_name": "?IsChild@gbNBTreeNode@@QAEHPAV1@@Z",
+  "address": "0x10004570",
+  "size_bytes": 21,
+  "signature": "BOOL __thiscall(gbNBTreeNode *this, struct gbNBTreeNode *a2)",
+  "decompiled_c": "BOOL __thiscall gbNBTreeNode::IsChild(gbNBTreeNode *this, struct gbNBTreeNode *a2)\n{\n  return gbChain1D::IsContainNode((gbNBTreeNode *)((char *)this + 12), a2);\n}\n"
+}

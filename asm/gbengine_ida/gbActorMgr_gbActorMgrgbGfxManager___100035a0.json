@@ -1,0 +1,8 @@
+{
+  "name": "gbActorMgr::gbActorMgr(gbGfxManager *)",
+  "mangled_name": "??0gbActorMgr@@QAE@PAVgbGfxManager@@@Z",
+  "address": "0x100035A0",
+  "size_bytes": 125,
+  "signature": "gbActorMgr *__thiscall(gbActorMgr *this, gbEffectMgr **a2)",
+  "decompiled_c": "gbActorMgr *__thiscall gbActorMgr::gbActorMgr(gbActorMgr *this, gbEffectMgr **a2)\n{\n  gbResManager::gbResManager(this);\n  dword_1012B99C = (gbGfxManager *)a2;\n  dword_1012B9A0 = gbEffectMgr::NewRenderEffect(a2[50], aGfxscriptSkins, 0);\n  dword_1012B9A4 = gbEffectMgr::NewRenderEffect(a2[50], aGfxscriptSkins_0, 0);\n  sub_1000B070();\n  return this;\n}\n"
+}

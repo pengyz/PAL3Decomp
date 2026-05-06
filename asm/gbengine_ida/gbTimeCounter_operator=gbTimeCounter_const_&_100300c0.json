@@ -1,0 +1,8 @@
+{
+  "name": "gbTimeCounter::operator=(gbTimeCounter const &)",
+  "mangled_name": "??4gbTimeCounter@@QAEAAV0@ABV0@@Z",
+  "address": "0x100300C0",
+  "size_bytes": 35,
+  "signature": "_DWORD *__thiscall(_DWORD *this, _DWORD *a2)",
+  "decompiled_c": "// Alternative name is '??4gbChain1D@@QAEAAV0@ABV0@@Z'\n// Alternative name is '??4gbColorFlt@@QAEAAU0@ABU0@@Z'\n// Alternative name is '??4gbMatrixStack@@QAEAAV0@ABV0@@Z'\n// Alternative name is '??4gbQuaternion@@QAEAAU0@ABU0@@Z'\n// Alternative name is '??4gbSound2DNode@@QAEAAV0@ABV0@@Z'\n_DWORD *__thiscall gbTimeCounter::operator=(_DWORD *this, _DWORD *a2)\n{\n  *this = *a2;\n  *(this + 1) = a2[1];\n  *(this + 2) = a2[2];\n  *(this + 3) = a2[3];\n  return this;\n}\n"
+}

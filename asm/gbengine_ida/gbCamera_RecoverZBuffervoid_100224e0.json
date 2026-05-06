@@ -1,0 +1,8 @@
+{
+  "name": "gbCamera::RecoverZBuffer(void)",
+  "mangled_name": "?RecoverZBuffer@gbCamera@@QAEXXZ",
+  "address": "0x100224E0",
+  "size_bytes": 25,
+  "signature": "void __thiscall(gbCamera *this)",
+  "decompiled_c": "void __thiscall gbCamera::RecoverZBuffer(gbCamera *this)\n{\n  int v2; // ecx\n\n  v2 = *((_DWORD *)this + 86);\n  *((_DWORD *)this + 11) = 1065353216;\n  (*(void (__thiscall **)(int, char *))(*(_DWORD *)v2 + 36))(v2, (char *)this + 24);\n}\n"
+}

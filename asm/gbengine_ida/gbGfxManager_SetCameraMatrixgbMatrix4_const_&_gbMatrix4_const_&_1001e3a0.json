@@ -1,0 +1,8 @@
+{
+  "name": "gbGfxManager::SetCameraMatrix(gbMatrix4 const &,gbMatrix4 const &)",
+  "mangled_name": "?SetCameraMatrix@gbGfxManager@@QAEXABUgbMatrix4@@0@Z",
+  "address": "0x1001E3A0",
+  "size_bytes": 43,
+  "signature": "void __thiscall(gbGfxManager *this, const struct gbMatrix4 *a2, const struct gbMatrix4 *a3)",
+  "decompiled_c": "void __thiscall gbGfxManager::SetCameraMatrix(\n        gbGfxManager *this,\n        const struct gbMatrix4 *a2,\n        const struct gbMatrix4 *a3)\n{\n  qmemcpy((char *)this + 292, a2, 0x40u);\n  qmemcpy((char *)this + 228, a3, 0x40u);\n}\n"
+}

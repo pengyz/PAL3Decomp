@@ -1,0 +1,8 @@
+{
+  "name": "gbVFileSystem::NewFileEntry(void)",
+  "mangled_name": "?NewFileEntry@gbVFileSystem@@QAEPAVgbVFile@@XZ",
+  "address": "0x10030510",
+  "size_bytes": 36,
+  "signature": "struct gbVFile *__thiscall(gbVFileSystem *this)",
+  "decompiled_c": "struct gbVFile *__thiscall gbVFileSystem::NewFileEntry(gbVFileSystem *this)\n{\n  _DWORD *v1; // edx\n  int v2; // eax\n  _DWORD *i; // ecx\n\n  v1 = (_DWORD *)*((_DWORD *)this + 2);\n  v2 = 0;\n  for ( i = v1; *i; i += 80 )\n  {\n    if ( ++v2 >= 16 )\n      return 0;\n  }\n  return (struct gbVFile *)&v1[80 * v2];\n}\n"
+}

@@ -1,0 +1,8 @@
+{
+  "name": "gbGfxManager::NewMesh(char const *,gbMeshType)",
+  "mangled_name": "?NewMesh@gbGfxManager@@UAEPAVgbBaseMesh@@PBDW4gbMeshType@@@Z",
+  "address": "0x1001E160",
+  "size_bytes": 189,
+  "signature": "gbStaticMesh *__thiscall(gbEffectMgr **this, int a2, int a3)",
+  "decompiled_c": "gbStaticMesh *__thiscall gbGfxManager::NewMesh(gbEffectMgr **this, int a2, int a3)\n{\n  gbStaticMesh *v4; // eax\n\n  if ( !a3 )\n  {\n    v4 = (gbStaticMesh *)operator new(0x84u);\n    if ( v4 )\n      return gbStaticMesh::gbStaticMesh(v4, this);\n    return 0;\n  }\n  if ( a3 == 1 )\n  {\n    if ( operator new(0x8Cu) )\n      return (gbStaticMesh *)sub_10011B40((struct gbGfxManager *)this);\n    return 0;\n  }\n  return (gbStaticMesh *)a3;\n}\n"
+}

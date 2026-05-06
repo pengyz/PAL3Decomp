@@ -1,0 +1,8 @@
+{
+  "name": "gbVec3D::IsValid(void)",
+  "mangled_name": "?IsValid@gbVec3D@@QBE_NXZ",
+  "address": "0x10025010",
+  "size_bytes": 77,
+  "signature": "bool __thiscall(gbVec3D *this)",
+  "decompiled_c": "bool __thiscall gbVec3D::IsValid(gbVec3D *this)\n{\n  if ( *(float *)this * *(float *)this < 0.0 )\n    return 0;\n  if ( *((float *)this + 1) * *((float *)this + 1) >= 0.0 )\n    return *((float *)this + 2) * *((float *)this + 2) >= 0.0;\n  return 0;\n}\n"
+}

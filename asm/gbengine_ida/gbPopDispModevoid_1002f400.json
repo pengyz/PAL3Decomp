@@ -1,0 +1,8 @@
+{
+  "name": "gbPopDispMode(void)",
+  "mangled_name": "?gbPopDispMode@@YAXXZ",
+  "address": "0x1002F400",
+  "size_bytes": 88,
+  "signature": "void __cdecl()",
+  "decompiled_c": "void __cdecl gbPopDispMode()\n{\n  DEVMODEA *lpDevMode[5]; // [esp+0h] [ebp-14h] BYREF\n\n  if ( dword_1015CB80 )\n  {\n    --dword_1015CB80;\n    qmemcpy(lpDevMode, (char *)dword_1015CB78 + 20 * dword_1015CB80, sizeof(lpDevMode));\n    if ( lpDevMode[0] )\n      gbChangeDispMode(\n        (DWORD)lpDevMode[0]->dmDeviceName,\n        (DWORD)lpDevMode[1]->dmDeviceName,\n        (DWORD)lpDevMode[2]->dmDeviceName);\n    else\n      ChangeDisplaySettingsA(0, 0);\n  }\n}\n"
+}

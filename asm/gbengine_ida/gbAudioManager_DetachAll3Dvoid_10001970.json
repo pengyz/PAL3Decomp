@@ -1,0 +1,8 @@
+{
+  "name": "gbAudioManager::DetachAll3D(void)",
+  "mangled_name": "?DetachAll3D@gbAudioManager@@QAEXXZ",
+  "address": "0x10001970",
+  "size_bytes": 54,
+  "signature": "void __thiscall(gbAudioManager *this)",
+  "decompiled_c": "void __thiscall gbAudioManager::DetachAll3D(gbAudioManager *this)\n{\n  char *v1; // esi\n  int v2; // ebp\n\n  v1 = (char *)this + 32;\n  v2 = 10;\n  do\n  {\n    if ( *(_DWORD *)v1 )\n    {\n      AIL_end_3D_sample(*(_DWORD *)(*(_DWORD *)v1 + 4));\n      *(_DWORD *)(*(_DWORD *)v1 + 4) = 0;\n      *(_DWORD *)v1 = 0;\n    }\n    v1 += 12;\n    --v2;\n  }\n  while ( v2 );\n}\n"
+}

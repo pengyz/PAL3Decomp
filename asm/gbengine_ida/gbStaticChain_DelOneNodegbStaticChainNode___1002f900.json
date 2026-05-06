@@ -1,0 +1,8 @@
+{
+  "name": "gbStaticChain::DelOneNode(gbStaticChainNode *)",
+  "mangled_name": "?DelOneNode@gbStaticChain@@QAEXPAUgbStaticChainNode@@@Z",
+  "address": "0x1002F900",
+  "size_bytes": 72,
+  "signature": "void __thiscall(gbStaticChain *this, struct gbStaticChainNode *a2)",
+  "decompiled_c": "void __thiscall gbStaticChain::DelOneNode(gbStaticChain *this, struct gbStaticChainNode *a2)\n{\n  _DWORD *v2; // edx\n  _DWORD *v3; // edx\n  int v4; // edx\n\n  if ( *(_DWORD *)a2 )\n    *(_DWORD *)(*(_DWORD *)a2 + 4) = *((_DWORD *)a2 + 1);\n  v2 = (_DWORD *)*((_DWORD *)a2 + 1);\n  if ( v2 )\n    *v2 = *(_DWORD *)a2;\n  if ( *((struct gbStaticChainNode **)this + 2) == a2 )\n    *((_DWORD *)this + 2) = *((_DWORD *)a2 + 1);\n  v3 = (_DWORD *)*((_DWORD *)this + 1);\n  if ( v3 )\n    *v3 = a2;\n  v4 = *((_DWORD *)this + 1);\n  *(_DWORD *)a2 = 0;\n  *((_DWORD *)a2 + 1) = v4;\n  *((_DWORD *)this + 1) = a2;\n  --*((_DWORD *)this + 6);\n}\n"
+}

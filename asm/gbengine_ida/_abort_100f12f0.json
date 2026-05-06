@@ -1,0 +1,8 @@
+{
+  "name": "_abort",
+  "mangled_name": "_abort",
+  "address": "0x100F12F0",
+  "size_bytes": 23,
+  "signature": "void __cdecl __noreturn()",
+  "decompiled_c": "void __cdecl __noreturn abort()\n{\n  _NMSG_WRITE(0xAu);\n  raise(22);\n  _exit(3);\n}\n"
+}

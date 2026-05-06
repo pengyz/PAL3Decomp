@@ -1,0 +1,8 @@
+{
+  "name": "gbQuaternion::GetMatrix(gbMatrix4 *)",
+  "mangled_name": "?GetMatrix@gbQuaternion@@QBEXPAUgbMatrix4@@@Z",
+  "address": "0x10026B60",
+  "size_bytes": 211,
+  "signature": "void __thiscall(gbQuaternion *this, struct gbMatrix4 *a2)",
+  "decompiled_c": "void __thiscall gbQuaternion::GetMatrix(gbQuaternion *this, struct gbMatrix4 *a2)\n{\n  double v2; // st7\n  double v4; // st7\n  double v5; // st6\n  double v6; // st6\n  double v7; // st5\n  double v8; // st5\n  double v9; // st5\n  float v10; // [esp+0h] [ebp-18h]\n  float v11; // [esp+4h] [ebp-14h]\n  float v12; // [esp+8h] [ebp-10h]\n  float v13; // [esp+Ch] [ebp-Ch]\n  float v14; // [esp+10h] [ebp-8h]\n  float v15; // [esp+14h] [ebp-4h]\n  float v16; // [esp+1Ch] [ebp+4h]\n\n  v2 = *(float *)this + *(float *)this;\n  v15 = v2 * *(float *)this;\n  v10 = v2 * *((float *)this + 1);\n  v12 = v2 * *((float *)this + 2);\n  v4 = v2 * *((float *)this + 3);\n  v5 = *((float *)this + 1) + *((float *)this + 1);\n  v14 = v5 * *((float *)this + 1);\n  v13 = v5 * *((float *)this + 2);\n  v6 = v5 * *((float *)this + 3);\n  v7 = *((float *)this + 2) + *((float *)this + 2);\n  v11 = v7 * *((float *)this + 2);\n  v8 = v7 * *((float *)this + 3);\n  *((_DWORD *)a2 + 15) = 1065353216;\n  *((_DWORD *)a2 + 14) = 0;\n  *((_DWORD *)a2 + 13) = 0;\n  *((_DWORD *)a2 + 12) = 0;\n  *(float *)a2 = 1.0 - v14 - v11;\n  *((float *)a2 + 1) = v8 + v10;\n  *((float *)a2 + 2) = v12 - v6;\n  *((float *)a2 + 4) = v10 - v8;\n  v9 = 1.0 - v15;\n  v16 = v9;\n  *((float *)a2 + 5) = v9 - v11;\n  *((float *)a2 + 6) = v13 + v4;\n  *((float *)a2 + 8) = v6 + v12;\n  *((float *)a2 + 9) = v13 - v4;\n  *((float *)a2 + 10) = v16 - v14;\n}\n"
+}

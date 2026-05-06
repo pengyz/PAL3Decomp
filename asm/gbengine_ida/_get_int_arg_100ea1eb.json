@@ -1,0 +1,8 @@
+{
+  "name": "_get_int_arg",
+  "mangled_name": "_get_int_arg",
+  "address": "0x100EA1EB",
+  "size_bytes": 13,
+  "signature": "int __cdecl(_DWORD *a1)",
+  "decompiled_c": "int __cdecl get_int_arg(_DWORD *a1)\n{\n  *a1 += 4;\n  return *(_DWORD *)(*a1 - 4);\n}\n"
+}

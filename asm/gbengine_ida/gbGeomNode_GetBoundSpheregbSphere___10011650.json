@@ -1,0 +1,8 @@
+{
+  "name": "gbGeomNode::GetBoundSphere(gbSphere *)",
+  "mangled_name": "?GetBoundSphere@gbGeomNode@@UAEXPAUgbSphere@@@Z",
+  "address": "0x10011650",
+  "size_bytes": 228,
+  "signature": "void __thiscall(gbGeomNode *this, struct gbSphere *a2)",
+  "decompiled_c": "void __thiscall gbGeomNode::GetBoundSphere(gbGeomNode *this, struct gbSphere *a2)\n{\n  float *v3; // eax\n  double v4; // st7\n  double v5; // st7\n  float v6; // [esp+4h] [ebp-24h]\n  float v7; // [esp+4h] [ebp-24h]\n  float v8; // [esp+8h] [ebp-20h]\n  float v9; // [esp+8h] [ebp-20h]\n  float v10; // [esp+Ch] [ebp-1Ch]\n  float v11; // [esp+Ch] [ebp-1Ch]\n  float v12; // [esp+10h] [ebp-18h] BYREF\n  float v13; // [esp+14h] [ebp-14h]\n  float v14; // [esp+18h] [ebp-10h]\n  _DWORD v15[3]; // [esp+1Ch] [ebp-Ch] BYREF\n\n  v3 = (float *)*((_DWORD *)this + 66);\n  if ( v3 )\n  {\n    v4 = v3[22] + v3[25];\n    v13 = v3[26] + v3[23];\n    v14 = v3[27] + v3[24];\n    v6 = v4 * 0.5;\n    *(float *)v15 = v6;\n    v8 = v13 * 0.5;\n    *(float *)&v15[1] = v8;\n    v10 = v14 * 0.5;\n    *(float *)&v15[2] = v10;\n    v7 = v3[25] - v3[22];\n    v9 = v3[26] - v3[23];\n    v5 = v3[27] - v3[24];\n    v12 = v7;\n    v13 = v9;\n    v11 = v5;\n    v14 = v11;\n    *(float *)a2 = gbVec3D::Length((gbVec3D *)&v12) * 0.5;\n    gbMatrix4::Transform(\n      (gbGeomNode *)((char *)this + 88),\n      (const struct gbVec3D *)v15,\n      (struct gbSphere *)((char *)a2 + 4));\n  }\n  else\n  {\n    *(_DWORD *)a2 = 0;\n    *((_DWORD *)a2 + 3) = 0;\n    *((_DWORD *)a2 + 2) = 0;\n    *((_DWORD *)a2 + 1) = 0;\n  }\n}\n"
+}

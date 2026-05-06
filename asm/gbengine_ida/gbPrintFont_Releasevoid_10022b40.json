@@ -1,0 +1,8 @@
+{
+  "name": "gbPrintFont::Release(void)",
+  "mangled_name": "?Release@gbPrintFont@@UAEXXZ",
+  "address": "0x10022B40",
+  "size_bytes": 36,
+  "signature": "void __thiscall(gbPrintFont *this)",
+  "decompiled_c": "void __thiscall gbPrintFont::Release(gbPrintFont *this)\n{\n  gbRefObject **v1; // esi\n  int v2; // edi\n\n  v1 = (gbRefObject **)((char *)this + 68);\n  v2 = 2;\n  do\n  {\n    if ( *v1 )\n    {\n      gbRefObject::Release(*v1);\n      *v1 = 0;\n    }\n    ++v1;\n    --v2;\n  }\n  while ( v2 );\n}\n"
+}

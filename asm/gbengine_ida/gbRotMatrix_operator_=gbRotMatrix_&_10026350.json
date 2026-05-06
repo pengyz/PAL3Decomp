@@ -1,0 +1,8 @@
+{
+  "name": "gbRotMatrix::operator*=(gbRotMatrix &)",
+  "mangled_name": "??XgbRotMatrix@@QAEXAAU0@@Z",
+  "address": "0x10026350",
+  "size_bytes": 126,
+  "signature": "int __thiscall(const void *this, float *a2)",
+  "decompiled_c": "int __thiscall gbRotMatrix::operator*=(const void *this, float *a2)\n{\n  float *v2; // ebx\n  int v3; // eax\n  float *v4; // edi\n  float *v5; // eax\n  int v6; // ebp\n  float *v7; // ecx\n  float *v8; // edx\n  int v9; // esi\n  double v10; // st7\n  int result; // eax\n  int v12; // [esp+10h] [ebp-2Ch]\n  int i; // [esp+14h] [ebp-28h]\n  _BYTE v14[36]; // [esp+18h] [ebp-24h] BYREF\n\n  qmemcpy(v14, this, sizeof(v14));\n  v2 = (float *)v14;\n  v3 = (_BYTE *)this - v14;\n  v12 = 3;\n  for ( i = (_BYTE *)this - v14; ; v3 = i )\n  {\n    v4 = a2;\n    v5 = (float *)((char *)v2 + v3);\n    v6 = 3;\n    do\n    {\n      *v5 = 0.0;\n      v7 = v2;\n      v8 = v4;\n      v9 = 3;\n      do\n      {\n        v10 = *v7++ * *v8;\n        v8 += 3;\n        --v9;\n        *v5 = v10 + *v5;\n      }\n      while ( v9 );\n      ++v5;\n      ++v4;\n      --v6;\n    }\n    while ( v6 );\n    v2 += 3;\n    result = --v12;\n    if ( !v12 )\n      break;\n  }\n  return result;\n}\n"
+}

@@ -1,0 +1,8 @@
+{
+  "name": "_ValidateRead(void const *,uint)",
+  "mangled_name": "?_ValidateRead@@YAHPBXI@Z",
+  "address": "0x100F1213",
+  "size_bytes": 28,
+  "signature": "BOOL __cdecl(void *lp, UINT_PTR ucb)",
+  "decompiled_c": "BOOL __cdecl _ValidateRead(void *lp, UINT_PTR ucb)\n{\n  return !IsBadReadPtr(lp, ucb);\n}\n"
+}

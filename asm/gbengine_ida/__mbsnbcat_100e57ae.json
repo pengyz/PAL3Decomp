@@ -1,0 +1,8 @@
+{
+  "name": "__mbsnbcat",
+  "mangled_name": "__mbsnbcat",
+  "address": "0x100E57AE",
+  "size_bytes": 200,
+  "signature": "unsigned __int8 *__cdecl(unsigned __int8 *Dest, const unsigned __int8 *Source, size_t Count)",
+  "decompiled_c": "unsigned __int8 *__cdecl _mbsnbcat(unsigned __int8 *Dest, const unsigned __int8 *Source, size_t Count)\n{\n  unsigned __int8 *v4; // esi\n  const unsigned __int8 *v5; // ecx\n  size_t v6; // edi\n  unsigned __int8 v7; // al\n  bool v8; // zf\n  _BYTE *v9; // ecx\n  unsigned __int8 v11; // al\n\n  if ( !Count )\n    return Dest;\n  if ( !dword_1016853C )\n    return (unsigned __int8 *)strncat((char *)Dest, (const char *)Source, Count);\n  _lock(25);\n  v4 = &Dest[strlen((const char *)Dest)];\n  if ( _mbsbtype(Dest, v4 - Dest - 1) == 1 )\n    --v4;\n  v5 = Source;\n  v6 = Count - 1;\n  while ( 1 )\n  {\n    v7 = *v5;\n    v8 = (byte_10168641[*v5] & 4) == 0;\n    *v4 = *v5;\n    if ( v8 )\n    {\n      ++v4;\n      ++v5;\n      if ( !v7 )\n        goto LABEL_17;\n      goto LABEL_13;\n    }\n    ++v4;\n    v9 = v5 + 1;\n    if ( !v6-- )\n    {\n      *(v4 - 1) = 0;\n      goto LABEL_17;\n    }\n    v11 = *v9;\n    *v4++ = *v9;\n    v5 = v9 + 1;\n    if ( !v11 )\n      break;\nLABEL_13:\n    if ( !v6-- )\n      goto LABEL_17;\n  }\n  *(v4 - 2) = 0;\nLABEL_17:\n  if ( _mbsbtype(Dest, v4 - Dest - 1) == 1 )\n    *(v4 - 1) = 0;\n  else\n    *v4 = 0;\n  _unlock(25);\n  return Dest;\n}\n"
+}

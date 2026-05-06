@@ -1,0 +1,8 @@
+{
+  "name": "gbGeomNode::~gbGeomNode(void)",
+  "mangled_name": "??1gbGeomNode@@UAE@XZ",
+  "address": "0x1000FCE0",
+  "size_bytes": 255,
+  "signature": "void __thiscall(gbGeomNode *this)",
+  "decompiled_c": "void __thiscall gbGeomNode::~gbGeomNode(gbGeomNode *this)\n{\n  void *v2; // eax\n  gbRefObject *v3; // ecx\n  void *v4; // edi\n  void *v5; // edi\n  void *v6; // edi\n\n  *(_DWORD *)this = &gbGeomNode::`vftable';\n  v2 = (void *)*((_DWORD *)this + 67);\n  if ( v2 )\n    operator delete(v2);\n  v3 = (gbRefObject *)*((_DWORD *)this + 66);\n  if ( v3 )\n    gbRefObject::Release(v3);\n  if ( *((_DWORD *)this + 59) )\n    operator delete(*((void **)this + 59));\n  v4 = (void *)*((_DWORD *)this + 54);\n  if ( v4 )\n  {\n    type_info::~type_info(*((type_info **)this + 54));\n    operator delete(v4);\n  }\n  v5 = (void *)*((_DWORD *)this + 56);\n  if ( v5 )\n  {\n    type_info::~type_info(*((type_info **)this + 56));\n    operator delete(v5);\n  }\n  v6 = (void *)*((_DWORD *)this + 55);\n  if ( v6 )\n  {\n    type_info::~type_info(*((type_info **)this + 55));\n    operator delete(v6);\n  }\n  *(_DWORD *)this = &gbVisNode::`vftable';\n  operator delete(*((void **)this + 7));\n  *(_DWORD *)this = &gbNBTreeNode::`vftable';\n  gbChain1D::~gbChain1D((gbGeomNode *)((char *)this + 12));\n  gbChain1DNode::~gbChain1DNode(this);\n}\n"
+}

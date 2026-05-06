@@ -1,0 +1,8 @@
+{
+  "name": "__clrfp",
+  "mangled_name": "__clrfp",
+  "address": "0x100EE384",
+  "size_bytes": 15,
+  "signature": "int __usercall@<eax>(__int16 a1@<fpstat>)",
+  "decompiled_c": "int __usercall _clrfp@<eax>(__int16 a1@<fpstat>)\n{\n  __asm { fnclex }\n  return a1;\n}\n"
+}

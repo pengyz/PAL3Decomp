@@ -1,0 +1,8 @@
+{
+  "name": "gbEffectMgr::GetRenderEffect(uint)",
+  "mangled_name": "?GetRenderEffect@gbEffectMgr@@QAEPAVgbRenderEffect@@I@Z",
+  "address": "0x1001D8B0",
+  "size_bytes": 39,
+  "signature": "struct gbRenderEffect *__thiscall(gbEffectMgr *this, unsigned int a2)",
+  "decompiled_c": "struct gbRenderEffect *__thiscall gbEffectMgr::GetRenderEffect(gbEffectMgr *this, unsigned int a2)\n{\n  int v2; // esi\n  int v3; // edx\n  int i; // ecx\n  struct gbRenderEffect *result; // eax\n\n  v2 = *((_DWORD *)this + 2);\n  v3 = 0;\n  if ( v2 <= 0 )\n    return 0;\n  for ( i = *(_DWORD *)this; ; i += 4 )\n  {\n    result = *(struct gbRenderEffect **)i;\n    if ( *(_DWORD *)(*(_DWORD *)i + 28) == a2 )\n      break;\n    if ( ++v3 >= v2 )\n      return 0;\n  }\n  return result;\n}\n"
+}
