@@ -31,7 +31,7 @@ LOG_FILE = os.path.join(LOG_DIR, "ida_apply_signatures_log.txt")
 
 PDB_EXPORT = os.path.join(PROJECT_ROOT, "asm", "pal3a", "pdb_export.json")
 TEXT_START = 0x00401000
-TEXT_END = 0x00608000
+TEXT_END = 0x00558000  # .text ends at 0x557C57, round up to .rdata start
 
 TYPE_MAP = {
     'void': 'void',
@@ -222,8 +222,9 @@ def main():
         funcs = pdb_data['functions']
         log(f"[*] PDB 函数总数: {len(funcs)}")
 
-        # Filter targets
+        # Filter targets - Phase 1: by PDB address
         targets = []
+        name_only_targets = []  # PDB functions outside IDA text range
         for f in funcs:
             addr_str = f.get('address', '')
             if not addr_str:
@@ -231,8 +232,6 @@ def main():
             try:
                 addr = int(addr_str, 16)
             except ValueError:
-                continue
-            if addr < TEXT_START or addr >= TEXT_END:
                 continue
             name = f.get('name', '')
             if not name or '[thunk]' in name or '??' in name:
@@ -249,14 +248,19 @@ def main():
                     'long', 'short', 'int', 'new', 'delete', 'char', 'bool',
                     'float', 'double', 'void', 'unsigned', 'signed'):
                 continue
-            targets.append((addr, f))
+            if TEXT_START <= addr < TEXT_END:
+                targets.append((addr, f))
+            else:
+                name_only_targets.append(f)
 
-        log(f"[*] 目标函数: {len(targets)}")
+        log(f"[*] 目标函数 (地址匹配): {len(targets)}")
+        log(f"[*] 目标函数 (需按名称查找): {len(name_only_targets)}")
 
-        # Pre-declare types
+        # Pre-declare types (scan all PDB functions, not just address-matched)
         til = ida_typeinf.get_idati()
         all_types = set()
-        for _, fi in targets:
+        all_pdb_funcs = targets + [(0, fi) for fi in name_only_targets]
+        for _, fi in all_pdb_funcs:
             name = fi.get('name', '')
             cls = name.split('::')[0] if '::' in name else ''
             if cls and '<' not in cls:
@@ -278,7 +282,7 @@ def main():
                     new_decls += 1
         log(f"[*] 新增前向声明: {new_decls}")
 
-        # Phase A: Name unnamed functions using PDB names
+        # Phase A: Name unnamed functions using PDB names (address-matched)
         named_count = 0
         for addr, fi in targets:
             name = fi.get('name', '')
@@ -290,7 +294,11 @@ def main():
                 safe = safe.replace('<', '_').replace('>', '_').replace(' ', '_')
                 if ida_name.set_name(addr, safe, ida_name.SN_NOWARN | ida_name.SN_NOCHECK):
                     named_count += 1
-        log(f"[*] Phase A: 新命名 {named_count} 个函数")
+        log(f"[*] Phase A: 新命名 {named_count} 个函数 (地址匹配)")
+
+        # Phase A2: DISABLED - PDB functions outside .text do NOT exist in release binary.
+        # Name-matching them to IDA functions produces incorrect mappings.
+        log(f"[*] Phase A2: 已禁用 (PDB 地址在 .text 外的函数在 release 版中不存在)")
 
         # Phase B: Apply signatures
         applied = 0

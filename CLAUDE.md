@@ -46,7 +46,112 @@ compiler (MSVC), generates byte-identical machine code to the original binary.
 - **Linker**: MSVC 7.1 (VS2003)
 - **D3DX**: Statically linked D3DX9.LIB (from DirectX SDK Summer 2003)
 
-## Workflow for Decompiling a Function
+## PAL3A Per-File Decompilation Workflow (Active)
+
+PAL3A.exe 有完整 PDB 符号 (11412 functions, 1057 classes, 479 source files)。
+使用 IDA Pro 9.2 + Hex-Rays 反编译，通过 IDAPython 管线持续优化输出质量。
+
+### 核心原则
+
+1. **IDA 层能解决的问题在 IDA 层解决** — 类型标注、结构体导入、函数签名、调用约定
+2. **逐文件处理** — 每次处理一个 .cpp 文件，编译验证，解决所有问题
+3. **累积收益** — 每次 IDA 侧的改进（结构体导入、签名修复）惠及所有文件
+4. **正确是底线** — 代码必须能编译通过，不编译的代码没有价值
+5. **后处理是最终兜底** — 只有确认 IDA 无法解决的问题才用后处理脚本
+
+### 单文件工作流
+
+```
+1. 选择文件        python tools/pal3a_file_export.py show <path>
+2. 检查 IDA 输出   查看 asm/pal3a/decomp/ 中对应函数的反编译质量
+3. 识别问题        _gap_0 → 缺结构体, sub_XXX → 缺函数名, dword_XXX → 缺全局变量
+4. IDA 侧修复      修改 tools/ida/ 管线脚本，重跑对应 Phase
+5. 重新导出        Phase 6 (ida_reexport_all.py) 生成新的反编译 JSON
+6. 填充 stub       python tools/pal3a_fill_stubs.py --file src/pal3a/<path>
+7. 编译验证        确保文件能通过编译
+8. 迭代            回到步骤 3 直到该文件完全正确
+```
+
+### IDA Pipeline (tools/ida/)
+
+在 IDA 中执行: `idat.exe -A -S"ida_master_pipeline.py" PAL3A.exe.i64`
+
+| Phase | 脚本 | 作用 |
+|-------|------|------|
+| 1 | ida_import_all.py | 导入 PDB 结构体 (1057 classes, 拓扑排序) |
+| 2 | ida_define_base_types.py | 定义缺失基类 (UIWnd, NPCInfo 等) |
+| 3 | ida_patch_base_classes.py | 修补 UI 类基类字段 |
+| 4 | ida_rename_top_subs.py | 重命名高频 sub_ 函数 |
+| 5 | ida_apply_signatures2.py | 应用 PDB 函数签名 (__thiscall + this 类型) |
+| 6 | ida_reexport_all.py | 导出全部反编译结果到 asm/pal3a/decomp/ |
+| 7 | ida_export_globals.py | 导出全局变量 (名称/类型/地址) |
+
+### 关键发现: PDB 与二进制的关系 (2026-05-06)
+
+PAL3A.PDB 对应的是**开发版/无保护版**二进制 (.text 约 3.4MB)。
+发行版使用 StarForce 保护，.text 只有 1.4MB，其余代码在 StarForce 容器中。
+
+PE 段布局 (发行版):
+- `.text`:  0x401000-0x557C57 (1.4MB) — 可分析的代码
+- `.rdata`: 0x558000-0x56FC0D
+- `.data`:  0x570000-0x2294000 (30MB, StarForce 容器, 含加密代码)
+
+PDB 函数分布:
+- 在 .text 内: 4530 个函数 — **可用, 地址与 IDA 一致 (93%+ 验证通过)**
+- 超出 .text: 6882 个函数 — **代码不在当前二进制中, 无法反编译**
+
+PAL3patch 脱壳 (`extra/PAL3patch/extra/unpack/pal3a/`):
+- 只恢复了 21 个被 StarForce thunk 替换的函数 (放入 .exttext 段)
+- 这已是社区最优方案, 无法进一步恢复
+
+**工作范围**: 4530 个 .text 内的函数 (地址 0x401000-0x557C57)。
+
+### 常见 IDA 输出问题及修复方向
+
+| IDA 输出 | 含义 | 修复方法 |
+|----------|------|----------|
+| `_gap_0[N]` | 结构体成员未定义 | IDA: 导入/完善结构体定义 |
+| `*(DWORD*)(this+N)` | this 类型不正确 | IDA: 设置正确的 __thiscall + this 类型 |
+| `sub_XXXXXX()` | 函数未命名 | IDA: 从 PDB 导入函数名 |
+| `dword_XXXXXX` | 全局变量未命名 | IDA: 从 globals_export.json 替换 |
+| `__userpurge` | 调用约定识别错误 | IDA: 修正函数签名 |
+| `JUMPOUT` | 函数边界错误 | IDA: 修正函数边界 (Phase Q2) |
+| `MEMORY[0x...]` | 无法识别的内存访问 | IDA: 创建对应地址的数据段 |
+
+### 工具命令速查
+
+```bash
+# 查看模块状态
+python tools/pal3a_file_export.py status
+
+# 列出某模块的文件
+python tools/pal3a_file_export.py list --module combat
+
+# 查看文件的函数及质量
+python tools/pal3a_file_export.py show combat/CBEditor.cpp
+
+# 填充 (自动替换 stub 为 IDA 反编译结果)
+python tools/pal3a_fill_stubs.py --file src/pal3a/Archive.cpp
+
+# 质量报告
+python tools/pal3a_fill_stubs.py --quality-report
+```
+
+### 进度跟踪
+
+- `docs/pal3a_progress.md` — 按文件记录反编译进度 (185个.cpp文件, 4523个函数)
+- 每完成一个函数的编译验证或字节匹配，必须更新此文件
+- 格式: File | Functions | Status | Compiles | Matches | Notes
+
+### 数据文件
+
+- `asm/pal3a/pdb_export.json` — PDB 完整导出 (函数签名、类定义、source_file_index)
+- `asm/pal3a/decomp/*.json` — 每个函数的 Hex-Rays 反编译结果
+- `asm/pal3a/globals_export.json` — 全局变量映射 (地址→名称)
+
+---
+
+## Legacy: topo.dll/gbengine.dll Workflow
 
 1. **Read the Ghidra export**: Look at `asm/FUNCNAME_ADDRESS.json`
 2. **Rewrite as C/C++**: Transform Ghidra pseudocode into compilable code
@@ -103,18 +208,20 @@ compiler (MSVC), generates byte-identical machine code to the original binary.
 - `python run.py compare <src> <addr> <size>` - Compile and compare
 - `python run.py rename` - Suggest function names
 
-## Current Progress (2026-05-01)
+## Current Progress (2026-05-06)
 
 ```
-topo.dll:     114/414 functions (27%) ✅ Compiles successfully
-gbengine.dll: Not started
-PAL3.exe:     Not started
+topo.dll:     114/414 functions (27%) - Compiles successfully
+PAL3A.exe:    IDA pipeline operational, 5012/5057 functions exported (99.1%)
+              Per-file decompilation workflow established
+              Next: pick file, fill, compile, iterate
 ```
 
-### Active TODOs
-1. TopoFaceVector_Insert (0x10008940) - 714 bytes, complex STL-like vector insert
-2. vtable pointers - Need actual vtable definitions for TopoGeom classes
-3. Remaining 300 topo.dll functions
+### Active Focus: PAL3A Per-File Decompilation
+- IDA pipeline (7 phases) produces ~20000 decompiled functions in asm/pal3a/decomp/
+- PDB source_file_index maps functions to 479 original .cpp files
+- Current bottleneck: IDA 类型标注质量 (结构体成员、函数签名)
+- Strategy: 逐文件处理，遇到问题在 IDA 层修复，累积改进所有文件
 
 ## Important Context Files
 

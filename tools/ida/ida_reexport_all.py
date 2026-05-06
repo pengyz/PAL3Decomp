@@ -20,10 +20,6 @@ OUTPUT_DIR = os.path.join(PROJECT_ROOT, "asm", "pal3a", "decomp")
 LOG_FILE = os.path.join(LOG_DIR, "ida_reexport_log.txt")
 SUMMARY_FILE = os.path.join(OUTPUT_DIR, "_export_summary.json")
 
-TEXT_START = 0x00401000
-TEXT_END = 0x00608000
-
-
 def main():
     log_lines = []
 
@@ -35,11 +31,21 @@ def main():
         ida_auto.auto_wait()
         log("[*] IDA 9.x ready")
 
+        # Clean old export files to avoid stale data
+        if os.path.exists(OUTPUT_DIR):
+            import glob
+            old_files = glob.glob(os.path.join(OUTPUT_DIR, "*.json"))
+            for old_f in old_files:
+                if os.path.basename(old_f).startswith('_'):
+                    continue
+                os.remove(old_f)
+            log(f"[*] 清理旧导出文件: {len(old_files)} 个")
+
         os.makedirs(OUTPUT_DIR, exist_ok=True)
 
-        # Collect all named functions in .text
+        # Collect ALL named functions (no address range restriction)
         targets = []
-        for ea in idautils.Functions(TEXT_START, TEXT_END):
+        for ea in idautils.Functions():
             name = ida_name.get_name(ea) or ""
             if name and not name.startswith("sub_") and not name.startswith("nullsub_"):
                 func = ida_funcs.get_func(ea)

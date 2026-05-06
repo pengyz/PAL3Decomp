@@ -29,7 +29,7 @@ LOG_FILE = os.path.join(LOG_DIR, "ida_split_functions_log.txt")
 
 PDB_EXPORT = os.path.join(PROJECT_ROOT, "asm", "pal3a", "pdb_export.json")
 TEXT_START = 0x00401000
-TEXT_END = 0x00608000
+TEXT_END = 0x00558000  # .text actual end
 
 
 def is_valid_split_point(addr):

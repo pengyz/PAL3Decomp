@@ -50,8 +50,20 @@ test_build.bat
 | 二进制 | 大小 | 编译器 | 状态 |
 |--------|------|--------|------|
 | topo.dll | 106 KB | VC6 SP6 | ✅ 24% (7 文件, 2340 行) |
-| gbengine.dll | 1.26 MB | VC6 SP6 | 🔄 数据已导出 (3213 函数) |
+| PAL3A.exe | ~2 MB | VC7.0 | 🔄 IDA pipeline (99.1% exported, 逐文件填充中) |
+| gbengine.dll | 1.26 MB | VC6 SP6 | ⏳ 数据已导出 |
 | PAL3.exe | 1.87 MB | VC7.0 + VS2003 | ⏳ 需要脱壳 |
+
+### PAL3A 工作流 (当前重点)
+
+PAL3A.exe 有完整 PDB 调试符号。使用 IDA + Hex-Rays 自动反编译，逐文件验证编译。
+
+```
+选文件 → 查看 IDA 输出 → 识别问题 → IDA 侧修复 → 重新导出 → 填充 → 编译验证
+```
+
+每次 IDA 侧修复（类型标注、签名修正）都是累积收益，提升所有函数的反编译质量。
+详见 [CLAUDE.md](CLAUDE.md) 中的 "PAL3A Per-File Decompilation Workflow"。
 
 ---
 

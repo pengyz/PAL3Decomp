@@ -44,6 +44,10 @@ RDATA_END = 0x0057F1F2
 DATA_START = 0x00580000
 DATA_END = 0x0060C000
 
+# Full code range (includes all sections with executable code)
+CODE_START = 0x00401000
+CODE_END = 0x0061A000
+
 # ============================================================================
 # Confidence Thresholds
 # ============================================================================

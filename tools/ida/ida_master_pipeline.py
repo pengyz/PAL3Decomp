@@ -122,6 +122,9 @@ def main():
     ok = run_phase(5, "应用 PDB 函数签名 (先命名+设类型 v2)", "ida_apply_signatures2.py")
     results.append(("Phase 5: 函数签名应用", ok))
 
+    ok = run_phase(8, "验证 PDB 名称映射 (地址/大小交叉校验)", "ida_verify_names.py")
+    results.append(("Phase 8: 名称验证", ok))
+
     if not SKIP_EXPORT:
         ok = run_phase(6, "重新导出反编译结果", "ida_reexport_all.py")
         results.append(("Phase 6: 反编译导出", ok))
