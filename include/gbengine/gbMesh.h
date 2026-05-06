@@ -198,9 +198,9 @@ private:
 // Forward declaration (full definition in gbSceneGraph.h)
 struct gbRenderInfoObj;
 
-// Geometry node description
+// Geometry node description (sizeof = 52, verified from LoadFromFile: "52 * numMeshes" read)
 struct GeomNodeDesc {
-    char name[64];
+    char name[48];
     int flags;
 };
 

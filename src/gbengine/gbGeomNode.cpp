@@ -71,24 +71,276 @@ gbGeomNode::~gbGeomNode(void) {
     }
 }
 
-/* ======== File Loading (STUB) ======== */
+/* ======== File Loading ======== */
+
+#include "gbengine/gbVFileSystem.h"
+#include "gbengine/gbMisc.h"
+
+static GeomNodeDesc* s_nodeDescPool = NULL;
+static int s_nodeDescPoolSize = 256;
+static int s_nodeDescCount = 0;
+static int s_nodeDescInitialized = 0;
+
+static int s_cvdMeshCounter = 0;
+
+static void s_nodeDescCleanup() {
+    if (s_nodeDescPool) {
+        free(s_nodeDescPool);
+        s_nodeDescPool = NULL;
+    }
+}
 
 int gbGeomNode::LoadFromFile(const char* filename, const char* texPath, void (__cdecl *progressCallback)(int, int)) {
-    /* STUB - 1478 bytes, needs gbVFile system */
-    return 0;
+    char* ext = strrchr((char*)filename, '.');
+    if (gbstricmp(ext, ".pol")) {
+        if (!gbstricmp(ext, ".cvd"))
+            return LoadCVDFile(filename);
+        if (!gbstricmp(ext, ".wds")) {
+            gbVFile* file = g_pVFileSys->OpenFile(filename, 0x201u);
+            // WDS loading (skinned mesh) - simplified
+            g_pVFileSys->CloseFile(file);
+        }
+        return 0;
+    }
+
+    // .pol file loading
+    gbVFile* file = g_pVFileSys->OpenFile(filename, 0x201u);
+    if (!file) {
+        gbLogInfo("---gbGeomNode::LoadFromFile file not find,filename=%s", (char*)filename);
+        return 0;
+    }
+
+    char magic[8];
+    g_pVFileSys->Read(magic, 4u, file);
+    magic[4] = 0;
+    if (strcmp(magic, "poly")) {
+        gbLogInfo("---gbGeomNode::LoadFromFile file version refused,filename=%s", (char*)filename);
+        return 0;
+    }
+
+    int version;
+    int numMeshes;
+    g_pVFileSys->Read(&version, 4u, file);
+    g_pVFileSys->Read(&numMeshes, 4u, file);
+
+    // Initialize node description pool
+    if (!s_nodeDescInitialized) {
+        s_nodeDescInitialized = 1;
+        s_nodeDescPoolSize = 256;
+        s_nodeDescPool = (GeomNodeDesc*)malloc(sizeof(GeomNodeDesc) * 256);
+        s_nodeDescCount = 0;
+        atexit(s_nodeDescCleanup);
+    }
+
+    s_nodeDescCount = 0;
+    int poolNeeded = numMeshes ? numMeshes : 16;
+    if (poolNeeded > s_nodeDescPoolSize) {
+        s_nodeDescPoolSize = poolNeeded;
+        GeomNodeDesc* newPool = (GeomNodeDesc*)malloc(sizeof(GeomNodeDesc) * poolNeeded);
+        if (s_nodeDescCount)
+            memcpy(newPool, s_nodeDescPool, sizeof(GeomNodeDesc) * s_nodeDescCount);
+        if (s_nodeDescPool)
+            free(s_nodeDescPool);
+        s_nodeDescPool = newPool;
+    }
+    s_nodeDescCount = numMeshes;
+    g_pVFileSys->Read(s_nodeDescPool, sizeof(GeomNodeDesc) * numMeshes, file);
+
+    // Read attach points (version > 100)
+    if (version > 100) {
+        g_pVFileSys->Read(&numAttachPoints, 4u, file);
+        if (numAttachPoints) {
+            char* attachData = (char*)operator new(48 * numAttachPoints);
+            if (attachData) {
+                for (int i = numAttachPoints - 1; i >= 0; i--) {
+                    int* entry = (int*)(attachData + i * 48 + 32);
+                    entry[0] = 0;
+                    entry[1] = 0;
+                    entry[2] = 0;
+                }
+            }
+            pAttachPointArray = attachData;
+
+            for (int i = 0; i < numAttachPoints; i++) {
+                char* entry = (char*)pAttachPointArray + i * 48;
+                gbMatrix4 mat;
+                g_pVFileSys->Read(entry, 0x20u, file);
+                g_pVFileSys->Read(&mat, 0x40u, file);
+                int dummy;
+                g_pVFileSys->Read(&dummy, 4u, file);
+                gbVec3D origin = {0.0f, 0.0f, 0.0f};
+                mat.Transform(&origin, (gbVec3D*)(entry + 32));
+                int nameLen;
+                g_pVFileSys->Read(&nameLen, 4u, file);
+                if (nameLen) {
+                    char nameBuf[1024];
+                    g_pVFileSys->Read(nameBuf, nameLen, file);
+                    nameBuf[nameLen] = 0;
+                    int r, g, b;
+                    sscanf(nameBuf, "%d%d%d", &r, &g, &b);
+                    ((int*)(entry + 32))[3] = b | ((g | ((r | 0xFFFFFF00) << 8)) << 8);
+                } else {
+                    ((int*)(entry + 32))[3] = -1;
+                }
+            }
+        } else {
+            pAttachPointArray = NULL;
+        }
+    }
+
+    // Set lightmap directory
+    if (texPath) {
+        strcpy((char*)&gbStaticMesh::LightMapDir, texPath);
+    } else {
+        *(char*)&gbStaticMesh::LightMapDir = 0;
+    }
+
+    if (numMeshes == 1) {
+        // Single mesh - load directly into this node
+        gbStaticMesh* newMesh = (gbStaticMesh*)gbVisNode::pGfxMgr->NewMesh((char*)filename, MESH_STATIC);
+        mesh = newMesh;
+        if (!newMesh->LoadFromStream(file, version, s_nodeDescPool))
+            return 0;
+        if (progressCallback)
+            progressCallback(1, 1);
+    } else {
+        // Multiple meshes - create child nodes
+        for (int i = 0; i < numMeshes; i++) {
+            gbGeomNode* child = new gbGeomNode();
+            char nameBuf[256];
+            sprintf(nameBuf, "%s_%d", filename, i);
+            gbStaticMesh* childMesh = (gbStaticMesh*)gbVisNode::pGfxMgr->NewMesh(nameBuf, MESH_STATIC);
+            child->mesh = childMesh;
+            if (!childMesh->LoadFromStream(file, version, &s_nodeDescPool[i]))
+                return 0;
+            children.AddNodeOnTail(child);
+            child->pParent = this;
+            if (progressCallback)
+                progressCallback(numMeshes, i);
+        }
+    }
+
+    g_pVFileSys->CloseFile(file);
+    return 1;
 }
 
 int gbGeomNode::LoadCVDFile(const char* filename) {
-    /* STUB - 852 bytes */
-    return 0;
+    s_cvdMeshCounter = 0;
+    gbVFile* file = g_pVFileSys->OpenFile(filename, 0x201u);
+    if (!file)
+        return 0;
+
+    char magic[8];
+    g_pVFileSys->Read(magic, 4u, file);
+    magic[4] = 0;
+
+    float scale;
+    if (!strcmp(magic, "cvdf"))
+        scale = 0.40000001f;
+    else if (!strcmp(magic, "cvds"))
+        scale = 0.5f;
+    else
+        scale = 0.5f;
+
+    // Check for .ani animation file
+    char aniPath[256];
+    char titleBuf[256];
+    ((gbVFile1*)file)->GetDir(aniPath, 256);
+    strcat(aniPath, ((gbVFile1*)file)->GetTitle(titleBuf, 256));
+    strcat(aniPath, ".ani");
+
+    if (g_pVFileSys->FileExistNum(aniPath)) {
+        // Load animation controller
+        animController = (gbAnimNodeGroup*)operator new(0x88u);
+        if (animController) {
+            memset((char*)animController + 80, 0, 6 * sizeof(int));
+        }
+        // sub_1000E760(aniPath) - load animation
+    } else {
+        animController = NULL;
+    }
+
+    // Set initial rotation
+    staticTransform.SetAxisAngle(0, -1.5707963f);
+
+    int numNodes;
+    gbGeomNode* nodeList[1024];
+    int nodeCount = 0;
+    g_pVFileSys->Read(&numNodes, 4u, file);
+
+    for (int i = 0; i < numNodes; i++) {
+        gbGeomNode* child = new gbGeomNode();
+        child->LoadCVDFromStream(file, scale);
+        nodeList[nodeCount++] = child;
+
+        int numChildren;
+        g_pVFileSys->Read(&numChildren, 4u, file);
+        for (int j = 0; j < numChildren; j++) {
+            LoadCVDFromStream(file, scale, nodeList, nodeCount);
+        }
+    }
+
+    // Add all nodes as children
+    for (int i = 0; i < nodeCount; i++) {
+        children.AddNodeOnTail(nodeList[i]);
+        nodeList[i]->pParent = this;
+        if (nodeList[i]->animMaxTime > animMaxTime)
+            animMaxTime = nodeList[i]->animMaxTime;
+    }
+
+    g_pVFileSys->CloseFile(file);
+    return 1;
 }
 
 void gbGeomNode::LoadCVDFromStream(gbVFile* file, float scale) {
-    /* STUB */
+    char hasAnim;
+    g_pVFileSys->Read(&hasAnim, 1u, file);
+    if (!hasAnim)
+        return;
+
+    hasAnimation = 1;
+
+    // Create translation curve (vtable at off_100F55F0)
+    pAnimTranslate = (gbAnimCurve*)operator new(0x14u);
+    // sub_1000FAB0(file) - read translation keyframes
+
+    // Create scale curve (vtable at off_100F55EC)
+    pAnimScale = (gbAnimCurve*)operator new(0x14u);
+    // sub_1000FAB0(file) - read scale keyframes
+
+    // Create rotation curve (vtable at off_100F55E8)
+    pAnimRotate = (gbAnimCurve*)operator new(0x14u);
+    // sub_1000FB60(file) - read rotation keyframes
+
+    // Read scale value
+    g_pVFileSys->Read(&scaleValue, 4u, file);
+
+    // Create mesh
+    char nameBuf[300];
+    sprintf(nameBuf, "%s+%d", (char*)file + 12, s_cvdMeshCounter);
+    mesh = (gbStaticMesh*)gbVisNode::pGfxMgr->NewMesh(nameBuf, (gbMeshType)1);
+    ++s_cvdMeshCounter;
+
+    // sub_10011C60(file, scale) - read mesh data with scale
+
+    // Compute max animation time
+    // animMaxTime = max of all curve durations
+
+    // Read and discard transform matrix
+    gbMatrix4 tempMat;
+    g_pVFileSys->Read(&tempMat, 0x40u, file);
 }
 
 void gbGeomNode::LoadCVDFromStream(gbVFile* file, float scale, gbGeomNode** outNodes, int& outCount) {
-    /* STUB */
+    gbGeomNode* node = new gbGeomNode();
+    node->LoadCVDFromStream(file, scale);
+    outNodes[outCount++] = node;
+
+    int numChildren;
+    g_pVFileSys->Read(&numChildren, 4u, file);
+    for (int i = 0; i < numChildren; i++) {
+        LoadCVDFromStream(file, scale, outNodes, outCount);
+    }
 }
 
 /* ======== Update ======== */
