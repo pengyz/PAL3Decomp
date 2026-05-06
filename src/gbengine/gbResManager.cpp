@@ -36,7 +36,6 @@ public:
 
 // Constructor - 0x100015e0
 gbRefObject::gbRefObject() {
-    /* STUB */
     // vtable set by compiler
     refCount = 1;
 }
@@ -68,13 +67,11 @@ void gbRefObject::DecRef() {
 
 // GetRef - 0x100017b0
 int gbRefObject::GetRef() {
-    /* STUB */
     return refCount;
 }
 
 // Release - 0x1002f7f0
 void gbRefObject::Release() {
-    /* STUB */
     refCount--;
     if (refCount == 0) {
         // Call virtual destructor through vtable
@@ -85,7 +82,6 @@ void gbRefObject::Release() {
 
 // operator= - 0x10003980
 gbRefObject& gbRefObject::operator=(const gbRefObject& other) {
-    /* STUB */
     if (this != &other) {
         refCount = other.refCount;
     }
@@ -115,7 +111,6 @@ public:
 
 // Constructor - 0x10001840
 gbResource::gbResource() : gbRefObject() {
-    /* STUB */
     refCount = 1;
     // vtable set by compiler
     name = NULL;
@@ -125,7 +120,6 @@ gbResource::gbResource() : gbRefObject() {
 
 // Copy constructor - 0x10001860
 gbResource::gbResource(const gbResource& other) : gbRefObject(other) {
-    /* STUB */
     name = other.name;
     nameCrc = other.nameCrc;
     unknown10 = other.unknown10;
@@ -135,7 +129,6 @@ gbResource::gbResource(const gbResource& other) : gbRefObject(other) {
 
 // Destructor - 0x100200d0
 gbResource::~gbResource() {
-    /* STUB */
     // Remove from manager if attached
     if (manager != NULL) {
         int count = *((int*)manager + 2); // manager->count at +8
@@ -169,7 +162,6 @@ gbResource::~gbResource() {
 
 // SetName - 0x10020040
 void gbResource::SetName(const char* newName) {
-    /* STUB */
     // Free old name
     if (name != NULL) {
         free(name);
@@ -198,19 +190,16 @@ void gbResource::SetName(const char* newName) {
 
 // GetName - 0x100039f0
 const char* gbResource::GetName() {
-    /* STUB */
     return name;
 }
 
 // GetNameCrc32 - 0x10003cc0
 unsigned int gbResource::GetNameCrc32() {
-    /* STUB */
     return nameCrc;
 }
 
 // operator= - 0x100018a0
 gbResource& gbResource::operator=(const gbResource& other) {
-    /* STUB */
     if (this != &other) {
         gbRefObject::operator=(other);
         name = other.name;
@@ -244,7 +233,6 @@ public:
 
 // Constructor - 0x10020190
 gbResManager::gbResManager() {
-    /* STUB */
     array = NULL;
     capacity = 0;
     count = 0;
@@ -252,7 +240,6 @@ gbResManager::gbResManager() {
 
 // Copy constructor
 gbResManager::gbResManager(const gbResManager& other) {
-    /* STUB */
     array = other.array;
     capacity = other.capacity;
     count = other.count;
@@ -260,7 +247,6 @@ gbResManager::gbResManager(const gbResManager& other) {
 
 // Destructor - 0x100201a0
 gbResManager::~gbResManager() {
-    /* STUB */
     if (array != NULL) {
         free(array);
     }
@@ -268,7 +254,6 @@ gbResManager::~gbResManager() {
 
 // AddResource - 0x10020200
 void gbResManager::AddResource(gbResource* res) {
-    /* STUB */
     // Set manager pointer in resource
     res->manager = this;
 
@@ -304,7 +289,6 @@ void gbResManager::AddResource(gbResource* res) {
 
 // DelResource - 0x10020280
 void gbResManager::DelResource(gbResource* res) {
-    /* STUB */
     // Find resource in array
     for (int i = 0; i < count; i++) {
         if (array[i] == res) {
@@ -349,7 +333,6 @@ void gbResManager::DelResource(gbResource* res) {
 
 // FindResByName - 0x100201b0
 gbResource* gbResManager::FindResByName(const char* name) {
-    /* STUB */
     if (name == NULL) {
         return NULL;
     }
@@ -372,7 +355,6 @@ gbResource* gbResManager::FindResByName(const char* name) {
 
 // CleanAllResource - 0x10020320
 void gbResManager::CleanAllResource() {
-    /* STUB */
     while (count != 0) {
         gbResource* res = array[0];
 
@@ -390,7 +372,6 @@ void gbResManager::CleanAllResource() {
 
 // operator= - 0x100019b0
 gbResManager& gbResManager::operator=(const gbResManager& other) {
-    /* STUB */
     if (this != &other) {
         array = other.array;
         capacity = other.capacity;

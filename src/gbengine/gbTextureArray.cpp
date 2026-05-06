@@ -13,7 +13,6 @@ gbTextureArray::gbTextureArray(gbTexture* tex0, gbTexture* tex1) {
 }
 
 gbTextureArray& gbTextureArray::operator=(const gbTextureArray& other) {
-    /* STUB */
     if (this != &other) {
         pTex[0] = other.pTex[0];
         pTex[1] = other.pTex[1];

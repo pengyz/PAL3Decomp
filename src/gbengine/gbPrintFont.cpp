@@ -14,7 +14,6 @@
 // 0x10022a20
 gbPrintFont::gbPrintFont(int maxStr, int max3D, int bufSize)
 {
-    /* STUB */
     maxStrings = maxStr;
     max3DStrings = max3D;
     maxChars = bufSize;
@@ -43,7 +42,6 @@ gbPrintFont::gbPrintFont(int maxStr, int max3D, int bufSize)
 // destructor
 gbPrintFont::~gbPrintFont()
 {
-    /* STUB */
     free(textBuffer);
     free(string3DInfoBuffer);
     free(charInfoBuffer);
@@ -53,14 +51,12 @@ gbPrintFont::~gbPrintFont()
 // 0x10022b00
 int gbPrintFont::Init(void)
 {
-    /* STUB */
     return 1;
 }
 
 // 0x10022b40
 void gbPrintFont::Release(void)
 {
-    /* STUB */
     free(textBuffer);
     free(string3DInfoBuffer);
     free(charInfoBuffer);
@@ -75,7 +71,6 @@ void gbPrintFont::Release(void)
 // 0x10022bf0
 void gbPrintFont::PrintString(char* text, float x, float y, float w, float h)
 {
-    /* STUB */
     if (currentStringCount >= maxStrings) {
         return;
     }
@@ -112,7 +107,6 @@ void gbPrintFont::PrintString(char* text, float x, float y, float w, float h)
 // 0x10022d60
 void gbPrintFont::Print3DString(char* text, float x, float y, float z)
 {
-    /* STUB */
     if (current3DStringCount >= max3DStrings) {
         return;
     }
@@ -148,7 +142,6 @@ void gbPrintFont::Print3DString(char* text, float x, float y, float z)
 // 0x10022b70
 void gbPrintFont::PrintCenterLine(char* text, float left, float top, float right, float bottom)
 {
-    /* STUB */
     int len = (int)strlen(text);
 
     // Calculate centered X position
@@ -165,7 +158,6 @@ void gbPrintFont::PrintCenterLine(char* text, float left, float top, float right
 // 0x10004340
 void gbPrintFont::SetFontColor(unsigned char r, unsigned char g, unsigned char b)
 {
-    /* STUB */
     colorR = r;
     colorG = g;
     colorB = b;
@@ -174,7 +166,6 @@ void gbPrintFont::SetFontColor(unsigned char r, unsigned char g, unsigned char b
 // 0x100043a0
 void gbPrintFont::SetFontColor(unsigned char r, unsigned char g, unsigned char b, unsigned char a)
 {
-    /* STUB */
     colorR = r;
     colorG = g;
     colorB = b;
@@ -184,7 +175,6 @@ void gbPrintFont::SetFontColor(unsigned char r, unsigned char g, unsigned char b
 // 0x10004400
 void gbPrintFont::SetCurFontScale(float sx, float sy)
 {
-    /* STUB */
     scaleX = sx;
     scaleY = sy;
 }
@@ -192,7 +182,6 @@ void gbPrintFont::SetCurFontScale(float sx, float sy)
 // 0x10004420
 void gbPrintFont::SetCurFontPitch(float px, float py)
 {
-    /* STUB */
     pitchX = px;
     pitchY = py;
 }
@@ -200,7 +189,6 @@ void gbPrintFont::SetCurFontPitch(float px, float py)
 // 0x10004440
 void gbPrintFont::SetCurFontDepth(float d)
 {
-    /* STUB */
     depth = d;
 }
 
@@ -210,7 +198,6 @@ void gbPrintFont::SetCurFontDepth(float d)
 // 0x10022f40
 gbPrintFontMgr::gbPrintFontMgr(void)
 {
-    /* STUB */
     fonts[0] = NULL;
     fonts[1] = NULL;
     fonts[2] = NULL;
@@ -221,7 +208,6 @@ gbPrintFontMgr::gbPrintFontMgr(void)
 // 0x10022f60
 int gbPrintFontMgr::Init(gbGfxManager* mgr)
 {
-    /* STUB */
     gfxMgr = mgr;
 
     // Allocate default font with reasonable defaults
@@ -242,7 +228,6 @@ int gbPrintFontMgr::Init(gbGfxManager* mgr)
 // 0x10023150
 void gbPrintFontMgr::Release(void)
 {
-    /* STUB */
     for (int i = 0; i < 4; i++) {
         if (fonts[i]) {
             fonts[i]->Release();
@@ -255,7 +240,6 @@ void gbPrintFontMgr::Release(void)
 // 0x100231b0
 void gbPrintFontMgr::Flush(void)
 {
-    /* STUB */
     for (int i = 0; i < 4; i++) {
         if (fonts[i]) {
             fonts[i]->currentStringCount = 0;
@@ -267,7 +251,6 @@ void gbPrintFontMgr::Flush(void)
 // 0x100231d0
 void gbPrintFontMgr::Flush3D(void)
 {
-    /* STUB */
     for (int i = 0; i < 4; i++) {
         if (fonts[i]) {
             fonts[i]->current3DStringCount = 0;

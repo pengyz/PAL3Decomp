@@ -22,7 +22,6 @@ extern void operator delete(void *p);
 
 gbMatrixStack::gbMatrixStack(int depth)
 {
-    /* STUB */
     maxDepth = depth;
     curDepth = 0;
     gbMatrix4 *buf = (gbMatrix4 *)operator new(depth << 6);
@@ -52,7 +51,6 @@ gbMatrixStack::~gbMatrixStack(void)
 
 gbMatrixStack &gbMatrixStack::operator=(const gbMatrixStack &other)
 {
-    /* STUB */
     pStack = other.pStack;
     maxDepth = other.maxDepth;
     curDepth = other.curDepth;
@@ -62,7 +60,6 @@ gbMatrixStack &gbMatrixStack::operator=(const gbMatrixStack &other)
 
 void gbMatrixStack::Push(void)
 {
-    /* STUB */
     float *pSrc = (float *)&pStack[curDepth];
     float *pDst = (float *)&pStack[curDepth + 1];
     int i;
@@ -90,7 +87,6 @@ void gbMatrixStack::LoadIdentity(void)
 
 void gbMatrixStack::LoadMatrix(gbMatrix4 *mat)
 {
-    /* STUB */
     float *pSrc = (float *)mat;
     float *pDst = (float *)&pStack[curDepth];
     int i;
@@ -111,7 +107,6 @@ void gbMatrixStack::MultMatrix(gbMatrix4 *mat)
 
 void gbMatrixStack::Rotate(float angle, gbVec3D &axis)
 {
-    /* STUB */
     gbMatrix4 rot;
     rot.SetAxisAngle(&axis, angle);
     pStack[curDepth].LeftMultiply(rot);
@@ -161,6 +156,5 @@ gbMatrix4 *gbMatrixStack::GetTop(void)
 
 int gbMatrixStack::GetDepth(void)
 {
-    /* STUB */
     return curDepth;
 }

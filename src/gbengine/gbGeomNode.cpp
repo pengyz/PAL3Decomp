@@ -14,7 +14,6 @@
 /* ======== gbGeomNode method implementations ======== */
 
 gbGeomNode::gbGeomNode(void) {
-    /* STUB */
     // Call base class constructor (gbVisNode at 0x10016590)
     // Base class is 0x58 bytes
 
@@ -52,7 +51,6 @@ gbGeomNode::gbGeomNode(void) {
 }
 
 gbGeomNode::gbGeomNode(const gbGeomNode& other) {
-    /* STUB */
     // Copy base class members (gbVisNode portion)
     // This is a shallow copy of the inheritance hierarchy
 
@@ -82,7 +80,6 @@ gbGeomNode::gbGeomNode(const gbGeomNode& other) {
 }
 
 gbGeomNode& gbGeomNode::operator=(const gbGeomNode& other) {
-    /* STUB */
     if (this != &other) {
         // Same as copy constructor but for existing object
         memcpy(&localTransform, &other.localTransform, sizeof(gbMatrix4));
@@ -108,7 +105,6 @@ gbGeomNode& gbGeomNode::operator=(const gbGeomNode& other) {
 }
 
 gbGeomNode::~gbGeomNode(void) {
-    /* STUB */
     // Clean up mesh and other resources
     if (mesh) {
         // mesh->Release() or delete
@@ -166,7 +162,6 @@ void gbGeomNode::Update(void) {
 }
 
 void gbGeomNode::AttachSelf(gbRenderEffect* effect) {
-    /* STUB */
     if (!effect || !mesh) return;
 
     int numSections = mesh->GetNumSection();
@@ -177,7 +172,6 @@ void gbGeomNode::AttachSelf(gbRenderEffect* effect) {
 }
 
 int gbGeomNode::Attach(gbRenderEffect* effect) {
-    /* STUB */
     if (!effect) return 0;
 
     // Attach this node and all children to the render effect
@@ -189,7 +183,6 @@ int gbGeomNode::Attach(gbRenderEffect* effect) {
 }
 
 void gbGeomNode::Render(gbRenderInfoObj* renderInfo) {
-    /* STUB */
     if (!renderInfo || !mesh) return;
 
     int numSections = mesh->GetNumSection();
@@ -203,7 +196,6 @@ void gbGeomNode::Render(gbRenderInfoObj* renderInfo) {
 }
 
 void gbGeomNode::RenderShadowVolume(gbRenderInfoObj* renderInfo) {
-    /* STUB */
     if (!renderInfo || !shadowEnabled || !shadowData) return;
 
     void** meshVtable = *(void***)mesh;
@@ -213,7 +205,6 @@ void gbGeomNode::RenderShadowVolume(gbRenderInfoObj* renderInfo) {
 }
 
 void gbGeomNode::Reset(float time) {
-    /* STUB */
     // Reset animation to specified time
     animTime = time;
     loopPast = 0;
@@ -227,7 +218,6 @@ void gbGeomNode::Reset(float time) {
 }
 
 void gbGeomNode::GetBoundSphere(gbSphere* sphere) {
-    /* STUB */
     if (!sphere) return;
 
     if (!mesh) {
@@ -252,17 +242,14 @@ void gbGeomNode::GetBoundSphere(gbSphere* sphere) {
 }
 
 void gbGeomNode::SetAnimLoop(int loop) {
-    /* STUB */
     animLoop = loop;
 }
 
 void gbGeomNode::EnableShadow(int enable) {
-    /* STUB */
     shadowEnabled = enable;
 }
 
 int gbGeomNode::GetAABBox(gbAABBox* box) {
-    /* STUB */
     if (!mesh) return 0;
 
     gbAABBox* meshBox = mesh->GetAABBox();
@@ -271,17 +258,14 @@ int gbGeomNode::GetAABBox(gbAABBox* box) {
 }
 
 void gbGeomNode::SetBladeTime(float time) {
-    /* STUB */
     bladeTime = time;
 }
 
 void gbGeomNode::SetBladeTimeScale(float scale) {
-    /* STUB */
     bladeTimeScale = scale;
 }
 
 gbVec3D* gbGeomNode::GetLastBladePos(gbGeomNode* node) {
-    /* STUB */
     if (bladeEffect && lastBladePos) {
         return lastBladePos;
     }
@@ -289,7 +273,6 @@ gbVec3D* gbGeomNode::GetLastBladePos(gbGeomNode* node) {
 }
 
 void gbGeomNode::ReplaceTexture(const char* textureName) {
-    /* STUB */
     if (mesh) {
         mesh->ReplaceTexture(textureName);
     }
@@ -304,14 +287,12 @@ void gbGeomNode::ReplaceTexture(const char* textureName) {
 }
 
 void gbGeomNode::ReplaceTexture(gbTexture* texture) {
-    /* STUB */
     if (mesh) {
         mesh->ReplaceTexture(texture);
     }
 }
 
 gbOBBox* gbGeomNode::GetOBBox(gbOBBox* box) {
-    /* STUB */
     if (!box) return NULL;
 
     memcpy(&box->matrix, &worldTransform, sizeof(gbMatrix4));
@@ -352,7 +333,6 @@ static void CollectMeshNodes(gbGeomNode** nodeArray, unsigned int* count, gbGeom
 }
 
 gbOBBox* gbGeomNode::GetTotalOBBox(gbOBBox* box) {
-    /* STUB */
     if (!box) return NULL;
 
     unsigned int nodeCount = 0;
@@ -439,27 +419,22 @@ gbOBBox* gbGeomNode::GetTotalOBBox(gbOBBox* box) {
 }
 
 void gbGeomNode::EnableBlade(int enable) {
-    /* STUB */
     bladeEnabled = enable;
 }
 
 gbMatrix4* gbGeomNode::GetCacheToWorld() {
-    /* STUB */
     return &worldTransform;
 }
 
 int gbGeomNode::GetLoopPast() {
-    /* STUB */
     return loopPast;
 }
 
 gbBaseMesh* gbGeomNode::GetMesh() {
-    /* STUB */
     return mesh;
 }
 
 float gbGeomNode::GetAnimMaxTime() {
-    /* STUB */
     if (animController) {
         return animController->maxTime;
     }

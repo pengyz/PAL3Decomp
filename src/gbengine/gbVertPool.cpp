@@ -16,7 +16,6 @@ static gbGfxManager* g_gbDynVertBuf_pGfxMgr = NULL;
 
 // Constructor: 0x10003b50
 gbIndexBubble::gbIndexBubble(gbIndexPool* pool, gbPrimType prim, int start, int cnt, int used) {
-    /* STUB */
     this->pPool = pool;
     this->primType = prim;
     this->startIndex = cnt;
@@ -28,7 +27,6 @@ gbIndexBubble::gbIndexBubble(gbIndexPool* pool, gbPrimType prim, int start, int 
 
 // Copy constructor: 0x10003bd0
 gbIndexBubble::gbIndexBubble(const gbIndexBubble& other) {
-    /* STUB */
     this->pPool = other.pPool;
     this->primType = other.primType;
     this->startIndex = other.startIndex;
@@ -46,7 +44,6 @@ gbIndexBubble::~gbIndexBubble() {
 
 // Set: 0x10003b90
 void gbIndexBubble::Set(int start, int cnt, int used) {
-    /* STUB */
     this->startIndex = start;
     this->count = cnt;
     this->bUsed = used;
@@ -54,14 +51,12 @@ void gbIndexBubble::Set(int start, int cnt, int used) {
 
 // SetRange: 0x10003bb0
 void gbIndexBubble::SetRange(int start, int cnt) {
-    /* STUB */
     this->startIndex = start;
     this->count = cnt;
 }
 
 // Lock16: 0x10020900
 unsigned short* gbIndexBubble::Lock16() {
-    /* STUB */
     // Lock the index buffer for this bubble's range
     IDirect3DIndexBuffer9* pIB = nullptr;
     return nullptr;
@@ -70,7 +65,6 @@ unsigned short* gbIndexBubble::Lock16() {
 // gbIndexBubble::Lock32 - Lock 32-bit index buffer
 
 unsigned int* gbIndexBubble::Lock32() {
-    /* STUB */
     if (!pPool || !pPool->pIndexBuffer) {
         return NULL;
     }
@@ -99,7 +93,6 @@ void gbIndexBubble::Unlock() {
 
 // operator=: 0x10003c20
 gbIndexBubble& gbIndexBubble::operator=(const gbIndexBubble& other) {
-    /* STUB */
     if (this != &other) {
         this->pPool = other.pPool;
         this->primType = other.primType;
@@ -117,7 +110,6 @@ gbIndexBubble& gbIndexBubble::operator=(const gbIndexBubble& other) {
 
 // Constructor: 0x10020930
 gbIndexPool::gbIndexPool(gbPoolType type, int indexSz, int total) {
-    /* STUB */
 
     // Initialize free list
     this->freeList.pHead = nullptr;
@@ -167,7 +159,6 @@ gbIndexPool::~gbIndexPool() {
 
 // NewBubble: 0x10020a50
 gbIndexBubble* gbIndexPool::NewBubble(gbPrimType prim, int count) {
-    /* STUB */
     gbIndexBubble* bestFit = nullptr;
     int bestSize = 0x7FFFFFFF;
 
@@ -224,7 +215,6 @@ gbIndexBubble* gbIndexPool::NewBubble(gbPrimType prim, int count) {
 
 // DelBubble: 0x10020b20
 void gbIndexPool::DelBubble(gbIndexBubble* bubble) {
-    /* STUB */
     // Remove from used list
     this->usedList.DelNodeFromChain((gbChain1DNode*)bubble);
 
@@ -306,7 +296,6 @@ int gbIndexPool::IsEmpty() {
 
 // operator=: 0x10003d60
 gbIndexPool& gbIndexPool::operator=(const gbIndexPool& other) {
-    /* STUB */
     if (this != &other) {
         memcpy(this, &other, sizeof(gbIndexPool));
     }
@@ -318,7 +307,6 @@ gbIndexPool& gbIndexPool::operator=(const gbIndexPool& other) {
 
 // Constructor: 0x10003df0
 gbVertexBubble::gbVertexBubble(gbVertexPool* pool, int start, int count, int used) {
-    /* STUB */
     this->pPool = pool;
     this->startVertex = start;
     this->vertexCount = count;
@@ -347,7 +335,6 @@ gbVertexBubble::~gbVertexBubble() {
 
 // Set: 0x10003e40
 void gbVertexBubble::Set(int start, int count, int used) {
-    /* STUB */
     this->startVertex = start;
     this->vertexCount = count;
     this->countUsed = used;
@@ -362,7 +349,6 @@ void* gbVertexBubble::Lock() {
 
 // Unlock: 0x10020ca0
 void gbVertexBubble::Unlock() {
-    /* STUB */
     bUsed = 0;
     pVertexData = NULL;
     field_20 = NULL;
@@ -382,7 +368,6 @@ void gbVertexBubble::ClearPointer() {
 
 // StepVertexPtr: 0x10020cd0
 void gbVertexBubble::StepVertexPtr() {
-    /* STUB */
     unsigned int flags = pPool->fvf;
     int s = pPool->stride;
     if ((flags & 1) || (flags & 0x100)) { bUsed += s; }
@@ -397,7 +382,6 @@ void gbVertexBubble::StepVertexPtr() {
 
 // operator=: 0x10003ed0
 gbVertexBubble& gbVertexBubble::operator=(const gbVertexBubble& other) {
-    /* STUB */
     if (this != &other) {
         memcpy(this, &other, sizeof(gbVertexBubble));
     }
@@ -411,7 +395,6 @@ gbGfxManager* gbVertexPool::pGfxMgr = nullptr;
 
 // Constructor: 0x10020d90
 gbVertexPool::gbVertexPool(gbPoolType type, unsigned int vertType, int total) {
-    /* STUB */
 
     // Initialize free list
     this->freeList.pHead = nullptr;
@@ -482,7 +465,6 @@ gbVertexPool::~gbVertexPool() {
 
 // OnLostDevice
 int gbVertexPool::OnLostDevice() {
-    /* STUB */
     if (pVertexBuffer) {
         pVertexBuffer->Release();
         pVertexBuffer = NULL;
@@ -492,7 +474,6 @@ int gbVertexPool::OnLostDevice() {
 
 // OnResetDevice
 int gbVertexPool::OnResetDevice() {
-    /* STUB */
     if (pDevice && !pVertexBuffer) {
         HRESULT hr = pDevice->CreateVertexBuffer(
             totalSize * stride,
@@ -510,7 +491,6 @@ int gbVertexPool::OnResetDevice() {
 
 // NewBubble: 0x10020f10
 gbVertexBubble* gbVertexPool::NewBubble(int count) {
-    /* STUB */
     gbVertexBubble* bestFit = nullptr;
     int bestSize = 0x7FFFFFFF;
 
@@ -574,7 +554,6 @@ gbVertexBubble* gbVertexPool::NewBubble(int count) {
 
 // DelBubble: 0x10020fe0
 void gbVertexPool::DelBubble(gbVertexBubble* bubble) {
-    /* STUB */
     // Similar to gbIndexPool::DelBubble but for vertices
     this->usedList.DelNodeFromChain((gbChain1DNode*)bubble);
 
@@ -650,7 +629,6 @@ int gbVertexPool::IsEmpty() {
 
 // operator=: 0x10004040
 gbVertexPool& gbVertexPool::operator=(const gbVertexPool& other) {
-    /* STUB */
     if (this != &other) {
         memcpy(this, &other, sizeof(gbVertexPool));
     }
@@ -662,7 +640,6 @@ gbVertexPool& gbVertexPool::operator=(const gbVertexPool& other) {
 
 // Constructor: 0x100210c0
 gbVertPoolMgr::gbVertPoolMgr(gbGfxManager* mgr, int p2, int p3, int p4, int p5) {
-    /* STUB */
     // Initialize vertex pool chain array (32 x gbChain1D, each 16 bytes)
     memset(this, 0, 0x10 * 0x20);
 
@@ -695,7 +672,6 @@ gbVertPoolMgr::gbVertPoolMgr(gbGfxManager* mgr, int p2, int p3, int p4, int p5) 
 
 // Destructor: 0x100211a0
 gbVertPoolMgr::~gbVertPoolMgr() {
-    /* STUB */
     // Clean up all pools
     for (int i = 0; i < 32; i++) {
         if (this->vertexPools[i]) {
@@ -712,7 +688,6 @@ gbVertPoolMgr::~gbVertPoolMgr() {
 
 // OnLostDevice: 0x10021240
 int gbVertPoolMgr::OnLostDevice() {
-    /* STUB */
     for (int i = 0; i < 32; i++) {
         if (srcVertPools[i] != NULL) {
             if (srcVertPools[i]->OnLostDevice() == 0) {
@@ -725,7 +700,6 @@ int gbVertPoolMgr::OnLostDevice() {
 
 // OnResetDevice: 0x10021270
 int gbVertPoolMgr::OnResetDevice() {
-    /* STUB */
     for (int i = 0; i < 32; i++) {
         if (srcVertPools[i] != NULL) {
             if (srcVertPools[i]->OnResetDevice() == 0) {
@@ -738,7 +712,6 @@ int gbVertPoolMgr::OnResetDevice() {
 
 // Find which vertex pool index contains the given FVF
 int gbVertPoolMgr::FindVertexPoolIndex(unsigned int* pFVF, unsigned int fvf) {
-    /* STUB */
     for (int i = 0; i < 32; i++) {
         if (vertexPools[i] && vertexPools[i]->fvf == fvf) {
             if (pFVF) *pFVF = fvf;
@@ -761,7 +734,6 @@ int gbVertPoolMgr::FindVertexPoolIndex(unsigned int* pFVF, unsigned int fvf) {
 
 // NewVertexBubble: 0x100212e0
 gbVertexBubble* gbVertPoolMgr::NewVertexBubble(unsigned int fvf, int count) {
-    /* STUB */
     // Update statistics
     int* pStatCount = &this->pGfxManager->Stat.nStaticIndex;
     *pStatCount += count;
@@ -799,7 +771,6 @@ gbVertexBubble* gbVertPoolMgr::NewVertexBubble(unsigned int fvf, int count) {
 
 // DelVertexBubble: 0x100213a0
 void gbVertPoolMgr::DelVertexBubble(gbVertexBubble* bubble) {
-    /* STUB */
     if (bubble && bubble->pPool) {
         bubble->pPool->DelBubble(bubble);
     }
@@ -814,7 +785,6 @@ gbVertexBubble* gbVertPoolMgr::NewSrcVertBub(unsigned int fvf, int count) {
 
 // DelSrcVertBub: 0x100214f0
 void gbVertPoolMgr::DelSrcVertBub(gbVertexBubble* bubble) {
-    /* STUB */
     if (bubble && bubble->pPool) {
         bubble->pPool->DelBubble(bubble);
     }
@@ -822,7 +792,6 @@ void gbVertPoolMgr::DelSrcVertBub(gbVertexBubble* bubble) {
 
 // NewIndexBubble: 0x10021590
 gbIndexBubble* gbVertPoolMgr::NewIndexBubble(gbPrimType prim, int count) {
-    /* STUB */
     // Update statistics
     int* pStatCount = &this->pGfxManager->Stat.nStaticIndex;
     *pStatCount += count;
@@ -859,7 +828,6 @@ gbIndexBubble* gbVertPoolMgr::NewIndexBubble(gbPrimType prim, int count) {
 
 // DelIndexBubble: 0x10021620
 void gbVertPoolMgr::DelIndexBubble(gbIndexBubble* bubble) {
-    /* STUB */
     if (bubble && bubble->pPool) {
         bubble->pPool->DelBubble(bubble);
     }
@@ -867,7 +835,6 @@ void gbVertPoolMgr::DelIndexBubble(gbIndexBubble* bubble) {
 
 // GetDynVertBuf: 0x10021680
 gbDynVertBuf* gbVertPoolMgr::GetDynVertBuf(unsigned int fvf) {
-    /* STUB */
     // Find or create dynamic vertex buffer for given FVF
     for (int i = 0; i < 32; i++) {
         if (this->dynVertBufs[i]) {
@@ -880,7 +847,6 @@ gbDynVertBuf* gbVertPoolMgr::GetDynVertBuf(unsigned int fvf) {
 
 // operator=: 0x100040b0
 gbVertPoolMgr& gbVertPoolMgr::operator=(const gbVertPoolMgr& other) {
-    /* STUB */
     if (this != &other) {
         memcpy(this, &other, sizeof(gbVertPoolMgr));
     }

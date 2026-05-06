@@ -16,7 +16,6 @@ extern unsigned int g_CurrentTick;
 /* ======== gbDropUnit ======== */
 
 gbDropUnit::gbDropUnit(void) {
-    /* STUB */
     position.x = 0.0f;
     position.y = 0.0f;
     position.z = 0.0f;
@@ -32,7 +31,6 @@ gbDropUnit::gbDropUnit(void) {
 /* ======== gbDropGroup ======== */
 
 gbDropGroup::gbDropGroup(int maxCount, const gbDropDesc* dropDesc, const char* texName) {
-    /* STUB */
     units = NULL;
     maxUnits = maxCount;
     numActiveUnits = 0;
@@ -63,7 +61,6 @@ gbDropGroup::gbDropGroup(int maxCount, const gbDropDesc* dropDesc, const char* t
 }
 
 gbDropGroup::gbDropGroup(const gbDropGroup& other) {
-    /* STUB */
     maxUnits = other.maxUnits;
     numActiveUnits = 0;
     units = new gbDropUnit[maxUnits];
@@ -75,7 +72,6 @@ gbDropGroup::gbDropGroup(const gbDropGroup& other) {
 }
 
 gbDropGroup::~gbDropGroup(void) {
-    /* STUB */
     if (units) {
         delete[] units;
         units = NULL;
@@ -83,7 +79,6 @@ gbDropGroup::~gbDropGroup(void) {
 }
 
 void gbDropGroup::Render(gbCamera* camera) {
-    /* STUB */
     if (!pTexture) return;
 
     for (int i = 0; i < numActiveUnits; i++) {
@@ -94,7 +89,6 @@ void gbDropGroup::Render(gbCamera* camera) {
 }
 
 void gbDropGroup::CreateUnit(float heightOffset, gbCamera* camera) {
-    /* STUB */
     if (numActiveUnits >= maxUnits) return;
 
     gbDropUnit* unit = &units[numActiveUnits];
@@ -134,7 +128,6 @@ gbRain::~gbRain(void) {
 }
 
 void gbRain::Update(float deltaTime) {
-    /* STUB */
     elapsedTime += deltaTime;
     spawnTimer += deltaTime;
 
@@ -167,7 +160,6 @@ void gbRain::Update(float deltaTime) {
 }
 
 void gbRain::Draw(void) {
-    /* STUB */
     if (!pTexture) return;
 
     for (int i = 0; i < numActiveUnits; i++) {
@@ -198,7 +190,6 @@ gbSnow::~gbSnow(void) {
 }
 
 void gbSnow::Update(float deltaTime) {
-    /* STUB */
     elapsedTime += deltaTime;
     spawnTimer += deltaTime;
 
@@ -235,7 +226,6 @@ void gbSnow::Update(float deltaTime) {
 }
 
 void gbSnow::Draw(void) {
-    /* STUB */
     if (!pTexture) return;
 
     for (int i = 0; i < numActiveUnits; i++) {
@@ -247,7 +237,6 @@ void gbSnow::Draw(void) {
 
 // Export assignment operators
 gbDropDesc& gbDropDesc::operator=(const gbDropDesc& other) {
-    /* STUB */
     if (this != &other) {
         memcpy(this, &other, sizeof(gbDropDesc));
     }
@@ -255,7 +244,6 @@ gbDropDesc& gbDropDesc::operator=(const gbDropDesc& other) {
 }
 
 gbDropUnit& gbDropUnit::operator=(const gbDropUnit& other) {
-    /* STUB */
     if (this != &other) {
         memcpy(this, &other, sizeof(gbDropUnit));
     }
@@ -263,7 +251,6 @@ gbDropUnit& gbDropUnit::operator=(const gbDropUnit& other) {
 }
 
 gbDropGroup& gbDropGroup::operator=(const gbDropGroup& other) {
-    /* STUB */
     if (this != &other) {
         if (units) delete[] units;
         maxUnits = other.maxUnits;
@@ -279,7 +266,6 @@ gbDropGroup& gbDropGroup::operator=(const gbDropGroup& other) {
 }
 
 gbRain& gbRain::operator=(const gbRain& other) {
-    /* STUB */
     if (this != &other) {
         gbDropGroup::operator=(other);
     }
@@ -287,7 +273,6 @@ gbRain& gbRain::operator=(const gbRain& other) {
 }
 
 gbSnow& gbSnow::operator=(const gbSnow& other) {
-    /* STUB */
     if (this != &other) {
         gbDropGroup::operator=(other);
         swayAmplitude = other.swayAmplitude;

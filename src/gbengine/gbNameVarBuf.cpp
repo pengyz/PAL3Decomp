@@ -14,7 +14,6 @@ struct VarDesc {
 };
 
 gbNameVarBuf::~gbNameVarBuf() {
-    /* STUB */
     if (dataBuf) {
         free(dataBuf);
         dataBuf = NULL;
@@ -26,7 +25,6 @@ gbNameVarBuf::~gbNameVarBuf() {
 }
 
 gbNameVarBuf& gbNameVarBuf::operator=(const gbNameVarBuf& other) {
-    /* STUB */
     if (this != &other) {
         // Clean up existing data
         if (dataBuf) {

@@ -8,7 +8,6 @@
 
 // Constructor
 gbPlane::gbPlane() {
-    /* STUB */
     normal.x = 0.0f;
     normal.y = 1.0f;
     normal.z = 0.0f;
@@ -17,7 +16,6 @@ gbPlane::gbPlane() {
 
 // Assignment operator
 gbPlane& gbPlane::operator=(const gbPlane& p) {
-    /* STUB */
     normal = p.normal;
     d = p.d;
     return *this;
@@ -25,7 +23,6 @@ gbPlane& gbPlane::operator=(const gbPlane& p) {
 
 // Plane-AABB collision test
 int gbPlane::IsColAABB(gbAABBox& box) {
-    /* STUB */
     // Calculate AABB center and extents
     gbVec3D center;
     center.x = (box.vMin.x + box.vMax.x) * 0.5f;
@@ -51,7 +48,6 @@ int gbPlane::IsColAABB(gbAABBox& box) {
 
 // Plane-OBB collision test
 int gbPlane::IsColOBB(gbOBBox& box) {
-    /* STUB */
     // Get OBB axes and extents
     gbVec3D axis[3];
     box.matrix.GetRow(&axis[0], 0);

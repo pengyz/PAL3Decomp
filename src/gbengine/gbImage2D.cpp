@@ -46,7 +46,6 @@ extern "C" {
 }
 
 void gbImage2D::Release(void) {
-    /* STUB */
     if (pBits) {
         free(pBits);
         pBits = NULL;
@@ -62,28 +61,23 @@ void gbImage2D::Release(void) {
 }
 
 int gbImage2D::GetWidth(void) {
-    /* STUB */
     return Width;
 }
 
 int gbImage2D::GetHeight(void) {
-    /* STUB */
     return Height;
 }
 
 int gbImage2D::GetBitCount(void) {
-    /* STUB */
     return BitCount;
 }
 
 unsigned char* gbImage2D::GetBits(void) {
-    /* STUB */
     return (unsigned char*)pBits;
 }
 
 // 0x10004150 (44B) - Get pointer to pixel at (x, y)
 unsigned char* gbImage2D::GetBits(int x, int y) {
-    /* STUB */
     if (!pBits || x < 0 || y < 0 || x >= Width || y >= Height) {
         return NULL;
     }
@@ -93,25 +87,21 @@ unsigned char* gbImage2D::GetBits(int x, int y) {
 
 // 0x10004180 (16B) - Get palette entry
 gbColorQuad* gbImage2D::GetPalEntry(int index) {
-    /* STUB */
     if (!pPalette)
         return NULL;
     return &pPalette[index];
 }
 
 gbImage2DInfo* gbImage2D::GetImgInfo(void) {
-    /* STUB */
     return &ImgInfo;
 }
 
 gbPixelFmtType gbImage2D::GetPixelFmtType(void) {
-    /* STUB */
     return PixelFmt.Type;
 }
 
 // 0x1001ea30 (131B) - Create image buffer
 unsigned char* gbImage2D::CreateImage(int w, int h, int bpp) {
-    /* STUB */
     // Free existing buffer
     if (pBits) {
         free(pBits);
@@ -177,7 +167,6 @@ unsigned char* gbImage2D::CreateImage(int w, int h, int bpp) {
 
 // 0x1001e490 (1262B) - Load image file via extension dispatch
 int gbImage2D::LoadImageFile(char* filename, int flags) {
-    /* STUB */
     char localPath[256];
     char ext[32];
     int formatType = 0;
@@ -299,7 +288,6 @@ void gbImage2D::ScaleTo(int newW, int newH) {
 
 // 0x1001efc0 (224B) - Write TGA image
 void gbImage2D::WriteTGAImage(char* filename) {
-    /* STUB */
     if (!pBits || !filename)
         return;
 
@@ -333,7 +321,6 @@ void gbImage2D::WriteTGAImage(char* filename) {
 
 // 0x1001f5f0 (193B) - Write JPEG image using Intel JPEG Library
 void gbImage2D::WriteJpegImage(char* filename, int quality) {
-    /* STUB */
     JPEG_CORE_PROPERTIES props;
     int result = ijlInit(&props);
     if (result != 0)
@@ -366,7 +353,6 @@ void gbImage2D::WriteJpegImage(char* filename, int quality) {
 
 // 0x1001f6c0 (265B) - Write JPEG to memory buffer using Intel JPEG Library
 int gbImage2D::WriteJpegToBuffer(unsigned char* buffer, int bufSize) {
-    /* STUB */
     int result = ijlInit(&g_jpegProps);
     if (result != 0)
         return 0;

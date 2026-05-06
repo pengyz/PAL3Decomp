@@ -4,7 +4,6 @@
 // gbVFile1::GetEntry - Get entry number/hash for this file
 
 unsigned int gbVFile1::GetEntry() {
-    /* STUB */
     // This method likely returns the CRC32 hash of the file path
     // Used for file identification in the virtual file system
 

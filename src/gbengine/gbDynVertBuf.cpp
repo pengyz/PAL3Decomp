@@ -12,7 +12,6 @@
 gbGfxManager* gbDynVertBuf::pGfxMgr = NULL;
 
 float* gbDynVertBuf::GetNormal() {
-    /* STUB */
     return m_pNormal;
 }
 

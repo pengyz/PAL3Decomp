@@ -7,12 +7,10 @@
 #include <string.h>
 
 gbMeshType gbBaseMesh::GetMeshType() {
-    /* STUB */
     return m_meshType;
 }
 
 gbAABBox* gbBaseMesh::GetAABBox() {
-    /* STUB */
     return &m_aabb;
 }
 

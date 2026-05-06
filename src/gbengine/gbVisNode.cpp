@@ -17,7 +17,6 @@ gbSceneGraph* gbVisNode::pSceneGraph = NULL;
 
 // Constructor - 0x10016590
 gbVisNode::gbVisNode() {
-    /* STUB */
     // Base class gbChain1DNode constructor called first (vtable set)
     // Then gbNBTreeNode fields initialized
     pParent = NULL;
@@ -49,7 +48,6 @@ gbVisNode::gbVisNode() {
 
 // Copy constructor - 0x10004a60
 gbVisNode::gbVisNode(const gbVisNode& other) : gbNBTreeNode() {
-    /* STUB */
     // Copy gbChain1DNode fields
     pNext = other.pNext;
 
@@ -96,7 +94,6 @@ gbVisNode::~gbVisNode() {
 
 // PushMessage - 0x10016640
 void gbVisNode::PushMessage(gbNodeMsgObj& msg) {
-    /* STUB */
     int writeIdx = msgWriteIndex;
     int nextWrite = writeIdx + 1;
 
@@ -133,7 +130,6 @@ void gbVisNode::PushMessage(gbNodeMsgObj& msg) {
 
 // PopMessage - 0x100166a0
 int gbVisNode::PopMessage(gbNodeMsgObj& msg) {
-    /* STUB */
     if (msgReadIndex == msgWriteIndex) {
         return 0;  // Queue empty
     }
@@ -157,14 +153,12 @@ int gbVisNode::PopMessage(gbNodeMsgObj& msg) {
 
 // Attach - 0x100166f0 (virtual, base implementation does nothing)
 int gbVisNode::Attach(gbRenderEffect* effect) {
-    /* STUB */
     (void)0;
     return 0;
 }
 
 // Update - 0x10016730 (virtual)
 void gbVisNode::Update() {
-    /* STUB */
     // Iterate through children and call Update on each
     gbVisNode* child = (gbVisNode*)children.pHead;
     children.pIterator = (gbNBTreeNode*)child;
@@ -189,7 +183,6 @@ void gbVisNode::Reset(float time) {
 
 // ShowNode - 0x10016790
 void gbVisNode::ShowNode(int show) {
-    /* STUB */
     visible = show;
 
     // Recursively apply to children
@@ -205,7 +198,6 @@ void gbVisNode::ShowNode(int show) {
 
 // SetTimeScale - 0x100167c0
 void gbVisNode::SetTimeScale(float scale) {
-    /* STUB */
     timeScale = scale;
 
     // Recursively apply to children
@@ -239,37 +231,31 @@ void gbVisNode::RenderShadowVolume(gbRenderInfoObj* renderInfo) {
 
 // GetTimeScale
 float gbVisNode::GetTimeScale() {
-    /* STUB */
     return timeScale;
 }
 
 // IsNodeShow
 int gbVisNode::IsNodeShow() {
-    /* STUB */
     return visible;
 }
 
 // GetRenderPriority
 int gbVisNode::GetRenderPriority() {
-    /* STUB */
     return renderPriority;
 }
 
 // SetRenderPriority - 0x100167f0
 void gbVisNode::SetRenderPriority(int priority) {
-    /* STUB */
     renderPriority = priority;
 }
 
 // GetCullNext
 gbVisNode* gbVisNode::GetCullNext() {
-    /* STUB */
     return cullNext;
 }
 
 // GetCullPrev
 gbVisNode* gbVisNode::GetCullPrev() {
-    /* STUB */
     return cullPrev;
 }
 
@@ -289,21 +275,18 @@ void gbVisNode::EnableShadow(int enable) {
 
 // SetBlend - 0x10016840
 void gbVisNode::SetBlend(NodeBlend mode, float value) {
-    /* STUB */
     blendMode = mode;
     blendValue = value;
 }
 
 // GetBlend - 0x10016860
 NodeBlend gbVisNode::GetBlend(float& outValue) {
-    /* STUB */
     outValue = blendValue;
     return blendMode;
 }
 
 // SetBlendRecursive - 0x10016870
 void gbVisNode::SetBlendRecursive(NodeBlend mode, float value) {
-    /* STUB */
     SetBlend(mode, value);
 
     // Recursively apply to children
@@ -319,7 +302,6 @@ void gbVisNode::SetBlendRecursive(NodeBlend mode, float value) {
 
 // GetTotalBoundSphere - 0x100168b0 (722B)
 void gbVisNode::GetTotalBoundSphere(gbSphere* sphere) {
-    /* STUB */
     GetBoundSphere(sphere);
 
     int childCount = children.nCount;
@@ -389,7 +371,6 @@ int gbVisNode::GetAABBox(gbAABBox* box) {
 
 // operator= - 0x10004af0
 gbVisNode& gbVisNode::operator=(const gbVisNode& other) {
-    /* STUB */
     if (this != &other) {
         // Copy all fields
         pNext = other.pNext;
@@ -479,7 +460,6 @@ gbVolModNode::gbVolModNode() {
 }
 
 class gbVolModNode & gbVolModNode::operator=(class gbVolModNode const & p0) {
-    /* STUB */
     if (this != &p0) {
         memcpy(this, &p0, sizeof(gbVolModNode));
     }
@@ -487,7 +467,6 @@ class gbVolModNode & gbVolModNode::operator=(class gbVolModNode const & p0) {
 }
 
 int gbVolModNode::Attach(class gbRenderEffect * p0) {
-    /* STUB */
     // From Ghidra (Attach at 0x10013190):
     // 1. Call base gbVisNode::Attach
     // 2. Copy localMatrix to worldMatrix
@@ -511,7 +490,6 @@ int gbVolModNode::Attach(class gbRenderEffect * p0) {
 }
 
 class gbLightObj * gbVolModNode::GetLightObj() {
-    /* STUB */
     return (gbLightObj*)pVolMod;
 }
 

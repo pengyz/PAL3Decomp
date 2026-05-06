@@ -16,7 +16,6 @@
 
 gbQuaternion::gbQuaternion(void)
 {
-    /* STUB */
     z = 0.0f;
     y = 0.0f;
     x = 0.0f;
@@ -25,7 +24,6 @@ gbQuaternion::gbQuaternion(void)
 
 void gbQuaternion::SetUnit(void)
 {
-    /* STUB */
     w = 1.0f;
     z = 0.0f;
     y = 0.0f;
@@ -34,7 +32,6 @@ void gbQuaternion::SetUnit(void)
 
 gbQuaternion &gbQuaternion::operator=(const gbQuaternion &other)
 {
-    /* STUB */
     x = other.x;
     y = other.y;
     z = other.z;
@@ -44,7 +41,6 @@ gbQuaternion &gbQuaternion::operator=(const gbQuaternion &other)
 
 int gbQuaternion::IsNormal(void)
 {
-    /* STUB */
     float mag = Magnitude();
     if (fabs(mag - 1.0f) < 0.005) {
         return 1;
@@ -54,7 +50,6 @@ int gbQuaternion::IsNormal(void)
 
 void gbQuaternion::SetAxisAngle(gbVec3D *axis, float angle)
 {
-    /* STUB */
     float halfRad = angle * 0.5f * 0.017453292f;
     w = (float)cos(halfRad);
     float s = (float)sin(halfRad);
@@ -65,7 +60,6 @@ void gbQuaternion::SetAxisAngle(gbVec3D *axis, float angle)
 
 void gbQuaternion::GetAxisAngle(gbVec3D *axis, float *angle)
 {
-    /* STUB */
     float halfAngle = (float)acos(w) * 57.295776f;
     if (halfAngle > 1e-05f) {
         float invSin = 1.0f / (float)sin(halfAngle * 0.017453292f);
@@ -83,7 +77,6 @@ void gbQuaternion::GetAxisAngle(gbVec3D *axis, float *angle)
 
 bool const gbQuaternion::IsValid(void) const
 {
-    /* STUB */
     if (this == NULL) return false;
     if (x * x < 0.0f) return false;
     if (y * y < 0.0f) return false;
@@ -94,7 +87,6 @@ bool const gbQuaternion::IsValid(void) const
 
 bool const gbQuaternion::IsUnit(void) const
 {
-    /* STUB */
     float lenSq = x * x + y * y + z * z + w * w;
     if (lenSq < 1.005f && lenSq >= 0.995f) {
         return true;
@@ -104,7 +96,6 @@ bool const gbQuaternion::IsUnit(void) const
 
 void gbQuaternion::SetVec3D(float scalar, gbVec3D *vec)
 {
-    /* STUB */
     w = scalar;
     x = vec->x;
     y = vec->y;
@@ -113,7 +104,6 @@ void gbQuaternion::SetVec3D(float scalar, gbVec3D *vec)
 
 void gbQuaternion::GetVec3D(float *scalar, gbVec3D *vec)
 {
-    /* STUB */
     *scalar = w;
     vec->x = x;
     vec->y = y;
@@ -122,7 +112,6 @@ void gbQuaternion::GetVec3D(float *scalar, gbVec3D *vec)
 
 void gbQuaternion::SetMatrix(gbMatrix4 *mat)
 {
-    /* STUB */
     int nxt[3] = { 1, 2, 0 };
     float trace = mat->m[0][0] + mat->m[1][1] + mat->m[2][2];
 
@@ -162,7 +151,6 @@ void gbQuaternion::SetMatrix(gbMatrix4 *mat)
 
 void gbQuaternion::GetMatrix(gbMatrix4 *mat) const
 {
-    /* STUB */
     float x2 = x + x;
     float xx = x2 * x;
     float xy = x2 * y;
@@ -196,7 +184,6 @@ void gbQuaternion::GetMatrix(gbMatrix4 *mat) const
 
 void gbQuaternion::SetYawPitchRoll(float yaw, float pitch, float roll)
 {
-    /* STUB */
     gbQuaternion qPitch, qYaw, qRoll, temp;
     gbVec3D axisX = { 1.0f, 0.0f, 0.0f };
     gbVec3D axisY = { 0.0f, 1.0f, 0.0f };
@@ -212,7 +199,6 @@ void gbQuaternion::SetYawPitchRoll(float yaw, float pitch, float roll)
 
 void gbQuaternion::SetTwoVector(gbVec3D *from, gbVec3D *to)
 {
-    /* STUB */
     gbVec3D axis;
     axis.x = 0.0f;
     axis.y = 0.0f;
@@ -228,7 +214,6 @@ void gbQuaternion::SetTwoVector(gbVec3D *from, gbVec3D *to)
 
 void gbQuaternion::Slerp(gbQuaternion *q1, gbQuaternion *q2, float t)
 {
-    /* STUB */
     float dot = q1->x * q2->x + q1->y * q2->y + q1->z * q2->z + q1->w * q2->w;
 
     float bx, by, bz, bw;
@@ -264,7 +249,6 @@ void gbQuaternion::Slerp(gbQuaternion *q1, gbQuaternion *q2, float t)
 
 void gbQuaternion::MultiplyBy(gbQuaternion *other, gbQuaternion *result)
 {
-    /* STUB */
     float ax = x, ay = y, az = z, aw = w;
     float bx = other->x, by = other->y, bz = other->z, bw = other->w;
 
@@ -282,7 +266,6 @@ float const gbQuaternion::Magnitude(void)
 
 float gbQuaternion::Normalize(void)
 {
-    /* STUB */
     float mag = Magnitude();
     float len = (float)sqrt(mag);
     if (len < 1e-05f && len > -1e-05f) {
@@ -298,7 +281,6 @@ float gbQuaternion::Normalize(void)
 
 void gbQuaternion::Inverse(void)
 {
-    /* STUB */
     x = -x;
     y = -y;
     z = -z;
@@ -306,7 +288,6 @@ void gbQuaternion::Inverse(void)
 
 void gbQuaternion::RotateVector(gbVec3D *in, gbVec3D *out)
 {
-    /* STUB */
     gbMatrix4 mat;
     GetMatrix(&mat);
     mat.Rotate(in, out);

@@ -81,7 +81,6 @@ CPKFile::~CPKFile()
 
 CPKFile& CPKFile::operator=(const CPKFile& other)
 {
-    /* STUB */
     if (this != &other) {
         memcpy(this, &other, sizeof(CPKFile));
     }
@@ -90,7 +89,6 @@ CPKFile& CPKFile::operator=(const CPKFile& other)
 
 void* CPKFile::GetRealData()
 {
-    /* STUB */
     if (!bValid)
         return NULL;
 
@@ -109,7 +107,6 @@ void* CPKFile::GetRealData()
 
 CPK::CPK()
 {
-    /* STUB */
     // Zero the entire structure
     memset(this, 0, sizeof(CPK));
 
@@ -134,7 +131,6 @@ CPK::CPK()
 
 CPK::~CPK()
 {
-    /* STUB */
     Unload();
 
     // Free CPKFile handles
@@ -148,7 +144,6 @@ CPK::~CPK()
 
 CPK& CPK::operator=(const CPK& other)
 {
-    /* STUB */
     if (this != &other) {
         memcpy(this, &other, sizeof(CPK));
     }
@@ -157,7 +152,6 @@ CPK& CPK::operator=(const CPK& other)
 
 void CPK::InitCrcTable()
 {
-    /* STUB */
     // Standard CRC32 table generation with polynomial 0x04C11DB7
     unsigned long v0 = 0;
     unsigned long* v1 = CrcTable;
@@ -184,7 +178,6 @@ void CPK::InitCrcTable()
 
 unsigned long CPK::Crc(const char* str)
 {
-    /* STUB */
     unsigned char* s = (unsigned char*)str;
     unsigned long x = 0;
     int i;
@@ -206,7 +199,6 @@ unsigned long CPK::Crc(const char* str)
 
 bool CPK::Load(const char* filename)
 {
-    /* STUB */
     if (m_bLoaded)
         return 0;
 
@@ -264,7 +256,6 @@ bool CPK::Load(const char* filename)
 
 bool CPK::Unload()
 {
-    /* STUB */
     if (!m_bLoaded)
         return 0;
 
@@ -294,7 +285,6 @@ bool CPK::Unload()
 }
 
 void CPK::Reset(void) {
-    /* STUB */
     m_dwAllocGranularity = 0;
     m_eMode = CPKM_Null;
     memset(&m_CPKHeader, 0, sizeof(m_CPKHeader));
@@ -311,13 +301,11 @@ void CPK::Reset(void) {
 
 void CPK::SetOpenMode(ECPKMode mode)
 {
-    /* STUB */
     m_eMode = mode;
 }
 
 bool CPK::IsValidCPK(const char* filename)
 {
-    /* STUB */
     HANDLE hFile = CreateFileA(filename, GENERIC_READ, FILE_SHARE_READ,
                                NULL, OPEN_EXISTING, FILE_ATTRIBUTE_NORMAL, NULL);
     if (hFile == INVALID_HANDLE_VALUE)
@@ -339,7 +327,6 @@ bool CPK::IsValidCPK(const char* filename)
 
 bool CPK::IsFileExist(const char* filename)
 {
-    /* STUB */
     if (!m_bLoaded)
         return 0;
 
@@ -367,13 +354,11 @@ bool CPK::IsFileExist(const char* filename)
 
 bool CPK::IsLoaded()
 {
-    /* STUB */
     return m_bLoaded;
 }
 
 CPKFile* CPK::Open(const char* filename)
 {
-    /* STUB */
     if (!m_bLoaded)
         return NULL;
 
@@ -484,7 +469,6 @@ CPKFile* CPK::Open(const char* filename)
 
 bool CPK::Close(CPKFile* pFile)
 {
-    /* STUB */
     if (!pFile || !pFile->bValid)
         return 0;
 
@@ -517,7 +501,6 @@ bool CPK::Close(CPKFile* pFile)
 
 bool CPK::Read(void* buffer, unsigned long size, CPKFile* pFile)
 {
-    /* STUB */
     if (!pFile || !pFile->bValid || !buffer)
         return 0;
 
@@ -538,7 +521,6 @@ bool CPK::Read(void* buffer, unsigned long size, CPKFile* pFile)
 
 int CPK::ReadChar(CPKFile* pFile)
 {
-    /* STUB */
     if (!pFile || !pFile->bValid)
         return -1;
 
@@ -551,7 +533,6 @@ int CPK::ReadChar(CPKFile* pFile)
 
 char* CPK::ReadLine(char* buffer, int maxLen, CPKFile* pFile)
 {
-    /* STUB */
     if (!pFile || !pFile->bValid || !buffer || maxLen <= 0)
         return NULL;
 
@@ -583,7 +564,6 @@ char* CPK::ReadLine(char* buffer, int maxLen, CPKFile* pFile)
 
 unsigned long CPK::LoadFile(void* buffer, const char* filename)
 {
-    /* STUB */
     if (!buffer || !filename)
         return 0;
 
@@ -606,7 +586,6 @@ unsigned long CPK::LoadFile(void* buffer, const char* filename)
 
 unsigned long CPK::Compress(void* dst, void* src, unsigned long srcLen)
 {
-    /* STUB */
     unsigned long dstLen = 0;
     unsigned char* workMem = (unsigned char*)malloc(LZO1X_1_MEM_COMPRESS);
     if (!workMem)
@@ -624,7 +603,6 @@ unsigned long CPK::Compress(void* dst, void* src, unsigned long srcLen)
 
 unsigned long CPK::DeCompress(void* dst, void* src, unsigned long srcLen)
 {
-    /* STUB */
     unsigned long dstLen = 0;
 
     int result = lzo1x_decompress((const unsigned char*)src, srcLen,
@@ -638,7 +616,6 @@ unsigned long CPK::DeCompress(void* dst, void* src, unsigned long srcLen)
 
 unsigned long CPK::GetSize(CPKFile* pFile)
 {
-    /* STUB */
     if (!pFile)
         return 0;
     return pFile->dwFileSize;
@@ -646,13 +623,11 @@ unsigned long CPK::GetSize(CPKFile* pFile)
 
 unsigned long CPK::GetCPKHandle()
 {
-    /* STUB */
     return m_dwCPKHandle;
 }
 
 unsigned long CPK::Tell(CPKFile* pFile)
 {
-    /* STUB */
     if (!pFile)
         return 0;
     return pFile->dwPointer;
@@ -660,7 +635,6 @@ unsigned long CPK::Tell(CPKFile* pFile)
 
 void CPK::Rewind(CPKFile* pFile)
 {
-    /* STUB */
     if (pFile) {
         pFile->dwPointer = 0;
     }
@@ -668,7 +642,6 @@ void CPK::Rewind(CPKFile* pFile)
 
 unsigned long CPK::Seek(CPKFile* pFile, int offset, unsigned long origin)
 {
-    /* STUB */
     if (!pFile || !pFile->bValid)
         return (unsigned long)-1;
 
@@ -698,7 +671,6 @@ unsigned long CPK::Seek(CPKFile* pFile, int offset, unsigned long origin)
 
 int CPK::GetTableIndex(const char* filename)
 {
-    /* STUB */
     if (!filename)
         return -1;
 
@@ -717,7 +689,6 @@ int CPK::GetTableIndex(const char* filename)
 
 int CPK::GetTableIndexFromCRC(unsigned long crc)
 {
-    /* STUB */
     for (unsigned long i = 0; i < m_CPKHeader.dwValidTableNum; i++) {
         if (m_CPKTable[i].dwCRC == crc) {
             return (int)i;
@@ -728,13 +699,11 @@ int CPK::GetTableIndexFromCRC(unsigned long crc)
 
 unsigned long CPK::GetAllocationGranularity()
 {
-    /* STUB */
     return m_dwAllocGranularity;
 }
 
 bool CPK::IsDir(unsigned long tableIndex)
 {
-    /* STUB */
     if (tableIndex >= m_CPKHeader.dwValidTableNum)
         return 0;
     return (m_CPKTable[tableIndex].dwFlag & CPK_FLAG_ISDIR) ? 1 : 0;
@@ -759,7 +728,6 @@ gbVFile::~gbVFile()
 
 gbVFile& gbVFile::operator=(const gbVFile& other)
 {
-    /* STUB */
     if (this != &other) {
         memcpy(this, &other, sizeof(gbVFile));
     }
@@ -773,7 +741,6 @@ gbVFile& gbVFile::operator=(const gbVFile& other)
 
 gbVFile1& gbVFile1::operator=(const gbVFile1& other)
 {
-    /* STUB */
     if (this != &other) {
         memcpy(this, &other, sizeof(gbVFile1));
     }
@@ -782,13 +749,11 @@ gbVFile1& gbVFile1::operator=(const gbVFile1& other)
 
 char* gbVFile1::GetFullPath()
 {
-    /* STUB */
     return fullPath;
 }
 
 char* gbVFile1::GetFileName(char* buf, int bufLen)
 {
-    /* STUB */
     if (!buf || bufLen <= 0)
         return NULL;
 
@@ -810,7 +775,6 @@ char* gbVFile1::GetFileName(char* buf, int bufLen)
 
 char* gbVFile1::GetDir(char* buf, int bufLen)
 {
-    /* STUB */
     if (!buf || bufLen <= 0)
         return NULL;
 
@@ -833,7 +797,6 @@ char* gbVFile1::GetDir(char* buf, int bufLen)
 
 char* gbVFile1::GetTitle(char* buf, int bufLen)
 {
-    /* STUB */
     if (!buf || bufLen <= 0)
         return NULL;
 
@@ -863,7 +826,6 @@ char* gbVFile1::GetTitle(char* buf, int bufLen)
 
 gbVFileSystem::gbVFileSystem()
 {
-    /* STUB */
     IsInit = 0;
     rtDirectory = NULL;
     pFileBuffer = NULL;
@@ -881,7 +843,6 @@ gbVFileSystem::~gbVFileSystem()
 
 gbVFileSystem& gbVFileSystem::operator=(const gbVFileSystem& other)
 {
-    /* STUB */
     if (this != &other) {
         memcpy(this, &other, sizeof(gbVFileSystem));
     }
@@ -890,7 +851,6 @@ gbVFileSystem& gbVFileSystem::operator=(const gbVFileSystem& other)
 
 int gbVFileSystem::Init(char* path)
 {
-    /* STUB */
     if (!path)
         return 0;
 
@@ -941,7 +901,6 @@ int gbVFileSystem::Init(char* path)
 
 void gbVFileSystem::Release()
 {
-    /* STUB */
     if (m_cpk.IsLoaded()) {
         m_cpk.Unload();
     }
@@ -968,7 +927,6 @@ gbVFile* gbVFileSystem::NewFileEntry()
 
 void gbVFileSystem::DelFileEntry(gbVFile* pFile)
 {
-    /* STUB */
     if (pFile) {
         delete pFile;
     }
@@ -976,7 +934,6 @@ void gbVFileSystem::DelFileEntry(gbVFile* pFile)
 
 gbVFile* gbVFileSystem::OpenFile(const char* filename, unsigned int flags)
 {
-    /* STUB */
     if (!filename || !IsInit)
         return NULL;
 
@@ -1045,7 +1002,6 @@ gbVFile* gbVFileSystem::OpenFile(const char* filename, unsigned int flags)
 
 void gbVFileSystem::CloseFile(gbVFile* pFile)
 {
-    /* STUB */
     if (!pFile)
         return;
 
@@ -1075,7 +1031,6 @@ void gbVFileSystem::CloseFile(gbVFile* pFile)
 
 void gbVFileSystem::Read(void* buffer, unsigned int size, gbVFile* pFile)
 {
-    /* STUB */
     if (!pFile || !pFile->bValid || !buffer)
         return;
 
@@ -1101,7 +1056,6 @@ void gbVFileSystem::Read(void* buffer, unsigned int size, gbVFile* pFile)
 
 void gbVFileSystem::Write(void* buffer, unsigned int size, gbVFile* pFile)
 {
-    /* STUB */
     if (!pFile || !pFile->bValid || !buffer)
         return;
 
@@ -1115,7 +1069,6 @@ void gbVFileSystem::Write(void* buffer, unsigned int size, gbVFile* pFile)
 
 int gbVFileSystem::ReadChar(gbVFile* pFile)
 {
-    /* STUB */
     if (!pFile || !pFile->bValid)
         return -1;
 
@@ -1130,7 +1083,6 @@ int gbVFileSystem::ReadChar(gbVFile* pFile)
 
 char* gbVFileSystem::ReadLine(char* buffer, int maxLen, gbVFile* pFile)
 {
-    /* STUB */
     if (!pFile || !pFile->bValid || !buffer || maxLen <= 0)
         return NULL;
 
@@ -1162,7 +1114,6 @@ char* gbVFileSystem::ReadLine(char* buffer, int maxLen, gbVFile* pFile)
 
 void gbVFileSystem::Seek(gbVFile* pFile, long offset, int origin)
 {
-    /* STUB */
     if (!pFile || !pFile->bValid)
         return;
 
@@ -1207,7 +1158,6 @@ void gbVFileSystem::Seek(gbVFile* pFile, long offset, int origin)
 
 void gbVFileSystem::Rewind(gbVFile* pFile)
 {
-    /* STUB */
     if (!pFile || !pFile->bValid)
         return;
 
@@ -1219,7 +1169,6 @@ void gbVFileSystem::Rewind(gbVFile* pFile)
 
 long gbVFileSystem::TellPos(gbVFile* pFile)
 {
-    /* STUB */
     if (!pFile || !pFile->bValid)
         return -1;
 
@@ -1232,7 +1181,6 @@ long gbVFileSystem::TellPos(gbVFile* pFile)
 
 long gbVFileSystem::GetFileSize(gbVFile* pFile)
 {
-    /* STUB */
     if (!pFile || !pFile->bValid)
         return -1;
 
@@ -1250,7 +1198,6 @@ long gbVFileSystem::GetFileSize(gbVFile* pFile)
 
 int gbVFileSystem::FileExistNum(char* filename)
 {
-    /* STUB */
     if (!filename || !IsInit)
         return 0;
 
@@ -1279,7 +1226,6 @@ int gbVFileSystem::FileExistNum(char* filename)
 
 int gbVFileSystem::FindItem(const char* filename)
 {
-    /* STUB */
     if (!filename || !IsInit)
         return -1;
 
@@ -1312,7 +1258,6 @@ CIniFile::~CIniFile()
 
 CIniFile& CIniFile::operator=(const CIniFile& other)
 {
-    /* STUB */
     if (this != &other) {
         m_pFile = other.m_pFile;
         m_nState = other.m_nState;
@@ -1322,7 +1267,6 @@ CIniFile& CIniFile::operator=(const CIniFile& other)
 
 int CIniFile::OpenFileRead(const char* filename)
 {
-    /* STUB */
     if (!g_pVFileSys || !filename)
         return 0;
 
@@ -1336,7 +1280,6 @@ int CIniFile::OpenFileRead(const char* filename)
 
 int CIniFile::OpenFileWrite(const char* filename)
 {
-    /* STUB */
     if (!g_pVFileSys || !filename)
         return 0;
 
@@ -1350,7 +1293,6 @@ int CIniFile::OpenFileWrite(const char* filename)
 
 void CIniFile::CloseFile()
 {
-    /* STUB */
     if (m_pFile && g_pVFileSys) {
         g_pVFileSys->CloseFile(m_pFile);
         m_pFile = NULL;
@@ -1360,7 +1302,6 @@ void CIniFile::CloseFile()
 
 int CIniFile::ReadSection(char* sectionName)
 {
-    /* STUB */
     if (!m_pFile || !g_pVFileSys || !sectionName)
         return 0;
 
@@ -1388,7 +1329,6 @@ int CIniFile::ReadSection(char* sectionName)
 
 void CIniFile::ReadStart()
 {
-    /* STUB */
     if (m_pFile && g_pVFileSys) {
         g_pVFileSys->Rewind(m_pFile);
     }
@@ -1396,7 +1336,6 @@ void CIniFile::ReadStart()
 
 int CIniFile::ReadLine(const char* key, char* value, int maxLen)
 {
-    /* STUB */
     if (!m_pFile || !g_pVFileSys || !key || !value)
         return 0;
 
@@ -1436,7 +1375,6 @@ int CIniFile::ReadLine(const char* key, char* value, int maxLen)
 
 int CIniFile::ReadLine(const char* key, int* value)
 {
-    /* STUB */
     char buf[256];
     if (ReadLine(key, buf, sizeof(buf))) {
         *value = atoi(buf);
@@ -1447,7 +1385,6 @@ int CIniFile::ReadLine(const char* key, int* value)
 
 int CIniFile::ReadLine(const char* key, float* value)
 {
-    /* STUB */
     char buf[256];
     if (ReadLine(key, buf, sizeof(buf))) {
         *value = (float)atof(buf);
@@ -1458,7 +1395,6 @@ int CIniFile::ReadLine(const char* key, float* value)
 
 int CIniFile::ReadLine(const char* key, double* value)
 {
-    /* STUB */
     char buf[256];
     if (ReadLine(key, buf, sizeof(buf))) {
         *value = atof(buf);
@@ -1469,7 +1405,6 @@ int CIniFile::ReadLine(const char* key, double* value)
 
 void CIniFile::WriteSection(const char* section)
 {
-    /* STUB */
     if (!m_pFile || !g_pVFileSys || !section)
         return;
 
@@ -1480,7 +1415,6 @@ void CIniFile::WriteSection(const char* section)
 
 void CIniFile::WriteLine(const char* key, const char* value)
 {
-    /* STUB */
     if (!m_pFile || !g_pVFileSys || !key || !value)
         return;
 
@@ -1491,7 +1425,6 @@ void CIniFile::WriteLine(const char* key, const char* value)
 
 void CIniFile::WriteLine(const char* key, int value)
 {
-    /* STUB */
     if (!m_pFile || !g_pVFileSys || !key)
         return;
 
@@ -1502,7 +1435,6 @@ void CIniFile::WriteLine(const char* key, int value)
 
 void CIniFile::WriteLine(const char* key, float value)
 {
-    /* STUB */
     if (!m_pFile || !g_pVFileSys || !key)
         return;
 
@@ -1513,7 +1445,6 @@ void CIniFile::WriteLine(const char* key, float value)
 
 void CIniFile::WriteLine(const char* key, double value)
 {
-    /* STUB */
     if (!m_pFile || !g_pVFileSys || !key)
         return;
 
@@ -1524,7 +1455,6 @@ void CIniFile::WriteLine(const char* key, double value)
 
 void CIniFile::WriteLineSeperator()
 {
-    /* STUB */
     if (!m_pFile || !g_pVFileSys)
         return;
 
@@ -1540,7 +1470,6 @@ int CIniFile::IfRead()
 
 gbVFile* CIniFile::GetFilePointer()
 {
-    /* STUB */
     return m_pFile;
 }
 
@@ -1591,12 +1520,10 @@ gbVTextFile::gbVTextFile(char * p0) {
 }
 
 gbVTextFile::gbVTextFile() {
-    /* STUB */
     m_pFile = 0;
 }
 
 gbVTextFile& gbVTextFile::operator=(const gbVTextFile& other) {
-    /* STUB */
     if (this != &other) {
         Close();
         memcpy(lineBuf, other.lineBuf, sizeof(lineBuf));
@@ -1606,7 +1533,6 @@ gbVTextFile& gbVTextFile::operator=(const gbVTextFile& other) {
 }
 
 char* gbVTextFile::ReadLine() {
-    /* STUB */
     if (!m_pFile || !g_pVFileSys) {
         return NULL;
     }

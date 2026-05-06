@@ -19,7 +19,6 @@ gbSceneGraph* gbVisNode_pSceneGraph = NULL;
 /* ======== gbLightObj method implementations ======== */
 
 float gbLightObj::GetEffectOnPoint(const gbVec3D& point, int useAttenuation) {
-    /* STUB */
     if (!enabled) return 0.0f;
 
     gbVec3D delta;
@@ -43,7 +42,6 @@ float gbLightObj::GetEffectOnPoint(const gbVec3D& point, int useAttenuation) {
 }
 
 void gbLightObj::Compute(gbVolModNode* volmod) {
-    /* STUB */
     // 0x10013350 (581B) - Computes D3DLIGHT9 sysLight from light parameters
     // Transforms position/direction by the gbVolModNode's world matrix at +0x98
     // Sets sysLight.type based on lightType: 0->POINT(1), 1->SPOT(2), 2->DIR(3)
@@ -119,7 +117,6 @@ void gbLightObj::Compute(gbVolModNode* volmod) {
 /* ======== gbSceneGraph method implementations ======== */
 
 gbSceneGraph::gbSceneGraph(gbGfxManager* gfxMgr, const gbVec3D& param2, float param3) {
-    /* STUB */
     for (int i = 0; i < 16; i++) {
         for (int j = 0; j < 4; j++) {
             for (int k = 0; k < 4; k++) {
@@ -146,7 +143,6 @@ gbSceneGraph::gbSceneGraph(gbGfxManager* gfxMgr, const gbVec3D& param2, float pa
 }
 
 gbSceneGraph::~gbSceneGraph(void) {
-    /* STUB */
     if (renderObjPool) {
         free(renderObjPool);
         renderObjPool = NULL;
@@ -155,7 +151,6 @@ gbSceneGraph::~gbSceneGraph(void) {
 }
 
 void gbSceneGraph::AddSkyBox(gbVisNode* node) {
-    /* STUB */
     skyBoxNode = node;
 }
 
@@ -167,7 +162,6 @@ void gbSceneGraph::Begin(gbCamera* camera) {
 }
 
 gbRenderInfoObj* gbSceneGraph::NewOneRenderObj(gbVisNode* node) {
-    /* STUB */
     if (!renderObjPool || renderObjPoolUsed >= 0x70000) {
         return NULL;
     }
@@ -201,7 +195,6 @@ void gbSceneGraph::AddVolModNode(gbVolModNode* node) {
 }
 
 void gbSceneGraph::CalEffectiveVolMod(gbRenderInfoObj* renderInfo, const gbVec3D& position, int flags) {
-    /* STUB */
     struct VolModEntry {
         float volMod;
         float effect;
@@ -261,19 +254,16 @@ void gbSceneGraph::CalEffectiveVolMod(gbRenderInfoObj* renderInfo, const gbVec3D
 }
 
 void gbSceneGraph::End(void) {
-    /* STUB */
     numVolModNodes = 0;
 }
 
 void gbSceneGraph::AddVisNode(gbVisNode* node) {
-    /* STUB */
     if (!rootNode || !node) return;
     rootNode->children.AddNode((gbChain1DNode*)node);
     node->pParent = (gbNBTreeNode*)rootNode;
 }
 
 void gbSceneGraph::DelVisNode(gbVisNode* node) {
-    /* STUB */
     if (!node) return;
     gbNBTreeNode* parent = node->pParent;
     if (!parent) return;
@@ -281,14 +271,12 @@ void gbSceneGraph::DelVisNode(gbVisNode* node) {
 }
 
 void gbSceneGraph::SetBladeTimeScale(float scale) {
-    /* STUB */
     if (bladeMgr) {
         bladeMgr->globalTimeScale = scale;
     }
 }
 
 void gbSceneGraph::ResetBladeMgr(void) {
-    /* STUB */
     if (!bladeMgr) return;
     // Call bladeMgr's reset function via vtable
     void** vtable = *(void***)bladeMgr;

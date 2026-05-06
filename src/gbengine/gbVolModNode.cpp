@@ -18,7 +18,6 @@ gbVolModNode::~gbVolModNode(void) {
 }
 
 void gbVolModNode::SetVolModObj(class gbVolumeModifier * p0) {
-    /* STUB */
     if (p0 != 0) {
         ((gbRefObject*)p0)->RefCount += 1;
     }
@@ -26,7 +25,6 @@ void gbVolModNode::SetVolModObj(class gbVolumeModifier * p0) {
 }
 
 void gbVolModNode::GetBoundSphere(struct gbSphere * p0) {
-    /* STUB */
     // From Ghidra (GetBoundSphere at 0x10013160):
     // Call pVolMod->vtable[2] to get bounding sphere data,
     // then transform center by localMatrix

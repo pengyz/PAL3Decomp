@@ -38,7 +38,6 @@ gbChain1DNode& gbChain1DNode::operator=(const gbChain1DNode& other) {
  * ================================================================ */
 
 gbChain1D::gbChain1D(void) {
-    /* STUB */
     pTail = NULL;
     pHead = NULL;
     nCount = 0;
@@ -49,7 +48,6 @@ gbChain1D::~gbChain1D() {
 }
 
 gbChain1D& gbChain1D::operator=(const gbChain1D& other) {
-    /* STUB */
     pHead = other.pHead;
     pTail = other.pTail;
     nCount = other.nCount;
@@ -58,14 +56,12 @@ gbChain1D& gbChain1D::operator=(const gbChain1D& other) {
 }
 
 void gbChain1D::ClearAllNodePtr(void) {
-    /* STUB */
     pTail = NULL;
     pHead = NULL;
     nCount = 0;
 }
 
 void gbChain1D::AddNodeOnHead(gbChain1DNode* node) {
-    /* STUB */
     node->pNext = pHead;
     gbChain1DNode* v2 = pTail;
     pHead = node;
@@ -75,7 +71,6 @@ void gbChain1D::AddNodeOnHead(gbChain1DNode* node) {
 }
 
 void gbChain1D::AddNodeOnTail(gbChain1DNode* node) {
-    /* STUB */
     node->pNext = NULL;
     gbChain1DNode* v2 = pTail;
     if (!v2) {
@@ -89,7 +84,6 @@ void gbChain1D::AddNodeOnTail(gbChain1DNode* node) {
 }
 
 void gbChain1D::AddNode(gbChain1DNode* node) {
-    /* STUB */
     node->pNext = NULL;
     gbChain1DNode* v2 = pTail;
     if (!v2) {
@@ -103,7 +97,6 @@ void gbChain1D::AddNode(gbChain1DNode* node) {
 }
 
 void gbChain1D::InsertBefore(gbChain1DNode* newNode, gbChain1DNode* beforeNode) {
-    /* STUB */
     if (!newNode) return;
 
     if (!beforeNode || beforeNode == pHead) {
@@ -125,7 +118,6 @@ void gbChain1D::InsertBefore(gbChain1DNode* newNode, gbChain1DNode* beforeNode) 
 }
 
 void gbChain1D::InsertAfter(gbChain1DNode* newNode, gbChain1DNode* afterNode) {
-    /* STUB */
     if (!newNode) return;
 
     if (!afterNode) {
@@ -142,7 +134,6 @@ void gbChain1D::InsertAfter(gbChain1DNode* newNode, gbChain1DNode* afterNode) {
 }
 
 void gbChain1D::DelNodeFromChain(gbChain1DNode* node) {
-    /* STUB */
     if (!node) return;
 
     if (node == pHead) {
@@ -170,7 +161,6 @@ void gbChain1D::DelNodeFromChain(gbChain1DNode* node) {
 }
 
 bool gbChain1D::IsContainNode(gbChain1DNode* node) {
-    /* STUB */
     gbChain1DNode* curr = pHead;
     while (curr) {
         if (curr == node) {
@@ -182,7 +172,6 @@ bool gbChain1D::IsContainNode(gbChain1DNode* node) {
 }
 
 int gbChain1D::GetNumNode(void) {
-    /* STUB */
     return nCount;
 }
 
@@ -199,7 +188,6 @@ gbChain1DNode* gbChain1D::Iterate(void) {
 }
 
 gbChain1DNode* gbChain1D::operator[](int index) {
-    /* STUB */
     gbChain1DNode* result = pHead;
     int v3 = 0;
     if (index > 0) {
@@ -233,7 +221,6 @@ gbChain2DNode::~gbChain2DNode() {
 }
 
 gbChain2DNode& gbChain2DNode::operator=(const gbChain2DNode& other) {
-    /* STUB */
     pPrev = other.pPrev;
     pNext = other.pNext;
     return *this;
@@ -245,7 +232,6 @@ gbChain2DNode& gbChain2DNode::operator=(const gbChain2DNode& other) {
  * ================================================================ */
 
 gbChain2D::gbChain2D(void) {
-    /* STUB */
     pTail = NULL;
     pHead = NULL;
     nCount = 0;
@@ -262,7 +248,6 @@ gbChain2D& gbChain2D::operator=(const gbChain2D& other) {
 }
 
 void gbChain2D::AddNode(gbChain2DNode* node) {
-    /* STUB */
     node->pNext = NULL;
     node->pPrev = NULL;
     gbChain2DNode* v2 = pTail;
@@ -278,7 +263,6 @@ void gbChain2D::AddNode(gbChain2DNode* node) {
 }
 
 void gbChain2D::DelNodeFromChain(gbChain2DNode* node) {
-    /* STUB */
     if (!node) return;
 
     if (node->pPrev) {
@@ -297,7 +281,6 @@ void gbChain2D::DelNodeFromChain(gbChain2DNode* node) {
 }
 
 bool gbChain2D::IsContainNode(gbChain2DNode* node) {
-    /* STUB */
     gbChain2DNode* curr = pHead;
     while (curr) {
         if (curr == node) {
@@ -309,12 +292,10 @@ bool gbChain2D::IsContainNode(gbChain2DNode* node) {
 }
 
 int gbChain2D::GetNumNode(void) {
-    /* STUB */
     return nCount;
 }
 
 gbChain2DNode* gbChain2D::BeginIterate(int dir) {
-    /* STUB */
     gbChain2DNode* result;
     if (!dir) {
         result = pHead;
@@ -327,7 +308,6 @@ gbChain2DNode* gbChain2D::BeginIterate(int dir) {
 }
 
 gbChain2DNode* gbChain2D::Iterate(void) {
-    /* STUB */
     gbChain2DNode* result;
     if (!nDirection) {
         result = pIterator->pNext;
@@ -344,7 +324,6 @@ gbChain2DNode* gbChain2D::Iterate(void) {
  * ================================================================ */
 
 gbNBTreeNode::gbNBTreeNode(void) : gbChain1DNode() {
-    /* STUB */
     pParent = NULL;
 }
 
@@ -359,7 +338,6 @@ gbNBTreeNode::~gbNBTreeNode() {
 }
 
 gbNBTreeNode& gbNBTreeNode::operator=(const gbNBTreeNode& other) {
-    /* STUB */
     pNext = other.pNext;
     pParent = other.pParent;
     children = other.children;
@@ -400,12 +378,10 @@ int gbNBTreeNode::GetNumChildren(void) {
 }
 
 gbChain1D& gbNBTreeNode::GetChildren(void) {
-    /* STUB */
     return children;
 }
 
 gbNBTreeNode* gbNBTreeNode::GetFather(void) {
-    /* STUB */
     return pParent;
 }
 
@@ -432,7 +408,6 @@ gbNBTreeNode* gbNBTreeNode::GetChild(int index) {
  * ================================================================ */
 
 gbNBTree::gbNBTree(void) {
-    /* STUB */
     pRoot = NULL;
 }
 
@@ -447,12 +422,10 @@ gbNBTree& gbNBTree::operator=(const gbNBTree& other) {
 }
 
 void gbNBTree::SetRoot(gbNBTreeNode* node) {
-    /* STUB */
     pRoot = node;
 }
 
 gbNBTreeNode* gbNBTree::GetRoot(void) {
-    /* STUB */
     return pRoot;
 }
 
@@ -462,14 +435,12 @@ gbNBTreeNode* gbNBTree::GetRoot(void) {
  * ================================================================ */
 
 gbBinaryTreeNode::gbBinaryTreeNode(void) {
-    /* STUB */
     pRight = NULL;
     pParent = NULL;
     pLeft = NULL;
 }
 
 gbBinaryTreeNode::gbBinaryTreeNode(const gbBinaryTreeNode& src) {
-    /* STUB */
     pLeft = src.pLeft;
     pParent = src.pParent;
     pRight = src.pRight;
@@ -480,7 +451,6 @@ gbBinaryTreeNode::~gbBinaryTreeNode() {
 }
 
 gbBinaryTreeNode& gbBinaryTreeNode::operator=(const gbBinaryTreeNode& other) {
-    /* STUB */
     pLeft = other.pLeft;
     pParent = other.pParent;
     pRight = other.pRight;
@@ -488,17 +458,14 @@ gbBinaryTreeNode& gbBinaryTreeNode::operator=(const gbBinaryTreeNode& other) {
 }
 
 gbBinaryTreeNode* gbBinaryTreeNode::GetFather(void) {
-    /* STUB */
     return pParent;
 }
 
 gbBinaryTreeNode* gbBinaryTreeNode::GetLeft(void) {
-    /* STUB */
     return pLeft;
 }
 
 gbBinaryTreeNode* gbBinaryTreeNode::GetRight(void) {
-    /* STUB */
     return pRight;
 }
 
@@ -508,7 +475,6 @@ gbBinaryTreeNode* gbBinaryTreeNode::GetRight(void) {
  * ================================================================ */
 
 gbBinaryTree::gbBinaryTree(void) {
-    /* STUB */
     pRoot = NULL;
 }
 
@@ -523,12 +489,10 @@ gbBinaryTree& gbBinaryTree::operator=(const gbBinaryTree& other) {
 }
 
 void gbBinaryTree::SetRoot(gbBinaryTreeNode* node) {
-    /* STUB */
     pRoot = node;
 }
 
 gbBinaryTreeNode* gbBinaryTree::GetRoot(void) {
-    /* STUB */
     return pRoot;
 }
 
@@ -538,7 +502,6 @@ gbBinaryTreeNode* gbBinaryTree::GetRoot(void) {
  * ================================================================ */
 
 gbStaticChain::gbStaticChain(void) {
-    /* STUB */
     pBuffer = NULL;
     pIterator = NULL;
     pUsedHead = NULL;
@@ -552,7 +515,6 @@ gbStaticChain& gbStaticChain::operator=(const gbStaticChain& other) {
 }
 
 void gbStaticChain::InitBuffer(int maxNodes, int nodeSize) {
-    /* STUB */
     if (maxNodes <= 0 || nodeSize <= 0) return;
 
     nMaxNodes = maxNodes;
@@ -587,7 +549,6 @@ void gbStaticChain::ReleaseBuffer(void) {
 }
 
 gbStaticChainNode* gbStaticChain::NewOneNode(void) {
-    /* STUB */
     if (!pFreeHead) return NULL;
 
     // Pop from free list
@@ -610,7 +571,6 @@ gbStaticChainNode* gbStaticChain::NewOneNode(void) {
 }
 
 void gbStaticChain::DelOneNode(gbStaticChainNode* ptr) {
-    /* STUB */
     if (!ptr) return;
     gbStaticChainNode* node = ptr;
 
@@ -648,7 +608,6 @@ gbStaticChainNode* gbStaticChain::Iterate(void) {
 }
 
 gbStaticChainNode* gbStaticChain::BeginReverseIterate(void) {
-    /* STUB */
     gbStaticChainNode* result = pUsedHead;
     if (result) {
         gbStaticChainNode* v2;
@@ -671,7 +630,6 @@ gbStaticChainNode* gbStaticChain::ReverseIterate(void) {
 }
 
 gbStaticChainNode* gbStaticChain::GetOldestNode(void) {
-    /* STUB */
     gbStaticChainNode* result = pUsedHead;
     if (result) {
         gbStaticChainNode* v2;
@@ -685,7 +643,6 @@ gbStaticChainNode* gbStaticChain::GetOldestNode(void) {
 }
 
 gbStaticChainNode* gbStaticChain::GetNewestNode(void) {
-    /* STUB */
     return pUsedHead;
 }
 

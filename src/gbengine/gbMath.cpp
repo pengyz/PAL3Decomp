@@ -739,7 +739,6 @@ struct gbPlane {
 
 // Forward declare TransformPlane implementation
 void gbMatrix4::TransformPlane(const gbPlane* plane, gbPlane* result) const {
-    /* STUB */
     gbMatrix4 invTranspose = *this;
     invTranspose.Invert();
     invTranspose.Transpose();
@@ -758,7 +757,6 @@ void gbMatrix4::TransformPlane(const gbPlane* plane, gbPlane* result) const {
 
 // 0x10025d90 (307B) - MakeMatrix implementation
 void gbMatrix4::MakeMatrix(const gbVec3D* pos, const gbRotMatrix* rot, const gbVec3D* scale) {
-    /* STUB */
     for (int i = 0; i < 3; i++) {
         for (int j = 0; j < 3; j++) {
             m[i][j] = rot->m[i][j];
@@ -1013,7 +1011,6 @@ struct gbSphere {
 
 // Implement gbOBBox::GetSphere
 void gbOBBox::GetSphere(gbSphere* sphere) const {
-    /* STUB */
     sphere->center.x = matrix.m[3][0];
     sphere->center.y = matrix.m[3][1];
     sphere->center.z = matrix.m[3][2];
@@ -1366,7 +1363,6 @@ extern "C" int __cdecl gbIntersectTriangle(
 
 // Placeholder implementations for forward-declared collision functions
 bool gbPlane::IsColAABB(const gbAABBox* box) const {
-    /* STUB */
     // Simple plane-AABB test
     gbVec3D center((box->vMin.x + box->vMax.x) * 0.5f,
                    (box->vMin.y + box->vMax.y) * 0.5f,
@@ -1382,7 +1378,6 @@ bool gbPlane::IsColAABB(const gbAABBox* box) const {
 }
 
 bool gbPlane::IsColOBB(const gbOBBox* box) const {
-    /* STUB */
     gbVec3D row0, row1, row2;
     ((gbMatrix4*)&box->matrix)->GetRow(0, &row0);
     ((gbMatrix4*)&box->matrix)->GetRow(1, &row1);
@@ -1401,7 +1396,6 @@ bool gbPlane::IsColOBB(const gbOBBox* box) const {
 
 // OBB-OBB collision using Separating Axis Theorem (SAT)
 int gbOBBox::IsColOBB(gbOBBox* other) {
-    /* STUB */
     // Calculate translation vector
     gbVec3D T;
     T.x = other->matrix.m[3][0] - matrix.m[3][0];
@@ -1458,7 +1452,6 @@ int gbOBBox::IsColOBB(gbOBBox* other) {
 }
 
 bool gbRay::IsColAABB(const gbAABBox* box, gbVec3D* point) const {
-    /* STUB */
     float tmin = -FLT_MAX, tmax = FLT_MAX;
 
     for (int i = 0; i < 3; i++) {
@@ -1489,7 +1482,6 @@ bool gbRay::IsColAABB(const gbAABBox* box, gbVec3D* point) const {
 }
 
 int gbRay::IsColOBB(gbOBBox& param_1) {
-    /* STUB */
     // Slab-based ray-OBB intersection
     // Transform ray to OBB local space, then test against AABB defined by extents
     gbVec3D center;
@@ -1530,7 +1522,6 @@ int gbRay::IsColOBB(gbOBBox& param_1) {
 }
 
 int gbRay::IsColOBB_H(gbOBBox& param_1) {
-    /* STUB */
     // Transform ray to OBB's local space, then do AABB test
     gbVec3D localOrigin;
     localOrigin.x = 0; localOrigin.y = 0; localOrigin.z = 0;
@@ -1566,7 +1557,6 @@ bool gbRay::IsColQuad(const gbVec3D* v0, const gbVec3D* v1, const gbVec3D* v2, c
 }
 
 bool gbRay::IsColSphere(const gbSphere* sphere, gbVec3D* point) const {
-    /* STUB */
     gbVec3D m(origin.x - sphere->center.x, origin.y - sphere->center.y, origin.z - sphere->center.z);
     float b = m.DotProduct(&direction);
     float c = m.DotProduct(&m) - sphere->radius * sphere->radius;
@@ -1595,7 +1585,6 @@ bool gbRay::IsColTriangle(const gbVec3D* v0, const gbVec3D* v1, const gbVec3D* v
 }
 
 bool gbRay::IsColTriangle(const gbVec3D* v0, const gbVec3D* v1, const gbVec3D* v2, gbVec3D* point, gbVec3D* bary) const {
-    /* STUB */
     if (!IsColTriangle(v0, v1, v2, point)) return false;
 
     // Compute barycentric coordinates

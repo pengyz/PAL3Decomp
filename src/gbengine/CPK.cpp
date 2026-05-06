@@ -13,7 +13,6 @@ unsigned long CPK::CrcTable[256];
 
 bool CPK::GetFileSize(unsigned long& packedSize, unsigned long& originSize,
                       unsigned long tableIndex) {
-    /* STUB */
     if (tableIndex >= CPK_MAX_TABLE_NUM) return false;
 
     CPKTable* entry = &m_CPKTable[tableIndex];

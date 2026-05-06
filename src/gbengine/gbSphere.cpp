@@ -15,7 +15,6 @@ gbSphere::gbSphere() {
 
 // Assignment operator
 gbSphere& gbSphere::operator=(const gbSphere& s) {
-    /* STUB */
     center = s.center;
     radius = s.radius;
     return *this;
@@ -23,7 +22,6 @@ gbSphere& gbSphere::operator=(const gbSphere& s) {
 
 // Point-in-sphere test
 int gbSphere::IsColPoint(gbVec3D& point) {
-    /* STUB */
     gbVec3D d;
     d.x = point.x - center.x;
     d.y = point.y - center.y;
@@ -34,7 +32,6 @@ int gbSphere::IsColPoint(gbVec3D& point) {
 
 // Sphere-Sphere collision test
 int gbSphere::IsColSphere(gbVec3D& otherCenter, float otherRadius) {
-    /* STUB */
     gbVec3D d;
     d.x = otherCenter.x - center.x;
     d.y = otherCenter.y - center.y;
@@ -46,7 +43,6 @@ int gbSphere::IsColSphere(gbVec3D& otherCenter, float otherRadius) {
 
 // Sphere-Triangle collision test
 int gbSphere::IsColTriangle(gbVec3D& v0, gbVec3D& v1, gbVec3D& v2) {
-    /* STUB */
     // Compute triangle edges
     gbVec3D e0, e1, e2;
     e0.x = v1.x - v0.x; e0.y = v1.y - v0.y; e0.z = v1.z - v0.z;

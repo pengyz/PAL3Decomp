@@ -28,7 +28,6 @@ gbMatrix4::gbMatrix4(void)
 
 void gbMatrix4::operator=(const gbMatrix4 &other)
 {
-    /* STUB */
     float *pSrc = (float *)&other;
     float *pDst = (float *)this;
     int i;
@@ -41,7 +40,6 @@ void gbMatrix4::operator=(const gbMatrix4 &other)
 
 void gbMatrix4::operator*=(const gbMatrix4 &param)
 {
-    /* STUB */
     float temp[16];
     float *pSrc = (float *)this;
     float *pDst = temp;
@@ -83,7 +81,6 @@ void gbMatrix4::operator*=(const gbMatrix4 &param)
 
 void gbMatrix4::RightMultiply(const gbMatrix4 &param)
 {
-    /* STUB */
     float temp[16];
     float *pSrc = (float *)this;
     float *pDst = temp;
@@ -131,7 +128,6 @@ void gbMatrix4::LeftMultiply(const gbMatrix4 &param)
 
 void gbMatrix4::Transform(const gbVec3D *in, gbVec3D *out) const
 {
-    /* STUB */
     out->x = in->y * m[1][0] + in->z * m[2][0] + in->x * m[0][0] + m[3][0];
     out->y = in->x * m[0][1] + in->y * m[1][1] + in->z * m[2][1] + m[3][1];
     out->z = in->x * m[0][2] + in->y * m[1][2] + in->z * m[2][2] + m[3][2];
@@ -139,7 +135,6 @@ void gbMatrix4::Transform(const gbVec3D *in, gbVec3D *out) const
 
 void gbMatrix4::Rotate(const gbVec3D *in, gbVec3D *out) const
 {
-    /* STUB */
     out->x = in->y * m[1][0] + in->z * m[2][0] + in->x * m[0][0];
     out->y = in->x * m[0][1] + in->y * m[1][1] + in->z * m[2][1];
     out->z = in->x * m[0][2] + in->y * m[1][2] + in->z * m[2][2];
@@ -147,7 +142,6 @@ void gbMatrix4::Rotate(const gbVec3D *in, gbVec3D *out) const
 
 void gbMatrix4::LoadIdentity(void)
 {
-    /* STUB */
     memset(this, 0, sizeof(gbMatrix4));
     m[0][0] = 1.0f;
     m[1][1] = 1.0f;
@@ -157,7 +151,6 @@ void gbMatrix4::LoadIdentity(void)
 
 bool gbMatrix4::IsIdentity(void) const
 {
-    /* STUB */
     float *p = (float *)this;
     int row = 0;
     do {
@@ -182,7 +175,6 @@ bool gbMatrix4::IsIdentity(void) const
 
 bool gbMatrix4::IsValid(void) const
 {
-    /* STUB */
     if (this == NULL) return false;
     float *p = (float *)this;
     int i = 0;
@@ -204,7 +196,6 @@ float gbMatrix4::operator()(int row, int col)
 
 void gbMatrix4::Transpose(void)
 {
-    /* STUB */
     float *pCol = (float *)this + 1;
     float *pRow = (float *)this + 4;
     int n = 1;
@@ -230,7 +221,6 @@ void gbMatrix4::Transpose(void)
 
 void gbMatrix4::Transpose(gbMatrix4 *out) const
 {
-    /* STUB */
     float *pSrc = (float *)this;
     float *pDst = (float *)out;
     int col = 4;
@@ -251,7 +241,6 @@ void gbMatrix4::Transpose(gbMatrix4 *out) const
 
 gbVec3D *gbMatrix4::GetRow(gbVec3D *out, int row) const
 {
-    /* STUB */
     float *pRow = (float *)this + row * 4;
     out->x = pRow[0];
     out->y = pRow[1];
@@ -261,7 +250,6 @@ gbVec3D *gbMatrix4::GetRow(gbVec3D *out, int row) const
 
 gbVec3D *gbMatrix4::GetColumn(gbVec3D *out, int col) const
 {
-    /* STUB */
     out->x = m[0][col];
     out->y = m[1][col];
     out->z = m[2][col];
@@ -270,7 +258,6 @@ gbVec3D *gbMatrix4::GetColumn(gbVec3D *out, int col) const
 
 void gbMatrix4::SetAxisAngle(gbAxis axis, float cosA, float sinA)
 {
-    /* STUB */
     float *p = (float *)this;
     int i;
     for (i = 16; i != 0; i--) {
@@ -301,7 +288,6 @@ void gbMatrix4::SetAxisAngle(gbAxis axis, float cosA, float sinA)
 
 void gbMatrix4::SetAxisAngle(gbAxis axis, float angle)
 {
-    /* STUB */
     float rad = angle * 0.017453292f;
     float s = (float)sin(rad);
     float c = (float)cos(rad);
@@ -310,7 +296,6 @@ void gbMatrix4::SetAxisAngle(gbAxis axis, float angle)
 
 void gbMatrix4::SetAxisAngle(gbVec3D *axis, float angle)
 {
-    /* STUB */
     gbQuaternion q;
     q.x = 0.0f;
     q.y = 0.0f;
@@ -322,7 +307,6 @@ void gbMatrix4::SetAxisAngle(gbVec3D *axis, float angle)
 
 void gbMatrix4::Invert(gbMatrix4 *out) const
 {
-    /* STUB */
     float cofA = m[1][1] * m[2][2] - m[2][1] * m[1][2];
     float det = 1.0f / ((m[2][1] * m[1][0] - m[2][0] * m[1][1]) * m[0][2] +
                         (cofA * m[0][0] -
@@ -348,7 +332,6 @@ void gbMatrix4::Invert(gbMatrix4 *out) const
 
 void gbMatrix4::RightMultiply(const gbQuaternion &q)
 {
-    /* STUB */
     gbMatrix4 tmp;
     ((gbQuaternion *)&q)->GetMatrix(&tmp);
     RightMultiply(tmp);
@@ -356,7 +339,6 @@ void gbMatrix4::RightMultiply(const gbQuaternion &q)
 
 void gbMatrix4::operator*=(const gbQuaternion &q)
 {
-    /* STUB */
     gbMatrix4 tmp;
     ((gbQuaternion *)&q)->GetMatrix(&tmp);
     LeftMultiply(tmp);
@@ -364,7 +346,6 @@ void gbMatrix4::operator*=(const gbQuaternion &q)
 
 void gbMatrix4::LeftTranslate(gbVec3D &v)
 {
-    /* STUB */
     m[3][0] = v.z * m[2][0] + v.y * m[1][0] + v.x * m[0][0] + m[3][0];
     m[3][1] = v.z * m[2][1] + v.y * m[1][1] + v.x * m[0][1] + m[3][1];
     m[3][2] = v.z * m[2][2] + v.y * m[1][2] + v.x * m[0][2] + m[3][2];
@@ -372,7 +353,6 @@ void gbMatrix4::LeftTranslate(gbVec3D &v)
 
 void gbMatrix4::LeftTranslate(float x, float y, float z)
 {
-    /* STUB */
     m[3][0] = y * m[1][0] + z * m[2][0] + x * m[0][0] + m[3][0];
     m[3][1] = x * m[0][1] + y * m[1][1] + z * m[2][1] + m[3][1];
     m[3][2] = x * m[0][2] + y * m[1][2] + z * m[2][2] + m[3][2];
@@ -380,7 +360,6 @@ void gbMatrix4::LeftTranslate(float x, float y, float z)
 
 void gbMatrix4::RightTranslate(gbVec3D &v)
 {
-    /* STUB */
     m[3][0] = v.x + m[3][0];
     m[3][1] = v.y + m[3][1];
     m[3][2] = v.z + m[3][2];
@@ -388,7 +367,6 @@ void gbMatrix4::RightTranslate(gbVec3D &v)
 
 void gbMatrix4::RightTranslate(float x, float y, float z)
 {
-    /* STUB */
     m[3][0] = x + m[3][0];
     m[3][1] = y + m[3][1];
     m[3][2] = z + m[3][2];
@@ -396,7 +374,6 @@ void gbMatrix4::RightTranslate(float x, float y, float z)
 
 void gbMatrix4::RightScale(float sx, float sy, float sz)
 {
-    /* STUB */
     m[0][0] = sx * m[0][0];
     m[1][0] = sx * m[1][0];
     m[2][0] = sx * m[2][0];
@@ -413,7 +390,6 @@ void gbMatrix4::RightScale(float sx, float sy, float sz)
 
 void gbMatrix4::LeftScale(float sx, float sy, float sz)
 {
-    /* STUB */
     m[0][0] = sx * m[0][0];
     m[0][1] = sx * m[0][1];
     m[0][2] = sx * m[0][2];
@@ -427,7 +403,6 @@ void gbMatrix4::LeftScale(float sx, float sy, float sz)
 
 void gbMatrix4::Transform(gbVec3D *in, gbVec3D *out, int count) const
 {
-    /* STUB */
     if (count > 0) {
         do {
             count--;
@@ -442,7 +417,6 @@ void gbMatrix4::Transform(gbVec3D *in, gbVec3D *out, int count) const
 
 void gbMatrix4::Transform(gbVec3D *verts, int count) const
 {
-    /* STUB */
     if (count > 0) {
         do {
             float ox = verts->x;
@@ -459,7 +433,6 @@ void gbMatrix4::Transform(gbVec3D *verts, int count) const
 
 void gbMatrix4::Transform_W(gbVec3D *in, gbVec3D *out, int count) const
 {
-    /* STUB */
     if (count > 0) {
         do {
             count--;
@@ -478,7 +451,6 @@ void gbMatrix4::Transform_W(gbVec3D *in, gbVec3D *out, int count) const
 
 bool gbMatrix4::IsOrthonormal(void) const
 {
-    /* STUB */
     gbVec3D col_x, col_y, cross, col_z;
     bool ortho;
 
@@ -516,7 +488,6 @@ bool gbMatrix4::IsOrthonormal(void) const
 
 void gbMatrix4::MakeMatrix(gbVec3D &forward, gbVec3D &up, gbVec3D &pos)
 {
-    /* STUB */
     gbVec3D side, realUp;
     side.x = 0.0f; side.y = 0.0f; side.z = 0.0f;
     realUp.x = 0.0f; realUp.y = 0.0f; realUp.z = 0.0f;

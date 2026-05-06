@@ -46,7 +46,6 @@ gbGfxManager* g_pGfxManager = NULL;
 
 // 0x1001d910 (394B) - Constructor
 gbGfxManager::gbGfxManager(int& result, gbGfxDriverInfo* driverInfo) {
-    /* STUB */
     m_nState = 0;
     hGfxWnd = 0;
 
@@ -89,7 +88,6 @@ gbGfxManager::~gbGfxManager() {
 
 // 0x1001db10 (222B) - Begin a rendering scene
 int gbGfxManager::BeginScene(void) {
-    /* STUB */
     if (m_nState)
         return 0;
 
@@ -99,7 +97,6 @@ int gbGfxManager::BeginScene(void) {
 
 // EndScene: finish the rendering scene
 void gbGfxManager::EndScene(void) {
-    /* STUB */
     if (!m_nState)
         return;
 
@@ -108,7 +105,6 @@ void gbGfxManager::EndScene(void) {
 
 // SetTransform: set a transform matrix (world/view/projection)
 void gbGfxManager::SetTransform(int type, gbMatrix4* matrix) {
-    /* STUB */
     if (!matrix)
         return;
 
@@ -128,7 +124,6 @@ void gbGfxManager::SetTransform(int type, gbMatrix4* matrix) {
 // 0x1001e220 (158B) - Clip a bounding volume against the view frustum
 // Returns: 1 = outside frustum (clipped), 0 = inside (visible)
 int gbGfxManager::ClipBoundVolume(gbAABBox* box) {
-    /* STUB */
     float planes[24];
     float* pBox = (float*)box;
 
@@ -158,7 +153,6 @@ int gbGfxManager::ClipBoundVolume(gbAABBox* box) {
 
 // 0x10004ff0 (34B) - Enable/disable emissive lighting
 void gbGfxManager::EnableEmissive(int enable) {
-    /* STUB */
     if (enable) {
         fSelfIllum = 1.0f;
     } else {
@@ -168,25 +162,21 @@ void gbGfxManager::EnableEmissive(int enable) {
 
 // 0x10005020 (13B) - Set emissive factor
 void gbGfxManager::SetEmissiveFactor(float factor) {
-    /* STUB */
     fSelfIllum = factor;
 }
 
 // 0x10004fc0 (39B) - Get ambient light color
 gbColorFlt gbGfxManager::GetAmbientLight(void) {
-    /* STUB */
     return AmbientLight;
 }
 
 // 0x10004f90 (35B) - Set ambient light color
 void gbGfxManager::SetAmbientLight(const gbColorFlt& color) {
-    /* STUB */
     AmbientLight = color;
 }
 
 // 0x1001dac0 (34B) - Get delta time since last frame
 double gbGfxManager::GetDeltaTime(void) {
-    /* STUB */
     double dt = CurTime - LastTime;
     if (dt > 0.5) dt = 0.5;
     return dt;
@@ -200,13 +190,11 @@ unsigned int gbGfxManager::GetDeltaTick(void) {
 
 // 0x10004ea0 (13B) - Set scene graph
 void gbGfxManager::SetSceneGraph(gbSceneGraph* sg) {
-    /* STUB */
     pSceneGraph = sg;
 }
 
 // 0x10004ed0 (14B) - Get matrix stack by index
 gbMatrixStack* gbGfxManager::GetMatrixStack(int index) {
-    /* STUB */
     if (index < 0 || index >= 4)
         return NULL;
     return pMatrixStack[index];
@@ -232,7 +220,6 @@ int gbGfxManager::IsLightEnable(int index) const {
 
 // 0x1001df40 (37B) - Get a combined transform matrix
 void gbGfxManager::GetTMMatrix(int type, gbMatrix4* out) {
-    /* STUB */
     if (!out)
         return;
     switch (type) {
@@ -262,7 +249,6 @@ void gbGfxManager::SetClearParam(gbClearParam* pParam) {
 
 // 0x1001e160 (189B) - Create a new mesh resource
 gbBaseMesh* gbGfxManager::NewMesh(const char* name, gbMeshType type) {
-    /* STUB */
     if (type == MESH_STATIC) {
         gbStaticMesh* mesh = new gbStaticMesh(this);
         return mesh;
@@ -275,7 +261,6 @@ gbBaseMesh* gbGfxManager::NewMesh(const char* name, gbMeshType type) {
 
 // 0x1001e2c0 (36B) - Offset Z-buffer for decal rendering
 void gbGfxManager::OffsetZBuffer(int enable) {
-    /* STUB */
     if (enable != CurZBias) {
         CurZBias = enable;
     }
@@ -283,13 +268,11 @@ void gbGfxManager::OffsetZBuffer(int enable) {
 
 // 0x1001e2f0 (13B) - Set wireframe rendering mode
 void gbGfxManager::SetWireMode(int mode) {
-    /* STUB */
     bWireMode = mode;
 }
 
 // 0x1001e300 (38B) - Set fog parameters
 void gbGfxManager::SetFog(gbFogParam* pFogParam) {
-    /* STUB */
     if (pFogParam == NULL) {
         FogParam.enable = 0;
         return;
@@ -299,19 +282,16 @@ void gbGfxManager::SetFog(gbFogParam* pFogParam) {
 
 // 0x1001e330 (55B) - Get world matrix (const reference)
 const gbMatrix4& gbGfxManager::GetWorldMatrix(void) {
-    /* STUB */
     return WorldMatrix;
 }
 
 // Exported: GetViewMatrix
 const gbMatrix4& gbGfxManager::GetViewMatrix(void) {
-    /* STUB */
     return ViewMatrix;
 }
 
 // 0x1001e380 (19B) - Reset world matrix to identity
 void gbGfxManager::IdentityWorldMatrix(void) {
-    /* STUB */
     memset(&WorldMatrix, 0, sizeof(gbMatrix4));
     WorldMatrix.m[0][0] = 1.0f;
     WorldMatrix.m[1][1] = 1.0f;
@@ -321,14 +301,12 @@ void gbGfxManager::IdentityWorldMatrix(void) {
 
 // 0x1001e3a0 (43B) - Set view and projection matrices from camera
 void gbGfxManager::SetCameraMatrix(const gbMatrix4& view, const gbMatrix4& proj) {
-    /* STUB */
     memcpy(&ViewMatrix, &view, sizeof(gbMatrix4));
     memcpy(&InvViewMatrix, &proj, sizeof(gbMatrix4));
 }
 
 // Exported: GetGfxCaps
 int gbGfxManager::GetGfxCaps(gbGfxCaps* caps) {
-    /* STUB */
     if (!caps) return 0;
     memset(caps, 0, sizeof(gbGfxCaps));
     return 1;
@@ -336,85 +314,71 @@ int gbGfxManager::GetGfxCaps(gbGfxCaps* caps) {
 
 // Exported: GetCurTick
 unsigned int gbGfxManager::GetCurTick(void) {
-    /* STUB */
     return CurTick;
 }
 
 // Exported: GetCurTime
 double gbGfxManager::GetCurTime(void) {
-    /* STUB */
     return CurTime;
 }
 
 // Exported: GetDriverInfo
 const gbGfxDriverInfo* gbGfxManager::GetDriverInfo(void) {
-    /* STUB */
     return &DrvInfo;
 }
 
 // Exported: GetEffectMgr
 gbEffectMgr* gbGfxManager::GetEffectMgr(void) {
-    /* STUB */
     return pEffectMgr;
 }
 
 // Exported: GetEmissiveFactor
 float gbGfxManager::GetEmissiveFactor(void) {
-    /* STUB */
     return fSelfIllum;
 }
 
 // Exported: GetFog
 gbFogParam* gbGfxManager::GetFog(void) {
-    /* STUB */
     return &FogParam;
 }
 
 // Exported: GetGraphWnd
 unsigned int gbGfxManager::GetGraphWnd(void) {
-    /* STUB */
     return DrvInfo.hgfxwnd;
 }
 
 // Exported: GetPrintFontMgr
 gbPrintFontMgr* gbGfxManager::GetPrintFontMgr(void) {
-    /* STUB */
     return pFontMgr;
 }
 
 // Exported: GetResManager
 gbResManager* gbGfxManager::GetResManager(void) {
-    /* STUB */
     return pTexResMgr;
 }
 
 // Exported: GetSceneGraph
 gbSceneGraph* gbGfxManager::GetSceneGraph(void) {
-    /* STUB */
     return pSceneGraph;
 }
 
 // Exported: GetStatistic
 gbGfxStatistic* gbGfxManager::GetStatistic(void) {
-    /* STUB */
     return &Stat;
 }
 
 // Exported: GetVertPoolMgr
 gbVertPoolMgr* gbGfxManager::GetVertPoolMgr(void) {
-    /* STUB */
     return pVertPoolMgr;
 }
 
 // Exported: IsWireMode
 int gbGfxManager::IsWireMode(void) {
-    /* STUB */
     return bWireMode;
 }
 
 
 gbRenderEffect::~gbRenderEffect() {
-    /* STUB */
     if (m_pEffect) {
         m_pEffect->Release();
         m_pEffect = NULL;
@@ -424,7 +388,6 @@ gbRenderEffect::~gbRenderEffect() {
 
 // operator=
 gbRenderEffect& gbRenderEffect::operator=(const gbRenderEffect& other) {
-    /* STUB */
     if (this != &other) {
         // Release old effect
         if (m_pEffect) {
@@ -452,7 +415,6 @@ void gbRenderEffect::SetDeclHandle(IDirect3DVertexDeclaration9* decl) {
 
 // 0x1001cfe0 (32B) - Compare two effects for sorting
 int gbRenderEffect::Compare(gbRenderEffect* other) {
-    /* STUB */
     if (!other)
         return 1;
     if (m_pEffect == other->m_pEffect)
@@ -464,7 +426,6 @@ int gbRenderEffect::Compare(gbRenderEffect* other) {
 
 // 0x1001d000 (119B) - Validate the effect
 int gbRenderEffect::Validate(void) {
-    /* STUB */
     if (!m_pEffect)
         return 0;
 
@@ -474,7 +435,6 @@ int gbRenderEffect::Validate(void) {
 
 // 0x1001d080 (26B) - Begin rendering with this effect
 int gbRenderEffect::Begin(void) {
-    /* STUB */
     if (!m_pEffect)
         return 0;
 
@@ -489,7 +449,6 @@ int gbRenderEffect::Begin(void) {
 
 // 0x1001d0a0 (52B) - Set a pass
 void gbRenderEffect::Pass(int passIndex) {
-    /* STUB */
     if (!m_pEffect)
         return;
     m_pEffect->Pass(passIndex);
@@ -497,7 +456,6 @@ void gbRenderEffect::Pass(int passIndex) {
 
 // 0x1001d0e0 (20B) - End rendering with this effect
 void gbRenderEffect::End(void) {
-    /* STUB */
     if (!m_pEffect)
         return;
     m_pEffect->End();
@@ -505,7 +463,6 @@ void gbRenderEffect::End(void) {
 
 // 0x1001d100 (72B) - Apply current effect state (commit changes)
 void gbRenderEffect::Apply(void) {
-    /* STUB */
     if (!m_pEffect)
         return;
     // Summer 2003 SDK has no CommitChanges
@@ -513,7 +470,6 @@ void gbRenderEffect::Apply(void) {
 
 // Get variant by GBPARAMHANDLE
 void gbRenderEffect::GetVariant(enum GBPARAMHANDLE handle, void* pValue) {
-    /* STUB */
     if (!m_pEffect || !pValue)
         return;
     m_pEffect->GetValue((D3DXHANDLE)(int)handle, pValue, sizeof(float) * 4);
@@ -521,7 +477,6 @@ void gbRenderEffect::GetVariant(enum GBPARAMHANDLE handle, void* pValue) {
 
 // Set variant by GBPARAMHANDLE
 void gbRenderEffect::SetVariant(enum GBPARAMHANDLE handle, void* pValue) {
-    /* STUB */
     if (!m_pEffect || !pValue)
         return;
     m_pEffect->SetValue((D3DXHANDLE)(int)handle, pValue, sizeof(float) * 4);
@@ -529,7 +484,6 @@ void gbRenderEffect::SetVariant(enum GBPARAMHANDLE handle, void* pValue) {
 
 // 0x1001d190 (40B) - Get variant by name
 void gbRenderEffect::GetVariant(char* name, void* pValue) {
-    /* STUB */
     if (!m_pEffect || !name || !pValue)
         return;
     D3DXHANDLE hParam = m_pEffect->GetParameterByName(NULL, name);
@@ -539,7 +493,6 @@ void gbRenderEffect::GetVariant(char* name, void* pValue) {
 
 // 0x1001d1c0 (40B) - Set variant by name
 void gbRenderEffect::SetVariant(char* name, void* pValue) {
-    /* STUB */
     if (!m_pEffect || !name || !pValue)
         return;
     D3DXHANDLE hParam = m_pEffect->GetParameterByName(NULL, name);
@@ -549,7 +502,6 @@ void gbRenderEffect::SetVariant(char* name, void* pValue) {
 
 // Exported: GetD3DEffect
 ID3DXEffect* gbRenderEffect::GetD3DEffect(void) {
-    /* STUB */
     return m_pEffect;
 }
 
@@ -560,7 +512,6 @@ ID3DXEffect* gbRenderEffect::GetD3DEffect(void) {
 
 // 0x10004d20 (12B) - Default constructor
 gbEffectMgr::gbEffectMgr(void) {
-    /* STUB */
     m_pGfxMgr = NULL;
     m_pWhiteTexture = NULL;
     m_pGrayTexture = NULL;
@@ -575,7 +526,6 @@ gbEffectMgr::gbEffectMgr(void) {
 
 // 0x10004d30 (148B) - Copy constructor
 gbEffectMgr::gbEffectMgr(const gbEffectMgr& other) {
-    /* STUB */
     m_pGfxMgr = other.m_pGfxMgr;
     m_nMaxEffects = other.m_nMaxEffects;
     m_nNumEffects = other.m_nNumEffects;
@@ -608,7 +558,6 @@ gbEffectMgr::~gbEffectMgr() {
 
 // operator=
 gbEffectMgr& gbEffectMgr::operator=(const gbEffectMgr& other) {
-    /* STUB */
     if (this != &other) {
         Release();
 
@@ -633,7 +582,6 @@ gbEffectMgr& gbEffectMgr::operator=(const gbEffectMgr& other) {
 
 // 0x1001d1f0 (786B) - Initialize the effect manager
 void gbEffectMgr::Init(gbGfxManager* gfxMgr) {
-    /* STUB */
     m_pGfxMgr = gfxMgr;
 
     // Pre-allocate space for effects
@@ -653,7 +601,6 @@ void gbEffectMgr::Init(gbGfxManager* gfxMgr) {
 
 // 0x1001d510 (67B) - Release all managed effects
 void gbEffectMgr::Release(void) {
-    /* STUB */
     if (m_pEffects) {
         for (int i = 0; i < m_nNumEffects; i++) {
             if (m_pEffects[i]) {
@@ -679,7 +626,6 @@ void gbEffectMgr::Release(void) {
 
 // 0x1001d560 (50B) - Handle device lost
 int gbEffectMgr::OnLostDevice(void) {
-    /* STUB */
     for (int i = 0; i < m_nNumEffects; i++) {
         if (m_pEffects[i] && m_pEffects[i]->m_pEffect) {
             m_pEffects[i]->m_pEffect->OnLostDevice();
@@ -690,7 +636,6 @@ int gbEffectMgr::OnLostDevice(void) {
 
 // 0x1001d5a0 (50B) - Handle device reset
 int gbEffectMgr::OnResetDevice(void) {
-    /* STUB */
     for (int i = 0; i < m_nNumEffects; i++) {
         if (m_pEffects[i] && m_pEffects[i]->m_pEffect) {
             m_pEffects[i]->m_pEffect->OnResetDevice();
@@ -701,7 +646,6 @@ int gbEffectMgr::OnResetDevice(void) {
 
 // 0x1001d5e0 (232B) - Register a vertex format declaration
 IDirect3DVertexDeclaration9* gbEffectMgr::RegisterVertexFormat(const char* name, gbVertexElement* pElements) {
-    /* STUB */
     if (!name || !pElements)
         return NULL;
 
@@ -717,7 +661,6 @@ IDirect3DVertexDeclaration9* gbEffectMgr::RegisterVertexFormat(const char* name,
 
 // 0x1001d6d0 (353B) - Create a new render effect from a .gbf file
 gbRenderEffect* gbEffectMgr::NewRenderEffect(const char* filename, unsigned int flags) {
-    /* STUB */
     if (!filename || !m_pGfxMgr)
         return NULL;
 
@@ -767,7 +710,6 @@ gbRenderEffect* gbEffectMgr::NewRenderEffect(const char* filename, unsigned int 
 
 // 0x1001d840 (107B) - Create a trivial (fixed-function emulation) effect
 gbRenderEffect* gbEffectMgr::NewTrivalEffect(int type) {
-    /* STUB */
     if (type == 0) {
         return NewRenderEffect("gfxscript\\ui.gbf", 0);
     }
@@ -788,7 +730,6 @@ gbRenderEffect* gbEffectMgr::NewTrivalEffect(int type) {
 
 // 0x1001d8b0 (39B) - Get effect by index
 gbRenderEffect* gbEffectMgr::GetRenderEffect(unsigned int index) {
-    /* STUB */
     if ((int)index >= m_nNumEffects)
         return NULL;
     return m_pEffects[index];
@@ -797,14 +738,12 @@ gbRenderEffect* gbEffectMgr::GetRenderEffect(unsigned int index) {
 // Exported: GetGrayTexture
 // Returns cached gray texture from internal field (not yet mapped in header)
 gbTexture* gbEffectMgr::GetGrayTexture(void) {
-    /* STUB */
     return m_pGrayTexture;
 }
 
 // Exported: GetWhiteTexture
 // Returns cached white texture from internal field (not yet mapped in header)
 gbTexture* gbEffectMgr::GetWhiteTexture(void) {
-    /* STUB */
     return m_pWhiteTexture;
 }
 

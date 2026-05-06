@@ -2,7 +2,6 @@
 #include <string.h>
 
 gbVec4D* gbMatrix4::GetColumn(gbVec4D* result, int col) const {
-    /* STUB */
     result->x = m[0][col];
     result->y = m[1][col];
     result->z = m[2][col];
@@ -11,7 +10,6 @@ gbVec4D* gbMatrix4::GetColumn(gbVec4D* result, int col) const {
 }
 
 gbVec4D* gbMatrix4::GetRow(gbVec4D* result, int row) const {
-    /* STUB */
     result->x = m[row][0];
     result->y = m[row][1];
     result->z = m[row][2];
@@ -20,14 +18,12 @@ gbVec4D* gbMatrix4::GetRow(gbVec4D* result, int row) const {
 }
 
 void gbMatrix4::LeftMultiply(const gbQuaternion& q) {
-    /* STUB */
     gbMatrix4 rot;
     const_cast<gbQuaternion&>(q).GetMatrix(&rot);
     LeftMultiply(rot);
 }
 
 void gbMatrix4::RotateIn(gbVec3D* v) {
-    /* STUB */
     float x = m[0][0] * v->x + m[0][1] * v->y + m[0][2] * v->z;
     float y = m[1][0] * v->x + m[1][1] * v->y + m[1][2] * v->z;
     float z = m[2][0] * v->x + m[2][1] * v->y + m[2][2] * v->z;
@@ -37,7 +33,6 @@ void gbMatrix4::RotateIn(gbVec3D* v) {
 }
 
 void gbMatrix4::TransformPlane(float* const p) {
-    /* STUB */
     float nx = p[0], ny = p[1], nz = p[2], d = p[3];
     p[0] = m[0][0] * nx + m[1][0] * ny + m[2][0] * nz;
     p[1] = m[0][1] * nx + m[1][1] * ny + m[2][1] * nz;
@@ -46,7 +41,6 @@ void gbMatrix4::TransformPlane(float* const p) {
 }
 
 void gbMatrix4::operator*=(const float* other) {
-    /* STUB */
     gbMatrix4 tmp;
     memcpy(&tmp, other, sizeof(gbMatrix4));
     LeftMultiply(tmp);

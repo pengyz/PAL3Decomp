@@ -7,7 +7,6 @@
 
 // Constructor with RGB
 gbColorFlt::gbColorFlt(float red, float green, float blue) {
-    /* STUB */
     r = red;
     g = green;
     b = blue;
@@ -16,7 +15,6 @@ gbColorFlt::gbColorFlt(float red, float green, float blue) {
 
 // Constructor with RGBA
 gbColorFlt::gbColorFlt(float red, float green, float blue, float alpha) {
-    /* STUB */
     r = red;
     g = green;
     b = blue;
@@ -32,7 +30,6 @@ gbColorFlt::gbColorFlt() {
 
 // Assignment operator
 gbColorFlt& gbColorFlt::operator=(const gbColorFlt& color) {
-    /* STUB */
     r = color.r;
     g = color.g;
     b = color.b;
@@ -48,7 +45,6 @@ int gbColorFlt::operator!=(gbColorFlt& color) {
 
 // Add-assign operator
 void gbColorFlt::operator+=(const gbColorFlt& color) {
-    /* STUB */
     r += color.r;
     g += color.g;
     b += color.b;
