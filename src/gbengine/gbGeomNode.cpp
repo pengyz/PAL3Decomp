@@ -9,6 +9,8 @@
 #include <string.h>
 #include <math.h>
 
+#pragma warning(disable: 4234)
+
 /* ======== gbGeomNode method implementations ======== */
 
 gbGeomNode::gbGeomNode(void) {
@@ -271,11 +273,11 @@ void gbGeomNode::ReplaceTexture(const char* textureName) {
     }
 
     gbGeomNode* child = (gbGeomNode*)children.pHead;
-    pChildIterator = (gbNBTreeNode*)child;
+    children.pIterator = (gbNBTreeNode*)child;
     while (child != NULL) {
         child->ReplaceTexture(textureName);
-        child = (gbGeomNode*)pChildIterator->pNext;
-        pChildIterator = (gbNBTreeNode*)child;
+        child = (gbGeomNode*)children.pIterator->pNext;
+        children.pIterator = (gbNBTreeNode*)child;
     }
 }
 
@@ -317,11 +319,11 @@ static void CollectMeshNodes(gbGeomNode** nodeArray, unsigned int* count, gbGeom
         (*count)++;
     }
     gbGeomNode* child = (gbGeomNode*)node->children.pHead;
-    node->pChildIterator = (gbNBTreeNode*)child;
+    node->children.pIterator = (gbNBTreeNode*)child;
     while (child != NULL) {
         CollectMeshNodes(nodeArray, count, child);
-        child = (gbGeomNode*)node->pChildIterator->pNext;
-        node->pChildIterator = (gbNBTreeNode*)child;
+        child = (gbGeomNode*)node->children.pIterator->pNext;
+        node->children.pIterator = (gbNBTreeNode*)child;
     }
 }
 
@@ -335,11 +337,11 @@ gbOBBox* gbGeomNode::GetTotalOBBox(gbOBBox* box) {
     }
 
     gbGeomNode* child = (gbGeomNode*)children.pHead;
-    pChildIterator = (gbNBTreeNode*)child;
+    children.pIterator = (gbNBTreeNode*)child;
     while (child != NULL) {
         CollectMeshNodes(s_totalOBBoxNodes, &nodeCount, child);
-        child = (gbGeomNode*)pChildIterator->pNext;
-        pChildIterator = (gbNBTreeNode*)child;
+        child = (gbGeomNode*)children.pIterator->pNext;
+        children.pIterator = (gbNBTreeNode*)child;
     }
 
     if (nodeCount == 0) {

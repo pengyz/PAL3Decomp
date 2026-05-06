@@ -9,6 +9,8 @@
 #include <stdlib.h>
 #include <math.h>
 
+#pragma warning(disable: 4234)
+
 // Static members
 gbGfxManager* gbVisNode::pGfxMgr = NULL;
 gbSceneGraph* gbVisNode::pSceneGraph = NULL;
@@ -52,7 +54,7 @@ gbVisNode::gbVisNode(const gbVisNode& other) : gbNBTreeNode() {
     // Copy gbNBTreeNode fields
     pParent = other.pParent;
     children = other.children;
-    pChildIterator = other.pChildIterator;
+    children.pIterator = other.children.pIterator;
 
     // Copy gbVisNode fields
     // Copy 6 dwords starting at +0x1c
@@ -158,7 +160,7 @@ int gbVisNode::Attach(gbRenderEffect* effect) {
 void gbVisNode::Update() {
     // Iterate through children and call Update on each
     gbVisNode* child = (gbVisNode*)children.pHead;
-    pChildIterator = (gbNBTreeNode*)child;
+    children.pIterator = (gbNBTreeNode*)child;
 
     while (child != NULL) {
         // Call virtual Update through vtable
@@ -167,8 +169,8 @@ void gbVisNode::Update() {
         UpdateFunc updateFunc = (UpdateFunc)vtable[5];  // Update is at vtable+0x14
         updateFunc(child);
 
-        child = (gbVisNode*)pChildIterator->pNext;
-        pChildIterator = (gbNBTreeNode*)child;
+        child = (gbVisNode*)children.pIterator->pNext;
+        children.pIterator = (gbNBTreeNode*)child;
     }
 }
 
@@ -183,12 +185,12 @@ void gbVisNode::ShowNode(int show) {
 
     // Recursively apply to children
     gbVisNode* child = (gbVisNode*)children.pHead;
-    pChildIterator = (gbNBTreeNode*)child;
+    children.pIterator = (gbNBTreeNode*)child;
 
     while (child != NULL) {
         child->ShowNode(show);
-        child = (gbVisNode*)pChildIterator->pNext;
-        pChildIterator = (gbNBTreeNode*)child;
+        child = (gbVisNode*)children.pIterator->pNext;
+        children.pIterator = (gbNBTreeNode*)child;
     }
 }
 
@@ -198,12 +200,12 @@ void gbVisNode::SetTimeScale(float scale) {
 
     // Recursively apply to children
     gbVisNode* child = (gbVisNode*)children.pHead;
-    pChildIterator = (gbNBTreeNode*)child;
+    children.pIterator = (gbNBTreeNode*)child;
 
     while (child != NULL) {
         child->SetTimeScale(scale);
-        child = (gbVisNode*)pChildIterator->pNext;
-        pChildIterator = (gbNBTreeNode*)child;
+        child = (gbVisNode*)children.pIterator->pNext;
+        children.pIterator = (gbNBTreeNode*)child;
     }
 }
 
@@ -261,7 +263,7 @@ void gbVisNode::GetBoundSphere(gbSphere* sphere) {
 void gbVisNode::EnableShadow(int enable) {
     // Ghidra: *(int*)(this + 0x40) = param_1
     // Offset 0x40 = cullNext field (reused as shadow enable flag in base class)
-    cullNext = (gbVisNode*)(intptr_t)enable;
+    cullNext = (gbVisNode*)(int)enable;
 }
 
 // SetBlend - 0x10016840
@@ -282,12 +284,12 @@ void gbVisNode::SetBlendRecursive(NodeBlend mode, float value) {
 
     // Recursively apply to children
     gbVisNode* child = (gbVisNode*)children.pHead;
-    pChildIterator = (gbNBTreeNode*)child;
+    children.pIterator = (gbNBTreeNode*)child;
 
     while (child != NULL) {
         child->SetBlendRecursive(mode, value);
-        child = (gbVisNode*)pChildIterator->pNext;
-        pChildIterator = (gbNBTreeNode*)child;
+        child = (gbVisNode*)children.pIterator->pNext;
+        children.pIterator = (gbNBTreeNode*)child;
     }
 }
 
@@ -366,7 +368,7 @@ gbVisNode& gbVisNode::operator=(const gbVisNode& other) {
         pNext = other.pNext;
         pParent = other.pParent;
         children = other.children;
-        pChildIterator = other.pChildIterator;
+        children.pIterator = other.children.pIterator;
         msgBuffer = other.msgBuffer;
         msgCapacity = other.msgCapacity;
         msgUnused = other.msgUnused;
