@@ -31,7 +31,6 @@ import idautils
 import ida_funcs
 import ida_hexrays
 import ida_name
-import ida_typeinf
 import builtins
 
 # Add tools/ida to path for ida_common
@@ -196,11 +195,8 @@ def export_function(ea, name, size, output_dir):
         code = str(cfunc)
 
         # Get signature
-        tif = ida_typeinf.tinfo_t()
-        if ida_typeinf.get_tinfo(tif, ea):
-            signature = str(tif)
-        else:
-            signature = "void __cdecl (void)"
+        type_str = idc.get_type(ea)
+        signature = type_str if type_str else "void __cdecl (void)"
 
         # Quality check
         issues = check_decompilation_quality(code)
