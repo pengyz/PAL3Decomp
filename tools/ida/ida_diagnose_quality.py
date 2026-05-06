@@ -274,15 +274,6 @@ def classify_sp_corrupt(addr):
         }
         return (True, 0.7, details)
 
-    # Additional check: get_frame() returns None
-    frame = ida_funcs.get_frame(addr)
-    if frame is None and has_frame:
-        details = {
-            "flags": f"0x{flags:04X}",
-            "frame_null": True
-        }
-        return (True, 0.8, details)
-
     return None
 
 
