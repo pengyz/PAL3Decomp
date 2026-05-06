@@ -101,12 +101,12 @@ def is_export_qualified(issues):
     """
     Determine if function should be exported based on quality issues.
 
-    HARD REJECT: userpurge, sp_positive, jumpout
-    SOFT (still export): raw_memory
+    HARD REJECT: userpurge, sp_positive
+    SOFT (still export): raw_memory, jumpout (most are tail calls)
 
     Returns (should_export, reject_reason)
     """
-    hard_rejects = {'userpurge', 'sp_positive', 'jumpout'}
+    hard_rejects = {'userpurge', 'sp_positive'}
 
     for issue in issues:
         if issue in hard_rejects:
@@ -243,7 +243,7 @@ def export_loop(targets, output_dir):
         'exported': 0,
         'rejected_userpurge': 0,
         'rejected_sp': 0,
-        'rejected_jumpout': 0,
+        'has_jumpout': 0,
         'has_raw_memory': 0,
         'clean': 0,
         'errors': 0
@@ -256,17 +256,20 @@ def export_loop(targets, output_dir):
 
         if success:
             stats['exported'] += 1
+            has_warning = False
+            if 'jumpout' in issues:
+                stats['has_jumpout'] += 1
+                has_warning = True
             if 'raw_memory' in issues:
                 stats['has_raw_memory'] += 1
-            else:
+                has_warning = True
+            if not has_warning:
                 stats['clean'] += 1
         else:
             if reject_reason == 'userpurge':
                 stats['rejected_userpurge'] += 1
             elif reject_reason == 'sp_positive':
                 stats['rejected_sp'] += 1
-            elif reject_reason == 'jumpout':
-                stats['rejected_jumpout'] += 1
             else:
                 stats['errors'] += 1
 
@@ -281,7 +284,7 @@ def export_loop(targets, output_dir):
             log(f"Progress: {idx + 1}/{len(targets)} "
                 f"({100 * (idx + 1) / len(targets):.1f}%) | "
                 f"Exported: {stats['exported']} | "
-                f"Rejected: {stats['rejected_userpurge'] + stats['rejected_sp'] + stats['rejected_jumpout']} | "
+                f"Rejected: {stats['rejected_userpurge'] + stats['rejected_sp']} | "
                 f"Rate: {rate:.1f} func/s | "
                 f"ETA: {eta_minutes:.1f} min")
 
@@ -350,12 +353,12 @@ def generate_comparison_report(stats, old_diagnosis):
         sign = '+' if diff_sp > 0 else ''
         lines.append(f"| SP corruption | {old_sp} | {new_sp} | {sign}{diff_sp} |")
 
-        # BOUNDARY_OVERLAP (approximated by jumpout)
+        # BOUNDARY_OVERLAP (now tracked as soft warning, not rejection)
         old_boundary = old_by_label.get('BOUNDARY_OVERLAP', 0)
-        new_jumpout = stats['rejected_jumpout']
+        new_jumpout = stats['has_jumpout']
         diff_boundary = new_jumpout - old_boundary
         sign = '+' if diff_boundary > 0 else ''
-        lines.append(f"| Boundary issues | {old_boundary} | {new_jumpout} | {sign}{diff_boundary} |")
+        lines.append(f"| JUMPOUT (soft) | {old_boundary} | {new_jumpout} | {sign}{diff_boundary} |")
 
         # CLEAN
         old_clean = old_by_label.get('CLEAN', 0)
@@ -378,7 +381,6 @@ def generate_comparison_report(stats, old_diagnosis):
     lines.append(f"- **Successfully exported**: {stats['exported']} ({100 * stats['exported'] / stats['total_candidates']:.1f}%)")
     lines.append(f"- **Rejected (userpurge)**: {stats['rejected_userpurge']}")
     lines.append(f"- **Rejected (sp corruption)**: {stats['rejected_sp']}")
-    lines.append(f"- **Rejected (jumpout)**: {stats['rejected_jumpout']}")
     lines.append(f"- **Errors**: {stats['errors']}")
     lines.append("")
 
@@ -387,6 +389,7 @@ def generate_comparison_report(stats, old_diagnosis):
     lines.append("")
     if stats['exported'] > 0:
         lines.append(f"- **Clean** (no issues): {stats['clean']} ({100 * stats['clean'] / stats['exported']:.1f}%)")
+        lines.append(f"- **Has JUMPOUT** (soft warning): {stats['has_jumpout']} ({100 * stats['has_jumpout'] / stats['exported']:.1f}%)")
         lines.append(f"- **Has raw memory** (soft issue): {stats['has_raw_memory']} ({100 * stats['has_raw_memory'] / stats['exported']:.1f}%)")
     else:
         lines.append("- No functions exported yet")
@@ -402,7 +405,7 @@ def generate_comparison_report(stats, old_diagnosis):
     else:
         lines.append("❌ No functions qualified for export!")
 
-    rejected_total = stats['rejected_userpurge'] + stats['rejected_sp'] + stats['rejected_jumpout']
+    rejected_total = stats['rejected_userpurge'] + stats['rejected_sp']
     if rejected_total > 0:
         lines.append("")
         lines.append(f"⚠️ {rejected_total} functions rejected due to quality issues:")
@@ -410,8 +413,6 @@ def generate_comparison_report(stats, old_diagnosis):
             lines.append(f"  - {stats['rejected_userpurge']} with calling convention issues")
         if stats['rejected_sp'] > 0:
             lines.append(f"  - {stats['rejected_sp']} with stack corruption")
-        if stats['rejected_jumpout'] > 0:
-            lines.append(f"  - {stats['rejected_jumpout']} with boundary issues")
 
     if stats['errors'] > 0:
         lines.append("")
@@ -485,15 +486,15 @@ def main():
     log("=" * 80)
     log(f"Total candidates: {stats['total_candidates']}")
     log(f"Exported: {stats['exported']} ({100 * stats['exported'] / stats['total_candidates']:.1f}%)")
-    log(f"Rejected: {stats['rejected_userpurge'] + stats['rejected_sp'] + stats['rejected_jumpout']}")
+    log(f"Rejected: {stats['rejected_userpurge'] + stats['rejected_sp']}")
     log(f"  - Userpurge: {stats['rejected_userpurge']}")
     log(f"  - SP corruption: {stats['rejected_sp']}")
-    log(f"  - Jumpout: {stats['rejected_jumpout']}")
     log(f"Errors: {stats['errors']}")
     log("")
     log(f"Exported function quality:")
     if stats['exported'] > 0:
         log(f"  - Clean: {stats['clean']} ({100 * stats['clean'] / stats['exported']:.1f}%)")
+        log(f"  - Has JUMPOUT: {stats['has_jumpout']} ({100 * stats['has_jumpout'] / stats['exported']:.1f}%)")
         log(f"  - Has raw memory: {stats['has_raw_memory']} ({100 * stats['has_raw_memory'] / stats['exported']:.1f}%)")
     else:
         log(f"  - No functions exported")
