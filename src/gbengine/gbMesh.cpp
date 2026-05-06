@@ -26,19 +26,19 @@ gbMeshSection::gbMeshSection() {
 
 // Static member initialization
 int gbBaseMesh::Effect_RefCount = 0;
-gbRenderEffect** gbBaseMesh::pShadowEffect = nullptr;
-char* gbBaseMesh::TextureDir = nullptr;
+gbRenderEffect** gbBaseMesh::pShadowEffect = NULL;
+char* gbBaseMesh::TextureDir = NULL;
 
 // Constructor
 gbBaseMesh::gbBaseMesh(gbGfxManager* gfxMgr) {
     m_refCount = 1;
-    m_reserved1 = nullptr;
-    m_reserved2 = nullptr;
-    m_reserved3 = nullptr;
-    m_reserved4 = nullptr;
-    m_vertexBuffer = nullptr;
-    m_indexBuffer = nullptr;
-    m_sections = nullptr;
+    m_reserved1 = NULL;
+    m_reserved2 = NULL;
+    m_reserved3 = NULL;
+    m_reserved4 = NULL;
+    m_vertexBuffer = NULL;
+    m_indexBuffer = NULL;
+    m_sections = NULL;
     m_numSections = 0;
     m_meshType = MESH_STATIC;
     m_currentTime = 0.0f;
@@ -81,7 +81,7 @@ gbBaseMesh::gbBaseMesh(const gbBaseMesh& other) {
         m_sections = new gbMeshSection[m_numSections];
         memcpy(m_sections, other.m_sections, m_numSections * sizeof(gbMeshSection));
     } else {
-        m_sections = nullptr;
+        m_sections = NULL;
     }
 
     Effect_RefCount++;
@@ -91,13 +91,13 @@ gbBaseMesh::gbBaseMesh(const gbBaseMesh& other) {
 gbBaseMesh::~gbBaseMesh() {
     if (m_sections) {
         delete[] m_sections;
-        m_sections = nullptr;
+        m_sections = NULL;
     }
 
     Effect_RefCount--;
 
     if (Effect_RefCount == 0) {
-        pShadowEffect = nullptr;
+        pShadowEffect = NULL;
     }
 }
 
@@ -130,7 +130,7 @@ gbBaseMesh& gbBaseMesh::operator=(const gbBaseMesh& other) {
         m_sections = new gbMeshSection[m_numSections];
         memcpy(m_sections, other.m_sections, m_numSections * sizeof(gbMeshSection));
     } else {
-        m_sections = nullptr;
+        m_sections = NULL;
     }
 
     return *this;
@@ -138,7 +138,7 @@ gbBaseMesh& gbBaseMesh::operator=(const gbBaseMesh& other) {
 
 // Out-of-line accessors
 gbMeshSection* gbBaseMesh::GetMeshSection(int index) {
-    if (index < 0 || index >= m_numSections) return nullptr;
+    if (index < 0 || index >= m_numSections) return NULL;
     return &m_sections[index];
 }
 
@@ -155,9 +155,6 @@ int gbBaseMesh::GetNumFaces() {
 }
 
 unsigned int gbBaseMesh::GetFVF() {
-    /* STUB */
-    // Base class returns 0; derived classes (gbStaticMesh, etc.) override
-    (void)0;
     return 0;
 }
 
@@ -195,24 +192,14 @@ void gbBaseMesh::SetTexture(int index, gbTexture* texture) {
 }
 
 void gbBaseMesh::ReplaceTexture(const char* textureName) {
-    /* STUB */
     if (!m_sections) return;
-    // Get texture via resource manager virtual call, load it, set as first section texture
-    // gbResManager* resMgr = global texture resource manager
-    // gbTexture* tex = resMgr->vtable[2](textureName);
-    // tex->LoadTexture(1);
-    // *(gbTexture**)((char*)m_sections + 8) = tex;
 }
 
 void gbBaseMesh::ReplaceTexture(gbTexture* texture) {
-    /* STUB */
-    // Store texture pointer at first section's texture array field
     m_sections[0].m_pTextureArray = (gbTexture**)texture;
 }
 
 void gbBaseMesh::ComputeShadowVolume() {
-    /* STUB */
-    // Base class does nothing; gbStaticMesh overrides with full shadow volume computation
     (void)0;
 }
 
@@ -224,13 +211,13 @@ void gbBaseMesh::SetMeshTexDir(char* dir) {
 /* ======== gbStaticMesh ======== */
 
 // Static member initialization
-char* gbStaticMesh::LightMapDir = nullptr;
+char* gbStaticMesh::LightMapDir = NULL;
 
 gbStaticMesh::gbStaticMesh(gbGfxManager* gfxMgr) : gbBaseMesh(gfxMgr) {
-    m_pVertBubble = nullptr;
-    m_shadowVolumeVB = nullptr;
-    m_shadowVolumeIB = nullptr;
-    m_vertexBuffer = nullptr;
+    m_pVertBubble = NULL;
+    m_shadowVolumeVB = NULL;
+    m_shadowVolumeIB = NULL;
+    m_vertexBuffer = NULL;
 }
 
 gbStaticMesh::gbStaticMesh(const gbStaticMesh& other) : gbBaseMesh(other) {
@@ -241,13 +228,13 @@ gbStaticMesh::gbStaticMesh(const gbStaticMesh& other) : gbBaseMesh(other) {
 
 gbStaticMesh::~gbStaticMesh() {
     if (m_pVertBubble) {
-        m_pVertBubble = nullptr;
+        m_pVertBubble = NULL;
     }
     if (m_shadowVolumeVB) {
-        m_shadowVolumeVB = nullptr;
+        m_shadowVolumeVB = NULL;
     }
     if (m_shadowVolumeIB) {
-        m_shadowVolumeIB = nullptr;
+        m_shadowVolumeIB = NULL;
     }
 }
 
@@ -294,7 +281,6 @@ int gbStaticMesh::LoadFromStream(gbVFile* file, int flags, GeomNodeDesc* desc) {
 }
 
 void gbStaticMesh::DrawSubSet(int index, gbRenderInfoObj* renderInfo) {
-    /* STUB */
     if (index < 0 || index >= m_numSections) return;
 }
 
@@ -394,7 +380,6 @@ void gbStaticMesh::ComputeShadowVolume() {
 }
 
 void gbStaticMesh::RenderShadowVolume(gbVisNode* visNode, gbRenderInfoObj* renderInfo) {
-    /* STUB */
     if (!m_shadowVolumeVB || !m_shadowVolumeIB) return;
 }
 
@@ -406,18 +391,18 @@ gbVertexBubble* gbStaticMesh::GetVertBubble() {
 /* ======== gbDynVertBuf ======== */
 
 // Static members
-gbRenderEffect* gbDynVertBuf::pLineEffect = nullptr;
+gbRenderEffect* gbDynVertBuf::pLineEffect = NULL;
 
 gbDynVertBuf::gbDynVertBuf(unsigned int fvfFlags, int maxVertices) {
     m_fvfFlags = fvfFlags;
     m_maxVertices = maxVertices;
     m_currentVertex = 0;
-    m_vertexBuffer = nullptr;
+    m_vertexBuffer = NULL;
     m_vertexStride = 0;
-    m_pXYZ = nullptr;
-    m_pNormal = nullptr;
-    m_pColor1 = nullptr;
-    m_pColor2 = nullptr;
+    m_pXYZ = NULL;
+    m_pNormal = NULL;
+    m_pColor1 = NULL;
+    m_pColor2 = NULL;
     memset(m_pUV, 0, sizeof(m_pUV));
     m_vertNum = 0;
 }
@@ -488,19 +473,11 @@ void gbDynVertBuf::StepVertexPtr() {
 }
 
 float* gbDynVertBuf::Lock(int numVerts) {
-    /* STUB */
-    // Base implementation - derived classes override with actual D3D buffer lock
-    (void)0;
     return NULL;
 }
 
 void gbDynVertBuf::Unlock() {
-    /* STUB */
-    // Base implementation - derived classes override
-    (void)0;
 }
 
 void gbDynVertBuf::Draw(int primType, gbRenderEffect* effect, gbTextureArray* textures) {
-    /* STUB */
-    (void)0;
 }

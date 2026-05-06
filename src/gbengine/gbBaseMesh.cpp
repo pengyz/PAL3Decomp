@@ -15,8 +15,6 @@ gbAABBox* gbBaseMesh::GetAABBox() {
 }
 
 void gbBaseMesh::RenderShadowVolume(gbVisNode* visNode, gbRenderInfoObj* renderInfo) {
-    /* STUB */
-    // Base class does nothing; derived classes override for shadow rendering
     (void)0;
 }
 

@@ -399,18 +399,14 @@ gbVisNodeBase::~gbVisNodeBase() {
 }
 
 void gbVisNodeBase::Update() {
-    /* STUB */
-    // Base class - no operation
     (void)0;
 }
 
 void gbVisNodeBase::Render(gbRenderInfoObj* renderInfo) {
-    /* STUB */
     (void)renderInfo;
 }
 
 int gbVisNodeBase::Attach(gbRenderEffect* effect) {
-    /* STUB */
     (void)effect;
     return 0;
 }
@@ -423,7 +419,6 @@ void gbVisNodeBase::GetBoundSphere(gbSphere* sphere) {
 }
 
 void gbVisNodeBase::Reset(float time) {
-    /* STUB */
     (void)time;
 }
 

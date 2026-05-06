@@ -196,8 +196,6 @@ void gbTexture::CreateTexture(int w, int h, gbPixelFmtType fmt, int mips) {
 
 // Get the D3D texture interface (base returns NULL, overridden in D3D subclass)
 IDirect3DTexture9* gbTexture::GetTexture(void) {
-    /* STUB */
-    (void)0;
     return NULL;
 }
 

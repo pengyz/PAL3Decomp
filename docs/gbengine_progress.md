@@ -10,6 +10,7 @@
 | 编译通过文件 | 51/59 |
 | 验证函数总数 | 680+ |
 | 完全匹配函数 | **157 (23.1%)** |
+| 剩余 STUB 函数 | 14 |
 | 最后更新 | 2026-05-06 |
 
 ## 编译选项
@@ -40,7 +41,7 @@ CL.EXE /c /O2 (后续可能需要 /Ob1 /GF /Gy 等微调)
 | gbWeatherEffects.cpp | 8 | 1 | 12.5% | |
 | gbVolModNode.cpp | 9 | 1 | 11.1% | |
 | gbResManager.cpp | 20 | 9 | 45% | WIP |
-| gbDynVertBuf.cpp | 13 | 1 | 7.7% | |
+| gbDynVertBuf.cpp | 13 | 1 | 7.7% | 6 funcs implemented |
 | gbEffectMgr.cpp | 14 | 1 | 7.1% | |
 | CPK.cpp | 16 | 1 | 6.2% | |
 | gbWeather.cpp | 18 | 1 | 5.6% | |
@@ -77,7 +78,7 @@ CL.EXE /c /O2 (后续可能需要 /Ob1 /GF /Gy 等微调)
 | gbVertPool.cpp | 44 | 2 | 4.5% | |
 | gbVertPoolMgr.cpp | 1 | 0 | 0% | |
 | gbVFileSystem.cpp | 87 | 4 | 4.6% | |
-| gbVisNode.cpp | 36 | 2 | 5.6% | |
+| gbVisNode.cpp | 36 | 2 | 5.6% | 0 STUBs remain |
 
 ## 已匹配函数明细
 
@@ -159,6 +160,27 @@ CL.EXE /c /O2 (后续可能需要 /Ob1 /GF /Gy 等微调)
 | gbengine_compare.py | tools/gbengine_compare.py | 字节比对 |
 | gbengine_fill_stubs.py | tools/gbengine_fill_stubs.py | 填充 stub |
 | gbengine_export_all.py | tools/ida/gbengine_export_all.py | IDA 批量导出 |
+
+## 剩余 STUB 函数 (16个)
+
+| 文件 | 函数 | 难度 | 备注 |
+|------|------|------|------|
+| gbActor.cpp | UpdateExportNodes | 高 | 256B, SEH, 骨骼变换 |
+| gbActor.cpp | GetMixInfo | 低 | 简单访问器，需确认数据位置 |
+| gbBaseMesh.cpp | (unknown) | 中 | |
+| gbGeomNode.cpp | LoadFromFile | 高 | 文件加载 |
+| gbGeomNode.cpp | LoadCVDFile | 高 | CVD 文件解析 |
+| gbGeomNode.cpp | LoadCVDFromStream (2arg) | 高 | 流式加载 |
+| gbGeomNode.cpp | LoadCVDFromStream (4arg) | 高 | 流式加载 |
+| gbGeomNode.cpp | Update | 中 | 动画更新 |
+| gbGfxManager_D3D.cpp | (unknown) | 中 | D3D 管理 |
+| gbImage2D.cpp | (unknown) | 中 | |
+| gbParticle.cpp | LoadFromFile (emitter) | 中 | 文件格式解析 |
+| gbParticle.cpp | ComputeEmitterData | 中 | 发射器计算 |
+| gbParticle.cpp | LoadFromFile (group) | 中 | 文件格式解析 |
+| gbParticle.cpp | Render (group) | 中 | 粒子渲染 |
+| gbTexture.cpp | (unknown) | 中 | |
+| gbUIRect.cpp | (unknown) | 低 | |
 
 ## 验证命令
 

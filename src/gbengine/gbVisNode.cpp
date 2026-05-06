@@ -78,18 +78,7 @@ gbVisNode::gbVisNode(const gbVisNode& other) : gbNBTreeNode() {
 
 // Destructor - 0x100049c0
 gbVisNode::~gbVisNode() {
-    /* STUB */
-    // vtable set to gbVisNode
-
-    // Free message buffer
     operator delete(msgBuffer);
-
-    // vtable set to gbNBTreeNode
-
-    // Destroy children chain
-    // gbChain1D destructor called
-
-    // gbChain1DNode destructor called
 }
 
 // PushMessage - 0x10016640
@@ -177,7 +166,6 @@ void gbVisNode::Update() {
 
 // Reset - 0x10016760 (virtual, base implementation does nothing)
 void gbVisNode::Reset(float time) {
-    /* STUB */
     (void)0;
 }
 
@@ -213,19 +201,16 @@ void gbVisNode::SetTimeScale(float scale) {
 
 // AttachSelf - virtual
 void gbVisNode::AttachSelf(gbRenderEffect* effect) {
-    /* STUB */
     (void)0;
 }
 
 // Render - virtual
 void gbVisNode::Render(gbRenderInfoObj* renderInfo) {
-    /* STUB */
     (void)0;
 }
 
 // RenderShadowVolume - virtual
 void gbVisNode::RenderShadowVolume(gbRenderInfoObj* renderInfo) {
-    /* STUB */
     (void)0;
 }
 
@@ -261,7 +246,6 @@ gbVisNode* gbVisNode::GetCullPrev() {
 
 // GetBoundSphere - 0x10016820 (virtual, base implementation does nothing)
 void gbVisNode::GetBoundSphere(gbSphere* sphere) {
-    /* STUB */
     (void)0;
 }
 
@@ -362,8 +346,7 @@ void gbVisNode::GetTotalBoundSphere(gbSphere* sphere) {
 
 // GetAABBox - 0x10016b90 (virtual)
 int gbVisNode::GetAABBox(gbAABBox* box) {
-    /* STUB */
-    return 0;  // Base implementation returns 0
+    return 0;
 }
 
 // operator= - 0x10004af0
@@ -485,7 +468,6 @@ class gbLightObj * gbVolModNode::GetLightObj() {
 }
 
 void gbVolModNode::Render(struct gbRenderInfoObj * p0) {
-    /* STUB */
     if (!pVolMod || !p0) return;
 }
 

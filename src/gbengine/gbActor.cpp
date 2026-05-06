@@ -10,6 +10,8 @@
 #include <cstring>
 #include <cstdlib>
 
+#pragma warning(disable: 4234)
+
 // Global variables
 extern gbGfxManager* g_pGfxManager;
 extern gbVFileSystem* g_pVFileSys;
@@ -18,14 +20,14 @@ extern gbVFileSystem* g_pVFileSys;
 static const float ANIM_FRAME_RATE = 30.0f;
 
 // Static variable for sun direction
-static gbVec3D s_sunDirection = {0.0f, -1.0f, 0.0f};
+static gbVec3D s_sunDirection(0.0f, -1.0f, 0.0f);
 
 // Constructor from gbActorDef
 gbActor::gbActor(gbActorDef* actorDef) : gbVisNode() {
     m_pActorDef = actorDef;
-    m_pActions = nullptr;
+    m_pActions = NULL;
     m_numActions = 0;
-    m_pExportNodeData = nullptr;
+    m_pExportNodeData = NULL;
     m_maxExportNodes = 4;
 
     // Get export node count from actor definition
@@ -44,7 +46,7 @@ gbActor::gbActor(gbActorDef* actorDef) : gbVisNode() {
             m_pActions[i].weight = 0.0f;
             m_pActions[i].currentFrame = 0;
             m_pActions[i].startFrame = 0;
-            m_pActions[i].eventData = nullptr;
+            m_pActions[i].eventData = NULL;
         }
     }
 
@@ -76,7 +78,7 @@ gbActor::gbActor(const gbActor& other) : gbVisNode() {
         m_pActions = (gbActionState*)malloc(m_numActions * sizeof(gbActionState));
         memcpy(m_pActions, other.m_pActions, m_numActions * sizeof(gbActionState));
     } else {
-        m_pActions = nullptr;
+        m_pActions = NULL;
     }
 
     if (other.m_pExportNodeData) {
@@ -84,7 +86,7 @@ gbActor::gbActor(const gbActor& other) : gbVisNode() {
         m_pExportNodeData = (gbExpNodeData*)malloc(size);
         memcpy(m_pExportNodeData, other.m_pExportNodeData, size);
     } else {
-        m_pExportNodeData = nullptr;
+        m_pExportNodeData = NULL;
     }
 }
 
@@ -92,11 +94,11 @@ gbActor::gbActor(const gbActor& other) : gbVisNode() {
 gbActor::~gbActor() {
     if (m_pActions) {
         free(m_pActions);
-        m_pActions = nullptr;
+        m_pActions = NULL;
     }
     if (m_pExportNodeData) {
         free(m_pExportNodeData);
-        m_pExportNodeData = nullptr;
+        m_pExportNodeData = NULL;
     }
 }
 
@@ -121,7 +123,7 @@ void gbActor::Update() {
 
     float maxWeight = -100.0f;
     int dominantFrame = 0;
-    gbActionState* dominantAction = nullptr;
+    gbActionState* dominantAction = NULL;
 
     // Update all active actions
     for (int i = 0; i < m_numActions; i++) {
@@ -450,17 +452,20 @@ void gbActor::GetBoundSphere(gbSphere* sphere) {
 
 // Get collision AABB - delegates to actorDef vtable[0x24]
 gbAABBox* gbActor::GetCollideAABBox() {
-    if (!m_pActorDef) return nullptr;
+    if (!m_pActorDef) return NULL;
     void** defVtable = *(void***)m_pActorDef;
     typedef gbAABBox* (__thiscall *GetAABBFn)(void*);
     GetAABBFn getAABB = (GetAABBFn)((void**)defVtable)[0x24 / 4];
     return getAABB(m_pActorDef);
 }
 
-// Get collision OBB
+// Get collision OBB - delegates to actorDef vtable[0x1c]
 void gbActor::GetCollideOBB(gbOBBox& obb) {
-    /* STUB */
-    memset(&obb, 0, sizeof(obb));
+    if (!m_pActorDef) return;
+    void** defVtable = *(void***)m_pActorDef;
+    typedef void (__thiscall *GetOBBFn)(void*, gbOBBox&, gbActor*);
+    GetOBBFn getOBB = (GetOBBFn)defVtable[0x1c / 4];
+    getOBB(m_pActorDef, obb, this);
 }
 
 // Get all export nodes (returns raw pointer to internal data)
@@ -476,7 +481,7 @@ int gbActor::GetNumExpNodes() {
 // Get mix info array
 const gbMixActInfo* gbActor::GetMixInfo() {
     /* STUB */
-    return nullptr;
+    return NULL;
 }
 
 int gbActor::GetNumMixInfo() {
@@ -564,8 +569,8 @@ private:
 // Constructor
 gbActorMgr::gbActorMgr(gbGfxManager* gfxMgr) {
     m_pGfxManager = gfxMgr;
-    m_pSkinShadowEffect1 = nullptr;
-    m_pSkinShadowEffect2 = nullptr;
+    m_pSkinShadowEffect1 = NULL;
+    m_pSkinShadowEffect2 = NULL;
 
     // Load shadow effects
     // m_pSkinShadowEffect1 = LoadEffect("gfxscript/skinshadow1.gbf");
@@ -581,8 +586,6 @@ gbActorMgr::gbActorMgr(const gbActorMgr& other) {
 
 // Destructor
 gbActorMgr::~gbActorMgr() {
-    /* STUB */
-    // Release shadow effects
 }
 
 // operator=
@@ -597,15 +600,15 @@ gbActorMgr& gbActorMgr::operator=(const gbActorMgr& other) {
 
 // Load actor from file
 gbActor* gbActorMgr::LoadActorFile(char* filename) {
-    if (!filename) return nullptr;
+    if (!filename) return NULL;
 
     // Check if already loaded
-    gbResource* res = nullptr;  // FindResByName(filename);
+    gbResource* res = NULL;  // FindResByName(filename);
 
     if (!res) {
         // Determine file type (.mv3 or .mv2)
         const char* ext = strrchr(filename, '.');
-        if (!ext) return nullptr;
+        if (!ext) return NULL;
 
         // Load actor definition file
         // Open file and read header
@@ -613,7 +616,7 @@ gbActor* gbActorMgr::LoadActorFile(char* filename) {
         memset(header, 0, sizeof(header));
 
         // Create appropriate actor definition based on file type
-        gbActorDef* actorDef = nullptr;
+        gbActorDef* actorDef = NULL;
 
         if (strstr(header, ".MV3.")) {
             // MV3 format
@@ -636,7 +639,7 @@ gbActor* gbActorMgr::LoadActorFile(char* filename) {
         return actor;
     }
 
-    return nullptr;
+    return NULL;
 }
 
 // Destroy actor
