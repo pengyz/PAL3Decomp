@@ -334,15 +334,16 @@ void gbMemCopy(void* dst, void* src, unsigned int size)
 
     unsigned int* dstDW = (unsigned int*)dst;
     unsigned int* srcDW = (unsigned int*)src;
+    unsigned int i;
 
-    for (unsigned int i = 0; i < dwords; i++) {
+    for (i = 0; i < dwords; i++) {
         *dstDW++ = *srcDW++;
     }
 
     unsigned char* dstB = (unsigned char*)dstDW;
     unsigned char* srcB = (unsigned char*)srcDW;
 
-    for (unsigned int i = 0; i < bytes; i++) {
+    for (i = 0; i < bytes; i++) {
         *dstB++ = *srcB++;
     }
 }

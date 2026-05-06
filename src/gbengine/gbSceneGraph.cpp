@@ -93,8 +93,10 @@ void gbLightObj::Compute(gbVolModNode* volmod) {
     sysLight.attenuation2 = 0.0f;
 
     // Transform position/direction based on light type
-    gbVec3D localPos = {0.0f, 0.0f, 0.0f};
-    gbVec3D localDir = {0.0f, -1.0f, 0.0f};
+    gbVec3D localPos;
+    localPos.x = 0.0f; localPos.y = 0.0f; localPos.z = 0.0f;
+    gbVec3D localDir;
+    localDir.x = 0.0f; localDir.y = -1.0f; localDir.z = 0.0f;
 
     if (lightType == 0) {
         // Point light: transform position
@@ -196,18 +198,16 @@ void gbSceneGraph::CalEffectiveVolMod(gbRenderInfoObj* renderInfo, const gbVec3D
     };
     VolModEntry entries[512];
     int numEntries = 0;
+    int i;
 
-    for (int i = 0; i < numVolModNodes; i++) {
+    for (i = 0; i < numVolModNodes; i++) {
         gbVolModNode* vm = volModNodes[i];
         if (!vm) continue;
 
-        // Call virtual GetEffectOnPoint via the volume modifier's interface
-        void** vmVtable = *(void***)vm;
-        typedef float (__thiscall *GetEffectFn)(void*, const gbVec3D*, int);
-        // Access the modifier object at offset 0xD8 in the vol mod node
         void* modObj = vm->pVolMod;
         if (!modObj) continue;
         void** modVtable = *(void***)modObj;
+        typedef float (__cdecl *GetEffectFn)(void*, const gbVec3D*, int);
         GetEffectFn getEffect = (GetEffectFn)modVtable[3];
         float effect = getEffect(modObj, &position, flags);
 
@@ -218,16 +218,15 @@ void gbSceneGraph::CalEffectiveVolMod(gbRenderInfoObj* renderInfo, const gbVec3D
         }
     }
 
-    // Assign results to render info (up to 2 of each type)
     void** pSlotA = renderInfo->volModSlotA;
     void** pSlotB = renderInfo->volModSlotB;
     int countA = 0, countB = 0;
 
-    for (int i = 0; i < numEntries; i++) {
+    for (i = 0; i < numEntries; i++) {
         gbVolModNode* vm = (gbVolModNode*)(int)entries[i].volMod;
         void* modObj = vm->pVolMod;
         void** modVtable = *(void***)modObj;
-        typedef int (__thiscall *GetTypeFn)(void*);
+        typedef int (__cdecl *GetTypeFn)(void*);
         GetTypeFn getType = (GetTypeFn)modVtable[1];
         int vmType = getType(modObj);
 
@@ -244,8 +243,8 @@ void gbSceneGraph::CalEffectiveVolMod(gbRenderInfoObj* renderInfo, const gbVec3D
         }
     }
 
-    for (int i = countA; i < 2; i++) pSlotA[i] = 0;
-    for (int i = countB; i < 2; i++) pSlotB[i] = 0;
+    for (i = countA; i < 2; i++) pSlotA[i] = 0;
+    for (i = countB; i < 2; i++) pSlotB[i] = 0;
 }
 
 void gbSceneGraph::End(void) {
@@ -273,9 +272,8 @@ void gbSceneGraph::SetBladeTimeScale(float scale) {
 
 void gbSceneGraph::ResetBladeMgr(void) {
     if (!bladeMgr) return;
-    // Call bladeMgr's reset function via vtable
     void** vtable = *(void***)bladeMgr;
-    typedef void (__thiscall *ResetFn)(void*);
+    typedef void (__cdecl *ResetFn)(void*);
     ResetFn reset = (ResetFn)vtable[1];
     reset(bladeMgr);
 }

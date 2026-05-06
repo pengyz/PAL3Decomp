@@ -2,15 +2,15 @@
 
 #include "gbengine/gbengine_types.h"
 #include <d3d9.h>
+#include <d3dx9.h>
 
 // Forward declarations
 class gbGfxManager;
 class gbTexture;
-struct ID3DXEffect;
 struct gbVertexElement;
 
 // ============================================================================
-// GBPARAMHANDLE enum
+// GBPARAMHANDLE enum - indices into m_paramHandles[]
 // ============================================================================
 enum GBPARAMHANDLE {
     GBPARAM_WORLDMATRIX = 0,
@@ -23,64 +23,55 @@ enum GBPARAMHANDLE {
 
 // ============================================================================
 // gbRenderEffect - wraps an ID3DXEffect for shader management
+// Layout (IDA-verified, sizeof = 68 bytes / 17 DWORDs):
+//   [0] vtable
+//   [1] m_refCount (gbResource)
+//   [2] m_resName (gbResource)
+//   [3] m_resCrc (gbResource)
+//   [4] m_resPrev (gbResource)
+//   [5] m_resNext (gbResource)
+//   [6] m_pEffect (ID3DXEffect*)
+//   [7] m_dwFlags (unsigned int)
+//   [8] m_pDecl (IDirect3DVertexDeclaration9*)
+//   [9..16] m_paramHandles[8] (D3DXHANDLE array)
 // ============================================================================
 class gbRenderEffect {
-    // Private constructor: only gbEffectMgr can create these
     friend class gbEffectMgr;
 
-private:
-    ID3DXEffect* m_pEffect;
-    unsigned int m_nPasses;
-    unsigned int m_dwFlags;
-    D3DVERTEXELEMENT9* m_pDecl;
-    int m_nTechnique;
+protected:
+    int m_refCount;                         // +0x04
+    char* m_resName;                        // +0x08
+    unsigned int m_resCrc;                  // +0x0C
+    void* m_resPrev;                        // +0x10
+    void* m_resNext;                        // +0x14
+    ID3DXEffect* m_pEffect;                 // +0x18
+    unsigned int m_dwFlags;                 // +0x1C
+    IDirect3DVertexDeclaration9* m_pDecl;   // +0x20
+    D3DXHANDLE m_paramHandles[8];           // +0x24
 
-    // 0x1001cef0 (139B) - Private constructor from effect and flags
+private:
     gbRenderEffect(ID3DXEffect* pEffect, unsigned int flags);
 
-    // Private virtual destructor
     virtual ~gbRenderEffect();
 
 public:
-    // 0x10004bf0 (92B) - Copy constructor
     gbRenderEffect(const gbRenderEffect& other);
-
-    // operator=
     gbRenderEffect& operator=(const gbRenderEffect& other);
 
-    // 0x10004be0 (10B) - Set vertex declaration handle
     void SetDeclHandle(IDirect3DVertexDeclaration9* decl);
-
-    // 0x1001cfe0 (32B) - Compare two effects for sorting
     int Compare(gbRenderEffect* other);
-
-    // 0x1001d000 (119B) - Validate the effect
     int Validate(void);
-
-    // 0x1001d080 (26B) - Begin rendering with this effect
     int Begin(void);
-
-    // 0x1001d0a0 (52B) - Set a pass
     void Pass(int passIndex);
-
-    // 0x1001d0e0 (20B) - End rendering with this effect
     void End(void);
-
-    // 0x1001d100 (72B) - Apply current effect state (commit changes)
     void Apply(void);
 
-    // Get/Set variant by GBPARAMHANDLE enum
     void GetVariant(enum GBPARAMHANDLE handle, void* pValue);
     void SetVariant(enum GBPARAMHANDLE handle, void* pValue);
-
-    // Get/Set variant by name
     void GetVariant(char* name, void* pValue);
     void SetVariant(char* name, void* pValue);
 
-    // Exported: GetD3DEffect
     ID3DXEffect* GetD3DEffect(void);
-
-    // Exported: GetFlag
     unsigned int GetFlag(void);
 };
 

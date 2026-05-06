@@ -1202,17 +1202,18 @@ public:
         float result[16];
         float *a = (float *)&m_pStack[m_nCurrent];
         float *b = (float *)pMat;
-        for (int i = 0; i < 4; i++) {
-            for (int j = 0; j < 4; j++) {
+        int i, j, k;
+        for (i = 0; i < 4; i++) {
+            for (j = 0; j < 4; j++) {
                 float sum = 0.0f;
-                for (int k = 0; k < 4; k++) {
+                for (k = 0; k < 4; k++) {
                     sum += a[i * 4 + k] * b[k * 4 + j];
                 }
                 result[i * 4 + j] = sum;
             }
         }
         float *dst = (float *)&m_pStack[m_nCurrent];
-        for (int i = 0; i < 16; i++) {
+        for (i = 0; i < 16; i++) {
             dst[i] = result[i];
         }
     }
@@ -1408,7 +1409,8 @@ int gbOBBox::IsColOBB(gbOBBox* other) {
     // - 9 cross products of axes
 
     // Phase 1: Test face axes (interleaved for cache efficiency)
-    for (int i = 0; i < 3; i++) {
+    int i;
+    for (i = 0; i < 3; i++) {
         // Test this->axis[i]
         gbVec3D axis;
         matrix.GetRow(i, &axis);
@@ -1426,7 +1428,7 @@ int gbOBBox::IsColOBB(gbOBBox* other) {
     }
 
     // Phase 2: Test cross product axes
-    for (int i = 0; i < 3; i++) {
+    for (i = 0; i < 3; i++) {
         gbVec3D axisA;
         matrix.GetRow(i, &axisA);
         for (int j = 0; j < 3; j++) {

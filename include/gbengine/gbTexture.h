@@ -231,23 +231,17 @@ public:
 
 
 // ============================================================================
-// gbTextureArray - holds up to 2 texture pointers for multi-texturing
+// gbTextureArray - holds up to 16 texture pointers for multi-texturing
+// sizeof = 68 bytes (16 pointers + 1 int count)
+// Layout (IDA-verified): pTex[0..15] at [0..15], numTextures at [16]
 // ============================================================================
 struct gbTextureArray {
-    gbTexture* pTex[2];
+    gbTexture* pTex[16];    // +0x00 [0..15]: texture pointers
+    int numTextures;        // +0x40 [16]: active texture count
 
-    // 0x100041b0 (10B) - Default constructor
     gbTextureArray(void);
-
-    // 0x100041c0 (18B) - Single texture constructor
     gbTextureArray(gbTexture* tex0);
-
-    // 0x100041e0 (25B) - Dual texture constructor
     gbTextureArray(gbTexture* tex0, gbTexture* tex1);
-
-    // 0x10004200 (16B) - Set single texture
     void SetTexture(gbTexture* tex);
-
-    // Exported: operator=
     gbTextureArray& operator=(const gbTextureArray& other);
 };

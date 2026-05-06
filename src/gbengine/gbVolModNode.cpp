@@ -28,7 +28,7 @@ void gbVolModNode::GetBoundSphere(struct gbSphere * p0) {
     // Call pVolMod->vtable[2] to get bounding sphere data,
     // then transform center by localMatrix
     if (pVolMod != 0 && p0 != 0) {
-        typedef void* (__thiscall *GetSphereFn)(void*);
+        typedef void* (__cdecl *GetSphereFn)(void*);
         int** vt = (int**)pVolMod;
         GetSphereFn fn = (GetSphereFn)((*vt)[2]);
         int* sphereData = (int*)fn(pVolMod);

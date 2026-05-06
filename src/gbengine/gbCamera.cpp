@@ -570,13 +570,13 @@ void gbCamera::SetAsCurrent(int mode) {
         // Call virtual function on GfxMgr to set projection parameters
         // vtable[7] = SetPerspective (fov != 0), vtable[8] = SetOrtho (fov == 0)
         if (fov == 0.0f) {
-            typedef void (__thiscall *SetOrthoFn)(gbGfxManager*, double, double, double, double, double, double);
+            typedef void (__cdecl *SetOrthoFn)(gbGfxManager*, double, double, double, double, double, double);
             void** vt = *(void***)pGfxMgr;
             SetOrthoFn fn = (SetOrthoFn)vt[8];
             fn(pGfxMgr, (double)-halfSize, (double)halfSize, (double)-aspectHalf, (double)aspectHalf,
                (double)zNear, (double)zFar);
         } else {
-            typedef void (__thiscall *SetPerspFn)(gbGfxManager*, double, double, double, double, double, double);
+            typedef void (__cdecl *SetPerspFn)(gbGfxManager*, double, double, double, double, double, double);
             void** vt = *(void***)pGfxMgr;
             SetPerspFn fn = (SetPerspFn)vt[7];
             fn(pGfxMgr, (double)-halfSize, (double)halfSize, (double)-aspectHalf, (double)aspectHalf,
@@ -584,7 +584,7 @@ void gbCamera::SetAsCurrent(int mode) {
         }
 
         // Call virtual function to set viewport (vtable[9])
-        typedef void (__thiscall *SetViewportFn)(gbGfxManager*, gbViewPort*, int);
+        typedef void (__cdecl *SetViewportFn)(gbGfxManager*, gbViewPort*, int);
         void** vt = *(void***)pGfxMgr;
         SetViewportFn vpFn = (SetViewportFn)vt[9];
         vpFn(pGfxMgr, &Viewport, 1);
@@ -614,7 +614,7 @@ void gbCamera::SetAsCurrent(int mode) {
     }
 
     // Call virtual function +0x40 (vtable[16]) to finalize (sets viewport + clip planes)
-    typedef void (__thiscall *FinalizeFn)(gbGfxManager*, gbViewPort*, int);
+    typedef void (__cdecl *FinalizeFn)(gbGfxManager*, gbViewPort*, int);
     void** vt = *(void***)pGfxMgr;
     FinalizeFn finFn = (FinalizeFn)vt[16];
     finFn(pGfxMgr, &Viewport, 1);
@@ -921,7 +921,7 @@ void gbCamera::OffsetZBuffer(double offset) {
     // Ghidra: Viewport.maxz = (float)(1.0 - offset * 1.52587890625e-05)
     // Then calls pGfxMgr->vtable[9](&Viewport) to apply viewport to D3D
     Viewport.maxz = (float)(1.0 - offset * 1.52587890625e-05);
-    typedef void (__thiscall *ApplyViewportFn)(gbGfxManager*, gbViewPort*);
+    typedef void (__cdecl *ApplyViewportFn)(gbGfxManager*, gbViewPort*);
     ApplyViewportFn fn = (ApplyViewportFn)(*(void***)(pGfxMgr))[9];
     fn(pGfxMgr, &Viewport);
 }
@@ -930,7 +930,7 @@ void gbCamera::OffsetZBuffer(double offset) {
 void gbCamera::RecoverZBuffer(void) {
     // Ghidra: Viewport.maxz = 1.0f, then calls pGfxMgr->vtable[9](&Viewport)
     Viewport.maxz = 1.0f;
-    typedef void (__thiscall *ApplyViewportFn)(gbGfxManager*, gbViewPort*);
+    typedef void (__cdecl *ApplyViewportFn)(gbGfxManager*, gbViewPort*);
     ApplyViewportFn fn = (ApplyViewportFn)(*(void***)(pGfxMgr))[9];
     fn(pGfxMgr, &Viewport);
 }

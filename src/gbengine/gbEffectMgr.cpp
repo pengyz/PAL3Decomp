@@ -21,3 +21,40 @@ gbRenderEffect* gbEffectMgr::GetDefaultEffect(void) {
     return NULL;
 }
 
+gbTexture* gbEffectMgr::GetWhiteTexture(void) {
+    return m_pWhiteTexture;
+}
+
+gbTexture* gbEffectMgr::GetGrayTexture(void) {
+    return m_pGrayTexture;
+}
+
+gbRenderEffect* gbEffectMgr::GetRenderEffect(unsigned int flags) {
+    for (int i = 0; i < m_nNumEffects; i++) {
+        gbRenderEffect* effect = m_pEffects[i];
+        if (effect->GetFlag() == flags)
+            return effect;
+    }
+    return NULL;
+}
+
+int gbEffectMgr::OnLostDevice(void) {
+    for (int i = 0; i < m_nNumEffects; i++) {
+        gbRenderEffect* effect = m_pEffects[i];
+        if (effect) {
+            effect->GetD3DEffect()->OnLostDevice();
+        }
+    }
+    return 1;
+}
+
+int gbEffectMgr::OnResetDevice(void) {
+    for (int i = 0; i < m_nNumEffects; i++) {
+        gbRenderEffect* effect = m_pEffects[i];
+        if (effect) {
+            effect->GetD3DEffect()->OnResetDevice();
+        }
+    }
+    return 1;
+}
+

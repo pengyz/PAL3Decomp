@@ -35,10 +35,10 @@ gbVisNode::gbVisNode() {
     msgReadIndex = 0;
     msgWriteIndex = 0;
     renderPriority = 0;
-    cullNext = NULL;
+    enableShadow = 0;
+    field_44 = 0;
     cullPrev = NULL;
-    unknown4c = NULL;
-    unknown48 = NULL;
+    cullNext = NULL;
     renderPriority = 0;
 
     // vtable updated to gbVisNode
@@ -68,10 +68,10 @@ gbVisNode::gbVisNode(const gbVisNode& other) : gbNBTreeNode() {
     renderPriority = other.renderPriority;
     timeScale = other.timeScale;
     visible = other.visible;
-    cullNext = other.cullNext;
+    enableShadow = other.enableShadow;
+    field_44 = other.field_44;
     cullPrev = other.cullPrev;
-    unknown48 = other.unknown48;
-    unknown4c = other.unknown4c;
+    cullNext = other.cullNext;
     blendValue = other.blendValue;
     blendMode = other.blendMode;
 }
@@ -232,6 +232,15 @@ int gbVisNode::GetRenderPriority() {
 // SetRenderPriority - 0x100167f0
 void gbVisNode::SetRenderPriority(int priority) {
     renderPriority = priority;
+
+    gbVisNode* child = (gbVisNode*)children.pHead;
+    children.pIterator = (gbNBTreeNode*)child;
+
+    while (child != NULL) {
+        child->SetRenderPriority(priority);
+        child = (gbVisNode*)children.pIterator->pNext;
+        children.pIterator = (gbNBTreeNode*)child;
+    }
 }
 
 // GetCullNext
@@ -244,14 +253,14 @@ gbVisNode* gbVisNode::GetCullPrev() {
     return cullPrev;
 }
 
-// GetBoundSphere - 0x10016820 (virtual, base implementation does nothing)
+// GetBoundSphere - 0x10016820 (virtual, base implementation)
 void gbVisNode::GetBoundSphere(gbSphere* sphere) {
-    (void)0;
+    sphere->center.x = 0.0f;
 }
 
 // EnableShadow - 0x10016830 (virtual)
 void gbVisNode::EnableShadow(int enable) {
-    cullNext = (gbVisNode*)(int)enable;
+    enableShadow = enable;
 }
 
 // SetBlend - 0x10016840
@@ -352,7 +361,6 @@ int gbVisNode::GetAABBox(gbAABBox* box) {
 // operator= - 0x10004af0
 gbVisNode& gbVisNode::operator=(const gbVisNode& other) {
     if (this != &other) {
-        // Copy all fields
         pNext = other.pNext;
         pParent = other.pParent;
         children = other.children;
@@ -366,10 +374,10 @@ gbVisNode& gbVisNode::operator=(const gbVisNode& other) {
         renderPriority = other.renderPriority;
         timeScale = other.timeScale;
         visible = other.visible;
-        cullNext = other.cullNext;
+        enableShadow = other.enableShadow;
+        field_44 = other.field_44;
         cullPrev = other.cullPrev;
-        unknown48 = other.unknown48;
-        unknown4c = other.unknown4c;
+        cullNext = other.cullNext;
         blendValue = other.blendValue;
         blendMode = other.blendMode;
     }

@@ -22,21 +22,22 @@ enum NodeBlend {
 
 class gbVisNode : public gbNBTreeNode {
 public:
-    gbNodeMsgObj* msgBuffer;     // +0x1c - message queue buffer
-    int msgCapacity;             // +0x20 - message queue capacity (default 8)
-    int msgUnused;               // +0x24 - unused field
-    int msgOverflow;             // +0x28 - overflow flag
-    int msgReadIndex;            // +0x2c - read index
-    int msgWriteIndex;           // +0x30 - write index
-    int renderPriority;          // +0x34
-    float timeScale;             // +0x38 - time scale (default 1.0)
-    int visible;                 // +0x3c - visibility flag (default 1)
-    gbVisNode* cullNext;         // +0x40 - cull list next
-    gbVisNode* cullPrev;         // +0x44 - cull list prev
-    void* unknown48;             // +0x48
-    void* unknown4c;             // +0x4c
-    float blendValue;            // +0x50 - blend value
-    NodeBlend blendMode;         // +0x54 - blend mode
+    // gbNBTreeNode ends at +0x1B (7 DWORDs: vtable, pNext, pParent, children[4])
+    gbNodeMsgObj* msgBuffer;     // +0x1C [7]: message queue buffer
+    int msgCapacity;             // +0x20 [8]: message queue capacity (default 8)
+    int msgUnused;               // +0x24 [9]: unused field
+    int msgOverflow;             // +0x28 [10]: overflow flag
+    int msgReadIndex;            // +0x2C [11]: read index
+    int msgWriteIndex;           // +0x30 [12]: write index
+    int renderPriority;          // +0x34 [13]: render priority
+    float timeScale;             // +0x38 [14]: time scale (default 1.0)
+    int visible;                 // +0x3C [15]: visibility flag (default 1)
+    int enableShadow;            // +0x40 [16]: shadow enable flag
+    int field_44;                // +0x44 [17]: unknown
+    gbVisNode* cullPrev;         // +0x48 [18]: cull list prev
+    gbVisNode* cullNext;         // +0x4C [19]: cull list next
+    float blendValue;            // +0x50 [20]: blend value
+    NodeBlend blendMode;         // +0x54 [21]: blend mode
 
     // Static members
     static gbGfxManager* pGfxMgr;

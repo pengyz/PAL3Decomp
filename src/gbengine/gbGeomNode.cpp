@@ -168,7 +168,8 @@ int gbGeomNode::LoadFromFile(const char* filename, const char* texPath, void (__
                 g_pVFileSys->Read(&mat, 0x40u, file);
                 int dummy;
                 g_pVFileSys->Read(&dummy, 4u, file);
-                gbVec3D origin = {0.0f, 0.0f, 0.0f};
+                gbVec3D origin;
+                origin.x = 0.0f; origin.y = 0.0f; origin.z = 0.0f;
                 mat.Transform(&origin, (gbVec3D*)(entry + 32));
                 int nameLen;
                 g_pVFileSys->Read(&nameLen, 4u, file);
@@ -268,7 +269,8 @@ int gbGeomNode::LoadCVDFile(const char* filename) {
     int nodeCount = 0;
     g_pVFileSys->Read(&numNodes, 4u, file);
 
-    for (int i = 0; i < numNodes; i++) {
+    int i;
+    for (i = 0; i < numNodes; i++) {
         gbGeomNode* child = new gbGeomNode();
         child->LoadCVDFromStream(file, scale);
         nodeList[nodeCount++] = child;
@@ -281,7 +283,7 @@ int gbGeomNode::LoadCVDFile(const char* filename) {
     }
 
     // Add all nodes as children
-    for (int i = 0; i < nodeCount; i++) {
+    for (i = 0; i < nodeCount; i++) {
         children.AddNodeOnTail(nodeList[i]);
         nodeList[i]->pParent = this;
         if (nodeList[i]->animMaxTime > animMaxTime)

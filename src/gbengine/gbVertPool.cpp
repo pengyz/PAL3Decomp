@@ -56,8 +56,8 @@ void gbIndexBubble::SetRange(int start, int cnt) {
 // Lock16: 0x10020900
 unsigned short* gbIndexBubble::Lock16() {
     // Lock the index buffer for this bubble's range
-    IDirect3DIndexBuffer9* pIB = nullptr;
-    return nullptr;
+    IDirect3DIndexBuffer9* pIB = NULL;
+    return NULL;
 }
 
 // gbIndexBubble::Lock32 - Lock 32-bit index buffer
@@ -109,16 +109,16 @@ gbIndexBubble& gbIndexBubble::operator=(const gbIndexBubble& other) {
 gbIndexPool::gbIndexPool(gbPoolType type, int indexSz, int total) {
 
     // Initialize free list
-    this->freeList.pHead = nullptr;
-    this->freeList.pTail = nullptr;
+    this->freeList.pHead = NULL;
+    this->freeList.pTail = NULL;
     this->freeList.nCount = 0;
-    this->freeList.pIterator = nullptr;
+    this->freeList.pIterator = NULL;
 
     // Initialize used list
-    this->usedList.pHead = nullptr;
-    this->usedList.pTail = nullptr;
+    this->usedList.pHead = NULL;
+    this->usedList.pTail = NULL;
     this->usedList.nCount = 0;
-    this->usedList.pIterator = nullptr;
+    this->usedList.pIterator = NULL;
 
     this->poolType = type;
     this->indexSize = indexSz;
@@ -151,7 +151,7 @@ gbIndexPool::~gbIndexPool() {
 
 // NewBubble: 0x10020a50
 gbIndexBubble* gbIndexPool::NewBubble(gbPrimType prim, int count) {
-    gbIndexBubble* bestFit = nullptr;
+    gbIndexBubble* bestFit = NULL;
     int bestSize = 0x7FFFFFFF;
 
     // Find best-fit free bubble
@@ -172,7 +172,7 @@ gbIndexBubble* gbIndexPool::NewBubble(gbPrimType prim, int count) {
     }
 
     if (!bestFit) {
-        return nullptr;
+        return NULL;
     }
 
     // If remainder is too small, use entire bubble
@@ -211,7 +211,7 @@ void gbIndexPool::DelBubble(gbIndexBubble* bubble) {
     this->usedList.DelNodeFromChain((gbChain1DNode*)bubble);
 
     // Find position in free list (sorted by start index)
-    gbChain1DNode* prev = nullptr;
+    gbChain1DNode* prev = NULL;
     gbChain1DNode* curr = this->freeList.pHead;
     this->freeList.pIterator = curr;
 
@@ -301,13 +301,13 @@ gbVertexBubble::gbVertexBubble(gbVertexPool* pool, int start, int count, int use
     this->vertexCount = count;
     this->countUsed = used;
     this->bUsed = 0;
-    this->pVertexData = nullptr;
-    this->field_20 = nullptr;
-    this->field_24 = nullptr;
-    this->field_28 = nullptr;
-    this->field_2C = nullptr;
-    this->field_30 = nullptr;
-    this->field_34 = nullptr;
+    this->pVertexData = NULL;
+    this->field_20 = NULL;
+    this->field_24 = NULL;
+    this->field_28 = NULL;
+    this->field_2C = NULL;
+    this->field_30 = NULL;
+    this->field_34 = NULL;
 }
 
 // Copy constructor: 0x10003e60
@@ -388,7 +388,7 @@ void gbVertexBubble::Unlock() {
 
 // ClearPointer: 0x10003dd0
 void gbVertexBubble::ClearPointer() {
-    this->pVertexData = nullptr;
+    this->pVertexData = NULL;
 }
 
 // StepVertexPtr: 0x10020cd0
@@ -416,22 +416,22 @@ gbVertexBubble& gbVertexBubble::operator=(const gbVertexBubble& other) {
 
 /* ======== gbVertexPool ======== */
 
-gbGfxManager* gbVertexPool::pGfxMgr = nullptr;
+gbGfxManager* gbVertexPool::pGfxMgr = NULL;
 
 // Constructor: 0x10020d90
 gbVertexPool::gbVertexPool(gbPoolType type, unsigned int vertType, int total) {
 
     // Initialize free list
-    this->freeList.pHead = nullptr;
-    this->freeList.pTail = nullptr;
+    this->freeList.pHead = NULL;
+    this->freeList.pTail = NULL;
     this->freeList.nCount = 0;
-    this->freeList.pIterator = nullptr;
+    this->freeList.pIterator = NULL;
 
     // Initialize used list
-    this->usedList.pHead = nullptr;
-    this->usedList.pTail = nullptr;
+    this->usedList.pHead = NULL;
+    this->usedList.pTail = NULL;
     this->usedList.nCount = 0;
-    this->usedList.pIterator = nullptr;
+    this->usedList.pIterator = NULL;
 
     this->poolType = type;
     this->fvf = vertType;
@@ -464,13 +464,13 @@ gbVertexPool::gbVertexPool(gbPoolType type, unsigned int vertType, int total) {
         bubble->vertexCount = total;
         bubble->countUsed = total;
         bubble->bUsed = 0;
-        bubble->pVertexData = nullptr;
-        bubble->field_20 = nullptr;
-        bubble->field_24 = nullptr;
-        bubble->field_28 = nullptr;
-        bubble->field_2C = nullptr;
-        bubble->field_30 = nullptr;
-        bubble->field_34 = nullptr;
+        bubble->pVertexData = NULL;
+        bubble->field_20 = NULL;
+        bubble->field_24 = NULL;
+        bubble->field_28 = NULL;
+        bubble->field_2C = NULL;
+        bubble->field_30 = NULL;
+        bubble->field_34 = NULL;
     }
 
     this->freeList.AddNode((gbChain1DNode*)bubble);
@@ -522,7 +522,7 @@ int gbVertexPool::OnResetDevice() {
 
 // NewBubble: 0x10020f10
 gbVertexBubble* gbVertexPool::NewBubble(int count) {
-    gbVertexBubble* bestFit = nullptr;
+    gbVertexBubble* bestFit = NULL;
     int bestSize = 0x7FFFFFFF;
 
     // Find best-fit free bubble
@@ -543,7 +543,7 @@ gbVertexBubble* gbVertexPool::NewBubble(int count) {
     }
 
     if (!bestFit) {
-        return nullptr;
+        return NULL;
     }
 
     // If remainder is too small, use entire bubble
@@ -556,7 +556,7 @@ gbVertexBubble* gbVertexPool::NewBubble(int count) {
 
     // Split the bubble
     gbVertexBubble* newBubble = (gbVertexBubble*)operator new(0x38);
-    gbVertexBubble* result = nullptr;
+    gbVertexBubble* result = NULL;
 
     if (newBubble) {
         newBubble->pPool = this;
@@ -564,13 +564,13 @@ gbVertexBubble* gbVertexPool::NewBubble(int count) {
         newBubble->vertexCount = count;
         newBubble->countUsed = count;
         newBubble->bUsed = 0;
-        newBubble->pVertexData = nullptr;
-        newBubble->field_20 = nullptr;
-        newBubble->field_24 = nullptr;
-        newBubble->field_28 = nullptr;
-        newBubble->field_2C = nullptr;
-        newBubble->field_30 = nullptr;
-        newBubble->field_34 = nullptr;
+        newBubble->pVertexData = NULL;
+        newBubble->field_20 = NULL;
+        newBubble->field_24 = NULL;
+        newBubble->field_28 = NULL;
+        newBubble->field_2C = NULL;
+        newBubble->field_30 = NULL;
+        newBubble->field_34 = NULL;
         result = newBubble;
     }
 
@@ -588,7 +588,7 @@ void gbVertexPool::DelBubble(gbVertexBubble* bubble) {
     // Similar to gbIndexPool::DelBubble but for vertices
     this->usedList.DelNodeFromChain((gbChain1DNode*)bubble);
 
-    gbChain1DNode* prev = nullptr;
+    gbChain1DNode* prev = NULL;
     gbChain1DNode* curr = this->freeList.pHead;
     this->freeList.pIterator = curr;
 
@@ -672,10 +672,10 @@ gbVertPoolMgr::gbVertPoolMgr(gbGfxManager* mgr, int p2, int p3, int p4, int p5) 
     memset(this, 0, 0x10 * 0x20);
 
     // Initialize index pool list
-    this->indexPoolList.pHead = nullptr;
-    this->indexPoolList.pTail = nullptr;
+    this->indexPoolList.pHead = NULL;
+    this->indexPoolList.pTail = NULL;
     this->indexPoolList.nCount = 0;
-    this->indexPoolList.pIterator = nullptr;
+    this->indexPoolList.pIterator = NULL;
 
     // Initialize dynamic vert buf area
     memset(&this->dynVertBufList, 0, 0x10 * 0x20);
@@ -692,9 +692,9 @@ gbVertPoolMgr::gbVertPoolMgr(gbGfxManager* mgr, int p2, int p3, int p4, int p5) 
 
     // Zero out pool arrays
     for (int i = 0; i < 32; i++) {
-        this->vertexPools[i] = nullptr;
-        this->srcVertPools[i] = nullptr;
-        this->dynVertBufs[i] = nullptr;
+        this->vertexPools[i] = NULL;
+        this->srcVertPools[i] = NULL;
+        this->dynVertBufs[i] = NULL;
     }
 }
 
@@ -740,7 +740,8 @@ int gbVertPoolMgr::OnResetDevice() {
 
 // Find which vertex pool index contains the given FVF
 int gbVertPoolMgr::FindVertexPoolIndex(unsigned int* pFVF, unsigned int fvf) {
-    for (int i = 0; i < 32; i++) {
+    int i;
+    for (i = 0; i < 32; i++) {
         if (vertexPools[i] && vertexPools[i]->fvf == fvf) {
             if (pFVF) *pFVF = fvf;
             return i;
@@ -748,7 +749,7 @@ int gbVertPoolMgr::FindVertexPoolIndex(unsigned int* pFVF, unsigned int fvf) {
     }
 
     // Not found - return first available slot
-    for (int i = 0; i < 32; i++) {
+    for (i = 0; i < 32; i++) {
         if (!vertexPools[i]) {
             if (pFVF) *pFVF = 0;
             return i;
@@ -868,7 +869,7 @@ gbDynVertBuf* gbVertPoolMgr::GetDynVertBuf(unsigned int fvf) {
             // return this->dynVertBufs[i];
         }
     }
-    return nullptr;
+    return NULL;
 }
 
 // operator=: 0x100040b0
