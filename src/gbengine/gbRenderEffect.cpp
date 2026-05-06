@@ -108,7 +108,7 @@ int gbRenderEffect::Begin(void) {
 
 void gbRenderEffect::Pass(int passIndex) {
     if (!m_pEffect) return;
-    m_pEffect->BeginPass(passIndex);
+    m_pEffect->Pass(passIndex);
 }
 
 void gbRenderEffect::End(void) {
@@ -118,7 +118,7 @@ void gbRenderEffect::End(void) {
 
 void gbRenderEffect::Apply(void) {
     if (!m_pEffect) return;
-    m_pEffect->CommitChanges();
+    // Summer 2003 SDK has no CommitChanges; state is applied implicitly per Pass()
 }
 
 void gbRenderEffect::GetVariant(enum GBPARAMHANDLE handle, void* pValue) {

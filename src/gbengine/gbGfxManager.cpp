@@ -17,6 +17,8 @@
 #include <string.h>
 #include <stdlib.h>
 
+#pragma warning(disable: 4234)
+
 // Forward declarations for types used only in implementations
 class gbTexture;
 class gbTexture_D3D;
@@ -471,7 +473,7 @@ int gbRenderEffect::Begin(void) {
 void gbRenderEffect::Pass(int passIndex) {
     if (!m_pEffect)
         return;
-    m_pEffect->BeginPass(passIndex);
+    m_pEffect->Pass(passIndex);
 }
 
 // 0x1001d0e0 (20B) - End rendering with this effect
@@ -485,21 +487,21 @@ void gbRenderEffect::End(void) {
 void gbRenderEffect::Apply(void) {
     if (!m_pEffect)
         return;
-    m_pEffect->CommitChanges();
+    // Summer 2003 SDK has no CommitChanges
 }
 
 // Get variant by GBPARAMHANDLE
 void gbRenderEffect::GetVariant(enum GBPARAMHANDLE handle, void* pValue) {
     if (!m_pEffect || !pValue)
         return;
-    m_pEffect->GetValue((D3DXHANDLE)(intptr_t)handle, pValue, sizeof(float) * 4);
+    m_pEffect->GetValue((D3DXHANDLE)(int)handle, pValue, sizeof(float) * 4);
 }
 
 // Set variant by GBPARAMHANDLE
 void gbRenderEffect::SetVariant(enum GBPARAMHANDLE handle, void* pValue) {
     if (!m_pEffect || !pValue)
         return;
-    m_pEffect->SetValue((D3DXHANDLE)(intptr_t)handle, pValue, sizeof(float) * 4);
+    m_pEffect->SetValue((D3DXHANDLE)(int)handle, pValue, sizeof(float) * 4);
 }
 
 // 0x1001d190 (40B) - Get variant by name
