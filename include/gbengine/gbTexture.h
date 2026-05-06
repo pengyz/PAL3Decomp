@@ -207,17 +207,17 @@ public:
     virtual IDirect3DTexture9* GetTexture(void);
 
     // 0x1001bd30 (356B) - Create texture from raw memory data
-    void CreateFromMemory(int w, int h, gbPixelFmtType srcFmt, int levels,
+    virtual void CreateFromMemory(int w, int h, gbPixelFmtType srcFmt, int levels,
                           gbPixelFmtType dstFmt, void* data);
 
     // 0x1001bea0 (219B) - Update existing texture with new data
-    void UpdateTexture(int x, int y, int w, int h, gbPixelFmtType srcFmt, void* data);
+    virtual void UpdateTexture(int x, int y, int w, int h, gbPixelFmtType srcFmt, void* data);
 
     // 0x1001c010 (344B) - Create texture from file data in memory (e.g. DDS, BMP, TGA)
-    void CreateFromFileMemory(void* data, int size);
+    virtual void CreateFromFileMemory(void* data, int size);
 
     // 0x1001bf80 (144B) - Create texture for use as render target
-    int CreateForRenderTarget(int w, int h, gbPixelFmtType fmt);
+    virtual int CreateForRenderTarget(int w, int h, gbPixelFmtType fmt);
 
     // 0x1001c170 (144B) - Get a byte from locked texture data
     unsigned char GetByte(int x, int y);

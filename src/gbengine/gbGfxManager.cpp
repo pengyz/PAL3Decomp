@@ -199,7 +199,7 @@ gbMatrixStack* gbGfxManager::GetMatrixStack(int index) {
 }
 
 // 0x10004ee0 (16B) - Get print font by type
-gbPrintFont* gbGfxManager::GetPrintFont(int fontType) {
+gbPrintFont* gbGfxManager::GetPrintFont(gbFontType fontType) {
     return ((gbPrintFont**)pFontMgr)[fontType];
 }
 

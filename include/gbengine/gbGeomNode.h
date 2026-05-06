@@ -53,10 +53,14 @@ public:
     virtual ~gbGeomNode(void);
 
     // Load geometry from CVD file
-    int LoadFromFile(const char* filename, const char* texPath, void* progressCallback);
+    int LoadFromFile(const char* filename, const char* texPath, void (__cdecl *progressCallback)(int, int));
+
+private:
     int LoadCVDFile(const char* filename);
     void LoadCVDFromStream(gbVFile* file, float scale);
     static void LoadCVDFromStream(gbVFile* file, float scale, gbGeomNode** outNodes, int& outCount);
+
+public:
 
     virtual void Update(void);
     virtual void AttachSelf(gbRenderEffect* effect);

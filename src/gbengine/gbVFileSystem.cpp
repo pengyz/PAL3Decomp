@@ -18,6 +18,13 @@
 #include <stdlib.h>
 #include <string.h>
 
+#ifndef INVALID_SET_FILE_POINTER
+#define INVALID_SET_FILE_POINTER ((DWORD)-1)
+#endif
+#ifndef INVALID_FILE_ATTRIBUTES
+#define INVALID_FILE_ATTRIBUTES ((DWORD)-1)
+#endif
+
 // LZO stub implementations (real LZO will be linked at final integration)
 extern "C" {
     int lzo1x_1_compress(const unsigned char* src, unsigned long src_len,

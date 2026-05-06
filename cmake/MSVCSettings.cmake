@@ -24,13 +24,23 @@ string(REGEX REPLACE "/W[0-4]" "" CMAKE_C_FLAGS "${CMAKE_C_FLAGS}")
 # ========================================================================
 # 这些标志应用于 topo.dll、gbengine.dll 和 PAL3.exe
 
-set(PAL3_COMMON_COMPILE_FLAGS
-    /nologo              # 不显示编译器横幅
-    /W3                  # 警告级别 3
-    /GS-                 # 禁用缓冲区溢出检查（原版没有）
-    /Gd                  # __cdecl 调用约定（默认，显式指定）
-    /Zc:wchar_t          # wchar_t 是内置类型（VC7+ 默认）
-)
+if(MSVC_VERSION EQUAL 1200)
+    # VC6: minimal common flags (no /GS, /Zc: etc.)
+    set(PAL3_COMMON_COMPILE_FLAGS
+        /nologo
+        /W3
+        /Gd
+    )
+else()
+    # VC7+: modern flags
+    set(PAL3_COMMON_COMPILE_FLAGS
+        /nologo
+        /W3
+        /GS-
+        /Gd
+        /Zc:wchar_t
+    )
+endif()
 
 # 为所有配置应用通用标志
 add_compile_options(${PAL3_COMMON_COMPILE_FLAGS})
@@ -50,6 +60,8 @@ set(TOPO_GBENGINE_COMPILE_FLAGS
     /Gy                  # 启用函数级链接
     /FD                  # 生成完整程序数据库信息
     /MD                  # 多线程 DLL 运行时库
+    /Zc:sizedDealloc-    # 禁用 C++14 sized deallocation（VC6 不支持）
+    /arch:IA32           # 强制 x87 FPU（避免 SSE 内部函数）
 )
 
 # ========================================================================

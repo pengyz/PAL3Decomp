@@ -102,35 +102,32 @@ elseif(BUILD_TARGET STREQUAL "gbengine")
 
     if(GBENGINE_SOURCES)
         add_library(gbengine SHARED ${GBENGINE_SOURCES})
-        target_include_directories(gbengine PUBLIC include)
+        target_include_directories(gbengine PUBLIC include
+            "${CMAKE_SOURCE_DIR}/tools/vc6/Include"
+        )
         set_target_properties(gbengine PROPERTIES
             OUTPUT_NAME "gbengine"
             PREFIX ""
             SUFFIX ".dll"
         )
 
-        # Link DirectX and other dependencies
+        # Link DirectX and other dependencies (use full paths to avoid VC6 CRT conflicts)
         target_link_libraries(gbengine ${PLATFORM_LIBS}
-            ${CMAKE_SOURCE_DIR}/lib/ijl15.lib
+            "${CMAKE_SOURCE_DIR}/tools/vc6/Lib/d3d9.lib"
+            "${CMAKE_SOURCE_DIR}/tools/vc6/Lib/d3dx9.lib"
+            "${CMAKE_SOURCE_DIR}/tools/vc6/Lib/dinput8.lib"
+            "${CMAKE_SOURCE_DIR}/lib/ijl15.lib"
+            legacy_stdio_definitions.lib
         )
 
         # Use .def file for exports (matching original DLL export table)
+        # /FORCE:MULTIPLE: temporary - duplicate definitions exist until file ownership is resolved
         set_target_properties(gbengine PROPERTIES
-            LINK_FLAGS "/DEF:\"${CMAKE_SOURCE_DIR}/src/gbengine/gbengine.def\""
+            LINK_FLAGS "/DEF:\"${CMAKE_SOURCE_DIR}/src/gbengine/gbengine.def\" /FORCE:MULTIPLE /SAFESEH:NO"
         )
 
-        # Disable inlining for exports file so class-inline methods
-        # produce standalone symbols required by the .def exports
-        if(MSVC)
-            set_source_files_properties(src/gbengine/gbengine_exports.cpp
-                PROPERTIES COMPILE_FLAGS "/Ob0"
-            )
-        endif()
-
-        if(MSVC)
-            file(MAKE_DIRECTORY ${CMAKE_BINARY_DIR}/asm)
-            target_compile_options(gbengine PRIVATE /FAcs /Fa${CMAKE_BINARY_DIR}/asm/)
-        endif()
+        # Apply VC6 optimization flags
+        target_compile_options(gbengine PRIVATE ${TOPO_GBENGINE_COMPILE_FLAGS})
 
         message(STATUS "gbengine.dll: ${CMAKE_CURRENT_LIST_FILE} source files")
     else()

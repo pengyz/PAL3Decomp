@@ -518,5 +518,7 @@ gbVolumeModifier::gbVolumeModifier(class gbVolumeModifier const & p0) { memcpy(t
 
 gbVolumeModifier::gbVolumeModifier() { memset(this, 0, sizeof(*this)); }
 
+gbVolumeModifier::~gbVolumeModifier() {}
+
 class gbVolumeModifier & gbVolumeModifier::operator=(class gbVolumeModifier const & p0) { if (this != &p0) memcpy(this, &p0, sizeof(*this)); return *this; }
 

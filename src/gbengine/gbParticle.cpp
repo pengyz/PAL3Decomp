@@ -551,6 +551,9 @@ gbAnimNodeGroup::gbAnimNodeGroup(class gbGfxManager * p0) {
     field_30 = 1;
 }
 
+gbAnimNodeGroup::~gbAnimNodeGroup() {
+}
+
 class gbAnimNodeGroup & gbAnimNodeGroup::operator=(class gbAnimNodeGroup const & p0) {
     if (this != &p0) {
         memcpy(this, &p0, sizeof(gbAnimNodeGroup));

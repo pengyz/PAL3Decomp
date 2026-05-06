@@ -143,3 +143,8 @@ gbMatrix4 *gbMatrixStack::GetTop(void)
 {
     return &pStack[curDepth];
 }
+
+int gbMatrixStack::GetDepth(void)
+{
+    return curDepth;
+}

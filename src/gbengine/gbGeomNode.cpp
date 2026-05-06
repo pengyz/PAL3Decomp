@@ -121,7 +121,7 @@ gbGeomNode::~gbGeomNode(void) {
     }
 }
 
-int gbGeomNode::LoadFromFile(const char* filename, const char* texPath, void* progressCallback) {
+int gbGeomNode::LoadFromFile(const char* filename, const char* texPath, void (__cdecl *progressCallback)(int, int)) {
     if (!filename) return 0;
     return LoadCVDFile(filename);
 }

@@ -138,8 +138,12 @@ public:
 
     // View setup methods
     void SetLookAt(gbVec3D* eye, gbVec3D* target, gbVec3D* up);
-    void GetViewSizeOnNearPlane(float& w, float& h);
     void SetAsCurrent(int mode);
+
+private:
+    void GetViewSizeOnNearPlane(float& w, float& h);
+
+public:
     void SetDimention(int w, int h);
 
     // Frustum clipping methods

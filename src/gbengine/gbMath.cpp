@@ -9,6 +9,8 @@
 #include <string.h>
 #include <float.h>
 
+#define isfinite(x) _finite(x)
+
 // ========== Forward Declarations ==========
 struct gbVec3D;
 struct gbMatrix4;

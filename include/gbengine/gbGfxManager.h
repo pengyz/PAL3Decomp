@@ -188,7 +188,7 @@ public:
     gbMatrixStack* GetMatrixStack(int index);
 
     // 0x10004ee0 (16B) - Get print font by type
-    gbPrintFont* GetPrintFont(int fontType);
+    gbPrintFont* GetPrintFont(gbFontType fontType);
 
     // 0x10004f50 (20B) - Get light object by index (const method)
     const gbLight* GetLight(int index) const;
