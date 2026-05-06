@@ -104,7 +104,6 @@ class gbNBTreeNode : public gbChain1DNode {
 public:
     gbNBTreeNode* pParent;         // +0x08
     gbChain1D children;            // +0x0C (16 bytes: head at +0C, tail at +10, count at +14, iter at +18)
-    gbNBTreeNode* pChildIterator;  // +0x18
 
     gbNBTreeNode(void);
     gbNBTreeNode(const gbNBTreeNode& src);
@@ -147,8 +146,8 @@ public:
 class gbBinaryTreeNode {
 public:
     gbBinaryTreeNode* pLeft;       // +0x04
-    gbBinaryTreeNode* pRight;      // +0x08
-    gbBinaryTreeNode* pParent;     // +0x0C
+    gbBinaryTreeNode* pParent;     // +0x08
+    gbBinaryTreeNode* pRight;      // +0x0C
 
     gbBinaryTreeNode(void);
     gbBinaryTreeNode(const gbBinaryTreeNode& src);

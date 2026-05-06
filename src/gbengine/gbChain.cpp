@@ -14,7 +14,6 @@
  * ================================================================ */
 
 gbChain1DNode::gbChain1DNode(void) {
-    pNext = NULL;
 }
 
 gbChain1DNode::gbChain1DNode(const gbChain1DNode& src) {
@@ -25,9 +24,7 @@ gbChain1DNode::~gbChain1DNode() {
 }
 
 gbChain1DNode& gbChain1DNode::operator=(const gbChain1DNode& other) {
-    if (this != &other) {
-        pNext = other.pNext;
-    }
+    pNext = other.pNext;
     return *this;
 }
 
@@ -37,22 +34,19 @@ gbChain1DNode& gbChain1DNode::operator=(const gbChain1DNode& other) {
  * ================================================================ */
 
 gbChain1D::gbChain1D(void) {
-    pHead = NULL;
     pTail = NULL;
+    pHead = NULL;
     nCount = 0;
-    pIterator = NULL;
 }
 
 gbChain1D::~gbChain1D() {
 }
 
 gbChain1D& gbChain1D::operator=(const gbChain1D& other) {
-    if (this != &other) {
-        pHead = other.pHead;
-        pTail = other.pTail;
-        nCount = other.nCount;
-        pIterator = other.pIterator;
-    }
+    pHead = other.pHead;
+    pTail = other.pTail;
+    nCount = other.nCount;
+    pIterator = other.pIterator;
     return *this;
 }
 
@@ -60,31 +54,38 @@ void gbChain1D::ClearAllNodePtr(void) {
     pTail = NULL;
     pHead = NULL;
     nCount = 0;
-    pIterator = NULL;
 }
 
 void gbChain1D::AddNodeOnHead(gbChain1DNode* node) {
-    if (!node) return;
     node->pNext = pHead;
+    gbChain1DNode* v2 = pTail;
     pHead = node;
-    if (!pTail) {
+    if (!v2)
+        pTail = node;
+    nCount++;
+}
+
+void gbChain1D::AddNodeOnTail(gbChain1DNode* node) {
+    node->pNext = NULL;
+    gbChain1DNode* v2 = pTail;
+    if (!v2) {
+        pTail = node;
+        pHead = node;
+    } else {
+        v2->pNext = node;
         pTail = node;
     }
     nCount++;
 }
 
-void gbChain1D::AddNodeOnTail(gbChain1DNode* node) {
-    AddNode(node);
-}
-
 void gbChain1D::AddNode(gbChain1DNode* node) {
-    if (!node) return;
     node->pNext = NULL;
-    if (!pTail) {
+    gbChain1DNode* v2 = pTail;
+    if (!v2) {
         pTail = node;
         pHead = node;
     } else {
-        pTail->pNext = node;
+        v2->pNext = node;
         pTail = node;
     }
     nCount++;
@@ -175,19 +176,22 @@ gbChain1DNode* gbChain1D::BeginIterate(void) {
 }
 
 gbChain1DNode* gbChain1D::Iterate(void) {
-    if (pIterator) {
-        pIterator = pIterator->pNext;
-    }
+    pIterator = pIterator->pNext;
     return pIterator;
 }
 
 gbChain1DNode* gbChain1D::operator[](int index) {
-    if (index < 0 || index >= nCount) return NULL;
-    gbChain1DNode* node = pHead;
-    for (int i = 0; i < index && node; i++) {
-        node = node->pNext;
+    gbChain1DNode* result = pHead;
+    int v3 = 0;
+    if (index > 0) {
+        while (result) {
+            result = result->pNext;
+            if (++v3 >= index)
+                return result;
+        }
+        return NULL;
     }
-    return node;
+    return result;
 }
 
 
@@ -196,8 +200,6 @@ gbChain1DNode* gbChain1D::operator[](int index) {
  * ================================================================ */
 
 gbChain2DNode::gbChain2DNode(void) {
-    pPrev = NULL;
-    pNext = NULL;
 }
 
 gbChain2DNode::gbChain2DNode(const gbChain2DNode& src) {
@@ -209,10 +211,8 @@ gbChain2DNode::~gbChain2DNode() {
 }
 
 gbChain2DNode& gbChain2DNode::operator=(const gbChain2DNode& other) {
-    if (this != &other) {
-        pPrev = other.pPrev;
-        pNext = other.pNext;
-    }
+    pPrev = other.pPrev;
+    pNext = other.pNext;
     return *this;
 }
 
@@ -222,36 +222,28 @@ gbChain2DNode& gbChain2DNode::operator=(const gbChain2DNode& other) {
  * ================================================================ */
 
 gbChain2D::gbChain2D(void) {
-    pHead = NULL;
     pTail = NULL;
-    nDirection = 0;
+    pHead = NULL;
     nCount = 0;
-    pIterator = NULL;
 }
 
 gbChain2D::~gbChain2D() {
 }
 
 gbChain2D& gbChain2D::operator=(const gbChain2D& other) {
-    if (this != &other) {
-        pHead = other.pHead;
-        pTail = other.pTail;
-        nDirection = other.nDirection;
-        nCount = other.nCount;
-        pIterator = other.pIterator;
-    }
+    memcpy(this, &other, 0x14);
     return *this;
 }
 
 void gbChain2D::AddNode(gbChain2DNode* node) {
-    if (!node) return;
     node->pNext = NULL;
     node->pPrev = NULL;
-    if (!pTail) {
-        pHead = node;
+    gbChain2DNode* v2 = pTail;
+    if (!v2) {
         pTail = node;
+        pHead = node;
     } else {
-        pTail->pNext = node;
+        v2->pNext = node;
         node->pPrev = pTail;
         pTail = node;
     }
@@ -292,24 +284,26 @@ int gbChain2D::GetNumNode(void) {
 }
 
 gbChain2DNode* gbChain2D::BeginIterate(int dir) {
-    nDirection = dir;
-    if (dir == 0) {
-        pIterator = pHead;
+    gbChain2DNode* result;
+    if (!dir) {
+        result = pHead;
     } else {
-        pIterator = pTail;
+        result = pTail;
     }
-    return pIterator;
+    nDirection = dir;
+    pIterator = result;
+    return result;
 }
 
 gbChain2DNode* gbChain2D::Iterate(void) {
-    if (pIterator) {
-        if (nDirection == 0) {
-            pIterator = pIterator->pNext;
-        } else {
-            pIterator = pIterator->pPrev;
-        }
+    gbChain2DNode* result;
+    if (!nDirection) {
+        result = pIterator->pNext;
+    } else {
+        result = pIterator->pPrev;
     }
-    return pIterator;
+    pIterator = result;
+    return result;
 }
 
 
@@ -319,48 +313,39 @@ gbChain2DNode* gbChain2D::Iterate(void) {
 
 gbNBTreeNode::gbNBTreeNode(void) : gbChain1DNode() {
     pParent = NULL;
-    pChildIterator = NULL;
 }
 
 gbNBTreeNode::gbNBTreeNode(const gbNBTreeNode& src) : gbChain1DNode(src) {
     pParent = src.pParent;
     children = src.children;
-    pChildIterator = src.pChildIterator;
 }
 
 gbNBTreeNode::~gbNBTreeNode() {
 }
 
 gbNBTreeNode& gbNBTreeNode::operator=(const gbNBTreeNode& other) {
-    if (this != &other) {
-        gbChain1DNode::operator=(other);
-        pParent = other.pParent;
-        children = other.children;
-        pChildIterator = other.pChildIterator;
-    }
+    pNext = other.pNext;
+    pParent = other.pParent;
+    children = other.children;
     return *this;
 }
 
 void gbNBTreeNode::AddChildOnHead(gbNBTreeNode* child) {
-    if (!child) return;
     children.AddNodeOnHead((gbChain1DNode*)child);
     child->pParent = this;
 }
 
 void gbNBTreeNode::AddChildOnTail(gbNBTreeNode* child) {
-    if (!child) return;
     children.AddNode((gbChain1DNode*)child);
     child->pParent = this;
 }
 
 void gbNBTreeNode::AddChild(gbNBTreeNode* child) {
-    if (!child) return;
     children.AddNode((gbChain1DNode*)child);
     child->pParent = this;
 }
 
 void gbNBTreeNode::DelChildFromChain(gbNBTreeNode* child) {
-    if (!child) return;
     children.DelNodeFromChain((gbChain1DNode*)child);
 }
 
@@ -381,26 +366,17 @@ gbNBTreeNode* gbNBTreeNode::GetFather(void) {
 }
 
 gbNBTreeNode* gbNBTreeNode::BeginIterateChild(void) {
-    pChildIterator = (gbNBTreeNode*)children.pHead;
-    return pChildIterator;
+    children.pIterator = children.pHead;
+    return (gbNBTreeNode*)children.pIterator;
 }
 
 gbNBTreeNode* gbNBTreeNode::IterateChild(void) {
-    if (pChildIterator) {
-        pChildIterator = (gbNBTreeNode*)pChildIterator->pNext;
-    }
-    return pChildIterator;
+    children.pIterator = children.pIterator->pNext;
+    return (gbNBTreeNode*)children.pIterator;
 }
 
 gbNBTreeNode* gbNBTreeNode::GetChild(int index) {
-    if (index < 0 || index >= children.nCount) {
-        return NULL;
-    }
-    gbChain1DNode* node = children.pHead;
-    for (int i = 0; i < index && node; i++) {
-        node = node->pNext;
-    }
-    return (gbNBTreeNode*)node;
+    return (gbNBTreeNode*)children[index];
 }
 
 
@@ -416,9 +392,7 @@ gbNBTree::~gbNBTree() {
 }
 
 gbNBTree& gbNBTree::operator=(const gbNBTree& other) {
-    if (this != &other) {
-        pRoot = other.pRoot;
-    }
+    pRoot = other.pRoot;
     return *this;
 }
 
@@ -436,26 +410,24 @@ gbNBTreeNode* gbNBTree::GetRoot(void) {
  * ================================================================ */
 
 gbBinaryTreeNode::gbBinaryTreeNode(void) {
-    pLeft = NULL;
     pRight = NULL;
     pParent = NULL;
+    pLeft = NULL;
 }
 
 gbBinaryTreeNode::gbBinaryTreeNode(const gbBinaryTreeNode& src) {
     pLeft = src.pLeft;
-    pRight = src.pRight;
     pParent = src.pParent;
+    pRight = src.pRight;
 }
 
 gbBinaryTreeNode::~gbBinaryTreeNode() {
 }
 
 gbBinaryTreeNode& gbBinaryTreeNode::operator=(const gbBinaryTreeNode& other) {
-    if (this != &other) {
-        pLeft = other.pLeft;
-        pRight = other.pRight;
-        pParent = other.pParent;
-    }
+    pLeft = other.pLeft;
+    pParent = other.pParent;
+    pRight = other.pRight;
     return *this;
 }
 
@@ -484,9 +456,7 @@ gbBinaryTree::~gbBinaryTree() {
 }
 
 gbBinaryTree& gbBinaryTree::operator=(const gbBinaryTree& other) {
-    if (this != &other) {
-        pRoot = other.pRoot;
-    }
+    pRoot = other.pRoot;
     return *this;
 }
 
@@ -505,24 +475,13 @@ gbBinaryTreeNode* gbBinaryTree::GetRoot(void) {
 
 gbStaticChain::gbStaticChain(void) {
     pBuffer = NULL;
-    pFreeHead = NULL;
-    pUsedHead = NULL;
     pIterator = NULL;
-    nMaxNodes = 0;
-    nNodeSize = 0;
-    nUsedCount = 0;
+    pUsedHead = NULL;
+    pFreeHead = NULL;
 }
 
 gbStaticChain& gbStaticChain::operator=(const gbStaticChain& other) {
-    if (this != &other) {
-        pBuffer = other.pBuffer;
-        pFreeHead = other.pFreeHead;
-        pUsedHead = other.pUsedHead;
-        pIterator = other.pIterator;
-        nMaxNodes = other.nMaxNodes;
-        nNodeSize = other.nNodeSize;
-        nUsedCount = other.nUsedCount;
-    }
+    memcpy(this, &other, 0x1C);
     return *this;
 }
 
@@ -556,13 +515,7 @@ void gbStaticChain::InitBuffer(int maxNodes, int nodeSize) {
 }
 
 void gbStaticChain::ReleaseBuffer(void) {
-    if (pBuffer) {
-        free(pBuffer);
-        pBuffer = NULL;
-    }
-    pFreeHead = NULL;
-    pUsedHead = NULL;
-    pIterator = NULL;
+    free(pBuffer);
 }
 
 gbStaticChainNode* gbStaticChain::NewOneNode(void) {
@@ -618,38 +571,42 @@ gbStaticChainNode* gbStaticChain::BeginIterate(void) {
 }
 
 gbStaticChainNode* gbStaticChain::Iterate(void) {
-    if (pIterator) {
-        pIterator = pIterator->pNext;
-    }
+    pIterator = pIterator->pNext;
     return pIterator;
 }
 
 gbStaticChainNode* gbStaticChain::BeginReverseIterate(void) {
-    pIterator = pUsedHead;
-    if (!pIterator) return NULL;
-
-    // Walk to end of used list
-    while (pIterator->pNext) {
-        pIterator = pIterator->pNext;
+    gbStaticChainNode* result = pUsedHead;
+    if (result) {
+        gbStaticChainNode* v2;
+        do {
+            v2 = result;
+            result = result->pNext;
+        } while (result);
+        pIterator = v2;
+        return v2;
+    } else {
+        pIterator = NULL;
     }
-    return pIterator;
+    return result;
 }
 
 gbStaticChainNode* gbStaticChain::ReverseIterate(void) {
-    if (pIterator) {
-        pIterator = pIterator->pPrev;
-    }
+    pIterator = pIterator->pPrev;
     return pIterator;
 }
 
 gbStaticChainNode* gbStaticChain::GetOldestNode(void) {
-    if (!pUsedHead) return NULL;
-
-    gbStaticChainNode* node = pUsedHead;
-    while (node->pNext) {
-        node = node->pNext;
+    gbStaticChainNode* result = pUsedHead;
+    if (result) {
+        gbStaticChainNode* v2;
+        do {
+            v2 = result;
+            result = result->pNext;
+        } while (result);
+        return v2;
     }
-    return node;
+    return result;
 }
 
 gbStaticChainNode* gbStaticChain::GetNewestNode(void) {
@@ -657,8 +614,5 @@ gbStaticChainNode* gbStaticChain::GetNewestNode(void) {
 }
 
 gbStaticChainNode* gbStaticChain::GetNode(int index) {
-    if (index < 0 || index >= nMaxNodes || !pBuffer) {
-        return NULL;
-    }
     return (gbStaticChainNode*)((char*)pBuffer + nNodeSize * index);
 }
