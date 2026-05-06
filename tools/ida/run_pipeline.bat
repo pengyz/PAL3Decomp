@@ -13,6 +13,10 @@ REM 示例:
 REM   run_pipeline.bat "D:\Program Files\IDA Professional 9.2\idat.exe"
 REM   run_pipeline.bat "D:\Program Files\IDA Professional 9.2\idat.exe" --skip-import
 REM   run_pipeline.bat "D:\Program Files\IDA Professional 9.2\idat.exe" --phase=4
+REM
+REM Quality Fix Pipeline (质量修复):
+REM   run_pipeline.bat "path\to\idat.exe" --quality-dry     # 诊断+预览 (不修改)
+REM   run_pipeline.bat "path\to\idat.exe" --quality-fix     # 完整修复流程
 
 setlocal
 
