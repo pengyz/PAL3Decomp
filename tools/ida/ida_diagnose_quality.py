@@ -32,7 +32,6 @@ import ida_funcs
 import ida_ua
 import ida_bytes
 import ida_name
-import ida_typeinf
 
 # Add tools/ida to path for ida_common
 SCRIPT_DIR = os.path.dirname(os.path.abspath(__file__))
@@ -293,12 +292,10 @@ def classify_userpurge_wrong(addr, addr_to_func):
 
     Returns (has_issue, confidence, evidence_dict) or None if clean
     """
-    # Get function type from IDA
-    tif = ida_typeinf.tinfo_t()
-    if not ida_typeinf.get_tinfo(tif, addr):
+    # Get function type string from IDA (idc.get_type works in IDA 9.x)
+    type_str = idc.get_type(addr)
+    if not type_str:
         return None
-
-    type_str = str(tif)
 
     # Check for userpurge/usercall
     if "__userpurge" not in type_str and "__usercall" not in type_str:
