@@ -160,14 +160,6 @@ unsigned int gbBaseMesh::GetFVF() {
     return 0;
 }
 
-gbMeshType gbBaseMesh::GetMeshType() {
-    return m_meshType;
-}
-
-gbAABBox* gbBaseMesh::GetAABBox() {
-    return &m_aabb;
-}
-
 const char* gbBaseMesh::GetObjectName() {
     return m_objectName;
 }
@@ -217,11 +209,6 @@ void gbBaseMesh::ReplaceTexture(gbTexture* texture) {
 
 void gbBaseMesh::ComputeShadowVolume() {
     // Base class does nothing; gbStaticMesh overrides with full shadow volume computation
-    (void)0;
-}
-
-void gbBaseMesh::RenderShadowVolume(gbVisNode* visNode, gbRenderInfoObj* renderInfo) {
-    // Base class does nothing; derived classes override for shadow rendering
     (void)0;
 }
 
@@ -413,7 +400,6 @@ gbVertexBubble* gbStaticMesh::GetVertBubble() {
 /* ======== gbDynVertBuf ======== */
 
 // Static members
-gbGfxManager* gbDynVertBuf::pGfxMgr = nullptr;
 gbRenderEffect* gbDynVertBuf::pLineEffect = nullptr;
 
 gbDynVertBuf::gbDynVertBuf(unsigned int fvfFlags, int maxVertices) {
@@ -468,10 +454,6 @@ float* gbDynVertBuf::GetXYZ() {
     return m_pXYZ;
 }
 
-float* gbDynVertBuf::GetNormal() {
-    return m_pNormal;
-}
-
 gbColorQuad* gbDynVertBuf::GetColor1() {
     return m_pColor1;
 }
@@ -511,218 +493,5 @@ void gbDynVertBuf::Unlock() {
 }
 
 void gbDynVertBuf::Draw(int primType, int numPrims, gbRenderEffect* effect) {
-    // Base implementation - derived classes override with actual D3D draw call
     (void)0;
-}
-
-void gbDynVertBuf::RenderUIQuad(gbUIQuad* quadData, int numQuads, gbRenderEffect* effect, gbTextureArray* textures) {
-    if (numQuads <= 0) return;
-
-    // 6 vertices per quad (two triangles: TL, TR, BL | BL, TR, BR)
-    float* pVerts = Lock(numQuads * 6);
-    if (!pVerts) return;
-
-    // Check FVF for XYZRHW (bit 0x100 in D3D FVF = D3DFVF_XYZRHW / transformed verts)
-    int hasRHW = (m_fvfFlags & 0x100) != 0;
-
-    for (int q = 0; q < numQuads; q++) {
-        gbUIQuad* quad = &quadData[q];
-        float x1 = quad->x1;
-        float y1 = quad->y1;
-        float x2 = quad->x2;
-        float y2 = quad->y2;
-        float u1 = quad->u1;
-        float v1 = quad->v1;
-        float u2 = quad->u2;
-        float v2 = quad->v2;
-        float z  = quad->z;
-        unsigned int color = quad->color;
-
-        if (hasRHW) {
-            // 7 dwords per vertex: x, y, z, rhw, color, u, v
-            // Vertex 0: top-left
-            *pVerts++ = x1; *pVerts++ = y1; *pVerts++ = z; *pVerts++ = 1.0f;
-            *(unsigned int*)pVerts = color; pVerts++;
-            *pVerts++ = u1; *pVerts++ = v1;
-            // Vertex 1: top-right
-            *pVerts++ = x2; *pVerts++ = y1; *pVerts++ = z; *pVerts++ = 1.0f;
-            *(unsigned int*)pVerts = color; pVerts++;
-            *pVerts++ = u2; *pVerts++ = v1;
-            // Vertex 2: bottom-left
-            *pVerts++ = x1; *pVerts++ = y2; *pVerts++ = z; *pVerts++ = 1.0f;
-            *(unsigned int*)pVerts = color; pVerts++;
-            *pVerts++ = u1; *pVerts++ = v2;
-            // Vertex 3: bottom-left (second tri)
-            *pVerts++ = x1; *pVerts++ = y2; *pVerts++ = z; *pVerts++ = 1.0f;
-            *(unsigned int*)pVerts = color; pVerts++;
-            *pVerts++ = u1; *pVerts++ = v2;
-            // Vertex 4: top-right
-            *pVerts++ = x2; *pVerts++ = y1; *pVerts++ = z; *pVerts++ = 1.0f;
-            *(unsigned int*)pVerts = color; pVerts++;
-            *pVerts++ = u2; *pVerts++ = v1;
-            // Vertex 5: bottom-right
-            *pVerts++ = x2; *pVerts++ = y2; *pVerts++ = z; *pVerts++ = 1.0f;
-            *(unsigned int*)pVerts = color; pVerts++;
-            *pVerts++ = u2; *pVerts++ = v2;
-        } else {
-            // 6 dwords per vertex: x, y, z, color, u, v
-            // Vertex 0: top-left
-            *pVerts++ = x1; *pVerts++ = y1; *pVerts++ = z;
-            *(unsigned int*)pVerts = color; pVerts++;
-            *pVerts++ = u1; *pVerts++ = v1;
-            // Vertex 1: top-right
-            *pVerts++ = x2; *pVerts++ = y1; *pVerts++ = z;
-            *(unsigned int*)pVerts = color; pVerts++;
-            *pVerts++ = u2; *pVerts++ = v1;
-            // Vertex 2: bottom-left
-            *pVerts++ = x1; *pVerts++ = y2; *pVerts++ = z;
-            *(unsigned int*)pVerts = color; pVerts++;
-            *pVerts++ = u1; *pVerts++ = v2;
-            // Vertex 3: bottom-left (second tri)
-            *pVerts++ = x1; *pVerts++ = y2; *pVerts++ = z;
-            *(unsigned int*)pVerts = color; pVerts++;
-            *pVerts++ = u1; *pVerts++ = v2;
-            // Vertex 4: top-right
-            *pVerts++ = x2; *pVerts++ = y1; *pVerts++ = z;
-            *(unsigned int*)pVerts = color; pVerts++;
-            *pVerts++ = u2; *pVerts++ = v1;
-            // Vertex 5: bottom-right
-            *pVerts++ = x2; *pVerts++ = y2; *pVerts++ = z;
-            *(unsigned int*)pVerts = color; pVerts++;
-            *pVerts++ = u2; *pVerts++ = v2;
-        }
-    }
-
-    // Draw as triangle list: numQuads * 2 triangles
-    Draw(1, numQuads * 2, effect);
-}
-
-void gbDynVertBuf::RenderGeomQuad(gbGeomQuad* quadData, int numQuads, gbRenderEffect* effect, gbTextureArray* textures) {
-    if (numQuads <= 0) return;
-
-    // 6 vertices per quad (two triangles), 6 dwords per vertex (xyz + color + uv)
-    float* pVerts = Lock(numQuads * 6);
-    if (!pVerts) return;
-
-    for (int q = 0; q < numQuads; q++) {
-        gbGeomQuad* quad = &quadData[q];
-        float u1 = quad->u1;
-        float v1 = quad->v1;
-        float u2 = quad->u2;
-        float v2 = quad->v2;
-        unsigned int color = quad->color;
-
-        // Triangle 1: v0 (top-left), v1 (top-right), v2 (bottom-left)
-        // Vertex 0: top-left
-        *pVerts++ = quad->verts[0].x; *pVerts++ = quad->verts[0].y; *pVerts++ = quad->verts[0].z;
-        *(unsigned int*)pVerts = color; pVerts++;
-        *pVerts++ = u1; *pVerts++ = v1;
-        // Vertex 1: top-right
-        *pVerts++ = quad->verts[1].x; *pVerts++ = quad->verts[1].y; *pVerts++ = quad->verts[1].z;
-        *(unsigned int*)pVerts = color; pVerts++;
-        *pVerts++ = u2; *pVerts++ = v1;
-        // Vertex 2: bottom-left
-        *pVerts++ = quad->verts[2].x; *pVerts++ = quad->verts[2].y; *pVerts++ = quad->verts[2].z;
-        *(unsigned int*)pVerts = color; pVerts++;
-        *pVerts++ = u1; *pVerts++ = v2;
-
-        // Triangle 2: v2 (bottom-left), v1 (top-right), v3 (bottom-right)
-        // Vertex 3: bottom-left
-        *pVerts++ = quad->verts[2].x; *pVerts++ = quad->verts[2].y; *pVerts++ = quad->verts[2].z;
-        *(unsigned int*)pVerts = color; pVerts++;
-        *pVerts++ = u1; *pVerts++ = v2;
-        // Vertex 4: top-right
-        *pVerts++ = quad->verts[1].x; *pVerts++ = quad->verts[1].y; *pVerts++ = quad->verts[1].z;
-        *(unsigned int*)pVerts = color; pVerts++;
-        *pVerts++ = u2; *pVerts++ = v1;
-        // Vertex 5: bottom-right
-        *pVerts++ = quad->verts[3].x; *pVerts++ = quad->verts[3].y; *pVerts++ = quad->verts[3].z;
-        *(unsigned int*)pVerts = color; pVerts++;
-        *pVerts++ = u2; *pVerts++ = v2;
-    }
-
-    // Draw as triangle list: numQuads * 2 triangles
-    Draw(1, numQuads * 2, effect);
-}
-
-void gbDynVertBuf::RenderGeomQuadViaStrip(gbGeomQuad* quadData, int numQuads, gbRenderEffect* effect, gbTextureArray* textures) {
-    RenderGeomQuadViaStrip(quadData, numQuads, effect, textures, 0);
-}
-
-void gbDynVertBuf::RenderGeomQuadViaStrip(gbGeomQuad* quadData, int numQuads, gbRenderEffect* effect, gbTextureArray* textures, unsigned long flags) {
-    // Renders quads as a connected triangle strip
-    // Each quad contributes 2 vertices to the strip, plus 2 for the final edge
-    if (numQuads <= 0) return;
-
-    int totalVerts = numQuads * 2 + 2;
-    float* pVerts = Lock(totalVerts);
-    if (!pVerts) return;
-
-    // 6 dwords per vertex: xyz + color + uv
-    for (int q = 0; q < numQuads; q++) {
-        gbGeomQuad* quad = &quadData[q];
-        unsigned int color = quad->color;
-        float u1 = quad->u1;
-        float v1 = quad->v1;
-        float u2 = quad->u2;
-        float v2 = quad->v2;
-
-        if (q == 0) {
-            // First quad: emit top-left and top-right vertices
-            *pVerts++ = quad->verts[0].x; *pVerts++ = quad->verts[0].y; *pVerts++ = quad->verts[0].z;
-            *(unsigned int*)pVerts = color; pVerts++;
-            *pVerts++ = u1; *pVerts++ = v1;
-
-            *pVerts++ = quad->verts[1].x; *pVerts++ = quad->verts[1].y; *pVerts++ = quad->verts[1].z;
-            *(unsigned int*)pVerts = color; pVerts++;
-            *pVerts++ = u2; *pVerts++ = v1;
-        }
-
-        // Each quad emits its bottom-left and bottom-right vertices
-        *pVerts++ = quad->verts[2].x; *pVerts++ = quad->verts[2].y; *pVerts++ = quad->verts[2].z;
-        *(unsigned int*)pVerts = color; pVerts++;
-        *pVerts++ = u1; *pVerts++ = v2;
-
-        *pVerts++ = quad->verts[3].x; *pVerts++ = quad->verts[3].y; *pVerts++ = quad->verts[3].z;
-        *(unsigned int*)pVerts = color; pVerts++;
-        *pVerts++ = u2; *pVerts++ = v2;
-    }
-
-    // Draw as triangle strip
-    Draw(3, totalVerts, effect);
-}
-
-void gbDynVertBuf::RenderLineStrip(gbColorQuad color, gbVec3D* points, int numPoints, gbRenderEffect* effect) {
-    if (numPoints <= 0) return;
-
-    // If no global line effect exists, create one via gbEffectMgr::NewTrivalEffect(3)
-    if (pLineEffect == NULL && pGfxMgr != NULL) {
-        pLineEffect = pGfxMgr->pEffectMgr->NewTrivalEffect(3);
-    }
-
-    // If no effect param passed, use the global line effect
-    if (effect == NULL) {
-        effect = pLineEffect;
-    }
-
-    // Lock buffer for numPoints vertices
-    float* pVerts = Lock(numPoints);
-    if (!pVerts) return;
-
-    // Write vertices: for each point, write XYZ and color then step
-    unsigned int colorVal = *(unsigned int*)&color;
-
-    for (int i = 0; i < numPoints; i++) {
-        // Write XYZ to current position pointer
-        m_pXYZ[0] = points[i].x;
-        m_pXYZ[1] = points[i].y;
-        m_pXYZ[2] = points[i].z;
-        // Write color
-        *(unsigned int*)m_pColor1 = colorVal;
-        // Advance internal vertex pointers
-        StepVertexPtr();
-    }
-
-    // Draw as line strip: numPoints vertices
-    Draw(5, numPoints, effect);
 }

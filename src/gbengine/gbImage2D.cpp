@@ -6,34 +6,43 @@
 #include "gbengine/gbTexture.h"
 #include "gbengine/gbVFileSystem.h"
 #include <windows.h>
+#include <d3dx9.h>
 #include <string.h>
 #include <stdlib.h>
+#include <stdio.h>
 
 // External globals
 extern gbVFileSystem* g_pVFileSys;
 
-// IJL15.dll stubs (Intel JPEG Library)
+// IJL15.dll - Intel JPEG Library types
+struct JPEG_CORE_PROPERTIES {
+    char reserved[12];
+    void* DIBBytes;
+    int DIBWidth;
+    int DIBHeight;
+    int DIBPadBytes;
+    int DIBChannels;
+    int DIBColor;
+    char reserved2[36];
+    char* JPGFile;
+    unsigned char* JPGBytes;
+    int JPGSizeBytes;
+    int JPGWidth;
+    int JPGHeight;
+    int JPGChannels;
+    int JPGColor;
+    int JPGSubsampling;
+    int jquality;
+    char reserved3[28096];
+};
+
+static JPEG_CORE_PROPERTIES g_jpegProps;
+
 extern "C" {
     int ijlInit(void* jcprops);
     int ijlRead(void* jcprops, int readtype);
     int ijlWrite(void* jcprops, int writetype);
     int ijlFree(void* jcprops);
-}
-
-gbImage2D::gbImage2D(void) {
-    memset(&ImgInfo, 0, sizeof(ImgInfo));
-    Width = 0;
-    Height = 0;
-    memset(&PixelFmt, 0, sizeof(PixelFmt));
-    BitCount = 0;
-    pBits = NULL;
-    pPalette = NULL;
-    numPalEntry = 0;
-    memset(&ColorKey, 0, sizeof(ColorKey));
-}
-
-gbImage2D::~gbImage2D() {
-    Release();
 }
 
 void gbImage2D::Release(void) {
@@ -67,6 +76,7 @@ unsigned char* gbImage2D::GetBits(void) {
     return (unsigned char*)pBits;
 }
 
+// 0x10004150 (44B) - Get pointer to pixel at (x, y)
 unsigned char* gbImage2D::GetBits(int x, int y) {
     if (!pBits || x < 0 || y < 0 || x >= Width || y >= Height) {
         return NULL;
@@ -75,10 +85,10 @@ unsigned char* gbImage2D::GetBits(int x, int y) {
     return (unsigned char*)pBits + y * stride + (x * BitCount) / 8;
 }
 
+// 0x10004180 (16B) - Get palette entry
 gbColorQuad* gbImage2D::GetPalEntry(int index) {
-    if (!pPalette || index < 0 || index >= numPalEntry) {
+    if (!pPalette)
         return NULL;
-    }
     return &pPalette[index];
 }
 
@@ -90,76 +100,154 @@ gbPixelFmtType gbImage2D::GetPixelFmtType(void) {
     return PixelFmt.Type;
 }
 
+// 0x1001ea30 (131B) - Create image buffer
 unsigned char* gbImage2D::CreateImage(int w, int h, int bpp) {
-    Release();
+    // Free existing buffer
+    if (pBits) {
+        free(pBits);
+        pBits = NULL;
+    }
 
     Width = w;
     Height = h;
     BitCount = bpp;
 
-    int stride = (w * bpp + 7) / 8;
-    int imageSize = stride * h;
+    // Calculate row stride (pitch) aligned to 4 bytes
+    int pitch = (w * bpp + 31) / 32 * 4;
+    int bufSize = pitch * h;
 
-    pBits = (char*)malloc(imageSize);
+    pBits = (char*)malloc(bufSize);
     if (pBits) {
-        memset(pBits, 0, imageSize);
+        memset(pBits, 0, bufSize);
+    }
+
+    // Set pixel format based on bpp
+    PixelFmt.Bpp = bpp;
+    switch (bpp) {
+    case 32:
+        PixelFmt.Type = GB_PFT_A8R8G8B8;
+        PixelFmt.a_mask = 0xFF000000;
+        PixelFmt.r_mask = 0x00FF0000;
+        PixelFmt.g_mask = 0x0000FF00;
+        PixelFmt.b_mask = 0x000000FF;
+        PixelFmt.a_shift = 24;
+        PixelFmt.r_shift = 16;
+        PixelFmt.g_shift = 8;
+        PixelFmt.b_shift = 0;
+        break;
+    case 24:
+        PixelFmt.Type = GB_PFT_R8G8B8;
+        PixelFmt.a_mask = 0;
+        PixelFmt.r_mask = 0x00FF0000;
+        PixelFmt.g_mask = 0x0000FF00;
+        PixelFmt.b_mask = 0x000000FF;
+        PixelFmt.a_shift = 0;
+        PixelFmt.r_shift = 16;
+        PixelFmt.g_shift = 8;
+        PixelFmt.b_shift = 0;
+        break;
+    case 16:
+        PixelFmt.Type = GB_PFT_R5G6B5;
+        PixelFmt.r_mask = 0xF800;
+        PixelFmt.g_mask = 0x07E0;
+        PixelFmt.b_mask = 0x001F;
+        PixelFmt.a_mask = 0;
+        PixelFmt.r_shift = 11;
+        PixelFmt.g_shift = 5;
+        PixelFmt.b_shift = 0;
+        PixelFmt.a_shift = 0;
+        break;
+    case 8:
+        PixelFmt.Type = GB_PFT_P8;
+        break;
     }
 
     return (unsigned char*)pBits;
 }
 
+// 0x1001e490 (1262B) - Load image file via extension dispatch
 int gbImage2D::LoadImageFile(char* filename, int flags) {
-    if (!filename) return 0;
+    char localPath[256];
+    char ext[32];
+    int formatType = 0;
 
-    // Try to open file via virtual file system
-    gbVFile* file = g_pVFileSys->OpenFile(filename, 0x201);
-    if (!file) return 0;
+    strncpy(localPath, filename, sizeof(localPath) - 1);
+    localPath[sizeof(localPath) - 1] = '\0';
 
-    // Get file size
-    long fileSize = g_pVFileSys->GetFileSize(file);
-    if (fileSize <= 0) {
-        g_pVFileSys->CloseFile(file);
+    char* dot = strrchr(localPath, '.');
+    if (!dot) return 0;
+
+    strncpy(ext, dot, sizeof(ext) - 1);
+    ext[sizeof(ext) - 1] = '\0';
+    *dot = '\0';
+
+    D3DXIMAGE_INFO info;
+    HRESULT hr = D3DXGetImageInfoFromFile(filename, &info);
+    if (FAILED(hr))
         return 0;
+
+    Width = info.Width;
+    Height = info.Height;
+
+    D3DFORMAT targetFmt;
+    if (flags & 1) {
+        targetFmt = D3DFMT_A8R8G8B8;
+        BitCount = 32;
+    } else {
+        switch (info.Format) {
+        case D3DFMT_A8R8G8B8:
+        case D3DFMT_A8B8G8R8:
+            targetFmt = D3DFMT_A8R8G8B8;
+            BitCount = 32;
+            break;
+        case D3DFMT_R8G8B8:
+            targetFmt = D3DFMT_R8G8B8;
+            BitCount = 24;
+            break;
+        default:
+            targetFmt = D3DFMT_A8R8G8B8;
+            BitCount = 32;
+            break;
+        }
     }
 
-    // Allocate buffer for file data
-    unsigned char* fileData = (unsigned char*)malloc(fileSize);
-    if (!fileData) {
-        g_pVFileSys->CloseFile(file);
+    int bytesPerPixel = (BitCount + 7) / 8;
+    int bufSize = Width * Height * bytesPerPixel;
+    pBits = (char*)malloc(bufSize);
+    if (!pBits)
         return 0;
+
+    IDirect3DSurface9* pSurf = NULL;
+    IDirect3DDevice9* pDev = NULL;
+
+    hr = D3DXLoadSurfaceFromFile(pSurf, NULL, NULL, filename, NULL,
+                                  D3DX_FILTER_NONE, 0, &info);
+    if (FAILED(hr)) {
+        memset(pBits, 0, bufSize);
     }
 
-    // Read file data
-    g_pVFileSys->Read(fileData, fileSize, file);
-    g_pVFileSys->CloseFile(file);
-
-    // Check file format (simple magic number check)
-    // JPEG: FF D8 FF
-    // TGA: various formats
-    // BMP: 42 4D
-
-    int result = 0;
-
-    if (fileSize >= 3 && fileData[0] == 0xFF && fileData[1] == 0xD8 && fileData[2] == 0xFF) {
-        // JPEG file - use IJL15.dll
-        /* UNCERTAIN: IJL15 structure and loading details */
-        // For now, create a placeholder 32-bit image
-        CreateImage(256, 256, 32);
-        result = 1;
-    } else if (fileSize >= 18) {
-        // Try TGA format
-        /* UNCERTAIN: Full TGA parsing */
-        CreateImage(256, 256, 32);
-        result = 1;
-    } else if (fileSize >= 2 && fileData[0] == 0x42 && fileData[1] == 0x4D) {
-        // BMP file
-        /* UNCERTAIN: BMP parsing */
-        CreateImage(256, 256, 32);
-        result = 1;
+    if (BitCount == 32) {
+        unsigned char* pixels = (unsigned char*)pBits;
+        for (int y = 0; y < Height; y++) {
+            for (int x = 0; x < Width; x++) {
+                int idx = (y * Width + x) * 4;
+                unsigned char alpha = pixels[idx + 3];
+                if (alpha > 0 && alpha < 255) {
+                    for (int c = 0; c < 3; c++) {
+                        unsigned int val = ((unsigned int)pixels[idx + c] * 255) / alpha;
+                        if (val > 255) val = 255;
+                        pixels[idx + c] = (unsigned char)val;
+                    }
+                }
+            }
+        }
     }
 
-    free(fileData);
-    return result;
+    PixelFmt.Init(BitCount, 0x00FF0000, 0x0000FF00, 0x000000FF,
+                  (BitCount != 24) ? 0xFF000000 : 0);
+
+    formatType = (BitCount == 32) ? 2 : 1;
+    return formatType;
 }
 
 void gbImage2D::ScaleTo(int newW, int newH) {
@@ -197,46 +285,103 @@ void gbImage2D::ScaleTo(int newW, int newH) {
     }
 }
 
+// 0x1001efc0 (224B) - Write TGA image
 void gbImage2D::WriteTGAImage(char* filename) {
-    if (!filename || !pBits) return;
+    if (!pBits || !filename)
+        return;
 
-    /* UNCERTAIN: TGA writing format */
     FILE* fp = fopen(filename, "wb");
-    if (!fp) return;
+    if (!fp)
+        return;
 
-    // TGA header (18 bytes)
+    // TGA header
     unsigned char header[18];
-    memset(header, 0, 18);
-    header[2] = 2; // Uncompressed RGB
-    header[12] = Width & 0xFF;
-    header[13] = (Width >> 8) & 0xFF;
-    header[14] = Height & 0xFF;
-    header[15] = (Height >> 8) & 0xFF;
-    header[16] = BitCount;
-    header[17] = (BitCount == 32) ? 8 : 0; // Alpha bits
+    memset(header, 0, sizeof(header));
+    header[2] = 2;  // Uncompressed true-color
+    header[12] = (unsigned char)(Width & 0xFF);
+    header[13] = (unsigned char)((Width >> 8) & 0xFF);
+    header[14] = (unsigned char)(Height & 0xFF);
+    header[15] = (unsigned char)((Height >> 8) & 0xFF);
+    header[16] = (unsigned char)BitCount;
+    if (BitCount == 32)
+        header[17] = 0x28;  // Top-left origin + 8 alpha bits
+    else
+        header[17] = 0x20;  // Top-left origin
 
     fwrite(header, 1, 18, fp);
 
-    // Write pixel data (BGR/BGRA format for TGA)
-    int stride = (Width * BitCount + 7) / 8;
-    for (int y = Height - 1; y >= 0; y--) {
-        fwrite(pBits + y * stride, 1, stride, fp);
+    int pitch = (Width * BitCount + 31) / 32 * 4;
+    for (int y = 0; y < Height; y++) {
+        fwrite(pBits + y * pitch, 1, Width * (BitCount / 8), fp);
     }
 
     fclose(fp);
 }
 
+// 0x1001f5f0 (193B) - Write JPEG image using Intel JPEG Library
 void gbImage2D::WriteJpegImage(char* filename, int quality) {
-    if (!filename || !pBits) return;
+    JPEG_CORE_PROPERTIES props;
+    int result = ijlInit(&props);
+    if (result != 0)
+        return;
+    if (BitCount != 24)
+        return;
 
-    /* UNCERTAIN: JPEG encoding using IJL15.dll */
-    // Placeholder - actual implementation would use IJL15 API
+    int stride = (Width * 3 + 3) & ~3;
+    int padBytes = stride - Width * 3;
+
+    props.DIBBytes = pBits;
+    props.DIBWidth = Width;
+    props.DIBHeight = -Height;
+    props.DIBPadBytes = padBytes;
+    props.DIBChannels = 3;
+    props.DIBColor = 2;
+    props.JPGFile = filename;
+    props.JPGWidth = Width;
+    props.JPGHeight = Height;
+    props.JPGChannels = 3;
+    props.JPGColor = 3;
+    props.JPGSubsampling = 1;
+    props.jquality = quality;
+
+    result = ijlWrite(&props, 8);
+    if (result == 0) {
+        ijlFree(&props);
+    }
 }
 
+// 0x1001f6c0 (265B) - Write JPEG to memory buffer using Intel JPEG Library
 int gbImage2D::WriteJpegToBuffer(unsigned char* buffer, int bufSize) {
-    if (!buffer || !pBits || bufSize <= 0) return 0;
+    int result = ijlInit(&g_jpegProps);
+    if (result != 0)
+        return 0;
+    if (BitCount != 24)
+        return 0;
 
-    /* UNCERTAIN: JPEG encoding to memory buffer */
-    // Placeholder - actual implementation would use IJL15 API
-    return 0;
+    int stride = (Width * 3 + 3) & ~3;
+    int padBytes = stride - Width * 3;
+
+    g_jpegProps.DIBBytes = pBits;
+    g_jpegProps.DIBWidth = Width;
+    g_jpegProps.DIBHeight = -Height;
+    g_jpegProps.DIBPadBytes = padBytes;
+    g_jpegProps.DIBChannels = 3;
+    g_jpegProps.DIBColor = 2;
+    g_jpegProps.JPGFile = NULL;
+    g_jpegProps.JPGBytes = buffer;
+    g_jpegProps.JPGSizeBytes = (BitCount * Height * Width + 7) / 8;
+    g_jpegProps.JPGWidth = Width;
+    g_jpegProps.JPGHeight = Height;
+    g_jpegProps.JPGChannels = 3;
+    g_jpegProps.JPGColor = 3;
+    g_jpegProps.JPGSubsampling = 1;
+    g_jpegProps.jquality = bufSize;
+
+    result = ijlWrite(&g_jpegProps, 9);
+    if (result != 0)
+        return 0;
+
+    int written = g_jpegProps.JPGSizeBytes;
+    ijlFree(&g_jpegProps);
+    return written;
 }

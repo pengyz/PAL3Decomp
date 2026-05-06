@@ -1394,47 +1394,61 @@ bool gbPlane::IsColOBB(const gbOBBox* box) const {
     return fabsf(s) <= r;
 }
 
-int gbOBBox::IsColOBB(gbOBBox* param_1) {
-    // Separating Axis Theorem (SAT) for OBB-OBB collision
-    // Phase 1: Test 3 axes of this OBB and 3 axes of other OBB (interleaved)
+// OBB-OBB collision using Separating Axis Theorem (SAT)
+int gbOBBox::IsColOBB(gbOBBox* other) {
+    // Calculate translation vector
     gbVec3D T;
-    T.x = param_1->matrix.m[3][0] - matrix.m[3][0];
-    T.y = param_1->matrix.m[3][1] - matrix.m[3][1];
-    T.z = param_1->matrix.m[3][2] - matrix.m[3][2];
+    T.x = other->matrix.m[3][0] - matrix.m[3][0];
+    T.y = other->matrix.m[3][1] - matrix.m[3][1];
+    T.z = other->matrix.m[3][2] - matrix.m[3][2];
 
+    // Test 15 separating axes:
+    // - 3 axes from this OBB
+    // - 3 axes from other OBB
+    // - 9 cross products of axes
+
+    // Phase 1: Test face axes (interleaved for cache efficiency)
     for (int i = 0; i < 3; i++) {
         // Test this->axis[i]
-        gbVec3D row;
-        matrix.GetRow(i, &row);
-        float dot = row.x * T.x + row.y * T.y + row.z * T.z;
-        float radiusB = param_1->GetRadiusInDirection(&row);
-        float radiusA = ((float*)&extent)[i] * 0.5f;
-        if (fabsf(dot) > radiusA + radiusB) return 0;
+        gbVec3D axis;
+        matrix.GetRow(i, &axis);
+        float dist = fabsf(T.DotProduct(&axis));
+        float radiusA = ((float*)&extent)[i];
+        float radiusB = other->GetRadiusInDirection(&axis);
+        if (dist > radiusA + radiusB) return 0;
 
-        // Test param_1->axis[i]
-        param_1->matrix.GetRow(i, &row);
-        dot = row.x * T.x + row.y * T.y + row.z * T.z;
-        radiusA = GetRadiusInDirection(&row);
-        radiusB = ((float*)&param_1->extent)[i] * 0.5f;
-        if (fabsf(dot) > radiusA + radiusB) return 0;
+        // Test other->axis[i]
+        other->matrix.GetRow(i, &axis);
+        dist = fabsf(T.DotProduct(&axis));
+        radiusA = GetRadiusInDirection(&axis);
+        radiusB = ((float*)&other->extent)[i];
+        if (dist > radiusA + radiusB) return 0;
     }
 
-    // Phase 2: Test 9 cross-product axes
+    // Phase 2: Test cross product axes
     for (int i = 0; i < 3; i++) {
         gbVec3D axisA;
         matrix.GetRow(i, &axisA);
         for (int j = 0; j < 3; j++) {
             gbVec3D axisB;
-            param_1->matrix.GetRow(j, &axisB);
+            other->matrix.GetRow(j, &axisB);
+
             gbVec3D cross;
             axisA.CrossProduct(&axisB, &cross);
-            float dot = cross.x * T.x + cross.y * T.y + cross.z * T.z;
-            float radiusSum = param_1->GetRadiusInDirection(&cross) + GetRadiusInDirection(&cross);
-            if (fabsf(dot) > radiusSum) return 1;
+
+            // Skip near-parallel axes
+            float len = cross.Length();
+            if (len < 0.0001f) continue;
+
+            float dist = fabsf(T.DotProduct(&cross)) / len;
+            float radiusA = GetRadiusInDirection(&cross) / len;
+            float radiusB = other->GetRadiusInDirection(&cross) / len;
+
+            if (dist > radiusA + radiusB) return 0;
         }
     }
 
-    return 1;
+    return 1;  // No separating axis found - collision
 }
 
 bool gbRay::IsColAABB(const gbAABBox* box, gbVec3D* point) const {

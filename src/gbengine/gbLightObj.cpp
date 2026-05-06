@@ -52,31 +52,6 @@ void gbLightObj::ComputeBoundSphere(void) {
     boundingSphere.radius = range;
 }
 
-float gbLightObj::GetEffectOnPoint(const gbVec3D& point, int useAttenuation) {
-    if (!enabled) return 0.0f;
-
-    float dx = point.x - position.x;
-    float dy = point.y - position.y;
-    float dz = point.z - position.z;
-    float distance = sqrtf(dx * dx + dy * dy + dz * dz);
-
-    if (distance > range) return 0.0f;
-
-    if (useAttenuation) {
-        float attenuation = attenuation0 + attenuation1 * distance + attenuation2 * distance * distance;
-        if (attenuation < 0.001f) attenuation = 0.001f;
-        return 1.0f / attenuation;
-    }
-
-    return 1.0f;
-}
-
-void gbLightObj::Compute(gbVolModNode* volmod) {
-    // Update system light structure from light parameters
-    /* UNCERTAIN: gbLight structure mapping to D3DLIGHT9 */
-    ComputeBoundSphere();
-}
-
 int gbLightObj::GetType(void) {
     return lightType;
 }

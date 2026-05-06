@@ -78,63 +78,6 @@ void gbOBBox::GetSphere(gbSphere& sphere) {
     sphere.radius = extent.Length();
 }
 
-// OBB-OBB collision using Separating Axis Theorem (SAT)
-int gbOBBox::IsColOBB(gbOBBox* other) {
-    // Calculate translation vector
-    gbVec3D T;
-    T.x = other->matrix.m[3][0] - matrix.m[3][0];
-    T.y = other->matrix.m[3][1] - matrix.m[3][1];
-    T.z = other->matrix.m[3][2] - matrix.m[3][2];
-
-    // Test 15 separating axes:
-    // - 3 axes from this OBB
-    // - 3 axes from other OBB
-    // - 9 cross products of axes
-
-    // Phase 1: Test face axes (interleaved for cache efficiency)
-    for (int i = 0; i < 3; i++) {
-        // Test this->axis[i]
-        gbVec3D axis;
-        matrix.GetRow(&axis, i);
-        float dist = fabsf(T.DotProduct(&axis));
-        float radiusA = ((float*)&extent)[i];
-        float radiusB = other->GetRadiusInDirection(axis);
-        if (dist > radiusA + radiusB) return 0;
-
-        // Test other->axis[i]
-        other->matrix.GetRow(&axis, i);
-        dist = fabsf(T.DotProduct(&axis));
-        radiusA = GetRadiusInDirection(axis);
-        radiusB = ((float*)&other->extent)[i];
-        if (dist > radiusA + radiusB) return 0;
-    }
-
-    // Phase 2: Test cross product axes
-    for (int i = 0; i < 3; i++) {
-        gbVec3D axisA;
-        matrix.GetRow(&axisA, i);
-        for (int j = 0; j < 3; j++) {
-            gbVec3D axisB;
-            other->matrix.GetRow(&axisB, j);
-
-            gbVec3D cross;
-            axisA.CrossProduct(&axisB, &cross);
-
-            // Skip near-parallel axes
-            float len = cross.Length();
-            if (len < 0.0001f) continue;
-
-            float dist = fabsf(T.DotProduct(&cross)) / len;
-            float radiusA = GetRadiusInDirection(cross) / len;
-            float radiusB = other->GetRadiusInDirection(cross) / len;
-
-            if (dist > radiusA + radiusB) return 0;
-        }
-    }
-
-    return 1;  // No separating axis found - collision
-}
-
 // Point-in-OBB test
 int gbOBBox::IsColPoint(gbVec3D& point) {
     gbVec3D center;

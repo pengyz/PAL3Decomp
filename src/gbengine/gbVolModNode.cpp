@@ -8,47 +8,37 @@
 #include "gbengine/gbSceneGraph.h"
 #include <string.h>
 
-gbVolModNode::gbVolModNode(void) {
-    memset(this, 0, sizeof(gbVolModNode));
-}
-
-gbVolModNode::gbVolModNode(const gbVolModNode& other) {
-    memcpy(this, &other, sizeof(gbVolModNode));
-}
+struct gbRefObject {
+    void* vtable;
+    int RefCount;
+};
 
 gbVolModNode::~gbVolModNode(void) {
 }
 
-gbVolModNode& gbVolModNode::operator=(const gbVolModNode& other) {
-    if (this != &other) {
-        memcpy(this, &other, sizeof(gbVolModNode));
+void gbVolModNode::SetVolModObj(class gbVolumeModifier * p0) {
+    if (p0 != 0) {
+        ((gbRefObject*)p0)->RefCount += 1;
     }
-    return *this;
+    pVolMod = (void*)p0;
 }
 
-void gbVolModNode::SetVolModObj(gbVolumeModifier* volmod) {
-    /* UNCERTAIN: Volume modifier assignment */
-    // Would store pointer to volume modifier object
-}
-
-int gbVolModNode::Attach(gbRenderEffect* effect) {
-    /* UNCERTAIN: Attach render effect to node */
-    return 1;
-}
-
-void gbVolModNode::GetBoundSphere(gbSphere* sphere) {
-    if (sphere) {
-        sphere->center.x = sphere->center.y = sphere->center.z = 0.0f;
-        sphere->radius = 100.0f;
+void gbVolModNode::GetBoundSphere(struct gbSphere * p0) {
+    // From Ghidra (GetBoundSphere at 0x10013160):
+    // Call pVolMod->vtable[2] to get bounding sphere data,
+    // then transform center by localMatrix
+    if (pVolMod != 0 && p0 != 0) {
+        typedef void* (__thiscall *GetSphereFn)(void*);
+        int** vt = (int**)pVolMod;
+        GetSphereFn fn = (GetSphereFn)((*vt)[2]);
+        int* sphereData = (int*)fn(pVolMod);
+        if (sphereData) {
+            // First dword is radius
+            *(int*)&p0->radius = sphereData[0];
+            // Transform center by localMatrix
+            gbVec3D* srcCenter = (gbVec3D*)(sphereData + 1);
+            localMatrix.Transform(srcCenter, &p0->center);
+        }
     }
 }
 
-void gbVolModNode::Render(gbRenderInfoObj* renderInfo) {
-    /* UNCERTAIN: Volume modifier rendering */
-    // Would render shadow volume or lighting volume
-}
-
-gbLightObj* gbVolModNode::GetLightObj(void) {
-    /* UNCERTAIN: Get associated light object */
-    return NULL;
-}

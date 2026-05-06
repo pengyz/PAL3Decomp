@@ -23,13 +23,6 @@ bool gbVec3D::IsValid(void) const
     return true;
 }
 
-void gbVec3D::CrossProduct(const gbVec3D *other, gbVec3D *result) const
-{
-    result->x = y * other->z - other->y * z;
-    result->y = other->x * z - x * other->z;
-    result->z = other->y * x - other->x * y;
-}
-
 void gbVec3D::Normalize(void)
 {
     float len = Length();

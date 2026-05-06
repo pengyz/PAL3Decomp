@@ -371,42 +371,12 @@ int gbGfxManager::IsWireMode(void) {
 }
 
 
-// ============================================================================
-// gbRenderEffect method implementations
-// ============================================================================
-
-// 0x1001cef0 (139B) - Private constructor from effect and flags
-gbRenderEffect::gbRenderEffect(ID3DXEffect* pEffect, unsigned int flags) {
-    m_pEffect = pEffect;
-    m_dwFlags = flags;
-    m_nPasses = 0;
-    m_pDecl = NULL;
-    m_nTechnique = 0;
-
-    if (m_pEffect) {
-        m_pEffect->AddRef();
-    }
-}
-
 gbRenderEffect::~gbRenderEffect() {
     if (m_pEffect) {
         m_pEffect->Release();
         m_pEffect = NULL;
     }
     m_pDecl = NULL;
-}
-
-// 0x10004bf0 (92B) - Copy constructor
-gbRenderEffect::gbRenderEffect(const gbRenderEffect& other) {
-    m_pEffect = other.m_pEffect;
-    m_dwFlags = other.m_dwFlags;
-    m_nPasses = other.m_nPasses;
-    m_pDecl = other.m_pDecl;
-    m_nTechnique = other.m_nTechnique;
-
-    if (m_pEffect) {
-        m_pEffect->AddRef();
-    }
 }
 
 // operator=
@@ -525,11 +495,6 @@ void gbRenderEffect::SetVariant(char* name, void* pValue) {
 // Exported: GetD3DEffect
 ID3DXEffect* gbRenderEffect::GetD3DEffect(void) {
     return m_pEffect;
-}
-
-// Exported: GetFlag
-unsigned int gbRenderEffect::GetFlag(void) {
-    return m_dwFlags;
 }
 
 
@@ -761,13 +726,6 @@ gbRenderEffect* gbEffectMgr::GetRenderEffect(unsigned int index) {
     return m_pEffects[index];
 }
 
-// Exported: GetDefaultEffect
-gbRenderEffect* gbEffectMgr::GetDefaultEffect(void) {
-    if (m_nNumEffects > 0)
-        return m_pEffects[0];
-    return NULL;
-}
-
 // Exported: GetGrayTexture
 // Returns cached gray texture from internal field (not yet mapped in header)
 gbTexture* gbEffectMgr::GetGrayTexture(void) {
@@ -800,10 +758,4 @@ public:
     int IsPreferAlpha();
 
 };
-
-// ---- gbGfxManager_D3D ----
-void gbGfxManager_D3D::SetTexture(struct gbTextureArray * p0) { (void)p0; }
-
-// ---- gbImage2DInfo ----
-struct gbImage2DInfo & gbImage2DInfo::operator=(struct gbImage2DInfo const & p0) { if (this != &p0) memcpy(this, &p0, sizeof(*this)); return *this; }
 

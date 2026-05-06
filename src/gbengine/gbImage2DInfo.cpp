@@ -13,7 +13,3 @@ gbImage2DInfo& gbImage2DInfo::operator=(const gbImage2DInfo& other) {
     return *this;
 }
 
-int gbImage2DInfo::IsPreferAlpha(void) {
-    // Check if this image prefers alpha channel (based on goal or mipmap settings)
-    return (goal != 0) || (mipmap != 0);
-}

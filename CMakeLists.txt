@@ -121,9 +121,8 @@ elseif(BUILD_TARGET STREQUAL "gbengine")
         )
 
         # Use .def file for exports (matching original DLL export table)
-        # /FORCE:MULTIPLE: temporary - duplicate definitions exist until file ownership is resolved
         set_target_properties(gbengine PROPERTIES
-            LINK_FLAGS "/DEF:\"${CMAKE_SOURCE_DIR}/src/gbengine/gbengine.def\" /FORCE:MULTIPLE /SAFESEH:NO"
+            LINK_FLAGS "/DEF:\"${CMAKE_SOURCE_DIR}/src/gbengine/gbengine.def\" /SAFESEH:NO"
         )
 
         # Apply VC6 optimization flags

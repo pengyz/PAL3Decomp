@@ -18,41 +18,6 @@ gbSceneGraph* gbVisNode_pSceneGraph = NULL;
 
 /* ======== gbLightObj method implementations ======== */
 
-gbLightObj::gbLightObj(void) {
-    position.x = position.y = position.z = 0.0f;
-    direction.x = 0.0f;
-    direction.y = 0.0f;
-    direction.z = 1.0f;
-    diffuse.r = diffuse.g = diffuse.b = diffuse.a = 1.0f;
-    ambient.r = ambient.g = ambient.b = ambient.a = 0.0f;
-    specular.r = specular.g = specular.b = specular.a = 1.0f;
-    range = 1000.0f;
-    attenuation0 = 1.0f;
-    attenuation1 = 0.0f;
-    attenuation2 = 0.0f;
-    lightType = 1;
-    enabled = 1;
-    memset(&sysLight, 0, sizeof(sysLight));
-}
-
-gbLightObj::gbLightObj(const gbLightObj& other) {
-    memcpy(this, &other, sizeof(gbLightObj));
-}
-
-gbLightObj::~gbLightObj(void) {
-}
-
-void gbLightObj::Init(enum LIGHT_TYPE type) {
-    lightType = (int)type;
-    enabled = 1;
-    ComputeBoundSphere();
-}
-
-void gbLightObj::ComputeBoundSphere(void) {
-    boundingSphere.center = position;
-    boundingSphere.radius = range;
-}
-
 float gbLightObj::GetEffectOnPoint(const gbVec3D& point, int useAttenuation) {
     if (!enabled) return 0.0f;
 
@@ -146,25 +111,6 @@ void gbLightObj::Compute(gbVolModNode* volmod) {
         sysLight.position.y = sysLight.direction.y * -100000.0f;
         sysLight.position.z = sysLight.direction.z * -100000.0f;
     }
-}
-
-int gbLightObj::GetType(void) {
-    return lightType;
-}
-
-const gbSphere* gbLightObj::GetBoundSphere(void) {
-    return &boundingSphere;
-}
-
-gbLight* gbLightObj::GetSysLight(void) {
-    return &sysLight;
-}
-
-gbLightObj& gbLightObj::operator=(const gbLightObj& other) {
-    if (this != &other) {
-        memcpy(this, &other, sizeof(gbLightObj));
-    }
-    return *this;
 }
 
 

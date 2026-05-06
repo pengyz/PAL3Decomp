@@ -30,13 +30,16 @@ gbDropUnit::gbDropUnit(void) {
 
 /* ======== gbDropGroup ======== */
 
-gbDropGroup::gbDropGroup(int maxDrops, const gbDropDesc* dropDesc, const char* texName) {
-    maxUnits = maxDrops;
+gbDropGroup::gbDropGroup(int maxCount, const gbDropDesc* dropDesc, const char* texName) {
+    units = NULL;
+    maxUnits = maxCount;
     numActiveUnits = 0;
 
-    units = new gbDropUnit[maxDrops];
-
-    memcpy(&desc, dropDesc, sizeof(gbDropDesc));
+    if (dropDesc) {
+        memcpy(&desc, dropDesc, sizeof(gbDropDesc));
+    } else {
+        memset(&desc, 0, sizeof(gbDropDesc));
+    }
 
     if (texName) {
         strncpy(textureName, texName, 63);
@@ -48,6 +51,13 @@ gbDropGroup::gbDropGroup(int maxDrops, const gbDropDesc* dropDesc, const char* t
     pTexture = NULL;
     elapsedTime = 0.0f;
     spawnTimer = 0.0f;
+
+    if (maxCount > 0) {
+        units = (gbDropUnit*)malloc(sizeof(gbDropUnit) * maxCount);
+        if (units) {
+            memset(units, 0, sizeof(gbDropUnit) * maxCount);
+        }
+    }
 }
 
 gbDropGroup::gbDropGroup(const gbDropGroup& other) {

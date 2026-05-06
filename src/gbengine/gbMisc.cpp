@@ -677,81 +677,103 @@ double gbTimeCounter_Off(gbTimeCounter* This)
     return This->elapsed;
 }
 
-// ======== gbPixelFormat Method Implementations ========
-// gbPixelFormat is declared in gbengine_types.h
-
-gbPixelFormat& gbPixelFormat::operator=(const gbPixelFormat& other) {
-    if (this != &other) {
-        memcpy(this, &other, sizeof(gbPixelFormat));
+void gbPixelFormat::Convert(unsigned char* src, gbPixelFormat* dstFmt, unsigned char* dst, int numPixels) {
+    if (!src || !dst || !dstFmt || numPixels <= 0) {
+        return;
     }
-    return *this;
-}
 
-void gbPixelFormat::Init(gbPixelFormat* other) {
-    memcpy(this, other, sizeof(gbPixelFormat));
-}
+    int srcBytesPerPixel = Bpp / 8;
+    int dstBytesPerPixel = dstFmt->Bpp / 8;
 
-void gbPixelFormat::Init(int inBpp, unsigned int inRMask, unsigned int inGMask, unsigned int inBMask, unsigned int inAMask) {
-    Bpp = inBpp;
-    r_mask = inRMask;
-    g_mask = inGMask;
-    b_mask = inBMask;
-    a_mask = inAMask;
-    Pal = NULL;
-    r_shift = 0;
-    g_shift = 0;
-    b_shift = 0;
-    a_shift = 0;
-}
+    for (int i = 0; i < numPixels; i++) {
+        unsigned int r, g, b, a;
 
-void gbPixelFormat::Init(int inBpp, gbColorQuad* inPalette) {
-    Bpp = inBpp;
-    Pal = inPalette;
-    r_mask = g_mask = b_mask = a_mask = 0;
-}
+        // Extract from source format
+        if (Type == GB_PFT_P8 && Pal) {
+            unsigned char index = src[i];
+            r = Pal[index].r;
+            g = Pal[index].g;
+            b = Pal[index].b;
+            a = Pal[index].a;
+        } else {
+            unsigned int pixel = 0;
+            memcpy(&pixel, src + i * srcBytesPerPixel, srcBytesPerPixel);
 
-void gbPixelFormat::Init(gbPixelFmtType type) {
-    switch (type) {
-    case GB_PFT_A8R8G8B8:
-        Bpp = 32;
-        a_mask = 0xFF000000;
-        r_mask = 0x00FF0000;
-        g_mask = 0x0000FF00;
-        b_mask = 0x000000FF;
-        break;
-    case GB_PFT_R8G8B8:
-        Bpp = 24;
-        r_mask = 0x00FF0000;
-        g_mask = 0x0000FF00;
-        b_mask = 0x000000FF;
-        a_mask = 0;
-        break;
-    default:
-        Bpp = 0;
-        r_mask = g_mask = b_mask = a_mask = 0;
-        break;
+            r = (pixel & r_mask) >> r_shift;
+            g = (pixel & g_mask) >> g_shift;
+            b = (pixel & b_mask) >> b_shift;
+            a = a_mask ? ((pixel & a_mask) >> a_shift) : 0xFF;
+
+            // Scale to 8-bit
+            if (r_mask) {
+                unsigned int rBits = 0;
+                unsigned int temp = r_mask;
+                while (temp) { rBits++; temp >>= 1; }
+                r = (r * 255) / ((1 << rBits) - 1);
+            }
+            if (g_mask) {
+                unsigned int gBits = 0;
+                unsigned int temp = g_mask;
+                while (temp) { gBits++; temp >>= 1; }
+                g = (g * 255) / ((1 << gBits) - 1);
+            }
+            if (b_mask) {
+                unsigned int bBits = 0;
+                unsigned int temp = b_mask;
+                while (temp) { bBits++; temp >>= 1; }
+                b = (b * 255) / ((1 << bBits) - 1);
+            }
+            if (a_mask) {
+                unsigned int aBits = 0;
+                unsigned int temp = a_mask;
+                while (temp) { aBits++; temp >>= 1; }
+                a = (a * 255) / ((1 << aBits) - 1);
+            }
+        }
+
+        // Pack into destination format
+        unsigned int dstPixel = 0;
+        if (dstFmt->r_mask) {
+            unsigned int rBits = 0;
+            unsigned int temp = dstFmt->r_mask >> dstFmt->r_shift;
+            while (temp) { rBits++; temp >>= 1; }
+            r = (r * ((1 << rBits) - 1)) / 255;
+            dstPixel |= (r << dstFmt->r_shift) & dstFmt->r_mask;
+        }
+        if (dstFmt->g_mask) {
+            unsigned int gBits = 0;
+            unsigned int temp = dstFmt->g_mask >> dstFmt->g_shift;
+            while (temp) { gBits++; temp >>= 1; }
+            g = (g * ((1 << gBits) - 1)) / 255;
+            dstPixel |= (g << dstFmt->g_shift) & dstFmt->g_mask;
+        }
+        if (dstFmt->b_mask) {
+            unsigned int bBits = 0;
+            unsigned int temp = dstFmt->b_mask >> dstFmt->b_shift;
+            while (temp) { bBits++; temp >>= 1; }
+            b = (b * ((1 << bBits) - 1)) / 255;
+            dstPixel |= (b << dstFmt->b_shift) & dstFmt->b_mask;
+        }
+        if (dstFmt->a_mask) {
+            unsigned int aBits = 0;
+            unsigned int temp = dstFmt->a_mask >> dstFmt->a_shift;
+            while (temp) { aBits++; temp >>= 1; }
+            a = (a * ((1 << aBits) - 1)) / 255;
+            dstPixel |= (a << dstFmt->a_shift) & dstFmt->a_mask;
+        }
+
+        memcpy(dst + i * dstBytesPerPixel, &dstPixel, dstBytesPerPixel);
     }
-    Pal = NULL;
 }
-
-void gbPixelFormat::Convert(unsigned char* dst, gbPixelFormat* dstFmt, unsigned char* src, int pixelCount) {
-    int srcBytes = (Bpp / 8) * pixelCount;
-    int dstBytes = (dstFmt->Bpp / 8) * pixelCount;
-    int copyBytes = (srcBytes < dstBytes) ? srcBytes : dstBytes;
-    memcpy(dst, src, copyBytes);
-}
-
-void gbPixelFormat::Release(void) {
-    Pal = NULL;
-    Bpp = 0;
-}
-
-// ======== gbUIRect Method Implementations ========
-// gbUIRect is declared in gbengine_types.h
 
 gbUIRect& gbUIRect::operator=(const gbUIRect& other) {
     if (this != &other) {
-        memcpy(this, &other, sizeof(gbUIRect));
+        m_pTexture = other.m_pTexture;
+        m_pGfx = other.m_pGfx;
+        left = other.left;
+        top = other.top;
+        width = other.width;
+        height = other.height;
     }
     return *this;
 }
@@ -770,11 +792,6 @@ void gbUIRect::Release(void) {
         m_pTexture->refObj.Release();
         m_pTexture = NULL;
     }
-}
-
-void gbUIRect::Render(int flags) {
-    if (!m_pGfx || !m_pTexture) return;
-    (void)flags;
 }
 
 // ======== gbVec3D default constructor closure ========
@@ -801,19 +818,6 @@ extern "C" char stamp[] = "Mon Jan  5 16:39:11 2004";
 #pragma auto_inline(off)
 
 int gbColorQuad::ColorQuadFmt;
-
-// ---- gbColorFlt ----
-gbColorFlt::gbColorFlt(float p0, float p1, float p2) { r = p0; g = p1; b = p2; a = 1.0f; }
-
-gbColorFlt::gbColorFlt(float p0, float p1, float p2, float p3) { r = p0; g = p1; b = p2; a = p3; }
-
-gbColorFlt::gbColorFlt() { r = g = b = a = 0.0f; }
-
-struct gbColorFlt & gbColorFlt::operator=(struct gbColorFlt const & p0) { r = p0.r; g = p0.g; b = p0.b; a = p0.a; return *this; }
-
-int gbColorFlt::operator!=(struct gbColorFlt & p0) { return (r != p0.r || g != p0.g || b != p0.b || a != p0.a) ? 1 : 0; }
-
-void gbColorFlt::operator+=(struct gbColorFlt const & p0) { r += p0.r; g += p0.g; b += p0.b; a += p0.a; }
 
 // ---- gbColorQuad ----
 gbColorQuad::gbColorQuad(struct gbColorQuad & p0) { *(unsigned int*)this = *(unsigned int*)&p0; }
@@ -843,8 +847,6 @@ gbNameVarBuf::gbNameVarBuf() {
     locked = 0;
 }
 
-class gbNameVarBuf & gbNameVarBuf::operator=(class gbNameVarBuf const & p0) { if (this != &p0) memcpy(this, &p0, sizeof(*this)); return *this; }
-
 void gbNameVarBuf::GetVariant(unsigned int p0, void * p1) {
     unsigned int* table = (unsigned int*)varTable;
     for (int i = 0; i < varCount; i++) {
@@ -869,19 +871,29 @@ int gbNameVarBuf::IsVarExist(unsigned int p0) {
     return 0;
 }
 
-void * gbNameVarBuf::LockVariant(unsigned int p0, int * p1) {
-    unsigned int* table = (unsigned int*)varTable;
+struct VarDesc {
+    unsigned int nameHash;
+    unsigned int size;
+    unsigned int offset;
+    unsigned int count;
+};
+
+void* gbNameVarBuf::LockVariant(unsigned int nameHash, int* outSize) {
+    VarDesc* desc = (VarDesc*)varTable;
     for (int i = 0; i < varCount; i++) {
-        if (table[i * 4] == p0) {
+        if (desc[i].nameHash == nameHash) {
             locked = 1;
-            if (p1 != 0) {
-                *p1 = table[i * 4 + 3] * table[i * 4 + 1];
+            if (outSize) {
+                *outSize = desc[i].size;
             }
-            unsigned int dataOffset = table[i * 4 + 2];
-            return (char*)dataBuf + dataOffset;
+            return (char*)dataBuf + desc[i].offset;
         }
     }
-    return 0;
+
+    if (outSize) {
+        *outSize = 0;
+    }
+    return NULL;
 }
 
 void gbNameVarBuf::RegVariant(unsigned int p0, int p1, int p2) {
@@ -951,10 +963,26 @@ void gbNameVarBuf::UnlockVariant() {
     locked = 0;
 }
 
-// ---- gbTimeCounter ----
-class gbTimeCounter & gbTimeCounter::operator=(class gbTimeCounter const & p0) { if (this != &p0) memcpy(this, &p0, sizeof(*this)); return *this; }
+gbTimeCounter& gbTimeCounter::operator=(const gbTimeCounter& other) {
+    if (this != &other) {
+        startTime = other.startTime;
+        freq = other.freq;
+        elapsed = other.elapsed;
+        timestamp = other.timestamp;
+    }
+    return *this;
+}
 
-double gbTimeCounter::Off() { return 0.0; }
+double gbTimeCounter::Off() {
+    LARGE_INTEGER endTime;
+    QueryPerformanceCounter(&endTime);
+
+    // Calculate elapsed time in seconds
+    elapsed = (double)(endTime.QuadPart - startTime.QuadPart) / (double)freq.QuadPart;
+    timestamp = elapsed;
+
+    return elapsed;
+}
 
 void gbTimeCounter::On() {
     LARGE_INTEGER counter;

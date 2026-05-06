@@ -302,36 +302,6 @@ void gbMatrix4::SetAxisAngle(gbVec3D *axis, float angle)
     q.GetMatrix(this);
 }
 
-void gbMatrix4::Invert(void)
-{
-    gbMatrix4 tmp;
-    tmp.m[0][3] = 0.0f;
-    tmp.m[1][3] = 0.0f;
-
-    float cofA = m[1][1] * m[2][2] - m[2][1] * m[1][2];
-    float cofB = m[1][0] * m[2][2] - m[2][0] * m[1][2];
-    float cofC = m[2][1] * m[1][0] - m[2][0] * m[1][1];
-
-    float det = 1.0f / (cofA * m[0][0] - cofB * m[0][1] + cofC * m[0][2]);
-
-    tmp.m[0][0] = cofA * det;
-    tmp.m[0][1] = -((m[0][1] * m[2][2] - m[2][1] * m[0][2]) * det);
-    tmp.m[0][2] = (m[0][1] * m[1][2] - m[0][2] * m[1][1]) * det;
-    tmp.m[1][0] = -(cofB * det);
-    tmp.m[1][1] = (m[0][0] * m[2][2] - m[2][0] * m[0][2]) * det;
-    tmp.m[1][2] = -((m[0][0] * m[1][2] - m[1][0] * m[0][2]) * det);
-    tmp.m[2][0] = cofC * det;
-    tmp.m[2][3] = 0.0f;
-    tmp.m[3][3] = 1.0f;
-    tmp.m[2][1] = -((m[2][1] * m[0][0] - m[2][0] * m[0][1]) * det);
-    tmp.m[2][2] = (m[1][1] * m[0][0] - m[1][0] * m[0][1]) * det;
-    tmp.m[3][0] = -(tmp.m[1][0] * m[3][1] + tmp.m[2][0] * m[3][2] + tmp.m[0][0] * m[3][0]);
-    tmp.m[3][1] = -(tmp.m[1][1] * m[3][1] + tmp.m[2][1] * m[3][2] + tmp.m[0][1] * m[3][0]);
-    tmp.m[3][2] = -(tmp.m[1][2] * m[3][1] + tmp.m[2][2] * m[3][2] + tmp.m[0][2] * m[3][0]);
-
-    *this = tmp;
-}
-
 void gbMatrix4::Invert(gbMatrix4 *out) const
 {
     float cofA = m[1][1] * m[2][2] - m[2][1] * m[1][2];

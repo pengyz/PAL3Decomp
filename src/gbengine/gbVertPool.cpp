@@ -61,10 +61,27 @@ unsigned short* gbIndexBubble::Lock16() {
     return nullptr;
 }
 
-// Lock32
+// gbIndexBubble::Lock32 - Lock 32-bit index buffer
+
 unsigned int* gbIndexBubble::Lock32() {
-    // Lock the index buffer for 32-bit indices
-    return nullptr;
+    if (!pPool || !pPool->pIndexBuffer) {
+        return NULL;
+    }
+
+    // Lock the D3D index buffer
+    void* pData = NULL;
+    HRESULT hr = pPool->pIndexBuffer->Lock(
+        startIndex * sizeof(unsigned int),  // Offset in bytes
+        count * sizeof(unsigned int),        // Size in bytes
+        &pData,
+        0                                    // Flags
+    );
+
+    if (FAILED(hr)) {
+        return NULL;
+    }
+
+    return (unsigned int*)pData;
 }
 
 // Unlock: 0x10020920
@@ -677,15 +694,25 @@ int gbVertPoolMgr::OnResetDevice() {
     return 1;
 }
 
-// FindVertexPoolIndex: 0x100212a0
-int gbVertPoolMgr::FindVertexPoolIndex(unsigned int* fvf, unsigned int type) {
-    // Find pool index for given FVF type
+// Find which vertex pool index contains the given FVF
+int gbVertPoolMgr::FindVertexPoolIndex(unsigned int* pFVF, unsigned int fvf) {
     for (int i = 0; i < 32; i++) {
-        if (this->vertexPools[i] && this->vertexPools[i]->fvf == type) {
-            *fvf = type;
+        if (vertexPools[i] && vertexPools[i]->fvf == fvf) {
+            if (pFVF) *pFVF = fvf;
             return i;
         }
     }
+
+    // Not found - return first available slot
+    for (int i = 0; i < 32; i++) {
+        if (!vertexPools[i]) {
+            if (pFVF) *pFVF = 0;
+            return i;
+        }
+    }
+
+    // No slots available
+    if (pFVF) *pFVF = 0;
     return -1;
 }
 

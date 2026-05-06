@@ -50,7 +50,6 @@ extern "C" {
 #define LZO1X_1_MEM_COMPRESS (16384 * sizeof(unsigned char*))
 
 // Static member definitions
-unsigned long CPK::CrcTable[256];
 int CPK::s_bCrcTableInitialized = 0;
 
 // Global pointer to the virtual file system
@@ -283,12 +282,19 @@ bool CPK::Unload()
     return 1;
 }
 
-void CPK::Reset()
-{
-    memset(&m_CPKHeader, 0, sizeof(CPKHeader));
+void CPK::Reset(void) {
+    m_dwAllocGranularity = 0;
+    m_eMode = CPKM_Null;
+    memset(&m_CPKHeader, 0, sizeof(m_CPKHeader));
     memset(m_CPKTable, 0, sizeof(m_CPKTable));
-    m_nOpenedFileNum = 0;
+    for (int i = 0; i < CPK_MAX_OPEN_FILES; i++) {
+        m_pCPKFile[i] = NULL;
+    }
+    m_bLoaded = 0;
+    m_dwCPKHandle = 0;
+    m_dwCPKMappingHandle = 0;
     m_szCPKFileName[0] = '\0';
+    m_nOpenedFileNum = 0;
 }
 
 void CPK::SetOpenMode(ECPKMode mode)
@@ -661,16 +667,6 @@ unsigned long CPK::Seek(CPKFile* pFile, int offset, unsigned long origin)
     return pFile->dwPointer;
 }
 
-bool CPK::GetFileSize(unsigned long& packedSize, unsigned long& originSize, unsigned long tableIndex)
-{
-    if (tableIndex >= m_CPKHeader.dwValidTableNum)
-        return 0;
-
-    packedSize = m_CPKTable[tableIndex].dwPackedSize;
-    originSize = m_CPKTable[tableIndex].dwOriginSize;
-    return 1;
-}
-
 int CPK::GetTableIndex(const char* filename)
 {
     if (!filename)
@@ -817,15 +813,6 @@ char* gbVFile1::GetTitle(char* buf, int bufLen)
     }
 
     return buf;
-}
-
-unsigned int gbVFile1::GetEntry()
-{
-    // Return the file extension as a hash/ID
-    char* dot = strrchr(fullPath, '.');
-    if (dot)
-        return (unsigned int)(dot - fullPath);
-    return 0;
 }
 
 
@@ -1526,29 +1513,32 @@ gbVTextFile::gbVTextFile() {
     m_pFile = 0;
 }
 
-class gbVTextFile & gbVTextFile::operator=(class gbVTextFile const & p0) { if (this != &p0) memcpy(this, &p0, sizeof(*this)); return *this; }
-
-void gbVTextFile::Close() {
-    if (m_pFile == 0) {
-        return;
+gbVTextFile& gbVTextFile::operator=(const gbVTextFile& other) {
+    if (this != &other) {
+        Close();
+        memcpy(lineBuf, other.lineBuf, sizeof(lineBuf));
+        m_pFile = other.m_pFile;
     }
-    g_pVFileSys->CloseFile(m_pFile);
-    m_pFile = 0;
+    return *this;
 }
 
-void gbVTextFile::Open(char * p0) {
-    if (m_pFile != 0) {
-        g_pVFileSys->CloseFile(m_pFile);
-        m_pFile = 0;
+char* gbVTextFile::ReadLine() {
+    if (!m_pFile || !g_pVFileSys) {
+        return NULL;
     }
-    m_pFile = g_pVFileSys->OpenFile(p0, 0x401);
-}
 
-char * gbVTextFile::ReadLine() {
-    return g_pVFileSys->ReadLine(lineBuf, 0x400, m_pFile);
-}
+    // Read a line from the file
+    char* result = g_pVFileSys->ReadLine(lineBuf, sizeof(lineBuf) - 1, m_pFile);
+    if (!result) {
+        return NULL;
+    }
 
-void gbVTextFile::Rewind() {
-    g_pVFileSys->Seek(m_pFile, 0, 1);
+    // Trim trailing newline/carriage return
+    int len = (int)strlen(lineBuf);
+    while (len > 0 && (lineBuf[len - 1] == '\n' || lineBuf[len - 1] == '\r')) {
+        lineBuf[--len] = '\0';
+    }
+
+    return lineBuf;
 }
 
