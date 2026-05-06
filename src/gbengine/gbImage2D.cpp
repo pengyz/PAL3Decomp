@@ -251,7 +251,9 @@ int gbImage2D::LoadImageFile(char* filename, int flags) {
 }
 
 // Internal scaling function (0x100244D0, not exported)
-extern void __cdecl gbScalePixelData(int mode, int bytesPerPixel, int srcW, int srcH, void* srcData, int dstW, int dstH, void* dstData);
+void __cdecl gbScalePixelData(int mode, int bytesPerPixel, int srcW, int srcH, void* srcData, int dstW, int dstH, void* dstData) {
+    /* STUB - bilinear pixel scaler, 0x100244D0 */
+}
 
 void gbImage2D::ScaleTo(int newW, int newH) {
     if (!pBits) return;
