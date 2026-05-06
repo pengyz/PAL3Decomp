@@ -635,7 +635,7 @@ float gbParticleEffect::GetSpaceScale(void) {
 #include "gbengine/gbGfxManager.h"
 
 extern gbVFileSystem* g_pVFileSys;
-extern char* gbVfgetdir(char* path, char* dir, int maxLen);
+extern char* gbVfgetdir(const char* path, char* dir, int maxLen);
 
 #pragma optimize("", off)
 #pragma auto_inline(off)

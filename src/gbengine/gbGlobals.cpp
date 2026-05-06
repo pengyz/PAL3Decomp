@@ -282,3 +282,40 @@ void gbGetRealWorldTime(gbRealWorldTime* time) {
     time->second = (unsigned int)st.wSecond;
     time->milliseconds = (unsigned int)st.wMilliseconds;
 }
+
+// Display mode management
+void gbInitDispSetting(void)
+{
+}
+
+int gbChangeDispMode(int p1, int p2, int p3)
+{
+    return 0;
+}
+
+void gbRestoreDispMode(void)
+{
+}
+
+void gbPushDispMode(void)
+{
+}
+
+void gbPopDispMode(void)
+{
+}
+
+int gbGetOSUserName(char * p1, int p2)
+{
+    return 0;
+}
+
+int gbGetCPU_MHZ(void)
+{
+    return 0;
+}
+
+int gbGetINIValue(char * p1, char * p2, char * p3)
+{
+    return 0;
+}
