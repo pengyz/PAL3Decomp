@@ -21,16 +21,22 @@ gbAABBox& gbAABBox::operator=(const gbAABBox& box) {
 
 // AABB-AABB collision test
 int gbAABBox::IsColAABB(gbAABBox& box) {
-    return (vMin.x <= box.vMax.x && vMax.x >= box.vMin.x &&
-            vMin.y <= box.vMax.y && vMax.y >= box.vMin.y &&
-            vMin.z <= box.vMax.z && vMax.z >= box.vMin.z) ? 1 : 0;
+    return vMax.x >= box.vMin.x
+        && vMin.x <= box.vMax.x
+        && vMax.y >= box.vMin.y
+        && vMin.y <= box.vMax.y
+        && vMax.z >= box.vMin.z
+        && vMin.z <= box.vMax.z;
 }
 
 // Point-in-AABB test
 int gbAABBox::IsColPoint(gbVec3D& point) {
-    return (point.x >= vMin.x && point.x <= vMax.x &&
-            point.y >= vMin.y && point.y <= vMax.y &&
-            point.z >= vMin.z && point.z <= vMax.z) ? 1 : 0;
+    return point.x >= vMin.x
+        && point.y >= vMin.y
+        && point.z >= vMin.z
+        && point.x <= vMax.x
+        && point.y <= vMax.y
+        && point.z <= vMax.z;
 }
 
 // Transform AABB by matrix

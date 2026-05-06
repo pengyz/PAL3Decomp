@@ -6,11 +6,12 @@
 |------|------|
 | 编译器 | MSVC 6.0 SP5 (cl.exe 12.00.8804) |
 | IDA 导出函数 | 1344 |
-| 源文件数 | 56 |
-| 编译通过文件 | **56/56 (100%)** |
+| 源文件数 | 55 (删除 gbengine.cpp, gbMath.cpp) |
+| 编译通过文件 | **55/55 (100%)** |
+| DLL 链接 | **成功 (925KB, 1020 exports)** |
 | 验证函数总数 | 680+ |
-| 完全匹配函数 | **157 (23.1%)** |
-| 剩余 STUB 函数 | 0 |
+| 完全匹配函数 | **~170** |
+| 剩余 STUB 函数 | 120 |
 | 最后更新 | 2026-05-07 |
 
 ## 编译选项
@@ -24,18 +25,18 @@ CL.EXE /c /O2 (后续可能需要 /Ob1 /GF /Gy 等微调)
 | 文件 | 总函数 | 匹配 | 匹配率 | 状态 |
 |------|--------|------|--------|------|
 | gbColorFlt.cpp | 3 | 3 | 100% | DONE |
-| gbVec3D.cpp | 16 | 13 | 81.3% | WIP |
-| BEZIER.cpp | 8 | 5 | 62.5% | WIP |
-| gbQuaternion.cpp | 19 | 11 | 57.9% | WIP |
-| gbMatrix4.cpp | 36 | 13 | 36.1% | |
+| gbVec3D.cpp | 16 | 12 | 75% | WIP (93.1% avg) |
+| gbAABBox.cpp | 3 | 2 | 66.7% | WIP (76% avg) |
+| gbQuaternion.cpp | 19 | 8 | 42.1% | WIP (66.7% avg) |
+| gbRotMatrix.cpp | 7 | 4 | 57.1% | WIP (65.7% avg) |
+| BEZIER.cpp | 8 | 1 | 12.5% | WIP (34.2% avg) |
+| gbMatrix4.cpp | 31 | 11 | 35.5% | WIP (52.6% avg) |
 | gbImage2D.cpp | 15 | 5 | 33.3% | |
 | gbNameVarBuf.cpp | 9 | 2 | 22.2% | |
 | gbPrintFont.cpp | 17 | 4 | 23.5% | |
 | gbMatrixStack.cpp | 14 | 3 | 21.4% | |
-| gbMath.cpp | 5 | 1 | 20% | |
 | gbChain.cpp | 61 | 41 | 67.2% | WIP |
 | gbBaseMesh.cpp | 6 | 1 | 16.7% | |
-| gbRotMatrix.cpp | 7 | 1 | 14.3% | |
 | gbAudioManager.cpp | 56 | 7 | 12.5% | |
 | gbTexture.cpp | 40 | 5 | 12.5% | |
 | gbWeatherEffects.cpp | 8 | 1 | 12.5% | |
@@ -46,7 +47,7 @@ CL.EXE /c /O2 (后续可能需要 /Ob1 /GF /Gy 等微调)
 | CPK.cpp | 16 | 1 | 6.2% | |
 | gbWeather.cpp | 18 | 1 | 5.6% | |
 | gbParticle.cpp | 66 | 1 | 1.5% | |
-| gbAABBox.cpp | 3 | 0 | 0% | |
+| gbAABBox.cpp | 3 | 2 | 66.7% | |
 | gbCamera.cpp | 52 | 9 | 17.3% | |
 | gbCameraControl.cpp | 8 | 0 | 0% | |
 | gbDropGroup.cpp | 3 | 0 | 0% | |

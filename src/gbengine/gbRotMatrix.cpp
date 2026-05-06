@@ -18,39 +18,35 @@
 
 gbRotMatrix::gbRotMatrix(void)
 {
-    LoadIdentity();
+    memset(this, 0, 0x24);
+    m[2][2] = 1.0f;
+    m[1][1] = 1.0f;
+    m[0][0] = 1.0f;
 }
 
 void gbRotMatrix::operator=(gbRotMatrix &other)
 {
-    float *pSrc = (float *)&other;
-    float *pDst = (float *)this;
-    int i;
-    for (i = 9; i != 0; i--) {
-        *pDst = *pSrc;
+    int *pDst = (int *)this;
+    int offset = (int)((char *)&other - (char *)this);
+    int count = 9;
+    do {
+        *pDst = *(int *)((char *)pDst + offset);
         pDst++;
-        pSrc++;
-    }
+        count--;
+    } while (count);
 }
 
 void gbRotMatrix::operator*=(gbRotMatrix &other)
 {
     float temp[9];
-    float *pSrc = (float *)this;
-    float *pDst = temp;
-    int i;
-
-    for (i = 9; i != 0; i--) {
-        *pDst = *pSrc;
-        pSrc++;
-        pDst++;
-    }
+    memcpy(temp, this, sizeof(temp));
 
     float *pRow = temp;
+    int offset = (int)((char *)this - (char *)temp);
     int row = 3;
-    do {
-        float *pResult = (float *)this + (pRow - temp);
+    for (;;) {
         float *pCol = (float *)&other;
+        float *pResult = (float *)((char *)pRow + offset);
         int col = 3;
         do {
             *pResult = 0.0f;
@@ -58,20 +54,21 @@ void gbRotMatrix::operator*=(gbRotMatrix &other)
             float *pB = pCol;
             int k = 3;
             do {
-                float a = *pA;
-                float b = *pB;
+                float v = *pA * *pB;
                 pA++;
                 pB += 3;
                 k--;
-                *pResult = a * b + *pResult;
-            } while (k != 0);
+                *pResult = v + *pResult;
+            } while (k);
             pResult++;
             pCol++;
             col--;
-        } while (col != 0);
+        } while (col);
         pRow += 3;
         row--;
-    } while (row != 0);
+        if (!row)
+            break;
+    }
 }
 
 void gbRotMatrix::Rotate(gbVec3D *in, gbVec3D *out)
@@ -83,56 +80,78 @@ void gbRotMatrix::Rotate(gbVec3D *in, gbVec3D *out)
 
 void gbRotMatrix::LoadIdentity(void)
 {
-    memset(this, 0, sizeof(gbRotMatrix));
-    m[0][0] = 1.0f;
-    m[1][1] = 1.0f;
+    memset(this, 0, 0x24);
     m[2][2] = 1.0f;
+    m[1][1] = 1.0f;
+    m[0][0] = 1.0f;
 }
 
 bool const gbRotMatrix::IsValid(void)
 {
-    if (this == NULL) return false;
+    if (!this) return false;
     float *p = (float *)this;
     int i = 0;
-    while (*p * *p >= 0.0f) {
+    while (*(float *)p * *(float *)p >= 0.0f) {
         i++;
         p++;
-        if (i > 8) {
+        if (i >= 9)
             return true;
-        }
     }
     return false;
 }
 
 bool const gbRotMatrix::IsOrthonormal(void)
 {
-    gbVec3D col_x, col_y, cross, col_z;
+    float ax = m[0][0];
+    float bx = m[1][0];
+    float cx = m[2][0];
+    float cy = m[2][1];
+    float az = m[0][2];
+    float ay = m[0][1];
+    float by = m[1][1];
+    float cz = m[2][2];
+    float bz = m[1][2];
 
-    col_x.x = m[0][0]; col_x.y = m[1][0]; col_x.z = m[2][0];
-    col_y.x = m[0][1]; col_y.y = m[1][1]; col_y.z = m[2][1];
-    col_z.x = m[0][2]; col_z.y = m[1][2]; col_z.z = m[2][2];
-    cross.x = 0.0f;
-    cross.y = 0.0f;
-    cross.z = 0.0f;
+    // Normalize column Z (az, by_z, cz)
+    double lenZ = sqrt(cz * cz + by * by + az * az);
+    float nzx, nzy, nzz;
+    if (fabs(lenZ) >= GB_FLOAT_EPSILON) {
+        nzx = (float)(az / lenZ);
+        nzy = (float)(by / lenZ);
+        nzz = (float)(cz / lenZ);
+    } else {
+        nzz = 0.0f;
+        nzx = 0.0f;
+        nzy = 1.0f;
+    }
 
-    col_z.Normalize();
-    col_x.CrossProduct(&col_y, &cross);
-    cross.Normalize();
+    // Cross product of col_x and col_y
+    float crossX = cy * bx - bz * cx;
+    float crossY = ay * cx - cy * ax;
+    float crossZ = bz * ax - ay * bx;
 
-    if (fabs(cross.x - col_z.x) < GB_FLOAT_EPSILON &&
-        fabs(cross.y - col_z.y) < GB_FLOAT_EPSILON &&
-        fabs(cross.z - col_z.z) < GB_FLOAT_EPSILON) {
+    // Normalize cross product
+    double lenC = sqrt(crossZ * crossZ + crossX * crossX + crossY * crossY);
+    float ncx, ncy, ncz;
+    if (fabs(lenC) >= GB_FLOAT_EPSILON) {
+        ncx = (float)(crossX / lenC);
+        ncy = (float)(crossY / lenC);
+        ncz = (float)(crossZ / lenC);
+    } else {
+        ncx = 0.0f;
+        ncz = 0.0f;
+        ncy = 1.0f;
+    }
+
+    if (fabs(ncx - nzx) < GB_FLOAT_EPSILON &&
+        fabs(ncy - nzy) < GB_FLOAT_EPSILON &&
+        fabs(ncz - nzz) < GB_FLOAT_EPSILON) {
         return true;
     }
 
-    col_z.x = -col_z.x;
-    col_z.y = -col_z.y;
-    col_z.z = -col_z.z;
-    if (fabs(cross.x - col_z.x) < GB_FLOAT_EPSILON &&
-        fabs(cross.y - col_z.y) < GB_FLOAT_EPSILON &&
-        fabs(cross.z - col_z.z) < GB_FLOAT_EPSILON) {
-        return true;
-    }
-
-    return false;
+    float neg_nzy = -nzy;
+    float neg_nzz = -nzz;
+    return fabs(ncx - (-nzx)) < GB_FLOAT_EPSILON &&
+           fabs(ncy - neg_nzy) < GB_FLOAT_EPSILON &&
+           fabs(ncz - neg_nzz) < GB_FLOAT_EPSILON;
 }

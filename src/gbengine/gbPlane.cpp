@@ -9,9 +9,8 @@
 // Constructor
 gbPlane::gbPlane() {
     normal.x = 0.0f;
-    normal.y = 1.0f;
+    normal.y = 0.0f;
     normal.z = 0.0f;
-    d = 0.0f;
 }
 
 // Assignment operator

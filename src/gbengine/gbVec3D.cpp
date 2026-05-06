@@ -33,16 +33,16 @@ bool gbVec3D::IsValid(void) const
 
 void gbVec3D::Normalize(void)
 {
-    float len = Length();
+    double len = sqrt(x * x + y * y + z * z);
     if (fabs(len) < GB_FLOAT_EPSILON) {
         z = 0.0f;
         x = 0.0f;
         y = 1.0f;
         return;
     }
-    x = x / len;
-    y = y / len;
-    z = z / len;
+    x = (float)(x / len);
+    y = (float)(y / len);
+    z = (float)(z / len);
 }
 
 gbVec3D::gbVec3D(float _x, float _y, float _z)
@@ -89,7 +89,9 @@ void gbVec3D::operator/=(float s)
 
 bool gbVec3D::operator==(const gbVec3D &other)
 {
-    return (x == other.x && y == other.y && z == other.z);
+    return fabs(x - other.x) < GB_FLOAT_EPSILON
+        && fabs(y - other.y) < GB_FLOAT_EPSILON
+        && fabs(z - other.z) < GB_FLOAT_EPSILON;
 }
 
 gbVec3D gbVec3D::operator-(void) const
@@ -114,10 +116,7 @@ float gbVec3D::DotProduct(const gbVec3D *other) const
 int gbVec3D::IsNormal(void)
 {
     float lenSq = x * x + y * y + z * z;
-    if (fabs(lenSq - 1.0f) < GB_FLOAT_EPSILON) {
-        return 1;
-    }
-    return 0;
+    return fabs(lenSq - 1.0f) < GB_FLOAT_EPSILON;
 }
 
 void gbVec3D::Inverse(void)
@@ -129,9 +128,9 @@ void gbVec3D::Inverse(void)
 
 void gbVec3D::Zero(void)
 {
-    x = 0.0f;
-    y = 0.0f;
     z = 0.0f;
+    y = 0.0f;
+    x = 0.0f;
 }
 
 void gbVec3D::CrossProduct(const gbVec3D* v, gbVec3D* result) const
