@@ -225,11 +225,12 @@ def classify_boundary_overlap(addr, func, text_addrs):
         return None
 
     if func_end > next_addr:
-        # Overlap detected - PDB address is authoritative evidence
+        # Overlap detected - validate split point independently
         is_valid, evidence_str = ida_common.is_valid_split_point(next_addr)
 
-        # PDB-confirmed address is high confidence regardless of prologue
-        confidence = 0.95 if is_valid else 0.85
+        # Only high confidence if binary-level evidence confirms the split
+        # PDB alone is not sufficient (version mismatch / packer corruption possible)
+        confidence = 0.95 if is_valid else 0.4
 
         details = {
             "func_end": f"0x{func_end:08X}",
