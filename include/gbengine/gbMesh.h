@@ -246,6 +246,9 @@ public:
 
     gbBaseMesh& operator=(const gbBaseMesh& other);
 
+    // Reference counting
+    void Release(void);
+
     // Virtual methods
     virtual void ComputeShadowVolume();
     virtual void RenderShadowVolume(gbVisNode* visNode, gbRenderInfoObj* renderInfo);

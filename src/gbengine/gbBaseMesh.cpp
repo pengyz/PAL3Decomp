@@ -6,6 +6,11 @@
 #include "gbengine/gbMesh.h"
 #include <string.h>
 
+void gbBaseMesh::Release(void) {
+    if (--m_refCount <= 0)
+        delete this;
+}
+
 gbMeshType gbBaseMesh::GetMeshType() {
     return m_meshType;
 }

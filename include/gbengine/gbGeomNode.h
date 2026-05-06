@@ -8,40 +8,41 @@ class gbStaticMesh;
 class gbRenderEffect;
 class gbTexture;
 class gbVFile;
+class gbAnimNodeGroup;
 struct gbRenderInfoObj;
 
-// Animation controller - minimal layout from Ghidra analysis
-// Used by gbGeomNode for mesh animation playback
-struct gbAnimCtrl {
-    void* vtable;           // +0x00
-    float curTime;          // +0x04
-    float startTime;        // +0x08
-    float endTime;          // +0x0C
-    float maxTime;          // +0x10: total animation duration
+// Animation curve interface - polymorphic objects with virtual GetValue + dtor
+// Used for translation, rotation, scale interpolation in gbGeomNode
+// IDA: called as (**pCurve)(&result, time) in Update, virtual dtor in ~gbGeomNode
+class gbAnimCurve {
+public:
+    virtual void GetValue(void* result, float time) = 0;
+    virtual ~gbAnimCurve() {}
 };
 
 /* ======== gbGeomNode ======== */
 
+// sizeof(gbGeomNode) = 0x118 = 280
 class gbGeomNode : public gbVisNode {
 public:
-    // Memory layout based on decompilation
-    gbMatrix4 localTransform;              // +0x58 (64 bytes)
-    gbMatrix4 worldTransform;              // +0x98 (64 bytes)
-    gbBaseMesh* mesh;                      // +0xd8
-    gbAnimCtrl* animController;             // +0xdc
-    void* materialData;                    // +0xe0
-    float animTime;                        // +0xe4
-    void* bladeEffect;                     // +0xe8
-    void* shadowData;                      // +0xec
-    int shadowEnabled;                     // +0xf0
-    int bladeEnabled;                      // +0xf4
-    void* textureOverride;                 // +0xf8
-    int animLoop;                          // +0xfc
-    int loopPast;                          // +0x100
-    void* boundingBox;                     // +0x104
-    float bladeTime;                       // +0x108
-    float bladeTimeScale;                  // +0x10c
-    gbVec3D* lastBladePos;                 // +0x110
+    // gbVisNode base: 0x00-0x57 (88 bytes)
+    gbMatrix4 worldTransform;              // +0x58 (64B) - GetCacheToWorld returns &this->worldTransform
+    gbMatrix4 staticTransform;             // +0x98 (64B) - initial local pose/orientation
+    gbAnimCurve* pAnimTranslate;           // +0xD8: translation curve (virtual dtor + GetValue)
+    gbAnimCurve* pAnimRotate;              // +0xDC: rotation curve
+    gbAnimCurve* pAnimScale;              // +0xE0: scale curve
+    float scaleValue;                      // +0xE4: uniform scale (init 1.0f)
+    int hasAnimation;                      // +0xE8: non-zero if animated
+    gbAnimNodeGroup* animController;       // +0xEC: animation node group
+    double currentTime;                    // +0xF0: current playback time
+    float animMaxTime;                     // +0xF8: total animation duration
+    int animLoop;                          // +0xFC: loop count (0=infinite)
+    int loopPast;                          // +0x100: completed loop count
+    int bladeEnabled;                      // +0x104: blade trail effect enabled
+    gbStaticMesh* mesh;                    // +0x108: geometry mesh (gbRefObject)
+    void* pLightmapData;                   // +0x10C: lightmap/attach data (heap alloc)
+    int numAttachPoints;                   // +0x110: attach point count
+    void* pAttachPointArray;               // +0x114: attach point transform array
 
     // Constructor
     gbGeomNode(void);

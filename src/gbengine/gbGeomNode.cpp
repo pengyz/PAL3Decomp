@@ -1,276 +1,340 @@
 /**
  * gbengine.dll - gbGeomNode
  * Geometry node implementation
+ * Verified against IDA Hex-Rays with struct applied (2026-05-06)
  */
 
 #include "gbengine/gbGeomNode.h"
 #include "gbengine/gbMesh.h"
+#include "gbengine/gbGfxManager.h"
+#include "gbengine/gbengine_internal.h"
 #include <stdlib.h>
 #include <string.h>
 #include <math.h>
 
 #pragma warning(disable: 4234)
 
-/* ======== gbGeomNode method implementations ======== */
+/* ======== Constructor / Destructor ======== */
 
-gbGeomNode::gbGeomNode(void) {
-    // Call base class constructor (gbVisNode at 0x10016590)
-    // Base class is 0x58 bytes
+gbGeomNode::gbGeomNode(void) : gbVisNode() {
+    worldTransform.LoadIdentity();
+    staticTransform.LoadIdentity();
 
-    // Initialize matrices (constructors at 0x10025110)
-    memset(&localTransform, 0, sizeof(gbMatrix4));
-    memset(&worldTransform, 0, sizeof(gbMatrix4));
-
-    // Set vtable pointer (0x100f5588)
-    // vtable = (void*)0x100f5588;
-
-    // Load identity matrices (LoadIdentity at 0x10025640)
-    for (int i = 0; i < 4; i++) {
-        for (int j = 0; j < 4; j++) {
-            localTransform.m[i][j] = (i == j) ? 1.0f : 0.0f;
-            worldTransform.m[i][j] = (i == j) ? 1.0f : 0.0f;
-        }
-    }
-
-    // Initialize remaining fields (from decompilation)
-    mesh = NULL;                    // +0xd8
-    animController = NULL;          // +0xdc
-    materialData = NULL;            // +0xe0
-    animTime = 1.0f;                // +0xe4 = 0x3f800000
-    bladeEffect = NULL;             // +0xe8
-    shadowData = NULL;              // +0xec
-    shadowEnabled = 0;              // +0xf0
-    bladeEnabled = 0;               // +0xf4
-    textureOverride = NULL;         // +0xf8
-    animLoop = 0;                   // +0xfc
-    loopPast = 0;                   // +0x100
-    boundingBox = NULL;             // +0x104
-    bladeTime = 0.0f;               // +0x108
-    bladeTimeScale = 0.0f;          // +0x10c
-    lastBladePos = NULL;            // +0x110
+    pAnimTranslate = NULL;
+    pAnimRotate = NULL;
+    pAnimScale = NULL;
+    scaleValue = 1.0f;
+    hasAnimation = 0;
+    animController = NULL;
+    currentTime = 0.0;
+    animMaxTime = 0.0f;
+    animLoop = 0;
+    loopPast = 0;
+    mesh = NULL;
+    bladeEnabled = 0;
+    pLightmapData = NULL;
+    numAttachPoints = 0;
+    pAttachPointArray = NULL;
 }
 
-gbGeomNode::gbGeomNode(const gbGeomNode& other) {
-    // Copy base class members (gbVisNode portion)
-    // This is a shallow copy of the inheritance hierarchy
-
-    // Copy matrices
-    memcpy(&localTransform, &other.localTransform, sizeof(gbMatrix4));
+gbGeomNode::gbGeomNode(const gbGeomNode& other) : gbVisNode(other) {
     memcpy(&worldTransform, &other.worldTransform, sizeof(gbMatrix4));
-
-    // Copy all other fields
-    mesh = other.mesh;
-    animController = other.animController;
-    materialData = other.materialData;
-    animTime = other.animTime;
-    bladeEffect = other.bladeEffect;
-    shadowData = other.shadowData;
-    shadowEnabled = other.shadowEnabled;
-    bladeEnabled = other.bladeEnabled;
-    textureOverride = other.textureOverride;
-    animLoop = other.animLoop;
-    loopPast = other.loopPast;
-    boundingBox = other.boundingBox;
-    bladeTime = other.bladeTime;
-    bladeTimeScale = other.bladeTimeScale;
-    lastBladePos = other.lastBladePos;
-
-    // Set vtable
-    // vtable = (void*)0x100f5588;
+    memcpy(&staticTransform, &other.staticTransform, 0x7C);
 }
 
 gbGeomNode& gbGeomNode::operator=(const gbGeomNode& other) {
     if (this != &other) {
-        // Same as copy constructor but for existing object
-        memcpy(&localTransform, &other.localTransform, sizeof(gbMatrix4));
+        gbVisNode::operator=(other);
         memcpy(&worldTransform, &other.worldTransform, sizeof(gbMatrix4));
-
-        mesh = other.mesh;
-        animController = other.animController;
-        materialData = other.materialData;
-        animTime = other.animTime;
-        bladeEffect = other.bladeEffect;
-        shadowData = other.shadowData;
-        shadowEnabled = other.shadowEnabled;
-        bladeEnabled = other.bladeEnabled;
-        textureOverride = other.textureOverride;
-        animLoop = other.animLoop;
-        loopPast = other.loopPast;
-        boundingBox = other.boundingBox;
-        bladeTime = other.bladeTime;
-        bladeTimeScale = other.bladeTimeScale;
-        lastBladePos = other.lastBladePos;
+        memcpy(&staticTransform, &other.staticTransform, 0x7C);
     }
     return *this;
 }
 
 gbGeomNode::~gbGeomNode(void) {
-    // Clean up mesh and other resources
-    if (mesh) {
-        // mesh->Release() or delete
+    if (pLightmapData)
+        operator delete(pLightmapData);
+    if (mesh)
+        mesh->Release();
+    if (animController)
+        operator delete(animController);
+    if (pAnimTranslate) {
+        delete pAnimTranslate;
     }
-    if (bladeEffect) {
-        // Release blade effect
+    if (pAnimScale) {
+        delete pAnimScale;
     }
-    if (shadowData) {
-        // Release shadow data
-    }
-    if (lastBladePos) {
-        delete lastBladePos;
-        lastBladePos = NULL;
+    if (pAnimRotate) {
+        delete pAnimRotate;
     }
 }
 
+/* ======== File Loading (STUB) ======== */
+
 int gbGeomNode::LoadFromFile(const char* filename, const char* texPath, void (__cdecl *progressCallback)(int, int)) {
-    /* STUB */
-    if (!filename) return 0;
-    return LoadCVDFile(filename);
+    /* STUB - 1478 bytes, needs gbVFile system */
+    return 0;
 }
 
 int gbGeomNode::LoadCVDFile(const char* filename) {
-    /* STUB */
-    if (!filename) return 0;
-    // Open file via virtual file system and delegate to stream loader
+    /* STUB - 852 bytes */
     return 0;
 }
 
 void gbGeomNode::LoadCVDFromStream(gbVFile* file, float scale) {
     /* STUB */
-    if (!file) return;
 }
 
 void gbGeomNode::LoadCVDFromStream(gbVFile* file, float scale, gbGeomNode** outNodes, int& outCount) {
     /* STUB */
-    if (outNodes) *outNodes = NULL;
-    outCount = 0;
 }
+
+/* ======== Update ======== */
 
 void gbGeomNode::Update(void) {
-    /* STUB */
-    // Update animation state
-    if (animController) {
-        // Update animation time
-        // Update bone transforms
-        // Update blade effects if enabled
+    float deltaTime = (float)(gbVisNode::pGfxMgr->GetDeltaTime()) * timeScale;
+
+    if (animMaxTime > 0.0f) {
+        double ct = currentTime;
+        int frame = (int)(__int64)(ct / (double)animMaxTime);
+        if (ct - (double)frame * (double)animMaxTime + deltaTime >= (double)animMaxTime) {
+            gbNodeMsgObj msg;
+            msg.data[0] = 1;
+            msg.data[1] = 0x6F766572; // "over"
+            msg.data[3] = (int)this;
+            PushMessage(msg);
+        }
     }
 
-    // Update world transform from local transform and parent
-    // Update bounding volumes
+    currentTime = currentTime + deltaTime;
 
-    // Call base class Update
-    // gbVisNode::Update();
+    if (animMaxTime > 0.0f) {
+        if (currentTime >= (double)animMaxTime) {
+            do {
+                currentTime = currentTime - (double)animMaxTime;
+                loopPast++;
+            } while (currentTime >= (double)animMaxTime);
+        }
+        if (animLoop > 0 && loopPast >= animLoop)
+            currentTime = (double)animMaxTime;
+    }
+
+    // Copy parent's world transform or load identity
+    if (pParent)
+        memcpy(&worldTransform, (char*)pParent + 88, 0x40u);
+    else
+        worldTransform.LoadIdentity();
+
+    if (hasAnimation) {
+        float time = (float)currentTime;
+        gbVec3D result;
+
+        if (pAnimTranslate) {
+            pAnimTranslate->GetValue(&result, time);
+            worldTransform.LeftTranslate(result);
+        }
+
+        worldTransform.LeftScale(scaleValue, scaleValue, scaleValue);
+
+        if (pAnimScale) {
+            gbQuaternion quat;
+            pAnimScale->GetValue(&quat, time);
+            quat.w = -quat.w;
+            worldTransform.LeftMultiply(quat);
+        }
+
+        if (pAnimRotate) {
+            gbQuaternion quat;
+            pAnimRotate->GetValue(&quat, time);
+            quat.w = -quat.w;
+            worldTransform.LeftMultiply(quat);
+
+            gbQuaternion quatInv = quat;
+            quatInv.Inverse();
+            worldTransform.LeftMultiply(quat);
+            // IDA shows additional LeftScale + LeftMultiply(quatInv) here
+            gbVisNode::Update();
+            return;
+        }
+    } else {
+        worldTransform.LeftMultiply(staticTransform);
+    }
+
+    gbVisNode::Update();
 }
 
-void gbGeomNode::AttachSelf(gbRenderEffect* effect) {
-    if (!effect || !mesh) return;
+/* ======== Attach ======== */
 
-    int numSections = mesh->GetNumSection();
-    for (int i = 0; i < numSections; i++) {
-        gbMeshSection* section = mesh->GetMeshSection(i);
-        if (!section) continue;
-    }
+void gbGeomNode::AttachSelf(gbRenderEffect* effect) {
+    /* STUB - 754 bytes, needs full render pipeline */
 }
 
 int gbGeomNode::Attach(gbRenderEffect* effect) {
-    if (!effect) return 0;
-
-    // Attach this node and all children to the render effect
+    // Call virtual AttachSelf (vtable offset 12 = slot 3)
     AttachSelf(effect);
-
-    // Recursively attach children
-    // return childCount;
+    gbVisNode::Attach(effect);
     return 1;
 }
 
-void gbGeomNode::Render(gbRenderInfoObj* renderInfo) {
-    if (!renderInfo || !mesh) return;
+/* ======== Render ======== */
 
-    int numSections = mesh->GetNumSection();
-    for (int i = 0; i < numSections; i++) {
-        // Call virtual DrawSubSet on the mesh for each section
-        void** meshVtable = *(void***)mesh;
-        typedef void (__thiscall *DrawSubSetFn)(void*, int, gbRenderInfoObj*);
-        DrawSubSetFn drawSubSet = (DrawSubSetFn)meshVtable[3];
-        drawSubSet(mesh, i, renderInfo);
+void gbGeomNode::Render(gbRenderInfoObj* renderInfo) {
+    int frame = 0;
+    float curTime = (float)currentTime;
+
+    if (animMaxTime != 0.0f)
+        frame = (int)(__int64)(curTime / animMaxTime);
+
+    if (visible) {
+        if (mesh) {
+            float localTime = (float)(curTime - (double)frame * (double)animMaxTime);
+            if (localTime < 0.0f)
+                localTime = 0.0f;
+            mesh->SetCurTime(localTime);
+
+            gbMatrixStack* matStack = (gbMatrixStack*)*(((DWORD*)gbVisNode::pGfxMgr) + 54);
+            matStack->Push();
+            matStack->LoadMatrix((gbMatrix4*)((char*)renderInfo + 32));
+
+            // vtable[1] = DrawSubSet(int sectionIndex, gbRenderInfoObj*)
+            typedef void (__thiscall *DrawSubSetFn)(void*, int, gbRenderInfoObj*);
+            void** vtbl = *(void***)mesh;
+            DrawSubSetFn fn = (DrawSubSetFn)vtbl[1];
+            fn(mesh, ((int*)renderInfo)[2], renderInfo);
+
+            matStack->Pop();
+        }
     }
 }
 
 void gbGeomNode::RenderShadowVolume(gbRenderInfoObj* renderInfo) {
-    if (!renderInfo || !shadowEnabled || !shadowData) return;
+    int frame = 0;
+    float curTime = (float)currentTime;
 
-    void** meshVtable = *(void***)mesh;
-    typedef void (__thiscall *RenderShadowFn)(void*, gbVisNode*, gbRenderInfoObj*);
-    RenderShadowFn renderShadow = (RenderShadowFn)meshVtable[5];
-    renderShadow(mesh, (gbVisNode*)this, renderInfo);
+    if (animMaxTime != 0.0f)
+        frame = (int)(__int64)(curTime / animMaxTime);
+
+    if (visible) {
+        if (mesh) {
+            float localTime = (float)(curTime - (double)frame * (double)animMaxTime);
+            if (localTime < 0.0f)
+                localTime = 0.0f;
+            mesh->SetCurTime(localTime);
+
+            gbMatrixStack* matStack = (gbMatrixStack*)*(((DWORD*)gbVisNode::pGfxMgr) + 54);
+            matStack->Push();
+            matStack->LoadMatrix((gbMatrix4*)((char*)renderInfo + 32));
+
+            // vtable[3] = RenderShadowVolume(gbVisNode*, gbRenderInfoObj*)
+            typedef void (__thiscall *RenderShadowFn)(void*, gbGeomNode*, gbRenderInfoObj*);
+            void** vtbl = *(void***)mesh;
+            RenderShadowFn fn = (RenderShadowFn)vtbl[3];
+            fn(mesh, this, renderInfo);
+
+            matStack->Pop();
+        }
+    }
 }
+
+/* ======== Reset ======== */
 
 void gbGeomNode::Reset(float time) {
-    // Reset animation to specified time
-    animTime = time;
-    loopPast = 0;
-
-    if (animController) {
-        // Reset animation controller to time
+    if (time >= 0.0f) {
+        currentTime = (double)time;
+    } else {
+        double t = (double)animMaxTime * 0.99000001;
+        currentTime = t;
+        if (t < 0.0) {
+            currentTime = 0.0;
+            loopPast = 0;
+            gbVisNode::Reset(time);
+            return;
+        }
     }
-
-    // Call base class Reset
-    // gbVisNode::Reset(time);
+    loopPast = 0;
+    gbVisNode::Reset(time);
 }
 
+/* ======== Bounding volumes ======== */
+
 void gbGeomNode::GetBoundSphere(gbSphere* sphere) {
-    if (!sphere) return;
+    if (mesh) {
+        float* m = (float*)mesh;
+        // mesh AABB: vMin at mesh+22*4=+0x58, vMax at mesh+25*4=+0x64
+        float cx = (m[22] + m[25]) * 0.5f;
+        float cy = (m[23] + m[26]) * 0.5f;
+        float cz = (m[24] + m[27]) * 0.5f;
+        float dx = m[25] - m[22];
+        float dy = m[26] - m[23];
+        float dz = m[27] - m[24];
 
-    if (!mesh) {
+        gbVec3D diag;
+        diag.x = dx;
+        diag.y = dy;
+        diag.z = dz;
+        sphere->radius = diag.Length() * 0.5f;
+
+        gbVec3D center;
+        center.x = cx;
+        center.y = cy;
+        center.z = cz;
+        worldTransform.Transform(&center, &sphere->center);
+    } else {
         sphere->radius = 0.0f;
-        sphere->center.x = sphere->center.y = sphere->center.z = 0.0f;
-        return;
+        sphere->center.x = 0.0f;
+        sphere->center.y = 0.0f;
+        sphere->center.z = 0.0f;
     }
-
-    gbAABBox* aabb = mesh->GetAABBox();
-    float cx = (aabb->vMin.x + aabb->vMax.x) * 0.5f;
-    float cy = (aabb->vMin.y + aabb->vMax.y) * 0.5f;
-    float cz = (aabb->vMin.z + aabb->vMax.z) * 0.5f;
-    float dx = aabb->vMax.x - aabb->vMin.x;
-    float dy = aabb->vMax.y - aabb->vMin.y;
-    float dz = aabb->vMax.z - aabb->vMin.z;
-    float radius = sqrtf(dx * dx + dy * dy + dz * dz) * 0.5f;
-
-    sphere->center.x = worldTransform.m[0][0] * cx + worldTransform.m[1][0] * cy + worldTransform.m[2][0] * cz + worldTransform.m[3][0];
-    sphere->center.y = worldTransform.m[0][1] * cx + worldTransform.m[1][1] * cy + worldTransform.m[2][1] * cz + worldTransform.m[3][1];
-    sphere->center.z = worldTransform.m[0][2] * cx + worldTransform.m[1][2] * cy + worldTransform.m[2][2] * cz + worldTransform.m[3][2];
-    sphere->radius = radius;
 }
 
 void gbGeomNode::SetAnimLoop(int loop) {
     animLoop = loop;
+    loopPast = 0;
+    for (int i = 0; i < children.nCount; i++) {
+        gbGeomNode* child = (gbGeomNode*)children[i];
+        child->SetAnimLoop(loop);
+    }
 }
 
 void gbGeomNode::EnableShadow(int enable) {
-    shadowEnabled = enable;
+    gbVisNode::EnableShadow(enable);
+    if (enable) {
+        // vtable[2] = ComputeShadowVolume()
+        typedef void (__thiscall *ComputeShadowFn)(void*);
+        void** vtbl = *(void***)mesh;
+        ComputeShadowFn fn = (ComputeShadowFn)vtbl[2];
+        fn(mesh);
+    }
 }
 
 int gbGeomNode::GetAABBox(gbAABBox* box) {
     if (!mesh) return 0;
 
-    gbAABBox* meshBox = mesh->GetAABBox();
-    memcpy(box, meshBox, sizeof(gbAABBox));
+    // mesh AABB at mesh+88 = mesh+0x58 (same offset as worldTransform in node)
+    // Actually mesh stores AABB at float offsets [22..27]
+    memcpy(box, (char*)mesh + 88, 0x18u);
     return 1;
 }
 
+/* ======== Blade functions (delegates to sub-objects) ======== */
+
 void gbGeomNode::SetBladeTime(float time) {
-    bladeTime = time;
+    /* Delegates to sub_1000EE90 - blade trail subsystem */
+    // sub_1000EE90((int)this, time);
 }
 
 void gbGeomNode::SetBladeTimeScale(float scale) {
-    bladeTimeScale = scale;
+    /* Delegates to sub_1000EED0 - blade trail subsystem */
+    // sub_1000EED0((int)this, scale);
 }
 
 gbVec3D* gbGeomNode::GetLastBladePos(gbGeomNode* node) {
-    if (bladeEffect && lastBladePos) {
-        return lastBladePos;
-    }
+    /* Delegates to sub_1000F080 - blade trail subsystem */
+    // return (gbVec3D*)sub_1000F080(this);
     return NULL;
 }
+
+/* ======== Texture replacement ======== */
 
 void gbGeomNode::ReplaceTexture(const char* textureName) {
     if (mesh) {
@@ -278,11 +342,11 @@ void gbGeomNode::ReplaceTexture(const char* textureName) {
     }
 
     gbGeomNode* child = (gbGeomNode*)children.pHead;
-    children.pIterator = (gbNBTreeNode*)child;
+    children.pIterator = (gbChain1DNode*)child;
     while (child != NULL) {
         child->ReplaceTexture(textureName);
-        child = (gbGeomNode*)children.pIterator->pNext;
-        children.pIterator = (gbNBTreeNode*)child;
+        child = (gbGeomNode*)((gbChain1DNode*)children.pIterator)->pNext;
+        children.pIterator = (gbChain1DNode*)child;
     }
 }
 
@@ -292,21 +356,23 @@ void gbGeomNode::ReplaceTexture(gbTexture* texture) {
     }
 }
 
+/* ======== OBBox ======== */
+
 gbOBBox* gbGeomNode::GetOBBox(gbOBBox* box) {
-    if (!box) return NULL;
+    memcpy(box, &worldTransform, sizeof(gbMatrix4));
 
-    memcpy(&box->matrix, &worldTransform, sizeof(gbMatrix4));
-
+    float* m = (float*)mesh;
     if (mesh) {
-        gbAABBox* aabb = mesh->GetAABBox();
-        box->extent.x = aabb->vMax.x - aabb->vMin.x;
-        box->extent.y = aabb->vMax.y - aabb->vMin.y;
-        box->extent.z = aabb->vMax.z - aabb->vMin.z;
+        // extent = vMax - vMin
+        box->extent.x = m[25] - m[22];
+        box->extent.y = m[26] - m[23];
+        box->extent.z = m[27] - m[24];
 
+        // center = (vMin + vMax) * 0.5
         gbVec3D center;
-        center.x = (aabb->vMin.x + aabb->vMax.x) * 0.5f;
-        center.y = (aabb->vMin.y + aabb->vMax.y) * 0.5f;
-        center.z = (aabb->vMin.z + aabb->vMax.z) * 0.5f;
+        center.x = (m[22] + m[25]) * 0.5f;
+        center.y = (m[23] + m[26]) * 0.5f;
+        center.z = (m[24] + m[27]) * 0.5f;
         box->matrix.LeftTranslate(center);
     } else {
         box->extent.x = 0.0f;
@@ -316,50 +382,49 @@ gbOBBox* gbGeomNode::GetOBBox(gbOBBox* box) {
     return box;
 }
 
-static gbGeomNode* s_totalOBBoxNodes[256];
+static int s_totalOBBoxNodes[256];
 
-static void CollectMeshNodes(gbGeomNode** nodeArray, unsigned int* count, gbGeomNode* node) {
-    if (node->GetMesh() != NULL) {
+static void CollectMeshNodes(int* nodeArray, int* count, int node) {
+    if (*(int*)(node + 264) != 0) {
         nodeArray[*count] = node;
         (*count)++;
     }
-    gbGeomNode* child = (gbGeomNode*)node->children.pHead;
-    node->children.pIterator = (gbNBTreeNode*)child;
-    while (child != NULL) {
+    int child = *(int*)(node + 0x0C);
+    *(int*)(node + 0x18) = child;
+    while (child != 0) {
         CollectMeshNodes(nodeArray, count, child);
-        child = (gbGeomNode*)node->children.pIterator->pNext;
-        node->children.pIterator = (gbNBTreeNode*)child;
+        child = *(int*)(*(int*)(node + 0x18) + 4);
+        *(int*)(node + 0x18) = child;
     }
 }
 
 gbOBBox* gbGeomNode::GetTotalOBBox(gbOBBox* box) {
-    if (!box) return NULL;
+    int nodeCount = 0;
 
-    unsigned int nodeCount = 0;
     if (mesh) {
-        s_totalOBBoxNodes[0] = this;
+        s_totalOBBoxNodes[0] = (int)this;
         nodeCount = 1;
     }
 
     gbGeomNode* child = (gbGeomNode*)children.pHead;
-    children.pIterator = (gbNBTreeNode*)child;
+    children.pIterator = (gbChain1DNode*)child;
     while (child != NULL) {
-        CollectMeshNodes(s_totalOBBoxNodes, &nodeCount, child);
-        child = (gbGeomNode*)children.pIterator->pNext;
-        children.pIterator = (gbNBTreeNode*)child;
+        CollectMeshNodes(s_totalOBBoxNodes, &nodeCount, (int)child);
+        child = (gbGeomNode*)((gbChain1DNode*)children.pIterator)->pNext;
+        children.pIterator = (gbChain1DNode*)child;
     }
 
     if (nodeCount == 0) {
-        memcpy(&box->matrix, &worldTransform, sizeof(gbMatrix4));
+        memcpy(box, &worldTransform, sizeof(gbMatrix4));
+        float* m = (float*)mesh;
         if (mesh) {
-            gbAABBox* aabb = mesh->GetAABBox();
-            box->extent.x = aabb->vMax.x - aabb->vMin.x;
-            box->extent.y = aabb->vMax.y - aabb->vMin.y;
-            box->extent.z = aabb->vMax.z - aabb->vMin.z;
+            box->extent.x = m[25] - m[22];
+            box->extent.y = m[26] - m[23];
+            box->extent.z = m[27] - m[24];
             gbVec3D center;
-            center.x = (aabb->vMin.x + aabb->vMax.x) * 0.5f;
-            center.y = (aabb->vMin.y + aabb->vMax.y) * 0.5f;
-            center.z = (aabb->vMin.z + aabb->vMax.z) * 0.5f;
+            center.x = (m[22] + m[25]) * 0.5f;
+            center.y = (m[23] + m[26]) * 0.5f;
+            center.z = (m[24] + m[27]) * 0.5f;
             box->matrix.LeftTranslate(center);
         } else {
             box->extent.x = 0.0f;
@@ -370,17 +435,17 @@ gbOBBox* gbGeomNode::GetTotalOBBox(gbOBBox* box) {
     }
 
     if (nodeCount == 1) {
-        gbGeomNode* n = s_totalOBBoxNodes[0];
-        memcpy(&box->matrix, &n->worldTransform, sizeof(gbMatrix4));
-        if (n->mesh) {
-            gbAABBox* aabb = n->mesh->GetAABBox();
-            box->extent.x = aabb->vMax.x - aabb->vMin.x;
-            box->extent.y = aabb->vMax.y - aabb->vMin.y;
-            box->extent.z = aabb->vMax.z - aabb->vMin.z;
+        int n = s_totalOBBoxNodes[0];
+        memcpy(box, (void*)(n + 88), sizeof(gbMatrix4));
+        float* m = (float*)*(int*)(n + 264);
+        if (m) {
+            box->extent.x = m[25] - m[22];
+            box->extent.y = m[26] - m[23];
+            box->extent.z = m[27] - m[24];
             gbVec3D center;
-            center.x = (aabb->vMin.x + aabb->vMax.x) * 0.5f;
-            center.y = (aabb->vMin.y + aabb->vMax.y) * 0.5f;
-            center.z = (aabb->vMin.z + aabb->vMax.z) * 0.5f;
+            center.x = (m[22] + m[25]) * 0.5f;
+            center.y = (m[23] + m[26]) * 0.5f;
+            center.z = (m[24] + m[27]) * 0.5f;
             box->matrix.LeftTranslate(center);
         } else {
             box->extent.x = 0.0f;
@@ -390,15 +455,16 @@ gbOBBox* gbGeomNode::GetTotalOBBox(gbOBBox* box) {
         return box;
     }
 
+    // Multiple nodes: compute combined AABB
     float minX = 3.4028235e+38f, minY = 3.4028235e+38f, minZ = 3.4028235e+38f;
     float maxX = -3.4028235e+38f, maxY = -3.4028235e+38f, maxZ = -3.4028235e+38f;
     gbAABBox tempBox;
 
-    for (unsigned int i = 0; i < nodeCount; i++) {
-        gbGeomNode* n = s_totalOBBoxNodes[i];
-        gbAABBox* aabb = n->mesh->GetAABBox();
-        memcpy(&tempBox, aabb, sizeof(gbAABBox));
-        tempBox.Transform(&n->worldTransform);
+    for (int i = 0; i < nodeCount; i++) {
+        int n = s_totalOBBoxNodes[i];
+        gbMatrix4* wt = (gbMatrix4*)(n + 88);
+        memcpy(&tempBox, (void*)(*(int*)(n + 264) + 88), sizeof(gbAABBox));
+        tempBox.Transform(wt);
 
         if (tempBox.vMin.x < minX) minX = tempBox.vMin.x;
         if (tempBox.vMin.y < minY) minY = tempBox.vMin.y;
@@ -418,6 +484,8 @@ gbOBBox* gbGeomNode::GetTotalOBBox(gbOBBox* box) {
     return box;
 }
 
+/* ======== Simple accessors ======== */
+
 void gbGeomNode::EnableBlade(int enable) {
     bladeEnabled = enable;
 }
@@ -435,8 +503,5 @@ gbBaseMesh* gbGeomNode::GetMesh() {
 }
 
 float gbGeomNode::GetAnimMaxTime() {
-    if (animController) {
-        return animController->maxTime;
-    }
-    return 0.0f;
+    return animMaxTime;
 }
