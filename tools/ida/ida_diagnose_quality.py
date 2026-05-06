@@ -30,6 +30,7 @@ import idaapi
 import idautils
 import ida_funcs
 import ida_ua
+import ida_allins
 import ida_bytes
 import ida_name
 
@@ -132,7 +133,7 @@ def count_eh_funclet_criteria(addr, func_name, func_size):
         while check_addr < end_addr:
             insn = ida_ua.insn_t()
             if ida_ua.decode_insn(insn, check_addr) > 0:
-                if insn.itype == ida_ua.NN_jmp:
+                if insn.itype == ida_allins.NN_jmp:
                     criteria += 1
                     evidence.append(f"jumpout at 0x{check_addr:08X}")
                     break
@@ -157,7 +158,7 @@ def count_eh_funclet_criteria(addr, func_name, func_size):
         while check_addr < addr + func_size:
             insn = ida_ua.insn_t()
             if ida_ua.decode_insn(insn, check_addr) > 0:
-                if insn.itype in (ida_ua.NN_jmp, ida_ua.NN_call):
+                if insn.itype in (ida_allins.NN_jmp, ida_allins.NN_call):
                     # Check if indirect (operand type is register or memory)
                     if insn.Op1.type in (ida_ua.o_reg, ida_ua.o_phrase, ida_ua.o_displ):
                         criteria += 1
