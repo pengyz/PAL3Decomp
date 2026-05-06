@@ -52,13 +52,13 @@ add_compile_options(${PAL3_COMMON_COMPILE_FLAGS})
 if(MSVC_VERSION EQUAL 1200)
     # VC6: only flags it understands
     set(TOPO_GBENGINE_COMPILE_FLAGS
-        /GX /O2 /Ob1 /Oi /Ot /Oy /GF /Gy /FD /MD
+        /GX /O2 /Ob2 /Oi /Ot /Oy /GF /Gy /FD /MD
     )
 else()
     set(TOPO_GBENGINE_COMPILE_FLAGS
         /GX                  # C++ 异常处理（VC6 风格）/EHsc 的别名
         /O2                  # 最大速度优化
-        /Ob1                 # 内联函数展开（仅适当的内联）
+        /Ob2                 # 自动内联任何合适的函数
         /Oi                  # 启用内部函数优化
         /Ot                  # 优先代码速度而不是大小
         /Oy                  # 省略帧指针

@@ -304,6 +304,7 @@ def compile_file(src_path, obj_path):
         cl_exe,
         '/c',        # compile only
         '/O2',       # optimize for speed
+        '/Ob2',      # auto-inline any suitable function
         '/GF',       # string pooling
         '/Gy',       # function-level linking
         f'/Fo{obj_path}',
