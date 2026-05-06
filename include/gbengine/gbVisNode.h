@@ -2,7 +2,7 @@
 
 #include "gbengine/gbChain.h"
 
-// Forward declarations
+// Forward declarations (circular deps: gbGfxManager.h/gbSceneGraph.h include this indirectly)
 class gbGfxManager;
 class gbSceneGraph;
 class gbRenderEffect;

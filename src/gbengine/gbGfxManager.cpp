@@ -502,15 +502,5 @@ void gbEffectMgr::Release(void) {
 #pragma auto_inline(off)
 
 // gbGfxManager_D3D: full definition in gbGfxManager.h
-
-struct gbImage2DInfo {
-    char _stub_data[128];
-
-public:
-    struct gbImage2DInfo & operator=(struct gbImage2DInfo const & p0);
-
-public:
-    int IsPreferAlpha();
-
-};
+// gbImage2DInfo: full definition in gbTexture.h (included via gbMesh.h)
 

@@ -4,17 +4,11 @@
 #include "gbengine/gbCamera.h"
 #include "gbengine/gbMesh.h"
 #include "gbengine/gbSceneGraph.h"
+#include "gbengine/gbPrintFont.h"
 #include <d3d9.h>
 
-// Forward declarations
-class gbEffectMgr;
-class gbResManager;
-class gbVertPoolMgr;
-class gbPrintFontMgr;
-class gbPrintFont;
+// Forward declarations (defined in gbengine_internal.h, circular dep)
 class gbMatrixStack;
-class gbBaseMesh;
-class gbRenderEffect;
 
 // ============================================================================
 // gbClearParam
@@ -66,15 +60,6 @@ struct gbGfxStatistic {
     double TimeAccum;
     unsigned int Frame;
     unsigned int PrevFrame;
-};
-
-// ============================================================================
-// gbFontType
-// ============================================================================
-enum gbFontType {
-    GB_FONT_DEFAULT = 0,
-    GB_FONT_SMALL = 1,
-    GB_FONT_LARGE = 2
 };
 
 // ============================================================================

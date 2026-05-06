@@ -2,7 +2,7 @@
 
 #include "gbengine/gbengine_types.h"
 
-// Forward declarations
+// Forward declarations (circular dep / defined in gbengine_internal.h)
 class gbGfxManager;
 class gbMatrixStack;
 

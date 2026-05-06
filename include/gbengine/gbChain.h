@@ -2,18 +2,6 @@
 
 #include "gbengine/gbengine_types.h"
 
-// Forward declarations
-class gbChain1DNode;
-class gbChain1D;
-class gbChain2DNode;
-class gbChain2D;
-class gbNBTreeNode;
-class gbNBTree;
-class gbBinaryTreeNode;
-class gbBinaryTree;
-struct gbStaticChainNode;
-class gbStaticChain;
-
 
 /* ======== gbChain1DNode ======== */
 // Single-linked list node (8 bytes)

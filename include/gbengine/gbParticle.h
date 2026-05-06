@@ -1,16 +1,13 @@
 #pragma once
 
 #include "gbengine/gbengine_types.h"
-
-// Forward declarations
-class gbVFile;
-class gbTexture;
-class gbRenderEffect;
-class gbCamera;
-struct gbStaticChainNode;
-class gbStaticChain;
-struct gbRenderInfoObj;
-class gbVisNode;
+#include "gbengine/gbVFileSystem.h"
+#include "gbengine/gbTexture.h"
+#include "gbengine/gbRenderEffect.h"
+#include "gbengine/gbCamera.h"
+#include "gbengine/gbChain.h"
+#include "gbengine/gbSceneGraph.h"
+#include "gbengine/gbVisNode.h"
 
 /* ======== gbEmitterData ======== */
 
@@ -239,21 +236,19 @@ public:
 
 class gbParticleEffect : public gbVisNodeBase {
 public:
-    gbParticleGroup** particleGroups;      // offset
-    int numGroups;
-    gbPartGroupParam** groupParams;
-    int numParams;
-    gbPartEmitter** emitters;
-    int numEmitters;
-    char* effectName;
-    int unused1;
-    int unused2;
-    char padding1[0xc];
-    int unused3;
-    float unused4;
-    char padding2[0xc];
-    float spaceScale;
-    gbMatrix4 worldTransform;
+    char _effectBaseData[64];              // +0x58: effect config data (read as block)
+    int numGroups;                         // +0x98: number of particle groups
+    int numParams;                         // +0x9C: number of group params
+    int numEmitters;                       // +0xA0: number of emitters
+    gbParticleGroup* particleGroups;       // +0xA4: array of groups
+    gbPartGroupParam* groupParams;         // +0xA8: array of group params
+    gbPartEmitter* emitters;               // +0xAC: array of emitters
+    int field_B0;                          // +0xB0: read from file
+    int field_B4;                          // +0xB4: read from file
+    int field_B8;                          // +0xB8: read from file
+    char _effectData2[0x5C];               // +0xBC: remaining data (offsets 188-279)
+    float spaceScale;                      // +0x118: space scale factor
+    gbMatrix4 worldTransform;              // +0x11C: world transform matrix
 
     gbParticleEffect(void);
     gbParticleEffect(const gbParticleEffect& other);

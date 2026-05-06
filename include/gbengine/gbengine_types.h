@@ -9,11 +9,7 @@
 #define GBAPI __declspec(dllimport)
 #endif
 
-// Forward declarations for method parameters
-struct gbQuaternion;
-struct gbAABBox;
-struct gbOBBox;
-struct gbSphere;
+// Forward declarations (pointer-only usage, no header available without circular deps)
 class gbGfxManager;
 class gbTexture;
 

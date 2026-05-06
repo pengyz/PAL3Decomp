@@ -2,11 +2,10 @@
 
 #include "gbengine/gbengine_types.h"
 
-// Forward declarations
+// Forward declarations (defined later in this file)
 class gbAudioManager;
 class gbSound3DNode;
 class gbSound2DNode;
-class gbSoundData;
 
 /* ======== gbAudioMgrDesc ======== */
 

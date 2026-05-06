@@ -2,15 +2,13 @@
 
 #include "gbengine/gbengine_types.h"
 #include "gbengine/gbChain.h"
+#include "gbengine/gbTexture.h"
+#include "gbengine/gbVFileSystem.h"
 #include <d3d9.h>
 
-// Forward declarations
-class gbEffectMgr;
+// Forward declarations (circular dep or defined later in this file)
 class gbGfxManager;
 class gbRenderEffect;
-class gbTexture;
-struct gbTextureArray;
-class gbVFile;
 class gbVisNode;
 class gbDynVertBuf;
 class gbIndexPool;
@@ -195,7 +193,6 @@ private:
 
 /* ======== Mesh types ======== */
 
-// Forward declaration (full definition in gbSceneGraph.h)
 struct gbRenderInfoObj;
 
 // Geometry node description (sizeof = 52, verified from LoadFromFile: "52 * numMeshes" read)

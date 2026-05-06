@@ -1,18 +1,14 @@
 #pragma once
 
 #include "gbengine/gbVisNode.h"
+#include "gbengine/gbRenderEffect.h"
+#include "gbengine/gbTexture.h"
+#include "gbengine/gbVFileSystem.h"
 
 // Forward declarations
 class gbActor;
-class gbActorDef;
-class gbActorMgr;
 class gbAnimNodeGroup;
 class gbGfxManager;
-class gbRenderEffect;
-class gbResManager;
-class gbResource;
-class gbTexture;
-class gbVFileSystem;
 
 // Actor export node (attachment points) - external query result
 struct gbActorExpNode {

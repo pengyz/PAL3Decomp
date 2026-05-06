@@ -97,8 +97,6 @@ public:
 // sizeof(CPK) == 0xE01BC
 // ============================================================================
 
-class gbVFileSystem;
-
 class CPK {
     friend class gbVFileSystem;
 public:

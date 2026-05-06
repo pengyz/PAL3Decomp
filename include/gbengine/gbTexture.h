@@ -21,7 +21,8 @@ struct gbRefObject {
 // ============================================================================
 // gbResource - managed resource base
 // ============================================================================
-struct gbResource {
+class gbResource {
+public:
     gbRefObject baseclass;
     char* pName;
     unsigned int NameCrc32;

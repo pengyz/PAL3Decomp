@@ -6,14 +6,12 @@
 
 #include "gbengine/gbengine_types.h"
 #include "gbengine/gbVFileSystem.h"
+#include "gbengine/gbRenderEffect.h"
+#include "gbengine/gbSceneGraph.h"
 #include <string.h>
 
-// Forward declarations
+// Forward declarations (circular dep)
 class gbGfxManager;
-class gbRenderEffect;
-class gbVFile;
-struct gbRenderInfoObj;
-struct gbSphere;
 
 // ========= BEZIER =========
 class BEZIER {

@@ -4,9 +4,10 @@
 #include <d3d9.h>
 #include <d3dx9.h>
 
-// Forward declarations
+#include "gbengine/gbTexture.h"
+
+// Forward declarations (circular dep / no header)
 class gbGfxManager;
-class gbTexture;
 struct gbVertexElement;
 
 // ============================================================================

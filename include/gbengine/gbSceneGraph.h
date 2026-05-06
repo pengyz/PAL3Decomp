@@ -1,13 +1,11 @@
 #pragma once
 
 #include "gbengine/gbengine_types.h"
+#include "gbengine/gbCamera.h"
+#include "gbengine/gbRenderEffect.h"
 
-// Forward declarations
+// Forward declarations (defined after this header or circular deps)
 class gbVisNode;
-class gbGfxManager;
-class gbCamera;
-class gbRenderEffect;
-class gbEffectMgr;
 class gbVolModNode;
 // gbBladeMgr - blade trail effect manager
 // Contains 32 blade entries (each 0xBC bytes) followed by global state

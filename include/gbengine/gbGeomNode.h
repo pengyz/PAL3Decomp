@@ -1,15 +1,13 @@
 #pragma once
 
 #include "gbengine/gbVisNode.h"
+#include "gbengine/gbMesh.h"
+#include "gbengine/gbRenderEffect.h"
+#include "gbengine/gbVFileSystem.h"
+#include "gbengine/gbSceneGraph.h"
 
-// Forward declarations
-class gbBaseMesh;
-class gbStaticMesh;
-class gbRenderEffect;
-class gbTexture;
-class gbVFile;
+// Forward declarations (defined in gbengine_internal.h)
 class gbAnimNodeGroup;
-struct gbRenderInfoObj;
 
 // Animation curve interface - polymorphic objects with virtual GetValue + dtor
 // Used for translation, rotation, scale interpolation in gbGeomNode

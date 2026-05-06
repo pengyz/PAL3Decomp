@@ -8,11 +8,6 @@
 #include "gbengine/gbSceneGraph.h"
 #include <string.h>
 
-struct gbRefObject {
-    void* vtable;
-    int RefCount;
-};
-
 gbVolModNode::~gbVolModNode(void) {
 }
 
