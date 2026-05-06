@@ -8,6 +8,7 @@
 #include <d3d9.h>
 
 void gbGfxManager_D3D::SetTexture(gbTextureArray* texArray) {
+    /* STUB */
     if (!texArray || !m_pd3dDevice) return;
 
     // gbTextureArray supports up to 2 textures

@@ -7,14 +7,17 @@
 #include <string.h>
 
 gbMeshType gbBaseMesh::GetMeshType() {
+    /* STUB */
     return m_meshType;
 }
 
 gbAABBox* gbBaseMesh::GetAABBox() {
+    /* STUB */
     return &m_aabb;
 }
 
 void gbBaseMesh::RenderShadowVolume(gbVisNode* visNode, gbRenderInfoObj* renderInfo) {
+    /* STUB */
     // Base class does nothing; derived classes override for shadow rendering
     (void)0;
 }

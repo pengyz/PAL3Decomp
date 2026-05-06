@@ -22,6 +22,7 @@ extern void operator delete(void *p);
 
 gbMatrixStack::gbMatrixStack(int depth)
 {
+    /* STUB */
     maxDepth = depth;
     curDepth = 0;
     gbMatrix4 *buf = (gbMatrix4 *)operator new(depth << 6);
@@ -45,11 +46,13 @@ gbMatrixStack::gbMatrixStack(int depth)
 
 gbMatrixStack::~gbMatrixStack(void)
 {
+    /* STUB */
     operator delete(pStack);
 }
 
 gbMatrixStack &gbMatrixStack::operator=(const gbMatrixStack &other)
 {
+    /* STUB */
     pStack = other.pStack;
     maxDepth = other.maxDepth;
     curDepth = other.curDepth;
@@ -59,6 +62,7 @@ gbMatrixStack &gbMatrixStack::operator=(const gbMatrixStack &other)
 
 void gbMatrixStack::Push(void)
 {
+    /* STUB */
     float *pSrc = (float *)&pStack[curDepth];
     float *pDst = (float *)&pStack[curDepth + 1];
     int i;
@@ -72,18 +76,21 @@ void gbMatrixStack::Push(void)
 
 void gbMatrixStack::Pop(void)
 {
+    /* STUB */
     dirty = 0;
     curDepth--;
 }
 
 void gbMatrixStack::LoadIdentity(void)
 {
+    /* STUB */
     pStack[curDepth].LoadIdentity();
     dirty = 0;
 }
 
 void gbMatrixStack::LoadMatrix(gbMatrix4 *mat)
 {
+    /* STUB */
     float *pSrc = (float *)mat;
     float *pDst = (float *)&pStack[curDepth];
     int i;
@@ -97,12 +104,14 @@ void gbMatrixStack::LoadMatrix(gbMatrix4 *mat)
 
 void gbMatrixStack::MultMatrix(gbMatrix4 *mat)
 {
+    /* STUB */
     pStack[curDepth].LeftMultiply(*mat);
     dirty = 0;
 }
 
 void gbMatrixStack::Rotate(float angle, gbVec3D &axis)
 {
+    /* STUB */
     gbMatrix4 rot;
     rot.SetAxisAngle(&axis, angle);
     pStack[curDepth].LeftMultiply(rot);
@@ -111,40 +120,47 @@ void gbMatrixStack::Rotate(float angle, gbVec3D &axis)
 
 void gbMatrixStack::Rotate(gbQuaternion &q)
 {
+    /* STUB */
     pStack[curDepth] *= q;
     dirty = 0;
 }
 
 void gbMatrixStack::Translate(gbVec3D &v)
 {
+    /* STUB */
     pStack[curDepth].LeftTranslate(v);
     dirty = 0;
 }
 
 void gbMatrixStack::Translate(float x, float y, float z)
 {
+    /* STUB */
     pStack[curDepth].LeftTranslate(x, y, z);
     dirty = 0;
 }
 
 void gbMatrixStack::Scale(gbVec3D &v)
 {
+    /* STUB */
     pStack[curDepth].LeftScale(v.x, v.y, v.z);
     dirty = 0;
 }
 
 void gbMatrixStack::Scale(float sx, float sy, float sz)
 {
+    /* STUB */
     pStack[curDepth].LeftScale(sx, sy, sz);
     dirty = 0;
 }
 
 gbMatrix4 *gbMatrixStack::GetTop(void)
 {
+    /* STUB */
     return &pStack[curDepth];
 }
 
 int gbMatrixStack::GetDepth(void)
 {
+    /* STUB */
     return curDepth;
 }

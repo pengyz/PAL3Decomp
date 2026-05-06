@@ -8,6 +8,7 @@
 #include <math.h>
 
 gbLightObj::gbLightObj(void) {
+    /* STUB */
     memset(&position, 0, sizeof(position));
     memset(&direction, 0, sizeof(direction));
     direction.z = 1.0f;
@@ -28,13 +29,16 @@ gbLightObj::gbLightObj(void) {
 }
 
 gbLightObj::gbLightObj(const gbLightObj& other) {
+    /* STUB */
     memcpy(this, &other, sizeof(gbLightObj));
 }
 
 gbLightObj::~gbLightObj(void) {
+    /* STUB */
 }
 
 gbLightObj& gbLightObj::operator=(const gbLightObj& other) {
+    /* STUB */
     if (this != &other) {
         memcpy(this, &other, sizeof(gbLightObj));
     }
@@ -42,24 +46,29 @@ gbLightObj& gbLightObj::operator=(const gbLightObj& other) {
 }
 
 void gbLightObj::Init(enum LIGHT_TYPE type) {
+    /* STUB */
     lightType = type;
     enabled = 1;
     ComputeBoundSphere();
 }
 
 void gbLightObj::ComputeBoundSphere(void) {
+    /* STUB */
     boundingSphere.center = position;
     boundingSphere.radius = range;
 }
 
 int gbLightObj::GetType(void) {
+    /* STUB */
     return lightType;
 }
 
 const gbSphere* gbLightObj::GetBoundSphere(void) {
+    /* STUB */
     return &boundingSphere;
 }
 
 gbLight* gbLightObj::GetSysLight(void) {
+    /* STUB */
     return &sysLight;
 }

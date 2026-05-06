@@ -42,18 +42,21 @@ extern gbGfxManager* g_pGfxManager;
 
 // 0x10005b20 (9B) - Default constructor
 gbCamControler::gbCamControler(void) {
+    /* STUB */
     type = 0;
     pCamera = 0;
 }
 
 // 0x10005b30 (45B) - Copy constructor
 gbCamControler::gbCamControler(const gbCamControler& other) {
+    /* STUB */
     type = other.type;
     pCamera = other.pCamera;
 }
 
 // 0x10005b60 - operator=
 gbCamControler& gbCamControler::operator=(const gbCamControler& other) {
+    /* STUB */
     if (this != &other) {
         type = other.type;
         pCamera = other.pCamera;
@@ -62,7 +65,9 @@ gbCamControler& gbCamControler::operator=(const gbCamControler& other) {
 }
 
 // Virtual destructor
-gbCamControler::~gbCamControler() {}
+gbCamControler::~gbCamControler() {
+    /* STUB */
+}
 
 void gbCamControler::Update(double deltaTime) { (void)deltaTime; }
 
@@ -73,6 +78,7 @@ void gbCamControler::Update(double deltaTime) { (void)deltaTime; }
 
 // 0x10005b90 (43B) - Default constructor
 gbCamSpringControl::gbCamSpringControl(void) : gbCamControler() {
+    /* STUB */
     type = 1;
     springConstant = 10.0f;
     damping = 5.0f;
@@ -84,6 +90,7 @@ gbCamSpringControl::gbCamSpringControl(void) : gbCamControler() {
 
 // 0x10005bc0 (111B) - Copy constructor
 gbCamSpringControl::gbCamSpringControl(const gbCamSpringControl& other) : gbCamControler(other) {
+    /* STUB */
     springConstant = other.springConstant;
     damping = other.damping;
     targetDist = other.targetDist;
@@ -96,6 +103,7 @@ gbCamSpringControl::gbCamSpringControl(const gbCamSpringControl& other) : gbCamC
 
 // 0x10005c30 - operator=
 gbCamSpringControl& gbCamSpringControl::operator=(const gbCamSpringControl& other) {
+    /* STUB */
     if (this != &other) {
         gbCamControler::operator=(other);
         springConstant = other.springConstant;
@@ -112,6 +120,7 @@ gbCamSpringControl& gbCamSpringControl::operator=(const gbCamSpringControl& othe
 
 // 0x10021700 (295B) - Spring update
 void gbCamSpringControl::Update(double deltaTime) {
+    /* STUB */
     gbVec3D* camPos = &pCamera->eyeLoc;
     gbQuaternion* camQuat = &pCamera->eyeDir;
 
@@ -140,6 +149,7 @@ void gbCamSpringControl::Update(double deltaTime) {
 
 // 0x10005c90 (29B) - Default constructor
 gbCamQuakeControl::gbCamQuakeControl(void) : gbCamControler() {
+    /* STUB */
     type = 2;
     quakeFlags = 0;
     elapsed = 0.0;
@@ -155,6 +165,7 @@ gbCamQuakeControl::gbCamQuakeControl(void) : gbCamControler() {
 
 // 0x10005cb0 (111B) - Copy constructor
 gbCamQuakeControl::gbCamQuakeControl(const gbCamQuakeControl& other) : gbCamControler(other) {
+    /* STUB */
     quakeFlags = other.quakeFlags;
     elapsed = other.elapsed;
     duration = other.duration;
@@ -165,6 +176,7 @@ gbCamQuakeControl::gbCamQuakeControl(const gbCamQuakeControl& other) : gbCamCont
 
 // 0x10005d20 - operator=
 gbCamQuakeControl& gbCamQuakeControl::operator=(const gbCamQuakeControl& other) {
+    /* STUB */
     if (this != &other) {
         gbCamControler::operator=(other);
         quakeFlags = other.quakeFlags;
@@ -179,6 +191,7 @@ gbCamQuakeControl& gbCamQuakeControl::operator=(const gbCamQuakeControl& other) 
 
 // 0x10021830 (149B) - Quake update
 void gbCamQuakeControl::Update(double deltaTime) {
+    /* STUB */
     double factor = (duration - elapsed) / duration;
     float factorSq = (float)(factor * factor);
 
@@ -199,6 +212,7 @@ void gbCamQuakeControl::Update(double deltaTime) {
 // ---- Helper: build projection matrix (not stored, computed on the fly) ----
 
 void gbCamera::BuildProjMatrix(gbMatrix4* proj) {
+    /* STUB */
     float aspect = GetAspect();
     float h = 1.0f / (float)tan(fov * 0.5f);
     float w = h / aspect;
@@ -215,6 +229,7 @@ void gbCamera::BuildProjMatrix(gbMatrix4* proj) {
 // ---- Helper: extract frustum planes from view-projection matrix ----
 
 void gbCamera::BuildFrustumPlanes(gbMatrix4* viewProj) {
+    /* STUB */
     float (*M)[4] = viewProj->m;
 
     // Left: row3 + row0
@@ -272,6 +287,7 @@ void gbCamera::BuildFrustumPlanes(gbMatrix4* viewProj) {
 // ---- Helper: build view matrix from eyeLoc and eyeDir quaternion ----
 
 void gbCamera::BuildViewFromQuaternion() {
+    /* STUB */
     gbMatrix4 rotMat;
     eyeDir.GetMatrix(&rotMat);
 
@@ -324,6 +340,7 @@ void gbCamera::BuildViewFromQuaternion() {
 
 // 0x100218d0 (157B) - Constructor
 gbCamera::gbCamera(gbGfxManager* gfxMgr) {
+    /* STUB */
     pGfxMgr = gfxMgr;
 
     fov = 45.0f * 3.14159265f / 180.0f;
@@ -369,6 +386,7 @@ gbCamera::gbCamera(gbGfxManager* gfxMgr) {
 
 // 0x10005a20 - operator=
 gbCamera& gbCamera::operator=(const gbCamera& other) {
+    /* STUB */
     if (this != &other) {
         fov = other.fov;
         OrthoSize = other.OrthoSize;
@@ -396,6 +414,7 @@ gbCamera& gbCamera::operator=(const gbCamera& other) {
 
 // 0x100058d0 (33B)
 void gbCamera::SetEyeLoc(float x, float y, float z) {
+    /* STUB */
     eyeLoc.x = x;
     eyeLoc.y = y;
     eyeLoc.z = z;
@@ -403,48 +422,57 @@ void gbCamera::SetEyeLoc(float x, float y, float z) {
 
 // 0x10005900 (42B)
 void gbCamera::SetEyeDir(gbQuaternion* dir) {
+    /* STUB */
     if (dir)
         eyeDir = *dir;
 }
 
 // 0x10005930 (16B)
 void gbCamera::SetOrthoSize(float size) {
+    /* STUB */
     OrthoSize = size;
 }
 
 // 0x10005940 (16B) - SetFOV (note: uppercase FOV)
 void gbCamera::SetFOV(float f) {
+    /* STUB */
     fov = f;
 }
 
 // 0x10005950 (17B)
 void gbCamera::SetZRange(float nearZ, float farZ) {
+    /* STUB */
     zNear = nearZ;
     zFar = farZ;
 }
 
 // 0x10005970 (10B)
 float gbCamera::GetZNear(void) {
+    /* STUB */
     return zNear;
 }
 
 // 0x10005980 (10B)
 float gbCamera::GetZFar(void) {
+    /* STUB */
     return zFar;
 }
 
 // 0x10005990 (10B) - GetFOV (note: uppercase FOV)
 float gbCamera::GetFOV(void) {
+    /* STUB */
     return fov;
 }
 
 // 0x100059a0 (10B)
 float gbCamera::GetOrthoSize(void) {
+    /* STUB */
     return OrthoSize;
 }
 
 // 0x100059b0 (20B)
 float gbCamera::GetAspect(void) {
+    /* STUB */
     if (Hscreen > 0.0f)
         return Wscreen / Hscreen;
     return 1.0f;
@@ -452,6 +480,7 @@ float gbCamera::GetAspect(void) {
 
 // 0x100059c0 (24B) - Rotate vector by camera orientation (eye to world)
 void gbCamera::RotateVector(gbVec3D* in, gbVec3D* out) {
+    /* STUB */
     if (!in || !out)
         return;
     out->x = InvVMatrix.m[0][0] * in->x + InvVMatrix.m[1][0] * in->y + InvVMatrix.m[2][0] * in->z;
@@ -461,16 +490,19 @@ void gbCamera::RotateVector(gbVec3D* in, gbVec3D* out) {
 
 // 0x100059e0 (10B)
 gbMatrix4* gbCamera::GetViewMatrix(void) {
+    /* STUB */
     return &ViewMatrix;
 }
 
 // 0x100059f0 (10B)
 gbMatrix4* gbCamera::GetInvViewMatrix(void) {
+    /* STUB */
     return &InvVMatrix;
 }
 
 // 0x10005a00 (14B)
 gbCamControler* gbCamera::GetCurControl(void) {
+    /* STUB */
     if (CurCtrl >= 0 && CurCtrl < 16)
         return pControl[CurCtrl];
     return 0;
@@ -478,6 +510,7 @@ gbCamControler* gbCamera::GetCurControl(void) {
 
 // 0x10005a10 (14B)
 int gbCamera::IsCurCtrlDefault(void) {
+    /* STUB */
     return (CurCtrl == 0) ? 1 : 0;
 }
 
@@ -487,6 +520,7 @@ int gbCamera::IsCurCtrlDefault(void) {
 
 // 0x10021970 (155B) - Set look-at parameters and build view matrix
 void gbCamera::SetLookAt(gbVec3D* eye, gbVec3D* target, gbVec3D* up) {
+    /* STUB */
     if (!eye || !target || !up)
         return;
 
@@ -540,6 +574,7 @@ void gbCamera::SetLookAt(gbVec3D* eye, gbVec3D* target, gbVec3D* up) {
 // 0x10021a10 (97B) - Get view dimensions on near plane (private)
 // Note: signature uses float& (references), not pointers
 void gbCamera::GetViewSizeOnNearPlane(float& w, float& h) {
+    /* STUB */
     float halfH = zNear * (float)tan(fov * 0.5f);
     float halfW = halfH * GetAspect();
     w = halfW * 2.0f;
@@ -548,6 +583,7 @@ void gbCamera::GetViewSizeOnNearPlane(float& w, float& h) {
 
 // 0x10021a80 (460B) - Set this camera as the current rendering camera
 void gbCamera::SetAsCurrent(int mode) {
+    /* STUB */
     if (!pGfxMgr)
         return;
 
@@ -623,6 +659,7 @@ void gbCamera::SetAsCurrent(int mode) {
 
 // 0x10021c50 (39B) - Set screen dimensions
 void gbCamera::SetDimention(int w, int h) {
+    /* STUB */
     Wscreen = (float)w;
     Hscreen = (float)h;
     Viewport.width = w;
@@ -637,6 +674,7 @@ void gbCamera::SetDimention(int w, int h) {
 // flags indicates which planes to test (bit per plane)
 // Returns bitmask of planes that intersect; 0 if fully outside
 unsigned int gbCamera::ClipAABBox(gbVec3D* vMin, gbVec3D* vMax, unsigned int flags) {
+    /* STUB */
     if (!vMin || !vMax)
         return 0;
 
@@ -673,6 +711,7 @@ unsigned int gbCamera::ClipAABBox(gbVec3D* vMin, gbVec3D* vMax, unsigned int fla
 
 // 0x10021d80 (381B) - Clip OBB against frustum
 int gbCamera::ClipOBBox(gbOBBox* obb) {
+    /* STUB */
     if (!obb)
         return 0;
 
@@ -701,6 +740,7 @@ int gbCamera::ClipOBBox(gbOBBox* obb) {
 // 0x10021f00 (82B) - Clip point against frustum
 // From Ghidra: iterates planes, returns 1 if any dot < 0 (outside)
 int gbCamera::ClipPoint(gbVec3D* pt) {
+    /* STUB */
     int i = 0;
     if (0 < numPlane) {
         float* pPlane = &Plane[0][1]; // start at ny of plane 0 (+0x34 offset)
@@ -720,6 +760,7 @@ int gbCamera::ClipPoint(gbVec3D* pt) {
 // 0x10021f60 (90B) - Clip sphere against frustum
 // From Ghidra: returns 1 if any plane distance < -radius
 int gbCamera::ClipSphere(gbVec3D* center, float radius) {
+    /* STUB */
     int i = 0;
     if (0 < numPlane) {
         float* pPlane = &Plane[0][1]; // start at ny
@@ -742,6 +783,7 @@ int gbCamera::ClipSphere(gbVec3D* center, float radius) {
 
 // 0x10021fc0 (111B) - Convert screen coordinates to world point
 void gbCamera::PointScrToWorld(float sx, float sy, gbVec3D* worldPt) {
+    /* STUB */
     if (!worldPt)
         return;
 
@@ -766,6 +808,7 @@ void gbCamera::PointScrToWorld(float sx, float sy, gbVec3D* worldPt) {
 
 // 0x10022030 (24B) - Transform world point to eye space
 void gbCamera::PointWorldToEye(gbVec3D* worldPt, gbVec3D* eyePt) {
+    /* STUB */
     if (!worldPt || !eyePt)
         return;
     eyePt->x = ViewMatrix.m[0][0] * worldPt->x + ViewMatrix.m[1][0] * worldPt->y
@@ -778,6 +821,7 @@ void gbCamera::PointWorldToEye(gbVec3D* worldPt, gbVec3D* eyePt) {
 
 // 0x10022050 (91B) - Convert screen coordinates to eye space
 void gbCamera::PointScrToEye(float sx, float sy, gbVec3D* eyePt) {
+    /* STUB */
     if (!eyePt)
         return;
 
@@ -792,6 +836,7 @@ void gbCamera::PointScrToEye(float sx, float sy, gbVec3D* eyePt) {
 // 0x100220b0 (184B) - Convert eye-space point to screen coordinates
 // Note: uses float& references, not pointers
 void gbCamera::PointEyeToScr(gbVec3D* eyePt, float& sx, float& sy) {
+    /* STUB */
     if (!eyePt) {
         sx = 0.0f;
         sy = 0.0f;
@@ -817,6 +862,7 @@ void gbCamera::PointEyeToScr(gbVec3D* eyePt, float& sx, float& sy) {
 
 // 0x10022170 (217B) - Convert eye-space point to screen (gbVec3D version)
 void gbCamera::PointEyeToScr(gbVec3D* eyePt, gbVec3D* scrPt) {
+    /* STUB */
     if (!eyePt || !scrPt)
         return;
 
@@ -830,6 +876,7 @@ void gbCamera::PointEyeToScr(gbVec3D* eyePt, gbVec3D* scrPt) {
 // 0x10022250 (24B) - Transform eye-space point to world
 // Note: lowercase 't' in "to" - matches export symbol exactly
 void gbCamera::PointEyetoWorld(gbVec3D* eyePt, gbVec3D* worldPt) {
+    /* STUB */
     if (!eyePt || !worldPt)
         return;
     worldPt->x = InvVMatrix.m[0][0] * eyePt->x + InvVMatrix.m[1][0] * eyePt->y
@@ -843,6 +890,7 @@ void gbCamera::PointEyetoWorld(gbVec3D* eyePt, gbVec3D* worldPt) {
 // 0x10022270 (80B) - Convert world point to screen coordinates
 // Note: uses float& references
 void gbCamera::PointWorldToScr(gbVec3D* worldPt, float& sx, float& sy) {
+    /* STUB */
     if (!worldPt) {
         sx = 0.0f;
         sy = 0.0f;
@@ -855,6 +903,7 @@ void gbCamera::PointWorldToScr(gbVec3D* worldPt, float& sx, float& sy) {
 
 // 0x100222c0 (268B) - Get a ray from camera through screen point
 void gbCamera::GetRayToScreen(float sx, float sy, gbRay* ray) {
+    /* STUB */
     if (!ray)
         return;
 
@@ -880,6 +929,7 @@ void gbCamera::GetRayToScreen(float sx, float sy, gbRay* ray) {
 
 // 0x100223d0 (109B) - Get viewport bounds as float references
 void gbCamera::GetViewPort(float& x, float& y, float& w, float& h) {
+    /* STUB */
     x = (float)Viewport.x;
     y = (float)Viewport.y;
     w = (float)Viewport.width;
@@ -888,6 +938,7 @@ void gbCamera::GetViewPort(float& x, float& y, float& w, float& h) {
 
 // 0x10022440 (67B) - Convert device coordinates to screen coordinates
 void gbCamera::PointDevToScr(int* dx, int* dy, float sx, float sy) {
+    /* STUB */
     if (!dx || !dy)
         return;
     *dx = (int)(sx - (float)Viewport.x);
@@ -897,6 +948,7 @@ void gbCamera::PointDevToScr(int* dx, int* dy, float sx, float sy) {
 // 0x10022490 (24B) - Rotate vector with axis parameter
 // Note: uses gbAxis enum, not int
 void gbCamera::RotateVector(gbVec3D* in, gbVec3D* out, gbAxis axis) {
+    /* STUB */
     if (!in || !out)
         return;
 
@@ -917,6 +969,7 @@ void gbCamera::RotateVector(gbVec3D* in, gbVec3D* out, gbAxis axis) {
 
 // 0x100224b0 (39B) - Offset Z-buffer
 void gbCamera::OffsetZBuffer(double offset) {
+    /* STUB */
     // Ghidra: Viewport.maxz = (float)(1.0 - offset * 1.52587890625e-05)
     // Then calls pGfxMgr->vtable[9](&Viewport) to apply viewport to D3D
     Viewport.maxz = (float)(1.0 - offset * 1.52587890625e-05);
@@ -927,6 +980,7 @@ void gbCamera::OffsetZBuffer(double offset) {
 
 // 0x100224e0 (25B) - Recover Z-buffer to normal state
 void gbCamera::RecoverZBuffer(void) {
+    /* STUB */
     // Ghidra: Viewport.maxz = 1.0f, then calls pGfxMgr->vtable[9](&Viewport)
     Viewport.maxz = 1.0f;
     typedef void (__thiscall *ApplyViewportFn)(gbGfxManager*, gbViewPort*);
@@ -936,6 +990,7 @@ void gbCamera::RecoverZBuffer(void) {
 
 // 0x10022500 (130B) - Move camera along its forward direction
 void gbCamera::MoveInEyeDir(float dist) {
+    /* STUB */
     float fx = InvVMatrix.m[2][0];
     float fy = InvVMatrix.m[2][1];
     float fz = InvVMatrix.m[2][2];
@@ -947,6 +1002,7 @@ void gbCamera::MoveInEyeDir(float dist) {
 
 // 0x10022590 (83B) - Update camera (called each frame)
 void gbCamera::Update(double deltaTime) {
+    /* STUB */
     // Update all active controllers
     for (int i = 0; i <= CurCtrl && i < 16; i++) {
         if (pControl[i]) {
@@ -958,6 +1014,7 @@ void gbCamera::Update(double deltaTime) {
 // 0x100225f0 (54B) - Add a camera controller
 // From Ghidra: stores controller at pControl[CurCtrl+1], increments CurCtrl
 void gbCamera::AddControler(gbCamControler* ctrl, double blendTime) {
+    /* STUB */
     if (!ctrl)
         return;
 
@@ -970,6 +1027,7 @@ void gbCamera::AddControler(gbCamControler* ctrl, double blendTime) {
 // 0x10022630 (171B) - Project world point to screen without viewport transform
 // Note: uses float& references
 void gbCamera::PointWorld2Scr_NR(gbVec3D* worldPt, float& sx, float& sy) {
+    /* STUB */
     if (!worldPt) {
         sx = 0.0f;
         sy = 0.0f;

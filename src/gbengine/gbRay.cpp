@@ -15,6 +15,7 @@ extern "C" int __cdecl gbIntersectTriangle(
 
 // Constructor
 gbRay::gbRay() {
+    /* STUB */
     origin.x = origin.y = origin.z = 0.0f;
     direction.x = direction.y = 0.0f;
     direction.z = 1.0f;
@@ -22,6 +23,7 @@ gbRay::gbRay() {
 
 // Assignment operator
 gbRay& gbRay::operator=(const gbRay& r) {
+    /* STUB */
     origin = r.origin;
     direction = r.direction;
     return *this;
@@ -29,6 +31,7 @@ gbRay& gbRay::operator=(const gbRay& r) {
 
 // Intersect with plane defined by two vectors (plane normal and point on plane)
 float gbRay::IntersectPlane(gbVec3D& normal, gbVec3D& pointOnPlane) {
+    /* STUB */
     float denom = direction.DotProduct(&normal);
     if (fabsf(denom) < 0.0001f) {
         return -1.0f;  // Ray parallel to plane
@@ -45,6 +48,7 @@ float gbRay::IntersectPlane(gbVec3D& normal, gbVec3D& pointOnPlane) {
 
 // Ray-AABB intersection (slab method)
 int gbRay::IsColAABB(gbAABBox& box) {
+    /* STUB */
     float tmin = -FLT_MAX, tmax = FLT_MAX;
 
     for (int i = 0; i < 3; i++) {
@@ -70,6 +74,7 @@ int gbRay::IsColAABB(gbAABBox& box) {
 
 // Ray-Quad intersection (test as two triangles)
 int gbRay::IsColQuad(gbVec3D& v0, gbVec3D& v1, gbVec3D& v2) {
+    /* STUB */
     // Quad is v0-v1-v2 forming first triangle, v0-v2-? forming second
     // Parameters only provide 3 vertices, so this might be degenerate
     // Try testing as triangle (3-parameter version)
@@ -78,6 +83,7 @@ int gbRay::IsColQuad(gbVec3D& v0, gbVec3D& v1, gbVec3D& v2) {
 
 // Ray-Sphere intersection
 int gbRay::IsColSphere(gbSphere& sphere) {
+    /* STUB */
     gbVec3D m;
     m.x = origin.x - sphere.center.x;
     m.y = origin.y - sphere.center.y;
@@ -97,12 +103,14 @@ int gbRay::IsColSphere(gbSphere& sphere) {
 
 // Ray-Triangle intersection (Moller-Trumbore)
 int gbRay::IsColTriangle(gbVec3D& v0, gbVec3D& v1, gbVec3D& v2) {
+    /* STUB */
     gbVec3D intersection;
     return gbIntersectTriangle(&origin, &direction, &v0, &v1, &v2, &intersection);
 }
 
 // Ray-Triangle intersection with barycentric coordinates
 int gbRay::IsColTriangle(gbVec3D& v0, gbVec3D& v1, gbVec3D& v2, gbVec3D& bary) {
+    /* STUB */
     gbVec3D intersection;
     if (!gbIntersectTriangle(&origin, &direction, &v0, &v1, &v2, &intersection)) {
         return 0;

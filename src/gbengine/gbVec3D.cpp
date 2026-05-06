@@ -12,11 +12,13 @@
 
 float gbVec3D::Length(void) const
 {
+    /* STUB */
     return sqrtf(x * x + y * y + z * z);
 }
 
 bool gbVec3D::IsValid(void) const
 {
+    /* STUB */
     if (x * x < 0.0f) return false;
     if (y * y < 0.0f) return false;
     if (z * z < 0.0f) return false;
@@ -25,6 +27,7 @@ bool gbVec3D::IsValid(void) const
 
 void gbVec3D::Normalize(void)
 {
+    /* STUB */
     float len = Length();
     if (fabs(len) < GB_FLOAT_EPSILON) {
         z = 0.0f;
@@ -39,6 +42,7 @@ void gbVec3D::Normalize(void)
 
 gbVec3D::gbVec3D(float _x, float _y, float _z)
 {
+    /* STUB */
     x = _x;
     y = _y;
     z = _z;
@@ -46,6 +50,7 @@ gbVec3D::gbVec3D(float _x, float _y, float _z)
 
 void gbVec3D::operator=(const gbVec3D &other)
 {
+    /* STUB */
     x = other.x;
     y = other.y;
     z = other.z;
@@ -53,6 +58,7 @@ void gbVec3D::operator=(const gbVec3D &other)
 
 void gbVec3D::operator+=(const gbVec3D &other)
 {
+    /* STUB */
     x += other.x;
     y += other.y;
     z += other.z;
@@ -60,6 +66,7 @@ void gbVec3D::operator+=(const gbVec3D &other)
 
 void gbVec3D::operator-=(const gbVec3D &other)
 {
+    /* STUB */
     x -= other.x;
     y -= other.y;
     z -= other.z;
@@ -67,6 +74,7 @@ void gbVec3D::operator-=(const gbVec3D &other)
 
 void gbVec3D::operator*=(float s)
 {
+    /* STUB */
     x *= s;
     y *= s;
     z *= s;
@@ -74,6 +82,7 @@ void gbVec3D::operator*=(float s)
 
 void gbVec3D::operator/=(float s)
 {
+    /* STUB */
     x /= s;
     y /= s;
     z /= s;
@@ -81,11 +90,13 @@ void gbVec3D::operator/=(float s)
 
 bool gbVec3D::operator==(const gbVec3D &other)
 {
+    /* STUB */
     return (x == other.x && y == other.y && z == other.z);
 }
 
 gbVec3D gbVec3D::operator-(void) const
 {
+    /* STUB */
     gbVec3D result;
     result.x = -x;
     result.y = -y;
@@ -95,16 +106,19 @@ gbVec3D gbVec3D::operator-(void) const
 
 float gbVec3D::LengthSquare(void) const
 {
+    /* STUB */
     return x * x + y * y + z * z;
 }
 
 float gbVec3D::DotProduct(const gbVec3D *other) const
 {
+    /* STUB */
     return other->x * x + other->y * y + other->z * z;
 }
 
 int gbVec3D::IsNormal(void)
 {
+    /* STUB */
     float lenSq = x * x + y * y + z * z;
     if (fabs(lenSq - 1.0f) < GB_FLOAT_EPSILON) {
         return 1;
@@ -114,6 +128,7 @@ int gbVec3D::IsNormal(void)
 
 void gbVec3D::Inverse(void)
 {
+    /* STUB */
     x = -x;
     y = -y;
     z = -z;
@@ -121,6 +136,7 @@ void gbVec3D::Inverse(void)
 
 void gbVec3D::Zero(void)
 {
+    /* STUB */
     x = 0.0f;
     y = 0.0f;
     z = 0.0f;

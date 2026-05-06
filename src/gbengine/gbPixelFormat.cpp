@@ -6,6 +6,7 @@
 // Pixel format conversion and initialization
 
 void gbPixelFormat::Init(gbPixelFmtType type) {
+    /* STUB */
     Type = type;
     Pal = NULL;
 
@@ -145,6 +146,7 @@ void gbPixelFormat::Init(gbPixelFmtType type) {
 }
 
 void gbPixelFormat::Init(int bpp, unsigned int rMask, unsigned int gMask, unsigned int bMask, unsigned int aMask) {
+    /* STUB */
     Type = GB_PFT_UNKNOWN;
     Bpp = bpp;
     Pal = NULL;
@@ -188,6 +190,7 @@ void gbPixelFormat::Init(int bpp, unsigned int rMask, unsigned int gMask, unsign
 }
 
 void gbPixelFormat::Init(int bpp, gbColorQuad* palette) {
+    /* STUB */
     Type = GB_PFT_P8;
     Bpp = bpp;
     r_mask = 0;
@@ -210,6 +213,7 @@ void gbPixelFormat::Init(int bpp, gbColorQuad* palette) {
 }
 
 void gbPixelFormat::Init(gbPixelFormat* other) {
+    /* STUB */
     if (!other) {
         return;
     }
@@ -236,6 +240,7 @@ void gbPixelFormat::Init(gbPixelFormat* other) {
 }
 
 void gbPixelFormat::Release() {
+    /* STUB */
     if (Pal) {
         free(Pal);
         Pal = NULL;
@@ -243,6 +248,7 @@ void gbPixelFormat::Release() {
 }
 
 gbPixelFormat& gbPixelFormat::operator=(const gbPixelFormat& other) {
+    /* STUB */
     if (this != &other) {
         Release();
         Init((gbPixelFormat*)&other);

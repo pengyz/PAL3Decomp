@@ -15,6 +15,7 @@
 extern gbVFileSystem* g_pVFileSys;
 
 gbRenderEffect* gbEffectMgr::GetDefaultEffect(void) {
+    /* STUB */
     if (m_nNumEffects > 0) {
         return m_pEffects[0];
     }

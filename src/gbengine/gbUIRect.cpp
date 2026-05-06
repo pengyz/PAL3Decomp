@@ -8,6 +8,7 @@
 class gbTexture;
 
 void gbUIRect::Render(int flags) {
+    /* STUB */
     /* UNCERTAIN */
     // This should render the rectangle using the graphics manager
     // Actual implementation requires render system details

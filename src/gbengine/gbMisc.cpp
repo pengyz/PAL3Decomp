@@ -678,6 +678,7 @@ double gbTimeCounter_Off(gbTimeCounter* This)
 }
 
 void gbPixelFormat::Convert(unsigned char* src, gbPixelFormat* dstFmt, unsigned char* dst, int numPixels) {
+    /* STUB */
     if (!src || !dst || !dstFmt || numPixels <= 0) {
         return;
     }
@@ -767,6 +768,7 @@ void gbPixelFormat::Convert(unsigned char* src, gbPixelFormat* dstFmt, unsigned 
 }
 
 gbUIRect& gbUIRect::operator=(const gbUIRect& other) {
+    /* STUB */
     if (this != &other) {
         m_pTexture = other.m_pTexture;
         m_pGfx = other.m_pGfx;
@@ -779,6 +781,7 @@ gbUIRect& gbUIRect::operator=(const gbUIRect& other) {
 }
 
 void gbUIRect::Init(char* textureName, float inLeft, float inTop, float inRight, float inBottom, gbGfxManager* gfx) {
+    /* STUB */
     m_pGfx = gfx;
     m_pTexture = NULL;
     left = inLeft;
@@ -788,6 +791,7 @@ void gbUIRect::Init(char* textureName, float inLeft, float inTop, float inRight,
 }
 
 void gbUIRect::Release(void) {
+    /* STUB */
     if (m_pTexture) {
         m_pTexture->refObj.Release();
         m_pTexture = NULL;
@@ -823,21 +827,27 @@ int gbColorQuad::ColorQuadFmt;
 gbColorQuad::gbColorQuad(struct gbColorQuad & p0) { *(unsigned int*)this = *(unsigned int*)&p0; }
 
 gbColorQuad::gbColorQuad(unsigned char p0, unsigned char p1, unsigned char p2) {
+    /* STUB */
     if (ColorQuadFmt == 0) { r = p0; g = p1; b = p2; a = 0xFF; }
     else { b = p2; g = p1; r = p0; a = 0xFF; }
 }
 
 gbColorQuad::gbColorQuad(unsigned char p0, unsigned char p1, unsigned char p2, unsigned char p3) {
+    /* STUB */
     if (ColorQuadFmt == 0) { r = p0; g = p1; b = p2; a = p3; }
     else { b = p2; g = p1; r = p0; a = p3; }
 }
 
-gbColorQuad::gbColorQuad() { b = g = r = a = 0; }
+gbColorQuad::gbColorQuad() {
+    /* STUB */
+    b = g = r = a = 0;
+}
 
 struct gbColorQuad & gbColorQuad::operator=(struct gbColorQuad const & p0) { *(unsigned int*)this = *(unsigned int*)&p0; return *this; }
 
 // ---- gbNameVarBuf ----
 gbNameVarBuf::gbNameVarBuf() {
+    /* STUB */
     dataBuf = 0;
     dataBufCapacity = 0;
     dataBufUsed = 0;
@@ -848,6 +858,7 @@ gbNameVarBuf::gbNameVarBuf() {
 }
 
 void gbNameVarBuf::GetVariant(unsigned int p0, void * p1) {
+    /* STUB */
     unsigned int* table = (unsigned int*)varTable;
     for (int i = 0; i < varCount; i++) {
         if (table[i * 4] == p0) {
@@ -862,6 +873,7 @@ void gbNameVarBuf::GetVariant(unsigned int p0, void * p1) {
 }
 
 int gbNameVarBuf::IsVarExist(unsigned int p0) {
+    /* STUB */
     unsigned int* table = (unsigned int*)varTable;
     for (int i = 0; i < varCount; i++) {
         if (table[i * 4] == p0) {
@@ -879,6 +891,7 @@ struct VarDesc {
 };
 
 void* gbNameVarBuf::LockVariant(unsigned int nameHash, int* outSize) {
+    /* STUB */
     VarDesc* desc = (VarDesc*)varTable;
     for (int i = 0; i < varCount; i++) {
         if (desc[i].nameHash == nameHash) {
@@ -897,6 +910,7 @@ void* gbNameVarBuf::LockVariant(unsigned int nameHash, int* outSize) {
 }
 
 void gbNameVarBuf::RegVariant(unsigned int p0, int p1, int p2) {
+    /* STUB */
     // Check if already registered
     unsigned int* table = (unsigned int*)varTable;
     for (int i = 0; i < varCount; i++) {
@@ -946,6 +960,7 @@ void gbNameVarBuf::RegVariant(unsigned int p0, int p1, int p2) {
 }
 
 void gbNameVarBuf::SetVariant(unsigned int p0, void * p1) {
+    /* STUB */
     unsigned int* table = (unsigned int*)varTable;
     for (int i = 0; i < varCount; i++) {
         if (table[i * 4] == p0) {
@@ -960,10 +975,12 @@ void gbNameVarBuf::SetVariant(unsigned int p0, void * p1) {
 }
 
 void gbNameVarBuf::UnlockVariant() {
+    /* STUB */
     locked = 0;
 }
 
 gbTimeCounter& gbTimeCounter::operator=(const gbTimeCounter& other) {
+    /* STUB */
     if (this != &other) {
         startTime = other.startTime;
         freq = other.freq;
@@ -974,6 +991,7 @@ gbTimeCounter& gbTimeCounter::operator=(const gbTimeCounter& other) {
 }
 
 double gbTimeCounter::Off() {
+    /* STUB */
     LARGE_INTEGER endTime;
     QueryPerformanceCounter(&endTime);
 
@@ -985,6 +1003,7 @@ double gbTimeCounter::Off() {
 }
 
 void gbTimeCounter::On() {
+    /* STUB */
     LARGE_INTEGER counter;
     QueryPerformanceCounter(&counter);
     LARGE_INTEGER freq;

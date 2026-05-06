@@ -8,12 +8,14 @@
 
 // Constructor
 gbAABBox::gbAABBox() {
+    /* STUB */
     vMin.x = vMin.y = vMin.z = 0.0f;
     vMax.x = vMax.y = vMax.z = 1.0f;
 }
 
 // Assignment operator
 gbAABBox& gbAABBox::operator=(const gbAABBox& box) {
+    /* STUB */
     vMin = box.vMin;
     vMax = box.vMax;
     return *this;
@@ -21,6 +23,7 @@ gbAABBox& gbAABBox::operator=(const gbAABBox& box) {
 
 // AABB-AABB collision test
 int gbAABBox::IsColAABB(gbAABBox& box) {
+    /* STUB */
     return (vMin.x <= box.vMax.x && vMax.x >= box.vMin.x &&
             vMin.y <= box.vMax.y && vMax.y >= box.vMin.y &&
             vMin.z <= box.vMax.z && vMax.z >= box.vMin.z) ? 1 : 0;
@@ -28,6 +31,7 @@ int gbAABBox::IsColAABB(gbAABBox& box) {
 
 // Point-in-AABB test
 int gbAABBox::IsColPoint(gbVec3D& point) {
+    /* STUB */
     return (point.x >= vMin.x && point.x <= vMax.x &&
             point.y >= vMin.y && point.y <= vMax.y &&
             point.z >= vMin.z && point.z <= vMax.z) ? 1 : 0;
@@ -35,6 +39,7 @@ int gbAABBox::IsColPoint(gbVec3D& point) {
 
 // Transform AABB by matrix
 void gbAABBox::Transform(gbMatrix4* mat) {
+    /* STUB */
     // Transform all 8 corners and recompute AABB
     gbVec3D corners[8];
     corners[0] = gbVec3D(vMin.x, vMin.y, vMin.z);

@@ -22,6 +22,7 @@ static gbVec3D s_sunDirection = {0.0f, -1.0f, 0.0f};
 
 // Constructor from gbActorDef
 gbActor::gbActor(gbActorDef* actorDef) : gbVisNode() {
+    /* STUB */
     m_pActorDef = actorDef;
     m_pActions = nullptr;
     m_numActions = 0;
@@ -68,6 +69,7 @@ gbActor::gbActor(gbActorDef* actorDef) : gbVisNode() {
 
 // Copy constructor
 gbActor::gbActor(const gbActor& other) : gbVisNode() {
+    /* STUB */
     m_pActorDef = other.m_pActorDef;
     m_numActions = other.m_numActions;
     m_maxExportNodes = other.m_maxExportNodes;
@@ -90,6 +92,7 @@ gbActor::gbActor(const gbActor& other) : gbVisNode() {
 
 // Destructor
 gbActor::~gbActor() {
+    /* STUB */
     if (m_pActions) {
         free(m_pActions);
         m_pActions = nullptr;
@@ -102,6 +105,7 @@ gbActor::~gbActor() {
 
 // Update export node transforms
 void gbActor::UpdateExportNodes() {
+    /* STUB */
     if (!m_pActorDef || !m_pExportNodeData) return;
 
     // Update export node matrices from skeleton
@@ -110,6 +114,7 @@ void gbActor::UpdateExportNodes() {
 
 // Update animation state
 void gbActor::Update() {
+    /* STUB */
     gbVisNode::Update();
 
     if (!m_pActorDef) return;
@@ -194,6 +199,7 @@ void gbActor::Update() {
 
 // Render actor - push matrix stack, load world matrix, delegate to actorDef
 void gbActor::Render(gbRenderInfoObj* renderInfo) {
+    /* STUB */
     if (!m_pActorDef || !renderInfo) return;
 
     gbMatrixStack* matStack = pGfxMgr->pMatrixStack[1];
@@ -211,6 +217,7 @@ void gbActor::Render(gbRenderInfoObj* renderInfo) {
 
 // Render shadow volume - same pattern as Render but vtable[0x18]
 void gbActor::RenderShadowVolume(gbRenderInfoObj* renderInfo) {
+    /* STUB */
     if (!m_pActorDef || !renderInfo) return;
 
     gbMatrixStack* matStack = pGfxMgr->pMatrixStack[1];
@@ -228,12 +235,14 @@ void gbActor::RenderShadowVolume(gbRenderInfoObj* renderInfo) {
 
 // Attach render effect
 int gbActor::Attach(gbRenderEffect* effect) {
+    /* STUB */
     // Attach effect to actor
     return 1;
 }
 
 // Reset animation state
 void gbActor::Reset(float time) {
+    /* STUB */
     for (int i = 0; i < m_numActions; i++) {
         m_pActions[i].state = 0;
         m_pActions[i].weight = 0.0f;
@@ -243,12 +252,14 @@ void gbActor::Reset(float time) {
 
 // Go to action (simple)
 void gbActor::GotoAction(char* actionName, int loop) {
+    /* STUB */
     unsigned int crc = gbCrc32Compute(actionName);
     GotoAction(crc, loop, 1, 0, 0x6f766572);
 }
 
 // Go to action with time range (converts time to frame indices)
 void gbActor::GotoAction(char* actionName, float startTime, float endTime) {
+    /* STUB */
     unsigned int endFrame = (unsigned int)(endTime * ANIM_FRAME_RATE);
     unsigned int startFrame = (unsigned int)(startTime * ANIM_FRAME_RATE);
     unsigned int crc = gbCrc32Compute(actionName);
@@ -257,6 +268,7 @@ void gbActor::GotoAction(char* actionName, float startTime, float endTime) {
 
 // Go to action with three names (action + start marker + end marker)
 void gbActor::GotoAction(char* action1, char* action2, char* action3) {
+    /* STUB */
     if (!m_pActorDef) return;
 
     unsigned int crc = gbCrc32Compute(action1);
@@ -313,6 +325,7 @@ doGoto:
 
 // Go to action with raw parameters (core implementation)
 void gbActor::GotoAction(unsigned long actionCrc, int loop, unsigned int startFrame, unsigned int endFrame, unsigned long transition) {
+    /* STUB */
     if (!m_pActorDef) return;
 
     // Call actorDef vtable[0x38] - prepare for action change
@@ -355,6 +368,7 @@ void gbActor::GotoAction(unsigned long actionCrc, int loop, unsigned int startFr
 
 // Lock action blend weight
 void gbActor::LockAction(char* actionName, float weight) {
+    /* STUB */
     unsigned int crc = gbCrc32Compute(actionName);
     for (int i = 0; i < m_numActions; i++) {
         if (m_pActions[i].actionCrc == crc) {
@@ -367,6 +381,7 @@ void gbActor::LockAction(char* actionName, float weight) {
 
 // Unlock action (set to fade-out state)
 void gbActor::UnlockAction(char* actionName) {
+    /* STUB */
     unsigned int crc = gbCrc32Compute(actionName);
     for (int i = 0; i < m_numActions; i++) {
         if (m_pActions[i].actionCrc == crc) {
@@ -378,6 +393,7 @@ void gbActor::UnlockAction(char* actionName) {
 
 // Get action duration - delegates to actorDef vtable[0x8]
 unsigned int gbActor::GetActionDuration(char* actionName) {
+    /* STUB */
     if (!m_pActorDef) return 0;
     void** defVtable = *(void***)m_pActorDef;
     typedef unsigned int (__thiscall *GetDurationFn)(void*, char*);
@@ -387,6 +403,7 @@ unsigned int gbActor::GetActionDuration(char* actionName) {
 
 // Get event time for action - find action by CRC, then query actorDef
 unsigned int gbActor::GetEventTime(char* actionName, char* eventName) {
+    /* STUB */
     if (!m_pActorDef) return 0xFFFFFFFF;
 
     unsigned int actionCrc = gbCrc32Compute(actionName);
@@ -405,6 +422,7 @@ unsigned int gbActor::GetEventTime(char* actionName, char* eventName) {
 
 // Get transform matrix for named tag node (export node lookup)
 int gbActor::GetTagNodeTM(gbMatrix4* matrix, char* tagName) {
+    /* STUB */
     if (!m_pExportNodeData) return 0;
 
     unsigned int crc = gbCrc32Compute(tagName);
@@ -421,6 +439,7 @@ int gbActor::GetTagNodeTM(gbMatrix4* matrix, char* tagName) {
 
 // Enable/disable shadow casting
 void gbActor::EnableShadow(int enable) {
+    /* STUB */
     gbVisNode::EnableShadow(enable);
     if (enable != 0 && m_pActorDef) {
         void** defVtable = *(void***)m_pActorDef;
@@ -432,6 +451,7 @@ void gbActor::EnableShadow(int enable) {
 
 // Get bounding sphere - delegates to actorDef vtable[0x20]
 void gbActor::GetBoundSphere(gbSphere* sphere) {
+    /* STUB */
     if (!m_pActorDef || !sphere) return;
 
     void** defVtable = *(void***)m_pActorDef;
@@ -449,6 +469,7 @@ void gbActor::GetBoundSphere(gbSphere* sphere) {
 
 // Get collision AABB - delegates to actorDef vtable[0x24]
 gbAABBox* gbActor::GetCollideAABBox() {
+    /* STUB */
     if (!m_pActorDef) return nullptr;
     void** defVtable = *(void***)m_pActorDef;
     typedef gbAABBox* (__thiscall *GetAABBFn)(void*);
@@ -458,31 +479,37 @@ gbAABBox* gbActor::GetCollideAABBox() {
 
 // Get collision OBB
 void gbActor::GetCollideOBB(gbOBBox& obb) {
+    /* STUB */
     memset(&obb, 0, sizeof(obb));
 }
 
 // Get all export nodes (returns raw pointer to internal data)
 gbActorExpNode* gbActor::GetAllExpNode() {
+    /* STUB */
     return (gbActorExpNode*)(void*)m_pExportNodeData;
 }
 
 // Get number of export nodes
 int gbActor::GetNumExpNodes() {
+    /* STUB */
     return m_maxExportNodes;
 }
 
 // Get mix info array
 const gbMixActInfo* gbActor::GetMixInfo() {
+    /* STUB */
     return nullptr;
 }
 
 int gbActor::GetNumMixInfo() {
+    /* STUB */
     int numMix = m_pActorDef->numMixInfo;
     return numMix;
 }
 
 // Set current material - delegates to actorDef vtable[0x3c]
 void gbActor::SetCurMaterial(char* materialName) {
+    /* STUB */
     if (!m_pActorDef) return;
     void** defVtable = *(void***)m_pActorDef;
     typedef void (__thiscall *SetMtlFn)(void*, char*);
@@ -492,6 +519,7 @@ void gbActor::SetCurMaterial(char* materialName) {
 
 // Enable action material transition - find action then delegate to actorDef vtable[0x4]
 void gbActor::EnableActionTransMtl(char* actionName, bool enable) {
+    /* STUB */
     if (!m_pActorDef) return;
 
     unsigned int crc = gbCrc32Compute(actionName);
@@ -508,6 +536,7 @@ void gbActor::EnableActionTransMtl(char* actionName, bool enable) {
 
 // Set sun direction for lighting
 void gbActor::SetSunDirection(gbVec3D* direction) {
+    /* STUB */
     if (direction) {
         s_sunDirection = *direction;
     }
@@ -515,6 +544,7 @@ void gbActor::SetSunDirection(gbVec3D* direction) {
 
 // operator=
 gbActor& gbActor::operator=(const gbActor& other) {
+    /* STUB */
     if (this != &other) {
         gbVisNode::operator=(other);
         m_pActorDef = other.m_pActorDef;
@@ -561,6 +591,7 @@ private:
 
 // Constructor
 gbActorMgr::gbActorMgr(gbGfxManager* gfxMgr) {
+    /* STUB */
     m_pGfxManager = gfxMgr;
     m_pSkinShadowEffect1 = nullptr;
     m_pSkinShadowEffect2 = nullptr;
@@ -572,6 +603,7 @@ gbActorMgr::gbActorMgr(gbGfxManager* gfxMgr) {
 
 // Copy constructor
 gbActorMgr::gbActorMgr(const gbActorMgr& other) {
+    /* STUB */
     m_pGfxManager = other.m_pGfxManager;
     m_pSkinShadowEffect1 = other.m_pSkinShadowEffect1;
     m_pSkinShadowEffect2 = other.m_pSkinShadowEffect2;
@@ -579,11 +611,13 @@ gbActorMgr::gbActorMgr(const gbActorMgr& other) {
 
 // Destructor
 gbActorMgr::~gbActorMgr() {
+    /* STUB */
     // Release shadow effects
 }
 
 // operator=
 gbActorMgr& gbActorMgr::operator=(const gbActorMgr& other) {
+    /* STUB */
     if (this != &other) {
         m_pGfxManager = other.m_pGfxManager;
         m_pSkinShadowEffect1 = other.m_pSkinShadowEffect1;
@@ -594,6 +628,7 @@ gbActorMgr& gbActorMgr::operator=(const gbActorMgr& other) {
 
 // Load actor from file
 gbActor* gbActorMgr::LoadActorFile(char* filename) {
+    /* STUB */
     if (!filename) return nullptr;
 
     // Check if already loaded
@@ -638,6 +673,7 @@ gbActor* gbActorMgr::LoadActorFile(char* filename) {
 
 // Destroy actor
 void gbActorMgr::DestroyActor(gbActor* actor) {
+    /* STUB */
     if (actor) {
         delete actor;
     }

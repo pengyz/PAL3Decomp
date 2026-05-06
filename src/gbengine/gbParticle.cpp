@@ -38,6 +38,7 @@ static int RandomInt(int imin, int imax) {
 
 // Ghidra: gbPartParamControl_1000cd90 (93 bytes)
 gbPartParamControl::gbPartParamControl(void) {
+    /* STUB */
     memset(stateData, 0, sizeof(stateData));
     memset(curveConfig, 0, sizeof(curveConfig));
     memset(ch0Keys, 0, sizeof(ch0Keys));
@@ -49,6 +50,7 @@ gbPartParamControl::gbPartParamControl(void) {
 }
 
 gbPartParamControl& gbPartParamControl::operator=(const gbPartParamControl& other) {
+    /* STUB */
     if (this != &other) {
         memcpy(this, &other, sizeof(gbPartParamControl));
     }
@@ -56,6 +58,7 @@ gbPartParamControl& gbPartParamControl::operator=(const gbPartParamControl& othe
 }
 
 void gbPartParamControl::LoadFromFile(gbVFile* vfile) {
+    /* STUB */
     if (!vfile) return;
     controlType = 0;
     numKeys = 0;
@@ -63,6 +66,7 @@ void gbPartParamControl::LoadFromFile(gbVFile* vfile) {
 
 // Ghidra: GetValue_100299b0 (252 bytes)
 void gbPartParamControl::GetValue(float* result, float t) {
+    /* STUB */
     if (t <= ch0Keys[0].time) {
         result[0] = ch0Keys[0].value;
         result[1] = ch1Keys[0].value;
@@ -92,13 +96,16 @@ void gbPartParamControl::GetValue(float* result, float t) {
 /* ======== gbPartGroupParam ======== */
 
 gbPartGroupParam::gbPartGroupParam(void) {
+    /* STUB */
     memset(this, 0, sizeof(gbPartGroupParam));
 }
 
 gbPartGroupParam::~gbPartGroupParam(void) {
+    /* STUB */
 }
 
 gbPartGroupParam& gbPartGroupParam::operator=(const gbPartGroupParam& other) {
+    /* STUB */
     if (this != &other) {
         memcpy(this, &other, sizeof(gbPartGroupParam));
     }
@@ -106,12 +113,14 @@ gbPartGroupParam& gbPartGroupParam::operator=(const gbPartGroupParam& other) {
 }
 
 void gbPartGroupParam::LoadFromFile(gbVFile* vfile) {
+    /* STUB */
     if (!vfile) return;
     gravity = 0.0f;
     numFrames = 1;
 }
 
 void gbPartGroupParam::ComputeAirResist(gbParticleUnit* particle, float deltaTime) {
+    /* STUB */
     float* vel = &particle->velocity.x;
     float speed = sqrtf(vel[0] * vel[0] + vel[1] * vel[1] + vel[2] * vel[2]);
     float invSpeed = 1.0f / speed;
@@ -135,6 +144,7 @@ void gbPartGroupParam::ComputeAirResist(gbParticleUnit* particle, float deltaTim
 }
 
 void gbPartGroupParam::ComputeParticleParam(gbParticleUnit* particle, float lifeFactor, float deltaTime) {
+    /* STUB */
     int frameIdx = (int)((float)numFrames * lifeFactor);
     particle->frame = frameIdx;
     if (particle->frame >= numFrames) {
@@ -161,6 +171,7 @@ void gbPartGroupParam::ComputeParticleParam(gbParticleUnit* particle, float life
 }
 
 void gbPartGroupParam::InitParticleParam(gbParticleUnit* particle) {
+    /* STUB */
     particle->frame = 0;
 
     float val[3];
@@ -181,23 +192,28 @@ void gbPartGroupParam::InitParticleParam(gbParticleUnit* particle) {
 }
 
 gbTexture* gbPartGroupParam::GetTexture(void) {
+    /* STUB */
     return pTexture;
 }
 
 gbRenderEffect* gbPartGroupParam::GetRenderEffect(void) {
+    /* STUB */
     return pRenderEffect;
 }
 
 /* ======== gbPartEmitter ======== */
 
 gbPartEmitter::gbPartEmitter(void) {
+    /* STUB */
     memset(this, 0, sizeof(gbPartEmitter));
 }
 
 gbPartEmitter::~gbPartEmitter(void) {
+    /* STUB */
 }
 
 gbPartEmitter& gbPartEmitter::operator=(const gbPartEmitter& other) {
+    /* STUB */
     if (this != &other) {
         memcpy(this, &other, sizeof(gbPartEmitter));
     }
@@ -205,16 +221,19 @@ gbPartEmitter& gbPartEmitter::operator=(const gbPartEmitter& other) {
 }
 
 void gbPartEmitter::LoadFromFile(gbVFile* vfile) {
+    /* STUB */
     if (!vfile) return;
     memset(this, 0, sizeof(gbPartEmitter));
 }
 
 int gbPartEmitter::ComputeEmitterData(gbEmitterData* emitData, double time, double deltaTime) {
+    /* STUB */
     if (!emitData) return 0;
     return 1;
 }
 
 void gbPartEmitter::ComputeParticleInitPos(gbParticleUnit* particle) {
+    /* STUB */
     if (emitType == 0) {
         particle->position.x = RandomFloat(boxMin.x, boxMax.x) + basePosition.x;
         particle->position.y = RandomFloat(boxMin.y, boxMax.y) + basePosition.y;
@@ -241,6 +260,7 @@ void gbPartEmitter::ComputeParticleInitPos(gbParticleUnit* particle) {
 }
 
 void gbPartEmitter::ComputeParticleInitVel(gbEmitterData* emitData, gbParticleUnit* particle) {
+    /* STUB */
     float speed = RandomFloat(emitData->speedScale, emitData->speedVariance);
 
     particle->velocity.x = speed * emitData->velocity.x + RandomFloat(-velocityDeviation.x, velocityDeviation.x);
@@ -249,31 +269,37 @@ void gbPartEmitter::ComputeParticleInitVel(gbEmitterData* emitData, gbParticleUn
 }
 
 void gbPartEmitter::SetLoopEmit(bool loop) {
+    /* STUB */
     loopFlag = loop ? 1 : 0;
 }
 
 /* ======== gbParticleUnit ======== */
 
 gbParticleUnit::gbParticleUnit(void) {
+    /* STUB */
     memset(this, 0, sizeof(gbParticleUnit));
 }
 
 gbParticleUnit::gbParticleUnit(const gbParticleUnit& other) {
+    /* STUB */
     memcpy(this, &other, sizeof(gbParticleUnit));
 }
 
 /* ======== gbParticleGroup ======== */
 
 gbParticleGroup::gbParticleGroup(void) {
+    /* STUB */
     groupName = NULL;
     unused1 = 0;
     unused2 = 0;
 }
 
 gbParticleGroup::~gbParticleGroup(void) {
+    /* STUB */
 }
 
 gbParticleGroup& gbParticleGroup::operator=(const gbParticleGroup& other) {
+    /* STUB */
     if (this != &other) {
         memcpy(this, &other, sizeof(gbParticleGroup));
     }
@@ -281,27 +307,33 @@ gbParticleGroup& gbParticleGroup::operator=(const gbParticleGroup& other) {
 }
 
 void gbParticleGroup::LoadFromFile(gbVFile* vfile, gbParticleEffect* effect) {
+    /* STUB */
     if (!vfile || !effect) return;
     numAliveParticles = 0;
 }
 
 void gbParticleGroup::Reset(void) {
+    /* STUB */
     numAliveParticles = 0;
 }
 
 int gbParticleGroup::GetAlivePartNum(void) {
+    /* STUB */
     return numAliveParticles;
 }
 
 char* gbParticleGroup::GetName(void) {
+    /* STUB */
     return groupName;
 }
 
 gbPartGroupParam* gbParticleGroup::GetGroupParam(void) {
+    /* STUB */
     return pGroupParam;
 }
 
 gbParticleUnit* gbParticleGroup::GetOldestParticle(void) {
+    /* STUB */
     if (numAliveParticles <= 0) return NULL;
 
     double maxAge = -1.0;
@@ -318,6 +350,7 @@ gbParticleUnit* gbParticleGroup::GetOldestParticle(void) {
 }
 
 gbParticleUnit* gbParticleGroup::CreateOneParticle(gbEmitterData* emitData) {
+    /* STUB */
     gbParticleUnit* particle = NULL;
 
     if (numAliveParticles == maxParticles) {
@@ -342,6 +375,7 @@ gbParticleUnit* gbParticleGroup::CreateOneParticle(gbEmitterData* emitData) {
 }
 
 int gbParticleGroup::UpdateOneParticle(gbParticleUnit* particle, double deltaTime) {
+    /* STUB */
     particle->age += deltaTime;
 
     if (particle->age >= particle->lifetime) {
@@ -368,6 +402,7 @@ int gbParticleGroup::UpdateOneParticle(gbParticleUnit* particle, double deltaTim
 }
 
 void gbParticleGroup::Update(double deltaTime) {
+    /* STUB */
     for (int i = 0; i < numAliveParticles; ) {
         if (!UpdateOneParticle(&particleArray[i], deltaTime)) {
             if (i < numAliveParticles - 1) {
@@ -381,6 +416,7 @@ void gbParticleGroup::Update(double deltaTime) {
 }
 
 void gbParticleGroup::Render(void) {
+    /* STUB */
     if (!pGroupParam->GetRenderEffect()) return;
 }
 
@@ -388,27 +424,33 @@ void gbParticleGroup::Render(void) {
 /* ======== gbVisNodeBase ======== */
 
 gbVisNodeBase::gbVisNodeBase() {
+    /* STUB */
     memset(_visnode_data, 0, sizeof(_visnode_data));
 }
 
 gbVisNodeBase::~gbVisNodeBase() {
+    /* STUB */
 }
 
 void gbVisNodeBase::Update() {
+    /* STUB */
     // Base class - no operation
     (void)0;
 }
 
 void gbVisNodeBase::Render(gbRenderInfoObj* renderInfo) {
+    /* STUB */
     (void)renderInfo;
 }
 
 int gbVisNodeBase::Attach(gbRenderEffect* effect) {
+    /* STUB */
     (void)effect;
     return 0;
 }
 
 void gbVisNodeBase::GetBoundSphere(gbSphere* sphere) {
+    /* STUB */
     if (sphere) {
         sphere->center.x = sphere->center.y = sphere->center.z = 0.0f;
         sphere->radius = 0.0f;
@@ -416,12 +458,14 @@ void gbVisNodeBase::GetBoundSphere(gbSphere* sphere) {
 }
 
 void gbVisNodeBase::Reset(float time) {
+    /* STUB */
     (void)time;
 }
 
 /* ======== gbParticleEffect ======== */
 
 gbParticleEffect::gbParticleEffect(void) {
+    /* STUB */
     particleGroups = NULL;
     numGroups = 0;
     groupParams = NULL;
@@ -437,13 +481,16 @@ gbParticleEffect::gbParticleEffect(void) {
 }
 
 gbParticleEffect::gbParticleEffect(const gbParticleEffect& other) {
+    /* STUB */
     memcpy(this, &other, sizeof(gbParticleEffect));
 }
 
 gbParticleEffect::~gbParticleEffect(void) {
+    /* STUB */
 }
 
 gbParticleEffect& gbParticleEffect::operator=(const gbParticleEffect& other) {
+    /* STUB */
     if (this != &other) {
         memcpy(this, &other, sizeof(gbParticleEffect));
     }
@@ -451,10 +498,12 @@ gbParticleEffect& gbParticleEffect::operator=(const gbParticleEffect& other) {
 }
 
 int gbParticleEffect::LoadFromFile(char* filename) {
+    /* STUB */
     return 1;
 }
 
 void gbParticleEffect::Reset(float time) {
+    /* STUB */
     for (int i = 0; i < numGroups; i++) {
         if (particleGroups[i]) {
             particleGroups[i]->Reset();
@@ -463,10 +512,12 @@ void gbParticleEffect::Reset(float time) {
 }
 
 void gbParticleEffect::Update(void) {
+    /* STUB */
     UpdateInternal();
 }
 
 void gbParticleEffect::UpdateInternal(void) {
+    /* STUB */
     double deltaTime = 0.016;
     for (int i = 0; i < numGroups; i++) {
         if (particleGroups[i]) {
@@ -476,10 +527,12 @@ void gbParticleEffect::UpdateInternal(void) {
 }
 
 int gbParticleEffect::Attach(gbRenderEffect* effect) {
+    /* STUB */
     return 1;
 }
 
 void gbParticleEffect::GetBoundSphere(gbSphere* sphere) {
+    /* STUB */
     sphere->center.x = 0.0f;
     sphere->center.y = 0.0f;
     sphere->center.z = 0.0f;
@@ -487,6 +540,7 @@ void gbParticleEffect::GetBoundSphere(gbSphere* sphere) {
 }
 
 void gbParticleEffect::Render(gbRenderInfoObj* renderInfo) {
+    /* STUB */
     for (int i = 0; i < numGroups; i++) {
         if (particleGroups[i]) {
             particleGroups[i]->Render();
@@ -495,25 +549,30 @@ void gbParticleEffect::Render(gbRenderInfoObj* renderInfo) {
 }
 
 gbParticleGroup* gbParticleEffect::GetParticleGroup(int index) {
+    /* STUB */
     if (index < 0 || index >= numGroups) return NULL;
     return particleGroups[index];
 }
 
 gbPartGroupParam* gbParticleEffect::GetGroupParam(int index) {
+    /* STUB */
     if (index < 0 || index >= numParams) return NULL;
     return groupParams[index];
 }
 
 gbPartEmitter* gbParticleEffect::GetEmitter(int index) {
+    /* STUB */
     if (index < 0 || index >= numEmitters) return NULL;
     return emitters[index];
 }
 
 void gbParticleEffect::SetSpaceScale(float scale) {
+    /* STUB */
     spaceScale = scale;
 }
 
 float gbParticleEffect::GetSpaceScale(void) {
+    /* STUB */
     return spaceScale;
 }
 
@@ -538,6 +597,7 @@ gbGfxManager* gbAnimNodeGroup::s_pGfxMgr = 0;
 
 // ---- gbAnimNodeGroup ----
 gbAnimNodeGroup::gbAnimNodeGroup(class gbGfxManager * p0) {
+    /* STUB */
     pNode = 0;
     field_24 = 0;
     s_pGfxMgr = p0;
@@ -552,9 +612,11 @@ gbAnimNodeGroup::gbAnimNodeGroup(class gbGfxManager * p0) {
 }
 
 gbAnimNodeGroup::~gbAnimNodeGroup() {
+    /* STUB */
 }
 
 class gbAnimNodeGroup & gbAnimNodeGroup::operator=(class gbAnimNodeGroup const & p0) {
+    /* STUB */
     if (this != &p0) {
         memcpy(this, &p0, sizeof(gbAnimNodeGroup));
     }
@@ -564,16 +626,19 @@ class gbAnimNodeGroup & gbAnimNodeGroup::operator=(class gbAnimNodeGroup const &
 void gbAnimNodeGroup::Attach() { if (!pNode) return; }
 
 class gbAnimNodeGroup * gbAnimNodeGroup::Clone() {
+    /* STUB */
     gbAnimNodeGroup* clone = new gbAnimNodeGroup((gbGfxManager*)s_pGfxMgr);
     *clone = *this;
     return clone;
 }
 
 int gbAnimNodeGroup::IsDead() {
+    /* STUB */
     return isDead;
 }
 
 void gbAnimNodeGroup::LoadFromFile(char * p0) {
+    /* STUB */
     isDead = 0;
     gbVFile* file = g_pVFileSys->OpenFile(p0, 0x201);
     if (file) {
@@ -589,6 +654,7 @@ void gbAnimNodeGroup::LoadFromFile(char * p0) {
 }
 
 void gbAnimNodeGroup::Reset() {
+    /* STUB */
     ((int*)&lastTime)[0] = 0;
     ((float*)&lastTime)[1] = -1.0f;
     elapsedTime = 0.0;
@@ -598,20 +664,24 @@ void gbAnimNodeGroup::Reset() {
 }
 
 void gbAnimNodeGroup::SetPosition(struct gbMatrix4 const & p0) {
+    /* STUB */
     memcpy(&posMatrix, &p0, sizeof(gbMatrix4));
 }
 
 void gbAnimNodeGroup::SetPosition(struct gbVec3D const & p0) {
+    /* STUB */
     posMatrix.m[3][0] = p0.x;
     posMatrix.m[3][1] = p0.y;
     posMatrix.m[3][2] = p0.z;
 }
 
 void gbAnimNodeGroup::SetPriority(int p0) {
+    /* STUB */
     field_28 = p0;
 }
 
 void gbAnimNodeGroup::SetSoundFileDir(char * p0) {
+    /* STUB */
     static char s_soundFileDir[256];
     if (!p0) {
         s_soundFileDir[0] = '\0';
@@ -621,14 +691,17 @@ void gbAnimNodeGroup::SetSoundFileDir(char * p0) {
 }
 
 void gbAnimNodeGroup::SetToDead() {
+    /* STUB */
     isDead = 1;
 }
 
 void gbAnimNodeGroup::ShowGroup(int p0) {
+    /* STUB */
     field_30 = p0;
 }
 
 void gbAnimNodeGroup::Update() {
+    /* STUB */
     if (isDead == 0) return;
     if (field_30 == 0) return;
 
@@ -671,14 +744,23 @@ void gbAnimNodeGroup::Update() {
 // ---- gbEmitterData ----
 gbEmitterData::gbEmitterData() { memset(this, 0, sizeof(*this)); }
 
-struct gbEmitterData & gbEmitterData::operator=(struct gbEmitterData const & p0) { if (this != &p0) memcpy(this, &p0, sizeof(*this)); return *this; }
+struct gbEmitterData & gbEmitterData::operator=(struct gbEmitterData const & p0) {
+    /* STUB */
+    if (this != &p0) memcpy(this, &p0, sizeof(*this)); return *this;
+}
 
 // ---- gbEmitterSquare ----
 gbEmitterSquare::gbEmitterSquare() { memset(this, 0, sizeof(*this)); }
 
-struct gbEmitterSquare & gbEmitterSquare::operator=(struct gbEmitterSquare const & p0) { if (this != &p0) memcpy(this, &p0, sizeof(*this)); return *this; }
+struct gbEmitterSquare & gbEmitterSquare::operator=(struct gbEmitterSquare const & p0) {
+    /* STUB */
+    if (this != &p0) memcpy(this, &p0, sizeof(*this)); return *this;
+}
 
 // ---- gbParticleUnit ----
 gbParticleUnit::gbParticleUnit(struct gbParticleUnit & other) { memcpy(this, &other, sizeof(gbParticleUnit)); }
-struct gbParticleUnit & gbParticleUnit::operator=(struct gbParticleUnit const & p0) { if (this != &p0) memcpy(this, &p0, sizeof(*this)); return *this; }
+struct gbParticleUnit & gbParticleUnit::operator=(struct gbParticleUnit const & p0) {
+    /* STUB */
+    if (this != &p0) memcpy(this, &p0, sizeof(*this)); return *this;
+}
 

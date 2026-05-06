@@ -8,12 +8,14 @@
 
 // Constructor
 gbOBBox::gbOBBox() {
+    /* STUB */
     matrix.LoadIdentity();
     extent.x = extent.y = extent.z = 1.0f;
 }
 
 // Assignment operator
 gbOBBox& gbOBBox::operator=(const gbOBBox& box) {
+    /* STUB */
     matrix = box.matrix;
     extent = box.extent;
     return *this;
@@ -21,6 +23,7 @@ gbOBBox& gbOBBox::operator=(const gbOBBox& box) {
 
 // Get center of OBB
 gbVec3D gbOBBox::GetCenter() const {
+    /* STUB */
     gbVec3D center;
     center.x = matrix.m[3][0];
     center.y = matrix.m[3][1];
@@ -30,11 +33,13 @@ gbVec3D gbOBBox::GetCenter() const {
 
 // Get radius (distance from center to corner)
 float gbOBBox::GetRadius() const {
+    /* STUB */
     return extent.Length();
 }
 
 // Get radius in a specific direction
 float gbOBBox::GetRadiusInDirection(const gbVec3D& dir) const {
+    /* STUB */
     float r = 0.0f;
     for (int i = 0; i < 3; i++) {
         gbVec3D axis;
@@ -47,6 +52,7 @@ float gbOBBox::GetRadiusInDirection(const gbVec3D& dir) const {
 
 // Convert OBB to AABB
 void gbOBBox::GetAABBox(gbAABBox& aabb) {
+    /* STUB */
     gbVec3D axis[3];
     matrix.GetRow(&axis[0], 0);
     matrix.GetRow(&axis[1], 1);
@@ -72,6 +78,7 @@ void gbOBBox::GetAABBox(gbAABBox& aabb) {
 
 // Convert OBB to bounding sphere
 void gbOBBox::GetSphere(gbSphere& sphere) {
+    /* STUB */
     sphere.center.x = matrix.m[3][0];
     sphere.center.y = matrix.m[3][1];
     sphere.center.z = matrix.m[3][2];
@@ -80,6 +87,7 @@ void gbOBBox::GetSphere(gbSphere& sphere) {
 
 // Point-in-OBB test
 int gbOBBox::IsColPoint(gbVec3D& point) {
+    /* STUB */
     gbVec3D center;
     center.x = matrix.m[3][0];
     center.y = matrix.m[3][1];

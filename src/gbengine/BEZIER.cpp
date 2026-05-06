@@ -10,6 +10,7 @@
 
 // Constructor with control points
 BEZIER::BEZIER(gbVec3D* points) {
+    /* STUB */
     if (points) {
         for (int i = 0; i < 4; i++) {
             ctrlPt[i] = points[i];
@@ -23,6 +24,7 @@ BEZIER::BEZIER(gbVec3D* points) {
 
 // Default constructor
 BEZIER::BEZIER() {
+    /* STUB */
     memset(ctrlPt, 0, sizeof(ctrlPt));
     dirty = 1;
     memset(coeff, 0, sizeof(coeff));
@@ -30,11 +32,13 @@ BEZIER::BEZIER() {
 
 // Destructor
 BEZIER::~BEZIER() {
+    /* STUB */
     // Nothing to clean up
 }
 
 // Assignment operator
 BEZIER& BEZIER::operator=(const BEZIER& b) {
+    /* STUB */
     for (int i = 0; i < 4; i++) {
         ctrlPt[i] = b.ctrlPt[i];
         coeff[i] = b.coeff[i];
@@ -45,11 +49,13 @@ BEZIER& BEZIER::operator=(const BEZIER& b) {
 
 // Get control points (returns pointer to array)
 gbVec3D* BEZIER::GetControlPt() {
+    /* STUB */
     return ctrlPt;
 }
 
 // Set control points (expects array of 4 points)
 void BEZIER::SetControlPt(gbVec3D* points) {
+    /* STUB */
     if (points) {
         for (int i = 0; i < 4; i++) {
             ctrlPt[i] = points[i];
@@ -60,6 +66,7 @@ void BEZIER::SetControlPt(gbVec3D* points) {
 
 // Compute binomial coefficients for cubic Bezier
 void BEZIER::computerCoefficient() {
+    /* STUB */
     // Cubic Bezier coefficients: (1-t)^3, 3(1-t)^2*t, 3(1-t)*t^2, t^3
     // Binomial coefficients for n=3: 1, 3, 3, 1
     coeff[0] = 1;
@@ -71,6 +78,7 @@ void BEZIER::computerCoefficient() {
 
 // Get interpolated point on curve at parameter t [0,1]
 gbVec3D BEZIER::getInterpolatePoint(float t) {
+    /* STUB */
     if (dirty) {
         computerCoefficient();
     }
@@ -99,6 +107,7 @@ gbVec3D BEZIER::getInterpolatePoint(float t) {
 
 // Get tangent vector (derivative) at parameter t [0,1]
 gbVec3D BEZIER::getTangentVector(float t) {
+    /* STUB */
     if (dirty) {
         computerCoefficient();
     }

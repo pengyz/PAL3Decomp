@@ -10,6 +10,7 @@
 #include <string.h>
 
 gbRenderEffect::gbRenderEffect(ID3DXEffect* pEffect, unsigned int flags) {
+    /* STUB */
     m_pEffect = pEffect;
     m_nPasses = 0;
     m_dwFlags = flags;
@@ -22,6 +23,7 @@ gbRenderEffect::gbRenderEffect(ID3DXEffect* pEffect, unsigned int flags) {
 }
 
 gbRenderEffect::gbRenderEffect(const gbRenderEffect& other) {
+    /* STUB */
     m_pEffect = other.m_pEffect;
     m_nPasses = other.m_nPasses;
     m_dwFlags = other.m_dwFlags;
@@ -34,5 +36,6 @@ gbRenderEffect::gbRenderEffect(const gbRenderEffect& other) {
 }
 
 unsigned int gbRenderEffect::GetFlag(void) {
+    /* STUB */
     return m_dwFlags;
 }

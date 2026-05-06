@@ -110,6 +110,7 @@ static int gbPixelFmtBpp(gbPixelFmtType fmt)
 
 // 0x1001e470 (22B)
 int gbImage2DInfo::IsPreferAlpha(void) {
+    /* STUB */
     // Check if any detail level requests alpha
     if (goal == 2)
         return 1;
@@ -124,6 +125,7 @@ int gbImage2DInfo::IsPreferAlpha(void) {
 
 // 0x1001e3e0 (47B) - Constructor
 gbImage2D::gbImage2D(void) {
+    /* STUB */
     Width = 0;
     Height = 0;
     BitCount = 0;
@@ -137,6 +139,7 @@ gbImage2D::gbImage2D(void) {
 
 // Destructor
 gbImage2D::~gbImage2D() {
+    /* STUB */
     if (pBits) {
         free(pBits);
         pBits = NULL;
@@ -154,6 +157,7 @@ gbImage2D::~gbImage2D() {
 
 // 0x10020370 (37B) - Constructor
 gbTexture::gbTexture(void) {
+    /* STUB */
     refObj.vfptr = NULL; // vtable set by derived
     refObj.RefCount = 0;
     pName = NULL;
@@ -169,6 +173,7 @@ gbTexture::gbTexture(void) {
 
 // Virtual destructor
 gbTexture::~gbTexture() {
+    /* STUB */
     if (pTexImage) {
         delete pTexImage;
         pTexImage = NULL;
@@ -181,11 +186,13 @@ gbTexture::~gbTexture() {
 
 // 0x10004190 (12B) - Check if texture is initialized
 int gbTexture::IsInit(void) {
+    /* STUB */
     return IsLoaded;
 }
 
 // 0x10020760 (102B) - Create empty texture
 void gbTexture::CreateTexture(int w, int h, gbPixelFmtType fmt, int mips) {
+    /* STUB */
     Width = w;
     Height = h;
     InFmt.Type = fmt;
@@ -196,22 +203,26 @@ void gbTexture::CreateTexture(int w, int h, gbPixelFmtType fmt, int mips) {
 
 // Get the D3D texture interface (base returns NULL, overridden in D3D subclass)
 IDirect3DTexture9* gbTexture::GetTexture(void) {
+    /* STUB */
     (void)0;
     return NULL;
 }
 
 // Exported: GetHeight
 int gbTexture::GetHeight(void) {
+    /* STUB */
     return Height;
 }
 
 // Exported: GetWidth
 int gbTexture::GetWidth(void) {
+    /* STUB */
     return Width;
 }
 
 // 0x10020430 (85B) - Get internal D3D format from image
 gbPixelFmtType gbTexture::GetInternalFormat(gbImage2D* img) {
+    /* STUB */
     if (!img)
         return GB_PFT_UNKNOWN;
     return img->PixelFmt.Type;
@@ -219,6 +230,7 @@ gbPixelFmtType gbTexture::GetInternalFormat(gbImage2D* img) {
 
 // 0x100207d0 (15B) - Get raw bits pointer
 unsigned char* gbTexture::GetBits(void) {
+    /* STUB */
     if (pTexImage)
         return (unsigned char*)pTexImage->pBits;
     return NULL;
@@ -226,6 +238,7 @@ unsigned char* gbTexture::GetBits(void) {
 
 // 0x100207e0 (53B) - Get pixel channel value at (x, y)
 unsigned char gbTexture::GetPixelChannel(int x, int y, int channel) {
+    /* STUB */
     if (!pTexImage || !pTexImage->pBits)
         return 0;
 
@@ -245,11 +258,13 @@ unsigned char gbTexture::GetPixelChannel(int x, int y, int channel) {
 
 // Exported: GetLevels
 int gbTexture::GetLevels(void) {
+    /* STUB */
     return nLevels;
 }
 
 // 0x10020490 (269B) - Load texture data from gbImage2D
 void gbTexture::LoadFromImage2D(gbImage2D* img) {
+    /* STUB */
     if (!img)
         return;
     Width = img->Width;
@@ -261,6 +276,7 @@ void gbTexture::LoadFromImage2D(gbImage2D* img) {
 
 // 0x100205a0 (443B) - Load texture from resource index
 void gbTexture::LoadTexture(int resIndex) {
+    /* STUB */
     // In the real engine, this loads from the resource manager
     // using the resource index to find the file and call LoadFromImage2D
     IsLoaded = 1;
@@ -268,6 +284,7 @@ void gbTexture::LoadTexture(int resIndex) {
 
 // 0x10020820 (52B) - Update texture sub-region from image
 void gbTexture::UpdateTexture(int x, int y, gbImage2D* img) {
+    /* STUB */
     if (!img)
         return;
     // In the real engine, this would lock the D3D texture surface,
@@ -276,6 +293,7 @@ void gbTexture::UpdateTexture(int x, int y, gbImage2D* img) {
 
 // 0x10020860 (40B) - Update entire texture from image
 void gbTexture::UpdateTexture(gbImage2D* img) {
+    /* STUB */
     if (!img)
         return;
     UpdateTexture(0, 0, img);
@@ -288,6 +306,7 @@ void gbTexture::UpdateTexture(gbImage2D* img) {
 
 // 0x1001ba60 (29B) - Constructor
 gbTexture_D3D::gbTexture_D3D(void) : gbTexture() {
+    /* STUB */
     pTex = NULL;
     pDS = NULL;
     m_ImgFormat = 0;
@@ -295,6 +314,7 @@ gbTexture_D3D::gbTexture_D3D(void) : gbTexture() {
 
 // 0x1001baa0 - Virtual destructor: release D3D resources
 gbTexture_D3D::~gbTexture_D3D() {
+    /* STUB */
     if (pDS) {
         pDS->Release();
         pDS = NULL;
@@ -307,6 +327,7 @@ gbTexture_D3D::~gbTexture_D3D() {
 
 // Override: return the D3D texture pointer
 IDirect3DTexture9* gbTexture_D3D::GetTexture(void) {
+    /* STUB */
     return (IDirect3DTexture9*)pTex;
 }
 
@@ -314,6 +335,7 @@ IDirect3DTexture9* gbTexture_D3D::GetTexture(void) {
 void gbTexture_D3D::CreateFromMemory(int w, int h, gbPixelFmtType srcFmt, int levels,
                                       gbPixelFmtType dstFmt, void* data)
 {
+    /* STUB */
     if (!data)
         return;
 
@@ -391,6 +413,7 @@ void gbTexture_D3D::CreateFromMemory(int w, int h, gbPixelFmtType srcFmt, int le
 
 // 0x1001bea0 (219B) - Update existing texture with new data
 void gbTexture_D3D::UpdateTexture(int x, int y, int w, int h, gbPixelFmtType srcFmt, void* data) {
+    /* STUB */
     if (!pTex || !data)
         return;
 
@@ -420,6 +443,7 @@ void gbTexture_D3D::UpdateTexture(int x, int y, int w, int h, gbPixelFmtType src
 
 // 0x1001c010 (344B) - Create texture from file data in memory (e.g. DDS, BMP, TGA)
 void gbTexture_D3D::CreateFromFileMemory(void* data, int size) {
+    /* STUB */
     if (!data || size <= 0)
         return;
 
@@ -461,6 +485,7 @@ void gbTexture_D3D::CreateFromFileMemory(void* data, int size) {
 
 // 0x1001bf80 (144B) - Create texture for use as render target
 int gbTexture_D3D::CreateForRenderTarget(int w, int h, gbPixelFmtType fmt) {
+    /* STUB */
     // Release existing
     if (pTex) {
         pTex->Release();
@@ -501,6 +526,7 @@ int gbTexture_D3D::CreateForRenderTarget(int w, int h, gbPixelFmtType fmt) {
 
 // 0x1001c170 (144B) - Get a byte from locked texture data
 unsigned char gbTexture_D3D::GetByte(int x, int y) {
+    /* STUB */
     if (!pTex)
         return 0;
 
@@ -520,11 +546,13 @@ unsigned char gbTexture_D3D::GetByte(int x, int y) {
 
 // Exported: GetTexName
 IDirect3DBaseTexture9* gbTexture_D3D::GetTexName(void) {
+    /* STUB */
     return pTex;
 }
 
 // Exported: GetMiscTexName
 IDirect3DSurface9* gbTexture_D3D::GetMiscTexName(void) {
+    /* STUB */
     return pDS;
 }
 
@@ -535,18 +563,21 @@ IDirect3DSurface9* gbTexture_D3D::GetMiscTexName(void) {
 
 // 0x100041b0 (10B) - Default constructor
 gbTextureArray::gbTextureArray(void) {
+    /* STUB */
     pTex[0] = NULL;
     pTex[1] = NULL;
 }
 
 // 0x100041c0 (18B) - Single texture constructor
 gbTextureArray::gbTextureArray(gbTexture* tex0) {
+    /* STUB */
     pTex[0] = tex0;
     pTex[1] = NULL;
 }
 
 // 0x10004200 (16B) - Set single texture
 void gbTextureArray::SetTexture(gbTexture* tex) {
+    /* STUB */
     pTex[0] = tex;
 }
 

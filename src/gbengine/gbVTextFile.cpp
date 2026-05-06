@@ -7,10 +7,12 @@
 extern gbVFileSystem* g_pVFileSys;
 
 gbVTextFile::~gbVTextFile() {
+    /* STUB */
     Close();
 }
 
 void gbVTextFile::Open(char* filename) {
+    /* STUB */
     if (!filename || !g_pVFileSys) {
         return;
     }
@@ -20,6 +22,7 @@ void gbVTextFile::Open(char* filename) {
 }
 
 void gbVTextFile::Close() {
+    /* STUB */
     if (m_pFile && g_pVFileSys) {
         g_pVFileSys->CloseFile(m_pFile);
         m_pFile = NULL;
@@ -27,6 +30,7 @@ void gbVTextFile::Close() {
 }
 
 void gbVTextFile::Rewind() {
+    /* STUB */
     if (m_pFile && g_pVFileSys) {
         g_pVFileSys->Rewind(m_pFile);
     }

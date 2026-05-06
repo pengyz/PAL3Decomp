@@ -79,13 +79,17 @@ static void AIL_mem_free_lock(void* ptr) {}
 extern unsigned int gbCrc32Compute(const char* str);
 
 // gbResManagerStub method implementations
-void gbResManagerStub::Init() { array = NULL; capacity = 0; count = 0; }
+void gbResManagerStub::Init() {
+    /* STUB */
+    array = NULL; capacity = 0; count = 0;
+}
 void gbResManagerStub::Destroy() { if (array != NULL) { free(array); array = NULL; } }
 
 
 /* ======== gbSoundData implementation ======== */
 
 gbSoundData::gbSoundData() {
+    /* STUB */
     refCount = 1;
     name = NULL;
     nameCrc = 0;
@@ -95,6 +99,7 @@ gbSoundData::gbSoundData() {
 }
 
 gbSoundData::~gbSoundData() {
+    /* STUB */
     if (fileData != NULL) {
         AIL_mem_free_lock(fileData);
         fileData = NULL;
@@ -106,6 +111,7 @@ gbSoundData::~gbSoundData() {
 }
 
 void gbSoundData::SetName(const char* newName) {
+    /* STUB */
     if (name != NULL) {
         free(name);
     }
@@ -121,9 +127,13 @@ void gbSoundData::SetName(const char* newName) {
     nameCrc = gbCrc32Compute(newName);
 }
 
-void gbSoundData::IncRef() { refCount++; }
+void gbSoundData::IncRef() {
+    /* STUB */
+    refCount++;
+}
 
 void gbSoundData::Release() {
+    /* STUB */
     refCount--;
     if (refCount == 0) {
         delete this;
@@ -171,6 +181,7 @@ static void AddSoundResource(gbResManagerStub* mgr, gbSoundData* snd) {
 
 // Constructor - 0x10001000 (27B)
 gbAudioMgrDesc::gbAudioMgrDesc() {
+    /* STUB */
     freq = 0x5622;       // 22050 Hz
     bits = 0x10;         // 16-bit
     channels = 2;        // stereo
@@ -179,6 +190,7 @@ gbAudioMgrDesc::gbAudioMgrDesc() {
 
 // operator=
 gbAudioMgrDesc& gbAudioMgrDesc::operator=(const gbAudioMgrDesc& other) {
+    /* STUB */
     freq = other.freq;
     bits = other.bits;
     channels = other.channels;
@@ -206,6 +218,7 @@ static gbAudioManager* g_pAudioManager = NULL;
 
 // Constructor - 0x10001120
 gbAudioManager::gbAudioManager(int& result, gbAudioMgrDesc* desc) {
+    /* STUB */
     int i;
 
     // Zero streams and status
@@ -293,6 +306,7 @@ gbAudioManager::gbAudioManager(int& result, gbAudioMgrDesc* desc) {
 
 // Copy constructor - 0x10002240
 gbAudioManager::gbAudioManager(const gbAudioManager& other) {
+    /* STUB */
     int i;
 
     for (i = 0; i < MAX_STREAMS; i++) {
@@ -325,6 +339,7 @@ gbAudioManager::gbAudioManager(const gbAudioManager& other) {
 
 // Destructor
 gbAudioManager::~gbAudioManager() {
+    /* STUB */
     int i;
 
     // Clear global pointers
@@ -389,6 +404,7 @@ gbAudioManager::~gbAudioManager() {
 
 // operator=
 gbAudioManager& gbAudioManager::operator=(const gbAudioManager& other) {
+    /* STUB */
     int i;
     if (this != &other) {
         for (i = 0; i < MAX_STREAMS; i++) {
@@ -420,6 +436,7 @@ gbAudioManager& gbAudioManager::operator=(const gbAudioManager& other) {
 
 // Get3DProvider - 0x10001020 (250B)
 unsigned long gbAudioManager::Get3DProvider(char* providerName) {
+    /* STUB */
     HPROVIDER dest;
     void* query;
     unsigned int count;
@@ -462,6 +479,7 @@ unsigned long gbAudioManager::Get3DProvider(char* providerName) {
 
 // LoadSoundFile - 0x10001560 (125B)
 gbSoundData* gbAudioManager::LoadSoundFile(char* filename) {
+    /* STUB */
     if (filename == NULL) {
         return NULL;
     }
@@ -491,6 +509,7 @@ gbSoundData* gbAudioManager::LoadSoundFile(char* filename) {
 
 // DeleteSoundData - 0x100015f0 (12B)
 void gbAudioManager::DeleteSoundData(gbSoundData* data) {
+    /* STUB */
     if (data != NULL) {
         data->Release();
     }
@@ -498,6 +517,7 @@ void gbAudioManager::DeleteSoundData(gbSoundData* data) {
 
 // AttachSampleHandle (3D) - 0x10001620 (392B)
 void gbAudioManager::AttachSampleHandle(gbSound3DNode* node) {
+    /* STUB */
     if (node == NULL || node->soundData == NULL) {
         return;
     }
@@ -551,6 +571,7 @@ void gbAudioManager::AttachSampleHandle(gbSound3DNode* node) {
 
 // DetachSampleHandle (3D) - 0x100018d0 (58B)
 void gbAudioManager::DetachSampleHandle(gbSound3DNode* node) {
+    /* STUB */
     if (node == NULL) {
         return;
     }
@@ -569,6 +590,7 @@ void gbAudioManager::DetachSampleHandle(gbSound3DNode* node) {
 
 // DetachAll3D - 0x10001970 (54B)
 void gbAudioManager::DetachAll3D() {
+    /* STUB */
     for (int i = 0; i < num3DSamples; i++) {
         if (slots3D[i].flags != 0) {
             AIL_stop_3D_sample(slots3D[i].handle);
@@ -584,6 +606,7 @@ void gbAudioManager::DetachAll3D() {
 
 // AttachSampleHandle (2D) - 0x10001a10 (240B)
 void gbAudioManager::AttachSampleHandle(gbSound2DNode* node) {
+    /* STUB */
     if (node == NULL || node->soundData == NULL) {
         return;
     }
@@ -634,6 +657,7 @@ void gbAudioManager::AttachSampleHandle(gbSound2DNode* node) {
 
 // DetachSampleHandle (2D) - 0x10001b00 (61B)
 void gbAudioManager::DetachSampleHandle(gbSound2DNode* node) {
+    /* STUB */
     if (node == NULL) {
         return;
     }
@@ -651,6 +675,7 @@ void gbAudioManager::DetachSampleHandle(gbSound2DNode* node) {
 
 // CanBeHeard - 0x10001da0 (115B)
 int gbAudioManager::CanBeHeard(gbSound3DNode* node) {
+    /* STUB */
     if (node == NULL || listener == NULL) {
         return 0;
     }
@@ -676,6 +701,7 @@ int gbAudioManager::CanBeHeard(gbSound3DNode* node) {
 
 // PlaySoundStream - 0x10001bc0 (136B)
 void gbAudioManager::PlaySoundStream(int index, char* filename, int loop) {
+    /* STUB */
     if (index < 0 || index >= MAX_STREAMS) {
         return;
     }
@@ -708,6 +734,7 @@ void gbAudioManager::PlaySoundStream(int index, char* filename, int loop) {
 
 // ReStartSoundStream - 0x10001b70 (78B)
 void gbAudioManager::ReStartSoundStream(int index) {
+    /* STUB */
     if (index < 0 || index >= MAX_STREAMS) {
         return;
     }
@@ -720,6 +747,7 @@ void gbAudioManager::ReStartSoundStream(int index) {
 
 // StopSoundStream - 0x10001c50 (42B)
 void gbAudioManager::StopSoundStream(int index) {
+    /* STUB */
     if (index < 0 || index >= MAX_STREAMS) {
         return;
     }
@@ -733,6 +761,7 @@ void gbAudioManager::StopSoundStream(int index) {
 
 // PauseSoundStream - 0x10001cd0 (23B)
 void gbAudioManager::PauseSoundStream(int index) {
+    /* STUB */
     if (index < 0 || index >= MAX_STREAMS) {
         return;
     }
@@ -744,6 +773,7 @@ void gbAudioManager::PauseSoundStream(int index) {
 
 // ResumeSoundStream - 0x10001cf0 (23B)
 void gbAudioManager::ResumeSoundStream(int index) {
+    /* STUB */
     if (index < 0 || index >= MAX_STREAMS) {
         return;
     }
@@ -755,11 +785,13 @@ void gbAudioManager::ResumeSoundStream(int index) {
 
 // GetStreamStatus - 0x10001d10 (11B)
 int gbAudioManager::GetStreamStatus(int index) {
+    /* STUB */
     return streamStatus[index];
 }
 
 // SetMusicMasterVolume - 0x10001c80 (67B)
 void gbAudioManager::SetMusicMasterVolume(float vol) {
+    /* STUB */
     musicMasterVolume = vol;
 
     // Update volume on all active streams
@@ -776,11 +808,13 @@ void gbAudioManager::SetMusicMasterVolume(float vol) {
 
 // GetMusicMasterVolume
 float gbAudioManager::GetMusicMasterVolume() {
+    /* STUB */
     return musicMasterVolume;
 }
 
 // SetListenerPosition - 0x10001d20 (62B)
 void gbAudioManager::SetListenerPosition(const gbVec3D& pos) {
+    /* STUB */
     if (listener != NULL) {
         AIL_set_3D_position(listener, pos.x, pos.y, pos.z);
     }
@@ -788,6 +822,7 @@ void gbAudioManager::SetListenerPosition(const gbVec3D& pos) {
 
 // SetListenerOrientation - 0x10001d60 (56B)
 void gbAudioManager::SetListenerOrientation(gbVec3D& front, gbVec3D& top) {
+    /* STUB */
     if (listener != NULL) {
         AIL_set_3D_orientation(listener, front.x, front.y, front.z, top.x, top.y, top.z);
     }
@@ -795,6 +830,7 @@ void gbAudioManager::SetListenerOrientation(gbVec3D& front, gbVec3D& top) {
 
 // GetListenerPosition - 0x10002210 (33B)
 void gbAudioManager::GetListenerPosition(gbVec3D& pos) {
+    /* STUB */
     if (listener != NULL) {
         AIL_3D_position(listener, &pos.x, &pos.y, &pos.z);
     }
@@ -802,21 +838,25 @@ void gbAudioManager::GetListenerPosition(gbVec3D& pos) {
 
 // Set2DMasterVolume - 0x100021c0 (13B)
 void gbAudioManager::Set2DMasterVolume(float vol) {
+    /* STUB */
     volume2D = vol;
 }
 
 // Get2DMasterVolume
 float gbAudioManager::Get2DMasterVolume() {
+    /* STUB */
     return volume2D;
 }
 
 // Set3DMasterVolume - 0x100021e0 (13B)
 void gbAudioManager::Set3DMasterVolume(float vol) {
+    /* STUB */
     volume3D = vol;
 }
 
 // Get3DMasterVolume
 float gbAudioManager::Get3DMasterVolume() {
+    /* STUB */
     return volume3D;
 }
 
@@ -827,6 +867,7 @@ float gbAudioManager::Get3DMasterVolume() {
 
 // Constructor - 0x10002640 (99B)
 gbSound3DNode::gbSound3DNode() {
+    /* STUB */
     soundData = NULL;
     sampleHandle = NULL;
     position.x = 0.0f;
@@ -847,6 +888,7 @@ gbSound3DNode::gbSound3DNode() {
 
 // Destructor
 gbSound3DNode::~gbSound3DNode() {
+    /* STUB */
     if (attached && pAudioMgr != NULL) {
         pAudioMgr->DetachSampleHandle(this);
     }
@@ -858,6 +900,7 @@ gbSound3DNode::~gbSound3DNode() {
 
 // operator=
 gbSound3DNode& gbSound3DNode::operator=(const gbSound3DNode& other) {
+    /* STUB */
     if (this != &other) {
         soundData = other.soundData;
         sampleHandle = other.sampleHandle;
@@ -875,6 +918,7 @@ gbSound3DNode& gbSound3DNode::operator=(const gbSound3DNode& other) {
 
 // LoadFromFile - 0x10002700 (85B)
 int gbSound3DNode::LoadFromFile(char* filename) {
+    /* STUB */
     if (pAudioMgr == NULL) {
         return 0;
     }
@@ -896,6 +940,7 @@ int gbSound3DNode::LoadFromFile(char* filename) {
 
 // Play - 0x10002760 (174B)
 void gbSound3DNode::Play() {
+    /* STUB */
     if (pAudioMgr == NULL || soundData == NULL) {
         return;
     }
@@ -920,6 +965,7 @@ void gbSound3DNode::Play() {
 
 // Stop - 0x10002810 (24B)
 void gbSound3DNode::Stop() {
+    /* STUB */
     if (sampleHandle != NULL) {
         AIL_stop_3D_sample(sampleHandle);
     }
@@ -927,6 +973,7 @@ void gbSound3DNode::Stop() {
 
 // IsPlaying - 0x10002830 (38B)
 int gbSound3DNode::IsPlaying() {
+    /* STUB */
     if (sampleHandle == NULL) {
         return 0;
     }
@@ -936,6 +983,7 @@ int gbSound3DNode::IsPlaying() {
 
 // SetPosition - 0x10002500 (24B)
 void gbSound3DNode::SetPosition(gbVec3D& pos) {
+    /* STUB */
     position = pos;
     if (sampleHandle != NULL) {
         AIL_set_3D_position(sampleHandle, pos.x, pos.y, pos.z);
@@ -944,16 +992,19 @@ void gbSound3DNode::SetPosition(gbVec3D& pos) {
 
 // GetPosition - 0x10002560 (24B)
 void gbSound3DNode::GetPosition(gbVec3D& pos) {
+    /* STUB */
     pos = position;
 }
 
 // SetOrientation - 0x10002540 (24B)
 void gbSound3DNode::SetOrientation(gbVec3D& ori) {
+    /* STUB */
     orientation = ori;
 }
 
 // SetVelocity - 0x10002520 (24B)
 void gbSound3DNode::SetVelocity(gbVec3D& vel) {
+    /* STUB */
     velocity = vel;
     if (sampleHandle != NULL) {
         AIL_set_3D_velocity(sampleHandle, vel.x, vel.y, vel.z);
@@ -962,16 +1013,19 @@ void gbSound3DNode::SetVelocity(gbVec3D& vel) {
 
 // SetVolume - 0x100024e0 (10B)
 void gbSound3DNode::SetVolume(float vol) {
+    /* STUB */
     volume = vol;
 }
 
 // SetLoopNum - 0x100024f0 (10B)
 void gbSound3DNode::SetLoopNum(int num) {
+    /* STUB */
     loopCount = num;
 }
 
 // SetDistParam
 void gbSound3DNode::SetDistParam(float minD, float maxD) {
+    /* STUB */
     minDist = minD;
     maxDist = maxD;
     if (sampleHandle != NULL) {
@@ -981,26 +1035,31 @@ void gbSound3DNode::SetDistParam(float minD, float maxD) {
 
 // GetMinDist
 float gbSound3DNode::GetMinDist() {
+    /* STUB */
     return minDist;
 }
 
 // GetMaxDist
 float gbSound3DNode::GetMaxDist() {
+    /* STUB */
     return maxDist;
 }
 
 // GetPlayLoop
 int gbSound3DNode::GetPlayLoop() {
+    /* STUB */
     return loopCount;
 }
 
 // IfAttached - 0x100024d0 (11B)
 bool gbSound3DNode::IfAttached() {
+    /* STUB */
     return attached != 0;
 }
 
 // Update - 0x10002860 (110B)
 int gbSound3DNode::Update(double deltaTime) {
+    /* STUB */
     if (!attached || sampleHandle == NULL) {
         return 0;
     }
@@ -1029,6 +1088,7 @@ int gbSound3DNode::Update(double deltaTime) {
 
 // Constructor - 0x100028d0 (30B)
 gbSound2DNode::gbSound2DNode() {
+    /* STUB */
     soundData = NULL;
     sampleHandle = NULL;
     loopCount = 1;
@@ -1037,6 +1097,7 @@ gbSound2DNode::gbSound2DNode() {
 
 // Destructor
 gbSound2DNode::~gbSound2DNode() {
+    /* STUB */
     if (sampleHandle != NULL && pAudioMgr != NULL) {
         pAudioMgr->DetachSampleHandle(this);
     }
@@ -1048,6 +1109,7 @@ gbSound2DNode::~gbSound2DNode() {
 
 // operator=
 gbSound2DNode& gbSound2DNode::operator=(const gbSound2DNode& other) {
+    /* STUB */
     if (this != &other) {
         soundData = other.soundData;
         sampleHandle = other.sampleHandle;
@@ -1059,6 +1121,7 @@ gbSound2DNode& gbSound2DNode::operator=(const gbSound2DNode& other) {
 
 // LoadFromFile - 0x10002940 (44B)
 int gbSound2DNode::LoadFromFile(char* filename) {
+    /* STUB */
     if (pAudioMgr == NULL) {
         return 0;
     }
@@ -1080,6 +1143,7 @@ int gbSound2DNode::LoadFromFile(char* filename) {
 
 // Play - 0x10002970 (85B)
 void gbSound2DNode::Play() {
+    /* STUB */
     if (pAudioMgr == NULL || soundData == NULL) {
         return;
     }
@@ -1104,6 +1168,7 @@ void gbSound2DNode::Play() {
 
 // Stop - 0x100029d0 (24B)
 void gbSound2DNode::Stop() {
+    /* STUB */
     if (sampleHandle != NULL) {
         AIL_stop_sample(sampleHandle);
     }
@@ -1111,6 +1176,7 @@ void gbSound2DNode::Stop() {
 
 // IsPlaying - 0x100029f0 (28B)
 bool gbSound2DNode::IsPlaying() {
+    /* STUB */
     if (sampleHandle == NULL) {
         return false;
     }
@@ -1120,6 +1186,7 @@ bool gbSound2DNode::IsPlaying() {
 
 // Pause - 0x10002a10 (24B)
 void gbSound2DNode::Pause() {
+    /* STUB */
     if (sampleHandle != NULL) {
         AIL_pause_sample(sampleHandle);
     }
@@ -1127,6 +1194,7 @@ void gbSound2DNode::Pause() {
 
 // Resume - 0x10002a30 (24B)
 void gbSound2DNode::Resume() {
+    /* STUB */
     if (sampleHandle != NULL) {
         AIL_resume_sample(sampleHandle);
     }
@@ -1134,10 +1202,12 @@ void gbSound2DNode::Resume() {
 
 // SetLoopNum - 0x10002630 (10B)
 void gbSound2DNode::SetLoopNum(int num) {
+    /* STUB */
     loopCount = num;
 }
 
 // SetVolume - 0x10002620 (10B)
 void gbSound2DNode::SetVolume(float vol) {
+    /* STUB */
     volume = vol;
 }

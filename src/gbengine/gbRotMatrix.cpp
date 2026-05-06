@@ -18,11 +18,13 @@
 
 gbRotMatrix::gbRotMatrix(void)
 {
+    /* STUB */
     LoadIdentity();
 }
 
 void gbRotMatrix::operator=(gbRotMatrix &other)
 {
+    /* STUB */
     float *pSrc = (float *)&other;
     float *pDst = (float *)this;
     int i;
@@ -35,6 +37,7 @@ void gbRotMatrix::operator=(gbRotMatrix &other)
 
 void gbRotMatrix::operator*=(gbRotMatrix &other)
 {
+    /* STUB */
     float temp[9];
     float *pSrc = (float *)this;
     float *pDst = temp;
@@ -76,6 +79,7 @@ void gbRotMatrix::operator*=(gbRotMatrix &other)
 
 void gbRotMatrix::Rotate(gbVec3D *in, gbVec3D *out)
 {
+    /* STUB */
     out->x = in->y * m[1][0] + in->z * m[2][0] + in->x * m[0][0];
     out->y = in->x * m[0][1] + in->y * m[1][1] + in->z * m[2][1];
     out->z = in->x * m[0][2] + in->y * m[1][2] + in->z * m[2][2];
@@ -83,6 +87,7 @@ void gbRotMatrix::Rotate(gbVec3D *in, gbVec3D *out)
 
 void gbRotMatrix::LoadIdentity(void)
 {
+    /* STUB */
     memset(this, 0, sizeof(gbRotMatrix));
     m[0][0] = 1.0f;
     m[1][1] = 1.0f;
@@ -91,6 +96,7 @@ void gbRotMatrix::LoadIdentity(void)
 
 bool const gbRotMatrix::IsValid(void)
 {
+    /* STUB */
     if (this == NULL) return false;
     float *p = (float *)this;
     int i = 0;
@@ -106,6 +112,7 @@ bool const gbRotMatrix::IsValid(void)
 
 bool const gbRotMatrix::IsOrthonormal(void)
 {
+    /* STUB */
     gbVec3D col_x, col_y, cross, col_z;
 
     col_x.x = m[0][0]; col_x.y = m[1][0]; col_x.z = m[2][0];
