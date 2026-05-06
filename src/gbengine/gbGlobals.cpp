@@ -4,6 +4,7 @@
 #include "gbengine/gbVFileSystem.h"
 #include <windows.h>
 #include <string.h>
+#include <stdio.h>
 #include <math.h>
 
 // gbRealWorldTime structure definition (0x20 bytes)
@@ -283,39 +284,242 @@ void gbGetRealWorldTime(gbRealWorldTime* time) {
     time->milliseconds = (unsigned int)st.wMilliseconds;
 }
 
-// Display mode management
+// Display mode management globals
+struct gbDispMode {
+    int width;
+    int height;
+    int bpp;
+    int freq;
+    int reserved;
+};
+
+static int g_dispModeCount = 0;
+static gbDispMode g_dispModes[128];
+static int g_dispStackDepth = 0;
+static gbDispMode* g_dispStack = NULL;
+static gbDispMode g_curDispMode = {0, 0, 0, 0, 0};
+
+extern void gbPopErrorBox(char* fmt, ...);
+
 void gbInitDispSetting(void)
 {
+    DEVMODEA DevMode;
+    BOOL result;
+    DWORD iModeNum;
+    FILE* fp;
+
+    result = EnumDisplaySettingsA(NULL, 0, &DevMode);
+    fp = fopen("disp_ogl.txt", "wt");
+    iModeNum = 0;
+    while (result) {
+        gbDispMode* pMode = &g_dispModes[g_dispModeCount];
+        pMode->width = DevMode.dmPelsWidth;
+        pMode->height = DevMode.dmPelsHeight;
+        pMode->bpp = DevMode.dmBitsPerPel;
+        pMode->freq = DevMode.dmDisplayFrequency;
+        if (fp) {
+            fprintf(fp, "w=%d,h=%d,bpp=%d,freq=%d\n",
+                pMode->width, pMode->height, pMode->bpp, DevMode.dmDisplayFrequency);
+        }
+        result = EnumDisplaySettingsA(NULL, iModeNum, &DevMode);
+        iModeNum++;
+    }
+    if (fp) {
+        fclose(fp);
+    }
 }
 
-int gbChangeDispMode(int p1, int p2, int p3)
+int gbChangeDispMode(int width, int height, int bpp)
 {
-    return 0;
+    DEVMODEA DevMode;
+    DWORD curFreq;
+    DWORD firstMatch;
+    DWORD iMode;
+    LONG result;
+    char buf[256];
+
+    firstMatch = 0;
+    g_curDispMode.width = width;
+    g_curDispMode.height = height;
+    g_curDispMode.bpp = bpp;
+
+    EnumDisplaySettingsA(NULL, 0xFFFFFFFF, &DevMode);
+    curFreq = DevMode.dmDisplayFrequency;
+
+    iMode = 0;
+    while (EnumDisplaySettingsA(NULL, iMode, &DevMode)) {
+        if (DevMode.dmBitsPerPel == (DWORD)bpp
+            && DevMode.dmPelsWidth == (DWORD)width
+            && DevMode.dmPelsHeight == (DWORD)height
+            && DevMode.dmDisplayFrequency == curFreq) {
+            if (!ChangeDisplaySettingsA(&DevMode, CDS_TEST))
+                return 1;
+            if (!firstMatch)
+                firstMatch = iMode;
+        }
+        iMode++;
+    }
+
+    iMode = 0;
+    while (EnumDisplaySettingsA(NULL, iMode, &DevMode)) {
+        if (DevMode.dmBitsPerPel == (DWORD)bpp
+            && DevMode.dmPelsWidth == (DWORD)width
+            && DevMode.dmPelsHeight == (DWORD)height) {
+            if (!ChangeDisplaySettingsA(&DevMode, CDS_TEST))
+                return 1;
+            if (!firstMatch)
+                firstMatch = iMode;
+        }
+        iMode++;
+    }
+
+    EnumDisplaySettingsA(NULL, firstMatch, &DevMode);
+    DevMode.dmBitsPerPel = bpp;
+    DevMode.dmPelsWidth = width;
+    DevMode.dmPelsHeight = height;
+    DevMode.dmFields = DM_PELSWIDTH | DM_PELSHEIGHT | DM_BITSPERPEL;
+
+    if (ChangeDisplaySettingsA(&DevMode, CDS_TEST)) {
+        DevMode.dmFields = DM_BITSPERPEL;
+        result = ChangeDisplaySettingsA(&DevMode, CDS_TEST);
+        if (!result) {
+            DevMode.dmFields = DM_PELSWIDTH | DM_PELSHEIGHT;
+            result = ChangeDisplaySettingsA(&DevMode, CDS_TEST);
+            if (result) {
+                ChangeDisplaySettingsA(NULL, 0);
+                goto error;
+            }
+            return 1;
+        }
+error:
+        if (result == DISP_CHANGE_BADMODE) {
+            sprintf(buf, "The video mode %ldx%ldx%ld-bit color is not available\n", (long)width, (long)height, (long)bpp);
+        } else if (result == DISP_CHANGE_FAILED) {
+            sprintf(buf, "Hardware failed to change to %ldx%ldx%ld-bit color\n", (long)width, (long)height, (long)bpp);
+        } else if (result == DISP_CHANGE_RESTART) {
+            sprintf(buf, "You must change your video mode to %ldx%ldx%ld-bit color and then restart\n", (long)width, (long)height, (long)bpp);
+        } else {
+            sprintf(buf, "Failed to change to %ldx%ldx%ld-bit color mode\n", (long)width, (long)height, (long)bpp);
+        }
+        gbPopErrorBox(buf);
+        return 0;
+    }
+    return 1;
 }
 
 void gbRestoreDispMode(void)
 {
+    ChangeDisplaySettingsA(NULL, 0);
 }
 
 void gbPushDispMode(void)
 {
+    g_dispStack[g_dispStackDepth] = g_curDispMode;
+    g_dispStackDepth++;
 }
 
 void gbPopDispMode(void)
 {
+    if (g_dispStackDepth != 0) {
+        g_dispStackDepth--;
+        gbDispMode mode = g_dispStack[g_dispStackDepth];
+        if (mode.width == 0) {
+            ChangeDisplaySettingsA(NULL, 0);
+            return;
+        }
+        gbChangeDispMode(mode.width, mode.height, mode.bpp);
+    }
 }
 
-int gbGetOSUserName(char * p1, int p2)
+int gbGetOSUserName(char* buf, int bufSize)
 {
-    return 0;
+    DWORD size = bufSize;
+    GetUserNameA(buf, &size);
+    return (int)size;
 }
 
 int gbGetCPU_MHZ(void)
 {
-    return 0;
+    LARGE_INTEGER freq, start, end;
+    unsigned __int64 tscStart, tscEnd;
+    __int64 cycles, elapsed;
+    int rawMHz;
+    int v1, v2;
+    int tmp;
+
+    QueryPerformanceFrequency(&freq);
+    QueryPerformanceCounter(&start);
+
+    __asm { rdtsc }
+    __asm { mov dword ptr [tscStart], eax }
+    __asm { mov dword ptr [tscStart+4], edx }
+
+    int count = 2500000;
+    do { --count; } while (count);
+
+    QueryPerformanceCounter(&end);
+
+    __asm { rdtsc }
+    __asm { mov dword ptr [tscEnd], eax }
+    __asm { mov dword ptr [tscEnd+4], edx }
+
+    cycles = tscEnd - tscStart;
+    elapsed = end.QuadPart - start.QuadPart;
+    rawMHz = (int)(cycles * freq.QuadPart / elapsed / 1000000);
+
+    // Round to nearest multiple of 33.3MHz
+    tmp = (int)(rawMHz * 0.03000003000003);
+    if (rawMHz * 0.03000003000003 - tmp >= 0.5)
+        tmp++;
+    v1 = (int)(tmp * 33.3333);
+    if (tmp * 33.3333 - v1 < 0.5)
+        v1 = (int)(tmp * 33.3333);
+    else
+        v1 = v1 + 1;
+
+    // Round to nearest multiple of 25MHz
+    tmp = (int)(rawMHz * 0.04);
+    if (rawMHz * 0.04 - tmp >= 0.5)
+        tmp++;
+    v2 = (int)(tmp * 25.0);
+    if (tmp * 25.0 - v2 >= 0.5)
+        v2++;
+
+    if (abs(v1 - rawMHz) >= abs(v2 - rawMHz))
+        return v2;
+    return v1;
 }
 
-int gbGetINIValue(char * p1, char * p2, char * p3)
+int gbGetINIValue(char* str, char* key, char* value)
 {
-    return 0;
+    char* p = strchr(str, '[');
+    if (!p)
+        return 0;
+
+    char ch = *(p + 1);
+    int i = 0;
+    p++;
+    while (ch != ']') {
+        key[i] = ch;
+        i++;
+        ch = *(p + 1);
+        p++;
+    }
+    key[i] = '\0';
+
+    p = strchr(p, '[');
+    char* q = p + 1;
+    i = 0;
+    ch = *q;
+    if (ch != ']') {
+        int off = (int)((char*)value - (char*)q);
+        do {
+            *(q + off) = ch;
+            ch = *(q + 1);
+            i++;
+            q++;
+        } while (ch != ']');
+    }
+    value[i] = '\0';
+    return 1;
 }
