@@ -210,12 +210,15 @@ void gbPixelFormat::Init(int bpp, gbColorQuad* palette) {
 }
 
 void gbPixelFormat::Init(gbPixelFormat* other) {
-    if (!other) {
-        return;
-    }
-
-    Type = other->Type;
     Bpp = other->Bpp;
+    if (other->Pal) {
+        size_t palSize = 4 * (1 << other->Bpp);
+        Pal = (gbColorQuad*)malloc(palSize);
+        memcpy(Pal, other->Pal, palSize);
+    } else {
+        other->Pal = NULL;
+    }
+    Type = other->Type;
     r_mask = other->r_mask;
     g_mask = other->g_mask;
     b_mask = other->b_mask;
@@ -224,28 +227,14 @@ void gbPixelFormat::Init(gbPixelFormat* other) {
     g_shift = other->g_shift;
     b_shift = other->b_shift;
     a_shift = other->a_shift;
-
-    if (other->Pal) {
-        Pal = (gbColorQuad*)malloc(256 * sizeof(gbColorQuad));
-        if (Pal) {
-            memcpy(Pal, other->Pal, 256 * sizeof(gbColorQuad));
-        }
-    } else {
-        Pal = NULL;
-    }
 }
 
 void gbPixelFormat::Release() {
-    if (Pal) {
+    if (Pal)
         free(Pal);
-        Pal = NULL;
-    }
 }
 
 gbPixelFormat& gbPixelFormat::operator=(const gbPixelFormat& other) {
-    if (this != &other) {
-        Release();
-        Init((gbPixelFormat*)&other);
-    }
+    memcpy(this, &other, sizeof(gbPixelFormat));
     return *this;
 }

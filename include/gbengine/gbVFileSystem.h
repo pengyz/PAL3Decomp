@@ -66,11 +66,13 @@ struct CPKTable {
 
 // ============================================================================
 // CPKFile class - Handle for an opened file within a CPK archive
+// sizeof(CPKFile) == 0x30 (48 bytes, embedded at gbVFile+272)
 // ============================================================================
 
 class CPKFile {
 public:
     unsigned char bValid;           // +0x00: is this handle in use
+    unsigned char _pad1[3];         // +0x01: padding
     unsigned long dwCRC;            // +0x04: file CRC
     unsigned long dwFatherCRC;      // +0x08: parent CRC
     int           nTableIndex;      // +0x0C: index into CPK file table
@@ -78,13 +80,11 @@ public:
     void*         lpStartAddress;   // +0x14: start of file data in mapping
     unsigned long dwOffset;         // +0x18: offset for mapping alignment
     unsigned char bCompressed;      // +0x1C: is the data compressed
-    void*         lpMem;            // +0x20: decompressed data buffer
+    unsigned char _pad2[3];         // +0x1D: padding
+    void*         lpRealData;       // +0x20: pointer to readable data (decompressed or mapped)
     unsigned long dwFileSize;       // +0x24: original file size
     unsigned long dwPointer;        // +0x28: current read position
     CPKTable*     pTableItem;       // +0x2C: pointer to table entry
-
-    // Padding to reach ~0x140 bytes (original size from Ghidra)
-    unsigned char _reserved[0x140 - 0x30];
 
     CPKFile();
     ~CPKFile();
@@ -104,14 +104,15 @@ public:
     ECPKMode        m_eMode;                        // +0x04
     CPKHeader       m_CPKHeader;                    // +0x08 (0x80 bytes)
     CPKTable        m_CPKTable[CPK_MAX_TABLE_NUM];  // +0x88 (0x8000 * 0x1C = 0xE0000 bytes)
-    CPKFile*        m_pCPKFile[CPK_MAX_OPEN_FILES]; // +0xE0088 (8 pointers)
+    void*           m_pCPKFile[CPK_MAX_OPEN_FILES]; // +0xE0088: pointers to 0x140 blocks
     unsigned char   m_bLoaded;                      // +0xE00A8
+    unsigned char   _pad[3];                        // +0xE00A9
     unsigned long   m_dwCPKHandle;                  // +0xE00AC (HANDLE as DWORD)
     unsigned long   m_dwCPKMappingHandle;           // +0xE00B0
     char            m_szCPKFileName[0x104];          // +0xE00B4
     int             m_nOpenedFileNum;               // +0xE01B8
 
-    // Static (non-CRC)
+    // Static
     static int s_bCrcTableInitialized;
 
     CPK();
@@ -153,26 +154,26 @@ private:
 
 // ============================================================================
 // gbVFile class - Virtual file handle
+// sizeof(gbVFile) == 0x140 (320 bytes)
+//
+// Layout:
+//   +0x000: DWORD flags      (0=unused, nonzero=open mode flags)
+//   +0x004: FILE* fp          (disk mode) / void* memBuf (memimage mode)
+//   +0x008: DWORD bufSize     (memimage: buffer capacity)
+//   +0x00C: char fullPath[256] (filename)
+//   +0x10C: void* memPtr      (memimage: current read/write pointer)
+//   +0x110: CPKFile cpkFile   (CPK mode: embedded CPKFile, 48 bytes)
+//   +0x140: end
 // ============================================================================
 
 class gbVFile {
 public:
-    unsigned char   bValid;         // +0x00: handle is active
-    unsigned long   dwCRC;          // +0x04
-    unsigned long   dwFatherCRC;    // +0x08
-    int             nTableIndex;    // +0x0C
-    void*           lpMapAddress;   // +0x10
-    void*           lpStartAddress; // +0x14
-    unsigned long   dwOffset;       // +0x18
-    unsigned char   bCompressed;    // +0x1C
-    void*           lpMem;          // +0x20
-    unsigned long   dwFileSize;     // +0x24
-    unsigned long   dwPointer;      // +0x28
-    CPKTable*       pTableItem;     // +0x2C
-
-    // Disk file handle (for non-CPK mode)
-    HANDLE          hFile;          // +0x30
-    int             openMode;       // +0x34: 0=CPK, 1=disk
+    unsigned long   flags;          // +0x00: 0=free, nonzero=in-use (stores open flags)
+    void*           fp;             // +0x04: FILE* (disk) or buffer ptr (memimage)
+    unsigned long   bufSize;        // +0x08: buffer size (memimage)
+    char            fullPath[256];  // +0x0C: file path
+    void*           memPtr;         // +0x10C: memimage current read/write ptr
+    CPKFile         cpkFile;        // +0x110: embedded CPKFile (0x30 bytes)
 
     gbVFile();
     ~gbVFile();
@@ -198,6 +199,15 @@ public:
 // ============================================================================
 // gbVFileSystem class - Virtual file system
 // sizeof(gbVFileSystem) == 0xE01D4
+//
+// Layout:
+//   +0x00: int IsInit
+//   +0x04: char* rtDirectory
+//   +0x08: gbVFile* pFileBuffer  (array of 16 gbVFile, allocated via eh vector ctor)
+//   +0x0C: gbVFSType Type
+//   +0x10: FILE* m_pckfp
+//   +0x14: int m_itemcount
+//   +0x18: CPK m_cpk (0xE01BC bytes)
 // ============================================================================
 
 enum gbVFSType {
@@ -206,14 +216,19 @@ enum gbVFSType {
     VFSYS_MEMIMAGE = 2
 };
 
+// Seek origins used by gbVFileSystem (NOT standard SEEK_SET/CUR/END!)
+#define GBVFS_SEEK_SET  1
+#define GBVFS_SEEK_CUR  2
+#define GBVFS_SEEK_END  3
+
 class gbVFileSystem {
 public:
     int             IsInit;         // +0x00
     char*           rtDirectory;    // +0x04
-    gbVFile*        pFileBuffer;    // +0x08
+    gbVFile*        pFileBuffer;    // +0x08: array of 16 gbVFile entries
     gbVFSType       Type;           // +0x0C
     FILE*           m_pckfp;        // +0x10
-    unsigned int    m_itemcount;    // +0x14
+    int             m_itemcount;    // +0x14
     CPK             m_cpk;          // +0x18
 
     gbVFileSystem();
