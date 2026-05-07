@@ -269,11 +269,83 @@ static int __cdecl RenderObjCompare(const void* a, const void* b) {
     return 0;
 }
 
-// 0x10014990 - Collect visible nodes from camera frustum
+// 0x10014a90 (63B) - Recursively add node and all descendants without clip testing
+// Called when a node is fully inside the frustum
+static void CollectAllNodes(int* outArray, int* pCount, int node)
+{
+    int* children;
+    int i;
+
+    outArray[*pCount] = node;
+    *pCount = *pCount + 1;
+    children = (int*)(node + 0x20);
+    i = 8;
+    do {
+        if (*children != 0) {
+            CollectAllNodes(outArray, pCount, *children);
+        }
+        children = children + 1;
+        i = i - 1;
+    } while (i != 0);
+}
+
+// 0x100149c0 (195B) - Recursive frustum culling traversal of spatial octree
+// Tests node against camera frustum and recurses into children
+static void CollectVisibleNodesRecursive(int* outArray, int* pCount, gbCamera* camera, int node, unsigned int clipMask)
+{
+    float extent;
+    float extentVec[3];
+    unsigned int clipResult;
+    int* children;
+    int i;
+
+    extent = *(float*)(node + 0x18) + *(float*)(node + 0x14);
+    extentVec[0] = extent;
+    extentVec[1] = extent;
+    extentVec[2] = extent;
+    clipResult = camera->ClipAABBox((gbVec3D*)(node + 8), (gbVec3D*)extentVec, clipMask);
+    if (clipResult & 0x80000000) {
+        return;
+    }
+    if (clipResult == 0x3f) {
+        // Fully inside frustum - add this node and all children without further testing
+        outArray[*pCount] = node;
+        *pCount = *pCount + 1;
+        children = (int*)(node + 0x20);
+        i = 8;
+        do {
+            if (*children != 0) {
+                CollectAllNodes(outArray, pCount, *children);
+            }
+            children = children + 1;
+            i = i - 1;
+        } while (i != 0);
+        return;
+    }
+    // Partially visible - add this node and recurse children with updated clip mask
+    i = *pCount;
+    outArray[i] = node;
+    *pCount = *pCount + 1;
+    children = (int*)(node + 0x20);
+    i = 8;
+    do {
+        if (*children != 0) {
+            CollectVisibleNodesRecursive(outArray, pCount, camera, *children, clipResult);
+        }
+        children = children + 1;
+        i = i - 1;
+    } while (i != 0);
+}
+
+// 0x10014990 (44B) - Collect visible nodes from camera frustum
+// __thiscall on spatial partition structure (ECX = volModNodePool)
 // Returns count of visible root-level nodes written to outArray
-// TODO: implement full frustum culling traversal
-static int CollectVisibleNodes(int* outArray, gbCamera* camera) {
-    return 0;
+static int CollectVisibleNodes(int* outArray, gbCamera* camera, void* spatialRoot)
+{
+    int count = 0;
+    int rootNode = *(int*)spatialRoot;
+    CollectVisibleNodesRecursive(outArray, &count, camera, rootNode, 0);
+    return count;
 }
 
 
@@ -293,7 +365,7 @@ void gbSceneGraph::End(void) {
     // Phase 1: Traverse scene and submit visible nodes
     if (bSceneActive) {
         if (activeCamera) {
-            numVisible = CollectVisibleNodes(visibleNodes, activeCamera);
+            numVisible = CollectVisibleNodes(visibleNodes, activeCamera, volModNodePool);
             if (numVisible > 0) {
                 for (i = 0; i < numVisible; i++) {
                     gbVisNode* node = (gbVisNode*)visibleNodes[i];
