@@ -252,22 +252,19 @@ void gbQuaternion::Slerp(gbQuaternion *q1, gbQuaternion *q2, float t)
 
 void gbQuaternion::MultiplyBy(gbQuaternion *other, gbQuaternion *result)
 {
-    float ax, ay, az, aw;
-    float bx, by, bz, bw;
+    float ax = x;
+    float ay = y;
+    float az = z;
+    float aw = w;
+    float bx = other->x;
+    float by = other->y;
+    float bz = other->z;
+    float bw = other->w;
 
-    ax = x;
-    ay = y;
-    az = z;
-    aw = w;
-    bx = other->x;
-    by = other->y;
-    bz = other->z;
-    bw = other->w;
-
-    result->w = bw * aw - bx * ax - by * ay - bz * az;
-    result->x = bz * ay + ax * bw + bx * aw - az * by;
-    result->y = by * aw - bz * ax + az * bx + ay * bw;
-    result->z = by * ax + bz * aw - ay * bx + az * bw;
+    result->w = ((bw * aw - bx * ax) - by * ay) - bz * az;
+    result->x = ((bz * ay + ax * bw) + bx * aw) - az * by;
+    result->y = ((by * aw - bz * ax) + az * bx) + ay * bw;
+    result->z = ((by * ax + bz * aw) - ay * bx) + az * bw;
 }
 
 float const gbQuaternion::Magnitude(void)
@@ -300,6 +297,13 @@ void gbQuaternion::Inverse(void)
 void gbQuaternion::RotateVector(gbVec3D *in, gbVec3D *out)
 {
     gbMatrix4 mat;
+    memset(&mat, 0, sizeof(mat));
+    mat.m[0][0] = 1.0f;
+    mat.m[1][1] = 1.0f;
+    mat.m[2][2] = 1.0f;
+    mat.m[3][3] = 1.0f;
     GetMatrix(&mat);
-    mat.Rotate(in, out);
+    out->x = mat.m[0][0] * in->x + mat.m[1][0] * in->y + mat.m[2][0] * in->z;
+    out->y = mat.m[0][1] * in->x + mat.m[1][1] * in->y + mat.m[2][1] * in->z;
+    out->z = mat.m[0][2] * in->x + mat.m[1][2] * in->y + mat.m[2][2] * in->z;
 }

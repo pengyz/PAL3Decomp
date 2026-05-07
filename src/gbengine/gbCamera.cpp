@@ -535,12 +535,19 @@ void gbCamera::SetLookAt(gbVec3D* eye, gbVec3D* target, gbVec3D* up) {
 }
 
 // 0x10021a10 (97B) - Get view dimensions on near plane (private)
-// Note: signature uses float& (references), not pointers
 void gbCamera::GetViewSizeOnNearPlane(float& w, float& h) {
-    float halfH = zNear * (float)tan(fov * 0.5f);
-    float halfW = halfH * GetAspect();
-    w = halfW * 2.0f;
-    h = halfH * 2.0f;
+    if (fov != 0.0f) {
+        float angle = fov * 0.008726646f;
+        float sinVal = (float)sin(angle);
+        float cosVal = (float)cos(angle);
+        float size = sinVal * zNear / cosVal;
+        w = size;
+        h = (float)Viewport.height * size / (float)Viewport.width;
+    } else {
+        float size = OrthoSize;
+        w = size;
+        h = (float)Viewport.height * size / (float)Viewport.width;
+    }
 }
 
 // 0x10021a80 (460B) - Set this camera as the current rendering camera
@@ -781,42 +788,45 @@ void gbCamera::PointScrToEye(float sx, float sy, gbVec3D* eyePt) {
     eyePt->z = zNear;
 }
 
-// 0x100220b0 (184B) - Convert eye-space point to screen coordinates
-// Note: uses float& references, not pointers
+// 0x100220b0 (184B) - Convert eye-space point to screen coordinates (NDC output)
 void gbCamera::PointEyeToScr(gbVec3D* eyePt, float& sx, float& sy) {
-    if (!eyePt) {
-        sx = 0.0f;
-        sy = 0.0f;
+    float local;
+    if (eyePt->z <= -zNear && -zFar <= eyePt->z) {
+        if (fov != 0.0f) {
+            float angle = fov * 0.008726646f;
+            float tanFov = (float)sin(angle) / (float)cos(angle);
+            local = (float)Viewport.height * tanFov / (float)Viewport.width;
+            sx = -(eyePt->x / eyePt->z) / tanFov;
+            sy = -(eyePt->y / eyePt->z) / local;
+        } else {
+            local = (float)Viewport.height * OrthoSize / (float)Viewport.width;
+            sx = sx / OrthoSize;
+            sy = sy / local;
+        }
         return;
     }
-
-    if (eyePt->z <= 0.0f) {
-        sx = 0.0f;
-        sy = 0.0f;
-        return;
-    }
-
-    float halfH = zNear * (float)tan(fov * 0.5f);
-    float halfW = halfH * GetAspect();
-
-    float invZ = 1.0f / eyePt->z;
-    float projX = eyePt->x * invZ;
-    float projY = eyePt->y * invZ;
-
-    sx = (projX / halfW + 1.0f) * 0.5f * Wscreen;
-    sy = (1.0f - projY / halfH) * 0.5f * Hscreen;
+    sx = 100000.0f;
 }
 
 // 0x10022170 (217B) - Convert eye-space point to screen (gbVec3D version)
 void gbCamera::PointEyeToScr(gbVec3D* eyePt, gbVec3D* scrPt) {
-    if (!eyePt || !scrPt)
+    if (eyePt->z <= -zNear && -zFar <= eyePt->z) {
+        if (fov != 0.0f) {
+            float angle = fov * 0.008726646f;
+            float tanFov = (float)sin(angle) / (float)cos(angle);
+            float aspect = (float)Viewport.height * tanFov / (float)Viewport.width;
+            scrPt->x = -(eyePt->x / eyePt->z) / tanFov;
+            scrPt->y = -(eyePt->y / eyePt->z) / aspect;
+            scrPt->z = (-eyePt->z - zNear) / (zFar - zNear);
+        } else {
+            float aspect = (float)Viewport.height * OrthoSize / (float)Viewport.width;
+            scrPt->x = scrPt->x / OrthoSize;
+            scrPt->y = scrPt->y / aspect;
+            scrPt->z = (-scrPt->z - zNear) / (zFar - zNear);
+        }
         return;
-
-    float sx, sy;
-    PointEyeToScr(eyePt, sx, sy);
-    scrPt->x = sx;
-    scrPt->y = sy;
-    scrPt->z = eyePt->z;
+    }
+    scrPt->x = 100000.0f;
 }
 
 // 0x10022250 (24B) - Transform eye-space point to world
@@ -862,12 +872,15 @@ void gbCamera::GetRayToScreen(float sx, float sy, gbRay* ray) {
     }
 }
 
-// 0x100223d0 (109B) - Get viewport bounds as float references
+// 0x100223d0 (109B) - Get viewport bounds in NDC [-1, 1]
 void gbCamera::GetViewPort(float& x, float& y, float& w, float& h) {
-    x = (float)Viewport.x;
-    y = (float)Viewport.y;
-    w = (float)Viewport.width;
-    h = (float)Viewport.height;
+    int tmp;
+    x = (float)Viewport.x * 2.0f / Wscreen - 1.0f;
+    y = (float)Viewport.y * 2.0f / Hscreen - 1.0f;
+    tmp = Viewport.width + Viewport.x;
+    w = (float)tmp * 2.0f / Wscreen - 1.0f;
+    tmp = Viewport.height + Viewport.y;
+    h = (float)tmp * 2.0f / Hscreen - 1.0f;
 }
 
 // 0x10022440 (67B) - Convert device coordinates to screen coordinates
@@ -896,13 +909,18 @@ void gbCamera::RecoverZBuffer(void) {
 
 // 0x10022500 (130B) - Move camera along its forward direction
 void gbCamera::MoveInEyeDir(float dist) {
-    float fx = InvVMatrix.m[2][0];
-    float fy = InvVMatrix.m[2][1];
-    float fz = InvVMatrix.m[2][2];
-
-    eyeLoc.x += fx * dist;
-    eyeLoc.y += fy * dist;
-    eyeLoc.z += fz * dist;
+    gbVec3D result;
+    gbVec3D dir;
+    result.x = 0.0f;
+    result.y = 0.0f;
+    result.z = 0.0f;
+    dir.x = 0.0f;
+    dir.y = 0.0f;
+    dir.z = dist;
+    eyeDir.RotateVector(&dir, &result);
+    eyeLoc.x += result.x;
+    eyeLoc.y += result.y;
+    eyeLoc.z += result.z;
 }
 
 // 0x10022590 (83B) - Update camera (called each frame)
