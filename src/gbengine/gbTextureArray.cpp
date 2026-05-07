@@ -27,9 +27,7 @@ void gbTextureArray::SetTexture(gbTexture* tex) {
 }
 
 gbTextureArray& gbTextureArray::operator=(const gbTextureArray& other) {
-    if (this != &other) {
-        memcpy(this, &other, sizeof(gbTextureArray));
-    }
+    memcpy(this, &other, sizeof(gbTextureArray));
     return *this;
 }
 

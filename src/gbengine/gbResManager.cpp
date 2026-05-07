@@ -19,8 +19,7 @@ extern unsigned int gbCrc32Compute(const char* str);
 
 class gbRefObject {
 public:
-    void* vtable;      // +0x00
-    int refCount;      // +0x04
+    int refCount;      // +0x04 (vtable at +0x00 is compiler-generated)
 
     gbRefObject();
     gbRefObject(const gbRefObject& other);

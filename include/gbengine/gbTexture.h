@@ -10,7 +10,7 @@ class gbResManager;
 // gbRefObject - reference-counted base
 // ============================================================================
 struct gbRefObject {
-    void* vfptr;    // vtable pointer
+    virtual ~gbRefObject() {}
     int RefCount;
 
     void Release(void);

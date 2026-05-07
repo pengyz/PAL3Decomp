@@ -80,11 +80,10 @@ void gbRenderEffect::SetDeclHandle(IDirect3DVertexDeclaration9* decl) {
 }
 
 int gbRenderEffect::Compare(gbRenderEffect* other) {
-    if (m_dwFlags < other->m_dwFlags)
-        return -1;
-    if (m_dwFlags > other->m_dwFlags)
-        return 1;
-    return 0;
+    unsigned int a = (unsigned int)m_pEffect;
+    unsigned int b = (unsigned int)other->m_pEffect;
+    if (a < b) return -1;
+    return a != b;
 }
 
 int gbRenderEffect::Validate(void) {
@@ -124,7 +123,7 @@ void gbRenderEffect::End(void) {
 
 void gbRenderEffect::Apply(void) {
     unsigned int numPasses;
-    m_pEffect->Begin(&numPasses, D3DXFX_DONOTSAVESTATE);
+    m_pEffect->Begin(&numPasses, D3DXFX_DONOTSAVESTATE | D3DXFX_DONOTSAVESHADERSTATE);
     for (unsigned int i = 0; i < numPasses; i++) {
         m_pEffect->Pass(i);
     }

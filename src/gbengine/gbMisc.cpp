@@ -29,7 +29,8 @@ static int gbColorQuad_ColorQuadFmt = 0;
 
 void gbCrc32Init(void)
 {
-    unsigned int i, j, crc;
+    int i, j;
+    unsigned int crc;
 
     for (i = 0; i < 256; i++) {
         crc = i << 24;
