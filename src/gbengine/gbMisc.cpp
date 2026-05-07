@@ -8,6 +8,7 @@
 #include <stdio.h>
 #include <string.h>
 #include <stdarg.h>
+#include <time.h>
 #include <mmsystem.h>
 
 // CRC32 table
@@ -17,6 +18,7 @@ static unsigned int gbCrc32Table[256];
 static LARGE_INTEGER gbTimeFreq;
 static LARGE_INTEGER gbTimeStart;
 static int gbTimeInitialized = 0;
+static double gbTimeFreqDbl = 0.0;
 
 // Global time variables (defined in header)
 double g_CurrentTime = 0.0;
@@ -136,26 +138,31 @@ char* gbStrRChr(const char* str, const char* chars)
 
 void gbStrToLowCase(char* dst, const char* src)
 {
-    if (*src == '\0') {
-        *dst = '\0';
-        return;
+    char* p = dst;
+    if (*src) {
+        int offset = src - dst;
+        do {
+            char c = p[offset];
+            if (c >= 'A' && c <= 'Z')
+                c += 32;
+            *p = c;
+        } while (p++[offset + 1]);
     }
-
-    while (*src != '\0') {
-        char c = *src;
-        if (c >= 'A' && c <= 'Z') {
-            c = c + 0x20;
-        }
-        *dst = c;
-        src++;
-        dst++;
-    }
-    *dst = '\0';
+    *p = '\0';
 }
 
 char* gbstrchr(char* str, char ch)
 {
-    return strchr(str, ch);
+    char* result = str;
+    for (char c = *str; c; c = result[1]) {
+        if ((unsigned char)c > 0x7Fu) {
+            result++;
+        } else if (c == ch) {
+            return result;
+        }
+        result++;
+    }
+    return 0;
 }
 
 int gbstricmp(const char* a, const char* b)
@@ -171,20 +178,43 @@ int gbstricmp(const char* a, const char* b)
 
 char* gbstrindex(const char* str, int index)
 {
-    if (index < 0) {
-        return (char*)str;
-    }
+    int count = 0;
+    char* result = (char*)str;
 
-    const char* p = str;
-    for (int i = 0; i < index && *p != '\0'; i++) {
-        if (IsDBCSLeadByte((BYTE)*p) && *(p + 1) != '\0') {
-            p += 2;
+    if (*str) {
+        while (count != index) {
+            if ((unsigned char)*result <= 0x7Fu)
+                result++;
+            else
+                result += 2;
+            count++;
+            if (!*result)
+                goto end_of_string;
+        }
+    } else {
+end_of_string:
+        if (index < 0) {
+            int target = count + index;
+            int i = 0;
+            result = (char*)str;
+            if (*str) {
+                while (i != target) {
+                    if ((unsigned char)*result <= 0x7Fu)
+                        result++;
+                    else
+                        result += 2;
+                    i++;
+                    if (!*result)
+                        return 0;
+                }
+            } else {
+                return 0;
+            }
         } else {
-            p++;
+            return 0;
         }
     }
-
-    return (char*)p;
+    return result;
 }
 
 // ======== Multi-byte Character Functions ========
@@ -271,40 +301,41 @@ int gbIsMultiCharTail(char* str, int pos)
 
 void gbTimeCounterInit(void)
 {
+    static TIMECAPS ptc;
+
     gbTimeInitialized = 1;
 
     LARGE_INTEGER freq;
     if (QueryPerformanceFrequency(&freq)) {
         gbTimeFreq = freq;
-
-        TIMECAPS tc;
-        timeGetDevCaps(&tc, sizeof(TIMECAPS));
+        gbTimeFreqDbl = (double)freq.HighPart * 4294967295.0 + (double)freq.LowPart;
+        timeGetDevCaps(&ptc, 8);
 
         LARGE_INTEGER counter;
         QueryPerformanceCounter(&counter);
-
-        double freqDbl = (double)freq.LowPart + (double)freq.HighPart * 4294967296.0;
-        double counterDbl = (double)counter.LowPart + (double)counter.HighPart * 4294967296.0;
-        g_CurrentTime = counterDbl / freqDbl;
+        double highPart = (double)counter.HighPart;
+        counter.HighPart = 0;
+        g_CurrentTime = (highPart * 4294967295.0 + (double)counter.LowPart) / gbTimeFreqDbl;
     } else {
-        g_CurrentTime = (double)GetTickCount() * 1000.0;
+        g_CurrentTime = (double)clock() * 1000.0;
     }
 }
 
 double gbUpdateCurTime(void)
 {
+    double result;
     if (gbTimeInitialized) {
         LARGE_INTEGER counter;
         QueryPerformanceCounter(&counter);
 
-        double freqDbl = (double)gbTimeFreq.LowPart + (double)gbTimeFreq.HighPart * 4294967296.0;
-        double counterDbl = (double)counter.LowPart + (double)counter.HighPart * 4294967296.0;
-        g_CurrentTime = counterDbl / freqDbl;
+        double highPart = (double)counter.HighPart;
+        counter.HighPart = 0;
+        result = (highPart * 4294967295.0 + (double)counter.LowPart) / gbTimeFreqDbl;
     } else {
-        g_CurrentTime = (double)GetTickCount() * 1000.0;
+        result = (double)clock() * 1000.0;
     }
-
-    return g_CurrentTime;
+    g_CurrentTime = result;
+    return result;
 }
 
 double gbGetCurTime(void)
@@ -319,11 +350,13 @@ unsigned int gbGetCurTick(void)
 
 float gbGetDeltaTime(void)
 {
-    static double lastTime = 0.0;
-    double curTime = g_CurrentTime;
-    float delta = (float)(curTime - lastTime);
+    static int lastTime = 0;
+    int oldTime = lastTime;
+    int curTime = clock();
     lastTime = curTime;
-    return delta;
+    if (!oldTime)
+        return 0.0f;
+    return (float)((curTime - oldTime) * 0.001);
 }
 
 // ======== Memory Functions ========

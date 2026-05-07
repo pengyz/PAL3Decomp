@@ -639,7 +639,7 @@ bool CPK::IsDir(unsigned long tableIndex)
 
 gbVFile::gbVFile()
 {
-    flags = 0;
+    cpkFile.bValid = 0;
     cpkFile.lpRealData = 0;
 }
 
@@ -1214,7 +1214,11 @@ CIniFile::CIniFile()
 
 CIniFile::~CIniFile()
 {
-    CloseFile();
+    if (m_pFile) {
+        g_pVFileSys->CloseFile(m_pFile);
+        m_pFile = NULL;
+        m_nState = -1;
+    }
 }
 
 CIniFile& CIniFile::operator=(const CIniFile& other)

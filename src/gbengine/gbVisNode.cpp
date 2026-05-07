@@ -19,21 +19,12 @@ gbSceneGraph* gbVisNode::pSceneGraph = NULL;
 
 // Constructor - 0x10016590
 gbVisNode::gbVisNode() {
-    // Base class gbChain1DNode constructor called first (vtable set)
-    // Then gbNBTreeNode fields initialized
     pParent = NULL;
 
-    // Initialize gbChain1D for children
-    children.pHead = NULL;
-    children.pTail = NULL;
-    children.nCount = 0;
-    children.pIterator = NULL;
-
-    // gbVisNode fields
     msgOverflow = 1;
     msgUnused = 0;
     msgCapacity = 8;
-    msgBuffer = (gbNodeMsgObj*)operator new(128);  // 8 * 16 bytes
+    msgBuffer = (gbNodeMsgObj*)operator new(128);
     msgReadIndex = 0;
     msgWriteIndex = 0;
     renderPriority = 0;
@@ -43,7 +34,6 @@ gbVisNode::gbVisNode() {
     cullNext = NULL;
     renderPriority = 0;
 
-    // vtable updated to gbVisNode
     timeScale = 1.0f;
     visible = 1;
 }

@@ -226,46 +226,37 @@ void gbResManager::AddResource(gbResource* res) {
 
 // DelResource - 0x10020280
 void gbResManager::DelResource(gbResource* res) {
-    // Find resource in array
-    for (int i = 0; i < count; i++) {
-        if (array[i] == res) {
-            // Clear manager pointer
-            res->manager = NULL;
+    int i = 0;
+    int n = count;
+    if (n <= 0) return;
 
-            int newCount = count - 1;
-
-            // Move last element to fill gap
-            if (i < newCount) {
-                array[i] = array[newCount];
-            }
-
-            // Shrink capacity if needed
-            int newCapacity = newCount;
-            if (newCapacity == 0) {
-                newCapacity = 16;
-            }
-
-            if (capacity < newCapacity) {
-                capacity = newCapacity;
-                gbResource** newArray = (gbResource**)malloc(newCapacity * sizeof(gbResource*));
-
-                // Copy elements
-                if (count != 0) {
-                    memcpy(newArray, array, count * sizeof(gbResource*));
-                }
-
-                // Free old array
-                if (array != NULL) {
-                    free(array);
-                }
-
-                array = newArray;
-            }
-
-            count = newCount;
-            break;
-        }
+    gbResource** p = array;
+    while (*p != res) {
+        p++;
+        if (++i >= n) return;
     }
+
+    res->manager = NULL;
+    int newCount = n - 1;
+    if (n - 1 > i) {
+        array[i] = array[n - 1];
+    }
+
+    int newCapacity = n - 1;
+    if (n == 1) newCapacity = 16;
+
+    if (newCapacity > capacity) {
+        capacity = newCapacity;
+        gbResource** newArray = (gbResource**)malloc(newCapacity * 4);
+        if (count) {
+            memcpy(newArray, array, count * 4);
+        }
+        if (array) {
+            free(array);
+        }
+        array = newArray;
+    }
+    count = newCount;
 }
 
 // FindResByName - 0x100201b0
