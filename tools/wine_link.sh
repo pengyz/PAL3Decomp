@@ -18,6 +18,13 @@ for arg in "$@"; do
             path="${arg#*:}"
             ARGS+=("${prefix}$(convert_path "$path")")
             ;;
+        # -LIBPATH:/path (CMake passes link_directories with dash prefix)
+        -[A-Z]*:/*|-[a-z]*:/*)
+            prefix="/${arg#-}"
+            prefix="${prefix%%:*}:"
+            path="${arg#*:}"
+            ARGS+=("${prefix}$(convert_path "$path")")
+            ;;
         # Absolute paths (contain multiple /)
         /*)
             if [[ "$arg" == */*/* ]]; then

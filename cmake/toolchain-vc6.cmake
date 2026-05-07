@@ -104,6 +104,16 @@ set(CMAKE_IMPORT_LIBRARY_SUFFIX ".lib")
 set(CMAKE_EXECUTABLE_SUFFIX ".exe")
 
 # --------------------------------------------------------------------------
+# Suppress CMake's default Windows libraries
+# --------------------------------------------------------------------------
+# CMake normally adds winspool.lib, comdlg32.lib, advapi32.lib, shell32.lib,
+# oleaut32.lib, uuid.lib, odbc32.lib, odbccp32.lib etc. as implicit link
+# libraries. Under Wine these get passed as Linux absolute paths causing
+# LNK4044 warnings. We manage all libraries explicitly in CMakeLists.txt.
+set(CMAKE_C_STANDARD_LIBRARIES "" CACHE STRING "" FORCE)
+set(CMAKE_CXX_STANDARD_LIBRARIES "" CACHE STRING "" FORCE)
+
+# --------------------------------------------------------------------------
 # Include and library paths
 # --------------------------------------------------------------------------
 include_directories(SYSTEM "${VC6_ROOT}/Include")

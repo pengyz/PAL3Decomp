@@ -57,17 +57,16 @@ endif()
 include_directories(${CMAKE_SOURCE_DIR}/include)
 
 # Platform libraries (Windows)
+# Use .lib suffix explicitly so CMake passes them directly to the linker
+# without trying to resolve paths (which breaks under Wine)
 if(WIN32)
     set(PLATFORM_LIBS
-        kernel32
-        user32
-        gdi32
-        ole32
-        winmm
-        # DirectX libraries (add as needed)
-        # d3d8 or d3d9
-        # dinput8
-        # dsound
+        kernel32.lib
+        user32.lib
+        gdi32.lib
+        ole32.lib
+        winmm.lib
+        advapi32.lib
     )
 endif()
 
@@ -120,8 +119,9 @@ elseif(BUILD_TARGET STREQUAL "gbengine")
         )
 
         # Use .def file for exports (matching original DLL export table)
+        # Note: /SAFESEH not supported by VC6 link.exe
         set_target_properties(gbengine PROPERTIES
-            LINK_FLAGS "/DEF:\"${CMAKE_SOURCE_DIR}/src/gbengine/gbengine.def\" /SAFESEH:NO"
+            LINK_FLAGS "/DEF:\"${CMAKE_SOURCE_DIR}/src/gbengine/gbengine.def\""
         )
 
         # Apply VC6 optimization flags
