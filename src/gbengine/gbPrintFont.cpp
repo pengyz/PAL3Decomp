@@ -5,8 +5,12 @@
  */
 
 #include "gbengine/gbPrintFont.h"
+#include "gbengine/gbGfxManager.h"
+#include "gbengine/gbRenderEffect.h"
 #include <stdlib.h>
 #include <string.h>
+
+extern gbGfxManager* g_pGfxManager;
 
 
 /* ======== gbPrintFont ======== */
@@ -51,6 +55,8 @@ gbPrintFont::~gbPrintFont()
 // 0x10022b00
 int gbPrintFont::Init(void)
 {
+    pFontEffect = g_pGfxManager->pEffectMgr->NewRenderEffect("gfxscript\\font.gbf", 0);
+    pFont1Effect = g_pGfxManager->pEffectMgr->NewRenderEffect("gfxscript\\font1.gbf", 0);
     return 1;
 }
 

@@ -5,6 +5,7 @@
 // Forward declarations (circular dep / defined in gbengine_internal.h)
 class gbGfxManager;
 class gbMatrixStack;
+class gbRenderEffect;
 
 // sizeof = 0x2C
 struct gbPrintStringInfo {
@@ -55,6 +56,8 @@ public:
     float           pitchX;             // +0x38
     float           pitchY;             // +0x3C
     float           depth;              // +0x40
+    gbRenderEffect* pFontEffect;        // +0x44
+    gbRenderEffect* pFont1Effect;       // +0x48
 
     // 0x10022a20 (147B)
     gbPrintFont(int maxStr, int max3D, int bufSize);
