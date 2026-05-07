@@ -429,7 +429,7 @@ void gbPartEmitter::ComputeParticleInitVel(gbEmitterData* emitData, gbParticleUn
 }
 
 void gbPartEmitter::SetLoopEmit(bool loop) {
-    loopFlag = loop ? 1 : 0;
+    loopFlag = loop;
 }
 
 /* ======== gbParticleUnit ======== */
@@ -885,18 +885,15 @@ void gbParticleEffect::Render(gbRenderInfoObj* renderInfo) {
 }
 
 gbParticleGroup* gbParticleEffect::GetParticleGroup(int index) {
-    if (index < 0 || index >= numGroups) return NULL;
-    return &particleGroups[index];
+    return (gbParticleGroup*)((char*)particleGroups + 144 * index);
 }
 
 gbPartGroupParam* gbParticleEffect::GetGroupParam(int index) {
-    if (index < 0 || index >= numParams) return NULL;
-    return &groupParams[index];
+    return (gbPartGroupParam*)((char*)groupParams + 18752 * index);
 }
 
 gbPartEmitter* gbParticleEffect::GetEmitter(int index) {
-    if (index < 0 || index >= numEmitters) return NULL;
-    return &emitters[index];
+    return (gbPartEmitter*)((char*)emitters + 27768 * index);
 }
 
 void gbParticleEffect::SetSpaceScale(float scale) {

@@ -884,21 +884,14 @@ void gbCamera::RotateVector(gbVec3D* in, gbVec3D* out, gbAxis axis) {
 
 // 0x100224b0 (39B) - Offset Z-buffer
 void gbCamera::OffsetZBuffer(double offset) {
-    // Ghidra: Viewport.maxz = (float)(1.0 - offset * 1.52587890625e-05)
-    // Then calls pGfxMgr->vtable[9](&Viewport) to apply viewport to D3D
-    Viewport.maxz = (float)(1.0 - offset * 1.52587890625e-05);
-    typedef void (__cdecl *ApplyViewportFn)(gbGfxManager*, gbViewPort*);
-    ApplyViewportFn fn = (ApplyViewportFn)(*(void***)(pGfxMgr))[9];
-    fn(pGfxMgr, &Viewport);
+    Viewport.maxz = (float)(1.0 - offset * 0.0000152587890625);
+    pGfxMgr->SetViewport(&Viewport);
 }
 
 // 0x100224e0 (25B) - Recover Z-buffer to normal state
 void gbCamera::RecoverZBuffer(void) {
-    // Ghidra: Viewport.maxz = 1.0f, then calls pGfxMgr->vtable[9](&Viewport)
     Viewport.maxz = 1.0f;
-    typedef void (__cdecl *ApplyViewportFn)(gbGfxManager*, gbViewPort*);
-    ApplyViewportFn fn = (ApplyViewportFn)(*(void***)(pGfxMgr))[9];
-    fn(pGfxMgr, &Viewport);
+    pGfxMgr->SetViewport(&Viewport);
 }
 
 // 0x10022500 (130B) - Move camera along its forward direction

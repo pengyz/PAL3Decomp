@@ -1020,23 +1020,11 @@ gbSound2DNode& gbSound2DNode::operator=(const gbSound2DNode& other) {
 
 // LoadFromFile - 0x10002940 (44B)
 int gbSound2DNode::LoadFromFile(char* filename) {
-    if (pAudioMgr == NULL) {
+    if (!pAudioMgr)
         return 0;
-    }
-
-    // Release old sound data
-    if (soundData != NULL) {
-        soundData->Release();
-        soundData = NULL;
-    }
-
-    // Load via audio manager
-    soundData = pAudioMgr->LoadSoundFile(filename);
-    if (soundData == NULL) {
-        return 0;
-    }
-
-    return 1;
+    gbSoundData* sf = pAudioMgr->LoadSoundFile(filename);
+    *(gbSoundData**)this = sf;
+    return sf != 0;
 }
 
 // Play - 0x10002970 (85B)
