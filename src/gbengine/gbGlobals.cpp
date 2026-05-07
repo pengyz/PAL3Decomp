@@ -523,3 +523,48 @@ int gbGetINIValue(char* str, char* key, char* value)
     value[i] = '\0';
     return 1;
 }
+
+// Compute vertex stride from D3D Flexible Vertex Format flags
+int gbComputeFVFStride(unsigned int fvf)
+{
+    int stride = 0;
+
+    // Position: XYZ(12), XYZRHW(16), XYZB1-5(16-32), XYZW(16)
+    switch (fvf & 0x000E) {
+        case 0x0002: stride = 12; break; // D3DFVF_XYZ
+        case 0x0004: stride = 16; break; // D3DFVF_XYZRHW
+        case 0x0006: stride = 16; break; // D3DFVF_XYZB1
+        case 0x0008: stride = 20; break; // D3DFVF_XYZB2
+        case 0x000A: stride = 24; break; // D3DFVF_XYZB3
+        case 0x000C: stride = 28; break; // D3DFVF_XYZB4
+        case 0x000E: stride = 32; break; // D3DFVF_XYZB5
+    }
+
+    // Normal
+    if (fvf & 0x0010) stride += 12; // D3DFVF_NORMAL
+
+    // Point size
+    if (fvf & 0x0020) stride += 4; // D3DFVF_PSIZE
+
+    // Diffuse color
+    if (fvf & 0x0040) stride += 4; // D3DFVF_DIFFUSE
+
+    // Specular color
+    if (fvf & 0x0080) stride += 4; // D3DFVF_SPECULAR
+
+    // Texture coordinates
+    int numTexCoords = (fvf & 0x0F00) >> 8;
+    unsigned int texCoordSize = fvf >> 16;
+
+    for (int i = 0; i < numTexCoords; i++) {
+        int coordSize = (texCoordSize >> (i * 2)) & 3;
+        switch (coordSize) {
+            case 0: stride += 8; break;   // D3DFVF_TEXTUREFORMAT2 (2 floats)
+            case 1: stride += 12; break;  // D3DFVF_TEXTUREFORMAT3 (3 floats)
+            case 2: stride += 16; break;  // D3DFVF_TEXTUREFORMAT4 (4 floats)
+            case 3: stride += 4; break;   // D3DFVF_TEXTUREFORMAT1 (1 float)
+        }
+    }
+
+    return stride;
+}

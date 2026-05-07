@@ -8,9 +8,6 @@
 #include <string.h>
 #include <stdlib.h>
 
-// Static members
-unsigned long CPK::CrcTable[256];
-
 bool CPK::GetFileSize(unsigned long& packedSize, unsigned long& originSize,
                       unsigned long tableIndex) {
     if (tableIndex >= CPK_MAX_TABLE_NUM) return false;

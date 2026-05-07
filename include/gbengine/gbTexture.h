@@ -9,25 +9,40 @@ class gbResManager;
 // ============================================================================
 // gbRefObject - reference-counted base
 // ============================================================================
-struct gbRefObject {
-    virtual ~gbRefObject() {}
-    int RefCount;
+class gbRefObject {
+public:
+    int refCount;       // +0x04 (vtable at +0x00)
 
-    void Release(void);
-    void IncRef(void);
+    gbRefObject();
+    gbRefObject(const gbRefObject& other);
+    virtual ~gbRefObject();
+
+    void IncRef();
+    void DecRef();
+    int GetRef();
+    void Release();
+    gbRefObject& operator=(const gbRefObject& other);
 };
 
 
 // ============================================================================
-// gbResource - managed resource base
+// gbResource - managed resource base (inherits gbRefObject)
 // ============================================================================
-class gbResource {
+class gbResource : public gbRefObject {
 public:
-    gbRefObject baseclass;
-    char* pName;
-    unsigned int NameCrc32;
-    int IsLoaded;
-    gbResManager* pMgr;
+    char* name;             // +0x08
+    unsigned int nameCrc;   // +0x0C
+    int isLoaded;           // +0x10
+    gbResManager* manager;  // +0x14
+
+    gbResource();
+    gbResource(const gbResource& other);
+    virtual ~gbResource();
+
+    void SetName(const char* name);
+    const char* GetName();
+    unsigned int GetNameCrc32();
+    gbResource& operator=(const gbResource& other);
 };
 
 
@@ -126,14 +141,8 @@ public:
 // ============================================================================
 // gbTexture - base texture class (virtual)
 // ============================================================================
-class gbTexture {
+class gbTexture : public gbResource {
 public:
-    // gbResource base fields (inherited layout)
-    gbRefObject refObj;     // vfptr + RefCount
-    char* pName;
-    unsigned int NameCrc32;
-    int IsLoaded;
-    gbResManager* pMgr;
 
     // gbTexture own fields
     int Width;

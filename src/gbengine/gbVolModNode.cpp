@@ -13,7 +13,7 @@ gbVolModNode::~gbVolModNode(void) {
 
 void gbVolModNode::SetVolModObj(class gbVolumeModifier * p0) {
     if (p0 != 0) {
-        ((gbRefObject*)p0)->RefCount += 1;
+        ((gbRefObject*)p0)->refCount += 1;
     }
     pVolMod = (void*)p0;
 }

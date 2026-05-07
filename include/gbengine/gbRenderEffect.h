@@ -95,10 +95,13 @@ public:
     gbTexture* m_pWhiteTexture;     // +0x10
     gbTexture* m_pGrayTexture;      // +0x14
     gbRenderEffect* m_pDefaultEffect; // +0x18
-    gbVertFormatEntry m_vertFormats[64]; // +0x1C (32*64=2048 bytes)
-    int m_nNumVertFormats;          // +0x81C
-    int m_nMaxVertFormats;          // +0x820
-    int m_bInitialized;             // +0x824
+    void** m_pVertDecls;            // +0x1C: vertex declaration array
+    int m_nMaxDecls;                // +0x20: capacity
+    int m_nNumDecls;                // +0x24: count
+    gbVertFormatEntry m_vertFormats[64]; // +0x28 (32*64=2048 bytes)
+    int m_nNumVertFormats;          // +0x828
+    int m_nMaxVertFormats;          // +0x82C
+    int m_bInitialized;             // +0x830
 
     // 0x10004d20 (12B) - Default constructor
     gbEffectMgr(void);

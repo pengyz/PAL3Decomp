@@ -140,6 +140,11 @@ int gbVisNode::PopMessage(gbNodeMsgObj& msg) {
     return 1;
 }
 
+// ProcessMessage - virtual, base implementation does nothing
+void gbVisNode::ProcessMessage(gbNodeMsgObj* msg) {
+    (void)0;
+}
+
 // Attach - 0x100166f0 (virtual, base implementation does nothing)
 int gbVisNode::Attach(gbRenderEffect* effect) {
     (void)0;

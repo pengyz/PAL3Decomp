@@ -3,35 +3,14 @@
  * Reference counting and resource management implementation
  */
 
-#include "gbengine/gbengine_types.h"
+#include "gbengine/gbTexture.h"
 #include <string.h>
 #include <stdlib.h>
-
-// Forward declarations
-class gbRefObject;
-class gbResource;
-class gbResManager;
 
 // External functions
 extern unsigned int gbCrc32Compute(const char* str);
 
 /* ======== gbRefObject ======== */
-
-class gbRefObject {
-public:
-    int refCount;      // +0x04 (vtable at +0x00 is compiler-generated)
-
-    gbRefObject();
-    gbRefObject(const gbRefObject& other);
-    virtual ~gbRefObject();
-
-    void IncRef();
-    void DecRef();
-    int GetRef();
-    void Release();
-
-    gbRefObject& operator=(const gbRefObject& other);
-};
 
 // Constructor - 0x100015e0
 gbRefObject::gbRefObject() {
@@ -84,30 +63,12 @@ gbRefObject& gbRefObject::operator=(const gbRefObject& other) {
 
 /* ======== gbResource ======== */
 
-class gbResource : public gbRefObject {
-public:
-    char* name;           // +0x08
-    unsigned int nameCrc; // +0x0c
-    void* unknown10;      // +0x10 (unused in observed code)
-    gbResManager* manager; // +0x14
-
-    gbResource();
-    gbResource(const gbResource& other);
-    virtual ~gbResource();
-
-    void SetName(const char* name);
-    const char* GetName();
-    unsigned int GetNameCrc32();
-
-    gbResource& operator=(const gbResource& other);
-};
-
 // Constructor - 0x10001840
 gbResource::gbResource() : gbRefObject() {
     refCount = 1;
     // vtable set by compiler
     name = NULL;
-    unknown10 = NULL;
+    isLoaded = NULL;
     manager = NULL;
 }
 
@@ -115,7 +76,7 @@ gbResource::gbResource() : gbRefObject() {
 gbResource::gbResource(const gbResource& other) : gbRefObject(other) {
     name = other.name;
     nameCrc = other.nameCrc;
-    unknown10 = other.unknown10;
+    isLoaded = other.isLoaded;
     manager = other.manager;
     // vtable updated by compiler
 }
@@ -197,7 +158,7 @@ gbResource& gbResource::operator=(const gbResource& other) {
         gbRefObject::operator=(other);
         name = other.name;
         nameCrc = other.nameCrc;
-        unknown10 = other.unknown10;
+        isLoaded = other.isLoaded;
         manager = other.manager;
     }
     return *this;

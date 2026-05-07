@@ -38,7 +38,7 @@ class gbRefObject;
 struct gbVertexElement;
 
 // External declarations
-extern "C" double gbUpdateCurTime(void);
+extern double gbUpdateCurTime(void);
 extern unsigned int g_CurrentTick;
 
 // Global definition

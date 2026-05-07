@@ -20,7 +20,7 @@
 
 // External declarations
 extern int gbstricmp(const char* s1, const char* s2);
-extern void gbLogInfo(const char* fmt, ...);
+extern void gbLogInfo(char* fmt, ...);
 
 // LZO stub implementations
 extern "C" {

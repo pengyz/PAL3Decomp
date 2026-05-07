@@ -154,12 +154,11 @@ gbImage2D::~gbImage2D() {
 
 // 0x10020370 (37B) - Constructor
 gbTexture::gbTexture(void) {
-    refObj.vfptr = NULL; // vtable set by derived
-    refObj.RefCount = 0;
-    pName = NULL;
-    NameCrc32 = 0;
-    IsLoaded = 0;
-    pMgr = NULL;
+    refCount = 0;
+    name = NULL;
+    nameCrc = 0;
+    isLoaded = 0;
+    manager = NULL;
     Width = 0;
     Height = 0;
     pTexImage = NULL;
@@ -173,15 +172,15 @@ gbTexture::~gbTexture() {
         delete pTexImage;
         pTexImage = NULL;
     }
-    if (pName) {
-        free(pName);
-        pName = NULL;
+    if (name) {
+        free(name);
+        name = NULL;
     }
 }
 
 // 0x10004190 (12B) - Check if texture is initialized
 int gbTexture::IsInit(void) {
-    return IsLoaded;
+    return isLoaded;
 }
 
 // 0x10020760 (102B) - Create empty texture
@@ -191,7 +190,7 @@ void gbTexture::CreateTexture(int w, int h, gbPixelFmtType fmt, int mips) {
     InFmt.Type = fmt;
     InFmt.Bpp = gbPixelFmtBpp(fmt);
     nLevels = mips;
-    IsLoaded = 1;
+    isLoaded = 1;
 }
 
 // Get the D3D texture interface (base returns NULL, overridden in D3D subclass)
@@ -255,14 +254,14 @@ void gbTexture::LoadFromImage2D(gbImage2D* img) {
     Height = img->Height;
     InFmt.Type = img->PixelFmt.Type;
     InFmt.Bpp = img->PixelFmt.Bpp;
-    IsLoaded = 1;
+    isLoaded = 1;
 }
 
 // 0x100205a0 (443B) - Load texture from resource index
 void gbTexture::LoadTexture(int resIndex) {
     // In the real engine, this loads from the resource manager
     // using the resource index to find the file and call LoadFromImage2D
-    IsLoaded = 1;
+    isLoaded = 1;
 }
 
 // 0x10020820 (52B) - Update texture sub-region from image
@@ -385,7 +384,7 @@ void gbTexture_D3D::CreateFromMemory(int w, int h, gbPixelFmtType srcFmt, int le
     }
 
     m_ImgFormat = (ULONG)d3dDstFmt;
-    IsLoaded = 1;
+    isLoaded = 1;
 }
 
 // 0x1001bea0 (219B) - Update existing texture with new data
@@ -455,7 +454,7 @@ void gbTexture_D3D::CreateFromFileMemory(void* data, int size) {
         m_ImgFormat = (ULONG)desc.Format;
     }
 
-    IsLoaded = 1;
+    isLoaded = 1;
 }
 
 // 0x1001bf80 (144B) - Create texture for use as render target
@@ -493,7 +492,7 @@ int gbTexture_D3D::CreateForRenderTarget(int w, int h, gbPixelFmtType fmt) {
     InFmt.Bpp = gbPixelFmtBpp(fmt);
     m_ImgFormat = (ULONG)d3dFmt;
     nLevels = 1;
-    IsLoaded = 1;
+    isLoaded = 1;
 
     return 1;
 }
