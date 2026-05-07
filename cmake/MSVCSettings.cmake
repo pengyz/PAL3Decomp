@@ -51,8 +51,9 @@ add_compile_options(${PAL3_COMMON_COMPILE_FLAGS})
 
 if(MSVC_VERSION EQUAL 1200)
     # VC6: only flags it understands
+    # Note: /FD omitted — causes PDB lock conflicts with parallel builds under Wine
     set(TOPO_GBENGINE_COMPILE_FLAGS
-        /GX /O2 /Ob2 /Oi /Ot /Oy /GF /Gy /FD /MD
+        /GX /O2 /Ob2 /Oi /Ot /Oy /GF /Gy /MD
     )
 else()
     set(TOPO_GBENGINE_COMPILE_FLAGS

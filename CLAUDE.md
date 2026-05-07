@@ -180,7 +180,12 @@ python tools/pal3a_fill_stubs.py --quality-report
 
 ## Tools (Cross-platform)
 
-### Build & Verification
+### Build & Verification (Linux + Wine)
+- `bash tools/setup_wine_vc6.sh` - 一次性初始化 Wine + VC6 环境
+- `source tools/wine_vc6.sh` - 加载 VC6 辅助函数 (vc6_cl, vc6_compile 等)
+- `python tools/gbengine_compare.py --compile <src> --all` - 编译并字节对比（自动检测平台，Linux 用 Wine）
+
+### Build & Verification (Windows)
 - `./run_verify.bat` (Windows) - Build topo.dll and verify compilation
 - `python verify_build.py` - Build verification script
 

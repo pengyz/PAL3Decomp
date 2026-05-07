@@ -291,27 +291,63 @@ def compare_bytes(compiled, original, func_name, verbose=True, relocs=None):
     }
 
 
+def _is_linux():
+    """Check if running on Linux."""
+    return sys.platform.startswith('linux')
+
+
+def _to_winpath(path):
+    """Convert Unix path to Wine Z: drive path."""
+    return 'Z:' + str(Path(path).resolve()).replace('/', '\\')
+
+
 def compile_file(src_path, obj_path):
-    """Compile a source file with VC6."""
+    """Compile a source file with VC6 (supports Linux via Wine)."""
     cl_exe = str(VC6_BIN / "CL.EXE")
-    include_dirs = f"{VC6_INCLUDE};{PROJECT_ROOT / 'include'}"
+    use_wine = _is_linux()
 
-    env = os.environ.copy()
-    env['INCLUDE'] = include_dirs
-    env['LIB'] = str(VC6_LIB)
+    if use_wine:
+        win_include = _to_winpath(VC6_INCLUDE)
+        win_proj_include = _to_winpath(PROJECT_ROOT / 'include')
+        win_obj = _to_winpath(obj_path)
+        win_src = _to_winpath(src_path)
 
-    cmd = [
-        cl_exe,
-        '/c',        # compile only
-        '/O2',       # optimize for speed
-        '/Ob2',      # auto-inline any suitable function
-        '/GF',       # string pooling
-        '/Gy',       # function-level linking
-        '/Zp4',      # 4-byte struct member alignment (matches original)
-        '/GX',       # enable C++ exception handling (SEH frames for new)
-        f'/Fo{obj_path}',
-        str(src_path),
-    ]
+        cmd = [
+            'wine', cl_exe,
+            '/nologo',
+            '/c',        # compile only
+            '/O2',       # optimize for speed
+            '/Ob2',      # auto-inline any suitable function
+            '/GF',       # string pooling
+            '/Gy',       # function-level linking
+            '/Zp4',      # 4-byte struct member alignment (matches original)
+            '/GX',       # enable C++ exception handling (SEH frames for new)
+            f'/I{win_include}',
+            f'/I{win_proj_include}',
+            f'/Fo{win_obj}',
+            win_src,
+        ]
+        env = os.environ.copy()
+        env['WINEDEBUG'] = '-all'
+    else:
+        include_dirs = f"{VC6_INCLUDE};{PROJECT_ROOT / 'include'}"
+        env = os.environ.copy()
+        env['INCLUDE'] = include_dirs
+        env['LIB'] = str(VC6_LIB)
+
+        cmd = [
+            cl_exe,
+            '/nologo',
+            '/c',        # compile only
+            '/O2',       # optimize for speed
+            '/Ob2',      # auto-inline any suitable function
+            '/GF',       # string pooling
+            '/Gy',       # function-level linking
+            '/Zp4',      # 4-byte struct member alignment (matches original)
+            '/GX',       # enable C++ exception handling (SEH frames for new)
+            f'/Fo{obj_path}',
+            str(src_path),
+        ]
 
     result = subprocess.run(cmd, capture_output=True, text=True, env=env)
     if result.returncode != 0:
