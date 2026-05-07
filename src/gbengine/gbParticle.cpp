@@ -948,9 +948,17 @@ gbAnimNodeGroup::~gbAnimNodeGroup() {
 }
 
 class gbAnimNodeGroup & gbAnimNodeGroup::operator=(class gbAnimNodeGroup const & p0) {
-    if (this != &p0) {
-        memcpy(this, &p0, sizeof(gbAnimNodeGroup));
-    }
+    pNode = p0.pNode;
+    lastTime = p0.lastTime;
+    elapsedTime = p0.elapsedTime;
+    field_18 = p0.field_18;
+    field_1c = p0.field_1c;
+    field_20 = p0.field_20;
+    field_24 = p0.field_24;
+    field_28 = p0.field_28;
+    isDead = p0.isDead;
+    field_30 = p0.field_30;
+    posMatrix = p0.posMatrix;
     return *this;
 }
 
