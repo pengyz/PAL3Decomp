@@ -41,6 +41,12 @@ public:
 class gbDynVertBuf_D3D : public gbDynVertBuf {
 public:
     gbDynVertBuf_D3D(unsigned int fvfFlags, int maxVertices);
+
+    // Virtual overrides from gbDynVertBuf
+    virtual float* Lock(int numVerts);
+    virtual void Unlock();
+    virtual void Draw(int primType, gbRenderEffect* effect, gbTextureArray* textures);
+
     void* m_pD3DVB;  // +0x3C: IDirect3DVertexBuffer9*
 };
 
@@ -131,6 +137,162 @@ gbDynVertBuf_D3D::gbDynVertBuf_D3D(unsigned int fvfFlags, int maxVertices)
     // Create dynamic vertex buffer with D3DUSAGE_DYNAMIC|D3DUSAGE_WRITEONLY (0x208)
     m_pD3DVB = CreateVertexBufferHelper(
         g_pGfxManager_D3D, m_fvfFlags, m_vertexStride * m_vertNum, 0x208);
+}
+
+// 0x10018480 - gbDynVertBuf_D3D::Lock
+// Locks the D3D vertex buffer with DISCARD, sets up component pointers
+float* gbDynVertBuf_D3D::Lock(int numVerts) {
+    IDirect3DVertexBuffer9* pVB = (IDirect3DVertexBuffer9*)m_pD3DVB;
+    void* pData = NULL;
+    int offset;
+    int stride;
+
+    if (!pVB)
+        return NULL;
+
+    m_currentVertex = 0;
+    m_vertNum = numVerts;
+
+    // Lock entire buffer with D3DLOCK_DISCARD (0x2000)
+    HRESULT hr = pVB->Lock(0, m_vertexStride * numVerts, &pData, 0x2000);
+    if (FAILED(hr))
+        return NULL;
+
+    // Set up component pointers within the locked buffer
+    stride = m_vertexStride;
+    offset = 0;
+    m_pXYZ = (float*)pData;
+
+    // XYZ or XYZRHW: 3 or 4 floats
+    if (m_fvfFlags & 0x001)
+        offset += 12;  // 3 floats for XYZ
+    if (m_fvfFlags & 0x100)
+        offset += 16;  // 4 floats for XYZRHW
+
+    // Normal: 3 floats
+    if (m_fvfFlags & 0x002) {
+        m_pNormal = (float*)((char*)pData + offset);
+        offset += 12;
+    } else {
+        m_pNormal = NULL;
+    }
+
+    // Diffuse color
+    if (m_fvfFlags & 0x004) {
+        m_pColor1 = (gbColorQuad*)((char*)pData + offset);
+        offset += 4;
+    } else {
+        m_pColor1 = NULL;
+    }
+
+    // Specular color
+    if (m_fvfFlags & 0x008) {
+        m_pColor2 = (gbColorQuad*)((char*)pData + offset);
+        offset += 4;
+    } else {
+        m_pColor2 = NULL;
+    }
+
+    // UV sets
+    if (m_fvfFlags & 0x010) {
+        m_pUV[0] = (float*)((char*)pData + offset);
+        offset += 8;
+    } else {
+        m_pUV[0] = NULL;
+    }
+    if (m_fvfFlags & 0x020) {
+        m_pUV[1] = (float*)((char*)pData + offset);
+        offset += 8;
+    } else {
+        m_pUV[1] = NULL;
+    }
+    if (m_fvfFlags & 0x040) {
+        m_pUV[2] = (float*)((char*)pData + offset);
+        offset += 8;
+    } else {
+        m_pUV[2] = NULL;
+    }
+    if (m_fvfFlags & 0x080) {
+        m_pUV[3] = (float*)((char*)pData + offset);
+    } else {
+        m_pUV[3] = NULL;
+    }
+
+    return (float*)pData;
+}
+
+// 0x10018560 - gbDynVertBuf_D3D::Unlock
+void gbDynVertBuf_D3D::Unlock() {
+    IDirect3DVertexBuffer9* pVB = (IDirect3DVertexBuffer9*)m_pD3DVB;
+    if (pVB) {
+        pVB->Unlock();
+    }
+}
+
+// 0x10018580 - gbDynVertBuf_D3D::Draw
+// Unlocks VB, applies effect, sets textures, renders
+void gbDynVertBuf_D3D::Draw(int primType, gbRenderEffect* effect, gbTextureArray* textures) {
+    IDirect3DVertexBuffer9* pVB = (IDirect3DVertexBuffer9*)m_pD3DVB;
+    IDirect3DDevice9* pDev = g_pGfxManager_D3D->m_pd3dDevice;
+    unsigned int d3dFVF;
+    D3DPRIMITIVETYPE d3dPrimType;
+    int primCount;
+
+    if (!pVB)
+        return;
+
+    // Unlock the vertex buffer (was locked during Lock call)
+    pVB->Unlock();
+
+    // Flush matrix stacks to D3D device (slot 15: DrawPrimitive)
+    g_pGfxManager_D3D->DrawPrimitive();
+
+    // Apply render effect
+    if (effect) {
+        effect->Apply();
+    }
+
+    // Set textures
+    g_pGfxManager_D3D->SetTexture(textures);
+
+    // Convert custom FVF flags to D3D FVF
+    d3dFVF = 0;
+    if (m_fvfFlags & 0x001) d3dFVF |= 0x002;   // D3DFVF_XYZ
+    if (m_fvfFlags & 0x100) d3dFVF |= 0x004;   // D3DFVF_XYZRHW
+    if (m_fvfFlags & 0x002) d3dFVF |= 0x010;   // D3DFVF_NORMAL
+    if (m_fvfFlags & 0x004) d3dFVF |= 0x040;   // D3DFVF_DIFFUSE
+    if (m_fvfFlags & 0x008) d3dFVF |= 0x080;   // D3DFVF_SPECULAR
+    if (m_fvfFlags & 0x080)      d3dFVF |= 0x400;  // D3DFVF_TEX4
+    else if (m_fvfFlags & 0x040) d3dFVF |= 0x300;  // D3DFVF_TEX3
+    else if (m_fvfFlags & 0x020) d3dFVF |= 0x200;  // D3DFVF_TEX2
+    else if (m_fvfFlags & 0x010) d3dFVF |= 0x100;  // D3DFVF_TEX1
+
+    // Set stream source and FVF
+    pDev->SetStreamSource(0, pVB, 0, m_vertexStride);
+    pDev->SetFVF(d3dFVF);
+
+    // Convert primType and calculate primitive count
+    switch (primType) {
+    case 1:  // GB_PRIM_TRIANGLELIST
+        d3dPrimType = D3DPT_TRIANGLELIST;
+        primCount = m_vertNum / 3;
+        break;
+    case 3:  // GB_PRIM_TRIANGLESTRIP
+        d3dPrimType = D3DPT_TRIANGLESTRIP;
+        primCount = m_vertNum - 2;
+        break;
+    case 5:  // GB_PRIM_LINESTRIP
+        d3dPrimType = D3DPT_LINESTRIP;
+        primCount = m_vertNum - 1;
+        break;
+    default:
+        d3dPrimType = D3DPT_TRIANGLELIST;
+        primCount = m_vertNum / 3;
+        break;
+    }
+
+    // Draw
+    pDev->DrawPrimitive(d3dPrimType, 0, primCount);
 }
 
 // ============================================================================
