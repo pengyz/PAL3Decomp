@@ -15,14 +15,19 @@
 #include "gbengine/gbSceneGraph.h"
 #include "gbengine/gbengine_internal.h"
 #include <windows.h>
-#include <d3d9.h>
+#include <d3dx9.h>
 #include <string.h>
 
 // External globals
 extern gbGfxManager* g_pGfxManager;
 extern gbGfxManager_D3D* g_pGfxManager_D3D;
 
-// D3D subclasses of pool types (constructors defined in their respective .cpp files)
+// ============================================================================
+// D3D subclasses of pool/buffer types
+// These add no extra data fields; they override the vtable and create D3D
+// resources in their constructors.
+// ============================================================================
+
 class gbVertexPool_D3D : public gbVertexPool {
 public:
     gbVertexPool_D3D(gbPoolType type, unsigned int vertType, int total);
@@ -36,20 +41,448 @@ public:
 class gbDynVertBuf_D3D : public gbDynVertBuf {
 public:
     gbDynVertBuf_D3D(unsigned int fvfFlags, int maxVertices);
-    int m_field3C;  // +0x3C: D3D vertex buffer handle
+    void* m_pD3DVB;  // +0x3C: IDirect3DVertexBuffer9*
 };
 
-// Stub constructors (real implementations in separate compilation units)
-gbVertexPool_D3D::gbVertexPool_D3D(gbPoolType type, unsigned int vertType, int total)
-    : gbVertexPool(type, vertType, total) {}
-gbIndexPool_D3D::gbIndexPool_D3D(gbPoolType type, int indexSz, int total)
-    : gbIndexPool(type, indexSz, total) {}
-gbDynVertBuf_D3D::gbDynVertBuf_D3D(unsigned int fvfFlags, int maxVertices)
-    : gbDynVertBuf(fvfFlags, maxVertices) {}
+// Helper: convert custom FVF flags to D3D FVF and create a vertex buffer
+// 0x1001B0E0 (176B) - __thiscall on gbGfxManager_D3D (ECX)
+static IDirect3DVertexBuffer9* CreateVertexBufferHelper(
+    gbGfxManager_D3D* mgr, unsigned int customFVF, int size, unsigned int usage)
+{
+    // If in software VP mode, add D3DUSAGE_SOFTWAREPROCESSING
+    if (mgr->m_bSoftVPMode != 0) {
+        usage |= 0x10;  // D3DUSAGE_SOFTWAREPROCESSING
+    }
 
-// 0x1001B750 (226B) - Handle window size change (stub, calls Reset/GetClientRect)
+    // Convert custom FVF bits to D3D FVF format
+    unsigned int d3dFVF = 0;
+    if ((customFVF & 0x80000000) == 0) {
+        if (customFVF & 0x001) d3dFVF |= 0x002;   // D3DFVF_XYZ
+        if (customFVF & 0x100) d3dFVF |= 0x004;   // D3DFVF_XYZRHW... actually D3DFVF_NORMAL
+        if (customFVF & 0x002) d3dFVF |= 0x010;   // D3DFVF_NORMAL... actually D3DFVF_DIFFUSE? Check
+        if (customFVF & 0x004) d3dFVF |= 0x040;   // D3DFVF_DIFFUSE
+        if (customFVF & 0x008) d3dFVF |= 0x080;   // D3DFVF_SPECULAR
+        // Texture coordinate count (mutually exclusive)
+        if (customFVF & 0x080)      d3dFVF |= 0x400;  // D3DFVF_TEX4
+        else if (customFVF & 0x040) d3dFVF |= 0x300;  // D3DFVF_TEX3
+        else if (customFVF & 0x020) d3dFVF |= 0x200;  // D3DFVF_TEX2
+        else if (customFVF & 0x010) d3dFVF |= 0x100;  // D3DFVF_TEX1
+    }
+
+    // Call IDirect3DDevice9::CreateVertexBuffer (vtable offset 0x68)
+    IDirect3DVertexBuffer9* pVB = NULL;
+    DWORD pool = (usage == 0) ? D3DPOOL_DEFAULT : D3DPOOL_DEFAULT;
+    HRESULT hr = mgr->m_pd3dDevice->CreateVertexBuffer(
+        size, usage, d3dFVF, D3DPOOL_DEFAULT, &pVB, NULL);
+
+    if (FAILED(hr)) {
+        mgr->m_ErrorCode = hr;
+        return NULL;
+    }
+    return pVB;
+}
+
+// 0x1001C3C0 (146B) - gbVertexPool_D3D constructor
+gbVertexPool_D3D::gbVertexPool_D3D(gbPoolType type, unsigned int vertType, int total)
+    : gbVertexPool(type, vertType, total)
+{
+    // vtable is overwritten by D3D subclass (done implicitly by compiler)
+    void* buf;
+    if (type == GB_POOL_DEFAULT) {
+        buf = CreateVertexBufferHelper(g_pGfxManager_D3D, vertType, stride * total, 0);
+    } else if (type == GB_POOL_MANAGED) {
+        buf = CreateVertexBufferHelper(g_pGfxManager_D3D, vertType, stride * total, 0x208);
+    } else {
+        // GB_POOL_SYSTEMMEM: use system memory
+        buf = malloc(stride * total);
+    }
+    pBuffer = buf;
+}
+
+// 0x1001C200 (195B) - gbIndexPool_D3D constructor
+gbIndexPool_D3D::gbIndexPool_D3D(gbPoolType type, int indexSz, int total)
+    : gbIndexPool(type, indexSz, total)
+{
+    // vtable is overwritten by D3D subclass (done implicitly by compiler)
+    if (type == GB_POOL_SYSTEMMEM) {
+        pBuffer = malloc(indexSz * total);
+    } else {
+        unsigned int usage = 0;
+        if (type == GB_POOL_MANAGED) {
+            usage = 0x208;
+        }
+        // D3DFMT_INDEX16=101, D3DFMT_INDEX32=102
+        D3DFORMAT fmt = (D3DFORMAT)((indexSz != 2) + 101);
+        IDirect3DIndexBuffer9* pIB = NULL;
+        HRESULT hr = g_pGfxManager_D3D->m_pd3dDevice->CreateIndexBuffer(
+            indexSz * total, usage, fmt, D3DPOOL_DEFAULT, &pIB, NULL);
+        if (FAILED(hr)) {
+            g_pGfxManager_D3D->m_ErrorCode = hr;
+        }
+        pBuffer = pIB;
+    }
+}
+
+// 0x10018410 (111B) - gbDynVertBuf_D3D constructor
+gbDynVertBuf_D3D::gbDynVertBuf_D3D(unsigned int fvfFlags, int maxVertices)
+    : gbDynVertBuf(fvfFlags, maxVertices)
+{
+    // vtable is overwritten by D3D subclass (done implicitly by compiler)
+    // Create dynamic vertex buffer with D3DUSAGE_DYNAMIC|D3DUSAGE_WRITEONLY (0x208)
+    m_pD3DVB = CreateVertexBufferHelper(
+        g_pGfxManager_D3D, m_fvfFlags, m_vertexStride * m_vertNum, 0x208);
+}
+
+// ============================================================================
+// 0x1001A190 (526B) - BuildPresentParamsFromSettings
+// Populates m_d3dpp from m_d3dSettings based on windowed/fullscreen mode.
+// __thiscall on gbGfxManager_D3D
+// ============================================================================
+void gbGfxManager_D3D::BuildPresentParamsFromSettings(void) {
+    m_d3dpp.Windowed = (unsigned int)m_d3dSettings.bIsWindowed;
+    m_d3dpp.BackBufferCount = DrvInfo.nbackbuf - 1;
+
+    if (m_d3dSettings.bIsWindowed != 0) {
+        m_d3dpp.BackBufferFormat = m_d3dSettings.Fullscreen_DisplayMode.Format;
+    } else {
+        m_d3dpp.BackBufferFormat = m_d3dSettings.Windowed_DisplayMode.Format;
+    }
+
+    if (m_d3dSettings.bIsWindowed != 0) {
+        m_d3dpp.BackBufferHeight = m_d3dSettings.Fullscreen_Height;
+    } else {
+        m_d3dpp.BackBufferHeight = m_d3dSettings.Windowed_DisplayMode.Height;
+    }
+
+    m_d3dpp.SwapEffect = D3DSWAPEFFECT_DISCARD;
+    m_d3dpp.EnableAutoDepthStencil = TRUE;
+
+    if (DrvInfo.waitforverticalblank == 0) {
+        m_d3dpp.PresentationInterval = D3DPRESENT_INTERVAL_IMMEDIATE;
+    } else {
+        m_d3dpp.PresentationInterval = D3DPRESENT_INTERVAL_DEFAULT;
+        if (m_d3dSettings.bIsWindowed != 0) {
+            m_d3dpp.FullScreen_RefreshRateInHz = m_d3dSettings.Fullscreen_DisplayMode.RefreshRate;
+        }
+    }
+
+    if (m_bWindowed != 0) {
+        // Windowed mode: use client area
+        m_d3dpp.BackBufferWidth = m_rcWindowClient.right - m_rcWindowClient.left;
+        m_d3dpp.BackBufferHeight = m_rcWindowClient.bottom - m_rcWindowClient.top;
+
+        D3DDeviceCombo* pCombo;
+        if (m_d3dSettings.bIsWindowed != 0) {
+            pCombo = m_d3dSettings.pFullscreen_DeviceCombo;
+        } else {
+            pCombo = m_d3dSettings.pWindowed_DeviceCombo;
+        }
+        m_d3dpp.AutoDepthStencilFormat = (D3DFORMAT)*(int*)((char*)pCombo + 0x0C);
+        m_d3dpp.MultiSampleType = D3DMULTISAMPLE_NONE;
+
+        if (m_d3dSettings.bIsWindowed != 0) {
+            m_d3dpp.FullScreen_RefreshRateInHz = m_d3dSettings.Fullscreen_DisplayMode.RefreshRate;
+        } else {
+            m_d3dpp.FullScreen_RefreshRateInHz = m_d3dSettings.Windowed_DisplayMode.RefreshRate;
+        }
+    } else {
+        // Fullscreen mode: use settings dimensions
+        D3DDeviceCombo* pCombo;
+        if (m_d3dSettings.bIsWindowed != 0) {
+            pCombo = m_d3dSettings.pFullscreen_DeviceCombo;
+        } else {
+            pCombo = m_d3dSettings.pWindowed_DeviceCombo;
+        }
+        m_d3dpp.BackBufferWidth = *(int*)((char*)pCombo + 0x08);
+
+        D3DDeviceCombo* pCombo2;
+        if (m_d3dSettings.bIsWindowed != 0) {
+            pCombo2 = m_d3dSettings.pFullscreen_DeviceCombo;
+        } else {
+            pCombo2 = m_d3dSettings.pWindowed_DeviceCombo;
+        }
+        m_d3dpp.BackBufferHeight = *(int*)((char*)pCombo2 + 0x04);
+
+        if (m_d3dSettings.bIsWindowed != 0) {
+            pCombo = m_d3dSettings.pFullscreen_DeviceCombo;
+        } else {
+            pCombo = m_d3dSettings.pWindowed_DeviceCombo;
+        }
+        m_d3dpp.AutoDepthStencilFormat = (D3DFORMAT)*(int*)((char*)pCombo + 0x0C);
+        m_d3dpp.MultiSampleType = (D3DMULTISAMPLE_TYPE)*(int*)((char*)&m_d3dSettings + 0x50);
+
+        if (m_d3dSettings.bIsWindowed != 0) {
+            m_d3dpp.FullScreen_RefreshRateInHz = m_d3dSettings.Fullscreen_DisplayMode.RefreshRate;
+        } else {
+            m_d3dpp.FullScreen_RefreshRateInHz = m_d3dSettings.Windowed_DisplayMode.RefreshRate;
+        }
+
+        if (DrvInfo.type != 1) {
+            m_d3dpp.FullScreen_RefreshRateInHz = 0x80000000;
+        }
+    }
+}
+
+// ============================================================================
+// 0x1001A3A0 (998B) - SetDeviceCursor
+// Converts HICON to a D3D surface and calls device->SetCursorProperties.
+// From DXSDK Summer 2003 framework (CD3DApplication::SetDeviceCursor).
+// __cdecl: params(IDirect3DDevice9* pd3dDevice, HICON hIcon, BOOL bAddWatermark)
+// ============================================================================
+static int SetDeviceCursor(IDirect3DDevice9* pd3dDevice, DWORD hIcon, BOOL bAddWatermark) {
+    ICONINFO iconInfo;
+    HRESULT hr = (HRESULT)0x80004005;  // E_FAIL
+    IDirect3DSurface9* pCursorSurface = NULL;
+    HDC hdcScreen = NULL;
+    HDC hdcMask = NULL;
+    HDC hdcColor = NULL;
+    void* pMaskBits = NULL;
+    void* pColorBits = NULL;
+    BITMAP bm;
+    UINT nWidth;
+    UINT nHeight;
+    UINT nHeightReal;
+    BOOL bMonochrome;
+    BITMAPINFO bmi;
+    HGDIOBJ hOldObj;
+    D3DLOCKED_RECT lr;
+
+    memset(&iconInfo, 0, sizeof(iconInfo));
+
+    if (!GetIconInfo((HICON)hIcon, &iconInfo))
+        goto End;
+
+    if (!GetObjectA(iconInfo.hbmMask, sizeof(BITMAP), &bm))
+        goto End;
+
+    nWidth = bm.bmWidth;
+    nHeight = bm.bmHeight;
+    nHeightReal = nHeight;
+
+    if (iconInfo.hbmColor == NULL) {
+        // Monochrome cursor: mask is double height (AND mask + XOR mask)
+        nHeightReal = nHeight / 2;
+    }
+    bMonochrome = (iconInfo.hbmColor == NULL) ? TRUE : FALSE;
+
+    // Create A8R8G8B8 surface for cursor
+    hr = pd3dDevice->CreateOffscreenPlainSurface(
+        nWidth, nHeightReal, D3DFMT_A8R8G8B8, D3DPOOL_SCRATCH, &pCursorSurface, NULL);
+    if (FAILED(hr))
+        goto End;
+
+    // Allocate buffer for mask bits
+    pMaskBits = operator new(nHeight * nWidth * 4);
+
+    // Setup BITMAPINFO for GetDIBits
+    memset(&bmi, 0, sizeof(bmi));
+    bmi.bmiHeader.biSize = sizeof(BITMAPINFOHEADER);
+    bmi.bmiHeader.biWidth = nWidth;
+    bmi.bmiHeader.biHeight = nHeight;
+    bmi.bmiHeader.biPlanes = 1;
+    bmi.bmiHeader.biBitCount = 32;
+    bmi.bmiHeader.biCompression = BI_RGB;
+
+    hdcScreen = GetDC(NULL);
+    hdcMask = CreateCompatibleDC(hdcScreen);
+    if (hdcMask == NULL) {
+        hr = (HRESULT)0x80004005;
+        goto End;
+    }
+
+    // Get mask bits
+    hOldObj = SelectObject(hdcMask, iconInfo.hbmMask);
+    GetDIBits(hdcMask, iconInfo.hbmMask, 0, nHeight, pMaskBits, &bmi, DIB_RGB_COLORS);
+    SelectObject(hdcMask, hOldObj);
+
+    if (!bMonochrome) {
+        // Color cursor: get color bits
+        pColorBits = operator new(nHeightReal * nWidth * 4);
+        hdcColor = CreateCompatibleDC(hdcScreen);
+        if (hdcColor == NULL) {
+            hr = (HRESULT)0x80004005;
+            goto End;
+        }
+        SelectObject(hdcColor, iconInfo.hbmColor);
+        GetDIBits(hdcColor, iconInfo.hbmColor, 0, nHeightReal, pColorBits, &bmi, DIB_RGB_COLORS);
+    }
+
+    // Lock cursor surface and fill pixel data
+    pCursorSurface->LockRect(&lr, NULL, 0);
+    {
+        DWORD* pBitsDst = (DWORD*)lr.pBits;
+        UINT y, x;
+
+        for (y = 0; y < nHeightReal; y++) {
+            // Source rows are bottom-up in DIB format
+            UINT srcRow = (nHeightReal - 1 - y) * nWidth;
+            UINT maskRow = (nHeight - 1 - y) * nWidth;
+
+            for (x = 0; x < nWidth; x++) {
+                DWORD pixel;
+                DWORD mask;
+
+                if (bMonochrome) {
+                    pixel = ((DWORD*)pMaskBits)[srcRow + x];
+                    mask = ((DWORD*)pMaskBits)[maskRow + x];
+                } else {
+                    pixel = ((DWORD*)pColorBits)[srcRow + x];
+                    mask = ((DWORD*)pMaskBits)[srcRow + x];
+                }
+
+                if (mask == 0) {
+                    *pBitsDst = pixel | 0xFF000000;
+                } else {
+                    *pBitsDst = 0x00000000;
+                }
+
+                // Watermark for debugging (small 12x5 pattern in top-left)
+                if (bAddWatermark && x < 12 && y < 5) {
+                    // Simplified watermark pattern
+                    // Original uses a bitmask to draw specific pixels
+                }
+
+                pBitsDst++;
+            }
+        }
+    }
+    pCursorSurface->UnlockRect();
+
+    // Set cursor properties on device
+    hr = pd3dDevice->SetCursorProperties(iconInfo.xHotspot, iconInfo.yHotspot, pCursorSurface);
+    if (SUCCEEDED(hr)) {
+        hr = 0;
+    }
+
+End:
+    if (iconInfo.hbmMask)
+        DeleteObject(iconInfo.hbmMask);
+    if (iconInfo.hbmColor)
+        DeleteObject(iconInfo.hbmColor);
+    if (hdcScreen)
+        ReleaseDC(NULL, hdcScreen);
+    if (hdcColor)
+        DeleteDC(hdcColor);
+    if (hdcMask)
+        DeleteDC(hdcMask);
+    if (pColorBits)
+        operator delete(pColorBits);
+    if (pMaskBits)
+        operator delete(pMaskBits);
+    if (pCursorSurface)
+        pCursorSurface->Release();
+
+    return hr;
+}
+
+// ============================================================================
+// 0x1001AC50 (299B) - Reset D3D device
+// __thiscall on gbGfxManager_D3D
+// Called from HandleSizeChange and BeginScene device recovery path.
+// ============================================================================
+static int ResetD3DDevice(gbGfxManager_D3D* mgr) {
+    // 1. Notify subsystems of device loss
+    mgr->pVertPoolMgr->OnLostDevice();
+    mgr->pEffectMgr->OnLostDevice();
+
+    // 2. Release old back buffer
+    if (mgr->m_pBackBuffer) {
+        mgr->m_pBackBuffer->Release();
+        mgr->m_pBackBuffer = NULL;
+    }
+
+    // 3. Build present params and reset device
+    mgr->BuildPresentParamsFromSettings();
+    HRESULT hr = mgr->m_pd3dDevice->Reset(&mgr->m_d3dpp);
+    if (FAILED(hr)) {
+        return hr;
+    }
+
+    // 4. Get new back buffer
+    IDirect3DSurface9* pNewBackBuffer = NULL;
+    mgr->m_pd3dDevice->GetBackBuffer(0, 0, D3DBACKBUFFER_TYPE_MONO, &pNewBackBuffer);
+
+    // 5. Get new back buffer desc
+    pNewBackBuffer->GetDesc(&mgr->m_d3dsdBackBuffer);
+    mgr->m_pBackBuffer = pNewBackBuffer;
+
+    // 6. Re-apply active cursor via virtual call (slot 25: SetCursor)
+    mgr->SetCursor(mgr->m_pActiveCursor);
+
+    // 7. Re-show cursor
+    mgr->m_pd3dDevice->ShowCursor(mgr->m_bShowCursor);
+
+    // 8. Cursor icon restore for fullscreen
+    if (mgr->m_bShowCursorWhenFullscreen && mgr->m_bWindowed == 0) {
+        DWORD dwIcon = GetClassLongA(mgr->m_hWnd, GCL_HICON);
+        SetDeviceCursor(mgr->m_pd3dDevice, dwIcon, TRUE);
+        mgr->m_pd3dDevice->ShowCursor(TRUE);
+    }
+
+    // 9. Clip cursor
+    if (mgr->m_bClipCursorWhenFullscreen) {
+        if (mgr->m_bWindowed == 0) {
+            RECT rc;
+            GetWindowRect(mgr->m_hWnd, &rc);
+            ClipCursor(&rc);
+        } else {
+            ClipCursor(NULL);
+        }
+    }
+
+    // 10. Notify subsystems of device reset
+    mgr->pVertPoolMgr->OnResetDevice();
+    mgr->pEffectMgr->OnResetDevice();
+
+    return 0;
+}
+
+// ============================================================================
+// 0x1001B750 (226B) - Handle window size change
+// Called on WM_SIZE and WM_EXITSIZEMOVE. Detects if client area changed,
+// updates DrvInfo dimensions and resets the D3D device if needed.
+// ============================================================================
 void gbGfxManager_D3D::HandleSizeChange(void) {
-    /* TODO: GetWindowRect, GetClientRect, device Reset */
+    // Save old client rect dimensions
+    int oldWidth = m_rcWindowClient.right - m_rcWindowClient.left;
+    int oldHeight = m_rcWindowClient.bottom - m_rcWindowClient.top;
+
+    // Update window and client rects
+    GetWindowRect(m_hWnd, &m_rcWindowBounds);
+    GetClientRect(m_hWnd, &m_rcWindowClient);
+
+    int newWidth = m_rcWindowClient.right - m_rcWindowClient.left;
+    int newHeight = m_rcWindowClient.bottom - m_rcWindowClient.top;
+
+    // Only reset if dimensions actually changed
+    if (oldWidth == newWidth && oldHeight == newHeight) {
+        return;
+    }
+
+    // Update back buffer dimensions in present params and DrvInfo
+    m_d3dpp.BackBufferWidth = newWidth;
+    DrvInfo.width = newWidth;
+    m_d3dpp.BackBufferHeight = newHeight;
+    DrvInfo.height = newHeight;
+
+    // Deactivate during reset
+    m_bActive = 0;
+
+    // Reset D3D device if it exists
+    int hr = 0;
+    if (m_pd3dDevice != NULL) {
+        hr = ResetD3DDevice(this);
+        if (hr < 0) {
+            // D3DERR_DEVICENOTRESET = 0x8876017C
+            if (hr != (int)0x8876017C) {
+                hr = D3DAPPERR_RESETFAILED;
+            }
+            DisplayErrorMsg(hr, 2);
+        }
+    }
+
+    // Reactivate
+    m_bActive = 1;
 }
 
 // DXT compressed texture format FourCC codes
@@ -486,42 +919,11 @@ int gbGfxManager_D3D::CreateDevice(void) {
     // Zero out D3DPRESENT_PARAMETERS
     memset(&m_d3dpp, 0, sizeof(D3DPRESENT_PARAMETERS));
 
-    // Build present parameters based on settings
-    // TODO: BuildPresentParamsFromSettings (complex sub-function at 0x1001a190)
-    // For now, set basic parameters
-    m_d3dpp.Windowed = m_d3dSettings.bIsWindowed ? FALSE : TRUE;
-    m_d3dpp.SwapEffect = D3DSWAPEFFECT_DISCARD;
+    // Build present parameters from chosen settings
+    BuildPresentParamsFromSettings();
     m_d3dpp.hDeviceWindow = m_hWnd;
 
-    if (m_d3dSettings.bIsWindowed == 0) {
-        // Windowed mode
-        m_d3dpp.BackBufferWidth = 0;
-        m_d3dpp.BackBufferHeight = 0;
-        m_d3dpp.BackBufferFormat = m_d3dSettings.Windowed_DisplayMode.Format;
-        m_d3dpp.EnableAutoDepthStencil = TRUE;
-        m_d3dpp.AutoDepthStencilFormat = m_d3dSettings.Windowed_DepthStencilFormat;
-        m_d3dpp.MultiSampleType = m_d3dSettings.Windowed_MultisampleType;
-        m_d3dpp.MultiSampleQuality = m_d3dSettings.Windowed_MultisampleQuality;
-        m_d3dpp.PresentationInterval = m_d3dSettings.Windowed_PresentInterval;
-    } else {
-        // Fullscreen mode
-        m_d3dpp.BackBufferWidth = m_d3dSettings.Fullscreen_Width;
-        m_d3dpp.BackBufferHeight = m_d3dSettings.Fullscreen_Height;
-        m_d3dpp.BackBufferFormat = m_d3dSettings.Fullscreen_DisplayMode.Format;
-        m_d3dpp.FullScreen_RefreshRateInHz = m_d3dSettings.Fullscreen_DisplayMode.RefreshRate;
-        m_d3dpp.EnableAutoDepthStencil = TRUE;
-        m_d3dpp.AutoDepthStencilFormat = m_d3dSettings.Fullscreen_DepthStencilFormat;
-        m_d3dpp.MultiSampleType = m_d3dSettings.Fullscreen_MultisampleType;
-        m_d3dpp.MultiSampleQuality = m_d3dSettings.Fullscreen_MultisampleQuality;
-        m_d3dpp.PresentationInterval = m_d3dSettings.Fullscreen_PresentInterval;
-    }
-
-    m_d3dpp.BackBufferCount = 1;
-
-    // Check device combo behavior flags for pure device
-    if ((*(unsigned int*)&pDeviceCombo->pVertexProcessingTypeList & 0x1000) != 0) {
-        // TODO: handle pure device case
-    }
+    // Pure device: if device caps support it, flags are set via vertexProcessingType below
 
     // Determine vertex processing type
     m_bSoftVPMode = 0;
@@ -585,10 +987,11 @@ int gbGfxManager_D3D::CreateDevice(void) {
     // Build device stats string
     m_strDeviceStats[0] = '\0';
 
-    // Clip cursor in fullscreen if requested
+    // Set D3D cursor in fullscreen if requested
     if (m_bShowCursorWhenFullscreen && m_bWindowed == 0) {
         DWORD dwIcon = GetClassLongA(m_hWnd, GCL_HICON);
-        // TODO: cursor setup
+        SetDeviceCursor(m_pd3dDevice, dwIcon, TRUE);
+        m_pd3dDevice->ShowCursor(TRUE);
     }
     if (m_bClipCursorWhenFullscreen) {
         if (m_bWindowed == 0) {
@@ -981,24 +1384,24 @@ gbTexture* gbGfxManager_D3D::NewTexture(const char* name) {
 }
 
 // Slot 4: 0x100190D0 (106B) - Create gbVertexPool_D3D (size 0x3C)
-void* gbGfxManager_D3D::_vf04(int p1, int p2, int p3) {
+void* gbGfxManager_D3D::NewVertexPool(int p1, int p2, int p3) {
     return new gbVertexPool_D3D((gbPoolType)p1, (unsigned int)p2, p3);
 }
 
 // Slot 5: 0x10019140 (106B) - Create gbIndexPool_D3D (size 0x38)
-void* gbGfxManager_D3D::_vf05(int p1, int p2, int p3) {
+void* gbGfxManager_D3D::NewIndexPool(int p1, int p2, int p3) {
     return new gbIndexPool_D3D((gbPoolType)p1, p2, p3);
 }
 
 // Slot 6: 0x100191B0 (101B) - Create gbDynVertBuf_D3D (size 0x40)
-void* gbGfxManager_D3D::_vf06(int p1, int p2) {
+void* gbGfxManager_D3D::NewDynVertBuf(int p1, int p2) {
     return new gbDynVertBuf_D3D((unsigned int)p1, p2);
 }
 
 // Slot 7: 0x10019220 (133B) - SetPerspectiveProjection
 // Builds perspective projection matrix from frustum params (l,r,b,t,n,f)
 // then multiplies into pMatrixStack[0] (projection stack)
-void gbGfxManager_D3D::_vf07(double l, double r, double b, double t, double n, double f) {
+void gbGfxManager_D3D::SetFrustum(double l, double r, double b, double t, double n, double f) {
     float fScale = (float)(f / (f - n));
     gbMatrix4 mat;
     float* m = (float*)&mat;
@@ -1018,7 +1421,7 @@ void gbGfxManager_D3D::_vf07(double l, double r, double b, double t, double n, d
 // Slot 8: 0x100192B0 (195B) - SetOrthographicProjection
 // Builds orthographic projection matrix from frustum params (l,r,b,t,n,f)
 // then multiplies into pMatrixStack[0] (projection stack)
-void gbGfxManager_D3D::_vf08(double l, double r, double b, double t, double n, double f) {
+void gbGfxManager_D3D::SetOrtho(double l, double r, double b, double t, double n, double f) {
     gbMatrix4 mat;
     float* m = (float*)&mat;
     int i;
@@ -1039,7 +1442,7 @@ void gbGfxManager_D3D::_vf08(double l, double r, double b, double t, double n, d
 // Slot 9: 0x10019380 (95B) - SetViewport
 // Copies 6 DWORDs from param to this->Viewport, then calls device->SetViewport
 // D3DVIEWPORT9 = {X, Y, Width, Height, MinZ, MaxZ} = 6 DWORDs
-void gbGfxManager_D3D::_vf09(void* pViewportData) {
+void gbGfxManager_D3D::SetViewport(void* pViewportData) {
     // rep movsl: copy 6 DWORDs to this->Viewport
     memcpy(&Viewport, pViewportData, sizeof(D3DVIEWPORT9));
     // Build local copy and call SetViewport
@@ -1058,7 +1461,7 @@ void gbGfxManager_D3D::_vf09(void* pViewportData) {
 // Slot 10: 0x100193E0 (128B) - SetLight with enable/disable
 // if (pLightData == NULL): disable light at index
 // else: enable, set light, copy to AllLight[index]
-void gbGfxManager_D3D::_vf10(int index, void* pLightData) {
+void gbGfxManager_D3D::SetLight(int index, void* pLightData) {
     if (!pLightData) {
         m_pd3dDevice->LightEnable(index, FALSE);
         LightEnable[index] = 0;
@@ -1071,7 +1474,7 @@ void gbGfxManager_D3D::_vf10(int index, void* pLightData) {
 }
 
 // Slot 11: 0x10019460 (23B) - SetMaterial (direct passthrough)
-void gbGfxManager_D3D::_vf11(D3DMATERIAL9* pMaterial) {
+void gbGfxManager_D3D::SetMaterial(D3DMATERIAL9* pMaterial) {
     m_pd3dDevice->SetMaterial(pMaterial);
 }
 
@@ -1088,16 +1491,14 @@ int gbGfxManager_D3D::BeginScene(void) {
     if (m_bDeviceLost) {
         // Try to reset the device
         HRESULT hr = m_pd3dDevice->TestCooperativeLevel();
-        if (SUCCEEDED(hr)) {
-            // Device recovered - not fully handling reset here
-        }
         if (hr == D3DERR_DEVICELOST) {
             return 0;
         }
         if (hr == D3DERR_DEVICENOTRESET) {
-            // Need reset logic
-            /* STUB - device reset */
-            return 0;
+            hr = ResetD3DDevice(this);
+            if (FAILED(hr)) {
+                return 0;
+            }
         }
         m_bDeviceLost = 0;
     }
@@ -1109,7 +1510,7 @@ int gbGfxManager_D3D::BeginScene(void) {
 // Slot 13: 0x10018F00 (57B) - EndScene + Present
 // Disasm: calls m_pd3dDevice->EndScene() then m_pd3dDevice->Present(0,0,0,0)
 // If Present returns D3DERR_DEVICELOST (0x88760868), sets m_bDeviceLost = 1
-void gbGfxManager_D3D::_vf13() {
+void gbGfxManager_D3D::Present() {
     m_pd3dDevice->EndScene();
     HRESULT hr = m_pd3dDevice->Present(NULL, NULL, NULL, NULL);
     if (hr == D3DERR_DEVICELOST) {
@@ -1118,7 +1519,7 @@ void gbGfxManager_D3D::_vf13() {
 }
 
 // Slot 14: 0x100194F0 (3B) - RET 0x1C (empty, 7 DWORD params popped)
-void gbGfxManager_D3D::_vf14(int, int, int, int, int, int, int) {
+void gbGfxManager_D3D::DrawIndexedPrimitive(int, int, int, int, int, int, int) {
     // Empty - original is just RET 0x1C
 }
 
@@ -1127,7 +1528,7 @@ void gbGfxManager_D3D::_vf14(int, int, int, int, int, int, int) {
 // pMatrixStack[0] → D3DTS_PROJECTION(3), with ZBias adjustment
 // pMatrixStack[1] → D3DTS_WORLD(256)
 // pMatrixStack[2..3] → D3DTS_TEXTURE0+i (0x10+i)
-void gbGfxManager_D3D::_vf15() {
+void gbGfxManager_D3D::DrawPrimitive() {
     // Projection matrix stack (pMatrixStack[0])
     if (pMatrixStack[0]->dirty == 0) {
         gbMatrix4 tmp;
@@ -1175,7 +1576,7 @@ void gbGfxManager_D3D::_vf15() {
 // Builds view*projection matrix, extracts 6 frustum planes into output buffer.
 // params: float* outPlanes (6 planes × 4 floats = 24 floats), int bNormalize
 // RET 8 → __thiscall with 2 stack params
-void gbGfxManager_D3D::_vf16(float* outPlanes, int bNormalize) {
+void gbGfxManager_D3D::GetFrustumPlanes(float* outPlanes, int bNormalize) {
     gbMatrix4 mat;
     mat.LoadIdentity();
     // mat[2][2] = -1.0 (left-handed to right-handed Z flip)
@@ -1272,7 +1673,7 @@ int gbGfxManager_D3D::GetGfxCaps(gbGfxCaps* caps) {
 
 // Slot 18: 0x10009210 (6B) - return 1
 // Disasm: MOV EAX,1; RET
-void gbGfxManager_D3D::_vf18() {
+void gbGfxManager_D3D::ApplyTransform() {
     // Original just returns 1 (MOV EAX,1; RET)
     // Base class decl returns void; this is a calling convention mismatch in vtable
 }
@@ -1281,7 +1682,7 @@ void gbGfxManager_D3D::_vf18() {
 // Reads device gamma ramp via GetGammaRamp, extracts high byte of each 16-bit
 // entry, stores as (highbyte << 8) into caller's buffer (D3DGAMMARAMP layout).
 // Returns early if m_DriverBug.flags == 0.
-void gbGfxManager_D3D::_vf19(void* pData) {
+void gbGfxManager_D3D::SetGammaRamp(void* pData) {
     if (!m_DriverBug.flags) return;
     // Get current gamma ramp from device
     D3DGAMMARAMP localRamp;
@@ -1301,7 +1702,7 @@ void gbGfxManager_D3D::_vf19(void* pData) {
 // Reads BYTE[256]*3 (R/G/B) from pData, expands each byte to WORD as (byte<<8)|byte,
 // then calls device->SetGammaRamp(0, flags, &ramp).
 // Second param controls calibration: if 0 → D3DSGR_CALIBRATE(1), else D3DSGR_NO_CALIBRATION(0)
-void gbGfxManager_D3D::_vf20(int pData, int calibrate) {
+void gbGfxManager_D3D::GetGammaRamp(int pData, int calibrate) {
     D3DGAMMARAMP ramp;
     unsigned char* src = (unsigned char*)pData;
     // Input: src[0..255]=R, src[256..511]=G, src[512..767]=B
@@ -1323,7 +1724,7 @@ void gbGfxManager_D3D::_vf20(int pData, int calibrate) {
 // if (param2) flags = 0x810 else flags = 0x800
 // m_pBackBuffer->LockRect(&lockedRect, NULL, flags)
 // Returns lockedRect on success, 0 on failure
-void gbGfxManager_D3D::_vf21(int index, int param2) {
+void gbGfxManager_D3D::CreateDepthStencil(int index, int param2) {
     DWORD flags = param2 ? 0x810 : 0x800;
     D3DLOCKED_RECT lockedRect;
     HRESULT hr = m_pBackBuffer->LockRect(&lockedRect, NULL, flags);
@@ -1338,7 +1739,7 @@ void gbGfxManager_D3D::_vf21(int index, int param2) {
 // Slot 22: 0x10019030 (13B) - UnlockRect on back buffer surface
 // mov eax,[ecx+0x8D0]; push eax; mov (%eax),%ecx; call *0x38(%ecx); ret
 // IDirect3DSurface9 vtable slot 14 (0x38/4) = UnlockRect
-void gbGfxManager_D3D::_vf22() {
+void gbGfxManager_D3D::RestoreDepthStencil() {
     m_pBackBuffer->UnlockRect();
 }
 
@@ -1348,7 +1749,7 @@ void gbGfxManager_D3D::_vf22() {
 // if pParam == NULL: restore previously saved RT
 static IDirect3DSurface9* g_pSavedRenderTarget = NULL;
 
-void gbGfxManager_D3D::_vf23(void* pParam) {
+void gbGfxManager_D3D::SetRenderTarget(void* pParam) {
     if (pParam) {
         // Save current render target
         HRESULT hr = m_pd3dDevice->GetRenderTarget(0, &g_pSavedRenderTarget);
@@ -1379,7 +1780,7 @@ void gbGfxManager_D3D::_vf23(void* pParam) {
 // params: const char* name (filename)
 // Pattern: FindResByName in cursor mgr, if found return it;
 // else new(0x24), SetName, open file, read, create surface, store hotspot, AddResource
-void* gbGfxManager_D3D::_vf24(const char* name) {
+void* gbGfxManager_D3D::LoadCursor(const char* name) {
     // Search in cursor resource manager (at offset +0x658 = m_CursorMgr)
     gbResource* res = ((gbResManager*)m_CursorMgr)->FindResByName(name);
     if (res != NULL) {
@@ -1405,19 +1806,22 @@ void* gbGfxManager_D3D::_vf24(const char* name) {
     g_pVFileSys->Read(fileData, fileSize, file);
     g_pVFileSys->CloseFile(file);
 
-    // FUN_10032e69: parse cursor/icon header, extract dimensions
-    int width = 0, height = 0;
-    // TODO: ParseCursorHeader(fileData, fileSize, &width) at 0x10032e69
+    // Get image dimensions from cursor file data (D3DX call)
+    D3DXIMAGE_INFO imgInfo;
+    D3DXGetImageInfoFromFileInMemory(fileData, fileSize, &imgInfo);
+    int width = imgInfo.Width;
+    int height = imgInfo.Height;
 
-    // Create D3D surface for cursor (D3DFMT_A8R8G8B8=21, D3DPOOL_DEFAULT=0)
-    IDirect3DSurface9* pSurface = NULL;
+    // Create D3D surface for cursor (D3DFMT_A8R8G8B8, D3DPOOL_DEFAULT)
     *((IDirect3DSurface9**)((char*)cursor + 0x18)) = NULL;
     m_pd3dDevice->CreateOffscreenPlainSurface(
         width, height, D3DFMT_A8R8G8B8, D3DPOOL_DEFAULT,
         (IDirect3DSurface9**)((char*)cursor + 0x18), NULL);
 
-    // FUN_10033461: fill cursor surface with pixel data from file
-    // TODO: FillCursorSurface at 0x10033461
+    // Load cursor image data into the surface (D3DX call)
+    D3DXLoadSurfaceFromFileInMemory(
+        *(IDirect3DSurface9**)((char*)cursor + 0x18),
+        NULL, NULL, fileData, fileSize, NULL, D3DX_FILTER_NONE, 0, NULL);
 
     // Store hotspot in cursor resource
     *((int*)((char*)cursor + 0x20)) = height;
@@ -1432,7 +1836,7 @@ void* gbGfxManager_D3D::_vf24(const char* name) {
 // Slot 25: 0x1001B9D0 (47B) - SetCursorProperties
 // if (pCursor) { device->SetCursorProperties(cursor[0x1C], cursor[0x20], cursor[0x18]);
 //               m_pActiveCursor = pCursor; }
-void gbGfxManager_D3D::_vf25(void* pCursor) {
+void gbGfxManager_D3D::SetCursor(void* pCursor) {
     if (pCursor) {
         gbCursorRes* cursor = (gbCursorRes*)pCursor;
         IDirect3DSurface9* pSurf = *(IDirect3DSurface9**)((char*)cursor + 0x18);
@@ -1445,7 +1849,7 @@ void gbGfxManager_D3D::_vf25(void* pCursor) {
 
 // Slot 26: 0x1001BA00 (26B) - ShowCursor
 // m_bShowCursor = bShow; device->ShowCursor(bShow);
-void gbGfxManager_D3D::_vf26(int bShow) {
+void gbGfxManager_D3D::ShowCursor(int bShow) {
     m_bShowCursor = bShow;
     m_pd3dDevice->ShowCursor(bShow);
 }
@@ -1456,7 +1860,7 @@ void gbGfxManager_D3D::_vf26(int bShow) {
 // Per struct layout: +0x69C = settings.Fullscreen_VertexProcessingType
 //                    +0x6D4 = settings.Windowed_VertexProcessingType
 // if (vpType == 1) device->SetSoftwareVertexProcessing(bSoftVP)
-void gbGfxManager_D3D::_vf27(int bSoftVP) {
+void gbGfxManager_D3D::SetSoftwareVP(int bSoftVP) {
     m_bSoftVPMode = bSoftVP;
     // Binary: bIsWindowed true → use Fullscreen field; false → Windowed field
     // This matches the original code exactly (possibly intentional: current mode's VP type)

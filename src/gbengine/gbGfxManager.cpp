@@ -12,8 +12,6 @@
 #include "gbengine/gbengine_internal.h"
 #include "gbengine/gbRenderEffect.h"
 #include <windows.h>
-#include <d3d9.h>
-#include <d3dx9.h>
 #include <math.h>
 #include <string.h>
 #include <stdlib.h>
@@ -160,7 +158,7 @@ int gbGfxManager::ClipBoundVolume(gbAABBox* box) {
 
     // Get frustum planes via virtual call (slot 16)
     // 6 planes × (nx, ny, nz, d) = 24 floats
-    _vf16(planes, 0);
+    GetFrustumPlanes(planes, 0);
 
     for (int i = 0; i < 6; i++) {
         float nx = planes[i * 4 + 0];
@@ -530,69 +528,69 @@ void gbGfxManager::MsgProc(int msg, int wParam, int lParam) {}
 // slot 2: Create texture object
 gbTexture* gbGfxManager::NewTexture(const char* name) { return NULL; }
 
-// slot 4: Create render state block
-void* gbGfxManager::_vf04(int p1, int p2, int p3) { return NULL; }
+// slot 4: Create vertex pool
+void* gbGfxManager::NewVertexPool(int poolType, int fvf, int count) { return NULL; }
 
-// slot 5: Create texture stage state block
-void* gbGfxManager::_vf05(int p1, int p2, int p3) { return NULL; }
+// slot 5: Create index pool
+void* gbGfxManager::NewIndexPool(int poolType, int indexSize, int count) { return NULL; }
 
-// slot 6: Create sampler state block
-void* gbGfxManager::_vf06(int p1, int p2) { return NULL; }
+// slot 6: Create dynamic vertex buffer
+void* gbGfxManager::NewDynVertBuf(int fvf, int maxVerts) { return NULL; }
 
-// slot 7: Set projection from frustum params
-void gbGfxManager::_vf07(double l, double r, double b, double t, double n, double f) {}
+// slot 7: Set perspective projection from frustum params
+void gbGfxManager::SetFrustum(double l, double r, double b, double t, double n, double f) {}
 
-// slot 8: Set orthographic projection from params
-void gbGfxManager::_vf08(double l, double r, double b, double t, double n, double f) {}
+// slot 8: Set orthographic projection
+void gbGfxManager::SetOrtho(double l, double r, double b, double t, double n, double f) {}
 
-// slot 9: LightEnable
-void gbGfxManager::_vf09(void* pLightData) {}
+// slot 9: Set viewport
+void gbGfxManager::SetViewport(void* pViewportData) {}
 
-// slot 10: SetViewport
-void gbGfxManager::_vf10(int index, void* pLightData) {}
+// slot 10: Set light
+void gbGfxManager::SetLight(int index, void* pLightData) {}
 
-// slot 11: SetMaterial
-void gbGfxManager::_vf11(D3DMATERIAL9* pMaterial) {}
+// slot 11: Set material
+void gbGfxManager::SetMaterial(D3DMATERIAL9* pMaterial) {}
 
-// slot 13: DrawPrimitive
-void gbGfxManager::_vf13() {}
+// slot 13: End scene and present
+void gbGfxManager::Present() {}
 
-// slot 14: DrawIndexedPrimitive
-void gbGfxManager::_vf14(int, int, int, int, int, int, int) {}
+// slot 14: Draw indexed primitive
+void gbGfxManager::DrawIndexedPrimitive(int, int, int, int, int, int, int) {}
 
-// slot 15: CreateVertexBuffer
-void gbGfxManager::_vf15() {}
+// slot 15: Draw primitive
+void gbGfxManager::DrawPrimitive() {}
 
-// slot 16: GetFrustumPlanes (used by ClipBoundVolume)
-void gbGfxManager::_vf16(float* outPlanes, int bNormalize) {}
+// slot 16: Get frustum planes (used by ClipBoundVolume)
+void gbGfxManager::GetFrustumPlanes(float* outPlanes, int bNormalize) {}
 
-// slot 18: SetTransform (D3D)
-void gbGfxManager::_vf18() {}
+// slot 18: Apply transform matrices to device
+void gbGfxManager::ApplyTransform() {}
 
-// slot 19: SetGammaRamp
-void gbGfxManager::_vf19(void* pData) {}
+// slot 19: Set gamma ramp
+void gbGfxManager::SetGammaRamp(void* pData) {}
 
-// slot 20: GetGammaRamp
-void gbGfxManager::_vf20(int p1, int p2) {}
+// slot 20: Get gamma ramp
+void gbGfxManager::GetGammaRamp(int p1, int p2) {}
 
-// slot 21: CreateDepthStencilSurface
-void gbGfxManager::_vf21(int index, int param2) {}
+// slot 21: Create depth stencil surface
+void gbGfxManager::CreateDepthStencil(int index, int param2) {}
 
-// slot 22: SetDepthStencilSurface
-void gbGfxManager::_vf22() {}
+// slot 22: Restore depth stencil surface
+void gbGfxManager::RestoreDepthStencil() {}
 
-// slot 23: GetDepthStencilSurface
-void gbGfxManager::_vf23(void* pParam) {}
+// slot 23: Set render target
+void gbGfxManager::SetRenderTarget(void* pParam) {}
 
-// slot 24: LoadCursorResource
-void* gbGfxManager::_vf24(const char* name) { return NULL; }
+// slot 24: Load cursor resource
+void* gbGfxManager::LoadCursor(const char* name) { return NULL; }
 
-// slot 25: SetCursor
-void gbGfxManager::_vf25(void* pCursor) {}
+// slot 25: Set cursor
+void gbGfxManager::SetCursor(void* pCursor) {}
 
-// slot 26: ShowCursor
-void gbGfxManager::_vf26(int bShow) {}
+// slot 26: Show cursor
+void gbGfxManager::ShowCursor(int bShow) {}
 
-// slot 27: SoftVP mode
-void gbGfxManager::_vf27(int bSoftVP) {}
+// slot 27: Set software vertex processing mode
+void gbGfxManager::SetSoftwareVP(int bSoftVP) {}
 

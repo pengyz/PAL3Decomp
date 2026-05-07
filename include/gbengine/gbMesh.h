@@ -4,7 +4,6 @@
 #include "gbengine/gbChain.h"
 #include "gbengine/gbTexture.h"
 #include "gbengine/gbVFileSystem.h"
-#include <d3d9.h>
 
 // Forward declarations (circular dep or defined later in this file)
 class gbGfxManager;
@@ -96,18 +95,20 @@ public:
 
 
 /* ======== gbIndexPool ======== */
+// sizeof(base) = 0x38 (verified from new(0x38) in slot 5 factory)
+// D3D subclass adds no extra fields (buffer stored at +0x10)
 
 class gbIndexPool : public gbChain1DNode {
 public:
     gbPoolType poolType;            // +0x08
-    int indexSize;                  // +0x0C
-    int currentSize;                // +0x10
-    int totalSize;                  // +0x14
-    gbChain1D freeList;             // +0x18
-    gbChain1D usedList;             // +0x28
-    gbChain1DNode* pIterator;       // +0x38
-    IDirect3DDevice9* pDevice;
-    IDirect3DIndexBuffer9* pIndexBuffer;
+    int indexSize;                  // +0x0C: bytes per index (2 or 4)
+    void* pBuffer;                  // +0x10: index buffer (IDirect3DIndexBuffer9* or malloc'd)
+    int totalSize;                  // +0x14: total index count
+    gbChain1D freeList;             // +0x18 (16 bytes)
+    gbChain1D usedList;             // +0x28 (16 bytes)
+    // total = 0x38
+
+    static gbGfxManager* pGfxMgr;
 
     gbIndexPool(gbPoolType type, int indexSz, int total);
     gbIndexPool(const gbIndexPool& other);
@@ -123,19 +124,19 @@ public:
 
 
 /* ======== gbVertexPool ======== */
+// sizeof(base) = 0x3C (verified from new(0x3C) in slot 4 factory)
+// D3D subclass adds no extra fields (buffer stored at +0x0C)
 
 class gbVertexPool : public gbChain1DNode {
 public:
     gbPoolType poolType;            // +0x08
-    int currentSize;                // +0x0C
-    int totalSize;                  // +0x10
-    unsigned int fvf;               // +0x14
-    int stride;                     // +0x18
-    gbChain1D freeList;             // +0x1C
-    gbChain1D usedList;             // +0x2C
-    gbChain1DNode* pIterator;
-    IDirect3DDevice9* pDevice;
-    IDirect3DVertexBuffer9* pVertexBuffer;
+    void* pBuffer;                  // +0x0C: vertex buffer (IDirect3DVertexBuffer9* or malloc'd)
+    int totalSize;                  // +0x10: total vertex count
+    unsigned int fvf;               // +0x14: custom FVF flags
+    int stride;                     // +0x18: bytes per vertex (computed from fvf)
+    gbChain1D freeList;             // +0x1C (16 bytes)
+    gbChain1D usedList;             // +0x2C (16 bytes)
+    // total = 0x3C
 
     static gbGfxManager* pGfxMgr;
 

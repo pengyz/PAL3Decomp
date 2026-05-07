@@ -137,35 +137,35 @@ public:
     gbGfxManager(int& result, gbGfxDriverInfo* driverInfo);
 
     // === Virtual functions (29 slots, order matches binary vtable) ===
-    virtual ~gbGfxManager();                                         // slot 0
-    virtual void MsgProc(int msg, int wParam, int lParam);       // slot 1: RET 0xC
-    virtual gbTexture* NewTexture(const char* name);                 // slot 2
-    virtual gbBaseMesh* NewMesh(const char* name, gbMeshType type);  // slot 3
-    virtual void* _vf04(int p1, int p2, int p3);                     // slot 4: RET 0xC
-    virtual void* _vf05(int p1, int p2, int p3);                     // slot 5: RET 0xC
-    virtual void* _vf06(int p1, int p2);                             // slot 6: RET 8
-    virtual void _vf07(double l, double r, double b, double t, double n, double f); // slot 7: RET 0x30
-    virtual void _vf08(double l, double r, double b, double t, double n, double f); // slot 8: RET 0x30
-    virtual void _vf09(void* pLightData);                             // slot 9: RET 4
-    virtual void _vf10(int index, void* pLightData);                 // slot 10: RET 8
-    virtual void _vf11(D3DMATERIAL9* pMaterial);                     // slot 11: RET 4
-    virtual int BeginScene(void);                                    // slot 12
-    virtual void _vf13();                                            // slot 13
-    virtual void _vf14(int, int, int, int, int, int, int);            // slot 14: RET 0x1C
-    virtual void _vf15();                                            // slot 15
-    virtual void _vf16(float* outPlanes, int bNormalize);            // slot 16: RET 8
-    virtual int GetGfxCaps(gbGfxCaps* caps);                         // slot 17
-    virtual void _vf18();                                            // slot 18
-    virtual void _vf19(void* pData);                                  // slot 19: RET 4
-    virtual void _vf20(int p1, int p2);                              // slot 20: RET 8
-    virtual void _vf21(int index, int param2);                        // slot 21: RET 8
-    virtual void _vf22();                                            // slot 22: RET 0
-    virtual void _vf23(void* pParam);                                // slot 23: RET 4
-    virtual void* _vf24(const char* name);                           // slot 24: RET 0xC (actually 1 param + ECX)
-    virtual void _vf25(void* pCursor);                               // slot 25: RET 4
-    virtual void _vf26(int bShow);                                   // slot 26: RET 4
-    virtual void _vf27(int bSoftVP);                                 // slot 27: RET 4
-    virtual void SetFog(gbFogParam* pFogParam);                      // slot 28
+    virtual ~gbGfxManager();                                                        // slot 0
+    virtual void MsgProc(int msg, int wParam, int lParam);                          // slot 1
+    virtual gbTexture* NewTexture(const char* name);                                // slot 2
+    virtual gbBaseMesh* NewMesh(const char* name, gbMeshType type);                 // slot 3
+    virtual void* NewVertexPool(int poolType, int fvf, int count);                  // slot 4
+    virtual void* NewIndexPool(int poolType, int indexSize, int count);             // slot 5
+    virtual void* NewDynVertBuf(int fvf, int maxVerts);                             // slot 6
+    virtual void SetFrustum(double l, double r, double b, double t, double n, double f);  // slot 7
+    virtual void SetOrtho(double l, double r, double b, double t, double n, double f);    // slot 8
+    virtual void SetViewport(void* pViewportData);                                  // slot 9
+    virtual void SetLight(int index, void* pLightData);                             // slot 10
+    virtual void SetMaterial(D3DMATERIAL9* pMaterial);                               // slot 11
+    virtual int BeginScene(void);                                                   // slot 12
+    virtual void Present();                                                         // slot 13
+    virtual void DrawIndexedPrimitive(int, int, int, int, int, int, int);           // slot 14
+    virtual void DrawPrimitive();                                                   // slot 15
+    virtual void GetFrustumPlanes(float* outPlanes, int bNormalize);                // slot 16
+    virtual int GetGfxCaps(gbGfxCaps* caps);                                        // slot 17
+    virtual void ApplyTransform();                                                  // slot 18
+    virtual void SetGammaRamp(void* pData);                                         // slot 19
+    virtual void GetGammaRamp(int p1, int p2);                                      // slot 20
+    virtual void CreateDepthStencil(int index, int param2);                         // slot 21
+    virtual void RestoreDepthStencil();                                             // slot 22
+    virtual void SetRenderTarget(void* pParam);                                     // slot 23
+    virtual void* LoadCursor(const char* name);                                     // slot 24
+    virtual void SetCursor(void* pCursor);                                          // slot 25
+    virtual void ShowCursor(int bShow);                                             // slot 26
+    virtual void SetSoftwareVP(int bSoftVP);                                        // slot 27
+    virtual void SetFog(gbFogParam* pFogParam);                                     // slot 28
 
     // === Non-virtual methods ===
     void EndScene(void);
@@ -401,41 +401,42 @@ public:
     void SetTexture(struct gbTextureArray* p0);
 
     // === Virtual function overrides (must match base class vtable order) ===
-    void MsgProc(int msg, int wParam, int lParam);     // slot 1: 0x1001B4C0
-    gbTexture* NewTexture(const char* name);                // slot 2: 0x10019040
-    void* _vf04(int p1, int p2, int p3);                    // slot 4: 0x100190D0
-    void* _vf05(int p1, int p2, int p3);                    // slot 5: 0x10019140
-    void* _vf06(int p1, int p2);                            // slot 6: 0x100191B0
-    void _vf07(double l, double r, double b, double t, double n, double f); // slot 7: 0x10019220
-    void _vf08(double l, double r, double b, double t, double n, double f); // slot 8: 0x100192B0
-    void _vf09(void* pLightData);                            // slot 9: 0x10019380
-    void _vf10(int index, void* pLightData);                // slot 10: 0x100193E0
-    void _vf11(D3DMATERIAL9* pMaterial);                    // slot 11: 0x10019460
-    int BeginScene(void);                                   // slot 12: 0x10018CD0
-    void _vf13();                                           // slot 13: 0x10018F00
-    void _vf14(int, int, int, int, int, int, int);           // slot 14: 0x100194F0
-    void _vf15();                                           // slot 15: 0x10019500
-    void _vf16(float* outPlanes, int bNormalize);            // slot 16: 0x10019620
-    int GetGfxCaps(gbGfxCaps* caps);                        // slot 17: 0x1001B190
-    void _vf18();                                           // slot 18: 0x10009210
-    void _vf19(void* pData);                                // slot 19: 0x1001B210
-    void _vf20(int p1, int p2);                             // slot 20: 0x1001B2B0
-    void _vf21(int index, int param2);                       // slot 21: 0x10018F40
-    void _vf22();                                           // slot 22: 0x10019030
-    void _vf23(void* pParam);                               // slot 23: 0x1001B360
-    void* _vf24(const char* name);                          // slot 24: 0x1001B840
-    void _vf25(void* pCursor);                              // slot 25: 0x1001B9D0
-    void _vf26(int bShow);                                  // slot 26: 0x1001BA00
-    void _vf27(int bSoftVP);                                // slot 27: 0x1001BA20
-    void SetFog(gbFogParam* pFogParam);                     // slot 28: 0x10019480
+    void MsgProc(int msg, int wParam, int lParam);                          // slot 1: 0x1001B4C0
+    gbTexture* NewTexture(const char* name);                                // slot 2: 0x10019040
+    void* NewVertexPool(int poolType, int fvf, int count);                  // slot 4: 0x100190D0
+    void* NewIndexPool(int poolType, int indexSize, int count);             // slot 5: 0x10019140
+    void* NewDynVertBuf(int fvf, int maxVerts);                             // slot 6: 0x100191B0
+    void SetFrustum(double l, double r, double b, double t, double n, double f);  // slot 7: 0x10019220
+    void SetOrtho(double l, double r, double b, double t, double n, double f);    // slot 8: 0x100192B0
+    void SetViewport(void* pViewportData);                                  // slot 9: 0x10019380
+    void SetLight(int index, void* pLightData);                             // slot 10: 0x100193E0
+    void SetMaterial(D3DMATERIAL9* pMaterial);                               // slot 11: 0x10019460
+    int BeginScene(void);                                                   // slot 12: 0x10018CD0
+    void Present();                                                         // slot 13: 0x10018F00
+    void DrawIndexedPrimitive(int, int, int, int, int, int, int);           // slot 14: 0x100194F0
+    void DrawPrimitive();                                                   // slot 15: 0x10019500
+    void GetFrustumPlanes(float* outPlanes, int bNormalize);                // slot 16: 0x10019620
+    int GetGfxCaps(gbGfxCaps* caps);                                        // slot 17: 0x1001B190
+    void ApplyTransform();                                                  // slot 18: 0x10009210
+    void SetGammaRamp(void* pData);                                         // slot 19: 0x1001B210
+    void GetGammaRamp(int p1, int p2);                                      // slot 20: 0x1001B2B0
+    void CreateDepthStencil(int index, int param2);                         // slot 21: 0x10018F40
+    void RestoreDepthStencil();                                             // slot 22: 0x10019030
+    void SetRenderTarget(void* pParam);                                     // slot 23: 0x1001B360
+    void* LoadCursor(const char* name);                                     // slot 24: 0x1001B840
+    void SetCursor(void* pCursor);                                          // slot 25: 0x1001B9D0
+    void ShowCursor(int bShow);                                             // slot 26: 0x1001BA00
+    void SetSoftwareVP(int bSoftVP);                                        // slot 27: 0x1001BA20
+    void SetFog(gbFogParam* pFogParam);                                     // slot 28: 0x10019480
 
     // Internal helper methods
-    int ChooseBestDevice(void);          // 0x10019b70
-    int CreateDevice(void);              // 0x1001a790
-    char InitDeviceWindowed(int, int);   // 0x10019e70
-    char InitDeviceFullscreen(int, int); // 0x10019c60
-    void DisplayErrorMsg(int hr, int type); // 0x1001ad80
-    void HandleSizeChange(void);         // 0x1001b750
+    int ChooseBestDevice(void);                  // 0x10019b70
+    int CreateDevice(void);                      // 0x1001a790
+    void BuildPresentParamsFromSettings(void);   // 0x1001a190
+    char InitDeviceWindowed(int, int);           // 0x10019e70
+    char InitDeviceFullscreen(int, int);         // 0x10019c60
+    void DisplayErrorMsg(int hr, int type);      // 0x1001ad80
+    void HandleSizeChange(void);                 // 0x1001b750
 };
 
 // Global pointer to the graphics manager

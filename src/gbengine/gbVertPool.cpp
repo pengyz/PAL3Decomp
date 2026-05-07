@@ -5,11 +5,12 @@
 
 #include "gbengine/gbMesh.h"
 #include "gbengine/gbGfxManager.h"
+#include <d3d9.h>
 #include <string.h>
 
 // Global statics
-static gbGfxManager* g_gbVertexPool_pGfxMgr = NULL;
 static gbGfxManager* g_gbDynVertBuf_pGfxMgr = NULL;
+gbGfxManager* gbIndexPool::pGfxMgr = NULL;
 
 
 /* ======== gbIndexBubble ======== */
@@ -63,13 +64,14 @@ unsigned short* gbIndexBubble::Lock16() {
 // gbIndexBubble::Lock32 - Lock 32-bit index buffer
 
 unsigned int* gbIndexBubble::Lock32() {
-    if (!pPool || !pPool->pIndexBuffer) {
+    if (!pPool || !pPool->pBuffer) {
         return NULL;
     }
 
     // Lock the D3D index buffer
     void* pData = NULL;
-    HRESULT hr = pPool->pIndexBuffer->Lock(
+    IDirect3DIndexBuffer9* pIB = (IDirect3DIndexBuffer9*)pPool->pBuffer;
+    HRESULT hr = pIB->Lock(
         startIndex * sizeof(unsigned int),  // Offset in bytes
         count * sizeof(unsigned int),        // Size in bytes
         &pData,
@@ -85,7 +87,8 @@ unsigned int* gbIndexBubble::Lock32() {
 
 // Unlock: 0x10020920
 void gbIndexBubble::Unlock() {
-    pPool->pIndexBuffer->Unlock();
+    IDirect3DIndexBuffer9* pIB = (IDirect3DIndexBuffer9*)pPool->pBuffer;
+    pIB->Unlock();
 }
 
 // operator=: 0x10003c20
@@ -123,7 +126,7 @@ gbIndexPool::gbIndexPool(gbPoolType type, int indexSz, int total) {
     this->poolType = type;
     this->indexSize = indexSz;
     this->totalSize = total;
-    this->currentSize = 0;
+    this->pBuffer = NULL;
 
     // Create initial free bubble covering entire pool
     gbIndexBubble* bubble = (gbIndexBubble*)operator new(0x24);
@@ -265,7 +268,7 @@ int gbIndexPool::GetIndexSize() {
 
 // GetInternalMemBuf: 0x10003ce0
 void* gbIndexPool::GetInternalMemBuf() {
-    return this->pIndexBuffer;
+    return this->pBuffer;
 }
 
 // IsEmpty: 0x10003cd0
@@ -373,7 +376,8 @@ void gbVertexBubble::Unlock() {
     field_2C = NULL;
     field_30 = NULL;
     field_34 = NULL;
-    pPool->pVertexBuffer->Unlock();
+    IDirect3DVertexBuffer9* pVB = (IDirect3DVertexBuffer9*)pPool->pBuffer;
+    pVB->Unlock();
 }
 
 // ClearPointer: 0x10003dd0
@@ -451,7 +455,7 @@ gbVertexPool::gbVertexPool(gbPoolType type, unsigned int vertType, int total) {
     }
 
     this->stride = stride;
-    this->currentSize = 0;
+    this->pBuffer = NULL;
 
     // Create initial free bubble
     gbVertexBubble* bubble = (gbVertexBubble*)operator new(0x38);
@@ -485,35 +489,27 @@ gbVertexPool::~gbVertexPool() {
 // Lock: virtual - locks portion of vertex buffer
 void* gbVertexPool::Lock(int start, int count) {
     void* pData = NULL;
-    if (pVertexBuffer) {
-        pVertexBuffer->Lock(start * stride, count * stride, &pData, 0);
+    if (pBuffer) {
+        IDirect3DVertexBuffer9* pVB = (IDirect3DVertexBuffer9*)pBuffer;
+        pVB->Lock(start * stride, count * stride, &pData, 0);
     }
     return pData;
 }
 
 // OnLostDevice
 int gbVertexPool::OnLostDevice() {
-    if (pVertexBuffer) {
-        pVertexBuffer->Release();
-        pVertexBuffer = NULL;
+    if (pBuffer) {
+        IDirect3DVertexBuffer9* pVB = (IDirect3DVertexBuffer9*)pBuffer;
+        pVB->Release();
+        pBuffer = NULL;
     }
     return 1;
 }
 
 // OnResetDevice
 int gbVertexPool::OnResetDevice() {
-    if (pDevice && !pVertexBuffer) {
-        HRESULT hr = pDevice->CreateVertexBuffer(
-            totalSize * stride,
-            0,
-            fvf,
-            (D3DPOOL)poolType,
-            &pVertexBuffer,
-            NULL);
-        if (FAILED(hr)) {
-            return 0;
-        }
-    }
+    // Re-creation of the buffer is handled at a higher level
+    // (by the D3D subclass or the pool manager)
     return 1;
 }
 
