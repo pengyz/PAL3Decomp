@@ -45,15 +45,16 @@ public:
 
 /* ======== 3D/2D sample slot structures ======== */
 
+// Layout verified from IDA constructor (handles allocated at slot+4, nodes at slot+0)
 struct gb3DSampleSlot {
-    void* handle;            // +0x00 (H3DSAMPLE)
-    gbSound3DNode* node;     // +0x04
-    int flags;               // +0x08
+    gbSound3DNode* node;     // +0x00
+    void* handle;            // +0x04 (H3DSAMPLE)
+    int flags;               // +0x08 (allocation counter stamp)
 };
 
 struct gb2DSampleSlot {
-    void* handle;            // +0x00 (HSAMPLE)
-    gbSound2DNode* node;     // +0x04
+    gbSound2DNode* node;     // +0x00
+    void* handle;            // +0x04 (HSAMPLE)
     int flags;               // +0x08
 };
 
@@ -143,23 +144,23 @@ struct gbResManagerStub {
 
 /* ======== gbAudioManager ======== */
 
+// Layout verified from IDA constructor at 0x10001120
+// sizeof = 0xF4 (streams + slots + volumes + listener + listenerPos + resManager)
 class gbAudioManager {
 public:
-    void* streams[MAX_STREAMS];            // +0x00 (HSTREAM)
-    int streamStatus[MAX_STREAMS];         // +0x0C
-    void* digitalDriver;                   // +0x18 (HDIGDRIVER)
-    void* provider3D;                      // +0x1C (H3DPROVIDER)
-    int num3DSamples;                      // +0x20
-    gb3DSampleSlot slots3D[MAX_3D_SAMPLES];// +0x24 (10*12 = 120 bytes, ends at +0x9C)
-    gb2DSampleSlot slots2D[MAX_2D_SAMPLES];// +0x9C (4*12 = 48 bytes, ends at +0xCC)
-    float volume3D;                        // +0xCC
-    float volume2D;                        // +0xD0
-    float musicMasterVolume;               // +0xD4
-    void* listener;                        // +0xD8 (H3DLISTENER)
-    int field_DC;                          // +0xDC
-    int field_E0;                          // +0xE0
-    int field_E4;                          // +0xE4
-    gbResManagerStub soundResManager;      // +0xE8 (12 bytes)
+    void* streams[MAX_STREAMS];            // +0x00 (HSTREAM, DWORD[0..2])
+    int streamStatus[MAX_STREAMS];         // +0x0C (DWORD[3..5])
+    void* digitalDriver;                   // +0x18 (HDIGDRIVER, DWORD[6])
+    void* provider3D;                      // +0x1C (H3DPROVIDER, DWORD[7])
+    gb3DSampleSlot slots3D[MAX_3D_SAMPLES];// +0x20 (10*12=120B, DWORD[8..37], ends at +0x98)
+    gb2DSampleSlot slots2D[MAX_2D_SAMPLES];// +0x98 (4*12=48B, DWORD[38..49], ends at +0xC8)
+    int allocCounter;                      // +0xC8 (DWORD[50], 3D sample allocation stamp)
+    float volume3D;                        // +0xCC (DWORD[51])
+    float volume2D;                        // +0xD0 (DWORD[52])
+    float musicMasterVolume;               // +0xD4 (DWORD[53])
+    void* listener;                        // +0xD8 (H3DLISTENER, DWORD[54])
+    gbVec3D listenerPosition;              // +0xDC (DWORD[55..57])
+    gbResManagerStub soundResManager;      // +0xE8 (12 bytes, DWORD[58..60])
 
     // Constructor - 0x10001120 (675B)
     gbAudioManager(int& result, gbAudioMgrDesc* desc);

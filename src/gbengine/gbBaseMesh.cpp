@@ -23,3 +23,7 @@ void gbBaseMesh::RenderShadowVolume(gbVisNode* visNode, gbRenderInfoObj* renderI
     (void)0;
 }
 
+void gbBaseMesh::DrawSubSetBase(int index, void* renderInfo) {
+    (void)0;
+}
+

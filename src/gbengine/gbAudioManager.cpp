@@ -214,50 +214,26 @@ static gbAudioManager* g_pAudioManager = NULL;
  * gbAudioManager implementation
  * ================================================================ */
 
-// Constructor - 0x10001120
+// Constructor - 0x10001120 (675B)
+// Reconstructed from IDA disassembly
 gbAudioManager::gbAudioManager(int& result, gbAudioMgrDesc* desc) {
     int i;
 
-    // Zero streams and status
-    for (i = 0; i < MAX_STREAMS; i++) {
-        streams[i] = NULL;
-        streamStatus[i] = 0;
-    }
+    // Zero listener position
+    listenerPosition.x = 0.0f;
+    listenerPosition.y = 0.0f;
+    listenerPosition.z = 0.0f;
 
-    digitalDriver = NULL;
-    provider3D = NULL;
-    num3DSamples = 0;
-    volume3D = 1.0f;
-    volume2D = 1.0f;
-    musicMasterVolume = 1.0f;
-    listener = NULL;
-    field_DC = 0;
-    field_E0 = 0;
-    field_E4 = 0;
-
-    // Initialize embedded resource manager
+    // Initialize embedded resource manager (at +0xE8)
     soundResManager.Init();
 
-    // Zero sample slots
-    for (i = 0; i < MAX_3D_SAMPLES; i++) {
-        slots3D[i].handle = NULL;
-        slots3D[i].node = NULL;
-        slots3D[i].flags = 0;
-    }
-    for (i = 0; i < MAX_2D_SAMPLES; i++) {
-        slots2D[i].handle = NULL;
-        slots2D[i].node = NULL;
-        slots2D[i].flags = 0;
-    }
+    result = 0;
 
     // Initialize Miles Sound System
     AIL_set_redist_directory("miles\\win32\\");
-    result = AIL_startup();
-    if (result == 0) {
-        return;
-    }
+    AIL_startup();
 
-    // Open digital driver with descriptor parameters
+    // Open digital driver
     digitalDriver = AIL_open_digital_driver((unsigned int)desc->freq, desc->bits, desc->channels, 0);
     if (digitalDriver == NULL) {
         result = 0;
@@ -274,33 +250,47 @@ gbAudioManager::gbAudioManager(int& result, gbAudioMgrDesc* desc) {
         return;
     }
 
-    // Allocate 3D sample handles
+    // Zero and allocate 3D sample slots
+    memset(slots3D, 0, sizeof(slots3D));
     for (i = 0; i < MAX_3D_SAMPLES; i++) {
         slots3D[i].handle = AIL_allocate_3D_sample_handle(provider3D);
-        slots3D[i].node = NULL;
-        slots3D[i].flags = 0;
     }
-    num3DSamples = MAX_3D_SAMPLES;
 
-    // Allocate 2D sample handles
+    // Zero and allocate 2D sample slots
+    memset(slots2D, 0, sizeof(slots2D));
     for (i = 0; i < MAX_2D_SAMPLES; i++) {
         slots2D[i].handle = AIL_allocate_sample_handle(digitalDriver);
-        slots2D[i].node = NULL;
-        slots2D[i].flags = 0;
     }
+
+    // Initialize counters and volumes
+    allocCounter = 0;
+    volume3D = 1.0f;
+    volume2D = 1.0f;
+    musicMasterVolume = 1.0f;
 
     // Create 3D listener
     listener = AIL_open_3D_listener(provider3D);
+    listenerPosition.x = 0.0f;
+    listenerPosition.y = 0.0f;
+    listenerPosition.z = 0.0f;
+    AIL_set_3D_position(listener, 0.0f, 0.0f, 0.0f);
+    AIL_set_3D_orientation(listener, 0.0f, 0.0f, 1.0f, 0.0f, 1.0f, 0.0f);
+
+    // Initialize streams
+    for (i = 0; i < MAX_STREAMS; i++) {
+        streams[i] = NULL;
+        streamStatus[i] = 2;
+    }
 
     // Set static audio manager pointers
+    g_pAudioManager = this;
     gbSound3DNode::pAudioMgr = this;
     gbSound2DNode::pAudioMgr = this;
-    g_pAudioManager = this;
 
     result = 1;
 }
 
-// Copy constructor - 0x10002240
+// Copy constructor - 0x10002240 (276B)
 gbAudioManager::gbAudioManager(const gbAudioManager& other) {
     int i;
 
@@ -311,14 +301,12 @@ gbAudioManager::gbAudioManager(const gbAudioManager& other) {
 
     digitalDriver = other.digitalDriver;
     provider3D = other.provider3D;
-    num3DSamples = other.num3DSamples;
+    allocCounter = other.allocCounter;
     listener = other.listener;
     volume2D = other.volume2D;
     volume3D = other.volume3D;
     musicMasterVolume = other.musicMasterVolume;
-    field_DC = other.field_DC;
-    field_E0 = other.field_E0;
-    field_E4 = other.field_E4;
+    listenerPosition = other.listenerPosition;
 
     soundResManager.array = other.soundResManager.array;
     soundResManager.capacity = other.soundResManager.capacity;
@@ -342,7 +330,7 @@ gbAudioManager::~gbAudioManager() {
     gbSound2DNode::pAudioMgr = NULL;
 
     // Stop and release 3D samples
-    for (i = 0; i < num3DSamples; i++) {
+    for (i = 0; i < MAX_3D_SAMPLES; i++) {
         if (slots3D[i].handle != NULL) {
             AIL_stop_3D_sample(slots3D[i].handle);
             AIL_release_3D_sample_handle(slots3D[i].handle);
@@ -396,7 +384,7 @@ gbAudioManager::~gbAudioManager() {
     soundResManager.Destroy();
 }
 
-// operator=
+// operator= - 0x10002360
 gbAudioManager& gbAudioManager::operator=(const gbAudioManager& other) {
     int i;
     if (this != &other) {
@@ -406,14 +394,12 @@ gbAudioManager& gbAudioManager::operator=(const gbAudioManager& other) {
         }
         digitalDriver = other.digitalDriver;
         provider3D = other.provider3D;
-        num3DSamples = other.num3DSamples;
+        allocCounter = other.allocCounter;
         listener = other.listener;
         volume2D = other.volume2D;
         volume3D = other.volume3D;
         musicMasterVolume = other.musicMasterVolume;
-        field_DC = other.field_DC;
-        field_E0 = other.field_E0;
-        field_E4 = other.field_E4;
+        listenerPosition = other.listenerPosition;
         soundResManager.array = other.soundResManager.array;
         soundResManager.capacity = other.soundResManager.capacity;
         soundResManager.count = other.soundResManager.count;
@@ -504,87 +490,78 @@ void gbAudioManager::DeleteSoundData(gbSoundData* data) {
 }
 
 // AttachSampleHandle (3D) - 0x10001620 (392B)
+// Reconstructed from IDA disassembly with correct field names
 void gbAudioManager::AttachSampleHandle(gbSound3DNode* node) {
     unsigned int freeSlot = 0xFFFF;
-    int v4 = *(((int*)this) + 50);
-    int* v5 = (int*)((char*)this + 32);
-    *(((int*)this) + 50) = v4 + 1;
+    int i;
 
-    for (int i = 0; i < 10; i++) {
-        if (!*v5) {
+    // Increment allocation counter
+    allocCounter++;
+
+    // Strategy 1: find an empty slot (node == NULL)
+    for (i = 0; i < MAX_3D_SAMPLES; i++) {
+        if (slots3D[i].node == NULL) {
             freeSlot = i;
-            goto LABEL_15;
+            goto ATTACH;
         }
-        v5 += 3;
     }
 
-    {
-        int v7 = 0;
-        int* v8 = (int*)((char*)this + 36);
-        do {
-            if (AIL_3D_sample_status((void*)*v8) == SMP_STOPPED) {
-                AIL_end_3D_sample(slots3D[v7].handle);
-                freeSlot = v7;
-                *(int*)(*(((int*)this) + 3 * v7 + 8) + 4) = 0;
-                goto LABEL_15;
-            }
-            v7++;
-            v8 += 3;
-        } while (v7 < 10);
+    // Strategy 2: find a stopped sample and evict it
+    for (i = 0; i < MAX_3D_SAMPLES; i++) {
+        if (AIL_3D_sample_status(slots3D[i].handle) == SMP_STOPPED) {
+            AIL_end_3D_sample(slots3D[i].handle);
+            freeSlot = i;
+            slots3D[i].node->sampleHandle = NULL;
+            goto ATTACH;
+        }
     }
 
+    // Strategy 3: evict the farthest sample from listener
     {
-        float dx = node->position.x - *((float*)this + 55);
-        float dy = node->position.y - *((float*)this + 56);
-        float dz = node->position.z - *((float*)this + 57);
+        float dx = node->position.x - listenerPosition.x;
+        float dy = node->position.y - listenerPosition.y;
+        float dz = node->position.z - listenerPosition.z;
         float distSq = dz * dz + dy * dy + dx * dx;
-        int* v15 = (int*)((char*)this + 32);
-        for (int v11 = 0; v11 < 10; v11++) {
-            float sx = *(float*)(*v15 + 8) - *((float*)this + 55);
-            float sy = *(float*)(*v15 + 12) - *((float*)this + 56);
-            float sz = *(float*)(*v15 + 16) - *((float*)this + 57);
+
+        for (i = 0; i < MAX_3D_SAMPLES; i++) {
+            float sx = slots3D[i].node->position.x - listenerPosition.x;
+            float sy = slots3D[i].node->position.y - listenerPosition.y;
+            float sz = slots3D[i].node->position.z - listenerPosition.z;
             float d2 = sz * sz + sy * sy + sx * sx;
             if (d2 > distSq) {
                 distSq = d2;
-                freeSlot = v11;
+                freeSlot = i;
             }
-            v15 += 3;
         }
+
         if (freeSlot > 9)
             return;
+
         AIL_end_3D_sample(slots3D[freeSlot].handle);
-        *(int*)(*(((int*)this) + 3 * freeSlot + 8) + 4) = 0;
+        slots3D[freeSlot].node->sampleHandle = NULL;
     }
 
-LABEL_15:
-    {
-        char* v20 = (char*)this + 12 * freeSlot;
-        *(((int*)v20) + 10) = *(((int*)this) + 50);
-        *(((int*)v20) + 8) = (int)node;
-        void* h = slots3D[freeSlot].handle;
-        node->sampleHandle = h;
-        AIL_set_3D_sample_file(h, node->soundData->fileData);
-    }
+ATTACH:
+    slots3D[freeSlot].flags = allocCounter;
+    slots3D[freeSlot].node = node;
+    node->sampleHandle = slots3D[freeSlot].handle;
+    AIL_set_3D_sample_file(slots3D[freeSlot].handle, node->soundData->fileData);
 }
 
 // DetachSampleHandle (3D) - 0x100018d0 (58B)
 void gbAudioManager::DetachSampleHandle(gbSound3DNode* node) {
-    gbSound3DNode** v2 = (gbSound3DNode**)((char*)this + 32);
-    int v3 = 10;
-    do {
-        if (*v2 == node) {
+    for (int i = 0; i < MAX_3D_SAMPLES; i++) {
+        if (slots3D[i].node == node) {
             AIL_end_3D_sample(node->sampleHandle);
             node->sampleHandle = NULL;
-            *v2 = NULL;
+            slots3D[i].node = NULL;
         }
-        v2 += 3;
-        --v3;
-    } while (v3);
+    }
 }
 
 // DetachAll3D - 0x10001970 (54B)
 void gbAudioManager::DetachAll3D() {
-    for (int i = 0; i < num3DSamples; i++) {
+    for (int i = 0; i < MAX_3D_SAMPLES; i++) {
         if (slots3D[i].node != NULL) {
             AIL_end_3D_sample(slots3D[i].handle);
             slots3D[i].node->sampleHandle = NULL;
@@ -731,25 +708,23 @@ void gbAudioManager::ReStartSoundStream(int index) {
 
 // StopSoundStream - 0x10001c50 (42B)
 void gbAudioManager::StopSoundStream(int index) {
-    if (*(((int*)this) + index)) {
-        AIL_close_stream((void*)*(((int*)this) + index));
-        *(((int*)this) + index) = 0;
-        *(((int*)this) + index + 3) = 2;
+    if (streams[index] != NULL) {
+        AIL_close_stream(streams[index]);
+        streams[index] = NULL;
+        streamStatus[index] = 2;
     }
 }
 
 // PauseSoundStream - 0x10001cd0 (23B)
 void gbAudioManager::PauseSoundStream(int index) {
-    void* v2 = *(((void**)this) + index);
-    if (v2)
-        AIL_pause_stream(v2, 1);
+    if (streams[index] != NULL)
+        AIL_pause_stream(streams[index], 1);
 }
 
 // ResumeSoundStream - 0x10001cf0 (23B)
 void gbAudioManager::ResumeSoundStream(int index) {
-    void* v2 = *(((void**)this) + index);
-    if (v2)
-        AIL_pause_stream(v2, 0);
+    if (streams[index] != NULL)
+        AIL_pause_stream(streams[index], 0);
 }
 
 // GetStreamStatus - 0x10001d10 (11B)
@@ -780,25 +755,21 @@ float gbAudioManager::GetMusicMasterVolume() {
 
 // SetListenerPosition - 0x10001d20 (62B)
 void gbAudioManager::SetListenerPosition(const gbVec3D& pos) {
-    *(((int*)this) + 55) = *(((int*)&pos) + 0);
-    *(((int*)this) + 56) = *(((int*)&pos) + 1);
-    *(((int*)this) + 57) = *(((int*)&pos) + 2);
+    listenerPosition = pos;
     float negZ = -pos.z;
-    AIL_set_3D_position(*(((void**)this) + 54), pos.x, pos.y, negZ);
+    AIL_set_3D_position(listener, pos.x, pos.y, negZ);
 }
 
 // SetListenerOrientation - 0x10001d60 (56B)
 void gbAudioManager::SetListenerOrientation(gbVec3D& front, gbVec3D& top) {
     float negTopZ = -top.z;
     float negFrontZ = -front.z;
-    AIL_set_3D_orientation(*(((void**)this) + 54), front.x, front.y, negFrontZ, top.x, top.y, negTopZ);
+    AIL_set_3D_orientation(listener, front.x, front.y, negFrontZ, top.x, top.y, negTopZ);
 }
 
 // GetListenerPosition - 0x10002210 (33B)
 void gbAudioManager::GetListenerPosition(gbVec3D& pos) {
-    *(((int*)&pos) + 0) = *(((int*)this) + 55);
-    *(((int*)&pos) + 1) = *(((int*)this) + 56);
-    *(((int*)&pos) + 2) = *(((int*)this) + 57);
+    pos = listenerPosition;
 }
 
 // Set2DMasterVolume - 0x100021c0 (13B)
@@ -871,22 +842,16 @@ gbSound3DNode::~gbSound3DNode() {
 
 // operator= - 0x100025b0 (138B)
 gbSound3DNode& gbSound3DNode::operator=(const gbSound3DNode& other) {
-    *(((int*)this) + 0) = *(((int*)&other) + 0);
-    *(((int*)this) + 1) = *(((int*)&other) + 1);
-    *(((int*)this) + 2) = *(((int*)&other) + 2);
-    *(((int*)this) + 3) = *(((int*)&other) + 3);
-    *(((int*)this) + 4) = *(((int*)&other) + 4);
-    *(((int*)this) + 5) = *(((int*)&other) + 5);
-    *(((int*)this) + 6) = *(((int*)&other) + 6);
-    *(((int*)this) + 7) = *(((int*)&other) + 7);
-    *(((int*)this) + 8) = *(((int*)&other) + 8);
-    *(((int*)this) + 9) = *(((int*)&other) + 9);
-    *(((int*)this) + 10) = *(((int*)&other) + 10);
-    *(((int*)this) + 11) = *(((int*)&other) + 11);
-    *(((int*)this) + 12) = *(((int*)&other) + 12);
-    *(((int*)this) + 13) = *(((int*)&other) + 13);
-    *(((int*)this) + 14) = *(((int*)&other) + 14);
-    *(((int*)this) + 15) = *(((int*)&other) + 15);
+    soundData = other.soundData;
+    sampleHandle = other.sampleHandle;
+    position = other.position;
+    velocity = other.velocity;
+    orientation = other.orientation;
+    field_2C = other.field_2C;
+    volume = other.volume;
+    loopCount = other.loopCount;
+    minDist = other.minDist;
+    maxDist = other.maxDist;
     return *this;
 }
 
@@ -936,30 +901,22 @@ int gbSound3DNode::IsPlaying() {
 
 // SetPosition - 0x10002500 (24B)
 void gbSound3DNode::SetPosition(gbVec3D& pos) {
-    *(((int*)this) + 2) = *(((int*)&pos) + 0);
-    *(((int*)this) + 3) = *(((int*)&pos) + 1);
-    *(((int*)this) + 4) = *(((int*)&pos) + 2);
+    position = pos;
 }
 
 // SetVelocity - 0x10002520 (24B)
 void gbSound3DNode::SetVelocity(gbVec3D& vel) {
-    *(((int*)this) + 5) = *(((int*)&vel) + 0);
-    *(((int*)this) + 6) = *(((int*)&vel) + 1);
-    *(((int*)this) + 7) = *(((int*)&vel) + 2);
+    velocity = vel;
 }
 
 // SetOrientation - 0x10002540 (24B)
 void gbSound3DNode::SetOrientation(gbVec3D& ori) {
-    *(((int*)this) + 8) = *(((int*)&ori) + 0);
-    *(((int*)this) + 9) = *(((int*)&ori) + 1);
-    *(((int*)this) + 10) = *(((int*)&ori) + 2);
+    orientation = ori;
 }
 
 // GetPosition - 0x10002560 (24B)
 void gbSound3DNode::GetPosition(gbVec3D& pos) {
-    *(((int*)&pos) + 0) = *(((int*)this) + 2);
-    *(((int*)&pos) + 1) = *(((int*)this) + 3);
-    *(((int*)&pos) + 2) = *(((int*)this) + 4);
+    pos = position;
 }
 
 // SetVolume - 0x100024e0 (10B)
