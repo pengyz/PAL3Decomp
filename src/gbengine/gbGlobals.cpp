@@ -138,17 +138,17 @@ gbVisNode* gbLoadLightFile(const char* filename) {
         g_pVFileSys->Read(&light->_field30, 4, fp);
         g_pVFileSys->Read(&light->_field34, 4, fp);
         g_pVFileSys->Read(&light->_field38, 4, fp);
+        g_pVFileSys->Read(&light->_field3C, 4, fp);
         g_pVFileSys->Read(&light->range, 4, fp);
-        g_pVFileSys->Read(&light->_field40, 4, fp);
         g_pVFileSys->Read(&light->_field44, 4, fp);
+        g_pVFileSys->Read(&light->_field48, 4, fp);
         g_pVFileSys->Read(&light->attenuation0, 4, fp);
         g_pVFileSys->Read(&light->attenuation1, 4, fp);
         g_pVFileSys->Read(&light->attenuation2, 4, fp);
-        g_pVFileSys->Read(&light->_field54, 4, fp);
         g_pVFileSys->Read(&light->_field58, 4, fp);
 
-        // Copy _field40 as bounding sphere radius
-        light->boundSphere.radius = light->_field40;
+        // Copy range as bounding sphere radius
+        light->boundSphere.radius = light->range;
 
         // Clear bounding sphere center
         light->boundSphere.center.x = 0.0f;

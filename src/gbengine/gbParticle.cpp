@@ -900,9 +900,12 @@ void gbAnimNodeGroup::SetPosition(struct gbMatrix4 const & p0) {
 }
 
 void gbAnimNodeGroup::SetPosition(struct gbVec3D const & p0) {
-    posMatrix.m[3][0] = p0.x;
-    posMatrix.m[3][1] = p0.y;
-    posMatrix.m[3][2] = p0.z;
+    posMatrix.LoadIdentity();
+    int* dst = (int*)&posMatrix.m[3][0];
+    int* src = (int*)&p0;
+    dst[0] = src[0];
+    dst[1] = src[1];
+    dst[2] = src[2];
 }
 
 void gbAnimNodeGroup::SetPriority(int p0) {

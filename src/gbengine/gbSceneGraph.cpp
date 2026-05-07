@@ -188,12 +188,9 @@ gbRenderInfoObj* gbSceneGraph::NewOneRenderObj(gbVisNode* node) {
     return obj;
 }
 
-// 0x10014d70 (25B) - Allocate shadow volume render object from shadow pool
+// 0x10014d70 (25B) - Get next shadow volume slot from pool
 gbRenderInfoObj* gbSceneGraph::NewShadowVolume(gbVisNode* node) {
-    gbRenderInfoObj* obj = &shadowInfoPool[numShadowVolumes];
-    obj->pNode = node;
-    numShadowVolumes++;
-    return obj;
+    return &shadowInfoPool[numShadowVolumes];
 }
 
 // 0x10014d90 (33B) - Add volume modifier node

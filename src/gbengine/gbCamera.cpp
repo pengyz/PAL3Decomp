@@ -402,8 +402,12 @@ void gbCamera::SetEyeLoc(float x, float y, float z) {
 
 // 0x10005900 (42B)
 void gbCamera::SetEyeDir(gbQuaternion* dir) {
-    if (dir)
-        eyeDir = *dir;
+    int* dst = (int*)&eyeDir;
+    int* src = (int*)dir;
+    dst[0] = src[0];
+    dst[1] = src[1];
+    dst[2] = src[2];
+    dst[3] = src[3];
 }
 
 // 0x10005930 (16B)
@@ -622,10 +626,12 @@ void gbCamera::SetAsCurrent(int mode) {
 
 // 0x10021c50 (39B) - Set screen dimensions
 void gbCamera::SetDimention(int w, int h) {
+    Viewport.x = 0;
+    Viewport.y = 0;
     Wscreen = (float)w;
-    Hscreen = (float)h;
     Viewport.width = w;
     Viewport.height = h;
+    Hscreen = (float)h;
 }
 
 // ======================================================================

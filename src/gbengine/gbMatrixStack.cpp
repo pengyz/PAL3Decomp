@@ -59,14 +59,7 @@ gbMatrixStack &gbMatrixStack::operator=(const gbMatrixStack &other)
 
 void gbMatrixStack::Push(void)
 {
-    float *pSrc = (float *)&pStack[curDepth];
-    float *pDst = (float *)&pStack[curDepth + 1];
-    int i;
-    for (i = 16; i != 0; i--) {
-        *pDst = *pSrc;
-        pSrc++;
-        pDst++;
-    }
+    memcpy(&pStack[curDepth + 1], &pStack[curDepth], 0x40);
     curDepth++;
 }
 
@@ -78,26 +71,63 @@ void gbMatrixStack::Pop(void)
 
 void gbMatrixStack::LoadIdentity(void)
 {
-    pStack[curDepth].LoadIdentity();
+    float* m = (float*)&pStack[curDepth];
+    memset(m, 0, 0x40);
+    m[15] = 1.0f;
+    m[10] = 1.0f;
+    m[5] = 1.0f;
+    m[0] = 1.0f;
     dirty = 0;
 }
 
 void gbMatrixStack::LoadMatrix(gbMatrix4 *mat)
 {
-    float *pSrc = (float *)mat;
-    float *pDst = (float *)&pStack[curDepth];
-    int i;
-    for (i = 16; i != 0; i--) {
-        *pDst = *pSrc;
-        pSrc++;
-        pDst++;
-    }
+    memcpy(&pStack[curDepth], mat, 0x40);
     dirty = 0;
 }
 
 void gbMatrixStack::MultMatrix(gbMatrix4 *mat)
 {
-    pStack[curDepth].LeftMultiply(*mat);
+    float* dst = (float*)((char*)pStack + (curDepth << 6));
+    float temp[16];
+    int offset;
+    int row;
+    float* pRow;
+    float* pOut;
+    int col;
+    float* pMat;
+    float* pTmp;
+    int k;
+    float sum;
+
+    offset = (int)dst - (int)mat;
+    row = 4;
+    memcpy(temp, dst, 0x40);
+    for (;;) {
+        pRow = temp;
+        pOut = (float*)((char*)mat + offset);
+        col = 4;
+        do {
+            *pOut = 0.0f;
+            pMat = (float*)mat;
+            pTmp = pRow;
+            k = 4;
+            do {
+                sum = *pMat * *pTmp;
+                pTmp += 4;
+                ++pMat;
+                --k;
+                *pOut = sum + *pOut;
+            } while (k);
+            ++pOut;
+            ++pRow;
+            --col;
+        } while (col);
+        mat = (gbMatrix4*)((char*)mat + 16);
+        if (!--row)
+            break;
+        offset = (int)dst - (int)mat;
+    }
     dirty = 0;
 }
 
@@ -117,25 +147,52 @@ void gbMatrixStack::Rotate(gbQuaternion &q)
 
 void gbMatrixStack::Translate(gbVec3D &v)
 {
-    pStack[curDepth].LeftTranslate(v);
+    float* m = (float*)&pStack[curDepth];
+    m[12] = m[4] * v.y + m[8] * v.z + m[0] * v.x + m[12];
+    m[13] = m[5] * v.y + m[1] * v.x + m[9] * v.z + m[13];
+    m[14] = m[6] * v.y + m[2] * v.x + m[10] * v.z + m[14];
     dirty = 0;
 }
 
 void gbMatrixStack::Translate(float x, float y, float z)
 {
-    pStack[curDepth].LeftTranslate(x, y, z);
+    float* m = (float*)&pStack[curDepth];
+    m[12] = y * m[4] + z * m[8] + x * m[0] + m[12];
+    m[13] = x * m[1] + y * m[5] + z * m[9] + m[13];
+    m[14] = x * m[2] + y * m[6] + z * m[10] + m[14];
     dirty = 0;
 }
 
 void gbMatrixStack::Scale(gbVec3D &v)
 {
-    pStack[curDepth].LeftScale(v.x, v.y, v.z);
+    float sz = v.z;
+    float sy = v.y;
+    float sx = v.x;
+    float* m = (float*)&pStack[curDepth];
+    m[0] = sx * m[0];
+    m[1] = sx * m[1];
+    m[2] = sx * m[2];
+    m[4] = sy * m[4];
+    m[5] = sy * m[5];
+    m[6] = sy * m[6];
+    m[8] = sz * m[8];
+    m[9] = sz * m[9];
+    m[10] = sz * m[10];
     dirty = 0;
 }
 
 void gbMatrixStack::Scale(float sx, float sy, float sz)
 {
-    pStack[curDepth].LeftScale(sx, sy, sz);
+    float* m = (float*)&pStack[curDepth];
+    m[0] = sx * m[0];
+    m[1] = sx * m[1];
+    m[2] = sx * m[2];
+    m[4] = sy * m[4];
+    m[5] = sy * m[5];
+    m[6] = sy * m[6];
+    m[8] = sz * m[8];
+    m[9] = sz * m[9];
+    m[10] = sz * m[10];
     dirty = 0;
 }
 

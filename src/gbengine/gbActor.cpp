@@ -520,7 +520,7 @@ const gbMixActInfo* gbActor::GetMixInfo() {
 }
 
 int gbActor::GetNumMixInfo() {
-    return m_pActorDef->numMixInfo;
+    return m_numActions;
 }
 
 // Set current material - delegates to actorDef vtable[0x3c]
@@ -550,9 +550,12 @@ void gbActor::EnableActionTransMtl(char* actionName, bool enable) {
 
 // Set sun direction for lighting
 void gbActor::SetSunDirection(gbVec3D* direction) {
-    if (direction) {
-        s_sunDirection = *direction;
-    }
+    int* dst = (int*)&s_sunDirection;
+    int* src = (int*)direction;
+    dst[0] = src[0];
+    dst[1] = src[1];
+    dst[2] = src[2];
+    s_sunDirection.Normalize();
 }
 
 // operator=

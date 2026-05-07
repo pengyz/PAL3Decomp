@@ -15,13 +15,13 @@ gbLightObj::gbLightObj(void) {
     _field30 = 0;
     _field34 = 0;
     _field38 = 0;
+    _field3C = 0;
     range = 1000.0f;
-    _field40 = 0.0f;
-    _field44 = 0;
+    _field44 = 0.0f;
+    _field48 = 0.0f;
     attenuation0 = 1.0f;
     attenuation1 = 0.0f;
     attenuation2 = 0.0f;
-    _field54 = 0.0f;
     _field58 = 0.0f;
 
     memset(&boundSphere, 0, sizeof(boundSphere));

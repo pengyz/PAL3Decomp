@@ -223,7 +223,7 @@ public:
 //   +0xD8: gbVolumeModifier* pVolMod
 class gbVolModNode {
 public:
-    char _base_visnode[0x58];       // base class data (gbChain1DNode + gbNBTreeNode + gbVisNode)
+    char _base_visnode[0x54];       // base class data (after vfptr: chain+nbtree+visnode fields)
     gbMatrix4 localMatrix;          // +0x58: local transform matrix
     gbMatrix4 worldMatrix;          // +0x98: world transform matrix
     gbVolumeModifier* pVolMod;      // +0xD8: gbVolumeModifier pointer (ref-counted)
@@ -270,15 +270,15 @@ public:
     int _field30;           // +0x30
     int _field34;           // +0x34
     int _field38;           // +0x38
-    float range;            // +0x3C: effective range
-    float _field40;         // +0x40
-    int _field44;           // +0x44
-    float attenuation0;     // +0x48: constant attenuation
-    float attenuation1;     // +0x4C: linear attenuation
-    float attenuation2;     // +0x50: quadratic attenuation
-    float _field54;         // +0x54
+    int _field3C;           // +0x3C
+    float range;            // +0x40: effective range (DWORD index 16)
+    float _field44;         // +0x44
+    float _field48;         // +0x48
+    float attenuation0;     // +0x4C: constant attenuation
+    float attenuation1;     // +0x50: linear attenuation
+    float attenuation2;     // +0x54: quadratic attenuation
     float _field58;         // +0x58
-    gbSphere boundSphere;   // +0x5C: bounding sphere (16 bytes)
+    gbSphere boundSphere;   // +0x5C: bounding sphere (16 bytes, DWORD index 23-26)
     gbLight sysLight;       // +0x6C: D3D-compatible light structure (104 bytes)
     int bDirty;             // +0xD4: needs recompute flag
     // Total: 0xD8 = 216 bytes

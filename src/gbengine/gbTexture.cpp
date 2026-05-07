@@ -110,10 +110,7 @@ static int gbPixelFmtBpp(gbPixelFmtType fmt)
 
 // 0x1001e470 (22B)
 int gbImage2DInfo::IsPreferAlpha(void) {
-    // Check if any detail level requests alpha
-    if (goal == 2)
-        return 1;
-    return 0;
+    return (goal == 1 || goal == 3);
 }
 
 
