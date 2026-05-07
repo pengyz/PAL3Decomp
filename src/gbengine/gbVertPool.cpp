@@ -87,8 +87,7 @@ unsigned int* gbIndexBubble::Lock32() {
 
 // Unlock: 0x10020920
 void gbIndexBubble::Unlock() {
-    IDirect3DIndexBuffer9* pIB = (IDirect3DIndexBuffer9*)pPool->pBuffer;
-    pIB->Unlock();
+    pPool->Unlock();
 }
 
 // operator=: 0x10003c20

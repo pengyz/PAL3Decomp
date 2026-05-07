@@ -415,13 +415,9 @@ void gbActor::UnlockAction(char* actionName) {
     }
 }
 
-// Get action duration - delegates to actorDef vtable[0x8]
+// Get action duration - thunk to actorDef vtable[2] (offset 0x8)
 unsigned int gbActor::GetActionDuration(char* actionName) {
-    if (!m_pActorDef) return 0;
-    void** defVtable = *(void***)m_pActorDef;
-    typedef unsigned int (__thiscall *GetDurationFn)(void*, char*);
-    GetDurationFn getDuration = (GetDurationFn)((void**)defVtable)[0x8 / 4];
-    return getDuration(m_pActorDef, actionName);
+    return m_pActorDef->GetActionDuration(actionName);
 }
 
 // Get event time for action - find action by CRC, then query actorDef
@@ -469,39 +465,23 @@ void gbActor::EnableShadow(int enable) {
     }
 }
 
-// Get bounding sphere - delegates to actorDef vtable[0x20]
+// Get bounding sphere - calls actorDef vtable[8] (offset 0x20) and copies
 void gbActor::GetBoundSphere(gbSphere* sphere) {
-    if (!m_pActorDef || !sphere) return;
-
-    void** defVtable = *(void***)m_pActorDef;
-    typedef gbSphere* (__thiscall *GetBoundFn)(void*);
-    GetBoundFn getBound = (GetBoundFn)((void**)defVtable)[0x20 / 4];
-    gbSphere* src = getBound(m_pActorDef);
-
-    unsigned int* pSrc = (unsigned int*)src;
-    unsigned int* pDst = (unsigned int*)sphere;
-    pDst[0] = pSrc[0];
-    pDst[1] = pSrc[1];
-    pDst[2] = pSrc[2];
-    pDst[3] = pSrc[3];
+    gbSphere* src = m_pActorDef->GetBoundSpherePtr();
+    *(unsigned int*)((char*)sphere + 0) = *(unsigned int*)((char*)src + 0);
+    *(unsigned int*)((char*)sphere + 4) = *(unsigned int*)((char*)src + 4);
+    *(unsigned int*)((char*)sphere + 8) = *(unsigned int*)((char*)src + 8);
+    *(unsigned int*)((char*)sphere + 12) = *(unsigned int*)((char*)src + 12);
 }
 
-// Get collision AABB - delegates to actorDef vtable[0x24]
+// Get collision AABB - thunk: MOV ECX,[ECX+58]; MOV EAX,[ECX]; JMP [EAX+24]
 gbAABBox* gbActor::GetCollideAABBox() {
-    if (!m_pActorDef) return NULL;
-    void** defVtable = *(void***)m_pActorDef;
-    typedef gbAABBox* (__thiscall *GetAABBFn)(void*);
-    GetAABBFn getAABB = (GetAABBFn)((void**)defVtable)[0x24 / 4];
-    return getAABB(m_pActorDef);
+    return m_pActorDef->GetCollideAABBox();
 }
 
-// Get collision OBB - delegates to actorDef vtable[0x1c]
+// Get collision OBB - thunk to actorDef vtable[7] (offset 0x1C)
 void gbActor::GetCollideOBB(gbOBBox& obb) {
-    if (!m_pActorDef) return;
-    void** defVtable = *(void***)m_pActorDef;
-    typedef void (__thiscall *GetOBBFn)(void*, gbOBBox&, gbActor*);
-    GetOBBFn getOBB = (GetOBBFn)defVtable[0x1c / 4];
-    getOBB(m_pActorDef, obb, this);
+    m_pActorDef->GetCollideOBB(&obb, this);
 }
 
 // Get all export nodes (returns raw pointer to internal data)
@@ -523,13 +503,9 @@ int gbActor::GetNumMixInfo() {
     return m_numActions;
 }
 
-// Set current material - delegates to actorDef vtable[0x3c]
+// Set current material - thunk to actorDef vtable[15] (offset 0x3C)
 void gbActor::SetCurMaterial(char* materialName) {
-    if (!m_pActorDef) return;
-    void** defVtable = *(void***)m_pActorDef;
-    typedef void (__thiscall *SetMtlFn)(void*, char*);
-    SetMtlFn setMtl = (SetMtlFn)((void**)defVtable)[0x3c / 4];
-    setMtl(m_pActorDef, materialName);
+    m_pActorDef->SetCurMaterial(materialName);
 }
 
 // Enable action material transition - find action then delegate to actorDef vtable[0x4]

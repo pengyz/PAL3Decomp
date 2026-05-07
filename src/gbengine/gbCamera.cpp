@@ -412,11 +412,13 @@ void gbCamera::SetEyeDir(gbQuaternion* dir) {
 
 // 0x10005930 (16B)
 void gbCamera::SetOrthoSize(float size) {
+    fov = 0.0f;
     OrthoSize = size;
 }
 
-// 0x10005940 (16B) - SetFOV (note: uppercase FOV)
+// 0x10005940 (16B)
 void gbCamera::SetFOV(float f) {
+    OrthoSize = 0.0f;
     fov = f;
 }
 
@@ -446,20 +448,14 @@ float gbCamera::GetOrthoSize(void) {
     return OrthoSize;
 }
 
-// 0x100059b0 (20B)
+// 0x100059b0 (7B)
 float gbCamera::GetAspect(void) {
-    if (Hscreen > 0.0f)
-        return Wscreen / Hscreen;
-    return 1.0f;
+    return (float)Viewport.height / (float)Viewport.width;
 }
 
 // 0x100059c0 (24B) - Rotate vector by camera orientation (eye to world)
 void gbCamera::RotateVector(gbVec3D* in, gbVec3D* out) {
-    if (!in || !out)
-        return;
-    out->x = InvVMatrix.m[0][0] * in->x + InvVMatrix.m[1][0] * in->y + InvVMatrix.m[2][0] * in->z;
-    out->y = InvVMatrix.m[0][1] * in->x + InvVMatrix.m[1][1] * in->y + InvVMatrix.m[2][1] * in->z;
-    out->z = InvVMatrix.m[0][2] * in->x + InvVMatrix.m[1][2] * in->y + InvVMatrix.m[2][2] * in->z;
+    InvVMatrix.Rotate(in, out);
 }
 
 // 0x100059e0 (10B)
@@ -769,14 +765,7 @@ void gbCamera::PointScrToWorld(float sx, float sy, gbVec3D* worldPt) {
 
 // 0x10022030 (24B) - Transform world point to eye space
 void gbCamera::PointWorldToEye(gbVec3D* worldPt, gbVec3D* eyePt) {
-    if (!worldPt || !eyePt)
-        return;
-    eyePt->x = ViewMatrix.m[0][0] * worldPt->x + ViewMatrix.m[1][0] * worldPt->y
-              + ViewMatrix.m[2][0] * worldPt->z + ViewMatrix.m[3][0];
-    eyePt->y = ViewMatrix.m[0][1] * worldPt->x + ViewMatrix.m[1][1] * worldPt->y
-              + ViewMatrix.m[2][1] * worldPt->z + ViewMatrix.m[3][1];
-    eyePt->z = ViewMatrix.m[0][2] * worldPt->x + ViewMatrix.m[1][2] * worldPt->y
-              + ViewMatrix.m[2][2] * worldPt->z + ViewMatrix.m[3][2];
+    ViewMatrix.Transform(worldPt, eyePt);
 }
 
 // 0x10022050 (91B) - Convert screen coordinates to eye space
@@ -831,16 +820,8 @@ void gbCamera::PointEyeToScr(gbVec3D* eyePt, gbVec3D* scrPt) {
 }
 
 // 0x10022250 (24B) - Transform eye-space point to world
-// Note: lowercase 't' in "to" - matches export symbol exactly
 void gbCamera::PointEyetoWorld(gbVec3D* eyePt, gbVec3D* worldPt) {
-    if (!eyePt || !worldPt)
-        return;
-    worldPt->x = InvVMatrix.m[0][0] * eyePt->x + InvVMatrix.m[1][0] * eyePt->y
-                + InvVMatrix.m[2][0] * eyePt->z + InvVMatrix.m[3][0];
-    worldPt->y = InvVMatrix.m[0][1] * eyePt->x + InvVMatrix.m[1][1] * eyePt->y
-                + InvVMatrix.m[2][1] * eyePt->z + InvVMatrix.m[3][1];
-    worldPt->z = InvVMatrix.m[0][2] * eyePt->x + InvVMatrix.m[1][2] * eyePt->y
-                + InvVMatrix.m[2][2] * eyePt->z + InvVMatrix.m[3][2];
+    InvVMatrix.Transform(eyePt, worldPt);
 }
 
 // 0x10022270 (80B) - Convert world point to screen coordinates
@@ -896,24 +877,9 @@ void gbCamera::PointDevToScr(int* dx, int* dy, float sx, float sy) {
 }
 
 // 0x10022490 (24B) - Rotate vector with axis parameter
-// Note: uses gbAxis enum, not int
+// 0x10022490 (24B) - Rotate vector with axis parameter (axis ignored in original)
 void gbCamera::RotateVector(gbVec3D* in, gbVec3D* out, gbAxis axis) {
-    if (!in || !out)
-        return;
-
-    // When axis parameter is specified, rotate using the corresponding
-    // axis from the view/inverse view matrix
-    if (axis == GB_AXIS_X) {
-        // Rotate by inverse view (eye to world)
-        out->x = InvVMatrix.m[0][0] * in->x + InvVMatrix.m[1][0] * in->y + InvVMatrix.m[2][0] * in->z;
-        out->y = InvVMatrix.m[0][1] * in->x + InvVMatrix.m[1][1] * in->y + InvVMatrix.m[2][1] * in->z;
-        out->z = InvVMatrix.m[0][2] * in->x + InvVMatrix.m[1][2] * in->y + InvVMatrix.m[2][2] * in->z;
-    } else {
-        // Rotate by view matrix (world to eye)
-        out->x = ViewMatrix.m[0][0] * in->x + ViewMatrix.m[1][0] * in->y + ViewMatrix.m[2][0] * in->z;
-        out->y = ViewMatrix.m[0][1] * in->x + ViewMatrix.m[1][1] * in->y + ViewMatrix.m[2][1] * in->z;
-        out->z = ViewMatrix.m[0][2] * in->x + ViewMatrix.m[1][2] * in->y + ViewMatrix.m[2][2] * in->z;
-    }
+    InvVMatrix.Rotate(in, out);
 }
 
 // 0x100224b0 (39B) - Offset Z-buffer

@@ -113,6 +113,8 @@ public:
     gbIndexPool(gbPoolType type, int indexSz, int total);
     gbIndexPool(const gbIndexPool& other);
     virtual ~gbIndexPool();
+    virtual void Lock();
+    virtual void Unlock();
 
     gbIndexBubble* NewBubble(gbPrimType prim, int count);
     void DelBubble(gbIndexBubble* bubble);

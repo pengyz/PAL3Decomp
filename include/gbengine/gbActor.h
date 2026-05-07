@@ -63,11 +63,22 @@ struct gbActionState {
 
 class gbActorDef {
 public:
-    virtual ~gbActorDef() {}
-    virtual void LoadFromFile(const char* filename) = 0;
-    virtual int GetNumExportNodes(char* buffer1, char* buffer2, int maxNodes) = 0;
-    virtual void UpdateBones(gbActor* actor) = 0;
-    virtual int GetEventList(void* buffer, int fromFrame, int toFrame, void* eventData) = 0;
+    virtual ~gbActorDef() {}                                                    // vtable[0]  offset 0x00
+    virtual void LoadFromFile(const char* filename) = 0;                        // vtable[1]  offset 0x04
+    virtual unsigned int GetActionDuration(char* actionName) = 0;               // vtable[2]  offset 0x08
+    virtual int GetNumExportNodes(char* buffer1, char* buffer2, int maxNodes) = 0; // vtable[3]  offset 0x0C
+    virtual void UpdateBones(gbActor* actor) = 0;                               // vtable[4]  offset 0x10
+    virtual int GetEventList(void* buffer, int fromFrame, int toFrame, void* eventData) = 0; // vtable[5]  offset 0x14
+    virtual void _vf18() = 0;                                                  // vtable[6]  offset 0x18
+    virtual void GetCollideOBB(gbOBBox* obb, gbActor* actor) = 0;              // vtable[7]  offset 0x1C
+    virtual gbSphere* GetBoundSpherePtr() = 0;                                   // vtable[8]  offset 0x20
+    virtual gbAABBox* GetCollideAABBox() = 0;                                   // vtable[9]  offset 0x24
+    virtual void _vf28() = 0;                                                  // vtable[10] offset 0x28
+    virtual void _vf2C() = 0;                                                  // vtable[11] offset 0x2C
+    virtual void _vf30() = 0;                                                  // vtable[12] offset 0x30
+    virtual void _vf34() = 0;                                                  // vtable[13] offset 0x34
+    virtual void _vf38() = 0;                                                  // vtable[14] offset 0x38
+    virtual void SetCurMaterial(char* matName) = 0;                             // vtable[15] offset 0x3C
 
     int RefCount;               // +0x04
     char* pName;                // +0x08: resource name (set via gbResource::SetName)
