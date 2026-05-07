@@ -28,6 +28,9 @@ class gbCamControler {
 public:
     int type;               // +0x04: controller type
     gbCamera* pCamera;      // +0x08: owning camera
+    int _pad0C;             // +0x0C: padding
+    double curTime;         // +0x10: accumulated time
+    double blendTime;       // +0x18: blend duration (-1 = infinite)
 
     gbCamControler(void);
     gbCamControler(const gbCamControler& other);

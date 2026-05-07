@@ -952,11 +952,11 @@ void gbCamera::MoveInEyeDir(float dist) {
 
 // 0x10022590 (83B) - Update camera (called each frame)
 void gbCamera::Update(double deltaTime) {
-    // Update all active controllers
-    for (int i = 0; i <= CurCtrl && i < 16; i++) {
-        if (pControl[i]) {
-            pControl[i]->Update(deltaTime);
-        }
+    gbCamControler* ctrl = pControl[CurCtrl];
+    ctrl->curTime = ctrl->curTime + deltaTime;
+    ctrl->Update(deltaTime);
+    if (ctrl->blendTime >= 0.0 && ctrl->curTime > ctrl->blendTime) {
+        CurCtrl--;
     }
 }
 

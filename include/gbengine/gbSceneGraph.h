@@ -22,10 +22,10 @@ class gbDynVertBuf;
 struct gbBladeEntry {
     void* pGeomNode;            // +0x00: associated geom node pointer (used as lookup key)
     void* pVertexData;          // +0x04: malloc'd vertex buffer (numVertices * 0x10 * maxFrames)
-    float timestamps[40];       // +0x08: per-frame timestamps (ring buffer, max 40 entries)
-    float timeScale;            // +0xA8: blade time duration (init 0.1f = 0x3dcccccd)
-    float startTime;            // +0xAC: time when this blade was created/updated
-    float bladeTimeScale;       // +0xB0: per-blade time scale factor (init 1.0f)
+    float timestamps[40];       // +0x08: per-frame timestamps (max 40 entries)
+    float bladeTime;            // +0xA8: blade time duration threshold (init 0.1f)
+    float curTime;              // +0xAC: accumulated current time for this slot
+    float timeScale;            // +0xB0: per-blade time scale factor (init 1.0f when allocated)
     int numVertices;            // +0xB4: number of vertices per frame
     int numFrames;              // +0xB8: current number of frames stored (max 40)
     // sizeof = 0xBC
@@ -35,7 +35,7 @@ class gbBladeMgr {
 public:
     gbBladeEntry entries[32];       // +0x0000 (32 * 0xBC = 0x1780)
     void* pGfxManager;              // +0x1780: pointer to gbGfxManager
-    float lastTime;                 // +0x1784: accumulated time
+    float curTime;                  // +0x1784: global accumulated time
     gbRenderEffect* pEffect;        // +0x1788: blade render effect
     float globalTimeScale;          // +0x178C: global time scale factor
 

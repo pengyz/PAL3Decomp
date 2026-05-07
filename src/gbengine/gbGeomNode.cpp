@@ -439,7 +439,7 @@ static int s_bladeInitialized = 0;
 extern double g_CurrentTime;
 
 static void __cdecl gbBladeSystem_Submit(gbBladeAttachPoint* transforms, int count, gbGeomNode* node) {
-    /* STUB - delegates to sub_1000ED80 (blade trail subsystem) */
+    gbVisNode::pSceneGraph->bladeMgr->Submit(transforms, count, node);
 }
 
 void gbGeomNode::AttachSelf(gbRenderEffect* effect) {
@@ -697,18 +697,21 @@ int gbGeomNode::GetAABBox(gbAABBox* box) {
     return 1;
 }
 
-/* ======== Blade functions (delegates to sub-objects) ======== */
+/* ======== Blade functions (delegates to blade manager) ======== */
 
+// 0x100117e0 (26B)
 void gbGeomNode::SetBladeTime(float time) {
+    gbVisNode::pSceneGraph->bladeMgr->SetBladeTime(this, time);
 }
 
+// 0x10011800 (26B)
 void gbGeomNode::SetBladeTimeScale(float scale) {
+    gbVisNode::pSceneGraph->bladeMgr->SetBladeTimeScale(this, scale);
 }
 
+// 0x10011820 (23B)
 gbVec3D* gbGeomNode::GetLastBladePos(gbGeomNode* node) {
-    /* Delegates to sub_1000F080 - blade trail subsystem */
-    // return (gbVec3D*)sub_1000F080(this);
-    return NULL;
+    return (gbVec3D*)gbVisNode::pSceneGraph->bladeMgr->GetLastBladePos(this);
 }
 
 /* ======== Texture replacement ======== */

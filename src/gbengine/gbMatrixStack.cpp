@@ -16,30 +16,44 @@
 
 #include "gbengine/gbengine_internal.h"
 #include <string.h>
+#include <math.h>
 
 extern void *operator new(unsigned int size);
 extern void operator delete(void *p);
 
 gbMatrixStack::gbMatrixStack(int depth)
 {
+    float* p;
+    int n;
+    char* buf;
+
     maxDepth = depth;
     curDepth = 0;
-    gbMatrix4 *buf = (gbMatrix4 *)operator new(depth << 6);
+    buf = (char *)operator new(depth << 6);
     if (buf != NULL) {
-        gbMatrix4 *p = buf;
-        int n = depth;
-        if (n > 0) {
+        if (depth - 1 >= 0) {
+            p = (float*)(buf + 40);
+            n = depth;
             do {
-                p->LoadIdentity();
+                memset(p - 10, 0, 0x40);
+                p[5] = 1.0f;
+                p[0] = 1.0f;
+                p[-5] = 1.0f;
+                *(p - 10) = 1.0f;
+                p += 16;
                 n--;
-                p = (gbMatrix4 *)((char *)p + 0x40);
             } while (n != 0);
         }
     } else {
         buf = NULL;
     }
-    pStack = buf;
-    pStack[curDepth].LoadIdentity();
+    pStack = (gbMatrix4*)buf;
+    p = (float*)(buf + (curDepth << 6));
+    memset(p, 0, 0x40);
+    ((int*)p)[15] = 0x3F800000;
+    ((int*)p)[10] = 0x3F800000;
+    ((int*)p)[5] = 0x3F800000;
+    ((int*)p)[0] = 0x3F800000;
     dirty = 0;
 }
 
@@ -134,14 +148,89 @@ void gbMatrixStack::MultMatrix(gbMatrix4 *mat)
 void gbMatrixStack::Rotate(float angle, gbVec3D &axis)
 {
     gbMatrix4 rot;
-    rot.SetAxisAngle(&axis, angle);
-    pStack[curDepth].LeftMultiply(rot);
+    float temp[16];
+    float* dst;
+    float* src;
+    int i, j, k;
+
+    memset(&rot, 0, sizeof(gbMatrix4));
+    rot.m[0][0] = 1.0f;
+    rot.m[1][1] = 1.0f;
+    rot.m[2][2] = 1.0f;
+    rot.m[3][3] = 1.0f;
+
+    float halfAngle = angle * 0.5f * 0.017453292f;
+    gbQuaternion q;
+    q.w = (float)cos(halfAngle);
+    float s = (float)sin(halfAngle);
+    q.x = s * axis.x;
+    q.y = s * axis.y;
+    q.z = s * axis.z;
+    q.GetMatrix(&rot);
+
+    dst = (float*)&pStack[curDepth];
+    memcpy(temp, dst, 64);
+
+    src = (float*)&rot;
+    int offset = (int)(dst - src);
+    for (i = 0; i < 4; i++) {
+        float* rowSrc = &temp[0];
+        float* rowDst = src + offset;
+        for (j = 0; j < 4; j++) {
+            *rowDst = 0.0f;
+            float* a = src;
+            float* b = rowSrc;
+            for (k = 0; k < 4; k++) {
+                *rowDst = *a * *b + *rowDst;
+                b += 4;
+                a++;
+            }
+            rowDst++;
+            rowSrc++;
+        }
+        src += 4;
+    }
     dirty = 0;
 }
 
 void gbMatrixStack::Rotate(gbQuaternion &q)
 {
-    pStack[curDepth] *= q;
+    gbMatrix4 rot;
+    float temp[16];
+    float* dst;
+    float* src;
+    int i, j, k;
+
+    memset(&rot, 0, sizeof(gbMatrix4));
+    rot.m[0][0] = 1.0f;
+    rot.m[1][1] = 1.0f;
+    rot.m[2][2] = 1.0f;
+    rot.m[3][3] = 1.0f;
+
+    q.GetMatrix(&rot);
+
+    dst = (float*)&pStack[curDepth];
+    memcpy(temp, dst, 64);
+
+    src = (float*)&rot;
+    int offset = (int)(dst - src);
+    for (i = 0; i < 4; i++) {
+        float* rowSrc = &temp[0];
+        float* rowDst = src + offset;
+        for (j = 0; j < 4; j++) {
+            *rowDst = 0.0f;
+            float* a = src;
+            float* b = rowSrc;
+            for (k = 0; k < 4; k++) {
+                *rowDst = *a * *b + *rowDst;
+                b += 4;
+                a++;
+            }
+            rowDst++;
+            rowSrc++;
+        }
+        src += 4;
+    }
     dirty = 0;
 }
 

@@ -48,9 +48,12 @@ int gbQuaternion::IsNormal(void)
     return 0;
 }
 
+static const float s_fHalf = 0.5f;
+static const float s_fDeg2Rad = 0.017453292f;
+
 void gbQuaternion::SetAxisAngle(gbVec3D *axis, float angle)
 {
-    float halfRad = angle * 0.5f * 0.017453292f;
+    float halfRad = angle * s_fHalf * s_fDeg2Rad;
     w = (float)cos(halfRad);
     float s = (float)sin(halfRad);
     x = s * axis->x;
@@ -249,13 +252,22 @@ void gbQuaternion::Slerp(gbQuaternion *q1, gbQuaternion *q2, float t)
 
 void gbQuaternion::MultiplyBy(gbQuaternion *other, gbQuaternion *result)
 {
-    float ax = x, ay = y, az = z, aw = w;
-    float bx = other->x, by = other->y, bz = other->z, bw = other->w;
+    float ax, ay, az, aw;
+    float bx, by, bz, bw;
 
-    result->w = (bw * aw - bx * ax) - by * ay - bz * az;
-    result->x = bx * aw + ax * bw + bz * ay - az * by;
+    ax = x;
+    ay = y;
+    az = z;
+    aw = w;
+    bx = other->x;
+    by = other->y;
+    bz = other->z;
+    bw = other->w;
+
+    result->w = bw * aw - bx * ax - by * ay - bz * az;
+    result->x = bz * ay + ax * bw + bx * aw - az * by;
     result->y = by * aw - bz * ax + az * bx + ay * bw;
-    result->z = az * bw + (bz * aw + by * ax) - ay * bx;
+    result->z = by * ax + bz * aw - ay * bx + az * bw;
 }
 
 float const gbQuaternion::Magnitude(void)
