@@ -380,3 +380,8 @@ void* gbBladeMgr::GetLastBladePos(void* geomNode) {
     }
     return NULL;
 }
+
+// 0x10015660 (8B) - gbBladeMgr::SetTimeScale
+void gbBladeMgr::SetTimeScale(float scale) {
+    globalTimeScale = scale;
+}

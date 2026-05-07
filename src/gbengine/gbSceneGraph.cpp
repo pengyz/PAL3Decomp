@@ -493,13 +493,11 @@ void gbSceneGraph::DelVisNode(gbVisNode* node) {
 
 // 0x10015600 (22B) - Set blade time scale
 void gbSceneGraph::SetBladeTimeScale(float scale) {
-    if (bladeMgr) {
-        bladeMgr->globalTimeScale = scale;
-    }
+    bladeMgr->globalTimeScale = scale;
 }
 
-// 0x10015620 (14B) - Reset blade manager
+// 0x10015620 (11B) - Reset blade manager
 void gbSceneGraph::ResetBladeMgr(void) {
-    if (!bladeMgr) return;
     bladeMgr->Reset();
 }
+

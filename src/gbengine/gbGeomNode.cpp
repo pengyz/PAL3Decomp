@@ -14,6 +14,7 @@
 #include <string.h>
 #include <math.h>
 
+
 #pragma warning(disable: 4234)
 
 /* ======== Constructor / Destructor ======== */
@@ -703,13 +704,9 @@ int gbGeomNode::GetAABBox(gbAABBox* box) {
 /* ======== Blade functions (delegates to sub-objects) ======== */
 
 void gbGeomNode::SetBladeTime(float time) {
-    /* Delegates to sub_1000EE90 - blade trail subsystem */
-    // sub_1000EE90((int)this, time);
 }
 
 void gbGeomNode::SetBladeTimeScale(float scale) {
-    /* Delegates to sub_1000EED0 - blade trail subsystem */
-    // sub_1000EED0((int)this, scale);
 }
 
 gbVec3D* gbGeomNode::GetLastBladePos(gbGeomNode* node) {

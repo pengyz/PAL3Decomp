@@ -44,6 +44,7 @@ public:
     void Submit(void* vertexData, int numVertices, void* geomNode);
     void SetBladeTime(void* geomNode, float time);
     void SetBladeTimeScale(void* geomNode, float scale);
+    void SetTimeScale(float scale);
     void Update(void);
     void Render(void);
     void* GetLastBladePos(void* geomNode);
