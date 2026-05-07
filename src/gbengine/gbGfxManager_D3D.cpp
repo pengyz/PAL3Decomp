@@ -288,7 +288,7 @@ int gbGfxManager_D3D::CreateD3DDevice(void) {
     // 1. Create D3D9 interface
     m_pD3D = Direct3DCreate9(D3D_SDK_VERSION);
     if (m_pD3D == NULL) {
-        DisplayErrorMsg(0x82000001, 2);
+        DisplayErrorMsg(D3DAPPERR_NODIRECT3D, 2);
         return 0;
     }
 
@@ -380,34 +380,440 @@ int gbGfxManager_D3D::CreateD3DDevice(void) {
 }
 
 // ============================================================================
-// Stubs for internal helper methods (to be implemented later)
+// Internal helper methods
 // ============================================================================
 
-// 0x10019b70 - Enumerate D3D adapters and choose best device
+// Callback for D3D enumeration (at 0x10019b00)
+static int __cdecl ConfirmDeviceCallback(void) { return 1; }
+
+// 0x10019b70 (232B) - Initialize enumeration params and enumerate devices
 int gbGfxManager_D3D::ChooseBestDevice(void) {
-    // TODO: D3D device enumeration
+    // Store D3D object pointer into enumeration structure
+    m_d3dEnumeration.m_pD3D = m_pD3D;
+
+    if (DrvInfo.fullscreen != 0) {
+        // Windowed mode: set desired resolution
+        m_d3dEnumeration.m_nMinWidth = DrvInfo.width;
+        m_d3dEnumeration.m_nMinHeight = DrvInfo.height;
+    }
+
+    // Set color depth preference (16bit -> 5 channel bits, else 8)
+    if (DrvInfo.colorbits == 16) {
+        m_d3dEnumeration.m_nMinColorChannelBits = 5;
+    } else {
+        m_d3dEnumeration.m_nMinColorChannelBits = 8;
+    }
+
+    // Set depth buffer bits
+    m_d3dEnumeration.m_nMinAlphaChannelBits = 0;
+    m_d3dEnumeration.m_nMinDepthBits = 16;
+    m_d3dEnumeration.m_nMinStencilBits = 0;
+    m_d3dEnumeration.m_bMultisampleEnabled = 1;
+
+    if (DrvInfo.fullscreen == 0) {
+        m_d3dEnumeration.m_bRequireWindowed = 1;
+    }
+
+    // Set confirm device callback
+    m_d3dEnumeration.ConfirmDeviceCallback = (CONFIRMDEVICECALLBACK)ConfirmDeviceCallback;
+
+    // Run enumeration
+    int hr = m_d3dEnumeration.Enumerate();
+    if (hr < 0) {
+        m_pD3D->Release();
+        m_pD3D = NULL;
+        DisplayErrorMsg(hr, 2);
+        return hr;
+    }
+
     return 0;
 }
 
 // 0x1001a790 (1208B) - Create actual D3D device with chosen settings
+// Builds D3DPRESENT_PARAMETERS, calls IDirect3D9::CreateDevice,
+// gets caps, back buffer desc, builds device stats string.
 int gbGfxManager_D3D::CreateDevice(void) {
-    // TODO: CreateDevice9 call and back buffer setup
+    D3DDeviceCombo* pDeviceCombo;
+
+    if (m_d3dSettings.bIsWindowed == 0) {
+        pDeviceCombo = m_d3dSettings.pWindowed_DeviceCombo;
+    } else {
+        pDeviceCombo = m_d3dSettings.pFullscreen_DeviceCombo;
+    }
+
+    // Set window style
+    m_bWindowed = (unsigned int)m_d3dSettings.bIsWindowed;
+    if (m_d3dSettings.bIsWindowed == 0) {
+        // Fullscreen
+        HWND hWnd = m_hWnd;
+        SetWindowLongA(hWnd, GWL_STYLE, (int)m_dwWindowStyle);
+    } else {
+        // Windowed - remove borders
+        HWND hWnd = m_hWnd;
+        SetWindowLongA(hWnd, GWL_STYLE, WS_POPUP | WS_SYSMENU);
+    }
+
+    // Zero out D3DPRESENT_PARAMETERS
+    memset(&m_d3dpp, 0, sizeof(D3DPRESENT_PARAMETERS));
+
+    // Build present parameters based on settings
+    // TODO: BuildPresentParamsFromSettings (complex sub-function at 0x1001a190)
+    // For now, set basic parameters
+    m_d3dpp.Windowed = m_d3dSettings.bIsWindowed ? FALSE : TRUE;
+    m_d3dpp.SwapEffect = D3DSWAPEFFECT_DISCARD;
+    m_d3dpp.hDeviceWindow = m_hWnd;
+
+    if (m_d3dSettings.bIsWindowed == 0) {
+        // Windowed mode
+        m_d3dpp.BackBufferWidth = 0;
+        m_d3dpp.BackBufferHeight = 0;
+        m_d3dpp.BackBufferFormat = m_d3dSettings.Windowed_DisplayMode.Format;
+        m_d3dpp.EnableAutoDepthStencil = TRUE;
+        m_d3dpp.AutoDepthStencilFormat = m_d3dSettings.Windowed_DepthStencilFormat;
+        m_d3dpp.MultiSampleType = m_d3dSettings.Windowed_MultisampleType;
+        m_d3dpp.MultiSampleQuality = m_d3dSettings.Windowed_MultisampleQuality;
+        m_d3dpp.PresentationInterval = m_d3dSettings.Windowed_PresentInterval;
+    } else {
+        // Fullscreen mode
+        m_d3dpp.BackBufferWidth = m_d3dSettings.Fullscreen_Width;
+        m_d3dpp.BackBufferHeight = m_d3dSettings.Fullscreen_Height;
+        m_d3dpp.BackBufferFormat = m_d3dSettings.Fullscreen_DisplayMode.Format;
+        m_d3dpp.FullScreen_RefreshRateInHz = m_d3dSettings.Fullscreen_DisplayMode.RefreshRate;
+        m_d3dpp.EnableAutoDepthStencil = TRUE;
+        m_d3dpp.AutoDepthStencilFormat = m_d3dSettings.Fullscreen_DepthStencilFormat;
+        m_d3dpp.MultiSampleType = m_d3dSettings.Fullscreen_MultisampleType;
+        m_d3dpp.MultiSampleQuality = m_d3dSettings.Fullscreen_MultisampleQuality;
+        m_d3dpp.PresentationInterval = m_d3dSettings.Fullscreen_PresentInterval;
+    }
+
+    m_d3dpp.BackBufferCount = 1;
+
+    // Check device combo behavior flags for pure device
+    if ((*(unsigned int*)&pDeviceCombo->pVertexProcessingTypeList & 0x1000) != 0) {
+        // TODO: handle pure device case
+    }
+
+    // Determine vertex processing type
+    m_bSoftVPMode = 0;
+    int vertexProcessingType;
+    if (m_d3dSettings.bIsWindowed == 0) {
+        vertexProcessingType = m_d3dSettings.Windowed_VertexProcessingType;
+    } else {
+        vertexProcessingType = m_d3dSettings.Fullscreen_VertexProcessingType;
+    }
+
+    // Set create flags based on vertex processing type
+    if (vertexProcessingType == 0) {
+        m_dwCreateFlags = D3DCREATE_SOFTWARE_VERTEXPROCESSING;
+        m_bSoftVPMode = 1;
+    } else if (vertexProcessingType == 1) {
+        m_dwCreateFlags = D3DCREATE_MIXED_VERTEXPROCESSING;
+    } else if (vertexProcessingType == 2) {
+        m_dwCreateFlags = D3DCREATE_HARDWARE_VERTEXPROCESSING;
+    } else {
+        m_dwCreateFlags = D3DCREATE_HARDWARE_VERTEXPROCESSING | D3DCREATE_PUREDEVICE;
+    }
+
+    // Create the D3D device
+    HRESULT hr = m_pD3D->CreateDevice(
+        0,                  // adapter
+        D3DDEVTYPE_HAL,
+        m_hWnd,
+        m_dwCreateFlags,
+        &m_d3dpp,
+        &m_pd3dDevice
+    );
+
+    if (FAILED(hr)) {
+        return hr;
+    }
+
+    // Get device caps
+    m_pd3dDevice->GetDeviceCaps(&m_d3dCaps);
+
+    // Get back buffer surface desc
+    IDirect3DSurface9* pBackBuffer = NULL;
+    m_pd3dDevice->GetBackBuffer(0, 0, D3DBACKBUFFER_TYPE_MONO, &pBackBuffer);
+    if (pBackBuffer) {
+        pBackBuffer->GetDesc(&m_d3dsdBackBuffer);
+        pBackBuffer->Release();
+    }
+
+    // Update DrvInfo with actual dimensions
+    DrvInfo.width = m_d3dpp.BackBufferWidth;
+    DrvInfo.height = m_d3dpp.BackBufferHeight;
+
+    // Set window position for fullscreen
+    if (!m_d3dSettings.bIsWindowed) {
+        SetWindowPos(m_hWnd, NULL,
+            m_rcWindowBounds.left, m_rcWindowBounds.top,
+            m_rcWindowBounds.right - m_rcWindowBounds.left,
+            m_rcWindowBounds.bottom - m_rcWindowBounds.top,
+            SWP_NOZORDER);
+    }
+
+    // Build device stats string
+    m_strDeviceStats[0] = '\0';
+
+    // Clip cursor in fullscreen if requested
+    if (m_bShowCursorWhenFullscreen && m_bWindowed == 0) {
+        DWORD dwIcon = GetClassLongA(m_hWnd, GCL_HICON);
+        // TODO: cursor setup
+    }
+    if (m_bClipCursorWhenFullscreen) {
+        if (m_bWindowed == 0) {
+            RECT rc;
+            GetWindowRect(m_hWnd, &rc);
+            ClipCursor(&rc);
+        } else {
+            ClipCursor(NULL);
+        }
+    }
+
     return 0;
 }
 
-// 0x10019e70 - Initialize device in windowed mode
+// 0x10019e70 (794B) - Find best windowed mode settings
+// Iterates adapters/devices/combos to find best windowed configuration.
+// p1: bRequireHAL, p2: bRequireREF
 char gbGfxManager_D3D::InitDeviceWindowed(int p1, int p2) {
-    // TODO: Windowed device initialization
-    return 0;
+    D3DAdapterInfo* pBestAdapterInfo = NULL;
+    D3DDeviceInfo* pBestDeviceInfo = NULL;
+    D3DDeviceCombo* pBestDeviceCombo = NULL;
+
+    unsigned int iAdapter;
+    for (iAdapter = 0; iAdapter < (unsigned int)m_d3dEnumeration.m_pAdapterInfoList->m_NumEntries; iAdapter++) {
+        D3DAdapterInfo* pAdapterInfo = *(D3DAdapterInfo**)m_d3dEnumeration.m_pAdapterInfoList->GetPtr(iAdapter);
+
+        // Get current desktop display mode for this adapter
+        D3DDISPLAYMODE adapterDesktopMode;
+        m_pD3D->GetAdapterDisplayMode(pAdapterInfo->AdapterOrdinal, &adapterDesktopMode);
+
+        // Determine target format based on DrvInfo color depth
+        D3DFORMAT targetFmt;
+        if (DrvInfo.colorbits == 16) {
+            targetFmt = D3DFMT_R5G6B5;  // 0x17
+        } else {
+            targetFmt = D3DFMT_X8R8G8B8; // 0x16
+        }
+
+        unsigned int iDevice;
+        for (iDevice = 0; iDevice < (unsigned int)pAdapterInfo->pDeviceInfoList->m_NumEntries; iDevice++) {
+            D3DDeviceInfo* pDeviceInfo = *(D3DDeviceInfo**)pAdapterInfo->pDeviceInfoList->GetPtr(iDevice);
+
+            if (p1 != 0 && pDeviceInfo->DevType != D3DDEVTYPE_HAL)
+                continue;
+            if (p2 != 0 && pDeviceInfo->DevType != D3DDEVTYPE_REF)
+                continue;
+
+            unsigned int iCombo;
+            for (iCombo = 0; iCombo < (unsigned int)pDeviceInfo->pDeviceComboList->m_NumEntries; iCombo++) {
+                D3DDeviceCombo* pDeviceCombo = *(D3DDeviceCombo**)pDeviceInfo->pDeviceComboList->GetPtr(iCombo);
+
+                int adapterFmt = (int)pDeviceCombo->AdapterFormat;
+                int bBackMatch = ((int)pDeviceCombo->BackBufferFormat == adapterFmt);
+                int bFmtTarget = (adapterFmt == (int)targetFmt);
+
+                // Must be windowed mode combo (bIsWindowed == 0 means "not fullscreen only")
+                if (pDeviceCombo->bIsWindowed == 0) {
+                    // Selection priority: HAL > REF, matching format > not, backbuf match
+                    if (pBestDeviceCombo == NULL ||
+                        (pBestDeviceInfo->DevType != D3DDEVTYPE_HAL && pDeviceInfo->DevType == D3DDEVTYPE_HAL) ||
+                        (pDeviceInfo->DevType == D3DDEVTYPE_HAL &&
+                         (((int)pBestDeviceCombo->AdapterFormat != (int)targetFmt && bFmtTarget) ||
+                          (bFmtTarget && bBackMatch)))) {
+                        pBestAdapterInfo = pAdapterInfo;
+                        pBestDeviceInfo = pDeviceInfo;
+                        pBestDeviceCombo = pDeviceCombo;
+
+                        if (pDeviceInfo->DevType == D3DDEVTYPE_HAL && bFmtTarget && bBackMatch) {
+                            goto LAB_1001a032;
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+LAB_1001a032:
+    if (pBestDeviceCombo == NULL) {
+        return 0;
+    }
+
+    // Find best display mode from adapter's mode list
+    int bestWidth = 0;
+    int bestHeight = 0;
+    int bestRefresh = 0;
+    unsigned int iMode;
+    for (iMode = 0; iMode < (unsigned int)pBestAdapterInfo->pDisplayModeList->m_NumEntries; iMode++) {
+        D3DDISPLAYMODE* pMode = (D3DDISPLAYMODE*)pBestAdapterInfo->pDisplayModeList->GetPtr(iMode);
+
+        if ((D3DFORMAT)pMode->Format == pBestDeviceCombo->AdapterFormat) {
+            int w = (int)pMode->Width;
+            if (w == DrvInfo.width) {
+                if ((int)pMode->Height == DrvInfo.height && (int)pMode->RefreshRate == DrvInfo.refreshrate) {
+                    bestWidth = w;
+                    bestHeight = (int)pMode->Height;
+                    bestRefresh = (int)pMode->RefreshRate;
+                    break;
+                }
+            }
+            // Track best candidate
+            if (w >= bestWidth) {
+                bestWidth = w;
+                bestHeight = (int)pMode->Height;
+                bestRefresh = (int)pMode->RefreshRate;
+            }
+        }
+    }
+
+    // Store windowed settings
+    m_d3dSettings.pWindowed_AdapterInfo = pBestAdapterInfo;
+    m_d3dSettings.pWindowed_DeviceInfo = pBestDeviceInfo;
+    m_d3dSettings.pWindowed_DeviceCombo = pBestDeviceCombo;
+    m_d3dSettings.bIsWindowed = 0;
+
+    m_d3dSettings.Windowed_DisplayMode.Width = bestWidth;
+    m_d3dSettings.Windowed_DisplayMode.Height = bestHeight;
+    m_d3dSettings.Windowed_DisplayMode.RefreshRate = bestRefresh;
+    m_d3dSettings.Windowed_DisplayMode.Format = pBestDeviceCombo->AdapterFormat;
+
+    // Depth/stencil format: first entry from combo's list
+    if (m_d3dEnumeration.m_bMultisampleEnabled) {
+        m_d3dSettings.Windowed_DepthStencilFormat = *(D3DFORMAT*)pBestDeviceCombo->pDepthStencilFormatList->GetPtr(0);
+    }
+
+    // Multisample
+    m_d3dSettings.Windowed_MultisampleType = *(D3DMULTISAMPLE_TYPE*)pBestDeviceCombo->pMultiSampleTypeList->GetPtr(0);
+    m_d3dSettings.Windowed_MultisampleQuality = 0;
+
+    // Vertex processing: first entry
+    m_d3dSettings.Windowed_VertexProcessingType = *(int*)pBestDeviceCombo->pVertexProcessingTypeList->GetPtr(0);
+    m_d3dSettings.Windowed_PresentInterval = 0;
+
+    return 1;
 }
 
-// 0x10019c60 - Initialize device in fullscreen mode
+// 0x10019c60 (525B) - Find best fullscreen mode settings
+// Iterates adapters/devices/combos to find best fullscreen configuration.
+// p1: bRequireHAL, p2: bRequireREF
 char gbGfxManager_D3D::InitDeviceFullscreen(int p1, int p2) {
-    // TODO: Fullscreen device initialization
-    return 0;
+    // Get current adapter display mode format
+    D3DDISPLAYMODE adapterDesktopMode;
+    m_pD3D->GetAdapterDisplayMode(0, &adapterDesktopMode);
+
+    D3DAdapterInfo* pBestAdapterInfo = NULL;
+    D3DDeviceInfo* pBestDeviceInfo = NULL;
+    D3DDeviceCombo* pBestDeviceCombo = NULL;
+
+    unsigned int iAdapter;
+    for (iAdapter = 0; iAdapter < (unsigned int)m_d3dEnumeration.m_pAdapterInfoList->m_NumEntries; iAdapter++) {
+        D3DAdapterInfo* pAdapterInfo = *(D3DAdapterInfo**)m_d3dEnumeration.m_pAdapterInfoList->GetPtr(iAdapter);
+
+        unsigned int iDevice;
+        for (iDevice = 0; iDevice < (unsigned int)pAdapterInfo->pDeviceInfoList->m_NumEntries; iDevice++) {
+            D3DDeviceInfo* pDeviceInfo = *(D3DDeviceInfo**)pAdapterInfo->pDeviceInfoList->GetPtr(iDevice);
+
+            if (p1 != 0 && pDeviceInfo->DevType != D3DDEVTYPE_HAL)
+                continue;
+            if (p2 != 0 && pDeviceInfo->DevType != D3DDEVTYPE_REF)
+                continue;
+
+            unsigned int iCombo;
+            for (iCombo = 0; iCombo < (unsigned int)pDeviceInfo->pDeviceComboList->m_NumEntries; iCombo++) {
+                D3DDeviceCombo* pDeviceCombo = *(D3DDeviceCombo**)pDeviceInfo->pDeviceComboList->GetPtr(iCombo);
+
+                int adapterFmt = (int)pDeviceCombo->AdapterFormat;
+                int bFmtMatch = ((int)pDeviceCombo->BackBufferFormat == adapterFmt);
+
+                if (pDeviceCombo->bIsWindowed != 0 &&
+                    adapterFmt == (int)adapterDesktopMode.Format) {
+                    // Prefer: HAL device, matching formats
+                    if (pBestDeviceCombo == NULL ||
+                        (pBestDeviceInfo->DevType != D3DDEVTYPE_HAL && pDeviceInfo->DevType == D3DDEVTYPE_HAL) ||
+                        (pDeviceInfo->DevType == D3DDEVTYPE_HAL &&
+                         ((int)pBestDeviceCombo->AdapterFormat != (int)adapterDesktopMode.Format && adapterFmt == (int)adapterDesktopMode.Format) ||
+                         (adapterFmt == (int)adapterDesktopMode.Format && bFmtMatch))) {
+                        pBestAdapterInfo = pAdapterInfo;
+                        pBestDeviceInfo = pDeviceInfo;
+                        pBestDeviceCombo = pDeviceCombo;
+                    }
+                }
+            }
+        }
+    }
+
+    if (pBestDeviceCombo == NULL) {
+        return 0;
+    }
+
+    // Store fullscreen settings
+    m_d3dSettings.pFullscreen_AdapterInfo = pBestAdapterInfo;
+    m_d3dSettings.pFullscreen_DeviceInfo = pBestDeviceInfo;
+    m_d3dSettings.pFullscreen_DeviceCombo = pBestDeviceCombo;
+    m_d3dSettings.bIsWindowed = 1;
+
+    // Display mode
+    m_d3dSettings.Fullscreen_DisplayMode.Width = adapterDesktopMode.Width;
+    m_d3dSettings.Fullscreen_DisplayMode.Height = adapterDesktopMode.Height;
+    m_d3dSettings.Fullscreen_DisplayMode.RefreshRate = adapterDesktopMode.RefreshRate;
+    m_d3dSettings.Fullscreen_DisplayMode.Format = (D3DFORMAT)(int)adapterDesktopMode.Format;
+
+    // Back buffer dimensions from window client rect
+    m_d3dSettings.Fullscreen_Width = m_rcWindowClient.right - m_rcWindowClient.left;
+    m_d3dSettings.Fullscreen_Height = m_rcWindowClient.bottom - m_rcWindowClient.top;
+
+    // Depth/stencil format: first entry from combo's list
+    if (m_d3dEnumeration.m_bMultisampleEnabled) {
+        m_d3dSettings.Fullscreen_DepthStencilFormat = *(D3DFORMAT*)pBestDeviceCombo->pDepthStencilFormatList->GetPtr(0);
+    }
+
+    // Multisample: first entry
+    m_d3dSettings.Fullscreen_MultisampleType = *(D3DMULTISAMPLE_TYPE*)pBestDeviceCombo->pMultiSampleTypeList->GetPtr(0);
+    m_d3dSettings.Fullscreen_MultisampleQuality = 0;
+
+    // Vertex processing: first entry
+    m_d3dSettings.Fullscreen_VertexProcessingType = *(int*)pBestDeviceCombo->pVertexProcessingTypeList->GetPtr(0);
+
+    // Present interval: first entry
+    m_d3dSettings.Fullscreen_PresentInterval = *(unsigned int*)pBestDeviceCombo->pPresentIntervalList->GetPtr(0);
+
+    return 1;
 }
 
-// 0x1001ad80 (393B) - Display error message via MessageBox
+// 0x1001ad80 (393B) - Display D3D error message via MessageBox
 void gbGfxManager_D3D::DisplayErrorMsg(int hr, int type) {
-    // TODO: Error message display
+    char buf[512];
+    const char* msg;
+
+    switch ((unsigned int)hr) {
+    case D3DAPPERR_NODIRECT3D: msg = "Could not find a compatible Direct3D device."; break;
+    case D3DAPPERR_NOCOMPATIBLEDEVICES: msg = "Could not find any compatible Direct3D devices."; break;
+    case D3DAPPERR_NOWINDOWABLEDEVICES: msg = "This sample cannot run in a desktop of this color depth."; break;
+    case D3DAPPERR_NOHARDWAREDEVICE: msg = "No hardware-accelerated Direct3D devices were found."; break;
+    case D3DAPPERR_HALNOTCOMPATIBLE: msg = "This sample requires functionality not available on your device."; break;
+    case D3DAPPERR_NOWINDOWEDHAL: msg = "Your Direct3D hardware accelerator cannot render into a window."; break;
+    case D3DAPPERR_NODESKTOPHAL: msg = "Your Direct3D hardware accelerator cannot handle the required texture format."; break;
+    case D3DAPPERR_NOHALTHISMODE: msg = "This sample requires functionality not available on your Direct3D hardware accelerator."; break;
+    case D3DAPPERR_NONZEROREFCOUNT: msg = "A D3D object has a non-zero reference count."; break;
+    case D3DAPPERR_MEDIANOTFOUND: msg = "Could not load required media."; break;
+    case D3DAPPERR_RESETFAILED: msg = "Could not reset the Direct3D device."; break;
+    case D3DAPPERR_NULLREFDEVICE: msg = "Warning: Nothing will be rendered."; break;
+    case (unsigned int)E_OUTOFMEMORY: msg = "Not enough memory."; break;
+    case (unsigned int)D3DERR_OUTOFVIDEOMEMORY: msg = "Not enough video memory."; break;
+    default: msg = "Generic application error. Enable debug output for more information."; break;
+    }
+
+    strcpy(buf, msg);
+
+    if (type == 2) {
+        MessageBoxA(NULL, buf, "error", MB_ICONERROR);
+    } else {
+        if (type == 1) {
+            strcat(buf, "\nSwitching to the reference rasterizer.");
+        }
+        MessageBoxA(NULL, buf, "warning", MB_ICONWARNING);
+    }
 }
+
+// CD3DEnumeration::Enumerate is in d3dframework.cpp

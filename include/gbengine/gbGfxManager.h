@@ -211,16 +211,147 @@ public:
 // sizeof = 0x8F0 (from PAL3A PDB)
 // Inherits gbGfxManager (0x5F0), adds D3D-specific state.
 // ============================================================================
-struct CD3DEnumeration {
-    char _data[0x2C];
+
+// ============================================================================
+// CArrayList - DXSDK Summer 2003 framework dynamic array (sizeof = 0x14)
+// Used extensively by CD3DEnumeration and related D3D code.
+// From DXSDK\Samples\C++\Common\Include\DXUtil.h
+// ============================================================================
+class CArrayList {
+public:
+    int m_bPtrArray;      // +0x00: 0=value array, 1=pointer array
+    void* m_pData;        // +0x04: data buffer
+    int m_BytesPerEntry;  // +0x08: element size in bytes
+    int m_NumEntries;     // +0x0C: current count
+    int m_MaxEntries;     // +0x10: capacity
+
+    void* GetPtr(int index);      // 0x10016eb0 (34B)
+    int Add(void* pEntry);        // 0x10016dc0 (238B)
 };
 
+// ============================================================================
+// D3DAdapterInfo - per-adapter data from D3D enumeration (sizeof = 0x458)
+// From DXSDK\Samples\C++\Common\Src\D3DEnumeration.cpp
+// ============================================================================
+struct D3DAdapterInfo {
+    unsigned int AdapterOrdinal;                   // +0x000
+    D3DADAPTER_IDENTIFIER9 adapterIdentifier;      // +0x004 (sizeof=0x44C)
+    CArrayList* pDisplayModeList;                  // +0x450: value array, 0x10 bytes/entry (D3DDISPLAYMODE)
+    CArrayList* pDeviceInfoList;                   // +0x454: pointer array
+};
+
+// ============================================================================
+// D3DDeviceInfo - per-device data from D3D enumeration (sizeof = 0x13C)
+// Contains device type, caps, and list of compatible device combos.
+// ============================================================================
+struct D3DDeviceInfo {
+    unsigned int AdapterOrdinal;                   // +0x000
+    D3DDEVTYPE DevType;                            // +0x004: 1=HAL, 2=REF
+    D3DCAPS9 Caps;                                 // +0x008 (sizeof=0x130)
+    CArrayList* pDeviceComboList;                  // +0x138: pointer array
+};
+
+// ============================================================================
+// D3DDeviceCombo - adapter format + back buffer format + windowed/fullscreen
+// combination with compatible depth/stencil, multisample, etc. (sizeof >= 0x2C)
+// ============================================================================
+struct D3DDeviceCombo {
+    unsigned int AdapterOrdinal;                   // +0x00
+    D3DDEVTYPE DevType;                            // +0x04
+    D3DFORMAT AdapterFormat;                       // +0x08
+    D3DFORMAT BackBufferFormat;                    // +0x0C
+    char bIsWindowed;                              // +0x10
+    char _pad11[3];                                // +0x11: alignment
+    CArrayList* pDepthStencilFormatList;           // +0x14: value array, 4 bytes/entry (D3DFORMAT)
+    CArrayList* pMultiSampleTypeList;              // +0x18: value array, 4 bytes/entry
+    CArrayList* pMultiSampleQualityList;           // +0x1C: value array, 4 bytes/entry
+    CArrayList* pConflictList;                     // +0x20: conflict pairs
+    CArrayList* pPresentIntervalList;              // +0x24: value array, 4 bytes/entry
+    CArrayList* pVertexProcessingTypeList;         // +0x28: value array, 4 bytes/entry
+};
+
+// ============================================================================
+// CD3DEnumeration - D3D device enumeration manager (sizeof = 0x2C)
+// From DXSDK\Samples\C++\Common\Src\D3DEnumeration.cpp
+// ============================================================================
+typedef int (__cdecl *CONFIRMDEVICECALLBACK)(D3DCAPS9* pCaps, int vertexProcessingType,
+                                             D3DFORMAT adapterFormat, D3DFORMAT backBufferFormat);
+
+struct CD3DEnumeration {
+    IDirect3D9* m_pD3D;                            // +0x00
+    CArrayList* m_pAdapterInfoList;                // +0x04: pointer array of D3DAdapterInfo*
+    CONFIRMDEVICECALLBACK ConfirmDeviceCallback;   // +0x08: device filter callback
+    unsigned int m_nMinWidth;                      // +0x0C
+    unsigned int m_nMinHeight;                     // +0x10
+    unsigned int m_nMinColorChannelBits;           // +0x14
+    unsigned int m_nMinAlphaChannelBits;           // +0x18
+    unsigned int m_nMinDepthBits;                  // +0x1C
+    unsigned int m_nMinStencilBits;                // +0x20
+    unsigned char m_bMultisampleEnabled;           // +0x24
+    unsigned char _pad25;                          // +0x25
+    unsigned char m_bRequireWindowed;              // +0x26
+    unsigned char m_bRequireFullscreen;            // +0x27
+    CArrayList* m_pAllowedAdapterFormatList;      // +0x28: value array, 4 bytes/entry (D3DFORMAT)
+
+    int Enumerate(void);   // 0x100172f0 (1378B)
+};
+
+// ============================================================================
+// D3DAPP error codes - from DXSDK\Samples\C++\Common\Include\D3DApp.h
+// ============================================================================
+#define D3DAPPERR_NODIRECT3D          0x82000001
+#define D3DAPPERR_NOWINDOW            0x82000002
+#define D3DAPPERR_NOCOMPATIBLEDEVICES 0x82000003
+#define D3DAPPERR_NOWINDOWABLEDEVICES 0x82000004
+#define D3DAPPERR_NOHARDWAREDEVICE    0x82000005
+#define D3DAPPERR_HALNOTCOMPATIBLE    0x82000006
+#define D3DAPPERR_NOWINDOWEDHAL       0x82000007
+#define D3DAPPERR_NODESKTOPHAL        0x82000008
+#define D3DAPPERR_NOHALTHISMODE       0x82000009
+#define D3DAPPERR_NONZEROREFCOUNT     0x8200000A
+#define D3DAPPERR_MEDIANOTFOUND       0x8200000B
+#define D3DAPPERR_RESETFAILED         0x8200000C
+#define D3DAPPERR_NULLREFDEVICE       0x8200000D
+
+// ============================================================================
+// D3DDriverBug - driver bug workaround flags
+// ============================================================================
 struct D3DDriverBug {
     int flags;
 };
 
+// ============================================================================
+// CD3DSettings - chosen D3D device settings for fullscreen and windowed modes
+// (sizeof = 0x6C)
+// Layout derived from InitDeviceFullscreen/InitDeviceWindowed offset writes.
+// ============================================================================
 struct CD3DSettings {
-    char _data[0x6C];
+    unsigned char bIsWindowed;                      // +0x00
+    char _pad01[3];                                // +0x01: alignment
+
+    // Fullscreen settings
+    D3DAdapterInfo* pFullscreen_AdapterInfo;       // +0x04
+    D3DDeviceInfo* pFullscreen_DeviceInfo;         // +0x08
+    D3DDeviceCombo* pFullscreen_DeviceCombo;       // +0x0C
+    D3DDISPLAYMODE Fullscreen_DisplayMode;         // +0x10 (Width/Height/RefreshRate/Format, 0x10 bytes)
+    D3DFORMAT Fullscreen_DepthStencilFormat;       // +0x20
+    D3DMULTISAMPLE_TYPE Fullscreen_MultisampleType;// +0x24
+    unsigned int Fullscreen_MultisampleQuality;    // +0x28
+    int Fullscreen_VertexProcessingType;           // +0x2C
+    unsigned int Fullscreen_PresentInterval;       // +0x30
+    int Fullscreen_Width;                          // +0x34: back buffer width
+    int Fullscreen_Height;                         // +0x38: back buffer height
+
+    // Windowed settings
+    D3DAdapterInfo* pWindowed_AdapterInfo;         // +0x3C
+    D3DDeviceInfo* pWindowed_DeviceInfo;           // +0x40
+    D3DDeviceCombo* pWindowed_DeviceCombo;         // +0x44
+    D3DDISPLAYMODE Windowed_DisplayMode;           // +0x48 (0x10 bytes)
+    D3DFORMAT Windowed_DepthStencilFormat;         // +0x58
+    D3DMULTISAMPLE_TYPE Windowed_MultisampleType;  // +0x5C
+    unsigned int Windowed_MultisampleQuality;      // +0x60
+    int Windowed_VertexProcessingType;             // +0x64
+    unsigned int Windowed_PresentInterval;         // +0x68
 };
 
 class gbCursorRes;

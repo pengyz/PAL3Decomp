@@ -209,7 +209,7 @@ void gbGfxManager::SetAmbientLight(const gbColorFlt& color) {
 // 0x1001dac0 (34B) - Get delta time since last frame
 double gbGfxManager::GetDeltaTime(void) {
     double dt = CurTime - LastTime;
-    if (dt >= 0.5) dt = 0.5;
+    if (dt >= 0.5) return 0.1;
     return dt;
 }
 
