@@ -896,7 +896,7 @@ void gbAnimNodeGroup::Reset() {
 }
 
 void gbAnimNodeGroup::SetPosition(struct gbMatrix4 const & p0) {
-    memcpy(&posMatrix, &p0, sizeof(gbMatrix4));
+    posMatrix = p0;
 }
 
 void gbAnimNodeGroup::SetPosition(struct gbVec3D const & p0) {

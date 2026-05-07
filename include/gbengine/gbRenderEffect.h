@@ -5,6 +5,7 @@
 #include <d3dx9.h>
 
 #include "gbengine/gbTexture.h"
+#include "gbengine/gbResManager.h"
 
 // Forward declarations (circular dep / no header)
 class gbGfxManager;
@@ -86,13 +87,11 @@ struct gbVertFormatEntry {
     // sizeof = 32
 };
 
-class gbEffectMgr {
+class gbEffectMgr : public gbResManager {
 public:
     // Layout verified from IDA (Init, RegisterVertexFormat, GetRenderEffect)
     // Total sizeof ~ 0x828 bytes
-    gbRenderEffect** m_pEffects;    // +0x00: array of effect pointers
-    int m_nMaxEffects;              // +0x04: capacity
-    int m_nNumEffects;              // +0x08: count
+    // Base class gbResManager provides: array (+0x00), capacity (+0x04), count (+0x08)
     gbGfxManager* m_pGfxMgr;       // +0x0C
     gbTexture* m_pWhiteTexture;     // +0x10
     gbTexture* m_pGrayTexture;      // +0x14

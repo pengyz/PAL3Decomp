@@ -27,8 +27,8 @@ gbTexture* gbEffectMgr::GetGrayTexture(void) {
 }
 
 gbRenderEffect* gbEffectMgr::GetRenderEffect(unsigned int flags) {
-    for (int i = 0; i < m_nNumEffects; i++) {
-        gbRenderEffect* effect = m_pEffects[i];
+    for (int i = 0; i < count; i++) {
+        gbRenderEffect* effect = ((gbRenderEffect**)array)[i];
         if (effect->m_dwFlags == flags)
             return effect;
     }
@@ -36,8 +36,8 @@ gbRenderEffect* gbEffectMgr::GetRenderEffect(unsigned int flags) {
 }
 
 int gbEffectMgr::OnLostDevice(void) {
-    for (int i = 0; i < m_nNumEffects; i++) {
-        gbRenderEffect* effect = m_pEffects[i];
+    for (int i = 0; i < count; i++) {
+        gbRenderEffect* effect = ((gbRenderEffect**)array)[i];
         if (effect)
             effect->m_pEffect->OnLostDevice();
     }
@@ -45,8 +45,8 @@ int gbEffectMgr::OnLostDevice(void) {
 }
 
 int gbEffectMgr::OnResetDevice(void) {
-    for (int i = 0; i < m_nNumEffects; i++) {
-        gbRenderEffect* effect = m_pEffects[i];
+    for (int i = 0; i < count; i++) {
+        gbRenderEffect* effect = ((gbRenderEffect**)array)[i];
         if (effect)
             effect->m_pEffect->OnResetDevice();
     }
@@ -76,7 +76,7 @@ gbRenderEffect* gbEffectMgr::NewRenderEffect(const char* filename, unsigned int 
     if (!filename || !m_pGfxMgr)
         return NULL;
 
-    if (m_nNumEffects >= m_nMaxEffects)
+    if (count >= capacity)
         return NULL;
 
     IDirect3DDevice9* pDevice = NULL;
@@ -107,8 +107,8 @@ gbRenderEffect* gbEffectMgr::NewRenderEffect(const char* filename, unsigned int 
 
     gbRenderEffect* effect = new gbRenderEffect(pEffect, flags);
 
-    m_pEffects[m_nNumEffects] = effect;
-    m_nNumEffects++;
+    ((gbRenderEffect**)array)[count] = effect;
+    count++;
     return effect;
 }
 

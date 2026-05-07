@@ -420,14 +420,7 @@ int gbGfxManager::IsWireMode(void) {
 // ============================================================================
 
 // 0x10004d20 (12B) - Default constructor
-gbEffectMgr::gbEffectMgr(void) {
-    m_pGfxMgr = NULL;
-    m_pWhiteTexture = NULL;
-    m_pGrayTexture = NULL;
-    m_pDefaultEffect = NULL;
-    m_nNumVertFormats = 0;
-    m_nMaxVertFormats = 0;
-    m_nFrameCounter = 0;
+gbEffectMgr::gbEffectMgr(void) : gbResManager() {
 }
 
 // 0x10004d30 (148B) - Copy constructor

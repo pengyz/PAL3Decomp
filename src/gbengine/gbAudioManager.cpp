@@ -902,22 +902,30 @@ int gbSound3DNode::IsPlaying() {
 
 // SetPosition - 0x10002500 (24B)
 void gbSound3DNode::SetPosition(gbVec3D& pos) {
-    position = pos;
+    position.x = pos.x;
+    position.y = pos.y;
+    position.z = pos.z;
 }
 
 // SetVelocity - 0x10002520 (24B)
 void gbSound3DNode::SetVelocity(gbVec3D& vel) {
-    velocity = vel;
+    velocity.x = vel.x;
+    velocity.y = vel.y;
+    velocity.z = vel.z;
 }
 
 // SetOrientation - 0x10002540 (24B)
 void gbSound3DNode::SetOrientation(gbVec3D& ori) {
-    orientation = ori;
+    orientation.x = ori.x;
+    orientation.y = ori.y;
+    orientation.z = ori.z;
 }
 
 // GetPosition - 0x10002560 (24B)
 void gbSound3DNode::GetPosition(gbVec3D& pos) {
-    pos = position;
+    pos.x = position.x;
+    pos.y = position.y;
+    pos.z = position.z;
 }
 
 // SetVolume - 0x100024e0 (10B)
