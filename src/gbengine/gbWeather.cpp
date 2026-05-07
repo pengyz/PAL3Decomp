@@ -41,9 +41,15 @@ gbDropUnit::gbDropUnit(void) {
 // 0x100328E0 - gbDropUnit operator=
 gbDropUnit& gbDropUnit::operator=(const gbDropUnit& other) {
     lifetime = other.lifetime;
-    velocity = other.velocity;
-    position = other.position;
-    prevPosition = other.prevPosition;
+    velocity.x = other.velocity.x;
+    velocity.y = other.velocity.y;
+    velocity.z = other.velocity.z;
+    position.x = other.position.x;
+    position.y = other.position.y;
+    position.z = other.position.z;
+    prevPosition.x = other.prevPosition.x;
+    prevPosition.y = other.prevPosition.y;
+    prevPosition.z = other.prevPosition.z;
     return *this;
 }
 
@@ -322,7 +328,22 @@ void gbRain::Draw(void) {
 
 // operator=
 gbRain& gbRain::operator=(const gbRain& other) {
-    gbDropGroup::operator=(other);
+    maxUnits = other.maxUnits;
+    numActiveUnits = other.numActiveUnits;
+    desc.gravity = other.desc.gravity;
+    desc.viewDistance = other.desc.viewDistance;
+    desc.density = other.desc.density;
+    desc.speedMinX = other.desc.speedMinX;
+    desc.speedMaxX = other.desc.speedMaxX;
+    desc.speedMinY = other.desc.speedMinY;
+    desc.speedMaxY = other.desc.speedMaxY;
+    desc.speedMinZ = other.desc.speedMinZ;
+    desc.speedMaxZ = other.desc.speedMaxZ;
+    elapsedTime = other.elapsedTime;
+    spawnTimer = other.spawnTimer;
+    units = other.units;
+    pTexture = other.pTexture;
+    pRenderEffect = other.pRenderEffect;
     return *this;
 }
 
@@ -444,7 +465,22 @@ void gbSnow::Draw(void) {
 
 // operator=
 gbSnow& gbSnow::operator=(const gbSnow& other) {
-    gbDropGroup::operator=(other);
+    maxUnits = other.maxUnits;
+    numActiveUnits = other.numActiveUnits;
+    desc.gravity = other.desc.gravity;
+    desc.viewDistance = other.desc.viewDistance;
+    desc.density = other.desc.density;
+    desc.speedMinX = other.desc.speedMinX;
+    desc.speedMaxX = other.desc.speedMaxX;
+    desc.speedMinY = other.desc.speedMinY;
+    desc.speedMaxY = other.desc.speedMaxY;
+    desc.speedMinZ = other.desc.speedMinZ;
+    desc.speedMaxZ = other.desc.speedMaxZ;
+    elapsedTime = other.elapsedTime;
+    spawnTimer = other.spawnTimer;
+    units = other.units;
+    pTexture = other.pTexture;
+    pRenderEffect = other.pRenderEffect;
     swayAmplitude = other.swayAmplitude;
     return *this;
 }

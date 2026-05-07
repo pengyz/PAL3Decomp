@@ -1345,31 +1345,28 @@ int CIniFile::ReadLine(const char* key, char* value, int maxLen)
 int CIniFile::ReadLine(const char* key, int* value)
 {
     char buf[256];
-    if (ReadLine(key, buf, sizeof(buf))) {
-        *value = atoi(buf);
-        return 1;
-    }
-    return 0;
+    if (!ReadLine(key, buf, sizeof(buf)))
+        return 0;
+    *value = atoi(buf);
+    return 1;
 }
 
 int CIniFile::ReadLine(const char* key, float* value)
 {
     char buf[256];
-    if (ReadLine(key, buf, sizeof(buf))) {
-        *value = (float)atof(buf);
-        return 1;
-    }
-    return 0;
+    if (!ReadLine(key, buf, sizeof(buf)))
+        return 0;
+    *value = (float)atof(buf);
+    return 1;
 }
 
 int CIniFile::ReadLine(const char* key, double* value)
 {
     char buf[256];
-    if (ReadLine(key, buf, sizeof(buf))) {
-        *value = atof(buf);
-        return 1;
-    }
-    return 0;
+    if (!ReadLine(key, buf, sizeof(buf)))
+        return 0;
+    *value = atof(buf);
+    return 1;
 }
 
 void CIniFile::WriteSection(const char* section)

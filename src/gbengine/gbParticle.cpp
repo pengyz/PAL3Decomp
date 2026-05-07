@@ -1068,7 +1068,17 @@ void gbAnimNodeGroup::Update() {
 gbEmitterData::gbEmitterData() { memset(this, 0, sizeof(*this)); }
 
 struct gbEmitterData & gbEmitterData::operator=(struct gbEmitterData const & p0) {
-    if (this != &p0) memcpy(this, &p0, sizeof(*this)); return *this;
+    velocity.x = p0.velocity.x;
+    velocity.y = p0.velocity.y;
+    velocity.z = p0.velocity.z;
+    speedMin = p0.speedMin;
+    speedMax = p0.speedMax;
+    lifetimeMin = p0.lifetimeMin;
+    lifetimeMax = p0.lifetimeMax;
+    emitRateMin = p0.emitRateMin;
+    emitRateMax = p0.emitRateMax;
+    emitAccumulator = p0.emitAccumulator;
+    return *this;
 }
 
 // ---- gbEmitterSquare ----
@@ -1081,6 +1091,27 @@ struct gbEmitterSquare & gbEmitterSquare::operator=(struct gbEmitterSquare const
 // ---- gbParticleUnit ----
 gbParticleUnit::gbParticleUnit(struct gbParticleUnit & other) { memcpy(this, &other, sizeof(gbParticleUnit)); }
 struct gbParticleUnit & gbParticleUnit::operator=(struct gbParticleUnit const & p0) {
-    if (this != &p0) memcpy(this, &p0, sizeof(*this)); return *this;
+    alive = p0.alive;
+    age = p0.age;
+    lifetime = p0.lifetime;
+    frame = p0.frame;
+    randomSeed = p0.randomSeed;
+    velocity.x = p0.velocity.x;
+    velocity.y = p0.velocity.y;
+    velocity.z = p0.velocity.z;
+    velocityY = p0.velocityY;
+    acceleration.x = p0.acceleration.x;
+    acceleration.y = p0.acceleration.y;
+    acceleration.z = p0.acceleration.z;
+    unused2 = p0.unused2;
+    position.x = p0.position.x;
+    position.y = p0.position.y;
+    position.z = p0.position.z;
+    size = p0.size;
+    rotation = p0.rotation;
+    *(int*)&colorR = *(int*)&p0.colorR;
+    unused3 = p0.unused3;
+    rotationDir = p0.rotationDir;
+    return *this;
 }
 
