@@ -22,28 +22,10 @@
 extern int gbstricmp(const char* s1, const char* s2);
 extern void gbLogInfo(char* fmt, ...);
 
-// LZO stub implementations
+// LZO compression/decompression - using miniLZO
 extern "C" {
-    int lzo1x_1_compress(const unsigned char* src, unsigned long src_len,
-                         unsigned char* dst, unsigned long* dst_len,
-                         void* wrkmem)
-    {
-        memcpy(dst, src, src_len);
-        *dst_len = src_len;
-        return 0;
-    }
-
-    int lzo1x_decompress(const unsigned char* src, unsigned long src_len,
-                         unsigned char* dst, unsigned long* dst_len,
-                         void* wrkmem)
-    {
-        memcpy(dst, src, src_len);
-        *dst_len = src_len;
-        return 0;
-    }
+#include "lzo/minilzo.h"
 }
-
-#define LZO1X_1_MEM_COMPRESS (16384 * sizeof(unsigned char*))
 
 // Static member definitions
 int CPK::s_bCrcTableInitialized = 0;
