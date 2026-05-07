@@ -425,8 +425,8 @@ gbNBTreeNode* gbNBTree::GetRoot(void) {
 
 gbBinaryTreeNode::gbBinaryTreeNode(void) {
     pRight = NULL;
-    pParent = NULL;
     pLeft = NULL;
+    pParent = NULL;
 }
 
 gbBinaryTreeNode::gbBinaryTreeNode(const gbBinaryTreeNode& src) {
@@ -447,8 +447,8 @@ gbBinaryTreeNode::~gbBinaryTreeNode() {
 }
 
 gbBinaryTreeNode& gbBinaryTreeNode::operator=(const gbBinaryTreeNode& other) {
-    pLeft = other.pLeft;
     pParent = other.pParent;
+    pLeft = other.pLeft;
     pRight = other.pRight;
     return *this;
 }

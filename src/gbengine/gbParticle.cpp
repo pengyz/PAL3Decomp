@@ -509,7 +509,23 @@ void gbParticleGroup::LoadFromFile(gbVFile* vfile, gbParticleEffect* effect) {
 }
 
 void gbParticleGroup::Reset(void) {
-    numAliveParticles = 0;
+    int n = maxParticles;
+    int i = 0;
+    field_40 = 0;
+    field_70 = 0;
+    field_44 = 0;
+    field_74 = 0;
+    if (n <= 0) {
+        numAliveParticles = 0;
+    } else {
+        int off = 0;
+        do {
+            i++;
+            *(int*)((char*)particleArray + off) = 0;
+            off += 88;
+        } while (i < maxParticles);
+        numAliveParticles = 0;
+    }
 }
 
 int gbParticleGroup::GetAlivePartNum(void) {
