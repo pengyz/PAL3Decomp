@@ -1374,60 +1374,38 @@ int CIniFile::ReadLine(const char* key, double* value)
 
 void CIniFile::WriteSection(const char* section)
 {
-    if (!m_pFile || !g_pVFileSys || !section)
-        return;
-
-    char line[512];
-    _snprintf(line, sizeof(line), "[%s]\r\n", section);
-    g_pVFileSys->Write(line, (unsigned int)strlen(line), m_pFile);
+    FILE* fp = (FILE*)m_pFile->fp;
+    fprintf(fp, "[%s]\r\n", section);
 }
 
 void CIniFile::WriteLine(const char* key, const char* value)
 {
-    if (!m_pFile || !g_pVFileSys || !key || !value)
-        return;
-
-    char line[512];
-    _snprintf(line, sizeof(line), "%s=%s\r\n", key, value);
-    g_pVFileSys->Write(line, (unsigned int)strlen(line), m_pFile);
+    FILE* fp = (FILE*)m_pFile->fp;
+    fprintf(fp, "%s=%s\r\n", key, value);
 }
 
 void CIniFile::WriteLine(const char* key, int value)
 {
-    if (!m_pFile || !g_pVFileSys || !key)
-        return;
-
-    char line[512];
-    _snprintf(line, sizeof(line), "%s=%d\r\n", key, value);
-    g_pVFileSys->Write(line, (unsigned int)strlen(line), m_pFile);
+    FILE* fp = (FILE*)m_pFile->fp;
+    fprintf(fp, "%s=%d\r\n", key, value);
 }
 
 void CIniFile::WriteLine(const char* key, float value)
 {
-    if (!m_pFile || !g_pVFileSys || !key)
-        return;
-
-    char line[512];
-    _snprintf(line, sizeof(line), "%s=%f\r\n", key, value);
-    g_pVFileSys->Write(line, (unsigned int)strlen(line), m_pFile);
+    FILE* fp = (FILE*)m_pFile->fp;
+    fprintf(fp, "%s=%f\r\n", key, (double)value);
 }
 
 void CIniFile::WriteLine(const char* key, double value)
 {
-    if (!m_pFile || !g_pVFileSys || !key)
-        return;
-
-    char line[512];
-    _snprintf(line, sizeof(line), "%s=%f\r\n", key, value);
-    g_pVFileSys->Write(line, (unsigned int)strlen(line), m_pFile);
+    FILE* fp = (FILE*)m_pFile->fp;
+    fprintf(fp, "%s=%f\r\n", key, value);
 }
 
 void CIniFile::WriteLineSeperator()
 {
-    if (!m_pFile || !g_pVFileSys)
-        return;
-
-    g_pVFileSys->Write((void*)"\r\n", 2, m_pFile);
+    FILE* fp = (FILE*)m_pFile->fp;
+    fprintf(fp, "\r\n");
 }
 
 int CIniFile::IfRead()

@@ -123,25 +123,20 @@ unsigned int gbCrc32Compute(const char* str)
 
 char* gbStrChr(const char* str, const char* chars)
 {
-    char c = *str;
-    if (c == '\0') {
+    if (*str == '\0') {
         return NULL;
     }
 
-    const char* p;
     do {
-        p = chars;
-        char ch = *p;
-        while (ch != '\0') {
-            if (c == ch) {
+        const char* p = chars;
+        while (*p) {
+            if (*str == *p) {
                 return (char*)str;
             }
             p++;
-            ch = *p;
         }
         str++;
-        c = *str;
-    } while (c != '\0');
+    } while (*str);
 
     return NULL;
 }
