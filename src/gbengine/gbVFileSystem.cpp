@@ -604,10 +604,25 @@ int CPK::GetTableIndex(const char* filename)
 
 int CPK::GetTableIndexFromCRC(unsigned long crc)
 {
-    for (unsigned long i = 0; i < m_CPKHeader.dwValidTableNum; i++) {
-        if (m_CPKTable[i].dwCRC == crc) {
-            return (int)i;
-        }
+    int hi = m_CPKHeader.dwValidTableNum;
+    int lo = 0;
+    if (hi != 0) {
+        do {
+            int mid = (hi - lo) / 2 + lo;
+            if (crc == m_CPKTable[mid].dwCRC &&
+                (m_CPKTable[mid].dwFlag & 1) != 0 &&
+                (m_CPKTable[mid].dwFlag & 0x10) == 0) {
+                return mid;
+            }
+            if (hi == lo + 1) {
+                return -1;
+            }
+            if (crc >= m_CPKTable[mid].dwCRC) {
+                lo = mid;
+            } else {
+                hi = mid;
+            }
+        } while (hi != lo);
     }
     return -1;
 }
@@ -1244,28 +1259,30 @@ CIniFile& CIniFile::operator=(const CIniFile& other)
 
 int CIniFile::OpenFileRead(const char* filename)
 {
-    if (!g_pVFileSys || !filename)
-        return 0;
+    char buf[256];
 
     m_pFile = g_pVFileSys->OpenFile(filename, 0x401);
-    if (m_pFile) {
-        m_nState = 0;
-        return 1;
+    if (m_pFile == NULL) {
+        sprintf(buf, "CIniFile::OpenFileRead : Error : %s\n", filename);
+        OutputDebugStringA(buf);
+        return 0;
     }
-    return 0;
+    m_nState = 1;
+    return 1;
 }
 
 int CIniFile::OpenFileWrite(const char* filename)
 {
-    if (!g_pVFileSys || !filename)
-        return 0;
+    char buf[256];
 
     m_pFile = g_pVFileSys->OpenFile(filename, 0x402);
-    if (m_pFile) {
-        m_nState = 1;
-        return 1;
+    if (m_pFile == NULL) {
+        sprintf(buf, "CIniFile::OpenFileWrite : Error : %s\n", filename);
+        OutputDebugStringA(buf);
+        return 0;
     }
-    return 0;
+    m_nState = 0;
+    return 1;
 }
 
 void CIniFile::CloseFile()

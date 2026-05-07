@@ -206,10 +206,24 @@ int gbTexture::GetWidth(void) {
 }
 
 // 0x10020430 (85B) - Get internal D3D format from image
+static int g_texInternalFmtMode = 0;
+
 gbPixelFmtType gbTexture::GetInternalFormat(gbImage2D* img) {
-    if (!img)
-        return GB_PFT_UNKNOWN;
-    return img->PixelFmt.Type;
+    switch (img->BitCount) {
+    case 24:
+        if (g_texInternalFmtMode == 0)
+            return GB_PFT_R8G8B8;
+        if (g_texInternalFmtMode == 1)
+            return GB_PFT_R5G6B5;
+        break;
+    case 32:
+        if (g_texInternalFmtMode == 0)
+            return GB_PFT_A8R8G8B8;
+        if (g_texInternalFmtMode == 1)
+            return GB_PFT_A4R4G4B4;
+        break;
+    }
+    return GB_PFT_UNKNOWN;
 }
 
 // 0x100207d0 (15B) - Get raw bits pointer

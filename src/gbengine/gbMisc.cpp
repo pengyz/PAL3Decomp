@@ -248,80 +248,71 @@ end_of_string:
 
 int gbIsMultiChar(char* str, int pos)
 {
-    if (pos < 0) {
-        return 0;
-    }
-
     int state = 0;
-    for (int i = 0; i <= pos; i++) {
+    int i = 0;
+    if (pos < 0)
+        return 0;
+    do {
         unsigned char c = (unsigned char)str[i];
-
         if (state == 0) {
-            if (c > 0x7F) {
+            if (c > 0x7F)
                 state = 1;
-            }
         } else if (state == 1) {
             state = 2;
         } else if (state == 2) {
-            state = (c > 0x7F) ? 1 : 0;
+            state = (c >= 0x80);
         }
-    }
-
-    return (state != 0) ? 1 : 0;
+        i++;
+    } while (i <= pos);
+    if (state != 0)
+        return 1;
+    return 0;
 }
 
 int gbIsMultiCharHead(char* str, int pos)
 {
-    if (pos < 0) {
-        return 0;
-    }
-
-    unsigned char c = (unsigned char)str[pos];
-    if (c <= 0x7F) {
-        return 0;
-    }
-
-    // Check if previous position analysis shows we're at a lead byte
     int state = 0;
-    for (int i = 0; i < pos; i++) {
-        unsigned char ch = (unsigned char)str[i];
+    int i = 0;
+    if (pos < 0)
+        return 0;
+    do {
+        unsigned char c = (unsigned char)str[i];
         if (state == 0) {
-            if (ch > 0x7F) {
+            if (c > 0x7F)
                 state = 1;
-            }
-        } else {
-            state = 0;
+        } else if (state == 1) {
+            state = 2;
+        } else if (state == 2) {
+            state = (c >= 0x80);
         }
-    }
-
-    return (state == 0) ? 1 : 0;
+        i++;
+    } while (i <= pos);
+    if (state == 1)
+        return 1;
+    return 0;
 }
 
 int gbIsMultiCharTail(char* str, int pos)
 {
-    if (pos < 0) {
-        return 0;
-    }
-
-    unsigned char c = (unsigned char)str[pos];
-    if (c <= 0x7F) {
-        return 0;
-    }
-
-    // Check if previous position analysis shows we're at a trail byte
     int state = 0;
-    for (int i = 0; i < pos; i++) {
-        unsigned char ch = (unsigned char)str[i];
+    int i = 0;
+    if (pos < 0)
+        return 0;
+    do {
+        unsigned char c = (unsigned char)str[i];
         if (state == 0) {
-            if (ch > 0x7F) {
+            if (c > 0x7F)
                 state = 1;
-            }
-        } else {
-            state = 0;
+        } else if (state == 1) {
+            state = 2;
+        } else if (state == 2) {
+            state = (c >= 0x80);
         }
-    }
-
-    return (state == 1) ? 1 : 0;
+        i++;
+    } while (i <= pos);
+    if (state == 2)
+        return 1;
+    return 0;
 }
 
 // ======== Time/Profiling Functions ========
