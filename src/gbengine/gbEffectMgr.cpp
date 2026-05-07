@@ -15,10 +15,7 @@
 extern gbVFileSystem* g_pVFileSys;
 
 gbRenderEffect* gbEffectMgr::GetDefaultEffect(void) {
-    if (m_nNumEffects > 0) {
-        return m_pEffects[0];
-    }
-    return NULL;
+    return m_pDefaultEffect;
 }
 
 gbTexture* gbEffectMgr::GetWhiteTexture(void) {
@@ -32,7 +29,7 @@ gbTexture* gbEffectMgr::GetGrayTexture(void) {
 gbRenderEffect* gbEffectMgr::GetRenderEffect(unsigned int flags) {
     for (int i = 0; i < m_nNumEffects; i++) {
         gbRenderEffect* effect = m_pEffects[i];
-        if (effect->GetFlag() == flags)
+        if (effect->m_dwFlags == flags)
             return effect;
     }
     return NULL;
@@ -41,9 +38,8 @@ gbRenderEffect* gbEffectMgr::GetRenderEffect(unsigned int flags) {
 int gbEffectMgr::OnLostDevice(void) {
     for (int i = 0; i < m_nNumEffects; i++) {
         gbRenderEffect* effect = m_pEffects[i];
-        if (effect) {
-            effect->GetD3DEffect()->OnLostDevice();
-        }
+        if (effect)
+            effect->m_pEffect->OnLostDevice();
     }
     return 1;
 }
@@ -51,23 +47,29 @@ int gbEffectMgr::OnLostDevice(void) {
 int gbEffectMgr::OnResetDevice(void) {
     for (int i = 0; i < m_nNumEffects; i++) {
         gbRenderEffect* effect = m_pEffects[i];
-        if (effect) {
-            effect->GetD3DEffect()->OnResetDevice();
-        }
+        if (effect)
+            effect->m_pEffect->OnResetDevice();
     }
     return 1;
 }
 
 IDirect3DVertexDeclaration9* gbEffectMgr::RegisterVertexFormat(const char* name, gbVertexElement* pElements) {
-    if (!name || !pElements)
+    for (int i = 0; i < m_nNumVertFormats; i++) {
+        if (strcmp(m_vertFormats[i].name, name) == 0) {
+            return m_vertFormats[i].pDecl;
+        }
+    }
+
+    IDirect3DDevice9* pDevice = ((gbGfxManager_D3D*)m_pGfxMgr)->m_pd3dDevice;
+    IDirect3DVertexDeclaration9* pDecl = NULL;
+    HRESULT hr = pDevice->CreateVertexDeclaration((D3DVERTEXELEMENT9*)pElements, &pDecl);
+    if (FAILED(hr))
         return NULL;
 
-    if (m_nNumDecls >= m_nMaxDecls)
-        return NULL;
-
-    m_pVertDecls[m_nNumDecls] = pElements;
-    m_nNumDecls++;
-    return NULL;
+    m_vertFormats[m_nNumVertFormats].pDecl = pDecl;
+    strcpy(m_vertFormats[m_nNumVertFormats].name, name);
+    m_nNumVertFormats++;
+    return pDecl;
 }
 
 gbRenderEffect* gbEffectMgr::NewRenderEffect(const char* filename, unsigned int flags) {

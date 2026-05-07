@@ -46,9 +46,9 @@ class gbIndexBubble : public gbChain1DNode {
 public:
     class gbIndexPool* pPool;      // +0x08
     gbPrimType primType;            // +0x0C
-    int startIndex;                 // +0x10
-    int count;                      // +0x14
-    int bUsed;                      // +0x18
+    int count;                      // +0x10
+    int bUsed;                      // +0x14
+    int startIndex;                 // +0x18
     int field_1C;                   // +0x1C
     int field_20;                   // +0x20
 
@@ -143,9 +143,10 @@ public:
     gbVertexPool(const gbVertexPool& other);
     virtual ~gbVertexPool();
 
-    virtual void* Lock(int start, int count);
     virtual int OnLostDevice();
     virtual int OnResetDevice();
+
+    void* Lock(int start, int count);
 
     gbVertexBubble* NewBubble(int count);
     void DelBubble(gbVertexBubble* bubble);
@@ -354,7 +355,7 @@ struct gbGeomQuad {
     unsigned int color;      // vertex color (4 bytes)
 };
 
-class gbDynVertBuf : public gbChain1DNode {
+class gbDynVertBuf {
 public:
     gbDynVertBuf(unsigned int fvfFlags, int maxVertices);
     gbDynVertBuf(const gbDynVertBuf& other);
@@ -385,15 +386,15 @@ public:
     static gbGfxManager* pGfxMgr;
     static gbRenderEffect* pLineEffect;
 
-    void* m_vertexBuffer;       // +0x08
-    unsigned int m_fvfFlags;    // +0x0C
-    int m_maxVertices;          // +0x10
-    int m_currentVertex;        // +0x14
-    int m_vertexStride;         // +0x18
+    int m_field04;              // +0x04: =1 in constructor
+    int m_vertNum;              // +0x08: vertex count (init to maxVertices)
+    unsigned int m_fvfFlags;    // +0x0C: FVF flags
+    int m_vertexStride;         // +0x10: stride computed from fvfFlags
+    int m_currentVertex;        // +0x14: current write position
+    void* m_vertexBuffer;       // +0x18: vertex buffer pointer
     float* m_pXYZ;              // +0x1C
     float* m_pNormal;           // +0x20
     gbColorQuad* m_pColor1;     // +0x24
     gbColorQuad* m_pColor2;     // +0x28
     float* m_pUV[4];            // +0x2C..+0x38 (UV sets 0-3)
-    int m_vertNum;              // +0x3C
 };

@@ -148,7 +148,6 @@ gbBaseMesh& gbBaseMesh::operator=(const gbBaseMesh& other) {
 
 // Out-of-line accessors
 gbMeshSection* gbBaseMesh::GetMeshSection(int index) {
-    if (index < 0 || index >= m_numSections) return NULL;
     return &m_sections[index];
 }
 
@@ -157,13 +156,17 @@ int gbBaseMesh::GetNumSection() {
 }
 
 int gbBaseMesh::GetNumFaces() {
-    int totalFaces = 0;
-    for (int i = 0; i < m_numSections; i++) {
-        gbIndexBubble* ib = (gbIndexBubble*)m_sections[i].m_pIndexBubble;
-        if (ib)
-            totalFaces += ib->count / 3;
+    int v1 = m_numSections;
+    int v2 = 0;
+    if (v1 > 0) {
+        int* v3 = (int*)((int)m_sections + 144);
+        do {
+            int v4 = *v3;
+            v3 += 47;
+            v2 += *(int*)(v4 + 16) / 3;
+        } while (--v1);
     }
-    return totalFaces;
+    return v2;
 }
 
 unsigned int gbBaseMesh::GetFVF() {
@@ -204,8 +207,7 @@ void gbBaseMesh::ReplaceTexture(const char* textureName) {
 }
 
 void gbBaseMesh::ReplaceTexture(gbTexture* texture) {
-    if (m_sections)
-        m_sections[0].m_textures[0] = texture;
+    m_sections[0].m_textures[0] = texture;
 }
 
 void gbBaseMesh::ComputeShadowVolume() {
@@ -402,32 +404,29 @@ gbVertexBubble* gbStaticMesh::GetVertBubble() {
 // Static members
 gbRenderEffect* gbDynVertBuf::pLineEffect = NULL;
 
+extern int gbComputeFVFStride(unsigned int fvf);
+
 gbDynVertBuf::gbDynVertBuf(unsigned int fvfFlags, int maxVertices) {
+    m_vertNum = maxVertices;
+    m_field04 = 1;
     m_fvfFlags = fvfFlags;
-    m_maxVertices = maxVertices;
+    m_vertexStride = gbComputeFVFStride(fvfFlags);
     m_currentVertex = 0;
     m_vertexBuffer = NULL;
-    m_vertexStride = 0;
-    m_pXYZ = NULL;
-    m_pNormal = NULL;
-    m_pColor1 = NULL;
-    m_pColor2 = NULL;
-    memset(m_pUV, 0, sizeof(m_pUV));
-    m_vertNum = 0;
 }
 
 gbDynVertBuf::gbDynVertBuf(const gbDynVertBuf& other) {
+    m_field04 = other.m_field04;
+    m_vertNum = other.m_vertNum;
     m_fvfFlags = other.m_fvfFlags;
-    m_maxVertices = other.m_maxVertices;
+    m_vertexStride = other.m_vertexStride;
     m_currentVertex = other.m_currentVertex;
     m_vertexBuffer = other.m_vertexBuffer;
-    m_vertexStride = other.m_vertexStride;
     m_pXYZ = other.m_pXYZ;
     m_pNormal = other.m_pNormal;
     m_pColor1 = other.m_pColor1;
     m_pColor2 = other.m_pColor2;
     memcpy(m_pUV, other.m_pUV, sizeof(m_pUV));
-    m_vertNum = other.m_vertNum;
 }
 
 gbDynVertBuf::~gbDynVertBuf() {
@@ -435,17 +434,17 @@ gbDynVertBuf::~gbDynVertBuf() {
 
 gbDynVertBuf& gbDynVertBuf::operator=(const gbDynVertBuf& other) {
     if (this != &other) {
+        m_field04 = other.m_field04;
+        m_vertNum = other.m_vertNum;
         m_fvfFlags = other.m_fvfFlags;
-        m_maxVertices = other.m_maxVertices;
+        m_vertexStride = other.m_vertexStride;
         m_currentVertex = other.m_currentVertex;
         m_vertexBuffer = other.m_vertexBuffer;
-        m_vertexStride = other.m_vertexStride;
         m_pXYZ = other.m_pXYZ;
         m_pNormal = other.m_pNormal;
         m_pColor1 = other.m_pColor1;
         m_pColor2 = other.m_pColor2;
         memcpy(m_pUV, other.m_pUV, sizeof(m_pUV));
-        m_vertNum = other.m_vertNum;
     }
     return *this;
 }
@@ -475,10 +474,23 @@ float* gbDynVertBuf::GetUV(int index) {
 }
 
 void gbDynVertBuf::StepVertexPtr() {
-    m_currentVertex++;
-    if (m_currentVertex >= m_maxVertices) {
-        m_currentVertex = 0;
-    }
+    unsigned int flags = m_fvfFlags;
+    if (flags & 0x01)
+        m_pXYZ = (float*)((char*)m_pXYZ + m_vertexStride);
+    if (flags & 0x02)
+        m_pNormal = (float*)((char*)m_pNormal + m_vertexStride);
+    if (flags & 0x04)
+        m_pColor1 = (gbColorQuad*)((char*)m_pColor1 + m_vertexStride);
+    if (flags & 0x08)
+        m_pColor2 = (gbColorQuad*)((char*)m_pColor2 + m_vertexStride);
+    if (flags & 0x10)
+        m_pUV[0] = (float*)((char*)m_pUV[0] + m_vertexStride);
+    if (flags & 0x20)
+        m_pUV[1] = (float*)((char*)m_pUV[1] + m_vertexStride);
+    if (flags & 0x40)
+        m_pUV[2] = (float*)((char*)m_pUV[2] + m_vertexStride);
+    if (flags & 0x80)
+        m_pUV[3] = (float*)((char*)m_pUV[3] + m_vertexStride);
 }
 
 // gbDynVertBuf methods moved to gbDynVertBuf.cpp

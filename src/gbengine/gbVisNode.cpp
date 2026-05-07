@@ -188,14 +188,10 @@ void gbVisNode::ShowNode(int show) {
 void gbVisNode::SetTimeScale(float scale) {
     timeScale = scale;
 
-    // Recursively apply to children
     gbVisNode* child = (gbVisNode*)children.pHead;
-    children.pIterator = (gbNBTreeNode*)child;
-
-    while (child != NULL) {
+    for (children.pIterator = (gbChain1DNode*)child; child; children.pIterator = (gbChain1DNode*)child) {
         child->SetTimeScale(scale);
         child = (gbVisNode*)children.pIterator->pNext;
-        children.pIterator = (gbNBTreeNode*)child;
     }
 }
 

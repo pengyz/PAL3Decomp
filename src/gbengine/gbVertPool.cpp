@@ -17,10 +17,10 @@ static gbGfxManager* g_gbDynVertBuf_pGfxMgr = NULL;
 // Constructor: 0x10003b50
 gbIndexBubble::gbIndexBubble(gbIndexPool* pool, gbPrimType prim, int start, int cnt, int used) {
     this->pPool = pool;
+    this->count = cnt;
     this->primType = prim;
-    this->startIndex = cnt;
-    this->count = start;
     this->bUsed = used;
+    this->startIndex = start;
     this->field_1C = -1;
     this->field_20 = -1;
 }
@@ -49,8 +49,8 @@ void gbIndexBubble::Set(int start, int cnt, int used) {
 
 // SetRange: 0x10003bb0
 void gbIndexBubble::SetRange(int start, int cnt) {
-    this->startIndex = start;
-    this->count = cnt;
+    this->field_1C = start;
+    this->field_20 = cnt;
 }
 
 // Lock16: 0x10020900
@@ -130,9 +130,9 @@ gbIndexPool::gbIndexPool(gbPoolType type, int indexSz, int total) {
     if (bubble) {
         bubble->pPool = this;
         bubble->primType = (gbPrimType)0;
-        bubble->startIndex = 0;
-        bubble->count = total;
+        bubble->count = 0;
         bubble->bUsed = total;
+        bubble->startIndex = 0;
         bubble->field_1C = -1;
         bubble->field_20 = -1;
     }
@@ -176,31 +176,31 @@ gbIndexBubble* gbIndexPool::NewBubble(gbPrimType prim, int count) {
     }
 
     // If remainder is too small, use entire bubble
-    if (bestSize < 0x10) {
+    if (bestSize < 16) {
         this->freeList.DelNodeFromChain((gbChain1DNode*)bestFit);
-        bestFit->startIndex = count;
+        bestFit->count = count;
         bestFit->primType = prim;
-        this->usedList.AddNode((gbChain1DNode*)bestFit);
+        this->usedList.AddNodeOnTail((gbChain1DNode*)bestFit);
         return bestFit;
     }
 
     // Split the bubble - create new bubble for allocated region
     gbIndexBubble* newBubble = (gbIndexBubble*)operator new(0x24);
     if (newBubble) {
+        newBubble->startIndex = bestFit->startIndex;
         newBubble->pPool = this;
         newBubble->primType = prim;
-        newBubble->startIndex = count;
         newBubble->count = count;
-        newBubble->bUsed = bestFit->bUsed;
+        newBubble->bUsed = count;
         newBubble->field_1C = -1;
         newBubble->field_20 = -1;
     }
 
-    this->usedList.AddNode((gbChain1DNode*)newBubble);
+    this->usedList.AddNodeOnTail((gbChain1DNode*)newBubble);
 
     // Update remaining free bubble
-    bestFit->bUsed += count;
-    bestFit->count -= count;
+    bestFit->startIndex += count;
+    bestFit->bUsed -= count;
 
     return newBubble;
 }
@@ -210,43 +210,35 @@ void gbIndexPool::DelBubble(gbIndexBubble* bubble) {
     // Remove from used list
     this->usedList.DelNodeFromChain((gbChain1DNode*)bubble);
 
-    // Find position in free list (sorted by start index)
+    // Find position in free list (sorted by startIndex)
     gbChain1DNode* prev = NULL;
     gbChain1DNode* curr = this->freeList.pHead;
     this->freeList.pIterator = curr;
 
-    while (curr) {
-        if (bubble->bUsed < ((gbIndexBubble*)curr)->bUsed) {
-            // Insert before curr
-            if (curr) {
-                this->freeList.InsertAfter((gbChain1DNode*)bubble, prev);
-            } else {
-                this->freeList.AddNode((gbChain1DNode*)bubble);
-            }
-            goto merge_bubbles;
+    if (curr) {
+        while (((gbIndexBubble*)curr)->startIndex <= bubble->startIndex) {
+            prev = curr;
+            curr = this->freeList.pIterator->pNext;
+            this->freeList.pIterator = curr;
+            if (!curr)
+                goto insert_at_end;
         }
-
-        prev = curr;
-        curr = this->freeList.pIterator->pNext;
-        this->freeList.pIterator = curr;
+        this->freeList.InsertAfter((gbChain1DNode*)bubble, prev);
+    } else {
+insert_at_end:
+        this->freeList.AddNodeOnTail((gbChain1DNode*)bubble);
     }
 
-    // Add to end of free list
-    this->freeList.AddNode((gbChain1DNode*)bubble);
-
-merge_bubbles:
     // Try to merge with previous bubble
     if (prev) {
         gbIndexBubble* prevBubble = (gbIndexBubble*)prev;
-        if (prevBubble->bUsed + prevBubble->count == bubble->bUsed) {
-            // Merge
-            prevBubble->startIndex = 0;
-            prevBubble->count += bubble->count;
+        if (prevBubble->bUsed + prevBubble->startIndex == bubble->startIndex) {
+            int merged = prevBubble->bUsed + bubble->bUsed;
+            prevBubble->count = 0;
+            prevBubble->bUsed = merged;
             this->freeList.DelNodeFromChain((gbChain1DNode*)bubble);
-            if (bubble) {
-                bubble->~gbIndexBubble();
-                operator delete(bubble);
-            }
+            if (bubble)
+                delete bubble;
             bubble = prevBubble;
         }
     }
@@ -254,16 +246,14 @@ merge_bubbles:
     // Try to merge with next bubble
     if (curr) {
         gbIndexBubble* nextBubble = (gbIndexBubble*)curr;
-        if (bubble->count + bubble->bUsed == nextBubble->bUsed) {
-            // Merge
-            nextBubble->bUsed = bubble->bUsed;
-            nextBubble->startIndex = 0;
-            nextBubble->count += bubble->count;
+        if (bubble->bUsed + bubble->startIndex == nextBubble->startIndex) {
+            int nextSize = nextBubble->bUsed;
+            nextBubble->startIndex = bubble->startIndex;
+            nextBubble->count = 0;
+            nextBubble->bUsed = nextSize + bubble->bUsed;
             this->freeList.DelNodeFromChain((gbChain1DNode*)bubble);
-            if (bubble) {
-                bubble->~gbIndexBubble();
-                operator delete(bubble);
-            }
+            if (bubble)
+                delete bubble;
         }
     }
 }
