@@ -825,9 +825,11 @@ class gbAnimNodeGroup * gbAnimNodeGroup::Clone() {
     return clone;
 }
 
+#pragma optimize("", on)
 int gbAnimNodeGroup::IsDead() {
-    return isDead;
+    return isDead == 0;
 }
+#pragma optimize("", off)
 
 void gbAnimNodeGroup::LoadFromFile(char * p0) {
     isDead = 0;
@@ -876,9 +878,11 @@ void gbAnimNodeGroup::SetSoundFileDir(char * p0) {
     strcpy(s_soundFileDir, p0);
 }
 
+#pragma optimize("", on)
 void gbAnimNodeGroup::SetToDead() {
-    isDead = 1;
+    isDead = 0;
 }
+#pragma optimize("", off)
 
 void gbAnimNodeGroup::ShowGroup(int p0) {
     field_30 = p0;

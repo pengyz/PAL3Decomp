@@ -270,7 +270,7 @@ void* gbIndexPool::GetInternalMemBuf() {
 
 // IsEmpty: 0x10003cd0
 int gbIndexPool::IsEmpty() {
-    return this->usedList.nCount == 0;
+    return usedList[0] == 0;
 }
 
 // operator=: 0x10003d60
@@ -312,8 +312,8 @@ gbVertexBubble::~gbVertexBubble() {
 // Set: 0x10003e40
 void gbVertexBubble::Set(int start, int count, int used) {
     this->startVertex = start;
-    this->countUsed = used;
     this->vertexCount = count;
+    this->countUsed = used;
 }
 
 // Lock: 0x10020c00 (160B)
@@ -378,7 +378,14 @@ void gbVertexBubble::Unlock() {
 
 // ClearPointer: 0x10003dd0
 void gbVertexBubble::ClearPointer() {
-    this->pVertexData = NULL;
+    pVertexData = NULL;
+    field_1C = NULL;
+    field_20 = NULL;
+    field_24 = NULL;
+    field_28 = NULL;
+    field_2C = NULL;
+    field_30 = NULL;
+    field_34 = NULL;
 }
 
 // StepVertexPtr: 0x10020cd0
@@ -642,7 +649,7 @@ unsigned int gbVertexPool::GetVertType() {
 
 // IsEmpty: 0x10003fb0
 int gbVertexPool::IsEmpty() {
-    return this->usedList.nCount == 0;
+    return usedList[0] == 0;
 }
 
 // operator=: 0x10004040
@@ -668,7 +675,7 @@ gbVertPoolMgr::gbVertPoolMgr(gbGfxManager* mgr, int p2, int p3, int p4, int p5) 
     this->indexPoolList.pIterator = NULL;
 
     // Initialize dynamic vert buf area
-    memset(&this->dynVertBufList, 0, 0x10 * 0x20);
+    memset(&this->dynVertBufChains, 0, 0x10 * 0x20);
 
     this->maxVertexPoolSize = p2;
     this->maxIndexPoolSize = p3;
@@ -815,7 +822,7 @@ gbIndexBubble* gbVertPoolMgr::NewIndexBubble(gbPrimType prim, int count) {
 
     // Try existing pools
     gbIndexPool* pool = (gbIndexPool*)this->indexPoolList.pHead;
-    this->pIndexIterator = (gbChain1DNode*)pool;
+    this->indexPoolList.pIterator = (gbChain1DNode*)pool;
 
     while (pool) {
         gbIndexBubble* bubble = pool->NewBubble(prim, count);
@@ -823,8 +830,8 @@ gbIndexBubble* gbVertPoolMgr::NewIndexBubble(gbPrimType prim, int count) {
             return bubble;
         }
 
-        pool = (gbIndexPool*)this->pIndexIterator->pNext;
-        this->pIndexIterator = (gbChain1DNode*)pool;
+        pool = (gbIndexPool*)this->indexPoolList.pIterator->pNext;
+        this->indexPoolList.pIterator = (gbChain1DNode*)pool;
     }
 
     // Need to create new pool

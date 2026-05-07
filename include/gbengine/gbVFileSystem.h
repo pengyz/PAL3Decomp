@@ -189,7 +189,10 @@ public:
 
 class gbVFile1 {
 public:
-    char fullPath[260];     // +0x00: MAX_PATH
+    int field_00;           // +0x00
+    int field_04;           // +0x04
+    int field_08;           // +0x08
+    char fullPath[260];     // +0x0C: MAX_PATH
 
     gbVFile1& operator=(const gbVFile1& other);
     char* GetFullPath();

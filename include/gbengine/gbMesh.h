@@ -71,8 +71,8 @@ class gbVertexBubble : public gbChain1DNode {
 public:
     class gbVertexPool* pPool;      // +0x08
     int startVertex;                // +0x0C
-    int vertexCount;                // +0x10
-    int countUsed;                  // +0x14
+    int countUsed;                  // +0x10
+    int vertexCount;                // +0x14
     void* pVertexData;              // +0x18
     void* field_1C;                 // +0x1C
     void* field_20;                 // +0x20
@@ -161,12 +161,13 @@ public:
 
 class gbVertPoolMgr {
 public:
-    gbVertexPool* vertexPools[32];      // +0x000 to +0x280
-    gbChain1D indexPoolList;             // +0x280
-    gbChain1DNode* pIndexIterator;       // +0x28C
-    gbVertexPool* srcVertPools[32];      // +0x290 to +0x390
-    gbChain1D dynVertBufList;            // +0x390
-    gbDynVertBuf* dynVertBufs[32];       // +0x3A0 to +0x590
+    gbChain1D vertPoolChains[32];        // +0x000 (32*16=512 bytes, ends at +0x200)
+    gbVertexPool* vertexPools[32];       // +0x200 (32*4=128 bytes, ends at +0x280)
+    gbChain1D indexPoolList;             // +0x280 (16 bytes, ends at +0x290)
+    gbVertexPool* srcVertPools[32];      // +0x290 (32*4=128 bytes, ends at +0x310)
+    void* field_310[32];                 // +0x310 (32*4=128 bytes, ends at +0x390)
+    gbChain1D dynVertBufChains[32];      // +0x390 (32*16=512 bytes, ends at +0x590)
+    gbDynVertBuf* dynVertBufs[32];       // +0x590 (32*4=128 bytes, ends at +0x610)
     int maxVertexPoolSize;               // +0x610
     int maxIndexPoolSize;                // +0x614
     int field_618;                       // +0x618

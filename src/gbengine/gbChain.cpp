@@ -40,6 +40,12 @@ gbChain1D::gbChain1D(void) {
 }
 
 gbChain1D::~gbChain1D() {
+    gbChain1DNode* node = pHead;
+    while (node) {
+        gbChain1DNode* next = node->pNext;
+        delete node;
+        node = next;
+    }
 }
 
 gbChain1D& gbChain1D::operator=(const gbChain1D& other) {
@@ -228,6 +234,12 @@ gbChain2D::gbChain2D(void) {
 }
 
 gbChain2D::~gbChain2D() {
+    gbChain2DNode* node = pHead;
+    while (node) {
+        gbChain2DNode* next = node->pNext;
+        delete node;
+        node = next;
+    }
 }
 
 gbChain2D& gbChain2D::operator=(const gbChain2D& other) {
@@ -336,7 +348,7 @@ void gbNBTreeNode::AddChildOnHead(gbNBTreeNode* child) {
 }
 
 void gbNBTreeNode::AddChildOnTail(gbNBTreeNode* child) {
-    children.AddNode((gbChain1DNode*)child);
+    children.AddNodeOnTail((gbChain1DNode*)child);
     child->pParent = this;
 }
 
@@ -389,6 +401,8 @@ gbNBTree::gbNBTree(void) {
 }
 
 gbNBTree::~gbNBTree() {
+    if (pRoot)
+        delete pRoot;
 }
 
 gbNBTree& gbNBTree::operator=(const gbNBTree& other) {

@@ -11,6 +11,10 @@
 #include <stdio.h>
 #include <math.h>
 
+static int g_CurDispWidth;
+static int g_CurDispHeight;
+static int g_CurDispBpp;
+
 // gbRealWorldTime structure definition (0x20 bytes)
 struct gbRealWorldTime {
     unsigned int year;          // +0x00
@@ -172,45 +176,8 @@ gbVisNode* gbLoadLightFile(const char* filename) {
     return root;
 }
 
-// Convert half-width to full-width characters (for CJK text)
-int gbConvertToSBC(unsigned char* src, int srcLen, unsigned char* dst, int dstLen) {
-    if (!src || !dst || srcLen <= 0 || dstLen <= 0) {
-        return 0;
-    }
-
-    int outLen = 0;
-    for (int i = 0; i < srcLen && outLen < dstLen - 1; i++) {
-        unsigned char ch = src[i];
-
-        // Handle multi-byte characters (pass through)
-        if (ch >= 0x80) {
-            if (i + 1 < srcLen && outLen < dstLen - 2) {
-                dst[outLen++] = ch;
-                dst[outLen++] = src[++i];
-            }
-        }
-        // Convert ASCII space to full-width space (0xA1A1 in GB2312)
-        else if (ch == ' ') {
-            if (outLen < dstLen - 2) {
-                dst[outLen++] = 0xA1;
-                dst[outLen++] = 0xA1;
-            }
-        }
-        // Convert ASCII printable to full-width (0xA3 prefix in GB2312)
-        else if (ch >= 0x21 && ch <= 0x7E) {
-            if (outLen < dstLen - 2) {
-                dst[outLen++] = 0xA3;
-                dst[outLen++] = ch + 0x80;
-            }
-        }
-        // Other ASCII characters pass through
-        else {
-            dst[outLen++] = ch;
-        }
-    }
-
-    dst[outLen] = '\0';
-    return outLen;
+int gbConvertToSBC(unsigned char* dst, int dstLen, unsigned char* src, int srcLen) {
+    return MultiByteToWideChar(0, 1, (LPCSTR)src, -1, (LPWSTR)dst, dstLen) - 1;
 }
 
 // Execute external program
@@ -365,20 +332,9 @@ void gbEnableSystemKeys(HINSTANCE hInst, int enable) {
 
 // Get current display mode
 void gbGetCurDispMode(int& width, int& height, int& bpp) {
-    DEVMODEA dm;
-    memset(&dm, 0, sizeof(dm));
-    dm.dmSize = sizeof(dm);
-
-    if (EnumDisplaySettingsA(NULL, ENUM_CURRENT_SETTINGS, &dm)) {
-        width = (int)dm.dmPelsWidth;
-        height = (int)dm.dmPelsHeight;
-        bpp = (int)dm.dmBitsPerPel;
-    } else {
-        // Fallback values
-        width = 800;
-        height = 600;
-        bpp = 32;
-    }
+    width = g_CurDispWidth;
+    height = g_CurDispHeight;
+    bpp = g_CurDispBpp;
 }
 
 // Get real world time

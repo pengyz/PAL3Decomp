@@ -851,6 +851,7 @@ gbNameVarBuf::gbNameVarBuf() {
     locked = 0;
 }
 
+#pragma optimize("", on)
 void gbNameVarBuf::GetVariant(unsigned int p0, void * p1) {
     unsigned int* table = (unsigned int*)varTable;
     for (int i = 0; i < varCount; i++) {
@@ -949,6 +950,7 @@ void gbNameVarBuf::RegVariant(unsigned int p0, int p1, int p2) {
     dataBufUsed += totalDataSize;
 }
 
+#pragma optimize("", on)
 void gbNameVarBuf::SetVariant(unsigned int p0, void * p1) {
     unsigned int* table = (unsigned int*)varTable;
     for (int i = 0; i < varCount; i++) {
@@ -962,10 +964,13 @@ void gbNameVarBuf::SetVariant(unsigned int p0, void * p1) {
         }
     }
 }
+#pragma optimize("", off)
 
+#pragma optimize("", on)
 void gbNameVarBuf::UnlockVariant() {
     locked = 0;
 }
+#pragma optimize("", off)
 
 gbTimeCounter& gbTimeCounter::operator=(const gbTimeCounter& other) {
     if (this != &other) {

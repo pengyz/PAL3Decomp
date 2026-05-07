@@ -448,12 +448,12 @@ int gbVolModNode::Attach(class gbRenderEffect * p0) {
     return 1;
 }
 
+#pragma optimize("", on)
 class gbLightObj * gbVolModNode::GetLightObj() {
     return (gbLightObj*)pVolMod;
 }
 
 void gbVolModNode::Render(struct gbRenderInfoObj * p0) {
-    if (!pVolMod || !p0) return;
 }
 
 // ---- gbVolumeModifier ----
@@ -482,4 +482,5 @@ const gbSphere* gbVolumeModifier::GetBoundSphere(void) {
 }
 
 class gbVolumeModifier & gbVolumeModifier::operator=(class gbVolumeModifier const & p0) { if (this != &p0) memcpy(this, &p0, sizeof(*this)); return *this; }
+#pragma optimize("", off)
 
