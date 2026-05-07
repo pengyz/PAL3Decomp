@@ -534,7 +534,7 @@ int gbParticleGroup::GetAlivePartNum(void) {
 }
 
 char* gbParticleGroup::GetName(void) {
-    return groupName;
+    return (char*)this;
 }
 
 gbPartGroupParam* gbParticleGroup::GetGroupParam(void) {

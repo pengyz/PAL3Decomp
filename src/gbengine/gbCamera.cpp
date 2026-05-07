@@ -474,9 +474,7 @@ gbMatrix4* gbCamera::GetInvViewMatrix(void) {
 
 // 0x10005a00 (14B)
 gbCamControler* gbCamera::GetCurControl(void) {
-    if (CurCtrl >= 0 && CurCtrl < 16)
-        return pControl[CurCtrl];
-    return 0;
+    return pControl[CurCtrl];
 }
 
 // 0x10005a10 (14B)

@@ -549,8 +549,6 @@ unsigned long CPK::DeCompress(void* dst, void* src, unsigned long srcLen)
 
 unsigned long CPK::GetSize(CPKFile* pFile)
 {
-    if (!pFile)
-        return 0;
     return pFile->dwFileSize;
 }
 

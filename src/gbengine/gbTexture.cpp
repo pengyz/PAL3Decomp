@@ -214,9 +214,9 @@ gbPixelFmtType gbTexture::GetInternalFormat(gbImage2D* img) {
 
 // 0x100207d0 (15B) - Get raw bits pointer
 unsigned char* gbTexture::GetBits(void) {
-    if (pTexImage)
-        return (unsigned char*)pTexImage->pBits;
-    return NULL;
+    if (!pTexImage)
+        return NULL;
+    return (unsigned char*)pTexImage->pBits;
 }
 
 // 0x100207e0 (53B) - Get pixel channel value at (x, y)
