@@ -22,18 +22,20 @@
 
 gbMatrix4::gbMatrix4(void)
 {
-    LoadIdentity();
+    memset(this, 0, sizeof(gbMatrix4));
+    m[3][3] = 1.0f;
+    m[2][2] = 1.0f;
+    m[1][1] = 1.0f;
+    m[0][0] = 1.0f;
 }
 
 void gbMatrix4::operator=(const gbMatrix4 &other)
 {
-    float *pSrc = (float *)&other;
     float *pDst = (float *)this;
+    float *pSrc = (float *)&other;
     int i;
     for (i = 16; i != 0; i--) {
-        *pDst = *pSrc;
-        pDst++;
-        pSrc++;
+        *pDst++ = *pSrc++;
     }
 }
 
@@ -141,10 +143,10 @@ void gbMatrix4::Rotate(const gbVec3D *in, gbVec3D *out) const
 void gbMatrix4::LoadIdentity(void)
 {
     memset(this, 0, sizeof(gbMatrix4));
-    m[0][0] = 1.0f;
-    m[1][1] = 1.0f;
-    m[2][2] = 1.0f;
     m[3][3] = 1.0f;
+    m[2][2] = 1.0f;
+    m[1][1] = 1.0f;
+    m[0][0] = 1.0f;
 }
 
 bool gbMatrix4::IsIdentity(void) const

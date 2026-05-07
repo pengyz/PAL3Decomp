@@ -9,6 +9,7 @@
  */
 
 #include "gbengine/gbGfxManager.h"
+#include "gbengine/gbengine_internal.h"
 #include "gbengine/gbRenderEffect.h"
 #include <windows.h>
 #include <d3d9.h>
@@ -35,6 +36,10 @@ class gbGeomNode;
 class gbRefObject;
 
 struct gbVertexElement;
+
+// External declarations
+extern "C" double gbUpdateCurTime(void);
+extern unsigned int g_CurrentTick;
 
 // Global definition
 gbGfxManager* g_pGfxManager = NULL;
@@ -83,14 +88,37 @@ gbGfxManager::gbGfxManager(int& result, gbGfxDriverInfo* driverInfo) {
 }
 
 gbGfxManager::~gbGfxManager() {
+    g_pGfxManager = NULL;
 }
 
 // 0x1001db10 (222B) - Begin a rendering scene
 int gbGfxManager::BeginScene(void) {
-    if (m_nState)
-        return 0;
+    LastTime = CurTime;
+    LastTick = CurTick;
 
-    m_nState = 1;
+    double updated = gbUpdateCurTime();
+    CurTime = updated;
+    double delta = updated - LastTime;
+    CurTick = g_CurrentTick;
+
+    unsigned int frame = Stat.Frame + 1;
+    Stat.nRFaces = 0;
+    Stat.Frame = frame;
+    double accum = delta + Stat.TimeAccum;
+    Stat.nRVerts = 0;
+    Stat.nTexSwitch = 0;
+    if (accum >= 1.0) {
+        __int64 frameDiff = (unsigned int)(frame - Stat.PrevFrame);
+        Stat.TimeAccum = 0.0;
+        Stat.PrevFrame = frame;
+        Stat.FPS = (float)((double)frameDiff / accum);
+    } else {
+        Stat.TimeAccum = accum;
+    }
+
+    gbRenderEffect* pEffect = *(gbRenderEffect**)((char*)pEffectMgr + 0x18);
+    pEffect->Apply();
+    *(int*)((char*)pEffectMgr + 0x824) = 0;
     return 1;
 }
 
@@ -171,19 +199,21 @@ gbColorFlt gbGfxManager::GetAmbientLight(void) {
 
 // 0x10004f90 (35B) - Set ambient light color
 void gbGfxManager::SetAmbientLight(const gbColorFlt& color) {
-    AmbientLight = color;
+    memcpy(&AmbientLight, &color, sizeof(gbColorFlt));
 }
 
 // 0x1001dac0 (34B) - Get delta time since last frame
 double gbGfxManager::GetDeltaTime(void) {
     double dt = CurTime - LastTime;
-    if (dt > 0.5) dt = 0.5;
+    if (dt >= 0.5) dt = 0.5;
     return dt;
 }
 
 // 0x1001daf0 (27B) - Get delta tick since last frame
 unsigned int gbGfxManager::GetDeltaTick(void) {
-    return CurTick - LastTick;
+    unsigned int dt = CurTick - LastTick;
+    if (dt > 500) dt = 100;
+    return dt;
 }
 
 // 0x10004ea0 (13B) - Set scene graph
@@ -193,8 +223,6 @@ void gbGfxManager::SetSceneGraph(gbSceneGraph* sg) {
 
 // 0x10004ed0 (14B) - Get matrix stack by index
 gbMatrixStack* gbGfxManager::GetMatrixStack(int index) {
-    if (index < 0 || index >= 4)
-        return NULL;
     return pMatrixStack[index];
 }
 
@@ -213,19 +241,30 @@ int gbGfxManager::IsLightEnable(int index) const {
     return LightEnable[index];
 }
 
-// 0x1001df40 (37B) - Get a combined transform matrix
+// 0x1001df40 (265B) - Get a combined transform matrix
 void gbGfxManager::GetTMMatrix(int type, gbMatrix4* out) {
-    if (!out)
-        return;
+    gbMatrix4 tmp;
     switch (type) {
-    case GB_TM_WORLD:
-        memcpy(out, &WorldMatrix, sizeof(gbMatrix4));
+    case 0:
+        memcpy(out, pMatrixStack[1]->GetTop(), sizeof(gbMatrix4));
         break;
-    case GB_TM_VIEW:
-        memcpy(out, &ViewMatrix, sizeof(gbMatrix4));
+    case 1:
+        memcpy(out, pMatrixStack[0]->GetTop(), sizeof(gbMatrix4));
         break;
-    case GB_TM_PROJECTION:
-        memcpy(out, &InvViewMatrix, sizeof(gbMatrix4));
+    case 2:
+        memcpy(out, pMatrixStack[1]->GetTop(), sizeof(gbMatrix4));
+        out->RightMultiply(*pMatrixStack[0]->GetTop());
+        break;
+    case 3:
+        pMatrixStack[0]->GetTop()->Invert(out);
+        break;
+    case 4:
+        pMatrixStack[1]->GetTop()->Invert(out);
+        break;
+    case 5:
+        pMatrixStack[0]->GetTop()->Invert(out);
+        pMatrixStack[1]->GetTop()->Invert(&tmp);
+        out->RightMultiply(tmp);
         break;
     }
 }
@@ -256,6 +295,7 @@ gbBaseMesh* gbGfxManager::NewMesh(const char* name, gbMeshType type) {
 void gbGfxManager::OffsetZBuffer(int enable) {
     if (enable != CurZBias) {
         CurZBias = enable;
+        *(int*)((char*)pMatrixStack[0] + 0xC) = 0;
     }
 }
 
@@ -273,8 +313,11 @@ void gbGfxManager::SetFog(gbFogParam* pFogParam) {
     memcpy(&FogParam, pFogParam, sizeof(gbFogParam));
 }
 
-// 0x1001e330 (55B) - Get world matrix (const reference)
+// 0x1001e330 (55B) - Get world matrix (computes from matrix stack)
 const gbMatrix4& gbGfxManager::GetWorldMatrix(void) {
+    gbMatrix4* top = pMatrixStack[1]->GetTop();
+    memcpy(&WorldMatrix, top, sizeof(gbMatrix4));
+    WorldMatrix.RightMultiply(InvViewMatrix);
     return WorldMatrix;
 }
 
@@ -283,26 +326,20 @@ const gbMatrix4& gbGfxManager::GetViewMatrix(void) {
     return ViewMatrix;
 }
 
-// 0x1001e380 (19B) - Reset world matrix to identity
+// 0x1001e380 (19B) - Load view matrix into world matrix stack
 void gbGfxManager::IdentityWorldMatrix(void) {
-    memset(&WorldMatrix, 0, sizeof(gbMatrix4));
-    WorldMatrix.m[0][0] = 1.0f;
-    WorldMatrix.m[1][1] = 1.0f;
-    WorldMatrix.m[2][2] = 1.0f;
-    WorldMatrix.m[3][3] = 1.0f;
+    pMatrixStack[1]->LoadMatrix(&ViewMatrix);
 }
 
 // 0x1001e3a0 (43B) - Set view and projection matrices from camera
 void gbGfxManager::SetCameraMatrix(const gbMatrix4& view, const gbMatrix4& proj) {
-    memcpy(&ViewMatrix, &view, sizeof(gbMatrix4));
-    memcpy(&InvViewMatrix, &proj, sizeof(gbMatrix4));
+    memcpy(&InvViewMatrix, &view, sizeof(gbMatrix4));
+    memcpy(&ViewMatrix, &proj, sizeof(gbMatrix4));
 }
 
-// Exported: GetGfxCaps
+// Exported: GetGfxCaps - base class stub, always returns 0
 int gbGfxManager::GetGfxCaps(gbGfxCaps* caps) {
-    if (!caps) return 0;
-    memset(caps, 0, sizeof(gbGfxCaps));
-    return 1;
+    return 0;
 }
 
 // Exported: GetCurTick

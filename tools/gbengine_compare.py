@@ -307,6 +307,8 @@ def compile_file(src_path, obj_path):
         '/Ob2',      # auto-inline any suitable function
         '/GF',       # string pooling
         '/Gy',       # function-level linking
+        '/Zp4',      # 4-byte struct member alignment (matches original)
+        '/GX',       # enable C++ exception handling (SEH frames for new)
         f'/Fo{obj_path}',
         str(src_path),
     ]

@@ -8,7 +8,7 @@
 #include "gbengine/gbengine_types.h"
 #include <math.h>
 
-#define GB_FLOAT_EPSILON 0.005
+#define GB_FLOAT_EPSILON 0.005f
 
 gbVec3D::gbVec3D()
 {
@@ -33,16 +33,16 @@ bool gbVec3D::IsValid(void) const
 
 void gbVec3D::Normalize(void)
 {
-    double len = sqrt(x * x + y * y + z * z);
-    if (fabs(len) < GB_FLOAT_EPSILON) {
+    float len = (float)sqrt(x * x + y * y + z * z);
+    if ((float)fabs(len) < GB_FLOAT_EPSILON) {
         z = 0.0f;
         x = 0.0f;
         y = 1.0f;
         return;
     }
-    x = (float)(x / len);
-    y = (float)(y / len);
-    z = (float)(z / len);
+    x = x / len;
+    y = y / len;
+    z = z / len;
 }
 
 gbVec3D::gbVec3D(float _x, float _y, float _z)
@@ -89,18 +89,15 @@ void gbVec3D::operator/=(float s)
 
 bool gbVec3D::operator==(const gbVec3D &other)
 {
-    return fabs(x - other.x) < GB_FLOAT_EPSILON
-        && fabs(y - other.y) < GB_FLOAT_EPSILON
-        && fabs(z - other.z) < GB_FLOAT_EPSILON;
+    return (float)fabs(x - other.x) < GB_FLOAT_EPSILON
+        && (float)fabs(y - other.y) < GB_FLOAT_EPSILON
+        && (float)fabs(z - other.z) < GB_FLOAT_EPSILON;
 }
 
 gbVec3D gbVec3D::operator-(void) const
 {
-    gbVec3D result;
-    result.x = -x;
-    result.y = -y;
-    result.z = -z;
-    return result;
+    gbVec3D r(-x, -y, -z);
+    return r;
 }
 
 float gbVec3D::LengthSquare(void) const
@@ -116,7 +113,7 @@ float gbVec3D::DotProduct(const gbVec3D *other) const
 int gbVec3D::IsNormal(void)
 {
     float lenSq = x * x + y * y + z * z;
-    return fabs(lenSq - 1.0f) < GB_FLOAT_EPSILON;
+    return (float)fabs(lenSq - 1.0f) < GB_FLOAT_EPSILON;
 }
 
 void gbVec3D::Inverse(void)
