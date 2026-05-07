@@ -92,15 +92,14 @@ void gbIndexBubble::Unlock() {
 
 // operator=: 0x10003c20
 gbIndexBubble& gbIndexBubble::operator=(const gbIndexBubble& other) {
-    if (this != &other) {
-        this->pPool = other.pPool;
-        this->primType = other.primType;
-        this->startIndex = other.startIndex;
-        this->count = other.count;
-        this->bUsed = other.bUsed;
-        this->field_1C = other.field_1C;
-        this->field_20 = other.field_20;
-    }
+    pNext = other.pNext;
+    pPool = other.pPool;
+    primType = other.primType;
+    count = other.count;
+    bUsed = other.bUsed;
+    startIndex = other.startIndex;
+    field_1C = other.field_1C;
+    field_20 = other.field_20;
     return *this;
 }
 
@@ -277,9 +276,19 @@ int gbIndexPool::IsEmpty() {
 
 // operator=: 0x10003d60
 gbIndexPool& gbIndexPool::operator=(const gbIndexPool& other) {
-    if (this != &other) {
-        memcpy(this, &other, sizeof(gbIndexPool));
-    }
+    pNext = other.pNext;
+    poolType = other.poolType;
+    indexSize = other.indexSize;
+    pBuffer = other.pBuffer;
+    totalSize = other.totalSize;
+    freeList.pHead = other.freeList.pHead;
+    freeList.pTail = other.freeList.pTail;
+    freeList.nCount = other.freeList.nCount;
+    freeList.pIterator = other.freeList.pIterator;
+    usedList.pHead = other.usedList.pHead;
+    usedList.pTail = other.usedList.pTail;
+    usedList.nCount = other.usedList.nCount;
+    usedList.pIterator = other.usedList.pIterator;
     return *this;
 }
 
@@ -406,9 +415,19 @@ void gbVertexBubble::StepVertexPtr() {
 
 // operator=: 0x10003ed0
 gbVertexBubble& gbVertexBubble::operator=(const gbVertexBubble& other) {
-    if (this != &other) {
-        memcpy(this, &other, sizeof(gbVertexBubble));
-    }
+    pNext = other.pNext;
+    pPool = other.pPool;
+    startVertex = other.startVertex;
+    countUsed = other.countUsed;
+    vertexCount = other.vertexCount;
+    pVertexData = other.pVertexData;
+    field_1C = other.field_1C;
+    field_20 = other.field_20;
+    field_24 = other.field_24;
+    field_28 = other.field_28;
+    field_2C = other.field_2C;
+    field_30 = other.field_30;
+    field_34 = other.field_34;
     return *this;
 }
 
@@ -656,9 +675,20 @@ int gbVertexPool::IsEmpty() {
 
 // operator=: 0x10004040
 gbVertexPool& gbVertexPool::operator=(const gbVertexPool& other) {
-    if (this != &other) {
-        memcpy(this, &other, sizeof(gbVertexPool));
-    }
+    pNext = other.pNext;
+    poolType = other.poolType;
+    pBuffer = other.pBuffer;
+    totalSize = other.totalSize;
+    fvf = other.fvf;
+    stride = other.stride;
+    freeList.pHead = other.freeList.pHead;
+    freeList.pTail = other.freeList.pTail;
+    freeList.nCount = other.freeList.nCount;
+    freeList.pIterator = other.freeList.pIterator;
+    usedList.pHead = other.usedList.pHead;
+    usedList.pTail = other.usedList.pTail;
+    usedList.nCount = other.usedList.nCount;
+    usedList.pIterator = other.usedList.pIterator;
     return *this;
 }
 
@@ -873,8 +903,6 @@ gbDynVertBuf* gbVertPoolMgr::GetDynVertBuf(unsigned int fvf) {
 
 // operator=: 0x100040b0
 gbVertPoolMgr& gbVertPoolMgr::operator=(const gbVertPoolMgr& other) {
-    if (this != &other) {
-        memcpy(this, &other, sizeof(gbVertPoolMgr));
-    }
+    memcpy(this, &other, sizeof(gbVertPoolMgr));
     return *this;
 }

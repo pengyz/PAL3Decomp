@@ -645,7 +645,7 @@ bool CPK::IsDir(unsigned long crc)
     }
     idx = -1;
 found:
-    return (bool)((m_CPKTable[idx].dwFlag >> 1) & 1);
+    return (m_CPKTable[idx].dwFlag >> 1) & 1;
 }
 
 

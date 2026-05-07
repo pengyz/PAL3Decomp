@@ -55,9 +55,7 @@ void gbRefObject::Release() {
 
 // operator= - 0x10003980
 gbRefObject& gbRefObject::operator=(const gbRefObject& other) {
-    if (this != &other) {
-        refCount = other.refCount;
-    }
+    refCount = other.refCount;
     return *this;
 }
 
@@ -155,13 +153,11 @@ unsigned int gbResource::GetNameCrc32() {
 
 // operator= - 0x100018a0
 gbResource& gbResource::operator=(const gbResource& other) {
-    if (this != &other) {
-        gbRefObject::operator=(other);
-        name = other.name;
-        nameCrc = other.nameCrc;
-        isLoaded = other.isLoaded;
-        manager = other.manager;
-    }
+    gbRefObject::operator=(other);
+    name = other.name;
+    nameCrc = other.nameCrc;
+    isLoaded = other.isLoaded;
+    manager = other.manager;
     return *this;
 }
 
@@ -300,10 +296,8 @@ void gbResManager::CleanAllResource() {
 
 // operator= - 0x100019b0
 gbResManager& gbResManager::operator=(const gbResManager& other) {
-    if (this != &other) {
-        array = other.array;
-        capacity = other.capacity;
-        count = other.count;
-    }
+    array = other.array;
+    capacity = other.capacity;
+    count = other.count;
     return *this;
 }
