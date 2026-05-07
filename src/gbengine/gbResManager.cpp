@@ -10,6 +10,25 @@
 // External functions
 extern unsigned int gbCrc32Compute(const char* str);
 
+// gbResManager definition (forward declared in gbTexture.h)
+class gbResManager {
+public:
+    gbResource** array;  // +0x00
+    int capacity;        // +0x04
+    int count;           // +0x08
+
+    gbResManager();
+    gbResManager(const gbResManager& other);
+    ~gbResManager();
+
+    void AddResource(gbResource* res);
+    void DelResource(gbResource* res);
+    gbResource* FindResByName(const char* name);
+    void CleanAllResource();
+
+    gbResManager& operator=(const gbResManager& other);
+};
+
 /* ======== gbRefObject ======== */
 
 // Constructor - 0x100015e0
@@ -85,21 +104,21 @@ gbResource::gbResource(const gbResource& other) : gbRefObject(other) {
 gbResource::~gbResource() {
     // Remove from manager if attached
     if (manager != NULL) {
-        int count = *((int*)manager + 2); // manager->count at +8
-        for (int i = 0; i < count; i++) {
-            gbResource** array = *(gbResource***)manager;
-            if (array[i] == this) {
+        gbResManager* mgr = manager;
+        int cnt = mgr->count;
+        for (int i = 0; i < cnt; i++) {
+            if (mgr->array[i] == this) {
                 // Remove this resource
                 manager = NULL;
-                count--;
+                cnt--;
 
                 // Shift last element to fill gap
-                if (i < count) {
-                    array[i] = array[count];
+                if (i < cnt) {
+                    mgr->array[i] = mgr->array[cnt];
                 }
 
                 // Update count
-                *((int*)manager + 2) = count;
+                mgr->count = cnt;
                 break;
             }
         }
@@ -166,24 +185,6 @@ gbResource& gbResource::operator=(const gbResource& other) {
 
 
 /* ======== gbResManager ======== */
-
-class gbResManager {
-public:
-    gbResource** array;  // +0x00
-    int capacity;        // +0x04
-    int count;           // +0x08
-
-    gbResManager();
-    gbResManager(const gbResManager& other);
-    ~gbResManager();
-
-    void AddResource(gbResource* res);
-    void DelResource(gbResource* res);
-    gbResource* FindResByName(const char* name);
-    void CleanAllResource();
-
-    gbResManager& operator=(const gbResManager& other);
-};
 
 // Constructor - 0x10020190
 gbResManager::gbResManager() {

@@ -71,6 +71,13 @@ gbGeomNode::~gbGeomNode(void) {
     }
 }
 
+// Attach point data (48 bytes per entry in pAttachPointArray)
+struct gbAttachPointData {
+    char _pad[32];          // +0x00
+    gbVec3D position;       // +0x20 (offset 32)
+    int colorIndex;         // +0x2C (offset 44)
+};
+
 /* ======== File Loading ======== */
 
 #include "gbengine/gbVFileSystem.h"
@@ -150,27 +157,26 @@ int gbGeomNode::LoadFromFile(const char* filename, const char* texPath, void (__
     if (version > 100) {
         g_pVFileSys->Read(&numAttachPoints, 4u, file);
         if (numAttachPoints) {
-            char* attachData = (char*)operator new(48 * numAttachPoints);
+            gbAttachPointData* attachData = (gbAttachPointData*)operator new(sizeof(gbAttachPointData) * numAttachPoints);
             if (attachData) {
                 for (int i = numAttachPoints - 1; i >= 0; i--) {
-                    int* entry = (int*)(attachData + i * 48 + 32);
-                    entry[0] = 0;
-                    entry[1] = 0;
-                    entry[2] = 0;
+                    attachData[i].position.x = 0.0f;
+                    attachData[i].position.y = 0.0f;
+                    attachData[i].position.z = 0.0f;
                 }
             }
             pAttachPointArray = attachData;
 
             for (int i = 0; i < numAttachPoints; i++) {
-                char* entry = (char*)pAttachPointArray + i * 48;
+                gbAttachPointData* ap = &((gbAttachPointData*)pAttachPointArray)[i];
                 gbMatrix4 mat;
-                g_pVFileSys->Read(entry, 0x20u, file);
+                g_pVFileSys->Read(ap->_pad, 0x20u, file);
                 g_pVFileSys->Read(&mat, 0x40u, file);
                 int dummy;
                 g_pVFileSys->Read(&dummy, 4u, file);
                 gbVec3D origin;
                 origin.x = 0.0f; origin.y = 0.0f; origin.z = 0.0f;
-                mat.Transform(&origin, (gbVec3D*)(entry + 32));
+                mat.Transform(&origin, &ap->position);
                 int nameLen;
                 g_pVFileSys->Read(&nameLen, 4u, file);
                 if (nameLen) {
@@ -179,9 +185,9 @@ int gbGeomNode::LoadFromFile(const char* filename, const char* texPath, void (__
                     nameBuf[nameLen] = 0;
                     int r, g, b;
                     sscanf(nameBuf, "%d%d%d", &r, &g, &b);
-                    ((int*)(entry + 32))[3] = b | ((g | ((r | 0xFFFFFF00) << 8)) << 8);
+                    ap->colorIndex = b | ((g | ((r | 0xFFFFFF00) << 8)) << 8);
                 } else {
-                    ((int*)(entry + 32))[3] = -1;
+                    ap->colorIndex = -1;
                 }
             }
         } else {
@@ -251,10 +257,11 @@ int gbGeomNode::LoadCVDFile(const char* filename) {
     strcat(aniPath, ".ani");
 
     if (g_pVFileSys->FileExistNum(aniPath)) {
-        // Load animation controller
+        // Load animation controller (0x88 bytes allocation)
+        // Clear posMatrix rows 1-2 partial (offset 0x50 in struct, 6 ints)
         animController = (gbAnimNodeGroup*)operator new(0x88u);
         if (animController) {
-            memset((char*)animController + 80, 0, 6 * sizeof(int));
+            memset(&animController->posMatrix.m[1][3], 0, 6 * sizeof(int));
         }
         // sub_1000E760(aniPath) - load animation
     } else {
@@ -319,7 +326,7 @@ void gbGeomNode::LoadCVDFromStream(gbVFile* file, float scale) {
 
     // Create mesh
     char nameBuf[300];
-    sprintf(nameBuf, "%s+%d", (char*)file + 12, s_cvdMeshCounter);
+    sprintf(nameBuf, "%s+%d", file->fullPath, s_cvdMeshCounter);
     mesh = (gbStaticMesh*)gbVisNode::pGfxMgr->NewMesh(nameBuf, (gbMeshType)1);
     ++s_cvdMeshCounter;
 
@@ -377,7 +384,7 @@ void gbGeomNode::Update(void) {
 
     // Copy parent's world transform or load identity
     if (pParent)
-        memcpy(&worldTransform, (char*)pParent + 88, 0x40u);
+        memcpy(&worldTransform, &((gbGeomNode*)pParent)->worldTransform, sizeof(gbMatrix4));
     else
         worldTransform.LoadIdentity();
 
@@ -435,13 +442,6 @@ static void __cdecl gbBladeSystem_Submit(gbBladeAttachPoint* transforms, int cou
     /* STUB - delegates to sub_1000ED80 (blade trail subsystem) */
 }
 
-// Attach point data (48 bytes per entry in pAttachPointArray)
-struct gbAttachPointData {
-    char _pad[32];          // +0x00
-    gbVec3D position;       // +0x20 (offset 32)
-    int colorIndex;         // +0x2C (offset 44)
-};
-
 void gbGeomNode::AttachSelf(gbRenderEffect* effect) {
     if (!mesh)
         return;
@@ -454,7 +454,7 @@ void gbGeomNode::AttachSelf(gbRenderEffect* effect) {
     gbMatrix4 localMatrix;
     localMatrix.LoadIdentity();
 
-    gbMatrixStack* matStack = (gbMatrixStack*)*(((DWORD*)gbVisNode::pGfxMgr) + 54);
+    gbMatrixStack* matStack = gbVisNode::pGfxMgr->pMatrixStack[1];
     matStack->Push();
     matStack->MultMatrix(&worldTransform);
 
@@ -519,7 +519,7 @@ void gbGeomNode::AttachSelf(gbRenderEffect* effect) {
                     flags |= 8u;
             }
 
-            int gfxMode = ((int*)gbVisNode::pGfxMgr)[358];
+            int gfxMode = gbVisNode::pGfxMgr->FogParam.enable;
             if (gfxMode == 2) {
                 flags |= 0x20u;
             } else if (gfxMode == 1) {
@@ -580,15 +580,15 @@ void gbGeomNode::Render(gbRenderInfoObj* renderInfo) {
                 localTime = 0.0f;
             mesh->SetCurTime(localTime);
 
-            gbMatrixStack* matStack = (gbMatrixStack*)*(((DWORD*)gbVisNode::pGfxMgr) + 54);
+            gbMatrixStack* matStack = gbVisNode::pGfxMgr->pMatrixStack[1];
             matStack->Push();
-            matStack->LoadMatrix((gbMatrix4*)((char*)renderInfo + 32));
+            matStack->LoadMatrix(&renderInfo->worldMatrix);
 
             // vtable[1] = DrawSubSet(int sectionIndex, gbRenderInfoObj*)
             typedef void (__thiscall *DrawSubSetFn)(void*, int, gbRenderInfoObj*);
             void** vtbl = *(void***)mesh;
             DrawSubSetFn fn = (DrawSubSetFn)vtbl[1];
-            fn(mesh, ((int*)renderInfo)[2], renderInfo);
+            fn(mesh, renderInfo->sectionIndex, renderInfo);
 
             matStack->Pop();
         }
@@ -609,9 +609,9 @@ void gbGeomNode::RenderShadowVolume(gbRenderInfoObj* renderInfo) {
                 localTime = 0.0f;
             mesh->SetCurTime(localTime);
 
-            gbMatrixStack* matStack = (gbMatrixStack*)*(((DWORD*)gbVisNode::pGfxMgr) + 54);
+            gbMatrixStack* matStack = gbVisNode::pGfxMgr->pMatrixStack[1];
             matStack->Push();
-            matStack->LoadMatrix((gbMatrix4*)((char*)renderInfo + 32));
+            matStack->LoadMatrix(&renderInfo->worldMatrix);
 
             // vtable[3] = RenderShadowVolume(gbVisNode*, gbRenderInfoObj*)
             typedef void (__thiscall *RenderShadowFn)(void*, gbGeomNode*, gbRenderInfoObj*);
@@ -647,14 +647,13 @@ void gbGeomNode::Reset(float time) {
 
 void gbGeomNode::GetBoundSphere(gbSphere* sphere) {
     if (mesh) {
-        float* m = (float*)mesh;
-        // mesh AABB: vMin at mesh+22*4=+0x58, vMax at mesh+25*4=+0x64
-        float cx = (m[22] + m[25]) * 0.5f;
-        float cy = (m[23] + m[26]) * 0.5f;
-        float cz = (m[24] + m[27]) * 0.5f;
-        float dx = m[25] - m[22];
-        float dy = m[26] - m[23];
-        float dz = m[27] - m[24];
+        gbAABBox* aabb = &mesh->m_aabb;
+        float cx = (aabb->vMin.x + aabb->vMax.x) * 0.5f;
+        float cy = (aabb->vMin.y + aabb->vMax.y) * 0.5f;
+        float cz = (aabb->vMin.z + aabb->vMax.z) * 0.5f;
+        float dx = aabb->vMax.x - aabb->vMin.x;
+        float dy = aabb->vMax.y - aabb->vMin.y;
+        float dz = aabb->vMax.z - aabb->vMin.z;
 
         gbVec3D diag;
         diag.x = dx;
@@ -698,9 +697,7 @@ void gbGeomNode::EnableShadow(int enable) {
 int gbGeomNode::GetAABBox(gbAABBox* box) {
     if (!mesh) return 0;
 
-    // mesh AABB at mesh+88 = mesh+0x58 (same offset as worldTransform in node)
-    // Actually mesh stores AABB at float offsets [22..27]
-    memcpy(box, (char*)mesh + 88, 0x18u);
+    memcpy(box, &mesh->m_aabb, sizeof(gbAABBox));
     return 1;
 }
 
@@ -749,18 +746,18 @@ void gbGeomNode::ReplaceTexture(gbTexture* texture) {
 gbOBBox* gbGeomNode::GetOBBox(gbOBBox* box) {
     memcpy(box, &worldTransform, sizeof(gbMatrix4));
 
-    float* m = (float*)mesh;
     if (mesh) {
+        gbAABBox* aabb = &mesh->m_aabb;
         // extent = vMax - vMin
-        box->extent.x = m[25] - m[22];
-        box->extent.y = m[26] - m[23];
-        box->extent.z = m[27] - m[24];
+        box->extent.x = aabb->vMax.x - aabb->vMin.x;
+        box->extent.y = aabb->vMax.y - aabb->vMin.y;
+        box->extent.z = aabb->vMax.z - aabb->vMin.z;
 
         // center = (vMin + vMax) * 0.5
         gbVec3D center;
-        center.x = (m[22] + m[25]) * 0.5f;
-        center.y = (m[23] + m[26]) * 0.5f;
-        center.z = (m[24] + m[27]) * 0.5f;
+        center.x = (aabb->vMin.x + aabb->vMax.x) * 0.5f;
+        center.y = (aabb->vMin.y + aabb->vMax.y) * 0.5f;
+        center.z = (aabb->vMin.z + aabb->vMax.z) * 0.5f;
         box->matrix.LeftTranslate(center);
     } else {
         box->extent.x = 0.0f;
@@ -772,17 +769,17 @@ gbOBBox* gbGeomNode::GetOBBox(gbOBBox* box) {
 
 static int s_totalOBBoxNodes[256];
 
-static void CollectMeshNodes(int* nodeArray, int* count, int node) {
-    if (*(int*)(node + 264) != 0) {
-        nodeArray[*count] = node;
+static void CollectMeshNodes(int* nodeArray, int* count, gbGeomNode* node) {
+    if (node->mesh != NULL) {
+        nodeArray[*count] = (int)node;
         (*count)++;
     }
-    int child = *(int*)(node + 0x0C);
-    *(int*)(node + 0x18) = child;
-    while (child != 0) {
-        CollectMeshNodes(nodeArray, count, child);
-        child = *(int*)(*(int*)(node + 0x18) + 4);
-        *(int*)(node + 0x18) = child;
+    gbChain1DNode* child = node->children.pHead;
+    node->children.pIterator = child;
+    while (child != NULL) {
+        CollectMeshNodes(nodeArray, count, (gbGeomNode*)child);
+        child = node->children.pIterator->pNext;
+        node->children.pIterator = child;
     }
 }
 
@@ -797,22 +794,22 @@ gbOBBox* gbGeomNode::GetTotalOBBox(gbOBBox* box) {
     gbGeomNode* child = (gbGeomNode*)children.pHead;
     children.pIterator = (gbChain1DNode*)child;
     while (child != NULL) {
-        CollectMeshNodes(s_totalOBBoxNodes, &nodeCount, (int)child);
+        CollectMeshNodes(s_totalOBBoxNodes, &nodeCount, child);
         child = (gbGeomNode*)((gbChain1DNode*)children.pIterator)->pNext;
         children.pIterator = (gbChain1DNode*)child;
     }
 
     if (nodeCount == 0) {
         memcpy(box, &worldTransform, sizeof(gbMatrix4));
-        float* m = (float*)mesh;
         if (mesh) {
-            box->extent.x = m[25] - m[22];
-            box->extent.y = m[26] - m[23];
-            box->extent.z = m[27] - m[24];
+            gbAABBox* aabb = &mesh->m_aabb;
+            box->extent.x = aabb->vMax.x - aabb->vMin.x;
+            box->extent.y = aabb->vMax.y - aabb->vMin.y;
+            box->extent.z = aabb->vMax.z - aabb->vMin.z;
             gbVec3D center;
-            center.x = (m[22] + m[25]) * 0.5f;
-            center.y = (m[23] + m[26]) * 0.5f;
-            center.z = (m[24] + m[27]) * 0.5f;
+            center.x = (aabb->vMin.x + aabb->vMax.x) * 0.5f;
+            center.y = (aabb->vMin.y + aabb->vMax.y) * 0.5f;
+            center.z = (aabb->vMin.z + aabb->vMax.z) * 0.5f;
             box->matrix.LeftTranslate(center);
         } else {
             box->extent.x = 0.0f;
@@ -823,17 +820,17 @@ gbOBBox* gbGeomNode::GetTotalOBBox(gbOBBox* box) {
     }
 
     if (nodeCount == 1) {
-        int n = s_totalOBBoxNodes[0];
-        memcpy(box, (void*)(n + 88), sizeof(gbMatrix4));
-        float* m = (float*)*(int*)(n + 264);
-        if (m) {
-            box->extent.x = m[25] - m[22];
-            box->extent.y = m[26] - m[23];
-            box->extent.z = m[27] - m[24];
+        gbGeomNode* n = (gbGeomNode*)s_totalOBBoxNodes[0];
+        memcpy(box, &n->worldTransform, sizeof(gbMatrix4));
+        if (n->mesh) {
+            gbAABBox* aabb = &n->mesh->m_aabb;
+            box->extent.x = aabb->vMax.x - aabb->vMin.x;
+            box->extent.y = aabb->vMax.y - aabb->vMin.y;
+            box->extent.z = aabb->vMax.z - aabb->vMin.z;
             gbVec3D center;
-            center.x = (m[22] + m[25]) * 0.5f;
-            center.y = (m[23] + m[26]) * 0.5f;
-            center.z = (m[24] + m[27]) * 0.5f;
+            center.x = (aabb->vMin.x + aabb->vMax.x) * 0.5f;
+            center.y = (aabb->vMin.y + aabb->vMax.y) * 0.5f;
+            center.z = (aabb->vMin.z + aabb->vMax.z) * 0.5f;
             box->matrix.LeftTranslate(center);
         } else {
             box->extent.x = 0.0f;
@@ -849,9 +846,9 @@ gbOBBox* gbGeomNode::GetTotalOBBox(gbOBBox* box) {
     gbAABBox tempBox;
 
     for (int i = 0; i < nodeCount; i++) {
-        int n = s_totalOBBoxNodes[i];
-        gbMatrix4* wt = (gbMatrix4*)(n + 88);
-        memcpy(&tempBox, (void*)(*(int*)(n + 264) + 88), sizeof(gbAABBox));
+        gbGeomNode* n = (gbGeomNode*)s_totalOBBoxNodes[i];
+        gbMatrix4* wt = &n->worldTransform;
+        memcpy(&tempBox, &n->mesh->m_aabb, sizeof(gbAABBox));
         tempBox.Transform(wt);
 
         if (tempBox.vMin.x < minX) minX = tempBox.vMin.x;

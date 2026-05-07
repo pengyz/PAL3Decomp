@@ -87,6 +87,10 @@ gbGfxManager::gbGfxManager(int& result, gbGfxDriverInfo* driverInfo) {
     result = 1; // success
 }
 
+gbGfxManager::gbGfxManager() {
+    memset(this, 0, sizeof(gbGfxManager));
+}
+
 gbGfxManager::~gbGfxManager() {
     g_pGfxManager = NULL;
 }
@@ -116,9 +120,9 @@ int gbGfxManager::BeginScene(void) {
         Stat.TimeAccum = accum;
     }
 
-    gbRenderEffect* pEffect = *(gbRenderEffect**)((char*)pEffectMgr + 0x18);
+    gbRenderEffect* pEffect = pEffectMgr->m_pDefaultEffect;
     pEffect->Apply();
-    *(int*)((char*)pEffectMgr + 0x824) = 0;
+    pEffectMgr->m_nFrameCounter = 0;
     return 1;
 }
 
@@ -295,7 +299,7 @@ gbBaseMesh* gbGfxManager::NewMesh(const char* name, gbMeshType type) {
 void gbGfxManager::OffsetZBuffer(int enable) {
     if (enable != CurZBias) {
         CurZBias = enable;
-        *(int*)((char*)pMatrixStack[0] + 0xC) = 0;
+        pMatrixStack[0]->dirty = 0;
     }
 }
 
@@ -420,39 +424,15 @@ gbEffectMgr::gbEffectMgr(void) {
     m_pGfxMgr = NULL;
     m_pWhiteTexture = NULL;
     m_pGrayTexture = NULL;
-    m_pEffects = NULL;
-    m_nMaxEffects = 0;
-    m_nNumEffects = 0;
-    m_pVertDecls = NULL;
-    m_nMaxDecls = 0;
-    m_nNumDecls = 0;
-    m_bInitialized = 0;
+    m_pDefaultEffect = NULL;
+    m_nNumVertFormats = 0;
+    m_nMaxVertFormats = 0;
+    m_nFrameCounter = 0;
 }
 
 // 0x10004d30 (148B) - Copy constructor
 gbEffectMgr::gbEffectMgr(const gbEffectMgr& other) {
-    m_pGfxMgr = other.m_pGfxMgr;
-    m_nMaxEffects = other.m_nMaxEffects;
-    m_nNumEffects = other.m_nNumEffects;
-    m_nMaxDecls = other.m_nMaxDecls;
-    m_nNumDecls = other.m_nNumDecls;
-    m_bInitialized = other.m_bInitialized;
-
-    // Copy effect array
-    if (other.m_pEffects && m_nMaxEffects > 0) {
-        m_pEffects = (gbRenderEffect**)malloc(sizeof(gbRenderEffect*) * m_nMaxEffects);
-        memcpy(m_pEffects, other.m_pEffects, sizeof(gbRenderEffect*) * m_nNumEffects);
-    } else {
-        m_pEffects = NULL;
-    }
-
-    // Copy vertex declaration array
-    if (other.m_pVertDecls && m_nMaxDecls > 0) {
-        m_pVertDecls = (void**)malloc(sizeof(void*) * m_nMaxDecls);
-        memcpy(m_pVertDecls, other.m_pVertDecls, sizeof(void*) * m_nNumDecls);
-    } else {
-        m_pVertDecls = NULL;
-    }
+    memcpy(this, &other, sizeof(gbEffectMgr));
 }
 
 // Destructor
@@ -463,23 +443,7 @@ gbEffectMgr::~gbEffectMgr() {
 // operator=
 gbEffectMgr& gbEffectMgr::operator=(const gbEffectMgr& other) {
     if (this != &other) {
-        Release();
-
-        m_pGfxMgr = other.m_pGfxMgr;
-        m_nMaxEffects = other.m_nMaxEffects;
-        m_nNumEffects = other.m_nNumEffects;
-        m_nMaxDecls = other.m_nMaxDecls;
-        m_nNumDecls = other.m_nNumDecls;
-        m_bInitialized = other.m_bInitialized;
-
-        if (other.m_pEffects && m_nMaxEffects > 0) {
-            m_pEffects = (gbRenderEffect**)malloc(sizeof(gbRenderEffect*) * m_nMaxEffects);
-            memcpy(m_pEffects, other.m_pEffects, sizeof(gbRenderEffect*) * m_nNumEffects);
-        }
-        if (other.m_pVertDecls && m_nMaxDecls > 0) {
-            m_pVertDecls = (void**)malloc(sizeof(void*) * m_nMaxDecls);
-            memcpy(m_pVertDecls, other.m_pVertDecls, sizeof(void*) * m_nNumDecls);
-        }
+        memcpy(this, &other, sizeof(gbEffectMgr));
     }
     return *this;
 }
@@ -487,57 +451,158 @@ gbEffectMgr& gbEffectMgr::operator=(const gbEffectMgr& other) {
 // 0x1001d1f0 (786B) - Initialize the effect manager
 void gbEffectMgr::Init(gbGfxManager* gfxMgr) {
     m_pGfxMgr = gfxMgr;
+    m_nNumVertFormats = 0;
+    m_nMaxVertFormats = 0;
 
-    // Pre-allocate space for effects
-    m_nMaxEffects = 64;
-    m_pEffects = (gbRenderEffect**)malloc(sizeof(gbRenderEffect*) * m_nMaxEffects);
-    memset(m_pEffects, 0, sizeof(gbRenderEffect*) * m_nMaxEffects);
-    m_nNumEffects = 0;
+    // Create white texture and load it
+    m_pWhiteTexture = gfxMgr->NewTexture("gfx/script/white.tga");
+    m_pWhiteTexture->LoadTexture(1);
 
-    // Pre-allocate space for vertex declarations
-    m_nMaxDecls = 32;
-    m_pVertDecls = (void**)malloc(sizeof(void*) * m_nMaxDecls);
-    memset(m_pVertDecls, 0, sizeof(void*) * m_nMaxDecls);
-    m_nNumDecls = 0;
+    // Create gray texture and load it
+    m_pGrayTexture = gfxMgr->NewTexture("gfx/script/gray.tga");
+    m_pGrayTexture->LoadTexture(1);
 
-    m_bInitialized = 1;
+    // Create default effect and all standard effects
+    m_pDefaultEffect = NewRenderEffect("gfx/script/default.gbf", 0);
+    NewRenderEffect("gfx/script/geom1.gbf", 3);
+    NewRenderEffect("gfx/script/geom1s.gbf", 7);
+    NewRenderEffect("gfx/script/geomT.gbf", 0x43);
+    NewRenderEffect("gfx/script/geomTs.gbf", 0x47);
+    NewRenderEffect("gfx/script/geomT2.gbf", 0x83);
+    NewRenderEffect("gfx/script/geomT3.gbf", 0x103);
+    NewRenderEffect("gfx/script/geomT2.gbf", 0x87);
+    NewRenderEffect("gfx/script/geomT3.gbf", 0x107);
+    NewRenderEffect("gfx/script/geom1a.gbf", 5);
+    NewRenderEffect("gfx/script/geomTa.gbf", 0x45);
+    NewRenderEffect("gfx/script/geom2.gbf", 0xD);
+    NewRenderEffect("gfx/script/geomT2a.gbf", 0x4D);
+    NewRenderEffect("gfx/script/newge.gbf", 1);
+    NewRenderEffect("gfx/script/geomTn.gbf", 0x41);
+    NewRenderEffect("gfx/script/geom1f.gbf", 0x23);
+    NewRenderEffect("gfx/script/geom1fs.gbf", 0x27);
+    NewRenderEffect("gfx/script/geomTf.gbf", 0x63);
+    NewRenderEffect("gfx/script/geomTfs.gbf", 0x67);
+    NewRenderEffect("gfx/script/geomTf2.gbf", 0xA3);
+    NewRenderEffect("gfx/script/geomTf3.gbf", 0x123);
+    NewRenderEffect("gfx/script/geomTf2.gbf", 0xA7);
+    NewRenderEffect("gfx/script/geomTf3.gbf", 0x127);
+    NewRenderEffect("gfx/script/geom1fa.gbf", 0x25);
+    NewRenderEffect("gfx/script/geomTfa.gbf", 0x65);
+    NewRenderEffect("gfx/script/geom2f.gbf", 0x2D);
+    NewRenderEffect("gfx/script/geomTf2a.gbf", 0x6D);
+    NewRenderEffect("gfx/script/geomFn.gbf", 0x21);
+    NewRenderEffect("gfx/script/geomTfn.gbf", 0x61);
+    NewRenderEffect("gfx/script/skinG.gbf", 0x200);
+    NewRenderEffect("gfx/script/skin1.gbf", 0x204);
+    NewRenderEffect("gfx/script/skin2.gbf", 0x20C);
+    NewRenderEffect("gfx/script/skinFn.gbf", 0x220);
+    NewRenderEffect("gfx/script/skin1f.gbf", 0x224);
+    NewRenderEffect("gfx/script/skin2f.gbf", 0x22C);
+    NewRenderEffect("gfx/script/skinT.gbf", 0x240);
+    NewRenderEffect("gfx/script/skinT1.gbf", 0x244);
+    NewRenderEffect("gfx/script/skinT2.gbf", 0x24C);
+    NewRenderEffect("gfx/script/skinTf.gbf", 0x260);
+    NewRenderEffect("gfx/script/skinTf1.gbf", 0x264);
+    NewRenderEffect("gfx/script/skinTf2.gbf", 0x26C);
+    NewRenderEffect("gfx/script/geomC.gbf", 0x401);
+    NewRenderEffect("gfx/script/geomTC.gbf", 0x441);
+    NewRenderEffect("gfx/script/geomC.gbf", 0x421);
+    NewRenderEffect("gfx/script/geomTC.gbf", 0x461);
+
+    m_nFrameCounter = 0;
 }
 
 // 0x1001d510 (67B) - Release all managed effects
 void gbEffectMgr::Release(void) {
-    if (m_pEffects) {
-        for (int i = 0; i < m_nNumEffects; i++) {
-            if (m_pEffects[i]) {
-                delete m_pEffects[i];
-                m_pEffects[i] = NULL;
-            }
-        }
-        free(m_pEffects);
-        m_pEffects = NULL;
-    }
-    m_nNumEffects = 0;
-    m_nMaxEffects = 0;
-
-    if (m_pVertDecls) {
-        free(m_pVertDecls);
-        m_pVertDecls = NULL;
-    }
-    m_nNumDecls = 0;
-    m_nMaxDecls = 0;
-
-    m_bInitialized = 0;
+    // Effects are reference-counted resources; cleanup via ResManager
+    m_nFrameCounter = 0;
 }
 
-// gbEffectMgr methods moved to gbEffectMgr.cpp
+// gbEffectMgr methods: OnLostDevice, OnResetDevice, NewTrivalEffect,
+// GetRenderEffect, GetDefaultEffect, GetWhiteTexture, GetGrayTexture
+// are implemented in gbEffectMgr.cpp
 
+
+// gbCreateGraphManager is implemented in gbGlobals.cpp
 
 // ============================================================
-// Additional export implementations
+// gbGfxManager base class virtual method defaults
+// These are overridden in gbGfxManager_D3D with real D3D9 calls.
+// The base class provides no-op defaults for the vtable layout.
 // ============================================================
 
 #pragma optimize("", off)
 #pragma auto_inline(off)
 
-// gbGfxManager_D3D: full definition in gbGfxManager.h
-// gbImage2DInfo: full definition in gbTexture.h (included via gbMesh.h)
+// slot 1: D3D9 EndScene + Present
+void gbGfxManager::_vf_EndScene() {}
+
+// slot 2: Create texture object
+gbTexture* gbGfxManager::NewTexture(const char* name) { return NULL; }
+
+// slot 4: SetRenderState
+void gbGfxManager::_vf04() {}
+
+// slot 5: SetTextureStageState
+void gbGfxManager::_vf05() {}
+
+// slot 6: SetSamplerState
+void gbGfxManager::_vf06() {}
+
+// slot 7: SetMaterial
+void gbGfxManager::_vf07() {}
+
+// slot 8: SetLight
+void gbGfxManager::_vf08() {}
+
+// slot 9: LightEnable
+void gbGfxManager::_vf09() {}
+
+// slot 10: SetViewport
+void gbGfxManager::_vf10() {}
+
+// slot 11: Clear (color/depth/stencil)
+void gbGfxManager::_vf11() {}
+
+// slot 13: DrawPrimitive
+void gbGfxManager::_vf13() {}
+
+// slot 14: DrawIndexedPrimitive
+void gbGfxManager::_vf14() {}
+
+// slot 15: CreateVertexBuffer
+void gbGfxManager::_vf15() {}
+
+// slot 16: GetFrustumPlanes (used by ClipBoundVolume)
+void gbGfxManager::_vf16() {}
+
+// slot 18: SetTransform (D3D)
+void gbGfxManager::_vf18() {}
+
+// slot 19: MultiplyTransform
+void gbGfxManager::_vf19() {}
+
+// slot 20: GetBackBufferFormat
+void gbGfxManager::_vf20() {}
+
+// slot 21: CreateDepthStencilSurface
+void gbGfxManager::_vf21() {}
+
+// slot 22: SetDepthStencilSurface
+void gbGfxManager::_vf22() {}
+
+// slot 23: GetDepthStencilSurface
+void gbGfxManager::_vf23() {}
+
+// slot 24: SetRenderTarget
+void gbGfxManager::_vf24() {}
+
+// slot 25: GetRenderTarget
+void gbGfxManager::_vf25() {}
+
+// slot 26: StretchRect
+void gbGfxManager::_vf26() {}
+
+// slot 27: ShowCursor
+void gbGfxManager::_vf27() {}
 

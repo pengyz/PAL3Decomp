@@ -36,3 +36,27 @@ clearRemaining:
         stage++;
     } while (stage < 4);
 }
+
+gbGfxManager_D3D::gbGfxManager_D3D() {
+    memset(&m_d3dEnumeration, 0, sizeof(m_d3dEnumeration));
+    m_bWindowed = 1;
+    m_hWnd = NULL;
+    m_bMinimized = 0;
+    m_bMaximized = 0;
+    m_bActive = 0;
+    m_dwCreateFlags = 0;
+    m_pD3D = NULL;
+    m_pd3dDevice = NULL;
+    m_pBackBuffer = NULL;
+    m_pCacheVB = NULL;
+    m_pCacheIB = NULL;
+    m_bDeviceLost = 0;
+    m_ErrorCode = 0;
+    m_bShowCursor = 0;
+    m_pActiveCursor = NULL;
+    m_bSoftVPMode = 0;
+}
+
+void gbGfxManager_D3D::Init(gbGfxDriverInfo* info) {
+    // Stub - full D3D initialization
+}

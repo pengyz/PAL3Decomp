@@ -1,7 +1,11 @@
 #include "gbengine/gbengine_types.h"
+#include "gbengine/gbengine_internal.h"
 #include "gbengine/gbGfxManager.h"
 #include "gbengine/gbVisNode.h"
+#include "gbengine/gbSceneGraph.h"
 #include "gbengine/gbVFileSystem.h"
+#include "gbengine/gbChain.h"
+#include "gbengine/gbTexture.h"
 #include <windows.h>
 #include <string.h>
 #include <stdio.h>
@@ -71,20 +75,101 @@ char* gbVfgetname(const char* path, char* buf, int size) {
     return buf;
 }
 
-// Create graphics manager (UNCERTAIN implementation)
+// Create graphics manager - 0x1001E0C0 (145B)
 gbGfxManager* gbCreateGraphManager(gbGfxDriverInfo* info) {
-    /* UNCERTAIN */
-    // This should create and return a gbGfxManager_D3D instance
-    // The actual implementation requires constructor details
-    return NULL;
+    gbGfxManager* result;
+
+    if (info->type == 2) {
+        // D3D driver type
+        gbGfxManager_D3D* pMgr = new gbGfxManager_D3D();
+        if (pMgr) {
+            pMgr->Init(info);
+            result = pMgr;
+        } else {
+            result = NULL;
+        }
+    } else {
+        result = (gbGfxManager*)info;  // pass-through for other types
+    }
+
+    if (!info) {
+        if (result) {
+            delete result;
+        }
+        return NULL;
+    }
+
+    return result;
 }
 
-// Load light file (UNCERTAIN implementation)
+// Load light file - 0x100135A0 (735B)
+// Reads a .lgt file and constructs a tree of gbVolModNode + gbLightObj
 gbVisNode* gbLoadLightFile(const char* filename) {
-    /* UNCERTAIN */
-    // This should load a light definition file and create a light node
-    // Format and structure are not fully known
-    return NULL;
+    gbVFile* fp = g_pVFileSys->OpenFile(filename, 0x201);
+
+    int lightCount;
+    g_pVFileSys->Read(&lightCount, 4, fp);
+
+    // Create root container node
+    gbVisNode* root = new gbVisNode();
+
+    for (int i = 0; i < lightCount; i++) {
+        // Create volume modifier node (holds transform + light)
+        gbVolModNode* volNode = new gbVolModNode();
+
+        // Read local transform matrix (64 bytes)
+        g_pVFileSys->Read(&volNode->localMatrix, 0x40, fp);
+
+        // Ensure localMatrix m[3][3] = 1.0f (homogeneous coordinate w=1)
+        volNode->localMatrix.m[3][3] = 1.0f;
+
+        // Create light object
+        gbLightObj* light = new gbLightObj();
+
+        // Read light parameters from file (matching gbVolumeModifier field layout)
+        g_pVFileSys->Read(&light->lightType, 4, fp);
+        g_pVFileSys->Read(&light->diffuse, 0x10, fp);
+        g_pVFileSys->Read(&light->ambient, 0x10, fp);
+        g_pVFileSys->Read(&light->enabled, 4, fp);
+        g_pVFileSys->Read(&light->_field30, 4, fp);
+        g_pVFileSys->Read(&light->_field34, 4, fp);
+        g_pVFileSys->Read(&light->_field38, 4, fp);
+        g_pVFileSys->Read(&light->range, 4, fp);
+        g_pVFileSys->Read(&light->_field40, 4, fp);
+        g_pVFileSys->Read(&light->_field44, 4, fp);
+        g_pVFileSys->Read(&light->attenuation0, 4, fp);
+        g_pVFileSys->Read(&light->attenuation1, 4, fp);
+        g_pVFileSys->Read(&light->attenuation2, 4, fp);
+        g_pVFileSys->Read(&light->_field54, 4, fp);
+        g_pVFileSys->Read(&light->_field58, 4, fp);
+
+        // Copy _field40 as bounding sphere radius
+        light->boundSphere.radius = light->_field40;
+
+        // Clear bounding sphere center
+        light->boundSphere.center.x = 0.0f;
+        light->boundSphere.center.y = 0.0f;
+        light->boundSphere.center.z = 0.0f;
+
+        // Set dirty flag
+        light->bDirty = 1;
+
+        // IncRef on light (gbVolumeModifier inherits gbRefObject)
+        light->refCount++;
+
+        // Assign to volmod node
+        volNode->pVolMod = light;
+
+        // Release (decrement ref, balances the IncRef above)
+        light->Release();
+
+        // Add volmod node as child of root
+        root->children.AddNodeOnTail((gbChain1DNode*)volNode);
+        ((gbNBTreeNode*)volNode)->pParent = (gbNBTreeNode*)root;
+    }
+
+    g_pVFileSys->CloseFile(fp);
+    return root;
 }
 
 // Convert half-width to full-width characters (for CJK text)
@@ -239,12 +324,43 @@ int gbIntersectTriangle(gbVec3D* origin, gbVec3D* dir, gbVec3D* v0, gbVec3D* v1,
     return (t > EPSILON) ? 1 : 0;
 }
 
+// Low-level keyboard hook handle
+static HHOOK hhk = NULL;
+
+// Low-level keyboard hook proc (blocks Alt+Tab, Win key, etc.)
+static LRESULT CALLBACK LowLevelKeyboardProc(int nCode, WPARAM wParam, LPARAM lParam) {
+    if (nCode >= 0)
+        return 1;  // Block all keys when hook is active
+    return CallNextHookEx(hhk, nCode, wParam, lParam);
+}
+
 // Enable/disable system hotkeys (Alt+Tab, Win key, etc.)
+// 0x1002F530 (193B)
 void gbEnableSystemKeys(HINSTANCE hInst, int enable) {
-    // This typically uses RegisterHotKey/UnregisterHotKey or
-    // low-level keyboard hooks to block system keys
-    // For now, leave as stub since it's window manager specific
-    /* UNCERTAIN */
+    BYTE pvParam[4];
+    OSVERSIONINFOA VersionInformation;
+
+    VersionInformation.dwOSVersionInfoSize = sizeof(OSVERSIONINFOA);
+    GetVersionExA(&VersionInformation);
+
+    if (VersionInformation.dwPlatformId == VER_PLATFORM_WIN32_NT) {
+        if (VersionInformation.dwMajorVersion >= 4) {
+            if (enable) {
+                if (hhk) {
+                    UnhookWindowsHookEx(hhk);
+                    hhk = NULL;
+                }
+            } else {
+                hhk = SetWindowsHookExA(13, LowLevelKeyboardProc, hInst, 0);
+            }
+        }
+    } else if (VersionInformation.dwPlatformId == VER_PLATFORM_WIN32_WINDOWS
+               && VersionInformation.dwMajorVersion >= 4) {
+        if (enable)
+            SystemParametersInfoA(0x61, 0, pvParam, 0);
+        else
+            SystemParametersInfoA(0x61, 1, pvParam, 0);
+    }
 }
 
 // Get current display mode

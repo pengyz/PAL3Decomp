@@ -138,12 +138,9 @@ void gbActor::UpdateExportNodes() {
 
     // Fill CRC names and init matrices
     if (numNodes > 0) {
-        int offset = 0;
         for (int i = 0; i < numNodes; i++) {
-            *(unsigned int*)((char*)m_pExportNodeData + offset) = crcBuffer[i];
-            gbMatrix4* local = (gbMatrix4*)((char*)m_pExportNodeData + offset + 4);
-            local->LoadIdentity();
-            offset += 132;
+            m_pExportNodeData[i].nameCrc = crcBuffer[i];
+            m_pExportNodeData[i].localMatrix.LoadIdentity();
         }
     }
 

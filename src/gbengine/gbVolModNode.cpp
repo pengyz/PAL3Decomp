@@ -13,26 +13,20 @@ gbVolModNode::~gbVolModNode(void) {
 
 void gbVolModNode::SetVolModObj(class gbVolumeModifier * p0) {
     if (p0 != 0) {
-        ((gbRefObject*)p0)->refCount += 1;
+        p0->refCount++;
     }
-    pVolMod = (void*)p0;
+    pVolMod = p0;
 }
 
 void gbVolModNode::GetBoundSphere(struct gbSphere * p0) {
-    // From Ghidra (GetBoundSphere at 0x10013160):
-    // Call pVolMod->vtable[2] to get bounding sphere data,
+    // GetBoundSphere at 0x10013160:
+    // Call pVolMod virtual GetBoundSphere to get sphere data,
     // then transform center by localMatrix
     if (pVolMod != 0 && p0 != 0) {
-        typedef void* (__cdecl *GetSphereFn)(void*);
-        int** vt = (int**)pVolMod;
-        GetSphereFn fn = (GetSphereFn)((*vt)[2]);
-        int* sphereData = (int*)fn(pVolMod);
-        if (sphereData) {
-            // First dword is radius
-            *(int*)&p0->radius = sphereData[0];
-            // Transform center by localMatrix
-            gbVec3D* srcCenter = (gbVec3D*)(sphereData + 1);
-            localMatrix.Transform(srcCenter, &p0->center);
+        const gbSphere* src = pVolMod->GetBoundSphere();
+        if (src) {
+            p0->radius = src->radius;
+            localMatrix.Transform((gbVec3D*)&src->center, &p0->center);
         }
     }
 }

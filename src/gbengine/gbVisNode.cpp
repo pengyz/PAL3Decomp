@@ -5,6 +5,8 @@
 
 #include "gbengine/gbVisNode.h"
 #include "gbengine/gbTexture.h"
+#include "gbengine/gbengine_internal.h"
+#include "gbengine/gbSceneGraph.h"
 #include <string.h>
 #include <stdlib.h>
 #include <math.h>
@@ -145,10 +147,23 @@ void gbVisNode::ProcessMessage(gbNodeMsgObj* msg) {
     (void)0;
 }
 
-// Attach - 0x100166f0 (virtual, base implementation does nothing)
+// Attach - 0x100166f0 (64B) - Iterate children, call Attach on each
 int gbVisNode::Attach(gbRenderEffect* effect) {
-    (void)0;
-    return 0;
+    int result = 0;
+    gbVisNode* child = (gbVisNode*)children.pHead;
+    children.pIterator = (gbNBTreeNode*)child;
+
+    if (!child)
+        return 0;
+
+    do {
+        if (child->Attach(effect))
+            result = 1;
+        child = (gbVisNode*)children.pIterator->pNext;
+        children.pIterator = (gbNBTreeNode*)child;
+    } while (child);
+
+    return result;
 }
 
 // Update - 0x10016730 (virtual)
@@ -169,9 +184,16 @@ void gbVisNode::Update() {
     }
 }
 
-// Reset - 0x10016760 (virtual, base implementation does nothing)
+// Reset - 0x10016760 (42B) - Iterate children, call Reset on each
 void gbVisNode::Reset(float time) {
-    (void)0;
+    gbVisNode* child = (gbVisNode*)children.pHead;
+    children.pIterator = (gbNBTreeNode*)child;
+
+    while (child) {
+        child->Reset(time);
+        child = (gbVisNode*)children.pIterator->pNext;
+        children.pIterator = (gbNBTreeNode*)child;
+    }
 }
 
 // ShowNode - 0x10016790
@@ -256,7 +278,7 @@ gbVisNode* gbVisNode::GetCullPrev() {
 
 // GetBoundSphere - 0x10016820 (virtual, base implementation)
 void gbVisNode::GetBoundSphere(gbSphere* sphere) {
-    sphere->center.x = 0.0f;
+    sphere->radius = 0.0f;
 }
 
 // EnableShadow - 0x10016830 (virtual)
@@ -387,49 +409,12 @@ gbVisNode& gbVisNode::operator=(const gbVisNode& other) {
 
 
 // ============================================================
-// Additional export implementations
+// Additional export implementations (gbVolModNode, gbVolumeModifier)
+// Class definitions in gbengine_internal.h
 // ============================================================
 
 #pragma optimize("", off)
 #pragma auto_inline(off)
-
-// Class definitions needed for moved functions
-class gbVolModNode {
-public:
-    char _base_visnode[0x58];       // base class data (gbChain1DNode + gbNBTreeNode + gbVisNode)
-    gbMatrix4 localMatrix;          // +0x58: local transform matrix
-    gbMatrix4 worldMatrix;          // +0x98: world transform matrix
-    void* pVolMod;                  // +0xD8: gbVolumeModifier pointer (ref-counted)
-
-public:
-    gbVolModNode(class gbVolModNode const & p0);
-    gbVolModNode();
-    virtual ~gbVolModNode();
-    class gbVolModNode & operator=(class gbVolModNode const & p0);
-    virtual int Attach(class gbRenderEffect * p0);
-    virtual void GetBoundSphere(struct gbSphere * p0);
-    class gbLightObj * GetLightObj();
-    virtual void Render(struct gbRenderInfoObj * p0);
-    void SetVolModObj(class gbVolumeModifier * p0);
-};
-
-class gbVolumeModifier {
-public:
-    char _stub_data[128];
-
-public:
-    gbVolumeModifier(class gbVolumeModifier const & p0);
-
-public:
-    gbVolumeModifier();
-
-public:
-    virtual ~gbVolumeModifier();
-
-public:
-    class gbVolumeModifier & operator=(class gbVolumeModifier const & p0);
-
-};
 
 // ---- gbVolModNode ----
 gbVolModNode::gbVolModNode(class gbVolModNode const & p0) {
@@ -438,7 +423,6 @@ gbVolModNode::gbVolModNode(class gbVolModNode const & p0) {
 
 gbVolModNode::gbVolModNode() {
     localMatrix.LoadIdentity();
-    // worldMatrix is default-constructed by gbMatrix4 ctor
     pVolMod = 0;
 }
 
@@ -450,23 +434,15 @@ class gbVolModNode & gbVolModNode::operator=(class gbVolModNode const & p0) {
 }
 
 int gbVolModNode::Attach(class gbRenderEffect * p0) {
-    // From Ghidra (Attach at 0x10013190):
-    // 1. Call base gbVisNode::Attach
-    // 2. Copy localMatrix to worldMatrix
-    // 3. Right-multiply worldMatrix by GfxMgr matrix stack top
-    // 4. Notify volume modifier
-    // 5. Add to scene graph vol mod list
-    // 6. Return 1
+    // Attach at 0x10013190:
+    // Copy localMatrix to worldMatrix, notify volume modifier
 
     // Copy local to world matrix
     memcpy(&worldMatrix, &localMatrix, sizeof(gbMatrix4));
 
-    // Notify the volume modifier (vtable[4] = SetNode)
+    // Notify the volume modifier via Compute virtual
     if (pVolMod != 0) {
-        typedef void (__thiscall *SetNodeFn)(void*, void*);
-        int** vt = (int**)pVolMod;
-        SetNodeFn fn = (SetNodeFn)((*vt)[4]);
-        fn(pVolMod, this);
+        pVolMod->Compute(this);
     }
 
     return 1;
@@ -488,6 +464,21 @@ gbVolumeModifier::gbVolumeModifier() {
 }
 
 gbVolumeModifier::~gbVolumeModifier() {
+}
+
+float gbVolumeModifier::GetEffectOnPoint(const gbVec3D& point, int useAttenuation) {
+    return 0.0f;
+}
+
+void gbVolumeModifier::Compute(gbVolModNode* volmod) {
+}
+
+int gbVolumeModifier::GetType(void) {
+    return lightType;
+}
+
+const gbSphere* gbVolumeModifier::GetBoundSphere(void) {
+    return &boundSphere;
 }
 
 class gbVolumeModifier & gbVolumeModifier::operator=(class gbVolumeModifier const & p0) { if (this != &p0) memcpy(this, &p0, sizeof(*this)); return *this; }

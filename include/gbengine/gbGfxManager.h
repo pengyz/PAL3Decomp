@@ -133,37 +133,38 @@ public:
     char _pad5EC[4];                           // +0x5EC
     // total sizeof = 0x5F0
 
+    gbGfxManager();
     gbGfxManager(int& result, gbGfxDriverInfo* driverInfo);
 
     // === Virtual functions (29 slots, order matches binary vtable) ===
-    virtual ~gbGfxManager() = 0;                                    // slot 0
-    virtual void _vf_EndScene() = 0;                                // slot 1
-    virtual gbTexture* NewTexture(const char* name) = 0;            // slot 2
-    virtual gbBaseMesh* NewMesh(const char* name, gbMeshType type); // slot 3
-    virtual void _vf04() = 0;                                       // slot 4
-    virtual void _vf05() = 0;                                       // slot 5
-    virtual void _vf06() = 0;                                       // slot 6
-    virtual void _vf07() = 0;                                       // slot 7
-    virtual void _vf08() = 0;                                       // slot 8
-    virtual void _vf09() = 0;                                       // slot 9
-    virtual void _vf10() = 0;                                       // slot 10
-    virtual void _vf11() = 0;                                       // slot 11
+    virtual ~gbGfxManager();                                         // slot 0
+    virtual void _vf_EndScene();                                     // slot 1
+    virtual gbTexture* NewTexture(const char* name);                 // slot 2
+    virtual gbBaseMesh* NewMesh(const char* name, gbMeshType type);  // slot 3
+    virtual void _vf04();                                            // slot 4
+    virtual void _vf05();                                            // slot 5
+    virtual void _vf06();                                            // slot 6
+    virtual void _vf07();                                            // slot 7
+    virtual void _vf08();                                            // slot 8
+    virtual void _vf09();                                            // slot 9
+    virtual void _vf10();                                            // slot 10
+    virtual void _vf11();                                            // slot 11
     virtual int BeginScene(void);                                    // slot 12
-    virtual void _vf13() = 0;                                       // slot 13
-    virtual void _vf14() = 0;                                       // slot 14
-    virtual void _vf15() = 0;                                       // slot 15
-    virtual void _vf16() = 0;                                       // slot 16
+    virtual void _vf13();                                            // slot 13
+    virtual void _vf14();                                            // slot 14
+    virtual void _vf15();                                            // slot 15
+    virtual void _vf16();                                            // slot 16
     virtual int GetGfxCaps(gbGfxCaps* caps);                         // slot 17
-    virtual void _vf18() = 0;                                       // slot 18
-    virtual void _vf19() = 0;                                       // slot 19
-    virtual void _vf20() = 0;                                       // slot 20
-    virtual void _vf21() = 0;                                       // slot 21
-    virtual void _vf22() = 0;                                       // slot 22
-    virtual void _vf23() = 0;                                       // slot 23
-    virtual void _vf24() = 0;                                       // slot 24
-    virtual void _vf25() = 0;                                       // slot 25
-    virtual void _vf26() = 0;                                       // slot 26
-    virtual void _vf27() = 0;                                       // slot 27
+    virtual void _vf18();                                            // slot 18
+    virtual void _vf19();                                            // slot 19
+    virtual void _vf20();                                            // slot 20
+    virtual void _vf21();                                            // slot 21
+    virtual void _vf22();                                            // slot 22
+    virtual void _vf23();                                            // slot 23
+    virtual void _vf24();                                            // slot 24
+    virtual void _vf25();                                            // slot 25
+    virtual void _vf26();                                            // slot 26
+    virtual void _vf27();                                            // slot 27
     virtual void SetFog(gbFogParam* pFogParam);                      // slot 28
 
     // === Non-virtual methods ===
@@ -260,6 +261,8 @@ public:
     IDirect3DIndexBuffer9* m_pCacheIB;             // +0x8EC
     // total sizeof = 0x8F0
 
+    gbGfxManager_D3D();
+    void Init(gbGfxDriverInfo* info);
     void SetTexture(struct gbTextureArray* p0);
 };
 

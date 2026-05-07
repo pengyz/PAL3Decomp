@@ -206,8 +206,8 @@ struct gbOBBox {
 };
 
 struct gbSphere {
-    gbVec3D center;
     float radius;
+    gbVec3D center;
 
     // Methods (auto-generated)
     gbSphere();

@@ -8,23 +8,25 @@
 #include <math.h>
 
 gbLightObj::gbLightObj(void) {
-    memset(&position, 0, sizeof(position));
-    memset(&direction, 0, sizeof(direction));
-    direction.z = 1.0f;
-
+    lightType = LIGHT_POINT;
     diffuse.r = diffuse.g = diffuse.b = diffuse.a = 1.0f;
     ambient.r = ambient.g = ambient.b = ambient.a = 0.0f;
-    specular.r = specular.g = specular.b = specular.a = 1.0f;
-
+    enabled = 0;
+    _field30 = 0;
+    _field34 = 0;
+    _field38 = 0;
     range = 1000.0f;
+    _field40 = 0.0f;
+    _field44 = 0;
     attenuation0 = 1.0f;
     attenuation1 = 0.0f;
     attenuation2 = 0.0f;
-    lightType = LIGHT_POINT;
-    enabled = 0;
+    _field54 = 0.0f;
+    _field58 = 0.0f;
 
-    memset(&boundingSphere, 0, sizeof(boundingSphere));
+    memset(&boundSphere, 0, sizeof(boundSphere));
     memset(&sysLight, 0, sizeof(sysLight));
+    bDirty = 0;
 }
 
 gbLightObj::gbLightObj(const gbLightObj& other) {
@@ -41,15 +43,17 @@ gbLightObj& gbLightObj::operator=(const gbLightObj& other) {
     return *this;
 }
 
-void gbLightObj::Init(enum LIGHT_TYPE type) {
-    lightType = type;
+void gbLightObj::Init(enum LIGHT_TYPE lt) {
+    lightType = lt;
     enabled = 1;
     ComputeBoundSphere();
 }
 
 void gbLightObj::ComputeBoundSphere(void) {
-    boundingSphere.center = position;
-    boundingSphere.radius = range;
+    boundSphere.radius = range;
+    boundSphere.center.x = 0.0f;
+    boundSphere.center.y = 0.0f;
+    boundSphere.center.z = 0.0f;
 }
 
 int gbLightObj::GetType(void) {
@@ -57,9 +61,9 @@ int gbLightObj::GetType(void) {
 }
 
 const gbSphere* gbLightObj::GetBoundSphere(void) {
-    return &boundingSphere;
+    return &boundSphere;
 }
 
 gbLight* gbLightObj::GetSysLight(void) {
-    return &sysLight;
+    return (gbLight*)&sysLight;
 }

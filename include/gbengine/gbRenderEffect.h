@@ -81,13 +81,15 @@ public:
 // gbEffectMgr - manages creation and caching of render effects
 // ============================================================================
 struct gbVertFormatEntry {
-    char name[28];
-    IDirect3DVertexDeclaration9* pDecl;
+    IDirect3DVertexDeclaration9* pDecl;   // +0x00
+    char name[28];                         // +0x04
+    // sizeof = 32
 };
 
 class gbEffectMgr {
 public:
-    // gbResManager base (effects resource management)
+    // Layout verified from IDA (Init, RegisterVertexFormat, GetRenderEffect)
+    // Total sizeof ~ 0x828 bytes
     gbRenderEffect** m_pEffects;    // +0x00: array of effect pointers
     int m_nMaxEffects;              // +0x04: capacity
     int m_nNumEffects;              // +0x08: count
@@ -95,13 +97,10 @@ public:
     gbTexture* m_pWhiteTexture;     // +0x10
     gbTexture* m_pGrayTexture;      // +0x14
     gbRenderEffect* m_pDefaultEffect; // +0x18
-    void** m_pVertDecls;            // +0x1C: vertex declaration array
-    int m_nMaxDecls;                // +0x20: capacity
-    int m_nNumDecls;                // +0x24: count
-    gbVertFormatEntry m_vertFormats[64]; // +0x28 (32*64=2048 bytes)
-    int m_nNumVertFormats;          // +0x828
-    int m_nMaxVertFormats;          // +0x82C
-    int m_bInitialized;             // +0x830
+    gbVertFormatEntry m_vertFormats[64]; // +0x1C (32*64=2048 bytes, to +0x81C)
+    int m_nNumVertFormats;          // +0x81C [519]
+    int m_nMaxVertFormats;          // +0x820 [520]
+    int m_nFrameCounter;            // +0x824 [521]: cleared each BeginScene
 
     // 0x10004d20 (12B) - Default constructor
     gbEffectMgr(void);

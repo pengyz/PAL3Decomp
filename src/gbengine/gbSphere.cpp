@@ -8,14 +8,14 @@
 
 // Constructor
 gbSphere::gbSphere() {
-    center.x = center.y = center.z = 0.0f;
     radius = 1.0f;
+    center.x = center.y = center.z = 0.0f;
 }
 
 // Assignment operator
 gbSphere& gbSphere::operator=(const gbSphere& s) {
-    center = s.center;
     radius = s.radius;
+    center = s.center;
     return *this;
 }
 

@@ -7,11 +7,12 @@
 #include "gbengine/gbengine_types.h"
 #include "gbengine/gbVFileSystem.h"
 #include "gbengine/gbRenderEffect.h"
-#include "gbengine/gbSceneGraph.h"
 #include <string.h>
 
-// Forward declarations (circular dep)
+// Forward declarations
 class gbGfxManager;
+class gbVolModNode;
+class gbVolumeModifier;
 
 // ========= BEZIER =========
 class BEZIER {
@@ -206,7 +207,7 @@ public:
     char _base_visnode[0x58];       // base class data (gbChain1DNode + gbNBTreeNode + gbVisNode)
     gbMatrix4 localMatrix;          // +0x58: local transform matrix
     gbMatrix4 worldMatrix;          // +0x98: world transform matrix
-    void* pVolMod;                  // +0xD8: gbVolumeModifier pointer (ref-counted)
+    gbVolumeModifier* pVolMod;      // +0xD8: gbVolumeModifier pointer (ref-counted)
 
 public:
     gbVolModNode(class gbVolModNode const & p0);
@@ -220,22 +221,56 @@ public:
     void SetVolModObj(class gbVolumeModifier * p0);
 };
 
+// ========= gbLight =========
+// Light parameters structure (maps to D3DLIGHT9, 104 bytes)
+struct gbLight {
+    int type;
+    gbColorFlt diffuse;
+    gbColorFlt specular;
+    gbColorFlt ambient;
+    gbVec3D position;
+    gbVec3D direction;
+    float range;
+    float falloff;
+    float attenuation0;
+    float attenuation1;
+    float attenuation2;
+    float theta;
+    float phi;
+};
+
 // ========= gbVolumeModifier =========
-class gbVolumeModifier {
+// sizeof(gbVolumeModifier) == 0xD8 (216 bytes)
+// Base class for light objects and other volume modifiers
+class gbVolumeModifier : public gbRefObject {
 public:
-    char _stub_data[128];
+    int lightType;          // +0x08: light type (0=point, 1=spot, 2=directional)
+    gbColorFlt diffuse;     // +0x0C: diffuse color (16 bytes)
+    gbColorFlt ambient;     // +0x1C: ambient color (16 bytes)
+    int enabled;            // +0x2C: enabled flag
+    int _field30;           // +0x30
+    int _field34;           // +0x34
+    int _field38;           // +0x38
+    float range;            // +0x3C: effective range
+    float _field40;         // +0x40
+    int _field44;           // +0x44
+    float attenuation0;     // +0x48: constant attenuation
+    float attenuation1;     // +0x4C: linear attenuation
+    float attenuation2;     // +0x50: quadratic attenuation
+    float _field54;         // +0x54
+    float _field58;         // +0x58
+    gbSphere boundSphere;   // +0x5C: bounding sphere (16 bytes)
+    gbLight sysLight;       // +0x6C: D3D-compatible light structure (104 bytes)
+    int bDirty;             // +0xD4: needs recompute flag
+    // Total: 0xD8 = 216 bytes
 
-public:
-    gbVolumeModifier(class gbVolumeModifier const & p0);
-
-public:
+    gbVolumeModifier(const gbVolumeModifier& other);
     gbVolumeModifier();
-
-public:
     virtual ~gbVolumeModifier();
-
-public:
-    class gbVolumeModifier & operator=(class gbVolumeModifier const & p0);
-
+    virtual float GetEffectOnPoint(const gbVec3D& point, int useAttenuation);
+    virtual void Compute(gbVolModNode* volmod);
+    virtual int GetType(void);
+    virtual const gbSphere* GetBoundSphere(void);
+    gbVolumeModifier& operator=(const gbVolumeModifier& other);
 };
 

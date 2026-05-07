@@ -92,6 +92,9 @@ public:
     void* GetRealData();
 };
 
+// Forward declaration (defined below)
+class gbVFile;
+
 // ============================================================================
 // CPK class - CPK archive reader
 // sizeof(CPK) == 0xE01BC
@@ -104,7 +107,7 @@ public:
     ECPKMode        m_eMode;                        // +0x04
     CPKHeader       m_CPKHeader;                    // +0x08 (0x80 bytes)
     CPKTable        m_CPKTable[CPK_MAX_TABLE_NUM];  // +0x88 (0x8000 * 0x1C = 0xE0000 bytes)
-    void*           m_pCPKFile[CPK_MAX_OPEN_FILES]; // +0xE0088: pointers to 0x140 blocks
+    gbVFile*        m_pCPKFile[CPK_MAX_OPEN_FILES]; // +0xE0088: gbVFile[8] (each 0x140 bytes)
     unsigned char   m_bLoaded;                      // +0xE00A8
     unsigned char   _pad[3];                        // +0xE00A9
     unsigned long   m_dwCPKHandle;                  // +0xE00AC (HANDLE as DWORD)

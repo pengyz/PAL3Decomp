@@ -97,14 +97,14 @@ CPK::CPK()
     }
 
     for (int i = 0; i < CPK_MAX_OPEN_FILES; i++) {
-        unsigned char* p = (unsigned char*)operator new(0x140);
+        gbVFile* p = (gbVFile*)operator new(sizeof(gbVFile));
         if (p) {
-            p[272] = 0;        // bValid = 0
-            *(unsigned long*)(p + 304) = 0;
+            p->cpkFile.bValid = 0;
+            p->cpkFile.lpRealData = 0;
         }
         m_pCPKFile[i] = p;
         if (p) {
-            p[272] = 0;
+            p->cpkFile.bValid = 0;
         }
     }
 }
@@ -233,9 +233,9 @@ bool CPK::Unload()
         return 0;
 
     for (int i = 0; i < CPK_MAX_OPEN_FILES; i++) {
-        unsigned char* p = (unsigned char*)m_pCPKFile[i];
-        if (p && p[272]) {
-            Close((CPKFile*)(p + 272));
+        gbVFile* p = (gbVFile*)m_pCPKFile[i];
+        if (p && p->cpkFile.bValid) {
+            Close(&p->cpkFile);
         }
     }
 
@@ -370,22 +370,21 @@ next:
 
     // Find a free CPKFile slot
     int freeSlot = 0;
-    unsigned char* pBlock = NULL;
+    gbVFile* pBlock = NULL;
     for (freeSlot = 0; freeSlot < CPK_MAX_OPEN_FILES; freeSlot++) {
-        pBlock = (unsigned char*)m_pCPKFile[freeSlot];
-        if (!pBlock[272]) // bValid == 0
+        pBlock = (gbVFile*)m_pCPKFile[freeSlot];
+        if (!pBlock->cpkFile.bValid)
             break;
     }
     if (freeSlot >= CPK_MAX_OPEN_FILES)
         return NULL;
 
-    unsigned char* v20 = pBlock;
-    if (!v20)
+    if (!pBlock)
         return NULL;
 
-    CPKFile* pFile = (CPKFile*)(v20 + 272);
+    CPKFile* pFile = &pBlock->cpkFile;
     pFile->bValid = 1;
-    strcpy((char*)(v20 + 12), filename);
+    strcpy(pBlock->fullPath, filename);
     pFile->lpMapAddress = 0;
 
     DWORD dwStartPos = pEntry->dwStartPos;
