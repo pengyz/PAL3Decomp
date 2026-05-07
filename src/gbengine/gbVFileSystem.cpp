@@ -83,6 +83,8 @@ void* CPKFile::GetRealData()
 //  CPK Implementation
 // ############################################################################
 
+#pragma auto_inline(off)
+
 CPK::CPK()
 {
     memset(this, 0, sizeof(CPK));
@@ -878,7 +880,7 @@ gbVFile* gbVFileSystem::NewFileEntry()
 
 void gbVFileSystem::DelFileEntry(gbVFile* pFile)
 {
-    // No-op: file buffer is a static array, entries are freed by clearing flags
+    pFile->flags = 0;
 }
 
 gbVFile* gbVFileSystem::OpenFile(const char* filename, unsigned int openFlags)

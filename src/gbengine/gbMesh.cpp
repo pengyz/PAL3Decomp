@@ -38,7 +38,7 @@ gbMeshSection::gbMeshSection() {
 // Static member initialization
 int gbBaseMesh::Effect_RefCount = 0;
 gbRenderEffect** gbBaseMesh::pShadowEffect = NULL;
-char* gbBaseMesh::TextureDir = NULL;
+char gbBaseMesh::TextureDir[260] = "";
 
 // Constructor
 gbBaseMesh::gbBaseMesh(gbGfxManager* gfxMgr) {
@@ -215,7 +215,10 @@ void gbBaseMesh::ComputeShadowVolume() {
 }
 
 void gbBaseMesh::SetMeshTexDir(char* dir) {
-    TextureDir = dir;
+    if (!dir)
+        strcpy(TextureDir, "");
+    else
+        strcpy(TextureDir, dir);
 }
 
 

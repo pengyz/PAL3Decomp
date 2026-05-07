@@ -774,10 +774,10 @@ int gbParticleEffect::Attach(gbRenderEffect* effect) {
 }
 
 void gbParticleEffect::GetBoundSphere(gbSphere* sphere) {
+    sphere->radius = (float)sqrt(3.402823466e38);
     sphere->center.x = 0.0f;
     sphere->center.y = 0.0f;
     sphere->center.z = 0.0f;
-    sphere->radius = 100.0f;
 }
 
 void gbParticleEffect::Render(gbRenderInfoObj* renderInfo) {

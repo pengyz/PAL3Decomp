@@ -301,7 +301,7 @@ protected:
     // Static members
     static int Effect_RefCount;
     static gbRenderEffect** pShadowEffect;
-    static char* TextureDir;
+    static char TextureDir[260];
 };
 
 

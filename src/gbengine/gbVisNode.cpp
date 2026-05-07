@@ -367,7 +367,21 @@ void gbVisNode::GetTotalBoundSphere(gbSphere* sphere) {
 
 // GetAABBox - 0x10016b90 (virtual)
 int gbVisNode::GetAABBox(gbAABBox* box) {
-    return 0;
+    gbSphere sphere;
+    sphere.center.x = 0.0f;
+    sphere.center.y = 0.0f;
+    sphere.center.z = 0.0f;
+    GetBoundSphere(&sphere);
+    if (sphere.radius == 0.0f)
+        return 0;
+    float r = sphere.radius;
+    box->vMin.x = sphere.center.x - r;
+    box->vMin.y = sphere.center.y - r;
+    box->vMin.z = sphere.center.z - r;
+    box->vMax.x = sphere.center.x + r;
+    box->vMax.y = sphere.center.y + r;
+    box->vMax.z = sphere.center.z + r;
+    return 1;
 }
 
 // operator= - 0x10004af0

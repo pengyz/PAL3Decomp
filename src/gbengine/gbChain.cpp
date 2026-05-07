@@ -62,6 +62,8 @@ void gbChain1D::ClearAllNodePtr(void) {
     nCount = 0;
 }
 
+#pragma auto_inline(off)
+
 void gbChain1D::AddNodeOnHead(gbChain1DNode* node) {
     node->pNext = pHead;
     gbChain1DNode* v2 = pTail;

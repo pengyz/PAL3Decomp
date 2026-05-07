@@ -5,6 +5,7 @@
  */
 
 #include "gbengine/gbAudio.h"
+#include "gbengine/gbTexture.h"
 #include <windows.h>
 #include <string.h>
 #include <stdlib.h>
@@ -486,7 +487,7 @@ gbSoundData* gbAudioManager::LoadSoundFile(char* filename) {
 
 // DeleteSoundData - 0x100015f0 (12B)
 void gbAudioManager::DeleteSoundData(gbSoundData* data) {
-    ((gbSoundData*)data)->Release();
+    ((gbRefObject*)data)->Release();
 }
 
 // AttachSampleHandle (3D) - 0x10001620 (392B)

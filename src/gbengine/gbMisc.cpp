@@ -767,10 +767,7 @@ void gbUIRect::Init(char* textureName, float inLeft, float inTop, float inRight,
 }
 
 void gbUIRect::Release(void) {
-    if (m_pTexture) {
-        m_pTexture->Release();
-        m_pTexture = NULL;
-    }
+    m_pTexture->Release();
 }
 
 // ======== gbVec3D default constructor closure ========

@@ -177,7 +177,7 @@ gbTexture::~gbTexture() {
 
 // 0x10004190 (12B) - Check if texture is initialized
 int gbTexture::IsInit(void) {
-    return isLoaded;
+    return nLevels != -1;
 }
 
 // 0x10020760 (102B) - Create empty texture
