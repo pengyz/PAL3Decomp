@@ -6,6 +6,7 @@
 
 #include "gbengine/gbParticle.h"
 #include "gbengine/gbGfxManager.h"
+#include "gbengine/gbengine_internal.h"
 #include <math.h>
 #include <string.h>
 #include <stdlib.h>
@@ -620,8 +621,105 @@ void gbParticleGroup::Update(double deltaTime) {
 }
 
 void gbParticleGroup::Render(void) {
-    /* TODO: 885B, requires gbDynVertBuf/gbVertPoolMgr/gbMatrixStack API */
-    if (!pGroupParam->GetRenderEffect()) return;
+    gbGfxManager* pGfxMgr = g_pGfxManager;
+    gbTextureArray texArray;
+    texArray.numTextures = 1;
+    texArray.pTex[0] = pGroupParam->pTextures[0];
+
+    gbDynVertBuf* pDVB = pGfxMgr->pVertPoolMgr->GetDynVertBuf(0x15u);
+    gbMatrixStack* pMatStack = pGfxMgr->pMatrixStack[1];
+
+    float particleScale = pParticleEffect->spaceScale;
+    double invCols = 1.0 / (double)pGroupParam->numFrames;
+    double invRows = 1.0 / (double)pGroupParam->unused11;
+
+    float* pVerts = pDVB->Lock(6 * numAliveParticles);
+    if (pVerts) {
+        int i;
+        for (i = 0; i < numAliveParticles; i++) {
+            gbParticleUnit* p = &particleArray[i];
+
+            float px, py, pz;
+            if (pParticleEffect->field_B4) {
+                px = particleScale * p->position.x;
+                py = particleScale * p->position.y;
+                pz = particleScale * p->position.z;
+            } else {
+                px = p->position.x;
+                py = p->position.y;
+                pz = p->position.z;
+            }
+
+            gbVec3D pos;
+            pos.x = px;
+            pos.y = py;
+            pos.z = pz;
+
+            gbMatrix4* pTop = pMatStack->GetTop();
+            pTop->Transform(&pos, 1);
+
+            unsigned int color = *(unsigned int*)&p->colorR;
+            float halfSize = particleScale * p->size * 0.5f;
+
+            float u0 = (float)p->frame * (float)invCols;
+            float v0 = 1.0f - (float)(p->randomSeed + 1) * (float)invRows;
+            float u1 = u0 + (float)invCols;
+            float v1 = v0 + (float)invRows;
+
+            float angle = p->rotation * 0.017453292f;
+            float cosR = (float)cos(angle);
+            float sinR = (float)sin(angle);
+
+            float negHalf = -halfSize;
+            float nc = negHalf * cosR;
+            float ns = negHalf * sinR;
+            float pc = halfSize * cosR;
+            float ps = halfSize * sinR;
+
+            // Rotated billboard quad corners (rotation in XY plane around pos)
+            float c0x = nc - ns + pos.x;
+            float c0y = nc + ns + pos.y;
+            float c1x = pc - ns + pos.x;
+            float c1y = ps + nc + pos.y;
+            float c2x = pc - ps + pos.x;
+            float c2y = pc + ps + pos.y;
+            float c3x = nc - ps + pos.x;
+            float c3y = pc + ns + pos.y;
+
+            // Triangle list: 6 vertices forming 2 triangles (0,1,3  3,1,2)
+            // Vertex 0: corner0, uv=(u0, v0)
+            pVerts[0] = c0x; pVerts[1] = c0y; pVerts[2] = pos.z;
+            *(unsigned int*)&pVerts[3] = color;
+            pVerts[4] = u0; pVerts[5] = v0;
+            // Vertex 1: corner1, uv=(u1, v0)
+            pVerts[6] = c1x; pVerts[7] = c1y; pVerts[8] = pos.z;
+            *(unsigned int*)&pVerts[9] = color;
+            pVerts[10] = u1; pVerts[11] = v0;
+            // Vertex 2: corner3, uv=(u0, v1)
+            pVerts[12] = c3x; pVerts[13] = c3y; pVerts[14] = pos.z;
+            *(unsigned int*)&pVerts[15] = color;
+            pVerts[16] = u0; pVerts[17] = v1;
+            // Vertex 3: corner3, uv=(u0, v1)
+            pVerts[18] = c3x; pVerts[19] = c3y; pVerts[20] = pos.z;
+            *(unsigned int*)&pVerts[21] = color;
+            pVerts[22] = u0; pVerts[23] = v1;
+            // Vertex 4: corner1, uv=(u1, v0)
+            pVerts[24] = c1x; pVerts[25] = c1y; pVerts[26] = pos.z;
+            *(unsigned int*)&pVerts[27] = color;
+            pVerts[28] = u1; pVerts[29] = v0;
+            // Vertex 5: corner2, uv=(u1, v1)
+            pVerts[30] = c2x; pVerts[31] = c2y; pVerts[32] = pos.z;
+            *(unsigned int*)&pVerts[33] = color;
+            pVerts[34] = u1; pVerts[35] = v1;
+
+            pVerts += 36;
+        }
+
+        pMatStack->Push();
+        pMatStack->LoadIdentity();
+        pDVB->Draw(1, pGroupParam->pRenderEffect, &texArray);
+        pMatStack->Pop();
+    }
 }
 
 
