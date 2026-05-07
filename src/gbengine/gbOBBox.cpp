@@ -30,7 +30,8 @@ gbVec3D gbOBBox::GetCenter() const {
 
 // Get radius (distance from center to corner)
 float gbOBBox::GetRadius() const {
-    return (float)(sqrt(extent.x * extent.x + extent.y * extent.y + extent.z * extent.z) * 0.5);
+    float r = (float)sqrt(extent.x * extent.x + extent.y * extent.y + extent.z * extent.z);
+    return r * 0.5f;
 }
 
 // Get radius in a specific direction

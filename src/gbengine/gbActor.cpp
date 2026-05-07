@@ -17,7 +17,7 @@ extern gbGfxManager* g_pGfxManager;
 extern gbVFileSystem* g_pVFileSys;
 
 // Animation frame rate conversion factor (seconds to frame ticks)
-static const float ANIM_FRAME_RATE = 30.0f;
+static const float ANIM_FRAME_RATE = 4800.0f;
 
 // Static variable for sun direction
 static gbVec3D s_sunDirection(0.0f, -1.0f, 0.0f);
@@ -218,7 +218,7 @@ void gbActor::Update() {
 
     // Update skeletal pose
     if (m_pActorDef) {
-        m_pActorDef->UpdateBones(this);
+        m_pActorDef->UpdateBones();
     }
 
     // Send message if dominant action changed
@@ -282,16 +282,12 @@ void gbActor::Reset(float time) {
 
 // Go to action (simple)
 void gbActor::GotoAction(char* actionName, int loop) {
-    unsigned int crc = gbCrc32Compute(actionName);
-    GotoAction(crc, loop, 1, 0, 0x6f766572);
+    GotoAction(gbCrc32Compute(actionName), loop, 1, 0, 0x6f766572);
 }
 
 // Go to action with time range (converts time to frame indices)
 void gbActor::GotoAction(char* actionName, float startTime, float endTime) {
-    unsigned int endFrame = (unsigned int)(endTime * ANIM_FRAME_RATE);
-    unsigned int startFrame = (unsigned int)(startTime * ANIM_FRAME_RATE);
-    unsigned int crc = gbCrc32Compute(actionName);
-    GotoAction(crc, 2, startFrame, endFrame, 0x6f766572);
+    GotoAction(gbCrc32Compute(actionName), 2, (unsigned int)(startTime * 4800.0f), (unsigned int)(endTime * 4800.0f), 0x6f766572);
 }
 
 // Go to action with three names (action + start marker + end marker)
@@ -457,11 +453,8 @@ int gbActor::GetTagNodeTM(gbMatrix4* matrix, char* tagName) {
 // Enable/disable shadow casting
 void gbActor::EnableShadow(int enable) {
     gbVisNode::EnableShadow(enable);
-    if (enable != 0 && m_pActorDef) {
-        void** defVtable = *(void***)m_pActorDef;
-        typedef void (__thiscall *EnableShadowDefFn)(void*);
-        EnableShadowDefFn enableShadowDef = (EnableShadowDefFn)((void**)defVtable)[0x10 / 4];
-        enableShadowDef(m_pActorDef);
+    if (enable != 0) {
+        m_pActorDef->UpdateBones();
     }
 }
 

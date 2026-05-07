@@ -175,11 +175,14 @@ bool gbMatrix4::IsIdentity(void) const
 bool gbMatrix4::IsValid(void) const
 {
     if (this == NULL) return false;
-    int i;
-    float *p = (float *)this;
-    for (i = 0; i < 16; i++, p++) {
-        if (*p * *p < 0.0f) return false;
-    }
+    int i = 0;
+    float* p = (float*)this;
+    do {
+        float v = *p;
+        if (v * v < 0.0f) return false;
+        i++;
+        p++;
+    } while (i < 16);
     return true;
 }
 

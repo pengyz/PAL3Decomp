@@ -655,8 +655,6 @@ found:
 
 gbVFile::gbVFile()
 {
-    cpkFile.bValid = 0;
-    cpkFile.lpRealData = 0;
 }
 
 gbVFile::~gbVFile()

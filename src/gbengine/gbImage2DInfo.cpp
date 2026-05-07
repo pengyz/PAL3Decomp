@@ -7,9 +7,7 @@
 #include <string.h>
 
 gbImage2DInfo& gbImage2DInfo::operator=(const gbImage2DInfo& other) {
-    if (this != &other) {
-        memcpy(this, &other, sizeof(gbImage2DInfo));
-    }
+    memcpy(this, &other, 0x80);
     return *this;
 }
 

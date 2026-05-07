@@ -375,8 +375,7 @@ void gbVertexBubble::Unlock() {
     field_2C = NULL;
     field_30 = NULL;
     field_34 = NULL;
-    IDirect3DVertexBuffer9* pVB = (IDirect3DVertexBuffer9*)pPool->pBuffer;
-    pVB->Unlock();
+    pPool->OnResetDevice();
 }
 
 // ClearPointer: 0x10003dd0

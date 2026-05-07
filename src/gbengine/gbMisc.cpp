@@ -184,12 +184,14 @@ void gbStrToLowCase(char* dst, const char* src)
 char* gbstrchr(char* str, char ch)
 {
     char* result = str;
-    for (char c = *str; c; c = result[1]) {
+    char c = *result;
+    while (c) {
         if ((unsigned char)c > 0x7Fu) {
             result++;
         } else if (c == ch) {
             return result;
         }
+        c = result[1];
         result++;
     }
     return 0;

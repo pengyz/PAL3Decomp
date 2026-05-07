@@ -67,7 +67,7 @@ public:
     virtual void LoadFromFile(const char* filename) = 0;                        // vtable[1]  offset 0x04
     virtual unsigned int GetActionDuration(char* actionName) = 0;               // vtable[2]  offset 0x08
     virtual int GetNumExportNodes(char* buffer1, char* buffer2, int maxNodes) = 0; // vtable[3]  offset 0x0C
-    virtual void UpdateBones(gbActor* actor) = 0;                               // vtable[4]  offset 0x10
+    virtual void UpdateBones() = 0;                                              // vtable[4]  offset 0x10
     virtual int GetEventList(void* buffer, int fromFrame, int toFrame, void* eventData) = 0; // vtable[5]  offset 0x14
     virtual void _vf18() = 0;                                                  // vtable[6]  offset 0x18
     virtual void GetCollideOBB(gbOBBox* obb, gbActor* actor) = 0;              // vtable[7]  offset 0x1C
