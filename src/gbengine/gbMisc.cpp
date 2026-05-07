@@ -774,16 +774,9 @@ void gbUIRect::Release(void) {
 }
 
 // ======== gbVec3D default constructor closure ========
-// MSVC 6.0 generates ??_FgbVec3D@@QAEXXZ (default constructor closure) for
-// gbVec3D when it's used as a member in classes with virtual base classes.
-// Modern MSVC doesn't generate this symbol automatically, so we provide it
-// directly using inline assembly with the exact mangled name via a linker alias.
-
-// Define a no-op function (since gbVec3D default ctor is empty, the closure is a no-op)
-extern "C" void __cdecl _gbVec3D_dcc_impl(void) {}
-
-// Use alternatename to alias the missing mangled symbol to our implementation
-#pragma comment(linker, "/alternatename:??_FgbVec3D@@QAEXXZ=__gbVec3D_dcc_impl")
+// Note: VC6 automatically generates ??_FgbVec3D@@QAEXXZ (default constructor closure)
+// for gbVec3D when used as a member in classes with virtual base classes.
+// No manual alias needed when compiling with VC6.
 
 
 // ============================================================
@@ -972,5 +965,19 @@ void gbTimeCounter::On() {
     double freqDbl = (double)freq.LowPart + (double)freq.HighPart * 4294967296.0;
     double counterDbl = (double)counter.LowPart + (double)counter.HighPart * 4294967296.0;
     timestamp = counterDbl / freqDbl;
+}
+
+
+// ======== Random Number Generator ========
+
+// Linear congruential generator seed - 0x1014adc4
+static unsigned int g_gbRandSeed = 0;
+
+// 0x10027620 (72B) - Generate random float in [minVal, maxVal]
+// Uses LCG: seed = seed * 0x343FD + 0x269EC3
+float gbRandFloat(float minVal, float maxVal) {
+    g_gbRandSeed = g_gbRandSeed * 0x343FD + 0x269EC3;
+    int randVal = (g_gbRandSeed >> 16) & 0x7FFF;
+    return (maxVal - minVal) * (float)randVal * (1.0f / 32768.0f) + minVal;
 }
 

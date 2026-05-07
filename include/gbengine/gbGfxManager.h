@@ -262,8 +262,18 @@ public:
     // total sizeof = 0x8F0
 
     gbGfxManager_D3D();
-    void Init(gbGfxDriverInfo* info);
+    gbGfxManager* InitD3D(int* pResult, gbGfxDriverInfo* info);
+    void InitSubsystems(void);
+    void ReleaseSubsystems(void);
+    int CreateD3DDevice(void);
     void SetTexture(struct gbTextureArray* p0);
+
+    // Internal helper methods
+    int ChooseBestDevice(void);          // 0x10019b70
+    int CreateDevice(void);              // 0x1001a790
+    char InitDeviceWindowed(int, int);   // 0x10019e70
+    char InitDeviceFullscreen(int, int); // 0x10019c60
+    void DisplayErrorMsg(int hr, int type); // 0x1001ad80
 };
 
 // Global pointer to the graphics manager

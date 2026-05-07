@@ -571,18 +571,7 @@ gbActor& gbActor::operator=(const gbActor& other) {
 }
 
 
-/* ======== gbResManager (base class stub) ======== */
-
-class gbResManager {
-public:
-    void* _resmgr_data[3];
-
-    gbResManager();
-    ~gbResManager();
-
-    gbResource* FindResByName(const char* name);
-    void AddResource(gbResource* res);
-};
+/* gbResManager definition is in gbengine_internal.h */
 
 /* ======== gbActorMgr ======== */
 

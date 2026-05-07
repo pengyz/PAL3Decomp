@@ -4,30 +4,12 @@
  */
 
 #include "gbengine/gbTexture.h"
+#include "gbengine/gbengine_internal.h"
 #include <string.h>
 #include <stdlib.h>
 
 // External functions
 extern unsigned int gbCrc32Compute(const char* str);
-
-// gbResManager definition (forward declared in gbTexture.h)
-class gbResManager {
-public:
-    gbResource** array;  // +0x00
-    int capacity;        // +0x04
-    int count;           // +0x08
-
-    gbResManager();
-    gbResManager(const gbResManager& other);
-    ~gbResManager();
-
-    void AddResource(gbResource* res);
-    void DelResource(gbResource* res);
-    gbResource* FindResByName(const char* name);
-    void CleanAllResource();
-
-    gbResManager& operator=(const gbResManager& other);
-};
 
 /* ======== gbRefObject ======== */
 

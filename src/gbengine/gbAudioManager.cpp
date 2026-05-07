@@ -79,7 +79,7 @@ void AILCALL AIL_pause_stream(HSTREAM stream, int onoff);
 void AILCALL AIL_set_stream_volume(HSTREAM stream, int volume);
 unsigned int AILCALL AIL_stream_status(HSTREAM stream);
 
-void* AILCALL AIL_file_read(const char* filename, void* dest);
+__declspec(dllimport) void* __stdcall AIL_file_read(const char* filename, void* dest);
 void AILCALL AIL_mem_free_lock(void* ptr);
 }
 

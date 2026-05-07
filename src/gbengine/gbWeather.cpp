@@ -12,10 +12,10 @@
 
 // External globals
 extern double g_CurrentTime;
-extern gbGfxManager* dword_101379A8;
+extern gbGfxManager* g_pGfxManager;
 
-// External random float function
-extern "C" float sub_10027620(float minVal, float maxVal);
+// Random float in range [minVal, maxVal] - 0x10027620
+float gbRandFloat(float minVal, float maxVal);
 
 /* ======== gbDropUnit ======== */
 
@@ -86,9 +86,9 @@ gbDropGroup::gbDropGroup(int maxCount, const gbDropDesc* dropDesc, const char* t
         } while (v4);
     }
 
-    gbGfxManager* v10 = dword_101379A8;
+    gbGfxManager* v10 = g_pGfxManager;
     if (texName) {
-        gbTexture* v11 = (gbTexture*)(*(int (**)())(*(int*)dword_101379A8 + 8))();
+        gbTexture* v11 = (gbTexture*)(*(int (**)())(*(int*)g_pGfxManager + 8))();
         pTexture = v11;
     } else {
         pTexture = NULL;
@@ -152,14 +152,14 @@ void gbDropGroup::CreateUnit(float deltaTime, gbCamera* camera) {
                 if (*v9 <= 0.0f) {
                     float half = *((float*)this + 5) * 0.5f;
                     float negHalf = *((float*)this + 5) * -0.5f;
-                    v9[4] = sub_10027620(negHalf, half);
+                    v9[4] = gbRandFloat(negHalf, half);
                     float negFull = -*((float*)this + 5);
-                    v9[6] = sub_10027620(negFull, *((float*)this + 5) * -0.5f);
-                    v9[5] = sub_10027620(*((float*)this + 11), *((float*)this + 12));
-                    *v9 = sub_10027620(*((float*)this + 7), *((float*)this + 8));
+                    v9[6] = gbRandFloat(negFull, *((float*)this + 5) * -0.5f);
+                    v9[5] = gbRandFloat(*((float*)this + 11), *((float*)this + 12));
+                    *v9 = gbRandFloat(*((float*)this + 7), *((float*)this + 8));
                     v9[3] = 0;
                     v9[1] = 0;
-                    v9[2] = -sub_10027620(*((float*)this + 9), *((float*)this + 10));
+                    v9[2] = -gbRandFloat(*((float*)this + 9), *((float*)this + 10));
                     ++numActiveUnits;
                     if (!--v16)
                         break;
@@ -300,8 +300,8 @@ void gbSnow::Update(float a2) {
                 v6 = *v5 - a2;
                 *v5 = v6;
                 if (((int)(v6 * 15.0f) & 1) == 0) {
-                    v5[1] = sub_10027620(-*((float*)this + 20), *((float*)this + 20));
-                    v5[3] = sub_10027620(-*((float*)this + 20), *((float*)this + 20));
+                    v5[1] = gbRandFloat(-*((float*)this + 20), *((float*)this + 20));
+                    v5[3] = gbRandFloat(-*((float*)this + 20), *((float*)this + 20));
                 }
                 if (*v5 <= 0.0f)
                     --*(int*)((char*)this + 0x0C);

@@ -80,30 +80,30 @@ char* gbVfgetname(const char* path, char* buf, int size) {
 }
 
 // Create graphics manager - 0x1001E0C0 (145B)
+// Factory function: allocates gbGfxManager_D3D and calls its Init method
+// Returns NULL if Init fails (result param set to 0)
 gbGfxManager* gbCreateGraphManager(gbGfxDriverInfo* info) {
-    gbGfxManager* result;
+    int result = 0;
+    gbGfxManager* pMgr = NULL;
 
-    if (info->type == 2) {
-        // D3D driver type
-        gbGfxManager_D3D* pMgr = new gbGfxManager_D3D();
-        if (pMgr) {
-            pMgr->Init(info);
-            result = pMgr;
+    if (info->type != 1 && info->type == 2) {
+        // D3D9 driver type
+        gbGfxManager_D3D* pD3DMgr = new gbGfxManager_D3D();
+        if (pD3DMgr) {
+            pMgr = pD3DMgr->InitD3D(&result, info);
         } else {
-            result = NULL;
+            pMgr = NULL;
         }
-    } else {
-        result = (gbGfxManager*)info;  // pass-through for other types
     }
 
-    if (!info) {
-        if (result) {
-            delete result;
+    if (result == 0) {
+        if (pMgr) {
+            delete pMgr;
         }
-        return NULL;
+        pMgr = NULL;
     }
 
-    return result;
+    return pMgr;
 }
 
 // Load light file - 0x100135A0 (735B)
