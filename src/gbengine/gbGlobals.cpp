@@ -464,14 +464,19 @@ int gbChangeDispMode(int width, int height, int bpp)
             return 1;
         }
 error:
-        if (result == DISP_CHANGE_BADMODE) {
+        switch (result) {
+        case DISP_CHANGE_BADMODE:
             sprintf(buf, "The video mode %ldx%ldx%ld-bit color is not available\n", (long)width, (long)height, (long)bpp);
-        } else if (result == DISP_CHANGE_FAILED) {
+            break;
+        case DISP_CHANGE_FAILED:
             sprintf(buf, "Hardware failed to change to %ldx%ldx%ld-bit color\n", (long)width, (long)height, (long)bpp);
-        } else if (result == DISP_CHANGE_RESTART) {
+            break;
+        case DISP_CHANGE_RESTART:
             sprintf(buf, "You must change your video mode to %ldx%ldx%ld-bit color and then restart\n", (long)width, (long)height, (long)bpp);
-        } else {
+            break;
+        default:
             sprintf(buf, "Failed to change to %ldx%ldx%ld-bit color mode\n", (long)width, (long)height, (long)bpp);
+            break;
         }
         gbPopErrorBox(buf);
         return 0;

@@ -142,43 +142,32 @@ int gbVisNode::PopMessage(gbNodeMsgObj& msg) {
     return 1;
 }
 
-// ProcessMessage - virtual, base implementation does nothing
-void gbVisNode::ProcessMessage(gbNodeMsgObj* msg) {
-    (void)0;
-}
-
-// Attach - 0x100166f0 (64B) - Iterate children, call Attach on each
+// Attach - 0x100166f0
 int gbVisNode::Attach(gbRenderEffect* effect) {
-    int result = 0;
-    gbVisNode* child = (gbVisNode*)children.pHead;
+    int result;
+    gbVisNode* child;
+
+    result = 0;
+    child = (gbVisNode*)children.pHead;
     children.pIterator = (gbNBTreeNode*)child;
-
-    if (!child)
-        return 0;
-
-    do {
-        if (child->Attach(effect))
-            result = 1;
-        child = (gbVisNode*)children.pIterator->pNext;
-        children.pIterator = (gbNBTreeNode*)child;
-    } while (child);
-
+    if (child) {
+        do {
+            if (child->Attach(effect))
+                result = 1;
+            child = (gbVisNode*)children.pIterator->pNext;
+            children.pIterator = (gbNBTreeNode*)child;
+        } while (child);
+    }
     return result;
 }
 
 // Update - 0x10016730 (virtual)
 void gbVisNode::Update() {
-    // Iterate through children and call Update on each
     gbVisNode* child = (gbVisNode*)children.pHead;
     children.pIterator = (gbNBTreeNode*)child;
 
     while (child != NULL) {
-        // Call virtual Update through vtable
-        void** vtable = *(void***)child;
-        typedef void (__thiscall *UpdateFunc)(gbVisNode*);
-        UpdateFunc updateFunc = (UpdateFunc)vtable[5];  // Update is at vtable+0x14
-        updateFunc(child);
-
+        child->Update();
         child = (gbVisNode*)children.pIterator->pNext;
         children.pIterator = (gbNBTreeNode*)child;
     }

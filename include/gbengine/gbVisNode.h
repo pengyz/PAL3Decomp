@@ -49,13 +49,15 @@ public:
 
     void PushMessage(gbNodeMsgObj& msg);
     int PopMessage(gbNodeMsgObj& msg);
-    virtual void ProcessMessage(gbNodeMsgObj* msg);
-    virtual int Attach(gbRenderEffect* effect);
-    virtual void AttachSelf(gbRenderEffect* effect);
-    virtual void Render(gbRenderInfoObj* renderInfo);
-    virtual void RenderShadowVolume(gbRenderInfoObj* renderInfo);
-    virtual void Update();
-    virtual void Reset(float time);
+    virtual void Render(gbRenderInfoObj* renderInfo);          // vtable[1]
+    virtual void RenderShadowVolume(gbRenderInfoObj* renderInfo); // vtable[2]
+    virtual void AttachSelf(gbRenderEffect* effect);           // vtable[3]
+    virtual int Attach(gbRenderEffect* effect);                // vtable[4]
+    virtual void Update();                                     // vtable[5]
+    virtual void Reset(float time);                            // vtable[6]
+    virtual void GetBoundSphere(gbSphere* sphere);             // vtable[7]
+    virtual void EnableShadow(int enable);                     // vtable[8]
+    virtual int GetAABBox(gbAABBox* box);                      // vtable[9]
     void ShowNode(int show);
     void SetTimeScale(float scale);
     float GetTimeScale();
@@ -64,13 +66,10 @@ public:
     void SetRenderPriority(int priority);
     gbVisNode* GetCullNext();
     gbVisNode* GetCullPrev();
-    virtual void GetBoundSphere(gbSphere* sphere);
-    virtual void EnableShadow(int enable);
     void SetBlend(NodeBlend mode, float value);
     NodeBlend GetBlend(float& outValue);
     void SetBlendRecursive(NodeBlend mode, float value);
     void GetTotalBoundSphere(gbSphere* sphere);
-    virtual int GetAABBox(gbAABBox* box);
 
     gbVisNode& operator=(const gbVisNode& other);
 };

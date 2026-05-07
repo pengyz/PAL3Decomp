@@ -133,8 +133,8 @@ public:
 
 class gbBinaryTreeNode {
 public:
-    gbBinaryTreeNode* pLeft;       // +0x04
-    gbBinaryTreeNode* pParent;     // +0x08
+    gbBinaryTreeNode* pParent;     // +0x04
+    gbBinaryTreeNode* pLeft;       // +0x08
     gbBinaryTreeNode* pRight;      // +0x0C
 
     gbBinaryTreeNode(void);

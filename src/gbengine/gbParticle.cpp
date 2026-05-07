@@ -307,7 +307,7 @@ gbPartEmitter& gbPartEmitter::operator=(const gbPartEmitter& other) {
 }
 
 // Global particle file version (determines which fields are present in file format)
-unsigned int g_particleFileVersion;
+int g_particleFileVersion;
 
 void gbPartEmitter::LoadFromFile(gbVFile* vfile) {
     g_pVFileSys->Read(configData, 0x40u, vfile);
@@ -447,6 +447,7 @@ gbParticleGroup::gbParticleGroup(void) {
     groupName = NULL;
     unused1 = 0;
     unused2 = 0;
+    particleArray = NULL;
 }
 
 gbParticleGroup::~gbParticleGroup(void) {

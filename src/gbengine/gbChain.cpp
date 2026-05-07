@@ -436,6 +436,14 @@ gbBinaryTreeNode::gbBinaryTreeNode(const gbBinaryTreeNode& src) {
 }
 
 gbBinaryTreeNode::~gbBinaryTreeNode() {
+    if (pLeft) {
+        delete pLeft;
+    }
+    if (pRight) {
+        delete pRight;
+    }
+    pRight = NULL;
+    pLeft = NULL;
 }
 
 gbBinaryTreeNode& gbBinaryTreeNode::operator=(const gbBinaryTreeNode& other) {
