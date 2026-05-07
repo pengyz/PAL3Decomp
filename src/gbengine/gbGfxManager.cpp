@@ -525,7 +525,7 @@ void gbEffectMgr::Release(void) {
 #pragma auto_inline(off)
 
 // slot 1: Window message handler
-void gbGfxManager::_vf_EndScene(int msg, int wParam, int lParam) {}
+void gbGfxManager::MsgProc(int msg, int wParam, int lParam) {}
 
 // slot 2: Create texture object
 gbTexture* gbGfxManager::NewTexture(const char* name) { return NULL; }

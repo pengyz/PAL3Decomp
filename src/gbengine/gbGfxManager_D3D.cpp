@@ -22,6 +22,36 @@
 extern gbGfxManager* g_pGfxManager;
 extern gbGfxManager_D3D* g_pGfxManager_D3D;
 
+// D3D subclasses of pool types (constructors defined in their respective .cpp files)
+class gbVertexPool_D3D : public gbVertexPool {
+public:
+    gbVertexPool_D3D(gbPoolType type, unsigned int vertType, int total);
+};
+
+class gbIndexPool_D3D : public gbIndexPool {
+public:
+    gbIndexPool_D3D(gbPoolType type, int indexSz, int total);
+};
+
+class gbDynVertBuf_D3D : public gbDynVertBuf {
+public:
+    gbDynVertBuf_D3D(unsigned int fvfFlags, int maxVertices);
+    int m_field3C;  // +0x3C: D3D vertex buffer handle
+};
+
+// Stub constructors (real implementations in separate compilation units)
+gbVertexPool_D3D::gbVertexPool_D3D(gbPoolType type, unsigned int vertType, int total)
+    : gbVertexPool(type, vertType, total) {}
+gbIndexPool_D3D::gbIndexPool_D3D(gbPoolType type, int indexSz, int total)
+    : gbIndexPool(type, indexSz, total) {}
+gbDynVertBuf_D3D::gbDynVertBuf_D3D(unsigned int fvfFlags, int maxVertices)
+    : gbDynVertBuf(fvfFlags, maxVertices) {}
+
+// 0x1001B750 (226B) - Handle window size change (stub, calls Reset/GetClientRect)
+void gbGfxManager_D3D::HandleSizeChange(void) {
+    /* TODO: GetWindowRect, GetClientRect, device Reset */
+}
+
 // DXT compressed texture format FourCC codes
 #define FOURCC_DXT1  0x31545844  // 'DXT1'
 #define FOURCC_DXT2  0x32545844  // 'DXT2'
@@ -834,11 +864,112 @@ gbGfxManager_D3D::~gbGfxManager_D3D() {
     }
 }
 
-// Slot 1: 0x1001B4C0 (700B+) - Window message dispatch handler
-// Handles WM_SIZE(0x05), WM_ACTIVATEAPP(0x20), WM_SETCURSOR(0x24), etc.
-// This is called from the window proc to handle GfxManager-related messages.
-void gbGfxManager_D3D::_vf_EndScene(int msg, int wParam, int lParam) {
-    /* STUB - window message handler: WM_SIZE, WM_ACTIVATEAPP, WM_SETCURSOR, etc. */
+// Slot 1: 0x1001B4C0 (653B) - Window message dispatch handler
+void gbGfxManager_D3D::MsgProc(int msg, int wParam, int lParam) {
+    unsigned int uMsg = (unsigned int)msg;
+    unsigned int uWParam = (unsigned int)wParam;
+
+    if (uMsg <= WM_MOUSEMOVE) {
+        if (uMsg == WM_MOUSEMOVE) {
+            // Update D3D hardware cursor position
+            if (m_bActive != 0 && m_pd3dDevice != NULL) {
+                POINT pt;
+                GetCursorPos(&pt);
+                if (m_bWindowed == 0) {
+                    ScreenToClient(m_hWnd, &pt);
+                }
+                m_pd3dDevice->SetCursorPosition(pt.x, pt.y, 0);
+            }
+            return;
+        }
+
+        if (uMsg <= WM_GETMINMAXINFO) {
+            if (uMsg == WM_GETMINMAXINFO) {
+                // Set minimum window size
+                MINMAXINFO* mmi = (MINMAXINFO*)lParam;
+                mmi->ptMinTrackSize.x = 100;
+                mmi->ptMinTrackSize.y = 100;
+                return;
+            }
+
+            if (uMsg == WM_SIZE) {
+                if (m_bWindowed != 0 && m_hWnd != NULL) {
+                    m_dwWindowStyle = GetWindowLongA(m_hWnd, GWL_STYLE);
+                }
+
+                if (uWParam == SIZE_MINIMIZED) {
+                    if (m_bClipCursorWhenFullscreen != 0 && m_bWindowed == 0) {
+                        ClipCursor(NULL);
+                    }
+                    m_bActive = 0;
+                    m_bMinimized = 1;
+                    m_bMaximized = 0;
+                    return;
+                }
+
+                if (uWParam == SIZE_MAXIMIZED) {
+                    if (m_bMinimized != 0) {
+                        m_bActive = 1;
+                    }
+                    m_bMinimized = 0;
+                    m_bMaximized = 1;
+                    HandleSizeChange();
+                    return;
+                }
+
+                if (uWParam == SIZE_RESTORED) {
+                    if (m_bMaximized != 0) {
+                        m_bMaximized = 0;
+                        HandleSizeChange();
+                        return;
+                    }
+                    if (m_bMinimized != 0) {
+                        m_bActive = 1;
+                        m_bMinimized = 0;
+                        HandleSizeChange();
+                        return;
+                    }
+                }
+            } else if (uMsg == WM_SETCURSOR) {
+                if (m_bActive != 0) {
+                    if (m_pActiveCursor == NULL) {
+                        return;
+                    }
+                    SetCursor(NULL);
+                    m_pd3dDevice->ShowCursor(m_bShowCursor);
+                    return;
+                }
+            }
+        } else if (uMsg == WM_SYSCOMMAND) {
+            // Filter system commands
+            if (uWParam > SC_MAXIMIZE) {
+                if (uWParam != SC_KEYMENU && uWParam != 0xF170) {
+                    return;
+                }
+            } else {
+                if (uWParam != SC_MAXIMIZE && uWParam != SC_SIZE && uWParam != SC_MOVE) {
+                    return;
+                }
+            }
+            if (m_bWindowed == 0) {
+                return;
+            }
+        }
+    } else if (uMsg == WM_POWERBROADCAST) {
+        if (uWParam == PBT_APMQUERYSUSPEND || uWParam == PBT_APMRESUMESUSPEND) {
+            return;
+        }
+    } else {
+        if (uMsg == WM_ENTERSIZEMOVE) {
+            m_bActive = 0;
+            return;
+        }
+        if (uMsg == WM_EXITSIZEMOVE) {
+            m_bActive = 1;
+            HandleSizeChange();
+            return;
+        }
+    }
 }
 
 // Slot 2: 0x10019040 (133B) - Create gbTexture_D3D object
@@ -849,23 +980,19 @@ gbTexture* gbGfxManager_D3D::NewTexture(const char* name) {
     return tex;
 }
 
-// Slot 4: 0x100190D0 (106B) - Create gbRenderEffect_RenderState (size 0x3C)
-// Pattern: p = new(0x3C); if (p) call constructor(p, p1, p2, p3); return p;
+// Slot 4: 0x100190D0 (106B) - Create gbVertexPool_D3D (size 0x3C)
 void* gbGfxManager_D3D::_vf04(int p1, int p2, int p3) {
-    /* STUB - new(0x3C) + gbRenderEffect_RenderState ctor */
-    return NULL;
+    return new gbVertexPool_D3D((gbPoolType)p1, (unsigned int)p2, p3);
 }
 
-// Slot 5: 0x10019140 (106B) - Create gbRenderEffect_TexStageState (size 0x38)
+// Slot 5: 0x10019140 (106B) - Create gbIndexPool_D3D (size 0x38)
 void* gbGfxManager_D3D::_vf05(int p1, int p2, int p3) {
-    /* STUB - new(0x38) + gbRenderEffect_TexStageState ctor */
-    return NULL;
+    return new gbIndexPool_D3D((gbPoolType)p1, p2, p3);
 }
 
-// Slot 6: 0x100191B0 (101B) - Create gbRenderEffect_SamplerState (size 0x40)
+// Slot 6: 0x100191B0 (101B) - Create gbDynVertBuf_D3D (size 0x40)
 void* gbGfxManager_D3D::_vf06(int p1, int p2) {
-    /* STUB - new(0x40) + gbRenderEffect_SamplerState ctor */
-    return NULL;
+    return new gbDynVertBuf_D3D((unsigned int)p1, p2);
 }
 
 // Slot 7: 0x10019220 (133B) - SetPerspectiveProjection

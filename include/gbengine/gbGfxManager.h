@@ -138,7 +138,7 @@ public:
 
     // === Virtual functions (29 slots, order matches binary vtable) ===
     virtual ~gbGfxManager();                                         // slot 0
-    virtual void _vf_EndScene(int msg, int wParam, int lParam);       // slot 1: RET 0xC
+    virtual void MsgProc(int msg, int wParam, int lParam);       // slot 1: RET 0xC
     virtual gbTexture* NewTexture(const char* name);                 // slot 2
     virtual gbBaseMesh* NewMesh(const char* name, gbMeshType type);  // slot 3
     virtual void* _vf04(int p1, int p2, int p3);                     // slot 4: RET 0xC
@@ -401,7 +401,7 @@ public:
     void SetTexture(struct gbTextureArray* p0);
 
     // === Virtual function overrides (must match base class vtable order) ===
-    void _vf_EndScene(int msg, int wParam, int lParam);     // slot 1: 0x1001B4C0
+    void MsgProc(int msg, int wParam, int lParam);     // slot 1: 0x1001B4C0
     gbTexture* NewTexture(const char* name);                // slot 2: 0x10019040
     void* _vf04(int p1, int p2, int p3);                    // slot 4: 0x100190D0
     void* _vf05(int p1, int p2, int p3);                    // slot 5: 0x10019140
@@ -435,6 +435,7 @@ public:
     char InitDeviceWindowed(int, int);   // 0x10019e70
     char InitDeviceFullscreen(int, int); // 0x10019c60
     void DisplayErrorMsg(int hr, int type); // 0x1001ad80
+    void HandleSizeChange(void);         // 0x1001b750
 };
 
 // Global pointer to the graphics manager
