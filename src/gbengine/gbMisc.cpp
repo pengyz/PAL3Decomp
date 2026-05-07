@@ -86,7 +86,37 @@ unsigned int gbCrc32Compute(const char* data, int len)
 
 unsigned int gbCrc32Compute(const char* str)
 {
-    return gbCrc32Compute(str, (int)strlen(str));
+    unsigned int crc;
+    const unsigned char* p;
+
+    if (*str == 0) {
+        return 0;
+    }
+
+    crc = (unsigned int)(unsigned char)*str << 24;
+    p = (const unsigned char*)str + 1;
+
+    if (*p != 0) {
+        crc |= (unsigned int)*p << 16;
+        p = (const unsigned char*)str + 2;
+        if (str[2] != 0) {
+            crc |= (unsigned int)(unsigned char)str[2] << 8;
+            p = (const unsigned char*)str + 3;
+            if (str[3] != 0) {
+                crc |= (unsigned char)str[3];
+                p = (const unsigned char*)str + 4;
+            }
+        }
+    }
+
+    crc = ~crc;
+
+    while (*p != 0) {
+        crc = (crc << 8 | *p) ^ gbCrc32Table[crc >> 24];
+        p++;
+    }
+
+    return ~crc;
 }
 
 // ======== String Functions ========
@@ -854,11 +884,10 @@ void gbNameVarBuf::GetVariant(unsigned int p0, void * p1) {
     unsigned int* table = (unsigned int*)varTable;
     for (int i = 0; i < varCount; i++) {
         if (table[i * 4] == p0) {
-            unsigned int elemSize = table[i * 4 + 1];
-            unsigned int dataOffset = table[i * 4 + 2];
             unsigned int elemCount = table[i * 4 + 3];
+            unsigned int elemSize = table[i * 4 + 1];
             unsigned int totalSize = elemCount * elemSize;
-            memcpy(p1, (char*)dataBuf + dataOffset, totalSize);
+            memcpy(p1, (char*)dataBuf + table[i * 4 + 2], totalSize);
             return;
         }
     }
@@ -952,11 +981,10 @@ void gbNameVarBuf::SetVariant(unsigned int p0, void * p1) {
     unsigned int* table = (unsigned int*)varTable;
     for (int i = 0; i < varCount; i++) {
         if (table[i * 4] == p0) {
-            unsigned int elemSize = table[i * 4 + 1];
-            unsigned int dataOffset = table[i * 4 + 2];
             unsigned int elemCount = table[i * 4 + 3];
+            unsigned int elemSize = table[i * 4 + 1];
             unsigned int totalSize = elemCount * elemSize;
-            memcpy((char*)dataBuf + dataOffset, p1, totalSize);
+            memcpy((char*)dataBuf + table[i * 4 + 2], p1, totalSize);
             return;
         }
     }
@@ -977,24 +1005,34 @@ gbTimeCounter& gbTimeCounter::operator=(const gbTimeCounter& other) {
 }
 
 double gbTimeCounter::Off() {
-    LARGE_INTEGER endTime;
-    QueryPerformanceCounter(&endTime);
-
-    // Calculate elapsed time in seconds
-    elapsed = (double)(endTime.QuadPart - startTime.QuadPart) / (double)freq.QuadPart;
-    timestamp = elapsed;
-
-    return elapsed;
+    if (*(double*)&startTime < 0.0) {
+        return 0.0;
+    }
+    if (gbTimeInitialized) {
+        LARGE_INTEGER counter;
+        QueryPerformanceCounter(&counter);
+        double highPart = (double)counter.HighPart;
+        counter.HighPart = 0;
+        *(double*)&freq = (highPart * 4294967295.0 + (double)counter.LowPart) / gbTimeFreqDbl;
+        return *(double*)&freq - *(double*)&startTime;
+    } else {
+        int t = clock();
+        *(double*)&freq = (double)t * 0.001;
+        return *(double*)&freq - *(double*)&startTime;
+    }
 }
 
 void gbTimeCounter::On() {
-    LARGE_INTEGER counter;
-    QueryPerformanceCounter(&counter);
-    LARGE_INTEGER freq;
-    QueryPerformanceFrequency(&freq);
-    double freqDbl = (double)freq.LowPart + (double)freq.HighPart * 4294967296.0;
-    double counterDbl = (double)counter.LowPart + (double)counter.HighPart * 4294967296.0;
-    timestamp = counterDbl / freqDbl;
+    if (gbTimeInitialized) {
+        LARGE_INTEGER counter;
+        QueryPerformanceCounter(&counter);
+        double highPart = (double)counter.HighPart;
+        counter.HighPart = 0;
+        *(double*)&startTime = (highPart * 4294967295.0 + (double)counter.LowPart) / gbTimeFreqDbl;
+    } else {
+        int t = clock();
+        *(double*)&startTime = (double)t * 1000.0;
+    }
 }
 
 

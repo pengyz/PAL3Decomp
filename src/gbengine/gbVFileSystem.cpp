@@ -307,7 +307,7 @@ bool CPK::IsFileExist(const char* filename)
 
 bool CPK::IsLoaded()
 {
-    return m_bLoaded != 0;
+    return m_bLoaded;
 }
 
 CPKFile* CPK::Open(const char* filename)
@@ -561,16 +561,12 @@ unsigned long CPK::GetCPKHandle()
 
 unsigned long CPK::Tell(CPKFile* pFile)
 {
-    if (!pFile)
-        return 0;
     return pFile->dwPointer;
 }
 
 void CPK::Rewind(CPKFile* pFile)
 {
-    if (pFile) {
-        pFile->dwPointer = 0;
-    }
+    pFile->dwPointer = 0;
 }
 
 unsigned long CPK::Seek(CPKFile* pFile, int offset, unsigned long origin)
@@ -625,11 +621,33 @@ unsigned long CPK::GetAllocationGranularity()
     return si.dwAllocationGranularity;
 }
 
-bool CPK::IsDir(unsigned long tableIndex)
+bool CPK::IsDir(unsigned long crc)
 {
-    if (tableIndex >= m_CPKHeader.dwValidTableNum)
-        return 0;
-    return (m_CPKTable[tableIndex].dwFlag & CPK_FLAG_ISDIR) ? 1 : 0;
+    if (crc == 0) {
+        return true;
+    }
+
+    int lo = 0;
+    int hi = m_CPKHeader.dwValidTableNum;
+    int idx;
+    if (hi != 0) {
+        do {
+            idx = (hi - lo) / 2 + lo;
+            if (crc == m_CPKTable[idx].dwCRC &&
+                (m_CPKTable[idx].dwFlag & CPK_FLAG_ISFILE) &&
+                !(m_CPKTable[idx].dwFlag & CPK_FLAG_ISDELETED))
+                goto found;
+            if (hi == lo + 1) break;
+            if (crc >= m_CPKTable[idx].dwCRC) {
+                lo = idx;
+            } else {
+                hi = idx;
+            }
+        } while (hi != lo);
+    }
+    idx = -1;
+found:
+    return (bool)((m_CPKTable[idx].dwFlag >> 1) & 1);
 }
 
 
@@ -1418,7 +1436,7 @@ void CIniFile::WriteLineSeperator()
 
 int CIniFile::IfRead()
 {
-    return (m_nState == 0) ? 1 : 0;
+    return m_nState;
 }
 
 gbVFile* CIniFile::GetFilePointer()
