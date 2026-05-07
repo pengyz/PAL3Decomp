@@ -13,7 +13,8 @@ struct gbAudioMgrDesc {
     int freq;             // +0x00
     int bits;             // +0x04
     int channels;         // +0x08
-    char providerName;    // +0x0C (first char of provider string; 0 = use default)
+    char providerName[256]; // +0x0C (provider string; [0]==0 = use default)
+    // sizeof = 0x10C = 268
 
     gbAudioMgrDesc();
     gbAudioMgrDesc& operator=(const gbAudioMgrDesc& other);
@@ -66,11 +67,11 @@ struct gb2DSampleSlot {
 class gbSound3DNode {
 public:
     gbSoundData* soundData;   // +0x00
-    void* sampleHandle;       // +0x04 (H3DSAMPLE)
+    void* sampleHandle;       // +0x04 (H3DSAMPLE) - non-null means attached
     gbVec3D position;         // +0x08
-    gbVec3D orientation;      // +0x14
-    gbVec3D velocity;         // +0x20
-    int attached;             // +0x2C
+    gbVec3D velocity;         // +0x14
+    gbVec3D orientation;      // +0x20
+    int field_2C;             // +0x2C
     float volume;             // +0x30
     int loopCount;            // +0x34
     float minDist;            // +0x38
@@ -150,14 +151,14 @@ public:
     void* provider3D;                      // +0x1C (H3DPROVIDER)
     int num3DSamples;                      // +0x20
     gb3DSampleSlot slots3D[MAX_3D_SAMPLES];// +0x24 (10*12 = 120 bytes, ends at +0x9C)
-    int num2DSamples;                      // +0x9C
-    gb2DSampleSlot slots2D[MAX_2D_SAMPLES];// +0xA0 (4*12 = 48 bytes, ends at +0xD0)
-    float musicVolume;                     // +0xD0
-    void* listener;                        // +0xD4 (H3DLISTENER)
-    float volume2D;                        // +0xD8
-    float volume3D;                        // +0xDC
-    float musicMasterVolume;               // +0xE0
-    int reserved;                          // +0xE4
+    gb2DSampleSlot slots2D[MAX_2D_SAMPLES];// +0x9C (4*12 = 48 bytes, ends at +0xCC)
+    float volume3D;                        // +0xCC
+    float volume2D;                        // +0xD0
+    float musicMasterVolume;               // +0xD4
+    void* listener;                        // +0xD8 (H3DLISTENER)
+    int field_DC;                          // +0xDC
+    int field_E0;                          // +0xE0
+    int field_E4;                          // +0xE4
     gbResManagerStub soundResManager;      // +0xE8 (12 bytes)
 
     // Constructor - 0x10001120 (675B)

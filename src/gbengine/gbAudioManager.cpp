@@ -24,59 +24,68 @@ typedef void* HPROVIDER;
 #define SMP_STOPPED  2
 #define SMP_DONE     1
 
-// Miles Sound System stub implementations (real game links mss32.dll)
-static void AIL_set_redist_directory(const char* dir) {}
-static int AIL_startup(void) { return 1; }
-static void AIL_shutdown(void) {}
+// Miles Sound System external declarations (mss32.dll, __stdcall + dllimport)
+#define AILCALL __declspec(dllimport) __stdcall
 
-static HDIGDRIVER AIL_open_digital_driver(unsigned int freq, int bits, int channels, unsigned int flags) { return (HDIGDRIVER)1; }
-static void AIL_close_digital_driver(HDIGDRIVER driver) {}
+extern "C" {
+void AILCALL AIL_set_redist_directory(const char* dir);
+int AILCALL AIL_startup(void);
+void AILCALL AIL_shutdown(void);
 
-static int AIL_enumerate_3D_providers(HPROVIDER* dest, void** query, unsigned int* count) { return 0; }
-static H3DPROVIDER AIL_open_3D_provider(HPROVIDER provider) { return (H3DPROVIDER)1; }
-static void AIL_close_3D_provider(H3DPROVIDER provider) {}
+HDIGDRIVER AILCALL AIL_open_digital_driver(unsigned int freq, int bits, int channels, unsigned int flags);
+void AILCALL AIL_close_digital_driver(HDIGDRIVER driver);
 
-static H3DLISTENER AIL_open_3D_listener(H3DPROVIDER provider) { return (H3DLISTENER)1; }
-static void AIL_close_3D_listener(H3DLISTENER listener) {}
-static void AIL_set_3D_position(void* obj, float x, float y, float z) {}
-static void AIL_set_3D_orientation(void* obj, float fx, float fy, float fz, float ux, float uy, float uz) {}
-static void AIL_3D_position(void* obj, float* x, float* y, float* z) { if(x)*x=0; if(y)*y=0; if(z)*z=0; }
+int AILCALL AIL_enumerate_3D_providers(HPROVIDER* dest, void** query, unsigned int* count);
+H3DPROVIDER AILCALL AIL_open_3D_provider(HPROVIDER provider);
+void AILCALL AIL_close_3D_provider(H3DPROVIDER provider);
 
-static H3DSAMPLE AIL_allocate_3D_sample_handle(H3DPROVIDER provider) { return (H3DSAMPLE)1; }
-static void AIL_release_3D_sample_handle(H3DSAMPLE sample) {}
-static void AIL_set_3D_sample_file(H3DSAMPLE sample, void* data) {}
-static void AIL_start_3D_sample(H3DSAMPLE sample) {}
-static void AIL_stop_3D_sample(H3DSAMPLE sample) {}
-static void AIL_resume_3D_sample(H3DSAMPLE sample) {}
-static unsigned int AIL_3D_sample_status(H3DSAMPLE sample) { return SMP_DONE; }
-static void AIL_set_3D_sample_volume(H3DSAMPLE sample, float volume) {}
-static void AIL_set_3D_sample_loop_count(H3DSAMPLE sample, int count) {}
-static void AIL_set_3D_sample_distances(H3DSAMPLE sample, float maxDist, float minDist) {}
-static void AIL_set_3D_velocity(void* obj, float dx, float dy, float dz) {}
+H3DLISTENER AILCALL AIL_open_3D_listener(H3DPROVIDER provider);
+void AILCALL AIL_close_3D_listener(H3DLISTENER listener);
+void AILCALL AIL_set_3D_position(void* obj, float x, float y, float z);
+void AILCALL AIL_set_3D_orientation(void* obj, float fx, float fy, float fz, float ux, float uy, float uz);
+void AILCALL AIL_3D_position(void* obj, float* x, float* y, float* z);
 
-static HSAMPLE AIL_allocate_sample_handle(HDIGDRIVER driver) { return (HSAMPLE)1; }
-static void AIL_release_sample_handle(HSAMPLE sample) {}
-static void AIL_set_sample_file(HSAMPLE sample, void* data, int block) {}
-static void AIL_start_sample(HSAMPLE sample) {}
-static void AIL_stop_sample(HSAMPLE sample) {}
-static void AIL_resume_sample(HSAMPLE sample) {}
-static void AIL_pause_sample(HSAMPLE sample) {}
-static unsigned int AIL_sample_status(HSAMPLE sample) { return SMP_DONE; }
-static void AIL_set_sample_volume(HSAMPLE sample, int volume) {}
-static void AIL_set_sample_loop_count(HSAMPLE sample, int count) {}
+H3DSAMPLE AILCALL AIL_allocate_3D_sample_handle(H3DPROVIDER provider);
+void AILCALL AIL_release_3D_sample_handle(H3DSAMPLE sample);
+void AILCALL AIL_set_3D_sample_file(H3DSAMPLE sample, void* data);
+void AILCALL AIL_start_3D_sample(H3DSAMPLE sample);
+void AILCALL AIL_stop_3D_sample(H3DSAMPLE sample);
+void AILCALL AIL_end_3D_sample(H3DSAMPLE sample);
+void AILCALL AIL_resume_3D_sample(H3DSAMPLE sample);
+unsigned int AILCALL AIL_3D_sample_status(H3DSAMPLE sample);
+void AILCALL AIL_set_3D_sample_volume(H3DSAMPLE sample, int volume);
+void AILCALL AIL_set_3D_sample_loop_count(H3DSAMPLE sample, int count);
+void AILCALL AIL_set_3D_sample_distances(H3DSAMPLE sample, float maxDist, float minDist);
+void AILCALL AIL_set_3D_velocity(void* obj, float dx, float dy, float dz);
+void AILCALL AIL_auto_update_3D_position(H3DSAMPLE sample, int flag);
+void AILCALL AIL_WAV_info(void* data, void* info);
 
-static HSTREAM AIL_open_stream(HDIGDRIVER driver, const char* filename, int block) { return NULL; }
-static void AIL_close_stream(HSTREAM stream) {}
-static void AIL_start_stream(HSTREAM stream) {}
-static void AIL_pause_stream(HSTREAM stream, int onoff) {}
-static void AIL_set_stream_volume(HSTREAM stream, int volume) {}
-static unsigned int AIL_stream_status(HSTREAM stream) { return SMP_DONE; }
+HSAMPLE AILCALL AIL_allocate_sample_handle(HDIGDRIVER driver);
+void AILCALL AIL_release_sample_handle(HSAMPLE sample);
+void AILCALL AIL_set_sample_file(HSAMPLE sample, void* data, int block);
+void AILCALL AIL_start_sample(HSAMPLE sample);
+void AILCALL AIL_stop_sample(HSAMPLE sample);
+void AILCALL AIL_end_sample(HSAMPLE sample);
+void AILCALL AIL_resume_sample(HSAMPLE sample);
+void AILCALL AIL_pause_sample(HSAMPLE sample);
+unsigned int AILCALL AIL_sample_status(HSAMPLE sample);
+void AILCALL AIL_set_sample_volume(HSAMPLE sample, int volume);
+void AILCALL AIL_set_sample_loop_count(HSAMPLE sample, int count);
 
-static void* AIL_file_read(const char* filename, void* dest) { return NULL; }
-static void AIL_mem_free_lock(void* ptr) {}
+HSTREAM AILCALL AIL_open_stream(HDIGDRIVER driver, const char* filename, int block);
+void AILCALL AIL_close_stream(HSTREAM stream);
+void AILCALL AIL_start_stream(HSTREAM stream);
+void AILCALL AIL_pause_stream(HSTREAM stream, int onoff);
+void AILCALL AIL_set_stream_volume(HSTREAM stream, int volume);
+unsigned int AILCALL AIL_stream_status(HSTREAM stream);
+
+void* AILCALL AIL_file_read(const char* filename, void* dest);
+void AILCALL AIL_mem_free_lock(void* ptr);
+}
 
 // External functions (from gbResManager.cpp)
 extern unsigned int gbCrc32Compute(const char* str);
+extern void gbReportError(const char* fmt, ...);
 
 // gbResManagerStub method implementations
 void gbResManagerStub::Init() {
@@ -178,15 +187,12 @@ gbAudioMgrDesc::gbAudioMgrDesc() {
     freq = 0x5622;       // 22050 Hz
     bits = 0x10;         // 16-bit
     channels = 2;        // stereo
-    providerName = 0;    // use default provider
+    providerName[0] = 0; // use default provider
 }
 
-// operator=
+// operator= - 0x100021a0 (22B)
 gbAudioMgrDesc& gbAudioMgrDesc::operator=(const gbAudioMgrDesc& other) {
-    freq = other.freq;
-    bits = other.bits;
-    channels = other.channels;
-    providerName = other.providerName;
+    memcpy(this, &other, 0x10C);
     return *this;
 }
 
@@ -221,13 +227,13 @@ gbAudioManager::gbAudioManager(int& result, gbAudioMgrDesc* desc) {
     digitalDriver = NULL;
     provider3D = NULL;
     num3DSamples = 0;
-    num2DSamples = 0;
-    listener = NULL;
-    volume2D = 1.0f;
     volume3D = 1.0f;
-    musicVolume = 1.0f;
+    volume2D = 1.0f;
     musicMasterVolume = 1.0f;
-    reserved = 0;
+    listener = NULL;
+    field_DC = 0;
+    field_E0 = 0;
+    field_E4 = 0;
 
     // Initialize embedded resource manager
     soundResManager.Init();
@@ -260,8 +266,8 @@ gbAudioManager::gbAudioManager(int& result, gbAudioMgrDesc* desc) {
 
     // Get 3D audio provider
     char* provName = NULL;
-    if (desc->providerName != 0) {
-        provName = &desc->providerName;
+    if (desc->providerName[0] != 0) {
+        provName = desc->providerName;
     }
     if (Get3DProvider(provName) == 0) {
         result = 0;
@@ -282,7 +288,6 @@ gbAudioManager::gbAudioManager(int& result, gbAudioMgrDesc* desc) {
         slots2D[i].node = NULL;
         slots2D[i].flags = 0;
     }
-    num2DSamples = MAX_2D_SAMPLES;
 
     // Create 3D listener
     listener = AIL_open_3D_listener(provider3D);
@@ -307,13 +312,13 @@ gbAudioManager::gbAudioManager(const gbAudioManager& other) {
     digitalDriver = other.digitalDriver;
     provider3D = other.provider3D;
     num3DSamples = other.num3DSamples;
-    num2DSamples = other.num2DSamples;
     listener = other.listener;
     volume2D = other.volume2D;
     volume3D = other.volume3D;
-    musicVolume = other.musicVolume;
     musicMasterVolume = other.musicMasterVolume;
-    reserved = other.reserved;
+    field_DC = other.field_DC;
+    field_E0 = other.field_E0;
+    field_E4 = other.field_E4;
 
     soundResManager.array = other.soundResManager.array;
     soundResManager.capacity = other.soundResManager.capacity;
@@ -348,7 +353,7 @@ gbAudioManager::~gbAudioManager() {
     }
 
     // Stop and release 2D samples
-    for (i = 0; i < num2DSamples; i++) {
+    for (i = 0; i < MAX_2D_SAMPLES; i++) {
         if (slots2D[i].handle != NULL) {
             AIL_stop_sample(slots2D[i].handle);
             AIL_release_sample_handle(slots2D[i].handle);
@@ -402,13 +407,13 @@ gbAudioManager& gbAudioManager::operator=(const gbAudioManager& other) {
         digitalDriver = other.digitalDriver;
         provider3D = other.provider3D;
         num3DSamples = other.num3DSamples;
-        num2DSamples = other.num2DSamples;
         listener = other.listener;
         volume2D = other.volume2D;
         volume3D = other.volume3D;
-        musicVolume = other.musicVolume;
         musicMasterVolume = other.musicMasterVolume;
-        reserved = other.reserved;
+        field_DC = other.field_DC;
+        field_E0 = other.field_E0;
+        field_E4 = other.field_E4;
         soundResManager.array = other.soundResManager.array;
         soundResManager.capacity = other.soundResManager.capacity;
         soundResManager.count = other.soundResManager.count;
@@ -495,93 +500,95 @@ gbSoundData* gbAudioManager::LoadSoundFile(char* filename) {
 
 // DeleteSoundData - 0x100015f0 (12B)
 void gbAudioManager::DeleteSoundData(gbSoundData* data) {
-    if (data != NULL) {
-        data->Release();
-    }
+    ((gbSoundData*)data)->Release();
 }
 
 // AttachSampleHandle (3D) - 0x10001620 (392B)
 void gbAudioManager::AttachSampleHandle(gbSound3DNode* node) {
-    if (node == NULL || node->soundData == NULL) {
-        return;
-    }
+    unsigned int freeSlot = 0xFFFF;
+    int v4 = *(((int*)this) + 50);
+    int* v5 = (int*)((char*)this + 32);
+    *(((int*)this) + 50) = v4 + 1;
 
-    // Find a free 3D sample slot
-    int freeSlot = -1;
-    for (int i = 0; i < num3DSamples; i++) {
-        if (slots3D[i].flags == 0) {
+    for (int i = 0; i < 10; i++) {
+        if (!*v5) {
             freeSlot = i;
-            break;
+            goto LABEL_15;
         }
+        v5 += 3;
     }
 
-    if (freeSlot == -1) {
-        // No free slot - try to steal one that finished playing
-        for (int i = 0; i < num3DSamples; i++) {
-            if (slots3D[i].handle != NULL) {
-                unsigned int status = AIL_3D_sample_status(slots3D[i].handle);
-                if (status == SMP_DONE || status == SMP_STOPPED) {
-                    // Detach the old node
-                    if (slots3D[i].node != NULL) {
-                        slots3D[i].node->sampleHandle = NULL;
-                        slots3D[i].node->attached = 0;
-                    }
-                    freeSlot = i;
-                    break;
-                }
+    {
+        int v7 = 0;
+        int* v8 = (int*)((char*)this + 36);
+        do {
+            if (AIL_3D_sample_status((void*)*v8) == SMP_STOPPED) {
+                AIL_end_3D_sample(slots3D[v7].handle);
+                freeSlot = v7;
+                *(int*)(*(((int*)this) + 3 * v7 + 8) + 4) = 0;
+                goto LABEL_15;
             }
+            v7++;
+            v8 += 3;
+        } while (v7 < 10);
+    }
+
+    {
+        float dx = node->position.x - *((float*)this + 55);
+        float dy = node->position.y - *((float*)this + 56);
+        float dz = node->position.z - *((float*)this + 57);
+        float distSq = dz * dz + dy * dy + dx * dx;
+        int* v15 = (int*)((char*)this + 32);
+        for (int v11 = 0; v11 < 10; v11++) {
+            float sx = *(float*)(*v15 + 8) - *((float*)this + 55);
+            float sy = *(float*)(*v15 + 12) - *((float*)this + 56);
+            float sz = *(float*)(*v15 + 16) - *((float*)this + 57);
+            float d2 = sz * sz + sy * sy + sx * sx;
+            if (d2 > distSq) {
+                distSq = d2;
+                freeSlot = v11;
+            }
+            v15 += 3;
         }
+        if (freeSlot > 9)
+            return;
+        AIL_end_3D_sample(slots3D[freeSlot].handle);
+        *(int*)(*(((int*)this) + 3 * freeSlot + 8) + 4) = 0;
     }
 
-    if (freeSlot == -1) {
-        return;
+LABEL_15:
+    {
+        char* v20 = (char*)this + 12 * freeSlot;
+        *(((int*)v20) + 10) = *(((int*)this) + 50);
+        *(((int*)v20) + 8) = (int)node;
+        void* h = slots3D[freeSlot].handle;
+        node->sampleHandle = h;
+        AIL_set_3D_sample_file(h, node->soundData->fileData);
     }
-
-    // Configure the sample
-    H3DSAMPLE sample = slots3D[freeSlot].handle;
-    AIL_set_3D_sample_file(sample, node->soundData->fileData);
-    AIL_set_3D_sample_volume(sample, node->volume * volume3D);
-    AIL_set_3D_sample_loop_count(sample, node->loopCount);
-    AIL_set_3D_sample_distances(sample, node->maxDist, node->minDist);
-    AIL_set_3D_position(sample, node->position.x, node->position.y, node->position.z);
-    AIL_set_3D_velocity(sample, node->velocity.x, node->velocity.y, node->velocity.z);
-
-    // Link node to slot
-    node->sampleHandle = sample;
-    node->attached = 1;
-    slots3D[freeSlot].node = node;
-    slots3D[freeSlot].flags = 1;
 }
 
 // DetachSampleHandle (3D) - 0x100018d0 (58B)
 void gbAudioManager::DetachSampleHandle(gbSound3DNode* node) {
-    if (node == NULL) {
-        return;
-    }
-
-    for (int i = 0; i < num3DSamples; i++) {
-        if (slots3D[i].node == node) {
-            AIL_stop_3D_sample(slots3D[i].handle);
-            slots3D[i].node = NULL;
-            slots3D[i].flags = 0;
+    gbSound3DNode** v2 = (gbSound3DNode**)((char*)this + 32);
+    int v3 = 10;
+    do {
+        if (*v2 == node) {
+            AIL_end_3D_sample(node->sampleHandle);
             node->sampleHandle = NULL;
-            node->attached = 0;
-            break;
+            *v2 = NULL;
         }
-    }
+        v2 += 3;
+        --v3;
+    } while (v3);
 }
 
 // DetachAll3D - 0x10001970 (54B)
 void gbAudioManager::DetachAll3D() {
     for (int i = 0; i < num3DSamples; i++) {
-        if (slots3D[i].flags != 0) {
-            AIL_stop_3D_sample(slots3D[i].handle);
-            if (slots3D[i].node != NULL) {
-                slots3D[i].node->sampleHandle = NULL;
-                slots3D[i].node->attached = 0;
-            }
+        if (slots3D[i].node != NULL) {
+            AIL_end_3D_sample(slots3D[i].handle);
+            slots3D[i].node->sampleHandle = NULL;
             slots3D[i].node = NULL;
-            slots3D[i].flags = 0;
         }
     }
 }
@@ -594,7 +601,7 @@ void gbAudioManager::AttachSampleHandle(gbSound2DNode* node) {
 
     // Find a free 2D sample slot
     int freeSlot = -1;
-    for (int i = 0; i < num2DSamples; i++) {
+    for (int i = 0; i < MAX_2D_SAMPLES; i++) {
         if (slots2D[i].flags == 0) {
             freeSlot = i;
             break;
@@ -603,7 +610,7 @@ void gbAudioManager::AttachSampleHandle(gbSound2DNode* node) {
 
     if (freeSlot == -1) {
         // Try to steal a finished slot
-        for (int i = 0; i < num2DSamples; i++) {
+        for (int i = 0; i < MAX_2D_SAMPLES; i++) {
             if (slots2D[i].handle != NULL) {
                 unsigned int status = AIL_sample_status(slots2D[i].handle);
                 if (status == SMP_DONE || status == SMP_STOPPED) {
@@ -642,7 +649,7 @@ void gbAudioManager::DetachSampleHandle(gbSound2DNode* node) {
         return;
     }
 
-    for (int i = 0; i < num2DSamples; i++) {
+    for (int i = 0; i < MAX_2D_SAMPLES; i++) {
         if (slots2D[i].node == node) {
             AIL_stop_sample(slots2D[i].handle);
             slots2D[i].node = NULL;
@@ -724,37 +731,25 @@ void gbAudioManager::ReStartSoundStream(int index) {
 
 // StopSoundStream - 0x10001c50 (42B)
 void gbAudioManager::StopSoundStream(int index) {
-    if (index < 0 || index >= MAX_STREAMS) {
-        return;
-    }
-
-    if (streams[index] != NULL) {
-        AIL_close_stream(streams[index]);
-        streams[index] = NULL;
-        streamStatus[index] = 0;
+    if (*(((int*)this) + index)) {
+        AIL_close_stream((void*)*(((int*)this) + index));
+        *(((int*)this) + index) = 0;
+        *(((int*)this) + index + 3) = 2;
     }
 }
 
 // PauseSoundStream - 0x10001cd0 (23B)
 void gbAudioManager::PauseSoundStream(int index) {
-    if (index < 0 || index >= MAX_STREAMS) {
-        return;
-    }
-    if (streams[index] != NULL) {
-        AIL_pause_stream(streams[index], 1);
-        streamStatus[index] = 2;
-    }
+    void* v2 = *(((void**)this) + index);
+    if (v2)
+        AIL_pause_stream(v2, 1);
 }
 
 // ResumeSoundStream - 0x10001cf0 (23B)
 void gbAudioManager::ResumeSoundStream(int index) {
-    if (index < 0 || index >= MAX_STREAMS) {
-        return;
-    }
-    if (streams[index] != NULL) {
-        AIL_pause_stream(streams[index], 0);
-        streamStatus[index] = 1;
-    }
+    void* v2 = *(((void**)this) + index);
+    if (v2)
+        AIL_pause_stream(v2, 0);
 }
 
 // GetStreamStatus - 0x10001d10 (11B)
@@ -785,23 +780,25 @@ float gbAudioManager::GetMusicMasterVolume() {
 
 // SetListenerPosition - 0x10001d20 (62B)
 void gbAudioManager::SetListenerPosition(const gbVec3D& pos) {
-    if (listener != NULL) {
-        AIL_set_3D_position(listener, pos.x, pos.y, pos.z);
-    }
+    *(((int*)this) + 55) = *(((int*)&pos) + 0);
+    *(((int*)this) + 56) = *(((int*)&pos) + 1);
+    *(((int*)this) + 57) = *(((int*)&pos) + 2);
+    float negZ = -pos.z;
+    AIL_set_3D_position(*(((void**)this) + 54), pos.x, pos.y, negZ);
 }
 
 // SetListenerOrientation - 0x10001d60 (56B)
 void gbAudioManager::SetListenerOrientation(gbVec3D& front, gbVec3D& top) {
-    if (listener != NULL) {
-        AIL_set_3D_orientation(listener, front.x, front.y, front.z, top.x, top.y, top.z);
-    }
+    float negTopZ = -top.z;
+    float negFrontZ = -front.z;
+    AIL_set_3D_orientation(*(((void**)this) + 54), front.x, front.y, negFrontZ, top.x, top.y, negTopZ);
 }
 
 // GetListenerPosition - 0x10002210 (33B)
 void gbAudioManager::GetListenerPosition(gbVec3D& pos) {
-    if (listener != NULL) {
-        AIL_3D_position(listener, &pos.x, &pos.y, &pos.z);
-    }
+    *(((int*)&pos) + 0) = *(((int*)this) + 55);
+    *(((int*)&pos) + 1) = *(((int*)this) + 56);
+    *(((int*)&pos) + 2) = *(((int*)this) + 57);
 }
 
 // Set2DMasterVolume - 0x100021c0 (13B)
@@ -831,137 +828,138 @@ float gbAudioManager::Get3DMasterVolume() {
 
 // Constructor - 0x10002640 (99B)
 gbSound3DNode::gbSound3DNode() {
-    soundData = NULL;
-    sampleHandle = NULL;
     position.x = 0.0f;
     position.y = 0.0f;
     position.z = 0.0f;
-    orientation.x = 0.0f;
-    orientation.y = 0.0f;
-    orientation.z = 1.0f;
     velocity.x = 0.0f;
     velocity.y = 0.0f;
     velocity.z = 0.0f;
-    attached = 0;
-    volume = 1.0f;
-    loopCount = 1;
+    orientation.x = 0.0f;
+    orientation.y = 0.0f;
+    orientation.z = 0.0f;
+    soundData = NULL;
+    sampleHandle = NULL;
     minDist = 10000.0f;
     maxDist = 100000.0f;
+    loopCount = 1;
+    volume = 1.0f;
+    field_2C = 0;
+    position.x = 0.0f;
+    position.y = 0.0f;
+    position.z = 0.0f;
+    velocity.x = 0.0f;
+    velocity.y = 0.0f;
+    velocity.z = 0.0f;
+    orientation.x = 0.0f;
+    orientation.y = 0.0f;
+    orientation.z = 0.0f;
+    orientation.z = 1.0f;
 }
 
-// Destructor
+// Destructor - 0x100026b0 (78B)
 gbSound3DNode::~gbSound3DNode() {
-    if (attached && pAudioMgr != NULL) {
+    if (sampleHandle)
         pAudioMgr->DetachSampleHandle(this);
-    }
-    if (soundData != NULL) {
-        soundData->Release();
-        soundData = NULL;
+    if (soundData) {
+        if (pAudioMgr) {
+            if (sampleHandle)
+                AIL_stop_3D_sample(sampleHandle);
+        }
+        pAudioMgr->DeleteSoundData(soundData);
     }
 }
 
-// operator=
+// operator= - 0x100025b0 (138B)
 gbSound3DNode& gbSound3DNode::operator=(const gbSound3DNode& other) {
-    if (this != &other) {
-        soundData = other.soundData;
-        sampleHandle = other.sampleHandle;
-        position = other.position;
-        orientation = other.orientation;
-        velocity = other.velocity;
-        attached = other.attached;
-        volume = other.volume;
-        loopCount = other.loopCount;
-        minDist = other.minDist;
-        maxDist = other.maxDist;
-    }
+    *(((int*)this) + 0) = *(((int*)&other) + 0);
+    *(((int*)this) + 1) = *(((int*)&other) + 1);
+    *(((int*)this) + 2) = *(((int*)&other) + 2);
+    *(((int*)this) + 3) = *(((int*)&other) + 3);
+    *(((int*)this) + 4) = *(((int*)&other) + 4);
+    *(((int*)this) + 5) = *(((int*)&other) + 5);
+    *(((int*)this) + 6) = *(((int*)&other) + 6);
+    *(((int*)this) + 7) = *(((int*)&other) + 7);
+    *(((int*)this) + 8) = *(((int*)&other) + 8);
+    *(((int*)this) + 9) = *(((int*)&other) + 9);
+    *(((int*)this) + 10) = *(((int*)&other) + 10);
+    *(((int*)this) + 11) = *(((int*)&other) + 11);
+    *(((int*)this) + 12) = *(((int*)&other) + 12);
+    *(((int*)this) + 13) = *(((int*)&other) + 13);
+    *(((int*)this) + 14) = *(((int*)&other) + 14);
+    *(((int*)this) + 15) = *(((int*)&other) + 15);
     return *this;
 }
 
 // LoadFromFile - 0x10002700 (85B)
 int gbSound3DNode::LoadFromFile(char* filename) {
-    if (pAudioMgr == NULL) {
-        return 0;
+    if (pAudioMgr) {
+        gbSoundData* snd = pAudioMgr->LoadSoundFile(filename);
+        soundData = snd;
+        if (snd)
+            return 1;
     }
-
-    // Release old sound data
-    if (soundData != NULL) {
-        soundData->Release();
-        soundData = NULL;
-    }
-
-    // Load via audio manager
-    soundData = pAudioMgr->LoadSoundFile(filename);
-    if (soundData == NULL) {
-        return 0;
-    }
-
-    return 1;
+    return 0;
 }
 
 // Play - 0x10002760 (174B)
 void gbSound3DNode::Play() {
-    if (pAudioMgr == NULL || soundData == NULL) {
-        return;
+    if (pAudioMgr && pAudioMgr->CanBeHeard(this)) {
+        if (!sampleHandle)
+            pAudioMgr->AttachSampleHandle(this);
+        void* h = sampleHandle;
+        AIL_set_3D_sample_volume(h, (int)(pAudioMgr->volume3D * volume * 127.0f));
+        float negZ = -position.z;
+        AIL_set_3D_position(h, position.x, position.y, negZ);
+        AIL_set_3D_sample_distances(h, maxDist, minDist);
+        AIL_set_3D_sample_loop_count(h, loopCount);
+        AIL_set_3D_velocity(h, 0.0f, 0.0f, 0.0f);
+        AIL_start_3D_sample(h);
     }
-
-    // Attach sample handle if not already attached
-    if (!attached) {
-        pAudioMgr->AttachSampleHandle(this);
-    }
-
-    if (!attached || sampleHandle == NULL) {
-        return;
-    }
-
-    // Configure and start playback
-    AIL_set_3D_sample_volume(sampleHandle, volume * pAudioMgr->volume3D);
-    AIL_set_3D_sample_loop_count(sampleHandle, loopCount);
-    AIL_set_3D_sample_distances(sampleHandle, maxDist, minDist);
-    AIL_set_3D_position(sampleHandle, position.x, position.y, position.z);
-    AIL_set_3D_velocity(sampleHandle, velocity.x, velocity.y, velocity.z);
-    AIL_start_3D_sample(sampleHandle);
 }
 
 // Stop - 0x10002810 (24B)
 void gbSound3DNode::Stop() {
-    if (sampleHandle != NULL) {
-        AIL_stop_3D_sample(sampleHandle);
+    if (pAudioMgr) {
+        if (sampleHandle)
+            AIL_stop_3D_sample(sampleHandle);
     }
 }
 
 // IsPlaying - 0x10002830 (38B)
 int gbSound3DNode::IsPlaying() {
-    if (sampleHandle == NULL) {
+    if (!pAudioMgr)
         return 0;
-    }
-    unsigned int status = AIL_3D_sample_status(sampleHandle);
-    return (status == SMP_PLAYING) ? 1 : 0;
+    if (!sampleHandle)
+        return 0;
+    return AIL_3D_sample_status(sampleHandle) == SMP_PLAYING;
 }
 
 // SetPosition - 0x10002500 (24B)
 void gbSound3DNode::SetPosition(gbVec3D& pos) {
-    position = pos;
-    if (sampleHandle != NULL) {
-        AIL_set_3D_position(sampleHandle, pos.x, pos.y, pos.z);
-    }
-}
-
-// GetPosition - 0x10002560 (24B)
-void gbSound3DNode::GetPosition(gbVec3D& pos) {
-    pos = position;
-}
-
-// SetOrientation - 0x10002540 (24B)
-void gbSound3DNode::SetOrientation(gbVec3D& ori) {
-    orientation = ori;
+    *(((int*)this) + 2) = *(((int*)&pos) + 0);
+    *(((int*)this) + 3) = *(((int*)&pos) + 1);
+    *(((int*)this) + 4) = *(((int*)&pos) + 2);
 }
 
 // SetVelocity - 0x10002520 (24B)
 void gbSound3DNode::SetVelocity(gbVec3D& vel) {
-    velocity = vel;
-    if (sampleHandle != NULL) {
-        AIL_set_3D_velocity(sampleHandle, vel.x, vel.y, vel.z);
-    }
+    *(((int*)this) + 5) = *(((int*)&vel) + 0);
+    *(((int*)this) + 6) = *(((int*)&vel) + 1);
+    *(((int*)this) + 7) = *(((int*)&vel) + 2);
+}
+
+// SetOrientation - 0x10002540 (24B)
+void gbSound3DNode::SetOrientation(gbVec3D& ori) {
+    *(((int*)this) + 8) = *(((int*)&ori) + 0);
+    *(((int*)this) + 9) = *(((int*)&ori) + 1);
+    *(((int*)this) + 10) = *(((int*)&ori) + 2);
+}
+
+// GetPosition - 0x10002560 (24B)
+void gbSound3DNode::GetPosition(gbVec3D& pos) {
+    *(((int*)&pos) + 0) = *(((int*)this) + 2);
+    *(((int*)&pos) + 1) = *(((int*)this) + 3);
+    *(((int*)&pos) + 2) = *(((int*)this) + 4);
 }
 
 // SetVolume - 0x100024e0 (10B)
@@ -974,13 +972,10 @@ void gbSound3DNode::SetLoopNum(int num) {
     loopCount = num;
 }
 
-// SetDistParam
+// SetDistParam - 0x10004420 (13B)
 void gbSound3DNode::SetDistParam(float minD, float maxD) {
     minDist = minD;
     maxDist = maxD;
-    if (sampleHandle != NULL) {
-        AIL_set_3D_sample_distances(sampleHandle, maxDist, minDist);
-    }
 }
 
 // GetMinDist
@@ -988,7 +983,7 @@ float gbSound3DNode::GetMinDist() {
     return minDist;
 }
 
-// GetMaxDist
+// GetMaxDist - 0x10002590 (7B)
 float gbSound3DNode::GetMaxDist() {
     return maxDist;
 }
@@ -1000,29 +995,23 @@ int gbSound3DNode::GetPlayLoop() {
 
 // IfAttached - 0x100024d0 (11B)
 bool gbSound3DNode::IfAttached() {
-    return attached != 0;
+    return sampleHandle != 0;
 }
 
 // Update - 0x10002860 (110B)
 int gbSound3DNode::Update(double deltaTime) {
-    if (!attached || sampleHandle == NULL) {
-        return 0;
+    if (pAudioMgr) {
+        float a2 = (float)deltaTime;
+        position.x = velocity.x * a2 + position.x;
+        position.y = velocity.y * a2 + position.y;
+        float newZ = velocity.z * a2 + position.z;
+        position.z = newZ;
+        void* h = sampleHandle;
+        if (!h)
+            return 0;
+        float negZ = -newZ;
+        AIL_set_3D_position(h, position.x, position.y, negZ);
     }
-
-    // Check if playback has finished
-    unsigned int status = AIL_3D_sample_status(sampleHandle);
-    if (status == SMP_DONE || status == SMP_STOPPED) {
-        // Sound finished - detach
-        if (pAudioMgr != NULL) {
-            pAudioMgr->DetachSampleHandle(this);
-        }
-        return 0;
-    }
-
-    // Update 3D position for moving sounds
-    AIL_set_3D_position(sampleHandle, position.x, position.y, position.z);
-    AIL_set_3D_velocity(sampleHandle, velocity.x, velocity.y, velocity.z);
-
     return 1;
 }
 
@@ -1108,31 +1097,32 @@ void gbSound2DNode::Play() {
 
 // Stop - 0x100029d0 (24B)
 void gbSound2DNode::Stop() {
-    if (sampleHandle != NULL) {
-        AIL_stop_sample(sampleHandle);
+    if (pAudioMgr) {
+        if (sampleHandle)
+            AIL_end_sample(sampleHandle);
     }
 }
 
 // IsPlaying - 0x100029f0 (28B)
 bool gbSound2DNode::IsPlaying() {
-    if (sampleHandle == NULL) {
+    if (!sampleHandle)
         return false;
-    }
-    unsigned int status = AIL_sample_status(sampleHandle);
-    return (status == SMP_PLAYING);
+    return AIL_sample_status(sampleHandle) == SMP_PLAYING;
 }
 
 // Pause - 0x10002a10 (24B)
 void gbSound2DNode::Pause() {
-    if (sampleHandle != NULL) {
-        AIL_pause_sample(sampleHandle);
+    if (pAudioMgr) {
+        if (sampleHandle)
+            AIL_stop_sample(sampleHandle);
     }
 }
 
 // Resume - 0x10002a30 (24B)
 void gbSound2DNode::Resume() {
-    if (sampleHandle != NULL) {
-        AIL_resume_sample(sampleHandle);
+    if (pAudioMgr) {
+        if (sampleHandle)
+            AIL_resume_sample(sampleHandle);
     }
 }
 
