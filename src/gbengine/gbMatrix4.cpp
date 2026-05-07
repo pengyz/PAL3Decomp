@@ -42,15 +42,7 @@ void gbMatrix4::operator=(const gbMatrix4 &other)
 void gbMatrix4::operator*=(const gbMatrix4 &param)
 {
     float temp[16];
-    float *pSrc = (float *)this;
-    float *pDst = temp;
-    int i;
-
-    for (i = 16; i != 0; i--) {
-        *pDst = *pSrc;
-        pSrc++;
-        pDst++;
-    }
+    memcpy(temp, this, 64);
 
     float *pOther = (float *)&param;
     int row = 4;
@@ -64,12 +56,10 @@ void gbMatrix4::operator*=(const gbMatrix4 &param)
             float *pA = pTemp;
             int k = 4;
             do {
-                float a = *pB;
-                float b = *pA;
+                *pResult = *pB * *pA + *pResult;
                 pA += 4;
                 pB++;
                 k--;
-                *pResult = a * b + *pResult;
             } while (k != 0);
             pResult++;
             pTemp++;
@@ -83,15 +73,7 @@ void gbMatrix4::operator*=(const gbMatrix4 &param)
 void gbMatrix4::RightMultiply(const gbMatrix4 &param)
 {
     float temp[16];
-    float *pSrc = (float *)this;
-    float *pDst = temp;
-    int i;
-
-    for (i = 16; i != 0; i--) {
-        *pDst = *pSrc;
-        pSrc++;
-        pDst++;
-    }
+    memcpy(temp, this, 64);
 
     float *pRow = temp;
     int row = 4;
@@ -105,12 +87,10 @@ void gbMatrix4::RightMultiply(const gbMatrix4 &param)
             float *pB = pCol;
             int k = 4;
             do {
-                float a = *pB;
-                float b = *pA;
+                *pResult = *pB * *pA + *pResult;
                 pB += 4;
                 pA++;
                 k--;
-                *pResult = a * b + *pResult;
             } while (k != 0);
             pResult++;
             pCol++;
@@ -123,7 +103,33 @@ void gbMatrix4::RightMultiply(const gbMatrix4 &param)
 
 void gbMatrix4::LeftMultiply(const gbMatrix4 &param)
 {
-    *this *= param;
+    float temp[16];
+    memcpy(temp, this, 64);
+
+    float *pOther = (float *)&param;
+    int row = 4;
+    do {
+        float *pResult = (float *)this + (pOther - (float *)&param);
+        float *pTemp = temp;
+        int col = 4;
+        do {
+            *pResult = 0.0f;
+            float *pA = pOther;
+            float *pB = pTemp;
+            int k = 4;
+            do {
+                *pResult = *pA * *pB + *pResult;
+                pA++;
+                pB += 4;
+                k--;
+            } while (k != 0);
+            pResult++;
+            pTemp++;
+            col--;
+        } while (col != 0);
+        pOther += 4;
+        row--;
+    } while (row != 0);
 }
 
 void gbMatrix4::Transform(const gbVec3D *in, gbVec3D *out) const
@@ -152,40 +158,29 @@ void gbMatrix4::LoadIdentity(void)
 bool gbMatrix4::IsIdentity(void) const
 {
     float *p = (float *)this;
-    int row = 0;
-    do {
-        int col = 0;
-        do {
+    int row, col;
+    for (row = 0; row < 4; row++) {
+        for (col = 0; col < 4; col++) {
             if (row == col) {
-                if (*p != 1.0f) {
-                    return false;
-                }
+                if (*p != 1.0f) return false;
             } else {
-                if (*p != 0.0f) {
-                    return false;
-                }
+                if (*p != 0.0f) return false;
             }
             p++;
-            col++;
-        } while (col < 4);
-        row++;
-    } while (row < 4);
+        }
+    }
     return true;
 }
 
 bool gbMatrix4::IsValid(void) const
 {
     if (this == NULL) return false;
+    int i;
     float *p = (float *)this;
-    int i = 0;
-    while (*p * *p >= 0.0f) {
-        i++;
-        p++;
-        if (i > 15) {
-            return true;
-        }
+    for (i = 0; i < 16; i++, p++) {
+        if (*p * *p < 0.0f) return false;
     }
-    return false;
+    return true;
 }
 
 float gbMatrix4::operator()(int row, int col)
@@ -195,9 +190,9 @@ float gbMatrix4::operator()(int row, int col)
 
 void gbMatrix4::Transpose(void)
 {
-    float *pCol = (float *)this + 1;
-    float *pRow = (float *)this + 4;
     int n = 1;
+    float *pCol = &m[0][1];
+    float *pRow = &m[1][0];
     do {
         float *pA = pCol;
         float *pB = pRow;
@@ -207,10 +202,9 @@ void gbMatrix4::Transpose(void)
                 float tmp = *pB;
                 *pB = *pA;
                 *pA = tmp;
-                k--;
                 pA += 4;
                 pB++;
-            } while (k != 0);
+            } while (--k);
         }
         n++;
         pRow += 4;
@@ -240,10 +234,9 @@ void gbMatrix4::Transpose(gbMatrix4 *out) const
 
 gbVec3D *gbMatrix4::GetRow(gbVec3D *out, int row) const
 {
-    float *pRow = (float *)this + row * 4;
-    out->x = pRow[0];
-    out->y = pRow[1];
-    out->z = pRow[2];
+    out->x = m[row][0];
+    out->y = m[row][1];
+    out->z = m[row][2];
     return out;
 }
 
@@ -257,31 +250,38 @@ gbVec3D *gbMatrix4::GetColumn(gbVec3D *out, int col) const
 
 void gbMatrix4::SetAxisAngle(gbAxis axis, float cosA, float sinA)
 {
-    float *p = (float *)this;
+    int *p = (int *)this;
     int i;
     for (i = 16; i != 0; i--) {
-        *p = 0.0f;
+        *p = 0;
         p++;
     }
-    m[3][3] = 1.0f;
-    if (axis == 0) {
-        m[0][0] = 1.0f;
-        m[1][1] = cosA;
-        m[1][2] = sinA;
+    int one = 0x3F800000;
+    int cosI = *(int *)&cosA;
+    int sinI = *(int *)&sinA;
+    ((int *)this)[15] = one;
+    switch (axis) {
+    case 0:
+        ((int *)this)[0] = one;
+        ((int *)this)[5] = cosI;
+        ((int *)this)[6] = sinI;
         m[2][1] = -sinA;
-        m[2][2] = cosA;
-    } else if (axis == 1) {
-        m[1][1] = 1.0f;
-        m[0][0] = cosA;
-        m[2][0] = sinA;
+        ((int *)this)[10] = cosI;
+        break;
+    case 1:
+        ((int *)this)[5] = one;
+        ((int *)this)[0] = cosI;
+        ((int *)this)[8] = sinI;
         m[0][2] = -sinA;
-        m[2][2] = cosA;
-    } else if (axis == 2) {
-        m[2][2] = 1.0f;
-        m[0][0] = cosA;
-        m[0][1] = sinA;
+        ((int *)this)[10] = cosI;
+        break;
+    case 2:
+        ((int *)this)[10] = one;
+        ((int *)this)[0] = cosI;
+        ((int *)this)[1] = sinI;
         m[1][0] = -sinA;
-        m[1][1] = cosA;
+        ((int *)this)[5] = cosI;
+        break;
     }
 }
 
@@ -302,13 +302,6 @@ void gbMatrix4::SetAxisAngle(gbVec3D *axis, float angle)
     q.w = 1.0f;
     q.SetAxisAngle(axis, angle);
     q.GetMatrix(this);
-}
-
-void gbMatrix4::Invert()
-{
-    gbMatrix4 tmp;
-    Invert(&tmp);
-    *this = tmp;
 }
 
 void gbMatrix4::Invert(gbMatrix4 *out) const
@@ -334,6 +327,37 @@ void gbMatrix4::Invert(gbMatrix4 *out) const
     out->m[3][1] = -(out->m[0][1] * m[3][0] + out->m[2][1] * m[3][2] + m[3][1] * out->m[1][1]);
     out->m[3][3] = 1.0f;
     out->m[3][2] = -(m[3][0] * out->m[0][2] + m[3][1] * out->m[1][2] + m[3][2] * out->m[2][2]);
+}
+
+// NOTE: manually inlined Invert(gbMatrix4*) to match original compiler inlining
+// revert to Invert(&tmp) + *this = tmp after binary matching is complete
+void gbMatrix4::Invert()
+{
+    gbMatrix4 tmp;
+
+    float cofA = m[1][1] * m[2][2] - m[2][1] * m[1][2];
+    float det = 1.0f / ((m[2][1] * m[1][0] - m[2][0] * m[1][1]) * m[0][2] +
+                        (cofA * m[0][0] -
+                        (m[1][0] * m[2][2] - m[2][0] * m[1][2]) * m[0][1]));
+
+    tmp.m[0][0] = cofA * det;
+    tmp.m[0][1] = -((m[0][1] * m[2][2] - m[2][1] * m[0][2]) * det);
+    tmp.m[0][3] = 0;
+    tmp.m[0][2] = (m[0][1] * m[1][2] - m[0][2] * m[1][1]) * det;
+    tmp.m[1][0] = -((m[1][0] * m[2][2] - m[2][0] * m[1][2]) * det);
+    tmp.m[1][1] = (m[0][0] * m[2][2] - m[2][0] * m[0][2]) * det;
+    tmp.m[1][3] = 0;
+    tmp.m[1][2] = -((m[0][0] * m[1][2] - m[1][0] * m[0][2]) * det);
+    tmp.m[2][0] = (m[2][1] * m[1][0] - m[2][0] * m[1][1]) * det;
+    tmp.m[2][1] = -((m[2][1] * m[0][0] - m[2][0] * m[0][1]) * det);
+    tmp.m[2][3] = 0;
+    tmp.m[2][2] = (m[1][1] * m[0][0] - m[1][0] * m[0][1]) * det;
+    tmp.m[3][0] = -(tmp.m[2][0] * m[3][2] + tmp.m[0][0] * m[3][0] + m[3][1] * tmp.m[1][0]);
+    tmp.m[3][1] = -(tmp.m[0][1] * m[3][0] + tmp.m[2][1] * m[3][2] + m[3][1] * tmp.m[1][1]);
+    tmp.m[3][3] = 1.0f;
+    tmp.m[3][2] = -(m[3][0] * tmp.m[0][2] + m[3][1] * tmp.m[1][2] + m[3][2] * tmp.m[2][2]);
+
+    *this = tmp;
 }
 
 void gbMatrix4::RightMultiply(const gbQuaternion &q)
