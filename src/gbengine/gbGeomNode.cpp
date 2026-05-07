@@ -22,21 +22,20 @@ gbGeomNode::gbGeomNode(void) : gbVisNode() {
     worldTransform.LoadIdentity();
     staticTransform.LoadIdentity();
 
+    *(int*)((char*)this + 0xF0) = 0;
+    animController = NULL;
     pAnimTranslate = NULL;
     pAnimRotate = NULL;
     pAnimScale = NULL;
-    scaleValue = 1.0f;
     hasAnimation = 0;
-    animController = NULL;
-    currentTime = 0.0;
+    *(int*)((char*)this + 0xF4) = 0;
     animMaxTime = 0.0f;
     animLoop = 0;
     loopPast = 0;
     mesh = NULL;
     bladeEnabled = 0;
     pLightmapData = NULL;
-    numAttachPoints = 0;
-    pAttachPointArray = NULL;
+    scaleValue = 1.0f;
 }
 
 gbGeomNode::gbGeomNode(const gbGeomNode& other) : gbVisNode(other) {

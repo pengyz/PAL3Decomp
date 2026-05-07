@@ -1427,7 +1427,6 @@ gbVFile* CIniFile::GetFilePointer()
 // gbVTextFile Implementation
 // ############################################################
 
-#pragma optimize("", off)
 #pragma auto_inline(off)
 
 class gbVTextFile {
@@ -1450,11 +1449,9 @@ gbVTextFile::gbVTextFile(char* p0) {
     m_pFile = g_pVFileSys->OpenFile(p0, 0x401);
 }
 
-#pragma optimize("", on)
 gbVTextFile::gbVTextFile() {
     m_pFile = NULL;
 }
-#pragma optimize("", off)
 
 gbVTextFile& gbVTextFile::operator=(const gbVTextFile& other) {
     if (this != &other) {

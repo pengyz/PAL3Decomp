@@ -330,23 +330,7 @@ float gbGetDeltaTime(void)
 
 void gbMemCopy(void* dst, void* src, unsigned int size)
 {
-    unsigned int dwords = size >> 2;
-    unsigned int bytes = size & 3;
-
-    unsigned int* dstDW = (unsigned int*)dst;
-    unsigned int* srcDW = (unsigned int*)src;
-    unsigned int i;
-
-    for (i = 0; i < dwords; i++) {
-        *dstDW++ = *srcDW++;
-    }
-
-    unsigned char* dstB = (unsigned char*)dstDW;
-    unsigned char* srcB = (unsigned char*)srcDW;
-
-    for (i = 0; i < bytes; i++) {
-        *dstB++ = *srcB++;
-    }
+    memcpy(dst, src, size);
 }
 
 // ======== Logging Functions ========
@@ -769,14 +753,7 @@ void gbPixelFormat::Convert(unsigned char* src, gbPixelFormat* dstFmt, unsigned 
 }
 
 gbUIRect& gbUIRect::operator=(const gbUIRect& other) {
-    if (this != &other) {
-        m_pTexture = other.m_pTexture;
-        m_pGfx = other.m_pGfx;
-        left = other.left;
-        top = other.top;
-        width = other.width;
-        height = other.height;
-    }
+    memcpy(this, &other, 0x18);
     return *this;
 }
 
@@ -816,7 +793,6 @@ extern "C" void __cdecl _gbVec3D_dcc_impl(void) {}
 // Build timestamp (exported as DATA symbol)
 extern "C" char stamp[] = "Mon Jan  5 16:39:11 2004";
 
-#pragma optimize("", off)
 #pragma auto_inline(off)
 
 int gbColorQuad::ColorQuadFmt;
@@ -851,7 +827,6 @@ gbNameVarBuf::gbNameVarBuf() {
     locked = 0;
 }
 
-#pragma optimize("", on)
 void gbNameVarBuf::GetVariant(unsigned int p0, void * p1) {
     unsigned int* table = (unsigned int*)varTable;
     for (int i = 0; i < varCount; i++) {
@@ -950,7 +925,6 @@ void gbNameVarBuf::RegVariant(unsigned int p0, int p1, int p2) {
     dataBufUsed += totalDataSize;
 }
 
-#pragma optimize("", on)
 void gbNameVarBuf::SetVariant(unsigned int p0, void * p1) {
     unsigned int* table = (unsigned int*)varTable;
     for (int i = 0; i < varCount; i++) {
@@ -964,13 +938,10 @@ void gbNameVarBuf::SetVariant(unsigned int p0, void * p1) {
         }
     }
 }
-#pragma optimize("", off)
 
-#pragma optimize("", on)
 void gbNameVarBuf::UnlockVariant() {
     locked = 0;
 }
-#pragma optimize("", off)
 
 gbTimeCounter& gbTimeCounter::operator=(const gbTimeCounter& other) {
     if (this != &other) {

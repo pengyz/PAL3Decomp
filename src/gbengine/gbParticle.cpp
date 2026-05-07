@@ -106,6 +106,13 @@ gbPartGroupParam::gbPartGroupParam(void) {
 }
 
 gbPartGroupParam::~gbPartGroupParam(void) {
+    if (pRenderEffect) {
+        ((gbRefObject*)pRenderEffect)->Release();
+        pRenderEffect = NULL;
+    }
+    for (int i = 0; i < textureLoaded; i++) {
+        ((gbRefObject*)pTextures[i])->Release();
+    }
 }
 
 gbPartGroupParam& gbPartGroupParam::operator=(const gbPartGroupParam& other) {
@@ -134,7 +141,7 @@ gbPartGroupParam& gbPartGroupParam::operator=(const gbPartGroupParam& other) {
     rotControl = other.rotControl;
     alphaControl = other.alphaControl;
     colorControl = other.colorControl;
-    pTexture = other.pTexture;
+    for (i = 0; i < 16; i++) pTextures[i] = other.pTextures[i];
     textureLoaded = other.textureLoaded;
     pRenderEffect = other.pRenderEffect;
     return *this;
@@ -176,8 +183,8 @@ void gbPartGroupParam::LoadFromFile(gbVFile* vfile) {
         strcat(dir, "partexture\\");
         strcat(dir, filename);
 
-        pTexture = g_pGfxManager->NewTexture(dir);
-        pTexture->LoadTexture(1);
+        pTextures[0] = g_pGfxManager->NewTexture(dir);
+        pTextures[0]->LoadTexture(1);
         textureLoaded = 1;
     }
 
@@ -258,7 +265,7 @@ void gbPartGroupParam::InitParticleParam(gbParticleUnit* particle) {
 }
 
 gbTexture* gbPartGroupParam::GetTexture(void) {
-    return pTexture;
+    return pTextures[0];
 }
 
 gbRenderEffect* gbPartGroupParam::GetRenderEffect(void) {
@@ -443,6 +450,9 @@ gbParticleGroup::gbParticleGroup(void) {
 }
 
 gbParticleGroup::~gbParticleGroup(void) {
+    if (particleArray) {
+        free(particleArray);
+    }
 }
 
 gbParticleGroup& gbParticleGroup::operator=(const gbParticleGroup& other) {
@@ -653,6 +663,15 @@ gbParticleEffect::gbParticleEffect(const gbParticleEffect& other) {
 }
 
 gbParticleEffect::~gbParticleEffect(void) {
+    if (particleGroups) {
+        delete[] particleGroups;
+    }
+    if (groupParams) {
+        delete[] groupParams;
+    }
+    if (emitters) {
+        delete[] emitters;
+    }
 }
 
 gbParticleEffect& gbParticleEffect::operator=(const gbParticleEffect& other) {
@@ -784,7 +803,6 @@ float gbParticleEffect::GetSpaceScale(void) {
 extern gbVFileSystem* g_pVFileSys;
 extern char* gbVfgetdir(const char* path, char* dir, int maxLen);
 
-#pragma optimize("", off)
 #pragma auto_inline(off)
 
 #include "gbengine/gbengine_internal.h"
@@ -808,6 +826,13 @@ gbAnimNodeGroup::gbAnimNodeGroup(class gbGfxManager * p0) {
 }
 
 gbAnimNodeGroup::~gbAnimNodeGroup() {
+    if (pNode) {
+        int* refCount = (int*)((char*)pNode + 0x174);
+        (*refCount)--;
+        if (*refCount == 0 && pNode != NULL) {
+            delete (gbVisNode*)pNode;
+        }
+    }
 }
 
 class gbAnimNodeGroup & gbAnimNodeGroup::operator=(class gbAnimNodeGroup const & p0) {
@@ -825,11 +850,9 @@ class gbAnimNodeGroup * gbAnimNodeGroup::Clone() {
     return clone;
 }
 
-#pragma optimize("", on)
 int gbAnimNodeGroup::IsDead() {
     return isDead == 0;
 }
-#pragma optimize("", off)
 
 void gbAnimNodeGroup::LoadFromFile(char * p0) {
     isDead = 0;
@@ -878,11 +901,9 @@ void gbAnimNodeGroup::SetSoundFileDir(char * p0) {
     strcpy(s_soundFileDir, p0);
 }
 
-#pragma optimize("", on)
 void gbAnimNodeGroup::SetToDead() {
     isDead = 0;
 }
-#pragma optimize("", off)
 
 void gbAnimNodeGroup::ShowGroup(int p0) {
     field_30 = p0;

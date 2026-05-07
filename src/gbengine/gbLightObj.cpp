@@ -57,7 +57,7 @@ void gbLightObj::ComputeBoundSphere(void) {
 }
 
 int gbLightObj::GetType(void) {
-    return lightType;
+    return 0;
 }
 
 const gbSphere* gbLightObj::GetBoundSphere(void) {

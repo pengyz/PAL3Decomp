@@ -413,7 +413,6 @@ gbVisNode& gbVisNode::operator=(const gbVisNode& other) {
 // Class definitions in gbengine_internal.h
 // ============================================================
 
-#pragma optimize("", off)
 #pragma auto_inline(off)
 
 // ---- gbVolModNode ----
@@ -448,7 +447,6 @@ int gbVolModNode::Attach(class gbRenderEffect * p0) {
     return 1;
 }
 
-#pragma optimize("", on)
 class gbLightObj * gbVolModNode::GetLightObj() {
     return (gbLightObj*)pVolMod;
 }
@@ -482,5 +480,4 @@ const gbSphere* gbVolumeModifier::GetBoundSphere(void) {
 }
 
 class gbVolumeModifier & gbVolumeModifier::operator=(class gbVolumeModifier const & p0) { if (this != &p0) memcpy(this, &p0, sizeof(*this)); return *this; }
-#pragma optimize("", off)
 

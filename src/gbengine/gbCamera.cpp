@@ -42,8 +42,6 @@ extern gbGfxManager* g_pGfxManager;
 
 // 0x10005b20 (9B) - Default constructor
 gbCamControler::gbCamControler(void) {
-    type = 0;
-    pCamera = 0;
 }
 
 // 0x10005b30 (45B) - Copy constructor

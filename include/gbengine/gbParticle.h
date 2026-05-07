@@ -124,9 +124,10 @@ struct gbPartGroupParam {
     gbPartParamControl rotControl;     // +0x134C (0x11E4 bytes)
     gbPartParamControl alphaControl;   // +0x2530 (0x11E4 bytes)
     gbPartParamControl colorControl;   // +0x3714 (0x11E4 bytes)
-    gbTexture* pTexture;               // +0x48F8
-    int textureLoaded;                 // +0x48FC
-    gbRenderEffect* pRenderEffect;     // +0x4900
+    gbTexture* pTextures[16];          // +0x48F8: texture array (16 slots)
+    int textureLoaded;                 // +0x4938: number of textures loaded
+    gbRenderEffect* pRenderEffect;     // +0x493C
+    // sizeof(gbPartGroupParam) == 0x4940
 
     gbPartGroupParam(void);
     ~gbPartGroupParam(void);
@@ -273,30 +274,29 @@ public:
 
 /* ======== gbDropDesc ======== */
 
+// sizeof = 0x24 = 36 bytes (verified from operator= memcpy size)
 struct gbDropDesc {
     float gravity;           // +0x00
-    float windX;             // +0x04
-    float windZ;             // +0x08
-    float speed;             // +0x0c
-    float size;              // +0x10
-    float viewDistance;      // +0x14
-    float density;           // +0x18
-    gbColorFlt color;        // +0x1c
-    float alpha;             // +0x2c
-    int textureIndex;        // +0x30
+    float viewDistance;      // +0x04: half-range for spawn area
+    float density;           // +0x08: spawn rate multiplier
+    float speedMinX;         // +0x0C: speed range X min
+    float speedMaxX;         // +0x10: speed range X max
+    float speedMinY;         // +0x14: speed range Y min
+    float speedMaxY;         // +0x18: speed range Y max
+    float speedMinZ;         // +0x1C: speed range Z min
+    float speedMaxZ;         // +0x20: speed range Z max
 
     gbDropDesc& operator=(const gbDropDesc& other);
 };
 
 /* ======== gbDropUnit ======== */
 
+// sizeof = 40 bytes (10 DWORDs, verified from operator= and constructor)
 struct gbDropUnit {
-    gbVec3D position;        // +0x00
-    gbVec3D velocity;        // +0x0c
-    float size;              // +0x18
-    float alpha;             // +0x1c
-    float age;               // +0x20
-    int alive;               // +0x24
+    float lifetime;          // +0x00: remaining lifetime (decremented each frame)
+    gbVec3D velocity;        // +0x04: current velocity
+    gbVec3D position;        // +0x10: current position
+    gbVec3D prevPosition;    // +0x1C: previous frame position (for streak rendering)
 
     gbDropUnit(void);
     gbDropUnit& operator=(const gbDropUnit& other);
@@ -304,26 +304,49 @@ struct gbDropUnit {
 
 /* ======== gbDropGroup ======== */
 
+// sizeof = 0x50 = 80 bytes (verified from IDA constructor)
+// Layout: vtable + 19 DWORDs
 class gbDropGroup {
 public:
-    gbDropUnit* units;           // +0x00
-    int maxUnits;                // +0x04
-    int numActiveUnits;          // +0x08
-    gbDropDesc desc;             // +0x0c
-    char textureName[64];        // +0x40
-    gbTexture* pTexture;         // +0x80
-    float elapsedTime;           // +0x84
-    float spawnTimer;            // +0x88
+    // vtable at +0x00
+    int field_04;                // +0x04: unused (not initialized, not copied)
+    int maxUnits;                // +0x08
+    int numActiveUnits;          // +0x0C
+    gbDropDesc desc;             // +0x10 (9 DWORDs = 0x24 bytes, ends at +0x34)
+    int field_34;                // +0x34: padding/unused (skipped in copy ctor)
+    double elapsedTime;          // +0x38: last render time (double, 8 bytes)
+    float spawnTimer;            // +0x40
+    gbDropUnit* units;           // +0x44
+    gbTexture* pTexture;         // +0x48
+    gbRenderEffect* pRenderEffect; // +0x4C
 
     gbDropGroup(int maxDrops, const gbDropDesc* dropDesc, const char* texName);
-    gbDropGroup(const gbDropGroup& other);
+    gbDropGroup(const gbDropGroup& other) {
+        *(((int*)this) + 2) = *(((int*)&other) + 2);
+        *(((int*)this) + 3) = *(((int*)&other) + 3);
+        *(((int*)this) + 4) = *(((int*)&other) + 4);
+        *(((int*)this) + 5) = *(((int*)&other) + 5);
+        *(((int*)this) + 6) = *(((int*)&other) + 6);
+        *(((int*)this) + 7) = *(((int*)&other) + 7);
+        *(((int*)this) + 8) = *(((int*)&other) + 8);
+        *(((int*)this) + 9) = *(((int*)&other) + 9);
+        *(((int*)this) + 10) = *(((int*)&other) + 10);
+        *(((int*)this) + 11) = *(((int*)&other) + 11);
+        *(((int*)this) + 12) = *(((int*)&other) + 12);
+        *(((int*)this) + 14) = *(((int*)&other) + 14);
+        *(((int*)this) + 15) = *(((int*)&other) + 15);
+        *(((int*)this) + 16) = *(((int*)&other) + 16);
+        *(((int*)this) + 17) = *(((int*)&other) + 17);
+        *(((int*)this) + 18) = *(((int*)&other) + 18);
+        *(((int*)this) + 19) = *(((int*)&other) + 19);
+    }
     virtual ~gbDropGroup(void);
 
     void Render(gbCamera* camera);
     gbDropGroup& operator=(const gbDropGroup& other);
 
 private:
-    void CreateUnit(float heightOffset, gbCamera* camera);
+    void CreateUnit(float deltaTime, gbCamera* camera);
 
     friend class gbRain;
     friend class gbSnow;
@@ -348,8 +371,7 @@ private:
 
 class gbSnow : public gbDropGroup {
 public:
-    float swayAmplitude;
-    float swayFrequency;
+    float swayAmplitude;         // +0x50 (IDA: this[20])
 
     gbSnow(int maxDrops, const gbDropDesc* dropDesc, const char* texName, float amplitude);
     gbSnow(const gbSnow& other);

@@ -5,108 +5,191 @@
  */
 
 #include "gbengine/gbParticle.h"
-#include <math.h>
+#include "gbengine/gbGfxManager.h"
+#include "gbengine/gbRenderEffect.h"
 #include <string.h>
 #include <stdlib.h>
 
 // External globals
 extern double g_CurrentTime;
-extern unsigned int g_CurrentTick;
+extern gbGfxManager* dword_101379A8;
+
+// External random float function
+extern "C" float sub_10027620(float minVal, float maxVal);
 
 /* ======== gbDropUnit ======== */
 
 gbDropUnit::gbDropUnit(void) {
-    position.x = 0.0f;
-    position.y = 0.0f;
-    position.z = 0.0f;
-    velocity.x = 0.0f;
-    velocity.y = 0.0f;
-    velocity.z = 0.0f;
-    size = 1.0f;
-    alpha = 1.0f;
-    age = 0.0f;
-    alive = 0;
+    int* p = (int*)this + 1;
+    p[0] = 0; p[1] = 0; p[2] = 0;
+    p[3] = 0; p[4] = 0; p[5] = 0;
+    p[6] = 0; p[7] = 0; p[8] = 0;
+}
+
+gbDropUnit& gbDropUnit::operator=(const gbDropUnit& other) {
+    *(((int*)this) + 0) = *(((int*)&other) + 0);
+    *(((int*)this) + 1) = *(((int*)&other) + 1);
+    *(((int*)this) + 2) = *(((int*)&other) + 2);
+    *(((int*)this) + 3) = *(((int*)&other) + 3);
+    *(((int*)this) + 4) = *(((int*)&other) + 4);
+    *(((int*)this) + 5) = *(((int*)&other) + 5);
+    *(((int*)this) + 6) = *(((int*)&other) + 6);
+    *(((int*)this) + 7) = *(((int*)&other) + 7);
+    *(((int*)this) + 8) = *(((int*)&other) + 8);
+    *(((int*)this) + 9) = *(((int*)&other) + 9);
+    return *this;
+}
+
+/* ======== gbDropDesc ======== */
+
+gbDropDesc& gbDropDesc::operator=(const gbDropDesc& other) {
+    memcpy(this, &other, 0x24);
+    return *this;
 }
 
 /* ======== gbDropGroup ======== */
 
 gbDropGroup::gbDropGroup(int maxCount, const gbDropDesc* dropDesc, const char* texName) {
-    units = NULL;
     maxUnits = maxCount;
-    numActiveUnits = 0;
 
-    if (dropDesc) {
-        memcpy(&desc, dropDesc, sizeof(gbDropDesc));
+    gbDropUnit* p = (gbDropUnit*)operator new(40 * maxCount);
+    if (p) {
+        if (maxCount - 1 >= 0) {
+            int* v7 = (int*)((char*)p + 12);
+            int v8 = maxCount;
+            do {
+                *(v7 - 2) = 0;
+                *(v7 - 1) = 0;
+                *v7 = 0;
+                v7[1] = 0;
+                v7[2] = 0;
+                v7[3] = 0;
+                v7[4] = 0;
+                v7[5] = 0;
+                v7[6] = 0;
+                v7 += 10;
+                --v8;
+            } while (v8);
+        }
     } else {
-        memset(&desc, 0, sizeof(gbDropDesc));
+        p = NULL;
     }
-
-    if (texName) {
-        strncpy(textureName, texName, 63);
-        textureName[63] = '\0';
-    } else {
-        textureName[0] = '\0';
-    }
-
-    pTexture = NULL;
-    elapsedTime = 0.0f;
-    spawnTimer = 0.0f;
+    units = p;
 
     if (maxCount > 0) {
-        units = (gbDropUnit*)malloc(sizeof(gbDropUnit) * maxCount);
-        if (units) {
-            memset(units, 0, sizeof(gbDropUnit) * maxCount);
-        }
+        int v9 = 0;
+        int v4 = maxCount;
+        do {
+            v9 += 40;
+            --v4;
+            *(int*)((char*)units + v9 - 40) = 0;
+        } while (v4);
     }
+
+    gbGfxManager* v10 = dword_101379A8;
+    if (texName) {
+        gbTexture* v11 = (gbTexture*)(*(int (**)())(*(int*)dword_101379A8 + 8))();
+        pTexture = v11;
+    } else {
+        pTexture = NULL;
+    }
+
+    pRenderEffect = ((gbEffectMgr**)v10)[50]->NewRenderEffect("gfxscript\\p_add_g.fx", 0);
+
+    *(((int*)this) + 4) = *(((int*)dropDesc) + 0);
+    *(((int*)this) + 5) = *(((int*)dropDesc) + 1);
+    *(((int*)this) + 6) = *(((int*)dropDesc) + 2);
+    *(((int*)this) + 7) = *(((int*)dropDesc) + 3);
+    *(((int*)this) + 8) = *(((int*)dropDesc) + 4);
+    *(((int*)this) + 9) = *(((int*)dropDesc) + 5);
+    *(((int*)this) + 10) = *(((int*)dropDesc) + 6);
+    *(((int*)this) + 11) = *(((int*)dropDesc) + 7);
+    int v12 = *(((int*)dropDesc) + 8);
+    elapsedTime = 0.0;
+    *(((int*)this) + 12) = v12;
+    numActiveUnits = 0;
+    spawnTimer = 0.0f;
+    *(((int*)this) + 16) = 0;
 }
 
-gbDropGroup::gbDropGroup(const gbDropGroup& other) {
-    maxUnits = other.maxUnits;
-    numActiveUnits = 0;
-    units = new gbDropUnit[maxUnits];
-    memcpy(&desc, &other.desc, sizeof(gbDropDesc));
-    strcpy(textureName, other.textureName);
-    pTexture = other.pTexture;
-    elapsedTime = 0.0f;
-    spawnTimer = 0.0f;
-}
 
 gbDropGroup::~gbDropGroup(void) {
-    if (units) {
-        delete[] units;
-        units = NULL;
-    }
+    gbRefObject* v2 = (gbRefObject*)pRenderEffect;
+    v2->Release();
+    gbRefObject* v3 = (gbRefObject*)pTexture;
+    if (v3)
+        v3->Release();
+    operator delete(units);
 }
 
 void gbDropGroup::Render(gbCamera* camera) {
-    if (!pTexture) return;
+    double v5 = g_CurrentTime;
+    float v4 = (float)(g_CurrentTime - elapsedTime);
+    if (v4 > 0.2f)
+        v4 = 0.2f;
+    CreateUnit(v4, camera);
+    // vtable[1] = Update
+    (*(void (**)(gbDropGroup*, float))(*(int*)this + 4))(this, v4);
+    if (numActiveUnits)
+        // vtable[2] = Draw
+        (*(void (**)(gbDropGroup*))(*(int*)this + 8))(this);
+    elapsedTime = v5;
+}
 
-    for (int i = 0; i < numActiveUnits; i++) {
-        if (units[i].alive) {
-            // Render billboard at units[i].position
+void gbDropGroup::CreateUnit(float deltaTime, gbCamera* camera) {
+    float v4 = deltaTime + spawnTimer;
+    spawnTimer = v4;
+    double v5 = (double)(*(int*)((char*)this + 0x18));
+    int v16 = (int)(v5 * v4);
+    if (v16 > 0) {
+        int v6 = maxUnits;
+        int v7 = 0;
+        spawnTimer = v4 - (float)((double)v16 / v5);
+        if (v6 > 0) {
+            int v8 = 0;
+            do {
+                float* v9 = (float*)((char*)units + v8);
+                if (*v9 <= 0.0f) {
+                    float half = *((float*)this + 5) * 0.5f;
+                    float negHalf = *((float*)this + 5) * -0.5f;
+                    v9[4] = sub_10027620(negHalf, half);
+                    float negFull = -*((float*)this + 5);
+                    v9[6] = sub_10027620(negFull, *((float*)this + 5) * -0.5f);
+                    v9[5] = sub_10027620(*((float*)this + 11), *((float*)this + 12));
+                    *v9 = sub_10027620(*((float*)this + 7), *((float*)this + 8));
+                    v9[3] = 0;
+                    v9[1] = 0;
+                    v9[2] = -sub_10027620(*((float*)this + 9), *((float*)this + 10));
+                    ++numActiveUnits;
+                    if (!--v16)
+                        break;
+                }
+                ++v7;
+                v8 += 40;
+            } while (v7 < maxUnits);
         }
     }
 }
 
-void gbDropGroup::CreateUnit(float heightOffset, gbCamera* camera) {
-    if (numActiveUnits >= maxUnits) return;
-
-    gbDropUnit* unit = &units[numActiveUnits];
-    numActiveUnits++;
-
-    float range = desc.viewDistance;
-    unit->position.x = ((float)rand() / RAND_MAX) * range * 2.0f - range;
-    unit->position.y = heightOffset;
-    unit->position.z = ((float)rand() / RAND_MAX) * range * 2.0f - range;
-
-    unit->velocity.x = desc.windX;
-    unit->velocity.y = -desc.speed;
-    unit->velocity.z = desc.windZ;
-
-    unit->size = desc.size;
-    unit->alpha = desc.alpha;
-    unit->age = 0.0f;
-    unit->alive = 1;
+gbDropGroup& gbDropGroup::operator=(const gbDropGroup& other) {
+    *(((int*)this) + 2) = *(((int*)&other) + 2);
+    *(((int*)this) + 3) = *(((int*)&other) + 3);
+    *(((int*)this) + 4) = *(((int*)&other) + 4);
+    *(((int*)this) + 5) = *(((int*)&other) + 5);
+    *(((int*)this) + 6) = *(((int*)&other) + 6);
+    *(((int*)this) + 7) = *(((int*)&other) + 7);
+    *(((int*)this) + 8) = *(((int*)&other) + 8);
+    *(((int*)this) + 9) = *(((int*)&other) + 9);
+    *(((int*)this) + 10) = *(((int*)&other) + 10);
+    *(((int*)this) + 11) = *(((int*)&other) + 11);
+    *(((int*)this) + 12) = *(((int*)&other) + 12);
+    *(((int*)this) + 14) = *(((int*)&other) + 14);
+    *(((int*)this) + 15) = *(((int*)&other) + 15);
+    *(((int*)this) + 16) = *(((int*)&other) + 16);
+    *(((int*)this) + 17) = *(((int*)&other) + 17);
+    *(((int*)this) + 18) = *(((int*)&other) + 18);
+    *(((int*)this) + 19) = *(((int*)&other) + 19);
+    return *this;
 }
 
 /* ======== gbRain ======== */
@@ -117,52 +200,67 @@ gbRain::gbRain(int maxDrops, const gbDropDesc* dropDesc, const char* texName)
 
 gbRain::gbRain(const gbRain& other)
     : gbDropGroup(other) {
-    memcpy((char*)this + 8, (const char*)&other + 8, sizeof(gbRain) - 8);
 }
 
 gbRain::~gbRain(void) {
 }
 
-void gbRain::Update(float deltaTime) {
-    elapsedTime += deltaTime;
-    spawnTimer += deltaTime;
+void gbRain::Update(float a2) {
+    int v2;
+    int v3;
+    int v4;
+    float v5;
+    float v6;
+    float v7;
 
-    float spawnInterval = 1.0f / (desc.density * 10.0f);
-    while (spawnTimer >= spawnInterval && numActiveUnits < maxUnits) {
-        CreateUnit(50.0f, NULL);
-        spawnTimer -= spawnInterval;
-    }
-
-    for (int i = 0; i < numActiveUnits; ) {
-        if (units[i].alive) {
-            units[i].position.x += units[i].velocity.x * deltaTime;
-            units[i].position.y += units[i].velocity.y * deltaTime;
-            units[i].position.z += units[i].velocity.z * deltaTime;
-
-            units[i].velocity.y -= desc.gravity * deltaTime;
-            units[i].age += deltaTime;
-
-            if (units[i].position.y < -10.0f || units[i].age > 10.0f) {
-                units[i].alive = 0;
-                if (i < numActiveUnits - 1) {
-                    units[i] = units[numActiveUnits - 1];
-                }
-                numActiveUnits--;
-                continue;
+    v2 = 0;
+    if (*(int*)((char*)this + 8) > 0) {
+        v3 = 0;
+        do {
+            v4 = v3 + *(int*)((char*)this + 0x44);
+            if (*(float*)v4 > 0.0f) {
+                *(int*)(v4 + 28) = *(int*)(v4 + 16);
+                *(int*)(v4 + 32) = *(int*)(v4 + 20);
+                *(int*)(v4 + 36) = *(int*)(v4 + 24);
+                v6 = a2 * *(float*)(v4 + 8);
+                v7 = a2 * *(float*)(v4 + 12);
+                *(float*)(v4 + 16) = a2 * *(float*)(v4 + 4) + *(float*)(v4 + 16);
+                *(float*)(v4 + 20) = v6 + *(float*)(v4 + 20);
+                *(float*)(v4 + 24) = v7 + *(float*)(v4 + 24);
+                v5 = *(float*)v4 - a2;
+                *(float*)v4 = v5;
+                if (v5 <= 0.0f)
+                    --*(int*)((char*)this + 0x0C);
             }
-        }
-        i++;
+            ++v2;
+            v3 += 40;
+        } while (v2 < *(int*)((char*)this + 8));
     }
 }
 
 void gbRain::Draw(void) {
-    if (!pTexture) return;
+    // TODO: complex rendering with gbDynVertBuf and gbMatrixStack
+}
 
-    for (int i = 0; i < numActiveUnits; i++) {
-        if (units[i].alive) {
-            // Render rain streak
-        }
-    }
+gbRain& gbRain::operator=(const gbRain& other) {
+    *(((int*)this) + 2) = *(((int*)&other) + 2);
+    *(((int*)this) + 3) = *(((int*)&other) + 3);
+    *(((int*)this) + 4) = *(((int*)&other) + 4);
+    *(((int*)this) + 5) = *(((int*)&other) + 5);
+    *(((int*)this) + 6) = *(((int*)&other) + 6);
+    *(((int*)this) + 7) = *(((int*)&other) + 7);
+    *(((int*)this) + 8) = *(((int*)&other) + 8);
+    *(((int*)this) + 9) = *(((int*)&other) + 9);
+    *(((int*)this) + 10) = *(((int*)&other) + 10);
+    *(((int*)this) + 11) = *(((int*)&other) + 11);
+    *(((int*)this) + 12) = *(((int*)&other) + 12);
+    *(((int*)this) + 14) = *(((int*)&other) + 14);
+    *(((int*)this) + 15) = *(((int*)&other) + 15);
+    *(((int*)this) + 16) = *(((int*)&other) + 16);
+    *(((int*)this) + 17) = *(((int*)&other) + 17);
+    *(((int*)this) + 18) = *(((int*)&other) + 18);
+    *(((int*)this) + 19) = *(((int*)&other) + 19);
+    return *this;
 }
 
 /* ======== gbSnow ======== */
@@ -170,106 +268,72 @@ void gbRain::Draw(void) {
 gbSnow::gbSnow(int maxDrops, const gbDropDesc* dropDesc, const char* texName, float amplitude)
     : gbDropGroup(maxDrops, dropDesc, texName) {
     swayAmplitude = amplitude;
-    swayFrequency = 1.0f;
 }
 
 gbSnow::gbSnow(const gbSnow& other)
     : gbDropGroup(other) {
     swayAmplitude = other.swayAmplitude;
-    swayFrequency = other.swayFrequency;
 }
 
 gbSnow::~gbSnow(void) {
 }
 
-void gbSnow::Update(float deltaTime) {
-    elapsedTime += deltaTime;
-    spawnTimer += deltaTime;
+void gbSnow::Update(float a2) {
+    int v3;
+    int v4;
+    float* v5;
+    float v6;
+    float v11;
+    float v12;
 
-    float spawnInterval = 1.0f / (desc.density * 5.0f);
-    while (spawnTimer >= spawnInterval && numActiveUnits < maxUnits) {
-        CreateUnit(30.0f, NULL);
-        spawnTimer -= spawnInterval;
-    }
-
-    for (int i = 0; i < numActiveUnits; ) {
-        if (units[i].alive) {
-            float sway = sinf(units[i].age * swayFrequency) * swayAmplitude;
-            units[i].position.x += (units[i].velocity.x + sway) * deltaTime;
-            units[i].position.y += units[i].velocity.y * deltaTime;
-            units[i].position.z += units[i].velocity.z * deltaTime;
-
-            units[i].age += deltaTime;
-
-            if (units[i].position.y < -5.0f || units[i].age > 15.0f) {
-                units[i].alive = 0;
-                if (i < numActiveUnits - 1) {
-                    units[i] = units[numActiveUnits - 1];
+    v3 = 0;
+    if (*(int*)((char*)this + 8) > 0) {
+        v4 = 0;
+        do {
+            v5 = (float*)(*(int*)((char*)this + 0x44) + v4);
+            if (*v5 > 0.0f) {
+                v11 = a2 * v5[2];
+                v12 = a2 * v5[3];
+                v5[4] = a2 * v5[1] + v5[4];
+                v5[5] = v11 + v5[5];
+                v5[6] = v12 + v5[6];
+                v6 = *v5 - a2;
+                *v5 = v6;
+                if (((int)(v6 * 15.0f) & 1) == 0) {
+                    v5[1] = sub_10027620(-*((float*)this + 20), *((float*)this + 20));
+                    v5[3] = sub_10027620(-*((float*)this + 20), *((float*)this + 20));
                 }
-                numActiveUnits--;
-                continue;
+                if (*v5 <= 0.0f)
+                    --*(int*)((char*)this + 0x0C);
             }
-
-            if (units[i].position.y < 5.0f) {
-                units[i].alpha = desc.alpha * (units[i].position.y / 5.0f);
-            }
-        }
-        i++;
+            ++v3;
+            v4 += 40;
+        } while (v3 < *(int*)((char*)this + 8));
     }
 }
 
 void gbSnow::Draw(void) {
-    if (!pTexture) return;
-
-    for (int i = 0; i < numActiveUnits; i++) {
-        if (units[i].alive) {
-            // Render snowflake billboard
-        }
-    }
-}
-
-// Export assignment operators
-gbDropDesc& gbDropDesc::operator=(const gbDropDesc& other) {
-    if (this != &other) {
-        memcpy(this, &other, sizeof(gbDropDesc));
-    }
-    return *this;
-}
-
-gbDropUnit& gbDropUnit::operator=(const gbDropUnit& other) {
-    if (this != &other) {
-        memcpy(this, &other, sizeof(gbDropUnit));
-    }
-    return *this;
-}
-
-gbDropGroup& gbDropGroup::operator=(const gbDropGroup& other) {
-    if (this != &other) {
-        if (units) delete[] units;
-        maxUnits = other.maxUnits;
-        numActiveUnits = 0;
-        units = new gbDropUnit[maxUnits];
-        memcpy(&desc, &other.desc, sizeof(gbDropDesc));
-        strcpy(textureName, other.textureName);
-        pTexture = other.pTexture;
-        elapsedTime = 0.0f;
-        spawnTimer = 0.0f;
-    }
-    return *this;
-}
-
-gbRain& gbRain::operator=(const gbRain& other) {
-    if (this != &other) {
-        gbDropGroup::operator=(other);
-    }
-    return *this;
+    // TODO: complex rendering with gbDynVertBuf and gbMatrixStack
 }
 
 gbSnow& gbSnow::operator=(const gbSnow& other) {
-    if (this != &other) {
-        gbDropGroup::operator=(other);
-        swayAmplitude = other.swayAmplitude;
-        swayFrequency = other.swayFrequency;
-    }
+    *(((int*)this) + 2) = *(((int*)&other) + 2);
+    *(((int*)this) + 3) = *(((int*)&other) + 3);
+    *(((int*)this) + 4) = *(((int*)&other) + 4);
+    *(((int*)this) + 5) = *(((int*)&other) + 5);
+    *(((int*)this) + 6) = *(((int*)&other) + 6);
+    *(((int*)this) + 7) = *(((int*)&other) + 7);
+    *(((int*)this) + 8) = *(((int*)&other) + 8);
+    *(((int*)this) + 9) = *(((int*)&other) + 9);
+    *(((int*)this) + 10) = *(((int*)&other) + 10);
+    *(((int*)this) + 11) = *(((int*)&other) + 11);
+    *(((int*)this) + 12) = *(((int*)&other) + 12);
+    *(((int*)this) + 14) = *(((int*)&other) + 14);
+    *(((int*)this) + 15) = *(((int*)&other) + 15);
+    *(((int*)this) + 16) = *(((int*)&other) + 16);
+    *(((int*)this) + 17) = *(((int*)&other) + 17);
+    *(((int*)this) + 18) = *(((int*)&other) + 18);
+    *(((int*)this) + 19) = *(((int*)&other) + 19);
+    *(((int*)this) + 20) = *(((int*)&other) + 20);
     return *this;
 }

@@ -322,6 +322,8 @@ def compile_file(src_path, obj_path):
             '/Gy',       # function-level linking
             '/Zp4',      # 4-byte struct member alignment (matches original)
             '/GX',       # enable C++ exception handling (SEH frames for new)
+            '/DWINVER=0x0500',         # target Win2000+ (matches original DEVMODEA size)
+            '/D_WIN32_WINNT=0x0400',   # NT4 SP4+ features
             f'/I{win_include}',
             f'/I{win_proj_include}',
             f'/Fo{win_obj}',
@@ -345,6 +347,8 @@ def compile_file(src_path, obj_path):
             '/Gy',       # function-level linking
             '/Zp4',      # 4-byte struct member alignment (matches original)
             '/GX',       # enable C++ exception handling (SEH frames for new)
+            '/DWINVER=0x0500',         # target Win2000+ (matches original DEVMODEA size)
+            '/D_WIN32_WINNT=0x0400',   # NT4 SP4+ features
             f'/Fo{obj_path}',
             str(src_path),
         ]
@@ -353,6 +357,8 @@ def compile_file(src_path, obj_path):
     if result.returncode != 0:
         print(f"  Compilation FAILED:")
         print(f"    {result.stderr}")
+        if result.stdout:
+            print(f"    {result.stdout}")
         return False
     return True
 
