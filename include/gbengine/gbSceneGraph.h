@@ -8,22 +8,45 @@
 // Forward declarations (defined after this header or circular deps)
 class gbVisNode;
 class gbVolModNode;
+class gbDynVertBuf;
+
+// ============================================================================
 // gbBladeMgr - blade trail effect manager
+// sizeof(gbBladeMgr) = 0x1790
 // Contains 32 blade entries (each 0xBC bytes) followed by global state
-// Total entries array = 32 * 0xBC = 0x1780 bytes
+// ============================================================================
+
+// gbBladeEntry - single blade trail instance
+// sizeof = 0xBC = 188 bytes
+// Each entry stores a ring buffer of vertex frames for one blade trail
 struct gbBladeEntry {
-    void* pGeomNode;        // +0x00: associated geom node pointer
-    char _pad04[0xAC];      // +0x04..+0xAF
-    float timeScale;        // +0xB0: per-blade time scale
-    char _padB4[0x08];      // +0xB4..+0xBB
+    void* pGeomNode;            // +0x00: associated geom node pointer (used as lookup key)
+    void* pVertexData;          // +0x04: malloc'd vertex buffer (numVertices * 0x10 * maxFrames)
+    float timestamps[40];       // +0x08: per-frame timestamps (ring buffer, max 40 entries)
+    float timeScale;            // +0xA8: blade time duration (init 0.1f = 0x3dcccccd)
+    float startTime;            // +0xAC: time when this blade was created/updated
+    float bladeTimeScale;       // +0xB0: per-blade time scale factor (init 1.0f)
+    int numVertices;            // +0xB4: number of vertices per frame
+    int numFrames;              // +0xB8: current number of frames stored (max 40)
     // sizeof = 0xBC
 };
 
 class gbBladeMgr {
 public:
-    gbBladeEntry entries[32];   // +0x0000 (32 * 0xBC = 0x1780)
-    char _pad1780[0x0C];        // +0x1780..+0x178B
-    float globalTimeScale;      // +0x178C: global time scale factor
+    gbBladeEntry entries[32];       // +0x0000 (32 * 0xBC = 0x1780)
+    void* pGfxManager;              // +0x1780: pointer to gbGfxManager
+    float lastTime;                 // +0x1784: accumulated time
+    gbRenderEffect* pEffect;        // +0x1788: blade render effect
+    float globalTimeScale;          // +0x178C: global time scale factor
+
+    void Init(void* gfxMgr);
+    void Reset(void);
+    void Submit(void* vertexData, int numVertices, void* geomNode);
+    void SetBladeTime(void* geomNode, float time);
+    void SetBladeTimeScale(void* geomNode, float scale);
+    void Update(void);
+    void Render(void);
+    void* GetLastBladePos(void* geomNode);
 };
 
 // ============================================================================

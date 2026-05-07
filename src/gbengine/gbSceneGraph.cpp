@@ -141,7 +141,8 @@ gbSceneGraph::gbSceneGraph(gbGfxManager* gfxMgr, const gbVec3D& param2, float pa
     shadowQuadEffect = gfxMgr->GetEffectMgr()->NewRenderEffect("gfx/script/shadow.gbf", 0);
 
     // Create blade manager
-    bladeMgr = NULL; // TODO: actual blade manager creation (sub_1000EC20)
+    bladeMgr = new gbBladeMgr;
+    bladeMgr->Init(gfxMgr);
 
     // Create root scene node
     gbVisNode* root = new gbVisNode();
@@ -278,12 +279,6 @@ static int CollectVisibleNodes(int* outArray, gbCamera* camera) {
     return 0;
 }
 
-// 0x1000EF60 - Blade manager submit
-static void BladeMgr_Submit(gbBladeMgr* mgr) {
-}
-// 0x1000EF10 - Blade manager render
-static void BladeMgr_Render(gbBladeMgr* mgr) {
-}
 
 // 0x10014f40 (1403B) - End scene rendering (render all objects)
 void gbSceneGraph::End(void) {
@@ -426,8 +421,8 @@ void gbSceneGraph::End(void) {
     pGfxManager->pEffectMgr->m_nFrameCounter = 0;
 
     // Phase 5: Render blade trails
-    BladeMgr_Submit(bladeMgr);
-    BladeMgr_Render(bladeMgr);
+    bladeMgr->Update();
+    bladeMgr->Render();
 
     // Phase 6: Render shadow volumes
     if (numShadowVolumes > 0) {
@@ -505,7 +500,6 @@ void gbSceneGraph::SetBladeTimeScale(float scale) {
 
 // 0x10015620 (14B) - Reset blade manager
 void gbSceneGraph::ResetBladeMgr(void) {
-    // Resets all blade trail effects
     if (!bladeMgr) return;
-    // bladeMgr->Reset();
+    bladeMgr->Reset();
 }
