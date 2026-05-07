@@ -118,12 +118,13 @@ elseif(BUILD_TARGET STREQUAL "gbengine")
             "${CMAKE_SOURCE_DIR}/tools/vc6/Lib/mss32.lib"
             "${CMAKE_SOURCE_DIR}/lib/ijl15.lib"
             "${CMAKE_SOURCE_DIR}/lib/topo.lib"
+            legacy_stdio_definitions.lib
         )
 
         # Use .def file for exports (matching original DLL export table)
         # Note: /SAFESEH not supported by VC6 link.exe
         set_target_properties(gbengine PROPERTIES
-            LINK_FLAGS "/DEF:\"${CMAKE_SOURCE_DIR}/src/gbengine/gbengine.def\""
+            LINK_FLAGS "/DEF:\"${CMAKE_SOURCE_DIR}/src/gbengine/gbengine.def\" /SAFESEH:NO"
         )
 
         # Apply VC6 optimization flags
