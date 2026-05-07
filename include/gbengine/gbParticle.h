@@ -325,6 +325,9 @@ public:
     gbDropGroup(const gbDropGroup& other);
     virtual ~gbDropGroup(void);
 
+    virtual void Update(float deltaTime) = 0;
+    virtual void Draw(void) = 0;
+
     void Render(gbCamera* camera);
     gbDropGroup& operator=(const gbDropGroup& other);
 
