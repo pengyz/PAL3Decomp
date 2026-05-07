@@ -795,12 +795,12 @@ gbColorQuad::gbColorQuad(struct gbColorQuad & p0) { *(unsigned int*)this = *(uns
 
 gbColorQuad::gbColorQuad(unsigned char p0, unsigned char p1, unsigned char p2) {
     if (ColorQuadFmt == 0) { r = p0; g = p1; b = p2; a = 0xFF; }
-    else { b = p2; g = p1; r = p0; a = 0xFF; }
+    else { r = p2; g = p1; b = p0; a = 0xFF; }
 }
 
 gbColorQuad::gbColorQuad(unsigned char p0, unsigned char p1, unsigned char p2, unsigned char p3) {
     if (ColorQuadFmt == 0) { r = p0; g = p1; b = p2; a = p3; }
-    else { b = p2; g = p1; r = p0; a = p3; }
+    else { r = p2; g = p1; b = p0; a = p3; }
 }
 
 gbColorQuad::gbColorQuad() {

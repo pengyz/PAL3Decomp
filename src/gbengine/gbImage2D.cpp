@@ -78,17 +78,12 @@ unsigned char* gbImage2D::GetBits(void) {
 
 // 0x10004150 (44B) - Get pointer to pixel at (x, y)
 unsigned char* gbImage2D::GetBits(int x, int y) {
-    if (!pBits || x < 0 || y < 0 || x >= Width || y >= Height) {
-        return NULL;
-    }
-    int stride = (Width * BitCount + 7) / 8;
-    return (unsigned char*)pBits + y * stride + (x * BitCount) / 8;
+    int offset = (Width * y + x) * BitCount;
+    return (unsigned char*)pBits + offset / 8;
 }
 
 // 0x10004180 (16B) - Get palette entry
 gbColorQuad* gbImage2D::GetPalEntry(int index) {
-    if (!pPalette)
-        return NULL;
     return &pPalette[index];
 }
 

@@ -1188,10 +1188,10 @@ int gbVFileSystem::FindItem(const char* filename)
         int cmp = gbstricmp(filename, pFileBuffer[mid].fullPath);
         if (!cmp)
             break;
-        if (cmp >= 0)
-            lo = mid + 1;
-        else
+        if (cmp < 0)
             hi = mid - 1;
+        else
+            lo = mid + 1;
         if (lo > hi)
             return -1;
     }

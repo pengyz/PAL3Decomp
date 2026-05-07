@@ -686,11 +686,7 @@ void gbGeomNode::SetAnimLoop(int loop) {
 void gbGeomNode::EnableShadow(int enable) {
     gbVisNode::EnableShadow(enable);
     if (enable) {
-        // vtable[2] = ComputeShadowVolume()
-        typedef void (__thiscall *ComputeShadowFn)(void*);
-        void** vtbl = *(void***)mesh;
-        ComputeShadowFn fn = (ComputeShadowFn)vtbl[2];
-        fn(mesh);
+        mesh->ComputeShadowVolume();
     }
 }
 

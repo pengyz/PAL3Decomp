@@ -158,18 +158,37 @@ void gbPrintFont::PrintCenterLine(char* text, float left, float top, float right
 // 0x10004340
 void gbPrintFont::SetFontColor(unsigned char r, unsigned char g, unsigned char b)
 {
-    colorR = r;
-    colorG = g;
-    colorB = b;
+    unsigned char local[4];
+    if (gbColorQuad::ColorQuadFmt == 0) {
+        local[2] = r;
+        local[1] = g;
+        local[0] = b;
+        local[3] = 0xFF;
+    } else {
+        local[2] = b;
+        local[1] = g;
+        local[0] = r;
+        local[3] = 0xFF;
+    }
+    *(unsigned int*)&colorR = *(unsigned int*)local;
 }
 
 // 0x100043a0
 void gbPrintFont::SetFontColor(unsigned char r, unsigned char g, unsigned char b, unsigned char a)
 {
-    colorR = r;
-    colorG = g;
-    colorB = b;
-    colorA = a;
+    unsigned char local[4];
+    if (gbColorQuad::ColorQuadFmt == 0) {
+        local[2] = r;
+        local[1] = g;
+        local[0] = b;
+        local[3] = a;
+    } else {
+        local[2] = b;
+        local[1] = g;
+        local[0] = r;
+        local[3] = a;
+    }
+    *(unsigned int*)&colorR = *(unsigned int*)local;
 }
 
 // 0x10004400

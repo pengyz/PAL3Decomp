@@ -312,21 +312,21 @@ void gbEnableSystemKeys(HINSTANCE hInst, int enable) {
 
     if (VersionInformation.dwPlatformId == VER_PLATFORM_WIN32_NT) {
         if (VersionInformation.dwMajorVersion >= 4) {
-            if (enable) {
+            if (!enable) {
+                hhk = SetWindowsHookExA(13, LowLevelKeyboardProc, hInst, 0);
+            } else {
                 if (hhk) {
                     UnhookWindowsHookEx(hhk);
                     hhk = NULL;
                 }
-            } else {
-                hhk = SetWindowsHookExA(13, LowLevelKeyboardProc, hInst, 0);
             }
         }
     } else if (VersionInformation.dwPlatformId == VER_PLATFORM_WIN32_WINDOWS
                && VersionInformation.dwMajorVersion >= 4) {
-        if (enable)
-            SystemParametersInfoA(0x61, 0, pvParam, 0);
-        else
+        if (!enable)
             SystemParametersInfoA(0x61, 1, pvParam, 0);
+        else
+            SystemParametersInfoA(0x61, 0, pvParam, 0);
     }
 }
 

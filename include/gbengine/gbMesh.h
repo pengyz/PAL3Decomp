@@ -251,6 +251,7 @@ public:
     void Release(void);
 
     // Virtual methods
+    virtual void DrawSubSetBase(int index, void* renderInfo);
     virtual void ComputeShadowVolume();
     virtual void RenderShadowVolume(gbVisNode* visNode, gbRenderInfoObj* renderInfo);
 
