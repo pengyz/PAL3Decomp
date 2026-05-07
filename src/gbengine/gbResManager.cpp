@@ -170,9 +170,9 @@ gbResource& gbResource::operator=(const gbResource& other) {
 
 // Constructor - 0x10020190
 gbResManager::gbResManager() {
-    array = NULL;
     capacity = 0;
     count = 0;
+    array = NULL;
 }
 
 // Copy constructor
