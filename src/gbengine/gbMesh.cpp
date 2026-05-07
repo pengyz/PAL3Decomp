@@ -7,6 +7,8 @@
 #include "gbengine/gbTexture.h"
 #include "gbengine/gbGfxManager.h"
 #include "gbengine/gbRenderEffect.h"
+#include "gbengine/gbVisNode.h"
+#include "gbengine/gbSceneGraph.h"
 #include <string.h>
 #include <stdlib.h>
 
@@ -222,6 +224,111 @@ void gbBaseMesh::SetMeshTexDir(char* dir) {
 }
 
 
+/* ======== SetupMeshLighting (sub_100156F0) ======== */
+// Helper function that sets up lighting/effect variants before drawing a mesh subset.
+// Called from DrawSubSet. Sets world-view-projection matrix and ambient/emissive lighting.
+// Original: 1443 bytes at 0x100156F0
+
+static void SetupMeshLighting(gbRenderInfoObj* renderInfo, gbGfxManager* gfxMgr, float* materialData)
+{
+    // Get matrix stacks: [0]=view/projection, [1]=world
+    gbMatrixStack* projStack = gfxMgr->pMatrixStack[0];
+    gbMatrixStack* worldStack = gfxMgr->pMatrixStack[1];
+
+    gbMatrix4* worldTop = worldStack->GetTop();
+    gbMatrix4* projTop = projStack->GetTop();
+
+    // Build combined matrix: world * scale * projection
+    gbMatrix4 scaleMatrix;
+    scaleMatrix.LoadIdentity();
+    scaleMatrix.m[3][3] = -1.0f;
+
+    gbMatrix4 combinedMatrix;
+    combinedMatrix = *worldTop;
+    combinedMatrix.RightMultiply(scaleMatrix);
+    combinedMatrix.RightMultiply(*projTop);
+
+    // Invert world matrix
+    gbMatrix4 invWorld;
+    worldTop->Invert(&invWorld);
+
+    // Get render effect from renderInfo
+    gbRenderEffect* effect = renderInfo->pEffect;
+    unsigned int flags = renderInfo->renderFlags;
+
+    // Get blend factor from the vis node
+    float blendFactor = 1.0f;
+    gbVisNode* node = renderInfo->pNode;
+    if (node) {
+        float bval;
+        NodeBlend blendMode = node->GetBlend(bval);
+        if (blendMode != BLEND_NONE) {
+            blendFactor = bval;
+        }
+    }
+
+    // Set world*view*projection matrix (variant 0) if flags indicate
+    if (flags & 0x201) {
+        effect->SetVariant(GBPARAM_WORLDMATRIX, &combinedMatrix);
+    }
+
+    // Compute ambient + emissive lighting (variant 4)
+    // Material layout (D3DMATERIAL9-like, as float array):
+    //   [0..3]  = diffuse  (r, g, b, a)
+    //   [4..7]  = ambient  (r, g, b, a)
+    //   [8..11] = specular (r, g, b, a)
+    //   [12..15] = emissive (r, g, b, a)
+    //   [16]    = power
+    //
+    // The original code uses offsets that map materialData:
+    //   ambient at [4..7], emissive at [12..15], diffuse alpha at [3]
+    float result[4];
+    float ambR = gfxMgr->AmbientLight.r;
+    float ambG = gfxMgr->AmbientLight.g;
+    float ambB = gfxMgr->AmbientLight.b;
+    float selfIllum = gfxMgr->fSelfIllum;
+
+    // result = ambient_light * material_ambient + selfIllum * material_emissive
+    result[0] = ambR * materialData[4] + selfIllum * materialData[12];
+    result[1] = ambG * materialData[5] + selfIllum * materialData[13];
+    result[2] = ambB * materialData[6] + selfIllum * materialData[14];
+    result[3] = blendFactor * materialData[3];
+
+    // SetVariant index 4 for the lighting result
+    // Using the name-based variant setter for extended parameters
+    effect->SetVariant((char*)"g_MaterialAmbient", result);
+
+    // Set light direction variant if flags & 0x10
+    if (flags & 0x10) {
+        // Transform light direction to view space using inverse world matrix
+        // Use first enabled directional light
+        gbVec3D lightDir;
+        lightDir.x = gfxMgr->AllLight[0].direction.x;
+        lightDir.y = gfxMgr->AllLight[0].direction.y;
+        lightDir.z = gfxMgr->AllLight[0].direction.z;
+
+        gbVec3D transformedDir;
+        invWorld.Rotate(&lightDir, &transformedDir);
+        transformedDir.Normalize();
+
+        float dirData[4];
+        dirData[0] = transformedDir.x;
+        dirData[1] = transformedDir.y;
+        dirData[2] = transformedDir.z;
+        dirData[3] = 0.0f;
+        effect->SetVariant((char*)"g_LightDir", dirData);
+
+        // Set diffuse light color * material diffuse
+        float diffResult[4];
+        diffResult[0] = gfxMgr->AllLight[0].diffuse.r * materialData[0];
+        diffResult[1] = gfxMgr->AllLight[0].diffuse.g * materialData[1];
+        diffResult[2] = gfxMgr->AllLight[0].diffuse.b * materialData[2];
+        diffResult[3] = 1.0f;
+        effect->SetVariant((char*)"g_MaterialDiffuse", diffResult);
+    }
+}
+
+
 /* ======== gbStaticMesh ======== */
 
 // Static member initialization
@@ -295,102 +402,264 @@ int gbStaticMesh::LoadFromStream(gbVFile* file, int flags, GeomNodeDesc* desc) {
 }
 
 void gbStaticMesh::DrawSubSet(int index, gbRenderInfoObj* renderInfo) {
-    if (index < 0 || index >= m_numSections) return;
+    gbMeshSection* section = &m_sections[index];
+
+    if (section->m_pIndexBubble) {
+        // Set material on gfx manager (vtable slot 11, offset +44)
+        m_pGfxManager->SetMaterial((D3DMATERIAL9*)section->m_material);
+
+        // Flush matrix stacks to D3D (vtable slot 15, offset +60)
+        m_pGfxManager->DrawPrimitive();
+
+        // Setup lighting/effect variants
+        SetupMeshLighting(renderInfo, m_pGfxManager, (float*)section->m_material);
+
+        // Draw indexed primitive via vertex pool
+        // m_pVertBubble->pPool is the gbVertexPool, call its virtual DrawIndexedPrimitive
+        gbVertexPool* pool = m_pVertBubble->pPool;
+        pool->DrawIndexedPrimitive(
+            m_pVertBubble,
+            section->m_pIndexBubble,
+            renderInfo->sectionIndex,
+            section->m_textures
+        );
+    }
 }
 
-// Internal shadow volume builder (0x10016c70)
-static void BuildShadowVolumeData(void* params) {
-    if (!params) return;
+// Forward declarations for topo.dll imports (CreateTopoGeom/DestroyTopoGeom)
+// These are resolved through the IAT at link time via topo.lib
+struct TopoDataDesc;
+enum TopoType { TOPO_SIMPLE = 0, TOPO_COMPLEX = 1 };
+
+// ITopoGeom abstract interface (vtable layout from topo.dll):
+//   vtable[0] = Generate(outputDesc*, float threshold)
+//   vtable[1] = unknown
+//   vtable[2] = Release(outputDesc*)
+// We declare a matching class so the compiler generates correct thiscall vtable calls.
+class ITopoGeom {
+public:
+    virtual void Generate(void* outputDesc, float threshold) = 0;
+    virtual void Unknown() = 0;
+    virtual void Release(void* outputDesc) = 0;
+};
+
+__declspec(dllimport) ITopoGeom* __cdecl CreateTopoGeom(TopoDataDesc* pDesc, TopoType type);
+__declspec(dllimport) int __cdecl DestroyTopoGeom(ITopoGeom* pObj);
+
+// TopoDataDesc: input descriptor for CreateTopoGeom (15 DWORDs = 60 bytes)
+struct TopoDataDesc {
+    void* pVertexData;      // +0x00: vertex position data
+    int   vertexStride;     // +0x04: 0 = use bufferRowSize
+    int   vertexFlags;      // +0x08
+    int   desc_0C;          // +0x0C
+    int   desc_10;          // +0x10
+    int   desc_14;          // +0x14
+    int   desc_18;          // +0x18
+    int   desc_1C;          // +0x1C
+    int   bufferRowSize;    // +0x20: bytes per vertex row (e.g. 12 for XYZ)
+    int   vertexCount;      // +0x24: number of vertices
+    void* pIndices16;       // +0x28: 16-bit index buffer
+    void* pIndices32;       // +0x2C: 32-bit index buffer (NULL if using 16-bit)
+    int   faceCount;        // +0x30: number of triangles
+    int   field_34;         // +0x34
+    int   field_38;         // +0x38: epsilon as float bits (0x3C23D70A = 0.01f)
+};
+
+// TopoGeom output descriptor (filled by ITopoGeom::Generate)
+// Layout matches stack usage in FUN_10016c70
+struct TopoOutputDesc {
+    void* pVertexData;      // +0x00: output vertex positions
+    int   field_04;         // +0x04
+    int   field_08;         // +0x08
+    int   field_0C;         // +0x0C
+    int   field_10;         // +0x10
+    int   field_14;         // +0x14
+    int   field_18;         // +0x18
+    int   field_1C;         // +0x1C
+    void* pIndexData;       // +0x20: output index data
+    int   stride;           // +0x24: output vertex stride
+    int   numVertices;      // +0x28: output vertex count
+    int   numFaces;         // +0x2C: output face count
+    int   field_30;         // +0x30
+    int   field_34;         // +0x34
+    int   field_38;         // +0x38
+};
+
+// Internal shadow volume builder (0x10016c70, 308 bytes)
+// Calls CreateTopoGeom to generate shadow volume geometry,
+// then creates vertex/index bubbles with the result.
+static void BuildShadowVolumeData(
+    TopoDataDesc* desc,
+    gbGfxManager* gfxMgr,
+    unsigned int fvf,
+    gbVertexBubble** ppOutVB,
+    gbIndexBubble** ppOutIB)
+{
+    // Create topology geometry object (type 0 = simple)
+    ITopoGeom* pTopoGeom = CreateTopoGeom(desc, TOPO_SIMPLE);
+
+    // Initialize output descriptor
+    TopoOutputDesc outputDesc;
+    memset(&outputDesc, 0, sizeof(outputDesc));
+    outputDesc.field_04 = -1;
+    outputDesc.field_08 = -1;
+    outputDesc.stride = -1;
+    outputDesc.field_0C = -1;
+    outputDesc.field_10 = -1;
+    outputDesc.field_14 = -1;
+    outputDesc.numVertices = -1;
+
+    // Generate shadow volume geometry (threshold = 0.6f)
+    pTopoGeom->Generate(&outputDesc, 0.6f);
+
+    // Get vertex pool manager from gfx manager
+    gbVertPoolMgr* poolMgr = gfxMgr->pVertPoolMgr;
+
+    // Create index bubble for shadow volume (triangle list, numFaces*3 indices)
+    gbIndexBubble* idxBubble = poolMgr->NewIndexBubble(GB_PRIM_POINTLIST, outputDesc.numFaces * 3);
+
+    // Lock and copy index data
+    unsigned short* pLockedIdx = idxBubble->Lock16();
+    memcpy(pLockedIdx, outputDesc.pIndexData, outputDesc.numFaces * 6);
+    idxBubble->Unlock();
+
+    // Set index bubble range fields
+    idxBubble->field_1C = 0;
+    idxBubble->field_20 = outputDesc.numVertices - 1;
+
+    // Create vertex bubble for shadow volume
+    gbVertexBubble* vtxBubble = poolMgr->NewVertexBubble(fvf, outputDesc.numVertices);
+
+    // Lock and copy vertex data
+    void* pLockedVtx = vtxBubble->Lock();
+    memcpy(pLockedVtx, outputDesc.pVertexData, outputDesc.stride * outputDesc.numVertices);
+    vtxBubble->Unlock();
+
+    // Release topology output data
+    pTopoGeom->Release(&outputDesc);
+
+    // Write output pointers
+    *ppOutVB = vtxBubble;
+    *ppOutIB = idxBubble;
+
+    // Destroy topology geometry object
+    DestroyTopoGeom(pTopoGeom);
 }
 
 void gbStaticMesh::ComputeShadowVolume() {
-    // Only compute if shadow volume VB hasn't been created yet
     if (m_shadowVolumeVB != NULL) return;
-    if (m_pVertBubble == NULL) return;
 
-    // Get vertex count from vertex bubble (at bubble offset +0x14 = countUsed)
-    int numVerts = m_pVertBubble->countUsed;
-    if (numVerts <= 0) return;
+    // Get vertex count from vertex bubble
+    int numVerts = m_pVertBubble->vertexCount;
 
-    // Allocate position array (numVerts * sizeof(gbVec3D) = numVerts * 12)
-    gbVec3D* positions = (gbVec3D*)malloc(numVerts * sizeof(gbVec3D));
-    if (!positions) return;
+    // Allocate position array (numVerts * 12 bytes for XYZ floats)
+    unsigned int* Block = (unsigned int*)operator new(numVerts * 12);
+    if (Block != NULL) {
+        // Zero-initialize the position array
+        if (numVerts - 1 >= 0) {
+            unsigned int* ptr = Block + 2;
+            int count = numVerts;
+            do {
+                ptr[-2] = 0;
+                ptr[-1] = 0;
+                ptr[0] = 0;
+                ptr += 3;
+                --count;
+            } while (count);
+        }
+    } else {
+        Block = NULL;
+    }
 
     // Lock vertex bubble and copy XYZ positions
-    void* vertData = m_pVertBubble->Lock();
-    if (vertData) {
-        // Copy positions from interleaved vertex data
-        // Each vertex has XYZ at the start, stride determined by vertex format
-        char* srcPtr = (char*)vertData;
-        for (int i = 0; i < numVerts; i++) {
-            positions[i].x = *(float*)(srcPtr);
-            positions[i].y = *(float*)(srcPtr + 4);
-            positions[i].z = *(float*)(srcPtr + 8);
+    m_pVertBubble->Lock();
+    gbVertexBubble* vBubble = m_pVertBubble;
+    int idx = 0;
+    if (vBubble->vertexCount > 0) {
+        unsigned int* dst = Block + 2;
+        do {
+            unsigned int* src = (unsigned int*)vBubble->pVertexData;
+            dst[-2] = src[0];   // x
+            dst[-1] = src[1];   // y
+            dst[0] = src[2];    // z
             m_pVertBubble->StepVertexPtr();
-            // Advance source pointer by stride - use pPool->stride
-            if (m_pVertBubble->pPool) {
-                srcPtr += m_pVertBubble->pPool->stride;
-            }
-        }
-        m_pVertBubble->Unlock();
+            vBubble = m_pVertBubble;
+            ++idx;
+            dst += 3;
+        } while (idx < vBubble->vertexCount);
     }
+    m_pVertBubble->Unlock();
 
-    // Count total indices across all sections
+    // Count total indices from all sections
+    int numSec = m_numSections;
     int totalIndices = 0;
-    for (int i = 0; i < m_numSections; i++) {
-        gbMeshSection* section = &m_sections[i];
-        gbIndexBubble* idxBubble = (gbIndexBubble*)section->m_pIndexBubble;
-        if (idxBubble) {
-            totalIndices += idxBubble->count;
-        }
+    if (numSec > 0) {
+        int* pIdxBubblePtr = (int*)((char*)m_sections + 0x90);
+        do {
+            int bubPtr = *pIdxBubblePtr;
+            pIdxBubblePtr = (int*)((char*)pIdxBubblePtr + 0xBC);
+            totalIndices += *(int*)(bubPtr + 0x10);
+            --numSec;
+        } while (numSec);
     }
 
-    // Allocate index buffer (unsigned short per index)
-    unsigned short* indices = NULL;
-    if (totalIndices > 0) {
-        indices = (unsigned short*)malloc(totalIndices * sizeof(unsigned short));
-        if (indices) {
-            // Lock each index bubble and copy indices into flat array
-            int offset = 0;
-            for (int i = 0; i < m_numSections; i++) {
-                gbMeshSection* section = &m_sections[i];
-                gbIndexBubble* idxBubble = (gbIndexBubble*)section->m_pIndexBubble;
-                if (idxBubble) {
-                    unsigned short* srcIndices = idxBubble->Lock16();
-                    if (srcIndices) {
-                        memcpy(indices + offset, srcIndices, idxBubble->count * sizeof(unsigned short));
-                        offset += idxBubble->count;
-                    }
-                    idxBubble->Unlock();
-                }
-            }
+    // Allocate index array (16-bit indices)
+    unsigned short* indexBuf = (unsigned short*)operator new(totalIndices * 2);
+    int sectionOffset = 0;
+    int totalCopied = 0;
+    unsigned short* savedIndexBuf = indexBuf;
+
+    // Copy indices from all sections
+    for (int i = 0; i < m_numSections; ++i) {
+        gbIndexBubble* iBubble = *(gbIndexBubble**)((char*)m_sections + sectionOffset + 0x90);
+        unsigned short* pSrc = iBubble->Lock16();
+        int innerCount = 0;
+        if (iBubble->count > 0) {
+            unsigned short* pDst = &indexBuf[totalCopied];
+            do {
+                ++totalCopied;
+                *pDst = *pSrc;
+                pDst++;
+                ++innerCount;
+                pSrc++;
+            } while (innerCount < iBubble->count);
+            indexBuf = savedIndexBuf;
         }
+        iBubble = *(gbIndexBubble**)((char*)m_sections + sectionOffset + 0x90);
+        iBubble->Unlock();
+        sectionOffset += 188;
     }
 
-    // Build shadow volume creation param struct and call builder
-    // The original passes a struct with positions, indices, counts, and output ptrs
-    struct ShadowVolumeParams {
-        gbVec3D* pPositions;
-        int numVertices;
-        unsigned short* pIndices;
-        int numIndices;
-        void** ppOutVB;
-        void** ppOutIB;
-    };
+    // Build TopoDataDesc parameter struct
+    TopoDataDesc topoDesc;
+    topoDesc.vertexFlags = -1;
+    topoDesc.desc_0C = -1;
+    topoDesc.desc_10 = -1;
+    topoDesc.desc_14 = -1;
+    topoDesc.desc_18 = -1;
+    topoDesc.desc_1C = -1;
+    topoDesc.field_34 = 0;
+    topoDesc.field_38 = 0;
+    topoDesc.faceCount = totalCopied / 3;
+    topoDesc.vertexCount = m_pVertBubble->vertexCount;
+    topoDesc.pIndices16 = indexBuf;
+    topoDesc.vertexStride = 0;
+    topoDesc.pVertexData = Block;
+    topoDesc.bufferRowSize = 12;
+    topoDesc.pIndices32 = NULL;
+    // Store epsilon as float bits: 0x3C23D70A = 0.01f
+    *(int*)&topoDesc.field_38 = 0x3C23D70A;
 
-    ShadowVolumeParams params;
-    params.pPositions = positions;
-    params.numVertices = numVerts;
-    params.pIndices = indices;
-    params.numIndices = totalIndices;
-    params.ppOutVB = &m_shadowVolumeVB;
-    params.ppOutIB = &m_shadowVolumeIB;
+    BuildShadowVolumeData(
+        &topoDesc,
+        m_pGfxManager,
+        3,
+        (gbVertexBubble**)&m_shadowVolumeVB,
+        (gbIndexBubble**)&m_shadowVolumeIB
+    );
 
-    BuildShadowVolumeData(&params);
-
-    // Free temporary arrays
-    free(positions);
-    if (indices) free(indices);
+    operator delete(Block);
+    operator delete(indexBuf);
 }
 
 void gbStaticMesh::RenderShadowVolume(gbVisNode* visNode, gbRenderInfoObj* renderInfo) {

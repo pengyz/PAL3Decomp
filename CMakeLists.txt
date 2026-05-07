@@ -117,6 +117,7 @@ elseif(BUILD_TARGET STREQUAL "gbengine")
             "${CMAKE_SOURCE_DIR}/tools/vc6/Lib/dinput8.lib"
             "${CMAKE_SOURCE_DIR}/tools/vc6/Lib/mss32.lib"
             "${CMAKE_SOURCE_DIR}/lib/ijl15.lib"
+            "${CMAKE_SOURCE_DIR}/lib/topo.lib"
         )
 
         # Use .def file for exports (matching original DLL export table)

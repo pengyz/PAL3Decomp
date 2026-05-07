@@ -513,6 +513,14 @@ int gbVertexPool::OnResetDevice() {
     return 1;
 }
 
+// DrawIndexedPrimitive: base class stub (overridden by gbVertexPool_D3D)
+void gbVertexPool::DrawIndexedPrimitive(gbVertexBubble* vb, void* ib, int param3, gbTexture** textures) {
+    (void)vb;
+    (void)ib;
+    (void)param3;
+    (void)textures;
+}
+
 // NewBubble: 0x10020f10
 gbVertexBubble* gbVertexPool::NewBubble(int count) {
     gbVertexBubble* bestFit = NULL;

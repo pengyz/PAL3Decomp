@@ -146,6 +146,7 @@ public:
 
     virtual int OnLostDevice();
     virtual int OnResetDevice();
+    virtual void DrawIndexedPrimitive(gbVertexBubble* vb, void* ib, int param3, gbTexture** textures);
 
     void* Lock(int start, int count);
 

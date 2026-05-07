@@ -443,9 +443,30 @@ static int LoadJPEG(gbImage2D* img, char* filename) {
     return 1;
 }
 
-// sub_1001EAC0 - computes ImgInfo derived values
-static void gbImage2D_ComputeImgInfo(gbImage2D* img) {
-    /* STUB - sub_1001EAC0 */
+// sub_1001EAC0 (183B) - Expand paletted (8-bit indexed) image to 24-bit RGB
+static void gbImage2D_ExpandPalette(gbImage2D* img) {
+    if (img->pPalette != NULL) {
+        char* newBits = (char*)malloc(img->Width * img->Height * 3);
+        int i = 0;
+        if (i < img->Width * img->Height) {
+            char* dst = newBits + 2;
+            do {
+                unsigned char* palEntry;
+                unsigned char idx = *((unsigned char*)img->pBits + i);
+                i = i + 1;
+                palEntry = (unsigned char*)img->pPalette + (unsigned int)idx * 4;
+                dst[-2] = palEntry[0];
+                dst[-1] = palEntry[1];
+                dst[0] = palEntry[2];
+                dst = dst + 3;
+            } while (i < img->Width * img->Height);
+        }
+        free(img->pBits);
+        img->pBits = newBits;
+        free(img->pPalette);
+        img->pPalette = NULL;
+        img->BitCount = 24;
+    }
 }
 
 // 0x1001e490 (1262B) - Load image file via extension dispatch
@@ -507,7 +528,7 @@ int gbImage2D::LoadImageFile(char* filename, int a3) {
     ImgInfo.minfilter = 1;
     ImgInfo.magfilter = 1;
 
-    gbImage2D_ComputeImgInfo(this);
+    gbImage2D_ExpandPalette(this);
 
     // 8-bit expansion
     if (BitCount == 8) {
@@ -588,9 +609,215 @@ int gbImage2D::LoadImageFile(char* filename, int a3) {
     return v35;
 }
 
+// FUN_10024e10 - Convert pixel data to float array based on mode
+static void gbPixelToFloat(int mode, int bytesPerPixel, int srcW, int srcH, void* srcData, float* dstFloats) {
+    int totalElements = bytesPerPixel * srcW * srcH;
+    int i;
+    switch (mode) {
+    case 0:
+        for (i = 0; i < totalElements; i++) {
+            dstFloats[i] = (float)(int)((float*)srcData)[i];
+        }
+        break;
+    case 1:
+        for (i = 0; i < totalElements; i++) {
+            dstFloats[i] = (float)(short)((unsigned short*)srcData)[i];
+        }
+        break;
+    case 2:
+        for (i = 0; i < totalElements; i++) {
+            dstFloats[i] = (float)(int)((char*)srcData)[i];
+        }
+        break;
+    case 3:
+        for (i = 0; i < totalElements; i++) {
+            dstFloats[i] = (float)(unsigned int)((float*)srcData)[i];
+        }
+        break;
+    case 4:
+        for (i = 0; i < totalElements; i++) {
+            dstFloats[i] = (float)((unsigned short*)srcData)[i];
+        }
+        break;
+    case 5:
+        for (i = 0; i < totalElements; i++) {
+            dstFloats[i] = (float)((unsigned char*)srcData)[i];
+        }
+        break;
+    case 6:
+        for (i = 0; i < totalElements; i++) {
+            dstFloats[i] = ((float*)srcData)[i];
+        }
+        break;
+    }
+}
+
 // Internal scaling function (0x100244D0, not exported)
 void __cdecl gbScalePixelData(int mode, int bytesPerPixel, int srcW, int srcH, void* srcData, int dstW, int dstH, void* dstData) {
-    /* STUB - bilinear pixel scaler, 0x100244D0 */
+    float xRatio, yRatio;
+    int x, y, c;
+
+    if (dstW >= 2)
+        xRatio = (float)(srcW - 1) / (float)(dstW - 1);
+    else
+        xRatio = (float)(srcW - 1);
+
+    if (dstH >= 2)
+        yRatio = (float)(srcH - 1) / (float)(dstH - 1);
+    else
+        yRatio = (float)(srcH - 1);
+
+    if (mode == 5) {
+        // Direct byte-level scaling
+        unsigned char* src = (unsigned char*)srcData;
+        unsigned char* dst = (unsigned char*)dstData;
+
+        if (xRatio >= 1.0f || yRatio >= 1.0f) {
+            // Box filter (downscaling)
+            for (y = 0; y < dstH; y++) {
+                int srcRowStart = (int)(y * yRatio);
+                int srcRowEnd = srcRowStart + 1;
+                if (srcRowEnd > srcH - 1)
+                    srcRowEnd = srcH - 1;
+                for (x = 0; x < dstW; x++) {
+                    int srcColStart = (int)(x * xRatio);
+                    int srcColEnd = srcColStart + 1;
+                    if (srcColEnd > srcW - 1)
+                        srcColEnd = srcW - 1;
+                    for (c = 0; c < bytesPerPixel; c++) {
+                        int sum = 0;
+                        int row, col;
+                        for (row = srcRowStart; row <= srcRowEnd; row++) {
+                            for (col = srcColStart; col <= srcColEnd; col++) {
+                                sum += src[(row * srcW + col) * bytesPerPixel + c];
+                            }
+                        }
+                        dst[(y * dstW + x) * bytesPerPixel + c] = (unsigned char)(sum / ((srcRowEnd - srcRowStart + 1) * (srcColEnd - srcColStart + 1)));
+                    }
+                }
+            }
+        } else {
+            // Bilinear interpolation (upscaling)
+            for (y = 0; y < dstH; y++) {
+                float srcY_f = y * yRatio;
+                int srcY0 = (int)srcY_f;
+                int srcY1 = srcY0 + 1;
+                if (srcY1 > srcH - 1)
+                    srcY1 = srcH - 1;
+                float fracY = srcY_f - (float)srcY0;
+                for (x = 0; x < dstW; x++) {
+                    float srcX_f = x * xRatio;
+                    int srcX0 = (int)srcX_f;
+                    int srcX1 = srcX0 + 1;
+                    if (srcX1 > srcW - 1)
+                        srcX1 = srcW - 1;
+                    float fracX = srcX_f - (float)srcX0;
+                    for (c = 0; c < bytesPerPixel; c++) {
+                        float p00 = (float)src[(srcY0 * srcW + srcX0) * bytesPerPixel + c];
+                        float p10 = (float)src[(srcY0 * srcW + srcX1) * bytesPerPixel + c];
+                        float p01 = (float)src[(srcY1 * srcW + srcX0) * bytesPerPixel + c];
+                        float p11 = (float)src[(srcY1 * srcW + srcX1) * bytesPerPixel + c];
+                        float top = (1.0f - fracX) * p00 + fracX * p10;
+                        float bot = (1.0f - fracX) * p01 + fracX * p11;
+                        float val = (1.0f - fracY) * top + fracY * bot;
+                        dst[(y * dstW + x) * bytesPerPixel + c] = (unsigned char)(int)val;
+                    }
+                }
+            }
+        }
+    } else {
+        // Float intermediate path
+        float* floatSrc = (float*)malloc(bytesPerPixel * srcW * srcH * sizeof(float));
+        float* floatDst = (float*)malloc(bytesPerPixel * dstW * dstH * sizeof(float));
+
+        // Convert source to float
+        gbPixelToFloat(mode, bytesPerPixel, srcW, srcH, srcData, floatSrc);
+
+        // Scale in float domain
+        if (xRatio >= 1.0f || yRatio >= 1.0f) {
+            // Box filter (downscaling) on floats
+            for (y = 0; y < dstH; y++) {
+                int srcRowStart = (int)(y * yRatio);
+                int srcRowEnd = srcRowStart + 1;
+                if (srcRowEnd > srcH - 1)
+                    srcRowEnd = srcH - 1;
+                for (x = 0; x < dstW; x++) {
+                    int srcColStart = (int)(x * xRatio);
+                    int srcColEnd = srcColStart + 1;
+                    if (srcColEnd > srcW - 1)
+                        srcColEnd = srcW - 1;
+                    for (c = 0; c < bytesPerPixel; c++) {
+                        float sum = 0.0f;
+                        int row, col;
+                        for (row = srcRowStart; row <= srcRowEnd; row++) {
+                            for (col = srcColStart; col <= srcColEnd; col++) {
+                                sum += floatSrc[(row * srcW + col) * bytesPerPixel + c];
+                            }
+                        }
+                        floatDst[(y * dstW + x) * bytesPerPixel + c] = sum / (float)((srcRowEnd - srcRowStart + 1) * (srcColEnd - srcColStart + 1));
+                    }
+                }
+            }
+        } else {
+            // Bilinear interpolation (upscaling) on floats
+            for (y = 0; y < dstH; y++) {
+                float srcY_f = y * yRatio;
+                int srcY0 = (int)srcY_f;
+                int srcY1 = srcY0 + 1;
+                if (srcY1 > srcH - 1)
+                    srcY1 = srcH - 1;
+                float fracY = srcY_f - (float)srcY0;
+                for (x = 0; x < dstW; x++) {
+                    float srcX_f = x * xRatio;
+                    int srcX0 = (int)srcX_f;
+                    int srcX1 = srcX0 + 1;
+                    if (srcX1 > srcW - 1)
+                        srcX1 = srcW - 1;
+                    float fracX = srcX_f - (float)srcX0;
+                    for (c = 0; c < bytesPerPixel; c++) {
+                        float p00 = floatSrc[(srcY0 * srcW + srcX0) * bytesPerPixel + c];
+                        float p10 = floatSrc[(srcY0 * srcW + srcX1) * bytesPerPixel + c];
+                        float p01 = floatSrc[(srcY1 * srcW + srcX0) * bytesPerPixel + c];
+                        float p11 = floatSrc[(srcY1 * srcW + srcX1) * bytesPerPixel + c];
+                        float top = (1.0f - fracX) * p00 + fracX * p10;
+                        float bot = (1.0f - fracX) * p01 + fracX * p11;
+                        floatDst[(y * dstW + x) * bytesPerPixel + c] = (1.0f - fracY) * top + fracY * bot;
+                    }
+                }
+            }
+        }
+
+        // Convert float output back to destination format
+        int totalElements = bytesPerPixel * dstW * dstH;
+        int i;
+        switch (mode) {
+        case 0:
+        case 3:
+            for (i = 0; i < totalElements; i++) {
+                ((float*)dstData)[i] = floatDst[i];
+            }
+            break;
+        case 1:
+        case 4:
+            for (i = 0; i < totalElements; i++) {
+                ((unsigned short*)dstData)[i] = (unsigned short)(int)floatDst[i];
+            }
+            break;
+        case 2:
+            for (i = 0; i < totalElements; i++) {
+                ((unsigned char*)dstData)[i] = (unsigned char)(int)floatDst[i];
+            }
+            break;
+        case 6:
+            for (i = 0; i < totalElements; i++) {
+                ((float*)dstData)[i] = floatDst[i];
+            }
+            break;
+        }
+
+        free(floatSrc);
+        free(floatDst);
+    }
 }
 
 void gbImage2D::ScaleTo(int newW, int newH) {
