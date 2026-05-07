@@ -1,4 +1,5 @@
 #pragma once
+#pragma warning(disable: 4521) // multiple copy constructors (gbParticleUnit exports both)
 
 #include "gbengine/gbengine_types.h"
 #include "gbengine/gbVFileSystem.h"

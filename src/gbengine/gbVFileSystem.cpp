@@ -317,7 +317,7 @@ bool CPK::IsFileExist(const char* filename)
 
 bool CPK::IsLoaded()
 {
-    return m_bLoaded;
+    return m_bLoaded != 0;
 }
 
 CPKFile* CPK::Open(const char* filename)

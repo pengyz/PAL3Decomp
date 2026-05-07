@@ -430,8 +430,8 @@ gbAudioManager& gbAudioManager::operator=(const gbAudioManager& other) {
 // Get3DProvider - 0x10001020 (250B)
 unsigned long gbAudioManager::Get3DProvider(char* providerName) {
     HPROVIDER dest;
-    void* query;
-    unsigned int count;
+    void* query = NULL;
+    unsigned int count = 0;
 
     // Default provider name if none specified
     const char* defaultName = "Miles Fast 2D Positional Audio";
