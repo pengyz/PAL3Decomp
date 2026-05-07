@@ -89,14 +89,15 @@ public:
 //   +19244  bSceneActive (byte flag)
 class gbSceneGraph {
 public:
-    void* renderObjPool;                      // +0x00 [0]: malloc(0x70000)
-    int numRenderObjs;                        // +0x04 [1]: current render obj count
-    void* volModNodePool;                     // +0x08 [2]: spatial structure
-    gbVisNode* rootNode;                      // +0x0C [3]: root scene node
-    char renderInfoPool[16 * 112];            // +0x10 [4..]: 16 render info slots (1792 bytes)
-    gbMatrix4 matrixPool[256];                // +0x710: 256 matrices (16384 bytes)
-    gbVolModNode* volModNodes[449];           // +0x4710: vol mod node pointers
-    int numVolModNodes;                       // +0x4B14 [4805]
+    void* renderObjPool;                      // +0x0000 [0]: malloc(0x70000) = 4096 gbRenderInfoObj
+    int numRenderObjs;                        // +0x0004 [1]: current render obj count
+    void* volModNodePool;                     // +0x0008 [2]: spatial structure
+    gbVisNode* rootNode;                      // +0x000C [3]: root scene node
+    gbRenderInfoObj shadowInfoPool[16];       // +0x0010: shadow volume render info slots (16×112=1792)
+    int numShadowVolumes;                     // +0x0710 [452]: shadow volume count
+    gbVolModNode* volModNodes[256];           // +0x0714 [453..]: volume modifier node pointers
+    gbMatrix4 matrixPool[256];                // +0x0B14: 256 matrices (16384 bytes)
+    int numVolModNodes;                       // +0x4B14 [4805]: volume modifier count
     gbGfxManager* pGfxManager;                // +0x4B18 [4806]
     gbVisNode* skyBoxNode;                    // +0x4B1C [4807]
     gbRenderEffect* shadowQuadEffect;         // +0x4B20 [4808]
