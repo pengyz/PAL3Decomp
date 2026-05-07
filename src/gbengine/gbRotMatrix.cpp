@@ -88,16 +88,17 @@ void gbRotMatrix::LoadIdentity(void)
 
 bool const gbRotMatrix::IsValid(void)
 {
-    if (!this) return false;
-    float *p = (float *)this;
-    int i = 0;
-    while (*(float *)p * *(float *)p >= 0.0f) {
-        i++;
+    if (!this)
+        return 0;
+    int v2 = 0;
+    float* p = (float*)this;
+    while (*(float*)p * *(float*)p >= 0.0) {
+        ++v2;
         p++;
-        if (i >= 9)
-            return true;
+        if (v2 >= 9)
+            return 1;
     }
-    return false;
+    return 0;
 }
 
 bool const gbRotMatrix::IsOrthonormal(void)
