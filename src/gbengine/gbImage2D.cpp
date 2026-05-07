@@ -5,14 +5,17 @@
 
 #include "gbengine/gbTexture.h"
 #include "gbengine/gbVFileSystem.h"
+#include "gbengine/gbMisc.h"
 #include <windows.h>
-#include <d3dx9.h>
 #include <string.h>
 #include <stdlib.h>
 #include <stdio.h>
 
 // External globals
 extern gbVFileSystem* g_pVFileSys;
+
+// Forward declarations
+void __cdecl gbScalePixelData(int mode, int bytesPerPixel, int srcW, int srcH, void* srcData, int dstW, int dstH, void* dstData);
 
 // IJL15.dll - Intel JPEG Library types
 struct JPEG_CORE_PROPERTIES {
@@ -160,89 +163,170 @@ unsigned char* gbImage2D::CreateImage(int w, int h, int bpp) {
     return (unsigned char*)pBits;
 }
 
+// Internal format-specific loaders (stubs for now)
+static int LoadTGA(gbImage2D* img, char* filename) {
+    /* STUB - sub_1001ED50: loads TGA file into img */
+    return 0;
+}
+
+static int LoadBMP(gbImage2D* img, char* filename) {
+    /* STUB - sub_1001EB80: loads BMP file into img */
+    return 0;
+}
+
+static int LoadPCX(gbImage2D* img, char* filename) {
+    /* STUB - sub_1001F0A0: loads PCX file into img */
+    return 0;
+}
+
+static int LoadJPEG(gbImage2D* img, char* filename) {
+    /* STUB - sub_1001F410: loads JPEG file into img */
+    return 0;
+}
+
+// sub_1001EAC0 - computes ImgInfo derived values
+static void gbImage2D_ComputeImgInfo(gbImage2D* img) {
+    /* STUB - sub_1001EAC0 */
+}
+
 // 0x1001e490 (1262B) - Load image file via extension dispatch
-int gbImage2D::LoadImageFile(char* filename, int flags) {
-    char localPath[256];
+int gbImage2D::LoadImageFile(char* filename, int a3) {
+    char Str[256];
     char ext[32];
-    int formatType = 0;
+    int v35 = 0;
 
-    strncpy(localPath, filename, sizeof(localPath) - 1);
-    localPath[sizeof(localPath) - 1] = '\0';
+    strcpy(Str, filename);
+    char* dot = strrchr(Str, '.');
+    strcpy(ext, dot);
+    *dot = 0;
 
-    char* dot = strrchr(localPath, '.');
-    if (!dot) return 0;
+    if (!gbstricmp(ext, ".tga")) {
+        if (!LoadTGA(this, filename))
+            return 0;
+        v35 = 2;
+    } else if (!gbstricmp(ext, ".bmp")) {
+        if (!LoadBMP(this, filename))
+            return 0;
+        v35 = 1;
+    } else if (!gbstricmp(ext, ".pcx")) {
+        if (!LoadPCX(this, filename))
+            return 0;
+        v35 = 3;
+    } else if (!gbstricmp(ext, ".bit")) {
+        gbVFile* vf = g_pVFileSys->OpenFile(filename, 0x201u);
+        if (!vf)
+            return 0;
+        g_pVFileSys->Read(&Width, 4u, vf);
+        g_pVFileSys->Read(&Height, 4u, vf);
+        g_pVFileSys->Read(&BitCount, 4u, vf);
+        pBits = (char*)malloc(Width * Height * (BitCount / 8));
+        g_pVFileSys->Read(pBits, Width * Height * (BitCount / 8), vf);
+        g_pVFileSys->CloseFile(vf);
+        v35 = 4;
+    } else if (!gbstricmp(ext, ".jpg")) {
+        if (!LoadJPEG(this, filename))
+            return 0;
+        v35 = 5;
+    }
 
-    strncpy(ext, dot, sizeof(ext) - 1);
-    ext[sizeof(ext) - 1] = '\0';
-    *dot = '\0';
+    // Initialize ImgInfo
+    ImgInfo.isdiskinfo = 0;
+    ImgInfo.goal = 0;
+    ImgInfo.ngrade = 8;
 
-    D3DXIMAGE_INFO info;
-    HRESULT hr = D3DXGetImageInfoFromFile(filename, &info);
-    if (FAILED(hr))
-        return 0;
+    int div = 1;
+    for (int i = 0; i < ImgInfo.ngrade; i++) {
+        ImgInfo.detail[i] = i;
+        ImgInfo.wdiv[i] = div;
+        ImgInfo.hdiv[i] = div;
+        div *= 2;
+    }
 
-    Width = info.Width;
-    Height = info.Height;
+    ImgInfo.wrap_u = 1;
+    ImgInfo.wrap_v = 1;
+    ImgInfo.mipmap = 1;
+    ImgInfo.minfilter = 1;
+    ImgInfo.magfilter = 1;
 
-    D3DFORMAT targetFmt;
-    if (flags & 1) {
-        targetFmt = D3DFMT_A8R8G8B8;
-        BitCount = 32;
-    } else {
-        switch (info.Format) {
-        case D3DFMT_A8R8G8B8:
-        case D3DFMT_A8B8G8R8:
-            targetFmt = D3DFMT_A8R8G8B8;
+    gbImage2D_ComputeImgInfo(this);
+
+    // 8-bit expansion
+    if (BitCount == 8) {
+        unsigned char* src = (unsigned char*)pBits;
+        unsigned char* dst;
+
+        if (ImgInfo.goal == 1) {
+            // Expand 8bpp to 32bpp ARGB
+            dst = (unsigned char*)malloc(4 * Width * Height);
+            unsigned char* pDst = dst;
+            for (int i = 0; i < Width * Height; i++) {
+                *pDst++ = 0xFF;  // B (or first byte)
+                *pDst++ = 0xFF;  // G
+                *pDst++ = 0xFF;  // R
+                *pDst++ = *src;  // A = palette index
+                src++;
+            }
             BitCount = 32;
-            break;
-        case D3DFMT_R8G8B8:
-            targetFmt = D3DFMT_R8G8B8;
+        } else {
+            // Expand 8bpp to 24bpp grayscale (R=G=B=index)
+            dst = (unsigned char*)malloc(3 * Width * Height);
+            unsigned char* pDst = dst;
+            for (int i = 0; i < Width * Height; i++) {
+                *pDst++ = *src;
+                *pDst++ = *src;
+                *pDst++ = *src;
+                src++;
+            }
             BitCount = 24;
-            break;
-        default:
-            targetFmt = D3DFMT_A8R8G8B8;
-            BitCount = 32;
-            break;
         }
+
+        free(pBits);
+        pBits = (char*)dst;
     }
 
-    int bytesPerPixel = (BitCount + 7) / 8;
-    int bufSize = Width * Height * bytesPerPixel;
-    pBits = (char*)malloc(bufSize);
-    if (!pBits)
-        return 0;
-
-    IDirect3DSurface9* pSurf = NULL;
-    IDirect3DDevice9* pDev = NULL;
-
-    hr = D3DXLoadSurfaceFromFile(pSurf, NULL, NULL, filename, NULL,
-                                  D3DX_FILTER_NONE, 0, &info);
-    if (FAILED(hr)) {
-        memset(pBits, 0, bufSize);
-    }
-
+    // Premultiplied alpha reversal for 32bpp
     if (BitCount == 32) {
-        unsigned char* pixels = (unsigned char*)pBits;
         for (int y = 0; y < Height; y++) {
             for (int x = 0; x < Width; x++) {
-                int idx = (y * Width + x) * 4;
-                unsigned char alpha = pixels[idx + 3];
-                if (alpha > 0 && alpha < 255) {
+                unsigned char* pixel = (unsigned char*)pBits + 4 * (x + y * Width);
+                unsigned char alpha = pixel[3];
+                if (alpha != 0 && alpha != 0xFF) {
                     for (int c = 0; c < 3; c++) {
-                        unsigned int val = ((unsigned int)pixels[idx + c] * 255) / alpha;
-                        if (val > 255) val = 255;
-                        pixels[idx + c] = (unsigned char)val;
+                        int val = 255 * (unsigned int)pixel[c] / (unsigned int)alpha;
+                        if (val > 255)
+                            val = 255;
+                        pixel[c] = (unsigned char)val;
                     }
                 }
             }
         }
     }
 
-    PixelFmt.Init(BitCount, 0x00FF0000, 0x0000FF00, 0x000000FF,
-                  (BitCount != 24) ? 0xFF000000 : 0);
+    // Mipmap downscale
+    int level = a3;
+    if (level > ImgInfo.ngrade - 1)
+        level = ImgInfo.ngrade - 1;
+    if (level > 0) {
+        int newW = Width / ImgInfo.wdiv[level];
+        int newH = Height / ImgInfo.hdiv[level];
+        if (pBits) {
+            if (newW != Width || newH != Height) {
+                void* newBits = malloc(newW * newH * (BitCount / 8));
+                gbScalePixelData(5, BitCount / 8, Width, Height, pBits, newW, newH, newBits);
+                void* oldBits = pBits;
+                Width = newW;
+                Height = newH;
+                free(oldBits);
+                pBits = (char*)newBits;
+            }
+        }
+    }
 
-    formatType = (BitCount == 32) ? 2 : 1;
-    return formatType;
+    // Initialize pixel format
+    PixelFmt.Init(BitCount, 0x00FF0000u, 0x0000FF00u, 0x000000FFu,
+                  (BitCount != 24) ? 0xFF000000u : 0u);
+
+    return v35;
 }
 
 // Internal scaling function (0x100244D0, not exported)
