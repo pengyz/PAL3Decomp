@@ -816,4 +816,548 @@ void gbGfxManager_D3D::DisplayErrorMsg(int hr, int type) {
     }
 }
 
+// ============================================================================
+// gbGfxManager_D3D virtual function overrides
+// These override the base class empty stubs to produce the correct vtable.
+// ============================================================================
+
+// Slot 0: 0x10018BB0 (30B) - Destructor
+gbGfxManager_D3D::~gbGfxManager_D3D() {
+    ReleaseSubsystems();
+    if (m_pd3dDevice) {
+        m_pd3dDevice->Release();
+        m_pd3dDevice = NULL;
+    }
+    if (m_pD3D) {
+        m_pD3D->Release();
+        m_pD3D = NULL;
+    }
+}
+
+// Slot 1: 0x1001B4C0 (700B+) - Window message dispatch handler
+// Handles WM_SIZE(0x05), WM_ACTIVATEAPP(0x20), WM_SETCURSOR(0x24), etc.
+// This is called from the window proc to handle GfxManager-related messages.
+void gbGfxManager_D3D::_vf_EndScene(int msg, int wParam, int lParam) {
+    /* STUB - window message handler: WM_SIZE, WM_ACTIVATEAPP, WM_SETCURSOR, etc. */
+}
+
+// Slot 2: 0x10019040 (133B) - Create gbTexture_D3D object
+gbTexture* gbGfxManager_D3D::NewTexture(const char* name) {
+    gbTexture_D3D* tex = new gbTexture_D3D();
+    if (!tex) return NULL;
+    tex->SetName(name);
+    return tex;
+}
+
+// Slot 4: 0x100190D0 (106B) - Create gbRenderEffect_RenderState (size 0x3C)
+// Pattern: p = new(0x3C); if (p) call constructor(p, p1, p2, p3); return p;
+void* gbGfxManager_D3D::_vf04(int p1, int p2, int p3) {
+    /* STUB - new(0x3C) + gbRenderEffect_RenderState ctor */
+    return NULL;
+}
+
+// Slot 5: 0x10019140 (106B) - Create gbRenderEffect_TexStageState (size 0x38)
+void* gbGfxManager_D3D::_vf05(int p1, int p2, int p3) {
+    /* STUB - new(0x38) + gbRenderEffect_TexStageState ctor */
+    return NULL;
+}
+
+// Slot 6: 0x100191B0 (101B) - Create gbRenderEffect_SamplerState (size 0x40)
+void* gbGfxManager_D3D::_vf06(int p1, int p2) {
+    /* STUB - new(0x40) + gbRenderEffect_SamplerState ctor */
+    return NULL;
+}
+
+// Slot 7: 0x10019220 (133B) - SetPerspectiveProjection
+// Builds perspective projection matrix from frustum params (l,r,b,t,n,f)
+// then multiplies into pMatrixStack[0] (projection stack)
+void gbGfxManager_D3D::_vf07(double l, double r, double b, double t, double n, double f) {
+    float fScale = (float)(f / (f - n));
+    gbMatrix4 mat;
+    float* m = (float*)&mat;
+    int i;
+    for (i = 0x10; i != 0; i--) {
+        *m = 0.0f;
+        m++;
+    }
+    ((float*)&mat)[0]  = (float)((n + n) / (r - l));
+    ((float*)&mat)[5]  = (float)((n + n) / (t - b));
+    ((float*)&mat)[11] = 1.0f;
+    ((float*)&mat)[10] = fScale;
+    ((float*)&mat)[14] = -fScale * (float)n;
+    pMatrixStack[0]->MultMatrix(&mat);
+}
+
+// Slot 8: 0x100192B0 (195B) - SetOrthographicProjection
+// Builds orthographic projection matrix from frustum params (l,r,b,t,n,f)
+// then multiplies into pMatrixStack[0] (projection stack)
+void gbGfxManager_D3D::_vf08(double l, double r, double b, double t, double n, double f) {
+    gbMatrix4 mat;
+    float* m = (float*)&mat;
+    int i;
+    for (i = 0x10; i != 0; i--) {
+        *m = 0.0f;
+        m++;
+    }
+    ((float*)&mat)[15] = 1.0f;
+    ((float*)&mat)[0]  = (float)(2.0 / (r - l));
+    ((float*)&mat)[5]  = (float)(2.0 / (t - b));
+    ((float*)&mat)[10] = (float)(1.0 / (f - n));
+    ((float*)&mat)[12] = (float)(-((l + r) / (r - l)));
+    ((float*)&mat)[13] = (float)(-((b + t) / (t - b)));
+    ((float*)&mat)[14] = (float)(-(n / (f - n)));
+    pMatrixStack[0]->MultMatrix(&mat);
+}
+
+// Slot 9: 0x10019380 (95B) - SetViewport
+// Copies 6 DWORDs from param to this->Viewport, then calls device->SetViewport
+// D3DVIEWPORT9 = {X, Y, Width, Height, MinZ, MaxZ} = 6 DWORDs
+void gbGfxManager_D3D::_vf09(void* pViewportData) {
+    // rep movsl: copy 6 DWORDs to this->Viewport
+    memcpy(&Viewport, pViewportData, sizeof(D3DVIEWPORT9));
+    // Build local copy and call SetViewport
+    D3DVIEWPORT9 vp;
+    DWORD* src = (DWORD*)pViewportData;
+    vp.X      = src[0];
+    vp.Y      = src[1];
+    vp.Width  = src[2];
+    vp.Height = src[3];
+    // Disasm stores [4] and [5] in order (no swap): MinZ=src[4], MaxZ=src[5]
+    vp.MinZ   = *(float*)&src[4];
+    vp.MaxZ   = *(float*)&src[5];
+    m_pd3dDevice->SetViewport(&vp);
+}
+
+// Slot 10: 0x100193E0 (128B) - SetLight with enable/disable
+// if (pLightData == NULL): disable light at index
+// else: enable, set light, copy to AllLight[index]
+void gbGfxManager_D3D::_vf10(int index, void* pLightData) {
+    if (!pLightData) {
+        m_pd3dDevice->LightEnable(index, FALSE);
+        LightEnable[index] = 0;
+    } else {
+        m_pd3dDevice->SetLight(index, (const D3DLIGHT9*)pLightData);
+        m_pd3dDevice->LightEnable(index, TRUE);
+        LightEnable[index] = 1;
+        memcpy(&AllLight[index], pLightData, sizeof(gbLight));
+    }
+}
+
+// Slot 11: 0x10019460 (23B) - SetMaterial (direct passthrough)
+void gbGfxManager_D3D::_vf11(D3DMATERIAL9* pMaterial) {
+    m_pd3dDevice->SetMaterial(pMaterial);
+}
+
+// Slot 12: 0x10018CD0 - D3D BeginScene override
+// Calls base gbGfxManager::BeginScene, checks m_bActive, then D3D BeginScene
+int gbGfxManager_D3D::BeginScene(void) {
+    int result = gbGfxManager::BeginScene();
+    if (!result)
+        return 0;
+
+    if (!m_bActive)
+        return 0;
+
+    if (m_bDeviceLost) {
+        // Try to reset the device
+        HRESULT hr = m_pd3dDevice->TestCooperativeLevel();
+        if (SUCCEEDED(hr)) {
+            // Device recovered - not fully handling reset here
+        }
+        if (hr == D3DERR_DEVICELOST) {
+            return 0;
+        }
+        if (hr == D3DERR_DEVICENOTRESET) {
+            // Need reset logic
+            /* STUB - device reset */
+            return 0;
+        }
+        m_bDeviceLost = 0;
+    }
+    m_pd3dDevice->BeginScene();
+    m_nState = 1;
+    return 1;
+}
+
+// Slot 13: 0x10018F00 (57B) - EndScene + Present
+// Disasm: calls m_pd3dDevice->EndScene() then m_pd3dDevice->Present(0,0,0,0)
+// If Present returns D3DERR_DEVICELOST (0x88760868), sets m_bDeviceLost = 1
+void gbGfxManager_D3D::_vf13() {
+    m_pd3dDevice->EndScene();
+    HRESULT hr = m_pd3dDevice->Present(NULL, NULL, NULL, NULL);
+    if (hr == D3DERR_DEVICELOST) {
+        m_bDeviceLost = 1;
+    }
+}
+
+// Slot 14: 0x100194F0 (3B) - RET 0x1C (empty, 7 DWORD params popped)
+void gbGfxManager_D3D::_vf14(int, int, int, int, int, int, int) {
+    // Empty - original is just RET 0x1C
+}
+
+// Slot 15: 0x10019500 (283B) - Flush matrix stacks to D3D device
+// Checks dirty flag on each stack; if dirty==0, calls device->SetTransform.
+// pMatrixStack[0] → D3DTS_PROJECTION(3), with ZBias adjustment
+// pMatrixStack[1] → D3DTS_WORLD(256)
+// pMatrixStack[2..3] → D3DTS_TEXTURE0+i (0x10+i)
+void gbGfxManager_D3D::_vf15() {
+    // Projection matrix stack (pMatrixStack[0])
+    if (pMatrixStack[0]->dirty == 0) {
+        gbMatrix4 tmp;
+        gbMatrix4* top;
+        if (CurZBias == 0) {
+            top = pMatrixStack[0]->GetTop();
+        } else {
+            top = pMatrixStack[0]->GetTop();
+            float* dst = (float*)&tmp;
+            float* src = (float*)top;
+            int i;
+            for (i = 0x10; i != 0; i--) {
+                *dst = *src;
+                src++;
+                dst++;
+            }
+            // Adjust near plane Z for decal offset: subtract CurZBias * 7.629453e-06
+            ((float*)&tmp)[10] = ((float*)&tmp)[10] - (float)CurZBias * 7.629453e-06f;
+            top = &tmp;
+        }
+        m_pd3dDevice->SetTransform(D3DTS_PROJECTION, (const D3DMATRIX*)top);
+        pMatrixStack[0]->dirty = 1;
+    }
+
+    // World matrix stack (pMatrixStack[1])
+    if (pMatrixStack[1]->dirty == 0) {
+        gbMatrix4* top = pMatrixStack[1]->GetTop();
+        m_pd3dDevice->SetTransform(D3DTS_WORLD, (const D3DMATRIX*)top);
+        pMatrixStack[1]->dirty = 1;
+    }
+
+    // Texture matrix stacks (pMatrixStack[2..3])
+    int j;
+    for (j = 0; j < 2; j++) {
+        gbMatrixStack* stk = pMatrixStack[2 + j];
+        if (stk->dirty == 0) {
+            gbMatrix4* top = stk->GetTop();
+            m_pd3dDevice->SetTransform((D3DTRANSFORMSTATETYPE)(0x10 + j), (const D3DMATRIX*)top);
+            stk->dirty = 1;
+        }
+    }
+}
+
+// Slot 16: 0x10019620 (764B) - ComputeFrustumPlanes
+// Builds view*projection matrix, extracts 6 frustum planes into output buffer.
+// params: float* outPlanes (6 planes × 4 floats = 24 floats), int bNormalize
+// RET 8 → __thiscall with 2 stack params
+void gbGfxManager_D3D::_vf16(float* outPlanes, int bNormalize) {
+    gbMatrix4 mat;
+    mat.LoadIdentity();
+    // mat[2][2] = -1.0 (left-handed to right-handed Z flip)
+    ((float*)&mat)[10] = -1.0f;
+
+    // mat *= view matrix (pMatrixStack[1] top)
+    gbMatrix4* viewTop = pMatrixStack[1]->GetTop();
+    mat.operator*=(*viewTop);
+
+    // mat = mat * projection (pMatrixStack[0] top)
+    gbMatrix4* projTop = pMatrixStack[0]->GetTop();
+    mat.RightMultiply(*projTop);
+
+    float* m = (float*)&mat;
+
+    // Extract 6 frustum planes from the combined matrix
+    // Plane 0: left   = col3 + col0
+    outPlanes[0]  = m[0]  + m[3];
+    outPlanes[1]  = m[4]  + m[7];
+    outPlanes[2]  = m[8]  + m[11];
+    outPlanes[3]  = m[12] + m[15];
+    // Plane 1: right  = col3 - col0
+    outPlanes[4]  = m[3]  - m[0];
+    outPlanes[5]  = m[7]  - m[4];
+    outPlanes[6]  = m[11] - m[8];
+    outPlanes[7]  = m[15] - m[12];
+    // Plane 2: top    = col3 - col1
+    outPlanes[8]  = m[3]  - m[1];
+    outPlanes[9]  = m[7]  - m[5];
+    outPlanes[10] = m[11] - m[9];
+    outPlanes[11] = m[15] - m[13];
+    // Plane 3: bottom = col1 + col3
+    outPlanes[12] = m[1]  + m[3];
+    outPlanes[13] = m[5]  + m[7];
+    outPlanes[14] = m[9]  + m[11];
+    outPlanes[15] = m[13] + m[15];
+    // Plane 4: near   = col3 - col2
+    outPlanes[16] = m[3]  - m[2];
+    outPlanes[17] = m[7]  - m[6];
+    outPlanes[18] = m[11] - m[10];
+    outPlanes[19] = m[15] - m[14];
+    // Plane 5: far    = col2 + col3 (wait, Ghidra says col3 - row2 which is m[3]-m[2])
+    // Actually from Ghidra: plane5 = {m14-m10, m24-m20, m34-m30, m44-m40} hmm
+    // Let me re-read: Ghidra output shows outPlanes[0x14..0x17] at offsets 0x50..0x5c
+    // Which are: m[3]-m[2] (col3-col2 per row) → that's the near plane
+    // outPlanes[0x10..0x13] at offsets 0x40..0x4c = m[2], m[5+1?]...
+    // Actually looking more carefully at the Ghidra output:
+    // param_1[0x10] = fStack_38 (mat col2 row0)
+    // param_1[0x11] = fStack_28 (mat col2 row1)
+    // param_1[0x12] = fStack_18 = -1.0 (mat col2 row2)
+    // param_1[0x13] = fStack_8 (mat col2 row3)
+    // param_1[0x14] = m[3] - m[2] ...
+    // So planes 4,5 are: plane4 = col2 directly, plane5 = col3-col2
+    outPlanes[16] = m[2];
+    outPlanes[17] = m[6];
+    outPlanes[18] = m[10];
+    outPlanes[19] = m[14];
+    // Plane 5: far = col3 - col2
+    outPlanes[20] = m[3]  - m[2];
+    outPlanes[21] = m[7]  - m[6];
+    outPlanes[22] = m[11] - m[10];
+    outPlanes[23] = m[15] - m[14];
+
+    // Optionally normalize each plane
+    if (bNormalize) {
+        int i;
+        for (i = 0; i < 6; i++) {
+            float* p = &outPlanes[i * 4];
+            float len = (float)sqrt(p[0]*p[0] + p[1]*p[1] + p[2]*p[2]);
+            p[0] /= len;
+            p[1] /= len;
+            p[2] /= len;
+            p[3] /= len;
+        }
+    }
+}
+
+// Slot 17: 0x1001B190 (42B) - GetGfxCaps
+// Disasm: calls m_pd3dDevice->GetDeviceCaps(&caps) then fills gbGfxCaps from D3DCAPS9
+int gbGfxManager_D3D::GetGfxCaps(gbGfxCaps* caps) {
+    D3DCAPS9 d3dCaps;
+    HRESULT hr = m_pd3dDevice->GetDeviceCaps(&d3dCaps);
+    if (FAILED(hr))
+        return 0;
+
+    caps->maxTextureWidth = d3dCaps.MaxTextureWidth;
+    caps->maxTextureHeight = d3dCaps.MaxTextureHeight;
+    caps->maxLights = d3dCaps.MaxActiveLights;
+    caps->hwTnL = (d3dCaps.DevCaps & D3DDEVCAPS_HWTRANSFORMANDLIGHT) ? 1 : 0;
+    caps->vertexShaderVer = d3dCaps.VertexShaderVersion;
+    caps->pixelShaderVer = d3dCaps.PixelShaderVersion;
+    return 1;
+}
+
+// Slot 18: 0x10009210 (6B) - return 1
+// Disasm: MOV EAX,1; RET
+void gbGfxManager_D3D::_vf18() {
+    // Original just returns 1 (MOV EAX,1; RET)
+    // Base class decl returns void; this is a calling convention mismatch in vtable
+}
+
+// Slot 19: 0x1001B210 (125B) - GetGammaRamp
+// Reads device gamma ramp via GetGammaRamp, extracts high byte of each 16-bit
+// entry, stores as (highbyte << 8) into caller's buffer (D3DGAMMARAMP layout).
+// Returns early if m_DriverBug.flags == 0.
+void gbGfxManager_D3D::_vf19(void* pData) {
+    if (!m_DriverBug.flags) return;
+    // Get current gamma ramp from device
+    D3DGAMMARAMP localRamp;
+    m_pd3dDevice->GetGammaRamp(0, &localRamp);
+    // Copy with high-byte extraction: output[i] = (input[i] & 0xFF00)
+    WORD* outRed   = (WORD*)pData;
+    WORD* outGreen = outRed + 256;
+    WORD* outBlue  = outGreen + 256;
+    for (int i = 0; i < 256; i++) {
+        outRed[i]   = localRamp.red[i] & 0xFF00;
+        outGreen[i] = localRamp.green[i] & 0xFF00;
+        outBlue[i]  = localRamp.blue[i] & 0xFF00;
+    }
+}
+
+// Slot 20: 0x1001B2B0 (164B) - SetGammaRamp
+// Reads BYTE[256]*3 (R/G/B) from pData, expands each byte to WORD as (byte<<8)|byte,
+// then calls device->SetGammaRamp(0, flags, &ramp).
+// Second param controls calibration: if 0 → D3DSGR_CALIBRATE(1), else D3DSGR_NO_CALIBRATION(0)
+void gbGfxManager_D3D::_vf20(int pData, int calibrate) {
+    D3DGAMMARAMP ramp;
+    unsigned char* src = (unsigned char*)pData;
+    // Input: src[0..255]=R, src[256..511]=G, src[512..767]=B
+    for (int i = 0; i < 256; i++) {
+        WORD r = (WORD)((src[i] << 8) | src[i]);
+        WORD g = (WORD)((src[i + 256] << 8) | src[i + 256]);
+        WORD b = (WORD)((src[i + 512] << 8) | src[i + 512]);
+        ramp.red[i] = r;
+        ramp.green[i] = g;
+        ramp.blue[i] = b;
+    }
+    // Disasm: if (param2 != 0) flags=0, else flags=1
+    // SetGammaRamp(iSwapChain=0, Flags, pRamp)
+    DWORD flags = calibrate ? 0 : 1;
+    m_pd3dDevice->SetGammaRamp(0, flags, &ramp);
+}
+
+// Slot 21: 0x10018F40 (57B) - LockRect on m_pBackBuffer
+// if (param2) flags = 0x810 else flags = 0x800
+// m_pBackBuffer->LockRect(&lockedRect, NULL, flags)
+// Returns lockedRect on success, 0 on failure
+void gbGfxManager_D3D::_vf21(int index, int param2) {
+    DWORD flags = param2 ? 0x810 : 0x800;
+    D3DLOCKED_RECT lockedRect;
+    HRESULT hr = m_pBackBuffer->LockRect(&lockedRect, NULL, flags);
+    if (FAILED(hr)) {
+        // Return 0 - but function is void in base class
+        return;
+    }
+    // Success path - actual original returns lockedRect pointer
+    // (mismatch with void return type; needs signature fix later)
+}
+
+// Slot 22: 0x10019030 (13B) - UnlockRect on back buffer surface
+// mov eax,[ecx+0x8D0]; push eax; mov (%eax),%ecx; call *0x38(%ecx); ret
+// IDirect3DSurface9 vtable slot 14 (0x38/4) = UnlockRect
+void gbGfxManager_D3D::_vf22() {
+    m_pBackBuffer->UnlockRect();
+}
+
+// Slot 23: 0x1001B360 (160B) - SetRenderTarget / Restore RenderTarget
+// Global at 0x1013BDF4 stores previously saved render target surface.
+// if pParam != NULL: save current RT, get surface from pParam->texture, set as new RT
+// if pParam == NULL: restore previously saved RT
+static IDirect3DSurface9* g_pSavedRenderTarget = NULL;
+
+void gbGfxManager_D3D::_vf23(void* pParam) {
+    if (pParam) {
+        // Save current render target
+        HRESULT hr = m_pd3dDevice->GetRenderTarget(0, &g_pSavedRenderTarget);
+        if (FAILED(hr)) {
+            g_pSavedRenderTarget = NULL;
+            return;  // returns 0 in original
+        }
+        // Get IDirect3DTexture9* from pParam at offset +0x54
+        IDirect3DTexture9* pTex = *(IDirect3DTexture9**)((char*)pParam + 0x54);
+        if (!pTex) return;  // returns 0
+        // Get surface level 0
+        IDirect3DSurface9* pSurface = NULL;
+        pTex->GetSurfaceLevel(0, &pSurface);
+        if (!pSurface) return;  // returns 0
+        // Set as new render target
+        m_pd3dDevice->SetRenderTarget(0, pSurface);
+    } else {
+        // Restore saved render target
+        if (g_pSavedRenderTarget) {
+            m_pd3dDevice->SetRenderTarget(0, g_pSavedRenderTarget);
+        }
+        // returns 1
+    }
+}
+
+// Slot 24: 0x1001B840 (269B) - LoadCursorResource
+// Loads a cursor file from VFileSystem, creates a D3D surface, returns gbCursorRes*
+// params: const char* name (filename)
+// Pattern: FindResByName in cursor mgr, if found return it;
+// else new(0x24), SetName, open file, read, create surface, store hotspot, AddResource
+void* gbGfxManager_D3D::_vf24(const char* name) {
+    // Search in cursor resource manager (at offset +0x658 = m_CursorMgr)
+    gbResource* res = ((gbResManager*)m_CursorMgr)->FindResByName(name);
+    if (res != NULL) {
+        return res;
+    }
+
+    // Create new cursor resource (size 0x24)
+    gbCursorRes* cursor = (gbCursorRes*)operator new(0x24);
+    if (cursor != NULL) {
+        *((int*)((char*)cursor + 0x08)) = 0;
+        *((int*)((char*)cursor + 0x10)) = 0;
+        *((int*)((char*)cursor + 0x14)) = 0;
+        *((int*)((char*)cursor + 0x18)) = 0;
+        *((int*)((char*)cursor + 0x04)) = 1;
+    }
+    ((gbResource*)cursor)->SetName(name);
+
+    // Open and read cursor file via virtual file system
+    extern gbVFileSystem* g_pVFileSys;
+    gbVFile* file = g_pVFileSys->OpenFile(name, 0x201);
+    int fileSize = g_pVFileSys->GetFileSize(file);
+    void* fileData = malloc(fileSize);
+    g_pVFileSys->Read(fileData, fileSize, file);
+    g_pVFileSys->CloseFile(file);
+
+    // FUN_10032e69: parse cursor/icon header, extract dimensions
+    int width = 0, height = 0;
+    // TODO: ParseCursorHeader(fileData, fileSize, &width) at 0x10032e69
+
+    // Create D3D surface for cursor (D3DFMT_A8R8G8B8=21, D3DPOOL_DEFAULT=0)
+    IDirect3DSurface9* pSurface = NULL;
+    *((IDirect3DSurface9**)((char*)cursor + 0x18)) = NULL;
+    m_pd3dDevice->CreateOffscreenPlainSurface(
+        width, height, D3DFMT_A8R8G8B8, D3DPOOL_DEFAULT,
+        (IDirect3DSurface9**)((char*)cursor + 0x18), NULL);
+
+    // FUN_10033461: fill cursor surface with pixel data from file
+    // TODO: FillCursorSurface at 0x10033461
+
+    // Store hotspot in cursor resource
+    *((int*)((char*)cursor + 0x20)) = height;
+    *((int*)((char*)cursor + 0x1C)) = width;
+
+    // Add to cursor resource manager
+    ((gbResManager*)m_CursorMgr)->AddResource((gbResource*)cursor);
+
+    return cursor;
+}
+
+// Slot 25: 0x1001B9D0 (47B) - SetCursorProperties
+// if (pCursor) { device->SetCursorProperties(cursor[0x1C], cursor[0x20], cursor[0x18]);
+//               m_pActiveCursor = pCursor; }
+void gbGfxManager_D3D::_vf25(void* pCursor) {
+    if (pCursor) {
+        gbCursorRes* cursor = (gbCursorRes*)pCursor;
+        IDirect3DSurface9* pSurf = *(IDirect3DSurface9**)((char*)cursor + 0x18);
+        UINT hotX = *(UINT*)((char*)cursor + 0x1C);
+        UINT hotY = *(UINT*)((char*)cursor + 0x20);
+        m_pd3dDevice->SetCursorProperties(hotX, hotY, pSurf);
+        m_pActiveCursor = cursor;
+    }
+}
+
+// Slot 26: 0x1001BA00 (26B) - ShowCursor
+// m_bShowCursor = bShow; device->ShowCursor(bShow);
+void gbGfxManager_D3D::_vf26(int bShow) {
+    m_bShowCursor = bShow;
+    m_pd3dDevice->ShowCursor(bShow);
+}
+
+// Slot 27: 0x1001BA20 (58B) - SetSoftwareVertexProcessing
+// m_bSoftVPMode = bSoftVP;
+// if (bIsWindowed) vpType = *(this+0x69C) else vpType = *(this+0x6D4)
+// Per struct layout: +0x69C = settings.Fullscreen_VertexProcessingType
+//                    +0x6D4 = settings.Windowed_VertexProcessingType
+// if (vpType == 1) device->SetSoftwareVertexProcessing(bSoftVP)
+void gbGfxManager_D3D::_vf27(int bSoftVP) {
+    m_bSoftVPMode = bSoftVP;
+    // Binary: bIsWindowed true → use Fullscreen field; false → Windowed field
+    // This matches the original code exactly (possibly intentional: current mode's VP type)
+    int vpType;
+    if (m_d3dSettings.bIsWindowed) {
+        vpType = m_d3dSettings.Fullscreen_VertexProcessingType;
+    } else {
+        vpType = m_d3dSettings.Windowed_VertexProcessingType;
+    }
+    if (vpType == 1) {
+        m_pd3dDevice->SetSoftwareVertexProcessing(bSoftVP);
+    }
+}
+
+// Slot 28: 0x10019480 (99B) - SetFog D3D override
+// Calls base gbGfxManager::SetFog, then sets D3DRS_FOGCOLOR on device
+void gbGfxManager_D3D::SetFog(gbFogParam* pFogParam) {
+    gbGfxManager::SetFog(pFogParam);
+    if (pFogParam != NULL) {
+        // Convert float color (r,g,b at offsets +4,+8,+C) to D3DCOLOR
+        float* colorPtr = (float*)((char*)pFogParam + 4);
+        int r = (int)(colorPtr[2] * 255.0f);
+        int g = (int)(colorPtr[1] * 255.0f);
+        int b = (int)(colorPtr[0] * 255.0f);
+        DWORD fogColor = (DWORD)((r << 16) | (g << 8) | b);
+        // D3DRS_FOGCOLOR = 0x22 = 34
+        m_pd3dDevice->SetRenderState(D3DRS_FOGCOLOR, fogColor);
+    }
+}
+
 // CD3DEnumeration::Enumerate is in d3dframework.cpp

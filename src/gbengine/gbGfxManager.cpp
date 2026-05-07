@@ -158,12 +158,9 @@ int gbGfxManager::ClipBoundVolume(gbAABBox* box) {
     float planes[24];
     float* pBox = (float*)box;
 
-    // Get frustum planes from camera via virtual call (vtable offset 0x40 = slot 16)
-    // This retrieves 6 planes, each with (nx, ny, nz, d) = 24 floats
-    typedef void (__thiscall *GetFrustumPlanesFn)(void*, float*, int);
-    void** vtable = *(void***)this;
-    GetFrustumPlanesFn getFrustumPlanes = (GetFrustumPlanesFn)vtable[16];
-    getFrustumPlanes(this, planes, 0);
+    // Get frustum planes via virtual call (slot 16)
+    // 6 planes × (nx, ny, nz, d) = 24 floats
+    _vf16(planes, 0);
 
     for (int i = 0; i < 6; i++) {
         float nx = planes[i * 4 + 0];
@@ -527,75 +524,75 @@ void gbEffectMgr::Release(void) {
 #pragma optimize("", off)
 #pragma auto_inline(off)
 
-// slot 1: D3D9 EndScene + Present
-void gbGfxManager::_vf_EndScene() {}
+// slot 1: Window message handler
+void gbGfxManager::_vf_EndScene(int msg, int wParam, int lParam) {}
 
 // slot 2: Create texture object
 gbTexture* gbGfxManager::NewTexture(const char* name) { return NULL; }
 
-// slot 4: SetRenderState
-void gbGfxManager::_vf04() {}
+// slot 4: Create render state block
+void* gbGfxManager::_vf04(int p1, int p2, int p3) { return NULL; }
 
-// slot 5: SetTextureStageState
-void gbGfxManager::_vf05() {}
+// slot 5: Create texture stage state block
+void* gbGfxManager::_vf05(int p1, int p2, int p3) { return NULL; }
 
-// slot 6: SetSamplerState
-void gbGfxManager::_vf06() {}
+// slot 6: Create sampler state block
+void* gbGfxManager::_vf06(int p1, int p2) { return NULL; }
 
-// slot 7: SetMaterial
-void gbGfxManager::_vf07() {}
+// slot 7: Set projection from frustum params
+void gbGfxManager::_vf07(double l, double r, double b, double t, double n, double f) {}
 
-// slot 8: SetLight
-void gbGfxManager::_vf08() {}
+// slot 8: Set orthographic projection from params
+void gbGfxManager::_vf08(double l, double r, double b, double t, double n, double f) {}
 
 // slot 9: LightEnable
-void gbGfxManager::_vf09() {}
+void gbGfxManager::_vf09(void* pLightData) {}
 
 // slot 10: SetViewport
-void gbGfxManager::_vf10() {}
+void gbGfxManager::_vf10(int index, void* pLightData) {}
 
-// slot 11: Clear (color/depth/stencil)
-void gbGfxManager::_vf11() {}
+// slot 11: SetMaterial
+void gbGfxManager::_vf11(D3DMATERIAL9* pMaterial) {}
 
 // slot 13: DrawPrimitive
 void gbGfxManager::_vf13() {}
 
 // slot 14: DrawIndexedPrimitive
-void gbGfxManager::_vf14() {}
+void gbGfxManager::_vf14(int, int, int, int, int, int, int) {}
 
 // slot 15: CreateVertexBuffer
 void gbGfxManager::_vf15() {}
 
 // slot 16: GetFrustumPlanes (used by ClipBoundVolume)
-void gbGfxManager::_vf16() {}
+void gbGfxManager::_vf16(float* outPlanes, int bNormalize) {}
 
 // slot 18: SetTransform (D3D)
 void gbGfxManager::_vf18() {}
 
-// slot 19: MultiplyTransform
-void gbGfxManager::_vf19() {}
+// slot 19: SetGammaRamp
+void gbGfxManager::_vf19(void* pData) {}
 
-// slot 20: GetBackBufferFormat
-void gbGfxManager::_vf20() {}
+// slot 20: GetGammaRamp
+void gbGfxManager::_vf20(int p1, int p2) {}
 
 // slot 21: CreateDepthStencilSurface
-void gbGfxManager::_vf21() {}
+void gbGfxManager::_vf21(int index, int param2) {}
 
 // slot 22: SetDepthStencilSurface
 void gbGfxManager::_vf22() {}
 
 // slot 23: GetDepthStencilSurface
-void gbGfxManager::_vf23() {}
+void gbGfxManager::_vf23(void* pParam) {}
 
-// slot 24: SetRenderTarget
-void gbGfxManager::_vf24() {}
+// slot 24: LoadCursorResource
+void* gbGfxManager::_vf24(const char* name) { return NULL; }
 
-// slot 25: GetRenderTarget
-void gbGfxManager::_vf25() {}
+// slot 25: SetCursor
+void gbGfxManager::_vf25(void* pCursor) {}
 
-// slot 26: StretchRect
-void gbGfxManager::_vf26() {}
+// slot 26: ShowCursor
+void gbGfxManager::_vf26(int bShow) {}
 
-// slot 27: ShowCursor
-void gbGfxManager::_vf27() {}
+// slot 27: SoftVP mode
+void gbGfxManager::_vf27(int bSoftVP) {}
 
