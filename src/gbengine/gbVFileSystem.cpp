@@ -216,45 +216,51 @@ bool CPK::Unload()
     if (!m_bLoaded)
         return 0;
 
-    for (int i = 0; i < CPK_MAX_OPEN_FILES; i++) {
-        gbVFile* p = (gbVFile*)m_pCPKFile[i];
-        if (p && p->cpkFile.bValid) {
-            Close(&p->cpkFile);
-        }
-    }
-
-    if (m_dwCPKMappingHandle) {
+    if (m_eMode == CPKM_FileMapping) {
         CloseHandle((HANDLE)m_dwCPKMappingHandle);
-        m_dwCPKMappingHandle = 0;
     }
+    CloseHandle((HANDLE)m_dwCPKHandle);
 
-    if (m_dwCPKHandle) {
-        CloseHandle((HANDLE)m_dwCPKHandle);
-        m_dwCPKHandle = 0;
-    }
-
+    memset(&m_CPKHeader, 0, sizeof(m_CPKHeader));
+    memset(m_CPKTable, 0, sizeof(m_CPKTable));
+    m_dwCPKHandle = (unsigned long)-1;
+    m_dwCPKMappingHandle = (unsigned long)-1;
     m_bLoaded = 0;
+    memset(m_szCPKFileName, 0, sizeof(m_szCPKFileName));
+    m_nOpenedFileNum = 0;
+    gbVFile** p = m_pCPKFile;
+    int n = 8;
+    do {
+        gbVFile* f = *p++;
+        --n;
+        f->cpkFile.bValid = 0;
+    } while (n);
+
     return 1;
 }
 
 void CPK::Reset(void) {
-    m_dwAllocGranularity = 0;
-    m_eMode = CPKM_Null;
     memset(&m_CPKHeader, 0, sizeof(m_CPKHeader));
     memset(m_CPKTable, 0, sizeof(m_CPKTable));
-    for (int i = 0; i < CPK_MAX_OPEN_FILES; i++) {
-        m_pCPKFile[i] = NULL;
-    }
+    m_dwCPKHandle = (unsigned long)-1;
+    m_dwCPKMappingHandle = (unsigned long)-1;
     m_bLoaded = 0;
-    m_dwCPKHandle = 0;
-    m_dwCPKMappingHandle = 0;
-    m_szCPKFileName[0] = '\0';
+    memset(m_szCPKFileName, 0, sizeof(m_szCPKFileName));
     m_nOpenedFileNum = 0;
+    gbVFile** p = m_pCPKFile;
+    int n = 8;
+    do {
+        gbVFile* f = *p++;
+        --n;
+        f->cpkFile.bValid = 0;
+    } while (n);
 }
 
 void CPK::SetOpenMode(ECPKMode mode)
 {
-    m_eMode = mode;
+    if (!m_bLoaded) {
+        m_eMode = mode;
+    }
 }
 
 bool CPK::IsValidCPK(const char* filename)
@@ -614,7 +620,9 @@ int CPK::GetTableIndexFromCRC(unsigned long crc)
 
 unsigned long CPK::GetAllocationGranularity()
 {
-    return m_dwAllocGranularity;
+    SYSTEM_INFO si;
+    GetSystemInfo(&si);
+    return si.dwAllocationGranularity;
 }
 
 bool CPK::IsDir(unsigned long tableIndex)
@@ -1000,17 +1008,21 @@ void gbVFileSystem::Write(void* buffer, unsigned int size, gbVFile* pFile)
 
 int gbVFileSystem::ReadChar(gbVFile* pFile)
 {
-    if (Type == VFSYS_PACKFILE) {
+    int t = Type;
+    if (t == VFSYS_PACKFILE) {
         CPKFile* cpk = pFile ? &pFile->cpkFile : NULL;
         return m_cpk.ReadChar(cpk);
-    } else if (Type == VFSYS_MEMIMAGE) {
-        char* ptr = (char*)pFile->memPtr;
-        int result = (unsigned char)*ptr;
-        pFile->memPtr = ptr + 1;
-        return result;
-    } else {
-        // VFSYS_DISKFILE
+    } else if (!t) {
         return fgetc((FILE*)pFile->fp);
+    } else {
+        if (t == VFSYS_MEMIMAGE) {
+            char* ptr = (char*)pFile->memPtr;
+            int result = (unsigned char)*ptr;
+            pFile->memPtr = ptr + 1;
+            return result;
+        } else {
+            return -1;
+        }
     }
 }
 
@@ -1085,29 +1097,33 @@ void gbVFileSystem::Seek(gbVFile* pFile, long offset, int origin)
 
 void gbVFileSystem::Rewind(gbVFile* pFile)
 {
-    if (Type == VFSYS_PACKFILE) {
-        if (pFile)
-            pFile->cpkFile.dwPointer = 0;
-    } else if (Type == VFSYS_MEMIMAGE) {
-        pFile->memPtr = pFile->fp;
-    } else {
-        // VFSYS_DISKFILE
+    int t = Type;
+    if (t == VFSYS_PACKFILE) {
+        CPKFile* cpk = pFile ? &pFile->cpkFile : NULL;
+        cpk->dwPointer = 0;
+    } else if (!t) {
         rewind((FILE*)pFile->fp);
+    } else {
+        if (t == VFSYS_MEMIMAGE) {
+            pFile->memPtr = pFile->fp;
+        }
     }
 }
 
 long gbVFileSystem::TellPos(gbVFile* pFile)
 {
-    if (Type == VFSYS_PACKFILE) {
-        if (pFile)
-            return (long)pFile->cpkFile.dwPointer;
-        else
-            return 0;
-    } else if (Type == VFSYS_MEMIMAGE) {
-        return (long)((char*)pFile->memPtr - (char*)pFile->fp);
-    } else {
-        // VFSYS_DISKFILE
+    int t = Type;
+    if (t == VFSYS_PACKFILE) {
+        CPKFile* cpk = pFile ? &pFile->cpkFile : NULL;
+        return (long)cpk->dwPointer;
+    } else if (!t) {
         return ftell((FILE*)pFile->fp);
+    } else {
+        if (t == VFSYS_MEMIMAGE) {
+            return (long)((char*)pFile->memPtr - (char*)pFile->fp);
+        } else {
+            return -1;
+        }
     }
 }
 

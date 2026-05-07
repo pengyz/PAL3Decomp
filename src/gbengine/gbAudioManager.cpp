@@ -770,7 +770,9 @@ void gbAudioManager::SetListenerOrientation(gbVec3D& front, gbVec3D& top) {
 
 // GetListenerPosition - 0x10002210 (33B)
 void gbAudioManager::GetListenerPosition(gbVec3D& pos) {
-    pos = listenerPosition;
+    pos.x = listenerPosition.x;
+    pos.y = listenerPosition.y;
+    pos.z = listenerPosition.z;
 }
 
 // Set2DMasterVolume - 0x100021c0 (13B)

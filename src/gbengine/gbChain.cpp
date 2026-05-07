@@ -121,17 +121,20 @@ void gbChain1D::InsertBefore(gbChain1DNode* newNode, gbChain1DNode* beforeNode) 
 }
 
 void gbChain1D::InsertAfter(gbChain1DNode* newNode, gbChain1DNode* afterNode) {
-    if (!newNode) return;
-
-    if (!afterNode) {
-        AddNodeOnHead(newNode);
-        return;
-    }
-
-    newNode->pNext = afterNode->pNext;
-    afterNode->pNext = newNode;
-    if (afterNode == pTail) {
-        pTail = newNode;
+    if (afterNode) {
+        newNode->pNext = afterNode->pNext;
+        afterNode->pNext = newNode;
+        if (pTail == afterNode)
+            pTail = newNode;
+    } else {
+        newNode->pNext = pHead;
+        gbChain1DNode* t = pTail;
+        pHead = newNode;
+        if (!t) {
+            pTail = newNode;
+            nCount++;
+            return;
+        }
     }
     nCount++;
 }
@@ -340,7 +343,10 @@ gbNBTreeNode::~gbNBTreeNode() {
 gbNBTreeNode& gbNBTreeNode::operator=(const gbNBTreeNode& other) {
     pNext = other.pNext;
     pParent = other.pParent;
-    children = other.children;
+    children.pHead = other.children.pHead;
+    children.pTail = other.children.pTail;
+    children.nCount = other.children.nCount;
+    children.pIterator = other.children.pIterator;
     return *this;
 }
 

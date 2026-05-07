@@ -46,16 +46,16 @@ gbCamControler::gbCamControler(void) {
 
 // 0x10005b30 (45B) - Copy constructor
 gbCamControler::gbCamControler(const gbCamControler& other) {
-    type = other.type;
     pCamera = other.pCamera;
+    curTime = other.curTime;
+    blendTime = other.blendTime;
 }
 
 // 0x10005b60 - operator=
 gbCamControler& gbCamControler::operator=(const gbCamControler& other) {
-    if (this != &other) {
-        type = other.type;
-        pCamera = other.pCamera;
-    }
+    pCamera = other.pCamera;
+    curTime = other.curTime;
+    blendTime = other.blendTime;
     return *this;
 }
 
@@ -893,10 +893,8 @@ void gbCamera::GetViewPort(float& x, float& y, float& w, float& h) {
 
 // 0x10022440 (67B) - Convert device coordinates to screen coordinates
 void gbCamera::PointDevToScr(int* dx, int* dy, float sx, float sy) {
-    if (!dx || !dy)
-        return;
-    *dx = (int)(sx - (float)Viewport.x);
-    *dy = (int)(sy - (float)Viewport.y);
+    *dx = (int)((sx + 1.0f) * Wscreen * 0.5f);
+    *dy = (int)((sy + 1.0f) * Hscreen * 0.5f);
 }
 
 // 0x10022490 (24B) - Rotate vector with axis parameter
@@ -961,15 +959,14 @@ void gbCamera::Update(double deltaTime) {
 }
 
 // 0x100225f0 (54B) - Add a camera controller
-// From Ghidra: stores controller at pControl[CurCtrl+1], increments CurCtrl
 void gbCamera::AddControler(gbCamControler* ctrl, double blendTime) {
-    if (!ctrl)
-        return;
-
-    int idx = CurCtrl;
-    CurCtrl = idx + 1;
-    pControl[idx + 1] = ctrl;
+    int idx = CurCtrl + 1;
+    CurCtrl = idx;
+    pControl[idx] = ctrl;
     ctrl->pCamera = this;
+    ((int*)&ctrl->curTime)[0] = 0;
+    ((int*)&ctrl->curTime)[1] = 0;
+    ctrl->blendTime = blendTime;
 }
 
 // 0x10022630 (171B) - Project world point to screen without viewport transform
