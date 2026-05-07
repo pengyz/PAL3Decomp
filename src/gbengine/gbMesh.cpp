@@ -170,7 +170,7 @@ int gbBaseMesh::GetNumFaces() {
 }
 
 unsigned int gbBaseMesh::GetFVF() {
-    return 0;
+    return m_fvf;
 }
 
 const char* gbBaseMesh::GetObjectName() {
