@@ -388,9 +388,19 @@ float gbGetDeltaTime(void)
 
 // ======== Memory Functions ========
 
-void gbMemCopy(void* dst, void* src, unsigned int size)
+void gbMemCopy(void* pDst, void* pSrc, unsigned int nBytes)
 {
-    memcpy(dst, src, size);
+    __asm {
+        mov ecx, nBytes
+        mov esi, pSrc
+        mov edi, pDst
+        mov ebx, ecx
+        shr ecx, 2
+        and ebx, 3
+        rep movsd
+        mov ecx, ebx
+        rep movsb
+    }
 }
 
 // ======== Logging Functions ========
@@ -431,26 +441,53 @@ void gbReportError(char* fmt, ...)
     OutputDebugStringA(buffer);
 }
 
-// ======== Profiling Functions (Stubs) ========
+// ======== Profiling Functions ========
 
+#define NUM_PROFILE_ENTRIES 50
+
+struct ProfileEntry {
+    char flag;
+    char _data[0x11b];
+};
+
+struct ProfileOutput {
+    char flag;
+    char _data[0x10f];
+};
+
+static ProfileEntry g_profileEntries[NUM_PROFILE_ENTRIES];
+static ProfileOutput g_profileOutputs[NUM_PROFILE_ENTRIES];
+static float g_profileTime;
+
+extern float GetTimeSeconds(void);
+
+// 0x10031750 (46B)
 void ProfileInit(void)
 {
-    // Stub - profiling not implemented
+    ProfileOutput* p2 = g_profileOutputs;
+    ProfileEntry* p1 = g_profileEntries;
+    do {
+        p1->flag = 0;
+        p2->flag = 0;
+        p1++;
+        p2++;
+    } while ((int)p1 < (int)&g_profileEntries[NUM_PROFILE_ENTRIES]);
+    g_profileTime = GetTimeSeconds();
 }
 
 void ProfileBegin(char* name)
 {
-    // Stub - profiling not implemented
+    // TODO: implement
 }
 
 void ProfileEnd(char* name)
 {
-    // Stub - profiling not implemented
+    // TODO: implement
 }
 
 void ProfileDumpOutputToFile(char* filename)
 {
-    // Stub - profiling not implemented
+    // TODO: implement
 }
 
 // ======== gbColorQuad Class ========

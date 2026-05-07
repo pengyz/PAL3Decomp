@@ -261,19 +261,18 @@ void gbTexture::LoadTexture(int resIndex) {
     isLoaded = 1;
 }
 
+// Virtual: base implementation does nothing
+void gbTexture::UpdateTexture(int x, int y, int w, int h, gbPixelFmtType srcFmt, void* data) {
+}
+
 // 0x10020820 (52B) - Update texture sub-region from image
 void gbTexture::UpdateTexture(int x, int y, gbImage2D* img) {
-    if (!img)
-        return;
-    // In the real engine, this would lock the D3D texture surface,
-    // copy the pixel data from the image at the given offset, and unlock
+    UpdateTexture(x, y, img->Width, img->Height, img->PixelFmt.Type, img->pBits);
 }
 
 // 0x10020860 (40B) - Update entire texture from image
 void gbTexture::UpdateTexture(gbImage2D* img) {
-    if (!img)
-        return;
-    UpdateTexture(0, 0, img);
+    UpdateTexture(0, 0, Width, Height, img->PixelFmt.Type, img->pBits);
 }
 
 

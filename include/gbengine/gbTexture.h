@@ -190,6 +190,9 @@ public:
     // 0x100205a0 (443B) - Load texture from resource index
     void LoadTexture(int resIndex);
 
+    // Virtual: update texture data (overridden in gbTexture_D3D)
+    virtual void UpdateTexture(int x, int y, int w, int h, gbPixelFmtType srcFmt, void* data);
+
     // 0x10020820 (52B) - Update texture sub-region from image
     void UpdateTexture(int x, int y, gbImage2D* img);
 
@@ -216,12 +219,12 @@ public:
     // Override: return the D3D texture pointer
     virtual IDirect3DTexture9* GetTexture(void);
 
+    // 0x1001bea0 (219B) - Override: update existing texture with new data
+    virtual void UpdateTexture(int x, int y, int w, int h, gbPixelFmtType srcFmt, void* data);
+
     // 0x1001bd30 (356B) - Create texture from raw memory data
     virtual void CreateFromMemory(int w, int h, gbPixelFmtType srcFmt, int levels,
                           gbPixelFmtType dstFmt, void* data);
-
-    // 0x1001bea0 (219B) - Update existing texture with new data
-    virtual void UpdateTexture(int x, int y, int w, int h, gbPixelFmtType srcFmt, void* data);
 
     // 0x1001c010 (344B) - Create texture from file data in memory (e.g. DDS, BMP, TGA)
     virtual void CreateFromFileMemory(void* data, int size);
