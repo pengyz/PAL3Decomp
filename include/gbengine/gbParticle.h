@@ -222,7 +222,7 @@ private:
 
 class gbVisNodeBase {
 public:
-    char _visnode_data[0x58];
+    char _visnode_data[0x54];
     gbVisNodeBase();
     virtual ~gbVisNodeBase();
     virtual void Update();

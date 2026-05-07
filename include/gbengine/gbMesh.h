@@ -73,14 +73,14 @@ public:
     int startVertex;                // +0x0C
     int vertexCount;                // +0x10
     int countUsed;                  // +0x14
-    int bUsed;                      // +0x18
-    void* pVertexData;              // +0x1C
-    void* field_20;
-    void* field_24;
-    void* field_28;
-    void* field_2C;
-    void* field_30;
-    void* field_34;
+    void* pVertexData;              // +0x18
+    void* field_1C;                 // +0x1C
+    void* field_20;                 // +0x20
+    void* field_24;                 // +0x24
+    void* field_28;                 // +0x28
+    void* field_2C;                 // +0x2C
+    void* field_30;                 // +0x30
+    void* field_34;                 // +0x34
 
     gbVertexBubble(gbVertexPool* pool, int start, int count, int used);
     gbVertexBubble(const gbVertexBubble& other);

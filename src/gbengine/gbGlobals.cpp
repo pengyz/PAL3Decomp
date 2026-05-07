@@ -352,7 +352,7 @@ int gbChangeDispMode(int width, int height, int bpp)
             && DevMode.dmPelsWidth == (DWORD)width
             && DevMode.dmPelsHeight == (DWORD)height
             && DevMode.dmDisplayFrequency == curFreq) {
-            if (!ChangeDisplaySettingsA(&DevMode, CDS_TEST))
+            if (!ChangeDisplaySettingsA(&DevMode, CDS_FULLSCREEN))
                 return 1;
             if (!firstMatch)
                 firstMatch = iMode;
@@ -365,7 +365,7 @@ int gbChangeDispMode(int width, int height, int bpp)
         if (DevMode.dmBitsPerPel == (DWORD)bpp
             && DevMode.dmPelsWidth == (DWORD)width
             && DevMode.dmPelsHeight == (DWORD)height) {
-            if (!ChangeDisplaySettingsA(&DevMode, CDS_TEST))
+            if (!ChangeDisplaySettingsA(&DevMode, CDS_FULLSCREEN))
                 return 1;
             if (!firstMatch)
                 firstMatch = iMode;
@@ -379,12 +379,12 @@ int gbChangeDispMode(int width, int height, int bpp)
     DevMode.dmPelsHeight = height;
     DevMode.dmFields = DM_PELSWIDTH | DM_PELSHEIGHT | DM_BITSPERPEL;
 
-    if (ChangeDisplaySettingsA(&DevMode, CDS_TEST)) {
+    if (ChangeDisplaySettingsA(&DevMode, CDS_FULLSCREEN)) {
         DevMode.dmFields = DM_BITSPERPEL;
-        result = ChangeDisplaySettingsA(&DevMode, CDS_TEST);
+        result = ChangeDisplaySettingsA(&DevMode, CDS_FULLSCREEN);
         if (!result) {
             DevMode.dmFields = DM_PELSWIDTH | DM_PELSHEIGHT;
-            result = ChangeDisplaySettingsA(&DevMode, CDS_TEST);
+            result = ChangeDisplaySettingsA(&DevMode, CDS_FULLSCREEN);
             if (result) {
                 ChangeDisplaySettingsA(NULL, 0);
                 goto error;

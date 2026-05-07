@@ -59,19 +59,17 @@ void BEZIER::SetControlPt(gbVec3D* points) {
 
 // Compute binomial coefficients for cubic Bezier
 void BEZIER::computerCoefficient() {
-    // Cubic Bezier coefficients: (1-t)^3, 3(1-t)^2*t, 3(1-t)*t^2, t^3
-    // Binomial coefficients for n=3: 1, 3, 3, 1
     coeff[0] = 1;
     coeff[1] = 3;
     coeff[2] = 3;
     coeff[3] = 1;
-    dirty = 0;
 }
 
 // Get interpolated point on curve at parameter t [0,1]
 gbVec3D BEZIER::getInterpolatePoint(float t) {
     if (dirty) {
         computerCoefficient();
+        dirty = 0;
     }
 
     // Clamp t to [0,1]
@@ -100,6 +98,7 @@ gbVec3D BEZIER::getInterpolatePoint(float t) {
 gbVec3D BEZIER::getTangentVector(float t) {
     if (dirty) {
         computerCoefficient();
+        dirty = 0;
     }
 
     // Clamp t to [0,1]

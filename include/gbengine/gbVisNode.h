@@ -49,6 +49,7 @@ public:
 
     void PushMessage(gbNodeMsgObj& msg);
     int PopMessage(gbNodeMsgObj& msg);
+    virtual void ProcessMessage(gbNodeMsgObj* msg);
     virtual int Attach(gbRenderEffect* effect);
     virtual void AttachSelf(gbRenderEffect* effect);
     virtual void Render(gbRenderInfoObj* renderInfo);

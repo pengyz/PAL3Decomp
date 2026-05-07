@@ -228,7 +228,7 @@ int gbPrintFontMgr::Init(gbGfxManager* mgr)
 // 0x10023150
 void gbPrintFontMgr::Release(void)
 {
-    for (int i = 0; i < 4; i++) {
+    for (int i = 0; i < 5; i++) {
         if (fonts[i]) {
             fonts[i]->Release();
             delete fonts[i];
@@ -240,7 +240,7 @@ void gbPrintFontMgr::Release(void)
 // 0x100231b0
 void gbPrintFontMgr::Flush(void)
 {
-    for (int i = 0; i < 4; i++) {
+    for (int i = 0; i < 5; i++) {
         if (fonts[i]) {
             fonts[i]->currentStringCount = 0;
             fonts[i]->currentTextOffset = 0;
@@ -251,7 +251,7 @@ void gbPrintFontMgr::Flush(void)
 // 0x100231d0
 void gbPrintFontMgr::Flush3D(void)
 {
-    for (int i = 0; i < 4; i++) {
+    for (int i = 0; i < 5; i++) {
         if (fonts[i]) {
             fonts[i]->current3DStringCount = 0;
         }

@@ -93,8 +93,8 @@ enum gbFontType {
 
 class gbPrintFontMgr {
 public:
-    gbPrintFont*    fonts[4];   // +0x00
-    gbGfxManager*   gfxMgr;    // +0x10
+    gbPrintFont*    fonts[5];   // +0x00
+    gbGfxManager*   gfxMgr;    // +0x14
 
     // 0x10022f40 (21B)
     gbPrintFontMgr(void);

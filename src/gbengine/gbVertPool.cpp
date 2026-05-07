@@ -300,8 +300,8 @@ gbVertexBubble::gbVertexBubble(gbVertexPool* pool, int start, int count, int use
     this->startVertex = start;
     this->vertexCount = count;
     this->countUsed = used;
-    this->bUsed = 0;
     this->pVertexData = NULL;
+    this->field_1C = NULL;
     this->field_20 = NULL;
     this->field_24 = NULL;
     this->field_28 = NULL;
@@ -322,8 +322,8 @@ gbVertexBubble::~gbVertexBubble() {
 // Set: 0x10003e40
 void gbVertexBubble::Set(int start, int count, int used) {
     this->startVertex = start;
-    this->vertexCount = count;
     this->countUsed = used;
+    this->vertexCount = count;
 }
 
 // Lock: 0x10020c00 (160B)
@@ -344,39 +344,39 @@ void* gbVertexBubble::Lock() {
         offset += 16;
     }
     if (fvf & 0x2) {
-        field_20 = (char*)pData + offset;
+        field_1C = (char*)pData + offset;
         offset += 12;
     }
     if (fvf & 0x4) {
-        field_24 = (char*)pData + offset;
+        field_20 = (char*)pData + offset;
         offset += 4;
     }
     if (fvf & 0x8) {
-        field_28 = (char*)pData + offset;
+        field_24 = (char*)pData + offset;
         offset += 4;
     }
     if (fvf & 0x10) {
-        field_2C = (char*)pData + offset;
+        field_28 = (char*)pData + offset;
         offset += 8;
     }
     if (fvf & 0x20) {
-        field_30 = (char*)pData + offset;
+        field_2C = (char*)pData + offset;
         offset += 8;
     }
     if (fvf & 0x40) {
-        field_34 = (char*)pData + offset;
+        field_30 = (char*)pData + offset;
         offset += 8;
     }
     if (fvf & 0x80) {
-        *(void**)((char*)this + 0x34) = (char*)pData + offset;
+        field_34 = (char*)pData + offset;
     }
     return pData;
 }
 
 // Unlock: 0x10020ca0
 void gbVertexBubble::Unlock() {
-    bUsed = 0;
     pVertexData = NULL;
+    field_1C = NULL;
     field_20 = NULL;
     field_24 = NULL;
     field_28 = NULL;
@@ -395,8 +395,8 @@ void gbVertexBubble::ClearPointer() {
 void gbVertexBubble::StepVertexPtr() {
     unsigned int flags = pPool->fvf;
     int s = pPool->stride;
-    if ((flags & 1) || (flags & 0x100)) { bUsed += s; }
-    if (flags & 2)   { pVertexData = (char*)pVertexData + s; }
+    if ((flags & 1) || (flags & 0x100)) { pVertexData = (char*)pVertexData + s; }
+    if (flags & 2)   { field_1C = (char*)field_1C + s; }
     if (flags & 4)   { field_20 = (char*)field_20 + s; }
     if (flags & 8)   { field_24 = (char*)field_24 + s; }
     if (flags & 0x10) { field_28 = (char*)field_28 + s; }
@@ -463,8 +463,8 @@ gbVertexPool::gbVertexPool(gbPoolType type, unsigned int vertType, int total) {
         bubble->startVertex = 0;
         bubble->vertexCount = total;
         bubble->countUsed = total;
-        bubble->bUsed = 0;
         bubble->pVertexData = NULL;
+        bubble->field_1C = NULL;
         bubble->field_20 = NULL;
         bubble->field_24 = NULL;
         bubble->field_28 = NULL;
@@ -563,8 +563,8 @@ gbVertexBubble* gbVertexPool::NewBubble(int count) {
         newBubble->startVertex = bestFit->startVertex;
         newBubble->vertexCount = count;
         newBubble->countUsed = count;
-        newBubble->bUsed = 0;
         newBubble->pVertexData = NULL;
+        newBubble->field_1C = NULL;
         newBubble->field_20 = NULL;
         newBubble->field_24 = NULL;
         newBubble->field_28 = NULL;
