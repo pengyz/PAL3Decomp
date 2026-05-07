@@ -205,7 +205,9 @@ void gbBaseMesh::SetTexture(int index, gbTexture* texture) {
 }
 
 void gbBaseMesh::ReplaceTexture(const char* textureName) {
-    if (!m_sections) return;
+    gbTexture* tex = m_pGfxManager->NewTexture(textureName);
+    tex->LoadTexture(1);
+    ReplaceTexture(tex);
 }
 
 void gbBaseMesh::ReplaceTexture(gbTexture* texture) {
