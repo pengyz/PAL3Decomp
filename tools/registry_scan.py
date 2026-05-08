@@ -195,31 +195,32 @@ def compare_bytes_fuzzy(original, compiled, threshold=0.90):
     Strategy: when bytes differ at position i, check if positions i..i+3 all differ
     and look like an absolute address (0x10xxxxxx pattern). If so, skip as relocation.
 
+    Allows size differences: compares min(len_a, len_b) bytes, penalizes size diff.
     Returns match ratio (0.0 - 1.0).
     """
     if not original or not compiled:
         return 0.0
 
-    # Must be same size
-    if len(original) != len(compiled):
+    # Allow small size difference (alignment padding, IDA boundary issues)
+    size_diff = abs(len(original) - len(compiled))
+    if size_diff > 16:
         return 0.0
 
-    size = len(original)
-    if size == 0:
+    compare_len = min(len(original), len(compiled))
+    if compare_len == 0:
         return 0.0
 
     matches = 0
     i = 0
-    while i < size:
+    while i < compare_len:
         if original[i] == compiled[i]:
             matches += 1
             i += 1
         else:
             # Check if this is a 4-byte relocation (address difference)
-            if i + 3 < size:
-                # Both look like absolute addresses (0x10xxxxxx range)?
-                orig_val = struct.unpack_from('<I', original, i)[0] if i + 4 <= size else 0
-                comp_val = struct.unpack_from('<I', compiled, i)[0] if i + 4 <= size else 0
+            if i + 3 < compare_len:
+                orig_val = struct.unpack_from('<I', original, i)[0] if i + 4 <= compare_len else 0
+                comp_val = struct.unpack_from('<I', compiled, i)[0] if i + 4 <= compare_len else 0
                 if (0x10000000 <= orig_val <= 0x10200000 and
                     0x10000000 <= comp_val <= 0x10200000):
                     matches += 4  # skip as relocation
@@ -227,7 +228,9 @@ def compare_bytes_fuzzy(original, compiled, threshold=0.90):
                     continue
             i += 1
 
-    return matches / size
+    # Penalize size difference
+    total = max(len(original), len(compiled))
+    return matches / total
 
 
 def load_registry():
@@ -396,9 +399,9 @@ def main():
         except Exception:
             continue
 
-        # Find candidates with same size (±4 bytes)
+        # Find candidates with similar size (±16 bytes)
         candidates = []
-        for s in range(size - 4, size + 5):
+        for s in range(size - 16, size + 17):
             if s in by_size:
                 candidates.extend(by_size[s])
 
