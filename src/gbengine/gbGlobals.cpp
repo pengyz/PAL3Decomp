@@ -15,6 +15,17 @@ static int g_CurDispWidth;
 static int g_CurDispHeight;
 static int g_CurDispBpp;
 
+// Global Vec3D used by audio/sound system
+// Address: 0x1012B990 in original binary
+static gbVec3D g_globalVec3D = {0.0f, 0.0f, 0.0f};
+
+// 0x10002A50 (31B) - ResetGlobalVec3D
+void ResetGlobalVec3D() {
+    g_globalVec3D.x = 0.0f;
+    g_globalVec3D.y = 0.0f;
+    g_globalVec3D.z = 0.0f;
+}
+
 // Global texture format flag (referenced from gbTexture.cpp)
 // Address: 0x10140DB0 in original binary
 int dword_10140DB0 = 0;
@@ -674,6 +685,826 @@ int gbComputeFVFStride(unsigned int fvf)
     }
 
     return stride;
+}
+
+// ============================================================================
+// gbWaterMesh - Water surface mesh class (extends gbBaseMesh)
+// sizeof = 0x61C (1564 bytes): gbBaseMesh(0x78) + water-specific data
+// ============================================================================
+
+// Terrain/water data block read from file (at offset +0x78 from this)
+// Total terrain data size = 0x594 = 1428 bytes (from offset +120 to +1547)
+// Key sub-fields within the terrain data:
+//   +140 (0x8C): m_width (int)
+//   +144 (0x90): m_height (int)
+//   +148 (0x94): m_scaleX (float)
+//   +152 (0x98): m_scaleZ (float)
+//   +160 (0xA0): m_texScaleX (float)
+//   +176 (0xB0): m_texScaleZ (float)
+//   +192 (0xC0): m_originX (float)
+//   +200 (0xC8): m_originZ (float)
+//   +208 (0xD0): m_textureName1 (char[1060])
+//   +1268 (0x4F4): m_textureName2 (char[280])
+// After the terrain data block:
+//   +1548 (0x60C): m_pHeightfield (float*) - 2 floats per vertex [height, velocity]
+//   +1552 (0x610): m_meanHeight (float)
+//   +1556 (0x614): m_pLookupTable (float*)
+//   +1560 (0x618): m_invScale (float)
+
+struct gbWaterMesh : public gbBaseMesh {
+    // +0x78 (120): terrain data block, 1428 bytes total
+    // First 20 bytes are misc params
+    char _terrainHeader[20];        // +0x78 to +0x8B
+    int m_width;                    // +0x8C (140)
+    int m_height;                   // +0x90 (144)
+    float m_scaleX;                 // +0x94 (148)
+    float m_scaleZ;                 // +0x98 (152)
+    char _pad9C[4];                 // +0x9C (156)
+    float m_texScaleX;              // +0xA0 (160)
+    char _padA4[12];                // +0xA4 (164)
+    float m_texScaleZ;              // +0xB0 (176)
+    char _padB4[12];                // +0xB4 (180)
+    float m_originX;                // +0xC0 (192)
+    char _padC4[4];                 // +0xC4 (196)
+    float m_originZ;                // +0xC8 (200)
+    char _padCC[4];                 // +0xCC (204)
+    char m_textureName1[1060];      // +0xD0 (208) to +0x4F3 (1267)
+    char m_textureName2[280];       // +0x4F4 (1268) to +0x60B (1547)
+    // End of terrain data block
+
+    float* m_pHeightfield;          // +0x60C (1548)
+    float m_meanHeight;             // +0x610 (1552)
+    float* m_pLookupTable;          // +0x614 (1556)
+    float m_invScale;               // +0x618 (1560)
+    // Total sizeof = 0x61C (1564)
+
+    gbWaterMesh(gbGfxManager* gfxMgr);
+    virtual ~gbWaterMesh();
+
+    void InitSinCosLookupTable(float scale, int unused);
+    void InitializeGraphics();
+    int LoadTerrainFromFile(gbVFile* file, int unused);
+    int SimulateWaterHeightfield();
+    void RenderTerrain(int viewMat, int renderInfo);
+    void ComputeVertexNormal(int x, int y);
+};
+
+// Static lookup table storage (global BSS)
+static float g_WaterLookupTable[768];     // dword_1013B0E0 (3 floats * 256)
+static float g_WaterLookupCopy[768];      // dword_1013A4E0 (mirror copy)
+
+// Static counter for water rendering
+static int g_WaterRenderCounter = 0;      // dword_1013BCE0
+
+// Water effect script name
+static const char aGfxscriptWater[] = "gfxscript/water";
+
+// ============================================================================
+// gbOctreeNode - Octree spatial node (68 bytes, allocated from gbStaticChain)
+// ============================================================================
+struct gbOctreeNode {
+    gbStaticChainNode chainNode;    // +0x00: prev/next for static chain (8 bytes)
+    float centerX;                  // +0x08
+    float centerY;                  // +0x0C
+    float centerZ;                  // +0x10
+    float halfSize;                 // +0x14
+    float halfHalfSize;             // +0x18
+    int depth;                      // +0x1C
+    gbOctreeNode* children[8];      // +0x20 (32 bytes)
+    void* objectListHead;           // +0x40: linked list of attached objects
+    // Total: 68 bytes
+};
+
+// ============================================================================
+// gbOctree - Octree spatial partitioning manager (76 bytes)
+// ============================================================================
+struct gbOctree {
+    gbOctreeNode* pRoot;            // +0x00 (DWORD 0)
+    int maxDepth;                   // +0x04 (DWORD 1)
+    float centerX;                  // +0x08 (DWORD 2)
+    float centerY;                  // +0x0C (DWORD 3)
+    float centerZ;                  // +0x10 (DWORD 4)
+    float halfSize;                 // +0x14 (DWORD 5)
+    gbStaticChain nodePool;         // +0x18 (28 bytes, DWORDs 6..12)
+    int stats[6];                   // +0x34 (DWORDs 13..18)
+
+    void InitQuadtreeStats();
+    void Init(int maxDepth, int maxNodes, float* center, float halfSize);
+    gbOctreeNode* TraverseQuadtree(float* bounds, gbOctreeNode* node);
+    void AttachNodeToOctree(int* pNode);
+    static void DetachNodeRecursive(int* pNode);
+};
+
+// ============================================================================
+// gbWaterMesh::gbWaterMesh - Constructor (0x100138A0, 75B)
+// ============================================================================
+gbWaterMesh::gbWaterMesh(gbGfxManager* gfxMgr) : gbBaseMesh(gfxMgr) {
+    // Zero out sections-related area at DWORD offsets 48,49,50
+    // (byte offsets 192, 196, 200 → m_originX, _padC4, m_originZ)
+    m_originX = 0.0f;
+    *(int*)((char*)this + 196) = 0;
+    m_originZ = 0.0f;
+
+    // Zero water-specific fields at high DWORD offsets
+    // DWORD 382,383,384 → bytes 1528,1532,1536
+    *(int*)((char*)this + 1528) = 0;
+    *(int*)((char*)this + 1532) = 0;
+    *(int*)((char*)this + 1536) = 0;
+
+    // DWORD 387 → byte 1548 (m_pHeightfield)
+    m_pHeightfield = NULL;
+
+    // DWORD 389 → byte 1556 (m_pLookupTable)
+    m_pLookupTable = NULL;
+
+    // vtable is set automatically by compiler
+}
+
+// ============================================================================
+// gbWaterMesh::~gbWaterMesh - Destructor (0x10013910, 33B)
+// ============================================================================
+gbWaterMesh::~gbWaterMesh() {
+    free(m_pHeightfield);
+    // base destructor called automatically
+}
+
+// ============================================================================
+// gbWaterMesh::InitSinCosLookupTable (0x10013940, 235B)
+// Initializes a trigonometric lookup table for water refraction
+// ============================================================================
+void gbWaterMesh::InitSinCosLookupTable(float scale, int unused) {
+    m_invScale = 1.0f / scale;
+
+    if (!m_pLookupTable) {
+        m_pLookupTable = g_WaterLookupTable;
+        int i = 0;
+        int j = 0;
+        do {
+            float v = (float)i * 0.00390625f;  // i/256.0
+            float sinVal = (float)sin(acos((double)v));
+            float refracted = sinVal * 0.75018758f;
+            float* table = m_pLookupTable;
+
+            table[j] = (float)(cos(asin((double)refracted)) * ((double)sinVal / (double)refracted) - (double)v);
+            table[j + 1] = -(refracted / sinVal);
+            *(int*)&table[j + 2] = (((255 - i) * (255 - i) * (255 - i)) & 0xFFFF0000) << 8;
+
+            g_WaterLookupCopy[j] = g_WaterLookupTable[0];
+            g_WaterLookupCopy[j + 1] = g_WaterLookupTable[1];
+            g_WaterLookupCopy[j + 2] = g_WaterLookupTable[2];
+
+            j += 3;
+            i++;
+        } while (j < 768);
+    }
+}
+
+// ============================================================================
+// gbWaterMesh::InitializeGraphics (0x10013A30, 684B)
+// Creates textures, index buffer, and render effect for water rendering
+// ============================================================================
+void gbWaterMesh::InitializeGraphics() {
+    int totalVerts = m_height * m_width;
+
+    // Set numSections = 1
+    m_numSections = 1;
+
+    // Allocate a new gbMeshSection (with scalar new, mimicking new gbMeshSection[1])
+    m_sections = new gbMeshSection[1];
+    m_sections->m_blendMode = 1;
+
+    // Clear material data
+    memset((char*)m_sections + 76, 0, 0x44u);
+    *((int*)((char*)m_sections + 148)) = 0;
+    *((int*)((char*)m_sections + 152)) = totalVerts;
+
+    // Clear bounding center
+    float* pBound = (float*)((char*)m_sections + 156);
+    pBound[2] = 0.0f;
+    pBound[1] = 0.0f;
+    pBound[0] = 0.0f;
+
+    // Create and load texture 1 (calls virtual NewTexture slot 2, at vtable+8)
+    gbTexture* tex1 = m_pGfxManager->NewTexture(m_textureName1);
+    m_sections->m_textures[0] = tex1;
+    tex1->LoadTexture(1);
+
+    // Create and load texture 2
+    gbTexture* tex2 = m_pGfxManager->NewTexture(m_textureName2);
+    m_sections->m_textures[1] = tex2;
+    tex2->LoadTexture(1);
+
+    // Set num textures = 2
+    m_sections->m_numTextures = 2;
+
+    // Create water render effect
+    gbEffectMgr* effectMgr = *(gbEffectMgr**)((char*)m_pGfxManager + 200);
+    *((int*)((char*)m_sections + 168)) = (int)effectMgr->NewRenderEffect(aGfxscriptWater, 0);
+
+    // Build triangle strip index buffer
+    unsigned short* indices = (unsigned short*)operator new(6 * totalVerts);
+    int w = m_width;
+    int h = m_height;
+    unsigned short* pIdx = indices;
+
+    *indices = 0;
+    int pos = 1;
+    int col = 0;
+    int row = 0;
+    int nextPos = 0;
+
+    while (1) {
+        unsigned short* cur = &pIdx[pos];
+        short rowOffset = (short)(w * (row + 1));
+
+        while (1) {
+            nextPos = pos + 1;
+            *cur = (unsigned short)(col + rowOffset);
+            unsigned short* next = cur + 1;
+            if (++col >= w)
+                break;
+            pos = nextPos + 1;
+            *next = (unsigned short)(col + w * row);
+            rowOffset = (short)(w * (row + 1));
+            cur = next + 1;
+        }
+
+        int lastCol = col - 1;
+        int nextRow = row + 1;
+        if (nextRow >= h - 1)
+            break;
+
+        short degIdx = (short)(lastCol + w * nextRow);
+        indices[nextPos] = degIdx;
+        int stripPos = nextPos + 1;
+        if (!(w % 2))
+            indices[stripPos++] = degIdx;
+
+        short nextRowOffset2 = (short)(w * (nextRow + 1));
+        unsigned short* pCur = &indices[stripPos];
+        while (1) {
+            pos = stripPos + 1;
+            *pCur = (unsigned short)(lastCol + nextRowOffset2);
+            unsigned short* pNext = pCur + 1;
+            if (--lastCol < 0)
+                break;
+            stripPos = pos + 1;
+            *pNext = (unsigned short)(lastCol + w * nextRow);
+            nextRowOffset2 = (short)(w * (nextRow + 1));
+            pCur = pNext + 1;
+        }
+
+        col = lastCol + 1;
+        row = nextRow + 1;
+        if (row >= h - 1)
+            break;
+
+        pos = pos + 1;
+        short startIdx = (short)(row * w + col);
+        pIdx = indices;
+        indices[pos - 1] = startIdx;
+        if (!(w % 2))
+            indices[pos++] = startIdx;
+    }
+
+    // Create index bubble
+    gbVertPoolMgr* vpm = *(gbVertPoolMgr**)((char*)m_pGfxManager + 196);
+    *((int*)((char*)m_sections + 144)) = (int)vpm->NewIndexBubble((gbPrimType)3, pos);
+
+    // Copy indices into the index bubble
+    gbIndexBubble* ib = *(gbIndexBubble**)((char*)m_sections + 144);
+    memcpy(ib->Lock32(), indices, 2 * pos);
+    ib->Unlock();
+
+    // Set index range
+    int ibPtr = *((int*)((char*)m_sections + 144));
+    *(int*)(ibPtr + 32) = w * h - 1;
+    *(int*)(ibPtr + 28) = 0;
+
+    operator delete(indices);
+}
+
+// ============================================================================
+// gbWaterMesh::LoadTerrainFromFile (0x10013CE0, 266B)
+// Loads terrain data from a gbVFile
+// ============================================================================
+int gbWaterMesh::LoadTerrainFromFile(gbVFile* file, int unused) {
+    char header[12];
+    float tempFloat;
+
+    // Read 12-byte header (unused)
+    g_pVFileSys->Read(header, 0xCu, file);
+
+    // Read terrain data block (0x594 bytes starting at offset +120)
+    g_pVFileSys->Read((void*)((int)this + 120), 0x594u, file);
+
+    // Allocate heightfield buffer (2 floats per vertex: height + velocity)
+    m_pHeightfield = (float*)malloc(8 * m_height * m_width);
+
+    // Initialize heightfield to zero
+    int total = m_height * m_width;
+    int i = 0;
+    if (total > 0) {
+        do {
+            i++;
+            m_pHeightfield[2 * i - 2] = 0.0f;
+            m_pHeightfield[2 * i - 1] = 0.0f;
+        } while (i < m_height * m_width);
+    }
+
+    // Initialize lookup table
+    InitSinCosLookupTable(m_scaleX, 1092616192);
+
+    // Initialize graphics resources
+    InitializeGraphics();
+
+    // Compute bounding box
+    float halfX = m_scaleX * -0.5f;
+    float halfZ = m_scaleZ * -0.5f;
+    *(int*)((int)this + 92) = 0;  // aabb.vMin.y = 0
+    tempFloat = halfZ;
+    *(float*)((int)this + 88) = halfX;       // aabb.vMin.x
+    *(float*)((int)this + 96) = tempFloat;   // aabb.vMin.z
+
+    float halfX2 = m_scaleX * 0.5f;
+    float halfZ2 = m_scaleZ * 0.5f;
+    *(int*)((int)this + 104) = 1036831949;   // aabb.vMax.y = ~0.3f (hex float)
+    tempFloat = halfZ2;
+    *(float*)((int)this + 100) = halfX2;     // aabb.vMax.x
+    *(float*)((int)this + 108) = tempFloat;  // aabb.vMax.z
+
+    return 1;
+}
+
+// ============================================================================
+// gbWaterMesh::SimulateWaterHeightfield (0x10013DF0, 305B)
+// Simulates water wave propagation using finite differences
+// ============================================================================
+int gbWaterMesh::SimulateWaterHeightfield() {
+    int w = m_width;
+    int h = m_height;
+    double totalHeight = 0.0;
+    int prevRow = w * (h - 1);
+    int curRowStart = 0;
+    int nextRowStart = w;
+
+    do {
+        int prev = w - 1;
+        int cur = 0;
+        int next = 1;
+
+        do {
+            float* hf = m_pHeightfield;
+
+            // Average 4 direct neighbors (weight 1/6)
+            float directAvg = (hf[2 * (cur + nextRowStart)]
+                + hf[2 * (next + curRowStart)]
+                + hf[2 * (prev + curRowStart)]
+                + hf[2 * (cur + prevRow)])
+                * 0.16666667f;
+
+            // Average 4 diagonal neighbors (weight 1/12)
+            float diagAvg = hf[2 * (next + nextRowStart)]
+                + hf[2 * (prev + nextRowStart)]
+                + hf[2 * (next + prevRow)]
+                + hf[2 * (prevRow + prev)];
+
+            float* pVertex = &hf[2 * (cur + curRowStart)];
+            float avg = directAvg + diagAvg * 0.083333336f;
+
+            // Damping
+            if (pVertex[1] > 0.000099999997f || pVertex[1] < -0.000099999997f)
+                pVertex[1] = pVertex[1] * 0.99000001f;
+
+            w = m_width;
+
+            // Velocity update: v += (avg - height) * 0.25
+            float newVelocity = (avg - *pVertex) * 0.25f + pVertex[1];
+            pVertex[1] = newVelocity;
+
+            // Height update: h += v
+            float newHeight = newVelocity + *pVertex;
+            prev = cur;
+            cur = next;
+            totalHeight = totalHeight + (double)newHeight;
+            next = (next + 1) % m_width;
+        } while (cur);
+
+        prevRow = curRowStart;
+        curRowStart = nextRowStart;
+        nextRowStart = (nextRowStart + m_width) % (m_width * h);
+    } while (nextRowStart != 0);
+
+    m_meanHeight = (float)(totalHeight / (double)(m_width * h));
+    return (nextRowStart + m_width) / (m_width * h);
+}
+
+// ============================================================================
+// gbWaterMesh::RenderTerrain (0x10013F30, 1200B)
+// Main water surface rendering - transforms and fills dynamic vertex buffer
+// ============================================================================
+void gbWaterMesh::RenderTerrain(int a2, int a3) {
+    // Periodically disturb the water surface
+    if (!(g_WaterRenderCounter % 4000000))
+        ComputeVertexNormal(m_width / 2, m_height / 2);
+    g_WaterRenderCounter++;
+
+    // Simulate water physics
+    SimulateWaterHeightfield();
+
+    // Get dynamic vertex buffer (FVF 0x13 = XYZ|NORMAL|TEX1 → stride 32)
+    gbVertPoolMgr* vpm = *(gbVertPoolMgr**)((char*)m_pGfxManager + 196);
+    gbDynVertBuf* dvb = vpm->GetDynVertBuf(0x13u);
+
+    // Push world matrix stack
+    gbMatrixStack* matStack = *(gbMatrixStack**)((char*)m_pGfxManager + 224);
+    matStack->Push();
+
+    // Get view matrix, zero translation, invert
+    gbMatrix4 invView;
+    gbMatrixStack* viewStack = *(gbMatrixStack**)((char*)m_pGfxManager + 216);
+    memcpy(&invView, viewStack->GetTop(), sizeof(gbMatrix4));
+    memset(invView.m[3], 0, 12);
+    invView.Invert();
+    matStack->LoadMatrix(&invView);
+
+    int w = m_width;
+    int h = m_height;
+    int totalVerts = w * h;
+
+    // Lock vertex buffer via virtual call (slot 3, offset 12 in vtable)
+    typedef float* (__cdecl *LockFn)(gbDynVertBuf*, int);
+    float* pVerts = ((LockFn)(*(int*)(*(int*)dvb + 12)))(dvb, totalVerts);
+
+    int curRowStart = w;
+    int prevRow = w * (h - 1);
+    float zPos = m_originZ;
+    float stepSize = m_scaleX / (float)(w - 1);
+    float texScaleX = m_texScaleX / m_scaleX;
+    float texScaleZ = m_texScaleZ / m_scaleZ;
+
+    gbVec3D normal;
+    gbVec3D viewDir;
+    memset(&normal, 0, sizeof(normal));
+    memset(&viewDir, 0, sizeof(viewDir));
+
+    int nextRowStart = 0;
+    int v8 = 0;
+    int v9 = prevRow;
+    int v40 = w;
+
+    do {
+        float xPos = m_originX;
+        int prevColI = w - 1;
+        int nextColI = 1;
+        float zSq = zPos * zPos;
+
+        while (1) {
+            float* hf = m_pHeightfield;
+            int curVertIdx = prevColI + nextRowStart;
+
+            // Compute surface height (velocity + height)
+            float height = hf[2 * curVertIdx + 1] + hf[2 * curVertIdx];
+            hf[2 * curVertIdx] = height;  // update stored height
+            float surfaceH = height - m_meanHeight;
+
+            // Compute approximate normal from neighbors
+            int nextIdx = nextColI + v40;
+            float* hfData = m_pHeightfield;
+            normal.x = hfData[2 * (v9 + prevColI)] - hfData[2 * nextIdx];
+            normal.z = normal.x;
+            normal.z += hfData[2 * (prevColI + prevRow)] - hfData[2 * (prevColI + v40)] + normal.z;
+            float crossTerm = hfData[2 * (nextColI + prevRow)] - hfData[2 * (prevColI + v40)];
+            normal.x = normal.x - crossTerm;
+            normal.z = normal.z + crossTerm;
+            float sideTerm = hfData[2 * (v8 + prevColI)] - hfData[2 * (nextColI + v8)];
+            normal.y = 1.0f;
+            normal.x = sideTerm + normal.x;
+            normal.Normalize();
+
+            // Compute view direction
+            viewDir.z = -zPos;
+            viewDir.x = -xPos;
+            viewDir.y = 1000.0f - surfaceH;
+            viewDir.Normalize();
+
+            // Dot product for refraction lookup
+            float dotVal = viewDir.y * normal.y + viewDir.z * normal.z + viewDir.x * normal.x;
+            int lookupIdx = (int)(dotVal * -255.0f);
+            float* lookupEntry = m_pLookupTable + (-lookupIdx * 3);
+
+            // Write vertex position
+            pVerts[0] = xPos;
+            pVerts[1] = surfaceH;
+            pVerts[2] = zPos;
+
+            // Write normal
+            pVerts[3] = normal.x;
+            pVerts[4] = normal.y;
+            pVerts[5] = normal.z;
+
+            // Compute reflected direction
+            float reflX = lookupEntry[0] * normal.x;
+            float reflY = lookupEntry[0] * normal.y;
+            float rx = reflX + viewDir.x;
+            float ry = viewDir.y + reflY;
+            float refractFactor = lookupEntry[1];
+            float rfx = rx * refractFactor;
+            float rfy = ry * refractFactor;
+            float rfz = (lookupEntry[0] * normal.z + viewDir.z) * refractFactor;
+
+            // Check if point is within refraction sphere
+            float dy = surfaceH - 2000.0f;
+            float distSq = dy * dy + xPos * xPos + zSq - 12250000.0f;
+
+            if (distSq >= 0.0f) {
+                // Simple UV mapping
+                pVerts[6] = (xPos - m_originX) * texScaleX;
+                pVerts[7] = (zPos - m_originZ) * texScaleZ;
+            } else {
+                // Refraction UV mapping
+                float projDot = dy * rfy + rfx * xPos + rfz * zPos;
+                float discriminant = (float)sqrt((double)((projDot + projDot) * (projDot + projDot) - distSq * 4.0f));
+                float t = (discriminant - (projDot + projDot)) * 0.5f;
+                pVerts[6] = (rfx * t + xPos - m_originX) * texScaleX;
+                pVerts[7] = (rfz * t + zPos - m_originZ) * texScaleZ;
+            }
+
+            // Advance to next column
+            prevColI = nextColI - 1;
+            int nextNext = (nextColI + 1) % w;
+            xPos = xPos + stepSize;
+            pVerts += 8;  // stride = 32 bytes = 8 floats
+            nextColI = nextNext;
+
+            if (nextNext == 0)
+                break;
+
+            v9 = prevRow;
+            v8 = v8;
+        }
+
+        // Advance to next row (circular)
+        nextRowStart = v40;
+        prevRow = v8;
+        zPos = zPos + stepSize;
+        v8 = v40;
+        prevRow = nextRowStart;
+        v40 = (v40 + w) % totalVerts;
+    } while (v40 != 0);
+
+    // Draw the water surface via DynVertBuf virtual call (slot 4, offset 16)
+    typedef void (__cdecl *DrawFn)(gbDynVertBuf*, int, int, int);
+    ((DrawFn)(*(int*)(*(int*)dvb + 16)))(
+        dvb,
+        *((int*)((char*)m_sections + 144)),   // index bubble
+        *(int*)(a3 + 12),                     // render effect
+        (int)((char*)m_sections + 8));        // texture array
+
+    // Pop matrix stack
+    matStack->Pop();
+}
+
+// ============================================================================
+// gbWaterMesh::ComputeVertexNormal (0x100143E0, 441B)
+// Disturbs the water heightfield at a given point (ripple effect)
+// ============================================================================
+void gbWaterMesh::ComputeVertexNormal(int x, int y) {
+    if (x < 0)
+        return;
+    if (x >= m_width || y < 0 || y >= m_height)
+        return;
+
+    // Perturb center vertex
+    *(float*)((int)this + 124) = 1045220557;  // set some param (float ~0.03)
+    m_pHeightfield[2 * (x + y * m_width) + 1] -= 0.050000001f;
+
+    // Perturb 4 direct neighbors
+    if (x > 0)
+        m_pHeightfield[2 * (x + y * m_width) - 1] -= 0.025f;
+
+    if (x < m_width - 1)
+        m_pHeightfield[2 * (x + y * m_width) + 3] -= 0.025f;
+
+    if (y > 0) {
+        int idx = x + m_width * (y - 1);
+        m_pHeightfield[2 * idx + 1] -= 0.025f;
+    }
+
+    if (y < m_height - 1) {
+        int idx = x + m_width * (y + 1);
+        m_pHeightfield[2 * idx + 1] -= 0.025f;
+    }
+
+    // Perturb 4 diagonal neighbors
+    if (x > 0 && y > 0) {
+        int idx = x + m_width * (y - 1);
+        m_pHeightfield[2 * idx - 1] -= 0.0125f;
+    }
+
+    if (x < m_width - 1 && y < m_height - 1)
+        m_pHeightfield[2 * (x + m_width * (y + 1)) + 3] -= 0.0125f;
+
+    if (x > 0 && y < m_height - 1) {
+        int idx = x + m_width * (y + 1);
+        m_pHeightfield[2 * idx - 1] -= 0.0125f;
+    }
+
+    if (x < m_width - 1 && y > 0) {
+        int idx = x + m_width * (y - 1);
+        m_pHeightfield[2 * idx + 3] -= 0.0125f;
+    }
+}
+
+// ============================================================================
+// gbOctree::InitQuadtreeStats (0x10013880, 23B)
+// Zeroes 6 statistic counters
+// ============================================================================
+void gbOctree::InitQuadtreeStats() {
+    stats[0] = 0;
+    stats[1] = 0;
+    stats[2] = 0;
+    stats[3] = 0;
+    stats[4] = 0;
+    stats[5] = 0;
+}
+
+// ============================================================================
+// gbOctree::Init (0x100145A0, 161B)
+// Initializes the octree with center, half-size, and max depth
+// ============================================================================
+void gbOctree::Init(int depth, int maxNodes, float* center, float size) {
+    centerX = 0.0f;
+    centerY = 0.0f;
+    centerZ = 0.0f;
+    *(float*)&nodePool.pBuffer = 0.0f;  // zero the chain at float offset 6
+    *(float*)&nodePool.pIterator = 0.0f;   // float offset 9
+    *(float*)&nodePool.pUsedHead = 0.0f;   // float offset 8
+    *(float*)&nodePool.pFreeHead = 0.0f;   // float offset 7
+
+    maxDepth = depth;
+    centerX = center[0];
+    centerY = center[1];
+    centerZ = center[2];
+    halfSize = *(float*)&size;
+
+    nodePool.InitBuffer(maxNodes, 68);
+
+    float hs = halfSize;
+    gbStaticChainNode* rootNode = nodePool.NewOneNode();
+    gbOctreeNode* root = (gbOctreeNode*)rootNode;
+    root->centerX = centerX;
+    root->centerY = centerY;
+    root->centerZ = centerZ;
+    root->halfSize = hs;
+    root->halfHalfSize = hs * 0.5f;
+    root->depth = 0;
+    root->objectListHead = NULL;
+    memset(root->children, 0, 0x20u);
+    pRoot = root;
+}
+
+// ============================================================================
+// gbOctree::TraverseQuadtree (0x10014660, 362B)
+// Traverses the octree to find/create the leaf node for a given bounding sphere
+// ============================================================================
+gbOctreeNode* gbOctree::TraverseQuadtree(float* bounds, gbOctreeNode* node) {
+    gbOctreeNode* cur = node;
+
+    while (cur->depth < maxDepth) {
+        // If object's bounding radius > quarter of node size, stop here
+        if (cur->halfSize * 0.25f <= bounds[0])
+            break;
+
+        // Determine which octant the center falls in
+        float dy = bounds[1] - cur->centerX;
+        int octant = (dy > 0.0f) ? 1 : 0;
+
+        float dz = bounds[2] - cur->centerY;
+        if (dz > 0.0f)
+            octant |= 2;
+
+        float dw = bounds[3] - cur->centerZ;
+        if (dw > 0.0f)
+            octant |= 4;
+
+        // Create child node if it doesn't exist
+        if (!cur->children[octant]) {
+            float childHalfSize = cur->halfSize * 0.5f;
+            float cx, cy, cz;
+
+            cx = cur->centerX;
+            if (octant & 1)
+                cx = cx + childHalfSize;
+            else
+                cx = cx - childHalfSize;
+
+            cy = cur->centerY;
+            if (octant & 2)
+                cy = cy + childHalfSize;
+            else
+                cy = cy - childHalfSize;
+
+            cz = cur->centerZ;
+            if (octant & 4)
+                cz = cz + childHalfSize;
+            else
+                cz = cz - childHalfSize;
+
+            int childDepth = cur->depth + 1;
+            gbStaticChainNode* newNode = nodePool.NewOneNode();
+            gbOctreeNode* child = (gbOctreeNode*)newNode;
+            child->centerX = cx;
+            child->centerY = cy;
+            child->centerZ = cz;
+            child->halfSize = childHalfSize;
+            child->halfHalfSize = childHalfSize * 0.5f;
+            child->depth = childDepth;
+            child->objectListHead = NULL;
+            memset(child->children, 0, 0x20u);
+            cur->children[octant] = child;
+        }
+
+        cur = cur->children[octant];
+    }
+
+    return cur;
+}
+
+// ============================================================================
+// gbOctree::AttachNodeToOctree (0x100147D0, 154B)
+// Attaches a scene node to the octree by computing its bounding sphere
+// and traversing to the appropriate octree node
+// ============================================================================
+void gbOctree::AttachNodeToOctree(int* pNode) {
+    float bounds[4];
+
+    memset(&bounds[1], 0, 12);
+    // Call GetBoundSphere virtual method (vtable slot at offset 28)
+    typedef void (__cdecl *GetBoundFn)(int*, float*);
+    ((GetBoundFn)(*(int*)(*(int*)pNode + 28)))(pNode, bounds);
+
+    if (bounds[0] > 0.0f) {
+        // Find the appropriate octree node
+        gbOctreeNode* octNode = TraverseQuadtree(bounds, pRoot);
+
+        // Store octree node reference in scene node
+        pNode[17] = (int)octNode;
+        pNode[19] = 0;
+        pNode[18] = 0;
+
+        // Insert into octree node's object linked list (head insertion)
+        int head = (int)octNode->objectListHead;
+        if (head) {
+            pNode[19] = head;
+            *(int*)(head + 72) = (int)pNode;  // prev of old head = new node
+        }
+        octNode->objectListHead = (void*)pNode;
+    }
+
+    // Recursively attach all children
+    int child = pNode[3];  // first child (gbNBTreeNode::children.pHead)
+    pNode[6] = child;      // store as iterator
+    while (child) {
+        AttachNodeToOctree((int*)child);
+        child = *(int*)(pNode[6] + 4);  // pNext
+        pNode[6] = child;
+    }
+}
+
+// ============================================================================
+// gbOctree::DetachNodeRecursive (0x10014870, 109B)
+// Recursively detaches a scene node and all children from the octree
+// ============================================================================
+void gbOctree::DetachNodeRecursive(int* pNode) {
+    // Recursively detach all children first
+    int child = pNode[3];  // first child
+    pNode[6] = child;
+    while (child) {
+        DetachNodeRecursive((int*)child);
+        child = *(int*)(pNode[6] + 4);  // pNext
+        pNode[6] = child;
+    }
+
+    // Detach this node from its octree node
+    int octNode = pNode[17];  // octree node reference (byte 68)
+    if (octNode) {
+        int prev = pNode[18];  // prev in linked list (byte 72)
+        if (prev)
+            *(int*)(prev + 76) = pNode[19];  // prev->next = our next
+
+        int next = pNode[19];  // next in linked list (byte 76)
+        if (next)
+            *(int*)(next + 72) = pNode[18];  // next->prev = our prev
+
+        // If we are the head of the octree node's list, update it
+        if (pNode == *(int**)(octNode + 64))
+            *(int*)(octNode + 64) = pNode[19];
+
+        pNode[17] = 0;
+        pNode[19] = 0;
+        pNode[18] = 0;
+    }
 }
 
 BOOL WINAPI DllMain(HINSTANCE hinstDLL, DWORD fdwReason, LPVOID lpvReserved) {

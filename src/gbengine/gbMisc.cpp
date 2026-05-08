@@ -5,6 +5,7 @@
 
 #include "gbengine/gbMisc.h"
 #include "gbengine/gbTexture.h"
+#include "gbengine/gbVFileSystem.h"
 #include <stdio.h>
 #include <string.h>
 #include <stdarg.h>
@@ -1388,3 +1389,85 @@ float gbRandFloat(float minVal, float maxVal) {
     return (maxVal - minVal) * (float)randVal * (1.0f / 32768.0f) + minVal;
 }
 
+
+// ======== gbSpline ========
+
+// gbSpline structure
+// Layout: pPoints(4) + pDistances(4) + numPoints(4) + matrix(64) = 76 bytes
+struct gbSpline {
+    gbVec3D* pPoints;      // +0x00: array of control points
+    float* pDistances;     // +0x04: array of segment lengths (numPoints-1 entries)
+    int numPoints;         // +0x08: number of control points
+    gbMatrix4 matrix;      // +0x0C: transformation matrix
+};
+
+// 0x10029AB0 (36B)
+void gbSpline_Constructor(gbSpline* spline) {
+    spline->pPoints = NULL;
+    spline->pDistances = NULL;
+    spline->numPoints = 0;
+    spline->matrix.LoadIdentity();
+}
+
+// 0x10029B20 (452B)
+int gbSpline_LoadFromFile(gbSpline* spline, const char* filename) {
+    gbVec3D tempVec;
+    tempVec.x = 0.0f;
+    tempVec.y = 0.0f;
+    tempVec.z = 0.0f;
+
+    char magic[4];
+    magic[3] = 0;
+
+    gbVFile* file = g_pVFileSys->OpenFile(filename, 0x201);
+    if (!file)
+        return 0;
+
+    g_pVFileSys->Read(magic, 4, file);
+    if (strcmp(magic, "CSF") != 0) {
+        g_pVFileSys->CloseFile(file);
+        return 0;
+    }
+
+    int dummy;
+    g_pVFileSys->Read(&dummy, 4, file);
+    g_pVFileSys->Read(&spline->numPoints, 4, file);
+
+    if (spline->pPoints)
+        delete[] (char*)spline->pPoints;
+
+    int numPts = spline->numPoints;
+    gbVec3D* points = (gbVec3D*)operator new(12 * numPts);
+    if (points) {
+        for (int i = 0; i < numPts; i++) {
+            points[i].x = 0.0f;
+            points[i].y = 0.0f;
+            points[i].z = 0.0f;
+        }
+    }
+
+    spline->pPoints = points;
+    g_pVFileSys->Read(points, 12 * spline->numPoints, file);
+    g_pVFileSys->CloseFile(file);
+
+    if (spline->pDistances)
+        delete[] (char*)spline->pDistances;
+
+    float* dists = (float*)operator new(4 * (spline->numPoints - 1));
+    spline->pDistances = dists;
+
+    int count = spline->numPoints - 1;
+    if (count > 0) {
+        for (int i = 0; i < count; i++) {
+            gbVec3D* pts = spline->pPoints;
+            gbVec3D diff;
+            diff.x = pts[i + 1].x - pts[i].x;
+            diff.y = pts[i + 1].y - pts[i].y;
+            diff.z = pts[i + 1].z - pts[i].z;
+            dists[i] = diff.Length();
+        }
+    }
+
+    spline->matrix.LoadIdentity();
+    return 1;
+}

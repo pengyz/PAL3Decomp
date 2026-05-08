@@ -22,10 +22,26 @@ float* gbDynVertBuf::Lock(int numVerts) {
     return m_pXYZ;
 }
 
+// 0x1001C540 (16B) - Unlock vertex buffer (D3D mode only)
 void gbDynVertBuf::Unlock() {
+    if (m_field04 != 2) {
+        ((IDirect3DVertexBuffer9*)m_vertexBuffer)->Unlock();
+    }
 }
 
 void gbDynVertBuf::Draw(int primType, gbRenderEffect* effect, gbTextureArray* textures) {
+}
+
+// ConvertPrimitiveType - 0x1001C550 (53B)
+static int ConvertPrimitiveType(int primType) {
+    switch (primType) {
+    case 1: return 4;  // -> D3DPT_TRIANGLELIST
+    case 2: return 6;  // -> D3DPT_TRIANGLEFAN
+    case 3: return 5;  // -> D3DPT_TRIANGLESTRIP
+    case 4: return 2;  // -> D3DPT_LINELIST
+    case 5: return 3;  // -> D3DPT_LINESTRIP
+    default: return 1; // -> D3DPT_POINTLIST
+    }
 }
 
 void gbDynVertBuf::RenderGeomQuad(gbGeomQuad* quads, int numQuads,

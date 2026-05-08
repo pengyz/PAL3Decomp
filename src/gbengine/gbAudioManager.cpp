@@ -184,6 +184,23 @@ int gbSoundData::Load(char* filename) {
     return 1;
 }
 
+// ======== gbSoundResource ========
+// A sound resource that inherits from gbResource.
+// Layout: gbResource(0x18) + pSoundData(4) = 0x1C
+class gbSoundResource : public gbResource {
+public:
+    void* pSoundData;    // +0x18: loaded sound data (freed with AIL_mem_free_lock)
+
+    virtual ~gbSoundResource();
+};
+
+// 0x10001F00 (32B)
+gbSoundResource::~gbSoundResource() {
+    if (pSoundData) {
+        AIL_mem_free_lock(pSoundData);
+    }
+}
+
 // Helper: find sound resource by name in the embedded resource manager
 static gbSoundData* FindSoundByName(gbResManagerStub* mgr, const char* name) {
     if (name == NULL || mgr->count == 0) {

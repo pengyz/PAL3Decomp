@@ -11,6 +11,8 @@
 #include <stdlib.h>
 #include <stdio.h>
 
+// Static globals
+static int g_nImageTotal = 0;
 // External globals
 extern gbVFileSystem* g_pVFileSys;
 
@@ -967,4 +969,9 @@ int gbImage2D::WriteJpegToBuffer(unsigned char* buffer, int bufSize) {
     int written = g_jpegProps.JPGSizeBytes;
     ijlFree(&g_jpegProps);
     return written;
+}
+
+// GlobalImageInit - 0x1001E3D0 (11B)
+void GlobalImageInit() {
+    g_nImageTotal = 0;
 }
