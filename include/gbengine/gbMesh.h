@@ -281,26 +281,25 @@ public:
     static void SetMeshTexDir(char* dir);
 
 protected:
-    // Layout verified via IDA Hex-Rays (2026-05-06)
-    // gbBaseMesh inherits gbResource (vtable + refCount + name + crc + links)
-    int m_refCount;                 // +0x04: reference count (init 1)
-    char* m_resName;                // +0x08: resource name (malloc'd, from gbResource)
-    unsigned int m_resCrc;          // +0x0C: CRC32 of name (from gbResource)
-    void* m_resPrev;                // +0x10: resource list link (from gbResource)
-    void* m_resNext;                // +0x14: resource list link (from gbResource)
-    unsigned int m_fvf;             // +0x18: FVF flags (gbStaticMesh zeros this)
-    char m_objectName[16];          // +0x1C: fixed object name (GetObjectName)
-    void* m_field2C;                // +0x2C
-    void* m_field30;                // +0x30
-    void* m_field34;                // +0x34
-    void* m_field38;                // +0x38
-    int m_flags;                    // +0x3C: mesh flags (bit 2 = alpha test)
+    // Layout from PAL3A.PDB: gbRefObject(0x08) → gbResource(0x18) → gbBaseMesh(0x78)
+    // gbRefObject fields:
+    int m_refCount;                 // +0x04: reference count (RefCount)
+    // gbResource fields:
+    char* m_resName;                // +0x08: resource name (pName)
+    unsigned int m_resCrc;          // +0x0C: CRC32 of name (NameCrc32)
+    int m_isLoaded;                 // +0x10: loaded flag (IsLoaded)
+    void* m_pResMgr;               // +0x14: resource manager (pMgr)
+    // gbBaseMesh fields:
+    gbMeshType m_meshType;          // +0x18: mesh type enum (Type)
+    char m_objectName[32];          // +0x1C: object name (ObjName, 32 bytes)
+    unsigned int m_vertFVF;         // +0x3C: vertex FVF format (VertFVF)
     gbMeshSection* m_sections;      // +0x40: section array (stride 0xBC)
     int m_numSections;              // +0x44: number of sections
     gbMeshMemCache m_memCache;      // +0x48: vertex/index data cache (16 bytes)
     gbAABBox m_aabb;                // +0x58: axis-aligned bounding box (24 bytes)
     float m_currentTime;            // +0x70: current animation time
     gbGfxManager* m_pGfxManager;    // +0x74: graphics manager pointer
+    // total gbBaseMesh = 0x78
 
     // Static members
     static int Effect_RefCount;
@@ -337,6 +336,41 @@ private:
     gbVertexBubble* m_pVertBubble;
     void* m_shadowVolumeVB;
     void* m_shadowVolumeIB;
+};
+
+
+/* ======== gbMesh (animated mesh) ======== */
+// sizeof = 0x8C (140 bytes), allocated by gbGfxManager::NewMesh(name, MESH_SKINNED)
+// Constructor: 0x10011B40, Destructor: 0x10011B90
+
+struct gbMeshLODKey {
+    void* pKeyData;             // +0x00: LOD keyframe data pointer (72 bytes per key)
+    int numKeys;                // +0x04: number of keyframes
+};
+
+class gbMesh : public gbBaseMesh {
+public:
+    gbMesh(gbGfxManager* gfxMgr);
+    gbMesh(const gbMesh& other);
+    virtual ~gbMesh();
+
+    gbMesh& operator=(const gbMesh& other);
+
+    // Virtual methods
+    virtual void DrawSubSet(int index, gbRenderInfoObj* renderInfo);
+    virtual void ComputeShadowVolume();
+    virtual void RenderShadowVolume(gbVisNode* visNode, gbRenderInfoObj* renderInfo);
+
+    // Loading
+    int LoadFromFile(gbVFile1* file, float quality);
+
+private:
+    int m_field78;                      // +0x78: unknown (unused in LoadFromFile)
+    gbVertexBubble** m_pVertBubbles;    // +0x7C: per-frame vertex bubble array
+    float* m_pFrameTimes;               // +0x80: frame timestamp array
+    int m_numVertFrames;                // +0x84: number of vertex animation frames
+    gbMeshLODKey* m_pLODKeys;           // +0x88: per-section LOD key data
+    // total = 0x8C
 };
 
 

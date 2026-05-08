@@ -222,9 +222,10 @@ public:
     int m_bPtrArray;      // +0x00: 0=value array, 1=pointer array
     void* m_pData;        // +0x04: data buffer
     int m_BytesPerEntry;  // +0x08: element size in bytes
-    int m_NumEntries;     // +0x0C: current count
+    unsigned int m_NumEntries;     // +0x0C: current count
     int m_MaxEntries;     // +0x10: capacity
 
+    ~CArrayList();                // 0x10016db0 (15B)
     void* GetPtr(int index);      // 0x10016eb0 (34B)
     int Add(void* pEntry);        // 0x10016dc0 (238B)
 };
@@ -238,6 +239,8 @@ struct D3DAdapterInfo {
     D3DADAPTER_IDENTIFIER9 adapterIdentifier;      // +0x004 (sizeof=0x44C)
     CArrayList* pDisplayModeList;                  // +0x450: value array, 0x10 bytes/entry (D3DDISPLAYMODE)
     CArrayList* pDeviceInfoList;                   // +0x454: pointer array
+
+    void Cleanup();     // 0x10016ee0 (281B): frees display mode and device info lists
 };
 
 // ============================================================================
@@ -260,22 +263,24 @@ struct D3DDeviceCombo {
     D3DDEVTYPE DevType;                            // +0x04
     D3DFORMAT AdapterFormat;                       // +0x08
     D3DFORMAT BackBufferFormat;                    // +0x0C
-    char bIsWindowed;                              // +0x10
+    unsigned char bIsWindowed;                      // +0x10
     char _pad11[3];                                // +0x11: alignment
     CArrayList* pDepthStencilFormatList;           // +0x14: value array, 4 bytes/entry (D3DFORMAT)
     CArrayList* pMultiSampleTypeList;              // +0x18: value array, 4 bytes/entry
     CArrayList* pMultiSampleQualityList;           // +0x1C: value array, 4 bytes/entry
     CArrayList* pConflictList;                     // +0x20: conflict pairs
-    CArrayList* pPresentIntervalList;              // +0x24: value array, 4 bytes/entry
-    CArrayList* pVertexProcessingTypeList;         // +0x28: value array, 4 bytes/entry
+    CArrayList* pVertexProcessingTypeList;         // +0x24: value array, 4 bytes/entry
+    CArrayList* pPresentIntervalList;              // +0x28: value array, 4 bytes/entry
+
+    void Cleanup();     // 0x10017000 (199B): frees all CArrayList members
 };
 
 // ============================================================================
 // CD3DEnumeration - D3D device enumeration manager (sizeof = 0x2C)
 // From DXSDK\Samples\C++\Common\Src\D3DEnumeration.cpp
 // ============================================================================
-typedef int (__cdecl *CONFIRMDEVICECALLBACK)(D3DCAPS9* pCaps, int vertexProcessingType,
-                                             D3DFORMAT adapterFormat, D3DFORMAT backBufferFormat);
+typedef unsigned char (__cdecl *CONFIRMDEVICECALLBACK)(D3DCAPS9* pCaps, int vertexProcessingType,
+                                                      D3DFORMAT adapterFormat, D3DFORMAT backBufferFormat);
 
 struct CD3DEnumeration {
     IDirect3D9* m_pD3D;                            // +0x00
@@ -293,7 +298,15 @@ struct CD3DEnumeration {
     unsigned char m_bRequireFullscreen;            // +0x27
     CArrayList* m_pAllowedAdapterFormatList;      // +0x28: value array, 4 bytes/entry (D3DFORMAT)
 
+    CD3DEnumeration();     // 0x100170d0 (57B)
+    void Cleanup();        // 0x10017110 (275B): frees all enumeration data
     int Enumerate(void);   // 0x100172f0 (1378B)
+    int BuildDeviceInfoList(D3DAdapterInfo* pAdapterInfo, CArrayList* pAdapterFormatList);  // 0x10017930
+    int EnumerateDeviceComboFormats(D3DDeviceInfo* pDeviceInfo, CArrayList* pAdapterFormatList);  // 0x10017bd0
+    void CheckDepthStencilFormats(D3DDeviceCombo* pCombo);   // 0x10017fe0
+    void CheckMultisampleTypes(D3DDeviceCombo* pCombo);      // 0x10018140
+    void CheckConflictPairs(D3DDeviceCombo* pCombo);         // 0x10018240
+    void CheckPresentIntervals(D3DDeviceInfo* pDeviceInfo, D3DDeviceCombo* pCombo);  // 0x10018310
 };
 
 // ============================================================================

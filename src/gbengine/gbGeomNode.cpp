@@ -498,7 +498,7 @@ void gbGeomNode::AttachSelf(gbRenderEffect* effect) {
             gbVisNode::pSceneGraph->CalEffectiveVolMod(renderObj, renderPos, sec->m_hasMultiTex);
 
             unsigned int flags = 1;
-            if (mesh->m_flags & 4)
+            if (mesh->m_vertFVF & 4)
                 flags = 1025;
             if (sec->m_hasMultiTex)
                 flags |= 2u;

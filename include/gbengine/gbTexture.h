@@ -135,6 +135,13 @@ public:
 
     // Exported: GetImgInfo
     gbImage2DInfo* GetImgInfo(void);
+
+    // Private loader methods (0x1001EAC0, 0x1001EB80, 0x1001ED50, 0x1001F0A0, 0x1001F410)
+    void ConvertPaletteToRGB24(void);
+    int LoadBMPFile(char* filename);
+    int LoadTGAFile(char* filename);
+    int LoadPCXFile(char* filename);
+    int LoadJPEGFile(char* filename);
 };
 
 

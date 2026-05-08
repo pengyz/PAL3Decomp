@@ -17,35 +17,36 @@ extern gbVFileSystem* g_pVFileSys;
 // Forward declarations
 void __cdecl gbScalePixelData(int mode, int bytesPerPixel, int srcW, int srcH, void* srcData, int dstW, int dstH, void* dstData);
 
-// IJL15.dll - Intel JPEG Library types
+// IJL15.dll - Intel JPEG Library types (sizeof = 0x4E68 = 20072)
 struct JPEG_CORE_PROPERTIES {
-    char reserved[12];
-    void* DIBBytes;
-    int DIBWidth;
-    int DIBHeight;
-    int DIBPadBytes;
-    int DIBChannels;
-    int DIBColor;
-    char reserved2[36];
-    char* JPGFile;
-    unsigned char* JPGBytes;
-    int JPGSizeBytes;
-    int JPGWidth;
-    int JPGHeight;
-    int JPGChannels;
-    int JPGColor;
-    int JPGSubsampling;
-    int jquality;
-    char reserved3[28096];
+    int reserved0;              // +0
+    void* DIBBytes;             // +4
+    int DIBWidth;               // +8
+    int DIBHeight;              // +12
+    int DIBPadBytes;            // +16
+    int DIBChannels;            // +20
+    int DIBColor;               // +24
+    int DIBSubsampling;         // +28
+    char* JPGFile;              // +32
+    unsigned char* JPGBytes;    // +36
+    int JPGSizeBytes;           // +40
+    int JPGWidth;               // +44
+    int JPGHeight;              // +48
+    int JPGChannels;            // +52
+    int JPGColor;               // +56
+    int JPGSubsampling;         // +60
+    char reserved1[16];         // +64
+    int jquality;               // +80
+    char reserved2[19988];      // +84
 };
 
 static JPEG_CORE_PROPERTIES g_jpegProps;
 
 extern "C" {
-    int ijlInit(void* jcprops);
-    int ijlRead(void* jcprops, int readtype);
-    int ijlWrite(void* jcprops, int writetype);
-    int ijlFree(void* jcprops);
+    int __stdcall ijlInit(void* jcprops);
+    int __stdcall ijlRead(void* jcprops, int readtype);
+    int __stdcall ijlWrite(void* jcprops, int writetype);
+    int __stdcall ijlFree(void* jcprops);
 }
 
 void gbImage2D::Release(void) {
@@ -163,310 +164,343 @@ unsigned char* gbImage2D::CreateImage(int w, int h, int bpp) {
     return (unsigned char*)pBits;
 }
 
-// Internal format-specific loaders
+// Internal format-specific loaders (member functions, __thiscall)
 
-// sub_1001ED50 (454B) - Load TGA file
-static int LoadTGA(gbImage2D* img, char* filename) {
+// 0x1001EAC0 (183B) - Expand paletted (8-bit indexed) image to 24-bit RGB
+void gbImage2D::ConvertPaletteToRGB24(void) {
+    if (pPalette) {
+        char* newBits = (char*)malloc(3 * Height * Width);
+        int i = 0;
+        char* savedBits = newBits;
+        if (Height * Width > 0) {
+            char* dst = newBits + 2;
+            do {
+                dst += 3;
+                unsigned int idx = *((unsigned char*)pBits + i++);
+                char* entry = (char*)pPalette + 4 * idx;
+                *(dst - 5) = *entry;
+                *(dst - 4) = entry[1];
+                *(dst - 3) = entry[2];
+            } while (i < Height * Width);
+        }
+        free(pBits);
+        pBits = savedBits;
+        free(pPalette);
+        pPalette = NULL;
+        BitCount = 24;
+    }
+}
+
+// 0x1001EB80 (460B) - Load BMP file
+int gbImage2D::LoadBMPFile(char* filename) {
+    int result;
+    gbVFile* vf = g_pVFileSys->OpenFile(filename, 0x201u);
+    if (!vf)
+        return 0;
+
+    g_pVFileSys->Seek(vf, 0, 3);
+    char* fileSize = (char*)g_pVFileSys->TellPos(vf);
+    g_pVFileSys->Seek(vf, 0, 1);
+
+    result = (int)malloc(0x0E);
+    int fileHdr = result;
+    void* Block = (void*)result;
+    if (!result)
+        return result;
+
+    g_pVFileSys->Read((void*)result, 0x0E, vf);
+    int pixelOffset = *(int*)(fileHdr + 10);
+
+    result = (int)malloc(pixelOffset - 14);
+    int infoHdr = result;
+    if (!result)
+        return result;
+
+    g_pVFileSys->Read((void*)result, pixelOffset - 14, vf);
+
+    result = (int)malloc((size_t)&fileSize[-pixelOffset]);
+    pBits = (char*)result;
+    if (!result)
+        return result;
+
+    g_pVFileSys->Read((void*)result, (size_t)&fileSize[-pixelOffset], vf);
+    Width = *(int*)(infoHdr + 4);
+    Height = *(int*)(infoHdr + 8);
+    int bpp = *(unsigned short*)(infoHdr + 14);
+    BitCount = bpp;
+
+    if (bpp == 1 || bpp == 2 || bpp == 4 || bpp == 8) {
+        numPalEntry = 1 << bpp;
+        result = (int)malloc(4 * (1 << bpp));
+        pPalette = (gbColorQuad*)result;
+        if (!result)
+            return result;
+
+        int i = 0;
+        if (numPalEntry > 0) {
+            int palSrc = infoHdr + 41;
+            do {
+                unsigned char b = *(unsigned char*)(palSrc - 1);
+                palSrc += 4;
+                *((unsigned char*)pPalette + 4 * i) = b;
+                *((unsigned char*)pPalette + 4 * i + 1) = *(unsigned char*)(palSrc - 4);
+                *((unsigned char*)pPalette + 4 * i + 2) = *(unsigned char*)(palSrc - 3);
+                *((unsigned char*)pPalette + 4 * i++ + 3) = 0xFF;
+            } while (i < numPalEntry);
+        }
+    }
+
+    free(Block);
+    free((void*)infoHdr);
+    g_pVFileSys->CloseFile(vf);
+    return 1;
+}
+
+// 0x1001ED50 (545B) - Load TGA file
+int gbImage2D::LoadTGAFile(char* filename) {
     gbVFile* vf = g_pVFileSys->OpenFile(filename, 0x201u);
     if (!vf)
         return 0;
 
     // Read 18-byte TGA header
     unsigned char header[18];
-    g_pVFileSys->Read(header, 18, vf);
+    g_pVFileSys->Read(header, 0x12, vf);
 
     unsigned char idLength = header[0];
     unsigned char colorMapType = header[1];
-    // header[2] = image type (unused explicitly)
-    // Color map spec: header[3..7]
+    unsigned short colorMapLength = *(unsigned short*)&header[3];
     unsigned char colorMapEntrySize = header[7];
-
-    short width = *(short*)&header[12];
-    short height = *(short*)&header[14];
+    unsigned short width = *(unsigned short*)&header[12];
+    unsigned short height = *(unsigned short*)&header[14];
     unsigned char bitCount = header[16];
     unsigned char descriptor = header[17];
 
-    // Skip ID field if present
-    if (idLength != 0) {
-        g_pVFileSys->Seek(vf, idLength, GBVFS_SEEK_CUR);
-    }
+    if (idLength)
+        g_pVFileSys->Seek(vf, idLength, 2);
 
-    img->Width = width;
-    img->Height = height;
-    img->BitCount = bitCount;
+    int bytesPerPixel = bitCount >> 3;
+    int bytesPerRow = height * bytesPerPixel;
+    Width = width;
+    int totalSize = width * bytesPerRow;
+    Height = height;
+    BitCount = bitCount;
 
-    // Read color map (palette) if present
-    if (colorMapType != 0) {
-        short numEntries = *(short*)&header[5];
-        img->numPalEntry = numEntries;
-        img->pPalette = (gbColorQuad*)malloc(numEntries * sizeof(gbColorQuad));
-        for (int i = 0; i < numEntries; i++) {
-            unsigned char entry[4];
-            int entryBytes = colorMapEntrySize / 8;
-            g_pVFileSys->Read(entry, entryBytes, vf);
-            img->pPalette[i].b = entry[0];
-            img->pPalette[i].g = entry[1];
-            img->pPalette[i].r = entry[2];
-            img->pPalette[i].a = 0xFF;
+    if (colorMapType) {
+        if (colorMapEntrySize != 24)
+            return 0;
+
+        numPalEntry = colorMapLength;
+        pPalette = (gbColorQuad*)malloc(4 * colorMapLength);
+        if (!pPalette)
+            return 0;
+
+        int i = 0;
+        if (numPalEntry > 0) {
+            do {
+                int off = 4 * i;
+                g_pVFileSys->Read((void*)((char*)pPalette + off), 3u, vf);
+                ((unsigned char*)pPalette)[off + 3] = 0xFF;
+                i++;
+            } while (i < numPalEntry);
         }
     }
 
-    // Allocate pixel buffer
-    int bytesPerPixel = bitCount / 8;
-    int bytesPerRow = bytesPerPixel * width;
-    img->pBits = (char*)malloc(bytesPerRow * height);
+    pBits = (char*)malloc(totalSize);
+    if (!pBits)
+        return 0;
 
-    // Read pixel data
-    if (descriptor & 0x20) {
-        // Top-to-bottom: read all at once
-        g_pVFileSys->Read(img->pBits, bytesPerRow * height, vf);
-    } else {
-        // Bottom-to-top: read row by row from last row
-        for (int y = height - 1; y >= 0; y--) {
-            g_pVFileSys->Read(img->pBits + y * bytesPerRow, bytesPerRow, vf);
+    int rowBytes = Width * bytesPerPixel;
+
+    switch (descriptor & 0x30) {
+    case 0x20:
+        g_pVFileSys->Read(pBits, totalSize, vf);
+        break;
+    case 0x10:
+        return 0;
+    case 0x00: {
+        int rowSize = rowBytes;
+        int y = Height - 1;
+        if (y >= 0) {
+            int offset = rowSize * y;
+            int negRow = -rowSize;
+            int count = Height;
+            do {
+                g_pVFileSys->Read(pBits + offset, rowSize, vf);
+                offset += negRow;
+                count--;
+            } while (count);
         }
+        break;
+    }
+    case 0x30:
+        break;
     }
 
     g_pVFileSys->CloseFile(vf);
     return 1;
 }
 
-// sub_1001EB80 (460B) - Load BMP file
-static int LoadBMP(gbImage2D* img, char* filename) {
-    gbVFile* vf = g_pVFileSys->OpenFile(filename, 0x201u);
-    if (!vf)
-        return 0;
-
-    // Get file size
-    g_pVFileSys->Seek(vf, 0, GBVFS_SEEK_END);
-    long fileSize = g_pVFileSys->TellPos(vf);
-    g_pVFileSys->Seek(vf, 0, GBVFS_SEEK_SET);
-
-    // Read 14-byte file header
-    unsigned char* fileHeader = (unsigned char*)malloc(0x0E);
-    g_pVFileSys->Read(fileHeader, 0x0E, vf);
-
-    // Get pixel data offset from file header (offset 10)
-    unsigned long pixelOffset = *(unsigned long*)&fileHeader[10];
-
-    // Read info header (size = pixelOffset - 14)
-    unsigned long infoSize = pixelOffset - 14;
-    unsigned char* infoHeader = (unsigned char*)malloc(infoSize);
-    g_pVFileSys->Read(infoHeader, infoSize, vf);
-
-    // Read pixel data
-    unsigned long dataSize = fileSize - pixelOffset;
-    img->pBits = (char*)malloc(dataSize);
-    g_pVFileSys->Read(img->pBits, dataSize, vf);
-
-    // Extract dimensions from info header
-    img->Width = *(int*)&infoHeader[4];
-    img->Height = *(int*)&infoHeader[8];
-    img->BitCount = *(short*)&infoHeader[14];
-
-    // If palettized (BitCount <= 8)
-    if (img->BitCount <= 8) {
-        img->numPalEntry = 1 << img->BitCount;
-        img->pPalette = (gbColorQuad*)malloc(img->numPalEntry * 4);
-        // Copy palette from info header at offset 0x28
-        unsigned char* palSrc = &infoHeader[0x28];
-        for (int i = 0; i < img->numPalEntry; i++) {
-            img->pPalette[i].b = palSrc[i * 4 + 0];
-            img->pPalette[i].g = palSrc[i * 4 + 1];
-            img->pPalette[i].r = palSrc[i * 4 + 2];
-            img->pPalette[i].a = 0xFF;
-        }
-    }
-
-    free(fileHeader);
-    free(infoHeader);
-    g_pVFileSys->CloseFile(vf);
-    return 1;
-}
-
-// sub_1001F0A0 (867B) - Load PCX file with RLE decoding
-static int LoadPCX(gbImage2D* img, char* filename) {
-    gbVFile* vf = g_pVFileSys->OpenFile(filename, 0x201u);
-    if (!vf)
-        return 0;
-
-    // Read and verify magic byte
-    unsigned char magic;
-    g_pVFileSys->Read(&magic, 1, vf);
-    if (magic != 0x0A) {
-        g_pVFileSys->CloseFile(vf);
-        return 0;
-    }
-
-    // Read version byte
-    unsigned char version;
-    g_pVFileSys->Read(&version, 1, vf);
-    if (version != 5) {
-        g_pVFileSys->CloseFile(vf);
-        return 0;
-    }
-
-    // Rewind and skip first 4 bytes, then read 12 bytes of header fields
-    g_pVFileSys->Rewind(vf);
-    g_pVFileSys->Seek(vf, 4, GBVFS_SEEK_CUR);
-
-    short headerFields[6]; // xmin, ymin, xmax, ymax, hDPI, vDPI
-    g_pVFileSys->Read(headerFields, 12, vf);
-
-    int width = headerFields[2] - headerFields[0] + 1;   // xmax - xmin + 1
-    int height = headerFields[3] - headerFields[1] + 1;  // ymax - ymin + 1
-
-    img->Width = width;
-    img->Height = height;
-
-    // Allocate raw buffer for 8-bit indexed pixels
-    unsigned char* rawBuf = (unsigned char*)malloc(width * height);
-
-    // Seek to offset 128 (skip full PCX header)
-    g_pVFileSys->Seek(vf, 128, GBVFS_SEEK_SET);
-
-    // RLE decode loop
-    int totalPixels = width * height;
+// 0x1001F0A0 (867B) - Load PCX file with RLE decoding
+int gbImage2D::LoadPCXFile(char* filename) {
     int decoded = 0;
-    while (decoded < totalPixels) {
-        unsigned char byte;
-        g_pVFileSys->Read(&byte, 1, vf);
-        if (byte >= 0xC0) {
-            int count = byte & 0x3F;
-            unsigned char value;
-            g_pVFileSys->Read(&value, 1, vf);
-            for (int i = 0; i < count && decoded < totalPixels; i++) {
-                rawBuf[decoded++] = value;
-            }
-        } else {
-            rawBuf[decoded++] = byte;
-        }
-    }
-
-    // Read 768-byte palette from end of file
-    // Seek to -769 from end
-    g_pVFileSys->Seek(vf, -769, GBVFS_SEEK_END);
-
-    unsigned char marker;
-    g_pVFileSys->Read(&marker, 1, vf);
-    if (marker != 0x0C) {
-        free(rawBuf);
-        g_pVFileSys->CloseFile(vf);
-        return 0;
-    }
-
-    unsigned char palette[768];
-    g_pVFileSys->Read(palette, 768, vf);
-
-    // Set bit count to 24 (expanding from 8-bit indexed to RGB)
-    img->BitCount = 24;
-
-    // Allocate final RGB buffer
-    img->pBits = (char*)malloc(width * height * 3);
-
-    // Expand indexed pixels to RGB using palette
-    for (int i = 0; i < width * height; i++) {
-        unsigned char idx = rawBuf[i];
-        img->pBits[i * 3 + 0] = palette[idx * 3 + 0];
-        img->pBits[i * 3 + 1] = palette[idx * 3 + 1];
-        img->pBits[i * 3 + 2] = palette[idx * 3 + 2];
-    }
-
-    free(rawBuf);
-    g_pVFileSys->CloseFile(vf);
-    return 1;
-}
-
-// sub_1001F410 (473B) - Load JPEG file via Intel JPEG Library (IJL15.dll)
-static int LoadJPEG(gbImage2D* img, char* filename) {
-    // Open file and read entire contents into buffer
     gbVFile* vf = g_pVFileSys->OpenFile(filename, 0x201u);
     if (!vf)
         return 0;
 
-    g_pVFileSys->Seek(vf, 0, GBVFS_SEEK_END);
-    long fileSize = g_pVFileSys->TellPos(vf);
-    g_pVFileSys->Seek(vf, 0, GBVFS_SEEK_SET);
+    int ch1 = g_pVFileSys->ReadChar(vf);
+    if (ch1 != 10 || g_pVFileSys->ReadChar(vf) != 5) {
+        g_pVFileSys->CloseFile(vf);
+        return 0;
+    }
 
-    unsigned char* fileBuf = (unsigned char*)malloc(fileSize);
+    g_pVFileSys->Rewind(vf);
+    g_pVFileSys->ReadChar(vf);
+    g_pVFileSys->ReadChar(vf);
+    g_pVFileSys->ReadChar(vf);
+    g_pVFileSys->ReadChar(vf);
+
+    int xmin_lo = g_pVFileSys->ReadChar(vf);
+    int xmin_hi = g_pVFileSys->ReadChar(vf);
+    int ymin_lo = g_pVFileSys->ReadChar(vf);
+    int ymin_hi = g_pVFileSys->ReadChar(vf);
+    int xmax_lo = g_pVFileSys->ReadChar(vf);
+    int xmax_hi = g_pVFileSys->ReadChar(vf);
+    int ymax_lo = g_pVFileSys->ReadChar(vf);
+    int ymax_hi = g_pVFileSys->ReadChar(vf);
+
+    int w = (xmax_lo | (xmax_hi << 8)) - (xmin_lo | (xmin_hi << 8)) + 1;
+    Width = w;
+    int h = (ymax_lo | (ymax_hi << 8)) - (ymin_lo | (ymin_hi << 8)) + 1;
+    Height = h;
+
+    void* rawBuf = malloc(w * h);
+
+    g_pVFileSys->Seek(vf, 128, 1);
+
+    if (Height * Width > 0) {
+        do {
+            int byte = g_pVFileSys->ReadChar(vf);
+            if (byte <= 191) {
+                *((unsigned char*)rawBuf + decoded) = byte;
+                decoded++;
+            } else {
+                int count = byte & 0x3F;
+                char value = g_pVFileSys->ReadChar(vf);
+                if (count > 0) {
+                    memset((char*)rawBuf + decoded, value, count);
+                    decoded += count;
+                }
+            }
+        } while (decoded < Height * Width);
+    }
+
+    void* palette = malloc(0x300);
+    g_pVFileSys->Seek(vf, -769, 3);
+
+    if (g_pVFileSys->ReadChar(vf) == 12) {
+        g_pVFileSys->Read(palette, 0x300, vf);
+
+        BitCount = 24;
+        char* outBuf = (char*)malloc(24 * Width * Height / 8);
+        pBits = (char*)outBuf;
+
+        int y = 0;
+        if (Height > 0) {
+            do {
+                int x = 0;
+                int ww = Width;
+                for (; x < ww; x++) {
+                    unsigned char idx = *((unsigned char*)rawBuf + x + y * ww);
+                    int palOff = 3 * idx;
+                    *outBuf = ((char*)palette)[palOff];
+                    outBuf++;
+                    *outBuf = ((char*)palette)[palOff + 1];
+                    *outBuf++;
+                    *outBuf = ((char*)palette)[palOff + 2];
+                    ww = Width;
+                    outBuf++;
+                }
+                y++;
+            } while (y < Height);
+        }
+
+        free(rawBuf);
+        free(palette);
+        g_pVFileSys->CloseFile(vf);
+        return 1;
+    } else {
+        free(rawBuf);
+        free(palette);
+        g_pVFileSys->CloseFile(vf);
+        return 0;
+    }
+}
+
+// 0x1001F410 (473B) - Load JPEG file via Intel JPEG Library (IJL15.dll)
+int gbImage2D::LoadJPEGFile(char* filename) {
+    gbVFile* vf = g_pVFileSys->OpenFile(filename, 0x201u);
+    if (!vf)
+        return 0;
+
+    long fileSize = g_pVFileSys->GetFileSize(vf);
+    void* fileBuf = malloc(fileSize);
     g_pVFileSys->Read(fileBuf, fileSize, vf);
     g_pVFileSys->CloseFile(vf);
 
-    // Initialize JPEG properties
     JPEG_CORE_PROPERTIES props;
-    memset(&props, 0, sizeof(props));
-    ijlInit(&props);
+    if (ijlInit(&props)) {
+        free(fileBuf);
+        return 0;
+    }
 
-    // Set up for reading from memory
     props.JPGFile = NULL;
-    props.JPGBytes = fileBuf;
+    props.JPGBytes = (unsigned char*)fileBuf;
     props.JPGSizeBytes = fileSize;
 
-    // Read JPEG parameters (IJL_JFILE_READPARAMS = 1)
-    ijlRead(&props, 1);
+    if (ijlRead(&props, 1)) {
+        free(fileBuf);
+        return 0;
+    }
 
     int jpgWidth = props.JPGWidth;
     int jpgHeight = props.JPGHeight;
+    void* outBuf = malloc(3 * jpgWidth * jpgHeight);
 
-    // Allocate output buffer (24-bit RGB)
-    unsigned char* outBuf = (unsigned char*)malloc(jpgWidth * jpgHeight * 3);
+    if (!outBuf) {
+        free(fileBuf);
+        free(0);
+        return 0;
+    }
 
-    // Set up DIB output parameters
-    props.DIBBytes = outBuf;
     props.DIBWidth = jpgWidth;
-    props.DIBHeight = -jpgHeight;  // Negative = top-down
+    props.DIBHeight = -jpgHeight;
     props.DIBChannels = 3;
-    props.DIBColor = 2;  // RGB
+    props.DIBColor = 2;
     props.DIBPadBytes = 0;
+    props.DIBBytes = outBuf;
 
-    // Handle color space / subsampling
     if (props.JPGColor == 1) {
         props.JPGSubsampling = 4;
     } else if (props.JPGColor == 3) {
         props.JPGSubsampling = 3;
     } else {
-        props.DIBColor = 0xFF;
-        props.JPGSubsampling = 0xFF;
+        props.DIBColor = 255;
+        props.JPGSubsampling = 255;
     }
 
-    // Read whole image (IJL_JFILE_READWHOLEIMAGE = 3)
-    ijlRead(&props, 3);
+    if (ijlRead(&props, 3)) {
+        free(outBuf);
+        free(fileBuf);
+        return 0;
+    }
+
     ijlFree(&props);
-
-    // Set image properties
-    img->Width = jpgWidth;
-    img->Height = jpgHeight;
-    img->BitCount = 24;
-    img->pBits = (char*)outBuf;
-
+    Width = jpgWidth;
+    Height = jpgHeight;
+    BitCount = 24;
+    pBits = (char*)outBuf;
     free(fileBuf);
     return 1;
-}
-
-// sub_1001EAC0 (183B) - Expand paletted (8-bit indexed) image to 24-bit RGB
-static void gbImage2D_ExpandPalette(gbImage2D* img) {
-    if (img->pPalette != NULL) {
-        char* newBits = (char*)malloc(img->Width * img->Height * 3);
-        int i = 0;
-        if (i < img->Width * img->Height) {
-            char* dst = newBits + 2;
-            do {
-                unsigned char* palEntry;
-                unsigned char idx = *((unsigned char*)img->pBits + i);
-                i = i + 1;
-                palEntry = (unsigned char*)img->pPalette + (unsigned int)idx * 4;
-                dst[-2] = palEntry[0];
-                dst[-1] = palEntry[1];
-                dst[0] = palEntry[2];
-                dst = dst + 3;
-            } while (i < img->Width * img->Height);
-        }
-        free(img->pBits);
-        img->pBits = newBits;
-        free(img->pPalette);
-        img->pPalette = NULL;
-        img->BitCount = 24;
-    }
 }
 
 // 0x1001e490 (1262B) - Load image file via extension dispatch
@@ -481,15 +515,15 @@ int gbImage2D::LoadImageFile(char* filename, int a3) {
     *dot = 0;
 
     if (!gbstricmp(ext, ".tga")) {
-        if (!LoadTGA(this, filename))
+        if (!LoadTGAFile(filename))
             return 0;
         v35 = 2;
     } else if (!gbstricmp(ext, ".bmp")) {
-        if (!LoadBMP(this, filename))
+        if (!LoadBMPFile(filename))
             return 0;
         v35 = 1;
     } else if (!gbstricmp(ext, ".pcx")) {
-        if (!LoadPCX(this, filename))
+        if (!LoadPCXFile(filename))
             return 0;
         v35 = 3;
     } else if (!gbstricmp(ext, ".bit")) {
@@ -504,7 +538,7 @@ int gbImage2D::LoadImageFile(char* filename, int a3) {
         g_pVFileSys->CloseFile(vf);
         v35 = 4;
     } else if (!gbstricmp(ext, ".jpg")) {
-        if (!LoadJPEG(this, filename))
+        if (!LoadJPEGFile(filename))
             return 0;
         v35 = 5;
     }
@@ -528,7 +562,7 @@ int gbImage2D::LoadImageFile(char* filename, int a3) {
     ImgInfo.minfilter = 1;
     ImgInfo.magfilter = 1;
 
-    gbImage2D_ExpandPalette(this);
+    ConvertPaletteToRGB24();
 
     // 8-bit expansion
     if (BitCount == 8) {
