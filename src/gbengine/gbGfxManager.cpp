@@ -50,28 +50,35 @@ gbGfxManager_D3D* g_pGfxManager_D3D = NULL;
 
 // 0x1001d910 (394B) - Constructor
 gbGfxManager::gbGfxManager(int& result, gbGfxDriverInfo* driverInfo) {
-    m_nState = 0;
-    hGfxWnd = 0;
+    g_pGfxManager = this;
 
-    if (driverInfo) {
-        memcpy(&DrvInfo, driverInfo, sizeof(gbGfxDriverInfo));
-    } else {
-        memset(&DrvInfo, 0, sizeof(gbGfxDriverInfo));
+    // Clear light position/direction for all 8 lights
+    int i;
+    for (i = 0; i < 8; i++) {
+        AllLight[i].position.x = 0.0f;
+        AllLight[i].position.y = 0.0f;
+        AllLight[i].position.z = 0.0f;
+        AllLight[i].direction.x = 0.0f;
+        AllLight[i].direction.y = 0.0f;
+        AllLight[i].direction.z = 0.0f;
     }
+
+    memcpy(&DrvInfo, driverInfo, sizeof(gbGfxDriverInfo));
+    hGfxWnd = 0;
 
     pVertPoolMgr = NULL;
     pEffectMgr = NULL;
     pTexResMgr = NULL;
     pFontMgr = NULL;
-    pSceneGraph = NULL;
-
-    memset(pMatrixStack, 0, sizeof(pMatrixStack));
+    pMatrixStack[0] = NULL;
+    pMatrixStack[1] = NULL;
+    pMatrixStack[2] = NULL;
+    pMatrixStack[3] = NULL;
 
     AmbientLight.r = 0.2f;
     AmbientLight.g = 0.2f;
     AmbientLight.b = 0.2f;
     AmbientLight.a = 1.0f;
-
     fSelfIllum = 0.0f;
 
     LastTime = 0.0;
@@ -79,8 +86,19 @@ gbGfxManager::gbGfxManager(int& result, gbGfxDriverInfo* driverInfo) {
     LastTick = 0;
     CurTick = 0;
 
-    CurZBias = 0;
     bWireMode = 0;
+    pSceneGraph = NULL;
+
+    Stat.nStaticVerts = 0;
+    Stat.nStaticIndex = 0;
+    Stat.nSrcVerts = 0;
+    Stat.nSrcIndex = 0;
+    Stat.FPS = 0.0f;
+    Stat.TimeAccum = 0.0;
+    Stat.Frame = 0;
+    Stat.PrevFrame = 0;
+
+    FogParam.enable = 0;
 
     result = 1; // success
 }
@@ -156,8 +174,6 @@ int gbGfxManager::ClipBoundVolume(gbAABBox* box) {
     float planes[24];
     float* pBox = (float*)box;
 
-    // Get frustum planes via virtual call (slot 16)
-    // 6 planes × (nx, ny, nz, d) = 24 floats
     GetFrustumPlanes(planes, 0);
 
     for (int i = 0; i < 6; i++) {
@@ -280,11 +296,12 @@ void gbGfxManager::SetClearParam(gbClearParam* pParam) {
 
 // 0x1001e160 (189B) - Create a new mesh resource
 gbBaseMesh* gbGfxManager::NewMesh(const char* name, gbMeshType type) {
-    if (type == MESH_STATIC) {
+    if (!type) {
         gbStaticMesh* mesh = new gbStaticMesh(this);
         return mesh;
-    } else if (type == MESH_SKINNED) {
-        gbStaticMesh* mesh = new gbStaticMesh(this);
+    }
+    if (type == MESH_SKINNED) {
+        gbMesh* mesh = new gbMesh(this);
         return mesh;
     }
     return NULL;
@@ -421,7 +438,20 @@ gbEffectMgr::gbEffectMgr(void) : gbResManager() {
 
 // 0x10004d30 (148B) - Copy constructor
 gbEffectMgr::gbEffectMgr(const gbEffectMgr& other) {
-    memcpy(this, &other, sizeof(gbEffectMgr));
+    capacity = other.capacity;
+    count = other.count;
+    if (capacity)
+        array = (gbResource**)malloc(4 * capacity);
+    else
+        array = NULL;
+    int usedCount = count;
+    if (usedCount)
+        memcpy(array, other.array, 4 * usedCount);
+    m_pGfxMgr = other.m_pGfxMgr;
+    m_pWhiteTexture = other.m_pWhiteTexture;
+    m_pGrayTexture = other.m_pGrayTexture;
+    m_pDefaultEffect = other.m_pDefaultEffect;
+    memcpy((char*)this + 28, (char*)&other + 28, 0x80C);
 }
 
 // Destructor
@@ -431,9 +461,33 @@ gbEffectMgr::~gbEffectMgr() {
 
 // operator=
 gbEffectMgr& gbEffectMgr::operator=(const gbEffectMgr& other) {
-    if (this != &other) {
-        memcpy(this, &other, sizeof(gbEffectMgr));
-    }
+    if (array)
+        free(array);
+    int cap = other.capacity;
+    capacity = cap;
+    count = other.count;
+    if (cap)
+        array = (gbResource**)malloc(4 * cap);
+    else
+        array = NULL;
+    int usedCount = count;
+    if (usedCount)
+        memcpy(array, other.array, 4 * usedCount);
+    int loopCount = 64;
+    m_pGfxMgr = other.m_pGfxMgr;
+    m_pWhiteTexture = other.m_pWhiteTexture;
+    m_pGrayTexture = other.m_pGrayTexture;
+    m_pDefaultEffect = other.m_pDefaultEffect;
+    char* dst = (char*)this + 28;
+    do {
+        char* src = dst + ((char*)&other - (char*)this);
+        memcpy(dst, src, 0x20);
+        dst += 32;
+        --loopCount;
+    } while (loopCount);
+    m_nNumVertFormats = other.m_nNumVertFormats;
+    m_nMaxVertFormats = other.m_nMaxVertFormats;
+    m_nFrameCounter = other.m_nFrameCounter;
     return *this;
 }
 
