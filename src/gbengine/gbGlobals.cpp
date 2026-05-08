@@ -299,11 +299,38 @@ int gbIntersectTriangle(gbVec3D* param_1, gbVec3D* param_2, gbVec3D* param_3, gb
 // Low-level keyboard hook handle
 static HHOOK hhk = NULL;
 
+#ifndef VK_LWIN
+#define VK_LWIN 0x5B
+#endif
+#ifndef VK_RWIN
+#define VK_RWIN 0x5C
+#endif
+
+typedef struct {
+    DWORD vkCode;
+    DWORD scanCode;
+    DWORD flags;
+    DWORD time;
+    ULONG_PTR dwExtraInfo;
+} KBDLLHOOKSTRUCT_T;
+
 // Low-level keyboard hook proc (blocks Alt+Tab, Win key, etc.)
-static LRESULT CALLBACK LowLevelKeyboardProc(int nCode, WPARAM wParam, LPARAM lParam) {
-    if (nCode >= 0)
-        return 1;  // Block all keys when hook is active
-    return CallNextHookEx(hhk, nCode, wParam, lParam);
+static LRESULT CALLBACK fn(int code, WPARAM wParam, LPARAM lParam) {
+    KBDLLHOOKSTRUCT_T* p = (KBDLLHOOKSTRUCT_T*)lParam;
+    if (!code) {
+        SHORT ctrlState = GetAsyncKeyState(VK_CONTROL);
+        int vkCode = p->vkCode;
+        int ctrlDown = ctrlState >> 15;
+        if ((vkCode == VK_ESCAPE && ctrlDown)
+            || (vkCode == VK_TAB && (p->flags & 0x20))
+            || (vkCode == VK_ESCAPE && (p->flags & 0x20))
+            || vkCode == VK_LWIN
+            || vkCode == VK_RWIN)
+        {
+            return 1;
+        }
+    }
+    return CallNextHookEx(hhk, code, wParam, lParam);
 }
 
 // Enable/disable system hotkeys (Alt+Tab, Win key, etc.)
@@ -318,7 +345,7 @@ void gbEnableSystemKeys(HINSTANCE hInst, int enable) {
     if (VersionInformation.dwPlatformId == VER_PLATFORM_WIN32_NT) {
         if (VersionInformation.dwMajorVersion >= 4) {
             if (!enable) {
-                hhk = SetWindowsHookExA(13, LowLevelKeyboardProc, hInst, 0);
+                hhk = SetWindowsHookExA(13, fn, hInst, 0);
             } else {
                 if (hhk) {
                     UnhookWindowsHookEx(hhk);
@@ -647,4 +674,8 @@ int gbComputeFVFStride(unsigned int fvf)
     }
 
     return stride;
+}
+
+BOOL WINAPI DllMain(HINSTANCE hinstDLL, DWORD fdwReason, LPVOID lpvReserved) {
+    return TRUE;
 }

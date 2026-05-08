@@ -73,6 +73,13 @@ float gbGetDeltaTime(void);
 
 void gbMemCopy(void* dst, void* src, unsigned int size);
 
+// ======== Message Box Functions ========
+
+int gbMessageBox(char* Format, ...);
+int gbErrorBox(UINT uType, char* Format, ...);
+double gbGetFrameRate(void);
+double gbGetTime(void);
+
 // ======== Logging Functions ========
 
 void gbLogInfo(char* fmt, ...);

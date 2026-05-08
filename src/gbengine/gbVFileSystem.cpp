@@ -13,6 +13,7 @@
  */
 
 #include "gbengine/gbVFileSystem.h"
+#include "gbengine/gbMisc.h"
 
 #include <stdio.h>
 #include <stdlib.h>
@@ -660,6 +661,108 @@ bool CPK::IsDir(unsigned long crc)
     idx = -1;
 found:
     return (m_CPKTable[idx].dwFlag >> 1) & 1;
+}
+
+
+// ############################################################################
+//  CPK Platform Abstraction Layer (Win32 API wrappers)
+//  Address range: 0x1002DA90 - 0x1002DC5B
+//  Source: D:\Project\gbengine9\support\cpak\...
+//
+//  These functions gate Win32 file I/O calls behind a platform type check.
+//  g_nPlatformType == 4 means Win32 platform is active.
+// ############################################################################
+
+// Platform type global (0x10120654)
+// Value 4 = Win32 platform active
+static int g_nPlatformType = 4;
+
+// Read result globals (used by CPK_ReadFile)
+static DWORD NumberOfBytesRead;     // 0x1014B750
+static bool g_bLastReadResult;      // 0x1014B754
+
+// 0x1002DA90 (54B)
+HANDLE __cdecl CPK_CreateFile(LPCSTR lpFileName, DWORD dwDesiredAccess, DWORD dwShareMode,
+    LPSECURITY_ATTRIBUTES lpSecurityAttributes, DWORD dwCreationDisposition,
+    DWORD dwFlagsAndAttributes, HANDLE hTemplateFile)
+{
+    if (g_nPlatformType == 4)
+        return CreateFileA(lpFileName, dwDesiredAccess, dwShareMode, lpSecurityAttributes,
+                           dwCreationDisposition, dwFlagsAndAttributes, hTemplateFile);
+    return 0;
+}
+
+// 0x1002DAD0 (46B)
+HANDLE __cdecl CPK_CreateFileMapping(HANDLE hFile, LPSECURITY_ATTRIBUTES lpFileMappingAttributes,
+    DWORD flProtect, DWORD dwMaximumSizeLow, LPCSTR lpName)
+{
+    if (g_nPlatformType == 4)
+        return CreateFileMappingA(hFile, lpFileMappingAttributes, flProtect, 0, dwMaximumSizeLow, lpName);
+    return 0;
+}
+
+// 0x1002DB00 (24B)
+BOOL __cdecl CPK_CloseHandle(HANDLE hObject)
+{
+    if (g_nPlatformType == 4)
+        return CloseHandle(hObject);
+    return 0;
+}
+
+// 0x1002DB20 (41B)
+LPVOID __cdecl CPK_MapViewOfFile(HANDLE hFileMappingObject, DWORD dwDesiredAccess,
+    DWORD dwFileOffsetLow, SIZE_T dwNumberOfBytesToMap)
+{
+    if (g_nPlatformType == 4)
+        return MapViewOfFile(hFileMappingObject, dwDesiredAccess, 0, dwFileOffsetLow, dwNumberOfBytesToMap);
+    return 0;
+}
+
+// 0x1002DB50 (30B)
+bool __cdecl CPK_UnmapViewOfFile(LPCVOID lpBaseAddress)
+{
+    return g_nPlatformType == 4 && UnmapViewOfFile(lpBaseAddress);
+}
+
+// 0x1002DB70 (88B)
+bool __cdecl CPK_ReadFile(HANDLE hFile, LPVOID lpBuffer, DWORD nNumberOfBytesToRead)
+{
+    if (g_nPlatformType == 4) {
+        bool result = ReadFile(hFile, lpBuffer, nNumberOfBytesToRead, &NumberOfBytesRead, 0);
+        g_bLastReadResult = result;
+        if (NumberOfBytesRead == nNumberOfBytesToRead)
+            return result;
+        gbErrorBox(0x10, "Error : CE_CANNOT_READ_DISC_FILE",
+                   "D:\\Project\\gbengine9\\support\\cpak\\cpakfile.cpp", 0xDF);
+    }
+    return 0;
+}
+
+// 0x1002DBD0 (30B)
+bool __cdecl CPK_CloseHandle2(HANDLE hObject)
+{
+    return g_nPlatformType == 4 && CloseHandle(hObject);
+}
+
+// 0x1002DBF0 (33B)
+DWORD __cdecl CPK_SetFilePointer(HANDLE hFile, LONG lDistanceToMove)
+{
+    if (g_nPlatformType == 4)
+        return SetFilePointer(hFile, lDistanceToMove, 0, FILE_BEGIN);
+    return 0;
+}
+
+// 0x1002DC20 (59B)
+char __cdecl CPK_FileExists(LPCSTR lpFileName)
+{
+    if (g_nPlatformType != 4)
+        return 0;
+    HANDLE h = CreateFileA(lpFileName, GENERIC_READ, FILE_SHARE_READ, 0, OPEN_EXISTING,
+                            FILE_FLAG_SEQUENTIAL_SCAN | FILE_ATTRIBUTE_NORMAL, 0);
+    if (h == INVALID_HANDLE_VALUE)
+        return 0;
+    CloseHandle(h);
+    return 1;
 }
 
 

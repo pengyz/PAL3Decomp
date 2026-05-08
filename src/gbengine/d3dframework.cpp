@@ -14,6 +14,20 @@
 #include <stdlib.h>
 
 // ============================================================================
+// 0x10016c20 (69B) - D3DXVec3Subtract helper
+// Computes a1 = a2 - a3 (3-component vector subtraction)
+// ============================================================================
+float* D3DXVec3Subtract(float* a1, float* a2, float* a3) {
+    float x = a2[0] - a3[0];
+    float y = a2[1] - a3[1];
+    float z = a2[2] - a3[2];
+    a1[0] = x;
+    a1[1] = y;
+    a1[2] = z;
+    return a1;
+}
+
+// ============================================================================
 // 0x10016eb0 (34B) - CArrayList::GetPtr
 // Returns pointer to element at given index.
 // If m_bPtrArray==0: contiguous array, compute offset via stride
@@ -209,5 +223,57 @@ int CD3DEnumeration::Enumerate(void) {
         pAdapterList->Add(&pAdapterInfo);
     }
 
+    return 0;
+}
+
+// ============================================================================
+// 0x10016db0 (15B) - CArrayList::~CArrayList
+// Destructor: frees internal data buffer.
+// ============================================================================
+CArrayList::~CArrayList() {
+    if (m_pData)
+        operator delete(m_pData);
+}
+
+// ============================================================================
+// 0x100170d0 (57B) - CD3DEnumeration::CD3DEnumeration
+// Constructor: initializes default display mode constraints.
+// ============================================================================
+CD3DEnumeration::CD3DEnumeration() {
+    m_pD3D = NULL;
+    m_nMinColorChannelBits = 0;
+    m_nMinWidth = 640;
+    m_nMinHeight = 480;
+    m_nMultiSampleQuality = 5;
+    m_nMaxMultiSampleQuality = 0;
+    m_nRefreshMin = 15;
+    m_nRefreshMax = 0;
+    m_bRequireFullScreen = 0;
+    m_bRequireWindowed = 0;
+    m_bRequireHAL = 0;
+    m_bRequireREF = 0;
+}
+
+// ============================================================================
+// 0x100178c0 (100B) - SortModesCallback
+// Compare function for qsort on D3DDISPLAYMODE array.
+// Sort order: Width > Height > RefreshRate > Format
+// ============================================================================
+static int __cdecl SortModesCallback(const void* a1, const void* a2) {
+    const unsigned int* p1 = (const unsigned int*)a1;
+    const unsigned int* p2 = (const unsigned int*)a2;
+
+    // Compare Width
+    if (p1[0] > p2[0]) return 1;
+    if (p1[0] < p2[0]) return -1;
+    // Compare Height
+    if (p1[1] > p2[1]) return 1;
+    if (p1[1] < p2[1]) return -1;
+    // Compare Format (at offset 3)
+    if ((int)p1[3] > (int)p2[3]) return 1;
+    if ((int)p1[3] < (int)p2[3]) return -1;
+    // Compare RefreshRate (at offset 2)
+    if (p1[2] > p2[2]) return 1;
+    if (p1[2] < p2[2]) return -1;
     return 0;
 }

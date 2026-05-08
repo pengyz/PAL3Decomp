@@ -81,6 +81,10 @@ void AILCALL AIL_set_stream_volume(HSTREAM stream, int volume);
 unsigned int AILCALL AIL_stream_status(HSTREAM stream);
 
 __declspec(dllimport) void* __stdcall AIL_file_read(const char* filename, void* dest);
+int AILCALL AIL_file_size(const char* filename);
+int AILCALL AIL_file_type(void* data, int size);
+void AILCALL AIL_decompress_ASI(void* data, int size, const char* filename, void* dest, int a5, int a6);
+void AILCALL AIL_decompress_ADPCM(void* info, void* dest, int a3);
 void AILCALL AIL_mem_free_lock(void* ptr);
 }
 
@@ -142,6 +146,42 @@ void gbSoundData::Release() {
     if (refCount == 0) {
         delete this;
     }
+}
+
+// Load - 0x10001e40 (191B)
+// Loads a sound file, decompressing ADPCM/ASI formats as needed.
+// AIL_file_type returns: 1=raw PCM, 2=WAV/ADPCM, 13=ASI compressed
+// NOTE: nested if/else matches original codegen (not a switch)
+int gbSoundData::Load(char* filename) {
+    int dataSize = AIL_file_size(filename);
+    void* data = AIL_file_read(filename, 0);
+    if (!data) {
+        gbReportError("read sound file(%s) error", filename);
+        return 0;
+    }
+
+    int fileType = AIL_file_type(data, dataSize);
+    if (fileType == 1) {
+        // Raw PCM - use data buffer directly
+        fileData = data;
+    } else if (fileType == 2) {
+        // WAV/ADPCM - decompress
+        char wavInfo[36];
+        AIL_WAV_info(data, wavInfo);
+        AIL_decompress_ADPCM(wavInfo, &fileData, 0);
+        AIL_mem_free_lock(data);
+    } else if (fileType == 13) {
+        // ASI compressed
+        AIL_decompress_ASI(data, dataSize, filename, &fileData, 0, 0);
+        AIL_mem_free_lock(data);
+    } else {
+        // Unknown format
+        AIL_mem_free_lock(data);
+        return 0;
+    }
+
+    SetName(filename);
+    return 1;
 }
 
 // Helper: find sound resource by name in the embedded resource manager
@@ -640,6 +680,19 @@ void gbAudioManager::DetachSampleHandle(gbSound2DNode* node) {
             break;
         }
     }
+}
+
+// StreamEndCallback - 0x10001b40 (44B)
+// Miles Sound System stream end callback (__stdcall)
+static int __stdcall StreamEndCallback(int streamHandle) {
+    int result = 0;
+    int* pStreams = (int*)&g_pAudioManager->streams[0];
+    for (; *pStreams != streamHandle; ++pStreams) {
+        if (++result >= MAX_STREAMS)
+            return result;
+    }
+    g_pAudioManager->streamStatus[result] = 2;
+    return result;
 }
 
 // CanBeHeard - 0x10001da0 (115B)

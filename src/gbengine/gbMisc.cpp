@@ -547,15 +547,53 @@ static float g_profileEndTime;                             // flt_1016404C
 #define PS_MIN(i)         (*(float*)&g_profileStatData[272 * (i) + 264])
 #define PS_MAX(i)         (*(float*)&g_profileStatData[272 * (i) + 268])
 
-// sub_1002E900: returns current time in seconds
-static double GetTimeSeconds(void)
+// ======== Message Box Functions ========
+
+// 0x1002E820 (44B) - Display a message box with formatted text
+int gbMessageBox(char *Format, ...)
+{
+    static char Buffer[1024];
+    va_list va;
+
+    va_start(va, Format);
+    vsprintf(Buffer, Format, va);
+    va_end(va);
+    return MessageBoxA(0, Buffer, "Message", 0);
+}
+
+// 0x1002E850 (158B) - Display an error box with system error info
+int gbErrorBox(UINT uType, char *Format, ...)
+{
+    DWORD LastError;
+    CHAR Buffer[4];
+    CHAR Text[4096];
+    va_list va;
+
+    va_start(va, Format);
+    *(DWORD *)Buffer = 0;
+    LastError = GetLastError();
+    vsprintf(Text, Format, va);
+    va_end(va);
+    FormatMessageA(0x1300u, 0, LastError, 0x400u, Buffer, 0, 0);
+    sprintf(Text, "%s\nSystem Error Code : %lu\nError Message : %s", Text, LastError, *(const char **)Buffer);
+    LocalFree(*(HLOCAL *)Buffer);
+    return MessageBoxA(0, Text, "Error", uType);
+}
+
+// 0x1002E8F0 (7B) - Return frame delta time
+// This global is updated by the main loop and read by ProfileUpdateStats
+float g_frameDeltaTime = 0.0f;
+
+double gbGetFrameRate(void)
+{
+    return g_frameDeltaTime;
+}
+
+// 0x1002E900 (35B) - Get current time in seconds
+double gbGetTime(void)
 {
     return (double)timeGetTime() * 0.001;
 }
-
-// sub_1002E8F0: returns frame delta time
-// This global is updated by the main loop and read by ProfileUpdateStats
-float g_frameDeltaTime = 0.0f;
 
 static void ProfileUpdateStats(const char* name, float percent);
 static void ProfileFormatOutput(char* buffer);
@@ -571,7 +609,7 @@ void ProfileInit(void)
         p1 += 284;
         p2 += 272;
     } while ((int)p1 < (int)(g_profileStatData));
-    g_profileStartTime = (float)GetTimeSeconds();
+    g_profileStartTime = (float)gbGetTime();
 }
 
 // 0x10031780 (258B)
@@ -585,7 +623,7 @@ void ProfileBegin(char* name)
             int nc = PE_NESTING(i) + 1;
             PE_NESTING(i) = nc;
             PE_TOTALCALLS(i) = PE_TOTALCALLS(i) + 1;
-            PE_STARTTIME(i) = (float)GetTimeSeconds();
+            PE_STARTTIME(i) = (float)gbGetTime();
             return;
         }
         pName += 284;
@@ -599,7 +637,7 @@ void ProfileBegin(char* name)
         PE_NESTING(i) = 1;
         PE_TOTALCALLS(i) = 1;
         PE_SELFTIME(i) = 0;
-        PE_STARTTIME(i) = (float)GetTimeSeconds();
+        PE_STARTTIME(i) = (float)gbGetTime();
         PE_CHILDTIME(i) = 0;
     }
 }
@@ -613,7 +651,7 @@ void ProfileEnd(char* name)
     while (*(pName - 12) == 1) {
         if (!strcmp(pName, name)) {
             int deepIdx = -1;
-            double endTime = GetTimeSeconds();
+            double endTime = gbGetTime();
             --PE_NESTING(i);
             int childCount;
             if (PE_ACTIVE(0) == 1) {
@@ -650,7 +688,7 @@ void ProfileEnd(char* name)
 static void ProfileUpdateStats(const char* name, float percent)
 {
     unsigned int i = 0;
-    double dt = (double)g_frameDeltaTime * 0.80000001;
+    double dt = gbGetFrameRate() * 0.80000001;
     if (dt > 1.0)
         dt = 1.0;
     const char* pName = PS_NAME(0);
@@ -698,7 +736,7 @@ static void ProfileFormatOutput(char* buffer)
     char countStr[16];
     char lineFormat[256];
 
-    g_profileEndTime = (float)GetTimeSeconds();
+    g_profileEndTime = (float)gbGetTime();
     *buffer = 0;
     sprintf(&buffer[strlen(buffer)], " Ave :  Min :  Max : Cnt : Profile\n");
     sprintf(&buffer[strlen(buffer)], "--------------------------------------------\n");
@@ -753,7 +791,7 @@ static void ProfileFormatOutput(char* buffer)
         *p = 0;
         p += 284;
     } while ((int)p < (int)g_profileStatData);
-    g_profileStartTime = (float)GetTimeSeconds();
+    g_profileStartTime = (float)gbGetTime();
 }
 
 // 0x100319B0 (79B)

@@ -231,6 +231,17 @@ void gbSceneGraph::AddVolModNode(gbVolModNode* node) {
     volModNodes[numVolModNodes++] = node;
 }
 
+// 0x10014F10 (47B) - qsort comparison for VolMod entries (sorts descending by effect)
+static int __cdecl CompareFunction(const void* a1, const void* a2) {
+    float v1 = ((float*)a1)[1];
+    float v2 = ((float*)a2)[1];
+    if (v1 > v2)
+        return -1;
+    if (v1 < v2)
+        return 1;
+    return 0;
+}
+
 // 0x10014dc0 (322B) - Calculate effective volume modifiers for a point
 void gbSceneGraph::CalEffectiveVolMod(gbRenderInfoObj* renderInfo, const gbVec3D& position, int flags) {
     struct VolModEntry {
@@ -254,7 +265,7 @@ void gbSceneGraph::CalEffectiveVolMod(gbRenderInfoObj* renderInfo, const gbVec3D
     }
 
     // Sort by effect strength (descending)
-    // qsort(entries, numEntries, sizeof(VolModEntry), CompareFunction);
+    qsort(entries, numEntries, sizeof(VolModEntry), CompareFunction);
 
     int countA = 0, countB = 0;
 
