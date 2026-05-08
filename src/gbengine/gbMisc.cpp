@@ -4,6 +4,7 @@
  */
 
 #include "gbengine/gbMisc.h"
+#include "gbengine/gbGfxManager.h"
 #include "gbengine/gbTexture.h"
 #include "gbengine/gbVFileSystem.h"
 #include <stdio.h>
@@ -369,24 +370,29 @@ void gbTimeCounterInit(void)
     LARGE_INTEGER Frequency;
 
     gbTimerInited = 1;
-    if (QueryPerformanceFrequency(&Frequency)) {
-        PerformanceCount.QuadPart = Frequency.LowPart;
-        gbHasQPC = 1;
-        gbTimeFreqDbl = (double)Frequency.HighPart * 4294967295.0 + (double)(unsigned int)Frequency.LowPart;
-        timeGetDevCaps(&ptc, 8);
+    if (!QueryPerformanceFrequency(&Frequency)) {
         if (gbHasQPC) {
             QueryPerformanceCounter(&PerformanceCount);
-            Frequency.QuadPart = PerformanceCount.LowPart;
-            g_CurrentTime = ((double)PerformanceCount.HighPart * 4294967295.0 + (double)(unsigned int)PerformanceCount.LowPart)
-                          / gbTimeFreqDbl;
+            double highPart = (double)PerformanceCount.HighPart;
+            PerformanceCount.HighPart = 0;
+            g_CurrentTime = (highPart * 4294967295.0 + (double)PerformanceCount.LowPart) / gbTimeFreqDbl;
             return;
         }
-    } else if (gbHasQPC) {
-        QueryPerformanceCounter(&PerformanceCount);
-        g_CurrentTime = ((double)PerformanceCount.HighPart * 4294967295.0 + (double)(unsigned int)PerformanceCount.LowPart) / gbTimeFreqDbl;
+        g_CurrentTime = (double)clock() * 1000.0;
         return;
     }
-    g_CurrentTime = (double)clock() * 1000.0;
+    PerformanceCount.LowPart = Frequency.LowPart;
+    PerformanceCount.HighPart = 0;
+    gbHasQPC = 1;
+    gbTimeFreqDbl = (double)Frequency.HighPart * 4294967295.0 + (double)PerformanceCount.QuadPart;
+    timeGetDevCaps(&ptc, 8);
+    if (gbHasQPC) {
+        QueryPerformanceCounter(&PerformanceCount);
+        Frequency.LowPart = PerformanceCount.LowPart;
+        Frequency.HighPart = 0;
+        g_CurrentTime = ((double)PerformanceCount.HighPart * 4294967295.0 + (double)Frequency.QuadPart)
+                      / gbTimeFreqDbl;
+    }
 }
 
 // 0x1002FE90 (100B)
@@ -1075,92 +1081,153 @@ double gbTimeCounter_Off(gbTimeCounter* This)
     return This->elapsed;
 }
 
-void gbPixelFormat::Convert(unsigned char* src, gbPixelFormat* dstFmt, unsigned char* dst, int numPixels) {
-    if (!src || !dst || !dstFmt || numPixels <= 0) {
+void gbPixelFormat::Convert(unsigned char* src, gbPixelFormat* srcFmt, unsigned char* dst, int numPixels) {
+    if (Pal)
+        memcpy(Pal, srcFmt->Pal, 4 * (1 << Bpp));
+
+    int dstHasPal = (int)Pal;
+    gbColorQuad* srcPal = srcFmt->Pal;
+    int srcBitOffset = 0;
+    int dstBitOffset = 0;
+
+    if (dstHasPal) {
+        if (!srcPal)
+            goto do_memcpy;
+        goto indexed_to_direct;
+    }
+
+    if (srcPal) {
+indexed_to_direct:
+        if (!dstHasPal) {
+            int rShift = (int)r_shift;
+            int bShift = (int)b_shift;
+            int gShift = (int)g_shift;
+            unsigned char* pDst = dst;
+            int aShift = (int)a_shift;
+            int savedRShift = rShift;
+
+            if (numPixels > 0) {
+                int remaining = numPixels;
+                while (1) {
+                    unsigned char* palEntry = (unsigned char*)srcFmt->Pal + 4 * *src;
+                    unsigned int palB = palEntry[2];
+                    unsigned int palG = palEntry[1];
+                    unsigned int palR = *palEntry;
+
+                    unsigned int shiftedR = rShift < 0 ? palB >> (unsigned char)(-(char)rShift) : palB << rShift;
+                    unsigned int shiftedG = gShift < 0 ? palG >> (unsigned char)(-(char)gShift) : palG << gShift;
+                    unsigned int shiftedB = bShift < 0 ? palR >> (unsigned char)(-(char)bShift) : palR << bShift;
+                    unsigned int shiftedA = aShift < 0 ? 0xFFFFFFFF >> (unsigned char)(-(char)aShift) : (unsigned int)-1 << aShift;
+
+                    int combined = shiftedG & g_mask | shiftedR & r_mask;
+                    int bPart = shiftedB & b_mask;
+                    int dstBpp = Bpp;
+                    int pixel = a_mask & shiftedA | bPart | combined;
+
+                    switch (dstBpp) {
+                    case 16:
+                        *(unsigned short*)pDst = (unsigned short)pixel;
+                        break;
+                    case 24:
+                        *(unsigned short*)pDst = (unsigned short)pixel;
+                        pDst[2] = (unsigned char)(pixel >> 16);
+                        break;
+                    case 32:
+                        *(unsigned int*)pDst = pixel;
+                        break;
+                    }
+
+                    dstBitOffset += Bpp;
+                    ++src;
+                    pDst = &dst[dstBitOffset / 8];
+                    if (!--remaining)
+                        break;
+                    rShift = savedRShift;
+                }
+            }
+            return;
+        }
+do_memcpy:
+        memcpy(dst, src, (unsigned int)numPixels);
         return;
     }
 
-    int srcBytesPerPixel = Bpp / 8;
-    int dstBytesPerPixel = dstFmt->Bpp / 8;
+    int dstBpp = Bpp;
+    int srcBpp = (int)srcFmt->Bpp;
 
-    for (int i = 0; i < numPixels; i++) {
-        unsigned int r, g, b, a;
+    if (dstBpp == srcBpp
+        && r_mask == srcFmt->r_mask
+        && g_mask == srcFmt->g_mask
+        && b_mask == srcFmt->b_mask
+        && a_mask == srcFmt->a_mask) {
+        unsigned int byteCount = numPixels * (dstBpp / 8);
+        memcpy(dst, src, byteCount);
+        return;
+    }
 
-        // Extract from source format
-        if (Type == GB_PFT_P8 && Pal) {
-            unsigned char index = src[i];
-            r = Pal[index].r;
-            g = Pal[index].g;
-            b = Pal[index].b;
-            a = Pal[index].a;
-        } else {
-            unsigned int pixel = 0;
-            memcpy(&pixel, src + i * srcBytesPerPixel, srcBytesPerPixel);
+    int rShiftDiff = (int)r_shift - (int)srcFmt->r_shift;
+    int bShiftDiff = (int)b_shift - (int)srcFmt->b_shift;
+    unsigned char* pDst = dst;
+    int gShiftDiff = (int)g_shift - (int)srcFmt->g_shift;
+    int aShiftDiff = (int)a_shift - (int)srcFmt->a_shift;
+    unsigned char* pSrc = src;
 
-            r = (pixel & r_mask) >> r_shift;
-            g = (pixel & g_mask) >> g_shift;
-            b = (pixel & b_mask) >> b_shift;
-            a = a_mask ? ((pixel & a_mask) >> a_shift) : 0xFF;
-
-            // Scale to 8-bit
-            if (r_mask) {
-                unsigned int rBits = 0;
-                unsigned int temp = r_mask;
-                while (temp) { rBits++; temp >>= 1; }
-                r = (r * 255) / ((1 << rBits) - 1);
+    if (numPixels > 0) {
+        int remaining = numPixels;
+        while (1) {
+            int srcPixel = 0;
+            switch (srcBpp) {
+            case 16:
+                srcPixel = *(unsigned short*)pSrc;
+                break;
+            case 24:
+                srcPixel = *pSrc | (*(unsigned short*)(pSrc + 1) << 8);
+                break;
+            case 32:
+                srcPixel = *(unsigned int*)pSrc;
+                break;
             }
-            if (g_mask) {
-                unsigned int gBits = 0;
-                unsigned int temp = g_mask;
-                while (temp) { gBits++; temp >>= 1; }
-                g = (g * 255) / ((1 << gBits) - 1);
-            }
-            if (b_mask) {
-                unsigned int bBits = 0;
-                unsigned int temp = b_mask;
-                while (temp) { bBits++; temp >>= 1; }
-                b = (b * 255) / ((1 << bBits) - 1);
-            }
-            if (a_mask) {
-                unsigned int aBits = 0;
-                unsigned int temp = a_mask;
-                while (temp) { aBits++; temp >>= 1; }
-                a = (a * 255) / ((1 << aBits) - 1);
-            }
-        }
 
-        // Pack into destination format
-        unsigned int dstPixel = 0;
-        if (dstFmt->r_mask) {
-            unsigned int rBits = 0;
-            unsigned int temp = dstFmt->r_mask >> dstFmt->r_shift;
-            while (temp) { rBits++; temp >>= 1; }
-            r = (r * ((1 << rBits) - 1)) / 255;
-            dstPixel |= (r << dstFmt->r_shift) & dstFmt->r_mask;
-        }
-        if (dstFmt->g_mask) {
-            unsigned int gBits = 0;
-            unsigned int temp = dstFmt->g_mask >> dstFmt->g_shift;
-            while (temp) { gBits++; temp >>= 1; }
-            g = (g * ((1 << gBits) - 1)) / 255;
-            dstPixel |= (g << dstFmt->g_shift) & dstFmt->g_mask;
-        }
-        if (dstFmt->b_mask) {
-            unsigned int bBits = 0;
-            unsigned int temp = dstFmt->b_mask >> dstFmt->b_shift;
-            while (temp) { bBits++; temp >>= 1; }
-            b = (b * ((1 << bBits) - 1)) / 255;
-            dstPixel |= (b << dstFmt->b_shift) & dstFmt->b_mask;
-        }
-        if (dstFmt->a_mask) {
-            unsigned int aBits = 0;
-            unsigned int temp = dstFmt->a_mask >> dstFmt->a_shift;
-            while (temp) { aBits++; temp >>= 1; }
-            a = (a * ((1 << aBits) - 1)) / 255;
-            dstPixel |= (a << dstFmt->a_shift) & dstFmt->a_mask;
-        }
+            unsigned int srcR = srcFmt->r_mask;
+            unsigned int srcG = srcPixel & srcFmt->g_mask;
+            unsigned int srcB = srcFmt->b_mask;
+            unsigned int srcA = srcFmt->a_mask;
+            unsigned int maskedR = srcPixel & srcR;
+            unsigned int maskedB = srcB & srcPixel;
+            unsigned int maskedA = srcA ? srcPixel & srcA : (unsigned int)-1;
 
-        memcpy(dst + i * dstBytesPerPixel, &dstPixel, dstBytesPerPixel);
+            unsigned int shiftedR = rShiftDiff < 0 ? maskedR >> (unsigned char)(-(char)rShiftDiff) : maskedR << rShiftDiff;
+            unsigned int shiftedG = gShiftDiff < 0 ? srcG >> (unsigned char)(-(char)gShiftDiff) : srcG << gShiftDiff;
+            unsigned int shiftedB = bShiftDiff < 0 ? maskedB >> (unsigned char)(-(char)bShiftDiff) : maskedB << bShiftDiff;
+            unsigned int shiftedA = aShiftDiff < 0 ? maskedA >> (unsigned char)(-(char)aShiftDiff) : maskedA << aShiftDiff;
+
+            int dstPixel = a_mask & shiftedA
+                        | shiftedB & b_mask
+                        | shiftedG & g_mask
+                        | shiftedR & r_mask;
+            int outBpp = Bpp;
+
+            switch (outBpp) {
+            case 16:
+                *(unsigned short*)pDst = (unsigned short)dstPixel;
+                break;
+            case 24:
+                *(unsigned short*)pDst = (unsigned short)dstPixel;
+                pDst[2] = (unsigned char)(dstPixel >> 16);
+                break;
+            case 32:
+                *(unsigned int*)pDst = dstPixel;
+                break;
+            }
+
+            srcBpp = (int)srcFmt->Bpp;
+            srcBitOffset += srcBpp;
+            dstBitOffset += Bpp;
+            pSrc = &src[srcBitOffset / 8];
+            pDst = &dst[dstBitOffset / 8];
+            if (!--remaining)
+                break;
+        }
     }
 }
 
@@ -1171,7 +1238,8 @@ gbUIRect& gbUIRect::operator=(const gbUIRect& other) {
 
 void gbUIRect::Init(char* textureName, float inLeft, float inTop, float inRight, float inBottom, gbGfxManager* gfx) {
     m_pGfx = gfx;
-    m_pTexture = NULL;
+    m_pTexture = gfx->NewTexture(textureName);
+    m_pTexture->LoadTexture(1);
     left = inLeft;
     top = inTop;
     width = inRight - inLeft;
