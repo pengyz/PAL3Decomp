@@ -400,8 +400,8 @@ void gbInitDispSetting(void)
     FILE* fp;
 
     result = EnumDisplaySettingsA(NULL, 0, &DevMode);
-    iModeNum = 0;
     fp = fopen("disp_ogl.txt", "wt");
+    iModeNum = 0;
     if (result) {
         do {
             gbDispMode* pMode = &g_dispModes[g_dispModeCount];
@@ -521,10 +521,10 @@ void gbPopDispMode(void)
     if (g_dispStackDepth) {
         --g_dispStackDepth;
         memcpy(&mode, (char*)g_dispStack + 20 * g_dispStackDepth, sizeof(mode));
-        if (mode.width)
-            gbChangeDispMode(mode.width, mode.height, mode.bpp);
-        else
+        if (!mode.width)
             ChangeDisplaySettingsA(NULL, 0);
+        else
+            gbChangeDispMode(mode.width, mode.height, mode.bpp);
     }
 }
 
