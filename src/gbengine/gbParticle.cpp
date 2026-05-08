@@ -34,14 +34,12 @@ static int RandomInt(int imin, int imax) {
 
 // Ghidra: gbPartParamControl_1000cd90 (93 bytes)
 gbPartParamControl::gbPartParamControl(void) {
-    memset(stateData, 0, sizeof(stateData));
-    memset(curveConfig, 0, sizeof(curveConfig));
-    memset(ch0Keys, 0, sizeof(ch0Keys));
-    ch0Pad = 0;
-    memset(ch1Keys, 0, sizeof(ch1Keys));
-    memset(ch2Keys, 0, sizeof(ch2Keys));
-    ch2LastValue = 0.0f;
-    ch2LastTangentIn = 0.0f;
+    stateData[0] = 0;
+    stateData[1] = 0;
+    stateData[2] = 0;
+    stateData[3] = 0;
+    stateData[4] = 0;
+    stateData[5] = 0;
 }
 
 gbPartParamControl& gbPartParamControl::operator=(const gbPartParamControl& other) {
@@ -49,14 +47,9 @@ gbPartParamControl& gbPartParamControl::operator=(const gbPartParamControl& othe
     controlType = other.controlType;
     numKeys = other.numKeys;
     for (i = 0; i < 0xC0; i++) configData[i] = other.configData[i];
-    for (i = 0; i < 0x18; i++) stateData[i] = other.stateData[i];
-    for (i = 0; i < 0x2D0; i++) curveConfig[i] = other.curveConfig[i];
-    for (i = 0; i < GB_PARTCTRL_MAX_KEYS; i++) ch0Keys[i] = other.ch0Keys[i];
-    ch0Pad = other.ch0Pad;
-    for (i = 0; i < GB_PARTCTRL_MAX_KEYS; i++) ch1Keys[i] = other.ch1Keys[i];
-    for (i = 0; i < GB_PARTCTRL_MAX_KEYS - 1; i++) ch2Keys[i] = other.ch2Keys[i];
-    ch2LastValue = other.ch2LastValue;
-    ch2LastTangentIn = other.ch2LastTangentIn;
+    for (i = 0; i < 6; i++) stateData[i] = other.stateData[i];
+    for (i = 0; i < 60; i++) curveKeys[i] = other.curveKeys[i];
+    for (i = 0; i < 303; i++) keyData[i] = other.keyData[i];
     return *this;
 }
 
@@ -65,45 +58,77 @@ void gbPartParamControl::LoadFromFile(gbVFile* vfile) {
     g_pVFileSys->Read(&numKeys, 4u, vfile);
     g_pVFileSys->Read(configData, 0x40u, vfile);
     g_pVFileSys->Read(configData + 0x40, 0x80u, vfile);
-    g_pVFileSys->Read(stateData + 0x0C, 0x0Cu, vfile);
+    g_pVFileSys->Read((char*)stateData + 0x0C, 0x0Cu, vfile);
     g_pVFileSys->Read(stateData, 0x0Cu, vfile);
     g_pVFileSys->Seek(vfile, 720, 2);
-    g_pVFileSys->Read(curveConfig, 0x2D0u, vfile);
-    g_pVFileSys->Read(ch0Keys, 0xE34u, vfile);
+    g_pVFileSys->Read(curveKeys, 0x2D0u, vfile);
+    g_pVFileSys->Read(keyData, 0xE34u, vfile);
 }
 
 // Ghidra: GetValue_100299b0 (252 bytes)
 void gbPartParamControl::GetValue(float* result, float t) {
-    if (t <= ch0Keys[0].time) {
-        result[0] = ch0Keys[0].value;
-        result[1] = ch1Keys[0].value;
-        result[2] = ch2Keys[0].value;
+    // keyData layout: ch0[101] at +0, pad 4B, ch1[101] at +1216, ch2[100] at +2428, last 8B
+    gbPartKeyframeCh0* ch0 = (gbPartKeyframeCh0*)keyData;
+    gbPartKeyframeCh1* ch1 = (gbPartKeyframeCh1*)((char*)keyData + 1216);
+    gbPartKeyframeCh1* ch2 = (gbPartKeyframeCh1*)((char*)keyData + 2428);
+
+    if (t <= ch0[0].time) {
+        result[0] = ch0[0].value;
+        result[1] = ch1[0].value;
+        result[2] = ch2[0].value;
         return;
     }
 
     int i = 1;
     do {
-        if (t < ch0Keys[i].time) {
-            float factor = (t - ch0Keys[i - 1].time) / (ch0Keys[i].time - ch0Keys[i - 1].time);
+        if (t < ch0[i].time) {
+            float factor = (t - ch0[i - 1].time) / (ch0[i].time - ch0[i - 1].time);
             float invFactor = 1.0f - factor;
 
-            result[0] = factor * ch0Keys[i].value + invFactor * ch0Keys[i - 1].value;
-            result[1] = factor * ch1Keys[i].value + invFactor * ch1Keys[i - 1].value;
-            result[2] = factor * ch2Keys[i].value + invFactor * ch2Keys[i - 1].value;
+            result[0] = factor * ch0[i].value + invFactor * ch0[i - 1].value;
+            result[1] = factor * ch1[i].value + invFactor * ch1[i - 1].value;
+            result[2] = factor * ch2[i].value + invFactor * ch2[i - 1].value;
             return;
         }
         i++;
     } while (i <= 0x64);
 
-    result[0] = ch0Keys[GB_PARTCTRL_MAX_KEYS - 1].value;
-    result[1] = ch1Keys[GB_PARTCTRL_MAX_KEYS - 1].value;
-    result[2] = ch2LastValue;
+    result[0] = ch0[GB_PARTCTRL_MAX_KEYS - 1].value;
+    result[1] = ch1[GB_PARTCTRL_MAX_KEYS - 1].value;
+    float* lastData = (float*)((char*)keyData + 3628);
+    result[2] = *lastData;
 }
 
 /* ======== gbPartGroupParam ======== */
 
 gbPartGroupParam::gbPartGroupParam(void) {
-    memset(this, 0, sizeof(gbPartGroupParam));
+    sizeControl.stateData[0] = 0;
+    sizeControl.stateData[1] = 0;
+    sizeControl.stateData[2] = 0;
+    sizeControl.stateData[3] = 0;
+    sizeControl.stateData[4] = 0;
+    sizeControl.stateData[5] = 0;
+    rotControl.stateData[0] = 0;
+    rotControl.stateData[1] = 0;
+    rotControl.stateData[2] = 0;
+    rotControl.stateData[3] = 0;
+    rotControl.stateData[4] = 0;
+    rotControl.stateData[5] = 0;
+    alphaControl.stateData[0] = 0;
+    alphaControl.stateData[1] = 0;
+    alphaControl.stateData[2] = 0;
+    alphaControl.stateData[3] = 0;
+    alphaControl.stateData[4] = 0;
+    alphaControl.stateData[5] = 0;
+    colorControl.stateData[0] = 0;
+    colorControl.stateData[1] = 0;
+    colorControl.stateData[2] = 0;
+    colorControl.stateData[3] = 0;
+    colorControl.stateData[4] = 0;
+    colorControl.stateData[5] = 0;
+    textureLoaded = 0;
+    pRenderEffect = NULL;
+    pTextures[0] = NULL;
 }
 
 gbPartGroupParam::~gbPartGroupParam(void) {
@@ -714,19 +739,24 @@ gbPartGroupParam* gbParticleGroup::GetGroupParam(void) {
 }
 
 gbParticleUnit* gbParticleGroup::GetOldestParticle(void) {
-    if (numAliveParticles <= 0) return NULL;
-
     double maxAge = -1.0;
-    int oldestIndex = 0;
+    int count = numAliveParticles;
+    int oldestIndex;
 
-    for (int i = 0; i < numAliveParticles; i++) {
-        if (particleArray[i].age > maxAge) {
-            maxAge = particleArray[i].age;
-            oldestIndex = i;
-        }
+    if (count > 0) {
+        oldestIndex = 0;
+        double* pAge = (double*)((char*)particleArray + 8);
+        int i = 0;
+        do {
+            if (maxAge < *pAge) {
+                maxAge = *pAge;
+                oldestIndex = i;
+            }
+            ++i;
+            pAge += 11;
+        } while (i < count);
     }
-
-    return &particleArray[oldestIndex];
+    return (gbParticleUnit*)((char*)particleArray + 88 * oldestIndex);
 }
 
 gbParticleUnit* gbParticleGroup::CreateOneParticle(gbEmitterData* emitData) {
@@ -946,7 +976,25 @@ gbParticleEffect::gbParticleEffect(void) {
 }
 
 gbParticleEffect::gbParticleEffect(const gbParticleEffect& other) {
-    memcpy(this, &other, sizeof(gbParticleEffect));
+    // VC6 copy ctor with inheritance chain vtable assignments
+    // gbChain1DNode base (offsets 0-24)
+    ((int*)this)[1] = ((int*)&other)[1];
+    ((int*)this)[2] = ((int*)&other)[2];
+    ((int*)this)[3] = ((int*)&other)[3];
+    ((int*)this)[4] = ((int*)&other)[4];
+    ((int*)this)[5] = ((int*)&other)[5];
+    ((int*)this)[6] = ((int*)&other)[6];
+    // gbNBTreeNode base (offsets 28-87)
+    memcpy((char*)this + 28, (char*)&other + 28, 0x3C);
+    // gbVisNode base (offsets 88-259)
+    memcpy((char*)this + 88, (char*)&other + 88, 0xAC);
+    // gbParticleEffect members (offsets 264-347)
+    ((int*)this)[66] = ((int*)&other)[66];
+    ((int*)this)[67] = ((int*)&other)[67];
+    ((int*)this)[68] = ((int*)&other)[68];
+    ((int*)this)[69] = ((int*)&other)[69];
+    ((int*)this)[70] = ((int*)&other)[70];
+    memcpy((char*)this + 284, (char*)&other + 284, 0x40);
 }
 
 gbParticleEffect::~gbParticleEffect(void) {

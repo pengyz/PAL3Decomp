@@ -53,14 +53,9 @@ public:
     int controlType;                        // +0x00
     int numKeys;                            // +0x04
     char configData[0xC0];                  // +0x08
-    char stateData[0x18];                   // +0xC8
-    char curveConfig[0x2D0];                // +0xE0
-    gbPartKeyframeCh0 ch0Keys[GB_PARTCTRL_MAX_KEYS]; // +0x3B0: {time,value,tangent} × 101
-    int ch0Pad;                             // +0x86C
-    gbPartKeyframeCh1 ch1Keys[GB_PARTCTRL_MAX_KEYS]; // +0x870: {value,tangentIn,tangentOut} × 101
-    gbPartKeyframeCh1 ch2Keys[GB_PARTCTRL_MAX_KEYS - 1]; // +0xD2C: {value,tangentIn,tangentOut} × 100
-    float ch2LastValue;                     // +0x11DC: entry 100 value
-    float ch2LastTangentIn;                 // +0x11E0: entry 100 tangentIn
+    int stateData[6];                       // +0xC8 (24 bytes)
+    gbVec3D curveKeys[60];                  // +0xE0 (720 bytes = 0x2D0)
+    gbVec3D keyData[303];                   // +0x3B0 (3636 bytes = 0xE34)
 
     gbPartParamControl(void);
     gbPartParamControl& operator=(const gbPartParamControl& other);

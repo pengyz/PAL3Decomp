@@ -449,8 +449,15 @@ void gbReportError(char* fmt, ...)
 #define NUM_PROFILE_ENTRIES 50
 
 struct ProfileEntry {
-    char flag;
-    char _data[0x11b];
+    char isActive;
+    char _pad[3];
+    int totalCalls;
+    int nestingCount;
+    char name[256];
+    float startTime;
+    float selfTime;
+    float childTime;
+    int childCount;
 };
 
 struct ProfileOutput {
@@ -463,6 +470,8 @@ static ProfileOutput g_profileOutputs[NUM_PROFILE_ENTRIES];
 static float g_profileTime;
 
 extern float GetTimeSeconds(void);
+static void ProfileFormatOutput(char* buffer);
+static ProfileEntry* g_profileEnd = &g_profileEntries[NUM_PROFILE_ENTRIES];
 
 // 0x10031750 (46B)
 void ProfileInit(void)
@@ -470,7 +479,7 @@ void ProfileInit(void)
     ProfileOutput* p2 = g_profileOutputs;
     ProfileEntry* p1 = g_profileEntries;
     do {
-        p1->flag = 0;
+        p1->isActive = 0;
         p2->flag = 0;
         p1++;
         p2++;
@@ -480,17 +489,90 @@ void ProfileInit(void)
 
 void ProfileBegin(char* name)
 {
-    // TODO: implement
+    unsigned int i = 0;
+    char* pName = g_profileEntries[0].name;
+
+    while (*(pName - 12) == 1) {
+        if (!strcmp(pName, name)) {
+            int idx = 71 * i;
+            int count = ((int*)&g_profileEntries[0])[idx] + 1;
+            ((int*)&g_profileEntries[0])[idx] = count;
+            ((int*)&g_profileEntries[0])[idx - 1] = ((int*)&g_profileEntries[0])[idx - 1] + 1;
+            ((float*)&g_profileEntries[0])[idx + 67] = GetTimeSeconds();
+            return;
+        }
+        pName += 284;
+        ++i;
+        if ((int)pName >= (int)g_profileEnd->name)
+            return;
+    }
+    if (i < 0x32) {
+        strcpy(g_profileEntries[i].name, name);
+        g_profileEntries[i].isActive = 1;
+        g_profileEntries[i].nestingCount = 1;
+        g_profileEntries[i].totalCalls = 1;
+        g_profileEntries[i].selfTime = 0;
+        g_profileEntries[i].startTime = GetTimeSeconds();
+        g_profileEntries[i].childTime = 0;
+    }
 }
 
 void ProfileEnd(char* name)
 {
-    // TODO: implement
+    int i = 0;
+    char* pName = g_profileEntries[0].name;
+
+    while (*(pName - 12) == 1) {
+        if (!strcmp(pName, name)) {
+            int deepest = 0;
+            int deepIdx = -1;
+            float endTime = GetTimeSeconds();
+            int idx = 71 * i;
+            --((int*)&g_profileEntries[0])[idx];
+            if (g_profileEntries[0].isActive == 1) {
+                int childCount = 0;
+                int j = 0;
+                int jidx = 0;
+                int doffs = -284;
+                do {
+                    if (((int*)&g_profileEntries[0])[jidx] > 0) {
+                        ++childCount;
+                        if (deepIdx < 0 || ((float*)&g_profileEntries[0])[jidx + 67] >= *(float*)((char*)&g_profileEntries[0].startTime + doffs)) {
+                            deepIdx = j;
+                            doffs = jidx * 4;
+                        }
+                    }
+                    jidx += 71;
+                    ++j;
+                } while (((char*)&g_profileEntries[0])[jidx * 4] == 1);
+                g_profileEntries[i].childCount = childCount;
+            } else {
+                g_profileEntries[i].childCount = 0;
+            }
+            if (deepIdx >= 0)
+                g_profileEntries[deepIdx].childTime = endTime - g_profileEntries[i].startTime + g_profileEntries[deepIdx].childTime;
+            g_profileEntries[i].selfTime = endTime - g_profileEntries[i].startTime + g_profileEntries[i].selfTime;
+            return;
+        }
+        pName += 284;
+        ++i;
+        if ((int)pName >= (int)g_profileEnd->name)
+            return;
+    }
+}
+
+static void ProfileFormatOutput(char* buffer)
+{
+    buffer[0] = '\0';
 }
 
 void ProfileDumpOutputToFile(char* filename)
 {
-    // TODO: implement
+    FILE* fp = fopen(filename, "wt");
+    char buffer[16384];
+    ProfileFormatOutput(buffer);
+    fprintf(fp, "%s", buffer);
+    fclose(fp);
 }
 
 // ======== gbColorQuad Class ========
