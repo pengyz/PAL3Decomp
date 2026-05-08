@@ -706,8 +706,8 @@ gbVertPoolMgr::gbVertPoolMgr(gbGfxManager* mgr, int p2, int p3, int p4, int p5) 
     this->indexPoolList.nCount = 0;
     this->indexPoolList.pIterator = NULL;
 
-    // Initialize dynamic vert buf area
-    memset(&this->dynVertBufChains, 0, 0x10 * 0x20);
+    // Initialize src vertex pool chain area
+    memset(&this->srcVertPoolChains, 0, 0x10 * 0x20);
 
     this->maxVertexPoolSize = p2;
     this->maxIndexPoolSize = p3;
@@ -719,186 +719,342 @@ gbVertPoolMgr::gbVertPoolMgr(gbGfxManager* mgr, int p2, int p3, int p4, int p5) 
     gbVertexPool::pGfxMgr = mgr;
     g_gbDynVertBuf_pGfxMgr = mgr;
 
-    // Zero out pool arrays
+    // Zero out FVF and pointer arrays
     for (int i = 0; i < 32; i++) {
-        this->vertexPools[i] = NULL;
-        this->srcVertPools[i] = NULL;
+        this->vertPoolFVFs[i] = 0;
         this->dynVertBufs[i] = NULL;
+        this->dynVertBufFVFs[i] = 0;
+        this->srcVertPoolFVFs[i] = 0;
     }
 }
 
 // Destructor: 0x100211a0
 gbVertPoolMgr::~gbVertPoolMgr() {
-    // Clean up all pools
+    // Clean up all dynamic vert bufs
     for (int i = 0; i < 32; i++) {
-        if (this->vertexPools[i]) {
-            delete this->vertexPools[i];
-        }
-        if (this->srcVertPools[i]) {
-            delete this->srcVertPools[i];
-        }
         if (this->dynVertBufs[i]) {
             delete this->dynVertBufs[i];
         }
     }
 }
 
-// OnLostDevice: 0x10021240
+// OnLostDevice: 0x10021240 (47B)
 int gbVertPoolMgr::OnLostDevice() {
-    for (int i = 0; i < 32; i++) {
-        if (srcVertPools[i] != NULL) {
-            if (srcVertPools[i]->OnLostDevice() == 0) {
+    int i = 0;
+    do {
+        if (dynVertBufs[i] != NULL) {
+            // Call virtual method vtable[1] = OnLostDevice
+            void** vtbl = *(void***)dynVertBufs[i];
+            typedef int (*VFunc)(void*);
+            if (((VFunc)vtbl[1])(dynVertBufs[i]) == 0) {
                 return 0;
             }
         }
-    }
+        i++;
+    } while (i < 32);
     return 1;
 }
 
-// OnResetDevice: 0x10021270
+// OnResetDevice: 0x10021270 (47B)
 int gbVertPoolMgr::OnResetDevice() {
-    for (int i = 0; i < 32; i++) {
-        if (srcVertPools[i] != NULL) {
-            if (srcVertPools[i]->OnResetDevice() == 0) {
+    int i = 0;
+    do {
+        if (dynVertBufs[i] != NULL) {
+            // Call virtual method vtable[2] = OnResetDevice
+            void** vtbl = *(void***)dynVertBufs[i];
+            typedef int (*VFunc)(void*);
+            if (((VFunc)vtbl[2])(dynVertBufs[i]) == 0) {
                 return 0;
             }
         }
-    }
+        i++;
+    } while (i < 32);
     return 1;
 }
 
-// Find which vertex pool index contains the given FVF
-int gbVertPoolMgr::FindVertexPoolIndex(unsigned int* pFVF, unsigned int fvf) {
-    int i;
-    for (i = 0; i < 32; i++) {
-        if (vertexPools[i] && vertexPools[i]->fvf == fvf) {
-            if (pFVF) *pFVF = fvf;
-            return i;
-        }
-    }
 
-    // Not found - return first available slot
-    for (i = 0; i < 32; i++) {
-        if (!vertexPools[i]) {
-            if (pFVF) *pFVF = 0;
-            return i;
-        }
-    }
-
-    // No slots available
-    if (pFVF) *pFVF = 0;
-    return -1;
-}
-
-// NewVertexBubble: 0x100212e0
+// NewVertexBubble: 0x100212e0 (182B)
 gbVertexBubble* gbVertPoolMgr::NewVertexBubble(unsigned int fvf, int count) {
-    // Update statistics
-    int* pStatCount = &this->pGfxManager->Stat.nStaticIndex;
-    *pStatCount += count;
+    int i;
+    gbVertexPool* pool;
+    gbVertexBubble* result;
+    gbChain1D* chain;
 
-    // Try existing pools
-    gbVertexPool* pool = this->vertexPools[0];
-    this->vertexPools[12] = pool;
+    // Update stat counter
+    *(int*)((char*)pGfxManager + 0x210) += count;
+
+    // Find pool index by matching FVF
+    i = 0;
+    do {
+        if (vertPoolFVFs[i] == fvf) goto found;
+        i++;
+    } while (i < 32);
+
+    // Not found - find empty slot and register
+    i = 0;
+    do {
+        if (vertPoolFVFs[i] == 0) {
+            vertPoolFVFs[i] = fvf;
+            goto found;
+        }
+        i++;
+    } while (i < 32);
+
+    i = -1;
+
+found:
+    chain = &vertPoolChains[i];
+    pool = (gbVertexPool*)chain->pHead;
+    chain->pIterator = (gbChain1DNode*)pool;
 
     while (pool) {
-        gbVertexBubble* bubble = pool->NewBubble(count);
-        if (bubble) {
-            return bubble;
-        }
-
-        pool = (gbVertexPool*)this->vertexPools[12]->pNext;
-        this->vertexPools[12] = pool;
+        result = pool->NewBubble(count);
+        if (result) return result;
+        pool = (gbVertexPool*)chain->pIterator->pNext;
+        chain->pIterator = (gbChain1DNode*)pool;
     }
 
-    // Need to create new pool
-    if (this->maxVertexPoolSize < count) {
-        this->maxVertexPoolSize = count;
+    // No existing pool has space - create new one
+    if (maxVertexPoolSize < count) {
+        maxVertexPoolSize = count;
     }
 
-    // Create pool through GfxManager virtual function
-    void** vtable = *(void***)this->pGfxManager;
-    typedef gbVertexPool* (*CreatePoolFunc)(gbGfxManager*, int, int, int);
-    CreatePoolFunc createPool = (CreatePoolFunc)vtable[5];
-    pool = createPool(this->pGfxManager, 0, fvf, this->maxVertexPoolSize);
+    // CreateVertexPool(POOL_DEFAULT, fvf, maxVertexPoolSize) via GfxManager vtable[4]
+    void** vtable = *(void***)pGfxManager;
+    typedef gbVertexPool* (*CreatePoolFunc)(gbGfxManager*, int, unsigned int, int);
+    CreatePoolFunc createPool = (CreatePoolFunc)vtable[4];
+    pool = createPool(pGfxManager, 0, fvf, maxVertexPoolSize);
 
-    // Add to list
-    // this->dynVertBufList.AddNode((gbChain1DNode*)pool);
+    chain->AddNode((gbChain1DNode*)pool);
 
     return pool->NewBubble(count);
 }
 
-// DelVertexBubble: 0x100213a0
+// DelVertexBubble: 0x100213a0 (144B)
 void gbVertPoolMgr::DelVertexBubble(gbVertexBubble* bubble) {
-    if (bubble && bubble->pPool) {
-        bubble->pPool->DelBubble(bubble);
+    int i;
+    gbVertexPool* pool;
+
+    // Update stat counter: pGfxManager->Stat.nStaticVertex -= bubble->vertexCount
+    *(int*)((char*)pGfxManager + 0x210) -= bubble->vertexCount;
+
+    pool = bubble->pPool;
+
+    // Find pool index by matching FVF
+    i = 0;
+    do {
+        if (vertPoolFVFs[i] == pool->fvf) goto found;
+        i++;
+    } while (i < 32);
+
+    // Not found - find empty slot and register
+    i = 0;
+    do {
+        if (vertPoolFVFs[i] == 0) {
+            vertPoolFVFs[i] = pool->fvf;
+            goto found;
+        }
+        i++;
+    } while (i < 32);
+
+    i = -1;
+
+found:
+    pool->DelBubble(bubble);
+
+    // If pool is now empty, remove and delete it
+    if (pool->usedList[0] == 0) {
+        vertPoolChains[i].DelNodeFromChain((gbChain1DNode*)pool);
+        if (pool) {
+            delete pool;
+        }
     }
 }
 
-// NewSrcVertBub: 0x10021430
+// NewSrcVertBub: 0x10021430 (185B)
 gbVertexBubble* gbVertPoolMgr::NewSrcVertBub(unsigned int fvf, int count) {
-    return NewVertexBubble(fvf, count);
-}
+    int i;
+    gbVertexPool* pool;
+    gbVertexBubble* result;
+    gbChain1D* chain;
 
-// DelSrcVertBub: 0x100214f0
-void gbVertPoolMgr::DelSrcVertBub(gbVertexBubble* bubble) {
-    if (bubble && bubble->pPool) {
-        bubble->pPool->DelBubble(bubble);
-    }
-}
+    // Update stat counter
+    *(int*)((char*)pGfxManager + 0x218) += count;
 
-// NewIndexBubble: 0x10021590
-gbIndexBubble* gbVertPoolMgr::NewIndexBubble(gbPrimType prim, int count) {
-    // Update statistics
-    int* pStatCount = &this->pGfxManager->Stat.nStaticIndex;
-    *pStatCount += count;
+    // Find pool index by matching FVF
+    i = 0;
+    do {
+        if (srcVertPoolFVFs[i] == fvf) goto found;
+        i++;
+    } while (i < 32);
 
-    // Try existing pools
-    gbIndexPool* pool = (gbIndexPool*)this->indexPoolList.pHead;
-    this->indexPoolList.pIterator = (gbChain1DNode*)pool;
+    // Not found - find empty slot and register
+    i = 0;
+    do {
+        if (srcVertPoolFVFs[i] == 0) {
+            srcVertPoolFVFs[i] = fvf;
+            goto found;
+        }
+        i++;
+    } while (i < 32);
+
+    i = -1;
+
+found:
+    chain = &srcVertPoolChains[i];
+    pool = (gbVertexPool*)chain->pHead;
+    chain->pIterator = (gbChain1DNode*)pool;
 
     while (pool) {
-        gbIndexBubble* bubble = pool->NewBubble(prim, count);
-        if (bubble) {
-            return bubble;
+        result = pool->NewBubble(count);
+        if (result) return result;
+        pool = (gbVertexPool*)chain->pIterator->pNext;
+        chain->pIterator = (gbChain1DNode*)pool;
+    }
+
+    // No existing pool has space - create new one
+    if (field_61C < count) {
+        field_61C = count;
+    }
+
+    // CreateVertexPool(POOL_MANAGED, fvf, field_61C) via GfxManager vtable[4]
+    void** vtable = *(void***)pGfxManager;
+    typedef gbVertexPool* (*CreatePoolFunc)(gbGfxManager*, int, unsigned int, int);
+    CreatePoolFunc createPool = (CreatePoolFunc)vtable[4];
+    pool = createPool(pGfxManager, 2, fvf, field_61C);
+
+    chain->AddNode((gbChain1DNode*)pool);
+
+    return pool->NewBubble(count);
+}
+
+// DelSrcVertBub: 0x100214f0 (145B)
+void gbVertPoolMgr::DelSrcVertBub(gbVertexBubble* bubble) {
+    int i;
+    gbVertexPool* pool;
+
+    // Update stat counter: pGfxManager->Stat.nSrcVertex -= bubble->vertexCount
+    *(int*)((char*)pGfxManager + 0x218) -= bubble->vertexCount;
+
+    pool = bubble->pPool;
+
+    // Find pool index by matching FVF
+    i = 0;
+    do {
+        if (srcVertPoolFVFs[i] == pool->fvf) goto found;
+        i++;
+    } while (i < 32);
+
+    // Not found - find empty slot and register
+    i = 0;
+    do {
+        if (srcVertPoolFVFs[i] == 0) {
+            srcVertPoolFVFs[i] = pool->fvf;
+            goto found;
         }
+        i++;
+    } while (i < 32);
 
-        pool = (gbIndexPool*)this->indexPoolList.pIterator->pNext;
-        this->indexPoolList.pIterator = (gbChain1DNode*)pool;
+    i = -1;
+
+found:
+    pool->DelBubble(bubble);
+
+    // If pool is now empty, remove and delete it
+    if (pool->usedList[0] == 0) {
+        srcVertPoolChains[i].DelNodeFromChain((gbChain1DNode*)pool);
+        if (pool) {
+            delete pool;
+        }
+    }
+}
+
+// NewIndexBubble: 0x10021590 (135B)
+gbIndexBubble* gbVertPoolMgr::NewIndexBubble(gbPrimType prim, int count) {
+    gbIndexPool* pool;
+    gbIndexBubble* result;
+
+    // Update stat counter
+    *(int*)((char*)pGfxManager + 0x214) += count;
+
+    pool = (gbIndexPool*)indexPoolList.pHead;
+    indexPoolList.pIterator = (gbChain1DNode*)pool;
+
+    while (pool) {
+        result = pool->NewBubble(prim, count);
+        if (result) return result;
+        pool = (gbIndexPool*)indexPoolList.pIterator->pNext;
+        indexPoolList.pIterator = (gbChain1DNode*)pool;
     }
 
-    // Need to create new pool
-    if (this->maxIndexPoolSize < count) {
-        this->maxIndexPoolSize = count;
+    // No existing pool has space - create new one
+    if (maxIndexPoolSize < count) {
+        maxIndexPoolSize = count;
     }
 
-    // Create pool through GfxManager virtual function
-    void** vtable = *(void***)this->pGfxManager;
+    // CreateIndexPool(POOL_DEFAULT, INDEX_16, maxIndexPoolSize) via GfxManager vtable[5]
+    void** vtable = *(void***)pGfxManager;
     typedef gbIndexPool* (*CreatePoolFunc)(gbGfxManager*, int, int, int);
     CreatePoolFunc createPool = (CreatePoolFunc)vtable[5];
-    pool = createPool(this->pGfxManager, 0, 2, this->maxIndexPoolSize);
+    pool = createPool(pGfxManager, 0, 2, maxIndexPoolSize);
 
-    this->indexPoolList.AddNode((gbChain1DNode*)pool);
+    indexPoolList.AddNode((gbChain1DNode*)pool);
 
     return pool->NewBubble(prim, count);
 }
 
-// DelIndexBubble: 0x10021620
+// DelIndexBubble: 0x10021620 (85B)
 void gbVertPoolMgr::DelIndexBubble(gbIndexBubble* bubble) {
-    if (bubble && bubble->pPool) {
-        bubble->pPool->DelBubble(bubble);
+    gbIndexPool* pool;
+
+    // Update stat counter: pGfxManager->Stat.nStaticIndex -= bubble->count
+    *(int*)((char*)pGfxManager + 0x214) -= bubble->count;
+
+    pool = bubble->pPool;
+    pool->DelBubble(bubble);
+
+    // If pool is now empty, remove and delete it
+    if (pool->usedList[0] == 0) {
+        indexPoolList.DelNodeFromChain((gbChain1DNode*)pool);
+        if (pool) {
+            delete pool;
+        }
     }
 }
 
-// GetDynVertBuf: 0x10021680
+// GetDynVertBuf: 0x10021680 (121B)
 gbDynVertBuf* gbVertPoolMgr::GetDynVertBuf(unsigned int fvf) {
-    // Find or create dynamic vertex buffer for given FVF
-    for (int i = 0; i < 32; i++) {
-        if (this->dynVertBufs[i]) {
-            // Check if FVF matches
-            // return this->dynVertBufs[i];
+    int i;
+
+    // Search for existing entry with matching FVF
+    i = 0;
+    do {
+        if (dynVertBufFVFs[i] == fvf) goto found;
+        i++;
+    } while (i < 32);
+
+    // Not found - find empty slot
+    i = 0;
+    do {
+        if (dynVertBufFVFs[i] == 0) {
+            dynVertBufFVFs[i] = fvf;
+            goto found;
         }
+        i++;
+    } while (i < 32);
+
+    i = -1;
+
+found:
+    if (dynVertBufs[i] == NULL) {
+        // Create via GfxManager virtual: CreateDynVertBuf(fvf, field_618)
+        void** vtable = *(void***)pGfxManager;
+        typedef gbDynVertBuf* (*CreateDynVBFunc)(gbGfxManager*, unsigned int, int);
+        CreateDynVBFunc createDVB = (CreateDynVBFunc)vtable[6];
+        dynVertBufs[i] = createDVB(pGfxManager, fvf, field_618);
+        g_gbDynVertBuf_pGfxMgr = pGfxManager;
     }
-    return NULL;
+    return dynVertBufs[i];
 }
 
 // operator=: 0x100040b0

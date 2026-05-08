@@ -7,6 +7,7 @@
 #include "gbengine/gbTexture.h"
 #include "gbengine/gbengine_internal.h"
 #include "gbengine/gbSceneGraph.h"
+#include "gbengine/gbGfxManager.h"
 #include <string.h>
 #include <stdlib.h>
 #include <math.h>
@@ -481,17 +482,21 @@ class gbVolModNode & gbVolModNode::operator=(class gbVolModNode const & p0) {
 }
 
 int gbVolModNode::Attach(class gbRenderEffect * p0) {
-    // Attach at 0x10013190:
-    // Copy localMatrix to worldMatrix, notify volume modifier
+    // Call base class gbVisNode::Attach
+    ((gbVisNode*)this)->gbVisNode::Attach(p0);
 
-    // Copy local to world matrix
-    memcpy(&worldMatrix, &localMatrix, sizeof(gbMatrix4));
+    // worldMatrix = localMatrix
+    worldMatrix = localMatrix;
 
-    // Notify the volume modifier via Compute virtual
-    if (pVolMod != 0) {
-        pVolMod->Compute(this);
-    }
+    // RightMultiply by world matrix stack top
+    gbMatrix4* top = gbVisNode::pGfxMgr->pMatrixStack[1]->GetTop();
+    worldMatrix.RightMultiply(*top);
 
+    // Notify volume modifier
+    pVolMod->Compute(this);
+
+    // Register with scene graph
+    gbVisNode::pSceneGraph->AddVolModNode(this);
     return 1;
 }
 

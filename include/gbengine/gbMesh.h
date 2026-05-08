@@ -166,12 +166,12 @@ public:
 class gbVertPoolMgr {
 public:
     gbChain1D vertPoolChains[32];        // +0x000 (32*16=512 bytes, ends at +0x200)
-    gbVertexPool* vertexPools[32];       // +0x200 (32*4=128 bytes, ends at +0x280)
+    unsigned int vertPoolFVFs[32];        // +0x200 (32*4=128 bytes, ends at +0x280)
     gbChain1D indexPoolList;             // +0x280 (16 bytes, ends at +0x290)
-    gbVertexPool* srcVertPools[32];      // +0x290 (32*4=128 bytes, ends at +0x310)
-    void* field_310[32];                 // +0x310 (32*4=128 bytes, ends at +0x390)
-    gbChain1D dynVertBufChains[32];      // +0x390 (32*16=512 bytes, ends at +0x590)
-    gbDynVertBuf* dynVertBufs[32];       // +0x590 (32*4=128 bytes, ends at +0x610)
+    gbDynVertBuf* dynVertBufs[32];       // +0x290 (32*4=128 bytes, ends at +0x310)
+    unsigned int dynVertBufFVFs[32];      // +0x310 (32*4=128 bytes, ends at +0x390)
+    gbChain1D srcVertPoolChains[32];     // +0x390 (32*16=512 bytes, ends at +0x590)
+    unsigned int srcVertPoolFVFs[32];     // +0x590 (32*4=128 bytes, ends at +0x610)
     int maxVertexPoolSize;               // +0x610
     int maxIndexPoolSize;                // +0x614
     int field_618;                       // +0x618
@@ -192,8 +192,6 @@ public:
     gbDynVertBuf* GetDynVertBuf(unsigned int fvf);
     gbVertPoolMgr& operator=(const gbVertPoolMgr& other);
 
-private:
-    int FindVertexPoolIndex(unsigned int* fvf, unsigned int type);
 };
 
 

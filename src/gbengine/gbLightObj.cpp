@@ -30,7 +30,35 @@ gbLightObj::gbLightObj(void) {
 }
 
 gbLightObj::gbLightObj(const gbLightObj& other) {
-    memcpy(this, &other, sizeof(gbLightObj));
+    int* dst = (int*)this;
+    const int* src = (const int*)&other;
+    dst[1] = src[1];
+    dst[2] = src[2];
+    dst[3] = src[3];
+    dst[4] = src[4];
+    dst[5] = src[5];
+    dst[6] = src[6];
+    dst[7] = src[7];
+    dst[8] = src[8];
+    dst[9] = src[9];
+    dst[10] = src[10];
+    dst[11] = src[11];
+    dst[12] = src[12];
+    dst[13] = src[13];
+    dst[14] = src[14];
+    dst[15] = src[15];
+    dst[16] = src[16];
+    dst[17] = src[17];
+    dst[18] = src[18];
+    dst[19] = src[19];
+    dst[20] = src[20];
+    dst[21] = src[21];
+    dst[22] = src[22];
+    dst[23] = src[23];
+    dst[24] = src[24];
+    dst[25] = src[25];
+    dst[26] = src[26];
+    memcpy((char*)this + 108, (char*)&other + 108, 0x6C);
 }
 
 gbLightObj::~gbLightObj(void) {
@@ -93,9 +121,33 @@ gbLightObj& gbLightObj::operator=(const gbLightObj& other) {
 }
 
 void gbLightObj::Init(enum LIGHT_TYPE lt) {
+    float sqrtMax = (float)sqrt(3.402823466385289e38);
     lightType = lt;
+    diffuse.r = 1.0f;
+    diffuse.g = 1.0f;
+    diffuse.b = 1.0f;
+    diffuse.a = 1.0f;
+    ambient.r = 0.0f;
+    ambient.g = 0.0f;
+    ambient.b = 0.0f;
+    ambient.a = 0.0f;
     enabled = 1;
-    ComputeBoundSphere();
+    _field30 = 1;
+    _field34 = 0;
+    _field38 = 0;
+    _field48 = 0;
+    attenuation0 = 1.0f;
+    attenuation1 = 0;
+    attenuation2 = 100.0f;
+    _field58 = 180.0f;
+    *(float*)((char*)this + 88) = 1.0f;
+    range = sqrtMax;
+    _field44 = sqrtMax;
+    bDirty = 0;
+    *(int*)((char*)this + 100) = 0;
+    *(int*)((char*)this + 96) = 0;
+    *(int*)((char*)this + 92) = 2139095039;
+    *(int*)((char*)this + 212) = 0;
 }
 
 void gbLightObj::ComputeBoundSphere(void) {

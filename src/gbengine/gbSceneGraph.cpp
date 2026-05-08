@@ -157,11 +157,24 @@ gbSceneGraph::gbSceneGraph(gbGfxManager* gfxMgr, const gbVec3D& param2, float pa
 }
 
 // 0x10014c60 - Destructor
+extern void sub_10014650(void* pool);
+extern void sub_1000ECC0(void* bladeMgr);
+
 gbSceneGraph::~gbSceneGraph(void) {
-    if (renderObjPool) {
-        free(renderObjPool);
-        renderObjPool = NULL;
+    if (volModNodePool) {
+        sub_10014650(volModNodePool);
+        operator delete(volModNodePool);
     }
+    if (rootNode) {
+        delete rootNode;
+    }
+    if (bladeMgr) {
+        sub_1000ECC0(bladeMgr);
+        operator delete(bladeMgr);
+    }
+    ((gbRefObject*)shadowQuadEffect)->Release();
+    skyBoxNode = NULL;
+    free(renderObjPool);
 }
 
 // 0x10014cd0 (13B) - Set sky box node
