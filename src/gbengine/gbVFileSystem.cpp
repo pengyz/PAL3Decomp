@@ -1285,12 +1285,11 @@ int CIniFile::OpenFileWrite(const char* filename)
     return 1;
 }
 
+// 0x100312f0
 void CIniFile::CloseFile()
 {
-    if (m_pFile && g_pVFileSys) {
-        g_pVFileSys->CloseFile(m_pFile);
-        m_pFile = NULL;
-    }
+    g_pVFileSys->CloseFile(m_pFile);
+    m_pFile = NULL;
     m_nState = -1;
 }
 
@@ -1319,43 +1318,75 @@ int CIniFile::ReadSection(char* sectionName)
     return 0;
 }
 
+// 0x10031650
 void CIniFile::ReadStart()
 {
-    if (m_pFile && g_pVFileSys) {
-        g_pVFileSys->Rewind(m_pFile);
-    }
+    g_pVFileSys->Seek(m_pFile, 0, 1);
 }
 
+// 0x100313e0
 int CIniFile::ReadLine(const char* key, char* value, int maxLen)
 {
-    if (!m_pFile || !g_pVFileSys || !key || !value)
-        return 0;
+    int len;
+    char* buf;
+    int state;
+    char ch;
+    char keyBuf[256];
+    char valBuf[256];
 
-    char line[512];
-    if (g_pVFileSys->ReadLine(line, sizeof(line), m_pFile) == NULL)
-        return 0;
+    len = 0;
+    buf = keyBuf;
 
-    char* p = line;
-    while (*p == ' ' || *p == '\t') p++;
-
-    int keyLen = (int)strlen(key);
-    if (_strnicmp(p, key, keyLen) != 0)
-        return 0;
-
-    p += keyLen;
-    while (*p == ' ' || *p == '\t') p++;
-    if (*p == '=') p++;
-    while (*p == ' ' || *p == '\t') p++;
-
-    strncpy(value, p, maxLen - 1);
-    value[maxLen - 1] = '\0';
-
-    int len = (int)strlen(value);
-    while (len > 0 && (value[len - 1] == ' ' || value[len - 1] == '\t' ||
-                       value[len - 1] == '\r' || value[len - 1] == '\n')) {
-        value[--len] = '\0';
+RESTART:
+    while (2) {
+        while (2) {
+            state = 0;
+            while (1) {
+                while (1) {
+                    while (1) {
+                        ch = g_pVFileSys->ReadChar(m_pFile);
+                        if (ch == -1)
+                            return 0;
+                        if (state)
+                            break;
+                        if (ch == ';') {
+                            state = 1;
+                        } else if (ch != 13 && ch != 10 && ch != ' ' && ch != '\t' && ch != '=') {
+                            if (ch == '[')
+                                return 0;
+                            buf[len++] = ch;
+                            state = 2;
+                        }
+                    }
+                    if (state != 1)
+                        break;
+                    if (ch == 10)
+                        goto RESTART;
+                }
+                if (ch == 13 || ch == 10 || ch == ' ' || ch == '\t' || ch == '=')
+                    break;
+                if (ch == ';') {
+                    g_pVFileSys->Seek(m_pFile, -1, 2);
+                    break;
+                }
+                buf[len++] = ch;
+            }
+            buf[len] = 0;
+            if (buf == keyBuf) {
+                buf = valBuf;
+                len = 0;
+                continue;
+            }
+            break;
+        }
+        if (strcmp(keyBuf, key)) {
+            buf = keyBuf;
+            len = 0;
+            continue;
+        }
+        break;
     }
-
+    strcpy(value, valBuf);
     return 1;
 }
 

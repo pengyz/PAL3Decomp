@@ -71,12 +71,12 @@ void gbOBBox::GetAABBox(gbAABBox& aabb) {
     aabb.vMax.z = center.z + e.z;
 }
 
-// Convert OBB to bounding sphere
+// 0x10027d10
 void gbOBBox::GetSphere(gbSphere& sphere) {
     sphere.center.x = matrix.m[3][0];
     sphere.center.y = matrix.m[3][1];
     sphere.center.z = matrix.m[3][2];
-    sphere.radius = extent.Length();
+    sphere.radius = (float)sqrt(extent.x * extent.x + extent.y * extent.y + extent.z * extent.z) * 0.5f;
 }
 
 // OBB-OBB collision using Separating Axis Theorem
