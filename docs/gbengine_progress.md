@@ -5,13 +5,14 @@
 | 指标 | 数值 |
 |------|------|
 | 编译器 | MSVC 6.0 SP5 (`/O2 /Ob2 /GF /Gy /Zp4 /GX`) |
-| IDA 导出函数 | 1344 |
+| DLL 总函数 (IDA 识别) | 3746 |
+| 其中已命名 (导出+已恢复) | 1362 |
+| 其中未命名 (sub_) | 2384 |
 | 源文件数 | 54 |
 | 编译通过文件 | **54/54 (100%)** |
 | DLL 链接 | **成功 (925KB, 1020 exports)** |
-| 可比对文件 | 45/54 (9个文件无匹配符号) |
-| 可比对函数 | 927 |
-| 完全匹配函数 | **475/927 (51.2%)** |
+| 当前可比对函数 (已命名) | ~940 |
+| 完全匹配函数 | **~485** |
 | 最后更新 | 2026-05-08 |
 
 ## 全文件二进制匹配进度
@@ -64,21 +65,35 @@
 | gbGfxManager_D3D.cpp | 1 | 0 | 3.7% | WIP |
 | CPK.cpp | 1 | 0 | 0.5% | WIP |
 
-### 无匹配符号文件 (9个)
+### 新增可比对文件 (IDA 重命名后)
 
-这些文件编译通过但 .obj 中的 mangled name 与 IDA 索引不匹配：
+| 文件 | 函数数 | 匹配 | 说明 |
+|------|--------|------|------|
+| gbGfxManager_D3D.cpp | 9 | **7** (88.8%) | 重命名 Present/SetFog/SetLight 等虚函数 |
+| gbBladeMgr.cpp | 2 | **2** (100%) | 重命名 Reset/GetLastBladePos |
 
-| 文件 | 原因 |
-|------|------|
-| gbBaseMesh.cpp | 类名/虚函数签名与 IDA 不匹配 |
-| gbBladeMgr.cpp | mangled name 不匹配 |
-| gbCameraControl.cpp | 无导出函数符号 |
-| gbDropGroup.cpp | 无导出函数符号 |
-| gbIndexBubble.cpp | 无导出函数符号 |
-| gbPrintFontMgr.cpp | 无导出函数符号 |
-| gbTimeCounter.cpp | 无导出函数符号 |
-| gbUIRect.cpp | mangled name 不匹配 |
-| gbVertPoolMgr.cpp | 无导出函数符号 |
+### 仍无匹配符号文件 (7个)
+
+| 文件 | 原因 | 下一步 |
+|------|------|--------|
+| gbBaseMesh.cpp | 函数太短(16B)多重匹配 | 需上下文/交叉引用定位 |
+| gbCameraControl.cpp | 编译后无外部符号 | 全部被内联或为空 |
+| gbDropGroup.cpp | 函数太短多重匹配 | 需上下文定位 |
+| gbIndexBubble.cpp | 编译后无外部符号 | 全部被内联或为空 |
+| gbPrintFontMgr.cpp | 编译后无外部符号 | 全部被内联或为空 |
+| gbTimeCounter.cpp | 编译后无外部符号 | 全部被内联或为空 |
+| gbVertPoolMgr.cpp | 编译后无外部符号 | 全部被内联或为空 |
+
+### 未命名内部函数 (sub_) — 待恢复
+
+DLL 中共 2384 个 sub_ 函数尚未识别。这些是非导出的内部函数，需要：
+1. **字节匹配恢复**: 用编译后 .obj 字节搜索 DLL 定位地址，应用 mangled name
+2. **交叉引用分析**: 从已知调用者推断被调用 sub_ 的身份
+3. **签名推断**: 根据调用约定和参数数量缩小候选范围
+
+已恢复 16 个 (gbBladeMgr, gbGfxManager_D3D, gbVertexPool, CArrayList 等)。
+歧义跳过 3 个 (SetBladeTime/SetBladeTimeScale, NewIndexPool)。
+剩余 ~142 个 .obj 函数待匹配 (需降低阈值或人工确认歧义)。
 
 ---
 
