@@ -337,7 +337,7 @@ gbStaticMesh::gbStaticMesh(gbGfxManager* gfxMgr) : gbBaseMesh(gfxMgr) {
     m_pVertBubble = NULL;
     m_shadowVolumeVB = NULL;
     m_shadowVolumeIB = NULL;
-    m_vertFVF = 0;
+    m_meshType = (gbMeshType)0;
 }
 
 gbStaticMesh::gbStaticMesh(const gbStaticMesh& other) : gbBaseMesh(other) {
