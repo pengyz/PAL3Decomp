@@ -254,13 +254,17 @@ int gbIsMultiChar(char* str, int pos)
         return 0;
     do {
         unsigned char c = (unsigned char)str[i];
-        if (state == 0) {
+        switch (state) {
+        case 0:
             if (c > 0x7F)
                 state = 1;
-        } else if (state == 1) {
+            break;
+        case 1:
             state = 2;
-        } else if (state == 2) {
+            break;
+        case 2:
             state = (c >= 0x80);
+            break;
         }
         i++;
     } while (i <= pos);
@@ -277,13 +281,17 @@ int gbIsMultiCharHead(char* str, int pos)
         return 0;
     do {
         unsigned char c = (unsigned char)str[i];
-        if (state == 0) {
+        switch (state) {
+        case 0:
             if (c > 0x7F)
                 state = 1;
-        } else if (state == 1) {
+            break;
+        case 1:
             state = 2;
-        } else if (state == 2) {
+            break;
+        case 2:
             state = (c >= 0x80);
+            break;
         }
         i++;
     } while (i <= pos);
@@ -300,13 +308,17 @@ int gbIsMultiCharTail(char* str, int pos)
         return 0;
     do {
         unsigned char c = (unsigned char)str[i];
-        if (state == 0) {
+        switch (state) {
+        case 0:
             if (c > 0x7F)
                 state = 1;
-        } else if (state == 1) {
+            break;
+        case 1:
             state = 2;
-        } else if (state == 2) {
+            break;
+        case 2:
             state = (c >= 0x80);
+            break;
         }
         i++;
     } while (i <= pos);

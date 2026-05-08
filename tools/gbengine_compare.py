@@ -317,6 +317,7 @@ def compile_file(src_path, obj_path):
             '/nologo',
             '/c',        # compile only
             '/O2',       # optimize for speed
+            '/Oi',       # enable intrinsic functions
             '/Ob2',      # auto-inline any suitable function
             '/GF',       # string pooling
             '/Gy',       # function-level linking
@@ -342,6 +343,7 @@ def compile_file(src_path, obj_path):
             '/nologo',
             '/c',        # compile only
             '/O2',       # optimize for speed
+            '/Oi',       # enable intrinsic functions
             '/Ob2',      # auto-inline any suitable function
             '/GF',       # string pooling
             '/Gy',       # function-level linking
