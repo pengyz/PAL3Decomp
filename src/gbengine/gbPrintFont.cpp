@@ -10,6 +10,7 @@
 #include <stdlib.h>
 #include <string.h>
 
+
 extern gbGfxManager* g_pGfxManager;
 
 
@@ -83,10 +84,8 @@ void gbPrintFont::PrintString(char* text, float x, float y, float w, float h)
 
     int len = (int)strlen(text) + 1;
 
-    // Copy string text into textBuffer
     memcpy(textBuffer + currentTextOffset, text, len);
 
-    // Store string info record
     gbPrintStringInfo* record = &stringInfoBuffer[currentStringCount];
 
     record->x = x;
@@ -95,15 +94,10 @@ void gbPrintFont::PrintString(char* text, float x, float y, float w, float h)
     record->width = w;
     record->height = h;
 
-    // Pack color as RGBA
-    record->color = (unsigned int)colorR |
-                    ((unsigned int)colorG << 8) |
-                    ((unsigned int)colorB << 16) |
-                    ((unsigned int)colorA << 24);
+    record->color = *(unsigned int*)&colorR;
 
     record->scaleX = scaleX;
     record->scaleY = scaleY;
-    record->pitchX = pitchX;
     record->textBufferOffset = currentTextOffset;
 
     currentStringCount++;

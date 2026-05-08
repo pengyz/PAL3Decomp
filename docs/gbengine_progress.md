@@ -9,10 +9,10 @@
 | 源文件数 | 54 |
 | 编译通过文件 | **54/54 (100%)** |
 | DLL 链接 | **成功 (925KB, 1020 exports)** |
-| 可比对文件 | 44/54 (10个文件无匹配符号) |
-| 可比对函数 | 901 |
-| 完全匹配函数 | **223/901 (24.8%)** |
-| 最后更新 | 2026-05-07 |
+| 可比对文件 | 45/54 (9个文件无匹配符号) |
+| 可比对函数 | 927 |
+| 完全匹配函数 | **475/927 (51.2%)** |
+| 最后更新 | 2026-05-08 |
 
 ## 全文件二进制匹配进度
 
@@ -20,201 +20,205 @@
 |------|--------|----------|-----------|------|
 | gbVec3D.cpp | 16 | **16** | **100%** | DONE |
 | gbColorFlt.cpp | 3 | **3** | **100%** | DONE |
-| gbTextureArray.cpp | 5 | **4** | 86.4% | GOOD |
-| gbGfxManager.cpp | 44 | **33** | 81.1% | GOOD |
+| gbTextureArray.cpp | 5 | **5** | **100%** | DONE |
+| gbImage2DInfo.cpp | 1 | **1** | **100%** | DONE |
+| gbSoundNode.cpp | 26 | **21** | 86.3% | GOOD |
+| gbGfxManager.cpp | 44 | **33** | 82.1% | GOOD |
+| gbChain.cpp | 61 | **45** | 82.1% | GOOD |
+| gbRenderEffect.cpp | 16 | **12** | 78.1% | GOOD |
+| gbEffectMgr.cpp | 8 | **6** | 77.0% | GOOD |
 | gbAABBox.cpp | 3 | **2** | 76.0% | GOOD |
-| gbRenderEffect.cpp | 16 | **10** | 74.9% | GOOD |
-| gbChain.cpp | 61 | **36** | 66.9% | GOOD |
-| gbMatrix4.cpp | 31 | **16** | 66.2% | GOOD |
-| gbRotMatrix.cpp | 7 | **4** | 65.7% | GOOD |
-| gbQuaternion.cpp | 19 | **11** | 65.6% | GOOD |
-| gbResManager.cpp | 20 | **2** | 57.9% | WIP |
+| gbMatrixStack.cpp | 14 | **10** | 75.3% | GOOD |
+| gbResManager.cpp | 20 | **10** | 69.1% | WIP |
+| gbQuaternion.cpp | 19 | **11** | 67.9% | WIP |
+| gbMatrix4.cpp | 31 | **16** | 67.5% | WIP |
+| gbAudioManager.cpp | 56 | **34** | 66.9% | WIP |
+| gbImage2D.cpp | 14 | **8** | 66.5% | WIP |
+| gbMesh.cpp | 35 | **20** | 66.3% | WIP |
+| gbVisNode.cpp | 35 | **15** | 66.2% | WIP |
+| gbRotMatrix.cpp | 7 | **4** | 65.7% | WIP |
+| gbVFileSystem.cpp | 83 | **43** | 64.1% | WIP |
+| gbCamera.cpp | 53 | **26** | 62.1% | WIP |
+| gbGeomNode.cpp | 30 | **14** | 61.2% | WIP |
+| gbGlobals.cpp | 18 | **8** | 57.3% | WIP |
+| gbPrintFont.cpp | 17 | **8** | 56.8% | WIP |
+| gbLightObj.cpp | 8 | **4** | 56.0% | WIP |
 | gbNameVarBuf.cpp | 1 | 0 | 55.6% | WIP |
-| gbGeomNode.cpp | 30 | **9** | 51.6% | WIP |
-| gbImage2D.cpp | 14 | **5** | 49.1% | WIP |
-| gbVisNode.cpp | 35 | **10** | 48.0% | WIP |
-| gbMesh.cpp | 35 | **12** | 46.3% | WIP |
+| gbSceneGraph.cpp | 15 | **7** | 55.4% | WIP |
+| gbMisc.cpp | 41 | **15** | 52.9% | WIP |
+| gbActor.cpp | 34 | **16** | 52.3% | WIP |
+| gbWeather.cpp | 18 | **7** | 50.5% | WIP |
+| gbTexture.cpp | 24 | **10** | 49.8% | WIP |
+| gbVertPool.cpp | 44 | **14** | 46.2% | WIP |
+| gbParticle.cpp | 67 | **22** | 46.1% | WIP |
 | gbMath_extra.cpp | 5 | **2** | 44.5% | WIP |
-| gbEffectMgr.cpp | 8 | **1** | 42.4% | WIP |
-| gbPrintFont.cpp | 17 | **4** | 39.3% | WIP |
-| gbGlobals.cpp | 18 | **3** | 36.5% | WIP |
-| gbVertPool.cpp | 44 | **4** | 36.1% | WIP |
-| gbCamera.cpp | 53 | **9** | 35.4% | WIP |
-| BEZIER.cpp | 8 | **1** | 34.6% | WIP |
-| gbImage2DInfo.cpp | 1 | 0 | 31.8% | WIP |
-| gbActor.cpp | 34 | **6** | 31.7% | WIP |
-| gbAudioManager.cpp | 56 | **8** | 30.0% | WIP |
-| gbLightObj.cpp | 8 | 0 | 29.5% | WIP |
-| gbMatrixStack.cpp | 14 | **3** | 27.3% | WIP |
-| gbVolModNode.cpp | 3 | 0 | 26.6% | WIP |
+| gbVTextFile.cpp | 4 | 0 | 42.7% | WIP |
+| gbOBBox.cpp | 9 | **2** | 42.3% | WIP |
+| gbPixelFormat.cpp | 6 | **2** | 40.8% | WIP |
+| gbVolModNode.cpp | 3 | **1** | 39.1% | WIP |
+| BEZIER.cpp | 8 | **2** | 35.1% | WIP |
 | gbPlane.cpp | 3 | 0 | 23.8% | WIP |
-| gbSceneGraph.cpp | 15 | 0 | 22.9% | WIP |
-| gbTexture.cpp | 24 | 0 | 22.3% | WIP |
-| gbOBBox.cpp | 9 | 0 | 22.2% | WIP |
-| gbRay.cpp | 10 | 0 | 21.6% | WIP |
-| gbVFileSystem.cpp | 83 | **4** | 20.8% | WIP |
-| gbVTextFile.cpp | 4 | 0 | 20.8% | WIP |
-| gbWeather.cpp | 18 | **1** | 20.4% | WIP |
-| gbSphere.cpp | 5 | 0 | 19.3% | WIP |
-| gbParticle.cpp | 67 | **2** | 18.3% | WIP |
-| gbMisc.cpp | 41 | **2** | 16.5% | WIP |
+| gbRay.cpp | 10 | 0 | 21.5% | WIP |
+| gbSphere.cpp | 5 | 0 | 18.5% | WIP |
 | gbDynVertBuf.cpp | 5 | 0 | 12.5% | WIP |
-| gbPixelFormat.cpp | 6 | 0 | 10.0% | WIP |
 | gbGfxManager_D3D.cpp | 1 | 0 | 3.7% | WIP |
 | CPK.cpp | 1 | 0 | 0.5% | WIP |
 
-### 无匹配符号文件 (10个)
+### 无匹配符号文件 (9个)
 
-这些文件编译通过但 .obj 中的 mangled name 与 IDA 索引不匹配，需要修正类名或函数签名：
+这些文件编译通过但 .obj 中的 mangled name 与 IDA 索引不匹配：
 
 | 文件 | 原因 |
 |------|------|
 | gbBaseMesh.cpp | 类名/虚函数签名与 IDA 不匹配 |
+| gbBladeMgr.cpp | mangled name 不匹配 |
 | gbCameraControl.cpp | 无导出函数符号 |
 | gbDropGroup.cpp | 无导出函数符号 |
 | gbIndexBubble.cpp | 无导出函数符号 |
 | gbPrintFontMgr.cpp | 无导出函数符号 |
-| gbSoundNode.cpp | 无导出函数符号 |
 | gbTimeCounter.cpp | 无导出函数符号 |
-| gbUIRect.cpp | mangled name 不匹配 (有1个函数但未对上) |
-| gbVFile1.cpp | mangled name 不匹配 (有1个函数但未对上) |
+| gbUIRect.cpp | mangled name 不匹配 |
 | gbVertPoolMgr.cpp | 无导出函数符号 |
 
 ---
 
-## 详细分析：高优先级文件
+## Stub 函数清单 (二进制对比确认未实现)
 
-### gbVec3D.cpp — 16/16 (100%) DONE
+以下函数的编译输出远小于原始二进制，说明当前代码只是占位 stub，核心逻辑未实现。
+判定标准: SIZE_MISMATCH 且 compiled/original < 50%，或者函数体明显为空。
 
-所有函数完全匹配，无需进一步工作。
+### gbMisc.cpp (3 stubs)
 
-### gbColorFlt.cpp — 3/3 (100%) DONE
+| 函数 | compiled | original | 说明 |
+|------|----------|----------|------|
+| ProfileBegin(char*) | 16B | 258B | 空实现，需要全局数组遍历逻辑 |
+| ProfileEnd(char*) | 16B | 277B | 空实现，需要计时结算逻辑 |
+| ProfileDumpOutputToFile(char*) | 16B | 79B | 空实现，需要 fopen+fprintf |
 
-所有函数完全匹配，无需进一步工作。
+### gbGfxManager.cpp (3 stubs)
 
----
+| 函数 | compiled | original | 说明 |
+|------|----------|----------|------|
+| gbGfxManager::gbGfxManager(ctor) | 320B | 394B | 部分实现，缺少完整初始化 |
+| gbEffectMgr::gbEffectMgr(copy) | 32B | 148B | 拷贝构造函数逻辑不完整 |
+| gbEffectMgr::operator= | 32B | 191B | 赋值运算符逻辑不完整 |
 
-### gbGfxManager.cpp — 33/44 (75%) | 平均 81.1%
+### gbParticle.cpp (13 stubs)
 
-#### 完全匹配 (33个)
+| 函数 | compiled | original | 说明 |
+|------|----------|----------|------|
+| gbPartEmitter::gbPartEmitter(void) | 176B | 520B | 构造函数大部分初始化缺失 |
+| gbParticleEffect::gbParticleEffect(copy) | 112B | 541B | 拷贝构造逻辑缺失 |
+| gbAnimNodeGroup::Attach(void) | 16B | 68B | 空实现 |
+| gbParticleEffect::Attach(gbRenderEffect*) | 16B | 346B | 空实现 |
+| gbAnimNodeGroup::Clone(void) | 112B | 319B | 大部分逻辑缺失 |
+| gbParticleGroup::CreateOneParticle(gbEmitterData*) | 400B | 747B | 部分实现 |
+| gbAnimNodeGroup::LoadFromFile(char*) | 176B | 307B | 部分实现 |
+| gbPartEmitter::LoadFromFile(gbVFile*) | 304B | 1486B | 大部分字段读取缺失 |
+| gbPartGroupParam::LoadFromFile(gbVFile*) | 704B | 1414B | 部分实现 |
+| gbAnimNodeGroup::Reset(void) | 32B | 103B | 空实现 |
+| gbAnimNodeGroup::SetPriority(int) | 16B | 85B | 空实现 |
+| gbAnimNodeGroup::gbAnimNodeGroup(gbGfxManager*) | 80B | 145B | 部分初始化缺失 |
+| gbParticleUnit::gbParticleUnit(copy) | 64B | 144B | 拷贝逻辑缺失 |
 
-gbGfxManager::~gbGfxManager, EnableEmissive, GetAmbientLight, GetCurTick,
-GetCurTime, GetDeltaTick, GetDeltaTime, GetEffectMgr, GetEmissiveFactor,
-GetFog, GetGfxCaps, GetLight, GetMatrixStack, GetPrintFont, GetPrintFontMgr,
-GetResManager, GetSceneGraph, GetStatistic, GetVertPoolMgr, GetViewMatrix,
-GetViewport, IdentityWorldMatrix, IsLightEnable, IsWireMode, OffsetZBuffer,
-SetAmbientLight, SetCameraMatrix, SetClearParam, SetEmissiveFactor, SetFog,
-SetSceneGraph, SetWireMode, gbEffectMgr::~gbEffectMgr
+### gbActor.cpp (5 stubs)
 
-#### 未匹配函数 (11个)
+| 函数 | compiled | original | 说明 |
+|------|----------|----------|------|
+| gbActorMgr::gbActorMgr(gbGfxManager*) | 32B | 125B | 空实现 |
+| gbActorMgr::~gbActorMgr(void) | 16B | 95B | 空实现 |
+| gbActor::Attach(gbRenderEffect*) | 16B | 81B | 空实现 |
+| gbActor::~gbActor(void) | 64B | 162B | 部分实现 |
+| gbActorMgr::LoadActorFile(char*) | 192B | 337B | 部分实现 |
 
-| 函数 | 大小 | 匹配率 | 未匹配原因 |
-|------|------|--------|-----------|
-| gbGfxManager::gbGfxManager | 394B | 16.0% | 尺寸不符(320vs394)。缺少完整初始化 |
-| gbGfxManager::BeginScene | 222B | 39.6% | FPU/整数指令交错调度不同 |
-| gbGfxManager::GetTMMatrix | 265B | 43.4% | switch跳转表+虚函数调用方式不同 |
-| gbGfxManager::GetWorldMatrix | 55B | 70.9% | LEA指令调度差异 |
-| gbGfxManager::ClipBoundVolume | 158B | 20.9% | 虚函数调用方式不匹配 |
-| gbGfxManager::NewMesh | 189B | 37.0% | 尺寸不符，缺少mesh类型分发逻辑 |
-| gbEffectMgr::gbEffectMgr(void) | 12B | 0% | 12B构造函数，当前实现过于复杂 |
-| gbEffectMgr::gbEffectMgr(copy) | 148B | 17.6% | 类布局/成员偏移不准确 |
-| gbEffectMgr::operator= | 191B | 9.9% | 尺寸不符，逻辑推测错误 |
-| gbEffectMgr::Init | 786B | 2.4% | 尺寸严重不符(128vs786)，实现过于简化 |
-| gbEffectMgr::Release | 67B | 9.0% | 释放逻辑/条件检查不匹配 |
+### gbVertPool.cpp (4 stubs)
 
----
+| 函数 | compiled | original | 说明 |
+|------|----------|----------|------|
+| gbVertPoolMgr::DelIndexBubble(gbIndexBubble*) | 32B | 85B | 空实现 |
+| gbVertPoolMgr::DelSrcVertBub(gbVertexBubble*) | 32B | 145B | 空实现 |
+| gbVertPoolMgr::DelVertexBubble(gbVertexBubble*) | 32B | 144B | 空实现 |
+| gbVertPoolMgr::GetDynVertBuf(uint) | 16B | 121B | 空实现 |
+| gbVertPoolMgr::NewSrcVertBub(uint,int) | 32B | 185B | 空实现 |
+| gbVertPoolMgr::NewVertexBubble(uint,int) | 128B | 182B | 部分实现 |
 
-### gbMatrix4.cpp — 16/31 (51.6%) | 平均 66.2%
+### gbWeather.cpp (2 stubs)
 
-#### 完全匹配 (16个)
+| 函数 | compiled | original | 说明 |
+|------|----------|----------|------|
+| gbRain::gbRain(copy) | 32B | 117B | 空实现 |
+| gbSnow::gbSnow(copy) | 48B | 129B | 空实现 |
 
-gbMatrix4::gbMatrix4(void), operator=, operator(), GetColumn, GetRow,
-IsIdentity, LeftScale, LeftTranslate(gbVec3D&), LeftTranslate(float,float,float),
-LoadIdentity, RightScale, RightTranslate(gbVec3D&), RightTranslate(float,float,float),
-Rotate, SetAxisAngle(gbAxis,float), Transform(const gbVec3D*,gbVec3D*)
+### gbTexture.cpp (2 stubs)
 
-#### 未匹配函数 (15个)
+| 函数 | compiled | original | 说明 |
+|------|----------|----------|------|
+| gbTexture::LoadTexture(int) | 16B | 443B | 空实现 |
+| gbTexture::LoadFromImage2D(gbImage2D*) | 64B | 269B | 空实现 |
 
-| 函数 | 大小 | 匹配率 | 未匹配原因 | 暂时放弃原因 |
-|------|------|--------|-----------|-------------|
-| Invert(void) | 402B | **85.3%** | FPU操作数顺序+det存储策略(fst vs fstp) | 编译器启发式，不受源码控制 |
-| Transpose(void) | 60B | **83.3%** | 寄存器ESI↔EDX系统性替换 | VC6寄存器分配器内部启发式 |
-| Invert(gbMatrix4*) | 351B | **63.0%** | det存储策略：fst vs fstp | FPU寄存器分配策略 |
-| SetAxisAngle(axis,cos,sin) | 143B | **35.0%** | 编译器生成更优代码（双寄存器） | 无法让编译器生成更差代码 |
-| IsValid | 42B | **31.0%** | 纯寄存器分配差异 | VC6 this指针处理 |
-| RightMultiply(gbQuaternion&) | 198B | **27.8%** | 临时变量初始化方式不同 | 需内联GetMatrix |
-| RightMultiply(gbMatrix4&) | 126B | **23.8%** | memcpy后指针初始化调度不同 | 编译器FPU管线优化 |
-| LeftMultiply | 122B | **19.7%** | 栈帧大小4字节差异 | 栈帧优化由编译器决定 |
-| SetAxisAngle(gbVec3D*,float) | 73B | **16.4%** | 调用序列差异，可能部分内联 | 需分析原始内联情况 |
-| Transpose(gbMatrix4*) | 44B | **15.9%** | 整数mov vs FPU传输+寄存器分配 | 双重不可控因素 |
-| Transform(in,out,count) | 126B | **13.5%** | ESI保存浮点+FPU调度完全不同 | 不受源码控制 |
-| IsOrthonormal | 563B | **13.0%** | 尺寸不符，原始内联Normalize+CrossProduct | 需手动内联，工作量大 |
-| Transform(verts,count) | 116B | **12.1%** | 整数寄存器传输float优化路径 | 无法从源码触发 |
-| MakeMatrix | 307B | **8.8%** | 尺寸不符，原始内联CrossProduct+Normalize | 需手动内联 |
-| Transform_W | 185B | **3.2%** | 循环结构+FPU序列完全不同 | 需分析原始实现 |
+### gbVFileSystem.cpp (2 stubs)
 
----
+| 函数 | compiled | original | 说明 |
+|------|----------|----------|------|
+| CPK::LoadFile(void*,char const*) | 112B | 744B | 大部分逻辑缺失 |
+| CPK::Open(char const*) | 720B | 1336B | 部分实现 |
 
-### gbQuaternion.cpp — 11/19 (57.9%) | 平均 65.6%
+### gbSceneGraph.cpp (1 stub)
 
-#### 完全匹配 (11个)
+| 函数 | compiled | original | 说明 |
+|------|----------|----------|------|
+| gbSceneGraph::~gbSceneGraph(void) | 32B | 101B | 空实现 |
 
-gbQuaternion::gbQuaternion(void), GetAxisAngle, GetMatrix, GetVec3D,
-Inverse, IsUnit, IsValid, Magnitude, Normalize, SetUnit, SetVec3D
+### gbLightObj.cpp (2 stubs)
 
-#### 未匹配函数 (8个)
+| 函数 | compiled | original | 说明 |
+|------|----------|----------|------|
+| gbLightObj::gbLightObj(copy) | 48B | 218B | 空实现 |
+| gbLightObj::Init(LIGHT_TYPE) | 48B | 123B | 空实现 |
 
-| 函数 | 大小 | 匹配率 | 未匹配原因 |
-|------|------|--------|-----------|
-| Slerp | 320B | 49.4% | FPU sin/cos/acos调度顺序不同 |
-| SetAxisAngle | 52B | 42.3% | sin/cos FPU操作顺序差异 |
-| SetMatrix | 326B | 17.5% | 条件分支+数组索引方式不同 |
-| SetTwoVector | 248B | 12.1% | 尺寸不符，原始内联CrossProduct+Normalize |
-| RotateVector | 158B | 9.5% | 尺寸不符，原始内联了旋转计算 |
-| SetYawPitchRoll | 216B | 9.3% | 原始内联了SetAxisAngle |
-| IsNormal | 35B | 5.7% | Magnitude返回值处理方式不同 |
-| MultiplyBy | 234B | 0.9% | 尺寸严重不符，乘法展开形式不同 |
+### gbVisNode.cpp (2 stubs)
 
----
+| 函数 | compiled | original | 说明 |
+|------|----------|----------|------|
+| gbVolModNode::gbVolModNode(copy) | 64B | 188B | 空实现 |
+| gbVolModNode::gbVolModNode(void) | 64B | 106B | 部分实现 |
 
-### gbChain.cpp — 36/61 (59.0%) | 平均 66.9%
+### gbGeomNode.cpp (2 stubs)
 
-简单的链表/树操作。36个完全匹配的函数多为简短的节点操作（insert/remove/iterate）。
-未匹配函数主要是较复杂的排序和遍历操作。
+| 函数 | compiled | original | 说明 |
+|------|----------|----------|------|
+| gbGeomNode::gbGeomNode(copy) | 144B | 356B | 部分实现 |
+| gbGeomNode::operator=(copy) | 80B | 336B | 空实现 |
 
-### gbRenderEffect.cpp — 10/16 (62.5%) | 平均 74.9%
+### gbAudioManager.cpp (1 stub)
 
-渲染效果管理器。已匹配的多为简单的状态设置函数。
-未匹配函数涉及D3D状态管理和着色器切换逻辑。
-
-### gbRotMatrix.cpp — 4/7 (57.1%) | 平均 65.7%
-
-旋转矩阵类。已匹配：LoadIdentity, Rotate(in,out), 构造函数。
-未匹配：IsOrthonormal(内联问题), IsValid(寄存器分配), 部分Rotate变体。
+| 函数 | compiled | original | 说明 |
+|------|----------|----------|------|
+| gbAudioManager::gbAudioManager(ctor) | 400B | 675B | 部分实现，Miles Sound System 初始化缺失 |
 
 ---
 
 ## 匹配瓶颈分类
 
-### 1. 寄存器分配差异 (难度：极高，不可控)
+### 1. Stub/未实现 (难度：中，可补全)
+
+约 42 个函数当前为空或严重不完整，补全后可直接提升匹配数。
+重点目标：ProfileBegin/End (小函数)、gbTexture::LoadTexture、gbVertPoolMgr 系列。
+
+### 2. 寄存器分配差异 (难度：极高，不可控)
 
 VC6寄存器分配器的内部启发式无法从源码影响。
-影响范围：几乎所有未完全匹配的函数都有此问题的成分。
+影响范围：几乎所有 SIZE_OK 但未完全匹配的函数。
 
-### 2. FPU指令调度差异 (难度：高)
+### 3. FPU指令调度差异 (难度：高)
 
-VC6 /O2 的 FPU 调度器重排 fld/fmul/fadd/fstp 顺序以减少管线延迟。
+VC6 /O2 的 FPU 调度器重排 fld/fmul/fadd/fstp 顺序。
 可能修复：拆分/合并子表达式、引入临时变量。
 
-### 3. 函数内联差异 (难度：高，但可解)
+### 4. 函数内联差异 (难度：高，但可解)
 
 原始 /Ob2 编译内联了部分小函数（Normalize, CrossProduct, GetMatrix等）。
-修复方向：手动内联（已对 Invert 成功验证，从 2.2% 提升到 85.3%）。
-
-### 4. 实现逻辑不完整 (难度：中)
-
-许多文件的实现是 stub 或推测性代码，与原始逻辑不一致。
-修复方向：参考 IDA 反汇编补全实现。
+修复方向：手动内联（已对 GetSphere/Invert 成功验证）。
 
 ### 5. 栈帧/调用约定差异 (难度：中)
 
@@ -225,13 +229,14 @@ VC6 对栈帧大小的优化、参数传递方式有时与我们的代码生成�
 ## 编译选项
 
 ```
-CL.EXE /c /O2 /Ob2 /GF /Gy /Zp4 /GX /Fo<output.obj> <source.cpp>
+CL.EXE /c /O2 /Ob2 /Oi /GF /Gy /Zp4 /GX /Fo<output.obj> <source.cpp>
 ```
 
 | 标志 | 作用 | 确认方式 |
 |------|------|----------|
 | /O2 | 速度优化 | 必须，原始使用 |
 | /Ob2 | 自动内联 | IDA分析确认有内联函数 |
+| /Oi | 启用内建函数 | 匹配 memcpy/strlen 等的内联展开 |
 | /GF | 字符串池 | 减少重复常量 |
 | /Gy | 函数级链接 | COMDAT节，每函数独立节 |
 | /Zp4 | 4字节对齐 | gbGfxManager偏移验证确认 |
