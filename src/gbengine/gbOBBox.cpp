@@ -6,26 +6,24 @@
 #include "gbengine/gbengine_types.h"
 #include <math.h>
 
-// Constructor
 gbOBBox::gbOBBox() {
     matrix.LoadIdentity();
-    extent.x = extent.y = extent.z = 1.0f;
 }
 
-// Assignment operator
 gbOBBox& gbOBBox::operator=(const gbOBBox& box) {
     matrix = box.matrix;
-    extent = box.extent;
+    extent.x = box.extent.x;
+    extent.y = box.extent.y;
+    extent.z = box.extent.z;
     return *this;
 }
 
-// Get center of OBB
 gbVec3D gbOBBox::GetCenter() const {
-    gbVec3D center;
-    center.x = matrix.m[3][0];
-    center.y = matrix.m[3][1];
-    center.z = matrix.m[3][2];
-    return center;
+    gbVec3D result;
+    result.x = matrix.m[3][0];
+    result.y = matrix.m[3][1];
+    result.z = matrix.m[3][2];
+    return result;
 }
 
 // Get radius (distance from center to corner)
@@ -46,29 +44,14 @@ float gbOBBox::GetRadiusInDirection(const gbVec3D& dir) const {
     return r;
 }
 
-// Convert OBB to AABB
 void gbOBBox::GetAABBox(gbAABBox& aabb) {
-    gbVec3D axis[3];
-    matrix.GetRow(&axis[0], 0);
-    matrix.GetRow(&axis[1], 1);
-    matrix.GetRow(&axis[2], 2);
-
-    gbVec3D center;
-    center.x = matrix.m[3][0];
-    center.y = matrix.m[3][1];
-    center.z = matrix.m[3][2];
-
-    gbVec3D e;
-    e.x = extent.x * fabsf(axis[0].x) + extent.y * fabsf(axis[1].x) + extent.z * fabsf(axis[2].x);
-    e.y = extent.x * fabsf(axis[0].y) + extent.y * fabsf(axis[1].y) + extent.z * fabsf(axis[2].y);
-    e.z = extent.x * fabsf(axis[0].z) + extent.y * fabsf(axis[1].z) + extent.z * fabsf(axis[2].z);
-
-    aabb.vMin.x = center.x - e.x;
-    aabb.vMin.y = center.y - e.y;
-    aabb.vMin.z = center.z - e.z;
-    aabb.vMax.x = center.x + e.x;
-    aabb.vMax.y = center.y + e.y;
-    aabb.vMax.z = center.z + e.z;
+    aabb.vMin.x = extent.x * -0.5f;
+    aabb.vMin.y = extent.y * -0.5f;
+    aabb.vMin.z = extent.z * -0.5f;
+    aabb.vMax.x = extent.x * 0.5f;
+    aabb.vMax.y = extent.y * 0.5f;
+    aabb.vMax.z = extent.z * 0.5f;
+    aabb.Transform(&matrix);
 }
 
 // 0x10027d10
