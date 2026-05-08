@@ -2,8 +2,8 @@
 IDAPython: gbengine.dll 全函数 Hex-Rays 反编译导出
 
 工作流:
-1. 从 PE 导出表读取所有导出函数 (已在加载时由 IDA 自动处理)
-2. 对所有已命名函数 (非 sub_) 执行 Hex-Rays 反编译
+1. 遍历 IDA 中所有已识别的函数 (包括 sub_ 和已命名函数)
+2. 对所有函数执行 Hex-Rays 反编译
 3. 输出 JSON 到 asm/gbengine_ida/ 目录，格式与 fill_stubs 兼容
 
 输出格式 (每函数一个 .json):
@@ -62,16 +62,17 @@ def main():
 
         os.makedirs(OUTPUT_DIR, exist_ok=True)
 
-        # Collect all named functions (IDA auto-identifies DLL exports)
+        # Collect ALL functions (exports + internal sub_ functions)
         targets = []
         for ea in idautils.Functions():
             name = ida_name.get_name(ea) or ""
             if not name:
                 continue
-            if name.startswith("sub_") or name.startswith("nullsub_"):
+            # Skip nullsub (compiler padding), keep everything else including sub_
+            if name.startswith("nullsub_"):
                 continue
             func = ida_funcs.get_func(ea)
-            if func:
+            if func and func.size() > 0:
                 targets.append((ea, name, func.size()))
 
         log(f"[*] 目标函数: {len(targets)}")

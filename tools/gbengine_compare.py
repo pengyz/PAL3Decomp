@@ -365,12 +365,54 @@ def compile_file(src_path, obj_path):
     return True
 
 
+def scan_dll_for_func(text_data, text_sec, compiled_bytes, relocs, min_size=20):
+    """Search .text section for a function matching compiled bytes.
+    Returns list of (VA, match_ratio) tuples."""
+    if len(compiled_bytes) < min_size:
+        return []
+
+    results = []
+    # Build a non-reloc prefix for fast searching
+    prefix_bytes = bytearray()
+    for i in range(min(8, len(compiled_bytes))):
+        if i in relocs:
+            break
+        prefix_bytes.append(compiled_bytes[i])
+
+    if len(prefix_bytes) < 3:
+        return []
+
+    prefix = bytes(prefix_bytes)
+    pos = 0
+    while True:
+        pos = text_data.find(prefix, pos)
+        if pos == -1:
+            break
+        # Full comparison
+        compare_len = min(len(compiled_bytes), len(text_data) - pos)
+        matches = 0
+        total = compare_len
+        for i in range(compare_len):
+            if i in relocs:
+                matches += 1
+            elif compiled_bytes[i] == text_data[pos + i]:
+                matches += 1
+        ratio = matches / total if total > 0 else 0
+        if ratio >= 0.85:
+            va = pos + text_sec['virt_addr'] + DLL_IMAGE_BASE
+            results.append((va, ratio))
+        pos += 1
+
+    return results
+
+
 def main():
     parser = argparse.ArgumentParser(description='gbengine 字节比对')
     parser.add_argument('--obj', help='已编译的 .obj 文件路径')
     parser.add_argument('--compile', help='源文件路径 (自动编译)')
     parser.add_argument('--func', help='比较指定函数 (IDA名称)')
     parser.add_argument('--all', action='store_true', help='比较 .obj 中所有函数')
+    parser.add_argument('--scan', action='store_true', help='对未在IDA索引中的函数扫描DLL匹配')
     parser.add_argument('--verbose', '-v', action='store_true', help='详细输出')
     args = parser.parse_args()
 
@@ -408,45 +450,79 @@ def main():
     ida_index = build_ida_index()
     print(f"    索引 {len(ida_index)} 个条目")
 
+    # Load .text for scan mode
+    text_data = None
+    if args.scan:
+        with open(ORIGINAL_DLL, 'rb') as f:
+            f.seek(text_sec['raw_offset'])
+            text_data = f.read(text_sec['raw_size'])
+
     # Compare
     results = []
+    scan_results = []
+    skipped = []
     for mangled_name, func_info in sorted(functions.items()):
         # Look up in IDA index by mangled name
         ida_data = ida_index.get(mangled_name)
-        if not ida_data:
-            if args.verbose:
-                print(f"  [SKIP] {mangled_name} - 不在 IDA 索引中")
-            continue
 
-        if args.func and args.func not in ida_data.get('name', '') and args.func not in mangled_name:
-            continue
+        if args.func:
+            if ida_data and args.func not in ida_data.get('name', '') and args.func not in mangled_name:
+                continue
+            elif not ida_data and args.func not in mangled_name:
+                continue
 
-        addr = int(ida_data['address'], 16)
-        rva = addr - DLL_IMAGE_BASE
-        orig_size = ida_data['size_bytes']
+        if ida_data:
+            addr = int(ida_data['address'], 16)
+            rva = addr - DLL_IMAGE_BASE
+            orig_size = ida_data['size_bytes']
 
-        # Read original bytes
-        orig_bytes = read_dll_bytes(ORIGINAL_DLL, rva, orig_size, text_sec)
+            # Read original bytes
+            orig_bytes = read_dll_bytes(ORIGINAL_DLL, rva, orig_size, text_sec)
 
-        # Use IDA size as authoritative - trim compiled bytes to match
-        compiled_bytes = func_info['bytes'][:orig_size]
+            # Use IDA size as authoritative - trim compiled bytes to match
+            compiled_bytes = func_info['bytes'][:orig_size]
 
-        # Compare (pass relocation info to skip reloc bytes)
-        result = compare_bytes(compiled_bytes, orig_bytes, ida_data['name'],
-                               verbose=True, relocs=func_info.get('relocs', set()))
-        results.append(result)
+            # Compare (pass relocation info to skip reloc bytes)
+            result = compare_bytes(compiled_bytes, orig_bytes, ida_data['name'],
+                                   verbose=True, relocs=func_info.get('relocs', set()))
+            results.append(result)
+        elif args.scan and text_data and func_info['size'] >= 20:
+            # Scan DLL .text for this function
+            matches = scan_dll_for_func(text_data, text_sec, func_info['bytes'],
+                                        func_info.get('relocs', set()))
+            if len(matches) == 1:
+                va, ratio = matches[0]
+                # Do full comparison at this address
+                rva = va - DLL_IMAGE_BASE
+                orig_bytes = read_dll_bytes(ORIGINAL_DLL, rva, func_info['size'], text_sec)
+                result = compare_bytes(func_info['bytes'], orig_bytes, f"{mangled_name} @0x{va:08X}",
+                                       verbose=True, relocs=func_info.get('relocs', set()))
+                scan_results.append(result)
+            elif len(matches) > 1:
+                if args.verbose:
+                    addrs = [f"0x{m[0]:08X}({m[1]*100:.0f}%)" for m in matches[:3]]
+                    print(f"  [AMBIGUOUS] {mangled_name} -> {addrs}")
+            else:
+                skipped.append(mangled_name)
+        else:
+            skipped.append(mangled_name)
 
     # Summary
-    if results:
-        perfect = sum(1 for r in results if r['perfect'])
-        print(f"\n[*] 总结: {perfect}/{len(results)} 函数完全匹配")
-        avg_match = sum(r['match_pct'] for r in results) / len(results)
+    all_results = results + scan_results
+    if all_results:
+        perfect = sum(1 for r in all_results if r['perfect'])
+        print(f"\n[*] 总结: {perfect}/{len(all_results)} 函数完全匹配")
+        avg_match = sum(r['match_pct'] for r in all_results) / len(all_results)
         print(f"    平均匹配率: {avg_match:.1f}%")
-    elif not args.func:
-        print(f"\n[!] 没有匹配的函数。可能是 mangled name 不一致。")
-        if functions:
-            print(f"    .obj 中的符号 (前5):")
-            for name in list(functions.keys())[:5]:
+        if scan_results:
+            scan_perfect = sum(1 for r in scan_results if r['perfect'])
+            print(f"    (其中扫描匹配: {scan_perfect}/{len(scan_results)})")
+    if skipped and not args.func:
+        if not results and not scan_results:
+            print(f"\n[!] 没有匹配的函数。")
+        if args.verbose or (not results and not scan_results):
+            print(f"    未匹配符号 ({len(skipped)}):")
+            for name in skipped[:5]:
                 print(f"      {name}")
 
 
