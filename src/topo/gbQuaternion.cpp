@@ -109,7 +109,7 @@ void gbQuaternion::SetAxisAngle(gbVec3D *axis, float angle)
 void gbQuaternion::GetAxisAngle(gbVec3D *axis, float *angle)
 {
     float halfAngle = (float)acos(w) * 57.295776f;
-    if (halfAngle > 1e-05f) {
+    if (halfAngle > 1e-05) {
         float invSin = 1.0f / (float)sin(halfAngle * 0.017453292f);
         axis->x = invSin * x;
         axis->y = invSin * y;
@@ -148,7 +148,7 @@ bool gbQuaternion::IsValid(void) const
 bool gbQuaternion::IsUnit(void) const
 {
     float lenSq = x * x + y * y + z * z + w * w;
-    if (lenSq < 1.005f && lenSq >= 0.995f) {
+    if (lenSq < 1.005 && lenSq > 0.995) {
         return true;
     }
     return false;

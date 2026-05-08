@@ -24,10 +24,12 @@
 // 0x10001110  gbMatrix4()  (12 bytes)
 // public: __thiscall gbMatrix4::gbMatrix4(void)
 // ============================================================================
+#pragma inline_depth(0)
 gbMatrix4::gbMatrix4(void)
 {
     LoadIdentity();
 }
+#pragma inline_depth()
 
 // ============================================================================
 // 0x10001120  operator=  (27 bytes)
@@ -188,10 +190,10 @@ void gbMatrix4::Rotate(const gbVec3D *in, gbVec3D *out) const
 void gbMatrix4::LoadIdentity(void)
 {
     memset(this, 0, sizeof(gbMatrix4));
-    m[0][0] = 1.0f;
-    m[1][1] = 1.0f;
-    m[2][2] = 1.0f;
     m[3][3] = 1.0f;
+    m[2][2] = 1.0f;
+    m[1][1] = 1.0f;
+    m[0][0] = 1.0f;
 }
 
 // ============================================================================
@@ -209,7 +211,7 @@ bool gbMatrix4::IsIdentity(void) const
         int col = 0;
         do {
             if (row == col) {
-                if (*p != 1.0f) {
+                if (*(int *)p != 0x3F800000) {
                     return false;
                 }
             } else {

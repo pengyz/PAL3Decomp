@@ -61,6 +61,7 @@ void gbVec3D::CrossProduct(const gbVec3D *other, gbVec3D *result) const
 // 0x100010C0  Normalize  (75 bytes)
 // public: void __thiscall gbVec3D::Normalize(void)
 // ============================================================================
+#pragma inline_depth(0)
 void gbVec3D::Normalize(void)
 {
     float len = Length();
@@ -74,6 +75,7 @@ void gbVec3D::Normalize(void)
     y = y / len;
     z = z / len;
 }
+#pragma inline_depth()
 
 // ============================================================================
 // 0x10001470  gbVec3D(float,float,float)  (20 bytes)

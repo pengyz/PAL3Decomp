@@ -780,8 +780,8 @@ void __fastcall FreeMeshData(void *pMesh)
     if (pData[0] != NULL) {
         operator_delete_wrapper(pData[0]);
     }
-    pData[9] = 0;  /* vertexCount at +0x24 */
     pData[10] = 0; /* allocRowCount at +0x28 */
+    pData[9] = 0;  /* vertexCount at +0x24 */
 }
 
 // ============================================================================

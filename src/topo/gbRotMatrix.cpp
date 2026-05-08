@@ -22,10 +22,12 @@
 // 0x100021F0  gbRotMatrix()  (12 bytes)
 // public: __thiscall gbRotMatrix::gbRotMatrix(void)
 // ============================================================================
+#pragma inline_depth(0)
 gbRotMatrix::gbRotMatrix(void)
 {
     LoadIdentity();
 }
+#pragma inline_depth()
 
 // ============================================================================
 // 0x10002200  operator=  (27 bytes)
@@ -118,9 +120,9 @@ void gbRotMatrix::Rotate(gbVec3D *in, gbVec3D *out)
 void gbRotMatrix::LoadIdentity(void)
 {
     memset(this, 0, sizeof(gbRotMatrix));
-    m[0][0] = 1.0f;
-    m[1][1] = 1.0f;
     m[2][2] = 1.0f;
+    m[1][1] = 1.0f;
+    m[0][0] = 1.0f;
 }
 
 // ============================================================================
