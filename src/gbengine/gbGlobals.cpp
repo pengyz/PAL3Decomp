@@ -15,6 +15,10 @@ static int g_CurDispWidth;
 static int g_CurDispHeight;
 static int g_CurDispBpp;
 
+// Global texture format flag (referenced from gbTexture.cpp)
+// Address: 0x10140DB0 in original binary
+int dword_10140DB0 = 0;
+
 // gbRealWorldTime structure definition (0x20 bytes)
 struct gbRealWorldTime {
     unsigned int year;          // +0x00

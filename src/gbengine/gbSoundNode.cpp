@@ -213,6 +213,12 @@ void gbSound3DNode::SetOrientation(gbVec3D& ori)
     orientation.z = ori.z;
 }
 
+// 0x100024e0
+void gbSound3DNode::SetVolume(float vol)
+{
+    volume = vol;
+}
+
 // 0x10002560
 void gbSound3DNode::GetPosition(gbVec3D& pos)
 {
@@ -225,6 +231,18 @@ void gbSound3DNode::GetPosition(gbVec3D& pos)
 float gbSound3DNode::GetMaxDist()
 {
     return maxDist;
+}
+
+// GetMinDist
+float gbSound3DNode::GetMinDist()
+{
+    return minDist;
+}
+
+// GetPlayLoop
+int gbSound3DNode::GetPlayLoop()
+{
+    return loopCount;
 }
 
 // 0x10004420
@@ -330,4 +348,16 @@ void gbSound2DNode::SetVolume(float vol)
 void gbSound2DNode::SetLoopNum(int num)
 {
     loopCount = num;
+}
+
+// operator=
+gbSound2DNode& gbSound2DNode::operator=(const gbSound2DNode& other)
+{
+    if (this != &other) {
+        soundData = other.soundData;
+        sampleHandle = other.sampleHandle;
+        loopCount = other.loopCount;
+        volume = other.volume;
+    }
+    return *this;
 }

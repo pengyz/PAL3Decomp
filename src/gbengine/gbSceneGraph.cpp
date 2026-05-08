@@ -156,9 +156,29 @@ gbSceneGraph::gbSceneGraph(gbGfxManager* gfxMgr, const gbVec3D& param2, float pa
     bSceneActive = 1;
 }
 
+// 0x10014650 (8B) - Cleanup helper for volModNodePool
+// IDA: calls gbStaticChain::ReleaseBuffer on internal chain at offset +0x18
+void sub_10014650(void* pool) {
+    gbStaticChain* chain = (gbStaticChain*)((char*)pool + 0x18);
+    chain->ReleaseBuffer();
+}
+
+// 0x1000ECC0 (53B) - Cleanup helper for gbBladeMgr
+// IDA: frees pVertexData in each of 32 blade entries, then releases pEffect
+void sub_1000ECC0(void* bladeMgr) {
+    gbBladeEntry* entries = (gbBladeEntry*)bladeMgr;
+    for (int i = 0; i < 32; i++) {
+        if (entries[i].pVertexData) {
+            free(entries[i].pVertexData);
+        }
+    }
+    gbRefObject* effect = *(gbRefObject**)((char*)bladeMgr + 0x1788);
+    if (effect) {
+        effect->Release();
+    }
+}
+
 // 0x10014c60 - Destructor
-extern void sub_10014650(void* pool);
-extern void sub_1000ECC0(void* bladeMgr);
 
 gbSceneGraph::~gbSceneGraph(void) {
     if (volModNodePool) {

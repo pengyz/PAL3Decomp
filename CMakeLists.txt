@@ -118,8 +118,14 @@ elseif(BUILD_TARGET STREQUAL "gbengine")
             "${CMAKE_SOURCE_DIR}/tools/vc6/Lib/mss32.lib"
             "${CMAKE_SOURCE_DIR}/lib/ijl15.lib"
             "${CMAKE_SOURCE_DIR}/lib/topo.lib"
-            legacy_stdio_definitions.lib
         )
+
+        # legacy_stdio_definitions.lib is needed for MSVC 2015+ (version >= 1900)
+        # to resolve old CRT symbols (sprintf, sscanf, etc.) that were inlined in newer UCRT.
+        # Not needed (and does not exist) for VC6.
+        if(MSVC_VERSION GREATER_EQUAL 1900)
+            target_link_libraries(gbengine legacy_stdio_definitions.lib)
+        endif()
 
         # Use .def file for exports (matching original DLL export table)
         # Note: /SAFESEH not supported by VC6 link.exe

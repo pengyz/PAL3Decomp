@@ -150,6 +150,23 @@ gbIndexPool::gbIndexPool(const gbIndexPool& other) {
 gbIndexPool::~gbIndexPool() {
 }
 
+// Lock: 0x100209a0 - Lock the entire index buffer
+void gbIndexPool::Lock() {
+    if (pBuffer) {
+        IDirect3DIndexBuffer9* pIB = (IDirect3DIndexBuffer9*)pBuffer;
+        void* pData = NULL;
+        pIB->Lock(0, 0, &pData, 0);
+    }
+}
+
+// Unlock: 0x100209c0 - Unlock the index buffer
+void gbIndexPool::Unlock() {
+    if (pBuffer) {
+        IDirect3DIndexBuffer9* pIB = (IDirect3DIndexBuffer9*)pBuffer;
+        pIB->Unlock();
+    }
+}
+
 // NewBubble: 0x10020a50
 gbIndexBubble* gbIndexPool::NewBubble(gbPrimType prim, int count) {
     gbIndexBubble* bestFit = NULL;

@@ -192,6 +192,8 @@ public:
     gbDynVertBuf* GetDynVertBuf(unsigned int fvf);
     gbVertPoolMgr& operator=(const gbVertPoolMgr& other);
 
+private:
+    int FindVertexPoolIndex(unsigned int* fvfArray, unsigned int fvf);
 };
 
 
