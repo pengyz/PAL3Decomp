@@ -1,0 +1,8 @@
+{
+  "name": "sub_10007C40",
+  "mangled_name": "sub_10007C40",
+  "address": "0x10007C40",
+  "size_bytes": 62,
+  "signature": "int __cdecl(int a1, _DWORD *a2)",
+  "decompiled_c": "int __cdecl sub_10007C40(int a1, _DWORD *a2)\n{\n  int v2; // esi\n  int result; // eax\n\n  v2 = 0;\n  result = *(_DWORD *)(a1 + 208);\n  if ( result > 0 )\n  {\n    do\n    {\n      ++*a2;\n      sub_10007C40(*(_DWORD *)(*(_DWORD *)(a1 + 212) + 4 * v2), a2);\n      result = *(_DWORD *)(a1 + 208);\n      ++v2;\n    }\n    while ( v2 < result );\n  }\n  return result;\n}\n"
+}

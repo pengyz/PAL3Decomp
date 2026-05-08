@@ -1,0 +1,8 @@
+{
+  "name": "sub_1007F874",
+  "mangled_name": "sub_1007F874",
+  "address": "0x1007F874",
+  "size_bytes": 93,
+  "signature": "int __thiscall(int this, unsigned int a2)",
+  "decompiled_c": "int __thiscall sub_1007F874(int this, unsigned int a2)\n{\n  unsigned int v3; // eax\n  unsigned int v4; // esi\n  int result; // eax\n  int v6; // ebp\n\n  v3 = *(_DWORD *)(this + 140);\n  if ( a2 <= v3 )\n    return *(_DWORD *)(this + 136);\n  if ( v3 )\n    v4 = 2 * v3;\n  else\n    v4 = 16;\n  while ( v4 < a2 )\n    v4 *= 2;\n  result = operator new(4 * v4);\n  v6 = result;\n  if ( result )\n  {\n    operator delete(*(void **)(this + 136));\n    *(_DWORD *)(this + 136) = v6;\n    *(_DWORD *)(this + 140) = v4;\n    return *(_DWORD *)(this + 136);\n  }\n  return result;\n}\n"
+}

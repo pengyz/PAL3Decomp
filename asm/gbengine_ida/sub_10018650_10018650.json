@@ -1,0 +1,8 @@
+{
+  "name": "sub_10018650",
+  "mangled_name": "sub_10018650",
+  "address": "0x10018650",
+  "size_bytes": 136,
+  "signature": "int __thiscall(_DWORD *this, int a2, int a3, int a4)",
+  "decompiled_c": "int __thiscall sub_10018650(_DWORD *this, int a2, int a3, int a4)\n{\n  gbGfxManager_D3D *v5; // esi\n  int v6; // eax\n  int v7; // ebp\n  int v8; // edi\n\n  v5 = gbDynVertBuf::pGfxMgr;\n  v6 = *(this + 15);\n  v7 = *(_DWORD *)(*(_DWORD *)(a4 + 8) + 16);\n  v8 = *((_DWORD *)gbDynVertBuf::pGfxMgr + 454);\n  if ( *((_DWORD *)gbDynVertBuf::pGfxMgr + 570) != v6 )\n  {\n    (*(void (__stdcall **)(int, _DWORD, int, _DWORD, _DWORD))(*(_DWORD *)v8 + 400))(v8, 0, v6, 0, *(this + 4));\n    *((_DWORD *)v5 + 570) = *(this + 15);\n  }\n  if ( *((_DWORD *)v5 + 571) != v7 )\n  {\n    (*(void (__stdcall **)(int, int))(*(_DWORD *)v8 + 416))(v8, v7);\n    *((_DWORD *)v5 + 571) = v7;\n  }\n  return (*(int (__stdcall **)(int, int, _DWORD, _DWORD, _DWORD, _DWORD, int))(*(_DWORD *)v8 + 328))(\n           v8,\n           a2,\n           *(this + 5),\n           0,\n           *(this + 6),\n           *(_DWORD *)(a4 + 24),\n           a3);\n}\n"
+}

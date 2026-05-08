@@ -1,0 +1,8 @@
+{
+  "name": "sub_1001B840",
+  "mangled_name": "sub_1001B840",
+  "address": "0x1001B840",
+  "size_bytes": 269,
+  "signature": "struct gbResource *__thiscall(_DWORD **this, char *a2, void *a3, void *a4)",
+  "decompiled_c": "struct gbResource *__thiscall sub_1001B840(_DWORD **this, char *a2, void *a3, void *a4)\n{\n  struct gbResource *result; // eax\n  void **v5; // esi\n  void **v6; // eax\n  FILE *v7; // ebx\n  struct gbVFile *FileSize; // edi\n  void *v9; // ebp\n  gbResManager *v11; // [esp+1Ch] [ebp-20h]\n  _DWORD v12[7]; // [esp+20h] [ebp-1Ch] BYREF\n\n  v11 = (gbResManager *)(this + 406);\n  result = gbResManager::FindResByName((gbResManager *)(this + 406), a2);\n  v5 = 0;\n  if ( !result )\n  {\n    v6 = (void **)operator new(0x24u);\n    if ( v6 )\n    {\n      v6[2] = 0;\n      v6[4] = 0;\n      v6[5] = 0;\n      v6[6] = 0;\n      v6[1] = (void *)1;\n      *v6 = &off_100F5734;\n      v5 = v6;\n    }\n    gbResource::SetName(v5, a2);\n    v7 = gbVFileSystem::OpenFile(g_pVFileSys, a2, 0x201u);\n    FileSize = gbVFileSystem::GetFileSize(g_pVFileSys, (struct gbVFile *)v7);\n    v9 = malloc((size_t)FileSize);\n    gbVFileSystem::Read(g_pVFileSys, v9, (size_t)FileSize, (struct gbVFile *)v7);\n    gbVFileSystem::CloseFile(g_pVFileSys, (void **)&v7->_ptr);\n    sub_10032E69(v9, FileSize, v12);\n    (*(void (__stdcall **)(_DWORD, _DWORD, _DWORD, int, int, void **, _DWORD))(**(this + 454) + 144))(\n      *(this + 454),\n      v12[0],\n      v12[1],\n      21,\n      3,\n      v5 + 6,\n      0);\n    sub_10033461(v5[6], 0, 0, v9, FileSize, 0, -1, 0, 0);\n    v5[8] = a4;\n    v5[7] = a3;\n    gbResManager::AddResource(v11, (struct gbResource *)v5);\n    return (struct gbResource *)v5;\n  }\n  return result;\n}\n"
+}

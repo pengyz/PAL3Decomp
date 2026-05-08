@@ -1,0 +1,8 @@
+{
+  "name": "sub_100063E0",
+  "mangled_name": "sub_100063E0",
+  "address": "0x100063E0",
+  "size_bytes": 254,
+  "signature": "int __cdecl(int a1, int a2, int a3, int a4)",
+  "decompiled_c": "int __cdecl sub_100063E0(int a1, int a2, int a3, int a4)\n{\n  long double v6; // st7\n  long double v7; // st6\n  long double v8; // st6\n  float v9; // [esp+14h] [ebp+8h]\n\n  *(_DWORD *)a1 = *(_DWORD *)a2;\n  *(_DWORD *)(a1 + 4) = *(_DWORD *)(a2 + 4);\n  *(_DWORD *)(a1 + 8) = *(_DWORD *)(a2 + 8);\n  v6 = (double)(2 * (char)HIBYTE(*(_WORD *)(a3 + 2 * a4 + 12))) * 3.1415927 * 0.0039215689;\n  v7 = (double)(unsigned __int8)*(_WORD *)(a3 + 2 * a4 + 12) * 0.012319972;\n  v9 = v7;\n  v8 = sin(v7);\n  *(float *)(a1 + 12) = cos(v6) * v8;\n  *(float *)(a1 + 16) = sin(v6) * v8;\n  *(float *)(a1 + 20) = cos(v9);\n  *(float *)(a1 + 24) = (double)*(unsigned __int8 *)(a2 + 20) * 0.0039215689;\n  *(float *)(a1 + 28) = (double)*(unsigned __int8 *)(a2 + 21) * 0.0039215689;\n  *(float *)(a1 + 32) = (double)*(unsigned __int8 *)(a2 + 22) * 0.0039215689;\n  *(float *)(a1 + 36) = (double)*(unsigned __int8 *)(a2 + 23) * 0.0039215689;\n  *(_BYTE *)(a1 + 40) = *(_BYTE *)(a2 + 12);\n  *(_BYTE *)(a1 + 41) = *(_BYTE *)(a2 + 13);\n  *(_BYTE *)(a1 + 42) = *(_BYTE *)(a2 + 14);\n  *(_BYTE *)(a1 + 43) = *(_BYTE *)(a2 + 15);\n  *(_DWORD *)(a1 + 44) = *(_DWORD *)(a3 + 8 * a4 + 20);\n  *(_DWORD *)(a1 + 48) = *(_DWORD *)(a3 + 8 * a4 + 44);\n  return a1;\n}\n"
+}

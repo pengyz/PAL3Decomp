@@ -1,0 +1,8 @@
+{
+  "name": "sub_10037413",
+  "mangled_name": "sub_10037413",
+  "address": "0x10037413",
+  "size_bytes": 30,
+  "signature": "int __thiscall(_DWORD *this)",
+  "decompiled_c": "int __thiscall sub_10037413(_DWORD *this)\n{\n  int (__thiscall ***v2)(_DWORD, int); // ecx\n  int result; // eax\n\n  v2 = (int (__thiscall ***)(_DWORD, int))*(this + 1);\n  if ( v2 )\n    result = (**v2)(v2, 1);\n  if ( *this )\n    return (**(int (__thiscall ***)(_DWORD, int))*this)(*this, 1);\n  return result;\n}\n"
+}

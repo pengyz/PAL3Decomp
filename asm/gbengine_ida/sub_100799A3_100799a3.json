@@ -1,0 +1,8 @@
+{
+  "name": "sub_100799A3",
+  "mangled_name": "sub_100799A3",
+  "address": "0x100799A3",
+  "size_bytes": 47,
+  "signature": "void __stdcall(int a1, char *a2)",
+  "decompiled_c": "void __stdcall sub_100799A3(int a1, char *a2)\n{\n  int v3; // esi\n  char v4; // dl\n\n  if ( *(_BYTE *)(a1 + 9) == 16 && *(_DWORD *)a1 * *(unsigned __int8 *)(a1 + 10) )\n  {\n    v3 = *(_DWORD *)a1 * *(unsigned __int8 *)(a1 + 10);\n    do\n    {\n      v4 = *a2;\n      *a2 = a2[1];\n      a2[1] = v4;\n      a2 += 2;\n      --v3;\n    }\n    while ( v3 );\n  }\n}\n"
+}

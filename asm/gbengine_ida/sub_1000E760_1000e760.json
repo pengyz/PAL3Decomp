@@ -1,0 +1,8 @@
+{
+  "name": "sub_1000E760",
+  "mangled_name": "sub_1000E760",
+  "address": "0x1000E760",
+  "size_bytes": 243,
+  "signature": "BOOL __thiscall(_DWORD *this, char *a2)",
+  "decompiled_c": "BOOL __thiscall sub_1000E760(_DWORD *this, char *a2)\n{\n  gbVec3D *v3; // eax\n  FILE *v4; // edi\n  gbVec3D v6; // [esp+8h] [ebp-10Ch] BYREF\n  char Str[256]; // [esp+14h] [ebp-100h] BYREF\n\n  *(this + 19) = 1065353216;\n  *(this + 20) = 0;\n  *(this + 21) = 0;\n  *(this + 22) = 0;\n  *(this + 23) = 0;\n  *(this + 24) = 0;\n  *(this + 25) = 0;\n  v3 = gbVec3D::gbVec3D(&v6, 0.0, 0.0, 0.0);\n  gbVec3D::operator=(this + 26, v3);\n  *(this + 30) = 0;\n  *(this + 32) = 0;\n  *(this + 29) = 0;\n  *(this + 31) = 0;\n  *(this + 33) = 0;\n  v4 = gbVFileSystem::OpenFile(g_pVFileSys, a2, 0x401u);\n  *this = dword_10137BB4;\n  *(this + 2) = dword_10137BB4;\n  while ( gbVFileSystem::ReadLine(g_pVFileSys, Str, 256, (struct gbVFile *)v4) )\n  {\n    if ( Str[0] >= 97 && Str[1] <= 122 )\n      sub_1000DF20(Str);\n  }\n  *(this + 1) = dword_10137BB4;\n  gbVFileSystem::CloseFile(g_pVFileSys, (void **)&v4->_ptr);\n  return *(this + 1) != *this;\n}\n"
+}

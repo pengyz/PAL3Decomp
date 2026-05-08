@@ -1,0 +1,8 @@
+{
+  "name": "sub_1004D88C",
+  "mangled_name": "sub_1004D88C",
+  "address": "0x1004D88C",
+  "size_bytes": 28,
+  "signature": "_DWORD *__thiscall(_DWORD *Block, char a2)",
+  "decompiled_c": "_DWORD *__thiscall sub_1004D88C(_DWORD *Block, char a2)\n{\n  std::_Ref_count<__ExceptionPtr>::_Destroy(Block);\n  if ( (a2 & 1) != 0 )\n    operator delete(Block);\n  return Block;\n}\n"
+}

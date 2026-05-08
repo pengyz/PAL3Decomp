@@ -1,0 +1,8 @@
+{
+  "name": "sub_10009220",
+  "mangled_name": "sub_10009220",
+  "address": "0x10009220",
+  "size_bytes": 146,
+  "signature": "void __thiscall(_DWORD *this, const char *a2)",
+  "decompiled_c": "void __thiscall sub_10009220(_DWORD *this, const char *a2)\n{\n  int v2; // ebx\n  int v3; // edi\n  const char *i; // ebp\n\n  v2 = *(this + 36);\n  v3 = 0;\n  if ( v2 > 0 )\n  {\n    for ( i = (const char *)*(this + 34); strcmp(a2, i); i += 576 )\n    {\n      if ( ++v3 >= v2 )\n        return;\n    }\n    sub_10008140(this, (char *)(576 * v3 + *(this + 34) + 64), 576 * v3 + *(this + 34) + 320, (int)dword_1012B99C);\n  }\n}\n"
+}

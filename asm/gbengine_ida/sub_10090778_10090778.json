@@ -1,0 +1,8 @@
+{
+  "name": "sub_10090778",
+  "mangled_name": "sub_10090778",
+  "address": "0x10090778",
+  "size_bytes": 36,
+  "signature": "int __thiscall(_DWORD *this, int a2)",
+  "decompiled_c": "int __thiscall sub_10090778(_DWORD *this, int a2)\n{\n  int result; // eax\n\n  result = sub_100906FA((int)this, 1);\n  if ( result >= 0 )\n  {\n    *(_DWORD *)(*(this + 22) + 4 * (*(this + 23))++) = a2;\n    return 0;\n  }\n  return result;\n}\n"
+}

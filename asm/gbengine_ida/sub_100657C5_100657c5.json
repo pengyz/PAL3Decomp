@@ -1,0 +1,8 @@
+{
+  "name": "sub_100657C5",
+  "mangled_name": "sub_100657C5",
+  "address": "0x100657C5",
+  "size_bytes": 62,
+  "signature": "int __thiscall(_DWORD *this, int a2, int a3)",
+  "decompiled_c": "int __thiscall sub_100657C5(_DWORD *this, int a2, int a3)\n{\n  unsigned int v3; // eax\n  int v4; // ecx\n  unsigned int v5; // eax\n\n  if ( *(_DWORD *)~a2 == 1\n    && (v3 = *(unsigned __int16 *)(3 - a2), v3 < *(this + 36))\n    && (v4 = 172 * v3 + *(this + 37), v5 = *(unsigned __int16 *)(7 - a2), v5 < *(_DWORD *)(v4 + 44)) )\n  {\n    return *(_DWORD *)(v4 + 48) + 48 * v5;\n  }\n  else\n  {\n    return 0;\n  }\n}\n"
+}

@@ -1,0 +1,8 @@
+{
+  "name": "sub_100099A0",
+  "mangled_name": "sub_100099A0",
+  "address": "0x100099A0",
+  "size_bytes": 228,
+  "signature": "void __thiscall(int *this, gbMatrix4 *a2, int a3)",
+  "decompiled_c": "void __thiscall sub_100099A0(int *this, gbMatrix4 *a2, int a3)\n{\n  int v4; // ebp\n  int v5; // edx\n  int v6; // ecx\n  _DWORD *v7; // eax\n  int v8; // esi\n  int v9; // eax\n  float *v10; // esi\n  int v11; // eax\n\n  v4 = *(this + 26);\n  v5 = *(_DWORD *)(a3 + 100);\n  v6 = 0;\n  v7 = *(_DWORD **)(a3 + 96);\n  if ( v5 <= 0 )\n  {\nLABEL_5:\n    v6 = 0;\n    *(_DWORD *)(*(_DWORD *)(a3 + 96) + 8) = 1065353216;\n  }\n  else\n  {\n    while ( !*v7 || v7[2] != 1065353216 )\n    {\n      v7 += 9;\n      if ( ++v6 >= v5 )\n        goto LABEL_5;\n    }\n  }\n  v8 = *(_DWORD *)(*(this + 23) + 4 * v6);\n  if ( v8 != *(this + 26) )\n  {\n    sub_1000A100(*(_DWORD *)(*(this + 23) + 4 * v6));\n    *(this + 26) = v8;\n    v9 = sub_10002A70(this, v8);\n    if ( v9 )\n      sub_1000A570(v9);\n  }\n  v10 = (float *)(*(this + 26) + 412);\n  gbMatrix4::LoadIdentity(a2);\n  a2->m[3][0] = (*v10 + v10[3]) * 0.5;\n  a2->m[3][1] = (v10[1] + v10[4]) * 0.5;\n  a2->m[3][2] = (v10[2] + v10[5]) * 0.5;\n  a2[1].m[0][0] = v10[3] - *v10;\n  a2[1].m[0][1] = v10[4] - v10[1];\n  a2[1].m[0][2] = v10[5] - v10[2];\n  if ( v4 != *(this + 26) )\n  {\n    sub_1000A100(v4);\n    *(this + 26) = v4;\n    v11 = sub_10002A70(this, v4);\n    if ( v11 )\n      sub_1000A570(v11);\n  }\n}\n"
+}

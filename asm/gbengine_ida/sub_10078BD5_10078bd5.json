@@ -1,0 +1,8 @@
+{
+  "name": "sub_10078BD5",
+  "mangled_name": "sub_10078BD5",
+  "address": "0x10078BD5",
+  "size_bytes": 29,
+  "signature": "void __stdcall __noreturn(int *__attribute__((__org_typedef(jmp_buf))) Buf, int a2)",
+  "decompiled_c": "void __stdcall __noreturn sub_10078BD5(jmp_buf Buf, int a2)\n{\n  void (__cdecl *v2)(int *__attribute__((__org_typedef(jmp_buf))), int); // eax\n\n  v2 = (void (__cdecl *)(int *__attribute__((__org_typedef(jmp_buf))), int))Buf[16];\n  if ( v2 )\n    v2(Buf, a2);\n  longjmp(Buf, 1);\n}\n"
+}

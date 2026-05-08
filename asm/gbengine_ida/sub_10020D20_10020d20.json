@@ -1,0 +1,8 @@
+{
+  "name": "sub_10020D20",
+  "mangled_name": "sub_10020D20",
+  "address": "0x10020D20",
+  "size_bytes": 97,
+  "signature": "int __cdecl(int a1)",
+  "decompiled_c": "int __cdecl sub_10020D20(int a1)\n{\n  int result; // eax\n\n  result = 0;\n  if ( a1 < 0 )\n    return a1 & 0x7FFFFFFF;\n  if ( (a1 & 1) != 0 )\n    result = 12;\n  if ( (a1 & 0x100) != 0 )\n    result += 16;\n  if ( (a1 & 2) != 0 )\n    result += 12;\n  if ( (a1 & 4) != 0 )\n    result += 4;\n  if ( (a1 & 8) != 0 )\n    result += 4;\n  if ( (a1 & 0x10) != 0 )\n    result += 8;\n  if ( (a1 & 0x20) != 0 )\n    result += 8;\n  if ( (a1 & 0x40) != 0 )\n    result += 8;\n  if ( (a1 & 0x80u) != 0 )\n    result += 8;\n  return result;\n}\n"
+}

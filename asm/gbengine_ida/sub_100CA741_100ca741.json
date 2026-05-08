@@ -1,0 +1,8 @@
+{
+  "name": "sub_100CA741",
+  "mangled_name": "sub_100CA741",
+  "address": "0x100CA741",
+  "size_bytes": 162,
+  "signature": "int __thiscall(unsigned int *this)",
+  "decompiled_c": "int __thiscall sub_100CA741(unsigned int *this)\n{\n  _DWORD *v2; // eax\n  _DWORD *v3; // ecx\n  int v4; // edi\n  bool v5; // zf\n  int result; // eax\n  _DWORD v7[4]; // [esp+Ch] [ebp-14h] BYREF\n  _DWORD *v8; // [esp+1Ch] [ebp-4h]\n\n  v2 = (_DWORD *)*(this + 56);\n  v3 = (_DWORD *)v2[4];\n  v4 = *v2 & 0xFFFFF;\n  v5 = *(this + 34) == *(_DWORD *)(*(_DWORD *)(*(this + 5) + 4 * *v3) + 4);\n  v8 = v3;\n  if ( !v5 )\n  {\n    result = (*(int (__thiscall **)(unsigned int *, _DWORD, _DWORD *, int, _DWORD, _DWORD))(*this + 108))(\n               this,\n               *(this + 55),\n               v7,\n               v4,\n               0,\n               0);\n    if ( result < 0 )\n      return result;\n    v8 = v7;\n    v3 = v7;\n  }\n  result = sub_100C9674(this, 36, v3, v4, *(_DWORD **)(*(this + 56) + 8), 0, 0, v4, 0, 0, 0);\n  if ( result >= 0 )\n  {\n    if ( v8 != v7 )\n      return 0;\n    result = sub_100C9674(this, 1, *(_DWORD **)(*(this + 56) + 16), v4, v7, 0, 0, v4, 0, 0, 0);\n    if ( result >= 0 )\n      return 0;\n  }\n  return result;\n}\n"
+}

@@ -1,0 +1,8 @@
+{
+  "name": "sub_1009A20D",
+  "mangled_name": "sub_1009A20D",
+  "address": "0x1009A20D",
+  "size_bytes": 74,
+  "signature": "int __thiscall(void *this, int a2)",
+  "decompiled_c": "int __thiscall sub_1009A20D(void *this, int a2)\n{\n  int v3; // eax\n  void *v4; // esi\n\n  v3 = sub_10099D69(120);\n  if ( v3 )\n    v4 = (void *)sub_100DDC05(v3);\n  else\n    v4 = 0;\n  if ( !v4 )\n    return -1;\n  if ( sub_10099C6D((double *)v4, a2) < 0 )\n  {\n    sub_10080CFB(v4, 1);\n    return -1;\n  }\n  return sub_10099EA4((int)this, (long double *)v4);\n}\n"
+}

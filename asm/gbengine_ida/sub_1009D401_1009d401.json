@@ -1,0 +1,8 @@
+{
+  "name": "sub_1009D401",
+  "mangled_name": "sub_1009D401",
+  "address": "0x1009D401",
+  "size_bytes": 95,
+  "signature": "_DWORD *__thiscall(_DWORD *this, int a2, unsigned int a3)",
+  "decompiled_c": "_DWORD *__thiscall sub_1009D401(_DWORD *this, int a2, unsigned int a3)\n{\n  _DWORD *v3; // eax\n  int v4; // edx\n  int v5; // edx\n  _DWORD *v6; // edx\n  _DWORD *result; // eax\n\n  v3 = *(_DWORD **)(*(this + 5) + 4 * a2);\n  v4 = *(_DWORD *)(*(this + 4) + 4 * v3[1]);\n  v3[17] = a3;\n  v5 = *(_DWORD *)(v4 + 32);\n  if ( v5 )\n  {\n    v6 = (_DWORD *)(v5 + 4 * (v3[4] + 4 * v3[3]));\n    if ( *v6 != -1 )\n    {\n      v3[18] = *v6;\n      *(_DWORD *)(*(_DWORD *)(*(this + 5) + 4 * *v6) + 76) = a2;\n    }\n    *v6 = a2;\n  }\n  result = (_DWORD *)v3[5];\n  if ( result != (_DWORD *)-1 )\n    return sub_1009D3A7(this, (int)result, a3);\n  return result;\n}\n"
+}

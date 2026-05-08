@@ -1,0 +1,8 @@
+{
+  "name": "sub_100DD38C",
+  "mangled_name": "sub_100DD38C",
+  "address": "0x100DD38C",
+  "size_bytes": 22,
+  "signature": "BOOL __stdcall(int a1, LPVOID lpMem)",
+  "decompiled_c": "BOOL __stdcall sub_100DD38C(int a1, LPVOID lpMem)\n{\n  HANDLE ProcessHeap; // eax\n\n  ProcessHeap = GetProcessHeap();\n  return HeapFree(ProcessHeap, 0, lpMem);\n}\n"
+}

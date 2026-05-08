@@ -1,0 +1,8 @@
+{
+  "name": "sub_1006C3FF",
+  "mangled_name": "sub_1006C3FF",
+  "address": "0x1006C3FF",
+  "size_bytes": 123,
+  "signature": "int __thiscall(_DWORD *this, int a2, int a3)",
+  "decompiled_c": "int __thiscall sub_1006C3FF(_DWORD *this, int a2, int a3)\n{\n  _WORD *v4; // esi\n  int result; // eax\n  int i; // ebx\n\n  v4 = (_WORD *)(*(this + 11) + 60 * (unsigned __int16)a2);\n  result = 0;\n  if ( *(this + 15) == 1\n    || (result = sub_1006BA16(this, v4[10] != 0xFFFF, v4 + 12), result >= 0)\n    && (result = sub_1006BB6F(this, v4[11] != 0xFFFF, v4 + 16), result >= 0) )\n  {\n    for ( i = 0; (unsigned __int16)i < v4[25]; ++i )\n    {\n      result = sub_1006F84A(a2, i, a3);\n      if ( result < 0 && *(this + 15) != 1 )\n        break;\n    }\n  }\n  return result;\n}\n"
+}

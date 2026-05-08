@@ -1,0 +1,8 @@
+{
+  "name": "sub_1004A3A5",
+  "mangled_name": "sub_1004A3A5",
+  "address": "0x1004A3A5",
+  "size_bytes": 390,
+  "signature": "float *__stdcall(float *a1, float *a2, int a3, int a4, int a5, int a6)",
+  "decompiled_c": "float *__stdcall sub_1004A3A5(float *a1, float *a2, int a3, int a4, int a5, int a6)\n{\n  double v6; // st7\n  double v7; // st7\n\n  switch ( (a4 != 0) | (2 * ((a5 != 0) | (2 * (a6 != 0)))) )\n  {\n    case 1:\n    case 2:\n    case 4:\n      goto LABEL_4;\n    case 3:\n    case 5:\n    case 6:\n      goto LABEL_3;\n    case 7:\n      sub_10047B5A();\nLABEL_3:\n      sub_10047B5A();\nLABEL_4:\n      sub_10048066();\n      break;\n    default:\n      break;\n  }\n  if ( a3 )\n  {\n    v6 = *a2 - (double)*(unsigned int *)a3;\n    *a1 = v6 / (double)*(unsigned int *)(a3 + 8) + v6 / (double)*(unsigned int *)(a3 + 8) - 1.0;\n    v7 = a2[1] - (double)*(unsigned int *)(a3 + 4);\n    a1[1] = -(v7 / (double)*(unsigned int *)(a3 + 12) + v7 / (double)*(unsigned int *)(a3 + 12) - 1.0);\n    a1[2] = (a2[2] - *(float *)(a3 + 16)) / (*(float *)(a3 + 20) - *(float *)(a3 + 16));\n  }\n  sub_100473C9();\n  return a1;\n}\n"
+}

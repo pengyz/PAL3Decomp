@@ -1,0 +1,8 @@
+{
+  "name": "sub_100530B3",
+  "mangled_name": "sub_100530B3",
+  "address": "0x100530B3",
+  "size_bytes": 145,
+  "signature": "int __thiscall(_DWORD *this, const char *a2)",
+  "decompiled_c": "int __thiscall sub_100530B3(_DWORD *this, const char *a2)\n{\n  int i; // edi\n  bool v4; // zf\n  const char *v5; // esi\n\n  if ( (const char *)((unsigned int)a2 & 0x7FFFFFFF) == a2 )\n  {\n    for ( i = *(this + 211); ; i = *(_DWORD *)(i + 52) )\n    {\n      if ( !i )\n        return 0;\n      if ( a2 )\n      {\n        v5 = *(const char **)(i + 32);\n        if ( !v5 )\n          continue;\n        v4 = strcmp(a2, v5) == 0;\n      }\n      else\n      {\n        v4 = *(_DWORD *)(i + 32) == 0;\n      }\n      if ( v4 )\n        return i;\n    }\n  }\n  if ( *(_DWORD *)~(unsigned int)a2 == 3 && !*(_DWORD *)(23 - (_DWORD)a2) && *(_DWORD *)(15 - (_DWORD)a2) == -1 )\n    return *(_DWORD *)(*(_DWORD *)(3 - (_DWORD)a2) + 68) != 0 ? ~(unsigned int)a2 : 0;\n  else\n    return 0;\n}\n"
+}

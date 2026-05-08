@@ -1,0 +1,8 @@
+{
+  "name": "sub_100C3330",
+  "mangled_name": "sub_100C3330",
+  "address": "0x100C3330",
+  "size_bytes": 94,
+  "signature": "int __stdcall(_DWORD *a1)",
+  "decompiled_c": "int __stdcall sub_100C3330(_DWORD *a1)\n{\n  int v3; // edi\n\n  while ( 1 )\n  {\n    if ( !a1 )\n      return 0;\n    if ( a1[1] == 1 )\n      break;\n    switch ( a1[1] )\n    {\n      case 6:\n        a1 = (_DWORD *)a1[6];\n        break;\n      case 8:\n        return a1[5] * sub_100C3330(a1[4]);\n      case 9:\n        return a1[6] * a1[7];\n      case 0xB:\n        a1 = (_DWORD *)a1[8];\n        break;\n      default:\n        return 0;\n    }\n  }\n  v3 = sub_100C3330(a1[3]);\n  return v3 + sub_100C3330(a1[2]);\n}\n"
+}

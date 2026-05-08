@@ -1,0 +1,8 @@
+{
+  "name": "sub_1009DBA6",
+  "mangled_name": "sub_1009DBA6",
+  "address": "0x1009DBA6",
+  "size_bytes": 131,
+  "signature": "int(int a1, int a2, int a3, char *Format, ...)",
+  "decompiled_c": "int sub_1009DBA6(int a1, int a2, int a3, char *Format, ...)\n{\n  int v4; // eax\n  int v5; // edx\n  char Buffer[256]; // [esp+0h] [ebp-100h] BYREF\n  va_list va; // [esp+118h] [ebp+18h] BYREF\n\n  va_start(va, Format);\n  _vsnprintf(Buffer, 0x100u, Format, va);\n  v4 = 0;\n  Buffer[255] = 0;\n  if ( a2 )\n  {\n    v5 = *(_DWORD *)(a2 + 4);\n    switch ( v5 )\n    {\n      case 3:\n        v4 = a2 + 16;\n        break;\n      case 6:\n        v4 = *(_DWORD *)(a2 + 20) + 16;\n        break;\n      case 13:\n        v4 = a2 + 48;\n        break;\n    }\n  }\n  sub_1004CB83(*(_DWORD **)(a1 + 188), v4, a3, \"%s\", Buffer);\n  *(_DWORD *)(a1 + 204) = 1;\n  return 0;\n}\n"
+}

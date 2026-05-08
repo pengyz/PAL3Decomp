@@ -1,0 +1,8 @@
+{
+  "name": "sub_10009440",
+  "mangled_name": "sub_10009440",
+  "address": "0x10009440",
+  "size_bytes": 78,
+  "signature": "void __thiscall(int this, int a2)",
+  "decompiled_c": "void __thiscall sub_10009440(int this, int a2)\n{\n  int v2; // eax\n  void *v4; // eax\n  int v5; // ecx\n  void *v6; // ebp\n\n  v2 = a2;\n  if ( !a2 )\n    v2 = 16;\n  if ( v2 > *(_DWORD *)(this + 4) )\n  {\n    *(_DWORD *)(this + 4) = v2;\n    v4 = malloc(4 * v2);\n    v5 = *(_DWORD *)(this + 8);\n    v6 = v4;\n    if ( v5 )\n      qmemcpy(v4, *(const void **)this, 4 * v5);\n    if ( *(_DWORD *)this )\n      free(*(void **)this);\n    *(_DWORD *)this = v6;\n  }\n}\n"
+}

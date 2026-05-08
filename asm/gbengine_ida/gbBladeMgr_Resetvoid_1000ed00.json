@@ -1,0 +1,8 @@
+{
+  "name": "gbBladeMgr::Reset(void)",
+  "mangled_name": "?Reset@gbBladeMgr@@QAEXXZ",
+  "address": "0x1000ED00",
+  "size_bytes": 118,
+  "signature": "int __thiscall(gbBladeMgr *this)",
+  "decompiled_c": "int __thiscall gbBladeMgr::Reset(gbBladeMgr *this)\n{\n  char *v2; // esi\n  int result; // eax\n  int v4; // [esp+10h] [ebp-4h]\n\n  v4 = 32;\n  v2 = (char *)this + 4;\n  do\n  {\n    if ( *((_DWORD *)v2 - 1) )\n      free(*(void **)v2);\n    *((_DWORD *)v2 - 1) = 0;\n    *(_DWORD *)v2 = 0;\n    *((_DWORD *)v2 + 41) = 1036831949;\n    *((_DWORD *)v2 + 42) = *((_DWORD *)this + 1505);\n    *((_DWORD *)v2 + 43) = 0;\n    *((_DWORD *)v2 + 44) = 0;\n    *((_DWORD *)v2 + 45) = 0;\n    memset(v2 + 4, 0, 0xA0u);\n    v2 += 188;\n    result = --v4;\n  }\n  while ( v4 );\n  return result;\n}\n"
+}

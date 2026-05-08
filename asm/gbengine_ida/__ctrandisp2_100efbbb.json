@@ -3,6 +3,6 @@
   "mangled_name": "__ctrandisp2",
   "address": "0x100EFBBB",
   "size_bytes": 72,
-  "signature": "int __usercall@<eax>(double a1@<st1>, double a2@<st0>, double a3, double a4)",
-  "decompiled_c": "int __usercall _ctrandisp2@<eax>(double a1@<st1>, double a2@<st0>, double a3, double a4)\n{\n  int v4; // edx\n  __int16 v5; // fps\n  int savedregs; // [esp+2D4h] [ebp+0h] BYREF\n\n  _fload(a3);\n  _fload(a4);\n  _trandisp2(v4, (int)&savedregs, v5, a1, a2);\n  return ctranexit();\n}\n"
+  "signature": "int __usercall@<eax>(double a1@<st0>, double a2, double a3)",
+  "decompiled_c": "int __usercall _ctrandisp2@<eax>(double a1@<st0>, double a2, double a3)\n{\n  double v4; // st6\n  int v5; // edx\n  __int16 v6; // fps\n  int savedregs; // [esp+2D4h] [ebp+0h] BYREF\n\n  _fload(a2);\n  v4 = _fload(a3);\n  _trandisp2(v5, (int)&savedregs, v6, v4, a1);\n  return ctranexit((int)&savedregs);\n}\n"
 }

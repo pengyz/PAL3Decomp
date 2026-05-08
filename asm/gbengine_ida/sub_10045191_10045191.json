@@ -1,0 +1,8 @@
+{
+  "name": "sub_10045191",
+  "mangled_name": "sub_10045191",
+  "address": "0x10045191",
+  "size_bytes": 140,
+  "signature": "signed int __thiscall(_DWORD *this, int a2, int a3, int a4)",
+  "decompiled_c": "signed int __thiscall sub_10045191(_DWORD *this, int a2, int a3, int a4)\n{\n  const void *v5; // esi\n  signed int result; // eax\n\n  if ( *(this + 21) )\n    v5 = (const void *)sub_1003B774(this, a4);\n  else\n    v5 = (const void *)a4;\n  if ( *(this + 4) )\n    v5 = (const void *)sub_1003C9C1(this, (int)v5);\n  result = sub_1003BF94((int)this, *(this + 16) + a2, *(this + 19) + a3, *(this + 39) != *(this + 26));\n  if ( result >= 0 )\n  {\n    result = 16 * *(this + 26);\n    qmemcpy((void *)(*(this + 32) + 16 * (*(this + 15) - *(this + 33))), v5, result);\n    *(this + 40) = 1;\n  }\n  return result;\n}\n"
+}

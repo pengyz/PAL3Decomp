@@ -1,0 +1,8 @@
+{
+  "name": "sub_100A0D0D",
+  "mangled_name": "sub_100A0D0D",
+  "address": "0x100A0D0D",
+  "size_bytes": 93,
+  "signature": "int __thiscall(_DWORD *this, int a2, int a3)",
+  "decompiled_c": "int __thiscall sub_100A0D0D(_DWORD *this, int a2, int a3)\n{\n  int v3; // eax\n  unsigned int *v4; // esi\n  _DWORD *v5; // edi\n  int result; // eax\n  unsigned int v7; // edx\n  unsigned int v8; // eax\n  unsigned int v9; // ecx\n  bool v10; // zf\n\n  v3 = *(this + 5);\n  v4 = *(unsigned int **)(v3 + 4 * a2);\n  v5 = *(_DWORD **)(v3 + 4 * a3);\n  v5[12] = a2;\n  result = sub_100A0CEF(this, (int)v4, (int)v5);\n  if ( result >= 0 )\n  {\n    v7 = *v4 & 0xE000000;\n    v8 = *v5 & 0xE000000;\n    v9 = *v4 & 0xF1FFFFFF;\n    *v4 = v9;\n    if ( v7 > v8 )\n      v8 = v7;\n    v10 = v4[23] == 0;\n    *v4 = v8 | v9;\n    if ( v10 )\n    {\n      v4[23] = v5[23];\n      v4[24] = v5[24];\n    }\n    return 0;\n  }\n  return result;\n}\n"
+}

@@ -1,0 +1,8 @@
+{
+  "name": "sub_1008FA4A",
+  "mangled_name": "sub_1008FA4A",
+  "address": "0x1008FA4A",
+  "size_bytes": 190,
+  "signature": "int(double *a1, char *Format, ...)",
+  "decompiled_c": "int sub_1008FA4A(double *a1, char *Format, ...)\n{\n  int result; // eax\n  char Buffer[4096]; // [esp+Ch] [ebp-1000h] BYREF\n  va_list va; // [esp+101Ch] [ebp+10h] BYREF\n\n  va_start(va, Format);\n  *((_DWORD *)a1 + 19) = 1;\n  if ( !strcmp(Format, \"syntax error\") )\n  {\n    result = sub_1004CDAD(*(_DWORD **)a1, 2000, a1 + 2);\n    if ( *((_DWORD *)a1 + 4) == 9 )\n    {\n      if ( *((_DWORD *)a1 + 21) == 2023 )\n        sub_1004CB83(\n          *(_DWORD **)a1,\n          (int)(a1 + 2),\n          2023,\n          \"'%s' is not a valid instruction in this shader version\",\n          *((const char **)a1 + 6));\n      result = 2024;\n      if ( *((_DWORD *)a1 + 21) == 2024 )\n        return sub_1004CB83(\n                 *(_DWORD **)a1,\n                 (int)(a1 + 2),\n                 2024,\n                 \"invalid instruction modifiers '%s'\",\n                 *((const char **)a1 + 6));\n    }\n  }\n  else\n  {\n    _vsnprintf(Buffer, 0x1000u, Format, va);\n    Buffer[255] = 0;\n    return sub_1004CB83(*(_DWORD **)a1, (int)(a1 + 2), 0, \"%s\", Buffer);\n  }\n  return result;\n}\n"
+}

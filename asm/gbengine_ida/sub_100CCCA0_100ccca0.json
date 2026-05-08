@@ -1,0 +1,8 @@
+{
+  "name": "sub_100CCCA0",
+  "mangled_name": "sub_100CCCA0",
+  "address": "0x100CCCA0",
+  "size_bytes": 103,
+  "signature": "int __usercall@<eax>(_DWORD *a1@<esi>)",
+  "decompiled_c": "int __usercall sub_100CCCA0@<eax>(_DWORD *a1@<esi>)\n{\n  int v1; // ecx\n  _DWORD *v2; // ebx\n  int result; // eax\n  int v4; // ecx\n\n  v1 = a1[111];\n  v2 = (_DWORD *)a1[112];\n  *(_DWORD *)(v1 + 24) += v2[4] / 8;\n  v2[4] = 0;\n  result = (*(int (__stdcall **)(_DWORD *))(v1 + 8))(a1);\n  if ( result )\n  {\n    v4 = a1[83];\n    if ( v4 > 0 )\n      memset(v2 + 5, 0, 4 * v4);\n    v2[9] = a1[70];\n    if ( !a1[105] )\n      v2[2] = 0;\n    return 1;\n  }\n  return result;\n}\n"
+}

@@ -1,0 +1,8 @@
+{
+  "name": "sub_1000C310",
+  "mangled_name": "sub_1000C310",
+  "address": "0x1000C310",
+  "size_bytes": 73,
+  "signature": "int __thiscall(int this)",
+  "decompiled_c": "int __thiscall sub_1000C310(int this)\n{\n  int v2; // eax\n  int result; // eax\n  int i; // esi\n  int v5; // eax\n\n  v2 = *(_DWORD *)(this + 348);\n  if ( v2 == 3 || v2 == 1 )\n    (*(void (__thiscall **)(_DWORD, _DWORD))(**(_DWORD **)(this + 360) + 24))(*(_DWORD *)(this + 360), 0);\n  result = *(_DWORD *)(this + 20);\n  for ( i = 0; i < result; ++i )\n  {\n    v5 = gbChain1D::operator[]((int *)(this + 12), i);\n    sub_1000C310(v5);\n    result = *(_DWORD *)(this + 20);\n  }\n  return result;\n}\n"
+}

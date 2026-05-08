@@ -4,5 +4,5 @@
   "address": "0x10011780",
   "size_bytes": 34,
   "signature": "void __thiscall(gbGeomNode *this, int a2)",
-  "decompiled_c": "void __thiscall gbGeomNode::EnableShadow(gbGeomNode *this, int a2)\n{\n  gbVisNode::EnableShadow(this, a2);\n  if ( a2 )\n    (*(void (__thiscall **)(_DWORD))(**((_DWORD **)this + 66) + 8))(*((_DWORD *)this + 66));\n}\n"
+  "decompiled_c": "void __thiscall gbGeomNode::EnableShadow(gbGeomNode *this, int a2)\n{\n  gbVisNode::EnableShadow((gbVisNode *)this, a2);\n  if ( a2 )\n    (*(void (__thiscall **)(struct gbStaticMesh *))(*(_DWORD *)this->mesh + 8))(this->mesh);\n}\n"
 }

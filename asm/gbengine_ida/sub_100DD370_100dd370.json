@@ -1,0 +1,8 @@
+{
+  "name": "sub_100DD370",
+  "mangled_name": "sub_100DD370",
+  "address": "0x100DD370",
+  "size_bytes": 28,
+  "signature": "LPVOID __stdcall(int a1, int a2, int a3)",
+  "decompiled_c": "LPVOID __stdcall sub_100DD370(int a1, int a2, int a3)\n{\n  HANDLE ProcessHeap; // eax\n\n  ProcessHeap = GetProcessHeap();\n  return HeapAlloc(ProcessHeap, 8u, a3 * a2);\n}\n"
+}

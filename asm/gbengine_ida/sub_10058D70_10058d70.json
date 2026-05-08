@@ -1,0 +1,8 @@
+{
+  "name": "sub_10058D70",
+  "mangled_name": "sub_10058D70",
+  "address": "0x10058D70",
+  "size_bytes": 84,
+  "signature": "int(int a1, int a2, int a3, char *Format, ...)",
+  "decompiled_c": "int sub_10058D70(int a1, int a2, int a3, char *Format, ...)\n{\n  int result; // eax\n  char Buffer[256]; // [esp+4h] [ebp-100h] BYREF\n  va_list va; // [esp+11Ch] [ebp+18h] BYREF\n\n  va_start(va, Format);\n  _vsnprintf(Buffer, 0x100u, Format, va);\n  Buffer[255] = 0;\n  result = sub_1004CB83((_DWORD *)(*(_DWORD *)(a1 + 4) + 24), a2, a3, \"%s\", Buffer);\n  *(_DWORD *)(a1 + 64) = 1;\n  return result;\n}\n"
+}

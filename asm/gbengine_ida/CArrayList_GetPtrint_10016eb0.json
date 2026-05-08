@@ -1,0 +1,8 @@
+{
+  "name": "CArrayList::GetPtr(int)",
+  "mangled_name": "?GetPtr@CArrayList@@QAEPAXH@Z",
+  "address": "0x10016EB0",
+  "size_bytes": 34,
+  "signature": "int __thiscall(CArrayList *this, int a2)",
+  "decompiled_c": "int __thiscall CArrayList::GetPtr(CArrayList *this, int a2)\n{\n  if ( *(_DWORD *)this )\n    return *(_DWORD *)(*((_DWORD *)this + 1) + 4 * a2);\n  else\n    return *((_DWORD *)this + 1) + a2 * *((_DWORD *)this + 2);\n}\n"
+}

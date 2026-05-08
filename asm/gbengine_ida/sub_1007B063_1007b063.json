@@ -1,0 +1,8 @@
+{
+  "name": "sub_1007B063",
+  "mangled_name": "sub_1007B063",
+  "address": "0x1007B063",
+  "size_bytes": 62,
+  "signature": "int (__cdecl *__stdcall(_DWORD *a1, int a2, int (__cdecl *a3)(int, int)))(int, int)",
+  "decompiled_c": "int (__cdecl *__stdcall sub_1007B063(_DWORD *a1, int a2, int (__cdecl *a3)(int, int)))(int, int)\n{\n  bool v3; // zf\n  int (__cdecl *result)(int, int); // eax\n\n  v3 = a1[19] == 0;\n  a1[21] = a2;\n  result = a3;\n  a1[20] = a3;\n  if ( !v3 )\n  {\n    a1[19] = 0;\n    sub_10078BF3((int)a1, (int)\"It's an error to set both read_data_fn and write_data_fn in the \");\n    result = sub_10078BF3((int)a1, (int)\"same structure.  Resetting write_data_fn to NULL.\");\n  }\n  a1[72] = 0;\n  return result;\n}\n"
+}

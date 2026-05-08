@@ -1,0 +1,8 @@
+{
+  "name": "sub_100B634D",
+  "mangled_name": "sub_100B634D",
+  "address": "0x100B634D",
+  "size_bytes": 87,
+  "signature": "int __thiscall(_DWORD *this, int a2, unsigned int *a3, _DWORD *a4)",
+  "decompiled_c": "int __thiscall sub_100B634D(_DWORD *this, int a2, unsigned int *a3, _DWORD *a4)\n{\n  int v4; // eax\n  unsigned int v5; // edx\n\n  v4 = *(_DWORD *)(a2 + 104);\n  v5 = *(unsigned __int8 *)(a2 + 105);\n  *a3 = v5;\n  switch ( (unsigned __int8)v4 )\n  {\n    case 1u:\n      if ( v5 < *(this + 10) )\n      {\n        *a4 = 1;\n        return 0;\n      }\n      break;\n    case 3u:\n      if ( v5 < 8 )\n      {\n        *a4 = 3;\n        return 0;\n      }\n      break;\n    case 5u:\n      *a4 = 0;\n      return 0;\n  }\n  return -2147467259;\n}\n"
+}

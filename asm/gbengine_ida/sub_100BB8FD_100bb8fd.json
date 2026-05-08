@@ -1,0 +1,8 @@
+{
+  "name": "sub_100BB8FD",
+  "mangled_name": "sub_100BB8FD",
+  "address": "0x100BB8FD",
+  "size_bytes": 34,
+  "signature": "_DWORD *__thiscall(_DWORD *Block, char a2)",
+  "decompiled_c": "_DWORD *__thiscall sub_100BB8FD(_DWORD *Block, char a2)\n{\n  *Block = &off_1010CC40;\n  sub_100C4539(Block);\n  if ( (a2 & 1) != 0 )\n    operator delete(Block);\n  return Block;\n}\n"
+}

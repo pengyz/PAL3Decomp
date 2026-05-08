@@ -1,0 +1,8 @@
+{
+  "name": "sub_10056F5F",
+  "mangled_name": "sub_10056F5F",
+  "address": "0x10056F5F",
+  "size_bytes": 225,
+  "signature": "int __stdcall(int *a1, _DWORD *a2, const char *a3)",
+  "decompiled_c": "int __stdcall sub_10056F5F(int *a1, _DWORD *a2, const char *a3)\n{\n  unsigned int v3; // ebx\n  _DWORD *v4; // eax\n  _DWORD *v5; // ecx\n  int v6; // eax\n  char *v7; // ecx\n  char *v8; // edi\n  int v10; // [esp+Ch] [ebp-8h]\n  int v11; // [esp+10h] [ebp-4h]\n\n  v3 = 0;\n  v11 = 0;\n  v4 = (_DWORD *)sub_10055C8B(a1, (unsigned int)a2, 1);\n  if ( !v4 )\n    return -2005530516;\n  v5 = (_DWORD *)(v4[6] + a1[209] + *(_DWORD *)(v4[1] + 64));\n  if ( v5[4] )\n  {\n    if ( v4[4] == -1 )\n      return -2005530516;\n  }\n  if ( v5[1] != 4 || *v5 != 4 )\n    return -2005530516;\n  v6 = *(_DWORD *)(v4[7] + 8);\n  v7 = 0;\n  v10 = v6;\n  if ( !a3 )\n    goto LABEL_10;\n  sub_10051066(&a2, a1 + 4);\n  v3 = strlen(a3) + 1;\n  v8 = (char *)sub_1007E198(v3, (LPVOID)1);\n  if ( v8 )\n  {\n    qmemcpy(v8, a3, v3);\n    sub_1004EE6D(a2);\n    v7 = v8;\n    v6 = v10;\nLABEL_10:\n    *(_DWORD *)(v6 + 24) = v7;\n    *(_DWORD *)(v6 + 28) = v3;\n    return v11;\n  }\n  v11 = -2147024882;\n  sub_1004EE6D(a2);\n  return v11;\n}\n"
+}

@@ -1,0 +1,8 @@
+{
+  "name": "sub_10013940",
+  "mangled_name": "sub_10013940",
+  "address": "0x10013940",
+  "size_bytes": 235,
+  "signature": "int __thiscall(int this, float a2, int a3)",
+  "decompiled_c": "int __thiscall sub_10013940(int this, float a2, int a3)\n{\n  int result; // eax\n  int v5; // ebx\n  int v6; // esi\n  long double v7; // st7\n  long double v8; // st7\n  long double v9; // st7\n  int *v10; // ecx\n  float v11; // [esp+0h] [ebp-8h]\n  float v12; // [esp+4h] [ebp-4h]\n  int v13; // [esp+Ch] [ebp+4h]\n  float v14; // [esp+Ch] [ebp+4h]\n\n  result = *(_DWORD *)(this + 1556);\n  *(float *)(this + 1560) = 1.0 / a2;\n  if ( !result )\n  {\n    v5 = 0;\n    *(_DWORD *)(this + 1556) = &dword_1013B0E0;\n    v13 = 0;\n    v6 = 0;\n    do\n    {\n      v7 = (double)v13 * 0.00390625;\n      v12 = v7;\n      v8 = sin(acos(v7));\n      v11 = v8;\n      v9 = v8 * 0.75018758;\n      v14 = v9;\n      *(float *)(*(_DWORD *)(this + 1556) + v6 * 4) = cos(asin(v9)) * (v11 / v14) - v12;\n      *(float *)(*(_DWORD *)(this + 1556) + v6 * 4 + 4) = -(v14 / v11);\n      *(_DWORD *)(*(_DWORD *)(this + 1556) + v6 * 4 + 8) = (((255 - v5) * (255 - v5) * (255 - v5)) & 0xFFFF0000) << 8;\n      v10 = &dword_1013A4E0[v6];\n      v6 += 3;\n      ++v5;\n      *v10 = dword_1013B0E0;\n      result = dword_1013B0E4;\n      v13 = v5;\n      v10[1] = dword_1013B0E4;\n      v10[2] = dword_1013B0E8;\n    }\n    while ( v6 < 768 );\n  }\n  return result;\n}\n"
+}

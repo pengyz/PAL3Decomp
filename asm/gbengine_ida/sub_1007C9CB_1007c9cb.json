@@ -1,0 +1,8 @@
+{
+  "name": "sub_1007C9CB",
+  "mangled_name": "sub_1007C9CB",
+  "address": "0x1007C9CB",
+  "size_bytes": 131,
+  "signature": "int __stdcall(float *a1, unsigned __int16 *a2)",
+  "decompiled_c": "int __stdcall sub_1007C9CB(float *a1, unsigned __int16 *a2)\n{\n  int result; // eax\n  unsigned int v3; // ecx\n  int v4; // edx\n  float *v5; // eax\n  double v6; // st6\n  unsigned int v7; // esi\n  int v8; // ecx\n  float *v9; // eax\n  double v10; // st6\n\n  result = sub_1007C88B(a1, a2 + 4);\n  if ( result >= 0 )\n  {\n    v3 = *(_DWORD *)a2;\n    v4 = 8;\n    v5 = a1 + 3;\n    do\n    {\n      v6 = (double)(v3 & 0xF);\n      v3 >>= 4;\n      *v5 = v6 * 0.06666667;\n      v5 += 4;\n      --v4;\n    }\n    while ( v4 );\n    v7 = *((_DWORD *)a2 + 1);\n    v8 = 8;\n    v9 = a1 + 35;\n    do\n    {\n      v10 = (double)(v7 & 0xF);\n      v7 >>= 4;\n      *v9 = v10 * 0.06666667;\n      v9 += 4;\n      --v8;\n    }\n    while ( v8 );\n    return 0;\n  }\n  return result;\n}\n"
+}

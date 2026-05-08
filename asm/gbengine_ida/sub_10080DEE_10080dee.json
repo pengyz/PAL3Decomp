@@ -1,0 +1,8 @@
+{
+  "name": "sub_10080DEE",
+  "mangled_name": "sub_10080DEE",
+  "address": "0x10080DEE",
+  "size_bytes": 109,
+  "signature": "int __stdcall(_DWORD *a1)",
+  "decompiled_c": "int __stdcall sub_10080DEE(_DWORD *a1)\n{\n  int result; // eax\n\n  if ( !a1 )\n    return 0;\n  if ( a1[1] == 6 )\n    return a1[5] + 16;\n  if ( a1[1] == 11 )\n    return 0;\n  if ( a1[1] != 12 )\n  {\n    if ( a1[1] == 13 )\n      return (int)(a1 + 12);\n    return 0;\n  }\n  result = sub_10080DEE(a1[5]);\n  if ( !result )\n  {\n    result = sub_10080DEE(a1[6]);\n    if ( !result )\n    {\n      result = sub_10080DEE(a1[7]);\n      if ( !result )\n      {\n        result = sub_10080DEE(a1[8]);\n        if ( !result )\n          return 0;\n      }\n    }\n  }\n  return result;\n}\n"
+}

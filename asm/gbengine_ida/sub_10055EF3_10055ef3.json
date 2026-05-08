@@ -1,0 +1,8 @@
+{
+  "name": "sub_10055EF3",
+  "mangled_name": "sub_10055EF3",
+  "address": "0x10055EF3",
+  "size_bytes": 153,
+  "signature": "int __stdcall(int *a1, unsigned int a2, unsigned int a3)",
+  "decompiled_c": "int __stdcall sub_10055EF3(int *a1, unsigned int a2, unsigned int a3)\n{\n  unsigned int v3; // edx\n  unsigned int v4; // ecx\n  int i; // eax\n  int v7; // eax\n  int v8; // esi\n  _DWORD *v9; // eax\n  unsigned int v10; // eax\n\n  if ( a2 )\n  {\n    v7 = sub_10055C8B(a1, a2, 1);\n    v8 = v7;\n    if ( v7\n      && (v9 = (_DWORD *)(*(_DWORD *)(v7 + 24) + a1[209] + *(_DWORD *)(*(_DWORD *)(v7 + 4) + 64)), v9[1] == 5)\n      && (*(_DWORD *)(v8 + 16) != -1 || !v9[4])\n      && (v10 = v9[5], a3 < v10)\n      && (*(_DWORD *)(v8 + 8) || sub_10055701(a1, v8, v10) >= 0) )\n    {\n      return ~(*(_DWORD *)(v8 + 8) + 32 * a3);\n    }\n    else\n    {\n      return 0;\n    }\n  }\n  else\n  {\n    v3 = a1[202];\n    v4 = a3;\n    if ( a3 < v3 )\n    {\n      for ( i = a1[211]; ++v4 < v3; i = *(_DWORD *)(i + 52) )\n        ;\n      return ~i;\n    }\n    else\n    {\n      return 0;\n    }\n  }\n}\n"
+}

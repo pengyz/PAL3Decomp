@@ -1,0 +1,8 @@
+{
+  "name": "sub_1007D900",
+  "mangled_name": "sub_1007D900",
+  "address": "0x1007D900",
+  "size_bytes": 77,
+  "signature": "int __stdcall(int a1, int a2, _DWORD *a3)",
+  "decompiled_c": "int __stdcall sub_1007D900(int a1, int a2, _DWORD *a3)\n{\n  int v3; // ecx\n  const char *v4; // eax\n  int v5; // edx\n  char **v7; // esi\n\n  v3 = 42;\n  v4 = \"vs_3_0\";\n  while ( 1 )\n  {\n    v5 = *((_DWORD *)v4 - 4);\n    v4 -= 12;\n    --v3;\n    if ( v5 == a1 && (a2 & *(_DWORD *)v4) == a2 )\n      break;\n    if ( v4 <= (const char *)dword_10106388 )\n      return -2147467259;\n  }\n  if ( a3 )\n  {\n    v7 = &(&off_10106380)[3 * v3];\n    *a3 = *v7++;\n    a3[1] = *v7;\n    a3[2] = v7[1];\n  }\n  return 0;\n}\n"
+}

@@ -1,0 +1,8 @@
+{
+  "name": "sub_10004630",
+  "mangled_name": "sub_10004630",
+  "address": "0x10004630",
+  "size_bytes": 84,
+  "signature": "gbNBTreeNode *__thiscall(gbNBTreeNode *this, char a2)",
+  "decompiled_c": "gbNBTreeNode *__thiscall sub_10004630(gbNBTreeNode *this, char a2)\n{\n  if ( (a2 & 2) != 0 )\n  {\n    `eh vector destructor iterator'(\n      (char *)this,\n      0x1Cu,\n      *((_DWORD *)this - 1),\n      (void (__thiscall *)(void *))gbNBTreeNode::~gbNBTreeNode);\n    if ( (a2 & 1) != 0 )\n      operator delete((char *)this - 4);\n    return (gbNBTreeNode *)((char *)this - 4);\n  }\n  else\n  {\n    gbNBTreeNode::~gbNBTreeNode(this);\n    if ( (a2 & 1) != 0 )\n      operator delete(this);\n    return this;\n  }\n}\n"
+}

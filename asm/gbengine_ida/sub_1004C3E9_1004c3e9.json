@@ -1,0 +1,8 @@
+{
+  "name": "sub_1004C3E9",
+  "mangled_name": "sub_1004C3E9",
+  "address": "0x1004C3E9",
+  "size_bytes": 47,
+  "signature": "void __thiscall(void **this)",
+  "decompiled_c": "void __thiscall sub_1004C3E9(void **this)\n{\n  void *v2; // edi\n\n  if ( *this )\n  {\n    do\n    {\n      v2 = *(void **)*this;\n      operator delete(*this);\n      *this = v2;\n    }\n    while ( v2 );\n  }\n  operator delete(*(this + 6));\n  operator delete(*(this + 7));\n}\n"
+}

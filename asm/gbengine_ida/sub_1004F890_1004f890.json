@@ -1,0 +1,8 @@
+{
+  "name": "sub_1004F890",
+  "mangled_name": "sub_1004F890",
+  "address": "0x1004F890",
+  "size_bytes": 180,
+  "signature": "int __thiscall(int this)",
+  "decompiled_c": "int __thiscall sub_1004F890(int this)\n{\n  _DWORD *v2; // ecx\n  _DWORD *v3; // ecx\n  void *v4; // ecx\n  _DWORD **v5; // esi\n  int v6; // edi\n\n  v2 = *(_DWORD **)(this + 60);\n  if ( v2 )\n    sub_1004DB7E(v2, 1);\n  v3 = *(_DWORD **)(this + 104);\n  if ( v3 )\n    sub_1004DB4A(v3, 1);\n  v4 = *(void **)(this + 616);\n  if ( v4 )\n    sub_1004D930(v4, 1);\n  v5 = (_DWORD **)(this + 108);\n  v6 = 127;\n  do\n  {\n    if ( *v5 )\n      sub_1004EE2C(*v5, 1);\n    ++v5;\n    --v6;\n  }\n  while ( v6 );\n  if ( *(_DWORD *)(this + 668) && strcmp(*(const char **)(this + 668), \"C\") )\n    setlocale(4, *(const char **)(this + 668));\n  if ( *(_DWORD *)(this + 668) )\n    free(*(void **)(this + 668));\n  _controlfp(*(_DWORD *)(this + 672), 0x30000u);\n  if ( *(_DWORD *)(this + 676) )\n    sub_1004EE6D((_DWORD *)this);\n  sub_1004C3E9((void **)(this + 24));\n  return sub_1007E178(this);\n}\n"
+}

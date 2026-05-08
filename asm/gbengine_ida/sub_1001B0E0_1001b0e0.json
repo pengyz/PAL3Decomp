@@ -1,0 +1,8 @@
+{
+  "name": "sub_1001B0E0",
+  "mangled_name": "sub_1001B0E0",
+  "address": "0x1001B0E0",
+  "size_bytes": 176,
+  "signature": "int __thiscall(int this, int a2, int a3, int a4)",
+  "decompiled_c": "int __thiscall sub_1001B0E0(int this, int a2, int a3, int a4)\n{\n  int v4; // edx\n  int v6; // ecx\n  int v7; // eax\n\n  v4 = a4;\n  if ( *(_DWORD *)(this + 1644) )\n    v4 = a4 | 0x10;\n  if ( a2 >= 0 )\n  {\n    v6 = 0;\n    if ( (a2 & 1) != 0 )\n      v6 = 2;\n    if ( (a2 & 0x100) != 0 )\n      v6 |= 4u;\n    if ( (a2 & 2) != 0 )\n      v6 |= 0x10u;\n    if ( (a2 & 4) != 0 )\n      v6 |= 0x40u;\n    if ( (a2 & 8) != 0 )\n      LOBYTE(v6) = v6 | 0x80;\n    if ( (a2 & 0x80u) == 0 )\n    {\n      if ( (a2 & 0x40) != 0 )\n      {\n        BYTE1(v6) |= 3u;\n      }\n      else if ( (a2 & 0x20) != 0 )\n      {\n        BYTE1(v6) |= 2u;\n      }\n      else if ( (a2 & 0x10) != 0 )\n      {\n        BYTE1(v6) |= 1u;\n      }\n    }\n    else\n    {\n      BYTE1(v6) |= 4u;\n    }\n  }\n  else\n  {\n    v6 = 0;\n  }\n  v7 = (*(int (__stdcall **)(_DWORD, int, int, int, bool, int *, _DWORD))(**(_DWORD **)(this + 1816) + 104))(\n         *(_DWORD *)(this + 1816),\n         a3,\n         v4,\n         v6,\n         a4 == 0,\n         &a4,\n         0);\n  if ( v7 >= 0 )\n    return a4;\n  *(_DWORD *)(this + 2248) = v7;\n  return 0;\n}\n"
+}

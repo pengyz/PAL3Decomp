@@ -1,0 +1,8 @@
+{
+  "name": "sub_100145A0",
+  "mangled_name": "sub_100145A0",
+  "address": "0x100145A0",
+  "size_bytes": 161,
+  "signature": "float *__thiscall(float *this, int a2, int a3, float *a4, int a5)",
+  "decompiled_c": "float *__thiscall sub_100145A0(float *this, int a2, int a3, float *a4, int a5)\n{\n  gbStaticChain *v6; // edi\n  struct gbStaticChainNode *v7; // edx\n  float v9; // [esp+10h] [ebp+4h]\n\n  v6 = (gbStaticChain *)(this + 6);\n  *(this + 2) = 0.0;\n  *(this + 3) = 0.0;\n  *(this + 4) = 0.0;\n  *(this + 6) = 0.0;\n  *(this + 9) = 0.0;\n  *(this + 8) = 0.0;\n  *(this + 7) = 0.0;\n  *((_DWORD *)this + 1) = a2;\n  *(this + 2) = *a4;\n  *(this + 3) = a4[1];\n  *(this + 4) = a4[2];\n  *((_DWORD *)this + 5) = a5;\n  gbStaticChain::InitBuffer((gbStaticChain *)(this + 6), a3, 68);\n  v9 = *(this + 5);\n  v7 = gbStaticChain::NewOneNode(v6);\n  *((float *)v7 + 2) = *(this + 2);\n  *((float *)v7 + 3) = *(this + 3);\n  *((float *)v7 + 4) = *(this + 4);\n  *((float *)v7 + 6) = v9 * 0.5;\n  *((float *)v7 + 5) = v9;\n  *((_DWORD *)v7 + 7) = 0;\n  *((_DWORD *)v7 + 16) = 0;\n  memset((char *)v7 + 32, 0, 0x20u);\n  *(_DWORD *)this = v7;\n  return this;\n}\n"
+}

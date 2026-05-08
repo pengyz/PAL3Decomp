@@ -1,0 +1,8 @@
+{
+  "name": "sub_10034646",
+  "mangled_name": "sub_10034646",
+  "address": "0x10034646",
+  "size_bytes": 132,
+  "signature": "void()",
+  "decompiled_c": "void sub_10034646()\n{\n  int v0; // ebx\n  void *v1; // esi\n  int v2; // eax\n  void *v3; // edi\n\n  v0 = 0;\n  if ( !dword_10164058 )\n  {\n    dword_10164058 = 1;\n    v1 = (void *)operator new(0);\n    v2 = operator new(0);\n    v3 = (void *)v2;\n    if ( !v1 || !v2 || v1 == (void *)v2 )\n      v0 = 1;\n    if ( v1 )\n      operator delete(v1);\n    if ( v3 && v3 != v1 )\n      operator delete(v3);\n    operator delete(0);\n    if ( v0 )\n    {\n      OutputDebugStringA(\"D3DX: (WARN) Overloaded ::new and ::delete operators do not conform to C++ standards:\\r\\n\");\n      OutputDebugStringA(\"D3DX: (WARN) An allocation of zero bytes should return a unique non-null pointer to at\\r\\n\");\n      OutputDebugStringA(\"D3DX: (WARN) least zero bytes. Deletion of a null pointer should quietly do nothing.\\r\\n\");\n      OutputDebugStringA(\"D3DX: (WARN) D3DX relies upon this behavior.\\r\\n\");\n    }\n  }\n}\n"
+}

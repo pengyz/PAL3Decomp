@@ -1,0 +1,8 @@
+{
+  "name": "sub_1000F0B0",
+  "mangled_name": "sub_1000F0B0",
+  "address": "0x1000F0B0",
+  "size_bytes": 239,
+  "signature": "int *__thiscall(int *this, const void *a2, int a3)",
+  "decompiled_c": "int *__thiscall sub_1000F0B0(int *this, const void *a2, int a3)\n{\n  int *result; // eax\n  int v4; // edx\n  int v5; // esi\n  int *v6; // ebp\n  void *v7; // edi\n  int v8; // esi\n  int v9; // [esp+Ch] [ebp-4h]\n\n  result = this;\n  v4 = *(this + 46);\n  if ( v4 > 1 )\n  {\n    v5 = v4 - 1;\n    v9 = v4 - 1;\n    v6 = this + v4 + 2;\n    do\n    {\n      if ( v4 < 40 )\n      {\n        qmemcpy(\n          (void *)(*(this + 1) + 16 * v4 * *(this + 45)),\n          (const void *)(*(this + 1) + 16 * *(this + 45) * v5),\n          16 * *(this + 45));\n        *v6 = *(v6 - 1);\n      }\n      --v4;\n      --v6;\n      v5 = --v9;\n    }\n    while ( v4 > 1 );\n  }\n  qmemcpy((void *)(*(this + 1) + 16 * *(this + 45)), a2, 16 * *(this + 45));\n  v7 = (void *)*(this + 1);\n  *(this + 3) = a3;\n  qmemcpy(v7, a2, 16 * *(this + 45));\n  v8 = *(this + 46) + 1;\n  *(this + 2) = a3;\n  *(this + 46) = v8;\n  if ( v8 < 2 )\n    *(this + 46) = 2;\n  if ( *(this + 46) > 40 )\n    *(this + 46) = 40;\n  return result;\n}\n"
+}

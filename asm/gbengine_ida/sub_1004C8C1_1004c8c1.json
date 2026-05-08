@@ -1,0 +1,8 @@
+{
+  "name": "sub_1004C8C1",
+  "mangled_name": "sub_1004C8C1",
+  "address": "0x1004C8C1",
+  "size_bytes": 129,
+  "signature": "unsigned int __thiscall(_DWORD *this, _BYTE *a2, _DWORD *a3)",
+  "decompiled_c": "unsigned int __thiscall sub_1004C8C1(_DWORD *this, _BYTE *a2, _DWORD *a3)\n{\n  _BYTE *i; // edi\n  unsigned int v5; // edi\n  void *v6; // eax\n\n  if ( (unsigned int)a2 >= *(this + 1) || !isalpha((char)*a2) && *a2 != 95 )\n    return 0;\n  for ( i = a2 + 1; (unsigned int)i < *(this + 1) && (isalnum((char)*i) || *i == 95); ++i )\n    ;\n  v5 = i - a2;\n  v6 = (void *)sub_1007E198(v5 + 1, (LPVOID)1);\n  if ( !v6 )\n    return 0;\n  qmemcpy(v6, a2, v5);\n  *((_BYTE *)v6 + v5) = 0;\n  *a3 = v6;\n  return v5;\n}\n"
+}

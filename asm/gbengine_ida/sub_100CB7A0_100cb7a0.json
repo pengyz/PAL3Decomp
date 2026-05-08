@@ -1,0 +1,8 @@
+{
+  "name": "sub_100CB7A0",
+  "mangled_name": "sub_100CB7A0",
+  "address": "0x100CB7A0",
+  "size_bytes": 77,
+  "signature": "_DWORD *__thiscall(unsigned int *this)",
+  "decompiled_c": "_DWORD *__thiscall sub_100CB7A0(unsigned int *this)\n{\n  _DWORD *result; // eax\n  int v2; // edx\n  int v3; // edx\n  unsigned int v4; // esi\n  int v5; // ecx\n\n  result = (_DWORD *)*(this + 108);\n  v2 = 1;\n  if ( (int)*(this + 83) <= 1 )\n  {\n    v3 = *(this + 81);\n    v4 = *(this + 38);\n    v5 = *(this + 84);\n    if ( v4 < v3 - 1 )\n    {\n      result[7] = *(_DWORD *)(v5 + 12);\n      result[5] = 0;\n      result[6] = 0;\n      return result;\n    }\n    v2 = *(_DWORD *)(v5 + 72);\n  }\n  result[7] = v2;\n  result[5] = 0;\n  result[6] = 0;\n  return result;\n}\n"
+}

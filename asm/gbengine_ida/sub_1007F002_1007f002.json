@@ -1,0 +1,8 @@
+{
+  "name": "sub_1007F002",
+  "mangled_name": "sub_1007F002",
+  "address": "0x1007F002",
+  "size_bytes": 125,
+  "signature": "int __thiscall(_DWORD *this)",
+  "decompiled_c": "int __thiscall sub_1007F002(_DWORD *this)\n{\n  int *v2; // edi\n  _DWORD *v3; // eax\n  _DWORD *v4; // eax\n  int v5; // ecx\n  int v7; // [esp+8h] [ebp-4h] BYREF\n\n  v7 = 0;\n  v2 = &v7;\n  while ( this )\n  {\n    if ( *(this + 1) != 1 )\n    {\n      *v2 = (*(int (__thiscall **)(_DWORD *))(*this + 4))(this);\n      return v7;\n    }\n    v3 = (_DWORD *)sub_1007E198((_DWORD *)dword_10165864, 20, (LPVOID)0x10);\n    if ( v3 )\n      v4 = sub_1007E2E6(v3);\n    else\n      v4 = 0;\n    *v2 = (int)v4;\n    if ( !v4 )\n      return v7;\n    v4[4] = *(this + 4);\n    v5 = *(this + 2);\n    if ( v5 )\n    {\n      *(_DWORD *)(*v2 + 8) = (*(int (__thiscall **)(int))(*(_DWORD *)v5 + 4))(v5);\n      if ( !*(_DWORD *)(*v2 + 8) )\n      {\n        *v2 = 0;\n        return v7;\n      }\n    }\n    this = (_DWORD *)*(this + 3);\n    v2 = (int *)(*v2 + 12);\n  }\n  return v7;\n}\n"
+}

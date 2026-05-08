@@ -1,0 +1,8 @@
+{
+  "name": "sub_1005A30F",
+  "mangled_name": "sub_1005A30F",
+  "address": "0x1005A30F",
+  "size_bytes": 149,
+  "signature": "int __thiscall(_DWORD *this)",
+  "decompiled_c": "int __thiscall sub_1005A30F(_DWORD *this)\n{\n  int v2; // eax\n  int result; // eax\n  int v4; // ecx\n  int i; // edi\n  int v6; // eax\n\n  v2 = *(this + 4);\n  if ( v2 )\n  {\n    if ( *(_DWORD *)(v2 + 16) == 4 )\n    {\n      v4 = *(_DWORD *)(v2 + 32);\n      if ( v4 )\n      {\n        if ( *(_DWORD *)(v4 + 16) != 4 )\n        {\n          for ( i = v2 + 24; *(_DWORD *)i; i = *(_DWORD *)i + 12 )\n          {\n            *(_DWORD *)(*(_DWORD *)(*(_DWORD *)i + 8) + 44) = 1;\n            result = sub_10058F00(*(_DWORD *)(*(this + 4) + 32), *(_DWORD *)(*(_DWORD *)i + 8));\n            if ( result < 0 )\n              return result;\n          }\n          *(_DWORD *)i = *(_DWORD *)(*(_DWORD *)(*(this + 4) + 32) + 24);\n          *(_DWORD *)(*(_DWORD *)(*(this + 4) + 32) + 24) = *(_DWORD *)(*(this + 4) + 24);\n          *(_DWORD *)(*(this + 4) + 24) = 0;\n        }\n      }\n    }\n    v6 = *(this + 4);\n    *(this + 4) = *(_DWORD *)(v6 + 32);\n    *(_DWORD *)(v6 + 32) = 0;\n    return 0;\n  }\n  else\n  {\n    sub_10058E0F(this, 0, 0, \"internal error: scope underflow\");\n    return -2147467259;\n  }\n}\n"
+}

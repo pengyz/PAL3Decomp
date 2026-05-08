@@ -1,0 +1,8 @@
+{
+  "name": "sub_1007B5D3",
+  "mangled_name": "sub_1007B5D3",
+  "address": "0x1007B5D3",
+  "size_bytes": 126,
+  "signature": "int __fastcall(float *a1)",
+  "decompiled_c": "int __fastcall sub_1007B5D3(float *a1)\n{\n  int v1; // edx\n  double v2; // st7\n  double v3; // st7\n  double v4; // st6\n  double v5; // st6\n\n  v1 = 16;\n  do\n  {\n    if ( 0.0 == a1[3] )\n    {\n      *a1 = 0.0;\n      a1[1] = 0.0;\n      v2 = 0.0;\n    }\n    else\n    {\n      if ( a1[3] >= 1.0 )\n        goto LABEL_15;\n      v3 = 1.0 / a1[3];\n      if ( *a1 >= (double)a1[3] )\n        v4 = 1.0;\n      else\n        v4 = v3 * *a1;\n      *a1 = v4;\n      if ( a1[1] >= (double)a1[3] )\n        v5 = 1.0;\n      else\n        v5 = v3 * a1[1];\n      a1[1] = v5;\n      if ( a1[2] >= (double)a1[3] )\n        v2 = 1.0;\n      else\n        v2 = v3 * a1[2];\n    }\n    a1[2] = v2;\nLABEL_15:\n    a1 += 4;\n    --v1;\n  }\n  while ( v1 );\n  return 0;\n}\n"
+}

@@ -1,0 +1,8 @@
+{
+  "name": "sub_10029AB0",
+  "mangled_name": "sub_10029AB0",
+  "address": "0x10029AB0",
+  "size_bytes": 36,
+  "signature": "char *__thiscall(char *this)",
+  "decompiled_c": "char *__thiscall sub_10029AB0(char *this)\n{\n  gbMatrix4 *v2; // edi\n\n  v2 = (gbMatrix4 *)(this + 12);\n  gbMatrix4::gbMatrix4((gbMatrix4 *)(this + 12));\n  *(_DWORD *)this = 0;\n  *((_DWORD *)this + 1) = 0;\n  *((_DWORD *)this + 2) = 0;\n  gbMatrix4::LoadIdentity(v2);\n  return this;\n}\n"
+}

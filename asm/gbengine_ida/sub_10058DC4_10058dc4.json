@@ -1,0 +1,8 @@
+{
+  "name": "sub_10058DC4",
+  "mangled_name": "sub_10058DC4",
+  "address": "0x10058DC4",
+  "size_bytes": 75,
+  "signature": "int(int a1, int a2, unsigned int a3, char *Format, ...)",
+  "decompiled_c": "int sub_10058DC4(int a1, int a2, unsigned int a3, char *Format, ...)\n{\n  char Buffer[256]; // [esp+0h] [ebp-100h] BYREF\n  va_list va; // [esp+118h] [ebp+18h] BYREF\n\n  va_start(va, Format);\n  _vsnprintf(Buffer, 0x100u, Format, va);\n  Buffer[255] = 0;\n  return sub_1004CC4C((_DWORD *)(*(_DWORD *)(a1 + 4) + 24), a2, a3, \"%s\", Buffer);\n}\n"
+}

@@ -1,0 +1,8 @@
+{
+  "name": "sub_10019220",
+  "mangled_name": "sub_10019220",
+  "address": "0x10019220",
+  "size_bytes": 133,
+  "signature": "void __thiscall(gbMatrixStack **this, double a2, double a3, double a4, double a5, double a6, double a7)",
+  "decompiled_c": "void __thiscall sub_10019220(gbMatrixStack **this, double a2, double a3, double a4, double a5, double a6, double a7)\n{\n  gbMatrixStack *v8; // ecx\n  gbMatrix4 v9; // [esp+0h] [ebp-40h] BYREF\n  unsigned int v10; // [esp+6Ch] [ebp+2Ch]\n\n  *(float *)&v10 = a7 / (a7 - a6);\n  gbMatrix4::gbMatrix4(&v9);\n  memset(&v9, 0, sizeof(v9));\n  v8 = *(this + 53);\n  *(_QWORD *)&v9.m[2][2] = v10 | 0x3F80000000000000LL;\n  v9.m[0][0] = (a6 + a6) / (a3 - a2);\n  v9.m[1][1] = (a6 + a6) / (a5 - a4);\n  v9.m[3][2] = -*(float *)&v10 * a6;\n  gbMatrixStack::MultMatrix(v8, &v9);\n}\n"
+}

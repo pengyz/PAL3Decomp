@@ -1,0 +1,8 @@
+{
+  "name": "`vector constructor iterator'(void *,uint,int,void (*)(void *))",
+  "mangled_name": "??_H@YGXPAXIHP6EX0@Z@Z",
+  "address": "0x10002BF0",
+  "size_bytes": 42,
+  "signature": "int __stdcall(char *a1, unsigned int a2, int a3, int (__thiscall *a4)(char *))",
+  "decompiled_c": "int __stdcall `vector constructor iterator'(char *a1, unsigned int a2, int a3, int (__thiscall *a4)(char *))\n{\n  int result; // eax\n  int v6; // edi\n\n  result = a3 - 1;\n  if ( a3 - 1 >= 0 )\n  {\n    v6 = a3;\n    do\n    {\n      result = a4(a1);\n      a1 += a2;\n      --v6;\n    }\n    while ( v6 );\n  }\n  return result;\n}\n"
+}

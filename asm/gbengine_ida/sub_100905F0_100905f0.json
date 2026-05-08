@@ -1,0 +1,8 @@
+{
+  "name": "sub_100905F0",
+  "mangled_name": "sub_100905F0",
+  "address": "0x100905F0",
+  "size_bytes": 186,
+  "signature": "int __thiscall(_DWORD *this, int a2)",
+  "decompiled_c": "int __thiscall sub_100905F0(_DWORD *this, int a2)\n{\n  const char *v2; // esi\n  int v3; // edi\n  const char *v5; // eax\n  char v6; // dl\n  int v7; // edx\n  int v8; // edx\n  int v9; // edx\n  char v10; // cl\n  int v12; // edx\n  int v13; // edx\n  int v14; // [esp-4h] [ebp-18h]\n  int v15; // [esp+Ch] [ebp-8h]\n  unsigned int i; // [esp+10h] [ebp-4h]\n\n  v2 = *(const char **)(a2 + 8);\n  v3 = 0;\n  v15 = 0;\n  v5 = v2;\n  if ( !v2 || !*v2 )\n    return 14942208;\n  for ( i = 16; i < 0x18; i += 2 )\n  {\n    v6 = *v5;\n    if ( !*v5 )\n      goto LABEL_13;\n    if ( v6 > 119 )\n    {\n      v12 = v6 - 120;\n      if ( !v12 )\n        goto LABEL_11;\n      v13 = v12 - 1;\n      if ( !v13 )\n      {\nLABEL_22:\n        v3 = 1;\n        goto LABEL_12;\n      }\n      if ( v13 != 1 )\n        goto LABEL_15;\nLABEL_21:\n      v14 = 2;\nLABEL_17:\n      v3 = v14;\n      goto LABEL_12;\n    }\n    if ( v6 == 119 || (v7 = v6 - 97) == 0 )\n    {\n      v14 = 3;\n      goto LABEL_17;\n    }\n    v8 = v7 - 1;\n    if ( !v8 )\n      goto LABEL_21;\n    v9 = v8 - 5;\n    if ( !v9 )\n      goto LABEL_22;\n    if ( v9 != 11 )\n      goto LABEL_15;\nLABEL_11:\n    v3 = 0;\nLABEL_12:\n    ++v5;\nLABEL_13:\n    v10 = i;\n    v15 |= v3 << v10;\n  }\n  if ( *v5 )\n  {\nLABEL_15:\n    sub_1004CB83((_DWORD *)*this, a2, 2004, \"invalid swizzle '%s'\", v2);\n    *(this + 19) = 1;\n    return 0;\n  }\n  return v15;\n}\n"
+}

@@ -1,0 +1,8 @@
+{
+  "name": "sub_10015D10",
+  "mangled_name": "sub_10015D10",
+  "address": "0x10015D10",
+  "size_bytes": 334,
+  "signature": "int __cdecl(int *a1, const char *a2, int a3)",
+  "decompiled_c": "int __cdecl sub_10015D10(int *a1, const char *a2, int a3)\n{\n  char *v3; // edx\n  FILE *v5; // eax\n  void **p_ptr; // esi\n  int i; // esi\n  char *Buffer; // [esp+8h] [ebp-204h]\n  char Str[256]; // [esp+Ch] [ebp-200h] BYREF\n  char v10[256]; // [esp+10Ch] [ebp-100h] BYREF\n\n  strcpy(Str, a2);\n  v3 = strstr(Str, a01);\n  Buffer = v3;\n  if ( !v3 )\n    return 0;\n  strcpy(v3, aCfgTxt);\n  v5 = gbVFileSystem::OpenFile(g_pVFileSys, Str, 0x401u);\n  p_ptr = (void **)&v5->_ptr;\n  if ( !v5 )\n    return 0;\n  gbVFileSystem::ReadLine(g_pVFileSys, v10, 255, (struct gbVFile *)v5);\n  sscanf(v10, \"%d%d\", a1 + 2, a1 + 3);\n  gbVFileSystem::CloseFile(g_pVFileSys, p_ptr);\n  *a1 = operator new(4 * a1[2]);\n  for ( i = 1; i < a1[2]; ++i )\n  {\n    sprintf(Buffer, \"%.2d.tga\", i + 1);\n    *(_DWORD *)(*a1 + 4 * i) = (*(int (__thiscall **)(int, char *))(*(_DWORD *)a3 + 8))(a3, Str);\n    gbTexture::LoadTexture(*(gbTexture **)(*a1 + 4 * i), 1);\n  }\n  return 1;\n}\n"
+}

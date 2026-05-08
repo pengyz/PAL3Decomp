@@ -1,0 +1,8 @@
+{
+  "name": "sub_100C3DD1",
+  "mangled_name": "sub_100C3DD1",
+  "address": "0x100C3DD1",
+  "size_bytes": 114,
+  "signature": "int __thiscall(_DWORD *this, int a2, unsigned int *a3)",
+  "decompiled_c": "int __thiscall sub_100C3DD1(_DWORD *this, int a2, unsigned int *a3)\n{\n  int v3; // edx\n  unsigned int v4; // eax\n  _DWORD *v5; // edx\n  int v6; // eax\n  int v7; // edx\n  int v8; // edx\n  int v9; // edx\n\n  v3 = *(_DWORD *)(a2 + 20);\n  v4 = 0;\n  if ( v3 != -1 )\n  {\n    v5 = *(_DWORD **)(*(this + 5) + 4 * v3);\n    if ( (*(_BYTE *)(*(_DWORD *)(*(this + 4) + 4 * v5[1]) + 4) & 8) != 0 )\n    {\n      v6 = v5[3];\n      v7 = v5[4];\n      v4 = v6 & 0x7FF | 0xB0001000;\n      if ( v7 )\n      {\n        v8 = v7 - 1;\n        if ( v8 )\n        {\n          v9 = v8 - 1;\n          if ( v9 )\n          {\n            if ( v9 == 1 )\n              v4 |= 0xFF0000u;\n          }\n          else\n          {\n            v4 |= 0xAA0000u;\n          }\n        }\n        else\n        {\n          v4 |= 0x550000u;\n        }\n      }\n      if ( !*(_DWORD *)(a2 + 24) )\n        v4 |= 0xD000000u;\n    }\n  }\n  if ( a3 )\n    *a3 = v4;\n  return 0;\n}\n"
+}

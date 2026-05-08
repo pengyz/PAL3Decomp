@@ -1,0 +1,8 @@
+{
+  "name": "sub_10081411",
+  "mangled_name": "sub_10081411",
+  "address": "0x10081411",
+  "size_bytes": 155,
+  "signature": "int __thiscall(int this, unsigned int a2, unsigned int a3, const void *a4)",
+  "decompiled_c": "int __thiscall sub_10081411(int this, unsigned int a2, unsigned int a3, const void *a4)\n{\n  int v5; // eax\n  unsigned int i; // esi\n  void *v7; // ecx\n  int v8; // eax\n  unsigned int j; // esi\n  void *v10; // ecx\n\n  v5 = *(_DWORD *)(this + 8);\n  for ( i = a2; i < *(_DWORD *)(v5 + 8); ++i )\n  {\n    v7 = *(void **)(*(_DWORD *)(v5 + 20) + 4 * i);\n    if ( v7 )\n      sub_10080CFB(v7, 1);\n    *(_DWORD *)(*(_DWORD *)(*(_DWORD *)(this + 8) + 20) + 4 * i) = 0;\n    v5 = *(_DWORD *)(this + 8);\n  }\n  *(_DWORD *)(*(_DWORD *)(this + 8) + 8) = a2;\n  v8 = *(_DWORD *)(this + 8);\n  for ( j = a3; j < *(_DWORD *)(v8 + 12); ++j )\n  {\n    v10 = *(void **)(*(_DWORD *)(v8 + 24) + 4 * j);\n    if ( v10 )\n      sub_1007F859(v10, 1);\n    *(_DWORD *)(*(_DWORD *)(*(_DWORD *)(this + 8) + 24) + 4 * j) = 0;\n    v8 = *(_DWORD *)(this + 8);\n  }\n  *(_DWORD *)(*(_DWORD *)(this + 8) + 12) = a3;\n  qmemcpy(*(void **)(this + 24), a4, 4 * *(_DWORD *)(*(_DWORD *)(this + 4) + 24));\n  return 0;\n}\n"
+}

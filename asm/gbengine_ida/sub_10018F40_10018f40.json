@@ -1,0 +1,8 @@
+{
+  "name": "sub_10018F40",
+  "mangled_name": "sub_10018F40",
+  "address": "0x10018F40",
+  "size_bytes": 182,
+  "signature": "int __thiscall(int this, _DWORD *a2, int a3)",
+  "decompiled_c": "int __thiscall sub_10018F40(int this, _DWORD *a2, int a3)\n{\n  int v4; // ecx\n  int v6; // ecx\n  int v7; // edx\n  int v8; // ecx\n  _DWORD v9[2]; // [esp+10h] [ebp-8h] BYREF\n\n  v4 = 2048;\n  if ( a3 )\n    v4 = 2064;\n  if ( (*(int (__stdcall **)(_DWORD, _DWORD *, _DWORD, int))(**(_DWORD **)(this + 2256) + 52))(\n         *(_DWORD *)(this + 2256),\n         v9,\n         0,\n         v4) < 0 )\n    return 0;\n  switch ( *(_DWORD *)(this + 2124) )\n  {\n    case 0x15:\n      v6 = 2;\n      break;\n    case 0x16:\n      v6 = 8;\n      break;\n    case 0x17:\n      v6 = 3;\n      break;\n    case 0x18:\n      v6 = 9;\n      break;\n    case 0x19:\n      v6 = 4;\n      break;\n    case 0x1A:\n      v6 = 5;\n      break;\n    case 0x1E:\n      v6 = 10;\n      break;\n    default:\n      v6 = 1;\n      break;\n  }\n  a2[2] = v6;\n  *a2 = *(_DWORD *)(this + 2148);\n  v7 = v9[1];\n  a2[1] = *(_DWORD *)(this + 2152);\n  v8 = v9[0];\n  a2[4] = v7;\n  a2[3] = v8;\n  return 1;\n}\n"
+}

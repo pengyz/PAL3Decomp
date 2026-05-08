@@ -1,0 +1,8 @@
+{
+  "name": "sub_1000AC70",
+  "mangled_name": "sub_1000AC70",
+  "address": "0x1000AC70",
+  "size_bytes": 108,
+  "signature": "void __thiscall(void *this)",
+  "decompiled_c": "void __thiscall sub_1000AC70(void *this)\n{\n  char *v2; // eax\n  char *v3; // edi\n  int i; // edi\n  void *v5; // esi\n\n  v2 = (char *)*((_DWORD *)this + 26);\n  if ( v2 )\n  {\n    v3 = v2 - 4;\n    `eh vector destructor iterator'(v2, 0x14u, *((_DWORD *)v2 - 1), sub_1000B4A0);\n    operator delete(v3);\n  }\n  for ( i = 0; i < *((_DWORD *)this + 18); ++i )\n    operator delete(*(void **)(*((_DWORD *)this + 27) + 8 * i + 4));\n  if ( *((_DWORD *)this + 27) )\n    operator delete(*((void **)this + 27));\n  v5 = (void *)*((_DWORD *)this + 28);\n  if ( v5 )\n    operator delete(v5);\n}\n"
+}

@@ -1,0 +1,8 @@
+{
+  "name": "sub_10093B00",
+  "mangled_name": "sub_10093B00",
+  "address": "0x10093B00",
+  "size_bytes": 290,
+  "signature": "int __stdcall(int *a1)",
+  "decompiled_c": "int __stdcall sub_10093B00(int *a1)\n{\n  _DWORD *v1; // edi\n  int v2; // eax\n  int v3; // eax\n  int result; // eax\n  int v5; // ecx\n  int v6; // edx\n\n  v1 = (_DWORD *)a1[106];\n  if ( v1[2] )\n  {\n    v2 = *a1;\n    *(_DWORD *)(v2 + 20) = 48;\n    (*(void (__stdcall **)(int *))v2)(a1);\n  }\n  else\n  {\n    if ( a1[21] && !a1[34] )\n    {\n      if ( a1[23] && a1[27] )\n      {\n        a1[116] = v1[6];\n        v1[2] = 1;\n      }\n      else if ( a1[25] )\n      {\n        a1[116] = v1[5];\n      }\n      else\n      {\n        v3 = *a1;\n        *(_DWORD *)(v3 + 20) = 46;\n        (*(void (__stdcall **)(int *))v3)(a1);\n      }\n    }\n    (*(void (__stdcall **)(int *))a1[113])(a1);\n    (*(void (__stdcall **)(int *))(a1[108] + 8))(a1);\n    if ( !a1[17] )\n    {\n      if ( !v1[4] )\n        (*(void (__stdcall **)(int *))a1[115])(a1);\n      (*(void (__stdcall **)(int *))a1[114])(a1);\n      if ( a1[21] )\n        (*(void (__stdcall **)(int *, _DWORD))a1[116])(a1, v1[2]);\n      (*(void (__stdcall **)(int *, int))a1[109])(a1, v1[2] != 0 ? 3 : 0);\n      (*(void (__stdcall **)(int *, _DWORD))a1[107])(a1, 0);\n    }\n  }\n  result = a1[2];\n  if ( result )\n  {\n    *(_DWORD *)(result + 12) = v1[3];\n    v5 = v1[3] + (v1[2] != 0) + 1;\n    v6 = a1[16];\n    *(_DWORD *)(result + 16) = v5;\n    if ( v6 )\n    {\n      if ( !*(_DWORD *)(a1[110] + 20) )\n        *(_DWORD *)(result + 16) = v5 + (a1[27] != 0) + 1;\n    }\n  }\n  return result;\n}\n"
+}

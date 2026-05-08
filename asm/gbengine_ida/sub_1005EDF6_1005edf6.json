@@ -1,0 +1,8 @@
+{
+  "name": "sub_1005EDF6",
+  "mangled_name": "sub_1005EDF6",
+  "address": "0x1005EDF6",
+  "size_bytes": 303,
+  "signature": "int __userpurge@<eax>(_DWORD *a1@<ecx>, double a2@<st1>, double a3@<st0>, int a4, int a5, int a6)",
+  "decompiled_c": "int __userpurge sub_1005EDF6@<eax>(_DWORD *a1@<ecx>, double a2@<st1>, double a3@<st0>, int a4, int a5, int a6)\n{\n  int v7; // eax\n  int result; // eax\n  int v9; // eax\n  _DWORD *v10; // esi\n  int v11; // eax\n  int v12; // eax\n  int v13; // eax\n  double v14[2]; // [esp+8h] [ebp-18h] BYREF\n  double v15; // [esp+18h] [ebp-8h] BYREF\n\n  if ( !a4 )\n    return 0;\n  if ( *(_DWORD *)(a4 + 20) * *(_DWORD *)(a4 + 24) != 1 || !sub_10059321(a1, *(_DWORD **)(a4 + 16)) )\n  {\n    sub_10058D70((int)a1, a4 + 48, 3019, \"float expected\");\n    return 0;\n  }\n  if ( sub_10059C6A((_DWORD *)a4)\n    && sub_1005E5CC((int)a1, a2, a3, (_DWORD *)a4, v14) >= 0\n    && sub_10059B97(&v15, v14, a4 + 48) >= 0 )\n  {\n    v7 = a5;\n    if ( 0.0 == v15 )\n      v7 = a6;\n    return sub_1007E2AB(v7);\n  }\n  v9 = sub_1007E198(36, (LPVOID)0x10);\n  if ( v9 )\n    v10 = (_DWORD *)sub_1007EB18(v9);\n  else\n    v10 = 0;\n  if ( !v10 )\n    return 0;\n  v10[4] = 2;\n  v11 = (*(int (__thiscall **)(int))(*(_DWORD *)a4 + 4))(a4);\n  v10[6] = v11;\n  if ( !v11 )\n    return 0;\n  if ( a5 )\n  {\n    v12 = (*(int (__thiscall **)(int))(*(_DWORD *)a5 + 4))(a5);\n    v10[7] = v12;\n    if ( !v12 )\n      return 0;\n  }\n  if ( a6 )\n  {\n    v13 = (*(int (__thiscall **)(int))(*(_DWORD *)a6 + 4))(a6);\n    v10[8] = v13;\n    if ( !v13 )\n      return 0;\n  }\n  result = sub_1007E198(20, (LPVOID)0x10) ? sub_1007E301(v10, 0, \"Stmts\") : 0;\n  if ( !result )\n    return 0;\n  return result;\n}\n"
+}

@@ -1,0 +1,8 @@
+{
+  "name": "sub_1005429E",
+  "mangled_name": "sub_1005429E",
+  "address": "0x1005429E",
+  "size_bytes": 88,
+  "signature": "int __stdcall(int a1, float *a2)",
+  "decompiled_c": "int __stdcall sub_1005429E(int a1, float *a2)\n{\n  int v2; // ecx\n  int v3; // edx\n  int result; // eax\n  int v5; // edx\n  int v6; // edx\n  double v7; // st7\n\n  v2 = *(_DWORD *)(a1 + 8);\n  v3 = *(_DWORD *)(v2 + 16);\n  result = 0;\n  if ( v3 )\n  {\n    v5 = v3 - 1;\n    if ( v5 )\n    {\n      v6 = v5 - 1;\n      if ( v6 )\n      {\n        if ( v6 != 1 )\n          return -2005530516;\n        v7 = *(double *)(v2 + 24);\n      }\n      else\n      {\n        v7 = (double)*(unsigned int *)(v2 + 24);\n      }\n    }\n    else\n    {\n      v7 = (double)*(int *)(v2 + 24);\n    }\n  }\n  else\n  {\n    v7 = (double)(*(_DWORD *)(v2 + 24) != 0);\n  }\n  *a2 = v7;\n  return result;\n}\n"
+}

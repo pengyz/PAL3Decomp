@@ -1,0 +1,8 @@
+{
+  "name": "sub_1002DA90",
+  "mangled_name": "sub_1002DA90",
+  "address": "0x1002DA90",
+  "size_bytes": 54,
+  "signature": "HANDLE __cdecl(LPCSTR lpFileName, DWORD dwDesiredAccess, DWORD dwShareMode, LPSECURITY_ATTRIBUTES lpSecurityAttributes, DWORD dwCreationDisposition, DWORD dwFlagsAndAttributes, HANDLE hTemplateFile)",
+  "decompiled_c": "HANDLE __cdecl sub_1002DA90(\n        LPCSTR lpFileName,\n        DWORD dwDesiredAccess,\n        DWORD dwShareMode,\n        LPSECURITY_ATTRIBUTES lpSecurityAttributes,\n        DWORD dwCreationDisposition,\n        DWORD dwFlagsAndAttributes,\n        HANDLE hTemplateFile)\n{\n  if ( dword_10120654 == 4 )\n    return CreateFileA(\n             lpFileName,\n             dwDesiredAccess,\n             dwShareMode,\n             lpSecurityAttributes,\n             dwCreationDisposition,\n             dwFlagsAndAttributes,\n             hTemplateFile);\n  else\n    return 0;\n}\n"
+}

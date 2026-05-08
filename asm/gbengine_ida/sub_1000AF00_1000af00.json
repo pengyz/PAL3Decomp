@@ -1,0 +1,8 @@
+{
+  "name": "sub_1000AF00",
+  "mangled_name": "sub_1000AF00",
+  "address": "0x1000AF00",
+  "size_bytes": 315,
+  "signature": "int __thiscall(_DWORD *Buffer, struct gbVFile *a2, const char *a3)",
+  "decompiled_c": "int __thiscall sub_1000AF00(_DWORD *Buffer, struct gbVFile *a2, const char *a3)\n{\n  gbEffectMgr **v3; // ebp\n  _DWORD *v4; // edi\n  int v5; // esi\n  int result; // eax\n  struct gbTexture *WhiteTexture; // esi\n  size_t Buffera; // [esp+10h] [ebp-20Ch] BYREF\n  int v9; // [esp+14h] [ebp-208h]\n  _DWORD *v10; // [esp+18h] [ebp-204h]\n  char v11[256]; // [esp+1Ch] [ebp-200h] BYREF\n  char v12[256]; // [esp+11Ch] [ebp-100h] BYREF\n\n  v3 = (gbEffectMgr **)dword_1012B99C;\n  v4 = Buffer;\n  v10 = Buffer;\n  gbVFileSystem::Read(g_pVFileSys, Buffer, 0x44u, a2);\n  v5 = 0;\n  v4[33] = 0;\n  v9 = 0;\n  do\n  {\n    gbVFileSystem::Read(g_pVFileSys, &Buffera, 4u, a2);\n    result = Buffera;\n    if ( Buffera )\n    {\n      gbVFileSystem::Read(g_pVFileSys, v11, Buffera, a2);\n      v11[Buffera] = 0;\n      strcpy(v12, a3);\n      strcat(v12, v11);\n      WhiteTexture = (struct gbTexture *)(*((int (__thiscall **)(gbEffectMgr **, char *))*v3 + 2))(v3, v12);\n      gbTexture::LoadTexture(WhiteTexture, 1);\n      v4 = v10;\n    }\n    else\n    {\n      if ( v5 > 0 )\n        goto LABEL_7;\n      WhiteTexture = gbEffectMgr::GetWhiteTexture(v3[50]);\n      ++*((_DWORD *)WhiteTexture + 1);\n    }\n    v4[v4[33] + 17] = WhiteTexture;\n    v5 = v9;\n    result = v4[33] + 1;\n    v4[33] = result;\nLABEL_7:\n    v9 = ++v5;\n  }\n  while ( v5 < 4 );\n  return result;\n}\n"
+}

@@ -1,0 +1,8 @@
+{
+  "name": "sub_10070671",
+  "mangled_name": "sub_10070671",
+  "address": "0x10070671",
+  "size_bytes": 135,
+  "signature": "void *__thiscall(int this)",
+  "decompiled_c": "void *__thiscall sub_10070671(int this)\n{\n  _DWORD *v2; // ecx\n  _DWORD *v3; // ecx\n  int v4; // eax\n  _DWORD *v5; // edi\n  int v6; // ebp\n  int v7; // eax\n\n  v2 = *(_DWORD **)(this + 40);\n  if ( v2 )\n  {\n    sub_1006C992(v2, 1);\n    *(_DWORD *)(this + 40) = 0;\n  }\n  v3 = *(_DWORD **)(this + 48);\n  if ( v3 )\n  {\n    sub_1006CA94(v3, 3);\n    *(_DWORD *)(this + 48) = 0;\n  }\n  if ( *(_DWORD *)(this + 56) )\n  {\n    operator delete(*(void **)(this + 56));\n    *(_DWORD *)(this + 56) = 0;\n  }\n  v4 = *(_DWORD *)(this + 128);\n  if ( v4 )\n  {\n    (*(void (__stdcall **)(_DWORD))(*(_DWORD *)v4 + 8))(*(_DWORD *)(this + 128));\n    *(_DWORD *)(this + 128) = 0;\n  }\n  v5 = (_DWORD *)(this + 132);\n  v6 = 2;\n  do\n  {\n    v7 = v5[2];\n    if ( v7 )\n    {\n      (*(void (__stdcall **)(_DWORD))(*(_DWORD *)v7 + 8))(v5[2]);\n      v5[2] = 0;\n    }\n    if ( *v5 )\n    {\n      (*(void (__stdcall **)(_DWORD))(*(_DWORD *)*v5 + 8))(*v5);\n      *v5 = 0;\n    }\n    ++v5;\n    --v6;\n  }\n  while ( v6 );\n  return sub_1006B89C((_DWORD *)this);\n}\n"
+}

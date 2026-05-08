@@ -1,0 +1,8 @@
+{
+  "name": "sub_100DD408",
+  "mangled_name": "sub_100DD408",
+  "address": "0x100DD408",
+  "size_bytes": 126,
+  "signature": "_DWORD *__stdcall(int a1, int a2, int a3)",
+  "decompiled_c": "_DWORD *__stdcall sub_100DD408(int a1, int a2, int a3)\n{\n  _DWORD *v3; // edi\n  int v4; // eax\n  int v6; // eax\n\n  v3 = (_DWORD *)(*(int (__stdcall **)(_DWORD, int, int))(a1 + 32))(*(_DWORD *)(a1 + 40), 1, 64);\n  if ( !v3 )\n    return 0;\n  v4 = (*(int (__stdcall **)(_DWORD, int, int))(a1 + 32))(*(_DWORD *)(a1 + 40), 8, 1440);\n  v3[9] = v4;\n  if ( !v4 )\n  {\n    (*(void (__stdcall **)(_DWORD, _DWORD *))(a1 + 36))(*(_DWORD *)(a1 + 40), v3);\n    return 0;\n  }\n  v6 = (*(int (__stdcall **)(_DWORD, int, int))(a1 + 32))(*(_DWORD *)(a1 + 40), 1, a3);\n  v3[10] = v6;\n  if ( v6 )\n  {\n    *v3 = 0;\n    v3[11] = a3 + v6;\n    v3[14] = a2;\n    sub_100DD3A2(v3, a1, 0);\n    return v3;\n  }\n  else\n  {\n    (*(void (__stdcall **)(_DWORD, _DWORD))(a1 + 36))(*(_DWORD *)(a1 + 40), v3[9]);\n    (*(void (__stdcall **)(_DWORD, _DWORD *))(a1 + 36))(*(_DWORD *)(a1 + 40), v3);\n    return 0;\n  }\n}\n"
+}

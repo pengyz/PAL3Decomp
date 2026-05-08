@@ -1,0 +1,8 @@
+{
+  "name": "sub_10064A55",
+  "mangled_name": "sub_10064A55",
+  "address": "0x10064A55",
+  "size_bytes": 99,
+  "signature": "int __thiscall(_DWORD *this, int a2, int a3, int a4)",
+  "decompiled_c": "int __thiscall sub_10064A55(_DWORD *this, int a2, int a3, int a4)\n{\n  _DWORD *v4; // eax\n  int v5; // ecx\n\n  v4 = (_DWORD *)(*(_DWORD *)(*(_DWORD *)(60 * a2 + *(this + 11) + 4) + (a3 << 6) + 32) + 24 * a4);\n  *(_DWORD *)(*v4 + 4) = v4[1];\n  *(_DWORD *)v4[1] = *v4;\n  v5 = *(_DWORD *)(*(this + 39) + 4 * *(unsigned __int16 *)(v4[2] + 4));\n  if ( v4 == *(_DWORD **)(v5 + 44) )\n    *(_DWORD *)(v5 + 44) = v4 != (_DWORD *)v4[1] ? v4[1] : 0;\n  *v4 = v4;\n  v4[1] = v4;\n  return 0;\n}\n"
+}

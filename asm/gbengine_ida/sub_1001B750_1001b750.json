@@ -1,0 +1,8 @@
+{
+  "name": "sub_1001B750",
+  "mangled_name": "sub_1001B750",
+  "address": "0x1001B750",
+  "size_bytes": 226,
+  "signature": "int __thiscall(int this)",
+  "decompiled_c": "int __thiscall sub_1001B750(int this)\n{\n  int v2; // ebp\n  struct tagRECT *v3; // edi\n  int v4; // ebx\n  int v5; // eax\n  int v6; // ecx\n  int v7; // eax\n  int v8; // eax\n  int v10; // [esp+10h] [ebp-10h]\n  int v11; // [esp+14h] [ebp-Ch]\n  int v12; // [esp+1Ch] [ebp-4h]\n\n  v2 = 0;\n  v3 = (struct tagRECT *)(this + 1568);\n  v10 = *(_DWORD *)(this + 1568);\n  v11 = *(_DWORD *)(this + 1572);\n  v4 = *(_DWORD *)(this + 1576);\n  v12 = *(_DWORD *)(this + 1580);\n  GetWindowRect(*(HWND *)(this + 1604), (LPRECT)(this + 1584));\n  GetClientRect(*(HWND *)(this + 1604), v3);\n  v5 = *(_DWORD *)(this + 1576) - v3->left;\n  if ( v4 - v10 != v5 || v12 - v11 != *(_DWORD *)(this + 1580) - *(_DWORD *)(this + 1572) )\n  {\n    v6 = *(_DWORD *)(this + 1572);\n    *(_DWORD *)(this + 1756) = v5;\n    *(_DWORD *)(this + 20) = v5;\n    v7 = *(_DWORD *)(this + 1580) - v6;\n    *(_BYTE *)(this + 1612) = 0;\n    *(_DWORD *)(this + 1760) = v7;\n    *(_DWORD *)(this + 24) = v7;\n    if ( *(_DWORD *)(this + 1816) )\n    {\n      v8 = sub_1001AC50((void *)this);\n      v2 = v8;\n      if ( v8 < 0 )\n      {\n        if ( v8 != -2005532292 )\n          v2 = -2113929204;\n        sub_1001AD80(v2, 2);\n      }\n    }\n    *(_BYTE *)(this + 1612) = 1;\n  }\n  return v2;\n}\n"
+}

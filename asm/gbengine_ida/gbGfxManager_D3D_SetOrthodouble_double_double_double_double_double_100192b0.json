@@ -1,0 +1,8 @@
+{
+  "name": "gbGfxManager_D3D::SetOrtho(double,double,double,double,double,double)",
+  "mangled_name": "?SetOrtho@gbGfxManager_D3D@@UAEXNNNNNN@Z",
+  "address": "0x100192B0",
+  "size_bytes": 195,
+  "signature": "void __thiscall(gbMatrixStack **this, double a2, double a3, double a4, double a5, double a6, double a7)",
+  "decompiled_c": "void __thiscall gbGfxManager_D3D::SetOrtho(\n        gbMatrixStack **this,\n        double a2,\n        double a3,\n        double a4,\n        double a5,\n        double a6,\n        double a7)\n{\n  gbMatrixStack *v8; // ecx\n  double v9; // [esp+8h] [ebp-48h]\n  gbMatrix4 v10; // [esp+10h] [ebp-40h] BYREF\n  double v11; // [esp+7Ch] [ebp+2Ch]\n\n  gbMatrix4::gbMatrix4(&v10);\n  memset(&v10, 0, sizeof(v10));\n  v8 = *(this + 53);\n  v10.m[3][3] = 1.0;\n  v10.m[0][0] = 2.0 / (a3 - a2);\n  v9 = a5 - a4;\n  v10.m[1][1] = 2.0 / v9;\n  v11 = a7 - a6;\n  v10.m[2][2] = 1.0 / v11;\n  v10.m[3][0] = -((a2 + a3) / (a3 - a2));\n  v10.m[3][1] = -((a4 + a5) / v9);\n  v10.m[3][2] = -(a6 / v11);\n  gbMatrixStack::MultMatrix(v8, &v10);\n}\n"
+}

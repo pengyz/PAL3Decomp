@@ -1,0 +1,8 @@
+{
+  "name": "sub_100AE677",
+  "mangled_name": "sub_100AE677",
+  "address": "0x100AE677",
+  "size_bytes": 117,
+  "signature": "int __thiscall(_DWORD *this, _DWORD *a2, int a3)",
+  "decompiled_c": "int __thiscall sub_100AE677(_DWORD *this, _DWORD *a2, int a3)\n{\n  int v4; // edi\n\n  v4 = 0;\n  if ( sub_100A9DCD(*a2 & 0xFFF00000) )\n  {\n    if ( !a2[5] )\n      return 1;\n    if ( a3 )\n    {\n      sub_1009DBA6((int)this, a2[15], 4500, \"dependent texture read chain cannot exceed 1 in ps_1_4\");\n      return 0;\n    }\n    a3 = 1;\n  }\n  if ( a2[5] )\n  {\n    while ( sub_100AE677(*(_DWORD *)(*(this + 6) + 4 * *(_DWORD *)(a2[6] + 4 * v4)), a3) )\n    {\n      if ( (unsigned int)++v4 >= a2[5] )\n        return 1;\n    }\n    return 0;\n  }\n  return 1;\n}\n"
+}

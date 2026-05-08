@@ -1,0 +1,8 @@
+{
+  "name": "sub_10053DCE",
+  "mangled_name": "sub_10053DCE",
+  "address": "0x10053DCE",
+  "size_bytes": 71,
+  "signature": "int __stdcall(_DWORD *a1, const char *a2, _DWORD *a3)",
+  "decompiled_c": "int __stdcall sub_10053DCE(_DWORD *a1, const char *a2, _DWORD *a3)\n{\n  int v3; // ebx\n  _DWORD *v4; // eax\n\n  v3 = 0;\n  if ( !a3 )\n    return -2005530516;\n  v4 = (_DWORD *)sub_100531C0(a1, a2);\n  if ( !v4 )\n    return -2005530516;\n  *a3 = 0;\n  a3[1] = 0;\n  a3[2] = 0;\n  *a3 = v4[8];\n  a3[1] = v4[10];\n  a3[2] = v4[9];\n  return v3;\n}\n"
+}

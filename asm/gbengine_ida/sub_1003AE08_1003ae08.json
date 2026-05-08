@@ -1,0 +1,8 @@
+{
+  "name": "sub_1003AE08",
+  "mangled_name": "sub_1003AE08",
+  "address": "0x1003AE08",
+  "size_bytes": 177,
+  "signature": "int __thiscall(_DWORD *this)",
+  "decompiled_c": "int __thiscall sub_1003AE08(_DWORD *this)\n{\n  int v2; // eax\n  int v3; // ebx\n  int v4; // eax\n  int v5; // eax\n  int v6; // eax\n  int v7; // eax\n\n  v2 = *(this + 2);\n  if ( v2 || (v2 = *(this + 1)) != 0 )\n    (*(void (__stdcall **)(int))(*(_DWORD *)v2 + 56))(v2);\n  if ( *(this + 1) )\n  {\n    if ( *(this + 2) )\n    {\n      if ( *(this + 4) )\n      {\n        if ( (*(_BYTE *)this & 1) == 0 )\n        {\n          sub_10034576(1);\n          v3 = (*(int (__stdcall **)(_DWORD, _DWORD, _DWORD, _DWORD, _DWORD))(*(_DWORD *)*(this + 4) + 120))(\n                 *(this + 4),\n                 *(this + 2),\n                 0,\n                 *(this + 1),\n                 0);\n          sub_10034576(0);\n          if ( v3 < 0 )\n          {\n            sub_10034576(1);\n            sub_1003AD2B(0, *(this + 2), *(this + 1));\n            sub_10034576(0);\n          }\n        }\n      }\n    }\n  }\n  v4 = *(this + 2);\n  if ( v4 )\n  {\n    (*(void (__stdcall **)(_DWORD))(*(_DWORD *)v4 + 8))(*(this + 2));\n    *(this + 2) = 0;\n  }\n  v5 = *(this + 3);\n  if ( v5 )\n  {\n    (*(void (__stdcall **)(_DWORD))(*(_DWORD *)v5 + 8))(*(this + 3));\n    *(this + 3) = 0;\n  }\n  v6 = *(this + 4);\n  if ( v6 )\n  {\n    (*(void (__stdcall **)(_DWORD))(*(_DWORD *)v6 + 8))(*(this + 4));\n    *(this + 4) = 0;\n  }\n  v7 = *(this + 1);\n  if ( v7 )\n  {\n    (*(void (__stdcall **)(_DWORD))(*(_DWORD *)v7 + 8))(*(this + 1));\n    *(this + 1) = 0;\n  }\n  return 0;\n}\n"
+}

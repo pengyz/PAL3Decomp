@@ -1,0 +1,8 @@
+{
+  "name": "sub_1007F0DC",
+  "mangled_name": "sub_1007F0DC",
+  "address": "0x1007F0DC",
+  "size_bytes": 54,
+  "signature": "_DWORD *__thiscall(int this)",
+  "decompiled_c": "_DWORD *__thiscall sub_1007F0DC(int this)\n{\n  _DWORD *v2; // eax\n  _DWORD *result; // eax\n\n  v2 = (_DWORD *)sub_1007E198((_DWORD *)dword_10165864, 48, (LPVOID)0x10);\n  if ( v2 )\n    result = sub_1007E4E5(v2);\n  else\n    result = 0;\n  if ( result )\n    qmemcpy(result + 4, (const void *)(this + 16), 0x20u);\n  return result;\n}\n"
+}

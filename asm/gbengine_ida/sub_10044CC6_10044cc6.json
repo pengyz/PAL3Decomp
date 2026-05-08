@@ -1,0 +1,8 @@
+{
+  "name": "sub_10044CC6",
+  "mangled_name": "sub_10044CC6",
+  "address": "0x10044CC6",
+  "size_bytes": 130,
+  "signature": "void __thiscall(_DWORD *this, int a2, int a3, int a4)",
+  "decompiled_c": "void __thiscall sub_10044CC6(_DWORD *this, int a2, int a3, int a4)\n{\n  unsigned int v6; // esi\n  unsigned int i; // [esp+14h] [ebp+8h]\n\n  v6 = *(this + 8) + a3 * *(this + 25) + a2 * *(this + 24);\n  for ( i = v6 + 2 * *(this + 26); v6 < i; *(float *)(a4 - 12) = 1.0 )\n  {\n    sub_10046CD3(a4, v6, 1);\n    *(float *)(a4 + 12) = 1.0;\n    v6 += 2;\n    *(float *)(a4 + 8) = 1.0;\n    a4 += 16;\n  }\n  if ( *(this + 6) )\n    sub_1003C954((int)this, a4 - 16 * *(this + 26));\n  if ( *(this + 4) )\n    sub_1003CBEB(this, a4 - 16 * *(this + 26));\n}\n"
+}

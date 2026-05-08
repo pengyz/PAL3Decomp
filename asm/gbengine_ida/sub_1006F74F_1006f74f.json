@@ -1,0 +1,8 @@
+{
+  "name": "sub_1006F74F",
+  "mangled_name": "sub_1006F74F",
+  "address": "0x1006F74F",
+  "size_bytes": 251,
+  "signature": "int __stdcall(int a1, unsigned int a2)",
+  "decompiled_c": "int __stdcall sub_1006F74F(int a1, unsigned int a2)\n{\n  unsigned __int16 v3; // ax\n  int v4; // edi\n  unsigned __int16 v5; // cx\n  __int16 v6; // ax\n  int v8; // [esp+10h] [ebp+8h]\n\n  if ( *(_DWORD *)(a1 + 60) )\n  {\n    v3 = *(_WORD *)(a1 + 66);\n    v4 = *(_DWORD *)(a1 + 148) + 172 * v3;\n    if ( *(_DWORD *)(v4 + 44) > a2 )\n    {\n      v5 = *(_WORD *)(a1 + 68);\n      if ( (_WORD)a2 == v5\n        || (v5 == 0xFFFF\n         || (v8 = sub_10064331(\n                    (_DWORD *)a1,\n                    *(unsigned __int16 *)(48 * v5 + *(_DWORD *)(v4 + 48) + 44),\n                    -1,\n                    (*(_WORD *)(a1 + 64) != v3) - 1),\n             v8 >= 0))\n        && (v6 = *(_WORD *)(a1 + 64) - *(_WORD *)(a1 + 66),\n            *(_WORD *)(a1 + 68) = a2,\n            v8 = sub_10064331(\n                   (_DWORD *)a1,\n                   *(unsigned __int16 *)(48 * (unsigned __int16)a2 + *(_DWORD *)(v4 + 48) + 44),\n                   1,\n                   v6 == 0),\n            v8 >= 0) )\n      {\n        v8 = sub_1006C3FF((_DWORD *)a1, *(unsigned __int16 *)(*(_DWORD *)(v4 + 48) + 48 * a2 + 44), 0xFFFF);\n      }\n    }\n    else\n    {\n      v8 = -2005530516;\n    }\n  }\n  else\n  {\n    v8 = -2005530516;\n  }\n  if ( (*(_BYTE *)(a1 + 232) & 1) != 0 )\n  {\n    _controlfp(*(_DWORD *)(a1 + 228), 0x30000u);\n    *(_DWORD *)(a1 + 232) &= ~1u;\n  }\n  return v8;\n}\n"
+}

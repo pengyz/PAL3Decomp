@@ -1,0 +1,8 @@
+{
+  "name": "sub_100961D2",
+  "mangled_name": "sub_100961D2",
+  "address": "0x100961D2",
+  "size_bytes": 223,
+  "signature": "int __stdcall(_DWORD *a1, int a2, _BYTE *a3, int a4)",
+  "decompiled_c": "int __stdcall sub_100961D2(_DWORD *a1, int a2, _BYTE *a3, int a4)\n{\n  bool v4; // zf\n  int v5; // eax\n  int v6; // ecx\n  int v7; // edi\n  int v10; // [esp-4h] [ebp-10h]\n\n  if ( !a3 || *a3 != 49 || a4 != 56 )\n    return -6;\n  if ( !a1 )\n    return -2;\n  v4 = a1[8] == 0;\n  a1[6] = 0;\n  if ( v4 )\n  {\n    a1[8] = sub_100DD370;\n    a1[10] = 0;\n  }\n  if ( !a1[9] )\n    a1[9] = sub_100DD38C;\n  v5 = ((int (__stdcall *)(_DWORD, int, int))a1[8])(a1[10], 1, 24);\n  a1[7] = v5;\n  if ( v5 )\n  {\n    v6 = a2;\n    *(_DWORD *)(v5 + 20) = 0;\n    *(_DWORD *)(a1[7] + 12) = 0;\n    if ( a2 < 0 )\n    {\n      v6 = -a2;\n      *(_DWORD *)(a1[7] + 12) = 1;\n    }\n    if ( v6 < 8 || v6 > 15 )\n    {\n      v10 = -2;\n    }\n    else\n    {\n      *(_DWORD *)(a1[7] + 16) = v6;\n      *(_DWORD *)(a1[7] + 20) = sub_100DD408(a1, *(_DWORD *)(a1[7] + 12) == 0 ? sub_100DBE2D : 0, 1 << v6);\n      if ( *(_DWORD *)(a1[7] + 20) )\n      {\n        sub_10096156(a1);\n        return 0;\n      }\n      v10 = -4;\n    }\n    v7 = v10;\n    sub_10096195(a1);\n    return v7;\n  }\n  return -4;\n}\n"
+}

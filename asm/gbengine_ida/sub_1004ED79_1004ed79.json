@@ -1,0 +1,8 @@
+{
+  "name": "sub_1004ED79",
+  "mangled_name": "sub_1004ED79",
+  "address": "0x1004ED79",
+  "size_bytes": 101,
+  "signature": "int __stdcall(_BYTE *a1, int a2, int a3)",
+  "decompiled_c": "int __stdcall sub_1004ED79(_BYTE *a1, int a2, int a3)\n{\n  int result; // eax\n  int v4; // edi\n  BOOL i; // edx\n\n  result = 0;\n  v4 = 0;\n  for ( i = 0; a2; --a2 )\n  {\n    if ( *a1 == 34 )\n    {\n      if ( a3 )\n        *(_BYTE *)(result + a3) = 92;\n      ++result;\n      if ( !v4 )\n        i = !i;\n    }\n    v4 = 0;\n    if ( i && *a1 == 92 )\n    {\n      if ( a3 )\n        *(_BYTE *)(result + a3) = 92;\n      ++result;\n      v4 = 1;\n    }\n    if ( a3 )\n      *(_BYTE *)(result + a3) = *a1;\n    ++result;\n    ++a1;\n  }\n  return result;\n}\n"
+}

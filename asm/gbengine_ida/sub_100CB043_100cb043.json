@@ -1,0 +1,8 @@
+{
+  "name": "sub_100CB043",
+  "mangled_name": "sub_100CB043",
+  "address": "0x100CB043",
+  "size_bytes": 162,
+  "signature": "int __thiscall(int this)",
+  "decompiled_c": "int __thiscall sub_100CB043(int this)\n{\n  int result; // eax\n  int v3; // [esp+8h] [ebp-8h] BYREF\n  int v4; // [esp+Ch] [ebp-4h] BYREF\n\n  switch ( **(_DWORD **)(this + 224) & 0xFFFFF )\n  {\n    case 1:\n      return sub_100CAAD7((unsigned int *)this, 5);\n    case 3:\n      return sub_100CAAD7((unsigned int *)this, 8);\n    case 4:\n      return sub_100CAAD7((unsigned int *)this, 9);\n  }\n  result = (*(int (__thiscall **)(int, _DWORD, int *, int, _DWORD, _DWORD))(*(_DWORD *)this + 108))(\n             this,\n             *(_DWORD *)(this + 220),\n             &v3,\n             2,\n             0,\n             0);\n  if ( result >= 0 )\n  {\n    result = sub_100C9674(\n               (unsigned int *)this,\n               5,\n               &v3,\n               2,\n               *(_DWORD **)(*(_DWORD *)(this + 224) + 8),\n               (_DWORD *)(*(_DWORD *)(*(_DWORD *)(this + 224) + 8) + 8),\n               0,\n               2,\n               0,\n               0,\n               0);\n    if ( result >= 0 )\n    {\n      result = sub_100C9674(\n                 (unsigned int *)this,\n                 2,\n                 *(_DWORD **)(*(_DWORD *)(this + 224) + 16),\n                 *(_DWORD *)(*(_DWORD *)(this + 224) + 12),\n                 &v3,\n                 &v4,\n                 0,\n                 1,\n                 0,\n                 0,\n                 0);\n      if ( result >= 0 )\n        return 0;\n    }\n  }\n  return result;\n}\n"
+}

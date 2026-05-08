@@ -1,0 +1,8 @@
+{
+  "name": "sub_100B5BAE",
+  "mangled_name": "sub_100B5BAE",
+  "address": "0x100B5BAE",
+  "size_bytes": 210,
+  "signature": "int __thiscall(int *this)",
+  "decompiled_c": "int __thiscall sub_100B5BAE(int *this)\n{\n  int *v2; // eax\n  int v3; // ebx\n  int v4; // edi\n  int v5; // ecx\n  int v6; // eax\n  int v7; // edi\n  int result; // eax\n  unsigned int v9; // eax\n  bool v10; // cf\n  _DWORD v11[4]; // [esp+Ch] [ebp-4Ch] BYREF\n  _DWORD v12[4]; // [esp+1Ch] [ebp-3Ch] BYREF\n  _DWORD v13[4]; // [esp+2Ch] [ebp-2Ch] BYREF\n  _DWORD v14[4]; // [esp+3Ch] [ebp-1Ch] BYREF\n  int v15; // [esp+4Ch] [ebp-Ch]\n  unsigned int v16; // [esp+50h] [ebp-8h]\n  unsigned int i; // [esp+54h] [ebp-4h]\n\n  v2 = (int *)*(this + 56);\n  v3 = v2[2];\n  v4 = *v2;\n  v16 = v2[3];\n  v5 = v2[4];\n  v6 = *this;\n  v15 = v5;\n  v7 = v4 & 0xFFFFF;\n  result = (*(int (__thiscall **)(int *, _DWORD, _DWORD *, int, _DWORD, _DWORD))(v6 + 108))(\n             this,\n             *(this + 55),\n             v13,\n             4,\n             0,\n             0);\n  if ( result >= 0 )\n  {\n    for ( i = 0; i < 4; ++i )\n    {\n      v9 = i;\n      v10 = i < v16;\n      v11[v9] = *(this + 118);\n      v12[v9] = *(this + 119);\n      if ( v10 )\n        v14[v9] = v13[*(_DWORD *)(*(_DWORD *)(*(this + 5) + 4 * *(_DWORD *)(v9 * 4 + v15)) + 16)];\n    }\n    sub_100C9674(2, v14, v16, v3, v3 + 4 * v7, 0, v7, 0, 0x1000000, 0);\n    return sub_100C9674(88, v15, v16, v14, v11, v12, v7, 0, 0, 0);\n  }\n  return result;\n}\n"
+}

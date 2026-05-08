@@ -1,0 +1,8 @@
+{
+  "name": "sub_1005517D",
+  "mangled_name": "sub_1005517D",
+  "address": "0x1005517D",
+  "size_bytes": 60,
+  "signature": "int __stdcall(_DWORD *a1, const char *a2, int *a3)",
+  "decompiled_c": "int __stdcall sub_1005517D(_DWORD *a1, const char *a2, int *a3)\n{\n  int v3; // edi\n  int v4; // eax\n\n  v3 = 0;\n  if ( !a3 )\n    return -2147467259;\n  v4 = sub_100530B3(a1, a2);\n  if ( !v4 )\n    return -2147467259;\n  *a3 = (*(_DWORD *)(*(_DWORD *)(*(_DWORD *)(v4 + 4) + 44) + 28) >> 7) & 1;\n  return v3;\n}\n"
+}

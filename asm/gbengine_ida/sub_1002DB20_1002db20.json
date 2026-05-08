@@ -1,0 +1,8 @@
+{
+  "name": "sub_1002DB20",
+  "mangled_name": "sub_1002DB20",
+  "address": "0x1002DB20",
+  "size_bytes": 41,
+  "signature": "LPVOID __cdecl(HANDLE hFileMappingObject, DWORD dwDesiredAccess, DWORD dwFileOffsetLow, SIZE_T dwNumberOfBytesToMap)",
+  "decompiled_c": "LPVOID __cdecl sub_1002DB20(\n        HANDLE hFileMappingObject,\n        DWORD dwDesiredAccess,\n        DWORD dwFileOffsetLow,\n        SIZE_T dwNumberOfBytesToMap)\n{\n  if ( dword_10120654 == 4 )\n    return MapViewOfFile(hFileMappingObject, dwDesiredAccess, 0, dwFileOffsetLow, dwNumberOfBytesToMap);\n  else\n    return 0;\n}\n"
+}

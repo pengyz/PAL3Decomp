@@ -1,0 +1,8 @@
+{
+  "name": "sub_1007F6DC",
+  "mangled_name": "sub_1007F6DC",
+  "address": "0x1007F6DC",
+  "size_bytes": 106,
+  "signature": "_DWORD *__thiscall(_DWORD *this)",
+  "decompiled_c": "_DWORD *__thiscall sub_1007F6DC(_DWORD *this)\n{\n  _DWORD *v2; // eax\n  _DWORD *v3; // esi\n  int v4; // ecx\n  int v5; // eax\n  int v6; // ecx\n  int v7; // eax\n  int v8; // ecx\n  int v9; // eax\n\n  v2 = (_DWORD *)sub_1007E198((_DWORD *)dword_10165864, 28, (LPVOID)0x10);\n  if ( v2 )\n    v3 = sub_1007EE2C(v2);\n  else\n    v3 = 0;\n  if ( !v3 )\n    return 0;\n  v4 = *(this + 4);\n  if ( v4 )\n  {\n    v5 = (*(int (__thiscall **)(int))(*(_DWORD *)v4 + 4))(v4);\n    v3[4] = v5;\n    if ( !v5 )\n      return 0;\n  }\n  if ( ((v6 = *(this + 5)) == 0 || (v7 = (*(int (__thiscall **)(int))(*(_DWORD *)v6 + 4))(v6), (v3[5] = v7) != 0))\n    && ((v8 = *(this + 6)) == 0 || (v9 = (*(int (__thiscall **)(int))(*(_DWORD *)v8 + 4))(v8), (v3[6] = v9) != 0)) )\n  {\n    return v3;\n  }\n  else\n  {\n    return 0;\n  }\n}\n"
+}

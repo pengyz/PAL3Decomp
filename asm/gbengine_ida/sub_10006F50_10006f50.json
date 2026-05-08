@@ -1,0 +1,8 @@
+{
+  "name": "sub_10006F50",
+  "mangled_name": "sub_10006F50",
+  "address": "0x10006F50",
+  "size_bytes": 86,
+  "signature": "void __thiscall(int this)",
+  "decompiled_c": "void __thiscall sub_10006F50(int this)\n{\n  int i; // ebx\n  int v3; // eax\n  void *v4; // esi\n\n  if ( *(_DWORD *)(this + 212) )\n  {\n    for ( i = 0; i < *(_DWORD *)(this + 208); ++i )\n    {\n      v3 = *(_DWORD *)(this + 212);\n      v4 = *(void **)(v3 + 4 * i);\n      if ( v4 )\n      {\n        sub_10006F50(*(_DWORD *)(v3 + 4 * i));\n        operator delete(v4);\n      }\n    }\n    operator delete(*(void **)(this + 212));\n  }\n}\n"
+}

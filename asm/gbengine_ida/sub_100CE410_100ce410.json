@@ -1,0 +1,8 @@
+{
+  "name": "sub_100CE410",
+  "mangled_name": "sub_100CE410",
+  "address": "0x100CE410",
+  "size_bytes": 117,
+  "signature": "int __stdcall(int *a1, int a2)",
+  "decompiled_c": "int __stdcall sub_100CE410(int *a1, int a2)\n{\n  int result; // eax\n  _DWORD *v3; // esi\n  int v4; // ecx\n  bool v5; // zf\n\n  result = (int)a1;\n  v3 = (_DWORD *)a1[109];\n  if ( a2 )\n  {\n    v4 = *a1;\n    *(_DWORD *)(v4 + 20) = 4;\n    result = (*(int (__stdcall **)(int *))v4)(a1);\n    v3[6] = 0;\n    v3[5] = 0;\n    return result;\n  }\n  if ( a1[21] )\n  {\n    v5 = v3[3] == 0;\n    v3[1] = sub_100CE390;\n    if ( v5 )\n    {\n      result = (*(int (__stdcall **)(int *, _DWORD, _DWORD, _DWORD, int))(a1[1] + 28))(a1, v3[2], 0, v3[4], 1);\n      v3[6] = 0;\n      v3[5] = 0;\n      v3[3] = result;\n      return result;\n    }\n  }\n  else\n  {\n    result = a1[114];\n    v3[1] = *(_DWORD *)(result + 4);\n  }\n  v3[6] = 0;\n  v3[5] = 0;\n  return result;\n}\n"
+}

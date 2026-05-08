@@ -1,0 +1,8 @@
+{
+  "name": "sub_1009A113",
+  "mangled_name": "sub_1009A113",
+  "address": "0x1009A113",
+  "size_bytes": 91,
+  "signature": "int __thiscall(void *this, int a2, int a3, int a4, double a5)",
+  "decompiled_c": "int __thiscall sub_1009A113(void *this, int a2, int a3, int a4, double a5)\n{\n  int v6; // eax\n  void *v7; // esi\n\n  v6 = sub_10099D69(120);\n  if ( v6 )\n    v7 = (void *)sub_100DDC05(v6);\n  else\n    v7 = 0;\n  if ( !v7 )\n    return -1;\n  if ( sub_10099C02((double *)v7, a2, a3, a4, a5) < 0 )\n  {\n    sub_10080CFB(v7, 1);\n    return -1;\n  }\n  return sub_10099EA4((int)this, (long double *)v7);\n}\n"
+}

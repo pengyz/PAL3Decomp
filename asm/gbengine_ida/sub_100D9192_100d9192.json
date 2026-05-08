@@ -1,0 +1,8 @@
+{
+  "name": "sub_100D9192",
+  "mangled_name": "sub_100D9192",
+  "address": "0x100D9192",
+  "size_bytes": 94,
+  "signature": "__m64 *__stdcall(__m64 *a1, unsigned int a2)",
+  "decompiled_c": "__m64 *__stdcall sub_100D9192(__m64 *a1, unsigned int a2)\n{\n  __m64 v3; // mm4\n  __m64 v4; // mm0\n  __m64 v5; // mm4\n\n  _m_femms();\n  sub_100E31E0();\n  v3 = _mm_cvtsi32_si64(a2);\n  v4 = _m_pand(v3, (__m64)0xFFFFFFFFLL);\n  v5 = _m_psrlqi(v3, 0x20u);\n  a1[2].m64_u64 = 0x3F80000000000000LL;\n  a1[3].m64_u64 = 0;\n  a1[6].m64_u64 = 0;\n  a1[7].m64_u64 = 0x3F80000000000000LL;\n  a1[4].m64_u64 = (unsigned __int64)v5;\n  a1->m64_u64 = (unsigned __int64)v4;\n  a1[5].m64_u64 = (unsigned __int64)v4;\n  a1[1].m64_u64 = (unsigned __int64)_m_pxor(v5, (__m64)0x80000000LL);\n  _m_femms();\n  return a1;\n}\n"
+}

@@ -1,0 +1,8 @@
+{
+  "name": "sub_1003CD21",
+  "mangled_name": "sub_1003CD21",
+  "address": "0x1003CD21",
+  "size_bytes": 109,
+  "signature": "int __thiscall(int this, int a2)",
+  "decompiled_c": "int __thiscall sub_1003CD21(int this, int a2)\n{\n  unsigned int v3; // esi\n  float *v4; // eax\n  int v5; // edi\n  int v6; // ebx\n  float *v7; // ecx\n\n  v3 = 0;\n  if ( *(_DWORD *)(this + 104) )\n  {\n    v4 = (float *)(a2 + 8);\n    v5 = -8 - a2;\n    do\n    {\n      v6 = *(_DWORD *)(this + 92);\n      v7 = (float *)((char *)v4 + v5 + v6 + 16);\n      ++v3;\n      *(v4 - 2) = *v7 + *(v4 - 2);\n      *(v4 - 1) = *(float *)((char *)v4 + v5 + v6 + 20) + *(v4 - 1);\n      *v4 = *(float *)((char *)v4 + v5 + v6 + 24) + *v4;\n      v4 += 4;\n      *(v4 - 3) = v7[3] + *(v4 - 3);\n    }\n    while ( v3 < *(_DWORD *)(this + 104) );\n  }\n  memset(*(void **)(this + 92), 0, 16 * (*(_DWORD *)(this + 104) + 2));\n  return 0;\n}\n"
+}

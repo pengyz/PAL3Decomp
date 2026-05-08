@@ -1,0 +1,8 @@
+{
+  "name": "sub_1005B689",
+  "mangled_name": "sub_1005B689",
+  "address": "0x1005B689",
+  "size_bytes": 246,
+  "signature": "_DWORD *__thiscall(_DWORD *this, int a2, int a3)",
+  "decompiled_c": "_DWORD *__thiscall sub_1005B689(_DWORD *this, int a2, int a3)\n{\n  _DWORD *v4; // ebx\n  int v5; // eax\n  int v6; // eax\n  _DWORD *v7; // esi\n  int v9; // ebx\n  int v10; // eax\n  int v11; // esi\n  _DWORD *v13; // [esp+10h] [ebp-4h]\n  int v14; // [esp+1Ch] [ebp+8h]\n\n  while ( *(_DWORD *)(a2 + 4) != 3 )\n    a2 = *(_DWORD *)(a2 + 8);\n  if ( sub_1007E198(80, (LPVOID)0x10) )\n  {\n    v4 = (_DWORD *)sub_1007EBDE(0, 0, 0, 0, 1, a2 + 16);\n    v13 = v4;\n  }\n  else\n  {\n    v13 = 0;\n    v4 = 0;\n  }\n  if ( !v4 )\n    return 0;\n  if ( a3 )\n  {\n    v5 = (*(int (__thiscall **)(int))(*(_DWORD *)a3 + 4))(a3);\n    v4[8] = v5;\n    if ( !v5 )\n      return 0;\n  }\n  v6 = v4[8];\n  v7 = v4 + 4;\n  v14 = v6;\n  if ( v6 )\n  {\n    while ( 1 )\n    {\n      v9 = *(_DWORD *)(v6 + 8);\n      if ( v9 && *(_DWORD *)(v9 + 4) == 13 && *(_DWORD *)(v9 + 16) )\n      {\n        if ( sub_1007E198(20, (LPVOID)0x10) )\n          v10 = sub_1007E301(0, 0, \"Types\");\n        else\n          v10 = 0;\n        *v7 = v10;\n        if ( !v10 )\n          return 0;\n        *(_DWORD *)(*v7 + 8) = sub_1007E2AB(*(_DWORD *)(v9 + 16));\n        v11 = *v7;\n        if ( !*(_DWORD *)(v11 + 8) )\n          return 0;\n        v6 = v14;\n        v7 = (_DWORD *)(v11 + 12);\n      }\n      v14 = *(_DWORD *)(v6 + 12);\n      if ( !v14 )\n        break;\n      v6 = *(_DWORD *)(v6 + 12);\n    }\n    v4 = v13;\n  }\n  sub_10059D80(this, v4);\n  return v4;\n}\n"
+}

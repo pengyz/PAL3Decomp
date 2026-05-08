@@ -1,0 +1,8 @@
+{
+  "name": "sub_100906AA",
+  "mangled_name": "sub_100906AA",
+  "address": "0x100906AA",
+  "size_bytes": 80,
+  "signature": "int __thiscall(unsigned int *this, unsigned int a2)",
+  "decompiled_c": "int __thiscall sub_100906AA(unsigned int *this, unsigned int a2)\n{\n  int v3; // edi\n  unsigned int v4; // edx\n  unsigned int v5; // ecx\n  int result; // eax\n  int v7; // [esp-Ch] [ebp-14h]\n\n  v3 = *(this + 2);\n  if ( !v3 )\n    return 0;\n  v4 = *(this + 25);\n  v5 = *(this + 23);\n  if ( v4 >= v5 )\n    return 0;\n  v7 = *(this + 22) + 4 * v4;\n  *(this + 12) = a2;\n  result = (*(int (__stdcall **)(int, _DWORD, _DWORD, int, unsigned int))(*(_DWORD *)v3 + 16))(\n             v3,\n             *(_DWORD *)(a2 + 16),\n             *(_DWORD *)(a2 + 20),\n             v7,\n             v5 - v4);\n  if ( result < 0 )\n  {\n    *(this + 19) = 1;\n    *(this + 20) = 1;\n  }\n  *(this + 25) = *(this + 23);\n  return result;\n}\n"
+}

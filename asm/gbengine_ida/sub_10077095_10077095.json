@@ -1,0 +1,8 @@
+{
+  "name": "sub_10077095",
+  "mangled_name": "sub_10077095",
+  "address": "0x10077095",
+  "size_bytes": 165,
+  "signature": "int()",
+  "decompiled_c": "int sub_10077095()\n{\n  _DWORD v11[7]; // [esp-Ch] [ebp-48h] BYREF\n  int v12; // [esp+10h] [ebp-2Ch]\n  int v13; // [esp+14h] [ebp-28h]\n  char v14[16]; // [esp+18h] [ebp-24h] BYREF\n  int v15; // [esp+28h] [ebp-14h]\n  _DWORD *v16; // [esp+2Ch] [ebp-10h]\n  int v17; // [esp+38h] [ebp-4h]\n\n  v16 = v11;\n  v15 = 0;\n  strcpy(v14, \"GenuineIntel\");\n  _EAX = 0;\n  __asm { cpuid }\n  v12 = _EAX;\n  v11[4] = _EBX;\n  v11[5] = _EDX;\n  v11[6] = _ECX;\n  v17 = -1;\n  if ( !_EAX )\n    return v15;\n  _EAX = 1;\n  __asm { cpuid }\n  v12 = _EAX;\n  v13 = _EDX;\n  if ( (_EDX & 0x2000000) != 0 )\n    v15 |= 4u;\n  if ( (v13 & 0x4000000) != 0 )\n    return v15 | 8;\n  return v15;\n}\n"
+}

@@ -1,0 +1,8 @@
+{
+  "name": "sub_1005100C",
+  "mangled_name": "sub_1005100C",
+  "address": "0x1005100C",
+  "size_bytes": 90,
+  "signature": "int __thiscall(int **this)",
+  "decompiled_c": "int __thiscall sub_1005100C(int **this)\n{\n  int result; // eax\n  _DWORD *v3; // ecx\n  int *v4; // eax\n  int v5; // eax\n  int v6[8]; // [esp+4h] [ebp-20h] BYREF\n\n  if ( !*(this + 26) )\n    return -2005530516;\n  while ( 1 )\n  {\n    result = sub_10050C79((int)this, v6);\n    if ( result < 0 )\n      break;\n    if ( v6[0] == 13 )\n    {\n      v3 = *(this + 26);\n      *(this + 26) = (int *)v3[1];\n      v3[1] = 0;\n      sub_1004DB4A(v3, 1);\n      v4 = *(this + 26);\n      if ( v4 )\n        v5 = *v4;\n      else\n        v5 = 1;\n      *(this + 166) = (int *)v5;\n      return 0;\n    }\n  }\n  return result;\n}\n"
+}

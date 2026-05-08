@@ -4,5 +4,5 @@
   "address": "0x1000C9B0",
   "size_bytes": 4,
   "signature": "struct gbMatrix4 *__thiscall(gbGeomNode *this)",
-  "decompiled_c": "// Alternative name is '?GetAABBox@gbBaseMesh@@QAEPAUgbAABBox@@XZ'\nstruct gbMatrix4 *__thiscall gbGeomNode::GetCacheToWorld(gbGeomNode *this)\n{\n  return (gbGeomNode *)((char *)this + 88);\n}\n"
+  "decompiled_c": "// Alternative name is '?GetAABBox@gbBaseMesh@@QAEPAUgbAABBox@@XZ'\nstruct gbMatrix4 *__thiscall gbGeomNode::GetCacheToWorld(gbGeomNode *this)\n{\n  return &this->worldTransform;\n}\n"
 }

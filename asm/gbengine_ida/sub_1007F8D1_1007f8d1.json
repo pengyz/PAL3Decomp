@@ -1,0 +1,8 @@
+{
+  "name": "sub_1007F8D1",
+  "mangled_name": "sub_1007F8D1",
+  "address": "0x1007F8D1",
+  "size_bytes": 125,
+  "signature": "_DWORD *__thiscall(_DWORD *this, int a2)",
+  "decompiled_c": "_DWORD *__thiscall sub_1007F8D1(_DWORD *this, int a2)\n{\n  unsigned int v3; // edi\n  int v4; // ebx\n  _DWORD *result; // eax\n\n  v3 = a2 + 8;\n  if ( *(this + 33) >= (unsigned int)(a2 + 8) )\n  {\n    result = (_DWORD *)*(this + 32);\n    *result = result;\n    result[1] = *(this + 33);\n    goto LABEL_7;\n  }\n  v4 = a2 + 8;\n  if ( v3 < 0x2000 )\n    v4 = 0x2000;\n  result = (_DWORD *)operator new(4 * v4);\n  if ( result )\n  {\n    *result = *(this + 32);\n    result[1] = -*(this + 33);\n    *(this + 32) = result;\n    *(this + 33) = v4;\nLABEL_7:\n    *(this + 33) -= v3;\n    *(this + 32) += 4 * v3;\n    result += 2;\n  }\n  return result;\n}\n"
+}

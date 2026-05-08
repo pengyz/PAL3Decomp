@@ -4,5 +4,5 @@
   "address": "0x1000C9A0",
   "size_bytes": 7,
   "signature": "int __thiscall(gbGeomNode *this)",
-  "decompiled_c": "int __thiscall gbGeomNode::GetLoopPast(gbGeomNode *this)\n{\n  return *((_DWORD *)this + 64);\n}\n"
+  "decompiled_c": "int __thiscall gbGeomNode::GetLoopPast(gbGeomNode *this)\n{\n  return this->loopPast;\n}\n"
 }

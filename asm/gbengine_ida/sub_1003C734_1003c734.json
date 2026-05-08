@@ -1,0 +1,8 @@
+{
+  "name": "sub_1003C734",
+  "mangled_name": "sub_1003C734",
+  "address": "0x1003C734",
+  "size_bytes": 125,
+  "signature": "int __thiscall(int *this, _DWORD *a2)",
+  "decompiled_c": "int __thiscall sub_1003C734(int *this, _DWORD *a2)\n{\n  int v2; // eax\n  int v4; // ecx\n  int v5; // edi\n  int v6; // eax\n  int v7; // ebx\n  int v8; // eax\n\n  v2 = a2[2];\n  v4 = *(this + 2);\n  if ( v4 != v2 && v4 != 4 )\n    *(this + 21) = v2;\n  if ( *(this + 21) || *(this + 4) )\n  {\n    v5 = *(this + 26);\n    v6 = operator new(16 * v5);\n    v7 = v6;\n    if ( v6 )\n    {\n      sub_10033415(v6, 16, v5, (int (__thiscall *)(int))sub_10032F86);\n      v8 = v7;\n    }\n    else\n    {\n      v8 = 0;\n    }\n    *(this + 22) = v8;\n    if ( !v8 )\n      return -2147024882;\n    if ( *(this + 4) )\n    {\n      if ( a2[4] )\n      {\n        a2[5] = 1;\n        *(this + 5) = 1;\n      }\n    }\n  }\n  return 0;\n}\n"
+}

@@ -1,0 +1,8 @@
+{
+  "name": "sub_1004C677",
+  "mangled_name": "sub_1004C677",
+  "address": "0x1004C677",
+  "size_bytes": 104,
+  "signature": "int __thiscall(const char **this, const char *a2, unsigned int a3, const char *a4, const char *a5, const char *a6, const char *a7)",
+  "decompiled_c": "int __thiscall sub_1004C677(\n        const char **this,\n        const char *a2,\n        unsigned int a3,\n        const char *a4,\n        const char *a5,\n        const char *a6,\n        const char *a7)\n{\n  unsigned int v7; // eax\n\n  if ( !a6 || !a7 )\n    return -2147467259;\n  v7 = a3;\n  if ( a3 == -1 )\n  {\n    if ( a2 )\n      v7 = strlen(a2);\n    else\n      v7 = 0;\n  }\n  if ( !a2 && v7 )\n    return -2147467259;\n  *this = a2;\n  *(this + 6) = a4;\n  *(this + 7) = a5;\n  *(this + 11) = a6;\n  *(this + 1) = &a2[v7];\n  *(this + 12) = a7;\n  return 0;\n}\n"
+}

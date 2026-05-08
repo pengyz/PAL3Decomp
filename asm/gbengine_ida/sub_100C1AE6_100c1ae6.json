@@ -1,0 +1,8 @@
+{
+  "name": "sub_100C1AE6",
+  "mangled_name": "sub_100C1AE6",
+  "address": "0x100C1AE6",
+  "size_bytes": 73,
+  "signature": "int __thiscall(_DWORD *this, unsigned int a2, unsigned int a3)",
+  "decompiled_c": "int __thiscall sub_100C1AE6(_DWORD *this, unsigned int a2, unsigned int a3)\n{\n  int v3; // edi\n  unsigned int v4; // esi\n  _DWORD *v5; // eax\n  _DWORD *v6; // eax\n\n  v3 = *(_DWORD *)(*(this + 6) + 4 * a3);\n  v4 = a3;\n  if ( a3 >= a2 )\n  {\n    if ( a3 > a2 )\n    {\n      do\n      {\n        v6 = (_DWORD *)(*(this + 6) + 4 * v4--);\n        *v6 = *(v6 - 1);\n      }\n      while ( v4 > a2 );\n    }\n  }\n  else\n  {\n    do\n    {\n      v5 = (_DWORD *)(*(this + 6) + 4 * v4++);\n      *v5 = v5[1];\n    }\n    while ( v4 < a2 );\n  }\n  *(_DWORD *)(*(this + 6) + 4 * a2) = v3;\n  return 0;\n}\n"
+}

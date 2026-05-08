@@ -1,0 +1,8 @@
+{
+  "name": "sub_10078A10",
+  "mangled_name": "sub_10078A10",
+  "address": "0x10078A10",
+  "size_bytes": 171,
+  "signature": "int __stdcall(int a1, char *Buffer)",
+  "decompiled_c": "int __stdcall sub_10078A10(int a1, char *Buffer)\n{\n  _DWORD *v2; // eax\n  int v3; // ecx\n  const char *v4; // edx\n  int v5; // esi\n  int v6; // edx\n  char v7; // cl\n  char *v8; // esi\n\n  v2 = *(_DWORD **)a1;\n  v3 = *(_DWORD *)(*(_DWORD *)a1 + 20);\n  if ( v3 <= 0 || v3 > v2[29] )\n  {\n    v5 = v2[30];\n    if ( !v5 )\n      goto LABEL_9;\n    v6 = v2[31];\n    if ( v3 < v6 || v3 > v2[32] )\n      goto LABEL_9;\n    v4 = *(const char **)(v5 + 4 * (v3 - v6));\n  }\n  else\n  {\n    v4 = *(const char **)(v2[28] + 4 * v3);\n  }\n  if ( !v4 )\n  {\nLABEL_9:\n    v2[6] = v3;\n    v4 = *(const char **)v2[28];\n  }\n  v7 = *v4;\n  v8 = (char *)v4;\n  if ( !*v4 )\n    return sprintf(Buffer, v4, v2[6], v2[7], v2[8], v2[9], v2[10], v2[11], v2[12], v2[13]);\n  while ( 1 )\n  {\n    ++v8;\n    if ( v7 == 37 )\n      break;\n    v7 = *v8;\n    if ( !*v8 )\n      return sprintf(Buffer, v4, v2[6], v2[7], v2[8], v2[9], v2[10], v2[11], v2[12], v2[13]);\n  }\n  if ( *v8 == 115 )\n    return sprintf(Buffer, v4, v2 + 6);\n  else\n    return sprintf(Buffer, v4, v2[6], v2[7], v2[8], v2[9], v2[10], v2[11], v2[12], v2[13]);\n}\n"
+}

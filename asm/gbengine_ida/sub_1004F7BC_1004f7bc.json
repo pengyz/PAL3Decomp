@@ -1,0 +1,8 @@
+{
+  "name": "sub_1004F7BC",
+  "mangled_name": "sub_1004F7BC",
+  "address": "0x1004F7BC",
+  "size_bytes": 212,
+  "signature": "_DWORD *__thiscall(_DWORD *this)",
+  "decompiled_c": "_DWORD *__thiscall sub_1004F7BC(_DWORD *this)\n{\n  char *v2; // eax\n  char *v3; // eax\n\n  sub_1007E125(0x100000, 0x10000);\n  sub_1004C3C9(this + 6);\n  *(this + 169) = 0;\n  sub_1004EE48(this);\n  *(this + 14) = 0;\n  *(this + 15) = 0;\n  *(this + 16) = 1;\n  *(this + 17) = 0;\n  *(this + 18) = 0;\n  *(this + 19) = 1;\n  *(this + 20) = 1;\n  *(this + 21) = 1;\n  *(this + 22) = 0;\n  *(this + 23) = 0;\n  *(this + 24) = 0;\n  *(this + 25) = 0;\n  *(this + 26) = 0;\n  *(this + 154) = 0;\n  *(this + 155) = 0;\n  memset(this + 27, 0, 0x1FCu);\n  *(this + 166) = 1;\n  v2 = setlocale(4, 0);\n  v3 = _strdup(v2);\n  *(this + 167) = v3;\n  if ( !v3 || strcmp(v3, \"C\") )\n    setlocale(4, \"C\");\n  *(this + 168) = _controlfp(0, 0);\n  _controlfp(0x10000u, 0x30000u);\n  sub_10034646();\n  return this;\n}\n"
+}

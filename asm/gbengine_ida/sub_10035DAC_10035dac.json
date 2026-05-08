@@ -1,0 +1,8 @@
+{
+  "name": "sub_10035DAC",
+  "mangled_name": "sub_10035DAC",
+  "address": "0x10035DAC",
+  "size_bytes": 65,
+  "signature": "unsigned int __cdecl(int *__attribute__((__org_typedef(jmp_buf))) Buf, void *a2, unsigned int a3)",
+  "decompiled_c": "unsigned int __cdecl sub_10035DAC(jmp_buf Buf, void *a2, unsigned int a3)\n{\n  int v3; // ebx\n\n  v3 = Buf[21];\n  if ( a3 > *(_DWORD *)(v3 + 4) )\n    sub_10078BD5(Buf, (int)\"read error\");\n  qmemcpy(a2, *(const void **)v3, a3);\n  *(_DWORD *)v3 += a3;\n  *(_DWORD *)(v3 + 4) -= a3;\n  return a3;\n}\n"
+}

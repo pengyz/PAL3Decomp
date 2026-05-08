@@ -1,0 +1,8 @@
+{
+  "name": "sub_10079A93",
+  "mangled_name": "sub_10079A93",
+  "address": "0x10079A93",
+  "size_bytes": 56,
+  "signature": "int __stdcall(int a1, double a2, double a3)",
+  "decompiled_c": "int __stdcall sub_10079A93(int a1, double a2, double a3)\n{\n  int result; // eax\n\n  result = a1;\n  if ( fabs(a2 * a3 - 1.0) > 0.05 )\n    *(_BYTE *)(a1 + 97) |= 0x20u;\n  *(float *)(a1 + 304) = a3;\n  *(float *)(a1 + 308) = a2;\n  return result;\n}\n"
+}

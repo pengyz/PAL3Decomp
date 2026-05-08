@@ -1,0 +1,8 @@
+{
+  "name": "sub_10059DC3",
+  "mangled_name": "sub_10059DC3",
+  "address": "0x10059DC3",
+  "size_bytes": 109,
+  "signature": "int __stdcall(int a1)",
+  "decompiled_c": "int __stdcall sub_10059DC3(int a1)\n{\n  int v1; // eax\n  int v2; // esi\n  int v3; // eax\n  int result; // eax\n\n  v1 = sub_1007E198(36, (LPVOID)0x10);\n  if ( v1 )\n    v2 = sub_1007EB18(v1);\n  else\n    v2 = 0;\n  if ( !v2 )\n    return 0;\n  *(_DWORD *)(v2 + 16) = 0;\n  if ( a1 )\n  {\n    v3 = (*(int (__thiscall **)(int))(*(_DWORD *)a1 + 4))(a1);\n    *(_DWORD *)(v2 + 20) = v3;\n    if ( !v3 )\n      return 0;\n  }\n  result = sub_1007E198(20, (LPVOID)0x10) ? sub_1007E301(v2, 0, \"Stmts\") : 0;\n  if ( !result )\n    return 0;\n  return result;\n}\n"
+}

@@ -1,0 +1,8 @@
+{
+  "name": "sub_100275E0",
+  "mangled_name": "sub_100275E0",
+  "address": "0x100275E0",
+  "size_bytes": 62,
+  "signature": "int __cdecl(int a1, int a2)",
+  "decompiled_c": "int __cdecl sub_100275E0(int a1, int a2)\n{\n  dword_1014ADC4 = 214013 * dword_1014ADC4 + 2531011;\n  return a1 + ((dword_1014ADC4 >> 16) & 0x7FFF) % (a2 - a1 + 1);\n}\n"
+}

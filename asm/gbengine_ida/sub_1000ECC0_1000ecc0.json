@@ -1,0 +1,8 @@
+{
+  "name": "sub_1000ECC0",
+  "mangled_name": "sub_1000ECC0",
+  "address": "0x1000ECC0",
+  "size_bytes": 53,
+  "signature": "void __thiscall(gbRefObject **this)",
+  "decompiled_c": "void __thiscall sub_1000ECC0(gbRefObject **this)\n{\n  gbRefObject **v2; // esi\n  int v3; // edi\n\n  v2 = this;\n  v3 = 32;\n  do\n  {\n    if ( *v2 )\n      free(v2[1]);\n    v2 += 47;\n    --v3;\n  }\n  while ( v3 );\n  gbRefObject::Release(*(this + 1506));\n}\n"
+}

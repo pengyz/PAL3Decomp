@@ -1,0 +1,8 @@
+{
+  "name": "sub_1007EA63",
+  "mangled_name": "sub_1007EA63",
+  "address": "0x1007EA63",
+  "size_bytes": 181,
+  "signature": "BOOL __thiscall(int this, int a2)",
+  "decompiled_c": "BOOL __thiscall sub_1007EA63(int this, int a2)\n{\n  int v3; // eax\n  BOOL result; // eax\n\n  result = 0;\n  if ( sub_1007E277((_DWORD *)this, a2) )\n  {\n    if ( *(_DWORD *)(this + 16) == *(_DWORD *)(a2 + 16)\n      && *(_DWORD *)(this + 20) == *(_DWORD *)(a2 + 20)\n      && *(_DWORD *)(this + 24) == *(_DWORD *)(a2 + 24)\n      && *(_DWORD *)(this + 28) == *(_DWORD *)(a2 + 28)\n      && *(_DWORD *)(this + 52) == *(_DWORD *)(a2 + 52) )\n    {\n      if ( sub_1007E28D(*(int (__thiscall ****)(_DWORD, int))(this + 32), *(_DWORD *)(a2 + 32)) )\n      {\n        if ( sub_1007E28D(*(int (__thiscall ****)(_DWORD, int))(this + 36), *(_DWORD *)(a2 + 36)) )\n        {\n          if ( sub_1007E28D(*(int (__thiscall ****)(_DWORD, int))(this + 40), *(_DWORD *)(a2 + 40)) )\n          {\n            if ( sub_1007E28D(*(int (__thiscall ****)(_DWORD, int))(this + 44), *(_DWORD *)(a2 + 44)) )\n            {\n              if ( sub_1007E28D(*(int (__thiscall ****)(_DWORD, int))(this + 48), *(_DWORD *)(a2 + 48)) )\n              {\n                v3 = *(_DWORD *)(this + 52);\n                if ( !v3 || !memcmp(*(const void **)(this + 56), *(const void **)(a2 + 56), 4 * v3) )\n                  return 1;\n              }\n            }\n          }\n        }\n      }\n    }\n  }\n  return result;\n}\n"
+}

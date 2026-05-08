@@ -1,0 +1,8 @@
+{
+  "name": "sub_100CD260",
+  "mangled_name": "sub_100CD260",
+  "address": "0x100CD260",
+  "size_bytes": 62,
+  "signature": "_DWORD *__stdcall(int a1)",
+  "decompiled_c": "_DWORD *__stdcall sub_100CD260(int a1)\n{\n  int (__stdcall **v1)(int *); // eax\n  _DWORD *result; // eax\n  int v3; // ecx\n\n  v1 = (int (__stdcall **)(int *))(**(int (__stdcall ***)(int, int, int))(a1 + 4))(a1, 1, 232);\n  *(_DWORD *)(a1 + 448) = v1;\n  *v1 = sub_100CD120;\n  v1[1] = (int (__stdcall *)(int *))sub_100CCD10;\n  result = v1 + 10;\n  v3 = 4;\n  do\n  {\n    result[4] = 0;\n    *result++ = 0;\n    --v3;\n  }\n  while ( v3 );\n  return result;\n}\n"
+}

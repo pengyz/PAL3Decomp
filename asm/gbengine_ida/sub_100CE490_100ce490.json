@@ -1,0 +1,8 @@
+{
+  "name": "sub_100CE490",
+  "mangled_name": "sub_100CE490",
+  "address": "0x100CE490",
+  "size_bytes": 103,
+  "signature": "int __stdcall(int *a1, int a2)",
+  "decompiled_c": "int __stdcall sub_100CE490(int *a1, int a2)\n{\n  int (__stdcall **v2)(int *, int); // edi\n  int result; // eax\n  int (__stdcall *v4)(int *, int); // eax\n  int v5; // eax\n\n  v2 = (int (__stdcall **)(int *, int))(*(int (__stdcall **)(int *, int, int))a1[1])(a1, 1, 28);\n  result = a1[21];\n  a1[109] = (int)v2;\n  *v2 = sub_100CE410;\n  v2[2] = 0;\n  v2[3] = 0;\n  if ( result )\n  {\n    v4 = (int (__stdcall *)(int *, int))a1[79];\n    v2[4] = v4;\n    if ( a2 )\n    {\n      v5 = *a1;\n      *(_DWORD *)(v5 + 20) = 4;\n      return (*(int (__stdcall **)(int *))v5)(a1);\n    }\n    else\n    {\n      result = (*(int (__stdcall **)(int *, int, int, int (__stdcall *)(int *, int)))(a1[1] + 8))(\n                 a1,\n                 1,\n                 a1[28] * a1[30],\n                 v4);\n      v2[3] = (int (__stdcall *)(int *, int))result;\n    }\n  }\n  return result;\n}\n"
+}

@@ -1,0 +1,8 @@
+{
+  "name": "sub_10059176",
+  "mangled_name": "sub_10059176",
+  "address": "0x10059176",
+  "size_bytes": 147,
+  "signature": "int __thiscall(_DWORD *this, int a2, int a3)",
+  "decompiled_c": "int __thiscall sub_10059176(_DWORD *this, int a2, int a3)\n{\n  _DWORD *v3; // esi\n\n  v3 = (_DWORD *)a2;\n  if ( a2 )\n  {\n    switch ( *(_DWORD *)(a2 + 4) )\n    {\n      case 1:\n        do\n        {\n          if ( v3[1] != 1 )\n            break;\n          sub_10059176(v3[2], a3);\n          v3 = (_DWORD *)v3[3];\n        }\n        while ( v3 );\n        if ( v3 )\n          sub_10059176(v3, a3);\n        break;\n      case 6:\n        sub_10059176(*(_DWORD *)(a2 + 24), a3);\n        break;\n      case 8:\n        sub_10059176(*(_DWORD *)(a2 + 16), a3);\n        break;\n      case 9:\n        if ( a3 )\n          *(_BYTE *)(a2 + 33) |= 2u;\n        else\n          *(_BYTE *)(a2 + 33) &= ~2u;\n        break;\n      case 0xB:\n        sub_10059176(*(_DWORD *)(a2 + 32), a3);\n        break;\n      default:\n        sub_10058E0F(this, 0, 0, \"internal error: unknown node\");\n        break;\n    }\n  }\n  return 0;\n}\n"
+}

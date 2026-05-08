@@ -1,0 +1,8 @@
+{
+  "name": "sub_10014870",
+  "mangled_name": "sub_10014870",
+  "address": "0x10014870",
+  "size_bytes": 109,
+  "signature": "int __stdcall(_DWORD *a1)",
+  "decompiled_c": "int __stdcall sub_10014870(_DWORD *a1)\n{\n  int result; // eax\n  int v2; // ecx\n  int v3; // eax\n\n  result = a1[3];\n  for ( a1[6] = result; result; a1[6] = result )\n  {\n    sub_10014870(result);\n    result = *(_DWORD *)(a1[6] + 4);\n  }\n  v2 = a1[17];\n  if ( v2 )\n  {\n    v3 = a1[18];\n    if ( v3 )\n      *(_DWORD *)(v3 + 76) = a1[19];\n    result = a1[19];\n    if ( result )\n      *(_DWORD *)(result + 72) = a1[18];\n    if ( a1 == *(_DWORD **)(v2 + 64) )\n    {\n      result = a1[19];\n      *(_DWORD *)(v2 + 64) = result;\n    }\n    a1[17] = 0;\n    a1[19] = 0;\n    a1[18] = 0;\n  }\n  return result;\n}\n"
+}

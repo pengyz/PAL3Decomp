@@ -1,0 +1,8 @@
+{
+  "name": "sub_1003C35A",
+  "mangled_name": "sub_1003C35A",
+  "address": "0x1003C35A",
+  "size_bytes": 122,
+  "signature": "void __thiscall(void *this)",
+  "decompiled_c": "void __thiscall sub_1003C35A(void *this)\n{\n  bool v2; // zf\n  unsigned int v3; // edi\n  int i; // ebp\n  unsigned int j; // ebx\n\n  v2 = *((_DWORD *)this + 61) == 0;\n  *(_DWORD *)this = &off_100F6F30;\n  if ( !v2 )\n  {\n    if ( *((_DWORD *)this + 62) )\n    {\n      v3 = *((_DWORD *)this + 53);\n      for ( i = *((_DWORD *)this + 62); v3 < *((_DWORD *)this + 54); ++v3 )\n      {\n        for ( j = *((_DWORD *)this + 50); j < *((_DWORD *)this + 52); j += 4 )\n        {\n          operator delete(*(void **)(i + 4));\n          i += 8;\n        }\n      }\n    }\n  }\n  operator delete(*((void **)this + 60));\n  operator delete(*((void **)this + 62));\n  sub_1003B74B(this);\n}\n"
+}

@@ -1,0 +1,8 @@
+{
+  "name": "sub_10076F50",
+  "mangled_name": "sub_10076F50",
+  "address": "0x10076F50",
+  "size_bytes": 97,
+  "signature": "int __stdcall(int *a1, int a2)",
+  "decompiled_c": "int __stdcall sub_10076F50(int *a1, int a2)\n{\n  int v2; // ecx\n  int v3; // eax\n  int result; // eax\n  int v5; // eax\n\n  v2 = a1[5];\n  if ( v2 != 200 && v2 != 201 )\n  {\n    v3 = *a1;\n    *(_DWORD *)(v3 + 20) = 20;\n    *(_DWORD *)(v3 + 24) = v2;\n    (*(void (__stdcall **)(int *))v3)(a1);\n  }\n  result = sub_10076DE0(a1);\n  if ( result == 1 )\n    return 1;\n  if ( result == 2 )\n  {\n    if ( a2 )\n    {\n      v5 = *a1;\n      *(_DWORD *)(v5 + 20) = 51;\n      (*(void (__stdcall **)(int *))v5)(a1);\n    }\n    sub_10094D60(a1);\n    return 2;\n  }\n  return result;\n}\n"
+}

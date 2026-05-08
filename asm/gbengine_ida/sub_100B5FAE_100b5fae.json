@@ -1,0 +1,8 @@
+{
+  "name": "sub_100B5FAE",
+  "mangled_name": "sub_100B5FAE",
+  "address": "0x100B5FAE",
+  "size_bytes": 236,
+  "signature": "int __thiscall(_DWORD *this)",
+  "decompiled_c": "int __thiscall sub_100B5FAE(_DWORD *this)\n{\n  unsigned int v1; // edx\n  int v2; // edi\n  int v3; // eax\n  int v4; // ebx\n  int v5; // eax\n  int v6; // esi\n  unsigned int v7; // eax\n\n  v1 = 0;\n  v2 = 0;\n  if ( !*(this + 3) )\n    return 0;\n  do\n  {\n    v3 = *(this + 6);\n    v4 = *(this + 5);\n    *(this + 55) = v1;\n    v5 = *(_DWORD *)(v3 + 4 * v1);\n    *(this + 56) = v5;\n    v6 = *(_DWORD *)(v4 + 4 * **(_DWORD **)(v5 + 8));\n    v7 = *(_DWORD *)v5 & 0xFFF00000;\n    switch ( v7 )\n    {\n      case 0x60400000u:\n      case 0x60600000u:\n      case 0x60700000u:\n      case 0x60000000u:\n      case 0x60200000u:\n      case 0x60300000u:\n        if ( (*(_BYTE *)(v6 + 62) & 0x60) != 0 )\n          v2 = 1;\n        *(_DWORD *)(v6 + 60) = 0x100000;\n        break;\n      case 0x60800000u:\n      case 0x60A00000u:\n      case 0x60B00000u:\n        if ( (*(_BYTE *)(v6 + 62) & 0x50) != 0 )\n          v2 = 1;\n        *(_DWORD *)(v6 + 60) = 0x200000;\n        break;\n      case 0x60C00000u:\n      case 0x60E00000u:\n      case 0x60F00000u:\n        if ( (*(_BYTE *)(v6 + 62) & 0x30) != 0 )\n          v2 = 1;\n        *(_DWORD *)(v6 + 60) = 0x400000;\n        break;\n    }\n    ++v1;\n  }\n  while ( v1 < *(this + 3) );\n  if ( !v2 )\n    return 0;\n  sub_1009DBA6((int)this, 0, 4539, \"sampler mismatch: sampler used inconsistently\");\n  return -2147467259;\n}\n"
+}

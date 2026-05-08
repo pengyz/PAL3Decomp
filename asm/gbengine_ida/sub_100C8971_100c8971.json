@@ -1,0 +1,8 @@
+{
+  "name": "sub_100C8971",
+  "mangled_name": "sub_100C8971",
+  "address": "0x100C8971",
+  "size_bytes": 28,
+  "signature": "void *__thiscall(void *Block, char a2)",
+  "decompiled_c": "void *__thiscall sub_100C8971(void *Block, char a2)\n{\n  sub_100C4539((int)Block);\n  if ( (a2 & 1) != 0 )\n    operator delete(Block);\n  return Block;\n}\n"
+}

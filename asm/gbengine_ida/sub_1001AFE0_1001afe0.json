@@ -1,0 +1,8 @@
+{
+  "name": "sub_1001AFE0",
+  "mangled_name": "sub_1001AFE0",
+  "address": "0x1001AFE0",
+  "size_bytes": 207,
+  "signature": "BOOL __thiscall(int this, int a2)",
+  "decompiled_c": "BOOL __thiscall sub_1001AFE0(int this, int a2)\n{\n  int v2; // esi\n  int v3; // eax\n  int v4; // edi\n  int v5; // eax\n  int v6; // edx\n  _DWORD *v7; // eax\n\n  switch ( a2 )\n  {\n    case 1:\n      v2 = 20;\n      break;\n    case 2:\n      v2 = 21;\n      break;\n    case 3:\n      v2 = 23;\n      break;\n    case 4:\n      v2 = 25;\n      break;\n    case 5:\n      v2 = 26;\n      break;\n    case 6:\n      v2 = 41;\n      break;\n    case 7:\n      v2 = 28;\n      break;\n    case 8:\n      v2 = 22;\n      break;\n    case 9:\n      v2 = 24;\n      break;\n    case 10:\n      v2 = 30;\n      break;\n    default:\n      v2 = 0;\n      break;\n  }\n  if ( *(_BYTE *)(this + 1648) )\n    v3 = *(_DWORD *)(this + 1660);\n  else\n    v3 = *(_DWORD *)(this + 1716);\n  v4 = *(_DWORD *)(v3 + 8);\n  if ( *(_BYTE *)(this + 1648) )\n    v5 = *(_DWORD *)(this + 1660);\n  else\n    v5 = *(_DWORD *)(this + 1716);\n  v6 = *(_DWORD *)(v5 + 4);\n  if ( *(_BYTE *)(this + 1648) )\n    v7 = *(_DWORD **)(this + 1660);\n  else\n    v7 = *(_DWORD **)(this + 1716);\n  return (*(int (__stdcall **)(_DWORD, _DWORD, int, int, _DWORD, int, int))(**(_DWORD **)(this + 1812) + 40))(\n           *(_DWORD *)(this + 1812),\n           *v7,\n           v6,\n           v4,\n           0,\n           3,\n           v2) >= 0;\n}\n"
+}

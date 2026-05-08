@@ -4,5 +4,5 @@
   "address": "0x1000C9C0",
   "size_bytes": 7,
   "signature": "struct gbBaseMesh *__thiscall(gbGeomNode *this)",
-  "decompiled_c": "struct gbBaseMesh *__thiscall gbGeomNode::GetMesh(gbGeomNode *this)\n{\n  return (struct gbBaseMesh *)*((_DWORD *)this + 66);\n}\n"
+  "decompiled_c": "struct gbBaseMesh *__thiscall gbGeomNode::GetMesh(gbGeomNode *this)\n{\n  return this->mesh;\n}\n"
 }

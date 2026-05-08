@@ -1,0 +1,8 @@
+{
+  "name": "sub_100089E0",
+  "mangled_name": "sub_100089E0",
+  "address": "0x100089E0",
+  "size_bytes": 104,
+  "signature": "int __thiscall(int *this)",
+  "decompiled_c": "int __thiscall sub_100089E0(int *this)\n{\n  int v2; // esi\n  int result; // eax\n  int v4; // edi\n  _DWORD *v5; // esi\n  int v6; // ebx\n  int v7; // ecx\n  bool v8; // sf\n  bool v9; // of\n  int v10; // [esp+8h] [ebp-8h]\n  int v11; // [esp+Ch] [ebp-4h]\n\n  v2 = 0;\n  result = *(this + 26);\n  v10 = 0;\n  if ( result > 0 )\n  {\n    v11 = 0;\n    do\n    {\n      v4 = 0;\n      v5 = (_DWORD *)(*(this + 27) + v2);\n      if ( (int)v5[10] > 0 )\n      {\n        v6 = 0;\n        do\n        {\n          sub_100069B0(v5, (_DWORD *)(v6 + v5[9]));\n          ++v4;\n          v6 += 1180;\n        }\n        while ( v4 < v5[10] );\n      }\n      v7 = *(this + 26);\n      result = v10 + 1;\n      v2 = v11 + 44;\n      v9 = __OFSUB__(v10 + 1, v7);\n      v8 = ++v10 - v7 < 0;\n      v11 += 44;\n    }\n    while ( v8 != v9 );\n  }\n  return result;\n}\n"
+}

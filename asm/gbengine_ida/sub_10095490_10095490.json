@@ -1,0 +1,8 @@
+{
+  "name": "sub_10095490",
+  "mangled_name": "sub_10095490",
+  "address": "0x10095490",
+  "size_bytes": 72,
+  "signature": "const void **__stdcall(int a1, int a2, int a3, int a4, int a5, unsigned int a6)",
+  "decompiled_c": "const void **__stdcall sub_10095490(int a1, int a2, int a3, int a4, int a5, unsigned int a6)\n{\n  int v6; // ebx\n  const void **result; // eax\n  void **v8; // edx\n\n  v6 = a5;\n  result = (const void **)(a1 + 4 * a2);\n  v8 = (void **)(a3 + 4 * a4);\n  if ( a5 > 0 )\n  {\n    do\n    {\n      qmemcpy(*v8++, *result++, a6);\n      --v6;\n    }\n    while ( v6 );\n  }\n  return result;\n}\n"
+}

@@ -1,0 +1,8 @@
+{
+  "name": "sub_10099B8B",
+  "mangled_name": "sub_10099B8B",
+  "address": "0x10099B8B",
+  "size_bytes": 119,
+  "signature": "int __thiscall(int *this, int a2, _DWORD *a3)",
+  "decompiled_c": "int __thiscall sub_10099B8B(int *this, int a2, _DWORD *a3)\n{\n  int v3; // edx\n  unsigned int v4; // eax\n  int result; // eax\n\n  v3 = *this;\n  v4 = *this & 0xFFF00000;\n  if ( v4 )\n  {\n    if ( v4 == 1342177280 || v4 == 1344274432 || v4 == -257949696 )\n    {\n      result = 1;\n    }\n    else if ( (v3 & 0xF0000000) == 0x60000000 )\n    {\n      result = 4;\n    }\n    else\n    {\n      result = v3 & 0xFFFFF;\n    }\n  }\n  else\n  {\n    result = 0;\n  }\n  if ( a2 * result + result <= (unsigned int)*(this + 3) )\n  {\n    if ( a3 )\n      *a3 = *(this + 4) + 4 * a2 * result;\n  }\n  else\n  {\n    if ( a3 )\n      *a3 = 0;\n    return 0;\n  }\n  return result;\n}\n"
+}

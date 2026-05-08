@@ -1,0 +1,8 @@
+{
+  "name": "sub_100E5E7C",
+  "mangled_name": "sub_100E5E7C",
+  "address": "0x100E5E7C",
+  "size_bytes": 47,
+  "signature": "size_t __cdecl(void *Buffer, size_t ElementSize, size_t ElementCount, FILE *Stream)",
+  "decompiled_c": "size_t __cdecl sub_100E5E7C(void *Buffer, size_t ElementSize, size_t ElementCount, FILE *Stream)\n{\n  size_t v4; // esi\n\n  _lock_file(Stream);\n  v4 = fread(Buffer, ElementSize, ElementCount, Stream);\n  _unlock_file(Stream);\n  return v4;\n}\n"
+}

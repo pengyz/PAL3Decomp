@@ -1,0 +1,8 @@
+{
+  "name": "sub_10044A72",
+  "mangled_name": "sub_10044A72",
+  "address": "0x10044A72",
+  "size_bytes": 264,
+  "signature": "void __thiscall(_DWORD *this, int a2, int a3, float *a4)",
+  "decompiled_c": "void __thiscall sub_10044A72(_DWORD *this, int a2, int a3, float *a4)\n{\n  unsigned int v4; // eax\n  __int16 v6; // bx\n  bool v7; // cl\n  int v8; // [esp+8h] [ebp-Ch]\n  _DWORD *v9; // [esp+Ch] [ebp-8h]\n  unsigned int v10; // [esp+10h] [ebp-4h]\n  int v11; // [esp+24h] [ebp+10h]\n\n  v4 = *(this + 8) + a3 * *(this + 25) + a2 * *(this + 24);\n  v9 = this;\n  v10 = v4 + 8 * *(this + 26);\n  if ( v4 < v10 )\n  {\n    do\n    {\n      v11 = *(_QWORD *)v4 >> 16;\n      v6 = *(_DWORD *)(v4 + 4);\n      v8 = *(_DWORD *)(v4 + 4);\n      v7 = HIWORD(*(_DWORD *)v4) == 0x8000;\n      *a4 = (double)(__int16)(*(_WORD *)v4 + (*(_WORD *)v4 == 0x8000)) * 0.000030518509;\n      a4[1] = (double)(__int16)(v11 + v7) * 0.000030518509;\n      v4 += 8;\n      a4 += 4;\n      *(a4 - 2) = (double)(__int16)(v6 + (v6 == -32768)) * 0.000030518509;\n      *(a4 - 1) = (double)(__int16)(HIWORD(v8) + (HIWORD(v8) == 0x8000)) * 0.000030518509;\n    }\n    while ( v4 < v10 );\n    this = v9;\n  }\n  if ( *(this + 6) )\n    sub_1003C954((int)this, (unsigned int)&a4[-4 * *(this + 26)]);\n  if ( *(this + 4) )\n    sub_1003CBEB(this, (unsigned int)&a4[-4 * *(this + 26)]);\n}\n"
+}

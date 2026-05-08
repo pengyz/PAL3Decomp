@@ -1,0 +1,8 @@
+{
+  "name": "sub_100B2878",
+  "mangled_name": "sub_100B2878",
+  "address": "0x100B2878",
+  "size_bytes": 76,
+  "signature": "int __thiscall(_DWORD *this, int a2, unsigned int *a3)",
+  "decompiled_c": "int __thiscall sub_100B2878(_DWORD *this, int a2, unsigned int *a3)\n{\n  unsigned int v3; // edx\n  int v4; // eax\n\n  v3 = *(unsigned __int8 *)(a2 + 105);\n  v4 = (unsigned __int8)*(_DWORD *)(a2 + 104);\n  switch ( v4 )\n  {\n    case 1:\n      if ( v3 < *(this + 10) )\n      {\nLABEL_3:\n        *a3 = v3;\n        return 0;\n      }\n      break;\n    case 3:\n      if ( v3 < *(this + 15) )\n      {\n        v3 += 2;\n        goto LABEL_3;\n      }\n      break;\n    case 5:\n      *a3 = 12;\n      return 0;\n  }\n  return -2147467259;\n}\n"
+}

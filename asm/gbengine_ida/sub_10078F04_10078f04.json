@@ -1,0 +1,8 @@
+{
+  "name": "sub_10078F04",
+  "mangled_name": "sub_10078F04",
+  "address": "0x10078F04",
+  "size_bytes": 244,
+  "signature": "int *__attribute__((__org_typedef(jmp_buf))) __userpurge@<eax>(int a1@<ebx>, int a2@<edi>, int a3@<esi>, _BYTE *a4, int a5, int a6, int a7)",
+  "decompiled_c": "jmp_buf __userpurge sub_10078F04@<eax>(int a1@<ebx>, int a2@<edi>, int a3@<esi>, _BYTE *a4, int a5, int a6, int a7)\n{\n  _DWORD *v7; // eax\n  int v9; // eax\n  struct _EXCEPTION_REGISTRATION_RECORD *v10; // [esp+0h] [ebp-8h]\n  int *__attribute__((__org_typedef(jmp_buf))) Buf; // [esp+4h] [ebp-4h]\n  int savedregs; // [esp+8h] [ebp+0h] BYREF\n\n  v7 = (_DWORD *)sub_10095530(1);\n  if ( !v7 )\n    return 0;\n  if ( _setjmp3(a1, (int)&savedregs, a2, a3, v7, 0, v10, (int)v7) )\n  {\n    sub_100955BF((int)Buf, (void *)Buf[39]);\n    sub_10095574(Buf);\n    return 0;\n  }\n  sub_10078BB9(Buf, a5, a6, a7);\n  if ( !a4 || *a4 != 49 )\n    sub_10078BD5(Buf, (int)\"Incompatible libpng version in application and library\");\n  Buf[40] = 0x2000;\n  Buf[39] = sub_10095588(Buf, 0x2000u);\n  Buf[33] = (int)sub_10078C9D;\n  Buf[34] = (int)sub_10078CF0;\n  Buf[35] = (int)Buf;\n  v9 = sub_100962B1(Buf + 25, \"1.1.4\", 56);\n  if ( v9 == -6 )\n    sub_10078BD5(Buf, (int)\"zlib version error\");\n  if ( v9 == -4 || v9 == -2 )\n    sub_10078BD5(Buf, (int)\"zlib memory error\");\n  if ( v9 )\n    sub_10078BD5(Buf, (int)\"Unknown zlib error\");\n  Buf[28] = Buf[39];\n  Buf[29] = Buf[40];\n  sub_1007B063(Buf, 0, 0);\n  return Buf;\n}\n"
+}

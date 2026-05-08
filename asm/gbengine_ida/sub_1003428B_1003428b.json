@@ -1,0 +1,8 @@
+{
+  "name": "sub_1003428B",
+  "mangled_name": "sub_1003428B",
+  "address": "0x1003428B",
+  "size_bytes": 271,
+  "signature": "int __stdcall(int a1, int a2, int a3, int a4, int a5, int *a6, _DWORD *a7)",
+  "decompiled_c": "int __stdcall sub_1003428B(int a1, int a2, int a3, int a4, int a5, int *a6, _DWORD *a7)\n{\n  int v7; // esi\n  int v8; // eax\n  int v9; // ebx\n  int v11; // [esp+Ch] [ebp-4h] BYREF\n\n  v7 = 0;\n  v11 = 0;\n  if ( a6 )\n    *a6 = 0;\n  if ( a7 )\n    *a7 = 0;\n  if ( !a1 || !a6 )\n  {\n    v9 = -2005530516;\n    goto LABEL_20;\n  }\n  v8 = operator new(0x360u);\n  if ( v8 )\n    v7 = sub_10057989(v8);\n  else\n    v7 = 0;\n  if ( !v7 )\n  {\n    v9 = -2147024882;\n    goto LABEL_23;\n  }\n  v9 = sub_10050C0B(a1, a2, a3, a4);\n  if ( v9 >= 0 )\n  {\n    v9 = sub_1006420D(v7 + 704, v7 + 16, a5, (int)&v11);\n    if ( v9 >= 0 )\n    {\n      if ( !sub_1004C659(v7 + 40) )\n      {\n        v9 = sub_100586FE(v7, v11);\n        if ( v9 < 0 )\n          goto LABEL_20;\n        v11 = 0;\n        if ( !sub_1004C659(v7 + 40) )\n        {\n          *a6 = v7;\n          (*(void (__stdcall **)(int))(*(_DWORD *)v7 + 4))(v7);\n          goto LABEL_20;\n        }\n      }\n      v9 = -2005529767;\n    }\n  }\nLABEL_20:\n  if ( v7 )\n  {\n    sub_1004EE6D(v7 + 16);\n    if ( a7 )\n      sub_1004C5F0(a7);\n  }\nLABEL_23:\n  if ( v11 )\n    v11 = 0;\n  if ( v7 )\n    (*(void (__stdcall **)(int))(*(_DWORD *)v7 + 8))(v7);\n  return v9;\n}\n"
+}

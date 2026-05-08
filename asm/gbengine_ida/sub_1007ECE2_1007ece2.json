@@ -1,0 +1,8 @@
+{
+  "name": "sub_1007ECE2",
+  "mangled_name": "sub_1007ECE2",
+  "address": "0x1007ECE2",
+  "size_bytes": 80,
+  "signature": "int *__thiscall(int *this, int *a2, const void *a3)",
+  "decompiled_c": "int *__thiscall sub_1007ECE2(int *this, int *a2, const void *a3)\n{\n  bool v4; // zf\n\n  *(this + 2) = 0;\n  *(this + 3) = 0;\n  *(this + 1) = 14;\n  *this = (int)&off_1010676C;\n  *(this + 4) = *a2;\n  *(this + 5) = a2[1];\n  *(this + 6) = a2[2];\n  *(this + 7) = a2[3];\n  v4 = *(this + 4) == 4;\n  qmemcpy(this + 8, a3, 0x20u);\n  if ( v4 && *(this + 6) )\n    *(this + 6) = sub_1007E2AB(*(this + 6));\n  return this;\n}\n"
+}

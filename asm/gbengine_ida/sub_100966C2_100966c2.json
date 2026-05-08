@@ -1,0 +1,8 @@
+{
+  "name": "sub_100966C2",
+  "mangled_name": "sub_100966C2",
+  "address": "0x100966C2",
+  "size_bytes": 98,
+  "signature": "unsigned __int8 __stdcall(int *__attribute__((__org_typedef(jmp_buf))) Buf, unsigned __int8 *a2)",
+  "decompiled_c": "unsigned __int8 __stdcall sub_100966C2(jmp_buf Buf, unsigned __int8 *a2)\n{\n  unsigned __int8 v2; // al\n  unsigned __int8 v3; // al\n  unsigned __int8 v4; // al\n  unsigned __int8 result; // al\n\n  v2 = *a2;\n  if ( *a2 < 0x29u\n    || v2 > 0x7Au\n    || v2 > 0x5Au && v2 < 0x61u\n    || (v3 = a2[1], v3 < 0x29u)\n    || v3 > 0x7Au\n    || v3 > 0x5Au && v3 < 0x61u\n    || (v4 = a2[2], v4 < 0x29u)\n    || v4 > 0x7Au\n    || v4 > 0x5Au && v4 < 0x61u\n    || (result = a2[3], result < 0x29u)\n    || result > 0x7Au\n    || result > 0x5Au && result < 0x61u )\n  {\n    sub_10078C0A(Buf, \"invalid chunk type\");\n  }\n  return result;\n}\n"
+}

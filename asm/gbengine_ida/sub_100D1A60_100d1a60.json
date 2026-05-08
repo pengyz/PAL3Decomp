@@ -1,0 +1,8 @@
+{
+  "name": "sub_100D1A60",
+  "mangled_name": "sub_100D1A60",
+  "address": "0x100D1A60",
+  "size_bytes": 80,
+  "signature": "FILE *__stdcall(char **a1, int (__stdcall **a2)(int *a1, int a2, void *Buffer, int Offset, size_t ElementCount), int a3)",
+  "decompiled_c": "FILE *__stdcall sub_100D1A60(\n        char **a1,\n        int (__stdcall **a2)(int *a1, int a2, void *Buffer, int Offset, size_t ElementCount),\n        int a3)\n{\n  FILE *result; // eax\n  char *v4; // eax\n\n  result = tmpfile();\n  a2[3] = (int (__stdcall *)(int *, int, void *, int, size_t))result;\n  if ( !result )\n  {\n    v4 = *a1;\n    *((_DWORD *)v4 + 5) = 63;\n    strncpy(v4 + 24, Source, 0x50u);\n    result = (FILE *)(*(int (__stdcall **)(char **))*a1)(a1);\n  }\n  *a2 = sub_100D1980;\n  a2[1] = sub_100D19E0;\n  a2[2] = (int (__stdcall *)(int *, int, void *, int, size_t))sub_100D1A40;\n  return result;\n}\n"
+}

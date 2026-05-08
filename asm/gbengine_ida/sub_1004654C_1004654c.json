@@ -1,0 +1,8 @@
+{
+  "name": "sub_1004654C",
+  "mangled_name": "sub_1004654C",
+  "address": "0x1004654C",
+  "size_bytes": 103,
+  "signature": "int __stdcall(_DWORD *a1, _DWORD *a2, _DWORD *a3)",
+  "decompiled_c": "int __stdcall sub_1004654C(_DWORD *a1, _DWORD *a2, _DWORD *a3)\n{\n  int result; // eax\n\n  if ( *a1 != 1180172800 && *a1 != 1415053568 )\n    return -2147467259;\n  result = sub_1007D32C(a1, 1129076806, a2, 0);\n  if ( result >= 0 && result != 1 )\n  {\n    result = sub_1007D32C(a1, 1414089795, a3, 0);\n    if ( result >= 0 && result != 1 )\n    {\n      if ( *a2 && *a3 )\n        return 0;\n      return -2147467259;\n    }\n  }\n  return result;\n}\n"
+}

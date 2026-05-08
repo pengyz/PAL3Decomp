@@ -1,0 +1,8 @@
+{
+  "name": "sub_10071663",
+  "mangled_name": "sub_10071663",
+  "address": "0x10071663",
+  "size_bytes": 173,
+  "signature": "int __stdcall(int *a1, unsigned int a2, unsigned int a3)",
+  "decompiled_c": "int __stdcall sub_10071663(int *a1, unsigned int a2, unsigned int a3)\n{\n  int v4; // eax\n  _DWORD *v5; // esi\n  int v6; // eax\n  int v7; // ecx\n  _DWORD *v8; // eax\n  unsigned int v9; // eax\n\n  if ( a2 )\n  {\n    v4 = sub_100714A6(a1, a2, 1u, 0);\n    v5 = (_DWORD *)v4;\n    if ( v4\n      && ((v6 = *(_DWORD *)(a1[39] + 4 * *(unsigned __int16 *)(v4 + 4)), *(_DWORD *)(v6 + 56))\n        ? (v7 = *(_DWORD *)(a1[14] + 8))\n        : (v7 = a1[8]),\n          (v8 = (_DWORD *)(v7 + v5[2] + *(_DWORD *)(v6 + 36)), v8[1] == 5)\n       && (v5[6] != -1 || !v8[4])\n       && (v9 = v8[5], a3 < v9)\n       && (v5[4] || sub_1006AD68(a1, (int)v5, v9) >= 0)) )\n    {\n      return ~(v5[4] + 32 * a3);\n    }\n    else\n    {\n      return 0;\n    }\n  }\n  else if ( a3 < a1[34] )\n  {\n    return ~((a3 << 6) + a1[35]);\n  }\n  else\n  {\n    return 0;\n  }\n}\n"
+}

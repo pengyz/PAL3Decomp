@@ -1,0 +1,8 @@
+{
+  "name": "sub_1005845E",
+  "mangled_name": "sub_1005845E",
+  "address": "0x1005845E",
+  "size_bytes": 28,
+  "signature": "char *__thiscall(char *Block, char a2)",
+  "decompiled_c": "char *__thiscall sub_1005845E(char *Block, char a2)\n{\n  sub_1005839C(Block);\n  if ( (a2 & 1) != 0 )\n    operator delete(Block);\n  return Block;\n}\n"
+}

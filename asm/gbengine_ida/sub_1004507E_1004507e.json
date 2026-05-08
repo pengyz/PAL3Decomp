@@ -1,0 +1,8 @@
+{
+  "name": "sub_1004507E",
+  "mangled_name": "sub_1004507E",
+  "address": "0x1004507E",
+  "size_bytes": 236,
+  "signature": "int __thiscall(int this, int a2)",
+  "decompiled_c": "int __thiscall sub_1004507E(int this, int a2)\n{\n  unsigned int v3; // ecx\n  int v4; // edi\n  int v5; // eax\n  int v6; // eax\n  int v7; // eax\n  int v9; // [esp+Ch] [ebp-4h]\n\n  sub_1003C56C((float *)this, (float *)a2, 0, 1);\n  v3 = *(_DWORD *)(this + 60) & 0xFFFFFFFE;\n  v4 = ((*(_DWORD *)(this + 68) + 1) & 0xFFFFFFFE) - v3;\n  *(_DWORD *)(this + 140) = (*(_DWORD *)(this + 68) + 1) & 0xFFFFFFFE;\n  *(_DWORD *)this = &off_100F7238;\n  *(_DWORD *)(this + 132) = v3;\n  *(_DWORD *)(this + 136) = 0;\n  *(_DWORD *)(this + 148) = 0;\n  *(_DWORD *)(this + 144) = 0;\n  *(_DWORD *)(this + 152) = 0;\n  *(_DWORD *)(this + 156) = v4;\n  *(_DWORD *)(this + 160) = 0;\n  *(_DWORD *)(this + 164) = 1;\n  v5 = operator new(16 * v4);\n  v9 = v5;\n  if ( v5 )\n  {\n    sub_10033415(v5, 16, v4, (int (__thiscall *)(int))sub_10032F86);\n    v6 = v9;\n  }\n  else\n  {\n    v6 = 0;\n  }\n  *(_DWORD *)(this + 128) = v6;\n  if ( !v6 )\n    *(_DWORD *)(this + 164) = 0;\n  v7 = *(_DWORD *)(a2 + 4);\n  switch ( v7 )\n  {\n    case 844715353:\n      goto LABEL_11;\n    case 1111970375:\nLABEL_10:\n      *(_DWORD *)(this + 168) = 8;\n      *(_DWORD *)(this + 172) = 0;\n      return this;\n    case 1195525970:\nLABEL_11:\n      *(_DWORD *)(this + 168) = 0;\n      *(_DWORD *)(this + 172) = 8;\n      return this;\n    case 1498831189:\n      goto LABEL_10;\n  }\n  return this;\n}\n"
+}

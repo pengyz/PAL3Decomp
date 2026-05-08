@@ -1,0 +1,8 @@
+{
+  "name": "sub_10051227",
+  "mangled_name": "sub_10051227",
+  "address": "0x10051227",
+  "size_bytes": 181,
+  "signature": "int __thiscall(_DWORD *this, const void *a2, unsigned int a3, _DWORD *a4)",
+  "decompiled_c": "int __thiscall sub_10051227(_DWORD *this, const void *a2, unsigned int a3, _DWORD *a4)\n{\n  _DWORD *v4; // esi\n  _DWORD *v5; // eax\n  _DWORD *v6; // ebx\n  int v7; // eax\n  void *v8; // eax\n  int v11; // [esp+Ch] [ebp-4h]\n\n  v11 = 0;\n  v4 = this;\n  v5 = (_DWORD *)operator new(0x1Cu);\n  if ( v5 )\n    v6 = sub_100511B2(v5);\n  else\n    v6 = 0;\n  if ( !v6 )\n    return -2147024882;\n  if ( !a3 )\n    goto LABEL_10;\n  v7 = (a3 >> 2) + ((a3 & 3) != 0);\n  *v6 = v7;\n  v8 = (void *)operator new(4 * v7);\n  v6[1] = v8;\n  if ( v8 )\n  {\n    qmemcpy(v8, a2, a3);\n    v4 = this;\nLABEL_10:\n    v6[3] = v4[4];\n    *(_DWORD *)(v4[4] + 8) = v6;\n    v4[4] = v6;\n    if ( a4 )\n      *a4 = v6;\n    v6 = 0;\n    goto LABEL_13;\n  }\n  v11 = -2147024882;\nLABEL_13:\n  if ( v6 )\n    sub_1005120B(v6, 1);\n  return v11;\n}\n"
+}

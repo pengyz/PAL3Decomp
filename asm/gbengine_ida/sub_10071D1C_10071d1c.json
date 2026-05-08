@@ -1,0 +1,8 @@
+{
+  "name": "sub_10071D1C",
+  "mangled_name": "sub_10071D1C",
+  "address": "0x10071D1C",
+  "size_bytes": 24,
+  "signature": "int __stdcall(char *Block)",
+  "decompiled_c": "int __stdcall sub_10071D1C(char *Block)\n{\n  bool v1; // zf\n  int result; // eax\n\n  v1 = (*((_DWORD *)Block + 9))-- == 1;\n  result = *((_DWORD *)Block + 9);\n  if ( v1 )\n  {\n    sub_1007148A(Block, 1);\n    return 0;\n  }\n  return result;\n}\n"
+}

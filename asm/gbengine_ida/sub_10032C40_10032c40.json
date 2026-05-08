@@ -1,0 +1,8 @@
+{
+  "name": "sub_10032C40",
+  "mangled_name": "sub_10032C40",
+  "address": "0x10032C40",
+  "size_bytes": 84,
+  "signature": "char *__thiscall(char *this, char a2)",
+  "decompiled_c": "char *__thiscall sub_10032C40(char *this, char a2)\n{\n  if ( (a2 & 2) != 0 )\n  {\n    `eh vector destructor iterator'(this, 0x58u, *((_DWORD *)this - 1), (void (__thiscall *)(void *))gbSnow::~gbSnow);\n    if ( (a2 & 1) != 0 )\n      operator delete(this - 4);\n    return this - 4;\n  }\n  else\n  {\n    gbSnow::~gbSnow((gbSnow *)this);\n    if ( (a2 & 1) != 0 )\n      operator delete(this);\n    return this;\n  }\n}\n"
+}

@@ -1,0 +1,8 @@
+{
+  "name": "sub_100D2932",
+  "mangled_name": "sub_100D2932",
+  "address": "0x100D2932",
+  "size_bytes": 93,
+  "signature": "int __stdcall(int a1, const double *a2, const double *a3, const double *a4, unsigned int a5, unsigned int a6)",
+  "decompiled_c": "int __stdcall sub_100D2932(\n        int a1,\n        const double *a2,\n        const double *a3,\n        const double *a4,\n        unsigned int a5,\n        unsigned int a6)\n{\n  __m128 v6; // xmm2\n  __m128 v7; // xmm3\n\n  v6 = _mm_loadh_ps(a2);\n  v7 = _mm_add_ps(\n         _mm_add_ps(_mm_mul_ps(_mm_sub_ps(_mm_loadh_ps(a3), v6), _mm_shuffle_ps((__m128)a5, (__m128)a5, 0)), v6),\n         _mm_mul_ps(_mm_sub_ps(_mm_loadh_ps(a4), v6), _mm_shuffle_ps((__m128)a6, (__m128)a6, 0)));\n  *(_DWORD *)(a1 + 8) = v7.m128_i32[0];\n  _mm_storeh_ps((double *)a1, v7);\n  return a1;\n}\n"
+}

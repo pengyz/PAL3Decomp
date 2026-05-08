@@ -4,5 +4,5 @@
   "address": "0x10015620",
   "size_bytes": 11,
   "signature": "void __thiscall(gbSceneGraph *this)",
-  "decompiled_c": "void __thiscall gbSceneGraph::ResetBladeMgr(gbSceneGraph *this)\n{\n  sub_1000ED00(*((_DWORD *)this + 4810));\n}\n"
+  "decompiled_c": "void __thiscall gbSceneGraph::ResetBladeMgr(gbSceneGraph *this)\n{\n  gbBladeMgr::Reset(*((_DWORD *)this + 4810));\n}\n"
 }

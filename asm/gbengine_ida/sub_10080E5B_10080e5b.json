@@ -1,0 +1,8 @@
+{
+  "name": "sub_10080E5B",
+  "mangled_name": "sub_10080E5B",
+  "address": "0x10080E5B",
+  "size_bytes": 96,
+  "signature": "int(_DWORD *a1, _DWORD *a2, int a3, char *Format, ...)",
+  "decompiled_c": "int sub_10080E5B(_DWORD *a1, _DWORD *a2, int a3, char *Format, ...)\n{\n  int v4; // eax\n  char Buffer[256]; // [esp+4h] [ebp-100h] BYREF\n  va_list va; // [esp+11Ch] [ebp+18h] BYREF\n\n  va_start(va, Format);\n  a1[19] = 1;\n  _vsnprintf(Buffer, 0x100u, Format, va);\n  Buffer[255] = 0;\n  v4 = sub_10080DEE(a2);\n  sub_1004CB83((_DWORD *)(*a1 + 24), v4, a3, \"%s\", Buffer);\n  return 0;\n}\n"
+}

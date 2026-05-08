@@ -1,0 +1,8 @@
+{
+  "name": "sub_10096666",
+  "mangled_name": "sub_10096666",
+  "address": "0x10096666",
+  "size_bytes": 92,
+  "signature": "BOOL __stdcall(int *__attribute__((__org_typedef(jmp_buf))) Buf)",
+  "decompiled_c": "BOOL __stdcall sub_10096666(jmp_buf Buf)\n{\n  int *__attribute__((__org_typedef(jmp_buf))) v1; // esi\n  int v2; // edi\n\n  v1 = Buf;\n  v2 = 1;\n  if ( (Buf[67] & 0x20) != 0 )\n  {\n    if ( (Buf[23] & 0x300) != 0x300 )\n      goto LABEL_6;\n  }\n  else if ( (*((_BYTE *)Buf + 93) & 8) == 0 )\n  {\n    goto LABEL_6;\n  }\n  v2 = 0;\nLABEL_6:\n  sub_1007B03A(Buf, (int)&Buf, 4);\n  return v2 && sub_1009662A((unsigned __int8 *)&Buf) != v1[64];\n}\n"
+}

@@ -4,5 +4,5 @@
   "address": "0x10011880",
   "size_bytes": 23,
   "signature": "void __thiscall(gbGeomNode *this, struct gbTexture *a2)",
-  "decompiled_c": "void __thiscall gbGeomNode::ReplaceTexture(gbGeomNode *this, struct gbTexture *a2)\n{\n  gbBaseMesh *v2; // ecx\n\n  v2 = (gbBaseMesh *)*((_DWORD *)this + 66);\n  if ( v2 )\n    gbBaseMesh::ReplaceTexture(v2, a2);\n}\n"
+  "decompiled_c": "void __thiscall gbGeomNode::ReplaceTexture(gbGeomNode *this, struct gbTexture *a2)\n{\n  gbBaseMesh *mesh; // ecx\n\n  mesh = this->mesh;\n  if ( mesh )\n    gbBaseMesh::ReplaceTexture(mesh, a2);\n}\n"
 }

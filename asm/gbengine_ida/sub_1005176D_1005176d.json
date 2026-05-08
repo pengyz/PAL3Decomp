@@ -1,0 +1,8 @@
+{
+  "name": "sub_1005176D",
+  "mangled_name": "sub_1005176D",
+  "address": "0x1005176D",
+  "size_bytes": 223,
+  "signature": "int __stdcall(int a1, int *a2, int *a3)",
+  "decompiled_c": "int __stdcall sub_1005176D(int a1, int *a2, int *a3)\n{\n  int v4; // ecx\n  int *v5; // eax\n  int v6; // ebx\n  int v7; // edx\n  int v8; // eax\n  int v10; // eax\n  int v12; // eax\n  int v13; // edx\n  int v14; // esi\n  int v15; // eax\n  int v16; // edx\n  int v17; // [esp+Ch] [ebp-4h] BYREF\n  int v18; // [esp+18h] [ebp+8h]\n  int v19; // [esp+1Ch] [ebp+Ch]\n  int v20; // [esp+20h] [ebp+10h]\n\n  v4 = *a2;\n  v5 = (int *)(*a2 + a1);\n  v6 = v5[4];\n  v7 = v5[1];\n  if ( !v6 )\n    v6 = 1;\n  if ( v7 >= 0 )\n  {\n    if ( v7 <= 3 )\n    {\n      v13 = v5[6];\n      v14 = v5[5];\n      v15 = *v5 - 1;\n      v18 = v13;\n      if ( v15 && (unsigned int)(v15 - 1) >= 2 )\n      {\n        v16 = 0;\n        v6 = 0;\n      }\n      else\n      {\n        v16 = 4;\n      }\n      *a2 = v4 + 28;\n      v10 = v16 * v14 * v18;\n      *a3 = v6 * v14 * v18;\n      return v6 * v10;\n    }\n    if ( v7 == 4 )\n    {\n      v12 = *v5;\n      if ( v12 >= 10 && (v12 <= 14 || v12 == 15925248) )\n        v10 = 0;\n      else\n        v10 = 4;\n      *a2 = v4 + 20;\n      *a3 = v6;\n      return v6 * v10;\n    }\n    if ( v7 == 5 )\n    {\n      v8 = v5[5];\n      v20 = 0;\n      *a2 = v4 + 24;\n      *a3 = 0;\n      if ( v8 )\n      {\n        v19 = v8;\n        do\n        {\n          v20 += sub_1005176D(a1, a2, &v17);\n          *a3 += v17;\n          --v19;\n        }\n        while ( v19 );\n      }\n      *a3 *= v6;\n      v10 = v20;\n      return v6 * v10;\n    }\n  }\n  return 0;\n}\n"
+}

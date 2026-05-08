@@ -1,0 +1,8 @@
+{
+  "name": "sub_100D2635",
+  "mangled_name": "sub_100D2635",
+  "address": "0x100D2635",
+  "size_bytes": 133,
+  "signature": "double *__userpurge@<eax>(__m128 a1@<xmm1>, __m128 a2@<xmm2>, double *a3, int a4, const double *a5, int a6, const double *a7, float a8)",
+  "decompiled_c": "double *__userpurge sub_100D2635@<eax>(\n        __m128 a1@<xmm1>,\n        __m128 a2@<xmm2>,\n        double *a3,\n        int a4,\n        const double *a5,\n        int a6,\n        const double *a7,\n        float a8)\n{\n  __m128 v8; // xmm0\n  __m128 v9; // xmm0\n  __m128 v10; // xmm6\n  __m128 v11; // xmm4\n\n  v8 = (__m128)LODWORD(a8);\n  a1.m128_f32[0] = v8.m128_f32[0] * v8.m128_f32[0];\n  a2.m128_f32[0] = a8 * (float)(v8.m128_f32[0] * v8.m128_f32[0]);\n  v9 = _mm_add_ps(\n         _mm_add_ps(\n           _mm_add_ps(_mm_mul_ps(_mm_shuffle_ps(v8, v8, 0), (__m128)xmmword_101283A0), (__m128)xmmword_101283B0),\n           _mm_mul_ps(_mm_shuffle_ps(a1, a1, 0), (__m128)xmmword_10128390)),\n         _mm_mul_ps(_mm_shuffle_ps(a2, a2, 0), (__m128)xmmword_10128380));\n  v10 = _mm_mul_ps(_mm_loadh_ps(a7), _mm_shuffle_ps(v9, v9, 250));\n  v11 = _mm_add_ps(_mm_mul_ps(_mm_loadh_ps(a5), _mm_shuffle_ps(v9, v9, 80)), v10);\n  _mm_storel_ps(a3, _mm_add_ps(v11, _mm_movehl_ps(v10, v11)));\n  return a3;\n}\n"
+}

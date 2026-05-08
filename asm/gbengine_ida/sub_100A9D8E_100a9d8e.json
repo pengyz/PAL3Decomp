@@ -1,0 +1,8 @@
+{
+  "name": "sub_100A9D8E",
+  "mangled_name": "sub_100A9D8E",
+  "address": "0x100A9D8E",
+  "size_bytes": 63,
+  "signature": "int __thiscall(int *this, _DWORD *a2, int a3)",
+  "decompiled_c": "int __thiscall sub_100A9D8E(int *this, _DWORD *a2, int a3)\n{\n  int result; // eax\n\n  *(this + 52) = 0;\n  *(this + 53) = 0;\n  *(this + 54) = 0;\n  if ( a2 )\n    *a2 = 0;\n  result = sub_100A9A78((int)this);\n  if ( result >= 0 )\n  {\n    result = sub_100A9CCA(this);\n    if ( result >= 0 )\n      return 0;\n  }\n  return result;\n}\n"
+}

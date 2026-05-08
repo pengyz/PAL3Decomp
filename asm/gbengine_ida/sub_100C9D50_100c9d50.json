@@ -1,0 +1,8 @@
+{
+  "name": "sub_100C9D50",
+  "mangled_name": "sub_100C9D50",
+  "address": "0x100C9D50",
+  "size_bytes": 53,
+  "signature": "int __thiscall(unsigned int *this)",
+  "decompiled_c": "int __thiscall sub_100C9D50(unsigned int *this)\n{\n  int v1; // edx\n\n  v1 = *(this + 56);\n  return sub_100C9674(\n           this,\n           90,\n           *(_DWORD **)(v1 + 16),\n           *(_DWORD *)(v1 + 12),\n           *(_DWORD **)(v1 + 8),\n           (_DWORD *)(*(_DWORD *)(v1 + 8) + 4 * (*(_DWORD *)v1 & 0xFFFFF)),\n           (_DWORD *)(*(_DWORD *)(v1 + 8) + 8 * (*(_DWORD *)v1 & 0xFFFFF)),\n           *(_DWORD *)v1 & 0xFFFFF,\n           0,\n           0,\n           0);\n}\n"
+}

@@ -1,0 +1,8 @@
+{
+  "name": "sub_1004CDAD",
+  "mangled_name": "sub_1004CDAD",
+  "address": "0x1004CDAD",
+  "size_bytes": 267,
+  "signature": "int __thiscall(_DWORD *this, int a2, double *a3)",
+  "decompiled_c": "int __thiscall sub_1004CDAD(_DWORD *this, int a2, double *a3)\n{\n  _DWORD *v5; // [esp+4h] [ebp-10Ch]\n  char Buffer[256]; // [esp+10h] [ebp-100h] BYREF\n\n  switch ( *(_DWORD *)a3 )\n  {\n    case 0:\n      _snprintf(Buffer, 0x100u, \"version token\");\n      break;\n    case 1:\n      v5 = a3 + 1;\n      goto LABEL_13;\n    case 2:\n      _snprintf(Buffer, 0x100u, \"integer '%u'\", *((_DWORD *)a3 + 2));\n      break;\n    case 3:\n      _snprintf(Buffer, 0x100u, \"integer '%dl'\", *((_DWORD *)a3 + 2));\n      break;\n    case 4:\n      _snprintf(Buffer, 0x100u, \"integer '%uul'\", *((_DWORD *)a3 + 2));\n      break;\n    case 5:\n      _snprintf(Buffer, 0x100u, \"float '%g'\", a3[1]);\n      break;\n    case 6:\n      _snprintf(Buffer, 0x100u, \"float '%gh'\", a3[1]);\n      break;\n    case 7:\n      _snprintf(Buffer, 0x100u, \"float '%gf'\", a3[1]);\n      break;\n    case 8:\n      _snprintf(Buffer, 0x100u, \"float '%gl'\", a3[1]);\n      break;\n    case 9:\n      v5 = (_DWORD *)*((_DWORD *)a3 + 2);\nLABEL_13:\n      _snprintf(Buffer, 0x100u, \"token '%s'\", v5);\n      break;\n    case 0xA:\n      _snprintf(Buffer, 0x100u, \"string constant\");\n      break;\n    case 0xC:\n      _snprintf(Buffer, 0x100u, \"end of line\");\n      break;\n    case 0xD:\n      _snprintf(Buffer, 0x100u, \"end of file\");\n      break;\n    default:\n      _snprintf(Buffer, 0x100u, \"token\");\n      break;\n  }\n  return sub_1004CB83(this, (int)a3, a2, \"syntax error : unexpected %s\", Buffer);\n}\n"
+}

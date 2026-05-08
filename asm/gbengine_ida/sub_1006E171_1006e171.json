@@ -1,0 +1,8 @@
+{
+  "name": "sub_1006E171",
+  "mangled_name": "sub_1006E171",
+  "address": "0x1006E171",
+  "size_bytes": 139,
+  "signature": "int __thiscall(_DWORD *this, int a2, const void *a3)",
+  "decompiled_c": "int __thiscall sub_1006E171(_DWORD *this, int a2, const void *a3)\n{\n  _DWORD *v3; // eax\n  _DWORD *v4; // ebx\n  void *v5; // eax\n  int v8; // [esp+8h] [ebp-4h]\n\n  v8 = 0;\n  v3 = (_DWORD *)operator new(0x1Cu);\n  if ( v3 )\n    v4 = sub_10067E71(v3);\n  else\n    v4 = 0;\n  if ( !v4 )\n    return -2147024882;\n  v5 = (void *)operator new(0x40u);\n  if ( v5 )\n  {\n    qmemcpy(v5, a3, 0x40u);\n    v4[3] = v5;\n    *v4 = 9;\n    v4[1] = a2;\n    *(_DWORD *)(*(this + 54) + 24) = v4;\n    *(this + 54) = v4;\n    v4 = 0;\n  }\n  else\n  {\n    v8 = -2147024882;\n  }\n  if ( v4 )\n    sub_1006CB97(v4, 1);\n  return v8;\n}\n"
+}

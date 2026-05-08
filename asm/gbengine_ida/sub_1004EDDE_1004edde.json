@@ -1,0 +1,8 @@
+{
+  "name": "sub_1004EDDE",
+  "mangled_name": "sub_1004EDDE",
+  "address": "0x1004EDDE",
+  "size_bytes": 54,
+  "signature": "int __thiscall(_DWORD *this, int a2)",
+  "decompiled_c": "int __thiscall sub_1004EDDE(_DWORD *this, int a2)\n{\n  int result; // eax\n\n  result = a2;\n  if ( !a2 )\n  {\n    if ( !*(this + 17) )\n    {\n      sub_1004CB83(this + 6, (int)(this + 158), 0, \"internal error: production failed\");\n      *(this + 17) = 1;\n    }\n    return 0;\n  }\n  return result;\n}\n"
+}

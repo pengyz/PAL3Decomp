@@ -1,0 +1,8 @@
+{
+  "name": "sub_100C9C27",
+  "mangled_name": "sub_100C9C27",
+  "address": "0x100C9C27",
+  "size_bytes": 97,
+  "signature": "int __thiscall(unsigned int *this)",
+  "decompiled_c": "int __thiscall sub_100C9C27(unsigned int *this)\n{\n  _DWORD *v2; // ecx\n  int v3; // esi\n  _DWORD *v5; // [esp+Ch] [ebp-10h]\n  int v6; // [esp+10h] [ebp-Ch]\n  _DWORD *v7; // [esp+14h] [ebp-8h] BYREF\n  _DWORD *v8; // [esp+18h] [ebp-4h] BYREF\n\n  v2 = (_DWORD *)*(this + 56);\n  v6 = v2[3];\n  v5 = (_DWORD *)v2[4];\n  v3 = *v2 & 0xFFFFF;\n  sub_100995A9(v2, 0, &v8);\n  sub_100995A9((_DWORD *)*(this + 56), 1, &v7);\n  return sub_100C9674(this, 66, v5, v6, v7, v8, 0, v3, 0, 0, 0);\n}\n"
+}

@@ -1,0 +1,8 @@
+{
+  "name": "sub_10079553",
+  "mangled_name": "sub_10079553",
+  "address": "0x10079553",
+  "size_bytes": 277,
+  "signature": "int __stdcall(int a1, void *a2, void *a3)",
+  "decompiled_c": "int __stdcall sub_10079553(int a1, void *a2, void *a3)\n{\n  int v3; // edi\n  int v4; // esi\n  int result; // eax\n  int v6; // edx\n  int v7; // esi\n  _BYTE v8[64]; // [esp+Ch] [ebp-40h] BYREF\n\n  v3 = 0;\n  if ( a2 )\n    sub_10078D4B(a1, a2);\n  if ( a3 )\n    sub_10078D4B(a1, a3);\n  sub_100955BF(a1, *(void **)(a1 + 156));\n  sub_100955BF(a1, *(void **)(a1 + 220));\n  sub_100955BF(a1, *(void **)(a1 + 216));\n  sub_100955BF(a1, *(void **)(a1 + 372));\n  sub_100955BF(a1, *(void **)(a1 + 376));\n  sub_100955BF(a1, *(void **)(a1 + 312));\n  if ( (*(_BYTE *)(a1 + 93) & 0x10) != 0 )\n    sub_10078CF0(a1, *(void **)(a1 + 260));\n  if ( (*(_BYTE *)(a1 + 93) & 0x20) != 0 )\n    sub_100955BF(a1, *(void **)(a1 + 348));\n  if ( *(_DWORD *)(a1 + 324) )\n  {\n    v4 = 1 << (8 - *(_BYTE *)(a1 + 300));\n    if ( v4 > 0 )\n    {\n      do\n        sub_100955BF(a1, *(void **)(*(_DWORD *)(a1 + 324) + 4 * v3++));\n      while ( v3 < v4 );\n    }\n    sub_100955BF(a1, *(void **)(a1 + 324));\n  }\n  sub_10096195(a1 + 100);\n  result = *(_DWORD *)(a1 + 72);\n  v6 = *(_DWORD *)(a1 + 64);\n  qmemcpy(v8, (const void *)a1, sizeof(v8));\n  v7 = *(_DWORD *)(a1 + 68);\n  memset((void *)a1, 0, 0x19Cu);\n  *(_DWORD *)(a1 + 68) = v7;\n  qmemcpy((void *)a1, v8, 0x40u);\n  *(_DWORD *)(a1 + 64) = v6;\n  *(_DWORD *)(a1 + 72) = result;\n  return result;\n}\n"
+}

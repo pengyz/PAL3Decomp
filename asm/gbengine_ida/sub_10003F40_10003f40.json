@@ -1,0 +1,8 @@
+{
+  "name": "sub_10003F40",
+  "mangled_name": "sub_10003F40",
+  "address": "0x10003F40",
+  "size_bytes": 84,
+  "signature": "char *__thiscall(char *this, char a2)",
+  "decompiled_c": "char *__thiscall sub_10003F40(char *this, char a2)\n{\n  if ( (a2 & 2) != 0 )\n  {\n    `eh vector destructor iterator'(\n      this,\n      0x38u,\n      *((_DWORD *)this - 1),\n      (void (__thiscall *)(void *))gbVertexBubble::~gbVertexBubble);\n    if ( (a2 & 1) != 0 )\n      operator delete(this - 4);\n    return this - 4;\n  }\n  else\n  {\n    gbVertexBubble::~gbVertexBubble((gbVertexBubble *)this);\n    if ( (a2 & 1) != 0 )\n      operator delete(this);\n    return this;\n  }\n}\n"
+}

@@ -1,0 +1,8 @@
+{
+  "name": "sub_100938E0",
+  "mangled_name": "sub_100938E0",
+  "address": "0x100938E0",
+  "size_bytes": 118,
+  "signature": "int __usercall@<eax>(int a1@<eax>)",
+  "decompiled_c": "int __usercall sub_100938E0@<eax>(int a1@<eax>)\n{\n  int v2; // edx\n  int v3; // eax\n  const void *v4; // esi\n  int v5; // edx\n\n  v2 = (**(int (__stdcall ***)(int, int, int))(a1 + 4))(a1, 1, 1408) + 256;\n  v3 = 0;\n  *(_DWORD *)(a1 + 328) = v2;\n  memset((void *)(v2 - 256), 0, 0x100u);\n  do\n  {\n    *(_BYTE *)(v3 + v2) = v3;\n    ++v3;\n  }\n  while ( v3 <= 255 );\n  v4 = *(const void **)(a1 + 328);\n  v5 = v2 + 128;\n  memset((void *)(v5 + 128), 0xFFu, 0x180u);\n  memset((void *)(v5 + 512), 0, 0x180u);\n  qmemcpy((void *)(v5 + 896), v4, 0x80u);\n  return 0;\n}\n"
+}

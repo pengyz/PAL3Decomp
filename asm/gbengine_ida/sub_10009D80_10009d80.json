@@ -1,0 +1,8 @@
+{
+  "name": "sub_10009D80",
+  "mangled_name": "sub_10009D80",
+  "address": "0x10009D80",
+  "size_bytes": 83,
+  "signature": "int __thiscall(_DWORD *this, int a2, int a3, int a4, int a5)",
+  "decompiled_c": "int __thiscall sub_10009D80(_DWORD *this, int a2, int a3, int a4, int a5)\n{\n  int v6; // edi\n  int v7; // eax\n\n  v6 = *(_DWORD *)(*(this + 23) + 4 * a5);\n  if ( v6 != *(this + 26) )\n  {\n    sub_1000A100(*(_DWORD *)(*(this + 23) + 4 * a5));\n    *(this + 26) = v6;\n    v7 = sub_10002A70(this, v6);\n    if ( v7 )\n      sub_1000A570(v7);\n  }\n  return sub_1000A630(a2, a3, a4);\n}\n"
+}

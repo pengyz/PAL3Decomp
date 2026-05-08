@@ -1,0 +1,8 @@
+{
+  "name": "sub_100BC52C",
+  "mangled_name": "sub_100BC52C",
+  "address": "0x100BC52C",
+  "size_bytes": 219,
+  "signature": "int __stdcall(int a1, int a2, int a3)",
+  "decompiled_c": "int __stdcall sub_100BC52C(int a1, int a2, int a3)\n{\n  int v3; // eax\n  _DWORD *v4; // ebx\n  unsigned int v5; // edi\n  const char *v6; // ecx\n  int v7; // eax\n  const char *v8; // esi\n  int v9; // ecx\n  int v11; // ecx\n  unsigned int v12; // ecx\n  unsigned int v13; // ecx\n  unsigned int v14; // edx\n  unsigned int v15; // ecx\n  unsigned int v16; // edx\n  _DWORD *v17; // [esp+1Ch] [ebp+10h]\n\n  v3 = *(_DWORD *)(a3 + 20);\n  v4 = *(_DWORD **)(v3 + 4 * a1);\n  v5 = v4[23];\n  v6 = *(const char **)(v5 + 32);\n  v17 = *(_DWORD **)(v3 + 4 * a2);\n  v8 = Source;\n  if ( !v6 )\n    v6 = Source;\n  v7 = v17[23];\n  if ( *(_DWORD *)(v7 + 32) )\n    v8 = *(const char **)(v7 + 32);\n  v9 = strcmp(v6, v8);\n  if ( v9 > 0 )\n    return 1;\n  if ( v9 < 0 )\n    return -1;\n  v11 = strcmp(*(const char **)(*(_DWORD *)(v5 + 20) + 24), *(const char **)(*(_DWORD *)(v17[23] + 20) + 24));\n  if ( v11 > 0 )\n    return 1;\n  if ( v11 < 0 )\n    return -1;\n  v12 = v17[23];\n  if ( v5 > v12 )\n    return 1;\n  if ( v5 < v12 )\n    return -1;\n  v13 = v4[28];\n  v14 = v17[28];\n  if ( v13 < v14 )\n    return -1;\n  if ( v13 > v14 )\n    return 1;\n  v15 = v4[4];\n  v16 = v17[4];\n  if ( v16 > v15 )\n    return -1;\n  return v16 < v15;\n}\n"
+}

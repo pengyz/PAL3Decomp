@@ -1,0 +1,8 @@
+{
+  "name": "sub_100586E6",
+  "mangled_name": "sub_100586E6",
+  "address": "0x100586E6",
+  "size_bytes": 24,
+  "signature": "int __stdcall(char *Block)",
+  "decompiled_c": "int __stdcall sub_100586E6(char *Block)\n{\n  bool v1; // zf\n  int result; // eax\n\n  v1 = (*((_DWORD *)Block + 2))-- == 1;\n  result = *((_DWORD *)Block + 2);\n  if ( v1 )\n  {\n    sub_1005845E(Block, 1);\n    return 0;\n  }\n  return result;\n}\n"
+}

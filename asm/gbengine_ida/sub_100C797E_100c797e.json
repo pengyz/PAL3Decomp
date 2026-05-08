@@ -1,0 +1,8 @@
+{
+  "name": "sub_100C797E",
+  "mangled_name": "sub_100C797E",
+  "address": "0x100C797E",
+  "size_bytes": 43,
+  "signature": "int __thiscall(_DWORD *this, int a2)",
+  "decompiled_c": "int __thiscall sub_100C797E(_DWORD *this, int a2)\n{\n  int result; // eax\n\n  result = sub_100C3685((int)this, 1);\n  if ( result >= 0 )\n  {\n    *(_DWORD *)(*(this + 59) + 4 * (*(this + 60))++) = a2;\n    return 0;\n  }\n  return result;\n}\n"
+}

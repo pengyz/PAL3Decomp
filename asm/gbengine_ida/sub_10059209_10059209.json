@@ -1,0 +1,8 @@
+{
+  "name": "sub_10059209",
+  "mangled_name": "sub_10059209",
+  "address": "0x10059209",
+  "size_bytes": 139,
+  "signature": "int __thiscall(int this, int a2, int a3)",
+  "decompiled_c": "int __thiscall sub_10059209(int this, int a2, int a3)\n{\n  int v3; // esi\n  int v5; // eax\n  int v6; // esi\n  int v7; // eax\n\n  v3 = a3;\n  if ( (*(_DWORD *)(a3 + 16) & *(_DWORD *)(a2 + 16)) != 0 )\n    sub_10058D70(this, this + 32, 3048, \"duplicate usages specified\");\n  if ( *(_DWORD *)(a2 + 20) )\n  {\n    v5 = *(_DWORD *)(a3 + 20);\n    if ( v5 )\n    {\n      qmemcpy((void *)(this + 32), (const void *)(v5 + 16), 0x20u);\n      sub_10058C42(this, \"syntax error\");\n      v3 = a3;\n    }\n  }\n  *(_DWORD *)(a2 + 16) |= *(_DWORD *)(v3 + 16);\n  if ( *(_DWORD *)(a2 + 20) )\n    return 0;\n  v6 = *(_DWORD *)(v3 + 20);\n  if ( !v6 )\n    return 0;\n  v7 = sub_1007E2AB(v6);\n  *(_DWORD *)(a2 + 20) = v7;\n  if ( v7 )\n    return 0;\n  else\n    return -2147024882;\n}\n"
+}

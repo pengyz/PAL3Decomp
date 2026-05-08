@@ -1,0 +1,8 @@
+{
+  "name": "sub_10034758",
+  "mangled_name": "sub_10034758",
+  "address": "0x10034758",
+  "size_bytes": 30,
+  "signature": "int __stdcall(int a1, unsigned int a2)",
+  "decompiled_c": "int __stdcall sub_10034758(int a1, unsigned int a2)\n{\n  int result; // eax\n\n  result = 0;\n  if ( !a2 )\n    return 0;\n  while ( *(_BYTE *)(result + a1) != 10 )\n  {\n    if ( ++result >= a2 )\n      return 0;\n  }\n  return result;\n}\n"
+}

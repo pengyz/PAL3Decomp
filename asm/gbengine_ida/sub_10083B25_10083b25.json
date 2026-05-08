@@ -1,0 +1,8 @@
+{
+  "name": "sub_10083B25",
+  "mangled_name": "sub_10083B25",
+  "address": "0x10083B25",
+  "size_bytes": 149,
+  "signature": "int __thiscall(_DWORD *this, _DWORD *a2, unsigned int *a3, unsigned int a4, int a5, int a6, int a7, int a8)",
+  "decompiled_c": "int __thiscall sub_10083B25(\n        _DWORD *this,\n        _DWORD *a2,\n        unsigned int *a3,\n        unsigned int a4,\n        int a5,\n        int a6,\n        int a7,\n        int a8)\n{\n  int v10; // ecx\n  int v11; // eax\n  unsigned int v12; // eax\n  int v13; // ecx\n  int v14; // ecx\n  int v15; // edx\n  int v16; // [esp+4h] [ebp-4h] BYREF\n\n  if ( !a2 )\n    return 0;\n  v10 = *(this + 2);\n  v16 = 0;\n  if ( a4 >= *(_DWORD *)(v10 + 4) )\n    v11 = 0;\n  else\n    v11 = *(_DWORD *)(*(_DWORD *)(v10 + 16) + 4 * a4);\n  if ( !v11 )\n    return -2147467259;\n  v12 = sub_1009A1C2(v11);\n  v13 = *(this + 2);\n  if ( v12 >= *(_DWORD *)(v13 + 4) )\n    v14 = 0;\n  else\n    v14 = *(_DWORD *)(*(_DWORD *)(v13 + 16) + 4 * v12);\n  if ( !v14 )\n    return -2147024882;\n  *(_DWORD *)(v14 + 4) |= 0x40u;\n  v15 = *(_DWORD *)(v14 + 4);\n  if ( (v15 & 0x200) != 0 )\n    *(_DWORD *)(v14 + 4) = v15 | 0x400;\n  return sub_10081D26(this, a2, a3, v12, a5, a6, a7, &v16, a7, a8, 0);\n}\n"
+}

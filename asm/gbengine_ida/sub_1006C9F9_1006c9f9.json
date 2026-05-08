@@ -1,0 +1,8 @@
+{
+  "name": "sub_1006C9F9",
+  "mangled_name": "sub_1006C9F9",
+  "address": "0x1006C9F9",
+  "size_bytes": 126,
+  "signature": "int __thiscall(int this, unsigned __int16 a2)",
+  "decompiled_c": "int __thiscall sub_1006C9F9(int this, unsigned __int16 a2)\n{\n  unsigned __int16 v2; // bx\n  _DWORD *v4; // eax\n  _DWORD *v5; // ebx\n  _DWORD *v6; // edi\n  _DWORD *v7; // ecx\n  int v9; // [esp+Ch] [ebp-4h]\n\n  v9 = 0;\n  v2 = a2;\n  if ( *(_WORD *)(this + 52) >= a2 )\n  {\nLABEL_10:\n    *(_WORD *)(this + 50) = v2;\n    return v9;\n  }\n  v4 = (_DWORD *)operator new((a2 << 6) + 4);\n  if ( v4 )\n  {\n    v5 = v4 + 1;\n    *v4 = a2;\n    sub_10033415((int)(v4 + 1), 64, a2, (int (__thiscall *)(int))sub_1006B8CF);\n    v6 = v5;\n    v2 = a2;\n  }\n  else\n  {\n    v6 = 0;\n  }\n  if ( v6 )\n  {\n    v7 = *(_DWORD **)(this + 4);\n    if ( v7 )\n    {\n      sub_1006C9AE(v7, 3);\n      *(_DWORD *)(this + 4) = 0;\n    }\n    *(_DWORD *)(this + 4) = v6;\n    *(_WORD *)(this + 52) = v2;\n    goto LABEL_10;\n  }\n  return -2147024882;\n}\n"
+}

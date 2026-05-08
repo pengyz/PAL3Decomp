@@ -1,0 +1,8 @@
+{
+  "name": "sub_1001DE70",
+  "mangled_name": "sub_1001DE70",
+  "address": "0x1001DE70",
+  "size_bytes": 201,
+  "signature": "void __thiscall(int this)",
+  "decompiled_c": "void __thiscall sub_1001DE70(int this)\n{\n  void *v2; // edi\n  gbPrintFontMgr *v3; // ecx\n  gbRefObject **v4; // ecx\n  void *v5; // edi\n  gbVertPoolMgr *v6; // edi\n  void ***v7; // esi\n  int v8; // ebx\n  void **v9; // edi\n\n  v2 = *(void **)(this + 448);\n  if ( v2 )\n  {\n    gbSceneGraph::~gbSceneGraph(*(gbSceneGraph **)(this + 448));\n    operator delete(v2);\n  }\n  v3 = *(gbPrintFontMgr **)(this + 208);\n  *(_DWORD *)(this + 448) = 0;\n  if ( v3 )\n  {\n    gbPrintFontMgr::Release(v3);\n    operator delete(*(void **)(this + 208));\n  }\n  v4 = *(gbRefObject ***)(this + 200);\n  *(_DWORD *)(this + 208) = 0;\n  if ( v4 )\n    gbEffectMgr::Release(v4);\n  v5 = *(void **)(this + 204);\n  if ( v5 )\n  {\n    gbResManager::~gbResManager(*(void ***)(this + 204));\n    operator delete(v5);\n  }\n  v6 = *(gbVertPoolMgr **)(this + 196);\n  *(_DWORD *)(this + 204) = 0;\n  if ( v6 )\n  {\n    gbVertPoolMgr::~gbVertPoolMgr(v6);\n    operator delete(v6);\n  }\n  *(_DWORD *)(this + 196) = 0;\n  v7 = (void ***)(this + 212);\n  v8 = 4;\n  do\n  {\n    v9 = *v7;\n    if ( *v7 )\n    {\n      gbMatrixStack::~gbMatrixStack(*v7);\n      operator delete(v9);\n    }\n    *v7++ = 0;\n    --v8;\n  }\n  while ( v8 );\n}\n"
+}

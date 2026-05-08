@@ -1,0 +1,8 @@
+{
+  "name": "sub_100769B0",
+  "mangled_name": "sub_100769B0",
+  "address": "0x100769B0",
+  "size_bytes": 97,
+  "signature": "int __usercall@<eax>(int *a1@<esi>)",
+  "decompiled_c": "int __usercall sub_100769B0@<eax>(int *a1@<esi>)\n{\n  int v1; // eax\n\n  if ( a1[5] != 204 )\n  {\n    (*(void (__stdcall **)(int *))a1[106])(a1);\n    a1[35] = 0;\n    a1[5] = 204;\n  }\n  while ( *(_DWORD *)(a1[106] + 8) )\n  {\n    v1 = *a1;\n    *(_DWORD *)(v1 + 20) = 48;\n    (*(void (__stdcall **)(int *))v1)(a1);\n  }\n  a1[5] = (a1[17] != 0) + 205;\n  return 1;\n}\n"
+}

@@ -1,0 +1,8 @@
+{
+  "name": "sub_1008F468",
+  "mangled_name": "sub_1008F468",
+  "address": "0x1008F468",
+  "size_bytes": 69,
+  "signature": "int __userpurge@<eax>(int a1@<ecx>, double a2@<st1>, double a3@<st0>, int a4, int a5, const char *ArgList, int a7, const char *a8, int a9, _DWORD *a10, size_t *a11)",
+  "decompiled_c": "int __userpurge sub_1008F468@<eax>(\n        int a1@<ecx>,\n        double a2@<st1>,\n        double a3@<st0>,\n        int a4,\n        int a5,\n        const char *ArgList,\n        int a7,\n        const char *a8,\n        int a9,\n        _DWORD *a10,\n        size_t *a11)\n{\n  if ( a10 )\n    *a10 = 0;\n  if ( a11 )\n    *a11 = 0;\n  if ( ArgList )\n    return sub_1008F021(a1, a2, a3, a4, a5, ArgList, 0, 0, 0, a7, a8, a9, a10, a11);\n  else\n    return -2005530516;\n}\n"
+}

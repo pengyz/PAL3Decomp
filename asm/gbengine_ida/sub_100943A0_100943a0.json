@@ -1,0 +1,8 @@
+{
+  "name": "sub_100943A0",
+  "mangled_name": "sub_100943A0",
+  "address": "0x100943A0",
+  "size_bytes": 166,
+  "signature": "_DWORD *__stdcall(int *a1, unsigned int a2, unsigned int a3)",
+  "decompiled_c": "_DWORD *__stdcall sub_100943A0(int *a1, unsigned int a2, unsigned int a3)\n{\n  unsigned int v3; // ebx\n  int v4; // ebp\n  int v5; // eax\n  int v6; // eax\n  _DWORD *v7; // esi\n  int v8; // eax\n  int v9; // ecx\n\n  v3 = a3;\n  v4 = a1[1];\n  if ( a3 > 0x3B9AC9F0 )\n  {\n    v5 = *a1;\n    *(_DWORD *)(v5 + 20) = 54;\n    *(_DWORD *)(v5 + 24) = 3;\n    (*(void (__stdcall **)(int *))v5)(a1);\n  }\n  if ( (a3 & 7) != 0 )\n    v3 = 8 - (a3 & 7) + a3;\n  if ( a2 >= 2 )\n  {\n    v6 = *a1;\n    *(_DWORD *)(v6 + 20) = 14;\n    *(_DWORD *)(v6 + 24) = a2;\n    (*(void (__stdcall **)(int *))v6)(a1);\n  }\n  v7 = (_DWORD *)sub_100D1930(a1, v3 + 16);\n  if ( !v7 )\n  {\n    v8 = *a1;\n    *(_DWORD *)(v8 + 20) = 54;\n    *(_DWORD *)(v8 + 24) = 4;\n    (*(void (__stdcall **)(int *))v8)(a1);\n  }\n  *(_DWORD *)(v4 + 76) += v3 + 16;\n  v9 = *(_DWORD *)(v4 + 4 * a2 + 60);\n  *(_DWORD *)(v4 + 4 * a2 + 60) = v7;\n  v7[1] = v3;\n  *v7 = v9;\n  v7[2] = 0;\n  return v7 + 4;\n}\n"
+}

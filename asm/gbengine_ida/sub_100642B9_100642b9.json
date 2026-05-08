@@ -1,0 +1,8 @@
+{
+  "name": "sub_100642B9",
+  "mangled_name": "sub_100642B9",
+  "address": "0x100642B9",
+  "size_bytes": 45,
+  "signature": "unsigned __int16 __stdcall(char *String1)",
+  "decompiled_c": "unsigned __int16 __stdcall sub_100642B9(char *String1)\n{\n  unsigned __int16 i; // si\n\n  for ( i = 0; i < 0xB4u; ++i )\n  {\n    if ( !_strcmpi(String1, (&off_101032B8)[7 * i]) )\n      break;\n  }\n  return i;\n}\n"
+}

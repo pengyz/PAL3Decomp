@@ -1,0 +1,8 @@
+{
+  "name": "sub_1001B360",
+  "mangled_name": "sub_1001B360",
+  "address": "0x1001B360",
+  "size_bytes": 161,
+  "signature": "BOOL __thiscall(_DWORD **this, int a2)",
+  "decompiled_c": "BOOL __thiscall sub_1001B360(_DWORD **this, int a2)\n{\n  int v2; // edi\n  int *v5; // eax\n  int v6; // edx\n\n  v2 = a2;\n  if ( a2 )\n  {\n    if ( (*(int (__stdcall **)(_DWORD, _DWORD, int *))(**(this + 454) + 152))(*(this + 454), 0, &dword_1013BDF4) < 0 )\n    {\n      dword_1013BDF4 = 0;\n      return 0;\n    }\n    v5 = *(int **)(v2 + 84);\n    if ( !v5 )\n      return 0;\n    v6 = *v5;\n    a2 = 0;\n    (*(void (__stdcall **)(int *, _DWORD, int *))(v6 + 72))(v5, 0, &a2);\n    if ( !a2 )\n      return 0;\n    return (*(int (__stdcall **)(_DWORD, _DWORD, int))(**(this + 454) + 148))(*(this + 454), 0, a2) >= 0;\n  }\n  else\n  {\n    if ( dword_1013BDF4 )\n      (*(void (__stdcall **)(_DWORD, _DWORD, int))(**(this + 454) + 148))(*(this + 454), 0, dword_1013BDF4);\n    return 1;\n  }\n}\n"
+}

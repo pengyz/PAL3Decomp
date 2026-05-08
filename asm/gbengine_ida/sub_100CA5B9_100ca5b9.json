@@ -1,0 +1,8 @@
+{
+  "name": "sub_100CA5B9",
+  "mangled_name": "sub_100CA5B9",
+  "address": "0x100CA5B9",
+  "size_bytes": 111,
+  "signature": "int __thiscall(int this)",
+  "decompiled_c": "int __thiscall sub_100CA5B9(int this)\n{\n  unsigned int v2; // esi\n  int result; // eax\n  int i; // [esp+Ch] [ebp-8h]\n  int v5; // [esp+10h] [ebp-4h]\n\n  v2 = **(_DWORD **)(this + 224) & 0xFFFFF;\n  v5 = 0;\n  if ( !v2 )\n    return 0;\n  for ( i = 4 * v2; ; i += 4 )\n  {\n    result = sub_100C9674(\n               (unsigned int *)this,\n               32,\n               (_DWORD *)(4 * v5 + *(_DWORD *)(*(_DWORD *)(this + 224) + 16)),\n               1,\n               (_DWORD *)(4 * v5 + *(_DWORD *)(*(_DWORD *)(this + 224) + 8)),\n               (_DWORD *)(*(_DWORD *)(*(_DWORD *)(this + 224) + 8) + i),\n               0,\n               v2,\n               0,\n               0,\n               0);\n    if ( result < 0 )\n      break;\n    if ( ++v5 >= v2 )\n      return 0;\n  }\n  return result;\n}\n"
+}

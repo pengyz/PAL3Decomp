@@ -1,0 +1,8 @@
+{
+  "name": "sub_100AACF5",
+  "mangled_name": "sub_100AACF5",
+  "address": "0x100AACF5",
+  "size_bytes": 45,
+  "signature": "int __stdcall(_DWORD *a1, int a2)",
+  "decompiled_c": "int __stdcall sub_100AACF5(_DWORD *a1, int a2)\n{\n  _DWORD *v2; // eax\n  unsigned int v3; // esi\n\n  v2 = a1;\n  v3 = 0;\n  while ( *v2 == -1 || *v2 == *(_DWORD *)((char *)v2 + a2 - (_DWORD)a1) )\n  {\n    ++v3;\n    ++v2;\n    if ( v3 >= 4 )\n      return 1;\n  }\n  return 0;\n}\n"
+}

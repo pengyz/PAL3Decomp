@@ -1,0 +1,8 @@
+{
+  "name": "sub_1009D209",
+  "mangled_name": "sub_1009D209",
+  "address": "0x1009D209",
+  "size_bytes": 35,
+  "signature": "_DWORD *__thiscall(_DWORD *this, _DWORD *a2, int a3, int a4)",
+  "decompiled_c": "_DWORD *__thiscall sub_1009D209(_DWORD *this, _DWORD *a2, int a3, int a4)\n{\n  _DWORD *result; // eax\n\n  result = *(_DWORD **)(*(_DWORD *)(*(this + 5) + 4 * a3) + 20);\n  if ( result != (_DWORD *)-1 )\n    return sub_1009D096(this, a2, (int)result, a4);\n  return result;\n}\n"
+}

@@ -1,0 +1,8 @@
+{
+  "name": "sub_1004D7B9",
+  "mangled_name": "sub_1004D7B9",
+  "address": "0x1004D7B9",
+  "size_bytes": 83,
+  "signature": "void()",
+  "decompiled_c": "void sub_1004D7B9()\n{\n  while ( InterlockedCompareExchange(&Target, 1, 0) == 1 )\n    Sleep(1u);\n  if ( !dword_10164C50 )\n    InitializeCriticalSection(&CriticalSection);\n  ++dword_10164C50;\n  InterlockedExchange(&Target, 0);\n  EnterCriticalSection(&CriticalSection);\n}\n"
+}

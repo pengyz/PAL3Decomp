@@ -1,0 +1,8 @@
+{
+  "name": "sub_1001C2F0",
+  "mangled_name": "sub_1001C2F0",
+  "address": "0x1001C2F0",
+  "size_bytes": 102,
+  "signature": "void __thiscall(void **this)",
+  "decompiled_c": "void __thiscall sub_1001C2F0(void **this)\n{\n  *this = &off_100F574C;\n  if ( *(this + 2) == (void *)2 )\n    free(*(this + 4));\n  else\n    (*(void (__stdcall **)(_DWORD))(*(_DWORD *)*(this + 4) + 8))(*(this + 4));\n  gbIndexPool::~gbIndexPool((gbIndexPool *)this);\n}\n"
+}

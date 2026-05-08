@@ -1,0 +1,8 @@
+{
+  "name": "sub_1004521D",
+  "mangled_name": "sub_1004521D",
+  "address": "0x1004521D",
+  "size_bytes": 115,
+  "signature": "void __thiscall(_DWORD *this, int a2, int a3, void *a4)",
+  "decompiled_c": "void __thiscall sub_1004521D(_DWORD *this, int a2, int a3, void *a4)\n{\n  if ( sub_1003BF94((int)this, *(this + 16) + a2, *(this + 19) + a3, 1) >= 0 )\n  {\n    qmemcpy(a4, (const void *)(*(this + 32) + 16 * (*(this + 15) - *(this + 33))), 16 * *(this + 26));\n    if ( *(this + 6) )\n      sub_1003C954((int)this, (unsigned int)a4);\n    if ( *(this + 4) )\n      sub_1003CBEB(this, (unsigned int)a4);\n  }\n}\n"
+}

@@ -1,0 +1,8 @@
+{
+  "name": "sub_1002DB70",
+  "mangled_name": "sub_1002DB70",
+  "address": "0x1002DB70",
+  "size_bytes": 88,
+  "signature": "bool __cdecl(HANDLE hFile, LPVOID lpBuffer, DWORD nNumberOfBytesToRead)",
+  "decompiled_c": "bool __cdecl sub_1002DB70(HANDLE hFile, LPVOID lpBuffer, DWORD nNumberOfBytesToRead)\n{\n  bool result; // al\n\n  if ( dword_10120654 == 4 )\n  {\n    result = ReadFile(hFile, lpBuffer, nNumberOfBytesToRead, &NumberOfBytesRead, 0);\n    byte_1014B754 = result;\n    if ( NumberOfBytesRead == nNumberOfBytesToRead )\n      return result;\n    sub_1002E850(0x10u, aErrorCeCannotR, (char)aDProjectGbengi_0);\n  }\n  return 0;\n}\n"
+}

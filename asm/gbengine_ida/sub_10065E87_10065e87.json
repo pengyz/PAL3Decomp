@@ -1,0 +1,8 @@
+{
+  "name": "sub_10065E87",
+  "mangled_name": "sub_10065E87",
+  "address": "0x10065E87",
+  "size_bytes": 162,
+  "signature": "int __thiscall(_DWORD *this, int a2, int a3, _DWORD *a4)",
+  "decompiled_c": "int __thiscall sub_10065E87(_DWORD *this, int a2, int a3, _DWORD *a4)\n{\n  _DWORD *v4; // edi\n  int v5; // eax\n  int v6; // esi\n  int v7; // eax\n  _DWORD *i; // ebx\n  int v9; // edi\n  int v10; // eax\n  int v11; // eax\n\n  v4 = a4;\n  if ( a4 )\n    v5 = *(_DWORD *)(a4[2] + 4 * a3);\n  else\n    v5 = a3;\n  v6 = *(this + 6) + 24 * v5;\n  if ( a2 != *(_DWORD *)(v6 + 4) )\n  {\n    if ( a2 )\n      (*(void (__stdcall **)(int))(*(_DWORD *)a2 + 4))(a2);\n    v7 = *(_DWORD *)(v6 + 4);\n    if ( v7 )\n    {\n      (*(void (__stdcall **)(_DWORD))(*(_DWORD *)v7 + 8))(*(_DWORD *)(v6 + 4));\n      *(_DWORD *)(v6 + 4) = 0;\n    }\n    *(_DWORD *)(v6 + 4) = a2;\n    if ( a4 )\n    {\n      for ( i = (_DWORD *)a4[4]; i != v4; i = (_DWORD *)i[4] )\n      {\n        if ( *i )\n        {\n          v9 = *(_DWORD *)(*i + 24) + 24 * *(_DWORD *)(i[2] + 4 * a3);\n          v10 = *(_DWORD *)(v6 + 4);\n          if ( v10 )\n            (*(void (__stdcall **)(_DWORD))(*(_DWORD *)v10 + 4))(*(_DWORD *)(v6 + 4));\n          v11 = *(_DWORD *)(v9 + 4);\n          if ( v11 )\n          {\n            (*(void (__stdcall **)(_DWORD))(*(_DWORD *)v11 + 8))(*(_DWORD *)(v9 + 4));\n            *(_DWORD *)(v9 + 4) = 0;\n          }\n          *(_DWORD *)(v9 + 4) = *(_DWORD *)(v6 + 4);\n          v4 = a4;\n        }\n      }\n    }\n  }\n  return 0;\n}\n"
+}

@@ -4,5 +4,5 @@
   "address": "0x100115E0",
   "size_bytes": 110,
   "signature": "void __thiscall(gbGeomNode *this, float a2)",
-  "decompiled_c": "void __thiscall gbGeomNode::Reset(gbGeomNode *this, float a2)\n{\n  double v2; // st7\n\n  if ( a2 >= 0.0 )\n  {\n    *((double *)this + 30) = a2;\n  }\n  else\n  {\n    v2 = *((float *)this + 62) * 0.99000001;\n    *((double *)this + 30) = v2;\n    if ( v2 < 0.0 )\n    {\n      *((_DWORD *)this + 60) = 0;\n      *((_DWORD *)this + 61) = 0;\n      *((_DWORD *)this + 64) = 0;\n      gbVisNode::Reset(this, a2);\n      return;\n    }\n  }\n  *((_DWORD *)this + 64) = 0;\n  gbVisNode::Reset(this, a2);\n}\n"
+  "decompiled_c": "void __thiscall gbGeomNode::Reset(gbGeomNode *this, float a2)\n{\n  double v2; // st7\n\n  if ( a2 >= 0.0 )\n  {\n    this->currentTime = a2;\n  }\n  else\n  {\n    v2 = this->animMaxTime * 0.99000001;\n    this->currentTime = v2;\n    if ( v2 < 0.0 )\n    {\n      this->currentTime = 0.0;\n      this->loopPast = 0;\n      gbVisNode::Reset((gbVisNode *)this, a2);\n      return;\n    }\n  }\n  this->loopPast = 0;\n  gbVisNode::Reset((gbVisNode *)this, a2);\n}\n"
 }

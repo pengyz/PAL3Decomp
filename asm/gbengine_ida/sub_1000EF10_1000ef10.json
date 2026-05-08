@@ -1,0 +1,8 @@
+{
+  "name": "sub_1000EF10",
+  "mangled_name": "sub_1000EF10",
+  "address": "0x1000EF10",
+  "size_bytes": 77,
+  "signature": "struct gbDynVertBuf *__thiscall(_DWORD *this)",
+  "decompiled_c": "struct gbDynVertBuf *__thiscall sub_1000EF10(_DWORD *this)\n{\n  struct gbDynVertBuf *result; // eax\n  struct gbDynVertBuf *v3; // ebp\n  _DWORD *v4; // esi\n  int v5; // ebx\n\n  result = gbVertPoolMgr::GetDynVertBuf(*(gbVertPoolMgr **)(*(this + 1504) + 196), 5u);\n  v3 = result;\n  v4 = this;\n  v5 = 32;\n  do\n  {\n    if ( *v4 )\n    {\n      if ( (int)v4[46] >= 3 )\n        result = (struct gbDynVertBuf *)sub_1000F1A0(v3, *(this + 1506));\n    }\n    v4 += 47;\n    --v5;\n  }\n  while ( v5 );\n  return result;\n}\n"
+}

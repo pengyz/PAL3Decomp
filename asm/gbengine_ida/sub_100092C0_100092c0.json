@@ -1,0 +1,8 @@
+{
+  "name": "sub_100092C0",
+  "mangled_name": "sub_100092C0",
+  "address": "0x100092C0",
+  "size_bytes": 158,
+  "signature": "int __thiscall(_DWORD *this, _DWORD *a2, unsigned int a3, int a4, int a5)",
+  "decompiled_c": "int __thiscall sub_100092C0(_DWORD *this, _DWORD *a2, unsigned int a3, int a4, int a5)\n{\n  int v6; // eax\n  unsigned int *v7; // edi\n  int v8; // eax\n  int v9; // esi\n  char *v10; // eax\n  char *v11; // ebx\n\n  v6 = *(this + 31);\n  v7 = *(unsigned int **)(v6 + 4 * a5);\n  if ( !v7[81] )\n  {\n    sub_10007600(*(_DWORD *)(v6 + 4 * a5));\n    v8 = sub_10002A70(this, (int)v7);\n    v9 = v8;\n    if ( v8 )\n    {\n      v10 = *(char **)(v8 + 324);\n      if ( v10 )\n      {\n        v11 = v10 - 4;\n        `eh vector destructor iterator'(v10, 0x50u, *((_DWORD *)v10 - 1), (void (__thiscall *)(void *))sub_10007320);\n        operator delete(v11);\n        *(_DWORD *)(v9 + 324) = 0;\n      }\n      if ( *(_DWORD *)(v9 + 332) )\n      {\n        operator delete(*(void **)(v9 + 332));\n        *(_DWORD *)(v9 + 332) = 0;\n      }\n      *(_DWORD *)(v9 + 336) = 0;\n      *(_DWORD *)(v9 + 320) = 0;\n    }\n  }\n  return sub_10007A80(v7, a2, a3, a4);\n}\n"
+}

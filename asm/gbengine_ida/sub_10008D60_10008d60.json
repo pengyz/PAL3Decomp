@@ -1,0 +1,8 @@
+{
+  "name": "sub_10008D60",
+  "mangled_name": "sub_10008D60",
+  "address": "0x10008D60",
+  "size_bytes": 129,
+  "signature": "int __thiscall(_DWORD *this, int a2, int a3)",
+  "decompiled_c": "int __thiscall sub_10008D60(_DWORD *this, int a2, int a3)\n{\n  int result; // eax\n  int v4; // esi\n  int v5; // edi\n  int v6; // ebp\n  int v7; // ebx\n  bool v8; // cc\n  int v9; // [esp+0h] [ebp-Ch]\n  int v10; // [esp+4h] [ebp-8h]\n  _DWORD *v11; // [esp+8h] [ebp-4h]\n\n  result = 0;\n  v11 = this;\n  v10 = 0;\n  if ( (int)*(this + 26) > 0 )\n  {\n    v9 = 0;\n    do\n    {\n      v4 = v9 + *(this + 27);\n      v5 = 0;\n      v6 = *(_DWORD *)(a2 + 104);\n      if ( *(int *)(v4 + 40) > 0 )\n      {\n        v7 = 0;\n        do\n        {\n          nullsub_6(v6, a3, v7 + *(_DWORD *)(v4 + 36));\n          ++v5;\n          v7 += 1180;\n        }\n        while ( v5 < *(_DWORD *)(v4 + 40) );\n        this = v11;\n      }\n      result = v10 + 1;\n      v8 = ++v10 < *(this + 26);\n      v9 += 44;\n    }\n    while ( v8 );\n  }\n  return result;\n}\n"
+}

@@ -1,0 +1,8 @@
+{
+  "name": "sub_100972DC",
+  "mangled_name": "sub_100972DC",
+  "address": "0x100972DC",
+  "size_bytes": 257,
+  "signature": "void __stdcall(int *__attribute__((__org_typedef(jmp_buf))) Buf, int a2, unsigned int a3)",
+  "decompiled_c": "void __stdcall sub_100972DC(jmp_buf Buf, int a2, unsigned int a3)\n{\n  int *__attribute__((__org_typedef(jmp_buf))) v3; // esi\n  int v4; // eax\n  int v5; // edi\n  int v6; // eax\n  int v7; // eax\n  double v8; // st7\n\n  v3 = Buf;\n  v4 = Buf[22];\n  v5 = a2;\n  if ( (v4 & 1) == 0 )\n    sub_10078BD5(Buf, (int)\"Missing IHDR before gAMA\");\n  if ( (v4 & 4) != 0 )\n  {\n    sub_10078BF3((int)Buf, (int)\"Invalid gAMA after IDAT\");\n    goto LABEL_5;\n  }\n  if ( (v4 & 2) != 0 )\n  {\n    sub_10078BF3((int)Buf, (int)\"Out of place gAMA chunk\");\n  }\n  else if ( a2 )\n  {\n    v6 = *(_DWORD *)(a2 + 8);\n    if ( (v6 & 1) != 0 && (v6 & 0x800) == 0 )\n    {\n      sub_10078BF3((int)Buf, (int)\"Duplicate gAMA chunk\");\n      goto LABEL_5;\n    }\n  }\n  if ( a3 != 4 )\n  {\n    sub_10078BF3((int)v3, (int)\"Incorrect gAMA chunk length\");\nLABEL_5:\n    sub_10096F18(v3, a3);\n    return;\n  }\n  sub_1009664F(v3, &Buf, 4);\n  if ( !sub_10096F18(v3, 0) )\n  {\n    v7 = sub_1009662A((unsigned __int8 *)&Buf);\n    if ( v7 )\n    {\n      if ( (*(_DWORD *)(v5 + 8) & 0x800) != 0 && (a3 = v7, fabs((double)(unsigned int)v7 - 45455.0) > 500.0) )\n      {\n        sub_10078BF3((int)v3, (int)\"Ignoring incorrect gAMA value when sRGB is also present\");\n      }\n      else\n      {\n        a3 = v7;\n        v8 = (double)(unsigned int)v7 * 0.0000099999997;\n        *((float *)v3 + 76) = v8;\n        sub_10078D83((int)v3, v5, v8);\n      }\n    }\n  }\n}\n"
+}

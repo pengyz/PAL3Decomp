@@ -1,0 +1,8 @@
+{
+  "name": "sub_100659D1",
+  "mangled_name": "sub_100659D1",
+  "address": "0x100659D1",
+  "size_bytes": 166,
+  "signature": "int __stdcall(_DWORD *a1, const char *a2, const char *a3)",
+  "decompiled_c": "int __stdcall sub_100659D1(_DWORD *a1, const char *a2, const char *a3)\n{\n  int v3; // eax\n  int v4; // ecx\n  int v5; // ebx\n  _DWORD *v6; // edi\n  _DWORD *v7; // eax\n  const char *v8; // eax\n  bool v9; // zf\n  int v11; // [esp+Ch] [ebp+8h]\n  unsigned int v12; // [esp+10h] [ebp+Ch]\n\n  v3 = sub_10065803(a1, a2, 1);\n  v5 = v3;\n  if ( !v3 )\n    return 0;\n  v12 = 0;\n  if ( *(_DWORD *)(v3 + 44) )\n  {\n    v11 = *(_DWORD *)(v4 + 32);\n    v6 = (_DWORD *)(*(_DWORD *)(v3 + 48) + 32);\n    while ( 1 )\n    {\n      v7 = (_DWORD *)(v11 + *v6);\n      if ( !*v7 )\n        break;\n      v8 = (const char *)(v7 + 1);\n      if ( !v8 )\n        break;\n      if ( a3 )\n      {\n        v9 = strcmp(v8, a3) == 0;\n        goto LABEL_9;\n      }\nLABEL_10:\n      ++v12;\n      v6 += 12;\n      if ( v12 >= *(_DWORD *)(v5 + 44) )\n        goto LABEL_11;\n    }\n    v9 = a3 == 0;\nLABEL_9:\n    if ( v9 )\n      goto LABEL_11;\n    goto LABEL_10;\n  }\nLABEL_11:\n  if ( *(_DWORD *)(v5 + 44) != v12 )\n    return ~(*(_DWORD *)(v5 + 48) + 48 * v12);\n  else\n    return 0;\n}\n"
+}

@@ -1,0 +1,8 @@
+{
+  "name": "sub_1007E125",
+  "mangled_name": "sub_1007E125",
+  "address": "0x1007E125",
+  "size_bytes": 83,
+  "signature": "_DWORD *__thiscall(_DWORD *this, int a2, int a3)",
+  "decompiled_c": "_DWORD *__thiscall sub_1007E125(_DWORD *this, int a2, int a3)\n{\n  DWORD dwPageSize; // ecx\n  int v5; // eax\n  int v6; // ecx\n  struct _SYSTEM_INFO SystemInfo; // [esp+4h] [ebp-24h] BYREF\n\n  *this = 0;\n  GetSystemInfo(&SystemInfo);\n  dwPageSize = SystemInfo.dwPageSize;\n  *(this + 2) = 0;\n  *(this + 3) = 0;\n  *(this + 4) = 0;\n  v5 = ~(dwPageSize - 1) & (dwPageSize + a3 - 1);\n  v6 = a2;\n  *(this + 1) = v5;\n  if ( !a2 )\n    v6 = 0x100000;\n  *(this + 5) = ~(v5 - 1) & (v5 + v6 - 1);\n  return this;\n}\n"
+}

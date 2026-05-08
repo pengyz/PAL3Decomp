@@ -1,0 +1,8 @@
+{
+  "name": "sub_10009C00",
+  "mangled_name": "sub_10009C00",
+  "address": "0x10009C00",
+  "size_bytes": 106,
+  "signature": "int __thiscall(int *this, int a2, int a3, int a4)",
+  "decompiled_c": "int __thiscall sub_10009C00(int *this, int a2, int a3, int a4)\n{\n  int v5; // ebp\n  int v6; // esi\n  _DWORD *v7; // edi\n  int v8; // eax\n\n  v5 = *(this + 25);\n  if ( a4 < v5 )\n    return *(this + 25);\n  v6 = 0;\n  if ( v5 <= 0 )\n    return *(this + 25);\n  do\n  {\n    v7 = (_DWORD *)(a3 + 4 * v6);\n    v8 = gbCrc32Compute((const char *)(*(_DWORD *)(*(this + 23) + 4 * v6++) + 4));\n    *(_DWORD *)((char *)v7 + a2 - a3) = v8;\n    *v7 = *(_DWORD *)(*(_DWORD *)(*(this + 23) + 4 * v6 - 4) + 388);\n  }\n  while ( v6 < v5 );\n  return v5;\n}\n"
+}

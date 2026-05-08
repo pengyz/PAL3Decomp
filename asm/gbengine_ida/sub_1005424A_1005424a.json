@@ -1,0 +1,8 @@
+{
+  "name": "sub_1005424A",
+  "mangled_name": "sub_1005424A",
+  "address": "0x1005424A",
+  "size_bytes": 84,
+  "signature": "int __stdcall(int a1, float a2)",
+  "decompiled_c": "int __stdcall sub_1005424A(int a1, float a2)\n{\n  int v2; // esi\n  int v3; // eax\n  int v4; // edi\n  int v5; // eax\n  int v6; // eax\n  __int64 v7; // rax\n\n  v2 = *(_DWORD *)(a1 + 8);\n  v3 = *(_DWORD *)(v2 + 16);\n  v4 = 0;\n  if ( !v3 )\n  {\n    LODWORD(v7) = 0.0 != a2;\n    goto LABEL_9;\n  }\n  v5 = v3 - 1;\n  if ( !v5 || (v6 = v5 - 1) == 0 )\n  {\n    v7 = (__int64)a2;\nLABEL_9:\n    *(_DWORD *)(v2 + 24) = v7;\n    return v4;\n  }\n  if ( v6 != 1 )\n    return -2005530516;\n  *(double *)(v2 + 24) = a2;\n  return v4;\n}\n"
+}

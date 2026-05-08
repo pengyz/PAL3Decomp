@@ -1,0 +1,8 @@
+{
+  "name": "sub_10049478",
+  "mangled_name": "sub_10049478",
+  "address": "0x10049478",
+  "size_bytes": 161,
+  "signature": "float *__stdcall(float *a1, float *a2)",
+  "decompiled_c": "float *__stdcall sub_10049478(float *a1, float *a2)\n{\n  float *result; // eax\n  float *v4; // esi\n  long double v5; // st7\n  long double v6; // st7\n  float v7; // [esp+18h] [ebp+Ch]\n\n  v7 = *a2 * *a2 + a2[1] * a2[1] + a2[2] * a2[2];\n  if ( sub_10046BF4(v7, 1.0) )\n  {\n    result = a1;\n    if ( a1 != a2 )\n    {\n      *a1 = *a2;\n      v4 = a2 + 1;\n      a1[1] = *v4++;\n      a1[2] = *v4;\n      a1[3] = v4[1];\n    }\n  }\n  else\n  {\n    result = a1;\n    if ( v7 <= 1.1754944e-38 )\n    {\n      *a1 = 0.0;\n      a1[1] = 0.0;\n      a1[2] = 0.0;\n      v6 = 0.0;\n    }\n    else\n    {\n      v5 = 1.0 / sqrt(v7);\n      *a1 = v5 * *a2;\n      a1[1] = v5 * a2[1];\n      a1[2] = v5 * a2[2];\n      v6 = v5 * a2[3];\n    }\n    a1[3] = v6;\n  }\n  return result;\n}\n"
+}

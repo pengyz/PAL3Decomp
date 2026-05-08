@@ -1,0 +1,8 @@
+{
+  "name": "sub_1000EC20",
+  "mangled_name": "sub_1000EC20",
+  "address": "0x1000EC20",
+  "size_bytes": 146,
+  "signature": "int __thiscall(int this, int a2)",
+  "decompiled_c": "int __thiscall sub_1000EC20(int this, int a2)\n{\n  _DWORD *v3; // edx\n  int v4; // ebp\n  _DWORD *v5; // edi\n\n  *(_DWORD *)(this + 6016) = a2;\n  *(_DWORD *)(this + 6024) = gbEffectMgr::NewRenderEffect(*(gbEffectMgr **)(a2 + 200), aGfxscriptBlade, 0);\n  *(_DWORD *)(this + 6028) = 1065353216;\n  v3 = (_DWORD *)(this + 168);\n  v4 = 32;\n  *(float *)(this + 6020) = g_CurrentTime;\n  do\n  {\n    *(v3 - 42) = 0;\n    *(v3 - 41) = 0;\n    v5 = v3 - 40;\n    *v3 = 1036831949;\n    v3[1] = *(_DWORD *)(this + 6020);\n    v3[2] = 0;\n    v3[3] = 0;\n    v3[4] = 0;\n    v3 += 47;\n    --v4;\n    memset(v5, 0, 0xA0u);\n  }\n  while ( v4 );\n  return this;\n}\n"
+}

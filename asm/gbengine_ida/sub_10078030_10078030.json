@@ -1,0 +1,8 @@
+{
+  "name": "sub_10078030",
+  "mangled_name": "sub_10078030",
+  "address": "0x10078030",
+  "size_bytes": 154,
+  "signature": "int __userpurge@<eax>(_BYTE *a1@<eax>, unsigned int a2@<ecx>, int *a3@<esi>, int a4)",
+  "decompiled_c": "int __userpurge sub_10078030@<eax>(_BYTE *a1@<eax>, unsigned int a2@<ecx>, int *a3@<esi>, int a4)\n{\n  int v4; // ecx\n  int v5; // ebx\n  int v6; // edi\n  int result; // eax\n  int v8; // eax\n\n  if ( a2 >= 0xC && *a1 == 65 && a1[1] == 100 && a1[2] == 111 && a1[3] == 98 && a1[4] == 101 )\n  {\n    v4 = *a3;\n    v5 = (unsigned __int8)a1[11];\n    v6 = (unsigned __int8)a1[8];\n    *(_DWORD *)(v4 + 24) = (unsigned __int8)a1[6] + ((unsigned __int8)a1[5] << 8);\n    *(_DWORD *)(v4 + 28) = v6 + ((unsigned __int8)a1[7] << 8);\n    *(_DWORD *)(v4 + 32) = (unsigned __int8)a1[10] + ((unsigned __int8)a1[9] << 8);\n    *(_DWORD *)(v4 + 36) = v5;\n    *(_DWORD *)(v4 + 20) = 76;\n    result = (*(int (__stdcall **)(int *, int))(v4 + 4))(a3, 1);\n    *((_BYTE *)a3 + 300) = v5;\n    a3[74] = 1;\n  }\n  else\n  {\n    v8 = *a3;\n    *(_DWORD *)(v8 + 20) = 78;\n    *(_DWORD *)(v8 + 24) = a4 + a2;\n    return (*(int (__stdcall **)(int *, int))(v8 + 4))(a3, 1);\n  }\n  return result;\n}\n"
+}

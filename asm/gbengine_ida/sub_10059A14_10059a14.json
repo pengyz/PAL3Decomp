@@ -1,0 +1,8 @@
+{
+  "name": "sub_10059A14",
+  "mangled_name": "sub_10059A14",
+  "address": "0x10059A14",
+  "size_bytes": 64,
+  "signature": "int __thiscall(_DWORD *this, int a2)",
+  "decompiled_c": "int __thiscall sub_10059A14(_DWORD *this, int a2)\n{\n  int i; // eax\n  int v3; // edx\n\n  for ( i = *(this + 4); ; i = *(_DWORD *)(i + 32) )\n  {\n    if ( !i )\n      return a2;\n    v3 = *(_DWORD *)(i + 16);\n    if ( v3 == 2 || v3 == 3 || v3 == 4 )\n      break;\n  }\n  sub_10058D70((int)this, (int)(this + 8), 3064, \"object literals are not allowed inside functions\");\n  return 0;\n}\n"
+}

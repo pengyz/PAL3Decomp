@@ -1,0 +1,8 @@
+{
+  "name": "sub_10055701",
+  "mangled_name": "sub_10055701",
+  "address": "0x10055701",
+  "size_bytes": 221,
+  "signature": "int __thiscall(_DWORD *this, int a2, int a3)",
+  "decompiled_c": "int __thiscall sub_10055701(_DWORD *this, int a2, int a3)\n{\n  _DWORD *v3; // esi\n  _DWORD *v4; // ecx\n  _DWORD *v5; // ebx\n  int v6; // edi\n  int *v7; // eax\n  int v9; // ebx\n  int v10; // edi\n  int i; // eax\n  int v12; // [esp+Ch] [ebp-8h] BYREF\n  _DWORD *v13; // [esp+10h] [ebp-4h]\n\n  v3 = (_DWORD *)a2;\n  v13 = this;\n  v4 = *(_DWORD **)(a2 + 8);\n  v5 = 0;\n  if ( v4 )\n  {\n    sub_10054F79(v4, 3);\n    v3[2] = 0;\n  }\n  v6 = a3;\n  v7 = (int *)operator new(32 * a3 + 4);\n  if ( v7 )\n  {\n    v5 = v7 + 1;\n    *v7 = v6;\n    sub_10033415((int)(v7 + 1), 32, v6, (int (__thiscall *)(int))sub_1005107A);\n  }\n  v3[2] = v5;\n  if ( !v5 )\n    return -2147024882;\n  v9 = v3[7];\n  a2 = *(_DWORD *)(v3[1] + 64) + v3[6] + 24;\n  if ( v6 )\n  {\n    v10 = 0;\n    do\n    {\n      *(_DWORD *)(v10 + v3[2]) = 3;\n      *(_DWORD *)(v10 + v3[2] + 4) = v3[1];\n      *(_DWORD *)(v10 + v3[2] + 24) = a2 - *(_DWORD *)(v3[1] + 64);\n      *(_DWORD *)(v10 + v3[2] + 20) = sub_1005176D(v13[209], &a2, &v12);\n      *(_DWORD *)(v10 + v3[2] + 28) = v9;\n      for ( i = v12; i; v9 = *(_DWORD *)(v9 + 12) )\n        --i;\n      v10 += 32;\n      --a3;\n    }\n    while ( a3 );\n  }\n  return 0;\n}\n"
+}

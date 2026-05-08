@@ -1,0 +1,8 @@
+{
+  "name": "sub_10073034",
+  "mangled_name": "sub_10073034",
+  "address": "0x10073034",
+  "size_bytes": 299,
+  "signature": "int __stdcall(int *a1, unsigned int a2, _DWORD *a3)",
+  "decompiled_c": "int __stdcall sub_10073034(int *a1, unsigned int a2, _DWORD *a3)\n{\n  int result; // eax\n  int v4; // eax\n  int v5; // edi\n  int v6; // ecx\n  int v7; // edx\n  int *v8; // eax\n  int v9; // edx\n  int v10; // edx\n\n  if ( !a3 )\n    return -2005530516;\n  *(_DWORD *)(a1[40] + 4) = 2;\n  *(_DWORD *)a1[40] = 3;\n  *(_DWORD *)(a1[40] + 16) = 0;\n  *(_DWORD *)(a1[40] + 20) = 4;\n  *(_DWORD *)(a1[40] + 24) = 4;\n  v4 = sub_100714A6(a1, a2, 1u, 1);\n  v5 = v4;\n  if ( !v4 )\n    return -2005530516;\n  v6 = *(_DWORD *)(a1[39] + 4 * *(unsigned __int16 *)(v4 + 4));\n  if ( (*(_BYTE *)(v6 + 32) & 2) != 0 )\n    return -2005530516;\n  v7 = *(_DWORD *)(v6 + 56) ? *(_DWORD *)(a1[14] + 8) : a1[8];\n  v8 = (int *)(v7 + *(_DWORD *)(v4 + 8) + *(_DWORD *)(v6 + 36));\n  if ( v8[4] )\n  {\n    if ( *(_DWORD *)(v5 + 24) == -1 )\n      return -2005530516;\n  }\n  if ( a1[15] == 3 )\n    return sub_1006E171(a1, ~v5, a3);\n  if ( v8[1] == 2 )\n  {\n    if ( *(_DWORD *)(v6 + 56) )\n      v10 = *(_DWORD *)(a1[14] + 8);\n    else\n      v10 = a1[8];\n    result = sub_10066056(v8, (_DWORD *)(v10 + *(_DWORD *)(v5 + 12) + *(_DWORD *)(v6 + 40)), a3, 1);\n    goto LABEL_23;\n  }\n  if ( v8[1] != 3 )\n    return -2005530516;\n  if ( *(_DWORD *)(v6 + 56) )\n    v9 = *(_DWORD *)(a1[14] + 8);\n  else\n    v9 = a1[8];\n  result = sub_10066202(v8, (_DWORD *)(v9 + *(_DWORD *)(v5 + 12) + *(_DWORD *)(v6 + 40)), a3, 1);\nLABEL_23:\n  if ( result >= 0 )\n    return sub_10071CD3(a1, v5);\n  return result;\n}\n"
+}

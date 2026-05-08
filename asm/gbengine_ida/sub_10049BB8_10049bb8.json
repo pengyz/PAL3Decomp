@@ -1,0 +1,8 @@
+{
+  "name": "sub_10049BB8",
+  "mangled_name": "sub_10049BB8",
+  "address": "0x10049BB8",
+  "size_bytes": 131,
+  "signature": "float *__stdcall(float *a1, int a2, float *a3, int a4, float *a5, int a6)",
+  "decompiled_c": "float *__stdcall sub_10049BB8(float *a1, int a2, float *a3, int a4, float *a5, int a6)\n{\n  int v6; // eax\n  float *i; // ebx\n  float *v9; // edi\n  double v10; // st7\n  double v11; // st6\n  float v13; // [esp+4h] [ebp-10h]\n  float v14; // [esp+8h] [ebp-Ch]\n  float v15; // [esp+Ch] [ebp-8h]\n  float v16; // [esp+10h] [ebp-4h]\n\n  v6 = a6;\n  for ( i = a1; v6; v9[1] = v16 )\n  {\n    v9 = i;\n    i = (float *)((char *)i + a2);\n    v13 = a5[4] * a3[1] + *a3 * *a5 + a5[12];\n    v14 = a5[1] * *a3 + a5[5] * a3[1] + a5[13];\n    v15 = a5[2] * *a3 + a5[6] * a3[1] + a5[14];\n    v10 = *a3 * a5[3];\n    v11 = a3[1];\n    a3 = (float *)((char *)a3 + a4);\n    --v6;\n    v16 = v10 + v11 * a5[7] + a5[15];\n    *v9++ = v13;\n    *v9++ = v14;\n    *v9 = v15;\n  }\n  return a1;\n}\n"
+}

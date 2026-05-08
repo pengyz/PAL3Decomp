@@ -1,0 +1,8 @@
+{
+  "name": "sub_100118F0",
+  "mangled_name": "sub_100118F0",
+  "address": "0x100118F0",
+  "size_bytes": 69,
+  "signature": "float *__cdecl(float *a1, float *a2, float a3)",
+  "decompiled_c": "float *__cdecl sub_100118F0(float *a1, float *a2, float a3)\n{\n  float v4; // [esp+0h] [ebp-Ch]\n  float v5; // [esp+4h] [ebp-8h]\n  float v6; // [esp+8h] [ebp-4h]\n\n  v4 = a3 * *a2;\n  v5 = a3 * a2[1];\n  v6 = a3 * a2[2];\n  *a1 = v4;\n  a1[1] = v5;\n  a1[2] = v6;\n  return a1;\n}\n"
+}

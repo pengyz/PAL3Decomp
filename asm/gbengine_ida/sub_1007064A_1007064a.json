@@ -1,0 +1,8 @@
+{
+  "name": "sub_1007064A",
+  "mangled_name": "sub_1007064A",
+  "address": "0x1007064A",
+  "size_bytes": 39,
+  "signature": "void __thiscall(int this)",
+  "decompiled_c": "void __thiscall sub_1007064A(int this)\n{\n  _DWORD *v2; // ecx\n\n  if ( *(_DWORD *)this )\n  {\n    operator delete(*(void **)this);\n    *(_DWORD *)this = 0;\n  }\n  v2 = *(_DWORD **)(this + 4);\n  if ( v2 )\n  {\n    sub_1006C9AE(v2, 3);\n    *(_DWORD *)(this + 4) = 0;\n  }\n}\n"
+}

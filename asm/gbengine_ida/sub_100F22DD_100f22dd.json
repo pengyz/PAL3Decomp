@@ -1,0 +1,8 @@
+{
+  "name": "sub_100F22DD",
+  "mangled_name": "sub_100F22DD",
+  "address": "0x100F22DD",
+  "size_bytes": 68,
+  "signature": "int __cdecl(unsigned __int8 a1, int a2)",
+  "decompiled_c": "int __cdecl sub_100F22DD(unsigned __int8 a1, int a2)\n{\n  char v2; // cl\n\n  if ( a2 == 1 )\n    return (byte_10168641[a1] & 8) != 0 ? 2 : -1;\n  v2 = byte_10168641[a1];\n  if ( (v2 & 4) != 0 )\n    return 1;\n  if ( (_ctype[a1 + 1] & 0x157) != 0 || (v2 & 3) != 0 )\n    return 0;\n  return -1;\n}\n"
+}

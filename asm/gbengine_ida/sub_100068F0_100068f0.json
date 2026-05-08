@@ -1,0 +1,8 @@
+{
+  "name": "sub_100068F0",
+  "mangled_name": "sub_100068F0",
+  "address": "0x100068F0",
+  "size_bytes": 177,
+  "signature": "int __cdecl(int a1, int a2)",
+  "decompiled_c": "int __cdecl sub_100068F0(int a1, int a2)\n{\n  *(_DWORD *)a1 = *(_DWORD *)a2;\n  *(_DWORD *)(a1 + 4) = *(_DWORD *)(a2 + 4);\n  *(_DWORD *)(a1 + 8) = *(_DWORD *)(a2 + 8);\n  *(float *)(a1 + 24) = (double)*(unsigned __int8 *)(a2 + 20) * 0.0039215689;\n  *(float *)(a1 + 28) = (double)*(unsigned __int8 *)(a2 + 21) * 0.0039215689;\n  *(float *)(a1 + 32) = (double)*(unsigned __int8 *)(a2 + 22) * 0.0039215689;\n  *(float *)(a1 + 36) = (double)*(unsigned __int8 *)(a2 + 23) * 0.0039215689;\n  *(float *)(a1 + 40) = (float)*(unsigned __int8 *)(a2 + 12);\n  *(float *)(a1 + 44) = (float)*(unsigned __int8 *)(a2 + 13);\n  *(float *)(a1 + 48) = (float)*(unsigned __int8 *)(a2 + 14);\n  *(float *)(a1 + 52) = (float)*(unsigned __int8 *)(a2 + 15);\n  return a2;\n}\n"
+}

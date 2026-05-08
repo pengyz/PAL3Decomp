@@ -1,0 +1,8 @@
+{
+  "name": "sub_10011AE0",
+  "mangled_name": "sub_10011AE0",
+  "address": "0x10011AE0",
+  "size_bytes": 87,
+  "signature": "gbStaticMesh *__thiscall(gbStaticMesh *this, char a2)",
+  "decompiled_c": "gbStaticMesh *__thiscall sub_10011AE0(gbStaticMesh *this, char a2)\n{\n  if ( (a2 & 2) != 0 )\n  {\n    `eh vector destructor iterator'(\n      (char *)this,\n      0x84u,\n      *((_DWORD *)this - 1),\n      (void (__thiscall *)(void *))gbStaticMesh::~gbStaticMesh);\n    if ( (a2 & 1) != 0 )\n      operator delete((char *)this - 4);\n    return (gbStaticMesh *)((char *)this - 4);\n  }\n  else\n  {\n    gbStaticMesh::~gbStaticMesh(this);\n    if ( (a2 & 1) != 0 )\n      operator delete(this);\n    return this;\n  }\n}\n"
+}

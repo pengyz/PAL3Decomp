@@ -1,0 +1,8 @@
+{
+  "name": "sub_10097296",
+  "mangled_name": "sub_10097296",
+  "address": "0x10097296",
+  "size_bytes": 70,
+  "signature": "int __stdcall(int *__attribute__((__org_typedef(jmp_buf))) Buf, int a2, unsigned int a3)",
+  "decompiled_c": "int __stdcall sub_10097296(jmp_buf Buf, int a2, unsigned int a3)\n{\n  int v3; // eax\n\n  v3 = Buf[22];\n  if ( (v3 & 1) == 0 || (v3 & 4) == 0 )\n    sub_10078BD5(Buf, (int)\"No image in file\");\n  Buf[22] |= 0x18u;\n  if ( a3 )\n    sub_10078BF3((int)Buf, (int)\"Incorrect IEND chunk length\");\n  return sub_10096F18(Buf, a3);\n}\n"
+}

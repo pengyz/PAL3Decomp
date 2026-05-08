@@ -1,0 +1,8 @@
+{
+  "name": "sub_10095632",
+  "mangled_name": "sub_10095632",
+  "address": "0x10095632",
+  "size_bytes": 245,
+  "signature": "int __stdcall(int a1, _BYTE *a2, unsigned int a3)",
+  "decompiled_c": "int __stdcall sub_10095632(int a1, _BYTE *a2, unsigned int a3)\n{\n  _BYTE *v3; // edx\n  unsigned int v5; // eax\n  unsigned int v6; // esi\n  unsigned int v7; // edi\n  unsigned int v8; // esi\n  _BYTE *v9; // edx\n  unsigned int v10; // esi\n  unsigned int v11; // esi\n  unsigned int v12; // esi\n  unsigned int v13; // esi\n  unsigned int v14; // esi\n  unsigned int v15; // esi\n\n  v3 = a2;\n  if ( !a2 )\n    return 0;\n  v5 = a3;\n  v6 = ~a1;\n  if ( a3 >= 8 )\n  {\n    v7 = a3 >> 3;\n    do\n    {\n      v5 -= 8;\n      v8 = dword_10109B50[(unsigned __int8)(v6 ^ *v3)] ^ (v6 >> 8);\n      v9 = v3 + 1;\n      v10 = dword_10109B50[(unsigned __int8)(v8 ^ *v9++)] ^ (v8 >> 8);\n      v11 = dword_10109B50[(unsigned __int8)(v10 ^ *v9++)] ^ (v10 >> 8);\n      v12 = dword_10109B50[(unsigned __int8)(v11 ^ *v9++)] ^ (v11 >> 8);\n      v13 = dword_10109B50[(unsigned __int8)(v12 ^ *v9++)] ^ (v12 >> 8);\n      v14 = dword_10109B50[(unsigned __int8)(v13 ^ *v9++)] ^ (v13 >> 8);\n      v15 = dword_10109B50[(unsigned __int8)(v14 ^ *v9++)] ^ (v14 >> 8);\n      v6 = dword_10109B50[(unsigned __int8)(v15 ^ *v9)] ^ (v15 >> 8);\n      v3 = v9 + 1;\n      --v7;\n    }\n    while ( v7 );\n  }\n  for ( ; v5; --v5 )\n    v6 = dword_10109B50[(unsigned __int8)(v6 ^ *v3++)] ^ (v6 >> 8);\n  return ~v6;\n}\n"
+}

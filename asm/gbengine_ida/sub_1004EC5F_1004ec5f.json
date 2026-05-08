@@ -1,0 +1,8 @@
+{
+  "name": "sub_1004EC5F",
+  "mangled_name": "sub_1004EC5F",
+  "address": "0x1004EC5F",
+  "size_bytes": 149,
+  "signature": "BOOL __thiscall(_DWORD *this, char *a2)",
+  "decompiled_c": "BOOL __thiscall sub_1004EC5F(_DWORD *this, char *a2)\n{\n  int i; // esi\n  int v3; // eax\n  _DWORD *v5; // edi\n\n  for ( i = *(this + sub_1004E9C5(a2) + 27); ; i = *(_DWORD *)(i + 12) )\n  {\n    if ( !i )\n      return 0;\n    v3 = strcmp(a2, *(const char **)i);\n    if ( v3 < 0 )\n      return 0;\n    if ( !v3 )\n      break;\n  }\n  if ( *(_DWORD *)(i + 16) )\n    return 1;\n  v5 = *(_DWORD **)(i + 8);\n  *(_DWORD *)(i + 16) = 1;\n  while ( v5 && (v5[4] != 9 || !sub_1004EC5F(v5[6])) )\n    v5 = (_DWORD *)v5[3];\n  *(_DWORD *)(i + 16) = 0;\n  return v5 != 0;\n}\n"
+}

@@ -1,0 +1,8 @@
+{
+  "name": "sub_10048BA7",
+  "mangled_name": "sub_10048BA7",
+  "address": "0x10048BA7",
+  "size_bytes": 53,
+  "signature": "int __stdcall(int a1, _DWORD *a2, float *a3)",
+  "decompiled_c": "int __stdcall sub_10048BA7(int a1, _DWORD *a2, float *a3)\n{\n  int result; // eax\n  long double v4; // st7\n\n  result = a1;\n  if ( a2 )\n  {\n    *a2 = *(_DWORD *)a1;\n    a2[1] = *(_DWORD *)(a1 + 4);\n    a2[2] = *(_DWORD *)(a1 + 8);\n  }\n  if ( a3 )\n  {\n    v4 = acos(*(float *)(a1 + 12));\n    *a3 = v4 + v4;\n  }\n  return result;\n}\n"
+}

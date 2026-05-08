@@ -1,0 +1,8 @@
+{
+  "name": "sub_1004D370",
+  "mangled_name": "sub_1004D370",
+  "address": "0x1004D370",
+  "size_bytes": 259,
+  "signature": "unsigned int __thiscall(int this, char *a2, _DWORD *a3)",
+  "decompiled_c": "unsigned int __thiscall sub_1004D370(int this, char *a2, _DWORD *a3)\n{\n  char *v5; // esi\n  char *v6; // edi\n  int v7; // eax\n  char *v8; // edi\n  char *v9; // edi\n  unsigned int v10; // eax\n  unsigned int v11; // ebx\n  _BYTE v12[32]; // [esp+4h] [ebp-2Ch] BYREF\n  char v13[4]; // [esp+24h] [ebp-Ch] BYREF\n  int v14; // [esp+28h] [ebp-8h]\n\n  if ( (*(_BYTE *)(this + 40) & 2) == 0 )\n    return 0;\n  v5 = a2;\n  v6 = a2 + 1;\n  if ( (unsigned int)(a2 + 1) >= *(_DWORD *)(this + 4) )\n    return 0;\n  if ( !isalpha(*a2) )\n    return 0;\n  if ( !isalpha(*v6) )\n    return 0;\n  if ( (unsigned int)(v5 + 2) >= *(_DWORD *)(this + 4) )\n    return 0;\n  if ( v5[2] != 46 )\n    return 0;\n  v7 = sub_1004D138(this, v5 + 3, (unsigned int *)&a2);\n  if ( !v7 )\n    return 0;\n  if ( (unsigned int)a2 > 0xFF )\n    return 0;\n  v8 = &v5[v7 + 3];\n  if ( (unsigned int)v8 >= *(_DWORD *)(this + 4) || *v8 != 46 )\n    return 0;\n  v9 = v8 + 1;\n  v10 = sub_1004D138(this, v9, (unsigned int *)&a2);\n  if ( !v10 )\n  {\n    v10 = sub_1004C8C1((_DWORD *)this, v9, &a2);\n    if ( !v10 )\n      return 0;\n    a2 = 0;\n  }\n  if ( (unsigned int)a2 <= 0xFF )\n  {\n    v11 = &v9[v10] - v5;\n    if ( v11 < 0x20 )\n    {\n      qmemcpy(v12, v5, v11);\n      v12[v11] = 0;\n      if ( (int)sub_1007D864(v12, 1, v13) >= 0 )\n      {\n        *a3 = v14;\n        return v11;\n      }\n    }\n  }\n  return 0;\n}\n"
+}

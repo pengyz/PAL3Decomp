@@ -1,0 +1,8 @@
+{
+  "name": "sub_1004B52C",
+  "mangled_name": "sub_1004B52C",
+  "address": "0x1004B52C",
+  "size_bytes": 41,
+  "signature": "int __thiscall(int this)",
+  "decompiled_c": "int __thiscall sub_1004B52C(int this)\n{\n  int result; // eax\n\n  if ( *(_DWORD *)(this + 8) )\n  {\n    operator delete(*(void **)(this + 8));\n    *(_DWORD *)(this + 8) = 0;\n  }\n  *(_DWORD *)(*(_DWORD *)(this + 16) + 12) = *(_DWORD *)(this + 12);\n  result = *(_DWORD *)(this + 12);\n  *(_DWORD *)(result + 16) = *(_DWORD *)(this + 16);\n  return result;\n}\n"
+}

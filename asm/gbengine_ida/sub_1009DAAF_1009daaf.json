@@ -1,0 +1,8 @@
+{
+  "name": "sub_1009DAAF",
+  "mangled_name": "sub_1009DAAF",
+  "address": "0x1009DAAF",
+  "size_bytes": 25,
+  "signature": "int __thiscall(_DWORD *this)",
+  "decompiled_c": "int __thiscall sub_1009DAAF(_DWORD *this)\n{\n  unsigned int i; // eax\n\n  for ( i = 0; i < *(this + 2); ++i )\n    *(_DWORD *)(*(_DWORD *)(*(this + 5) + 4 * i) + 48) = i;\n  return 0;\n}\n"
+}

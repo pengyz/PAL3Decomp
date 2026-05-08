@@ -1,0 +1,8 @@
+{
+  "name": "sub_10049AC3",
+  "mangled_name": "sub_10049AC3",
+  "address": "0x10049AC3",
+  "size_bytes": 138,
+  "signature": "float *__stdcall(float *a1, float *a2)",
+  "decompiled_c": "float *__stdcall sub_10049AC3(float *a1, float *a2)\n{\n  float *v2; // ecx\n  float *result; // eax\n  float v4; // ecx\n  long double v5; // st7\n  long double v6; // st7\n  float v7; // [esp+8h] [ebp-8h]\n  float v8; // [esp+Ch] [ebp-4h]\n  float v9; // [esp+1Ch] [ebp+Ch]\n\n  v9 = *a2 * *a2 + a2[1] * a2[1];\n  if ( sub_10046BF4(v9, 1.0) )\n  {\n    result = a1;\n    if ( a1 == v2 )\n      return result;\n    *a1 = *v2;\n    v4 = v2[1];\n    goto LABEL_4;\n  }\n  result = a1;\n  if ( v9 > 1.1754944e-38 )\n  {\n    v5 = 1.0 / sqrt(v9);\n    v7 = v5 * *v2;\n    v6 = v5 * v2[1];\n    *a1 = v7;\n    v8 = v6;\n    v4 = v8;\nLABEL_4:\n    result[1] = v4;\n    return result;\n  }\n  *a1 = 0.0;\n  a1[1] = 0.0;\n  return result;\n}\n"
+}

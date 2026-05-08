@@ -1,0 +1,8 @@
+{
+  "name": "sub_1005A00B",
+  "mangled_name": "sub_1005A00B",
+  "address": "0x1005A00B",
+  "size_bytes": 309,
+  "signature": "int __thiscall(int *this, int a2)",
+  "decompiled_c": "int __thiscall sub_1005A00B(int *this, int a2)\n{\n  _DWORD *v3; // eax\n  void *v4; // edi\n  int v5; // esi\n  void *v7; // [esp-4h] [ebp-28h]\n  _BYTE v8[128]; // [esp+Ch] [ebp-18h] BYREF\n  void *v9; // [esp+8Ch] [ebp+68h]\n  int v10; // [esp+90h] [ebp+6Ch] BYREF\n  void *Block; // [esp+94h] [ebp+70h]\n  int v12; // [esp+A0h] [ebp+7Ch]\n\n  v10 = 0;\n  Block = 0;\n  sub_1008FA2E(v8);\n  if ( a2 )\n  {\n    v3 = (_DWORD *)operator new(8u);\n    Block = v3 ? unknown_libname_5(v3, (int)this, *(this + 4)) : 0;\n    if ( !Block )\n      goto LABEL_15;\n  }\n  if ( sub_10092B73(v8, *(this + 1), *this & 0xC3, Block, &v10) < 0 )\n    goto LABEL_15;\n  v12 = (*(int (__stdcall **)(int))(*(_DWORD *)v10 + 16))(v10);\n  v4 = (void *)sub_1007E198(v12, (LPVOID)1);\n  v9 = v4;\n  if ( !v4 )\n    goto LABEL_15;\n  qmemcpy(v4, (const void *)(*(int (__stdcall **)(int))(*(_DWORD *)v10 + 12))(v10), v12);\n  if ( v10 )\n  {\n    (*(void (__stdcall **)(int))(*(_DWORD *)v10 + 8))(v10);\n    v10 = 0;\n  }\n  v5 = sub_1007E198(56, (LPVOID)0x10) ? sub_1007EEE5(this + 8, v9, v12) : 0;\n  if ( v5 )\n  {\n    operator delete(Block);\n    sub_10091F95(v8);\n    return v5;\n  }\n  else\n  {\nLABEL_15:\n    sub_10091F95(v8);\n    v7 = Block;\n    *(this + 16) = 1;\n    operator delete(v7);\n    if ( v10 )\n      (*(void (__stdcall **)(int))(*(_DWORD *)v10 + 8))(v10);\n    return 0;\n  }\n}\n"
+}

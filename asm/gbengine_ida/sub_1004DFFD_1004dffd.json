@@ -1,0 +1,8 @@
+{
+  "name": "sub_1004DFFD",
+  "mangled_name": "sub_1004DFFD",
+  "address": "0x1004DFFD",
+  "size_bytes": 92,
+  "signature": "int __thiscall(int *this, int a2)",
+  "decompiled_c": "int __thiscall sub_1004DFFD(int *this, int a2)\n{\n  _DWORD *v3; // eax\n  _DWORD *v4; // eax\n  BOOL v6; // eax\n\n  v3 = (_DWORD *)operator new(0x10u);\n  if ( v3 )\n    v4 = sub_1004D85A(v3, a2, *(this + 20));\n  else\n    v4 = 0;\n  if ( !v4 )\n    return -2147024882;\n  v4[3] = *(_DWORD *)(*(this + 154) + 56);\n  *(_DWORD *)(*(this + 154) + 56) = v4;\n  v6 = *(this + 20) && a2;\n  *(this + 21) = v6;\n  return 0;\n}\n"
+}

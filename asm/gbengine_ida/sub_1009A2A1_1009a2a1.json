@@ -1,0 +1,8 @@
+{
+  "name": "sub_1009A2A1",
+  "mangled_name": "sub_1009A2A1",
+  "address": "0x1009A2A1",
+  "size_bytes": 149,
+  "signature": "void __thiscall(void *this)",
+  "decompiled_c": "void __thiscall sub_1009A2A1(void *this)\n{\n  bool v2; // zf\n  unsigned int i; // edi\n  void *v4; // ecx\n  unsigned int j; // edi\n  void *v6; // ecx\n  unsigned int k; // edi\n  void *v8; // ecx\n\n  v2 = *((_DWORD *)this + 4) == 0;\n  *(_DWORD *)this = &off_1010A688;\n  if ( !v2 )\n  {\n    for ( i = 0; i < *((_DWORD *)this + 1); ++i )\n    {\n      v4 = *(void **)(*((_DWORD *)this + 4) + 4 * i);\n      if ( v4 )\n        sub_10099DD0(v4, 1);\n    }\n    operator delete(*((void **)this + 4));\n  }\n  if ( *((_DWORD *)this + 5) )\n  {\n    for ( j = 0; j < *((_DWORD *)this + 2); ++j )\n    {\n      v6 = *(void **)(*((_DWORD *)this + 5) + 4 * j);\n      if ( v6 )\n        sub_10080CFB(v6, 1);\n    }\n    operator delete(*((void **)this + 5));\n  }\n  if ( *((_DWORD *)this + 6) )\n  {\n    for ( k = 0; k < *((_DWORD *)this + 3); ++k )\n    {\n      v8 = *(void **)(*((_DWORD *)this + 6) + 4 * k);\n      if ( v8 )\n        sub_1007F859(v8, 1);\n    }\n    operator delete(*((void **)this + 6));\n  }\n}\n"
+}

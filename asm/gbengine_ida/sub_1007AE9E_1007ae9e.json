@@ -1,0 +1,8 @@
+{
+  "name": "sub_1007AE9E",
+  "mangled_name": "sub_1007AE9E",
+  "address": "0x1007AE9E",
+  "size_bytes": 412,
+  "signature": "void __stdcall(int *__attribute__((__org_typedef(jmp_buf))) Buf)",
+  "decompiled_c": "void __stdcall sub_1007AE9E(jmp_buf Buf)\n{\n  if ( !Buf[55] )\n    sub_10078BD5(Buf, (int)\"NULL row buffer\");\n  if ( (*((_BYTE *)Buf + 97) & 0x10) != 0 )\n  {\n    if ( *((_BYTE *)Buf + 248) == 3 )\n    {\n      sub_1007A41C(Buf + 60, Buf[55] + 1, Buf[65], Buf[87], *((unsigned __int16 *)Buf + 133));\n    }\n    else if ( *((_WORD *)Buf + 133) )\n    {\n      sub_1007A625(Buf + 60, Buf[55] + 1, (_WORD *)Buf + 176);\n    }\n    else\n    {\n      sub_1007A625(Buf + 60, Buf[55] + 1, 0);\n    }\n  }\n  if ( (*((_BYTE *)Buf + 97) & 0x20) != 0 && *((_BYTE *)Buf + 278) != 3 )\n    sub_1007A0CC(Buf + 60, (_BYTE *)(Buf[55] + 1), (unsigned __int8 *)Buf[78], Buf[81], Buf[75]);\n  if ( (*((_BYTE *)Buf + 97) & 4) != 0 )\n    sub_10079E4D((int)(Buf + 60), (_BYTE *)(Buf[55] + 1));\n  if ( (Buf[24] & 0x40) != 0 )\n  {\n    sub_1007A978(Buf + 60, (char *)(Buf[55] + 1), Buf[93], Buf[94]);\n    if ( !Buf[61] )\n      sub_10078BD5(Buf, (int)\"png_do_dither returned rowbytes=0\");\n  }\n  if ( (Buf[24] & 8) != 0 )\n    sub_10079CD4(Buf + 60, (_BYTE *)(Buf[55] + 1), (unsigned __int8 *)Buf + 341);\n  if ( (Buf[24] & 4) != 0 )\n    sub_10079BC3(Buf + 60, Buf[55] + 1);\n  if ( (Buf[24] & 1) != 0 )\n    sub_100799D2(Buf + 60, (char *)(Buf[55] + 1));\n  if ( *((char *)Buf + 97) < 0 )\n    sub_10079E93((int)(Buf + 60), Buf[55] + 1, *((unsigned __int16 *)Buf + 143), Buf[23]);\n  if ( (Buf[24] & 0x10) != 0 )\n    sub_100799A3((int)(Buf + 60), (char *)(Buf[55] + 1));\n}\n"
+}

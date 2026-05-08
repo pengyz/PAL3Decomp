@@ -1,0 +1,8 @@
+{
+  "name": "sub_1004DC45",
+  "mangled_name": "sub_1004DC45",
+  "address": "0x1004DC45",
+  "size_bytes": 184,
+  "signature": "void(int a1, char *Format, ...)",
+  "decompiled_c": "void sub_1004DC45(int a1, char *Format, ...)\n{\n  bool v2; // zf\n  char Buffer[256]; // [esp+4h] [ebp-100h] BYREF\n  va_list va; // [esp+114h] [ebp+10h] BYREF\n\n  va_start(va, Format);\n  v2 = *(_DWORD *)(a1 + 80) == 0;\n  *(_DWORD *)(a1 + 68) = 1;\n  if ( !v2 )\n  {\n    if ( !strcmp(Format, \"syntax error\") )\n    {\n      if ( *(_DWORD *)(a1 + 76) && *(_DWORD *)(a1 + 632) == 9 )\n        sub_1004CB83(\n          (_DWORD *)(a1 + 24),\n          a1 + 632,\n          1504,\n          \"invalid preprocessor command '%s'\",\n          *(const char **)(a1 + 640));\n      else\n        sub_1004CDAD((_DWORD *)(a1 + 24), 1500, (double *)(a1 + 632));\n    }\n    else\n    {\n      _vsnprintf(Buffer, 0x100u, Format, va);\n      Buffer[255] = 0;\n      sub_1004CB83((_DWORD *)(a1 + 24), a1 + 632, 0, \"%s\", Buffer);\n    }\n  }\n}\n"
+}

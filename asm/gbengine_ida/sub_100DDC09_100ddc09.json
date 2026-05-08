@@ -1,0 +1,8 @@
+{
+  "name": "sub_100DDC09",
+  "mangled_name": "sub_100DDC09",
+  "address": "0x100DDC09",
+  "size_bytes": 70,
+  "signature": "int __thiscall(_DWORD *this, int a2, int a3, int a4, unsigned int a5)",
+  "decompiled_c": "int __thiscall sub_100DDC09(_DWORD *this, int a2, int a3, int a4, unsigned int a5)\n{\n  int v5; // eax\n\n  v5 = a5;\n  if ( a5 > 4 )\n    v5 = 4;\n  *(this + 6) = -1;\n  *(this + 9) = -1;\n  *(this + 10) = -1;\n  *this = a2;\n  *(this + 1) = a3;\n  *(this + 3) = v5;\n  *(this + 2) = a4;\n  *(this + 4) = 0;\n  *(this + 5) = 0;\n  *(this + 7) = 0;\n  *(this + 8) = 0;\n  *(this + 11) = 0;\n  *(this + 12) = 0;\n  return 0;\n}\n"
+}

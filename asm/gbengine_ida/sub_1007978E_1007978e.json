@@ -1,0 +1,8 @@
+{
+  "name": "sub_1007978E",
+  "mangled_name": "sub_1007978E",
+  "address": "0x1007978E",
+  "size_bytes": 209,
+  "signature": "int __stdcall(int a1, int a2, unsigned int *a3, _DWORD *a4, _DWORD *a5, _DWORD *a6, _DWORD *a7, _DWORD *a8, _DWORD *a9)",
+  "decompiled_c": "int __stdcall sub_1007978E(\n        int a1,\n        int a2,\n        unsigned int *a3,\n        _DWORD *a4,\n        _DWORD *a5,\n        _DWORD *a6,\n        _DWORD *a7,\n        _DWORD *a8,\n        _DWORD *a9)\n{\n  int v9; // eax\n\n  if ( !a1 || !a2 || !a3 || !a4 || !a5 || !a6 )\n    return 0;\n  *a3 = *(_DWORD *)a2;\n  *a4 = *(_DWORD *)(a2 + 4);\n  *a5 = *(unsigned __int8 *)(a2 + 24);\n  *a6 = *(unsigned __int8 *)(a2 + 25);\n  if ( a8 )\n    *a8 = *(unsigned __int8 *)(a2 + 26);\n  if ( a9 )\n    *a9 = *(unsigned __int8 *)(a2 + 27);\n  if ( a7 )\n    *a7 = *(unsigned __int8 *)(a2 + 28);\n  if ( *a6 == 3 )\n    v9 = 1;\n  else\n    v9 = *a6 & 2 | 1;\n  if ( (*a6 & 4) != 0 )\n    ++v9;\n  if ( *a3 > 0x7FFFFFFFu / ((v9 * *a5 + 7) >> 3) )\n    sub_10078BF3(a1, (int)\"Width too large for libpng to process image data.\");\n  return 1;\n}\n"
+}

@@ -1,0 +1,8 @@
+{
+  "name": "sub_1004C6DF",
+  "mangled_name": "sub_1004C6DF",
+  "address": "0x1004C6DF",
+  "size_bytes": 89,
+  "signature": "int __thiscall(unsigned int *this)",
+  "decompiled_c": "int __thiscall sub_1004C6DF(unsigned int *this)\n{\n  unsigned int v1; // edi\n  unsigned int v2; // eax\n  char v3; // dl\n  _BYTE *v4; // eax\n\n  v1 = *(this + 1);\n  if ( *this >= v1 )\n    return 0;\n  while ( 1 )\n  {\n    v2 = *this;\n    v3 = *(_BYTE *)*this;\n    if ( v3 == 10 )\n      return 1;\n    if ( v3 != 92 )\n      goto LABEL_12;\n    if ( v2 + 1 < v1 && *(_BYTE *)(v2 + 1) == 10 )\n    {\n      v4 = (_BYTE *)(v2 + 2);\n    }\n    else\n    {\n      if ( v2 + 2 >= v1 || *(_BYTE *)(v2 + 1) != 13 || *(_BYTE *)(v2 + 2) != 10 )\n      {\nLABEL_12:\n        v4 = (_BYTE *)(v2 + 1);\n        goto LABEL_13;\n      }\n      v4 = (_BYTE *)(v2 + 3);\n    }\n    ++*(this + 7);\nLABEL_13:\n    *this = (unsigned int)v4;\n    if ( (unsigned int)v4 >= *(this + 1) )\n      return 0;\n  }\n}\n"
+}

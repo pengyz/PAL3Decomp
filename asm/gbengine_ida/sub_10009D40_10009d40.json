@@ -1,0 +1,8 @@
+{
+  "name": "sub_10009D40",
+  "mangled_name": "sub_10009D40",
+  "address": "0x10009D40",
+  "size_bytes": 55,
+  "signature": "void __thiscall(_DWORD *this, int a2)",
+  "decompiled_c": "void __thiscall sub_10009D40(_DWORD *this, int a2)\n{\n  gbRefObject **v2; // esi\n  gbTexture *v3; // eax\n\n  v2 = (gbRefObject **)(*(_DWORD *)(*(this + 26) + 448) + 68);\n  if ( *v2 )\n    gbRefObject::Release(*v2);\n  v3 = (gbTexture *)(*(int (__thiscall **)(gbGfxManager *, int))(*(_DWORD *)dword_101379A8 + 8))(dword_101379A8, a2);\n  *v2 = v3;\n  gbTexture::LoadTexture(v3, 1);\n}\n"
+}

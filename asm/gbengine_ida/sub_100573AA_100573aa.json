@@ -1,0 +1,8 @@
+{
+  "name": "sub_100573AA",
+  "mangled_name": "sub_100573AA",
+  "address": "0x100573AA",
+  "size_bytes": 187,
+  "signature": "int __stdcall(int *a1, unsigned int a2, float *a3)",
+  "decompiled_c": "int __stdcall sub_100573AA(int *a1, unsigned int a2, float *a3)\n{\n  _DWORD *v3; // eax\n  _DWORD *v4; // ecx\n  int v5; // eax\n  int v6; // ecx\n  int v7; // ecx\n  int v8; // ecx\n  double v9; // st7\n  int v11; // [esp+4h] [ebp-4h]\n\n  v11 = 0;\n  if ( a3 )\n  {\n    v3 = (_DWORD *)sub_10055C8B(a1, a2, 1);\n    if ( v3 )\n    {\n      v4 = (_DWORD *)(v3[6] + a1[209] + *(_DWORD *)(v3[1] + 64));\n      if ( (!v4[4] || v3[4] != -1) && v4[1] < 4u && v4[5] == 1 && v4[6] == 1 )\n      {\n        v5 = *(_DWORD *)(v3[7] + 8);\n        v6 = *(_DWORD *)(v5 + 16);\n        if ( !v6 )\n        {\n          v9 = (double)(*(_DWORD *)(v5 + 24) != 0);\n          goto LABEL_14;\n        }\n        v7 = v6 - 1;\n        if ( !v7 )\n        {\n          v9 = (double)*(int *)(v5 + 24);\n          goto LABEL_14;\n        }\n        v8 = v7 - 1;\n        if ( !v8 )\n        {\n          v9 = (double)*(unsigned int *)(v5 + 24);\n          goto LABEL_14;\n        }\n        if ( v8 == 1 )\n        {\n          v9 = *(double *)(v5 + 24);\nLABEL_14:\n          *a3 = v9;\n          return v11;\n        }\n      }\n    }\n    return -2005530516;\n  }\n  return -2005530516;\n}\n"
+}

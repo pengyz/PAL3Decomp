@@ -1,0 +1,8 @@
+{
+  "name": "sub_100017E0",
+  "mangled_name": "sub_100017E0",
+  "address": "0x100017E0",
+  "size_bytes": 84,
+  "signature": "char *__thiscall(char *this, char a2)",
+  "decompiled_c": "char *__thiscall sub_100017E0(char *this, char a2)\n{\n  if ( (a2 & 2) != 0 )\n  {\n    `eh vector destructor iterator'(\n      this,\n      8u,\n      *((_DWORD *)this - 1),\n      (void (__thiscall *)(void *))gbRefObject::~gbRefObject);\n    if ( (a2 & 1) != 0 )\n      operator delete(this - 4);\n    return this - 4;\n  }\n  else\n  {\n    gbRefObject::~gbRefObject((gbRefObject *)this);\n    if ( (a2 & 1) != 0 )\n      operator delete(this);\n    return this;\n  }\n}\n"
+}

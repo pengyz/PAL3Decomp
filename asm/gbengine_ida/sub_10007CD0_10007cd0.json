@@ -1,0 +1,8 @@
+{
+  "name": "sub_10007CD0",
+  "mangled_name": "sub_10007CD0",
+  "address": "0x10007CD0",
+  "size_bytes": 196,
+  "signature": "void __thiscall(int this)",
+  "decompiled_c": "void __thiscall sub_10007CD0(int this)\n{\n  float *v2; // edi\n  float *v3; // ebx\n  int v4; // ebp\n  int v5; // [esp+10h] [ebp-4h]\n\n  v2 = (float *)(this + 224);\n  v3 = (float *)(this + 236);\n  v4 = 0;\n  *(_DWORD *)(this + 224) = 2139095039;\n  *(_DWORD *)(this + 228) = 2139095039;\n  *(_DWORD *)(this + 232) = 2139095039;\n  *(_DWORD *)(this + 236) = -8388609;\n  *(_DWORD *)(this + 240) = -8388609;\n  *(_DWORD *)(this + 244) = -8388609;\n  if ( *(int *)(this + 104) > 0 )\n  {\n    v5 = 0;\n    do\n    {\n      sub_10006D80((int *)(*(_DWORD *)(this + 108) + v5), v2, v3, 1);\n      ++v4;\n      v5 += 44;\n    }\n    while ( v4 < *(_DWORD *)(this + 104) );\n  }\n  gbMatrix4::LoadIdentity((gbMatrix4 *)(this + 148));\n  *(float *)(this + 196) = (*v3 + *v2) * 0.5;\n  *(float *)(this + 200) = (*(float *)(this + 228) + *(float *)(this + 240)) * 0.5;\n  *(float *)(this + 204) = (*(float *)(this + 232) + *(float *)(this + 244)) * 0.5;\n  *(float *)(this + 212) = *v3 - *v2;\n  *(float *)(this + 216) = *(float *)(this + 240) - *(float *)(this + 228);\n  *(float *)(this + 220) = *(float *)(this + 244) - *(float *)(this + 232);\n  gbOBBox::GetSphere((gbOBBox *)(this + 148), (struct gbSphere *)(this + 248));\n}\n"
+}

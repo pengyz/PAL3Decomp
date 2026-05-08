@@ -1,0 +1,8 @@
+{
+  "name": "sub_100C95C8",
+  "mangled_name": "sub_100C95C8",
+  "address": "0x100C95C8",
+  "size_bytes": 68,
+  "signature": "int __thiscall(_DWORD *this, __int64 a2, int a3)",
+  "decompiled_c": "int __thiscall sub_100C95C8(_DWORD *this, __int64 a2, int a3)\n{\n  int result; // eax\n  int v5; // eax\n\n  result = sub_100C95B6(this, HIDWORD(a2) | a2);\n  if ( result >= 0 )\n  {\n    if ( a3 )\n    {\n      result = sub_100C95B6(this, a3);\n      if ( result < 0 )\n        return result;\n      v5 = *(this + 59) + 4 * *(this + 62);\n      *(_BYTE *)(v5 + 3) |= 0x10u;\n    }\n    return 0;\n  }\n  return result;\n}\n"
+}

@@ -1,0 +1,8 @@
+{
+  "name": "sub_10071CD3",
+  "mangled_name": "sub_10071CD3",
+  "address": "0x10071CD3",
+  "size_bytes": 73,
+  "signature": "int __thiscall(_DWORD *this, int a2)",
+  "decompiled_c": "int __thiscall sub_10071CD3(_DWORD *this, int a2)\n{\n  int result; // eax\n  int v4; // edi\n  int *i; // esi\n\n  result = sub_1007125A((int)this, a2);\n  if ( result >= 0 )\n  {\n    v4 = *(_DWORD *)(*(_DWORD *)(*(this + 39) + 4 * *(unsigned __int16 *)(a2 + 4)) + 56);\n    if ( v4 )\n    {\n      for ( i = *(int **)(v4 + 16); i != (int *)v4; i = (int *)i[4] )\n      {\n        if ( *i )\n        {\n          result = sub_1007125A(*i, i[1]);\n          if ( result < 0 )\n            break;\n        }\n      }\n    }\n  }\n  return result;\n}\n"
+}

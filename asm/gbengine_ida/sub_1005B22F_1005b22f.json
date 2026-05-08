@@ -1,0 +1,8 @@
+{
+  "name": "sub_1005B22F",
+  "mangled_name": "sub_1005B22F",
+  "address": "0x1005B22F",
+  "size_bytes": 167,
+  "signature": "int __thiscall(_DWORD *this, int a2, const char *ArgList, int *a4, int *a5, int a6)",
+  "decompiled_c": "int __thiscall sub_1005B22F(_DWORD *this, int a2, const char *ArgList, int *a4, int *a5, int a6)\n{\n  const char *v7; // ebx\n  char v9[256]; // [esp+8h] [ebp-200h] BYREF\n  char v10[256]; // [esp+108h] [ebp-100h] BYREF\n\n  if ( a6 || sub_1005AEF9(this, a4, a5, 1) )\n    v7 = Source;\n  else\n    v7 = \"implicitly \";\n  sub_100594CA(this, v10, 0xFFu, (int)a4);\n  sub_100594CA(this, v9, 0xFFu, (int)a5);\n  if ( ArgList )\n    return sub_10058D70((int)this, a2, 3017, \"'%s': cannot %sconvert from '%s' to '%s'\", ArgList, v7, v9, v10);\n  else\n    return sub_10058D70((int)this, a2, 3017, \"cannot %sconvert from '%s' to '%s'\", v7, v9, v10);\n}\n"
+}

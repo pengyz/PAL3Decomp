@@ -4,5 +4,5 @@
   "address": "0x10011820",
   "size_bytes": 23,
   "signature": "struct gbVec3D *__thiscall(gbGeomNode *this, struct gbGeomNode *a2)",
-  "decompiled_c": "struct gbVec3D *__thiscall gbGeomNode::GetLastBladePos(gbGeomNode *this, struct gbGeomNode *a2)\n{\n  return (struct gbVec3D *)sub_1000F080(this);\n}\n"
+  "decompiled_c": "struct gbVec3D *__thiscall gbGeomNode::GetLastBladePos(gbGeomNode *this, struct gbGeomNode *a2)\n{\n  return (struct gbVec3D *)gbBladeMgr::GetLastBladePos(*((void ***)gbVisNode::pSceneGraph + 4810), this);\n}\n"
 }

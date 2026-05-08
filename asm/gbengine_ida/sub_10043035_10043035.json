@@ -1,0 +1,8 @@
+{
+  "name": "sub_10043035",
+  "mangled_name": "sub_10043035",
+  "address": "0x10043035",
+  "size_bytes": 87,
+  "signature": "int __thiscall(_DWORD *this, int a2, int a3, int a4)",
+  "decompiled_c": "int __thiscall sub_10043035(_DWORD *this, int a2, int a3, int a4)\n{\n  unsigned int v5; // ebx\n  int result; // eax\n  int v7; // esi\n\n  v5 = 0;\n  if ( *(this + 4) )\n    a4 = sub_1003C9C1(this, a4);\n  result = a3 * *(this + 25);\n  v7 = *(this + 8) + result + a2 * *(this + 24);\n  if ( *(this + 26) )\n  {\n    do\n    {\n      result = sub_10046C31(v7, a4, 2);\n      a4 += 16;\n      v7 += 4;\n      ++v5;\n    }\n    while ( v5 < *(this + 26) );\n  }\n  return result;\n}\n"
+}

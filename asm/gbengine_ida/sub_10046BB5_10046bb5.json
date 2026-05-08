@@ -1,0 +1,8 @@
+{
+  "name": "sub_10046BB5",
+  "mangled_name": "sub_10046BB5",
+  "address": "0x10046BB5",
+  "size_bytes": 63,
+  "signature": "int __thiscall(unsigned int *this, double *a2, int a3, int a4, int a5, int a6, int a7, int a8, int a9, int a10)",
+  "decompiled_c": "int __thiscall sub_10046BB5(\n        unsigned int *this,\n        double *a2,\n        int a3,\n        int a4,\n        int a5,\n        int a6,\n        int a7,\n        int a8,\n        int a9,\n        int a10)\n{\n  int result; // eax\n  unsigned int *v11; // [esp+0h] [ebp-4h] BYREF\n\n  v11 = this;\n  result = sub_1004654C(a2, &v11, &a2);\n  if ( result >= 0 )\n    return sub_100465FB(v11, a2, a3, a4, a5, a6, a7, a8, a9, a10);\n  return result;\n}\n"
+}

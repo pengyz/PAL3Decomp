@@ -1,0 +1,8 @@
+{
+  "name": "sub_100D0F80",
+  "mangled_name": "sub_100D0F80",
+  "address": "0x100D0F80",
+  "size_bytes": 57,
+  "signature": "int __stdcall(int a1, int a2, int *a3, int a4, int a5, int *a6, int a7)",
+  "decompiled_c": "int __stdcall sub_100D0F80(int a1, int a2, int *a3, int a4, int a5, int *a6, int a7)\n{\n  int v7; // ecx\n  int result; // eax\n\n  (*(void (__stdcall **)(int, int, int, int))(*(_DWORD *)(a1 + 456) + 12))(a1, a2, *a3, a5 + 4 * *a6);\n  v7 = *a6 + 1;\n  result = *a3 + 1;\n  *a3 = result;\n  *a6 = v7;\n  return result;\n}\n"
+}

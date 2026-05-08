@@ -1,0 +1,8 @@
+{
+  "name": "sub_10019040",
+  "mangled_name": "sub_10019040",
+  "address": "0x10019040",
+  "size_bytes": 133,
+  "signature": "struct gbResource *__thiscall(gbResManager **this, char *a2)",
+  "decompiled_c": "struct gbResource *__thiscall sub_10019040(gbResManager **this, char *a2)\n{\n  void **v2; // esi\n  struct gbResource *result; // eax\n  gbTexture_D3D *v5; // eax\n\n  v2 = 0;\n  if ( !a2 || (result = gbResManager::FindResByName(*(this + 51), a2)) == 0 )\n  {\n    v5 = (gbTexture_D3D *)operator new(0x60u);\n    if ( v5 )\n      v2 = (void **)gbTexture_D3D::gbTexture_D3D(v5);\n    gbResource::SetName(v2, a2);\n    gbResManager::AddResource(*(this + 51), (struct gbResource *)v2);\n    return (struct gbResource *)v2;\n  }\n  return result;\n}\n"
+}

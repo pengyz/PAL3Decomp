@@ -1,0 +1,8 @@
+{
+  "name": "sub_10079508",
+  "mangled_name": "sub_10079508",
+  "address": "0x10079508",
+  "size_bytes": 75,
+  "signature": "int (__cdecl *__stdcall(int *__attribute__((__org_typedef(jmp_buf))) Buf, int *a2))(int *__attribute__((__org_typedef(jmp_buf))), int, _DWORD)",
+  "decompiled_c": "int (__cdecl *__stdcall sub_10079508(jmp_buf Buf, int *a2))(jmp_buf, int, _DWORD)\n{\n  int (__cdecl *result)(int *__attribute__((__org_typedef(jmp_buf))), int, _DWORD); // eax\n  int v4; // edi\n  int *v5; // ebx\n  int (__cdecl *v6)(int *__attribute__((__org_typedef(jmp_buf))), int, _DWORD); // [esp+8h] [ebp-4h]\n  int *__attribute__((__org_typedef(jmp_buf))) Bufa; // [esp+14h] [ebp+8h]\n\n  result = (int (__cdecl *)(int *__attribute__((__org_typedef(jmp_buf))), int, _DWORD))sub_10079938(Buf);\n  v4 = Buf[47];\n  Buf[48] = v4;\n  if ( (int)result > 0 )\n  {\n    v6 = result;\n    do\n    {\n      v5 = a2;\n      if ( v4 )\n      {\n        Bufa = (int *)v4;\n        do\n        {\n          result = sub_10079185(Buf, *v5++, 0);\n          Bufa = (int *)((char *)Bufa - 1);\n        }\n        while ( Bufa );\n      }\n      v6 = (int (__cdecl *)(int *__attribute__((__org_typedef(jmp_buf))), int, _DWORD))((char *)v6 - 1);\n    }\n    while ( v6 );\n  }\n  return result;\n}\n"
+}

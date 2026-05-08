@@ -1,0 +1,8 @@
+{
+  "name": "sub_10033461",
+  "mangled_name": "sub_10033461",
+  "address": "0x10033461",
+  "size_bytes": 184,
+  "signature": "int __stdcall(int a1, int a2, int a3, int a4, int a5, int *a6, int a7, int a8, int a9)",
+  "decompiled_c": "int __stdcall sub_10033461(int a1, int a2, int a3, int a4, int a5, int *a6, int a7, int a8, int a9)\n{\n  int v9; // eax\n  int v10; // esi\n  int v12[21]; // [esp+Ch] [ebp-64h] BYREF\n  int v13; // [esp+60h] [ebp-10h] BYREF\n  int v14; // [esp+64h] [ebp-Ch]\n  int v15; // [esp+68h] [ebp-8h]\n  int v16; // [esp+6Ch] [ebp-4h]\n\n  sub_100346CA(v12);\n  if ( !a1 || !a4 || !a5 )\n    goto LABEL_13;\n  v9 = sub_10037159(a4, a5, a9, 1);\n  if ( v9 >= 0 )\n  {\n    if ( a6 )\n    {\n      v13 = *a6;\n      v14 = a6[1];\n      v15 = a6[2];\n      v16 = a6[3];\n      if ( v13 < 0 || v15 > v12[3] || v13 > v15 || v14 < 0 || v16 > v12[4] || v14 > v16 )\n      {\nLABEL_13:\n        v10 = -2005530516;\n        goto LABEL_14;\n      }\n    }\n    else\n    {\n      v13 = v12[6];\n      v14 = v12[7];\n      v15 = v12[8];\n      v16 = v12[9];\n    }\n    v9 = sub_10032EA1(a1, a2, a3, v12[1], v12[0], v12[12], v12[2], &v13, a7, a8);\n    if ( v9 >= 0 )\n    {\n      v10 = 0;\n      goto LABEL_14;\n    }\n  }\n  v10 = v9;\nLABEL_14:\n  sub_100346E3(v12);\n  return v10;\n}\n"
+}

@@ -1,0 +1,8 @@
+{
+  "name": "sub_1004D017",
+  "mangled_name": "sub_1004D017",
+  "address": "0x1004D017",
+  "size_bytes": 165,
+  "signature": "int __thiscall(int this, _BYTE *a2, int *a3)",
+  "decompiled_c": "int __thiscall sub_1004D017(int this, _BYTE *a2, int *a3)\n{\n  char *v4; // edi\n  int v5; // esi\n  char v6; // al\n  int v7; // esi\n  int v8; // edi\n\n  v4 = a2 + 2;\n  if ( (unsigned int)(a2 + 2) >= *(_DWORD *)(this + 4) || *a2 != 48 || a2[1] != 120 || !isxdigit(*v4) )\n    return 0;\n  v5 = 0;\n  while ( (unsigned int)v4 < *(_DWORD *)(this + 4) && isxdigit(*v4) )\n  {\n    v6 = *v4;\n    v7 = 16 * v5;\n    if ( *v4 < 97 )\n    {\n      if ( v6 < 65 )\n        v5 = v7 + v6 - 48;\n      else\n        v5 = v7 + v6 - 55;\n    }\n    else\n    {\n      v5 = v7 + v6 - 87;\n    }\n    ++v4;\n  }\n  if ( a3 )\n    *a3 = v5;\n  v8 = v4 - a2;\n  if ( v8 > 10 )\n    sub_1004CB83(*(_DWORD **)(this + 48), this + 8, 1002, \"hex value truncated to 32bits\");\n  return v8;\n}\n"
+}

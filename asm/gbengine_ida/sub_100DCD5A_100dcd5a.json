@@ -1,0 +1,8 @@
+{
+  "name": "sub_100DCD5A",
+  "mangled_name": "sub_100DCD5A",
+  "address": "0x100DCD5A",
+  "size_bytes": 85,
+  "signature": "bool __thiscall(unsigned __int16 *this)",
+  "decompiled_c": "bool __thiscall sub_100DCD5A(unsigned __int16 *this)\n{\n  unsigned int v1; // edx\n  unsigned int v2; // edi\n  unsigned __int16 *v3; // eax\n  int v4; // esi\n  unsigned __int16 *v5; // eax\n  int v6; // esi\n  unsigned __int16 *v7; // eax\n  int v8; // esi\n  bool result; // al\n\n  v1 = 0;\n  v2 = 0;\n  v3 = this + 70;\n  v4 = 7;\n  do\n  {\n    v2 += *v3;\n    v3 += 2;\n    --v4;\n  }\n  while ( v4 );\n  v5 = this + 84;\n  v6 = 121;\n  do\n  {\n    v1 += *v5;\n    v5 += 2;\n    --v6;\n  }\n  while ( v6 );\n  v7 = this + 326;\n  v8 = 128;\n  do\n  {\n    v2 += *v7;\n    v7 += 2;\n    --v8;\n  }\n  while ( v8 );\n  result = v1 >> 2 >= v2;\n  *((_BYTE *)this + 28) = result;\n  return result;\n}\n"
+}

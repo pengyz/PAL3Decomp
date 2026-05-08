@@ -1,0 +1,8 @@
+{
+  "name": "sub_1004C5F0",
+  "mangled_name": "sub_1004C5F0",
+  "address": "0x1004C5F0",
+  "size_bytes": 105,
+  "signature": "int __thiscall(const char **this, _DWORD *a2)",
+  "decompiled_c": "int __thiscall sub_1004C5F0(const char **this, _DWORD *a2)\n{\n  int v3; // eax\n  int result; // eax\n  char *v5; // eax\n  const char *i; // edx\n  unsigned int v7; // ecx\n\n  if ( a2 )\n  {\n    v3 = (int)*(this + 1);\n    if ( v3 )\n    {\n      result = sub_1007694D(v3 + 1, a2);\n      if ( result < 0 )\n        return result;\n      v5 = (char *)&(*(this + 1))[(*(int (__stdcall **)(_DWORD))(*(_DWORD *)*a2 + 12))(*a2)];\n      *v5 = 0;\n      for ( i = *this; i; i = *(const char **)i )\n      {\n        v7 = strlen(i + 4);\n        v5 -= v7;\n        qmemcpy(v5, i + 4, v7);\n      }\n    }\n    else\n    {\n      *a2 = 0;\n    }\n  }\n  return 0;\n}\n"
+}

@@ -1,0 +1,8 @@
+{
+  "name": "sub_1004EEF4",
+  "mangled_name": "sub_1004EEF4",
+  "address": "0x1004EEF4",
+  "size_bytes": 163,
+  "signature": "int __thiscall(int this)",
+  "decompiled_c": "int __thiscall sub_1004EEF4(int this)\n{\n  int *v2; // esi\n  int result; // eax\n  int v4; // edx\n\n  v2 = (int *)(this + 632);\n  result = sub_1004D5FA(*(unsigned int **)(this + 620), *(_DWORD *)(this + 664), this + 632);\n  if ( result >= 0 )\n  {\n    v4 = *v2;\n    if ( *v2 == 9 )\n    {\n      if ( !strcmp(*(const char **)(this + 640), \"pack_matrix\") )\n        return sub_1004E190(this);\n      if ( !strcmp(*(const char **)(this + 640), \"warning\") )\n        return sub_1004E2C8(this);\n      if ( !strcmp(*(const char **)(this + 640), \"def\") )\n        return sub_1004E6AE(this);\n    }\n    if ( v4 != 12 && v4 != 13 )\n      sub_1004C6DF(*(unsigned int **)(this + 620));\n    result = 0;\n  }\n  *(_DWORD *)(this + 64) = 1;\n  return result;\n}\n"
+}

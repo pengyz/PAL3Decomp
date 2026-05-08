@@ -1,0 +1,8 @@
+{
+  "name": "sub_10049177",
+  "mangled_name": "sub_10049177",
+  "address": "0x10049177",
+  "size_bytes": 152,
+  "signature": "float *__stdcall(float *a1, float *a2)",
+  "decompiled_c": "float *__stdcall sub_10049177(float *a1, float *a2)\n{\n  float *v2; // ecx\n  double v3; // st7\n  float v5; // [esp+10h] [ebp-4h]\n  float v6; // [esp+20h] [ebp+Ch]\n\n  v5 = sqrt(*a2 * *a2 + a2[1] * a2[1] + a2[2] * a2[2]);\n  a1[3] = cos(v5);\n  v6 = sin(v5);\n  if ( sub_10046BF4(v6, 0.0) )\n  {\n    if ( a1 != v2 )\n    {\n      *a1 = *v2;\n      a1[1] = v2[1];\n      a1[2] = v2[2];\n    }\n  }\n  else\n  {\n    v3 = v6 / v5;\n    *a1 = v3 * *v2;\n    a1[1] = v3 * v2[1];\n    a1[2] = v3 * v2[2];\n  }\n  return a1;\n}\n"
+}

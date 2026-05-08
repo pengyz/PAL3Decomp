@@ -1,0 +1,8 @@
+{
+  "name": "sub_1007334F",
+  "mangled_name": "sub_1007334F",
+  "address": "0x1007334F",
+  "size_bytes": 197,
+  "signature": "int __stdcall(int *a1, unsigned int a2, char *a3)",
+  "decompiled_c": "int __stdcall sub_1007334F(int *a1, unsigned int a2, char *a3)\n{\n  int v4; // eax\n  _DWORD *v5; // edx\n  int v6; // ebx\n  int v7; // edi\n  int *v8; // ecx\n  int v9; // edi\n  int v10; // edi\n\n  if ( !a3 )\n    return -2005530516;\n  v4 = sub_100714A6(a1, a2, 1u, 0);\n  if ( !v4 )\n    return -2005530516;\n  v5 = *(_DWORD **)(a1[39] + 4 * *(unsigned __int16 *)(v4 + 4));\n  v6 = v5[14];\n  v7 = v6 ? *(_DWORD *)(a1[14] + 8) : a1[8];\n  v8 = (int *)(v7 + *(_DWORD *)(v4 + 8) + v5[9]);\n  if ( v8[4] )\n  {\n    if ( *(_DWORD *)(v4 + 24) == -1 )\n      return -2005530516;\n  }\n  if ( v8[1] != 2 )\n  {\n    if ( v8[1] == 3 )\n    {\n      if ( v6 )\n        v9 = *(_DWORD *)(a1[14] + 8);\n      else\n        v9 = a1[8];\n      return sub_100663B7(v8, (_DWORD *)(v9 + *(_DWORD *)(v4 + 12) + v5[10]), a3, 1);\n    }\n    return -2005530516;\n  }\n  if ( v6 )\n    v10 = *(_DWORD *)(a1[14] + 8);\n  else\n    v10 = a1[8];\n  return sub_1006659F(v8, (_DWORD *)(v10 + *(_DWORD *)(v4 + 12) + v5[10]), a3, 1);\n}\n"
+}

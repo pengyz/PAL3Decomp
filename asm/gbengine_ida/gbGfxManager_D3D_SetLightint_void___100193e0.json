@@ -1,0 +1,8 @@
+{
+  "name": "gbGfxManager_D3D::SetLight(int,void *)",
+  "mangled_name": "?SetLight@gbGfxManager_D3D@@UAEXHPAX@Z",
+  "address": "0x100193E0",
+  "size_bytes": 126,
+  "signature": "int __thiscall(gbGfxManager_D3D *this, int a2, void *a3)",
+  "decompiled_c": "int __thiscall gbGfxManager_D3D::SetLight(gbGfxManager_D3D *this, int a2, void *a3)\n{\n  int result; // eax\n\n  if ( a3 )\n  {\n    (*(void (__stdcall **)(_DWORD, int, void *))(**((_DWORD **)this + 454) + 204))(*((_DWORD *)this + 454), a2, a3);\n    (*(void (__stdcall **)(_DWORD, int, int))(**((_DWORD **)this + 454) + 212))(*((_DWORD *)this + 454), a2, 1);\n    *((_DWORD *)this + a2 + 350) = 1;\n    qmemcpy((char *)this + 104 * a2 + 568, a3, 0x68u);\n    return 13 * a2;\n  }\n  else\n  {\n    result = (*(int (__stdcall **)(_DWORD, int, _DWORD))(**((_DWORD **)this + 454) + 212))(\n               *((_DWORD *)this + 454),\n               a2,\n               0);\n    *((_DWORD *)this + a2 + 350) = 0;\n  }\n  return result;\n}\n"
+}

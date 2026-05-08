@@ -1,0 +1,8 @@
+{
+  "name": "sub_1004C559",
+  "mangled_name": "sub_1004C559",
+  "address": "0x1004C559",
+  "size_bytes": 65,
+  "signature": "int __thiscall(void **this)",
+  "decompiled_c": "int __thiscall sub_1004C559(void **this)\n{\n  _DWORD *v2; // edi\n  unsigned int v3; // ecx\n  bool v4; // zf\n\n  if ( *this )\n  {\n    do\n    {\n      v2 = *(_DWORD **)*this;\n      operator delete(*this);\n      *this = v2;\n    }\n    while ( v2 );\n  }\n  v3 = 0;\n  v4 = *(this + 5) == 0;\n  *(this + 1) = 0;\n  *(this + 2) = 0;\n  *(this + 3) = 0;\n  if ( !v4 )\n  {\n    do\n      *((_DWORD *)*(this + 7) + v3++) &= ~0x20u;\n    while ( v3 < (unsigned int)*(this + 5) );\n  }\n  return 0;\n}\n"
+}

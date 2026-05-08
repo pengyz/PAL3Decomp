@@ -1,0 +1,8 @@
+{
+  "name": "sub_100C40ED",
+  "mangled_name": "sub_100C40ED",
+  "address": "0x100C40ED",
+  "size_bytes": 135,
+  "signature": "int __stdcall(int a1, int a2, __int16 a3, int a4, const char *ArgList, int a6)",
+  "decompiled_c": "int __stdcall sub_100C40ED(int a1, int a2, __int16 a3, int a4, const char *ArgList, int a6)\n{\n  int v6; // eax\n  int v7; // eax\n  _DWORD *v8; // eax\n  int v9; // ecx\n  int v11[8]; // [esp+4h] [ebp-20h] BYREF\n\n  v6 = a2;\n  if ( a2 == -1 )\n  {\n    v7 = *(_DWORD *)(a6 + 224);\n    if ( !v7 || (v8 = *(_DWORD **)(v7 + 60)) == 0 || v8[1] != 13 || (v9 = v8[16], v6 = v8[17], a1 = v9, v6 == -1) )\n      v6 = 0;\n  }\n  v11[5] = v6;\n  v11[4] = a1;\n  if ( a3 == 2 || a3 == 6 )\n  {\n    sub_1004CB83(*(_DWORD **)(a6 + 188), (int)v11, a4 + 5000, \"%s\", ArgList);\n    *(_DWORD *)(a6 + 204) = 1;\n  }\n  return 0;\n}\n"
+}

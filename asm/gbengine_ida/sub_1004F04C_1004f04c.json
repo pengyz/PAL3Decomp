@@ -1,0 +1,8 @@
+{
+  "name": "sub_1004F04C",
+  "mangled_name": "sub_1004F04C",
+  "address": "0x1004F04C",
+  "size_bytes": 165,
+  "signature": "int __thiscall(_DWORD *this, char *a2)",
+  "decompiled_c": "int __thiscall sub_1004F04C(_DWORD *this, char *a2)\n{\n  int v4; // ecx\n  _DWORD *v5; // [esp+Ch] [ebp-4h] BYREF\n\n  if ( !strcmp(\"__LINE__\", a2) )\n    return *(this + 163);\n  if ( sub_1004ECF4(this, a2, &a2, &v5) )\n  {\n    if ( a2 )\n    {\n      sub_1004CB83(\n        this + 6,\n        (int)(this + 158),\n        1517,\n        \"functional defines in preprocessor expressions not yet implemented\");\n      return 1;\n    }\n    if ( v5 )\n    {\n      if ( !v5[3] )\n      {\n        v4 = v5[4];\n        if ( v4 >= 2 && v4 <= 4 )\n          return v5[6];\n      }\n    }\n    sub_1004CB83(this + 6, (int)(this + 158), 1518, \"invalid or unsupported integer constant expression\");\n  }\n  return 0;\n}\n"
+}

@@ -1,0 +1,8 @@
+{
+  "name": "sub_100CF9A0",
+  "mangled_name": "sub_100CF9A0",
+  "address": "0x100CF9A0",
+  "size_bytes": 96,
+  "signature": "_BYTE *__stdcall(int a1, _DWORD *a2, int a3, _BYTE **a4, int a5)",
+  "decompiled_c": "_BYTE *__stdcall sub_100CF9A0(int a1, _DWORD *a2, int a3, _BYTE **a4, int a5)\n{\n  unsigned int v5; // edi\n  _BYTE *result; // eax\n  int *v8; // ebx\n  int v9; // esi\n  unsigned int i; // edx\n  char v11; // cl\n  int v12; // [esp+8h] [ebp+4h]\n\n  v5 = *(_DWORD *)(a1 + 112);\n  result = (_BYTE *)(a5 - 1);\n  if ( a5 - 1 >= 0 )\n  {\n    v8 = (int *)(*a2 + 4 * a3);\n    v12 = a5;\n    do\n    {\n      v9 = *v8;\n      result = *a4;\n      ++v8;\n      ++a4;\n      for ( i = 0; i < v5; ++i )\n      {\n        v11 = *(_BYTE *)(i + v9);\n        result[2] = v11;\n        result[1] = v11;\n        *result = v11;\n        result += 3;\n      }\n      --v12;\n    }\n    while ( v12 );\n  }\n  return result;\n}\n"
+}

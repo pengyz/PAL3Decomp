@@ -1,0 +1,8 @@
+{
+  "name": "sub_100D0EB0",
+  "mangled_name": "sub_100D0EB0",
+  "address": "0x100D0EB0",
+  "size_bytes": 203,
+  "signature": "int __stdcall(int a1, int a2, _DWORD *a3, int a4, int a5, _DWORD *a6, int a7)",
+  "decompiled_c": "int __stdcall sub_100D0EB0(int a1, int a2, _DWORD *a3, int a4, int a5, _DWORD *a6, int a7)\n{\n  _DWORD *v7; // ebp\n  int v8; // esi\n  _DWORD *v9; // ebx\n  unsigned int v10; // edi\n  int v11; // eax\n  int result; // eax\n  unsigned int v13; // ecx\n  int v14; // [esp+10h] [ebp-8h] BYREF\n  int v15; // [esp+14h] [ebp-4h]\n\n  v7 = a3;\n  v8 = *(_DWORD *)(a1 + 456);\n  if ( *(_DWORD *)(v8 + 36) )\n  {\n    v9 = a6;\n    sub_10095490(v8 + 32, 0, a5 + 4 * *a6, 0, 1, *(_DWORD *)(v8 + 40));\n    v10 = 1;\n    *(_DWORD *)(v8 + 36) = 0;\n  }\n  else\n  {\n    v10 = 2;\n    if ( *(_DWORD *)(v8 + 44) < 2u )\n      v10 = *(_DWORD *)(v8 + 44);\n    v9 = a6;\n    v11 = *a6;\n    if ( v10 > a7 - *a6 )\n      v10 = a7 - *a6;\n    v14 = *(_DWORD *)(a5 + 4 * v11);\n    if ( v10 <= 1 )\n    {\n      v15 = *(_DWORD *)(v8 + 32);\n      *(_DWORD *)(v8 + 36) = 1;\n    }\n    else\n    {\n      v15 = *(_DWORD *)(a5 + 4 * v11 + 4);\n    }\n    v7 = a3;\n    (*(void (__stdcall **)(int, int, _DWORD, int *))(v8 + 12))(a1, a2, *a3, &v14);\n  }\n  result = *(_DWORD *)(v8 + 36);\n  v13 = *(_DWORD *)(v8 + 44) - v10;\n  *v9 += v10;\n  *(_DWORD *)(v8 + 44) = v13;\n  if ( !result )\n    ++*v7;\n  return result;\n}\n"
+}

@@ -1,0 +1,8 @@
+{
+  "name": "sub_100442FF",
+  "mangled_name": "sub_100442FF",
+  "address": "0x100442FF",
+  "size_bytes": 142,
+  "signature": "void __thiscall(_DWORD *this, int a2, int a3, float *a4)",
+  "decompiled_c": "void __thiscall sub_100442FF(_DWORD *this, int a2, int a3, float *a4)\n{\n  unsigned __int8 *v4; // eax\n  float *v6; // edi\n  float *v7; // edx\n  unsigned __int8 *v8; // eax\n  unsigned __int8 *i; // [esp+Ch] [ebp+8h]\n  int v10; // [esp+14h] [ebp+10h]\n\n  v4 = (unsigned __int8 *)(*(this + 8) + a3 * *(this + 25) + a2 * *(this + 24));\n  for ( i = &v4[2 * *(this + 26)]; v4 < i; *(a4 - 1) = (double)v10 * 0.0039215689 )\n  {\n    v6 = a4;\n    a4 += 4;\n    v7 = (float *)(*(this + 14) + 16 * *v4);\n    v8 = v4 + 1;\n    *v6++ = *v7;\n    *v6++ = v7[1];\n    *v6 = v7[2];\n    v6[1] = v7[3];\n    v10 = *v8;\n    v4 = v8 + 1;\n  }\n  if ( *(this + 6) )\n    sub_1003C954((int)this, (unsigned int)&a4[-4 * *(this + 26)]);\n  if ( *(this + 4) )\n    sub_1003CBEB(this, (unsigned int)&a4[-4 * *(this + 26)]);\n}\n"
+}

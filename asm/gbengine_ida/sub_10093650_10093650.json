@@ -1,0 +1,8 @@
+{
+  "name": "sub_10093650",
+  "mangled_name": "sub_10093650",
+  "address": "0x10093650",
+  "size_bytes": 125,
+  "signature": "int __fastcall(int a1, _DWORD *a2)",
+  "decompiled_c": "int __fastcall sub_10093650(int a1, _DWORD *a2)\n{\n  _DWORD *v2; // ecx\n  int result; // eax\n  int v4; // edx\n\n  if ( a2[19] )\n    return 0;\n  if ( a2[76] )\n    return 0;\n  if ( a2[10] != 3 )\n    return 0;\n  if ( a2[9] != 3 )\n    return 0;\n  if ( a2[11] != 2 )\n    return 0;\n  if ( a2[30] != 3 )\n    return 0;\n  v2 = (_DWORD *)a2[55];\n  if ( v2[2] != 2 )\n    return 0;\n  result = 1;\n  if ( v2[23] != 1 )\n    return 0;\n  if ( v2[44] != 1 )\n    return 0;\n  if ( (int)v2[3] > 2 )\n    return 0;\n  if ( v2[24] != 1 )\n    return 0;\n  if ( v2[45] != 1 )\n    return 0;\n  v4 = a2[80];\n  if ( v2[9] != v4 || v2[30] != v4 || v2[51] != v4 )\n    return 0;\n  return result;\n}\n"
+}

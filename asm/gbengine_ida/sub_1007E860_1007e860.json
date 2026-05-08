@@ -1,0 +1,8 @@
+{
+  "name": "sub_1007E860",
+  "mangled_name": "sub_1007E860",
+  "address": "0x1007E860",
+  "size_bytes": 46,
+  "signature": "BOOL __thiscall(_DWORD *this, int a2)",
+  "decompiled_c": "BOOL __thiscall sub_1007E860(_DWORD *this, int a2)\n{\n  int v2; // edx\n  int v3; // ecx\n\n  return sub_1007E277(this, a2)\n      && *(_DWORD *)(v3 + 20) == *(_DWORD *)(v2 + 20)\n      && sub_1007E28D(*(int (__thiscall ****)(_DWORD, int))(v3 + 16), *(_DWORD *)(v2 + 16)) != 0;\n}\n"
+}

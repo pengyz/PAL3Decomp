@@ -1,0 +1,8 @@
+{
+  "name": "sub_1007B587",
+  "mangled_name": "sub_1007B587",
+  "address": "0x1007B587",
+  "size_bytes": 76,
+  "signature": "float *__usercall@<eax>(float *result@<eax>, unsigned int a2@<ecx>)",
+  "decompiled_c": "float *__usercall sub_1007B587@<eax>(float *result@<eax>, unsigned int a2@<ecx>)\n{\n  *result = (double)((unsigned __int16)a2 >> 11) * 0.032258064;\n  result[1] = (double)((a2 >> 5) & 0x3F) * 0.015873017;\n  result[2] = (double)(a2 & 0x1F) * 0.032258064;\n  result[3] = 1.0;\n  return result;\n}\n"
+}

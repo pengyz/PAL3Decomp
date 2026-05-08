@@ -1,0 +1,8 @@
+{
+  "name": "sub_1009A97D",
+  "mangled_name": "sub_1009A97D",
+  "address": "0x1009A97D",
+  "size_bytes": 45,
+  "signature": "unsigned int *__thiscall(_DWORD *this, int a2, unsigned int *a3)",
+  "decompiled_c": "unsigned int *__thiscall sub_1009A97D(_DWORD *this, int a2, unsigned int *a3)\n{\n  int v3; // ecx\n  unsigned int *result; // eax\n  unsigned int v5; // edx\n\n  v3 = *(this + 5);\n  result = *(unsigned int **)(*(_DWORD *)(v3 + 4 * a2) + 20);\n  v5 = 0;\n  if ( result != (unsigned int *)-1 )\n  {\n    do\n    {\n      result = *(unsigned int **)(*(_DWORD *)(v3 + 4 * (_DWORD)result) + 20);\n      ++v5;\n    }\n    while ( result != (unsigned int *)-1 );\n    result = a3;\n    if ( *a3 < v5 )\n      *a3 = v5;\n  }\n  return result;\n}\n"
+}

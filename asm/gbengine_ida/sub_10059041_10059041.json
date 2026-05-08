@@ -1,0 +1,8 @@
+{
+  "name": "sub_10059041",
+  "mangled_name": "sub_10059041",
+  "address": "0x10059041",
+  "size_bytes": 96,
+  "signature": "int __stdcall(int a1, int a2)",
+  "decompiled_c": "int __stdcall sub_10059041(int a1, int a2)\n{\n  int v2; // edi\n  int v3; // eax\n\n  v2 = *(_DWORD *)(a2 + 28);\n  if ( !v2 )\n    return 0;\n  while ( 1 )\n  {\n    v3 = strcmp(*(const char **)(a1 + 8), *(const char **)(v2 + 16));\n    if ( !v3 )\n      break;\n    if ( v3 >= 0 )\n      v2 = *(_DWORD *)(v2 + 12);\n    else\n      v2 = *(_DWORD *)(v2 + 8);\n    if ( !v2 )\n      return 0;\n  }\n  return *(_DWORD *)(v2 + 20);\n}\n"
+}

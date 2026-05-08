@@ -1,0 +1,8 @@
+{
+  "name": "sub_1007B2C2",
+  "mangled_name": "sub_1007B2C2",
+  "address": "0x1007B2C2",
+  "size_bytes": 69,
+  "signature": "double __stdcall(unsigned int a1)",
+  "decompiled_c": "double __stdcall sub_1007B2C2(unsigned int a1)\n{\n  return (COERCE_FLOAT(a1 & 0xFFFFFF | 0x3F000000) * *(float *)((char *)&flt_101267B8 + ((a1 >> 12) & 0xFF8))\n        + *(float *)((char *)&flt_101267BC + ((a1 >> 12) & 0xFF8)))\n       * COERCE_FLOAT(((-1090519041 - a1) >> 1) & 0xFF800000);\n}\n"
+}

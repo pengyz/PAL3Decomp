@@ -1,0 +1,8 @@
+{
+  "name": "sub_100CB4C0",
+  "mangled_name": "sub_100CB4C0",
+  "address": "0x100CB4C0",
+  "size_bytes": 110,
+  "signature": "int __stdcall(_DWORD *a1, int a2, int a3, int a4)",
+  "decompiled_c": "int __stdcall sub_100CB4C0(_DWORD *a1, int a2, int a3, int a4)\n{\n  int v4; // esi\n  int result; // eax\n  unsigned int v6; // ebp\n\n  v4 = a1[107];\n  if ( !*(_DWORD *)(v4 + 48) )\n  {\n    result = (*(int (__stdcall **)(_DWORD *, int))(a1[108] + 12))(a1, v4 + 8);\n    if ( !result )\n      return result;\n    *(_DWORD *)(v4 + 48) = 1;\n  }\n  v6 = a1[80];\n  result = (*(int (__stdcall **)(_DWORD *, int, int, unsigned int, int, int, int))(a1[109] + 4))(\n             a1,\n             v4 + 8,\n             v4 + 52,\n             v6,\n             a2,\n             a3,\n             a4);\n  if ( *(_DWORD *)(v4 + 52) >= v6 )\n  {\n    *(_DWORD *)(v4 + 48) = 0;\n    *(_DWORD *)(v4 + 52) = 0;\n  }\n  return result;\n}\n"
+}

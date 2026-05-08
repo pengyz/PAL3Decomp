@@ -1,0 +1,8 @@
+{
+  "name": "sub_1004311C",
+  "mangled_name": "sub_1004311C",
+  "address": "0x1004311C",
+  "size_bytes": 74,
+  "signature": "unsigned int __thiscall(_DWORD *this, int a2, int a3, const void *a4)",
+  "decompiled_c": "unsigned int __thiscall sub_1004311C(_DWORD *this, int a2, int a3, const void *a4)\n{\n  unsigned int result; // eax\n\n  if ( *(this + 4) )\n    a4 = (const void *)sub_1003C9C1(this, (int)a4);\n  result = 16 * *(this + 26);\n  qmemcpy((void *)(*(this + 8) + a3 * *(this + 25) + a2 * *(this + 24)), a4, result);\n  return result;\n}\n"
+}

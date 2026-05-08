@@ -1,0 +1,8 @@
+{
+  "name": "sub_1000B040",
+  "mangled_name": "sub_1000B040",
+  "address": "0x1000B040",
+  "size_bytes": 45,
+  "signature": "void __thiscall(gbRefObject **this)",
+  "decompiled_c": "void __thiscall sub_1000B040(gbRefObject **this)\n{\n  int v2; // esi\n  gbRefObject **v3; // edi\n\n  v2 = 0;\n  if ( (int)*(this + 33) > 0 )\n  {\n    v3 = this + 17;\n    do\n    {\n      gbRefObject::Release(*v3);\n      ++v2;\n      ++v3;\n    }\n    while ( v2 < (int)*(this + 33) );\n  }\n}\n"
+}

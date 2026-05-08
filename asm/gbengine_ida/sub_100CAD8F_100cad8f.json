@@ -1,0 +1,8 @@
+{
+  "name": "sub_100CAD8F",
+  "mangled_name": "sub_100CAD8F",
+  "address": "0x100CAD8F",
+  "size_bytes": 130,
+  "signature": "int __thiscall(unsigned int *this)",
+  "decompiled_c": "int __thiscall sub_100CAD8F(unsigned int *this)\n{\n  int result; // eax\n  unsigned int v3; // eax\n  int v4; // [esp+4h] [ebp-8h] BYREF\n  int v5; // [esp+8h] [ebp-4h] BYREF\n\n  result = sub_100C94B8((int)this, 27);\n  if ( result >= 0 )\n  {\n    v3 = *this;\n    v5 = 0;\n    result = (*(int (__thiscall **)(unsigned int *, int, int, _DWORD))(v3 + 84))(this, -268433408, 14942208, 0);\n    if ( result >= 0 )\n    {\n      result = (*(int (__thiscall **)(unsigned int *, _DWORD, int *, int *))(*this + 96))(\n                 this,\n                 *(_DWORD *)(*(this + 5) + 4 * **(_DWORD **)(*(this + 56) + 8)),\n                 &v5,\n                 &v4);\n      if ( result >= 0 )\n      {\n        result = (*(int (__thiscall **)(unsigned int *, int, int, int))(*this + 84))(this, v5, 14942208, v4);\n        if ( result >= 0 )\n        {\n          result = (*(int (__thiscall **)(unsigned int *))(*this + 76))(this);\n          if ( result >= 0 )\n          {\n            result = sub_100C407A(this);\n            if ( result >= 0 )\n              return 0;\n          }\n        }\n      }\n    }\n  }\n  return result;\n}\n"
+}

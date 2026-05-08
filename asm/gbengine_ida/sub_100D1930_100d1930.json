@@ -1,0 +1,8 @@
+{
+  "name": "sub_100D1930",
+  "mangled_name": "sub_100D1930",
+  "address": "0x100D1930",
+  "size_bytes": 41,
+  "signature": "char *__stdcall(int a1, int a2)",
+  "decompiled_c": "char *__stdcall sub_100D1930(int a1, int a2)\n{\n  char *result; // eax\n  char v3; // cl\n\n  result = (char *)malloc(a2 + 16);\n  v3 = (char)result;\n  if ( result )\n  {\n    result = (char *)((unsigned int)(result + 16) & 0xFFFFFFF0);\n    *(result - 1) = ((v3 + 16) & 0xF0) - v3;\n  }\n  return result;\n}\n"
+}

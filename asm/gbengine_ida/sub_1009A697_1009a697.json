@@ -1,0 +1,8 @@
+{
+  "name": "sub_1009A697",
+  "mangled_name": "sub_1009A697",
+  "address": "0x1009A697",
+  "size_bytes": 65,
+  "signature": "int __usercall@<eax>(int a1@<eax>, int a2@<edx>, int a3@<ecx>)",
+  "decompiled_c": "int __usercall sub_1009A697@<eax>(int a1@<eax>, int a2@<edx>, int a3@<ecx>)\n{\n  int v3; // eax\n  int v4; // ecx\n  int v5; // eax\n  unsigned int v6; // edx\n  unsigned int v7; // esi\n  int v9; // ecx\n  int v10; // eax\n\n  v3 = *(_DWORD *)(*(_DWORD *)(a1 + 180) + 88);\n  v4 = v3 + 12 * a3;\n  v5 = v3 + 12 * a2;\n  v6 = *(_DWORD *)(v4 + 4);\n  v7 = *(_DWORD *)(v5 + 4);\n  if ( v6 < v7 )\n    return -1;\n  if ( v6 > v7 )\n    return 1;\n  v9 = *(_DWORD *)(v4 + 8);\n  v10 = *(_DWORD *)(v5 + 8);\n  if ( v9 < v10 )\n    return -1;\n  return v9 > v10;\n}\n"
+}

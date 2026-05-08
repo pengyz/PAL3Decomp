@@ -1,0 +1,8 @@
+{
+  "name": "sub_100CE310",
+  "mangled_name": "sub_100CE310",
+  "address": "0x100CE310",
+  "size_bytes": 126,
+  "signature": "int (__stdcall **__stdcall(int a1))(int *a1)",
+  "decompiled_c": "int (__stdcall **__stdcall sub_100CE310(int a1))(int *a1)\n{\n  int (__stdcall **result)(int *); // eax\n  int v3; // edx\n  int v4; // ecx\n  int v5; // ebx\n  _DWORD *v6; // ebp\n  void *v7; // eax\n  _DWORD *v8; // [esp+18h] [ebp+4h]\n\n  result = (int (__stdcall **)(int *))(**(int (__stdcall ***)(int, int, int))(a1 + 4))(a1, 1, 84);\n  v3 = *(_DWORD *)(a1 + 36);\n  v4 = *(_DWORD *)(a1 + 220);\n  v5 = 0;\n  *(_DWORD *)(a1 + 452) = result;\n  *result = sub_100CDF00;\n  if ( v3 > 0 )\n  {\n    v8 = (_DWORD *)(v4 + 80);\n    v6 = result + 11;\n    do\n    {\n      v7 = (void *)(**(int (__stdcall ***)(int, int, int))(a1 + 4))(a1, 1, 256);\n      *v8 = v7;\n      memset(v7, 0, 0x100u);\n      result = *(int (__stdcall ***)(int *))(a1 + 36);\n      *v6 = -1;\n      ++v5;\n      ++v6;\n      v8 += 21;\n    }\n    while ( v5 < (int)result );\n  }\n  return result;\n}\n"
+}

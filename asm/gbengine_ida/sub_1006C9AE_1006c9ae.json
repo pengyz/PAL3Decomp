@@ -1,0 +1,8 @@
+{
+  "name": "sub_1006C9AE",
+  "mangled_name": "sub_1006C9AE",
+  "address": "0x1006C9AE",
+  "size_bytes": 75,
+  "signature": "_DWORD *__thiscall(_DWORD *Block, char a2)",
+  "decompiled_c": "_DWORD *__thiscall sub_1006C9AE(_DWORD *Block, char a2)\n{\n  if ( (a2 & 2) != 0 )\n  {\n    sub_10033437((int)Block, 64, *(Block - 1), (int (__thiscall *)(int))sub_1006B90B);\n    if ( (a2 & 1) != 0 )\n      operator delete(Block - 1);\n    return Block - 1;\n  }\n  else\n  {\n    sub_1006B90B(Block);\n    if ( (a2 & 1) != 0 )\n      operator delete(Block);\n    return Block;\n  }\n}\n"
+}

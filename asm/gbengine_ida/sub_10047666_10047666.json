@@ -1,0 +1,8 @@
+{
+  "name": "sub_10047666",
+  "mangled_name": "sub_10047666",
+  "address": "0x10047666",
+  "size_bytes": 209,
+  "signature": "float *__stdcall(float *a1, float *a2, float *a3, float *a4, float *a5, float a6)",
+  "decompiled_c": "float *__stdcall sub_10047666(float *a1, float *a2, float *a3, float *a4, float *a5, float a6)\n{\n  double v6; // st7\n  double v8; // st6\n  double v9; // st6\n  double v10; // st5\n  double v11; // st4\n  double v12; // st3\n  float v13; // [esp+0h] [ebp-Ch]\n  float v14; // [esp+4h] [ebp-8h]\n  float v15; // [esp+8h] [ebp-4h]\n\n  v6 = a6 * a6;\n  v8 = a6 * v6;\n  v15 = v8;\n  v13 = v8 + v8;\n  v14 = 3.0 * v6;\n  v9 = v13 - v14 + 1.0;\n  v10 = v15 - (v6 + v6) + a6;\n  v11 = v14 - v13;\n  v12 = v15 - v6;\n  *a1 = v9 * *a2 + v10 * *a3 + v11 * *a4 + v12 * *a5;\n  a1[1] = v12 * a5[1] + v11 * a4[1] + v10 * a3[1] + v9 * a2[1];\n  a1[2] = v12 * a5[2] + v11 * a4[2] + v10 * a3[2] + v9 * a2[2];\n  a1[3] = v12 * a5[3] + v11 * a4[3] + v10 * a3[3] + v9 * a2[3];\n  return a1;\n}\n"
+}

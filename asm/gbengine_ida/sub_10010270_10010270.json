@@ -1,0 +1,8 @@
+{
+  "name": "sub_10010270",
+  "mangled_name": "sub_10010270",
+  "address": "0x10010270",
+  "size_bytes": 73,
+  "signature": "int __cdecl(int a1, _DWORD *a2, _DWORD *a3)",
+  "decompiled_c": "int __cdecl sub_10010270(int a1, _DWORD *a2, _DWORD *a3)\n{\n  int result; // eax\n\n  if ( a3[66] )\n    *(_DWORD *)(a1 + 4 * (*a2)++) = a3;\n  result = a3[3];\n  for ( a3[6] = result; result; a3[6] = result )\n  {\n    sub_10010270(a1, a2, result);\n    result = *(_DWORD *)(a3[6] + 4);\n  }\n  return result;\n}\n"
+}

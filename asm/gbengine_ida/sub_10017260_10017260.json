@@ -1,0 +1,8 @@
+{
+  "name": "sub_10017260",
+  "mangled_name": "sub_10017260",
+  "address": "0x10017260",
+  "size_bytes": 139,
+  "signature": "void ***__thiscall(void ***Block, char a2)",
+  "decompiled_c": "void ***__thiscall sub_10017260(void ***Block, char a2)\n{\n  _DWORD *v3; // eax\n  unsigned int i; // edi\n  void ***v5; // esi\n  void **v6; // esi\n\n  v3 = *(Block + 78);\n  if ( v3 )\n  {\n    for ( i = 0; i < v3[3]; ++i )\n    {\n      if ( *v3 )\n        v5 = *(void ****)(v3[1] + 4 * i);\n      else\n        v5 = (void ***)(v3[1] + i * v3[2]);\n      if ( v5 )\n      {\n        sub_10017000(v5);\n        operator delete(v5);\n      }\n      v3 = *(Block + 78);\n    }\n    v6 = *(Block + 78);\n    if ( v6 )\n    {\n      if ( v6[1] )\n        operator delete(v6[1]);\n      operator delete(v6);\n    }\n  }\n  if ( (a2 & 1) != 0 )\n    operator delete(Block);\n  return Block;\n}\n"
+}

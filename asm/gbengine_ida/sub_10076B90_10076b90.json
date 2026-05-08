@@ -1,0 +1,8 @@
+{
+  "name": "sub_10076B90",
+  "mangled_name": "sub_10076B90",
+  "address": "0x10076B90",
+  "size_bytes": 201,
+  "signature": "int __stdcall(struct gbRenderInfoObj *a1, int a2, int a3)",
+  "decompiled_c": "int __stdcall sub_10076B90(struct gbRenderInfoObj *a1, int a2, int a3)\n{\n  int v3; // eax\n  int v4; // eax\n  int v5; // edx\n  int v6; // ebx\n  _DWORD *v7; // eax\n  int v8; // ecx\n  int result; // eax\n\n  *((_DWORD *)a1 + 1) = 0;\n  if ( a2 != 62 )\n  {\n    v3 = *(_DWORD *)a1;\n    *(_DWORD *)(v3 + 20) = 12;\n    *(_DWORD *)(v3 + 24) = 62;\n    *(_DWORD *)(v3 + 28) = a2;\n    (*(void (__stdcall **)(struct gbRenderInfoObj *))v3)(a1);\n  }\n  if ( a3 != 472 )\n  {\n    v4 = *(_DWORD *)a1;\n    *(_DWORD *)(v4 + 20) = 21;\n    *(_DWORD *)(v4 + 24) = 472;\n    *(_DWORD *)(v4 + 28) = a3;\n    (*(void (__stdcall **)(struct gbRenderInfoObj *))v4)(a1);\n  }\n  v5 = *(_DWORD *)a1;\n  v6 = *((_DWORD *)a1 + 3);\n  memset(a1, 0, 0x1D8u);\n  *(_DWORD *)a1 = v5;\n  *((_DWORD *)a1 + 3) = v6;\n  *((_DWORD *)a1 + 4) = 1;\n  sub_10094CA0(a1);\n  *((_DWORD *)a1 + 2) = 0;\n  *((_DWORD *)a1 + 6) = 0;\n  *((_DWORD *)a1 + 42) = 0;\n  *((_DWORD *)a1 + 43) = 0;\n  *((_DWORD *)a1 + 44) = 0;\n  *((_DWORD *)a1 + 45) = 0;\n  v7 = (_DWORD *)((char *)a1 + 200);\n  v8 = 4;\n  do\n  {\n    *(v7 - 4) = 0;\n    *v7++ = 0;\n    --v8;\n  }\n  while ( v8 );\n  *((_DWORD *)a1 + 77) = 0;\n  sub_10078910(a1);\n  result = sub_10094220(a1);\n  *((_DWORD *)a1 + 5) = 200;\n  return result;\n}\n"
+}

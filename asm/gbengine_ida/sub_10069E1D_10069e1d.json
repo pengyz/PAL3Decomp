@@ -1,0 +1,8 @@
+{
+  "name": "sub_10069E1D",
+  "mangled_name": "sub_10069E1D",
+  "address": "0x10069E1D",
+  "size_bytes": 127,
+  "signature": "int __thiscall(_DWORD **this, int a2, int a3)",
+  "decompiled_c": "int __thiscall sub_10069E1D(_DWORD **this, int a2, int a3)\n{\n  int v4; // ebx\n  int result; // eax\n  unsigned int v7; // edi\n  char *v8; // eax\n  int v9; // [esp+14h] [ebp+8h]\n\n  v4 = 0;\n  result = 0;\n  if ( *(_WORD *)(a3 + 6) )\n  {\nLABEL_2:\n    result = (*(int (__stdcall **)(_DWORD, int, _DWORD))(**(this + 3) + 260))(*(this + 3), v4, 0);\n    if ( result >= 0 )\n    {\n      v7 = 7;\n      while ( 1 )\n      {\n        v8 = off_101029E8[v7];\n        v9 = v8 ? *((_DWORD *)v8 + 1) : 0;\n        result = (*(int (__stdcall **)(_DWORD, int, int, int))(**(this + 3) + 276))(\n                   *(this + 3),\n                   v4,\n                   dword_101029E4[v7] & 0xFFFFFF,\n                   v9);\n        if ( result < 0 )\n          break;\n        v7 += 7;\n        if ( v7 >= 91 )\n        {\n          if ( ++v4 < (unsigned int)*(unsigned __int16 *)(a3 + 6) )\n            goto LABEL_2;\n          return result;\n        }\n      }\n    }\n  }\n  return result;\n}\n"
+}

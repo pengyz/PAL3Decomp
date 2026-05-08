@@ -1,0 +1,8 @@
+{
+  "name": "sub_1003C954",
+  "mangled_name": "sub_1003C954",
+  "address": "0x1003C954",
+  "size_bytes": 109,
+  "signature": "void __thiscall(int this, unsigned int a2)",
+  "decompiled_c": "void __thiscall sub_1003C954(int this, unsigned int a2)\n{\n  float *v2; // edx\n  unsigned int v3; // esi\n\n  if ( a2 < a2 + 16 * *(_DWORD *)(this + 104) )\n  {\n    v2 = (float *)(a2 + 8);\n    v3 = ((unsigned int)(16 * *(_DWORD *)(this + 104) - 1) >> 4) + 1;\n    do\n    {\n      if ( *(v2 - 2) == *(float *)(this + 36)\n        && *(v2 - 1) == *(float *)(this + 40)\n        && *v2 == *(float *)(this + 44)\n        && v2[1] == *(float *)(this + 48) )\n      {\n        v2[1] = 0.0;\n        *v2 = 0.0;\n        *(v2 - 1) = 0.0;\n        *(v2 - 2) = 0.0;\n      }\n      v2 += 4;\n      --v3;\n    }\n    while ( v3 );\n  }\n}\n"
+}

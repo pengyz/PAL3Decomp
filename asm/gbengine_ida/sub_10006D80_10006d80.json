@@ -1,0 +1,8 @@
+{
+  "name": "sub_10006D80",
+  "mangled_name": "sub_10006D80",
+  "address": "0x10006D80",
+  "size_bytes": 231,
+  "signature": "int __thiscall(int *this, float *a2, float *a3, int a4)",
+  "decompiled_c": "int __thiscall sub_10006D80(int *this, float *a2, float *a3, int a4)\n{\n  int result; // eax\n  int v5; // ebp\n  int v6; // edx\n  float *v7; // ebx\n  float *v8; // ebx\n  float *v9; // ebx\n  float *v10; // ebx\n  float *v11; // ebx\n  float *v12; // ebx\n\n  if ( !a4 )\n  {\n    *a2 = 3.4028235e38;\n    a2[1] = 3.4028235e38;\n    a2[2] = 3.4028235e38;\n    *a3 = -3.4028235e38;\n    a3[1] = -3.4028235e38;\n    a3[2] = -3.4028235e38;\n  }\n  result = *(this + 2);\n  v5 = 0;\n  if ( result > 0 )\n  {\n    v6 = 0;\n    do\n    {\n      v7 = (float *)(v6 + *(this + 6));\n      if ( *v7 < (double)*a2 )\n        *a2 = *v7;\n      v8 = (float *)(v6 + *(this + 6));\n      if ( *v8 > (double)*a3 )\n        *a3 = *v8;\n      v9 = (float *)(v6 + *(this + 6) + 4);\n      if ( *v9 < (double)a2[1] )\n        a2[1] = *v9;\n      v10 = (float *)(v6 + *(this + 6) + 4);\n      if ( *v10 > (double)a3[1] )\n        a3[1] = *v10;\n      v11 = (float *)(v6 + *(this + 6) + 8);\n      if ( *v11 < (double)a2[2] )\n        a2[2] = *v11;\n      v12 = (float *)(v6 + *(this + 6) + 8);\n      if ( *v12 > (double)a3[2] )\n        a3[2] = *v12;\n      result = *(this + 2);\n      ++v5;\n      v6 += 36;\n    }\n    while ( v5 < result );\n  }\n  return result;\n}\n"
+}

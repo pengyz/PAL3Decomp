@@ -1,0 +1,8 @@
+{
+  "name": "sub_100CA49F",
+  "mangled_name": "sub_100CA49F",
+  "address": "0x100CA49F",
+  "size_bytes": 40,
+  "signature": "int __thiscall(unsigned int *this)",
+  "decompiled_c": "int __thiscall sub_100CA49F(unsigned int *this)\n{\n  int result; // eax\n\n  result = sub_100C94B8((int)this, 43);\n  if ( result >= 0 )\n  {\n    result = (*(int (__thiscall **)(unsigned int *))(*this + 76))(this);\n    if ( result >= 0 )\n    {\n      result = sub_100C407A(this);\n      if ( result >= 0 )\n        return 0;\n    }\n  }\n  return result;\n}\n"
+}

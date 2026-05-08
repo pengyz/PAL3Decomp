@@ -1,0 +1,8 @@
+{
+  "name": "sub_10094220",
+  "mangled_name": "sub_10094220",
+  "address": "0x10094220",
+  "size_bytes": 73,
+  "signature": "int (__stdcall **__stdcall(int a1))(int *a1)",
+  "decompiled_c": "int (__stdcall **__stdcall sub_10094220(int a1))(int *a1)\n{\n  int (__stdcall **result)(int *); // eax\n\n  result = (int (__stdcall **)(int *))(**(int (__stdcall ***)(int, _DWORD, int))(a1 + 4))(a1, 0, 28);\n  *(_DWORD *)(a1 + 440) = result;\n  *result = sub_100940F0;\n  result[1] = (int (__stdcall *)(int *))sub_100941B0;\n  result[2] = (int (__stdcall *)(int *))sub_100940B0;\n  result[3] = (int (__stdcall *)(int *))sub_10094200;\n  result[4] = 0;\n  result[5] = 0;\n  result[6] = (int (__stdcall *)(int *))1;\n  return result;\n}\n"
+}

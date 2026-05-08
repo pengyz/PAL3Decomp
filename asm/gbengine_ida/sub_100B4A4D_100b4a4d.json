@@ -1,0 +1,8 @@
+{
+  "name": "sub_100B4A4D",
+  "mangled_name": "sub_100B4A4D",
+  "address": "0x100B4A4D",
+  "size_bytes": 107,
+  "signature": "int __thiscall(_DWORD *this)",
+  "decompiled_c": "int __thiscall sub_100B4A4D(_DWORD *this)\n{\n  int v2; // ecx\n  int result; // eax\n\n  v2 = *(this + 121);\n  if ( !v2 || !*(this + 118) )\n    return sub_100B46D5((int)this, *(this + 122), *(this + 119));\n  if ( (unsigned __int16)*(this + 48) != 260 )\n    return -2147467259;\n  sub_100B46D5((int)this, v2, *(this + 118));\n  result = sub_100C94B8(65533);\n  if ( result >= 0 )\n  {\n    result = sub_100C407A(this);\n    if ( result >= 0 )\n      return sub_100B46D5((int)this, *(this + 122), *(this + 119));\n  }\n  return result;\n}\n"
+}

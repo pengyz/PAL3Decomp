@@ -1,0 +1,8 @@
+{
+  "name": "gbGfxManager_D3D::SetCursor(void *)",
+  "mangled_name": "?SetCursor@gbGfxManager_D3D@@UAEXPAX@Z",
+  "address": "0x1001B9D0",
+  "size_bytes": 47,
+  "signature": "int __thiscall(gbGfxManager_D3D *this, _DWORD *a2)",
+  "decompiled_c": "int __thiscall gbGfxManager_D3D::SetCursor(gbGfxManager_D3D *this, _DWORD *a2)\n{\n  int result; // eax\n\n  if ( a2 )\n  {\n    result = (*(int (__stdcall **)(_DWORD, _DWORD, _DWORD, _DWORD))(**((_DWORD **)this + 454) + 40))(\n               *((_DWORD *)this + 454),\n               a2[7],\n               a2[8],\n               a2[6]);\n    *((_DWORD *)this + 409) = a2;\n  }\n  return result;\n}\n"
+}

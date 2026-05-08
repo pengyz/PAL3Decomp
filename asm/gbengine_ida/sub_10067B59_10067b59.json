@@ -1,0 +1,8 @@
+{
+  "name": "sub_10067B59",
+  "mangled_name": "sub_10067B59",
+  "address": "0x10067B59",
+  "size_bytes": 283,
+  "signature": "int __stdcall(int a1)",
+  "decompiled_c": "int __stdcall sub_10067B59(int a1)\n{\n  int v2; // eax\n  int v3; // eax\n  unsigned int v4; // esi\n  void *v5; // ebp\n  int v6; // ecx\n  int v7; // edx\n  int v8; // esi\n  int v9; // eax\n  int v11; // [esp+8h] [ebp-4h]\n  int v12; // [esp+10h] [ebp+4h]\n\n  v11 = 0;\n  if ( *(_DWORD *)(a1 + 60) == 3 )\n  {\n    v2 = *(_DWORD *)(a1 + 172);\n    if ( v2 == *(_DWORD *)(a1 + 176) )\n    {\n      v3 = 2 * v2 + 1;\n      v4 = 4 * v3;\n      v12 = v3;\n      v5 = (void *)operator new(4 * v3);\n      if ( !v5 )\n        return v11;\n      memset(v5, 0, v4);\n      qmemcpy(v5, *(const void **)(a1 + 180), 4 * *(_DWORD *)(a1 + 172));\n      if ( *(_DWORD *)(a1 + 180) )\n      {\n        operator delete(*(void **)(a1 + 180));\n        *(_DWORD *)(a1 + 180) = 0;\n      }\n      *(_DWORD *)(a1 + 180) = v5;\n      *(_DWORD *)(a1 + 176) = v12;\n    }\n    v6 = *(_DWORD *)(a1 + 172);\n    v7 = *(_DWORD *)(a1 + 180);\n    v8 = *(_DWORD *)(a1 + 212);\n    *(_DWORD *)(a1 + 60) = 0;\n    *(_DWORD *)(v7 + 4 * v6) = v8;\n    *(_DWORD *)(a1 + 212) = 0;\n    v9 = operator new(0x20u);\n    if ( v9 )\n    {\n      *(_DWORD *)(v9 + 24) = -1;\n      *(_DWORD *)(v9 + 20) = 0;\n      *(_DWORD *)(v9 + 16) = 0;\n    }\n    else\n    {\n      v9 = 0;\n    }\n    if ( v9 )\n    {\n      *(_DWORD *)v9 = 4;\n      *(_DWORD *)(v9 + 4) = *(_DWORD *)(a1 + 172);\n      *(_DWORD *)(v9 + 20) = *(_DWORD *)(a1 + 184);\n      ++*(_DWORD *)(a1 + 172);\n      *(_DWORD *)(a1 + 184) = v9;\n      return ~v9;\n    }\n  }\n  return v11;\n}\n"
+}

@@ -1,0 +1,8 @@
+{
+  "name": "sub_100B781F",
+  "mangled_name": "sub_100B781F",
+  "address": "0x100B781F",
+  "size_bytes": 118,
+  "signature": "int __thiscall(unsigned int *this)",
+  "decompiled_c": "int __thiscall sub_100B781F(unsigned int *this)\n{\n  int result; // eax\n  unsigned int v3; // ebx\n  unsigned int v4; // edi\n  unsigned int v5; // eax\n\n  result = sub_100C458F((int)this);\n  if ( result >= 0 )\n  {\n    sub_100BD35B(this);\n    v3 = *(this + 3);\n    v4 = 0;\n    if ( v3 )\n    {\n      while ( 1 )\n      {\n        v5 = *(_DWORD *)(*(this + 6) + 4 * v4);\n        *(this + 56) = v5;\n        *(this + 55) = v4;\n        if ( (*(_WORD *)(v5 + 2) & 0xFFF0) != 0 )\n        {\n          result = sub_100B6AB5((int)this);\n          if ( result < 0 )\n            break;\n        }\n        if ( ++v4 >= v3 )\n          goto LABEL_6;\n      }\n    }\n    else\n    {\nLABEL_6:\n      result = sub_1009E642(this);\n      if ( result >= 0 )\n      {\n        result = sub_100A0BF8(this);\n        if ( result >= 0 )\n        {\n          result = sub_1009A9AA(this);\n          if ( result >= 0 )\n          {\n            sub_100BD35B(this);\n            return 0;\n          }\n        }\n      }\n    }\n  }\n  return result;\n}\n"
+}

@@ -1,0 +1,8 @@
+{
+  "name": "sub_10064331",
+  "mangled_name": "sub_10064331",
+  "address": "0x10064331",
+  "size_bytes": 159,
+  "signature": "int __thiscall(_DWORD *this, int a2, int a3, int a4)",
+  "decompiled_c": "int __thiscall sub_10064331(_DWORD *this, int a2, int a3, int a4)\n{\n  int v4; // esi\n  int v5; // eax\n  int v6; // edi\n  unsigned __int16 *v7; // ebx\n  int v9; // [esp+4h] [ebp-Ch]\n  unsigned int i; // [esp+Ch] [ebp-4h]\n  unsigned __int16 v11; // [esp+18h] [ebp+8h]\n\n  v4 = *(this + 11) + 60 * a2;\n  *(_WORD *)(v4 + 56) += a3;\n  *(_WORD *)(v4 + 54) += a4;\n  v5 = *(_DWORD *)v4 + *(_DWORD *)(v4 + 16);\n  v9 = v5;\n  for ( i = 0; i < *(unsigned __int16 *)(v4 + 48); ++i )\n  {\n    v6 = *(_DWORD *)(v4 + 4) + (*(unsigned __int16 *)(v5 + 2 * i) << 6);\n    v7 = (unsigned __int16 *)(*(_DWORD *)v4 + *(_DWORD *)(v6 + 44));\n    if ( *v7 )\n    {\n      v11 = 0;\n      if ( *(_WORD *)(v6 + 58) )\n      {\n        do\n          sub_10064331(*v7 + v7[1] + v11++ - 1, a3, a4);\n        while ( v11 < *(_WORD *)(v6 + 58) );\n        v5 = v9;\n      }\n    }\n  }\n  return 0;\n}\n"
+}

@@ -1,0 +1,8 @@
+{
+  "name": "sub_1007F677",
+  "mangled_name": "sub_1007F677",
+  "address": "0x1007F677",
+  "size_bytes": 101,
+  "signature": "_DWORD *__thiscall(int *this)",
+  "decompiled_c": "_DWORD *__thiscall sub_1007F677(int *this)\n{\n  _DWORD *v2; // eax\n  _DWORD *v3; // ebp\n  int v4; // eax\n\n  v2 = (_DWORD *)sub_1007E198((_DWORD *)dword_10165864, 64, (LPVOID)0x10);\n  if ( v2 )\n    v3 = sub_1007ECA9(v2);\n  else\n    v3 = 0;\n  if ( v3\n    && ((v3[4] = *(this + 4),\n         v3[5] = *(this + 5),\n         v3[6] = *(this + 6),\n         v3[7] = *(this + 7),\n         qmemcpy(v3 + 8, this + 8, 0x20u),\n         *(this + 4) != 4)\n     || !*(this + 6)\n     || (v4 = sub_1007E2AB(*(this + 6)), (*(this + 6) = v4) != 0)) )\n  {\n    return v3;\n  }\n  else\n  {\n    return 0;\n  }\n}\n"
+}

@@ -1,0 +1,8 @@
+{
+  "name": "sub_10065CCB",
+  "mangled_name": "sub_10065CCB",
+  "address": "0x10065CCB",
+  "size_bytes": 43,
+  "signature": "int __stdcall(int a1, _DWORD *a2)",
+  "decompiled_c": "int __stdcall sub_10065CCB(int a1, _DWORD *a2)\n{\n  int v2; // esi\n  int v3; // eax\n\n  v2 = 0;\n  if ( !a2 )\n    return -2005530516;\n  v3 = *(_DWORD *)(a1 + 56);\n  *a2 = v3;\n  if ( v3 )\n    (*(void (__stdcall **)(int))(*(_DWORD *)v3 + 4))(v3);\n  return v2;\n}\n"
+}

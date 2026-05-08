@@ -1,0 +1,8 @@
+{
+  "name": "sub_10034519",
+  "mangled_name": "sub_10034519",
+  "address": "0x10034519",
+  "size_bytes": 93,
+  "signature": "BOOL __stdcall(BYTE *a1, LPCSTR lpValueName, BYTE *Type, DWORD cbData)",
+  "decompiled_c": "BOOL __stdcall sub_10034519(BYTE *a1, LPCSTR lpValueName, BYTE *Type, DWORD cbData)\n{\n  LSTATUS v4; // esi\n  BOOL result; // eax\n  HKEY phkResult; // [esp+0h] [ebp-4h] BYREF\n\n  phkResult = 0;\n  result = 0;\n  if ( !RegOpenKeyA(HKEY_LOCAL_MACHINE, \"Software\\\\Microsoft\\\\Direct3D\", &phkResult) )\n  {\n    v4 = RegQueryValueExA(phkResult, lpValueName, 0, (LPDWORD)&Type, Type, &cbData);\n    RegCloseKey(phkResult);\n    if ( !v4 && Type == a1 )\n      return 1;\n  }\n  return result;\n}\n"
+}

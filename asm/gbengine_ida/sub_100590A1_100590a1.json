@@ -1,0 +1,8 @@
+{
+  "name": "sub_100590A1",
+  "mangled_name": "sub_100590A1",
+  "address": "0x100590A1",
+  "size_bytes": 133,
+  "signature": "int __stdcall(int a1, int a2)",
+  "decompiled_c": "int __stdcall sub_100590A1(int a1, int a2)\n{\n  bool v2; // cc\n  int result; // eax\n  bool v4; // zf\n  int v5; // eax\n  bool v6; // zf\n\n  if ( a1 == a2 )\n    return 0;\n  switch ( a1 )\n  {\n    case 1:\n    case 5:\n      if ( a2 <= 0 )\n        goto LABEL_6;\n      v2 = a2 <= 8;\n      goto LABEL_5;\n    case 2:\n    case 6:\n      if ( a2 <= 0 )\n        goto LABEL_6;\n      if ( a2 <= 2 )\n        return 0;\n      if ( a2 <= 4 )\n        goto LABEL_6;\n      v2 = a2 <= 6;\nLABEL_5:\n      if ( !v2 )\n        goto LABEL_6;\n      return 0;\n    case 3:\n    case 7:\n      if ( a2 == 1 || a2 == 3 )\n        return 0;\n      v5 = a2 - 5;\n      v4 = a2 == 5;\n      goto LABEL_14;\n    case 4:\n    case 8:\n      if ( a2 == 1 )\n        return 0;\n      if ( a2 <= 3 )\n        goto LABEL_6;\n      if ( a2 <= 5 )\n        return 0;\n      v6 = a2 == 8;\n      goto LABEL_27;\n    case 9:\n      if ( a2 < 9 )\n        goto LABEL_6;\n      v2 = a2 <= 12;\n      goto LABEL_5;\n    case 10:\n      if ( a2 < 9 )\n        goto LABEL_6;\n      v2 = a2 <= 10;\n      goto LABEL_5;\n    case 11:\n      v5 = a2 - 9;\n      v4 = a2 == 9;\nLABEL_14:\n      if ( v4 )\n        return 0;\n      v6 = v5 == 2;\nLABEL_27:\n      if ( v6 )\n        return 0;\nLABEL_6:\n      result = 1;\n      break;\n    case 12:\n      if ( a2 == 9 )\n        return 0;\n      v6 = a2 == 12;\n      goto LABEL_27;\n    default:\n      goto LABEL_6;\n  }\n  return result;\n}\n"
+}
