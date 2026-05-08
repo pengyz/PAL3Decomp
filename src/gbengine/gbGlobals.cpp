@@ -221,74 +221,96 @@ int gbExecProgram(const char* cmdLine) {
     return 0;
 }
 
-// Moller-Trumbore ray-triangle intersection algorithm
-int gbIntersectTriangle(gbVec3D* origin, gbVec3D* dir, gbVec3D* v0, gbVec3D* v1, gbVec3D* v2, gbVec3D* hitPoint) {
-    if (!origin || !dir || !v0 || !v1 || !v2) {
-        return 0;
-    }
-
-    const float EPSILON = 0.0000001f;
-
-    // Edge vectors
+// Segment-triangle intersection
+// param_1=segStart, param_2=segEnd, param_3=v0, param_4=v1, param_5=v2, param_6=hitPoint
+int gbIntersectTriangle(gbVec3D* param_1, gbVec3D* param_2, gbVec3D* param_3, gbVec3D* param_4, gbVec3D* param_5, gbVec3D* param_6) {
     gbVec3D edge1, edge2;
-    edge1.x = v1->x - v0->x;
-    edge1.y = v1->y - v0->y;
-    edge1.z = v1->z - v0->z;
+    gbVec3D normal;
+    gbVec3D toOrigin, segDir;
+    gbVec3D tmp;
+    gbVec3D edgeA, edgeB, edgeC;
+    gbVec3D segVec;
+    float numerator, denominator, t;
 
-    edge2.x = v2->x - v0->x;
-    edge2.y = v2->y - v0->y;
-    edge2.z = v2->z - v0->z;
+    edge1.x = 0; edge1.y = 0; edge1.z = 0;
+    edge2.x = 0; edge2.y = 0; edge2.z = 0;
+    normal.x = 0; normal.y = 0; normal.z = 0;
+    toOrigin.x = 0; toOrigin.y = 0; toOrigin.z = 0;
 
-    // Begin calculating determinant - also used to calculate U parameter
-    gbVec3D pvec;
-    pvec.x = dir->y * edge2.z - dir->z * edge2.y;
-    pvec.y = dir->z * edge2.x - dir->x * edge2.z;
-    pvec.z = dir->x * edge2.y - dir->y * edge2.x;
+    // edge1 = v1 - v0
+    tmp = gbVec3D(param_4->x - param_3->x, param_4->y - param_3->y, param_4->z - param_3->z);
+    edge1 = tmp;
 
-    // If determinant is near zero, ray lies in plane of triangle
-    float det = edge1.x * pvec.x + edge1.y * pvec.y + edge1.z * pvec.z;
+    // edge2 = v0 - v2
+    tmp = gbVec3D(param_3->x - param_5->x, param_3->y - param_5->y, param_3->z - param_5->z);
+    edge2 = tmp;
 
-    if (det > -EPSILON && det < EPSILON) {
-        return 0;
+    // normal = cross(edge1, edge2)
+    edge1.CrossProduct(&edge2, &normal);
+
+    // toOrigin = param_1 - v0
+    tmp = gbVec3D(param_1->x - param_3->x, param_1->y - param_3->y, param_1->z - param_3->z);
+    toOrigin = tmp;
+
+    // Compute numerator: dot(normal, toOrigin) done manually
+    numerator = normal.z * toOrigin.z + normal.y * toOrigin.y + toOrigin.x * normal.x;
+
+    // segDir = param_1 - param_2
+    tmp = gbVec3D(param_1->x - param_2->x, param_1->y - param_2->y, param_1->z - param_2->z);
+    segDir = tmp;
+
+    // Compute denominator: dot(segDir, normal) done manually
+    denominator = segDir.z * normal.z + segDir.y * normal.y + segDir.x * normal.x;
+
+    t = numerator / denominator;
+
+    if (t >= 0.0f && t <= 1.0f) {
+        float oneMinusT = 1.0f - t;
+        gbVec3D windNormal;
+
+        edgeA.x = 0; edgeA.y = 0; edgeA.z = 0;
+        edgeB.x = 0; edgeB.y = 0; edgeB.z = 0;
+        edgeC.x = 0; edgeC.y = 0; edgeC.z = 0;
+        segVec.x = 0; segVec.y = 0; segVec.z = 0;
+
+        // hitPoint = t*param_2 + (1-t)*param_1
+        param_6->x = t * param_2->x + oneMinusT * param_1->x;
+        param_6->y = oneMinusT * param_1->y + t * param_2->y;
+        param_6->z = oneMinusT * param_1->z + t * param_2->z;
+
+        // edgeA = param_1 - v0
+        tmp = gbVec3D(param_1->x - param_3->x, param_1->y - param_3->y, param_1->z - param_3->z);
+        edgeA = tmp;
+
+        // edgeB = param_1 - v1
+        tmp = gbVec3D(param_1->x - param_4->x, param_1->y - param_4->y, param_1->z - param_4->z);
+        edgeB = tmp;
+
+        // edgeC = param_1 - v2 (via subtraction function)
+        edgeC.x = param_1->x - param_5->x;
+        edgeC.y = param_1->y - param_5->y;
+        edgeC.z = param_1->z - param_5->z;
+
+        // segVec = param_6 - param_1 (via subtraction function)
+        segVec.x = param_6->x - param_1->x;
+        segVec.y = param_6->y - param_1->y;
+        segVec.z = param_6->z - param_1->z;
+
+        // Winding test 1: cross(edgeA, edgeB) . segVec >= 0
+        edgeA.CrossProduct(&edgeB, &windNormal);
+        if (segVec.DotProduct(&windNormal) >= 0.0f) {
+            // Winding test 2: cross(edgeB, edgeC) . segVec >= 0
+            edgeB.CrossProduct(&edgeC, &windNormal);
+            if (segVec.DotProduct(&windNormal) >= 0.0f) {
+                // Winding test 3: cross(edgeC, edgeA) . segVec >= 0
+                edgeC.CrossProduct(&edgeA, &windNormal);
+                if (segVec.DotProduct(&windNormal) >= 0.0f) {
+                    return 1;
+                }
+            }
+        }
     }
-
-    float inv_det = 1.0f / det;
-
-    // Calculate distance from v0 to ray origin
-    gbVec3D tvec;
-    tvec.x = origin->x - v0->x;
-    tvec.y = origin->y - v0->y;
-    tvec.z = origin->z - v0->z;
-
-    // Calculate U parameter and test bounds
-    float u = (tvec.x * pvec.x + tvec.y * pvec.y + tvec.z * pvec.z) * inv_det;
-    if (u < 0.0f || u > 1.0f) {
-        return 0;
-    }
-
-    // Prepare to test V parameter
-    gbVec3D qvec;
-    qvec.x = tvec.y * edge1.z - tvec.z * edge1.y;
-    qvec.y = tvec.z * edge1.x - tvec.x * edge1.z;
-    qvec.z = tvec.x * edge1.y - tvec.y * edge1.x;
-
-    // Calculate V parameter and test bounds
-    float v = (dir->x * qvec.x + dir->y * qvec.y + dir->z * qvec.z) * inv_det;
-    if (v < 0.0f || u + v > 1.0f) {
-        return 0;
-    }
-
-    // Calculate t, ray intersects triangle
-    float t = (edge2.x * qvec.x + edge2.y * qvec.y + edge2.z * qvec.z) * inv_det;
-
-    if (t > EPSILON && hitPoint) {
-        // Calculate hit point
-        hitPoint->x = origin->x + dir->x * t;
-        hitPoint->y = origin->y + dir->y * t;
-        hitPoint->z = origin->z + dir->z * t;
-    }
-
-    return (t > EPSILON) ? 1 : 0;
+    return 0;
 }
 
 // Low-level keyboard hook handle

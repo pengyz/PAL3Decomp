@@ -32,12 +32,15 @@ int gbSphere::IsColPoint(gbVec3D& point) {
 // Sphere-Sphere collision test
 int gbSphere::IsColSphere(gbVec3D& otherCenter, float otherRadius) {
     gbVec3D d;
-    d.x = otherCenter.x - center.x;
-    d.y = otherCenter.y - center.y;
-    d.z = otherCenter.z - center.z;
-    float dist = d.Length();
-    float radiusSum = radius + otherRadius;
-    return dist <= radiusSum ? 1 : 0;
+    d.x = center.x - otherCenter.x;
+    d.y = center.y - otherCenter.y;
+    d.z = center.z - otherCenter.z;
+    gbVec3D tmp = d;
+    float dist = tmp.Length();
+    if (dist < otherRadius + radius) {
+        return 1;
+    }
+    return 0;
 }
 
 // Sphere-Triangle collision test

@@ -14,9 +14,9 @@
 // CRC32 table
 static unsigned int gbCrc32Table[256];
 
-// Timing globals
-static LARGE_INTEGER gbTimeFreq;
-static LARGE_INTEGER gbTimeStart;
+// Timing globals (ordered to match original memory layout)
+static TIMECAPS gbTimeCaps;
+static int gbHasPerfCounter = 0;
 static int gbTimeInitialized = 0;
 static double gbTimeFreqDbl = 0.0;
 
@@ -196,11 +196,59 @@ int gbstricmp(const char* a, const char* b)
 {
     char buf1[2048];
     char buf2[2048];
+    char *dst;
+    char c;
+    unsigned char c1, c2;
+    unsigned char *s1, *s2;
 
-    gbStrToLowCase(buf1, a);
-    gbStrToLowCase(buf2, b);
+    dst = buf1;
+    c = *a;
+    if (c != '\0') {
+        do {
+            if (c < 'A' || c > 'Z')
+                ;
+            else
+                c = c + 0x20;
+            *dst = c;
+            c = *(a + 1);
+            dst++;
+            a++;
+        } while (c != '\0');
+    }
+    *dst = '\0';
 
-    return strcmp(buf1, buf2);
+    dst = buf2;
+    c = *b;
+    if (c != '\0') {
+        do {
+            if (c < 'A' || c > 'Z')
+                ;
+            else
+                c = c + 0x20;
+            *dst = c;
+            c = *(b + 1);
+            dst++;
+            b++;
+        } while (c != '\0');
+    }
+    *dst = '\0';
+
+    s1 = (unsigned char*)buf1;
+    s2 = (unsigned char*)buf2;
+    for (;;) {
+        c1 = *s1;
+        c2 = *s2;
+        if (c1 != c2) break;
+        if (c1 == 0) return 0;
+        c1 = s1[1];
+        c2 = s2[1];
+        if (c1 != c2) break;
+        s1 += 2;
+        s2 += 2;
+        if (c1 == 0) return 0;
+    }
+    if (c1 < c2) return -1;
+    return 1;
 }
 
 char* gbstrindex(const char* str, int index)
@@ -331,38 +379,42 @@ int gbIsMultiCharTail(char* str, int pos)
 
 void gbTimeCounterInit(void)
 {
-    static TIMECAPS ptc;
+    LARGE_INTEGER freq;
+    LARGE_INTEGER counter;
 
     gbTimeInitialized = 1;
 
-    LARGE_INTEGER freq;
-    if (QueryPerformanceFrequency(&freq)) {
-        gbTimeFreq = freq;
-        gbTimeFreqDbl = (double)freq.HighPart * 4294967295.0 + (double)freq.LowPart;
-        timeGetDevCaps(&ptc, 8);
+    if (!QueryPerformanceFrequency(&freq)) {
+        if (gbHasPerfCounter) {
+            QueryPerformanceCounter(&counter);
+            g_CurrentTime = ((double)counter.HighPart * 4294967296.0 + (double)(unsigned int)counter.LowPart) / gbTimeFreqDbl;
+        } else {
+            g_CurrentTime = (double)timeGetTime() * 1000.0;
+        }
+        return;
+    }
 
-        LARGE_INTEGER counter;
+    gbHasPerfCounter = 1;
+    gbTimeFreqDbl = (double)freq.HighPart * 4294967296.0 + (double)(unsigned int)freq.LowPart;
+    timeGetDevCaps(&gbTimeCaps, 8);
+
+    if (gbHasPerfCounter) {
         QueryPerformanceCounter(&counter);
-        double highPart = (double)counter.HighPart;
-        counter.HighPart = 0;
-        g_CurrentTime = (highPart * 4294967295.0 + (double)counter.LowPart) / gbTimeFreqDbl;
+        g_CurrentTime = ((double)counter.HighPart * 4294967296.0 + (double)(unsigned int)counter.LowPart) / gbTimeFreqDbl;
     } else {
-        g_CurrentTime = (double)clock() * 1000.0;
+        g_CurrentTime = (double)timeGetTime() * 1000.0;
     }
 }
 
 double gbUpdateCurTime(void)
 {
     double result;
-    if (gbTimeInitialized) {
+    if (gbHasPerfCounter) {
         LARGE_INTEGER counter;
         QueryPerformanceCounter(&counter);
-
-        double highPart = (double)counter.HighPart;
-        counter.HighPart = 0;
-        result = (highPart * 4294967295.0 + (double)counter.LowPart) / gbTimeFreqDbl;
+        result = ((double)counter.HighPart * 4294967296.0 + (double)(unsigned int)counter.LowPart) / gbTimeFreqDbl;
     } else {
-        result = (double)clock() * 1000.0;
+        result = (double)timeGetTime() * 1000.0;
     }
     g_CurrentTime = result;
     return result;
@@ -1127,29 +1179,25 @@ double gbTimeCounter::Off() {
     if (*(double*)&startTime < 0.0) {
         return 0.0;
     }
-    if (gbTimeInitialized) {
+    if (gbHasPerfCounter) {
         LARGE_INTEGER counter;
         QueryPerformanceCounter(&counter);
-        double highPart = (double)counter.HighPart;
-        counter.HighPart = 0;
-        *(double*)&freq = (highPart * 4294967295.0 + (double)counter.LowPart) / gbTimeFreqDbl;
+        *(double*)&freq = ((double)counter.HighPart * 4294967296.0 + (double)(unsigned int)counter.LowPart) / gbTimeFreqDbl;
         return *(double*)&freq - *(double*)&startTime;
     } else {
-        int t = clock();
+        int t = timeGetTime();
         *(double*)&freq = (double)t * 0.001;
         return *(double*)&freq - *(double*)&startTime;
     }
 }
 
 void gbTimeCounter::On() {
-    if (gbTimeInitialized) {
+    if (gbHasPerfCounter) {
         LARGE_INTEGER counter;
         QueryPerformanceCounter(&counter);
-        double highPart = (double)counter.HighPart;
-        counter.HighPart = 0;
-        *(double*)&startTime = (highPart * 4294967295.0 + (double)counter.LowPart) / gbTimeFreqDbl;
+        *(double*)&startTime = ((double)counter.HighPart * 4294967296.0 + (double)(unsigned int)counter.LowPart) / gbTimeFreqDbl;
     } else {
-        int t = clock();
+        int t = timeGetTime();
         *(double*)&startTime = (double)t * 1000.0;
     }
 }
