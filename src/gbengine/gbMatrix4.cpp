@@ -20,6 +20,9 @@
 
 #define GB_FLOAT_EPSILON 0.005
 
+static float s_fHalfM = 0.5f;
+static float s_fDeg2RadM = 0.017453292f;
+
 gbMatrix4::gbMatrix4(void)
 {
     memset(this, 0, sizeof(gbMatrix4));
@@ -42,7 +45,7 @@ void gbMatrix4::operator=(const gbMatrix4 &other)
 void gbMatrix4::operator*=(const gbMatrix4 &param)
 {
     float temp[16];
-    memcpy(temp, this, 64);
+    memcpy(temp, this, sizeof(temp));
 
     float *pOther = (float *)&param;
     int row = 4;
@@ -73,7 +76,7 @@ void gbMatrix4::operator*=(const gbMatrix4 &param)
 void gbMatrix4::RightMultiply(const gbMatrix4 &param)
 {
     float temp[16];
-    memcpy(temp, this, 64);
+    memcpy(temp, this, sizeof(temp));
 
     float *pRow = temp;
     int row = 4;
@@ -104,7 +107,7 @@ void gbMatrix4::RightMultiply(const gbMatrix4 &param)
 void gbMatrix4::LeftMultiply(const gbMatrix4 &param)
 {
     float temp[16];
-    memcpy(temp, this, 64);
+    memcpy(temp, this, sizeof(temp));
 
     float *pOther = (float *)&param;
     int row = 4;
@@ -253,37 +256,30 @@ gbVec3D *gbMatrix4::GetColumn(gbVec3D *out, int col) const
 
 void gbMatrix4::SetAxisAngle(gbAxis axis, float cosA, float sinA)
 {
-    int *p = (int *)this;
-    int i;
-    for (i = 16; i != 0; i--) {
-        *p = 0;
-        p++;
-    }
+    memset(this, 0, sizeof(gbMatrix4));
     int one = 0x3F800000;
-    int cosI = *(int *)&cosA;
-    int sinI = *(int *)&sinA;
     ((int *)this)[15] = one;
     switch (axis) {
     case 0:
         ((int *)this)[0] = one;
-        ((int *)this)[5] = cosI;
-        ((int *)this)[6] = sinI;
+        ((int *)this)[5] = *(int *)&cosA;
+        ((int *)this)[6] = *(int *)&sinA;
         m[2][1] = -sinA;
-        ((int *)this)[10] = cosI;
+        ((int *)this)[10] = *(int *)&cosA;
         break;
     case 1:
         ((int *)this)[5] = one;
-        ((int *)this)[0] = cosI;
-        ((int *)this)[8] = sinI;
+        ((int *)this)[0] = *(int *)&cosA;
+        ((int *)this)[8] = *(int *)&sinA;
         m[0][2] = -sinA;
-        ((int *)this)[10] = cosI;
+        ((int *)this)[10] = *(int *)&cosA;
         break;
     case 2:
         ((int *)this)[10] = one;
-        ((int *)this)[0] = cosI;
-        ((int *)this)[1] = sinI;
+        ((int *)this)[0] = *(int *)&cosA;
+        ((int *)this)[1] = *(int *)&sinA;
         m[1][0] = -sinA;
-        ((int *)this)[5] = cosI;
+        ((int *)this)[5] = *(int *)&cosA;
         break;
     }
 }
@@ -298,13 +294,16 @@ void gbMatrix4::SetAxisAngle(gbAxis axis, float angle)
 
 void gbMatrix4::SetAxisAngle(gbVec3D *axis, float angle)
 {
-    gbQuaternion q;
-    q.x = 0.0f;
-    q.y = 0.0f;
-    q.z = 0.0f;
-    q.w = 1.0f;
-    q.SetAxisAngle(axis, angle);
-    q.GetMatrix(this);
+    float a = angle;
+    float halfRad = a * s_fHalfM;
+    halfRad = halfRad * s_fDeg2RadM;
+    float qdata[4];
+    qdata[3] = (float)cos(halfRad);
+    float s = (float)sin(halfRad);
+    qdata[0] = s * axis->x;
+    qdata[1] = s * axis->y;
+    qdata[2] = s * axis->z;
+    ((gbQuaternion *)qdata)->GetMatrix(this);
 }
 
 void gbMatrix4::Invert(gbMatrix4 *out) const
@@ -338,10 +337,10 @@ void gbMatrix4::Invert()
 {
     gbMatrix4 tmp;
 
-    float cofA = m[1][1] * m[2][2] - m[2][1] * m[1][2];
+    float cofA = m[2][2] * m[1][1] - m[2][1] * m[1][2];
     float det = 1.0f / ((m[2][1] * m[1][0] - m[2][0] * m[1][1]) * m[0][2] +
                         (cofA * m[0][0] -
-                        (m[1][0] * m[2][2] - m[2][0] * m[1][2]) * m[0][1]));
+                        (m[2][2] * m[1][0] - m[2][0] * m[1][2]) * m[0][1]));
 
     tmp.m[0][0] = cofA * det;
     tmp.m[0][1] = -((m[0][1] * m[2][2] - m[2][1] * m[0][2]) * det);
