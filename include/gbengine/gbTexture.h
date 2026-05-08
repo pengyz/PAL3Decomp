@@ -13,7 +13,7 @@ class gbRefObject {
 public:
     int refCount;       // +0x04 (vtable at +0x00)
 
-    gbRefObject();
+    gbRefObject() { refCount = 1; }
     gbRefObject(const gbRefObject& other);
     virtual ~gbRefObject();
 
@@ -35,8 +35,10 @@ public:
     int isLoaded;           // +0x10
     gbResManager* manager;  // +0x14
 
-    gbResource();
-    gbResource(const gbResource& other);
+    gbResource() { name = 0; isLoaded = 0; manager = 0; }
+    gbResource(const gbResource& other) : gbRefObject(other),
+        name(other.name), nameCrc(other.nameCrc),
+        isLoaded(other.isLoaded), manager(other.manager) {}
     virtual ~gbResource();
 
     void SetName(const char* name);

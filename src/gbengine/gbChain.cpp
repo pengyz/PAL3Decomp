@@ -559,23 +559,23 @@ void gbStaticChain::InitBuffer(int maxNodes, int nodeSize) {
     i = 0;
     if (i < last) {
         do {
-            gbStaticChainNode* cur = (gbStaticChainNode*)((char*)pBuffer + nNodeSize * i);
-            gbStaticChainNode* next = (gbStaticChainNode*)((char*)pBuffer + nNodeSize * (i + 1));
+            gbStaticChainNode* next = (gbStaticChainNode*)((char*)pBuffer + (i + 1) * nNodeSize);
+            gbStaticChainNode* cur = (gbStaticChainNode*)((char*)pBuffer + i * nNodeSize);
             cur->pNext = next;
             i++;
         } while (i < last);
     }
 
     // Last node's pNext = NULL
-    gbStaticChainNode* lastNode = (gbStaticChainNode*)((char*)pBuffer + nNodeSize * last);
+    gbStaticChainNode* lastNode = (gbStaticChainNode*)((char*)pBuffer + last * nNodeSize);
     lastNode->pNext = NULL;
 
     // Build backward links: nodes[i].pPrev -> nodes[i-1]
     i = 1;
     if (i < maxNodes) {
         do {
-            gbStaticChainNode* cur = (gbStaticChainNode*)((char*)pBuffer + nNodeSize * i);
-            gbStaticChainNode* prev = (gbStaticChainNode*)((char*)pBuffer + nNodeSize * (i - 1));
+            gbStaticChainNode* cur = (gbStaticChainNode*)((char*)pBuffer + i * nNodeSize);
+            gbStaticChainNode* prev = (gbStaticChainNode*)((char*)pBuffer + (i - 1) * nNodeSize);
             cur->pPrev = prev;
             i++;
         } while (i < maxNodes);

@@ -3,6 +3,7 @@
  * gbSound3DNode (Miles Sound System 3D wrapper)
  */
 
+#define GBVEC3D_NO_CTOR
 #include "gbengine/gbAudio.h"
 #include <string.h>
 
@@ -42,15 +43,15 @@ gbAudioManager* gbSound3DNode::pAudioMgr = NULL;
 // 0x10002640
 gbSound3DNode::gbSound3DNode()
 {
-    position.x = 0.0f;
-    position.y = 0.0f;
-    position.z = 0.0f;
-    velocity.x = 0.0f;
-    velocity.y = 0.0f;
-    velocity.z = 0.0f;
-    orientation.x = 0.0f;
-    orientation.y = 0.0f;
-    orientation.z = 0.0f;
+    *(int*)&position.x = 0;
+    *(int*)&position.y = 0;
+    *(int*)&position.z = 0;
+    *(int*)&velocity.x = 0;
+    *(int*)&velocity.y = 0;
+    *(int*)&velocity.z = 0;
+    *(int*)&orientation.x = 0;
+    *(int*)&orientation.y = 0;
+    *(int*)&orientation.z = 0;
     soundData = NULL;
     sampleHandle = NULL;
     minDist = 10000.0f;
@@ -58,15 +59,9 @@ gbSound3DNode::gbSound3DNode()
     loopCount = 1;
     volume = 1.0f;
     field_2C = 0;
-    position.x = 0.0f;
-    position.y = 0.0f;
-    position.z = 0.0f;
-    velocity.x = 0.0f;
-    velocity.y = 0.0f;
-    velocity.z = 0.0f;
-    orientation.x = 0.0f;
-    orientation.y = 0.0f;
-    orientation.z = 0.0f;
+    position.Zero();
+    velocity.Zero();
+    orientation.Zero();
     orientation.z = 1.0f;
 }
 
@@ -152,27 +147,28 @@ void gbSound3DNode::Stop()
 // 0x10002830
 int gbSound3DNode::IsPlaying()
 {
-    int result;
-
     if (!pAudioMgr)
         return 0;
-    result = (int)sampleHandle;
-    if (result)
-        return AIL_3D_sample_status((H3DSAMPLE)sampleHandle) == 4;
-    return result;
+    if (!sampleHandle)
+        return 0;
+    return AIL_3D_sample_status((H3DSAMPLE)sampleHandle) == 4;
 }
 
 // 0x10002860
-int gbSound3DNode::Update(double deltaTime)
+int gbSound3DNode::Update(double a2)
 {
+    float v7;
+    float v6;
+
     if (pAudioMgr) {
-        position.x = velocity.x * (float)deltaTime + position.x;
-        position.y = velocity.y * (float)deltaTime + position.y;
-        position.z = velocity.z * (float)deltaTime + position.z;
+        v7 = velocity.x * a2 + position.x;
+        position.x = v7;
+        v6 = velocity.y * a2 + position.y;
+        position.y = v6;
+        position.z = velocity.z * a2 + position.z;
         if (!sampleHandle)
             return 0;
-        float negZ = -position.z;
-        AIL_set_3D_position(sampleHandle, position.x, position.y, negZ);
+        AIL_set_3D_position(sampleHandle, v7, v6, -position.z);
     }
     return 1;
 }
@@ -292,16 +288,13 @@ int gbSound2DNode::LoadFromFile(char* filename)
 // 0x10002970
 void gbSound2DNode::Play()
 {
-    gbAudioManager* mgr = pAudioMgr;
     if (pAudioMgr) {
-        if (!sampleHandle) {
+        if (!sampleHandle)
             pAudioMgr->AttachSampleHandle(this);
-            mgr = pAudioMgr;
-        }
-        int h = (int)sampleHandle;
-        AIL_set_sample_volume((HSAMPLE)h, (int)(mgr->volume2D * volume * 127.0f));
-        AIL_set_sample_loop_count((HSAMPLE)h, loopCount);
-        AIL_start_sample((HSAMPLE)h);
+        HSAMPLE h = (HSAMPLE)sampleHandle;
+        AIL_set_sample_volume(h, (int)(pAudioMgr->volume2D * volume * 127.0f));
+        AIL_set_sample_loop_count(h, loopCount);
+        AIL_start_sample(h);
     }
 }
 
@@ -317,7 +310,9 @@ void gbSound2DNode::Stop()
 // 0x100029f0
 bool gbSound2DNode::IsPlaying()
 {
-    return sampleHandle && AIL_sample_status((HSAMPLE)sampleHandle) == 4;
+    if (!sampleHandle)
+        return false;
+    return AIL_sample_status((HSAMPLE)sampleHandle) == 4;
 }
 
 // 0x10002a10

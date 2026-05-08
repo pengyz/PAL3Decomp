@@ -23,49 +23,33 @@ static const char* s_paramNames[] = {
 };
 
 gbRenderEffect::gbRenderEffect(ID3DXEffect* pEffect, unsigned int flags) {
-    m_refCount = 1;
-    m_resName = NULL;
-    m_resPrev = NULL;
-    m_resNext = NULL;
     m_pEffect = pEffect;
     m_dwFlags = flags;
-    m_pDecl = NULL;
+    m_pDecl = 0;
 
-    for (int i = 0; i < 8; i++) {
-        m_paramHandles[i] = m_pEffect->GetParameterByName(NULL, s_paramNames[i]);
-    }
+    int i = 0;
+    do {
+        m_paramHandles[i] = pEffect->GetParameterByName(0, s_paramNames[i]);
+    } while (++i < 8);
 }
 
-gbRenderEffect::gbRenderEffect(const gbRenderEffect& other) {
-    m_refCount = other.m_refCount;
-    m_resName = other.m_resName;
-    m_resCrc = other.m_resCrc;
-    m_resPrev = other.m_resPrev;
-    m_resNext = other.m_resNext;
+gbRenderEffect::gbRenderEffect(const gbRenderEffect& other) : gbResource(other) {
     m_pEffect = other.m_pEffect;
     m_dwFlags = other.m_dwFlags;
     m_pDecl = other.m_pDecl;
-    for (int i = 0; i < 8; i++) {
-        m_paramHandles[i] = other.m_paramHandles[i];
-    }
-
-    if (m_pEffect) {
-        m_pEffect->AddRef();
-    }
+    memcpy(m_paramHandles, other.m_paramHandles, 0x20);
 }
 
 gbRenderEffect::~gbRenderEffect() {
-    if (m_pEffect) {
-        m_pEffect->Release();
-    }
+    m_pEffect->Release();
 }
 
 gbRenderEffect& gbRenderEffect::operator=(const gbRenderEffect& other) {
-    m_refCount = other.m_refCount;
-    m_resName = other.m_resName;
-    m_resCrc = other.m_resCrc;
-    m_resPrev = other.m_resPrev;
-    m_resNext = other.m_resNext;
+    refCount = other.refCount;
+    name = other.name;
+    nameCrc = other.nameCrc;
+    isLoaded = other.isLoaded;
+    manager = other.manager;
     m_pEffect = other.m_pEffect;
     m_dwFlags = other.m_dwFlags;
     m_pDecl = other.m_pDecl;
@@ -88,17 +72,19 @@ int gbRenderEffect::Compare(gbRenderEffect* other) {
 
 int gbRenderEffect::Validate(void) {
     D3DXHANDLE hTechnique = NULL;
-    if (m_pEffect->FindNextValidTechnique(NULL, &hTechnique) < 0)
-        return 0;
-
-    while (hTechnique) {
-        if (m_pEffect->ValidateTechnique(hTechnique) >= 0) {
-            m_pEffect->SetTechnique(hTechnique);
-            return 1;
+    D3DXHANDLE h;
+    int hr;
+    hr = m_pEffect->FindNextValidTechnique(NULL, &hTechnique);
+    while (hr >= 0) {
+        h = hTechnique;
+        if (hTechnique) {
+            if (m_pEffect->ValidateTechnique(hTechnique) >= 0) {
+                m_pEffect->SetTechnique(hTechnique);
+                return 1;
+            }
+            h = hTechnique;
         }
-        D3DXHANDLE hNext = hTechnique;
-        if (m_pEffect->FindNextValidTechnique(hNext, &hTechnique) < 0)
-            return 0;
+        hr = m_pEffect->FindNextValidTechnique(h, &hTechnique);
     }
     return 0;
 }

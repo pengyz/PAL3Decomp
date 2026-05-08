@@ -1194,10 +1194,7 @@ void gbNameVarBuf::GetVariant(unsigned int p0, void * p1) {
     unsigned int* table = (unsigned int*)varTable;
     for (int i = 0; i < varCount; i++) {
         if (table[i * 4] == p0) {
-            unsigned int elemCount = table[i * 4 + 3];
-            unsigned int elemSize = table[i * 4 + 1];
-            unsigned int totalSize = elemCount * elemSize;
-            memcpy(p1, (char*)dataBuf + table[i * 4 + 2], totalSize);
+            memcpy(p1, (char*)dataBuf + table[i * 4 + 2], table[i * 4 + 1] * table[i * 4 + 3]);
             return;
         }
     }
@@ -1291,10 +1288,7 @@ void gbNameVarBuf::SetVariant(unsigned int p0, void * p1) {
     unsigned int* table = (unsigned int*)varTable;
     for (int i = 0; i < varCount; i++) {
         if (table[i * 4] == p0) {
-            unsigned int elemCount = table[i * 4 + 3];
-            unsigned int elemSize = table[i * 4 + 1];
-            unsigned int totalSize = elemCount * elemSize;
-            memcpy((char*)dataBuf + table[i * 4 + 2], p1, totalSize);
+            memcpy((char*)dataBuf + table[i * 4 + 2], p1, table[i * 4 + 1] * table[i * 4 + 3]);
             return;
         }
     }
@@ -1305,31 +1299,28 @@ void gbNameVarBuf::UnlockVariant() {
 }
 
 gbTimeCounter& gbTimeCounter::operator=(const gbTimeCounter& other) {
-    if (this != &other) {
-        startTime = other.startTime;
-        freq = other.freq;
-        elapsed = other.elapsed;
-        timestamp = other.timestamp;
-    }
+    startTime = other.startTime;
+    freq = other.freq;
     return *this;
 }
 
 double gbTimeCounter::Off() {
+    double HighPart;
+    LARGE_INTEGER PerformanceCount;
+
     if (*(double*)&startTime < 0.0) {
         return 0.0;
     }
     if (gbHasQPC) {
-        LARGE_INTEGER counter;
-        QueryPerformanceCounter(&counter);
-        double highPart = (double)counter.HighPart;
-        counter.HighPart = 0;
-        *(double*)&freq = (highPart * 4294967295.0 + (double)counter.LowPart) / gbTimeFreqDbl;
-        return *(double*)&freq - *(double*)&startTime;
+        QueryPerformanceCounter(&PerformanceCount);
+        HighPart = (double)PerformanceCount.HighPart;
+        PerformanceCount.HighPart = 0;
+        *(double*)&freq = (HighPart * 4294967295.0 + (double)PerformanceCount.LowPart) / gbTimeFreqDbl;
     } else {
-        int t = clock();
-        *(double*)&freq = (double)t * 0.001;
-        return *(double*)&freq - *(double*)&startTime;
+        PerformanceCount.LowPart = clock();
+        *(double*)&freq = (double)(int)PerformanceCount.LowPart * 0.001;
     }
+    return *(double*)&freq - *(double*)&startTime;
 }
 
 void gbTimeCounter::On() {
@@ -1349,7 +1340,7 @@ void gbTimeCounter::On() {
 // ======== Random Number Generator ========
 
 // Linear congruential generator seed - 0x1014adc4
-static unsigned int g_gbRandSeed = 0;
+static int g_gbRandSeed = 0;
 
 // 0x10027620 (72B) - Generate random float in [minVal, maxVal]
 // Uses LCG: seed = seed * 0x343FD + 0x269EC3

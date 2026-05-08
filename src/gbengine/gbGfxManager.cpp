@@ -314,9 +314,10 @@ void gbGfxManager::SetFog(gbFogParam* pFogParam) {
 
 // 0x1001e330 (55B) - Get world matrix (computes from matrix stack)
 const gbMatrix4& gbGfxManager::GetWorldMatrix(void) {
+    gbMatrix4* dst = &WorldMatrix;
     gbMatrix4* top = pMatrixStack[1]->GetTop();
-    memcpy(&WorldMatrix, top, sizeof(gbMatrix4));
-    WorldMatrix.RightMultiply(InvViewMatrix);
+    memcpy(dst, top, sizeof(gbMatrix4));
+    dst->RightMultiply(InvViewMatrix);
     return WorldMatrix;
 }
 

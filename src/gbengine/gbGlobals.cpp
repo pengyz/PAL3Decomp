@@ -348,8 +348,8 @@ void gbGetRealWorldTime(gbRealWorldTime* a1) {
     SYSTEMTIME SystemTime;
     GetLocalTime(&SystemTime);
     a1->day = SystemTime.wDay;
-    a1->hour = SystemTime.wHour;
     a1->dayOfWeek = SystemTime.wDayOfWeek;
+    a1->hour = SystemTime.wHour;
     a1->milliseconds = SystemTime.wMilliseconds;
     a1->minute = SystemTime.wMinute;
     a1->month = SystemTime.wMonth;

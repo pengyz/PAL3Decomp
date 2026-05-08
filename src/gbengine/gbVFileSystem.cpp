@@ -250,10 +250,9 @@ void CPK::Reset(void) {
     gbVFile** p = m_pCPKFile;
     int n = 8;
     do {
-        gbVFile* f = *p++;
-        --n;
-        f->cpkFile.bValid = 0;
-    } while (n);
+        (*p)->cpkFile.bValid = 0;
+        p++;
+    } while (--n);
 }
 
 void CPK::SetOpenMode(ECPKMode mode)

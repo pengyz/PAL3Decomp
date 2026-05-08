@@ -28,8 +28,10 @@ struct gbVec3D {
     float x, y, z;
 
     // Methods (auto-generated)
+#ifndef GBVEC3D_NO_CTOR
     gbVec3D();
     gbVec3D(float p0, float p1, float p2);
+#endif
     void operator=(struct gbVec3D const & p0);
     bool operator==(struct gbVec3D const & p0);
     struct gbVec3D operator-() const;
@@ -45,7 +47,11 @@ struct gbVec3D {
     float Length() const;
     float LengthSquare() const;
     void Normalize();
+#ifdef GBVEC3D_NO_CTOR
+    inline void Zero() { z = 0.0f; y = 0.0f; x = 0.0f; }
+#else
     void Zero();
+#endif
 };
 
 struct gbVec4D {

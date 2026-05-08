@@ -25,27 +25,23 @@ enum GBPARAMHANDLE {
 
 // ============================================================================
 // gbRenderEffect - wraps an ID3DXEffect for shader management
+// Inherits gbResource: gbRefObject -> gbResource -> gbRenderEffect
 // Layout (IDA-verified, sizeof = 68 bytes / 17 DWORDs):
-//   [0] vtable
-//   [1] m_refCount (gbResource)
-//   [2] m_resName (gbResource)
-//   [3] m_resCrc (gbResource)
-//   [4] m_resPrev (gbResource)
-//   [5] m_resNext (gbResource)
-//   [6] m_pEffect (ID3DXEffect*)
-//   [7] m_dwFlags (unsigned int)
-//   [8] m_pDecl (IDirect3DVertexDeclaration9*)
+//   [0] vtable           (gbRefObject)
+//   [1] refCount         (gbRefObject)
+//   [2] name             (gbResource)
+//   [3] nameCrc          (gbResource)
+//   [4] isLoaded         (gbResource)
+//   [5] manager          (gbResource)
+//   [6] m_pEffect        (ID3DXEffect*)
+//   [7] m_dwFlags        (unsigned int)
+//   [8] m_pDecl          (IDirect3DVertexDeclaration9*)
 //   [9..16] m_paramHandles[8] (D3DXHANDLE array)
 // ============================================================================
-class gbRenderEffect {
+class gbRenderEffect : public gbResource {
     friend class gbEffectMgr;
 
 protected:
-    int m_refCount;                         // +0x04
-    char* m_resName;                        // +0x08
-    unsigned int m_resCrc;                  // +0x0C
-    void* m_resPrev;                        // +0x10
-    void* m_resNext;                        // +0x14
     ID3DXEffect* m_pEffect;                 // +0x18
     unsigned int m_dwFlags;                 // +0x1C
     IDirect3DVertexDeclaration9* m_pDecl;   // +0x20
@@ -53,7 +49,6 @@ protected:
 
 private:
     gbRenderEffect(ID3DXEffect* pEffect, unsigned int flags);
-
     virtual ~gbRenderEffect();
 
 public:
