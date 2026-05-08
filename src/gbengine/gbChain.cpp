@@ -103,51 +103,54 @@ void gbChain1D::InsertBefore(gbChain1DNode* newNode, gbChain1DNode* beforeNode) 
     gbChain1DNode* prev;
     gbChain1DNode* cur;
 
-    if (beforeNode != NULL) {
-        prev = pHead;
-        if (prev != beforeNode) {
-            cur = prev->pNext;
-            while (cur != beforeNode) {
-                prev = cur;
-                cur = cur->pNext;
-            }
-            prev->pNext = newNode;
-            newNode->pNext = beforeNode;
-            nCount++;
-            return;
+    if (!beforeNode) {
+        newNode->pNext = NULL;
+        gbChain1DNode* tail = pTail;
+        if (tail) {
+            tail->pNext = newNode;
+            pTail = newNode;
+        } else {
+            pTail = newNode;
+            pHead = newNode;
         }
+        nCount++;
+        return;
+    }
+
+    prev = pHead;
+    if (prev == beforeNode) {
         pHead = newNode;
         newNode->pNext = beforeNode;
         return;
     }
 
-    newNode->pNext = NULL;
-    if (pTail != NULL) {
-        pTail->pNext = newNode;
-        pTail = newNode;
-        nCount++;
-        return;
+    cur = prev->pNext;
+    while (cur != beforeNode) {
+        prev = cur;
+        cur = cur->pNext;
     }
-    pTail = newNode;
-    pHead = newNode;
+    prev->pNext = newNode;
+    newNode->pNext = beforeNode;
     nCount++;
 }
 
 void gbChain1D::InsertAfter(gbChain1DNode* newNode, gbChain1DNode* afterNode) {
-    if (afterNode) {
-        newNode->pNext = afterNode->pNext;
-        afterNode->pNext = newNode;
-        if (pTail == afterNode)
-            pTail = newNode;
-    } else {
+    gbChain1DNode* tail;
+
+    if (!afterNode) {
         newNode->pNext = pHead;
-        gbChain1DNode* t = pTail;
+        tail = pTail;
         pHead = newNode;
-        if (!t) {
+        if (!tail) {
             pTail = newNode;
             nCount++;
             return;
         }
+    } else {
+        newNode->pNext = afterNode->pNext;
+        afterNode->pNext = newNode;
+        if (pTail == afterNode)
+            pTail = newNode;
     }
     nCount++;
 }
@@ -170,18 +173,17 @@ void gbChain1D::DelNodeFromChain(gbChain1DNode* node) {
 
     prev = pHead;
     cur = prev->pNext;
-    if (cur != NULL) {
+    if (cur) {
         while (cur != node) {
             prev = cur;
             cur = cur->pNext;
-            if (cur == NULL) {
+            if (!cur) {
                 nCount--;
                 return;
             }
         }
-        if (node == pTail) {
+        if (node == pTail)
             pTail = prev;
-        }
         prev->pNext = node->pNext;
     }
     nCount--;
@@ -296,15 +298,17 @@ void gbChain2D::DelNodeFromChain(gbChain2DNode* node) {
             nCount--;
             return;
         }
-        pHead = node->pNext;
-        node->pNext->pPrev = NULL;
+        gbChain2DNode* next = node->pNext;
+        pHead = next;
+        next->pPrev = NULL;
         nCount--;
         return;
     }
 
     if (node == pTail) {
-        pTail = node->pPrev;
-        node->pPrev->pNext = NULL;
+        gbChain2DNode* prev = node->pPrev;
+        pTail = prev;
+        prev->pNext = NULL;
         nCount--;
         return;
     }
@@ -616,28 +620,25 @@ gbStaticChainNode* gbStaticChain::NewOneNode(void) {
     return node;
 }
 
-void gbStaticChain::DelOneNode(gbStaticChainNode* ptr) {
-    if (!ptr) return;
-    gbStaticChainNode* node = ptr;
-
-    // Remove from used list
+void gbStaticChain::DelOneNode(gbStaticChainNode* node) {
     if (node->pPrev) {
         node->pPrev->pNext = node->pNext;
-    } else {
+    }
+    gbStaticChainNode* next = node->pNext;
+    if (next) {
+        next->pPrev = node->pPrev;
+    }
+    if (pUsedHead == node) {
         pUsedHead = node->pNext;
     }
-    if (node->pNext) {
-        node->pNext->pPrev = node->pPrev;
+    gbStaticChainNode* freeHead = pFreeHead;
+    if (freeHead) {
+        freeHead->pPrev = node;
     }
-
-    // Add to free list (add to head)
-    node->pNext = pFreeHead;
+    gbStaticChainNode* oldFreeHead = pFreeHead;
     node->pPrev = NULL;
-    if (pFreeHead) {
-        pFreeHead->pPrev = node;
-    }
+    node->pNext = oldFreeHead;
     pFreeHead = node;
-
     nUsedCount--;
 }
 
