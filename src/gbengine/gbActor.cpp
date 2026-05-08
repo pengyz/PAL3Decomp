@@ -517,18 +517,15 @@ void gbActor::SetSunDirection(gbVec3D* direction) {
     s_sunDirection.Normalize();
 }
 
-// operator=
+// 0x10005190 - operator= (163B)
 gbActor& gbActor::operator=(const gbActor& other) {
-    if (this != &other) {
-        gbVisNode::operator=(other);
-        m_pActorDef = other.m_pActorDef;
-        m_field_5C = other.m_field_5C;
-        m_pActions = other.m_pActions;
-        m_numActions = other.m_numActions;
-        m_pExportNodeData = other.m_pExportNodeData;
-        m_numExportNodes = other.m_numExportNodes;
-        m_maxExportNodes = other.m_maxExportNodes;
-    }
+    m_pActorDef = other.m_pActorDef;
+    m_field_5C = other.m_field_5C;
+    m_pActions = other.m_pActions;
+    m_numActions = other.m_numActions;
+    m_pExportNodeData = other.m_pExportNodeData;
+    m_numExportNodes = other.m_numExportNodes;
+    memcpy(&m_maxExportNodes, &other.m_maxExportNodes, 0x58u);
     return *this;
 }
 

@@ -379,31 +379,41 @@ gbAudioManager::~gbAudioManager() {
     soundResManager.Destroy();
 }
 
-// operator= - 0x10002360
+// operator= - 0x10002360 (368B)
 gbAudioManager& gbAudioManager::operator=(const gbAudioManager& other) {
     int i;
-    if (this != &other) {
-        for (i = 0; i < MAX_STREAMS; i++) {
-            streams[i] = other.streams[i];
-            streamStatus[i] = other.streamStatus[i];
-        }
-        digitalDriver = other.digitalDriver;
-        provider3D = other.provider3D;
-        allocCounter = other.allocCounter;
-        listener = other.listener;
-        volume2D = other.volume2D;
-        volume3D = other.volume3D;
-        musicMasterVolume = other.musicMasterVolume;
-        listenerPosition = other.listenerPosition;
-        soundResManager.array = other.soundResManager.array;
-        soundResManager.capacity = other.soundResManager.capacity;
-        soundResManager.count = other.soundResManager.count;
-        for (i = 0; i < MAX_3D_SAMPLES; i++) {
-            slots3D[i] = other.slots3D[i];
-        }
-        for (i = 0; i < MAX_2D_SAMPLES; i++) {
-            slots2D[i] = other.slots2D[i];
-        }
+    for (i = 0; i < MAX_STREAMS; i++) {
+        streams[i] = other.streams[i];
+    }
+    for (i = 0; i < MAX_STREAMS; i++) {
+        streamStatus[i] = other.streamStatus[i];
+    }
+    digitalDriver = other.digitalDriver;
+    provider3D = other.provider3D;
+    for (i = 0; i < MAX_3D_SAMPLES; i++) {
+        slots3D[i] = other.slots3D[i];
+    }
+    for (i = 0; i < MAX_2D_SAMPLES; i++) {
+        slots2D[i] = other.slots2D[i];
+    }
+    allocCounter = other.allocCounter;
+    listener = other.listener;
+    volume2D = other.volume2D;
+    volume3D = other.volume3D;
+    musicMasterVolume = other.musicMasterVolume;
+    listenerPosition = other.listenerPosition;
+    if (soundResManager.array) {
+        free(soundResManager.array);
+    }
+    soundResManager.capacity = other.soundResManager.capacity;
+    soundResManager.count = other.soundResManager.count;
+    if (other.soundResManager.capacity) {
+        soundResManager.array = (void**)malloc(4 * other.soundResManager.capacity);
+    } else {
+        soundResManager.array = NULL;
+    }
+    if (soundResManager.count) {
+        memcpy(soundResManager.array, other.soundResManager.array, 4 * soundResManager.count);
     }
     return *this;
 }

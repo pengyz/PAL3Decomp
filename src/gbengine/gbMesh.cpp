@@ -113,38 +113,25 @@ gbBaseMesh::~gbBaseMesh() {
     }
 }
 
-// Assignment operator
+// 0x100048b0 - operator= (174B)
 gbBaseMesh& gbBaseMesh::operator=(const gbBaseMesh& other) {
-    if (this == &other) return *this;
-
-    if (m_sections) {
-        delete[] m_sections;
-    }
-
     m_resName = other.m_resName;
     m_resCrc = other.m_resCrc;
     m_resPrev = other.m_resPrev;
     m_resNext = other.m_resNext;
     m_fvf = other.m_fvf;
-    memcpy(m_objectName, other.m_objectName, sizeof(m_objectName));
+    m_pGfxManager = other.m_pGfxManager;
+    memcpy(m_objectName, other.m_objectName, 0x20u);
     m_field2C = other.m_field2C;
     m_field30 = other.m_field30;
     m_field34 = other.m_field34;
     m_field38 = other.m_field38;
     m_flags = other.m_flags;
     m_numSections = other.m_numSections;
+    m_sections = other.m_sections;
     m_currentTime = other.m_currentTime;
-    m_pGfxManager = other.m_pGfxManager;
     m_aabb = other.m_aabb;
     m_memCache = other.m_memCache;
-
-    if (other.m_sections && m_numSections > 0) {
-        m_sections = new gbMeshSection[m_numSections];
-        memcpy(m_sections, other.m_sections, m_numSections * sizeof(gbMeshSection));
-    } else {
-        m_sections = NULL;
-    }
-
     return *this;
 }
 
@@ -361,15 +348,28 @@ gbStaticMesh::~gbStaticMesh() {
     }
 }
 
+// 0x10011a10 - operator= (198B)
 gbStaticMesh& gbStaticMesh::operator=(const gbStaticMesh& other) {
-    if (this == &other) return *this;
-
-    gbBaseMesh::operator=(other);
-
+    m_resName = other.m_resName;
+    m_resCrc = other.m_resCrc;
+    m_resPrev = other.m_resPrev;
+    m_resNext = other.m_resNext;
+    m_fvf = other.m_fvf;
+    m_pGfxManager = other.m_pGfxManager;
+    memcpy(m_objectName, other.m_objectName, 0x20u);
+    m_field2C = other.m_field2C;
+    m_field30 = other.m_field30;
+    m_field34 = other.m_field34;
+    m_field38 = other.m_field38;
+    m_flags = other.m_flags;
+    m_numSections = other.m_numSections;
+    m_sections = other.m_sections;
+    m_currentTime = other.m_currentTime;
+    m_aabb = other.m_aabb;
+    m_memCache = other.m_memCache;
     m_pVertBubble = other.m_pVertBubble;
     m_shadowVolumeVB = other.m_shadowVolumeVB;
     m_shadowVolumeIB = other.m_shadowVolumeIB;
-
     return *this;
 }
 

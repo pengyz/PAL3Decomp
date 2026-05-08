@@ -93,19 +93,16 @@ gbCamSpringControl::gbCamSpringControl(const gbCamSpringControl& other) : gbCamC
     speed = other.speed;
 }
 
-// 0x10005c30 - operator=
+// 0x10005c30 - operator= (96B)
 gbCamSpringControl& gbCamSpringControl::operator=(const gbCamSpringControl& other) {
-    if (this != &other) {
-        gbCamControler::operator=(other);
-        springConstant = other.springConstant;
-        damping = other.damping;
-        targetDist = other.targetDist;
-        velX = other.velX;
-        velY = other.velY;
-        targetPos = other.targetPos;
-        targetQuat = other.targetQuat;
-        speed = other.speed;
-    }
+    springConstant = other.springConstant;
+    damping = other.damping;
+    targetDist = other.targetDist;
+    velX = other.velX;
+    velY = other.velY;
+    targetPos = other.targetPos;
+    targetQuat = other.targetQuat;
+    speed = other.speed;
     return *this;
 }
 
@@ -366,26 +363,24 @@ gbCamera::gbCamera(gbGfxManager* gfxMgr) {
     eyeDir.w = 1.0f;
 }
 
-// 0x10005a20 - operator=
+// 0x10005a20 - operator= (243B)
 gbCamera& gbCamera::operator=(const gbCamera& other) {
-    if (this != &other) {
-        fov = other.fov;
-        OrthoSize = other.OrthoSize;
-        Wscreen = other.Wscreen;
-        Hscreen = other.Hscreen;
-        zNear = other.zNear;
-        zFar = other.zFar;
-        memcpy(&Viewport, &other.Viewport, sizeof(Viewport));
-        memcpy(Plane, other.Plane, sizeof(Plane));
-        numPlane = other.numPlane;
-        memcpy(&ViewMatrix, &other.ViewMatrix, sizeof(gbMatrix4));
-        memcpy(&InvVMatrix, &other.InvVMatrix, sizeof(gbMatrix4));
-        memcpy(pControl, other.pControl, sizeof(pControl));
-        CurCtrl = other.CurCtrl;
-        pGfxMgr = other.pGfxMgr;
-        eyeLoc = other.eyeLoc;
-        eyeDir = other.eyeDir;
-    }
+    fov = other.fov;
+    OrthoSize = other.OrthoSize;
+    Wscreen = other.Wscreen;
+    Hscreen = other.Hscreen;
+    zNear = other.zNear;
+    zFar = other.zFar;
+    memcpy(&Viewport, &other.Viewport, sizeof(Viewport));
+    memcpy(&Plane, &other.Plane, 24 * sizeof(float));
+    numPlane = other.numPlane;
+    ViewMatrix = other.ViewMatrix;
+    InvVMatrix = other.InvVMatrix;
+    memcpy(&pControl, &other.pControl, 16 * sizeof(void*));
+    CurCtrl = other.CurCtrl;
+    pGfxMgr = other.pGfxMgr;
+    eyeLoc = other.eyeLoc;
+    eyeDir = other.eyeDir;
     return *this;
 }
 

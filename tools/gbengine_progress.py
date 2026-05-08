@@ -135,21 +135,42 @@ def fast_source_analysis():
     for cpp in sorted(SRC_DIR.glob("*.cpp")):
         with open(cpp, 'r', errors='ignore') as f:
             content = f.read()
-        # Find class::method patterns
+        # Find class::method patterns (e.g. gbTexture::LoadTexture)
         for m in re.finditer(r'(?:^|\n)\s*(?:[\w*& ]+\s+)?(\w+::~?\w+)\s*\(', content):
             func = m.group(1)
-            # Reconstruct approximate demangled name
             symbols[func] = {"source": cpp.name, "match": 0, "total": 0, "size_ok": True}
+        # Find global function definitions
+        # Simple line-by-line scan for known function name patterns
+        for line in content.split('\n'):
+            line_s = line.strip()
+            if '::' in line_s or line_s.startswith('//') or line_s.startswith('#'):
+                continue
+            m = re.match(r'(?:static\s+)?(?:void|int|float|double|char|unsigned|const|long|BOOL|HRESULT|gbVec3D|gbMatrix4)\s*\*?\s+(\w+)\s*\(', line_s)
+            if m:
+                func = m.group(1)
+                if (func.startswith('gb') or func.startswith('Profile') or
+                    func.startswith('CPK') or func.startswith('CIni') or
+                    func.startswith('D3D') or func.startswith('BEZIER')):
+                    symbols[func] = {"source": cpp.name, "match": 0, "total": 0, "size_ok": True}
     return symbols
 
 
 def match_functions(funcs, compiled_symbols):
     """Mark which IDA functions are implemented."""
+    # Build a set of short names (without parameter list) from compiled symbols
+    # Also keep the full compiled_symbols for exact match
     for func in funcs:
         name = func["name"]
+        # IDA names look like "gbTexture::LoadTexture(int)"
+        # Source names look like "gbTexture::LoadTexture"
+        # Strip parameter list for matching
+        short_name = name.split("(")[0] if "(" in name else name
         if name in compiled_symbols:
             func["implemented"] = True
             func["quality"] = compiled_symbols[name]
+        elif short_name in compiled_symbols:
+            func["implemented"] = True
+            func["quality"] = compiled_symbols[short_name]
         else:
             func["implemented"] = False
             func["quality"] = None

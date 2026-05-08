@@ -53,7 +53,7 @@ if(MSVC_VERSION EQUAL 1200)
     # VC6: only flags it understands
     # Note: /FD omitted — causes PDB lock conflicts with parallel builds under Wine
     set(TOPO_GBENGINE_COMPILE_FLAGS
-        /GX /O2 /Ob2 /Oi /Ot /Oy /GF /Gy /MD
+        /GX /O2 /Ob2 /Oi /Ot /Oy /GF /Gy /MT
     )
 else()
     set(TOPO_GBENGINE_COMPILE_FLAGS
@@ -66,7 +66,7 @@ else()
         /GF                  # 启用字符串池
         /Gy                  # 启用函数级链接
         /FD                  # 生成完整程序数据库信息
-        /MD                  # 多线程 DLL 运行时库
+        /MT                  # 多线程静态运行时库 (原始DLL不导入msvcrt.dll)
         /Zc:sizedDealloc-    # 禁用 C++14 sized deallocation（VC6 不支持）
         /arch:IA32           # 强制 x87 FPU（避免 SSE 内部函数）
     )

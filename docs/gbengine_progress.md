@@ -296,31 +296,66 @@
 
 ---
 
-## 实施计划
+## 实施计划 (2026-05-08 修订)
 
-### Phase 1: 批量简单函数 (快速提升覆盖率)
+### 精确范围
 
-目标：实现所有 operator=、拷贝构造、析构函数 (85个，多为 memcpy 模式)
+经过系统分析，需要实现的 gbengine 内部函数:
+- **总计: 308 个函数, 86.2 KB**
+- 排除: Concurrency/std/type_info (CRT库, 450+函数), D3DX (1367函数), 编译器生成(42个)
 
-### Phase 2: 核心工具函数
+### Phase 1: 填充已有文件 Stub (42个函数)
 
-目标：gbIntersectTriangle、gbCrc32Compute、gbTimeCounter、Profile系列、gbChangeDispMode
+**目标**: 把已有 .cpp 文件中的空/不完整函数补全
+- gbParticle.cpp: 13 stubs (LoadFromFile、构造、Attach)
+- gbVertPool.cpp: 6 stubs (Del/New/Get系列)
+- gbActor.cpp: 5 stubs (ActorMgr、Attach、析构)
+- gbMisc.cpp: 3 stubs (Profile系列)
+- gbGfxManager.cpp: 3 stubs
+- gbTexture.cpp: 2 stubs (LoadTexture, LoadFromImage2D)
+- gbVFileSystem.cpp: 2 stubs (CPK::Open, CPK::LoadFile)
+- 其他: 8 stubs (各文件1-2个)
 
-### Phase 3: 粒子系统补全
+### Phase 2: gbGfxManager_D3D (29个函数, 9.4KB)
 
-目标：gbPartEmitter/gbPartGroupParam/gbParticleEffect 的 LoadFromFile、Attach、构造函数
+**目标**: D3D9 渲染核心实现
+- CreateDevice, ResetDevice, Present
+- SetLight, SetMaterial, DrawIndexedPrimitive
+- SetFrustum, SetOrtho, SetViewport
+- OnLostDevice, OnResetDevice
 
-### Phase 4: 文件加载链
+### Phase 3: gbLightObj (34个函数, 9.2KB)
 
-目标：gbGeomNode::LoadFromFile、gbBaseMesh::LoadFromStream、gbActor::LoadFromIni/LoadSkeleton
+**目标**: 灯光系统完整实现
+- LoadFromFile, Init, Apply
+- 各种灯光类型的处理方法
 
-### Phase 5: D3D设备管理
+### Phase 4: CIniFile (38个函数, 11.6KB)
 
-目标：gbGfxManager_D3D::CreateDevice、EnumAdapterModes、FindBestMode
+**目标**: 配置文件读写系统
+- Open, Close, ReadString, ReadInt, ReadFloat
+- Section/Key 管理
 
-### Phase 6: 资源管理
+### Phase 5: (global) 引擎函数 (74个, 23.5KB)
 
-目标：gbTexture::LoadTexture/LoadFromImage2D、CPK::Open/LoadFile、gbVertPoolMgr系列
+**目标**: 各种全局工具函数
+- 图像格式加载 (TGA, HDR, DDS 解码)
+- gbIntersectTriangle, gbCrc32Compute
+- ProfileBegin/End, gbChangeDispMode
+- 其他杂项辅助函数
+
+### Phase 6: 中优先级模块 (80+个函数, ~25KB)
+
+- CPK (20个) - 文件包系统
+- gbStaticMesh (10个) - 网格渲染
+- gbImage2D (5个) - 图像加载
+- gbPrintFontMgr (11个) - 字体管理
+- gbActor (7个) - 角色动画
+- gbTexture_D3D (12个) - 纹理D3D实现
+- gbVertexPool (8个) - 顶点缓冲
+- BEZIER (2个) - 贝塞尔曲线
+- gbParticleEffect (4个) - 粒子效果
+- CArrayList (8个) - 容器类
 
 ---
 

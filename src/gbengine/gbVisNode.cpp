@@ -375,29 +375,15 @@ int gbVisNode::GetAABBox(gbAABBox* box) {
     return 1;
 }
 
-// operator= - 0x10004af0
+// operator= - 0x10004af0 (121B)
 gbVisNode& gbVisNode::operator=(const gbVisNode& other) {
-    if (this != &other) {
-        pNext = other.pNext;
-        pParent = other.pParent;
-        children = other.children;
-        children.pIterator = other.children.pIterator;
-        msgBuffer = other.msgBuffer;
-        msgCapacity = other.msgCapacity;
-        msgUnused = other.msgUnused;
-        msgOverflow = other.msgOverflow;
-        msgReadIndex = other.msgReadIndex;
-        msgWriteIndex = other.msgWriteIndex;
-        renderPriority = other.renderPriority;
-        timeScale = other.timeScale;
-        visible = other.visible;
-        enableShadow = other.enableShadow;
-        field_44 = other.field_44;
-        cullPrev = other.cullPrev;
-        cullNext = other.cullNext;
-        blendValue = other.blendValue;
-        blendMode = other.blendMode;
-    }
+    pNext = other.pNext;
+    pParent = other.pParent;
+    children = other.children;
+    children.pIterator = other.children.pIterator;
+    msgBuffer = other.msgBuffer;
+    msgCapacity = other.msgCapacity;
+    memcpy(&msgUnused, &other.msgUnused, 0x3Cu);
     return *this;
 }
 
@@ -419,65 +405,20 @@ gbVolModNode::gbVolModNode() {
     pVolMod = 0;
 }
 
+// 0x100057c0 - gbVolModNode::operator= (168B)
 class gbVolModNode & gbVolModNode::operator=(class gbVolModNode const & p0) {
-    if (this != &p0) {
-        int* dst = (int*)_base_visnode;
-        const int* src = (const int*)p0._base_visnode;
-        dst[0] = src[0];
-        dst[1] = src[1];
-        dst[2] = src[2];
-        dst[3] = src[3];
-        dst[4] = src[4];
-        dst[5] = src[5];
-        dst[6] = src[6];
-        dst[7] = src[7];
-        dst[8] = src[8];
-        dst[9] = src[9];
-        dst[10] = src[10];
-        dst[11] = src[11];
-        dst[12] = src[12];
-        dst[13] = src[13];
-        dst[14] = src[14];
-        dst[15] = src[15];
-        dst[16] = src[16];
-        dst[17] = src[17];
-        dst[18] = src[18];
-        dst[19] = src[19];
-        dst[20] = src[20];
-        localMatrix.m[0][0] = p0.localMatrix.m[0][0];
-        localMatrix.m[0][1] = p0.localMatrix.m[0][1];
-        localMatrix.m[0][2] = p0.localMatrix.m[0][2];
-        localMatrix.m[0][3] = p0.localMatrix.m[0][3];
-        localMatrix.m[1][0] = p0.localMatrix.m[1][0];
-        localMatrix.m[1][1] = p0.localMatrix.m[1][1];
-        localMatrix.m[1][2] = p0.localMatrix.m[1][2];
-        localMatrix.m[1][3] = p0.localMatrix.m[1][3];
-        localMatrix.m[2][0] = p0.localMatrix.m[2][0];
-        localMatrix.m[2][1] = p0.localMatrix.m[2][1];
-        localMatrix.m[2][2] = p0.localMatrix.m[2][2];
-        localMatrix.m[2][3] = p0.localMatrix.m[2][3];
-        localMatrix.m[3][0] = p0.localMatrix.m[3][0];
-        localMatrix.m[3][1] = p0.localMatrix.m[3][1];
-        localMatrix.m[3][2] = p0.localMatrix.m[3][2];
-        localMatrix.m[3][3] = p0.localMatrix.m[3][3];
-        worldMatrix.m[0][0] = p0.worldMatrix.m[0][0];
-        worldMatrix.m[0][1] = p0.worldMatrix.m[0][1];
-        worldMatrix.m[0][2] = p0.worldMatrix.m[0][2];
-        worldMatrix.m[0][3] = p0.worldMatrix.m[0][3];
-        worldMatrix.m[1][0] = p0.worldMatrix.m[1][0];
-        worldMatrix.m[1][1] = p0.worldMatrix.m[1][1];
-        worldMatrix.m[1][2] = p0.worldMatrix.m[1][2];
-        worldMatrix.m[1][3] = p0.worldMatrix.m[1][3];
-        worldMatrix.m[2][0] = p0.worldMatrix.m[2][0];
-        worldMatrix.m[2][1] = p0.worldMatrix.m[2][1];
-        worldMatrix.m[2][2] = p0.worldMatrix.m[2][2];
-        worldMatrix.m[2][3] = p0.worldMatrix.m[2][3];
-        worldMatrix.m[3][0] = p0.worldMatrix.m[3][0];
-        worldMatrix.m[3][1] = p0.worldMatrix.m[3][1];
-        worldMatrix.m[3][2] = p0.worldMatrix.m[3][2];
-        worldMatrix.m[3][3] = p0.worldMatrix.m[3][3];
-        pVolMod = p0.pVolMod;
-    }
+    int* dst = (int*)_base_visnode;
+    const int* src = (const int*)p0._base_visnode;
+    dst[0] = src[0];
+    dst[1] = src[1];
+    dst[2] = src[2];
+    dst[3] = src[3];
+    dst[4] = src[4];
+    dst[5] = src[5];
+    memcpy(&_base_visnode[24], &p0._base_visnode[24], 0x3Cu);
+    localMatrix = p0.localMatrix;
+    worldMatrix = p0.worldMatrix;
+    pVolMod = p0.pVolMod;
     return *this;
 }
 

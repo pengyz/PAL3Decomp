@@ -112,6 +112,7 @@ elseif(BUILD_TARGET STREQUAL "gbengine")
 
         # Link DirectX and other dependencies (use full paths to avoid VC6 CRT conflicts)
         target_link_libraries(gbengine ${PLATFORM_LIBS}
+            "${CMAKE_SOURCE_DIR}/tools/vc6/Lib/LIBCMT.LIB"
             "${CMAKE_SOURCE_DIR}/tools/vc6/Lib/d3d9.lib"
             "${CMAKE_SOURCE_DIR}/tools/vc6/Lib/d3dx9.lib"
             "${CMAKE_SOURCE_DIR}/tools/vc6/Lib/dinput8.lib"
@@ -130,7 +131,7 @@ elseif(BUILD_TARGET STREQUAL "gbengine")
         # Use .def file for exports (matching original DLL export table)
         # Note: /SAFESEH not supported by VC6 link.exe
         set_target_properties(gbengine PROPERTIES
-            LINK_FLAGS "/DEF:\"${CMAKE_SOURCE_DIR}/src/gbengine/gbengine.def\" /SAFESEH:NO"
+            LINK_FLAGS "/DEF:\"${CMAKE_SOURCE_DIR}/src/gbengine/gbengine.def\" /SAFESEH:NO /MAP:\"${CMAKE_BINARY_DIR}/gbengine.map\""
         )
 
         # Apply VC6 optimization flags
