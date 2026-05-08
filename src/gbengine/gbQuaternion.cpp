@@ -39,21 +39,26 @@ gbQuaternion &gbQuaternion::operator=(const gbQuaternion &other)
     return *this;
 }
 
+#pragma intrinsic(fabs)
+#pragma inline_depth(0)
 int gbQuaternion::IsNormal(void)
 {
     float mag = Magnitude();
-    if (fabs(mag - 1.0f) < 0.005) {
+    if ((float)fabs(mag - 1.0f) < 0.005f) {
         return 1;
     }
     return 0;
 }
+#pragma inline_depth()
 
 static float s_fHalf = 0.5f;
 static float s_fDeg2Rad = 0.017453292f;
 
 void gbQuaternion::SetAxisAngle(gbVec3D *axis, float angle)
 {
-    float halfRad = angle * s_fHalf * s_fDeg2Rad;
+    float a = angle;
+    float halfRad = a * s_fHalf;
+    halfRad = halfRad * s_fDeg2Rad;
     w = (float)cos(halfRad);
     float s = (float)sin(halfRad);
     x = s * axis->x;
@@ -187,17 +192,25 @@ void gbQuaternion::GetMatrix(gbMatrix4 *mat) const
 
 void gbQuaternion::SetYawPitchRoll(float yaw, float pitch, float roll)
 {
-    gbQuaternion qPitch, qYaw, qRoll, temp;
-    gbVec3D axisX; axisX.x = 1.0f; axisX.y = 0.0f; axisX.z = 0.0f;
-    gbVec3D axisY; axisY.x = 0.0f; axisY.y = 1.0f; axisY.z = 0.0f;
-    gbVec3D axisZ; axisZ.x = 0.0f; axisZ.y = 0.0f; axisZ.z = 1.0f;
-
-    qPitch.SetAxisAngle(&axisX, pitch);
-    qYaw.SetAxisAngle(&axisY, yaw);
-    qRoll.SetAxisAngle(&axisZ, roll);
-
-    qPitch.MultiplyBy(&qYaw, &temp);
-    temp.MultiplyBy(&qRoll, this);
+    float halfYaw = yaw * s_fHalf;
+    float halfRoll = roll * s_fHalf;
+    float hp = pitch * s_fHalf * s_fDeg2Rad;
+    float sinP = (float)sin(hp);
+    float cosP = (float)cos(hp);
+    float hy = halfYaw * s_fDeg2Rad;
+    float sinY = (float)sin(hy);
+    float cosY = (float)cos(hy);
+    float hr = halfRoll * s_fDeg2Rad;
+    float sinR = (float)sin(hr);
+    float cosR = (float)cos(hr);
+    float cpcy = cosY * cosP;
+    float spcy = cosY * sinP;
+    float cpsy = cosP * sinY;
+    float spsy = sinY * sinP;
+    w = cpcy * cosR - spsy * sinR;
+    x = spcy * cosR + cpsy * sinR;
+    y = cpsy * cosR - spcy * sinR;
+    z = spsy * cosR + cpcy * sinR;
 }
 
 void gbQuaternion::SetTwoVector(gbVec3D *from, gbVec3D *to)
