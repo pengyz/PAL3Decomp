@@ -501,13 +501,7 @@ void gbEffectMgr::Init(gbGfxManager* gfxMgr) {
     m_nFrameCounter = 0;
 }
 
-// 0x1001d510 (67B) - Release all managed effects
-void gbEffectMgr::Release(void) {
-    // Effects are reference-counted resources; cleanup via ResManager
-    m_nFrameCounter = 0;
-}
-
-// gbEffectMgr methods: OnLostDevice, OnResetDevice, NewTrivalEffect,
+// gbEffectMgr methods: Release, OnLostDevice, OnResetDevice, NewTrivalEffect,
 // GetRenderEffect, GetDefaultEffect, GetWhiteTexture, GetGrayTexture
 // are implemented in gbEffectMgr.cpp
 

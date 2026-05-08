@@ -48,8 +48,8 @@ int gbQuaternion::IsNormal(void)
     return 0;
 }
 
-static const float s_fHalf = 0.5f;
-static const float s_fDeg2Rad = 0.017453292f;
+static float s_fHalf = 0.5f;
+static float s_fDeg2Rad = 0.017453292f;
 
 void gbQuaternion::SetAxisAngle(gbVec3D *axis, float angle)
 {
