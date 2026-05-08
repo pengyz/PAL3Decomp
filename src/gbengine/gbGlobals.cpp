@@ -42,56 +42,35 @@ struct gbRealWorldTime {
     unsigned int milliseconds;  // +0x1C
 };
 
-// Extract directory from path
+// 0x10030F00
 char* gbVfgetdir(const char* path, char* buf, int size) {
-    if (!path || !buf || size <= 0) {
-        return NULL;
-    }
-
-    // Find last slash or backslash
-    const char* lastSlash = NULL;
-    for (const char* p = path; *p; p++) {
-        if (*p == '\\' || *p == '/') {
-            lastSlash = p;
-        }
-    }
-
-    if (!lastSlash) {
-        // No directory separator found
-        buf[0] = '\0';
-        return buf;
-    }
-
-    // Copy directory part (including trailing slash)
-    int len = (int)(lastSlash - path + 1);
-    if (len >= size) {
-        len = size - 1;
-    }
-
-    strncpy(buf, path, len);
-    buf[len] = '\0';
+    char* p1;
+    char* p2;
+    strncpy(buf, path, size);
+    p1 = strrchr(buf, '/');
+    p2 = strrchr(buf, '\\');
+    if (p2 > p1)
+        p1 = p2;
+    if (!p1)
+        *buf = 0;
+    else
+        p1[1] = 0;
     return buf;
 }
 
-// Extract filename from path
+// 0x10030F50
 char* gbVfgetname(const char* path, char* buf, int size) {
-    if (!path || !buf || size <= 0) {
-        return NULL;
-    }
-
-    // Find last slash or backslash
-    const char* lastSlash = NULL;
-    for (const char* p = path; *p; p++) {
-        if (*p == '\\' || *p == '/') {
-            lastSlash = p;
-        }
-    }
-
-    // Copy filename part (after last slash)
-    const char* filename = lastSlash ? (lastSlash + 1) : path;
-    strncpy(buf, filename, size - 1);
-    buf[size - 1] = '\0';
-    return buf;
+    const char* src;
+    char* p1;
+    char* p2;
+    src = path;
+    p1 = strrchr(path, '/');
+    p2 = strrchr(path, '\\');
+    if (p2 > p1)
+        p1 = p2;
+    if (p1)
+        src = p1 + 1;
+    return strcpy(buf, src);
 }
 
 // Create graphics manager - 0x1001E0C0 (145B)
@@ -551,9 +530,8 @@ void gbPopDispMode(void)
 
 int gbGetOSUserName(char* buf, int bufSize)
 {
-    DWORD size = bufSize;
-    GetUserNameA(buf, &size);
-    return (int)size;
+    GetUserNameA(buf, (DWORD*)&bufSize);
+    return bufSize;
 }
 
 int gbGetCPU_MHZ(void)

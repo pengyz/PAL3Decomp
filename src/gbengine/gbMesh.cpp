@@ -12,9 +12,27 @@
 #include <string.h>
 #include <stdlib.h>
 #include <float.h>
+#include <math.h>
 
 extern int gbComputeFVFStride(unsigned int fvf);
 extern void gbColorQuadToFloat4(float* dest, unsigned char* src);
+extern unsigned int gbCrc32Compute(const char* data, int len);
+extern gbGfxManager* g_pActorGfxMgr;  // dword_1012B99C
+
+// Internal helper: build canonical vertex from skin data (52 bytes output)
+// 0x100063E0
+static int BuildCanonicalVertex(int a1, int a2, int a3, int a4);
+// Internal helper: build canonical vertex for index strip (56 bytes output)
+// 0x100068F0
+static int BuildCanonicalVertexStrip(int a1, int a2);
+
+// These are defined elsewhere in this translation unit (or linked):
+// 0x10006E70
+extern void SortBoneWeights(int* pMeshData, int maxBones);
+// 0x1000B4F0
+extern void PartitionMesh(unsigned int* pMeshData, int maxBonesPerSection);
+// 0x10016C70
+extern void BuildShadowVolumeDataInternal(void* desc, int gfxMgr, unsigned int fvf, void* ppOutVB, void* ppOutIB);
 
 
 /* ======== gbMeshSection ======== */
@@ -1038,6 +1056,565 @@ int gbMesh::LoadFromFile(gbVFile1* file, float quality) {
     free(tempBuf);
     m_isLoaded = 1;
     return 1;
+}
+
+
+/* ======== Skin Mesh Internal Functions ======== */
+
+// 0x100063E0 - Build canonical vertex (52 bytes) from skin vertex + face data
+static int BuildCanonicalVertex(int a1, int a2, int a3, int a4)
+{
+    double v6;
+    double v7;
+    double v8;
+    float v9;
+
+    *(int *)a1 = *(int *)a2;
+    *(int *)(a1 + 4) = *(int *)(a2 + 4);
+    *(int *)(a1 + 8) = *(int *)(a2 + 8);
+    v6 = (double)(2 * (char)(*(unsigned short *)(a3 + 2 * a4 + 12) >> 8)) * 3.1415927 * 0.0039215689;
+    v7 = (double)(unsigned char)*(unsigned short *)(a3 + 2 * a4 + 12) * 0.012319972;
+    v9 = (float)v7;
+    v8 = sin(v7);
+    *(float *)(a1 + 12) = (float)(cos(v6) * v8);
+    *(float *)(a1 + 16) = (float)(sin(v6) * v8);
+    *(float *)(a1 + 20) = (float)cos((double)v9);
+    *(float *)(a1 + 24) = (float)((double)*(unsigned char *)(a2 + 20) * 0.0039215689);
+    *(float *)(a1 + 28) = (float)((double)*(unsigned char *)(a2 + 21) * 0.0039215689);
+    *(float *)(a1 + 32) = (float)((double)*(unsigned char *)(a2 + 22) * 0.0039215689);
+    *(float *)(a1 + 36) = (float)((double)*(unsigned char *)(a2 + 23) * 0.0039215689);
+    *(char *)(a1 + 40) = *(char *)(a2 + 12);
+    *(char *)(a1 + 41) = *(char *)(a2 + 13);
+    *(char *)(a1 + 42) = *(char *)(a2 + 14);
+    *(char *)(a1 + 43) = *(char *)(a2 + 15);
+    *(int *)(a1 + 44) = *(int *)(a3 + 8 * a4 + 20);
+    *(int *)(a1 + 48) = *(int *)(a3 + 8 * a4 + 44);
+    return a1;
+}
+
+// 0x100068F0 - Build canonical vertex for index strip (56 bytes)
+static int BuildCanonicalVertexStrip(int a1, int a2)
+{
+    *(int *)a1 = *(int *)a2;
+    *(int *)(a1 + 4) = *(int *)(a2 + 4);
+    *(int *)(a1 + 8) = *(int *)(a2 + 8);
+    *(float *)(a1 + 24) = (float)((double)*(unsigned char *)(a2 + 20) * 0.0039215689);
+    *(float *)(a1 + 28) = (float)((double)*(unsigned char *)(a2 + 21) * 0.0039215689);
+    *(float *)(a1 + 32) = (float)((double)*(unsigned char *)(a2 + 22) * 0.0039215689);
+    *(float *)(a1 + 36) = (float)((double)*(unsigned char *)(a2 + 23) * 0.0039215689);
+    *(float *)(a1 + 40) = (float)*(unsigned char *)(a2 + 12);
+    *(float *)(a1 + 44) = (float)*(unsigned char *)(a2 + 13);
+    *(float *)(a1 + 48) = (float)*(unsigned char *)(a2 + 14);
+    *(float *)(a1 + 52) = (float)*(unsigned char *)(a2 + 15);
+    return a2;
+}
+
+// 0x100064E0 - BuildBuffers (1028B)
+// Builds deduplicated vertex/index buffers for a skin mesh section
+// pThis = skin mesh data struct (44 bytes), a2 = pointer to 1180-byte section
+static void BuildBuffers(unsigned int* pThis, int a2)
+{
+    int v2;
+    gbVertPoolMgr *v3;
+    gbIndexBubble *v4;
+    int v5;
+    int v6;
+    int v7;
+    int v8;
+    unsigned int *v9;
+    int v10;
+    int v11;
+    int v12;
+    int v13;
+    int v14;
+    unsigned int *v15;
+    unsigned char *v16;
+    int v17;
+    int v18;
+    int v19;
+    unsigned int *v20;
+    float *v21;
+    int v22;
+    gbVertexBubble *v23;
+    int v24;
+    char *v25;
+    int v26;
+    unsigned int *v27;
+    unsigned int *Block;
+    int v29;
+    char *v30;
+    unsigned int *v32;
+    int *v33;
+    int v34;
+    char v35[52];
+    int v36;
+    int v37;
+    unsigned int v38[7];
+
+    v2 = a2;
+    v3 = (gbVertPoolMgr *)*(unsigned int *)((char *)g_pActorGfxMgr + 196);
+    v4 = v3->NewIndexBubble((gbPrimType)1, 3 * *(int *)(a2 + 1160));
+    *(int *)(a2 + 1164) = (int)v4;
+    v32 = v4->Lock32();
+    v5 = 3 * *(int *)(a2 + 1160);
+    v6 = (int)operator new(156 * *(int *)(a2 + 1160));
+    v7 = 0;
+    if (v6)
+    {
+        v8 = v5 - 1;
+        if (v8 >= 0)
+        {
+            v9 = (unsigned int *)(v6 + 20);
+            v10 = v8 + 1;
+            do
+            {
+                *(v9 - 5) = 0;
+                *(v9 - 4) = 0;
+                *(v9 - 3) = 0;
+                *(v9 - 2) = 0;
+                *(v9 - 1) = 0;
+                *v9 = 0;
+                v9 += 13;
+                --v10;
+            }
+            while (v10);
+        }
+        v25 = (char *)v6;
+    }
+    else
+    {
+        v25 = 0;
+    }
+    v11 = (int)operator new(12 * *(int *)(a2 + 1160));
+    v12 = *(int *)(a2 + 1160);
+    Block = (unsigned int *)v11;
+    memset(v35, 0, 24);
+    v36 = 0;
+    v37 = 0;
+    v38[0] = 0;
+    v29 = 0;
+    if (v12 > 0)
+    {
+        v26 = 0;
+        while (1)
+        {
+            v13 = 17 * *(int *)(*(int *)(v2 + 1156) + 4 * v29);
+            v14 = 0;
+            v34 = (int)(pThis[7] + 4 * v13);
+            v24 = 0;
+            v33 = (int *)&Block[v7];
+            v27 = (unsigned int *)v34;
+            v30 = &v25[52 * v7];
+            do
+            {
+                v15 = (unsigned int *)(pThis[6] + 36 * *v27);
+                v36 = (int)*v15;
+                v37 = (int)v15[1];
+                v38[0] = v15[2];
+                v38[5] = v15[7];
+                if ((int)v15[7] > 0)
+                {
+                    v16 = (unsigned char *)(v15 + 3);
+                    do
+                    {
+                        v16[(char *)v38 - (char *)v15] = v16[8];
+                        v17 = *v16++;
+                        v16[(char *)&v36 - (char *)v15 - 1] = *(unsigned char *)(a2 + 4 * v17 + 128);
+                    }
+                    while ((int)(v16 - (unsigned char *)v15 - 12) < (int)v15[7]);
+                    v14 = v24;
+                }
+                BuildCanonicalVertex((int)v35, (int)&v36, v34, v14);
+                v18 = (int)gbCrc32Compute(v35, 52);
+                v19 = 0;
+                if (v7 <= 0)
+                    goto LABEL_35;
+                v20 = Block;
+                v21 = (float *)(v25 + 20);
+                while ((unsigned int)v18 != *v20
+                     || *(v21 - 5) != *(float *)v35
+                     || *(v21 - 4) != *(float *)&v35[4]
+                     || *(v21 - 3) != *(float *)&v35[8]
+                     || *(v21 - 2) != *(float *)&v35[12]
+                     || *(v21 - 1) != *(float *)&v35[16]
+                     || *v21 != *(float *)&v35[20]
+                     || v21[6] != *(float *)&v35[44]
+                     || v21[7] != *(float *)&v35[48]
+                     || v21[1] != *(float *)&v35[24]
+                     || v21[2] != *(float *)&v35[28]
+                     || v21[3] != *(float *)&v35[32]
+                     || v21[4] != *(float *)&v35[36]
+                     || *((unsigned int *)v21 + 5) != *(unsigned int *)&v35[40])
+                {
+                    ++v19;
+                    ++v20;
+                    v21 += 13;
+                    if (v19 >= v7)
+                        goto LABEL_35;
+                }
+                if (v19 >= v7)
+                {
+LABEL_35:
+                    memcpy(v30, v35, 0x34u);
+                    *v33 = v18;
+                    *((unsigned short *)v32 + v14 + v26) = (unsigned short)v7++;
+                    v30 += 52;
+                    ++v33;
+                }
+                else
+                {
+                    *((unsigned short *)v32 + v14 + v26) = (unsigned short)v19;
+                }
+                v24 = ++v14;
+                ++v27;
+            }
+            while (v14 < 3);
+            v26 += 3;
+            if (++v29 >= *(int *)(a2 + 1160))
+                break;
+            v2 = a2;
+        }
+        v2 = a2;
+    }
+    ((gbIndexBubble *)*(int *)(v2 + 1164))->Unlock();
+    v22 = *(int *)(v2 + 1164);
+    *(int *)(v22 + 32) = v7 - 1;
+    *(int *)(v22 + 28) = 0;
+    v23 = v3->NewVertexBubble(0x80000034, v7);
+    *(int *)(v2 + 1168) = (int)v23;
+    memcpy(v23->Lock(), v25, 4 * ((unsigned int)(52 * v7) >> 2));
+    ((gbVertexBubble *)*(int *)(v2 + 1168))->Unlock();
+    operator delete(Block);
+    operator delete(v25);
+}
+
+// 0x100069B0 - BuildIndexStrip (970B)
+// Builds vertex/index strip data for a skin mesh section
+// pThis = skin mesh data struct (44 bytes), a2 = pointer to 1180-byte section
+static void BuildIndexStrip(unsigned int* pThis, unsigned int* a2)
+{
+    unsigned short *v2;
+    int v3;
+    unsigned short *v4;
+    int i;
+    int v6;
+    float *v7;
+    int v8;
+    float *v9;
+    int v10;
+    int v11;
+    unsigned int *v12;
+    unsigned int *v13;
+    unsigned char *v14;
+    int v15;
+    int v16;
+    float *v17;
+    int v19;
+    int v20;
+    int v22;
+    unsigned short *Block;
+    float *v24;
+    char *v25;
+    unsigned int *v26;
+    int v27;
+    int v28;
+    float v29[14];
+    int v30;
+    int v31;
+    unsigned int v32[7];
+    unsigned int v33[15];
+
+    if (!a2[293])
+    {
+        v2 = (unsigned short *)malloc(6 * a2[290]);
+        v3 = 0;
+        Block = v2;
+        if ((int)a2[290] > 0)
+        {
+            v4 = v2;
+            do
+            {
+                for (i = 0; i < 3; ++i)
+                {
+                    ++v4;
+                    v6 = 16 * *(int *)(a2[289] + 4 * v3) + i + *(int *)(a2[289] + 4 * v3);
+                    *(v4 - 1) = *(unsigned short *)(pThis[7] + 4 * v6);
+                }
+                ++v3;
+            }
+            while (v3 < (int)a2[290]);
+        }
+        v7 = (float *)malloc(56 * (int)pThis[2]);
+        v8 = (int)a2[290];
+        v9 = v7;
+        v10 = 0;
+        v11 = 0;
+        v24 = v9;
+        memset(v29, 0, 24);
+        v30 = 0;
+        v31 = 0;
+        v32[0] = 0;
+        v28 = 0;
+        v27 = 0;
+        if (v8 > 0)
+        {
+            v22 = 0;
+            do
+            {
+                v20 = 0;
+                v12 = (unsigned int *)(pThis[7] + 68 * *(int *)(a2[289] + 4 * v10));
+                v26 = v12;
+                v25 = (char *)&v9[14 * v11];
+                do
+                {
+                    v13 = (unsigned int *)(pThis[6] + 36 * *v12);
+                    v30 = (int)*v13;
+                    v31 = (int)v13[1];
+                    v32[0] = v13[2];
+                    v32[5] = v13[7];
+                    if ((int)v13[7] > 0)
+                    {
+                        v14 = (unsigned char *)(v13 + 3);
+                        do
+                        {
+                            v14[(char *)v32 - (char *)v13] = v14[8];
+                            v15 = *v14++;
+                            v14[(char *)&v30 - (char *)v13 - 1] = (unsigned char)a2[v15 + 32];
+                        }
+                        while ((int)(v14 - (unsigned char *)v13 - 12) < (int)v13[7]);
+                        v11 = v28;
+                    }
+                    BuildCanonicalVertexStrip((int)v29, (int)&v30);
+                    v16 = 0;
+                    if (v11 <= 0)
+                        goto LABEL_31;
+                    v17 = v24 + 8;
+                    while (*(v17 - 8) != v29[0]
+                         || *(v17 - 7) != v29[1]
+                         || *(v17 - 6) != v29[2]
+                         || *(v17 - 2) != v29[6]
+                         || *(v17 - 1) != v29[7]
+                         || *v17 != v29[8]
+                         || v17[1] != v29[9]
+                         || v17[2] != v29[10]
+                         || v17[3] != v29[11]
+                         || v17[4] != v29[12]
+                         || v17[5] != v29[13])
+                    {
+                        ++v16;
+                        v17 += 14;
+                        if (v16 >= v11)
+                            goto LABEL_31;
+                    }
+                    if (v16 >= v11)
+                    {
+LABEL_31:
+                        memcpy(v25, v29, 0x38u);
+                        Block[v20 + v22] = (unsigned short)v11++;
+                        v28 = v11;
+                        v25 += 56;
+                    }
+                    else
+                    {
+                        Block[v20 + v22] = (unsigned short)v16;
+                    }
+                    v12 = v26 + 1;
+                    ++v20;
+                    ++v26;
+                }
+                while (v20 < 3);
+                v9 = v24;
+                v10 = v27 + 1;
+                ++v27;
+                v22 += 3;
+            }
+            while (v27 < (int)a2[290]);
+        }
+        v19 = (int)a2[290];
+        memset(&v33[3], 255, 20);
+        v33[1] = 0;
+        v33[13] = 0;
+        v33[11] = 0;
+        v33[12] = (unsigned int)v19;
+        v33[9] = (unsigned int)v11;
+        v33[0] = (unsigned int)v9;
+        v33[10] = (unsigned int)Block;
+        v33[2] = 12;
+        v33[8] = 56;
+        v33[14] = 1008981770;
+        BuildShadowVolumeDataInternal(v33, (int)g_pActorGfxMgr, 0x80000038, (void *)(a2 + 294), (void *)(a2 + 293));
+        free(Block);
+        free(v9);
+    }
+}
+
+// 0x10006090 - LoadFromStream (754B)
+// Loads skin mesh data from a gbVFile stream
+// pThis = skin mesh data struct (44 bytes), a2 = gbVFile*
+static int LoadSkinMeshFromStream(unsigned int* pThis, gbVFile* a2)
+{
+    int v4;
+    int v5;
+    int v6;
+    int v7;
+    unsigned int *v8;
+    int v9;
+    int v10;
+    int v11;
+    int v12;
+    int i2;
+    void *v14;
+    int v15;
+    int v16;
+    float *v17;
+    float *v18;
+    int v21;
+    void *v22;
+    int result;
+    int v25;
+    int v26;
+    int Buffera;
+    int v28;
+    int v29;
+    int v30_counter;
+    int v31_counter;
+
+    g_pVFileSys->Read(pThis, 4u, a2);
+    g_pVFileSys->Read((char*)pThis + 8, 4u, a2);
+    g_pVFileSys->Read((char*)pThis + 12, 4u, a2);
+    g_pVFileSys->Read((char*)pThis + 16, 4u, a2);
+    g_pVFileSys->Read((char*)pThis + 20, 4u, a2);
+    g_pVFileSys->Read((char*)pThis + 4, 4u, a2);
+    v4 = (int)pThis[2];
+    v5 = (int)operator new(36 * v4);
+    v6 = 0;
+    if (v5)
+    {
+        v7 = v4 - 1;
+        if (v7 >= 0)
+        {
+            v8 = (unsigned int *)(v5 + 8);
+            v9 = v7 + 1;
+            do
+            {
+                *(v8 - 2) = 0;
+                *(v8 - 1) = 0;
+                *v8 = 0;
+                v8 += 9;
+                --v9;
+            }
+            while (v9);
+        }
+    }
+    else
+    {
+        v5 = 0;
+    }
+    pThis[6] = (unsigned int)v5;
+    if ((*((char*)pThis + 4) & 1) != 0)
+    {
+        v10 = 0;
+        if ((int)pThis[2] > 0)
+        {
+            do
+            {
+                g_pVFileSys->Read((void *)(v6 + pThis[6]), 0xCu, a2);
+                ++v10;
+                v6 += 36;
+            }
+            while (v10 < (int)pThis[2]);
+            v6 = 0;
+        }
+    }
+    if ((pThis[1] & 0x800) != 0)
+    {
+        v30_counter = 0;
+        if ((int)pThis[2] > 0)
+        {
+            v11 = 0;
+            do
+            {
+                g_pVFileSys->Read(&Buffera, 1u, a2);
+                v12 = 0;
+                *(unsigned int *)(pThis[6] + v11 + 28) = (unsigned char)Buffera;
+                if ((unsigned char)Buffera)
+                {
+                    do
+                    {
+                        g_pVFileSys->Read((void *)(v11 + pThis[6] + v12 + 12), 1u, a2);
+                        g_pVFileSys->Read((void *)(v11 + pThis[6] + v12 + 20), 1u, a2);
+                        ++v12;
+                    }
+                    while (v12 < (unsigned char)Buffera);
+                }
+                v11 += 36;
+                ++v30_counter;
+            }
+            while (v30_counter < (int)pThis[2]);
+            v6 = 0;
+        }
+    }
+    if ((pThis[1] & 0x1000) != 0)
+    {
+        for (i2 = 0; i2 < (int)pThis[2]; v6 += 36)
+        {
+            g_pVFileSys->Read((void *)(pThis[6] + v6 + 32), 4u, a2);
+            ++i2;
+        }
+    }
+    v14 = (void *)operator new(68 * pThis[3]);
+    v15 = (int)pThis[3];
+    pThis[7] = (unsigned int)v14;
+    g_pVFileSys->Read(v14, 68 * v15, a2);
+    v31_counter = 0;
+    if ((int)pThis[3] > 0)
+    {
+        Buffera = 0;
+        do
+        {
+            v16 = Buffera;
+            v28 = 3;
+            do
+            {
+                v17 = (float *)(pThis[7] + v16 + 20);
+                v29 = (int)(__int64)(*v17 * 255.0);
+                *v17 = (float)((double)v29 * 0.0039215689);
+                v18 = (float *)(pThis[7] + v16 + 44);
+                v29 = (int)(__int64)(*v18 * 255.0);
+                v16 += 8;
+                --v28;
+                *v18 = (float)((double)v29 * 0.0039215689);
+            }
+            while (v28);
+            ++v31_counter;
+            Buffera += 68;
+        }
+        while (v31_counter < (int)pThis[3]);
+    }
+    v21 = (int)pThis[4];
+    if (v21)
+    {
+        v22 = (void *)operator new(16 * v21);
+        pThis[8] = (unsigned int)v22;
+        g_pVFileSys->Read(v22, 16 * pThis[4], a2);
+    }
+    SortBoneWeights((int*)pThis, 4);
+    PartitionMesh(pThis, 26);
+    result = (int)pThis[10];
+    v25 = 0;
+    if (result > 0)
+    {
+        v26 = 0;
+        do
+        {
+            BuildBuffers(pThis, (int)(pThis[9] + v26));
+            result = (int)pThis[10];
+            ++v25;
+            v26 += 1180;
+        }
+        while (v25 < result);
+    }
+    return result;
 }
 
 
