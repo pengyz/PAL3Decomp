@@ -46,8 +46,18 @@ build/verify/
 # Git worktrees
 .worktrees/
 
-# Claude Code metadata
-.claude/
+# Claude Code local state (not commands)
+.claude/align_cursor.json
+.claude/iterations/
+.claude/settings.local.json
+.claude/scheduled_tasks.lock
+.claude/worktrees/
+
+# VC6 compiled object files (build artifacts)
+tools/vc6/*.obj
+
+# Temp files
+test_layout*.i
 
 # Ghidra project databases (large binary, regenerable)
 *.rep/
