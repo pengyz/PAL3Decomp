@@ -22,6 +22,16 @@ __declspec(dllimport) void AILCALL AIL_set_3D_velocity(void* obj, float dx, floa
 __declspec(dllimport) void AILCALL AIL_auto_update_3D_position(H3DSAMPLE sample, int flag);
 __declspec(dllimport) void AILCALL AIL_WAV_info(void* data, void* info);
 __declspec(dllimport) void AILCALL AIL_set_3D_sample_file(H3DSAMPLE sample, void* data);
+
+// 2D sample functions
+typedef void* HSAMPLE;
+__declspec(dllimport) void AILCALL AIL_start_sample(HSAMPLE sample);
+__declspec(dllimport) void AILCALL AIL_stop_sample(HSAMPLE sample);
+__declspec(dllimport) void AILCALL AIL_end_sample(HSAMPLE sample);
+__declspec(dllimport) void AILCALL AIL_resume_sample(HSAMPLE sample);
+__declspec(dllimport) unsigned int AILCALL AIL_sample_status(HSAMPLE sample);
+__declspec(dllimport) void AILCALL AIL_set_sample_volume(HSAMPLE sample, int volume);
+__declspec(dllimport) void AILCALL AIL_set_sample_loop_count(HSAMPLE sample, int count);
 }
 
 void gbReportError(char* fmt, ...);
@@ -222,4 +232,102 @@ void gbSound3DNode::SetDistParam(float minD, float maxD)
 {
     minDist = minD;
     maxDist = maxD;
+}
+
+
+/* ======== gbSound2DNode ======== */
+
+gbAudioManager* gbSound2DNode::pAudioMgr = NULL;
+
+// 0x100028d0
+gbSound2DNode::gbSound2DNode()
+{
+    soundData = NULL;
+    sampleHandle = NULL;
+    loopCount = 1;
+    volume = 1.0f;
+}
+
+// 0x100028f0
+gbSound2DNode::~gbSound2DNode()
+{
+    if (sampleHandle)
+        pAudioMgr->DetachSampleHandle(this);
+    if (soundData) {
+        if (pAudioMgr) {
+            if (sampleHandle)
+                AIL_end_sample((HSAMPLE)sampleHandle);
+        }
+        pAudioMgr->DeleteSoundData(soundData);
+    }
+}
+
+// 0x10002940
+int gbSound2DNode::LoadFromFile(char* filename)
+{
+    if (!pAudioMgr)
+        return 0;
+    soundData = pAudioMgr->LoadSoundFile(filename);
+    return soundData != NULL;
+}
+
+// 0x10002970
+void gbSound2DNode::Play()
+{
+    gbAudioManager* mgr = pAudioMgr;
+    if (pAudioMgr) {
+        if (!sampleHandle) {
+            pAudioMgr->AttachSampleHandle(this);
+            mgr = pAudioMgr;
+        }
+        int h = (int)sampleHandle;
+        AIL_set_sample_volume((HSAMPLE)h, (int)(mgr->volume2D * volume * 127.0f));
+        AIL_set_sample_loop_count((HSAMPLE)h, loopCount);
+        AIL_start_sample((HSAMPLE)h);
+    }
+}
+
+// 0x100029d0
+void gbSound2DNode::Stop()
+{
+    if (pAudioMgr) {
+        if (sampleHandle)
+            AIL_end_sample((HSAMPLE)sampleHandle);
+    }
+}
+
+// 0x100029f0
+bool gbSound2DNode::IsPlaying()
+{
+    return sampleHandle && AIL_sample_status((HSAMPLE)sampleHandle) == 4;
+}
+
+// 0x10002a10
+void gbSound2DNode::Pause()
+{
+    if (pAudioMgr) {
+        if (sampleHandle)
+            AIL_stop_sample((HSAMPLE)sampleHandle);
+    }
+}
+
+// 0x10002a30
+void gbSound2DNode::Resume()
+{
+    if (pAudioMgr) {
+        if (sampleHandle)
+            AIL_resume_sample((HSAMPLE)sampleHandle);
+    }
+}
+
+// 0x10002620
+void gbSound2DNode::SetVolume(float vol)
+{
+    volume = vol;
+}
+
+// 0x10002630
+void gbSound2DNode::SetLoopNum(int num)
+{
+    loopCount = num;
 }
