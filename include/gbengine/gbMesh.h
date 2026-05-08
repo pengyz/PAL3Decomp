@@ -126,19 +126,19 @@ public:
 
 
 /* ======== gbVertexPool ======== */
-// sizeof(base) = 0x3C (verified from new(0x3C) in slot 4 factory)
-// D3D subclass adds no extra fields (buffer stored at +0x0C)
+// sizeof(base) = 0x40 (pBuffer at +0x3C, verified from IDA OnLostDevice)
 
 class gbVertexPool : public gbChain1DNode {
 public:
     gbPoolType poolType;            // +0x08
-    void* pBuffer;                  // +0x0C: vertex buffer (IDirect3DVertexBuffer9* or malloc'd)
+    int field_0C;                   // +0x0C (init 0)
     int totalSize;                  // +0x10: total vertex count
     unsigned int fvf;               // +0x14: custom FVF flags
     int stride;                     // +0x18: bytes per vertex (computed from fvf)
     gbChain1D freeList;             // +0x1C (16 bytes)
     gbChain1D usedList;             // +0x2C (16 bytes)
-    // total = 0x3C
+    void* pBuffer;                  // +0x3C: vertex buffer (IDirect3DVertexBuffer9* or malloc'd)
+    // total = 0x40
 
     static gbGfxManager* pGfxMgr;
 
