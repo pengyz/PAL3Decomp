@@ -149,46 +149,80 @@ gbPartGroupParam& gbPartGroupParam::operator=(const gbPartGroupParam& other) {
 }
 
 void gbPartGroupParam::LoadFromFile(gbVFile* vfile) {
-    g_pVFileSys->Read(name, 0x20u, vfile);
-    g_pVFileSys->Read(&flags, 4u, vfile);
-    g_pVFileSys->Read(&gravity, 4u, vfile);
-    g_pVFileSys->Read(&airResistance, 4u, vfile);
-    g_pVFileSys->Read(&unused1, 4u, vfile);
-    g_pVFileSys->Read(&turbulenceFlag, 4u, vfile);
-    g_pVFileSys->Read(&dragCoefficient, 4u, vfile);
-    g_pVFileSys->Read(textureName, 0x100u, vfile);
-    g_pVFileSys->Read(&blendMode, 4u, vfile);
-    g_pVFileSys->Read(&unused4, 4u, vfile);
-    g_pVFileSys->Read(&unused5, 4u, vfile);
-    g_pVFileSys->Read(&unused6, 4u, vfile);
-    g_pVFileSys->Read(&rotRandMin, 4u, vfile);
-    g_pVFileSys->Read(&rotRandMax, 4u, vfile);
-    g_pVFileSys->Read(&randomRotation, 4u, vfile);
-    g_pVFileSys->Read(&unused9, 4u, vfile);
-    g_pVFileSys->Read(&unused10, 4u, vfile);
-    g_pVFileSys->Read(&unused11, 4u, vfile);
-    g_pVFileSys->Read(&numFrames, 4u, vfile);
-    g_pVFileSys->Read(&blendType, 4u, vfile);
+    char Str[256];
+    char v9[256];
 
-    sizeControl.LoadFromFile(vfile);
-    rotControl.LoadFromFile(vfile);
-    alphaControl.LoadFromFile(vfile);
-    colorControl.LoadFromFile(vfile);
-
-    char filename[256];
-    char dir[256];
-    gbVfgetname(textureName, filename, 256);
-
-    if (textureName[0]) {
-        ((gbVFile1*)vfile)->GetDir(dir, 256);
-        strcat(dir, "partexture\\");
-        strcat(dir, filename);
-
-        pTextures[0] = g_pGfxManager->NewTexture(dir);
-        pTextures[0]->LoadTexture(1);
+    g_pVFileSys->Read((char*)this, 0x20u, vfile);
+    g_pVFileSys->Read((char*)this + 32, 4u, vfile);
+    g_pVFileSys->Read((char*)this + 36, 4u, vfile);
+    g_pVFileSys->Read((char*)this + 40, 4u, vfile);
+    g_pVFileSys->Read((char*)this + 44, 4u, vfile);
+    g_pVFileSys->Read((char*)this + 48, 4u, vfile);
+    g_pVFileSys->Read((char*)this + 52, 4u, vfile);
+    g_pVFileSys->Read((char*)this + 56, 0x100u, vfile);
+    g_pVFileSys->Read((char*)this + 312, 4u, vfile);
+    g_pVFileSys->Read((char*)this + 316, 4u, vfile);
+    g_pVFileSys->Read((char*)this + 320, 4u, vfile);
+    g_pVFileSys->Read((char*)this + 324, 4u, vfile);
+    g_pVFileSys->Read((char*)this + 328, 4u, vfile);
+    g_pVFileSys->Read((char*)this + 332, 4u, vfile);
+    g_pVFileSys->Read((char*)this + 336, 4u, vfile);
+    g_pVFileSys->Read((char*)this + 340, 4u, vfile);
+    g_pVFileSys->Read((char*)this + 344, 4u, vfile);
+    g_pVFileSys->Read((char*)this + 348, 4u, vfile);
+    g_pVFileSys->Read((char*)this + 352, 4u, vfile);
+    g_pVFileSys->Read((char*)this + 356, 4u, vfile);
+    // param control 0 (base=360)
+    g_pVFileSys->Read((char*)this + 360, 4u, vfile);
+    g_pVFileSys->Read((char*)this + 364, 4u, vfile);
+    g_pVFileSys->Read((char*)this + 368, 0x40u, vfile);
+    g_pVFileSys->Read((char*)this + 432, 0x80u, vfile);
+    g_pVFileSys->Read((char*)this + 572, 0xCu, vfile);
+    g_pVFileSys->Read((char*)this + 560, 0xCu, vfile);
+    g_pVFileSys->Seek(vfile, 720, 2);
+    g_pVFileSys->Read((char*)this + 584, 0x2D0u, vfile);
+    g_pVFileSys->Read((char*)this + 1304, 0xE34u, vfile);
+    // param control 1 (base=4940)
+    g_pVFileSys->Read((char*)this + 4940, 4u, vfile);
+    g_pVFileSys->Read((char*)this + 4944, 4u, vfile);
+    g_pVFileSys->Read((char*)this + 4948, 0x40u, vfile);
+    g_pVFileSys->Read((char*)this + 5012, 0x80u, vfile);
+    g_pVFileSys->Read((char*)this + 5152, 0xCu, vfile);
+    g_pVFileSys->Read((char*)this + 5140, 0xCu, vfile);
+    g_pVFileSys->Seek(vfile, 720, 2);
+    g_pVFileSys->Read((char*)this + 5164, 0x2D0u, vfile);
+    g_pVFileSys->Read((char*)this + 5884, 0xE34u, vfile);
+    // param control 2 (base=9520)
+    g_pVFileSys->Read((char*)this + 9520, 4u, vfile);
+    g_pVFileSys->Read((char*)this + 9524, 4u, vfile);
+    g_pVFileSys->Read((char*)this + 9528, 0x40u, vfile);
+    g_pVFileSys->Read((char*)this + 9592, 0x80u, vfile);
+    g_pVFileSys->Read((char*)this + 9732, 0xCu, vfile);
+    g_pVFileSys->Read((char*)this + 9720, 0xCu, vfile);
+    g_pVFileSys->Seek(vfile, 720, 2);
+    g_pVFileSys->Read((char*)this + 9744, 0x2D0u, vfile);
+    g_pVFileSys->Read((char*)this + 10464, 0xE34u, vfile);
+    // param control 3 (base=14100)
+    g_pVFileSys->Read((char*)this + 14100, 4u, vfile);
+    g_pVFileSys->Read((char*)this + 14104, 4u, vfile);
+    g_pVFileSys->Read((char*)this + 14108, 0x40u, vfile);
+    g_pVFileSys->Read((char*)this + 14172, 0x80u, vfile);
+    g_pVFileSys->Read((char*)this + 14312, 0xCu, vfile);
+    g_pVFileSys->Read((char*)this + 14300, 0xCu, vfile);
+    g_pVFileSys->Seek(vfile, 720, 2);
+    g_pVFileSys->Read((char*)this + 14324, 0x2D0u, vfile);
+    g_pVFileSys->Read((char*)this + 15044, 0xE34u, vfile);
+    // texture and effect loading
+    gbVfgetname((const char*)this + 56, v9, 256);
+    if (*((char*)this + 56)) {
+        ((gbVFile1*)vfile)->GetDir(Str, 256);
+        strcat(Str, "partexture\\");
+        strcat(Str, v9);
+        gbTexture* tex = g_pGfxManager->NewTexture(Str);
+        tex->LoadTexture(1);
         textureLoaded = 1;
+        pTextures[0] = tex;
     }
-
     gbEffectMgr* effectMgr = g_pGfxManager->GetEffectMgr();
     if (blendType)
         pRenderEffect = effectMgr->NewRenderEffect("gfxscript\\p_alph.gfx", 0);
@@ -366,32 +400,92 @@ gbPartEmitter& gbPartEmitter::operator=(const gbPartEmitter& other) {
 // Global particle file version (determines which fields are present in file format)
 int g_particleFileVersion;
 
+static void LoadMeshVertices(char* path) {
+}
+
 void gbPartEmitter::LoadFromFile(gbVFile* vfile) {
-    g_pVFileSys->Read(configData, 0x40u, vfile);
-    g_pVFileSys->Read(&basePosition, sizeof(gbVec3D), vfile);
-    g_pVFileSys->Read(&velocityDeviation, sizeof(gbVec3D), vfile);
-    g_pVFileSys->Read(&emitType, 4u, vfile);
+    char Str[256];
 
+    g_pVFileSys->Read((char*)this, 0x40u, vfile);
+    g_pVFileSys->Read((char*)this + 64, 0xCu, vfile);
+    g_pVFileSys->Read((char*)this + 76, 0xCu, vfile);
+    g_pVFileSys->Read((char*)this + 152, 4u, vfile);
     if (g_particleFileVersion > 0x10000) {
-        g_pVFileSys->Read(meshFilename, 0x40u, vfile);
-        g_pVFileSys->Read(&meshDataVersion, 4u, vfile);
+        g_pVFileSys->Read((char*)this + 88, 0x40u, vfile);
+        g_pVFileSys->Read((char*)this + 280, 4u, vfile);
     }
-
-    g_pVFileSys->Read(&emitDuration, 4u, vfile);
-    g_pVFileSys->Read(&emitStartTime, 4u, vfile);
-    g_pVFileSys->Read(&loopFlag, 4u, vfile);
-    g_pVFileSys->Read(&field_A8, 4u, vfile);
-    g_pVFileSys->Read(&sphereRadius, 8u, vfile);
-    g_pVFileSys->Read(&boxMin, 0x18u, vfile);
-
-    for (int i = 0; i < 6; i++) {
-        paramControls[i].LoadFromFile(vfile);
+    g_pVFileSys->Read((char*)this + 156, 4u, vfile);
+    g_pVFileSys->Read((char*)this + 160, 4u, vfile);
+    g_pVFileSys->Read((char*)this + 164, 4u, vfile);
+    g_pVFileSys->Read((char*)this + 168, 4u, vfile);
+    g_pVFileSys->Read((char*)this + 196, 8u, vfile);
+    g_pVFileSys->Read((char*)this + 172, 0x18u, vfile);
+    // param control 0
+    g_pVFileSys->Read((char*)this + 288, 4u, vfile);
+    g_pVFileSys->Read((char*)this + 292, 4u, vfile);
+    g_pVFileSys->Read((char*)this + 296, 0x40u, vfile);
+    g_pVFileSys->Read((char*)this + 360, 0x80u, vfile);
+    g_pVFileSys->Read((char*)this + 500, 0xCu, vfile);
+    g_pVFileSys->Read((char*)this + 488, 0xCu, vfile);
+    g_pVFileSys->Seek(vfile, 720, 2);
+    g_pVFileSys->Read((char*)this + 512, 0x2D0u, vfile);
+    g_pVFileSys->Read((char*)this + 1232, 0xE34u, vfile);
+    // param control 1
+    g_pVFileSys->Read((char*)this + 4868, 4u, vfile);
+    g_pVFileSys->Read((char*)this + 4872, 4u, vfile);
+    g_pVFileSys->Read((char*)this + 4876, 0x40u, vfile);
+    g_pVFileSys->Read((char*)this + 4940, 0x80u, vfile);
+    g_pVFileSys->Read((char*)this + 5080, 0xCu, vfile);
+    g_pVFileSys->Read((char*)this + 5068, 0xCu, vfile);
+    g_pVFileSys->Seek(vfile, 720, 2);
+    g_pVFileSys->Read((char*)this + 5092, 0x2D0u, vfile);
+    g_pVFileSys->Read((char*)this + 5812, 0xE34u, vfile);
+    // param control 2
+    g_pVFileSys->Read((char*)this + 9448, 4u, vfile);
+    g_pVFileSys->Read((char*)this + 9452, 4u, vfile);
+    g_pVFileSys->Read((char*)this + 9456, 0x40u, vfile);
+    g_pVFileSys->Read((char*)this + 9520, 0x80u, vfile);
+    g_pVFileSys->Read((char*)this + 9660, 0xCu, vfile);
+    g_pVFileSys->Read((char*)this + 9648, 0xCu, vfile);
+    g_pVFileSys->Seek(vfile, 720, 2);
+    g_pVFileSys->Read((char*)this + 9672, 0x2D0u, vfile);
+    g_pVFileSys->Read((char*)this + 10392, 0xE34u, vfile);
+    // param control 3
+    g_pVFileSys->Read((char*)this + 14028, 4u, vfile);
+    g_pVFileSys->Read((char*)this + 14032, 4u, vfile);
+    g_pVFileSys->Read((char*)this + 14036, 0x40u, vfile);
+    g_pVFileSys->Read((char*)this + 14100, 0x80u, vfile);
+    g_pVFileSys->Read((char*)this + 14240, 0xCu, vfile);
+    g_pVFileSys->Read((char*)this + 14228, 0xCu, vfile);
+    g_pVFileSys->Seek(vfile, 720, 2);
+    g_pVFileSys->Read((char*)this + 14252, 0x2D0u, vfile);
+    g_pVFileSys->Read((char*)this + 14972, 0xE34u, vfile);
+    // param control 4
+    g_pVFileSys->Read((char*)this + 18608, 4u, vfile);
+    g_pVFileSys->Read((char*)this + 18612, 4u, vfile);
+    g_pVFileSys->Read((char*)this + 18616, 0x40u, vfile);
+    g_pVFileSys->Read((char*)this + 18680, 0x80u, vfile);
+    g_pVFileSys->Read((char*)this + 18820, 0xCu, vfile);
+    g_pVFileSys->Read((char*)this + 18808, 0xCu, vfile);
+    g_pVFileSys->Seek(vfile, 720, 2);
+    g_pVFileSys->Read((char*)this + 18832, 0x2D0u, vfile);
+    g_pVFileSys->Read((char*)this + 19552, 0xE34u, vfile);
+    // param control 5
+    g_pVFileSys->Read((char*)this + 23188, 4u, vfile);
+    g_pVFileSys->Read((char*)this + 23192, 4u, vfile);
+    g_pVFileSys->Read((char*)this + 23196, 0x40u, vfile);
+    g_pVFileSys->Read((char*)this + 23260, 0x80u, vfile);
+    g_pVFileSys->Read((char*)this + 23400, 0xCu, vfile);
+    g_pVFileSys->Read((char*)this + 23388, 0xCu, vfile);
+    g_pVFileSys->Seek(vfile, 720, 2);
+    g_pVFileSys->Read((char*)this + 23412, 0x2D0u, vfile);
+    g_pVFileSys->Read((char*)this + 24132, 0xE34u, vfile);
+    // mesh path loading
+    if (*((int*)((char*)this + 152)) == 2) {
+        ((gbVFile1*)vfile)->GetDir(Str, 255);
+        strcat(Str, (const char*)this + 88);
+        LoadMeshVertices(Str);
     }
-
-    /* TODO: mesh emitter path loading (emitType==2)
-       Ghidra shows: gbVFile1::GetDir(vfile, path, 255) + strcat(meshFilename)
-       But gbVFile* != gbVFile1* — need to understand the actual relationship
-       before implementing this branch. */
 }
 
 int gbPartEmitter::ComputeEmitterData(gbEmitterData* emitData, double time, double deltaTime) {

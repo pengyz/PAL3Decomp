@@ -10,6 +10,7 @@
 
 #include "gbengine/gbTexture.h"
 #include "gbengine/gbGfxManager.h"
+#include "gbengine/gbVFileSystem.h"
 #include <windows.h>
 #include <d3d9.h>
 #include <d3dx9.h>
@@ -59,11 +60,11 @@ class gbSceneGraph;
 class gbMatrixStack;
 class gbPrintFont;
 class gbBaseMesh;
-class gbVFileSystem;
-class gbVFile;
-
 // External globals
 extern gbGfxManager* g_pGfxManager;
+extern int dword_10140DB0;
+
+static char Str[260];
 
 // ============================================================================
 // Helper: convert gbPixelFmtType to D3DFORMAT
@@ -268,11 +269,51 @@ void gbTexture::LoadFromImage2D(gbImage2D* img) {
     isLoaded = 1;
 }
 
-// 0x100205a0 (443B) - Load texture from resource index
-void gbTexture::LoadTexture(int resIndex) {
-    // In the real engine, this loads from the resource manager
-    // using the resource index to find the file and call LoadFromImage2D
-    isLoaded = 1;
+// 0x100205a0 (443B)
+void gbTexture::LoadTexture(int a2) {
+    if (isLoaded)
+        return;
+
+    strcpy(Str, name);
+    char* dot = strrchr(Str, '.');
+    if (!dot)
+        return;
+
+    strcpy(dot, ".dds");
+    gbVFile* vf = g_pVFileSys->OpenFile(Str, 0x201u);
+    if (vf) {
+        if (vf->cpkFile.lpRealData) {
+            int fileSize = g_pVFileSys->GetFileSize(vf);
+            ((gbTexture_D3D*)this)->CreateFromFileMemory(vf->cpkFile.lpRealData, fileSize);
+            g_pVFileSys->CloseFile(vf);
+        } else {
+            size_t fileSize = g_pVFileSys->GetFileSize(vf);
+            void* buf = malloc(fileSize);
+            g_pVFileSys->Read(buf, fileSize, vf);
+            g_pVFileSys->CloseFile(vf);
+            ((gbTexture_D3D*)this)->CreateFromFileMemory(buf, fileSize);
+            free(buf);
+        }
+        isLoaded = 1;
+        return;
+    }
+    if (!pTexImage) {
+        gbImage2D* img = new gbImage2D();
+        pTexImage = img;
+    }
+    if (pTexImage->LoadImageFile(name, dword_10140DB0) && a2) {
+        LoadFromImage2D(pTexImage);
+        if (a2 == 1) {
+            pTexImage->Release();
+            gbImage2D* img = pTexImage;
+            if (img) {
+                img->Release();
+                delete img;
+            }
+            pTexImage = NULL;
+        }
+        isLoaded = 1;
+    }
 }
 
 // Virtual: base implementation does nothing

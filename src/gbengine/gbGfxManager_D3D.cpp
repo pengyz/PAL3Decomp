@@ -654,10 +654,7 @@ void gbGfxManager_D3D::HandleSizeChange(void) {
 #define FOURCC_DXT4  0x34545844  // 'DXT4'
 #define FOURCC_DXT5  0x35545844  // 'DXT5'
 
-// ============================================================================
-// 0x10005480 (115B) - gbGfxManager_D3D::SetTexture
-// Sets texture stages on D3D device, clears unused stages
-// ============================================================================
+// 0x1001B410 (162B) - gbGfxManager_D3D::SetTexture
 void gbGfxManager_D3D::SetTexture(gbTextureArray* texArray) {
     int stage = 0;
 
@@ -668,7 +665,7 @@ void gbGfxManager_D3D::SetTexture(gbTextureArray* texArray) {
         gbTexture* tex = texArray->pTex[stage];
         if (tex != m_pCurTexture[stage]) {
             if (tex)
-                m_pd3dDevice->SetTexture(stage, (IDirect3DBaseTexture9*)tex->GetTexture());
+                m_pd3dDevice->SetTexture(stage, ((gbTexture_D3D*)tex)->pTex);
             else
                 m_pd3dDevice->SetTexture(stage, NULL);
             m_pCurTexture[stage] = tex;
@@ -1602,22 +1599,18 @@ void gbGfxManager_D3D::SetOrtho(double l, double r, double b, double t, double n
 }
 
 // Slot 9: 0x10019380 (95B) - SetViewport
-// Copies 6 DWORDs from param to this->Viewport, then calls device->SetViewport
-// D3DVIEWPORT9 = {X, Y, Width, Height, MinZ, MaxZ} = 6 DWORDs
 void gbGfxManager_D3D::SetViewport(void* pViewportData) {
-    // rep movsl: copy 6 DWORDs to this->Viewport
-    memcpy(&Viewport, pViewportData, sizeof(D3DVIEWPORT9));
-    // Build local copy and call SetViewport
-    D3DVIEWPORT9 vp;
     DWORD* src = (DWORD*)pViewportData;
-    vp.X      = src[0];
-    vp.Y      = src[1];
-    vp.Width  = src[2];
-    vp.Height = src[3];
-    // Disasm stores [4] and [5] in order (no swap): MinZ=src[4], MaxZ=src[5]
-    vp.MinZ   = *(float*)&src[4];
-    vp.MaxZ   = *(float*)&src[5];
-    m_pd3dDevice->SetViewport(&vp);
+    memcpy(&Viewport, pViewportData, 0x18);
+    DWORD vp[6];
+    vp[0] = src[0];
+    vp[1] = src[1];
+    vp[2] = src[2];
+    vp[3] = src[3];
+    DWORD tmp = src[4];
+    vp[5] = src[5];
+    vp[4] = tmp;
+    m_pd3dDevice->SetViewport((D3DVIEWPORT9*)vp);
 }
 
 // Slot 10: 0x100193E0 (128B) - SetLight with enable/disable
