@@ -14,8 +14,408 @@
 #include <string.h>
 #include <math.h>
 
-
 #pragma warning(disable: 4234)
+
+/* ======== Skinned Mesh Internal Structures ======== */
+
+// Blend section for skinned mesh vertices (sizeof = 0x24 = 36 bytes)
+// Used by FindMeshSection to sort blend weights/indices
+struct gbBlendSection {
+    int field_00;                   // +0x00
+    int field_04;                   // +0x04
+    int field_08;                   // +0x08
+    unsigned char boneIndices[8];   // +0x0C: bone indices (sorted by weight)
+    unsigned char boneWeights[8];   // +0x14: bone weights (sorted descending)
+    int numInfluences;              // +0x1C: number of active bone influences
+    int field_20;                   // +0x20
+};
+
+// Skinned mesh blend data container
+// this+0x08 = numSections, this+0x18 = pSections (pointer to gbBlendSection array)
+class gbSkinBlendData {
+public:
+    int field_00;                   // +0x00
+    int field_04;                   // +0x04
+    int numSections;                // +0x08
+    int field_0C;                   // +0x0C
+    int field_10;                   // +0x10
+    int field_14;                   // +0x14
+    gbBlendSection* pSections;      // +0x18
+
+    void FindMeshSection(int targetCount);
+};
+
+// Animation keyframe (sizeof = 0x20 = 32 bytes)
+struct gbAnimKeyFrame {
+    int time;                       // +0x00: time in ticks (float seconds * 4800)
+    gbVec3D position;               // +0x04: position
+    gbQuaternion rotation;          // +0x10: rotation quaternion
+};
+
+// Bone animation data element (sizeof = 0x50 = 80 bytes)
+// Used by ClearAnimData, FreeAnimData, LoadAnimKeys, InterpolateAnim
+class gbBoneAnimData {
+public:
+    int boneIndex;                  // +0x00: bone index (or parent reference)
+    char name[64];                  // +0x04: bone name string
+    int field_44;                   // +0x44: unknown field
+    int numKeys;                    // +0x48: number of keyframes
+    gbAnimKeyFrame* pKeys;          // +0x4C: pointer to keyframe array
+
+    gbBoneAnimData();               // constructor (ClearAnimData)
+    ~gbBoneAnimData();              // destructor (FreeAnimData)
+    void LoadAnimKeys(gbVFile* file);
+    void InterpolateAnim(unsigned int time, float* outPos, gbQuaternion* outQuat);
+};
+
+// WDS Bone node (sizeof = 0x13C = 316 bytes)
+// Used by LoadFromStream and UpdateTransform for skeleton hierarchy
+struct gbWDSBone {
+    int nodeType;                   // +0x00: node type (checked against 1 in UpdateTransform)
+    char name[64];                  // +0x04: node name (variable length read)
+    float posX, posY, posZ;         // +0x44: rest position
+    float rotX, rotY, rotZ, rotW;   // +0x50: rest rotation (w=1.0 init)
+    char field_60[36];              // +0x60: extra data (0x24 bytes read from file)
+    int field_84;                   // +0x84: unknown
+    gbMatrix4 localMatrix;          // +0x88: local matrix (identity init)
+    int boneIndex;                  // +0xC8: index in matrix buffer (-1 init)
+    int parentBoneIndex;            // +0xCC: parent bone index (-1 init)
+    int numChildren;                // +0xD0: number of children
+    gbWDSBone** children;           // +0xD4: child bone pointer array
+    int contextPtr;                 // +0xD8: parent context pointer
+    float workPosX, workPosY, workPosZ; // +0xDC: working position (interpolated)
+    float workQuatX, workQuatY, workQuatZ, workQuatW; // +0xE8: working quaternion
+    float blendFactor;              // +0xF8: blend/time factor (0.0 = use rest pose)
+    gbMatrix4 worldMatrix;          // +0xFC: world matrix (identity init)
+
+    gbWDSBone();
+    void LoadFromStream(gbVFile* file, int context);
+    void UpdateTransform(int matrixBuffer, int param2);
+};
+
+// Time conversion constant for animation (float -> ticks)
+static const float ANIM_TICKS_PER_SECOND = 4800.0f;
+
+/* ======== FindMeshSection ======== */
+
+// 0x10006E70 (218B)
+// Sorts blend weights/indices in descending order and pads to target count
+void gbSkinBlendData::FindMeshSection(int targetCount)
+{
+    int sectionIdx = 0;
+
+    if (numSections > 0)
+    {
+        int offset = 0;
+        do
+        {
+            gbBlendSection* sec = (gbBlendSection*)((char*)pSections + offset);
+            int count = sec->numInfluences;
+            unsigned char* indices = sec->boneIndices;
+            unsigned char* weights = sec->boneWeights;
+
+            // Bubble sort by weight (descending)
+            if (count - 1 > 0)
+            {
+                unsigned char* wPtr = weights;
+                while (1)
+                {
+                    int j = (int)(wPtr - weights) + 1;
+                    if (j < count)
+                    {
+                        do
+                        {
+                            unsigned char w = *wPtr;
+                            unsigned char wj = weights[j];
+                            if (w < wj)
+                            {
+                                *wPtr = wj;
+                                weights[j] = w;
+                                unsigned char idx = indices[(int)(wPtr - weights)];
+                                indices[(int)(wPtr - weights)] = indices[j];
+                                indices[j] = idx;
+                            }
+                            ++j;
+                        } while (j < sec->numInfluences);
+                    }
+                    count = sec->numInfluences;
+                    ++wPtr;
+                    if ((int)(wPtr - weights) >= count - 1)
+                        break;
+                }
+            }
+
+            int curCount = sec->numInfluences;
+            if (!curCount)
+            {
+                indices[0] = 0;
+                weights[0] = 0;
+            }
+            for (; curCount < targetCount; ++curCount)
+            {
+                indices[curCount] = indices[0];
+                weights[curCount] = 0;
+            }
+            sec->numInfluences = targetCount;
+
+            sectionIdx++;
+            offset += 36;
+        } while (sectionIdx < numSections);
+    }
+}
+
+/* ======== gbWDSBone Constructor ======== */
+
+inline gbWDSBone::gbWDSBone() :
+    posX(0.0f), posY(0.0f), posZ(0.0f),
+    rotX(0.0f), rotY(0.0f), rotZ(0.0f), rotW(1.0f),
+    // localMatrix auto-constructed here in declaration order
+    boneIndex(-1), parentBoneIndex(-1),
+    children(NULL), contextPtr(0),
+    workPosX(0.0f), workPosY(0.0f), workPosZ(0.0f),
+    workQuatX(0.0f), workQuatY(0.0f), workQuatZ(0.0f), workQuatW(1.0f)
+    // worldMatrix auto-constructed here in declaration order
+{
+}
+
+/* ======== LoadFromStream (WDS Bone) ======== */
+
+// 0x10006FB0 (529B)
+// Loads bone hierarchy from file stream
+void gbWDSBone::LoadFromStream(gbVFile* file, int context)
+{
+    gbVFile* v3;
+    int v9;
+
+    v3 = file;
+    g_pVFileSys->Read(&nodeType, 4u, v3);
+    g_pVFileSys->Read(&file, 4u, v3);
+    g_pVFileSys->Read((char*)this + 4, (size_t)file, v3);
+    *((char*)this + (int)file + 4) = 0;
+    g_pVFileSys->Read(&posX, 0x0Cu, v3);
+    g_pVFileSys->Read(&rotX, 0x10u, v3);
+    g_pVFileSys->Read(field_60, 0x24u, v3);
+    g_pVFileSys->Read(&field_84, 4u, v3);
+    g_pVFileSys->Read(&localMatrix, 0x40u, v3);
+    g_pVFileSys->Read(&boneIndex, 4u, v3);
+    g_pVFileSys->Read(&parentBoneIndex, 4u, v3);
+    g_pVFileSys->Read(&numChildren, 4u, v3);
+    contextPtr = context;
+    children = (gbWDSBone**)operator new(4 * numChildren);
+
+    context = 0;
+    if (numChildren > 0)
+    {
+        do
+        {
+            gbWDSBone* child = new gbWDSBone();
+            v9 = context;
+            children[context] = child;
+            children[v9]->LoadFromStream(v3, (int)this);
+            context = v9 + 1;
+        } while (context < numChildren);
+    }
+}
+
+/* ======== UpdateTransform (WDS Bone) ======== */
+
+// 0x100071D0 (315B)
+// Computes bone world transforms recursively
+void gbWDSBone::UpdateTransform(int matrixBuffer, int param2)
+{
+    if (boneIndex >= 0)
+    {
+        if (blendFactor == 0.0f)
+        {
+            workPosX = posX;
+            workPosY = posY;
+            workPosZ = posZ;
+            workQuatX = rotX;
+            workQuatY = rotY;
+            workQuatZ = rotZ;
+            workQuatW = rotW;
+        }
+
+        workQuatW = -workQuatW;
+
+        // Compute offset into matrix buffer: matrixBuffer + 4 + boneIndex * 132
+        gbMatrix4* boneWorldMat = (gbMatrix4*)(matrixBuffer + 4 + boneIndex * 132);
+
+        if (nodeType == 1)
+        {
+            ((gbQuaternion*)&workQuatX)->GetMatrix(boneWorldMat);
+            boneWorldMat->RightTranslate(*(gbVec3D*)&workPosX);
+        }
+        else
+        {
+            ((gbQuaternion*)&workQuatX)->GetMatrix(boneWorldMat);
+            boneWorldMat->RightTranslate(*(gbVec3D*)&workPosX);
+        }
+
+        if (parentBoneIndex >= 0)
+        {
+            gbMatrix4* parentMat = (gbMatrix4*)(matrixBuffer + 4 + parentBoneIndex * 132);
+            boneWorldMat->RightMultiply(*parentMat);
+        }
+
+        // Copy local matrix to second slot: matrixBuffer + 0x44 + boneIndex * 132
+        gbMatrix4* boneLocalSlot = (gbMatrix4*)(matrixBuffer + 0x44 + boneIndex * 132);
+        *boneLocalSlot = localMatrix;
+        boneLocalSlot->RightMultiply(*(const gbMatrix4*)(matrixBuffer + 4 + boneIndex * 132));
+    }
+
+    int i = 0;
+    if (numChildren > 0)
+    {
+        do
+        {
+            children[i]->UpdateTransform(matrixBuffer, param2);
+            i++;
+        } while (i < numChildren);
+    }
+}
+
+/* ======== ClearAnimData ======== */
+
+// 0x10007310 (10B)
+// Constructor callback for gbBoneAnimData - clears keyframe pointer
+gbBoneAnimData::gbBoneAnimData()
+{
+    pKeys = NULL;
+}
+
+/* ======== FreeAnimData ======== */
+
+// 0x10007320 (15B)
+// Destructor callback for gbBoneAnimData - frees keyframe array
+gbBoneAnimData::~gbBoneAnimData()
+{
+    if (pKeys)
+        operator delete(pKeys);
+}
+
+/* ======== LoadAnimKeys ======== */
+
+// 0x10007330 (308B)
+// Loads animation keyframe data from file into bone anim element
+void gbBoneAnimData::LoadAnimKeys(gbVFile* file)
+{
+    int nameLen;
+    float timeFloat;
+    char discardBuf[36]; // 0x24 bytes discarded per keyframe (extra transform data)
+
+    g_pVFileSys->Read(this, 4u, file);
+    g_pVFileSys->Read(&nameLen, 4u, file);
+    g_pVFileSys->Read((char*)this + 4, (unsigned int)nameLen, file);
+    g_pVFileSys->Read((char*)this + 0x48, 4u, file);
+    g_pVFileSys->Read((char*)this + 0x44, 4u, file);
+
+    int nKeys = numKeys;
+    gbAnimKeyFrame* keys = (gbAnimKeyFrame*)operator new(nKeys << 5);
+    int offset = 0;
+
+    if (keys)
+    {
+        if (nKeys - 1 >= 0)
+        {
+            int* ptr = (int*)((char*)keys + 12);
+            int count = nKeys;
+            do
+            {
+                ptr[-2] = 0;
+                ptr[-1] = 0;
+                *ptr = 0;
+                ptr[3] = 0;
+                ptr[2] = 0;
+                ptr[1] = 0;
+                ptr[4] = 0x3F800000;
+                ptr += 8;
+                --count;
+            } while (count);
+        }
+    }
+    else
+    {
+        keys = NULL;
+    }
+
+    pKeys = keys;
+    int result = numKeys;
+    int i = 0;
+    if (result > 0)
+    {
+        do
+        {
+            g_pVFileSys->Read(&timeFloat, 4u, file);
+            *(int*)((char*)pKeys + offset) = (int)(__int64)(timeFloat * ANIM_TICKS_PER_SECOND);
+            g_pVFileSys->Read((void*)((char*)pKeys + offset + 4), 0x0Cu, file);
+            g_pVFileSys->Read((void*)((char*)pKeys + offset + 16), 0x10u, file);
+            g_pVFileSys->Read(discardBuf, 0x24u, file);
+            result = numKeys;
+            ++i;
+            offset += 32;
+        } while (i < result);
+    }
+}
+
+/* ======== InterpolateAnim ======== */
+
+// 0x10007470 (300B)
+// Interpolates animation keyframes - finds time range, lerps position, slerps quaternion
+void gbBoneAnimData::InterpolateAnim(unsigned int time, float* outPos, gbQuaternion* outQuat)
+{
+    int nKeys = numKeys;
+    int idx = 0;
+
+    if (nKeys <= 0)
+        goto lastFrame;
+
+    {
+        unsigned int* keyPtr = (unsigned int*)pKeys;
+        unsigned int* iter = keyPtr;
+        do
+        {
+            if (time < *iter)
+                break;
+            ++idx;
+            iter += 8;  // stride 32 bytes = 8 DWORDs
+        } while (idx < nKeys);
+
+        if (idx && idx < nKeys)
+        {
+            int byteOffset = 32 * idx;
+            unsigned int nextTime = keyPtr[idx * 8];
+            unsigned int prevTime = keyPtr[idx * 8 - 8];
+            float t = (float)((double)(unsigned int)(nextTime - time) / (double)(unsigned int)(nextTime - prevTime));
+            float oneMinusT = 1.0f - t;
+
+            outPos[0] = oneMinusT * *(float*)&keyPtr[idx * 8 + 1] + t * *(float*)&keyPtr[idx * 8 - 7];
+            outPos[1] = oneMinusT * *(float*)((char*)pKeys + byteOffset + 8) + t * *(float*)((char*)pKeys + byteOffset - 24);
+            outPos[2] = oneMinusT * *(float*)((char*)pKeys + byteOffset + 12) + t * *(float*)((char*)pKeys + byteOffset - 20);
+
+            outQuat->Slerp(
+                (gbQuaternion*)((char*)pKeys + byteOffset + 16),
+                (gbQuaternion*)((char*)pKeys + byteOffset - 16),
+                t);
+            return;
+        }
+    }
+
+lastFrame:
+    {
+        int lastOffset = nKeys * 32 - 28;
+        char* base = (char*)pKeys;
+        outPos[0] = *(float*)(base + lastOffset);
+        outPos[1] = *(float*)(base + lastOffset + 4);
+        outPos[2] = *(float*)(base + lastOffset + 8);
+
+        int* quatSrc = (int*)((char*)pKeys + numKeys * 32 - 16);
+        *(int*)&outQuat->x = quatSrc[0];
+        *(int*)&outQuat->y = quatSrc[1];
+        *(int*)&outQuat->z = quatSrc[2];
+        *(int*)&outQuat->w = quatSrc[3];
+    }
+}
 
 /* ======== Constructor / Destructor ======== */
 
@@ -584,11 +984,7 @@ void gbGeomNode::Render(gbRenderInfoObj* renderInfo) {
             matStack->Push();
             matStack->LoadMatrix(&renderInfo->worldMatrix);
 
-            // vtable[1] = DrawSubSet(int sectionIndex, gbRenderInfoObj*)
-            typedef void (__thiscall *DrawSubSetFn)(void*, int, gbRenderInfoObj*);
-            void** vtbl = *(void***)mesh;
-            DrawSubSetFn fn = (DrawSubSetFn)vtbl[1];
-            fn(mesh, renderInfo->sectionIndex, renderInfo);
+            mesh->DrawSubSetBase(renderInfo->sectionIndex, renderInfo);
 
             matStack->Pop();
         }
@@ -613,11 +1009,7 @@ void gbGeomNode::RenderShadowVolume(gbRenderInfoObj* renderInfo) {
             matStack->Push();
             matStack->LoadMatrix(&renderInfo->worldMatrix);
 
-            // vtable[3] = RenderShadowVolume(gbVisNode*, gbRenderInfoObj*)
-            typedef void (__thiscall *RenderShadowFn)(void*, gbGeomNode*, gbRenderInfoObj*);
-            void** vtbl = *(void***)mesh;
-            RenderShadowFn fn = (RenderShadowFn)vtbl[3];
-            fn(mesh, this, renderInfo);
+            mesh->RenderShadowVolume(this, renderInfo);
 
             matStack->Pop();
         }

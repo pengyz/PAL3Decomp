@@ -565,27 +565,15 @@ void gbCamera::SetAsCurrent(int mode) {
         // Load identity into world matrix stack (pMatrixStack[0])
         pGfxMgr->pMatrixStack[0]->LoadIdentity();
 
-        // Call virtual function on GfxMgr to set projection parameters
-        // vtable[7] = SetPerspective (fov != 0), vtable[8] = SetOrtho (fov == 0)
         if (fov == 0.0f) {
-            typedef void (__cdecl *SetOrthoFn)(gbGfxManager*, double, double, double, double, double, double);
-            void** vt = *(void***)pGfxMgr;
-            SetOrthoFn fn = (SetOrthoFn)vt[8];
-            fn(pGfxMgr, (double)-halfSize, (double)halfSize, (double)-aspectHalf, (double)aspectHalf,
+            pGfxMgr->SetOrtho((double)-halfSize, (double)halfSize, (double)-aspectHalf, (double)aspectHalf,
                (double)zNear, (double)zFar);
         } else {
-            typedef void (__cdecl *SetPerspFn)(gbGfxManager*, double, double, double, double, double, double);
-            void** vt = *(void***)pGfxMgr;
-            SetPerspFn fn = (SetPerspFn)vt[7];
-            fn(pGfxMgr, (double)-halfSize, (double)halfSize, (double)-aspectHalf, (double)aspectHalf,
+            pGfxMgr->SetFrustum((double)-halfSize, (double)halfSize, (double)-aspectHalf, (double)aspectHalf,
                (double)zNear, (double)zFar);
         }
 
-        // Call virtual function to set viewport (vtable[9])
-        typedef void (__cdecl *SetViewportFn)(gbGfxManager*, gbViewPort*, int);
-        void** vt = *(void***)pGfxMgr;
-        SetViewportFn vpFn = (SetViewportFn)vt[9];
-        vpFn(pGfxMgr, &Viewport, 1);
+        pGfxMgr->SetViewport(&Viewport);
     }
 
     if (mode & 2) {
@@ -611,11 +599,7 @@ void gbCamera::SetAsCurrent(int mode) {
         pGfxMgr->pMatrixStack[1]->LoadMatrix(&ViewMatrix);
     }
 
-    // Call virtual function +0x40 (vtable[16]) to finalize (sets viewport + clip planes)
-    typedef void (__cdecl *FinalizeFn)(gbGfxManager*, gbViewPort*, int);
-    void** vt = *(void***)pGfxMgr;
-    FinalizeFn finFn = (FinalizeFn)vt[16];
-    finFn(pGfxMgr, &Viewport, 1);
+    pGfxMgr->GetFrustumPlanes((float*)&Viewport, 1);
 
     numPlane = 6;
 }

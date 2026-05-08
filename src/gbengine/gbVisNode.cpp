@@ -306,10 +306,7 @@ void gbVisNode::GetTotalBoundSphere(gbSphere* sphere) {
         childSphere.radius = 0.0f;
         childSphere.center.x = childSphere.center.y = childSphere.center.z = 0.0f;
 
-        void** childVtable = *(void***)childNode;
-        typedef void (__thiscall *GetBoundSphereFn)(void*, gbSphere*);
-        GetBoundSphereFn getBound = (GetBoundSphereFn)childVtable[7];
-        getBound(childNode, &childSphere);
+        childNode->GetBoundSphere(&childSphere);
 
         if (childSphere.radius == 0.0f) continue;
 

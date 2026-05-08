@@ -836,11 +836,7 @@ found:
         maxVertexPoolSize = count;
     }
 
-    // CreateVertexPool(POOL_DEFAULT, fvf, maxVertexPoolSize) via GfxManager vtable[4]
-    void** vtable = *(void***)pGfxManager;
-    typedef gbVertexPool* (*CreatePoolFunc)(gbGfxManager*, int, unsigned int, int);
-    CreatePoolFunc createPool = (CreatePoolFunc)vtable[4];
-    pool = createPool(pGfxManager, 0, fvf, maxVertexPoolSize);
+    pool = (gbVertexPool*)pGfxManager->NewVertexPool(0, fvf, maxVertexPoolSize);
 
     chain->AddNode((gbChain1DNode*)pool);
 
@@ -934,11 +930,7 @@ found:
         field_61C = count;
     }
 
-    // CreateVertexPool(POOL_MANAGED, fvf, field_61C) via GfxManager vtable[4]
-    void** vtable = *(void***)pGfxManager;
-    typedef gbVertexPool* (*CreatePoolFunc)(gbGfxManager*, int, unsigned int, int);
-    CreatePoolFunc createPool = (CreatePoolFunc)vtable[4];
-    pool = createPool(pGfxManager, 2, fvf, field_61C);
+    pool = (gbVertexPool*)pGfxManager->NewVertexPool(2, fvf, field_61C);
 
     chain->AddNode((gbChain1DNode*)pool);
 
@@ -1009,11 +1001,7 @@ gbIndexBubble* gbVertPoolMgr::NewIndexBubble(gbPrimType prim, int count) {
         maxIndexPoolSize = count;
     }
 
-    // CreateIndexPool(POOL_DEFAULT, INDEX_16, maxIndexPoolSize) via GfxManager vtable[5]
-    void** vtable = *(void***)pGfxManager;
-    typedef gbIndexPool* (*CreatePoolFunc)(gbGfxManager*, int, int, int);
-    CreatePoolFunc createPool = (CreatePoolFunc)vtable[5];
-    pool = createPool(pGfxManager, 0, 2, maxIndexPoolSize);
+    pool = (gbIndexPool*)pGfxManager->NewIndexPool(0, 2, maxIndexPoolSize);
 
     indexPoolList.AddNode((gbChain1DNode*)pool);
 
@@ -1064,11 +1052,7 @@ gbDynVertBuf* gbVertPoolMgr::GetDynVertBuf(unsigned int fvf) {
 
 found:
     if (dynVertBufs[i] == NULL) {
-        // Create via GfxManager virtual: CreateDynVertBuf(fvf, field_618)
-        void** vtable = *(void***)pGfxManager;
-        typedef gbDynVertBuf* (*CreateDynVBFunc)(gbGfxManager*, unsigned int, int);
-        CreateDynVBFunc createDVB = (CreateDynVBFunc)vtable[6];
-        dynVertBufs[i] = createDVB(pGfxManager, fvf, field_618);
+        dynVertBufs[i] = (gbDynVertBuf*)pGfxManager->NewDynVertBuf(fvf, field_618);
         g_gbDynVertBuf_pGfxMgr = pGfxManager;
     }
     return dynVertBufs[i];
