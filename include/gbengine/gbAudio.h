@@ -37,6 +37,7 @@ public:
     gbSoundData();
     ~gbSoundData();
 
+    int Load(char* filename);
     void SetName(const char* newName);
     void IncRef();
     void Release();

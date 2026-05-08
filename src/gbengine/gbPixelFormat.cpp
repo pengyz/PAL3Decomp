@@ -238,3 +238,23 @@ gbPixelFormat& gbPixelFormat::operator=(const gbPixelFormat& other) {
     memcpy(this, &other, sizeof(gbPixelFormat));
     return *this;
 }
+
+// 0x10012F30 (199B) - ColorQuadToFloat4
+// Converts a 4-byte RGBA/BGRA color to float[4] (0.0-1.0)
+// Byte order depends on gbColorQuad::ColorQuadFmt
+void gbColorQuadToFloat4(float* a1, unsigned char* a2) {
+    int v3;
+    if (gbColorQuad::ColorQuadFmt) {
+        // RGBA order
+        a1[0] = (double)a2[0] * 0.0039215689;
+        a1[1] = (double)a2[1] * 0.0039215689;
+        v3 = a2[2];
+    } else {
+        // BGRA order
+        a1[0] = (double)a2[2] * 0.0039215689;
+        a1[1] = (double)a2[1] * 0.0039215689;
+        v3 = a2[0];
+    }
+    a1[2] = (double)v3 * 0.0039215689;
+    a1[3] = (double)a2[3] * 0.0039215689;
+}

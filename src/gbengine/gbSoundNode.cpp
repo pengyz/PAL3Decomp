@@ -35,7 +35,7 @@ __declspec(dllimport) void AILCALL AIL_set_sample_volume(HSAMPLE sample, int vol
 __declspec(dllimport) void AILCALL AIL_set_sample_loop_count(HSAMPLE sample, int count);
 }
 
-void gbReportError(char* fmt, ...);
+void gbReportError(const char* fmt, ...);
 
 // Static member
 gbAudioManager* gbSound3DNode::pAudioMgr = NULL;

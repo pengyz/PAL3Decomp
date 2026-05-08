@@ -84,7 +84,7 @@ double gbGetTime(void);
 
 void gbLogInfo(char* fmt, ...);
 void gbPopErrorBox(char* fmt, ...);
-void gbReportError(char* fmt, ...);
+void gbReportError(const char* fmt, ...);
 
 // ======== Profiling Functions ========
 

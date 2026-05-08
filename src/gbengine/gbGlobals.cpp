@@ -17,7 +17,7 @@ static int g_CurDispBpp;
 
 // Global Vec3D used by audio/sound system
 // Address: 0x1012B990 in original binary
-static gbVec3D g_globalVec3D = {0.0f, 0.0f, 0.0f};
+static gbVec3D g_globalVec3D;
 
 // 0x10002A50 (31B) - ResetGlobalVec3D
 void ResetGlobalVec3D() {
