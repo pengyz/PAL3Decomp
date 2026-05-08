@@ -100,31 +100,49 @@ void gbDynVertBuf::RenderGeomQuadViaStrip(gbGeomQuad* quads, int numQuads,
 void gbDynVertBuf::RenderGeomQuadViaStrip(gbGeomQuad* quads, int numQuads,
                                            gbRenderEffect* effect, gbTextureArray* textures,
                                            unsigned long flags) {
-    // Triangle strip with extra initial vertices: numQuads*2+2 total
     if (numQuads <= 0) return;
 
     float* pVerts = Lock(numQuads * 2 + 2);
     if (!pVerts) return;
 
-    // First quad: write 4 initial vertices
-    pVerts[0] = quads[0].verts[0].x; pVerts[1] = quads[0].verts[0].y; pVerts[2] = quads[0].verts[0].z;
-    *(unsigned int*)&pVerts[3] = (unsigned int)(unsigned long)textures;
-    pVerts[4] = quads[0].u1; pVerts[5] = quads[0].v1;
-    pVerts[6] = quads[0].verts[3].x; pVerts[7] = quads[0].verts[3].y; pVerts[8] = quads[0].verts[3].z;
-    *(unsigned int*)&pVerts[9] = (unsigned int)(unsigned long)textures;
-    pVerts[10] = quads[0].u1; pVerts[11] = quads[0].v2;
+    gbGeomQuad* q = &quads[0];
+
+    *(unsigned int*)&pVerts[3] = flags;
+    pVerts[4] = q->u1; pVerts[5] = q->v1;
+    pVerts[0] = q->verts[0].x; pVerts[1] = q->verts[0].y; pVerts[2] = q->verts[0].z;
+
+    *(unsigned int*)&pVerts[9] = flags;
+    pVerts[10] = q->u1; pVerts[11] = q->v2;
+    pVerts[6] = q->verts[3].x; pVerts[7] = q->verts[3].y; pVerts[8] = q->verts[3].z;
     pVerts += 12;
 
-    // Remaining quads: 2 vertices each
-    for (int i = 1; i < numQuads; i++) {
-        pVerts[0] = quads[i].verts[0].x; pVerts[1] = quads[i].verts[0].y; pVerts[2] = quads[i].verts[0].z;
-        *(unsigned int*)&pVerts[3] = quads[i].color;
-        pVerts[4] = quads[i].u2; pVerts[5] = quads[i].v1;
-        pVerts[6] = quads[i].verts[3].x; pVerts[7] = quads[i].verts[3].y; pVerts[8] = quads[i].verts[3].z;
-        *(unsigned int*)&pVerts[9] = quads[i].color;
-        pVerts[10] = quads[i].u2; pVerts[11] = quads[i].v2;
-        pVerts += 12;
+    if (numQuads > 1) {
+        int count = numQuads - 1;
+        if (count > 0) {
+            q++;
+            do {
+                pVerts[0] = q->verts[0].x; pVerts[1] = q->verts[0].y; pVerts[2] = q->verts[0].z;
+                *(unsigned int*)&pVerts[3] = flags;
+                pVerts[4] = q->u2; pVerts[5] = q->v1;
+
+                *(unsigned int*)&pVerts[9] = flags;
+                pVerts[10] = q->u2; pVerts[11] = q->v2;
+                pVerts[6] = q->verts[3].x; pVerts[7] = q->verts[3].y; pVerts[8] = q->verts[3].z;
+                pVerts += 12;
+                q++;
+                count--;
+            } while (count != 0);
+        }
     }
+
+    *(unsigned int*)&pVerts[3] = flags;
+    pVerts[4] = q->u1; pVerts[5] = q->v1;
+    pVerts[0] = q->verts[1].x; pVerts[1] = q->verts[1].y; pVerts[2] = q->verts[1].z;
+
+    *(unsigned int*)&pVerts[9] = flags;
+    pVerts[10] = q->u1; pVerts[11] = q->v2;
+    pVerts[6] = q->verts[2].x; pVerts[7] = q->verts[2].y; pVerts[8] = q->verts[2].z;
+
     Draw(3, effect, textures);
 }
 

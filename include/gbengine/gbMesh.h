@@ -367,10 +367,11 @@ public:
 
     gbDynVertBuf& operator=(const gbDynVertBuf& other);
 
-    // Virtual methods for buffer management
-    virtual float* Lock(int numVerts);
-    virtual void Unlock();
-    virtual void Draw(int primType, gbRenderEffect* effect, gbTextureArray* textures);
+    virtual void CreateVB(int fvf) = 0;
+    virtual void ReleaseVB() = 0;
+    virtual float* Lock(int numVerts) = 0;
+    virtual void Unlock() = 0;
+    virtual void Draw(int primType, gbRenderEffect* effect, gbTextureArray* textures) = 0;
 
     float* GetXYZ();
     float* GetNormal();

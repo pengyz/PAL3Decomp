@@ -42,7 +42,8 @@ class gbDynVertBuf_D3D : public gbDynVertBuf {
 public:
     gbDynVertBuf_D3D(unsigned int fvfFlags, int maxVertices);
 
-    // Virtual overrides from gbDynVertBuf
+    virtual void CreateVB(int fvf) {}
+    virtual void ReleaseVB() {}
     virtual float* Lock(int numVerts);
     virtual void Unlock();
     virtual void Draw(int primType, gbRenderEffect* effect, gbTextureArray* textures);
