@@ -73,60 +73,80 @@ void gbCamControler::Update(double deltaTime) { (void)deltaTime; }
 // 0x10005b90 (43B) - Default constructor
 gbCamSpringControl::gbCamSpringControl(void) : gbCamControler() {
     type = 1;
-    springConstant = 10.0f;
-    damping = 5.0f;
-    targetDist = 10.0f;
-    velX = 0.0f;
-    velY = 0.0f;
     targetPos.x = 0.0f;
+    targetPos.y = 0.0f;
+    targetPos.z = 0.0f;
+    targetQuat.x = 0.0f;
+    targetQuat.y = 0.0f;
+    targetQuat.z = 0.0f;
+    targetQuat.w = 1.0f;
+    speed = -1.0f;
 }
 
 // 0x10005bc0 (111B) - Copy constructor
 gbCamSpringControl::gbCamSpringControl(const gbCamSpringControl& other) : gbCamControler(other) {
-    springConstant = other.springConstant;
-    damping = other.damping;
-    targetDist = other.targetDist;
-    velX = other.velX;
-    velY = other.velY;
-    targetPos = other.targetPos;
-    targetQuat = other.targetQuat;
+    targetPos.x = other.targetPos.x;
+    targetPos.y = other.targetPos.y;
+    targetPos.z = other.targetPos.z;
+    targetQuat.x = other.targetQuat.x;
+    targetQuat.y = other.targetQuat.y;
+    targetQuat.z = other.targetQuat.z;
+    targetQuat.w = other.targetQuat.w;
     speed = other.speed;
 }
 
 // 0x10005c30 - operator= (96B)
 gbCamSpringControl& gbCamSpringControl::operator=(const gbCamSpringControl& other) {
-    springConstant = other.springConstant;
-    damping = other.damping;
-    targetDist = other.targetDist;
-    velX = other.velX;
-    velY = other.velY;
-    targetPos = other.targetPos;
-    targetQuat = other.targetQuat;
+    pCamera = other.pCamera;
+    curTime = other.curTime;
+    blendTime = other.blendTime;
+    targetPos.x = other.targetPos.x;
+    targetPos.y = other.targetPos.y;
+    targetPos.z = other.targetPos.z;
+    targetQuat.x = other.targetQuat.x;
+    targetQuat.y = other.targetQuat.y;
+    targetQuat.z = other.targetQuat.z;
+    targetQuat.w = other.targetQuat.w;
     speed = other.speed;
     return *this;
 }
 
 // 0x10021700 (295B) - Spring update
 void gbCamSpringControl::Update(double deltaTime) {
-    gbVec3D* camPos = &pCamera->eyeLoc;
-    gbQuaternion* camQuat = &pCamera->eyeDir;
+    if (speed >= 0.0f) {
+        float t = speed * (float)deltaTime;
+        if (t > 1.0f)
+            t = 1.0f;
 
-    if (speed < 0.0f) {
-        *camPos = targetPos;
-        *camQuat = targetQuat;
-        return;
+        float* camPos = (float*)&pCamera->eyeLoc;
+        camPos[0] = (targetPos.x - camPos[0]) * t + camPos[0];
+        camPos[1] = (targetPos.y - camPos[1]) * t + camPos[1];
+        camPos[2] = (targetPos.z - camPos[2]) * t + camPos[2];
+
+        float slerpT = t;
+        gbQuaternion* camQuat = &pCamera->eyeDir;
+        gbQuaternion identity;
+        identity.x = 0.0f;
+        identity.y = 0.0f;
+        identity.z = 0.0f;
+        identity.w = 1.0f;
+        identity.Slerp(camQuat, &targetQuat, slerpT);
+        int* dst = (int*)&pCamera->eyeDir;
+        dst[0] = *(int*)&identity.x;
+        dst[1] = *(int*)&identity.y;
+        dst[2] = *(int*)&identity.z;
+        dst[3] = *(int*)&identity.w;
+    } else {
+        int* dst = (int*)&pCamera->eyeLoc;
+        dst[0] = *(int*)&targetPos.x;
+        dst[1] = *(int*)&targetPos.y;
+        dst[2] = *(int*)&targetPos.z;
+        int* qdst = (int*)&pCamera->eyeDir;
+        qdst[0] = *(int*)&targetQuat.x;
+        qdst[1] = *(int*)&targetQuat.y;
+        qdst[2] = *(int*)&targetQuat.z;
+        qdst[3] = *(int*)&targetQuat.w;
     }
-
-    float t = speed * (float)deltaTime;
-    if (t > 1.0f) t = 1.0f;
-
-    camPos->x = (targetPos.x - camPos->x) * t + camPos->x;
-    camPos->y = (targetPos.y - camPos->y) * t + camPos->y;
-    camPos->z = (targetPos.z - camPos->z) * t + camPos->z;
-
-    gbQuaternion result;
-    result.Slerp(camQuat, &targetQuat, t);
-    *camQuat = result;
 }
 
 
@@ -137,9 +157,6 @@ void gbCamSpringControl::Update(double deltaTime) {
 // 0x10005c90 (29B) - Default constructor
 gbCamQuakeControl::gbCamQuakeControl(void) : gbCamControler() {
     type = 2;
-    quakeFlags = 0;
-    elapsed = 0.0;
-    duration = 0.0;
     basePosition.x = 0.0f;
     basePosition.y = 0.0f;
     basePosition.z = 0.0f;
@@ -151,39 +168,49 @@ gbCamQuakeControl::gbCamQuakeControl(void) : gbCamControler() {
 
 // 0x10005cb0 (111B) - Copy constructor
 gbCamQuakeControl::gbCamQuakeControl(const gbCamQuakeControl& other) : gbCamControler(other) {
-    quakeFlags = other.quakeFlags;
-    elapsed = other.elapsed;
-    duration = other.duration;
-    basePosition = other.basePosition;
-    amplitude = other.amplitude;
-    angle = other.angle;
+    basePosition.x = other.basePosition.x;
+    basePosition.y = other.basePosition.y;
+    basePosition.z = other.basePosition.z;
+    amplitude.x = other.amplitude.x;
+    amplitude.y = other.amplitude.y;
+    amplitude.z = other.amplitude.z;
+    *(int*)&angle = *(int*)&other.angle;
+    *((int*)&angle + 1) = *((int*)&other.angle + 1);
 }
 
 // 0x10005d20 - operator=
 gbCamQuakeControl& gbCamQuakeControl::operator=(const gbCamQuakeControl& other) {
-    if (this != &other) {
-        gbCamControler::operator=(other);
-        quakeFlags = other.quakeFlags;
-        elapsed = other.elapsed;
-        duration = other.duration;
-        basePosition = other.basePosition;
-        amplitude = other.amplitude;
-        angle = other.angle;
-    }
+    pCamera = other.pCamera;
+    curTime = other.curTime;
+    blendTime = other.blendTime;
+    basePosition.x = other.basePosition.x;
+    basePosition.y = other.basePosition.y;
+    basePosition.z = other.basePosition.z;
+    amplitude.x = other.amplitude.x;
+    amplitude.y = other.amplitude.y;
+    amplitude.z = other.amplitude.z;
+    *(int*)&angle = *(int*)&other.angle;
+    *((int*)&angle + 1) = *((int*)&other.angle + 1);
     return *this;
 }
 
 // 0x10021830 (149B) - Quake update
 void gbCamQuakeControl::Update(double deltaTime) {
-    double factor = (duration - elapsed) / duration;
-    float factorSq = (float)(factor * factor);
-
-    float sinVal = (float)sin(angle * 0.017453293);
-
-    pCamera->eyeLoc.x = factorSq * amplitude.x * sinVal + basePosition.x;
-    pCamera->eyeLoc.y = factorSq * amplitude.y * sinVal + basePosition.y;
-    pCamera->eyeLoc.z = factorSq * amplitude.z * sinVal + basePosition.z;
-
+    float* eyePos = &pCamera->eyeLoc.x;
+    double ratio = (blendTime - curTime) / blendTime;
+    float ampX = (float)(ratio * ratio * amplitude.x);
+    float ampY = (float)(ratio * ratio * amplitude.y);
+    double ampZ = ratio * ratio * amplitude.z;
+    float sinVal = (float)sin(angle * 0.01745329300562541);
+    float offX = ampX * sinVal;
+    float offY = ampY * sinVal;
+    offY = offY + basePosition.y;
+    float resX = offX + basePosition.x;
+    float resZ = (float)(ampZ * sinVal + basePosition.z);
+    eyePos[1] = offY;
+    float zStore = resZ;
+    *eyePos = resX;
+    eyePos[2] = zStore;
     angle = deltaTime * 3600.0 + angle;
 }
 
@@ -371,16 +398,34 @@ gbCamera& gbCamera::operator=(const gbCamera& other) {
     Hscreen = other.Hscreen;
     zNear = other.zNear;
     zFar = other.zFar;
-    memcpy(&Viewport, &other.Viewport, sizeof(Viewport));
-    memcpy(&Plane, &other.Plane, 24 * sizeof(float));
+    memcpy(&Viewport, &other.Viewport, 0x18);
+    int* planePtr = (int*)&Plane[0][0];
+    int srcOffset = (int)((char*)&other - (char*)this);
+    int planeCount = 24;
+    do {
+        *planePtr = *(int*)((char*)planePtr + srcOffset);
+        ++planePtr;
+        --planeCount;
+    } while (planeCount);
     numPlane = other.numPlane;
     ViewMatrix = other.ViewMatrix;
     InvVMatrix = other.InvVMatrix;
-    memcpy(&pControl, &other.pControl, 16 * sizeof(void*));
+    int* ctrlPtr = (int*)&pControl[0];
+    int ctrlCount = 16;
+    do {
+        *ctrlPtr = *(int*)((char*)ctrlPtr + srcOffset);
+        ++ctrlPtr;
+        --ctrlCount;
+    } while (ctrlCount);
     CurCtrl = other.CurCtrl;
     pGfxMgr = other.pGfxMgr;
-    eyeLoc = other.eyeLoc;
-    eyeDir = other.eyeDir;
+    eyeLoc.x = other.eyeLoc.x;
+    eyeLoc.y = other.eyeLoc.y;
+    eyeLoc.z = other.eyeLoc.z;
+    eyeDir.x = other.eyeDir.x;
+    eyeDir.y = other.eyeDir.y;
+    eyeDir.z = other.eyeDir.z;
+    eyeDir.w = other.eyeDir.w;
     return *this;
 }
 
@@ -658,29 +703,58 @@ unsigned int gbCamera::ClipAABBox(gbVec3D* vMin, gbVec3D* vMax, unsigned int fla
 
 // 0x10021d80 (381B) - Clip OBB against frustum
 int gbCamera::ClipOBBox(gbOBBox* obb) {
-    if (!obb)
-        return 0;
+    gbVec3D corners[8];
+    gbVec3D transformed;
+    gbVec3D localPt;
+    int outsideCount = 0;
 
-    for (int i = 0; i < numPlane; i++) {
-        float nx = Plane[i][0];
-        float ny = Plane[i][1];
-        float nz = Plane[i][2];
-        float d  = Plane[i][3];
+    float* pCorner = (float*)&corners[0];
+    int initCount = 8;
+    do {
+        *(pCorner - 2) = 0.0f;
+        *(pCorner - 1) = 0.0f;
+        *pCorner = 0.0f;
+        pCorner += 3;
+        --initCount;
+    } while (initCount);
 
-        float dist = nx * obb->matrix.m[3][0] + ny * obb->matrix.m[3][1] + nz * obb->matrix.m[3][2] + d;
+    localPt.x = 0.0f;
+    localPt.y = 0.0f;
+    localPt.z = 0.0f;
 
-        float r = 0.0f;
-        for (int a = 0; a < 3; a++) {
-            float dot = nx * obb->matrix.m[a][0] + ny * obb->matrix.m[a][1] + nz * obb->matrix.m[a][2];
-            float ext = ((float*)&obb->extent)[a];
-            r += (float)fabs(dot) * ext;
+    float hx = obb->extent.x * 0.5f;
+    float hy = obb->extent.y * 0.5f;
+    float hz = obb->extent.z * 0.5f;
+
+    corners[0].x = hx;   corners[0].y = hy;   corners[0].z = hz;
+    corners[1].x = -hx;  corners[1].y = hy;   corners[1].z = hz;
+    corners[2].x = hx;   corners[2].y = -hy;  corners[2].z = hz;
+    corners[3].x = -hx;  corners[3].y = -hy;  corners[3].z = hz;
+    corners[4].x = hx;   corners[4].y = hy;   corners[4].z = -hz;
+    corners[5].x = -hx;  corners[5].y = hy;   corners[5].z = -hz;
+    corners[6].x = hx;   corners[6].y = -hy;  corners[6].z = -hz;
+    corners[7].x = -hx;  corners[7].y = -hy;  corners[7].z = -hz;
+
+    int remaining = 8;
+    do {
+        obb->matrix.Transform(&localPt, &transformed);
+        int planeCount = numPlane;
+        int planeIdx = 0;
+        if (planeCount > 0) {
+            float* pPlane = &Plane[0][2];
+            while (transformed.x * *(pPlane - 2) + transformed.y * *(pPlane - 1) + transformed.z * *pPlane + *(pPlane + 1) >= 0.0f) {
+                ++planeIdx;
+                pPlane += 4;
+                if (planeIdx >= planeCount)
+                    goto next_corner;
+            }
+            ++outsideCount;
         }
+next_corner:
+        --remaining;
+    } while (remaining);
 
-        if (dist < -r)
-            return 0;
-    }
-
-    return 1;
+    return outsideCount == 8;
 }
 
 // 0x10021f00 (82B) - Clip point against frustum
@@ -769,22 +843,19 @@ void gbCamera::PointScrToEye(float sx, float sy, gbVec3D* eyePt) {
 
 // 0x100220b0 (184B) - Convert eye-space point to screen coordinates (NDC output)
 void gbCamera::PointEyeToScr(gbVec3D* eyePt, float& sx, float& sy) {
-    float local;
-    if (eyePt->z <= -zNear && -zFar <= eyePt->z) {
-        if (fov != 0.0f) {
-            float angle = fov * 0.008726646f;
-            float tanFov = (float)sin(angle) / (float)cos(angle);
-            local = (float)Viewport.height * tanFov / (float)Viewport.width;
-            sx = -(eyePt->x / eyePt->z) / tanFov;
-            sy = -(eyePt->y / eyePt->z) / local;
-        } else {
-            local = (float)Viewport.height * OrthoSize / (float)Viewport.width;
-            sx = sx / OrthoSize;
-            sy = sy / local;
-        }
-        return;
+    if (-zNear < eyePt->z || -zFar > eyePt->z) {
+        sx = 100000.0f;
+    } else if (fov == 0.0f) {
+        double ortho = OrthoSize;
+        float aspect = (float)((double)Viewport.height * ortho / (double)Viewport.width);
+        sx = (float)(sx / ortho);
+        sy = sy / aspect;
+    } else {
+        double tanFov = sin(fov * 0.0087266462) / cos(fov * 0.0087266462);
+        float aspect = (float)((double)Viewport.height * tanFov / (double)Viewport.width);
+        sx = (float)(-(eyePt->x / eyePt->z) / tanFov);
+        sy = (float)(-((eyePt->y / eyePt->z)) / aspect);
     }
-    sx = 100000.0f;
 }
 
 // 0x10022170 (217B) - Convert eye-space point to screen (gbVec3D version)
@@ -828,27 +899,40 @@ void gbCamera::PointWorldToScr(gbVec3D* worldPt, float& sx, float& sy) {
 
 // 0x100222c0 (268B) - Get a ray from camera through screen point
 void gbCamera::GetRayToScreen(float sx, float sy, gbRay* ray) {
-    if (!ray)
-        return;
+    float halfW;
+    float halfH;
+    gbVec3D origin;
+    gbVec3D direction;
 
-    ray->origin = eyeLoc;
+    direction.x = 0.0f;
+    direction.y = 0.0f;
+    direction.z = 0.0f;
+    origin.x = 0.0f;
+    origin.y = 0.0f;
+    origin.z = 0.0f;
 
-    gbVec3D nearPt;
-    PointScrToWorld(sx, sy, &nearPt);
-
-    ray->direction.x = nearPt.x - eyeLoc.x;
-    ray->direction.y = nearPt.y - eyeLoc.y;
-    ray->direction.z = nearPt.z - eyeLoc.z;
-
-    float len = (float)sqrt(ray->direction.x * ray->direction.x
-                          + ray->direction.y * ray->direction.y
-                          + ray->direction.z * ray->direction.z);
-    if (len > 1e-6f) {
-        float invLen = 1.0f / len;
-        ray->direction.x *= invLen;
-        ray->direction.y *= invLen;
-        ray->direction.z *= invLen;
+    if (fov == 0.0f) {
+        float ortho = OrthoSize;
+        halfH = (double)Viewport.height * ortho / (double)Viewport.width;
+        direction.x = 0.0f;
+        direction.y = 0.0f;
+        direction.z = -1.0f;
+        origin.x = ortho * sx;
+        origin.y = halfH * sy;
+        origin.z = -zNear;
+    } else {
+        GetViewSizeOnNearPlane(halfW, halfH);
+        origin.x = 0.0f;
+        origin.y = 0.0f;
+        origin.z = 0.0f;
+        direction.x = halfW * sx;
+        direction.y = halfH * sy;
+        direction.z = -zNear;
     }
+
+    InvVMatrix.Transform(&origin, (gbVec3D*)ray);
+    InvVMatrix.Rotate(&direction, (gbVec3D*)((char*)ray + 12));
+    ((gbVec3D*)((char*)ray + 12))->Normalize();
 }
 
 // 0x100223d0 (109B) - Get viewport bounds in NDC [-1, 1]
