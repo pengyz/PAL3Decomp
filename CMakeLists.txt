@@ -110,7 +110,7 @@ elseif(BUILD_TARGET STREQUAL "gbengine")
             SUFFIX ".dll"
         )
 
-        # Link DirectX and other dependencies (use full paths to avoid VC6 CRT conflicts)
+        # Link DirectX and other dependencies
         target_link_libraries(gbengine ${PLATFORM_LIBS}
             "${CMAKE_SOURCE_DIR}/tools/vc6/Lib/LIBCMT.LIB"
             "${CMAKE_SOURCE_DIR}/tools/vc6/Lib/d3d9.lib"
@@ -121,11 +121,11 @@ elseif(BUILD_TARGET STREQUAL "gbengine")
             "${CMAKE_SOURCE_DIR}/lib/topo.lib"
         )
 
-        # legacy_stdio_definitions.lib is needed for MSVC 2015+ (version >= 1900)
-        # to resolve old CRT symbols (sprintf, sscanf, etc.) that were inlined in newer UCRT.
-        # Not needed (and does not exist) for VC6.
+        # Modern MSVC needs vcruntime for __CxxFrameHandler3/__ftol2 etc.
+        # VC6 LIBCMT.LIB provides CRT for d3dx9.lib; suppress duplicates.
         if(MSVC_VERSION GREATER_EQUAL 1900)
-            target_link_libraries(gbengine legacy_stdio_definitions.lib)
+            target_link_libraries(gbengine vcruntime.lib ucrt.lib)
+            target_link_options(gbengine PRIVATE /FORCE:MULTIPLE)
         endif()
 
         # Use .def file for exports (matching original DLL export table)

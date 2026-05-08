@@ -278,9 +278,9 @@ void gbQuaternion::GetMatrix(gbMatrix4 *mat) const
 void gbQuaternion::SetYawPitchRoll(float yaw, float pitch, float roll)
 {
     gbQuaternion qPitch, qYaw, qRoll, temp;
-    gbVec3D axisX = { 1.0f, 0.0f, 0.0f };
-    gbVec3D axisY = { 0.0f, 1.0f, 0.0f };
-    gbVec3D axisZ = { 0.0f, 0.0f, 1.0f };
+    gbVec3D axisX(1.0f, 0.0f, 0.0f);
+    gbVec3D axisY(0.0f, 1.0f, 0.0f);
+    gbVec3D axisZ(0.0f, 0.0f, 1.0f);
 
     qPitch.SetAxisAngle(&axisX, pitch);
     qYaw.SetAxisAngle(&axisY, yaw);

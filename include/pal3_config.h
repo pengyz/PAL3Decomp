@@ -82,10 +82,18 @@
 
 #ifdef DEBUG
   #define PAL3_ASSERT(expr)  do { if (!(expr)) { __debugbreak(); } } while(0)
-  #define PAL3_TRACE(fmt, ...) /* OutputDebugString or printf */
+  #if _MSC_VER >= 1300
+    #define PAL3_TRACE(fmt, ...) /* OutputDebugString or printf */
+  #else
+    #define PAL3_TRACE(x)
+  #endif
 #else
   #define PAL3_ASSERT(expr)  ((void)0)
-  #define PAL3_TRACE(fmt, ...) ((void)0)
+  #if _MSC_VER >= 1300
+    #define PAL3_TRACE(fmt, ...) ((void)0)
+  #else
+    #define PAL3_TRACE(x)
+  #endif
 #endif
 
 /* ========================================================================
