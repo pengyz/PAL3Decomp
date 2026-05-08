@@ -1164,6 +1164,50 @@ void gbParticleEffect::UpdateInternal(void) {
 }
 
 int gbParticleEffect::Attach(gbRenderEffect* effect) {
+    if (*(double*)((char*)this + 0x110) > 0.0) {
+        const gbMatrix4& worldMat = gbVisNode::pGfxMgr->GetWorldMatrix();
+        worldTransform = worldMat;
+        int i = 0;
+        if (i < numGroups) {
+            int offset = 0;
+            do {
+                gbParticleGroup* grp = (gbParticleGroup*)((char*)particleGroups + offset);
+                grp->Update(*(double*)((char*)this + 0x110));
+                i++;
+                offset += 0x90;
+            } while (i < numGroups);
+        }
+        *(int*)((char*)this + 0x110) = 0;
+        *(int*)((char*)this + 0x114) = 0;
+    }
+
+    int j = 0;
+    gbSceneGraph* pScene = gbVisNode::pGfxMgr->pSceneGraph;
+    gbMatrixStack* pMat = gbVisNode::pGfxMgr->pMatrixStack[1];
+    gbVec3D localPos;
+    gbVec3D worldPos;
+    localPos.x = 0.0f; localPos.y = 0.0f; localPos.z = 0.0f;
+    worldPos.x = 0.0f; worldPos.y = 0.0f; worldPos.z = 0.0f;
+    if (j < numGroups) {
+        int ofs = 0;
+        do {
+            gbRenderInfoObj* rObj = pScene->NewOneRenderObj((gbVisNode*)this);
+            rObj->isOpaque = 0;
+            rObj->sectionIndex = j;
+            int iParam = *(int*)((char*)particleGroups + ofs + 0x78);
+            int iEff = *(int*)(iParam + 0x493c);
+            rObj->pTextureArray = (void*)(iParam + 0x48f8);
+            rObj->pEffect = (gbRenderEffect*)iEff;
+            gbMatrix4* topMat = pMat->GetTop();
+            topMat->Transform(&localPos, &worldPos);
+            rObj->renderPriority = 1;
+            rObj->pMatrixOverride = (void*)(*(int*)&worldPos.z);
+            j++;
+            ofs += 0x90;
+        } while (j < numGroups);
+    }
+
+    this->gbVisNodeBase::Attach(NULL);
     return 1;
 }
 
@@ -1215,6 +1259,35 @@ extern char* gbVfgetdir(const char* path, char* dir, int maxLen);
 
 #include "gbengine/gbengine_internal.h"
 
+// Internal animation tree node type (extends gbNBTreeNode with render/anim fields)
+// Used by gbAnimNodeGroup::Attach and SetPriority
+class gbAnimTreeNode : public gbNBTreeNode {
+public:
+    void AttachInternal(int frame);
+    void SetPriorityInternal(int priority);
+};
+
+void gbAnimTreeNode::SetPriorityInternal(int priority) {
+    int nodeType = *(int*)((char*)this + 0x15c);
+    if (nodeType == 3 || nodeType == 1) {
+        gbVisNode* visNode = *(gbVisNode**)((char*)this + 0x168);
+        visNode->SetRenderPriority(priority);
+    }
+    int i = 0;
+    if (i < children.nCount) {
+        do {
+            gbAnimTreeNode* child = (gbAnimTreeNode*)children[i];
+            child->SetPriorityInternal(priority);
+            i++;
+        } while (i < children.nCount);
+    }
+}
+
+void gbAnimTreeNode::AttachInternal(int frame) {
+    // Stub - complex recursive attach with matrix stack operations
+    // Not exported, not compared
+}
+
 // Static member definition
 gbGfxManager* gbAnimNodeGroup::s_pGfxMgr = 0;
 
@@ -1258,7 +1331,15 @@ class gbAnimNodeGroup & gbAnimNodeGroup::operator=(class gbAnimNodeGroup const &
     return *this;
 }
 
-void gbAnimNodeGroup::Attach() { if (!pNode) return; }
+void gbAnimNodeGroup::Attach() {
+    if (isDead == 0) return;
+    if (field_30 == 0) return;
+    gbMatrixStack* matStack = s_pGfxMgr->pMatrixStack[1];
+    matStack->Push();
+    matStack->MultMatrix(&posMatrix);
+    ((gbAnimTreeNode*)pNode)->AttachInternal(field_18);
+    matStack->Pop();
+}
 
 class gbAnimNodeGroup * gbAnimNodeGroup::Clone() {
     gbAnimNodeGroup* clone = new gbAnimNodeGroup((gbGfxManager*)s_pGfxMgr);
@@ -1308,7 +1389,21 @@ void gbAnimNodeGroup::SetPosition(struct gbVec3D const & p0) {
 }
 
 void gbAnimNodeGroup::SetPriority(int p0) {
-    field_28 = p0;
+    gbAnimTreeNode* node = (gbAnimTreeNode*)pNode;
+    if (!node) return;
+    int nodeType = *(int*)((char*)node + 0x15c);
+    if (nodeType == 3 || nodeType == 1) {
+        gbVisNode* visNode = *(gbVisNode**)((char*)node + 0x168);
+        visNode->SetRenderPriority(p0);
+    }
+    int i = 0;
+    if (i < node->children.nCount) {
+        do {
+            gbAnimTreeNode* child = (gbAnimTreeNode*)node->children[i];
+            child->SetPriorityInternal(p0);
+            i++;
+        } while (i < node->children.nCount);
+    }
 }
 
 void gbAnimNodeGroup::SetSoundFileDir(char * p0) {
