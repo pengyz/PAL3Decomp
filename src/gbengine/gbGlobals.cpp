@@ -181,44 +181,23 @@ int gbConvertToSBC(unsigned char* dst, int dstLen, unsigned char* src, int srcLe
 }
 
 // Execute external program
-int gbExecProgram(const char* cmdLine) {
-    if (!cmdLine) {
-        return 0;
-    }
+// 0x1002F490 (150B)
+int gbExecProgram(const char* lpFileName) {
+    LPSTR FilePart;
+    STARTUPINFOA StartupInfo;
+    PROCESS_INFORMATION ProcessInformation;
+    char Buffer[256];
 
-    STARTUPINFOA si;
-    PROCESS_INFORMATION pi;
-
-    memset(&si, 0, sizeof(si));
-    si.cb = sizeof(si);
-    memset(&pi, 0, sizeof(pi));
-
-    // Create a modifiable copy of the command line
-    char cmdBuf[1024];
-    strncpy(cmdBuf, cmdLine, sizeof(cmdBuf) - 1);
-    cmdBuf[sizeof(cmdBuf) - 1] = '\0';
-
-    // Create process
-    BOOL result = CreateProcessA(
-        NULL,           // Application name
-        cmdBuf,         // Command line
-        NULL,           // Process security attributes
-        NULL,           // Thread security attributes
-        FALSE,          // Inherit handles
-        0,              // Creation flags
-        NULL,           // Environment
-        NULL,           // Current directory
-        &si,            // Startup info
-        &pi             // Process information
-    );
-
-    if (result) {
-        CloseHandle(pi.hThread);
-        CloseHandle(pi.hProcess);
+    memset(&StartupInfo, 0, sizeof(StartupInfo));
+    StartupInfo.cb = 68;
+    memset(&StartupInfo.lpReserved, 0, 12);
+    StartupInfo.lpReserved2 = 0;
+    StartupInfo.cbReserved2 = 0;
+    if (!GetFullPathNameA(lpFileName, 0x100, Buffer, &FilePart))
         return 1;
-    }
-
-    return 0;
+    if (FilePart)
+        *FilePart = 0;
+    return CreateProcessA(lpFileName, 0, 0, 0, 0, 0x20, 0, Buffer, &StartupInfo, &ProcessInformation);
 }
 
 // Segment-triangle intersection
@@ -360,22 +339,18 @@ void gbGetCurDispMode(int& width, int& height, int& bpp) {
 }
 
 // Get real world time
-void gbGetRealWorldTime(gbRealWorldTime* time) {
-    if (!time) {
-        return;
-    }
-
-    SYSTEMTIME st;
-    GetLocalTime(&st);
-
-    time->year = (unsigned int)st.wYear;
-    time->month = (unsigned int)st.wMonth;
-    time->dayOfWeek = (unsigned int)st.wDayOfWeek;
-    time->day = (unsigned int)st.wDay;
-    time->hour = (unsigned int)st.wHour;
-    time->minute = (unsigned int)st.wMinute;
-    time->second = (unsigned int)st.wSecond;
-    time->milliseconds = (unsigned int)st.wMilliseconds;
+// 0x10030040 (125B)
+void gbGetRealWorldTime(gbRealWorldTime* a1) {
+    SYSTEMTIME SystemTime;
+    GetLocalTime(&SystemTime);
+    a1->day = SystemTime.wDay;
+    a1->hour = SystemTime.wHour;
+    a1->dayOfWeek = SystemTime.wDayOfWeek;
+    a1->milliseconds = SystemTime.wMilliseconds;
+    a1->minute = SystemTime.wMinute;
+    a1->month = SystemTime.wMonth;
+    a1->second = SystemTime.wSecond;
+    a1->year = SystemTime.wYear;
 }
 
 // Display mode management globals
@@ -395,6 +370,7 @@ static gbDispMode g_curDispMode = {0, 0, 0, 0, 0};
 
 extern void gbPopErrorBox(char* fmt, ...);
 
+// 0x1002F0B0 (179B)
 void gbInitDispSetting(void)
 {
     DEVMODEA DevMode;
@@ -403,20 +379,20 @@ void gbInitDispSetting(void)
     FILE* fp;
 
     result = EnumDisplaySettingsA(NULL, 0, &DevMode);
-    fp = fopen("disp_ogl.txt", "wt");
     iModeNum = 0;
-    while (result) {
-        gbDispMode* pMode = &g_dispModes[g_dispModeCount];
-        pMode->width = DevMode.dmPelsWidth;
-        pMode->height = DevMode.dmPelsHeight;
-        pMode->bpp = DevMode.dmBitsPerPel;
-        pMode->freq = DevMode.dmDisplayFrequency;
-        if (fp) {
-            fprintf(fp, "w=%d,h=%d,bpp=%d,freq=%d\n",
-                pMode->width, pMode->height, pMode->bpp, DevMode.dmDisplayFrequency);
-        }
-        result = EnumDisplaySettingsA(NULL, iModeNum, &DevMode);
-        iModeNum++;
+    fp = fopen("disp_ogl.txt", "wt");
+    if (result) {
+        do {
+            gbDispMode* pMode = &g_dispModes[g_dispModeCount];
+            pMode->width = DevMode.dmPelsWidth;
+            pMode->height = DevMode.dmPelsHeight;
+            pMode->bpp = DevMode.dmBitsPerPel;
+            pMode->freq = DevMode.dmDisplayFrequency;
+            if (fp) {
+                fprintf(fp, "w=%d,h=%d,bpp=%d,freq=%d\n",
+                    pMode->width, pMode->height, pMode->bpp, DevMode.dmDisplayFrequency);
+            }
+        } while (EnumDisplaySettingsA(NULL, iModeNum++, &DevMode));
     }
     if (fp) {
         fclose(fp);
@@ -517,16 +493,17 @@ void gbPushDispMode(void)
     g_dispStackDepth++;
 }
 
+// 0x1002F400 (88B)
 void gbPopDispMode(void)
 {
-    if (g_dispStackDepth != 0) {
-        g_dispStackDepth--;
-        gbDispMode mode = g_dispStack[g_dispStackDepth];
-        if (mode.width == 0) {
+    gbDispMode mode;
+    if (g_dispStackDepth) {
+        --g_dispStackDepth;
+        memcpy(&mode, (char*)g_dispStack + 20 * g_dispStackDepth, sizeof(mode));
+        if (mode.width)
+            gbChangeDispMode(mode.width, mode.height, mode.bpp);
+        else
             ChangeDisplaySettingsA(NULL, 0);
-            return;
-        }
-        gbChangeDispMode(mode.width, mode.height, mode.bpp);
     }
 }
 

@@ -5,15 +5,62 @@
 | 指标 | 数值 |
 |------|------|
 | 编译器 | MSVC 6.0 SP5 (`/O2 /Ob2 /GF /Gy /Zp4 /GX`) |
-| DLL 总函数 (IDA 识别) | 3746 |
-| 其中已命名 (导出+已恢复) | 1362 |
-| 其中未命名 (sub_) | 2384 |
+| DLL 总函数 (IDA 识别) | 3742 |
+| 引擎自身代码 | ~1396 |
+| D3DX9 静态库 (不需实现) | ~1909 |
+| CRT/编译器运行时 (不需实现) | ~364 |
+| 已命名函数 | 1360 (36%) |
+| 未命名函数 (sub_) | 2382 (64%) |
+| 引擎范围 sub_ (0x10000000-0x10031FFF) | 295 |
 | 源文件数 | 54 |
 | 编译通过文件 | **54/54 (100%)** |
 | DLL 链接 | **成功 (925KB, 1020 exports)** |
-| 当前可比对函数 (已命名) | ~940 |
+| **已实现函数 (非空函数体)** | **~794** |
+| **引擎覆盖率** | **~78.8%** |
+| IDA已命名但未实现 | 167 |
+| 引擎范围 sub_ 未实现 | 295 |
 | 完全匹配函数 | **~485** |
 | 最后更新 | 2026-05-08 |
+
+## IDA 导出数据统计 (2026-05-08 更新)
+
+### 函数分布 (按地址范围)
+
+| 范围 | 数量 | 内容 |
+|------|------|------|
+| 0x10000000 - 0x10031FFF | ~1396 | 引擎代码 (需要实现) |
+| 0x10032000 - 0x100DFFFF | ~1909 | D3DX9.LIB 静态链接 (不需实现) |
+| 0x100E0000 - 0x100FFFFF | ~364 | CRT运行时 + 编译器生成 (不需实现) |
+
+### 调用约定统计
+
+| 约定 | 数量 | 占比 |
+|------|------|------|
+| __thiscall (C++方法) | 2154 | 57.5% |
+| __stdcall (Windows API) | 828 | 22.1% |
+| __cdecl (C函数) | 393 | 10.5% |
+| 其他 | 290 | 7.7% |
+| __userpurge (自定义) | 78 | 2.1% |
+
+### 按类统计 (已命名函数 Top 25)
+
+| 类名 | 函数数 | 类名 | 函数数 |
+|------|--------|------|--------|
+| gbCamera | 42 | gbAudioManager | 28 |
+| gbGfxManager | 38 | gbVisNode | 25 |
+| gbMatrix4 | 36 | CIniFile | 20 |
+| gbActor | 31 | gbQuaternion | 19 |
+| gbGeomNode | 30 | gbVFileSystem | 19 |
+| CPK | 30 | gbVec3D | 17 |
+| gbRenderEffect | 16 | gbDynVertBuf | 16 |
+| gbSound3DNode | 16 | gbParticleEffect | 16 |
+| gbImage2D | 15 | gbAnimNodeGroup | 15 |
+| gbBaseMesh | 15 | gbMatrixStack | 14 |
+| gbEffectMgr | 14 | gbSceneGraph | 13 |
+| gbVertPoolMgr | 13 | gbTexture | 13 |
+| gbStaticChain | 13 | | |
+
+---
 
 ## 全文件二进制匹配进度
 
@@ -65,42 +112,78 @@
 | gbGfxManager_D3D.cpp | 1 | 0 | 3.7% | WIP |
 | CPK.cpp | 1 | 0 | 0.5% | WIP |
 
-### 新增可比对文件 (IDA 重命名后)
+---
 
-| 文件 | 函数数 | 匹配 | 说明 |
-|------|--------|------|------|
-| gbGfxManager_D3D.cpp | 9 | **7** (88.8%) | 重命名 Present/SetFog/SetLight 等虚函数 |
-| gbBladeMgr.cpp | 2 | **2** (100%) | 重命名 Reset/GetLastBladePos |
+## 缺口分析 (2026-05-08 IDA全量导出后)
 
-### 仍无匹配符号文件 (7个)
+### 高优先级：关键未命名函数 (需重命名+实现)
 
-| 文件 | 原因 | 下一步 |
-|------|------|--------|
-| gbBaseMesh.cpp | 函数太短(16B)多重匹配 | 需上下文/交叉引用定位 |
-| gbCameraControl.cpp | 编译后无外部符号 | 全部被内联或为空 |
-| gbDropGroup.cpp | 函数太短多重匹配 | 需上下文定位 |
-| gbIndexBubble.cpp | 编译后无外部符号 | 全部被内联或为空 |
-| gbPrintFontMgr.cpp | 编译后无外部符号 | 全部被内联或为空 |
-| gbTimeCounter.cpp | 编译后无外部符号 | 全部被内联或为空 |
-| gbVertPoolMgr.cpp | 编译后无外部符号 | 全部被内联或为空 |
+| 地址 | 大小 | 推断名称 | 所属类 | 优先级 |
+|------|------|----------|--------|--------|
+| 0x10011C60 | 3222B | LoadFromStream | gbBaseMesh | HIGH |
+| 0x10008420 | 1462B | LoadFromIni | gbActor | HIGH |
+| 0x10023A90 | 1315B | Flush | gbPrintFont | HIGH |
+| 0x1001A790 | 1208B | CreateDevice | gbGfxManager_D3D | HIGH |
+| 0x1000A100 | 1083B | LoadBones | gbAnimNodeGroup | HIGH |
+| 0x100064E0 | 1028B | BuildIndexBuffer | gbGeomNode | HIGH |
+| 0x10007DA0 | 923B | LoadSkeleton | gbActor | HIGH |
+| 0x10008140 | 735B | LoadMaterials | gbActor | HIGH |
+| 0x1000BC50 | 485B | LoadAnimData | gbAnimNodeGroup | HIGH |
+| 0x10012BA0 | 788B | LoadMaterial | gbGeomNode | HIGH |
+| 0x1002E850 | 158B | gbErrorBox | 全局 | HIGH |
+| 0x1002E820 | 44B | gbMessageBox | 全局 | HIGH |
+| 0x1002E900 | 35B | gbGetTime | 全局 | HIGH |
+| 0x10020D20 | 97B | gbGetVertexSize | 全局 | HIGH |
+| 0x100275E0 | 62B | gbRandRange | 全局 | MED |
+| 0x100276A0 | 100B | gbFloatToInt | 全局 | MED |
+| 0x10017000 | 199B | ReleaseResources | gbGfxManager_D3D | HIGH |
+| 0x1001BB10 | 490B | ConvertPixelFormat | gbTexture_D3D | MED |
+| 0x100172F0 | 1413B | EnumAdapterModes | gbGfxManager_D3D | MED |
+| 0x10017BD0 | 961B | FindBestMode | gbGfxManager_D3D | MED |
 
-### 未命名内部函数 (sub_) — 待恢复
+### 高优先级：已命名但未实现的函数
 
-DLL 中共 2384 个 sub_ 函数尚未识别。这些是非导出的内部函数，需要：
-1. **字节匹配恢复**: 用编译后 .obj 字节搜索 DLL 定位地址，应用 mangled name
-2. **交叉引用分析**: 从已知调用者推断被调用 sub_ 的身份
-3. **签名推断**: 根据调用约定和参数数量缩小候选范围
+| 地址 | 大小 | 函数名 | 说明 |
+|------|------|--------|------|
+| 0x100102C0 | 1478B | gbGeomNode::LoadFromFile | 加载.pol/.cvd几何文件 |
+| 0x10028F80 | 1067B | gbIntersectTriangle | 射线-三角形碰撞 |
+| 0x100135A0 | 735B | gbLoadLightFile | 加载灯光场景 |
+| 0x1002F170 | 580B | gbChangeDispMode | 切换显示模式 |
+| 0x1002F690 | 332B | gbGetCPU_MHZ | CPU频率检测 |
+| 0x1002FD70 | 283B | gbTimeCounterInit | 计时器初始化 |
+| 0x10031890 | 277B | ProfileEnd | 性能剖析结束 |
+| 0x10031780 | 258B | ProfileBegin | 性能剖析开始 |
+| 0x1002FB90 | 206B | gbstricmp | 不区分大小写字符串比较 |
+| 0x1002F530 | 193B | gbEnableSystemKeys | 启用/禁用系统键 |
 
-已恢复 16 个 (gbBladeMgr, gbGfxManager_D3D, gbVertexPool, CArrayList 等)。
-歧义跳过 3 个 (SetBladeTime/SetBladeTimeScale, NewIndexPool)。
-剩余 ~142 个 .obj 函数待匹配 (需降低阈值或人工确认歧义)。
+### 中优先级：Stub 函数 (已有文件但函数体为空)
+
+共 42 个函数当前为空/严重不完整：
+
+| 文件 | Stub数 | 主要缺失 |
+|------|--------|----------|
+| gbParticle.cpp | 13 | LoadFromFile、构造/拷贝、Attach |
+| gbActor.cpp | 5 | ActorMgr初始化/析构、Attach |
+| gbVertPool.cpp | 6 | VertPoolMgr的Del/New/Get系列 |
+| gbMisc.cpp | 3 | ProfileBegin/End/Dump |
+| gbGfxManager.cpp | 3 | 构造函数、EffectMgr拷贝/赋值 |
+| gbTexture.cpp | 2 | LoadTexture、LoadFromImage2D |
+| gbVFileSystem.cpp | 2 | CPK::LoadFile、CPK::Open |
+| gbWeather.cpp | 2 | gbRain/gbSnow拷贝构造 |
+| gbLightObj.cpp | 2 | 拷贝构造、Init |
+| gbVisNode.cpp | 2 | gbVolModNode拷贝/默认构造 |
+| gbGeomNode.cpp | 2 | 拷贝构造、operator= |
+| gbSceneGraph.cpp | 1 | 析构函数 |
+| gbAudioManager.cpp | 1 | 构造函数(Miles初始化) |
+
+### 低优先级：大量简单函数 (operator=、拷贝构造、析构)
+
+167个已命名未实现函数中，85个(51%)为 operator= 或拷贝构造函数。
+这些多为编译器生成的 memcpy 模式，可批量处理。
 
 ---
 
-## Stub 函数清单 (二进制对比确认未实现)
-
-以下函数的编译输出远小于原始二进制，说明当前代码只是占位 stub，核心逻辑未实现。
-判定标准: SIZE_MISMATCH 且 compiled/original < 50%，或者函数体明显为空。
+## Stub 函数详细清单
 
 ### gbMisc.cpp (3 stubs)
 
@@ -146,7 +229,7 @@ DLL 中共 2384 个 sub_ 函数尚未识别。这些是非导出的内部函数�
 | gbActor::~gbActor(void) | 64B | 162B | 部分实现 |
 | gbActorMgr::LoadActorFile(char*) | 192B | 337B | 部分实现 |
 
-### gbVertPool.cpp (4 stubs)
+### gbVertPool.cpp (6 stubs)
 
 | 函数 | compiled | original | 说明 |
 |------|----------|----------|------|
@@ -210,6 +293,34 @@ DLL 中共 2384 个 sub_ 函数尚未识别。这些是非导出的内部函数�
 | 函数 | compiled | original | 说明 |
 |------|----------|----------|------|
 | gbAudioManager::gbAudioManager(ctor) | 400B | 675B | 部分实现，Miles Sound System 初始化缺失 |
+
+---
+
+## 实施计划
+
+### Phase 1: 批量简单函数 (快速提升覆盖率)
+
+目标：实现所有 operator=、拷贝构造、析构函数 (85个，多为 memcpy 模式)
+
+### Phase 2: 核心工具函数
+
+目标：gbIntersectTriangle、gbCrc32Compute、gbTimeCounter、Profile系列、gbChangeDispMode
+
+### Phase 3: 粒子系统补全
+
+目标：gbPartEmitter/gbPartGroupParam/gbParticleEffect 的 LoadFromFile、Attach、构造函数
+
+### Phase 4: 文件加载链
+
+目标：gbGeomNode::LoadFromFile、gbBaseMesh::LoadFromStream、gbActor::LoadFromIni/LoadSkeleton
+
+### Phase 5: D3D设备管理
+
+目标：gbGfxManager_D3D::CreateDevice、EnumAdapterModes、FindBestMode
+
+### Phase 6: 资源管理
+
+目标：gbTexture::LoadTexture/LoadFromImage2D、CPK::Open/LoadFile、gbVertPoolMgr系列
 
 ---
 

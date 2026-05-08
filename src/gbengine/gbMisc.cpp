@@ -14,11 +14,12 @@
 // CRC32 table
 static unsigned int gbCrc32Table[256];
 
-// Timing globals (ordered to match original memory layout)
-static TIMECAPS gbTimeCaps;
-static int gbHasPerfCounter = 0;
-static int gbTimeInitialized = 0;
-static double gbTimeFreqDbl = 0.0;
+// Timing globals
+static LARGE_INTEGER gbTimeFreq;
+static LARGE_INTEGER gbTimeStart;
+static int gbTimerInited = 0;       // dword_1015D39C
+static int gbHasQPC = 0;            // dword_1015D398
+static double gbTimeFreqDbl = 0.0;  // dbl_1015D390
 
 // Global time variables (defined in header)
 double g_CurrentTime = 0.0;
@@ -192,63 +193,45 @@ char* gbstrchr(char* str, char ch)
     return 0;
 }
 
-int gbstricmp(const char* a, const char* b)
+// 0x1002FB90 (206B)
+int gbstricmp(const char* a1, const char* a2)
 {
-    char buf1[2048];
-    char buf2[2048];
-    char *dst;
-    char c;
-    unsigned char c1, c2;
-    unsigned char *s1, *s2;
+    char v13[2048];
+    char v14[2048];
 
-    dst = buf1;
-    c = *a;
-    if (c != '\0') {
+    char* v2 = v14;
+    char v3 = *a1;
+    if (v3) {
+        int v4 = a1 - v14;
         do {
-            if (c < 'A' || c > 'Z')
-                ;
+            char v6;
+            if (v3 < 'A' || v3 > 'Z')
+                v6 = v2[v4];
             else
-                c = c + 0x20;
-            *dst = c;
-            c = *(a + 1);
-            dst++;
-            a++;
-        } while (c != '\0');
+                v6 = v2[v4] + 32;
+            *v2 = v6;
+            v3 = (v2++)[v4 + 1];
+        } while (v3);
     }
-    *dst = '\0';
+    *v2 = 0;
 
-    dst = buf2;
-    c = *b;
-    if (c != '\0') {
+    char* v7 = v13;
+    char v8 = *a2;
+    if (v8) {
+        int v9 = a2 - v13;
         do {
-            if (c < 'A' || c > 'Z')
-                ;
+            char v11;
+            if (v8 < 'A' || v8 > 'Z')
+                v11 = v7[v9];
             else
-                c = c + 0x20;
-            *dst = c;
-            c = *(b + 1);
-            dst++;
-            b++;
-        } while (c != '\0');
+                v11 = v7[v9] + 32;
+            *v7 = v11;
+            v8 = (v7++)[v9 + 1];
+        } while (v8);
     }
-    *dst = '\0';
+    *v7 = 0;
 
-    s1 = (unsigned char*)buf1;
-    s2 = (unsigned char*)buf2;
-    for (;;) {
-        c1 = *s1;
-        c2 = *s2;
-        if (c1 != c2) break;
-        if (c1 == 0) return 0;
-        c1 = s1[1];
-        c2 = s2[1];
-        if (c1 != c2) break;
-        s1 += 2;
-        s2 += 2;
-        if (c1 == 0) return 0;
-    }
-    if (c1 < c2) return -1;
-    return 1;
+    return strcmp(v14, v13);
 }
 
 char* gbstrindex(const char* str, int index)
@@ -377,44 +360,49 @@ int gbIsMultiCharTail(char* str, int pos)
 
 // ======== Time/Profiling Functions ========
 
+// 0x1002FD70 (283B)
 void gbTimeCounterInit(void)
 {
-    LARGE_INTEGER freq;
-    LARGE_INTEGER counter;
+    static TIMECAPS ptc;
+    LARGE_INTEGER PerformanceCount;
+    LARGE_INTEGER Frequency;
 
-    gbTimeInitialized = 1;
-
-    if (!QueryPerformanceFrequency(&freq)) {
-        if (gbHasPerfCounter) {
-            QueryPerformanceCounter(&counter);
-            g_CurrentTime = ((double)counter.HighPart * 4294967296.0 + (double)(unsigned int)counter.LowPart) / gbTimeFreqDbl;
-        } else {
-            g_CurrentTime = (double)timeGetTime() * 1000.0;
+    gbTimerInited = 1;
+    if (QueryPerformanceFrequency(&Frequency)) {
+        PerformanceCount.QuadPart = Frequency.LowPart;
+        gbHasQPC = 1;
+        gbTimeFreqDbl = (double)Frequency.HighPart * 4294967295.0 + (double)Frequency.LowPart;
+        timeGetDevCaps(&ptc, 8);
+        if (gbHasQPC) {
+            QueryPerformanceCounter(&PerformanceCount);
+            Frequency.QuadPart = PerformanceCount.LowPart;
+            g_CurrentTime = ((double)PerformanceCount.HighPart * 4294967295.0 + (double)PerformanceCount.LowPart)
+                          / gbTimeFreqDbl;
+            return;
         }
+    } else if (gbHasQPC) {
+        QueryPerformanceCounter(&PerformanceCount);
+        double HighPart = (double)PerformanceCount.HighPart;
+        PerformanceCount.HighPart = 0;
+        g_CurrentTime = (HighPart * 4294967295.0 + (double)PerformanceCount.LowPart) / gbTimeFreqDbl;
         return;
     }
-
-    gbHasPerfCounter = 1;
-    gbTimeFreqDbl = (double)freq.HighPart * 4294967296.0 + (double)(unsigned int)freq.LowPart;
-    timeGetDevCaps(&gbTimeCaps, 8);
-
-    if (gbHasPerfCounter) {
-        QueryPerformanceCounter(&counter);
-        g_CurrentTime = ((double)counter.HighPart * 4294967296.0 + (double)(unsigned int)counter.LowPart) / gbTimeFreqDbl;
-    } else {
-        g_CurrentTime = (double)timeGetTime() * 1000.0;
-    }
+    g_CurrentTime = (double)clock() * 1000.0;
 }
 
+// 0x1002FE90 (100B)
 double gbUpdateCurTime(void)
 {
     double result;
-    if (gbHasPerfCounter) {
-        LARGE_INTEGER counter;
-        QueryPerformanceCounter(&counter);
-        result = ((double)counter.HighPart * 4294967296.0 + (double)(unsigned int)counter.LowPart) / gbTimeFreqDbl;
+    LARGE_INTEGER PerformanceCount;
+
+    if (gbHasQPC) {
+        QueryPerformanceCounter(&PerformanceCount);
+        double HighPart = (double)PerformanceCount.HighPart;
+        PerformanceCount.HighPart = 0;
+        result = (HighPart * 4294967295.0 + (double)PerformanceCount.LowPart) / gbTimeFreqDbl;
     } else {
-        result = (double)timeGetTime() * 1000.0;
+        result = (double)clock() * 1000.0;
     }
     g_CurrentTime = result;
     return result;
@@ -498,126 +486,279 @@ void gbReportError(char* fmt, ...)
 
 // ======== Profiling Functions ========
 
-#define NUM_PROFILE_ENTRIES 50
+#define MAX_PROFILE_ITEMS 50
 
+// ProfileEntry: 284 bytes (71 DWORDs)
+// Layout:
+//   +0:   char isActive (+ 3 bytes padding)
+//   +4:   int totalCalls
+//   +8:   int nestingCount
+//   +12:  char name[256]
+//   +268: float startTime
+//   +272: float selfTime
+//   +276: float childTime
+//   +280: int childCount
 struct ProfileEntry {
-    char isActive;
-    char _pad[3];
-    int totalCalls;
-    int nestingCount;
-    char name[256];
-    float startTime;
-    float selfTime;
-    float childTime;
-    int childCount;
-};
+    char isActive;          // +0
+    char _pad[3];           // +1
+    int totalCalls;         // +4
+    int nestingCount;       // +8
+    char name[256];         // +12
+    float startTime;        // +268
+    float selfTime;         // +272
+    float childTime;        // +276
+    int childCount;         // +280
+};  // total = 284 bytes
 
-struct ProfileOutput {
-    char flag;
-    char _data[0x10f];
-};
+// ProfileStat: 272 bytes (68 DWORDs)
+// Layout:
+//   +0:   char flag (+ padding)
+//   +1:   char name[259]
+//   +260: float avg
+//   +264: float min
+//   +268: float max
+struct ProfileStat {
+    char flag;              // +0
+    char name[259];         // +1
+    short _pad;             // +260 (actually part of float alignment)
+    float avg;              // +260
+    float min;              // +264
+    float max;              // +268
+};  // total = 272 bytes
 
-static ProfileEntry g_profileEntries[NUM_PROFILE_ENTRIES];
-static ProfileOutput g_profileOutputs[NUM_PROFILE_ENTRIES];
-static float g_profileTime;
+// Use raw byte arrays to ensure exact layout matching
+static char g_profileData[284 * MAX_PROFILE_ITEMS];       // ProfileEntry array
+static char g_profileStatData[272 * MAX_PROFILE_ITEMS];   // ProfileStat array
+static float g_profileStartTime;                           // flt_10164048
+static float g_profileEndTime;                             // flt_1016404C
 
-extern float GetTimeSeconds(void);
+// Accessors for profile entries (284 bytes each)
+#define PE_ACTIVE(i)      (*(char*)&g_profileData[284 * (i)])
+#define PE_TOTALCALLS(i)  (*(int*)&g_profileData[284 * (i) + 4])
+#define PE_NESTING(i)     (*(int*)&g_profileData[284 * (i) + 8])
+#define PE_NAME(i)        ((char*)&g_profileData[284 * (i) + 12])
+#define PE_STARTTIME(i)   (*(float*)&g_profileData[284 * (i) + 268])
+#define PE_SELFTIME(i)    (*(float*)&g_profileData[284 * (i) + 272])
+#define PE_CHILDTIME(i)   (*(float*)&g_profileData[284 * (i) + 276])
+#define PE_CHILDCOUNT(i)  (*(int*)&g_profileData[284 * (i) + 280])
+
+// Accessors for profile stats (272 bytes each)
+#define PS_FLAG(i)        (*(char*)&g_profileStatData[272 * (i)])
+#define PS_NAME(i)        ((char*)&g_profileStatData[272 * (i) + 1])
+#define PS_AVG(i)         (*(float*)&g_profileStatData[272 * (i) + 260])
+#define PS_MIN(i)         (*(float*)&g_profileStatData[272 * (i) + 264])
+#define PS_MAX(i)         (*(float*)&g_profileStatData[272 * (i) + 268])
+
+// sub_1002E900: returns current time in seconds
+static double GetTimeSeconds(void)
+{
+    return (double)timeGetTime() * 0.001;
+}
+
+// sub_1002E8F0: returns frame delta time
+// This global is updated by the main loop and read by ProfileUpdateStats
+float g_frameDeltaTime = 0.0f;
+
+static void ProfileUpdateStats(const char* name, float percent);
 static void ProfileFormatOutput(char* buffer);
-static ProfileEntry* g_profileEnd = &g_profileEntries[NUM_PROFILE_ENTRIES];
 
 // 0x10031750 (46B)
 void ProfileInit(void)
 {
-    ProfileOutput* p2 = g_profileOutputs;
-    ProfileEntry* p1 = g_profileEntries;
+    char* p1 = g_profileData;
+    char* p2 = g_profileStatData;
     do {
-        p1->isActive = 0;
-        p2->flag = 0;
-        p1++;
-        p2++;
-    } while ((int)p1 < (int)&g_profileEntries[NUM_PROFILE_ENTRIES]);
-    g_profileTime = GetTimeSeconds();
+        *p1 = 0;
+        *p2 = 0;
+        p1 += 284;
+        p2 += 272;
+    } while ((int)p1 < (int)(g_profileStatData));
+    g_profileStartTime = (float)GetTimeSeconds();
 }
 
+// 0x10031780 (258B)
 void ProfileBegin(char* name)
 {
     unsigned int i = 0;
-    char* pName = g_profileEntries[0].name;
+    const char* pName = PE_NAME(0);
 
     while (*(pName - 12) == 1) {
         if (!strcmp(pName, name)) {
-            int idx = 71 * i;
-            int count = ((int*)&g_profileEntries[0])[idx] + 1;
-            ((int*)&g_profileEntries[0])[idx] = count;
-            ((int*)&g_profileEntries[0])[idx - 1] = ((int*)&g_profileEntries[0])[idx - 1] + 1;
-            ((float*)&g_profileEntries[0])[idx + 67] = GetTimeSeconds();
+            int nc = PE_NESTING(i) + 1;
+            PE_NESTING(i) = nc;
+            PE_TOTALCALLS(i) = PE_TOTALCALLS(i) + 1;
+            PE_STARTTIME(i) = (float)GetTimeSeconds();
             return;
         }
         pName += 284;
         ++i;
-        if ((int)pName >= (int)g_profileEnd->name)
+        if ((int)pName >= (int)PE_NAME(MAX_PROFILE_ITEMS))
             return;
     }
     if (i < 0x32) {
-        strcpy(g_profileEntries[i].name, name);
-        g_profileEntries[i].isActive = 1;
-        g_profileEntries[i].nestingCount = 1;
-        g_profileEntries[i].totalCalls = 1;
-        g_profileEntries[i].selfTime = 0;
-        g_profileEntries[i].startTime = GetTimeSeconds();
-        g_profileEntries[i].childTime = 0;
+        strcpy(PE_NAME(i), name);
+        PE_ACTIVE(i) = 1;
+        PE_NESTING(i) = 1;
+        PE_TOTALCALLS(i) = 1;
+        PE_SELFTIME(i) = 0;
+        PE_STARTTIME(i) = (float)GetTimeSeconds();
+        PE_CHILDTIME(i) = 0;
     }
 }
 
+// 0x10031890 (277B)
 void ProfileEnd(char* name)
 {
     int i = 0;
-    char* pName = g_profileEntries[0].name;
+    const char* pName = PE_NAME(0);
 
     while (*(pName - 12) == 1) {
         if (!strcmp(pName, name)) {
-            int deepest = 0;
             int deepIdx = -1;
-            float endTime = GetTimeSeconds();
-            int idx = 71 * i;
-            --((int*)&g_profileEntries[0])[idx];
-            if (g_profileEntries[0].isActive == 1) {
-                int childCount = 0;
+            double endTime = GetTimeSeconds();
+            --PE_NESTING(i);
+            int childCount;
+            if (PE_ACTIVE(0) == 1) {
+                childCount = 0;
                 int j = 0;
-                int jidx = 0;
-                int doffs = -284;
+                int deepOffs = -284;
                 do {
-                    if (((int*)&g_profileEntries[0])[jidx] > 0) {
+                    if (PE_NESTING(j) > 0) {
                         ++childCount;
-                        if (deepIdx < 0 || ((float*)&g_profileEntries[0])[jidx + 67] >= *(float*)((char*)&g_profileEntries[0].startTime + doffs)) {
+                        if (deepIdx < 0 || PE_STARTTIME(j) >= *(float*)((char*)&PE_STARTTIME(0) + deepOffs)) {
                             deepIdx = j;
-                            doffs = jidx * 4;
+                            deepOffs = (int)((char*)&PE_STARTTIME(j) - (char*)&PE_STARTTIME(0));
                         }
                     }
-                    jidx += 71;
                     ++j;
-                } while (((char*)&g_profileEntries[0])[jidx * 4] == 1);
-                g_profileEntries[i].childCount = childCount;
+                } while (PE_ACTIVE(j) == 1);
             } else {
-                g_profileEntries[i].childCount = 0;
+                childCount = 0;
             }
+            PE_CHILDCOUNT(i) = childCount;
             if (deepIdx >= 0)
-                g_profileEntries[deepIdx].childTime = endTime - g_profileEntries[i].startTime + g_profileEntries[deepIdx].childTime;
-            g_profileEntries[i].selfTime = endTime - g_profileEntries[i].startTime + g_profileEntries[i].selfTime;
+                PE_CHILDTIME(deepIdx) = (float)endTime - PE_STARTTIME(i) + PE_CHILDTIME(deepIdx);
+            PE_SELFTIME(i) = (float)endTime - PE_STARTTIME(i) + PE_SELFTIME(i);
             return;
         }
         pName += 284;
         ++i;
-        if ((int)pName >= (int)g_profileEnd->name)
+        if ((int)pName >= (int)PE_NAME(MAX_PROFILE_ITEMS))
             return;
     }
 }
 
-static void ProfileFormatOutput(char* buffer)
+// 0x10031CA0 (402B)
+static void ProfileUpdateStats(const char* name, float percent)
 {
-    buffer[0] = '\0';
+    unsigned int i = 0;
+    double dt = (double)g_frameDeltaTime * 0.80000001;
+    if (dt > 1.0)
+        dt = 1.0;
+    const char* pName = PS_NAME(0);
+    float oneMinusDt = (float)(1.0 - dt);
+
+    while (*(pName - 1) == 1) {
+        if (!strcmp(pName, name)) {
+            float smoothed = (float)(dt * (double)percent);
+            PS_AVG(i) = oneMinusDt * PS_AVG(i) + smoothed;
+            if (percent >= PS_MIN(i))
+                PS_MIN(i) = oneMinusDt * PS_MIN(i) + smoothed;
+            else
+                PS_MIN(i) = percent;
+            if (PS_MIN(i) < 0.0f)
+                PS_MIN(i) = 0.0f;
+            if (percent <= PS_MAX(i))
+                PS_MAX(i) = oneMinusDt * PS_MAX(i) + smoothed;
+            else
+                PS_MAX(i) = percent;
+            return;
+        }
+        pName += 272;
+        ++i;
+        if ((int)pName >= (int)((char*)&g_profileStartTime + 1))
+            return;
+    }
+    if (i < 0x32) {
+        strcpy(PS_NAME(i), name);
+        PS_FLAG(i) = 1;
+        PS_MAX(i) = percent;
+        PS_MIN(i) = percent;
+        PS_AVG(i) = percent;
+    }
 }
 
+// 0x10031A00 (661B)
+static void ProfileFormatOutput(char* buffer)
+{
+    unsigned int i;
+    char nameBuf[256];
+    char indentBuf[256];
+    char avgStr[16];
+    char minStr[16];
+    char maxStr[16];
+    char countStr[16];
+    char lineFormat[256];
+
+    g_profileEndTime = (float)GetTimeSeconds();
+    *buffer = 0;
+    sprintf(&buffer[strlen(buffer)], " Ave :  Min :  Max : Cnt : Profile\n");
+    sprintf(&buffer[strlen(buffer)], "--------------------------------------------\n");
+
+    i = 0;
+    while (i < MAX_PROFILE_ITEMS && PE_ACTIVE(i) == 1) {
+        float percent = (PE_SELFTIME(i) - PE_CHILDTIME(i)) / (g_profileEndTime - g_profileStartTime) * 100.0f;
+        ProfileUpdateStats(PE_NAME(i), percent);
+
+        // Look up stats for this entry
+        float avg = 0.0f, min = 0.0f, max = 0.0f;
+        unsigned int si = 0;
+        const char* sName = PS_NAME(0);
+        while (*(sName - 1) == 1) {
+            if (!strcmp(sName, PE_NAME(i))) {
+                avg = PS_AVG(si);
+                min = PS_MIN(si);
+                max = PS_MAX(si);
+                break;
+            }
+            sName += 272;
+            ++si;
+            if ((int)sName >= (int)((char*)&g_profileStartTime + 1)) {
+                avg = 0.0f; min = 0.0f; max = 0.0f;
+                break;
+            }
+        }
+
+        sprintf(avgStr, "%3.1f", (double)avg);
+        sprintf(minStr, "%3.1f", (double)min);
+        sprintf(maxStr, "%3.1f", (double)max);
+        sprintf(countStr, "%3d", PE_CHILDCOUNT(i));
+
+        strcpy(nameBuf, PE_NAME(i));
+        unsigned int indent = 0;
+        if (PE_CHILDCOUNT(i)) {
+            do {
+                sprintf(indentBuf, "   %s", nameBuf);
+                strcpy(nameBuf, indentBuf);
+                ++indent;
+            } while (indent < (unsigned int)PE_CHILDCOUNT(i));
+        }
+
+        sprintf(lineFormat, "%5s : %5s : %5s : %3s : %s\n", avgStr, minStr, maxStr, countStr, nameBuf);
+        sprintf(&buffer[strlen(buffer)], lineFormat);
+        ++i;
+    }
+
+    // Reset profile entries
+    char* p = g_profileData;
+    do {
+        *p = 0;
+        p += 284;
+    } while ((int)p < (int)g_profileStatData);
+    g_profileStartTime = (float)GetTimeSeconds();
+}
+
+// 0x100319B0 (79B)
 void ProfileDumpOutputToFile(char* filename)
 {
     FILE* fp = fopen(filename, "wt");
@@ -1179,25 +1320,29 @@ double gbTimeCounter::Off() {
     if (*(double*)&startTime < 0.0) {
         return 0.0;
     }
-    if (gbHasPerfCounter) {
+    if (gbHasQPC) {
         LARGE_INTEGER counter;
         QueryPerformanceCounter(&counter);
-        *(double*)&freq = ((double)counter.HighPart * 4294967296.0 + (double)(unsigned int)counter.LowPart) / gbTimeFreqDbl;
+        double highPart = (double)counter.HighPart;
+        counter.HighPart = 0;
+        *(double*)&freq = (highPart * 4294967295.0 + (double)counter.LowPart) / gbTimeFreqDbl;
         return *(double*)&freq - *(double*)&startTime;
     } else {
-        int t = timeGetTime();
+        int t = clock();
         *(double*)&freq = (double)t * 0.001;
         return *(double*)&freq - *(double*)&startTime;
     }
 }
 
 void gbTimeCounter::On() {
-    if (gbHasPerfCounter) {
+    if (gbHasQPC) {
         LARGE_INTEGER counter;
         QueryPerformanceCounter(&counter);
-        *(double*)&startTime = ((double)counter.HighPart * 4294967296.0 + (double)(unsigned int)counter.LowPart) / gbTimeFreqDbl;
+        double highPart = (double)counter.HighPart;
+        counter.HighPart = 0;
+        *(double*)&startTime = (highPart * 4294967295.0 + (double)counter.LowPart) / gbTimeFreqDbl;
     } else {
-        int t = timeGetTime();
+        int t = clock();
         *(double*)&startTime = (double)t * 1000.0;
     }
 }
