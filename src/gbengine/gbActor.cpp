@@ -267,7 +267,14 @@ void gbActor::RenderShadowVolume(gbRenderInfoObj* renderInfo) {
 
 // Attach render effect
 int gbActor::Attach(gbRenderEffect* effect) {
-    // Attach effect to actor
+    gbAABBox* aabb = m_pActorDef->GetCollideAABBox();
+    if (gbVisNode::pGfxMgr->ClipBoundVolume(aabb)) {
+        return 0;
+    }
+    m_pActorDef->AttachSelf(this, effect);
+    if (enableShadow) {
+        gbVisNode::pGfxMgr->pSceneGraph->NewShadowVolume((gbVisNode*)this);
+    }
     return 1;
 }
 

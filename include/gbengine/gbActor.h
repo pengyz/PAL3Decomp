@@ -73,7 +73,7 @@ public:
     virtual void GetCollideOBB(gbOBBox* obb, gbActor* actor) = 0;              // vtable[7]  offset 0x1C
     virtual gbSphere* GetBoundSpherePtr() = 0;                                   // vtable[8]  offset 0x20
     virtual gbAABBox* GetCollideAABBox() = 0;                                   // vtable[9]  offset 0x24
-    virtual void _vf28() = 0;                                                  // vtable[10] offset 0x28
+    virtual void AttachSelf(gbActor* actor, gbRenderEffect* effect) = 0;        // vtable[10] offset 0x28
     virtual void _vf2C() = 0;                                                  // vtable[11] offset 0x2C
     virtual void _vf30() = 0;                                                  // vtable[12] offset 0x30
     virtual void _vf34() = 0;                                                  // vtable[13] offset 0x34
