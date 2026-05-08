@@ -17,6 +17,7 @@ static unsigned int gbCrc32Table[256];
 // Timing globals
 static LARGE_INTEGER gbTimeFreq;
 static LARGE_INTEGER gbTimeStart;
+static TIMECAPS ptc;
 static int gbTimerInited = 0;       // dword_1015D39C
 static int gbHasQPC = 0;            // dword_1015D398
 static double gbTimeFreqDbl = 0.0;  // dbl_1015D390
@@ -204,11 +205,11 @@ int gbstricmp(const char* a1, const char* a2)
     if (v3) {
         int v4 = a1 - v14;
         do {
-            char v6;
-            if (v3 < 'A' || v3 > 'Z')
+            char v5, v6;
+            if (v3 < 'A' || (v5 = v2[v4], v5 > 'Z'))
                 v6 = v2[v4];
             else
-                v6 = v2[v4] + 32;
+                v6 = v5 + 32;
             *v2 = v6;
             v3 = (v2++)[v4 + 1];
         } while (v3);
@@ -220,11 +221,11 @@ int gbstricmp(const char* a1, const char* a2)
     if (v8) {
         int v9 = a2 - v13;
         do {
-            char v11;
-            if (v8 < 'A' || v8 > 'Z')
+            char v10, v11;
+            if (v8 < 'A' || (v10 = v7[v9], v10 > 'Z'))
                 v11 = v7[v9];
             else
-                v11 = v7[v9] + 32;
+                v11 = v10 + 32;
             *v7 = v11;
             v8 = (v7++)[v9 + 1];
         } while (v8);
@@ -363,7 +364,6 @@ int gbIsMultiCharTail(char* str, int pos)
 // 0x1002FD70 (283B)
 void gbTimeCounterInit(void)
 {
-    static TIMECAPS ptc;
     LARGE_INTEGER PerformanceCount;
     LARGE_INTEGER Frequency;
 
@@ -371,20 +371,18 @@ void gbTimeCounterInit(void)
     if (QueryPerformanceFrequency(&Frequency)) {
         PerformanceCount.QuadPart = Frequency.LowPart;
         gbHasQPC = 1;
-        gbTimeFreqDbl = (double)Frequency.HighPart * 4294967295.0 + (double)Frequency.LowPart;
+        gbTimeFreqDbl = (double)Frequency.HighPart * 4294967295.0 + (double)(unsigned int)Frequency.LowPart;
         timeGetDevCaps(&ptc, 8);
         if (gbHasQPC) {
             QueryPerformanceCounter(&PerformanceCount);
             Frequency.QuadPart = PerformanceCount.LowPart;
-            g_CurrentTime = ((double)PerformanceCount.HighPart * 4294967295.0 + (double)PerformanceCount.LowPart)
+            g_CurrentTime = ((double)PerformanceCount.HighPart * 4294967295.0 + (double)(unsigned int)PerformanceCount.LowPart)
                           / gbTimeFreqDbl;
             return;
         }
     } else if (gbHasQPC) {
         QueryPerformanceCounter(&PerformanceCount);
-        double HighPart = (double)PerformanceCount.HighPart;
-        PerformanceCount.HighPart = 0;
-        g_CurrentTime = (HighPart * 4294967295.0 + (double)PerformanceCount.LowPart) / gbTimeFreqDbl;
+        g_CurrentTime = ((double)PerformanceCount.HighPart * 4294967295.0 + (double)(unsigned int)PerformanceCount.LowPart) / gbTimeFreqDbl;
         return;
     }
     g_CurrentTime = (double)clock() * 1000.0;
