@@ -82,9 +82,9 @@ public:
 // gbEffectMgr - manages creation and caching of render effects
 // ============================================================================
 struct gbVertFormatEntry {
-    IDirect3DVertexDeclaration9* pDecl;   // +0x00
-    char name[28];                         // +0x04
-    // sizeof = 32
+    char name[28];                         // +0x00 (0x1C bytes)
+    IDirect3DVertexDeclaration9* pDecl;    // +0x1C
+    // sizeof = 0x20 = 32
 };
 
 class gbEffectMgr : public gbResManager {

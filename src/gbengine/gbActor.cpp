@@ -6,6 +6,7 @@
 #include "gbengine/gbActor.h"
 #include "gbengine/gbMisc.h"
 #include "gbengine/gbGfxManager.h"
+#include "gbengine/gbSceneGraph.h"
 #include "gbengine/gbengine_internal.h"
 #include <cstring>
 #include <cstdlib>
@@ -231,37 +232,19 @@ void gbActor::Update() {
     }
 }
 
-// Render actor - push matrix stack, load world matrix, delegate to actorDef
 void gbActor::Render(gbRenderInfoObj* renderInfo) {
-    if (!m_pActorDef || !renderInfo) return;
-
-    gbMatrixStack* matStack = pGfxMgr->pMatrixStack[1];
+    gbMatrixStack* matStack = gbVisNode::pGfxMgr->pMatrixStack[1];
     matStack->Push();
     matStack->LoadMatrix(&renderInfo->worldMatrix);
-
-    // Call actorDef vtable[0x14] - Render
-    void** defVtable = *(void***)m_pActorDef;
-    typedef void (__thiscall *RenderDefFn)(void*, void*, gbRenderInfoObj*);
-    RenderDefFn renderDef = (RenderDefFn)((void**)defVtable)[0x14 / 4];
-    renderDef(m_pActorDef, this, renderInfo);
-
+    m_pActorDef->RenderDef(this, renderInfo);
     matStack->Pop();
 }
 
-// Render shadow volume - same pattern as Render but vtable[0x18]
 void gbActor::RenderShadowVolume(gbRenderInfoObj* renderInfo) {
-    if (!m_pActorDef || !renderInfo) return;
-
-    gbMatrixStack* matStack = pGfxMgr->pMatrixStack[1];
+    gbMatrixStack* matStack = gbVisNode::pGfxMgr->pMatrixStack[1];
     matStack->Push();
     matStack->LoadMatrix(&renderInfo->worldMatrix);
-
-    // Call actorDef vtable[0x18] - RenderShadowVolume
-    void** defVtable = *(void***)m_pActorDef;
-    typedef void (__thiscall *RenderShadowFn)(void*, void*, gbRenderInfoObj*);
-    RenderShadowFn renderShadow = (RenderShadowFn)((void**)defVtable)[0x18 / 4];
-    renderShadow(m_pActorDef, this, renderInfo);
-
+    m_pActorDef->RenderShadowVolumeDef(this, renderInfo);
     matStack->Pop();
 }
 

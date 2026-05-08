@@ -14,6 +14,15 @@
 
 extern gbVFileSystem* g_pVFileSys;
 
+void gbEffectMgr::Release(void) {
+    CleanAllResource();
+    m_pWhiteTexture->Release();
+    m_pGrayTexture->Release();
+    for (int i = 0; i < m_nNumVertFormats; i++) {
+        m_vertFormats[i].pDecl->Release();
+    }
+}
+
 gbRenderEffect* gbEffectMgr::GetDefaultEffect(void) {
     return m_pDefaultEffect;
 }

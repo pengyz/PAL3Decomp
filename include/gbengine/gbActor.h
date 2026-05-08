@@ -9,6 +9,7 @@
 class gbActor;
 class gbAnimNodeGroup;
 class gbGfxManager;
+struct gbRenderInfoObj;
 
 // Actor export node (attachment points) - external query result
 struct gbActorExpNode {
@@ -68,8 +69,8 @@ public:
     virtual unsigned int GetActionDuration(char* actionName) = 0;               // vtable[2]  offset 0x08
     virtual int GetNumExportNodes(char* buffer1, char* buffer2, int maxNodes) = 0; // vtable[3]  offset 0x0C
     virtual void UpdateBones() = 0;                                              // vtable[4]  offset 0x10
-    virtual int GetEventList(void* buffer, int fromFrame, int toFrame, void* eventData) = 0; // vtable[5]  offset 0x14
-    virtual void _vf18() = 0;                                                  // vtable[6]  offset 0x18
+    virtual void RenderDef(gbActor* actor, gbRenderInfoObj* renderInfo) = 0;      // vtable[5]  offset 0x14
+    virtual void RenderShadowVolumeDef(gbActor* actor, gbRenderInfoObj* renderInfo) = 0; // vtable[6]  offset 0x18
     virtual void GetCollideOBB(gbOBBox* obb, gbActor* actor) = 0;              // vtable[7]  offset 0x1C
     virtual gbSphere* GetBoundSpherePtr() = 0;                                   // vtable[8]  offset 0x20
     virtual gbAABBox* GetCollideAABBox() = 0;                                   // vtable[9]  offset 0x24
