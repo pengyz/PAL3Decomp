@@ -274,7 +274,7 @@ public:
 struct gbDropDesc {
     float gravity;           // +0x00
     float viewDistance;      // +0x04: half-range for spawn area
-    float density;           // +0x08: spawn rate multiplier
+    int density;             // +0x08: spawn rate (particles/sec, int for FILD)
     float speedMinX;         // +0x0C: speed range X min
     float speedMaxX;         // +0x10: speed range X max
     float speedMinY;         // +0x14: speed range Y min
@@ -316,6 +316,7 @@ public:
     gbTexture* pTexture;         // +0x48
     gbRenderEffect* pRenderEffect; // +0x4C
 
+    gbDropGroup(void);
     gbDropGroup(int maxDrops, const gbDropDesc* dropDesc, const char* texName);
     gbDropGroup(const gbDropGroup& other);
     virtual ~gbDropGroup(void);

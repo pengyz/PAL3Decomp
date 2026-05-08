@@ -6,6 +6,7 @@
  * Compiler: MSVC 6.0 SP5
  */
 
+#define GBVEC3D_NO_CTOR
 #include "gbengine/gbParticle.h"
 #include "gbengine/gbGfxManager.h"
 #include "gbengine/gbRenderEffect.h"
@@ -62,16 +63,17 @@ gbDropDesc& gbDropDesc::operator=(const gbDropDesc& other) {
 
 /* ======== gbDropGroup ======== */
 
+gbDropGroup::gbDropGroup(void) {
+}
+
 // 0x10031E40 - gbDropGroup constructor
 gbDropGroup::gbDropGroup(int maxCount, const gbDropDesc* dropDesc, const char* texName) {
     maxUnits = maxCount;
 
-    // Allocate unit array (sizeof(gbDropUnit) = 40 = 0x28)
     gbDropUnit* p = (gbDropUnit*)operator new(sizeof(gbDropUnit) * maxCount);
     if (p == NULL) {
         p = NULL;
     } else if (maxCount - 1 >= 0) {
-        // Initialize all units (zero velocity/position/prevPosition fields)
         int* v = (int*)((char*)p + 12);
         int cnt = maxCount;
         do {
@@ -90,7 +92,6 @@ gbDropGroup::gbDropGroup(int maxCount, const gbDropDesc* dropDesc, const char* t
     }
     units = p;
 
-    // Zero lifetime for all units
     if (maxCount > 0) {
         int offset = 0;
         int cnt = maxCount;
@@ -101,7 +102,6 @@ gbDropGroup::gbDropGroup(int maxCount, const gbDropDesc* dropDesc, const char* t
         } while (cnt != 0);
     }
 
-    // Create texture if name provided
     if (texName != NULL) {
         gbTexture* tex = g_pGfxManager->NewTexture(texName);
         pTexture = tex;
@@ -110,17 +110,22 @@ gbDropGroup::gbDropGroup(int maxCount, const gbDropDesc* dropDesc, const char* t
         pTexture = NULL;
     }
 
-    // Create render effect
     pRenderEffect = g_pGfxManager->pEffectMgr->NewRenderEffect("gfxscript\\p_add_g.gbf", 0);
 
-    // Copy drop description
-    desc = *dropDesc;
-
-    // Initialize timing/count
-    elapsedTime = 0.0;
+    *(int*)&desc.gravity = *(int*)&dropDesc->gravity;
+    *(int*)&desc.viewDistance = *(int*)&dropDesc->viewDistance;
+    *(int*)&desc.density = *(int*)&dropDesc->density;
+    *(int*)&desc.speedMinX = *(int*)&dropDesc->speedMinX;
+    *(int*)&desc.speedMaxX = *(int*)&dropDesc->speedMaxX;
+    *(int*)&desc.speedMinY = *(int*)&dropDesc->speedMinY;
+    *(int*)&desc.speedMaxY = *(int*)&dropDesc->speedMaxY;
+    *(int*)&desc.speedMinZ = *(int*)&dropDesc->speedMinZ;
+    int lastDescField = *(int*)&dropDesc->speedMaxZ;
+    *(int*)&elapsedTime = 0;
+    *(int*)&desc.speedMaxZ = lastDescField;
     numActiveUnits = 0;
+    *((int*)&elapsedTime + 1) = 0;
     spawnTimer = 0.0f;
-    field_04 = 0;
 }
 
 // 0x10032120 - gbDropGroup destructor (shared by gbRain, gbSnow)
@@ -135,7 +140,7 @@ gbDropGroup::~gbDropGroup(void) {
 // 0x10031F40 - gbDropGroup::Render
 void gbDropGroup::Render(gbCamera* camera) {
     double curTime = g_CurrentTime;
-    float dt = (float)(g_CurrentTime - elapsedTime);
+    float dt = (float)(curTime - elapsedTime);
     if (dt > 0.2f)
         dt = 0.2f;
     CreateUnit(dt, camera);
@@ -159,20 +164,12 @@ void gbDropGroup::CreateUnit(float deltaTime, gbCamera* camera) {
             do {
                 float* pUnit = (float*)((char*)units + offset);
                 if (*pUnit <= 0.0f) {
-                    float halfDist = desc.viewDistance * 0.5f;
-                    // position.x = random in [-halfDist, halfDist]
-                    pUnit[4] = gbRandFloat(-halfDist, halfDist);
-                    // position.z = random in [-viewDistance, -halfDist]
-                    pUnit[6] = gbRandFloat(-desc.viewDistance, -halfDist);
-                    // position.y = random in [speedMinZ, speedMaxZ]
+                    pUnit[4] = gbRandFloat(desc.viewDistance * -0.5f, desc.viewDistance * 0.5f);
+                    pUnit[6] = gbRandFloat(-desc.viewDistance, desc.viewDistance * -0.5f);
                     pUnit[5] = gbRandFloat(desc.speedMinZ, desc.speedMaxZ);
-                    // lifetime = random in [speedMinX, speedMaxX]
                     *pUnit = gbRandFloat(desc.speedMinX, desc.speedMaxX);
-                    // velocity.z = 0
                     pUnit[3] = 0.0f;
-                    // velocity.x = 0
                     pUnit[1] = 0.0f;
-                    // velocity.y = -random in [speedMinY, speedMaxY]
                     pUnit[2] = -gbRandFloat(desc.speedMinY, desc.speedMaxY);
                     ++numActiveUnits;
                     if (--numToSpawn == 0)
@@ -226,8 +223,23 @@ gbRain::gbRain(int maxDrops, const gbDropDesc* dropDesc, const char* texName)
     : gbDropGroup(maxDrops, dropDesc, texName) {
 }
 
-gbRain::gbRain(const gbRain& other)
-    : gbDropGroup(other) {
+gbRain::gbRain(const gbRain& other) {
+    maxUnits = other.maxUnits;
+    numActiveUnits = other.numActiveUnits;
+    desc.gravity = other.desc.gravity;
+    desc.viewDistance = other.desc.viewDistance;
+    desc.density = other.desc.density;
+    desc.speedMinX = other.desc.speedMinX;
+    desc.speedMaxX = other.desc.speedMaxX;
+    desc.speedMinY = other.desc.speedMinY;
+    desc.speedMaxY = other.desc.speedMaxY;
+    desc.speedMinZ = other.desc.speedMinZ;
+    desc.speedMaxZ = other.desc.speedMaxZ;
+    elapsedTime = other.elapsedTime;
+    spawnTimer = other.spawnTimer;
+    units = other.units;
+    pTexture = other.pTexture;
+    pRenderEffect = other.pRenderEffect;
 }
 
 gbRain::~gbRain(void) {
@@ -241,15 +253,12 @@ void gbRain::Update(float deltaTime) {
         do {
             float* pUnit = (float*)((char*)units + offset);
             if (*pUnit > 0.0f) {
-                // Save previous position
                 pUnit[7] = pUnit[4];
                 pUnit[8] = pUnit[5];
                 pUnit[9] = pUnit[6];
-                // Update position by velocity * dt
                 pUnit[4] = deltaTime * pUnit[1] + pUnit[4];
                 pUnit[5] = deltaTime * pUnit[2] + pUnit[5];
                 pUnit[6] = deltaTime * pUnit[3] + pUnit[6];
-                // Decrease lifetime
                 float life = *pUnit;
                 *pUnit = life - deltaTime;
                 if (life - deltaTime <= 0.0f) {
@@ -288,7 +297,7 @@ void gbRain::Draw(void) {
         float u;
     };
 
-    float halfWidth = 2.3509886e-38f; // very small offset for line width
+    float halfWidth = desc.gravity * 0.5f;
 
     // Lock vertex buffer for numActiveUnits * 6 vertices
     float* pVerts = (float*)pVB->Lock(numActiveUnits * 6);
@@ -375,8 +384,24 @@ gbSnow::gbSnow(int maxDrops, const gbDropDesc* dropDesc, const char* texName, fl
     swayAmplitude = amplitude;
 }
 
-gbSnow::gbSnow(const gbSnow& other)
-    : gbDropGroup(other) {
+gbSnow::gbSnow(const gbSnow& other) {
+    maxUnits = other.maxUnits;
+    numActiveUnits = other.numActiveUnits;
+    desc.gravity = other.desc.gravity;
+    desc.viewDistance = other.desc.viewDistance;
+    desc.density = other.desc.density;
+    desc.speedMinX = other.desc.speedMinX;
+    desc.speedMaxX = other.desc.speedMaxX;
+    desc.speedMinY = other.desc.speedMinY;
+    desc.speedMaxY = other.desc.speedMaxY;
+    desc.speedMinZ = other.desc.speedMinZ;
+    desc.speedMaxZ = other.desc.speedMaxZ;
+    field_34 = other.field_34;
+    elapsedTime = other.elapsedTime;
+    spawnTimer = other.spawnTimer;
+    units = other.units;
+    pTexture = other.pTexture;
+    pRenderEffect = other.pRenderEffect;
     swayAmplitude = other.swayAmplitude;
 }
 
