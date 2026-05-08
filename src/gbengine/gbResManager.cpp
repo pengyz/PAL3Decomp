@@ -80,36 +80,44 @@ gbResource::gbResource(const gbResource& other) : gbRefObject(other) {
     // vtable updated by compiler
 }
 
-// Destructor - 0x100200d0
+// Destructor - 0x100200d0 (191B)
 gbResource::~gbResource() {
-    // Remove from manager if attached
-    if (manager != NULL) {
+    if (manager) {
         gbResManager* mgr = manager;
         int cnt = mgr->count;
-        for (int i = 0; i < cnt; i++) {
-            if (mgr->array[i] == this) {
-                // Remove this resource
-                manager = NULL;
-                cnt--;
-
-                // Shift last element to fill gap
-                if (i < cnt) {
-                    mgr->array[i] = mgr->array[cnt];
-                }
-
-                // Update count
-                mgr->count = cnt;
-                break;
+        int idx = 0;
+        if (cnt > 0) {
+            gbResource** p = mgr->array;
+            while (*p != this) {
+                ++idx;
+                ++p;
+                if (idx >= cnt)
+                    goto done_remove;
             }
+            int newCount = cnt - 1;
+            manager = NULL;
+            if (newCount > idx)
+                mgr->array[idx] = mgr->array[cnt - 1];
+            int newCapacity = cnt - 1;
+            if (cnt == 1)
+                newCapacity = 16;
+            if (newCapacity > mgr->capacity) {
+                mgr->capacity = newCapacity;
+                gbResource** newArray = (gbResource**)malloc(4 * newCapacity);
+                int existCount = mgr->count;
+                if (existCount)
+                    memcpy(newArray, mgr->array, 4 * existCount);
+                if (mgr->array)
+                    free(mgr->array);
+                mgr->array = newArray;
+            }
+            mgr->count = newCount;
         }
     }
-
-    // Free name string
-    if (name != NULL) {
+done_remove:
+    if (name)
         free(name);
-    }
 
-    // Call base destructor
     gbRefObject::~gbRefObject();
 }
 
@@ -171,11 +179,17 @@ gbResManager::gbResManager() {
     array = NULL;
 }
 
-// Copy constructor
+// Copy constructor - 0x100052a0 (79B)
 gbResManager::gbResManager(const gbResManager& other) {
-    array = other.array;
     capacity = other.capacity;
     count = other.count;
+    if (capacity)
+        array = (gbResource**)malloc(4 * capacity);
+    else
+        array = NULL;
+    int usedCount = count;
+    if (usedCount)
+        memcpy(array, other.array, 4 * usedCount);
 }
 
 // Destructor - 0x100201a0
@@ -220,39 +234,36 @@ void gbResManager::AddResource(gbResource* res) {
     count++;
 }
 
-// DelResource - 0x10020280
+// DelResource - 0x10020280 (147B)
 void gbResManager::DelResource(gbResource* res) {
-    int i = 0;
-    int n = count;
-    if (n <= 0) return;
-
-    gbResource** p = array;
-    while (*p != res) {
-        p++;
-        if (++i >= n) return;
-    }
-
-    res->manager = NULL;
-    int newCount = n - 1;
-    if (n - 1 > i) {
-        array[i] = array[n - 1];
-    }
-
-    int newCapacity = n - 1;
-    if (n == 1) newCapacity = 16;
-
-    if (newCapacity > capacity) {
-        capacity = newCapacity;
-        gbResource** newArray = (gbResource**)malloc(newCapacity * 4);
-        if (count) {
-            memcpy(newArray, array, count * 4);
+    int idx = 0;
+    int cnt = count;
+    if (cnt > 0) {
+        gbResource** p = array;
+        while (*p != res) {
+            ++p;
+            if (++idx >= cnt)
+                return;
         }
-        if (array) {
-            free(array);
+        res->manager = NULL;
+        int newCount = cnt - 1;
+        if (cnt - 1 > idx)
+            array[idx] = array[cnt - 1];
+        int newCapacity = cnt - 1;
+        if (cnt == 1)
+            newCapacity = 16;
+        if (newCapacity > capacity) {
+            capacity = newCapacity;
+            gbResource** newArray = (gbResource**)malloc(4 * newCapacity);
+            int existCount = count;
+            if (existCount)
+                memcpy(newArray, array, 4 * existCount);
+            if (array)
+                free(array);
+            array = newArray;
         }
-        array = newArray;
+        count = newCount;
     }
-    count = newCount;
 }
 
 // FindResByName - 0x100201b0
@@ -294,10 +305,19 @@ void gbResManager::CleanAllResource() {
     count = 0;
 }
 
-// operator= - 0x100019b0
+// operator= - 0x100019b0 (94B)
 gbResManager& gbResManager::operator=(const gbResManager& other) {
-    array = other.array;
-    capacity = other.capacity;
+    if (array)
+        free(array);
+    int cap = other.capacity;
+    capacity = cap;
     count = other.count;
+    if (cap)
+        array = (gbResource**)malloc(4 * cap);
+    else
+        array = NULL;
+    int usedCount = count;
+    if (usedCount)
+        memcpy(array, other.array, 4 * usedCount);
     return *this;
 }
