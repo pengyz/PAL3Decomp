@@ -41,32 +41,42 @@ int gbAABBox::IsColPoint(gbVec3D& point) {
 
 // Transform AABB by matrix
 void gbAABBox::Transform(gbMatrix4* mat) {
-    // Transform all 8 corners and recompute AABB
-    gbVec3D corners[8];
-    corners[0] = gbVec3D(vMin.x, vMin.y, vMin.z);
-    corners[1] = gbVec3D(vMax.x, vMin.y, vMin.z);
-    corners[2] = gbVec3D(vMin.x, vMax.y, vMin.z);
-    corners[3] = gbVec3D(vMax.x, vMax.y, vMin.z);
-    corners[4] = gbVec3D(vMin.x, vMin.y, vMax.z);
-    corners[5] = gbVec3D(vMax.x, vMin.y, vMax.z);
-    corners[6] = gbVec3D(vMin.x, vMax.y, vMax.z);
-    corners[7] = gbVec3D(vMax.x, vMax.y, vMax.z);
+    float corners[24];
+    float *p = corners;
+    int i;
+    for (i = 8; i != 0; i--) {
+        p[0] = 0.0f;
+        p[1] = 0.0f;
+        p[2] = 0.0f;
+        p += 3;
+    }
 
-    // Transform first corner and initialize bounds
-    mat->Transform(&corners[0], &corners[0]);
-    vMin = corners[0];
-    vMax = corners[0];
+    corners[0]  = vMax.x; corners[1]  = vMax.y; corners[2]  = vMax.z;
+    corners[3]  = vMax.x; corners[4]  = vMax.y; corners[5]  = vMin.z;
+    corners[6]  = vMax.x; corners[7]  = vMin.y; corners[8]  = vMax.z;
+    corners[9]  = vMax.x; corners[10] = vMin.y; corners[11] = vMin.z;
+    corners[12] = vMin.x; corners[13] = vMax.y; corners[14] = vMax.z;
+    corners[15] = vMin.x; corners[16] = vMax.y; corners[17] = vMin.z;
+    corners[18] = vMin.x; corners[19] = vMin.y; corners[20] = vMax.z;
+    corners[21] = vMin.x; corners[22] = vMin.y; corners[23] = vMin.z;
 
-    // Transform remaining corners and expand bounds
-    for (int i = 1; i < 8; i++) {
-        mat->Transform(&corners[i], &corners[i]);
+    mat->Transform((gbVec3D *)corners, 8);
 
-        if (corners[i].x < vMin.x) vMin.x = corners[i].x;
-        if (corners[i].y < vMin.y) vMin.y = corners[i].y;
-        if (corners[i].z < vMin.z) vMin.z = corners[i].z;
+    *(int *)&vMin.z = 0x7F7FFFFF;
+    *(int *)&vMin.y = 0x7F7FFFFF;
+    *(int *)&vMin.x = 0x7F7FFFFF;
+    *(int *)&vMax.z = 0xFF7FFFFF;
+    *(int *)&vMax.y = 0xFF7FFFFF;
+    *(int *)&vMax.x = 0xFF7FFFFF;
 
-        if (corners[i].x > vMax.x) vMax.x = corners[i].x;
-        if (corners[i].y > vMax.y) vMax.y = corners[i].y;
-        if (corners[i].z > vMax.z) vMax.z = corners[i].z;
+    float *pf = &corners[1];
+    for (i = 8; i != 0; i--) {
+        if (vMin.x > pf[-1]) vMin.x = pf[-1];
+        if (vMax.x < pf[-1]) vMax.x = pf[-1];
+        if (vMin.y > pf[0]) vMin.y = pf[0];
+        if (vMax.y < pf[0]) vMax.y = pf[0];
+        if (vMin.z > pf[1]) vMin.z = pf[1];
+        if (vMax.z < pf[1]) vMax.z = pf[1];
+        pf += 3;
     }
 }
