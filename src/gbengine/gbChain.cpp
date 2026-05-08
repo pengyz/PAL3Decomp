@@ -100,24 +100,37 @@ void gbChain1D::AddNode(gbChain1DNode* node) {
 }
 
 void gbChain1D::InsertBefore(gbChain1DNode* newNode, gbChain1DNode* beforeNode) {
-    if (!newNode) return;
+    gbChain1DNode* prev;
+    gbChain1DNode* cur;
 
-    if (!beforeNode || beforeNode == pHead) {
-        AddNodeOnHead(newNode);
+    if (beforeNode != NULL) {
+        prev = pHead;
+        if (prev != beforeNode) {
+            cur = prev->pNext;
+            while (cur != beforeNode) {
+                prev = cur;
+                cur = cur->pNext;
+            }
+            prev->pNext = newNode;
+            newNode->pNext = beforeNode;
+            nCount++;
+            return;
+        }
+        pHead = newNode;
+        newNode->pNext = beforeNode;
         return;
     }
 
-    // Find node preceding beforeNode
-    gbChain1DNode* prev = pHead;
-    while (prev && prev->pNext != beforeNode) {
-        prev = prev->pNext;
-    }
-
-    if (prev) {
-        newNode->pNext = beforeNode;
-        prev->pNext = newNode;
+    newNode->pNext = NULL;
+    if (pTail != NULL) {
+        pTail->pNext = newNode;
+        pTail = newNode;
         nCount++;
+        return;
     }
+    pTail = newNode;
+    pHead = newNode;
+    nCount++;
 }
 
 void gbChain1D::InsertAfter(gbChain1DNode* newNode, gbChain1DNode* afterNode) {
@@ -140,30 +153,38 @@ void gbChain1D::InsertAfter(gbChain1DNode* newNode, gbChain1DNode* afterNode) {
 }
 
 void gbChain1D::DelNodeFromChain(gbChain1DNode* node) {
-    if (!node) return;
+    gbChain1DNode* prev;
+    gbChain1DNode* cur;
 
     if (node == pHead) {
-        pHead = node->pNext;
-        if (!pHead) {
+        if (node == pTail) {
             pTail = NULL;
+            pHead = NULL;
+            nCount--;
+            return;
         }
+        pHead = node->pNext;
         nCount--;
         return;
     }
 
-    // Find previous node
-    gbChain1DNode* prev = pHead;
-    while (prev && prev->pNext != node) {
-        prev = prev->pNext;
-    }
-
-    if (prev) {
-        prev->pNext = node->pNext;
+    prev = pHead;
+    cur = prev->pNext;
+    if (cur != NULL) {
+        while (cur != node) {
+            prev = cur;
+            cur = cur->pNext;
+            if (cur == NULL) {
+                nCount--;
+                return;
+            }
+        }
         if (node == pTail) {
             pTail = prev;
         }
-        nCount--;
+        prev->pNext = node->pNext;
     }
+    nCount--;
 }
 
 bool gbChain1D::IsContainNode(gbChain1DNode* node) {
@@ -268,20 +289,28 @@ void gbChain2D::AddNode(gbChain2DNode* node) {
 }
 
 void gbChain2D::DelNodeFromChain(gbChain2DNode* node) {
-    if (!node) return;
-
-    if (node->pPrev) {
-        node->pPrev->pNext = node->pNext;
-    } else {
+    if (node == pHead) {
+        if (node == pTail) {
+            pTail = NULL;
+            pHead = NULL;
+            nCount--;
+            return;
+        }
         pHead = node->pNext;
+        node->pNext->pPrev = NULL;
+        nCount--;
+        return;
     }
 
-    if (node->pNext) {
-        node->pNext->pPrev = node->pPrev;
-    } else {
+    if (node == pTail) {
         pTail = node->pPrev;
+        node->pPrev->pNext = NULL;
+        nCount--;
+        return;
     }
 
+    node->pPrev->pNext = node->pNext;
+    node->pNext->pPrev = node->pPrev;
     nCount--;
 }
 
@@ -516,30 +545,47 @@ gbStaticChain& gbStaticChain::operator=(const gbStaticChain& other) {
 }
 
 void gbStaticChain::InitBuffer(int maxNodes, int nodeSize) {
-    if (maxNodes <= 0 || nodeSize <= 0) return;
+    int i;
+    int last;
 
     nMaxNodes = maxNodes;
     nNodeSize = nodeSize;
     nUsedCount = 0;
 
-    // Allocate buffer
     pBuffer = malloc(maxNodes * nodeSize);
-    if (!pBuffer) return;
 
-    // Link all nodes into free list
-    pFreeHead = NULL;
-    char* ptr = (char*)pBuffer;
-    for (int i = 0; i < maxNodes; i++) {
-        gbStaticChainNode* node = (gbStaticChainNode*)ptr;
-        node->pPrev = NULL;
-        node->pNext = pFreeHead;
-        if (pFreeHead) {
-            pFreeHead->pPrev = node;
-        }
-        pFreeHead = node;
-        ptr += nodeSize;
+    // Build forward links: nodes[i].pNext -> nodes[i+1]
+    last = maxNodes - 1;
+    i = 0;
+    if (i < last) {
+        do {
+            gbStaticChainNode* cur = (gbStaticChainNode*)((char*)pBuffer + nNodeSize * i);
+            gbStaticChainNode* next = (gbStaticChainNode*)((char*)pBuffer + nNodeSize * (i + 1));
+            cur->pNext = next;
+            i++;
+        } while (i < last);
     }
 
+    // Last node's pNext = NULL
+    gbStaticChainNode* lastNode = (gbStaticChainNode*)((char*)pBuffer + nNodeSize * last);
+    lastNode->pNext = NULL;
+
+    // Build backward links: nodes[i].pPrev -> nodes[i-1]
+    i = 1;
+    if (i < maxNodes) {
+        do {
+            gbStaticChainNode* cur = (gbStaticChainNode*)((char*)pBuffer + nNodeSize * i);
+            gbStaticChainNode* prev = (gbStaticChainNode*)((char*)pBuffer + nNodeSize * (i - 1));
+            cur->pPrev = prev;
+            i++;
+        } while (i < maxNodes);
+    }
+
+    // First node's pPrev = NULL
+    ((gbStaticChainNode*)pBuffer)->pPrev = NULL;
+
+    // Free list starts at buffer[0]
+    pFreeHead = (gbStaticChainNode*)pBuffer;
     pUsedHead = NULL;
     pIterator = NULL;
 }
