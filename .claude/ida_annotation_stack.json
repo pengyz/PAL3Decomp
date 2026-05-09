@@ -1,0 +1,243 @@
+{
+  "annotated": {
+    "0x00404800": {
+      "name": "PAL3::Create",
+      "reason": "PDB+manual",
+      "depth": 0
+    },
+    "0x004055D0": {
+      "name": "PAL3::Update",
+      "reason": "PDB+manual",
+      "depth": 0
+    },
+    "0x00405C00": {
+      "name": "PAL3::Render",
+      "reason": "PDB+manual",
+      "depth": 0
+    },
+    "0x00406230": {
+      "name": "PAL3::Destroy",
+      "reason": "PDB+manual",
+      "depth": 0
+    },
+    "0x00541900": {
+      "name": "WinMain",
+      "reason": "PDB+manual",
+      "depth": 0
+    },
+    "0x0040C960": {
+      "name": "ScriptSystem::Destroy",
+      "reason": "this-source: global script array",
+      "depth": 1
+    },
+    "0x00422DF0": {
+      "name": "UISystem::Destroy",
+      "reason": "this-source: UISceneUpdate()",
+      "depth": 1
+    },
+    "0x0040C630": {
+      "name": "ScriptSystem::Render",
+      "reason": "cdecl, script area",
+      "depth": 1
+    },
+    "0x0040C7D0": {
+      "name": "ScriptSystem::Render2",
+      "reason": "cdecl, script area",
+      "depth": 1
+    },
+    "0x0041F370": {
+      "name": "UIManager::Render",
+      "reason": "this=g_UIManager",
+      "depth": 1
+    },
+    "0x004CDBF0": {
+      "name": "SceneMgr::RenderAll",
+      "reason": "this=g_pSceneMgr",
+      "depth": 1
+    },
+    "0x004CDC20": {
+      "name": "SceneMgr::RenderUpdate",
+      "reason": "this=g_pSceneMgr",
+      "depth": 1
+    },
+    "0x00513120": {
+      "name": "CCBSystem::RenderCheck",
+      "reason": "this=g_pCBSystem",
+      "depth": 1
+    },
+    "0x0053C990": {
+      "name": "Logger::Render",
+      "reason": "this=g_Logger",
+      "depth": 1
+    }
+  },
+  "frontier": [
+    {
+      "addr": "0x00408BE0",
+      "name": "PAL3::InitSubsystems",
+      "parent": "0x00404800",
+      "depth": 1,
+      "status": "analyzed"
+    },
+    {
+      "addr": "0x0041C1B0",
+      "name": "CameraCtrl::InitParams",
+      "parent": "0x00404800",
+      "depth": 1,
+      "status": "analyzed"
+    },
+    {
+      "addr": "0x0041ED00",
+      "name": "SoundSystem::Init",
+      "parent": "0x00404800",
+      "depth": 1,
+      "status": "analyzed"
+    },
+    {
+      "addr": "0x0041EFA0",
+      "name": "ScriptSystem::Init",
+      "parent": "0x00404800",
+      "depth": 1,
+      "status": "analyzed"
+    },
+    {
+      "addr": "0x0041F5E0",
+      "name": "UIManager::LoadShadowTexture",
+      "parent": "0x00404800",
+      "depth": 1,
+      "status": "analyzed"
+    },
+    {
+      "addr": "0x00430290",
+      "name": "PalScript::LoadScript",
+      "parent": "0x00404800",
+      "depth": 1,
+      "status": "analyzed"
+    },
+    {
+      "addr": "0x00430570",
+      "name": "PalScript::SetAppName",
+      "parent": "0x00404800",
+      "depth": 1,
+      "status": "analyzed"
+    },
+    {
+      "addr": "0x004318B0",
+      "name": "PalScript::LoadFromFile",
+      "parent": "0x00404800",
+      "depth": 1,
+      "status": "analyzed"
+    },
+    {
+      "addr": "0x0044F130",
+      "name": "CGameData::Init",
+      "parent": "0x00404800",
+      "depth": 1,
+      "status": "analyzed"
+    },
+    {
+      "addr": "0x00457410",
+      "name": "PAL_GDB::LoadLanguage",
+      "parent": "0x00404800",
+      "depth": 1,
+      "status": "analyzed"
+    },
+    {
+      "addr": "0x004B6D80",
+      "name": "RenderTarget4::Init",
+      "parent": "0x00404800",
+      "depth": 1,
+      "status": "analyzed"
+    },
+    {
+      "addr": "0x004BF780",
+      "name": "RenderTarget2::Init",
+      "parent": "0x00404800",
+      "depth": 1,
+      "status": "analyzed"
+    },
+    {
+      "addr": "0x004CDA10",
+      "name": "SceneMgr::Create",
+      "parent": "0x00404800",
+      "depth": 1,
+      "status": "analyzed"
+    },
+    {
+      "addr": "0x00512500",
+      "name": "CCBSystem::CCBSystem",
+      "parent": "0x00404800",
+      "depth": 1,
+      "status": "analyzed"
+    },
+    {
+      "addr": "0x0053C340",
+      "name": "CScreenMode::InitCPK",
+      "parent": "0x00404800",
+      "depth": 1,
+      "status": "analyzed"
+    },
+    {
+      "addr": "0x0053C5A0",
+      "name": "CScreenMode::PlayVideo",
+      "parent": "0x00404800",
+      "depth": 1,
+      "status": "analyzed"
+    },
+    {
+      "addr": "0x0040C960",
+      "name": null,
+      "parent": "0x00406230",
+      "depth": 2,
+      "status": "pending"
+    },
+    {
+      "addr": "0x00422DF0",
+      "name": null,
+      "parent": "0x00406230",
+      "depth": 2,
+      "status": "pending"
+    }
+  ],
+  "stats": {
+    "total_annotated": 14,
+    "functions_named": 1651,
+    "current_depth": 2,
+    "next_expansion": [
+      "CGameData::Init (23 callees)",
+      "ScriptSystem::Init (7 callees)"
+    ]
+  },
+  "globals": {
+    "named": 26,
+    "unnamed": 3586,
+    "known_names": [
+      "g_pGfxManager",
+      "g_pCamera",
+      "g_pCBSystem",
+      "g_pActorMgr",
+      "g_pSceneMgr",
+      "g_UIManager",
+      "g_GameData",
+      "g_Logger",
+      "g_nGameState",
+      "g_nGameFlags",
+      "g_bGameActive",
+      "g_bRenderUI",
+      "g_fEventTimer",
+      "g_fSceneTime",
+      "g_fTotalTime",
+      "g_pCursorNode1",
+      "g_pCursorNode2",
+      "g_hCursor",
+      "g_pVideoPlayer",
+      "g_pDropGroup1",
+      "g_pDropGroup2",
+      "g_pRoleSystem",
+      "g_pVFileSys",
+      "g_GDB",
+      "g_DisplayConfig",
+      "g_CurrentTime"
+    ]
+  }
+}
