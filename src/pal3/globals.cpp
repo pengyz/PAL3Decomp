@@ -97,36 +97,21 @@ extern "C" void __cdecl sub_430570(const char *) {}
 
 // 0x0053DF70 - CScreenMode::GetInstance (6B, matched)
 // asm: B8 xx xx xx xx C3 = mov eax, &g_ScreenMode; ret
-#include "pal3/CScreenMode.h"
-static CScreenMode g_ScreenModeInstance;
-extern "C" int __cdecl sub_53DF70(void) { return (int)&g_ScreenModeInstance; }
 
-// 0x0053CDD0 - CScreenMode::SetState (13B, matched)
 // asm: 8B 44 24 04; 89 81 24 12 00 00; C2 04 00
-void CScreenMode::SetState(int state) { *(int *)((char *)this + 0x1224) = state; }
 
-// 0x0053E500 - CScreenMode::GetAudioManager (7B, matched)
 // asm: 8B 81 28 03 00 00; C3
-gbAudioManager *CScreenMode::GetAudioManager(void) { return *(gbAudioManager **)((char *)this + 0x328); }
 
-// 0x0053DEF0 - CScreenMode::Restore (stub, needs analysis)
-void CScreenMode::Restore(void) {}
 
 // C linkage wrappers (PAL3::Update calls these by extern "C" name)
-extern "C" int __cdecl sub_53CDD0(int a) { g_ScreenModeInstance.SetState(a); return 0; }
-extern "C" int __cdecl sub_53E500(int a) { return (int)((CScreenMode *)a)->GetAudioManager(); }
 
 // === STUB: 0x0053DD70 - CScreenMode::SetMode ===
-extern "C" void __cdecl sub_53DD70(int) {}
 
 // === STUB: 0x004020E0 - DirectInput初始化 ===
-extern "C" int __cdecl sub_4020E0(void *ppv, HINSTANCE hInst, HWND hwnd, int flag) { return 1; }
 
 // === STUB: 0x00402270 - 设置输入范围 ===
-extern "C" void __cdecl sub_402270(void *ppv, int a, int b, int c, int d) {}
 
 // === STUB: 0x004022B0 - 设置输入模式 ===
-extern "C" void __cdecl sub_4022B0(void *ppv, int mode) {}
 
 // === STUB: 0x0053C340 - 未知初始化 ===
 extern "C" void __cdecl sub_53C340(int a, int b) {}
@@ -359,13 +344,6 @@ public:
 
 void *OpenNULLFile::OpenNULLFile_ctor(void **pv) { return 0; }
 
-// CCBStage::ProcUseItem - called from CBSystem.cpp
-class CCBStage {
-public:
-    unsigned long ProcUseItem(unsigned long hwnd);
-};
-
-unsigned long CCBStage::ProcUseItem(unsigned long hwnd) { return 1; }
 
 
 // ============================================================
@@ -395,7 +373,6 @@ extern "C" short word_8ACCD8 = 0;            // 0x008ACCD8 - 按键映射表起�
 extern "C" float flt_C1096C = 0.0f;          // 0x00C1096C - 角色位置数组结束
 
 // PAL3::Update callees - sub_ stubs
-extern "C" short __cdecl sub_4022C0(void *, unsigned short) { return 0; }
 extern "C" void __cdecl sub_40C230(float) {}
 extern "C" void __cdecl sub_4105B0(float) {}
 extern "C" void __cdecl sub_4181E0(int) {}
@@ -420,19 +397,9 @@ extern "C" void __cdecl sub_52F350(float) {}
 extern "C" void __cdecl sub_5353A0(float) {}
 extern "C" void __cdecl sub_53D150(void) {}
 extern "C" void __cdecl sub_53D1A0(int, int) {}
-extern "C" void __cdecl sub_53E490(int) {}
-extern "C" void __cdecl sub_53E950(int) {}
-extern "C" void __cdecl sub_53EA60(int) {}
 extern "C" void __cdecl sub_541590(int) {}
 
-// Named method stubs
-class GRPinput {
-public:
-    void Poll(void);
-    void SetMouseAbs(unsigned int time, int btn, int state);
-};
-void GRPinput::Poll(void) {}
-void GRPinput::SetMouseAbs(unsigned int, int, int) {}
+// GRPinput/CScreenMode/CCBStage — 已迁移到独立 .cpp 文件
 
 extern "C" void __cdecl PAL3_IfHideFightSucceed(int) {}
 extern "C" void __cdecl PAL3_EndHideFight(void) {}
@@ -501,7 +468,6 @@ extern "C" void __cdecl UIRenderObj_UIRenderObj(int) {}
 // ============================================================
 
 // 0x0053DF70 - CScreenMode::GetInstance (6B) — 返回静态单例地址
-// 已在 globals.cpp 中作为 extern "C" stub 存在 (sub_53DF70)
 // 原始: mov eax, 0x017B41E8; ret — 但由于当前是 cdecl stub 返回 0，
 // 保持 stub 直到有完整 CScreenMode 类型定义
 
@@ -509,7 +475,6 @@ extern "C" void __cdecl UIRenderObj_UIRenderObj(int) {}
 // 原始: mov [ecx], 0xFFFFFFFF; ret → this->m_state = -1;
 // 当前作为 extern "C" void 在 globals.cpp 中，需改为 thiscall 类方法
 
-// 0x0053E500 - CScreenMode::GetAudioManager (7B)
 // 原始: mov eax, [ecx+0x328]; ret → return this->m_pAudioMgr;
 
 // 0x0044FF60 - CGameData::GetMode (7B)
@@ -518,5 +483,4 @@ extern "C" void __cdecl UIRenderObj_UIRenderObj(int) {}
 // 0x004022B0 - GRPinput::SetMode (10B)
 // 原始: mov eax,[esp+4]; mov [ecx+0xC],eax; ret 4 → this->m_mode = arg;
 
-// 0x0053CDD0 - CScreenMode::SetState (13B)
 // 原始: mov eax,[esp+4]; mov [ecx+0x1224],eax; ret 4 → this->m_state = arg;
