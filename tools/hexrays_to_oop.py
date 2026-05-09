@@ -25,6 +25,27 @@ import sys
 import os
 from pathlib import Path
 
+# Set of function names confirmed as __thiscall (loaded from decomp)
+# Only these will be converted to OOP form
+THISCALL_FUNCS = set()
+
+
+def load_thiscall_db(decomp_dir):
+    """Build set of confirmed thiscall function names from decomp JSONs."""
+    global THISCALL_FUNCS
+    for f in Path(decomp_dir).glob("*.json"):
+        if f.name.startswith("_"):
+            continue
+        try:
+            with open(f, 'r', encoding='utf-8') as fh:
+                d = json.load(fh)
+            name = d.get('name', '')
+            sig = d.get('signature', '')
+            if name and '__thiscall' in sig:
+                THISCALL_FUNCS.add(name)
+        except:
+            pass
+
 
 def extract_first_arg_and_rest(args_str):
     """
@@ -93,7 +114,7 @@ def transform_line(line):
         return line
 
     # Pattern: optional_prefix Class::Method( args )  optional_suffix
-    # We need to handle: assignment, if(), return, standalone call
+    # Only convert if function is confirmed __thiscall (or THISCALL_FUNCS is empty = convert all)
     # Strategy: find Class::Method( and then balance parens to find full call
 
     result = line
@@ -110,6 +131,13 @@ def transform_line(line):
         # Skip constructor calls: Class::Class(
         if cls == method:
             continue
+
+        # Skip if not confirmed thiscall (when database is loaded)
+        full_name = "%s::%s" % (cls, method)
+        if THISCALL_FUNCS and full_name not in THISCALL_FUNCS:
+            # Also check partial match (Class::sub_XXXX style)
+            if not any(n.startswith(cls + "::") for n in THISCALL_FUNCS if method in n):
+                continue
 
         # Find matching closing paren
         depth = 0
@@ -262,6 +290,12 @@ if __name__ == '__main__':
     if '--input' in sys.argv:
         idx = sys.argv.index('--input')
         input_path = sys.argv[idx + 1]
+
+        # Load thiscall database
+        decomp_dir = 'asm/pal3/decomp'
+        if os.path.isdir(decomp_dir):
+            load_thiscall_db(decomp_dir)
+            print(f"Loaded {len(THISCALL_FUNCS)} thiscall functions", file=sys.stderr)
 
         with open(input_path, 'r', encoding='utf-8') as f:
             if input_path.endswith('.json'):
