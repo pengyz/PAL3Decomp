@@ -90,7 +90,7 @@ extern "C" void __cdecl sub_44F610(int);
 extern "C" int  __cdecl RenderTarget_GetInstance(void);
 extern "C" void __cdecl RenderTarget_Create(int);
 extern "C" int  __cdecl RenderTarget3_GetInstance(void);
-extern "C" void __cdecl sub_4B65F0(int);
+extern "C" void __cdecl RenderTarget3_Init(int);
 extern "C" int  __cdecl RenderTarget2_GetInstance(void);
 extern "C" void __cdecl sub_4BF780(int);
 extern "C" int  __cdecl RenderTarget4_GetInstance(void);
@@ -393,7 +393,7 @@ void __cdecl PAL3::Create(HINSTANCE hInstance)
         rt5 = RenderTarget_GetInstance();
         RenderTarget_Create(rt5);
         rt6 = RenderTarget3_GetInstance();
-        sub_4B65F0(rt6);
+        RenderTarget3_Init(rt6);
         rt7 = RenderTarget2_GetInstance();
         sub_4BF780(rt7);
         rt8 = RenderTarget4_GetInstance();
@@ -409,7 +409,7 @@ void __cdecl PAL3::Create(HINSTANCE hInstance)
         rt0 = RenderTarget_GetInstance();
         RenderTarget_Create(rt0);
         rt1 = RenderTarget3_GetInstance();
-        sub_4B65F0(rt1);
+        RenderTarget3_Init(rt1);
         rt2 = RenderTarget2_GetInstance();
         sub_4BF780(rt2);
         rt3 = RenderTarget4_GetInstance();

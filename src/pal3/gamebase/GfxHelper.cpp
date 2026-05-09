@@ -23,12 +23,29 @@ struct gbMatrixStack {
     void LoadIdentity(void);
 };
 
+struct gbRenderEffect;
+
+// gbEffectMgr::NewRenderEffect 通过 gbengine.dll 内部虚函数调用
+// 在 PAL3.exe 中无直接导入，通过 vtable 间接调用
+// 此处提供最小声明以满足编译
+struct gbEffectMgr {
+    gbRenderEffect *NewRenderEffect(const char *filename, unsigned int flags);
+};
+
+// === STUB: gbEffectMgr::NewRenderEffect (gbengine 内部) ===
+gbRenderEffect *gbEffectMgr::NewRenderEffect(const char *, unsigned int) { return 0; }
+
 struct gbGfxManager_Partial {
-    char _pad[0xD4];
-    gbMatrixStack *pMatrixStack[4]; // +0xD4
+    char _pad_00[0xC8];
+    gbEffectMgr *pEffectMgr;        // +0xC8
+    char _pad_CC[8];                 // +0xCC: pTexResMgr, pFontMgr
+    gbMatrixStack *pMatrixStack[4];  // +0xD4
 };
 
 extern "C" gbGfxManager_Partial *g_pGfxManager;
+
+extern "C" const char aGfxscriptGlowG[];  // "gfxscript\\glow.gfx"
+extern "C" const char aGfxscriptGeomG[];  // "gfxscript\\geom.gfx"
 
 // 0x00540FA0 - PopMatrixStacks (34B)
 // Pop pMatrixStack[0] and pMatrixStack[1]
@@ -49,4 +66,15 @@ extern "C" void __cdecl PushMatrixStacks(void)
     pView->Push();
     pWorld->LoadIdentity();
     pView->LoadIdentity();
+}
+
+// 0x004B65F0 - RenderTarget3_Init (55B)
+// 创建 glow + geom 渲染效果，存入 this[0] 和 this[1]
+// IDA 标记为 __cdecl 但实际通过 ecx 传入 this (fastcall/thiscall 混合)
+extern "C" int __cdecl RenderTarget3_Init(int *pThis)
+{
+    gbEffectMgr *pEffMgr = g_pGfxManager->pEffectMgr;
+    pThis[0] = (int)pEffMgr->NewRenderEffect(aGfxscriptGlowG, 0);
+    pThis[1] = (int)pEffMgr->NewRenderEffect(aGfxscriptGeomG, 1);
+    return 1;
 }

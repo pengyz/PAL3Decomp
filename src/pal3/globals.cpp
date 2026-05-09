@@ -177,7 +177,9 @@ extern "C" void __cdecl RenderTarget_Create(int) {}
 // RenderTarget3_GetInstance (was sub_4B65A0): moved to effect/RenderTarget34.cpp
 
 // === STUB: 0x004B65F0 ===
-extern "C" void __cdecl sub_4B65F0(int) {}
+// RenderTarget3_Init (was sub_4B65F0): moved to gamebase/GfxHelper.cpp
+extern "C" const char aGfxscriptGlowG[] = "gfxscript\\glow.gfx";
+extern "C" const char aGfxscriptGeomG[] = "gfxscript\\geom.gfx";
 
 // === STUB: 0x004BFD20 ===
 // RenderTarget2_GetInstance (was sub_4BFD20): moved to effect/RenderTarget2.cpp
