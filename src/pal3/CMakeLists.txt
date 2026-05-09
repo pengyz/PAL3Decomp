@@ -32,6 +32,7 @@ endif()
 set(PAL3_SOURCES
     WinMain.cpp
     PAL3_Create.cpp
+    Combat/CBSystem.cpp
 )
 
 # ========================================================================

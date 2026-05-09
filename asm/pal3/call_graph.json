@@ -70,7 +70,7 @@
       "name": "Iostream_init::Iostream_init(void)",
       "address": "0x00408BC0",
       "size": 3,
-      "status": "pending",
+      "status": "skipped",
       "source": null,
       "suggested_source": null,
       "match_rate": null,
@@ -86,13 +86,17 @@
       "name": "CCBSystem::ProcUseItem(ulong)",
       "address": "0x00513380",
       "size": 16,
-      "status": "pending",
-      "source": null,
+      "status": "matched",
+      "source": "src/pal3/Combat/CBSystem.cpp",
       "suggested_source": "Combat/CBSystem.cpp",
-      "match_rate": null,
-      "calls": [],
+      "match_rate": 1.0,
+      "calls": [
+        "0x004E0530",
+        "0x00513380"
+      ],
       "called_by": [
-        "0x00541900"
+        "0x00541900",
+        "0x00513380"
       ],
       "depth": 1,
       "has_decomp": true,
@@ -185,6 +189,22 @@
       "depth": 0,
       "has_decomp": true,
       "is_named": true
+    },
+    "0x004E0530": {
+      "name": "sub_4E0530",
+      "address": "0x004E0530",
+      "size": 116,
+      "status": "pending",
+      "source": null,
+      "suggested_source": null,
+      "match_rate": null,
+      "calls": [],
+      "called_by": [
+        "0x00513380"
+      ],
+      "depth": 2,
+      "has_decomp": false,
+      "is_named": false
     }
   },
   "frontier": [
@@ -192,22 +212,21 @@
     "0x004055D0",
     "0x00405C00",
     "0x00406230",
-    "0x00408BC0",
-    "0x00513380",
     "0x005382D0",
     "0x005417C0",
     "0x00541860",
-    "0x00541C40"
+    "0x00541C40",
+    "0x004E0530"
   ],
   "stats": {
-    "total_nodes": 11,
-    "matched": 1,
+    "total_nodes": 12,
+    "matched": 2,
     "compiled": 0,
     "wip": 0,
-    "pending": 10,
-    "skipped": 0,
+    "pending": 9,
+    "skipped": 1,
     "blocked": 0,
-    "frontier_size": 10,
-    "max_depth": 1
+    "frontier_size": 9,
+    "max_depth": 2
   }
 }
