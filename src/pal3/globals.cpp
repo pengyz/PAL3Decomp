@@ -167,8 +167,30 @@ extern "C" void __cdecl UIRenderQuadList(int) {}
 // === STUB: 0x0041F5E0 - 未知初始化(C11758相关) ===
 extern "C" void __cdecl sub_41F5E0(void *) {}
 
-// === STUB: 0x0053CE90 - 日志初始化 ===
-extern "C" void __cdecl sub_53CE90(void *) {}
+// 0x0053CE90 - LoggerRegisterCallbacks (47B)
+// Registers two log output callbacks: screen display + file output
+extern "C" int __cdecl sub_53CC10(int *, int, const char *, void *);
+extern "C" void __cdecl sub_423500(void);
+extern "C" void __cdecl sub_53CE20(void);
+extern "C" const char aKm[] = "KM";
+extern "C" const char aFv[] = "FV";
+extern "C" char byte_608944;
+extern "C" char byte_608930;
+
+extern "C" int __cdecl LoggerRegisterCallbacks(int *pLogger)
+{
+    sub_53CC10(pLogger, (int)sub_423500, aKm, &byte_608944);
+    return sub_53CC10(pLogger, (int)sub_53CE20, aFv, &byte_608930);
+}
+
+// === STUB: sub_53CC10 - Logger::RegisterCallback ===
+int __cdecl sub_53CC10(int *, int, const char *, void *) { return 0; }
+// === STUB: sub_423500 - ScreenLogCallback ===
+void __cdecl sub_423500(void) {}
+// === STUB: sub_53CE20 - FileLogCallback ===
+void __cdecl sub_53CE20(void) {}
+char byte_608944 = 0;
+char byte_608930 = 0;
 
 // 0x0053CC70 - Logger::Write (128B)
 // Logger 部分布局 (从使用推断):

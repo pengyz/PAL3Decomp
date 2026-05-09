@@ -80,7 +80,7 @@ extern "C" void __cdecl sub_408BE0(void);
 extern "C" int  __cdecl UIQuadManager_GetInstance(void);
 extern "C" void __cdecl UIRenderQuadList(int);
 extern "C" void __cdecl sub_41F5E0(void *);
-extern "C" void __cdecl sub_53CE90(void *);
+extern "C" void __cdecl LoggerRegisterCallbacks(void *);
 extern "C" void __cdecl LoggerWrite(void *, const char *, const char *);
 extern "C" void *__cdecl sub_512500(void *);
 extern "C" void __cdecl CCBSystem_ProcNormalAttack(void *);
@@ -341,7 +341,7 @@ void __cdecl PAL3::Create(HINSTANCE hInstance)
     sub_41F5E0(&g_UIManager);
 
     // Logging
-    sub_53CE90(&g_Logger);
+    LoggerRegisterCallbacks(&g_Logger);
     LoggerWrite(&g_Logger, aSBulidSS, aV104);
     LoggerWrite(&g_Logger, aGameCreateOk, NULL);
 
