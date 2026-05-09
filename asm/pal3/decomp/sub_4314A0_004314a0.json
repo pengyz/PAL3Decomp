@@ -1,0 +1,7 @@
+{
+  "name": "sub_4314A0",
+  "address": "0x004314A0",
+  "size_bytes": 67,
+  "signature": "_DWORD *__thiscall(void *this)",
+  "decompiled_c": "// between_std_methods (0x430790-0x445B40)\n_DWORD *__thiscall sub_4314A0(void *this)\n{\n  _DWORD **v1; // edx\n  _DWORD *result; // eax\n\n  v1 = *(_DWORD ***)(*(_DWORD *)this + 8);\n  if ( v1 == dword_D8C2B0 )\n  {\n    for ( result = *(_DWORD **)(*(_DWORD *)this + 4); *(_DWORD *)this == result[2]; result = (_DWORD *)result[1] )\n      *(_DWORD *)this = result;\n    if ( *(_DWORD **)(*(_DWORD *)this + 8) != result )\n      *(_DWORD *)this = result;\n  }\n  else\n  {\n    for ( result = *v1; result != dword_D8C2B0; result = (_DWORD *)*result )\n      v1 = (_DWORD **)result;\n    *(_DWORD *)this = v1;\n  }\n  return result;\n}\n"
+}

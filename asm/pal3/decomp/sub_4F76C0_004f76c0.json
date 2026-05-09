@@ -1,0 +1,7 @@
+{
+  "name": "sub_4F76C0",
+  "address": "0x004F76C0",
+  "size_bytes": 344,
+  "signature": "int __thiscall(_DWORD *this, unsigned int a2, int a3)",
+  "decompiled_c": "// between_std_methods (0x4D70B0-0x504E20)\nint __thiscall sub_4F76C0(_DWORD *this, unsigned int a2, int a3)\n{\n  int v4; // ebx\n  int v5; // edx\n  _DWORD *v6; // edi\n  int v8; // eax\n  int v9; // ecx\n  _DWORD *v10; // edx\n  int v11; // [esp+10h] [ebp-4h]\n  int v12; // [esp+18h] [ebp+4h]\n\n  if ( a2 > 4 )\n  {\n    v8 = PAL_GDB::~PAL_GDB(g_GDB, *(this + 223 * a2 + 138));\n    v9 = 0;\n    v10 = (_DWORD *)(v8 + 760);\n    do\n    {\n      if ( *v10 == a3 )\n        return *(unsigned __int8 *)(v8 + v9 + 776);\n      ++v9;\n      ++v10;\n    }\n    while ( v9 < 3 );\n    if ( *(_DWORD *)(v8 + 772) == a3 )\n      return 4;\n    else\n      return a3 == 207 || a3 == 215 || a3 == 232 || a3 == 224 || a3 == 240;\n  }\n  else\n  {\n    v11 = 0;\n    v12 = 0;\n    v4 = 936;\n    while ( 2 )\n    {\n      v5 = 0;\n      v6 = (_DWORD *)((char *)this + 892 * a2 + v12 + 744);\n      do\n      {\n        if ( *v6 == a3 && *((_BYTE *)this + 892 * a2 + v5 + v4) )\n          return *((unsigned __int8 *)this + 892 * a2 + 8 * v11 + v5 + 1032) + 1;\n        ++v5;\n        ++v6;\n      }\n      while ( v5 < 8 );\n      v4 += 8;\n      ++v11;\n      v12 += 32;\n      if ( v4 < 984 )\n        continue;\n      break;\n    }\n    return 0;\n  }\n}\n"
+}

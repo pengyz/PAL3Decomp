@@ -1,0 +1,7 @@
+{
+  "name": "sub_43D890",
+  "address": "0x0043D890",
+  "size_bytes": 138,
+  "signature": "struct gbVFileSystem *__thiscall(UIWnd *this, int id, void *pRect, int a4, int a5, int parent)",
+  "decompiled_c": "// between_std_methods (0x430790-0x445B40)\nstruct gbVFileSystem *__thiscall sub_43D890(UIWnd *this, int id, void *pRect, int a4, int a5, int parent)\n{\n  gbTexture *v7; // eax\n\n  UIWnd::Create(this, id, pRect, parent);\n  OpenBaseFile::OpenBaseFile(&parent);\n  v7 = (gbTexture *)(*((int (__thiscall **)(gbGfxManager *, int))g_pGfxManager->vtable + 2))(g_pGfxManager, a4);\n  *((_DWORD *)this + 19) = v7;\n  if ( v7 )\n    gbTexture::LoadTexture(v7, 1);\n  *((_DWORD *)this + 20) = a5;\n  return OpenNULLFile::OpenNULLFile((struct gbVFileSystem **)&parent);\n}\n"
+}

@@ -1,0 +1,7 @@
+{
+  "name": "sub_4FA440",
+  "address": "0x004FA440",
+  "size_bytes": 133,
+  "signature": "int __stdcall(int a1, int a2)",
+  "decompiled_c": "// between_std_methods (0x4D70B0-0x504E20)\nint __stdcall sub_4FA440(int a1, int a2)\n{\n  double v2; // st7\n  float v4; // [esp+0h] [ebp-4h]\n  float v5; // [esp+10h] [ebp+Ch]\n\n  v4 = 0.0;\n  v5 = (float)a2;\n  switch ( a1 )\n  {\n    case 0:\n      v2 = v5 * 3.3 + 17.0;\n      goto LABEL_7;\n    case 1:\n      v2 = v5 * 3.0 + 13.0;\n      goto LABEL_7;\n    case 2:\n      v2 = v5 * 3.5 + 16.0;\n      goto LABEL_7;\n    case 3:\n      v2 = v5 * 3.0 + 16.0;\n      goto LABEL_7;\n    case 4:\n      v2 = v5 * 3.0 + 18.0;\nLABEL_7:\n      v4 = v2;\n      break;\n    default:\n      return (int)v4;\n  }\n  return (int)v4;\n}\n"
+}

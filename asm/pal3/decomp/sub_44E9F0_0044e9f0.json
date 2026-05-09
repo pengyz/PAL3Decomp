@@ -1,0 +1,7 @@
+{
+  "name": "sub_44E9F0",
+  "address": "0x0044E9F0",
+  "size_bytes": 278,
+  "signature": "int __thiscall(_DWORD *this)",
+  "decompiled_c": "// between_std_methods (0x44BDA0-0x4A7690)\nint __thiscall sub_44E9F0(_DWORD *this)\n{\n  int result; // eax\n  float *v3; // ecx\n  int v4; // edi\n  int v5; // ebx\n  _DWORD *v6; // eax\n  int v7; // ecx\n  int v8; // kr00_4\n  int v9; // eax\n  float v10; // [esp+Ch] [ebp-34h] BYREF\n  float v11; // [esp+10h] [ebp-30h] BYREF\n  int v12; // [esp+14h] [ebp-2Ch] BYREF\n  float v13; // [esp+18h] [ebp-28h]\n  int v14; // [esp+1Ch] [ebp-24h]\n  _DWORD v15[4]; // [esp+20h] [ebp-20h] BYREF\n  _DWORD v16[4]; // [esp+30h] [ebp-10h] BYREF\n\n  result = *(this + 19);\n  if ( result )\n  {\n    v3 = (float *)*(this + 553);\n    if ( v3 )\n    {\n      v12 = 0;\n      v13 = 0.0;\n      v14 = 0;\n      RoleSystem::GetDirection(v3, (float *)&v12);\n      if ( *(this + 19) == 7 )\n        v13 = v13 - 20.0;\n      gbCamera::PointWorldToScr((gbCamera *)(g_pCamera + 4), (struct gbVec3D *)&v12, &v10, &v11);\n      v4 = (__int64)((v10 + 1.0) * (double)w * 0.5);\n      v5 = (__int64)((1.0 - v11) * (double)h * 0.5);\n      v6 = sub_445FE0(this + 41 * *(this + 19) + 20, v16);\n      v7 = v6[3] - v6[1];\n      v8 = v6[2] - *v6;\n      v9 = *(this + 19);\n      v15[1] = v5 - v7;\n      v15[0] = v4 - v8 / 2;\n      v15[2] = v8 + v15[0];\n      v15[3] = v5;\n      return sub_445FA0(this + 41 * v9 + 20, v15);\n    }\n  }\n  return result;\n}\n"
+}

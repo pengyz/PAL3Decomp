@@ -1,0 +1,7 @@
+{
+  "name": "sub_4300A0",
+  "address": "0x004300A0",
+  "size_bytes": 166,
+  "signature": "bool __stdcall(int a1, int *a2, int *a3, _DWORD *a4)",
+  "decompiled_c": "// between_std_methods (0x411BB0-0x430790)\nbool __stdcall sub_4300A0(int a1, int *a2, int *a3, _DWORD *a4)\n{\n  int v4; // ecx\n  int v5; // eax\n  int v6; // ebp\n  int v7; // edx\n  int v8; // ecx\n  __int64 v9; // rax\n  int v10; // esi\n\n  v4 = *a2;\n  v5 = *a3;\n  v6 = *a2;\n  if ( *a2 <= *a3 )\n    v6 = *a3;\n  v7 = *a2;\n  if ( v4 >= v5 )\n    v7 = *a3;\n  if ( a1 > v6 || a1 <= v7 )\n    return 0;\n  v9 = (__int64)((double)a2[1]\n               - (double)*a2 * ((double)(a3[1] - a2[1]) / (double)(v5 - v4))\n               + (double)a1 * ((double)(a3[1] - a2[1]) / (double)(v5 - v4))\n               + 0.5);\n  *a4 = v9;\n  v8 = a2[1];\n  HIDWORD(v9) = a3[1];\n  v10 = v8;\n  if ( v8 <= SHIDWORD(v9) )\n    v10 = a3[1];\n  if ( v8 >= SHIDWORD(v9) )\n    v8 = a3[1];\n  return (int)v9 >= v8 && (int)v9 <= v10;\n}\n"
+}

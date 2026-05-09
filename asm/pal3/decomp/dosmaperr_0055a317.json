@@ -1,0 +1,7 @@
+{
+  "name": "__dosmaperr",
+  "address": "0x0055A317",
+  "size_bytes": 103,
+  "signature": "int *__cdecl(unsigned int a1)",
+  "decompiled_c": "int *__cdecl _dosmaperr(unsigned int a1)\n{\n  int v1; // edx\n  int *result; // eax\n\n  v1 = 0;\n  dword_1895340 = a1;\n  result = (int *)&unk_60B348;\n  do\n  {\n    if ( a1 == *result )\n    {\n      result = (int *)dword_60B34C[2 * v1];\n      dword_189533C = (int)result;\n      return result;\n    }\n    result += 2;\n    ++v1;\n  }\n  while ( (int)result < (int)&dword_60B4B0 );\n  if ( a1 < 0x13 || a1 > 0x24 )\n  {\n    if ( a1 < 0xBC || (dword_189533C = 8, a1 > 0xCA) )\n      dword_189533C = 22;\n  }\n  else\n  {\n    dword_189533C = 13;\n  }\n  return result;\n}\n"
+}

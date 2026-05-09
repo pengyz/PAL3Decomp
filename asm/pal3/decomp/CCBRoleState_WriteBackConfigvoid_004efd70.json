@@ -1,0 +1,7 @@
+{
+  "name": "CCBRoleState::WriteBackConfig(void)",
+  "address": "0x004EFD70",
+  "size_bytes": 260,
+  "signature": "bool __thiscall(_DWORD *this, int a2, int a3)",
+  "decompiled_c": "// between_std_methods (0x4D70B0-0x504E20)\nbool __thiscall sub_4EFD70(_DWORD *this, int a2, int a3)\n{\n  int v6; // ebp\n  int v7; // eax\n  bool result; // al\n  int v9; // ecx\n  _DWORD *v10; // eax\n  int v11; // edx\n  int v12; // eax\n  _DWORD *i; // ecx\n  int v14; // [esp+10h] [ebp-4h]\n  int v15; // [esp+18h] [ebp+4h]\n  int v16; // [esp+1Ch] [ebp+8h]\n\n  v14 = -1;\n  v6 = CCBAI::sub_4F3BC0(a2);\n  v7 = CCBAI::sub_4F3BC0(a3);\n  v15 = *(this + 223 * a2 + 284);\n  v16 = *(this + 223 * a3 + 284);\n  if ( a2 == a3 )\n    return 1;\n  if ( v6 != v7 )\n    return 0;\n  if ( v6 == 2 )\n  {\n    switch ( a2 )\n    {\n      case 5:\n      case 7:\n      case 10:\n        return a3 == 5 || a3 == 10 || a3 == 7;\n      case 8:\n      case 9:\n        if ( a3 != 9 && a3 != 8 )\n          return 0;\n        result = 1;\n        break;\n      default:\n        return 0;\n    }\n  }\n  else\n  {\n    v9 = 0;\n    v10 = this + 5145;\n    do\n    {\n      v11 = 3;\n      do\n      {\n        if ( *v10 == v15 )\n          v14 = v9;\n        ++v10;\n        --v11;\n      }\n      while ( v11 );\n      ++v9;\n    }\n    while ( v9 < 3 );\n    v12 = 0;\n    for ( i = this + 3 * v14 + 5145; *i != v16; ++i )\n    {\n      if ( ++v12 >= 3 )\n        return 0;\n    }\n    return 1;\n  }\n  return result;\n}\n"
+}

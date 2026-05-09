@@ -1,0 +1,7 @@
+{
+  "name": "__control87",
+  "address": "0x0055B4F1",
+  "size_bytes": 53,
+  "signature": "unsigned int __cdecl(unsigned int NewValue, unsigned int Mask)",
+  "decompiled_c": "unsigned int __cdecl _control87(unsigned int NewValue, unsigned int Mask)\n{\n  unsigned int v2; // esi\n\n  v2 = Mask & NewValue | ~Mask & _abstract_cw();\n  _hw_cw(v2);\n  return v2;\n}\n"
+}

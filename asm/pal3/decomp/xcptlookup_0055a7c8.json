@@ -1,0 +1,7 @@
+{
+  "name": "_xcptlookup",
+  "address": "0x0055A7C8",
+  "size_bytes": 67,
+  "signature": "int *__cdecl(int a1)",
+  "decompiled_c": "int *__cdecl xcptlookup(int a1)\n{\n  int *result; // eax\n\n  result = &dword_60B4B0;\n  if ( dword_60B4B0 != a1 )\n  {\n    do\n      result += 3;\n    while ( (unsigned int)result < 12 * dword_60B530 + 6337712 && *result != a1 );\n  }\n  if ( (unsigned int)result >= 12 * dword_60B530 + 6337712 || *result != a1 )\n    return 0;\n  return result;\n}\n"
+}

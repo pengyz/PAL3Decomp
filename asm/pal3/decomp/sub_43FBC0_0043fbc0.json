@@ -1,0 +1,7 @@
+{
+  "name": "sub_43FBC0",
+  "address": "0x0043FBC0",
+  "size_bytes": 215,
+  "signature": "void __thiscall(gbRefObject **this, LPCSTR lpString, char a3)",
+  "decompiled_c": "// between_std_methods (0x430790-0x445B40)\nvoid __thiscall sub_43FBC0(gbRefObject **this, LPCSTR lpString, char a3)\n{\n  const CHAR *v3; // edi\n  gbRefObject *v5; // ecx\n  bool v6; // zf\n  int v7; // ebp\n  int v8; // eax\n  gbTexture *v9; // ecx\n\n  v3 = lpString;\n  if ( lpString )\n  {\n    v5 = *(this + 47);\n    if ( v5 )\n      gbRefObject::Release(v5);\n    OpenBaseFile::OpenBaseFile(&lpString);\n    v6 = a3 == 0;\n    *(this + 48) = 0;\n    if ( v6 )\n    {\n      *(this + 47) = (gbRefObject *)(*(int (__thiscall **)(int, const CHAR *))(*(_DWORD *)g_pGfxManager + 8))(\n                                      g_pGfxManager,\n                                      v3);\n    }\n    else\n    {\n      v7 = *(_DWORD *)g_pGfxManager;\n      v8 = _Texture_Info::_CalculateUV(v3);\n      *(this + 47) = (gbRefObject *)(*(int (__thiscall **)(int, int))(v7 + 8))(g_pGfxManager, v8);\n      *(this + 48) = (gbRefObject *)Parent_Data::Parent_Data(v3);\n    }\n    v9 = (gbTexture *)*(this + 47);\n    if ( v9 )\n      gbTexture::LoadTexture(v9, 1);\n    OpenNULLFile::OpenNULLFile((struct gbVFileSystem **)&lpString);\n  }\n}\n"
+}

@@ -1,0 +1,7 @@
+{
+  "name": "__trandisp1",
+  "address": "0x00558AC0",
+  "size_bytes": 103,
+  "signature": "int __usercall@<eax>(int a1@<edx>, __int16 a2@<cx>, int a3@<ebp>, __int16 a4@<fpstat>, double _ST7@<st0>)",
+  "decompiled_c": "int __usercall _trandisp1@<eax>(int a1@<edx>, __int16 a2@<cx>, int a3@<ebp>, __int16 a4@<fpstat>, double _ST7@<st0>)\n{\n  __int16 v5; // bx\n\n  if ( *(_BYTE *)(a1 + 14) == 5 )\n  {\n    HIBYTE(v5) = HIBYTE(*(_WORD *)(a3 - 164)) & 0xFC | 2;\n    LOBYTE(v5) = 63;\n  }\n  else\n  {\n    v5 = 4927;\n  }\n  *(_WORD *)(a3 - 162) = v5;\n  _EBX = &unk_60AF3D;\n  __asm { fxam }\n  *(_DWORD *)(a3 - 148) = a1;\n  *(_WORD *)(a3 - 160) = a4;\n  *(_BYTE *)(a3 - 144) = 0;\n  LOBYTE(a2) = __ROL1__((char)(2 * *(_BYTE *)(a3 - 159)) >> 1, 1);\n  _AL = a2 & 0xF;\n  __asm { xlat }\n  return (*(int (__thiscall **)(int))(_AL + a1 + 16))(a2 & 0x404);\n}\n"
+}

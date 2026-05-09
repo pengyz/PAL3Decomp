@@ -1,0 +1,7 @@
+{
+  "name": "sub_401500",
+  "address": "0x00401500",
+  "size_bytes": 34,
+  "signature": "int __thiscall(_DWORD *this, int a2)",
+  "decompiled_c": "int __thiscall sub_401500(_DWORD *this, int a2)\n{\n  int v2; // ecx\n  int i; // eax\n\n  v2 = *(this + 1);\n  for ( i = *(_DWORD *)(v2 + 60); i; i = *(_DWORD *)(i + 60) )\n  {\n    if ( *(_DWORD *)(i + 20) == a2 )\n      break;\n    v2 = i;\n  }\n  return *(_DWORD *)(v2 + 60);\n}\n"
+}

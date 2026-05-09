@@ -1,0 +1,7 @@
+{
+  "name": "sub_443A90",
+  "address": "0x00443A90",
+  "size_bytes": 83,
+  "signature": "int __thiscall(_DWORD *this)",
+  "decompiled_c": "// between_std_methods (0x430790-0x445B40)\nint __thiscall sub_443A90(_DWORD *this)\n{\n  int result; // eax\n  int v2; // ebx\n  int v3; // edi\n  int v4; // edx\n  int v5; // esi\n  int v6; // esi\n\n  result = 0;\n  v2 = 0;\n  if ( (int)*(this + 27) > 0 )\n  {\n    v3 = 0;\n    do\n    {\n      v4 = v3 + *(this + 28);\n      v5 = *(_DWORD *)(v4 + 48);\n      if ( v5 >= *(this + 23) || v5 <= -256 || (v6 = *(_DWORD *)(v4 + 56), v6 >= *(this + 24)) || v6 <= -256 )\n      {\n        *(_BYTE *)v4 = 0;\n      }\n      else\n      {\n        *(_BYTE *)v4 = 1;\n        ++result;\n      }\n      ++v2;\n      v3 += 80;\n    }\n    while ( v2 < *(this + 27) );\n  }\n  return result;\n}\n"
+}

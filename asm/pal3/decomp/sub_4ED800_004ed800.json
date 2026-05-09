@@ -1,0 +1,7 @@
+{
+  "name": "sub_4ED800",
+  "address": "0x004ED800",
+  "size_bytes": 98,
+  "signature": "char *__thiscall(char *this)",
+  "decompiled_c": "// between_std_methods (0x4D70B0-0x504E20)\nchar *__thiscall sub_4ED800(char *this)\n{\n  char *result; // eax\n  char *v2; // ecx\n\n  result = MEMORY[0xC04918];\n  v2 = this + 1136;\n  do\n  {\n    if ( *(v2 - 559) )\n    {\n      result[6] = *v2;\n      *result = v2[253];\n      result[1] = v2[248];\n      result[2] = v2[249];\n      result[5] = v2[252];\n      result[3] = v2[250];\n      result[4] = v2[251];\n    }\n    result += 1408;\n    v2 += 892;\n  }\n  while ( (int)result < (int)&MEMORY[0xC06498] );\n  return result;\n}\n"
+}

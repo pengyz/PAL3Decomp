@@ -1,0 +1,7 @@
+{
+  "name": "sub_4427C0",
+  "address": "0x004427C0",
+  "size_bytes": 205,
+  "signature": "void __thiscall(_DWORD *this, const char *a2, int a3)",
+  "decompiled_c": "// likely std method (near _Freeze, _Split, max_size, allocator<char>>, _Xran)\nvoid __thiscall sub_4427C0(_DWORD *this, const char *a2, int a3)\n{\n  int v3; // ebp\n  unsigned int v4; // kr04_4\n  unsigned int v5; // ebx\n  int v6; // ecx\n  char v7; // al\n  unsigned int v8; // eax\n  int v9; // ecx\n\n  if ( a2 )\n  {\n    v3 = (int)(this + 24);\n    v4 = strlen(a2) + 1;\n    v5 = v4 - 1;\n    if ( v4 - 1 > 0xFFFFFFFD )\n      std::_Xlen();\n    v6 = *(_DWORD *)(v3 + 4);\n    if ( v6 && (v7 = *(_BYTE *)(v6 - 1)) != 0 && v7 != -1 )\n    {\n      if ( v4 == 1 )\n      {\n        *(_BYTE *)(v6 - 1) = v7 - 1;\n        *(_DWORD *)(v3 + 4) = 0;\n        *(_DWORD *)(v3 + 8) = 0;\n        *(_DWORD *)(v3 + 12) = 0;\n        goto LABEL_16;\n      }\n    }\n    else\n    {\n      if ( v4 == 1 )\n      {\n        std::string::_Tidy((_DWORD *)v3, 1);\n        goto LABEL_16;\n      }\n      v8 = *(_DWORD *)(v3 + 12);\n      if ( v8 <= 0x1F && v8 >= v5 )\n      {\nLABEL_15:\n        qmemcpy(*(void **)(v3 + 4), a2, v5);\n        v9 = *(_DWORD *)(v3 + 4);\n        *(_DWORD *)(v3 + 8) = v5;\n        *(_BYTE *)(v9 + v5) = 0;\nLABEL_16:\n        if ( a3 )\n          *(this + 18) = 1;\n        else\n          *(this + 18) = 0;\n        return;\n      }\n      std::string::_Tidy((_DWORD *)v3, 1);\n    }\n    GRPinput::GetKeyState(v3, v5);\n    goto LABEL_15;\n  }\n}\n"
+}

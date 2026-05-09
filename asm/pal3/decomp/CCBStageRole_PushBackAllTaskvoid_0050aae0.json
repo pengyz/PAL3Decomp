@@ -1,0 +1,7 @@
+{
+  "name": "CCBStageRole::PushBackAllTask(void)",
+  "address": "0x0050AAE0",
+  "size_bytes": 47,
+  "signature": "double __thiscall(_DWORD *this)",
+  "decompiled_c": "// between_std_methods (0x504E20-0x53C2B0)\ndouble __thiscall sub_50AAE0(_DWORD *this)\n{\n  int v1; // eax\n  float v3; // [esp+4h] [ebp-4h] BYREF\n\n  v1 = *(this + 73);\n  v3 = 0.0;\n  if ( gbVisNode::GetBlend(*(gbVisNode **)(v1 + 16), &v3) )\n    return v3;\n  else\n    return 1.0;\n}\n"
+}

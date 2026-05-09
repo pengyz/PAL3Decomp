@@ -1,0 +1,7 @@
+{
+  "name": "sub_53EDF0",
+  "address": "0x0053EDF0",
+  "size_bytes": 56,
+  "signature": "int __stdcall(int a1, int a2, int a3)",
+  "decompiled_c": "// between_std_methods (0x53C2D0-0x541D1B)\nint __stdcall sub_53EDF0(int a1, int a2, int a3)\n{\n  int v3; // esi\n  int v4; // edi\n\n  v3 = a1;\n  if ( a1 == a2 )\n    return a3;\n  v4 = a3;\n  do\n  {\n    sub_53F060(v4, v3);\n    v3 += 20;\n    v4 += 20;\n  }\n  while ( v3 != a2 );\n  return v4;\n}\n"
+}

@@ -1,0 +1,7 @@
+{
+  "name": "__getbuf",
+  "address": "0x0055BCA8",
+  "size_bytes": 68,
+  "signature": "int __cdecl(_DWORD *a1)",
+  "decompiled_c": "int __cdecl _getbuf(_DWORD *a1)\n{\n  void *v1; // eax\n  int result; // eax\n\n  ++dword_18953DC;\n  v1 = malloc(0x1000u);\n  a1[2] = v1;\n  if ( v1 )\n  {\n    a1[3] |= 8u;\n    a1[6] = 4096;\n  }\n  else\n  {\n    a1[3] |= 4u;\n    a1[2] = a1 + 5;\n    a1[6] = 2;\n  }\n  result = a1[2];\n  a1[1] = 0;\n  *a1 = result;\n  return result;\n}\n"
+}

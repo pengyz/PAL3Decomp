@@ -1,0 +1,7 @@
+{
+  "name": "sub_4381E0",
+  "address": "0x004381E0",
+  "size_bytes": 187,
+  "signature": "void()",
+  "decompiled_c": "// between_std_methods (0x430790-0x445B40)\nvoid sub_4381E0()\n{\n  char *v0; // esi\n  char *v1; // edi\n  char *v2; // eax\n  _DWORD *v3; // eax\n  float v4; // [esp+Ch] [ebp-Ch]\n  float v5; // [esp+10h] [ebp-8h]\n  float v6; // [esp+14h] [ebp-4h]\n\n  v0 = sub_434C00();\n  v1 = sub_434C00();\n  v2 = sub_434C00();\n  if ( v0 && v1 && v2 )\n  {\n    v4 = (float)*((int *)v0 + 1);\n    v5 = (float)*((int *)v1 + 1);\n    v6 = (float)*((int *)v2 + 1);\n    v3 = operator new(0x1Cu);\n    if ( v3 )\n    {\n      v3[4] = 0;\n      v3[5] = 0;\n      v3[6] = 0;\n      *v3 = &off_56ABE0;\n      v3[2] = 0;\n      v3[1] = 1;\n      *((_BYTE *)v3 + 12) = 0;\n      MEMORY[0xC12B28] = 0;\n      MEMORY[0xC12B2C] = 0;\n      MEMORY[0xC12B30] = 0;\n      *((float *)v3 + 4) = v4;\n      *((float *)v3 + 5) = v5;\n      *((float *)v3 + 6) = v6;\n      sub_434C40((int)v3);\n    }\n    else\n    {\n      sub_434C40(0);\n    }\n  }\n}\n"
+}

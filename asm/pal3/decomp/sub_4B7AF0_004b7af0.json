@@ -1,0 +1,7 @@
+{
+  "name": "sub_4B7AF0",
+  "address": "0x004B7AF0",
+  "size_bytes": 103,
+  "signature": "void __thiscall(gbRefObject **this)",
+  "decompiled_c": "// between_std_methods (0x4A7690-0x4BEF50)\nvoid __thiscall sub_4B7AF0(gbRefObject **this)\n{\n  gbRefObject *v2; // ecx\n  gbRefObject *v3; // ecx\n  gbRefObject **v4; // esi\n  int v5; // ebp\n  void (__thiscall ***v6)(_DWORD, int); // ecx\n\n  v2 = *(this + 25);\n  if ( v2 )\n  {\n    gbRefObject::Release(v2);\n    *(this + 25) = 0;\n  }\n  v3 = *(this + 59);\n  if ( v3 )\n  {\n    gbRefObject::Release(v3);\n    *(this + 59) = 0;\n  }\n  v4 = this + 26;\n  v5 = 16;\n  do\n  {\n    if ( *v4 )\n    {\n      gbRefObject::Release(*v4);\n      *v4 = 0;\n    }\n    ++v4;\n    --v5;\n  }\n  while ( v5 );\n  v6 = (void (__thiscall ***)(_DWORD, int))*(this + 60);\n  if ( v6 )\n  {\n    (**v6)(v6, 1);\n    *(this + 60) = 0;\n  }\n}\n"
+}

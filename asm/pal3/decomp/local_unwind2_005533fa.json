@@ -1,0 +1,7 @@
+{
+  "name": "__local_unwind2",
+  "address": "0x005533FA",
+  "size_bytes": 104,
+  "signature": "int __cdecl(int a1, int a2)",
+  "decompiled_c": "int __cdecl _local_unwind2(int a1, int a2)\n{\n  int result; // eax\n  int v3; // ebx\n  int v4; // esi\n  int v5; // esi\n  struct _EXCEPTION_REGISTRATION_RECORD *ExceptionList; // [esp-8h] [ebp-1Ch]\n  int (__cdecl *v7)(int, int, int, _DWORD *); // [esp-4h] [ebp-18h]\n\n  v7 = _unwind_handler;\n  ExceptionList = NtCurrentTeb()->NtTib.ExceptionList;\n  while ( 1 )\n  {\n    result = a1;\n    v3 = *(_DWORD *)(a1 + 8);\n    v4 = *(_DWORD *)(a1 + 12);\n    if ( v4 == -1 || v4 == a2 )\n      break;\n    v5 = 3 * v4;\n    *(_DWORD *)(a1 + 12) = *(_DWORD *)(v3 + 4 * v5);\n    if ( !*(_DWORD *)(v3 + 4 * v5 + 4) )\n    {\n      _NLG_Notify(257);\n      (*(void (__cdecl **)(struct _EXCEPTION_REGISTRATION_RECORD *, int (__cdecl *)(int, int, int, _DWORD *)))(v3 + 4 * v5 + 8))(\n        ExceptionList,\n        v7);\n    }\n  }\n  return result;\n}\n"
+}

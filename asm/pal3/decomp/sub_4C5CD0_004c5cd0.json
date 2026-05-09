@@ -1,0 +1,7 @@
+{
+  "name": "sub_4C5CD0",
+  "address": "0x004C5CD0",
+  "size_bytes": 34,
+  "signature": "int __thiscall(float *this)",
+  "decompiled_c": "// between_std_methods (0x4C2840-0x4D70B0)\nint __thiscall sub_4C5CD0(float *this)\n{\n  int v1; // esi\n  float *v2; // edi\n  int result; // eax\n\n  v1 = 0;\n  v2 = this + 4;\n  do\n  {\n    result = sub_4C5C60(v2, v1++, 64);\n    v2 += 4;\n  }\n  while ( v1 < 16 );\n  return result;\n}\n"
+}

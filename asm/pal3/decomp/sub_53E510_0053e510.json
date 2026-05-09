@@ -1,0 +1,7 @@
+{
+  "name": "sub_53E510",
+  "address": "0x0053E510",
+  "size_bytes": 357,
+  "signature": "void __thiscall(int this, char *String2, const char *a3, int a4)",
+  "decompiled_c": "// between_std_methods (0x53C2D0-0x541D1B)\nvoid __thiscall sub_53E510(int this, char *String2, const char *a3, int a4)\n{\n  char String1[256]; // [esp+10h] [ebp-200h] BYREF\n  char Buffer[256]; // [esp+110h] [ebp-100h] BYREF\n\n  if ( (g_nGameFlags & 4) != 0 )\n  {\n    gbAudioManager::StopSoundStream(*(gbAudioManager **)(this + 808), 1);\n    gbAudioManager::StopSoundStream(*(gbAudioManager **)(this + 808), 2);\n    PalScript::SetDirectory((char *)(this + 284), aScene);\n    sprintf(Buffer, \"%s_%s\", String2, a3);\n    if ( sub_431C10((char *)(this + 284), Buffer, String1, 256)\n      || sub_431C10((char *)(this + 284), String2, String1, 256) )\n    {\n      sprintf(Buffer, \"music\\\\%s.mp3\", String1);\n      if ( _strcmpi(String1, (const char *)(this + 28))\n        || gbAudioManager::GetStreamStatus(*(gbAudioManager **)(this + 808), 0) != 1 )\n      {\n        strcpy((char *)(this + 28), String1);\n        if ( _strcmpi(String1, aNone) )\n        {\n          sub_53EA80(0, Buffer, 0);\n          if ( a4 )\n            gbAudioManager::PauseSoundStream(*(gbAudioManager **)(this + 808), 0);\n        }\n        else\n        {\n          gbAudioManager::StopSoundStream(*(gbAudioManager **)(this + 808), 0);\n        }\n      }\n    }\n  }\n}\n"
+}

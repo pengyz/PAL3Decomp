@@ -1,0 +1,7 @@
+{
+  "name": "_fgets",
+  "address": "0x00554A2A",
+  "size_bytes": 87,
+  "signature": "char *__cdecl(char *Buffer, int MaxCount, FILE *Stream)",
+  "decompiled_c": "char *__cdecl fgets(char *Buffer, int MaxCount, FILE *Stream)\n{\n  char *v3; // ebx\n  char *v4; // edi\n  int v7; // eax\n  int MaxCounta; // [esp+14h] [ebp+Ch]\n\n  v3 = Buffer;\n  v4 = Buffer;\n  if ( MaxCount <= 0 )\n    return 0;\n  MaxCounta = MaxCount - 1;\n  if ( !MaxCounta )\n    goto LABEL_10;\n  while ( 1 )\n  {\n    if ( --Stream->_cnt < 0 )\n      v7 = _filbuf(Stream);\n    else\n      v7 = *(unsigned __int8 *)Stream->_ptr++;\n    if ( v7 == -1 )\n      break;\n    *v4++ = v7;\n    if ( (_BYTE)v7 != 10 )\n    {\n      if ( --MaxCounta )\n        continue;\n    }\n    goto LABEL_10;\n  }\n  if ( v4 == Buffer )\n    return 0;\nLABEL_10:\n  *v4 = 0;\n  return v3;\n}\n"
+}

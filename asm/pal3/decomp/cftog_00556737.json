@@ -1,0 +1,7 @@
+{
+  "name": "__cftog",
+  "address": "0x00556737",
+  "size_bytes": 155,
+  "signature": "int __cdecl(double *a1, char *Src, int Size, int a4)",
+  "decompiled_c": "int __cdecl _cftog(double *a1, char *Src, int Size, int a4)\n{\n  char *v4; // esi\n  bool v5; // cl\n  double v7; // [esp+0h] [ebp-14h]\n\n  v7 = *a1;\n  dword_189532C = _fltout(SLOBYTE(v7));\n  dword_1895334 = *(_DWORD *)(dword_189532C + 4) - 1;\n  v4 = &Src[*(_DWORD *)dword_189532C == 45];\n  _fptostr(v4, Size, dword_189532C);\n  v5 = dword_1895334 < *(_DWORD *)(dword_189532C + 4) - 1;\n  byte_1895338 = v5;\n  dword_1895334 = *(_DWORD *)(dword_189532C + 4) - 1;\n  if ( dword_1895334 < -4 || dword_1895334 >= Size )\n    return _cftoe_g(a1, Src, Size, a4);\n  if ( v5 )\n    v4[strlen(v4) - 1] = 0;\n  return _cftof_g((int)a1, Src, Size);\n}\n"
+}

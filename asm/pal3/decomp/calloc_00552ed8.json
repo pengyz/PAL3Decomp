@@ -1,0 +1,7 @@
+{
+  "name": "_calloc",
+  "address": "0x00552ED8",
+  "size_bytes": 125,
+  "signature": "void *__cdecl(size_t Count, size_t Size)",
+  "decompiled_c": "void *__cdecl calloc(size_t Count, size_t Size)\n{\n  SIZE_T v2; // esi\n  size_t v3; // ebx\n  void *v4; // edi\n  void *v5; // eax\n\n  v2 = Size * Count;\n  v3 = Size * Count;\n  if ( Size * Count <= 0xFFFFFFE0 )\n  {\n    if ( !v2 )\n      v2 = 1;\n    v2 = (v2 + 15) & 0xFFFFFFF0;\n  }\n  do\n  {\n    v4 = 0;\n    if ( v2 <= 0xFFFFFFE0 )\n    {\n      if ( v3 <= dword_60ACB4 )\n      {\n        v5 = (void *)__sbh_alloc_block(v3);\n        v4 = v5;\n        if ( v5 )\n        {\n          memset(v5, 0, v3);\n          return v4;\n        }\n      }\n      v4 = HeapAlloc(hHeap, 8u, v2);\n      if ( v4 )\n        return v4;\n    }\n    if ( !dword_1895328 )\n      return v4;\n  }\n  while ( _callnewh(v2) );\n  return 0;\n}\n"
+}

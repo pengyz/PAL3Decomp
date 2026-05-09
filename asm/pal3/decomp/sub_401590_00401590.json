@@ -1,0 +1,7 @@
+{
+  "name": "sub_401590",
+  "address": "0x00401590",
+  "size_bytes": 31,
+  "signature": "_DWORD *__stdcall(_DWORD *Block)",
+  "decompiled_c": "_DWORD *__stdcall sub_401590(_DWORD *Block)\n{\n  _DWORD *result; // eax\n  _DWORD *v2; // esi\n\n  result = Block;\n  if ( Block )\n  {\n    do\n    {\n      v2 = (_DWORD *)result[15];\n      free(result);\n      result = v2;\n    }\n    while ( v2 );\n  }\n  return result;\n}\n"
+}

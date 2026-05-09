@@ -1,0 +1,7 @@
+{
+  "name": "sub_53E970",
+  "address": "0x0053E970",
+  "size_bytes": 78,
+  "signature": "unsigned int __thiscall(unsigned int *this)",
+  "decompiled_c": "// between_std_methods (0x53C2D0-0x541D1B)\nunsigned int __thiscall sub_53E970(unsigned int *this)\n{\n  unsigned int v1; // edi\n  int i; // ebx\n  unsigned int result; // eax\n  signed int v5; // ecx\n\n  v1 = 0;\n  for ( i = 0; ; i += 20 )\n  {\n    result = *(this + 204);\n    if ( !result )\n      break;\n    v5 = *(this + 205) - result;\n    result = (unsigned int)((unsigned __int64)(1717986919LL * v5) >> 32) >> 31;\n    if ( v1 >= v5 / 20 )\n      break;\n    gbSound2DNode::Stop(*(gbSound2DNode **)(*(this + 204) + i + 16));\n    ++v1;\n  }\n  return result;\n}\n"
+}

@@ -1,0 +1,7 @@
+{
+  "name": "CCBAI::CastRecoverItem(int,int,tagDemand *)",
+  "address": "0x004DAA40",
+  "size_bytes": 304,
+  "signature": "char __thiscall(_DWORD *this, int a2, int a3, int a4)",
+  "decompiled_c": "// between_std_methods (0x4D70B0-0x504E20)\nchar __thiscall sub_4DAA40(_DWORD *this, int a2, int a3, int a4)\n{\n  int v5; // ecx\n  int v6; // eax\n  int v7; // eax\n  int v8; // eax\n  _DWORD v10[11]; // [esp+Ch] [ebp-2Ch] BYREF\n\n  memset(v10, 0, sizeof(v10));\n  if ( !*(_BYTE *)(892 * a2 + *(this + 4) + 1385) && !(unsigned __int8)CCBAI::sub_4F3D90(a2, 18) )\n    return 0;\n  if ( (unsigned __int8)CCBAI::sub_4F3D90(a2, 19) )\n    return 0;\n  v5 = *(this + 4);\n  if ( !*(_BYTE *)(892 * a2 + v5 + 577) )\n    return 0;\n  if ( !*(_BYTE *)(v5 + 892 * a3 + 577) )\n    return 0;\n  if ( !(unsigned __int8)CCBAI::sub_4ED010(a2) )\n    return 0;\n  if ( (unsigned __int8)CCBAI::sub_4ED010(a3) == 1 )\n    return 0;\n  v6 = CCBAI::sub_4F2BB0(a2, 1);\n  v7 = sub_4F5D00(a2, 0, v6);\n  if ( !v7 )\n    return 0;\n  v10[3] = a3;\n  v10[1] = v7;\n  v10[2] = a2;\n  LOBYTE(v10[10]) = 1;\n  LOWORD(v10[4]) = 0;\n  v10[0] = 261;\n  v8 = CCBSystem::CreateObj(CCBSystem::GetSameThreadNum, 0, 0, 0, v10);\n  if ( a4 )\n    *(_DWORD *)(a4 + 4) = v8;\n  return 1;\n}\n"
+}

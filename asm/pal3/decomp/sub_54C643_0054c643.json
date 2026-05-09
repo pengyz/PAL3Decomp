@@ -1,0 +1,7 @@
+{
+  "name": "sub_54C643",
+  "address": "0x0054C643",
+  "size_bytes": 213,
+  "signature": "int __stdcall(int a1, int a2, int a3)",
+  "decompiled_c": "int __stdcall sub_54C643(int a1, int a2, int a3)\n{\n  __m128 v3; // xmm1\n  __m128 v4; // xmm2\n  __m128 v5; // xmm3\n  __m128 v6; // xmm0\n  __m128 v7; // xmm0\n  __m128 v9; // xmm0\n\n  if ( (a3 & 0xF) != 0 )\n  {\n    v7 = _mm_loadl_ps((const double *)a2);\n    v4 = _mm_mul_ps(\n           _mm_loadh_ps((const double *)(a3 + 40)),\n           _mm_shuffle_ps((__m128)*(unsigned int *)(a2 + 8), (__m128)*(unsigned int *)(a2 + 8), 0));\n    v5 = _mm_mul_ps(_mm_loadh_ps((const double *)(a3 + 24)), _mm_shuffle_ps(v7, v7, 85));\n    v6 = _mm_mul_ps(_mm_loadh_ps((const double *)(a3 + 8)), _mm_shuffle_ps(v7, v7, 0));\n  }\n  else\n  {\n    v3 = _mm_loadl_ps((const double *)a2);\n    v4 = _mm_mul_ps(\n           _mm_shuffle_ps((__m128)*(unsigned int *)(a2 + 8), (__m128)*(unsigned int *)(a2 + 8), 0),\n           *(__m128 *)(a3 + 32));\n    v5 = _mm_mul_ps(_mm_shuffle_ps(v3, v3, 85), *(__m128 *)(a3 + 16));\n    v6 = _mm_mul_ps(_mm_shuffle_ps(v3, v3, 0), *(__m128 *)a3);\n  }\n  v9 = _mm_add_ps(_mm_add_ps(v6, v5), v4);\n  _mm_storel_ps((double *)a1, v9);\n  *(_DWORD *)(a1 + 8) = _mm_movehl_ps(v9, v9).m128_u32[0];\n  return a1;\n}\n"
+}

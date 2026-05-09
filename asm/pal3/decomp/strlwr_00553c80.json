@@ -1,0 +1,7 @@
+{
+  "name": "__strlwr",
+  "address": "0x00553C80",
+  "size_bytes": 158,
+  "signature": "char *__cdecl(char *String)",
+  "decompiled_c": "char *__cdecl _strlwr(char *String)\n{\n  char *result; // eax\n  char *i; // edx\n  char v3; // cl\n  size_t v4; // eax\n  int v5; // edi\n  CHAR *v6; // eax\n  char *Block; // [esp+4h] [ebp-4h]\n\n  Block = 0;\n  if ( dword_18953A8 )\n  {\n    v4 = __crtLCMapStringA(dword_18953A8, 0x100u, String, -1, 0, 0, 0, 1);\n    v5 = v4;\n    if ( v4 )\n    {\n      v6 = (CHAR *)malloc(v4);\n      Block = v6;\n      if ( v6 )\n      {\n        if ( __crtLCMapStringA(dword_18953A8, 0x100u, String, -1, v6, v5, 0, 1) )\n          strcpy(String, Block);\n      }\n    }\n    free(Block);\n    return String;\n  }\n  else\n  {\n    result = String;\n    for ( i = String; *i; ++i )\n    {\n      v3 = *i;\n      if ( *i >= 65 && v3 <= 90 )\n        *i = v3 + 32;\n    }\n  }\n  return result;\n}\n"
+}

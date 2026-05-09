@@ -1,0 +1,7 @@
+{
+  "name": "CEffMgr::Init(void)",
+  "address": "0x004CE340",
+  "size_bytes": 285,
+  "signature": "int __thiscall(int *this, int a2, int a3, int a4, int a5, int a6)",
+  "decompiled_c": "// between_std_methods (0x4C2840-0x4D70B0)\nint __thiscall sub_4CE340(int *this, int a2, int a3, int a4, int a5, int a6)\n{\n  int v6; // eax\n  int v7; // ebx\n  char *v8; // esi\n  int v9; // edi\n  int v10; // ebp\n  int v13; // [esp+10h] [ebp-Ch]\n  int v15; // [esp+18h] [ebp-4h]\n  int *i; // [esp+30h] [ebp+14h]\n\n  v13 = a6;\n  if ( !a6 )\n  {\n    if ( (byte_1895560 & 1) == 0 )\n    {\n      byte_1895560 |= 1u;\n      CEffMgr::sub_4D58A0(&dword_1895580);\n      atexit(nullsub_1);\n    }\n    v6 = dword_1895980;\n    if ( dword_1895980 == -1 )\n      v6 = 1;\n    v13 = v6;\n    dword_1895980 = v6 + 1;\n  }\n  v15 = 0;\n  v7 = 3985 * a2;\n  if ( dword_EC9E70[3985 * a2] <= 0 )\n    return v13;\n  v8 = (char *)&unk_EC9EB4 + v7 * 4;\n  for ( i = &dword_EC9E74[v7]; ; ++i )\n  {\n    v9 = sub_4CDCA0(this, *i, v13, a3, a4, a5);\n    if ( v9 == -1 )\n      break;\n    v10 = 8;\n    do\n    {\n      if ( v8[88] )\n        (*(void (__thiscall **)(_DWORD, char *))(*(_DWORD *)*(this + 5 * v9 + 587) + 48))(*(this + 5 * v9 + 587), v8);\n      v8 += 124;\n      --v10;\n    }\n    while ( v10 );\n    if ( ++v15 >= dword_EC9E70[3985 * a2] )\n      return v13;\n  }\n  return 0;\n}\n"
+}

@@ -1,0 +1,7 @@
+{
+  "name": "__strcmpi",
+  "address": "0x0055EF90",
+  "size_bytes": 140,
+  "signature": "int __cdecl(const char *String1, const char *String2)",
+  "decompiled_c": "int __cdecl _strcmpi(const char *String1, const char *String2)\n{\n  int result; // eax\n  char v5; // t0\n  int v6; // ebx\n  int v7; // [esp-4h] [ebp-10h]\n\n  if ( dword_18953A8 )\n  {\n    result = 255;\n    v6 = 0;\n    while ( (_BYTE)result )\n    {\n      LOBYTE(result) = *String2++;\n      LOBYTE(v6) = *String1++;\n      if ( (_BYTE)result != (_BYTE)v6 )\n      {\n        v7 = result;\n        v6 = tolower(v6);\n        result = tolower(v7);\n        if ( (_BYTE)v6 != (_BYTE)result )\n          return -((unsigned __int8)v6 < (unsigned __int8)result)\n               - (((unsigned __int8)v6 < (unsigned __int8)result)\n                - 1);\n      }\n    }\n  }\n  else\n  {\n    LOBYTE(result) = -1;\n    while ( (_BYTE)result )\n    {\n      LOBYTE(result) = *String2++;\n      BYTE1(result) = *String1++;\n      if ( BYTE1(result) != (_BYTE)result )\n      {\n        v5 = BYTE1(result);\n        BYTE1(result) = ((unsigned __int8)(result - 65) < 0x1Au ? 0x20 : 0) + result;\n        LOBYTE(result) = ((unsigned __int8)(v5 - 65) < 0x1Au ? 0x20 : 0) + v5;\n        if ( (_BYTE)result != BYTE1(result) )\n        {\n          LOBYTE(result) = -((unsigned __int8)result < BYTE1(result)) - (((unsigned __int8)result < BYTE1(result)) - 1);\n          return (char)result;\n        }\n      }\n    }\n    return (char)result;\n  }\n  return result;\n}\n"
+}

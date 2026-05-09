@@ -1,0 +1,7 @@
+{
+  "name": "_fclose",
+  "address": "0x0055371D",
+  "size_bytes": 86,
+  "signature": "int __cdecl(FILE *Stream)",
+  "decompiled_c": "int __cdecl fclose(FILE *Stream)\n{\n  int v1; // edi\n  int flag; // eax\n  int result; // eax\n\n  v1 = -1;\n  flag = Stream->_flag;\n  if ( (flag & 0x40) != 0 )\n  {\n    result = -1;\n  }\n  else\n  {\n    if ( (flag & 0x83) != 0 )\n    {\n      v1 = _flush(Stream);\n      _freebuf(Stream);\n      if ( _close(Stream->_file) >= 0 )\n      {\n        if ( Stream->_tmpfname )\n        {\n          free(Stream->_tmpfname);\n          Stream->_tmpfname = 0;\n        }\n      }\n      else\n      {\n        v1 = -1;\n      }\n    }\n    result = v1;\n  }\n  Stream->_flag = 0;\n  return result;\n}\n"
+}

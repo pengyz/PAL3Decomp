@@ -1,0 +1,7 @@
+{
+  "name": "sub_4D3660",
+  "address": "0x004D3660",
+  "size_bytes": 64,
+  "signature": "void *__stdcall(int a1)",
+  "decompiled_c": "// between_std_methods (0x4C2840-0x4D70B0)\nvoid *__stdcall sub_4D3660(int a1)\n{\n  void *result; // eax\n\n  switch ( a1 )\n  {\n    case 0:\n      result = &unk_5D5678;\n      break;\n    case 1:\n      result = &unk_5D566C;\n      break;\n    case 2:\n      result = &CTaskTpl<tagEffTaskParam,unsigned long (__thiscall CEffCallBack::*)(unsigned long)>::GetFreeTaskID;\n      break;\n    case 9:\n      result = &unk_5D4DF4;\n      break;\n    default:\n      result = &unk_5D4D3C;\n      break;\n  }\n  return result;\n}\n"
+}

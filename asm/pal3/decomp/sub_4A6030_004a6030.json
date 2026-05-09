@@ -1,0 +1,7 @@
+{
+  "name": "sub_4A6030",
+  "address": "0x004A6030",
+  "size_bytes": 228,
+  "signature": "char __thiscall(int this, int a2)",
+  "decompiled_c": "// between_std_methods (0x44BDA0-0x4A7690)\nchar __thiscall sub_4A6030(int this, int a2)\n{\n  char result; // al\n  int v4; // edi\n\n  result = *((_BYTE *)&MEMORY[0xC05F58] + a2);\n  if ( result )\n  {\n    if ( MEMORY[0xC0464C][1408 * a2] )\n    {\n      v4 = -11356565;\n    }\n    else if ( MEMORY[0xC0464D][1408 * a2] )\n    {\n      v4 = -2198083;\n    }\n    else if ( MEMORY[0xC0464E][1408 * a2] )\n    {\n      v4 = -13002067;\n    }\n    else if ( MEMORY[0xC0464F][1408 * a2] )\n    {\n      v4 = -2198223;\n    }\n    else\n    {\n      v4 = MEMORY[0xC04650][1408 * a2] != 0 ? -2707878 : -1;\n    }\n    NPC::UpdateAnim((_DWORD *)(this + 3788 * a2 + 155292), v4);\n    sub_485DC0(*(_DWORD **)(this + 176056), a2, v4);\n    sub_48F360(*(char **)(this + 176060), a2, v4);\n    sub_497450(*(char **)(this + 176064), a2, v4);\n    return sub_4A0330(*(char **)(this + 176068), a2, v4);\n  }\n  return result;\n}\n"
+}

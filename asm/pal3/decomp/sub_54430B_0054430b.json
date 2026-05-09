@@ -1,0 +1,7 @@
+{
+  "name": "sub_54430B",
+  "address": "0x0054430B",
+  "size_bytes": 217,
+  "signature": "float *__stdcall(float *a1, float a2, float a3, float a4)",
+  "decompiled_c": "float *__stdcall sub_54430B(float *a1, float a2, float a3, float a4)\n{\n  double v5; // st7\n  double v6; // st6\n  double v7; // st7\n  double v8; // st6\n  float v9; // [esp+8h] [ebp-18h]\n  float v10; // [esp+Ch] [ebp-14h]\n  float v11; // [esp+10h] [ebp-10h]\n  float v12; // [esp+14h] [ebp-Ch]\n  float v13; // [esp+18h] [ebp-8h]\n  float v14; // [esp+1Ch] [ebp-4h]\n  float v15; // [esp+30h] [ebp+10h]\n  float v16; // [esp+30h] [ebp+10h]\n  float v17; // [esp+34h] [ebp+14h]\n\n  v9 = a4 * 0.5;\n  v14 = cos(v9);\n  v17 = sin(v9);\n  v15 = a3 * 0.5;\n  v12 = cos(v15);\n  v10 = sin(v15);\n  v16 = a2 * 0.5;\n  v13 = cos(v16);\n  v11 = sin(v16);\n  v5 = v11 * v12;\n  v6 = v13 * v10;\n  *a1 = v14 * v6 + v5 * v17;\n  a1[1] = v5 * v14 - v6 * v17;\n  v7 = v13 * v12;\n  v8 = v11 * v10;\n  a1[2] = v7 * v17 - v8 * v14;\n  a1[3] = v8 * v17 + v7 * v14;\n  return a1;\n}\n"
+}

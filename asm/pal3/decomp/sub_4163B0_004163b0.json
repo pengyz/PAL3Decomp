@@ -1,0 +1,7 @@
+{
+  "name": "sub_4163B0",
+  "address": "0x004163B0",
+  "size_bytes": 216,
+  "signature": "int __thiscall(_DWORD *this, int a2, int a3)",
+  "decompiled_c": "// between_std_methods (0x411BB0-0x430790)\nint __thiscall sub_4163B0(_DWORD *this, int a2, int a3)\n{\n  int v4; // eax\n  int v5; // ecx\n  int result; // eax\n  int v7; // [esp-4h] [ebp-24h]\n  float v8; // [esp+8h] [ebp-18h]\n  float v9; // [esp+Ch] [ebp-14h]\n  float v10; // [esp+10h] [ebp-10h]\n  _DWORD v11[3]; // [esp+14h] [ebp-Ch] BYREF\n\n  v7 = *(this + 157);\n  UISceneUpdate(this);\n  v4 = PAL3::sub_420F30(v7);\n  v9 = 0.0;\n  v10 = ((double)a3 + 0.5) * MEMORY[0xC1109C] + *(float *)(v4 + 136);\n  if ( a2 >= 0 )\n  {\n    v5 = *(_DWORD *)(v4 + 152);\n    if ( a2 < v5 && a3 >= 0 && a3 < *(_DWORD *)(v4 + 156) )\n      v9 = *(float *)(*(_DWORD *)(v4 + 160) + 8 * (a2 + a3 * v5));\n  }\n  v8 = ((double)a2 + 0.5) * MEMORY[0xC1109C] + *(float *)(v4 + 128);\n  *(float *)v11 = v8;\n  *(float *)&v11[1] = v9;\n  *(float *)&v11[2] = v10;\n  sub_416490(v11);\n  result = MEMORY[0xC116EC];\n  if ( this == (_DWORD *)MEMORY[0xC116EC] )\n  {\n    result = *(_DWORD *)(g_pCamera + 448);\n    if ( result )\n      return sub_41C1E0();\n  }\n  return result;\n}\n"
+}

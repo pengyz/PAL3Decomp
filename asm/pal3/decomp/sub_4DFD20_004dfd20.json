@@ -1,0 +1,7 @@
+{
+  "name": "sub_4DFD20",
+  "address": "0x004DFD20",
+  "size_bytes": 216,
+  "signature": "char(int a1, int a2, int a3, char *Format, ...)",
+  "decompiled_c": "// between_std_methods (0x4D70B0-0x504E20)\nchar sub_4DFD20(int a1, int a2, int a3, char *Format, ...)\n{\n  int v4; // eax\n  va_list va; // [esp+14h] [ebp+14h] BYREF\n\n  va_start(va, Format);\n  LOBYTE(v4) = byte_17A9927;\n  if ( byte_17A9927 )\n  {\n    vsprintf((char *const)(a1 + 280 * *(_DWORD *)(a1 + 16) + 24), Format, va);\n    *(float *)(a1 + 280 * *(_DWORD *)(a1 + 16) + 284) = ((double)a2 + (double)a2) / (double)w - 1.0;\n    *(float *)(a1 + 280 * *(_DWORD *)(a1 + 16) + 288) = 1.0 - ((double)a3 + (double)a3) / (double)h;\n    *(_DWORD *)(a1 + 280 * *(_DWORD *)(a1 + 16) + 20) = 3;\n    *(_DWORD *)(a1 + 280 * *(_DWORD *)(a1 + 16) + 296) = 1098907648;\n    *(_DWORD *)(a1 + 280 * (*(_DWORD *)(a1 + 16) + 1)) = *(_DWORD *)(a1 + 8);\n    v4 = *(_DWORD *)(a1 + 16) + 1;\n    *(_DWORD *)(a1 + 16) = v4;\n  }\n  return v4;\n}\n"
+}

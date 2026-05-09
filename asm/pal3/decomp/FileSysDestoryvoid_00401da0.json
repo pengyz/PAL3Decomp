@@ -1,0 +1,7 @@
+{
+  "name": "FileSysDestory(void)",
+  "address": "0x00401DA0",
+  "size_bytes": 66,
+  "signature": "struct gbVFileSystem *()",
+  "decompiled_c": "// write access to const memory has been detected, the output may be wrong!\nstruct gbVFileSystem *sub_401DA0()\n{\n  struct gbVFileSystem *result; // eax\n\n  if ( dword_7CC178 )\n    gbVFileSystem::Release((gbVFileSystem *)&dword_7CC178);\n  result = (struct gbVFileSystem *)dword_6EBFA0;\n  if ( dword_6EBFA0 )\n  {\n    gbVFileSystem::Release((gbVFileSystem *)&dword_6EBFA0);\n    result = g_pVFileSys;\n  }\n  g_pVFileSys = 0;\n  return result;\n}\n"
+}

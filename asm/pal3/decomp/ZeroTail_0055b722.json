@@ -1,0 +1,7 @@
+{
+  "name": "__ZeroTail",
+  "address": "0x0055B722",
+  "size_bytes": 73,
+  "signature": "int __cdecl(int a1, int a2)",
+  "decompiled_c": "int __cdecl _ZeroTail(int a1, int a2)\n{\n  int v2; // esi\n  _DWORD *i; // eax\n\n  if ( (~(-1 << (31 - a2 % 32)) & *(_DWORD *)(a1 + 4 * (a2 / 32))) == 0 )\n  {\n    v2 = a2 / 32 + 1;\n    if ( v2 >= 3 )\n      return 1;\n    for ( i = (_DWORD *)(a1 + 4 * v2); !*i; ++i )\n    {\n      if ( ++v2 >= 3 )\n        return 1;\n    }\n  }\n  return 0;\n}\n"
+}

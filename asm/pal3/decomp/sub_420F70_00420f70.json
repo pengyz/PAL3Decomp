@@ -1,0 +1,7 @@
+{
+  "name": "sub_420F70",
+  "address": "0x00420F70",
+  "size_bytes": 63,
+  "signature": "BOOL __thiscall(void *this, int a2, int a3, int a4)",
+  "decompiled_c": "// between_std_methods (0x411BB0-0x430790)\nBOOL __thiscall sub_420F70(void *this, int a2, int a3, int a4)\n{\n  int *v4; // eax\n\n  v4 = (int *)PAL3::sub_420F30(this, a2);\n  return a3 >= 0 && a3 < v4[38] && a4 >= 0 && a4 < v4[39] && GRPinput::GetJoystickFreePos(v4, a3, a4);\n}\n"
+}

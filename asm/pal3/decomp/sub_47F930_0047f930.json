@@ -1,0 +1,7 @@
+{
+  "name": "sub_47F930",
+  "address": "0x0047F930",
+  "size_bytes": 59,
+  "signature": "int __thiscall(void *this)",
+  "decompiled_c": "// between_std_methods (0x44BDA0-0x4A7690)\nint __thiscall sub_47F930(void *this)\n{\n  int result; // eax\n\n  result = 1;\n  if ( MEMORY[0xBFC614] == 1 )\n    return (*(int (__thiscall **)(void *, int, void *, _DWORD))(*(_DWORD *)this + 24))(this, 1001, &unk_A00604, 0);\n  if ( MEMORY[0xBFC624] == 1 )\n    return (*(int (__thiscall **)(void *, int, void *, _DWORD))(*(_DWORD *)this + 24))(this, 1001, &unk_A00605, 0);\n  return result;\n}\n"
+}

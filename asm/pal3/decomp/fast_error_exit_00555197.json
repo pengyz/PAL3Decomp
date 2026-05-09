@@ -1,0 +1,7 @@
+{
+  "name": "_fast_error_exit",
+  "address": "0x00555197",
+  "size_bytes": 35,
+  "signature": "void __cdecl __noreturn(DWORD NumberOfBytesWritten)",
+  "decompiled_c": "void __cdecl __noreturn fast_error_exit(DWORD NumberOfBytesWritten)\n{\n  if ( dword_1895320 == 1 )\n    _FF_MSGBANNER();\n  _NMSG_WRITE(NumberOfBytesWritten);\n  ExitProcess(0xFFu);\n}\n"
+}

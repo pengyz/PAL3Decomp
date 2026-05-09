@@ -1,0 +1,7 @@
+{
+  "name": "sub_43B570",
+  "address": "0x0043B570",
+  "size_bytes": 235,
+  "signature": "struct gbVFileSystem *__thiscall(gbRefObject **this, int id, void *pRect, struct gbVFileSystem *parent, LPCSTR lpString, char a6)",
+  "decompiled_c": "// between_std_methods (0x430790-0x445B40)\nstruct gbVFileSystem *__thiscall sub_43B570(\n        gbRefObject **this,\n        int id,\n        void *pRect,\n        struct gbVFileSystem *parent,\n        LPCSTR lpString,\n        char a6)\n{\n  struct gbVFileSystem *result; // eax\n  const CHAR *v8; // edi\n\n  result = parent;\n  if ( parent )\n  {\n    v8 = lpString;\n    if ( lpString )\n    {\n      OpenBaseFile::OpenBaseFile(&lpString);\n      *(this + 46) = 0;\n      *(this + 47) = 0;\n      *(this + 48) = 0;\n      *(this + 50) = 0;\n      if ( a6 )\n      {\n        *(this + 46) = (gbRefObject *)Parent_Data::Parent_Data((int)dword_1894B78, v8);\n        _Texture_Info::_CalculateUV((int)dword_1894B78, v8);\n        if ( !sub_445ED0() )\n        {\nLABEL_5:\n          sub_445F20(this + 29);\n          return OpenNULLFile::OpenNULLFile((struct gbVFileSystem **)&lpString);\n        }\n      }\n      else if ( !sub_445ED0() )\n      {\n        goto LABEL_5;\n      }\n      UIWnd::Create((UIWnd *)this, id, pRect, (int)parent);\n      return OpenNULLFile::OpenNULLFile((struct gbVFileSystem **)&lpString);\n    }\n  }\n  return result;\n}\n"
+}

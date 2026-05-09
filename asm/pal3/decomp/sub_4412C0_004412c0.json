@@ -1,0 +1,7 @@
+{
+  "name": "sub_4412C0",
+  "address": "0x004412C0",
+  "size_bytes": 179,
+  "signature": "const char *__thiscall(UIWnd *this, int id, void *pRect, int parent, const char *a5, int a6, char a7)",
+  "decompiled_c": "// between_std_methods (0x430790-0x445B40)\nconst char *__thiscall sub_4412C0(UIWnd *this, int id, void *pRect, int parent, const char *a5, int a6, char a7)\n{\n  const char *result; // eax\n  int v9; // ecx\n  int v10; // eax\n\n  if ( parent )\n  {\n    result = a5;\n    if ( a5 )\n    {\n      sub_4413C0(this, a5, a7);\n      UIWnd::Create(this, id, pRect, parent);\n      (*(void (__thiscall **)(_DWORD *, _DWORD, char *, char *, int, UIWnd *))(*((_DWORD *)this + 18) + 28))(\n        (_DWORD *)this + 18,\n        0,\n        &this->_data[16],\n        aUiFlexScrollTg,\n        1,\n        this);\n      sub_445FA0((_DWORD *)this + 18, &this->_data[16]);\n      sub_43DC40((_DWORD *)this + 18, 39, 32);\n      (**((void (__thiscall ***)(_DWORD *, _DWORD))this + 18))((_DWORD *)this + 18, 0);\n      sub_442100(this);\n      v9 = *(_DWORD *)&this->_data[24];\n      v10 = *((_DWORD *)this + 79) + 16;\n      *((_DWORD *)this + 87) = 32;\n      *((_DWORD *)this + 45) = v10;\n      *((_DWORD *)this + 44) = v10;\n      result = *(const char **)&this->_data[16];\n      *((_DWORD *)this + 85) = 0;\n      *((_DWORD *)this + 86) = v9 - (_DWORD)result;\n    }\n  }\n  return result;\n}\n"
+}

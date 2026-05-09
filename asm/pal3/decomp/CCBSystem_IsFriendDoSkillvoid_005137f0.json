@@ -1,0 +1,7 @@
+{
+  "name": "CCBSystem::IsFriendDoSkill(void)",
+  "address": "0x005137F0",
+  "size_bytes": 70,
+  "signature": "int __thiscall(_DWORD *this)",
+  "decompiled_c": "// between_std_methods (0x504E20-0x53C2B0)\nint __thiscall sub_5137F0(_DWORD *this)\n{\n  int v2; // ebp\n  _DWORD *v3; // esi\n  int result; // eax\n\n  v2 = 0;\n  v3 = this + 38;\n  do\n  {\n    if ( *((_BYTE *)v3 + 36) == 1 )\n    {\n      *(this + 36) = v2;\n      result = ((int (__thiscall *)(int, _DWORD))*v3)((int)this + v3[1], 0);\n      *(this + 36) = -1;\n    }\n    ++v2;\n    v3 += 22;\n  }\n  while ( v2 < 1024 );\n  *(this + 36) = -1;\n  return result;\n}\n"
+}

@@ -1,0 +1,7 @@
+{
+  "name": "sub_4C60E0",
+  "address": "0x004C60E0",
+  "size_bytes": 134,
+  "signature": "_DWORD *__thiscall(_DWORD *this, int a2)",
+  "decompiled_c": "// between_std_methods (0x4C2840-0x4D70B0)\n_DWORD *__thiscall sub_4C60E0(_DWORD *this, int a2)\n{\n  _DWORD *result; // eax\n  int v3; // edx\n  _DWORD *v4; // ecx\n  int v5; // edx\n  int v6; // ebx\n  int v7; // ecx\n\n  result = this;\n  v3 = *(this + 24583);\n  v4 = this + 12 * a2;\n  v5 = v3 - 1;\n  v6 = v4[8];\n  *((_BYTE *)v4 + 36) = 0;\n  if ( v5 != v6 )\n  {\n    qmemcpy(&result[17 * v6 + 24584], &result[17 * v5 + 24584], 0x44u);\n    result[12 * result[v5 + 59400] + 8] = v6;\n    result[v6 + 59400] = result[v5 + 59400];\n  }\n  v7 = result[6] - 1;\n  --result[24583];\n  if ( a2 == v7 )\n    result[6] = v7;\n  return result;\n}\n"
+}
