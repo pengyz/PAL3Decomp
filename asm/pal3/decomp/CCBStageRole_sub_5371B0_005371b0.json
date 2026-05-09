@@ -1,0 +1,7 @@
+{
+  "name": "CCBStageRole::sub_5371B0",
+  "address": "0x005371B0",
+  "size_bytes": 253,
+  "signature": "char __thiscall(int this, const char *a2, char *a3, char *a4)",
+  "decompiled_c": "// between_std_methods (0x504E20-0x53C2B0)\nchar __thiscall sub_5371B0(int this, const char *a2, char *a3, char *a4)\n{\n  int v5; // eax\n  int v6; // eax\n  gbActor *v7; // ecx\n  int v8; // esi\n  int v9; // ebx\n  int v11; // [esp+0h] [ebp-2Ch]\n  _DWORD v12[4]; // [esp+10h] [ebp-1Ch] BYREF\n  int v13; // [esp+28h] [ebp-4h]\n\n  if ( a2 )\n  {\n    strcpy((char *)(this + 540), a2);\n    _strlwr((char *)(this + 540));\n  }\n  v11 = *(_DWORD *)(this + 16);\n  v5 = gbCrc32Compute((const char *)(this + 540));\n  v6 = sub_5370E0(v5, v11);\n  v7 = *(gbActor **)(this + 16);\n  if ( v7 && v6 )\n  {\n    gbActor::GotoAction(v7, (char *)(this + 540), a3, a4);\n    while ( gbVisNode::PopMessage(*(gbVisNode **)(this + 16), (struct gbNodeMsgObj *)v12) )\n      ;\n    LOBYTE(v6) = *(_BYTE *)(this + 280);\n    v8 = this + 280;\n    if ( (_BYTE)v6 )\n    {\n      OpenBaseFile::OpenBaseFile(&a2);\n      v9 = *(_DWORD *)(this + 16);\n      v13 = 0;\n      (*(void (__thiscall **)(_DWORD, int))(**(_DWORD **)(v9 + 88) + 60))(*(_DWORD *)(v9 + 88), v8);\n      v13 = -1;\n      LOBYTE(v6) = (unsigned __int8)OpenNULLFile::OpenNULLFile((struct gbVFileSystem **)&a2);\n    }\n  }\n  return v6;\n}\n"
+}

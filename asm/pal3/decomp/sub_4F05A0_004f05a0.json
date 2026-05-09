@@ -1,7 +1,0 @@
-{
-  "name": "sub_4F05A0",
-  "address": "0x004F05A0",
-  "size_bytes": 125,
-  "signature": "char __stdcall(_DWORD *a1)",
-  "decompiled_c": "// between_std_methods (0x4D70B0-0x504E20)\nchar __stdcall sub_4F05A0(_DWORD *a1)\n{\n  char v1; // al\n  char result; // al\n  char v3; // al\n\n  switch ( *a1 )\n  {\n    case 0x104:\n    case 0x105:\n    case 0x10D:\n      v1 = *(_BYTE *)(PAL_GDB::GDB_GetRoleNum(g_GDB, a1[1]) + 577);\n      goto LABEL_4;\n    case 0x106:\n      v1 = *(_BYTE *)(PAL_GDB::GDB_GetSkillNum(g_GDB, a1[1]) + 629);\nLABEL_4:\n      if ( v1 != 2 && v1 != 4 )\n        goto LABEL_10;\n      result = 1;\n      break;\n    case 0x10E:\n      v3 = *(_BYTE *)(PAL_GDB::GDB_GetItemNum(g_GDB, a1[1]) + 592);\n      if ( v3 != 1 && v3 != 3 )\n        goto LABEL_10;\n      result = 1;\n      break;\n    default:\nLABEL_10:\n      result = 0;\n      break;\n  }\n  return result;\n}\n"
-}

@@ -1,0 +1,7 @@
+{
+  "name": "__fFLN",
+  "address": "0x0055937A",
+  "size_bytes": 26,
+  "signature": "long double __usercall@<st0>(int a1@<ebp>, long double a2@<st0>)",
+  "decompiled_c": "long double __usercall _fFLN@<st0>(int a1@<ebp>, long double a2@<st0>)\n{\n  __int16 v2; // fps\n  bool v3; // c0\n  char v4; // c2\n  bool v5; // c3\n\n  v3 = a2 < 0.0;\n  v4 = 0;\n  v5 = a2 == 0.0;\n  *(_WORD *)(a1 - 160) = v2;\n  if ( (*(_BYTE *)(a1 - 159) & 0x41) != 0 )\n    JUMPOUT(0x559363);\n  return __FYL2X__(a2, 0.6931471805599453094);\n}\n"
+}

@@ -3,5 +3,5 @@
   "address": "0x004DF3D0",
   "size_bytes": 133,
   "signature": "char __thiscall(_DWORD *this)",
-  "decompiled_c": "// between_std_methods (0x4D70B0-0x504E20)\nchar __thiscall sub_4DF3D0(_DWORD *this)\n{\n  int v2; // edi\n  int i; // esi\n  int v5; // [esp+Ch] [ebp-8h] BYREF\n  int v6; // [esp+10h] [ebp-4h] BYREF\n\n  v6 = 0;\n  v5 = 0;\n  sub_4F3B90(1, &v6, &v5);\n  v2 = v6;\n  if ( v6 >= v5 )\n    return 1;\n  for ( i = 892 * v6; !*(_BYTE *)(i + *(this + 3) + 577) || (int)CCBStage::IsTaskExist(v2) <= 0; i += 892 )\n  {\n    if ( ++v2 >= v5 )\n      return 1;\n  }\n  return 0;\n}\n"
+  "decompiled_c": "// between_std_methods (0x4D70B0-0x504E20)\nchar __thiscall sub_4DF3D0(_DWORD *this)\n{\n  int v2; // edi\n  int i; // esi\n  int v5; // [esp+Ch] [ebp-8h] BYREF\n  int v6; // [esp+10h] [ebp-4h] BYREF\n\n  v6 = 0;\n  v5 = 0;\n  CCBRoleState::sub_4F3B90(1, &v6, &v5);\n  v2 = v6;\n  if ( v6 >= v5 )\n    return 1;\n  for ( i = 892 * v6; !*(_BYTE *)(i + *(this + 3) + 577) || (int)CCBStage::IsTaskExist(v2) <= 0; i += 892 )\n  {\n    if ( ++v2 >= v5 )\n      return 1;\n  }\n  return 0;\n}\n"
 }

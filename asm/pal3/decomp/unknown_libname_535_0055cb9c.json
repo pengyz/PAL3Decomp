@@ -1,0 +1,7 @@
+{
+  "name": "unknown_libname_535",
+  "address": "0x0055CB9C",
+  "size_bytes": 76,
+  "signature": "void __userpurge __spoils<edx,ecx,st0>(__int16 a1@<fpstat>, double a2@<st1>, double a3@<st0>, float a4)",
+  "decompiled_c": "// Microsoft VisualC 2-14/net runtime\n// Microsoft VisualC 2-14/net runtime\nvoid __userpurge __spoils<edx,ecx,st0> unknown_libname_535(\n        __int16 a1@<fpstat>,\n        double a2@<st1>,\n        double a3@<st0>,\n        float a4)\n{\n  if ( (LODWORD(a4) & 0x7F800000) != 0x7F800000 )\n  {\n    if ( (a1 & 0x3800) != 0 )\n      unknown_libname_533(a2, a3);\n    else\n      unknown_libname_533(a4, a2);\n  }\n}\n"
+}

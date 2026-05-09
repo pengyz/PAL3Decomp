@@ -3,5 +3,5 @@
   "address": "0x004072D0",
   "size_bytes": 41,
   "signature": "int()",
-  "decompiled_c": "// between_std_methods (0x402FB0-0x407AB0)\nint sub_4072D0()\n{\n  int (__thiscall ***v0)(_DWORD, _DWORD); // eax\n\n  g_nGameState = 8;\n  g_fEventTimer = 0.0;\n  v0 = (int (__thiscall ***)(_DWORD, _DWORD))sub_44F8A0(0);\n  return (**v0)(v0, 0);\n}\n"
+  "decompiled_c": "// between_std_methods (0x402FB0-0x407AB0)\nint sub_4072D0()\n{\n  int (__thiscall ***v0)(_DWORD, _DWORD); // eax\n\n  g_nGameState = 8;\n  g_fEventTimer = 0.0;\n  v0 = (int (__thiscall ***)(_DWORD, _DWORD))PAL3::sub_44F8A0(0);\n  return (**v0)(v0, 0);\n}\n"
 }
