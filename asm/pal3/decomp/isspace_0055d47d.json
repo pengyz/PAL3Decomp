@@ -3,5 +3,5 @@
   "address": "0x0055D47D",
   "size_bytes": 40,
   "signature": "int __cdecl(int C)",
-  "decompiled_c": "int __cdecl isspace(int C)\n{\n  if ( (int)cbMultiByte <= 1 )\n    return *((_BYTE *)off_60AD00 + 2 * C) & 8;\n  else\n    return _isctype(C, 8);\n}\n"
+  "decompiled_c": "int __cdecl isspace(int C)\n{\n  if ( (int)cbMultiByte <= 1 )\n    return *((_BYTE *)g_pVtbl_SceneMgr + 2 * C) & 8;\n  else\n    return _isctype(C, 8);\n}\n"
 }

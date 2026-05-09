@@ -1,7 +1,0 @@
-{
-  "name": "PalScript::Update(float)",
-  "address": "0x00431FB0",
-  "size_bytes": 233,
-  "signature": "int __thiscall(void *this)",
-  "decompiled_c": "int __thiscall sub_431FB0(void *this)\n{\n  int result; // eax\n  char pExceptionObject[1024]; // [esp+8h] [ebp-800h] BYREF\n  char ArgList[1024]; // [esp+408h] [ebp-400h] BYREF\n\n  PalScriptMgr::_CON_ReLoadScript(this);\n  if ( !sub_432990(aInitScs) )\n  {\n    qmemcpy(\n      pExceptionObject,\n      (const void *)Logger::FormatException((char)ArgList, (int)aScriptSysInitF, (int)aDProjectPal3Sc, 71),\n      sizeof(pExceptionObject));\n    _CxxThrowException(pExceptionObject, (_ThrowInfo *)&_TI1_AV_Exception__);\n  }\n  if ( !PtrArray::InsertAt(aInitSce) )\n  {\n    qmemcpy(\n      pExceptionObject,\n      (const void *)Logger::FormatException((char)ArgList, (int)aSystemScriptLo, (int)aDProjectPal3Sc, 73),\n      sizeof(pExceptionObject));\n    _CxxThrowException(pExceptionObject, (_ThrowInfo *)&_TI1_AV_Exception__);\n  }\n  result = PtrArray::InsertAt(aUiBigmapBigmap);\n  if ( !result )\n  {\n    qmemcpy(\n      pExceptionObject,\n      (const void *)Logger::FormatException((char)ArgList, (int)aBigmapScriptLo, (int)aDProjectPal3Sc, 75),\n      sizeof(pExceptionObject));\n    _CxxThrowException(pExceptionObject, (_ThrowInfo *)&_TI1_AV_Exception__);\n  }\n  return result;\n}\n"
-}

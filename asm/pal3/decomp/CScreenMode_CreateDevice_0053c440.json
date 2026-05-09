@@ -2,6 +2,6 @@
   "name": "CScreenMode::CreateDevice",
   "address": "0x0053C440",
   "size_bytes": 32,
-  "signature": "int __thiscall(void *this, int a, int b, int c, int d)",
-  "decompiled_c": "// between_std_methods (0x53C2D0-0x541D1B)\nint __thiscall CScreenMode::CreateDevice(void *this, int a, int b, int c, int d)\n{\n  return sub_5694F0((int)this, (const char *)a, b, c, d);\n}\n"
+  "signature": "int __thiscall(CScreenMode *this, int a, int b, int c, int d)",
+  "decompiled_c": "// between_std_methods (0x53C2D0-0x541D1B)\nint __thiscall CScreenMode::CreateDevice(CScreenMode *this, int a, int b, int c, int d)\n{\n  return sub_5694F0((int)this, (const char *)a, b, c, d);\n}\n"
 }

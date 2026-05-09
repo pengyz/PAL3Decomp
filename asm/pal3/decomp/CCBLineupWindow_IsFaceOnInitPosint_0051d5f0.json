@@ -3,5 +3,5 @@
   "address": "0x0051D5F0",
   "size_bytes": 24,
   "signature": "char()",
-  "decompiled_c": "// between_std_methods (0x504E20-0x53C2B0)\nchar sub_51D5F0()\n{\n  dword_5DFDEC = timeGetTime();\n  dword_17AD310 = 0;\n  return 1;\n}\n"
+  "decompiled_c": "// between_std_methods (0x504E20-0x53C2B0)\nchar sub_51D5F0()\n{\n  g_RandSeed = timeGetTime();\n  g_nRandCallCount = 0;\n  return 1;\n}\n"
 }

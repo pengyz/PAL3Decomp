@@ -3,5 +3,5 @@
   "address": "0x004021E0",
   "size_bytes": 63,
   "signature": "int __thiscall(GRPinput *this, int a2, int a3, int a4)",
-  "decompiled_c": "int __thiscall WinProc_HWND_4021E0(GRPinput *this, int a2, int a3, int a4)\n{\n  *(_DWORD *)&this->_rest[6204] = a2;\n  if ( a2 )\n    GRPinput::AcquireDevices(this);\n  else\n    WinProc_HWND_402360(this);\n  *(_DWORD *)&this->_rest[6208] = a3;\n  if ( a3 )\n    return GRPinput::ReleaseDevices(this);\n  else\n    return EnumJoystick((int)this);\n}\n"
+  "decompiled_c": "int __thiscall WinProc_HWND_4021E0(GRPinput *this, int a2, int a3, int a4)\n{\n  *(_DWORD *)&this->m_mousept[6204] = a2;\n  if ( a2 )\n    GRPinput::AcquireDevices(this);\n  else\n    WinProc_HWND_402360(this);\n  *(_DWORD *)&this->m_mousept[6208] = a3;\n  if ( a3 )\n    return GRPinput::ReleaseDevices(this);\n  else\n    return EnumJoystick((int)this);\n}\n"
 }

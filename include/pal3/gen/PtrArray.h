@@ -1,14 +1,19 @@
 #pragma once
-// Auto-generated from IDA decomp - PtrArray
-// 7 methods
+// Auto-generated: PtrArray
 
 class PtrArray {
 public:
-    static int PtrArray(int a1, int a2, char a3);  // 0x00434130
-    static int ~PtrArray(int a1);  // 0x004341E0
-    static void() SetSize();  // 0x00434240
-    static char *__cdecl(unsigned __int16 a1, int a2) SetAtGrow();  // 0x004343B0
-    static char *__cdecl(const char *a1) RemoveAt();  // 0x004343F0
-    void Remove();  // 0x00434490
-    static struct gbVFile *__thiscall(int this, const char *a2) InsertAt();  // 0x004344F0
+    void * * m_pData; // +0x0
+    int m_nSize; // +0x4
+    int m_nMaxSize; // +0x8
+    int m_nGrowBy; // +0xC
+    // total size: 0x10 (16)
+
+    PtrArray(int a1, int a2, char a3); // 0x00434130
+    ~PtrArray(); // 0x004341E0
+    static void SetSize(); // 0x00434240
+    static char * SetAtGrow(unsigned __int16 a1, int a2); // 0x004343B0
+    static char * RemoveAt(const char *a1); // 0x004343F0
+    void Remove(); // 0x00434490
+    struct gbVFile * InsertAt(const char *a2); // 0x004344F0
 };

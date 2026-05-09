@@ -1,9 +1,13 @@
 #pragma once
-// Auto-generated from IDA decomp - OpenBaseFile
-// 2 methods
+// Auto-generated: OpenBaseFile
+
+class gbVFileSystem;
 
 class OpenBaseFile {
 public:
-    static _DWORD *__thiscall(_DWORD *this) OpenBaseFile();  // 0x00401F50
-    static _DWORD *__thiscall(_DWORD *this) ~OpenBaseFile();  // 0x00401F70
+    gbVFileSystem * m_plastsys; // +0x0
+    // total size: 0x4 (4)
+
+    OpenBaseFile(); // 0x00401F50
+    ~OpenBaseFile(); // 0x00401F70
 };

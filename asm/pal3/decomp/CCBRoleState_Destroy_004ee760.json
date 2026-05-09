@@ -1,0 +1,7 @@
+{
+  "name": "CCBRoleState::Destroy",
+  "address": "0x004EE760",
+  "size_bytes": 87,
+  "signature": "int __thiscall(CCBRoleState *this)",
+  "decompiled_c": "// between_std_methods (0x4D70B0-0x504E20)\nint __thiscall CCBRoleState::Destroy(CCBRoleState *this)\n{\n  char *v1; // ebp\n  char *v2; // esi\n  int v3; // edi\n  void (__thiscall ***v4)(_DWORD, int); // ecx\n  int result; // eax\n  int v6; // [esp+10h] [ebp-4h]\n\n  v1 = &this->m_sCombatDialog[1412];\n  v6 = 5;\n  do\n  {\n    v2 = v1;\n    v3 = 3;\n    do\n    {\n      v4 = (void (__thiscall ***)(_DWORD, int))*((_DWORD *)v2 - 3);\n      if ( v4 )\n      {\n        (**v4)(v4, 1);\n        *((_DWORD *)v2 - 3) = 0;\n      }\n      if ( *(_DWORD *)v2 )\n      {\n        (***(void (__thiscall ****)(_DWORD, int))v2)(*(_DWORD *)v2, 1);\n        *(_DWORD *)v2 = 0;\n      }\n      v2 += 4;\n      --v3;\n    }\n    while ( v3 );\n    v1 += 892;\n    result = --v6;\n  }\n  while ( v6 );\n  return result;\n}\n"
+}

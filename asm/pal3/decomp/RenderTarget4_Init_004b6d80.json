@@ -2,6 +2,6 @@
   "name": "RenderTarget4::Init",
   "address": "0x004B6D80",
   "size_bytes": 107,
-  "signature": "void *__thiscall(void *this)",
-  "decompiled_c": "// between_std_methods (0x4A7690-0x4BEF50)\nvoid *__thiscall RenderTarget4::Init(void *this)\n{\n  gbTexture *v2; // eax\n  struct gbVFileSystem *v4; // [esp+8h] [ebp-10h] BYREF\n  int v5; // [esp+14h] [ebp-4h]\n\n  OpenBaseFile::OpenBaseFile(&v4);\n  v5 = 0;\n  v2 = (gbTexture *)(*((int (__thiscall **)(gbGfxManager *, char *))g_pGfxManager->vtable + 2))(\n                      g_pGfxManager,\n                      aEffectscnFrame);\n  *((_DWORD *)this + 1) = v2;\n  gbTexture::LoadTexture(v2, 1);\n  *(_BYTE *)this = 0;\n  v5 = -1;\n  return OpenNULLFile::OpenNULLFile(&v4);\n}\n"
+  "signature": "void *__thiscall(RenderTarget4 *this)",
+  "decompiled_c": "// between_std_methods (0x4A7690-0x4BEF50)\nvoid *__thiscall RenderTarget4::Init(RenderTarget4 *this)\n{\n  gbTexture *v2; // eax\n  struct gbVFileSystem *v4; // [esp+8h] [ebp-10h] BYREF\n  int v5; // [esp+14h] [ebp-4h]\n\n  OpenBaseFile::OpenBaseFile(&v4);\n  v5 = 0;\n  v2 = (gbTexture *)(*(int (__thiscall **)(gbGfxManager *, char *))(*(_DWORD *)MEMORY[0xBFDA60] + 8))(\n                      MEMORY[0xBFDA60],\n                      aEffectscnFrame);\n  *((_DWORD *)this + 1) = v2;\n  gbTexture::LoadTexture(v2, 1);\n  *this = 0;\n  v5 = -1;\n  return OpenNULLFile::OpenNULLFile(&v4);\n}\n"
 }

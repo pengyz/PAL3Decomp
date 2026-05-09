@@ -1,7 +1,0 @@
-{
-  "name": "CCBStage::IsTaskValid(int)",
-  "address": "0x004FD0B0",
-  "size_bytes": 232,
-  "signature": "int __thiscall(char *this, int a2)",
-  "decompiled_c": "// between_std_methods (0x4D70B0-0x504E20)\nint __thiscall sub_4FD0B0(char *this, int a2)\n{\n  int v3; // ecx\n  int v4; // edx\n  int v5; // esi\n  double v6; // st7\n  unsigned int v7; // eax\n  float v9; // [esp+20h] [ebp-4h]\n  float v10; // [esp+20h] [ebp-4h]\n\n  v3 = 329 * *((_DWORD *)this + 40);\n  v4 = 80 * *((_DWORD *)this + 41);\n  v5 = (int)(this + 8 * v3 + v4 + 184);\n  v9 = *(float *)(this + 8 * v3 + v4 + 216);\n  if ( !*(this + 8 * v3 + v4 + 225) )\n  {\n    *(_DWORD *)(this + 8 * v3 + v4 + 248) = 0;\n    *(this + 8 * v3 + v4 + 225) = 1;\n  }\n  CCBStage::EndRound(\n    *((float **)this + 17),\n    *(float *)(*((_DWORD *)this + 5) + 900),\n    *(float *)(*((_DWORD *)this + 5) + 904),\n    *(float *)(*((_DWORD *)this + 5) + 908),\n    *(float *)(*((_DWORD *)this + 5) + 916),\n    *(this + 8 * v3 + v4 + 248));\n  v6 = *(float *)(*(_DWORD *)this + 80) - *(float *)(v5 + 24);\n  if ( v6 >= v9 )\n  {\n    *(_DWORD *)(v5 + 64) = 255;\n    *(_DWORD *)(v5 + 16) = 4;\n  }\n  else\n  {\n    v10 = v6 / v9 * 255.0;\n    v7 = (int)v10;\n    *(_DWORD *)(v5 + 64) = v7;\n    if ( v7 > 0xFF )\n      v7 = 255;\n    *(_DWORD *)(v5 + 64) = v7;\n  }\n  if ( *(_BYTE *)(v5 + 43) == 1 )\n    *(_DWORD *)(v5 + 16) = 4;\n  return 0;\n}\n"
-}

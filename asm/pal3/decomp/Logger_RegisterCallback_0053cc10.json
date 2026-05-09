@@ -2,6 +2,6 @@
   "name": "Logger::RegisterCallback",
   "address": "0x0053CC10",
   "size_bytes": 92,
-  "signature": "int __thiscall(void *this, int pfn, char *name, char *desc)",
-  "decompiled_c": "// between_std_methods (0x53C2D0-0x541D1B)\nint __thiscall Logger::RegisterCallback(void *this, int pfn, char *name, char *desc)\n{\n  int result; // eax\n  char *v6; // edi\n\n  if ( *(int *)this >= 34 )\n    return (int)Logger::Write(this, aConsoleErrorCo);\n  v6 = (char *)this + 136 * *(_DWORD *)this + 4;\n  *((_DWORD *)v6 + 33) = pfn;\n  strncpy(v6, name, 0x20u);\n  strncpy(v6 + 32, desc, 0x64u);\n  result = *(_DWORD *)this + 1;\n  *(_DWORD *)this = result;\n  return result;\n}\n"
+  "signature": "int __thiscall(Logger *this, int pfn, char *name, char *desc)",
+  "decompiled_c": "// between_std_methods (0x53C2D0-0x541D1B)\nint __thiscall Logger::RegisterCallback(Logger *this, int pfn, char *name, char *desc)\n{\n  int result; // eax\n  char *v6; // edi\n\n  if ( *(int *)this >= 34 )\n    return (int)Logger::Write(this, aConsoleErrorCo);\n  v6 = (char *)this + 136 * *(_DWORD *)this + 4;\n  *((_DWORD *)v6 + 33) = pfn;\n  strncpy(v6, name, 0x20u);\n  strncpy(v6 + 32, desc, 0x64u);\n  result = *(_DWORD *)this + 1;\n  *(_DWORD *)this = result;\n  return result;\n}\n"
 }

@@ -1,9 +1,20 @@
 #pragma once
-// Auto-generated from IDA decomp - ScreenEffectMgr
-// 2 methods
+// Auto-generated: ScreenEffectMgr
+
+#include "ScreenFadeIn.h"
+#include "ScreenFadeOut.h"
+#include "ScreenFadeWhite.h"
+#include "ScreenFadeWhite2.h"
 
 class ScreenEffectMgr {
 public:
-    void Render();  // 0x004BE4A0
-    static _BYTE *__cdecl() GetInstance();  // 0x004BE590
+    ScreenFadeIn m_fadeIn; // +0x4
+    ScreenFadeOut m_fadeOut; // +0x20
+    ScreenFadeWhite m_fadeWhite; // +0x38
+    ScreenFadeWhite2 m_fadeWhite2; // +0x50
+    std::queue<ScreenEffect *,std::deque<ScreenEffect *,std::allocator<ScreenEffect *> > > m_activeQueue; // +0x68
+    // total size: 0x98 (152)
+
+    void Render(); // 0x004BE4A0
+    static _BYTE * GetInstance(); // 0x004BE590
 };

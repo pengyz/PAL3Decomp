@@ -3,5 +3,5 @@
   "address": "0x004E2C10",
   "size_bytes": 61,
   "signature": "int()",
-  "decompiled_c": "// between_std_methods (0x4D70B0-0x504E20)\nint sub_4E2C10()\n{\n  int result; // eax\n  HWND DlgItem; // esi\n  int v2; // eax\n\n  result = dword_17A990C;\n  if ( dword_17A990C == 2 )\n  {\n    DlgItem = GetDlgItem(dword_BFDA54, 1206);\n    v2 = CCBRoleState::InitUI(0);\n    return sub_4E5390(DlgItem, *(_DWORD *)(v2 + 80));\n  }\n  return result;\n}\n"
+  "decompiled_c": "// between_std_methods (0x4D70B0-0x504E20)\nint sub_4E2C10()\n{\n  int result; // eax\n  HWND DlgItem; // esi\n  int v2; // eax\n\n  result = dword_17A990C;\n  if ( dword_17A990C == 2 )\n  {\n    DlgItem = GetDlgItem(MEMORY[0xBFDA54], 1206);\n    v2 = CCBRoleState::InitUI(0);\n    return sub_4E5390(DlgItem, *(_DWORD *)(v2 + 80));\n  }\n  return result;\n}\n"
 }

@@ -1,21 +1,31 @@
 #pragma once
-// Auto-generated from IDA decomp - PalScriptMgr
-// 14 methods
+// Auto-generated: PalScriptMgr
+
+#include "PtrArray.h"
+#include "scSCEFile.h"
 
 class PalScriptMgr {
 public:
-    static int() PalScriptMgr();  // 0x00431E60
-    static int() OpenSCE();  // 0x00431EB0
-    static void __cdecl() FindScript();  // 0x00431EE0
-    static void Update(const char *a1);  // 0x004320A0
-    static _DWORD *__cdecl(unsigned int a1, char a2) Destroy();  // 0x00432170
-    static int _CON_State(int a1);  // 0x00432260
-    int IfAnyScriptRunning(int a2);  // 0x004322A0
-    int IsScriptRuning(int a2);  // 0x004322C0
-    static void RunSceneScript(int a1);  // 0x004323C0
-    static int() _CON_ReLoadScript();  // 0x00432480
-    static BOOL() _CON_CloseScript();  // 0x004324A0
-    static int ClearAllScript(int a1);  // 0x004324B0
-    static _DWORD *__cdecl(const char *a1, const char *a2) FindScriptByDesc();  // 0x00432500
-    static int() IfHaveScript();  // 0x00432550
+    unsigned char m_bGetSceneScript; // +0x0
+    PtrArray m_script; // +0x0
+    scSCEFile m_scefile; // +0x0
+    scSCEFile m_scesys; // +0x0
+    std::basic_string<char,std::char_traits<char>,std::allocator<char> > m_scepath; // +0x0
+    scSCEFile m_bigmapsce; // +0x0
+    // total size: 0x1 (1)
+
+    PalScriptMgr(); // 0x00431E60
+    static int OpenSCE(); // 0x00431EB0
+    static void FindScript(); // 0x00431EE0
+    static void Update(const char *a1); // 0x004320A0
+    static _DWORD * Destroy(unsigned int a1, char a2); // 0x00432170
+    static int _CON_State(int a1); // 0x00432260
+    int IfAnyScriptRunning(int a2); // 0x004322A0
+    int IsScriptRuning(int a2); // 0x004322C0
+    static void RunSceneScript(int a1); // 0x004323C0
+    static int _CON_ReLoadScript(); // 0x00432480
+    static BOOL _CON_CloseScript(); // 0x004324A0
+    static int ClearAllScript(int a1); // 0x004324B0
+    static _DWORD * FindScriptByDesc(const char *a1, const char *a2); // 0x00432500
+    static int IfHaveScript(); // 0x00432550
 };

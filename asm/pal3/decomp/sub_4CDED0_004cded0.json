@@ -2,6 +2,6 @@
   "name": "sub_4CDED0",
   "address": "0x004CDED0",
   "size_bytes": 245,
-  "signature": "char()",
-  "decompiled_c": "// between_std_methods (0x4C2840-0x4D70B0)\nchar sub_4CDED0()\n{\n  sub_4CEB60(aParticle, 0, 0);\n  sub_4CEC80(aQuad, 0, 0);\n  CEffMgr::RunEffGroup(aAction, 0, 0);\n  sub_4CEEC0(aCamera, 0, 0);\n  sub_4CEFE0(aTime, 0, 0);\n  CEffMgr::IsAllEffGroupStop(aCylinder, 0, 0);\n  sub_4CF220(aModel, 0, 0);\n  sub_4CF340(aCallback, 0, 0);\n  sub_4CF460(aGrid, 0, 0);\n  sub_4CF580(aExplosive, 0, 0);\n  sub_4CF6A0(aMeteor, 0, 0);\n  CEffMgr::CopyObjInGroup(aAudio, 0, 0);\n  sub_4CF8E0(aShock, 0, 0);\n  sub_4CFA00(aBink, 0, 0);\n  sub_4CFB20(aQuake, 0, 0);\n  return 1;\n}\n"
+  "signature": "char __thiscall(CEffMgr *this)",
+  "decompiled_c": "// between_std_methods (0x4C2840-0x4D70B0)\nchar __thiscall sub_4CDED0(CEffMgr *this)\n{\n  sub_4CEB60(this->m_pDisplay, aParticle, 0, 0);\n  sub_4CEC80(this->m_pDisplay, aQuad, 0, 0);\n  CEffMgr::RunEffGroup(this, aAction, 0, 0);\n  sub_4CEEC0(this->m_pDisplay, aCamera, 0, 0);\n  sub_4CEFE0(this->m_pDisplay, aTime, 0, 0);\n  CEffMgr::IsAllEffGroupStop(this, aCylinder, 0, 0);\n  sub_4CF220(this->m_pDisplay, aModel, 0, 0);\n  sub_4CF340(this->m_pDisplay, aCallback, 0, 0);\n  sub_4CF460(this->m_pDisplay, aGrid, 0, 0);\n  sub_4CF580(this->m_pDisplay, aExplosive, 0, 0);\n  sub_4CF6A0(this->m_pDisplay, aMeteor, 0, 0);\n  CEffMgr::CopyObjInGroup(this, aAudio, 0, 0);\n  sub_4CF8E0(this->m_pDisplay, aShock, 0, 0);\n  sub_4CFA00(this->m_pDisplay, aBink, 0, 0);\n  sub_4CFB20(this->m_pDisplay, aQuake, 0, 0);\n  return 1;\n}\n"
 }

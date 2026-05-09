@@ -1,0 +1,27 @@
+#include "pal3/gen/UISystem.h"
+
+// 0x00422DF0
+int UISystem::Destroy()
+{
+  char *v0; // esi
+  char *v1; // esi
+  int result; // eax
+
+  UISceneUpdate();
+  GetGfxManager_3();
+  v0 = &g_SceneMgr.m_info[121944];
+  do
+  {
+    sub_41F8C0((int)v0);
+    v0 += 493156;
+  }
+  while ( (int)v0 < (int)&byte_D8B314 );
+  v1 = (char *)&unk_D8B318;
+  do
+  {
+    result = sub_4208A0((int)v1);
+    v1 += 392;
+  }
+  while ( (int)v1 < (int)byte_D8B938 );
+  return result;
+}

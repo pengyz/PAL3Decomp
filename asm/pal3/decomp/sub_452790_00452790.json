@@ -3,5 +3,5 @@
   "address": "0x00452790",
   "size_bytes": 148,
   "signature": "int __thiscall(int this)",
-  "decompiled_c": "// likely std method (near _Freeze, _Split, max_size, allocator<char>>, _Xran)\nint __thiscall sub_452790(int this)\n{\n  sub_445AA0((_DWORD *)this);\n  sub_43A770((_DWORD *)(this + 68));\n  sub_4422E0((_BYTE *)(this + 412));\n  sub_442E10((_DWORD *)(this + 564));\n  sub_444F60((_BYTE *)(this + 748));\n  sub_445EA0((void *)(this + 940));\n  *(_DWORD *)this = &off_56B1DC;\n  *(_DWORD *)(this + 1008) = 0;\n  return this;\n}\n"
+  "decompiled_c": "// likely std method (near _Freeze, _Split, max_size, allocator<char>>, _Xran)\nint __thiscall sub_452790(int this)\n{\n  UIWnd::UIWnd((_DWORD *)this);\n  UIScene::_UIScene((_DWORD *)(this + 68));\n  UIFrameWnd::UIFrameWnd((_BYTE *)(this + 412));\n  sub_442E10((_DWORD *)(this + 564));\n  sub_444F60((_BYTE *)(this + 748));\n  UIWnd::DestroyChildren((void *)(this + 940));\n  *(_DWORD *)this = &off_56B1DC;\n  *(_DWORD *)(this + 1008) = 0;\n  return this;\n}\n"
 }

@@ -1,14 +1,35 @@
 #pragma once
-// Auto-generated from IDA decomp - C3DSpark
-// 7 methods
+// Auto-generated: C3DSpark
+
+#include "gbGeomQuad.h"
+
+class gbRenderEffect;
+class gbTexture;
+class gbTextureArray;
 
 class C3DSpark {
 public:
-    static _DWORD *__thiscall(_DWORD *this) C3DSpark();  // 0x004D6670
-    void ~C3DSpark();  // 0x004D6960
-    char CreateSingle(const void *a2);  // 0x004D6A60
-    char CreateOne(int a2, int a3, int a4);  // 0x004D6AC0
-    static _BYTE *__thiscall(_DWORD *this) DestroyAll();  // 0x004D6BA0
-    static void Render(int a1@<ecx>, struct gbVec3D *a2@<edi>);  // 0x004D6BC0
-    int Update(float a2);  // 0x004D6D30
+    C3DSpark::tagSpark m_Spark[128]; // +0x0
+    int m_nCurrentSpark; // +0x1C00
+    gbRenderEffect * m_pAdditiveBlend; // +0x1C04
+    gbTexture * m_pRedBig; // +0x1C08
+    gbTextureArray * m_pRedBigArray; // +0x1C0C
+    gbTexture * m_pBlue16; // +0x1C10
+    gbTextureArray * m_pBlue16Array; // +0x1C14
+    gbTexture * m_pGreen16; // +0x1C18
+    gbTextureArray * m_pGreen16Array; // +0x1C1C
+    gbTexture * m_pRed16; // +0x1C20
+    gbTextureArray * m_pRed16Array; // +0x1C24
+    gbTexture * m_pYellow16; // +0x1C28
+    gbTextureArray * m_pYellow16Array; // +0x1C2C
+    gbGeomQuad m_GeomQuad[128]; // +0x1C30
+    // total size: 0x3E30 (15920)
+
+    C3DSpark(); // 0x004D6670
+    ~C3DSpark(); // 0x004D6960
+    char CreateSingle(const void *a2); // 0x004D6A60
+    char CreateOne(int a2, int a3, int a4); // 0x004D6AC0
+    _BYTE * DestroyAll(); // 0x004D6BA0
+    static void __usercall Render(int a1, struct gbVec3D *a2); // 0x004D6BC0
+    int Update(float a2); // 0x004D6D30
 };

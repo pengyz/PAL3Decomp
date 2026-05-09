@@ -3,5 +3,5 @@
   "address": "0x005110B0",
   "size_bytes": 87,
   "signature": "gbGfxManager *__cdecl()",
-  "decompiled_c": "// between_std_methods (0x504E20-0x53C2B0)\ngbGfxManager *__cdecl sub_5110B0()\n{\n  int v0; // ecx\n  int v1; // esi\n  struct gbTextureArray *v2; // edx\n  gbGfxManager *result; // eax\n  char v4; // [esp+8h] [ebp+4h]\n\n  v1 = v0;\n  gbVertPoolMgr::GetDynVertBuf(*(gbVertPoolMgr **)&g_pGfxManager->vtable[196], 0x15u);\n  v2 = *(struct gbTextureArray **)(v1 + 672);\n  *(_BYTE *)(v1 + 886) = -1;\n  *(_BYTE *)(v1 + 885) = -1;\n  *(_BYTE *)(v1 + 884) = -1;\n  *(_BYTE *)(v1 + 887) = v4;\n  gbDynVertBuf::RenderGeomQuad((struct gbGeomQuad *)(v1 + 820), 1, *(struct gbRenderEffect **)(v1 + 664), v2);\n  return result;\n}\n"
+  "decompiled_c": "// between_std_methods (0x504E20-0x53C2B0)\ngbGfxManager *__cdecl sub_5110B0()\n{\n  int v0; // ecx\n  int v1; // esi\n  struct gbTextureArray *v2; // edx\n  gbGfxManager *result; // eax\n  char v4; // [esp+8h] [ebp+4h]\n\n  v1 = v0;\n  gbVertPoolMgr::GetDynVertBuf(*(gbVertPoolMgr **)&MEMORY[0xBFDA60][196], 0x15u);\n  v2 = *(struct gbTextureArray **)(v1 + 672);\n  *(_BYTE *)(v1 + 886) = -1;\n  *(_BYTE *)(v1 + 885) = -1;\n  *(_BYTE *)(v1 + 884) = -1;\n  *(_BYTE *)(v1 + 887) = v4;\n  gbDynVertBuf::RenderGeomQuad((struct gbGeomQuad *)(v1 + 820), 1, *(struct gbRenderEffect **)(v1 + 664), v2);\n  return result;\n}\n"
 }

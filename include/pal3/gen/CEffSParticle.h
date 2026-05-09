@@ -1,17 +1,34 @@
 #pragma once
-// Auto-generated from IDA decomp - CEffSParticle
-// 10 methods
+// Auto-generated: CEffSParticle
 
-class CEffSParticle {
+#include "CEffObj.h"
+#include "gbVec3D.h"
+
+class CParticleEffect;
+
+class CEffSParticle : public CEffObj, public CTaskTpl<tagEffTaskParam,unsigned long (__thiscall CEffSParticle::*)(unsigned long)> {
 public:
-    static _DWORD *() CEffSParticle();  // 0x004D4EE0
-    int ~CEffSParticle();  // 0x004D4F20
-    int Create(float a2);  // 0x004D4FC0
-    void Init(_DWORD *a2);  // 0x004D51B0
-    int Attach(int a2);  // 0x004D53E0
-    static void *__stdcall(int a1) Update();  // 0x004D5620
-    int Render(int a2, int a3, int a4, _DWORD *a5, int a6, int a7);  // 0x004D56B0
-    static void *__thiscall(void *Block, char a2) SetTimeScale();  // 0x004D5790
-    static char *__thiscall(_DWORD *this, char a2) CreateTask();  // 0x004D5860
-    int GetEditorTaskDescription(unsigned __int8 *a2);  // 0x004D58D0
+    CParticleEffect * m_pEffect; // +0x30
+    gbVec3D m_vecPos; // +0x34
+    float m_fX; // +0x40
+    float m_fY; // +0x44
+    float m_fZ; // +0x48
+    float m_fPX; // +0x4C
+    float m_fPY; // +0x50
+    float m_fPZ; // +0x54
+    float m_fRotX; // +0x58
+    float m_fRotY; // +0x5C
+    float m_fRotZ; // +0x60
+    // total size: 0x64 (100)
+
+    CEffSParticle(); // 0x004D4EE0
+    ~CEffSParticle(); // 0x004D4F20
+    int Create(float a2); // 0x004D4FC0
+    void Init(_DWORD *a2); // 0x004D51B0
+    int Attach(int a2); // 0x004D53E0
+    static void * Update(int a1); // 0x004D5620
+    int Render(int a2, int a3, int a4, _DWORD *a5, int a6, int a7); // 0x004D56B0
+    void * SetTimeScale(void *Block, char a2); // 0x004D5790
+    char * CreateTask(char a2); // 0x004D5860
+    int GetEditorTaskDescription(unsigned __int8 *a2); // 0x004D58D0
 };

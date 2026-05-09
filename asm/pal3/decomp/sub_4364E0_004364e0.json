@@ -3,5 +3,5 @@
   "address": "0x004364E0",
   "size_bytes": 68,
   "signature": "struct gbVFileSystem *()",
-  "decompiled_c": "// between_std_methods (0x430790-0x445B40)\nstruct gbVFileSystem *sub_4364E0()\n{\n  char *v0; // esi\n  struct gbVFileSystem *result; // eax\n  struct gbVFileSystem *v2; // edi\n  _BYTE *v3; // eax\n\n  v0 = sub_434C00();\n  result = (struct gbVFileSystem *)sub_434C00();\n  v2 = result;\n  if ( v0 && result )\n  {\n    v3 = (_BYTE *)PalScriptMgr::_CON_State(dword_D8E468);\n    if ( v3 )\n      *v3 = 1;\n    return sub_422950(*((char **)v0 + 1), *(char **)&v2->_data[4], 1, 1);\n  }\n  return result;\n}\n"
+  "decompiled_c": "// between_std_methods (0x430790-0x445B40)\nstruct gbVFileSystem *sub_4364E0()\n{\n  char *v0; // esi\n  struct gbVFileSystem *result; // eax\n  struct gbVFileSystem *v2; // edi\n  _BYTE *v3; // eax\n\n  v0 = sub_434C00();\n  result = (struct gbVFileSystem *)sub_434C00();\n  v2 = result;\n  if ( v0 && result )\n  {\n    v3 = (_BYTE *)PalScriptMgr::_CON_State(dword_D8E468);\n    if ( v3 )\n      *v3 = 1;\n    return sub_422950(*((char **)v0 + 1), *(char **)&v2->IsInit[4], 1, 1);\n  }\n  return result;\n}\n"
 }

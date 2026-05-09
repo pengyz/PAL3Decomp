@@ -1,17 +1,30 @@
 #pragma once
-// Auto-generated from IDA decomp - CEffgbParticle
-// 10 methods
+// Auto-generated: CEffgbParticle
 
-class CEffgbParticle {
+#include "CEffObj.h"
+
+class ParticleEffect;
+
+class CEffgbParticle : public CEffObj, public CTaskTpl<tagEffTaskParam,unsigned long (__thiscall CEffgbParticle::*)(unsigned long)> {
 public:
-    int ~CEffgbParticle(int a2, int a3, int a4, _DWORD *a5, int a6, int a7);  // 0x004C8650
-    static void *__thiscall(void *Block, char a2) Create();  // 0x004C87A0
-    int Init(int a2);  // 0x004C8830
-    static char *__thiscall(char *this, char a2) Attach();  // 0x004C88C0
-    static _DWORD *__thiscall(_DWORD *this) Render();  // 0x004C88D0
-    static _DWORD *() SetTimeScale();  // 0x004C8930
-    static void Destroy(_DWORD *a1);  // 0x004C8970
-    char CreateTask(int a2);  // 0x004C8A40
-    void ProcCommonTask(float a2);  // 0x004C8BF0
-    void GetEditorTaskDescription();  // 0x004C8E10
+    ParticleEffect * m_pEffect; // +0x30
+    float m_fSize; // +0x34
+    float m_fX; // +0x38
+    float m_fY; // +0x3C
+    float m_fZ; // +0x40
+    float m_fPX; // +0x44
+    float m_fPY; // +0x48
+    float m_fPZ; // +0x4C
+    // total size: 0x50 (80)
+
+    ~CEffgbParticle(); // 0x004C8650
+    void * Create(void *Block, char a2); // 0x004C87A0
+    int Init(int a2); // 0x004C8830
+    char * Attach(char a2); // 0x004C88C0
+    _DWORD * Render(); // 0x004C88D0
+    static _DWORD * SetTimeScale(); // 0x004C8930
+    static void Destroy(_DWORD *a1); // 0x004C8970
+    char CreateTask(int a2); // 0x004C8A40
+    void ProcCommonTask(float a2); // 0x004C8BF0
+    void GetEditorTaskDescription(); // 0x004C8E10
 };

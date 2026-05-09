@@ -3,5 +3,5 @@
   "address": "0x00530350",
   "size_bytes": 98,
   "signature": "void __thiscall(struct gbCamera ***this)",
-  "decompiled_c": "// between_std_methods (0x504E20-0x53C2B0)\nvoid __thiscall sub_530350(struct gbCamera ***this)\n{\n  gbSceneGraph *v2; // edi\n  gbMatrixStack *v3; // ebx\n\n  v2 = *(gbSceneGraph **)(g_pGfxManager + 448);\n  gbSceneGraph::Begin(v2, **(this + 1));\n  v2->_data[19244] = 0;\n  v3 = *(gbMatrixStack **)(g_pGfxManager + 216);\n  gbCamera::SetAsCurrent(**(this + 1), 3);\n  gbMatrixStack::Push(v3);\n  (*(void (__thiscall **)(struct gbCamera **, _DWORD))&(**this)->_data[16])(*this, 0);\n  gbMatrixStack::Pop(v3);\n  gbSceneGraph::End(v2);\n}\n"
+  "decompiled_c": "// between_std_methods (0x504E20-0x53C2B0)\nvoid __thiscall sub_530350(struct gbCamera ***this)\n{\n  gbSceneGraph *v2; // edi\n  gbMatrixStack *v3; // ebx\n\n  v2 = *(gbSceneGraph **)(MEMORY[0xBFDA60] + 448);\n  gbSceneGraph::Begin(v2, **(this + 1));\n  v2->pAllRObj[19244] = 0;\n  v3 = *(gbMatrixStack **)(MEMORY[0xBFDA60] + 216);\n  gbCamera::SetAsCurrent(**(this + 1), 3);\n  gbMatrixStack::Push(v3);\n  (*(void (__thiscall **)(struct gbCamera **, _DWORD))&(**this)->fov[16])(*this, 0);\n  gbMatrixStack::Pop(v3);\n  gbSceneGraph::End(v2);\n}\n"
 }

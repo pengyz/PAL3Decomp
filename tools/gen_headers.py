@@ -1,14 +1,15 @@
 #!/usr/bin/env python3
 """
-Generate C++ header files from IDA decomp JSONs.
+Generate C++ header files from PDB class data + IDA function signatures.
 
-For each class found in decomp, generates:
-  include/pal3/gen/<ClassName>.h
+For each class, generates include/pal3/gen/<ClassName>.h containing:
+  - Base class inheritance
+  - Data members with correct types and offsets (as comments)
+  - Method declarations from IDA decomp signatures
 
-Each header contains:
-  - Class declaration with all method signatures
-  - Proper __thiscall/static annotations
-  - Address comments for each method
+Sources:
+  - asm/pal3a/pdb_export.json: class layout (members, inheritance, size)
+  - asm/pal3/decomp/*.json: method signatures
 
 Usage:
   python tools/gen_headers.py
@@ -21,87 +22,74 @@ from collections import defaultdict
 from pathlib import Path
 
 PROJECT_ROOT = Path(__file__).parent.parent
+PDB_FILE = PROJECT_ROOT / "asm" / "pal3a" / "pdb_export.json"
 DECOMP_DIR = PROJECT_ROOT / "asm" / "pal3" / "decomp"
 OUTPUT_DIR = PROJECT_ROOT / "include" / "pal3" / "gen"
 
-# Classes to skip (STL/CRT/gbengine - not our code)
+# Skip STL/CRT types
 SKIP_CLASSES = {
-    'std', 'stdiobuf', 'gbMatrixStack', 'gbSceneGraph', 'gbCamera',
-    'gbEffectMgr', 'gbRefObject', 'gbActor', 'gbVisNode', 'gbTexture',
-    'gbGfxManager', 'gbActorMgr', 'gbVFileSystem', 'gbDynVertBuf',
-    'gbVertPoolMgr', 'gbPrintFont', 'gbPrintFontMgr', 'gbBinkVideo',
-    'gbMatrixStack', 'gbSoundData', 'gbResManager',
-    'UIListBox',  # likely std container
+    'std', 'stdiobuf', 'exception', 'type_info', 'filebuf',
+}
+
+# Type mapping for header output
+TYPE_REMAP = {
+    'unsigned char': 'BYTE',
+    'unsigned int': 'UINT',
+    'unsigned long': 'DWORD',
+    'unsigned short': 'WORD',
+    '_iobuf *': 'FILE *',
 }
 
 
 def parse_signature(sig):
-    """Parse IDA signature into return type + params."""
-    # Pattern: return_type __thiscall(params)
-    # or: return_type __cdecl(params)
-    m = re.match(r'(.+?)\s+(__\w+)\s*\((.+)\)', sig)
-    if m:
-        ret = m.group(1).strip()
-        cc = m.group(2)
-        params = m.group(3).strip()
+    """Parse IDA signature into (return_type, calling_conv, params_str)."""
+    if not sig:
+        return 'int', '', ''
+
+    cc_match = re.search(r'(__thiscall|__cdecl|__stdcall|__fastcall)', sig)
+    paren_match = re.search(r'\(', sig)
+
+    if cc_match and paren_match:
+        cc = cc_match.group(1)
+        ret = sig[:cc_match.start()].rstrip()
+        if not ret:
+            ret = 'int'
+        params = sig[paren_match.start()+1:sig.rfind(')')]
         return ret, cc, params
-    return sig, '', ''
+
+    if paren_match:
+        ret = sig[:paren_match.start()].rstrip()
+        if not ret:
+            ret = 'int'
+        params = sig[paren_match.start()+1:sig.rfind(')')]
+        return ret, '__cdecl', params
+
+    return 'int', '', ''
 
 
-def generate_class_header(cls_name, methods):
-    """Generate header file content for a class."""
-    lines = []
-    lines.append("#pragma once")
-    lines.append(f"// Auto-generated from IDA decomp - {cls_name}")
-    lines.append(f"// {len(methods)} methods")
-    lines.append("")
-    lines.append(f"class {cls_name} {{")
-    lines.append("public:")
-
-    for method_name, sig, addr in sorted(methods, key=lambda x: x[2]):
-        ret, cc, params = parse_signature(sig)
-
-        # Determine if static (cdecl without this) or member (thiscall)
-        is_thiscall = '__thiscall' in cc
-        is_static = not is_thiscall
-
-        # Clean params: remove "ClassName *this, " from thiscall
-        if is_thiscall and params:
-            # Remove first param (this)
-            param_list = []
-            depth = 0
+def split_params(params_str):
+    """Split comma-separated params respecting nested parens/templates."""
+    result = []
+    depth = 0
+    current = ''
+    for ch in params_str:
+        if ch == ',' and depth == 0:
+            result.append(current.strip())
             current = ''
-            for ch in params:
-                if ch == ',' and depth == 0:
-                    param_list.append(current.strip())
-                    current = ''
-                else:
-                    if ch == '(': depth += 1
-                    elif ch == ')': depth -= 1
-                    current += ch
-            if current.strip():
-                param_list.append(current.strip())
-            # Remove first param (this pointer)
-            if param_list and ('this' in param_list[0] or '*this' in param_list[0]):
-                param_list = param_list[1:]
-            params = ', '.join(param_list)
-
-        # Build declaration
-        prefix = "    static " if is_static else "    "
-        decl = f"{prefix}{ret} {method_name}({params});"
-        comment = f"  // {addr}"
-
-        lines.append(f"{decl}{comment}")
-
-    lines.append("};")
-    lines.append("")
-    return '\n'.join(lines)
+        else:
+            if ch in '(<':
+                depth += 1
+            elif ch in ')>':
+                depth -= 1
+            current += ch
+    if current.strip():
+        result.append(current.strip())
+    return result
 
 
-def main():
-    # Collect all class methods
+def collect_methods():
+    """Collect all class methods from decomp JSONs."""
     classes = defaultdict(list)
-
     for f in sorted(DECOMP_DIR.glob("*.json")):
         if f.name.startswith("_"):
             continue
@@ -126,23 +114,181 @@ def main():
             continue
 
         classes[cls].append((method, sig, addr))
+    return classes
 
-    # Generate headers
+
+def generate_header(cls_name, pdb_class, methods):
+    """Generate a complete header for one class."""
+    lines = []
+    lines.append("#pragma once")
+    lines.append("// Auto-generated: %s" % cls_name)
+    lines.append("")
+
+    # Analyze references: include vs forward declare
+    include_types = set()  # need full definition (value members, inheritance)
+    fwd_types = set()      # pointer only, forward declare suffices
+
+    PRIMITIVES = {'int', 'char', 'float', 'double', 'unsigned', 'void', 'long',
+                  'short', 'bool', 'BYTE', 'WORD', 'DWORD', 'UINT', 'HRESULT',
+                  '__int64', 'unsigned char', 'unsigned int', 'unsigned long',
+                  'unsigned short', 'unsigned __int64', 'wchar_t'}
+
+    if pdb_class:
+        # Inheritance -> include
+        for b in pdb_class.get('bases', []) or []:
+            bname = b['name']
+            if '::' not in bname and '<' not in bname:
+                include_types.add(bname)
+
+        # Data members
+        for m in pdb_class.get('data_members', []):
+            mtype = m.get('type', '')
+            # Check if pointer or value
+            is_ptr = '*' in mtype
+            # Strip array/pointer to get base type name
+            base = re.sub(r'\[\d+\]', '', mtype).replace('*', '').strip()
+            if not base or base == cls_name:
+                continue
+            if base in PRIMITIVES:
+                continue
+            if '::' in base or '<' in base:
+                continue
+
+            if is_ptr:
+                fwd_types.add(base)
+            else:
+                include_types.add(base)
+
+    # Don't forward-declare what we're including
+    fwd_types -= include_types
+
+    # Emit includes
+    for t in sorted(include_types):
+        lines.append('#include "%s.h"' % t)
+    if include_types:
+        lines.append("")
+
+    # Emit forward declarations
+    for t in sorted(fwd_types):
+        lines.append("class %s;" % t)
+    if fwd_types:
+        lines.append("")
+
+    # Class declaration
+    bases_str = ""
+    if pdb_class and pdb_class.get('bases'):
+        base_names = [b['name'] for b in pdb_class['bases']]
+        bases_str = " : " + ", ".join("public %s" % b for b in base_names)
+
+    lines.append("class %s%s {" % (cls_name, bases_str))
+    lines.append("public:")
+
+    # Data members
+    if pdb_class and pdb_class.get('data_members'):
+        members = pdb_class['data_members']
+        size = pdb_class.get('size', 0)
+
+        for m in members:
+            mname = m.get('name', '')
+            mtype = m.get('type', 'int')
+            moffset = m.get('offset', 0)
+
+            if not mname:
+                mname = '_field_%04X' % moffset
+
+            # Handle arrays in type: "Type[N]" or "Type *[N]" -> "Type name[N]" / "Type * name[N]"
+            arr_match = re.search(r'(\[\d+\](?:\[\d+\])*)$', mtype)
+            if arr_match:
+                arr_part = arr_match.group(1)
+                base_type = mtype[:arr_match.start()].rstrip()
+                lines.append("    %s %s%s; // +0x%X" % (base_type, mname, arr_part, moffset))
+            else:
+                lines.append("    %s %s; // +0x%X" % (mtype, mname, moffset))
+
+        if size > 0:
+            lines.append("    // total size: 0x%X (%d)" % (size, size))
+        lines.append("")
+
+    # Methods
+    if methods:
+        for method_name, sig, addr in sorted(methods, key=lambda x: x[2]):
+            ret, cc, params = parse_signature(sig)
+
+            is_ctor = (method_name == cls_name)
+            is_dtor = (method_name.startswith('~') or method_name == '~%s' % cls_name)
+            is_thiscall = '__thiscall' in cc
+            is_static = not is_thiscall and not is_ctor and not is_dtor
+
+            # Strip register annotations
+            params = re.sub(r'@<\w+>', '', params)
+
+            # Remove this pointer from params
+            if is_thiscall and params:
+                param_list = split_params(params)
+                if param_list and ('this' in param_list[0] or '*this' in param_list[0]):
+                    param_list = param_list[1:]
+                params = ', '.join(param_list)
+
+            # Build declaration
+            if is_ctor:
+                decl = "    %s(%s);" % (cls_name, params)
+            elif is_dtor:
+                decl = "    ~%s();" % cls_name
+            elif is_static:
+                decl = "    static %s %s(%s);" % (ret, method_name, params)
+            else:
+                decl = "    %s %s(%s);" % (ret, method_name, params)
+
+            lines.append("%s // %s" % (decl, addr))
+
+    lines.append("};")
+    lines.append("")
+    return '\n'.join(lines)
+
+
+def main():
+    # Load PDB class data
+    with open(PDB_FILE, 'r', encoding='utf-8') as f:
+        pdb = json.load(f)
+
+    pdb_classes = {}
+    for c in pdb.get('classes', []):
+        name = c.get('name', '')
+        if name and '<' not in name and '::' not in name:
+            pdb_classes[name] = c
+
+    # Collect methods from decomp
+    methods_by_class = collect_methods()
+
+    # Generate headers for all classes that have either members or methods
     OUTPUT_DIR.mkdir(parents=True, exist_ok=True)
 
     generated = 0
-    for cls_name, methods in sorted(classes.items()):
-        if len(methods) < 2:
-            continue  # Skip single-method classes
+    all_classes = set(pdb_classes.keys()) | set(methods_by_class.keys())
 
-        content = generate_class_header(cls_name, methods)
-        output_path = OUTPUT_DIR / f"{cls_name}.h"
+    for cls_name in sorted(all_classes):
+        if cls_name in SKIP_CLASSES:
+            continue
+
+        pdb_class = pdb_classes.get(cls_name)
+        methods = methods_by_class.get(cls_name, [])
+
+        # Skip if no useful content
+        has_members = pdb_class and pdb_class.get('data_members') and pdb_class.get('size', 0) > 1
+        has_methods = len(methods) >= 1
+        if not has_members and not has_methods:
+            continue
+
+        content = generate_header(cls_name, pdb_class, methods)
+        output_path = OUTPUT_DIR / ("%s.h" % cls_name)
         with open(output_path, 'w', encoding='utf-8') as f:
             f.write(content)
         generated += 1
 
-    print(f"Generated {generated} header files in {OUTPUT_DIR}")
-    print(f"Total methods: {sum(len(m) for m in classes.values() if len(m) >= 2)}")
+    print("Generated %d header files in %s" % (generated, OUTPUT_DIR))
+    print("  With PDB layout: %d" % sum(1 for c in all_classes
+          if c in pdb_classes and pdb_classes[c].get('data_members') and pdb_classes[c].get('size', 0) > 1))
+    print("  With methods: %d" % sum(1 for c in all_classes if c in methods_by_class and methods_by_class[c]))
 
 
 if __name__ == '__main__':

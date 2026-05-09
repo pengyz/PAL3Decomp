@@ -1,0 +1,7 @@
+{
+  "name": "UIWnd::UIWnd",
+  "address": "0x00445AA0",
+  "size_bytes": 115,
+  "signature": "_DWORD *__thiscall(_DWORD *this)",
+  "decompiled_c": "// between_std_methods (0x430790-0x445B40)\n_DWORD *__thiscall sub_445AA0(_DWORD *this)\n{\n  int v3; // [esp+4h] [ebp-4h]\n\n  sub_432660(this + 9);\n  *this = &off_56AEC8;\n  *(this + 3) = -1;\n  *(this + 4) = 0;\n  *(this + 5) = 0;\n  *(this + 6) = 0;\n  *(this + 7) = 0;\n  *(this + 8) = 0;\n  *(this + 13) = 0;\n  *(this + 14) = 0;\n  *(this + 15) = 0;\n  *(this + 16) = 0;\n  if ( gbColorQuad::ColorQuadFmt )\n  {\n    BYTE2(v3) = 0;\n    LOWORD(v3) = 1285;\n  }\n  else\n  {\n    LOBYTE(v3) = 0;\n    *(_WORD *)((char *)&v3 + 1) = 1285;\n  }\n  HIBYTE(v3) = -1;\n  *(this + 1) = v3;\n  *(this + 2) = -1;\n  return this;\n}\n"
+}

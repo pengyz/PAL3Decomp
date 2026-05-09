@@ -1,0 +1,19 @@
+#include "pal3/gen/CRenderTarget.h"
+
+// 0x004BDB10
+_DWORD *sub_4BDB10()
+{
+  if ( (byte_DE7B68 & 1) == 0 )
+  {
+    byte_DE7B68 |= 1u;
+    sub_4BDA60(dword_DE7AA0);
+    atexit(unknown_libname_427);
+  }
+  return dword_DE7AA0;
+}
+
+// 0x004BDED0
+void CRenderTarget::Destroy()
+{
+  *(_DWORD *)this = -1;
+}
