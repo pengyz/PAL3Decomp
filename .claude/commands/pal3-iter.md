@@ -218,6 +218,32 @@ for c in d['classes']:
 - **偏移量** → 以 PAL3.exe 反汇编中的 `[ecx+XX]` 为准
 - 两者冲突时以二进制为准
 
+## 编码规范（经验教训）
+
+### 全局变量管理
+- **统一通过 `include/pal3/pal3_globals.h` 声明** — 不允许在 .cpp 中手动 extern
+- **新增全局变量时**同步更新头文件 + globals.cpp 定义
+- **类型必须在所有 TU 中一致** — VC6 的 C++ mangling 编码类型到符号名
+- **全局变量不再使用 extern "C"** — 通过统一头文件保证类型一致
+
+### VC6 编译器限制
+- **禁止 UTF-8 中文注释** — VC6 用 GBK/MBCS 解析，UTF-8 多字节会破坏后续行解析
+- **const 变量需要 extern** — C++ 中 const 默认 internal linkage，前向声明必须加 extern
+- **struct vs class 影响 mangling** — `PAU` (struct*) vs `PAV` (class*)，必须与 .lib 导出一致
+- **gbengine 函数通过 gbengine.lib 链接** — lib 从 `src/gbengine/gbengine.def` 生成（完整版）
+
+### 函数链接
+- **跨 TU 函数仍使用 extern "C"** — 避免 C++ mangling 导致声明/定义签名不匹配
+- **函数的 extern "C" 后续统一去除** — 需要先让所有声明和定义的签名精确匹配
+- **gbGfxManager 方法通过公共 API 调用** — 使用 `include/gbengine/gbGfxManager.h` 中的接口
+
+### 头文件结构
+- `include/pal3/pal3_globals.h` — PAL3.exe 全局变量统一声明
+- `include/pal3/GRPinput.h` — GRPinput 类定义
+- `include/pal3/CCBSystem.h` — CCBSystem 类定义
+- `include/gbengine/gbGfxManager.h` — gbGfxManager 公共接口（PAL3 消费者用）
+- `include/gbengine/gbGfxManager_impl.h` — 仅 gbengine.dll 内部使用
+
 ## 注意事项
 
 - **每个 stub 必须注册 call_graph 节点** — 这是 BFS 展开的核心路径
