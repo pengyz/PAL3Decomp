@@ -1,0 +1,7 @@
+{
+  "name": "RoleSystem::UpdatePath",
+  "address": "0x00412940",
+  "size_bytes": 264,
+  "signature": "int __thiscall(RoleSystem *this, int a2)",
+  "decompiled_c": "// between_std_methods (0x411BB0-0x430790)\nint __thiscall RoleSystem::UpdatePath(RoleSystem *this, int a2)\n{\n  int v3; // ebp\n  char *v4; // edi\n  int result; // eax\n  int v6; // [esp-8h] [ebp-14h]\n\n  if ( *((_BYTE *)this + 174) == 49 )\n  {\n    Object3D::sub_536C50((const char *)this + 680, a2, 2);\n    sub_536D00((gbVisNode **)this + 170, 1.0);\n    *((_BYTE *)this + 1445) = 0;\n    *((_BYTE *)this + 1444) = 0;\n    return result;\n  }\n  v3 = sub_4126D0(a2, *((_BYTE *)this + 173));\n  if ( *((_BYTE *)this + 174) == 50 )\n    goto LABEL_10;\n  if ( v3 == 50 )\n  {\n    v4 = (char *)this + 680;\n    if ( !sub_536AC0((int)this + 680, aZ0, 0) )\n      Object3D::sub_536C50(v4, 50, 0);\n    goto LABEL_12;\n  }\n  if ( v3 != 52 && v3 != 58 )\n  {\nLABEL_10:\n    v4 = (char *)this + 680;\n    v6 = 2;\n    goto LABEL_11;\n  }\n  v4 = (char *)this + 680;\n  if ( !sub_536AC0((int)this + 680, aZ4, 0) )\n  {\n    v6 = 0;\nLABEL_11:\n    Object3D::sub_536C50(v4, v3, v6);\n  }\nLABEL_12:\n  if ( *((_DWORD *)this + 321) == 2 )\n    sub_536D00((gbVisNode **)v4, 2.4000001);\n  else\n    sub_536D00((gbVisNode **)v4, 1.0);\n  *((_BYTE *)this + 1445) = 0;\n  *((_BYTE *)this + 1444) = 0;\n  return result;\n}\n"
+}

@@ -2,6 +2,6 @@
   "name": "sub_4F3D10",
   "address": "0x004F3D10",
   "size_bytes": 122,
-  "signature": "char __thiscall(char *this, int a2)",
-  "decompiled_c": "// between_std_methods (0x4D70B0-0x504E20)\nchar __thiscall sub_4F3D10(char *this, int a2)\n{\n  if ( (unsigned __int8)CCBAI::sub_4F3D90(a2, 26) )\n    return 0;\n  if ( !sub_4F3CC0(this, a2) )\n  {\n    ++dword_17AD310;\n    dword_5DFDEC = 214013 * dword_5DFDEC + 2531011;\n    CCBRoleState::sub_4F3E20(a2, ((dword_5DFDEC >> 16) & 0x7FFF) % 5 + 1, 1, 1);\n  }\n  return 1;\n}\n"
+  "signature": "char __thiscall(CCBRoleState *this, int roleIdx)",
+  "decompiled_c": "// between_std_methods (0x4D70B0-0x504E20)\nchar __thiscall sub_4F3D10(CCBRoleState *this, int roleIdx)\n{\n  if ( CCBRoleState::GetRoleField(this, roleIdx, 26) )\n    return 0;\n  if ( !sub_4F3CC0(this->_data, roleIdx) )\n  {\n    ++dword_17AD310;\n    dword_5DFDEC = 214013 * dword_5DFDEC + 2531011;\n    CCBRoleState::ProcessRound(this, roleIdx);\n  }\n  return 1;\n}\n"
 }

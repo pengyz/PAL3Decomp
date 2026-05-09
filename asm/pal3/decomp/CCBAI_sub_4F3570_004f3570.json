@@ -2,6 +2,6 @@
   "name": "CCBAI::sub_4F3570",
   "address": "0x004F3570",
   "size_bytes": 176,
-  "signature": "int __thiscall(_DWORD *this, int a2, char a3)",
-  "decompiled_c": "// between_std_methods (0x4D70B0-0x504E20)\nint __thiscall sub_4F3570(_DWORD *this, int a2, char a3)\n{\n  int v4; // ebx\n  int v5; // ebp\n  int v6; // esi\n  int v8; // [esp+10h] [ebp-8h] BYREF\n  int v9; // [esp+14h] [ebp-4h] BYREF\n  _BYTE *v10; // [esp+1Ch] [ebp+4h]\n\n  v4 = 0;\n  v9 = 0;\n  v8 = 0;\n  v5 = 0;\n  CCBRoleState::sub_4F3B90(a2, &v9, &v8);\n  v6 = v9;\n  if ( v9 >= v8 )\n    return 0;\n  v10 = (char *)this + 892 * v9 + 577;\n  do\n  {\n    if ( *v10 && (a3 || CCBAI::sub_4ED010(this, v6)) )\n    {\n      v4 += CCBAI::sub_4F2BB0(this, v6, 0);\n      ++v5;\n    }\n    ++v6;\n    v10 += 892;\n  }\n  while ( v6 < v8 );\n  if ( v5 )\n    return v4 / v5;\n  else\n    return 0;\n}\n"
+  "signature": "int __thiscall(CCBRoleState *this, int roleIdx, char a3)",
+  "decompiled_c": "// between_std_methods (0x4D70B0-0x504E20)\nint __thiscall CCBAI::sub_4F3570(CCBRoleState *this, int roleIdx, char a3)\n{\n  CCBRoleState::GetRoleMP(this, roleIdx);\n  return 0;\n}\n"
 }
