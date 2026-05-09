@@ -301,16 +301,19 @@ extern "C" void __cdecl PalScriptMgr_CON_ReLoadScript(void) {}
 extern "C" void __cdecl FileSysDestory(void) {}
 
 // thiscall method stubs for PAL3::Destroy
-class CRenderTarget { public: void Destroy(void); };
+class CRenderTarget { public: int m_state; void Destroy(void); };
 class CRenderTarget2 { public: void Destroy(void); };
 class UIQuadManager { public: void Destroy(void); };
-class CGameData { public: void Destroy(void); };
+class CGameData { public: void Destroy(void); int GetMode(void); char _pad[0x38D0]; };
 
 
-void CRenderTarget::Destroy(void) {}
+// 0x004BDED0 (7B): mov [ecx], -1; ret
+void CRenderTarget::Destroy(void) { m_state = -1; }
 void CRenderTarget2::Destroy(void) {}
 void UIQuadManager::Destroy(void) {}
 void CGameData::Destroy(void) {}
+// 0x0044FF60 (7B): mov eax, [ecx+0x38CC]; ret
+int CGameData::GetMode(void) { return *(int *)((char *)this + 0x38CC); }
 
 
 // CCBSystem — 已移至 src/pal3/Combat/CBSystem.cpp + include/pal3/CCBSystem.h

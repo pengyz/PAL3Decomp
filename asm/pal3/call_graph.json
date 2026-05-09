@@ -845,13 +845,13 @@
       "is_named": false
     },
     "0x004BDED0": {
-      "name": "CRenderTarget::Invalidate",
+      "name": "CRenderTarget::Destroy",
       "address": "0x004BDED0",
       "size": 7,
-      "status": "stub",
+      "status": "matched",
       "source": "src/pal3/globals.cpp",
       "suggested_source": null,
-      "match_rate": null,
+      "match_rate": 1.0,
       "calls": [],
       "called_by": [
         "0x00406230"
@@ -1183,10 +1183,10 @@
       "name": "CGameData::GetMode",
       "address": "0x0044FF60",
       "size": 7,
-      "status": "stub",
+      "status": "matched",
       "source": "src/pal3/globals.cpp",
       "suggested_source": null,
-      "match_rate": null,
+      "match_rate": 1.0,
       "calls": [],
       "called_by": [
         "0x004055D0"
@@ -1352,10 +1352,10 @@
       "name": "CScreenMode::SetState",
       "address": "0x0053CDD0",
       "size": 13,
-      "status": "stub",
+      "status": "matched",
       "source": "src/pal3/globals.cpp",
       "suggested_source": null,
-      "match_rate": null,
+      "match_rate": 1.0,
       "calls": [],
       "called_by": [
         "0x004055D0"
@@ -1418,10 +1418,10 @@
       "name": "CScreenMode::GetAudioManager",
       "address": "0x0053E500",
       "size": 7,
-      "status": "stub",
+      "status": "matched",
       "source": "src/pal3/globals.cpp",
       "suggested_source": null,
-      "match_rate": null,
+      "match_rate": 1.0,
       "calls": [],
       "called_by": [
         "0x004055D0"
@@ -1957,7 +1957,6 @@
     "0x0044F4C0",
     "0x0044F5B0",
     "0x0044F610",
-    "0x0044FF60",
     "0x00457410",
     "0x004B65A0",
     "0x004B65F0",
@@ -1967,7 +1966,6 @@
     "0x004B6DF0",
     "0x004B6E20",
     "0x004BDB10",
-    "0x004BDED0",
     "0x004BE460",
     "0x004BE4A0",
     "0x004BE590",
@@ -2000,7 +1998,6 @@
     "0x0053C720",
     "0x0053C990",
     "0x0053CC70",
-    "0x0053CDD0",
     "0x0053CE90",
     "0x0053CEF0",
     "0x0053CF80",
@@ -2009,7 +2006,6 @@
     "0x0053DD70",
     "0x0053DEF0",
     "0x0053E490",
-    "0x0053E500",
     "0x0053E950",
     "0x0053EA60",
     "0x00540F60",
@@ -2020,13 +2016,13 @@
   ],
   "stats": {
     "total_nodes": 114,
-    "matched": 3,
+    "matched": 8,
     "compiled": 5,
     "wip": 3,
     "pending": 1,
     "stub": 101,
     "skipped": 1,
-    "frontier_size": 102,
+    "frontier_size": 97,
     "max_depth": 99
   },
   "globals": {
