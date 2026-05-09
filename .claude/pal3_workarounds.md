@@ -30,3 +30,10 @@
 - **影响**: 如果偏移不一致，使用这些成员的函数字节匹配会失败
 - **正确修复**: 通过 `pal3_compare.py` 验证编译产物字节，如果匹配则偏移正确
 - **迭代**: #13
+
+## [全局] PAL3.cpp 中 thiscall 方法被误声明为 extern "C" __cdecl
+- **问题**: IDA 反编译 PAL3::Create/Update/Render 时，未识别出部分调用通过 ecx 传递 this
+- **影响**: sub_41C630, sub_41CA90, sub_41BE80 等实际是 __thiscall 但被当作 __cdecl
+- **Workaround**: 实现侧用 __cdecl 包装函数内部访问 g_pCamera
+- **正确修复**: 修改 PAL3.cpp，把这些调用改为 `((CameraCtrl*)g_pCamera)->Method(arg)`
+- **迭代**: #28, #29
