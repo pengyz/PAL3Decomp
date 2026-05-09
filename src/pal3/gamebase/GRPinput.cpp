@@ -73,22 +73,6 @@ int GRPinput::SetMouseLimits(long minX, long minY, long maxX, long maxY)
     return maxX;
 }
 
-// C linkage wrappers (PAL3.cpp calls these via extern "C")
-extern "C" void __cdecl sub_402270(void *pThis, int a, int b, int c, int d)
-{
-    ((GRPinput *)pThis)->SetMouseLimits(a, b, c, d);
-}
-
-extern "C" void __cdecl sub_4022B0(void *pThis, int mode)
-{
-    ((GRPinput *)pThis)->SetMode(mode);
-}
-
-extern "C" short __cdecl sub_4022C0(void *pThis, unsigned short key)
-{
-    return ((GRPinput *)pThis)->GetKeyState(key);
-}
-
 // === STUB: GRPinput::Poll ===
 void GRPinput::Poll(void) {}
 

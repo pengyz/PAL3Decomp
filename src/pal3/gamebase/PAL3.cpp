@@ -70,8 +70,7 @@ extern "C" void __cdecl sub_430570(const char *);
 extern "C" int  __cdecl sub_53DF70(void);
 extern "C" void __cdecl sub_53DD70(int);
 extern "C" int  __cdecl sub_4020E0(void *ppvOut, HINSTANCE hInst, HWND hwnd, int flag);
-extern "C" void __cdecl sub_402270(void *ppvOut, int a, int b, int c, int d);
-extern "C" void __cdecl sub_4022B0(void *ppvOut, int mode);
+#include "pal3/GRPinput.h"
 extern "C" void __cdecl sub_53C340(int a, int b);
 extern "C" void __cdecl sub_41C1B0(int *v);
 extern "C" int  __cdecl PAL_GDB_PAL_GDB(void *);
@@ -126,7 +125,7 @@ extern "C" char g_Logger;
 extern "C" int g_pCursorNode1;
 extern "C" int g_pCursorNode2;
 extern "C" void *unk_A3A7D8;
-extern "C" void *ppvOut;
+extern GRPinput g_Input;
 
 // String constants
 extern "C" const char aDatascriptComb[];
@@ -310,7 +309,7 @@ void __cdecl PAL3::Create(HINSTANCE hInstance)
     UpdateWindow(hwnd);
 
     // DirectInput initialization
-    if (!sub_4020E0(&ppvOut, hInstance, (HWND)(int)hwnd, 0))
+    if (!sub_4020E0(&g_Input, hInstance, (HWND)(int)hwnd, 0))
     {
         memcpy(&pExceptionObject,
             FormatExceptionMessage(ArgList, aInputDeviceCre, aDProjectPal3Ga_0, 180),
@@ -318,8 +317,8 @@ void __cdecl PAL3::Create(HINSTANCE hInstance)
         throw pExceptionObject;
     }
 
-    sub_402270(&ppvOut, 0, 0, xRight, yBottom);
-    sub_4022B0(&ppvOut, 0x40000000);
+    g_Input.SetMouseLimits(0, 0, xRight, yBottom);
+    g_Input.SetMode(0x40000000);
     sub_53C340(0, 1);
 
     memset(inputState, 0, sizeof(inputState));
@@ -556,11 +555,7 @@ void __cdecl PAL3::Destroy(void)
 // Game main loop update - dispatches by g_nGameState (9 cases)
 // ========================================================================
 
-class GRPinput {
-public:
-    void Poll(void);
-    void SetMouseAbs(unsigned int time, int btn, int state);
-};
+// GRPinput declared via #include "pal3/GRPinput.h" above
 
 extern "C" float g_fTotalTime;
 extern "C" float g_fSceneTime;
@@ -582,14 +577,14 @@ extern "C" short word_8ACCD8;
 extern "C" short word_8ACD2A = 0;
 extern "C" float flt_C0816C = 0.0f;
 extern "C" float flt_C1096C;
-extern "C" void *ppvOut;
+extern GRPinput g_Input;
 extern "C" int g_pCursorNode1;
 extern "C" int g_pCursorNode2;
 extern "C" void *g_pCBSystem;
 extern "C" char byte_BFDA90;
 extern "C" char byte_5833C0;
 
-extern "C" short __cdecl sub_4022C0(void *, unsigned short);
+// GRPinput::GetKeyState declared via pal3/GRPinput.h
 extern "C" void __cdecl sub_40C230(float);
 extern "C" void __cdecl sub_4105B0(float);
 extern "C" void __cdecl sub_4181E0(int);
@@ -655,16 +650,16 @@ void __cdecl PAL3::Update(float a1)
     float vec[3];
 
     g_fTotalTime = g_fTotalTime + a1;
-    ((GRPinput *)&ppvOut)->Poll();
+    g_Input.Poll();
 
     btnIdx = 0;
     pKey = (unsigned short *)&word_8ACCD8;
     do
     {
-        keyState = sub_4022C0((void *)&ppvOut, *pKey);
+        keyState = g_Input.GetKeyState(*pKey);
         pressed = (keyState == 1 || keyState == 3) ? 1 : 0;
         curTime = timeGetTime();
-        ((GRPinput *)&ppvOut)->SetMouseAbs(curTime, btnIdx, pressed);
+        g_Input.SetMouseAbs(curTime, btnIdx, pressed);
         ++pKey;
         ++btnIdx;
     }

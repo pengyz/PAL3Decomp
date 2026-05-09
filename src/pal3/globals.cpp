@@ -35,7 +35,9 @@ extern "C" char g_Logger = 0;           // 0x17B1EC0
 extern "C" int g_pCursorNode1 = 0;            // 0x00A3A6EC
 extern "C" int g_pCursorNode2 = 0;            // 0x00A3A6F0
 extern "C" void *unk_A3A7D8 = 0;           // 0x00A3A7D8
-extern "C" void *ppvOut = 0;                // DirectInput device pointer
+// GRPinput 全局实例 (原 ppvOut — DirectInput 初始化写入此处)
+#include "pal3/GRPinput.h"
+GRPinput g_Input;
 extern "C" void *off_56A66C = 0;            // 0x0056A66C - vtable pointer
 extern "C" int g_pActorMgr = 0;            // 0x00BFDA64 - gbActorMgr*
 extern "C" int g_GameData = 0;            // 0x00DB9FD0
