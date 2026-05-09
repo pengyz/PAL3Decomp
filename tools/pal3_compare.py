@@ -9,6 +9,8 @@ PAL3.exe 编译对比工具
     python tools/pal3_compare.py --compile src/pal3/WinMain.cpp --func WinMain --addr 0x00541900 --size 824
     python tools/pal3_compare.py --compile src/pal3/WinMain.cpp --all
     python tools/pal3_compare.py --obj build/WinMain.obj --func WinMain --addr 0x00541900 --size 824
+    python tools/pal3_compare.py --compile-all                 # 编译 src/pal3/ 下所有 .cpp
+    python tools/pal3_compare.py --compile-all --json-output   # JSON 输出
 
 编译器: VC6 SP0 (MSVC 12.00.8168) — 与原始 PAL3.exe Rich Header 匹配
 """
@@ -29,7 +31,9 @@ VC6_BIN = VC6_ROOT / "Bin"
 VC6_INCLUDE = VC6_ROOT / "Include"
 VC6_LIB = PROJECT_ROOT / "tools" / "vc6" / "Lib"  # Lib from SP5 (compatible)
 DECOMP_DIR = PROJECT_ROOT / "asm" / "pal3" / "decomp"
+NAMES_PATH = PROJECT_ROOT / "asm" / "pal3" / "pal3_names.json"
 BUILD_DIR = PROJECT_ROOT / "build" / "pal3"
+SRC_DIR = PROJECT_ROOT / "src" / "pal3"
 
 # PE 解析
 EXE_IMAGE_BASE = 0x00400000
@@ -219,12 +223,13 @@ def get_original_bytes(address, size):
 
 
 def compare_bytes(original, compiled, func_name="", verbose=True):
-    """字节对比，返回匹配率"""
+    """字节对比，返回匹配率和判定结果"""
     if original is None or compiled is None:
-        return 0.0
+        return 0.0, "error"
 
     min_len = min(len(original), len(compiled))
     max_len = max(len(original), len(compiled))
+    size_match = (len(original) == len(compiled))
 
     matches = 0
     diffs = []
@@ -236,9 +241,19 @@ def compare_bytes(original, compiled, func_name="", verbose=True):
 
     match_rate = matches / max_len * 100 if max_len > 0 else 0
 
+    # Determine judgment
+    if match_rate == 100.0 and size_match:
+        judgment = "exact"
+    elif size_match and match_rate >= 95.0:
+        judgment = "equiv"
+    elif not size_match:
+        judgment = "size_mismatch"
+    else:
+        judgment = "mismatch"
+
     if verbose:
         size_note = ""
-        if len(original) != len(compiled):
+        if not size_match:
             size_note = f" (大小不匹配: 原始={len(original)}, 编译={len(compiled)})"
 
         if match_rate == 100.0:
@@ -251,7 +266,7 @@ def compare_bytes(original, compiled, func_name="", verbose=True):
                 if len(diffs) > 10:
                     print(f"      ... 还有 {len(diffs)-10} 处差异")
 
-    return match_rate
+    return match_rate, judgment
 
 
 def load_function_map():
@@ -278,22 +293,123 @@ def load_function_map():
     return func_map
 
 
+def get_pal3_sources():
+    """从 CMakeLists.txt 解析 PAL3_SOURCES 列表。"""
+    cmake_path = SRC_DIR / "CMakeLists.txt"
+    if not cmake_path.exists():
+        return None
+
+    with open(cmake_path) as f:
+        content = f.read()
+
+    # Extract PAL3_SOURCES list
+    match = re.search(r'set\(PAL3_SOURCES\s+(.*?)\)', content, re.DOTALL)
+    if not match:
+        return None
+
+    sources = []
+    for line in match.group(1).split('\n'):
+        line = line.strip()
+        if line and not line.startswith('#'):
+            sources.append(line)
+    return sources
+
+
+def compile_all_sources(json_output=False):
+    """编译 PAL3_SOURCES 中的所有 .cpp 文件，验证编译通过。"""
+    src_dir = SRC_DIR
+    if not src_dir.exists():
+        print("Error: src/pal3/ directory not found")
+        sys.exit(1)
+
+    # Use PAL3_SOURCES from CMakeLists.txt
+    source_list = get_pal3_sources()
+    if source_list:
+        cpp_files = [src_dir / s for s in source_list if s.endswith('.cpp')]
+        # Filter out non-existent files
+        missing = [f for f in cpp_files if not f.exists()]
+        if missing:
+            if not json_output:
+                for m in missing:
+                    print(f"Warning: listed source not found: {m.name}")
+            cpp_files = [f for f in cpp_files if f.exists()]
+    else:
+        cpp_files = sorted(src_dir.glob("*.cpp"))
+
+    if not cpp_files:
+        print("No .cpp files to compile")
+        sys.exit(1)
+
+    results = []
+    passed = 0
+    failed = 0
+
+    for src in cpp_files:
+        obj = compile_source(str(src))
+        if obj is not None:
+            passed += 1
+            results.append({
+                "file": src.name,
+                "status": "compiled",
+                "obj": str(obj),
+            })
+        else:
+            failed += 1
+            results.append({
+                "file": src.name,
+                "status": "failed",
+            })
+
+    if json_output:
+        output = {
+            "total": len(cpp_files),
+            "passed": passed,
+            "failed": failed,
+            "judgment": "pass" if failed == 0 else "fail",
+            "files": results,
+        }
+        print(json.dumps(output, indent=2))
+    else:
+        print(f"\n=== Build Gate Results ===")
+        print(f"  Total:  {len(cpp_files)} files")
+        print(f"  Passed: {passed}")
+        print(f"  Failed: {failed}")
+        if failed == 0:
+            print(f"  Result: PASS")
+        else:
+            print(f"  Result: FAIL")
+            for r in results:
+                if r["status"] == "failed":
+                    print(f"    FAILED: {r['file']}")
+
+    return failed == 0
+
+
 def main():
     parser = argparse.ArgumentParser(description='PAL3.exe 编译对比工具')
     parser.add_argument('--compile', help='要编译的源文件')
+    parser.add_argument('--compile-all', action='store_true', help='编译 src/pal3/ 下所有 .cpp')
     parser.add_argument('--obj', help='已编译的 .obj 文件')
     parser.add_argument('--func', help='要对比的函数名 (支持部分匹配)')
     parser.add_argument('--addr', help='函数在原始 EXE 中的地址 (如 0x00541900)')
     parser.add_argument('--size', type=int, help='函数大小 (字节)')
     parser.add_argument('--all', action='store_true', help='对比 obj 中所有函数')
     parser.add_argument('--list', action='store_true', help='列出 obj 中的函数')
+    parser.add_argument('--json-output', action='store_true', help='输出 JSON 格式结果')
     args = parser.parse_args()
+
+    # --compile-all mode
+    if args.compile_all:
+        success = compile_all_sources(json_output=args.json_output)
+        sys.exit(0 if success else 1)
 
     # 编译
     obj_path = None
     if args.compile:
         obj_path = compile_source(args.compile)
         if obj_path is None:
+            if args.json_output:
+                print(json.dumps({"error": "compilation_failed", "judgment": "error"}))
             sys.exit(1)
     elif args.obj:
         obj_path = Path(args.obj)
@@ -328,10 +444,8 @@ def main():
             compiled_bytes = sec['data']
 
             # 从 decomp 数据中查找对应地址和大小
-            # 尝试去掉前导下划线和@后缀匹配
             found = None
             for map_name, map_info in func_map.items():
-                # 简单匹配: mangled name 包含函数名
                 clean = sym_name.lstrip('_').split('@')[0]
                 if clean and clean in map_name:
                     found = map_info
@@ -339,16 +453,32 @@ def main():
 
             if found:
                 orig_bytes = get_original_bytes(found['address'], found['size'])
-                rate = compare_bytes(orig_bytes, compiled_bytes, sym_name, verbose=True)
-                results.append((sym_name, rate))
+                rate, judgment = compare_bytes(orig_bytes, compiled_bytes, sym_name,
+                                              verbose=not args.json_output)
+                results.append({
+                    "function": sym_name,
+                    "match_rate": rate,
+                    "judgment": judgment,
+                    "address": f"0x{found['address']:08X}",
+                    "orig_size": found['size'],
+                    "compiled_size": len(compiled_bytes),
+                })
                 total += 1
                 if rate == 100.0:
                     matched += 1
             else:
-                print(f"  ? {sym_name}: 未找到原始地址映射")
+                if not args.json_output:
+                    print(f"  ? {sym_name}: 未找到原始地址映射")
 
-        if total > 0:
+        if args.json_output:
+            print(json.dumps({
+                "total": total,
+                "matched": matched,
+                "results": results,
+            }, indent=2))
+        elif total > 0:
             print(f"\n总计: {matched}/{total} 函数完全匹配")
+
     elif args.func and args.addr and args.size:
         # 对比指定函数
         addr = int(args.addr, 16) if isinstance(args.addr, str) else args.addr
@@ -357,14 +487,24 @@ def main():
             sys.exit(1)
 
         orig_bytes = get_original_bytes(addr, args.size)
-        compare_bytes(orig_bytes, compiled_bytes, name or args.func)
+        rate, judgment = compare_bytes(orig_bytes, compiled_bytes, name or args.func,
+                                       verbose=not args.json_output)
+        if args.json_output:
+            print(json.dumps({
+                "function": name or args.func,
+                "address": f"0x{addr:08X}",
+                "match_rate": rate,
+                "judgment": judgment,
+                "orig_size": args.size,
+                "compiled_size": len(compiled_bytes),
+            }, indent=2))
+
     elif args.func:
         # 从 func_map 查找地址
         name, compiled_bytes = get_function_bytes_from_obj(obj_path, args.func)
         if compiled_bytes is None:
             sys.exit(1)
 
-        # 尝试从 func_map 找地址
         found = None
         for map_name, map_info in func_map.items():
             if args.func in map_name:
@@ -373,12 +513,22 @@ def main():
 
         if found:
             orig_bytes = get_original_bytes(found['address'], found['size'])
-            compare_bytes(orig_bytes, compiled_bytes, name or args.func)
+            rate, judgment = compare_bytes(orig_bytes, compiled_bytes, name or args.func,
+                                           verbose=not args.json_output)
+            if args.json_output:
+                print(json.dumps({
+                    "function": name or args.func,
+                    "address": f"0x{found['address']:08X}",
+                    "match_rate": rate,
+                    "judgment": judgment,
+                    "orig_size": found['size'],
+                    "compiled_size": len(compiled_bytes),
+                }, indent=2))
         else:
             print(f"  未找到 '{args.func}' 的原始地址，请用 --addr --size 指定")
             sys.exit(1)
     else:
-        print("请指定 --func 或 --all")
+        print("请指定 --func, --all, 或 --compile-all")
         sys.exit(1)
 
 

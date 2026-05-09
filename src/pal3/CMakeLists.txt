@@ -23,74 +23,16 @@ endif()
 # ========================================================================
 # 源文件列表
 # ========================================================================
-# 按照开发阶段组织源文件：
-#   Phase 0 (基础设施): 占位符 main.cpp
-#   Phase 1 (框架): 窗口初始化、游戏循环、DirectX 设置
-#   Phase 2 (脚本): SCE VM 实现
-#   Phase 3 (UI): 菜单、对话、HUD
-#   Phase 4 (战斗): 战斗管理、技能系统
-#   Phase 5 (场景): 场景管理、相机
-#   Phase 6 (存档): 保存/加载系统
-#   Phase 7 (其他): 音频、物品、NPC
+# 反编译源文件 — 随 BFS 调用图展开逐步添加。
+# 每个文件独立编译为 .obj (通过 pal3_compare.py --compile-all 验证)。
+# 注意: 完整链接不可行（缺外部符号），构建门控只验证编译。
+#
+# 维护规则: 新增 .cpp 文件时添加到此列表。
 
 set(PAL3_SOURCES
-    # Phase 0: 占位符
-    main.cpp
+    WinMain.cpp
+    PAL3_Create.cpp
 )
-
-# ========================================================================
-# 未来的源文件（按阶段注释）
-# ========================================================================
-#
-# # Phase 1: 框架
-# set(PAL3_PHASE1_SOURCES
-#     framework/window.cpp
-#     framework/init.cpp
-#     framework/game_loop.cpp
-#     framework/render.cpp
-# )
-#
-# # Phase 2: 脚本系统
-# set(PAL3_PHASE2_SOURCES
-#     script/sce_vm.cpp
-#     script/sce_opcodes.cpp
-#     script/sce_stack.cpp
-# )
-#
-# # Phase 3: UI 系统
-# set(PAL3_PHASE3_SOURCES
-#     ui/ui_manager.cpp
-#     ui/menu_main.cpp
-#     ui/dialog.cpp
-#     ui/hud.cpp
-# )
-#
-# # Phase 4: 战斗系统
-# set(PAL3_PHASE4_SOURCES
-#     battle/battle_manager.cpp
-#     battle/skill_system.cpp
-#     battle/unit.cpp
-# )
-#
-# # Phase 5: 场景管理
-# set(PAL3_PHASE5_SOURCES
-#     scene/scene_manager.cpp
-#     scene/camera.cpp
-#     scene/object.cpp
-# )
-#
-# # Phase 6: 存档系统
-# set(PAL3_PHASE6_SOURCES
-#     save/save_manager.cpp
-#     save/save_format.cpp
-# )
-#
-# # Phase 7: 其他系统
-# set(PAL3_PHASE7_SOURCES
-#     audio/audio_manager.cpp
-#     item/item_manager.cpp
-#     npc/npc_manager.cpp
-# )
 
 # ========================================================================
 # 头文件列表
