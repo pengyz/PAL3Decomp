@@ -560,12 +560,12 @@ public:
     void SetMouseAbs(unsigned int time, int btn, int state);
 };
 
-extern "C" float flt_BFDAA0;
-extern "C" float flt_BFDA5C;
-extern "C" float flt_BFDA58;
-extern "C" int dword_BFDA6C;
+extern "C" float g_fTotalTime;
+extern "C" float g_fSceneTime;
+extern "C" float g_fEventTimer;
+extern "C" int g_nGameState;
 extern "C" int dword_BFDA30 = 0;
-extern "C" int dword_C116EC;
+extern "C" int g_pRoleSystem;
 extern "C" int dword_C1171C;
 extern "C" int dword_C11754;
 extern "C" int dword_5833BC;
@@ -652,7 +652,7 @@ void __cdecl PAL3::Update(float a1)
     float dx, dy, dz;
     float vec[3];
 
-    flt_BFDAA0 = flt_BFDAA0 + a1;
+    g_fTotalTime = g_fTotalTime + a1;
     ((GRPinput *)&ppvOut)->Poll();
 
     btnIdx = 0;
@@ -668,13 +668,13 @@ void __cdecl PAL3::Update(float a1)
     }
     while ((int)pKey < (int)&word_8ACD2A);
 
-    prevState = dword_BFDA6C;
+    prevState = g_nGameState;
     sceneResult = sub_44F4C0(*(int *)&a1, 1);
-    curState = dword_BFDA6C;
-    if (dword_BFDA6C != prevState)
+    curState = g_nGameState;
+    if (g_nGameState != prevState)
     {
         PAL3_IfHideFightSucceed(prevState);
-        curState = dword_BFDA6C;
+        curState = g_nGameState;
     }
 
     switch (curState)
@@ -687,7 +687,7 @@ void __cdecl PAL3::Update(float a1)
 
     case 2:
     case 9:
-        flt_BFDA5C = flt_BFDA5C + a1;
+        g_fSceneTime = g_fSceneTime + a1;
         (*(void (**)(void))(*(int *)dword_A3A6EC + 20))();
         (*(void (**)(void))(*(int *)dword_A3A6F0 + 20))();
         sub_4BFD20();
@@ -699,7 +699,7 @@ void __cdecl PAL3::Update(float a1)
             PalScriptMgr_RunSceneScript(*(int *)&a1);
         }
         sub_41C280(a1);
-        if (dword_BFDA6C != 9)
+        if (g_nGameState != 9)
         {
             if (sceneResult)
             {
@@ -715,11 +715,11 @@ void __cdecl PAL3::Update(float a1)
         sub_4226F0();
         sub_420150(a1);
         sub_422E40(a1);
-        sub_4CDB70(flt_BFDA5C);
+        sub_4CDB70(g_fSceneTime);
         sub_41EB80();
         modeResult = sub_53DF70();
         sub_53E490(modeResult);
-        if (dword_BFDA6C != 2 && dword_BFDA6C != 9)
+        if (g_nGameState != 2 && g_nGameState != 9)
             PAL3_IfHideFightSucceed(prevState);
         break;
 
@@ -802,7 +802,7 @@ LABEL_59:
         break;
 
     case 7:
-        flt_BFDA58 = flt_BFDA58 + a1;
+        g_fEventTimer = g_fEventTimer + a1;
         if (dword_BFDA30)
         {
             if (!PalScriptMgr_CON_CloseScript())
@@ -811,7 +811,7 @@ LABEL_59:
                 sub_44F610(4);
             }
         }
-        else if (flt_BFDA58 >= 60.0f)
+        else if (g_fEventTimer >= 60.0f)
         {
             PAL3_EndWolf(-1);
             break;
@@ -827,7 +827,7 @@ LABEL_59:
             if (!sceneResult)
                 sub_41D9A0(a1);
             {
-                float *pRolePos = (float *)dword_C116EC;
+                float *pRolePos = (float *)g_pRoleSystem;
                 int roleIdx = 1;
                 float *pCheck = &flt_C0816C;
                 while (1)
@@ -856,12 +856,12 @@ LABEL_59:
         if (PAL3_EntryCatchGhost(0))
         {
             PAL3_EndHideFight();
-            sub_4181E0(dword_C116EC);
+            sub_4181E0(g_pRoleSystem);
             scriptResult = PalScriptMgr_Destroy(1701, 0);
             goto LABEL_33;
         }
-        flt_BFDA58 = flt_BFDA58 + a1;
-        if (flt_BFDA58 >= 180.0f)
+        g_fEventTimer = g_fEventTimer + a1;
+        if (g_fEventTimer >= 180.0f)
             goto LABEL_32;
         PalScriptMgr_RunSceneScript(*(int *)&a1);
         sub_41C280(a1);
@@ -872,12 +872,12 @@ LABEL_59:
         if (!sceneResult)
             sub_41D9A0(a1);
         sub_41EB80();
-        if (*(int *)(dword_C116EC + 1264) != 4)
+        if (*(int *)(g_pRoleSystem + 1264) != 4)
         {
             if (sub_421C40(sub_4226F0()))
             {
 LABEL_32:
-                sub_4181E0(dword_C116EC);
+                sub_4181E0(g_pRoleSystem);
                 PAL3_EndHideFight();
                 scriptResult = PalScriptMgr_Destroy(1702, 0);
 LABEL_33:
@@ -895,6 +895,6 @@ LABEL_33:
 DONE:
     sub_4BE590();
     sub_4BE460(*(int *)&a1);
-    if (!dword_BFDA6C)
+    if (!g_nGameState)
         sub_53CDD0(1);
 }

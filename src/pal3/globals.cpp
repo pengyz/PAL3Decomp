@@ -356,12 +356,12 @@ unsigned long CCBStage::ProcUseItem(unsigned long hwnd) { return 1; }
 // ============================================================
 
 // 全局变量
-extern "C" float flt_BFDAA0 = 0.0f;         // 0x00BFDAA0 - 累计时间
-extern "C" float flt_BFDA5C = 0.0f;         // 0x00BFDA5C - 场景累计时间
-extern "C" float flt_BFDA58 = 0.0f;         // 0x00BFDA58 - wolf/ghost 计时
-extern "C" int dword_BFDA6C = 0;             // 0x00BFDA6C - 游戏状态
+extern "C" float g_fTotalTime = 0.0f;         // 0x00BFDAA0 - 累计时间
+extern "C" float g_fSceneTime = 0.0f;         // 0x00BFDA5C - 场景累计时间
+extern "C" float g_fEventTimer = 0.0f;         // 0x00BFDA58 - wolf/ghost 计时
+extern "C" int g_nGameState = 0;             // 0x00BFDA6C - 游戏状态
 // dword_BFDA30 — 定义在 PAL3.cpp             // 0x00BFDA30
-extern "C" int dword_C116EC = 0;             // 0x00C116EC - 角色数据
+extern "C" int g_pRoleSystem = 0;             // 0x00C116EC - 角色数据
 extern "C" int dword_C1171C = 0;             // 0x00C1171C
 extern "C" int dword_C11754 = 0;             // 0x00C11754
 extern "C" int dword_5833BC = 0;             // 0x005833BC - 标志位

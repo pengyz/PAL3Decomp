@@ -977,7 +977,7 @@
       "is_named": false
     },
     "0x0040C230": {
-      "name": "sub_40C230",
+      "name": "ScriptUpdate",
       "address": "0x0040C230",
       "size": 976,
       "status": "stub",
@@ -990,10 +990,11 @@
       ],
       "depth": 2,
       "has_decomp": false,
-      "is_named": false
+      "is_named": true,
+      "signature": "void __cdecl ScriptUpdate(float dt)"
     },
     "0x004105B0": {
-      "name": "sub_4105B0",
+      "name": "NPCAnimUpdate",
       "address": "0x004105B0",
       "size": 641,
       "status": "stub",
@@ -1006,10 +1007,11 @@
       ],
       "depth": 2,
       "has_decomp": false,
-      "is_named": false
+      "is_named": true,
+      "signature": "void __cdecl NPCAnimUpdate(float)"
     },
     "0x004181E0": {
-      "name": "sub_4181E0",
+      "name": "RoleSystemNotify",
       "address": "0x004181E0",
       "size": 113,
       "status": "stub",
@@ -1022,10 +1024,11 @@
       ],
       "depth": 2,
       "has_decomp": false,
-      "is_named": false
+      "is_named": true,
+      "signature": "void __cdecl RoleSystemNotify(int)"
     },
     "0x0041C280": {
-      "name": "sub_41C280",
+      "name": "InputUpdate",
       "address": "0x0041C280",
       "size": 692,
       "status": "stub",
@@ -1038,10 +1041,11 @@
       ],
       "depth": 2,
       "has_decomp": false,
-      "is_named": false
+      "is_named": true,
+      "signature": "void __cdecl InputUpdate(float dt)"
     },
     "0x0041D9A0": {
-      "name": "sub_41D9A0",
+      "name": "CameraUpdate",
       "address": "0x0041D9A0",
       "size": 3442,
       "status": "stub",
@@ -1054,10 +1058,11 @@
       ],
       "depth": 2,
       "has_decomp": false,
-      "is_named": false
+      "is_named": true,
+      "signature": "void __cdecl CameraUpdate(float dt)"
     },
     "0x0041EB80": {
-      "name": "sub_41EB80",
+      "name": "UIPostUpdate",
       "address": "0x0041EB80",
       "size": 382,
       "status": "stub",
@@ -1070,10 +1075,11 @@
       ],
       "depth": 2,
       "has_decomp": false,
-      "is_named": false
+      "is_named": true,
+      "signature": "void __cdecl UIPostUpdate(void)"
     },
     "0x00420150": {
-      "name": "sub_420150",
+      "name": "UIUpdate",
       "address": "0x00420150",
       "size": 163,
       "status": "stub",
@@ -1086,7 +1092,8 @@
       ],
       "depth": 2,
       "has_decomp": false,
-      "is_named": false
+      "is_named": true,
+      "signature": "void __cdecl UIUpdate(float dt)"
     },
     "0x00421C40": {
       "name": "sub_421C40",
@@ -1121,7 +1128,7 @@
       "is_named": false
     },
     "0x00422E40": {
-      "name": "sub_422E40",
+      "name": "EffectUpdate",
       "address": "0x00422E40",
       "size": 652,
       "status": "stub",
@@ -1134,10 +1141,11 @@
       ],
       "depth": 2,
       "has_decomp": false,
-      "is_named": false
+      "is_named": true,
+      "signature": "void __cdecl EffectUpdate(float dt)"
     },
     "0x00423540": {
-      "name": "sub_423540",
+      "name": "CombatEnter",
       "address": "0x00423540",
       "size": 101,
       "status": "stub",
@@ -1150,10 +1158,11 @@
       ],
       "depth": 2,
       "has_decomp": false,
-      "is_named": false
+      "is_named": true,
+      "signature": "void __cdecl CombatEnter(void)"
     },
     "0x0044F4C0": {
-      "name": "sub_44F4C0",
+      "name": "SceneUpdate",
       "address": "0x0044F4C0",
       "size": 231,
       "status": "stub",
@@ -1166,7 +1175,8 @@
       ],
       "depth": 2,
       "has_decomp": false,
-      "is_named": false
+      "is_named": true,
+      "signature": "int __cdecl SceneUpdate(float dt, int flag)"
     },
     "0x0044FF60": {
       "name": "sub_44FF60",
@@ -1185,7 +1195,7 @@
       "is_named": false
     },
     "0x004BE460": {
-      "name": "sub_4BE460",
+      "name": "RenderPost",
       "address": "0x004BE460",
       "size": 57,
       "status": "stub",
@@ -1198,10 +1208,11 @@
       ],
       "depth": 2,
       "has_decomp": false,
-      "is_named": false
+      "is_named": true,
+      "signature": "void __cdecl RenderPost(int)"
     },
     "0x004BE590": {
-      "name": "sub_4BE590",
+      "name": "RenderPrepare",
       "address": "0x004BE590",
       "size": 51,
       "status": "stub",
@@ -1214,7 +1225,8 @@
       ],
       "depth": 2,
       "has_decomp": false,
-      "is_named": false
+      "is_named": true,
+      "signature": "void __cdecl RenderPrepare(void)"
     },
     "0x004C0200": {
       "name": "sub_4C0200",
@@ -1233,7 +1245,7 @@
       "is_named": false
     },
     "0x004C5BB0": {
-      "name": "sub_4C5BB0",
+      "name": "CombatEffectUpdate",
       "address": "0x004C5BB0",
       "size": 98,
       "status": "stub",
@@ -1246,10 +1258,11 @@
       ],
       "depth": 2,
       "has_decomp": false,
-      "is_named": false
+      "is_named": true,
+      "signature": "void __cdecl CombatEffectUpdate(float)"
     },
     "0x004CDB70": {
-      "name": "sub_4CDB70",
+      "name": "SceneMgrUpdate",
       "address": "0x004CDB70",
       "size": 114,
       "status": "stub",
@@ -1262,10 +1275,11 @@
       ],
       "depth": 2,
       "has_decomp": false,
-      "is_named": false
+      "is_named": true,
+      "signature": "void __cdecl SceneMgrUpdate(float)"
     },
     "0x00513060": {
-      "name": "sub_513060",
+      "name": "CombatUpdate",
       "address": "0x00513060",
       "size": 182,
       "status": "stub",
@@ -1278,10 +1292,11 @@
       ],
       "depth": 2,
       "has_decomp": false,
-      "is_named": false
+      "is_named": true,
+      "signature": "void __cdecl CombatUpdate(float, int)"
     },
     "0x0052B900": {
-      "name": "sub_52B900",
+      "name": "MiniGame1Update",
       "address": "0x0052B900",
       "size": 119,
       "status": "stub",
@@ -1294,10 +1309,11 @@
       ],
       "depth": 2,
       "has_decomp": false,
-      "is_named": false
+      "is_named": true,
+      "signature": "void __cdecl MiniGame1Update(float)"
     },
     "0x0052F350": {
-      "name": "sub_52F350",
+      "name": "MiniGame2Update",
       "address": "0x0052F350",
       "size": 535,
       "status": "stub",
@@ -1310,10 +1326,11 @@
       ],
       "depth": 2,
       "has_decomp": false,
-      "is_named": false
+      "is_named": true,
+      "signature": "void __cdecl MiniGame2Update(float)"
     },
     "0x005353A0": {
-      "name": "sub_5353A0",
+      "name": "MiniGame3Update",
       "address": "0x005353A0",
       "size": 483,
       "status": "stub",
@@ -1326,10 +1343,11 @@
       ],
       "depth": 2,
       "has_decomp": false,
-      "is_named": false
+      "is_named": true,
+      "signature": "void __cdecl MiniGame3Update(float)"
     },
     "0x0053CDD0": {
-      "name": "sub_53CDD0",
+      "name": "EnterTitleScreen",
       "address": "0x0053CDD0",
       "size": 13,
       "status": "stub",
@@ -1342,7 +1360,8 @@
       ],
       "depth": 2,
       "has_decomp": false,
-      "is_named": false
+      "is_named": true,
+      "signature": "int __cdecl EnterTitleScreen(int)"
     },
     "0x0053D150": {
       "name": "sub_53D150",
@@ -1377,7 +1396,7 @@
       "is_named": false
     },
     "0x0053E490": {
-      "name": "sub_53E490",
+      "name": "AudioUpdate",
       "address": "0x0053E490",
       "size": 71,
       "status": "stub",
@@ -1390,10 +1409,11 @@
       ],
       "depth": 2,
       "has_decomp": false,
-      "is_named": false
+      "is_named": true,
+      "signature": "void __cdecl AudioUpdate(int)"
     },
     "0x0053E500": {
-      "name": "sub_53E500",
+      "name": "GetAudioManager",
       "address": "0x0053E500",
       "size": 7,
       "status": "stub",
@@ -1406,10 +1426,11 @@
       ],
       "depth": 2,
       "has_decomp": false,
-      "is_named": false
+      "is_named": true,
+      "signature": "gbAudioManager* __cdecl GetAudioManager(int)"
     },
     "0x0053E950": {
-      "name": "sub_53E950",
+      "name": "AudioStopAll",
       "address": "0x0053E950",
       "size": 29,
       "status": "stub",
@@ -1422,10 +1443,11 @@
       ],
       "depth": 2,
       "has_decomp": false,
-      "is_named": false
+      "is_named": true,
+      "signature": "void __cdecl AudioStopAll(int)"
     },
     "0x0053EA60": {
-      "name": "sub_53EA60",
+      "name": "AudioFadeOut",
       "address": "0x0053EA60",
       "size": 30,
       "status": "stub",
@@ -1438,10 +1460,11 @@
       ],
       "depth": 2,
       "has_decomp": false,
-      "is_named": false
+      "is_named": true,
+      "signature": "void __cdecl AudioFadeOut(int)"
     },
     "0x00541590": {
-      "name": "sub_541590",
+      "name": "UIQuadManager_Reset",
       "address": "0x00541590",
       "size": 41,
       "status": "stub",
@@ -1454,7 +1477,8 @@
       ],
       "depth": 2,
       "has_decomp": false,
-      "is_named": false
+      "is_named": true,
+      "signature": "void __cdecl UIQuadManager_Reset(int)"
     }
   },
   "frontier": [
@@ -2736,7 +2760,7 @@
     },
     "0x00BFDA58": {
       "ida_name": "flt_BFDA58",
-      "name": "flt_BFDA58",
+      "name": "g_fEventTimer",
       "type": "float",
       "referenced_by": [
         "0x004020E0",
@@ -2822,7 +2846,7 @@
     },
     "0x00BFDA5C": {
       "ida_name": "flt_BFDA5C",
-      "name": "flt_BFDA5C",
+      "name": "g_fSceneTime",
       "type": "float",
       "referenced_by": [
         "0x004020E0",
@@ -3662,7 +3686,7 @@
     },
     "0x00BFDAA0": {
       "ida_name": "flt_BFDAA0",
-      "name": "flt_BFDAA0",
+      "name": "g_fTotalTime",
       "type": "float",
       "referenced_by": [
         "0x004020E0",
@@ -3746,8 +3770,8 @@
     },
     "0x00C116EC": {
       "ida_name": "dword_C116EC",
-      "name": "dword_C116EC",
-      "type": "int",
+      "name": "g_pRoleSystem",
+      "type": "CRoleSystem*",
       "referenced_by": [
         "0x004020E0",
         "0x00402270",
