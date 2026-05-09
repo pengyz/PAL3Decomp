@@ -770,6 +770,121 @@ def normalize_addr(addr_str):
     return f"0x{addr_int:08X}"
 
 
+def cmd_xref(args):
+    """查询/管理全局变量交叉引用"""
+    cg = load_callgraph()
+    globals_db = cg.get("globals", {})
+
+    if args.rename:
+        addr = normalize_addr(args.rename)
+        if addr not in globals_db:
+            print(f"错误: {addr} 未注册")
+            return
+        if not args.name:
+            print("错误: --rename 需要 --name 参数")
+            return
+        old_name = globals_db[addr]["name"]
+        globals_db[addr]["name"] = args.name
+        cg["globals"] = globals_db
+        save_callgraph(cg)
+        print(f"Renamed: {addr} {old_name} → {args.name}")
+        return
+
+    if args.retype:
+        addr = normalize_addr(args.retype)
+        if addr not in globals_db:
+            print(f"错误: {addr} 未注册")
+            return
+        if not args.type:
+            print("错误: --retype 需要 --type 参数")
+            return
+        old_type = globals_db[addr]["type"]
+        globals_db[addr]["type"] = args.type
+        cg["globals"] = globals_db
+        save_callgraph(cg)
+        print(f"Retyped: {addr} {globals_db[addr]['name']}: {old_type} → {args.type}")
+        return
+
+    if args.add_ref:
+        addr = normalize_addr(args.add_ref)
+        if addr not in globals_db:
+            print(f"错误: {addr} 未注册")
+            return
+        if not args.ref_func:
+            print("错误: --add-ref 需要 --ref-func 参数")
+            return
+        func_addr = normalize_addr(args.ref_func)
+        refs = globals_db[addr].get("referenced_by", [])
+        if func_addr not in refs:
+            refs.append(func_addr)
+            globals_db[addr]["referenced_by"] = sorted(refs)
+            cg["globals"] = globals_db
+            save_callgraph(cg)
+            print(f"Added ref: {globals_db[addr]['name']} ← {func_addr}")
+        else:
+            print(f"已存在: {globals_db[addr]['name']} ← {func_addr}")
+        return
+
+    if args.add:
+        addr = normalize_addr(args.add)
+        if addr in globals_db:
+            print(f"已存在: {addr} = {globals_db[addr]['name']}")
+        else:
+            globals_db[addr] = {
+                "ida_name": args.ida_name or f"dword_{addr[4:]}",
+                "name": args.name or f"dword_{addr[4:]}",
+                "type": args.type or "int",
+                "referenced_by": []
+            }
+            cg["globals"] = globals_db
+            save_callgraph(cg)
+            print(f"Added: {addr} {globals_db[addr]['name']} ({globals_db[addr]['type']})")
+        return
+
+    if args.list or not args.query:
+        print(f"=== 全局变量 ({len(globals_db)}) ===")
+        print(f"{'地址':<14s} {'名称':<20s} {'类型':<16s} {'xref'}")
+        print("-" * 70)
+        for addr in sorted(globals_db.keys()):
+            g = globals_db[addr]
+            refs = len(g.get("referenced_by", []))
+            name_display = g["name"]
+            if g["ida_name"] != g["name"]:
+                name_display += f" ({g['ida_name']})"
+            print(f"{addr:<14s} {name_display:<20s} {g['type']:<16s} {refs} refs")
+        return
+
+    query = args.query.lower()
+    matches = []
+    for addr, g in globals_db.items():
+        if (query in addr.lower() or
+            query in g["ida_name"].lower() or
+            query in g["name"].lower() or
+            query in g["type"].lower()):
+            matches.append((addr, g))
+
+    if not matches:
+        print(f"未找到匹配 '{args.query}' 的全局变量")
+        return
+
+    for addr, g in matches:
+        print(f"═══ {addr} ═══")
+        print(f"  IDA 名: {g['ida_name']}")
+        print(f"  名称:   {g['name']}")
+        print(f"  类型:   {g['type']}")
+        refs = g.get("referenced_by", [])
+        if refs:
+            print(f"  引用 ({len(refs)}):")
+            for ref_addr in refs:
+                node = cg["nodes"].get(ref_addr, {})
+                name = node.get("name", "?")
+                status = node.get("status", "?")
+                print(f"    {ref_addr} {name} [{status}]")
+        else:
+            print("  引用: (无)")
+        print()
+
+
 def main():
     parser = argparse.ArgumentParser(description="PAL3.exe 调用图管理工具")
     subparsers = parser.add_subparsers(dest="command", help="子命令")
@@ -815,6 +930,19 @@ def main():
     # validate
     subparsers.add_parser("validate", help="验证数据一致性")
 
+    # xref - 全局变量交叉引用查询与管理
+    p_xref = subparsers.add_parser("xref", help="查询/管理全局变量交叉引用")
+    p_xref.add_argument("query", nargs="?", help="变量名/地址/类型 (模糊搜索)")
+    p_xref.add_argument("--list", action="store_true", help="列出所有已注册全局变量")
+    p_xref.add_argument("--add", metavar="ADDR", help="注册新全局变量 (如 0x00BFDA74)")
+    p_xref.add_argument("--name", help="变量名")
+    p_xref.add_argument("--type", help="类型")
+    p_xref.add_argument("--ida-name", help="IDA 原始名")
+    p_xref.add_argument("--rename", metavar="ADDR", help="重命名全局变量")
+    p_xref.add_argument("--retype", metavar="ADDR", help="修改全局变量类型")
+    p_xref.add_argument("--add-ref", metavar="ADDR", help="给全局变量添加引用函数")
+    p_xref.add_argument("--ref-func", help="引用函数地址 (与 --add-ref 配合)")
+
     args = parser.parse_args()
 
     if args.command == "init":
@@ -835,6 +963,8 @@ def main():
         cmd_show(args)
     elif args.command == "validate":
         cmd_validate(args)
+    elif args.command == "xref":
+        cmd_xref(args)
     else:
         parser.print_help()
         sys.exit(1)

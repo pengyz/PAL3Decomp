@@ -157,9 +157,38 @@ set(PAL3_SOURCES
 
 新增文件时同步更新此列表。
 
+## 全局变量交叉引用 (xref)
+
+在实现函数时遇到全局变量，用 xref 命令管理：
+
+```bash
+# 查询变量（按名称/地址/类型模糊搜索）
+python tools/pal3_callgraph.py xref g_pGfxManager
+python tools/pal3_callgraph.py xref 0x00BFDA60
+python tools/pal3_callgraph.py xref gbGfxManager
+
+# 列出所有已注册全局变量
+python tools/pal3_callgraph.py xref --list
+
+# 注册新全局变量
+python tools/pal3_callgraph.py xref --add 0x00BFDA6C --name g_nGameState --type int --ida-name dword_BFDA6C
+
+# 重命名
+python tools/pal3_callgraph.py xref --rename 0x00BFDA6C --name g_nGameState
+
+# 修改类型
+python tools/pal3_callgraph.py xref --retype 0x00BFDA6C --type "enum GameState"
+
+# 添加引用关系
+python tools/pal3_callgraph.py xref --add-ref 0x00BFDA6C --ref-func 0x004055D0
+```
+
+每次实现新函数时，识别到的全局变量都应注册/更新 xref。
+
 ## 注意事项
 
 - **每个 stub 必须注册 call_graph 节点** — 这是 BFS 展开的核心路径
+- **每个全局变量引用必须注册 xref** — 这是类型推断的数据基础
 - 不要中断，持续运行直到 frontier 耗尽
 - 每次迭代必须完成强检查（链接+call_graph更新+commit+push）
 - 迭代日志和游标不提交到 git
