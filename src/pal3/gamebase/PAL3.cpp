@@ -122,9 +122,9 @@ extern "C" char byte_BFDA91;
 extern "C" char byte_5833C0;
 extern "C" int g_GDB;
 extern "C" int g_UIManager;
-extern "C" char byte_17B1EC0;
-extern "C" int dword_A3A6EC;
-extern "C" int dword_A3A6F0;
+extern "C" char g_Logger;
+extern "C" int g_pCursorNode1;
+extern "C" int g_pCursorNode2;
 extern "C" void *unk_A3A7D8;
 extern "C" void *ppvOut;
 
@@ -341,9 +341,9 @@ void __cdecl PAL3::Create(HINSTANCE hInstance)
     sub_41F5E0(&g_UIManager);
 
     // Logging
-    sub_53CE90(&byte_17B1EC0);
-    sub_53CC70(&byte_17B1EC0, aSBulidSS, aV104);
-    sub_53CC70(&byte_17B1EC0, aGameCreateOk, NULL);
+    sub_53CE90(&g_Logger);
+    sub_53CC70(&g_Logger, aSBulidSS, aV104);
+    sub_53CC70(&g_Logger, aGameCreateOk, NULL);
 
     // Allocate CCBSystem (0x162D8 bytes)
     pCBSystemMem = operator new(0x162D8u);
@@ -439,7 +439,7 @@ void __cdecl PAL3::Create(HINSTANCE hInstance)
     {
         pCursorNodeInit = 0;
     }
-    dword_A3A6EC = (int)pCursorNodeInit;
+    g_pCursorNode1 = (int)pCursorNodeInit;
     pCursorNodeInit->LoadFromFile(aObjectG02Cvd, 0, 0);
 
     pCursor2Mem = operator new(0x118u);
@@ -453,7 +453,7 @@ void __cdecl PAL3::Create(HINSTANCE hInstance)
     {
         pCursor2Init = 0;
     }
-    dword_A3A6F0 = (int)pCursor2Init;
+    g_pCursorNode2 = (int)pCursor2Init;
     ((gbGeomNode *)pCursor2Init)->LoadFromFile(aObjectG03Cvd, 0, 0);
 
     // Play logo video
@@ -570,7 +570,7 @@ extern "C" int dword_BFDA30 = 0;
 extern "C" int g_pRoleSystem;
 extern "C" int dword_C1171C;
 extern "C" int dword_C11754;
-extern "C" int dword_5833BC;
+extern "C" int g_nGameFlags;
 extern "C" int dword_5833CC = 0;
 extern "C" char byte_5833D0;
 extern "C" char byte_C11748;
@@ -583,8 +583,8 @@ extern "C" short word_8ACD2A = 0;
 extern "C" float flt_C0816C = 0.0f;
 extern "C" float flt_C1096C;
 extern "C" void *ppvOut;
-extern "C" int dword_A3A6EC;
-extern "C" int dword_A3A6F0;
+extern "C" int g_pCursorNode1;
+extern "C" int g_pCursorNode2;
 extern "C" void *g_pCBSystem;
 extern "C" char byte_BFDA90;
 extern "C" char byte_5833C0;
@@ -690,8 +690,8 @@ void __cdecl PAL3::Update(float a1)
     case 2:
     case 9:
         g_fSceneTime = g_fSceneTime + a1;
-        (*(void (**)(void))(*(int *)dword_A3A6EC + 20))();
-        (*(void (**)(void))(*(int *)dword_A3A6F0 + 20))();
+        (*(void (**)(void))(*(int *)g_pCursorNode1 + 20))();
+        (*(void (**)(void))(*(int *)g_pCursorNode2 + 20))();
         sub_4BFD20();
         sub_4C0200(a1);
         PalScriptMgr_RunSceneScript(*(int *)&a1);
@@ -743,7 +743,7 @@ void __cdecl PAL3::Update(float a1)
         modeResult = sub_44FF60(&g_GameData);
         sub_44F610(modeResult);
         sub_423540();
-        if ((dword_5833BC & 4) == 0)
+        if ((g_nGameFlags & 4) == 0)
             goto LABEL_54;
         audioMgr = sub_53E500(sub_53DF70());
         if (!audioMgr)
@@ -923,7 +923,7 @@ extern "C" int dword_BFDA7C;
 extern "C" int dword_BFDA84;
 extern "C" int dword_BFDA34;
 extern "C" int dword_BFDA98;
-extern "C" char byte_5833C2;
+extern "C" char g_bRenderUI;
 extern "C" int dword_D8E488;
 extern "C" int xRight;
 extern "C" int yBottom;
@@ -961,7 +961,7 @@ extern "C" int  __cdecl sub_5415F0(void);
 extern "C" void __cdecl sub_4BE590(void);
 extern "C" int  __cdecl sub_4B65A0(void);
 extern "C" void __cdecl sub_41C630(int);
-extern "C" char byte_17B1EC0;
+extern "C" char g_Logger;
 
 extern "C" void __cdecl UIRenderObj_UIRenderObj(int);
 extern "C" int __cdecl PAL3_PrintScreen(void);
@@ -1007,7 +1007,7 @@ void __cdecl PAL3::Render(void)
         sub_4BFDD0(v15);
         int v16 = sub_4B65A0();
         sub_4B6630(v16);
-        if (byte_5833C2)
+        if (g_bRenderUI)
             sub_40C7D0();
         break;
     }
@@ -1036,7 +1036,7 @@ void __cdecl PAL3::Render(void)
     }
 
     // Post-render
-    if (g_nGameState && g_nGameState != 3 && byte_5833C2)
+    if (g_nGameState && g_nGameState != 3 && g_bRenderUI)
     {
         int v25[3];
         sub_540F60(v25);
@@ -1046,7 +1046,7 @@ void __cdecl PAL3::Render(void)
         if (dword_BFDA34)
             (*(void (**)(void))(*(int *)dword_BFDA34 + 4))();
         if (!dword_BFDA98)
-            sub_53C990(&byte_17B1EC0);
+            sub_53C990(&g_Logger);
         sub_540FA0(v25);
     }
 

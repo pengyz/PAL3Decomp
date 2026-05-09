@@ -2404,8 +2404,8 @@
     },
     "0x00A3A6EC": {
       "ida_name": "dword_A3A6EC",
-      "name": "dword_A3A6EC",
-      "type": "int",
+      "name": "g_pCursorNode1",
+      "type": "gbGeomNode*",
       "referenced_by": [
         "0x004020E0",
         "0x00402270",
@@ -2492,8 +2492,8 @@
     },
     "0x00A3A6F0": {
       "ida_name": "dword_A3A6F0",
-      "name": "dword_A3A6F0",
-      "type": "int",
+      "name": "g_pCursorNode2",
+      "type": "gbGeomNode*",
       "referenced_by": [
         "0x004020E0",
         "0x00402270",
@@ -4494,8 +4494,8 @@
     },
     "0x017B1EC0": {
       "ida_name": "byte_17B1EC0",
-      "name": "byte_17B1EC0",
-      "type": "char",
+      "name": "g_Logger",
+      "type": "CLogger",
       "referenced_by": [
         "0x004020E0",
         "0x00402270",
@@ -5568,7 +5568,7 @@
     },
     "0x005833BC": {
       "ida_name": "dword_5833BC",
-      "name": "dword_5833BC",
+      "name": "g_nGameFlags",
       "type": "int",
       "referenced_by": [
         "0x00401C70",
@@ -6310,8 +6310,8 @@
     },
     "0x005833C2": {
       "ida_name": "byte_5833C2",
-      "name": "byte_5833C2",
-      "type": "int",
+      "name": "g_bRenderUI",
+      "type": "char",
       "referenced_by": [
         "0x00405C00",
         "0x00523560"
@@ -7712,8 +7712,8 @@
     },
     "0x00BFDA38": {
       "ida_name": "dword_BFDA38",
-      "name": "dword_BFDA38",
-      "type": "int",
+      "name": "g_pDropGroup1",
+      "type": "gbDropGroup*",
       "referenced_by": [
         "0x00405330",
         "0x00405C00"
@@ -7729,8 +7729,8 @@
     },
     "0x00BFDA3C": {
       "ida_name": "dword_BFDA3C",
-      "name": "dword_BFDA3C",
-      "type": "int",
+      "name": "g_pDropGroup2",
+      "type": "gbDropGroup*",
       "referenced_by": [
         "0x00405330",
         "0x00405C00"
@@ -7770,8 +7770,8 @@
     },
     "0x00BFDA34": {
       "ida_name": "dword_BFDA34",
-      "name": "dword_BFDA34",
-      "type": "int",
+      "name": "g_pVideoPlayer",
+      "type": "void*",
       "referenced_by": [
         "0x00405C00",
         "0x00438EB0"
