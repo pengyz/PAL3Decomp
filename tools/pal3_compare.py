@@ -43,7 +43,9 @@ EXE_TEXT_SIZE = 0x1685D0
 
 
 def to_winpath(path):
-    """Unix 路径转 Wine Z: 盘路径"""
+    """路径转换: Linux 下用 Wine Z: 盘, Windows 下直接用本地路径"""
+    if sys.platform == "win32":
+        return str(Path(path).resolve())
     return "Z:" + str(Path(path).resolve()).replace("/", "\\")
 
 
@@ -60,20 +62,34 @@ def compile_source(src_path, obj_path=None):
     win_inc = to_winpath(VC6_INCLUDE)
     win_proj_inc = to_winpath(PROJECT_ROOT / "include")
 
-    cmd = [
-        "wine", str(VC6_BIN / "CL.EXE"), "/nologo", "/c",
-        "/O2", "/Ob2", "/Oi", "/Ot", "/Oy", "/GF", "/Gy",
-        "/GX", "/GR", "/MD", "/Gd",
-        "/W3",
-        "/DNDEBUG", "/DWIN32", "/D_WINDOWS", "/D_MBCS",
-        f"/I{win_inc}", f"/I{win_proj_inc}",
-        f"/Fo{win_obj}",
-        f"/FAcs", f"/Fa{to_winpath(BUILD_DIR)}/",
-        win_src
-    ]
+    if sys.platform == "win32":
+        cmd = [
+            str(VC6_BIN / "CL.EXE"), "/nologo", "/c",
+            "/O2", "/Ob2", "/Oi", "/Ot", "/Oy", "/GF", "/Gy",
+            "/GX", "/GR", "/MD", "/Gd",
+            "/W3",
+            "/DNDEBUG", "/DWIN32", "/D_WINDOWS", "/D_MBCS",
+            f"/I{win_inc}", f"/I{win_proj_inc}",
+            f"/Fo{win_obj}",
+            f"/FAcs", f"/Fa{to_winpath(BUILD_DIR)}\\",
+            win_src
+        ]
+    else:
+        cmd = [
+            "wine", str(VC6_BIN / "CL.EXE"), "/nologo", "/c",
+            "/O2", "/Ob2", "/Oi", "/Ot", "/Oy", "/GF", "/Gy",
+            "/GX", "/GR", "/MD", "/Gd",
+            "/W3",
+            "/DNDEBUG", "/DWIN32", "/D_WINDOWS", "/D_MBCS",
+            f"/I{win_inc}", f"/I{win_proj_inc}",
+            f"/Fo{win_obj}",
+            f"/FAcs", f"/Fa{to_winpath(BUILD_DIR)}/",
+            win_src
+        ]
 
     env = os.environ.copy()
-    env["WINEDEBUG"] = "-all"
+    if sys.platform != "win32":
+        env["WINEDEBUG"] = "-all"
 
     print(f"编译: {src.name} -> {obj.name}")
     result = subprocess.run(cmd, capture_output=True, text=True, env=env)

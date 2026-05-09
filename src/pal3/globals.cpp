@@ -201,16 +201,16 @@ extern "C" void __cdecl CEffectSystem_IsVisible(int) {}
 extern "C" void __cdecl sub_41ED00(int) {}
 
 // === STUB: 0x0053C440 - 视频播放初始化 ===
-extern "C" void __cdecl sub_53C440(const char *, HWND, int, int) {}
+// sub_53C440: moved to ScreenMode.cpp
 
 // === STUB: 0x0053C720 - 获取视频高度 ===
-extern "C" int __cdecl sub_53C720(void *) { return 480; }
+// sub_53C720: moved to ScreenMode.cpp
 
 // === STUB: 0x0053C710 - 获取视频宽度 ===
-extern "C" int __cdecl sub_53C710(void *) { return 640; }
+// sub_53C710: moved to ScreenMode.cpp
 
 // === STUB: 0x0053C6F0 - 设置视频位置 ===
-extern "C" void __cdecl sub_53C6F0(int, int) {}
+// sub_53C6F0: moved to ScreenMode.cpp
 
 // === STUB: 0x0053C5A0 - 开始视频播放 ===
 extern "C" void __cdecl sub_53C5A0(int) {}
@@ -398,8 +398,8 @@ extern "C" void __cdecl sub_513060(float, int) {}
 extern "C" void __cdecl sub_52B900(float) {}
 extern "C" void __cdecl sub_52F350(float) {}
 extern "C" void __cdecl sub_5353A0(float) {}
-extern "C" void __cdecl sub_53D150(void) {}
-extern "C" void __cdecl sub_53D1A0(int, int) {}
+// sub_53D150: moved to ScreenMode.cpp
+// sub_53D1A0: moved to ScreenMode.cpp
 extern "C" void __cdecl sub_541590(int) {}
 
 // GRPinput/CScreenMode/CCBStage — 已迁移到独立 .cpp 文件
