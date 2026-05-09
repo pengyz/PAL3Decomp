@@ -143,13 +143,17 @@ extern "C" void __cdecl sub_53CE90(void *) {}
 // === STUB: 0x0053CC70 - 日志写入 ===
 extern "C" void __cdecl sub_53CC70(void *, const char *, const char *) {}
 
-// === STUB: 0x0053CEF0 - 格式化异常消息 ===
-extern "C" const char *__cdecl sub_53CEF0(char *buf, const char *msg, const char *file, int line)
+// 0x0053CEF0 - FormatExceptionMessage (61B)
+// Formats "file(line):msg" into 1024-byte buffer, then logs it
+extern "C" void __cdecl sub_53D030(const char *, ...);
+extern "C" const char aExceptionS[] = "Exception: %s";
+
+extern "C" char *__cdecl FormatExceptionMessage(char *pBuf, const char *pMsg, const char *pFile, int nLine)
 {
-    if (buf) {
-        sprintf(buf, "%s (%s:%d)", msg ? msg : "", file ? file : "", line);
-    }
-    return buf;
+    pBuf[1023] = 0;
+    _snprintf(pBuf, 0x400u, "%s(%d):%s", pFile, nLine, pMsg);
+    sub_53D030(aExceptionS, pBuf);
+    return pBuf;
 }
 
 // === STUB: 0x00512500 - CCBSystem构造 ===
@@ -498,3 +502,5 @@ extern "C" int __cdecl sub_5694F0(void *pThis, int a, int b, int c, int d) { ret
 // === STUB: 0x0053E740 - Audio fade implementation ===
 extern "C" void __cdecl sub_53E740(int *, const char *, int *) {}
 extern "C" char byte_56A634[] = "";
+// === STUB: 0x0053D030 - LogMessage ===
+void __cdecl sub_53D030(const char *, ...) {}

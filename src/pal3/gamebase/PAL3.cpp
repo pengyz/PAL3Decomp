@@ -103,7 +103,7 @@ extern "C" int  __cdecl DisplayConfig_GetHeight(void *);
 extern "C" int  __cdecl DisplayConfig_GetWidth(void *);
 extern "C" void __cdecl CScreenMode_SetViewport(int, int);
 extern "C" void __cdecl sub_53C5A0(int);
-extern "C" const char *__cdecl sub_53CEF0(char *buf, const char *msg, const char *file, int line);
+extern "C" const char *__cdecl FormatExceptionMessage(char *buf, const char *msg, const char *file, int line);
 
 // ============================================================
 // Global variables
@@ -191,7 +191,7 @@ void __cdecl PAL3::InitGFX(HINSTANCE hInst)
     if (!g_pGfxManager)
     {
         memcpy(&pExceptionObject,
-            sub_53CEF0(ArgList, aCreateGfxManag, aDProjectPal3Ga_0, 401),
+            FormatExceptionMessage(ArgList, aCreateGfxManag, aDProjectPal3Ga_0, 401),
             sizeof(pExceptionObject));
         throw pExceptionObject;
     }
@@ -201,7 +201,7 @@ void __cdecl PAL3::InitGFX(HINSTANCE hInst)
     if (!pActorMgr)
     {
         memcpy(&pExceptionObject,
-            sub_53CEF0(ArgList, aCreateActorman, aDProjectPal3Ga_0, 405),
+            FormatExceptionMessage(ArgList, aCreateActorman, aDProjectPal3Ga_0, 405),
             sizeof(pExceptionObject));
         throw pExceptionObject;
     }
@@ -215,7 +215,7 @@ void __cdecl PAL3::InitGFX(HINSTANCE hInst)
     if (!pCamera)
     {
         memcpy(&pExceptionObject,
-            sub_53CEF0(ArgList, aCNewFailed, aDProjectPal3Ga_0, 409),
+            FormatExceptionMessage(ArgList, aCNewFailed, aDProjectPal3Ga_0, 409),
             sizeof(pExceptionObject));
         throw pExceptionObject;
     }
@@ -313,7 +313,7 @@ void __cdecl PAL3::Create(HINSTANCE hInstance)
     if (!sub_4020E0(&ppvOut, hInstance, (HWND)(int)hwnd, 0))
     {
         memcpy(&pExceptionObject,
-            sub_53CEF0(ArgList, aInputDeviceCre, aDProjectPal3Ga_0, 180),
+            FormatExceptionMessage(ArgList, aInputDeviceCre, aDProjectPal3Ga_0, 180),
             sizeof(pExceptionObject));
         throw pExceptionObject;
     }
@@ -329,7 +329,7 @@ void __cdecl PAL3::Create(HINSTANCE hInstance)
     if (!(unsigned char)PAL_GDB_PAL_GDB(&g_GDB))
     {
         memcpy(&pExceptionObject,
-            sub_53CEF0(ArgList, aFightDatabaseL, aDProjectPal3Ga_0, 191),
+            FormatExceptionMessage(ArgList, aFightDatabaseL, aDProjectPal3Ga_0, 191),
             sizeof(pExceptionObject));
         throw pExceptionObject;
     }
@@ -355,7 +355,7 @@ void __cdecl PAL3::Create(HINSTANCE hInstance)
     if (!pCBSystem)
     {
         memcpy(&pExceptionObject,
-            sub_53CEF0(ArgList, aCouldNotAlloca, aDProjectPal3Ga_0, 214),
+            FormatExceptionMessage(ArgList, aCouldNotAlloca, aDProjectPal3Ga_0, 214),
             sizeof(pExceptionObject));
         throw pExceptionObject;
     }
@@ -380,7 +380,7 @@ void __cdecl PAL3::Create(HINSTANCE hInstance)
     if (!pSceneMgr)
     {
         memcpy(&pExceptionObject,
-            sub_53CEF0(ArgList, aCouldNotAlloca_0, aDProjectPal3Ga_0, 222),
+            FormatExceptionMessage(ArgList, aCouldNotAlloca_0, aDProjectPal3Ga_0, 222),
             sizeof(pExceptionObject));
         throw pExceptionObject;
     }
