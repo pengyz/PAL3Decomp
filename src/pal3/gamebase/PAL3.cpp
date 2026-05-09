@@ -615,7 +615,7 @@ extern "C" void __cdecl sub_52B900(float);
 extern "C" void __cdecl sub_52F350(float);
 extern "C" void __cdecl sub_5353A0(float);
 extern "C" int  __cdecl sub_53CDD0(int);
-extern "C" void __cdecl sub_53D150(void);
+extern "C" void __cdecl SoundContext_GetInstance(void);
 extern "C" void __cdecl sub_53D1A0(int, int);
 extern "C" int  __cdecl sub_53DF70(void);
 extern "C" void __cdecl sub_53E490(int);
@@ -883,7 +883,7 @@ LABEL_32:
                 PAL3_EndHideFight();
                 scriptResult = PalScriptMgr_Destroy(1702, 0);
 LABEL_33:
-                sub_53D150();
+                SoundContext_GetInstance();
                 sub_53D1A0(0, scriptResult);
                 PalScriptMgr_RunSceneScript(*(int *)&a1);
             }

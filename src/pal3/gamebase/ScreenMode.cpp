@@ -3,6 +3,8 @@
 // PDB: 无此类定义 (PAL3 特有, PAL3A 中不存在)
 
 #include <windows.h>
+#include <string.h>
+#include <stdlib.h>
 
 struct gbAudioManager;
 
@@ -69,7 +71,25 @@ extern "C" int __cdecl sub_53E500(int) { return 0; }
 extern "C" void __cdecl sub_53E950(int) {}
 // === STUB: 0x0053EA60 - AudioFadeOut ===
 extern "C" void __cdecl sub_53EA60(int) {}
-// === STUB: 0x0053D150 ===
-extern "C" int __cdecl sub_53D150(void) { return 0; }
+// 0x0053D150 - SoundContext::GetInstance (51B)
+// 单例模式: guard check → ctor → atexit → return instance
+static char g_SoundContext_inst[32];
+static unsigned char g_SoundContext_guard;
+extern "C" void __cdecl SoundContext_Ctor(void *pThis);
+static void __cdecl SoundContext_Dtor_atexit(void) {}
+
+extern "C" void *__cdecl SoundContext_GetInstance(void)
+{
+    if ((g_SoundContext_guard & 1) == 0)
+    {
+        g_SoundContext_guard |= 1;
+        SoundContext_Ctor(g_SoundContext_inst);
+        atexit(SoundContext_Dtor_atexit);
+    }
+    return g_SoundContext_inst;
+}
+
+// === STUB: SoundContext 构造函数 (0x0053D0B0) ===
+void __cdecl SoundContext_Ctor(void *pThis) { memset(pThis, 0, 32); }
 // === STUB: 0x0053D1A0 ===
 extern "C" void __cdecl sub_53D1A0(void) {}
