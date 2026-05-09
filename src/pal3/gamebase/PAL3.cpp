@@ -930,7 +930,7 @@ extern "C" int yBottom;
 
 extern "C" void __cdecl sub_40C630(void *);
 extern "C" void __cdecl sub_40C7D0(void);
-extern "C" void __cdecl sub_410430(void *);
+extern "C" void __cdecl NPCAnimCheck(void *);
 extern "C" void __cdecl sub_41F370(void *);
 extern "C" void __cdecl sub_4200A0(void *);
 extern "C" void __cdecl sub_420110(void *);

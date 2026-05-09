@@ -559,7 +559,24 @@ extern "C" char unk_A3A750[64] = {0};        // 0x00A3A750 - gbMatrix4
 
 extern "C" void __cdecl sub_40C630(void *) {}
 extern "C" void __cdecl sub_40C7D0(void) {}
-extern "C" void __cdecl sub_410430(void *) {}
+// 0x00410430 - NPCAnimCheck (54B)
+// Checks combat state and calls anim update if needed
+extern "C" int dword_C025EC;
+extern "C" int dword_C083D8;
+extern "C" int __cdecl sub_412400(int, int);
+
+extern "C" int __cdecl NPCAnimCheck(int nParam)
+{
+    if (dword_C025EC != 10)
+        return sub_412400(nParam, 0);
+    if (dword_C083D8)
+        return sub_412400(nParam, 0);
+    return dword_C083D8;
+}
+
+int dword_C025EC = 0;
+int dword_C083D8 = 0;
+int __cdecl sub_412400(int, int) { return 0; }
 extern "C" void __cdecl sub_41F370(void *) {}
 extern "C" void __cdecl sub_4200A0(void *) {}
 extern "C" void __cdecl sub_420110(void *) {}

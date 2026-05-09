@@ -35,11 +35,15 @@ struct gbEffectMgr {
 // === STUB: gbEffectMgr::NewRenderEffect (gbengine 内部) ===
 gbRenderEffect *gbEffectMgr::NewRenderEffect(const char *, unsigned int) { return 0; }
 
+struct gbSceneGraph;
+
 struct gbGfxManager_Partial {
     char _pad_00[0xC8];
     gbEffectMgr *pEffectMgr;        // +0xC8
     char _pad_CC[8];                 // +0xCC: pTexResMgr, pFontMgr
     gbMatrixStack *pMatrixStack[4];  // +0xD4
+    char _pad_E4[0xDC];             // +0xE4: matrices, zbias, wiremode, etc
+    gbSceneGraph *pSceneGraph;       // +0x1C0 (offset 448)
 };
 
 extern "C" gbGfxManager_Partial *g_pGfxManager;
