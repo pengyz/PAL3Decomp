@@ -1,26 +1,12 @@
 {
   "stats": {
-    "iterations_completed": 7,
-    "functions_annotated": 143,
-    "signatures_with_proper_types": 80,
-    "globals_named": 21,
+    "iterations_completed": 9,
+    "functions_annotated": 177,
+    "signatures_set": 177,
     "classes_imported": 39,
-    "current_depth": 4
+    "globals_named": 21,
+    "remaining_game_sub_calls": 2325,
+    "remaining_unique_subs": 1281
   },
-  "next_targets": [
-    "ScriptSystem::Execute deeper callees (sub_412710, sub_419090)",
-    "CCBStage::Update (4 callees)",
-    "CCBUI::Update (7 callees)",
-    "CCBAttackSequen::Update (4 callees)",
-    "RoleSystem::LoadData depth expansion"
-  ],
-  "coverage": {
-    "PAL3_Create": "depth 3 complete",
-    "PAL3_Update": "depth 2 complete (all subsystem Updates annotated)",
-    "PAL3_Render": "depth 2 complete",
-    "PAL3_Destroy": "depth 2 complete",
-    "PAL3_FullInit": "depth 3 (Role, NPC, Scene)",
-    "CameraUpdate": "depth 3 (RoleSystem, CameraCtrl methods)",
-    "CombatUpdate": "depth 2 (all 5 CCB subsystems)"
-  }
+  "next_targets": "Continue high-frequency sub_ analysis. Focus on CCBSystem/CCBAI/RoleSystem callees."
 }
