@@ -93,11 +93,12 @@ Frontier: <before> → <after> (+<new> callees)
 
 匹配通过后、commit 前执行:
 1. **禁止 IDA 变量名** — v1/v2/v3... 必须全部替换为语义名称（不影响匹配）
-2. **禁止裸偏移** → 结构体成员 `this->m_field`
-3. **禁止魔数** → 命名常量/sizeof/enum
-4. **gbengine 引用使用头文件** — 不允许 extern 前向声明 gbengine 导出，必须 #include
-5. **源文件路径** — 必须按 PAL3A PDB suggested_source 放置
-6. 重新对比确认未破坏匹配（如果破坏则回退质量修改）
+2. **禁止无意义函数名** — 已实现函数禁止使用 `sub_XXXXXX`/`stub_XXXX`，必须根据功能命名
+3. **禁止裸偏移** → 结构体成员 `this->m_field`
+4. **禁止魔数** → 命名常量/sizeof/enum
+5. **gbengine 引用使用头文件** — 不允许 extern 前向声明 gbengine 导出，必须 #include
+6. **源文件路径** — 必须按 PAL3A PDB suggested_source 放置
+7. 重新对比确认未破坏匹配（如果破坏则回退质量修改）
 
 ### 构建门控
 

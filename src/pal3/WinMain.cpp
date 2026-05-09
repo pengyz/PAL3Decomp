@@ -39,7 +39,7 @@ extern "C" char aPal3Exception[];       // 0x00608FC8 "Pal3::Exception ..."
 // ============================================================
 extern "C" __declspec(dllimport) void __cdecl gbUpdateCurTime(void);  // IAT 0x0056A4F8
 extern "C" BOOL __cdecl sub_5382D0(const char* path);  // check directory exists
-extern "C" char __cdecl sub_541C40(char *lpSubKey, const char *lpValueName, BYTE *lpData);
+extern "C" char __cdecl ReadRegistryValue(char *lpSubKey, const char *lpValueName, BYTE *lpData);
 
 // Exception class used in PAL3
 class _Exception {
@@ -166,7 +166,7 @@ int WINAPI WinMain(HINSTANCE hInst, HINSTANCE hPrevInstance, LPSTR lpCmdLine, in
     hInstance = hInst;
     hhk = SetWindowsHookExA(WH_KEYBOARD_LL, (HOOKPROC)fn, hInst, 0);
     memset(Data, 0, sizeof(Data));
-    if (!(unsigned char)sub_541C40(aSoftwareSoftst_1, aCdriver, (BYTE *)Data))
+    if (!(unsigned char)ReadRegistryValue(aSoftwareSoftst_1, aCdriver, (BYTE *)Data))
         GetDefaultCD();
     if (!strrchr((const char *)Data, '\\'))
         strcat((char *)Data, asc_5D41EC);
@@ -224,12 +224,11 @@ int WINAPI WinMain(HINSTANCE hInst, HINSTANCE hPrevInstance, LPSTR lpCmdLine, in
 }
 
 // ========================================================================
-// ReadRegistry (sub_541C40)
+// ReadRegistryValue
 // Address: 0x00541C40, Size: 114 bytes
 // __cdecl, FPO (no frame pointer)
-// 100% byte-match with VC6 /O2 /Oy
 // ========================================================================
-extern "C" char __cdecl sub_541C40(char *lpSubKey, const char *lpValueName, BYTE *lpData)
+extern "C" char __cdecl ReadRegistryValue(char *lpSubKey, const char *lpValueName, BYTE *lpData)
 {
     DWORD cbData;
     DWORD Type;

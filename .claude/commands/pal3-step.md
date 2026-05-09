@@ -57,20 +57,25 @@ python tools/pal3_compare.py --compile src/pal3/<file>.cpp --func <name> --addr 
    - 改名不影响字节匹配（同类型同作用域内）
    - 例外：只有当变量确实无法推断语义时，可以用 `tmp` 或 `unused`
 
-2. **禁止裸偏移** — `*(DWORD*)(this + 0x1C)` 必须改为 `this->m_pStage` 形式
+2. **禁止无意义函数名** — `sub_XXXXXX`、`stub_XXXX` 等 IDA/占位符函数名禁止出现在已实现函数的定义中。
+   - 对于**已实现**的函数（在本文件中有函数体），必须根据功能命名（如 `ReadRegistryValue`、`CheckDirectoryExists`）
+   - 对于**外部引用**（仅 extern 声明、在其他文件实现），如果该函数尚未反编译，可暂时保留 `sub_XXXXXX`
+   - 命名依据：函数行为、参数含义、调用上下文、PDB 名称（如有）
+
+3. **禁止裸偏移** — `*(DWORD*)(this + 0x1C)` 必须改为 `this->m_pStage` 形式
    - 在类声明中定义正确偏移的成员变量
 
-3. **禁止魔数** — `0x162D8` 应为 `sizeof(CCBSystem)` 或命名常量
+4. **禁止魔数** — `0x162D8` 应为 `sizeof(CCBSystem)` 或命名常量
 
-4. **gbengine 引用使用头文件** — PAL3 调用 gbengine.dll 的函数/类时：
+5. **gbengine 引用使用头文件** — PAL3 调用 gbengine.dll 的函数/类时：
    - 使用 `#include` 引用 `include/gbengine/` 下的头文件
    - 不允许在 .cpp 中用 `extern "C"` 前向声明 gbengine 的导出函数
    - 如果头文件不存在，先创建对应头文件再 include
 
-5. **源文件路径正确** — 必须使用 `suggested_source`（来自 PAL3A PDB）指定的路径
+6. **源文件路径正确** — 必须使用 `suggested_source`（来自 PAL3A PDB）指定的路径
    - 同一个类的多个方法放在同一个 .cpp 文件中
 
-6. 重新对比确认未破坏匹配（如果破坏则回退质量修改）
+7. 重新对比确认未破坏匹配（如果破坏则回退质量修改）
 
 ### Step 6: 强检查
 
