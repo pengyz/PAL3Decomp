@@ -37,3 +37,13 @@
 - **Workaround**: 实现侧用 __cdecl 包装函数内部访问 g_pCamera
 - **正确修复**: 修改 PAL3.cpp，把这些调用改为 `((CameraCtrl*)g_pCamera)->Method(arg)`
 - **迭代**: #28, #29
+
+## [全局] extern "C" 清理 — 需要类型统一后才能执行
+- **问题**: 500+ 处 extern "C" 不必要，阻止正确的 C++ OOP 使用
+- **障碍**: 全局变量在不同 TU 中有不同类型 (如 g_pGfxManager 是 int 还是 gbGfxManager_Partial*)
+- **前置任务**: 
+  1. 创建 pal3_globals.h 统一类型声明
+  2. 把 g_pGfxManager 等统一为正确的指针类型
+  3. 解决 WinMain.cpp 的 char[] vs const char[] 不一致
+- **正确修复**: 先做类型统一重构，再批量去 extern "C"
+- **迭代**: 尝试于 #30 但因类型冲突回退
