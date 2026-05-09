@@ -151,6 +151,12 @@ void CCBSystem::ProcFling() {}
 每次调用**必须**执行完整循环，**不得跳过文件拆分步骤**：
 
 ```
+0. **BFS ↔ 代码同步检查** (新增，最先执行)
+   - 扫描所有 src/pal3/*.cpp 中的 sub_XXXXXX stub 定义
+   - 检查每个 stub 是否已在 call_graph.json 中注册
+   - 未注册的立即用 `python tools/pal3_callgraph.py add` 补充
+   - 检查 call_graph 中 status=compiled/matched 的节点是否真的有实现（非空 stub）
+   - 检查 .claude/pal3_workarounds.md 中记录的问题，尝试修复
 1. 读取所有 compiled/matched/wip 函数的源码
 2. 提取类型推断 (Phase 1)
 3. 输出推断摘要
