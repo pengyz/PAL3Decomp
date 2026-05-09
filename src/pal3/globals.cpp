@@ -283,15 +283,7 @@ void UIQuadManager::Destroy(void) {}
 void CGameData::Destroy(void) {}
 void CScreenMode::Restore(void) {}
 
-// CCBSystem methods for PAL3::Destroy
-class CCBSystem {
-public:
-    void ProcFling(void);
-    ~CCBSystem();
-};
-
-CCBSystem::~CCBSystem() {}
-void CCBSystem::ProcFling(void) {}
+// CCBSystem — 已移至 src/pal3/Combat/CBSystem.cpp + include/pal3/CCBSystem.h
 
 // gbGeomNode
 class gbGeomNode {

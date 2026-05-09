@@ -62,10 +62,7 @@ public:
     static void __cdecl Destroy(void);                 // 0x00406230
 };
 
-class CCBSystem {
-public:
-    unsigned long ProcUseItem(unsigned long hwnd);  // 0x00513380 (__thiscall)
-};
+#include "pal3/CCBSystem.h"
 
 extern "C" void *g_pCBSystem;  // CCBSystem instance pointer  0x00BFDA74
 

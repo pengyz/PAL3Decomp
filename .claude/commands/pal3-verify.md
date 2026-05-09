@@ -75,14 +75,52 @@ grep "gbActorMgr\|gbGfxManager\|gbCamera" lib/gbengine.def
 - `signature`: 当推断出完整签名时更新
 - `return_type`/`param_types`: 新增辅助字段供迭代使用
 
-## Phase 3: 代码改进
+## Phase 3: 代码位置调整与文件拆分
 
-**仅在 Phase 1-2 完成后才执行代码改动**：
+**仅在 Phase 1-2 完成后才执行代码改动。核心原则：代码放到 PDB 规定的位置。**
 
-1. **全局变量类型升级**: `extern "C" int g_pActorMgr` → 使用正确类型
-2. **消除冗余 class 声明**: 用 #include gbengine 头文件替代
+### 3.1 类声明拆分为头文件
+
+当一个类的方法在多处使用（多个 TU 中出现强转或调用）时，必须创建独立头文件：
+
+```
+include/pal3/<suggested_source_path>.h   ← 类声明
+src/pal3/<suggested_source_path>.cpp     ← 方法实现/stub
+```
+
+**规则**:
+- gbengine 类 → `include/gbengine/ClassName.h`（使用 GBAPI 宏）
+- PAL3 游戏类 → `include/pal3/ClassName.h`（本地声明）
+- 如果头文件/cpp 已存在，将声明/实现合并进去，不重复创建
+
+**示例**:
+```
+// globals.cpp 中有:
+class CCBSystem { public: void ProcFling(); ~CCBSystem(); };
+CCBSystem::~CCBSystem() {}
+void CCBSystem::ProcFling() {}
+
+// 应拆分为:
+// include/pal3/CCBSystem.h  ← 类声明
+// src/pal3/Combat/CBSystem.cpp ← stub 合并到已有文件
+```
+
+### 3.2 Stub 实现归位
+
+当 call_graph 节点有 `suggested_source` 时，将 stub 从 globals.cpp 移到对应文件：
+- 如果目标 .cpp 已存在 → 将 stub 追加到该文件
+- 如果目标 .cpp 不存在 → 创建文件，添加到 CMakeLists.txt
+- globals.cpp 中只保留**无法确定归属**的 stub（suggested_source=null）
+
+### 3.3 全局变量与函数重命名
+
+1. **全局变量类型升级**: `extern "C" int g_pActorMgr` → 使用正确类型（受 C linkage 限制时保持 int）
+2. **消除冗余 class 声明**: 用 `#include` 头文件替代各 TU 中的重复 class 定义
 3. **rename 函数**: globals.cpp 中的 stub 名从 sub_ 改为推断名
-4. **拆分文件**: 当 suggested_source 确定时，将 stub 移到正确位置
+
+### 3.4 CMakeLists.txt 同步
+
+新增 .cpp 文件时必须更新 `PAL3_SOURCES` 列表，确保构建门控通过。
 
 ## 执行
 
@@ -93,8 +131,8 @@ grep "gbActorMgr\|gbGfxManager\|gbCamera" lib/gbengine.def
 2. 提取类型推断 (Phase 1)
 3. 输出推断摘要供人工确认
 4. 更新 call_graph.json (Phase 2)
-5. 应用代码改进 (Phase 3)
-6. cmake --build 验证
+5. 应用代码改进 + 文件拆分 (Phase 3)
+6. cmake --build 验证 + 输出 PAL3.exe size
 7. compare 验证 matched 函数未被破坏
 8. commit
 ```
@@ -108,9 +146,10 @@ grep "gbActorMgr\|gbGfxManager\|gbCamera" lib/gbengine.def
 [推断] sub_53DF70: int() → CScreenMode* GetInstance()
 [推断] g_GameData (0xDB9FD0): int → CGameData (thiscall .Destroy())
 [BFS更新] 0x004BDB10: name="CRenderTarget::GetInstance", return_type="CRenderTarget*"
-[代码] globals.cpp: extern "C" int g_pActorMgr → 类型保持 int (C linkage 限制)
-[代码] PAL3.cpp: 新增 #include "gbengine/gbActorMgr.h" ✓
-[构建] PASS
+[拆分] CCBSystem::ProcFling → src/pal3/Combat/CBSystem.cpp (合并到已有文件)
+[拆分] 新建 include/pal3/CCBSystem.h ← 类声明
+[代码] PAL3.cpp: #include "pal3/CCBSystem.h" 替代内联 class 声明
+[构建] PASS — PAL3.exe 16,384 bytes
 [匹配] PAL3::Destroy 100% ✓
 ═══════════════════════════
 ```

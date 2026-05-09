@@ -359,11 +359,7 @@ void __cdecl PAL3::Create(HINSTANCE hInstance)
 
 struct VObj { virtual void Release(int) = 0; };
 
-class CCBSystem {
-public:
-    void ProcFling(void);
-    ~CCBSystem();
-};
+#include "pal3/CCBSystem.h"
 
 #include "gbengine/gbActorMgr.h"
 
