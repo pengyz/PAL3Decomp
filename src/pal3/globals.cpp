@@ -63,6 +63,14 @@ extern "C" const char aGameCreateOk[]      = "Game Create OK ...";
 extern "C" const char aObjectG02Cvd[]      = "object\\g02.cvd";
 extern "C" const char aObjectG03Cvd[]      = "object\\g03.cvd";
 extern "C" const char aMovieLogoBik[]      = "Movie\\logo.bik";
+extern "C" const char aCreateGfxManag[]    = "Create GfxManager Failed!";
+extern "C" const char aCreateActorman[]    = "Create ActorManager Failed!";
+extern "C" const char aCNewFailed[]        = "C++ new Failed!";
+
+// InitGFX globals
+extern "C" int dword_BFD6C8 = 0;            // 0x00BFD6C8 - gbGfxDriverInfo
+extern "C" void *off_56A694 = 0;             // 0x0056A694 - gbVolumeModifier vtable
+extern "C" char unk_A3A6F8 = 0;             // 0x00A3A6F8 - gbVolModNode
 
 // ============================================================
 // Function stubs (callees of PAL3::Create and WinMain)
@@ -204,6 +212,29 @@ extern "C" void __cdecl sub_53C6F0(int, int) {}
 // === STUB: 0x0053C5A0 - 开始视频播放 ===
 extern "C" void __cdecl sub_53C5A0(int) {}
 
+// === STUB: 0x0041BE80 - Camera 构造 ===
+extern "C" void __cdecl sub_41BE80(int) {}
+
+// === STUB: 0x0041CA90 - Camera::SetDimention ===
+extern "C" void __cdecl sub_41CA90(int, int) {}
+
+// === STUB: 0x0041D100 - Camera 设置 ===
+extern "C" void __cdecl sub_41D100(int) {}
+
+// === STUB: 0x0041C630 - Camera 模式 ===
+extern "C" void __cdecl sub_41C630(int) {}
+
+// gbGfxManager::SetClearParam — 通过 gbengine.lib 链接 (thiscall)
+
+// === STUB: gbVolModNode::SetVolModObj ===
+extern "C" void __cdecl gbVolModNode_SetVolModObj(void *, void *) {}
+
+// === STUB: gbRefObject::Release ===
+extern "C" void __cdecl gbRefObject_Release(void *) {}
+
+// === STUB: gbLightObj::Init ===
+extern "C" void __cdecl gbLightObj_Init(void *, int) {}
+
 // === STUB: 0x005382D0 - 检查目录存在 ===
 extern "C" BOOL __cdecl sub_5382D0(const char *path)
 {
@@ -223,7 +254,6 @@ class PAL3 {
 public:
     static void __cdecl CreateGfxWindow(void);
     static void __cdecl CheckSystemRequire(HINSTANCE hInst);
-    static void __cdecl InitGFX(HINSTANCE hInst);
     static void __cdecl CreateEffectSystem(void);
     static void __cdecl DestroyEffectSystem(void);
     static void __cdecl GetCommandLineParam(void);
@@ -237,8 +267,7 @@ void __cdecl PAL3::CreateGfxWindow(void) {}
 // === STUB: PAL3::CheckSystemRequire ===
 void __cdecl PAL3::CheckSystemRequire(HINSTANCE hInst) {}
 
-// === STUB: PAL3::InitGFX ===
-void __cdecl PAL3::InitGFX(HINSTANCE hInst) {}
+// PAL3::InitGFX — 已实现于 src/pal3/gamebase/PAL3.cpp
 
 // === STUB: PAL3::CreateEffectSystem ===
 void __cdecl PAL3::CreateEffectSystem(void) {}

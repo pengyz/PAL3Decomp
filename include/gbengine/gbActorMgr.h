@@ -1,12 +1,6 @@
 #pragma once
 
-#ifndef GBAPI
-#ifdef GBENGINE_EXPORTS
-#define GBAPI __declspec(dllexport)
-#else
-#define GBAPI __declspec(dllimport)
-#endif
-#endif
+#include "gbengine/gbengine_export.h"
 
 class gbGfxManager;
 class gbActor;

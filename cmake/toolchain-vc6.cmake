@@ -111,10 +111,11 @@ set(CMAKE_CXX_STANDARD_LIBRARIES "" CACHE STRING "" FORCE)
 # --------------------------------------------------------------------------
 # Include and library paths
 # --------------------------------------------------------------------------
-include_directories(SYSTEM "${VC6_ROOT}/Include")
+get_filename_component(DXSDK_INCLUDE "${CMAKE_CURRENT_LIST_DIR}/../tools/vc6/Include" ABSOLUTE)
+include_directories(SYSTEM "${VC6_ROOT}/Include" "${DXSDK_INCLUDE}")
 link_directories("${VC6_LIB_DIR}")
-set(CMAKE_C_STANDARD_INCLUDE_DIRECTORIES "${VC6_ROOT}/Include")
-set(CMAKE_CXX_STANDARD_INCLUDE_DIRECTORIES "${VC6_ROOT}/Include")
+set(CMAKE_C_STANDARD_INCLUDE_DIRECTORIES "${VC6_ROOT}/Include" "${DXSDK_INCLUDE}")
+set(CMAKE_CXX_STANDARD_INCLUDE_DIRECTORIES "${VC6_ROOT}/Include" "${DXSDK_INCLUDE}")
 
 # Default to Release build (matching original binary)
 if(NOT CMAKE_BUILD_TYPE)

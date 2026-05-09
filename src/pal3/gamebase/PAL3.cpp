@@ -145,6 +145,119 @@ extern "C" const char aMovieLogoBik[];
 extern "C" void *off_56A66C;
 
 // ========================================================================
+// PAL3::InitGFX
+// Address: 0x00404FF0, Size: 786 bytes
+// static void __cdecl PAL3::InitGFX(HINSTANCE)
+// EH: 4 unwind states (RAII for new gbActorMgr, new Camera, new gbVolumeModifier)
+// ========================================================================
+
+#include "gbengine/gbGfxManager.h"
+#include "gbengine/gbActorMgr.h"
+
+extern "C" void __cdecl sub_41BE80(int);
+extern "C" void __cdecl sub_41CA90(int, int);
+extern "C" void __cdecl sub_41D100(int);
+extern "C" void __cdecl sub_41C630(int);
+extern "C" void __cdecl gbVolModNode_SetVolModObj(void *, void *);
+extern "C" void __cdecl gbRefObject_Release(void *);
+extern "C" void __cdecl gbLightObj_Init(void *, int);
+
+extern "C" int g_pGfxManager;
+extern "C" int g_pActorMgr;
+extern "C" int g_pCamera;
+extern "C" int xRight;
+extern "C" int yBottom;
+extern "C" int dword_BFD6C8;
+extern "C" void *off_56A694;
+extern "C" char unk_A3A6F8;
+
+extern "C" const char aCreateGfxManag[];
+extern "C" const char aCreateActorman[];
+extern "C" const char aCNewFailed[];
+extern "C" const char aDProjectPal3Ga_0[];
+
+void __cdecl PAL3::InitGFX(HINSTANCE hInst)
+{
+    gbActorMgr *pActorMgr;
+    int pCamera;
+    void *pVolMod;
+    _Exception pExceptionObject;
+    char ArgList[1024];
+
+    g_pGfxManager = (int)gbCreateGraphManager((gbGfxDriverInfo *)&dword_BFD6C8);
+    if (!g_pGfxManager)
+    {
+        memcpy(&pExceptionObject,
+            sub_53CEF0(ArgList, aCreateGfxManag, aDProjectPal3Ga_0, 401),
+            sizeof(pExceptionObject));
+        throw pExceptionObject;
+    }
+
+    pActorMgr = new gbActorMgr((gbGfxManager *)g_pGfxManager);
+    g_pActorMgr = (int)pActorMgr;
+    if (!pActorMgr)
+    {
+        memcpy(&pExceptionObject,
+            sub_53CEF0(ArgList, aCreateActorman, aDProjectPal3Ga_0, 405),
+            sizeof(pExceptionObject));
+        throw pExceptionObject;
+    }
+
+    pCamera = (int)operator new(0x220u);
+    if (pCamera)
+        sub_41BE80(g_pGfxManager);
+    else
+        pCamera = 0;
+    g_pCamera = pCamera;
+    if (!pCamera)
+    {
+        memcpy(&pExceptionObject,
+            sub_53CEF0(ArgList, aCNewFailed, aDProjectPal3Ga_0, 409),
+            sizeof(pExceptionObject));
+        throw pExceptionObject;
+    }
+
+    sub_41CA90(xRight, yBottom);
+    sub_41D100(0);
+    sub_41C630(3);
+
+    {
+        gbClearParam cp;
+        cp.flags = 3;
+        cp.color = 0xFF000000;
+        cp.depth = 1.0f;
+        ((gbGfxManager *)g_pGfxManager)->SetClearParam(&cp);
+    }
+
+    pVolMod = operator new(0xD8u);
+    if (pVolMod)
+    {
+        memset(pVolMod, 0, 0xD8u);
+        *(int *)((char *)pVolMod + 4) = 1;
+        *(void **)pVolMod = &off_56A694;
+        gbLightObj_Init(pVolMod, 2);
+        *(float *)((char *)pVolMod + 0x1C) = 1.0f;
+        *(float *)((char *)pVolMod + 0x20) = 1.0f;
+        *(float *)((char *)pVolMod + 0x24) = 1.0f;
+        *(float *)((char *)pVolMod + 0x28) = 1.0f;
+        *(float *)((char *)pVolMod + 0x30) = 1.0f;
+        *(float *)((char *)pVolMod + 0x2C) = 1.0f;
+        *(float *)((char *)pVolMod + 0x0C) = 0.03f;
+        *(float *)((char *)pVolMod + 0x10) = 0.03f;
+        *(float *)((char *)pVolMod + 0x14) = 0.03f;
+        *(float *)((char *)pVolMod + 0x40) = 100.0f;
+        *(float *)((char *)pVolMod + 0x3C) = 100.0f;
+        *(float *)((char *)pVolMod + 0x18) = 1.0f;
+    }
+    else
+    {
+        pVolMod = 0;
+    }
+    gbVolModNode_SetVolModObj(&unk_A3A6F8, pVolMod);
+    gbRefObject_Release(pVolMod);
+}
+
+// ========================================================================
 // PAL3::Create implementation
 // This follows the IDA decompilation output structure faithfully.
 // ========================================================================

@@ -2,12 +2,7 @@
 
 #include <windows.h>
 #include <d3d9.h>
-
-#ifdef GBENGINE_EXPORTS
-#define GBAPI __declspec(dllexport)
-#else
-#define GBAPI __declspec(dllimport)
-#endif
+#include "gbengine/gbengine_export.h"
 
 // Forward declarations (pointer-only usage, no header available without circular deps)
 class gbGfxManager;
