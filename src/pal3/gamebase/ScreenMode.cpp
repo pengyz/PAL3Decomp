@@ -69,8 +69,32 @@ extern "C" void __cdecl sub_53E490(int) {}
 extern "C" int __cdecl sub_53E500(int) { return 0; }
 // === STUB: 0x0053E950 - AudioStopAll ===
 extern "C" void __cdecl sub_53E950(int) {}
-// === STUB: 0x0053EA60 - AudioFadeOut ===
-extern "C" void __cdecl sub_53EA60(int) {}
+
+// CScreenMode 音频子系统部分布局 (从 AudioFadeOut/AudioUpdate 逆推)
+struct CScreenMode_Audio {
+    int   m_nUnk00;              // +0x00
+    int   m_nUnk04;              // +0x04
+    int   m_nUnk08;              // +0x08
+    char *m_pCurrentSoundName;   // +0x0C (byte offset 12)
+    int   m_bSoundPlaying;       // +0x10 (byte offset 16)
+    int   m_nUnk14;              // +0x14
+    int  *m_pFadeTarget;         // +0x18 (byte offset 24)
+};
+
+extern "C" void __cdecl sub_53E740(CScreenMode_Audio *, const char *, int *);
+extern "C" char byte_56A634[];
+
+// 0x0053EA60 - AudioFadeOut (30B)
+extern "C" void __cdecl AudioFadeOut(CScreenMode_Audio *pAudio)
+{
+    if (pAudio->m_bSoundPlaying)
+    {
+        char *pName = pAudio->m_pCurrentSoundName;
+        if (!pName)
+            pName = byte_56A634;
+        sub_53E740(pAudio, pName, pAudio->m_pFadeTarget);
+    }
+}
 // 0x0053D150 - SoundContext::GetInstance (51B)
 // 单例模式: guard check → ctor → atexit → return instance
 static char g_SoundContext_inst[32];

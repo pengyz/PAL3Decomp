@@ -494,3 +494,7 @@ extern "C" void __cdecl UIRenderObj_UIRenderObj(int) {}
 
 // === STUB: 0x005694F0 - gbGfxManager_D3D internal method ===
 extern "C" int __cdecl sub_5694F0(void *pThis, int a, int b, int c, int d) { return 0; }
+
+// === STUB: 0x0053E740 - Audio fade implementation ===
+extern "C" void __cdecl sub_53E740(int *, const char *, int *) {}
+extern "C" char byte_56A634[] = "";

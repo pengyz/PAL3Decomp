@@ -621,7 +621,7 @@ extern "C" int  __cdecl sub_53DF70(void);
 extern "C" void __cdecl sub_53E490(int);
 extern "C" int  __cdecl sub_53E500(int);
 extern "C" void __cdecl sub_53E950(int);
-extern "C" void __cdecl sub_53EA60(int);
+extern "C" void __cdecl AudioFadeOut(int);
 extern "C" int  __cdecl UIQuadManager_GetInstance(void);
 extern "C" void __cdecl sub_541590(int);
 
@@ -764,7 +764,7 @@ LABEL_51:
             sub_53E950(sub_53DF70());
             goto LABEL_54;
         }
-        sub_53EA60(sub_53DF70());
+        AudioFadeOut(sub_53DF70());
 LABEL_54:
         if (byte_5833D0 || !dword_5833CC)
         {
