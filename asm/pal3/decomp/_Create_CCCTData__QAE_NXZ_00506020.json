@@ -1,0 +1,7 @@
+{
+  "name": "?Create@CCCTData@@QAE_NXZ",
+  "address": "0x00506020",
+  "size_bytes": 168,
+  "signature": "bool __thiscall(int this, _DWORD *a2)",
+  "decompiled_c": "// between_std_methods (0x504E20-0x53C2B0)\nbool __thiscall sub_506020(int this, _DWORD *a2)\n{\n  int v3; // eax\n  char *v4; // ecx\n  int v6[2]; // [esp+8h] [ebp-90h] BYREF\n  _DWORD v7[3]; // [esp+10h] [ebp-88h] BYREF\n  _BYTE v8[24]; // [esp+1Ch] [ebp-7Ch] BYREF\n  _BYTE v9[76]; // [esp+34h] [ebp-64h] BYREF\n  _BYTE v10[24]; // [esp+80h] [ebp-18h] BYREF\n\n  gbMatrix4::gbMatrix4((gbMatrix4 *)v9);\n  gbGeomNode::GetTotalOBBox(*(gbGeomNode **)(this + 430224), (struct gbOBBox *)v9);\n  v7[0] = *a2;\n  v7[1] = a2[1];\n  v7[2] = a2[2];\n  gbMatrix4::RightTranslate((gbMatrix4 *)v9, (struct gbVec3D *)v7);\n  v3 = *(_DWORD *)(this + 430000);\n  v6[0] = *(_DWORD *)(v3 + 80);\n  v4 = *(char **)(this + 430004);\n  v6[1] = *(_DWORD *)(v3 + 84);\n  qmemcpy(v8, sub_41CAC0(v4, v10, v6), sizeof(v8));\n  return gbRay::IsColOBB((gbRay *)v8, (struct gbOBBox *)v9) == 1;\n}\n"
+}

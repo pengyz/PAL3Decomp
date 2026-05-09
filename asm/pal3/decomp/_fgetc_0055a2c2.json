@@ -1,0 +1,7 @@
+{
+  "name": "_fgetc",
+  "address": "0x0055A2C2",
+  "size_bytes": 26,
+  "signature": "int __cdecl(FILE *Stream)",
+  "decompiled_c": "int __cdecl fgetc(FILE *Stream)\n{\n  if ( --Stream->_cnt < 0 )\n    return _filbuf(Stream);\n  return *(unsigned __int8 *)Stream->_ptr++;\n}\n"
+}

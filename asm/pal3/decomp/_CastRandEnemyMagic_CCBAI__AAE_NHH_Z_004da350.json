@@ -1,0 +1,7 @@
+{
+  "name": "?CastRandEnemyMagic@CCBAI@@AAE_NHH@Z",
+  "address": "0x004DA350",
+  "size_bytes": 401,
+  "signature": "char __thiscall(_DWORD *this, int a2, int a3)",
+  "decompiled_c": "// between_std_methods (0x4D70B0-0x504E20)\nchar __thiscall sub_4DA350(_DWORD *this, int a2, int a3)\n{\n  char result; // al\n  int v5; // eax\n  int v6; // ebp\n  int v7; // eax\n  int v8; // eax\n  int v9; // eax\n  _DWORD v10[11]; // [esp+Ch] [ebp-2Ch] BYREF\n\n  memset(v10, 0, sizeof(v10));\n  if ( !*(_BYTE *)(*(this + 4) + 892 * a2 + 1386) && !(unsigned __int8)sub_4F3D90(a2, 18)\n    || (unsigned __int8)sub_4F3D90(a2, 19) )\n  {\n    return 0;\n  }\n  if ( !*(_BYTE *)(*(this + 4) + 892 * a2 + 577) )\n    return 0;\n  result = sub_4ED010(a2);\n  if ( result )\n  {\n    v5 = sub_4F3BC0(a2);\n    v6 = sub_4F3C00(v5);\n    if ( (int)sub_4F3620(v6, 0) > 0 )\n    {\n      ++dword_17AD310;\n      dword_5DFDEC = 214013 * dword_5DFDEC + 2531011;\n      v7 = sub_4F3620(v6, 0);\n      v8 = sub_4F57A0(a2, 1, ((dword_5DFDEC >> 16) & 0x7FFF) % v7);\n      if ( v8 )\n      {\n        LOBYTE(v10[10]) = 1;\n        LOWORD(v10[4]) = 0;\n        v10[0] = 260;\n        v10[1] = v8;\n        v10[2] = a2;\n        v10[3] = -1;\n        CCBRoleState::GetRoleNum(v10);\n        v9 = CCBSystem::CreateObj(CCBSystem::GetThreadIndex, 0, 0, 0, v10);\n        if ( a3 )\n          *(_DWORD *)(a3 + 4) = v9;\n        return 1;\n      }\n      else\n      {\n        return 0;\n      }\n    }\n    else\n    {\n      return 0;\n    }\n  }\n  return result;\n}\n"
+}

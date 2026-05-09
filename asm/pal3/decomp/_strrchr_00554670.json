@@ -1,0 +1,7 @@
+{
+  "name": "_strrchr",
+  "address": "0x00554670",
+  "size_bytes": 39,
+  "signature": "char *__cdecl(const char *Str, int Ch)",
+  "decompiled_c": "char *__cdecl strrchr(const char *Str, int Ch)\n{\n  unsigned int v2; // ecx\n  const char *v3; // edi\n  bool v4; // zf\n  char *v5; // edi\n\n  v2 = strlen(Str) + 1;\n  v3 = &Str[v2 - 1];\n  do\n  {\n    if ( !v2 )\n      break;\n    v4 = *v3-- == (unsigned __int8)Ch;\n    --v2;\n  }\n  while ( !v4 );\n  v5 = (char *)(v3 + 1);\n  if ( *v5 == (_BYTE)Ch )\n    return v5;\n  else\n    return 0;\n}\n"
+}

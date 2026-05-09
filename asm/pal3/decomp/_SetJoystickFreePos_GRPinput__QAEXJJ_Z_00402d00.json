@@ -1,0 +1,7 @@
+{
+  "name": "?SetJoystickFreePos@GRPinput@@QAEXJJ@Z",
+  "address": "0x00402D00",
+  "size_bytes": 20,
+  "signature": "char __thiscall(int this, float a2)",
+  "decompiled_c": "char __thiscall sub_402D00(int this, float a2)\n{\n  char result; // al\n\n  result = *(_BYTE *)(this + 4);\n  if ( result )\n    *(float *)(this + 24) = a2 + *(float *)(this + 24);\n  return result;\n}\n"
+}

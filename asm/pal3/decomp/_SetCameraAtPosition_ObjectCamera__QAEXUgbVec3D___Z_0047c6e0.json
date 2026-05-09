@@ -1,0 +1,7 @@
+{
+  "name": "?SetCameraAtPosition@ObjectCamera@@QAEXUgbVec3D@@@Z",
+  "address": "0x0047C6E0",
+  "size_bytes": 137,
+  "signature": "int __thiscall(int this, int a2, int a3, int a4, char a5)",
+  "decompiled_c": "// between_std_methods (0x44BDA0-0x4A7690)\nint __thiscall sub_47C6E0(int this, int a2, int a3, int a4, char a5)\n{\n  int v6; // ecx\n  double v7; // st7\n  double v8; // st7\n  _DWORD v10[3]; // [esp+4h] [ebp-Ch] BYREF\n  float v11; // [esp+14h] [ebp+4h]\n  float v12; // [esp+18h] [ebp+8h]\n  float v13; // [esp+1Ch] [ebp+Ch]\n\n  *(_DWORD *)(this + 4) = a2;\n  *(_DWORD *)(this + 8) = a3;\n  *(_DWORD *)(this + 12) = a4;\n  if ( a5 )\n  {\n    v6 = *(_DWORD *)(this + 8);\n    *(_DWORD *)(this + 16) = *(_DWORD *)(this + 4);\n    *(_DWORD *)(this + 20) = v6;\n    *(_DWORD *)(this + 24) = 0;\n  }\n  v11 = *(float *)(this + 16) - *(float *)(this + 4);\n  v7 = *(float *)(this + 20) - *(float *)(this + 8);\n  *(float *)v10 = v11;\n  v12 = v7;\n  v8 = *(float *)(this + 24) - *(float *)(this + 12);\n  *(float *)&v10[1] = v12;\n  v13 = v8;\n  *(float *)&v10[2] = v13;\n  *(float *)(this + 64) = gbVec3D::Length((gbVec3D *)v10);\n  return ObjectCamera::ComputeInfo(1);\n}\n"
+}

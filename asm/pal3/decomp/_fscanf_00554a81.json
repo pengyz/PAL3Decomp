@@ -1,0 +1,7 @@
+{
+  "name": "_fscanf",
+  "address": "0x00554A81",
+  "size_bytes": 22,
+  "signature": "int(FILE *const Stream, const char *const Format, ...)",
+  "decompiled_c": "int fscanf(FILE *const Stream, const char *const Format, ...)\n{\n  va_list va; // [esp+Ch] [ebp+Ch] BYREF\n\n  va_start(va, Format);\n  return _input(Stream, (int)Format, (int)va);\n}\n"
+}

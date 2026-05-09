@@ -1,0 +1,7 @@
+{
+  "name": "?Destroy@CCBProtectWindow@@UAEXXZ",
+  "address": "0x0051DD80",
+  "size_bytes": 30,
+  "signature": "stdiobuf *__thiscall(stdiobuf *Block, char a2)",
+  "decompiled_c": "// between_std_methods (0x504E20-0x53C2B0)\nstdiobuf *__thiscall sub_51DD80(stdiobuf *Block, char a2)\n{\n  CCBProtectWindow::ShowWindow(Block);\n  if ( (a2 & 1) != 0 )\n    operator delete(Block);\n  return Block;\n}\n"
+}

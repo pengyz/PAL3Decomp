@@ -1,0 +1,7 @@
+{
+  "name": "?Destroy@PAL3@@SAXXZ",
+  "address": "0x00406230",
+  "size_bytes": 219,
+  "signature": "int()",
+  "decompiled_c": "// between_std_methods (0x402FB0-0x407AB0)\nint sub_406230()\n{\n  int v0; // eax\n  int v1; // eax\n  int v2; // eax\n  void *v3; // esi\n  void *v4; // esi\n  int v5; // eax\n\n  v0 = sub_4BDB10();\n  sub_4BDED0(v0);\n  v1 = sub_4BFD20();\n  sub_4C0400(v1);\n  v2 = sub_5415F0();\n  sub_5415C0(v2);\n  sub_40C960();\n  sub_422DF0();\n  _TextureLib_Data::_TextureLib_Data();\n  PalScriptMgr::_CON_ReLoadScript();\n  if ( dword_BFDA74 )\n  {\n    CCBSystem::ProcFling();\n    v3 = dword_BFDA74;\n    if ( dword_BFDA74 )\n    {\n      nullsub_3(dword_BFDA74);\n      operator delete(v3);\n    }\n    dword_BFDA74 = 0;\n  }\n  sub_44F430(&dword_DB9FD0);\n  PAL3::DestroyEffectSystem();\n  if ( dword_BFDA68 )\n  {\n    (**(void (__thiscall ***)(int, int))dword_BFDA68)(dword_BFDA68, 1);\n    dword_BFDA68 = 0;\n  }\n  v4 = dword_BFDA64;\n  if ( dword_BFDA64 )\n  {\n    gbActorMgr::~gbActorMgr((gbActorMgr *)dword_BFDA64);\n    operator delete(v4);\n    dword_BFDA64 = 0;\n  }\n  if ( dword_BFDA60 )\n  {\n    (**(void (__thiscall ***)(int, int))dword_BFDA60)(dword_BFDA60, 1);\n    dword_BFDA60 = 0;\n  }\n  FileSysDestory();\n  v5 = sub_53DF70();\n  return sub_53DEF0(v5);\n}\n"
+}

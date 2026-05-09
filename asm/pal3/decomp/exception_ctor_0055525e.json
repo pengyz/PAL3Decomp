@@ -1,0 +1,7 @@
+{
+  "name": "exception_ctor",
+  "address": "0x0055525E",
+  "size_bytes": 22,
+  "signature": "void __thiscall(void *this)",
+  "decompiled_c": "void __thiscall sub_55525E(void *this)\n{\n  bool v1; // zf\n\n  v1 = *((_DWORD *)this + 2) == 0;\n  *(_DWORD *)this = &vtbl_exception;\n  if ( !v1 )\n    operator delete(*((void **)this + 1));\n}\n"
+}

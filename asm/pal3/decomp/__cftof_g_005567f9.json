@@ -1,0 +1,7 @@
+{
+  "name": "__cftof_g",
+  "address": "0x005567F9",
+  "size_bytes": 35,
+  "signature": "char *__cdecl(double *a1, char *Src, size_t Size)",
+  "decompiled_c": "char *__cdecl _cftof_g(double *a1, char *Src, size_t Size)\n{\n  char *result; // eax\n\n  byte_1895330 = 1;\n  result = _cftof(a1, Src, Size);\n  byte_1895330 = 0;\n  return result;\n}\n"
+}

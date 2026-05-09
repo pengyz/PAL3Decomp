@@ -1,0 +1,7 @@
+{
+  "name": "___sbh_alloc_new_region",
+  "address": "0x00555F3C",
+  "size_bytes": 177,
+  "signature": "char *()",
+  "decompiled_c": "char *__sbh_alloc_new_region()\n{\n  int v0; // eax\n  void *v1; // eax\n  char *v2; // esi\n  LPVOID v3; // eax\n  LPVOID v4; // eax\n\n  v0 = dword_1896D04;\n  if ( dword_1896D04 == dword_1896CF4 )\n  {\n    v1 = HeapReAlloc(hHeap, 0, lpMem, 4 * (5 * dword_1896CF4 + 80));\n    if ( !v1 )\n      return 0;\n    dword_1896CF4 += 16;\n    lpMem = v1;\n    v0 = dword_1896D04;\n  }\n  v2 = (char *)lpMem + 20 * v0;\n  v3 = HeapAlloc(hHeap, 8u, 0x41C4u);\n  *((_DWORD *)v2 + 4) = v3;\n  if ( !v3 )\n    return 0;\n  v4 = VirtualAlloc(0, 0x100000u, 0x2000u, 4u);\n  *((_DWORD *)v2 + 3) = v4;\n  if ( !v4 )\n  {\n    HeapFree(hHeap, 0, *((LPVOID *)v2 + 4));\n    return 0;\n  }\n  *((_DWORD *)v2 + 2) = -1;\n  *(_DWORD *)v2 = 0;\n  *((_DWORD *)v2 + 1) = 0;\n  ++dword_1896D04;\n  **((_DWORD **)v2 + 4) = -1;\n  return v2;\n}\n"
+}

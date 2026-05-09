@@ -1,0 +1,7 @@
+{
+  "name": "??0Parent_Data@@QAE@XZ",
+  "address": "0x0053FDD0",
+  "size_bytes": 118,
+  "signature": "int __thiscall(int this, LPCSTR lpString)",
+  "decompiled_c": "// between_std_methods (0x53C2D0-0x541D1B)\nint __thiscall sub_53FDD0(int this, LPCSTR lpString)\n{\n  int v3; // edi\n  int i; // ebx\n\n  if ( !*(_BYTE *)(this + 532) )\n    return 0;\n  if ( lstrlenA(lpString) <= 0 )\n    return 0;\n  v3 = 0;\n  if ( *(int *)(this + 524) <= 0 )\n    return 0;\n  for ( i = 0; _strcmpi(lpString, (const char *)(i + *(_DWORD *)(this + 528))); i += 1088 )\n  {\n    if ( ++v3 >= *(_DWORD *)(this + 524) )\n      return 0;\n  }\n  return *(_DWORD *)(this + 528) + 1088 * v3;\n}\n"
+}

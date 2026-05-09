@@ -1,0 +1,7 @@
+{
+  "name": "?__CxxUnhandledExceptionFilter@@YGJPAU_EXCEPTION_POINTERS@@@Z",
+  "address": "0x00557D84",
+  "size_bytes": 70,
+  "signature": "LONG __stdcall(struct _EXCEPTION_POINTERS *ExceptionInfo)",
+  "decompiled_c": "LONG __stdcall __CxxUnhandledExceptionFilter(struct _EXCEPTION_POINTERS *ExceptionInfo)\n{\n  PEXCEPTION_RECORD ExceptionRecord; // eax\n\n  ExceptionRecord = ExceptionInfo->ExceptionRecord;\n  if ( ExceptionInfo->ExceptionRecord->ExceptionCode == -529697949\n    && ExceptionRecord->NumberParameters == 3\n    && ExceptionRecord->ExceptionInformation[0] == 429065504 )\n  {\n    sub_557C4C();\n  }\n  if ( lpTopLevelExceptionFilter && _ValidateExecute((FARPROC)lpTopLevelExceptionFilter) )\n    return lpTopLevelExceptionFilter(ExceptionInfo);\n  else\n    return 0;\n}\n"
+}

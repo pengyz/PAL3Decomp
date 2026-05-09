@@ -1,0 +1,7 @@
+{
+  "name": "__setenvp",
+  "address": "0x0055A863",
+  "size_bytes": 185,
+  "signature": "void()",
+  "decompiled_c": "void _setenvp()\n{\n  char *v0; // esi\n  int v1; // edi\n  char **v2; // esi\n  const char *i; // edi\n  size_t v4; // eax\n  size_t v5; // ebp\n  char *v6; // eax\n\n  if ( !dword_1896CE8 )\n    __initmbctable();\n  v0 = Str;\n  v1 = 0;\n  while ( *v0 )\n  {\n    if ( *v0 != 61 )\n      ++v1;\n    v0 += strlen(v0) + 1;\n  }\n  v2 = (char **)malloc(4 * v1 + 4);\n  dword_1895364 = (int)v2;\n  if ( !v2 )\n    _amsg_exit(9u);\n  for ( i = Str; *i; i += v5 )\n  {\n    v4 = strlen(i);\n    v5 = v4 + 1;\n    if ( *i != 61 )\n    {\n      v6 = (char *)malloc(v4 + 1);\n      *v2 = v6;\n      if ( !v6 )\n        _amsg_exit(9u);\n      strcpy(*v2++, i);\n    }\n  }\n  free(Str);\n  Str = 0;\n  *v2 = 0;\n  dword_1896CE4 = 1;\n}\n"
+}

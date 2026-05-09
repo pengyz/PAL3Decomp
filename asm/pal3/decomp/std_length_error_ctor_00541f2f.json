@@ -1,0 +1,7 @@
+{
+  "name": "std_length_error_ctor",
+  "address": "0x00541F2F",
+  "size_bytes": 24,
+  "signature": "exception *__thiscall(exception *this, struct exception *a2)",
+  "decompiled_c": "exception *__thiscall sub_541F2F(exception *this, struct exception *a2)\n{\n  std_logic_error_ctor1(this, a2);\n  this->_m_what = (char *)&vtbl_std_length_error;\n  return this;\n}\n"
+}

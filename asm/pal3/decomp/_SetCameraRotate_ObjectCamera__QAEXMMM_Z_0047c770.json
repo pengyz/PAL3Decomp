@@ -1,0 +1,7 @@
+{
+  "name": "?SetCameraRotate@ObjectCamera@@QAEXMMM@Z",
+  "address": "0x0047C770",
+  "size_bytes": 110,
+  "signature": "int __thiscall(int this, int a2, int a3, int a4)",
+  "decompiled_c": "// between_std_methods (0x44BDA0-0x4A7690)\nint __thiscall sub_47C770(int this, int a2, int a3, int a4)\n{\n  double v5; // st7\n  double v6; // st7\n  _DWORD v8[3]; // [esp+4h] [ebp-Ch] BYREF\n  float v9; // [esp+14h] [ebp+4h]\n  float v10; // [esp+18h] [ebp+8h]\n  float v11; // [esp+1Ch] [ebp+Ch]\n\n  *(_DWORD *)(this + 16) = a2;\n  *(_DWORD *)(this + 20) = a3;\n  *(_DWORD *)(this + 24) = a4;\n  v9 = *(float *)(this + 16) - *(float *)(this + 4);\n  v5 = *(float *)(this + 20) - *(float *)(this + 8);\n  *(float *)v8 = v9;\n  v10 = v5;\n  v6 = *(float *)(this + 24) - *(float *)(this + 12);\n  *(float *)&v8[1] = v10;\n  v11 = v6;\n  *(float *)&v8[2] = v11;\n  *(float *)(this + 64) = gbVec3D::Length((gbVec3D *)v8);\n  return ObjectCamera::ComputeInfo(1);\n}\n"
+}
