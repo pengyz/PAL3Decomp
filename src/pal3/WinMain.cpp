@@ -111,19 +111,19 @@ LRESULT __stdcall fn(int code, WPARAM wParam, int *lParam)
 // ========================================================================
 extern "C" void __cdecl GetDefaultCD(void)
 {
-    char v0;
-    unsigned char v2;
+    char driveLetter;
+    unsigned char driveChar;
     char RootPathName[8];
 
-    v0 = 'A';
-    v2 = 'A';
+    driveLetter = 'A';
+    driveChar = 'A';
     while (1)
     {
-        sprintf(RootPathName, "%c:\\", v2);
+        sprintf(RootPathName, "%c:\\", driveChar);
         if (GetDriveTypeA(RootPathName) == DRIVE_CDROM)
             break;
-        v2 = ++v0;
-        if ((unsigned char)v0 > 'Z')
+        driveChar = ++driveLetter;
+        if ((unsigned char)driveLetter > 'Z')
             return;
     }
     size_t len = strlen(RootPathName) + 1;
