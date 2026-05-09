@@ -10,6 +10,7 @@
 #include <string.h>
 #include <stdlib.h>
 #include <math.h>
+#include <stdio.h>
 
 // Miles Sound System types
 typedef void* HSAMPLE;
@@ -36,8 +37,8 @@ void AILCALL AIL_shutdown(void);
 HDIGDRIVER AILCALL AIL_open_digital_driver(unsigned int freq, int bits, int channels, unsigned int flags);
 void AILCALL AIL_close_digital_driver(HDIGDRIVER driver);
 
-int AILCALL AIL_enumerate_3D_providers(HPROVIDER* dest, void** query, unsigned int* count);
-H3DPROVIDER AILCALL AIL_open_3D_provider(HPROVIDER provider);
+int AILCALL AIL_enumerate_3D_providers(HPROVIDER* next, HPROVIDER* dest, char** name);
+int AILCALL AIL_open_3D_provider(HPROVIDER provider);
 void AILCALL AIL_close_3D_provider(H3DPROVIDER provider);
 
 H3DLISTENER AILCALL AIL_open_3D_listener(H3DPROVIDER provider);
@@ -477,43 +478,52 @@ gbAudioManager& gbAudioManager::operator=(const gbAudioManager& other) {
 
 // Get3DProvider - 0x10001020 (250B)
 unsigned long gbAudioManager::Get3DProvider(char* providerName) {
+    HPROVIDER next = 0;
     HPROVIDER dest;
-    void* query = NULL;
-    unsigned int count = 0;
+    char* name;
 
-    // Default provider name if none specified
     const char* defaultName = "Miles Fast 2D Positional Audio";
     const char* searchName = (providerName != NULL) ? providerName : defaultName;
 
-    // Enumerate available 3D providers
-    int enumResult = AIL_enumerate_3D_providers(&dest, &query, &count);
-    if (enumResult == 0) {
-        return 0;
+    {
+        FILE* fp = fopen("gbengine_debug.log", "a");
+        if (fp) { fprintf(fp, "Get3DProvider: searching '%s'\n", searchName); fclose(fp); }
     }
 
-    // The query result is an array of {HPROVIDER, char*} pairs
-    // Search for the requested provider by name
-    struct ProvEntry { HPROVIDER prov; char* name; };
-    ProvEntry* entries = (ProvEntry*)query;
-
-    HPROVIDER foundProvider = NULL;
-    for (unsigned int i = 0; i < count; i++) {
-        if (entries[i].name != NULL && strcmp(entries[i].name, searchName) == 0) {
-            foundProvider = entries[i].prov;
+    HPROVIDER foundProvider = 0;
+    while (AIL_enumerate_3D_providers(&next, &dest, &name)) {
+        {
+            FILE* fp = fopen("gbengine_debug.log", "a");
+            if (fp) { fprintf(fp, "  provider: '%s' handle=0x%X\n", name ? name : "(null)", (unsigned int)dest); fclose(fp); }
+        }
+        if (name != NULL && strcmp(name, searchName) == 0) {
+            foundProvider = dest;
             break;
         }
     }
 
-    if (foundProvider == NULL) {
+    if (foundProvider == 0) {
+        FILE* fp = fopen("gbengine_debug.log", "a");
+        if (fp) { fprintf(fp, "Get3DProvider: not found\n"); fclose(fp); }
         return 0;
     }
 
-    // Open the 3D provider
-    provider3D = AIL_open_3D_provider(foundProvider);
-    if (provider3D == NULL) {
+    {
+        FILE* fp = fopen("gbengine_debug.log", "a");
+        if (fp) { fprintf(fp, "Get3DProvider: opening 0x%X\n", (unsigned int)foundProvider); fclose(fp); }
+    }
+    int openResult = AIL_open_3D_provider(foundProvider);
+    if (openResult != 0) {
+        FILE* fp = fopen("gbengine_debug.log", "a");
+        if (fp) { fprintf(fp, "Get3DProvider: open failed result=%d\n", openResult); fclose(fp); }
         return 0;
     }
+    provider3D = (H3DPROVIDER)foundProvider;
 
+    {
+        FILE* fp = fopen("gbengine_debug.log", "a");
+        if (fp) { fprintf(fp, "Get3DProvider: success, provider3D=0x%X\n", (unsigned int)provider3D); fclose(fp); }
+    }
     return 1;
 }
 

@@ -17,6 +17,7 @@
 #include <windows.h>
 #include <d3dx9.h>
 #include <string.h>
+#include <stdio.h>
 
 // External globals
 extern gbGfxManager* g_pGfxManager;
@@ -334,13 +335,11 @@ void gbGfxManager_D3D::BuildPresentParamsFromSettings(void) {
         m_d3dpp.BackBufferWidth = m_rcWindowClient.right - m_rcWindowClient.left;
         m_d3dpp.BackBufferHeight = m_rcWindowClient.bottom - m_rcWindowClient.top;
 
-        D3DDeviceCombo* pCombo;
         if (m_d3dSettings.bIsWindowed != 0) {
-            pCombo = m_d3dSettings.pFullscreen_DeviceCombo;
+            m_d3dpp.AutoDepthStencilFormat = m_d3dSettings.Fullscreen_DepthStencilFormat;
         } else {
-            pCombo = m_d3dSettings.pWindowed_DeviceCombo;
+            m_d3dpp.AutoDepthStencilFormat = m_d3dSettings.Windowed_DepthStencilFormat;
         }
-        m_d3dpp.AutoDepthStencilFormat = (D3DFORMAT)*(int*)((char*)pCombo + 0x0C);
         m_d3dpp.MultiSampleType = D3DMULTISAMPLE_NONE;
 
         if (m_d3dSettings.bIsWindowed != 0) {
@@ -350,29 +349,21 @@ void gbGfxManager_D3D::BuildPresentParamsFromSettings(void) {
         }
     } else {
         // Fullscreen mode: use settings dimensions
-        D3DDeviceCombo* pCombo;
         if (m_d3dSettings.bIsWindowed != 0) {
-            pCombo = m_d3dSettings.pFullscreen_DeviceCombo;
+            m_d3dpp.BackBufferWidth = m_d3dSettings.Fullscreen_DisplayMode.Width;
+            m_d3dpp.BackBufferHeight = m_d3dSettings.Fullscreen_DisplayMode.Height;
         } else {
-            pCombo = m_d3dSettings.pWindowed_DeviceCombo;
+            m_d3dpp.BackBufferWidth = m_d3dSettings.Windowed_DisplayMode.Width;
+            m_d3dpp.BackBufferHeight = m_d3dSettings.Windowed_DisplayMode.Height;
         }
-        m_d3dpp.BackBufferWidth = *(int*)((char*)pCombo + 0x08);
-
-        D3DDeviceCombo* pCombo2;
-        if (m_d3dSettings.bIsWindowed != 0) {
-            pCombo2 = m_d3dSettings.pFullscreen_DeviceCombo;
-        } else {
-            pCombo2 = m_d3dSettings.pWindowed_DeviceCombo;
-        }
-        m_d3dpp.BackBufferHeight = *(int*)((char*)pCombo2 + 0x04);
 
         if (m_d3dSettings.bIsWindowed != 0) {
-            pCombo = m_d3dSettings.pFullscreen_DeviceCombo;
+            m_d3dpp.AutoDepthStencilFormat = m_d3dSettings.Fullscreen_DepthStencilFormat;
+            m_d3dpp.MultiSampleType = m_d3dSettings.Fullscreen_MultisampleType;
         } else {
-            pCombo = m_d3dSettings.pWindowed_DeviceCombo;
+            m_d3dpp.AutoDepthStencilFormat = m_d3dSettings.Windowed_DepthStencilFormat;
+            m_d3dpp.MultiSampleType = m_d3dSettings.Windowed_MultisampleType;
         }
-        m_d3dpp.AutoDepthStencilFormat = (D3DFORMAT)*(int*)((char*)pCombo + 0x0C);
-        m_d3dpp.MultiSampleType = (D3DMULTISAMPLE_TYPE)*(int*)((char*)&m_d3dSettings + 0x50);
 
         if (m_d3dSettings.bIsWindowed != 0) {
             m_d3dpp.FullScreen_RefreshRateInHz = m_d3dSettings.Fullscreen_DisplayMode.RefreshRate;
@@ -716,10 +707,63 @@ gbGfxManager_D3D::gbGfxManager_D3D() {
 // Called from gbCreateGraphManager
 // ============================================================================
 gbGfxManager* gbGfxManager_D3D::InitD3D(int* pResult, gbGfxDriverInfo* info) {
+    {
+        FILE* fp = fopen("gbengine_debug.log", "a");
+        if (fp) {
+            fprintf(fp, "InitD3D: info=0x%X\n", (unsigned int)info);
+            if (info) {
+                fprintf(fp, "  info->width=%d height=%d fullscreen=%d newwindow=%d hgfxwnd=0x%X nbackbuf=%d\n",
+                        info->width, info->height, info->fullscreen, info->newwindow, info->hgfxwnd, info->nbackbuf);
+            }
+            fclose(fp);
+        }
+    }
     int result = 0;
 
-    // Initialize base class with driver info
-    gbGfxManager::gbGfxManager(result, info);
+    // Inline base class initialization (explicit ctor call unreliable in VC6)
+    {
+        g_pGfxManager = this;
+        int i;
+        for (i = 0; i < 8; i++) {
+            AllLight[i].position.x = 0.0f;
+            AllLight[i].position.y = 0.0f;
+            AllLight[i].position.z = 0.0f;
+            AllLight[i].direction.x = 0.0f;
+            AllLight[i].direction.y = 0.0f;
+            AllLight[i].direction.z = 0.0f;
+        }
+        memcpy(&DrvInfo, info, sizeof(gbGfxDriverInfo));
+        hGfxWnd = 0;
+        pVertPoolMgr = NULL;
+        pEffectMgr = NULL;
+        pTexResMgr = NULL;
+        pFontMgr = NULL;
+        pMatrixStack[0] = NULL;
+        pMatrixStack[1] = NULL;
+        pMatrixStack[2] = NULL;
+        pMatrixStack[3] = NULL;
+        AmbientLight.r = 0.2f;
+        AmbientLight.g = 0.2f;
+        AmbientLight.b = 0.2f;
+        AmbientLight.a = 1.0f;
+        fSelfIllum = 0.0f;
+        LastTime = 0.0;
+        CurTime = 0.0;
+        LastTick = 0;
+        CurTick = 0;
+        bWireMode = 0;
+        pSceneGraph = NULL;
+        Stat.nStaticVerts = 0;
+        Stat.nStaticIndex = 0;
+        Stat.nSrcVerts = 0;
+        Stat.nSrcIndex = 0;
+        Stat.FPS = 0.0f;
+        Stat.TimeAccum = 0.0;
+        Stat.Frame = 0;
+        Stat.PrevFrame = 0;
+        FogParam.enable = 0;
+        result = 1;
+    }
 
     // Initialize CD3DEnumeration at +0x5F0
     // FUN_100170d0 initializes the D3D enumeration structure
@@ -759,12 +803,26 @@ gbGfxManager* gbGfxManager_D3D::InitD3D(int* pResult, gbGfxDriverInfo* info) {
         return this;
     }
 
-    // Create texture resource manager (0x828 bytes for gbResManager with texture cache)
-    gbResManager* texResMgr = new gbResManager();
-    pEffectMgr = (gbEffectMgr*)texResMgr;
+    {
+        FILE* fp = fopen("gbengine_debug.log", "a");
+        if (fp) { fprintf(fp, "CreateD3DDevice: hwnd=0x%X, about to new gbResManager\n", hwnd); fclose(fp); }
+    }
+
+    // Create effect manager (gbEffectMgr extends gbResManager, sizeof=0x828)
+    pEffectMgr = new gbEffectMgr();
+
+    {
+        FILE* fp = fopen("gbengine_debug.log", "a");
+        if (fp) { fprintf(fp, "CreateD3DDevice: about to InitSubsystems\n"); fclose(fp); }
+    }
 
     // Initialize all subsystems (MatrixStack, VertPoolMgr, EffectMgr, FontMgr, SceneGraph)
     InitSubsystems();
+
+    {
+        FILE* fp = fopen("gbengine_debug.log", "a");
+        if (fp) { fprintf(fp, "CreateD3DDevice: InitSubsystems done, checking DXT\n"); fclose(fp); }
+    }
 
     // Check DXT texture format support
     {
@@ -793,8 +851,32 @@ gbGfxManager* gbGfxManager_D3D::InitD3D(int* pResult, gbGfxDriverInfo* info) {
         }
     }
 
+    {
+        FILE* fp = fopen("gbengine_debug.log", "a");
+        if (fp) {
+            fprintf(fp, "CreateD3DDevice: DXT done, returning. pResult=%p\n", pResult);
+            fprintf(fp, "  this=0x%X sizeof(gbGfxManager_D3D)=%d\n", (unsigned int)this, sizeof(gbGfxManager_D3D));
+            fprintf(fp, "  &pMatrixStack[0] offset=0x%X val=0x%X\n",
+                (unsigned int)&pMatrixStack[0] - (unsigned int)this, (unsigned int)pMatrixStack[0]);
+            fprintf(fp, "  &pMatrixStack[1] offset=0x%X val=0x%X\n",
+                (unsigned int)&pMatrixStack[1] - (unsigned int)this, (unsigned int)pMatrixStack[1]);
+            if (pMatrixStack[0]) {
+                fprintf(fp, "  pMatrixStack[0]->pStack=0x%X\n", (unsigned int)pMatrixStack[0]->pStack);
+            }
+            if (pMatrixStack[1]) {
+                fprintf(fp, "  pMatrixStack[1]->pStack=0x%X\n", (unsigned int)pMatrixStack[1]->pStack);
+            }
+            fclose(fp);
+        }
+    }
+
     *pResult = 1;
     m_bActive = 1;
+
+    {
+        FILE* fp = fopen("gbengine_debug.log", "a");
+        if (fp) { fprintf(fp, "CreateD3DDevice: returning this=0x%X\n", (unsigned int)this); fclose(fp); }
+    }
 
     return this;
 }
@@ -811,12 +893,32 @@ void gbGfxManager_D3D::InitSubsystems(void) {
     pMatrixStack[2] = new gbMatrixStack(4);
     pMatrixStack[3] = new gbMatrixStack(4);
 
+    {
+        FILE* fp = fopen("gbengine_debug.log", "a");
+        if (fp) {
+            fprintf(fp, "InitSubsystems: stacks created\n");
+            fprintf(fp, "  [0]=0x%X pStack=0x%X\n", (unsigned int)pMatrixStack[0],
+                pMatrixStack[0] ? (unsigned int)pMatrixStack[0]->pStack : 0);
+            fprintf(fp, "  [1]=0x%X pStack=0x%X\n", (unsigned int)pMatrixStack[1],
+                pMatrixStack[1] ? (unsigned int)pMatrixStack[1]->pStack : 0);
+            fclose(fp);
+        }
+    }
+
     // Create vertex pool manager
     pVertPoolMgr = new gbVertPoolMgr(this, 0x10000, 0x10000, 0x4000, 0x4000);
+    {
+        FILE* fp = fopen("gbengine_debug.log", "a");
+        if (fp) { fprintf(fp, "  after VertPoolMgr: [0]->pStack=0x%X\n", (unsigned int)pMatrixStack[0]->pStack); fclose(fp); }
+    }
 
     // Query D3D caps via virtual call (slot 17 = GetGfxCaps)
     gbGfxCaps caps;
     GetGfxCaps(&caps);
+    {
+        FILE* fp = fopen("gbengine_debug.log", "a");
+        if (fp) { fprintf(fp, "  after GetGfxCaps: [0]->pStack=0x%X\n", (unsigned int)pMatrixStack[0]->pStack); fclose(fp); }
+    }
 
     // Create texture resource manager
     pTexResMgr = new gbResManager();
@@ -826,11 +928,19 @@ void gbGfxManager_D3D::InitSubsystems(void) {
 
     // Initialize effect manager (at pEffectMgr, already allocated)
     pEffectMgr->Init(this);
+    {
+        FILE* fp = fopen("gbengine_debug.log", "a");
+        if (fp) { fprintf(fp, "  after EffectMgr Init: [0]->pStack=0x%X\n", (unsigned int)pMatrixStack[0]->pStack); fclose(fp); }
+    }
 
     // Create print font manager
     gbPrintFontMgr* fontMgr = new gbPrintFontMgr();
     pFontMgr = fontMgr;
     fontMgr->Init(this);
+    {
+        FILE* fp = fopen("gbengine_debug.log", "a");
+        if (fp) { fprintf(fp, "  after FontMgr Init: [0]->pStack=0x%X\n", (unsigned int)pMatrixStack[0]->pStack); fclose(fp); }
+    }
 
     // Create scene graph
     gbVec3D origin;
@@ -973,10 +1083,20 @@ int gbGfxManager_D3D::CreateD3DDevice(void) {
 
     // 6. Initialize D3D device (fullscreen or windowed)
     char success;
+    {
+        FILE* fp = fopen("gbengine_debug.log", "a");
+        if (fp) { fprintf(fp, "DrvInfo.fullscreen=%d newwindow=%d hgfxwnd=0x%X nbackbuf=%d m_hWnd=0x%X\n",
+                  DrvInfo.fullscreen, DrvInfo.newwindow, DrvInfo.hgfxwnd, DrvInfo.nbackbuf, (unsigned int)m_hWnd); fclose(fp); }
+    }
     if (DrvInfo.fullscreen != 0) {
         success = InitDeviceWindowed(1, 0);
     } else {
         success = InitDeviceFullscreen(1, 0);
+    }
+
+    {
+        FILE* fp = fopen("gbengine_debug.log", "a");
+        if (fp) { fprintf(fp, "InitDevice result=%d DrvInfo.type=%d\n", (int)success, DrvInfo.type); fclose(fp); }
     }
 
     if (!success) {
@@ -985,6 +1105,8 @@ int gbGfxManager_D3D::CreateD3DDevice(void) {
             DrvInfo.fullscreen = 1;
             success = InitDeviceWindowed(1, 0);
             if (!success) {
+                FILE* fp = fopen("gbengine_debug.log", "a");
+                if (fp) { fprintf(fp, "Fallback also failed\n"); fclose(fp); }
                 return 0;
             }
         } else {
@@ -994,6 +1116,22 @@ int gbGfxManager_D3D::CreateD3DDevice(void) {
 
     // 7. Final device creation step (back buffer, caps, etc.)
     hr = CreateDevice();
+    {
+        FILE* fp = fopen("gbengine_debug.log", "a");
+        if (fp) {
+            fprintf(fp, "CreateDevice params: Windowed=%d BBW=%d BBH=%d BBCount=%d BBFmt=%d\n",
+                    m_d3dpp.Windowed, m_d3dpp.BackBufferWidth, m_d3dpp.BackBufferHeight,
+                    m_d3dpp.BackBufferCount, m_d3dpp.BackBufferFormat);
+            fprintf(fp, "  SwapEffect=%d AutoDS=%d DSFmt=%d MS=%d hWnd=0x%X flags=0x%X\n",
+                    m_d3dpp.SwapEffect, m_d3dpp.EnableAutoDepthStencil,
+                    m_d3dpp.AutoDepthStencilFormat, m_d3dpp.MultiSampleType,
+                    (unsigned int)m_d3dpp.hDeviceWindow, m_dwCreateFlags);
+            fprintf(fp, "  RefreshRate=%d PresentInterval=0x%X\n",
+                    m_d3dpp.FullScreen_RefreshRateInHz, m_d3dpp.PresentationInterval);
+            fprintf(fp, "CreateDevice hr=0x%08X\n", hr);
+            fclose(fp);
+        }
+    }
     if (hr < 0) {
         DisplayErrorMsg(hr, 2);
         return 0;
@@ -1106,6 +1244,22 @@ int gbGfxManager_D3D::CreateDevice(void) {
         m_dwCreateFlags = D3DCREATE_HARDWARE_VERTEXPROCESSING | D3DCREATE_PUREDEVICE;
     }
 
+    {
+        FILE* fp = fopen("gbengine_debug.log", "a");
+        if (fp) {
+            fprintf(fp, "CreateDevice params: Windowed=%d BBW=%d BBH=%d BBCount=%d BBFmt=%d\n",
+                    m_d3dpp.Windowed, m_d3dpp.BackBufferWidth, m_d3dpp.BackBufferHeight,
+                    m_d3dpp.BackBufferCount, m_d3dpp.BackBufferFormat);
+            fprintf(fp, "  SwapEffect=%d AutoDS=%d DSFmt=%d MS=%d hWnd=0x%X flags=0x%X\n",
+                    m_d3dpp.SwapEffect, m_d3dpp.EnableAutoDepthStencil,
+                    m_d3dpp.AutoDepthStencilFormat, m_d3dpp.MultiSampleType,
+                    (unsigned int)m_d3dpp.hDeviceWindow, m_dwCreateFlags);
+            fprintf(fp, "  RefreshRate=%d PresentInterval=0x%X\n",
+                    m_d3dpp.FullScreen_RefreshRateInHz, m_d3dpp.PresentationInterval);
+            fclose(fp);
+        }
+    }
+
     // Create the D3D device
     HRESULT hr = m_pD3D->CreateDevice(
         0,                  // adapter
@@ -1176,7 +1330,7 @@ char gbGfxManager_D3D::InitDeviceWindowed(int p1, int p2) {
 
     unsigned int iAdapter;
     for (iAdapter = 0; iAdapter < (unsigned int)m_d3dEnumeration.m_pAdapterInfoList->m_NumEntries; iAdapter++) {
-        D3DAdapterInfo* pAdapterInfo = *(D3DAdapterInfo**)m_d3dEnumeration.m_pAdapterInfoList->GetPtr(iAdapter);
+        D3DAdapterInfo* pAdapterInfo = (D3DAdapterInfo*)m_d3dEnumeration.m_pAdapterInfoList->GetPtr(iAdapter);
 
         // Get current desktop display mode for this adapter
         D3DDISPLAYMODE adapterDesktopMode;
@@ -1192,7 +1346,7 @@ char gbGfxManager_D3D::InitDeviceWindowed(int p1, int p2) {
 
         unsigned int iDevice;
         for (iDevice = 0; iDevice < (unsigned int)pAdapterInfo->pDeviceInfoList->m_NumEntries; iDevice++) {
-            D3DDeviceInfo* pDeviceInfo = *(D3DDeviceInfo**)pAdapterInfo->pDeviceInfoList->GetPtr(iDevice);
+            D3DDeviceInfo* pDeviceInfo = (D3DDeviceInfo*)pAdapterInfo->pDeviceInfoList->GetPtr(iDevice);
 
             if (p1 != 0 && pDeviceInfo->DevType != D3DDEVTYPE_HAL)
                 continue;
@@ -1201,7 +1355,7 @@ char gbGfxManager_D3D::InitDeviceWindowed(int p1, int p2) {
 
             unsigned int iCombo;
             for (iCombo = 0; iCombo < (unsigned int)pDeviceInfo->pDeviceComboList->m_NumEntries; iCombo++) {
-                D3DDeviceCombo* pDeviceCombo = *(D3DDeviceCombo**)pDeviceInfo->pDeviceComboList->GetPtr(iCombo);
+                D3DDeviceCombo* pDeviceCombo = (D3DDeviceCombo*)pDeviceInfo->pDeviceComboList->GetPtr(iCombo);
 
                 int adapterFmt = (int)pDeviceCombo->AdapterFormat;
                 int bBackMatch = ((int)pDeviceCombo->BackBufferFormat == adapterFmt);
@@ -1272,9 +1426,7 @@ LAB_1001a032:
     m_d3dSettings.Windowed_DisplayMode.Format = pBestDeviceCombo->AdapterFormat;
 
     // Depth/stencil format: first entry from combo's list
-    if (m_d3dEnumeration.m_bMultisampleEnabled) {
-        m_d3dSettings.Windowed_DepthStencilFormat = *(D3DFORMAT*)pBestDeviceCombo->pDepthStencilFormatList->GetPtr(0);
-    }
+    m_d3dSettings.Windowed_DepthStencilFormat = *(D3DFORMAT*)pBestDeviceCombo->pDepthStencilFormatList->GetPtr(0);
 
     // Multisample
     m_d3dSettings.Windowed_MultisampleType = *(D3DMULTISAMPLE_TYPE*)pBestDeviceCombo->pMultiSampleTypeList->GetPtr(0);
@@ -1300,12 +1452,26 @@ char gbGfxManager_D3D::InitDeviceFullscreen(int p1, int p2) {
     D3DDeviceCombo* pBestDeviceCombo = NULL;
 
     unsigned int iAdapter;
+    {
+        FILE* fp = fopen("gbengine_debug.log", "a");
+        if (fp) { fprintf(fp, "InitDeviceFullscreen: adapters=%d desktopFmt=%d\n",
+                  m_d3dEnumeration.m_pAdapterInfoList->m_NumEntries, (int)adapterDesktopMode.Format); fclose(fp); }
+    }
     for (iAdapter = 0; iAdapter < (unsigned int)m_d3dEnumeration.m_pAdapterInfoList->m_NumEntries; iAdapter++) {
-        D3DAdapterInfo* pAdapterInfo = *(D3DAdapterInfo**)m_d3dEnumeration.m_pAdapterInfoList->GetPtr(iAdapter);
+        D3DAdapterInfo* pAdapterInfo = (D3DAdapterInfo*)m_d3dEnumeration.m_pAdapterInfoList->GetPtr(iAdapter);
 
         unsigned int iDevice;
+        {
+            FILE* fp = fopen("gbengine_debug.log", "a");
+            if (fp) { fprintf(fp, "  adapter[%d]: devices=%d\n", iAdapter, pAdapterInfo->pDeviceInfoList->m_NumEntries); fclose(fp); }
+        }
         for (iDevice = 0; iDevice < (unsigned int)pAdapterInfo->pDeviceInfoList->m_NumEntries; iDevice++) {
-            D3DDeviceInfo* pDeviceInfo = *(D3DDeviceInfo**)pAdapterInfo->pDeviceInfoList->GetPtr(iDevice);
+            D3DDeviceInfo* pDeviceInfo = (D3DDeviceInfo*)pAdapterInfo->pDeviceInfoList->GetPtr(iDevice);
+
+            {
+                FILE* fp = fopen("gbengine_debug.log", "a");
+                if (fp) { fprintf(fp, "    device[%d]: DevType=%d combos=%d\n", iDevice, pDeviceInfo->DevType, pDeviceInfo->pDeviceComboList->m_NumEntries); fclose(fp); }
+            }
 
             if (p1 != 0 && pDeviceInfo->DevType != D3DDEVTYPE_HAL)
                 continue;
@@ -1314,10 +1480,15 @@ char gbGfxManager_D3D::InitDeviceFullscreen(int p1, int p2) {
 
             unsigned int iCombo;
             for (iCombo = 0; iCombo < (unsigned int)pDeviceInfo->pDeviceComboList->m_NumEntries; iCombo++) {
-                D3DDeviceCombo* pDeviceCombo = *(D3DDeviceCombo**)pDeviceInfo->pDeviceComboList->GetPtr(iCombo);
+                D3DDeviceCombo* pDeviceCombo = (D3DDeviceCombo*)pDeviceInfo->pDeviceComboList->GetPtr(iCombo);
 
                 int adapterFmt = (int)pDeviceCombo->AdapterFormat;
                 int bFmtMatch = ((int)pDeviceCombo->BackBufferFormat == adapterFmt);
+
+                {
+                    FILE* fp = fopen("gbengine_debug.log", "a");
+                    if (fp) { fprintf(fp, "      combo[%d]: adFmt=%d bbFmt=%d windowed=%d\n", iCombo, adapterFmt, (int)pDeviceCombo->BackBufferFormat, pDeviceCombo->bIsWindowed); fclose(fp); }
+                }
 
                 if (pDeviceCombo->bIsWindowed != 0 &&
                     adapterFmt == (int)adapterDesktopMode.Format) {
@@ -1357,9 +1528,7 @@ char gbGfxManager_D3D::InitDeviceFullscreen(int p1, int p2) {
     m_d3dSettings.Fullscreen_Height = m_rcWindowClient.bottom - m_rcWindowClient.top;
 
     // Depth/stencil format: first entry from combo's list
-    if (m_d3dEnumeration.m_bMultisampleEnabled) {
-        m_d3dSettings.Fullscreen_DepthStencilFormat = *(D3DFORMAT*)pBestDeviceCombo->pDepthStencilFormatList->GetPtr(0);
-    }
+    m_d3dSettings.Fullscreen_DepthStencilFormat = *(D3DFORMAT*)pBestDeviceCombo->pDepthStencilFormatList->GetPtr(0);
 
     // Multisample: first entry
     m_d3dSettings.Fullscreen_MultisampleType = *(D3DMULTISAMPLE_TYPE*)pBestDeviceCombo->pMultiSampleTypeList->GetPtr(0);
@@ -1429,6 +1598,14 @@ gbGfxManager_D3D::~gbGfxManager_D3D() {
 
 // Slot 1: 0x1001B4C0 (653B) - Window message dispatch handler
 void gbGfxManager_D3D::MsgProc(int msg, int wParam, int lParam) {
+    {
+        static int mp_count = 0;
+        if (mp_count < 3) {
+            FILE* fp = fopen("gbengine_debug.log", "a");
+            if (fp) { fprintf(fp, "MsgProc called #%d msg=0x%X\n", mp_count, msg); fclose(fp); }
+            mp_count++;
+        }
+    }
     unsigned int uMsg = (unsigned int)msg;
     unsigned int uWParam = (unsigned int)wParam;
 
@@ -1637,6 +1814,14 @@ void gbGfxManager_D3D::SetMaterial(D3DMATERIAL9* pMaterial) {
 // Slot 12: 0x10018CD0 - D3D BeginScene override
 // Calls base gbGfxManager::BeginScene, checks m_bActive, then D3D BeginScene
 int gbGfxManager_D3D::BeginScene(void) {
+    {
+        static int bs_count = 0;
+        if (bs_count < 3) {
+            FILE* fp = fopen("gbengine_debug.log", "a");
+            if (fp) { fprintf(fp, "BeginScene called #%d\n", bs_count); fclose(fp); }
+            bs_count++;
+        }
+    }
     int result = gbGfxManager::BeginScene();
     if (!result)
         return 0;

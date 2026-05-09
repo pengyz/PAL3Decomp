@@ -219,8 +219,14 @@ int CD3DEnumeration::Enumerate(void) {
             }
         }
 
+        // Build device info list for this adapter
+        int buildHr = BuildDeviceInfoList(pAdapterInfo, pFormatList);
+        if (buildHr < 0) {
+            return buildHr;
+        }
+
         // Add adapter to list
-        pAdapterList->Add(&pAdapterInfo);
+        pAdapterList->Add(pAdapterInfo);
     }
 
     return 0;
@@ -866,7 +872,7 @@ LABEL_2:
                             }
 
                             // Add combo to device info's combo list
-                            pDeviceInfo->pDeviceComboList->Add(&pCombo);
+                            pDeviceInfo->pDeviceComboList->Add(pCombo);
                         } else {
                             pCombo->Cleanup();
                             operator delete(pCombo);
@@ -1004,7 +1010,7 @@ int CD3DEnumeration::BuildDeviceInfoList(D3DAdapterInfo* pAdapterInfo, CArrayLis
 
         // If device has combos, add to adapter's device info list
         if (pDeviceInfo->pDeviceComboList->m_NumEntries) {
-            pAdapterInfo->pDeviceInfoList->Add(&pDeviceInfo);
+            pAdapterInfo->pDeviceInfoList->Add(pDeviceInfo);
         } else {
             // No valid combos - cleanup
             CArrayList* pList = pDeviceInfo->pDeviceComboList;
