@@ -578,7 +578,31 @@ extern "C" void __cdecl sub_4CDBF0(int) {}
 extern "C" void __cdecl sub_4CDC20(int) {}
 extern "C" void __cdecl sub_513120(void *) {}
 extern "C" void __cdecl sub_52B860(int) {}
-extern "C" void __cdecl sub_52F2E0(int) {}
+// 0x0052F2E0 - MiniGame2::Destroy (28B)
+// Destroys 3 sub-objects via this[0], this[3], this[4]
+struct MiniGame2State {
+    int m_pSubObj0;     // [0]
+    int m_nUnk1;        // [1]
+    int m_nUnk2;        // [2]
+    int m_pSubObj3;     // [3]
+    int m_pSubObj4;     // [4]
+};
+
+extern "C" void __cdecl sub_530C70(int);
+extern "C" void __cdecl sub_530350(int);
+extern "C" int  __cdecl sub_52FC60(int);
+
+extern "C" int __cdecl MiniGame2_Destroy(MiniGame2State *pThis)
+{
+    sub_530C70(pThis->m_pSubObj0);
+    sub_530350(pThis->m_pSubObj3);
+    return sub_52FC60(pThis->m_pSubObj4);
+}
+
+// === STUB: MiniGame2 sub-object destructors ===
+void __cdecl sub_530C70(int) {}
+void __cdecl sub_530350(int) {}
+int  __cdecl sub_52FC60(int) { return 0; }
 extern "C" void __cdecl sub_535320(int) {}
 extern "C" void __cdecl sub_53C990(void *) {}
 // PushMatrixStacks (was sub_540F60): moved to gamebase/GfxHelper.cpp

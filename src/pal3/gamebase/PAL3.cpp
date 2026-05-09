@@ -951,7 +951,7 @@ extern "C" void __cdecl sub_4CDBF0(int);
 extern "C" void __cdecl sub_4CDC20(int);
 extern "C" void __cdecl sub_513120(void *);
 extern "C" void __cdecl sub_52B860(int);
-extern "C" void __cdecl sub_52F2E0(int);
+extern "C" void __cdecl MiniGame2_Destroy(int);
 extern "C" void __cdecl sub_535320(int);
 extern "C" void __cdecl sub_53C990(void *);
 extern "C" void __cdecl PushMatrixStacks(void *);
@@ -1018,7 +1018,7 @@ void __cdecl PAL3::Render(void)
         sub_52B860(dword_BFDA80);
         break;
     case 5:
-        sub_52F2E0(dword_BFDA7C);
+        MiniGame2_Destroy(dword_BFDA7C);
         sub_40C7D0();
         break;
     case 6:
