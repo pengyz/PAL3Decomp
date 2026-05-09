@@ -95,15 +95,43 @@ cmake --build build/pal3
 
 链接出 PAL3.exe，无 unresolved externals。失败时补充 stub 直到通过。
 
+## 迭代记录
+
+每次迭代完成后写入 `.claude/pal3_iterations/NNNN.json`：
+
+```json
+{
+  "iteration": 1,
+  "timestamp_start": "...",
+  "timestamp_end": "...",
+  "duration_minutes": 46,
+  "function": {
+    "name": "PAL3::InitGFX",
+    "address": "0x00404FF0",
+    "size": 786,
+    "status": "wip|matched|compiled",
+    "match_rate": 0.258,
+    "compiled_size": 573
+  },
+  "exe_size": { "before": 16384, "after": 16896, "delta": 512 },
+  "bfs_nodes": { "before": 56, "after": 60, "added": ["0x..."] },
+  "frontier": { "before": 47, "after": 50 },
+  "changes": [...]
+}
+```
+
+更新 `.claude/pal3_cursor.json` 中的 iteration_count、exe_size、stats。
+
 ## 每次迭代完成后输出
 
 ```
-═══ PAL3 Iteration #N ═══
+═══ PAL3 Iteration #N (Xm Ys) ═══
 函数: <Name> (0x<ADDR>, <SIZE> bytes)
 匹配: <judgment> (<rate>%)
-构建: PASS (PAL3.exe linked)
+构建: PASS — PAL3.exe <SIZE> bytes (+<DELTA>)
 推送: origin/master <hash>
-Frontier: <before> → <after> (+<new> stubs)
+BFS: <total_before> → <total_after> 节点 (+<new_count> new)
+Frontier: <before> → <after>
 ═══════════════════════════════
 ```
 

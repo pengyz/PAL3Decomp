@@ -1,0 +1,47 @@
+{
+  "iteration": 1,
+  "timestamp_start": "2026-05-09T20:44:00",
+  "timestamp_end": "2026-05-09T21:30:00",
+  "duration_minutes": 46,
+  "function": {
+    "name": "PAL3::InitGFX",
+    "address": "0x00404FF0",
+    "size": 786,
+    "status": "wip",
+    "match_rate": 0.258,
+    "compiled_size": 573
+  },
+  "exe_size": {
+    "before": 16384,
+    "after": 16384,
+    "delta": 0
+  },
+  "bfs_nodes": {
+    "before": 56,
+    "after": 56,
+    "added": [],
+    "note": "InitGFX callees (sub_41BE80 etc) already registered from Destroy iteration"
+  },
+  "frontier": {
+    "before": 47,
+    "after": 46
+  },
+  "changes": [
+    {
+      "action": "implemented",
+      "function": "PAL3::InitGFX",
+      "result": "wip",
+      "note": "25.8% match, 573/786 bytes. EH unwind table missing (~213 bytes). Core logic correct."
+    },
+    {
+      "action": "restructured",
+      "description": "gbengine headers: created gbengine_export.h, split gbGfxManager.h into interface/impl",
+      "result": "pass"
+    },
+    {
+      "action": "toolchain",
+      "description": "Added DirectX SDK include path to cmake/toolchain-vc6.cmake",
+      "result": "pass"
+    }
+  ]
+}
