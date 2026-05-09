@@ -91,7 +91,7 @@ extern "C" int  __cdecl RenderTarget_GetInstance(void);
 extern "C" void __cdecl RenderTarget_Create(int);
 extern "C" int  __cdecl sub_4B65A0(void);
 extern "C" void __cdecl sub_4B65F0(int);
-extern "C" int  __cdecl sub_4BFD20(void);
+extern "C" int  __cdecl RenderTarget2_GetInstance(void);
 extern "C" void __cdecl sub_4BF780(int);
 extern "C" int  __cdecl sub_4B6D30(void);
 extern "C" void __cdecl sub_4B6D80(int);
@@ -394,7 +394,7 @@ void __cdecl PAL3::Create(HINSTANCE hInstance)
         RenderTarget_Create(rt5);
         rt6 = sub_4B65A0();
         sub_4B65F0(rt6);
-        rt7 = sub_4BFD20();
+        rt7 = RenderTarget2_GetInstance();
         sub_4BF780(rt7);
         rt8 = sub_4B6D30();
         sub_4B6D80(rt8);
@@ -410,7 +410,7 @@ void __cdecl PAL3::Create(HINSTANCE hInstance)
         RenderTarget_Create(rt0);
         rt1 = sub_4B65A0();
         sub_4B65F0(rt1);
-        rt2 = sub_4BFD20();
+        rt2 = RenderTarget2_GetInstance();
         sub_4BF780(rt2);
         rt3 = sub_4B6D30();
         sub_4B6D80(rt3);
@@ -503,7 +503,7 @@ void __cdecl PAL3::Destroy(void)
     void *v4;
 
     ((CRenderTarget *)RenderTarget_GetInstance())->Destroy();
-    ((CRenderTarget2 *)sub_4BFD20())->Destroy();
+    ((CRenderTarget2 *)RenderTarget2_GetInstance())->Destroy();
     ((UIQuadManager *)sub_5415F0())->Destroy();
     sub_40C960();
     sub_422DF0();
@@ -606,7 +606,7 @@ extern "C" void __cdecl sub_44F610(int);
 extern "C" int  __cdecl sub_44FF60(void *);
 extern "C" void __cdecl sub_4BE460(int);
 extern "C" void __cdecl sub_4BE590(void);
-extern "C" int  __cdecl sub_4BFD20(void);
+extern "C" int  __cdecl RenderTarget2_GetInstance(void);
 extern "C" void __cdecl sub_4C0200(float);
 extern "C" void __cdecl sub_4C5BB0(float);
 extern "C" void __cdecl sub_4CDB70(float);
@@ -692,7 +692,7 @@ void __cdecl PAL3::Update(float a1)
         g_fSceneTime = g_fSceneTime + a1;
         (*(void (**)(void))(*(int *)g_pCursorNode1 + 20))();
         (*(void (**)(void))(*(int *)g_pCursorNode2 + 20))();
-        sub_4BFD20();
+        RenderTarget2_GetInstance();
         sub_4C0200(a1);
         PalScriptMgr_RunSceneScript(*(int *)&a1);
         if (byte_D8C339)
@@ -944,7 +944,7 @@ extern "C" void __cdecl sub_4B6630(int);
 extern "C" void __cdecl sub_4B6DF0(int);
 extern "C" void __cdecl sub_4B6E20(int);
 extern "C" void __cdecl sub_4BE4A0(int);
-extern "C" int  __cdecl sub_4BFD20(void);
+extern "C" int  __cdecl RenderTarget2_GetInstance(void);
 extern "C" void __cdecl sub_4BFD70(int);
 extern "C" void __cdecl sub_4BFDD0(int);
 extern "C" void __cdecl sub_4CDBF0(int);
@@ -982,7 +982,7 @@ void __cdecl PAL3::Render(void)
     {
         int v1 = sub_4B6D30();
         sub_4B6DF0(v1);
-        int v2 = sub_4BFD20();
+        int v2 = RenderTarget2_GetInstance();
         sub_4BFD70(v2);
 
         // gbSceneGraph::Begin + scene rendering
@@ -1003,7 +1003,7 @@ void __cdecl PAL3::Render(void)
         sub_4234D0();
         int v14 = sub_4B6D30();
         sub_4B6E20(v14);
-        int v15 = sub_4BFD20();
+        int v15 = RenderTarget2_GetInstance();
         sub_4BFDD0(v15);
         int v16 = sub_4B65A0();
         sub_4B6630(v16);

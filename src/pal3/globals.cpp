@@ -180,7 +180,7 @@ extern "C" int __cdecl sub_4B65A0(void) { return 0; }
 extern "C" void __cdecl sub_4B65F0(int) {}
 
 // === STUB: 0x004BFD20 ===
-extern "C" int __cdecl sub_4BFD20(void) { return 0; }
+// RenderTarget2_GetInstance (was sub_4BFD20): moved to effect/RenderTarget2.cpp
 
 // === STUB: 0x004BF780 ===
 extern "C" void __cdecl sub_4BF780(int) {}
@@ -302,14 +302,14 @@ extern "C" void __cdecl FileSysDestory(void) {}
 
 // thiscall method stubs for PAL3::Destroy
 // CRenderTarget: moved to effect/RenderTarget.cpp
-class CRenderTarget2 { public: void Destroy(void); };
+// CRenderTarget2: moved to effect/RenderTarget2.cpp
 class UIQuadManager { public: void Destroy(void); };
 class CGameData { public: void Destroy(void); int GetMode(void); char _pad[0x38D0]; };
 
 
 // 0x004BDED0 (7B): mov [ecx], -1; ret
 // CRenderTarget::Destroy: moved to effect/RenderTarget.cpp
-void CRenderTarget2::Destroy(void) {}
+// CRenderTarget2::Destroy: moved to effect/RenderTarget2.cpp
 void UIQuadManager::Destroy(void) {}
 void CGameData::Destroy(void) {}
 // 0x0044FF60 (7B): mov eax, [ecx+0x38CC]; ret
