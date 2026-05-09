@@ -1,3 +1,5 @@
+#include "pal3/ida_defs.h"
+#include "pal3/globals.h"
 #include "pal3/gen/UIManager.h"
 
 // 0x0041F370
@@ -55,7 +57,7 @@ void UIManager::Render()
     while ( v14 );
     v13 = v4;
   }
-  if ( MEMORY[0xBFDA6C] != 9 )
+  if ( g_nGameState != 9 )
   {
     p_y = &g_SceneMgr.m_npc[0].m_path.normal[95].y;
     v8 = (_DWORD *)((char *)this + 68 * v4 + 64);
@@ -83,11 +85,11 @@ void UIManager::Render()
   }
   if ( v4 > 0 )
   {
-    gbVertPoolMgr::GetDynVertBuf(*(gbVertPoolMgr **)&MEMORY[0xBFDA60][196], 0x15u);
-    if ( *(_DWORD *)&MEMORY[0xBFDA60][1432] == 1 )
+    gbVertPoolMgr::GetDynVertBuf(*(gbVertPoolMgr **)&g_pGfxManager[196], 0x15u);
+    if ( *(_DWORD *)&g_pGfxManager[1432] == 1 )
     {
-      Top = gbMatrixStack::GetTop(*(gbMatrixStack **)&MEMORY[0xBFDA60][216]);
-      v10 = gbMatrixStack::GetTop(*(gbMatrixStack **)&MEMORY[0xBFDA60][212]);
+      Top = gbMatrixStack::GetTop(*(gbMatrixStack **)&g_pGfxManager[216]);
+      v10 = gbMatrixStack::GetTop(*(gbMatrixStack **)&g_pGfxManager[212]);
       (gbMatrix4 *->gbMatrix4()v16.m);
       gbMatrix4::gbMatrix4(&v16);
       (gbMatrix4 *->LoadIdentity()v16.m);
@@ -96,10 +98,10 @@ void UIManager::Render()
       gbMatrix4::RightMultiply(&v16, (gbMatrix4 *)v16.m);
       gbMatrix4::RightMultiply(&v16, v10);
       gbRenderEffect::SetVariant(*((gbRenderEffect **)this + 3), PARAM_HANDLE_ALLTM, &v16);
-      v15[0] = *(_DWORD *)&MEMORY[0xBFDA60][1456];
-      v15[1] = *(_DWORD *)&MEMORY[0xBFDA60][1460];
+      v15[0] = *(_DWORD *)&g_pGfxManager[1456];
+      v15[1] = *(_DWORD *)&g_pGfxManager[1460];
       v11 = (gbRenderEffect *)*((_DWORD *)this + 3);
-      v15[2] = *(_DWORD *)&MEMORY[0xBFDA60][1464];
+      v15[2] = *(_DWORD *)&g_pGfxManager[1464];
       v15[3] = 1065353216;
       v11->SetVariant(PARAM_HANDLE_FOGPLANE, v15);
       qmemcpy(v18, Top, sizeof(v18));
@@ -129,13 +131,13 @@ void * UIManager::LoadShadowTexture()
 
   OpenBaseFile::OpenBaseFile(&v4);
   v5 = 0;
-  v2 = (gbTexture *)(*(int (__thiscall **)(gbGfxManager *, char *))(*(_DWORD *)MEMORY[0xBFDA60] + 8))(
-                      MEMORY[0xBFDA60],
+  v2 = (gbTexture *)(*(int (__thiscall **)(gbGfxManager *, char *))(*(_DWORD *)g_pGfxManager + 8))(
+                      g_pGfxManager,
                       aShadowTga);
   *((_DWORD *)this + 1) = v2;
   v2->LoadTexture(1);
-  *((_DWORD *)this + 2) = gbEffectMgr::NewRenderEffect(*(gbEffectMgr **)&MEMORY[0xBFDA60][200], aGfxscriptShado, 0);
-  *((_DWORD *)this + 3) = gbEffectMgr::NewRenderEffect(*(gbEffectMgr **)&MEMORY[0xBFDA60][200], aGfxscriptShado_0, 0);
+  *((_DWORD *)this + 2) = gbEffectMgr::NewRenderEffect(*(gbEffectMgr **)&g_pGfxManager[200], aGfxscriptShado, 0);
+  *((_DWORD *)this + 3) = gbEffectMgr::NewRenderEffect(*(gbEffectMgr **)&g_pGfxManager[200], aGfxscriptShado_0, 0);
   v5 = -1;
   return OpenNULLFile::OpenNULLFile(&v4);
 }

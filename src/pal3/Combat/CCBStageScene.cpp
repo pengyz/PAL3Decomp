@@ -1,3 +1,5 @@
+#include "pal3/ida_defs.h"
+#include "pal3/globals.h"
 #include "pal3/gen/CCBStageScene.h"
 
 // 0x0050FE50
@@ -78,9 +80,9 @@ char sub_50FEE0(_DWORD *this)
   *(this + 64) = 1128792064;
   this->Render();
   this->ShowAxis();
-  *(this + 166) = gbEffectMgr::NewRenderEffect(*(gbEffectMgr **)(MEMORY[0xBFDA60] + 200), aGfxscriptAddit_1, 0);
-  v2 = (gbTexture *)(*(int (__thiscall **)(int, char *))(*(_DWORD *)MEMORY[0xBFDA60] + 8))(
-                      MEMORY[0xBFDA60],
+  *(this + 166) = gbEffectMgr::NewRenderEffect(*(gbEffectMgr **)(g_pGfxManager + 200), aGfxscriptAddit_1, 0);
+  v2 = (gbTexture *)(*(int (__thiscall **)(int, char *))(*(_DWORD *)g_pGfxManager + 8))(
+                      g_pGfxManager,
                       aCbsceneFivelin);
   *(this + 167) = v2;
   v2->LoadTexture(1);
@@ -96,8 +98,8 @@ char sub_50FEE0(_DWORD *this)
     v3 = 0;
   }
   *(this + 168) = v3;
-  v5 = (gbTexture *)(*(int (__thiscall **)(int, char *))(*(_DWORD *)MEMORY[0xBFDA60] + 8))(
-                      MEMORY[0xBFDA60],
+  v5 = (gbTexture *)(*(int (__thiscall **)(int, char *))(*(_DWORD *)g_pGfxManager + 8))(
+                      g_pGfxManager,
                       aCbsceneFivelin_0);
   *(this + 169) = v5;
   v5->LoadTexture(1);
@@ -744,9 +746,9 @@ void sub_510E00(_BYTE *this)
   int v16; // [esp+44h] [ebp-8h]
   int v17; // [esp+48h] [ebp-4h]
 
-  if ( MEMORY[0xBFDA60] && *(this + 961) )
+  if ( g_pGfxManager && *(this + 961) )
   {
-    v1 = (gbRefObject *)gbEffectMgr::NewTrivalEffect(*(gbEffectMgr **)(MEMORY[0xBFDA60] + 200), 3);
+    v1 = (gbRefObject *)gbEffectMgr::NewTrivalEffect(*(gbEffectMgr **)(g_pGfxManager + 200), 3);
     v13 = 80;
     v2 = (gbVec3D *)v14;
     v3 = 2;
@@ -758,7 +760,7 @@ void sub_510E00(_BYTE *this)
     }
     while ( v3 );
     memset(v14, 0, sizeof(v14));
-    DynVertBuf = gbVertPoolMgr::GetDynVertBuf(*(gbVertPoolMgr **)(MEMORY[0xBFDA60] + 196), 5u);
+    DynVertBuf = gbVertPoolMgr::GetDynVertBuf(*(gbVertPoolMgr **)(g_pGfxManager + 196), 5u);
     v11 = v1;
     v10 = 2;
     v9 = v14;
@@ -809,10 +811,10 @@ char sub_510F50(_BYTE *this)
   float v8; // [esp+10h] [ebp-8h] BYREF
   float v9; // [esp+14h] [ebp-4h] BYREF
 
-  result = MEMORY[0xBFDA60];
+  result = g_pGfxManager;
   v9 = 0.0;
   v8 = 0.0;
-  if ( MEMORY[0xBFDA60] )
+  if ( g_pGfxManager )
   {
     result = *(this + 962);
     if ( result )
@@ -850,7 +852,7 @@ void sub_511030(int this, char a2)
   struct gbTextureArray *v3; // ecx
   struct gbRenderEffect *v4; // edx
 
-  gbVertPoolMgr::GetDynVertBuf(*(gbVertPoolMgr **)(MEMORY[0xBFDA60] + 196), 0x15u);
+  gbVertPoolMgr::GetDynVertBuf(*(gbVertPoolMgr **)(g_pGfxManager + 196), 0x15u);
   v3 = *(struct gbTextureArray **)(this + 672);
   v4 = *(struct gbRenderEffect **)(this + 664);
   *(_BYTE *)(this + 750) = -1;

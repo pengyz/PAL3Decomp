@@ -1,3 +1,5 @@
+#include "pal3/ida_defs.h"
+#include "pal3/globals.h"
 #include "pal3/gen/UIItem.h"
 
 // 0x004A12F0
@@ -30,9 +32,9 @@ int UIItem::Refresh()
 void __thiscall UIItem::UIItem(UIItem *this)
 {
   *(_DWORD *)this = &off_56E190;
-  sub_4A14C0(this);
-  sub_43A810((std::ios_base *)(this + 976));
-  sub_43A810((std::ios_base *)(this + 632));
+  this->UpdateChildren();
+  (std::ios_base *->Destroy2()(this + 976));
+  (std::ios_base *->Destroy2()(this + 632));
   (std::ios_base *->_UIFrameWnd()(this + 456));
   (std::ios_base *->_UIFrameWnd()(this + 304));
   sub_445010((std::ios_base *)(this + 112));

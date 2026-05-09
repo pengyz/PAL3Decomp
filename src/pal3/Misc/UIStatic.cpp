@@ -1,3 +1,5 @@
+#include "pal3/ida_defs.h"
+#include "pal3/globals.h"
 #include "pal3/gen/UIStatic.h"
 
 // 0x00440740
@@ -47,7 +49,7 @@ int sub_440BA0(gbRefObject **this)
     --v3;
   }
   while ( v3 );
-  return sub_445C10(this);
+  return this->UpdateChildren();
 }
 
 // 0x00440DD0
@@ -202,7 +204,7 @@ int sub_440F30(int this)
     }
     if ( *(_BYTE *)(this + 120) )
       UIRenderPar(this + 120, v6, this + 72, 1, 1);
-    return sub_445CD0(this);
+    return this->GetID();
   }
   return result;
 }

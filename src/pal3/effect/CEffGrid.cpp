@@ -1,3 +1,5 @@
+#include "pal3/ida_defs.h"
+#include "pal3/globals.h"
 #include "pal3/gen/CEffGrid.h"
 
 // 0x004C9610

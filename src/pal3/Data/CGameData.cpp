@@ -1,3 +1,5 @@
+#include "pal3/ida_defs.h"
+#include "pal3/globals.h"
 #include "pal3/gen/CGameData.h"
 
 // 0x0044ADE0
@@ -333,7 +335,7 @@ void CGameData::Destroy()
   int v4; // eax
   int v5; // ecx
 
-  sub_445C10(this);
+  this->UpdateChildren();
   sub_4573A0(MEMORY[0x8ACD40]);
   (*(void (__thiscall **)(char *))(*(_DWORD *)&this->_data[3904] + 12))(&this->_data[3904]);
   v2 = *((_DWORD *)this + 7044);
@@ -370,7 +372,7 @@ int CGameData::Render()
   v2 = (_BYTE *)*((_DWORD *)this + 7046);
   if ( v2 && v2[3829] )
     (*(void (__thiscall **)(_BYTE *))(*(_DWORD *)v2 + 4))(v2);
-  sub_445CD0(this);
+  this->GetID();
   result = *(_DWORD *)&this->_data[14536];
   if ( !result )
     return (*(int (__thiscall **)(char *))(*(_DWORD *)&this->_data[3904] + 4))(&this->_data[3904]);

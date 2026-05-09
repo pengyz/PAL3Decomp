@@ -1,3 +1,5 @@
+#include "pal3/ida_defs.h"
+#include "pal3/globals.h"
 #include "pal3/gen/ParabolaCalculator.h"
 
 // 0x00523600
@@ -70,7 +72,7 @@ int sub_5236E0(int this, int a2, int a3)
   gbAudioManager *v5; // eax
   int result; // eax
 
-  if ( MEMORY[0xBFDA6C] != 2 && (g_nGameFlags & 1) != 0 )
+  if ( g_nGameState != 2 && (g_nGameFlags & 1) != 0 )
   {
     v4 = this->GetInstance();
     v5 = (gbAudioManager *)v4->GetAudioManager();

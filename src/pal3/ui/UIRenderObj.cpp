@@ -1,3 +1,5 @@
+#include "pal3/ida_defs.h"
+#include "pal3/globals.h"
 #include "pal3/gen/UIRenderObj.h"
 
 // 0x00541640
@@ -46,7 +48,7 @@ void sub_541640(int this)
 unsigned __int8 sub_541710(_BYTE *this, unsigned __int8 a2)
 {
   if ( !*((_BYTE *)UIQuadManager::GetInstance() + 29) )
-    return (*(int (__thiscall **)(int, _DWORD))(*(_DWORD *)MEMORY[0xBFDA60] + 104))(MEMORY[0xBFDA60], a2);
+    return (*(int (__thiscall **)(int, _DWORD))(*(_DWORD *)g_pGfxManager + 104))(g_pGfxManager, a2);
   *(this + 28) = a2;
   return a2;
 }

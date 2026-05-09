@@ -1,3 +1,5 @@
+#include "pal3/ida_defs.h"
+#include "pal3/globals.h"
 #include "pal3/gen/PalScript.h"
 
 // 0x00430290
@@ -436,13 +438,35 @@ int PalScript::Update()
   return result;
 }
 
+// 0x00434C00
+char *sub_434C00()
+{
+  char *result; // eax
+
+  if ( dword_D8C360 < 0 )
+  {
+    result = 0;
+  }
+  else
+  {
+    --dword_D8C360;
+    result = (char *)(8 * dword_D8C360 + 14205804);
+  }
+  if ( result )
+  {
+    if ( *result == 5 )
+      return PtrArray::SetAtGrow(*((_WORD *)result + 2), 0);
+  }
+  return result;
+}
+
 // 0x0043A250
 int PalScript::Reset()
 {
   int result; // eax
 
-  sub_445F20((gbRefObject **)this + 19);
-  sub_445C10(this);
+  (gbRefObject **->MoveWindow()this + 19);
+  this->UpdateChildren();
   return result;
 }
 
@@ -465,15 +489,15 @@ struct gbVFileSystem * sub_43AA00(gbRefObject **this, const char *a2, char a3)
     v4->Release();
   if ( a3 )
   {
-    v5 = *(_DWORD *)MEMORY[0xBFDA60];
+    v5 = *(_DWORD *)g_pGfxManager;
     v6 = Buffer->_CalculateUV();
-    *(this + 49) = (gbRefObject *)(*(int (__thiscall **)(int, int))(v5 + 8))(MEMORY[0xBFDA60], v6);
+    *(this + 49) = (gbRefObject *)(*(int (__thiscall **)(int, int))(v5 + 8))(g_pGfxManager, v6);
     *(this + 50) = (gbRefObject *)Buffer->Parent_Data();
   }
   else
   {
-    *(this + 49) = (gbRefObject *)(*(int (__thiscall **)(int, char *))(*(_DWORD *)MEMORY[0xBFDA60] + 8))(
-                                    MEMORY[0xBFDA60],
+    *(this + 49) = (gbRefObject *)(*(int (__thiscall **)(int, char *))(*(_DWORD *)g_pGfxManager + 8))(
+                                    g_pGfxManager,
                                     Buffer);
   }
   v7 = (gbTexture *)*(this + 49);

@@ -1,3 +1,5 @@
+#include "pal3/ida_defs.h"
+#include "pal3/globals.h"
 #include "pal3/gen/Camera.h"
 
 // 0x004125D0
@@ -49,8 +51,8 @@ int Camera::CheckCollision1(void *pPos, void *pBounds, float *pDist)
 
   *pDist = 0.0;
   v3 = (int *)(UISceneUpdate() + 492772);
-  qmemcpy(v22, (CameraCtrl *->GetViewTarget()MEMORY[0xBFDA68], &pTarget, (float *)pPos), sizeof(v22));
-  v4 = *((float *)MEMORY[0xBFDA68] + 117) - 300.0;
+  qmemcpy(v22, (CameraCtrl *->GetViewTarget()g_pCamera, &pTarget, (float *)pPos), sizeof(v22));
+  v4 = *((float *)g_pCamera + 117) - 300.0;
   v16 = v22[3] * v4;
   v17 = v22[4] * v4;
   v22[0] = v16 + v22[0];
@@ -133,8 +135,8 @@ int Camera::CheckCollision2(void *pPos, int rolePtr, void *pBounds)
 
   v3 = (char *)UISceneUpdate();
   sub_420F50(v3, rolePtr);
-  qmemcpy(v16, (CameraCtrl *->GetViewTarget()MEMORY[0xBFDA68], &pTarget, (float *)pPos), sizeof(v16));
-  v4 = *((float *)MEMORY[0xBFDA68] + 117) - 100.0;
+  qmemcpy(v16, (CameraCtrl *->GetViewTarget()g_pCamera, &pTarget, (float *)pPos), sizeof(v16));
+  v4 = *((float *)g_pCamera + 117) - 100.0;
   v10 = v16[3] * v4;
   v11 = v16[4] * v4;
   v16[0] = v10 + v16[0];

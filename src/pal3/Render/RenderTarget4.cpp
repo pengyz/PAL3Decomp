@@ -1,3 +1,5 @@
+#include "pal3/ida_defs.h"
+#include "pal3/globals.h"
 #include "pal3/gen/RenderTarget4.h"
 
 // 0x004B6D30
@@ -21,8 +23,8 @@ void * RenderTarget4::Init()
 
   OpenBaseFile::OpenBaseFile(&v4);
   v5 = 0;
-  v2 = (gbTexture *)(*(int (__thiscall **)(gbGfxManager *, char *))(*(_DWORD *)MEMORY[0xBFDA60] + 8))(
-                      MEMORY[0xBFDA60],
+  v2 = (gbTexture *)(*(int (__thiscall **)(gbGfxManager *, char *))(*(_DWORD *)g_pGfxManager + 8))(
+                      g_pGfxManager,
                       aEffectscnFrame);
   *((_DWORD *)this + 1) = v2;
   v2->LoadTexture(1);

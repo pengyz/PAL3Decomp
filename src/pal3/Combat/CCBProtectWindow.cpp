@@ -1,3 +1,5 @@
+#include "pal3/ida_defs.h"
+#include "pal3/globals.h"
 #include "pal3/gen/CCBProtectWindow.h"
 
 // 0x0051D6E0
@@ -314,12 +316,12 @@ void sub_51DDA0(stdiobuf *this)
   stdiobuf::~stdiobuf((std::ios_base *)((char *)this + 4224));
   stdiobuf::~stdiobuf((std::ios_base *)((char *)this + 3976));
   stdiobuf::~stdiobuf((std::ios_base *)((char *)this + 3728));
-  sub_43A810((std::ios_base *)((char *)this + 3368));
-  sub_43A810((std::ios_base *)((char *)this + 3024));
-  sub_43A810((std::ios_base *)this + 67);
+  (std::ios_base *->Destroy2()((char *)this + 3368));
+  (std::ios_base *->Destroy2()((char *)this + 3024));
+  (std::ios_base *->Destroy2()this + 67);
   stdiobuf::~stdiobuf((std::ios_base *)((char *)this + 2432));
-  sub_43A810((std::ios_base *)((char *)this + 2088));
-  sub_43A810((std::ios_base *)((char *)this + 1744));
+  (std::ios_base *->Destroy2()((char *)this + 2088));
+  (std::ios_base *->Destroy2()((char *)this + 1744));
   `eh vector destructor iterator'((char *)this + 816, 0x98u, 6, (void (__thiscall *)(void *))UIFrameWnd::_UIFrameWnd);
   (std::ios_base *->_UIFrameWnd()((char *)this + 664));
   (std::ios_base *->_UIFrameWnd()((char *)this + 512));

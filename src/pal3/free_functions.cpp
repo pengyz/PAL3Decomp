@@ -1,3 +1,6 @@
+#include "pal3/ida_defs.h"
+#include "pal3/globals.h"
+
 // Free functions (not belonging to any class)
 
 // 0x004017D0
@@ -465,10 +468,10 @@ int __stdcall sub_404D60(HWND hWnd, UINT Msg, unsigned int pvParam, LPARAM lPara
         {
           if ( MEMORY[0xBFDA91] )
           {
-            v6 = MEMORY[0xBFDA60];
-            if ( MEMORY[0xBFDA60] )
+            v6 = g_pGfxManager;
+            if ( g_pGfxManager )
             {
-              if ( *(_DWORD *)(MEMORY[0xBFDA60] + 1816) && GetCursorPos(&Point) )
+              if ( *(_DWORD *)(g_pGfxManager + 1816) && GetCursorPos(&Point) )
                 (*(void (__stdcall **)(_DWORD, LONG, LONG, int))(**(_DWORD **)(v6 + 1816) + 44))(
                   *(_DWORD *)(v6 + 1816),
                   Point.x,
@@ -511,7 +514,7 @@ int __stdcall sub_404D60(HWND hWnd, UINT Msg, unsigned int pvParam, LPARAM lPara
       SystemParametersInfoA(0x26u, 0, 0, 0);
       SystemParametersInfoA(0x24u, 1u, &pvParam, 0);
       SystemParametersInfoA(0x61u, 0, &pvParam, 0);
-      MEMORY[0xBFDA6C] = 0;
+      g_nGameState = 0;
       PostQuitMessage(0);
       return DefWindowProcA(hWnd, Msg, v4, lParam);
     case 6u:
@@ -528,7 +531,7 @@ int __stdcall sub_404D60(HWND hWnd, UINT Msg, unsigned int pvParam, LPARAM lPara
       result = 0;
       break;
     case 0x20u:
-      if ( !MEMORY[0xBFDA60] )
+      if ( !g_pGfxManager )
         return DefWindowProcA(hWnd, Msg, v4, lParam);
       SetCursor(0);
       UIQuadManager::GetInstance();
@@ -647,7 +650,7 @@ void unknown_libname_315()
 // Microsoft VisualC 2-14/net runtime
 _DWORD *unknown_libname_316()
 {
-  return sub_432660(&MEMORY[0xBFDB80]);
+  return PtrArray::Clear(&MEMORY[0xBFDB80]);
 }
 
 // 0x00408B90
@@ -1360,7 +1363,7 @@ int __cdecl sub_4105B0(float a1)
       if ( i >= 0 && i < v8 && *(_DWORD *)(MEMORY[0xBFDB80] + 4 * i) )
         ++i;
       else
-        sub_4327B0(i, 1);
+        PtrArray::InsertAt(i, 1);
     }
     v10 = 0;
     v11 = 40;
@@ -1474,7 +1477,7 @@ gbGfxManager *__cdecl sub_41B6A0()
   gbGfxManager *result; // eax
   int v2; // [esp+4h] [ebp+4h]
 
-  RoleSystem::RenderRole((RoleSystem *)(v0 - 64), *(gbMatrixStack **)&MEMORY[0xBFDA60][216], v2);
+  RoleSystem::RenderRole((RoleSystem *)(v0 - 64), *(gbMatrixStack **)&g_pGfxManager[216], v2);
   return result;
 }
 
@@ -1698,21 +1701,21 @@ void __cdecl CameraUpdate_Internal(float a1)
       {
         if ( pDist < -1.5700001 )
           pDist = -1.5700001;
-        CameraCtrl::SetCamMode((CameraCtrl *)MEMORY[0xBFDA68], SLODWORD(pDist));
+        CameraCtrl::SetCamMode((CameraCtrl *)g_pCamera, SLODWORD(pDist));
       }
       else
       {
         pDist = 1.5700001;
-        CameraCtrl::SetCamMode((CameraCtrl *)MEMORY[0xBFDA68], 1070134723);
+        CameraCtrl::SetCamMode((CameraCtrl *)g_pCamera, 1070134723);
       }
     }
     else if ( (g_Input.m_mousept[6424] & 0xF) == 1 )
     {
-      CameraCtrl::SetCamMode((CameraCtrl *)MEMORY[0xBFDA68], 1034147594);
+      CameraCtrl::SetCamMode((CameraCtrl *)g_pCamera, 1034147594);
     }
     else if ( (g_Input.m_mousept[6440] & 0xF) == 1 )
     {
-      CameraCtrl::SetCamMode((CameraCtrl *)MEMORY[0xBFDA68], -1113336054);
+      CameraCtrl::SetCamMode((CameraCtrl *)g_pCamera, -1113336054);
     }
   }
   if ( *(_DWORD *)&g_SceneMgr.m_info[54112] )
@@ -1728,22 +1731,22 @@ void __cdecl CameraUpdate_Internal(float a1)
     }
     if ( (g_Input.m_mousept[6824] & 0xF) == 1 )
     {
-      v3 = (float *)((char *)MEMORY[0xBFDA68] + 4);
-      v4 = v2 + *((float *)MEMORY[0xBFDA68] + 1);
-      *((_DWORD *)MEMORY[0xBFDA68] + 2) = 0;
+      v3 = (float *)((char *)g_pCamera + 4);
+      v4 = v2 + *((float *)g_pCamera + 1);
+      *((_DWORD *)g_pCamera + 2) = 0;
       *v3 = v4;
     }
     else if ( (g_Input.m_mousept[6840] & 0xF) == 1 )
     {
-      *((float *)MEMORY[0xBFDA68] + 117) = v2 * 8.0 + *((float *)MEMORY[0xBFDA68] + 117);
+      *((float *)g_pCamera + 117) = v2 * 8.0 + *((float *)g_pCamera + 117);
     }
     else if ( (g_Input.m_mousept[6856] & 0xF) == 1 )
     {
-      *((float *)MEMORY[0xBFDA68] + 113) = v2 * 0.039250001 + *((float *)MEMORY[0xBFDA68] + 113);
+      *((float *)g_pCamera + 113) = v2 * 0.039250001 + *((float *)g_pCamera + 113);
     }
     else if ( (g_Input.m_mousept[6216] & 0xF) == 1 )
     {
-      *((float *)MEMORY[0xBFDA68] + 135) = v2 + v2 + *((float *)MEMORY[0xBFDA68] + 135);
+      *((float *)g_pCamera + 135) = v2 + v2 + *((float *)g_pCamera + 135);
     }
     return;
   }
@@ -1752,7 +1755,7 @@ void __cdecl CameraUpdate_Internal(float a1)
   v6 = SoundContext::GetInstance();
   if ( CScreenMode::IsAudioReady(v6) && !g_SceneMgr.m_info[51504] )
   {
-    if ( MEMORY[0xBFDA6C] == 2
+    if ( g_nGameState == 2
       && dword_D8BBEC == 2
       && *(_DWORD *)&g_Input.m_mousept[6420] == 1
       && (g_Input.m_mousept[6408] & 0xF) == 1
@@ -1804,7 +1807,7 @@ LABEL_51:
         v49 = 0.0;
         RoleSystem::GetDirection(*(RoleSystem **)&g_SceneMgr.m_info[54108], (float *)&pOut);
         v48 = v48 + 10.0;
-        gbCamera::PointWorldToScr((gbCamera *)((char *)MEMORY[0xBFDA68] + 4), (struct gbVec3D *)&pOut, &v43, &pOut2);
+        gbCamera::PointWorldToScr((gbCamera *)((char *)g_pCamera + 4), (struct gbVec3D *)&pOut, &v43, &pOut2);
         UIWnd::ScreenToClient(
           &g_SceneMgr.m_info[50648],
           (__int64)((v43 + 1.0) * (double)MEMORY[0xBFD6D0] * 0.5),
@@ -1815,9 +1818,9 @@ LABEL_51:
       pDist = 0.0;
       qmemcpy(
         pMat,
-        CameraCtrl::GetViewTarget((CameraCtrl *)MEMORY[0xBFDA68], &pOut, (float *)&g_SceneMgr.m_info[53408]),
+        CameraCtrl::GetViewTarget((CameraCtrl *)g_pCamera, &pOut, (float *)&g_SceneMgr.m_info[53408]),
         sizeof(pMat));
-      if ( MEMORY[0xBFDA6C] != 2 && MEMORY[0xBFDA6C] != 8 )
+      if ( g_nGameState != 2 && g_nGameState != 8 )
         goto LABEL_107;
       Target = UICamera::GetTarget(pMat);
       v14 = Target;
@@ -1971,7 +1974,7 @@ LABEL_153:
             v46 = 0.0;
             if ( *(_DWORD *)&g_Input.m_mousept[6324] == 1 && (g_Input.m_mousept[6312] & 0xF) == 1 )
             {
-              if ( MEMORY[0xBFDA6C] == 2 )
+              if ( g_nGameState == 2 )
               {
                 State = UICamera::GetState();
                 if ( State && *(_DWORD *)(State + 1264) != 7 )
@@ -1992,9 +1995,9 @@ LABEL_153:
             if ( (g_Input.m_mousept[6264] & 0xF) == 1 )
             {
               v31 = 1;
-              a2 = *((int *)MEMORY[0xBFDA68] + 132);
-              v45 = *((float *)MEMORY[0xBFDA68] + 133);
-              v46 = *((float *)MEMORY[0xBFDA68] + 134);
+              a2 = *((int *)g_pCamera + 132);
+              v45 = *((float *)g_pCamera + 133);
+              v46 = *((float *)g_pCamera + 134);
 LABEL_176:
               v12 = 3;
               goto LABEL_177;
@@ -2003,9 +2006,9 @@ LABEL_176:
             {
               if ( (g_Input.m_mousept[6248] & 0xF) == 1 )
               {
-                *(float *)&a2 = -*((float *)MEMORY[0xBFDA68] + 132);
-                v45 = -*((float *)MEMORY[0xBFDA68] + 133);
-                v46 = -*((float *)MEMORY[0xBFDA68] + 134);
+                *(float *)&a2 = -*((float *)g_pCamera + 132);
+                v45 = -*((float *)g_pCamera + 133);
+                v46 = -*((float *)g_pCamera + 134);
                 v31 = 1;
                 goto LABEL_176;
               }
@@ -2014,9 +2017,9 @@ LABEL_176:
 LABEL_177:
                 if ( (g_Input.m_mousept[6280] & 0xF) == 1 )
                 {
-                  pOut = *((int *)MEMORY[0xBFDA68] + 126);
-                  v48 = *((float *)MEMORY[0xBFDA68] + 127);
-                  v34 = *((float *)MEMORY[0xBFDA68] + 128);
+                  pOut = *((int *)g_pCamera + 126);
+                  v48 = *((float *)g_pCamera + 127);
+                  v34 = *((float *)g_pCamera + 128);
                   v48 = 0.0;
                   v49 = v34;
                   gbVec3D::Normalize((gbVec3D *)&pOut);
@@ -2030,9 +2033,9 @@ LABEL_177:
                 {
                   if ( (g_Input.m_mousept[6296] & 0xF) == 1 )
                   {
-                    pOut = *((int *)MEMORY[0xBFDA68] + 126);
-                    v48 = *((float *)MEMORY[0xBFDA68] + 127);
-                    v36 = *((float *)MEMORY[0xBFDA68] + 128);
+                    pOut = *((int *)g_pCamera + 126);
+                    v48 = *((float *)g_pCamera + 127);
+                    v36 = *((float *)g_pCamera + 128);
                     v48 = 0.0;
                     v49 = v36;
                     gbVec3D::Normalize((gbVec3D *)&pOut);
@@ -2067,9 +2070,9 @@ LABEL_163:
                   }
                   else
                   {
-                    pOut = *((int *)MEMORY[0xBFDA68] + 126);
-                    v48 = *((float *)MEMORY[0xBFDA68] + 127);
-                    v37 = *((float *)MEMORY[0xBFDA68] + 128);
+                    pOut = *((int *)g_pCamera + 126);
+                    v48 = *((float *)g_pCamera + 127);
+                    v37 = *((float *)g_pCamera + 128);
                     v48 = 0.0;
                     v49 = v37;
                     gbVec3D::Normalize((gbVec3D *)&pOut);
@@ -2082,9 +2085,9 @@ LABEL_163:
                 }
                 else
                 {
-                  pOut = *((int *)MEMORY[0xBFDA68] + 126);
-                  v48 = *((float *)MEMORY[0xBFDA68] + 127);
-                  v35 = *((float *)MEMORY[0xBFDA68] + 128);
+                  pOut = *((int *)g_pCamera + 126);
+                  v48 = *((float *)g_pCamera + 127);
+                  v35 = *((float *)g_pCamera + 128);
                   v48 = 0.0;
                   v49 = v35;
                   gbVec3D::Normalize((gbVec3D *)&pOut);
@@ -2103,15 +2106,15 @@ LABEL_166:
                 *(_DWORD *)&g_SceneMgr.m_info[54120] = 0;
                 return;
               }
-              *(float *)&a2 = -*((float *)MEMORY[0xBFDA68] + 132);
-              v45 = -*((float *)MEMORY[0xBFDA68] + 133);
-              v46 = -*((float *)MEMORY[0xBFDA68] + 134);
+              *(float *)&a2 = -*((float *)g_pCamera + 132);
+              v45 = -*((float *)g_pCamera + 133);
+              v46 = -*((float *)g_pCamera + 134);
             }
             else
             {
-              a2 = *((int *)MEMORY[0xBFDA68] + 132);
-              v45 = *((float *)MEMORY[0xBFDA68] + 133);
-              v46 = *((float *)MEMORY[0xBFDA68] + 134);
+              a2 = *((int *)g_pCamera + 132);
+              v45 = *((float *)g_pCamera + 133);
+              v46 = *((float *)g_pCamera + 134);
             }
             v31 = 2;
             goto LABEL_176;
@@ -2345,7 +2348,7 @@ int __thiscall sub_420150(_DWORD *this, double a2)
       }
       while ( v5 < result );
     }
-    if ( MEMORY[0xBFDA6C] != 9 )
+    if ( g_nGameState != 9 )
     {
       result = *(this + 55);
       v7 = 0;
@@ -2378,7 +2381,7 @@ gbGfxManager *__cdecl sub_421830()
   v1 = v0;
   result = *(gbGfxManager **)(v0 + 132);
   if ( result && !*(_DWORD *)(v0 + 493144) )
-    gbSceneGraph::AddVisNode(*(gbSceneGraph **)&MEMORY[0xBFDA60][448], (struct gbVisNode *)result);
+    gbSceneGraph::AddVisNode(*(gbSceneGraph **)&g_pGfxManager[448], (struct gbVisNode *)result);
   *(_DWORD *)(v1 + 493144) = 1;
   return result;
 }
@@ -2394,7 +2397,7 @@ gbGfxManager *__cdecl sub_421870()
   v1 = v0;
   result = *(gbGfxManager **)(v0 + 132);
   if ( result && *(_DWORD *)(v0 + 493144) )
-    gbSceneGraph::DelVisNode(*(gbSceneGraph **)&MEMORY[0xBFDA60][448], (struct gbVisNode *)result);
+    gbSceneGraph::DelVisNode(*(gbSceneGraph **)&g_pGfxManager[448], (struct gbVisNode *)result);
   *(_DWORD *)(v1 + 493144) = 0;
   return result;
 }
@@ -2605,16 +2608,16 @@ int sub_423540()
 
   result = UISceneUpdate();
   if ( *(_DWORD *)(result + 100) != 1
-    || (result = sub_4235B0(aM19, 0), (_BYTE)result)
-    || (result = sub_4235B0(aM20, 0), (_BYTE)result)
-    || (result = sub_4235B0(aM25, 0), (_BYTE)result) )
+    || (result = UIScene::ProcessInput(aM19, 0), (_BYTE)result)
+    || (result = UIScene::ProcessInput(aM20, 0), (_BYTE)result)
+    || (result = UIScene::ProcessInput(aM25, 0), (_BYTE)result) )
   {
-    *(_DWORD *)(MEMORY[0xBFDA60] + 444) = 1060320051;
+    *(_DWORD *)(g_pGfxManager + 444) = 1060320051;
   }
   else
   {
-    result = MEMORY[0xBFDA60];
-    *(_DWORD *)(MEMORY[0xBFDA60] + 444) = 0;
+    result = g_pGfxManager;
+    *(_DWORD *)(g_pGfxManager + 444) = 0;
   }
   return result;
 }
@@ -2647,7 +2650,7 @@ gbActorMgr *__cdecl sub_429CA0()
       result = *(gbActorMgr **)(v0 + 4);
       if ( result )
       {
-        gbActorMgr::DestroyActor((gbActorMgr *)MEMORY[0xBFDA64], *(struct gbActor **)(v0 + 4));
+        gbActorMgr::DestroyActor((gbActorMgr *)g_pActorMgr, *(struct gbActor **)(v0 + 4));
         v1[1] = 0;
       }
       goto LABEL_4;
@@ -2685,7 +2688,7 @@ gbGfxManager *__cdecl sub_42C6E0()
   gbGfxManager *result; // eax
   int v2; // [esp+4h] [ebp+4h]
 
-  sub_424570(v0 - 8, *(gbMatrixStack **)&MEMORY[0xBFDA60][216], v2);
+  sub_424570(v0 - 8, *(gbMatrixStack **)&g_pGfxManager[216], v2);
   return result;
 }
 
@@ -2778,7 +2781,7 @@ int sub_431DC0()
 // Microsoft VisualC 2-14/net runtime
 _DWORD *unknown_libname_341()
 {
-  return sub_432660(&dword_D8C328);
+  return PtrArray::Clear(&dword_D8C328);
 }
 
 // 0x00431DF0
@@ -2881,7 +2884,7 @@ int unknown_libname_346()
 // Microsoft VisualC 2-14/net runtime
 _DWORD *unknown_libname_347()
 {
-  return sub_432660(&dword_D8C348);
+  return PtrArray::Clear(&dword_D8C348);
 }
 
 // 0x00434B20
@@ -2933,9 +2936,9 @@ gbCamera *__cdecl sub_4352D0()
   gbCamera *result; // eax
   float v3[3]; // [esp+8h] [ebp-Ch] BYREF
 
-  v0 = sub_434C00();
-  v1 = sub_434C00();
-  result = (gbCamera *)sub_434C00();
+  v0 = PalScript::GetString();
+  v1 = PalScript::GetString();
+  result = (gbCamera *)PalScript::GetString();
   if ( v0 && v1 )
   {
     if ( result )
@@ -2943,7 +2946,7 @@ gbCamera *__cdecl sub_4352D0()
       v3[0] = *((float *)v0 + 1);
       v3[1] = *((float *)v1 + 1);
       v3[2] = *(float *)&result->fov[4];
-      return (gbCamera *)CameraCtrl::InitParams(MEMORY[0xBFDA68], v3);
+      return (gbCamera *)CameraCtrl::InitParams(g_pCamera, v3);
     }
   }
   return result;
@@ -2956,11 +2959,11 @@ gbCamera *__cdecl sub_435320()
   gbCamera *result; // eax
   char *v1; // eax
 
-  result = (gbCamera *)sub_434C00();
+  result = (gbCamera *)PalScript::GetString();
   if ( result )
   {
     v1 = sub_434BD0(*(_WORD *)&result->fov[4]);
-    return (gbCamera *)RoleSystem::SetActive(MEMORY[0xBFDA68], (int)v1);
+    return (gbCamera *)RoleSystem::SetActive(g_pCamera, (int)v1);
   }
   return result;
 }
@@ -2974,13 +2977,13 @@ gbCamera *__cdecl sub_435350()
   int v2; // eax
   __int16 v3; // [esp-4h] [ebp-4h]
 
-  result = (gbCamera *)sub_434C00();
+  result = (gbCamera *)PalScript::GetString();
   if ( result )
   {
     v3 = *(_WORD *)&result->fov[4];
     v1 = (_DWORD *)UISceneUpdate();
     v2 = sub_421560(v1, v3);
-    return (gbCamera *)sub_41C190(MEMORY[0xBFDA68], v2);
+    return (gbCamera *)sub_41C190(g_pCamera, v2);
   }
   return result;
 }
@@ -2991,11 +2994,11 @@ gbCamera *__cdecl sub_435380()
 {
   gbCamera *result; // eax
 
-  result = (gbCamera *)sub_434C00();
+  result = (gbCamera *)PalScript::GetString();
   if ( result )
   {
     result = *(gbCamera **)&result->fov[4];
-    *(_DWORD *)&MEMORY[0xBFDA68][1].fov[72] = result;
+    *(_DWORD *)&g_pCamera[1].fov[72] = result;
   }
   return result;
 }
@@ -3008,16 +3011,16 @@ gbCamera *__cdecl sub_4353A0()
   char *v1; // edi
   gbCamera *result; // eax
 
-  v0 = sub_434C00();
-  v1 = sub_434C00();
-  result = (gbCamera *)sub_434C00();
+  v0 = PalScript::GetString();
+  v1 = PalScript::GetString();
+  result = (gbCamera *)PalScript::GetString();
   if ( v0 && v1 )
   {
     if ( result )
     {
       sub_41CEE0(
         g_GameData_0,
-        (int)MEMORY[0xBFDA68],
+        (int)g_pCamera,
         *((_DWORD *)v0 + 1),
         *((_DWORD *)v1 + 1),
         *(_DWORD *)&result->fov[4]);
@@ -3382,12 +3385,12 @@ int __thiscall sub_44F610(int this, int a2)
       {
         if ( MEMORY[0xBFDA88] )
         {
-          v6 = MEMORY[0xBFDA84];
-          if ( MEMORY[0xBFDA84] )
+          v6 = g_pRoleSystem;
+          if ( g_pRoleSystem )
           {
-            sub_534FB0(MEMORY[0xBFDA84]);
+            sub_534FB0(g_pRoleSystem);
             operator delete(v6);
-            MEMORY[0xBFDA84] = 0;
+            g_pRoleSystem = 0;
             MEMORY[0xBFDA88] = 0;
             dword_5A3748 = 1;
             dword_DC1100 = 0;
@@ -3415,12 +3418,12 @@ int __thiscall sub_44F610(int this, int a2)
         }
         if ( *(_DWORD *)(this + 14536) == 10 )
         {
-          v11 = MEMORY[0xBFDA80];
-          if ( MEMORY[0xBFDA80] )
+          v11 = g_pInput;
+          if ( g_pInput )
           {
-            sub_52B2A0(MEMORY[0xBFDA80]);
+            sub_52B2A0(g_pInput);
             operator delete(v11);
-            MEMORY[0xBFDA80] = 0;
+            g_pInput = 0;
           }
         }
         result = sub_44F8D0(a2);
@@ -3437,34 +3440,34 @@ int __thiscall sub_44F610(int this, int a2)
         v2 = *(_DWORD *)(this + 14536);
         *(_BYTE *)(this + 652) = 1;
         *(_BYTE *)(this + 653) = 0;
-        MEMORY[0xBFDA6C] = 1;
+        g_nGameState = 1;
       }
     }
     switch ( v2 )
     {
       case 0:
-        MEMORY[0xBFDA6C] = 2;
+        g_nGameState = 2;
         result = CombatEnter();
         break;
       case 6:
-        MEMORY[0xBFDA6C] = 3;
+        g_nGameState = 3;
         break;
       case 9:
       case 13:
       case 14:
-        MEMORY[0xBFDA6C] = 1;
+        g_nGameState = 1;
         break;
       case 10:
-        MEMORY[0xBFDA6C] = 4;
+        g_nGameState = 4;
         break;
       case 11:
-        MEMORY[0xBFDA6C] = 5;
+        g_nGameState = 5;
         break;
       case 12:
-        MEMORY[0xBFDA6C] = 6;
+        g_nGameState = 6;
         break;
       case 15:
-        MEMORY[0xBFDA6C] = 9;
+        g_nGameState = 9;
         result = CombatEnter();
         break;
       default:
@@ -5520,9 +5523,9 @@ void __cdecl unknown_libname_513()
 void __thiscall sub_53D1A0(int *this, int a2, int a3)
 {
   if ( a2 )
-    sub_432770(this, *(this + 1), a2);
+    PtrArray::SetAt(this, *(this + 1), a2);
   if ( a3 )
-    sub_432770(this + 4, *(this + 5), a3);
+    PtrArray::SetAt(this + 4, *(this + 5), a3);
 }
 
 // 0x0053D330
@@ -5668,7 +5671,7 @@ LABEL_12:
   v10[1] = v8;
   v10[0] = v6 - -0.5;
   v10[2] = v7 - -0.5;
-  DynVertBuf = gbVertPoolMgr::GetDynVertBuf(*(gbVertPoolMgr **)(MEMORY[0xBFDA60] + 196), 0x114u);
+  DynVertBuf = gbVertPoolMgr::GetDynVertBuf(*(gbVertPoolMgr **)(g_pGfxManager + 196), 0x114u);
   gbDynVertBuf::RenderUIQuad(DynVertBuf, (struct gbUIQuad *)v10, 1, (struct gbRenderEffect *)dword_189504C, a3);
 }
 
@@ -5702,7 +5705,7 @@ void __cdecl sub_540C60(int a1, int a2, int a3, int a4, int *a5, struct gbTextur
   v9[1] = (float)a4;
   v9[0] = (double)a1 - -0.5;
   v10 = v10 - -0.5;
-  DynVertBuf = gbVertPoolMgr::GetDynVertBuf(*(gbVertPoolMgr **)(MEMORY[0xBFDA60] + 196), 0x114u);
+  DynVertBuf = gbVertPoolMgr::GetDynVertBuf(*(gbVertPoolMgr **)(g_pGfxManager + 196), 0x114u);
   gbDynVertBuf::RenderUIQuad(DynVertBuf, (struct gbUIQuad *)v9, 1, (struct gbRenderEffect *)dword_1895058, a6);
 }
 
@@ -5732,7 +5735,7 @@ void __cdecl sub_540D20(int a1, int a2, int a3, int a4, int a5, int a6, int *a7,
   v9[1] = (float)a4;
   v9[0] = (double)a1 - -0.5;
   v10 = v10 - -0.5;
-  DynVertBuf = gbVertPoolMgr::GetDynVertBuf(*(gbVertPoolMgr **)(MEMORY[0xBFDA60] + 196), 0x114u);
+  DynVertBuf = gbVertPoolMgr::GetDynVertBuf(*(gbVertPoolMgr **)(g_pGfxManager + 196), 0x114u);
   gbDynVertBuf::RenderUIQuad(DynVertBuf, (struct gbUIQuad *)v9, 1, (struct gbRenderEffect *)dword_1895058, a8);
 }
 
@@ -5798,7 +5801,7 @@ LABEL_7:
   v16[1] = v14;
   v16[0] = v12 - -0.5;
   v16[2] = v13 - -0.5;
-  DynVertBuf = gbVertPoolMgr::GetDynVertBuf(*(gbVertPoolMgr **)(MEMORY[0xBFDA60] + 196), 0x114u);
+  DynVertBuf = gbVertPoolMgr::GetDynVertBuf(*(gbVertPoolMgr **)(g_pGfxManager + 196), 0x114u);
   gbDynVertBuf::RenderUIQuad(DynVertBuf, (struct gbUIQuad *)v16, 1, (struct gbRenderEffect *)dword_1895060, a6);
 }
 
@@ -5811,9 +5814,9 @@ gbGfxManager *__cdecl sub_540F60()
   gbGfxManager *v2; // ebx
   gbMatrixStack *v3; // edi
 
-  v1 = *(gbMatrixStack **)&MEMORY[0xBFDA60][216];
+  v1 = *(gbMatrixStack **)&g_pGfxManager[216];
   v2 = v0;
-  v3 = *(gbMatrixStack **)&MEMORY[0xBFDA60][212];
+  v3 = *(gbMatrixStack **)&g_pGfxManager[212];
   gbMatrixStack::Push(v1);
   gbMatrixStack::Push(v3);
   gbMatrixStack::LoadIdentity(v1);
@@ -5828,8 +5831,8 @@ gbGfxManager *__cdecl sub_540FA0()
   gbMatrixStack *v0; // esi
   gbGfxManager *result; // eax
 
-  v0 = *(gbMatrixStack **)&MEMORY[0xBFDA60][216];
-  gbMatrixStack::Pop(*(gbMatrixStack **)&MEMORY[0xBFDA60][212]);
+  v0 = *(gbMatrixStack **)&g_pGfxManager[216];
+  gbMatrixStack::Pop(*(gbMatrixStack **)&g_pGfxManager[212]);
   gbMatrixStack::Pop(v0);
   return result;
 }
@@ -5897,16 +5900,16 @@ LABEL_17:
   switch ( v5 )
   {
     case 12:
-      v6 = **(_DWORD **)(MEMORY[0xBFDA60] + 208);
+      v6 = **(_DWORD **)(g_pGfxManager + 208);
       break;
     case 16:
-      v6 = *(_DWORD *)(*(_DWORD *)(MEMORY[0xBFDA60] + 208) + 4);
+      v6 = *(_DWORD *)(*(_DWORD *)(g_pGfxManager + 208) + 4);
       break;
     case 20:
-      v6 = *(_DWORD *)(*(_DWORD *)(MEMORY[0xBFDA60] + 208) + 8);
+      v6 = *(_DWORD *)(*(_DWORD *)(g_pGfxManager + 208) + 8);
       break;
     case 24:
-      v6 = *(_DWORD *)(*(_DWORD *)(MEMORY[0xBFDA60] + 208) + 12);
+      v6 = *(_DWORD *)(*(_DWORD *)(g_pGfxManager + 208) + 12);
       break;
     default:
       break;
@@ -5948,7 +5951,7 @@ int __cdecl sub_541160(int a1, int a2, _BYTE *a3, int a4, int a5)
   int v7; // eax
   int v9; // [esp+20h] [ebp+10h]
 
-  v6 = *(_DWORD *)(*(_DWORD *)(MEMORY[0xBFDA60] + 208) + 4 * a4);
+  v6 = *(_DWORD *)(*(_DWORD *)(g_pGfxManager + 208) + 4 * a4);
   if ( gbColorQuad::ColorQuadFmt )
   {
     BYTE2(v9) = *a3;
@@ -6151,7 +6154,7 @@ struct gbVFileSystem *__thiscall sub_5414A0(_BYTE *this)
     v5 = 3;
     do
     {
-      v6 = (gbTexture *)(*(int (__thiscall **)(int, _DWORD))(*(_DWORD *)MEMORY[0xBFDA60] + 8))(MEMORY[0xBFDA60], *v4);
+      v6 = (gbTexture *)(*(int (__thiscall **)(int, _DWORD))(*(_DWORD *)g_pGfxManager + 8))(g_pGfxManager, *v4);
       *v3 = v6;
       gbTexture::LoadTexture(v6, 1);
       ++v4;
@@ -6166,8 +6169,8 @@ struct gbVFileSystem *__thiscall sub_5414A0(_BYTE *this)
     v8 = 3;
     do
     {
-      *v7 = (*(int (__thiscall **)(int, _DWORD, _DWORD, _DWORD))(*(_DWORD *)MEMORY[0xBFDA60] + 96))(
-              MEMORY[0xBFDA60],
+      *v7 = (*(int (__thiscall **)(int, _DWORD, _DWORD, _DWORD))(*(_DWORD *)g_pGfxManager + 96))(
+              g_pGfxManager,
               *(_DWORD *)((char *)v7 + (char *)v11 - this),
               0,
               0);
@@ -6175,7 +6178,7 @@ struct gbVFileSystem *__thiscall sub_5414A0(_BYTE *this)
       --v8;
     }
     while ( v8 );
-    (*(void (__thiscall **)(int, int))(*(_DWORD *)MEMORY[0xBFDA60] + 104))(MEMORY[0xBFDA60], 1);
+    (*(void (__thiscall **)(int, int))(*(_DWORD *)g_pGfxManager + 104))(g_pGfxManager, 1);
   }
   UIQuadManager_Reset(0);
   v12 = -1;
@@ -6197,8 +6200,8 @@ gbGfxManager *__cdecl UIQuadManager_Reset()
     v2 = *(_BYTE *)(v0 + 29);
     *(_DWORD *)&result[12] = v3;
     if ( !v2 )
-      return (gbGfxManager *)(*(int (__thiscall **)(gbGfxManager *, _DWORD))(*(_DWORD *)MEMORY[0xBFDA60] + 100))(
-                               MEMORY[0xBFDA60],
+      return (gbGfxManager *)(*(int (__thiscall **)(gbGfxManager *, _DWORD))(*(_DWORD *)g_pGfxManager + 100))(
+                               g_pGfxManager,
                                *(_DWORD *)&result[4 * v3]);
   }
   return result;

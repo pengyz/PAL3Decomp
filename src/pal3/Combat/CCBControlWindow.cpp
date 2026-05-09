@@ -1,3 +1,5 @@
+#include "pal3/ida_defs.h"
+#include "pal3/globals.h"
 #include "pal3/gen/CCBControlWindow.h"
 
 // 0x0051A700
@@ -133,7 +135,7 @@ int sub_51A930(_DWORD *this, int a2, unsigned int a3, int a4)
       this->GetInstance();
       aWa001->AudioSetPosition(1);
       CCBControlWindow::HandleInput(a3 - 192);
-      v5 = sub_43F560((int *)*(this + a3 - 173));
+      v5 = (int *->CreateChild()*(this + a3 - 173));
       if ( v5 != -1 )
         CCBUI::SetParam(*(_DWORD *)(*(_DWORD *)(*(this + 8) + 1160) + 8), a3 - 48, v5, 1);
     }
@@ -365,7 +367,7 @@ char sub_51AD10(int this, _DWORD *a2, int a3)
   v16 = -1879048192;
   v10->SetShow(0);
   UIWnd::GetChild(*(_DWORD **)(this + 72), &v16);
-  sub_442C60(*(_DWORD **)(this + 72), 39, 219);
+  UIFrameWnd::SetPosition(*(_DWORD **)(this + 72), 39, 219);
   v11 = &dword_570134;
   v12 = (char **)(this + 80);
   do

@@ -1,3 +1,5 @@
+#include "pal3/ida_defs.h"
+#include "pal3/globals.h"
 #include "pal3/gen/CCBMagicWindow.h"
 
 // 0x0051B9F0
@@ -152,13 +154,13 @@ char sub_51BC70(_DWORD *this, _DWORD *a2, int a3)
     a2[3] = 95;
     ((void (__thiscall *)(gbRefObject **, int, _DWORD *, _DWORD *))(**v5)[4].RefCount)(*v5, 276, a2, this);
     v6 = UIWnd::SetRect(*v5, v19);
-    sub_43FEC0(*v5, v6);
+    UIWnd::AddChild(*v5, v6);
     UIWnd::GetChildCount(*v5, aUiCombatContro_29, 0);
     UIWnd::GetChildAt(*v5, aUiCombatContro_30, 0);
-    sub_43FDB0((float *)*v5, 48);
-    sub_43FDD0((float *)*v5, 23);
-    sub_43FDC0((float *)*v5, 11);
-    sub_43FDE0((float *)*v5, 5);
+    (float *->SetFrameRate()*v5, 48);
+    (float *->GetHeight()*v5, 23);
+    (float *->GetWidth()*v5, 11);
+    (float *->GetPosition()*v5, 5);
     sub_43FBC0(*v5, aUiCombatContro_31, 0);
     v7 = *v5;
     v7[49] = (gbRefObject *)10;
@@ -177,13 +179,13 @@ char sub_51BC70(_DWORD *this, _DWORD *a2, int a3)
     a2[3] = 132;
     ((void (__thiscall *)(gbRefObject **, int, _DWORD *, _DWORD *))(**v8)[4].RefCount)(*v8, 277, a2, this);
     v9 = UIWnd::SetRect(*v8, v19);
-    sub_43FEC0(*v8, v9);
+    UIWnd::AddChild(*v8, v9);
     UIWnd::GetChildCount(*v8, aUiCombatContro_29, 0);
     UIWnd::GetChildAt(*v8, aUiCombatContro_30, 0);
-    sub_43FDB0((float *)*v8, 48);
-    sub_43FDD0((float *)*v8, 23);
-    sub_43FDC0((float *)*v8, 11);
-    sub_43FDE0((float *)*v8, 5);
+    (float *->SetFrameRate()*v8, 48);
+    (float *->GetHeight()*v8, 23);
+    (float *->GetWidth()*v8, 11);
+    (float *->GetPosition()*v8, 5);
     sub_43FBC0(*v8, aUiCombatContro_31, 0);
     v10 = *v8;
     v10[49] = (gbRefObject *)10;
@@ -202,13 +204,13 @@ char sub_51BC70(_DWORD *this, _DWORD *a2, int a3)
     a2[3] = 170;
     ((void (__thiscall *)(gbRefObject **, int, _DWORD *, _DWORD *))(**v11)[4].RefCount)(*v11, 278, a2, this);
     v12 = UIWnd::SetRect(*v11, v19);
-    sub_43FEC0(*v11, v12);
+    UIWnd::AddChild(*v11, v12);
     UIWnd::GetChildCount(*v11, aUiCombatContro_29, 0);
     UIWnd::GetChildAt(*v11, aUiCombatContro_30, 0);
-    sub_43FDB0((float *)*v11, 48);
-    sub_43FDD0((float *)*v11, 23);
-    sub_43FDC0((float *)*v11, 11);
-    sub_43FDE0((float *)*v11, 5);
+    (float *->SetFrameRate()*v11, 48);
+    (float *->GetHeight()*v11, 23);
+    (float *->GetWidth()*v11, 11);
+    (float *->GetPosition()*v11, 5);
     sub_43FBC0(*v11, aUiCombatContro_31, 0);
     v13 = *v11;
     v13[49] = (gbRefObject *)10;

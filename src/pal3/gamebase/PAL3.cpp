@@ -1,3 +1,5 @@
+#include "pal3/ida_defs.h"
+#include "pal3/globals.h"
 #include "pal3/gen/PAL3.h"
 
 // 0x00404760
@@ -8,9 +10,9 @@ void *sub_404760()
   memset(&MEMORY[0xBFD6C8], 0, 0xB8u);
   g_bGameActive = 1;
   PAL3::TestCombat();
-  MEMORY[0xBFDA74] = 0;
-  MEMORY[0xBFDA8C] = 0;
-  MEMORY[0xBFDA90] = 0;
+  g_pCBSystem = 0;
+  g_pUIManager = 0;
+  g_pEffMgr = 0;
   v0 = g_nGameFlags;
   g_pCursorNode1 = 0;
   LOBYTE(v0) = g_nGameFlags & 0xF4 | 3;
@@ -84,7 +86,7 @@ struct gbVFileSystem *__usercall PAL3::Create@<eax>(char *a1@<edi>, HINSTANCE hI
   (CScreenMode *->SetMode()Instance, v31);
   CursorA = LoadCursorA(hInstance, (LPCSTR)0x73);
   v5 = MEMORY[0xBFD774];
-  MEMORY[0xBFDA94] = (Logger *)CursorA;
+  g_pLogger = (Logger *)CursorA;
   ShowWindow(MEMORY[0xBFD774], 5);
   UpdateWindow(v5);
   if ( !GRPinput::Create(&g_Input, hInstance, (int)v5, 0) )
@@ -99,7 +101,7 @@ struct gbVFileSystem *__usercall PAL3::Create@<eax>(char *a1@<edi>, HINSTANCE hI
   GRPinput::SetMode(&g_Input, 0x40000000);
   (CScreenMode *->InitCPK()&g_DisplayConfig, 0, 1);
   memset(pParams, 0, sizeof(pParams));
-  (CameraCtrl *->InitParams()MEMORY[0xBFDA68], pParams);
+  (CameraCtrl *->InitParams()g_pCamera, pParams);
   if ( !g_GDB->PAL_GDB() )
   {
     qmemcpy(
@@ -122,7 +124,7 @@ struct gbVFileSystem *__usercall PAL3::Create@<eax>(char *a1@<edi>, HINSTANCE hI
     v8 = (CCBSystem *)v7->CCBSystem();
   else
     v8 = 0;
-  MEMORY[0xBFDA74] = v8;
+  g_pCBSystem = v8;
   v38 = -1;
   if ( !v8 )
   {
@@ -137,18 +139,18 @@ struct gbVFileSystem *__usercall PAL3::Create@<eax>(char *a1@<edi>, HINSTANCE hI
   v38 = 1;
   if ( v9 )
   {
-    if ( MEMORY[0xBFDA68] )
-      v10 = (char *)&MEMORY[0xBFDA68]->OrthoSize;
+    if ( g_pCamera )
+      v10 = (char *)&g_pCamera->OrthoSize;
     else
       v10 = 0;
-    v11 = (CGameData *)v9->Create((int)MEMORY[0xBFDA60], (int)v10, 0);
+    v11 = (CGameData *)v9->Create((int)g_pGfxManager, (int)v10, 0);
   }
   else
   {
     v11 = 0;
   }
   v38 = -1;
-  MEMORY[0xBFDA78] = v11;
+  g_pGameData = v11;
   if ( !v11 )
   {
     qmemcpy(
@@ -157,7 +159,7 @@ struct gbVFileSystem *__usercall PAL3::Create@<eax>(char *a1@<edi>, HINSTANCE hI
       sizeof(pExceptionObject));
     _CxxThrowException(pExceptionObject, (_ThrowInfo *)&_TI1_AV_Exception__);
   }
-  if ( (_BYTE)MEMORY[0xBFDA90] )
+  if ( (_BYTE)g_pEffMgr )
   {
     if ( byte_5833C0 )
       (CGameData *->Init()&g_GameData);
@@ -188,8 +190,8 @@ struct gbVFileSystem *__usercall PAL3::Create@<eax>(char *a1@<edi>, HINSTANCE hI
     v16 = CEffectSystem::DestroyAllEffect();
     CEffectSystem::IsVisible((int)v16);
   }
-  (*(void (__stdcall **)(_DWORD, char *))(**(_DWORD **)&MEMORY[0xBFDA60][1816] + 28))(
-    *(_DWORD *)&MEMORY[0xBFDA60][1816],
+  (*(void (__stdcall **)(_DWORD, char *))(**(_DWORD **)&g_pGfxManager[1816] + 28))(
+    *(_DWORD *)&g_pGfxManager[1816],
     v35);
   if ( !v36 )
     MEMORY[0xBFDA91] = 1;
@@ -250,8 +252,8 @@ void sub_404FF0()
   char ArgList[1024]; // [esp+430h] [ebp-40Ch] BYREF
   int v7; // [esp+838h] [ebp-4h]
 
-  MEMORY[0xBFDA60] = (int)gbCreateGraphManager((struct gbGfxDriverInfo *)&MEMORY[0xBFD6C8]);
-  if ( !MEMORY[0xBFDA60] )
+  g_pGfxManager = (int)gbCreateGraphManager((struct gbGfxDriverInfo *)&MEMORY[0xBFD6C8]);
+  if ( !g_pGfxManager )
   {
     qmemcpy(
       pExceptionObject,
@@ -262,11 +264,11 @@ void sub_404FF0()
   v0 = (gbActorMgr *)operator new(0xCu);
   v7 = 0;
   if ( v0 )
-    v1 = v0->gbActorMgr((struct gbGfxManager *)MEMORY[0xBFDA60]);
+    v1 = v0->gbActorMgr((struct gbGfxManager *)g_pGfxManager);
   else
     v1 = 0;
   v7 = -1;
-  MEMORY[0xBFDA64] = v1;
+  g_pActorMgr = v1;
   if ( !v1 )
   {
     qmemcpy(
@@ -277,11 +279,11 @@ void sub_404FF0()
   }
   v7 = 1;
   if ( operator new(0x220u) )
-    v2 = sub_41BE80(MEMORY[0xBFDA60]);
+    v2 = sub_41BE80(g_pGfxManager);
   else
     v2 = 0;
   v7 = -1;
-  MEMORY[0xBFDA68] = v2;
+  g_pCamera = v2;
   if ( !v2 )
   {
     qmemcpy(
@@ -296,7 +298,7 @@ void sub_404FF0()
   v4[3] = 3;
   v4[0] = -16777216;
   v4[1] = 1065353216;
-  (gbGfxManager *->SetClearParam()MEMORY[0xBFDA60], (struct gbClearParam *)v4);
+  (gbGfxManager *->SetClearParam()g_pGfxManager, (struct gbClearParam *)v4);
   v3 = (gbRefObject *)operator new(0xD8u);
   v7 = 2;
   if ( v3 )
@@ -404,11 +406,11 @@ char sub_405330()
   v7 = (void *)operator new(0x158u);
   LOBYTE(v12) = 3;
   if ( v7 )
-    v3 = (SceneMgr *)((SceneMgr *(__stdcall *)(gbGfxManager *))sub_4C5820)(MEMORY[0xBFDA60]);
+    v3 = (SceneMgr *)((SceneMgr *(__stdcall *)(gbGfxManager *))sub_4C5820)(g_pGfxManager);
   else
     v3 = 0;
   LOBYTE(v12) = 0;
-  MEMORY[0xBFDA70] = v3;
+  g_pSceneMgr = v3;
   if ( !v3 )
   {
     qmemcpy(
@@ -440,13 +442,13 @@ char sub_4055A0()
 {
   void *v0; // esi
 
-  v0 = MEMORY[0xBFDA70];
-  if ( MEMORY[0xBFDA70] )
+  v0 = g_pSceneMgr;
+  if ( g_pSceneMgr )
   {
-    sub_4C5840(MEMORY[0xBFDA70]);
+    sub_4C5840(g_pSceneMgr);
     operator delete(v0);
   }
-  MEMORY[0xBFDA70] = 0;
+  g_pSceneMgr = 0;
   return 1;
 }
 
@@ -484,7 +486,7 @@ int sub_4055D0(float a1)
   float v29; // [esp+20h] [ebp-10h]
   _DWORD v30[3]; // [esp+24h] [ebp-Ch] BYREF
 
-  MEMORY[0xBFDAA0] = MEMORY[0xBFDAA0] + a1;
+  g_pTextureLib = g_pTextureLib + a1;
   GRPinput::GRPinput((int)&g_Input);
   v1 = 0;
   v2 = (unsigned __int16 *)&MEMORY[0x8ACCD8];
@@ -499,13 +501,13 @@ int sub_4055D0(float a1)
     ++v1;
   }
   while ( (int)v2 < (int)MEMORY[0x8ACD2A] );
-  v6 = MEMORY[0xBFDA6C];
+  v6 = g_nGameState;
   v7 = SceneUpdate(LODWORD(a1), 1);
-  v8 = MEMORY[0xBFDA6C];
-  if ( MEMORY[0xBFDA6C] != v6 )
+  v8 = g_nGameState;
+  if ( g_nGameState != v6 )
   {
     v6->IfHideFightSucceed();
-    v8 = MEMORY[0xBFDA6C];
+    v8 = g_nGameState;
   }
   switch ( v8 )
   {
@@ -528,7 +530,7 @@ int sub_4055D0(float a1)
         PalScriptMgr::RunSceneScript(LODWORD(a1));
       }
       InputUpdate(a1);
-      if ( MEMORY[0xBFDA6C] != 9 )
+      if ( g_nGameState != 9 )
       {
         if ( v7 )
         {
@@ -548,7 +550,7 @@ int sub_4055D0(float a1)
       UIPostUpdate();
       v17 = CScreenMode::GetInstance();
       v17->AudioUpdate();
-      if ( MEMORY[0xBFDA6C] != 2 && MEMORY[0xBFDA6C] != 9 )
+      if ( g_nGameState != 2 && g_nGameState != 9 )
         v6->IfHideFightSucceed();
       goto LABEL_64;
     case 3:
@@ -556,16 +558,16 @@ int sub_4055D0(float a1)
       CombatEffectUpdate(a1);
       v18 = CScreenMode::GetInstance();
       v18->AudioUpdate();
-      if ( !*((_BYTE *)MEMORY[0xBFDA74] + 116) )
+      if ( !*((_BYTE *)g_pCBSystem + 116) )
         goto LABEL_64;
-      if ( MEMORY[0xBFDA90] )
+      if ( g_pEffMgr )
       {
         PAL3::GetCommandLineParam();
         CCBSystem::CombatUpdate(0.0, 0);
         CombatEffectUpdate(0.0);
         goto LABEL_59;
       }
-      byte_5833D0 = *((_DWORD *)MEMORY[0xBFDA74] + 31) == 2;
+      byte_5833D0 = *((_DWORD *)g_pCBSystem + 31) == 2;
       v19 = CGameData::GetMode(&g_GameData);
       CGameData_Load(v19);
       CombatEnter();
@@ -719,8 +721,8 @@ LABEL_32:
 LABEL_64:
       ScreenEffectMgr::GetInstance();
       RenderPost(LODWORD(a1));
-      result = MEMORY[0xBFDA6C];
-      if ( !MEMORY[0xBFDA6C] )
+      result = g_nGameState;
+      if ( !g_nGameState )
         return CScreenMode::SetState(1);
       return result;
     default:
@@ -768,11 +770,11 @@ int sub_405C00()
   _DWORD v34[4]; // [esp+80h] [ebp-14h] BYREF
   int v35; // [esp+90h] [ebp-4h]
 
-  (*(void (__thiscall **)(int))(*(_DWORD *)MEMORY[0xBFDA60] + 48))(MEMORY[0xBFDA60]);
-  switch ( MEMORY[0xBFDA6C] )
+  (*(void (__thiscall **)(int))(*(_DWORD *)g_pGfxManager + 48))(g_pGfxManager);
+  switch ( g_nGameState )
   {
     case 0:
-      return (*(int (__thiscall **)(int))(*(_DWORD *)MEMORY[0xBFDA60] + 52))(MEMORY[0xBFDA60]);
+      return (*(int (__thiscall **)(int))(*(_DWORD *)g_pGfxManager + 52))(g_pGfxManager);
     case 2:
     case 7:
     case 8:
@@ -781,14 +783,14 @@ int sub_405C00()
       v1->End();
       v2 = CRenderTarget2::GetInstance();
       v2->Begin();
-      v3 = *(gbSceneGraph **)(MEMORY[0xBFDA60] + 448);
-      if ( MEMORY[0xBFDA68] )
-        v4 = (struct gbCamera *)(MEMORY[0xBFDA68] + 4);
+      v3 = *(gbSceneGraph **)(g_pGfxManager + 448);
+      if ( g_pCamera )
+        v4 = (struct gbCamera *)(g_pCamera + 4);
       else
         v4 = 0;
       v3->Begin(v4);
       v5 = UIScene::CombatCheck();
-      v6 = *(gbMatrixStack **)(MEMORY[0xBFDA60] + 216);
+      v6 = *(gbMatrixStack **)(g_pGfxManager + 216);
       CameraCtrl::SetAsCurrent(3);
       v26[0] = 1065353216;
       v26[1] = 0;
@@ -828,37 +830,37 @@ int sub_405C00()
       {
         Top = v6->GetTop();
         Top->TransformPlane();
-        (*(void (__thiscall **)(int, int *))(*(_DWORD *)MEMORY[0xBFDA60] + 112))(MEMORY[0xBFDA60], &dword_D8E488);
+        (*(void (__thiscall **)(int, int *))(*(_DWORD *)g_pGfxManager + 112))(g_pGfxManager, &dword_D8E488);
       }
       else
       {
-        (*(void (__thiscall **)(int, _DWORD))(*(_DWORD *)MEMORY[0xBFDA60] + 112))(MEMORY[0xBFDA60], 0);
+        (*(void (__thiscall **)(int, _DWORD))(*(_DWORD *)g_pGfxManager + 112))(g_pGfxManager, 0);
       }
       UISceneUpdate();
       v6->RenderWithStack();
-      if ( MEMORY[0xBFDA6C] != 9 )
+      if ( g_nGameState != 9 )
         v6->Render();
       v3->End();
       if ( MEMORY[0xBFDA38] && MEMORY[0xBFDA40] )
       {
-        if ( MEMORY[0xBFDA68] )
-          v8 = (struct gbCamera *)(MEMORY[0xBFDA68] + 4);
+        if ( g_pCamera )
+          v8 = (struct gbCamera *)(g_pCamera + 4);
         else
           v8 = 0;
         (gbDropGroup *->Render()MEMORY[0xBFDA38], v8);
       }
       if ( MEMORY[0xBFDA3C] && MEMORY[0xBFDA41] )
       {
-        if ( MEMORY[0xBFDA68] )
-          v9 = (struct gbCamera *)(MEMORY[0xBFDA68] + 4);
+        if ( g_pCamera )
+          v9 = (struct gbCamera *)(g_pCamera + 4);
         else
           v9 = 0;
         (gbDropGroup *->Render()MEMORY[0xBFDA3C], v9);
       }
       v10 = UISceneUpdate();
       v10->NotifyRender();
-      if ( MEMORY[0xBFDA68] )
-        v11 = (struct gbCamera *)(MEMORY[0xBFDA68] + 4);
+      if ( g_pCamera )
+        v11 = (struct gbCamera *)(g_pCamera + 4);
       else
         v11 = 0;
       v3->Begin(v11);
@@ -867,17 +869,17 @@ int sub_405C00()
         UIScene::CombatCheck();
       UISceneUpdate();
       v6->Render();
-      SceneMgr::RenderUpdate(MEMORY[0xBFDA78]);
+      SceneMgr::RenderUpdate(g_pGameData);
       v3->End();
-      if ( MEMORY[0xBFDA6C] == 8 )
+      if ( g_nGameState == 8 )
       {
         v12 = UISceneUpdate();
         v12->EffectRender();
       }
       UIManager::Render(&MEMORY[0xC11758]);
-      SceneMgr::RenderAll(MEMORY[0xBFDA78]);
-      if ( MEMORY[0xBFDA68] )
-        v13 = (struct gbCamera *)(MEMORY[0xBFDA68] + 4);
+      SceneMgr::RenderAll(g_pGameData);
+      if ( g_pCamera )
+        v13 = (struct gbCamera *)(g_pCamera + 4);
       else
         v13 = 0;
       v3->Begin(v13);
@@ -897,34 +899,34 @@ int sub_405C00()
         break;
       goto LABEL_42;
     case 3:
-      CCBSystem::RenderCheck(MEMORY[0xBFDA74]);
+      CCBSystem::RenderCheck(g_pCBSystem);
       break;
     case 4:
-      MiniGame1::Render(MEMORY[0xBFDA80]);
+      MiniGame1::Render(g_pInput);
       break;
     case 5:
-      sub_52F2E0(MEMORY[0xBFDA7C]);
+      sub_52F2E0(g_pScreenMode);
       goto LABEL_42;
     case 6:
-      MiniGame3::Render(MEMORY[0xBFDA84]);
+      MiniGame3::Render(g_pRoleSystem);
 LABEL_42:
       ScriptSystem::Render2();
       break;
     default:
       break;
   }
-  if ( MEMORY[0xBFDA6C] == 8 )
+  if ( g_nGameState == 8 )
   {
     v17 = (__int64)(180.0 - MEMORY[0xBFDA58]);
     goto LABEL_46;
   }
-  if ( MEMORY[0xBFDA6C] == 7 )
+  if ( g_nGameState == 7 )
   {
     v17 = (int)(__int64)(60.0 - MEMORY[0xBFDA58]) < 0 ? 0 : (__int64)(60.0 - MEMORY[0xBFDA58]);
 LABEL_46:
     sprintf((char *const)Buffer, "%03d", v17);
     LOBYTE(v18) = 0;
-    v19 = *(_DWORD *)(*(_DWORD *)(MEMORY[0xBFDA60] + 208) + 12);
+    v19 = *(_DWORD *)(*(_DWORD *)(g_pGfxManager + 208) + 12);
     if ( v17 < 30 )
       v18 = (__int64)(sin(MEMORY[0xBFDA58] * 4.0) * 255.0);
     v20 = 60.0 / (double)MEMORY[0xBFD6D4];
@@ -971,7 +973,7 @@ LABEL_46:
       1176256512);
     (*(void (__thiscall **)(int))(*(_DWORD *)v19 + 8))(v19);
   }
-  if ( MEMORY[0xBFDA6C] && MEMORY[0xBFDA6C] != 3 && g_bRenderUI )
+  if ( g_nGameState && g_nGameState != 3 && g_bRenderUI )
   {
     PushMatrixStacks(v25);
     v35 = 0;
@@ -980,18 +982,18 @@ LABEL_46:
     CGameData::Render(&g_GameData);
     if ( MEMORY[0xBFDA34] )
       (*(void (__thiscall **)(int))(*(_DWORD *)MEMORY[0xBFDA34] + 4))(MEMORY[0xBFDA34]);
-    if ( !MEMORY[0xBFDA98] )
+    if ( !g_pPalScript )
       Logger::Render(&g_Logger);
     v35 = -1;
     PopMatrixStacks(v25);
   }
   v22 = UIQuadManager::GetInstance();
   v22->UIRenderObj();
-  result = (*(int (__thiscall **)(int))(*(_DWORD *)MEMORY[0xBFDA60] + 52))(MEMORY[0xBFDA60]);
-  if ( MEMORY[0xBFDA98] )
+  result = (*(int (__thiscall **)(int))(*(_DWORD *)g_pGfxManager + 52))(g_pGfxManager);
+  if ( g_pPalScript )
   {
     result = PAL3::PrintScreen();
-    MEMORY[0xBFDA98] = 0;
+    g_pPalScript = 0;
   }
   return result;
 }
@@ -1016,35 +1018,35 @@ int sub_406230()
   UISystem::Destroy();
   _TextureLib_Data::_TextureLib_Data();
   PalScriptMgr::_CON_ReLoadScript();
-  if ( MEMORY[0xBFDA74] )
+  if ( g_pCBSystem )
   {
     CCBSystem::ProcFling();
-    v3 = MEMORY[0xBFDA74];
-    if ( MEMORY[0xBFDA74] )
+    v3 = g_pCBSystem;
+    if ( g_pCBSystem )
     {
-      nullsub_3(MEMORY[0xBFDA74]);
+      nullsub_3(g_pCBSystem);
       operator delete(v3);
     }
-    MEMORY[0xBFDA74] = 0;
+    g_pCBSystem = 0;
   }
   CGameData::Destroy(&g_GameData);
   PAL3::DestroyEffectSystem();
-  if ( MEMORY[0xBFDA68] )
+  if ( g_pCamera )
   {
-    (**(void (__thiscall ***)(int, int))MEMORY[0xBFDA68])(MEMORY[0xBFDA68], 1);
-    MEMORY[0xBFDA68] = 0;
+    (**(void (__thiscall ***)(int, int))g_pCamera)(g_pCamera, 1);
+    g_pCamera = 0;
   }
-  v4 = MEMORY[0xBFDA64];
-  if ( MEMORY[0xBFDA64] )
+  v4 = g_pActorMgr;
+  if ( g_pActorMgr )
   {
-    gbActorMgr::~gbActorMgr((gbActorMgr *)MEMORY[0xBFDA64]);
+    gbActorMgr::~gbActorMgr((gbActorMgr *)g_pActorMgr);
     operator delete(v4);
-    MEMORY[0xBFDA64] = 0;
+    g_pActorMgr = 0;
   }
-  if ( MEMORY[0xBFDA60] )
+  if ( g_pGfxManager )
   {
-    (**(void (__thiscall ***)(int, int))MEMORY[0xBFDA60])(MEMORY[0xBFDA60], 1);
-    MEMORY[0xBFDA60] = 0;
+    (**(void (__thiscall ***)(int, int))g_pGfxManager)(g_pGfxManager, 1);
+    g_pGfxManager = 0;
   }
   FileSysDestory();
   v5 = CScreenMode::GetInstance();
@@ -1148,7 +1150,7 @@ char sub_4065F0()
   int v6; // eax
 
   CommandLineA = GetCommandLineA();
-  MEMORY[0xBFDA8C] = (int)CommandLineA;
+  g_pUIManager = (int)CommandLineA;
   if ( CommandLineA )
   {
     if ( (unsigned __int8)aSc->ParseCmdLine() || (unsigned __int8)aSoftcursor->ParseCmdLine() )
@@ -1329,7 +1331,7 @@ int __cdecl sub_406B80(const char *a1, int a2, int a3)
   char *v14; // edi
   char v15; // al
 
-  MEMORY[0xBFDA98] = 1;
+  g_pPalScript = 1;
   if ( a1 )
   {
     v12 = strlen(a1) + 1;
@@ -1474,7 +1476,7 @@ void PAL3::PrintScreen()
   _BYTE *v32; // [esp+F4h] [ebp-1Ch]
   int v33; // [esp+10Ch] [ebp-4h]
 
-  if ( (*(int (__thiscall **)(gbGfxManager *, int *, int))(*(_DWORD *)MEMORY[0xBFDA60] + 84))(MEMORY[0xBFDA60], &v23, 1) )
+  if ( (*(int (__thiscall **)(gbGfxManager *, int *, int))(*(_DWORD *)g_pGfxManager + 84))(g_pGfxManager, &v23, 1) )
   {
     (gbImage2D *->gbImage2D()&v30);
     v33 = 0;
@@ -1504,7 +1506,7 @@ LABEL_8:
           while ( v31 < v26 );
           v0 = v30;
         }
-        (*(void (__thiscall **)(gbGfxManager *))(*(_DWORD *)MEMORY[0xBFDA60] + 88))(MEMORY[0xBFDA60]);
+        (*(void (__thiscall **)(gbGfxManager *))(*(_DWORD *)g_pGfxManager + 88))(g_pGfxManager);
         (gbImage2D *->Release()(&g_PAL3Data + 24));
         v6 = (gbImage2D *->CreateImage()(&g_PAL3Data + 24), v26, v27, 24);
         v7 = v32;
@@ -1609,7 +1611,7 @@ LABEL_8:
       }
       if ( v25 != 9 )
       {
-        (*(void (__thiscall **)(gbGfxManager *))(*(_DWORD *)MEMORY[0xBFDA60] + 88))(MEMORY[0xBFDA60]);
+        (*(void (__thiscall **)(gbGfxManager *))(*(_DWORD *)g_pGfxManager + 88))(g_pGfxManager);
 LABEL_34:
         v33 = -1;
         gbImage2D::~gbImage2D((gbImage2D *)&v30);
@@ -1632,7 +1634,7 @@ int sub_406FF0(int a1)
   MEMORY[0xBFDA2C] = a1;
   if ( a1 )
   {
-    *(_DWORD *)(MEMORY[0xBFDA68] + 448) = 1;
+    *(_DWORD *)(g_pCamera + 448) = 1;
     RoleSystem::SetActive(&MEMORY[0xC05F60]);
   }
   sub_4070A0(aSoftwareSoftst, (DWORD)aSGameA, 1u);
@@ -1645,7 +1647,7 @@ int sub_406FF0(int a1)
   }
   while ( (int)v1 < (int)MEMORY[0xC10960] );
   ScriptSystem::Execute(0, 1);
-  MEMORY[0xBFDA6C] = 7;
+  g_nGameState = 7;
   v2 = (int (__thiscall ***)(_DWORD, _DWORD))CGameData::SetMode(0);
   result = (**v2)(v2, 0);
   MEMORY[0xBFDA58] = 0.0;
@@ -1697,7 +1699,7 @@ int sub_4071C0(int a1)
   }
   else
   {
-    MEMORY[0xBFDA6C] = 2;
+    g_nGameState = 2;
     v3 = (void (__thiscall ***)(_DWORD, int))CGameData::SetMode(0);
     (**v3)(v3, 1);
     if ( retaddr == (void *)-1 )
@@ -1731,7 +1733,7 @@ int sub_4072D0()
 {
   int (__thiscall ***v0)(_DWORD, _DWORD); // eax
 
-  MEMORY[0xBFDA6C] = 8;
+  g_nGameState = 8;
   MEMORY[0xBFDA58] = 0.0;
   v0 = (int (__thiscall ***)(_DWORD, _DWORD))CGameData::SetMode(0);
   return (**v0)(v0, 0);
@@ -1742,7 +1744,7 @@ int sub_407300()
 {
   int (__thiscall ***v0)(_DWORD, int); // eax
 
-  MEMORY[0xBFDA6C] = 2;
+  g_nGameState = 2;
   v0 = (int (__thiscall ***)(_DWORD, int))CGameData::SetMode(0);
   return (**v0)(v0, 1);
 }
@@ -1867,7 +1869,7 @@ char sub_407640()
   int v14; // [esp+20h] [ebp-4h]
 
   v0 = 0;
-  if ( (unsigned __int8)sub_4235B0(aQ01, 0) )
+  if ( (unsigned __int8)aQ01->ProcessInput(0) )
   {
     v8 = 6308;
     v9 = 6309;
@@ -2213,7 +2215,7 @@ int PAL3::FullInit()
   MEMORY[0xBFDE28] = 0;
   CameraSystem::Init((int)&g_SceneMgr.m_info[7120]);
   *(_DWORD *)&g_SceneMgr.m_info[51512] = 0;
-  (RoleSystem *->SetActive()MEMORY[0xBFDA68], (int)&g_SceneMgr.m_info[7120]);
+  (RoleSystem *->SetActive()g_pCamera, (int)&g_SceneMgr.m_info[7120]);
   g_SceneMgr.m_info[7112] = 1;
   g_SceneMgr.m_info[7113] = 0;
   g_SceneMgr.m_info[7114] = 0;

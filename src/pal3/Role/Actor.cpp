@@ -1,3 +1,5 @@
+#include "pal3/ida_defs.h"
+#include "pal3/globals.h"
 #include "pal3/gen/Actor.h"
 
 // 0x00536160
@@ -193,10 +195,10 @@ char Actor::ProcessFrame()
   (gbRefObject **->GetChildCount()this + 774, aPal3Timenotefi_96_0, *((_BYTE *)this + 3492));
   (gbRefObject **->GetChildAt()this + 774, off_60154C, *((_BYTE *)this + 3492));
   sub_43FD90((float *)this + 774, 2);
-  sub_43FDC0((float *)this + 774, 2);
-  sub_43FDB0((float *)this + 774, 2);
-  sub_43FDD0((float *)this + 774, 2);
-  sub_43FDE0((float *)this + 774, 1);
+  (float *->GetWidth()this + 774, 2);
+  (float *->SetFrameRate()this + 774, 2);
+  (float *->GetHeight()this + 774, 2);
+  (float *->GetPosition()this + 774, 1);
   *((_DWORD *)this + 827) = 1;
   v13 = (float)*(int *)&this->m_actarray[352];
   UIWnd::FindChild((int)this + 3096, v13);
@@ -507,7 +509,7 @@ void * Actor::LoadModel()
   sprintf(Buffer, "role\\%s\\%s.ini", &this->m_actarray[20], &this->m_actarray[20]);
   if ( (int)g_pVFileSys->FileExistNum(Buffer) > 0 )
   {
-    ActorFile = (gbActorMgr *->LoadActorFile()MEMORY[0xBFDA64], Buffer);
+    ActorFile = (gbActorMgr *->LoadActorFile()g_pActorMgr, Buffer);
     *(_DWORD *)&this->m_actarray[16] = ActorFile;
     if ( ActorFile )
     {
@@ -559,7 +561,7 @@ void * Actor::LoadModel()
       v16 = 0;
       if ( g_pVFileSys->FileExistNum(Buffer) )
       {
-        v16 = (int)(gbActorMgr *->LoadActorFile()MEMORY[0xBFDA64], Buffer);
+        v16 = (int)(gbActorMgr *->LoadActorFile()g_pActorMgr, Buffer);
         if ( !v16 )
           goto LABEL_21;
         sub_5372D0((int)this, *(_DWORD **)&this->m_actarray[8], 1u, &v16);
@@ -610,7 +612,7 @@ int Actor::UpdateAllActions()
     v3 = *(_DWORD *)&this->m_actarray[4];
     if ( !v3 || i >= (*(_DWORD *)&this->m_actarray[8] - v3) >> 2 )
       break;
-    (gbActorMgr *->DestroyActor()MEMORY[0xBFDA64], *(struct gbActor **)(v3 + 4 * i));
+    (gbActorMgr *->DestroyActor()g_pActorMgr, *(struct gbActor **)(v3 + 4 * i));
   }
   result = *(_DWORD *)&this->m_actarray[8];
   *(_DWORD *)&this->m_actarray[8] = *(_DWORD *)&this->m_actarray[4];

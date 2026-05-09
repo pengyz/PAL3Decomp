@@ -1,3 +1,5 @@
+#include "pal3/ida_defs.h"
+#include "pal3/globals.h"
 #include "pal3/gen/UIFrameWnd.h"
 
 // 0x004422E0
@@ -222,7 +224,7 @@ int sub_442890(int this)
         v24 = &byte_56A634;
       UIRenderPar(v24, &v34, this + 4, *(_DWORD *)(this + 92), *(_DWORD *)(this + 72));
     }
-    return sub_445CD0(this);
+    return this->GetID();
   }
   return result;
 }
@@ -299,4 +301,12 @@ LABEL_20:
     LOWORD(pt.x) | (LOWORD(pt.y) << 16));
   *(_BYTE *)(this + 140) = 0;
   return a2->HitTest(a3);
+}
+
+// 0x00442C60
+int sub_442C60(_DWORD *this, int a2, int a3)
+{
+  *(this + 21) = a2;
+  *(this + 22) = a3;
+  return a2;
 }

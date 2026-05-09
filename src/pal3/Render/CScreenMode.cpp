@@ -1,3 +1,5 @@
+#include "pal3/ida_defs.h"
+#include "pal3/globals.h"
 #include "pal3/gen/CScreenMode.h"
 
 // 0x0053C340
@@ -52,9 +54,9 @@ int CScreenMode::PlayVideo(int a2)
 
   if ( *((_DWORD *)this + 3) )
   {
-    v3 = MEMORY[0xBFDA60];
-    (*(void (__stdcall **)(_DWORD, _DWORD, _DWORD, int, int, int, _DWORD))(**(_DWORD **)&MEMORY[0xBFDA60][1816] + 172))(
-      *(_DWORD *)&MEMORY[0xBFDA60][1816],
+    v3 = g_pGfxManager;
+    (*(void (__stdcall **)(_DWORD, _DWORD, _DWORD, int, int, int, _DWORD))(**(_DWORD **)&g_pGfxManager[1816] + 172))(
+      *(_DWORD *)&g_pGfxManager[1816],
       0,
       0,
       1,
@@ -170,7 +172,7 @@ void CScreenMode::SetAudioParam()
     if ( v4 >= 0 && v4 < *((_DWORD *)this + 5) && *(_DWORD *)(*((_DWORD *)this + 4) + 4 * v4) )
       ++v4;
     else
-      sub_4327B0((_DWORD *)this + 4, v4, 1);
+      (_DWORD *->InsertAt()this + 4, v4, 1);
   }
   v5 = *((_DWORD *)this + 1);
   for ( j = 0; j < v5; ++j )
@@ -189,7 +191,7 @@ void CScreenMode::SetAudioParam()
     if ( k >= 0 && k < v8 && *(_DWORD *)(*(_DWORD *)this + 4 * k) )
       ++k;
     else
-      sub_4327B0(this, k, 1);
+      this->InsertAt(k, 1);
   }
 }
 
@@ -308,15 +310,15 @@ void CScreenMode::AudioUpdate()
 {
   if ( (g_nGameFlags & 1) != 0 )
   {
-    if ( MEMORY[0xBFDA68] )
+    if ( g_pCamera )
     {
       gbAudioManager::SetListenerPosition(
         *((gbAudioManager **)this + 202),
-        (const struct gbVec3D *)((char *)MEMORY[0xBFDA68] + 492));
+        (const struct gbVec3D *)((char *)g_pCamera + 492));
       gbAudioManager::SetListenerOrientation(
         *((gbAudioManager **)this + 202),
-        (struct gbVec3D *)((char *)MEMORY[0xBFDA68] + 504),
-        (struct gbVec3D *)((char *)MEMORY[0xBFDA68] + 516));
+        (struct gbVec3D *)((char *)g_pCamera + 504),
+        (struct gbVec3D *)((char *)g_pCamera + 516));
     }
   }
 }

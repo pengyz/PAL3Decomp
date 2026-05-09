@@ -1,3 +1,5 @@
+#include "pal3/ida_defs.h"
+#include "pal3/globals.h"
 #include "pal3/gen/PalScriptMgr.h"
 
 // 0x00431E60
@@ -97,7 +99,7 @@ _DWORD * sub_432170(unsigned int a1, char a2)
       if ( v5 )
       {
         v5[1] = v3;
-        sub_432770(dword_D8C32C, v5);
+        dword_D8C32C->SetAt(v5);
         return v5;
       }
       else
@@ -140,7 +142,7 @@ int sub_432260(int a1)
 // 0x004322A0
 int sub_4322A0(_DWORD *this, int a2)
 {
-  return sub_432770(*(this + 3), a2);
+  return PtrArray::SetAt(*(this + 3), a2);
 }
 
 // 0x004322C0
@@ -190,7 +192,7 @@ int sub_4322C0(_DWORD *this, int a2)
           if ( v9 >= 0 && v9 < v7[1] && *(_DWORD *)(*v7 + 4 * v9) )
             ++v9;
           else
-            sub_4327B0(v9, 1);
+            v9->InsertAt(1);
         }
       }
     }
@@ -251,7 +253,7 @@ void sub_4323C0(int a1)
         if ( i >= 0 && i < v5 && *(_DWORD *)(dword_D8C328 + 4 * i) )
           ++i;
         else
-          sub_4327B0(i, 1);
+          i->InsertAt(1);
       }
     }
   }

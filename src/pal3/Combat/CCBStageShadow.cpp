@@ -1,3 +1,5 @@
+#include "pal3/ida_defs.h"
+#include "pal3/globals.h"
 #include "pal3/gen/CCBStageShadow.h"
 
 // 0x00511EE0
@@ -9,12 +11,12 @@ char sub_511EE0(_DWORD *this)
   char pExceptionObject[1024]; // [esp+10h] [ebp-800h] BYREF
   char ArgList; // [esp+410h] [ebp-400h] BYREF
 
-  v2 = (gbTexture *)(*(int (__thiscall **)(int, char *))(*(_DWORD *)MEMORY[0xBFDA60] + 8))(
-                      MEMORY[0xBFDA60],
+  v2 = (gbTexture *)(*(int (__thiscall **)(int, char *))(*(_DWORD *)g_pGfxManager + 8))(
+                      g_pGfxManager,
                       aShadowTga_0);
   *(this + 1) = v2;
   v2->LoadTexture(1);
-  *(this + 2) = gbEffectMgr::NewRenderEffect(*(gbEffectMgr **)(MEMORY[0xBFDA60] + 200), aGfxscriptShado, 0);
+  *(this + 2) = gbEffectMgr::NewRenderEffect(*(gbEffectMgr **)(g_pGfxManager + 200), aGfxscriptShado, 0);
   v3 = operator new(0x44u);
   if ( v3 )
   {
@@ -129,7 +131,7 @@ void CCBStageShadow::Create()
 
   v2 = this->m_pStage->m_pCBSystem->m_pRoleState;
   v19 = v2;
-  gbVertPoolMgr::GetDynVertBuf(*(gbVertPoolMgr **)&MEMORY[0xBFDA60][196], 0x15u);
+  gbVertPoolMgr::GetDynVertBuf(*(gbVertPoolMgr **)&g_pGfxManager[196], 0x15u);
   v18 = 0;
   v17 = (char *)&v2->m_bMustFail[0].sModel[4] + 1;
   roleIdx = 0;

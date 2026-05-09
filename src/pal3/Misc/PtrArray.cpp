@@ -1,4 +1,38 @@
+#include "pal3/ida_defs.h"
+#include "pal3/globals.h"
 #include "pal3/gen/PtrArray.h"
+
+// 0x00432660
+_DWORD * sub_432660(_DWORD *this)
+{
+  *this = 0;
+  *(this + 2) = 0;
+  *(this + 1) = 0;
+  *(this + 3) = 32;
+  return this;
+}
+
+// 0x00432770
+void sub_432770(_DWORD *this, int a2, int a3)
+{
+  if ( a2 >= *(this + 1) )
+    sub_4326A0((int)this, a2 + 1, -1);
+  *(_DWORD *)(*this + 4 * a2) = a3;
+}
+
+// 0x004327B0
+int sub_4327B0(_DWORD *this, int a2, int a3)
+{
+  int v4; // eax
+  int result; // eax
+
+  v4 = *(this + 1) - a2 - a3;
+  if ( v4 )
+    memcpy((void *)(*this + 4 * a2), (const void *)(*this + 4 * (a2 + a3)), 4 * v4);
+  result = *(this + 1) - a3;
+  *(this + 1) = result;
+  return result;
+}
 
 // 0x00434130
 int sub_434130(int a1, int a2, char a3)

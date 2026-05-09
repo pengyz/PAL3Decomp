@@ -1,3 +1,5 @@
+#include "pal3/ida_defs.h"
+#include "pal3/globals.h"
 #include "pal3/gen/CCBStage.h"
 
 // 0x004DFAA0
@@ -154,7 +156,7 @@ char __thiscall sub_4FBA70(_DWORD *this)
       {
         v18 = 2;
         if ( operator new(0x17E8u) )
-          v7 = sub_503FA0(this, MEMORY[0xBFDA60]);
+          v7 = sub_503FA0(this, g_pGfxManager);
         else
           v7 = 0;
         *(this + 3) = v7;
@@ -583,7 +585,7 @@ int CCBStage::EditorUpdate()
   float v29; // [esp+50h] [ebp-4h]
 
   v2 = 0;
-  *(_DWORD *)&MEMORY[0xBFDA60][444] = 0;
+  *(_DWORD *)&g_pGfxManager[444] = 0;
   v3 = this->m_pCam;
   if ( v3 )
     v4 = (int)&v3->OrthoSize;
@@ -593,14 +595,14 @@ int CCBStage::EditorUpdate()
   v5 = CEffectSystem::DestroyAllEffect();
   CEffectSystem::HandleViewMove((int)v5, v21);
   v6 = this->m_pCam;
-  pSceneGraph = *(gbSceneGraph **)&MEMORY[0xBFDA60][448];
+  pSceneGraph = *(gbSceneGraph **)&g_pGfxManager[448];
   if ( v6 )
     v8 = (CCBStageCam *)&v6->OrthoSize;
   else
     v8 = 0;
   pSceneGraph->Begin(v8);
   LOBYTE(pSceneGraph->?[9].m[0]) = 0;
-  v9 = *(gbMatrixStack **)&MEMORY[0xBFDA60][216];
+  v9 = *(gbMatrixStack **)&g_pGfxManager[216];
   (CameraCtrl *->SetAsCurrent()this->m_pCam, 3);
   v9->Push();
   (*(void (__thiscall **)(int, _DWORD))(*(_DWORD *)(*(_DWORD *)this->m_TempStorageWPX + 16) + 16))(
@@ -697,12 +699,12 @@ LABEL_31:
   sub_4DFA10((int *)this->?.y);
   v19 = CEffectSystem::DestroyAllEffect();
   CEffectSystem::Update((int)v19);
-  sub_4C5C20((int *)MEMORY[0xBFDA70]);
+  sub_4C5C20((int *)g_pSceneMgr);
   PushMatrixStacks();
   v29 = 0.0;
   (CGameData *->Render()&g_GameData);
   sub_4DF710(this->?.y);
-  if ( !MEMORY[0xBFDA98] )
+  if ( !g_pPalScript )
     (Logger *->Render()g_Logger);
   v29 = NAN;
   return (int)PopMatrixStacks();

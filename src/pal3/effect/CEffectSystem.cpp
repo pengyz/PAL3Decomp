@@ -1,3 +1,5 @@
+#include "pal3/ida_defs.h"
+#include "pal3/globals.h"
 #include "pal3/gen/CEffectSystem.h"
 
 // 0x004C61A0
@@ -178,15 +180,15 @@ char sub_4C6460(int this)
     v7 = 0;
     v8 = 0;
     v9 = 0;
-    if ( !(*(int (__thiscall **)(int, _DWORD *, int))(*(_DWORD *)MEMORY[0xBFDA60] + 84))(MEMORY[0xBFDA60], v6, 1) )
+    if ( !(*(int (__thiscall **)(int, _DWORD *, int))(*(_DWORD *)g_pGfxManager + 84))(g_pGfxManager, v6, 1) )
       return 0;
-    (*(void (__thiscall **)(int))(*(_DWORD *)MEMORY[0xBFDA60] + 88))(MEMORY[0xBFDA60]);
-    v3 = gbEffectMgr::NewRenderEffect(*(gbEffectMgr **)(MEMORY[0xBFDA60] + 200), aGfxscriptTrail, 0);
+    (*(void (__thiscall **)(int))(*(_DWORD *)g_pGfxManager + 88))(g_pGfxManager);
+    v3 = gbEffectMgr::NewRenderEffect(*(gbEffectMgr **)(g_pGfxManager + 200), aGfxscriptTrail, 0);
     *(_DWORD *)(this + 828) = v3;
     if ( !v3 )
       return 0;
-    if ( (*(int (__stdcall **)(_DWORD, _DWORD, int))(**(_DWORD **)(MEMORY[0xBFDA60] + 1816) + 152))(
-           *(_DWORD *)(MEMORY[0xBFDA60] + 1816),
+    if ( (*(int (__stdcall **)(_DWORD, _DWORD, int))(**(_DWORD **)(g_pGfxManager + 1816) + 152))(
+           *(_DWORD *)(g_pGfxManager + 1816),
            0,
            this + 832) < 0 )
       return 0;
@@ -195,12 +197,12 @@ char sub_4C6460(int this)
     do
     {
       if ( !(*(int (__thiscall **)(int, int, int, int))(*(_DWORD *)v5 + 12))(v5, 256, 256, v7)
-        || !(*(int (__thiscall **)(int, int))(*(_DWORD *)MEMORY[0xBFDA60] + 92))(MEMORY[0xBFDA60], v5) )
+        || !(*(int (__thiscall **)(int, int))(*(_DWORD *)g_pGfxManager + 92))(g_pGfxManager, v5) )
       {
         return 0;
       }
-      (*(void (__stdcall **)(_DWORD, _DWORD, _DWORD, int, int, int, _DWORD))(**(_DWORD **)(MEMORY[0xBFDA60] + 1816) + 172))(
-        *(_DWORD *)(MEMORY[0xBFDA60] + 1816),
+      (*(void (__stdcall **)(_DWORD, _DWORD, _DWORD, int, int, int, _DWORD))(**(_DWORD **)(g_pGfxManager + 1816) + 172))(
+        *(_DWORD *)(g_pGfxManager + 1816),
         0,
         0,
         3,
@@ -211,8 +213,8 @@ char sub_4C6460(int this)
       v5 += 96;
     }
     while ( v4 < 8 );
-    if ( (*(int (__stdcall **)(_DWORD, _DWORD, _DWORD))(**(_DWORD **)(MEMORY[0xBFDA60] + 1816) + 148))(
-           *(_DWORD *)(MEMORY[0xBFDA60] + 1816),
+    if ( (*(int (__stdcall **)(_DWORD, _DWORD, _DWORD))(**(_DWORD **)(g_pGfxManager + 1816) + 148))(
+           *(_DWORD *)(g_pGfxManager + 1816),
            0,
            *(_DWORD *)(this + 832)) < 0 )
       return 0;
@@ -248,9 +250,9 @@ void sub_4C65F0(int this, int a2)
       *(_DWORD *)(this + 8) = a2;
     v3 = *(_DWORD *)(this + 52) & 7;
     *(_DWORD *)(this + 56) = v3;
-    (*(void (__thiscall **)(int, int))(*(_DWORD *)MEMORY[0xBFDA60] + 92))(MEMORY[0xBFDA60], 96 * v3 + this + 60);
-    (*(void (__stdcall **)(_DWORD, _DWORD, _DWORD, int, int, int, _DWORD))(**(_DWORD **)(MEMORY[0xBFDA60] + 1816) + 172))(
-      *(_DWORD *)(MEMORY[0xBFDA60] + 1816),
+    (*(void (__thiscall **)(int, int))(*(_DWORD *)g_pGfxManager + 92))(g_pGfxManager, 96 * v3 + this + 60);
+    (*(void (__stdcall **)(_DWORD, _DWORD, _DWORD, int, int, int, _DWORD))(**(_DWORD **)(g_pGfxManager + 1816) + 172))(
+      *(_DWORD *)(g_pGfxManager + 1816),
       0,
       0,
       3,
@@ -291,12 +293,12 @@ char sub_4C6670(int this)
     LOBYTE(v2) = *(_BYTE *)(this + 4);
     if ( (_BYTE)v2 )
     {
-      (*(void (__stdcall **)(_DWORD, _DWORD, _DWORD))(**(_DWORD **)(MEMORY[0xBFDA60] + 1816) + 148))(
-        *(_DWORD *)(MEMORY[0xBFDA60] + 1816),
+      (*(void (__stdcall **)(_DWORD, _DWORD, _DWORD))(**(_DWORD **)(g_pGfxManager + 1816) + 148))(
+        *(_DWORD *)(g_pGfxManager + 1816),
         0,
         *(_DWORD *)(this + 832));
-      (*(void (__stdcall **)(_DWORD, _DWORD, _DWORD, int, int, int, _DWORD))(**(_DWORD **)(MEMORY[0xBFDA60] + 1816) + 172))(
-        *(_DWORD *)(MEMORY[0xBFDA60] + 1816),
+      (*(void (__stdcall **)(_DWORD, _DWORD, _DWORD, int, int, int, _DWORD))(**(_DWORD **)(g_pGfxManager + 1816) + 172))(
+        *(_DWORD *)(g_pGfxManager + 1816),
         0,
         0,
         3,
@@ -304,7 +306,7 @@ char sub_4C6670(int this)
         1065353216,
         0);
       gbCamera::SetDimention(*(gbCamera **)(this + 8), MEMORY[0xBFD6D0], MEMORY[0xBFD6D4]);
-      DynVertBuf = gbVertPoolMgr::GetDynVertBuf(*(gbVertPoolMgr **)(MEMORY[0xBFDA60] + 196), 0x114u);
+      DynVertBuf = gbVertPoolMgr::GetDynVertBuf(*(gbVertPoolMgr **)(g_pGfxManager + 196), 0x114u);
       if ( (byte_DE93A8 & 1) == 0 )
       {
         v3 = (gbColorQuad *)&unk_DE9388;

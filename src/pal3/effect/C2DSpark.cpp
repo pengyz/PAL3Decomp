@@ -1,3 +1,5 @@
+#include "pal3/ida_defs.h"
+#include "pal3/globals.h"
 #include "pal3/gen/C2DSpark.h"
 
 // 0x004D5AB0
@@ -28,11 +30,11 @@ int sub_4D5AB0(int this, int a2, int a3)
   *(float *)(this + 22532) = (float)a3;
   *(_BYTE *)(this + 22552) = 0;
   *(_DWORD *)(this + 22556) = gbEffectMgr::NewRenderEffect(
-                                *(gbEffectMgr **)(MEMORY[0xBFDA60] + 200),
+                                *(gbEffectMgr **)(g_pGfxManager + 200),
                                 aGfxscriptTlAdd,
                                 0);
-  v4 = (gbTexture *)(*(int (__thiscall **)(int, char *))(*(_DWORD *)MEMORY[0xBFDA60] + 8))(
-                      MEMORY[0xBFDA60],
+  v4 = (gbTexture *)(*(int (__thiscall **)(int, char *))(*(_DWORD *)g_pGfxManager + 8))(
+                      g_pGfxManager,
                       aEffectFlare3Bm);
   *(_DWORD *)&v20[12] = 1;
   *(_DWORD *)(this + 22560) = v4;
@@ -57,8 +59,8 @@ int sub_4D5AB0(int this, int a2, int a3)
       0x400u);
     _CxxThrowException(&v20[32], (_ThrowInfo *)&_TI1_AV_Exception__);
   }
-  v7 = (gbTexture *)(*(int (__thiscall **)(int, char *))(*(_DWORD *)MEMORY[0xBFDA60] + 8))(
-                      MEMORY[0xBFDA60],
+  v7 = (gbTexture *)(*(int (__thiscall **)(int, char *))(*(_DWORD *)g_pGfxManager + 8))(
+                      g_pGfxManager,
                       aEffectFlare2Bm);
   *(_DWORD *)&v20[8] = 1;
   *(_DWORD *)(this + 22584) = v7;
@@ -83,8 +85,8 @@ int sub_4D5AB0(int this, int a2, int a3)
       0x400u);
     _CxxThrowException(&v20[24], (_ThrowInfo *)&_TI1_AV_Exception__);
   }
-  v10 = (gbTexture *)(*(int (__thiscall **)(int, char *))(*(_DWORD *)MEMORY[0xBFDA60] + 8))(
-                       MEMORY[0xBFDA60],
+  v10 = (gbTexture *)(*(int (__thiscall **)(int, char *))(*(_DWORD *)g_pGfxManager + 8))(
+                       g_pGfxManager,
                        aEffectFlaregre);
   *(_DWORD *)v20 = 1;
   *(_DWORD *)(this + 22576) = v10;
@@ -109,8 +111,8 @@ int sub_4D5AB0(int this, int a2, int a3)
       0x400u);
     _CxxThrowException(&v20[16], (_ThrowInfo *)&_TI1_AV_Exception__);
   }
-  v13 = (gbTexture *)(*(int (__thiscall **)(int, char *))(*(_DWORD *)MEMORY[0xBFDA60] + 8))(
-                       MEMORY[0xBFDA60],
+  v13 = (gbTexture *)(*(int (__thiscall **)(int, char *))(*(_DWORD *)g_pGfxManager + 8))(
+                       g_pGfxManager,
                        aEffectFlareblu);
   *(_DWORD *)(this + 22568) = v13;
   v13->LoadTexture(1);
@@ -134,8 +136,8 @@ int sub_4D5AB0(int this, int a2, int a3)
       0x400u);
     _CxxThrowException(&v20[8], (_ThrowInfo *)&_TI1_AV_Exception__);
   }
-  v16 = (gbTexture *)(*(int (__thiscall **)(int, char *))(*(_DWORD *)MEMORY[0xBFDA60] + 8))(
-                       MEMORY[0xBFDA60],
+  v16 = (gbTexture *)(*(int (__thiscall **)(int, char *))(*(_DWORD *)g_pGfxManager + 8))(
+                       g_pGfxManager,
                        aEffectFlarebri);
   *(_DWORD *)(this + 22592) = v16;
   v16->LoadTexture(1);
@@ -373,7 +375,7 @@ int sub_4D61C0(int this)
   float v15; // [esp+14h] [ebp-8h]
   int v16; // [esp+18h] [ebp-4h]
 
-  DynVertBuf = gbVertPoolMgr::GetDynVertBuf(*(gbVertPoolMgr **)(MEMORY[0xBFDA60] + 196), 0x114u);
+  DynVertBuf = gbVertPoolMgr::GetDynVertBuf(*(gbVertPoolMgr **)(g_pGfxManager + 196), 0x114u);
   if ( *(float *)(this + 22540) > 2.0 )
   {
     GRPinput::GetCursorPos(&Point);

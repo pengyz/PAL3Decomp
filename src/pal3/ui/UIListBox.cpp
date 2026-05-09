@@ -1,3 +1,5 @@
+#include "pal3/ida_defs.h"
+#include "pal3/globals.h"
 #include "pal3/gen/UIListBox.h"
 
 // 0x0043DCD0
@@ -28,8 +30,8 @@ int UIListBox::SetSelTexture(UIWnd *this, int id, int pRect, int a4, int a5, int
   if ( a7 )
   {
     OpenBaseFile::OpenBaseFile(&a7);
-    v9 = (gbTexture *)(*(int (__thiscall **)(gbGfxManager *, int))(*(_DWORD *)MEMORY[0xBFDA60] + 8))(
-                        MEMORY[0xBFDA60],
+    v9 = (gbTexture *)(*(int (__thiscall **)(gbGfxManager *, int))(*(_DWORD *)g_pGfxManager + 8))(
+                        g_pGfxManager,
                         v7);
     this->m_pfather = (UIWnd *)v9;
     if ( v9 )
@@ -54,7 +56,7 @@ int sub_43DDF0(int *this)
       v3[16] = 1;
       _TextureLib_Data::SetLibFolder((int)(this + 4), (int)(this + 2), (int)v3, 276, 0, COERCE_FLOAT(1));
     }
-    return sub_445CD0(this);
+    return this->GetID();
   }
   return result;
 }
@@ -70,7 +72,7 @@ int sub_43DE40(gbRefObject **this)
     v2->Release();
     *(this + 17) = 0;
   }
-  return sub_445C10(this);
+  return this->UpdateChildren();
 }
 
 // 0x0043DE90
@@ -122,7 +124,7 @@ int sub_43DEF0(gbRefObject **this)
 // 0x0043DF10
 void sub_43DF10(_DWORD *this)
 {
-  sub_432660(this + 16);
+  PtrArray::Clear(this + 16);
 }
 
 // 0x0043DF20
@@ -234,15 +236,15 @@ int UIListBox::CalScrollBarRange(int this, int id, _DWORD *a3, int parent, LPCST
     v19 = 0;
     if ( a7 )
     {
-      vtable = *(int (__thiscall ***)(gbGfxManager *, CHAR *))MEMORY[0xBFDA60];
+      vtable = *(int (__thiscall ***)(gbGfxManager *, CHAR *))g_pGfxManager;
       v10 = _Texture_Info::_CalculateUV((int)dword_1894B78, v7);
-      *(_DWORD *)(this + 1144) = vtable[2](MEMORY[0xBFDA60], v10);
+      *(_DWORD *)(this + 1144) = vtable[2](g_pGfxManager, v10);
       *(_DWORD *)(this + 1148) = Parent_Data::Parent_Data((int)dword_1894B78, v7);
     }
     else
     {
-      *(_DWORD *)(this + 1144) = (*(int (__thiscall **)(gbGfxManager *, const CHAR *))(*(_DWORD *)MEMORY[0xBFDA60] + 8))(
-                                   MEMORY[0xBFDA60],
+      *(_DWORD *)(this + 1144) = (*(int (__thiscall **)(gbGfxManager *, const CHAR *))(*(_DWORD *)g_pGfxManager + 8))(
+                                   g_pGfxManager,
                                    v7);
     }
     v11 = *(gbTexture **)(this + 1144);
@@ -289,7 +291,7 @@ void sub_43E330(_DWORD *this, int a2, int a3)
   if ( a2 )
   {
     OpenBaseFile::OpenBaseFile(&a2);
-    v5 = (gbTexture *)(*(int (__thiscall **)(int, int))(*(_DWORD *)MEMORY[0xBFDA60] + 8))(MEMORY[0xBFDA60], v3);
+    v5 = (gbTexture *)(*(int (__thiscall **)(int, int))(*(_DWORD *)g_pGfxManager + 8))(g_pGfxManager, v3);
     *(this + 288) = v5;
     if ( v5 )
       v5->LoadTexture(1);
@@ -349,7 +351,7 @@ int sub_43E480(_DWORD *this, int a2, int a3, int a4)
   {
     v6 = *(this + 279);
     *(this + 279) = a4;
-    v7 = sub_43F560(this);
+    v7 = this->CreateChild();
     if ( v7 == -1 )
     {
       *(this + 279) = v6;
@@ -384,7 +386,7 @@ int sub_43E520(gbRefObject **this)
     v2->Release();
     *(this + 286) = 0;
   }
-  return sub_445C10(this);
+  return this->UpdateChildren();
 }
 
 // 0x0043E560
@@ -433,7 +435,7 @@ int sub_43E5C0(int *this, char *Source, int a3)
   {
     OpenBaseFile::OpenBaseFile(&v18);
     v21 = 0;
-    v6 = (gbTexture *)(*(int (__thiscall **)(int, char *))(*(_DWORD *)MEMORY[0xBFDA60] + 8))(MEMORY[0xBFDA60], Source);
+    v6 = (gbTexture *)(*(int (__thiscall **)(int, char *))(*(_DWORD *)g_pGfxManager + 8))(g_pGfxManager, Source);
     *(_DWORD *)v5 = v6;
     if ( v6 )
       v6->LoadTexture(1);
@@ -446,7 +448,7 @@ int sub_43E5C0(int *this, char *Source, int a3)
     *((_DWORD *)v5 + 17) = *(this + 1);
   }
   v7 = *(this + 126);
-  sub_432770(this + 125, v7, (int)v5);
+  PtrArray::SetAt(this + 125, v7, (int)v5);
   v8 = 1;
   if ( *(this + 108) > 1 )
   {
@@ -462,7 +464,7 @@ int sub_43E5C0(int *this, char *Source, int a3)
           sizeof(pExceptionObject));
         _CxxThrowException(pExceptionObject, (_ThrowInfo *)&_TI1_AV_Exception__);
       }
-      sub_432770(v9, v9[1], (int)v11);
+      v9->SetAt(v9[1], (int)v11);
       ++v8;
       v9 += 21;
     }
@@ -482,7 +484,7 @@ int sub_43E5C0(int *this, char *Source, int a3)
         sub_43F6D0(0);
         if ( *(this + 280) != -1 )
         {
-          v14 = sub_43F560(this);
+          v14 = this->CreateChild();
           v15 = *(this + 8);
           if ( v15 )
             (*(void (__thiscall **)(int, int, _DWORD, int))(*(_DWORD *)v15 + 24))(v15, 1006, *(this + 3), v14);
@@ -506,7 +508,7 @@ struct gbVFileSystem * sub_43E7D0(_DWORD *this, int a2, int a3, char *Source, in
   if ( !a5 )
     return (struct gbVFileSystem *)strncpy((char *)(v5 + 4), Source, 0x40u);
   OpenBaseFile::OpenBaseFile(&a2);
-  v6 = (gbTexture *)(*(int (__thiscall **)(int, char *))(*(_DWORD *)MEMORY[0xBFDA60] + 8))(MEMORY[0xBFDA60], Source);
+  v6 = (gbTexture *)(*(int (__thiscall **)(int, char *))(*(_DWORD *)g_pGfxManager + 8))(g_pGfxManager, Source);
   *(_DWORD *)v5 = v6;
   if ( v6 )
     v6->LoadTexture(1);
@@ -615,13 +617,13 @@ int sub_43E8A0(int *this)
       }
       while ( v10 );
     }
-    v11 = sub_43F560(this);
+    v11 = this->CreateChild();
     v12 = *(this + 297);
     if ( v12 )
     {
       v13 = *(this + 280) != -1;
       if ( *(this + 280) == -1 || !*(_DWORD *)(*(this + 299) + 4 * v11) )
-        return sub_445CD0(this);
+        return this->GetID();
     }
     else
     {
@@ -654,12 +656,12 @@ int sub_43E8A0(int *this)
           v27 = v19 + *(this + 291);
           v35 = 1;
           UIDestorySystem(v27, v23 + v26, v28, v26 + v24, this + 294, v34);
-          return sub_445CD0(this);
+          return this->GetID();
         }
         _TextureLib_Data::~_TextureLib_Data(v19, v23, v20, v24, this + 17);
       }
     }
-    return sub_445CD0(this);
+    return this->GetID();
   }
   return result;
 }

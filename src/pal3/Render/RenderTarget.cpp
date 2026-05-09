@@ -1,3 +1,5 @@
+#include "pal3/ida_defs.h"
+#include "pal3/globals.h"
 #include "pal3/gen/RenderTarget.h"
 
 // 0x004BDAC0
@@ -16,7 +18,7 @@ int sub_4BDB60(_DWORD *this)
   char pExceptionObject[1024]; // [esp+20h] [ebp-800h] BYREF
   char ArgList; // [esp+420h] [ebp-400h] BYREF
 
-  if ( !(*(int (__thiscall **)(int, int *, int))(*(_DWORD *)MEMORY[0xBFDA60] + 84))(MEMORY[0xBFDA60], &v3, 1) )
+  if ( !(*(int (__thiscall **)(int, int *, int))(*(_DWORD *)g_pGfxManager + 84))(g_pGfxManager, &v3, 1) )
   {
     qmemcpy(
       pExceptionObject,
@@ -24,7 +26,7 @@ int sub_4BDB60(_DWORD *this)
       sizeof(pExceptionObject));
     _CxxThrowException(pExceptionObject, (_ThrowInfo *)&_TI1_AV_Exception__);
   }
-  (*(void (__thiscall **)(int))(*(_DWORD *)MEMORY[0xBFDA60] + 88))(MEMORY[0xBFDA60]);
+  (*(void (__thiscall **)(int))(*(_DWORD *)g_pGfxManager + 88))(g_pGfxManager);
   (*(void (__thiscall **)(_DWORD *, int, int, int))(*(this + 25) + 12))(
     this + 25,
     MEMORY[0xBFD6D0],
@@ -66,29 +68,29 @@ bool sub_4BDC40(int *this, int a2)
   v5 = 0;
   if ( !*this )
   {
-    v5 = (*(int (__thiscall **)(int, int *))(*(_DWORD *)MEMORY[0xBFDA60] + 92))(MEMORY[0xBFDA60], this + 1);
-    (gbCamera *->SetDimention()(MEMORY[0xBFDA68] + 4), 512, 384);
-    CameraCtrl::SetAsCurrent(MEMORY[0xBFDA68], 3);
+    v5 = (*(int (__thiscall **)(int, int *))(*(_DWORD *)g_pGfxManager + 92))(g_pGfxManager, this + 1);
+    (gbCamera *->SetDimention()(g_pCamera + 4), 512, 384);
+    CameraCtrl::SetAsCurrent(g_pCamera, 3);
 LABEL_8:
     if ( v5 )
     {
       if ( (_BYTE)a2 )
       {
-        (*(void (__stdcall **)(_DWORD, _DWORD, _DWORD, int, int, int, _DWORD))(**(_DWORD **)(MEMORY[0xBFDA60] + 1816)
+        (*(void (__stdcall **)(_DWORD, _DWORD, _DWORD, int, int, int, _DWORD))(**(_DWORD **)(g_pGfxManager + 1816)
                                                                              + 172))(
-          *(_DWORD *)(MEMORY[0xBFDA60] + 1816),
+          *(_DWORD *)(g_pGfxManager + 1816),
           0,
           0,
           3,
           -16777216,
           1065353216,
           0);
-        (*(void (__thiscall **)(int))(*(_DWORD *)MEMORY[0xBFDA60] + 48))(MEMORY[0xBFDA60]);
+        (*(void (__thiscall **)(int))(*(_DWORD *)g_pGfxManager + 48))(g_pGfxManager);
         PushMatrixStacks(&v6);
         v7 = 0;
         a2 = -16777216;
         _TextureLib_Data::~_TextureLib_Data(0, 0, 512, 512, &a2);
-        (*(void (__thiscall **)(int))(*(_DWORD *)MEMORY[0xBFDA60] + 52))(MEMORY[0xBFDA60]);
+        (*(void (__thiscall **)(int))(*(_DWORD *)g_pGfxManager + 52))(g_pGfxManager);
         v7 = -1;
         PopMatrixStacks(&v6);
       }
@@ -97,7 +99,7 @@ LABEL_8:
   }
   if ( v4 > 0 && v4 <= 2 )
   {
-    v5 = (*(int (__thiscall **)(int, int *))(*(_DWORD *)MEMORY[0xBFDA60] + 92))(MEMORY[0xBFDA60], this + 25);
+    v5 = (*(int (__thiscall **)(int, int *))(*(_DWORD *)g_pGfxManager + 92))(g_pGfxManager, this + 25);
     goto LABEL_8;
   }
   return v5 != 0;

@@ -1,3 +1,5 @@
+#include "pal3/ida_defs.h"
+#include "pal3/globals.h"
 #include "pal3/gen/RenderTarget2.h"
 
 // 0x004BF780
@@ -56,8 +58,8 @@ int RenderTarget2::Init()
 
   v1 = this;
   *((_DWORD *)this + 4) = 0;
-  v2 = MEMORY[0xBFDA60];
-  v3 = *(_DWORD *)&MEMORY[0xBFDA60][1816];
+  v2 = g_pGfxManager;
+  v3 = *(_DWORD *)&g_pGfxManager[1816];
   v46 = this;
   (*(void (__stdcall **)(int, _DWORD *))(*(_DWORD *)v3 + 28))(v3, v50);
   if ( (v50[36] & 0x200000) == 0 )
@@ -330,9 +332,9 @@ void * RenderTarget2::Begin()
     v3 = CRenderTarget::GetInstance();
     LOBYTE(result) = v3->OnResetDevice(0);
     if ( (_BYTE)result )
-      return (*(void *(__stdcall **)(_DWORD, _DWORD, _DWORD, int, int, int, _DWORD))(**(_DWORD **)&MEMORY[0xBFDA60][1816]
+      return (*(void *(__stdcall **)(_DWORD, _DWORD, _DWORD, int, int, int, _DWORD))(**(_DWORD **)&g_pGfxManager[1816]
                                                                                    + 172))(
-               *(_DWORD *)&MEMORY[0xBFDA60][1816],
+               *(_DWORD *)&g_pGfxManager[1816],
                0,
                0,
                3,
@@ -358,7 +360,7 @@ void RenderTarget2::Resolve()
   {
     Instance = CRenderTarget::GetInstance();
     sub_4BDD90(Instance);
-    v3 = MEMORY[0xBFDA60];
+    v3 = g_pGfxManager;
     PushMatrixStacks();
     (*(void (__thiscall **)(gbGfxManager *))(*(_DWORD *)v3 + 60))(v3);
     v4 = CRenderTarget::GetInstance();
@@ -441,10 +443,10 @@ void RenderTarget2::Resolve()
           28);
         (*(void (__stdcall **)(_DWORD, int, _DWORD, int))(**(_DWORD **)&v3[1816] + 324))(*(_DWORD *)&v3[1816], 5, 0, 2);
       }
-      *(_DWORD *)&MEMORY[0xBFDA60][2280] = 0;
-      *(_DWORD *)&MEMORY[0xBFDA60][2284] = 0;
-      (gbGfxManager_D3D *->SetTexture()MEMORY[0xBFDA60], 0);
-      gbRenderEffect::Apply(*(gbRenderEffect **)(*(_DWORD *)&MEMORY[0xBFDA60][200] + 24));
+      *(_DWORD *)&g_pGfxManager[2280] = 0;
+      *(_DWORD *)&g_pGfxManager[2284] = 0;
+      (gbGfxManager_D3D *->SetTexture()g_pGfxManager, 0);
+      gbRenderEffect::Apply(*(gbRenderEffect **)(*(_DWORD *)&g_pGfxManager[200] + 24));
     }
     PopMatrixStacks();
   }

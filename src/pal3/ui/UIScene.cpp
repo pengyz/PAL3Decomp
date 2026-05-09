@@ -1,3 +1,5 @@
+#include "pal3/ida_defs.h"
+#include "pal3/globals.h"
 #include "pal3/gen/UIScene.h"
 
 // 0x004200A0
@@ -143,6 +145,21 @@ int UIScene::CombatCheck()
   return 1;
 }
 
+// 0x004235B0
+BOOL sub_4235B0(char *String1, char *a2)
+{
+  const char *v2; // esi
+  bool v3; // bl
+  bool v4; // al
+
+  v2 = (const char *)UISceneUpdate();
+  v3 = _strcmpi(String1, v2) == 0;
+  v4 = 1;
+  if ( a2 )
+    v4 = _strcmpi(a2, v2 + 32) == 0;
+  return v3 && v4;
+}
+
 // 0x0043A4C0
 void UIScene::LoadResource(char *path)
 {
@@ -154,7 +171,7 @@ void UIScene::LoadResource(char *path)
   v2 = 0;
   if ( path )
   {
-    sub_445F20((gbRefObject **)this + 19);
+    (gbRefObject **->MoveWindow()this + 19);
     *((_DWORD *)this + 37) = 0;
     OpenBaseFile::OpenBaseFile(&v4);
     v6 = 0;
@@ -162,7 +179,7 @@ void UIScene::LoadResource(char *path)
     while ( (int)g_pVFileSys->FileExistNum(Buffer) > 0 )
     {
       if ( !sub_445ED0() )
-        sub_445F20((gbRefObject **)this + 19);
+        (gbRefObject **->MoveWindow()this + 19);
       ++v2;
       ++*((_DWORD *)this + 37);
       sprintf(Buffer, "%s%d.tga", path, v2);
@@ -190,11 +207,21 @@ void __thiscall sub_43A770(_DWORD *this)
   *(this + 52) = 1;
 }
 
+// 0x0043A810
+// likely std method (near _Freeze, _Split, max_size, allocator<char>>, _Xran)
+void __thiscall sub_43A810(std::ios_base *this)
+{
+  *(_DWORD *)this->_data = &off_56AC70;
+  UIScene::OnMessage2();
+  (char *->MoveWindow()this + 116);
+  this->_UIWnd();
+}
+
 // 0x0043AB00
 int sub_43AB00(char *this)
 {
-  sub_445F20(this + 116);
-  return sub_445C10(this);
+  UIWnd::MoveWindow(this + 116);
+  return this->UpdateChildren();
 }
 
 // 0x0043AB20
@@ -435,5 +462,5 @@ LABEL_7:
     }
     UIRenderPar(this + 212, &v29, &v28, v23, v24);
   }
-  return sub_445CD0(this);
+  return this->GetID();
 }

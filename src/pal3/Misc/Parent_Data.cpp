@@ -1,3 +1,5 @@
+#include "pal3/ida_defs.h"
+#include "pal3/globals.h"
 #include "pal3/gen/Parent_Data.h"
 
 // 0x0053FDD0
@@ -56,7 +58,7 @@ struct gbRenderEffect *sub_53FEC0()
 
   dword_1895040 = (MEMORY[0xBFD6D0] - 800) / 2;
   dword_1895044 = (MEMORY[0xBFD6D4] - 600) / 2;
-  v0 = *(gbEffectMgr **)(MEMORY[0xBFDA60] + 200);
+  v0 = *(gbEffectMgr **)(g_pGfxManager + 200);
   dword_1895048 = (int)v0->NewTrivalEffect(0);
   dword_189504C = (int)v0->NewRenderEffect(aGfxscriptUiTlG, 0);
   dword_1895050 = (int)v0->NewRenderEffect(aGfxscriptUiNot, 0);

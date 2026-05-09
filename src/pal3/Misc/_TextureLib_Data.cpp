@@ -1,3 +1,5 @@
+#include "pal3/ida_defs.h"
+#include "pal3/globals.h"
 #include "pal3/gen/_TextureLib_Data.h"
 
 // 0x0053FFA0
@@ -67,7 +69,7 @@ void sub_540070(int a1, int a2, int a3, int a4, float *a5)
   v6[3] = (float)a2;
   v6[2] = (float)a3;
   v6[1] = (float)a4;
-  DynVertBuf = gbVertPoolMgr::GetDynVertBuf(*(gbVertPoolMgr **)(MEMORY[0xBFDA60] + 196), 0x114u);
+  DynVertBuf = gbVertPoolMgr::GetDynVertBuf(*(gbVertPoolMgr **)(g_pGfxManager + 196), 0x114u);
   DynVertBuf->RenderUIQuad((struct gbUIQuad *)v6, 1, (struct gbRenderEffect *)dword_1895050, 0);
 }
 
@@ -119,7 +121,7 @@ void sub_5400E0(int *a1, struct gbTextureArray *a2, int a3, int a4)
   v10[3] = 1.0 - ((double)a1[1] + (double)a1[1]) / v19;
   v10[2] = ((double)a1[2] + (double)a1[2]) / v7 - 1.0;
   v10[1] = 1.0 - ((double)a1[3] + (double)a1[3]) / v19;
-  DynVertBuf = gbVertPoolMgr::GetDynVertBuf(*(gbVertPoolMgr **)(MEMORY[0xBFDA60] + 196), 0x15u);
+  DynVertBuf = gbVertPoolMgr::GetDynVertBuf(*(gbVertPoolMgr **)(g_pGfxManager + 196), 0x15u);
   DynVertBuf->RenderUIQuad((struct gbUIQuad *)v10, 1, v8, a2);
 }
 
@@ -215,7 +217,7 @@ void sub_540210(_DWORD *a1, int *a2, struct gbTextureArray *a3, int a4, unsigned
     v11 = (struct gbRenderEffect *)dword_1895048;
     v21 = 1.0 - (v16 + v16) / v30;
   }
-  DynVertBuf = gbVertPoolMgr::GetDynVertBuf(*(gbVertPoolMgr **)(MEMORY[0xBFDA60] + 196), a5);
+  DynVertBuf = gbVertPoolMgr::GetDynVertBuf(*(gbVertPoolMgr **)(g_pGfxManager + 196), a5);
   DynVertBuf->RenderUIQuad((struct gbUIQuad *)&v20, 1, v11, a3);
 }
 
@@ -322,7 +324,7 @@ void sub_540440(
   }
   v19 = v12 - -0.5;
   v21 = v14 - -0.5;
-  DynVertBuf = gbVertPoolMgr::GetDynVertBuf(*(gbVertPoolMgr **)(MEMORY[0xBFDA60] + 196), a4);
+  DynVertBuf = gbVertPoolMgr::GetDynVertBuf(*(gbVertPoolMgr **)(g_pGfxManager + 196), a4);
   DynVertBuf->RenderUIQuad((struct gbUIQuad *)&v19, 1, v13, a3);
 }
 
@@ -383,7 +385,7 @@ void sub_540650(int a1, int a2, int a3, int a4, int *a5, struct gbTextureArray *
   v18[1] = v14;
   v18[0] = v12 - -0.5;
   v18[2] = v13 - -0.5;
-  DynVertBuf = gbVertPoolMgr::GetDynVertBuf(*(gbVertPoolMgr **)(MEMORY[0xBFDA60] + 196), 0x114u);
+  DynVertBuf = gbVertPoolMgr::GetDynVertBuf(*(gbVertPoolMgr **)(g_pGfxManager + 196), 0x114u);
   if ( !a7 )
   {
     v17 = a6;
@@ -455,7 +457,7 @@ void sub_5407A0(int a1, int a2, int a3, int a4, int *a5, struct gbTextureArray *
   v14[1] = v12;
   v14[0] = v10 - -0.5;
   v14[2] = v11 - -0.5;
-  DynVertBuf = gbVertPoolMgr::GetDynVertBuf(*(gbVertPoolMgr **)(MEMORY[0xBFDA60] + 196), 0x114u);
+  DynVertBuf = gbVertPoolMgr::GetDynVertBuf(*(gbVertPoolMgr **)(g_pGfxManager + 196), 0x114u);
   DynVertBuf->RenderUIQuad((struct gbUIQuad *)v14, 1, (struct gbRenderEffect *)dword_189505C, a6);
 }
 
@@ -517,7 +519,7 @@ void sub_5408E0(_DWORD *a1, int *a2, int *a3, struct gbTextureArray *a4, unsigne
     v10 = (double)a2[3];
   }
   v13[1] = v10;
-  DynVertBuf = gbVertPoolMgr::GetDynVertBuf(*(gbVertPoolMgr **)(MEMORY[0xBFDA60] + 196), 0x114u);
+  DynVertBuf = gbVertPoolMgr::GetDynVertBuf(*(gbVertPoolMgr **)(g_pGfxManager + 196), 0x114u);
   DynVertBuf->RenderUIQuad((struct gbUIQuad *)v13, 1, (struct gbRenderEffect *)dword_1895054, a4);
 }
 
@@ -568,6 +570,6 @@ void sub_540A20(int a1, int a2, int a3, int a4, int *a5, struct gbTextureArray *
   v11[1] = v9;
   v11[0] = v7 - -0.5;
   v11[2] = v8 - -0.5;
-  DynVertBuf = gbVertPoolMgr::GetDynVertBuf(*(gbVertPoolMgr **)(MEMORY[0xBFDA60] + 196), 0x114u);
+  DynVertBuf = gbVertPoolMgr::GetDynVertBuf(*(gbVertPoolMgr **)(g_pGfxManager + 196), 0x114u);
   DynVertBuf->RenderUIQuad((struct gbUIQuad *)v11, 1, (struct gbRenderEffect *)dword_1895058, a6);
 }

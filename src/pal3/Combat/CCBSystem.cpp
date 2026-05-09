@@ -1,3 +1,5 @@
+#include "pal3/ida_defs.h"
+#include "pal3/globals.h"
 #include "pal3/gen/CCBSystem.h"
 
 // 0x004DB3A0
@@ -693,7 +695,7 @@ char __thiscall sub_5125E0(_DWORD *this)
               result = std::v15->do_always_noconv();
               if ( result )
               {
-                *(this + 8) = MEMORY[0xBFDA70];
+                *(this + 8) = g_pSceneMgr;
                 CCBSystem::ProcAI(1.0);
                 result = CCBSystem::CreateObj2(this + 7);
                 if ( result )
@@ -707,7 +709,7 @@ char __thiscall sub_5125E0(_DWORD *this)
                       v18 = v17 + 4;
                     else
                       v18 = 0;
-                    v19 = v16->Create(MEMORY[0xBFDA60], v18, (int)this);
+                    v19 = v16->Create(g_pGfxManager, v18, (int)this);
                   }
                   else
                   {
@@ -723,7 +725,7 @@ char __thiscall sub_5125E0(_DWORD *this)
                       v22 = v21 + 4;
                     else
                       v22 = 0;
-                    v23 = v20->Create(MEMORY[0xBFDA60], v22, (int)this);
+                    v23 = v20->Create(g_pGfxManager, v22, (int)this);
                   }
                   else
                   {
@@ -955,7 +957,7 @@ char CCBSystem::ProcWeaponSkill()
     ++v10;
   }
   sub_4C6170(this->m_pEffectSimple);
-  gbSceneGraph::ResetBladeMgr(*(gbSceneGraph **)&MEMORY[0xBFDA60][448]);
+  gbSceneGraph::ResetBladeMgr(*(gbSceneGraph **)&g_pGfxManager[448]);
   if ( this->m_pRoleState->? && *((_BYTE *)CEffectSystem::DestroyAllEffect() + 4) )
   {
     CCBStageCam::ClearFinishedTask((int)this->m_pStage->m_pCamControl, 20);
@@ -1190,7 +1192,7 @@ int CCBSystem::GetRenderFlag()
   *(_BYTE *)(v0 + 116) = v4;
   if ( v4 == 1 )
   {
-    gbSceneGraph::ResetBladeMgr(*(gbSceneGraph **)&MEMORY[0xBFDA60][448]);
+    gbSceneGraph::ResetBladeMgr(*(gbSceneGraph **)&g_pGfxManager[448]);
     sub_4CEA80(*(_DWORD **)(v2 + 44));
     LOBYTE(result) = sub_4CEA80(*(_DWORD **)(v2 + 48));
     if ( *(_DWORD *)(v2 + 124) == 3 )

@@ -1,3 +1,5 @@
+#include "pal3/ida_defs.h"
+#include "pal3/globals.h"
 #include "pal3/gen/CCBCamControl.h"
 
 // 0x005081D0
@@ -179,11 +181,11 @@ char sub_5084C0(int this)
   (gbVolModNode *->SetVolModObj()(this + 16), (struct gbVolumeModifier *)v2);
   v2->Release();
   *(_DWORD *)(this + 2436) = gbEffectMgr::NewRenderEffect(
-                               *(gbEffectMgr **)(MEMORY[0xBFDA60] + 200),
+                               *(gbEffectMgr **)(g_pGfxManager + 200),
                                aGfxscriptGeomD,
                                0x401u);
   *(_DWORD *)(this + 2440) = gbEffectMgr::NewRenderEffect(
-                               *(gbEffectMgr **)(MEMORY[0xBFDA60] + 200),
+                               *(gbEffectMgr **)(g_pGfxManager + 200),
                                aGfxscriptGeomD_0,
                                0x441u);
   return 1;

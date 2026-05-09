@@ -1,3 +1,5 @@
+#include "pal3/ida_defs.h"
+#include "pal3/globals.h"
 #include "pal3/gen/Object3D.h"
 
 // 0x0047CB70
@@ -424,13 +426,13 @@ void __userpurge sub_47D440(int a1@<ecx>, int a2, int a3, int a4, gbMatrixStack 
   v6 = *(struct gbCamera ***)(a1 + 84);
   if ( !v6 || !*(_BYTE *)a1 || !*(_BYTE *)(a1 + 80) )
     return;
-  v7 = *(gbSceneGraph **)(MEMORY[0xBFDA60] + 448);
+  v7 = *(gbSceneGraph **)(g_pGfxManager + 448);
   v16 = v7;
   v7->Begin(*v6);
   v7->pAllRObj[19244] = 0;
   v8 = a5;
   if ( !a5 )
-    v8 = *(gbMatrixStack **)(MEMORY[0xBFDA60] + 216);
+    v8 = *(gbMatrixStack **)(g_pGfxManager + 216);
   gbCamera::SetAsCurrent(**(gbCamera ***)(a1 + 84), 3);
   v8->Push();
   v8->Translate((struct gbVec3D *)(a1 + 32));
@@ -773,7 +775,7 @@ int Object3D::Create()
     0x158u,
     5,
     (void (__thiscall *)(void *))UIScene::_UIScene,
-    (void (__thiscall *)(void *))sub_43A810);
+    (void (__thiscall *)(void *))UIScene::Destroy2);
   UIItem::Refresh((int)this + 2456);
   *(_DWORD *)this->m_isLoadObj = &off_56B8A4;
   *(_DWORD *)&this->m_isLoadObj[72] = &off_56B898;

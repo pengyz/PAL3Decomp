@@ -1,3 +1,5 @@
+#include "pal3/ida_defs.h"
+#include "pal3/globals.h"
 #include "pal3/gen/CCBSkillWindow.h"
 
 // 0x0051C260
@@ -89,11 +91,11 @@ char sub_51C330(int this, _DWORD *a2, int a3)
   a2[3] = 58;
   (*(void (__thiscall **)(_DWORD, int, _DWORD *, int))(*(_DWORD *)*v8 + 16))(*v8, 545, a2, this);
   v9 = UIWnd::SetRect(*(_DWORD **)(this + 156), v24);
-  sub_43FEC0(*(_DWORD **)(this + 156), v9);
+  UIWnd::AddChild(*(_DWORD **)(this + 156), v9);
   UIWnd::GetChildCount(*(gbRefObject ***)(this + 156), aUiCombatResult_4, 0);
   UIWnd::GetChildAt(*(gbRefObject ***)(this + 156), aUiCombatResult_1, 0);
   sub_43FD90(*(float **)(this + 156), 3);
-  sub_43FDB0(*(float **)(this + 156), -2);
+  UIWnd::SetFrameRate(*(float **)(this + 156), -2);
   (**(void (__thiscall ***)(_DWORD, int))*v8)(*v8, 1);
   v10 = (_DWORD *)(this + 160);
   CCBLineupWindow::Render(this + 160);
@@ -103,11 +105,11 @@ char sub_51C330(int this, _DWORD *a2, int a3)
   a2[3] = 83;
   (*(void (__thiscall **)(_DWORD, int, _DWORD *, int))(*(_DWORD *)*v10 + 16))(*v10, 546, a2, this);
   v11 = UIWnd::SetRect(*(_DWORD **)(this + 160), v24);
-  sub_43FEC0(*(_DWORD **)(this + 160), v11);
+  UIWnd::AddChild(*(_DWORD **)(this + 160), v11);
   UIWnd::GetChildCount(*(gbRefObject ***)(this + 160), aUiCombatResult_4, 0);
   UIWnd::GetChildAt(*(gbRefObject ***)(this + 160), aUiCombatResult_2, 0);
   sub_43FD90(*(float **)(this + 160), 3);
-  sub_43FDB0(*(float **)(this + 160), -2);
+  UIWnd::SetFrameRate(*(float **)(this + 160), -2);
   (**(void (__thiscall ***)(_DWORD, int))*v10)(*v10, 1);
   v12 = (_DWORD *)(this + 164);
   CCBLineupWindow::Render(this + 164);
@@ -117,11 +119,11 @@ char sub_51C330(int this, _DWORD *a2, int a3)
   a2[3] = 109;
   (*(void (__thiscall **)(_DWORD, int, _DWORD *, int))(*(_DWORD *)*v12 + 16))(*v12, 547, a2, this);
   v13 = UIWnd::SetRect(*(_DWORD **)(this + 164), v24);
-  sub_43FEC0(*(_DWORD **)(this + 164), v13);
+  UIWnd::AddChild(*(_DWORD **)(this + 164), v13);
   UIWnd::GetChildCount(*(gbRefObject ***)(this + 164), aUiCombatResult_4, 0);
   UIWnd::GetChildAt(*(gbRefObject ***)(this + 164), aUiCombatResult_3, 0);
   sub_43FD90(*(float **)(this + 164), 3);
-  sub_43FDB0(*(float **)(this + 164), -2);
+  UIWnd::SetFrameRate(*(float **)(this + 164), -2);
   (**(void (__thiscall ***)(_DWORD, int))*v12)(*v12, 1);
   v14 = (_DWORD *)(this + 152);
   CCBLineupWindow::Destroy(this + 152);

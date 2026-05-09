@@ -1,3 +1,5 @@
+#include "pal3/ida_defs.h"
+#include "pal3/globals.h"
 #include "pal3/gen/UIDialog.h"
 
 // 0x004503D0
@@ -13,8 +15,8 @@ void UIDialog::Create(int id, int x, int y, int parent, char *tex)
   pRect[1] = 0;
   pRect[0] = 0;
   this->Create(id, pRect, parent);
-  v7 = (gbTexture *)(*(int (__thiscall **)(gbGfxManager *, char *))(*(_DWORD *)MEMORY[0xBFDA60] + 8))(
-                      MEMORY[0xBFDA60],
+  v7 = (gbTexture *)(*(int (__thiscall **)(gbGfxManager *, char *))(*(_DWORD *)g_pGfxManager + 8))(
+                      g_pGfxManager,
                       tex);
   this->m_bvisible = (int)v7;
   if ( v7 )

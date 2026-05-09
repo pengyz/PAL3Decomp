@@ -1,3 +1,5 @@
+#include "pal3/ida_defs.h"
+#include "pal3/globals.h"
 #include "pal3/gen/CCBUI.h"
 
 // 0x004DC560
@@ -412,7 +414,7 @@ char sub_5177B0(gbRefObject ***this)
   UIWnd::SetShow(*(this + 270), 1);
   UIWnd::GetChild(*(this + 270), &v11);
   ((void (__thiscall *)(_DWORD, _DWORD))(**(this + 270))->RefCount)(*(this + 270), 0);
-  sub_442C60(*(this + 270), 5, 63);
+  UIFrameWnd::SetPosition(*(this + 270), 5, 63);
   sub_442C80(*(this + 270), 190);
   return 1;
 }
@@ -1548,8 +1550,8 @@ char __userpurge sub_519BD0@<al>(
   v22 = -1862270977;
   v12->SetShow(0);
   UIWnd::GetChild(*(_DWORD **)(a1 + 72), &v22);
-  sub_442C60(*(_DWORD **)(a1 + 72), 40, 150);
-  sub_442C60(*(_DWORD **)(a1 + 72), 0, 0);
+  UIFrameWnd::SetPosition(*(_DWORD **)(a1 + 72), 40, 150);
+  UIFrameWnd::SetPosition(*(_DWORD **)(a1 + 72), 0, 0);
   (***(void (__thiscall ****)(_DWORD, int))(a1 + 72))(*(_DWORD *)(a1 + 72), 1);
   v13 = &dword_570110;
   v14 = (char **)(a1 + 80);
@@ -1908,7 +1910,7 @@ char sub_51A430(int this, _DWORD *a2, int a3)
   v13 = -1879048192;
   v6->SetShow(0);
   UIWnd::GetChild(*(_DWORD **)(this + 72), &v13);
-  sub_442C60(*(_DWORD **)(this + 72), 40, 170);
+  UIFrameWnd::SetPosition(*(_DWORD **)(this + 72), 40, 170);
   v7 = &dword_57011C;
   v8 = (char **)(this + 76);
   do

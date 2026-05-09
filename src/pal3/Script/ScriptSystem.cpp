@@ -1,3 +1,5 @@
+#include "pal3/ida_defs.h"
+#include "pal3/globals.h"
 #include "pal3/gen/ScriptSystem.h"
 
 // 0x0040C630
@@ -117,7 +119,7 @@ char ScriptSystem::Render2()
   if ( g_SceneMgr.?[225] )
   {
     v2 = 32.0 / (double)MEMORY[0xBFD6D4];
-    v3 = *(_DWORD *)(*(_DWORD *)&MEMORY[0xBFDA60][208] + 12);
+    v3 = *(_DWORD *)(*(_DWORD *)&g_pGfxManager[208] + 12);
     *(float *)(v3 + 48) = 32.0 / (double)MEMORY[0xBFD6D0];
     *(float *)(v3 + 52) = v2;
     *(_DWORD *)(v3 + 44) = -2134325048;
@@ -132,7 +134,7 @@ char ScriptSystem::Render2()
         {
           memset(pOut, 0, sizeof(pOut));
           (RoleSystem *->GetDirection()(v6 - 158), pOut);
-          (gbCamera *->PointWorldToScr()&MEMORY[0xBFDA68]->OrthoSize, (struct gbVec3D *)pOut, &v8, (float *)&v9);
+          (gbCamera *->PointWorldToScr()&g_pCamera->OrthoSize, (struct gbVec3D *)pOut, &v8, (float *)&v9);
           sprintf(Buffer, "%d", *((unsigned __int8 *)v6 - 332));
           v7 = v8 - 0.050000001;
           (*(void (__thiscall **)(int, char *, _DWORD, int, int, int))(*(_DWORD *)v3 + 16))(
@@ -213,8 +215,8 @@ int ScriptSystem::Execute(int a1, char a2)
   RoleSystemNotify((int)&g_SceneMgr.m_info[8704 * a1 + 7120]);
   CameraSystem::Init((int)&g_SceneMgr.m_info[8704 * a1 + 7120]);
   *(_DWORD *)&g_SceneMgr.m_info[51512] = a1;
-  if ( *((_DWORD *)MEMORY[0xBFDA68] + 112) )
-    (RoleSystem *->SetActive()MEMORY[0xBFDA68], (int)&g_SceneMgr.m_info[8704 * a1 + 7120]);
+  if ( *((_DWORD *)g_pCamera + 112) )
+    (RoleSystem *->SetActive()g_pCamera, (int)&g_SceneMgr.m_info[8704 * a1 + 7120]);
   if ( a1 == 1 && dword_C025EC == 10 )
   {
     sub_419090((float *)&dword_C02198);
@@ -300,7 +302,7 @@ int ScriptSystem::RunScript(int a1, int a2, int a3)
       v11 = 0;
     v16 = -1;
     v11->SetJoystickPos(Buffer, 0);
-    sub_432770(&MEMORY[0xBFDB80], MEMORY[0xBFDB84], (int)v11);
+    PtrArray::SetAt(&MEMORY[0xBFDB80], MEMORY[0xBFDB84], (int)v11);
     LOBYTE(result) = a2;
     if ( (_BYTE)a2 )
     {
@@ -367,7 +369,7 @@ int ScriptSystem::RunWithDelay(float delay, int a2, int a3)
       v10 = 0;
     v16 = -1;
     v10->SetJoystickPos(Buffer, 0);
-    sub_432770(&MEMORY[0xBFDB80], MEMORY[0xBFDB84], (int)v10);
+    PtrArray::SetAt(&MEMORY[0xBFDB80], MEMORY[0xBFDB84], (int)v10);
     LOBYTE(result) = a2;
     if ( (_BYTE)a2 )
     {

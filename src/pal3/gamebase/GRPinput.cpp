@@ -1,3 +1,5 @@
+#include "pal3/ida_defs.h"
+#include "pal3/globals.h"
 #include "pal3/gen/GRPinput.h"
 
 // 0x004020E0
@@ -518,7 +520,7 @@ char sub_402D20(int this)
       {
         v21 = *(_DWORD *)(this + 32);
         v4 = 40.0 / (double)MEMORY[0xBFD6D4];
-        v5 = *(_DWORD *)(*(_DWORD *)(MEMORY[0xBFDA60] + 208) + 8);
+        v5 = *(_DWORD *)(*(_DWORD *)(g_pGfxManager + 208) + 8);
         v20 = (unsigned int)(MEMORY[0xBFD6D0] - 10 * *(_DWORD *)(this + 16)) >> 1;
         *(float *)(v5 + 48) = 40.0 / (double)MEMORY[0xBFD6D0];
         *(float *)(v5 + 52) = v4;
@@ -561,7 +563,7 @@ char sub_402D20(int this)
         v24 = *(float *)(MEMORY[0xC116EC] + 164);
         v25 = *(_DWORD *)(MEMORY[0xC116EC] + 168);
         v24 = v18 * 20.0 + v24 + 64.0;
-        (gbCamera *->PointWorldToScr()(MEMORY[0xBFDA68] + 4), (struct gbVec3D *)&v23, v22, (float *)&v20);
+        (gbCamera *->PointWorldToScr()(g_pCamera + 4), (struct gbVec3D *)&v23, v22, (float *)&v20);
         v9 = 1.0 - v18;
         if ( v9 < 0.0 )
           v9 = 0.0;
@@ -569,7 +571,7 @@ char sub_402D20(int this)
         if ( !(_BYTE)v10 )
           *(_BYTE *)(this + 4) = 0;
         v11 = 32.0 / (double)MEMORY[0xBFD6D4];
-        v12 = *(_DWORD *)(*(_DWORD *)(MEMORY[0xBFDA60] + 208) + 12);
+        v12 = *(_DWORD *)(*(_DWORD *)(g_pGfxManager + 208) + 12);
         *(float *)(v12 + 48) = 32.0 / (double)MEMORY[0xBFD6D0];
         *(float *)(v12 + 52) = v11;
         if ( gbColorQuad::ColorQuadFmt )

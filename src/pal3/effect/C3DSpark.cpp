@@ -1,3 +1,5 @@
+#include "pal3/ida_defs.h"
+#include "pal3/globals.h"
 #include "pal3/gen/C3DSpark.h"
 
 // 0x004D6670
@@ -35,9 +37,9 @@ _DWORD * sub_4D6670(_DWORD *this)
   }
   while ( v2 );
   memset(this, 0, 0x3E30u);
-  *(this + 1793) = gbEffectMgr::NewRenderEffect(*(gbEffectMgr **)(MEMORY[0xBFDA60] + 200), aGfxscriptAddit, 0);
-  v4 = (gbTexture *)(*(int (__thiscall **)(int, char *))(*(_DWORD *)MEMORY[0xBFDA60] + 8))(
-                      MEMORY[0xBFDA60],
+  *(this + 1793) = gbEffectMgr::NewRenderEffect(*(gbEffectMgr **)(g_pGfxManager + 200), aGfxscriptAddit, 0);
+  v4 = (gbTexture *)(*(int (__thiscall **)(int, char *))(*(_DWORD *)g_pGfxManager + 8))(
+                      g_pGfxManager,
                       aEffectFlare3Bm);
   *(this + 1794) = v4;
   v4->LoadTexture(1);
@@ -61,8 +63,8 @@ _DWORD * sub_4D6670(_DWORD *this)
       sizeof(pExceptionObject));
     _CxxThrowException(pExceptionObject, (_ThrowInfo *)&_TI1_AV_Exception__);
   }
-  v7 = (gbTexture *)(*(int (__thiscall **)(int, char *))(*(_DWORD *)MEMORY[0xBFDA60] + 8))(
-                      MEMORY[0xBFDA60],
+  v7 = (gbTexture *)(*(int (__thiscall **)(int, char *))(*(_DWORD *)g_pGfxManager + 8))(
+                      g_pGfxManager,
                       aEffectFlare2Bm);
   *(this + 1800) = v7;
   v7->LoadTexture(1);
@@ -86,8 +88,8 @@ _DWORD * sub_4D6670(_DWORD *this)
       sizeof(pExceptionObject));
     _CxxThrowException(pExceptionObject, (_ThrowInfo *)&_TI1_AV_Exception__);
   }
-  v10 = (gbTexture *)(*(int (__thiscall **)(int, char *))(*(_DWORD *)MEMORY[0xBFDA60] + 8))(
-                       MEMORY[0xBFDA60],
+  v10 = (gbTexture *)(*(int (__thiscall **)(int, char *))(*(_DWORD *)g_pGfxManager + 8))(
+                       g_pGfxManager,
                        aEffectFlaregre);
   *(this + 1798) = v10;
   v10->LoadTexture(1);
@@ -111,8 +113,8 @@ _DWORD * sub_4D6670(_DWORD *this)
       sizeof(pExceptionObject));
     _CxxThrowException(pExceptionObject, (_ThrowInfo *)&_TI1_AV_Exception__);
   }
-  v13 = (gbTexture *)(*(int (__thiscall **)(int, char *))(*(_DWORD *)MEMORY[0xBFDA60] + 8))(
-                       MEMORY[0xBFDA60],
+  v13 = (gbTexture *)(*(int (__thiscall **)(int, char *))(*(_DWORD *)g_pGfxManager + 8))(
+                       g_pGfxManager,
                        aEffectFlareblu);
   *(this + 1796) = v13;
   v13->LoadTexture(1);
@@ -136,8 +138,8 @@ _DWORD * sub_4D6670(_DWORD *this)
       sizeof(pExceptionObject));
     _CxxThrowException(pExceptionObject, (_ThrowInfo *)&_TI1_AV_Exception__);
   }
-  v16 = (gbTexture *)(*(int (__thiscall **)(int, char *))(*(_DWORD *)MEMORY[0xBFDA60] + 8))(
-                       MEMORY[0xBFDA60],
+  v16 = (gbTexture *)(*(int (__thiscall **)(int, char *))(*(_DWORD *)g_pGfxManager + 8))(
+                       g_pGfxManager,
                        aEffectFlarebri);
   *(this + 1802) = v16;
   v16->LoadTexture(1);
@@ -335,7 +337,7 @@ void __usercall sub_4D6BC0(int a1@<ecx>, struct gbVec3D *a2@<edi>)
   int v17; // [esp+28h] [ebp-8h]
   float v18; // [esp+2Ch] [ebp-4h]
 
-  v2 = *(gbMatrixStack **)(MEMORY[0xBFDA60] + 216);
+  v2 = *(gbMatrixStack **)(g_pGfxManager + 216);
   v15 = a1;
   v17 = 0;
   v16 = 0;
@@ -381,7 +383,7 @@ void __usercall sub_4D6BC0(int a1@<ecx>, struct gbVec3D *a2@<edi>)
     while ( v16 < *(_DWORD *)(a1 + 7168) );
     if ( v17 > 0 )
     {
-      gbVertPoolMgr::GetDynVertBuf(*(gbVertPoolMgr **)(MEMORY[0xBFDA60] + 196), 0x15u);
+      gbVertPoolMgr::GetDynVertBuf(*(gbVertPoolMgr **)(g_pGfxManager + 196), 0x15u);
       v2->Push();
       v2->LoadIdentity();
       (struct gbGeomQuad *->RenderGeomQuad()(v15 + 7216),

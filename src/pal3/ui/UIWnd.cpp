@@ -1,4 +1,20 @@
+#include "pal3/ida_defs.h"
+#include "pal3/globals.h"
 #include "pal3/gen/UIWnd.h"
+
+// 0x0043F560
+int sub_43F560(int *this)
+{
+  int v1; // edx
+
+  if ( *(this + 108) <= 0 )
+    return -1;
+  v1 = *(this + 280);
+  if ( v1 == -1 )
+    return -1;
+  else
+    return v1 + *(this + 279);
+}
 
 // 0x0043FA00
 void sub_43FA00(gbRefObject **this, LPCSTR lpString, char a3)
@@ -21,15 +37,15 @@ void sub_43FA00(gbRefObject **this, LPCSTR lpString, char a3)
     *(this + 44) = 0;
     if ( v6 )
     {
-      *(this + 43) = (gbRefObject *)(*(int (__thiscall **)(int, const CHAR *))(*(_DWORD *)MEMORY[0xBFDA60] + 8))(
-                                      MEMORY[0xBFDA60],
+      *(this + 43) = (gbRefObject *)(*(int (__thiscall **)(int, const CHAR *))(*(_DWORD *)g_pGfxManager + 8))(
+                                      g_pGfxManager,
                                       v3);
     }
     else
     {
-      v7 = *(_DWORD *)MEMORY[0xBFDA60];
+      v7 = *(_DWORD *)g_pGfxManager;
       v8 = v3->_CalculateUV();
-      *(this + 43) = (gbRefObject *)(*(int (__thiscall **)(int, int))(v7 + 8))(MEMORY[0xBFDA60], v8);
+      *(this + 43) = (gbRefObject *)(*(int (__thiscall **)(int, int))(v7 + 8))(g_pGfxManager, v8);
       *(this + 44) = (gbRefObject *)v3->Parent_Data();
     }
     v9 = (gbTexture *)*(this + 43);
@@ -60,15 +76,15 @@ void sub_43FAE0(gbRefObject **this, LPCSTR lpString, char a3)
     *(this + 46) = 0;
     if ( v6 )
     {
-      *(this + 45) = (gbRefObject *)(*(int (__thiscall **)(int, const CHAR *))(*(_DWORD *)MEMORY[0xBFDA60] + 8))(
-                                      MEMORY[0xBFDA60],
+      *(this + 45) = (gbRefObject *)(*(int (__thiscall **)(int, const CHAR *))(*(_DWORD *)g_pGfxManager + 8))(
+                                      g_pGfxManager,
                                       v3);
     }
     else
     {
-      v7 = *(_DWORD *)MEMORY[0xBFDA60];
+      v7 = *(_DWORD *)g_pGfxManager;
       v8 = v3->_CalculateUV();
-      *(this + 45) = (gbRefObject *)(*(int (__thiscall **)(int, int))(v7 + 8))(MEMORY[0xBFDA60], v8);
+      *(this + 45) = (gbRefObject *)(*(int (__thiscall **)(int, int))(v7 + 8))(g_pGfxManager, v8);
       *(this + 46) = (gbRefObject *)v3->Parent_Data();
     }
     v9 = (gbTexture *)*(this + 45);
@@ -111,6 +127,30 @@ LABEL_7:
   }
 }
 
+// 0x0043FDB0
+void sub_43FDB0(float *this, int a2)
+{
+  *(this + 34) = (float)a2;
+}
+
+// 0x0043FDC0
+void sub_43FDC0(float *this, int a2)
+{
+  *(this + 35) = (float)a2;
+}
+
+// 0x0043FDD0
+void sub_43FDD0(float *this, int a2)
+{
+  *(this + 36) = (float)a2;
+}
+
+// 0x0043FDE0
+void sub_43FDE0(float *this, int a2)
+{
+  *(this + 37) = (float)a2;
+}
+
 // 0x0043FDF0
 void sub_43FDF0(int this, float a2)
 {
@@ -142,6 +182,27 @@ void sub_43FDF0(int this, float a2)
   }
 }
 
+// 0x0043FEC0
+int sub_43FEC0(_DWORD *this, _DWORD *a2)
+{
+  _DWORD *v2; // edx
+  _DWORD *v3; // ecx
+  int result; // eax
+
+  v2 = this + 19;
+  v3 = this + 4;
+  *v2 = *a2;
+  v2[1] = a2[1];
+  v2[2] = a2[2];
+  v2[3] = a2[3];
+  *v3 = *a2;
+  v3[1] = a2[1];
+  v3[2] = a2[2];
+  result = a2[3];
+  v3[3] = result;
+  return result;
+}
+
 // 0x004426B0
 void sub_4426B0(gbRefObject **this, LPCSTR lpString1, char a3)
 {
@@ -164,15 +225,15 @@ void sub_4426B0(gbRefObject **this, LPCSTR lpString1, char a3)
     *(this + 29) = 0;
     if ( v6 )
     {
-      v7 = *(_DWORD *)MEMORY[0xBFDA60];
+      v7 = *(_DWORD *)g_pGfxManager;
       v8 = v3->_CalculateUV();
-      *(this + 28) = (gbRefObject *)(*(int (__thiscall **)(int, int))(v7 + 8))(MEMORY[0xBFDA60], v8);
+      *(this + 28) = (gbRefObject *)(*(int (__thiscall **)(int, int))(v7 + 8))(g_pGfxManager, v8);
       *(this + 29) = (gbRefObject *)v3->Parent_Data();
     }
     else
     {
-      *(this + 28) = (gbRefObject *)(*(int (__thiscall **)(int, const CHAR *))(*(_DWORD *)MEMORY[0xBFDA60] + 8))(
-                                      MEMORY[0xBFDA60],
+      *(this + 28) = (gbRefObject *)(*(int (__thiscall **)(int, const CHAR *))(*(_DWORD *)g_pGfxManager + 8))(
+                                      g_pGfxManager,
                                       v3);
     }
     v9 = (gbTexture *)*(this + 28);
@@ -260,7 +321,7 @@ LABEL_16:
 // 0x00445920
 int UIWnd::Reset()
 {
-  return sub_445F20((gbRefObject **)this + 26);
+  return (gbRefObject **->MoveWindow()this + 26);
 }
 
 // 0x00445930
@@ -287,7 +348,7 @@ _DWORD * sub_445AA0(_DWORD *this)
 {
   int v3; // [esp+4h] [ebp-4h]
 
-  sub_432660(this + 9);
+  PtrArray::Clear(this + 9);
   *this = &off_56AEC8;
   *(this + 3) = -1;
   *(this + 4) = 0;
@@ -319,7 +380,7 @@ _DWORD * sub_445AA0(_DWORD *this)
 void std::ios_base::~ios_base(std::ios_base *this)
 {
   *(_DWORD *)this->_data = &off_56AEC8;
-  sub_445C10(this);
+  this->UpdateChildren();
   sub_432680((void **)&this->_data[36]);
 }
 
@@ -341,6 +402,24 @@ int UIWnd::Create(int id, void *pRect, int parent)
   *(_DWORD *)&this->m_fontcolor[56] = 1;
   *(_DWORD *)&this->m_fontcolor[60] = 1;
   return 1;
+}
+
+// 0x00445C10
+// likely std method (near _Freeze, _Split, max_size, allocator<char>>, _Xran)
+void __thiscall sub_445C10(_DWORD *this)
+{
+  int v2; // edi
+  int v3; // ecx
+
+  v2 = 0;
+  *(this + 13) = 0;
+  *(this + 14) = 0;
+  for ( *(this + 15) = 0; v2 < *(this + 10); ++v2 )
+  {
+    v3 = *(_DWORD *)(*(this + 9) + 4 * v2);
+    (*(void (__thiscall **)(int))(*(_DWORD *)v3 + 12))(v3);
+  }
+  sub_4326A0((int)(this + 9), 0, -1);
 }
 
 // 0x00445C60
@@ -367,6 +446,28 @@ BOOL sub_445C60(_DWORD *this, int a2, int a3)
   }
   while ( v5 >= 0 );
   return v6 == 0;
+}
+
+// 0x00445CD0
+int sub_445CD0(_DWORD *this)
+{
+  int result; // eax
+  int i; // esi
+  _DWORD *v4; // ecx
+
+  result = *(this + 14);
+  if ( result )
+  {
+    result = *(this + 10);
+    for ( i = 0; i < result; ++i )
+    {
+      v4 = *(_DWORD **)(*(this + 9) + 4 * i);
+      if ( v4[14] )
+        (*(void (__thiscall **)(_DWORD *))(*v4 + 4))(v4);
+      result = *(this + 10);
+    }
+  }
+  return result;
 }
 
 // 0x00445D10
@@ -461,6 +562,28 @@ void * sub_445EA0()
 {
   memset(this, 0, 0x44u);
   return this;
+}
+
+// 0x00445F20
+int sub_445F20(gbRefObject **this)
+{
+  int v2; // esi
+  gbRefObject **v3; // ebx
+
+  v2 = 0;
+  if ( (int)*(this + 16) > 0 )
+  {
+    v3 = this;
+    do
+    {
+      gbRefObject::Release(*v3);
+      ++v2;
+      ++v3;
+    }
+    while ( v2 < (int)*(this + 16) );
+  }
+  memset(this, 0, 0x44u);
+  return 0;
 }
 
 // 0x00445FA0

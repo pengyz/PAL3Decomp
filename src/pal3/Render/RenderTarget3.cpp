@@ -1,3 +1,5 @@
+#include "pal3/ida_defs.h"
+#include "pal3/globals.h"
 #include "pal3/gen/RenderTarget3.h"
 
 // 0x004B65A0
@@ -17,7 +19,7 @@ void RenderTarget3::Init()
 {
   gbEffectMgr *pEffectMgr; // edi
 
-  pEffectMgr = *(gbEffectMgr **)&MEMORY[0xBFDA60][200];
+  pEffectMgr = *(gbEffectMgr **)&g_pGfxManager[200];
   *(_DWORD *)this = pEffectMgr->NewRenderEffect(aGfxscriptGlowG, 0);
   *((_DWORD *)this + 1) = pEffectMgr->NewRenderEffect(aGfxscriptGeomG, 1u);
 }
@@ -66,8 +68,8 @@ void * RenderTarget3::End()
   void *result; // eax
 
   if ( *v0 )
-    return (*(void *(__stdcall **)(_DWORD, int, int))(**(_DWORD **)&MEMORY[0xBFDA60][1816] + 228))(
-             *(_DWORD *)&MEMORY[0xBFDA60][1816],
+    return (*(void *(__stdcall **)(_DWORD, int, int))(**(_DWORD **)&g_pGfxManager[1816] + 228))(
+             *(_DWORD *)&g_pGfxManager[1816],
              168,
              3);
   return result;
@@ -84,8 +86,8 @@ void RenderTarget3::Resolve()
 
   if ( *this )
   {
-    (*(void (__stdcall **)(_DWORD, int, int))(**(_DWORD **)&MEMORY[0xBFDA60][1816] + 228))(
-      *(_DWORD *)&MEMORY[0xBFDA60][1816],
+    (*(void (__stdcall **)(_DWORD, int, int))(**(_DWORD **)&g_pGfxManager[1816] + 228))(
+      *(_DWORD *)&g_pGfxManager[1816],
       168,
       7);
     if ( *((_DWORD *)this + 1) )
@@ -104,7 +106,7 @@ void RenderTarget3::Resolve()
         v4[1] = -1082130432;
         PushMatrixStacks();
         v6 = 0;
-        DynVertBuf = gbVertPoolMgr::GetDynVertBuf(*(gbVertPoolMgr **)&MEMORY[0xBFDA60][196], 0x15u);
+        DynVertBuf = gbVertPoolMgr::GetDynVertBuf(*(gbVertPoolMgr **)&g_pGfxManager[196], 0x15u);
         v3 = *((_DWORD *)this + 1);
         v5[16] = 1;
         v5[0] = v3;

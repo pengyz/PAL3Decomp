@@ -1,3 +1,5 @@
+#include "pal3/ida_defs.h"
+#include "pal3/globals.h"
 #include "pal3/gen/CCCTData.h"
 
 // 0x0041C900
@@ -114,8 +116,8 @@ void sub_505930(int this)
     gbGeomNode::GetTotalOBBox(*(gbGeomNode **)(this + 430224), (struct gbOBBox *)v42);
     v2 = this + 430228;
     (gbMatrix4 *->RightTranslate()v42, (struct gbVec3D *)(this + 430228));
-    v3 = gbEffectMgr::NewTrivalEffect(*(gbEffectMgr **)(MEMORY[0xBFDA60] + 200), 3);
-    DynVertBuf = gbVertPoolMgr::GetDynVertBuf(*(gbVertPoolMgr **)(MEMORY[0xBFDA60] + 196), 0x15u);
+    v3 = gbEffectMgr::NewTrivalEffect(*(gbEffectMgr **)(g_pGfxManager + 200), 3);
+    DynVertBuf = gbVertPoolMgr::GetDynVertBuf(*(gbVertPoolMgr **)(g_pGfxManager + 196), 0x15u);
     if ( (byte_17AAEE0 & 1) == 0 )
     {
       v4 = &flt_17AAD48;

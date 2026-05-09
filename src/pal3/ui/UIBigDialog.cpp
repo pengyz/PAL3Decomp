@@ -1,3 +1,5 @@
+#include "pal3/ida_defs.h"
+#include "pal3/globals.h"
 #include "pal3/gen/UIBigDialog.h"
 
 // 0x00450F90
@@ -80,15 +82,15 @@ int UIBigDialog::Create(int id, void *pRect, int parent, char *tex)
   v21 = 600;
   v19 = 568;
   (*(void (__thiscall **)(char *, _DWORD, int *, UIBigDialog *))(v14 + 16))((char *)this + 848, 0, &v18, this);
-  sub_43FEC0((_DWORD *)this + 212, &v18);
+  (_DWORD *->AddChild()this + 212, &v18);
   (gbRefObject **->GetChildCount()this + 212, aUiSceneTimebkT, 0);
   (gbRefObject **->GetChildAt()this + 212, aUiSceneTimepTg, 0);
   UIWnd::FindChild((int)this + 848, 4.0);
   UIWnd::FindChildByName((int)this + 848, 0.0);
   *((_DWORD *)this + 240) = 1120403456;
-  sub_43FDB0((float *)this + 212, 4);
-  sub_43FDD0((float *)this + 212, 9);
-  sub_43FDC0((float *)this + 212, 4);
-  sub_43FDE0((float *)this + 212, 9);
+  (float *->SetFrameRate()this + 212, 4);
+  (float *->GetHeight()this + 212, 9);
+  (float *->GetWidth()this + 212, 4);
+  (float *->GetPosition()this + 212, 9);
   return (**((int (__thiscall ***)(char *, _DWORD))this + 212))((char *)this + 848, 0);
 }

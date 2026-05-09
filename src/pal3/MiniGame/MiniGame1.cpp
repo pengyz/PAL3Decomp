@@ -1,3 +1,5 @@
+#include "pal3/ida_defs.h"
+#include "pal3/globals.h"
 #include "pal3/gen/MiniGame1.h"
 
 // 0x0052B860
@@ -12,8 +14,8 @@ void MiniGame1::Render()
   int v8; // [esp+4h] [ebp-Ch]
   gbMatrixStack *v9; // [esp+8h] [ebp-8h]
 
-  pSceneGraph = *(gbSceneGraph **)&MEMORY[0xBFDA60][448];
-  v3 = *(gbMatrixStack **)&MEMORY[0xBFDA60][216];
+  pSceneGraph = *(gbSceneGraph **)&g_pGfxManager[448];
+  v3 = *(gbMatrixStack **)&g_pGfxManager[216];
   pSceneGraph->Begin(**((struct gbCamera ***)this + 3));
   LOBYTE(pSceneGraph->?[9].m[0]) = 0;
   gbCamera::SetAsCurrent(**((gbCamera ***)this + 3), 3);

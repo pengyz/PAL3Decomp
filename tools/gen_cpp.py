@@ -140,6 +140,37 @@ def collect_functions():
     return by_class, free_funcs
 
 
+# MEMORY[addr] -> global variable name mapping
+MEMORY_MAP = {
+    0x00BFDA60: 'g_pGfxManager',
+    0x00BFDA64: 'g_pActorMgr',
+    0x00BFDA68: 'g_pCamera',
+    0x00BFDA6C: 'g_nGameState',
+    0x00BFDA70: 'g_pSceneMgr',
+    0x00BFDA74: 'g_pCBSystem',
+    0x00BFDA78: 'g_pGameData',
+    0x00BFDA7C: 'g_pScreenMode',
+    0x00BFDA80: 'g_pInput',
+    0x00BFDA84: 'g_pRoleSystem',
+    0x00BFDA8C: 'g_pUIManager',
+    0x00BFDA90: 'g_pEffMgr',
+    0x00BFDA94: 'g_pLogger',
+    0x00BFDA98: 'g_pPalScript',
+    0x00BFDA9C: 'g_pConfig',
+    0x00BFDAA0: 'g_pTextureLib',
+}
+
+
+def replace_memory_refs(code):
+    """Replace MEMORY[0xADDR] with named globals."""
+    def mem_replace(match):
+        addr = int(match.group(1), 16)
+        if addr in MEMORY_MAP:
+            return MEMORY_MAP[addr]
+        return match.group(0)
+    return re.sub(r'MEMORY\[0x([0-9A-Fa-f]+)\]', mem_replace, code)
+
+
 def transform_method_code(cls_name, method_name, code, sig):
     """Post-process Hex-Rays output into cleaner C++."""
     lines = code.split('\n')
@@ -220,6 +251,9 @@ def transform_method_code(cls_name, method_name, code, sig):
     # 4. Remove variable declarations for 'this' pointer
     code = re.sub(r'^\s*%s\s*\*\s*this\s*;.*$' % re.escape(cls_name), '', code, flags=re.MULTILINE)
 
+    # 5. Replace MEMORY[0xADDR] with named globals
+    code = replace_memory_refs(code)
+
     return code
 
 
@@ -247,7 +281,9 @@ def generate_class_cpp(cls_name, methods):
     """Generate .cpp content for a class."""
     lines = []
 
-    # Include header if it exists
+    # Standard includes
+    lines.append('#include "pal3/ida_defs.h"')
+    lines.append('#include "pal3/globals.h"')
     header_path = HEADER_DIR / ("%s.h" % cls_name)
     if header_path.exists():
         lines.append('#include "pal3/gen/%s.h"' % cls_name)
@@ -268,12 +304,16 @@ def generate_class_cpp(cls_name, methods):
 def generate_free_funcs_cpp(funcs):
     """Generate .cpp for free functions."""
     lines = []
+    lines.append('#include "pal3/ida_defs.h"')
+    lines.append('#include "pal3/globals.h"')
+    lines.append("")
     lines.append("// Free functions (not belonging to any class)")
     lines.append("")
 
     funcs.sort(key=lambda f: f['addr'])
     for f in funcs:
         code = f['code'].strip()
+        code = replace_memory_refs(code)
         lines.append("// %s" % f['addr'])
         lines.append(code)
         lines.append("")
@@ -282,6 +322,25 @@ def generate_free_funcs_cpp(funcs):
 
 
 def main():
+    import sys
+
+    # Parse arguments
+    force_all = '--force-all' in sys.argv
+    force_files = set()
+    for arg in sys.argv[1:]:
+        if arg.startswith('--force'):
+            if '=' in arg:
+                force_files.add(arg.split('=', 1)[1])
+            elif arg == '--force-all':
+                pass
+            else:
+                # Next arg is the filename
+                idx = sys.argv.index(arg)
+                if idx + 1 < len(sys.argv):
+                    force_files.add(sys.argv[idx + 1])
+        elif not arg.startswith('-'):
+            force_files.add(arg)
+
     print("Collecting functions from decomp...")
     by_class, free_funcs = collect_functions()
 
@@ -291,6 +350,7 @@ def main():
     # Generate .cpp files
     OUTPUT_DIR.mkdir(parents=True, exist_ok=True)
     generated = 0
+    skipped = 0
     total_funcs = 0
 
     for cls_name, methods in sorted(by_class.items()):
@@ -298,8 +358,15 @@ def main():
         out_dir = OUTPUT_DIR / subdir
         out_dir.mkdir(parents=True, exist_ok=True)
 
-        content = generate_class_cpp(cls_name, methods)
         out_path = out_dir / ("%s.cpp" % cls_name)
+
+        # Skip if file exists and not forced
+        if out_path.exists() and not force_all and cls_name not in force_files:
+            skipped += 1
+            total_funcs += len(methods)
+            continue
+
+        content = generate_class_cpp(cls_name, methods)
         with open(out_path, 'w', encoding='utf-8') as f:
             f.write(content)
 
@@ -308,14 +375,20 @@ def main():
 
     # Free functions
     if free_funcs:
-        content = generate_free_funcs_cpp(free_funcs)
         out_path = OUTPUT_DIR / "free_functions.cpp"
-        with open(out_path, 'w', encoding='utf-8') as f:
-            f.write(content)
-        generated += 1
+        if not out_path.exists() or force_all or 'free_functions' in force_files:
+            content = generate_free_funcs_cpp(free_funcs)
+            with open(out_path, 'w', encoding='utf-8') as f:
+                f.write(content)
+            generated += 1
+        else:
+            skipped += 1
         total_funcs += len(free_funcs)
 
-    print("\nGenerated %d .cpp files with %d functions in %s" % (generated, total_funcs, OUTPUT_DIR))
+    print("\nGenerated %d .cpp files (%d skipped, %d functions) in %s" % (
+        generated, skipped, total_funcs, OUTPUT_DIR))
+    if skipped > 0:
+        print("  (use --force-all to overwrite, or pass class names to update specific files)")
 
     # Summary by directory
     for subdir in sorted(set(CLASS_DIRS.values()) | {'Misc'}):
