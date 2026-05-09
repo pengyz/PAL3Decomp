@@ -1,7 +1,0 @@
-{
-  "name": "sub_4A4890",
-  "address": "0x004A4890",
-  "size_bytes": 32,
-  "signature": "int __thiscall(_DWORD *this)",
-  "decompiled_c": "// between_std_methods (0x44BDA0-0x4A7690)\nint __thiscall sub_4A4890(_DWORD *this)\n{\n  int result; // eax\n  int v2; // edx\n  int v3; // edx\n\n  result = 0;\n  *(this + 24) = 0;\n  do\n  {\n    v2 = *(this + 24);\n    if ( *((_BYTE *)this + v2 + 361) )\n      ++result;\n    v3 = v2 + 1;\n    *(this + 24) = v3;\n  }\n  while ( v3 < 5 );\n  return result;\n}\n"
-}

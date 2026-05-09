@@ -1,7 +1,0 @@
-{
-  "name": "?KeepCurCam@CCBCamControl@@AAEXPAUtagCam@@@Z",
-  "address": "0x00508880",
-  "size_bytes": 74,
-  "signature": "int __thiscall(_DWORD *this, int a2)",
-  "decompiled_c": "// between_std_methods (0x504E20-0x53C2B0)\nint __thiscall sub_508880(_DWORD *this, int a2)\n{\n  _DWORD *v2; // edx\n  int result; // eax\n  _DWORD *i; // esi\n\n  v2 = this + 611;\n  result = 0;\n  for ( i = this + 611; *i != a2; i += 15 )\n  {\n    if ( ++result >= 384 )\n    {\n      result = 0;\n      while ( *v2 )\n      {\n        ++result;\n        v2 += 15;\n        if ( result >= 384 )\n          return 0;\n      }\n      *(this + 15 * result + 611) = a2;\n      return result;\n    }\n  }\n  return result;\n}\n"
-}

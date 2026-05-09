@@ -1,7 +1,0 @@
-{
-  "name": "?DeleteRow@UIListBox@@QAEXH@Z",
-  "address": "0x0043E120",
-  "size_bytes": 160,
-  "signature": "void __thiscall(std::ios_base *this)",
-  "decompiled_c": "// likely std method (near _Freeze, _Split, max_size, allocator<char>>, _Xran)\nvoid __thiscall sub_43E120(std::ios_base *this)\n{\n  *(_DWORD *)this->_data = &off_56AD40;\n  UIListBox::GetItemCount();\n  operator delete(*((void **)this + 299));\n  *((_DWORD *)this + 299) = 0;\n  *((_DWORD *)this + 300) = 0;\n  *((_DWORD *)this + 301) = 0;\n  `eh vector destructor iterator'((char *)this + 436, 0x54u, 8, (void (__thiscall *)(void *))UIListBox::GetItemPos);\n  sub_4411D0(this + 2);\n  std::ios_base::~ios_base(this);\n}\n"
-}

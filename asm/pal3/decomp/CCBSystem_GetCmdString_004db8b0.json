@@ -1,0 +1,7 @@
+{
+  "name": "CCBSystem::GetCmdString",
+  "address": "0x004DB8B0",
+  "size_bytes": 36,
+  "signature": "char *__thiscall(CCBSystem *this, int idx)",
+  "decompiled_c": "// between_std_methods (0x4D70B0-0x504E20)\nchar *__thiscall CCBSystem::GetCmdString(CCBSystem *this, int idx)\n{\n  char *result; // eax\n\n  result = &this->_data[40 * idx];\n  if ( result[46] )\n  {\n    *((_DWORD *)result + 9) = 0;\n    *((_DWORD *)result + 8) = 5750;\n    result[46] = 0;\n  }\n  return result;\n}\n"
+}

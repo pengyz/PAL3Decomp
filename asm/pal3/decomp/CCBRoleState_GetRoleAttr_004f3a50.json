@@ -1,0 +1,7 @@
+{
+  "name": "CCBRoleState::GetRoleAttr",
+  "address": "0x004F3A50",
+  "size_bytes": 118,
+  "signature": "int __thiscall(CCBRoleState *this, int roleIdx)",
+  "decompiled_c": "// between_std_methods (0x4D70B0-0x504E20)\nint __thiscall CCBRoleState::GetRoleAttr(CCBRoleState *this, int roleIdx)\n{\n  int v3; // ecx\n  int v4; // esi\n\n  v3 = CCBRoleState::SetRoleField(this, roleIdx, 0);\n  v4 = *(_DWORD *)&this->_data[892 * roleIdx + 592];\n  if ( v3 == v4 )\n    return 1;\n  if ( v3 >= v4 / 2 && v3 < v4 )\n    return 2;\n  if ( v3 < v4 / 4 )\n    return (v3 <= 0) + 4;\n  return 3;\n}\n"
+}

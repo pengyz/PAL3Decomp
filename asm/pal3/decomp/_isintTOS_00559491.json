@@ -1,7 +1,0 @@
-{
-  "name": "_isintTOS",
-  "address": "0x00559491",
-  "size_bytes": 37,
-  "signature": "void __usercall(double a1@<st0>)",
-  "decompiled_c": "void __usercall isintTOS(double a1@<st0>)\n{\n  _ST6 = a1;\n  __asm { frndint }\n  if ( _ST6 == a1 )\n  {\n    _ST5 = a1 * dbl_60B082;\n    __asm { frndint }\n    if ( _ST5 == a1 * dbl_60B082 )\n      evenint();\n    else\n      isintTOSret();\n  }\n  else\n  {\n    notanint();\n  }\n}\n"
-}

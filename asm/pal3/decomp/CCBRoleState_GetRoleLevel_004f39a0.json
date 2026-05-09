@@ -1,0 +1,7 @@
+{
+  "name": "CCBRoleState::GetRoleLevel",
+  "address": "0x004F39A0",
+  "size_bytes": 74,
+  "signature": "int __thiscall(CCBRoleState *this, int roleIdx)",
+  "decompiled_c": "// between_std_methods (0x4D70B0-0x504E20)\nint __thiscall CCBRoleState::GetRoleLevel(CCBRoleState *this, int roleIdx)\n{\n  int v2; // edi\n  char *v3; // edx\n  int v5; // [esp+10h] [ebp+8h]\n\n  v2 = *(_DWORD *)&this->_data[892 * roleIdx + 620];\n  v3 = &this->_data[892 * roleIdx + 620];\n  *(_DWORD *)v3 = v2 + v5;\n  if ( v2 + v5 < 0 )\n    *(_DWORD *)v3 = 0;\n  CCBSystem::GetCmdSlot(*(CCBSystem **)(*(_DWORD *)&this->_data[520] + 12), roleIdx);\n  return v2;\n}\n"
+}

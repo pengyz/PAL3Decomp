@@ -1,7 +1,0 @@
-{
-  "name": "_atof",
-  "address": "0x005544FB",
-  "size_bytes": 77,
-  "signature": "double __cdecl(const char *String)",
-  "decompiled_c": "double __cdecl atof(const char *String)\n{\n  while ( (int)cbMultiByte <= 1\n        ? *((_BYTE *)off_60AD00 + 2 * *(unsigned __int8 *)String) & 8\n        : _isctype(*(unsigned __int8 *)String, 8) )\n    ++String;\n  strlen(String);\n  return *(double *)(_fltin(String) + 16);\n}\n"
-}

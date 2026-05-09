@@ -1,7 +1,0 @@
-{
-  "name": "__controlfp",
-  "address": "0x0055B526",
-  "size_bytes": 22,
-  "signature": "unsigned int __cdecl(unsigned int NewValue, unsigned int Mask)",
-  "decompiled_c": "unsigned int __cdecl _controlfp(unsigned int NewValue, unsigned int Mask)\n{\n  return _control87(NewValue, Mask & 0xFFF7FFFF);\n}\n"
-}

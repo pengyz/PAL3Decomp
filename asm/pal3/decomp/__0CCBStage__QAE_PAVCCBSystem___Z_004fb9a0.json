@@ -1,7 +1,0 @@
-{
-  "name": "??0CCBStage@@QAE@PAVCCBSystem@@@Z",
-  "address": "0x004FB9A0",
-  "size_bytes": 65,
-  "signature": "_DWORD *__thiscall(_DWORD *this, int a2)",
-  "decompiled_c": "// between_std_methods (0x4D70B0-0x504E20)\n_DWORD *__thiscall sub_4FB9A0(_DWORD *this, int a2)\n{\n  _DWORD *v2; // edx\n  int v3; // esi\n  void *v4; // edi\n\n  v2 = this + 688;\n  v3 = 256;\n  do\n  {\n    v4 = v2;\n    v2 += 658;\n    --v3;\n    memset(v4, 0, 0x2Cu);\n  }\n  while ( v3 );\n  memset(this, 0, 0xA48B0u);\n  *this = a2;\n  *(this + 1) = *(_DWORD *)(a2 + 16);\n  return this;\n}\n"
-}

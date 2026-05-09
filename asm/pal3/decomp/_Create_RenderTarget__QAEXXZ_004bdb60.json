@@ -1,7 +1,0 @@
-{
-  "name": "?Create@RenderTarget@@QAEXXZ",
-  "address": "0x004BDB60",
-  "size_bytes": 172,
-  "signature": "int __thiscall(_DWORD *this)",
-  "decompiled_c": "int __thiscall sub_4BDB60(_DWORD *this)\n{\n  int result; // eax\n  int v3; // [esp+Ch] [ebp-814h] BYREF\n  int v4; // [esp+14h] [ebp-80Ch]\n  char pExceptionObject[1024]; // [esp+20h] [ebp-800h] BYREF\n  char ArgList; // [esp+420h] [ebp-400h] BYREF\n\n  if ( !(*(int (__thiscall **)(int, int *, int))(*(_DWORD *)g_pGfxManager + 84))(g_pGfxManager, &v3, 1) )\n  {\n    qmemcpy(\n      pExceptionObject,\n      (const void *)Logger::FormatException((char)&ArgList, (int)aLockBackBuffer, (int)aDProjectPal3Ef, 39),\n      sizeof(pExceptionObject));\n    _CxxThrowException(pExceptionObject, (_ThrowInfo *)&_TI1_AV_Exception__);\n  }\n  (*(void (__thiscall **)(int))(*(_DWORD *)g_pGfxManager + 88))(g_pGfxManager);\n  (*(void (__thiscall **)(_DWORD *, int, int, int))(*(this + 25) + 12))(this + 25, w, h, v4);\n  result = (*(int (__thiscall **)(_DWORD *, int, int, int))(*(this + 1) + 12))(this + 1, 512, 512, v4);\n  *this = 0;\n  *(this + 49) = 0;\n  return result;\n}\n"
-}

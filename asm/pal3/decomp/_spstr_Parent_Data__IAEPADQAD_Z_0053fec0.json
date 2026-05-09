@@ -1,7 +1,0 @@
-{
-  "name": "?spstr@Parent_Data@@IAEPADQAD@Z",
-  "address": "0x0053FEC0",
-  "size_bytes": 224,
-  "signature": "struct gbRenderEffect *()",
-  "decompiled_c": "// between_std_methods (0x53C2D0-0x541D1B)\nstruct gbRenderEffect *sub_53FEC0()\n{\n  gbEffectMgr *v0; // esi\n  struct gbRenderEffect *result; // eax\n\n  dword_1895040 = (w - 800) / 2;\n  dword_1895044 = (h - 600) / 2;\n  v0 = *(gbEffectMgr **)(g_pGfxManager + 200);\n  dword_1895048 = (int)gbEffectMgr::NewTrivalEffect(v0, 0);\n  dword_189504C = (int)gbEffectMgr::NewRenderEffect(v0, aGfxscriptUiTlG, 0);\n  dword_1895050 = (int)gbEffectMgr::NewRenderEffect(v0, aGfxscriptUiNot, 0);\n  dword_1895068 = (int)gbEffectMgr::NewRenderEffect(v0, aGfxscriptUiNot_0, 0);\n  dword_1895054 = (int)gbEffectMgr::NewRenderEffect(v0, aGfxscriptUiTex, 0);\n  dword_1895058 = (int)gbEffectMgr::NewRenderEffect(v0, aGfxscriptUiTex_0, 0);\n  dword_189505C = (int)gbEffectMgr::NewRenderEffect(v0, aGfxscriptUiPar, 0);\n  dword_1895060 = (int)gbEffectMgr::NewRenderEffect(v0, aGfxscriptUiAlp, 0);\n  dword_1895064 = (int)gbEffectMgr::NewRenderEffect(v0, aGfxscriptUiAdd, 0);\n  result = gbEffectMgr::NewRenderEffect(v0, aGfxscriptGeomN, 0);\n  dword_189506C = (int)result;\n  return result;\n}\n"
-}

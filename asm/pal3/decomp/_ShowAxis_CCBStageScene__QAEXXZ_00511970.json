@@ -1,7 +1,0 @@
-{
-  "name": "?ShowAxis@CCBStageScene@@QAEXXZ",
-  "address": "0x00511970",
-  "size_bytes": 359,
-  "signature": "char __thiscall(int this)",
-  "decompiled_c": "// between_std_methods (0x504E20-0x53C2B0)\nchar __thiscall sub_511970(int this)\n{\n  int v2; // eax\n  int v3; // ecx\n  int v4; // eax\n  CIniFile v6; // [esp+5Ch] [ebp-14h] BYREF\n  int v7; // [esp+6Ch] [ebp-4h]\n\n  CIniFile::CIniFile(&v6);\n  v7 = 0;\n  CIniFile::OpenFileRead(&v6, aDatascriptComb_1);\n  CIniFile::ReadSection(&v6, aFivelineup);\n  CIniFile::ReadLine(&v6, asc_5D8B80, (float *)(this + 900));\n  CIniFile::ReadLine(&v6, \"y\", (float *)(this + 904));\n  CIniFile::ReadLine(&v6, \"z\", (float *)(this + 908));\n  CIniFile::ReadLine(&v6, aRadius, (float *)(this + 916));\n  *(_DWORD *)(this + 912) = *(_DWORD *)(this + 916);\n  CIniFile::ReadLine(&v6, aRoll, (float *)(this + 924));\n  v2 = *(_DWORD *)(this + 900);\n  *(_DWORD *)(this + 920) = *(_DWORD *)(this + 924);\n  v3 = *(_DWORD *)(this + 904);\n  *(_DWORD *)(this + 888) = v2;\n  v4 = *(_DWORD *)(this + 908);\n  *(_DWORD *)(this + 892) = v3;\n  *(_DWORD *)(this + 896) = v4;\n  CIniFile::ReadSection(&v6, aEnemyfivelineu);\n  CIniFile::ReadLine(&v6, asc_5D8B80, (float *)(this + 928));\n  CIniFile::ReadLine(&v6, \"y\", (float *)(this + 932));\n  CIniFile::ReadLine(&v6, \"z\", (float *)(this + 936));\n  CIniFile::ReadLine(&v6, aRadius, (float *)(this + 940));\n  CIniFile::ReadLine(&v6, aRoll, (float *)(this + 944));\n  v7 = -1;\n  CIniFile::~CIniFile(&v6);\n  return 1;\n}\n"
-}

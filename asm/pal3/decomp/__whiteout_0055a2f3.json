@@ -1,7 +1,0 @@
-{
-  "name": "__whiteout",
-  "address": "0x0055A2F3",
-  "size_bytes": 36,
-  "signature": "int __cdecl(_DWORD *a1, FILE *Stream)",
-  "decompiled_c": "int __cdecl _whiteout(_DWORD *a1, FILE *Stream)\n{\n  int v2; // edi\n\n  do\n  {\n    ++*a1;\n    v2 = fgetc(Stream);\n  }\n  while ( isspace(v2) );\n  return v2;\n}\n"
-}

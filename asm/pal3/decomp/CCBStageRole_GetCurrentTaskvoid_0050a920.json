@@ -3,5 +3,5 @@
   "address": "0x0050A920",
   "size_bytes": 59,
   "signature": "char __thiscall(int this, int a2)",
-  "decompiled_c": "// between_std_methods (0x504E20-0x53C2B0)\nchar __thiscall sub_50A920(int this, int a2)\n{\n  char result; // al\n\n  if ( a2 != 0x7FFFFFFF || (result = *(_BYTE *)(this + 373)) != 0 )\n  {\n    result = CCBStageRole::sub_50B330(this);\n    *(_BYTE *)(this + 373) = 0;\n    *(_BYTE *)(this + 374) = 0;\n    *(_DWORD *)(this + 376) = 0;\n  }\n  return result;\n}\n"
+  "decompiled_c": "// between_std_methods (0x504E20-0x53C2B0)\nchar __thiscall CCBStageRole::GetCurrentTask(int this, int a2)\n{\n  char result; // al\n\n  if ( a2 != 0x7FFFFFFF || (result = *(_BYTE *)(this + 373)) != 0 )\n  {\n    result = CCBStageRole::GetState((CCBStageRole *)this);\n    *(_BYTE *)(this + 373) = 0;\n    *(_BYTE *)(this + 374) = 0;\n    *(_DWORD *)(this + 376) = 0;\n  }\n  return result;\n}\n"
 }

@@ -1,7 +1,0 @@
-{
-  "name": "_getSystemCP",
-  "address": "0x005590A6",
-  "size_bytes": 74,
-  "signature": "UINT __cdecl(UINT a1)",
-  "decompiled_c": "UINT __cdecl getSystemCP(UINT a1)\n{\n  UINT result; // eax\n\n  result = a1;\n  dword_18953D8 = 0;\n  switch ( a1 )\n  {\n    case 0xFFFFFFFE:\n      dword_18953D8 = 1;\n      return GetOEMCP();\n    case 0xFFFFFFFD:\n      dword_18953D8 = 1;\n      return GetACP();\n    case 0xFFFFFFFC:\n      dword_18953D8 = 1;\n      return dword_18953B8;\n  }\n  return result;\n}\n"
-}

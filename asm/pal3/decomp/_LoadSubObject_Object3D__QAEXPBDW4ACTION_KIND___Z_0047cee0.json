@@ -1,7 +1,0 @@
-{
-  "name": "?LoadSubObject@Object3D@@QAEXPBDW4ACTION_KIND@@@Z",
-  "address": "0x0047CEE0",
-  "size_bytes": 84,
-  "signature": "void __thiscall(_DWORD *this)",
-  "decompiled_c": "// between_std_methods (0x44BDA0-0x4A7690)\nvoid __thiscall sub_47CEE0(_DWORD *this)\n{\n  void *v2; // edi\n  void (__thiscall ***v3)(_DWORD, int); // ecx\n\n  if ( *(this + 1) == 1 )\n  {\nLABEL_7:\n    v3 = (void (__thiscall ***)(_DWORD, int))*(this + 2);\n    if ( v3 )\n    {\n      (**v3)(v3, 1);\n      *(this + 2) = 0;\n    }\n    goto LABEL_9;\n  }\n  if ( *(this + 1) != 2 )\n  {\n    if ( *(this + 1) != 3 )\n    {\n      *(_BYTE *)this = 0;\n      return;\n    }\n    goto LABEL_7;\n  }\n  v2 = (void *)*(this + 2);\n  if ( v2 )\n  {\n    sub_40EE00(*(this + 2));\n    operator delete(v2);\n    *(this + 2) = 0;\n    *(_BYTE *)this = 0;\n    return;\n  }\nLABEL_9:\n  *(_BYTE *)this = 0;\n}\n"
-}

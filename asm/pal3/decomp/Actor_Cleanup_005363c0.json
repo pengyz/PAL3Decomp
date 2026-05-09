@@ -1,0 +1,7 @@
+{
+  "name": "Actor::Cleanup",
+  "address": "0x005363C0",
+  "size_bytes": 31,
+  "signature": "int __thiscall(void *this)",
+  "decompiled_c": "// between_std_methods (0x504E20-0x53C2B0)\nint __thiscall Actor::Cleanup(void *this)\n{\n  if ( *((_DWORD *)this + 85) )\n    operator delete(*((void **)this + 85));\n  return Actor::ResetState(this);\n}\n"
+}

@@ -1,7 +1,0 @@
-{
-  "name": "_free",
-  "address": "0x00552F55",
-  "size_bytes": 47,
-  "signature": "void __cdecl(void *Block)",
-  "decompiled_c": "void __cdecl free(void *Block)\n{\n  int v1; // eax\n\n  if ( Block )\n  {\n    v1 = __sbh_find_block(Block);\n    if ( v1 )\n      __sbh_free_block(v1, Block);\n    else\n      HeapFree(hHeap, 0, Block);\n  }\n}\n"
-}

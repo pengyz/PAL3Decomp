@@ -1,7 +1,0 @@
-{
-  "name": "?SetMouseAbs@GRPinput@@QAEXXZ",
-  "address": "0x00402A90",
-  "size_bytes": 111,
-  "signature": "int __thiscall(_DWORD *this, int a2, int a3, int a4)",
-  "decompiled_c": "int __thiscall sub_402A90(_DWORD *this, int a2, int a3, int a4)\n{\n  _DWORD *v4; // eax\n  int v5; // ecx\n  int v7; // ecx\n  int v8; // ecx\n\n  v4 = this + 4 * a3 + 1566;\n  if ( a4 )\n  {\n    if ( *(this + 4 * a3 + 1567) )\n    {\n      v7 = *(this + *(this + 4 * a3 + 1568) + 1553);\n      v4[3] = 0;\n      *v4 = v7;\n      v4[2] = v7;\n    }\n    v8 = v4[3];\n    v4[1] = 0;\n    v4[3] = v8 + 1;\n  }\n  else\n  {\n    v5 = *(this + 4 * a3 + 1567);\n    v4[3] = 0;\n    if ( !v5 )\n    {\n      v4[1] = a2;\n      return 0;\n    }\n    *v4 = 0;\n    if ( (unsigned int)(a2 - v5) > 0x64 )\n    {\n      v4[2] = 0;\n      return v4[3];\n    }\n  }\n  return v4[3];\n}\n"
-}

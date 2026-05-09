@@ -1,7 +1,0 @@
-{
-  "name": "__onexit",
-  "address": "0x00552FD4",
-  "size_bytes": 109,
-  "signature": "_onexit_t __cdecl(_onexit_t Func)",
-  "decompiled_c": "_onexit_t __cdecl _onexit(_onexit_t Func)\n{\n  size_t v1; // eax\n  _onexit_t *v2; // ecx\n  size_t v3; // eax\n  _onexit_t result; // eax\n  int v5; // ecx\n\n  v1 = _msize(dword_1896CF0);\n  v2 = (_onexit_t *)dword_1896CEC;\n  if ( v1 < dword_1896CEC - (int)dword_1896CF0 + 4 )\n  {\n    v3 = _msize(dword_1896CF0);\n    result = (_onexit_t)realloc(dword_1896CF0, v3 + 16);\n    if ( !result )\n      return result;\n    v5 = dword_1896CEC - (_DWORD)dword_1896CF0;\n    dword_1896CF0 = result;\n    v2 = (_onexit_t *)((char *)result + 4 * (v5 >> 2));\n    dword_1896CEC = (int)v2;\n  }\n  *v2 = Func;\n  dword_1896CEC += 4;\n  return Func;\n}\n"
-}

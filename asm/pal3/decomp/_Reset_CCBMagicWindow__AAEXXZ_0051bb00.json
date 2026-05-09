@@ -1,7 +1,0 @@
-{
-  "name": "?Reset@CCBMagicWindow@@AAEXXZ",
-  "address": "0x0051BB00",
-  "size_bytes": 53,
-  "signature": "int __thiscall(_DWORD *this, int a2, int a3)",
-  "decompiled_c": "// between_std_methods (0x504E20-0x53C2B0)\nint __thiscall sub_51BB00(_DWORD *this, int a2, int a3)\n{\n  _DWORD *v3; // eax\n  int v4; // esi\n\n  v3 = this + 18;\n  v4 = 5;\n  do\n  {\n    if ( *v3 == a3 )\n      *v3 = *(this + a2 + 18);\n    ++v3;\n    --v4;\n  }\n  while ( v4 );\n  *(this + a2 + 18) = a3;\n  sub_51BB50(this);\n  return -1;\n}\n"
-}

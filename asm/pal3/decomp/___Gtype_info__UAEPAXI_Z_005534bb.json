@@ -1,7 +1,0 @@
-{
-  "name": "??_Gtype_info@@UAEPAXI@Z",
-  "address": "0x005534BB",
-  "size_bytes": 28,
-  "signature": "type_info *__thiscall(type_info *this, char a2)",
-  "decompiled_c": "type_info *__thiscall type_info::`scalar deleting destructor'(type_info *this, char a2)\n{\n  type_info::~type_info(this);\n  if ( (a2 & 1) != 0 )\n    operator delete(this);\n  return this;\n}\n"
-}

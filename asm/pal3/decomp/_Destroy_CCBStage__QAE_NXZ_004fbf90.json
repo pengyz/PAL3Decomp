@@ -1,7 +1,0 @@
-{
-  "name": "?Destroy@CCBStage@@QAE_NXZ",
-  "address": "0x004FBF90",
-  "size_bytes": 262,
-  "signature": "char __thiscall(_DWORD *this)",
-  "decompiled_c": "// between_std_methods (0x4D70B0-0x504E20)\nchar __thiscall sub_4FBF90(_DWORD *this)\n{\n  int v3; // ebx\n  int v4; // edi\n  _DWORD *v5; // esi\n  int v6; // ecx\n  void *v7; // ecx\n\n  CCBStage::~CCBStage((int)this);\n  *(this + 2) = *(_DWORD *)(*this + 28);\n  if ( !*(this + 5) || !(unsigned __int8)CCBStageScene::Reset() )\n    return 0;\n  v3 = 0;\n  v4 = 0;\n  v5 = this + 6;\n  do\n  {\n    if ( !*v5 )\n      return 0;\n    CCBStageRole::GetRotAngle();\n    if ( *(_BYTE *)(*(this + 1) + v4 + 577) )\n    {\n      if ( !(unsigned __int8)CCBStageRole::IsAtProtectPos(v3, 0, 0) )\n        return 0;\n    }\n    else if ( !(unsigned __int8)CCBStageRole::IsAtProtectPos(v3, 0, 0) )\n    {\n      return 0;\n    }\n    v4 += 892;\n    ++v3;\n    ++v5;\n  }\n  while ( v4 < 9812 );\n  if ( !*(this + 3) || !(unsigned __int8)sub_504540() )\n    return 0;\n  if ( !*(this + 4) || !(unsigned __int8)CCBStageCam::Update() )\n    return 0;\n  v6 = *(this + 18);\n  if ( !v6 || !(unsigned __int8)CCBStageShadow::Reset(v6) )\n    return 0;\n  if ( !*(this + 19) || !(unsigned __int8)CCBCamControl::ResetListFlag() )\n    return 0;\n  v7 = (void *)*(this + 17);\n  if ( !v7 || !sub_4DF700(v7) )\n    return 0;\n  sub_4DFFF0(*(this + 17), 0.0, 0);\n  return 1;\n}\n"
-}

@@ -1,7 +1,0 @@
-{
-  "name": "CCBSystem::sub_4ED100",
-  "address": "0x004ED100",
-  "size_bytes": 106,
-  "signature": "char __thiscall(char *this, char a2)",
-  "decompiled_c": "// between_std_methods (0x4D70B0-0x504E20)\nchar __thiscall sub_4ED100(char *this, char a2)\n{\n  int v2; // edx\n  int *i; // eax\n  _BYTE *j; // eax\n\n  v2 = 5;\n  if ( a2 )\n  {\n    for ( i = (int *)(this + 5048); !*((_BYTE *)i - 11) || *i <= 0 || *((_BYTE *)i + 844); i += 223 )\n    {\n      if ( ++v2 >= 11 )\n        return 1;\n    }\n  }\n  else\n  {\n    for ( j = this + 5038; !*(j - 1) || *j != 1 || j[854]; j += 892 )\n    {\n      if ( ++v2 >= 11 )\n        return 1;\n    }\n  }\n  return 0;\n}\n"
-}

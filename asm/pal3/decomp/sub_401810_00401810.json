@@ -1,7 +1,0 @@
-{
-  "name": "sub_401810",
-  "address": "0x00401810",
-  "size_bytes": 42,
-  "signature": "int __stdcall(int a1, int a2, int a3, int (__thiscall *a4)(int))",
-  "decompiled_c": "// likely CEffShock method (near Create)\nint __stdcall sub_401810(int a1, int a2, int a3, int (__thiscall *a4)(int))\n{\n  int result; // eax\n  int v6; // edi\n\n  result = a3 - 1;\n  if ( a3 - 1 >= 0 )\n  {\n    v6 = a3;\n    do\n    {\n      result = a4(a1);\n      a1 += a2;\n      --v6;\n    }\n    while ( v6 );\n  }\n  return result;\n}\n"
-}

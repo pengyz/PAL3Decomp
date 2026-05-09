@@ -1,7 +1,0 @@
-{
-  "name": "?GravityDown@CCBUI@@AAEKK@Z",
-  "address": "0x0051A2B0",
-  "size_bytes": 144,
-  "signature": "int __thiscall(int this, int a2)",
-  "decompiled_c": "// between_std_methods (0x504E20-0x53C2B0)\nint __thiscall sub_51A2B0(int this, int a2)\n{\n  int v3; // ebp\n  _DWORD *v4; // edi\n  int v5; // eax\n  int v6; // eax\n  int v7; // eax\n  int v8; // eax\n  int result; // eax\n\n  v3 = 3;\n  v4 = (_DWORD *)(this + 80);\n  do\n  {\n    (**(void (__thiscall ***)(_DWORD, _DWORD))*v4)(*v4, 0);\n    v5 = *(_DWORD *)(this + 92);\n    ++v4;\n    --v3;\n    *(_DWORD *)(v5 + 80) = 0;\n    *(_BYTE *)(v5 + 68) = 0;\n    v6 = *(_DWORD *)(this + 96);\n    *(_DWORD *)(v6 + 80) = 0;\n    *(_BYTE *)(v6 + 68) = 0;\n    v7 = *(_DWORD *)(this + 100);\n    *(_DWORD *)(v7 + 80) = 0;\n    *(_BYTE *)(v7 + 68) = 0;\n  }\n  while ( v3 );\n  switch ( a2 )\n  {\n    case 0:\n      v8 = *(_DWORD *)(this + 92);\n      goto LABEL_9;\n    case 1:\n      v8 = *(_DWORD *)(this + 96);\n      goto LABEL_9;\n    case 2:\n      v8 = *(_DWORD *)(this + 100);\nLABEL_9:\n      *(_DWORD *)(v8 + 80) = 1;\n      *(_BYTE *)(v8 + 68) = 1;\n      break;\n  }\n  sub_4427C0(*(_DWORD **)(this + 72), MEMORY[0xC10D38], 0);\n  sub_4427C0(*(_DWORD **)(this + 76), MEMORY[0xC10D38], 0);\n  result = (***(int (__thiscall ****)(_DWORD, int))(this + 4 * a2 + 80))(*(_DWORD *)(this + 4 * a2 + 80), 1);\n  *(_DWORD *)(this + 104) = a2;\n  return result;\n}\n"
-}

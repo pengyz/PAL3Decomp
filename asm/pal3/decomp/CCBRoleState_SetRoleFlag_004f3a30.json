@@ -1,0 +1,7 @@
+{
+  "name": "CCBRoleState::SetRoleFlag",
+  "address": "0x004F3A30",
+  "size_bytes": 32,
+  "signature": "char __thiscall(CCBRoleState *this, int roleIdx, char flag)",
+  "decompiled_c": "// between_std_methods (0x4D70B0-0x504E20)\nchar __thiscall CCBRoleState::SetRoleFlag(CCBRoleState *this, int roleIdx, char flag)\n{\n  this->_data[892 * roleIdx + 1140] = flag;\n  return flag;\n}\n"
+}

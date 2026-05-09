@@ -1,7 +1,0 @@
-{
-  "name": "__un_inc",
-  "address": "0x0055A2DC",
-  "size_bytes": 23,
-  "signature": "int __cdecl(int Character, FILE *Stream)",
-  "decompiled_c": "int __cdecl _un_inc(int Character, FILE *Stream)\n{\n  int result; // eax\n\n  if ( Character != -1 )\n    return ungetc(Character, Stream);\n  return result;\n}\n"
-}

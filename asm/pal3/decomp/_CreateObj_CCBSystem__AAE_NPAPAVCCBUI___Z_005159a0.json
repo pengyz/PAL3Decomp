@@ -1,7 +1,0 @@
-{
-  "name": "?CreateObj@CCBSystem@@AAE_NPAPAVCCBUI@@@Z",
-  "address": "0x005159A0",
-  "size_bytes": 278,
-  "signature": "int __stdcall(const char *a1, const char *a2, UINT a3)",
-  "decompiled_c": "// between_std_methods (0x504E20-0x53C2B0)\nint __stdcall sub_5159A0(const char *a1, const char *a2, UINT a3)\n{\n  unsigned int v3; // eax\n  CHAR *v4; // edi\n  char *v5; // esi\n  char v6; // cl\n  unsigned int v7; // edx\n\n  if ( !a1 )\n    return MessageBoxA(b, byte_17AC6DC, byte_17AC5DC, uType);\n  if ( strlen(a1) >= 0xFF )\n  {\n    v7 = strlen(aTooManyCharact) + 1;\n    qmemcpy(byte_17AC6DC, aTooManyCharact, 4 * (v7 >> 2));\n    v5 = &aTooManyCharact[4 * (v7 >> 2)];\n    v4 = &byte_17AC6DC[4 * (v7 >> 2)];\n    v6 = v7;\n  }\n  else\n  {\n    v3 = strlen(a1) + 1;\n    qmemcpy(byte_17AC6DC, a1, 4 * (v3 >> 2));\n    v5 = (char *)&a1[4 * (v3 >> 2)];\n    v4 = &byte_17AC6DC[4 * (v3 >> 2)];\n    v6 = v3;\n  }\n  qmemcpy(v4, v5, v6 & 3);\n  if ( a2 )\n  {\n    if ( strlen(a2) < 0xFF )\n      strcpy(byte_17AC5DC, a2);\n  }\n  else\n  {\n    sprintf(byte_17AC5DC, aS_3, aPal3CombatSyst);\n  }\n  uType = a3;\n  CCBSystem::CreateObj(CCBSystem::CreateObj, 0, 0, 0, 0);\n  return 0;\n}\n"
-}

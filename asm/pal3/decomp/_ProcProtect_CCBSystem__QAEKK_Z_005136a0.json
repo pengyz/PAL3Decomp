@@ -1,7 +1,0 @@
-{
-  "name": "?ProcProtect@CCBSystem@@QAEKK@Z",
-  "address": "0x005136A0",
-  "size_bytes": 37,
-  "signature": "int __thiscall(_DWORD *this)",
-  "decompiled_c": "// between_std_methods (0x504E20-0x53C2B0)\nint __thiscall sub_5136A0(_DWORD *this)\n{\n  unsigned int v1; // eax\n\n  v1 = *(this + 34) + 1;\n  *(this + 34) = v1;\n  if ( v1 >= 0x7FFFFFFF )\n    *(this + 34) = 1;\n  return *(this + 34);\n}\n"
-}

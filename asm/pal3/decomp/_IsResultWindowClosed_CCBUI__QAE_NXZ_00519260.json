@@ -1,7 +1,0 @@
-{
-  "name": "?IsResultWindowClosed@CCBUI@@QAE_NXZ",
-  "address": "0x00519260",
-  "size_bytes": 166,
-  "signature": "char __thiscall(int *this, int a2, int a3, int a4, int a5, int a6, int a7, int a8, const void *a9)",
-  "decompiled_c": "// between_std_methods (0x504E20-0x53C2B0)\nchar __thiscall sub_519260(int *this, int a2, int a3, int a4, int a5, int a6, int a7, int a8, const void *a9)\n{\n  int v10; // eax\n  _BYTE *i; // ecx\n  int *v13; // eax\n\n  if ( *(this + 656) >= 19 )\n    return 0;\n  v10 = 0;\n  for ( i = this + 296; *i; i += 72 )\n  {\n    if ( ++v10 >= 20 )\n      return 0;\n  }\n  v13 = this + 18 * v10;\n  *((_BYTE *)v13 + 1184) = 1;\n  *((_BYTE *)v13 + 1185) = 0;\n  *((_BYTE *)v13 + 1186) = 0;\n  v13[299] = a7;\n  v13[300] = a8;\n  v13[297] = a6;\n  qmemcpy(v13 + 301, a9, 0x20u);\n  v13 += 292;\n  *v13 = a2;\n  v13[1] = a3;\n  v13[2] = a4;\n  v13[3] = a5;\n  ++*(this + 656);\n  return 1;\n}\n"
-}
