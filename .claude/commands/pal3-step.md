@@ -79,13 +79,16 @@ python tools/pal3_compare.py --compile src/pal3/<file>.cpp --func <name> --addr 
 
 ### Step 6: 强检查
 
-**CHECK 1: 全量编译**
+**CHECK 1: CMake 源文件列表同步 + 全量编译**
+
+新增 .cpp 文件时，必须先将其加入 `src/pal3/CMakeLists.txt` 的 `PAL3_SOURCES` 列表。
 
 ```bash
 python tools/pal3_compare.py --compile-all
 ```
 
-必须所有文件编译通过。如果失败，修正编译错误直到通过。
+通过 Wine + VC6 工具链编译 CMakeLists.txt 中列出的所有源文件。
+必须所有文件编译通过（生成 .obj 无错误）。如果失败，修正编译错误直到通过。
 
 **CHECK 2: BFS 节点更新**
 

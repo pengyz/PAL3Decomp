@@ -70,29 +70,30 @@ public:
 extern "C" void *dword_BFDA74;  // CCBSystem instance pointer  0x00BFDA74
 
 // ========================================================================
-// LowLevelKeyboardProc (fn in IDA)
-// Address: 0x005417C0, Size: 177 bytes (with jump table)
+// LowLevelKeyboardProc
+// Address: 0x005417C0, Size: 121 bytes
 // __stdcall, ret 12
+// Blocks Win keys, App key, Alt+Tab, Alt+Escape while game is running
 // ========================================================================
-LRESULT __stdcall fn(int code, WPARAM wParam, int *lParam)
+LRESULT __stdcall LowLevelKeyboardProc(int code, WPARAM wParam, int *lParam)
 {
-    int v3;
+    int vkCode;
     LRESULT result;
 
     if (code)
         return CallNextHookEx(0, code, wParam, (LPARAM)lParam);
     switch (wParam)
     {
-    case 0x100u:
-    case 0x101u:
-    case 0x104u:
-    case 0x105u:
-        v3 = *lParam;
-        if (v3 != 91
-            && v3 != 92
-            && v3 != 93
-            && (v3 != 9 || (lParam[2] & 0x20) == 0)
-            && (v3 != 27 || (lParam[2] & 0x20) == 0 && (((unsigned short)GetKeyState(17) >> 8) & 0x80u) == 0))
+    case WM_KEYDOWN:
+    case WM_KEYUP:
+    case WM_SYSKEYDOWN:
+    case WM_SYSKEYUP:
+        vkCode = *lParam;
+        if (vkCode != VK_LWIN
+            && vkCode != VK_RWIN
+            && vkCode != VK_APPS
+            && (vkCode != VK_TAB || (lParam[2] & 0x20) == 0)
+            && (vkCode != VK_ESCAPE || (lParam[2] & 0x20) == 0 && (((unsigned short)GetKeyState(VK_CONTROL) >> 8) & 0x80u) == 0))
         {
             return CallNextHookEx(0, code, wParam, (LPARAM)lParam);
         }
@@ -164,7 +165,7 @@ int WINAPI WinMain(HINSTANCE hInst, HINSTANCE hPrevInstance, LPSTR lpCmdLine, in
         return 0;
     }
     hInstance = hInst;
-    hhk = SetWindowsHookExA(WH_KEYBOARD_LL, (HOOKPROC)fn, hInst, 0);
+    hhk = SetWindowsHookExA(WH_KEYBOARD_LL, (HOOKPROC)LowLevelKeyboardProc, hInst, 0);
     memset(Data, 0, sizeof(Data));
     if (!(unsigned char)ReadRegistryValue(aSoftwareSoftst_1, aCdriver, (BYTE *)Data))
         GetDefaultCD();

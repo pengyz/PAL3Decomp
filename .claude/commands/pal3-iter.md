@@ -102,11 +102,13 @@ Frontier: <before> → <after> (+<new> callees)
 
 ### 构建门控
 
+新增 .cpp 文件时，必须先加入 `src/pal3/CMakeLists.txt` 的 `PAL3_SOURCES`。
+
 ```bash
 python tools/pal3_compare.py --compile-all
 ```
 
-所有 src/pal3/*.cpp 文件编译通过。
+通过 Wine + VC6 工具链编译 CMakeLists.txt 中所有源文件，全部通过。
 
 ## 跳过策略
 
