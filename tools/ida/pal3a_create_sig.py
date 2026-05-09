@@ -40,23 +40,35 @@ MIN_FUNC_SIZE = 8
 
 
 def has_reloc_at(ea):
-    """Check if address has a relocation (fixup)"""
-    return ida_fixup.get_fixup(ea) is not None
+    """Check if address has a relocation (fixup) - IDA 9.x API"""
+    fd = ida_fixup.fixup_data_t()
+    return ida_fixup.get_fixup(fd, ea)
 
 
 def get_pattern_bytes(ea, length):
     """
     Extract byte pattern with relocation wildcards.
-    Returns (pattern_hex, mask) where masked positions use '..'
+    Returns pattern string where masked positions use '..'
+
+    For 32-bit relocations, marks 4 consecutive bytes as '..'
+    when a fixup is found at any position.
     """
+    # First pass: find all relocation starts
+    reloc_bytes = set()
+    for i in range(length):
+        if has_reloc_at(ea + i):
+            # A 32-bit relocation covers 4 bytes starting here
+            for j in range(4):
+                if i + j < length:
+                    reloc_bytes.add(i + j)
+
+    # Second pass: build pattern
     pattern = []
     for i in range(length):
-        addr = ea + i
-        if has_reloc_at(addr):
-            # Mark relocation bytes as wildcard (4 bytes for 32-bit reloc)
+        if i in reloc_bytes:
             pattern.append('..')
         else:
-            byte = ida_bytes.get_byte(addr)
+            byte = ida_bytes.get_byte(ea + i)
             pattern.append('%02X' % byte)
     return ''.join(pattern)
 
@@ -114,6 +126,9 @@ def main():
         log("[*] .text range: 0x%08X - 0x%08X" % (TEXT_START, TEXT_END))
 
         # Collect named functions in .text
+        # In PAL3A.exe.i64 with PDB loaded, functions have mangled names
+        # starting with '?' (C++ mangled) or plain C names.
+        # Only skip truly unnamed functions (sub_XXXXX, nullsub_, j_)
         targets = []
         for ea in idautils.Functions(TEXT_START, TEXT_END):
             if ea < TEXT_START or ea >= TEXT_END:
@@ -121,11 +136,12 @@ def main():
             name = ida_name.get_name(ea) or ""
             if not name:
                 continue
-            # Skip unnamed and auto-generated names
+            # Skip auto-generated IDA names (truly unnamed functions)
             if name.startswith("sub_") or name.startswith("nullsub_"):
                 continue
             if name.startswith("j_") or name.startswith("unknown_"):
                 continue
+            # Keep everything else: mangled C++ (?xxx), C names, library names
             func = ida_funcs.get_func(ea)
             if not func:
                 continue
