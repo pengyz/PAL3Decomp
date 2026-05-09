@@ -187,8 +187,38 @@ extern "C" int __cdecl LoggerRegisterCallbacks(int *pLogger)
 int __cdecl sub_53CC10(int *, int, const char *, void *) { return 0; }
 // === STUB: sub_423500 - ScreenLogCallback ===
 void __cdecl sub_423500(void) {}
-// === STUB: sub_53CE20 - FileLogCallback ===
-void __cdecl sub_53CE20(void) {}
+// 0x0053CE20 - FileLogCallback / DebugPrintRoleStats (105B)
+// Prints all 5 role stat values to logger
+extern "C" const char aXuejian[] = "XueJian";
+extern "C" const char aLongkui[] = "LongKui";
+extern "C" const char aZixuan[] = "ZiXuan";
+extern "C" const char aChangqing[] = "ChangQing";
+extern "C" const char aHuaying[] = "HuaYing";
+extern "C" int dword_C04338[5];
+extern "C" char *__cdecl LoggerWrite(char *, char *, ...);
+extern "C" char g_Logger;
+
+extern "C" char *__cdecl DebugPrintRoleStats(char *pArg)
+{
+    char *result = pArg;
+    const char *roleNames[5];
+    int i;
+
+    roleNames[0] = aXuejian;
+    roleNames[1] = aLongkui;
+    roleNames[2] = aZixuan;
+    roleNames[3] = aChangqing;
+    roleNames[4] = aHuaying;
+
+    if (!pArg)
+    {
+        for (i = 0; i < 5; ++i)
+            result = LoggerWrite(&g_Logger, "%s = %d", roleNames[i], dword_C04338[i]);
+    }
+    return result;
+}
+
+int dword_C04338[5] = {0};
 char byte_608944 = 0;
 char byte_608930 = 0;
 
