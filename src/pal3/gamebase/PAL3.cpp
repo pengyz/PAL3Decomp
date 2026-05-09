@@ -148,25 +148,25 @@ extern "C" void *off_56A66C;
 // ========================================================================
 void __cdecl PAL3::Create(HINSTANCE hInstance)
 {
-    int v2;
-    HCURSOR CursorA;
-    HWND v4;
-    int v5;
-    void *v6;
-    void *v7;
-    int v8;
-    int v9;
-    int v10, v11, v12, v13, v14, v15, v16, v17, v18, v19;
-    gbGeomNode *v20, *v21;
-    void *v23, *v24;
-    int v26;
+    int screenMode;
+    HCURSOR hCursor;
+    HWND hwnd;
+    int uiQuadList;
+    void *pCBSystemMem;
+    void *pCBSystem;
+    int pSceneCam;
+    int pSceneMgr;
+    int rt0, rt1, rt2, rt3, rt4, rt5, rt6, rt7, rt8, rt9;
+    gbGeomNode *pCursorNode, *pCursorNodeInit;
+    void *pCursor2Mem, *pCursor2Init;
+    int videoWidth;
     _Exception pExceptionObject;
-    char v34[24];
-    int v35;
+    char ehState[24];
+    int hwCaps;
     char ArgList[1024];
-    void *v31;
-    int v32[3];
-    void *v30;
+    void *pFileSystem;
+    int inputState[3];
+    void *pSceneMem;
 
     PAL3::CreateGfxWindow();
     sub_53CF80();
@@ -182,17 +182,17 @@ void __cdecl PAL3::Create(HINSTANCE hInstance)
     sub_430290(aDatascriptLang);
     sub_430570(aAppname);
 
-    v2 = sub_53DF70();
-    sub_53DD70(v2);
+    screenMode = sub_53DF70();
+    sub_53DD70(screenMode);
 
-    CursorA = LoadCursorA(hInstance, MAKEINTRESOURCEA(0x73));
-    v4 = hWnd;
-    dword_BFDA94 = (int)CursorA;
+    hCursor = LoadCursorA(hInstance, MAKEINTRESOURCEA(0x73));
+    hwnd = hWnd;
+    dword_BFDA94 = (int)hCursor;
     ShowWindow(hWnd, SW_SHOW);
-    UpdateWindow(v4);
+    UpdateWindow(hwnd);
 
     // DirectInput initialization
-    if (!sub_4020E0(&ppvOut, hInstance, (HWND)(int)v4, 0))
+    if (!sub_4020E0(&ppvOut, hInstance, (HWND)(int)hwnd, 0))
     {
         memcpy(&pExceptionObject,
             sub_53CEF0(ArgList, aInputDeviceCre, aDProjectPal3Ga_0, 180),
@@ -204,8 +204,8 @@ void __cdecl PAL3::Create(HINSTANCE hInstance)
     sub_4022B0(&ppvOut, 0x40000000);
     sub_53C340(0, 1);
 
-    memset(v32, 0, sizeof(v32));
-    sub_41C1B0(v32);
+    memset(inputState, 0, sizeof(inputState));
+    sub_41C1B0(inputState);
 
     // Game database initialization
     if (!(unsigned char)PAL_GDB_PAL_GDB(&dword_975ED8))
@@ -218,8 +218,8 @@ void __cdecl PAL3::Create(HINSTANCE hInstance)
 
     sub_457410(aAssislangLang);
     sub_408BE0();
-    v5 = sub_5415F0();
-    UIRenderQuadList(v5);
+    uiQuadList = sub_5415F0();
+    UIRenderQuadList(uiQuadList);
     sub_41F5E0(&dword_C11758);
 
     // Logging
@@ -228,13 +228,13 @@ void __cdecl PAL3::Create(HINSTANCE hInstance)
     sub_53CC70(&byte_17B1EC0, aGameCreateOk, NULL);
 
     // Allocate CCBSystem (0x162D8 bytes)
-    v6 = operator new(0x162D8u);
-    if (v6)
-        v7 = sub_512500(v6);
+    pCBSystemMem = operator new(0x162D8u);
+    if (pCBSystemMem)
+        pCBSystem = sub_512500(pCBSystemMem);
     else
-        v7 = 0;
-    dword_BFDA74 = v7;
-    if (!v7)
+        pCBSystem = 0;
+    dword_BFDA74 = pCBSystem;
+    if (!pCBSystem)
     {
         memcpy(&pExceptionObject,
             sub_53CEF0(ArgList, aCouldNotAlloca, aDProjectPal3Ga_0, 214),
@@ -242,24 +242,24 @@ void __cdecl PAL3::Create(HINSTANCE hInstance)
         throw pExceptionObject;
     }
 
-    CCBSystem_ProcNormalAttack(v7);
+    CCBSystem_ProcNormalAttack(pCBSystem);
 
     // Allocate scene manager (0xA930 bytes)
-    v30 = operator new(0xA930u);
-    if (v30)
+    pSceneMem = operator new(0xA930u);
+    if (pSceneMem)
     {
         if (dword_BFDA68)
-            v8 = dword_BFDA68 + 4;
+            pSceneCam = dword_BFDA68 + 4;
         else
-            v8 = 0;
-        v9 = sub_4CDA10(dword_BFDA60, v8, 0);
+            pSceneCam = 0;
+        pSceneMgr = sub_4CDA10(dword_BFDA60, pSceneCam, 0);
     }
     else
     {
-        v9 = 0;
+        pSceneMgr = 0;
     }
-    dword_BFDA78 = v9;
-    if (!v9)
+    dword_BFDA78 = pSceneMgr;
+    if (!pSceneMgr)
     {
         memcpy(&pExceptionObject,
             sub_53CEF0(ArgList, aCouldNotAlloca_0, aDProjectPal3Ga_0, 222),
@@ -271,33 +271,33 @@ void __cdecl PAL3::Create(HINSTANCE hInstance)
     if (byte_BFDA90)
     {
         if (byte_5833C0)
-            sub_44F130(&dword_975ED8);  // different: only if byte_5833C0
-        v15 = sub_4BDB10();
-        RenderTarget_Create(v15);
-        v16 = sub_4B65A0();
-        sub_4B65F0(v16);
-        v17 = sub_4BFD20();
-        sub_4BF780(v17);
-        v18 = sub_4B6D30();
-        sub_4B6D80(v18);
-        v19 = CEffectSystem_DestroyAllEffect();
-        CEffectSystem_IsVisible(v19);
+            sub_44F130(&dword_975ED8);
+        rt5 = sub_4BDB10();
+        RenderTarget_Create(rt5);
+        rt6 = sub_4B65A0();
+        sub_4B65F0(rt6);
+        rt7 = sub_4BFD20();
+        sub_4BF780(rt7);
+        rt8 = sub_4B6D30();
+        sub_4B6D80(rt8);
+        rt9 = CEffectSystem_DestroyAllEffect();
+        CEffectSystem_IsVisible(rt9);
         PAL3::GetCommandLineParam();
     }
     else
     {
         sub_44F130(&dword_975ED8);
         sub_44F610(4);
-        v10 = sub_4BDB10();
-        RenderTarget_Create(v10);
-        v11 = sub_4B65A0();
-        sub_4B65F0(v11);
-        v12 = sub_4BFD20();
-        sub_4BF780(v12);
-        v13 = sub_4B6D30();
-        sub_4B6D80(v13);
-        v14 = CEffectSystem_DestroyAllEffect();
-        CEffectSystem_IsVisible(v14);
+        rt0 = sub_4BDB10();
+        RenderTarget_Create(rt0);
+        rt1 = sub_4B65A0();
+        sub_4B65F0(rt1);
+        rt2 = sub_4BFD20();
+        sub_4BF780(rt2);
+        rt3 = sub_4B6D30();
+        sub_4B6D80(rt3);
+        rt4 = CEffectSystem_DestroyAllEffect();
+        CEffectSystem_IsVisible(rt4);
     }
 
     // Check hardware caps
@@ -308,43 +308,43 @@ void __cdecl PAL3::Create(HINSTANCE hInstance)
     sub_41ED00(0);  // placeholder for the ebp-based call from IDA
 
     // Load geometry nodes for cursor/UI
-    OpenBaseFile openBase(&v31);
+    OpenBaseFile openBase(&pFileSystem);
 
-    v20 = (gbGeomNode *)operator new(0x118u);
-    v21 = v20;
-    if (v20)
+    pCursorNode = (gbGeomNode *)operator new(0x118u);
+    pCursorNodeInit = pCursorNode;
+    if (pCursorNode)
     {
-        v20->gbGeomNode::gbGeomNode();
-        *(void **)v21->_data = &off_56A66C;
+        pCursorNode->gbGeomNode::gbGeomNode();
+        *(void **)pCursorNodeInit->_data = &off_56A66C;
     }
     else
     {
-        v21 = 0;
+        pCursorNodeInit = 0;
     }
-    dword_A3A6EC = (int)v21;
-    v21->LoadFromFile(aObjectG02Cvd, 0, 0);
+    dword_A3A6EC = (int)pCursorNodeInit;
+    pCursorNodeInit->LoadFromFile(aObjectG02Cvd, 0, 0);
 
-    v23 = operator new(0x118u);
-    v24 = v23;
-    if (v23)
+    pCursor2Mem = operator new(0x118u);
+    pCursor2Init = pCursor2Mem;
+    if (pCursor2Mem)
     {
-        ((gbGeomNode *)v23)->gbGeomNode::gbGeomNode();
-        *(void **)((gbGeomNode *)v24)->_data = &off_56A66C;
+        ((gbGeomNode *)pCursor2Mem)->gbGeomNode::gbGeomNode();
+        *(void **)((gbGeomNode *)pCursor2Init)->_data = &off_56A66C;
     }
     else
     {
-        v24 = 0;
+        pCursor2Init = 0;
     }
-    dword_A3A6F0 = (int)v24;
-    ((gbGeomNode *)v24)->LoadFromFile(aObjectG03Cvd, 0, 0);
+    dword_A3A6F0 = (int)pCursor2Init;
+    ((gbGeomNode *)pCursor2Init)->LoadFromFile(aObjectG03Cvd, 0, 0);
 
     // Play logo video
     sub_53C440(aMovieLogoBik, hWndParent, 0, 0);
-    int height = sub_53C720(&unk_A3A7D8);
-    v26 = sub_53C710(&unk_A3A7D8);
-    sub_53C6F0((800 - v26) / 2, (600 - height) / 2);
+    int videoHeight = sub_53C720(&unk_A3A7D8);
+    videoWidth = sub_53C710(&unk_A3A7D8);
+    sub_53C6F0((800 - videoWidth) / 2, (600 - videoHeight) / 2);
     sub_53C5A0(1);
 
     // OpenNULLFile cleanup
-    OpenNULLFile::OpenNULLFile_ctor(&v31);
+    OpenNULLFile::OpenNULLFile_ctor(&pFileSystem);
 }

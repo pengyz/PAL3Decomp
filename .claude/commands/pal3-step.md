@@ -48,10 +48,27 @@ python tools/pal3_compare.py --compile src/pal3/<file>.cpp --func <name> --addr 
 
 ### Step 5: 质量门控（匹配通过后）
 
-1. 消除裸偏移 → `this->m_field` 或 `obj.member`
-2. 消除魔数 → 命名常量/sizeof/enum
-3. 消除 IDA 变量名 (v3, v4) → 语义名称
-4. 重新对比确认未破坏匹配（如果破坏则回退质量修改）
+**硬性要求 — 不通过不得提交：**
+
+1. **禁止 IDA 变量名** — `v1`, `v2`, `v3`, `v4`, `v5`... `v99` 等必须全部替换为有语义的名称。
+   - 根据用途推断：循环变量→`i/j/k`，指针→`pXxx`，返回值→`result`，临时中间值→描述其含义
+   - 改名不影响字节匹配（同类型同作用域内）
+   - 例外：只有当变量确实无法推断语义时，可以用 `tmp` 或 `unused`
+
+2. **禁止裸偏移** — `*(DWORD*)(this + 0x1C)` 必须改为 `this->m_pStage` 形式
+   - 在类声明中定义正确偏移的成员变量
+
+3. **禁止魔数** — `0x162D8` 应为 `sizeof(CCBSystem)` 或命名常量
+
+4. **gbengine 引用使用头文件** — PAL3 调用 gbengine.dll 的函数/类时：
+   - 使用 `#include` 引用 `include/gbengine/` 下的头文件
+   - 不允许在 .cpp 中用 `extern "C"` 前向声明 gbengine 的导出函数
+   - 如果头文件不存在，先创建对应头文件再 include
+
+5. **源文件路径正确** — 必须使用 `suggested_source`（来自 PAL3A PDB）指定的路径
+   - 同一个类的多个方法放在同一个 .cpp 文件中
+
+6. 重新对比确认未破坏匹配（如果破坏则回退质量修改）
 
 ### Step 6: 强检查
 

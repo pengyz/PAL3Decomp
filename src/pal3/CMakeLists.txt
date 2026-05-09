@@ -31,7 +31,7 @@ endif()
 
 set(PAL3_SOURCES
     WinMain.cpp
-    PAL3_Create.cpp
+    gamebase/PAL3.cpp
     Combat/CBSystem.cpp
 )
 
