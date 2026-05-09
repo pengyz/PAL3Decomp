@@ -25,6 +25,7 @@ from pathlib import Path
 PROJECT_ROOT = Path(__file__).parent.parent
 CALLGRAPH_PATH = PROJECT_ROOT / "asm" / "pal3" / "call_graph.json"
 NAMES_PATH = PROJECT_ROOT / "asm" / "pal3" / "pal3_names.json"
+PDB_EXPORT_PATH = PROJECT_ROOT / "asm" / "pal3a" / "pdb_export.json"
 DECOMP_DIR = PROJECT_ROOT / "asm" / "pal3" / "decomp"
 SRC_DIR = PROJECT_ROOT / "src" / "pal3"
 
@@ -72,6 +73,85 @@ def load_names():
         addr = int(func["address"], 16)
         addr_map[addr] = func
     return addr_map
+
+
+_source_map_cache = None
+
+
+def load_source_map():
+    """从 PAL3A PDB 构建 class -> source file 映射。
+
+    PAL3A 与 PAL3 共享大量类和源文件结构，PDB 中的 source_file 字段
+    提供了原始开发时的目录布局，用于指导 PAL3 反编译代码的文件放置。
+    """
+    global _source_map_cache
+    if _source_map_cache is not None:
+        return _source_map_cache
+
+    _source_map_cache = {}
+    if not PDB_EXPORT_PATH.exists():
+        return _source_map_cache
+
+    with open(PDB_EXPORT_PATH) as f:
+        pdb = json.load(f)
+
+    # class -> set of .cpp source files
+    class_to_files = {}
+    for func in pdb.get("functions", []):
+        cls = func.get("class", "")
+        sf = func.get("source_file", "")
+        if not cls or not sf:
+            continue
+        # Only game source (D:\PAL3A\PAL3\...)
+        if sf.startswith("D:\\PAL3A\\PAL3\\"):
+            rel = sf[len("D:\\PAL3A\\PAL3\\"):]
+        elif sf.startswith("D:\\pal3a\\pal3\\") or sf.startswith("d:\\PAL3A\\PAL3\\"):
+            rel = sf[14:]
+        else:
+            continue
+        # Skip deeply nested relative paths
+        if "..\\..\\.." in rel:
+            continue
+        # Only .cpp files
+        if not (rel.lower().endswith(".cpp")):
+            continue
+        # Normalize separators
+        rel = rel.replace("\\", "/")
+        if cls not in class_to_files:
+            class_to_files[cls] = set()
+        class_to_files[cls].add(rel)
+
+    # For each class, pick the primary .cpp file (most functions, or shortest path)
+    for cls, files in class_to_files.items():
+        # Prefer file matching class name
+        best = None
+        for f in files:
+            basename = f.rsplit("/", 1)[-1].lower().replace(".cpp", "")
+            if basename == cls.lower() or cls.lower() in basename:
+                best = f
+                break
+        if not best:
+            best = min(files, key=len)
+        _source_map_cache[cls] = best
+
+    return _source_map_cache
+
+
+def infer_source_path(func_name):
+    """根据 PAL3A PDB 映射推断函数应放置的源文件路径。
+
+    Returns: 相对于 src/pal3/ 的路径 (如 "gamebase/PAL3.cpp") 或 None。
+    """
+    source_map = load_source_map()
+
+    # Extract class name from demangled function name
+    cls_match = re.match(r"(\w+)::", func_name)
+    if cls_match:
+        cls = cls_match.group(1)
+        if cls in source_map:
+            return source_map[cls]
+
+    return None
 
 
 def load_callgraph():
@@ -228,12 +308,14 @@ def cmd_init(args):
         callee_decomp = get_decomp_file(callee_addr, names_map)
         addr_str = f"0x{callee_addr:08X}"
 
+        suggested = infer_source_path(name)
         node = {
             "name": name,
             "address": addr_str,
             "size": callee_info.get("size", 0),
             "status": "pending",
             "source": None,
+            "suggested_source": suggested,
             "match_rate": None,
             "calls": [],
             "called_by": [f"0x{root_addr:08X}"],
@@ -379,6 +461,9 @@ def cmd_next(args):
             decomp_file = str(f.relative_to(PROJECT_ROOT))
             break
 
+    # Infer suggested source path from PDB if not already set
+    suggested = node.get("suggested_source") or infer_source_path(node["name"])
+
     result = {
         "address": best,
         "name": node["name"],
@@ -388,6 +473,7 @@ def cmd_next(args):
         "is_named": node["is_named"],
         "decomp_file": decomp_file,
         "source": node.get("source"),
+        "suggested_source": suggested,
         "frontier_remaining": len(frontier),
     }
     print(json.dumps(result, indent=2))
@@ -438,12 +524,14 @@ def cmd_expand(args):
             callee_info = names_map.get(callee_addr, {})
             callee_decomp = get_decomp_file(callee_addr, names_map)
 
+            suggested = infer_source_path(name)
             new_node = {
                 "name": name,
                 "address": callee_addr_str,
                 "size": callee_info.get("size", 0),
                 "status": "pending",
                 "source": None,
+                "suggested_source": suggested,
                 "match_rate": None,
                 "calls": [],
                 "called_by": [addr_str],
@@ -531,6 +619,9 @@ def cmd_show(args):
     print(f"  Status:      {node['status']}")
     print(f"  Match rate:  {node['match_rate']}")
     print(f"  Source:      {node.get('source', 'None')}")
+    suggested = node.get("suggested_source") or infer_source_path(node["name"])
+    if suggested:
+        print(f"  Suggested:   src/pal3/{suggested}  (from PAL3A PDB)")
     print(f"  Depth:       {node['depth']}")
     print(f"  Has decomp:  {node['has_decomp']}")
     print(f"  Is named:    {node['is_named']}")
