@@ -31,8 +31,16 @@ if(MSVC_VERSION EQUAL 1200)
         /W3
         /Gd
     )
+elseif(MSVC_VERSION EQUAL 1310)
+    # VC7.1 (VS2003): /GS not available in RTM (13.10.3077)
+    set(PAL3_COMMON_COMPILE_FLAGS
+        /nologo
+        /W3
+        /Gd
+        /Zc:wchar_t
+    )
 else()
-    # VC7+: modern flags
+    # VC8+ (VS2005+): has /GS
     set(PAL3_COMMON_COMPILE_FLAGS
         /nologo
         /W3
@@ -76,20 +84,37 @@ endif()
 # PAL3.exe 标志 (VC7 风格)
 # ========================================================================
 
-set(PAL3_COMPILE_FLAGS
-    /EHsc                # C++ 异常处理（VC7 风格）
-    /GR                  # 启用 RTTI（运行时类型信息）
-    /O2                  # 最大速度优化
-    /Ob2                 # 内联函数展开（任何合适的）
-    /Oi                  # 启用内部函数优化
-    /Ot                  # 优先代码速度而不是大小
-    /Oy                  # 省略帧指针
-    /GF                  # 启用字符串池
-    /Gy                  # 启用函数级链接
-    /FD                  # 生成完整程序数据库信息
-    /MD                  # 多线程 DLL 运行时库
-    /arch:IA32           # 强制 x87 FPU 代码生成（匹配原版 MSVC 7.1 输出）
-)
+if(MSVC_VERSION EQUAL 1310)
+    # VC7.1 (13.10): no /arch:IA32 (x87 is default), no /FD needed under Wine
+    set(PAL3_COMPILE_FLAGS
+        /EHsc                # C++ 异常处理（VC7 风格）
+        /GR                  # 启用 RTTI（运行时类型信息）
+        /O2                  # 最大速度优化
+        /Ob2                 # 内联函数展开（任何合适的）
+        /Oi                  # 启用内部函数优化
+        /Ot                  # 优先代码速度而不是大小
+        /Oy                  # 省略帧指针
+        /GF                  # 启用字符串池
+        /Gy                  # 启用函数级链接
+        /MD                  # 多线程 DLL 运行时库
+    )
+else()
+    # VC8+ (VS2005+): supports /arch:IA32 and /FD
+    set(PAL3_COMPILE_FLAGS
+        /EHsc                # C++ 异常处理（VC7 风格）
+        /GR                  # 启用 RTTI（运行时类型信息）
+        /O2                  # 最大速度优化
+        /Ob2                 # 内联函数展开（任何合适的）
+        /Oi                  # 启用内部函数优化
+        /Ot                  # 优先代码速度而不是大小
+        /Oy                  # 省略帧指针
+        /GF                  # 启用字符串池
+        /Gy                  # 启用函数级链接
+        /FD                  # 生成完整程序数据库信息
+        /MD                  # 多线程 DLL 运行时库
+        /arch:IA32           # 强制 x87 FPU 代码生成
+    )
+endif()
 
 # ========================================================================
 # 定义与原版匹配的预处理器符号
