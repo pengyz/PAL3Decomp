@@ -605,7 +605,7 @@ extern "C" int  __cdecl sub_44F4C0(int, int);
 extern "C" void __cdecl sub_44F610(int);
 extern "C" int  __cdecl sub_44FF60(void *);
 extern "C" void __cdecl sub_4BE460(int);
-extern "C" void __cdecl sub_4BE590(void);
+extern "C" void __cdecl ScreenEffectMgr_GetInstance(void);
 extern "C" int  __cdecl RenderTarget2_GetInstance(void);
 extern "C" void __cdecl sub_4C0200(float);
 extern "C" void __cdecl sub_4C5BB0(float);
@@ -895,7 +895,7 @@ LABEL_33:
     }
 
 DONE:
-    sub_4BE590();
+    ScreenEffectMgr_GetInstance();
     sub_4BE460(*(int *)&a1);
     if (!g_nGameState)
         sub_53CDD0(1);
@@ -958,7 +958,7 @@ extern "C" void __cdecl sub_540F60(void *);
 extern "C" void __cdecl sub_540FA0(void *);
 extern "C" int  __cdecl sub_4226F0(void);
 extern "C" int  __cdecl UIQuadManager_GetInstance(void);
-extern "C" void __cdecl sub_4BE590(void);
+extern "C" void __cdecl ScreenEffectMgr_GetInstance(void);
 extern "C" int  __cdecl sub_4B65A0(void);
 extern "C" void __cdecl sub_41C630(int);
 extern "C" char g_Logger;
@@ -1040,7 +1040,7 @@ void __cdecl PAL3::Render(void)
     {
         int v25[3];
         sub_540F60(v25);
-        sub_4BE590(); int v21 = 0;
+        ScreenEffectMgr_GetInstance(); int v21 = 0;
         sub_4BE4A0(v21);
         sub_44F5B0(&g_GameData);
         if (dword_BFDA34)

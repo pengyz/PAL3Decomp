@@ -390,7 +390,7 @@ extern "C" void __cdecl sub_423540(void) {}
 extern "C" int __cdecl sub_44F4C0(int, int) { return 0; }
 extern "C" int __cdecl sub_44FF60(void *) { return 0; }
 extern "C" void __cdecl sub_4BE460(int) {}
-extern "C" void __cdecl sub_4BE590(void) {}
+// ScreenEffectMgr_GetInstance (was sub_4BE590): moved to effect/ScreenEffectMgr.cpp
 extern "C" void __cdecl sub_4C0200(float) {}
 extern "C" void __cdecl sub_4C5BB0(float) {}
 extern "C" void __cdecl sub_4CDB70(float) {}
