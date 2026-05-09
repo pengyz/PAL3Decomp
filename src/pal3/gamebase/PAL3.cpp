@@ -81,7 +81,7 @@ extern "C" int  __cdecl UIQuadManager_GetInstance(void);
 extern "C" void __cdecl UIRenderQuadList(int);
 extern "C" void __cdecl sub_41F5E0(void *);
 extern "C" void __cdecl sub_53CE90(void *);
-extern "C" void __cdecl sub_53CC70(void *, const char *, const char *);
+extern "C" void __cdecl LoggerWrite(void *, const char *, const char *);
 extern "C" void *__cdecl sub_512500(void *);
 extern "C" void __cdecl CCBSystem_ProcNormalAttack(void *);
 extern "C" int  __cdecl sub_4CDA10(int, int, int);
@@ -342,8 +342,8 @@ void __cdecl PAL3::Create(HINSTANCE hInstance)
 
     // Logging
     sub_53CE90(&g_Logger);
-    sub_53CC70(&g_Logger, aSBulidSS, aV104);
-    sub_53CC70(&g_Logger, aGameCreateOk, NULL);
+    LoggerWrite(&g_Logger, aSBulidSS, aV104);
+    LoggerWrite(&g_Logger, aGameCreateOk, NULL);
 
     // Allocate CCBSystem (0x162D8 bytes)
     pCBSystemMem = operator new(0x162D8u);

@@ -140,8 +140,40 @@ extern "C" void __cdecl sub_41F5E0(void *) {}
 // === STUB: 0x0053CE90 - 日志初始化 ===
 extern "C" void __cdecl sub_53CE90(void *) {}
 
-// === STUB: 0x0053CC70 - 日志写入 ===
-extern "C" void __cdecl sub_53CC70(void *, const char *, const char *) {}
+// 0x0053CC70 - Logger::Write (128B)
+// Logger 部分布局 (从使用推断):
+//   +0x1294 (4756): log scroll buffer destination (1600 bytes = 0x640)
+//   +0x12F8 (4856): log scroll buffer source
+//   +0x18D4 (6356): current log line (99 chars max)
+#define LOGGER_SCROLL_DST   4756
+#define LOGGER_SCROLL_SRC   4856
+#define LOGGER_SCROLL_SIZE  0x640
+#define LOGGER_CURLINE      6356
+#define LOGGER_CURLINE_MAX  0x63
+
+static char Source[1024];
+extern "C" char byte_17B1D23[];
+
+extern "C" char *__cdecl LoggerWrite(char *pLogger, char *pFormat, ...)
+{
+    va_list va;
+    va_start(va, pFormat);
+    vsprintf(Source, pFormat, va);
+    va_end(va);
+
+    memcpy(pLogger + LOGGER_SCROLL_DST, pLogger + LOGGER_SCROLL_SRC, LOGGER_SCROLL_SIZE);
+    strncpy(pLogger + LOGGER_CURLINE, Source, LOGGER_CURLINE_MAX);
+
+    if ((int)(strlen(Source) - 99) > 0)
+    {
+        memcpy(pLogger + LOGGER_SCROLL_DST, pLogger + LOGGER_SCROLL_SRC, LOGGER_SCROLL_SIZE);
+        return strncpy(pLogger + LOGGER_CURLINE, byte_17B1D23, LOGGER_CURLINE_MAX);
+    }
+    return 0;
+}
+
+// === STUB: byte_17B1D23 (truncation marker) ===
+char byte_17B1D23[100] = {0};
 
 // 0x0053CEF0 - FormatExceptionMessage (61B)
 // Formats "file(line):msg" into 1024-byte buffer, then logs it
