@@ -3,6 +3,7 @@
 // that don't yet have their own implementation file.
 
 #include <windows.h>
+#include "pal3/pal3_globals.h"
 #include <stdio.h>
 #include <string.h>
 #include <time.h>
@@ -12,69 +13,68 @@
 // Global variables
 // ============================================================
 
-extern "C" char Data[260] = {0};            // 0x01894970 - CD drive path buffer
-extern "C" char Filename[260] = {0};        // 0x01894A74 - exe path buffer
-extern "C" double dbl_1895070 = 0.0;        // 0x01895070 - last frame time
-extern "C" DWORD g_bGameActive = 0;          // 0x005833B8 - game active flag
-extern "C" HINSTANCE hInstance = 0;         // 0x00BFDA48
-extern "C" char WindowName[32] = "PAL3--SOFTSTAR.sh";  // 0x005839C4
-extern "C" HWND hWnd = 0;                   // 0x00BFDA4C
-extern "C" HWND hWndParent = 0;             // 0x00BFDA50
-extern "C" int xRight = 0;                  // 0x00BFDA54
-extern "C" int yBottom = 0;                 // 0x00BFDA58
-extern "C" int g_hCursor = 0;            // 0x00BFDA94
-extern "C" void *g_pCBSystem = 0;         // 0x00BFDA74 - CCBSystem instance
-extern "C" int g_pSceneMgr = 0;            // 0x00BFDA78 - scene manager
-extern "C" int g_pGfxManager = 0;            // 0x00BFDA60 - gbGfxManager
-extern "C" int g_pCamera = 0;            // 0x00BFDA68
-extern "C" char byte_BFDA90 = 0;            // 0x00BFDA90
-extern "C" char byte_5833C0 = 0;            // 0x005833C0
-extern "C" int g_GDB = 0;            // 0x00975ED8
-extern "C" int g_UIManager = 0;            // 0x00C11758
-extern "C" char g_Logger = 0;           // 0x17B1EC0
-extern "C" int g_pCursorNode1 = 0;            // 0x00A3A6EC
-extern "C" int g_pCursorNode2 = 0;            // 0x00A3A6F0
-extern "C" void *unk_A3A7D8 = 0;           // 0x00A3A7D8
-// GRPinput 全局实例 (原 ppvOut — DirectInput 初始化写入此处)
+char Data[260] = {0};            // 0x01894970 - CD drive path buffer
+char Filename[260] = {0};        // 0x01894A74 - exe path buffer
+double dbl_1895070 = 0.0;        // 0x01895070 - last frame time
+DWORD g_bGameActive = 0;          // 0x005833B8 - game active flag
+HINSTANCE hInstance = 0;         // 0x00BFDA48
+char WindowName[32] = "PAL3--SOFTSTAR.sh";  // 0x005839C4
+HWND hWnd = 0;                   // 0x00BFDA4C
+HWND hWndParent = 0;             // 0x00BFDA50
+int xRight = 0;                  // 0x00BFDA54
+int yBottom = 0;                 // 0x00BFDA58
+int g_hCursor = 0;            // 0x00BFDA94
+void *g_pCBSystem = 0;         // 0x00BFDA74 - CCBSystem instance
+int g_pSceneMgr = 0;            // 0x00BFDA78 - scene manager
+gbGfxManager *g_pGfxManager = 0;            // 0x00BFDA60 - gbGfxManager
+void *g_pCamera = 0;            // 0x00BFDA68
+char byte_BFDA90 = 0;            // 0x00BFDA90
+char byte_5833C0 = 0;            // 0x005833C0
+int g_GDB = 0;            // 0x00975ED8
+int g_UIManager = 0;            // 0x00C11758
+char g_Logger = 0;           // 0x17B1EC0
+int g_pCursorNode1 = 0;            // 0x00A3A6EC
+int g_pCursorNode2 = 0;            // 0x00A3A6F0
+void *unk_A3A7D8 = 0;           // 0x00A3A7D8
 #include "pal3/GRPinput.h"
 GRPinput g_Input;
-extern "C" void *off_56A66C = 0;            // 0x0056A66C - vtable pointer
-extern "C" int g_pActorMgr = 0;            // 0x00BFDA64 - gbActorMgr*
-extern "C" int g_GameData = 0;            // 0x00DB9FD0
+void *off_56A66C = 0;            // 0x0056A66C - vtable pointer
+void *g_pActorMgr = 0;            // 0x00BFDA64 - gbActorMgr*
+CGameData g_GameData;            // 0x00DB9FD0
 
 // ============================================================
 // String constants (IDA-named, from .rdata/.data sections)
 // ============================================================
 
-extern "C" const char aSoftwareSoftst_1[] = "software\\softstar\\pal3";
-extern "C" const char aCdriver[]           = "CDriver";
-extern "C" const char asc_5D41EC[]         = "\\";
-extern "C" const char aPal3[]              = "Pal3";
-extern "C" const char aPercentSMovie[]     = "%sMovie";
-extern "C" const char aPlsInsertDisc[]     = "Please Insert Disc4 to Dirver %c:";
-extern "C" const char aDatascriptComb[]    = "data\\script\\combat";
-extern "C" const char aDatascriptLang[]    = "data\\script\\language";
-extern "C" const char aAppname[]           = "PAL3";
-extern "C" const char aInputDeviceCre[]    = "Input Device Create Failed!";
-extern "C" const char aDProjectPal3Ga_0[]  = "D:\\project\\pal3\\gamebase\\PAL3.cpp";
-extern "C" const char aFightDatabaseL[]    = "Fight Database Load Error!!";
-extern "C" const char aCouldNotAlloca[]    = "Could not allocate CCBSystem";
-extern "C" const char aCouldNotAlloca_0[]  = "Could not allocate CSceneMgr";
-extern "C" const char aAssislangLang[]     = "assislang\\lang";
-extern "C" const char aSBulidSS[]          = "%s Bulid: %s";
-extern "C" const char aV104[]              = "V1.04";
-extern "C" const char aGameCreateOk[]      = "Game Create OK ...";
-extern "C" const char aObjectG02Cvd[]      = "object\\g02.cvd";
-extern "C" const char aObjectG03Cvd[]      = "object\\g03.cvd";
-extern "C" const char aMovieLogoBik[]      = "Movie\\logo.bik";
-extern "C" const char aCreateGfxManag[]    = "Create GfxManager Failed!";
-extern "C" const char aCreateActorman[]    = "Create ActorManager Failed!";
-extern "C" const char aCNewFailed[]        = "C++ new Failed!";
+const char aSoftwareSoftst_1[] = "software\\softstar\\pal3";
+const char aCdriver[]           = "CDriver";
+const char asc_5D41EC[]         = "\\";
+const char aPal3[]              = "Pal3";
+const char aPercentSMovie[]     = "%sMovie";
+const char aPlsInsertDisc[]     = "Please Insert Disc4 to Dirver %c:";
+const char aDatascriptComb[]    = "data\\script\\combat";
+const char aDatascriptLang[]    = "data\\script\\language";
+const char aAppname[]           = "PAL3";
+const char aInputDeviceCre[]    = "Input Device Create Failed!";
+const char aDProjectPal3Ga_0[]  = "D:\\project\\pal3\\gamebase\\PAL3.cpp";
+const char aFightDatabaseL[]    = "Fight Database Load Error!!";
+const char aCouldNotAlloca[]    = "Could not allocate CCBSystem";
+const char aCouldNotAlloca_0[]  = "Could not allocate CSceneMgr";
+const char aAssislangLang[]     = "assislang\\lang";
+const char aSBulidSS[]          = "%s Bulid: %s";
+const char aV104[]              = "V1.04";
+const char aGameCreateOk[]      = "Game Create OK ...";
+const char aObjectG02Cvd[]      = "object\\g02.cvd";
+const char aObjectG03Cvd[]      = "object\\g03.cvd";
+const char aMovieLogoBik[]      = "Movie\\logo.bik";
+const char aCreateGfxManag[]    = "Create GfxManager Failed!";
+const char aCreateActorman[]    = "Create ActorManager Failed!";
+const char aCNewFailed[]        = "C++ new Failed!";
 
 // InitGFX globals
-extern "C" int dword_BFD6C8 = 0;            // 0x00BFD6C8 - gbGfxDriverInfo
-extern "C" void *off_56A694 = 0;             // 0x0056A694 - gbVolumeModifier vtable
-extern "C" char unk_A3A6F8 = 0;             // 0x00A3A6F8 - gbVolModNode
+int dword_BFD6C8 = 0;            // 0x00BFD6C8 - gbGfxDriverInfo
+void *off_56A694 = 0;             // 0x0056A694 - gbVolumeModifier vtable
+char unk_A3A6F8 = 0;             // 0x00A3A6F8 - gbVolModNode
 
 // Forward declarations
 extern "C" FILE *__cdecl LogMessage(const char *, ...);
@@ -87,8 +87,8 @@ extern "C" char *__cdecl LoggerWrite(char *, const char *, ...);
 
 // 0x0053CF80 - InitLogFiles (174B)
 // Opens Pal3Log.txt + EngineLog.txt, writes header with timestamp
-extern "C" const char aWt[] = "wt";
-extern "C" const char aEnginelogTxt[] = "EngineLog.txt";
+const char aWt[] = "wt";
+const char aEnginelogTxt[] = "EngineLog.txt";
 
 extern "C" FILE *__cdecl InitLogFiles(void)
 {
@@ -119,16 +119,12 @@ extern "C" FILE *__cdecl InitLogFiles(void)
 // === STUB: 0x00??????  - FileSysInit ===
 extern "C" void __cdecl FileSysInit(void) {}
 
-// === STUB: 0x0041EFA0 - 脚本系统初始化 ===
 extern "C" void __cdecl sub_41EFA0(void) {}
 
-// === STUB: 0x004318B0 - 加载战斗脚本 ===
 extern "C" void __cdecl sub_4318B0(const char *) {}
 
-// === STUB: 0x00430290 - 加载语言脚本 ===
 extern "C" void __cdecl sub_430290(const char *) {}
 
-// === STUB: 0x00430570 - 设置应用名 ===
 extern "C" void __cdecl sub_430570(const char *) {}
 
 // 0x0053DF70 - CScreenMode::GetInstance (6B, matched)
@@ -143,34 +139,25 @@ extern "C" void __cdecl sub_430570(const char *) {}
 
 // === STUB: 0x0053DD70 - CScreenMode::SetMode ===
 
-// === STUB: 0x004020E0 - DirectInput初始化 ===
 
-// === STUB: 0x00402270 - 设置输入范围 ===
 
-// === STUB: 0x004022B0 - 设置输入模式 ===
 
-// === STUB: 0x0053C340 - 未知初始化 ===
 extern "C" void __cdecl sub_53C340(int a, int b) {}
 
-// === STUB: 0x0041C1B0 - 输入状态初始化 ===
 extern "C" void __cdecl sub_41C1B0(int *v) {}
 
 // === STUB: 0x00??????  - PAL_GDB_PAL_GDB ===
 extern "C" int __cdecl PAL_GDB_PAL_GDB(void *) { return 1; }
 
-// === STUB: 0x00457410 - 加载辅助语言 ===
 extern "C" void __cdecl sub_457410(const char *) {}
 
-// === STUB: 0x00408BE0 - 未知初始化 ===
 extern "C" void __cdecl sub_408BE0(void) {}
 
-// === STUB: 0x005415F0 - 获取UIQuadList ===
 // UIQuadManager_GetInstance (was sub_5415F0): moved to ui/UIQuadManager.cpp
 
 // === STUB: UIRenderQuadList ===
 extern "C" void __cdecl UIRenderQuadList(int) {}
 
-// === STUB: 0x0041F5E0 - 未知初始化(C11758相关) ===
 extern "C" void __cdecl sub_41F5E0(void *) {}
 
 // 0x0053CE90 - LoggerRegisterCallbacks (47B)
@@ -180,10 +167,10 @@ extern "C" int __cdecl LoggerRegisterCB(int *, int, char *, char *);
 extern "C" void __cdecl sub_423500(void);
 extern "C" char *__cdecl DebugPrintRoleStats(char *);
 #define sub_53CE20 ((void (__cdecl *)(void))DebugPrintRoleStats)
-extern "C" const char aKm[] = "KM";
-extern "C" const char aFv[] = "FV";
-extern "C" char byte_608944;
-extern "C" char byte_608930;
+const char aKm[] = "KM";
+const char aFv[] = "FV";
+char byte_608944;
+char byte_608930;
 
 extern "C" int __cdecl LoggerRegisterCallbacks(int *pLogger)
 {
@@ -204,7 +191,7 @@ extern "C" int __cdecl LoggerRegisterCallbacks(int *pLogger)
 #define LOGGER_CB_DESC_MAX    0x64
 #define LOGGER_CB_FUNC_OFFSET 132
 
-extern "C" const char aConsoleErrorCo[] = "Console Error: command overflow";
+const char aConsoleErrorCo[] = "Console Error: command overflow";
 
 extern "C" int __cdecl LoggerRegisterCB(int *pLogger, int pfnCallback, char *pName, char *pDesc)
 {
@@ -223,13 +210,12 @@ extern "C" int __cdecl LoggerRegisterCB(int *pLogger, int pfnCallback, char *pNa
 void __cdecl sub_423500(void) {}
 // 0x0053CE20 - FileLogCallback / DebugPrintRoleStats (105B)
 // Prints all 5 role stat values to logger
-extern "C" const char aXuejian[] = "XueJian";
-extern "C" const char aLongkui[] = "LongKui";
-extern "C" const char aZixuan[] = "ZiXuan";
-extern "C" const char aChangqing[] = "ChangQing";
-extern "C" const char aHuaying[] = "HuaYing";
-extern "C" int dword_C04338[5];
-extern "C" char g_Logger;
+const char aXuejian[] = "XueJian";
+const char aLongkui[] = "LongKui";
+const char aZixuan[] = "ZiXuan";
+const char aChangqing[] = "ChangQing";
+const char aHuaying[] = "HuaYing";
+int dword_C04338[5];
 
 extern "C" char *__cdecl DebugPrintRoleStats(char *pArg)
 {
@@ -251,12 +237,8 @@ extern "C" char *__cdecl DebugPrintRoleStats(char *pArg)
     return result;
 }
 
-int dword_C04338[5] = {0};
-char byte_608944 = 0;
-char byte_608930 = 0;
 
 // 0x0053CC70 - Logger::Write (128B)
-// Logger 部分布局 (从使用推断):
 //   +0x1294 (4756): log scroll buffer destination (1600 bytes = 0x640)
 //   +0x12F8 (4856): log scroll buffer source
 //   +0x18D4 (6356): current log line (99 chars max)
@@ -267,7 +249,7 @@ char byte_608930 = 0;
 #define LOGGER_CURLINE_MAX  0x63
 
 static char Source[1024];
-extern "C" char byte_17B1D23[];
+char byte_17B1D23[];
 
 extern "C" char *__cdecl LoggerWrite(char *pLogger, const char *pFormat, ...)
 {
@@ -292,7 +274,7 @@ char byte_17B1D23[100] = {0};
 
 // 0x0053CEF0 - FormatExceptionMessage (61B)
 // Formats "file(line):msg" into 1024-byte buffer, then logs it
-extern "C" const char aExceptionS[] = "Exception: %s";
+const char aExceptionS[] = "Exception: %s";
 
 extern "C" char *__cdecl FormatExceptionMessage(char *pBuf, const char *pMsg, const char *pFile, int nLine)
 {
@@ -302,19 +284,15 @@ extern "C" char *__cdecl FormatExceptionMessage(char *pBuf, const char *pMsg, co
     return pBuf;
 }
 
-// === STUB: 0x00512500 - CCBSystem构造 ===
 extern "C" void *__cdecl sub_512500(void *mem) { return mem; }
 
 // === STUB: CCBSystem_ProcNormalAttack ===
 extern "C" void __cdecl CCBSystem_ProcNormalAttack(void *) {}
 
-// === STUB: 0x004CDA10 - CSceneMgr构造 ===
 extern "C" int __cdecl sub_4CDA10(int a, int b, int c) { return 0; }
 
-// === STUB: 0x0044F130 - 渲染初始化 ===
 extern "C" void __cdecl sub_44F130(void *) {}
 
-// === STUB: 0x0044F610 - 渲染模式设置 ===
 extern "C" void __cdecl sub_44F610(int) {}
 
 // === STUB: 0x004BDB10 - CRenderTarget::GetInstance ===
@@ -328,8 +306,8 @@ extern "C" void __cdecl RenderTarget_Create(int) {}
 
 // === STUB: 0x004B65F0 ===
 // RenderTarget3_Init (was sub_4B65F0): moved to gamebase/GfxHelper.cpp
-extern "C" const char aGfxscriptGlowG[] = "gfxscript\\glow.gfx";
-extern "C" const char aGfxscriptGeomG[] = "gfxscript\\geom.gfx";
+const char aGfxscriptGlowG[] = "gfxscript\\glow.gfx";
+const char aGfxscriptGeomG[] = "gfxscript\\geom.gfx";
 
 // === STUB: 0x004BFD20 ===
 // RenderTarget2_GetInstance (was sub_4BFD20): moved to effect/RenderTarget2.cpp
@@ -352,22 +330,16 @@ extern "C" void __cdecl CEffectSystem_IsVisible(int) {}
 // === STUB: 0x0041ED00 ===
 extern "C" void __cdecl sub_41ED00(int) {}
 
-// === STUB: 0x0053C440 - 视频播放初始化 ===
 // sub_53C440: moved to ScreenMode.cpp
 
-// === STUB: 0x0053C720 - 获取视频高度 ===
 // sub_53C720: moved to ScreenMode.cpp
 
-// === STUB: 0x0053C710 - 获取视频宽度 ===
 // sub_53C710: moved to ScreenMode.cpp
 
-// === STUB: 0x0053C6F0 - 设置视频位置 ===
 // sub_53C6F0: moved to ScreenMode.cpp
 
-// === STUB: 0x0053C5A0 - 开始视频播放 ===
 extern "C" void __cdecl sub_53C5A0(int) {}
 
-// === STUB: 0x0041BE80 - Camera 构造 ===
 extern "C" void __cdecl sub_41BE80(int) {}
 
 // === STUB: 0x0041CA90 - Camera::SetDimention ===
@@ -390,17 +362,14 @@ public:
 extern "C" void __cdecl CameraCtrl_SetDimention(int nWidth, int nHeight)
 {
     // ecx (this) comes from prior call - use g_pCamera as the controller
-    extern int g_pCamera;
     char *pThis = (char *)g_pCamera;
     *(int *)(pThis + CAMERACTRL_WIDTH_OFFSET) = nWidth;
     *(int *)(pThis + CAMERACTRL_HEIGHT_OFFSET) = nHeight;
     ((gbCamera *)(pThis + CAMERACTRL_CAMERA_OFFSET))->SetDimention(nWidth, nHeight);
 }
 
-// === STUB: 0x0041D100 - Camera 设置 ===
 extern "C" void __cdecl sub_41D100(int) {}
 
-// === STUB: 0x0041C630 - Camera 模式 ===
 // 0x0041C630 - CameraCtrl::SetAsCurrent (58B)
 // CameraCtrl extended layout:
 //   +0x1E0: gbVec3D m_vEyePos
@@ -414,7 +383,6 @@ struct gbVec3D { float x, y, z; };
 
 extern "C" void __cdecl CameraCtrl_SetAsCurrent(int nFlags)
 {
-    extern int g_pCamera;
     char *pThis = (char *)g_pCamera;
     gbCamera *pCam = (gbCamera *)(pThis + CAMERACTRL_CAMERA_OFFSET);
 
@@ -425,7 +393,6 @@ extern "C" void __cdecl CameraCtrl_SetAsCurrent(int nFlags)
     pCam->SetAsCurrent(nFlags);
 }
 
-// gbGfxManager::SetClearParam — 通过 gbengine.lib 链接 (thiscall)
 
 // === STUB: gbVolModNode::SetVolModObj ===
 extern "C" void __cdecl gbVolModNode_SetVolModObj(void *, void *) {}
@@ -436,7 +403,6 @@ extern "C" void __cdecl gbRefObject_Release(void *) {}
 // === STUB: gbLightObj::Init ===
 extern "C" void __cdecl gbLightObj_Init(void *, int) {}
 
-// === STUB: 0x005382D0 - 检查目录存在 ===
 extern "C" BOOL __cdecl sub_5382D0(const char *path)
 {
     WIN32_FIND_DATAA fd;
@@ -471,7 +437,6 @@ extern "C" void __cdecl FileSysDestory(void) {}
 // CRenderTarget: moved to effect/RenderTarget.cpp
 // CRenderTarget2: moved to effect/RenderTarget2.cpp
 // UIQuadManager: moved to ui/UIQuadManager.cpp
-class CGameData { public: void Destroy(void); int GetMode(void); char _pad[0x38D0]; };
 
 
 // 0x004BDED0 (7B): mov [ecx], -1; ret
@@ -483,7 +448,6 @@ void CGameData::Destroy(void) {}
 int CGameData::GetMode(void) { return *(int *)((char *)this + 0x38CC); }
 
 
-// CCBSystem — 已移至 src/pal3/Combat/CBSystem.cpp + include/pal3/CCBSystem.h
 
 // gbGeomNode
 class gbGeomNode {
@@ -517,30 +481,24 @@ void *OpenNULLFile::OpenNULLFile_ctor(void **pv) { return 0; }
 
 
 // ============================================================
-// PAL3::Update 所需的全局变量和 stub (Iteration #2)
 // ============================================================
 
-// 全局变量
-extern "C" float g_fTotalTime = 0.0f;         // 0x00BFDAA0 - 累计时间
-extern "C" float g_fSceneTime = 0.0f;         // 0x00BFDA5C - 场景累计时间
-extern "C" float g_fEventTimer = 0.0f;         // 0x00BFDA58 - wolf/ghost 计时
-extern "C" int g_nGameState = 0;             // 0x00BFDA6C - 游戏状态
-// dword_BFDA30 — 定义在 PAL3.cpp             // 0x00BFDA30
-extern "C" int g_pRoleSystem = 0;             // 0x00C116EC - 角色数据
-extern "C" int dword_C1171C = 0;             // 0x00C1171C
-extern "C" int dword_C11754 = 0;             // 0x00C11754
-extern "C" int g_nGameFlags = 0;             // 0x005833BC - 标志位
-// dword_5833CC — 定义在 PAL3.cpp             // 0x005833CC
-extern "C" char byte_5833D0 = 0;             // 0x005833D0
-extern "C" char byte_C11748 = 0;             // 0x00C11748
-extern "C" char byte_C11750 = 0;             // 0x00C11750
-extern "C" char byte_C11751 = 0;             // 0x00C11751
-extern "C" char byte_D8C339 = 0;             // 0x00D8C339
-extern "C" char byte_D924E8 = 0;             // 0x00D924E8
-extern "C" short word_8ACCD8 = 0;            // 0x008ACCD8 - 按键映射表起始
-// word_8ACD2A — 定义在 PAL3.cpp            // 0x008ACD2A - 按键映射表结束
-// flt_C0816C — 定义在 PAL3.cpp          // 0x00C0816C - 角色位置数组
-extern "C" float flt_C1096C = 0.0f;          // 0x00C1096C - 角色位置数组结束
+float g_fTotalTime = 0.0f;
+float g_fSceneTime = 0.0f;
+float g_fEventTimer = 0.0f;
+int g_nGameState = 0;
+int g_pRoleSystem = 0;
+int dword_C1171C = 0;             // 0x00C1171C
+int dword_C11754 = 0;             // 0x00C11754
+int g_nGameFlags = 0;
+char byte_5833D0 = 0;             // 0x005833D0
+char byte_C11748 = 0;             // 0x00C11748
+char byte_C11750 = 0;             // 0x00C11750
+char byte_C11751 = 0;             // 0x00C11751
+char byte_D8C339 = 0;             // 0x00D8C339
+char byte_D924E8 = 0;             // 0x00D924E8
+short word_8ACCD8 = 0;
+float flt_C1096C = 0.0f;
 
 // PAL3::Update callees - sub_ stubs
 extern "C" void __cdecl sub_40C230(float) {}
@@ -552,7 +510,6 @@ extern "C" void __cdecl sub_41EB80(void) {}
 extern "C" void __cdecl sub_420150(float) {}
 extern "C" int __cdecl sub_421C40(int) { return 0; }
 // === STUB: 0x004226F0 - GetActiveUIScene ===
-// 依赖全局对象地址 (0x00C22BE8/0x00C9A04C)，需要链接时重定位
 extern "C" int __cdecl sub_4226F0(void) { return 0; }
 extern "C" void __cdecl sub_422E40(float) {}
 extern "C" void __cdecl sub_423540(void) {}
@@ -571,7 +528,6 @@ extern "C" void __cdecl sub_5353A0(float) {}
 // sub_53D1A0: moved to ScreenMode.cpp
 extern "C" void __cdecl sub_541590(int) {}
 
-// GRPinput/CScreenMode/CCBStage — 已迁移到独立 .cpp 文件
 
 extern "C" void __cdecl PAL3_IfHideFightSucceed(int) {}
 extern "C" void __cdecl PAL3_EndHideFight(void) {}
@@ -587,30 +543,29 @@ extern "C" void __cdecl gbAudioManager_StopSoundStream(void *, int) {}
 extern "C" float __cdecl gbVec3D_Length(void *) { return 0.0f; }
 
 // ============================================================
-// PAL3::Render 所需的 stub (Iteration #3)
 // ============================================================
-extern "C" int dword_BFDA38 = 0;             // 0x00BFDA38 - gbDropGroup*
-extern "C" int dword_BFDA3C = 0;             // 0x00BFDA3C - gbDropGroup*
-extern "C" char byte_BFDA40 = 0;             // 0x00BFDA40
-extern "C" char byte_BFDA41 = 0;             // 0x00BFDA41
-extern "C" int dword_BFDA80 = 0;             // 0x00BFDA80
-extern "C" int dword_BFDA7C = 0;             // 0x00BFDA7C
-extern "C" int dword_BFDA84 = 0;             // 0x00BFDA84
-extern "C" int dword_BFDA34 = 0;             // 0x00BFDA34
-extern "C" int dword_BFDA98 = 0;             // 0x00BFDA98
-extern "C" char g_bRenderUI = 0;             // 0x005833C2
-extern "C" int dword_D8E488 = 0;             // 0x00D8E488
-extern "C" int dword_C12B28 = 0;             // 0x00C12B28
-extern "C" int dword_C12B2C = 0;             // 0x00C12B2C
-extern "C" int dword_C12B30 = 0;             // 0x00C12B30
-extern "C" char unk_A3A750[64] = {0};        // 0x00A3A750 - gbMatrix4
+int dword_BFDA38 = 0;             // 0x00BFDA38 - gbDropGroup*
+int dword_BFDA3C = 0;             // 0x00BFDA3C - gbDropGroup*
+char byte_BFDA40 = 0;             // 0x00BFDA40
+char byte_BFDA41 = 0;             // 0x00BFDA41
+int dword_BFDA80 = 0;             // 0x00BFDA80
+int dword_BFDA7C = 0;             // 0x00BFDA7C
+int dword_BFDA84 = 0;             // 0x00BFDA84
+int dword_BFDA34 = 0;             // 0x00BFDA34
+int dword_BFDA98 = 0;             // 0x00BFDA98
+char g_bRenderUI = 0;             // 0x005833C2
+int dword_D8E488 = 0;             // 0x00D8E488
+int dword_C12B28 = 0;             // 0x00C12B28
+int dword_C12B2C = 0;             // 0x00C12B2C
+int dword_C12B30 = 0;             // 0x00C12B30
+char unk_A3A750[64] = {0};        // 0x00A3A750 - gbMatrix4
 
 extern "C" void __cdecl sub_40C630(void *) {}
 extern "C" void __cdecl sub_40C7D0(void) {}
 // 0x00410430 - NPCAnimCheck (54B)
 // Checks combat state and calls anim update if needed
-extern "C" int dword_C025EC;
-extern "C" int dword_C083D8;
+int dword_C025EC;
+int dword_C083D8;
 extern "C" int __cdecl sub_412400(int, int);
 
 extern "C" int __cdecl NPCAnimCheck(int nParam)
@@ -622,8 +577,6 @@ extern "C" int __cdecl NPCAnimCheck(int nParam)
     return dword_C083D8;
 }
 
-int dword_C025EC = 0;
-int dword_C083D8 = 0;
 int __cdecl sub_412400(int, int) { return 0; }
 extern "C" void __cdecl sub_41F370(void *) {}
 extern "C" void __cdecl sub_4200A0(void *) {}
@@ -677,37 +630,27 @@ extern "C" int __cdecl PAL3_PrintScreen(void) { return 0; }
 extern "C" void __cdecl UIRenderObj_UIRenderObj(int) {}
 
 // ============================================================
-// 小函数实现 (从二进制反汇编, Iteration #4)
 // ============================================================
 
-// 0x0053DF70 - CScreenMode::GetInstance (6B) — 返回静态单例地址
-// 原始: mov eax, 0x017B41E8; ret — 但由于当前是 cdecl stub 返回 0，
-// 保持 stub 直到有完整 CScreenMode 类型定义
 
 // 0x004BDED0 - CRenderTarget::Destroy (7B)
-// 原始: mov [ecx], 0xFFFFFFFF; ret → this->m_state = -1;
-// 当前作为 extern "C" void 在 globals.cpp 中，需改为 thiscall 类方法
 
-// 原始: mov eax, [ecx+0x328]; ret → return this->m_pAudioMgr;
 
 // 0x0044FF60 - CGameData::GetMode (7B)
-// 原始: mov eax, [ecx+0x38CC]; ret → return this->m_nMode;
 
 // 0x004022B0 - GRPinput::SetMode (10B)
-// 原始: mov eax,[esp+4]; mov [ecx+0xC],eax; ret 4 → this->m_mode = arg;
 
-// 原始: mov eax,[esp+4]; mov [ecx+0x1224],eax; ret 4 → this->m_state = arg;
 
 // === STUB: 0x005694F0 - gbGfxManager_D3D internal method ===
 extern "C" int __cdecl sub_5694F0(void *pThis, int a, int b, int c, int d) { return 0; }
 
 // === STUB: 0x0053E740 - Audio fade implementation ===
 extern "C" void __cdecl sub_53E740(int *, const char *, int *) {}
-extern "C" char byte_56A634[] = "";
+char byte_56A634[] = "";
 // 0x0053D030 - LogMessage (67B)
 // Formats message and appends to Pal3Log.txt
 static char s_LogBuffer[1024];
-extern "C" const char aAt[] = "at";
+const char aAt[] = "at";
 
 extern "C" FILE *__cdecl LogMessage(const char *pFormat, ...)
 {

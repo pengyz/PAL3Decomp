@@ -41,10 +41,10 @@ struct gbGfxManager_Partial {
     gbSceneGraph *pSceneGraph;       // +0x1C0 (offset 448)
 };
 
-extern "C" gbGfxManager_Partial *g_pGfxManager;
+gbGfxManager_Partial *g_pGfxManager;
 
-extern "C" const char aGfxscriptGlowG[];  // "gfxscript\\glow.gfx"
-extern "C" const char aGfxscriptGeomG[];  // "gfxscript\\geom.gfx"
+extern const char aGfxscriptGlowG[];  // "gfxscript\\glow.gfx"
+extern const char aGfxscriptGeomG[];  // "gfxscript\\geom.gfx"
 
 // 0x00540FA0 - PopMatrixStacks (34B)
 // Pop pMatrixStack[0] and pMatrixStack[1]

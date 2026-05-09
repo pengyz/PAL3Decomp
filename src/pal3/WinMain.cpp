@@ -6,18 +6,13 @@
 
 #define _WIN32_WINNT 0x0500
 #include <windows.h>
+#include "pal3/pal3_globals.h"
 #include <stdio.h>
 #include <string.h>
 
 // ============================================================
 // Global variables (defined elsewhere, linked)
 // ============================================================
-extern "C" char Data[260];              // 0x01894970 - CD drive path buffer
-extern "C" char Filename[260];          // 0x01894A74 - exe path buffer
-extern "C" double dbl_1895070;          // 0x01895070 - last frame time
-extern "C" DWORD g_bGameActive;          // 0x005833B8 - game active flag
-extern "C" HINSTANCE hInstance;         // 0x00BFDA48 - global hInstance
-extern "C" char WindowName[];           // 0x005839C4 - "PAL3--SOFTSTAR.sh"
 
 // gbengine.dll import - g_CurrentTime accessed via IAT pointer
 __declspec(dllimport) double g_CurrentTime;  // IAT at 0x0056A4F4
@@ -26,20 +21,19 @@ __declspec(dllimport) double g_CurrentTime;  // IAT at 0x0056A4F4
 // String constants
 // ============================================================
 // These are in .data section at known addresses
-extern "C" char aSoftwareSoftst_1[];    // 0x00609010 "software\softstar\pal3"
-extern "C" char aCdriver[];             // 0x00609028 "CDriver"
-extern "C" char asc_5D41EC[];           // 0x005D41EC "\\"
-extern "C" char aPal3[];                // 0x00608FDC "Pal3"
-extern "C" char aPercentSMovie[];       // 0x00609008 "%sMovie"
-extern "C" char aPlsInsertDisc[];       // 0x00608FE4 "Please Insert Disc4 to Dirver %c:"
-extern "C" char aPal3Exception[];       // 0x00608FC8 "Pal3::Exception ..."
+extern const char aSoftwareSoftst_1[];    // 0x00609010 "software\softstar\pal3"
+extern const char aCdriver[];             // 0x00609028 "CDriver"
+extern const char asc_5D41EC[];           // 0x005D41EC "\\"
+extern const char aPal3[];                // 0x00608FDC "Pal3"
+extern const char aPercentSMovie[];       // 0x00609008 "%sMovie"
+extern const char aPlsInsertDisc[];       // 0x00608FE4 "Please Insert Disc4 to Dirver %c:"
 
 // ============================================================
 // External functions
 // ============================================================
 __declspec(dllimport) double __cdecl gbUpdateCurTime(void);  // IAT 0x0056A4F8
 extern "C" BOOL __cdecl sub_5382D0(const char* path);  // check directory exists
-extern "C" char __cdecl ReadRegistryValue(char *lpSubKey, const char *lpValueName, BYTE *lpData);
+extern "C" char __cdecl ReadRegistryValue(const char *lpSubKey, const char *lpValueName, BYTE *lpData);
 
 // Exception class used in PAL3
 class _Exception {
@@ -49,7 +43,6 @@ public:
 
 // Helper for exception message display
 extern "C" void __cdecl sub_408BC0(void *buf, const char *msg, int code);
-extern "C" DWORD dword_BFD774;  // 0x00BFD774 - MessageBoxA proc address?
 
 // ============================================================
 // Class declarations
@@ -64,7 +57,6 @@ public:
 
 #include "pal3/CCBSystem.h"
 
-extern "C" void *g_pCBSystem;  // CCBSystem instance pointer  0x00BFDA74
 
 // ========================================================================
 // LowLevelKeyboardProc
@@ -226,7 +218,7 @@ int WINAPI WinMain(HINSTANCE hInst, HINSTANCE hPrevInstance, LPSTR lpCmdLine, in
 // Address: 0x00541C40, Size: 114 bytes
 // __cdecl, FPO (no frame pointer)
 // ========================================================================
-extern "C" char __cdecl ReadRegistryValue(char *lpSubKey, const char *lpValueName, BYTE *lpData)
+extern "C" char __cdecl ReadRegistryValue(const char *lpSubKey, const char *lpValueName, BYTE *lpData)
 {
     DWORD cbData;
     DWORD Type;

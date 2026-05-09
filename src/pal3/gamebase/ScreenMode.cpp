@@ -82,7 +82,7 @@ struct CScreenMode_Audio {
 };
 
 extern "C" void __cdecl sub_53E740(CScreenMode_Audio *, const char *, int *);
-extern "C" char byte_56A634[];
+char byte_56A634[];
 
 // 0x0053EA60 - AudioFadeOut (30B)
 extern "C" void __cdecl AudioFadeOut(CScreenMode_Audio *pAudio)

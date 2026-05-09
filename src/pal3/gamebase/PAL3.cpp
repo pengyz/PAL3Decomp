@@ -13,6 +13,7 @@
 #include <stdio.h>
 #include <string.h>
 #include <new>
+#include "pal3/pal3_globals.h"
 
 // ============================================================
 // Class forward declarations
@@ -107,44 +108,25 @@ extern "C" const char *__cdecl FormatExceptionMessage(char *buf, const char *msg
 // ============================================================
 // Global variables
 // ============================================================
-extern "C" HWND hWnd;
-extern "C" HWND hWndParent;
-extern "C" int xRight;
-extern "C" int yBottom;
-extern "C" int g_hCursor;
-extern "C" void *g_pCBSystem;
-extern "C" int g_pSceneMgr;
-extern "C" int g_pGfxManager;
-extern "C" int g_pCamera;
-extern "C" char byte_BFDA90;
-extern "C" char byte_BFDA91;
-extern "C" char byte_5833C0;
-extern "C" int g_GDB;
-extern "C" int g_UIManager;
-extern "C" char g_Logger;
-extern "C" int g_pCursorNode1;
-extern "C" int g_pCursorNode2;
-extern "C" void *unk_A3A7D8;
-extern GRPinput g_Input;
+extern void *g_pCBSystem;
 
 // String constants
-extern "C" const char aDatascriptComb[];
-extern "C" const char aDatascriptLang[];
-extern "C" const char aAppname[];
-extern "C" const char aInputDeviceCre[];
-extern "C" const char aDProjectPal3Ga_0[];
-extern "C" const char aFightDatabaseL[];
-extern "C" const char aCouldNotAlloca[];
-extern "C" const char aCouldNotAlloca_0[];
-extern "C" const char aAssislangLang[];
-extern "C" const char aSBulidSS[];
-extern "C" const char aV104[];
-extern "C" const char aGameCreateOk[];
-extern "C" const char aObjectG02Cvd[];
-extern "C" const char aObjectG03Cvd[];
-extern "C" const char aMovieLogoBik[];
+extern const char aDatascriptComb[];
+extern const char aDatascriptLang[];
+extern const char aAppname[];
+extern const char aInputDeviceCre[];
+extern const char aDProjectPal3Ga_0[];
+extern const char aFightDatabaseL[];
+extern const char aCouldNotAlloca[];
+extern const char aCouldNotAlloca_0[];
+extern const char aAssislangLang[];
+extern const char aSBulidSS[];
+extern const char aV104[];
+extern const char aGameCreateOk[];
+extern const char aObjectG02Cvd[];
+extern const char aObjectG03Cvd[];
+extern const char aMovieLogoBik[];
 
-extern "C" void *off_56A66C;
 
 // ========================================================================
 // PAL3::InitGFX
@@ -164,19 +146,11 @@ extern "C" void __cdecl gbVolModNode_SetVolModObj(void *, void *);
 extern "C" void __cdecl gbRefObject_Release(void *);
 extern "C" void __cdecl gbLightObj_Init(void *, int);
 
-extern "C" int g_pGfxManager;
-extern "C" int g_pActorMgr;
-extern "C" int g_pCamera;
-extern "C" int xRight;
-extern "C" int yBottom;
-extern "C" int dword_BFD6C8;
-extern "C" void *off_56A694;
-extern "C" char unk_A3A6F8;
 
-extern "C" const char aCreateGfxManag[];
-extern "C" const char aCreateActorman[];
-extern "C" const char aCNewFailed[];
-extern "C" const char aDProjectPal3Ga_0[];
+extern const char aCreateGfxManag[];
+extern const char aCreateActorman[];
+extern const char aCNewFailed[];
+extern const char aDProjectPal3Ga_0[];
 
 void __cdecl PAL3::InitGFX(HINSTANCE hInst)
 {
@@ -186,7 +160,7 @@ void __cdecl PAL3::InitGFX(HINSTANCE hInst)
     _Exception pExceptionObject;
     char ArgList[1024];
 
-    g_pGfxManager = (int)gbCreateGraphManager((gbGfxDriverInfo *)&dword_BFD6C8);
+    g_pGfxManager = gbCreateGraphManager((gbGfxDriverInfo *)&dword_BFD6C8);
     if (!g_pGfxManager)
     {
         memcpy(&pExceptionObject,
@@ -195,8 +169,8 @@ void __cdecl PAL3::InitGFX(HINSTANCE hInst)
         throw pExceptionObject;
     }
 
-    pActorMgr = new gbActorMgr((gbGfxManager *)g_pGfxManager);
-    g_pActorMgr = (int)pActorMgr;
+    pActorMgr = new gbActorMgr(g_pGfxManager);
+    g_pActorMgr = (void*)pActorMgr;
     if (!pActorMgr)
     {
         memcpy(&pExceptionObject,
@@ -207,10 +181,10 @@ void __cdecl PAL3::InitGFX(HINSTANCE hInst)
 
     pCamera = (int)operator new(0x220u);
     if (pCamera)
-        sub_41BE80(g_pGfxManager);
+        sub_41BE80((int)g_pGfxManager);
     else
         pCamera = 0;
-    g_pCamera = pCamera;
+    g_pCamera = (void*)pCamera;
     if (!pCamera)
     {
         memcpy(&pExceptionObject,
@@ -228,7 +202,7 @@ void __cdecl PAL3::InitGFX(HINSTANCE hInst)
         cp.flags = 3;
         cp.color = 0xFF000000;
         cp.depth = 1.0f;
-        ((gbGfxManager *)g_pGfxManager)->SetClearParam(&cp);
+        (g_pGfxManager)->SetClearParam(&cp);
     }
 
     pVolMod = operator new(0xD8u);
@@ -366,10 +340,10 @@ void __cdecl PAL3::Create(HINSTANCE hInstance)
     if (pSceneMem)
     {
         if (g_pCamera)
-            pSceneCam = g_pCamera + 4;
+            pSceneCam = (int)g_pCamera + 4;
         else
             pSceneCam = 0;
-        pSceneMgr = sub_4CDA10(g_pGfxManager, pSceneCam, 0);
+        pSceneMgr = sub_4CDA10((int)g_pGfxManager, pSceneCam, 0);
     }
     else
     {
@@ -481,7 +455,6 @@ struct VObj { virtual void Release(int) = 0; };
 class CRenderTarget { public: void Destroy(void); };
 class CRenderTarget2 { public: void Destroy(void); };
 class UIQuadManager { public: void Destroy(void); };
-class CGameData { public: void Destroy(void); };
 class CScreenMode { public: void Restore(void); };
 
 extern "C" void __cdecl sub_40C960(void);
@@ -490,11 +463,6 @@ extern "C" void __cdecl TextureLib_Data_dtor(void);
 extern "C" void __cdecl PalScriptMgr_CON_ReLoadScript(void);
 extern "C" void __cdecl FileSysDestory(void);
 
-extern "C" void *g_pCBSystem;
-extern "C" int g_pCamera;
-extern "C" int g_pActorMgr;
-extern "C" int g_pGfxManager;
-extern "C" CGameData g_GameData;
 
 void __cdecl PAL3::Destroy(void)
 {
@@ -557,32 +525,10 @@ void __cdecl PAL3::Destroy(void)
 
 // GRPinput declared via #include "pal3/GRPinput.h" above
 
-extern "C" float g_fTotalTime;
-extern "C" float g_fSceneTime;
-extern "C" float g_fEventTimer;
-extern "C" int g_nGameState;
-extern "C" int dword_BFDA30 = 0;
-extern "C" int g_pRoleSystem;
-extern "C" int dword_C1171C;
-extern "C" int dword_C11754;
-extern "C" int g_nGameFlags;
-extern "C" int dword_5833CC = 0;
-extern "C" char byte_5833D0;
-extern "C" char byte_C11748;
-extern "C" char byte_C11750;
-extern "C" char byte_C11751;
-extern "C" char byte_D8C339;
-extern "C" char byte_D924E8;
-extern "C" short word_8ACCD8;
-extern "C" short word_8ACD2A = 0;
-extern "C" float flt_C0816C = 0.0f;
-extern "C" float flt_C1096C;
-extern GRPinput g_Input;
-extern "C" int g_pCursorNode1;
-extern "C" int g_pCursorNode2;
-extern "C" void *g_pCBSystem;
-extern "C" char byte_BFDA90;
-extern "C" char byte_5833C0;
+int dword_BFDA30 = 0;
+int dword_5833CC = 0;
+short word_8ACD2A = 0;
+float flt_C0816C = 0.0f;
 
 // GRPinput::GetKeyState declared via pal3/GRPinput.h
 extern "C" void __cdecl sub_40C230(float);
@@ -631,7 +577,6 @@ extern "C" int  __cdecl PalScriptMgr_CON_CloseScript(void);
 extern "C" void __cdecl gbAudioManager_StopSoundStream(void *, int);
 extern "C" float __cdecl gbVec3D_Length(void *);
 
-extern "C" int g_pGfxManager;
 
 void __cdecl PAL3::Update(float a1)
 {
@@ -902,26 +847,6 @@ DONE:
 // static void __cdecl PAL3::Render(void)
 // ========================================================================
 
-extern "C" int g_nGameState;
-extern "C" int g_pGfxManager;
-extern "C" int g_pCamera;
-extern "C" int g_pSceneMgr;
-extern "C" void *g_pCBSystem;
-extern "C" int g_UIManager;
-extern "C" float g_fEventTimer;
-extern "C" int dword_BFDA38;
-extern "C" int dword_BFDA3C;
-extern "C" char byte_BFDA40;
-extern "C" char byte_BFDA41;
-extern "C" int dword_BFDA80;
-extern "C" int dword_BFDA7C;
-extern "C" int dword_BFDA84;
-extern "C" int dword_BFDA34;
-extern "C" int dword_BFDA98;
-extern "C" char g_bRenderUI;
-extern "C" int dword_D8E488;
-extern "C" int xRight;
-extern "C" int yBottom;
 
 extern "C" void __cdecl sub_40C630(void *);
 extern "C" void __cdecl sub_40C7D0(void);
@@ -956,7 +881,6 @@ extern "C" int  __cdecl UIQuadManager_GetInstance(void);
 extern "C" void __cdecl ScreenEffectMgr_GetInstance(void);
 extern "C" int  __cdecl RenderTarget3_GetInstance(void);
 extern "C" void __cdecl CameraCtrl_SetAsCurrent(int);
-extern "C" char g_Logger;
 
 extern "C" void __cdecl UIRenderObj_UIRenderObj(int);
 extern "C" int __cdecl PAL3_PrintScreen(void);
