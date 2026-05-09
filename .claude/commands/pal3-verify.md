@@ -124,18 +124,25 @@ void CCBSystem::ProcFling() {}
 
 ## 执行
 
-每次调用执行一轮完整分析-标注-改进循环：
+每次调用**必须**执行完整循环，**不得跳过文件拆分步骤**：
 
 ```
-1. 读取所有 compiled/matched 函数的源码
+1. 读取所有 compiled/matched/wip 函数的源码
 2. 提取类型推断 (Phase 1)
-3. 输出推断摘要供人工确认
-4. 更新 call_graph.json (Phase 2)
-5. 应用代码改进 + 文件拆分 (Phase 3)
-6. cmake --build 验证 + 输出 PAL3.exe size
-7. compare 验证 matched 函数未被破坏
-8. commit
+3. 输出推断摘要
+4. 更新 call_graph.json + xref (Phase 2)
+5. **强制检查: 代码位置是否匹配 PDB/推断位置**
+   - 遍历所有已识别类的方法，检查它们是否在正确的 .cpp 文件中
+   - 如果 globals.cpp 中有已确定归属的类方法 → 必须拆分到对应文件
+   - 如果某个类的方法散落在多个文件 → 合并到一个正确位置
+6. 执行文件拆分 + CMakeLists 更新 (Phase 3)
+7. 全局变量重命名 (Phase 3)
+8. cmake --build 验证 + 输出 PAL3.exe size
+9. compare 验证 matched 函数未被破坏
+10. commit
 ```
+
+**关键**: Phase 5 是强制的。如果发现任何类方法在 globals.cpp 中而该类已有明确归属，必须立即拆分。不拆分就不提交。
 
 ## 输出格式
 
