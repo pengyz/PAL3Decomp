@@ -232,6 +232,7 @@ def compute_stats(cg):
         "compiled": 0,
         "wip": 0,
         "pending": 0,
+        "stub": 0,
         "skipped": 0,
         "blocked": 0,
         "frontier_size": len(cg.get("frontier", [])),
@@ -598,6 +599,59 @@ def cmd_update(args):
     print(f"Updated {addr_str} ({node['name']}): status={node['status']}, match_rate={node['match_rate']}")
 
 
+def cmd_add(args):
+    """Add a new node (stub) to the call graph."""
+    cg = load_callgraph()
+    if cg is None:
+        print("No call graph found. Run 'init' first.")
+        sys.exit(1)
+
+    addr_str = normalize_addr(args.addr)
+    nodes = cg["nodes"]
+
+    if addr_str in nodes:
+        # Node already exists, just update if needed
+        node = nodes[addr_str]
+        if args.status:
+            node["status"] = args.status
+        if args.source:
+            node["source"] = args.source
+        if args.name:
+            node["name"] = args.name
+        if args.signature:
+            node["signature"] = args.signature
+        print(f"Updated existing node {addr_str} ({node['name']})")
+    else:
+        # Create new node
+        node = {
+            "name": args.name or f"sub_{int(addr_str, 16):X}",
+            "address": addr_str,
+            "size": args.size or 0,
+            "status": args.status or "stub",
+            "source": args.source,
+            "signature": args.signature or "",
+            "match_rate": 0.0,
+            "calls": [],
+            "called_by": [],
+            "depth": 99,  # Will be recalculated
+            "has_decomp": False,
+            "is_named": bool(args.name and not args.name.startswith("sub_")),
+        }
+        # Check if decomp file exists
+        decomp_dir = Path(__file__).parent.parent / "asm" / "pal3" / "decomp"
+        for f in decomp_dir.glob(f"*_{int(addr_str, 16):08x}.json"):
+            node["has_decomp"] = True
+            break
+        nodes[addr_str] = node
+        # Add to frontier
+        if addr_str not in cg["frontier"]:
+            cg["frontier"].append(addr_str)
+        print(f"Added node {addr_str} ({node['name']}): status={node['status']}, source={node['source']}")
+
+    cg["stats"] = compute_stats(cg)
+    save_callgraph(cg)
+
+
 def cmd_show(args):
     """Show details of a specific node."""
     cg = load_callgraph()
@@ -740,10 +794,19 @@ def main():
     # update
     p_update = subparsers.add_parser("update", help="更新节点状态")
     p_update.add_argument("addr", help="函数地址")
-    p_update.add_argument("--status", choices=["pending", "matched", "compiled", "wip", "skipped", "blocked"])
+    p_update.add_argument("--status", choices=["pending", "stub", "matched", "compiled", "wip", "skipped", "blocked"])
     p_update.add_argument("--match-rate", type=float, dest="match_rate")
     p_update.add_argument("--source", help="源文件路径")
     p_update.add_argument("--name", help="函数名")
+
+    # add
+    p_add = subparsers.add_parser("add", help="添加 stub 节点")
+    p_add.add_argument("addr", help="函数地址 (如 0x00404800)")
+    p_add.add_argument("--name", help="函数名")
+    p_add.add_argument("--size", type=int, help="函数大小 (字节)")
+    p_add.add_argument("--status", default="stub", choices=["pending", "stub", "skipped"])
+    p_add.add_argument("--source", help="源文件路径 (如 src/pal3/gamebase/PAL3.cpp)")
+    p_add.add_argument("--signature", help="函数签名 (如 'void __cdecl PAL3::CreateGfxWindow(void)')")
 
     # show
     p_show = subparsers.add_parser("show", help="显示节点详情")
@@ -766,6 +829,8 @@ def main():
         cmd_expand(args)
     elif args.command == "update":
         cmd_update(args)
+    elif args.command == "add":
+        cmd_add(args)
     elif args.command == "show":
         cmd_show(args)
     elif args.command == "validate":

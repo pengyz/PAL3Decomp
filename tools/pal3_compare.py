@@ -388,7 +388,6 @@ def compile_all_sources(json_output=False):
 def main():
     parser = argparse.ArgumentParser(description='PAL3.exe 编译对比工具')
     parser.add_argument('--compile', help='要编译的源文件')
-    parser.add_argument('--compile-all', action='store_true', help='编译 src/pal3/ 下所有 .cpp')
     parser.add_argument('--obj', help='已编译的 .obj 文件')
     parser.add_argument('--func', help='要对比的函数名 (支持部分匹配)')
     parser.add_argument('--addr', help='函数在原始 EXE 中的地址 (如 0x00541900)')
@@ -397,11 +396,6 @@ def main():
     parser.add_argument('--list', action='store_true', help='列出 obj 中的函数')
     parser.add_argument('--json-output', action='store_true', help='输出 JSON 格式结果')
     args = parser.parse_args()
-
-    # --compile-all mode
-    if args.compile_all:
-        success = compile_all_sources(json_output=args.json_output)
-        sys.exit(0 if success else 1)
 
     # 编译
     obj_path = None

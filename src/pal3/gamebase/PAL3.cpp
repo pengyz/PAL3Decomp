@@ -56,7 +56,7 @@ public:
 // ============================================================
 extern "C" void __cdecl sub_53CF80(void);
 extern "C" void __cdecl FileSysInit(void);
-extern "C" __declspec(dllimport) void __cdecl gbTimeCounterInit(void);
+__declspec(dllimport) void __cdecl gbTimeCounterInit(void);
 
 extern "C" void __cdecl sub_41EFA0(void);
 extern "C" void __cdecl sub_4318B0(const char *);

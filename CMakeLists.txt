@@ -184,52 +184,46 @@ endif()
 if(BUILD_TARGET STREQUAL "pal3")
     message(STATUS "Configuring PAL3.exe build")
 
-    # Explicit source file list for PAL3.exe
+    # PAL3.exe 反编译源文件列表
+    # 随 BFS 调用图展开逐步添加。每个文件包含已实现函数 + callee stub。
+    # 维护规则: 新增 .cpp 文件时添加到此列表。
     set(PAL3_SOURCES
-        src/pal3/winmain.cpp
-        src/pal3/pal3_stubs.cpp
-        src/pal3/pal3_classes.cpp
-        src/pal3/gbengine_dynamic.cpp
+        src/pal3/WinMain.cpp
+        src/pal3/gamebase/PAL3.cpp
+        src/pal3/Combat/CBSystem.cpp
+        src/pal3/globals.cpp
     )
 
-    if(PAL3_SOURCES)
-        add_executable(pal3 WIN32 ${PAL3_SOURCES})
-        target_include_directories(pal3 PUBLIC include)
-        set_target_properties(pal3 PROPERTIES
-            OUTPUT_NAME "PAL3"
-            SUFFIX ".exe"
+    add_executable(pal3 WIN32 ${PAL3_SOURCES})
+    target_include_directories(pal3 PUBLIC include)
+    set_target_properties(pal3 PROPERTIES
+        OUTPUT_NAME "PAL3"
+        SUFFIX ".exe"
+    )
+
+    if(MSVC)
+        target_compile_options(pal3 PRIVATE ${PAL3_COMPILE_FLAGS})
+
+        target_link_options(pal3 PRIVATE
+            /SUBSYSTEM:WINDOWS
+            /BASE:0x00400000
+            /FIXED
+            /MAP
+            ${PAL3_EXE_LINK_FLAGS}
         )
 
-        # Apply PAL3-specific compile flags from MSVCSettings.cmake
-        if(MSVC)
-            target_compile_options(pal3 PRIVATE ${PAL3_COMPILE_FLAGS})
-
-            # Apply PAL3-specific link flags
-            # Note: /FIXED requires /DYNAMICBASE:NO for modern MSVC
-            target_link_options(pal3 PRIVATE
-                /SUBSYSTEM:WINDOWS
-                /ENTRY:WinMainCRTStartup
-                /BASE:0x00400000
-                /DYNAMICBASE:NO
-                /FIXED
-                /MAP
-                ${PAL3_EXE_LINK_FLAGS}
-            )
-
-            # Generate assembly listings for comparison
-            file(MAKE_DIRECTORY ${CMAKE_BINARY_DIR}/asm)
-            target_compile_options(pal3 PRIVATE /FAcs /Fa${CMAKE_BINARY_DIR}/asm/)
-        endif()
-
-        # Dev mode: skip CD check for development builds
-        target_compile_definitions(pal3 PRIVATE PAL3_DEV_MODE)
-
-        target_link_libraries(pal3 ${PLATFORM_LIBS} advapi32)
-
-        message(STATUS "PAL3.exe: ${CMAKE_CURRENT_LIST_FILE} source files")
-    else()
-        message(WARNING "No source files found in src/pal3/")
+        # Generate assembly listings for byte comparison
+        file(MAKE_DIRECTORY ${CMAKE_BINARY_DIR}/asm)
+        target_compile_options(pal3 PRIVATE /FAcs /Fa${CMAKE_BINARY_DIR}/asm/)
     endif()
+
+    target_link_libraries(pal3
+        ${CMAKE_SOURCE_DIR}/lib/gbengine.lib
+        ${PLATFORM_LIBS}
+        advapi32
+    )
+
+    message(STATUS "PAL3.exe: ${list_length} source files configured")
 endif()
 
 if(BUILD_TARGET STREQUAL "pal3a")

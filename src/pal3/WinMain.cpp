@@ -20,7 +20,7 @@ extern "C" HINSTANCE hInstance;         // 0x00BFDA48 - global hInstance
 extern "C" char WindowName[];           // 0x005839C4 - "PAL3--SOFTSTAR.sh"
 
 // gbengine.dll import - g_CurrentTime accessed via IAT pointer
-extern "C" __declspec(dllimport) double g_CurrentTime;  // IAT at 0x0056A4F4
+__declspec(dllimport) double g_CurrentTime;  // IAT at 0x0056A4F4
 
 // ============================================================
 // String constants
@@ -37,7 +37,7 @@ extern "C" char aPal3Exception[];       // 0x00608FC8 "Pal3::Exception ..."
 // ============================================================
 // External functions
 // ============================================================
-extern "C" __declspec(dllimport) void __cdecl gbUpdateCurTime(void);  // IAT 0x0056A4F8
+__declspec(dllimport) double __cdecl gbUpdateCurTime(void);  // IAT 0x0056A4F8
 extern "C" BOOL __cdecl sub_5382D0(const char* path);  // check directory exists
 extern "C" char __cdecl ReadRegistryValue(char *lpSubKey, const char *lpValueName, BYTE *lpData);
 
@@ -64,7 +64,7 @@ public:
 
 class CCBSystem {
 public:
-    int ProcUseItem(HWND hwnd);      // 0x00513380 (__thiscall)
+    unsigned long ProcUseItem(unsigned long hwnd);  // 0x00513380 (__thiscall)
 };
 
 extern "C" void *dword_BFDA74;  // CCBSystem instance pointer  0x00BFDA74
@@ -207,7 +207,7 @@ int WINAPI WinMain(HINSTANCE hInst, HINSTANCE hPrevInstance, LPSTR lpCmdLine, in
         v9 = g_CurrentTime - dbl_1895070;
         *((__int64 *)&dbl_1895070) = *((__int64 *)&g_CurrentTime);
         hInstancea = (float)v9;
-        if (dword_5833B8 || (ActiveWindow = GetActiveWindow(), ((CCBSystem *)dword_BFDA74)->ProcUseItem(ActiveWindow)))
+        if (dword_5833B8 || (ActiveWindow = GetActiveWindow(), ((CCBSystem *)dword_BFDA74)->ProcUseItem((unsigned long)ActiveWindow)))
         {
             PAL3::Update(hInstancea);
             PAL3::Render();

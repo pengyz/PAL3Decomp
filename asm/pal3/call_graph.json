@@ -6,11 +6,48 @@
       "name": "PAL3::Create(HINSTANCE__ *)",
       "address": "0x00404800",
       "size": 1331,
-      "status": "pending",
+      "status": "compiled",
       "source": "src/pal3/gamebase/PAL3.cpp",
       "suggested_source": "gamebase/PAL3.cpp",
       "match_rate": null,
-      "calls": [],
+      "calls": [
+        "0x0053CF80",
+        "0x0041EFA0",
+        "0x004318B0",
+        "0x00430290",
+        "0x00430570",
+        "0x0053DF70",
+        "0x0053DD70",
+        "0x004020E0",
+        "0x00402270",
+        "0x004022B0",
+        "0x0053C340",
+        "0x0041C1B0",
+        "0x00457410",
+        "0x00408BE0",
+        "0x005415F0",
+        "0x0041F5E0",
+        "0x0053CE90",
+        "0x0053CC70",
+        "0x0053CEF0",
+        "0x00512500",
+        "0x004CDA10",
+        "0x0044F130",
+        "0x0044F610",
+        "0x004BDB10",
+        "0x004B65A0",
+        "0x004B65F0",
+        "0x004BFD20",
+        "0x004BF780",
+        "0x004B6D30",
+        "0x004B6D80",
+        "0x0041ED00",
+        "0x0053C440",
+        "0x0053C720",
+        "0x0053C710",
+        "0x0053C6F0",
+        "0x0053C5A0"
+      ],
       "called_by": [
         "0x00541900"
       ],
@@ -22,8 +59,8 @@
       "name": "PAL3::Update(double)",
       "address": "0x004055D0",
       "size": 1531,
-      "status": "pending",
-      "source": null,
+      "status": "stub",
+      "source": "src/pal3/globals.cpp",
       "suggested_source": "gamebase/PAL3.cpp",
       "match_rate": null,
       "calls": [],
@@ -38,8 +75,8 @@
       "name": "PAL3::Render(void)",
       "address": "0x00405C00",
       "size": 1542,
-      "status": "pending",
-      "source": null,
+      "status": "stub",
+      "source": "src/pal3/globals.cpp",
       "suggested_source": "gamebase/PAL3.cpp",
       "match_rate": null,
       "calls": [],
@@ -51,11 +88,11 @@
       "is_named": true
     },
     "0x00406230": {
-      "name": "PAL3::Destroy(void)",
+      "name": "PAL3::Destroy",
       "address": "0x00406230",
       "size": 219,
-      "status": "pending",
-      "source": null,
+      "status": "stub",
+      "source": "src/pal3/gamebase/PAL3.cpp",
       "suggested_source": "gamebase/PAL3.cpp",
       "match_rate": null,
       "calls": [],
@@ -64,7 +101,8 @@
       ],
       "depth": 1,
       "has_decomp": true,
-      "is_named": true
+      "is_named": true,
+      "signature": "void __cdecl PAL3::Destroy(void)"
     },
     "0x00408BC0": {
       "name": "Iostream_init::Iostream_init(void)",
@@ -106,8 +144,8 @@
       "name": "sub_5382D0",
       "address": "0x005382D0",
       "size": 69,
-      "status": "pending",
-      "source": null,
+      "status": "compiled",
+      "source": "src/pal3/globals.cpp",
       "suggested_source": null,
       "match_rate": null,
       "calls": [],
@@ -211,25 +249,651 @@
       "depth": 2,
       "has_decomp": false,
       "is_named": false
+    },
+    "0x00404FF0": {
+      "name": "PAL3::InitGFX",
+      "address": "0x00404FF0",
+      "size": 100,
+      "status": "stub",
+      "source": "src/pal3/gamebase/PAL3.cpp",
+      "signature": "void __cdecl PAL3::InitGFX(HINSTANCE hInst)",
+      "match_rate": 0.0,
+      "calls": [],
+      "called_by": [],
+      "depth": 99,
+      "has_decomp": true,
+      "is_named": true
+    },
+    "0x0053CF80": {
+      "name": "sub_53CF80",
+      "address": "0x0053CF80",
+      "size": 0,
+      "status": "stub",
+      "source": "src/pal3/globals.cpp",
+      "suggested_source": null,
+      "match_rate": null,
+      "calls": [],
+      "called_by": [
+        "0x00404800"
+      ],
+      "depth": 2,
+      "has_decomp": false,
+      "is_named": false
+    },
+    "0x0041EFA0": {
+      "name": "sub_41EFA0",
+      "address": "0x0041EFA0",
+      "size": 0,
+      "status": "stub",
+      "source": "src/pal3/globals.cpp",
+      "suggested_source": null,
+      "match_rate": null,
+      "calls": [],
+      "called_by": [
+        "0x00404800"
+      ],
+      "depth": 2,
+      "has_decomp": false,
+      "is_named": false
+    },
+    "0x004318B0": {
+      "name": "sub_4318B0",
+      "address": "0x004318B0",
+      "size": 0,
+      "status": "stub",
+      "source": "src/pal3/globals.cpp",
+      "suggested_source": null,
+      "match_rate": null,
+      "calls": [],
+      "called_by": [
+        "0x00404800"
+      ],
+      "depth": 2,
+      "has_decomp": false,
+      "is_named": false
+    },
+    "0x00430290": {
+      "name": "sub_430290",
+      "address": "0x00430290",
+      "size": 0,
+      "status": "stub",
+      "source": "src/pal3/globals.cpp",
+      "suggested_source": null,
+      "match_rate": null,
+      "calls": [],
+      "called_by": [
+        "0x00404800"
+      ],
+      "depth": 2,
+      "has_decomp": false,
+      "is_named": false
+    },
+    "0x00430570": {
+      "name": "sub_430570",
+      "address": "0x00430570",
+      "size": 0,
+      "status": "stub",
+      "source": "src/pal3/globals.cpp",
+      "suggested_source": null,
+      "match_rate": null,
+      "calls": [],
+      "called_by": [
+        "0x00404800"
+      ],
+      "depth": 2,
+      "has_decomp": false,
+      "is_named": false
+    },
+    "0x0053DF70": {
+      "name": "sub_53DF70",
+      "address": "0x0053DF70",
+      "size": 0,
+      "status": "stub",
+      "source": "src/pal3/globals.cpp",
+      "suggested_source": null,
+      "match_rate": null,
+      "calls": [],
+      "called_by": [
+        "0x00404800"
+      ],
+      "depth": 2,
+      "has_decomp": false,
+      "is_named": false
+    },
+    "0x0053DD70": {
+      "name": "sub_53DD70",
+      "address": "0x0053DD70",
+      "size": 0,
+      "status": "stub",
+      "source": "src/pal3/globals.cpp",
+      "suggested_source": null,
+      "match_rate": null,
+      "calls": [],
+      "called_by": [
+        "0x00404800"
+      ],
+      "depth": 2,
+      "has_decomp": false,
+      "is_named": false
+    },
+    "0x004020E0": {
+      "name": "sub_4020E0",
+      "address": "0x004020E0",
+      "size": 0,
+      "status": "stub",
+      "source": "src/pal3/globals.cpp",
+      "suggested_source": null,
+      "match_rate": null,
+      "calls": [],
+      "called_by": [
+        "0x00404800"
+      ],
+      "depth": 2,
+      "has_decomp": false,
+      "is_named": false
+    },
+    "0x00402270": {
+      "name": "sub_402270",
+      "address": "0x00402270",
+      "size": 0,
+      "status": "stub",
+      "source": "src/pal3/globals.cpp",
+      "suggested_source": null,
+      "match_rate": null,
+      "calls": [],
+      "called_by": [
+        "0x00404800"
+      ],
+      "depth": 2,
+      "has_decomp": false,
+      "is_named": false
+    },
+    "0x004022B0": {
+      "name": "sub_4022B0",
+      "address": "0x004022B0",
+      "size": 0,
+      "status": "stub",
+      "source": "src/pal3/globals.cpp",
+      "suggested_source": null,
+      "match_rate": null,
+      "calls": [],
+      "called_by": [
+        "0x00404800"
+      ],
+      "depth": 2,
+      "has_decomp": false,
+      "is_named": false
+    },
+    "0x0053C340": {
+      "name": "sub_53C340",
+      "address": "0x0053C340",
+      "size": 0,
+      "status": "stub",
+      "source": "src/pal3/globals.cpp",
+      "suggested_source": null,
+      "match_rate": null,
+      "calls": [],
+      "called_by": [
+        "0x00404800"
+      ],
+      "depth": 2,
+      "has_decomp": false,
+      "is_named": false
+    },
+    "0x0041C1B0": {
+      "name": "sub_41C1B0",
+      "address": "0x0041C1B0",
+      "size": 0,
+      "status": "stub",
+      "source": "src/pal3/globals.cpp",
+      "suggested_source": null,
+      "match_rate": null,
+      "calls": [],
+      "called_by": [
+        "0x00404800"
+      ],
+      "depth": 2,
+      "has_decomp": false,
+      "is_named": false
+    },
+    "0x00457410": {
+      "name": "sub_457410",
+      "address": "0x00457410",
+      "size": 0,
+      "status": "stub",
+      "source": "src/pal3/globals.cpp",
+      "suggested_source": null,
+      "match_rate": null,
+      "calls": [],
+      "called_by": [
+        "0x00404800"
+      ],
+      "depth": 2,
+      "has_decomp": false,
+      "is_named": false
+    },
+    "0x00408BE0": {
+      "name": "sub_408BE0",
+      "address": "0x00408BE0",
+      "size": 0,
+      "status": "stub",
+      "source": "src/pal3/globals.cpp",
+      "suggested_source": null,
+      "match_rate": null,
+      "calls": [],
+      "called_by": [
+        "0x00404800"
+      ],
+      "depth": 2,
+      "has_decomp": false,
+      "is_named": false
+    },
+    "0x005415F0": {
+      "name": "sub_5415F0",
+      "address": "0x005415F0",
+      "size": 0,
+      "status": "stub",
+      "source": "src/pal3/globals.cpp",
+      "suggested_source": null,
+      "match_rate": null,
+      "calls": [],
+      "called_by": [
+        "0x00404800"
+      ],
+      "depth": 2,
+      "has_decomp": false,
+      "is_named": false
+    },
+    "0x0041F5E0": {
+      "name": "sub_41F5E0",
+      "address": "0x0041F5E0",
+      "size": 0,
+      "status": "stub",
+      "source": "src/pal3/globals.cpp",
+      "suggested_source": null,
+      "match_rate": null,
+      "calls": [],
+      "called_by": [
+        "0x00404800"
+      ],
+      "depth": 2,
+      "has_decomp": false,
+      "is_named": false
+    },
+    "0x0053CE90": {
+      "name": "sub_53CE90",
+      "address": "0x0053CE90",
+      "size": 0,
+      "status": "stub",
+      "source": "src/pal3/globals.cpp",
+      "suggested_source": null,
+      "match_rate": null,
+      "calls": [],
+      "called_by": [
+        "0x00404800"
+      ],
+      "depth": 2,
+      "has_decomp": false,
+      "is_named": false
+    },
+    "0x0053CC70": {
+      "name": "sub_53CC70",
+      "address": "0x0053CC70",
+      "size": 0,
+      "status": "stub",
+      "source": "src/pal3/globals.cpp",
+      "suggested_source": null,
+      "match_rate": null,
+      "calls": [],
+      "called_by": [
+        "0x00404800"
+      ],
+      "depth": 2,
+      "has_decomp": false,
+      "is_named": false
+    },
+    "0x0053CEF0": {
+      "name": "sub_53CEF0",
+      "address": "0x0053CEF0",
+      "size": 0,
+      "status": "stub",
+      "source": "src/pal3/globals.cpp",
+      "suggested_source": null,
+      "match_rate": null,
+      "calls": [],
+      "called_by": [
+        "0x00404800"
+      ],
+      "depth": 2,
+      "has_decomp": false,
+      "is_named": false
+    },
+    "0x00512500": {
+      "name": "sub_512500",
+      "address": "0x00512500",
+      "size": 0,
+      "status": "stub",
+      "source": "src/pal3/globals.cpp",
+      "suggested_source": null,
+      "match_rate": null,
+      "calls": [],
+      "called_by": [
+        "0x00404800"
+      ],
+      "depth": 2,
+      "has_decomp": false,
+      "is_named": false
+    },
+    "0x004CDA10": {
+      "name": "sub_4CDA10",
+      "address": "0x004CDA10",
+      "size": 0,
+      "status": "stub",
+      "source": "src/pal3/globals.cpp",
+      "suggested_source": null,
+      "match_rate": null,
+      "calls": [],
+      "called_by": [
+        "0x00404800"
+      ],
+      "depth": 2,
+      "has_decomp": false,
+      "is_named": false
+    },
+    "0x0044F130": {
+      "name": "sub_44F130",
+      "address": "0x0044F130",
+      "size": 0,
+      "status": "stub",
+      "source": "src/pal3/globals.cpp",
+      "suggested_source": null,
+      "match_rate": null,
+      "calls": [],
+      "called_by": [
+        "0x00404800"
+      ],
+      "depth": 2,
+      "has_decomp": false,
+      "is_named": false
+    },
+    "0x0044F610": {
+      "name": "sub_44F610",
+      "address": "0x0044F610",
+      "size": 0,
+      "status": "stub",
+      "source": "src/pal3/globals.cpp",
+      "suggested_source": null,
+      "match_rate": null,
+      "calls": [],
+      "called_by": [
+        "0x00404800"
+      ],
+      "depth": 2,
+      "has_decomp": false,
+      "is_named": false
+    },
+    "0x004BDB10": {
+      "name": "sub_4BDB10",
+      "address": "0x004BDB10",
+      "size": 0,
+      "status": "stub",
+      "source": "src/pal3/globals.cpp",
+      "suggested_source": null,
+      "match_rate": null,
+      "calls": [],
+      "called_by": [
+        "0x00404800"
+      ],
+      "depth": 2,
+      "has_decomp": false,
+      "is_named": false
+    },
+    "0x004B65A0": {
+      "name": "sub_4B65A0",
+      "address": "0x004B65A0",
+      "size": 0,
+      "status": "stub",
+      "source": "src/pal3/globals.cpp",
+      "suggested_source": null,
+      "match_rate": null,
+      "calls": [],
+      "called_by": [
+        "0x00404800"
+      ],
+      "depth": 2,
+      "has_decomp": false,
+      "is_named": false
+    },
+    "0x004B65F0": {
+      "name": "sub_4B65F0",
+      "address": "0x004B65F0",
+      "size": 0,
+      "status": "stub",
+      "source": "src/pal3/globals.cpp",
+      "suggested_source": null,
+      "match_rate": null,
+      "calls": [],
+      "called_by": [
+        "0x00404800"
+      ],
+      "depth": 2,
+      "has_decomp": false,
+      "is_named": false
+    },
+    "0x004BFD20": {
+      "name": "sub_4BFD20",
+      "address": "0x004BFD20",
+      "size": 0,
+      "status": "stub",
+      "source": "src/pal3/globals.cpp",
+      "suggested_source": null,
+      "match_rate": null,
+      "calls": [],
+      "called_by": [
+        "0x00404800"
+      ],
+      "depth": 2,
+      "has_decomp": false,
+      "is_named": false
+    },
+    "0x004BF780": {
+      "name": "sub_4BF780",
+      "address": "0x004BF780",
+      "size": 0,
+      "status": "stub",
+      "source": "src/pal3/globals.cpp",
+      "suggested_source": null,
+      "match_rate": null,
+      "calls": [],
+      "called_by": [
+        "0x00404800"
+      ],
+      "depth": 2,
+      "has_decomp": false,
+      "is_named": false
+    },
+    "0x004B6D30": {
+      "name": "sub_4B6D30",
+      "address": "0x004B6D30",
+      "size": 0,
+      "status": "stub",
+      "source": "src/pal3/globals.cpp",
+      "suggested_source": null,
+      "match_rate": null,
+      "calls": [],
+      "called_by": [
+        "0x00404800"
+      ],
+      "depth": 2,
+      "has_decomp": false,
+      "is_named": false
+    },
+    "0x004B6D80": {
+      "name": "sub_4B6D80",
+      "address": "0x004B6D80",
+      "size": 0,
+      "status": "stub",
+      "source": "src/pal3/globals.cpp",
+      "suggested_source": null,
+      "match_rate": null,
+      "calls": [],
+      "called_by": [
+        "0x00404800"
+      ],
+      "depth": 2,
+      "has_decomp": false,
+      "is_named": false
+    },
+    "0x0041ED00": {
+      "name": "sub_41ED00",
+      "address": "0x0041ED00",
+      "size": 0,
+      "status": "stub",
+      "source": "src/pal3/globals.cpp",
+      "suggested_source": null,
+      "match_rate": null,
+      "calls": [],
+      "called_by": [
+        "0x00404800"
+      ],
+      "depth": 2,
+      "has_decomp": false,
+      "is_named": false
+    },
+    "0x0053C440": {
+      "name": "sub_53C440",
+      "address": "0x0053C440",
+      "size": 0,
+      "status": "stub",
+      "source": "src/pal3/globals.cpp",
+      "suggested_source": null,
+      "match_rate": null,
+      "calls": [],
+      "called_by": [
+        "0x00404800"
+      ],
+      "depth": 2,
+      "has_decomp": false,
+      "is_named": false
+    },
+    "0x0053C720": {
+      "name": "sub_53C720",
+      "address": "0x0053C720",
+      "size": 0,
+      "status": "stub",
+      "source": "src/pal3/globals.cpp",
+      "suggested_source": null,
+      "match_rate": null,
+      "calls": [],
+      "called_by": [
+        "0x00404800"
+      ],
+      "depth": 2,
+      "has_decomp": false,
+      "is_named": false
+    },
+    "0x0053C710": {
+      "name": "sub_53C710",
+      "address": "0x0053C710",
+      "size": 0,
+      "status": "stub",
+      "source": "src/pal3/globals.cpp",
+      "suggested_source": null,
+      "match_rate": null,
+      "calls": [],
+      "called_by": [
+        "0x00404800"
+      ],
+      "depth": 2,
+      "has_decomp": false,
+      "is_named": false
+    },
+    "0x0053C6F0": {
+      "name": "sub_53C6F0",
+      "address": "0x0053C6F0",
+      "size": 0,
+      "status": "stub",
+      "source": "src/pal3/globals.cpp",
+      "suggested_source": null,
+      "match_rate": null,
+      "calls": [],
+      "called_by": [
+        "0x00404800"
+      ],
+      "depth": 2,
+      "has_decomp": false,
+      "is_named": false
+    },
+    "0x0053C5A0": {
+      "name": "sub_53C5A0",
+      "address": "0x0053C5A0",
+      "size": 0,
+      "status": "stub",
+      "source": "src/pal3/globals.cpp",
+      "suggested_source": null,
+      "match_rate": null,
+      "calls": [],
+      "called_by": [
+        "0x00404800"
+      ],
+      "depth": 2,
+      "has_decomp": false,
+      "is_named": false
     }
   },
   "frontier": [
-    "0x00404800",
+    "0x004020E0",
+    "0x00402270",
+    "0x004022B0",
+    "0x00404FF0",
     "0x004055D0",
     "0x00405C00",
     "0x00406230",
-    "0x005382D0",
-    "0x004E0530"
+    "0x00408BE0",
+    "0x0041C1B0",
+    "0x0041ED00",
+    "0x0041EFA0",
+    "0x0041F5E0",
+    "0x00430290",
+    "0x00430570",
+    "0x004318B0",
+    "0x0044F130",
+    "0x0044F610",
+    "0x00457410",
+    "0x004B65A0",
+    "0x004B65F0",
+    "0x004B6D30",
+    "0x004B6D80",
+    "0x004BDB10",
+    "0x004BF780",
+    "0x004BFD20",
+    "0x004CDA10",
+    "0x004E0530",
+    "0x00512500",
+    "0x0053C340",
+    "0x0053C440",
+    "0x0053C5A0",
+    "0x0053C6F0",
+    "0x0053C710",
+    "0x0053C720",
+    "0x0053CC70",
+    "0x0053CE90",
+    "0x0053CEF0",
+    "0x0053CF80",
+    "0x0053DD70",
+    "0x0053DF70",
+    "0x005415F0"
   ],
   "stats": {
-    "total_nodes": 12,
+    "total_nodes": 49,
     "matched": 2,
-    "compiled": 3,
+    "compiled": 5,
     "wip": 0,
-    "pending": 6,
+    "pending": 1,
+    "stub": 40,
     "skipped": 1,
     "blocked": 0,
-    "frontier_size": 6,
-    "max_depth": 2
+    "frontier_size": 41,
+    "max_depth": 99
   }
 }
