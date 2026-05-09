@@ -23,17 +23,12 @@ struct gbMatrixStack {
     void LoadIdentity(void);
 };
 
-struct gbRenderEffect;
+class gbRenderEffect;
 
-// gbEffectMgr::NewRenderEffect 通过 gbengine.dll 内部虚函数调用
-// 在 PAL3.exe 中无直接导入，通过 vtable 间接调用
-// 此处提供最小声明以满足编译
+// gbEffectMgr::NewRenderEffect — gbengine.dll 导出 (via .lib linkage)
 struct gbEffectMgr {
     gbRenderEffect *NewRenderEffect(const char *filename, unsigned int flags);
 };
-
-// === STUB: gbEffectMgr::NewRenderEffect (gbengine 内部) ===
-gbRenderEffect *gbEffectMgr::NewRenderEffect(const char *, unsigned int) { return 0; }
 
 struct gbSceneGraph;
 

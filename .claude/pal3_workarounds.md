@@ -4,12 +4,11 @@
 
 ---
 
-## [0x004B65F0] RenderTarget3_Init — gbEffectMgr::NewRenderEffect 不在 gbengine.lib
-- **问题**: `gbEffectMgr::NewRenderEffect` 符号不在 `lib/gbengine.lib` 中，链接失败
-- **Workaround**: 在 `src/pal3/gamebase/GfxHelper.cpp` 中提供空 stub: `return 0;`
-- **影响**: 运行时不会创建 glow/geom 渲染效果
-- **正确修复**: 检查 gbengine.dll 导出表中该函数的 mangled name（可能是不同的 name mangling），或确认是通过 vtable 间接调用。若是 vtable 调用则不需要直接链接。
-- **迭代**: #15
+## [已修复] [0x004B65F0] RenderTarget3_Init — gbEffectMgr::NewRenderEffect
+- **修复**: 从 `src/gbengine/gbengine.def` 重新生成 `lib/gbengine.lib`，包含完整导出
+- **根因**: lib/gbengine.lib 是从不完整的 .def 生成的，缺少部分导出符号
+- **额外修复**: gbRenderEffect 必须声明为 `class`（不是 struct），否则 mangled name 不匹配
+- **迭代**: #27 修复
 
 ## [0x004226F0] GetActiveUIScene — 依赖绝对地址常量
 - **问题**: 函数返回 `0x78764 * (dword_D8BBEC == 1) + 0xC22BE8`，使用编译时硬编码的全局对象地址
