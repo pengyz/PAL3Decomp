@@ -174,7 +174,7 @@ extern "C" void __cdecl sub_44F610(int) {}
 extern "C" void __cdecl RenderTarget_Create(int) {}
 
 // === STUB: 0x004B65A0 ===
-extern "C" int __cdecl sub_4B65A0(void) { return 0; }
+// RenderTarget3_GetInstance (was sub_4B65A0): moved to effect/RenderTarget34.cpp
 
 // === STUB: 0x004B65F0 ===
 extern "C" void __cdecl sub_4B65F0(int) {}
@@ -186,7 +186,7 @@ extern "C" void __cdecl sub_4B65F0(int) {}
 extern "C" void __cdecl sub_4BF780(int) {}
 
 // === STUB: 0x004B6D30 ===
-extern "C" int __cdecl sub_4B6D30(void) { return 0; }
+// RenderTarget4_GetInstance (was sub_4B6D30): moved to effect/RenderTarget34.cpp
 
 // === STUB: 0x004B6D80 ===
 extern "C" void __cdecl sub_4B6D80(int) {}

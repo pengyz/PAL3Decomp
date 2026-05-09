@@ -89,11 +89,11 @@ extern "C" void __cdecl sub_44F130(void *);
 extern "C" void __cdecl sub_44F610(int);
 extern "C" int  __cdecl RenderTarget_GetInstance(void);
 extern "C" void __cdecl RenderTarget_Create(int);
-extern "C" int  __cdecl sub_4B65A0(void);
+extern "C" int  __cdecl RenderTarget3_GetInstance(void);
 extern "C" void __cdecl sub_4B65F0(int);
 extern "C" int  __cdecl RenderTarget2_GetInstance(void);
 extern "C" void __cdecl sub_4BF780(int);
-extern "C" int  __cdecl sub_4B6D30(void);
+extern "C" int  __cdecl RenderTarget4_GetInstance(void);
 extern "C" void __cdecl sub_4B6D80(int);
 extern "C" int  __cdecl CEffectSystem_DestroyAllEffect(void);
 extern "C" void __cdecl CEffectSystem_IsVisible(int);
@@ -392,11 +392,11 @@ void __cdecl PAL3::Create(HINSTANCE hInstance)
             sub_44F130(&g_GDB);
         rt5 = RenderTarget_GetInstance();
         RenderTarget_Create(rt5);
-        rt6 = sub_4B65A0();
+        rt6 = RenderTarget3_GetInstance();
         sub_4B65F0(rt6);
         rt7 = RenderTarget2_GetInstance();
         sub_4BF780(rt7);
-        rt8 = sub_4B6D30();
+        rt8 = RenderTarget4_GetInstance();
         sub_4B6D80(rt8);
         rt9 = CEffectSystem_DestroyAllEffect();
         CEffectSystem_IsVisible(rt9);
@@ -408,11 +408,11 @@ void __cdecl PAL3::Create(HINSTANCE hInstance)
         sub_44F610(4);
         rt0 = RenderTarget_GetInstance();
         RenderTarget_Create(rt0);
-        rt1 = sub_4B65A0();
+        rt1 = RenderTarget3_GetInstance();
         sub_4B65F0(rt1);
         rt2 = RenderTarget2_GetInstance();
         sub_4BF780(rt2);
-        rt3 = sub_4B6D30();
+        rt3 = RenderTarget4_GetInstance();
         sub_4B6D80(rt3);
         rt4 = CEffectSystem_DestroyAllEffect();
         CEffectSystem_IsVisible(rt4);
@@ -939,7 +939,7 @@ extern "C" void __cdecl sub_421C00(int);
 extern "C" void __cdecl sub_4220A0(void *);
 extern "C" int  __cdecl sub_4234D0(void);
 extern "C" void __cdecl sub_44F5B0(void *);
-extern "C" int  __cdecl sub_4B6D30(void);
+extern "C" int  __cdecl RenderTarget4_GetInstance(void);
 extern "C" void __cdecl sub_4B6630(int);
 extern "C" void __cdecl sub_4B6DF0(int);
 extern "C" void __cdecl sub_4B6E20(int);
@@ -959,7 +959,7 @@ extern "C" void __cdecl sub_540FA0(void *);
 extern "C" int  __cdecl sub_4226F0(void);
 extern "C" int  __cdecl UIQuadManager_GetInstance(void);
 extern "C" void __cdecl ScreenEffectMgr_GetInstance(void);
-extern "C" int  __cdecl sub_4B65A0(void);
+extern "C" int  __cdecl RenderTarget3_GetInstance(void);
 extern "C" void __cdecl sub_41C630(int);
 extern "C" char g_Logger;
 
@@ -980,7 +980,7 @@ void __cdecl PAL3::Render(void)
 
     case 2: case 7: case 8: case 9:
     {
-        int v1 = sub_4B6D30();
+        int v1 = RenderTarget4_GetInstance();
         sub_4B6DF0(v1);
         int v2 = RenderTarget2_GetInstance();
         sub_4BFD70(v2);
@@ -1001,11 +1001,11 @@ void __cdecl PAL3::Render(void)
         sub_4CDBF0(g_pSceneMgr);
 
         sub_4234D0();
-        int v14 = sub_4B6D30();
+        int v14 = RenderTarget4_GetInstance();
         sub_4B6E20(v14);
         int v15 = RenderTarget2_GetInstance();
         sub_4BFDD0(v15);
-        int v16 = sub_4B65A0();
+        int v16 = RenderTarget3_GetInstance();
         sub_4B6630(v16);
         if (g_bRenderUI)
             sub_40C7D0();
