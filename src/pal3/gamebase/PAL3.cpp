@@ -160,7 +160,7 @@ extern "C" void *off_56A66C;
 extern "C" void __cdecl sub_41BE80(int);
 extern "C" void __cdecl CameraCtrl_SetDimention(int, int);
 extern "C" void __cdecl sub_41D100(int);
-extern "C" void __cdecl sub_41C630(int);
+extern "C" void __cdecl CameraCtrl_SetAsCurrent(int);
 extern "C" void __cdecl gbVolModNode_SetVolModObj(void *, void *);
 extern "C" void __cdecl gbRefObject_Release(void *);
 extern "C" void __cdecl gbLightObj_Init(void *, int);
@@ -222,7 +222,7 @@ void __cdecl PAL3::InitGFX(HINSTANCE hInst)
 
     CameraCtrl_SetDimention(xRight, yBottom);
     sub_41D100(0);
-    sub_41C630(3);
+    CameraCtrl_SetAsCurrent(3);
 
     {
         gbClearParam cp;
@@ -960,7 +960,7 @@ extern "C" int  __cdecl sub_4226F0(void);
 extern "C" int  __cdecl UIQuadManager_GetInstance(void);
 extern "C" void __cdecl ScreenEffectMgr_GetInstance(void);
 extern "C" int  __cdecl RenderTarget3_GetInstance(void);
-extern "C" void __cdecl sub_41C630(int);
+extern "C" void __cdecl CameraCtrl_SetAsCurrent(int);
 extern "C" char g_Logger;
 
 extern "C" void __cdecl UIRenderObj_UIRenderObj(int);
@@ -987,7 +987,7 @@ void __cdecl PAL3::Render(void)
 
         // gbSceneGraph::Begin + scene rendering
         // (complex gbengine thiscall sequence - simplified for linking)
-        sub_41C630(3);
+        CameraCtrl_SetAsCurrent(3);
         int v5 = sub_4234D0();
         sub_4226F0();
         // ... (full implementation pending thiscall corrections)

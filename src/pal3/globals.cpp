@@ -376,9 +376,13 @@ extern "C" void __cdecl sub_41BE80(int) {}
 #define CAMERACTRL_WIDTH_OFFSET    472
 #define CAMERACTRL_HEIGHT_OFFSET   476
 
+struct gbVec3D;
+
 class gbCamera {
 public:
     void SetDimention(int nWidth, int nHeight);
+    void SetLookAt(struct gbVec3D *pTarget, struct gbVec3D *pEye, struct gbVec3D *pUp);
+    void SetAsCurrent(int nFlags);
 };
 
 extern "C" void __cdecl CameraCtrl_SetDimention(int nWidth, int nHeight)
@@ -395,7 +399,29 @@ extern "C" void __cdecl CameraCtrl_SetDimention(int nWidth, int nHeight)
 extern "C" void __cdecl sub_41D100(int) {}
 
 // === STUB: 0x0041C630 - Camera 模式 ===
-extern "C" void __cdecl sub_41C630(int) {}
+// 0x0041C630 - CameraCtrl::SetAsCurrent (58B)
+// CameraCtrl extended layout:
+//   +0x1E0: gbVec3D m_vEyePos
+//   +0x1EC: gbVec3D m_vLookAt
+//   +0x204: gbVec3D m_vUpVec
+#define CAMERACTRL_EYE_OFFSET    480
+#define CAMERACTRL_LOOKAT_OFFSET 492
+#define CAMERACTRL_UP_OFFSET     516
+
+struct gbVec3D { float x, y, z; };
+
+extern "C" void __cdecl CameraCtrl_SetAsCurrent(int nFlags)
+{
+    extern int g_pCamera;
+    char *pThis = (char *)g_pCamera;
+    gbCamera *pCam = (gbCamera *)(pThis + CAMERACTRL_CAMERA_OFFSET);
+
+    if ((nFlags & 2) != 0)
+        pCam->SetLookAt((gbVec3D *)(pThis + CAMERACTRL_LOOKAT_OFFSET),
+                        (gbVec3D *)(pThis + CAMERACTRL_EYE_OFFSET),
+                        (gbVec3D *)(pThis + CAMERACTRL_UP_OFFSET));
+    pCam->SetAsCurrent(nFlags);
+}
 
 // gbGfxManager::SetClearParam — 通过 gbengine.lib 链接 (thiscall)
 
