@@ -1485,32 +1485,6 @@ void gbOctree::DetachNodeRecursive(int* pNode) {
     }
 }
 
-static LONG WINAPI CrashHandler(EXCEPTION_POINTERS* pExInfo) {
-    FILE* fp = fopen("gbengine_debug.log", "a");
-    if (fp) {
-        fprintf(fp, "CRASH: code=0x%08X addr=0x%08X\n",
-                pExInfo->ExceptionRecord->ExceptionCode,
-                (unsigned int)pExInfo->ExceptionRecord->ExceptionAddress);
-        fprintf(fp, "  EAX=0x%08X EBX=0x%08X ECX=0x%08X EDX=0x%08X\n",
-                pExInfo->ContextRecord->Eax, pExInfo->ContextRecord->Ebx,
-                pExInfo->ContextRecord->Ecx, pExInfo->ContextRecord->Edx);
-        fprintf(fp, "  ESI=0x%08X EDI=0x%08X EBP=0x%08X ESP=0x%08X\n",
-                pExInfo->ContextRecord->Esi, pExInfo->ContextRecord->Edi,
-                pExInfo->ContextRecord->Ebp, pExInfo->ContextRecord->Esp);
-        fprintf(fp, "  EIP=0x%08X\n", pExInfo->ContextRecord->Eip);
-        if (pExInfo->ExceptionRecord->ExceptionCode == 0xC0000005) {
-            fprintf(fp, "  Access type=%d addr=0x%08X\n",
-                    pExInfo->ExceptionRecord->ExceptionInformation[0],
-                    (unsigned int)pExInfo->ExceptionRecord->ExceptionInformation[1]);
-        }
-        fclose(fp);
-    }
-    return EXCEPTION_CONTINUE_SEARCH;
-}
-
 BOOL WINAPI DllMain(HINSTANCE hinstDLL, DWORD fdwReason, LPVOID lpvReserved) {
-    if (fdwReason == DLL_PROCESS_ATTACH) {
-        SetUnhandledExceptionFilter(CrashHandler);
-    }
     return TRUE;
 }

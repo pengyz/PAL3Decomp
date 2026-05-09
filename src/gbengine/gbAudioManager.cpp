@@ -10,8 +10,6 @@
 #include <string.h>
 #include <stdlib.h>
 #include <math.h>
-#include <stdio.h>
-
 // Miles Sound System types
 typedef void* HSAMPLE;
 typedef void* H3DSAMPLE;
@@ -485,17 +483,8 @@ unsigned long gbAudioManager::Get3DProvider(char* providerName) {
     const char* defaultName = "Miles Fast 2D Positional Audio";
     const char* searchName = (providerName != NULL) ? providerName : defaultName;
 
-    {
-        FILE* fp = fopen("gbengine_debug.log", "a");
-        if (fp) { fprintf(fp, "Get3DProvider: searching '%s'\n", searchName); fclose(fp); }
-    }
-
     HPROVIDER foundProvider = 0;
     while (AIL_enumerate_3D_providers(&next, &dest, &name)) {
-        {
-            FILE* fp = fopen("gbengine_debug.log", "a");
-            if (fp) { fprintf(fp, "  provider: '%s' handle=0x%X\n", name ? name : "(null)", (unsigned int)dest); fclose(fp); }
-        }
         if (name != NULL && strcmp(name, searchName) == 0) {
             foundProvider = dest;
             break;
@@ -503,27 +492,15 @@ unsigned long gbAudioManager::Get3DProvider(char* providerName) {
     }
 
     if (foundProvider == 0) {
-        FILE* fp = fopen("gbengine_debug.log", "a");
-        if (fp) { fprintf(fp, "Get3DProvider: not found\n"); fclose(fp); }
         return 0;
     }
 
-    {
-        FILE* fp = fopen("gbengine_debug.log", "a");
-        if (fp) { fprintf(fp, "Get3DProvider: opening 0x%X\n", (unsigned int)foundProvider); fclose(fp); }
-    }
     int openResult = AIL_open_3D_provider(foundProvider);
     if (openResult != 0) {
-        FILE* fp = fopen("gbengine_debug.log", "a");
-        if (fp) { fprintf(fp, "Get3DProvider: open failed result=%d\n", openResult); fclose(fp); }
         return 0;
     }
     provider3D = (H3DPROVIDER)foundProvider;
 
-    {
-        FILE* fp = fopen("gbengine_debug.log", "a");
-        if (fp) { fprintf(fp, "Get3DProvider: success, provider3D=0x%X\n", (unsigned int)provider3D); fclose(fp); }
-    }
     return 1;
 }
 

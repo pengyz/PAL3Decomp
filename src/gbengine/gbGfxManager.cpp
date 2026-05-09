@@ -15,8 +15,6 @@
 #include <math.h>
 #include <string.h>
 #include <stdlib.h>
-#include <stdio.h>
-
 #pragma warning(disable: 4234)
 
 // Forward declarations for types used only in implementations
@@ -239,19 +237,6 @@ void gbGfxManager::SetSceneGraph(gbSceneGraph* sg) {
 
 // 0x10004ed0 (14B) - Get matrix stack by index
 gbMatrixStack* gbGfxManager::GetMatrixStack(int index) {
-    {
-        static int gms_count = 0;
-        if (gms_count < 5) {
-            FILE* fp = fopen("gbengine_debug.log", "a");
-            if (fp) {
-                fprintf(fp, "GetMatrixStack(%d) = 0x%X pStack=0x%X\n", index,
-                    (unsigned int)pMatrixStack[index],
-                    pMatrixStack[index] ? (unsigned int)pMatrixStack[index]->pStack : 0);
-                fclose(fp);
-            }
-            gms_count++;
-        }
-    }
     return pMatrixStack[index];
 }
 
