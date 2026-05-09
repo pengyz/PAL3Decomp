@@ -229,14 +229,14 @@ char byte_17B1D23[100] = {0};
 
 // 0x0053CEF0 - FormatExceptionMessage (61B)
 // Formats "file(line):msg" into 1024-byte buffer, then logs it
-extern "C" void __cdecl sub_53D030(const char *, ...);
+extern "C" FILE *__cdecl LogMessage(const char *, ...);
 extern "C" const char aExceptionS[] = "Exception: %s";
 
 extern "C" char *__cdecl FormatExceptionMessage(char *pBuf, const char *pMsg, const char *pFile, int nLine)
 {
     pBuf[1023] = 0;
     _snprintf(pBuf, 0x400u, "%s(%d):%s", pFile, nLine, pMsg);
-    sub_53D030(aExceptionS, pBuf);
+    LogMessage(aExceptionS, pBuf);
     return pBuf;
 }
 
@@ -555,5 +555,25 @@ extern "C" int __cdecl sub_5694F0(void *pThis, int a, int b, int c, int d) { ret
 // === STUB: 0x0053E740 - Audio fade implementation ===
 extern "C" void __cdecl sub_53E740(int *, const char *, int *) {}
 extern "C" char byte_56A634[] = "";
-// === STUB: 0x0053D030 - LogMessage ===
-void __cdecl sub_53D030(const char *, ...) {}
+// 0x0053D030 - LogMessage (67B)
+// Formats message and appends to Pal3Log.txt
+static char s_LogBuffer[1024];
+extern "C" const char aAt[] = "at";
+
+extern "C" FILE *__cdecl LogMessage(const char *pFormat, ...)
+{
+    FILE *pFile;
+    va_list va;
+
+    va_start(va, pFormat);
+    vsprintf(s_LogBuffer, pFormat, va);
+    va_end(va);
+
+    pFile = fopen("Pal3Log.txt", aAt);
+    if (pFile)
+    {
+        fprintf(pFile, s_LogBuffer);
+        return (FILE *)fclose(pFile);
+    }
+    return pFile;
+}
