@@ -1,7 +1,0 @@
-{
-  "name": "sub_50FA20",
-  "address": "0x0050FA20",
-  "size_bytes": 140,
-  "signature": "int __thiscall(_BYTE *this, int a2)",
-  "decompiled_c": "// between_std_methods (0x504E20-0x53C2B0)\nint __thiscall sub_50FA20(_BYTE *this, int a2)\n{\n  if ( *(this + 96 * *((_DWORD *)this + 99) + 506) )\n  {\n    if ( a2 == *((_DWORD *)this + 1661) )\n    {\n      CCBStageRole::ClearBadPushTask((int)this, 0.0099999998);\n      *(this + 96 * *((_DWORD *)this + 99) + 505) = 1;\n    }\n    return 0;\n  }\n  else\n  {\n    CCBStageRole::ClearBadPushTask((int)this, 0.25);\n    *((_DWORD *)this + 1642) = 49;\n    CCBStageRole::GetPointerPos((int)this);\n    *(this + 96 * *((_DWORD *)this + 99) + 506) = 1;\n    nullsub_3(this);\n    return 0;\n  }\n}\n"
-}

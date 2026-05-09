@@ -1,7 +1,0 @@
-{
-  "name": "GRPinput::SetJoystickAbs(void)",
-  "address": "0x00402B00",
-  "size_bytes": 38,
-  "signature": "char __thiscall(char *this)",
-  "decompiled_c": "char __thiscall sub_402B00(char *this)\n{\n  int v1; // edx\n  char *v2; // ecx\n  char result; // al\n\n  v1 = 0;\n  v2 = this + 6264;\n  result = 1;\n  while ( *((_DWORD *)v2 + 3) != 1 || (*v2 & 3) == 0 )\n  {\n    ++v1;\n    v2 += 16;\n    if ( v1 >= 270 )\n      return 0;\n  }\n  return result;\n}\n"
-}

@@ -1,7 +1,0 @@
-{
-  "name": "UIListBox::SetItemHeight(int)",
-  "address": "0x0043E480",
-  "size_bytes": 160,
-  "signature": "int __thiscall(_DWORD *this, int a2, int a3, int a4)",
-  "decompiled_c": "// between_std_methods (0x430790-0x445B40)\nint __thiscall sub_43E480(_DWORD *this, int a2, int a3, int a4)\n{\n  int v6; // edi\n  int v7; // eax\n  int v8; // ecx\n  int v9; // ecx\n\n  if ( a2 != 1005 )\n    return sub_445D10(a2, a3, a4);\n  if ( *(this + 297) )\n  {\n    v6 = *(this + 279);\n    *(this + 279) = a4;\n    v7 = sub_43F560(this);\n    if ( v7 == -1 )\n    {\n      *(this + 279) = v6;\n    }\n    else if ( *(_DWORD *)(*(this + 299) + 4 * v7) )\n    {\n      v8 = *(this + 8);\n      if ( v8 )\n        (*(void (__thiscall **)(int, int, _DWORD, int))(*(_DWORD *)v8 + 24))(v8, 1006, *(this + 3), v7);\n    }\n  }\n  else\n  {\n    *(this + 279) = a4;\n  }\n  v9 = *(this + 8);\n  if ( v9 )\n    (*(void (__thiscall **)(int, int, _DWORD, _DWORD))(*(_DWORD *)v9 + 24))(v9, 1005, 0, 0);\n  return 1;\n}\n"
-}

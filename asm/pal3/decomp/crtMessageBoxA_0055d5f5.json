@@ -1,7 +1,0 @@
-{
-  "name": "___crtMessageBoxA",
-  "address": "0x0055D5F5",
-  "size_bytes": 137,
-  "signature": "int __cdecl(const CHAR *lpText, const CHAR *lpCaption, UINT uType)",
-  "decompiled_c": "int __cdecl __crtMessageBoxA(const CHAR *lpText, const CHAR *lpCaption, UINT uType)\n{\n  HWND ActiveWindow_0; // ebx\n  HMODULE LibraryA; // eax\n  HMODULE v5; // edi\n\n  ActiveWindow_0 = 0;\n  if ( !MessageBoxA_0 )\n  {\n    LibraryA = LoadLibraryA(\"user32.dll\");\n    v5 = LibraryA;\n    if ( !LibraryA )\n      return 0;\n    MessageBoxA_0 = (int (__stdcall *)(HWND, LPCSTR, LPCSTR, UINT))GetProcAddress(LibraryA, \"MessageBoxA\");\n    if ( !MessageBoxA_0 )\n      return 0;\n    GetActiveWindow_0 = (HWND (__stdcall *)())GetProcAddress(v5, \"GetActiveWindow\");\n    GetLastActivePopup = (HWND (__stdcall *)(HWND))GetProcAddress(v5, \"GetLastActivePopup\");\n  }\n  if ( GetActiveWindow_0 )\n  {\n    ActiveWindow_0 = GetActiveWindow_0();\n    if ( ActiveWindow_0 )\n    {\n      if ( GetLastActivePopup )\n        ActiveWindow_0 = GetLastActivePopup(ActiveWindow_0);\n    }\n  }\n  return MessageBoxA_0(ActiveWindow_0, lpText, lpCaption, uType);\n}\n"
-}

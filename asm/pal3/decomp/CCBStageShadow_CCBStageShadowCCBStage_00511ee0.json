@@ -1,7 +1,0 @@
-{
-  "name": "CCBStageShadow::CCBStageShadow(CCBStage *)",
-  "address": "0x00511EE0",
-  "size_bytes": 167,
-  "signature": "char __thiscall(_DWORD *this)",
-  "decompiled_c": "// between_std_methods (0x504E20-0x53C2B0)\nchar __thiscall sub_511EE0(_DWORD *this)\n{\n  gbTexture *v2; // eax\n  _DWORD *v3; // eax\n  int v4; // ecx\n  char pExceptionObject[1024]; // [esp+10h] [ebp-800h] BYREF\n  char ArgList; // [esp+410h] [ebp-400h] BYREF\n\n  v2 = (gbTexture *)(*(int (__thiscall **)(int, char *))(*(_DWORD *)g_pGfxManager + 8))(g_pGfxManager, aShadowTga_0);\n  *(this + 1) = v2;\n  gbTexture::LoadTexture(v2, 1);\n  *(this + 2) = gbEffectMgr::NewRenderEffect(*(gbEffectMgr **)(g_pGfxManager + 200), aGfxscriptShado, 0);\n  v3 = operator new(0x44u);\n  if ( v3 )\n  {\n    v4 = *(this + 1);\n    v3[16] = 1;\n    *v3 = v4;\n  }\n  else\n  {\n    v3 = 0;\n  }\n  *(this + 3) = v3;\n  if ( !v3 )\n  {\n    qmemcpy(\n      pExceptionObject,\n      (const void *)Logger::FormatException((char)&ArgList, (int)aCNewFailed_0, (int)aDProjectPal3Co_9, 85),\n      sizeof(pExceptionObject));\n    _CxxThrowException(pExceptionObject, (_ThrowInfo *)&_TI1_AV_Exception__);\n  }\n  return 1;\n}\n"
-}

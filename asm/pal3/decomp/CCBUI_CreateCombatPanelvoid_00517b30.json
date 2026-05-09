@@ -1,7 +1,0 @@
-{
-  "name": "CCBUI::CreateCombatPanel(void)",
-  "address": "0x00517B30",
-  "size_bytes": 104,
-  "signature": "char __thiscall(_DWORD *this)",
-  "decompiled_c": "// between_std_methods (0x504E20-0x53C2B0)\nchar __thiscall sub_517B30(_DWORD *this)\n{\n  _DWORD *v2; // esi\n  char result; // al\n  _DWORD v4[4]; // [esp+8h] [ebp-10h] BYREF\n\n  v2 = this + 281;\n  result = CCBAIWindow::Update(this + 281);\n  if ( result )\n  {\n    v4[0] = 2;\n    v4[2] = 251;\n    v4[1] = 278;\n    v4[3] = 484;\n    CCBUI::AddTask(v4, this);\n    (**(void (__thiscall ***)(_DWORD, _DWORD))*v2)(*v2, 0);\n    return 1;\n  }\n  return result;\n}\n"
-}

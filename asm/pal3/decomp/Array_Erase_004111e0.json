@@ -1,0 +1,7 @@
+{
+  "name": "Array::Erase",
+  "address": "0x004111E0",
+  "size_bytes": 57,
+  "signature": "void *__stdcall(void *arr, int index, void *pConfig)",
+  "decompiled_c": "// between_std_methods (0x407D40-0x411B80)\nvoid *__stdcall Array::Erase(void *arr, int index, void *pConfig)\n{\n  void *result; // eax\n  int v4; // ecx\n\n  result = (void *)index;\n  if ( index )\n  {\n    v4 = index;\n    result = arr;\n    do\n    {\n      if ( result )\n      {\n        *(_DWORD *)result = *(_DWORD *)pConfig;\n        *((_DWORD *)result + 1) = *((_DWORD *)pConfig + 1);\n        *((_DWORD *)result + 2) = *((_DWORD *)pConfig + 2);\n      }\n      result = (char *)result + 12;\n      --v4;\n    }\n    while ( v4 );\n  }\n  return result;\n}\n"
+}

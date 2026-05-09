@@ -1,7 +1,0 @@
-{
-  "name": "sub_533B50",
-  "address": "0x00533B50",
-  "size_bytes": 109,
-  "signature": "bool __thiscall(int this)",
-  "decompiled_c": "// between_std_methods (0x504E20-0x53C2B0)\nbool __thiscall sub_533B50(int this)\n{\n  int v1; // esi\n  int v2; // ebx\n  __int64 v3; // rax\n\n  v1 = *(_DWORD *)(this + 8);\n  v2 = (__int64)((*(float *)(this + 36) - *(float *)(v1 + 128)) / flt_17B02EC);\n  v3 = (__int64)((*(float *)(this + 44) - *(float *)(v1 + 136)) / flt_17B02EC);\n  return v2 >= 0\n      && v2 < *(_DWORD *)(v1 + 152)\n      && (int)v3 >= 0\n      && (int)v3 < *(_DWORD *)(v1 + 156)\n      && *(_BYTE *)(*(_DWORD *)(v1 + 160) + 8 * (v2 + v3 * *(_DWORD *)(v1 + 152)) + 5) == 3;\n}\n"
-}

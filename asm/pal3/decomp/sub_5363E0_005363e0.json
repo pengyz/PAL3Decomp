@@ -1,7 +1,0 @@
-{
-  "name": "sub_5363E0",
-  "address": "0x005363E0",
-  "size_bytes": 203,
-  "signature": "void __thiscall(int this, int a2)",
-  "decompiled_c": "// between_std_methods (0x504E20-0x53C2B0)\nvoid __thiscall sub_5363E0(int this, int a2)\n{\n  int v3; // eax\n  int v4; // eax\n  float v5; // [esp+8h] [ebp-Ch]\n  float v6; // [esp+8h] [ebp-Ch]\n\n  if ( *(_BYTE *)(this + 344) )\n  {\n    v3 = *(_DWORD *)(this + 348);\n    if ( v3 )\n    {\n      v4 = a2 + v3;\n      *(_BYTE *)(this + 344) = 0;\n      *(_DWORD *)(this + 348) = v4;\n      if ( v4 <= 0 )\n      {\n        (**(void (__thiscall ***)(int, _DWORD))(this + 3096))(this + 3096, 0);\n        (**(void (__thiscall ***)(int, _DWORD))(this + 3340))(this + 3340, 0);\n        sprintf((char *const)(this + 72), \"       %s\\\\n       %s\", byte_DD893C, byte_DD8B3C);\n        sub_4427C0((_DWORD *)(this + 816), (const char *)(this + 72), 0);\n        sub_4A1530(this + 360, 1);\n        *(_DWORD *)(this + 348) = 0;\n      }\n      v5 = (float)*(int *)(this + 352);\n      sub_43FCA0(this + 3096, v5);\n      v6 = (float)*(int *)(this + 348);\n      sub_43FDF0(this + 3096, v6);\n      *(_BYTE *)(this + 332) = 1;\n    }\n  }\n}\n"
-}

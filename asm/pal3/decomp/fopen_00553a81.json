@@ -1,7 +1,0 @@
-{
-  "name": "_fopen",
-  "address": "0x00553A81",
-  "size_bytes": 19,
-  "signature": "FILE *__cdecl(const char *FileName, const char *Mode)",
-  "decompiled_c": "FILE *__cdecl fopen(const char *FileName, const char *Mode)\n{\n  return _fsopen(FileName, Mode, 64);\n}\n"
-}

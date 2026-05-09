@@ -1,7 +1,0 @@
-{
-  "name": "sub_43B3E0",
-  "address": "0x0043B3E0",
-  "size_bytes": 194,
-  "signature": "void __thiscall(_DWORD *this)",
-  "decompiled_c": "// between_std_methods (0x430790-0x445B40)\nvoid __thiscall sub_43B3E0(_DWORD *this)\n{\n  int v2; // [esp+4h] [ebp-4h]\n\n  sub_43A770(this);\n  *(this + 89) = 32;\n  *(this + 86) = 0;\n  *(this + 87) = 0;\n  *(this + 88) = 0;\n  *(this + 90) = 1;\n  if ( gbColorQuad::ColorQuadFmt )\n  {\n    LOBYTE(v2) = 0x80;\n    *(_WORD *)((char *)&v2 + 1) = 17476;\n  }\n  else\n  {\n    *(_WORD *)((char *)&v2 + 1) = -32700;\n    LOBYTE(v2) = 68;\n  }\n  HIBYTE(v2) = -1;\n  *(this + 91) = v2;\n  *(this + 92) = -16777216;\n  *(this + 93) = -16119286;\n  *this = &off_56AC90;\n}\n"
-}

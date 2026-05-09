@@ -1,7 +1,0 @@
-{
-  "name": "sub_41F5E0",
-  "address": "0x0041F5E0",
-  "size_bytes": 160,
-  "signature": "struct gbVFileSystem *__thiscall(_DWORD *this)",
-  "decompiled_c": "// between_std_methods (0x411BB0-0x430790)\nstruct gbVFileSystem *__thiscall sub_41F5E0(_DWORD *this)\n{\n  gbTexture *v2; // eax\n  struct gbVFileSystem *v4; // [esp+18h] [ebp-10h] BYREF\n  int v5; // [esp+24h] [ebp-4h]\n\n  OpenBaseFile::OpenBaseFile(&v4);\n  v5 = 0;\n  v2 = (gbTexture *)(*(int (__thiscall **)(int, char *))(*(_DWORD *)g_pGfxManager + 8))(g_pGfxManager, aShadowTga);\n  *(this + 1) = v2;\n  gbTexture::LoadTexture(v2, 1);\n  *(this + 2) = gbEffectMgr::NewRenderEffect(*(gbEffectMgr **)(g_pGfxManager + 200), aGfxscriptShado, 0);\n  *(this + 3) = gbEffectMgr::NewRenderEffect(*(gbEffectMgr **)(g_pGfxManager + 200), aGfxscriptShado_0, 0);\n  v5 = -1;\n  return OpenNULLFile::OpenNULLFile(&v4);\n}\n"
-}

@@ -1,7 +1,0 @@
-{
-  "name": "sub_50B4F0",
-  "address": "0x0050B4F0",
-  "size_bytes": 58,
-  "signature": "int __thiscall(int *this)",
-  "decompiled_c": "// between_std_methods (0x504E20-0x53C2B0)\nint __thiscall sub_50B4F0(int *this)\n{\n  int result; // eax\n  int v3; // esi\n  _DWORD *v4; // ebx\n\n  result = *(this + 98);\n  if ( result > 1 )\n  {\n    v3 = 1;\n    v4 = this + 149;\n    do\n    {\n      if ( *v4 == 3 )\n        CCBStageRole::SetForceFinishThrowingWeapon(this, v3);\n      result = *(this + 98);\n      ++v3;\n      v4 += 24;\n    }\n    while ( v3 < result );\n  }\n  return result;\n}\n"
-}

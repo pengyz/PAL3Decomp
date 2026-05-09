@@ -1,7 +1,0 @@
-{
-  "name": "sub_430180",
-  "address": "0x00430180",
-  "size_bytes": 163,
-  "signature": "_BYTE *__thiscall(_BYTE *this)",
-  "decompiled_c": "// between_std_methods (0x411BB0-0x430790)\n_BYTE *__thiscall sub_430180(_BYTE *this)\n{\n  _DWORD *v2; // eax\n  void *v3; // edi\n  _DWORD *v4; // eax\n  char v6; // [esp+Fh] [ebp-Dh]\n\n  *this = v6;\n  *(this + 1) = v6;\n  *(this + 8) = 0;\n  if ( !dword_D8C2B0 )\n  {\n    v2 = operator new(0x30u);\n    v2[1] = 0;\n    v2[11] = 1;\n    dword_D8C2B0 = v2;\n    *v2 = 0;\n    *((_DWORD *)dword_D8C2B0 + 2) = 0;\n  }\n  ++*(_DWORD *)&String[256];\n  v3 = dword_D8C2B0;\n  v4 = operator new(0x30u);\n  v4[1] = v3;\n  v4[11] = 0;\n  *((_DWORD *)this + 1) = v4;\n  *((_DWORD *)this + 3) = 0;\n  *v4 = v4;\n  *(_DWORD *)(*((_DWORD *)this + 1) + 8) = *((_DWORD *)this + 1);\n  return this;\n}\n"
-}

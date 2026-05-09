@@ -1,0 +1,7 @@
+{
+  "name": "CScreenMode::SetAudioParam",
+  "address": "0x0053D1E0",
+  "size_bytes": 230,
+  "signature": "void __thiscall(void *this)",
+  "decompiled_c": "// between_std_methods (0x53C2D0-0x541D1B)\nvoid __thiscall CScreenMode::SetAudioParam(void *this)\n{\n  int i; // edi\n  int v3; // eax\n  int v4; // edi\n  int v5; // eax\n  int j; // edi\n  int v7; // ecx\n  int v8; // eax\n  int k; // edi\n\n  for ( i = 0; i < *((_DWORD *)this + 5); ++i )\n  {\n    if ( i < 0 || i >= *((_DWORD *)this + 5) )\n      v3 = 0;\n    else\n      v3 = *(_DWORD *)(*((_DWORD *)this + 4) + 4 * i);\n    if ( !PalScriptMgr::ClearAllScript(v3) && i >= 0 && i < *((_DWORD *)this + 5) )\n      *(_DWORD *)(*((_DWORD *)this + 4) + 4 * i) = 0;\n  }\n  v4 = 0;\n  while ( v4 < *((_DWORD *)this + 5) )\n  {\n    if ( v4 >= 0 && v4 < *((_DWORD *)this + 5) && *(_DWORD *)(*((_DWORD *)this + 4) + 4 * v4) )\n      ++v4;\n    else\n      sub_4327B0((_DWORD *)this + 4, v4, 1);\n  }\n  v5 = *((_DWORD *)this + 1);\n  for ( j = 0; j < v5; ++j )\n  {\n    if ( j < 0 || j >= v5 )\n      v7 = 0;\n    else\n      v7 = *(_DWORD *)(*(_DWORD *)this + 4 * j);\n    if ( sub_42C1C0(v7) && j >= 0 && j < *((_DWORD *)this + 1) )\n      *(_DWORD *)(*(_DWORD *)this + 4 * j) = 0;\n    v5 = *((_DWORD *)this + 1);\n  }\n  v8 = *((_DWORD *)this + 1);\n  for ( k = 0; k < v8; v8 = *((_DWORD *)this + 1) )\n  {\n    if ( k >= 0 && k < v8 && *(_DWORD *)(*(_DWORD *)this + 4 * k) )\n      ++k;\n    else\n      sub_4327B0(this, k, 1);\n  }\n}\n"
+}

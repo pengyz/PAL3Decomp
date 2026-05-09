@@ -1,7 +1,0 @@
-{
-  "name": "__strdate",
-  "address": "0x00554BBE",
-  "size_bytes": 132,
-  "signature": "char *__cdecl(char *Buffer)",
-  "decompiled_c": "char *__cdecl _strdate(char *Buffer)\n{\n  int v1; // edx\n  int wMonth; // edi\n  int v3; // eax\n  int wDay; // eax\n  int v5; // eax\n  struct _SYSTEMTIME SystemTime; // [esp+Ch] [ebp-14h] BYREF\n  int v8; // [esp+1Ch] [ebp-4h]\n\n  GetLocalTime(&SystemTime);\n  v1 = SystemTime.wYear % 100;\n  wMonth = SystemTime.wMonth;\n  v3 = SystemTime.wMonth;\n  Buffer[8] = 0;\n  Buffer[5] = 47;\n  Buffer[2] = 47;\n  v8 = v1;\n  *Buffer = v3 / 10 + 48;\n  wDay = SystemTime.wDay;\n  Buffer[1] = wMonth % 10 + 48;\n  Buffer[3] = wDay / 10 + 48;\n  v5 = v8;\n  Buffer[4] = SystemTime.wDay % 10 + 48;\n  Buffer[6] = v5 / 10 + 48;\n  Buffer[7] = v8 % 10 + 48;\n  return Buffer;\n}\n"
-}

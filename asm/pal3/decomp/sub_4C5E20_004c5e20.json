@@ -1,7 +1,0 @@
-{
-  "name": "sub_4C5E20",
-  "address": "0x004C5E20",
-  "size_bytes": 79,
-  "signature": "void __thiscall(int this)",
-  "decompiled_c": "// between_std_methods (0x4C2840-0x4D70B0)\nvoid __thiscall sub_4C5E20(int this)\n{\n  int v2; // eax\n\n  *(_DWORD *)(dword_DE9384 + 4) = gbVertPoolMgr::GetDynVertBuf(\n                                    *(gbVertPoolMgr **)(*(_DWORD *)dword_DE9384 + 196),\n                                    0x15u);\n  v2 = *(_DWORD *)(this + 98332);\n  if ( v2 > 0 )\n    gbDynVertBuf::RenderGeomQuad(\n      *(gbDynVertBuf **)(dword_DE9384 + 4),\n      (struct gbGeomQuad *)(this + 98336),\n      v2,\n      *(struct gbRenderEffect **)(dword_DE9384 + 8),\n      *(struct gbTextureArray **)(this + 245796));\n}\n"
-}

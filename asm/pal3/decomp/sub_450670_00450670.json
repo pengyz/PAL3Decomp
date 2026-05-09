@@ -1,7 +1,0 @@
-{
-  "name": "sub_450670",
-  "address": "0x00450670",
-  "size_bytes": 32,
-  "signature": "void __thiscall(gbRefObject **this)",
-  "decompiled_c": "// between_std_methods (0x44BDA0-0x4A7690)\nvoid __thiscall sub_450670(gbRefObject **this)\n{\n  gbRefObject *v2; // ecx\n\n  v2 = *(this + 23);\n  if ( v2 )\n  {\n    gbRefObject::Release(v2);\n    *(this + 23) = 0;\n  }\n  sub_445C10(this);\n}\n"
-}

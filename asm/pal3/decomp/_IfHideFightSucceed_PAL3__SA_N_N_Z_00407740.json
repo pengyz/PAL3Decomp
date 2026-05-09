@@ -3,5 +3,5 @@
   "address": "0x00407740",
   "size_bytes": 69,
   "signature": "int __cdecl(int a1)",
-  "decompiled_c": "// between_std_methods (0x402FB0-0x407AB0)\nint __cdecl sub_407740(int a1)\n{\n  int result; // eax\n  int v2; // eax\n  gbAudioManager *v3; // eax\n\n  result = a1 - 2;\n  if ( a1 == 2 )\n  {\n    if ( (dword_5833BC & 1) != 0 )\n    {\n      v2 = sub_53DF70();\n      v3 = (gbAudioManager *)sub_53E500(v2);\n      gbAudioManager::DetachAll3D(v3);\n    }\n    sub_41EE40();\n    sub_4181E0(dword_C116EC);\n    sub_5415F0();\n    return sub_541590(0);\n  }\n  return result;\n}\n"
+  "decompiled_c": "// between_std_methods (0x402FB0-0x407AB0)\nint __cdecl sub_407740(int a1)\n{\n  int result; // eax\n  int v2; // eax\n  gbAudioManager *v3; // eax\n\n  result = a1 - 2;\n  if ( a1 == 2 )\n  {\n    if ( (g_nGameFlags & 1) != 0 )\n    {\n      v2 = CScreenMode::GetInstance();\n      v3 = (gbAudioManager *)CScreenMode::GetAudioManager(v2);\n      gbAudioManager::DetachAll3D(v3);\n    }\n    PAL3::sub_41EE40();\n    RoleSystemNotify(MEMORY[0xC116EC]);\n    UIQuadManager::GetInstance();\n    return UIQuadManager_Reset(0);\n  }\n  return result;\n}\n"
 }

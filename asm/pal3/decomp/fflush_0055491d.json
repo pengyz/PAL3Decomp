@@ -1,7 +1,0 @@
-{
-  "name": "_fflush",
-  "address": "0x0055491D",
-  "size_bytes": 59,
-  "signature": "int __cdecl(FILE *Stream)",
-  "decompiled_c": "int __cdecl fflush(FILE *Stream)\n{\n  if ( !Stream )\n    return flsall(0);\n  if ( _flush(Stream) )\n    return -1;\n  if ( (Stream->_flag & 0x4000) != 0 )\n    return -(_commit(Stream->_file) != 0);\n  return 0;\n}\n"
-}

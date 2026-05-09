@@ -1,7 +1,0 @@
-{
-  "name": "_UnwindNestedFrames(EHRegistrationNode *,EHExceptionRecord *)",
-  "address": "0x00553116",
-  "size_bytes": 79,
-  "signature": "void __userpurge(struct _EXCEPTION_REGISTRATION_RECORD **a1@<ebx>, PVOID TargetFrame, PEXCEPTION_RECORD ExceptionRecord)",
-  "decompiled_c": "void __userpurge _UnwindNestedFrames(\n        struct _EXCEPTION_REGISTRATION_RECORD **a1@<ebx>,\n        PVOID TargetFrame,\n        PEXCEPTION_RECORD ExceptionRecord)\n{\n  DWORD ExceptionFlags; // eax\n\n  RtlUnwind(TargetFrame, &_ReturnPoint_16567, ExceptionRecord, 0);\n  ExceptionFlags = ExceptionRecord->ExceptionFlags;\n  LOBYTE(ExceptionFlags) = ExceptionFlags & 0xFD;\n  ExceptionRecord->ExceptionFlags = ExceptionFlags;\n  *a1 = NtCurrentTeb()->NtTib.ExceptionList;\n}\n"
-}

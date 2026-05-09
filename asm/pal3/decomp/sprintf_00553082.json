@@ -1,7 +1,0 @@
-{
-  "name": "_sprintf",
-  "address": "0x00553082",
-  "size_bytes": 82,
-  "signature": "int(char *const Buffer, const char *const Format, ...)",
-  "decompiled_c": "int sprintf(char *const Buffer, const char *const Format, ...)\n{\n  int v2; // eax\n  bool v3; // sf\n  int v4; // esi\n  FILE File; // [esp+4h] [ebp-20h] BYREF\n  va_list va; // [esp+34h] [ebp+10h] BYREF\n\n  va_start(va, Format);\n  File._base = Buffer;\n  File._ptr = Buffer;\n  File._flag = 66;\n  File._cnt = 0x7FFFFFFF;\n  v2 = _output(&File, (int)Format, (int)va);\n  v3 = --File._cnt < 0;\n  v4 = v2;\n  if ( v3 )\n    _flsbuf(0, &File);\n  else\n    *File._ptr = 0;\n  return v4;\n}\n"
-}

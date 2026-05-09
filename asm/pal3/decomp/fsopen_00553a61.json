@@ -1,7 +1,0 @@
-{
-  "name": "__fsopen",
-  "address": "0x00553A61",
-  "size_bytes": 32,
-  "signature": "FILE *__cdecl(const char *FileName, const char *Mode, int ShFlag)",
-  "decompiled_c": "FILE *__cdecl _fsopen(const char *FileName, const char *Mode, int ShFlag)\n{\n  FILE *result; // eax\n\n  result = (FILE *)_getstream();\n  if ( result )\n    return (FILE *)_openfile((char *)FileName, (int)Mode, ShFlag, (int)result);\n  return result;\n}\n"
-}

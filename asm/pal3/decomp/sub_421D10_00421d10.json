@@ -1,7 +1,0 @@
-{
-  "name": "sub_421D10",
-  "address": "0x00421D10",
-  "size_bytes": 179,
-  "signature": "int __thiscall(_DWORD *this, int a2, char a3)",
-  "decompiled_c": "// between_std_methods (0x411BB0-0x430790)\nint __thiscall sub_421D10(_DWORD *this, int a2, char a3)\n{\n  int v4; // ecx\n  int v5; // edi\n  int result; // eax\n  char v7; // bl\n  int i; // eax\n  int v9; // ecx\n  int v10; // [esp+Ch] [ebp-1Ch] BYREF\n  int v11; // [esp+10h] [ebp-18h] BYREF\n  int v12; // [esp+14h] [ebp-14h] BYREF\n  _DWORD v13[2]; // [esp+18h] [ebp-10h] BYREF\n  int v14; // [esp+20h] [ebp-8h]\n  int v15; // [esp+24h] [ebp-4h]\n\n  v4 = *(this + 2);\n  v13[1] = 0;\n  v13[0] = 0;\n  v14 = *(this + 1);\n  v15 = v4;\n  sub_42FEC0(&v10, &a2);\n  v5 = v10;\n  if ( v10 < v13[0] )\n  {\n    v5 = v13[0];\n    v10 = v13[0];\n  }\n  result = a2;\n  if ( a2 > v14 )\n  {\n    result = v14;\n    a2 = v14;\n  }\n  if ( v5 < result )\n  {\n    v7 = a3;\n    do\n    {\n      if ( (unsigned __int8)sub_42FF40(v5, v13, &v12, &v11) )\n      {\n        for ( i = v12; i < v11; *(_BYTE *)(v9 + *(this + 3)) = v7 )\n          v9 = v5 + *(this + 1) * i++;\n      }\n      result = a2;\n      ++v5;\n    }\n    while ( v5 < a2 );\n  }\n  return result;\n}\n"
-}

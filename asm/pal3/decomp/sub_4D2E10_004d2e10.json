@@ -1,7 +1,0 @@
-{
-  "name": "sub_4D2E10",
-  "address": "0x004D2E10",
-  "size_bytes": 188,
-  "signature": "int __thiscall(int *this, int a2)",
-  "decompiled_c": "// between_std_methods (0x4C2840-0x4D70B0)\nint __thiscall sub_4D2E10(int *this, int a2)\n{\n  int v3; // ebp\n  int v4; // edi\n  int v5; // eax\n  int v6; // edx\n  int v7; // eax\n\n  v3 = *(this + 6) + 152 * *(this + 7);\n  v4 = *(_DWORD *)v3 + 72 * *(this + 8);\n  if ( !*(_BYTE *)(v4 + 65) )\n  {\n    v5 = *(this + 18);\n    if ( v5 == -1 )\n      CEffQuad::DestroyOneQuad(this, this + 19);\n    else\n      CEffQuad::DestroyOneQuad(this, (const void *)(*(this + 39) + 80 * v5));\n    v6 = *(this + 4);\n    *(_BYTE *)(v4 + 65) = 1;\n    *(_DWORD *)(v4 + 44) = v6;\n  }\n  if ( !*(_BYTE *)(v3 + 113) )\n    goto LABEL_14;\n  if ( *((float *)this + 4) - *(float *)(v4 + 44) >= *(float *)(v3 + 108) )\n  {\n    v7 = *(this + 18);\n    if ( v7 == -1 )\n      CEffQuad::DestroyOneQuad(this, this + 19);\n    else\n      CEffQuad::DestroyOneQuad(this, (const void *)(*(this + 39) + 80 * v7));\n    *(_DWORD *)(v4 + 44) = *(this + 4);\n  }\n  if ( *(_BYTE *)(v4 + 66) == 1 || *((float *)this + 4) - *(float *)(v4 + 16) >= *(float *)(v4 + 24) )\nLABEL_14:\n    *(_DWORD *)(v4 + 8) = 4;\n  return 0;\n}\n"
-}

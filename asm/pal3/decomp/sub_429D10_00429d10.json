@@ -1,7 +1,0 @@
-{
-  "name": "sub_429D10",
-  "address": "0x00429D10",
-  "size_bytes": 37,
-  "signature": "int __thiscall(_DWORD **this, int a2)",
-  "decompiled_c": "// between_std_methods (0x411BB0-0x430790)\nint __thiscall sub_429D10(_DWORD **this, int a2)\n{\n  int result; // eax\n\n  if ( *this == (_DWORD *)3 )\n    return (*(int (__thiscall **)(_DWORD))(**(this + 1) + 20))(*(this + 1));\n  result = (int)(*this - 1);\n  if ( *this == (_DWORD *)4 )\n    return (*(int (__thiscall **)(_DWORD, int))(**(this + 1) + 48))(*(this + 1), a2);\n  return result;\n}\n"
-}

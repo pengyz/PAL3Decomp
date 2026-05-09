@@ -1,7 +1,0 @@
-{
-  "name": "sub_430570",
-  "address": "0x00430570",
-  "size_bytes": 255,
-  "signature": "char *__thiscall(const char **this, const char *a2)",
-  "decompiled_c": "// likely std method (near _Freeze, _Split, max_size, allocator<char>>, _Xran)\nchar *__thiscall sub_430570(const char **this, const char *a2)\n{\n  const char *v3; // esi\n  unsigned int v4; // kr04_4\n  unsigned int v5; // ebx\n  const char *v6; // eax\n  const char *v7; // ecx\n  const char **v8; // eax\n  const char *v9; // esi\n  int v10; // esi\n  char *result; // eax\n  int v12; // [esp+10h] [ebp-24h] BYREF\n  char v13[4]; // [esp+14h] [ebp-20h] BYREF\n  unsigned int v14; // [esp+18h] [ebp-1Ch] BYREF\n  char *v15; // [esp+1Ch] [ebp-18h]\n  unsigned int v16; // [esp+20h] [ebp-14h]\n  int v17; // [esp+30h] [ebp-4h]\n\n  LOBYTE(v14) = (_BYTE)a2;\n  std::string::_Tidy(&v14, 0);\n  v3 = a2;\n  v4 = strlen(a2) + 1;\n  v5 = v4 - 1;\n  if ( sub_407B50(&v14, v4 - 1, 1) )\n  {\n    qmemcpy(v15, v3, v5);\n    v16 = v4 - 1;\n    v15[v5] = 0;\n  }\n  v17 = 0;\n  v6 = *(const char **)sub_431040(v13, &v14);\n  v7 = *(this + 1);\n  a2 = v6;\n  if ( v6 == v7 || (int)sub_431780(v6 + 12) < 0 )\n  {\n    v12 = (int)*(this + 1);\n    v8 = (const char **)&v12;\n  }\n  else\n  {\n    v8 = &a2;\n  }\n  v9 = *v8;\n  v17 = -1;\n  std::string::_Tidy(&v14, 1);\n  if ( v9 == *(this + 1) )\n    return aLangNull;\n  v10 = *((_DWORD *)v9 + 8);\n  result = (char *)&byte_56A634;\n  if ( v10 )\n    return (char *)v10;\n  return result;\n}\n"
-}

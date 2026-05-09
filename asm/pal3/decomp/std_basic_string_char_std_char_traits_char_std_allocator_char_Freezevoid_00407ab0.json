@@ -1,7 +1,0 @@
-{
-  "name": "std::basic_string<char,std::char_traits<char>,std::allocator<char>>::_Freeze(void)",
-  "address": "0x00407AB0",
-  "size_bytes": 118,
-  "signature": "char __thiscall(unsigned int *this)",
-  "decompiled_c": "char __thiscall std::string::_Freeze(unsigned int *this)\n{\n  int v2; // eax\n  unsigned int v3; // edi\n  int v4; // ecx\n  int v5; // esi\n\n  v2 = *(this + 1);\n  if ( v2 )\n  {\n    LOBYTE(v2) = *(_BYTE *)(v2 - 1);\n    if ( (_BYTE)v2 )\n    {\n      if ( (_BYTE)v2 != 0xFF )\n      {\n        v3 = *(this + 2);\n        if ( v3 > 0xFFFFFFFD )\n          std::_Xlen();\n        v4 = *(this + 1);\n        if ( v4 )\n        {\n          LOBYTE(v2) = *(_BYTE *)(v4 - 1);\n          if ( (_BYTE)v2 )\n          {\n            if ( (_BYTE)v2 != 0xFF )\n            {\n              if ( !v3 )\n              {\n                LOBYTE(v2) = v2 - 1;\n                *(_BYTE *)(v4 - 1) = v2;\n                *(this + 1) = 0;\n                *(this + 2) = 0;\n                *(this + 3) = 0;\n                goto LABEL_16;\n              }\nLABEL_15:\n              LOBYTE(v2) = (unsigned __int8)GRPinput::GetKeyState((int)this, *(this + 2));\n              goto LABEL_16;\n            }\n          }\n        }\n        if ( v3 )\n        {\n          if ( *(this + 3) >= v3 )\n            goto LABEL_16;\n          goto LABEL_15;\n        }\n        if ( v4 )\n          LOBYTE(v2) = std::string::_Eos(*(this + 2));\n      }\n    }\n  }\nLABEL_16:\n  v5 = *(this + 1);\n  if ( v5 )\n    *(_BYTE *)(v5 - 1) = -1;\n  return v2;\n}\n"
-}

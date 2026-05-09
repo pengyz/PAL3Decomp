@@ -1,7 +1,0 @@
-{
-  "name": "sub_551705",
-  "address": "0x00551705",
-  "size_bytes": 73,
-  "signature": "__m64 *__stdcall(__m64 *a1, __m64 *a2, __m64 *a3, __m64 *a4, unsigned int a5, unsigned int a6)",
-  "decompiled_c": "__m64 *__stdcall sub_551705(__m64 *a1, __m64 *a2, __m64 *a3, __m64 *a4, unsigned int a5, unsigned int a6)\n{\n  __m64 v6; // mm6\n  __m64 v7; // mm7\n\n  v6 = _mm_cvtsi32_si64(a5);\n  v7 = _mm_cvtsi32_si64(a6);\n  a1->m64_u64 = (unsigned __int64)_m_pfadd(\n                                    _m_pfadd(\n                                      (__m64)a2->m64_u64,\n                                      _m_pfmul(_m_pfsub((__m64)a3->m64_u64, (__m64)a2->m64_u64), _m_punpckldq(v6, v6))),\n                                    _m_pfmul(_m_pfsub((__m64)a4->m64_u64, (__m64)a2->m64_u64), _m_punpckldq(v7, v7)));\n  _m_femms();\n  return a1;\n}\n"
-}

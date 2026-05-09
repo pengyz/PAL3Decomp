@@ -1,7 +1,0 @@
-{
-  "name": "sub_52B2A0",
-  "address": "0x0052B2A0",
-  "size_bytes": 162,
-  "signature": "void __thiscall(void ***this)",
-  "decompiled_c": "// between_std_methods (0x504E20-0x53C2B0)\nvoid __thiscall sub_52B2A0(void ***this)\n{\n  void **v2; // ecx\n  void *v3; // edi\n  void (__thiscall ***v4)(_DWORD, int); // ecx\n\n  v2 = *(this + 3);\n  if ( v2 )\n  {\n    ObjectCamera::Destroy(v2);\n    v3 = *(this + 3);\n    if ( v3 )\n    {\n      ObjectCamera::GetCameraDirect();\n      operator delete(v3);\n    }\n    *(this + 3) = 0;\n  }\n  v4 = (void (__thiscall ***)(_DWORD, int))*(this + 2);\n  if ( v4 )\n  {\n    (**v4)(v4, 1);\n    *(this + 2) = 0;\n  }\n  Object3D::Object3D(this + 214);\n  `eh vector destructor iterator'(this + 4, 0x98u, 5, (void (__thiscall *)(void *))Object3D::Object3D);\n}\n"
-}

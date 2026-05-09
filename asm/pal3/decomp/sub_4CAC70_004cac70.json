@@ -1,7 +1,0 @@
-{
-  "name": "sub_4CAC70",
-  "address": "0x004CAC70",
-  "size_bytes": 155,
-  "signature": "int __thiscall(int this)",
-  "decompiled_c": "// between_std_methods (0x4C2840-0x4D70B0)\nint __thiscall sub_4CAC70(int this)\n{\n  int v1; // eax\n  int v2; // edi\n  int v3; // edx\n  double v4; // st7\n  double v5; // st7\n  double v6; // st6\n  int v7; // esi\n  int v8; // edx\n  int v9; // eax\n  int v10; // eax\n  int v12; // [esp+4h] [ebp-8h]\n  int v13; // [esp+4h] [ebp-8h]\n  float v14; // [esp+8h] [ebp-4h]\n\n  v1 = *(_DWORD *)(this + 112);\n  v12 = *(_DWORD *)(this + 116);\n  v2 = 0;\n  v3 = v12 + 1;\n  v14 = (double)v1 * *(float *)(this + 120) * -0.5;\n  v4 = (double)v12;\n  v13 = 0;\n  v5 = v4 * *(float *)(this + 120) * 0.5;\n  if ( v3 > 0 )\n  {\n    do\n    {\n      v6 = v14;\n      v7 = 0;\n      if ( v1 + 1 > 0 )\n      {\n        v8 = 12 * v2;\n        do\n        {\n          v9 = *(_DWORD *)(this + 52);\n          *(_DWORD *)(v9 + v8 + 4) = 0;\n          *(float *)(v9 + v8) = v6;\n          v10 = v8 + v9;\n          ++v2;\n          v8 += 12;\n          ++v7;\n          *(float *)(v10 + 8) = v5;\n          v1 = *(_DWORD *)(this + 112);\n          v6 = v6 + *(float *)(this + 120);\n        }\n        while ( v7 < v1 + 1 );\n      }\n      v5 = v5 - *(float *)(this + 120);\n      ++v13;\n    }\n    while ( v13 < *(_DWORD *)(this + 116) + 1 );\n  }\n  return sub_4CAD10(this);\n}\n"
-}

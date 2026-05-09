@@ -1,7 +1,0 @@
-{
-  "name": "sub_4F6FB0",
-  "address": "0x004F6FB0",
-  "size_bytes": 145,
-  "signature": "char __stdcall(int a1)",
-  "decompiled_c": "// between_std_methods (0x4D70B0-0x504E20)\nchar __stdcall sub_4F6FB0(int a1)\n{\n  int v1; // eax\n  int v2; // ebx\n  int v3; // esi\n  _DWORD v5[3]; // [esp+10h] [ebp-18h] BYREF\n  _DWORD v6[3]; // [esp+1Ch] [ebp-Ch] BYREF\n\n  v1 = *(_DWORD *)(a1 + 8);\n  if ( v1 >= 5 && v1 < 11 )\n    return 0;\n  v2 = sub_40CCD0(dword_C05F30);\n  v3 = 0;\n  if ( v2 <= 0 )\n    return 0;\n  while ( *sub_40CFE0(dword_C05F30, v5, v3) != *(_DWORD *)(a1 + 4)\n       || (int)sub_40CFE0(dword_C05F30, v6, v3)[1] <= 0\n       || (unsigned __int8)sub_4F7050(a1) && !(unsigned __int8)sub_4F70A0(a1) )\n  {\n    if ( ++v3 >= v2 )\n      return 0;\n  }\n  return 1;\n}\n"
-}

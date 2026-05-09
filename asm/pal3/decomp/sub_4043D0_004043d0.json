@@ -1,7 +1,0 @@
-{
-  "name": "sub_4043D0",
-  "address": "0x004043D0",
-  "size_bytes": 82,
-  "signature": "int __cdecl(int *a1, int *a2, int a3)",
-  "decompiled_c": "// between_std_methods (0x402FB0-0x407AB0)\nint __cdecl sub_4043D0(int *a1, int *a2, int a3)\n{\n  int *v3; // edi\n  int result; // eax\n  int *v5; // edx\n  _DWORD *v6; // ecx\n  int v7; // ebx\n  int v8; // ebp\n\n  v3 = a2;\n  if ( a1 == a2 )\n    return a3;\n  result = a3;\n  do\n  {\n    v3 -= 9;\n    result -= 36;\n    v5 = v3;\n    v6 = (_DWORD *)(result + 4);\n    v7 = 3;\n    do\n    {\n      v8 = *v5;\n      v5 += 3;\n      *(v6 - 1) = v8;\n      *v6 = *(_DWORD *)((char *)v6 + (_DWORD)v3 - result);\n      v6[1] = *(v5 - 1);\n      v6 += 3;\n      --v7;\n    }\n    while ( v7 );\n  }\n  while ( v3 != a1 );\n  return result;\n}\n"
-}

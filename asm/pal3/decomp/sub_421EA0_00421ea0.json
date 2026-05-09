@@ -1,7 +1,0 @@
-{
-  "name": "sub_421EA0",
-  "address": "0x00421EA0",
-  "size_bytes": 117,
-  "signature": "int __thiscall(int *this)",
-  "decompiled_c": "// between_std_methods (0x411BB0-0x430790)\nint __thiscall sub_421EA0(int *this)\n{\n  int v1; // esi\n  int v2; // edx\n  _DWORD *v3; // eax\n  const char *v4; // eax\n\n  v1 = *(this + 55);\n  v2 = 0;\n  if ( v1 <= 0 )\n  {\nLABEL_7:\n    v4 = (const char *)sub_430570(aXmouse);\n    return sub_410360(v4);\n  }\n  else\n  {\n    v3 = this + 117;\n    while ( !*((_BYTE *)v3 - 71) || *(_BYTE *)v3 != 24 || v3[2] != 1 )\n    {\n      ++v2;\n      v3 += 224;\n      if ( v2 >= v1 )\n        goto LABEL_7;\n    }\n    return sub_424C20((int)(this + 224 * v2 + 56), g_pRoleSystem, 11, 0, 0.001);\n  }\n}\n"
-}

@@ -1,7 +1,0 @@
-{
-  "name": "sub_417BC0",
-  "address": "0x00417BC0",
-  "size_bytes": 131,
-  "signature": "int __thiscall(int this)",
-  "decompiled_c": "// between_std_methods (0x411BB0-0x430790)\nint __thiscall sub_417BC0(int this)\n{\n  int result; // eax\n  int v3; // eax\n\n  if ( *(_BYTE *)(this + 1280) )\n  {\n    v3 = *(_DWORD *)(this + 1264);\n    *(_DWORD *)(this + 1256) = 0;\n    if ( v3 != 4 )\n      *(_DWORD *)(this + 1260) = v3;\n    *(_DWORD *)(this + 1264) = 4;\n    *(_DWORD *)(this + 1228) = 21;\n    CCBStageRole::sub_5371B0(0, aHold, 0);\n    result = sub_536D00(1065353216);\n    *(_BYTE *)(this + 1280) = 0;\n  }\n  else\n  {\n    *(_DWORD *)(this + 1264) = *(_DWORD *)(this + 1260);\n    result = sub_4142E0((_DWORD *)this);\n    *(_BYTE *)(this + 1280) = 0;\n  }\n  return result;\n}\n"
-}

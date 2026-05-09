@@ -1,7 +1,0 @@
-{
-  "name": "sub_4BF170",
-  "address": "0x004BF170",
-  "size_bytes": 65,
-  "signature": "void __thiscall(gbRefObject **this)",
-  "decompiled_c": "// likely std method (near _Freeze, _Split, max_size, allocator<char>>, _Xran)\nvoid __thiscall sub_4BF170(gbRefObject **this)\n{\n  gbRefObject *v2; // ecx\n  gbRefObject *v3; // ecx\n  gbRefObject *v4; // ecx\n\n  v2 = *(this + 42);\n  if ( v2 )\n  {\n    gbRefObject::Release(v2);\n    *(this + 42) = 0;\n  }\n  v3 = *(this + 25);\n  if ( v3 )\n  {\n    gbRefObject::Release(v3);\n    *(this + 25) = 0;\n  }\n  v4 = *(this + 24);\n  *(this + 41) = 0;\n  if ( v4 )\n  {\n    gbRefObject::Release(v4);\n    *(this + 24) = 0;\n  }\n}\n"
-}

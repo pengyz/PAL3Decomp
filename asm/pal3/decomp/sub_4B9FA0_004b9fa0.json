@@ -1,7 +1,0 @@
-{
-  "name": "sub_4B9FA0",
-  "address": "0x004B9FA0",
-  "size_bytes": 261,
-  "signature": "float *__thiscall(int this, int a2)",
-  "decompiled_c": "// between_std_methods (0x4A7690-0x4BEF50)\nfloat *__thiscall sub_4B9FA0(int this, int a2)\n{\n  double v3; // st7\n  double v4; // st6\n  float *result; // eax\n  double v6; // st7\n  float v7; // [esp+8h] [ebp-18h]\n  float v8; // [esp+Ch] [ebp-14h]\n  float v9; // [esp+Ch] [ebp-14h]\n  float v10; // [esp+14h] [ebp-Ch]\n  float v11; // [esp+18h] [ebp-8h]\n  float v12; // [esp+1Ch] [ebp-4h]\n\n  sub_4B92F0((float *)this, a2);\n  sub_4B9E10((_DWORD *)this, a2);\n  sub_4B9330(this, a2);\n  sub_4B94A0((_DWORD *)this, a2);\n  sub_4B96E0((_DWORD *)this, a2);\n  sub_4B9920((float *)this, a2);\n  sub_4B9B80(this, a2);\n  v3 = *(float *)(*(_DWORD *)(this + 36940) + 36);\n  v4 = *(float *)(this + 72);\n  result = (float *)(this + 92 * a2);\n  v10 = v4 * result[30];\n  v11 = v4 * result[31];\n  v12 = v4 * result[32];\n  v8 = v11 - v4 * v4 * v3 * 0.5;\n  result[31] = result[31] - v4 * v3;\n  v6 = *(float *)(*(_DWORD *)(this + 36940) + 356);\n  v7 = v10 * v6;\n  v9 = v6 * v8;\n  result[36] = v7 + result[36];\n  result[37] = v9 + result[37];\n  result[38] = v6 * v12 + result[38];\n  return result;\n}\n"
-}

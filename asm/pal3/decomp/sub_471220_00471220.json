@@ -1,7 +1,0 @@
-{
-  "name": "sub_471220",
-  "address": "0x00471220",
-  "size_bytes": 162,
-  "signature": "char __thiscall(int this, unsigned __int8 a2)",
-  "decompiled_c": "// between_std_methods (0x44BDA0-0x4A7690)\nchar __thiscall sub_471220(int this, unsigned __int8 a2)\n{\n  void (__thiscall **v3)(int, _DWORD); // edx\n  _DWORD *v4; // edi\n  int v5; // ebx\n  _DWORD *v6; // ebp\n  _DWORD *v7; // edi\n  char result; // al\n  int v9; // eax\n  int v10; // [esp+14h] [ebp+4h]\n\n  v3 = *(void (__thiscall ***)(int, _DWORD))(this + 101584);\n  v4 = (_DWORD *)(this + 101584);\n  *(_BYTE *)(this + 102440) = a2;\n  (*v3)(this + 101584, a2);\n  v5 = 0;\n  v6 = v4;\n  v10 = 0;\n  v7 = (_DWORD *)(this + 102348);\n  do\n  {\n    result = *(_BYTE *)(this + v5 + 102440);\n    if ( result )\n    {\n      *v7 = v10 * *(_DWORD *)(this + 102428) + (*(_DWORD *)(this + 102428) - *(_DWORD *)(this + 102436)) / 2;\n      v9 = *(_DWORD *)(this + 102424);\n      *(v7 - 1) = v9;\n      v7[1] = v9 + *(_DWORD *)(this + 102432);\n      v7[2] = *(_DWORD *)(this + 102436) + *v7;\n      result = sub_445FA0(v6, v7 - 1);\n      ++v10;\n    }\n    ++v5;\n    v7 += 4;\n    v6 += 38;\n  }\n  while ( v5 < 5 );\n  return result;\n}\n"
-}

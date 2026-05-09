@@ -1,7 +1,0 @@
-{
-  "name": "__cftof",
-  "address": "0x00556659",
-  "size_bytes": 222,
-  "signature": "char *__cdecl(double *a1, char *Src, size_t Size)",
-  "decompiled_c": "char *__cdecl _cftof(double *a1, char *Src, size_t Size)\n{\n  int v3; // ebx\n  _DWORD *v4; // esi\n  char *v5; // eax\n  _BYTE *v6; // edi\n  int v7; // eax\n  _BYTE *v8; // edi\n  int v9; // esi\n  void *v10; // edi\n  int v11; // esi\n  double v13; // [esp+0h] [ebp-18h]\n\n  if ( byte_1895330 )\n  {\n    v3 = Size;\n    v4 = (_DWORD *)dword_189532C;\n    if ( dword_1895334 == Size )\n    {\n      v5 = &Src[dword_1895334 + (*(_DWORD *)dword_189532C == 45)];\n      *v5 = 48;\n      v5[1] = 0;\n    }\n  }\n  else\n  {\n    v13 = *a1;\n    v3 = Size;\n    v4 = (_DWORD *)_fltout(SLOBYTE(v13));\n    _fptostr(&Src[*v4 == 45], Size + v4[1], (int)v4);\n  }\n  v6 = Src;\n  if ( *v4 == 45 )\n  {\n    *Src = 45;\n    v6 = Src + 1;\n  }\n  v7 = v4[1];\n  if ( v7 > 0 )\n  {\n    v8 = &v6[v7];\n  }\n  else\n  {\n    _shift(v6, 1);\n    *v6 = 48;\n    v8 = v6 + 1;\n  }\n  if ( v3 > 0 )\n  {\n    _shift(v8, 1);\n    *v8 = byte_60AF10;\n    v9 = v4[1];\n    v10 = v8 + 1;\n    if ( v9 < 0 )\n    {\n      if ( byte_1895330 )\n      {\n        v11 = -v9;\n      }\n      else\n      {\n        v11 = -v9;\n        if ( v3 < v11 )\n        {\nLABEL_16:\n          _shift(v10, v3);\n          memset(v10, 48, v3);\n          return Src;\n        }\n      }\n      v3 = v11;\n      goto LABEL_16;\n    }\n  }\n  return Src;\n}\n"
-}

@@ -1,7 +1,0 @@
-{
-  "name": "sub_4DB5C0",
-  "address": "0x004DB5C0",
-  "size_bytes": 115,
-  "signature": "int __thiscall(_BYTE *this)",
-  "decompiled_c": "// between_std_methods (0x4D70B0-0x504E20)\nint __thiscall sub_4DB5C0(_BYTE *this)\n{\n  _BYTE *v2; // eax\n  int v3; // ecx\n  _BYTE *v4; // eax\n  int v5; // ecx\n\n  if ( *(this + 453) || !*(this + 452) )\n  {\n    v4 = this + 16;\n    v5 = 11;\n    do\n    {\n      *((_DWORD *)v4 - 1) = 0;\n      v4 += 40;\n      --v5;\n      *((float *)v4 - 10) = *(float *)(*(_DWORD *)this + 80);\n    }\n    while ( v5 );\n  }\n  else\n  {\n    v2 = this + 16;\n    v3 = 11;\n    do\n    {\n      if ( v2[31] )\n        *((_DWORD *)v2 - 1) = 0;\n      else\n        *((float *)v2 - 1) = *(float *)(*(_DWORD *)this + 80) - *(float *)v2;\n      v2 += 40;\n      --v3;\n      *((float *)v2 - 10) = *(float *)(*(_DWORD *)this + 80);\n    }\n    while ( v3 );\n  }\n  sub_4DBA60(this);\n  sub_4DBB20(this);\n  return sub_4DBD40(this);\n}\n"
-}

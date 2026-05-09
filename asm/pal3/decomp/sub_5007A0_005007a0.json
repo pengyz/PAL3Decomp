@@ -1,7 +1,0 @@
-{
-  "name": "sub_5007A0",
-  "address": "0x005007A0",
-  "size_bytes": 154,
-  "signature": "int __thiscall(_DWORD *this, int a2)",
-  "decompiled_c": "// between_std_methods (0x4D70B0-0x504E20)\nint __thiscall sub_5007A0(_DWORD *this, int a2)\n{\n  int v3; // eax\n  _DWORD *v4; // edi\n  int v5; // ebp\n\n  v3 = 2632 * *(this + 40);\n  v4 = (_DWORD *)((char *)this + v3 + 2760);\n  v5 = (int)this + 80 * *(this + 41) + v3 + 184;\n  if ( !(unsigned __int8)CCBStage::sub_50A980(*(_DWORD *)((char *)this + v3 + 2744)) )\n  {\n    *(_DWORD *)(v5 + 16) = 4;\n    return 0;\n  }\n  if ( *(_BYTE *)(v5 + 41) )\n    goto LABEL_6;\n  if ( (unsigned __int8)CCBStageRole::ForceDelTaskByPFN(*(this + *v4 + 6)) == 1 )\n  {\n    *(_BYTE *)(v5 + 41) = 1;\nLABEL_6:\n    if ( (unsigned __int8)CCBStageRole::ForceDelTaskByPFN(*(this + *v4 + 6)) == 1 )\n      *(_DWORD *)(v5 + 16) = 4;\n    if ( *(_BYTE *)(v5 + 43) == 1 )\n      *(_DWORD *)(v5 + 16) = 4;\n  }\n  return 0;\n}\n"
-}

@@ -1,7 +1,0 @@
-{
-  "name": "__fptostr",
-  "address": "0x0055BB0E",
-  "size_bytes": 119,
-  "signature": "char *__cdecl(char *a1, char *a2, int a3)",
-  "decompiled_c": "char *__cdecl _fptostr(char *a1, char *a2, int a3)\n{\n  int v3; // edx\n  int v4; // ebx\n  char *v6; // ecx\n  const char *v7; // edi\n  char *result; // eax\n  char v9; // dl\n  size_t v10; // eax\n  char *v11; // [esp+14h] [ebp+8h]\n\n  v3 = a3;\n  v4 = (int)a2;\n  v6 = *(char **)(a3 + 12);\n  v7 = a1 + 1;\n  *a1 = 48;\n  result = a1 + 1;\n  if ( (int)a2 > 0 )\n  {\n    v11 = a2;\n    v4 = 0;\n    do\n    {\n      v9 = *v6;\n      if ( *v6 )\n        ++v6;\n      else\n        v9 = 48;\n      *result++ = v9;\n      --v11;\n    }\n    while ( v11 );\n    v3 = a3;\n  }\n  *result = 0;\n  if ( v4 >= 0 && *v6 >= 53 )\n  {\n    while ( *--result == 57 )\n      *result = 48;\n    ++*result;\n  }\n  if ( *a1 == 49 )\n  {\n    ++*(_DWORD *)(v3 + 4);\n  }\n  else\n  {\n    v10 = strlen(v7);\n    return (char *)memcpy(a1, v7, v10 + 1);\n  }\n  return result;\n}\n"
-}

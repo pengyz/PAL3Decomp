@@ -1,7 +1,0 @@
-{
-  "name": "sub_515C90",
-  "address": "0x00515C90",
-  "size_bytes": 76,
-  "signature": "int __thiscall(char *this, int a2, int a3, int a4, int a5)",
-  "decompiled_c": "// between_std_methods (0x504E20-0x53C2B0)\nint __thiscall sub_515C90(char *this, int a2, int a3, int a4, int a5)\n{\n  int result; // eax\n  char *v6; // ecx\n  int v7; // esi\n\n  result = 0;\n  v6 = this + 152;\n  v7 = 1024;\n  do\n  {\n    if ( v6[36] == 1\n      && a2 == *(_DWORD *)v6\n      && (!a2 || a3 == *((_DWORD *)v6 + 1) && a4 == *((_DWORD *)v6 + 2) && a5 == *((_DWORD *)v6 + 3)) )\n    {\n      ++result;\n    }\n    v6 += 88;\n    --v7;\n  }\n  while ( v7 );\n  return result;\n}\n"
-}

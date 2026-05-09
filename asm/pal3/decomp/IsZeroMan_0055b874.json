@@ -1,7 +1,0 @@
-{
-  "name": "__IsZeroMan",
-  "address": "0x0055B874",
-  "size_bytes": 27,
-  "signature": "int __cdecl(_DWORD *a1)",
-  "decompiled_c": "int __cdecl _IsZeroMan(_DWORD *a1)\n{\n  int v2; // ecx\n\n  v2 = 0;\n  while ( !*a1 )\n  {\n    ++v2;\n    ++a1;\n    if ( v2 >= 3 )\n      return 1;\n  }\n  return 0;\n}\n"
-}

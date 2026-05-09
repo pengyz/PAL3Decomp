@@ -1,7 +1,0 @@
-{
-  "name": "sub_43A5D0",
-  "address": "0x0043A5D0",
-  "size_bytes": 130,
-  "signature": "struct gbVFileSystem *__thiscall(_DWORD *this, int a2, int a3)",
-  "decompiled_c": "// between_std_methods (0x430790-0x445B40)\nstruct gbVFileSystem *__thiscall sub_43A5D0(_DWORD *this, int a2, int a3)\n{\n  struct gbVFileSystem *v5; // [esp+8h] [ebp-10h] BYREF\n  int v6; // [esp+14h] [ebp-4h]\n\n  sub_445F20(this + 19);\n  OpenBaseFile::OpenBaseFile(&v5);\n  v6 = 0;\n  sub_445ED0(a2, 1);\n  *(this + 40) = 1;\n  *(this + 37) = a3;\n  sub_43A660(this);\n  v6 = -1;\n  return OpenNULLFile::OpenNULLFile(&v5);\n}\n"
-}

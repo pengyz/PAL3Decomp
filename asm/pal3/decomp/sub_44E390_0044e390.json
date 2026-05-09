@@ -1,7 +1,0 @@
-{
-  "name": "sub_44E390",
-  "address": "0x0044E390",
-  "size_bytes": 117,
-  "signature": "void __cdecl(int a1)",
-  "decompiled_c": "// between_std_methods (0x44BDA0-0x4A7690)\nvoid __cdecl sub_44E390(int a1)\n{\n  int v1; // edi\n  int v2; // esi\n  int i; // ecx\n  int v4; // eax\n  int v5; // ecx\n  char *v6; // eax\n\n  if ( a1 < 52 )\n  {\n    sub_44E410();\n    byte_D924B4[a1] = 1;\n    v1 = 0;\n    v2 = 0;\n    for ( i = 0; i < 32; ++i )\n      v1 |= (unsigned __int8)byte_D924B4[i] << i;\n    v4 = i;\n    v5 = 0;\n    v6 = &byte_D924B4[v4];\n    do\n    {\n      v2 |= (unsigned __int8)*v6++ << v5;\n      if ( (int)v6 >= (int)&byte_D924E8 )\n        break;\n      ++v5;\n    }\n    while ( v5 < 32 );\n    sub_44E2B0(aSoftwareSoftst_2, (DWORD)ValueName, v1);\n    sub_44E2B0(aSoftwareSoftst_2, (DWORD)aMovieB, v2);\n  }\n}\n"
-}

@@ -1,7 +1,0 @@
-{
-  "name": "__heap_alloc",
-  "address": "0x005536E7",
-  "size_bytes": 54,
-  "signature": "LPVOID __cdecl(unsigned int a1)",
-  "decompiled_c": "LPVOID __cdecl _heap_alloc(unsigned int a1)\n{\n  int v1; // esi\n  LPVOID result; // eax\n\n  v1 = a1;\n  if ( a1 > dword_60ACB4 || (result = (LPVOID)__sbh_alloc_block(a1)) == 0 )\n  {\n    if ( !a1 )\n      v1 = 1;\n    return HeapAlloc(hHeap, 0, (v1 + 15) & 0xFFFFFFF0);\n  }\n  return result;\n}\n"
-}

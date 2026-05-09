@@ -1,7 +1,0 @@
-{
-  "name": "C3DSpark::CreateOne(float,float,float)",
-  "address": "0x004D6AC0",
-  "size_bytes": 217,
-  "signature": "char __thiscall(_DWORD *this, int a2, int a3, int a4)",
-  "decompiled_c": "// between_std_methods (0x4C2840-0x4D70B0)\nchar __thiscall sub_4D6AC0(_DWORD *this, int a2, int a3, int a4)\n{\n  int v5; // eax\n  long double v6; // st7\n  float v8; // [esp+8h] [ebp+4h]\n\n  dword_17A846C = 1090519040;\n  dword_17A8464 = 1128792064;\n  dword_17A8440 = a2;\n  dword_17A8444 = a3;\n  dword_17A8448 = a4;\n  dword_17A8458 = 0;\n  dword_17A845C = -1046478848;\n  dword_17A8460 = 0;\n  dword_17A8468 = -1015414784;\n  dword_17A8470 = 0;\n  v8 = (float)(rand() % 10);\n  v5 = rand();\n  dword_17A8450 = -1054867456;\n  v6 = (double)(v5 % 5760 / 16) * 0.017453292;\n  flt_17A844C = sin(v6) * v8;\n  flt_17A8454 = cos(v6) * v8;\n  return C3DSpark::CreateSingle(this, &dword_17A8440);\n}\n"
-}

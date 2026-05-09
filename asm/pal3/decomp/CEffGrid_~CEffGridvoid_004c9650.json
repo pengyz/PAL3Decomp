@@ -1,7 +1,0 @@
-{
-  "name": "CEffGrid::~CEffGrid(void)",
-  "address": "0x004C9650",
-  "size_bytes": 253,
-  "signature": "void __fastcall(int a1)",
-  "decompiled_c": "// between_std_methods (0x4C2840-0x4D70B0)\nvoid __fastcall sub_4C9650(int a1)\n{\n  int v2; // edi\n  void *v3; // eax\n  int v4; // ebp\n  gbRefObject *v5; // ecx\n  int v6; // esi\n  int v7; // eax\n  bool v8; // cc\n  int v9; // edi\n\n  v2 = a1 + 12;\n  *(_DWORD *)a1 = &off_56F920;\n  *(_DWORD *)(a1 + 12) = &off_56F914;\n  v3 = *(void **)(a1 + 48);\n  v4 = 0;\n  if ( v3 )\n    operator delete(v3);\n  if ( *(_DWORD *)(a1 + 52) )\n    operator delete(*(void **)(a1 + 52));\n  if ( *(_DWORD *)(a1 + 56) )\n    operator delete(*(void **)(a1 + 56));\n  v5 = *(gbRefObject **)(a1 + 60);\n  if ( v5 )\n    gbRefObject::Release(v5);\n  if ( *(_DWORD *)(a1 + 64) )\n    operator delete(*(void **)(a1 + 64));\n  v6 = a1 != 0 ? v2 : 0;\n  *(_DWORD *)v6 = &off_56F95C;\n  v7 = *(_DWORD *)(v6 + 0x1C);\n  v8 = v7 <= 0;\n  if ( !v7 )\n  {\n    if ( !*(_DWORD *)(a1 != 0 ? v2 + 0x20 : 32) )\n      goto LABEL_18;\n    v8 = 1;\n  }\n  if ( !v8 )\n  {\n    v9 = 0;\n    do\n    {\n      operator delete(*(void **)(*(_DWORD *)(v6 + 12) + v9));\n      ++v4;\n      *(_DWORD *)(*(_DWORD *)(v6 + 12) + v9) = 0;\n      v9 += 152;\n    }\n    while ( v4 < *(_DWORD *)(v6 + 28) );\n  }\n  operator delete(*(void **)(v6 + 12));\n  *(_DWORD *)(v6 + 12) = 0;\n  *(_DWORD *)(v6 + 28) = 0;\n  *(_DWORD *)(v6 + 32) = 0;\nLABEL_18:\n  *(_DWORD *)a1 = &off_56F62C;\n}\n"
-}

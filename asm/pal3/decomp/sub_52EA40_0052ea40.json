@@ -1,7 +1,0 @@
-{
-  "name": "sub_52EA40",
-  "address": "0x0052EA40",
-  "size_bytes": 121,
-  "signature": "double __thiscall(int this)",
-  "decompiled_c": "// between_std_methods (0x504E20-0x53C2B0)\ndouble __thiscall sub_52EA40(int this)\n{\n  long double v1; // st7\n  long double v3; // st7\n\n  if ( *(_BYTE *)(this + 292) )\n  {\n    v1 = *(float *)(this + 264) + *(float *)(this + 280);\n    *(float *)(this + 280) = v1;\n    if ( *(float *)(this + 256) <= fabs(v1) )\n    {\n      *(_DWORD *)(this + 280) = 0;\n      *(_BYTE *)(this + 292) = 0;\n      return *(float *)(this + 280);\n    }\n  }\n  else\n  {\n    v3 = *(float *)(this + 280) - *(float *)(this + 264);\n    *(float *)(this + 280) = v3;\n    if ( *(float *)(this + 256) >= fabs(v3) )\n    {\n      *(_DWORD *)(this + 280) = 0;\n      *(_BYTE *)(this + 292) = 1;\n    }\n  }\n  return *(float *)(this + 280);\n}\n"
-}

@@ -1,7 +1,0 @@
-{
-  "name": "sub_54CAC0",
-  "address": "0x0054CAC0",
-  "size_bytes": 149,
-  "signature": "__m128 *__stdcall(__m128 *a1, int a2, unsigned int *a3, int a4, __m128 *a5, int a6)",
-  "decompiled_c": "__m128 *__stdcall sub_54CAC0(__m128 *a1, int a2, unsigned int *a3, int a4, __m128 *a5, int a6)\n{\n  int v6; // ecx\n  __m128 *v7; // eax\n  __m128 v9; // xmm4\n  __m128 v10; // xmm5\n  __m128 v11; // xmm6\n  __m128 v12; // xmm7\n  __m128 v13; // xmm0\n  __m128 v14; // xmm1\n  __m128 v15; // xmm2\n  __m128 v16; // xmm3\n\n  v6 = a6;\n  v7 = a1;\n  if ( a6 > 0 )\n  {\n    v9 = *a5;\n    v10 = a5[1];\n    v11 = a5[2];\n    v12 = a5[3];\n    do\n    {\n      v13 = _mm_shuffle_ps((__m128)*a3, (__m128)*a3, 0);\n      v14 = _mm_shuffle_ps((__m128)a3[1], (__m128)a3[1], 0);\n      v15 = _mm_shuffle_ps((__m128)a3[2], (__m128)a3[2], 0);\n      v16 = _mm_shuffle_ps((__m128)a3[3], (__m128)a3[3], 0);\n      a3 = (unsigned int *)((char *)a3 + a4);\n      *v7 = _mm_add_ps(\n              _mm_add_ps(_mm_mul_ps(v13, v9), _mm_mul_ps(v14, v10)),\n              _mm_add_ps(_mm_mul_ps(v15, v11), _mm_mul_ps(v16, v12)));\n      v7 = (__m128 *)((char *)v7 + a2);\n    }\n    while ( v6-- > 1 );\n  }\n  return a1;\n}\n"
-}

@@ -1,7 +1,0 @@
-{
-  "name": "_fprintf",
-  "address": "0x00554C42",
-  "size_bytes": 50,
-  "signature": "int(FILE *const Stream, const char *const Format, ...)",
-  "decompiled_c": "int fprintf(FILE *const Stream, const char *const Format, ...)\n{\n  int v2; // esi\n  int v3; // edi\n  va_list va; // [esp+18h] [ebp+10h] BYREF\n\n  va_start(va, Format);\n  v2 = _stbuf(Stream);\n  v3 = _output(Stream, (int)Format, (int)va);\n  _ftbuf(v2, Stream);\n  return v3;\n}\n"
-}

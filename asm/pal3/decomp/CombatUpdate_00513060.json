@@ -1,7 +1,0 @@
-{
-  "name": "CombatUpdate",
-  "address": "0x00513060",
-  "size_bytes": 182,
-  "signature": "int __thiscall(int this, double a2)",
-  "decompiled_c": "// between_std_methods (0x504E20-0x53C2B0)\nint __thiscall sub_513060(int this, double a2)\n{\n  double v3; // st6\n  float *v4; // ecx\n  double v5; // st7\n  double v6; // st7\n  void *v7; // ecx\n  float v9; // [esp+0h] [ebp-8h]\n  float v10; // [esp+0h] [ebp-8h]\n  float v11; // [esp+Ch] [ebp+4h]\n\n  *(double *)(this + 88) = a2;\n  v3 = a2 + *(double *)(this + 96);\n  v4 = *(float **)(this + 44);\n  *(double *)(this + 96) = v3;\n  *(float *)(this + 104) = v3;\n  v5 = a2 * *(float *)(this + 108);\n  *(double *)(this + 64) = v5;\n  v6 = v5 + *(double *)(this + 72);\n  v11 = v6;\n  *(double *)(this + 72) = v6;\n  *(float *)(this + 80) = v6;\n  SceneMgrUpdate(v4, v11);\n  SceneMgrUpdate(*(float **)(this + 48), *(float *)(this + 104));\n  CCBSystem::ProcMagic(this);\n  CCBSystem::IsFriendDoSkill(this);\n  sub_4DB5C0(*(_BYTE **)(this + 12));\n  sub_4ECB00(*(void **)(this + 16));\n  CCBAI::Update(*(void **)(this + 24));\n  sub_4FC0A0(*(char **)(this + 20));\n  sub_4DC240(*(_BYTE **)(this + 8));\n  if ( *(_BYTE *)(this + 133) )\n  {\n    v7 = *(void **)(this + 28);\n    if ( v7 )\n      sub_4E04C0(v7);\n  }\n  v9 = *(double *)(this + 64);\n  C2DSpark::Render(*(_DWORD *)(this + 52), v9);\n  v10 = *(double *)(this + 64);\n  C3DSpark::Update(*(float **)(this + 56), v10);\n  return CCBSystem::ProcDefence(this);\n}\n"
-}

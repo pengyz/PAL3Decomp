@@ -1,7 +1,0 @@
-{
-  "name": "sub_4BA3C0",
-  "address": "0x004BA3C0",
-  "size_bytes": 11,
-  "signature": "void __thiscall(void **this)",
-  "decompiled_c": "// between_std_methods (0x4A7690-0x4BEF50)\nvoid __thiscall sub_4BA3C0(void **this)\n{\n  void **v1; // esi\n  void **v2; // ecx\n\n  v2 = this + 8003;\n  v1 = v2;\n  if ( *v2 )\n  {\n    operator delete(*v2);\n    *v1 = 0;\n  }\n  if ( v1[1] )\n  {\n    operator delete(v1[1]);\n    v1[1] = 0;\n  }\n}\n"
-}

@@ -1,7 +1,0 @@
-{
-  "name": "GRPinput::SetJoystickPos(long,long)",
-  "address": "0x00402C40",
-  "size_bytes": 192,
-  "signature": "char __thiscall(_BYTE *this, const char *a2, int a3)",
-  "decompiled_c": "// likely std method (near _Freeze, _Split, max_size, allocator<char>>, _Xran)\nchar __thiscall sub_402C40(_BYTE *this, const char *a2, int a3)\n{\n  _BYTE *v3; // esi\n  unsigned int v4; // kr04_4\n  _BYTE *v5; // ebp\n  unsigned int v6; // ebx\n  int v7; // ecx\n  char v8; // al\n  char result; // al\n  unsigned int v10; // eax\n  int v11; // ecx\n\n  v3 = this;\n  *(this + 4) = 1;\n  v4 = strlen(a2) + 1;\n  v5 = v3 + 8;\n  v6 = v4 - 1;\n  if ( v4 - 1 > 0xFFFFFFFD )\n    std::_Xlen();\n  v7 = *((_DWORD *)v3 + 3);\n  if ( !v7 || (v8 = *(_BYTE *)(v7 - 1)) == 0 || v8 == -1 )\n  {\n    if ( v4 == 1 )\n    {\n      result = std::string::_Tidy(1);\n      goto LABEL_15;\n    }\n    v10 = *((_DWORD *)v3 + 5);\n    if ( v10 <= 0x1F && v10 >= v6 )\n    {\nLABEL_14:\n      result = v4 - 1;\n      qmemcpy(*((void **)v3 + 3), a2, v6);\n      v11 = *((_DWORD *)v3 + 3);\n      v3 = this;\n      *((_DWORD *)v5 + 2) = v6;\n      *(_BYTE *)(v11 + v6) = 0;\n      goto LABEL_15;\n    }\n    std::string::_Tidy(1);\nLABEL_13:\n    GRPinput::GetKeyState(v6);\n    goto LABEL_14;\n  }\n  if ( v4 != 1 )\n    goto LABEL_13;\n  result = v8 - 1;\n  *(_BYTE *)(v7 - 1) = result;\n  *((_DWORD *)v3 + 3) = 0;\n  *((_DWORD *)v3 + 4) = 0;\n  *((_DWORD *)v3 + 5) = 0;\nLABEL_15:\n  *((_DWORD *)v3 + 6) = 0;\n  *((_DWORD *)v3 + 7) = a3;\n  *((_DWORD *)v3 + 8) = 40;\n  return result;\n}\n"
-}

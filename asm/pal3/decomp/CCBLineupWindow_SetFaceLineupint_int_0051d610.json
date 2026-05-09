@@ -1,7 +1,0 @@
-{
-  "name": "CCBLineupWindow::SetFaceLineup(int,int)",
-  "address": "0x0051D610",
-  "size_bytes": 129,
-  "signature": "char __cdecl(int a1, int a2, int a3, int a4, int a5, int a6, int a7, int a8, _DWORD *a9)",
-  "decompiled_c": "// between_std_methods (0x504E20-0x53C2B0)\nchar __cdecl sub_51D610(int a1, int a2, int a3, int a4, int a5, int a6, int a7, int a8, _DWORD *a9)\n{\n  if ( a1 > a7 || a5 > a3 || a2 > a8 || a6 > a4 )\n    return 0;\n  if ( a1 <= a5 )\n    *a9 = a5;\n  else\n    *a9 = a1;\n  if ( a3 >= a7 )\n    a9[2] = a7;\n  else\n    a9[2] = a3;\n  if ( a2 <= a6 )\n    a9[1] = a6;\n  else\n    a9[1] = a2;\n  if ( a4 >= a8 )\n    a9[3] = a8;\n  else\n    a9[3] = a4;\n  return 1;\n}\n"
-}

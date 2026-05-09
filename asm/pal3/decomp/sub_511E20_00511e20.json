@@ -1,7 +1,0 @@
-{
-  "name": "sub_511E20",
-  "address": "0x00511E20",
-  "size_bytes": 94,
-  "signature": "_DWORD *__thiscall(_DWORD *this, int a2)",
-  "decompiled_c": "// between_std_methods (0x504E20-0x53C2B0)\n_DWORD *__thiscall sub_511E20(_DWORD *this, int a2)\n{\n  int v3; // esi\n  int v4; // edi\n  int v5; // esi\n  int v6; // edi\n\n  v3 = (int)(this + 4);\n  v4 = 11;\n  do\n  {\n    sub_401810(v3, 12, 4, (int (__thiscall *)(int))gbVec3D::`default constructor closure');\n    v3 += 68;\n    --v4;\n  }\n  while ( v4 );\n  v5 = (int)(this + 191);\n  v6 = 11;\n  do\n  {\n    sub_401810(v5, 12, 4, (int (__thiscall *)(int))gbVec3D::`default constructor closure');\n    v5 += 68;\n    --v6;\n  }\n  while ( v6 );\n  memset(this, 0, 0x614u);\n  *this = a2;\n  return this;\n}\n"
-}

@@ -1,7 +1,0 @@
-{
-  "name": "sub_50B430",
-  "address": "0x0050B430",
-  "size_bytes": 142,
-  "signature": "int (__thiscall *__thiscall(char *this, int a2))(char *, int)",
-  "decompiled_c": "// between_std_methods (0x504E20-0x53C2B0)\nint (__thiscall *__thiscall sub_50B430(char *this, int a2))(char *, int)\n{\n  int v3; // eax\n  _BYTE *i; // ecx\n  int (__thiscall *result)(char *, int); // eax\n\n  v3 = 0;\n  for ( i = this + 505; !*(i - 1) || *i; i += 96 )\n  {\n    if ( ++v3 >= 64 )\n    {\n      *((_DWORD *)this + 1642) = CCBStageRole::ProcTurn(this);\n      result = (int (__thiscall *)(char *, int))CCBStageRole::IsGrabedBy((int)this);\n      *((_DWORD *)this + 99) = -1;\n      return result;\n    }\n  }\n  *((_DWORD *)this + 99) = v3;\n  *((_DWORD *)this + 100) = *((_DWORD *)this + 24 * v3 + 104);\n  *((_DWORD *)this + 101) = *((_DWORD *)this + 24 * v3 + 105);\n  *((_DWORD *)this + 102) = *((_DWORD *)this + 24 * v3 + 106);\n  *((_DWORD *)this + 103) = *((_DWORD *)this + 24 * v3 + 107);\n  result = (int (__thiscall *)(char *, int))*((_DWORD *)this + 100);\n  if ( result )\n    return (int (__thiscall *)(char *, int))result(this + *((_DWORD *)this + 101), a2);\n  return result;\n}\n"
-}

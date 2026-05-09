@@ -1,7 +1,0 @@
-{
-  "name": "_x_ismbbtype",
-  "address": "0x0055D5C4",
-  "size_bytes": 49,
-  "signature": "int __cdecl(unsigned __int8 a1, int a2, unsigned __int8 a3)",
-  "decompiled_c": "int __cdecl x_ismbbtype(unsigned __int8 a1, int a2, unsigned __int8 a3)\n{\n  int result; // eax\n\n  if ( (a3 & (unsigned __int8)byte_1896AC1[a1]) != 0 )\n    return 1;\n  result = a2 ? (unsigned __int16)(a2 & _ctype[a1 + 1]) : 0;\n  if ( result )\n    return 1;\n  return result;\n}\n"
-}

@@ -1,7 +1,0 @@
-{
-  "name": "sub_54DE6C",
-  "address": "0x0054DE6C",
-  "size_bytes": 108,
-  "signature": "__m64 *__stdcall(__m64 *a1, int a2, unsigned int a3)",
-  "decompiled_c": "__m64 *__stdcall sub_54DE6C(__m64 *a1, int a2, unsigned int a3)\n{\n  __m64 v3; // mm0\n  __m64 v5; // mm3\n  __m64 v6; // mm2\n  __m64 v7; // [esp+0h] [ebp-18h] BYREF\n  unsigned int v8; // [esp+8h] [ebp-10h]\n\n  _m_femms();\n  sub_55087A((int)&v7, a2);\n  v3 = _m_pfmul(_mm_cvtsi32_si64(a3), (__m64)0x3F0000003F000000LL);\n  sub_552A20();\n  v5 = _m_punpckhdq(v3, v3);\n  v6 = _m_punpckldq(_m_pfmul(_mm_cvtsi32_si64(v8), v5), v3);\n  a1->m64_u64 = (unsigned __int64)_m_pfmul(v7, v5);\n  a1[1].m64_u64 = (unsigned __int64)v6;\n  _m_femms();\n  return a1;\n}\n"
-}

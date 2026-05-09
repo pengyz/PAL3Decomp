@@ -1,7 +1,0 @@
-{
-  "name": "sub_53C420",
-  "address": "0x0053C420",
-  "size_bytes": 26,
-  "signature": "int __thiscall(int *this)",
-  "decompiled_c": "// likely std method (near _Freeze, _Split, max_size, allocator<char>>, _Xran)\nint __thiscall sub_53C420(int *this)\n{\n  int result; // eax\n\n  result = *(this + 3);\n  if ( result )\n  {\n    result = BinkClose(*(this + 3));\n    *(this + 3) = 0;\n  }\n  return result;\n}\n"
-}

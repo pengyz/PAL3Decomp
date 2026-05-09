@@ -1,7 +1,0 @@
-{
-  "name": "sub_4CDBF0",
-  "address": "0x004CDBF0",
-  "size_bytes": 36,
-  "signature": "char __thiscall(_DWORD *this)",
-  "decompiled_c": "// between_std_methods (0x4C2840-0x4D70B0)\nchar __thiscall sub_4CDBF0(_DWORD *this)\n{\n  _DWORD *v1; // esi\n  int v2; // edi\n  char result; // al\n\n  v1 = this + 587;\n  v2 = 2048;\n  do\n  {\n    result = *((_BYTE *)v1 - 4);\n    if ( result )\n      result = (*(int (__thiscall **)(_DWORD))(*(_DWORD *)*v1 + 24))(*v1);\n    v1 += 5;\n    --v2;\n  }\n  while ( v2 );\n  return result;\n}\n"
-}

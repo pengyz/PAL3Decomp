@@ -1,7 +1,0 @@
-{
-  "name": "sub_4E2AE0",
-  "address": "0x004E2AE0",
-  "size_bytes": 292,
-  "signature": "LRESULT __stdcall(LPARAM a1)",
-  "decompiled_c": "// between_std_methods (0x4D70B0-0x504E20)\nLRESULT __stdcall sub_4E2AE0(LPARAM a1)\n{\n  LRESULT result; // eax\n  HWND DlgItem; // ebx\n  int v3; // eax\n  int v4; // eax\n  int v5; // eax\n  LPARAM lParam[10]; // [esp+Ch] [ebp-A8h] BYREF\n  char Buffer[128]; // [esp+34h] [ebp-80h] BYREF\n\n  result = dword_17A990C;\n  if ( dword_17A990C == 2 )\n  {\n    DlgItem = GetDlgItem(dword_BFDA54, 1000);\n    result = dword_17A990C;\n    if ( dword_17A990C == 2 )\n    {\n      memset(lParam, 0, sizeof(lParam));\n      lParam[0] = 1;\n      lParam[1] = a1;\n      lParam[5] = (LPARAM)Buffer;\n      lParam[2] = 2;\n      v3 = CCBRoleState::InitUI(a1);\n      sprintf(Buffer, \"%d\", *(_DWORD *)(v3 + 36));\n      SendMessageA(DlgItem, 0x1006u, 0, (LPARAM)lParam);\n      lParam[2] = 3;\n      v4 = CCBRoleState::InitUI(a1);\n      sprintf(Buffer, \"%d\", *(_DWORD *)(v4 + 44));\n      SendMessageA(DlgItem, 0x1006u, 0, (LPARAM)lParam);\n      lParam[2] = 4;\n      v5 = CCBRoleState::InitUI(a1);\n      sprintf(Buffer, \"%d\", *(_DWORD *)(v5 + 52));\n      return SendMessageA(DlgItem, 0x1006u, 0, (LPARAM)lParam);\n    }\n  }\n  return result;\n}\n"
-}

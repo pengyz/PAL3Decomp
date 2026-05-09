@@ -1,7 +1,0 @@
-{
-  "name": "sub_43FF00",
-  "address": "0x0043FF00",
-  "size_bytes": 106,
-  "signature": "int __thiscall(int this, int a2, _DWORD *a3, int a4)",
-  "decompiled_c": "// between_std_methods (0x430790-0x445B40)\nint __thiscall sub_43FF00(int this, int a2, _DWORD *a3, int a4)\n{\n  int v4; // ebx\n  double v5; // st7\n\n  *(_DWORD *)(this + 16) = *a3;\n  *(_DWORD *)(this + 20) = a3[1];\n  *(_DWORD *)(this + 24) = a3[2];\n  *(_DWORD *)(this + 28) = a3[3];\n  *(_DWORD *)(this + 76) = *a3;\n  *(_DWORD *)(this + 80) = a3[1];\n  *(_DWORD *)(this + 84) = a3[2];\n  v4 = *(_DWORD *)(this + 16);\n  *(_DWORD *)(this + 88) = a3[3];\n  v5 = (double)(*(_DWORD *)(this + 24) - v4);\n  *(float *)(this + 120) = v5;\n  *(float *)(this + 124) = v5;\n  return sub_445B90(a2, a3, a4);\n}\n"
-}

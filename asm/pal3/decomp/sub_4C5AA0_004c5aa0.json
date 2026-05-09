@@ -1,7 +1,0 @@
-{
-  "name": "sub_4C5AA0",
-  "address": "0x004C5AA0",
-  "size_bytes": 132,
-  "signature": "int __thiscall(int *this, int a2)",
-  "decompiled_c": "// between_std_methods (0x4C2840-0x4D70B0)\nint __thiscall sub_4C5AA0(int *this, int a2)\n{\n  int v3; // ebx\n  int result; // eax\n  _DWORD *v5; // edi\n  int v6; // ecx\n  _DWORD *v7; // eax\n\n  v3 = 0;\n  result = *(this + 69);\n  if ( result > 0 )\n  {\n    v5 = this + 70;\n    do\n    {\n      if ( *(_DWORD *)(*v5 + 8) == a2 )\n      {\n        sub_4C6170();\n        (*(void (__thiscall **)(_DWORD))(*(_DWORD *)*v5 + 12))(*v5);\n        if ( *v5 )\n          (**(void (__thiscall ***)(_DWORD, int))*v5)(*v5, 1);\n        --*(this + 69);\n        *v5 = 0;\n        v6 = v3;\n        if ( v3 < *(this + 69) )\n        {\n          v7 = v5;\n          do\n          {\n            ++v6;\n            *v7 = v7[1];\n            ++v7;\n          }\n          while ( v6 < *(this + 69) );\n        }\n      }\n      result = *(this + 69);\n      ++v3;\n      ++v5;\n    }\n    while ( v3 < result );\n  }\n  return result;\n}\n"
-}

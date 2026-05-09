@@ -1,7 +1,0 @@
-{
-  "name": "sub_454980",
-  "address": "0x00454980",
-  "size_bytes": 30,
-  "signature": "stdiobuf *__thiscall(stdiobuf *Block, char a2)",
-  "decompiled_c": "// between_std_methods (0x44BDA0-0x4A7690)\nstdiobuf *__thiscall sub_454980(stdiobuf *Block, char a2)\n{\n  sub_454BA0(Block);\n  if ( (a2 & 1) != 0 )\n    operator delete(Block);\n  return Block;\n}\n"
-}

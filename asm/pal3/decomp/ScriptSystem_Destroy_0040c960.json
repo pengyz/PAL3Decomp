@@ -1,0 +1,7 @@
+{
+  "name": "ScriptSystem::Destroy",
+  "address": "0x0040C960",
+  "size_bytes": 54,
+  "signature": "int __cdecl()",
+  "decompiled_c": "// between_std_methods (0x407D40-0x411B80)\nint __cdecl ScriptSystem::Destroy()\n{\n  char *v0; // esi\n  int result; // eax\n\n  UIWnd::Reset((UIWnd *)&g_UIScene);\n  PalScript::Reset((PalScript *)&stru_C04390._data[50648]);\n  ScriptSystem::Cleanup();\n  v0 = &stru_C04390._data[7120];\n  do\n  {\n    result = ScriptObj::Destroy(v0);\n    v0 += 8704;\n  }\n  while ( (int)v0 < (int)&stru_C04390._data[50640] );\n  return result;\n}\n"
+}

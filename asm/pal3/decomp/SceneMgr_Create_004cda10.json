@@ -1,0 +1,7 @@
+{
+  "name": "SceneMgr::Create",
+  "address": "0x004CDA10",
+  "size_bytes": 196,
+  "signature": "void *__thiscall(SceneMgr *this, int gfxMgr, int cam, int a4)",
+  "decompiled_c": "// between_std_methods (0x4C2840-0x4D70B0)\nvoid *__thiscall SceneMgr::Create(SceneMgr *this, int gfxMgr, int cam, int a4)\n{\n  int v5; // eax\n  struct gbRenderEffect *v6; // eax\n  int v7; // ecx\n  struct gbRenderEffect *v8; // eax\n  int v9; // edx\n\n  *(_DWORD *)this->_data = gfxMgr;\n  *((_DWORD *)this + 6) = cam;\n  *((_DWORD *)this + 4) = 0;\n  *((_DWORD *)this + 5) = 0;\n  *((_DWORD *)this + 1) = a4;\n  memset(this + 28, 0, 0x900u);\n  memset(this + 2332, 0, 0xA000u);\n  v5 = *(_DWORD *)this->_data;\n  *((_DWORD *)this + 10823) = 0;\n  *((_DWORD *)this + 10824) = 0;\n  *((_DWORD *)this + 10825) = 0;\n  *((_DWORD *)this + 10826) = 0;\n  *((_DWORD *)this + 10827) = 1065353216;\n  v6 = gbEffectMgr::NewRenderEffect(*(gbEffectMgr **)(v5 + 200), aGfxscriptAddit, 0);\n  v7 = *(_DWORD *)this->_data;\n  *((_DWORD *)this + 4) = v6;\n  v8 = gbEffectMgr::NewRenderEffect(*(gbEffectMgr **)(v7 + 200), aGfxscriptAlpha, 0);\n  v9 = *(_DWORD *)this->_data;\n  *((_DWORD *)this + 5) = v8;\n  *((_DWORD *)this + 2) = gbEffectMgr::NewRenderEffect(*(gbEffectMgr **)(v9 + 200), aGfxscriptAddit_0, 0);\n  *((_DWORD *)this + 3) = gbEffectMgr::NewRenderEffect(\n                            *(gbEffectMgr **)(*(_DWORD *)this->_data + 200),\n                            aGfxscriptAlpha_0,\n                            0);\n  sub_4CDED0();\n  CEffMgr::CEffMgr();\n  return this;\n}\n"
+}

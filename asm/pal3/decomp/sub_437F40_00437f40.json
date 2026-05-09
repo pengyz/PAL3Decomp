@@ -1,7 +1,0 @@
-{
-  "name": "sub_437F40",
-  "address": "0x00437F40",
-  "size_bytes": 161,
-  "signature": "char *()",
-  "decompiled_c": "// between_std_methods (0x430790-0x445B40)\nchar *sub_437F40()\n{\n  char *result; // eax\n  int v1; // eax\n  int i; // ecx\n  int v3; // esi\n  int v4; // eax\n  int v5; // ecx\n  BYTE Data[4]; // [esp+8h] [ebp-8h] BYREF\n  BYTE v7[4]; // [esp+Ch] [ebp-4h] BYREF\n\n  memset(byte_D8EBBC, 0, sizeof(byte_D8EBBC));\n  *(_DWORD *)Data = 0;\n  *(_DWORD *)v7 = 0;\n  result = (char *)sub_456FC0(aSoftwareSoftst_2, ValueName, Data);\n  if ( (_BYTE)result )\n  {\n    result = (char *)sub_456FC0(aSoftwareSoftst_2, aMovieB, v7);\n    if ( (_BYTE)result )\n    {\n      v1 = *(_DWORD *)Data;\n      for ( i = 0; i < 32; ++i )\n        byte_D8EBBC[i] = ((1 << i) & v1) != 0;\n      v3 = *(_DWORD *)v7;\n      v4 = i;\n      v5 = 0;\n      result = &byte_D8EBBC[v4];\n      do\n      {\n        *result++ = ((1 << v5) & v3) != 0;\n        if ( (int)result >= (int)byte_D8EBF0 )\n          break;\n        ++v5;\n      }\n      while ( v5 < 32 );\n    }\n  }\n  return result;\n}\n"
-}

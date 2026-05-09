@@ -1,7 +1,0 @@
-{
-  "name": "_wctomb",
-  "address": "0x0055BD12",
-  "size_bytes": 104,
-  "signature": "int __cdecl(char *MbCh, wchar_t WCh)",
-  "decompiled_c": "int __cdecl wctomb(char *MbCh, wchar_t WCh)\n{\n  int result; // eax\n\n  result = (int)MbCh;\n  if ( MbCh )\n  {\n    if ( !dword_18953A8 )\n    {\n      if ( WCh <= 0xFFu )\n      {\n        *MbCh = WCh;\n        return 1;\n      }\n      goto LABEL_7;\n    }\n    MbCh = 0;\n    result = WideCharToMultiByte(dword_18953B8, 0x220u, &WCh, 1, (LPSTR)result, cbMultiByte, 0, (LPBOOL)&MbCh);\n    if ( !result || MbCh )\n    {\nLABEL_7:\n      dword_189533C = 42;\n      return -1;\n    }\n  }\n  return result;\n}\n"
-}

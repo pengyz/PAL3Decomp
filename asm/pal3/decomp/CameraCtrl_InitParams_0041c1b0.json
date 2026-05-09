@@ -1,0 +1,7 @@
+{
+  "name": "CameraCtrl::InitParams",
+  "address": "0x0041C1B0",
+  "size_bytes": 47,
+  "signature": "int __thiscall(CameraCtrl *this, void *pParams)",
+  "decompiled_c": "// between_std_methods (0x411BB0-0x430790)\nint __thiscall CameraCtrl::InitParams(CameraCtrl *this, void *pParams)\n{\n  int result; // eax\n\n  *((_DWORD *)this + 95) = 0;\n  *((_DWORD *)this + 96) = 0;\n  *((_DWORD *)this + 97) = *(_DWORD *)pParams;\n  *((_DWORD *)this + 98) = *((_DWORD *)pParams + 1);\n  result = *((_DWORD *)pParams + 2);\n  *((_DWORD *)this + 99) = result;\n  return result;\n}\n"
+}

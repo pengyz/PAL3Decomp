@@ -1,7 +1,0 @@
-{
-  "name": "__cfltcvt",
-  "address": "0x0055681C",
-  "size_bytes": 81,
-  "signature": "char *__cdecl(double *a1, char *Src, int a3, size_t Size, int a5)",
-  "decompiled_c": "char *__cdecl _cfltcvt(double *a1, char *Src, int a3, size_t Size, int a5)\n{\n  if ( a3 == 101 || a3 == 69 )\n    return _cftoe(a1, Src, Size, a5);\n  if ( a3 == 102 )\n    return _cftof(a1, Src, Size);\n  return (char *)_cftog(a1, Src, Size, a5);\n}\n"
-}

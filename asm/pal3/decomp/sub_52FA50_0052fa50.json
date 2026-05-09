@@ -1,7 +1,0 @@
-{
-  "name": "sub_52FA50",
-  "address": "0x0052FA50",
-  "size_bytes": 169,
-  "signature": "struct gbVFileSystem *__thiscall(int this)",
-  "decompiled_c": "// between_std_methods (0x504E20-0x53C2B0)\nstruct gbVFileSystem *__thiscall sub_52FA50(int this)\n{\n  struct gbVFileSystem *v3; // [esp+10h] [ebp-10h] BYREF\n  int v4; // [esp+1Ch] [ebp-4h]\n\n  OpenBaseFile::OpenBaseFile(&v3);\n  v4 = 0;\n  gbGeomNode::LoadFromFile((gbGeomNode *)(this + 3336), aSubgameSkeeSke, 0, 0);\n  gbGeomNode::GetOBBox((gbGeomNode *)(this + 3336), (struct gbOBBox *)(this + 3652));\n  sub_52D7C0((int *)(this + 3748), aBasedataSkeePa);\n  *(_DWORD *)(this + 3728) = 0;\n  *(_DWORD *)(this + 3736) = 0;\n  *(_DWORD *)(this + 3740) = 0;\n  *(_DWORD *)(this + 3732) = 1093517967;\n  *(_DWORD *)(this + 3760) = 0;\n  *(_BYTE *)(this + 3744) = 0;\n  v4 = -1;\n  return OpenNULLFile::OpenNULLFile(&v3);\n}\n"
-}

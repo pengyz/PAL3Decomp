@@ -3,5 +3,5 @@
   "address": "0x00559788",
   "size_bytes": 20,
   "signature": "int()",
-  "decompiled_c": "int __endstdio()\n{\n  int result; // eax\n\n  result = sub_5549B4();\n  if ( byte_189537C )\n    return _fcloseall();\n  return result;\n}\n"
+  "decompiled_c": "int __endstdio()\n{\n  int result; // eax\n\n  result = _flushall();\n  if ( byte_189537C )\n    return _fcloseall();\n  return result;\n}\n"
 }

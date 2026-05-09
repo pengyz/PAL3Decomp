@@ -1,7 +1,0 @@
-{
-  "name": "ObjectCamera::SetCameraEyePosition(gbVec3D,bool)",
-  "address": "0x0047C640",
-  "size_bytes": 156,
-  "signature": "void __thiscall(gbCamera **this, struct gbGfxManager *a2)",
-  "decompiled_c": "// between_std_methods (0x44BDA0-0x4A7690)\nvoid __thiscall sub_47C640(gbCamera **this, struct gbGfxManager *a2)\n{\n  gbCamera *v3; // eax\n  gbCamera *v4; // eax\n  gbCamera *v5; // eax\n\n  v3 = (gbCamera *)operator new(0x178u);\n  if ( v3 )\n    v4 = gbCamera::gbCamera(v3, a2);\n  else\n    v4 = 0;\n  *this = v4;\n  gbCamera::SetDimention(v4, w, h);\n  v5 = *this;\n  *(_DWORD *)&v5->_data[4] = 0;\n  *(_DWORD *)v5->_data = 1112014848;\n  gbCamera::SetLookAt(*this, (struct gbVec3D *)(this + 1), (struct gbVec3D *)(this + 4), (struct gbVec3D *)(this + 7));\n}\n"
-}

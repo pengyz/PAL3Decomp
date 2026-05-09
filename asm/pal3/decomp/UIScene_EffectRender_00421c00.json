@@ -1,0 +1,7 @@
+{
+  "name": "UIScene::EffectRender",
+  "address": "0x00421C00",
+  "size_bytes": 60,
+  "signature": "int __thiscall(void *this)",
+  "decompiled_c": "// between_std_methods (0x411BB0-0x430790)\nint __thiscall UIScene::EffectRender(void *this)\n{\n  int v2; // edi\n  int result; // eax\n  char *v4; // esi\n\n  v2 = 0;\n  result = *((_DWORD *)this + 14392);\n  if ( result > 0 )\n  {\n    v4 = (char *)this + 57572;\n    do\n    {\n      if ( v4[173] == 4 )\n        sub_419C20((int)v4);\n      result = *((_DWORD *)this + 14392);\n      ++v2;\n      v4 += 8704;\n    }\n    while ( v2 < result );\n  }\n  return result;\n}\n"
+}

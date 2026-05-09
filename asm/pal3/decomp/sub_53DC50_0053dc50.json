@@ -1,7 +1,0 @@
-{
-  "name": "sub_53DC50",
-  "address": "0x0053DC50",
-  "size_bytes": 278,
-  "signature": "void __thiscall(char *this)",
-  "decompiled_c": "// likely std method (near _Freeze, _Split, max_size, allocator<char>>, _Xran)\nvoid __thiscall sub_53DC50(char *this)\n{\n  _DWORD *v2; // ebp\n  _DWORD *i; // esi\n  _BYTE *v4; // eax\n  int v5; // eax\n  _BYTE *v6; // ecx\n  char v7; // al\n\n  *(_DWORD *)this = &off_570A54;\n  CPK::~CPK((CPK *)(this + 832));\n  v2 = (_DWORD *)*((_DWORD *)this + 205);\n  for ( i = (_DWORD *)*((_DWORD *)this + 204); i != v2; i += 5 )\n  {\n    if ( i[1] )\n    {\n      if ( !*(_BYTE *)sub_53EDD0(i[1]) || *(_BYTE *)sub_53EDD0(i[1]) == 0xFF )\n      {\n        sub_53EDE0((void *)(i[1] - 1), i[3] + 2);\n      }\n      else\n      {\n        v4 = (_BYTE *)sub_53EDD0(i[1]);\n        --*v4;\n      }\n    }\n    i[1] = 0;\n    i[2] = 0;\n    i[3] = 0;\n  }\n  operator delete(*((void **)this + 204));\n  *((_DWORD *)this + 204) = 0;\n  *((_DWORD *)this + 205) = 0;\n  *((_DWORD *)this + 206) = 0;\n  sub_4318A0(this + 284);\n  v5 = *((_DWORD *)this + 3);\n  if ( v5 )\n  {\n    v6 = (_BYTE *)(v5 - 1);\n    v7 = *(_BYTE *)(v5 - 1);\n    if ( !v7 || v7 == -1 )\n      operator delete(v6);\n    else\n      *v6 = v7 - 1;\n  }\n  *((_DWORD *)this + 3) = 0;\n  *((_DWORD *)this + 4) = 0;\n  *((_DWORD *)this + 5) = 0;\n}\n"
-}

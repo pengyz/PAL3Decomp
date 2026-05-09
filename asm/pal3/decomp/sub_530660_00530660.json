@@ -1,7 +1,0 @@
-{
-  "name": "sub_530660",
-  "address": "0x00530660",
-  "size_bytes": 55,
-  "signature": "void __thiscall(int *this)",
-  "decompiled_c": "// between_std_methods (0x504E20-0x53C2B0)\nvoid __thiscall sub_530660(int *this)\n{\n  void *v2; // edi\n  void (__thiscall ***v3)(_DWORD, int); // ecx\n\n  v2 = (void *)*this;\n  if ( *this )\n  {\n    sub_40EE00(*this);\n    operator delete(v2);\n    *this = 0;\n  }\n  v3 = (void (__thiscall ***)(_DWORD, int))*(this + 1);\n  if ( v3 )\n  {\n    (**v3)(v3, 1);\n    *(this + 1) = 0;\n  }\n}\n"
-}

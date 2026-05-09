@@ -1,7 +1,0 @@
-{
-  "name": "sub_53B720",
-  "address": "0x0053B720",
-  "size_bytes": 336,
-  "signature": "void __cdecl(int a1, int a2)",
-  "decompiled_c": "// between_std_methods (0x504E20-0x53C2B0)\nvoid __cdecl sub_53B720(int a1, int a2)\n{\n  int v2; // edx\n  int v3; // eax\n  int v4; // eax\n  char *v5; // eax\n  char *v6; // ebp\n  char *i; // edx\n  int v8; // ecx\n  int v9; // eax\n  _WORD *v10; // eax\n  _WORD *v11; // ecx\n  _WORD *j; // ebx\n\n  v2 = 0;\n  if ( a1 )\n  {\n    qmemcpy((void *)a1, (const void *)a2, 0x85u);\n    v3 = *(_DWORD *)(a2 + 136);\n    if ( v3 )\n      v2 = (*(_DWORD *)(a2 + 140) - v3) / 656;\n    v4 = v2;\n    if ( v2 < 0 )\n      v4 = 0;\n    v5 = (char *)operator new(656 * v4);\n    *(_DWORD *)(a1 + 136) = v5;\n    v6 = *(char **)(a2 + 140);\n    for ( i = *(char **)(a2 + 136); i != v6; v5 += 656 )\n    {\n      if ( v5 )\n        qmemcpy(v5, i, 0x290u);\n      i += 656;\n    }\n    *(_DWORD *)(a1 + 140) = v5;\n    *(_DWORD *)(a1 + 144) = v5;\n    *(_BYTE *)(a1 + 148) = *(_BYTE *)(a2 + 148);\n    v8 = *(_DWORD *)(a2 + 152);\n    if ( v8 )\n      v9 = (*(_DWORD *)(a2 + 156) - v8) >> 1;\n    else\n      v9 = 0;\n    if ( v9 < 0 )\n      v9 = 0;\n    v10 = operator new(2 * v9);\n    *(_DWORD *)(a1 + 152) = v10;\n    v11 = *(_WORD **)(a2 + 156);\n    for ( j = *(_WORD **)(a2 + 152); j != v11; ++v10 )\n    {\n      if ( v10 )\n        *v10 = *j;\n      ++j;\n    }\n    *(_DWORD *)(a1 + 156) = v10;\n    *(_DWORD *)(a1 + 160) = v10;\n  }\n}\n"
-}

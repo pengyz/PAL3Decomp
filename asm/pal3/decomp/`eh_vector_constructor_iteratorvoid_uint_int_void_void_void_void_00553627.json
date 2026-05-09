@@ -1,7 +1,0 @@
-{
-  "name": "`eh vector constructor iterator'(void *,uint,int,void (*)(void *),void (*)(void *))",
-  "address": "0x00553627",
-  "size_bytes": 130,
-  "signature": "void __stdcall(char *a1, unsigned int a2, int a3, void (__thiscall *a4)(void *), void (__thiscall *a5)(void *))",
-  "decompiled_c": "void __stdcall `eh vector constructor iterator'(\n        char *a1,\n        unsigned int a2,\n        int a3,\n        void (__thiscall *a4)(void *),\n        void (__thiscall *a5)(void *))\n{\n  int i; // [esp+10h] [ebp-1Ch]\n\n  for ( i = 0; i < a3; ++i )\n  {\n    a4(a1);\n    a1 += a2;\n  }\n}\n"
-}

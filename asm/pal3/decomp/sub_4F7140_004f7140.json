@@ -1,7 +1,0 @@
-{
-  "name": "sub_4F7140",
-  "address": "0x004F7140",
-  "size_bytes": 161,
-  "signature": "char __stdcall(int a1)",
-  "decompiled_c": "// between_std_methods (0x4D70B0-0x504E20)\nchar __stdcall sub_4F7140(int a1)\n{\n  int v1; // eax\n\n  v1 = *(_DWORD *)(a1 + 4) - 6119;\n  switch ( *(_DWORD *)(a1 + 4) )\n  {\n    case 0x17E7:\n      LOBYTE(v1) = byte_BFDB73;\n      if ( byte_BFDB73 )\n        LOBYTE(v1) = --byte_BFDB73;\n      break;\n    case 0x17E8:\n      LOBYTE(v1) = dword_BFDB74;\n      if ( (_BYTE)dword_BFDB74 )\n      {\n        LOBYTE(v1) = dword_BFDB74 - 1;\n        LOBYTE(dword_BFDB74) = dword_BFDB74 - 1;\n      }\n      break;\n    case 0x17E9:\n      LOBYTE(v1) = byte_BFDB71;\n      if ( byte_BFDB71 )\n        LOBYTE(v1) = --byte_BFDB71;\n      break;\n    case 0x17EA:\n      LOBYTE(v1) = byte_BFDB72;\n      if ( byte_BFDB72 )\n        LOBYTE(v1) = --byte_BFDB72;\n      break;\n    case 0x17EB:\n      LOBYTE(v1) = BYTE1(dword_BFDB74);\n      if ( BYTE1(dword_BFDB74) )\n        LOBYTE(v1) = --BYTE1(dword_BFDB74);\n      break;\n    case 0x17EC:\n      LOBYTE(v1) = HIBYTE(dword_BFDB74);\n      if ( HIBYTE(dword_BFDB74) )\n        LOBYTE(v1) = --HIBYTE(dword_BFDB74);\n      break;\n    case 0x17ED:\n      LOBYTE(v1) = BYTE2(dword_BFDB74);\n      if ( BYTE2(dword_BFDB74) )\n        LOBYTE(v1) = --BYTE2(dword_BFDB74);\n      break;\n    default:\n      return v1;\n  }\n  return v1;\n}\n"
-}

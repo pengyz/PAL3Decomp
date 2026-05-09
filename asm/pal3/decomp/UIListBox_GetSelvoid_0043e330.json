@@ -1,7 +1,0 @@
-{
-  "name": "UIListBox::GetSel(void)",
-  "address": "0x0043E330",
-  "size_bytes": 118,
-  "signature": "void __thiscall(_DWORD *this, int a2, int a3)",
-  "decompiled_c": "// between_std_methods (0x430790-0x445B40)\nvoid __thiscall sub_43E330(_DWORD *this, int a2, int a3)\n{\n  int v3; // edi\n  gbTexture *v5; // eax\n\n  v3 = a2;\n  if ( a2 )\n  {\n    OpenBaseFile::OpenBaseFile(&a2);\n    v5 = (gbTexture *)(*(int (__thiscall **)(int, int))(*(_DWORD *)g_pGfxManager + 8))(g_pGfxManager, v3);\n    *(this + 288) = v5;\n    if ( v5 )\n      gbTexture::LoadTexture(v5, 1);\n    OpenNULLFile::OpenNULLFile((struct gbVFileSystem **)&a2);\n  }\n}\n"
-}

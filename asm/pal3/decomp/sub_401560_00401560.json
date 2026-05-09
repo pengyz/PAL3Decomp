@@ -1,7 +1,0 @@
-{
-  "name": "sub_401560",
-  "address": "0x00401560",
-  "size_bytes": 48,
-  "signature": "int __thiscall(_DWORD *this, int a2)",
-  "decompiled_c": "int __thiscall sub_401560(_DWORD *this, int a2)\n{\n  int v2; // edx\n  int i; // ecx\n  int result; // eax\n\n  v2 = *(this + 1);\n  for ( i = *(_DWORD *)(v2 + 60); i; i = *(_DWORD *)(i + 60) )\n  {\n    if ( *(float *)i >= (double)*(float *)a2 )\n      break;\n    v2 = i;\n  }\n  result = *(_DWORD *)(v2 + 60);\n  *(_DWORD *)(a2 + 60) = result;\n  *(_DWORD *)(v2 + 60) = a2;\n  return result;\n}\n"
-}

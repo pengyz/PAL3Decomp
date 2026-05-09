@@ -1,7 +1,0 @@
-{
-  "name": "UIDestorySystem(void)",
-  "address": "0x00540C60",
-  "size_bytes": 188,
-  "signature": "void __cdecl(int a1, int a2, int a3, int a4, int *a5, struct gbTextureArray *a6)",
-  "decompiled_c": "// between_std_methods (0x53C2D0-0x541D1B)\nvoid __cdecl sub_540C60(int a1, int a2, int a3, int a4, int *a5, struct gbTextureArray *a6)\n{\n  int v6; // ecx\n  int v7; // eax\n  gbDynVertBuf *DynVertBuf; // eax\n  float v9[2]; // [esp+4h] [ebp-28h] BYREF\n  float v10; // [esp+Ch] [ebp-20h]\n  float v11; // [esp+10h] [ebp-1Ch]\n  int v12; // [esp+14h] [ebp-18h]\n  int v13; // [esp+18h] [ebp-14h]\n  int v14; // [esp+1Ch] [ebp-10h]\n  float v15; // [esp+20h] [ebp-Ch]\n  int v16; // [esp+24h] [ebp-8h]\n  int v17; // [esp+28h] [ebp-4h]\n\n  v6 = *a5;\n  v16 = 0;\n  v17 = v6;\n  v7 = *(_DWORD *)a6;\n  v13 = 0;\n  v12 = 0;\n  v14 = 1065353216;\n  v15 = (fabs((double)(a4 - a2)) + -0.5) / (double)*(int *)(v7 + 28);\n  v11 = (float)a2;\n  v10 = (float)a3;\n  v9[1] = (float)a4;\n  v9[0] = (double)a1 - -0.5;\n  v10 = v10 - -0.5;\n  DynVertBuf = gbVertPoolMgr::GetDynVertBuf(*(gbVertPoolMgr **)(g_pGfxManager + 196), 0x114u);\n  gbDynVertBuf::RenderUIQuad(DynVertBuf, (struct gbUIQuad *)v9, 1, (struct gbRenderEffect *)dword_1895058, a6);\n}\n"
-}

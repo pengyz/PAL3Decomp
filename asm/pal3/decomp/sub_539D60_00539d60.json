@@ -1,7 +1,0 @@
-{
-  "name": "sub_539D60",
-  "address": "0x00539D60",
-  "size_bytes": 258,
-  "signature": "_DWORD *__thiscall(_DWORD *this)",
-  "decompiled_c": "// between_std_methods (0x504E20-0x53C2B0)\n_DWORD *__thiscall sub_539D60(_DWORD *this)\n{\n  _DWORD *result; // eax\n  int v2; // ebp\n  int v3; // edi\n  int v4; // esi\n\n  result = this;\n  *(this + 6) = *(this + 5);\n  v2 = *(this + 1);\n  v3 = *(this + 2);\n  v4 = v2;\n  if ( v2 != v3 )\n  {\n    do\n    {\n      sub_537A30(v4);\n      v4 += 164;\n    }\n    while ( v4 != v3 );\n    result = this;\n  }\n  result[2] = v2;\n  result[10] = result[9];\n  return result;\n}\n"
-}

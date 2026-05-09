@@ -1,7 +1,0 @@
-{
-  "name": "sub_4CE460",
-  "address": "0x004CE460",
-  "size_bytes": 288,
-  "signature": "int __thiscall(int *this, int a2)",
-  "decompiled_c": "// between_std_methods (0x4C2840-0x4D70B0)\nint __thiscall sub_4CE460(int *this, int a2)\n{\n  int result; // eax\n  int v3; // esi\n  int v4; // ebx\n  int v5; // edi\n  char *v6; // esi\n  int v7; // ebp\n  bool v8; // cc\n  char *v9; // [esp+8h] [ebp-10h]\n  int v11; // [esp+10h] [ebp-8h]\n  int v12; // [esp+14h] [ebp-4h]\n  int *v13; // [esp+1Ch] [ebp+4h]\n\n  if ( (byte_1895560 & 1) == 0 )\n  {\n    byte_1895560 |= 1u;\n    CEffMgr::sub_4D58A0(&dword_1895580);\n    atexit(nullsub_1);\n  }\n  result = dword_1895980;\n  if ( dword_1895980 == -1 )\n    result = 1;\n  v3 = result;\n  dword_1895980 = result + 1;\n  v12 = result;\n  v11 = 0;\n  v4 = 3985 * a2;\n  if ( dword_EC9E70[3985 * a2] > 0 )\n  {\n    v9 = (char *)&unk_EC9EB4 + v4 * 4;\n    v13 = &dword_EC9E74[v4];\n    do\n    {\n      v5 = sub_4CDCA0(this, *v13, v3, 0, 0, 0);\n      if ( v5 != -1 )\n      {\n        v6 = v9;\n        v7 = 8;\n        do\n        {\n          if ( v6[88] )\n            (*(void (__thiscall **)(_DWORD, char *))(*(_DWORD *)*(this + 5 * v5 + 587) + 36))(\n              *(this + 5 * v5 + 587),\n              v6);\n          v6 += 124;\n          --v7;\n        }\n        while ( v7 );\n        v3 = v12;\n      }\n      v8 = ++v11 < dword_EC9E70[v4];\n      ++v13;\n      v9 += 992;\n    }\n    while ( v8 );\n    return v3;\n  }\n  return result;\n}\n"
-}

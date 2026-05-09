@@ -1,7 +1,0 @@
-{
-  "name": "std::basic_string<char,std::char_traits<char>,std::allocator<char>>::~basic_string<char,std::char_traits<char>,std::allocator<char>>(void)",
-  "address": "0x00430790",
-  "size_bytes": 62,
-  "signature": "void __thiscall(_DWORD *this)",
-  "decompiled_c": "void __thiscall std::string::~string(_DWORD *this)\n{\n  int v2; // eax\n  _BYTE *v3; // ecx\n  char v4; // al\n\n  v2 = *(this + 1);\n  if ( v2 )\n  {\n    v3 = (_BYTE *)(v2 - 1);\n    v4 = *(_BYTE *)(v2 - 1);\n    if ( !v4 || v4 == -1 )\n      operator delete(v3);\n    else\n      *v3 = v4 - 1;\n  }\n  *(this + 1) = 0;\n  *(this + 2) = 0;\n  *(this + 3) = 0;\n}\n"
-}

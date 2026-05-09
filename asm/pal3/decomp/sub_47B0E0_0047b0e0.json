@@ -1,7 +1,0 @@
-{
-  "name": "sub_47B0E0",
-  "address": "0x0047B0E0",
-  "size_bytes": 85,
-  "signature": "char __thiscall(int *this, int a2)",
-  "decompiled_c": "// between_std_methods (0x44BDA0-0x4A7690)\nchar __thiscall sub_47B0E0(int *this, int a2)\n{\n  int v3; // esi\n  int *v4; // ebx\n\n  v3 = 0;\n  if ( *(this + 40716) <= 0 )\n    return 1;\n  v4 = this + 1471;\n  do\n  {\n    if ( v4[1] <= 0 || *v4 <= 0 )\n      sub_43F6A0(this + 41808, v3, 0);\n    else\n      sub_43F6A0(this + 41808, v3, 1);\n    ++v3;\n    v4 += 199;\n  }\n  while ( v3 < *(this + 40716) );\n  return 1;\n}\n"
-}

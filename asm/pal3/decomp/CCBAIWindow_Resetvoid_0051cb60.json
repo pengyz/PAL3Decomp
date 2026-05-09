@@ -1,7 +1,0 @@
-{
-  "name": "CCBAIWindow::Reset(void)",
-  "address": "0x0051CB60",
-  "size_bytes": 178,
-  "signature": "char __stdcall(_DWORD *a1)",
-  "decompiled_c": "// between_std_methods (0x504E20-0x53C2B0)\nchar __stdcall sub_51CB60(_DWORD *a1)\n{\n  _BYTE *v1; // eax\n  int v2; // eax\n  char pExceptionObject[1024]; // [esp+4h] [ebp-80Ch] BYREF\n  char ArgList; // [esp+404h] [ebp-40Ch] BYREF\n  int v6; // [esp+80Ch] [ebp-4h]\n\n  v1 = operator new(0x98u);\n  v6 = 0;\n  if ( v1 )\n    sub_4422E0(v1);\n  else\n    v2 = 0;\n  v6 = -1;\n  *a1 = v2;\n  if ( !v2 )\n  {\n    qmemcpy(\n      pExceptionObject,\n      (const void *)Logger::FormatException((char)&ArgList, (int)aCNewFailed, (int)aDProjectPal3Co_12, 1660),\n      sizeof(pExceptionObject));\n    _CxxThrowException(pExceptionObject, (_ThrowInfo *)&_TI1_AV_Exception__);\n  }\n  return 1;\n}\n"
-}

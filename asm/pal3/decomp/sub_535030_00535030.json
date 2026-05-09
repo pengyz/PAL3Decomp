@@ -1,7 +1,0 @@
-{
-  "name": "sub_535030",
-  "address": "0x00535030",
-  "size_bytes": 132,
-  "signature": "int __thiscall(int this)",
-  "decompiled_c": "// between_std_methods (0x504E20-0x53C2B0)\nint __thiscall sub_535030(int this)\n{\n  void *v2; // edi\n  void *v3; // edi\n  void *v4; // edi\n  void (__thiscall ***v5)(_DWORD, int); // ecx\n  void *v6; // edi\n  int v7; // ecx\n\n  v2 = *(void **)this;\n  if ( *(_DWORD *)this )\n  {\n    nullsub_3(*(void **)this);\n    operator delete(v2);\n  }\n  v3 = *(void **)(this + 4);\n  if ( v3 )\n  {\n    sub_535630(*(_DWORD *)(this + 4));\n    operator delete(v3);\n  }\n  v4 = *(void **)(this + 8);\n  if ( v4 )\n  {\n    nullsub_3(*(void **)(this + 8));\n    operator delete(v4);\n  }\n  v5 = *(void (__thiscall ****)(_DWORD, int))(this + 12);\n  if ( v5 )\n    (**v5)(v5, 1);\n  v6 = *(void **)(this + 16);\n  if ( v6 )\n  {\n    nullsub_3(*(void **)(this + 16));\n    operator delete(v6);\n  }\n  v7 = *(_DWORD *)(this + 20);\n  if ( v7 )\n    (*(void (__thiscall **)(int, int))(*(_DWORD *)v7 + 20))(v7, 1);\n  return sub_535010((_DWORD *)this);\n}\n"
-}

@@ -1,7 +1,0 @@
-{
-  "name": "sub_450230",
-  "address": "0x00450230",
-  "size_bytes": 114,
-  "signature": "int __thiscall(int this)",
-  "decompiled_c": "// between_std_methods (0x44BDA0-0x4A7690)\nint __thiscall sub_450230(int this)\n{\n  double v2; // st7\n  __int64 v3; // rax\n  int v4; // ecx\n\n  v2 = *(float *)(this + 228) * 0.2;\n  if ( v2 >= 1.0 )\n    v2 = 1.0;\n  v3 = (__int64)(v2 * 255.0);\n  v4 = *(_DWORD *)(this + 24);\n  HIDWORD(v3) = *(_DWORD *)(this + 20);\n  *(_BYTE *)(this + 11) = v3;\n  _TextureLib_Data::~_TextureLib_Data(*(_DWORD *)(this + 16), HIDWORD(v3), v4, *(_DWORD *)(this + 28), this + 8);\n  *(_BYTE *)(this + 10) = -3;\n  *(_BYTE *)(this + 9) = -11;\n  *(_BYTE *)(this + 8) = -13;\n  sub_446020((_DWORD *)(this + 76), *(_DWORD *)(this + 8));\n  return UIListBox::SetScroll((int *)this);\n}\n"
-}

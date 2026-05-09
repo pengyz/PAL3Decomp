@@ -3,5 +3,5 @@
   "address": "0x00438EB0",
   "size_bytes": 92,
   "signature": "void __thiscall(filebuf *this)",
-  "decompiled_c": "void __thiscall filebuf::~filebuf(filebuf *this)\n{\n  *(_DWORD *)this = &off_56AC08;\n  if ( dword_BFDA34 )\n    (*(void (__thiscall **)(int, int))(*(_DWORD *)dword_BFDA34 + 20))(dword_BFDA34, 1);\n  dword_BFDA34 = 0;\n  *(_DWORD *)this = &off_56A9C0;\n}\n"
+  "decompiled_c": "void __thiscall filebuf::~filebuf(filebuf *this)\n{\n  *(_DWORD *)this = &off_56AC08;\n  if ( g_pVideoPlayer )\n    (*(void (__thiscall **)(int, int))(*(_DWORD *)g_pVideoPlayer + 20))(g_pVideoPlayer, 1);\n  g_pVideoPlayer = 0;\n  *(_DWORD *)this = &off_56A9C0;\n}\n"
 }

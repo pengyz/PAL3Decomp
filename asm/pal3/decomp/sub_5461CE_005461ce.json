@@ -1,7 +1,0 @@
-{
-  "name": "sub_5461CE",
-  "address": "0x005461CE",
-  "size_bytes": 191,
-  "signature": "float *__stdcall(float *a1, int a2)",
-  "decompiled_c": "float *__stdcall sub_5461CE(float *a1, int a2)\n{\n  double v2; // st7\n  double v4; // st6\n  double v5; // st5\n  float v6; // [esp+0h] [ebp-10h]\n  float v7; // [esp+4h] [ebp-Ch]\n  float v8; // [esp+8h] [ebp-8h]\n  float v9; // [esp+Ch] [ebp-4h]\n  float v10; // [esp+1Ch] [ebp+Ch]\n\n  sub_5449B0();\n  v2 = v6 * -2.0;\n  v4 = v7 * -2.0;\n  v5 = v8 * -2.0;\n  v10 = v5;\n  *a1 = v6 * v2 + 1.0;\n  a1[1] = v4 * v6;\n  a1[2] = v5 * v6;\n  a1[3] = 0.0;\n  a1[4] = v7 * v2;\n  a1[5] = v7 * v4 + 1.0;\n  a1[6] = v5 * v7;\n  a1[7] = 0.0;\n  a1[8] = v8 * v2;\n  a1[9] = v8 * v4;\n  a1[10] = v8 * v5 + 1.0;\n  a1[11] = 0.0;\n  a1[12] = v9 * v2;\n  a1[13] = v9 * v4;\n  a1[14] = v9 * v10;\n  a1[15] = 1.0;\n  return a1;\n}\n"
-}

@@ -1,7 +1,0 @@
-{
-  "name": "sub_4BD6C0",
-  "address": "0x004BD6C0",
-  "size_bytes": 211,
-  "signature": "char __thiscall(void *this, const char *a2)",
-  "decompiled_c": "// between_std_methods (0x4A7690-0x4BEF50)\nchar __thiscall sub_4BD6C0(void *this, const char *a2)\n{\n  char *v4; // eax\n  char Str[260]; // [esp+Ch] [ebp-208h] BYREF\n  char v6[260]; // [esp+110h] [ebp-104h] BYREF\n\n  if ( !a2 )\n    return 0;\n  strcpy(Str, a2);\n  v4 = strrchr(Str, 92);\n  if ( !v4 )\n    return 0;\n  strcpy(v6, v4 + 1);\n  strcpy(v4, byte_C10D38);\n  return sub_4BD520((int)this, Str, v6);\n}\n"
-}

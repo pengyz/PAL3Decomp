@@ -1,7 +1,0 @@
-{
-  "name": "sub_539700",
-  "address": "0x00539700",
-  "size_bytes": 261,
-  "signature": "void __thiscall(char **Buffer, int Stream)",
-  "decompiled_c": "// between_std_methods (0x504E20-0x53C2B0)\nvoid __thiscall sub_539700(char **Buffer, int Stream)\n{\n  FILE *v2; // ebx\n  int v4; // eax\n  char *i; // edi\n  int v6; // eax\n  char *j; // edi\n  int Buffera; // [esp+Ch] [ebp-4h] BYREF\n\n  v2 = (FILE *)Stream;\n  if ( Stream )\n  {\n    fwrite(Buffer, 0x84u, 1u, (FILE *)Stream);\n    v4 = (int)*(Buffer + 34);\n    if ( v4 )\n      Stream = (int)&(*(Buffer + 35))[-v4] / 656;\n    else\n      Stream = 0;\n    fwrite(&Stream, 4u, 1u, v2);\n    if ( Stream > 0 )\n    {\n      for ( i = *(Buffer + 34); i != *(Buffer + 35); i += 656 )\n        fwrite(i, 0x290u, 1u, v2);\n    }\n    v6 = (int)*(Buffer + 38);\n    if ( v6 )\n      Buffera = (int)&(*(Buffer + 39))[-v6] >> 1;\n    else\n      Buffera = 0;\n    fwrite(&Buffera, 4u, 1u, v2);\n    if ( Buffera > 0 )\n    {\n      for ( j = *(Buffer + 38); j != *(Buffer + 39); j += 2 )\n        fwrite(j, 2u, 1u, v2);\n    }\n  }\n}\n"
-}
