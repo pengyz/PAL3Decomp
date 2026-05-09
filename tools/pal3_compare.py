@@ -126,6 +126,14 @@ def parse_coff_obj(obj_path):
         chars = struct.unpack_from('<I', data, off + 36)[0]
 
         sec_data = data[raw_off:raw_off + raw_size] if raw_off > 0 and raw_size > 0 else b''
+
+        reloc_off = struct.unpack_from('<I', data, off + 24)[0]
+        reloc_offsets = set()
+        for r in range(nrelocs):
+            r_off = reloc_off + r * 10
+            r_va = struct.unpack_from('<I', data, r_off)[0]
+            reloc_offsets.add(r_va)
+
         sections.append({
             'index': i + 1,
             'name': name,
@@ -133,7 +141,8 @@ def parse_coff_obj(obj_path):
             'raw_size': raw_size,
             'data': sec_data,
             'nrelocs': nrelocs,
-            'chars': chars
+            'chars': chars,
+            'reloc_offsets': reloc_offsets
         })
 
     # 解析符号表找到函数和它们所在的 section
@@ -173,6 +182,14 @@ def parse_coff_obj(obj_path):
     return sections, functions
 
 
+def _strip_section_padding(data):
+    """剥离 COFF section 尾部的对齐填充 (NOP=0x90, INT3=0xCC)"""
+    i = len(data)
+    while i > 0 and data[i - 1] in (0x90, 0xCC):
+        i -= 1
+    return data[:i] if i > 0 else data
+
+
 def get_function_bytes_from_obj(obj_path, func_name=None):
     """从 .obj 提取函数字节。如果 func_name 为 None，返回所有 .text 字节"""
     sections, functions = parse_coff_obj(obj_path)
@@ -204,14 +221,14 @@ def get_function_bytes_from_obj(obj_path, func_name=None):
         name, info = matches[0]
         sec = sections[info['section'] - 1]
         # 对于 /Gy (函数级链接)，每个函数在独立 section
-        return name, sec['data']
+        return name, _strip_section_padding(sec['data']), sec.get('reloc_offsets', set())
     else:
         # 返回所有 code sections
         result = {}
         for name, info in functions.items():
             sec = sections[info['section'] - 1]
-            result[name] = sec['data']
-        return None, result
+            result[name] = (_strip_section_padding(sec['data']), sec.get('reloc_offsets', set()))
+        return None, result, set()
 
 
 def get_original_bytes(address, size):
@@ -222,8 +239,8 @@ def get_original_bytes(address, size):
         return f.read(size)
 
 
-def compare_bytes(original, compiled, func_name="", verbose=True):
-    """字节对比，返回匹配率和判定结果"""
+def compare_bytes(original, compiled, func_name="", verbose=True, reloc_offsets=None):
+    """字节对比，返回匹配率和判定结果。reloc_offsets 中的偏移处跳过 4 字节（重定位地址）。"""
     if original is None or compiled is None:
         return 0.0, "error"
 
@@ -231,9 +248,20 @@ def compare_bytes(original, compiled, func_name="", verbose=True):
     max_len = max(len(original), len(compiled))
     size_match = (len(original) == len(compiled))
 
+    skip_set = set()
+    if reloc_offsets:
+        for off in reloc_offsets:
+            for j in range(4):
+                skip_set.add(off + j)
+
     matches = 0
     diffs = []
+    compared = 0
     for i in range(min_len):
+        if i in skip_set:
+            matches += 1
+            continue
+        compared += 1
         if original[i] == compiled[i]:
             matches += 1
         else:
@@ -435,7 +463,8 @@ def main():
 
         for sym_name, info in functions.items():
             sec = sections[info['section'] - 1]
-            compiled_bytes = sec['data']
+            compiled_bytes = _strip_section_padding(sec['data'])
+            relocs = sec.get('reloc_offsets', set())
 
             # 从 decomp 数据中查找对应地址和大小
             found = None
@@ -448,7 +477,8 @@ def main():
             if found:
                 orig_bytes = get_original_bytes(found['address'], found['size'])
                 rate, judgment = compare_bytes(orig_bytes, compiled_bytes, sym_name,
-                                              verbose=not args.json_output)
+                                              verbose=not args.json_output,
+                                              reloc_offsets=relocs)
                 results.append({
                     "function": sym_name,
                     "match_rate": rate,
@@ -476,13 +506,13 @@ def main():
     elif args.func and args.addr and args.size:
         # 对比指定函数
         addr = int(args.addr, 16) if isinstance(args.addr, str) else args.addr
-        name, compiled_bytes = get_function_bytes_from_obj(obj_path, args.func)
+        name, compiled_bytes, relocs = get_function_bytes_from_obj(obj_path, args.func)
         if compiled_bytes is None:
             sys.exit(1)
 
         orig_bytes = get_original_bytes(addr, args.size)
         rate, judgment = compare_bytes(orig_bytes, compiled_bytes, name or args.func,
-                                       verbose=not args.json_output)
+                                       verbose=not args.json_output, reloc_offsets=relocs)
         if args.json_output:
             print(json.dumps({
                 "function": name or args.func,
@@ -495,7 +525,7 @@ def main():
 
     elif args.func:
         # 从 func_map 查找地址
-        name, compiled_bytes = get_function_bytes_from_obj(obj_path, args.func)
+        name, compiled_bytes, relocs = get_function_bytes_from_obj(obj_path, args.func)
         if compiled_bytes is None:
             sys.exit(1)
 
@@ -508,7 +538,7 @@ def main():
         if found:
             orig_bytes = get_original_bytes(found['address'], found['size'])
             rate, judgment = compare_bytes(orig_bytes, compiled_bytes, name or args.func,
-                                           verbose=not args.json_output)
+                                           verbose=not args.json_output, reloc_offsets=relocs)
             if args.json_output:
                 print(json.dumps({
                     "function": name or args.func,

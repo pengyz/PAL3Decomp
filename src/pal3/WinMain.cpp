@@ -15,7 +15,7 @@
 extern "C" char Data[260];              // 0x01894970 - CD drive path buffer
 extern "C" char Filename[260];          // 0x01894A74 - exe path buffer
 extern "C" double dbl_1895070;          // 0x01895070 - last frame time
-extern "C" DWORD dword_5833B8;          // 0x005833B8 - game active flag
+extern "C" DWORD g_bGameActive;          // 0x005833B8 - game active flag
 extern "C" HINSTANCE hInstance;         // 0x00BFDA48 - global hInstance
 extern "C" char WindowName[];           // 0x005839C4 - "PAL3--SOFTSTAR.sh"
 
@@ -67,7 +67,7 @@ public:
     unsigned long ProcUseItem(unsigned long hwnd);  // 0x00513380 (__thiscall)
 };
 
-extern "C" void *dword_BFDA74;  // CCBSystem instance pointer  0x00BFDA74
+extern "C" void *g_pCBSystem;  // CCBSystem instance pointer  0x00BFDA74
 
 // ========================================================================
 // LowLevelKeyboardProc
@@ -207,7 +207,7 @@ int WINAPI WinMain(HINSTANCE hInst, HINSTANCE hPrevInstance, LPSTR lpCmdLine, in
         v9 = g_CurrentTime - dbl_1895070;
         *((__int64 *)&dbl_1895070) = *((__int64 *)&g_CurrentTime);
         hInstancea = (float)v9;
-        if (dword_5833B8 || (ActiveWindow = GetActiveWindow(), ((CCBSystem *)dword_BFDA74)->ProcUseItem((unsigned long)ActiveWindow)))
+        if (g_bGameActive || (ActiveWindow = GetActiveWindow(), ((CCBSystem *)g_pCBSystem)->ProcUseItem((unsigned long)ActiveWindow)))
         {
             PAL3::Update(hInstancea);
             PAL3::Render();

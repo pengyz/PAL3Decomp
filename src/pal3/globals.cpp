@@ -13,30 +13,30 @@
 extern "C" char Data[260] = {0};            // 0x01894970 - CD drive path buffer
 extern "C" char Filename[260] = {0};        // 0x01894A74 - exe path buffer
 extern "C" double dbl_1895070 = 0.0;        // 0x01895070 - last frame time
-extern "C" DWORD dword_5833B8 = 0;          // 0x005833B8 - game active flag
+extern "C" DWORD g_bGameActive = 0;          // 0x005833B8 - game active flag
 extern "C" HINSTANCE hInstance = 0;         // 0x00BFDA48
 extern "C" char WindowName[32] = "PAL3--SOFTSTAR.sh";  // 0x005839C4
 extern "C" HWND hWnd = 0;                   // 0x00BFDA4C
 extern "C" HWND hWndParent = 0;             // 0x00BFDA50
 extern "C" int xRight = 0;                  // 0x00BFDA54
 extern "C" int yBottom = 0;                 // 0x00BFDA58
-extern "C" int dword_BFDA94 = 0;            // 0x00BFDA94
-extern "C" void *dword_BFDA74 = 0;         // 0x00BFDA74 - CCBSystem instance
+extern "C" int g_hCursor = 0;            // 0x00BFDA94
+extern "C" void *g_pCBSystem = 0;         // 0x00BFDA74 - CCBSystem instance
 extern "C" int dword_BFDA78 = 0;            // 0x00BFDA78 - scene manager
-extern "C" int dword_BFDA60 = 0;            // 0x00BFDA60 - gbGfxManager
-extern "C" int dword_BFDA68 = 0;            // 0x00BFDA68
+extern "C" int g_pGfxManager = 0;            // 0x00BFDA60 - gbGfxManager
+extern "C" int g_pCamera = 0;            // 0x00BFDA68
 extern "C" char byte_BFDA90 = 0;            // 0x00BFDA90
 extern "C" char byte_5833C0 = 0;            // 0x005833C0
-extern "C" int dword_975ED8 = 0;            // 0x00975ED8
-extern "C" int dword_C11758 = 0;            // 0x00C11758
+extern "C" int g_GDB = 0;            // 0x00975ED8
+extern "C" int g_UIManager = 0;            // 0x00C11758
 extern "C" char byte_17B1EC0 = 0;           // 0x17B1EC0
 extern "C" int dword_A3A6EC = 0;            // 0x00A3A6EC
 extern "C" int dword_A3A6F0 = 0;            // 0x00A3A6F0
 extern "C" void *unk_A3A7D8 = 0;           // 0x00A3A7D8
 extern "C" void *ppvOut = 0;                // DirectInput device pointer
 extern "C" void *off_56A66C = 0;            // 0x0056A66C - vtable pointer
-extern "C" int dword_BFDA64 = 0;            // 0x00BFDA64 - gbActorMgr*
-extern "C" int dword_DB9FD0 = 0;            // 0x00DB9FD0
+extern "C" int g_pActorMgr = 0;            // 0x00BFDA64 - gbActorMgr*
+extern "C" int g_GameData = 0;            // 0x00DB9FD0
 
 // ============================================================
 // String constants (IDA-named, from .rdata/.data sections)

@@ -109,16 +109,16 @@ extern "C" HWND hWnd;
 extern "C" HWND hWndParent;
 extern "C" int xRight;
 extern "C" int yBottom;
-extern "C" int dword_BFDA94;
-extern "C" void *dword_BFDA74;
+extern "C" int g_hCursor;
+extern "C" void *g_pCBSystem;
 extern "C" int dword_BFDA78;
-extern "C" int dword_BFDA60;
-extern "C" int dword_BFDA68;
+extern "C" int g_pGfxManager;
+extern "C" int g_pCamera;
 extern "C" char byte_BFDA90;
 extern "C" char byte_BFDA91;
 extern "C" char byte_5833C0;
-extern "C" int dword_975ED8;
-extern "C" int dword_C11758;
+extern "C" int g_GDB;
+extern "C" int g_UIManager;
 extern "C" char byte_17B1EC0;
 extern "C" int dword_A3A6EC;
 extern "C" int dword_A3A6F0;
@@ -189,7 +189,7 @@ void __cdecl PAL3::Create(HINSTANCE hInstance)
 
     hCursor = LoadCursorA(hInstance, MAKEINTRESOURCEA(0x73));
     hwnd = hWnd;
-    dword_BFDA94 = (int)hCursor;
+    g_hCursor = (int)hCursor;
     ShowWindow(hWnd, SW_SHOW);
     UpdateWindow(hwnd);
 
@@ -210,7 +210,7 @@ void __cdecl PAL3::Create(HINSTANCE hInstance)
     sub_41C1B0(inputState);
 
     // Game database initialization
-    if (!(unsigned char)PAL_GDB_PAL_GDB(&dword_975ED8))
+    if (!(unsigned char)PAL_GDB_PAL_GDB(&g_GDB))
     {
         memcpy(&pExceptionObject,
             sub_53CEF0(ArgList, aFightDatabaseL, aDProjectPal3Ga_0, 191),
@@ -222,7 +222,7 @@ void __cdecl PAL3::Create(HINSTANCE hInstance)
     sub_408BE0();
     uiQuadList = sub_5415F0();
     UIRenderQuadList(uiQuadList);
-    sub_41F5E0(&dword_C11758);
+    sub_41F5E0(&g_UIManager);
 
     // Logging
     sub_53CE90(&byte_17B1EC0);
@@ -235,7 +235,7 @@ void __cdecl PAL3::Create(HINSTANCE hInstance)
         pCBSystem = sub_512500(pCBSystemMem);
     else
         pCBSystem = 0;
-    dword_BFDA74 = pCBSystem;
+    g_pCBSystem = pCBSystem;
     if (!pCBSystem)
     {
         memcpy(&pExceptionObject,
@@ -250,11 +250,11 @@ void __cdecl PAL3::Create(HINSTANCE hInstance)
     pSceneMem = operator new(0xA930u);
     if (pSceneMem)
     {
-        if (dword_BFDA68)
-            pSceneCam = dword_BFDA68 + 4;
+        if (g_pCamera)
+            pSceneCam = g_pCamera + 4;
         else
             pSceneCam = 0;
-        pSceneMgr = sub_4CDA10(dword_BFDA60, pSceneCam, 0);
+        pSceneMgr = sub_4CDA10(g_pGfxManager, pSceneCam, 0);
     }
     else
     {
@@ -273,7 +273,7 @@ void __cdecl PAL3::Create(HINSTANCE hInstance)
     if (byte_BFDA90)
     {
         if (byte_5833C0)
-            sub_44F130(&dword_975ED8);
+            sub_44F130(&g_GDB);
         rt5 = sub_4BDB10();
         RenderTarget_Create(rt5);
         rt6 = sub_4B65A0();
@@ -288,7 +288,7 @@ void __cdecl PAL3::Create(HINSTANCE hInstance)
     }
     else
     {
-        sub_44F130(&dword_975ED8);
+        sub_44F130(&g_GDB);
         sub_44F610(4);
         rt0 = sub_4BDB10();
         RenderTarget_Create(rt0);
@@ -303,7 +303,7 @@ void __cdecl PAL3::Create(HINSTANCE hInstance)
     }
 
     // Check hardware caps
-    // (*(void (__stdcall **)(...))(**(_DWORD **)(dword_BFDA60 + 1816) + 28))(...)
+    // (*(void (__stdcall **)(...))(**(_DWORD **)(g_pGfxManager + 1816) + 28))(...)
     // v35 = result field
     // if (!v35) byte_BFDA91 = 1;
 
@@ -365,10 +365,7 @@ public:
     ~CCBSystem_D();
 };
 
-class __declspec(dllimport) gbActorMgr {
-public:
-    ~gbActorMgr();
-};
+#include "gbengine/gbActorMgr.h"
 
 class CRenderTarget { public: void Destroy(void); };
 class CRenderTarget2 { public: void Destroy(void); };
@@ -382,11 +379,11 @@ extern "C" void __cdecl TextureLib_Data_dtor(void);
 extern "C" void __cdecl PalScriptMgr_CON_ReLoadScript(void);
 extern "C" void __cdecl FileSysDestory(void);
 
-extern "C" void *dword_BFDA74;
-extern "C" int dword_BFDA68;
-extern "C" int dword_BFDA64;
-extern "C" int dword_BFDA60;
-extern "C" CGameData dword_DB9FD0;
+extern "C" void *g_pCBSystem;
+extern "C" int g_pCamera;
+extern "C" int g_pActorMgr;
+extern "C" int g_pGfxManager;
+extern "C" CGameData g_GameData;
 
 void __cdecl PAL3::Destroy(void)
 {
@@ -401,39 +398,39 @@ void __cdecl PAL3::Destroy(void)
     TextureLib_Data_dtor();
     PalScriptMgr_CON_ReLoadScript();
 
-    if (dword_BFDA74)
+    if (g_pCBSystem)
     {
-        ((CCBSystem_D *)dword_BFDA74)->ProcFling();
-        v3 = dword_BFDA74;
+        ((CCBSystem_D *)g_pCBSystem)->ProcFling();
+        v3 = g_pCBSystem;
         if (v3)
         {
             ((CCBSystem_D *)v3)->~CCBSystem_D();
             operator delete(v3);
         }
-        dword_BFDA74 = 0;
+        g_pCBSystem = 0;
     }
 
-    dword_DB9FD0.Destroy();
+    g_GameData.Destroy();
     PAL3::DestroyEffectSystem();
 
-    if (dword_BFDA68)
+    if (g_pCamera)
     {
-        ((VObj *)dword_BFDA68)->Release(1);
-        dword_BFDA68 = 0;
+        ((VObj *)g_pCamera)->Release(1);
+        g_pCamera = 0;
     }
 
-    v4 = (void *)dword_BFDA64;
+    v4 = (void *)g_pActorMgr;
     if (v4)
     {
         ((gbActorMgr *)v4)->~gbActorMgr();
         operator delete(v4);
-        dword_BFDA64 = 0;
+        g_pActorMgr = 0;
     }
 
-    if (dword_BFDA60)
+    if (g_pGfxManager)
     {
-        ((VObj *)dword_BFDA60)->Release(1);
-        dword_BFDA60 = 0;
+        ((VObj *)g_pGfxManager)->Release(1);
+        g_pGfxManager = 0;
     }
 
     FileSysDestory();
