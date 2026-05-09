@@ -21,10 +21,12 @@
 class PAL3 {
 public:
     static void __cdecl Create(HINSTANCE hInst);
+    static void __cdecl Destroy(void);
     static void __cdecl CreateGfxWindow(void);
     static void __cdecl CheckSystemRequire(HINSTANCE hInst);
     static void __cdecl InitGFX(HINSTANCE hInst);
     static void __cdecl CreateEffectSystem(void);
+    static void __cdecl DestroyEffectSystem(void);
     static void __cdecl GetCommandLineParam(void);
 };
 
@@ -347,4 +349,93 @@ void __cdecl PAL3::Create(HINSTANCE hInstance)
 
     // OpenNULLFile cleanup
     OpenNULLFile::OpenNULLFile_ctor(&pFileSystem);
+}
+
+// ========================================================================
+// PAL3::Destroy
+// Address: 0x00406230, Size: 219 bytes
+// static void __cdecl PAL3::Destroy(void)
+// ========================================================================
+
+struct VObj { virtual void Release(int) = 0; };
+
+class CCBSystem_D {
+public:
+    void ProcFling(void);
+    ~CCBSystem_D();
+};
+
+class __declspec(dllimport) gbActorMgr {
+public:
+    ~gbActorMgr();
+};
+
+class CRenderTarget { public: void Destroy(void); };
+class CRenderTarget2 { public: void Destroy(void); };
+class UIQuadManager { public: void Destroy(void); };
+class CGameData { public: void Destroy(void); };
+class CScreenMode { public: void Restore(void); };
+
+extern "C" void __cdecl sub_40C960(void);
+extern "C" void __cdecl sub_422DF0(void);
+extern "C" void __cdecl TextureLib_Data_dtor(void);
+extern "C" void __cdecl PalScriptMgr_CON_ReLoadScript(void);
+extern "C" void __cdecl FileSysDestory(void);
+
+extern "C" void *dword_BFDA74;
+extern "C" int dword_BFDA68;
+extern "C" int dword_BFDA64;
+extern "C" int dword_BFDA60;
+extern "C" CGameData dword_DB9FD0;
+
+void __cdecl PAL3::Destroy(void)
+{
+    void *v3;
+    void *v4;
+
+    ((CRenderTarget *)sub_4BDB10())->Destroy();
+    ((CRenderTarget2 *)sub_4BFD20())->Destroy();
+    ((UIQuadManager *)sub_5415F0())->Destroy();
+    sub_40C960();
+    sub_422DF0();
+    TextureLib_Data_dtor();
+    PalScriptMgr_CON_ReLoadScript();
+
+    if (dword_BFDA74)
+    {
+        ((CCBSystem_D *)dword_BFDA74)->ProcFling();
+        v3 = dword_BFDA74;
+        if (v3)
+        {
+            ((CCBSystem_D *)v3)->~CCBSystem_D();
+            operator delete(v3);
+        }
+        dword_BFDA74 = 0;
+    }
+
+    dword_DB9FD0.Destroy();
+    PAL3::DestroyEffectSystem();
+
+    if (dword_BFDA68)
+    {
+        ((VObj *)dword_BFDA68)->Release(1);
+        dword_BFDA68 = 0;
+    }
+
+    v4 = (void *)dword_BFDA64;
+    if (v4)
+    {
+        ((gbActorMgr *)v4)->~gbActorMgr();
+        operator delete(v4);
+        dword_BFDA64 = 0;
+    }
+
+    if (dword_BFDA60)
+    {
+        ((VObj *)dword_BFDA60)->Release(1);
+        dword_BFDA60 = 0;
+    }
+
+    FileSysDestory();
+    ((CScreenMode *)sub_53DF70())->Restore();
 }

@@ -91,10 +91,10 @@
       "name": "PAL3::Destroy",
       "address": "0x00406230",
       "size": 219,
-      "status": "stub",
+      "status": "matched",
       "source": "src/pal3/gamebase/PAL3.cpp",
       "suggested_source": "gamebase/PAL3.cpp",
-      "match_rate": null,
+      "match_rate": 1.0,
       "calls": [],
       "called_by": [
         "0x00541900"
@@ -839,6 +839,118 @@
       "depth": 2,
       "has_decomp": false,
       "is_named": false
+    },
+    "0x004BDED0": {
+      "name": "CRenderTarget::Destroy",
+      "address": "0x004BDED0",
+      "size": 0,
+      "status": "stub",
+      "source": "src/pal3/globals.cpp",
+      "suggested_source": null,
+      "match_rate": null,
+      "calls": [],
+      "called_by": [
+        "0x00406230"
+      ],
+      "depth": 2,
+      "has_decomp": false,
+      "is_named": true
+    },
+    "0x004C0400": {
+      "name": "CRenderTarget2::Destroy",
+      "address": "0x004C0400",
+      "size": 0,
+      "status": "stub",
+      "source": "src/pal3/globals.cpp",
+      "suggested_source": null,
+      "match_rate": null,
+      "calls": [],
+      "called_by": [
+        "0x00406230"
+      ],
+      "depth": 2,
+      "has_decomp": false,
+      "is_named": true
+    },
+    "0x005415C0": {
+      "name": "UIQuadManager::Destroy",
+      "address": "0x005415C0",
+      "size": 0,
+      "status": "stub",
+      "source": "src/pal3/globals.cpp",
+      "suggested_source": null,
+      "match_rate": null,
+      "calls": [],
+      "called_by": [
+        "0x00406230"
+      ],
+      "depth": 2,
+      "has_decomp": false,
+      "is_named": true
+    },
+    "0x0040C960": {
+      "name": "sub_40C960",
+      "address": "0x0040C960",
+      "size": 0,
+      "status": "stub",
+      "source": "src/pal3/globals.cpp",
+      "suggested_source": null,
+      "match_rate": null,
+      "calls": [],
+      "called_by": [
+        "0x00406230"
+      ],
+      "depth": 2,
+      "has_decomp": false,
+      "is_named": false
+    },
+    "0x00422DF0": {
+      "name": "sub_422DF0",
+      "address": "0x00422DF0",
+      "size": 0,
+      "status": "stub",
+      "source": "src/pal3/globals.cpp",
+      "suggested_source": null,
+      "match_rate": null,
+      "calls": [],
+      "called_by": [
+        "0x00406230"
+      ],
+      "depth": 2,
+      "has_decomp": false,
+      "is_named": false
+    },
+    "0x0044F430": {
+      "name": "CGameData::Destroy",
+      "address": "0x0044F430",
+      "size": 0,
+      "status": "stub",
+      "source": "src/pal3/globals.cpp",
+      "suggested_source": null,
+      "match_rate": null,
+      "calls": [],
+      "called_by": [
+        "0x00406230"
+      ],
+      "depth": 2,
+      "has_decomp": false,
+      "is_named": true
+    },
+    "0x0053DEF0": {
+      "name": "CScreenMode::Restore",
+      "address": "0x0053DEF0",
+      "size": 0,
+      "status": "stub",
+      "source": "src/pal3/globals.cpp",
+      "suggested_source": null,
+      "match_rate": null,
+      "calls": [],
+      "called_by": [
+        "0x00406230"
+      ],
+      "depth": 2,
+      "has_decomp": false,
+      "is_named": true
     }
   },
   "frontier": [
@@ -848,16 +960,18 @@
     "0x00404FF0",
     "0x004055D0",
     "0x00405C00",
-    "0x00406230",
     "0x00408BE0",
+    "0x0040C960",
     "0x0041C1B0",
     "0x0041ED00",
     "0x0041EFA0",
     "0x0041F5E0",
+    "0x00422DF0",
     "0x00430290",
     "0x00430570",
     "0x004318B0",
     "0x0044F130",
+    "0x0044F430",
     "0x0044F610",
     "0x00457410",
     "0x004B65A0",
@@ -865,8 +979,10 @@
     "0x004B6D30",
     "0x004B6D80",
     "0x004BDB10",
+    "0x004BDED0",
     "0x004BF780",
     "0x004BFD20",
+    "0x004C0400",
     "0x004CDA10",
     "0x004E0530",
     "0x00512500",
@@ -881,19 +997,21 @@
     "0x0053CEF0",
     "0x0053CF80",
     "0x0053DD70",
+    "0x0053DEF0",
     "0x0053DF70",
+    "0x005415C0",
     "0x005415F0"
   ],
   "stats": {
-    "total_nodes": 49,
-    "matched": 2,
+    "total_nodes": 56,
+    "matched": 3,
     "compiled": 5,
     "wip": 0,
     "pending": 1,
-    "stub": 40,
+    "stub": 46,
     "skipped": 1,
     "blocked": 0,
-    "frontier_size": 41,
+    "frontier_size": 47,
     "max_depth": 99
   }
 }

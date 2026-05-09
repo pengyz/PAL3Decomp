@@ -35,6 +35,8 @@ extern "C" int dword_A3A6F0 = 0;            // 0x00A3A6F0
 extern "C" void *unk_A3A7D8 = 0;           // 0x00A3A7D8
 extern "C" void *ppvOut = 0;                // DirectInput device pointer
 extern "C" void *off_56A66C = 0;            // 0x0056A66C - vtable pointer
+extern "C" int dword_BFDA64 = 0;            // 0x00BFDA64 - gbActorMgr*
+extern "C" int dword_DB9FD0 = 0;            // 0x00DB9FD0
 
 // ============================================================
 // String constants (IDA-named, from .rdata/.data sections)
@@ -223,10 +225,10 @@ public:
     static void __cdecl CheckSystemRequire(HINSTANCE hInst);
     static void __cdecl InitGFX(HINSTANCE hInst);
     static void __cdecl CreateEffectSystem(void);
+    static void __cdecl DestroyEffectSystem(void);
     static void __cdecl GetCommandLineParam(void);
     static void __cdecl Update(float dt);
     static void __cdecl Render(void);
-    static void __cdecl Destroy(void);
 };
 
 // === STUB: PAL3::CreateGfxWindow ===
@@ -241,6 +243,9 @@ void __cdecl PAL3::InitGFX(HINSTANCE hInst) {}
 // === STUB: PAL3::CreateEffectSystem ===
 void __cdecl PAL3::CreateEffectSystem(void) {}
 
+// === STUB: PAL3::DestroyEffectSystem ===
+void __cdecl PAL3::DestroyEffectSystem(void) {}
+
 // === STUB: PAL3::GetCommandLineParam ===
 void __cdecl PAL3::GetCommandLineParam(void) {}
 
@@ -250,8 +255,43 @@ void __cdecl PAL3::Update(float dt) {}
 // === STUB: PAL3::Render (0x00405C00) ===
 void __cdecl PAL3::Render(void) {}
 
-// === STUB: PAL3::Destroy (0x00406230) ===
-void __cdecl PAL3::Destroy(void) {}
+// === STUB: 0x0040C960 ===
+extern "C" void __cdecl sub_40C960(void) {}
+
+// === STUB: 0x00422DF0 ===
+extern "C" void __cdecl sub_422DF0(void) {}
+
+// === STUB: TextureLib_Data::~TextureLib_Data ===
+extern "C" void __cdecl TextureLib_Data_dtor(void) {}
+
+// === STUB: PalScriptMgr::_CON_ReLoadScript ===
+extern "C" void __cdecl PalScriptMgr_CON_ReLoadScript(void) {}
+
+// === STUB: FileSysDestory ===
+extern "C" void __cdecl FileSysDestory(void) {}
+
+// thiscall method stubs for PAL3::Destroy
+class CRenderTarget { public: void Destroy(void); };
+class CRenderTarget2 { public: void Destroy(void); };
+class UIQuadManager { public: void Destroy(void); };
+class CGameData { public: void Destroy(void); };
+class CScreenMode { public: void Restore(void); };
+
+void CRenderTarget::Destroy(void) {}
+void CRenderTarget2::Destroy(void) {}
+void UIQuadManager::Destroy(void) {}
+void CGameData::Destroy(void) {}
+void CScreenMode::Restore(void) {}
+
+// CCBSystem_D methods for PAL3::Destroy
+class CCBSystem_D {
+public:
+    void ProcFling(void);
+    ~CCBSystem_D();
+};
+
+CCBSystem_D::~CCBSystem_D() {}
+void CCBSystem_D::ProcFling(void) {}
 
 // gbGeomNode
 class gbGeomNode {
