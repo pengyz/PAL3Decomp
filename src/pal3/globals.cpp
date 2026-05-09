@@ -74,6 +74,10 @@ extern "C" int dword_BFD6C8 = 0;            // 0x00BFD6C8 - gbGfxDriverInfo
 extern "C" void *off_56A694 = 0;             // 0x0056A694 - gbVolumeModifier vtable
 extern "C" char unk_A3A6F8 = 0;             // 0x00A3A6F8 - gbVolModNode
 
+// Forward declarations
+extern "C" FILE *__cdecl LogMessage(const char *, ...);
+extern "C" char *__cdecl LoggerWrite(char *, const char *, ...);
+
 // ============================================================
 // Function stubs (callees of PAL3::Create and WinMain)
 // These will be replaced with real implementations as BFS expands.
@@ -169,9 +173,11 @@ extern "C" void __cdecl sub_41F5E0(void *) {}
 
 // 0x0053CE90 - LoggerRegisterCallbacks (47B)
 // Registers two log output callbacks: screen display + file output
-extern "C" int __cdecl sub_53CC10(int *, int, const char *, void *);
+extern "C" int __cdecl LoggerRegisterCB(int *, int, char *, char *);
+#define sub_53CC10(a,b,c,d) LoggerRegisterCB(a,b,(char*)(c),(char*)(d))
 extern "C" void __cdecl sub_423500(void);
-extern "C" void __cdecl sub_53CE20(void);
+extern "C" char *__cdecl DebugPrintRoleStats(char *);
+#define sub_53CE20 ((void (__cdecl *)(void))DebugPrintRoleStats)
 extern "C" const char aKm[] = "KM";
 extern "C" const char aFv[] = "FV";
 extern "C" char byte_608944;
@@ -183,8 +189,34 @@ extern "C" int __cdecl LoggerRegisterCallbacks(int *pLogger)
     return sub_53CC10(pLogger, (int)sub_53CE20, aFv, &byte_608930);
 }
 
-// === STUB: sub_53CC10 - Logger::RegisterCallback ===
-int __cdecl sub_53CC10(int *, int, const char *, void *) { return 0; }
+// 0x0053CC10 - Logger::RegisterCallback (92B)
+// Logger callback entry layout (136 bytes each):
+//   +0x00: char szName[32]
+//   +0x20: char szDesc[100]
+//   +0x84: int pfnCallback
+// Logger header: this[0] = nCount (max 34), entries at this+4
+
+#define LOGGER_MAX_CALLBACKS  34
+#define LOGGER_CB_ENTRY_SIZE  136
+#define LOGGER_CB_NAME_MAX    0x20
+#define LOGGER_CB_DESC_MAX    0x64
+#define LOGGER_CB_FUNC_OFFSET 132
+
+extern "C" const char aConsoleErrorCo[] = "Console Error: command overflow";
+
+extern "C" int __cdecl LoggerRegisterCB(int *pLogger, int pfnCallback, char *pName, char *pDesc)
+{
+    int nCount = *pLogger;
+    if (nCount >= LOGGER_MAX_CALLBACKS)
+        return (int)LoggerWrite((char *)pLogger, aConsoleErrorCo);
+
+    char *pEntry = (char *)(pLogger + LOGGER_MAX_CALLBACKS * nCount + 1);
+    *(int *)(pEntry + LOGGER_CB_FUNC_OFFSET) = pfnCallback;
+    strncpy(pEntry, pName, LOGGER_CB_NAME_MAX);
+    strncpy(pEntry + LOGGER_CB_NAME_MAX, pDesc, LOGGER_CB_DESC_MAX);
+    *pLogger = nCount + 1;
+    return nCount + 1;
+}
 // === STUB: sub_423500 - ScreenLogCallback ===
 void __cdecl sub_423500(void) {}
 // 0x0053CE20 - FileLogCallback / DebugPrintRoleStats (105B)
@@ -195,7 +227,6 @@ extern "C" const char aZixuan[] = "ZiXuan";
 extern "C" const char aChangqing[] = "ChangQing";
 extern "C" const char aHuaying[] = "HuaYing";
 extern "C" int dword_C04338[5];
-extern "C" char *__cdecl LoggerWrite(char *, char *, ...);
 extern "C" char g_Logger;
 
 extern "C" char *__cdecl DebugPrintRoleStats(char *pArg)
@@ -236,7 +267,7 @@ char byte_608930 = 0;
 static char Source[1024];
 extern "C" char byte_17B1D23[];
 
-extern "C" char *__cdecl LoggerWrite(char *pLogger, char *pFormat, ...)
+extern "C" char *__cdecl LoggerWrite(char *pLogger, const char *pFormat, ...)
 {
     va_list va;
     va_start(va, pFormat);
@@ -259,7 +290,6 @@ char byte_17B1D23[100] = {0};
 
 // 0x0053CEF0 - FormatExceptionMessage (61B)
 // Formats "file(line):msg" into 1024-byte buffer, then logs it
-extern "C" FILE *__cdecl LogMessage(const char *, ...);
 extern "C" const char aExceptionS[] = "Exception: %s";
 
 extern "C" char *__cdecl FormatExceptionMessage(char *pBuf, const char *pMsg, const char *pFile, int nLine)
