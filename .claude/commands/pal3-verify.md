@@ -1,134 +1,116 @@
 ---
 name: pal3-verify
-description: 校验 PAL3.exe BFS call_graph 与源码工程的一致性。检查源文件存在性、has_decomp 准确性、size 一致性、实现状态、stub 定义、frontier 一致性。
+description: 从已实现代码中推断类型信息，更新 BFS 节点标注，优化源码质量。核心是类型推理→标注→代码改进的闭环。
 ---
 
-对 PAL3 反编译工程执行全面一致性校验。运行以下检查并报告结果：
+## 目标
 
-## 校验项
+从当前已实现的代码中提取类型知识，完善 BFS call_graph 的类型标注，最终改善代码质量。
 
-1. **源文件存在性** — 所有 call_graph 节点指向的 source 文件是否存在
-2. **has_decomp 准确性** — 节点的 has_decomp 字段是否与 asm/pal3/decomp/ 中实际文件一致
-3. **size 一致性** — 有 decomp 的节点其 size 是否与 decomp JSON 中 size_bytes 匹配
-4. **实现状态** — matched 的函数 match_rate 是否为 1.0；compiled 的函数是否确实有实现代码
-5. **stub 定义** — status=stub 的节点在其 source 文件中是否有函数体
-6. **frontier 一致性** — frontier 列表是否等于所有 status 为 stub/pending 的节点集合
-7. **构建门控** — `cmake --build build/pal3` 是否通过
-8. **字节对比** — 对所有 status=matched 的函数运行 compare 工具确认仍为 100%
+**顺序**: 分析推断 → 更新标注 → 改进代码（不能跳步）
 
-## 执行方法
+## Phase 1: 类型推断（只读分析）
 
-```python
-python3 << 'SCRIPT'
-import json, os, re
+扫描所有 `src/pal3/` 中已实现的 .cpp 文件，识别以下模式：
 
-cg = json.load(open('asm/pal3/call_graph.json'))
-decomp_dir = 'asm/pal3/decomp'
-issues = []
+### 1.1 类型强转暴露的真实类型
 
-# Build decomp address map
-decomp_map = {}
-for f in os.listdir(decomp_dir):
-    if not f.endswith('.json'): continue
-    m = re.search(r'([0-9a-f]{8})\.json$', f)
-    if m:
-        decomp_map['0x' + m.group(1)] = f
-
-print(f"=== PAL3 一致性校验 ===")
-print(f"节点: {len(cg['nodes'])}, Decomp 文件: {len(decomp_map)}")
-
-# [1] Source file existence
-for addr, node in sorted(cg['nodes'].items()):
-    src = node.get('source')
-    if src and not os.path.exists(src):
-        issues.append(f"[源文件] {addr} {node['name']}: {src} 不存在")
-
-# [2] has_decomp accuracy
-for addr, node in sorted(cg['nodes'].items()):
-    actual = addr.lower() in decomp_map
-    claimed = node.get('has_decomp', False)
-    if actual != claimed:
-        issues.append(f"[has_decomp] {addr} {node['name']}: claimed={claimed} actual={actual}")
-
-# [3] Size consistency
-for addr, node in sorted(cg['nodes'].items()):
-    if addr.lower() not in decomp_map: continue
-    d = json.load(open(os.path.join(decomp_dir, decomp_map[addr.lower()])))
-    if d.get('size_bytes', 0) > 0 and node.get('size', 0) > 0:
-        if d['size_bytes'] != node['size']:
-            issues.append(f"[size] {addr} {node['name']}: cg={node['size']} decomp={d['size_bytes']}")
-
-# [4] Status sanity
-for addr, node in sorted(cg['nodes'].items()):
-    if node['status'] == 'matched' and node.get('match_rate') is not None and node['match_rate'] < 1.0:
-        issues.append(f"[状态] {addr} {node['name']}: matched 但 rate={node['match_rate']}")
-
-# [5] Stub definitions exist
-for addr, node in sorted(cg['nodes'].items()):
-    if node['status'] != 'stub': continue
-    src = node.get('source')
-    if not src or not os.path.exists(src): continue
-    with open(src) as f:
-        content = f.read()
-    short_addr = addr[-6:]
-    name = node['name']
-    short_name = name.split('(')[0].split('::')[-1] if '::' in name else name.split('(')[0]
-    if short_addr not in content and short_name not in content:
-        issues.append(f"[stub] {addr} {name}: 在 {src} 中找不到定义")
-
-# [6] Frontier consistency
-expected = sorted([a for a, n in cg['nodes'].items() if n['status'] in ('stub', 'pending')])
-actual = sorted(cg.get('frontier', []))
-if expected != actual:
-    missing = set(expected) - set(actual)
-    extra = set(actual) - set(expected)
-    if missing: issues.append(f"[frontier] 缺少: {missing}")
-    if extra: issues.append(f"[frontier] 多余: {extra}")
-
-# Report
-print()
-if issues:
-    print(f"✗ 发现 {len(issues)} 个问题:")
-    for i in issues:
-        print(f"  {i}")
-else:
-    print("✓ 全部校验通过")
-
-# Summary
-statuses = [n['status'] for n in cg['nodes'].values()]
-print(f"\n--- 统计 ---")
-print(f"matched: {statuses.count('matched')}")
-print(f"compiled: {statuses.count('compiled')}")
-print(f"stub: {statuses.count('stub')}")
-print(f"pending: {statuses.count('pending')}")
-print(f"skipped: {statuses.count('skipped')}")
-print(f"frontier: {len(cg.get('frontier', []))}")
-SCRIPT
+```cpp
+// 模式: (ClassName *)global_var → global_var 的真实类型是 ClassName*
+((CCBSystem_D *)g_pCBSystem)->ProcFling();   // → g_pCBSystem 应为 CCBSystem*
+((VObj *)g_pCamera)->Release(1);             // → g_pCamera 有虚析构函数
+((gbActorMgr *)g_pActorMgr)->~gbActorMgr(); // → g_pActorMgr 应为 gbActorMgr*
 ```
 
-然后执行构建门控：
-```bash
-cmake --build build/pal3
+### 1.2 函数返回值暴露的类型
+
+```cpp
+// 模式: (ClassName *)sub_XXXX() → sub_XXXX 返回 ClassName*
+((CRenderTarget *)sub_4BDB10())->Destroy();  // → sub_4BDB10 返回 CRenderTarget*
 ```
 
-对 matched 函数执行字节对比确认：
+### 1.3 thiscall 调用模式暴露类身份
+
+```cpp
+// 模式: obj.Method() 或 ptr->Method() → obj/ptr 的类名和方法签名
+g_GameData.Destroy();           // → g_GameData 是 CGameData 类型
+sub_53DF70()->Restore();        // → sub_53DF70() 返回 CScreenMode*
+```
+
+### 1.4 全局变量地址注释暴露结构体布局
+
+```cpp
+// 模式: extern "C" int dword_BFDA78; // 0x00BFDA78 - scene manager
+// 相邻地址暗示结构体成员:
+// g_pCBSystem  @ 0xBFDA74  (offset +0x00)
+// dword_BFDA78 @ 0xBFDA78  (offset +0x04) 
+// → 可能是同一结构体的成员
+```
+
+### 1.5 gbengine.lib 导出符号提供的签名
+
 ```bash
-python3 tools/pal3_compare.py --compile src/pal3/gamebase/PAL3.cpp --func "?Destroy@PAL3@@SAXXZ"
+# 从 lib/gbengine.def 中 demangle 可获得精确函数签名
+grep "gbActorMgr\|gbGfxManager\|gbCamera" lib/gbengine.def
+```
+
+## Phase 2: 更新 BFS 标注
+
+将推断结果写入 `asm/pal3/call_graph.json`：
+
+```json
+{
+  "0x004BDB10": {
+    "name": "CRenderTarget::GetInstance",    // 从 sub_4BDB10 改名
+    "return_type": "CRenderTarget*",         // 新增字段
+    "suggested_source": "Render/RenderTarget.cpp",  // 推断源文件
+    ...
+  }
+}
+```
+
+**更新规则**:
+- `name`: 当推断出有意义的类名+方法名时更新（替代 sub_XXXXXX）
+- `suggested_source`: 当确认类归属时填入 PDB 路径格式
+- `signature`: 当推断出完整签名时更新
+- `return_type`/`param_types`: 新增辅助字段供迭代使用
+
+## Phase 3: 代码改进
+
+**仅在 Phase 1-2 完成后才执行代码改动**：
+
+1. **全局变量类型升级**: `extern "C" int g_pActorMgr` → 使用正确类型
+2. **消除冗余 class 声明**: 用 #include gbengine 头文件替代
+3. **rename 函数**: globals.cpp 中的 stub 名从 sub_ 改为推断名
+4. **拆分文件**: 当 suggested_source 确定时，将 stub 移到正确位置
+
+## 执行
+
+每次调用执行一轮完整分析-标注-改进循环：
+
+```
+1. 读取所有 compiled/matched 函数的源码
+2. 提取类型推断 (Phase 1)
+3. 输出推断摘要供人工确认
+4. 更新 call_graph.json (Phase 2)
+5. 应用代码改进 (Phase 3)
+6. cmake --build 验证
+7. compare 验证 matched 函数未被破坏
+8. commit
 ```
 
 ## 输出格式
 
 ```
-═══ PAL3 校验结果 ═══
-[1] 源文件:     ✓/✗
-[2] has_decomp:  ✓/✗
-[3] size:        ✓/✗
-[4] 实现状态:    ✓/✗
-[5] stub 定义:   ✓/✗
-[6] frontier:    ✓/✗
-[7] 构建:        ✓/✗
-[8] 字节匹配:    ✓/✗ (N/N matched)
-═══════════════════════
+═══ PAL3 类型推断结果 ═══
+[推断] g_pCamera (0xBFDA68): int → gbCamera* (虚析构, gbengine 导出)
+[推断] sub_4BDB10: int() → CRenderTarget* GetInstance()  
+[推断] sub_53DF70: int() → CScreenMode* GetInstance()
+[推断] g_GameData (0xDB9FD0): int → CGameData (thiscall .Destroy())
+[BFS更新] 0x004BDB10: name="CRenderTarget::GetInstance", return_type="CRenderTarget*"
+[代码] globals.cpp: extern "C" int g_pActorMgr → 类型保持 int (C linkage 限制)
+[代码] PAL3.cpp: 新增 #include "gbengine/gbActorMgr.h" ✓
+[构建] PASS
+[匹配] PAL3::Destroy 100% ✓
+═══════════════════════════
 ```
-
-如有问题，列出具体条目并建议修复方案。
