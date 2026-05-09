@@ -1,0 +1,7 @@
+{
+  "name": "CheckDirectoryExists",
+  "address": "0x005382D0",
+  "size_bytes": 69,
+  "signature": "BOOL __cdecl(LPCSTR lpFileName)",
+  "decompiled_c": "// between_std_methods (0x504E20-0x53C2B0)\nBOOL __cdecl sub_5382D0(LPCSTR lpFileName)\n{\n  HANDLE FirstFileA; // eax\n  BOOL v3; // esi\n  struct _WIN32_FIND_DATAA FindFileData; // [esp+4h] [ebp-140h] BYREF\n\n  FirstFileA = FindFirstFileA(lpFileName, &FindFileData);\n  if ( FirstFileA == (HANDLE)-1 )\n    return 0;\n  v3 = (FindFileData.dwFileAttributes & 0x10) != 0;\n  FindClose(FirstFileA);\n  return v3;\n}\n"
+}

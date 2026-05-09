@@ -1,0 +1,7 @@
+{
+  "name": "sub_5279F0",
+  "address": "0x005279F0",
+  "size_bytes": 144,
+  "signature": "void __thiscall(stdiobuf *this)",
+  "decompiled_c": "// between_std_methods (0x504E20-0x53C2B0)\nvoid __thiscall sub_5279F0(stdiobuf *this)\n{\n  int v2; // ecx\n  int v3; // ecx\n\n  *(_DWORD *)this = &off_5706EC;\n  v2 = *((_DWORD *)this + 431);\n  if ( v2 )\n  {\n    (*(void (__thiscall **)(int, int))(*(_DWORD *)v2 + 20))(v2, 1);\n    *((_DWORD *)this + 431) = 0;\n  }\n  v3 = *((_DWORD *)this + 432);\n  if ( v3 )\n  {\n    (*(void (__thiscall **)(int, int))(*(_DWORD *)v3 + 20))(v3, 1);\n    *((_DWORD *)this + 432) = 0;\n  }\n  sub_4A1410((int)this + 356);\n  stdiobuf::~stdiobuf((std::ios_base *)this);\n}\n"
+}

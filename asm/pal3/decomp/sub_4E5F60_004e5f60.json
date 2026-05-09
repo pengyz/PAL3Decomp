@@ -1,0 +1,7 @@
+{
+  "name": "sub_4E5F60",
+  "address": "0x004E5F60",
+  "size_bytes": 143,
+  "signature": "int *__thiscall(_DWORD *this)",
+  "decompiled_c": "// between_std_methods (0x4D70B0-0x504E20)\nint *__thiscall sub_4E5F60(_DWORD *this)\n{\n  int *result; // eax\n  _DWORD *v2; // ecx\n  int v3; // edx\n\n  memset(this + 2002, 0, 0x2Cu);\n  if ( (_BYTE)dword_C05F58 )\n    *(this + 2002) = 101;\n  if ( BYTE1(dword_C05F58) )\n    *(this + 2003) = 104;\n  if ( BYTE2(dword_C05F58) )\n    *(this + 2004) = 106;\n  if ( HIBYTE(dword_C05F58) )\n    *(this + 2005) = 107;\n  if ( byte_C05F5C )\n    *(this + 2006) = 102;\n  result = dword_C11700;\n  v2 = this + 2007;\n  do\n  {\n    v3 = *result++;\n    *v2++ = v3;\n  }\n  while ( (int)result < (int)&dword_C11718 );\n  return result;\n}\n"
+}

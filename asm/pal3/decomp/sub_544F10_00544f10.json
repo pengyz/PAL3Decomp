@@ -1,0 +1,7 @@
+{
+  "name": "sub_544F10",
+  "address": "0x00544F10",
+  "size_bytes": 125,
+  "signature": "float *__stdcall(float *a1, float *a2, float *a3)",
+  "decompiled_c": "float *__stdcall sub_544F10(float *a1, float *a2, float *a3)\n{\n  double v3; // st6\n  double v4; // st7\n  bool v5; // zf\n  float *result; // eax\n  double v7; // st7\n  float v8; // [esp+8h] [ebp-4h]\n\n  v3 = *a2 * a3[1] + a2[1] * a3[5] + a3[13];\n  v4 = *a2 * a3[3] + a2[1] * a3[7] + a3[15];\n  *a1 = *a2 * *a3 + a2[1] * a3[4] + a3[12];\n  a1[1] = v3;\n  v8 = v4;\n  v5 = !sub_54212C(v8, 1.0);\n  result = a1;\n  if ( v5 )\n  {\n    v7 = 1.0 / v8;\n    *a1 = v7 * *a1;\n    a1[1] = v7 * a1[1];\n  }\n  return result;\n}\n"
+}

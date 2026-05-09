@@ -1,0 +1,7 @@
+{
+  "name": "sub_449AB0",
+  "address": "0x00449AB0",
+  "size_bytes": 224,
+  "signature": "int __thiscall(int this, unsigned int a2)",
+  "decompiled_c": "// between_std_methods (0x445B40-0x44BDA0)\nint __thiscall sub_449AB0(int this, unsigned int a2)\n{\n  int result; // eax\n  int v4; // ecx\n  int v5; // edx\n  int v6; // edi\n  double v7; // st7\n  int v8; // edi\n  __int64 v9; // rax\n  float v10; // [esp+10h] [ebp+4h]\n\n  result = a2;\n  if ( a2 <= 0x25 )\n  {\n    v4 = this + 476 * a2 + 512;\n    v5 = *(_DWORD *)(this + 476 * a2 + 520);\n    *(_DWORD *)(v4 + 88) = *(_DWORD *)(this + 476 * a2 + 524)\n                         - (*(_DWORD *)(this + 476 * a2 + 524) - *(_DWORD *)(this + 476 * a2 + 516)) / 2;\n    v6 = *(_DWORD *)(this + 476 * a2 + 528) - (*(_DWORD *)(this + 476 * a2 + 528) - v5) / 2;\n    *(_DWORD *)(v4 + 92) = v6;\n    v7 = (double)*(int *)(this + 476 * a2 + 600) + *(float *)(this + 18780);\n    *(float *)(this + 18780) = v7;\n    v10 = (double)v6 + *(float *)(this + 18784);\n    *(float *)(this + 18784) = v10;\n    v8 = (__int64)v7;\n    *(_DWORD *)(this + 18788) = v8;\n    v9 = (__int64)v10;\n    *(_DWORD *)(this + 18792) = v9;\n    *(_DWORD *)(this + 18604) = v9;\n    *(_DWORD *)(this + 18600) = v8;\n    *(_DWORD *)(this + 18608) = v8 + 64;\n    *(_DWORD *)(this + 18612) = v9 + 64;\n    return sub_445FA0((_DWORD *)(this + 18616), (_DWORD *)(this + 18600));\n  }\n  return result;\n}\n"
+}

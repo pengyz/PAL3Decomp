@@ -1,0 +1,7 @@
+{
+  "name": "sub_436C00",
+  "address": "0x00436C00",
+  "size_bytes": 86,
+  "signature": "void()",
+  "decompiled_c": "// between_std_methods (0x430790-0x445B40)\nvoid sub_436C00()\n{\n  char *v0; // eax\n  _DWORD *v1; // eax\n  _DWORD *v2; // eax\n\n  v0 = sub_434C00();\n  if ( v0 )\n  {\n    sub_457490(*((LPCSTR *)v0 + 1));\n    sub_457F00(&unk_8ACD40);\n    CGameData_Load(2);\n    v1 = operator new(0xCu);\n    if ( v1 )\n    {\n      v2 = sub_434CA0(v1, 2);\n      sub_434C40((int)v2);\n    }\n    else\n    {\n      sub_434C40(0);\n    }\n  }\n}\n"
+}

@@ -1,0 +1,7 @@
+{
+  "name": "sub_4E56E0",
+  "address": "0x004E56E0",
+  "size_bytes": 40,
+  "signature": "char __thiscall(_DWORD *this, int a2, _DWORD *a3)",
+  "decompiled_c": "// between_std_methods (0x4D70B0-0x504E20)\nchar __thiscall sub_4E56E0(_DWORD *this, int a2, _DWORD *a3)\n{\n  int v3; // eax\n  _DWORD *i; // ecx\n\n  v3 = 0;\n  for ( i = this + 2; *i != a2; i += 4 )\n  {\n    if ( ++v3 >= 500 )\n      return 0;\n  }\n  *a3 = v3;\n  return 1;\n}\n"
+}

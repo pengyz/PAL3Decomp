@@ -1,0 +1,7 @@
+{
+  "name": "CCBSystem::ProcMagicWait(ulong)",
+  "address": "0x00512F40",
+  "size_bytes": 276,
+  "signature": "char __thiscall(int this, int a2, char a3)",
+  "decompiled_c": "// between_std_methods (0x504E20-0x53C2B0)\nchar __thiscall sub_512F40(int this, int a2, char a3)\n{\n  int v4; // ecx\n  unsigned int v5; // ebx\n  int *v6; // edi\n  int v8; // [esp+1Ch] [ebp+8h]\n  char v9; // [esp+23h] [ebp+Fh]\n\n  CCBSystem::ProcDialog(this);\n  v4 = *(_DWORD *)(this + 128) + 1;\n  *(_BYTE *)(this + 133) = a3;\n  *(_BYTE *)(this + 116) = 0;\n  *(_DWORD *)(this + 120) = 2;\n  *(_DWORD *)(this + 124) = 1;\n  *(_DWORD *)(this + 128) = v4;\n  ++dword_C10CD4;\n  *(_DWORD *)(this + 112) = a2;\n  v9 = CCBSystem::ProcWeaponSkill((void *)this);\n  UICursor::IRender();\n  v5 = 0;\n  v6 = dword_C04724;\n  v8 = 0;\n  do\n  {\n    if ( *(_BYTE *)(v8 + *(_DWORD *)(this + 16) + 577) && (*(v6 - 3) == 8114 || *v6 == 8114) )\n    {\n      ++dword_17AD310;\n      dword_5DFDEC = 214013 * dword_5DFDEC + 2531011;\n      if ( ((dword_5DFDEC >> 16) & 0x3FF) < (int)102.39999 )\n        sub_4F3E20(*(_DWORD *)(this + 16), v5, 23, 1, 1);\n    }\n    v6 += 352;\n    ++v5;\n    v8 += 892;\n  }\n  while ( (int)v6 < (int)dword_C062A4 );\n  return v9;\n}\n"
+}

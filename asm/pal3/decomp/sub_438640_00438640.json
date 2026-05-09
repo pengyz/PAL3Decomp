@@ -1,0 +1,7 @@
+{
+  "name": "sub_438640",
+  "address": "0x00438640",
+  "size_bytes": 93,
+  "signature": "void __thiscall(int this, float a2)",
+  "decompiled_c": "// between_std_methods (0x430790-0x445B40)\nvoid __thiscall sub_438640(int this, float a2)\n{\n  double v2; // st7\n  char v4; // c0\n  float v5; // [esp+0h] [ebp-4h]\n\n  v2 = a2 + *(float *)(this + 8);\n  *(float *)(this + 8) = v2;\n  if ( v4 )\n  {\n    v5 = (1.0 - cos(v2 * 0.2 * 3.1415927)) * 0.5;\n    sub_41AEA0(*(gbVisNode ***)(this + 12), v5);\n  }\n  else\n  {\n    *(_BYTE *)(this + 16) = 1;\n    *(_DWORD *)(this + 8) = 1084227584;\n    sub_41AEA0(*(gbVisNode ***)(this + 12), 1.0);\n  }\n}\n"
+}

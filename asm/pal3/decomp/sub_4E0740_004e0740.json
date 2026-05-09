@@ -1,0 +1,7 @@
+{
+  "name": "sub_4E0740",
+  "address": "0x004E0740",
+  "size_bytes": 218,
+  "signature": "char __thiscall(int *this)",
+  "decompiled_c": "// between_std_methods (0x4D70B0-0x504E20)\nchar __thiscall sub_4E0740(int *this)\n{\n  int v1; // eax\n  int v3; // edi\n  int i; // esi\n  int v5; // edi\n  int v6; // esi\n  HWND DlgItem; // eax\n\n  LOBYTE(v1) = byte_17A9925;\n  if ( byte_17A9925 )\n  {\n    v3 = 0;\n    for ( i = 0; i < 4460; i += 892 )\n    {\n      v1 = *this;\n      if ( *(_BYTE *)(i + *(_DWORD *)(*this + 16) + 577) )\n      {\n        v1 = CCBRoleState::InitUI(v3);\n        *(_BYTE *)(v1 + 837) = 0;\n      }\n      ++v3;\n    }\n    byte_17A9924 = 0;\n    byte_17A9925 = 0;\n  }\n  else\n  {\n    v5 = 0;\n    v6 = 0;\n    while ( 1 )\n    {\n      if ( *(_BYTE *)(v6 + *(_DWORD *)(*this + 16) + 577) )\n      {\n        v1 = CCBRoleState::InitUI(v5);\n        if ( !*(_BYTE *)(v1 + 837) )\n          break;\n      }\n      v6 += 892;\n      ++v5;\n      if ( v6 >= 4460 )\n      {\n        if ( !byte_17A9924 )\n        {\n          byte_17A9924 = 1;\n          sprintf(byte_17A94E4, \"%s\", byte_5D8884);\n          DlgItem = GetDlgItem(hDlg, 1004);\n          SendMessageA(DlgItem, 0xCu, 0, (LPARAM)byte_17A94E4);\n          LOBYTE(v1) = CCBSystem::ProcFlee(byte_17A9924);\n        }\n        return v1;\n      }\n    }\n  }\n  return v1;\n}\n"
+}

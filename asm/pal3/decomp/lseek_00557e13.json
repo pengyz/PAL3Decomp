@@ -1,0 +1,7 @@
+{
+  "name": "__lseek",
+  "address": "0x00557E13",
+  "size_bytes": 154,
+  "signature": "int __cdecl(int FileHandle, int Offset, int Origin)",
+  "decompiled_c": "int __cdecl _lseek(int FileHandle, int Offset, int Origin)\n{\n  int v3; // esi\n  void *osfhandle; // eax\n  DWORD v5; // ebx\n  DWORD LastError; // eax\n\n  if ( FileHandle < uNumber\n    && (v3 = 8 * (FileHandle & 0x1F), (*(_BYTE *)(dword_1896BE0[FileHandle >> 5] + v3 + 4) & 1) != 0) )\n  {\n    osfhandle = (void *)_get_osfhandle(FileHandle);\n    if ( osfhandle == (void *)-1 )\n    {\n      dword_189533C = 9;\n    }\n    else\n    {\n      v5 = SetFilePointer(osfhandle, Offset, 0, Origin);\n      if ( v5 == -1 )\n        LastError = GetLastError();\n      else\n        LastError = 0;\n      if ( !LastError )\n      {\n        *(_BYTE *)(dword_1896BE0[FileHandle >> 5] + v3 + 4) &= ~2u;\n        return v5;\n      }\n      _dosmaperr(LastError);\n    }\n  }\n  else\n  {\n    dword_1895340 = 0;\n    dword_189533C = 9;\n  }\n  return -1;\n}\n"
+}

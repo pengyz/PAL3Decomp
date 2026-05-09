@@ -1,0 +1,7 @@
+{
+  "name": "sub_552B20",
+  "address": "0x00552B20",
+  "size_bytes": 254,
+  "signature": "unsigned int __usercall@<eax>(__m64 a1@<mm0>)",
+  "decompiled_c": "unsigned int __usercall sub_552B20@<eax>(__m64 a1@<mm0>)\n{\n  int v1; // eax\n\n  v1 = _mm_cvtsi64_si32(a1);\n  return v1 & 0x80000000 ^ v1;\n}\n"
+}

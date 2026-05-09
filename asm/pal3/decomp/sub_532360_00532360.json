@@ -1,0 +1,7 @@
+{
+  "name": "sub_532360",
+  "address": "0x00532360",
+  "size_bytes": 171,
+  "signature": "int __thiscall(int this, int a2, char a3)",
+  "decompiled_c": "// between_std_methods (0x504E20-0x53C2B0)\nint __thiscall sub_532360(int this, int a2, char a3)\n{\n  int v4; // ecx\n  int result; // eax\n  _DWORD *v6; // edx\n  const char *v7; // edi\n  char *v8; // [esp-Ch] [ebp-18h]\n\n  v4 = *(_DWORD *)(this + 1304);\n  *(_BYTE *)(this + 7597) = a3;\n  result = 0;\n  if ( v4 <= 0 )\n  {\nLABEL_5:\n    v7 = (const char *)(PAL_GDB::GDB_GetSkillNum(g_GDB, a2) + 4);\n    sprintf((char *const)(this + 96), \"%s%s\", byte_DCD03C, v7);\n    sub_410360((const char *)(this + 96));\n    v8 = off_5F7790[0];\n    CScreenMode_GetInstance(off_5F7790[0]);\n    sub_53E2E0(v8, 1);\n    lstrcpyA((LPSTR)((*(_DWORD *)(this + 1304) << 8) + this + 524), v7);\n    *(_DWORD *)(this + 4 * *(_DWORD *)(this + 1304) + 1292) = a2;\n    result = *(_DWORD *)(this + 1304) + 1;\n    *(_DWORD *)(this + 1304) = result;\n  }\n  else\n  {\n    v6 = (_DWORD *)(this + 1292);\n    while ( *v6 != a2 )\n    {\n      ++result;\n      ++v6;\n      if ( result >= v4 )\n        goto LABEL_5;\n    }\n  }\n  return result;\n}\n"
+}

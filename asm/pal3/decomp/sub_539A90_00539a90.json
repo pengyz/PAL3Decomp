@@ -1,0 +1,7 @@
+{
+  "name": "sub_539A90",
+  "address": "0x00539A90",
+  "size_bytes": 96,
+  "signature": "char __thiscall(_DWORD *this, char *String1, char *a3)",
+  "decompiled_c": "// between_std_methods (0x504E20-0x53C2B0)\nchar __thiscall sub_539A90(_DWORD *this, char *String1, char *a3)\n{\n  unsigned int v3; // ebp\n  int i; // ebx\n  int v6; // eax\n  int v7; // esi\n\n  v3 = 0;\n  for ( i = 0; ; i += 64 )\n  {\n    v6 = *(this + 5);\n    if ( !v6 || v3 >= (*(this + 6) - v6) >> 6 )\n      break;\n    v7 = i + v6;\n    if ( !_strcmpi(String1, (const char *)(i + v6)) && !_strcmpi(a3, (const char *)(v7 + 32)) )\n      return 1;\n    ++v3;\n  }\n  return 0;\n}\n"
+}

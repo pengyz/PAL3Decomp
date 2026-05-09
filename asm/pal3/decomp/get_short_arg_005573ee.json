@@ -1,0 +1,7 @@
+{
+  "name": "_get_short_arg",
+  "address": "0x005573EE",
+  "size_bytes": 14,
+  "signature": "__int16 __cdecl(_DWORD *a1)",
+  "decompiled_c": "__int16 __cdecl get_short_arg(_DWORD *a1)\n{\n  *a1 += 4;\n  return *(_WORD *)(*a1 - 4);\n}\n"
+}

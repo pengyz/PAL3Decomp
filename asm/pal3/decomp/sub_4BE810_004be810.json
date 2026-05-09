@@ -1,0 +1,7 @@
+{
+  "name": "sub_4BE810",
+  "address": "0x004BE810",
+  "size_bytes": 27,
+  "signature": "void *__thiscall(_DWORD *this)",
+  "decompiled_c": "// between_std_methods (0x4A7690-0x4BEF50)\nvoid *__thiscall sub_4BE810(_DWORD *this)\n{\n  size_t v2; // eax\n  void *result; // eax\n\n  v2 = 4 * *(this + 10);\n  if ( (*(this + 10) & 0x20000000) != 0 )\n    v2 = 0;\n  result = operator new(v2);\n  *(this + 9) = result;\n  return result;\n}\n"
+}

@@ -1,0 +1,7 @@
+{
+  "name": "sub_47A400",
+  "address": "0x0047A400",
+  "size_bytes": 377,
+  "signature": "int __thiscall(int *this)",
+  "decompiled_c": "// between_std_methods (0x44BDA0-0x4A7690)\nint __thiscall sub_47A400(int *this)\n{\n  _DWORD *v2; // esi\n  int v3; // ebx\n  int v4; // edi\n  int v5; // eax\n  int v6; // ebx\n  int v7; // eax\n  int v8; // eax\n  int result; // eax\n  int v10; // [esp+0h] [ebp-24h]\n  int v11; // [esp+0h] [ebp-24h]\n  float v12; // [esp+0h] [ebp-24h]\n  int v13; // [esp+4h] [ebp-20h]\n  float v14; // [esp+4h] [ebp-20h]\n  float v15; // [esp+4h] [ebp-20h]\n  int v16; // [esp+18h] [ebp-Ch]\n  int v17; // [esp+1Ch] [ebp-8h]\n  int v18; // [esp+20h] [ebp-4h]\n\n  v16 = 60;\n  v2 = this + 43487;\n  do\n  {\n    v3 = *(this + 52247);\n    v4 = *(this + 52249) - v3;\n    v5 = rand();\n    v17 = *(this + 52248);\n    v18 = v3 + v5 % (v4 / 2);\n    v6 = *(this + 52250) - v17;\n    sub_4B4920(aUiGamemainuiPa);\n    sub_4B48E0(32, 32);\n    v13 = rand() % 10 + 252;\n    v10 = rand() % 10 + 36;\n    v7 = rand();\n    sub_4B4850(v7 % 10 - 37, v10, v13);\n    v8 = rand();\n    sub_4B48B0(v8 % 135 + 120);\n    sub_4B4840(1070386381);\n    sub_4B4910(1061997773);\n    v14 = (float)v17;\n    *(float *)&v11 = (float)v18;\n    sub_4B49C0(v11, v14);\n    sub_4B4B10(v4, v6);\n    sub_4B4D80(1092616192, 0x40000000);\n    v15 = (float)(rand() % 8 + 2);\n    v12 = (float)(rand() % 8 + 2);\n    sub_4B4DA0(LODWORD(v12), LODWORD(v15));\n    sub_4B4820(1);\n    v2 += 146;\n    result = --v16;\n  }\n  while ( v16 );\n  return result;\n}\n"
+}

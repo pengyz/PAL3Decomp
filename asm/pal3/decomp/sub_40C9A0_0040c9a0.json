@@ -1,0 +1,7 @@
+{
+  "name": "sub_40C9A0",
+  "address": "0x0040C9A0",
+  "size_bytes": 152,
+  "signature": "int __cdecl(int a1)",
+  "decompiled_c": "// between_std_methods (0x407D40-0x411B80)\nint __cdecl sub_40C9A0(int a1)\n{\n  int result; // eax\n\n  if ( sub_4164E0((char *)&unk_C05F60 + 8704 * a1) )\n    sub_41B120(1);\n  else\n    dword_C061D8[2176 * a1] = 1;\n  result = dword_C061D8[2176 * a1];\n  if ( !result )\n    result = RoleSystemNotify((char *)&unk_C05F60 + 8704 * a1);\n  if ( a1 == 1 && (dword_C10CCC == 1 || dword_C025EC == 10) )\n  {\n    sub_419090(&dword_C02198);\n    sub_416620(dword_C0A350, 1);\n    dword_C025FC = 0;\n    return sub_412710(&dword_C020F8);\n  }\n  return result;\n}\n"
+}

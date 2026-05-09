@@ -1,0 +1,7 @@
+{
+  "name": "sub_4389D0",
+  "address": "0x004389D0",
+  "size_bytes": 80,
+  "signature": "char *()",
+  "decompiled_c": "// between_std_methods (0x430790-0x445B40)\nchar *sub_4389D0()\n{\n  char *result; // eax\n\n  result = sub_434C00();\n  if ( result )\n  {\n    result = sub_434BD0(*((_WORD *)result + 2));\n    if ( result )\n    {\n      dword_D8E478 = *((_DWORD *)result + 40);\n      dword_D8E47C = *((_DWORD *)result + 41);\n      result = (char *)*((_DWORD *)result + 42);\n      dword_D8E480 = (int)result;\n      *(float *)&dword_D8E47C = *(float *)&dword_D8E47C + 2.0;\n    }\n  }\n  return result;\n}\n"
+}

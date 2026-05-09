@@ -1,0 +1,7 @@
+{
+  "name": "sub_437D90",
+  "address": "0x00437D90",
+  "size_bytes": 65,
+  "signature": "int __cdecl(char *String2)",
+  "decompiled_c": "// between_std_methods (0x430790-0x445B40)\nint __cdecl sub_437D90(char *String2)\n{\n  int v1; // edi\n  const char *i; // esi\n\n  v1 = 0;\n  for ( i = aPal3op; ; i += 30 )\n  {\n    if ( !_strcmpi(i, aEnd) )\n      return -1;\n    if ( !_strcmpi(i, String2) )\n      break;\n    ++v1;\n  }\n  return v1;\n}\n"
+}

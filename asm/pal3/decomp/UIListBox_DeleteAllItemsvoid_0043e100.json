@@ -1,0 +1,7 @@
+{
+  "name": "UIListBox::DeleteAllItems(void)",
+  "address": "0x0043E100",
+  "size_bytes": 30,
+  "signature": "std::ios_base *__thiscall(std::ios_base *Block, char a2)",
+  "decompiled_c": "// between_std_methods (0x430790-0x445B40)\nstd::ios_base *__thiscall sub_43E100(std::ios_base *Block, char a2)\n{\n  UIListBox::DeleteRow(Block);\n  if ( (a2 & 1) != 0 )\n    operator delete(Block);\n  return Block;\n}\n"
+}

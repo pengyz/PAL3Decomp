@@ -1,0 +1,7 @@
+{
+  "name": "TypeMatch(_s_HandlerType const *,_s_CatchableType const *,_s_ThrowInfo const *)",
+  "address": "0x005576E6",
+  "size_bytes": 93,
+  "signature": "BOOL __cdecl(const struct _s_HandlerType *a1, const struct _s_CatchableType *a2, const struct _s_ThrowInfo *a3)",
+  "decompiled_c": "BOOL __cdecl TypeMatch(\n        const struct _s_HandlerType *a1,\n        const struct _s_CatchableType *a2,\n        const struct _s_ThrowInfo *a3)\n{\n  TypeDescriptor *pType; // eax\n  TypeDescriptor *v4; // ecx\n  BOOL result; // eax\n\n  pType = a1->pType;\n  result = 1;\n  if ( pType && pType->name[0] )\n  {\n    v4 = a2->pType;\n    if ( pType != v4 )\n    {\n      if ( strcmp(pType->name, v4->name) )\n        return 0;\n    }\n    if ( (a2->properties & 2) != 0 && (a1->adjectives & 8) == 0\n      || (a3->attributes & 1) != 0 && (a1->adjectives & 1) == 0\n      || (a3->attributes & 2) != 0 && (a1->adjectives & 2) == 0 )\n    {\n      return 0;\n    }\n  }\n  return result;\n}\n"
+}

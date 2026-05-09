@@ -1,0 +1,7 @@
+{
+  "name": "sub_54C7EC",
+  "address": "0x0054C7EC",
+  "size_bytes": 194,
+  "signature": "__m128 *__stdcall(__m128 *a1, unsigned int a2, unsigned int a3, unsigned int a4)",
+  "decompiled_c": "__m128 *__stdcall sub_54C7EC(__m128 *a1, unsigned int a2, unsigned int a3, unsigned int a4)\n{\n  __m128 v4; // xmm1\n  __m128 v5; // xmm0\n  __m128 v6; // xmm2\n  __m128 v7; // xmm3\n  __m128 v8; // xmm0\n  __m128 v10; // [esp+0h] [ebp-20h] BYREF\n  __m128 v11; // [esp+10h] [ebp-10h] BYREF\n\n  v10.m128_u64[0] = __PAIR64__(a3, a4);\n  v10.m128_u64[1] = a2;\n  v10 = _mm_mul_ps(v10, unk_572EE0);\n  sub_552116(&v10, &v10, &v11);\n  v4 = _mm_shuffle_ps(v10, v11, 153);\n  v5 = _mm_shuffle_ps(v10, v11, 0);\n  v6 = _mm_shuffle_ps(v4, v4, 247);\n  v7 = _mm_shuffle_ps(v4, v4, 168);\n  v8 = _mm_shuffle_ps(v5, v5, 138);\n  *a1 = _mm_add_ps(\n          _mm_mul_ps(_mm_mul_ps(v8, v6), v7),\n          _mm_xor_ps(\n            _mm_mul_ps(_mm_mul_ps(_mm_shuffle_ps(v8, v8, 138), _mm_shuffle_ps(v6, v6, 81)), _mm_shuffle_ps(v7, v7, 1)),\n            unk_572ED0));\n  return a1;\n}\n"
+}

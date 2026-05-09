@@ -1,0 +1,7 @@
+{
+  "name": "sub_4EC7D0",
+  "address": "0x004EC7D0",
+  "size_bytes": 89,
+  "signature": "char __thiscall(char *this)",
+  "decompiled_c": "// between_std_methods (0x4D70B0-0x504E20)\nchar __thiscall sub_4EC7D0(char *this)\n{\n  _DWORD *v1; // ebp\n  _DWORD *v2; // esi\n  int v3; // edi\n  void (__thiscall ***v4)(_DWORD, int); // ecx\n  int v6; // [esp+10h] [ebp-4h]\n\n  v1 = this + 1412;\n  v6 = 5;\n  do\n  {\n    v2 = v1;\n    v3 = 3;\n    do\n    {\n      v4 = (void (__thiscall ***)(_DWORD, int))*(v2 - 3);\n      if ( v4 )\n      {\n        (**v4)(v4, 1);\n        *(v2 - 3) = 0;\n      }\n      if ( *v2 )\n      {\n        (**(void (__thiscall ***)(_DWORD, int))*v2)(*v2, 1);\n        *v2 = 0;\n      }\n      ++v2;\n      --v3;\n    }\n    while ( v3 );\n    v1 += 223;\n    --v6;\n  }\n  while ( v6 );\n  return 1;\n}\n"
+}

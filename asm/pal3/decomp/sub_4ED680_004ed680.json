@@ -1,0 +1,7 @@
+{
+  "name": "sub_4ED680",
+  "address": "0x004ED680",
+  "size_bytes": 380,
+  "signature": "char __thiscall(_DWORD *this)",
+  "decompiled_c": "// between_std_methods (0x4D70B0-0x504E20)\nchar __thiscall sub_4ED680(_DWORD *this)\n{\n  _DWORD *v1; // edi\n  int *v2; // esi\n  int *v3; // ebp\n  _DWORD *v4; // ebx\n  int v5; // esi\n  int *v6; // edi\n  char result; // al\n  int *v8; // [esp+10h] [ebp-8h]\n\n  v1 = this;\n  v2 = dword_C04334;\n  v8 = dword_C04334;\n  v3 = dword_C04618;\n  v4 = this + 176;\n  do\n  {\n    if ( *((_BYTE *)v4 - 127) )\n    {\n      v3[27] = *v4;\n      *v3 = *(v4 - 30);\n      v3[85] = *(v4 - 29);\n      v3[86] = *(v4 - 27);\n      v3[87] = *(v4 - 25);\n      v3[88] = *(v4 - 23);\n      v3[89] = *(v4 - 22);\n      v3[90] = *(v4 - 21);\n      v3[91] = *(v4 - 20);\n      sub_40BE80(v3 - 158, 0);\n      *v2 = *(v4 - 19);\n      qmemcpy(v3 + 100, v4 + 2, 0x1Eu);\n      qmemcpy(v3 + 108, v4 + 10, 0xC0u);\n      qmemcpy(v3 + 156, v4 + 58, 0x30u);\n      qmemcpy(v3 + 168, v4 + 70, 0x30u);\n      qmemcpy(v3 + 180, v4 + 82, 0x30u);\n      v1 = this;\n      v2 = v8;\n      v3[99] = v4[96];\n    }\n    ++v2;\n    v4 += 223;\n    v3 += 352;\n    v8 = v2;\n  }\n  while ( (int)v2 < (int)&dword_C04348 );\n  dword_C05F54 = sub_4F3420(v1);\n  sub_4ED800(v1);\n  v5 = 0;\n  v6 = v1 + 147;\n  do\n  {\n    result = *((_BYTE *)v6 - 11);\n    if ( result && v5 >= 5 && *v6 <= 0 )\n      result = sub_40EE30((int)byte_C05F20, *(v6 - 9));\n    ++v5;\n    v6 += 223;\n  }\n  while ( v5 < 11 );\n  return result;\n}\n"
+}

@@ -1,0 +1,7 @@
+{
+  "name": "sub_43FD20",
+  "address": "0x0043FD20",
+  "size_bytes": 103,
+  "signature": "int __thiscall(int this, int a2)",
+  "decompiled_c": "// between_std_methods (0x430790-0x445B40)\nint __thiscall sub_43FD20(int this, int a2)\n{\n  int result; // eax\n  double v3; // st7\n  double v4; // st6\n\n  result = a2;\n  *(_DWORD *)(this + 68) = a2;\n  if ( !a2 )\n  {\n    v3 = (double)*(int *)(this + 24) - *(float *)(this + 140) - *(float *)(this + 132);\n    v4 = (double)*(int *)(this + 16) + *(float *)(this + 136);\n    goto LABEL_5;\n  }\n  result = a2 - 1;\n  if ( a2 == 1 )\n  {\n    v3 = (double)*(int *)(this + 28) - *(float *)(this + 148) - *(float *)(this + 132);\n    v4 = (double)*(int *)(this + 20) + *(float *)(this + 144);\nLABEL_5:\n    *(float *)(this + 120) = v3 - (v4 + *(float *)(this + 132));\n  }\n  *(float *)(this + 128) = *(float *)(this + 120) / *(float *)(this + 124);\n  *(float *)(this + 152) = *(float *)(this + 124) / *(float *)(this + 120);\n  return result;\n}\n"
+}

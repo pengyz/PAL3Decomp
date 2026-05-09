@@ -1,0 +1,7 @@
+{
+  "name": "sub_4021E0",
+  "address": "0x004021E0",
+  "size_bytes": 63,
+  "signature": "int __thiscall(_DWORD *this, int a2, int a3, int a4)",
+  "decompiled_c": "int __thiscall sub_4021E0(_DWORD *this, int a2, int a3, int a4)\n{\n  *(this + 1563) = a2;\n  if ( a2 )\n    sub_402310(this);\n  else\n    sub_402360();\n  *(this + 1564) = a3;\n  if ( a3 )\n    return sub_402380(this);\n  else\n    return EnumJoystick(this);\n}\n"
+}

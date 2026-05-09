@@ -1,0 +1,7 @@
+{
+  "name": "RoleSystemNotify",
+  "address": "0x004181E0",
+  "size_bytes": 113,
+  "signature": "int __thiscall(int this)",
+  "decompiled_c": "// between_std_methods (0x411BB0-0x430790)\nint __thiscall sub_4181E0(int this)\n{\n  int result; // eax\n\n  sub_4142E0((_DWORD *)this);\n  *(_DWORD *)(this + 1284) = 0;\n  sub_412710(this);\n  *(_DWORD *)(this + 8692) = *(_DWORD *)(this + 4);\n  *(_DWORD *)(this + 8696) = *(_DWORD *)(this + 8);\n  *(_DWORD *)(this + 8700) = *(_DWORD *)(this + 12);\n  result = *(_DWORD *)(this + 1264);\n  if ( result == 4 )\n  {\n    result = *(_DWORD *)(this + 1260);\n    *(_DWORD *)(this + 1264) = result;\n    if ( result == 4 )\n      *(_DWORD *)(this + 1264) = 1;\n  }\n  if ( *(_BYTE *)(this + 173) == 3 )\n    *(_BYTE *)(this + 173) = 0;\n  *(_DWORD *)(this + 1460) = 0;\n  return result;\n}\n"
+}

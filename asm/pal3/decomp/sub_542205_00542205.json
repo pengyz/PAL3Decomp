@@ -1,0 +1,7 @@
+{
+  "name": "sub_542205",
+  "address": "0x00542205",
+  "size_bytes": 165,
+  "signature": "int __stdcall(int a1, int a2, unsigned int a3)",
+  "decompiled_c": "int __stdcall sub_542205(int a1, int a2, unsigned int a3)\n{\n  unsigned int i; // ebx\n  unsigned __int16 v4; // dx\n  int v5; // ecx\n  int v6; // edi\n  int j; // edx\n  unsigned int v8; // ecx\n  int v9; // edx\n\n  for ( i = 0; i < a3; ++i )\n  {\n    v4 = *(_WORD *)(a2 + 2 * i);\n    v5 = v4;\n    if ( (v4 & 0x7C00) != 0 )\n    {\n      v9 = ((((v4 >> 10) & 0x1F) + 112) << 23) | ((v4 & 0x3FF | (8 * (v4 & 0x8000))) << 13);\n    }\n    else\n    {\n      if ( (v4 & 0x3FF) != 0 )\n      {\n        v6 = -14;\n        for ( j = v4 & 0x3FF; (j & 0x400) == 0; j *= 2 )\n          --v6;\n        v8 = ((v6 + 127) << 23) | (((j | (8 * (v5 & 0xFFFF8080))) & 0xFFFFFBFF) << 13);\n      }\n      else\n      {\n        v8 = (v4 & 0x8000) << 16;\n      }\n      v9 = v8;\n    }\n    *(_DWORD *)(a1 + 4 * i) = v9;\n  }\n  return a1;\n}\n"
+}

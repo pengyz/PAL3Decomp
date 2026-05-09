@@ -1,0 +1,7 @@
+{
+  "name": "sub_48CEE0",
+  "address": "0x0048CEE0",
+  "size_bytes": 40,
+  "signature": "int __thiscall(_DWORD *this)",
+  "decompiled_c": "// between_std_methods (0x44BDA0-0x4A7690)\nint __thiscall sub_48CEE0(_DWORD *this)\n{\n  int v1; // edx\n  int result; // eax\n\n  v1 = 0;\n  for ( result = 0; result < 8; ++result )\n  {\n    if ( byte_DE5220[8 * *(this + 51446) + result] )\n    {\n      *((_BYTE *)this + v1 + 307032) = result;\n      ++v1;\n    }\n  }\n  return result;\n}\n"
+}

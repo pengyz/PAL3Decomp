@@ -1,0 +1,7 @@
+{
+  "name": "sub_53EB50",
+  "address": "0x0053EB50",
+  "size_bytes": 56,
+  "signature": "int __thiscall(int this)",
+  "decompiled_c": "// likely std method (near _Freeze, _Split, max_size, allocator<char>>, _Xran)\nint __thiscall sub_53EB50(int this)\n{\n  _DWORD *v2; // ebx\n  _DWORD *i; // esi\n\n  v2 = *(_DWORD **)(this + 8);\n  for ( i = *(_DWORD **)(this + 4); i != v2; i += 5 )\n    std::string::~string(i);\n  operator delete(*(void **)(this + 4));\n  *(_DWORD *)(this + 4) = 0;\n  *(_DWORD *)(this + 8) = 0;\n  *(_DWORD *)(this + 12) = 0;\n  return 0;\n}\n"
+}

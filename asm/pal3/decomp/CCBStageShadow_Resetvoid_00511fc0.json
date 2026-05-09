@@ -1,0 +1,7 @@
+{
+  "name": "CCBStageShadow::Reset(void)",
+  "address": "0x00511FC0",
+  "size_bytes": 178,
+  "signature": "char __thiscall(char *this)",
+  "decompiled_c": "// between_std_methods (0x504E20-0x53C2B0)\nchar __thiscall sub_511FC0(char *this)\n{\n  int v2; // ebx\n  int v3; // ecx\n  float *v4; // edi\n  float *v5; // esi\n  double v6; // st7\n  _BYTE v8[64]; // [esp+14h] [ebp-4Ch] BYREF\n  float v9; // [esp+54h] [ebp-Ch]\n  int v10; // [esp+58h] [ebp-8h]\n  float v11; // [esp+5Ch] [ebp-4h]\n\n  sub_511E80(this);\n  gbMatrix4::gbMatrix4((gbMatrix4 *)v8);\n  v2 = 0;\n  v3 = -1488 - (_DWORD)this;\n  v4 = (float *)(this + 1512);\n  do\n  {\n    if ( *(_BYTE *)(*(_DWORD *)(**(_DWORD **)this + 16) + v2 + 577) )\n    {\n      v5 = sub_50A560(*(float **)((char *)v4 + v3 + *(_DWORD *)this));\n      gbMatrix4::operator=(v8, v5);\n      v9 = v5[16];\n      v10 = *((_DWORD *)v5 + 17);\n      v11 = v5[18];\n      if ( v9 >= (double)v11 )\n        v6 = v11;\n      else\n        v6 = v9;\n      *v4 = v6;\n      v3 = -1488 - (_DWORD)this;\n    }\n    else\n    {\n      *v4 = 0.5;\n    }\n    v2 += 892;\n    ++v4;\n  }\n  while ( v2 < 9812 );\n  CCBStageShadow::Destroy(this);\n  return 1;\n}\n"
+}

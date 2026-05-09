@@ -1,0 +1,7 @@
+{
+  "name": "sub_42FCC0",
+  "address": "0x0042FCC0",
+  "size_bytes": 115,
+  "signature": "void __thiscall(_DWORD *this)",
+  "decompiled_c": "// between_std_methods (0x411BB0-0x430790)\nvoid __thiscall sub_42FCC0(_DWORD *this)\n{\n  void **v2; // eax\n  int *v3; // eax\n  int *v4; // esi\n  int v5; // ecx\n  void *v6; // [esp-8h] [ebp-10h]\n\n  v2 = (void **)*(this + 4);\n  *(this + 4) = v2 + 1;\n  operator delete(*v2);\n  if ( *(this + 11) )\n  {\n    v3 = (int *)*(this + 4);\n    v4 = this + 1;\n    v5 = *v3;\n    *v4 = *v3;\n    v4[1] = v5 + 4028;\n    v4[2] = v5;\n    v4[3] = (int)v3;\n  }\n  else\n  {\n    *(this + 1) = 0;\n    *(this + 2) = 0;\n    *(this + 3) = 0;\n    *(this + 4) = 0;\n    *(this + 5) = 0;\n    v6 = (void *)*(this + 9);\n    *(this + 6) = 0;\n    *(this + 7) = 0;\n    *(this + 8) = 0;\n    operator delete(v6);\n  }\n}\n"
+}

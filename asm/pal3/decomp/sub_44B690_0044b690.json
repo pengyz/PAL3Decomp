@@ -1,0 +1,7 @@
+{
+  "name": "sub_44B690",
+  "address": "0x0044B690",
+  "size_bytes": 125,
+  "signature": "int __thiscall(int this)",
+  "decompiled_c": "// between_std_methods (0x445B40-0x44BDA0)\nint __thiscall sub_44B690(int this)\n{\n  int (__thiscall ***v2)(_DWORD, _DWORD); // edi\n  int v3; // ebx\n  int result; // eax\n\n  (**(void (__thiscall ***)(int, _DWORD))(this + 884))(this + 884, 0);\n  (**(void (__thiscall ***)(int, _DWORD))(this + 1228))(this + 1228, 0);\n  (**(void (__thiscall ***)(int, _DWORD))(this + 1572))(this + 1572, 0);\n  (**(void (__thiscall ***)(int, _DWORD))(this + 124))(this + 124, 0);\n  (**(void (__thiscall ***)(int, _DWORD))(this + 276))(this + 276, 0);\n  v2 = (int (__thiscall ***)(_DWORD, _DWORD))(this + 428);\n  v3 = 3;\n  do\n  {\n    result = (**v2)(v2, 0);\n    v2 += 38;\n    --v3;\n  }\n  while ( v3 );\n  *(_BYTE *)(this + 7416) = 1;\n  *(_BYTE *)(this + 9512) = 0;\n  return result;\n}\n"
+}

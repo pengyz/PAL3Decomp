@@ -1,0 +1,7 @@
+{
+  "name": "sub_5329A0",
+  "address": "0x005329A0",
+  "size_bytes": 30,
+  "signature": "int __stdcall(HINSTANCE hinstDLL, DWORD fdwReason, LPVOID lpvReserved)",
+  "decompiled_c": "// between_std_methods (0x504E20-0x53C2B0)\nint __stdcall sub_5329A0(HINSTANCE hinstDLL, DWORD fdwReason, LPVOID lpvReserved)\n{\n  if ( hinstDLL == (HINSTANCE)1000 )\n    return DllMain((HINSTANCE)0x3E8, fdwReason, lpvReserved);\n  else\n    return sub_445D10((int)hinstDLL, fdwReason, (int)lpvReserved);\n}\n"
+}

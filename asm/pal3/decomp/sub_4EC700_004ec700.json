@@ -1,0 +1,7 @@
+{
+  "name": "sub_4EC700",
+  "address": "0x004EC700",
+  "size_bytes": 203,
+  "signature": "char __thiscall(int this)",
+  "decompiled_c": "// between_std_methods (0x4D70B0-0x504E20)\nchar __thiscall sub_4EC700(int this)\n{\n  int v2; // eax\n  _DWORD *v3; // edi\n  int v4; // esi\n  int v6; // [esp+10h] [ebp-20h] BYREF\n  CIniFile v7; // [esp+14h] [ebp-1Ch] BYREF\n  char Buffer[8]; // [esp+1Ch] [ebp-14h] BYREF\n  int v9; // [esp+2Ch] [ebp-4h]\n\n  CIniFile::CIniFile(&v7);\n  v9 = 0;\n  CIniFile::OpenFileRead(&v7, aDatascriptComb_1);\n  CIniFile::ReadSection(&v7, aLevel);\n  v2 = 0;\n  v3 = (_DWORD *)(this + 20176);\n  do\n  {\n    v4 = v2 + 1;\n    sprintf(Buffer, \"%d\", v2 + 1);\n    CIniFile::ReadLine(&v7, Buffer, &v6);\n    v2 = v4;\n    *v3++ = v6;\n  }\n  while ( v4 < 99 );\n  *(_DWORD *)(this + 20572) = 0x7FFFFFFF;\n  *(_BYTE *)(this + 516) = 1;\n  v9 = -1;\n  CIniFile::~CIniFile(&v7);\n  return 1;\n}\n"
+}

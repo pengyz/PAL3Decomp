@@ -1,0 +1,7 @@
+{
+  "name": "sub_543FE7",
+  "address": "0x00543FE7",
+  "size_bytes": 215,
+  "signature": "float *__stdcall(float *a1, float a2, float *a3, float a4, float *a5)",
+  "decompiled_c": "float *__stdcall sub_543FE7(float *a1, float a2, float *a3, float a4, float *a5)\n{\n  int v6[16]; // [esp+14h] [ebp-40h] BYREF\n\n  a1[14] = 0.0;\n  a1[13] = 0.0;\n  a1[12] = 0.0;\n  a1[11] = 0.0;\n  a1[9] = 0.0;\n  a1[8] = 0.0;\n  a1[7] = 0.0;\n  a1[6] = 0.0;\n  a1[4] = 0.0;\n  a1[3] = 0.0;\n  a1[2] = 0.0;\n  a1[1] = 0.0;\n  *a1 = a2;\n  a1[5] = a2;\n  a1[10] = 1.0;\n  a1[15] = 1.0;\n  if ( 0.0 != a4 )\n  {\n    sub_543BA0((int)v6, a4);\n    if ( a3 )\n    {\n      a1[12] = a1[12] - *a3;\n      a1[13] = a1[13] - a3[1];\n      sub_543092();\n      a1[12] = *a3 + a1[12];\n      a1[13] = a1[13] + a3[1];\n    }\n    else\n    {\n      sub_543092();\n    }\n  }\n  if ( a5 )\n  {\n    a1[12] = *a5 + a1[12];\n    a1[13] = a5[1] + a1[13];\n  }\n  return a1;\n}\n"
+}

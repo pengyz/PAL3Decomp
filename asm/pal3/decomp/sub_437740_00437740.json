@@ -1,0 +1,7 @@
+{
+  "name": "sub_437740",
+  "address": "0x00437740",
+  "size_bytes": 164,
+  "signature": "char *()",
+  "decompiled_c": "// between_std_methods (0x430790-0x445B40)\nchar *sub_437740()\n{\n  char *result; // eax\n  int v1; // esi\n  int v2; // esi\n\n  result = sub_434C00();\n  if ( result )\n  {\n    result = (char *)*((_DWORD *)result + 1);\n    if ( result )\n    {\n      if ( result == (char *)1 )\n      {\n        v2 = PAL_GDB::GDB_GetSkillNum(6602);\n        result = (char *)dword_C04738[0];\n        if ( dword_C04738[0] )\n          result = (char *)CCBStageRole_GetAlive((int)dword_C05F30, &dword_C04730);\n        dword_C04730 = 6602;\n        dword_C04738[0] = v2;\n        dword_C04734 = 1;\n      }\n    }\n    else\n    {\n      v1 = PAL_GDB::GDB_GetSkillNum(6603);\n      result = (char *)dword_C04738[0];\n      if ( dword_C04738[0] )\n        result = (char *)CCBStageRole_GetAlive((int)dword_C05F30, &dword_C04730);\n      dword_C04738[0] = v1;\n      dword_C04730 = 6603;\n      dword_C04734 = 1;\n    }\n  }\n  return result;\n}\n"
+}

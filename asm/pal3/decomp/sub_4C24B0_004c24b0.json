@@ -1,0 +1,7 @@
+{
+  "name": "sub_4C24B0",
+  "address": "0x004C24B0",
+  "size_bytes": 264,
+  "signature": "int __thiscall(int this, int a2)",
+  "decompiled_c": "// between_std_methods (0x4C0620-0x4C2840)\nint __thiscall sub_4C24B0(int this, int a2)\n{\n  int v3; // ebx\n  int v4; // edi\n\n  v3 = *(_DWORD *)(this + 24) + 152 * *(_DWORD *)(this + 28);\n  v4 = *(_DWORD *)v3 + 72 * *(_DWORD *)(this + 32);\n  if ( !*(_BYTE *)(v4 + 65) )\n    *(_BYTE *)(v4 + 65) = 1;\n  if ( *(float *)(v3 + 24) != 0.0 && *(float *)(this + 16) - *(float *)(v4 + 16) >= *(float *)(v3 + 28) )\n  {\n    if ( (byte_1895561 & 1) == 0 )\n    {\n      byte_1895561 |= 1u;\n      sub_4D58A0(&dword_1895580);\n      atexit(nullsub_1);\n    }\n    sprintf((char *const)(this + 176), \"%s%03d.bik\", (const char *)(this + 48), (int)*(float *)(v3 + 24));\n    sub_53C6F0(0, 0);\n    sub_53C440(this + 176, hWndParent, 0, 0);\n    sub_53C5A0(1);\n    *(_DWORD *)(v4 + 8) = 4;\n  }\n  if ( *(_BYTE *)(v4 + 66) == 1 || *(float *)(this + 16) - *(float *)(v4 + 16) >= *(float *)(v4 + 24) )\n    *(_DWORD *)(v4 + 8) = 4;\n  return 0;\n}\n"
+}

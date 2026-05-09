@@ -1,0 +1,7 @@
+{
+  "name": "sub_569020",
+  "address": "0x00569020",
+  "size_bytes": 224,
+  "signature": "int __cdecl(int a1, int a2, int a3, int a4, int a5, _DWORD *a6)",
+  "decompiled_c": "int __cdecl sub_569020(int a1, int a2, int a3, int a4, int a5, _DWORD *a6)\n{\n  int v6; // eax\n  int v7; // ecx\n  int v8; // ebx\n  int result; // eax\n  int *v10; // esi\n  int v11; // edi\n  int v12; // eax\n  int v13; // edx\n  int v14; // et2\n  int v15; // edx\n  int v16; // [esp+10h] [ebp-4h]\n\n  memset(a6, 0, 0x18u);\n  v6 = a3;\n  v16 = 0;\n  a6[6] = 0;\n  if ( !a2 )\n  {\n    if ( !a3 )\n    {\n      v6 = a4;\n      a4 = 0;\n    }\n    a2 = v6;\n    goto LABEL_5;\n  }\n  if ( !a3 )\n  {\nLABEL_5:\n    v7 = a4;\n    a4 = 0;\n    a3 = v7;\n  }\n  if ( a2 )\n    v16 = 1;\n  if ( a3 )\n    ++v16;\n  if ( a4 )\n    ++v16;\n  v8 = a1;\n  if ( a5 )\n  {\n    v8 = a1 + 1;\n    *a6 = a5;\n  }\n  result = a5 != 0;\n  if ( result < v8 )\n  {\n    v10 = &a6[result];\n    v11 = v8 - result;\n    do\n    {\n      v12 = rand();\n      v14 = v12 % v16;\n      result = v12 / v16;\n      v13 = v14;\n      if ( v14 )\n      {\n        v15 = v13 - 1;\n        if ( v15 )\n        {\n          if ( v15 == 1 )\n          {\n            result = a4;\n            *v10 = a4;\n          }\n        }\n        else\n        {\n          *v10 = a3;\n        }\n      }\n      else\n      {\n        *v10 = a2;\n      }\n      ++v10;\n      --v11;\n    }\n    while ( v11 );\n  }\n  a6[6] = v8;\n  return result;\n}\n"
+}

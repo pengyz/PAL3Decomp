@@ -1,0 +1,7 @@
+{
+  "name": "sub_44A1B0",
+  "address": "0x0044A1B0",
+  "size_bytes": 291,
+  "signature": "BOOL __thiscall(int this, int a2, int a3)",
+  "decompiled_c": "// between_std_methods (0x445B40-0x44BDA0)\nBOOL __thiscall sub_44A1B0(int this, int a2, int a3)\n{\n  int v5; // eax\n  gbAudioManager *v6; // eax\n  int v7; // eax\n\n  if ( *(_BYTE *)(this + 20181) )\n    return sub_445C60((_DWORD *)this, a2, a3);\n  if ( g_nGameState != 2 && (g_nGameFlags & 1) != 0 )\n  {\n    v5 = CScreenMode_GetInstance();\n    v6 = (gbAudioManager *)CScreenMode_GetAudioManager(v5);\n    gbAudioManager::DetachAll3D(v6);\n  }\n  if ( *(_BYTE *)(this + 18824) )\n    *(_BYTE *)(this + 508) = 1;\n  sub_449C50((_DWORD *)this);\n  sub_44A2E0(this);\n  if ( !sub_4A1CF0(this + 18840) )\n  {\n    sub_44A180((_DWORD *)this, 0);\n    sub_449F70((_DWORD *)this, *(_DWORD *)(this + 18836));\n  }\n  if ( *(_BYTE *)(this + 18824) )\n    sub_449FE0(this, *(float *)&a2);\n  if ( !*(_BYTE *)(this + 18825) || !*(_BYTE *)(this + 18824) )\n    goto LABEL_20;\n  v7 = *(_DWORD *)(this + 18832);\n  *(_BYTE *)(this + 18824) = 0;\n  if ( v7 )\n  {\n    if ( v7 == 1 )\n      sub_43A4C0((_DWORD *)(this + 18616), off_5995A0[0]);\n  }\n  else\n  {\n    sub_43A4C0((_DWORD *)(this + 18616), off_59959C[0]);\n  }\n  if ( *(_DWORD *)(this + 18836) <= 0x25u )\n  {\n    sub_44A4F0(*(_DWORD *)(this + 18836));\n    return 1;\n  }\n  else\n  {\nLABEL_20:\n    PalScriptMgr::RunSceneScript(a2);\n    return sub_445C60((_DWORD *)this, a2, a3);\n  }\n}\n"
+}

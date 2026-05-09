@@ -1,0 +1,7 @@
+{
+  "name": "CCBStage::GetRoleName(ulong)",
+  "address": "0x004FC7D0",
+  "size_bytes": 218,
+  "signature": "int __thiscall(_DWORD *this, int a2, int a3, int a4, int a5, int a6, _DWORD *a7, int a8, int a9)",
+  "decompiled_c": "// between_std_methods (0x4D70B0-0x504E20)\nint __thiscall sub_4FC7D0(_DWORD *this, int a2, int a3, int a4, int a5, int a6, _DWORD *a7, int a8, int a9)\n{\n  int v9; // ebp\n  int v10; // ebx\n  _BYTE *i; // eax\n  _DWORD *v13; // esi\n  _DWORD *v14; // esi\n\n  v9 = 0;\n  v10 = 2632 * a2;\n  for ( i = this + 658 * a2 + 56; *i; i += 80 )\n  {\n    if ( ++v9 >= 32 )\n      return -1;\n  }\n  v13 = (_DWORD *)((char *)this + 80 * v9 + v10 + 184);\n  memset(v13, 0, 0x50u);\n  *((_BYTE *)this + 80 * v9 + v10 + 225) = 0;\n  *((_BYTE *)this + 80 * v9 + v10 + 224) = 1;\n  *(_DWORD *)((char *)this + 80 * v9 + v10 + 200) = 2;\n  *v13 = a3;\n  *(_DWORD *)((char *)this + 80 * v9 + v10 + 188) = a4;\n  *(_DWORD *)((char *)this + 80 * v9 + v10 + 192) = a5;\n  *(_DWORD *)((char *)this + 80 * v9 + v10 + 196) = a6;\n  v13[5] = CCBSystem::ProcProtect(*this);\n  v13[7] = a8;\n  v13[6] = 0;\n  v13[8] = a9;\n  if ( a7 )\n  {\n    v14 = v13 + 11;\n    *v14 = *a7;\n    v14[1] = a7[1];\n    v14[2] = a7[2];\n  }\n  ++*(_DWORD *)((char *)this + v10 + 176);\n  return v9;\n}\n"
+}

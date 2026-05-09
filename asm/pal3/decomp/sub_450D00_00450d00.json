@@ -1,0 +1,7 @@
+{
+  "name": "sub_450D00",
+  "address": "0x00450D00",
+  "size_bytes": 73,
+  "signature": "int __thiscall(int *this, int a2)",
+  "decompiled_c": "// between_std_methods (0x44BDA0-0x4A7690)\nint __thiscall sub_450D00(int *this, int a2)\n{\n  int result; // eax\n  int v4; // eax\n  int i; // edi\n  void (__thiscall ***v6)(_DWORD, int); // ecx\n\n  result = *(this + 13);\n  if ( result )\n  {\n    result = *(this + 14);\n    if ( result != a2 )\n    {\n      v4 = *this;\n      *(this + 14) = a2;\n      (*(void (__stdcall **)(int, int, _DWORD))(v4 + 24))(1000, a2, 0);\n      result = *(this + 10);\n      for ( i = 0; i < result; ++i )\n      {\n        v6 = *(void (__thiscall ****)(_DWORD, int))(*(this + 9) + 4 * i);\n        (**v6)(v6, a2);\n        result = *(this + 10);\n      }\n    }\n  }\n  return result;\n}\n"
+}

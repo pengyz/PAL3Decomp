@@ -1,0 +1,7 @@
+{
+  "name": "sub_4A1530",
+  "address": "0x004A1530",
+  "size_bytes": 239,
+  "signature": "int __thiscall(int this, char a2)",
+  "decompiled_c": "// between_std_methods (0x44BDA0-0x4A7690)\nint __thiscall sub_4A1530(int this, char a2)\n{\n  *(_BYTE *)(this + 1365) = a2;\n  if ( *(_DWORD *)(this + 1324) )\n  {\n    if ( *(_DWORD *)(this + 1324) == 2 )\n    {\n      (**(void (__thiscall ***)(int, int))(this + 304))(this + 304, 1);\n      (**(void (__thiscall ***)(int, int))(this + 456))(this + 456, 1);\n      (**(void (__thiscall ***)(int, int))(this + 632))(this + 632, 1);\n      (**(void (__thiscall ***)(int, int))(this + 976))(this + 976, 1);\n      *(_BYTE *)(this + 732) = 0;\n      *(_BYTE *)(this + 1076) = 0;\n    }\n    else if ( *(_DWORD *)(this + 1324) == 3 )\n    {\n      (**(void (__thiscall ***)(int, int))(this + 112))(this + 112, 1);\n    }\n  }\n  else\n  {\n    (**(void (__thiscall ***)(int, int))(this + 304))(this + 304, 1);\n    (**(void (__thiscall ***)(int, int))(this + 456))(this + 456, 1);\n    (**(void (__thiscall ***)(int, int))(this + 632))(this + 632, 1);\n    *(_BYTE *)(this + 732) = 0;\n  }\n  ++dword_DE5CE4;\n  *(_DWORD *)(this + 68) = 1;\n  *(_BYTE *)(this + 1364) = 0;\n  *(_BYTE *)(this + 1341) = 1;\n  *(_BYTE *)(this + 1340) = 1;\n  return sub_445E70((int *)this, 1);\n}\n"
+}

@@ -1,0 +1,7 @@
+{
+  "name": "sub_547328",
+  "address": "0x00547328",
+  "size_bytes": 228,
+  "signature": "int()",
+  "decompiled_c": "int sub_547328()\n{\n  char v26[16]; // [esp+Ch] [ebp-28h] BYREF\n  _DWORD v27[5]; // [esp+1Ch] [ebp-18h] BYREF\n  int v28; // [esp+30h] [ebp-4h]\n\n  strcpy((char *)v27, \"UnknownVendr\");\n  strcpy(v26, \"AuthenticAMD\");\n  _EAX = 0;\n  __asm { cpuid }\n  v28 = 1;\n  _EAX = 0;\n  __asm { cpuid }\n  v27[0] = _EBX;\n  v27[1] = _EDX;\n  v27[2] = _ECX;\n  if ( _EAX )\n  {\n    _EAX = 1;\n    __asm { cpuid }\n    v27[4] = _EAX;\n    v28 |= ((_EDX & 0x2000000) != 0 ? 0x40 : 0) | ((_EDX & (unsigned int)&unk_800000) != 0 ? 0x20 : 0) | 2;\n    _EAX = 0x80000000;\n    __asm { cpuid }\n    if ( _EAX > 0x80000000 )\n    {\n      v28 |= 4u;\n      _EAX = -2147483647;\n      __asm { cpuid }\n      v28 |= _EDX < 0 ? 0x80 : 0;\n      memcmp(v26, v27, 0xCu);\n      v28 |= (_EDX & 0x40000000) != 0 ? 0x100 : 0;\n      return ((_EDX & 0x400000) != 0 ? 0x200 : 0) | v28;\n    }\n  }\n  return v28;\n}\n"
+}

@@ -1,0 +1,7 @@
+{
+  "name": "__convertTOStoQNaN",
+  "address": "0x00558D1C",
+  "size_bytes": 25,
+  "signature": "double __usercall@<st0>(int a1@<eax>, double result@<st0>)",
+  "decompiled_c": "double __usercall _convertTOStoQNaN@<st0>(int a1@<eax>, double result@<st0>)\n{\n  if ( (a1 & 0x80000) == 0 )\n    return result + 1.0;\n  return result;\n}\n"
+}

@@ -1,0 +1,7 @@
+{
+  "name": "sub_41BC30",
+  "address": "0x0041BC30",
+  "size_bytes": 97,
+  "signature": "int __thiscall(int this, int a2)",
+  "decompiled_c": "// between_std_methods (0x411BB0-0x430790)\nint __thiscall sub_41BC30(int this, int a2)\n{\n  int result; // eax\n  int v3; // edx\n\n  result = a2;\n  *(_BYTE *)a2 = *(_BYTE *)(this + 632);\n  *(_BYTE *)(a2 + 16) = *(_BYTE *)(this + 628);\n  if ( *(_DWORD *)(this + 1268) == 3 )\n  {\n    *(_DWORD *)(a2 + 4) = *(_DWORD *)(this + 160);\n    *(_DWORD *)(a2 + 8) = *(_DWORD *)(this + 164);\n    v3 = *(_DWORD *)(this + 168);\n  }\n  else\n  {\n    *(_DWORD *)(a2 + 4) = *(_DWORD *)(this + 4);\n    *(_DWORD *)(a2 + 8) = *(_DWORD *)(this + 8);\n    v3 = *(_DWORD *)(this + 12);\n  }\n  *(_DWORD *)(a2 + 12) = v3;\n  *(_DWORD *)(a2 + 20) = *(_DWORD *)(this + 8688);\n  *(_DWORD *)(a2 + 24) = *(_DWORD *)(this + 264);\n  return result;\n}\n"
+}

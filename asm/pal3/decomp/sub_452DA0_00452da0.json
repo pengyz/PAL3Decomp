@@ -1,0 +1,7 @@
+{
+  "name": "sub_452DA0",
+  "address": "0x00452DA0",
+  "size_bytes": 72,
+  "signature": "int __thiscall(void (__thiscall ***this)(int, int), int a2, int a3, int a4)",
+  "decompiled_c": "// between_std_methods (0x44BDA0-0x4A7690)\nint __thiscall sub_452DA0(void (__thiscall ***this)(int, int), int a2, int a3, int a4)\n{\n  void (__thiscall **v4)(int, int); // eax\n\n  if ( a2 == 1001 )\n  {\n    if ( !*(this + 252) )\n    {\n      v4 = *(this + 187);\n      *(this + 252) = (void (__thiscall **)(int, int))1;\n      (*v4)((int)(this + 187), 1);\n      return 0;\n    }\n    (**(this + 187))((int)(this + 187), 0);\n  }\n  return 0;\n}\n"
+}

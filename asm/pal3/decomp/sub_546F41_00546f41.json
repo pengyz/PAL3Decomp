@@ -1,0 +1,7 @@
+{
+  "name": "sub_546F41",
+  "address": "0x00546F41",
+  "size_bytes": 257,
+  "signature": "int __stdcall(DWORD Type)",
+  "decompiled_c": "int __stdcall sub_546F41(DWORD Type)\n{\n  DWORD v2; // [esp+Ch] [ebp-4h] BYREF\n\n  operator delete();\n  if ( Type )\n  {\n    if ( dword_6092F8 == 0xFFFF )\n    {\n      dword_6092F8 = 0;\n      qmemcpy(&off_6090A8, off_6091D0, 0x124u);\n      sub_547AE2(&off_6090A8);\n      if ( !sub_546E3F((BYTE *)4, \"DisablePSGP\", (BYTE *)&Type, 4u) )\n        Type = 0;\n      if ( sub_546E3F((BYTE *)4, \"DisableD3DXPSGP\", (BYTE *)&v2, 4u) )\n        Type = v2;\n      if ( Type != 1 )\n      {\n        if ( Type == 2 || !IsProcessorFeaturePresent(7u) )\n        {\n          if ( (sub_546E9C() & 8) != 0 )\n          {\n            sub_5471BA(&off_6090A8);\n            dword_6092F8 = 2;\n          }\n          else if ( IsProcessorFeaturePresent(6u) )\n          {\n            sub_547042(&off_6090A8);\n            dword_6092F8 = 3;\n          }\n        }\n        else\n        {\n          sub_54740C(&off_6090A8);\n          dword_6092F8 = 1;\n        }\n      }\n    }\n  }\n  else\n  {\n    dword_6092F8 = 0xFFFF;\n    qmemcpy(&off_6090A8, off_6091D0, 0x124u);\n  }\n  return dword_6092F8;\n}\n"
+}

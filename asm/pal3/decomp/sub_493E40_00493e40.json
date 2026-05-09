@@ -1,0 +1,7 @@
+{
+  "name": "sub_493E40",
+  "address": "0x00493E40",
+  "size_bytes": 512,
+  "signature": "void __thiscall(_DWORD *this, int a2)",
+  "decompiled_c": "// between_std_methods (0x44BDA0-0x4A7690)\nvoid __thiscall sub_493E40(_DWORD *this, int a2)\n{\n  _DWORD *v3; // edi\n  int v4; // esi\n  _DWORD *v5; // edi\n  char Buffer[300]; // [esp+Ch] [ebp-258h] BYREF\n  char v7[300]; // [esp+138h] [ebp-12Ch] BYREF\n\n  memset(Buffer, 0, sizeof(Buffer));\n  memset(v7, 0, sizeof(v7));\n  v3 = this + 213 * a2;\n  sprintf(Buffer, \"%s %d\", byte_DC453C, v3[51463]);\n  sprintf(&Buffer[30], \"%s %d\", byte_DC443C, v3[51462]);\n  sprintf(&Buffer[60], \"%s %d\", byte_DC463C, v3[51464]);\n  sprintf(&Buffer[90], \"%s %d\", byte_DC473C, v3[51465]);\n  sprintf(&Buffer[120], \"%s %d\", byte_DC6C3C, dword_C04684[352 * a2]);\n  sprintf(&Buffer[150], \"%s %d\", byte_DC3C3C, v3[51466]);\n  sprintf(&Buffer[180], \"%s %d\", byte_DC3D3C, v3[51467]);\n  sprintf(&Buffer[210], \"%s %d\", byte_DC3F3C, v3[51469]);\n  sprintf(&Buffer[240], \"%s %d\", byte_DC3E3C, v3[51468]);\n  sprintf(&Buffer[270], \"%s %d\", byte_DC403C, v3[51470]);\n  v4 = 0;\n  v5 = this + 2495 * a2 + 39808;\n  do\n  {\n    sub_4427C0(v5 - 380, &Buffer[v4], 0);\n    sub_4427C0(v5, &v7[v4], 0);\n    sub_4427C0(v5 + 380, byte_C10D38, 0);\n    v4 += 30;\n    v5 += 38;\n  }\n  while ( v4 < 300 );\n  sub_4427C0(this + 51220, byte_C10D38, 0);\n  sub_4427C0(this + 51182, byte_C10D38, 0);\n}\n"
+}

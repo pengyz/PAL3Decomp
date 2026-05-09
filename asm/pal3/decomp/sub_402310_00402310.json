@@ -1,0 +1,7 @@
+{
+  "name": "sub_402310",
+  "address": "0x00402310",
+  "size_bytes": 65,
+  "signature": "int __thiscall(int *this)",
+  "decompiled_c": "int __thiscall sub_402310(int *this)\n{\n  int result; // eax\n  int v3; // edi\n\n  result = *(this + 2);\n  if ( result )\n  {\n    *(this + 1563) = 1;\n    result = (*(int (__stdcall **)(int))(*(_DWORD *)result + 28))(result);\n    if ( result )\n    {\n      v3 = 0;\n      while ( 1 )\n      {\n        result = (*(int (__stdcall **)(_DWORD))(*(_DWORD *)*(this + 2) + 28))(*(this + 2));\n        if ( !result )\n          break;\n        if ( ++v3 >= 50 )\n        {\n          *(this + 1563) = 0;\n          return result;\n        }\n      }\n    }\n  }\n  return result;\n}\n"
+}

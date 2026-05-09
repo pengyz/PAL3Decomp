@@ -1,0 +1,7 @@
+{
+  "name": "sub_4EA4A0",
+  "address": "0x004EA4A0",
+  "size_bytes": 238,
+  "signature": "LRESULT __thiscall(void *this, HWND hDlg, int a3)",
+  "decompiled_c": "// between_std_methods (0x4D70B0-0x504E20)\nLRESULT __thiscall sub_4EA4A0(void *this, HWND hDlg, int a3)\n{\n  int v4; // esi\n  HWND *v5; // edi\n  int v6; // ecx\n  LPARAM v7; // eax\n  LRESULT result; // eax\n  _DWORD v9[13]; // [esp+10h] [ebp-34h] BYREF\n\n  v9[0] = GetDlgItem(hDlg, 1264);\n  v9[1] = GetDlgItem(hDlg, 1263);\n  v9[2] = GetDlgItem(hDlg, 1265);\n  v9[3] = GetDlgItem(hDlg, 1266);\n  v9[4] = GetDlgItem(hDlg, 1267);\n  v9[5] = GetDlgItem(hDlg, 1268);\n  v9[6] = GetDlgItem(hDlg, 1269);\n  v9[7] = GetDlgItem(hDlg, 1270);\n  v9[8] = GetDlgItem(hDlg, 1271);\n  v9[9] = GetDlgItem(hDlg, 1272);\n  v9[10] = GetDlgItem(hDlg, 1273);\n  v9[11] = GetDlgItem(hDlg, 1274);\n  v9[12] = GetDlgItem(hDlg, 1275);\n  v4 = 0;\n  v5 = (HWND *)v9;\n  do\n  {\n    v6 = *(_DWORD *)(*(_DWORD *)(*(_DWORD *)this + 44) + 72 * a3 + 96);\n    v7 = (*(int (__thiscall **)(int, int))(*(_DWORD *)v6 + 40))(v6, v4);\n    result = sub_4E53C0(*v5, v7);\n    ++v4;\n    ++v5;\n  }\n  while ( v4 < 13 );\n  return result;\n}\n"
+}

@@ -1,0 +1,7 @@
+{
+  "name": "sub_455A20",
+  "address": "0x00455A20",
+  "size_bytes": 267,
+  "signature": "char __thiscall(_DWORD *this, char a2)",
+  "decompiled_c": "// between_std_methods (0x44BDA0-0x4A7690)\nchar __thiscall sub_455A20(_DWORD *this, char a2)\n{\n  int v3; // eax\n  int v5; // ebx\n  int *v6; // esi\n  int v7; // eax\n  char *v8; // [esp-4h] [ebp-14h]\n  char *v9; // [esp-4h] [ebp-14h]\n  float v10; // [esp+0h] [ebp-10h]\n  int v11; // [esp+14h] [ebp+4h]\n\n  ++*(this + 32587);\n  if ( a2 )\n  {\n    v3 = *(this + 32584) + 1;\n    *(this + 32584) = v3;\n    if ( v3 > 32 )\n      *(this + 32584) = 32;\n    v11 = *(this + 32584) * *(this + 32585) - 28;\n    *(this + 32583) = v11;\n    v10 = (float)v11;\n    sub_43C550((int)(this + 32515), v10);\n  }\n  if ( (int)*(this + 32587) <= 31 )\n  {\n    sub_455790(this);\n    v5 = 0;\n    v6 = this + 224;\n    do\n    {\n      v7 = *v6 - *(this + 32585);\n      *v6 = v7;\n      v6[2] = v7 + *(this + 32585);\n      sub_455570((char *)this, v5++, *(v6 - 1), *v6, v6[1], v6[2]);\n      v6 += 890;\n    }\n    while ( v5 < 36 );\n    v9 = off_5AE3A8[0];\n    CScreenMode_GetInstance();\n    sub_53E2E0(v9, 1);\n    return 1;\n  }\n  else\n  {\n    *(this + 32587) = 31;\n    v8 = off_5AE38C[0];\n    CScreenMode_GetInstance();\n    sub_53E2E0(v8, 1);\n    return 0;\n  }\n}\n"
+}

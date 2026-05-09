@@ -1,0 +1,7 @@
+{
+  "name": "sub_480530",
+  "address": "0x00480530",
+  "size_bytes": 204,
+  "signature": "_DWORD *__thiscall(int this, float a2)",
+  "decompiled_c": "// between_std_methods (0x44BDA0-0x4A7690)\n_DWORD *__thiscall sub_480530(int this, float a2)\n{\n  double v3; // st7\n  _DWORD *v4; // ebx\n  int v5; // ebp\n  _DWORD *v6; // ebx\n  int v7; // ebp\n\n  v3 = a2 * 120.0 + *(float *)(this + 162764);\n  *(float *)(this + 162764) = v3;\n  if ( v3 >= 255.0 )\n  {\n    *(_DWORD *)(this + 162764) = 1132396544;\n    *(_BYTE *)(this + 162768) = 0;\n  }\n  *(_BYTE *)(this + 162763) = (__int64)*(float *)(this + 162764);\n  sub_446010((_DWORD *)(this + 154956), (_DWORD *)(this + 162760));\n  sub_446010((_DWORD *)(this + 155108), (_DWORD *)(this + 162760));\n  sub_446010((_DWORD *)(this + 155260), (_DWORD *)(this + 162760));\n  v4 = (_DWORD *)(this + 155412);\n  v5 = 5;\n  do\n  {\n    sub_446010(v4 + 190, (_DWORD *)(this + 162760));\n    sub_446010(v4, (_DWORD *)(this + 162760));\n    v4 += 38;\n    --v5;\n  }\n  while ( v5 );\n  v6 = (_DWORD *)(this + 156932);\n  v7 = 4;\n  do\n  {\n    sub_446010(v6, (_DWORD *)(this + 162760));\n    v6 += 38;\n    --v7;\n  }\n  while ( v7 );\n  return sub_446010((_DWORD *)(this + 157604), (_DWORD *)(this + 162760));\n}\n"
+}

@@ -1,0 +1,7 @@
+{
+  "name": "sub_4C0920",
+  "address": "0x004C0920",
+  "size_bytes": 182,
+  "signature": "unsigned int __thiscall(unsigned int *this, float *a2)",
+  "decompiled_c": "// between_std_methods (0x4C0620-0x4C2840)\nunsigned int __thiscall sub_4C0920(unsigned int *this, float *a2)\n{\n  unsigned int result; // eax\n  unsigned int v3; // [esp+4h] [ebp-4h]\n  int v4; // [esp+10h] [ebp+8h]\n\n  result = *(this + 1);\n  if ( *(_DWORD *)(result + 4) )\n  {\n    if ( (byte_1895561 & 1) == 0 )\n    {\n      byte_1895561 |= 1u;\n      sub_4D58A0(&dword_1895580);\n      atexit(nullsub_1);\n    }\n    v3 = (int)a2[21];\n    if ( (byte_1895561 & 1) == 0 )\n    {\n      byte_1895561 |= 1u;\n      sub_4D58A0(&dword_1895580);\n      atexit(nullsub_1);\n    }\n    v4 = (int)*a2;\n    result = v3;\n    if ( v3 <= 0xA && v4 > 0 )\n      return sub_50ACF0(v4);\n  }\n  return result;\n}\n"
+}

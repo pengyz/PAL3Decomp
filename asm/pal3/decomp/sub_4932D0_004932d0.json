@@ -1,0 +1,7 @@
+{
+  "name": "sub_4932D0",
+  "address": "0x004932D0",
+  "size_bytes": 304,
+  "signature": "int __thiscall(int *this, int a2)",
+  "decompiled_c": "// between_std_methods (0x44BDA0-0x4A7690)\nint __thiscall sub_4932D0(int *this, int a2)\n{\n  int v3; // edi\n  int *v4; // ecx\n  int *v5; // edx\n  int *v6; // eax\n  _DWORD v8[3]; // [esp+18h] [ebp-Ch] BYREF\n\n  v3 = 0;\n  if ( sub_43F560(this + 54353) >= 0 )\n  {\n    v6 = sub_40D640(dword_C05F30, v8, *(this + 92));\nLABEL_12:\n    v3 = v6[2];\n  }\n  else\n  {\n    switch ( *(this + 93) )\n    {\n      case 0:\n        v4 = &dword_C04730[352 * a2];\n        goto LABEL_4;\n      case 1:\n        v5 = &dword_C04700[352 * a2];\n        goto LABEL_6;\n      case 2:\n        v6 = &dword_C046F4[352 * a2];\n        goto LABEL_12;\n      case 3:\n        v4 = &dword_C0470C[352 * a2];\nLABEL_4:\n        v3 = v4[2];\n        break;\n      case 4:\n        v5 = &dword_C04718[352 * a2];\nLABEL_6:\n        v3 = v5[2];\n        break;\n      case 5:\n        v6 = &dword_C04724[352 * a2];\n        goto LABEL_12;\n      default:\n        break;\n    }\n  }\n  sub_40BE80(&dword_C043A0[352 * a2], 0);\n  return sub_493420(a2, v3, *(this + 93));\n}\n"
+}

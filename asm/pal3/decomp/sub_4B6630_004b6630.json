@@ -1,0 +1,7 @@
+{
+  "name": "sub_4B6630",
+  "address": "0x004B6630",
+  "size_bytes": 123,
+  "signature": "int __thiscall(int this)",
+  "decompiled_c": "// between_std_methods (0x4A7690-0x4BEF50)\nint __thiscall sub_4B6630(int this)\n{\n  int result; // eax\n  unsigned int i; // edi\n  int v4; // eax\n  int v5; // ecx\n  unsigned int j; // edi\n\n  result = sub_4B66B0();\n  if ( (_BYTE)result )\n  {\n    for ( i = 0; ; ++i )\n    {\n      v4 = *(_DWORD *)(this + 16);\n      if ( !v4 || i >= (*(_DWORD *)(this + 20) - v4) >> 2 )\n        break;\n      gbRenderEffect::SetVariant(\n        *(gbRenderEffect **)(this + 4),\n        PARAM_HANDLE_SPECULAR,\n        (void *)(*(_DWORD *)(v4 + 4 * i) + 16));\n      v5 = *(_DWORD *)(*(_DWORD *)(this + 16) + 4 * i);\n      (*(void (__thiscall **)(int, _DWORD))(*(_DWORD *)v5 + 4))(v5, *(_DWORD *)(this + 4));\n    }\n    sub_4B67B0(this);\n    for ( j = 0; ; ++j )\n    {\n      result = *(_DWORD *)(this + 16);\n      if ( !result || j >= (*(_DWORD *)(this + 20) - result) >> 2 )\n        break;\n      sub_4B6820(*(_DWORD *)(result + 4 * j));\n    }\n  }\n  return result;\n}\n"
+}

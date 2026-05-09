@@ -1,0 +1,7 @@
+{
+  "name": "sub_4B5380",
+  "address": "0x004B5380",
+  "size_bytes": 201,
+  "signature": "__int64 __thiscall(int this, int a2, int a3, int a4, int a5)",
+  "decompiled_c": "// between_std_methods (0x4A7690-0x4BEF50)\n__int64 __thiscall sub_4B5380(int this, int a2, int a3, int a4, int a5)\n{\n  int v6; // ecx\n  double v7; // st7\n  _DWORD v9[17]; // [esp+4h] [ebp-44h] BYREF\n  int v10; // [esp+4Ch] [ebp+4h]\n\n  v9[0] = *(_DWORD *)(this + 416);\n  v9[16] = 1;\n  _TextureLib_Data::GetLib(a2, a3, a4, a5, this + 124, v9, 0);\n  v6 = *(unsigned __int8 *)(this + 127);\n  v10 = *(_DWORD *)(this + 36) / 2;\n  *(float *)(this + 136) = cos(*(float *)(this + 44)) * (double)(*(_DWORD *)(this + 32) / 2) + *(float *)(this + 48);\n  *(float *)(this + 140) = sin(*(float *)(this + 44)) * (double)v10 + *(float *)(this + 52);\n  *(float *)(this + 44) = *(float *)(this + 580) + *(float *)(this + 44);\n  v7 = (double)v6 - *(float *)(this + 132);\n  if ( v7 <= 0.0 )\n  {\n    v7 = 0.0;\n    *(_BYTE *)(this + 128) = 0;\n    *(_BYTE *)(this + 127) = 0;\n  }\n  *(_BYTE *)(this + 127) = (__int64)v7;\n  return (__int64)v7;\n}\n"
+}

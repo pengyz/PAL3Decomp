@@ -1,0 +1,7 @@
+{
+  "name": "sub_4E9950",
+  "address": "0x004E9950",
+  "size_bytes": 287,
+  "signature": "LRESULT __thiscall(_DWORD *this, HWND hDlg)",
+  "decompiled_c": "// between_std_methods (0x4D70B0-0x504E20)\nLRESULT __thiscall sub_4E9950(_DWORD *this, HWND hDlg)\n{\n  HWND DlgItem; // esi\n  LRESULT result; // eax\n  int i; // edi\n  int v6; // eax\n  int v7; // eax\n  int v8; // eax\n  LPARAM lParam[10]; // [esp+10h] [ebp-28h] BYREF\n\n  DlgItem = GetDlgItem(hDlg, 1214);\n  memset(lParam, 0, sizeof(lParam));\n  result = SendMessageA(DlgItem, 0x1009u, 0, 0);\n  if ( *(this + 2017) != -1 )\n  {\n    for ( i = 0; i < 16; ++i )\n    {\n      lParam[0] = 1;\n      lParam[5] = (LPARAM)byte_17A94E4;\n      lParam[1] = i;\n      lParam[2] = 0;\n      sprintf(byte_17A94E4, \"%d\", i);\n      SendMessageA(DlgItem, 0x1007u, 0, (LPARAM)lParam);\n      v6 = *(this + 2017);\n      lParam[2] = 1;\n      v7 = dword_EC9E74[3984 * v6 + i + v6];\n      if ( v7 )\n      {\n        v8 = sub_4CE000(v7);\n        sprintf(byte_17A94E4, \"%s\", (const char *)(280 * v8 + 24433460));\n      }\n      else\n      {\n        sprintf(byte_17A94E4, aEmpty);\n      }\n      result = SendMessageA(DlgItem, 0x1006u, 0, (LPARAM)lParam);\n    }\n  }\n  return result;\n}\n"
+}

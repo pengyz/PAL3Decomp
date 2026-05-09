@@ -1,0 +1,7 @@
+{
+  "name": "sub_414980",
+  "address": "0x00414980",
+  "size_bytes": 122,
+  "signature": "void __thiscall(int this, _DWORD *a2, int a3)",
+  "decompiled_c": "// between_std_methods (0x411BB0-0x430790)\nvoid __thiscall sub_414980(int this, _DWORD *a2, int a3)\n{\n  float *v4; // esi\n  double v5; // st7\n\n  v4 = (float *)(this + 1308);\n  *(_DWORD *)(this + 1308) = *a2;\n  *(_DWORD *)(this + 1312) = a2[1];\n  *(_DWORD *)(this + 1316) = a2[2];\n  *(_DWORD *)(this + 1284) = a3;\n  sub_412710(this);\n  if ( a3 )\n  {\n    *(_DWORD *)(this + 1312) = 0;\n    gbVec3D::Normalize((gbVec3D *)v4);\n    v5 = *(float *)(this + 1288);\n    *v4 = v5 * *v4;\n    v4[1] = v5 * v4[1];\n    v4[2] = v5 * v4[2];\n    *(_DWORD *)(this + 1268) = 12;\n  }\n  else\n  {\n    *(_DWORD *)(this + 1268) = 0;\n  }\n}\n"
+}

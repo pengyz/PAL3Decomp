@@ -1,0 +1,7 @@
+{
+  "name": "sub_544B13",
+  "address": "0x00544B13",
+  "size_bytes": 56,
+  "signature": "int __stdcall(int a1, float *a2, int a3)",
+  "decompiled_c": "int __stdcall sub_544B13(int a1, float *a2, int a3)\n{\n  *(float *)a1 = *(float *)a3;\n  *(_DWORD *)(a1 + 4) = *(_DWORD *)(a3 + 4);\n  *(_DWORD *)(a1 + 8) = *(_DWORD *)(a3 + 8);\n  *(float *)(a1 + 12) = -(a2[1] * *(float *)(a3 + 4) + a2[2] * *(float *)(a3 + 8) + *a2 * *(float *)a3);\n  return a1;\n}\n"
+}

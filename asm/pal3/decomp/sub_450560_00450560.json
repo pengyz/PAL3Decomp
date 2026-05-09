@@ -1,0 +1,7 @@
+{
+  "name": "sub_450560",
+  "address": "0x00450560",
+  "size_bytes": 226,
+  "signature": "int __thiscall(const RECT *this, int a2, int a3)",
+  "decompiled_c": "// between_std_methods (0x44BDA0-0x4A7690)\nint __thiscall sub_450560(const RECT *this, int a2, int a3)\n{\n  int v5; // eax\n  float *v6; // eax\n  int v7; // edi\n  int v8; // ecx\n  int v9; // kr00_4\n  int v10; // eax\n  float v11; // [esp+Ch] [ebp-14h] BYREF\n  float v12; // [esp+10h] [ebp-10h] BYREF\n  float v13; // [esp+14h] [ebp-Ch] BYREF\n  float v14; // [esp+18h] [ebp-8h]\n  int v15; // [esp+1Ch] [ebp-4h]\n\n  if ( !*((_DWORD *)this + 14) )\n    return 0;\n  v5 = *((_DWORD *)this + 20);\n  if ( v5 )\n  {\n    v6 = (float *)(v5 + 160);\n    v13 = *v6;\n    v14 = v6[1];\n    v15 = *((_DWORD *)v6 + 2);\n    v14 = v14 + 80.0;\n    gbCamera::PointWorldToScr((gbCamera *)(g_pCamera + 4), (struct gbVec3D *)&v13, &v11, &v12);\n    v7 = (__int64)((v11 + 1.0) * (double)xRight * 0.5);\n    v8 = (__int64)((1.0 - v12) * (double)yBottom * 0.5);\n    v9 = *((_DWORD *)this + 21);\n    *((_DWORD *)this + 6) = v7 + v9 / 2;\n    v10 = *((_DWORD *)this + 22);\n    *((_DWORD *)this + 4) = v7 - v9 / 2;\n    v10 /= 2;\n    *((_DWORD *)this + 5) = v8 - v10;\n    *((_DWORD *)this + 7) = v8 + v10;\n  }\n  return sub_43BBC0(this, a2, a3);\n}\n"
+}

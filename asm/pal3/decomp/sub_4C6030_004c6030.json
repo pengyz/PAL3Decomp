@@ -1,0 +1,7 @@
+{
+  "name": "sub_4C6030",
+  "address": "0x004C6030",
+  "size_bytes": 174,
+  "signature": "int __thiscall(_DWORD *this, int a2)",
+  "decompiled_c": "// between_std_methods (0x4C2840-0x4D70B0)\nint __thiscall sub_4C6030(_DWORD *this, int a2)\n{\n  int result; // eax\n  int v3; // edx\n  char *v4; // ecx\n\n  result = (int)(this + 12 * a2 + 7);\n  v3 = *(this + 12 * a2 + 13);\n  v4 = (char *)(this + 17 * *(this + 12 * a2 + 8));\n  *((_DWORD *)v4 + 24600) = v3;\n  *((float *)v4 + 24584) = *(float *)(result + 28) - *(float *)(result + 40);\n  *((float *)v4 + 24587) = *(float *)(result + 40) + *(float *)(result + 28);\n  *((float *)v4 + 24590) = *(float *)(result + 40) + *(float *)(result + 28);\n  *((float *)v4 + 24593) = *(float *)(result + 28) - *(float *)(result + 40);\n  *((_DWORD *)v4 + 24585) = *(_DWORD *)(result + 32);\n  *((_DWORD *)v4 + 24588) = *(_DWORD *)(result + 32);\n  *((_DWORD *)v4 + 24591) = *(_DWORD *)(result + 32);\n  *((_DWORD *)v4 + 24594) = *(_DWORD *)(result + 32);\n  *((float *)v4 + 24586) = *(float *)(result + 40) + *(float *)(result + 36);\n  *((float *)v4 + 24589) = *(float *)(result + 40) + *(float *)(result + 36);\n  *((float *)v4 + 24592) = *(float *)(result + 36) - *(float *)(result + 40);\n  *((float *)v4 + 24595) = *(float *)(result + 36) - *(float *)(result + 40);\n  return result;\n}\n"
+}

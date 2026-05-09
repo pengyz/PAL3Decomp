@@ -1,0 +1,7 @@
+{
+  "name": "sub_542169",
+  "address": "0x00542169",
+  "size_bytes": 143,
+  "signature": "int __stdcall(int a1, int a2, unsigned int a3)",
+  "decompiled_c": "int __stdcall sub_542169(int a1, int a2, unsigned int a3)\n{\n  int result; // eax\n  unsigned int i; // edi\n  unsigned int v5; // edx\n  int v6; // esi\n  int v7; // ecx\n  unsigned int v8; // edx\n  unsigned int v9; // ecx\n\n  result = a1;\n  for ( i = 0; i < a3; ++i )\n  {\n    v5 = *(_DWORD *)(a2 + 4 * i) & 0x7FFFFFFF;\n    v6 = HIWORD(*(_DWORD *)(a2 + 4 * i)) & 0x8000;\n    if ( v5 <= 0x47FFEFFF )\n    {\n      if ( v5 >= 0x38800000 )\n      {\n        v9 = ((v5 >> 13) & 1) + v5 - 939520001;\n      }\n      else\n      {\n        v8 = ((unsigned int)&unk_800000 | (unsigned int)&unk_7FFFFF & v5) >> (113 - (v5 >> 23));\n        v9 = ((v8 >> 13) & 1) + v8 + 4095;\n      }\n      v7 = v6 | (v9 >> 13);\n    }\n    else\n    {\n      LOWORD(v7) = v6 | 0x7FFF;\n    }\n    *(_WORD *)(a1 + 2 * i) = v7;\n  }\n  return result;\n}\n"
+}

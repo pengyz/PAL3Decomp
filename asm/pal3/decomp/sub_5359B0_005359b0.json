@@ -1,0 +1,7 @@
+{
+  "name": "sub_5359B0",
+  "address": "0x005359B0",
+  "size_bytes": 72,
+  "signature": "char __thiscall(_DWORD **this, double a2)",
+  "decompiled_c": "// between_std_methods (0x504E20-0x53C2B0)\nchar __thiscall sub_5359B0(_DWORD **this, double a2)\n{\n  char result; // al\n  float v4; // [esp+0h] [ebp-8h]\n\n  UIUpdate(*this, a2);\n  v4 = a2;\n  EffectUpdate(v4);\n  result = *((_BYTE *)this + 3084);\n  if ( result )\n  {\n    result = sub_410360((const char *)this + 3085);\n    *((_BYTE *)this + 3084) = 0;\n  }\n  return result;\n}\n"
+}

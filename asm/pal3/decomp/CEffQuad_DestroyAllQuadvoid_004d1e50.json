@@ -1,0 +1,7 @@
+{
+  "name": "CEffQuad::DestroyAllQuad(void)",
+  "address": "0x004D1E50",
+  "size_bytes": 147,
+  "signature": "_DWORD *__thiscall(_DWORD *this, int a2)",
+  "decompiled_c": "// between_std_methods (0x4C2840-0x4D70B0)\n_DWORD *__thiscall sub_4D1E50(_DWORD *this, int a2)\n{\n  _DWORD *result; // eax\n  int v3; // ecx\n  int v4; // edx\n  int v5; // ebx\n  int v6; // ecx\n\n  result = this;\n  v3 = *(this + 39) + 80 * a2;\n  v4 = result[16] - 1;\n  v5 = *(_DWORD *)v3;\n  *(_BYTE *)(v3 + 4) = 0;\n  if ( v4 != v5 )\n  {\n    qmemcpy((void *)(result[40] + 68 * v5), (const void *)(result[40] + 68 * v4), 0x44u);\n    *(_DWORD *)(80 * *(_DWORD *)(result[41] + 4 * v4) + result[39]) = v5;\n    *(_DWORD *)(result[41] + 4 * v5) = *(_DWORD *)(result[41] + 4 * v4);\n  }\n  v6 = result[15] - 1;\n  --result[16];\n  if ( a2 == v6 )\n    result[15] = v6;\n  if ( a2 == result[18] )\n    result[18] = -1;\n  return result;\n}\n"
+}

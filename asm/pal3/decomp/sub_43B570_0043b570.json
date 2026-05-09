@@ -1,0 +1,7 @@
+{
+  "name": "sub_43B570",
+  "address": "0x0043B570",
+  "size_bytes": 235,
+  "signature": "struct gbVFileSystem *__thiscall(_DWORD *this, int a2, int a3, struct gbVFileSystem *a4, LPCSTR lpString, char a6)",
+  "decompiled_c": "// between_std_methods (0x430790-0x445B40)\nstruct gbVFileSystem *__thiscall sub_43B570(\n        _DWORD *this,\n        int a2,\n        int a3,\n        struct gbVFileSystem *a4,\n        LPCSTR lpString,\n        char a6)\n{\n  struct gbVFileSystem *result; // eax\n  const CHAR *v8; // edi\n  int v9; // eax\n\n  result = a4;\n  if ( a4 )\n  {\n    v8 = lpString;\n    if ( lpString )\n    {\n      OpenBaseFile::OpenBaseFile(&lpString);\n      *(this + 46) = 0;\n      *(this + 47) = 0;\n      *(this + 48) = 0;\n      *(this + 50) = 0;\n      if ( a6 )\n      {\n        *(this + 46) = Parent_Data::Parent_Data(v8);\n        v9 = _Texture_Info::_CalculateUV(v8);\n        if ( !sub_445ED0(v9, 1) )\n        {\nLABEL_5:\n          sub_445F20(this + 29);\n          return OpenNULLFile::OpenNULLFile((struct gbVFileSystem **)&lpString);\n        }\n      }\n      else if ( !sub_445ED0(v8, 2) )\n      {\n        goto LABEL_5;\n      }\n      sub_445B90(a2, a3, a4);\n      return OpenNULLFile::OpenNULLFile((struct gbVFileSystem **)&lpString);\n    }\n  }\n  return result;\n}\n"
+}
