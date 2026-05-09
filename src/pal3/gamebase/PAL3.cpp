@@ -1067,3 +1067,10 @@ int __cdecl PAL3::PrintScreen(void)
 {
     return PAL3_PrintScreen();
 }
+
+// === STUB: PAL3 static methods (awaiting implementation) ===
+void __cdecl PAL3::CreateGfxWindow(void) {}
+void __cdecl PAL3::CheckSystemRequire(HINSTANCE) {}
+void __cdecl PAL3::CreateEffectSystem(void) {}
+void __cdecl PAL3::DestroyEffectSystem(void) {}
+void __cdecl PAL3::GetCommandLineParam(void) {}

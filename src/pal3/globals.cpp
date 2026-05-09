@@ -342,38 +342,7 @@ extern "C" BOOL __cdecl sub_5382D0(const char *path)
 // C++ class method stubs
 // ============================================================
 
-// PAL3 static methods (called from WinMain.cpp and PAL3.cpp)
-class PAL3 {
-public:
-    static void __cdecl CreateGfxWindow(void);
-    static void __cdecl CheckSystemRequire(HINSTANCE hInst);
-    static void __cdecl CreateEffectSystem(void);
-    static void __cdecl DestroyEffectSystem(void);
-    static void __cdecl GetCommandLineParam(void);
-    static void __cdecl Update(float dt);
-    static void __cdecl Render(void);
-};
-
-// === STUB: PAL3::CreateGfxWindow ===
-void __cdecl PAL3::CreateGfxWindow(void) {}
-
-// === STUB: PAL3::CheckSystemRequire ===
-void __cdecl PAL3::CheckSystemRequire(HINSTANCE hInst) {}
-
-// PAL3::InitGFX — 已实现于 src/pal3/gamebase/PAL3.cpp
-
-// === STUB: PAL3::CreateEffectSystem ===
-void __cdecl PAL3::CreateEffectSystem(void) {}
-
-// === STUB: PAL3::DestroyEffectSystem ===
-void __cdecl PAL3::DestroyEffectSystem(void) {}
-
-// === STUB: PAL3::GetCommandLineParam ===
-void __cdecl PAL3::GetCommandLineParam(void) {}
-
-// PAL3::Update — 已实现于 src/pal3/gamebase/PAL3.cpp
-
-// PAL3::Render — 已实现于 src/pal3/gamebase/PAL3.cpp
+// PAL3:: class methods: all in src/pal3/gamebase/PAL3.cpp
 
 // === STUB: 0x0040C960 ===
 extern "C" void __cdecl sub_40C960(void) {}
