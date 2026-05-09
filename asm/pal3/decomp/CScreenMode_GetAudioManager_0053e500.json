@@ -1,7 +1,7 @@
 {
-  "name": "CScreenMode_GetAudioManager",
+  "name": "CScreenMode::GetAudioManager",
   "address": "0x0053E500",
   "size_bytes": 7,
-  "signature": "int __thiscall(_DWORD *this)",
-  "decompiled_c": "// between_std_methods (0x53C2D0-0x541D1B)\nint __thiscall sub_53E500(_DWORD *this)\n{\n  return *(this + 202);\n}\n"
+  "signature": "int __thiscall(void *this)",
+  "decompiled_c": "// between_std_methods (0x53C2D0-0x541D1B)\nint __thiscall CScreenMode::GetAudioManager(void *this)\n{\n  return *((_DWORD *)this + 202);\n}\n"
 }

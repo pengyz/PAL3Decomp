@@ -3,5 +3,5 @@
   "address": "0x0044A4F0",
   "size_bytes": 79,
   "signature": "void __thiscall(_DWORD *this, unsigned int a2)",
-  "decompiled_c": "// between_std_methods (0x445B40-0x44BDA0)\nvoid __thiscall sub_44A4F0(_DWORD *this, unsigned int a2)\n{\n  if ( a2 <= 0x25 )\n  {\n    if ( *(_BYTE *)(CScreenMode_GetInstance() + 4) )\n      *(_BYTE *)(CScreenMode_GetInstance() + 4) = 0;\n    PalScriptMgr::Destroy(a2 + 100, 1);\n    *(this + 4709) = -1;\n    CGameData_Load(0);\n  }\n}\n"
+  "decompiled_c": "// between_std_methods (0x445B40-0x44BDA0)\nvoid __thiscall sub_44A4F0(_DWORD *this, unsigned int a2)\n{\n  if ( a2 <= 0x25 )\n  {\n    if ( *(_BYTE *)(CScreenMode::GetInstance() + 4) )\n      *(_BYTE *)(CScreenMode::GetInstance() + 4) = 0;\n    PalScriptMgr::Destroy(a2 + 100, 1);\n    *(this + 4709) = -1;\n    CGameData_Load(0);\n  }\n}\n"
 }

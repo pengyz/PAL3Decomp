@@ -1,22 +1,22 @@
+#!/usr/bin/env python3
 """
-Hex-Rays 输出后处理：将 Class::Method(this, args) 转为 OOP 形式
+Hex-Rays output post-processor: convert thiscall flattened calls to OOP.
 
-Hex-Rays 对 thiscall 的输出格式:
-  gbMatrixStack::Push(v2);              -> v2->Push();
-  GRPinput_SetMode(&ppvOut, 0x40000000) -> ppvOut.SetMode(0x40000000);
-  sub_402270(&ppvOut, 0, 0, w, h)       -> ppvOut.sub_402270(0, 0, w, h);  (if thiscall known)
+Hex-Rays outputs thiscall as:
+  Class::Method(this_ptr, args)    -> this_ptr->Method(args)
+  Class::Method(&this_obj, args)   -> this_obj.Method(args)
 
-规则:
-  1. Class::Method(ptr, args)  -> ptr->Method(args)
-  2. Class::Method(&obj, args) -> obj.Method(args)
-  3. func(&obj, args) where func is known thiscall -> obj.func(args)
+Edge cases handled:
+  - Cast in first arg: func((int)&obj, args) -> obj.func(args)
+  - No extra args: Class::Method(ptr) -> ptr->Method()
+  - Nested parens in args: preserved correctly
+  - &obj.member: NOT converted (not a this pointer, it's member address)
+  - Constructor calls: Class::Class(&obj) -> placement new / leave as-is
+  - Assignment from call: v = Class::Method(ptr, a) -> v = ptr->Method(a)
 
-输入: Hex-Rays 反编译文本 (从 decomp JSON 的 decompiled_c 字段)
-输出: 转换后的 C++ 代码
-
-用法:
-  python tools/hexrays_to_oop.py --input asm/pal3/decomp/xxx.json --output src/pal3/xxx.cpp
-  python tools/hexrays_to_oop.py --test  # 运行自测
+Usage:
+  python tools/hexrays_to_oop.py --test
+  python tools/hexrays_to_oop.py --input <file.json|file.c> [--output <file.cpp>]
 """
 
 import re
@@ -26,150 +26,232 @@ import os
 from pathlib import Path
 
 
-# Known thiscall functions: address -> (class_name, method_name)
-# These are identified from IDA's own analysis (signature field contains __thiscall)
-KNOWN_THISCALL = {}  # populated from decomp JSONs
-
-
-def load_thiscall_db(decomp_dir):
-    """From decomp JSONs, build a map of known thiscall functions."""
-    db = {}
-    for f in Path(decomp_dir).glob("*.json"):
-        if f.name.startswith("_"):
-            continue
-        try:
-            with open(f, 'r', encoding='utf-8') as fh:
-                d = json.load(fh)
-            sig = d.get('signature', '')
-            name = d.get('name', '')
-            if '__thiscall' in sig and name:
-                # Extract class::method if available
-                if '::' in name:
-                    parts = name.split('::', 1)
-                    db[name] = (parts[0], parts[1])
-                else:
-                    db[name] = (None, name)
-        except:
-            pass
-    return db
-
-
-def transform_class_method_call(line, thiscall_db):
+def extract_first_arg_and_rest(args_str):
     """
-    Transform Class::Method(this_expr, args) -> this_expr->Method(args)
-    Transform Class::Method(&obj, args) -> obj.Method(args)
+    Split argument string into (first_arg, rest_args) respecting nested parens.
+    Returns (first_arg, rest_args_or_None)
     """
-    # Pattern: ClassName::MethodName(expr, ...)
-    # Match: word::word( followed by first arg
-    pattern = r'(\w+)::(\w+)\(\s*([^,)]+)\s*(?:,\s*(.*))?\)'
+    depth = 0
+    for i, ch in enumerate(args_str):
+        if ch == '(':
+            depth += 1
+        elif ch == ')':
+            depth -= 1
+        elif ch == ',' and depth == 0:
+            return args_str[:i].strip(), args_str[i+1:].strip()
+    return args_str.strip(), None
 
-    def replacer(m):
+
+def parse_this_arg(first_arg):
+    """
+    Parse the first argument to determine:
+    - Is it a 'this' pointer or '&this' object reference?
+    - Strip casts like (int), (void*) etc.
+
+    Returns (obj_expr, is_ref)
+      obj_expr: the object/pointer expression
+      is_ref: True if &obj (use .), False if ptr (use ->)
+      None if we can't parse / shouldn't convert
+    """
+    arg = first_arg.strip()
+
+    # Strip outer cast: (type)expr -> expr
+    # Pattern: (word [*])expr or (word [*] [*])&expr
+    cast_pattern = r'^\([^)]+\)\s*(.+)$'
+    m = re.match(cast_pattern, arg)
+    if m:
+        arg = m.group(1).strip()
+
+    # Check if it's &something
+    if arg.startswith('&'):
+        obj = arg[1:].strip()
+        # Reject &obj.member or &obj->member (taking address of member, not this)
+        if '.' in obj or '->' in obj:
+            return None, False
+        return obj, True
+    else:
+        # It's a pointer expression
+        # Reject complex expressions like *(int*)(x+4)
+        if arg.startswith('*') or arg.startswith('('):
+            return None, False
+        return arg, False
+
+
+def transform_line(line):
+    """
+    Transform a single line. Handles:
+      Class::Method(this, args)  -> this->Method(args) or this.Method(args)
+      result = Class::Method(this, args) -> result = this->Method(args)
+    """
+    # Don't touch comments or preprocessor
+    stripped = line.strip()
+    if stripped.startswith('//') or stripped.startswith('#') or stripped.startswith('/*'):
+        return line
+
+    # Don't touch function signatures (definitions/declarations)
+    if '__thiscall' in line or '__cdecl' in line or '__stdcall' in line:
+        return line
+
+    # Pattern: optional_prefix Class::Method( args )  optional_suffix
+    # We need to handle: assignment, if(), return, standalone call
+    # Strategy: find Class::Method( and then balance parens to find full call
+
+    result = line
+    # Find all Class::Method( occurrences
+    pattern = r'(\w+)::(\w+)\s*\('
+    offset = 0
+
+    for m in re.finditer(pattern, line):
         cls = m.group(1)
         method = m.group(2)
-        first_arg = m.group(3).strip()
-        rest_args = m.group(4)
+        call_start = m.start()
+        paren_start = m.end() - 1  # position of '('
 
-        if first_arg.startswith('&'):
-            # &obj -> obj.Method(rest)
-            obj = first_arg[1:]
-            if rest_args:
-                return f'{obj}.{method}({rest_args})'
-            else:
-                return f'{obj}.{method}()'
-        elif first_arg.startswith('(') and '*' in first_arg:
-            # (Type *)expr -> expr->Method(rest) with cast
-            return m.group(0)  # too complex, leave as-is
+        # Skip constructor calls: Class::Class(
+        if cls == method:
+            continue
+
+        # Find matching closing paren
+        depth = 0
+        pos = paren_start
+        while pos < len(line):
+            if line[pos] == '(':
+                depth += 1
+            elif line[pos] == ')':
+                depth -= 1
+                if depth == 0:
+                    break
+            pos += 1
+
+        if depth != 0:
+            continue  # unbalanced, skip
+
+        # Extract full args string
+        args_str = line[paren_start+1:pos]
+
+        if not args_str.strip():
+            continue  # no args at all? unlikely for thiscall but skip
+
+        # Parse first arg
+        first_arg, rest = extract_first_arg_and_rest(args_str)
+        obj_expr, is_ref = parse_this_arg(first_arg)
+
+        if obj_expr is None:
+            continue  # can't convert
+
+        # Build replacement
+        if is_ref:
+            access = '.'
         else:
-            # ptr -> ptr->Method(rest)
-            if rest_args:
-                return f'{first_arg}->{method}({rest_args})'
-            else:
-                return f'{first_arg}->{method}()'
+            access = '->'
 
-    return re.sub(pattern, replacer, line)
+        if rest:
+            new_call = f'{obj_expr}{access}{method}({rest})'
+        else:
+            new_call = f'{obj_expr}{access}{method}()'
 
+        # Replace in line: from call_start to pos+1
+        old_call = line[call_start:pos+1]
+        result = result.replace(old_call, new_call, 1)
 
-def transform_named_thiscall(line, thiscall_db):
-    """
-    Transform NamedFunc(&obj, args) -> obj.NamedFunc(args)  [if in thiscall_db]
-    Transform NamedFunc(ptr, args) -> ptr->NamedFunc(args)
-    """
-    # Pattern: known_func_name(&expr, ...) or known_func_name(expr, ...)
-    for func_name, (cls, method) in thiscall_db.items():
-        if func_name not in line:
-            continue
-        # Match: func_name(first_arg, rest...)
-        pattern = rf'\b{re.escape(func_name)}\(\s*([^,)]+)\s*(?:,\s*(.*))?\)'
-
-        def replacer(m):
-            first_arg = m.group(1).strip()
-            rest_args = m.group(2)
-            display_method = method if cls else func_name
-
-            if first_arg.startswith('&'):
-                obj = first_arg[1:]
-                if rest_args:
-                    return f'{obj}.{display_method}({rest_args})'
-                else:
-                    return f'{obj}.{display_method}()'
-            else:
-                if rest_args:
-                    return f'{first_arg}->{display_method}({rest_args})'
-                else:
-                    return f'{first_arg}->{display_method}()'
-
-        line = re.sub(pattern, replacer, line, count=1)
-    return line
+    return result
 
 
-def transform_code(code, thiscall_db=None):
-    """Transform entire decompiled function code."""
-    if thiscall_db is None:
-        thiscall_db = {}
-
+def transform_code(code):
+    """Transform entire decompiled function."""
     lines = code.split('\n')
-    result = []
-    for line in lines:
-        # Skip function signature line and comments
-        if line.strip().startswith('//') or '__thiscall' in line:
-            result.append(line)
-            continue
-        # Apply Class::Method transform
-        line = transform_class_method_call(line, thiscall_db)
-        # Apply named thiscall transform
-        if thiscall_db:
-            line = transform_named_thiscall(line, thiscall_db)
-        result.append(line)
-    return '\n'.join(result)
+    return '\n'.join(transform_line(line) for line in lines)
+
+
+# ============================================================
+# Tests
+# ============================================================
+
+TEST_CASES = [
+    # Basic Class::Method(ptr, args) -> ptr->Method(args)
+    ("  gbMatrixStack::Push(v2);",
+     "  v2->Push();"),
+
+    ("  gbMatrixStack::Pop(v2);",
+     "  v2->Pop();"),
+
+    ("  gbCamera::SetLookAt(v4, v5, v6, v7);",
+     "  v4->SetLookAt(v5, v6, v7);"),
+
+    # &obj -> obj.Method()
+    ("  GRPinput::SetMode(&ppvOut, 0x40000000);",
+     "  ppvOut.SetMode(0x40000000);"),
+
+    ("  GRPinput::SetMouseLimits(&stru_BFAD70, 0, 0, w, h);",
+     "  stru_BFAD70.SetMouseLimits(0, 0, w, h);"),
+
+    # No extra args
+    ("  gbSceneGraph::End(v2);",
+     "  v2->End();"),
+
+    ("  Logger::RegisterCallbacks(&g_Logger);",
+     "  g_Logger.RegisterCallbacks();"),
+
+    # Non-class functions with cast: NOT converted (no :: = unknown if thiscall)
+    # These would need external thiscall DB to convert
+    ("  sub_44F130((int)&g_GameData);",
+     "  sub_44F130((int)&g_GameData);"),
+
+    ("  CGameData_Load((int)&g_GameData, 4);",
+     "  CGameData_Load((int)&g_GameData, 4);"),
+
+    # Cast (type)ptr -> ptr->Method()
+    ("  CRenderTarget::Destroy((CRenderTarget *)ptr);",
+     "  ptr->Destroy();"),
+
+    # Assignment
+    ("  v5 = CScreenMode::GetWidth(&g_DisplayConfig);",
+     "  v5 = g_DisplayConfig.GetWidth();"),
+
+    ("  result = gbEffectMgr::NewRenderEffect(pMgr, aGlow, 0);",
+     "  result = pMgr->NewRenderEffect(aGlow, 0);"),
+
+    # if() containing call
+    ("  if ( !GRPinput::Create(&stru_BFAD70, hInstance, (int)v5, 0) )",
+     "  if ( !stru_BFAD70.Create(hInstance, (int)v5, 0) )"),
+
+    # Constructor call: Class::Class(&obj) -> NOT converted
+    ("  OpenBaseFile::OpenBaseFile(&v32);",
+     "  OpenBaseFile::OpenBaseFile(&v32);"),
+
+    # &obj.member -> NOT converted (not this, it's member address)
+    ("  sub_53C5A0(&g_DisplayConfig.m_nFlags, 1);",
+     "  sub_53C5A0(&g_DisplayConfig.m_nFlags, 1);"),
+
+    # Complex: nested call in args (should preserve)
+    ("  Logger::Write(&g_Logger, \"%s %s\", aV104, aDate);",
+     "  g_Logger.Write(\"%s %s\", aV104, aDate);"),
+
+    # Don't touch signatures
+    ("int __thiscall GRPinput::SetMode(GRPinput *this, int mode)",
+     "int __thiscall GRPinput::SetMode(GRPinput *this, int mode)"),
+]
 
 
 def test():
-    """Self-test with known patterns."""
-    cases = [
-        # Class::Method(ptr, args) -> ptr->Method(args)
-        ("  gbMatrixStack::Push(v2);", "  v2->Push();"),
-        ("  gbMatrixStack::Pop(v2);", "  v2->Pop();"),
-        ("  gbCamera::SetLookAt(v4, v5, v6, v7);", "  v4->SetLookAt(v5, v6, v7);"),
-        # Class::Method(&obj, args) -> obj.Method(args)
-        ("  GRPinput::SetMode(&ppvOut, 0x40000000);", "  ppvOut.SetMode(0x40000000);"),
-        # Class::Method(ptr) -> ptr->Method() (no extra args)
-        ("  gbSceneGraph::End(v2);", "  v2->End();"),
-    ]
-
-    print("Running self-tests...")
+    print("Running tests...")
     passed = 0
-    for input_line, expected in cases:
-        result = transform_class_method_call(input_line, {})
+    failed = 0
+    for input_line, expected in TEST_CASES:
+        result = transform_line(input_line)
         if result == expected:
             passed += 1
-            print(f"  PASS: {input_line.strip()}")
+            print(f"  PASS: {input_line.strip()[:70]}")
         else:
-            print(f"  FAIL: {input_line.strip()}")
+            failed += 1
+            print(f"  FAIL: {input_line.strip()[:70]}")
             print(f"    Expected: {expected.strip()}")
             print(f"    Got:      {result.strip()}")
 
-    print(f"\n{passed}/{len(cases)} tests passed")
-    return passed == len(cases)
+    print(f"\n{passed}/{passed+failed} tests passed")
+    if failed:
+        print(f"{failed} FAILED")
+    return failed == 0
 
 
 if __name__ == '__main__':
@@ -188,15 +270,7 @@ if __name__ == '__main__':
             else:
                 code = f.read()
 
-        # Load thiscall database
-        decomp_dir = 'asm/pal3/decomp'
-        if os.path.isdir(decomp_dir):
-            thiscall_db = load_thiscall_db(decomp_dir)
-            print(f"Loaded {len(thiscall_db)} thiscall functions", file=sys.stderr)
-        else:
-            thiscall_db = {}
-
-        result = transform_code(code, thiscall_db)
+        result = transform_code(code)
 
         if '--output' in sys.argv:
             out_idx = sys.argv.index('--output')
@@ -207,6 +281,4 @@ if __name__ == '__main__':
         else:
             print(result)
     else:
-        print("Usage:")
-        print("  python tools/hexrays_to_oop.py --test")
-        print("  python tools/hexrays_to_oop.py --input <file.json|file.c> [--output <file.cpp>]")
+        print(__doc__)

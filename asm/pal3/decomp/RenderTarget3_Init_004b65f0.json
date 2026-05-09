@@ -1,0 +1,7 @@
+{
+  "name": "RenderTarget3::Init",
+  "address": "0x004B65F0",
+  "size_bytes": 55,
+  "signature": "void __thiscall(void *this)",
+  "decompiled_c": "// between_std_methods (0x4A7690-0x4BEF50)\nvoid __thiscall RenderTarget3::Init(void *this)\n{\n  gbEffectMgr *pEffectMgr; // edi\n\n  pEffectMgr = g_pGfxManager->pEffectMgr;\n  *(_DWORD *)this = gbEffectMgr::NewRenderEffect(pEffectMgr, aGfxscriptGlowG, 0);\n  *((_DWORD *)this + 1) = gbEffectMgr::NewRenderEffect(pEffectMgr, aGfxscriptGeomG, 1u);\n}\n"
+}

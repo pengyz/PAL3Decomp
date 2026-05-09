@@ -3,5 +3,5 @@
   "address": "0x0053CE20",
   "size_bytes": 105,
   "signature": "char *__cdecl(char *a1)",
-  "decompiled_c": "// between_std_methods (0x53C2D0-0x541D1B)\nchar *__cdecl sub_53CE20(char *a1)\n{\n  char *result; // eax\n  int i; // esi\n  char ArgList[4]; // [esp+4h] [ebp-14h]\n  char *v4; // [esp+8h] [ebp-10h]\n  char *v5; // [esp+Ch] [ebp-Ch]\n  char *v6; // [esp+10h] [ebp-8h]\n  char *v7; // [esp+14h] [ebp-4h]\n\n  result = a1;\n  *(_DWORD *)ArgList = aXuejian;\n  v4 = aLongkui;\n  v5 = aZixuan;\n  v6 = aChangqing;\n  v7 = aHuaying;\n  if ( !a1 )\n  {\n    for ( i = 0; i < 5; ++i )\n      result = sub_53CC70(g_Logger, \"%s = %d\", *(const char **)&ArgList[i * 4], dword_C04338[i]);\n  }\n  return result;\n}\n"
+  "decompiled_c": "// between_std_methods (0x53C2D0-0x541D1B)\nchar *__cdecl sub_53CE20(char *a1)\n{\n  char *result; // eax\n  int i; // esi\n  char ArgList[4]; // [esp+4h] [ebp-14h]\n  char *v4; // [esp+8h] [ebp-10h]\n  char *v5; // [esp+Ch] [ebp-Ch]\n  char *v6; // [esp+10h] [ebp-8h]\n  char *v7; // [esp+14h] [ebp-4h]\n\n  result = a1;\n  *(_DWORD *)ArgList = aXuejian;\n  v4 = aLongkui;\n  v5 = aZixuan;\n  v6 = aChangqing;\n  v7 = aHuaying;\n  if ( !a1 )\n  {\n    for ( i = 0; i < 5; ++i )\n      result = Logger::Write(g_Logger, \"%s = %d\", *(const char **)&ArgList[i * 4], dword_C04338[i]);\n  }\n  return result;\n}\n"
 }
