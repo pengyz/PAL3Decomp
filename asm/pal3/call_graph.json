@@ -1,0 +1,203 @@
+{
+  "version": 1,
+  "root": "0x00541900",
+  "nodes": {
+    "0x00404800": {
+      "name": "PAL3::Create(HINSTANCE__ *)",
+      "address": "0x00404800",
+      "size": 1331,
+      "status": "pending",
+      "source": "src/pal3/PAL3_Create.cpp",
+      "match_rate": null,
+      "calls": [],
+      "called_by": [
+        "0x00541900"
+      ],
+      "depth": 1,
+      "has_decomp": true,
+      "is_named": true
+    },
+    "0x004055D0": {
+      "name": "PAL3::Update(double)",
+      "address": "0x004055D0",
+      "size": 1531,
+      "status": "pending",
+      "source": null,
+      "match_rate": null,
+      "calls": [],
+      "called_by": [
+        "0x00541900"
+      ],
+      "depth": 1,
+      "has_decomp": true,
+      "is_named": true
+    },
+    "0x00405C00": {
+      "name": "PAL3::Render(void)",
+      "address": "0x00405C00",
+      "size": 1542,
+      "status": "pending",
+      "source": null,
+      "match_rate": null,
+      "calls": [],
+      "called_by": [
+        "0x00541900"
+      ],
+      "depth": 1,
+      "has_decomp": true,
+      "is_named": true
+    },
+    "0x00406230": {
+      "name": "PAL3::Destroy(void)",
+      "address": "0x00406230",
+      "size": 219,
+      "status": "pending",
+      "source": null,
+      "match_rate": null,
+      "calls": [],
+      "called_by": [
+        "0x00541900"
+      ],
+      "depth": 1,
+      "has_decomp": true,
+      "is_named": true
+    },
+    "0x00408BC0": {
+      "name": "Iostream_init::Iostream_init(void)",
+      "address": "0x00408BC0",
+      "size": 3,
+      "status": "pending",
+      "source": null,
+      "match_rate": null,
+      "calls": [],
+      "called_by": [
+        "0x00541900"
+      ],
+      "depth": 1,
+      "has_decomp": true,
+      "is_named": true
+    },
+    "0x00513380": {
+      "name": "CCBSystem::ProcUseItem(ulong)",
+      "address": "0x00513380",
+      "size": 16,
+      "status": "pending",
+      "source": null,
+      "match_rate": null,
+      "calls": [],
+      "called_by": [
+        "0x00541900"
+      ],
+      "depth": 1,
+      "has_decomp": true,
+      "is_named": true
+    },
+    "0x005382D0": {
+      "name": "sub_5382D0",
+      "address": "0x005382D0",
+      "size": 69,
+      "status": "pending",
+      "source": null,
+      "match_rate": null,
+      "calls": [],
+      "called_by": [
+        "0x00541900"
+      ],
+      "depth": 1,
+      "has_decomp": false,
+      "is_named": false
+    },
+    "0x005417C0": {
+      "name": "fn",
+      "address": "0x005417C0",
+      "size": 121,
+      "status": "pending",
+      "source": null,
+      "match_rate": null,
+      "calls": [],
+      "called_by": [
+        "0x00541900"
+      ],
+      "depth": 1,
+      "has_decomp": true,
+      "is_named": true
+    },
+    "0x00541860": {
+      "name": "UICursor::Init(void)",
+      "address": "0x00541860",
+      "size": 118,
+      "status": "pending",
+      "source": null,
+      "match_rate": null,
+      "calls": [],
+      "called_by": [
+        "0x00541900"
+      ],
+      "depth": 1,
+      "has_decomp": true,
+      "is_named": true
+    },
+    "0x00541C40": {
+      "name": "UICursor::Inst(void)",
+      "address": "0x00541C40",
+      "size": 114,
+      "status": "pending",
+      "source": null,
+      "match_rate": null,
+      "calls": [],
+      "called_by": [
+        "0x00541900"
+      ],
+      "depth": 1,
+      "has_decomp": true,
+      "is_named": true
+    },
+    "0x00541900": {
+      "name": "WinMain",
+      "address": "0x00541900",
+      "size": 824,
+      "status": "matched",
+      "source": "src/pal3/WinMain.cpp",
+      "match_rate": 1.0,
+      "calls": [
+        "0x00404800",
+        "0x004055D0",
+        "0x00405C00",
+        "0x00406230",
+        "0x00408BC0",
+        "0x00513380",
+        "0x005382D0",
+        "0x005417C0",
+        "0x00541860",
+        "0x00541C40"
+      ],
+      "called_by": [],
+      "depth": 0,
+      "has_decomp": true,
+      "is_named": true
+    }
+  },
+  "frontier": [
+    "0x00404800",
+    "0x004055D0",
+    "0x00405C00",
+    "0x00406230",
+    "0x00408BC0",
+    "0x00513380",
+    "0x005382D0",
+    "0x005417C0",
+    "0x00541860",
+    "0x00541C40"
+  ],
+  "stats": {
+    "total_nodes": 11,
+    "matched": 1,
+    "compiled": 0,
+    "wip": 0,
+    "pending": 10,
+    "skipped": 0,
+    "blocked": 0,
+    "frontier_size": 10,
+    "max_depth": 1
+  }
+}
