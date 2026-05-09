@@ -23,6 +23,8 @@ public:
     static void __cdecl Create(HINSTANCE hInst);
     static void __cdecl Destroy(void);
     static void __cdecl Update(float dt);
+    static void __cdecl Render(void);
+    static int  __cdecl PrintScreen(void);
     static void __cdecl CreateGfxWindow(void);
     static void __cdecl CheckSystemRequire(HINSTANCE hInst);
     static void __cdecl InitGFX(HINSTANCE hInst);
@@ -897,4 +899,171 @@ DONE:
     sub_4BE460(*(int *)&a1);
     if (!g_nGameState)
         sub_53CDD0(1);
+}
+
+// ========================================================================
+// PAL3::Render
+// Address: 0x00405C00, Size: 1542 bytes
+// static void __cdecl PAL3::Render(void)
+// ========================================================================
+
+extern "C" int g_nGameState;
+extern "C" int g_pGfxManager;
+extern "C" int g_pCamera;
+extern "C" int g_pSceneMgr;
+extern "C" void *g_pCBSystem;
+extern "C" int g_UIManager;
+extern "C" float g_fEventTimer;
+extern "C" int dword_BFDA38;
+extern "C" int dword_BFDA3C;
+extern "C" char byte_BFDA40;
+extern "C" char byte_BFDA41;
+extern "C" int dword_BFDA80;
+extern "C" int dword_BFDA7C;
+extern "C" int dword_BFDA84;
+extern "C" int dword_BFDA34;
+extern "C" int dword_BFDA98;
+extern "C" char byte_5833C2;
+extern "C" int dword_D8E488;
+extern "C" int xRight;
+extern "C" int yBottom;
+
+extern "C" void __cdecl sub_40C630(void *);
+extern "C" void __cdecl sub_40C7D0(void);
+extern "C" void __cdecl sub_410430(void *);
+extern "C" void __cdecl sub_41F370(void *);
+extern "C" void __cdecl sub_4200A0(void *);
+extern "C" void __cdecl sub_420110(void *);
+extern "C" void __cdecl sub_421A10(int);
+extern "C" void __cdecl sub_421C00(int);
+extern "C" void __cdecl sub_4220A0(void *);
+extern "C" int  __cdecl sub_4234D0(void);
+extern "C" void __cdecl sub_44F5B0(void *);
+extern "C" int  __cdecl sub_4B6D30(void);
+extern "C" void __cdecl sub_4B6630(int);
+extern "C" void __cdecl sub_4B6DF0(int);
+extern "C" void __cdecl sub_4B6E20(int);
+extern "C" void __cdecl sub_4BE4A0(int);
+extern "C" int  __cdecl sub_4BFD20(void);
+extern "C" void __cdecl sub_4BFD70(int);
+extern "C" void __cdecl sub_4BFDD0(int);
+extern "C" void __cdecl sub_4CDBF0(int);
+extern "C" void __cdecl sub_4CDC20(int);
+extern "C" void __cdecl sub_513120(void *);
+extern "C" void __cdecl sub_52B860(int);
+extern "C" void __cdecl sub_52F2E0(int);
+extern "C" void __cdecl sub_535320(int);
+extern "C" void __cdecl sub_53C990(void *);
+extern "C" void __cdecl sub_540F60(void *);
+extern "C" void __cdecl sub_540FA0(void *);
+extern "C" int  __cdecl sub_4226F0(void);
+extern "C" int  __cdecl sub_5415F0(void);
+extern "C" void __cdecl sub_4BE590(void);
+extern "C" int  __cdecl sub_4B65A0(void);
+extern "C" void __cdecl sub_41C630(int);
+extern "C" char byte_17B1EC0;
+
+extern "C" void __cdecl UIRenderObj_UIRenderObj(int);
+extern "C" int __cdecl PAL3_PrintScreen(void);
+
+void __cdecl PAL3::Render(void)
+{
+    // BeginScene (virtual call on g_pGfxManager)
+    (*(void (**)(void))(*(int *)g_pGfxManager + 48))();
+
+    switch (g_nGameState)
+    {
+    case 0:
+        // Present (virtual call)
+        (*(void (**)(void))(*(int *)g_pGfxManager + 52))();
+        return;
+
+    case 2: case 7: case 8: case 9:
+    {
+        int v1 = sub_4B6D30();
+        sub_4B6DF0(v1);
+        int v2 = sub_4BFD20();
+        sub_4BFD70(v2);
+
+        // gbSceneGraph::Begin + scene rendering
+        // (complex gbengine thiscall sequence - simplified for linking)
+        sub_41C630(3);
+        int v5 = sub_4234D0();
+        sub_4226F0();
+        // ... (full implementation pending thiscall corrections)
+
+        if (g_nGameState == 8)
+        {
+            int v12 = sub_4226F0();
+            sub_421C00(v12);
+        }
+        sub_41F370(&g_UIManager);
+        sub_4CDBF0(g_pSceneMgr);
+
+        sub_4234D0();
+        int v14 = sub_4B6D30();
+        sub_4B6E20(v14);
+        int v15 = sub_4BFD20();
+        sub_4BFDD0(v15);
+        int v16 = sub_4B65A0();
+        sub_4B6630(v16);
+        if (byte_5833C2)
+            sub_40C7D0();
+        break;
+    }
+    case 3:
+        sub_513120(g_pCBSystem);
+        break;
+    case 4:
+        sub_52B860(dword_BFDA80);
+        break;
+    case 5:
+        sub_52F2E0(dword_BFDA7C);
+        sub_40C7D0();
+        break;
+    case 6:
+        sub_535320(dword_BFDA84);
+        sub_40C7D0();
+        break;
+    default:
+        break;
+    }
+
+    // Timer display for wolf/ghost modes
+    if (g_nGameState == 8 || g_nGameState == 7)
+    {
+        // Timer rendering (simplified - needs gbPrintFont thiscall)
+    }
+
+    // Post-render
+    if (g_nGameState && g_nGameState != 3 && byte_5833C2)
+    {
+        int v25[3];
+        sub_540F60(v25);
+        sub_4BE590(); int v21 = 0;
+        sub_4BE4A0(v21);
+        sub_44F5B0(&g_GameData);
+        if (dword_BFDA34)
+            (*(void (**)(void))(*(int *)dword_BFDA34 + 4))();
+        if (!dword_BFDA98)
+            sub_53C990(&byte_17B1EC0);
+        sub_540FA0(v25);
+    }
+
+    int v22 = sub_5415F0();
+    UIRenderObj_UIRenderObj(v22);
+
+    // Present (virtual call)
+    (*(void (**)(void))(*(int *)g_pGfxManager + 52))();
+
+    if (dword_BFDA98)
+    {
+        PAL3::PrintScreen();
+        dword_BFDA98 = 0;
+    }
+}
+
+int __cdecl PAL3::PrintScreen(void)
+{
+    return PAL3_PrintScreen();
 }

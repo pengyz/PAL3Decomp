@@ -280,8 +280,7 @@ void __cdecl PAL3::GetCommandLineParam(void) {}
 
 // PAL3::Update — 已实现于 src/pal3/gamebase/PAL3.cpp
 
-// === STUB: PAL3::Render (0x00405C00) ===
-void __cdecl PAL3::Render(void) {}
+// PAL3::Render — 已实现于 src/pal3/gamebase/PAL3.cpp
 
 // === STUB: 0x0040C960 ===
 extern "C" void __cdecl sub_40C960(void) {}
@@ -431,3 +430,52 @@ extern "C" int __cdecl PalScriptMgr_CON_CloseScript(void) { return 0; }
 
 extern "C" void __cdecl gbAudioManager_StopSoundStream(void *, int) {}
 extern "C" float __cdecl gbVec3D_Length(void *) { return 0.0f; }
+
+// ============================================================
+// PAL3::Render 所需的 stub (Iteration #3)
+// ============================================================
+extern "C" int dword_BFDA38 = 0;             // 0x00BFDA38 - gbDropGroup*
+extern "C" int dword_BFDA3C = 0;             // 0x00BFDA3C - gbDropGroup*
+extern "C" char byte_BFDA40 = 0;             // 0x00BFDA40
+extern "C" char byte_BFDA41 = 0;             // 0x00BFDA41
+extern "C" int dword_BFDA80 = 0;             // 0x00BFDA80
+extern "C" int dword_BFDA7C = 0;             // 0x00BFDA7C
+extern "C" int dword_BFDA84 = 0;             // 0x00BFDA84
+extern "C" int dword_BFDA34 = 0;             // 0x00BFDA34
+extern "C" int dword_BFDA98 = 0;             // 0x00BFDA98
+extern "C" char byte_5833C2 = 0;             // 0x005833C2
+extern "C" int dword_D8E488 = 0;             // 0x00D8E488
+extern "C" int dword_C12B28 = 0;             // 0x00C12B28
+extern "C" int dword_C12B2C = 0;             // 0x00C12B2C
+extern "C" int dword_C12B30 = 0;             // 0x00C12B30
+extern "C" char unk_A3A750[64] = {0};        // 0x00A3A750 - gbMatrix4
+
+extern "C" void __cdecl sub_40C630(void *) {}
+extern "C" void __cdecl sub_40C7D0(void) {}
+extern "C" void __cdecl sub_410430(void *) {}
+extern "C" void __cdecl sub_41F370(void *) {}
+extern "C" void __cdecl sub_4200A0(void *) {}
+extern "C" void __cdecl sub_420110(void *) {}
+extern "C" void __cdecl sub_421A10(int) {}
+extern "C" void __cdecl sub_421C00(int) {}
+extern "C" void __cdecl sub_4220A0(void *) {}
+extern "C" int  __cdecl sub_4234D0(void) { return 0; }
+extern "C" void __cdecl sub_44F5B0(void *) {}
+extern "C" void __cdecl sub_4B6630(int) {}
+extern "C" void __cdecl sub_4B6DF0(int) {}
+extern "C" void __cdecl sub_4B6E20(int) {}
+extern "C" void __cdecl sub_4BE4A0(int) {}
+extern "C" void __cdecl sub_4BFD70(int) {}
+extern "C" void __cdecl sub_4BFDD0(int) {}
+extern "C" void __cdecl sub_4CDBF0(int) {}
+extern "C" void __cdecl sub_4CDC20(int) {}
+extern "C" void __cdecl sub_513120(void *) {}
+extern "C" void __cdecl sub_52B860(int) {}
+extern "C" void __cdecl sub_52F2E0(int) {}
+extern "C" void __cdecl sub_535320(int) {}
+extern "C" void __cdecl sub_53C990(void *) {}
+extern "C" void __cdecl sub_540F60(void *) {}
+extern "C" void __cdecl sub_540FA0(void *) {}
+
+extern "C" int __cdecl PAL3_PrintScreen(void) { return 0; }
+extern "C" void __cdecl UIRenderObj_UIRenderObj(int) {}
