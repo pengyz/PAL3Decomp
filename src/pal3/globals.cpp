@@ -278,8 +278,7 @@ void __cdecl PAL3::DestroyEffectSystem(void) {}
 // === STUB: PAL3::GetCommandLineParam ===
 void __cdecl PAL3::GetCommandLineParam(void) {}
 
-// === STUB: PAL3::Update (0x004055D0) ===
-void __cdecl PAL3::Update(float dt) {}
+// PAL3::Update — 已实现于 src/pal3/gamebase/PAL3.cpp
 
 // === STUB: PAL3::Render (0x00405C00) ===
 void __cdecl PAL3::Render(void) {}
@@ -361,12 +360,12 @@ extern "C" float flt_BFDAA0 = 0.0f;         // 0x00BFDAA0 - 累计时间
 extern "C" float flt_BFDA5C = 0.0f;         // 0x00BFDA5C - 场景累计时间
 extern "C" float flt_BFDA58 = 0.0f;         // 0x00BFDA58 - wolf/ghost 计时
 extern "C" int dword_BFDA6C = 0;             // 0x00BFDA6C - 游戏状态
-extern "C" int dword_BFDA30 = 0;             // 0x00BFDA30
+// dword_BFDA30 — 定义在 PAL3.cpp             // 0x00BFDA30
 extern "C" int dword_C116EC = 0;             // 0x00C116EC - 角色数据
 extern "C" int dword_C1171C = 0;             // 0x00C1171C
 extern "C" int dword_C11754 = 0;             // 0x00C11754
 extern "C" int dword_5833BC = 0;             // 0x005833BC - 标志位
-extern "C" int dword_5833CC = 0;             // 0x005833CC
+// dword_5833CC — 定义在 PAL3.cpp             // 0x005833CC
 extern "C" char byte_5833D0 = 0;             // 0x005833D0
 extern "C" char byte_C11748 = 0;             // 0x00C11748
 extern "C" char byte_C11750 = 0;             // 0x00C11750
@@ -374,8 +373,8 @@ extern "C" char byte_C11751 = 0;             // 0x00C11751
 extern "C" char byte_D8C339 = 0;             // 0x00D8C339
 extern "C" char byte_D924E8 = 0;             // 0x00D924E8
 extern "C" short word_8ACCD8 = 0;            // 0x008ACCD8 - 按键映射表起始
-extern "C" short word_8ACD2A = 0;            // 0x008ACD2A - 按键映射表结束
-extern "C" float flt_C0816C = 0.0f;          // 0x00C0816C - 角色位置数组
+// word_8ACD2A — 定义在 PAL3.cpp            // 0x008ACD2A - 按键映射表结束
+// flt_C0816C — 定义在 PAL3.cpp          // 0x00C0816C - 角色位置数组
 extern "C" float flt_C1096C = 0.0f;          // 0x00C1096C - 角色位置数组结束
 
 // PAL3::Update callees - sub_ stubs
@@ -412,13 +411,13 @@ extern "C" void __cdecl sub_53EA60(int) {}
 extern "C" void __cdecl sub_541590(int) {}
 
 // Named method stubs
-class GRPinput_c {
+class GRPinput {
 public:
     void Poll(void);
     void SetMouseAbs(unsigned int time, int btn, int state);
 };
-void GRPinput_c::Poll(void) {}
-void GRPinput_c::SetMouseAbs(unsigned int, int, int) {}
+void GRPinput::Poll(void) {}
+void GRPinput::SetMouseAbs(unsigned int, int, int) {}
 
 extern "C" void __cdecl PAL3_IfHideFightSucceed(int) {}
 extern "C" void __cdecl PAL3_EndHideFight(void) {}

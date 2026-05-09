@@ -22,6 +22,7 @@ class PAL3 {
 public:
     static void __cdecl Create(HINSTANCE hInst);
     static void __cdecl Destroy(void);
+    static void __cdecl Update(float dt);
     static void __cdecl CreateGfxWindow(void);
     static void __cdecl CheckSystemRequire(HINSTANCE hInst);
     static void __cdecl InitGFX(HINSTANCE hInst);
@@ -544,4 +545,356 @@ void __cdecl PAL3::Destroy(void)
 
     FileSysDestory();
     ((CScreenMode *)sub_53DF70())->Restore();
+}
+
+// ========================================================================
+// PAL3::Update
+// Address: 0x004055D0, Size: 1531 bytes
+// static void __cdecl PAL3::Update(float dt)
+// Game main loop update - dispatches by g_nGameState (9 cases)
+// ========================================================================
+
+class GRPinput {
+public:
+    void Poll(void);
+    void SetMouseAbs(unsigned int time, int btn, int state);
+};
+
+extern "C" float flt_BFDAA0;
+extern "C" float flt_BFDA5C;
+extern "C" float flt_BFDA58;
+extern "C" int dword_BFDA6C;
+extern "C" int dword_BFDA30 = 0;
+extern "C" int dword_C116EC;
+extern "C" int dword_C1171C;
+extern "C" int dword_C11754;
+extern "C" int dword_5833BC;
+extern "C" int dword_5833CC = 0;
+extern "C" char byte_5833D0;
+extern "C" char byte_C11748;
+extern "C" char byte_C11750;
+extern "C" char byte_C11751;
+extern "C" char byte_D8C339;
+extern "C" char byte_D924E8;
+extern "C" short word_8ACCD8;
+extern "C" short word_8ACD2A = 0;
+extern "C" float flt_C0816C = 0.0f;
+extern "C" float flt_C1096C;
+extern "C" void *ppvOut;
+extern "C" int dword_A3A6EC;
+extern "C" int dword_A3A6F0;
+extern "C" void *g_pCBSystem;
+extern "C" char byte_BFDA90;
+extern "C" char byte_5833C0;
+
+extern "C" short __cdecl sub_4022C0(void *, unsigned short);
+extern "C" void __cdecl sub_40C230(float);
+extern "C" void __cdecl sub_4105B0(float);
+extern "C" void __cdecl sub_4181E0(int);
+extern "C" void __cdecl sub_41C280(float);
+extern "C" void __cdecl sub_41D9A0(float);
+extern "C" void __cdecl sub_41EB80(void);
+extern "C" void __cdecl sub_420150(float);
+extern "C" int  __cdecl sub_421C40(int);
+extern "C" int  __cdecl sub_4226F0(void);
+extern "C" void __cdecl sub_422E40(float);
+extern "C" void __cdecl sub_423540(void);
+extern "C" int  __cdecl sub_44F4C0(int, int);
+extern "C" void __cdecl sub_44F610(int);
+extern "C" int  __cdecl sub_44FF60(void *);
+extern "C" void __cdecl sub_4BE460(int);
+extern "C" void __cdecl sub_4BE590(void);
+extern "C" int  __cdecl sub_4BFD20(void);
+extern "C" void __cdecl sub_4C0200(float);
+extern "C" void __cdecl sub_4C5BB0(float);
+extern "C" void __cdecl sub_4CDB70(float);
+extern "C" void __cdecl sub_513060(float, int);
+extern "C" void __cdecl sub_52B900(float);
+extern "C" void __cdecl sub_52F350(float);
+extern "C" void __cdecl sub_5353A0(float);
+extern "C" int  __cdecl sub_53CDD0(int);
+extern "C" void __cdecl sub_53D150(void);
+extern "C" void __cdecl sub_53D1A0(int, int);
+extern "C" int  __cdecl sub_53DF70(void);
+extern "C" void __cdecl sub_53E490(int);
+extern "C" int  __cdecl sub_53E500(int);
+extern "C" void __cdecl sub_53E950(int);
+extern "C" void __cdecl sub_53EA60(int);
+extern "C" int  __cdecl sub_5415F0(void);
+extern "C" void __cdecl sub_541590(int);
+
+extern "C" void __cdecl PAL3_IfHideFightSucceed(int);
+extern "C" void __cdecl PAL3_EndHideFight(void);
+extern "C" void __cdecl PAL3_EndWolf(int);
+extern "C" int  __cdecl PAL3_EntryCatchGhost(int);
+extern "C" void __cdecl PalScriptMgr_RunSceneScript(int);
+extern "C" int  __cdecl PalScriptMgr_Destroy(int, int);
+extern "C" int  __cdecl PalScriptMgr_IfHaveScript(void);
+extern "C" int  __cdecl PalScriptMgr_CON_CloseScript(void);
+extern "C" void __cdecl gbAudioManager_StopSoundStream(void *, int);
+extern "C" float __cdecl gbVec3D_Length(void *);
+
+extern "C" int g_pGfxManager;
+
+void __cdecl PAL3::Update(float a1)
+{
+    int prevState;
+    int curState;
+    int sceneResult;
+    unsigned short *pKey;
+    int btnIdx;
+    short keyState;
+    BOOL pressed;
+    DWORD curTime;
+    int scriptResult;
+    int audioMgr;
+    int modeResult;
+    float dx, dy, dz;
+    float vec[3];
+
+    flt_BFDAA0 = flt_BFDAA0 + a1;
+    ((GRPinput *)&ppvOut)->Poll();
+
+    btnIdx = 0;
+    pKey = (unsigned short *)&word_8ACCD8;
+    do
+    {
+        keyState = sub_4022C0((void *)&ppvOut, *pKey);
+        pressed = (keyState == 1 || keyState == 3) ? 1 : 0;
+        curTime = timeGetTime();
+        ((GRPinput *)&ppvOut)->SetMouseAbs(curTime, btnIdx, pressed);
+        ++pKey;
+        ++btnIdx;
+    }
+    while ((int)pKey < (int)&word_8ACD2A);
+
+    prevState = dword_BFDA6C;
+    sceneResult = sub_44F4C0(*(int *)&a1, 1);
+    curState = dword_BFDA6C;
+    if (dword_BFDA6C != prevState)
+    {
+        PAL3_IfHideFightSucceed(prevState);
+        curState = dword_BFDA6C;
+    }
+
+    switch (curState)
+    {
+    case 0:
+    case 1:
+        sub_5415F0();
+        sub_541590(0);
+        break;
+
+    case 2:
+    case 9:
+        flt_BFDA5C = flt_BFDA5C + a1;
+        (*(void (**)(void))(*(int *)dword_A3A6EC + 20))();
+        (*(void (**)(void))(*(int *)dword_A3A6F0 + 20))();
+        sub_4BFD20();
+        sub_4C0200(a1);
+        PalScriptMgr_RunSceneScript(*(int *)&a1);
+        if (byte_D8C339)
+        {
+            byte_D8C339 = 0;
+            PalScriptMgr_RunSceneScript(*(int *)&a1);
+        }
+        sub_41C280(a1);
+        if (dword_BFDA6C != 9)
+        {
+            if (sceneResult)
+            {
+                sub_5415F0();
+                sub_541590(0);
+            }
+            else
+            {
+                sub_41D9A0(a1);
+            }
+            sub_40C230(a1);
+        }
+        sub_4226F0();
+        sub_420150(a1);
+        sub_422E40(a1);
+        sub_4CDB70(flt_BFDA5C);
+        sub_41EB80();
+        modeResult = sub_53DF70();
+        sub_53E490(modeResult);
+        if (dword_BFDA6C != 2 && dword_BFDA6C != 9)
+            PAL3_IfHideFightSucceed(prevState);
+        break;
+
+    case 3:
+        sub_513060(a1, 0);
+        sub_4C5BB0(a1);
+        modeResult = sub_53DF70();
+        sub_53E490(modeResult);
+        if (!*(char *)((int)g_pCBSystem + 116))
+            break;
+        if (byte_BFDA90)
+        {
+            PAL3::GetCommandLineParam();
+            sub_513060(0.0f, 0);
+            sub_4C5BB0(0.0f);
+            goto LABEL_59;
+        }
+        byte_5833D0 = (*(int *)((int)g_pCBSystem + 124) == 2);
+        modeResult = sub_44FF60(&g_GameData);
+        sub_44F610(modeResult);
+        sub_423540();
+        if ((dword_5833BC & 4) == 0)
+            goto LABEL_54;
+        audioMgr = sub_53E500(sub_53DF70());
+        if (!audioMgr)
+            goto LABEL_54;
+        if (byte_C11751)
+        {
+            if (*(char *)(sub_53DF70() + 4))
+                goto LABEL_54;
+            goto LABEL_51;
+        }
+        gbAudioManager_StopSoundStream((void *)audioMgr, 1);
+        gbAudioManager_StopSoundStream((void *)audioMgr, 0);
+        if (!*(char *)(sub_53DF70() + 4))
+        {
+LABEL_51:
+            gbAudioManager_StopSoundStream((void *)audioMgr, 2);
+            gbAudioManager_StopSoundStream((void *)audioMgr, 1);
+            sub_53E950(sub_53DF70());
+            goto LABEL_54;
+        }
+        sub_53EA60(sub_53DF70());
+LABEL_54:
+        if (byte_5833D0 || !dword_5833CC)
+        {
+            if (dword_C11754)
+                *(int *)(dword_C11754 + 632) = 0;
+        }
+        else
+        {
+            sub_44F610(15);
+            PalScriptMgr_IfHaveScript();
+        }
+LABEL_59:
+        byte_C11748 = 0;
+        byte_C11750 = 0;
+        dword_C1171C = 0x7FFFFFFF;
+        dword_5833CC = 1;
+        break;
+
+    case 4:
+        sub_5415F0();
+        sub_541590(0);
+        sub_52B900(a1);
+        break;
+
+    case 5:
+        sub_5415F0();
+        sub_541590(0);
+        sub_52F350(a1);
+        sub_4105B0(a1);
+        break;
+
+    case 6:
+        sub_5415F0();
+        sub_541590(0);
+        sub_5353A0(a1);
+        sub_4105B0(a1);
+        break;
+
+    case 7:
+        flt_BFDA58 = flt_BFDA58 + a1;
+        if (dword_BFDA30)
+        {
+            if (!PalScriptMgr_CON_CloseScript())
+            {
+                byte_D924E8 = 1;
+                sub_44F610(4);
+            }
+        }
+        else if (flt_BFDA58 >= 60.0f)
+        {
+            PAL3_EndWolf(-1);
+            break;
+        }
+        PalScriptMgr_RunSceneScript(*(int *)&a1);
+        sub_41C280(a1);
+        sub_40C230(a1);
+        sub_4226F0();
+        sub_420150(a1);
+        sub_422E40(a1);
+        if (!dword_BFDA30)
+        {
+            if (!sceneResult)
+                sub_41D9A0(a1);
+            {
+                float *pRolePos = (float *)dword_C116EC;
+                int roleIdx = 1;
+                float *pCheck = &flt_C0816C;
+                while (1)
+                {
+                    if (*(int *)((char *)pCheck + 620))
+                    {
+                        vec[0] = pRolePos[1] - *(pCheck - 2);
+                        vec[1] = pRolePos[2] - *(pCheck - 1);
+                        vec[2] = pRolePos[3] - *pCheck;
+                        if (12.0f + 12.0f > gbVec3D_Length(vec))
+                        {
+                            PAL3_EndWolf(roleIdx);
+                            goto DONE;
+                        }
+                    }
+                    pCheck += 2176;
+                    ++roleIdx;
+                    if ((int)pCheck >= (int)&flt_C1096C)
+                        break;
+                }
+            }
+        }
+        break;
+
+    case 8:
+        if (PAL3_EntryCatchGhost(0))
+        {
+            PAL3_EndHideFight();
+            sub_4181E0(dword_C116EC);
+            scriptResult = PalScriptMgr_Destroy(1701, 0);
+            goto LABEL_33;
+        }
+        flt_BFDA58 = flt_BFDA58 + a1;
+        if (flt_BFDA58 >= 180.0f)
+            goto LABEL_32;
+        PalScriptMgr_RunSceneScript(*(int *)&a1);
+        sub_41C280(a1);
+        sub_40C230(a1);
+        sub_4226F0();
+        sub_420150(a1);
+        sub_422E40(a1);
+        if (!sceneResult)
+            sub_41D9A0(a1);
+        sub_41EB80();
+        if (*(int *)(dword_C116EC + 1264) != 4)
+        {
+            if (sub_421C40(sub_4226F0()))
+            {
+LABEL_32:
+                sub_4181E0(dword_C116EC);
+                PAL3_EndHideFight();
+                scriptResult = PalScriptMgr_Destroy(1702, 0);
+LABEL_33:
+                sub_53D150();
+                sub_53D1A0(0, scriptResult);
+                PalScriptMgr_RunSceneScript(*(int *)&a1);
+            }
+        }
+        break;
+
+    default:
+        break;
+    }
+
+DONE:
+    sub_4BE590();
+    sub_4BE460(*(int *)&a1);
+    if (!dword_BFDA6C)
+        sub_53CDD0(1);
 }

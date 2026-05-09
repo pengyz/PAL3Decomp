@@ -1,21 +1,20 @@
 {
   "iteration": 2,
   "timestamp_start": "2026-05-09T22:00:42",
-  "timestamp_end": "2026-05-09T22:03:26",
-  "duration_minutes": 15,
+  "timestamp_end": "2026-05-09T22:21:42",
+  "duration_minutes": 25,
   "function": {
     "name": "PAL3::Update",
     "address": "0x004055D0",
     "size": 1531,
     "status": "wip",
-    "match_rate": 0,
-    "compiled_size": 0,
-    "note": "Stub body only. 1531B with switch(9 cases), 36 callees, thiscall+vtable. Registered all 31 new BFS nodes."
+    "match_rate": 0.449,
+    "compiled_size": 1420
   },
   "exe_size": {
     "before": 16384,
-    "after": 16384,
-    "delta": 0
+    "after": 20480,
+    "delta": 4096
   },
   "bfs_nodes": {
     "before": 56,
@@ -23,19 +22,15 @@
     "added_count": 31
   },
   "frontier": {
-    "before": 46,
+    "before": 47,
     "after": 76
   },
   "changes": [
     {
-      "action": "registered",
-      "description": "31 new stub nodes for Update callees",
-      "result": "pass"
-    },
-    {
-      "action": "globals",
-      "description": "20 new global variables + 31 stub functions in globals.cpp",
-      "result": "pass"
+      "action": "implemented",
+      "function": "PAL3::Update",
+      "result": "wip",
+      "note": "44.9%, 1420/1531B. Calling convention mismatches (thiscall vs cdecl for GRPinput, gbVec3D, vtable calls)."
     }
   ]
 }
