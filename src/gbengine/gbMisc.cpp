@@ -477,7 +477,7 @@ void gbPopErrorBox(char* fmt, ...)
     MessageBoxA(NULL, buffer, "Error", MB_OK | MB_ICONERROR);
 }
 
-void gbReportError(const char* fmt, ...)
+void gbReportError(char* fmt, ...)
 {
     char buffer[1024];
     va_list args;

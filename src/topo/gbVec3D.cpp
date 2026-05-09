@@ -12,6 +12,7 @@
 
 // MSVC 6.0 uses 0.005 as the epsilon threshold
 // Stored as a double constant at 0x100120f8 in topo.dll
+#undef GB_FLOAT_EPSILON
 #define GB_FLOAT_EPSILON 0.005
 
 // ============================================================================
@@ -92,8 +93,11 @@ gbVec3D::gbVec3D(float _x, float _y, float _z)
 // 0x100018C0  `default constructor closure'  (11 bytes)
 // public: void __thiscall gbVec3D::`default constructor closure'(void)
 //
-// Compiler-generated default constructor. Zeros all members.
+// Compiler-generated default constructor closure. Zeros all members.
 // Mangled: ??_FgbVec3D@@QAEXXZ
+//
+// VC6 emits ??_F when a struct with user-defined ctor is used with array-new.
+// The closure is ICF'd with the regular default constructor ??0.
 // ============================================================================
 gbVec3D::gbVec3D(void)
 {
@@ -101,6 +105,7 @@ gbVec3D::gbVec3D(void)
     y = 0.0f;
     z = 0.0f;
 }
+
 
 // ============================================================================
 // 0x10001490  operator=  (20 bytes)

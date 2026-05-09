@@ -68,11 +68,8 @@
 #include "pal3.h"
 #include <string.h>
 
-// CRT and Memory allocation functions
-extern void *operator new(unsigned int size);
-extern void operator delete(void *p);
-extern "C" void *malloc(unsigned int size);
-extern "C" void free(void *p);
+// CRT functions (provided by LIBCMT.LIB)
+#include <malloc.h>
 
 // FUN_10009c7b: operator delete wrapper (简化实现)
 void __cdecl operator_delete_wrapper(void *p)

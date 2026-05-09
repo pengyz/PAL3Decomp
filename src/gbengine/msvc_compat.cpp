@@ -1,25 +1,6 @@
-#include "gbengine/gbMesh.h"
-
-// gbMesh methods - declared in header but bodies were missing
-gbMesh::gbMesh(gbGfxManager* gfxMgr) : gbBaseMesh(gfxMgr) {
-    m_field78 = 0;
-    m_pVertBubbles = NULL;
-    m_pFrameTimes = NULL;
-    m_numVertFrames = 0;
-    m_pLODKeys = NULL;
-}
-
-gbMesh::~gbMesh() {
-    if (m_pVertBubbles) { free(m_pVertBubbles); m_pVertBubbles = NULL; }
-    if (m_pFrameTimes) { free(m_pFrameTimes); m_pFrameTimes = NULL; }
-    if (m_pLODKeys) { free(m_pLODKeys); m_pLODKeys = NULL; }
-}
-
-void gbMesh::DrawSubSet(int index, gbRenderInfoObj* renderInfo) {}
-void gbMesh::ComputeShadowVolume() {}
-void gbMesh::RenderShadowVolume(gbVisNode* visNode, gbRenderInfoObj* renderInfo) {}
-
 #if _MSC_VER >= 1900
+
+#include "gbengine/gbMesh.h"
 
 // Modern MSVC compatibility stubs for VC6-era CRT symbols
 

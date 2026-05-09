@@ -786,3 +786,85 @@ void gbMatrix4::MakeMatrix(gbVec3D &forward, gbVec3D &up, gbVec3D &pos)
     m[3][2] = pos.z;
     m[3][3] = 1.0f;
 }
+
+// ============================================================================
+// 0x10001140  operator*= (float const *)  (ICF with operator*=(gbMatrix4 const &))
+// public: void __thiscall gbMatrix4::operator*=(float const *)
+// ============================================================================
+void gbMatrix4::operator*=(const float *pFloats)
+{
+    float temp[16];
+    float *pSrc = (float *)this;
+    float *pDst = temp;
+    int i;
+
+    for (i = 16; i != 0; i--) {
+        *pDst = *pSrc;
+        pSrc++;
+        pDst++;
+    }
+
+    float *pOther = (float *)pFloats;
+    int row = 4;
+    do {
+        float *pTemp = temp;
+        float *pResult = (float *)this + (pOther - (float *)pFloats);
+        int col = 4;
+        do {
+            *pResult = 0.0f;
+            float *pB = pOther;
+            float *pA = pTemp;
+            int k = 4;
+            do {
+                float a = *pB;
+                float b = *pA;
+                pA += 4;
+                pB++;
+                k--;
+                *pResult = a * b + *pResult;
+            } while (k != 0);
+            pResult++;
+            pTemp++;
+            col--;
+        } while (col != 0);
+        pOther += 4;
+        row--;
+    } while (row != 0);
+}
+
+// ============================================================================
+// 0x10001F20  LeftMultiply(gbQuaternion)  (ICF with operator*=(gbQuaternion))
+// public: void __thiscall gbMatrix4::LeftMultiply(struct gbQuaternion const &)
+// ============================================================================
+void gbMatrix4::LeftMultiply(const gbQuaternion &q)
+{
+    gbMatrix4 tmp;
+    ((gbQuaternion *)&q)->GetMatrix(&tmp);
+    LeftMultiply(tmp);
+}
+
+// ============================================================================
+// 0x10002150  GetRow(gbVec4D)  (24 bytes)
+// public: struct gbVec4D * __thiscall gbMatrix4::GetRow(struct gbVec4D *,int)const
+// ============================================================================
+gbVec4D *gbMatrix4::GetRow(gbVec4D *out, int row) const
+{
+    out->x = m[row][0];
+    out->y = m[row][1];
+    out->z = m[row][2];
+    out->w = m[row][3];
+    return out;
+}
+
+// ============================================================================
+// 0x10002180  GetColumn(gbVec4D)  (30 bytes)
+// public: struct gbVec4D * __thiscall gbMatrix4::GetColumn(struct gbVec4D *,int)const
+// ============================================================================
+gbVec4D *gbMatrix4::GetColumn(gbVec4D *out, int col) const
+{
+    out->x = m[0][col];
+    out->y = m[1][col];
+    out->z = m[2][col];
+    out->w = m[3][col];
+    return out;
+}

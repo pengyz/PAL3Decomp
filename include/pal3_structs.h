@@ -129,6 +129,10 @@ enum gbAxis {
 // Forward declarations
 struct gbMatrix4;
 
+struct gbVec4D {
+    float x, y, z, w;
+};
+
 struct gbVec3D {
     float x;
     float y;
@@ -188,9 +192,9 @@ struct gbQuaternion {
 
     // Properties
     int IsNormal(void);
-    bool IsValid(void) const;
-    bool IsUnit(void) const;
-    float Magnitude(void);
+    const bool IsValid(void) const;
+    const bool IsUnit(void) const;
+    const float Magnitude(void);
     float Normalize(void);
 };
 
@@ -209,8 +213,8 @@ struct gbRotMatrix {
     void LoadIdentity(void);
 
     // Validation
-    bool IsValid(void);
-    bool IsOrthonormal(void);
+    const bool IsValid(void);
+    const bool IsOrthonormal(void);
 };
 
 struct gbMatrix4 {
@@ -231,6 +235,7 @@ struct gbMatrix4 {
     void operator=(const gbMatrix4 &other);
     void operator*=(const gbMatrix4 &param);
     void operator*=(const gbQuaternion &q);
+    void operator*=(const float *pFloats);
     float operator()(int row, int col);
 
     // Matrix operations
@@ -244,6 +249,7 @@ struct gbMatrix4 {
     void RightMultiply(const gbMatrix4 &param);
     void RightMultiply(const gbQuaternion &q);
     void LeftMultiply(const gbMatrix4 &param);
+    void LeftMultiply(const gbQuaternion &q);
 
     // Transformation
     void Transform(const gbVec3D *in, gbVec3D *out) const;
@@ -270,6 +276,8 @@ struct gbMatrix4 {
     // Accessors
     gbVec3D *GetRow(gbVec3D *out, int row) const;
     gbVec3D *GetColumn(gbVec3D *out, int col) const;
+    gbVec4D *GetRow(gbVec4D *out, int row) const;
+    gbVec4D *GetColumn(gbVec4D *out, int col) const;
     float *GetRow(float *out, int row) const;
     float *GetColumn(float *out, int col) const;
 
@@ -282,7 +290,8 @@ struct gbMatrix4 {
     bool IsOrthonormal() const;
 };
 
-struct gbMatrixStack {
+class gbMatrixStack {
+public:
     struct gbMatrix4 *pStack;   /* +0x00: pointer to array of gbMatrix4 */
     int maxDepth;               /* +0x04: maximum stack depth */
     int curDepth;               /* +0x08: current stack index */
@@ -310,6 +319,7 @@ struct gbMatrixStack {
 
     // Accessor
     gbMatrix4 *GetTop(void);
+    int GetDepth(void);
 };
 /* sizeof = 0x10 */
 

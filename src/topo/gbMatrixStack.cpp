@@ -19,9 +19,6 @@
 #include "pal3.h"
 #include <string.h>
 
-// Memory allocation functions
-extern void *operator new(unsigned int size);
-extern void operator delete(void *p);
 
 // ============================================================================
 // 0x10002D50  gbMatrixStack(int)  (139 bytes)
@@ -220,4 +217,13 @@ void gbMatrixStack::Scale(float sx, float sy, float sz)
 gbMatrix4 *gbMatrixStack::GetTop(void)
 {
     return &pStack[curDepth];
+}
+
+// ============================================================================
+// 0x10001A20  GetDepth  (5 bytes)
+// public: int __thiscall gbMatrixStack::GetDepth(void)
+// ============================================================================
+int gbMatrixStack::GetDepth(void)
+{
+    return curDepth;
 }

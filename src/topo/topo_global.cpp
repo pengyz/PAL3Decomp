@@ -26,10 +26,6 @@ static ITopoGeom *g_pTopoGeom = NULL;  // 0x10017f08
 // Internal initialization (thiscall) - implemented in topo_internal.cpp
 extern int __fastcall TopoGeom_Init(void *pThis, int edx, int *pDesc);
 
-// Memory allocation functions
-extern void *operator new(unsigned int size);
-extern void operator delete(void *p);
-
 // ============================================================================
 // 0x100034A0  GetTopoVersion  (8 bytes)
 // int __stdcall FUN_100034a0(void)

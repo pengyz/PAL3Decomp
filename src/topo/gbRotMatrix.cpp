@@ -16,6 +16,7 @@
 #include <math.h>
 #include <string.h>
 
+#undef GB_FLOAT_EPSILON
 #define GB_FLOAT_EPSILON 0.005
 
 // ============================================================================
@@ -132,7 +133,7 @@ void gbRotMatrix::LoadIdentity(void)
 // Returns false if this==NULL or any element squared is negative (NaN check).
 // Loops over all 9 floats.
 // ============================================================================
-bool gbRotMatrix::IsValid(void)
+const bool gbRotMatrix::IsValid(void)
 {
     if (this == NULL) return false;
     float *p = (float *)this;
@@ -157,7 +158,7 @@ bool gbRotMatrix::IsValid(void)
 // 3. Computing cross = col_x x col_y, normalizing it
 // 4. Checking if cross ≈ ±col_z (within epsilon)
 // ============================================================================
-bool gbRotMatrix::IsOrthonormal(void)
+const bool gbRotMatrix::IsOrthonormal(void)
 {
     gbVec3D col_x, col_y, cross, col_z;
 

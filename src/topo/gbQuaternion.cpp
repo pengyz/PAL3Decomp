@@ -129,7 +129,7 @@ void gbQuaternion::GetAxisAngle(gbVec3D *axis, float *angle)
 //
 // NaN check: each component squared must be >= 0.
 // ============================================================================
-bool gbQuaternion::IsValid(void) const
+const bool gbQuaternion::IsValid(void) const
 {
     if (this == NULL) return false;
     if (x * x < 0.0f) return false;
@@ -145,7 +145,7 @@ bool gbQuaternion::IsValid(void) const
 //
 // Checks if the quaternion length^2 is within [0.995, 1.005).
 // ============================================================================
-bool gbQuaternion::IsUnit(void) const
+const bool gbQuaternion::IsUnit(void) const
 {
     float lenSq = x * x + y * y + z * z + w * w;
     if (lenSq < 1.005 && lenSq > 0.995) {
@@ -379,7 +379,7 @@ void gbQuaternion::MultiplyBy(gbQuaternion *other, gbQuaternion *result)
 // Returns the squared magnitude (x^2 + y^2 + z^2 + w^2).
 // Note: Despite the name, this returns length^2, not length.
 // ============================================================================
-float gbQuaternion::Magnitude(void)
+const float gbQuaternion::Magnitude(void)
 {
     return x * x + y * y + z * z + w * w;
 }

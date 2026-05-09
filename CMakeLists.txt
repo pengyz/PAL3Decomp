@@ -7,8 +7,11 @@ project(PAL3Decomp C CXX)
 #
 # Build target selection:
 #   cmake -B build -DBUILD_TARGET=topo      (topo.dll - requires VC6)
-#   cmake -B build -DBUILD_TARGET=gbengine  (gbengine.dll - requires VC6)
+#   cmake -B build -DBUILD_TARGET=gbengine  (gbengine.dll + topo.dll - requires VC6)
 #   cmake -B build -DBUILD_TARGET=pal3      (PAL3.exe - requires VS2003/VC7.0)
+#   cmake -B build -DBUILD_TARGET=pal3a     (PAL3A.exe)
+#
+# Dependency graph: gbengine.dll → topo.dll (auto-built as dependency)
 #
 # Or use the provided build.bat script for easier configuration.
 
@@ -70,8 +73,11 @@ if(WIN32)
     )
 endif()
 
-# Source file collections based on build target
-if(BUILD_TARGET STREQUAL "topo")
+# ========================================================================
+# topo.dll — 数学库 (gbengine.dll 的依赖)
+# 当 BUILD_TARGET=topo 或 BUILD_TARGET=gbengine 时构建
+# ========================================================================
+if(BUILD_TARGET STREQUAL "topo" OR BUILD_TARGET STREQUAL "gbengine")
     message(STATUS "Configuring topo.dll build")
     file(GLOB TOPO_SOURCES "src/topo/*.cpp" "src/topo/*.c")
 
@@ -84,18 +90,48 @@ if(BUILD_TARGET STREQUAL "topo")
             SUFFIX ".dll"
         )
 
-        # Generate assembly listings for comparison
-        if(MSVC)
+        # Apply VC6 optimization flags
+        target_compile_options(topo PRIVATE ${TOPO_GBENGINE_COMPILE_FLAGS} /Zp4)
+
+        # Use .def file for exports (matching original DLL export table)
+        if(MSVC_VERSION EQUAL 1200)
+            set_target_properties(topo PROPERTIES
+                LINK_FLAGS "/DEF:\"${CMAKE_SOURCE_DIR}/lib/topo.def\" /MAP:\"${CMAKE_BINARY_DIR}/topo.map\""
+            )
+        else()
+            set_target_properties(topo PROPERTIES
+                LINK_FLAGS "/DEF:\"${CMAKE_SOURCE_DIR}/lib/topo.def\" /SAFESEH:NO /MAP:\"${CMAKE_BINARY_DIR}/topo.map\""
+            )
+        endif()
+
+        # Link libraries
+        target_link_libraries(topo
+            "${CMAKE_SOURCE_DIR}/tools/vc6/Lib/LIBCMT.LIB"
+            kernel32.lib
+        )
+
+        # Modern MSVC needs vcruntime
+        if(MSVC_VERSION GREATER_EQUAL 1900)
+            target_link_libraries(topo vcruntime.lib ucrt.lib)
+            target_link_options(topo PRIVATE /FORCE:MULTIPLE)
+        endif()
+
+        # Generate assembly listings for topo-only build
+        if(BUILD_TARGET STREQUAL "topo" AND MSVC)
             file(MAKE_DIRECTORY ${CMAKE_BINARY_DIR}/asm)
             target_compile_options(topo PRIVATE /FAcs /Fa${CMAKE_BINARY_DIR}/asm/)
         endif()
 
-        message(STATUS "topo.dll: ${TOPO_SOURCES} (${CMAKE_CURRENT_LIST_FILE})")
+        message(STATUS "topo.dll: ${TOPO_SOURCES}")
     else()
         message(WARNING "No source files found in src/topo/")
     endif()
+endif()
 
-elseif(BUILD_TARGET STREQUAL "gbengine")
+# ========================================================================
+# gbengine.dll — 引擎核心 (依赖 topo.dll)
+# ========================================================================
+if(BUILD_TARGET STREQUAL "gbengine")
     message(STATUS "Configuring gbengine.dll build")
     file(GLOB_RECURSE GBENGINE_SOURCES "src/gbengine/*.cpp" "src/gbengine/*.c")
 
@@ -110,15 +146,15 @@ elseif(BUILD_TARGET STREQUAL "gbengine")
             SUFFIX ".dll"
         )
 
-        # Link DirectX and other dependencies
+        # Link dependencies — topo 来自构建产物，不再用预构建的 lib/topo.lib
         target_link_libraries(gbengine ${PLATFORM_LIBS}
+            topo
             "${CMAKE_SOURCE_DIR}/tools/vc6/Lib/LIBCMT.LIB"
             "${CMAKE_SOURCE_DIR}/tools/vc6/Lib/d3d9.lib"
             "${CMAKE_SOURCE_DIR}/tools/vc6/Lib/d3dx9.lib"
             "${CMAKE_SOURCE_DIR}/tools/vc6/Lib/dinput8.lib"
             "${CMAKE_SOURCE_DIR}/tools/vc6/Lib/mss32.lib"
             "${CMAKE_SOURCE_DIR}/lib/ijl15.lib"
-            "${CMAKE_SOURCE_DIR}/lib/topo.lib"
         )
 
         # Modern MSVC needs vcruntime for __CxxFrameHandler3/__ftol2 etc.
@@ -129,20 +165,29 @@ elseif(BUILD_TARGET STREQUAL "gbengine")
         endif()
 
         # Use .def file for exports (matching original DLL export table)
-        # Note: /SAFESEH not supported by VC6 link.exe
-        set_target_properties(gbengine PROPERTIES
-            LINK_FLAGS "/DEF:\"${CMAKE_SOURCE_DIR}/src/gbengine/gbengine.def\" /SAFESEH:NO /MAP:\"${CMAKE_BINARY_DIR}/gbengine.map\""
-        )
+        if(MSVC_VERSION EQUAL 1200)
+            set_target_properties(gbengine PROPERTIES
+                LINK_FLAGS "/DEF:\"${CMAKE_SOURCE_DIR}/src/gbengine/gbengine.def\" /BASE:0x10000000 /MAP:\"${CMAKE_BINARY_DIR}/gbengine.map\""
+            )
+        else()
+            set_target_properties(gbengine PROPERTIES
+                LINK_FLAGS "/DEF:\"${CMAKE_SOURCE_DIR}/src/gbengine/gbengine.def\" /BASE:0x10000000 /SAFESEH:NO /MAP:\"${CMAKE_BINARY_DIR}/gbengine.map\""
+            )
+        endif()
 
         # Apply VC6 optimization flags
         target_compile_options(gbengine PRIVATE ${TOPO_GBENGINE_COMPILE_FLAGS})
 
-        message(STATUS "gbengine.dll: ${CMAKE_CURRENT_LIST_FILE} source files")
+        message(STATUS "gbengine.dll: depends on topo.dll (from build)")
     else()
         message(WARNING "No source files found in src/gbengine/")
     endif()
+endif()
 
-elseif(BUILD_TARGET STREQUAL "pal3")
+# ========================================================================
+# PAL3.exe / PAL3A.exe — 游戏可执行文件
+# ========================================================================
+if(BUILD_TARGET STREQUAL "pal3")
     message(STATUS "Configuring PAL3.exe build")
 
     # Explicit source file list for PAL3.exe
@@ -191,8 +236,9 @@ elseif(BUILD_TARGET STREQUAL "pal3")
     else()
         message(WARNING "No source files found in src/pal3/")
     endif()
+endif()
 
-elseif(BUILD_TARGET STREQUAL "pal3a")
+if(BUILD_TARGET STREQUAL "pal3a")
     message(STATUS "Configuring PAL3A.exe build")
 
     file(GLOB_RECURSE PAL3A_SOURCES "src/pal3a/*.cpp" "src/pal3a/*.c")
@@ -231,8 +277,11 @@ elseif(BUILD_TARGET STREQUAL "pal3a")
     else()
         message(WARNING "No source files found in src/pal3a/")
     endif()
+endif()
 
-else()
+# Validate BUILD_TARGET
+set(_VALID_TARGETS topo gbengine pal3 pal3a)
+if(NOT BUILD_TARGET IN_LIST _VALID_TARGETS)
     message(FATAL_ERROR "Invalid BUILD_TARGET: ${BUILD_TARGET}. Must be 'topo', 'gbengine', 'pal3', or 'pal3a'")
 endif()
 

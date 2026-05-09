@@ -90,7 +90,7 @@ void AILCALL AIL_mem_free_lock(void* ptr);
 
 // External functions (from gbResManager.cpp)
 extern unsigned int gbCrc32Compute(const char* str);
-extern void gbReportError(const char* fmt, ...);
+extern void gbReportError(char* fmt, ...);
 
 // gbResManagerStub method implementations
 void gbResManagerStub::Init() {

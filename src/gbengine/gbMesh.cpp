@@ -681,6 +681,55 @@ gbVertexBubble* gbStaticMesh::GetVertBubble() {
 
 /* ======== gbMesh ======== */
 
+gbMesh::gbMesh(gbGfxManager* gfxMgr) : gbBaseMesh(gfxMgr) {
+    m_field78 = 0;
+    m_pVertBubbles = NULL;
+    m_pFrameTimes = NULL;
+    m_numVertFrames = 0;
+    m_pLODKeys = NULL;
+}
+
+gbMesh::~gbMesh() {
+    if (m_pVertBubbles) {
+        for (int i = 0; i < m_numVertFrames; i++) {
+            if (m_pVertBubbles[i])
+                free(m_pVertBubbles[i]);
+        }
+        free(m_pVertBubbles);
+        m_pVertBubbles = NULL;
+    }
+    if (m_pFrameTimes) { free(m_pFrameTimes); m_pFrameTimes = NULL; }
+    if (m_pLODKeys) { free(m_pLODKeys); m_pLODKeys = NULL; }
+}
+
+void gbMesh::DrawSubSet(int index, gbRenderInfoObj* renderInfo) {
+    gbMeshSection* section = &m_sections[index];
+
+    if (section->m_pIndexBubble) {
+        m_pGfxManager->SetMaterial((D3DMATERIAL9*)section->m_material);
+        m_pGfxManager->DrawPrimitive();
+
+        // Use first frame vertex bubble for rendering
+        gbVertexBubble* vb = m_pVertBubbles ? m_pVertBubbles[0] : NULL;
+        if (vb) {
+            SetupMeshLighting(renderInfo, m_pGfxManager, (float*)section->m_material);
+            gbVertexPool* pool = vb->pPool;
+            pool->DrawIndexedPrimitive(
+                vb,
+                section->m_pIndexBubble,
+                renderInfo->sectionIndex,
+                section->m_textures
+            );
+        }
+    }
+}
+
+void gbMesh::ComputeShadowVolume() {
+}
+
+void gbMesh::RenderShadowVolume(gbVisNode* visNode, gbRenderInfoObj* renderInfo) {
+}
+
 // 0x10011C60 - gbMesh::LoadFromFile (3222 bytes)
 int gbMesh::LoadFromFile(gbVFile1* file, float quality) {
     gbVFile* vfile = (gbVFile*)file;
