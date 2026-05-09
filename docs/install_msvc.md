@@ -125,51 +125,10 @@ copy "C:\Program Files\Microsoft Visual Studio\VC98\bin\MSPDB60.DLL" ^
 
 ---
 
-## 安装 Visual Studio .NET 2003
+## ~~安装 Visual Studio .NET 2003~~ (不再需要)
 
-**用途**: 编译 PAL3.exe（二进制精确匹配）
-
-### 下载链接
-
-#### Archive.org
-- 搜索: "Visual Studio .NET 2003"
-- ISO: `en_vs.net_2003_enterprise_architect.iso`
-- 链接: https://archive.org/details/vs2003
-
-#### WinWorld
-- https://winworldpc.com/product/visual-studio-net/2003
-- 选择 Enterprise Architect Edition
-
-### 安装步骤
-
-1. **挂载 ISO**
-   ```batch
-   # 双击挂载，或使用虚拟光驱软件
-   ```
-
-2. **运行安装程序**
-   - 运行 `setup.exe`
-   - 序列号: 见 ISO 内的 README 或使用 MSDN 订阅号
-
-3. **选择组件**
-   - ✅ Visual C++ .NET（必选）
-   - ✅ Visual C# .NET（可选）
-   - ❌ Crystal Reports（跳过）
-   - ❌ Visual SourceSafe（跳过）
-
-4. **安装路径**
-   ```
-   C:\Program Files\Microsoft Visual Studio .NET 2003
-   ```
-
-5. **验证安装**
-   ```batch
-   call "C:\Program Files\Microsoft Visual Studio .NET 2003\Common7\Tools\vsvars32.bat"
-   cl.exe
-   
-   # 应显示:
-   # Microsoft (R) C/C++ Optimizing Compiler Version 13.10.xxxx for 80x86
-   ```
+经 Rich Header @comp.id 验证，PAL3.exe 使用 VC6 SP0 编译，不需要 VS2003。
+所有构建目标统一使用 `tools/compilers/msvc6.0/` (cl.exe 12.00.8168)。
 
 ---
 
@@ -225,8 +184,7 @@ Required Tools:
   [+] Git                            OK
 
 MSVC Details:
-  Version: 12.00.8804 (VC6 SP6)
-  or: 13.10.xxxx (VS2003)
+  Version: 12.00.8168 (VC6 SP0/RTM)
 ```
 
 ---
@@ -234,7 +192,7 @@ MSVC Details:
 ## 常见问题
 
 ### Q: 需要序列号/激活码吗？
-A: VC6 和 VS2003 已停止支持，微软不再执行激活。历史归档中通常包含合法的 MSDN 订阅号。
+A: VC6 已停止支持，微软不再执行激活。历史归档中通常包含合法的 MSDN 订阅号。
 
 ### Q: 可以在虚拟机中使用吗？
 A: 可以！推荐使用 Windows XP/7 虚拟机安装旧版 VC6。

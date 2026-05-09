@@ -1,254 +1,155 @@
 # PAL3 编译器环境配置指南
 
-## 🎯 编译器版本要求（基于 PE 分析）
+## 编译器版本要求（基于 Rich Header @comp.id 验证）
 
 ### 分析结果总结
 
-根据 PE Rich Header 和链接器版本分析：
+通过 PE Rich Header 解析 + @comp.id 逐字节验证确认：
 
-| 目标 | 链接器版本 | 主要编译器 | 次要编译器 | Visual Studio 版本 |
-|------|-----------|-----------|-----------|------------------|
-| **gbengine.dll** | 6.00 | MSVC 6.0 SP6 | - | Visual C++ 6.0 |
-| **topo.dll** | 6.00 | MSVC 6.0 SP6 | - | Visual C++ 6.0 |
-| **PAL3.exe** | 75.24 (7.10.8444) | MSVC 7.0 (C++) | MSVC 6.0 (C) | VS .NET 2003 链接，VC7.0 编译 |
+| 目标 | 编译器 | cl.exe 版本 | @comp.id build | 来源 |
+|------|--------|-------------|----------------|------|
+| **PAL3.exe** | VC6 SP0 (RTM) | 12.00.8168 | 8168 | decomp.me msvc6.0 |
+| **gbengine.dll** | VC6 SP0 (RTM) | 12.00.8168 | 8168 | 同上 |
+| **topo.dll** | VC6 SP0 (RTM) | 12.00.8168 | 8168 | 同上 |
 
 ### PAL3.exe Rich Header 详解
 
 ```
-主力编译器：
-  - MSVC 7.0 (C++)         build 8168  (x198) ← 主要游戏逻辑代码
-  - MSVC 7.0 (C)           build 8168  (x108)
+主力编译器 (prodidUtc12 = VC6 系列):
+  - prodidUtc12_CPP (0x0B)  build 8168  (x198) ← C++ 主要游戏逻辑代码
+  - prodidUtc12_C   (0x0A)  build 8168  (x108) ← C 代码
 
-遗留代码/第三方库：
-  - MSVC 6.0 (C)           build 8447  (x13)  ← 少量 VC6 编译的库
-  - MSVC 6.0 (C)           build 8168  (x3)
+链接器 / 汇编器:
+  - prodidLinker512  (0x13)  build 8034  (x9)
+  - prodidLinker600  (0x04)  build 8447  (x13) + build 8168 (x3)
+  - prodidMasm613    (0x0E)  build 7299  (x31)
+  - prodidMasm614    (0x12)  build 8444  (x6)
 
-链接器：
-  - MSVC 7.1 (Linker)      build 8444  (x6)   ← Visual Studio .NET 2003
-
-StarForce 加壳器：
-  - MSVC 9.0 (C)           build 9210  (x2)   ← 加壳工具本身用 VC9 编译
+StarForce 加壳器添加 (prodidUtc13 = VC7.0 系列):
+  - prodidUtc13_CPP (0x1D)  build 9178  (x26)  ← 加壳器代码
+  - prodidUtc13_C   (0x1C)  build 9178  (x2)
 ```
 
-**结论**：PAL3.exe 主体代码由 **Visual C++ 7.0 (VS .NET 2002)** 编译，使用 **VS .NET 2003 链接器**链接。
+**结论**：PAL3.exe/gbengine.dll/topo.dll 主体代码均由 **Visual C++ 6.0 RTM (SP0)** 编译。
+zhangboyang (PAL3patch) 也独立确认："编译器版本经 rich signature 确定是 VC6 SP0"。
 
 ---
 
-## 📦 需要安装的编译器
+## 需要安装的编译器
 
-### 方案 A：完整编译环境（推荐用于二进制对齐）
+### Visual C++ 6.0 RTM (SP0) — 所有目标统一使用
 
-#### 1. Visual C++ 6.0 SP6 (用于 DLL)
+**用途**: PAL3.exe, gbengine.dll, topo.dll 全部使用此编译器
 
-**用途**: 反编译 `gbengine.dll` 和 `topo.dll`
-
-**下载来源**：
-- 官方 ISO（需 MSDN 订阅或 Archive.org）
-- 文件名：`vc6ent.exe` 或 `vc98ent.iso`
-- **必须安装 Service Pack 6**
-
-**关键编译选项**：
-```batch
-cl.exe /O2 /W3 /GX /c source.cpp
-link.exe /DLL /DEF:exports.def
+**获取方式** (Linux + Wine):
+```bash
+# 已通过 decomp.me Docker registry 下载并安装到:
+# tools/compilers/msvc6.0/
+#
+# 验证:
+source tools/wine_vc6.sh
+vc6_info
 ```
 
-**验证安装**：
-```batch
-cl.exe
-# 应显示：Microsoft (R) 32-bit C/C++ Optimizing Compiler Version 12.00.8804 for 80x86
+**验证版本**：
+```
+CL.EXE 应显示: Microsoft (R) 32-bit C/C++ Optimizing Compiler Version 12.00.8168 for 80x86
 ```
 
-#### 2. Visual Studio .NET 2002 (VC7.0) (用于 PAL3.exe)
+**注意**: 不要使用 SP5/SP6 (12.00.8804)，它产生的 @comp.id build=9782，与原始二进制不匹配。
 
-**用途**: 反编译 `PAL3.exe` 主体代码
+---
 
-**下载来源**：
-- MSDN ISO: `en_vs.net_2002_enterprise_architect.iso`
-- 或使用 VS 2003 + VC7.0 工具集
+## 环境配置 (Linux + Wine)
 
-**编译选项**：
-```batch
-cl.exe /O2 /W3 /GX /EHsc /c source.cpp
+### 快速开始
+
+```bash
+# 编译器已预装在 tools/compilers/msvc6.0/
+# 加载 helper 函数:
+source tools/wine_vc6.sh
+
+# 编译单个文件并对比:
+python tools/pal3_compare.py --compile src/pal3/WinMain.cpp --all
 ```
 
-**验证**：
-```batch
-cl.exe
-# 应显示：Microsoft (R) C/C++ Optimizing Compiler Version 13.00.xxxx for 80x86
+### 目录结构
+
 ```
+tools/compilers/msvc6.0/    ← VC6 RTM (cl 12.00.8168) [用于编译]
+  Bin/CL.EXE, LINK.EXE, C1.DLL, C1XX.DLL, C2.DLL ...
+  Include/                   ← C/C++ 标准头文件
+  ATL/                       ← ATL 头文件
 
-#### 3. Visual Studio .NET 2003 (VC7.1) (用于链接)
-
-**用途**: 最终链接 PAL3.exe（Rich Header 显示使用了 VS2003 链接器）
-
-**下载来源**：
-- MSDN ISO: `en_vs.net_2003_enterprise_architect.iso`
-
-**链接器版本**：
-```batch
-link.exe
-# 应显示：Microsoft (R) Incremental Linker Version 7.10.xxxx
+tools/vc6/                   ← VC6 SP5 旧目录 [仅保留 Lib/ 用于链接]
+  Lib/                       ← 标准库 (libc.lib, msvcrt.lib, etc.)
+  Include/                   ← 不再使用 (SP5 头文件)
 ```
 
 ---
 
-### 方案 B：现代工具链（用于开发/测试，无法二进制对齐）
+## 验证编译器版本
 
-如果只是功能验证而非精确匹配，可以使用：
-
-- **Visual Studio 2022/2019** + `/std:c++98` + `/arch:IA32`
-- 或 **mingw-w64** (GCC) + `-m32 -std=c++98`
-
-**⚠️ 注意**：现代编译器产生的代码 **不会** 与原始二进制字节对齐，仅用于快速迭代。
-
----
-
-## 🛠️ 环境配置步骤
-
-### Step 1: 安装 Visual C++ 6.0
-
-1. 下载 VC6.0 完整安装包
-2. 安装到 `C:\Program Files\Microsoft Visual Studio\VC98`
-3. 下载并安装 **Service Pack 6**：
-   ```
-   Vs6sp6.exe
-   ```
-4. 添加到 PATH（可选）：
-   ```batch
-   set VC6_ROOT=C:\Program Files\Microsoft Visual Studio\VC98
-   set PATH=%VC6_ROOT%\Bin;%PATH%
-   set INCLUDE=%VC6_ROOT%\Include;%VC6_ROOT%\ATL\Include;%VC6_ROOT%\MFC\Include
-   set LIB=%VC6_ROOT%\Lib;%VC6_ROOT%\MFC\Lib
-   ```
-
-### Step 2: 安装 Visual Studio .NET 2003
-
-1. 挂载 ISO 或运行安装程序
-2. 选择 **Visual C++** 组件（必选）
-3. 默认安装路径：`C:\Program Files\Microsoft Visual Studio .NET 2003`
-
-### Step 3: 配置 CMake 环境
-
-在项目中使用 **VC6 命令提示符** 或 **VS2003 命令提示符**：
-
-#### 使用 VC6 编译 topo.dll：
-
-```batch
-cd /d D:\workspace\project-x
-set PATH=C:\Program Files\Microsoft Visual Studio\VC98\Bin;%PATH%
-cmake -B build_topo -S . -G "NMake Makefiles" ^
-  -DCMAKE_C_COMPILER=cl ^
-  -DCMAKE_CXX_COMPILER=cl ^
-  -DCMAKE_BUILD_TYPE=Release
-cd build_topo
-nmake
-```
-
-#### 使用 VS2003 编译 PAL3.exe：
-
-```batch
-cd /d D:\workspace\project-x
-call "C:\Program Files\Microsoft Visual Studio .NET 2003\Common7\Tools\vsvars32.bat"
-cmake -B build_pal3 -G "NMake Makefiles" ^
-  -DCMAKE_C_COMPILER=cl ^
-  -DCMAKE_CXX_COMPILER=cl
-cd build_pal3
-nmake
+```bash
+source tools/wine_vc6.sh
+vc6_info
+# 期望: Version 12.00.8168
 ```
 
 ---
 
-## 🔍 验证编译器版本
+## 编译参数 (PAL3.exe / gbengine.dll / topo.dll 统一)
 
-运行以下脚本确认环境：
+```bash
+# PAL3.exe 编译参数 (推测，需通过字节对比逐步验证):
+CL.EXE /c /O2 /Ob2 /Oi /Ot /Oy /GF /Gy /GX /GR /MD /Gd /W3 \
+       /DNDEBUG /DWIN32 /D_WINDOWS /D_MBCS source.cpp
 
-```python
-# python run.py check
+# gbengine.dll 编译参数:
+CL.EXE /c /O2 /Ob2 /Oi /Ot /Oy /GF /Gy /Zp4 /GX /MD \
+       /DNDEBUG /DWIN32 /D_WINDOWS /D_MBCS source.cpp
 ```
 
-或手动检查：
-
-```batch
-cl.exe 2>&1 | findstr "Version"
-link.exe 2>&1 | findstr "Version"
-```
-
-**期望输出**：
-- VC6: `Version 12.00.8804`
-- VC7.0: `Version 13.00.xxxx`
-- VS2003: `Version 13.10.xxxx`
+注意:
+- `/GX` = VC6 的异常处理 (等效于 VC7+ 的 `/EHsc`)
+- `/GR` = 启用 RTTI
+- `/Oy` = Frame Pointer Omission (FPO)
+- `/Gy` = 函数级链接 (每个函数独立 COMDAT section)
+- gbengine 使用 `/Zp4` (4 字节结构体对齐)
 
 ---
 
-## 📊 编译参数映射
+## 常见问题
 
-### topo.dll / gbengine.dll (VC6)
+### Q: 为什么不用 VC6 SP5/SP6?
 
-```c
-// 原始编译命令（推测）
-cl.exe /O2 /Ob1 /GF /Gy /W3 /GX /DWIN32 /D_WINDOWS /D_MBCS /D_USRDLL /c
-link.exe /DLL /OPT:REF /OPT:ICF
-```
+SP5/SP6 的 c1.dll/c2.dll 内部 build 号为 9782，而原始二进制的 @comp.id 记录的是 8168。
+不同 build 的编译器在指令调度(instruction scheduling)上可能有差异，导致字节不匹配。
 
-**CMake 等效**：
-```cmake
-set(CMAKE_CXX_FLAGS "/O2 /W3 /GX /DWIN32 /D_WINDOWS")
-```
+### Q: 为什么之前文档说 VC7.0/7.1?
 
-### PAL3.exe (VC7.0)
+Rich Header 中 prodID=0x000B (prodidUtc12_CPP) 曾被误解为 "MSVC 7.0"。
+经过 kirschju/richheader 的 prodids.py 数据库核实:
+- prodID 0x000A/0x000B = prodidUtc12_C/CPP = **VC6** (UTC 12.xx = cl 12.xx)
+- prodID 0x001C/0x001D = prodidUtc13_C/CPP = **VC7.0** (UTC 13.xx = cl 13.xx)
 
-```c
-// 原始编译命令（推测）
-cl.exe /O2 /GL /W3 /EHsc /GR /DWIN32 /D_WINDOWS /DNDEBUG /c
-link.exe /LTCG /OPT:REF /OPT:ICF /VERSION:7.10
-```
+PAL3 中 x26 个 prodidUtc13_CPP (build 9178) 对象是 StarForce 加壳器添加的。
 
-**CMake 等效**：
-```cmake
-set(CMAKE_CXX_FLAGS "/O2 /W3 /EHsc /GR /DWIN32 /D_WINDOWS /DNDEBUG")
-set(CMAKE_EXE_LINKER_FLAGS "/LTCG /OPT:REF /OPT:ICF")
-```
+### Q: decomp.me 的 msvc6.0 ~ msvc6.6 分别是什么?
+
+| ID | 推测版本 | cl.exe 版本 |
+|----|----------|-------------|
+| msvc6.0 | VC6 RTM (SP0) | 12.00.8168 ← **我们使用这个** |
+| msvc6.3 | VC6 SP3 | 12.00.8xxx |
+| msvc6.4 | VC6 SP4 | 12.00.8xxx |
+| msvc6.5 | VC6 SP5 | 12.00.8804 |
+| msvc6.5pp | VC6 SP5 + Processor Pack | 12.00.8804 |
+| msvc6.6 | VC6 SP6 | 12.00.8804 |
 
 ---
 
-## ⚠️ 常见问题
+## 参考资料
 
-### Q1: VC6 在 Windows 10/11 上无法安装？
-
-**解决方案**：
-- 使用兼容模式运行安装程序
-- 或使用虚拟机（Windows XP/7）
-- 或使用 Docker（wine）
-
-### Q2: 编译出来的二进制不匹配？
-
-**可能原因**：
-1. 编译器版本不精确（需要 SP6 for VC6）
-2. 优化选项不匹配（检查 `/O2` 细节）
-3. 结构体对齐不一致（检查 `/Zp` 选项）
-4. 浮点运算模式（检查 `/fp:precise` vs `/fp:fast`）
-
-**解决方法**：
-- 使用 `python run.py compare` 逐字节对比
-- 调整 CMake 编译选项
-- 参考 Rich Header 中的精确 build 号
-
-### Q3: 没有 MSDN 订阅怎么办？
-
-合法途径：
-- Archive.org 提供旧版 Visual Studio ISO
-- 微软官方已停止支持，但允许用于教育/研究用途
-
----
-
-## 📚 参考资料
-
-- [MSVC 版本对照表](https://en.wikipedia.org/wiki/Microsoft_Visual_C%2B%2B)
-- [Rich Header 格式文档](https://0xrick.github.io/win-internals/pe8/)
-- [PAL3patch 脱壳工具](https://github.com/zhangboyang/PAL3patch)
-- CMakeLists.txt（本项目根目录）
-
----
-
-**下一步**: 安装完成后，运行 `python run.py check` 验证环境，然后开始编译 `src/topo/` 进行二进制对齐测试。
+- [kirschju/richheader](https://github.com/kirschju/richheader) - Rich Header prodID 数据库
+- [PAL3patch notes](extra/PAL3patch/notes/pal3/notes20170720.txt) - "编译器版本经 rich signature 确定是 VC6 SP0"
+- [decomp.me](https://decomp.me) - 老编译器二进制集合 (Docker registry)

@@ -18,10 +18,10 @@ else
 fi
 SCRIPT_DIR="$(cd "$(dirname "$_WINE_VC6_SCRIPT")" && pwd)"
 PROJECT_ROOT="$(cd "$SCRIPT_DIR/.." && pwd)"
-VC6_ROOT="$PROJECT_ROOT/tools/vc6"
+VC6_ROOT="$PROJECT_ROOT/tools/compilers/msvc6.0"
 VC6_BIN="$VC6_ROOT/Bin"
 VC6_INCLUDE="$VC6_ROOT/Include"
-VC6_LIB="$VC6_ROOT/Lib"
+VC6_LIB="$PROJECT_ROOT/tools/vc6/Lib"
 
 # Convert Unix path to Wine Z: drive path
 to_winpath() {

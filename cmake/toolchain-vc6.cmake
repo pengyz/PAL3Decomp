@@ -1,16 +1,9 @@
-# CMake Toolchain File for VC6 (cl.exe 12.00.8804)
+# CMake Toolchain File for VC6 SP0 (cl.exe 12.00.8168)
 #
 # Supports both Windows (native) and Linux (via Wine wrappers).
 # The Wine wrappers (tools/wine_cl.sh etc.) handle path conversion
 # automatically — CMake passes normal Unix paths and the wrappers
 # translate them to Wine Z: drive format before calling the real .EXE.
-#
-# Usage (Windows - NMake):
-#   cmake -B build/gbengine -G "NMake Makefiles" ^
-#     -DCMAKE_TOOLCHAIN_FILE=cmake/toolchain-vc6.cmake ^
-#     -DBUILD_TARGET=gbengine ^
-#     -DCMAKE_MAKE_PROGRAM=tools/vc6/Bin/NMAKE.EXE
-#   cmake --build build/gbengine
 #
 # Usage (Linux + Wine):
 #   cmake -B build/gbengine -G "Unix Makefiles" \
@@ -22,8 +15,10 @@
 set(CMAKE_SYSTEM_NAME Windows)
 set(CMAKE_SYSTEM_PROCESSOR X86)
 
-# VC6 root: tools/vc6/ contains Bin/, Include/, Lib/
-get_filename_component(VC6_ROOT "${CMAKE_CURRENT_LIST_DIR}/../tools/vc6" ABSOLUTE)
+# VC6 SP0 compiler (RTM, cl 12.00.8168) from decomp.me
+get_filename_component(VC6_ROOT "${CMAKE_CURRENT_LIST_DIR}/../tools/compilers/msvc6.0" ABSOLUTE)
+# Lib directory from tools/vc6 (SP5, lib files are compatible)
+get_filename_component(VC6_LIB_DIR "${CMAKE_CURRENT_LIST_DIR}/../tools/vc6/Lib" ABSOLUTE)
 get_filename_component(TOOLS_DIR "${CMAKE_CURRENT_LIST_DIR}/../tools" ABSOLUTE)
 
 # --------------------------------------------------------------------------
@@ -117,7 +112,7 @@ set(CMAKE_CXX_STANDARD_LIBRARIES "" CACHE STRING "" FORCE)
 # Include and library paths
 # --------------------------------------------------------------------------
 include_directories(SYSTEM "${VC6_ROOT}/Include")
-link_directories("${VC6_ROOT}/Lib")
+link_directories("${VC6_LIB_DIR}")
 set(CMAKE_C_STANDARD_INCLUDE_DIRECTORIES "${VC6_ROOT}/Include")
 set(CMAKE_CXX_STANDARD_INCLUDE_DIRECTORIES "${VC6_ROOT}/Include")
 

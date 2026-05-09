@@ -10,7 +10,7 @@ PAL3.exe 编译对比工具
     python tools/pal3_compare.py --compile src/pal3/WinMain.cpp --all
     python tools/pal3_compare.py --obj build/WinMain.obj --func WinMain --addr 0x00541900 --size 824
 
-编译器: VC7.1 (MSVC 13.10.3077) — 与原始 PAL3.exe 匹配
+编译器: VC6 SP0 (MSVC 12.00.8168) — 与原始 PAL3.exe Rich Header 匹配
 """
 
 import argparse
@@ -24,11 +24,10 @@ from pathlib import Path
 
 PROJECT_ROOT = Path(__file__).parent.parent
 ORIGINAL_EXE = PROJECT_ROOT / "original" / "PAL3.exe"
-VC71_ROOT = PROJECT_ROOT / "tools" / "vc71"
-VC71_BIN = VC71_ROOT / "Bin"
-VC71_INCLUDE = VC71_ROOT / "Include"
-VC71_LIB = VC71_ROOT / "Lib"
-VC71_SDK_INCLUDE = VC71_ROOT / "PlatformSDK" / "Include"
+VC6_ROOT = PROJECT_ROOT / "tools" / "compilers" / "msvc6.0"
+VC6_BIN = VC6_ROOT / "Bin"
+VC6_INCLUDE = VC6_ROOT / "Include"
+VC6_LIB = PROJECT_ROOT / "tools" / "vc6" / "Lib"  # Lib from SP5 (compatible)
 DECOMP_DIR = PROJECT_ROOT / "asm" / "pal3" / "decomp"
 BUILD_DIR = PROJECT_ROOT / "build" / "pal3"
 
@@ -45,7 +44,7 @@ def to_winpath(path):
 
 
 def compile_source(src_path, obj_path=None):
-    """用 VC7.1 编译源文件到 .obj"""
+    """用 VC6 SP0 编译源文件到 .obj"""
     src = Path(src_path).resolve()
     if obj_path is None:
         BUILD_DIR.mkdir(parents=True, exist_ok=True)
@@ -54,17 +53,16 @@ def compile_source(src_path, obj_path=None):
 
     win_src = to_winpath(src)
     win_obj = to_winpath(obj)
-    win_inc = to_winpath(VC71_INCLUDE)
-    win_sdk_inc = to_winpath(VC71_SDK_INCLUDE)
+    win_inc = to_winpath(VC6_INCLUDE)
     win_proj_inc = to_winpath(PROJECT_ROOT / "include")
 
     cmd = [
-        "wine", str(VC71_BIN / "cl.exe"), "/nologo", "/c",
+        "wine", str(VC6_BIN / "CL.EXE"), "/nologo", "/c",
         "/O2", "/Ob2", "/Oi", "/Ot", "/Oy", "/GF", "/Gy",
-        "/EHsc", "/GR", "/MD", "/GS-", "/Gd",
+        "/GX", "/GR", "/MD", "/Gd",
         "/W3",
         "/DNDEBUG", "/DWIN32", "/D_WINDOWS", "/D_MBCS",
-        f"/I{win_inc}", f"/I{win_sdk_inc}", f"/I{win_proj_inc}",
+        f"/I{win_inc}", f"/I{win_proj_inc}",
         f"/Fo{win_obj}",
         f"/FAcs", f"/Fa{to_winpath(BUILD_DIR)}/",
         win_src

@@ -55,20 +55,6 @@ def check_visual_studio():
                 print(f"      Build: {build} ({sp_status})")
                 vs_found.append(("VC6", path, build))
 
-    # Check for VS .NET 2003
-    vs2003_paths = [
-        r"C:\Program Files\Microsoft Visual Studio .NET 2003\Vc7\bin\cl.exe",
-        r"C:\Program Files (x86)\Microsoft Visual Studio .NET 2003\Vc7\bin\cl.exe"
-    ]
-
-    for path in vs2003_paths:
-        if os.path.exists(path):
-            success, output = run_command(f'"{path}" 2>&1')
-            if "Version 13.10" in output:
-                print(f"  {Color.GREEN}[+] Visual Studio .NET 2003{Color.RESET}")
-                print(f"      Path: {path}")
-                vs_found.append(("VS2003", path, "13.10"))
-
     # Check for modern VS using vswhere
     vswhere = r"C:\Program Files (x86)\Microsoft Visual Studio\Installer\vswhere.exe"
     if os.path.exists(vswhere):

@@ -2,7 +2,7 @@
 # Wine wrapper for VC6 LINK.EXE - used by CMake toolchain on Linux
 # Converts Unix paths in arguments to Wine Z: drive format.
 SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
-VC6_BIN="$SCRIPT_DIR/vc6/Bin"
+VC6_BIN="$SCRIPT_DIR/compilers/msvc6.0/Bin"
 export WINEDEBUG=-all
 
 convert_path() {

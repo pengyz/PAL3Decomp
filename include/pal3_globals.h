@@ -5,8 +5,8 @@
  * Source: PAL3patch reverse engineering (zhangboyang)
  *
  * Address format:
- *   0x00XXXXXX - PAL3.exe 内地址
- *   gboffset + 0xXXXXXXXX - GBENGINE.dll 相对偏移
+ *   0x00XXXXXX - PAL3.exe address
+ *   gboffset + 0xXXXXXXXX - GBENGINE.dll relative offset
  */
 
 #ifndef PAL3_GLOBALS_H

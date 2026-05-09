@@ -627,9 +627,9 @@ struct TopoMeshData;
 // TopoFace - Single Face Data (0x30 bytes = 48 bytes)
 // ============================================================================
 struct TopoFace {
-    int indices[3];      // +0x00: 顶点索引 (3 个 int)
-    int adjacency[3][2]; // +0x0C: 邻接信息 (3组，每组2个int)
-    int extra[3];        // +0x24: 额外数据 (3 个 int)
+    int indices[3];      // +0x00: vertex indices (3 ints)
+    int adjacency[3][2]; // +0x0C: adjacency info (3 groups, 2 ints each)
+    int extra[3];        // +0x24: extra data (3 ints)
 };
 /* sizeof = 0x30 */
 
@@ -637,9 +637,9 @@ struct TopoFace {
 // TopoFaceVector - STL-like Vector for TopoFace (12 bytes)
 // ============================================================================
 struct TopoFaceVector {
-    struct TopoFace* pBegin;    // +0x00: 起始指针
-    struct TopoFace* pEnd;      // +0x04: 结束指针 (当前元素尾后)
-    struct TopoFace* pAlloc;    // +0x08: 分配结束指针 (分配的内存尾后)
+    struct TopoFace* pBegin;    // +0x00: begin ptr
+    struct TopoFace* pEnd;      // +0x04: end ptr (past last element)
+    struct TopoFace* pAlloc;    // +0x08: alloc end ptr (past allocated memory)
 
     // Helper methods
     inline int size() const {
@@ -655,19 +655,19 @@ struct TopoFaceVector {
 // TopoMeshData - Mesh Data (0x34 bytes = 52 bytes)
 // ============================================================================
 struct TopoMeshData {
-    void* pVertexBuffer;    // +0x00: 顶点缓冲区指针
-    int vertexStride;       // +0x04: 顶点步长 (字节)
-    int vertexFlags;        // +0x08: 顶点格式标志
-    int field_0C;           // +0x0C: 未知字段
-    int field_10;           // +0x10: 未知字段
-    int field_14;           // +0x14: 未知字段
-    int field_18;           // +0x18: 未知字段
-    int field_1C;           // +0x1C: 未知字段
-    int bufferRowSize;      // +0x20: 缓冲区行大小
-    int vertexCount;        // +0x24: 顶点数量
-    int allocRowCount;      // +0x28: 已分配行数
-    int field_2C;           // +0x2C: 未知字段
-    int field_30;           // +0x30: 未知字段
+    void* pVertexBuffer;    // +0x00: vertex buffer ptr
+    int vertexStride;       // +0x04: vertex stride (bytes)
+    int vertexFlags;        // +0x08: vertex format flags
+    int field_0C;           // +0x0C: unknown
+    int field_10;           // +0x10: unknown
+    int field_14;           // +0x14: unknown
+    int field_18;           // +0x18: unknown
+    int field_1C;           // +0x1C: unknown
+    int bufferRowSize;      // +0x20: buffer row size
+    int vertexCount;        // +0x24: vertex count
+    int allocRowCount;      // +0x28: allocated row count
+    int field_2C;           // +0x2C: unknown
+    int field_30;           // +0x30: unknown
 };
 /* sizeof = 0x34 */
 
@@ -675,10 +675,10 @@ struct TopoMeshData {
 // TopoGeom - Topology Geometry Object (base class)
 // ============================================================================
 struct TopoGeom {
-    void* vtable;                      // +0x00: 虚函数表指针
-    int type;                          // +0x04: 几何类型 (0=Simple, 1=Complex)
-    struct TopoFaceVector faceVector;  // +0x08: 面向量 (内嵌，12字节)
-    struct TopoMeshData* pMeshData;    // +0x14: 网格数据指针
+    void* vtable;                      // +0x00: vtable ptr
+    int type;                          // +0x04: geom type (0=Simple, 1=Complex)
+    struct TopoFaceVector faceVector;  // +0x08: face vector (12 bytes)
+    struct TopoMeshData* pMeshData;    // +0x14: mesh data ptr
     // Total size: 0x18 = 24 bytes
 };
 /* sizeof = 0x18 */
@@ -687,15 +687,15 @@ struct TopoGeom {
 // TopoGeomComplex - Complex Topology Geometry (0x2C bytes = 44 bytes)
 // ============================================================================
 struct TopoGeomComplex {
-    void* vtable;                      // +0x00: 虚函数表指针
-    int type;                          // +0x04: 几何类型 (1=Complex)
-    struct TopoFaceVector faceVector;  // +0x08: 面向量 (内嵌，12字节)
-    struct TopoMeshData* pMeshData;    // +0x14: 网格数据指针
-    int type2;                         // +0x18: 第二个类型字段
-    int field_1C;                      // +0x1C: 未知字段
-    int field_20;                      // +0x20: 未知字段
-    int field_24;                      // +0x24: 未知字段
-    int field_28;                      // +0x28: 未知字段
+    void* vtable;                      // +0x00: vtable ptr
+    int type;                          // +0x04: geom type (1=Complex)
+    struct TopoFaceVector faceVector;  // +0x08: face vector (12 bytes)
+    struct TopoMeshData* pMeshData;    // +0x14: mesh data ptr
+    int type2;                         // +0x18: second type field
+    int field_1C;                      // +0x1C: unknown
+    int field_20;                      // +0x20: unknown
+    int field_24;                      // +0x24: unknown
+    int field_28;                      // +0x28: unknown
 };
 /* sizeof = 0x2C */
 

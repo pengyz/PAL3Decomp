@@ -7,7 +7,7 @@
 # or reference files that exist on disk. We only convert things that are
 # clearly file paths.
 SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
-VC6_BIN="$SCRIPT_DIR/vc6/Bin"
+VC6_BIN="$SCRIPT_DIR/compilers/msvc6.0/Bin"
 export WINEDEBUG=-all
 
 convert_path() {

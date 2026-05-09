@@ -28,9 +28,9 @@ compiler (MSVC), generates byte-identical machine code to the original binary.
 
 | Binary | Size | Status | Notes |
 |--------|------|--------|-------|
-| PAL3.exe | 1.8 MB | StarForce 加壳，需脱壳 | 游戏逻辑，MSVC 7.0 编译 |
-| gbengine.dll | 1.2 MB | 无壳，可直接分析 | 引擎核心，74类1019导出，MSVC 6.0 SP5 |
-| topo.dll | 104 KB | 无壳，可直接分析 | 数学库，6类100导出，MSVC 6.0 SP5 |
+| PAL3.exe | 1.8 MB | StarForce 加壳，需脱壳 | 游戏逻辑，VC6 SP0 (12.00.8168) |
+| gbengine.dll | 1.2 MB | 无壳，可直接分析 | 引擎核心，74类1019导出，VC6 SP0 |
+| topo.dll | 104 KB | 无壳，可直接分析 | 数学库，6类100导出，VC6 SP0 |
 
 **优先级**: topo.dll (小、纯数学) → gbengine.dll (**有 PAL3A.PDB 完整符号！**) → PAL3.exe (需脱壳)
 
@@ -42,8 +42,8 @@ compiler (MSVC), generates byte-identical machine code to the original binary.
 - **Input**: DirectInput 8
 - **File System**: CPK archive (LZO compression, CRC32 hashing)
 - **Script**: SCE bytecode VM (~140 opcodes)
-- **Compiler**: MSVC 6.0 SP5 (gbengine/topo), MSVC 7.0 (PAL3.exe code)
-- **Linker**: MSVC 7.1 (VS2003)
+- **Compiler**: MSVC 6.0 SP0/RTM (cl.exe 12.00.8168) — 所有目标统一
+- **Toolchain**: tools/compilers/msvc6.0/ (from decomp.me)
 - **D3DX**: Statically linked D3DX9.LIB (from DirectX SDK Summer 2003)
 
 ## PAL3A Per-File Decompilation Workflow (Active)
@@ -161,8 +161,8 @@ python tools/pal3a_fill_stubs.py --quality-report
 
 ## Key Rules
 
-- **Compiler**: MSVC 7.1 (Visual Studio .NET 2003) - verify from Rich Header
-- **Optimization**: /O2 (to be confirmed)
+- **Compiler**: MSVC 6.0 SP0 (cl.exe 12.00.8168) — verified from Rich Header @comp.id
+- **Optimization**: /O2 /Ob2 /Oi /Ot /Oy (to be fine-tuned per function)
 - **Calling convention**: __cdecl (default), __thiscall for C++ methods
 - **Target**: 32-bit x86 Windows
 

@@ -19,7 +19,7 @@ Usage:
 Environment:
     ANTHROPIC_API_KEY    - Claude API key
     MSVC_PATH            - Path to MSVC bin directory (optional)
-    PAL3_COMPILER        - Compiler version hint (e.g., "msvc71")
+    PAL3_COMPILER        - Compiler version hint (e.g., "msvc6.0")
 """
 
 import argparse
@@ -71,7 +71,7 @@ class DecompileResult:
 
 # Known compiler info (updated after Phase 1 reconnaissance)
 COMPILER_CONFIG = {
-    'version': 'MSVC 7.1 (VS2003)',  # To be confirmed from Rich Header
+    'version': 'MSVC 6.0 SP0 (cl 12.00.8168)',  # Confirmed from Rich Header
     'optimization': '/O2',
     'calling_convention': '/Gd',
     'defines': ['WIN32', '_WINDOWS', 'NDEBUG'],
