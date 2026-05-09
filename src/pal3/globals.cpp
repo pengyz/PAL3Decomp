@@ -384,6 +384,8 @@ extern "C" void __cdecl sub_41D9A0(float) {}
 extern "C" void __cdecl sub_41EB80(void) {}
 extern "C" void __cdecl sub_420150(float) {}
 extern "C" int __cdecl sub_421C40(int) { return 0; }
+// === STUB: 0x004226F0 - GetActiveUIScene ===
+// 依赖全局对象地址 (0x00C22BE8/0x00C9A04C)，需要链接时重定位
 extern "C" int __cdecl sub_4226F0(void) { return 0; }
 extern "C" void __cdecl sub_422E40(float) {}
 extern "C" void __cdecl sub_423540(void) {}
@@ -487,3 +489,6 @@ extern "C" void __cdecl UIRenderObj_UIRenderObj(int) {}
 // 原始: mov eax,[esp+4]; mov [ecx+0xC],eax; ret 4 → this->m_mode = arg;
 
 // 原始: mov eax,[esp+4]; mov [ecx+0x1224],eax; ret 4 → this->m_state = arg;
+
+// === STUB: 0x005694F0 - gbGfxManager_D3D internal method ===
+extern "C" int __cdecl sub_5694F0(void *pThis, int a, int b, int c, int d) { return 0; }

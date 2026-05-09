@@ -98,7 +98,7 @@ extern "C" void __cdecl sub_4B6D80(int);
 extern "C" int  __cdecl CEffectSystem_DestroyAllEffect(void);
 extern "C" void __cdecl CEffectSystem_IsVisible(int);
 extern "C" void __cdecl sub_41ED00(int);
-extern "C" void __cdecl sub_53C440(const char *, HWND, int, int);
+extern "C" void __cdecl CScreenMode_CreateDevice(const char *, HWND, int, int);
 extern "C" int  __cdecl DisplayConfig_GetHeight(void *);
 extern "C" int  __cdecl DisplayConfig_GetWidth(void *);
 extern "C" void __cdecl CScreenMode_SetViewport(int, int);
@@ -457,7 +457,7 @@ void __cdecl PAL3::Create(HINSTANCE hInstance)
     ((gbGeomNode *)pCursor2Init)->LoadFromFile(aObjectG03Cvd, 0, 0);
 
     // Play logo video
-    sub_53C440(aMovieLogoBik, hWndParent, 0, 0);
+    CScreenMode_CreateDevice(aMovieLogoBik, hWndParent, 0, 0);
     int videoHeight = DisplayConfig_GetHeight(&unk_A3A7D8);
     videoWidth = DisplayConfig_GetWidth(&unk_A3A7D8);
     CScreenMode_SetViewport((800 - videoWidth) / 2, (600 - videoHeight) / 2);

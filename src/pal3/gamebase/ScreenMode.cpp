@@ -48,8 +48,13 @@ extern "C" int __cdecl CScreenMode_SetViewport(int *pThis, int nX, int nY)
     pThis[2] = nY;
     return nX;
 }
-// === STUB: 0x0053C440 ===
-extern "C" int __cdecl sub_53C440(void) { return 0; }
+// 0x0053C440 - gbGfxManager_D3D::CreateDevice thunk (32B)
+// 纯转发到 sub_5694F0 (gbGfxManager_D3D 的方法)
+extern "C" int __cdecl sub_5694F0(void *, int, int, int, int);
+extern "C" int __cdecl CScreenMode_CreateDevice(void *pThis, int nAdapter, int nDevType, int nBehavior, int nFormat)
+{
+    return sub_5694F0(pThis, nAdapter, nDevType, nBehavior, nFormat);
+}
 // === STUB: 0x0053CDD0 ===
 extern "C" void __cdecl sub_53CDD0(int) {}
 // === STUB: 0x0053DD70 ===
