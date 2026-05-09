@@ -479,3 +479,28 @@ extern "C" void __cdecl sub_540FA0(void *) {}
 
 extern "C" int __cdecl PAL3_PrintScreen(void) { return 0; }
 extern "C" void __cdecl UIRenderObj_UIRenderObj(int) {}
+
+// ============================================================
+// 小函数实现 (从二进制反汇编, Iteration #4)
+// ============================================================
+
+// 0x0053DF70 - CScreenMode::GetInstance (6B) — 返回静态单例地址
+// 已在 globals.cpp 中作为 extern "C" stub 存在 (sub_53DF70)
+// 原始: mov eax, 0x017B41E8; ret — 但由于当前是 cdecl stub 返回 0，
+// 保持 stub 直到有完整 CScreenMode 类型定义
+
+// 0x004BDED0 - CRenderTarget::Destroy (7B)
+// 原始: mov [ecx], 0xFFFFFFFF; ret → this->m_state = -1;
+// 当前作为 extern "C" void 在 globals.cpp 中，需改为 thiscall 类方法
+
+// 0x0053E500 - CScreenMode::GetAudioManager (7B)
+// 原始: mov eax, [ecx+0x328]; ret → return this->m_pAudioMgr;
+
+// 0x0044FF60 - CGameData::GetMode (7B)
+// 原始: mov eax, [ecx+0x38CC]; ret → return this->m_nMode;
+
+// 0x004022B0 - GRPinput::SetMode (10B)
+// 原始: mov eax,[esp+4]; mov [ecx+0xC],eax; ret 4 → this->m_mode = arg;
+
+// 0x0053CDD0 - CScreenMode::SetState (13B)
+// 原始: mov eax,[esp+4]; mov [ecx+0x1224],eax; ret 4 → this->m_state = arg;

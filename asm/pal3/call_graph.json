@@ -410,7 +410,7 @@
       "is_named": false
     },
     "0x004022B0": {
-      "name": "sub_4022B0",
+      "name": "GRPinput::SetMode",
       "address": "0x004022B0",
       "size": 10,
       "status": "stub",
@@ -423,7 +423,8 @@
       ],
       "depth": 2,
       "has_decomp": false,
-      "is_named": false
+      "is_named": true,
+      "signature": "void __thiscall GRPinput::SetMode(int)"
     },
     "0x0053C340": {
       "name": "sub_53C340",
@@ -844,7 +845,7 @@
       "is_named": false
     },
     "0x004BDED0": {
-      "name": "CRenderTarget::Destroy",
+      "name": "CRenderTarget::Invalidate",
       "address": "0x004BDED0",
       "size": 7,
       "status": "stub",
@@ -858,7 +859,7 @@
       "depth": 2,
       "has_decomp": false,
       "is_named": true,
-      "signature": "void __thiscall CRenderTarget::Destroy(void)"
+      "signature": "void __thiscall CRenderTarget::Invalidate(void)"
     },
     "0x004C0400": {
       "name": "CRenderTarget2::Destroy",
@@ -1179,7 +1180,7 @@
       "signature": "int __cdecl SceneUpdate(float dt, int flag)"
     },
     "0x0044FF60": {
-      "name": "sub_44FF60",
+      "name": "CGameData::GetMode",
       "address": "0x0044FF60",
       "size": 7,
       "status": "stub",
@@ -1192,7 +1193,8 @@
       ],
       "depth": 2,
       "has_decomp": false,
-      "is_named": false
+      "is_named": true,
+      "signature": "int __thiscall CGameData::GetMode(void)"
     },
     "0x004BE460": {
       "name": "RenderPost",
@@ -1347,7 +1349,7 @@
       "signature": "void __cdecl MiniGame3Update(float)"
     },
     "0x0053CDD0": {
-      "name": "EnterTitleScreen",
+      "name": "CScreenMode::SetState",
       "address": "0x0053CDD0",
       "size": 13,
       "status": "stub",
@@ -1361,7 +1363,7 @@
       "depth": 2,
       "has_decomp": false,
       "is_named": true,
-      "signature": "int __cdecl EnterTitleScreen(int)"
+      "signature": "void __thiscall CScreenMode::SetState(int)"
     },
     "0x0053D150": {
       "name": "sub_53D150",
@@ -1413,7 +1415,7 @@
       "signature": "void __cdecl AudioUpdate(int)"
     },
     "0x0053E500": {
-      "name": "GetAudioManager",
+      "name": "CScreenMode::GetAudioManager",
       "address": "0x0053E500",
       "size": 7,
       "status": "stub",
@@ -1427,7 +1429,7 @@
       "depth": 2,
       "has_decomp": false,
       "is_named": true,
-      "signature": "gbAudioManager* __cdecl GetAudioManager(int)"
+      "signature": "gbAudioManager* __thiscall CScreenMode::GetAudioManager(void)"
     },
     "0x0053E950": {
       "name": "AudioStopAll",
