@@ -351,3 +351,84 @@ public:
 
 unsigned long CCBStage::ProcUseItem(unsigned long hwnd) { return 1; }
 
+
+// ============================================================
+// PAL3::Update 所需的全局变量和 stub (Iteration #2)
+// ============================================================
+
+// 全局变量
+extern "C" float flt_BFDAA0 = 0.0f;         // 0x00BFDAA0 - 累计时间
+extern "C" float flt_BFDA5C = 0.0f;         // 0x00BFDA5C - 场景累计时间
+extern "C" float flt_BFDA58 = 0.0f;         // 0x00BFDA58 - wolf/ghost 计时
+extern "C" int dword_BFDA6C = 0;             // 0x00BFDA6C - 游戏状态
+extern "C" int dword_BFDA30 = 0;             // 0x00BFDA30
+extern "C" int dword_C116EC = 0;             // 0x00C116EC - 角色数据
+extern "C" int dword_C1171C = 0;             // 0x00C1171C
+extern "C" int dword_C11754 = 0;             // 0x00C11754
+extern "C" int dword_5833BC = 0;             // 0x005833BC - 标志位
+extern "C" int dword_5833CC = 0;             // 0x005833CC
+extern "C" char byte_5833D0 = 0;             // 0x005833D0
+extern "C" char byte_C11748 = 0;             // 0x00C11748
+extern "C" char byte_C11750 = 0;             // 0x00C11750
+extern "C" char byte_C11751 = 0;             // 0x00C11751
+extern "C" char byte_D8C339 = 0;             // 0x00D8C339
+extern "C" char byte_D924E8 = 0;             // 0x00D924E8
+extern "C" short word_8ACCD8 = 0;            // 0x008ACCD8 - 按键映射表起始
+extern "C" short word_8ACD2A = 0;            // 0x008ACD2A - 按键映射表结束
+extern "C" float flt_C0816C = 0.0f;          // 0x00C0816C - 角色位置数组
+extern "C" float flt_C1096C = 0.0f;          // 0x00C1096C - 角色位置数组结束
+
+// PAL3::Update callees - sub_ stubs
+extern "C" short __cdecl sub_4022C0(void *, unsigned short) { return 0; }
+extern "C" void __cdecl sub_40C230(float) {}
+extern "C" void __cdecl sub_4105B0(float) {}
+extern "C" void __cdecl sub_4181E0(int) {}
+extern "C" void __cdecl sub_41C280(float) {}
+extern "C" void __cdecl sub_41D9A0(float) {}
+extern "C" void __cdecl sub_41EB80(void) {}
+extern "C" void __cdecl sub_420150(float) {}
+extern "C" int __cdecl sub_421C40(int) { return 0; }
+extern "C" int __cdecl sub_4226F0(void) { return 0; }
+extern "C" void __cdecl sub_422E40(float) {}
+extern "C" void __cdecl sub_423540(void) {}
+extern "C" int __cdecl sub_44F4C0(int, int) { return 0; }
+extern "C" int __cdecl sub_44FF60(void *) { return 0; }
+extern "C" void __cdecl sub_4BE460(int) {}
+extern "C" void __cdecl sub_4BE590(void) {}
+extern "C" void __cdecl sub_4C0200(float) {}
+extern "C" void __cdecl sub_4C5BB0(float) {}
+extern "C" void __cdecl sub_4CDB70(float) {}
+extern "C" void __cdecl sub_513060(float, int) {}
+extern "C" void __cdecl sub_52B900(float) {}
+extern "C" void __cdecl sub_52F350(float) {}
+extern "C" void __cdecl sub_5353A0(float) {}
+extern "C" int __cdecl sub_53CDD0(int) { return 0; }
+extern "C" void __cdecl sub_53D150(void) {}
+extern "C" void __cdecl sub_53D1A0(int, int) {}
+extern "C" void __cdecl sub_53E490(int) {}
+extern "C" int __cdecl sub_53E500(int) { return 0; }
+extern "C" void __cdecl sub_53E950(int) {}
+extern "C" void __cdecl sub_53EA60(int) {}
+extern "C" void __cdecl sub_541590(int) {}
+
+// Named method stubs
+class GRPinput_c {
+public:
+    void Poll(void);
+    void SetMouseAbs(unsigned int time, int btn, int state);
+};
+void GRPinput_c::Poll(void) {}
+void GRPinput_c::SetMouseAbs(unsigned int, int, int) {}
+
+extern "C" void __cdecl PAL3_IfHideFightSucceed(int) {}
+extern "C" void __cdecl PAL3_EndHideFight(void) {}
+extern "C" void __cdecl PAL3_EndWolf(int) {}
+extern "C" int __cdecl PAL3_EntryCatchGhost(int) { return 0; }
+
+extern "C" void __cdecl PalScriptMgr_RunSceneScript(int) {}
+extern "C" int __cdecl PalScriptMgr_Destroy(int, int) { return 0; }
+extern "C" int __cdecl PalScriptMgr_IfHaveScript(void) { return 0; }
+extern "C" int __cdecl PalScriptMgr_CON_CloseScript(void) { return 0; }
+
+extern "C" void __cdecl gbAudioManager_StopSoundStream(void *, int) {}
+extern "C" float __cdecl gbVec3D_Length(void *) { return 0.0f; }
