@@ -14,48 +14,16 @@
 #include <string.h>
 #include <new>
 #include "pal3/pal3_globals.h"
+#include "pal3/PAL3.h"
+#include "pal3/CRenderTarget.h"
+#include "pal3/UIQuadManager.h"
+#include "pal3/CScreenMode.h"
+#include "pal3/CCBSystem.h"
+
 
 // ============================================================
 // Class forward declarations
 // ============================================================
-
-class PAL3 {
-public:
-    static void __cdecl Create(HINSTANCE hInst);
-    static void __cdecl Destroy(void);
-    static void __cdecl Update(float dt);
-    static void __cdecl Render(void);
-    static int  __cdecl PrintScreen(void);
-    static void __cdecl CreateGfxWindow(void);
-    static void __cdecl CheckSystemRequire(HINSTANCE hInst);
-    static void __cdecl InitGFX(HINSTANCE hInst);
-    static void __cdecl CreateEffectSystem(void);
-    static void __cdecl DestroyEffectSystem(void);
-    static void __cdecl GetCommandLineParam(void);
-};
-
-class _Exception {
-public:
-    char data[1024];
-};
-
-class gbGeomNode {
-public:
-    gbGeomNode();
-    void LoadFromFile(const char *filename, int a, int b);
-    char _data[0x118];
-};
-
-class OpenBaseFile {
-public:
-    OpenBaseFile(void **pv);
-    ~OpenBaseFile();
-};
-
-class OpenNULLFile {
-public:
-    static void *OpenNULLFile_ctor(void **pv);
-};
 
 // ============================================================
 // External functions (called from PAL3::Create)
@@ -137,6 +105,8 @@ extern const char aMovieLogoBik[];
 
 #include "gbengine/gbGfxManager.h"
 #include "gbengine/gbActorMgr.h"
+#include "pal3/filesys.h"
+#include "gbengine/gbGeomNode.h"
 
 extern "C" void __cdecl sub_41BE80(int);
 extern "C" void __cdecl CameraCtrl_SetDimention(int, int);
@@ -406,7 +376,7 @@ void __cdecl PAL3::Create(HINSTANCE hInstance)
     if (pCursorNode)
     {
         pCursorNode->gbGeomNode::gbGeomNode();
-        *(void **)pCursorNodeInit->_data = &off_56A66C;
+        *(void **)pCursorNodeInit = (void*)&off_56A66C;
     }
     else
     {
@@ -420,7 +390,7 @@ void __cdecl PAL3::Create(HINSTANCE hInstance)
     if (pCursor2Mem)
     {
         ((gbGeomNode *)pCursor2Mem)->gbGeomNode::gbGeomNode();
-        *(void **)((gbGeomNode *)pCursor2Init)->_data = &off_56A66C;
+        *(void **)pCursor2Init = (void*)&off_56A66C;
     }
     else
     {
@@ -451,11 +421,6 @@ struct VObj { virtual void Release(int) = 0; };
 #include "pal3/CCBSystem.h"
 
 #include "gbengine/gbActorMgr.h"
-
-class CRenderTarget { public: void Destroy(void); };
-class CRenderTarget2 { public: void Destroy(void); };
-class UIQuadManager { public: void Destroy(void); };
-class CScreenMode { public: void Restore(void); };
 
 extern "C" void __cdecl sub_40C960(void);
 extern "C" void __cdecl sub_422DF0(void);

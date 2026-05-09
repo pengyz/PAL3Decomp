@@ -7,6 +7,8 @@
 #define _WIN32_WINNT 0x0500
 #include <windows.h>
 #include "pal3/pal3_globals.h"
+#include "pal3/PAL3.h"
+#include "pal3/CCBSystem.h"
 #include <stdio.h>
 #include <string.h>
 
@@ -36,25 +38,12 @@ extern "C" BOOL __cdecl sub_5382D0(const char* path);  // check directory exists
 extern "C" char __cdecl ReadRegistryValue(const char *lpSubKey, const char *lpValueName, BYTE *lpData);
 
 // Exception class used in PAL3
-class _Exception {
-public:
-    char message[1024];
-};
-
 // Helper for exception message display
 extern "C" void __cdecl sub_408BC0(void *buf, const char *msg, int code);
 
 // ============================================================
 // Class declarations
 // ============================================================
-class PAL3 {
-public:
-    static void __cdecl Create(HINSTANCE hInst);       // 0x00404800
-    static void __cdecl Update(float dt);              // 0x004055D0
-    static void __cdecl Render(void);                  // 0x00405C00
-    static void __cdecl Destroy(void);                 // 0x00406230
-};
-
 #include "pal3/CCBSystem.h"
 
 

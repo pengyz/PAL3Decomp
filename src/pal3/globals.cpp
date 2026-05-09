@@ -4,6 +4,9 @@
 
 #include <windows.h>
 #include "pal3/pal3_globals.h"
+#include "gbengine/gbCamera.h"
+#include "gbengine/gbGeomNode.h"
+#include "pal3/filesys.h"
 #include <stdio.h>
 #include <string.h>
 #include <time.h>
@@ -350,15 +353,6 @@ extern "C" void __cdecl sub_41BE80(int) {}
 #define CAMERACTRL_WIDTH_OFFSET    472
 #define CAMERACTRL_HEIGHT_OFFSET   476
 
-struct gbVec3D;
-
-class gbCamera {
-public:
-    void SetDimention(int nWidth, int nHeight);
-    void SetLookAt(struct gbVec3D *pTarget, struct gbVec3D *pEye, struct gbVec3D *pUp);
-    void SetAsCurrent(int nFlags);
-};
-
 extern "C" void __cdecl CameraCtrl_SetDimention(int nWidth, int nHeight)
 {
     // ecx (this) comes from prior call - use g_pCamera as the controller
@@ -379,7 +373,6 @@ extern "C" void __cdecl sub_41D100(int) {}
 #define CAMERACTRL_LOOKAT_OFFSET 492
 #define CAMERACTRL_UP_OFFSET     516
 
-struct gbVec3D { float x, y, z; };
 
 extern "C" void __cdecl CameraCtrl_SetAsCurrent(int nFlags)
 {
@@ -450,32 +443,14 @@ int CGameData::GetMode(void) { return *(int *)((char *)this + 0x38CC); }
 
 
 // gbGeomNode
-class gbGeomNode {
-public:
-    gbGeomNode();
-    void LoadFromFile(const char *filename, int a, int b);
-    char _data[0x118];
-};
-
-gbGeomNode::gbGeomNode() { memset(_data, 0, sizeof(_data)); }
-void gbGeomNode::LoadFromFile(const char *, int, int) {}
+gbGeomNode::gbGeomNode() { memset(this, 0, sizeof(gbGeomNode)); }
+int gbGeomNode::LoadFromFile(const char *, const char *, void (__cdecl *)(int, int)) { return 0; }
 
 // OpenBaseFile
-class OpenBaseFile {
-public:
-    OpenBaseFile(void **pv);
-    ~OpenBaseFile();
-};
-
 OpenBaseFile::OpenBaseFile(void **pv) {}
 OpenBaseFile::~OpenBaseFile() {}
 
 // OpenNULLFile
-class OpenNULLFile {
-public:
-    static void *OpenNULLFile_ctor(void **pv);
-};
-
 void *OpenNULLFile::OpenNULLFile_ctor(void **pv) { return 0; }
 
 
