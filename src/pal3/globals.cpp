@@ -637,3 +637,6 @@ extern "C" FILE *__cdecl LogMessage(const char *pFormat, ...)
     }
     return pFile;
 }
+
+// === STUB: 0x00432770 - ScriptSystem::SetVariable ===
+extern "C" void __cdecl sub_432770(void *, int, int) {}

@@ -616,7 +616,7 @@ extern "C" void __cdecl sub_52F350(float);
 extern "C" void __cdecl sub_5353A0(float);
 extern "C" int  __cdecl sub_53CDD0(int);
 extern "C" void __cdecl SoundContext_GetInstance(void);
-extern "C" void __cdecl sub_53D1A0(int, int);
+extern "C" void __cdecl SoundContext_SetResolution(int, int);
 extern "C" int  __cdecl sub_53DF70(void);
 extern "C" void __cdecl sub_53E490(int);
 extern "C" int  __cdecl sub_53E500(int);
@@ -884,7 +884,7 @@ LABEL_32:
                 scriptResult = PalScriptMgr_Destroy(1702, 0);
 LABEL_33:
                 SoundContext_GetInstance();
-                sub_53D1A0(0, scriptResult);
+                SoundContext_SetResolution(0, scriptResult);
                 PalScriptMgr_RunSceneScript(*(int *)&a1);
             }
         }

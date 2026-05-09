@@ -115,5 +115,25 @@ extern "C" void *__cdecl SoundContext_GetInstance(void)
 
 // === STUB: SoundContext 构造函数 (0x0053D0B0) ===
 void __cdecl SoundContext_Ctor(void *pThis) { memset(pThis, 0, 32); }
-// === STUB: 0x0053D1A0 ===
-extern "C" void __cdecl sub_53D1A0(void) {}
+// 0x0053D1A0 - SoundContext::SetResolution (46B)
+struct SoundResContext {
+    int m_nFlags;
+    int m_nCurrent;
+};
+
+struct SoundContext_Resolution {
+    SoundResContext m_width;   // [0],[1]
+    int _pad[2];               // [2],[3]
+    SoundResContext m_height;  // [4],[5]
+};
+
+extern "C" void __cdecl sub_432770(SoundResContext *, int, int);
+
+extern "C" void __cdecl SoundContext_SetResolution(int nWidth, int nHeight)
+{
+    SoundContext_Resolution *pRes = (SoundContext_Resolution *)SoundContext_GetInstance();
+    if (nWidth)
+        sub_432770(&pRes->m_width, pRes->m_width.m_nCurrent, nWidth);
+    if (nHeight)
+        sub_432770(&pRes->m_height, pRes->m_height.m_nCurrent, nHeight);
+}
