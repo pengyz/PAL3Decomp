@@ -54,6 +54,30 @@ sub_53DF70()->Restore();        // → sub_53DF70() 返回 CScreenMode*
 grep "gbActorMgr\|gbGfxManager\|gbCamera" lib/gbengine.def
 ```
 
+### 1.6 PAL3A PDB 类定义（交叉验证）
+
+`asm/pal3a/pdb_export.json` 包含 1057 个类的完整定义（data_members + methods）。
+
+```python
+# 查询类定义
+import json
+d = json.load(open('asm/pal3a/pdb_export.json'))
+for c in d['classes']:
+    if c['name'] == 'CCBSystem':
+        for m in c['data_members']:
+            print(f"+0x{m['offset']:04X} {m['type']:30s} {m['name']}")
+```
+
+**关键约束: PAL3A PDB 与 PAL3 是不同版本！**
+
+- **成员名和类型**: 可直接参考（命名权威）
+- **偏移量**: **必须从 PAL3.exe 二进制验证**，不能直接照搬
+  - 例: PDB 说 CCBSystem::m_pStage @ +0x14，但 PAL3 二进制中实际是 +0x1C
+- **类大小**: 可能不同（成员增减导致布局变化）
+- **方法列表**: 名称可参考，但地址和大小对应 PAL3A 不是 PAL3
+
+**工作流**: PDB 提供命名 → 从 PAL3.exe 反汇编确认偏移 → 生成头文件用 PDB 名+二进制偏移
+
 ## Phase 2: 更新 BFS 标注
 
 将推断结果写入 `asm/pal3/call_graph.json`：

@@ -185,10 +185,29 @@ python tools/pal3_callgraph.py xref --add-ref 0x00BFDA6C --ref-func 0x004055D0
 
 每次实现新函数时，识别到的全局变量都应注册/更新 xref。
 
+## PAL3A PDB 类型参考
+
+`asm/pal3a/pdb_export.json` 含 1057 个类的完整成员定义，可用于命名参考：
+
+```python
+import json
+d = json.load(open('asm/pal3a/pdb_export.json'))
+for c in d['classes']:
+    if c['name'] == 'TargetClass':
+        for m in c['data_members']:
+            print(f"+0x{m['offset']:04X} {m['type']} {m['name']}")
+```
+
+**PAL3A ≠ PAL3**: 偏移量可能不同！必须从 PAL3.exe 二进制验证。
+- 成员**名称和类型** → 可直接用于命名
+- **偏移量** → 以 PAL3.exe 反汇编中的 `[ecx+XX]` 为准
+- 两者冲突时以二进制为准
+
 ## 注意事项
 
 - **每个 stub 必须注册 call_graph 节点** — 这是 BFS 展开的核心路径
 - **每个全局变量引用必须注册 xref** — 这是类型推断的数据基础
+- **类成员偏移以 PAL3.exe 二进制为准** — PDB 仅供命名参考
 - 不要中断，持续运行直到 frontier 耗尽
 - 每次迭代必须完成强检查（链接+call_graph更新+commit+push）
 - 迭代日志和游标不提交到 git
