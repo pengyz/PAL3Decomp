@@ -95,8 +95,26 @@ extern "C" void __cdecl sub_430290(const char *) {}
 // === STUB: 0x00430570 - 设置应用名 ===
 extern "C" void __cdecl sub_430570(const char *) {}
 
-// === STUB: 0x0053DF70 - CScreenMode::GetInstance ===
-extern "C" int __cdecl sub_53DF70(void) { return 0; }
+// 0x0053DF70 - CScreenMode::GetInstance (6B, matched)
+// asm: B8 xx xx xx xx C3 = mov eax, &g_ScreenMode; ret
+#include "pal3/CScreenMode.h"
+static CScreenMode g_ScreenModeInstance;
+extern "C" int __cdecl sub_53DF70(void) { return (int)&g_ScreenModeInstance; }
+
+// 0x0053CDD0 - CScreenMode::SetState (13B, matched)
+// asm: 8B 44 24 04; 89 81 24 12 00 00; C2 04 00
+void CScreenMode::SetState(int state) { *(int *)((char *)this + 0x1224) = state; }
+
+// 0x0053E500 - CScreenMode::GetAudioManager (7B, matched)
+// asm: 8B 81 28 03 00 00; C3
+gbAudioManager *CScreenMode::GetAudioManager(void) { return *(gbAudioManager **)((char *)this + 0x328); }
+
+// 0x0053DEF0 - CScreenMode::Restore (stub, needs analysis)
+void CScreenMode::Restore(void) {}
+
+// C linkage wrappers (PAL3::Update calls these by extern "C" name)
+extern "C" int __cdecl sub_53CDD0(int a) { g_ScreenModeInstance.SetState(a); return 0; }
+extern "C" int __cdecl sub_53E500(int a) { return (int)((CScreenMode *)a)->GetAudioManager(); }
 
 // === STUB: 0x0053DD70 - CScreenMode::SetMode ===
 extern "C" void __cdecl sub_53DD70(int) {}
@@ -302,13 +320,13 @@ class CRenderTarget { public: void Destroy(void); };
 class CRenderTarget2 { public: void Destroy(void); };
 class UIQuadManager { public: void Destroy(void); };
 class CGameData { public: void Destroy(void); };
-class CScreenMode { public: void Restore(void); };
+
 
 void CRenderTarget::Destroy(void) {}
 void CRenderTarget2::Destroy(void) {}
 void UIQuadManager::Destroy(void) {}
 void CGameData::Destroy(void) {}
-void CScreenMode::Restore(void) {}
+
 
 // CCBSystem — 已移至 src/pal3/Combat/CBSystem.cpp + include/pal3/CCBSystem.h
 
@@ -400,11 +418,9 @@ extern "C" void __cdecl sub_513060(float, int) {}
 extern "C" void __cdecl sub_52B900(float) {}
 extern "C" void __cdecl sub_52F350(float) {}
 extern "C" void __cdecl sub_5353A0(float) {}
-extern "C" int __cdecl sub_53CDD0(int) { return 0; }
 extern "C" void __cdecl sub_53D150(void) {}
 extern "C" void __cdecl sub_53D1A0(int, int) {}
 extern "C" void __cdecl sub_53E490(int) {}
-extern "C" int __cdecl sub_53E500(int) { return 0; }
 extern "C" void __cdecl sub_53E950(int) {}
 extern "C" void __cdecl sub_53EA60(int) {}
 extern "C" void __cdecl sub_541590(int) {}
