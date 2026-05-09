@@ -142,6 +142,21 @@ Frontier: <before> → <after>
 - 函数 size ≤ 5 bytes — 太小，可能是 thunk/jump
 - 3轮修正仍 <90% 且 size_mismatch — 结构性问题，待后续处理
 
+## Workaround 记录
+
+如果在迭代中发现严重问题但暂时用 workaround 绕过（如：gbengine 函数不在 .lib 中需要本地 stub、结构体偏移不确定用 `_pad` 占位、调用约定与 IDA 标注不一致等），**必须**记录到 `.claude/pal3_workarounds.md`：
+
+```markdown
+## [地址] 函数名 — 问题描述
+- **问题**: gbEffectMgr::NewRenderEffect 不在 gbengine.lib 导出表中
+- **Workaround**: 在 GfxHelper.cpp 中提供空 stub 实现
+- **影响**: 运行时该函数返回 NULL，不会创建渲染效果
+- **正确修复**: 确认该函数是否通过 IAT 导入或 vtable 间接调用，生成正确的 .lib
+- **迭代**: #15
+```
+
+每次 `/pal3-verify` 时会检查此文件并尝试修复已记录的 workaround。
+
 ## CMakeLists.txt 维护
 
 根 `CMakeLists.txt` 中 `PAL3_SOURCES` 列表必须包含所有源文件：
