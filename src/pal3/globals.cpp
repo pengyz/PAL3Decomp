@@ -168,7 +168,7 @@ extern "C" void __cdecl sub_44F130(void *) {}
 extern "C" void __cdecl sub_44F610(int) {}
 
 // === STUB: 0x004BDB10 - CRenderTarget::GetInstance ===
-extern "C" int __cdecl sub_4BDB10(void) { return 0; }
+// RenderTarget_GetInstance (was sub_4BDB10): moved to effect/RenderTarget.cpp
 
 // === STUB: RenderTarget_Create ===
 extern "C" void __cdecl RenderTarget_Create(int) {}
@@ -301,14 +301,14 @@ extern "C" void __cdecl PalScriptMgr_CON_ReLoadScript(void) {}
 extern "C" void __cdecl FileSysDestory(void) {}
 
 // thiscall method stubs for PAL3::Destroy
-class CRenderTarget { public: int m_state; void Destroy(void); };
+// CRenderTarget: moved to effect/RenderTarget.cpp
 class CRenderTarget2 { public: void Destroy(void); };
 class UIQuadManager { public: void Destroy(void); };
 class CGameData { public: void Destroy(void); int GetMode(void); char _pad[0x38D0]; };
 
 
 // 0x004BDED0 (7B): mov [ecx], -1; ret
-void CRenderTarget::Destroy(void) { m_state = -1; }
+// CRenderTarget::Destroy: moved to effect/RenderTarget.cpp
 void CRenderTarget2::Destroy(void) {}
 void UIQuadManager::Destroy(void) {}
 void CGameData::Destroy(void) {}

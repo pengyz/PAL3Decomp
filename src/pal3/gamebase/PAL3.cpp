@@ -87,7 +87,7 @@ extern "C" void __cdecl CCBSystem_ProcNormalAttack(void *);
 extern "C" int  __cdecl sub_4CDA10(int, int, int);
 extern "C" void __cdecl sub_44F130(void *);
 extern "C" void __cdecl sub_44F610(int);
-extern "C" int  __cdecl sub_4BDB10(void);
+extern "C" int  __cdecl RenderTarget_GetInstance(void);
 extern "C" void __cdecl RenderTarget_Create(int);
 extern "C" int  __cdecl sub_4B65A0(void);
 extern "C" void __cdecl sub_4B65F0(int);
@@ -390,7 +390,7 @@ void __cdecl PAL3::Create(HINSTANCE hInstance)
     {
         if (byte_5833C0)
             sub_44F130(&g_GDB);
-        rt5 = sub_4BDB10();
+        rt5 = RenderTarget_GetInstance();
         RenderTarget_Create(rt5);
         rt6 = sub_4B65A0();
         sub_4B65F0(rt6);
@@ -406,7 +406,7 @@ void __cdecl PAL3::Create(HINSTANCE hInstance)
     {
         sub_44F130(&g_GDB);
         sub_44F610(4);
-        rt0 = sub_4BDB10();
+        rt0 = RenderTarget_GetInstance();
         RenderTarget_Create(rt0);
         rt1 = sub_4B65A0();
         sub_4B65F0(rt1);
@@ -502,7 +502,7 @@ void __cdecl PAL3::Destroy(void)
     void *v3;
     void *v4;
 
-    ((CRenderTarget *)sub_4BDB10())->Destroy();
+    ((CRenderTarget *)RenderTarget_GetInstance())->Destroy();
     ((CRenderTarget2 *)sub_4BFD20())->Destroy();
     ((UIQuadManager *)sub_5415F0())->Destroy();
     sub_40C960();

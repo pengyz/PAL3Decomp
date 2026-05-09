@@ -32,7 +32,12 @@ endif()
 set(PAL3_SOURCES
     WinMain.cpp
     gamebase/PAL3.cpp
+    gamebase/GRPinput.cpp
+    gamebase/ScreenMode.cpp
+    effect/RenderTarget.cpp
     Combat/CBSystem.cpp
+    Combat/CBStage.cpp
+    globals.cpp
 )
 
 # ========================================================================
