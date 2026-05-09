@@ -158,7 +158,7 @@ extern "C" void *off_56A66C;
 #include "gbengine/gbActorMgr.h"
 
 extern "C" void __cdecl sub_41BE80(int);
-extern "C" void __cdecl sub_41CA90(int, int);
+extern "C" void __cdecl CameraCtrl_SetDimention(int, int);
 extern "C" void __cdecl sub_41D100(int);
 extern "C" void __cdecl sub_41C630(int);
 extern "C" void __cdecl gbVolModNode_SetVolModObj(void *, void *);
@@ -220,7 +220,7 @@ void __cdecl PAL3::InitGFX(HINSTANCE hInst)
         throw pExceptionObject;
     }
 
-    sub_41CA90(xRight, yBottom);
+    CameraCtrl_SetDimention(xRight, yBottom);
     sub_41D100(0);
     sub_41C630(3);
 

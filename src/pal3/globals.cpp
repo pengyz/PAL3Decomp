@@ -369,7 +369,27 @@ extern "C" void __cdecl sub_53C5A0(int) {}
 extern "C" void __cdecl sub_41BE80(int) {}
 
 // === STUB: 0x0041CA90 - Camera::SetDimention ===
-extern "C" void __cdecl sub_41CA90(int, int) {}
+// 0x0041CA90 - CameraCtrl::SetDimention (34B)
+// Sets resolution on camera controller and its embedded gbCamera
+// CameraCtrl layout: +0x04 = gbCamera, +0x1D8 = nWidth, +0x1DC = nHeight
+#define CAMERACTRL_CAMERA_OFFSET   4
+#define CAMERACTRL_WIDTH_OFFSET    472
+#define CAMERACTRL_HEIGHT_OFFSET   476
+
+class gbCamera {
+public:
+    void SetDimention(int nWidth, int nHeight);
+};
+
+extern "C" void __cdecl CameraCtrl_SetDimention(int nWidth, int nHeight)
+{
+    // ecx (this) comes from prior call - use g_pCamera as the controller
+    extern int g_pCamera;
+    char *pThis = (char *)g_pCamera;
+    *(int *)(pThis + CAMERACTRL_WIDTH_OFFSET) = nWidth;
+    *(int *)(pThis + CAMERACTRL_HEIGHT_OFFSET) = nHeight;
+    ((gbCamera *)(pThis + CAMERACTRL_CAMERA_OFFSET))->SetDimention(nWidth, nHeight);
+}
 
 // === STUB: 0x0041D100 - Camera 设置 ===
 extern "C" void __cdecl sub_41D100(int) {}
