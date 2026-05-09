@@ -5,6 +5,8 @@
 #include <windows.h>
 #include <stdio.h>
 #include <string.h>
+#include <time.h>
+#include <stdarg.h>
 
 // ============================================================
 // Global variables
@@ -77,8 +79,36 @@ extern "C" char unk_A3A6F8 = 0;             // 0x00A3A6F8 - gbVolModNode
 // These will be replaced with real implementations as BFS expands.
 // ============================================================
 
-// === STUB: 0x0053CF80 - 初始化内部系统 ===
-extern "C" void __cdecl sub_53CF80(void) {}
+// 0x0053CF80 - InitLogFiles (174B)
+// Opens Pal3Log.txt + EngineLog.txt, writes header with timestamp
+extern "C" const char aWt[] = "wt";
+extern "C" const char aEnginelogTxt[] = "EngineLog.txt";
+
+extern "C" FILE *__cdecl InitLogFiles(void)
+{
+    FILE *pPal3Log;
+    FILE *pEngineLog;
+    char szFilename[512];
+
+    pPal3Log = fopen("Pal3Log.txt", aWt);
+    pEngineLog = fopen(aEnginelogTxt, aWt);
+    if (pPal3Log)
+    {
+        if (pEngineLog)
+        {
+            GetModuleFileNameA(0, szFilename, 0x200u);
+            fprintf(pPal3Log, "[%s Log at ", szFilename);
+            _strdate(szFilename);
+            fprintf(pPal3Log, szFilename);
+            _strtime(szFilename);
+            fprintf(pPal3Log, " %s]\r\n\r\n", szFilename);
+            fclose(pPal3Log);
+            fprintf(pEngineLog, "Log At:%s\r\n", szFilename);
+            return (FILE *)fclose(pEngineLog);
+        }
+    }
+    return pEngineLog;
+}
 
 // === STUB: 0x00??????  - FileSysInit ===
 extern "C" void __cdecl FileSysInit(void) {}

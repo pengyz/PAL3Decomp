@@ -59,7 +59,7 @@ public:
 // ============================================================
 // External functions (called from PAL3::Create)
 // ============================================================
-extern "C" void __cdecl sub_53CF80(void);
+extern "C" void __cdecl InitLogFiles(void);
 extern "C" void __cdecl FileSysInit(void);
 __declspec(dllimport) void __cdecl gbTimeCounterInit(void);
 
@@ -287,7 +287,7 @@ void __cdecl PAL3::Create(HINSTANCE hInstance)
     void *pSceneMem;
 
     PAL3::CreateGfxWindow();
-    sub_53CF80();
+    InitLogFiles();
     FileSysInit();
     gbTimeCounterInit();
     PAL3::CheckSystemRequire(hInstance);
