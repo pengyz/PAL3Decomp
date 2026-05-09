@@ -141,7 +141,7 @@
       "is_named": true
     },
     "0x005382D0": {
-      "name": "sub_5382D0",
+      "name": "CheckDirectoryExists",
       "address": "0x005382D0",
       "size": 69,
       "status": "compiled",
@@ -154,10 +154,10 @@
       ],
       "depth": 1,
       "has_decomp": false,
-      "is_named": false
+      "is_named": true
     },
     "0x005417C0": {
-      "name": "fn",
+      "name": "LowLevelKeyboardProc",
       "address": "0x005417C0",
       "size": 121,
       "status": "compiled",
@@ -173,7 +173,7 @@
       "is_named": true
     },
     "0x00541860": {
-      "name": "UICursor::Init(void)",
+      "name": "ReadRegistryValue",
       "address": "0x00541860",
       "size": 118,
       "status": "compiled",
@@ -345,7 +345,7 @@
       "is_named": false
     },
     "0x0053DF70": {
-      "name": "sub_53DF70",
+      "name": "CScreenMode::GetInstance",
       "address": "0x0053DF70",
       "size": 6,
       "status": "stub",
@@ -358,7 +358,8 @@
       ],
       "depth": 2,
       "has_decomp": false,
-      "is_named": false
+      "is_named": true,
+      "signature": "CScreenMode* __cdecl CScreenMode::GetInstance(void)"
     },
     "0x0053DD70": {
       "name": "sub_53DD70",
@@ -633,7 +634,7 @@
       "is_named": false
     },
     "0x004BDB10": {
-      "name": "sub_4BDB10",
+      "name": "CRenderTarget::GetInstance",
       "address": "0x004BDB10",
       "size": 51,
       "status": "stub",
@@ -646,7 +647,8 @@
       ],
       "depth": 2,
       "has_decomp": false,
-      "is_named": false
+      "is_named": true,
+      "signature": "CRenderTarget* __cdecl CRenderTarget::GetInstance(void)"
     },
     "0x004B65A0": {
       "name": "sub_4B65A0",
@@ -681,7 +683,7 @@
       "is_named": false
     },
     "0x004BFD20": {
-      "name": "sub_4BFD20",
+      "name": "CRenderTarget2::GetInstance",
       "address": "0x004BFD20",
       "size": 51,
       "status": "stub",
@@ -694,7 +696,8 @@
       ],
       "depth": 2,
       "has_decomp": false,
-      "is_named": false
+      "is_named": true,
+      "signature": "CRenderTarget2* __cdecl CRenderTarget2::GetInstance(void)"
     },
     "0x004BF780": {
       "name": "sub_4BF780",
@@ -854,7 +857,8 @@
       ],
       "depth": 2,
       "has_decomp": false,
-      "is_named": true
+      "is_named": true,
+      "signature": "void __thiscall CRenderTarget::Destroy(void)"
     },
     "0x004C0400": {
       "name": "CRenderTarget2::Destroy",
@@ -870,7 +874,8 @@
       ],
       "depth": 2,
       "has_decomp": false,
-      "is_named": true
+      "is_named": true,
+      "signature": "void __thiscall CRenderTarget2::Destroy(void)"
     },
     "0x005415C0": {
       "name": "UIQuadManager::Destroy",
@@ -886,7 +891,8 @@
       ],
       "depth": 2,
       "has_decomp": false,
-      "is_named": true
+      "is_named": true,
+      "signature": "void __thiscall UIQuadManager::Destroy(void)"
     },
     "0x0040C960": {
       "name": "sub_40C960",
@@ -934,7 +940,8 @@
       ],
       "depth": 2,
       "has_decomp": false,
-      "is_named": true
+      "is_named": true,
+      "signature": "void __thiscall CGameData::Destroy(void)"
     },
     "0x0053DEF0": {
       "name": "CScreenMode::Restore",
@@ -950,7 +957,8 @@
       ],
       "depth": 2,
       "has_decomp": false,
-      "is_named": true
+      "is_named": true,
+      "signature": "void __thiscall CScreenMode::Restore(void)"
     }
   },
   "frontier": [

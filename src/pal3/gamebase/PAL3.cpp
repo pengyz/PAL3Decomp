@@ -111,7 +111,7 @@ extern "C" int xRight;
 extern "C" int yBottom;
 extern "C" int g_hCursor;
 extern "C" void *g_pCBSystem;
-extern "C" int dword_BFDA78;
+extern "C" int g_pSceneMgr;
 extern "C" int g_pGfxManager;
 extern "C" int g_pCamera;
 extern "C" char byte_BFDA90;
@@ -260,7 +260,7 @@ void __cdecl PAL3::Create(HINSTANCE hInstance)
     {
         pSceneMgr = 0;
     }
-    dword_BFDA78 = pSceneMgr;
+    g_pSceneMgr = pSceneMgr;
     if (!pSceneMgr)
     {
         memcpy(&pExceptionObject,
@@ -359,10 +359,10 @@ void __cdecl PAL3::Create(HINSTANCE hInstance)
 
 struct VObj { virtual void Release(int) = 0; };
 
-class CCBSystem_D {
+class CCBSystem {
 public:
     void ProcFling(void);
-    ~CCBSystem_D();
+    ~CCBSystem();
 };
 
 #include "gbengine/gbActorMgr.h"
@@ -400,11 +400,11 @@ void __cdecl PAL3::Destroy(void)
 
     if (g_pCBSystem)
     {
-        ((CCBSystem_D *)g_pCBSystem)->ProcFling();
+        ((CCBSystem *)g_pCBSystem)->ProcFling();
         v3 = g_pCBSystem;
         if (v3)
         {
-            ((CCBSystem_D *)v3)->~CCBSystem_D();
+            ((CCBSystem *)v3)->~CCBSystem();
             operator delete(v3);
         }
         g_pCBSystem = 0;

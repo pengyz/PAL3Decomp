@@ -22,7 +22,7 @@ extern "C" int xRight = 0;                  // 0x00BFDA54
 extern "C" int yBottom = 0;                 // 0x00BFDA58
 extern "C" int g_hCursor = 0;            // 0x00BFDA94
 extern "C" void *g_pCBSystem = 0;         // 0x00BFDA74 - CCBSystem instance
-extern "C" int dword_BFDA78 = 0;            // 0x00BFDA78 - scene manager
+extern "C" int g_pSceneMgr = 0;            // 0x00BFDA78 - scene manager
 extern "C" int g_pGfxManager = 0;            // 0x00BFDA60 - gbGfxManager
 extern "C" int g_pCamera = 0;            // 0x00BFDA68
 extern "C" char byte_BFDA90 = 0;            // 0x00BFDA90
@@ -87,10 +87,10 @@ extern "C" void __cdecl sub_430290(const char *) {}
 // === STUB: 0x00430570 - 设置应用名 ===
 extern "C" void __cdecl sub_430570(const char *) {}
 
-// === STUB: 0x0053DF70 - 获取屏幕模式 ===
+// === STUB: 0x0053DF70 - CScreenMode::GetInstance ===
 extern "C" int __cdecl sub_53DF70(void) { return 0; }
 
-// === STUB: 0x0053DD70 - 设置屏幕模式 ===
+// === STUB: 0x0053DD70 - CScreenMode::SetMode ===
 extern "C" void __cdecl sub_53DD70(int) {}
 
 // === STUB: 0x004020E0 - DirectInput初始化 ===
@@ -156,7 +156,7 @@ extern "C" void __cdecl sub_44F130(void *) {}
 // === STUB: 0x0044F610 - 渲染模式设置 ===
 extern "C" void __cdecl sub_44F610(int) {}
 
-// === STUB: 0x004BDB10 - RenderTarget相关 ===
+// === STUB: 0x004BDB10 - CRenderTarget::GetInstance ===
 extern "C" int __cdecl sub_4BDB10(void) { return 0; }
 
 // === STUB: RenderTarget_Create ===
@@ -283,15 +283,15 @@ void UIQuadManager::Destroy(void) {}
 void CGameData::Destroy(void) {}
 void CScreenMode::Restore(void) {}
 
-// CCBSystem_D methods for PAL3::Destroy
-class CCBSystem_D {
+// CCBSystem methods for PAL3::Destroy
+class CCBSystem {
 public:
     void ProcFling(void);
-    ~CCBSystem_D();
+    ~CCBSystem();
 };
 
-CCBSystem_D::~CCBSystem_D() {}
-void CCBSystem_D::ProcFling(void) {}
+CCBSystem::~CCBSystem() {}
+void CCBSystem::ProcFling(void) {}
 
 // gbGeomNode
 class gbGeomNode {
