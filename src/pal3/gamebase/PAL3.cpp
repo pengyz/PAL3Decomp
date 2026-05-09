@@ -77,7 +77,7 @@ extern "C" void __cdecl sub_41C1B0(int *v);
 extern "C" int  __cdecl PAL_GDB_PAL_GDB(void *);
 extern "C" void __cdecl sub_457410(const char *);
 extern "C" void __cdecl sub_408BE0(void);
-extern "C" int  __cdecl sub_5415F0(void);
+extern "C" int  __cdecl UIQuadManager_GetInstance(void);
 extern "C" void __cdecl UIRenderQuadList(int);
 extern "C" void __cdecl sub_41F5E0(void *);
 extern "C" void __cdecl sub_53CE90(void *);
@@ -336,7 +336,7 @@ void __cdecl PAL3::Create(HINSTANCE hInstance)
 
     sub_457410(aAssislangLang);
     sub_408BE0();
-    uiQuadList = sub_5415F0();
+    uiQuadList = UIQuadManager_GetInstance();
     UIRenderQuadList(uiQuadList);
     sub_41F5E0(&g_UIManager);
 
@@ -504,7 +504,7 @@ void __cdecl PAL3::Destroy(void)
 
     ((CRenderTarget *)RenderTarget_GetInstance())->Destroy();
     ((CRenderTarget2 *)RenderTarget2_GetInstance())->Destroy();
-    ((UIQuadManager *)sub_5415F0())->Destroy();
+    ((UIQuadManager *)UIQuadManager_GetInstance())->Destroy();
     sub_40C960();
     sub_422DF0();
     TextureLib_Data_dtor();
@@ -622,7 +622,7 @@ extern "C" void __cdecl sub_53E490(int);
 extern "C" int  __cdecl sub_53E500(int);
 extern "C" void __cdecl sub_53E950(int);
 extern "C" void __cdecl sub_53EA60(int);
-extern "C" int  __cdecl sub_5415F0(void);
+extern "C" int  __cdecl UIQuadManager_GetInstance(void);
 extern "C" void __cdecl sub_541590(int);
 
 extern "C" void __cdecl PAL3_IfHideFightSucceed(int);
@@ -683,7 +683,7 @@ void __cdecl PAL3::Update(float a1)
     {
     case 0:
     case 1:
-        sub_5415F0();
+        UIQuadManager_GetInstance();
         sub_541590(0);
         break;
 
@@ -705,7 +705,7 @@ void __cdecl PAL3::Update(float a1)
         {
             if (sceneResult)
             {
-                sub_5415F0();
+                UIQuadManager_GetInstance();
                 sub_541590(0);
             }
             else
@@ -784,20 +784,20 @@ LABEL_59:
         break;
 
     case 4:
-        sub_5415F0();
+        UIQuadManager_GetInstance();
         sub_541590(0);
         sub_52B900(a1);
         break;
 
     case 5:
-        sub_5415F0();
+        UIQuadManager_GetInstance();
         sub_541590(0);
         sub_52F350(a1);
         sub_4105B0(a1);
         break;
 
     case 6:
-        sub_5415F0();
+        UIQuadManager_GetInstance();
         sub_541590(0);
         sub_5353A0(a1);
         sub_4105B0(a1);
@@ -957,7 +957,7 @@ extern "C" void __cdecl sub_53C990(void *);
 extern "C" void __cdecl sub_540F60(void *);
 extern "C" void __cdecl sub_540FA0(void *);
 extern "C" int  __cdecl sub_4226F0(void);
-extern "C" int  __cdecl sub_5415F0(void);
+extern "C" int  __cdecl UIQuadManager_GetInstance(void);
 extern "C" void __cdecl sub_4BE590(void);
 extern "C" int  __cdecl sub_4B65A0(void);
 extern "C" void __cdecl sub_41C630(int);
@@ -1050,7 +1050,7 @@ void __cdecl PAL3::Render(void)
         sub_540FA0(v25);
     }
 
-    int v22 = sub_5415F0();
+    int v22 = UIQuadManager_GetInstance();
     UIRenderObj_UIRenderObj(v22);
 
     // Present (virtual call)

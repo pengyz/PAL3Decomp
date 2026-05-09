@@ -129,7 +129,7 @@ extern "C" void __cdecl sub_457410(const char *) {}
 extern "C" void __cdecl sub_408BE0(void) {}
 
 // === STUB: 0x005415F0 - 获取UIQuadList ===
-extern "C" int __cdecl sub_5415F0(void) { return 0; }
+// UIQuadManager_GetInstance (was sub_5415F0): moved to ui/UIQuadManager.cpp
 
 // === STUB: UIRenderQuadList ===
 extern "C" void __cdecl UIRenderQuadList(int) {}
@@ -303,14 +303,14 @@ extern "C" void __cdecl FileSysDestory(void) {}
 // thiscall method stubs for PAL3::Destroy
 // CRenderTarget: moved to effect/RenderTarget.cpp
 // CRenderTarget2: moved to effect/RenderTarget2.cpp
-class UIQuadManager { public: void Destroy(void); };
+// UIQuadManager: moved to ui/UIQuadManager.cpp
 class CGameData { public: void Destroy(void); int GetMode(void); char _pad[0x38D0]; };
 
 
 // 0x004BDED0 (7B): mov [ecx], -1; ret
 // CRenderTarget::Destroy: moved to effect/RenderTarget.cpp
 // CRenderTarget2::Destroy: moved to effect/RenderTarget2.cpp
-void UIQuadManager::Destroy(void) {}
+// UIQuadManager::Destroy: moved to ui/UIQuadManager.cpp
 void CGameData::Destroy(void) {}
 // 0x0044FF60 (7B): mov eax, [ecx+0x38CC]; ret
 int CGameData::GetMode(void) { return *(int *)((char *)this + 0x38CC); }
