@@ -462,8 +462,8 @@ extern "C" void __cdecl sub_52B860(int) {}
 extern "C" void __cdecl sub_52F2E0(int) {}
 extern "C" void __cdecl sub_535320(int) {}
 extern "C" void __cdecl sub_53C990(void *) {}
-extern "C" void __cdecl sub_540F60(void *) {}
-extern "C" void __cdecl sub_540FA0(void *) {}
+// PushMatrixStacks (was sub_540F60): moved to gamebase/GfxHelper.cpp
+// PopMatrixStacks (was sub_540FA0): moved to gamebase/GfxHelper.cpp
 
 extern "C" int __cdecl PAL3_PrintScreen(void) { return 0; }
 extern "C" void __cdecl UIRenderObj_UIRenderObj(int) {}

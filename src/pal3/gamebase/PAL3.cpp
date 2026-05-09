@@ -954,8 +954,8 @@ extern "C" void __cdecl sub_52B860(int);
 extern "C" void __cdecl sub_52F2E0(int);
 extern "C" void __cdecl sub_535320(int);
 extern "C" void __cdecl sub_53C990(void *);
-extern "C" void __cdecl sub_540F60(void *);
-extern "C" void __cdecl sub_540FA0(void *);
+extern "C" void __cdecl PushMatrixStacks(void *);
+extern "C" void __cdecl PopMatrixStacks(void *);
 extern "C" int  __cdecl sub_4226F0(void);
 extern "C" int  __cdecl UIQuadManager_GetInstance(void);
 extern "C" void __cdecl ScreenEffectMgr_GetInstance(void);
@@ -1039,7 +1039,7 @@ void __cdecl PAL3::Render(void)
     if (g_nGameState && g_nGameState != 3 && g_bRenderUI)
     {
         int v25[3];
-        sub_540F60(v25);
+        PushMatrixStacks(v25);
         ScreenEffectMgr_GetInstance(); int v21 = 0;
         sub_4BE4A0(v21);
         sub_44F5B0(&g_GameData);
@@ -1047,7 +1047,7 @@ void __cdecl PAL3::Render(void)
             (*(void (**)(void))(*(int *)dword_BFDA34 + 4))();
         if (!dword_BFDA98)
             sub_53C990(&g_Logger);
-        sub_540FA0(v25);
+        PopMatrixStacks(v25);
     }
 
     int v22 = UIQuadManager_GetInstance();

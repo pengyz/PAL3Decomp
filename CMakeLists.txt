@@ -192,6 +192,7 @@ if(BUILD_TARGET STREQUAL "pal3")
         src/pal3/gamebase/PAL3.cpp
         src/pal3/gamebase/ScreenMode.cpp
         src/pal3/gamebase/GRPinput.cpp
+        src/pal3/gamebase/GfxHelper.cpp
         src/pal3/effect/RenderTarget.cpp
         src/pal3/effect/RenderTarget2.cpp
         src/pal3/effect/ScreenEffectMgr.cpp
