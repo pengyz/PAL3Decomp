@@ -48,19 +48,6 @@ extern char aWe018[];
 extern char aWe019[];
 extern int dword_586194;
 extern int dword_58B260;
-extern int dword_BFD6D0;
-extern int dword_BFD6D4;
-extern int dword_BFDA60;
-extern int dword_BFDA68;
-extern int dword_BFDB80;
-extern int dword_BFDB84;
-extern int dword_BFDB90;
-extern int dword_BFDB98;
-extern int dword_BFDB9C;
-extern int dword_BFDBA0;
-extern int dword_BFDBA4;
-extern int dword_BFDBB0;
-extern int dword_BFFDB0;
 extern int dword_C02198;
 extern int dword_C025EC;
 extern int dword_C042E8;
@@ -121,8 +108,8 @@ void ScriptSystem::Render(void *a1)
       ((RoleSystem *)&g_SceneMgr.m_RoleSystem[g_SceneMgr.m_nCameraState])->RenderRole(a1, v5);
     }
   }
-  ((RoleSystem *)dword_BFFDB0)->RenderRole(a1, 0);
-  ((RoleSystem *)dword_BFDBB0)->RenderRole(a1, 0);
+  ((RoleSystem *)&g_pNPCSystem)->RenderRole(a1, 0);
+  ((RoleSystem *)&g_pActorSystem)->RenderRole(a1, 0);
   if ( *(_DWORD *)&g_SceneMgr._gap_c5e0[844] )
   {
     v7 = *(struct gbVec3D *)&g_SceneMgr.m_RoleSystem[g_SceneMgr.m_nCameraState]._data[160];
@@ -143,13 +130,13 @@ int ScriptSystem::Cleanup()
   void (***v1)(_DWORD, int); // ecx
   int result; // eax
 
-  for ( i = 0; i < dword_BFDB84; ++i )
+  for ( i = 0; i < (int)g_pUIManager; ++i )
   {
-    v1 = *(void (****)(_DWORD, int))(dword_BFDB80 + 4 * i);
+    v1 = (void (***)(_DWORD, int))*((_DWORD *)g_pScriptSystem + i);
     if ( v1 )
       (**v1)(v1, 1);
   }
-  String_Assign_4326A0(&dword_BFDB80, 0, -1);
+  String_Assign_4326A0(&g_pScriptSystem, 0, -1);
   return result;
 }
 
@@ -170,15 +157,15 @@ char ScriptSystem::Render2()
   char Buffer[128]; // [esp+44h] [ebp-80h] BYREF
 
   sub_445500((int *)unk_BFDAB0._data);
-  for ( i = 0; i < dword_BFDB84; ++i )
-    ((GRPinput *)*(GRPinput **)(dword_BFDB80 + 4 * i))->SetMouseSensitivity();
+  for ( i = 0; i < (int)g_pUIManager; ++i )
+    ((GRPinput *)*((GRPinput **)g_pScriptSystem + i))->SetMouseSensitivity();
   sub_43A270((UIWnd *)&g_SceneMgr.m_pCameraCtrl);
   result = g_SceneMgr.m_slot0[81];
   if ( g_SceneMgr.m_slot0[81] )
   {
-    v2 = 32.0 / (double)dword_BFD6D4;
-    v3 = (gbPrintFont *)dword_BFDA60->pFontMgr->pAllFont[3];
-    *(float *)&v3->curColor.Blue = 32.0 / (double)dword_BFD6D0;
+    v2 = 32.0 / (double)(int)g_pAbsTime;
+    v3 = (gbPrintFont *)g_pGfxMgr->pFontMgr->pAllFont[3];
+    *(float *)&v3->curColor.Blue = 32.0 / (double)(int)g_pGameTime;
     *(float *)&v3->curColor.Color = v2;
     v3->curColor.ColorQuadFmt = -2134325048;
     v4 = UISceneUpdate();
@@ -192,7 +179,7 @@ char ScriptSystem::Render2()
         {
           memset(&pOut, 0, sizeof(pOut));
           ((RoleSystem *)(v6 - 158))->GetDirection(&pOut.x);
-          ((gbCamera *)&dword_BFDA68->OrthoSize)->PointWorldToScr(&pOut, &v8, (float *)&v9);
+          ((gbCamera *)((char *)g_pCameraCtrl + 4))->PointWorldToScr(&pOut, &v8, (float *)&v9);
           sprintf(Buffer, "%d", *((unsigned __int8 *)v6 - 332));
           v7 = v8 - 0.050000001;
           (*(void (**)(gbPrintFont *, char *, _DWORD, int, int, int))(*(_DWORD *)v3->_pad_0000 + 16))(
@@ -270,8 +257,8 @@ int ScriptSystem::Execute(int a1, char a2)
   RoleSystemNotify((int)g_SceneMgr.m_RoleSystem[a1]._data);
   ((CameraSystem *)g_SceneMgr.m_RoleSystem[a1]._data)->Init();
   g_SceneMgr.m_nCameraState = a1;
-  if ( dword_BFDA68->pControl[11] )
-    ((RoleSystem *)dword_BFDA68)->SetActive((int)g_SceneMgr.m_RoleSystem[a1]._data);
+  if ( *((_DWORD *)g_pCameraCtrl + 112) )
+    ((RoleSystem *)g_pCameraCtrl)->SetActive((int)g_SceneMgr.m_RoleSystem[a1]._data);
   if ( a1 == 1 && dword_C025EC == 10 )
   {
     sub_419090((float *)&dword_C02198);
@@ -357,7 +344,7 @@ int ScriptSystem::RunScript(int a1, int a2, int a3)
       v11 = 0;
     v16 = -1;
     v11->SetJoystickPos(Buffer, 0);
-    ((PtrArray *)&dword_BFDB80)->SetAt(dword_BFDB84, (int)v11);
+    ((PtrArray *)&g_pScriptSystem)->SetAt((int)g_pUIManager, (int)v11);
     LOBYTE(result) = a2;
     if ( (_BYTE)a2 )
     {
@@ -424,7 +411,7 @@ int ScriptSystem::RunWithDelay(float delay, int a2, int a3)
       v10 = 0;
     v16 = -1;
     v10->SetJoystickPos(Buffer, 0);
-    ((PtrArray *)&dword_BFDB80)->SetAt(dword_BFDB84, (int)v10);
+    ((PtrArray *)&g_pScriptSystem)->SetAt((int)g_pUIManager, (int)v10);
     LOBYTE(result) = a2;
     if ( (_BYTE)a2 )
     {
@@ -452,16 +439,16 @@ int ScriptSystem::RunEvent(int eventId, int a2, int a3)
   char Buffer[32]; // [esp+8h] [ebp-20h] BYREF
 
   LOBYTE(result) = a2;
-  if ( !(_BYTE)a2 || (unsigned int)eventId > 4 || dword_BFDBA4 != eventId )
+  if ( !(_BYTE)a2 || (unsigned int)eventId > 4 || g_nScreenH != eventId )
   {
-    memset(&dword_BFDB90, 0, 0x20u);
+    memset(&g_pSoundMgr, 0, 0x20u);
     m_nCameraState = g_SceneMgr.m_nCameraState;
-    dword_BFDB90 = a3;
-    dword_BFDBA4 = eventId;
+    g_pSoundMgr = (void *)a3;
+    g_nScreenH = eventId;
     v5 = (int *)&g_SceneMgr.m_RoleSystem[g_SceneMgr.m_nCameraState]._data[4];
-    dword_BFDB98 = *v5;
-    dword_BFDB9C = v5[1];
-    dword_BFDBA0 = v5[2];
+    g_hWnd = *v5;
+    g_hInstance = v5[1];
+    g_nScreenW = v5[2];
     if ( !a3 )
     {
       v6 = 1408 * g_SceneMgr.m_nCameraState;

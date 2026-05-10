@@ -3,8 +3,6 @@
 #include "pal3/gen/ObjectCamera.h"
 
 // Unnamed globals (extern)
-extern int dword_BFD6D0;
-extern int dword_BFD6D4;
 extern float flt_DE4A00;
 
 // 0x0047C570
@@ -92,7 +90,7 @@ void ObjectCamera::SetCameraEyePosition(struct gbGfxManager *a2)
   else
     v4 = 0;
   *this = v4;
-  ((gbCamera *)v4)->SetDimention(dword_BFD6D0, dword_BFD6D4);
+  ((gbCamera *)v4)->SetDimention(g_pGameTime, g_pAbsTime);
   v5 = (ObjectCamera *)*this;
   v5->m_camFrom.x = 0.0;
   v5->m_pCamera = (gbCamera *)1112014848;

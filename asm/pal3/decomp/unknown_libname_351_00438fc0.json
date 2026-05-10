@@ -3,5 +3,5 @@
   "address": "0x00438FC0",
   "size_bytes": 44,
   "signature": "int()",
-  "decompiled_c": "// Microsoft VisualC 2-14/net runtime\n// Microsoft VisualC 2-14/net runtime\nint unknown_libname_351()\n{\n  if ( (byte_189598E & 1) == 0 )\n    byte_189598E |= 1u;\n  return atexit(nullsub_1);\n}\n"
+  "decompiled_c": "// Microsoft VisualC 2-14/net runtime\n// Microsoft VisualC 2-14/net runtime\nint unknown_libname_351()\n{\n  if ( (g_bInitFlags & 1) == 0 )\n    g_bInitFlags |= 1u;\n  return atexit(nullsub_1);\n}\n"
 }

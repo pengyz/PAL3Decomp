@@ -30,8 +30,6 @@ extern char aMovieMovieEndC[];
 extern char aMusicMusicCpk[];
 extern unsigned char byte_17B41E8;
 extern unsigned char byte_56A634;
-extern int dword_BFDA60;
-extern int dword_BFDA68;
 
 // 0x0053C340
 char CScreenMode::InitCPK(int a2, int a3)
@@ -85,10 +83,10 @@ int CScreenMode::PlayVideo(int a2)
 
   if ( *((_DWORD *)this + 3) )
   {
-    v3 = dword_BFDA60;
-    (*(void (__stdcall **)(_DWORD, _DWORD, _DWORD, int, int, int, _DWORD))(**(_DWORD **)&dword_BFDA60[1].DrvInfo.winname[44]
+    v3 = g_pGfxMgr;
+    (*(void (__stdcall **)(_DWORD, _DWORD, _DWORD, int, int, int, _DWORD))(**(_DWORD **)&g_pGfxMgr[1].DrvInfo.winname[44]
                                                                          + 172))(
-      *(_DWORD *)&dword_BFDA60[1].DrvInfo.winname[44],
+      *(_DWORD *)&g_pGfxMgr[1].DrvInfo.winname[44],
       0,
       0,
       1,
@@ -343,10 +341,10 @@ void CScreenMode::AudioUpdate()
 {
   if ( (g_nGameFlags & 1) != 0 )
   {
-    if ( dword_BFDA68 )
+    if ( g_pCameraCtrl )
     {
-      ((gbAudioManager *)*((gbAudioManager **)this + 202))->SetListenerPosition((const struct gbVec3D *)&dword_BFDA68->eyeDir.y);
-      ((gbAudioManager *)*((gbAudioManager **)this + 202))->SetListenerOrientation((struct gbVec3D *)&dword_BFDA68[1], (struct gbVec3D *)&dword_BFDA68[1].Hscreen);
+      ((gbAudioManager *)*((gbAudioManager **)this + 202))->SetListenerPosition((const struct gbVec3D *)g_pCameraCtrl + 41);
+      ((gbAudioManager *)*((gbAudioManager **)this + 202))->SetListenerOrientation((struct gbVec3D *)g_pCameraCtrl + 42, (struct gbVec3D *)g_pCameraCtrl + 43);
     }
   }
 }

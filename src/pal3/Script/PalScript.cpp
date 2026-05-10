@@ -32,7 +32,6 @@ extern char aSystemScriptLo[];
 extern char aUiBigmapBigmap[];
 extern unsigned char byte_56A634;
 extern int dword_1894B78;
-extern int dword_BFDA60;
 extern void *off_58B448;
 extern int stru_D8C2B8;
 extern int unknown_libname_339;
@@ -515,15 +514,15 @@ struct gbVFileSystem * PalScript::OpenScript(const char *a2, char a3)
     v4->Release();
   if ( a3 )
   {
-    v5 = *(_DWORD *)dword_BFDA60->_pad_0000;
+    v5 = *(_DWORD *)g_pGfxMgr->_pad_0000;
     v6 = ((_Texture_Info *)dword_1894B78)->_CalculateUV(Buffer);
-    *((_DWORD *)this + 49) = (PalScript *)(*(int (**)(gbGfxManager *, Scene *))(v5 + 8))(dword_BFDA60, v6);
+    *((_DWORD *)this + 49) = (PalScript *)(*(int (**)(gbGfxManager *, Scene *))(v5 + 8))(g_pGfxMgr, v6);
     *((_DWORD *)this + 50) = (PalScript *)((Parent_Data *)dword_1894B78)->Parent_Data(Buffer);
   }
   else
   {
-    *((_DWORD *)this + 49) = (PalScript *)(*(int (**)(gbGfxManager *, char *))(*(_DWORD *)dword_BFDA60->_pad_0000 + 8))(
-                                  dword_BFDA60,
+    *((_DWORD *)this + 49) = (PalScript *)(*(int (**)(gbGfxManager *, char *))(*(_DWORD *)g_pGfxMgr->_pad_0000 + 8))(
+                                  g_pGfxMgr,
                                   Buffer);
   }
   v7 = (gbTexture *)*((_DWORD *)this + 49);

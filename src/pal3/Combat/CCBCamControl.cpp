@@ -7,8 +7,6 @@
 // Unnamed globals (extern)
 extern char aGfxscriptGeomD[];
 extern char aGfxscriptGeomD_0[];
-extern unsigned char byte_17AAF64;
-extern int dword_BFDA60;
 extern int nullsub_3;
 extern void *off_56A694;
 
@@ -22,10 +20,8 @@ CCBCamControl::CCBCamControl()
 // 0x005081E0
 CCBCamControl::~CCBCamControl()
 {
-  *(_DWORD *)&byte_17AAF64[1472] = 119;
-  *(_DWORD *)&byte_17AAF64[1476] = 314;
-  *(_DWORD *)&byte_17AAF64[1480] = 510;
-  *(_DWORD *)&byte_17AAF64[1484] = 707;
+  *((_QWORD *)&g_bSceneLoaded + 184) = 0x13A00000077LL;
+  *((_QWORD *)&g_bSceneLoaded + 185) = 0x2C3000001FELL;
   707;
 }
 
@@ -39,10 +35,8 @@ int CCBCamControl::Reset()
 // 0x00508230
 int CCBCamControl::Create()
 {
-  *(_DWORD *)&byte_17AAF64[1488] = 519;
-  *(_DWORD *)&byte_17AAF64[1492] = 519;
-  *(_DWORD *)&byte_17AAF64[1496] = 519;
-  *(_DWORD *)&byte_17AAF64[1500] = 519;
+  *((_QWORD *)&g_bSceneLoaded + 186) = 0x20700000207LL;
+  *((_QWORD *)&g_bSceneLoaded + 187) = 0x20700000207LL;
   return 519;
 }
 
@@ -56,10 +50,8 @@ int CCBCamControl::Destroy()
 // 0x00508280
 int CCBCamControl::Init()
 {
-  *(_DWORD *)&byte_17AAF64[1504] = 128;
-  *(_DWORD *)&byte_17AAF64[1508] = 323;
-  *(_DWORD *)&byte_17AAF64[1512] = 519;
-  *(_DWORD *)&byte_17AAF64[1516] = 716;
+  *((_QWORD *)&g_bSceneLoaded + 188) = 0x14300000080LL;
+  *((_QWORD *)&g_bSceneLoaded + 189) = 0x2CC00000207LL;
   return 716;
 }
 
@@ -73,10 +65,8 @@ int CCBCamControl::Update()
 // 0x005082D0
 int CCBCamControl::StartList()
 {
-  *(_DWORD *)&byte_17AAF64[1520] = 545;
-  *(_DWORD *)&byte_17AAF64[1524] = 545;
-  *(_DWORD *)&byte_17AAF64[1528] = 545;
-  *(_DWORD *)&byte_17AAF64[1532] = 545;
+  *((_QWORD *)&g_bSceneLoaded + 190) = 0x22100000221LL;
+  *((_QWORD *)&g_bSceneLoaded + 191) = 0x22100000221LL;
   return 545;
 }
 
@@ -90,10 +80,8 @@ int CCBCamControl::StartList()
 // 0x00508320
 int CCBCamControl::StopList()
 {
-  *(_DWORD *)&byte_17AAF64[1536] = 121;
-  *(_DWORD *)&byte_17AAF64[1540] = 316;
-  *(_DWORD *)&byte_17AAF64[1544] = 512;
-  *(_DWORD *)&byte_17AAF64[1548] = 709;
+  *((_QWORD *)&g_bSceneLoaded + 192) = 0x13C00000079LL;
+  *((_QWORD *)&g_bSceneLoaded + 193) = 0x2C500000200LL;
   return 709;
 }
 
@@ -107,10 +95,8 @@ int CCBCamControl::HandleInput()
 // 0x00508370
 int CCBCamControl::UpdateCircleSet()
 {
-  *(_DWORD *)&byte_17AAF64[1552] = 573;
-  *(_DWORD *)&byte_17AAF64[1556] = 573;
-  *(_DWORD *)&byte_17AAF64[1560] = 573;
-  *(_DWORD *)&byte_17AAF64[1564] = 573;
+  *((_QWORD *)&g_bSceneLoaded + 194) = 0x23D0000023DLL;
+  *((_QWORD *)&g_bSceneLoaded + 195) = 0x23D0000023DLL;
   return 573;
 }
 
@@ -190,8 +176,8 @@ char CCBCamControl::IsPointerUnderMouse()
   v2[6] = 1065353216;
   ((gbVolModNode *)&this->m_CCT._data[16])->SetVolModObj((struct gbVolumeModifier *)v2);
   ((gbRefObject *)v2)->Release();
-  *(_DWORD *)&this->m_CCT._data[2436] = ((gbEffectMgr *)dword_BFDA60->pEffectMgr)->NewRenderEffect(aGfxscriptGeomD, 0x401u);
-  *(_DWORD *)&this->m_CCT._data[2440] = ((gbEffectMgr *)dword_BFDA60->pEffectMgr)->NewRenderEffect(aGfxscriptGeomD_0, 0x441u);
+  *(_DWORD *)&this->m_CCT._data[2436] = ((gbEffectMgr *)g_pGfxMgr->pEffectMgr)->NewRenderEffect(aGfxscriptGeomD, 0x401u);
+  *(_DWORD *)&this->m_CCT._data[2440] = ((gbEffectMgr *)g_pGfxMgr->pEffectMgr)->NewRenderEffect(aGfxscriptGeomD_0, 0x441u);
   return 1;
 }
 

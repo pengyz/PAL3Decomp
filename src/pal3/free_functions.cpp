@@ -151,7 +151,6 @@ extern unsigned char byte_1895338;
 extern unsigned char byte_189537C;
 extern unsigned char byte_18953F0;
 extern unsigned char byte_1895502;
-extern unsigned char byte_189598E;
 extern unsigned char byte_189598F;
 extern unsigned char byte_18969C0;
 extern unsigned char byte_1896AC1;
@@ -264,26 +263,12 @@ extern int dword_60B870;
 extern int dword_6EBFA0;
 extern int dword_7CC178;
 extern int dword_8ACD40;
-extern int dword_BFD6D0;
-extern int dword_BFD6D4;
 extern int dword_BFDA48;
-extern int dword_BFDA60;
 extern int dword_BFDA64;
-extern int dword_BFDA68;
-extern int dword_BFDA6C;
 extern int dword_BFDA80;
 extern int dword_BFDA84;
-extern int dword_BFDB80;
-extern int dword_BFDB84;
-extern int dword_BFDB90;
-extern int dword_BFDB98;
-extern int dword_BFDB9C;
-extern int dword_BFDBA0;
-extern int dword_BFDBA4;
-extern int dword_BFDBB0;
 extern int dword_BFDE28;
 extern int dword_BFE0A0;
-extern int dword_BFFDB0;
 extern int dword_C00028;
 extern int dword_C002A0;
 extern int dword_C020F8;
@@ -668,8 +653,8 @@ extern int word_1895500;
 // Microsoft VisualC 2-14/net runtime
 int unknown_libname_287()
 {
-  if ( (byte_189598E & 1) == 0 )
-    byte_189598E |= 1u;
+  if ( (g_bInitFlags & 1) == 0 )
+    g_bInitFlags |= 1u;
   return atexit(nullsub_1);
 }
 
@@ -700,8 +685,8 @@ int __stdcall ArraySort(int base, int count, int elemSize, int compareFunc)
 // Microsoft VisualC 2-14/net runtime
 int unknown_libname_288()
 {
-  if ( (byte_189598E & 1) == 0 )
-    byte_189598E |= 1u;
+  if ( (g_bInitFlags & 1) == 0 )
+    g_bInitFlags |= 1u;
   return atexit(nullsub_1);
 }
 
@@ -781,8 +766,8 @@ struct gbVFileSystem *FileSysDestory()
 // Microsoft VisualC 2-14/net runtime
 int unknown_libname_289()
 {
-  if ( (byte_189598E & 1) == 0 )
-    byte_189598E |= 1u;
+  if ( (g_bInitFlags & 1) == 0 )
+    g_bInitFlags |= 1u;
   return atexit(nullsub_1);
 }
 
@@ -833,8 +818,8 @@ int __thiscall EnumJoystick(int _this)
 // Microsoft VisualC 2-14/net runtime
 int unknown_libname_290()
 {
-  if ( (byte_189598E & 1) == 0 )
-    byte_189598E |= 1u;
+  if ( (g_bInitFlags & 1) == 0 )
+    g_bInitFlags |= 1u;
   return atexit(nullsub_1);
 }
 
@@ -868,8 +853,8 @@ void __thiscall std::string::_Tidy(_DWORD *_this, char a2)
 // Microsoft VisualC 2-14/net runtime
 int unknown_libname_291()
 {
-  if ( (byte_189598E & 1) == 0 )
-    byte_189598E |= 1u;
+  if ( (g_bInitFlags & 1) == 0 )
+    g_bInitFlags |= 1u;
   return atexit(nullsub_1);
 }
 
@@ -976,8 +961,8 @@ int __thiscall GRPinput_GetState(GRPinput *_this)
 // Microsoft VisualC 2-14/net runtime
 int unknown_libname_292()
 {
-  if ( (byte_189598E & 1) == 0 )
-    byte_189598E |= 1u;
+  if ( (g_bInitFlags & 1) == 0 )
+    g_bInitFlags |= 1u;
   return atexit(nullsub_1);
 }
 
@@ -1246,10 +1231,10 @@ int __stdcall WinProc(HWND hWnd, UINT Msg, unsigned int pvParam, LPARAM lParam)
         {
           if ( byte_BFDA91 )
           {
-            v7 = dword_BFDA60;
-            if ( dword_BFDA60 )
+            v7 = g_pGfxMgr;
+            if ( g_pGfxMgr )
             {
-              if ( *(_DWORD *)&dword_BFDA60[1].DrvInfo.winname[44] && GetCursorPos(&Point) )
+              if ( *(_DWORD *)&g_pGfxMgr[1].DrvInfo.winname[44] && GetCursorPos(&Point) )
                 (*(void (__stdcall **)(_DWORD, int, int, int))(**(_DWORD **)&v7[1].DrvInfo.winname[44] + 44))(
                   *(_DWORD *)&v7[1].DrvInfo.winname[44],
                   Point.x,
@@ -1292,7 +1277,7 @@ int __stdcall WinProc(HWND hWnd, UINT Msg, unsigned int pvParam, LPARAM lParam)
       SystemParametersInfoA(0x26u, 0, 0, 0);
       SystemParametersInfoA(0x24u, 1u, &pvParam, 0);
       SystemParametersInfoA(0x61u, 0, &pvParam, 0);
-      dword_BFDA6C = 0;
+      g_nGameState = 0;
       PostQuitMessage(0);
       return DefWindowProcA(hWnd, Msg, v4, lParam);
     case 6u:
@@ -1309,7 +1294,7 @@ int __stdcall WinProc(HWND hWnd, UINT Msg, unsigned int pvParam, LPARAM lParam)
       result = 0;
       break;
     case 0x20u:
-      if ( !dword_BFDA60 )
+      if ( !g_pGfxMgr )
         return DefWindowProcA(hWnd, Msg, v4, lParam);
       SetCursor(0);
       UIQuadManager::GetInstance();
@@ -1471,8 +1456,8 @@ int std::string::max_size()
 // Microsoft VisualC 2-14/net runtime
 int unknown_libname_305()
 {
-  if ( (byte_189598E & 1) == 0 )
-    byte_189598E |= 1u;
+  if ( (g_bInitFlags & 1) == 0 )
+    g_bInitFlags |= 1u;
   return atexit(nullsub_1);
 }
 
@@ -1481,8 +1466,8 @@ int unknown_libname_305()
 // Microsoft VisualC 2-14/net runtime
 int unknown_libname_306()
 {
-  if ( (byte_189598E & 1) == 0 )
-    byte_189598E |= 1u;
+  if ( (g_bInitFlags & 1) == 0 )
+    g_bInitFlags |= 1u;
   return atexit(nullsub_1);
 }
 
@@ -1551,7 +1536,7 @@ void unknown_libname_313()
 // Microsoft VisualC 2-14/net runtime
 void unknown_libname_314()
 {
-  sub_411900(dword_BFFDB0);
+  sub_411900(&g_pNPCSystem);
 }
 
 // 0x00408AC0
@@ -1559,7 +1544,7 @@ void unknown_libname_314()
 // Microsoft VisualC 2-14/net runtime
 void unknown_libname_315()
 {
-  sub_411900(dword_BFDBB0);
+  sub_411900(&g_pActorSystem);
 }
 
 // 0x00408B40
@@ -1567,7 +1552,7 @@ void unknown_libname_315()
 // Microsoft VisualC 2-14/net runtime
 _DWORD *unknown_libname_316()
 {
-  return PtrArray::Clear((PtrArray *)&dword_BFDB80);
+  return PtrArray::Clear((PtrArray *)&g_pScriptSystem);
 }
 
 // 0x00408B90
@@ -1599,9 +1584,9 @@ __int8 *__cdecl ScriptUpdate(int dt)
   __int8 *result; // eax
   bool v8; // cl
   int v9; // edx
-  float v10; // [esp+14h] [ebp-24h]
-  float v11; // [esp+18h] [ebp-20h]
-  float v12; // [esp+1Ch] [ebp-1Ch]
+  int v10; // [esp+14h] [ebp-24h]
+  int v11; // [esp+18h] [ebp-20h]
+  int v12; // [esp+1Ch] [ebp-1Ch]
   _BYTE v13[12]; // [esp+20h] [ebp-18h]
   gbVec3D v14; // [esp+2Ch] [ebp-Ch] BYREF
 
@@ -1630,7 +1615,7 @@ __int8 *__cdecl ScriptUpdate(int dt)
     if ( dword_C002A0 != 4 )
     {
       dword_C00028 = 0;
-      RoleSystemNotify((int)dword_BFFDB0);
+      RoleSystemNotify((int)&g_pNPCSystem);
     }
     ScriptSystem::UpdateTimers(*(float *)&dt);
   }
@@ -1639,21 +1624,21 @@ __int8 *__cdecl ScriptUpdate(int dt)
     if ( dword_BFE0A0 != 4 )
     {
       dword_BFDE28 = 0;
-      RoleSystemNotify((int)dword_BFDBB0);
+      RoleSystemNotify((int)&g_pActorSystem);
     }
     ScriptSystem::UpdateTimers(*(float *)&dt);
     flt_BFDC54 = flt_BFDC54 + 80.0;
   }
-  if ( (unsigned int)dword_BFDBA4 <= 4 )
+  if ( (unsigned int)g_nScreenH <= 4 )
   {
-    if ( dword_BFDB90 )
+    if ( g_pSoundMgr )
     {
       v3 = flt_BFDBAC + *(float *)&dt;
       flt_BFDBAC = v3;
       if ( v3 >= 4.0 )
       {
         flt_BFDBAC = 0.0;
-        switch ( dword_BFDBA4 )
+        switch ( g_nScreenH )
         {
           case 0:
           case 1:
@@ -1679,7 +1664,7 @@ __int8 *__cdecl ScriptUpdate(int dt)
     }
     else
     {
-      switch ( dword_BFDBA4 )
+      switch ( g_nScreenH )
       {
         case 0:
           v2 = (double)*(int *)&g_SceneMgr.m_slot0[1408 * g_SceneMgr.m_nCameraState + 340] * 0.5;
@@ -1708,19 +1693,19 @@ __int8 *__cdecl ScriptUpdate(int dt)
           break;
       }
     }
-    ++dword_BFDB90;
+    g_pSoundMgr = (char *)g_pSoundMgr + 1;
     v4 = &g_SceneMgr.m_RoleSystem[g_SceneMgr.m_nCameraState]._data[4];
-    v10 = *(float *)v4;
-    v11 = *((float *)v4 + 1);
-    *(float *)v13 = *(float *)v4 - *(float *)&dword_BFDB98;
-    v12 = *((float *)v4 + 2);
-    *(float *)&v13[4] = v11 - *(float *)&dword_BFDB9C;
-    *(float *)&v13[8] = v12 - *(float *)&dword_BFDBA0;
+    v10 = *(_DWORD *)v4;
+    v11 = *((int *)v4 + 1);
+    *(float *)v13 = *(float *)v4 - *(float *)&g_hWnd;
+    v12 = *((int *)v4 + 2);
+    *(float *)&v13[4] = *(float *)&v11 - *(float *)&g_hInstance;
+    *(float *)&v13[8] = *(float *)&v12 - *(float *)&g_nScreenW;
     v14 = *(gbVec3D *)v13;
     v5 = gbVec3D::Length(&v14) + flt_BFDB94;
-    dword_BFDB9C = LODWORD(v11);
-    dword_BFDB98 = LODWORD(v10);
-    dword_BFDBA0 = LODWORD(v12);
+    g_hInstance = v11;
+    g_hWnd = v10;
+    g_nScreenW = v12;
     flt_BFDB94 = v5;
     if ( v5 >= 12.0 * 100.0 )
       ScriptSystem::RunEvent(31, 1, 0);
@@ -1753,7 +1738,7 @@ __int8 *__cdecl ScriptUpdate(int dt)
     if ( v8 )
     {
       g_SceneMgr._gap_c5e0[848] = 0;
-      result = (__int8 *)sub_41D5C0(dword_BFDA68, dword_586154);
+      result = (__int8 *)sub_41D5C0(g_pCameraCtrl, dword_586154);
     }
   }
   if ( *(_DWORD *)&g_SceneMgr._gap_c5e0[844] )
@@ -2201,13 +2186,13 @@ int __cdecl NPCAnimUpdate(float a1)
   double v5; // st6
   double v6; // st6
   double v7; // st7
-  int v8; // edx
+  char *v8; // edx
   int i; // esi
   int v10; // edi
   int v11; // esi
   GRPinput *v12; // ecx
   int v14; // eax
-  int v15; // ecx
+  char *v15; // ecx
   int v16; // ecx
   unsigned __int8 v17; // [esp+13h] [ebp-15h]
   int v18; // [esp+14h] [ebp-14h]
@@ -2218,11 +2203,11 @@ int __cdecl NPCAnimUpdate(float a1)
   v2 = 0;
   v18 = -1;
   v17 = 0;
-  if ( dword_BFDB84 <= 0 )
+  if ( (int)g_pUIManager <= 0 )
     return sub_445720((UIWnd *)&unk_BFDAB0, 0);
   do
   {
-    v3 = *(_DWORD *)(dword_BFDB80 + 4 * v2);
+    v3 = *((_DWORD *)g_pScriptSystem + v2);
     GRPinput::SetJoystickFreePos((GRPinput *)v3, a1);
     if ( *(_BYTE *)(v3 + 4) )
     {
@@ -2253,47 +2238,47 @@ int __cdecl NPCAnimUpdate(float a1)
     {
       if ( v3 )
         (**(void (__thiscall ***)(int, int))v3)(v3, 1);
-      if ( v2 >= 0 && v2 < dword_BFDB84 )
-        *(_DWORD *)(dword_BFDB80 + 4 * v2) = 0;
+      if ( v2 >= 0 && v2 < (int)g_pUIManager )
+        *((_DWORD *)g_pScriptSystem + v2) = 0;
       v1 = 1;
     }
-    v8 = dword_BFDB84;
+    v8 = (char *)g_pUIManager;
     ++v2;
   }
-  while ( v2 < dword_BFDB84 );
+  while ( v2 < (int)g_pUIManager );
   if ( v1 )
   {
-    for ( i = 0; i < dword_BFDB84; v8 = dword_BFDB84 )
+    for ( i = 0; i < (int)g_pUIManager; v8 = (char *)g_pUIManager )
     {
-      if ( i >= 0 && i < v8 && *(_DWORD *)(dword_BFDB80 + 4 * i) )
+      if ( i >= 0 && i < (int)v8 && *((_DWORD *)g_pScriptSystem + i) )
         ++i;
       else
-        PtrArray::InsertAt((PtrArray *)&dword_BFDB80, i, 1);
+        PtrArray::InsertAt((PtrArray *)&g_pScriptSystem, i, 1);
     }
     v10 = 0;
     v11 = 40;
-    if ( v8 > 0 )
+    if ( (int)v8 > 0 )
     {
       do
       {
-        v12 = *(GRPinput **)(dword_BFDB80 + 4 * v10);
+        v12 = (GRPinput *)*((_DWORD *)g_pScriptSystem + v10);
         if ( v12->m_mouseMaxY == 1 )
         {
           GRPinput::GetMouseSensitivity(v12, v11);
           v11 += 24;
         }
-        v8 = dword_BFDB84;
+        v8 = (char *)g_pUIManager;
         ++v10;
       }
-      while ( v10 < dword_BFDB84 );
+      while ( v10 < (int)g_pUIManager );
     }
   }
   if ( v18 == -1 )
     return sub_445720((UIWnd *)&unk_BFDAB0, 0);
   v14 = 0;
-  if ( v8 > 0 )
+  if ( (int)v8 > 0 )
   {
-    v15 = dword_BFDB80;
+    v15 = (char *)g_pScriptSystem;
     do
     {
       if ( *(_DWORD *)(*(_DWORD *)v15 + 28) == 1 )
@@ -2306,7 +2291,7 @@ int __cdecl NPCAnimUpdate(float a1)
   a2[1] = 5;
   v16 = 10 * v18 + 64;
   a2[3] = 24 * v14 + 30;
-  a2[0] = (dword_BFD6D0 - v16) / 2 < 0 ? 0 : (dword_BFD6D0 - v16) / 2;
+  a2[0] = ((int)g_pGameTime - v16) / 2 < 0 ? 0 : ((int)g_pGameTime - v16) / 2;
   a2[2] = v16 + a2[0];
   UIWnd::GetRect((UIWnd *)&unk_BFDAB0, a2);
   sub_445720((UIWnd *)&unk_BFDAB0, 1);
@@ -2322,8 +2307,8 @@ int __cdecl NPCAnimUpdate(float a1)
 // Microsoft VisualC 2-14/net runtime
 int unknown_libname_319()
 {
-  if ( (byte_189598E & 1) == 0 )
-    byte_189598E |= 1u;
+  if ( (g_bInitFlags & 1) == 0 )
+    g_bInitFlags |= 1u;
   return atexit(nullsub_1);
 }
 
@@ -2382,7 +2367,7 @@ gbGfxManager *__cdecl GetGfxManager_1()
   gbGfxManager *result; // eax
   int a3; // [esp+4h] [ebp+4h]
 
-  RoleSystem::RenderRole((RoleSystem *)(v0 - 64), dword_BFDA60->pMatrixStack[1], a3);
+  RoleSystem::RenderRole((RoleSystem *)(v0 - 64), g_pGfxMgr->pMatrixStack[1], a3);
   return result;
 }
 
@@ -2391,8 +2376,8 @@ gbGfxManager *__cdecl GetGfxManager_1()
 // Microsoft VisualC 2-14/net runtime
 int unknown_libname_322()
 {
-  if ( (byte_189598E & 1) == 0 )
-    byte_189598E |= 1u;
+  if ( (g_bInitFlags & 1) == 0 )
+    g_bInitFlags |= 1u;
   return atexit(nullsub_1);
 }
 
@@ -2510,8 +2495,8 @@ LABEL_7:
 // Microsoft VisualC 2-14/net runtime
 int unknown_libname_323()
 {
-  if ( (byte_189598E & 1) == 0 )
-    byte_189598E |= 1u;
+  if ( (g_bInitFlags & 1) == 0 )
+    g_bInitFlags |= 1u;
   return atexit(nullsub_1);
 }
 
@@ -2537,7 +2522,7 @@ void __cdecl CameraUpdate_Internal(float a1)
 {
   double v1; // st7
   double v2; // st7
-  float *p_OrthoSize; // eax
+  float *v3; // eax
   double v4; // st7
   CScreenMode *Instance; // eax
   CScreenMode *v6; // eax
@@ -2568,7 +2553,7 @@ void __cdecl CameraUpdate_Internal(float a1)
   int v31; // esi
   int State; // eax
   int ViewMode; // eax
-  float Wscreen; // edx
+  float v34; // edx
   float v35; // eax
   float v36; // eax
   float v37; // eax
@@ -2596,21 +2581,21 @@ void __cdecl CameraUpdate_Internal(float a1)
       {
         if ( pDist < -1.5700001 )
           pDist = -1.5700001;
-        CameraCtrl::SetCamMode((CameraCtrl *)dword_BFDA68, SLODWORD(pDist));
+        CameraCtrl::SetCamMode(g_pCameraCtrl, SLODWORD(pDist));
       }
       else
       {
         pDist = 1.5700001;
-        CameraCtrl::SetCamMode((CameraCtrl *)dword_BFDA68, 1070134723);
+        CameraCtrl::SetCamMode(g_pCameraCtrl, 1070134723);
       }
     }
     else if ( (g_Input.KeyInfo[13].Data & 0xF) == 1 )
     {
-      CameraCtrl::SetCamMode((CameraCtrl *)dword_BFDA68, 1034147594);
+      CameraCtrl::SetCamMode(g_pCameraCtrl, 1034147594);
     }
     else if ( (g_Input.KeyInfo[14].Data & 0xF) == 1 )
     {
-      CameraCtrl::SetCamMode((CameraCtrl *)dword_BFDA68, -1113336054);
+      CameraCtrl::SetCamMode(g_pCameraCtrl, -1113336054);
     }
   }
   if ( *(_DWORD *)g_SceneMgr._tail )
@@ -2626,22 +2611,22 @@ void __cdecl CameraUpdate_Internal(float a1)
     }
     if ( (g_Input.KeyInfo[38].Data & 0xF) == 1 )
     {
-      p_OrthoSize = &dword_BFDA68->OrthoSize;
-      v4 = v2 + dword_BFDA68->OrthoSize;
-      dword_BFDA68->Wscreen = 0.0;
-      *p_OrthoSize = v4;
+      v3 = (float *)((char *)g_pCameraCtrl + 4);
+      v4 = v2 + *((float *)g_pCameraCtrl + 1);
+      *((_DWORD *)g_pCameraCtrl + 2) = 0;
+      *v3 = v4;
     }
     else if ( (g_Input.KeyInfo[39].Data & 0xF) == 1 )
     {
-      *(float *)&dword_BFDA68->CurCtrl = v2 * 8.0 + *(float *)&dword_BFDA68->CurCtrl;
+      *((float *)g_pCameraCtrl + 117) = v2 * 8.0 + *((float *)g_pCameraCtrl + 117);
     }
     else if ( (g_Input.KeyInfo[40].Data & 0xF) == 1 )
     {
-      *(float *)&dword_BFDA68->pControl[12] = v2 * 0.039250001 + *(float *)&dword_BFDA68->pControl[12];
+      *((float *)g_pCameraCtrl + 113) = v2 * 0.039250001 + *((float *)g_pCameraCtrl + 113);
     }
     else if ( (g_Input.KeyInfo[0].Data & 0xF) == 1 )
     {
-      *(float *)&dword_BFDA68[1].Viewport.height = v2 + v2 + *(float *)&dword_BFDA68[1].Viewport.height;
+      *((float *)g_pCameraCtrl + 135) = v2 + v2 + *((float *)g_pCameraCtrl + 135);
     }
     return;
   }
@@ -2650,7 +2635,7 @@ void __cdecl CameraUpdate_Internal(float a1)
   v6 = (CScreenMode *)SoundContext::GetInstance();
   if ( CScreenMode::IsAudioReady(v6) && !g_SceneMgr._gap_c5e0[848] )
   {
-    if ( dword_BFDA6C == 2
+    if ( g_nGameState == 2
       && dword_D8BBEC == 2
       && g_Input.KeyInfo[12].PressTime == 1
       && (g_Input.KeyInfo[12].Data & 0xF) == 1
@@ -2700,20 +2685,17 @@ LABEL_51:
         memset(pOut, 0, 12);
         RoleSystem::GetDirection((RoleSystem *)g_SceneMgr.m_pCollisionNode, &pOut[0].x);
         pOut[0].y = pOut[0].y + 10.0;
-        gbCamera::PointWorldToScr((gbCamera *)&dword_BFDA68->OrthoSize, pOut, &v43, &pOut2);
+        gbCamera::PointWorldToScr((gbCamera *)((char *)g_pCameraCtrl + 4), pOut, &v43, &pOut2);
         UIWnd::ScreenToClient(
           (UIWnd *)&g_SceneMgr.m_pCameraCtrl,
-          (__int64)((v43 + 1.0) * (double)dword_BFD6D0 * 0.5),
-          (__int64)((1.0 - pOut2) * (double)dword_BFD6D4 * 0.5));
+          (__int64)((v43 + 1.0) * (double)(int)g_pGameTime * 0.5),
+          (__int64)((1.0 - pOut2) * (double)(int)g_pAbsTime * 0.5));
       }
       v11 = 0;
       v12 = 0;
       pDist = 0.0;
-      qmemcpy(
-        pMat,
-        CameraCtrl::GetViewTarget((CameraCtrl *)dword_BFDA68, pOut, (float *)&g_SceneMgr._gap_cd10[912]),
-        sizeof(pMat));
-      if ( dword_BFDA6C != 2 && dword_BFDA6C != 8 )
+      qmemcpy(pMat, CameraCtrl::GetViewTarget(g_pCameraCtrl, pOut, (float *)&g_SceneMgr._gap_cd10[912]), sizeof(pMat));
+      if ( g_nGameState != 2 && g_nGameState != 8 )
         goto LABEL_107;
       Target = UICamera::GetTarget(pMat);
       v14 = Target;
@@ -2865,7 +2847,7 @@ LABEL_153:
             memset(&a2, 0, sizeof(a2));
             if ( g_Input.KeyInfo[6].PressTime == 1 && (g_Input.KeyInfo[6].Data & 0xF) == 1 )
             {
-              if ( dword_BFDA6C == 2 )
+              if ( g_nGameState == 2 )
               {
                 State = UICamera::GetState();
                 if ( State && *(_DWORD *)(State + 1264) != 7 )
@@ -2886,9 +2868,7 @@ LABEL_153:
             if ( (g_Input.KeyInfo[3].Data & 0xF) == 1 )
             {
               v31 = 1;
-              LODWORD(a2.x) = dword_BFDA68[1].Viewport.x;
-              LODWORD(a2.y) = dword_BFDA68[1].Viewport.y;
-              LODWORD(a2.z) = dword_BFDA68[1].Viewport.width;
+              a2 = *(gbVec3D *)((_BYTE *)g_pCameraCtrl + 44);
 LABEL_176:
               v12 = 3;
               goto LABEL_177;
@@ -2897,9 +2877,9 @@ LABEL_176:
             {
               if ( (g_Input.KeyInfo[2].Data & 0xF) == 1 )
               {
-                a2.x = -*(float *)&dword_BFDA68[1].Viewport.x;
-                a2.y = -*(float *)&dword_BFDA68[1].Viewport.y;
-                a2.z = -*(float *)&dword_BFDA68[1].Viewport.width;
+                a2.x = -*((float *)g_pCameraCtrl + 132);
+                a2.y = -*((float *)g_pCameraCtrl + 133);
+                a2.z = -*((float *)g_pCameraCtrl + 134);
                 v31 = 1;
                 goto LABEL_176;
               }
@@ -2908,11 +2888,11 @@ LABEL_176:
 LABEL_177:
                 if ( (g_Input.KeyInfo[4].Data & 0xF) == 1 )
                 {
-                  pOut[0].x = dword_BFDA68[1].fov;
-                  pOut[0].y = dword_BFDA68[1].OrthoSize;
-                  Wscreen = dword_BFDA68[1].Wscreen;
+                  pOut[0].x = *((float *)g_pCameraCtrl + 126);
+                  pOut[0].y = *((float *)g_pCameraCtrl + 127);
+                  v34 = *((float *)g_pCameraCtrl + 128);
                   pOut[0].y = 0.0;
-                  pOut[0].z = Wscreen;
+                  pOut[0].z = v34;
                   gbVec3D::Normalize(pOut);
                   v31 = 1;
                   v12 = 3;
@@ -2924,9 +2904,9 @@ LABEL_177:
                 {
                   if ( (g_Input.KeyInfo[5].Data & 0xF) == 1 )
                   {
-                    pOut[0].x = dword_BFDA68[1].fov;
-                    pOut[0].y = dword_BFDA68[1].OrthoSize;
-                    v36 = dword_BFDA68[1].Wscreen;
+                    pOut[0].x = *((float *)g_pCameraCtrl + 126);
+                    pOut[0].y = *((float *)g_pCameraCtrl + 127);
+                    v36 = *((float *)g_pCameraCtrl + 128);
                     pOut[0].y = 0.0;
                     pOut[0].z = v36;
                     gbVec3D::Normalize(pOut);
@@ -2959,9 +2939,9 @@ LABEL_163:
                   }
                   else
                   {
-                    pOut[0].x = dword_BFDA68[1].fov;
-                    pOut[0].y = dword_BFDA68[1].OrthoSize;
-                    v37 = dword_BFDA68[1].Wscreen;
+                    pOut[0].x = *((float *)g_pCameraCtrl + 126);
+                    pOut[0].y = *((float *)g_pCameraCtrl + 127);
+                    v37 = *((float *)g_pCameraCtrl + 128);
                     pOut[0].y = 0.0;
                     pOut[0].z = v37;
                     gbVec3D::Normalize(pOut);
@@ -2974,9 +2954,9 @@ LABEL_163:
                 }
                 else
                 {
-                  pOut[0].x = dword_BFDA68[1].fov;
-                  pOut[0].y = dword_BFDA68[1].OrthoSize;
-                  v35 = dword_BFDA68[1].Wscreen;
+                  pOut[0].x = *((float *)g_pCameraCtrl + 126);
+                  pOut[0].y = *((float *)g_pCameraCtrl + 127);
+                  v35 = *((float *)g_pCameraCtrl + 128);
                   pOut[0].y = 0.0;
                   pOut[0].z = v35;
                   gbVec3D::Normalize(pOut);
@@ -2995,15 +2975,13 @@ LABEL_166:
                 flt_C116F8[0] = 0.0;
                 return;
               }
-              a2.x = -*(float *)&dword_BFDA68[1].Viewport.x;
-              a2.y = -*(float *)&dword_BFDA68[1].Viewport.y;
-              a2.z = -*(float *)&dword_BFDA68[1].Viewport.width;
+              a2.x = -*((float *)g_pCameraCtrl + 132);
+              a2.y = -*((float *)g_pCameraCtrl + 133);
+              a2.z = -*((float *)g_pCameraCtrl + 134);
             }
             else
             {
-              LODWORD(a2.x) = dword_BFDA68[1].Viewport.x;
-              LODWORD(a2.y) = dword_BFDA68[1].Viewport.y;
-              LODWORD(a2.z) = dword_BFDA68[1].Viewport.width;
+              a2 = *(gbVec3D *)((_BYTE *)g_pCameraCtrl + 44);
             }
             v31 = 2;
             goto LABEL_176;
@@ -3113,15 +3091,15 @@ void __thiscall UIPostUpdate(void *_this)
       v6 = *(unsigned __int8 *)(*(_DWORD *)(RolePtr + 160) + 8 * (v3 + v4 * v5) + 5);
       if ( v6 == 6 )
       {
-        if ( dword_BFDBA4 != 2 )
+        if ( g_nScreenH != 2 )
           ScriptSystem::RunEvent(2, 1, 0);
       }
       else if ( v6 == 10 )
       {
-        if ( dword_BFDBA4 )
+        if ( g_nScreenH )
           ScriptSystem::RunEvent(0, 1, 0);
       }
-      else if ( v6 == 13 && dword_BFDBA4 != 3 )
+      else if ( v6 == 13 && g_nScreenH != 3 )
       {
         ScriptSystem::RunEvent(3, 1, 0);
       }
@@ -3181,8 +3159,8 @@ void __setargv()
 // Microsoft VisualC 2-14/net runtime
 int unknown_libname_326()
 {
-  if ( (byte_189598E & 1) == 0 )
-    byte_189598E |= 1u;
+  if ( (g_bInitFlags & 1) == 0 )
+    g_bInitFlags |= 1u;
   return atexit(nullsub_1);
 }
 
@@ -3191,8 +3169,8 @@ int unknown_libname_326()
 // Microsoft VisualC 2-14/net runtime
 int unknown_libname_327()
 {
-  if ( (byte_189598E & 1) == 0 )
-    byte_189598E |= 1u;
+  if ( (g_bInitFlags & 1) == 0 )
+    g_bInitFlags |= 1u;
   return atexit(nullsub_1);
 }
 
@@ -3201,8 +3179,8 @@ int unknown_libname_327()
 // Microsoft VisualC 2-14/net runtime
 int unknown_libname_328()
 {
-  if ( (byte_189598E & 1) == 0 )
-    byte_189598E |= 1u;
+  if ( (g_bInitFlags & 1) == 0 )
+    g_bInitFlags |= 1u;
   return atexit(nullsub_1);
 }
 
@@ -3236,7 +3214,7 @@ double __userpurge UIUpdate@<st0>(_DWORD *_this@<ecx>, double result@<st0>, doub
       }
       while ( v5 < *(_this + 14392) );
     }
-    if ( dword_BFDA6C != 9 )
+    if ( g_nGameState != 9 )
     {
       v7 = 0;
       if ( (int)*(_this + 55) > 0 )
@@ -3267,7 +3245,7 @@ gbGfxManager *__cdecl GetGfxManager_2()
   v1 = v0;
   result = *(gbGfxManager **)(v0 + 132);
   if ( result && !*(_DWORD *)(v0 + 493144) )
-    gbSceneGraph::AddVisNode((gbSceneGraph *)LODWORD(dword_BFDA60->InvViewMatrix.m[1][3]), (struct gbVisNode *)result);
+    gbSceneGraph::AddVisNode((gbSceneGraph *)LODWORD(g_pGfxMgr->InvViewMatrix.m[1][3]), (struct gbVisNode *)result);
   *(_DWORD *)(v1 + 493144) = 1;
   return result;
 }
@@ -3283,7 +3261,7 @@ gbGfxManager *__cdecl GetGfxManager_3()
   v1 = v0;
   result = *(gbGfxManager **)(v0 + 132);
   if ( result && *(_DWORD *)(v0 + 493144) )
-    gbSceneGraph::DelVisNode((gbSceneGraph *)LODWORD(dword_BFDA60->InvViewMatrix.m[1][3]), (struct gbVisNode *)result);
+    gbSceneGraph::DelVisNode((gbSceneGraph *)LODWORD(g_pGfxMgr->InvViewMatrix.m[1][3]), (struct gbVisNode *)result);
   *(_DWORD *)(v1 + 493144) = 0;
   return result;
 }
@@ -3313,8 +3291,8 @@ int __thiscall UINotifyUpdate(int *_this)
 // Microsoft VisualC 2-14/net runtime
 int unknown_libname_329()
 {
-  if ( (byte_189598E & 1) == 0 )
-    byte_189598E |= 1u;
+  if ( (g_bInitFlags & 1) == 0 )
+    g_bInitFlags |= 1u;
   return atexit(nullsub_1);
 }
 
@@ -3323,8 +3301,8 @@ int unknown_libname_329()
 // Microsoft VisualC 2-14/net runtime
 int unknown_libname_330()
 {
-  if ( (byte_189598E & 1) == 0 )
-    byte_189598E |= 1u;
+  if ( (g_bInitFlags & 1) == 0 )
+    g_bInitFlags |= 1u;
   return atexit(nullsub_1);
 }
 
@@ -3506,12 +3484,12 @@ gbGfxManager *CombatEnter()
     || (result = (gbGfxManager *)UIScene::ProcessInput(aM20, 0), (_BYTE)result)
     || (result = (gbGfxManager *)UIScene::ProcessInput(aM25, 0), (_BYTE)result) )
   {
-    dword_BFDA60->InvViewMatrix.m[1][2] = 0.69999999;
+    g_pGfxMgr->InvViewMatrix.m[1][2] = 0.69999999;
   }
   else
   {
-    result = dword_BFDA60;
-    dword_BFDA60->InvViewMatrix.m[1][2] = 0.0;
+    result = g_pGfxMgr;
+    g_pGfxMgr->InvViewMatrix.m[1][2] = 0.0;
   }
   return result;
 }
@@ -3521,8 +3499,8 @@ gbGfxManager *CombatEnter()
 // Microsoft VisualC 2-14/net runtime
 int unknown_libname_332()
 {
-  if ( (byte_189598E & 1) == 0 )
-    byte_189598E |= 1u;
+  if ( (g_bInitFlags & 1) == 0 )
+    g_bInitFlags |= 1u;
   return atexit(nullsub_1);
 }
 
@@ -3590,7 +3568,7 @@ gbGfxManager *__cdecl GetGfxManager_4()
   gbGfxManager *result; // eax
   int v2; // [esp+4h] [ebp+4h]
 
-  sub_424570(v0 - 8, dword_BFDA60->pMatrixStack[1], v2);
+  sub_424570(v0 - 8, g_pGfxMgr->pMatrixStack[1], v2);
   return result;
 }
 
@@ -3599,8 +3577,8 @@ gbGfxManager *__cdecl GetGfxManager_4()
 // Microsoft VisualC 2-14/net runtime
 int unknown_libname_333()
 {
-  if ( (byte_189598E & 1) == 0 )
-    byte_189598E |= 1u;
+  if ( (g_bInitFlags & 1) == 0 )
+    g_bInitFlags |= 1u;
   return atexit(nullsub_1);
 }
 
@@ -3609,8 +3587,8 @@ int unknown_libname_333()
 // Microsoft VisualC 2-14/net runtime
 int unknown_libname_334()
 {
-  if ( (byte_189598E & 1) == 0 )
-    byte_189598E |= 1u;
+  if ( (g_bInitFlags & 1) == 0 )
+    g_bInitFlags |= 1u;
   return atexit(nullsub_1);
 }
 
@@ -3619,8 +3597,8 @@ int unknown_libname_334()
 // Microsoft VisualC 2-14/net runtime
 int unknown_libname_335()
 {
-  if ( (byte_189598E & 1) == 0 )
-    byte_189598E |= 1u;
+  if ( (g_bInitFlags & 1) == 0 )
+    g_bInitFlags |= 1u;
   return atexit(nullsub_1);
 }
 
@@ -3629,8 +3607,8 @@ int unknown_libname_335()
 // Microsoft VisualC 2-14/net runtime
 int unknown_libname_336()
 {
-  if ( (byte_189598E & 1) == 0 )
-    byte_189598E |= 1u;
+  if ( (g_bInitFlags & 1) == 0 )
+    g_bInitFlags |= 1u;
   return atexit(nullsub_1);
 }
 
@@ -3661,8 +3639,8 @@ void __thiscall std::string::~string(_DWORD *_this)
 // Microsoft VisualC 2-14/net runtime
 int unknown_libname_337()
 {
-  if ( (byte_189598E & 1) == 0 )
-    byte_189598E |= 1u;
+  if ( (g_bInitFlags & 1) == 0 )
+    g_bInitFlags |= 1u;
   return atexit(nullsub_1);
 }
 
@@ -3716,8 +3694,8 @@ char __thiscall Script_Method_431C10(PalScript *String1, char *String2, char *De
 // Microsoft VisualC 2-14/net runtime
 int unknown_libname_338()
 {
-  if ( (byte_189598E & 1) == 0 )
-    byte_189598E |= 1u;
+  if ( (g_bInitFlags & 1) == 0 )
+    g_bInitFlags |= 1u;
   return atexit(nullsub_1);
 }
 
@@ -3833,8 +3811,8 @@ int *unknown_libname_344()
 // Microsoft VisualC 2-14/net runtime
 int unknown_libname_345()
 {
-  if ( (byte_189598E & 1) == 0 )
-    byte_189598E |= 1u;
+  if ( (g_bInitFlags & 1) == 0 )
+    g_bInitFlags |= 1u;
   return atexit(nullsub_1);
 }
 
@@ -3898,8 +3876,8 @@ void __thiscall String_Assign_4326A0(void *_this, char *src, int len)
 // Microsoft VisualC 2-14/net runtime
 int unknown_libname_346()
 {
-  if ( (byte_189598E & 1) == 0 )
-    byte_189598E |= 1u;
+  if ( (g_bInitFlags & 1) == 0 )
+    g_bInitFlags |= 1u;
   return atexit(nullsub_1);
 }
 
@@ -3916,8 +3894,8 @@ _DWORD *unknown_libname_347()
 // Microsoft VisualC 2-14/net runtime
 int unknown_libname_348()
 {
-  if ( (byte_189598E & 1) == 0 )
-    byte_189598E |= 1u;
+  if ( (g_bInitFlags & 1) == 0 )
+    g_bInitFlags |= 1u;
   return atexit(nullsub_1);
 }
 
@@ -3970,7 +3948,7 @@ gbCamera *__cdecl GetCamera_1()
       pParams[0] = *((float *)String + 1);
       pParams[1] = *((float *)v1 + 1);
       pParams[2] = result->OrthoSize;
-      return (gbCamera *)CameraCtrl::InitParams((CameraCtrl *)dword_BFDA68, pParams);
+      return (gbCamera *)CameraCtrl::InitParams(g_pCameraCtrl, pParams);
     }
   }
   return result;
@@ -3987,7 +3965,7 @@ gbCamera *__cdecl GetCamera_2()
   if ( result )
   {
     v1 = sub_434BD0(LOWORD(result->OrthoSize));
-    return (gbCamera *)RoleSystem::SetActive((RoleSystem *)dword_BFDA68, (int)v1);
+    return (gbCamera *)RoleSystem::SetActive((RoleSystem *)g_pCameraCtrl, (int)v1);
   }
   return result;
 }
@@ -4007,7 +3985,7 @@ gbCamera *__cdecl GetCamera_3()
     OrthoSize_low = LOWORD(result->OrthoSize);
     v1 = (_DWORD *)UISceneUpdate();
     v2 = sub_421560(v1, OrthoSize_low);
-    return (gbCamera *)sub_41C190(dword_BFDA68, (int)v2);
+    return (gbCamera *)sub_41C190(g_pCameraCtrl, (int)v2);
   }
   return result;
 }
@@ -4022,7 +4000,7 @@ gbCamera *__cdecl GetCamera_4()
   if ( result )
   {
     result = (gbCamera *)LODWORD(result->OrthoSize);
-    dword_BFDA68->pControl[11] = (gbCamControler *)result;
+    *((_DWORD *)g_pCameraCtrl + 112) = result;
   }
   return result;
 }
@@ -4044,7 +4022,7 @@ gbCamera *__cdecl GetCamera_5()
     {
       sub_41CEE0(
         &stru_D8C2B8.KeyInfo[153].Data,
-        (int)dword_BFDA68,
+        (int)g_pCameraCtrl,
         *((_DWORD *)String + 1),
         *((_DWORD *)v1 + 1),
         LODWORD(result->OrthoSize));
@@ -4083,8 +4061,8 @@ filebuf *__thiscall filebuf::`scalar deleting destructor'(filebuf *_this, char a
 // Microsoft VisualC 2-14/net runtime
 int unknown_libname_351()
 {
-  if ( (byte_189598E & 1) == 0 )
-    byte_189598E |= 1u;
+  if ( (g_bInitFlags & 1) == 0 )
+    g_bInitFlags |= 1u;
   return atexit(nullsub_1);
 }
 
@@ -4107,8 +4085,8 @@ void __thiscall Camera_Method_439930(int _this, int a2, int a3, int a4)
   v11.z = 0.0;
   v9.z = 1600.0;
   v10.z = 0.0;
-  v6 = (((double)a2 + (double)a2) / (double)dword_BFD6D0 - 1.0) * *(float *)(_this + 232);
-  v12 = (1.0 - ((double)a3 + (double)a3) / (double)dword_BFD6D4) * *(float *)(_this + 232);
+  v6 = (((double)a2 + (double)a2) / (double)(int)g_pGameTime - 1.0) * *(float *)(_this + 232);
+  v12 = (1.0 - ((double)a3 + (double)a3) / (double)(int)g_pAbsTime) * *(float *)(_this + 232);
   v9.y = (float)a4;
   v9.x = -v6;
   v9.y = v9.y - v12;
@@ -4144,8 +4122,8 @@ int __thiscall SetFloatParam(void *_this, float value)
 // Microsoft VisualC 2-14/net runtime
 int unknown_libname_352()
 {
-  if ( (byte_189598E & 1) == 0 )
-    byte_189598E |= 1u;
+  if ( (g_bInitFlags & 1) == 0 )
+    g_bInitFlags |= 1u;
   return atexit(nullsub_1);
 }
 
@@ -4154,8 +4132,8 @@ int unknown_libname_352()
 // Microsoft VisualC 2-14/net runtime
 int unknown_libname_353()
 {
-  if ( (byte_189598E & 1) == 0 )
-    byte_189598E |= 1u;
+  if ( (g_bInitFlags & 1) == 0 )
+    g_bInitFlags |= 1u;
   return atexit(nullsub_1);
 }
 
@@ -4164,8 +4142,8 @@ int unknown_libname_353()
 // Microsoft VisualC 2-14/net runtime
 int unknown_libname_354()
 {
-  if ( (byte_189598E & 1) == 0 )
-    byte_189598E |= 1u;
+  if ( (g_bInitFlags & 1) == 0 )
+    g_bInitFlags |= 1u;
   return atexit(nullsub_1);
 }
 
@@ -4174,8 +4152,8 @@ int unknown_libname_354()
 // Microsoft VisualC 2-14/net runtime
 int unknown_libname_355()
 {
-  if ( (byte_189598E & 1) == 0 )
-    byte_189598E |= 1u;
+  if ( (g_bInitFlags & 1) == 0 )
+    g_bInitFlags |= 1u;
   return atexit(nullsub_1);
 }
 
@@ -4184,8 +4162,8 @@ int unknown_libname_355()
 // Microsoft VisualC 2-14/net runtime
 int unknown_libname_356()
 {
-  if ( (byte_189598E & 1) == 0 )
-    byte_189598E |= 1u;
+  if ( (g_bInitFlags & 1) == 0 )
+    g_bInitFlags |= 1u;
   return atexit(nullsub_1);
 }
 
@@ -4204,8 +4182,8 @@ UIWnd *__thiscall UIWnd::`scalar deleting destructor'(UIWnd *Block, char a2)
 // Microsoft VisualC 2-14/net runtime
 int unknown_libname_357()
 {
-  if ( (byte_189598E & 1) == 0 )
-    byte_189598E |= 1u;
+  if ( (g_bInitFlags & 1) == 0 )
+    g_bInitFlags |= 1u;
   return atexit(nullsub_1);
 }
 
@@ -4214,8 +4192,8 @@ int unknown_libname_357()
 // Microsoft VisualC 2-14/net runtime
 int unknown_libname_358()
 {
-  if ( (byte_189598E & 1) == 0 )
-    byte_189598E |= 1u;
+  if ( (g_bInitFlags & 1) == 0 )
+    g_bInitFlags |= 1u;
   return atexit(nullsub_1);
 }
 
@@ -4224,8 +4202,8 @@ int unknown_libname_358()
 // Microsoft VisualC 2-14/net runtime
 int unknown_libname_359()
 {
-  if ( (byte_189598E & 1) == 0 )
-    byte_189598E |= 1u;
+  if ( (g_bInitFlags & 1) == 0 )
+    g_bInitFlags |= 1u;
   return atexit(nullsub_1);
 }
 
@@ -4247,8 +4225,8 @@ void __thiscall GetGridOffset(void *_this, int *pOut, int index)
 // Microsoft VisualC 2-14/net runtime
 int unknown_libname_360()
 {
-  if ( (byte_189598E & 1) == 0 )
-    byte_189598E |= 1u;
+  if ( (g_bInitFlags & 1) == 0 )
+    g_bInitFlags |= 1u;
   return atexit(nullsub_1);
 }
 
@@ -4269,8 +4247,8 @@ int __thiscall SetIntParam(void *_this, int value)
 // Microsoft VisualC 2-14/net runtime
 int unknown_libname_361()
 {
-  if ( (byte_189598E & 1) == 0 )
-    byte_189598E |= 1u;
+  if ( (g_bInitFlags & 1) == 0 )
+    g_bInitFlags |= 1u;
   return atexit(nullsub_1);
 }
 
@@ -4279,8 +4257,8 @@ int unknown_libname_361()
 // Microsoft VisualC 2-14/net runtime
 int unknown_libname_362()
 {
-  if ( (byte_189598E & 1) == 0 )
-    byte_189598E |= 1u;
+  if ( (g_bInitFlags & 1) == 0 )
+    g_bInitFlags |= 1u;
   return atexit(nullsub_1);
 }
 
@@ -4289,8 +4267,8 @@ int unknown_libname_362()
 // Microsoft VisualC 2-14/net runtime
 int unknown_libname_363()
 {
-  if ( (byte_189598E & 1) == 0 )
-    byte_189598E |= 1u;
+  if ( (g_bInitFlags & 1) == 0 )
+    g_bInitFlags |= 1u;
   return atexit(nullsub_1);
 }
 
@@ -4299,8 +4277,8 @@ int unknown_libname_363()
 // Microsoft VisualC 2-14/net runtime
 int unknown_libname_364()
 {
-  if ( (byte_189598E & 1) == 0 )
-    byte_189598E |= 1u;
+  if ( (g_bInitFlags & 1) == 0 )
+    g_bInitFlags |= 1u;
   return atexit(nullsub_1);
 }
 
@@ -4309,8 +4287,8 @@ int unknown_libname_364()
 // Microsoft VisualC 2-14/net runtime
 int unknown_libname_365()
 {
-  if ( (byte_189598E & 1) == 0 )
-    byte_189598E |= 1u;
+  if ( (g_bInitFlags & 1) == 0 )
+    g_bInitFlags |= 1u;
   return atexit(nullsub_1);
 }
 
@@ -4327,8 +4305,8 @@ void __thiscall UIFrameWnd_Destructor_444AC0(UIWnd *_this)
 // Microsoft VisualC 2-14/net runtime
 int unknown_libname_366()
 {
-  if ( (byte_189598E & 1) == 0 )
-    byte_189598E |= 1u;
+  if ( (g_bInitFlags & 1) == 0 )
+    g_bInitFlags |= 1u;
   return atexit(nullsub_1);
 }
 
@@ -4386,8 +4364,8 @@ void __thiscall UIWnd_Destructor(UIWnd *_this)
 // Microsoft VisualC 2-14/net runtime
 int unknown_libname_367()
 {
-  if ( (byte_189598E & 1) == 0 )
-    byte_189598E |= 1u;
+  if ( (g_bInitFlags & 1) == 0 )
+    g_bInitFlags |= 1u;
   return atexit(nullsub_1);
 }
 
@@ -4396,8 +4374,8 @@ int unknown_libname_367()
 // Microsoft VisualC 2-14/net runtime
 int unknown_libname_368()
 {
-  if ( (byte_189598E & 1) == 0 )
-    byte_189598E |= 1u;
+  if ( (g_bInitFlags & 1) == 0 )
+    g_bInitFlags |= 1u;
   return atexit(nullsub_1);
 }
 
@@ -4421,8 +4399,8 @@ int __thiscall UIObj_SetState(UIWnd *_this, int state)
 // Microsoft VisualC 2-14/net runtime
 int unknown_libname_369()
 {
-  if ( (byte_189598E & 1) == 0 )
-    byte_189598E |= 1u;
+  if ( (g_bInitFlags & 1) == 0 )
+    g_bInitFlags |= 1u;
   return atexit(nullsub_1);
 }
 
@@ -4439,8 +4417,8 @@ int __thiscall UIListBox::SetScrollPos(UIListBox **_this)
 // Microsoft VisualC 2-14/net runtime
 int unknown_libname_370()
 {
-  if ( (byte_189598E & 1) == 0 )
-    byte_189598E |= 1u;
+  if ( (g_bInitFlags & 1) == 0 )
+    g_bInitFlags |= 1u;
   return atexit(nullsub_1);
 }
 
@@ -4449,8 +4427,8 @@ int unknown_libname_370()
 // Microsoft VisualC 2-14/net runtime
 int unknown_libname_371()
 {
-  if ( (byte_189598E & 1) == 0 )
-    byte_189598E |= 1u;
+  if ( (g_bInitFlags & 1) == 0 )
+    g_bInitFlags |= 1u;
   return atexit(nullsub_1);
 }
 
@@ -4467,8 +4445,8 @@ void __thiscall j_PalScript_Cleanup(PalScript *_this)
 // Microsoft VisualC 2-14/net runtime
 int unknown_libname_372()
 {
-  if ( (byte_189598E & 1) == 0 )
-    byte_189598E |= 1u;
+  if ( (g_bInitFlags & 1) == 0 )
+    g_bInitFlags |= 1u;
   return atexit(nullsub_1);
 }
 
@@ -4498,8 +4476,8 @@ void __thiscall SafeDelete_44BD80(void **_this)
 // Microsoft VisualC 2-14/net runtime
 int unknown_libname_373()
 {
-  if ( (byte_189598E & 1) == 0 )
-    byte_189598E |= 1u;
+  if ( (g_bInitFlags & 1) == 0 )
+    g_bInitFlags |= 1u;
   return atexit(nullsub_1);
 }
 
@@ -4508,8 +4486,8 @@ int unknown_libname_373()
 // Microsoft VisualC 2-14/net runtime
 int unknown_libname_374()
 {
-  if ( (byte_189598E & 1) == 0 )
-    byte_189598E |= 1u;
+  if ( (g_bInitFlags & 1) == 0 )
+    g_bInitFlags |= 1u;
   return atexit(nullsub_1);
 }
 
@@ -4684,34 +4662,34 @@ int __thiscall CGameData_Load(int _this, CUtil *a2)
         v2 = *(CUtil **)(_this + 14536);
         *(_BYTE *)(_this + 652) = 1;
         *(_BYTE *)(_this + 653) = 0;
-        dword_BFDA6C = 1;
+        g_nGameState = 1;
       }
     }
     switch ( (unsigned int)v2 )
     {
       case 0u:
-        dword_BFDA6C = 2;
+        g_nGameState = 2;
         result = (int)CombatEnter();
         break;
       case 6u:
-        dword_BFDA6C = 3;
+        g_nGameState = 3;
         break;
       case 9u:
       case 0xDu:
       case 0xEu:
-        dword_BFDA6C = 1;
+        g_nGameState = 1;
         break;
       case 0xAu:
-        dword_BFDA6C = 4;
+        g_nGameState = 4;
         break;
       case 0xBu:
-        dword_BFDA6C = 5;
+        g_nGameState = 5;
         break;
       case 0xCu:
-        dword_BFDA6C = 6;
+        g_nGameState = 6;
         break;
       case 0xFu:
-        dword_BFDA6C = 9;
+        g_nGameState = 9;
         result = (int)CombatEnter();
         break;
       default:
@@ -4737,8 +4715,8 @@ int __thiscall CGameData_Load(int _this, CUtil *a2)
 // Microsoft VisualC 2-14/net runtime
 int unknown_libname_376()
 {
-  if ( (byte_189598E & 1) == 0 )
-    byte_189598E |= 1u;
+  if ( (g_bInitFlags & 1) == 0 )
+    g_bInitFlags |= 1u;
   return atexit(nullsub_1);
 }
 
@@ -4747,8 +4725,8 @@ int unknown_libname_376()
 // Microsoft VisualC 2-14/net runtime
 int unknown_libname_377()
 {
-  if ( (byte_189598E & 1) == 0 )
-    byte_189598E |= 1u;
+  if ( (g_bInitFlags & 1) == 0 )
+    g_bInitFlags |= 1u;
   return atexit(nullsub_1);
 }
 
@@ -4757,8 +4735,8 @@ int unknown_libname_377()
 // Microsoft VisualC 2-14/net runtime
 int unknown_libname_378()
 {
-  if ( (byte_189598E & 1) == 0 )
-    byte_189598E |= 1u;
+  if ( (g_bInitFlags & 1) == 0 )
+    g_bInitFlags |= 1u;
   return atexit(nullsub_1);
 }
 
@@ -4767,8 +4745,8 @@ int unknown_libname_378()
 // Microsoft VisualC 2-14/net runtime
 int unknown_libname_379()
 {
-  if ( (byte_189598E & 1) == 0 )
-    byte_189598E |= 1u;
+  if ( (g_bInitFlags & 1) == 0 )
+    g_bInitFlags |= 1u;
   return atexit(nullsub_1);
 }
 
@@ -4777,8 +4755,8 @@ int unknown_libname_379()
 // Microsoft VisualC 2-14/net runtime
 int unknown_libname_380()
 {
-  if ( (byte_189598E & 1) == 0 )
-    byte_189598E |= 1u;
+  if ( (g_bInitFlags & 1) == 0 )
+    g_bInitFlags |= 1u;
   return atexit(nullsub_1);
 }
 
@@ -4787,8 +4765,8 @@ int unknown_libname_380()
 // Microsoft VisualC 2-14/net runtime
 int unknown_libname_381()
 {
-  if ( (byte_189598E & 1) == 0 )
-    byte_189598E |= 1u;
+  if ( (g_bInitFlags & 1) == 0 )
+    g_bInitFlags |= 1u;
   return atexit(nullsub_1);
 }
 
@@ -4797,8 +4775,8 @@ int unknown_libname_381()
 // Microsoft VisualC 2-14/net runtime
 int unknown_libname_382()
 {
-  if ( (byte_189598E & 1) == 0 )
-    byte_189598E |= 1u;
+  if ( (g_bInitFlags & 1) == 0 )
+    g_bInitFlags |= 1u;
   return atexit(nullsub_1);
 }
 
@@ -4807,8 +4785,8 @@ int unknown_libname_382()
 // Microsoft VisualC 2-14/net runtime
 int unknown_libname_383()
 {
-  if ( (byte_189598E & 1) == 0 )
-    byte_189598E |= 1u;
+  if ( (g_bInitFlags & 1) == 0 )
+    g_bInitFlags |= 1u;
   return atexit(nullsub_1);
 }
 
@@ -4817,8 +4795,8 @@ int unknown_libname_383()
 // Microsoft VisualC 2-14/net runtime
 int unknown_libname_384()
 {
-  if ( (byte_189598E & 1) == 0 )
-    byte_189598E |= 1u;
+  if ( (g_bInitFlags & 1) == 0 )
+    g_bInitFlags |= 1u;
   return atexit(nullsub_1);
 }
 
@@ -4827,8 +4805,8 @@ int unknown_libname_384()
 // Microsoft VisualC 2-14/net runtime
 int unknown_libname_385()
 {
-  if ( (byte_189598E & 1) == 0 )
-    byte_189598E |= 1u;
+  if ( (g_bInitFlags & 1) == 0 )
+    g_bInitFlags |= 1u;
   return atexit(nullsub_1);
 }
 
@@ -4837,8 +4815,8 @@ int unknown_libname_385()
 // Microsoft VisualC 2-14/net runtime
 int unknown_libname_386()
 {
-  if ( (byte_189598E & 1) == 0 )
-    byte_189598E |= 1u;
+  if ( (g_bInitFlags & 1) == 0 )
+    g_bInitFlags |= 1u;
   return atexit(nullsub_1);
 }
 
@@ -4847,8 +4825,8 @@ int unknown_libname_386()
 // Microsoft VisualC 2-14/net runtime
 int unknown_libname_387()
 {
-  if ( (byte_189598E & 1) == 0 )
-    byte_189598E |= 1u;
+  if ( (g_bInitFlags & 1) == 0 )
+    g_bInitFlags |= 1u;
   return atexit(nullsub_1);
 }
 
@@ -4857,8 +4835,8 @@ int unknown_libname_387()
 // Microsoft VisualC 2-14/net runtime
 int unknown_libname_388()
 {
-  if ( (byte_189598E & 1) == 0 )
-    byte_189598E |= 1u;
+  if ( (g_bInitFlags & 1) == 0 )
+    g_bInitFlags |= 1u;
   return atexit(nullsub_1);
 }
 
@@ -4867,8 +4845,8 @@ int unknown_libname_388()
 // Microsoft VisualC 2-14/net runtime
 int unknown_libname_389()
 {
-  if ( (byte_189598E & 1) == 0 )
-    byte_189598E |= 1u;
+  if ( (g_bInitFlags & 1) == 0 )
+    g_bInitFlags |= 1u;
   return atexit(nullsub_1);
 }
 
@@ -4877,8 +4855,8 @@ int unknown_libname_389()
 // Microsoft VisualC 2-14/net runtime
 int unknown_libname_390()
 {
-  if ( (byte_189598E & 1) == 0 )
-    byte_189598E |= 1u;
+  if ( (g_bInitFlags & 1) == 0 )
+    g_bInitFlags |= 1u;
   return atexit(nullsub_1);
 }
 
@@ -4887,8 +4865,8 @@ int unknown_libname_390()
 // Microsoft VisualC 2-14/net runtime
 int unknown_libname_391()
 {
-  if ( (byte_189598E & 1) == 0 )
-    byte_189598E |= 1u;
+  if ( (g_bInitFlags & 1) == 0 )
+    g_bInitFlags |= 1u;
   return atexit(nullsub_1);
 }
 
@@ -4897,8 +4875,8 @@ int unknown_libname_391()
 // Microsoft VisualC 2-14/net runtime
 int unknown_libname_392()
 {
-  if ( (byte_189598E & 1) == 0 )
-    byte_189598E |= 1u;
+  if ( (g_bInitFlags & 1) == 0 )
+    g_bInitFlags |= 1u;
   return atexit(nullsub_1);
 }
 
@@ -4907,8 +4885,8 @@ int unknown_libname_392()
 // Microsoft VisualC 2-14/net runtime
 int unknown_libname_393()
 {
-  if ( (byte_189598E & 1) == 0 )
-    byte_189598E |= 1u;
+  if ( (g_bInitFlags & 1) == 0 )
+    g_bInitFlags |= 1u;
   return atexit(nullsub_1);
 }
 
@@ -4917,8 +4895,8 @@ int unknown_libname_393()
 // Microsoft VisualC 2-14/net runtime
 int unknown_libname_394()
 {
-  if ( (byte_189598E & 1) == 0 )
-    byte_189598E |= 1u;
+  if ( (g_bInitFlags & 1) == 0 )
+    g_bInitFlags |= 1u;
   return atexit(nullsub_1);
 }
 
@@ -4927,8 +4905,8 @@ int unknown_libname_394()
 // Microsoft VisualC 2-14/net runtime
 int unknown_libname_395()
 {
-  if ( (byte_189598E & 1) == 0 )
-    byte_189598E |= 1u;
+  if ( (g_bInitFlags & 1) == 0 )
+    g_bInitFlags |= 1u;
   return atexit(nullsub_1);
 }
 
@@ -4937,8 +4915,8 @@ int unknown_libname_395()
 // Microsoft VisualC 2-14/net runtime
 int unknown_libname_396()
 {
-  if ( (byte_189598E & 1) == 0 )
-    byte_189598E |= 1u;
+  if ( (g_bInitFlags & 1) == 0 )
+    g_bInitFlags |= 1u;
   return atexit(nullsub_1);
 }
 
@@ -4947,8 +4925,8 @@ int unknown_libname_396()
 // Microsoft VisualC 2-14/net runtime
 int unknown_libname_397()
 {
-  if ( (byte_189598E & 1) == 0 )
-    byte_189598E |= 1u;
+  if ( (g_bInitFlags & 1) == 0 )
+    g_bInitFlags |= 1u;
   return atexit(nullsub_1);
 }
 
@@ -4957,8 +4935,8 @@ int unknown_libname_397()
 // Microsoft VisualC 2-14/net runtime
 int unknown_libname_398()
 {
-  if ( (byte_189598E & 1) == 0 )
-    byte_189598E |= 1u;
+  if ( (g_bInitFlags & 1) == 0 )
+    g_bInitFlags |= 1u;
   return atexit(nullsub_1);
 }
 
@@ -4967,8 +4945,8 @@ int unknown_libname_398()
 // Microsoft VisualC 2-14/net runtime
 int unknown_libname_399()
 {
-  if ( (byte_189598E & 1) == 0 )
-    byte_189598E |= 1u;
+  if ( (g_bInitFlags & 1) == 0 )
+    g_bInitFlags |= 1u;
   return atexit(nullsub_1);
 }
 
@@ -4983,8 +4961,8 @@ BOOL __stdcall DllMain(HINSTANCE hinstDLL, DWORD fdwReason, LPVOID lpvReserved)
 // Microsoft VisualC 2-14/net runtime
 int unknown_libname_400()
 {
-  if ( (byte_189598E & 1) == 0 )
-    byte_189598E |= 1u;
+  if ( (g_bInitFlags & 1) == 0 )
+    g_bInitFlags |= 1u;
   return atexit(nullsub_1);
 }
 
@@ -4993,8 +4971,8 @@ int unknown_libname_400()
 // Microsoft VisualC 2-14/net runtime
 int unknown_libname_401()
 {
-  if ( (byte_189598E & 1) == 0 )
-    byte_189598E |= 1u;
+  if ( (g_bInitFlags & 1) == 0 )
+    g_bInitFlags |= 1u;
   return atexit(nullsub_1);
 }
 
@@ -5003,8 +4981,8 @@ int unknown_libname_401()
 // Microsoft VisualC 2-14/net runtime
 int unknown_libname_402()
 {
-  if ( (byte_189598E & 1) == 0 )
-    byte_189598E |= 1u;
+  if ( (g_bInitFlags & 1) == 0 )
+    g_bInitFlags |= 1u;
   return atexit(nullsub_1);
 }
 
@@ -5013,8 +4991,8 @@ int unknown_libname_402()
 // Microsoft VisualC 2-14/net runtime
 int unknown_libname_403()
 {
-  if ( (byte_189598E & 1) == 0 )
-    byte_189598E |= 1u;
+  if ( (g_bInitFlags & 1) == 0 )
+    g_bInitFlags |= 1u;
   return atexit(nullsub_1);
 }
 
@@ -5023,8 +5001,8 @@ int unknown_libname_403()
 // Microsoft VisualC 2-14/net runtime
 int unknown_libname_404()
 {
-  if ( (byte_189598E & 1) == 0 )
-    byte_189598E |= 1u;
+  if ( (g_bInitFlags & 1) == 0 )
+    g_bInitFlags |= 1u;
   return atexit(nullsub_1);
 }
 
@@ -5033,8 +5011,8 @@ int unknown_libname_404()
 // Microsoft VisualC 2-14/net runtime
 int unknown_libname_405()
 {
-  if ( (byte_189598E & 1) == 0 )
-    byte_189598E |= 1u;
+  if ( (g_bInitFlags & 1) == 0 )
+    g_bInitFlags |= 1u;
   return atexit(nullsub_1);
 }
 
@@ -5079,8 +5057,8 @@ int __thiscall UIWnd_SetByte(UIWnd *_this, char value)
 // Microsoft VisualC 2-14/net runtime
 int unknown_libname_406()
 {
-  if ( (byte_189598E & 1) == 0 )
-    byte_189598E |= 1u;
+  if ( (g_bInitFlags & 1) == 0 )
+    g_bInitFlags |= 1u;
   return atexit(nullsub_1);
 }
 
@@ -5419,8 +5397,8 @@ UIWnd *__thiscall UIWnd_FindChild(UIWnd *_this, int id)
 // Microsoft VisualC 2-14/net runtime
 int unknown_libname_407()
 {
-  if ( (byte_189598E & 1) == 0 )
-    byte_189598E |= 1u;
+  if ( (g_bInitFlags & 1) == 0 )
+    g_bInitFlags |= 1u;
   return atexit(nullsub_1);
 }
 
@@ -5429,8 +5407,8 @@ int unknown_libname_407()
 // Microsoft VisualC 2-14/net runtime
 int unknown_libname_408()
 {
-  if ( (byte_189598E & 1) == 0 )
-    byte_189598E |= 1u;
+  if ( (g_bInitFlags & 1) == 0 )
+    g_bInitFlags |= 1u;
   return atexit(nullsub_1);
 }
 
@@ -5439,8 +5417,8 @@ int unknown_libname_408()
 // Microsoft VisualC 2-14/net runtime
 int unknown_libname_409()
 {
-  if ( (byte_189598E & 1) == 0 )
-    byte_189598E |= 1u;
+  if ( (g_bInitFlags & 1) == 0 )
+    g_bInitFlags |= 1u;
   return atexit(nullsub_1);
 }
 
@@ -5449,8 +5427,8 @@ int unknown_libname_409()
 // Microsoft VisualC 2-14/net runtime
 int unknown_libname_410()
 {
-  if ( (byte_189598E & 1) == 0 )
-    byte_189598E |= 1u;
+  if ( (g_bInitFlags & 1) == 0 )
+    g_bInitFlags |= 1u;
   return atexit(nullsub_1);
 }
 
@@ -5523,8 +5501,8 @@ void __thiscall UIFrameWnd_Destructor_4B47E0(UIWnd *_this)
 // Microsoft VisualC 2-14/net runtime
 int unknown_libname_411()
 {
-  if ( (byte_189598E & 1) == 0 )
-    byte_189598E |= 1u;
+  if ( (g_bInitFlags & 1) == 0 )
+    g_bInitFlags |= 1u;
   return atexit(nullsub_1);
 }
 
@@ -5533,8 +5511,8 @@ int unknown_libname_411()
 // Microsoft VisualC 2-14/net runtime
 int unknown_libname_412()
 {
-  if ( (byte_189598E & 1) == 0 )
-    byte_189598E |= 1u;
+  if ( (g_bInitFlags & 1) == 0 )
+    g_bInitFlags |= 1u;
   return atexit(nullsub_1);
 }
 
@@ -5554,8 +5532,8 @@ void __cdecl unknown_libname_413()
 // Microsoft VisualC 2-14/net runtime
 int unknown_libname_414()
 {
-  if ( (byte_189598E & 1) == 0 )
-    byte_189598E |= 1u;
+  if ( (g_bInitFlags & 1) == 0 )
+    g_bInitFlags |= 1u;
   return atexit(nullsub_1);
 }
 
@@ -5564,8 +5542,8 @@ int unknown_libname_414()
 // Microsoft VisualC 2-14/net runtime
 int unknown_libname_415()
 {
-  if ( (byte_189598E & 1) == 0 )
-    byte_189598E |= 1u;
+  if ( (g_bInitFlags & 1) == 0 )
+    g_bInitFlags |= 1u;
   return atexit(nullsub_1);
 }
 
@@ -5582,8 +5560,8 @@ void __cdecl unknown_libname_416()
 // Microsoft VisualC 2-14/net runtime
 int unknown_libname_417()
 {
-  if ( (byte_189598E & 1) == 0 )
-    byte_189598E |= 1u;
+  if ( (g_bInitFlags & 1) == 0 )
+    g_bInitFlags |= 1u;
   return atexit(nullsub_1);
 }
 
@@ -5592,8 +5570,8 @@ int unknown_libname_417()
 // Microsoft VisualC 2-14/net runtime
 int unknown_libname_418()
 {
-  if ( (byte_189598E & 1) == 0 )
-    byte_189598E |= 1u;
+  if ( (g_bInitFlags & 1) == 0 )
+    g_bInitFlags |= 1u;
   return atexit(nullsub_1);
 }
 
@@ -5610,8 +5588,8 @@ void __cdecl unknown_libname_419()
 // Microsoft VisualC 2-14/net runtime
 int unknown_libname_420()
 {
-  if ( (byte_189598E & 1) == 0 )
-    byte_189598E |= 1u;
+  if ( (g_bInitFlags & 1) == 0 )
+    g_bInitFlags |= 1u;
   return atexit(nullsub_1);
 }
 
@@ -5620,8 +5598,8 @@ int unknown_libname_420()
 // Microsoft VisualC 2-14/net runtime
 int unknown_libname_421()
 {
-  if ( (byte_189598E & 1) == 0 )
-    byte_189598E |= 1u;
+  if ( (g_bInitFlags & 1) == 0 )
+    g_bInitFlags |= 1u;
   return atexit(nullsub_1);
 }
 
@@ -5630,8 +5608,8 @@ int unknown_libname_421()
 // Microsoft VisualC 2-14/net runtime
 int unknown_libname_422()
 {
-  if ( (byte_189598E & 1) == 0 )
-    byte_189598E |= 1u;
+  if ( (g_bInitFlags & 1) == 0 )
+    g_bInitFlags |= 1u;
   return atexit(nullsub_1);
 }
 
@@ -5640,8 +5618,8 @@ int unknown_libname_422()
 // Microsoft VisualC 2-14/net runtime
 int unknown_libname_423()
 {
-  if ( (byte_189598E & 1) == 0 )
-    byte_189598E |= 1u;
+  if ( (g_bInitFlags & 1) == 0 )
+    g_bInitFlags |= 1u;
   return atexit(nullsub_1);
 }
 
@@ -5650,8 +5628,8 @@ int unknown_libname_423()
 // Microsoft VisualC 2-14/net runtime
 int unknown_libname_424()
 {
-  if ( (byte_189598E & 1) == 0 )
-    byte_189598E |= 1u;
+  if ( (g_bInitFlags & 1) == 0 )
+    g_bInitFlags |= 1u;
   return atexit(nullsub_1);
 }
 
@@ -5660,8 +5638,8 @@ int unknown_libname_424()
 // Microsoft VisualC 2-14/net runtime
 int unknown_libname_425()
 {
-  if ( (byte_189598E & 1) == 0 )
-    byte_189598E |= 1u;
+  if ( (g_bInitFlags & 1) == 0 )
+    g_bInitFlags |= 1u;
   return atexit(nullsub_1);
 }
 
@@ -5670,8 +5648,8 @@ int unknown_libname_425()
 // Microsoft VisualC 2-14/net runtime
 int unknown_libname_426()
 {
-  if ( (byte_189598E & 1) == 0 )
-    byte_189598E |= 1u;
+  if ( (g_bInitFlags & 1) == 0 )
+    g_bInitFlags |= 1u;
   return atexit(nullsub_1);
 }
 
@@ -5688,8 +5666,8 @@ void __cdecl unknown_libname_427()
 // Microsoft VisualC 2-14/net runtime
 int unknown_libname_428()
 {
-  if ( (byte_189598E & 1) == 0 )
-    byte_189598E |= 1u;
+  if ( (g_bInitFlags & 1) == 0 )
+    g_bInitFlags |= 1u;
   return atexit(nullsub_1);
 }
 
@@ -5698,8 +5676,8 @@ int unknown_libname_428()
 // Microsoft VisualC 2-14/net runtime
 int unknown_libname_429()
 {
-  if ( (byte_189598E & 1) == 0 )
-    byte_189598E |= 1u;
+  if ( (g_bInitFlags & 1) == 0 )
+    g_bInitFlags |= 1u;
   return atexit(nullsub_1);
 }
 
@@ -5728,8 +5706,8 @@ void __cdecl unknown_libname_430()
 // Microsoft VisualC 2-14/net runtime
 int unknown_libname_431()
 {
-  if ( (byte_189598E & 1) == 0 )
-    byte_189598E |= 1u;
+  if ( (g_bInitFlags & 1) == 0 )
+    g_bInitFlags |= 1u;
   return atexit(nullsub_1);
 }
 
@@ -5738,8 +5716,8 @@ int unknown_libname_431()
 // Microsoft VisualC 2-14/net runtime
 int unknown_libname_432()
 {
-  if ( (byte_189598E & 1) == 0 )
-    byte_189598E |= 1u;
+  if ( (g_bInitFlags & 1) == 0 )
+    g_bInitFlags |= 1u;
   return atexit(nullsub_1);
 }
 
@@ -5748,8 +5726,8 @@ int unknown_libname_432()
 // Microsoft VisualC 2-14/net runtime
 int unknown_libname_433()
 {
-  if ( (byte_189598E & 1) == 0 )
-    byte_189598E |= 1u;
+  if ( (g_bInitFlags & 1) == 0 )
+    g_bInitFlags |= 1u;
   return atexit(nullsub_1);
 }
 
@@ -5758,8 +5736,8 @@ int unknown_libname_433()
 // Microsoft VisualC 2-14/net runtime
 int unknown_libname_434()
 {
-  if ( (byte_189598E & 1) == 0 )
-    byte_189598E |= 1u;
+  if ( (g_bInitFlags & 1) == 0 )
+    g_bInitFlags |= 1u;
   return atexit(nullsub_1);
 }
 
@@ -5768,8 +5746,8 @@ int unknown_libname_434()
 // Microsoft VisualC 2-14/net runtime
 int unknown_libname_435()
 {
-  if ( (byte_189598E & 1) == 0 )
-    byte_189598E |= 1u;
+  if ( (g_bInitFlags & 1) == 0 )
+    g_bInitFlags |= 1u;
   return atexit(nullsub_1);
 }
 
@@ -5778,8 +5756,8 @@ int unknown_libname_435()
 // Microsoft VisualC 2-14/net runtime
 int unknown_libname_436()
 {
-  if ( (byte_189598E & 1) == 0 )
-    byte_189598E |= 1u;
+  if ( (g_bInitFlags & 1) == 0 )
+    g_bInitFlags |= 1u;
   return atexit(nullsub_1);
 }
 
@@ -5888,8 +5866,8 @@ void __thiscall CRenderTarget2_Update(float *_this, float a2)
 // Microsoft VisualC 2-14/net runtime
 int unknown_libname_438()
 {
-  if ( (byte_189598E & 1) == 0 )
-    byte_189598E |= 1u;
+  if ( (g_bInitFlags & 1) == 0 )
+    g_bInitFlags |= 1u;
   return atexit(nullsub_1);
 }
 
@@ -5898,8 +5876,8 @@ int unknown_libname_438()
 // Microsoft VisualC 2-14/net runtime
 int unknown_libname_439()
 {
-  if ( (byte_189598E & 1) == 0 )
-    byte_189598E |= 1u;
+  if ( (g_bInitFlags & 1) == 0 )
+    g_bInitFlags |= 1u;
   return atexit(nullsub_1);
 }
 
@@ -5908,8 +5886,8 @@ int unknown_libname_439()
 // Microsoft VisualC 2-14/net runtime
 int unknown_libname_440()
 {
-  if ( (byte_189598E & 1) == 0 )
-    byte_189598E |= 1u;
+  if ( (g_bInitFlags & 1) == 0 )
+    g_bInitFlags |= 1u;
   return atexit(nullsub_1);
 }
 
@@ -5918,8 +5896,8 @@ int unknown_libname_440()
 // Microsoft VisualC 2-14/net runtime
 int unknown_libname_441()
 {
-  if ( (byte_189598E & 1) == 0 )
-    byte_189598E |= 1u;
+  if ( (g_bInitFlags & 1) == 0 )
+    g_bInitFlags |= 1u;
   return atexit(nullsub_1);
 }
 
@@ -5928,8 +5906,8 @@ int unknown_libname_441()
 // Microsoft VisualC 2-14/net runtime
 int unknown_libname_442()
 {
-  if ( (byte_189598E & 1) == 0 )
-    byte_189598E |= 1u;
+  if ( (g_bInitFlags & 1) == 0 )
+    g_bInitFlags |= 1u;
   return atexit(nullsub_1);
 }
 
@@ -5938,8 +5916,8 @@ int unknown_libname_442()
 // Microsoft VisualC 2-14/net runtime
 int unknown_libname_443()
 {
-  if ( (byte_189598E & 1) == 0 )
-    byte_189598E |= 1u;
+  if ( (g_bInitFlags & 1) == 0 )
+    g_bInitFlags |= 1u;
   return atexit(nullsub_1);
 }
 
@@ -5948,8 +5926,8 @@ int unknown_libname_443()
 // Microsoft VisualC 2-14/net runtime
 int unknown_libname_444()
 {
-  if ( (byte_189598E & 1) == 0 )
-    byte_189598E |= 1u;
+  if ( (g_bInitFlags & 1) == 0 )
+    g_bInitFlags |= 1u;
   return atexit(nullsub_1);
 }
 
@@ -5993,8 +5971,8 @@ int __thiscall CombatEffectUpdate(int _this, double a2)
 // Microsoft VisualC 2-14/net runtime
 int unknown_libname_445()
 {
-  if ( (byte_189598E & 1) == 0 )
-    byte_189598E |= 1u;
+  if ( (g_bInitFlags & 1) == 0 )
+    g_bInitFlags |= 1u;
   return atexit(nullsub_1);
 }
 
@@ -6011,8 +5989,8 @@ void __cdecl unknown_libname_446()
 // Microsoft VisualC 2-14/net runtime
 int unknown_libname_447()
 {
-  if ( (byte_189598E & 1) == 0 )
-    byte_189598E |= 1u;
+  if ( (g_bInitFlags & 1) == 0 )
+    g_bInitFlags |= 1u;
   return atexit(nullsub_1);
 }
 
@@ -6021,8 +5999,8 @@ int unknown_libname_447()
 // Microsoft VisualC 2-14/net runtime
 int unknown_libname_448()
 {
-  if ( (byte_189598E & 1) == 0 )
-    byte_189598E |= 1u;
+  if ( (g_bInitFlags & 1) == 0 )
+    g_bInitFlags |= 1u;
   return atexit(nullsub_1);
 }
 
@@ -6031,8 +6009,8 @@ int unknown_libname_448()
 // Microsoft VisualC 2-14/net runtime
 int unknown_libname_449()
 {
-  if ( (byte_189598E & 1) == 0 )
-    byte_189598E |= 1u;
+  if ( (g_bInitFlags & 1) == 0 )
+    g_bInitFlags |= 1u;
   return atexit(nullsub_1);
 }
 
@@ -6041,8 +6019,8 @@ int unknown_libname_449()
 // Microsoft VisualC 2-14/net runtime
 int unknown_libname_450()
 {
-  if ( (byte_189598E & 1) == 0 )
-    byte_189598E |= 1u;
+  if ( (g_bInitFlags & 1) == 0 )
+    g_bInitFlags |= 1u;
   return atexit(nullsub_1);
 }
 
@@ -6051,8 +6029,8 @@ int unknown_libname_450()
 // Microsoft VisualC 2-14/net runtime
 int unknown_libname_451()
 {
-  if ( (byte_189598E & 1) == 0 )
-    byte_189598E |= 1u;
+  if ( (g_bInitFlags & 1) == 0 )
+    g_bInitFlags |= 1u;
   return atexit(nullsub_1);
 }
 
@@ -6141,8 +6119,8 @@ char __thiscall _E68(_DWORD *_this)
 // Microsoft VisualC 2-14/net runtime
 int unknown_libname_452()
 {
-  if ( (byte_189598E & 1) == 0 )
-    byte_189598E |= 1u;
+  if ( (g_bInitFlags & 1) == 0 )
+    g_bInitFlags |= 1u;
   return atexit(nullsub_1);
 }
 
@@ -6151,8 +6129,8 @@ int unknown_libname_452()
 // Microsoft VisualC 2-14/net runtime
 int unknown_libname_453()
 {
-  if ( (byte_189598E & 1) == 0 )
-    byte_189598E |= 1u;
+  if ( (g_bInitFlags & 1) == 0 )
+    g_bInitFlags |= 1u;
   return atexit(nullsub_1);
 }
 
@@ -6161,8 +6139,8 @@ int unknown_libname_453()
 // Microsoft VisualC 2-14/net runtime
 int unknown_libname_454()
 {
-  if ( (byte_189598E & 1) == 0 )
-    byte_189598E |= 1u;
+  if ( (g_bInitFlags & 1) == 0 )
+    g_bInitFlags |= 1u;
   return atexit(nullsub_1);
 }
 
@@ -6171,8 +6149,8 @@ int unknown_libname_454()
 // Microsoft VisualC 2-14/net runtime
 int unknown_libname_455()
 {
-  if ( (byte_189598E & 1) == 0 )
-    byte_189598E |= 1u;
+  if ( (g_bInitFlags & 1) == 0 )
+    g_bInitFlags |= 1u;
   return atexit(nullsub_1);
 }
 
@@ -6181,8 +6159,8 @@ int unknown_libname_455()
 // Microsoft VisualC 2-14/net runtime
 int unknown_libname_456()
 {
-  if ( (byte_189598E & 1) == 0 )
-    byte_189598E |= 1u;
+  if ( (g_bInitFlags & 1) == 0 )
+    g_bInitFlags |= 1u;
   return atexit(nullsub_1);
 }
 
@@ -6191,8 +6169,8 @@ int unknown_libname_456()
 // Microsoft VisualC 2-14/net runtime
 int unknown_libname_457()
 {
-  if ( (byte_189598E & 1) == 0 )
-    byte_189598E |= 1u;
+  if ( (g_bInitFlags & 1) == 0 )
+    g_bInitFlags |= 1u;
   return atexit(nullsub_1);
 }
 
@@ -6201,8 +6179,8 @@ int unknown_libname_457()
 // Microsoft VisualC 2-14/net runtime
 int unknown_libname_458()
 {
-  if ( (byte_189598E & 1) == 0 )
-    byte_189598E |= 1u;
+  if ( (g_bInitFlags & 1) == 0 )
+    g_bInitFlags |= 1u;
   return atexit(nullsub_1);
 }
 
@@ -6211,8 +6189,8 @@ int unknown_libname_458()
 // Microsoft VisualC 2-14/net runtime
 int unknown_libname_459()
 {
-  if ( (byte_189598E & 1) == 0 )
-    byte_189598E |= 1u;
+  if ( (g_bInitFlags & 1) == 0 )
+    g_bInitFlags |= 1u;
   return atexit(nullsub_1);
 }
 
@@ -6221,8 +6199,8 @@ int unknown_libname_459()
 // Microsoft VisualC 2-14/net runtime
 int unknown_libname_460()
 {
-  if ( (byte_189598E & 1) == 0 )
-    byte_189598E |= 1u;
+  if ( (g_bInitFlags & 1) == 0 )
+    g_bInitFlags |= 1u;
   return atexit(nullsub_1);
 }
 
@@ -6231,8 +6209,8 @@ int unknown_libname_460()
 // Microsoft VisualC 2-14/net runtime
 int unknown_libname_461()
 {
-  if ( (byte_189598E & 1) == 0 )
-    byte_189598E |= 1u;
+  if ( (g_bInitFlags & 1) == 0 )
+    g_bInitFlags |= 1u;
   return atexit(nullsub_1);
 }
 
@@ -6241,8 +6219,8 @@ int unknown_libname_461()
 // Microsoft VisualC 2-14/net runtime
 int unknown_libname_462()
 {
-  if ( (byte_189598E & 1) == 0 )
-    byte_189598E |= 1u;
+  if ( (g_bInitFlags & 1) == 0 )
+    g_bInitFlags |= 1u;
   return atexit(nullsub_1);
 }
 
@@ -6251,8 +6229,8 @@ int unknown_libname_462()
 // Microsoft VisualC 2-14/net runtime
 int unknown_libname_463()
 {
-  if ( (byte_189598E & 1) == 0 )
-    byte_189598E |= 1u;
+  if ( (g_bInitFlags & 1) == 0 )
+    g_bInitFlags |= 1u;
   return atexit(nullsub_1);
 }
 
@@ -6261,8 +6239,8 @@ int unknown_libname_463()
 // Microsoft VisualC 2-14/net runtime
 int unknown_libname_464()
 {
-  if ( (byte_189598E & 1) == 0 )
-    byte_189598E |= 1u;
+  if ( (g_bInitFlags & 1) == 0 )
+    g_bInitFlags |= 1u;
   return atexit(nullsub_1);
 }
 
@@ -6279,8 +6257,8 @@ int CCBAI::CCBAI()
 // Microsoft VisualC 2-14/net runtime
 int unknown_libname_465()
 {
-  if ( (byte_189598E & 1) == 0 )
-    byte_189598E |= 1u;
+  if ( (g_bInitFlags & 1) == 0 )
+    g_bInitFlags |= 1u;
   return atexit(nullsub_1);
 }
 
@@ -6289,8 +6267,8 @@ int unknown_libname_465()
 // Microsoft VisualC 2-14/net runtime
 int unknown_libname_466()
 {
-  if ( (byte_189598E & 1) == 0 )
-    byte_189598E |= 1u;
+  if ( (g_bInitFlags & 1) == 0 )
+    g_bInitFlags |= 1u;
   return atexit(nullsub_1);
 }
 
@@ -6299,8 +6277,8 @@ int unknown_libname_466()
 // Microsoft VisualC 2-14/net runtime
 int unknown_libname_467()
 {
-  if ( (byte_189598E & 1) == 0 )
-    byte_189598E |= 1u;
+  if ( (g_bInitFlags & 1) == 0 )
+    g_bInitFlags |= 1u;
   return atexit(nullsub_1);
 }
 
@@ -6309,8 +6287,8 @@ int unknown_libname_467()
 // Microsoft VisualC 2-14/net runtime
 int unknown_libname_468()
 {
-  if ( (byte_189598E & 1) == 0 )
-    byte_189598E |= 1u;
+  if ( (g_bInitFlags & 1) == 0 )
+    g_bInitFlags |= 1u;
   return atexit(nullsub_1);
 }
 
@@ -6325,8 +6303,8 @@ INT_PTR __stdcall DialogFunc(HWND hDlg, UINT a2, WPARAM a3, LPARAM a4)
 // Microsoft VisualC 2-14/net runtime
 int unknown_libname_469()
 {
-  if ( (byte_189598E & 1) == 0 )
-    byte_189598E |= 1u;
+  if ( (g_bInitFlags & 1) == 0 )
+    g_bInitFlags |= 1u;
   return atexit(nullsub_1);
 }
 
@@ -6783,8 +6761,8 @@ LABEL_26:
 // Microsoft VisualC 2-14/net runtime
 int unknown_libname_470()
 {
-  if ( (byte_189598E & 1) == 0 )
-    byte_189598E |= 1u;
+  if ( (g_bInitFlags & 1) == 0 )
+    g_bInitFlags |= 1u;
   return atexit(nullsub_1);
 }
 
@@ -6830,8 +6808,8 @@ int __thiscall CCBRoleState_Method_503AE0(void **_this, int a2, int a3, int a4)
 // Microsoft VisualC 2-14/net runtime
 int unknown_libname_471()
 {
-  if ( (byte_189598E & 1) == 0 )
-    byte_189598E |= 1u;
+  if ( (g_bInitFlags & 1) == 0 )
+    g_bInitFlags |= 1u;
   return atexit(nullsub_1);
 }
 
@@ -6854,8 +6832,8 @@ char __thiscall j_std::codecvt_base::do_always_noconv(std::codecvt_base *_this)
 // Microsoft VisualC 2-14/net runtime
 int unknown_libname_472()
 {
-  if ( (byte_189598E & 1) == 0 )
-    byte_189598E |= 1u;
+  if ( (g_bInitFlags & 1) == 0 )
+    g_bInitFlags |= 1u;
   return atexit(nullsub_1);
 }
 
@@ -6864,8 +6842,8 @@ int unknown_libname_472()
 // Microsoft VisualC 2-14/net runtime
 int unknown_libname_473()
 {
-  if ( (byte_189598E & 1) == 0 )
-    byte_189598E |= 1u;
+  if ( (g_bInitFlags & 1) == 0 )
+    g_bInitFlags |= 1u;
   return atexit(nullsub_1);
 }
 
@@ -6874,8 +6852,8 @@ int unknown_libname_473()
 // Microsoft VisualC 2-14/net runtime
 int unknown_libname_474()
 {
-  if ( (byte_189598E & 1) == 0 )
-    byte_189598E |= 1u;
+  if ( (g_bInitFlags & 1) == 0 )
+    g_bInitFlags |= 1u;
   return atexit(nullsub_1);
 }
 
@@ -6884,8 +6862,8 @@ int unknown_libname_474()
 // Microsoft VisualC 2-14/net runtime
 int unknown_libname_475()
 {
-  if ( (byte_189598E & 1) == 0 )
-    byte_189598E |= 1u;
+  if ( (g_bInitFlags & 1) == 0 )
+    g_bInitFlags |= 1u;
   return atexit(nullsub_1);
 }
 
@@ -6894,8 +6872,8 @@ int unknown_libname_475()
 // Microsoft VisualC 2-14/net runtime
 int unknown_libname_476()
 {
-  if ( (byte_189598E & 1) == 0 )
-    byte_189598E |= 1u;
+  if ( (g_bInitFlags & 1) == 0 )
+    g_bInitFlags |= 1u;
   return atexit(nullsub_1);
 }
 
@@ -6904,8 +6882,8 @@ int unknown_libname_476()
 // Microsoft VisualC 2-14/net runtime
 int unknown_libname_477()
 {
-  if ( (byte_189598E & 1) == 0 )
-    byte_189598E |= 1u;
+  if ( (g_bInitFlags & 1) == 0 )
+    g_bInitFlags |= 1u;
   return atexit(nullsub_1);
 }
 
@@ -6914,8 +6892,8 @@ int unknown_libname_477()
 // Microsoft VisualC 2-14/net runtime
 int unknown_libname_478()
 {
-  if ( (byte_189598E & 1) == 0 )
-    byte_189598E |= 1u;
+  if ( (g_bInitFlags & 1) == 0 )
+    g_bInitFlags |= 1u;
   return atexit(nullsub_1);
 }
 
@@ -6924,8 +6902,8 @@ int unknown_libname_478()
 // Microsoft VisualC 2-14/net runtime
 int unknown_libname_479()
 {
-  if ( (byte_189598E & 1) == 0 )
-    byte_189598E |= 1u;
+  if ( (g_bInitFlags & 1) == 0 )
+    g_bInitFlags |= 1u;
   return atexit(nullsub_1);
 }
 
@@ -6934,8 +6912,8 @@ int unknown_libname_479()
 // Microsoft VisualC 2-14/net runtime
 int unknown_libname_480()
 {
-  if ( (byte_189598E & 1) == 0 )
-    byte_189598E |= 1u;
+  if ( (g_bInitFlags & 1) == 0 )
+    g_bInitFlags |= 1u;
   return atexit(nullsub_1);
 }
 
@@ -6944,8 +6922,8 @@ int unknown_libname_480()
 // Microsoft VisualC 2-14/net runtime
 int unknown_libname_481()
 {
-  if ( (byte_189598E & 1) == 0 )
-    byte_189598E |= 1u;
+  if ( (g_bInitFlags & 1) == 0 )
+    g_bInitFlags |= 1u;
   return atexit(nullsub_1);
 }
 
@@ -6954,8 +6932,8 @@ int unknown_libname_481()
 // Microsoft VisualC 2-14/net runtime
 int unknown_libname_482()
 {
-  if ( (byte_189598E & 1) == 0 )
-    byte_189598E |= 1u;
+  if ( (g_bInitFlags & 1) == 0 )
+    g_bInitFlags |= 1u;
   return atexit(nullsub_1);
 }
 
@@ -6972,8 +6950,8 @@ int __thiscall UIListBox::SetScroll(UIListBox *_this)
 // Microsoft VisualC 2-14/net runtime
 int unknown_libname_483()
 {
-  if ( (byte_189598E & 1) == 0 )
-    byte_189598E |= 1u;
+  if ( (g_bInitFlags & 1) == 0 )
+    g_bInitFlags |= 1u;
   return atexit(nullsub_1);
 }
 
@@ -6982,8 +6960,8 @@ int unknown_libname_483()
 // Microsoft VisualC 2-14/net runtime
 int unknown_libname_484()
 {
-  if ( (byte_189598E & 1) == 0 )
-    byte_189598E |= 1u;
+  if ( (g_bInitFlags & 1) == 0 )
+    g_bInitFlags |= 1u;
   return atexit(nullsub_1);
 }
 
@@ -6992,8 +6970,8 @@ int unknown_libname_484()
 // Microsoft VisualC 2-14/net runtime
 int unknown_libname_485()
 {
-  if ( (byte_189598E & 1) == 0 )
-    byte_189598E |= 1u;
+  if ( (g_bInitFlags & 1) == 0 )
+    g_bInitFlags |= 1u;
   return atexit(nullsub_1);
 }
 
@@ -7002,8 +6980,8 @@ int unknown_libname_485()
 // Microsoft VisualC 2-14/net runtime
 int unknown_libname_486()
 {
-  if ( (byte_189598E & 1) == 0 )
-    byte_189598E |= 1u;
+  if ( (g_bInitFlags & 1) == 0 )
+    g_bInitFlags |= 1u;
   return atexit(nullsub_1);
 }
 
@@ -7012,8 +6990,8 @@ int unknown_libname_486()
 // Microsoft VisualC 2-14/net runtime
 int unknown_libname_487()
 {
-  if ( (byte_189598E & 1) == 0 )
-    byte_189598E |= 1u;
+  if ( (g_bInitFlags & 1) == 0 )
+    g_bInitFlags |= 1u;
   return atexit(nullsub_1);
 }
 
@@ -7022,8 +7000,8 @@ int unknown_libname_487()
 // Microsoft VisualC 2-14/net runtime
 int unknown_libname_488()
 {
-  if ( (byte_189598E & 1) == 0 )
-    byte_189598E |= 1u;
+  if ( (g_bInitFlags & 1) == 0 )
+    g_bInitFlags |= 1u;
   return atexit(nullsub_1);
 }
 
@@ -7057,8 +7035,8 @@ int __thiscall MiniGame1Update(_DWORD ***_this, double a2)
 // Microsoft VisualC 2-14/net runtime
 int unknown_libname_489()
 {
-  if ( (byte_189598E & 1) == 0 )
-    byte_189598E |= 1u;
+  if ( (g_bInitFlags & 1) == 0 )
+    g_bInitFlags |= 1u;
   return atexit(nullsub_1);
 }
 
@@ -7067,8 +7045,8 @@ int unknown_libname_489()
 // Microsoft VisualC 2-14/net runtime
 int unknown_libname_490()
 {
-  if ( (byte_189598E & 1) == 0 )
-    byte_189598E |= 1u;
+  if ( (g_bInitFlags & 1) == 0 )
+    g_bInitFlags |= 1u;
   return atexit(nullsub_1);
 }
 
@@ -7088,8 +7066,8 @@ _DWORD *__thiscall unknown_libname_491(_DWORD *_this)
 // Microsoft VisualC 2-14/net runtime
 int unknown_libname_492()
 {
-  if ( (byte_189598E & 1) == 0 )
-    byte_189598E |= 1u;
+  if ( (g_bInitFlags & 1) == 0 )
+    g_bInitFlags |= 1u;
   return atexit(nullsub_1);
 }
 
@@ -7098,8 +7076,8 @@ int unknown_libname_492()
 // Microsoft VisualC 2-14/net runtime
 int unknown_libname_493()
 {
-  if ( (byte_189598E & 1) == 0 )
-    byte_189598E |= 1u;
+  if ( (g_bInitFlags & 1) == 0 )
+    g_bInitFlags |= 1u;
   return atexit(nullsub_1);
 }
 
@@ -7225,8 +7203,8 @@ void __thiscall MiniGame2Update(_DWORD **_this, int a2)
 // Microsoft VisualC 2-14/net runtime
 int unknown_libname_494()
 {
-  if ( (byte_189598E & 1) == 0 )
-    byte_189598E |= 1u;
+  if ( (g_bInitFlags & 1) == 0 )
+    g_bInitFlags |= 1u;
   return atexit(nullsub_1);
 }
 
@@ -7235,8 +7213,8 @@ int unknown_libname_494()
 // Microsoft VisualC 2-14/net runtime
 int unknown_libname_495()
 {
-  if ( (byte_189598E & 1) == 0 )
-    byte_189598E |= 1u;
+  if ( (g_bInitFlags & 1) == 0 )
+    g_bInitFlags |= 1u;
   return atexit(nullsub_1);
 }
 
@@ -7245,8 +7223,8 @@ int unknown_libname_495()
 // Microsoft VisualC 2-14/net runtime
 int unknown_libname_496()
 {
-  if ( (byte_189598E & 1) == 0 )
-    byte_189598E |= 1u;
+  if ( (g_bInitFlags & 1) == 0 )
+    g_bInitFlags |= 1u;
   return atexit(nullsub_1);
 }
 
@@ -7255,8 +7233,8 @@ int unknown_libname_496()
 // Microsoft VisualC 2-14/net runtime
 int unknown_libname_497()
 {
-  if ( (byte_189598E & 1) == 0 )
-    byte_189598E |= 1u;
+  if ( (g_bInitFlags & 1) == 0 )
+    g_bInitFlags |= 1u;
   return atexit(nullsub_1);
 }
 
@@ -7271,8 +7249,8 @@ BOOL __stdcall DllMain(HINSTANCE hinstDLL, DWORD fdwReason, LPVOID lpvReserved)
 // Microsoft VisualC 2-14/net runtime
 int unknown_libname_498()
 {
-  if ( (byte_189598E & 1) == 0 )
-    byte_189598E |= 1u;
+  if ( (g_bInitFlags & 1) == 0 )
+    g_bInitFlags |= 1u;
   return atexit(nullsub_1);
 }
 
@@ -7281,8 +7259,8 @@ int unknown_libname_498()
 // Microsoft VisualC 2-14/net runtime
 int unknown_libname_499()
 {
-  if ( (byte_189598E & 1) == 0 )
-    byte_189598E |= 1u;
+  if ( (g_bInitFlags & 1) == 0 )
+    g_bInitFlags |= 1u;
   return atexit(nullsub_1);
 }
 
@@ -7291,8 +7269,8 @@ int unknown_libname_499()
 // Microsoft VisualC 2-14/net runtime
 int unknown_libname_500()
 {
-  if ( (byte_189598E & 1) == 0 )
-    byte_189598E |= 1u;
+  if ( (g_bInitFlags & 1) == 0 )
+    g_bInitFlags |= 1u;
   return atexit(nullsub_1);
 }
 
@@ -7301,8 +7279,8 @@ int unknown_libname_500()
 // Microsoft VisualC 2-14/net runtime
 int unknown_libname_501()
 {
-  if ( (byte_189598E & 1) == 0 )
-    byte_189598E |= 1u;
+  if ( (g_bInitFlags & 1) == 0 )
+    g_bInitFlags |= 1u;
   return atexit(nullsub_1);
 }
 
@@ -7396,8 +7374,8 @@ void __thiscall MiniGame3Update(int *_this, float a2)
 // Microsoft VisualC 2-14/net runtime
 int unknown_libname_502()
 {
-  if ( (byte_189598E & 1) == 0 )
-    byte_189598E |= 1u;
+  if ( (g_bInitFlags & 1) == 0 )
+    g_bInitFlags |= 1u;
   return atexit(nullsub_1);
 }
 
@@ -7406,8 +7384,8 @@ int unknown_libname_502()
 // Microsoft VisualC 2-14/net runtime
 int unknown_libname_503()
 {
-  if ( (byte_189598E & 1) == 0 )
-    byte_189598E |= 1u;
+  if ( (g_bInitFlags & 1) == 0 )
+    g_bInitFlags |= 1u;
   return atexit(nullsub_1);
 }
 
@@ -7416,8 +7394,8 @@ int unknown_libname_503()
 // Microsoft VisualC 2-14/net runtime
 int unknown_libname_504()
 {
-  if ( (byte_189598E & 1) == 0 )
-    byte_189598E |= 1u;
+  if ( (g_bInitFlags & 1) == 0 )
+    g_bInitFlags |= 1u;
   return atexit(nullsub_1);
 }
 
@@ -7426,8 +7404,8 @@ int unknown_libname_504()
 // Microsoft VisualC 2-14/net runtime
 int unknown_libname_505()
 {
-  if ( (byte_189598E & 1) == 0 )
-    byte_189598E |= 1u;
+  if ( (g_bInitFlags & 1) == 0 )
+    g_bInitFlags |= 1u;
   return atexit(nullsub_1);
 }
 
@@ -7436,8 +7414,8 @@ int unknown_libname_505()
 // Microsoft VisualC 2-14/net runtime
 int unknown_libname_506()
 {
-  if ( (byte_189598E & 1) == 0 )
-    byte_189598E |= 1u;
+  if ( (g_bInitFlags & 1) == 0 )
+    g_bInitFlags |= 1u;
   return atexit(nullsub_1);
 }
 
@@ -7470,8 +7448,8 @@ void __cdecl unknown_libname_507()
 // Microsoft VisualC 2-14/net runtime
 int unknown_libname_508()
 {
-  if ( (byte_189598E & 1) == 0 )
-    byte_189598E |= 1u;
+  if ( (g_bInitFlags & 1) == 0 )
+    g_bInitFlags |= 1u;
   return atexit(nullsub_1);
 }
 
@@ -7480,8 +7458,8 @@ int unknown_libname_508()
 // Microsoft VisualC 2-14/net runtime
 int unknown_libname_509()
 {
-  if ( (byte_189598E & 1) == 0 )
-    byte_189598E |= 1u;
+  if ( (g_bInitFlags & 1) == 0 )
+    g_bInitFlags |= 1u;
   return atexit(nullsub_1);
 }
 
@@ -7613,8 +7591,8 @@ int __thiscall WinProc_HWND_53CDE0(char *_this, char *Source)
 // Microsoft VisualC 2-14/net runtime
 int unknown_libname_511()
 {
-  if ( (byte_189598E & 1) == 0 )
-    byte_189598E |= 1u;
+  if ( (g_bInitFlags & 1) == 0 )
+    g_bInitFlags |= 1u;
   return atexit(nullsub_1);
 }
 
@@ -7683,8 +7661,8 @@ FILE *LogMessage(char *Format, ...)
 // Microsoft VisualC 2-14/net runtime
 int unknown_libname_512()
 {
-  if ( (byte_189598E & 1) == 0 )
-    byte_189598E |= 1u;
+  if ( (g_bInitFlags & 1) == 0 )
+    g_bInitFlags |= 1u;
   return atexit(nullsub_1);
 }
 
@@ -7711,8 +7689,8 @@ void __thiscall CScreenMode_SetResolution(PtrArray *_this, int a3, int arg4)
 // Microsoft VisualC 2-14/net runtime
 int unknown_libname_514()
 {
-  if ( (byte_189598E & 1) == 0 )
-    byte_189598E |= 1u;
+  if ( (g_bInitFlags & 1) == 0 )
+    g_bInitFlags |= 1u;
   return atexit(nullsub_1);
 }
 
@@ -7729,8 +7707,8 @@ void __cdecl unknown_libname_515()
 // Microsoft VisualC 2-14/net runtime
 int unknown_libname_516()
 {
-  if ( (byte_189598E & 1) == 0 )
-    byte_189598E |= 1u;
+  if ( (g_bInitFlags & 1) == 0 )
+    g_bInitFlags |= 1u;
   return atexit(nullsub_1);
 }
 
@@ -7755,8 +7733,8 @@ void __cdecl unknown_libname_518()
 // Microsoft VisualC 2-14/net runtime
 int unknown_libname_519()
 {
-  if ( (byte_189598E & 1) == 0 )
-    byte_189598E |= 1u;
+  if ( (g_bInitFlags & 1) == 0 )
+    g_bInitFlags |= 1u;
   return atexit(nullsub_1);
 }
 
@@ -7765,8 +7743,8 @@ int unknown_libname_519()
 // Microsoft VisualC 2-14/net runtime
 int unknown_libname_520()
 {
-  if ( (byte_189598E & 1) == 0 )
-    byte_189598E |= 1u;
+  if ( (g_bInitFlags & 1) == 0 )
+    g_bInitFlags |= 1u;
   return atexit(nullsub_1);
 }
 
@@ -7807,8 +7785,8 @@ LABEL_7:
 // Microsoft VisualC 2-14/net runtime
 int unknown_libname_521()
 {
-  if ( (byte_189598E & 1) == 0 )
-    byte_189598E |= 1u;
+  if ( (g_bInitFlags & 1) == 0 )
+    g_bInitFlags |= 1u;
   return atexit(nullsub_1);
 }
 
@@ -7881,7 +7859,7 @@ void __cdecl _TextureLib_Data::~_TextureLib_Data(int a1, int a2, int a3, int a4,
   v6[3] = (float)a2;
   v6[2] = (float)a3;
   v6[1] = (float)a4;
-  DynVertBuf = gbVertPoolMgr::GetDynVertBuf(dword_BFDA60->pVertPoolMgr, 0x114u);
+  DynVertBuf = gbVertPoolMgr::GetDynVertBuf(g_pGfxMgr->pVertPoolMgr, 0x114u);
   gbDynVertBuf::RenderUIQuad(DynVertBuf, (struct gbUIQuad *)v6, 1, (struct gbRenderEffect *)dword_1895050, 0);
 }
 
@@ -7927,14 +7905,14 @@ void __cdecl _TextureLib_Data::_GetItemNum(int *a1, struct gbTextureArray *a2, i
     v13 = v6;
     v14 = (fabs((double)v18) + -0.5) / (double)v5->Height;
   }
-  v7 = (double)dword_BFD6D0;
+  v7 = (double)(int)g_pGameTime;
   v8 = (struct gbRenderEffect *)dword_1895048;
   v10[0] = ((double)*a1 + (double)*a1) / v7 - 1.0;
-  v19 = (float)dword_BFD6D4;
+  v19 = (float)(int)g_pAbsTime;
   v10[3] = 1.0 - ((double)a1[1] + (double)a1[1]) / v19;
   v10[2] = ((double)a1[2] + (double)a1[2]) / v7 - 1.0;
   v10[1] = 1.0 - ((double)a1[3] + (double)a1[3]) / v19;
-  DynVertBuf = gbVertPoolMgr::GetDynVertBuf(dword_BFDA60->pVertPoolMgr, 0x15u);
+  DynVertBuf = gbVertPoolMgr::GetDynVertBuf(g_pGfxMgr->pVertPoolMgr, 0x15u);
   gbDynVertBuf::RenderUIQuad(DynVertBuf, (struct gbUIQuad *)v10, 1, v8, a2);
 }
 
@@ -8018,9 +7996,9 @@ void __cdecl _TextureLib_Data::_CheckItem(
   }
   else
   {
-    v14 = (double)dword_BFD6D0;
+    v14 = (double)(int)g_pGameTime;
     v20 = ((double)*a2 + (double)*a2) / v14 - 1.0;
-    v30 = (float)dword_BFD6D4;
+    v30 = (float)(int)g_pAbsTime;
     v23 = 1.0 - ((double)a2[1] + (double)a2[1]) / v30;
     if ( a6 )
     {
@@ -8037,7 +8015,7 @@ void __cdecl _TextureLib_Data::_CheckItem(
     v11 = (struct gbRenderEffect *)dword_1895048;
     v21 = 1.0 - (v16 + v16) / v30;
   }
-  DynVertBuf = gbVertPoolMgr::GetDynVertBuf(dword_BFDA60->pVertPoolMgr, a5);
+  DynVertBuf = gbVertPoolMgr::GetDynVertBuf(g_pGfxMgr->pVertPoolMgr, a5);
   gbDynVertBuf::RenderUIQuad(DynVertBuf, (struct gbUIQuad *)&v20, 1, v11, a3);
 }
 
@@ -8123,9 +8101,9 @@ void __cdecl _TextureLib_Data::SetLibFolder(
   }
   else
   {
-    v32 = (float)dword_BFD6D0;
+    v32 = (float)(int)g_pGameTime;
     v12 = ((double)*a1 + (double)*a1) / v32 - 1.0;
-    v31 = (float)dword_BFD6D4;
+    v31 = (float)(int)g_pAbsTime;
     v22 = 1.0 - ((double)a1[1] + (double)a1[1]) / v31;
     if ( a5 == (unsigned int *)HIDWORD(v6) )
     {
@@ -8145,7 +8123,7 @@ void __cdecl _TextureLib_Data::SetLibFolder(
   }
   v19 = v12 - -0.5;
   v21 = v14 - -0.5;
-  DynVertBuf = gbVertPoolMgr::GetDynVertBuf(dword_BFDA60->pVertPoolMgr, a4);
+  DynVertBuf = gbVertPoolMgr::GetDynVertBuf(g_pGfxMgr->pVertPoolMgr, a4);
   gbDynVertBuf::RenderUIQuad(DynVertBuf, (struct gbUIQuad *)&v19, 1, v13, a3);
 }
 
@@ -8215,7 +8193,7 @@ void __cdecl _TextureLib_Data::GetLibInfo(
   v18[1] = v14;
   v18[0] = v12 - -0.5;
   v18[2] = v13 - -0.5;
-  DynVertBuf = gbVertPoolMgr::GetDynVertBuf(dword_BFDA60->pVertPoolMgr, 0x114u);
+  DynVertBuf = gbVertPoolMgr::GetDynVertBuf(g_pGfxMgr->pVertPoolMgr, 0x114u);
   if ( !a7 )
   {
     v17 = a6;
@@ -8295,7 +8273,7 @@ void __cdecl _TextureLib_Data::GetLib(
   v14[1] = v12;
   v14[0] = v10 - -0.5;
   v14[2] = v11 - -0.5;
-  DynVertBuf = gbVertPoolMgr::GetDynVertBuf(dword_BFDA60->pVertPoolMgr, 0x114u);
+  DynVertBuf = gbVertPoolMgr::GetDynVertBuf(g_pGfxMgr->pVertPoolMgr, 0x114u);
   gbDynVertBuf::RenderUIQuad(DynVertBuf, (struct gbUIQuad *)v14, 1, (struct gbRenderEffect *)dword_189505C, a6);
 }
 
@@ -8363,7 +8341,7 @@ void __cdecl _TextureLib_Data::GetTextureInfo(
     v10 = (double)a2[3];
   }
   v13[1] = v10;
-  DynVertBuf = gbVertPoolMgr::GetDynVertBuf(dword_BFDA60->pVertPoolMgr, 0x114u);
+  DynVertBuf = gbVertPoolMgr::GetDynVertBuf(g_pGfxMgr->pVertPoolMgr, 0x114u);
   gbDynVertBuf::RenderUIQuad(DynVertBuf, (struct gbUIQuad *)v13, 1, (struct gbRenderEffect *)dword_1895054, a4);
 }
 
@@ -8422,7 +8400,7 @@ void __cdecl _TextureLib_Data::GetTextureInfo(
   v11[1] = v9;
   v11[0] = v7 - -0.5;
   v11[2] = v8 - -0.5;
-  DynVertBuf = gbVertPoolMgr::GetDynVertBuf(dword_BFDA60->pVertPoolMgr, 0x114u);
+  DynVertBuf = gbVertPoolMgr::GetDynVertBuf(g_pGfxMgr->pVertPoolMgr, 0x114u);
   gbDynVertBuf::RenderUIQuad(DynVertBuf, (struct gbUIQuad *)v11, 1, (struct gbRenderEffect *)dword_1895058, a6);
 }
 
@@ -8495,7 +8473,7 @@ LABEL_12:
   v10[1] = v8;
   v10[0] = v6 - -0.5;
   v10[2] = v7 - -0.5;
-  DynVertBuf = gbVertPoolMgr::GetDynVertBuf(dword_BFDA60->pVertPoolMgr, 0x114u);
+  DynVertBuf = gbVertPoolMgr::GetDynVertBuf(g_pGfxMgr->pVertPoolMgr, 0x114u);
   gbDynVertBuf::RenderUIQuad(DynVertBuf, (struct gbUIQuad *)v10, 1, (struct gbRenderEffect *)dword_189504C, a3);
 }
 
@@ -8529,7 +8507,7 @@ void __cdecl UIDestorySystem(int a1, int a2, int a3, int a4, int *a5, struct gbT
   v9[1] = (float)a4;
   v9[0] = (double)a1 - -0.5;
   v10 = v10 - -0.5;
-  DynVertBuf = gbVertPoolMgr::GetDynVertBuf(dword_BFDA60->pVertPoolMgr, 0x114u);
+  DynVertBuf = gbVertPoolMgr::GetDynVertBuf(g_pGfxMgr->pVertPoolMgr, 0x114u);
   gbDynVertBuf::RenderUIQuad(DynVertBuf, (struct gbUIQuad *)v9, 1, (struct gbRenderEffect *)dword_1895058, a6);
 }
 
@@ -8559,7 +8537,7 @@ void __cdecl UIRenderQuad(int a1, int a2, int a3, int a4, int a5, int a6, int *a
   v9[1] = (float)a4;
   v9[0] = (double)a1 - -0.5;
   v10 = v10 - -0.5;
-  DynVertBuf = gbVertPoolMgr::GetDynVertBuf(dword_BFDA60->pVertPoolMgr, 0x114u);
+  DynVertBuf = gbVertPoolMgr::GetDynVertBuf(g_pGfxMgr->pVertPoolMgr, 0x114u);
   gbDynVertBuf::RenderUIQuad(DynVertBuf, (struct gbUIQuad *)v9, 1, (struct gbRenderEffect *)dword_1895058, a8);
 }
 
@@ -8625,7 +8603,7 @@ LABEL_7:
   v16[1] = v14;
   v16[0] = v12 - -0.5;
   v16[2] = v13 - -0.5;
-  DynVertBuf = gbVertPoolMgr::GetDynVertBuf(dword_BFDA60->pVertPoolMgr, 0x114u);
+  DynVertBuf = gbVertPoolMgr::GetDynVertBuf(g_pGfxMgr->pVertPoolMgr, 0x114u);
   gbDynVertBuf::RenderUIQuad(DynVertBuf, (struct gbUIQuad *)v16, 1, (struct gbRenderEffect *)dword_1895060, a6);
 }
 
@@ -8638,9 +8616,9 @@ gbGfxManager *__cdecl PushMatrixStacks()
   gbGfxManager *v2; // ebx
   gbMatrixStack *v3; // edi
 
-  v1 = dword_BFDA60->pMatrixStack[1];
+  v1 = g_pGfxMgr->pMatrixStack[1];
   v2 = v0;
-  v3 = dword_BFDA60->pMatrixStack[0];
+  v3 = g_pGfxMgr->pMatrixStack[0];
   gbMatrixStack::Push(v1);
   gbMatrixStack::Push(v3);
   gbMatrixStack::LoadIdentity(v1);
@@ -8655,8 +8633,8 @@ gbGfxManager *__cdecl PopMatrixStacks()
   gbMatrixStack *v0; // esi
   gbGfxManager *result; // eax
 
-  v0 = dword_BFDA60->pMatrixStack[1];
-  gbMatrixStack::Pop(dword_BFDA60->pMatrixStack[0]);
+  v0 = g_pGfxMgr->pMatrixStack[1];
+  gbMatrixStack::Pop(g_pGfxMgr->pMatrixStack[0]);
   gbMatrixStack::Pop(v0);
   return result;
 }
@@ -8724,23 +8702,23 @@ LABEL_17:
   switch ( v5 )
   {
     case 12:
-      v6 = dword_BFDA60->pFontMgr->pAllFont[0];
+      v6 = g_pGfxMgr->pFontMgr->pAllFont[0];
       break;
     case 16:
-      v6 = dword_BFDA60->pFontMgr->pAllFont[1];
+      v6 = g_pGfxMgr->pFontMgr->pAllFont[1];
       break;
     case 20:
-      v6 = dword_BFDA60->pFontMgr->pAllFont[2];
+      v6 = g_pGfxMgr->pFontMgr->pAllFont[2];
       break;
     case 24:
-      v6 = dword_BFDA60->pFontMgr->pAllFont[3];
+      v6 = g_pGfxMgr->pFontMgr->pAllFont[3];
       break;
     default:
       break;
   }
   v9 = (double)a5 + (double)a5;
-  v10 = v9 / (double)dword_BFD6D4;
-  *(float *)&v6->curColor.Blue = v9 / (double)dword_BFD6D0;
+  v10 = v9 / (double)(int)g_pAbsTime;
+  *(float *)&v6->curColor.Blue = v9 / (double)(int)g_pGameTime;
   *(float *)&v6->curColor.Color = v10;
   if ( gbColorQuad::ColorQuadFmt )
   {
@@ -8755,8 +8733,8 @@ LABEL_17:
   }
   HIBYTE(v14) = a4[3];
   v6->curColor.ColorQuadFmt = v14;
-  v12 = 1.0 - ((double)v13 + (double)v13) / (double)dword_BFD6D4;
-  v11 = ((double)a1 + (double)a1) / (double)dword_BFD6D0 - 1.0;
+  v12 = 1.0 - ((double)v13 + (double)v13) / (double)(int)g_pAbsTime;
+  v11 = ((double)a1 + (double)a1) / (double)(int)g_pGameTime - 1.0;
   (*(void (__thiscall **)(gbPrintFont *, int, _DWORD, _DWORD, int, int))(*(_DWORD *)v6->_pad_0000 + 16))(
     v6,
     a3,
@@ -8775,7 +8753,7 @@ void __cdecl UIRenderPar(const char *a1, int *a2, _BYTE *a3, int a4, int a5)
   int v7; // eax
   int v8; // [esp+20h] [ebp+10h]
 
-  v6 = dword_BFDA60->pFontMgr->pAllFont[a4];
+  v6 = g_pGfxMgr->pFontMgr->pAllFont[a4];
   if ( gbColorQuad::ColorQuadFmt )
   {
     BYTE2(v8) = *a3;
@@ -8853,8 +8831,8 @@ void __cdecl UIRenderQuad(const char *a1, int *a2, float *a3, int a4, int a5)
         v22 = 0;
         v25 = 0;
         v26 = 0;
-        v11 = v10 / (double)dword_BFD6D4;
-        a3[12] = v10 / (double)dword_BFD6D0;
+        v11 = v10 / (double)(int)g_pAbsTime;
+        a3[12] = v10 / (double)(int)g_pGameTime;
         a3[13] = v11;
         v12 = a4;
         v13 = a2;
@@ -8916,8 +8894,8 @@ LABEL_23:
               (*(void (__thiscall **)(float *))(*(_DWORD *)a3 + 8))(a3);
               return;
             }
-            v21 = 1.0 - ((double)(v26 + v23 + a2[1]) + (double)(v26 + v23 + a2[1])) / (double)dword_BFD6D4;
-            v20 = ((double)v27 + (double)v27) / (double)dword_BFD6D0 - 1.0;
+            v21 = 1.0 - ((double)(v26 + v23 + a2[1]) + (double)(v26 + v23 + a2[1])) / (double)(int)g_pAbsTime;
+            v20 = ((double)v27 + (double)v27) / (double)(int)g_pGameTime - 1.0;
             (*(void (__stdcall **)(int *, _DWORD, _DWORD, int, int))(*(_DWORD *)a3 + 16))(
               &a5,
               LODWORD(v20),
@@ -8978,8 +8956,8 @@ struct gbVFileSystem *__thiscall UIRenderQuadList(_BYTE *_this)
     v5 = 3;
     do
     {
-      v6 = (gbTexture *)(*(int (__thiscall **)(gbGfxManager *, _DWORD))(*(_DWORD *)dword_BFDA60->_pad_0000 + 8))(
-                          dword_BFDA60,
+      v6 = (gbTexture *)(*(int (__thiscall **)(gbGfxManager *, _DWORD))(*(_DWORD *)g_pGfxMgr->_pad_0000 + 8))(
+                          g_pGfxMgr,
                           *v4);
       *v3 = v6;
       gbTexture::LoadTexture(v6, 1);
@@ -8995,8 +8973,8 @@ struct gbVFileSystem *__thiscall UIRenderQuadList(_BYTE *_this)
     v8 = 3;
     do
     {
-      *v7 = (*(int (__thiscall **)(gbGfxManager *, _DWORD, _DWORD, _DWORD))(*(_DWORD *)dword_BFDA60->_pad_0000 + 96))(
-              dword_BFDA60,
+      *v7 = (*(int (__thiscall **)(gbGfxManager *, _DWORD, _DWORD, _DWORD))(*(_DWORD *)g_pGfxMgr->_pad_0000 + 96))(
+              g_pGfxMgr,
               *(_DWORD *)((char *)v7 + (char *)v11 - _this),
               0,
               0);
@@ -9004,7 +8982,7 @@ struct gbVFileSystem *__thiscall UIRenderQuadList(_BYTE *_this)
       --v8;
     }
     while ( v8 );
-    (*(void (__thiscall **)(gbGfxManager *, int))(*(_DWORD *)dword_BFDA60->_pad_0000 + 104))(dword_BFDA60, 1);
+    (*(void (__thiscall **)(gbGfxManager *, int))(*(_DWORD *)g_pGfxMgr->_pad_0000 + 104))(g_pGfxMgr, 1);
   }
   UIQuadManager_Reset();
   v12 = -1;
@@ -9026,8 +9004,8 @@ gbGfxManager *__cdecl UIQuadManager_Reset()
     v2 = *(_BYTE *)(v0 + 29);
     result->DrvInfo.type = v3;
     if ( !v2 )
-      return (gbGfxManager *)(*(int (__thiscall **)(gbGfxManager *, _DWORD))(*(_DWORD *)dword_BFDA60->_pad_0000 + 100))(
-                               dword_BFDA60,
+      return (gbGfxManager *)(*(int (__thiscall **)(gbGfxManager *, _DWORD))(*(_DWORD *)g_pGfxMgr->_pad_0000 + 100))(
+                               g_pGfxMgr,
                                *(_DWORD *)&result->_pad_0000[4 * v3]);
   }
   return result;
@@ -9046,8 +9024,8 @@ void __cdecl unknown_libname_522()
 // Microsoft VisualC 2-14/net runtime
 int unknown_libname_523()
 {
-  if ( (byte_189598E & 1) == 0 )
-    byte_189598E |= 1u;
+  if ( (g_bInitFlags & 1) == 0 )
+    g_bInitFlags |= 1u;
   return atexit(nullsub_1);
 }
 
@@ -9208,8 +9186,8 @@ LABEL_20:
 // Microsoft VisualC 2-14/net runtime
 int unknown_libname_524()
 {
-  if ( (byte_189598E & 1) == 0 )
-    byte_189598E |= 1u;
+  if ( (g_bInitFlags & 1) == 0 )
+    g_bInitFlags |= 1u;
   return atexit(nullsub_1);
 }
 
@@ -9358,8 +9336,8 @@ exception *__thiscall std_out_of_range_ctor(exception *_this, struct exception *
 // Microsoft VisualC 2-14/net runtime
 int unknown_libname_528()
 {
-  if ( (byte_189598E & 1) == 0 )
-    byte_189598E |= 1u;
+  if ( (g_bInitFlags & 1) == 0 )
+    g_bInitFlags |= 1u;
   sub_542059();
   if ( (byte_189598F & 1) == 0 )
     byte_189598F |= 1u;
@@ -9639,7 +9617,7 @@ enum _EXCEPTION_DISPOSITION __usercall TranslatorGuardHandler@<eax>(
       *((EXCEPTION_POINTERS **)TargetFrame + 2),
       *((_DWORD *)TargetFrame + 4),
       *((struct EHRegistrationNode **)TargetFrame + 5),
-      1u);
+      1);
     if ( !*((_DWORD *)TargetFrame + 9) )
       _UnwindNestedFrames(a1, TargetFrame, (PEXCEPTION_RECORD)ExceptionRecord);
     return (*((enum _EXCEPTION_DISPOSITION (**)(void))TargetFrame + 6))();
@@ -9799,12 +9777,12 @@ __int64 __usercall _ftol@<edx:eax>(double a1@<st0>)
 }
 
 // 0x005535C9
-void __stdcall __ArrayUnwind(char *a1, unsigned int a2, int a3, void (__thiscall *a4)(void *))
+void __stdcall __ArrayUnwind(char *a1, unsigned int a2, int a3, void (*a4)(void))
 {
   while ( --a3 >= 0 )
   {
     a1 -= a2;
-    ((void (*)(void))a4)();
+    a4();
   }
 }
 
@@ -11016,9 +10994,16 @@ LABEL_10:
 }
 
 // 0x00554700
-long double __usercall _CIpow@<st0>(double x@<st0>, unsigned __int64 y@<st1>)
+long double __usercall _CIpow@<st0>(unsigned __int64 x@<st0>, long double y@<st1>)
 {
-  return sub_554722(HIDWORD(y), x, *(long double *)&y, SLODWORD(x), HIDWORD(*(unsigned __int64 *)&x), y, HIDWORD(y));
+  return sub_554722(
+           HIDWORD(*(unsigned __int64 *)&y),
+           *(double *)&x,
+           y,
+           x,
+           HIDWORD(x),
+           SLODWORD(y),
+           HIDWORD(*(unsigned __int64 *)&y));
 }
 
 // 0x00554719
@@ -13947,7 +13932,7 @@ int __cdecl __InternalCxxFrameHandler(
         EXCEPTION_POINTERS *a5,
         int a6,
         struct EHRegistrationNode *TargetFrame,
-        char a8)
+        unsigned __int8 a8)
 {
   int (__cdecl *pForwardCompat)(); // ecx
   struct _EXCEPTION_POINTERS *v10; // [esp+0h] [ebp-8h]
@@ -13976,7 +13961,7 @@ int __cdecl __InternalCxxFrameHandler(
                  a5,
                  a6,
                  TargetFrame,
-                 (unsigned __int8)a8);
+                 a8);
     }
     FindHandler(ExceptionRecord, a2, a3, a4, a5, a8, a6, TargetFrame);
   }
@@ -15898,9 +15883,9 @@ int __initmbctable()
 }
 
 // 0x005592F0
-double __usercall fFYTOX@<st0>(int a1@<ebp>, char a2@<ch>, long double a3@<st1>, long double a4@<st0>)
+long double __usercall fFYTOX@<st0>(int a1@<ebp>, char a2@<ch>, long double a3@<st1>, long double a4@<st0>)
 {
-  double result; // st7
+  long double result; // st7
   long double v6; // st6
   long double v7; // st7
   long double v8; // st7
@@ -17213,7 +17198,7 @@ LABEL_256:
 }
 
 // 0x0055A28B
-int __cdecl _hextodec(int C)
+unsigned int __cdecl _hextodec(int C)
 {
   int v1; // esi
   int v2; // eax

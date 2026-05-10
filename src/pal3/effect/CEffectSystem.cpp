@@ -15,9 +15,6 @@ extern char aGfxscriptTrail[];
 extern unsigned char byte_DE93A8;
 extern unsigned char byte_DE93A9;
 extern unsigned char byte_DE96F4;
-extern int dword_BFD6D0;
-extern int dword_BFD6D4;
-extern int dword_BFDA60;
 extern int dword_DE9384;
 extern int dword_DE997C;
 extern float flt_DE9978;
@@ -212,18 +209,18 @@ char CEffectSystem::IsVisible()
     v7 = 0;
     v8 = 0;
     v9 = 0;
-    if ( !(*(int (**)(gbGfxManager *, _DWORD *, int))(*(_DWORD *)dword_BFDA60->_pad_0000 + 84))(
-            dword_BFDA60,
+    if ( !(*(int (**)(gbGfxManager *, _DWORD *, int))(*(_DWORD *)g_pGfxMgr->_pad_0000 + 84))(
+            g_pGfxMgr,
             v6,
             1) )
       return 0;
-    (*(void (**)(gbGfxManager *))(*(_DWORD *)dword_BFDA60->_pad_0000 + 88))(dword_BFDA60);
-    v3 = ((gbEffectMgr *)dword_BFDA60->pEffectMgr)->NewRenderEffect(aGfxscriptTrail, 0);
+    (*(void (**)(gbGfxManager *))(*(_DWORD *)g_pGfxMgr->_pad_0000 + 88))(g_pGfxMgr);
+    v3 = ((gbEffectMgr *)g_pGfxMgr->pEffectMgr)->NewRenderEffect(aGfxscriptTrail, 0);
     *((_DWORD *)this + 207) = v3;
     if ( !v3 )
       return 0;
-    if ( (*(int (__stdcall **)(_DWORD, _DWORD, char *))(**(_DWORD **)&dword_BFDA60[1].DrvInfo.winname[44] + 152))(
-           *(_DWORD *)&dword_BFDA60[1].DrvInfo.winname[44],
+    if ( (*(int (__stdcall **)(_DWORD, _DWORD, char *))(**(_DWORD **)&g_pGfxMgr[1].DrvInfo.winname[44] + 152))(
+           *(_DWORD *)&g_pGfxMgr[1].DrvInfo.winname[44],
            0,
            (char *)this + 832) < 0 )
       return 0;
@@ -232,15 +229,13 @@ char CEffectSystem::IsVisible()
     do
     {
       if ( !(*(int (**)(float *, int, int, int))(*(_DWORD *)p_ev + 12))(p_ev, 256, 256, v7)
-        || !(*(int (**)(gbGfxManager *, float *))(*(_DWORD *)dword_BFDA60->_pad_0000 + 92))(
-              dword_BFDA60,
-              p_ev) )
+        || !(*(int (**)(gbGfxManager *, float *))(*(_DWORD *)g_pGfxMgr->_pad_0000 + 92))(g_pGfxMgr, p_ev) )
       {
         return 0;
       }
-      (*(void (__stdcall **)(_DWORD, _DWORD, _DWORD, int, int, int, _DWORD))(**(_DWORD **)&dword_BFDA60[1].DrvInfo.winname[44]
+      (*(void (__stdcall **)(_DWORD, _DWORD, _DWORD, int, int, int, _DWORD))(**(_DWORD **)&g_pGfxMgr[1].DrvInfo.winname[44]
                                                                            + 172))(
-        *(_DWORD *)&dword_BFDA60[1].DrvInfo.winname[44],
+        *(_DWORD *)&g_pGfxMgr[1].DrvInfo.winname[44],
         0,
         0,
         3,
@@ -251,8 +246,8 @@ char CEffectSystem::IsVisible()
       p_ev += 24;
     }
     while ( v4 < 8 );
-    if ( (*(int (__stdcall **)(_DWORD, _DWORD, _DWORD))(**(_DWORD **)&dword_BFDA60[1].DrvInfo.winname[44] + 148))(
-           *(_DWORD *)&dword_BFDA60[1].DrvInfo.winname[44],
+    if ( (*(int (__stdcall **)(_DWORD, _DWORD, _DWORD))(**(_DWORD **)&g_pGfxMgr[1].DrvInfo.winname[44] + 148))(
+           *(_DWORD *)&g_pGfxMgr[1].DrvInfo.winname[44],
            0,
            *((_DWORD *)this + 208)) < 0 )
       return 0;
@@ -288,12 +283,12 @@ void CEffectSystem::HandleViewMove(int a2)
       this->m_pAdditiveBlend = (gbRenderEffect *)a2;
     v3 = LODWORD(this->m_DefaultUVSet[2].sv) & 7;
     LODWORD(this->m_DefaultUVSet[2].eu) = v3;
-    (*(void (**)(gbGfxManager *, float *))(*(_DWORD *)dword_BFDA60->_pad_0000 + 92))(
-      dword_BFDA60,
+    (*(void (**)(gbGfxManager *, float *))(*(_DWORD *)g_pGfxMgr->_pad_0000 + 92))(
+      g_pGfxMgr,
       &this->m_DefaultUVSet[6 * v3 + 2].ev);
-    (*(void (__stdcall **)(_DWORD, _DWORD, _DWORD, int, int, int, _DWORD))(**(_DWORD **)&dword_BFDA60[1].DrvInfo.winname[44]
+    (*(void (__stdcall **)(_DWORD, _DWORD, _DWORD, int, int, int, _DWORD))(**(_DWORD **)&g_pGfxMgr[1].DrvInfo.winname[44]
                                                                          + 172))(
-      *(_DWORD *)&dword_BFDA60[1].DrvInfo.winname[44],
+      *(_DWORD *)&g_pGfxMgr[1].DrvInfo.winname[44],
       0,
       0,
       3,
@@ -333,21 +328,21 @@ char CEffectSystem::Update()
     LOBYTE(v2) = this->m_pVertexBuffer;
     if ( LOBYTE(v2) )
     {
-      (*(void (__stdcall **)(_DWORD, _DWORD, _DWORD))(**(_DWORD **)&dword_BFDA60[1].DrvInfo.winname[44] + 148))(
-        *(_DWORD *)&dword_BFDA60[1].DrvInfo.winname[44],
+      (*(void (__stdcall **)(_DWORD, _DWORD, _DWORD))(**(_DWORD **)&g_pGfxMgr[1].DrvInfo.winname[44] + 148))(
+        *(_DWORD *)&g_pGfxMgr[1].DrvInfo.winname[44],
         0,
         *((_DWORD *)this + 208));
-      (*(void (__stdcall **)(_DWORD, _DWORD, _DWORD, int, int, int, _DWORD))(**(_DWORD **)&dword_BFDA60[1].DrvInfo.winname[44]
+      (*(void (__stdcall **)(_DWORD, _DWORD, _DWORD, int, int, int, _DWORD))(**(_DWORD **)&g_pGfxMgr[1].DrvInfo.winname[44]
                                                                            + 172))(
-        *(_DWORD *)&dword_BFDA60[1].DrvInfo.winname[44],
+        *(_DWORD *)&g_pGfxMgr[1].DrvInfo.winname[44],
         0,
         0,
         3,
         -16777216,
         1065353216,
         0);
-      ((gbCamera *)this->m_pAdditiveBlend)->SetDimention(dword_BFD6D0, dword_BFD6D4);
-      DynVertBuf = ((gbVertPoolMgr *)dword_BFDA60->pVertPoolMgr)->GetDynVertBuf(0x114u);
+      ((gbCamera *)this->m_pAdditiveBlend)->SetDimention(g_pGameTime, g_pAbsTime);
+      DynVertBuf = ((gbVertPoolMgr *)g_pGfxMgr->pVertPoolMgr)->GetDynVertBuf(0x114u);
       if ( (byte_DE93A8 & 1) == 0 )
       {
         v3 = (gbColorQuad *)&unk_DE9388;

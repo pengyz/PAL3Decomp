@@ -30,7 +30,6 @@ extern char aUiCombatPointe[];
 extern unsigned char byte_17ABD00;
 extern unsigned char byte_17ABE00;
 extern unsigned char byte_17ABF00;
-extern int dword_BFDA60;
 extern void *off_56A66C;
 
 // 0x0050FE50
@@ -111,9 +110,9 @@ CCBStageScene::CCBStageScene()
   this->_d100 = 1128792064;
   this->Render();
   this->ShowAxis();
-  this->_p298 = ((gbEffectMgr *)dword_BFDA60->pEffectMgr)->NewRenderEffect(aGfxscriptAddit_1, 0);
-  v2 = (gbTexture *)(*(int (**)(gbGfxManager *, char *))(*(_DWORD *)dword_BFDA60->_pad_0000 + 8))(
-                      dword_BFDA60,
+  this->_p298 = ((gbEffectMgr *)g_pGfxMgr->pEffectMgr)->NewRenderEffect(aGfxscriptAddit_1, 0);
+  v2 = (gbTexture *)(*(int (**)(gbGfxManager *, char *))(*(_DWORD *)g_pGfxMgr->_pad_0000 + 8))(
+                      g_pGfxMgr,
                       aCbsceneFivelin);
   this->_d29C = (int)v2;
   v2->LoadTexture(1);
@@ -129,8 +128,8 @@ CCBStageScene::CCBStageScene()
     v3 = 0;
   }
   this->_d2A0 = (int)v3;
-  v5 = (gbTexture *)(*(int (**)(gbGfxManager *, char *))(*(_DWORD *)dword_BFDA60->_pad_0000 + 8))(
-                      dword_BFDA60,
+  v5 = (gbTexture *)(*(int (**)(gbGfxManager *, char *))(*(_DWORD *)g_pGfxMgr->_pad_0000 + 8))(
+                      g_pGfxMgr,
                       aCbsceneFivelin_0);
   this->_d2A4 = (int)v5;
   v5->LoadTexture(1);
@@ -779,9 +778,9 @@ void CCBStageScene::GetBFASubdueFM()
   int v13; // [esp+44h] [ebp-8h]
   int v14; // [esp+48h] [ebp-4h]
 
-  if ( dword_BFDA60 && this->_pad_3C0[1] )
+  if ( g_pGfxMgr && this->_pad_3C0[1] )
   {
-    v1 = (gbRefObject *)((gbEffectMgr *)dword_BFDA60->pEffectMgr)->NewTrivalEffect(3);
+    v1 = (gbRefObject *)((gbEffectMgr *)g_pGfxMgr->pEffectMgr)->NewTrivalEffect(3);
     HIBYTE(v10.ColorQuadFmt) = 80;
     p_Blue = (unsigned __int8 *)&v10.Blue;
     v3 = 2;
@@ -795,7 +794,7 @@ void CCBStageScene::GetBFASubdueFM()
     *(_DWORD *)&v10.Blue = 0;
     v10.Color = 0;
     v11 = 0;
-    DynVertBuf = ((gbVertPoolMgr *)dword_BFDA60->pVertPoolMgr)->GetDynVertBuf(5u);
+    DynVertBuf = ((gbVertPoolMgr *)g_pGfxMgr->pVertPoolMgr)->GetDynVertBuf(5u);
     v9 = v1;
     v8.Color = 2;
     *(_DWORD *)&v8.Blue = &v10.Blue;
@@ -846,10 +845,10 @@ char CCBStageScene::IsSameBattleFieldAttr()
   float v8; // [esp+10h] [ebp-8h] BYREF
   float v9; // [esp+14h] [ebp-4h] BYREF
 
-  result = (char)dword_BFDA60;
+  result = (char)g_pGfxMgr;
   v9 = 0.0;
   v8 = 0.0;
-  if ( dword_BFDA60 )
+  if ( g_pGfxMgr )
   {
     result = this->_pad_3C0[2];
     if ( result )
@@ -884,7 +883,7 @@ void CCBStageScene::LoadPointer(char a2)
   struct gbTextureArray *d2A0; // ecx
   struct gbRenderEffect *p298; // edx
 
-  ((gbVertPoolMgr *)dword_BFDA60->pVertPoolMgr)->GetDynVertBuf(0x15u);
+  ((gbVertPoolMgr *)g_pGfxMgr->pVertPoolMgr)->GetDynVertBuf(0x15u);
   d2A0 = (struct gbTextureArray *)this->_d2A0;
   p298 = (struct gbRenderEffect *)this->_p298;
   this->_pad_2EC[2] = -1;

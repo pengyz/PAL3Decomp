@@ -6,9 +6,6 @@
 // Forward declarations for unnamed functions
 int sub_52AFC0(...);
 
-// Unnamed globals (extern)
-extern int dword_BFDA60;
-
 // 0x0052B860
 void MiniGame1::Render()
 {
@@ -21,8 +18,8 @@ void MiniGame1::Render()
   int v8; // [esp+4h] [ebp-Ch]
   gbMatrixStack *v9; // [esp+8h] [ebp-8h]
 
-  v1 = dword_BFDA60->InvViewMatrix.m[1][3];
-  v3 = (gbMatrixStack *)dword_BFDA60->pMatrixStack[1];
+  v1 = g_pGfxMgr->InvViewMatrix.m[1][3];
+  v3 = (gbMatrixStack *)g_pGfxMgr->pMatrixStack[1];
   ((gbSceneGraph *)LODWORD(v1))->Begin(**((struct gbCamera ***)this + 3));
   *(_BYTE *)(LODWORD(v1) + 19244) = 0;
   ((gbCamera *)**((gbCamera ***)this + 3))->SetAsCurrent(3);

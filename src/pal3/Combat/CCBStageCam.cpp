@@ -15,7 +15,6 @@ extern char aBasedataCbdata_0[];
 extern char aCbdataFlexcamD[];
 extern char aCouldnTOpenCbC[];
 extern char aDProjectPal3Co_6[];
-extern int dword_17A990C;
 
 // 0x00504E70
 CCBStageCam::CCBStageCam(CCBStageCam *Buffer)
@@ -386,7 +385,7 @@ void CCBStageCam::DoTask()
     ((CameraCtrl *)*((CameraCtrl **)this + 107501))->SetAsCurrent(3);
     *((float *)this + 107529) = pPos;
   }
-  if ( dword_17A990C == 4 )
+  if ( g_nCombatMode == 4 )
   {
     ((CCBStageCam *)this)->SwitchEditorCamPos();
     this->ProcCamMove();

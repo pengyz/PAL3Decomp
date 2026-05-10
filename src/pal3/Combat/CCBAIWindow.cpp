@@ -14,8 +14,6 @@ int sub_519AF0(...);
 // Unnamed globals (extern)
 extern char aCNewFailed[];
 extern char aDProjectPal3Co_12[];
-extern int dword_BFD6D0;
-extern int dword_BFD6D4;
 
 // 0x004DFE00
 int CCBAIWindow::SetText(int a2, int a3)
@@ -25,10 +23,11 @@ int CCBAIWindow::SetText(int a2, int a3)
   int v6; // [esp+14h] [ebp+10h]
 
   sprintf(&this->_base._base.m_rect[280 * *(_DWORD *)this->_base._base.m_rect + 8], "%d", v5);
-  *((float *)this + 70 * *(_DWORD *)this->_base._base.m_rect + 71) = ((double)a2 + (double)a2) / (double)dword_BFD6D0
+  *((float *)this + 70 * *(_DWORD *)this->_base._base.m_rect + 71) = ((double)a2 + (double)a2)
+                                                                   / (double)(int)g_pGameTime
                                                                    - 1.0;
   *((float *)this + 70 * *(_DWORD *)this->_base._base.m_rect + 72) = 1.0
-                                                                   - ((double)a3 + (double)a3) / (double)dword_BFD6D4;
+                                                                   - ((double)a3 + (double)a3) / (double)(int)g_pAbsTime;
   *(_DWORD *)&this->_base._base.m_rect[280 * *(_DWORD *)this->_base._base.m_rect + 4] = 2;
   *((_DWORD *)this + 70 * *(_DWORD *)this->_base._base.m_rect + 74) = 1094713344;
   *((_DWORD *)this + 70 * *(_DWORD *)this->_base._base.m_rect + 70) = v6;

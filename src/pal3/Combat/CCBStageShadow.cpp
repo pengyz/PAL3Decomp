@@ -15,7 +15,6 @@ extern char aDProjectPal3Co_9[];
 extern char aGfxscriptShado[];
 extern char aShadowTga_0[];
 extern int dword_17ACA7C;
-extern int dword_BFDA60;
 
 // 0x00511EE0
 CCBStageShadow::CCBStageShadow()
@@ -26,12 +25,12 @@ CCBStageShadow::CCBStageShadow()
   char pExceptionObject[1024]; // [esp+10h] [ebp-800h] BYREF
   char ArgList[1024]; // [esp+410h] [ebp-400h] BYREF
 
-  v2 = (gbTexture *)(*(int (**)(gbGfxManager *, char *))(*(_DWORD *)dword_BFDA60->_pad_0000 + 8))(
-                      dword_BFDA60,
+  v2 = (gbTexture *)(*(int (**)(gbGfxManager *, char *))(*(_DWORD *)g_pGfxMgr->_pad_0000 + 8))(
+                      g_pGfxMgr,
                       aShadowTga_0);
   this->m_pTexture = v2;
   v2->LoadTexture(1);
-  this->m_pEffect = ((gbEffectMgr *)dword_BFDA60->pEffectMgr)->NewRenderEffect(aGfxscriptShado, 0);
+  this->m_pEffect = ((gbEffectMgr *)g_pGfxMgr->pEffectMgr)->NewRenderEffect(aGfxscriptShado, 0);
   v3 = (gbTextureArray *)operator new(0x44u);
   if ( v3 )
   {
@@ -149,7 +148,7 @@ void CCBStageShadow::Create()
 
   m_pRoleState = (CCBRoleState *)this->m_pStage->m_pCBSystem->m_pRoleState;
   v19 = m_pRoleState;
-  ((gbVertPoolMgr *)dword_BFDA60->pVertPoolMgr)->GetDynVertBuf(0x15u);
+  ((gbVertPoolMgr *)g_pGfxMgr->pVertPoolMgr)->GetDynVertBuf(0x15u);
   v18 = 0;
   p_bValid = (unsigned __int8 *)&m_pRoleState->m_Role[0].bValid;
   roleIdx = 0;

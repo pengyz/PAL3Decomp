@@ -17,7 +17,6 @@ extern char aDProjectPal3Co_6[];
 extern char aUiCombatPointe[];
 extern unsigned char byte_17AAEE0;
 extern unsigned char byte_17AAF21;
-extern unsigned char byte_17AAF64;
 extern int dword_17AAD4C;
 extern int dword_17AAD50;
 extern int dword_17AAD58;
@@ -66,7 +65,6 @@ extern int dword_17AAEB8;
 extern int dword_17AAEBC;
 extern int dword_17AAEC4;
 extern int dword_17AAEC8;
-extern int dword_BFDA60;
 extern float flt_17AAD48;
 extern float flt_17AAD54;
 extern float flt_17AAD60;
@@ -204,8 +202,8 @@ CCCTData::~CCCTData()
     ((gbGeomNode *)*(gbGeomNode **)&this->_data[430224])->GetTotalOBBox((struct gbOBBox *)v38);
     v2 = (char *)&this->_data[430228];
     ((gbMatrix4 *)v38)->RightTranslate((struct gbVec3D *)&this->_data[430228]);
-    v3 = ((gbEffectMgr *)dword_BFDA60->pEffectMgr)->NewTrivalEffect(3);
-    *(_DWORD *)&v32.Blue = ((gbVertPoolMgr *)dword_BFDA60->pVertPoolMgr)->GetDynVertBuf(0x15u);
+    v3 = ((gbEffectMgr *)g_pGfxMgr->pEffectMgr)->NewTrivalEffect(3);
+    *(_DWORD *)&v32.Blue = ((gbVertPoolMgr *)g_pGfxMgr->pVertPoolMgr)->GetDynVertBuf(0x15u);
     if ( (byte_17AAEE0 & 1) == 0 )
     {
       v4 = (float *)&flt_17AAD48;
@@ -1096,7 +1094,7 @@ int CCCTData::ClearList()
 // 0x005081A0
 int CCCTData::IsTaskValid()
 {
-  *(_DWORD *)&byte_17AAF64[1464] = 1094713344;
+  *((_DWORD *)&g_bSceneLoaded + 366) = 1094713344;
   return 1094713344;
 }
 
@@ -1110,5 +1108,5 @@ void CCCTData::GetTaskNumInList()
 // 0x005081C0
 void CCCTData::GetFreeSpaceInPool()
 {
-  *(float *)&byte_17AAF64[1460] = 12.0 + 12.0;
+  *((float *)&g_bSceneLoaded + 365) = 12.0 + 12.0;
 }

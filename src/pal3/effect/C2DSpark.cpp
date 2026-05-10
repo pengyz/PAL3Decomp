@@ -36,7 +36,6 @@ extern int dword_17A8198;
 extern int dword_17A819C;
 extern int dword_17A81A0;
 extern int dword_17A81A4;
-extern int dword_BFDA60;
 extern float flt_17A8120;
 extern float flt_17A8124;
 extern float flt_17A8128;
@@ -75,9 +74,9 @@ C2DSpark::C2DSpark(int a2, int a3)
   *(float *)&this->m_Spark[22528] = (float)a2;
   *(float *)&this->m_Spark[22532] = (float)a3;
   this->m_Spark[22552] = 0;
-  *(_DWORD *)&this->m_Spark[22556] = ((gbEffectMgr *)dword_BFDA60->pEffectMgr)->NewRenderEffect(aGfxscriptTlAdd, 0);
-  v4 = (gbTexture *)(*(int (**)(gbGfxManager *, char *))(*(_DWORD *)dword_BFDA60->_pad_0000 + 8))(
-                      dword_BFDA60,
+  *(_DWORD *)&this->m_Spark[22556] = ((gbEffectMgr *)g_pGfxMgr->pEffectMgr)->NewRenderEffect(aGfxscriptTlAdd, 0);
+  v4 = (gbTexture *)(*(int (**)(gbGfxManager *, char *))(*(_DWORD *)g_pGfxMgr->_pad_0000 + 8))(
+                      g_pGfxMgr,
                       aEffectFlare3Bm);
   *(_DWORD *)&v20[12] = 1;
   *(_DWORD *)&this->m_Spark[22560] = v4;
@@ -99,8 +98,8 @@ C2DSpark::C2DSpark(int a2, int a3)
     qmemcpy(&v20[32], ((Logger *)ArgList)->FormatException(aCNewFailed_0, aDProjectPal3Co_10, 41), 0x400u);
     _CxxThrowException(&v20[32], (_ThrowInfo *)&_TI1_AV_Exception__);
   }
-  v7 = (gbTexture *)(*(int (**)(gbGfxManager *, char *))(*(_DWORD *)dword_BFDA60->_pad_0000 + 8))(
-                      dword_BFDA60,
+  v7 = (gbTexture *)(*(int (**)(gbGfxManager *, char *))(*(_DWORD *)g_pGfxMgr->_pad_0000 + 8))(
+                      g_pGfxMgr,
                       aEffectFlare2Bm);
   *(_DWORD *)&v20[8] = 1;
   *(_DWORD *)&this->m_Spark[22584] = v7;
@@ -122,8 +121,8 @@ C2DSpark::C2DSpark(int a2, int a3)
     qmemcpy(&v20[24], ((Logger *)&v20[1048])->FormatException(aCNewFailed_0, aDProjectPal3Co_10, 46), 0x400u);
     _CxxThrowException(&v20[24], (_ThrowInfo *)&_TI1_AV_Exception__);
   }
-  v10 = (gbTexture *)(*(int (**)(gbGfxManager *, char *))(*(_DWORD *)dword_BFDA60->_pad_0000 + 8))(
-                       dword_BFDA60,
+  v10 = (gbTexture *)(*(int (**)(gbGfxManager *, char *))(*(_DWORD *)g_pGfxMgr->_pad_0000 + 8))(
+                       g_pGfxMgr,
                        aEffectFlaregre);
   *(_DWORD *)v20 = 1;
   *(_DWORD *)&this->m_Spark[22576] = v10;
@@ -145,8 +144,8 @@ C2DSpark::C2DSpark(int a2, int a3)
     qmemcpy(&v20[16], ((Logger *)&v20[1040])->FormatException(aCNewFailed_0, aDProjectPal3Co_10, 51), 0x400u);
     _CxxThrowException(&v20[16], (_ThrowInfo *)&_TI1_AV_Exception__);
   }
-  v13 = (gbTexture *)(*(int (**)(gbGfxManager *, char *))(*(_DWORD *)dword_BFDA60->_pad_0000 + 8))(
-                       dword_BFDA60,
+  v13 = (gbTexture *)(*(int (**)(gbGfxManager *, char *))(*(_DWORD *)g_pGfxMgr->_pad_0000 + 8))(
+                       g_pGfxMgr,
                        aEffectFlareblu);
   *(_DWORD *)&this->m_Spark[22568] = v13;
   v13->LoadTexture(1);
@@ -167,8 +166,8 @@ C2DSpark::C2DSpark(int a2, int a3)
     qmemcpy(&v20[8], ((Logger *)&v20[1032])->FormatException(aCNewFailed_0, aDProjectPal3Co_10, 56), 0x400u);
     _CxxThrowException(&v20[8], (_ThrowInfo *)&_TI1_AV_Exception__);
   }
-  v16 = (gbTexture *)(*(int (**)(gbGfxManager *, char *))(*(_DWORD *)dword_BFDA60->_pad_0000 + 8))(
-                       dword_BFDA60,
+  v16 = (gbTexture *)(*(int (**)(gbGfxManager *, char *))(*(_DWORD *)g_pGfxMgr->_pad_0000 + 8))(
+                       g_pGfxMgr,
                        aEffectFlarebri);
   *(_DWORD *)&this->m_Spark[22592] = v16;
   v16->LoadTexture(1);
@@ -403,7 +402,7 @@ int C2DSpark::DestroyAll()
   float v15; // [esp+14h] [ebp-8h]
   int v16; // [esp+18h] [ebp-4h]
 
-  DynVertBuf = ((gbVertPoolMgr *)dword_BFDA60->pVertPoolMgr)->GetDynVertBuf(0x114u);
+  DynVertBuf = ((gbVertPoolMgr *)g_pGfxMgr->pVertPoolMgr)->GetDynVertBuf(0x114u);
   if ( *(float *)&this->m_Spark[22540] > 2.0 )
   {
     ((GRPinput *)&Point)->GetCursorPos();

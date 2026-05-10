@@ -97,7 +97,6 @@ extern unsigned char byte_17AC5DC;
 extern unsigned char byte_17AC6DC;
 extern unsigned char byte_17AC7F0;
 extern unsigned char byte_5DE9E4;
-extern int dword_17A990C;
 extern int dword_17AC7E0;
 extern int dword_17AC7E4;
 extern int dword_17AC7E8;
@@ -144,11 +143,6 @@ extern int dword_17ACE64;
 extern int dword_17ACE68;
 extern int dword_17B30E4;
 extern int dword_5DC3DC;
-extern int dword_BFD6D0;
-extern int dword_BFD6D4;
-extern int dword_BFDA4C;
-extern int dword_BFDA60;
-extern int dword_BFDA70;
 extern float flt_17AC7DC;
 extern float flt_17AC7EC;
 extern float flt_17ACA78;
@@ -247,7 +241,7 @@ char CCBSystem::DestroySubsystems()
     return 0;
   sub_4DBB80(this);
   sub_4DB9F0(this);
-  if ( dword_17A990C == 1 )
+  if ( g_nCombatMode == 1 )
   {
     m_pAttackSequenBack = (UIStatic *)this->m_pUtil->m_pUI->m_pAttackSequenBack;
     (**(void (***)(UIStatic *, _DWORD))m_pAttackSequenBack->_base._pad_000)(m_pAttackSequenBack, 0);
@@ -856,7 +850,7 @@ char CCBSystem::ProcNormalAttack()
               result = ((std *)v18)->codecvt_base::do_always_noconv();
               if ( result )
               {
-                this->m_pES = (CEffectSystem *)dword_BFDA70;
+                this->m_pES = (CEffectSystem *)g_pEffectSystem;
                 this->ProcAI(1.0);
                 result = this->CreateObj2(&this->m_pEditor);
                 if ( result )
@@ -870,7 +864,7 @@ char CCBSystem::ProcNormalAttack()
                       v21 = (gbCamera *)&m_pCam->_base[4];
                     else
                       v21 = 0;
-                    v22 = (CEffMgr *)v19->Create(dword_BFDA60, v21, (gbSceneGraph *)this);
+                    v22 = (CEffMgr *)v19->Create(g_pGfxMgr, v21, (gbSceneGraph *)this);
                   }
                   else
                   {
@@ -886,7 +880,7 @@ char CCBSystem::ProcNormalAttack()
                       v25 = (gbCamera *)&v24->_base[4];
                     else
                       v25 = 0;
-                    v26 = (CEffMgr *)v23->Create(dword_BFDA60, v25, (gbSceneGraph *)this);
+                    v26 = (CEffMgr *)v23->Create(g_pGfxMgr, v25, (gbSceneGraph *)this);
                   }
                   else
                   {
@@ -896,7 +890,7 @@ char CCBSystem::ProcNormalAttack()
                   v27 = (C2DSpark *)operator new(0x5870u);
                   v37 = 9;
                   if ( v27 )
-                    v28 = (C2DSpark *)v27->C2DSpark(dword_BFD6D0, dword_BFD6D4);
+                    v28 = (C2DSpark *)v27->C2DSpark((int)g_pGameTime, (int)g_pAbsTime);
                   else
                     v28 = 0;
                   this->m_p2DSpark = v28;
@@ -1122,7 +1116,7 @@ char CCBSystem::ProcWeaponSkill()
     ++v12;
   }
   sub_4C6170(this->m_pEffectSimple);
-  ((gbSceneGraph *)LODWORD(dword_BFDA60->InvViewMatrix.m[1][3]))->ResetBladeMgr();
+  ((gbSceneGraph *)LODWORD(g_pGfxMgr->InvViewMatrix.m[1][3]))->ResetBladeMgr();
   if ( this->m_pRoleState->m_bEnemySneakAttackUs && LOBYTE(CEffectSystem::DestroyAllEffect()->m_pVertexBuffer) )
   {
     ((CCBStageCam *)this->m_pStage->m_pCamControl)->ClearFinishedTask(20);
@@ -1260,7 +1254,7 @@ char CCBSystem::ProcMagic()
   CCBRoleState *v14; // ecx
 
   v2 = 0;
-  if ( dword_17A990C == 1 )
+  if ( g_nCombatMode == 1 )
   {
     if ( g_Input.KeyInfo[15].PressTime == 1 || g_Input.KeyInfo[16].PressTime == 1 )
     {
@@ -1357,7 +1351,7 @@ int CCBSystem::GetRenderFlag()
   *(_BYTE *)(v0 + 116) = v4;
   if ( v4 == 1 )
   {
-    ((gbSceneGraph *)LODWORD(dword_BFDA60->InvViewMatrix.m[1][3]))->ResetBladeMgr();
+    ((gbSceneGraph *)LODWORD(g_pGfxMgr->InvViewMatrix.m[1][3]))->ResetBladeMgr();
     sub_4CEA80(*(_DWORD **)(v2 + 44));
     LOBYTE(result) = sub_4CEA80(*(_DWORD **)(v2 + 48));
     if ( *(_DWORD *)(v2 + 124) == 3 )
@@ -1593,7 +1587,7 @@ int CCBSystem::CheckBattleEnd()
   int v18; // [esp+14h] [ebp-8h]
   unsigned int *i; // [esp+18h] [ebp-4h]
 
-  if ( this->m_bEditor && dword_17A990C != 2 )
+  if ( this->m_bEditor && g_nCombatMode != 2 )
     return 0;
   p_m_CmdData = 0;
   if ( (unsigned __int8)((CCBRoleState *)this->m_pRoleState)->GetForce(0) || *(_DWORD *)&this->m_eState[2] != 2 )
@@ -2478,7 +2472,7 @@ int CCBSystem::CreateObj(const char *a2, const char *a3, UINT a4)
   unsigned int v9; // edx
 
   if ( !a2 )
-    return MessageBoxA(dword_BFDA4C, byte_17AC6DC, byte_17AC5DC, uType);
+    return MessageBoxA((HWND)g_pRoleSystem, byte_17AC6DC, byte_17AC5DC, uType);
   if ( strlen(a2) >= 0xFF )
   {
     v9 = strlen(aTooManyCharact) + 1;

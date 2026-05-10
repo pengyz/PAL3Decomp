@@ -10,7 +10,6 @@ int sub_4B6D20(...);
 // Unnamed globals (extern)
 extern char aEffectscnFrame[];
 extern unsigned char byte_DE6CE0;
-extern int dword_BFDA60;
 extern int dword_DE6CD8;
 extern int unknown_libname_416;
 
@@ -35,8 +34,8 @@ void * RenderTarget4::Init()
 
   ((OpenBaseFile *)&v4)->OpenBaseFile();
   v5 = 0;
-  v2 = (gbTexture *)(*(int (**)(gbGfxManager *, char *))(*(_DWORD *)dword_BFDA60->_pad_0000 + 8))(
-                      dword_BFDA60,
+  v2 = (gbTexture *)(*(int (**)(gbGfxManager *, char *))(*(_DWORD *)g_pGfxMgr->_pad_0000 + 8))(
+                      g_pGfxMgr,
                       aEffectscnFrame);
   *((_DWORD *)this + 1) = v2;
   v2->LoadTexture(1);

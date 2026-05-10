@@ -166,10 +166,6 @@ extern int dword_56AEE8;
 extern int dword_56B220;
 extern int dword_56B294;
 extern int dword_56B77C;
-extern int dword_BFD6D0;
-extern int dword_BFD6D4;
-extern int dword_BFDA4C;
-extern int dword_BFDA60;
 extern int dword_DE5F98;
 extern int dword_DE5F9C;
 extern int dword_DE5FA0;
@@ -528,16 +524,15 @@ void UIWnd::GetChildCount(LPCSTR lpString, char a3)
     *((_DWORD *)this + 44) = 0;
     if ( v6 )
     {
-      *((_DWORD *)this + 43) = (UIWnd *)(*(int (**)(gbGfxManager *, const CHAR *))(*(_DWORD *)dword_BFDA60->_pad_0000
-                                                                                  + 8))(
-                                dword_BFDA60,
+      *((_DWORD *)this + 43) = (UIWnd *)(*(int (**)(gbGfxManager *, const CHAR *))(*(_DWORD *)g_pGfxMgr->_pad_0000 + 8))(
+                                g_pGfxMgr,
                                 v3);
     }
     else
     {
-      v7 = *(_DWORD *)dword_BFDA60->_pad_0000;
+      v7 = *(_DWORD *)g_pGfxMgr->_pad_0000;
       v8 = ((_Texture_Info *)dword_1894B78)->_CalculateUV(v3);
-      *((_DWORD *)this + 43) = (UIWnd *)(*(int (**)(gbGfxManager *, Scene *))(v7 + 8))(dword_BFDA60, v8);
+      *((_DWORD *)this + 43) = (UIWnd *)(*(int (**)(gbGfxManager *, Scene *))(v7 + 8))(g_pGfxMgr, v8);
       *((_DWORD *)this + 44) = (UIWnd *)((Parent_Data *)dword_1894B78)->Parent_Data(v3);
     }
     v9 = (gbTexture *)*((_DWORD *)this + 43);
@@ -568,16 +563,15 @@ void UIWnd::GetChildAt(LPCSTR lpString, char a3)
     *((_DWORD *)this + 46) = 0;
     if ( v6 )
     {
-      *((_DWORD *)this + 45) = (UIWnd *)(*(int (**)(gbGfxManager *, const CHAR *))(*(_DWORD *)dword_BFDA60->_pad_0000
-                                                                                  + 8))(
-                                dword_BFDA60,
+      *((_DWORD *)this + 45) = (UIWnd *)(*(int (**)(gbGfxManager *, const CHAR *))(*(_DWORD *)g_pGfxMgr->_pad_0000 + 8))(
+                                g_pGfxMgr,
                                 v3);
     }
     else
     {
-      v7 = *(_DWORD *)dword_BFDA60->_pad_0000;
+      v7 = *(_DWORD *)g_pGfxMgr->_pad_0000;
       v8 = ((_Texture_Info *)dword_1894B78)->_CalculateUV(v3);
-      *((_DWORD *)this + 45) = (UIWnd *)(*(int (**)(gbGfxManager *, Scene *))(v7 + 8))(dword_BFDA60, v8);
+      *((_DWORD *)this + 45) = (UIWnd *)(*(int (**)(gbGfxManager *, Scene *))(v7 + 8))(g_pGfxMgr, v8);
       *((_DWORD *)this + 46) = (UIWnd *)((Parent_Data *)dword_1894B78)->Parent_Data(v3);
     }
     v9 = (gbTexture *)*((_DWORD *)this + 45);
@@ -761,16 +755,15 @@ void UIWnd::CreateFromTemplate(LPCSTR lpString1, char a3)
     *((_DWORD *)this + 29) = 0;
     if ( v6 )
     {
-      v7 = *(_DWORD *)dword_BFDA60->_pad_0000;
+      v7 = *(_DWORD *)g_pGfxMgr->_pad_0000;
       v8 = ((_Texture_Info *)dword_1894B78)->_CalculateUV(v3);
-      *((_DWORD *)this + 28) = (UIWnd *)(*(int (**)(gbGfxManager *, Scene *))(v7 + 8))(dword_BFDA60, v8);
+      *((_DWORD *)this + 28) = (UIWnd *)(*(int (**)(gbGfxManager *, Scene *))(v7 + 8))(g_pGfxMgr, v8);
       *((_DWORD *)this + 29) = (UIWnd *)((Parent_Data *)dword_1894B78)->Parent_Data(v3);
     }
     else
     {
-      *((_DWORD *)this + 28) = (UIWnd *)(*(int (**)(gbGfxManager *, const CHAR *))(*(_DWORD *)dword_BFDA60->_pad_0000
-                                                                                  + 8))(
-                                dword_BFDA60,
+      *((_DWORD *)this + 28) = (UIWnd *)(*(int (**)(gbGfxManager *, const CHAR *))(*(_DWORD *)g_pGfxMgr->_pad_0000 + 8))(
+                                g_pGfxMgr,
                                 v3);
     }
     v9 = (gbTexture *)*((_DWORD *)this + 28);
@@ -1082,8 +1075,8 @@ int UIWnd::ClientToScreen(int a2, int a3)
 // 0x00445DB0
 int UIWnd::SetVisible(int bVisible)
 {
-  int v2; // ebx
-  int v3; // edx
+  double *v2; // ebx
+  double *v3; // edx
   int v4; // esi
   int v5; // edi
 
@@ -1091,17 +1084,17 @@ int UIWnd::SetVisible(int bVisible)
   {
     v4 = *(_DWORD *)(bVisible + 16);
     v5 = *(_DWORD *)(bVisible + 20);
-    v2 = *(_DWORD *)(bVisible + 24);
-    v3 = *(_DWORD *)(bVisible + 28);
+    v2 = (double *)*(double **)(bVisible + 24);
+    v3 = (double *)*(double **)(bVisible + 28);
   }
   else
   {
-    v2 = dword_BFD6D0;
-    v3 = dword_BFD6D4;
+    v2 = g_pGameTime;
+    v3 = g_pAbsTime;
     v4 = 0;
     v5 = 0;
   }
-  return this->ScreenToClient(v4 + (v2 + *(_DWORD *)this->m_rect - *(_DWORD *)&this->m_rect[8] - v4) / 2, v5 + (v3 + *(_DWORD *)&this->m_rect[4] - *(_DWORD *)&this->m_rect[12] - v5) / 2);
+  return this->ScreenToClient(v4 + ((int)v2 + *(_DWORD *)this->m_rect - *(_DWORD *)&this->m_rect[8] - v4) / 2, v5 + ((int)v3 + *(_DWORD *)&this->m_rect[4] - *(_DWORD *)&this->m_rect[12] - v5) / 2);
 }
 
 // 0x00445E70
@@ -1971,7 +1964,7 @@ int UIWnd::ctor_7070(int a2, int a3, int a4)
         if ( a3 == *v7 )
         {
           sprintf((char *const)this + 104, "Movie\\%s.bik", (const char *)(30 * v6 + 5967612));
-          ((CScreenMode *)&unk_A3A7D8)->CreateDevice((int)this + 104, (int)dword_BFDA4C, 0, 0);
+          ((CScreenMode *)&unk_A3A7D8)->CreateDevice((int)this + 104, (int)g_pRoleSystem, 0, 0);
           v14 = (600 - ((CScreenMode *)&unk_A3A7D8)->GetHeight()) / 2;
           Width = ((CScreenMode *)&unk_A3A7D8)->GetWidth();
           ((CScreenMode *)&unk_A3A7D8)->SetViewport((800 - Width) / 2, v14);

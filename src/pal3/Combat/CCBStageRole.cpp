@@ -57,7 +57,6 @@ extern unsigned char byte_17AB8B4;
 extern unsigned char byte_17AB8B8;
 extern unsigned char byte_17AB9C4;
 extern unsigned char byte_1895558;
-extern int dword_17A990C;
 extern int dword_17AB6E8;
 extern int dword_17AB6EC;
 extern int dword_17AB6F0;
@@ -149,8 +148,6 @@ extern int dword_58618C;
 extern int dword_586190;
 extern int dword_586198;
 extern int dword_58619C;
-extern int dword_BFD6D0;
-extern int dword_BFD6D4;
 extern float flt_17ABCCC;
 extern float flt_17ABCD0;
 extern float flt_17ABCD4;
@@ -930,7 +927,7 @@ void CCBStageRole::IsDoTask(gbMatrixStack *a2)
   int v6; // edi
   char RoleType; // al
   unsigned int v8; // edi
-  int v9; // esi
+  char *v9; // esi
   int v10; // ebx
   unsigned int dwID; // edx
   int v12; // ecx
@@ -979,12 +976,12 @@ void CCBStageRole::IsDoTask(gbMatrixStack *a2)
       else
         sprintf(byte_17AB8B8, "%d/%d", v5, v6);
       v8 = 10 * strlen(byte_17AB8B8);
-      v9 = (__int64)((v21 + 1.0) * (double)dword_BFD6D0 * 0.5);
-      v10 = (__int64)((1.0 - v22) * (double)dword_BFD6D4 * 0.5);
-      if ( v9 >= 0 )
+      v9 = (char *)(__int64)((v21 + 1.0) * (double)(int)g_pGameTime * 0.5);
+      v10 = (__int64)((1.0 - v22) * (double)(int)g_pAbsTime * 0.5);
+      if ( (int)v9 >= 0 )
       {
-        if ( v9 > (int)(dword_BFD6D0 - v8) )
-          v9 = dword_BFD6D0 - v8;
+        if ( (int)v9 > (int)((char *)g_pGameTime - v8) )
+          v9 = (char *)g_pGameTime - v8;
       }
       else
       {
@@ -992,19 +989,19 @@ void CCBStageRole::IsDoTask(gbMatrixStack *a2)
       }
       if ( v10 >= 20 )
       {
-        if ( v10 > dword_BFD6D4 )
-          v10 = dword_BFD6D4;
+        if ( v10 > (int)g_pAbsTime )
+          v10 = (int)g_pAbsTime;
       }
       else
       {
         v10 = 20;
       }
-      sub_4DFC40((char *)this->m_pStage->m_TempStorageNGH, byte_17AB8B8, v9, v10, -1);
+      sub_4DFC40((char *)this->m_pStage->m_TempStorageNGH, byte_17AB8B8, (int)v9, v10, -1);
       if ( LODWORD(this->m_fBlend) > 4 )
-        this->ProcPursueRole(v9, v10, 1);
+        this->ProcPursueRole((int)v9, v10, 1);
     }
   }
-  if ( this->m_pStage->m_pCBSystem->m_bEditor && dword_17A990C == 1
+  if ( this->m_pStage->m_pCBSystem->m_bEditor && g_nCombatMode == 1
     || this->m_bVisible && (this->m_bAlive || SLODWORD(this->m_fBlend) < 5) )
   {
     a2->Push();

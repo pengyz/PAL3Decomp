@@ -132,7 +132,6 @@ extern unsigned char byte_5D8808;
 extern unsigned char byte_5D8848;
 extern unsigned char byte_5D8864;
 extern unsigned char byte_5D8884;
-extern int dword_17A990C;
 extern int dword_570110;
 extern int dword_570114;
 extern int dword_57011C;
@@ -394,9 +393,9 @@ char CCBUI::UpdateState()
   int v2; // esi
   HWND DlgItem; // edi
 
-  result = dword_17A990C;
+  result = g_nCombatMode;
   v2 = *(_DWORD *)(*(_DWORD *)(*(_DWORD *)this->_base._base._pad_000 + 20) + 16);
-  if ( dword_17A990C == 4 )
+  if ( g_nCombatMode == 4 )
   {
     DlgItem = GetDlgItem(dword_BFDA54, 1201);
     result = *(_BYTE *)(v2 + 430012);

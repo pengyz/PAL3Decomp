@@ -12,7 +12,6 @@ int sub_4B6820(...);
 extern char aGfxscriptGeomG[];
 extern char aGfxscriptGlowG[];
 extern unsigned char byte_DE6A4C;
-extern int dword_BFDA60;
 extern int dword_C11760;
 extern int unk_DE6A30;
 extern int unknown_libname_413;
@@ -34,7 +33,7 @@ void RenderTarget3::Init()
 {
   gbEffectMgr *pEffectMgr; // edi
 
-  pEffectMgr = (gbEffectMgr *)dword_BFDA60->pEffectMgr;
+  pEffectMgr = (gbEffectMgr *)g_pGfxMgr->pEffectMgr;
   *(_DWORD *)this = pEffectMgr->NewRenderEffect(aGfxscriptGlowG, 0);
   *((_DWORD *)this + 1) = pEffectMgr->NewRenderEffect(aGfxscriptGeomG, 1u);
 }
@@ -80,8 +79,8 @@ void * RenderTarget3::End()
   void *result; // eax
 
   if ( *v0 )
-    return (*(void *(__stdcall **)(_DWORD, int, int))(**(_DWORD **)&dword_BFDA60[1].DrvInfo.winname[44] + 228))(
-             *(_DWORD *)&dword_BFDA60[1].DrvInfo.winname[44],
+    return (*(void *(__stdcall **)(_DWORD, int, int))(**(_DWORD **)&g_pGfxMgr[1].DrvInfo.winname[44] + 228))(
+             *(_DWORD *)&g_pGfxMgr[1].DrvInfo.winname[44],
              168,
              3);
   return result;
@@ -98,8 +97,8 @@ void RenderTarget3::Resolve()
 
   if ( *this )
   {
-    (*(void (__stdcall **)(_DWORD, int, int))(**(_DWORD **)&dword_BFDA60[1].DrvInfo.winname[44] + 228))(
-      *(_DWORD *)&dword_BFDA60[1].DrvInfo.winname[44],
+    (*(void (__stdcall **)(_DWORD, int, int))(**(_DWORD **)&g_pGfxMgr[1].DrvInfo.winname[44] + 228))(
+      *(_DWORD *)&g_pGfxMgr[1].DrvInfo.winname[44],
       168,
       7);
     if ( *((_DWORD *)this + 1) )
@@ -118,7 +117,7 @@ void RenderTarget3::Resolve()
         v4[0].sy = -1.0;
         PushMatrixStacks();
         v6 = 0;
-        DynVertBuf = ((gbVertPoolMgr *)dword_BFDA60->pVertPoolMgr)->GetDynVertBuf(0x15u);
+        DynVertBuf = ((gbVertPoolMgr *)g_pGfxMgr->pVertPoolMgr)->GetDynVertBuf(0x15u);
         v3 = *((_DWORD *)this + 1);
         v5 = 1;
         *(_DWORD *)&v4[0].color.Blue = v3;

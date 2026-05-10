@@ -24,9 +24,6 @@ extern char aSubgameHocksho_0[];
 extern char aSubgameHocksho_1[];
 extern char aUiFlexNote[];
 extern unsigned char byte_DC733C;
-extern int dword_BFD6D0;
-extern int dword_BFD6D4;
-extern int dword_BFDA60;
 extern int dword_DE4C94;
 extern void *off_56A66C;
 extern void *off_56A9C0;
@@ -457,13 +454,13 @@ void Object3D::GetScreenDegree(int a1@<ecx>, int a2, int a3, int a4, gbMatrixSta
   v6 = *(struct gbCamera ***)(a1 + 84);
   if ( !v6 || !*(_BYTE *)a1 || !*(_BYTE *)(a1 + 80) )
     return;
-  v7 = dword_BFDA60->InvViewMatrix.m[1][3];
+  v7 = g_pGfxMgr->InvViewMatrix.m[1][3];
   v16 = (gbSceneGraph *)LODWORD(v7);
   ((gbSceneGraph *)LODWORD(v7))->Begin(*v6);
   *(_BYTE *)(LODWORD(v7) + 19244) = 0;
   v8 = a5;
   if ( !a5 )
-    v8 = (gbMatrixStack *)dword_BFDA60->pMatrixStack[1];
+    v8 = (gbMatrixStack *)g_pGfxMgr->pMatrixStack[1];
   ((gbCamera *)**(gbCamera ***)(a1 + 84))->SetAsCurrent(3);
   v8->Push();
   v8->Translate((struct gbVec3D *)(a1 + 32));
@@ -688,8 +685,8 @@ void * Object3D::SetupCamera()
   int *v6; // [esp+34h] [ebp+8h]
 
   memset(&v4, 0, sizeof(v4));
-  v3 = 1.0 - ((double)v6[1] + (double)v6[1]) / (double)dword_BFD6D4;
-  v2 = ((double)*v6 + (double)*v6) / (double)dword_BFD6D0 - 1.0;
+  v3 = 1.0 - ((double)v6[1] + (double)v6[1]) / (double)(int)g_pAbsTime;
+  v2 = ((double)*v6 + (double)*v6) / (double)(int)g_pGameTime - 1.0;
   ((gbCamera *)**(gbCamera ***)&this->m_visible)->GetRayToScreen(v2, v3, &v4);
   qmemcpy(v5, &v4, sizeof(struct gbRay));
   return v5;

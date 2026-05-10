@@ -143,8 +143,6 @@ extern int dword_A3A6EC;
 extern int dword_A3A6F0;
 extern int dword_BFD6C8;
 extern int dword_BFD6CC;
-extern int dword_BFD6D0;
-extern int dword_BFD6D4;
 extern int dword_BFD6E0;
 extern int dword_BFD6E4;
 extern int dword_BFD6E8;
@@ -159,13 +157,7 @@ extern int dword_BFDA34;
 extern int dword_BFDA38;
 extern int dword_BFDA3C;
 extern int dword_BFDA44;
-extern int dword_BFDA4C;
-extern int dword_BFDA60;
 extern int dword_BFDA64;
-extern int dword_BFDA68;
-extern int dword_BFDA6C;
-extern int dword_BFDA70;
-extern int dword_BFDA74;
 extern int dword_BFDA78;
 extern int dword_BFDA7C;
 extern int dword_BFDA80;
@@ -175,12 +167,8 @@ extern int dword_BFDA94;
 extern int dword_BFDA98;
 extern int dword_BFDB70;
 extern int dword_BFDB74;
-extern int dword_BFDB90;
-extern int dword_BFDBA4;
-extern int dword_BFDBB0;
 extern int dword_BFDE28;
 extern int dword_BFE0A0;
-extern int dword_BFFDB0;
 extern int dword_C00028;
 extern int dword_C002A0;
 extern int dword_C01FB0;
@@ -324,7 +312,7 @@ PAL3::PAL3()
   memset(&dword_BFD6C8, 0, 0xB8u);
   g_bGameActive = 1;
   PAL3::TestCombat();
-  dword_BFDA74 = 0;
+  g_pCBSystem = 0;
   dword_BFDA8C = 0;
   LOBYTE(byte_BFDA90) = 0;
   v0 = g_nGameFlags;
@@ -353,7 +341,7 @@ struct gbVFileSystem * PAL3::Create@<eax>(char *a1@<edi>, HINSTANCE hInstance)
   CCBSystem *v7; // eax
   CCBSystem *v8; // eax
   SceneMgr *v9; // eax
-  gbCamera *p_OrthoSize; // ecx
+  gbCamera *v10; // ecx
   CGameData *v11; // eax
   RenderTarget *v12; // eax
   RenderTarget3 *v13; // eax
@@ -411,11 +399,11 @@ struct gbVFileSystem * PAL3::Create@<eax>(char *a1@<edi>, HINSTANCE hInstance)
       sizeof(pExceptionObject));
     _CxxThrowException(pExceptionObject, (_ThrowInfo *)&_TI1_AV_Exception__);
   }
-  ((GRPinput *)&g_Input)->SetMouseLimits(0, 0, dword_BFD6D0, dword_BFD6D4);
+  ((GRPinput *)&g_Input)->SetMouseLimits(0, 0, (int)g_pGameTime, (int)g_pAbsTime);
   ((GRPinput *)&g_Input)->SetMode(0x40000000);
   ((CScreenMode *)&unk_A3A7D8)->InitCPK(0, 1);
   memset(pParams, 0, sizeof(pParams));
-  ((CameraCtrl *)dword_BFDA68)->InitParams(pParams);
+  g_pCameraCtrl->InitParams(pParams);
   if ( !((PAL_GDB *)&g_GDB)->PAL_GDB() )
   {
     qmemcpy(
@@ -438,7 +426,7 @@ struct gbVFileSystem * PAL3::Create@<eax>(char *a1@<edi>, HINSTANCE hInstance)
     v8 = (CCBSystem *)v7->CCBSystem();
   else
     v8 = 0;
-  dword_BFDA74 = v8;
+  g_pCBSystem = v8;
   v38 = -1;
   if ( !v8 )
   {
@@ -453,11 +441,11 @@ struct gbVFileSystem * PAL3::Create@<eax>(char *a1@<edi>, HINSTANCE hInstance)
   v38 = 1;
   if ( v9 )
   {
-    if ( dword_BFDA68 )
-      p_OrthoSize = (gbCamera *)&dword_BFDA68->OrthoSize;
+    if ( g_pCameraCtrl )
+      v10 = (gbCamera *)((char *)g_pCameraCtrl + 4);
     else
-      p_OrthoSize = 0;
-    v11 = (CGameData *)v9->Create(dword_BFDA60, p_OrthoSize, 0);
+      v10 = 0;
+    v11 = (CGameData *)v9->Create(g_pGfxMgr, v10, 0);
   }
   else
   {
@@ -504,8 +492,8 @@ struct gbVFileSystem * PAL3::Create@<eax>(char *a1@<edi>, HINSTANCE hInstance)
     v16 = (CEffectSystem *)CEffectSystem::DestroyAllEffect();
     v16->IsVisible();
   }
-  (*(void (__stdcall **)(_DWORD, char *))(**(_DWORD **)&dword_BFDA60[1].DrvInfo.winname[44] + 28))(
-    *(_DWORD *)&dword_BFDA60[1].DrvInfo.winname[44],
+  (*(void (__stdcall **)(_DWORD, char *))(**(_DWORD **)&g_pGfxMgr[1].DrvInfo.winname[44] + 28))(
+    *(_DWORD *)&g_pGfxMgr[1].DrvInfo.winname[44],
     v35);
   if ( !v36 )
     byte_BFDA91 = 1;
@@ -545,7 +533,7 @@ struct gbVFileSystem * PAL3::Create@<eax>(char *a1@<edi>, HINSTANCE hInstance)
   LOBYTE(retaddr) = 2;
   dword_A3A6F0 = v27;
   v27->LoadFromFile(aObjectG03Cvd, 0, 0);
-  ((CScreenMode *)&unk_A3A7D8)->CreateDevice((int)aMovieLogoBik, (int)dword_BFDA4C, 0, 0);
+  ((CScreenMode *)&unk_A3A7D8)->CreateDevice((int)aMovieLogoBik, (int)g_pRoleSystem, 0, 0);
   v30 = (600 - ((CScreenMode *)&unk_A3A7D8)->GetHeight()) / 2;
   Width = ((CScreenMode *)&unk_A3A7D8)->GetWidth();
   ((CScreenMode *)&unk_A3A7D8)->SetViewport((800 - Width) / 2, v30);
@@ -566,8 +554,8 @@ void PAL3::InitGFX()
   char ArgList[1024]; // [esp+430h] [ebp-40Ch] BYREF
   int v7; // [esp+838h] [ebp-4h]
 
-  dword_BFDA60 = gbCreateGraphManager((struct gbGfxDriverInfo *)&dword_BFD6C8);
-  if ( !dword_BFDA60 )
+  g_pGfxMgr = gbCreateGraphManager((struct gbGfxDriverInfo *)&dword_BFD6C8);
+  if ( !g_pGfxMgr )
   {
     qmemcpy(&v5[16], ((Logger *)ArgList)->FormatException(aCreateGfxManag, aDProjectPal3Ga_0, 401), 0x400u);
     _CxxThrowException(&v5[16], (_ThrowInfo *)&_TI1_AV_Exception__);
@@ -575,7 +563,7 @@ void PAL3::InitGFX()
   v0 = (gbActorMgr *)operator new(0xCu);
   v7 = 0;
   if ( v0 )
-    v1 = (gbActorMgr *)v0->gbActorMgr(dword_BFDA60);
+    v1 = (gbActorMgr *)v0->gbActorMgr(g_pGfxMgr);
   else
     v1 = 0;
   v7 = -1;
@@ -588,23 +576,23 @@ void PAL3::InitGFX()
   v2 = (char *)operator new(0x220u);
   v7 = 1;
   if ( v2 )
-    v3 = (char *)sub_41BE80(v2, dword_BFDA60);
+    v3 = (char *)sub_41BE80(v2, g_pGfxMgr);
   else
     v3 = 0;
   v7 = -1;
-  dword_BFDA68 = (gbCamera *)v3;
+  g_pCameraCtrl = (CameraCtrl *)v3;
   if ( !v3 )
   {
     qmemcpy(&v5[16], ((Logger *)ArgList)->FormatException(aCNewFailed, aDProjectPal3Ga_0, 409), 0x400u);
     _CxxThrowException(&v5[16], (_ThrowInfo *)&_TI1_AV_Exception__);
   }
-  ((CameraCtrl *)v3)->SetDimention(dword_BFD6D0, dword_BFD6D4);
-  sub_41D100(dword_BFDA68, 0);
-  ((CameraCtrl *)dword_BFDA68)->SetAsCurrent(3);
+  ((CameraCtrl *)v3)->SetDimention((int)g_pGameTime, (int)g_pAbsTime);
+  sub_41D100(g_pCameraCtrl, 0);
+  g_pCameraCtrl->SetAsCurrent(3);
   *(_DWORD *)&v5[12] = 3;
   *(_DWORD *)v5 = -16777216;
   *(_DWORD *)&v5[4] = 1065353216;
-  dword_BFDA60->SetClearParam((struct gbClearParam *)v5);
+  g_pGfxMgr->SetClearParam((struct gbClearParam *)v5);
   v4 = (_DWORD *)operator new(0xD8u);
   v7 = 2;
   if ( v4 )
@@ -714,11 +702,11 @@ char PAL3::CreateEffectSystem()
   v8 = v3;
   LOBYTE(v13) = 3;
   if ( v3 )
-    v4 = (char *)sub_4C5820(v3, (int)dword_BFDA60);
+    v4 = (char *)sub_4C5820(v3, (int)g_pGfxMgr);
   else
     v4 = 0;
   LOBYTE(v13) = 0;
-  dword_BFDA70 = (SceneMgr *)v4;
+  g_pEffectSystem = v4;
   if ( !v4 )
   {
     qmemcpy(
@@ -744,15 +732,15 @@ char PAL3::CreateEffectSystem()
 // 0x004055A0
 char PAL3::DestroyEffectSystem()
 {
-  SceneMgr *v0; // esi
+  void *v0; // esi
 
-  v0 = dword_BFDA70;
-  if ( dword_BFDA70 )
+  v0 = g_pEffectSystem;
+  if ( g_pEffectSystem )
   {
-    sub_4C5840((int *)dword_BFDA70);
+    sub_4C5840((int *)g_pEffectSystem);
     operator delete(v0);
   }
-  dword_BFDA70 = 0;
+  g_pEffectSystem = 0;
   return 1;
 }
 
@@ -813,13 +801,13 @@ int PAL3::Update(int a1)
     ++v1;
   }
   while ( (int)v2 < (int)word_8ACD2A );
-  v6 = dword_BFDA6C;
+  v6 = g_nGameState;
   v7 = SceneUpdate((int)&g_GameData, a1, 1);
-  v8 = dword_BFDA6C;
-  if ( dword_BFDA6C != v6 )
+  v8 = g_nGameState;
+  if ( g_nGameState != v6 )
   {
     v6->IfHideFightSucceed();
-    v8 = dword_BFDA6C;
+    v8 = g_nGameState;
   }
   switch ( v8 )
   {
@@ -841,8 +829,8 @@ int PAL3::Update(int a1)
         stru_D8C2B8.m_keyStates[25] = 0;
         a1->RunSceneScript();
       }
-      InputUpdate((int)dword_BFDA68, a1);
-      if ( dword_BFDA6C != 9 )
+      InputUpdate((int)g_pCameraCtrl, a1);
+      if ( g_nGameState != 9 )
       {
         if ( v7 )
         {
@@ -862,24 +850,24 @@ int PAL3::Update(int a1)
       UIPostUpdate(v23);
       v24 = (char *)CScreenMode::GetInstance();
       ((CScreenMode *)v24)->AudioUpdate();
-      if ( dword_BFDA6C != 2 && dword_BFDA6C != 9 )
+      if ( g_nGameState != 2 && g_nGameState != 9 )
         v6->IfHideFightSucceed();
       goto LABEL_64;
     case 3:
-      dword_BFDA74->CombatUpdate(*(float *)&a1);
-      CombatEffectUpdate((int)dword_BFDA70, *(float *)&a1);
+      g_pCBSystem->CombatUpdate(*(float *)&a1);
+      CombatEffectUpdate((int)g_pEffectSystem, *(float *)&a1);
       v25 = (char *)CScreenMode::GetInstance();
       ((CScreenMode *)v25)->AudioUpdate();
-      if ( !dword_BFDA74->m_bQuitFlag )
+      if ( !g_pCBSystem->m_bQuitFlag )
         goto LABEL_64;
       if ( (_BYTE)byte_BFDA90 )
       {
         PAL3::GetCommandLineParam();
-        dword_BFDA74->CombatUpdate(0.0);
-        CombatEffectUpdate((int)dword_BFDA70, 0.0);
+        g_pCBSystem->CombatUpdate(0.0);
+        CombatEffectUpdate((int)g_pEffectSystem, 0.0);
         goto LABEL_59;
       }
-      byte_5833D0 = *(_DWORD *)&dword_BFDA74->m_eResult[2] == 2;
+      byte_5833D0 = *(_DWORD *)&g_pCBSystem->m_eResult[2] == 2;
       Mode = (CUtil *)((CGameData *)&g_GameData)->GetMode();
       CGameData_Load((int)&g_GameData, Mode);
       CombatEnter();
@@ -958,7 +946,7 @@ LABEL_63:
         goto LABEL_64;
       }
       a1->RunSceneScript();
-      InputUpdate((int)dword_BFDA68, a1);
+      InputUpdate((int)g_pCameraCtrl, a1);
       ScriptUpdate(a1);
       v9 = (_DWORD *)UISceneUpdate();
       UIUpdate(v9, *(float *)&a1, *(float *)&a1);
@@ -1010,7 +998,7 @@ LABEL_33:
       if ( v16 >= 180.0 )
         goto LABEL_32;
       a1->RunSceneScript();
-      InputUpdate((int)dword_BFDA68, a1);
+      InputUpdate((int)g_pCameraCtrl, a1);
       ScriptUpdate(a1);
       v17 = (_DWORD *)UISceneUpdate();
       UIUpdate(v17, *(float *)&a1, *(float *)&a1);
@@ -1033,8 +1021,8 @@ LABEL_32:
 LABEL_64:
       v31 = (ScreenEffect *)ScreenEffectMgr::GetInstance();
       RenderPost((int)v31, a1);
-      result = dword_BFDA6C;
-      if ( !dword_BFDA6C )
+      result = g_nGameState;
+      if ( !g_nGameState )
         return ((CScreenMode *)g_Logger)->SetState(1);
       return result;
     default:
@@ -1046,7 +1034,7 @@ LABEL_64:
 void PAL3::Render()
 {
   float v0; // edi
-  struct gbCamera *p_OrthoSize; // eax
+  struct gbCamera *v1; // eax
   int v2; // ebx
   gbMatrixStack *v3; // esi
   gbMatrix4 *Top; // eax
@@ -1082,11 +1070,11 @@ void PAL3::Render()
   struct gbQuaternion v34; // [esp+80h] [ebp-14h] BYREF
   int v35; // [esp+90h] [ebp-4h]
 
-  (*(void (**)(gbGfxManager *))(*(_DWORD *)dword_BFDA60->_pad_0000 + 48))(dword_BFDA60);
-  switch ( dword_BFDA6C )
+  (*(void (**)(gbGfxManager *))(*(_DWORD *)g_pGfxMgr->_pad_0000 + 48))(g_pGfxMgr);
+  switch ( g_nGameState )
   {
     case 0:
-      (*(void (**)(gbGfxManager *))(*(_DWORD *)dword_BFDA60->_pad_0000 + 52))(dword_BFDA60);
+      (*(void (**)(gbGfxManager *))(*(_DWORD *)g_pGfxMgr->_pad_0000 + 52))(g_pGfxMgr);
       return;
     case 2:
     case 7:
@@ -1096,15 +1084,15 @@ void PAL3::Render()
       RenderTarget3::End();
       CRenderTarget2::GetInstance();
       RenderTarget2::Begin();
-      v0 = dword_BFDA60->InvViewMatrix.m[1][3];
-      if ( dword_BFDA68 )
-        p_OrthoSize = (gbCamera *)&dword_BFDA68->OrthoSize;
+      v0 = g_pGfxMgr->InvViewMatrix.m[1][3];
+      if ( g_pCameraCtrl )
+        v1 = (struct gbCamera *)((char *)g_pCameraCtrl + 4);
       else
-        p_OrthoSize = 0;
-      ((gbSceneGraph *)LODWORD(v0))->Begin(p_OrthoSize);
+        v1 = 0;
+      ((gbSceneGraph *)LODWORD(v0))->Begin(v1);
       v2 = UIScene::CombatCheck();
-      v3 = (gbMatrixStack *)dword_BFDA60->pMatrixStack[1];
-      ((CameraCtrl *)dword_BFDA68)->SetAsCurrent(3);
+      v3 = (gbMatrixStack *)g_pGfxMgr->pMatrixStack[1];
+      g_pCameraCtrl->SetAsCurrent(3);
       v27.x = 1.0;
       v27.y = 0.0;
       v27.z = 0.0;
@@ -1141,39 +1129,39 @@ void PAL3::Render()
       {
         Top = (gbMatrix4 *)v3->GetTop();
         Top->TransformPlane();
-        (*(void (**)(gbGfxManager *, int *))(*(_DWORD *)dword_BFDA60->_pad_0000 + 112))(
-          dword_BFDA60,
+        (*(void (**)(gbGfxManager *, int *))(*(_DWORD *)g_pGfxMgr->_pad_0000 + 112))(
+          g_pGfxMgr,
           &stru_D8C2B8.KeyInfo[149].CountMode);
       }
       else
       {
-        (*(void (**)(gbGfxManager *, _DWORD))(*(_DWORD *)dword_BFDA60->_pad_0000 + 112))(dword_BFDA60, 0);
+        (*(void (**)(gbGfxManager *, _DWORD))(*(_DWORD *)g_pGfxMgr->_pad_0000 + 112))(g_pGfxMgr, 0);
       }
       v5 = (UIScene *)UISceneUpdate();
       v5->RenderWithStack(v3);
-      if ( dword_BFDA6C != 9 )
+      if ( g_nGameState != 9 )
         v3->Render();
       ((gbSceneGraph *)LODWORD(v0))->End();
       if ( dword_BFDA38 && byte_BFDA40 )
       {
-        if ( dword_BFDA68 )
-          v6 = (gbCamera *)&dword_BFDA68->OrthoSize;
+        if ( g_pCameraCtrl )
+          v6 = (struct gbCamera *)((char *)g_pCameraCtrl + 4);
         else
           v6 = 0;
         dword_BFDA38->Render(v6);
       }
       if ( dword_BFDA3C && byte_BFDA41 )
       {
-        if ( dword_BFDA68 )
-          v7 = (gbCamera *)&dword_BFDA68->OrthoSize;
+        if ( g_pCameraCtrl )
+          v7 = (struct gbCamera *)((char *)g_pCameraCtrl + 4);
         else
           v7 = 0;
         dword_BFDA3C->Render(v7);
       }
       v8 = (UIScene *)UISceneUpdate();
       v8->NotifyRender();
-      if ( dword_BFDA68 )
-        v9 = (gbCamera *)&dword_BFDA68->OrthoSize;
+      if ( g_pCameraCtrl )
+        v9 = (struct gbCamera *)((char *)g_pCameraCtrl + 4);
       else
         v9 = 0;
       ((gbSceneGraph *)LODWORD(v0))->Begin(v9);
@@ -1184,15 +1172,15 @@ void PAL3::Render()
       v10->Render((int)v3);
       ((SceneMgr *)dword_BFDA78)->RenderUpdate();
       ((gbSceneGraph *)LODWORD(v0))->End();
-      if ( dword_BFDA6C == 8 )
+      if ( g_nGameState == 8 )
       {
         v11 = (UIScene *)UISceneUpdate();
         v11->EffectRender();
       }
       ((UIManager *)&unk_C11758)->Render();
       ((SceneMgr *)dword_BFDA78)->RenderAll();
-      if ( dword_BFDA68 )
-        v12 = (gbCamera *)&dword_BFDA68->OrthoSize;
+      if ( g_pCameraCtrl )
+        v12 = (struct gbCamera *)((char *)g_pCameraCtrl + 4);
       else
         v12 = 0;
       ((gbSceneGraph *)LODWORD(v0))->Begin(v12);
@@ -1212,7 +1200,7 @@ void PAL3::Render()
         break;
       goto LABEL_42;
     case 3:
-      dword_BFDA74->RenderCheck();
+      g_pCBSystem->RenderCheck();
       break;
     case 4:
       ((MiniGame1 *)dword_BFDA80)->Render();
@@ -1228,22 +1216,22 @@ LABEL_42:
     default:
       break;
   }
-  if ( dword_BFDA6C == 8 )
+  if ( g_nGameState == 8 )
   {
     v17 = (__int64)(180.0 - flt_BFDA58);
     goto LABEL_46;
   }
-  if ( dword_BFDA6C == 7 )
+  if ( g_nGameState == 7 )
   {
     v17 = (int)(__int64)(60.0 - flt_BFDA58) < 0 ? 0 : (__int64)(60.0 - flt_BFDA58);
 LABEL_46:
     sprintf((char *const)&v33.z, "%03d", v17);
     LOBYTE(v18) = 0;
-    v19 = (gbPrintFont *)dword_BFDA60->pFontMgr->pAllFont[3];
+    v19 = (gbPrintFont *)g_pGfxMgr->pFontMgr->pAllFont[3];
     if ( v17 < 30 )
       v18 = (__int64)(sin(flt_BFDA58 * 4.0) * 255.0);
-    v20 = 60.0 / (double)dword_BFD6D4;
-    *(float *)&v19->curColor.Blue = 60.0 / (double)dword_BFD6D0;
+    v20 = 60.0 / (double)(int)g_pAbsTime;
+    *(float *)&v19->curColor.Blue = 60.0 / (double)(int)g_pGameTime;
     *(float *)&v19->curColor.Color = v20;
     if ( (_BYTE)v18 )
     {
@@ -1275,8 +1263,8 @@ LABEL_46:
       HIBYTE(v26) = -56;
       v19->curColor.ColorQuadFmt = v26;
     }
-    v24 = 1.0 - 64.0 / (double)dword_BFD6D4;
-    v23 = 1380.0 / (double)dword_BFD6D0 - 1.0;
+    v24 = 1.0 - 64.0 / (double)(int)g_pAbsTime;
+    v23 = 1380.0 / (double)(int)g_pGameTime - 1.0;
     (*(void (**)(gbPrintFont *, float *, _DWORD, _DWORD, int, int))(*(_DWORD *)v19->_pad_0000 + 16))(
       v19,
       &v33.z,
@@ -1286,7 +1274,7 @@ LABEL_46:
       1176256512);
     (*(void (**)(gbPrintFont *))(*(_DWORD *)v19->_pad_0000 + 8))(v19);
   }
-  if ( dword_BFDA6C && dword_BFDA6C != 3 && g_bRenderUI )
+  if ( g_nGameState && g_nGameState != 3 && g_bRenderUI )
   {
     PushMatrixStacks();
     v35 = 0;
@@ -1302,7 +1290,7 @@ LABEL_46:
   }
   v22 = (UIRenderObj *)UIQuadManager::GetInstance();
   v22->UIRenderObj();
-  (*(void (**)(gbGfxManager *))(*(_DWORD *)dword_BFDA60->_pad_0000 + 52))(dword_BFDA60);
+  (*(void (**)(gbGfxManager *))(*(_DWORD *)g_pGfxMgr->_pad_0000 + 52))(g_pGfxMgr);
   if ( dword_BFDA98 )
   {
     PAL3::PrintScreen();
@@ -1330,23 +1318,23 @@ void PAL3::Destroy()
   UISystem::Destroy();
   _TextureLib_Data::_TextureLib_Data();
   PalScriptMgr::_CON_ReLoadScript();
-  if ( dword_BFDA74 )
+  if ( g_pCBSystem )
   {
-    dword_BFDA74->ProcFling();
-    v3 = dword_BFDA74;
-    if ( dword_BFDA74 )
+    g_pCBSystem->ProcFling();
+    v3 = g_pCBSystem;
+    if ( g_pCBSystem )
     {
-      nullsub_3(dword_BFDA74);
+      nullsub_3(g_pCBSystem);
       operator delete(v3);
     }
-    dword_BFDA74 = 0;
+    g_pCBSystem = 0;
   }
   ((CGameData *)&g_GameData)->Destroy();
   PAL3::DestroyEffectSystem();
-  if ( dword_BFDA68 )
+  if ( g_pCameraCtrl )
   {
-    (*(void (**)(gbCamera *, int))LODWORD(dword_BFDA68->fov))(dword_BFDA68, 1);
-    dword_BFDA68 = 0;
+    (**(void (***)(CameraCtrl *, int))g_pCameraCtrl)(g_pCameraCtrl, 1);
+    g_pCameraCtrl = 0;
   }
   v4 = dword_BFDA64;
   if ( dword_BFDA64 )
@@ -1355,10 +1343,10 @@ void PAL3::Destroy()
     operator delete(v4);
     dword_BFDA64 = 0;
   }
-  if ( dword_BFDA60 )
+  if ( g_pGfxMgr )
   {
-    (**(void (***)(gbGfxManager *, int))dword_BFDA60->_pad_0000)(dword_BFDA60, 1);
-    dword_BFDA60 = 0;
+    (**(void (***)(gbGfxManager *, int))g_pGfxMgr->_pad_0000)(g_pGfxMgr, 1);
+    g_pGfxMgr = 0;
   }
   FileSysDestory();
   v5 = (char *)CScreenMode::GetInstance();
@@ -1424,7 +1412,7 @@ void PAL3::CheckSystemRequire(char *a1@<edi>, char *a2@<esi>, HINSTANCE hInstanc
   dword_BFD770 = (int)hInstance;
   dword_BFD778 = 0;
   v5 = dword_BFD6E8 != 0 ? 8 : 0;
-  SetRect(&rc, 0, 0, dword_BFD6D0, dword_BFD6D4);
+  SetRect(&rc, 0, 0, (int)g_pGameTime, (int)g_pAbsTime);
   AdjustWindowRect(&rc, 0x96080000, 0);
   Window = CreateWindowExA(
              v5,
@@ -1445,7 +1433,7 @@ void PAL3::CheckSystemRequire(char *a1@<edi>, char *a2@<esi>, HINSTANCE hInstanc
     _CxxThrowException(v12, (_ThrowInfo *)&_TI1_AV_Exception__);
   }
   dword_BFD774 = Window;
-  dword_BFDA4C = Window;
+  g_pRoleSystem = Window;
   v18 = -1;
   nullsub_3(Buffer);
 }
@@ -1579,7 +1567,7 @@ int PAL3::GetCommandLineParam()
   }
   if ( !dword_C11718 )
     PAL3::UpdateSubsystems();
-  dword_BFDA74->ProcMagicWait((int)dword_C11700, 1);
+  g_pCBSystem->ProcMagicWait((int)dword_C11700, 1);
   return CGameData_Load((int)&g_GameData, (CUtil *)6);
 }
 
@@ -1792,10 +1780,7 @@ void PAL3::PrintScreen()
   gbImage2D v30; // [esp+3Ch] [ebp-D4h] BYREF
   int v31; // [esp+10Ch] [ebp-4h]
 
-  if ( (*(int (**)(gbGfxManager *, int *, int))(*(_DWORD *)dword_BFDA60->_pad_0000 + 84))(
-         dword_BFDA60,
-         &v23,
-         1) )
+  if ( (*(int (**)(gbGfxManager *, int *, int))(*(_DWORD *)g_pGfxMgr->_pad_0000 + 84))(g_pGfxMgr, &v23, 1) )
   {
     ((gbImage2D *)&v30)->gbImage2D();
     v31 = 0;
@@ -1825,7 +1810,7 @@ LABEL_8:
           while ( v30.ImgInfo.goal < v26 );
           isdiskinfo = v30.ImgInfo.isdiskinfo;
         }
-        (*(void (**)(gbGfxManager *))(*(_DWORD *)dword_BFDA60->_pad_0000 + 88))(dword_BFDA60);
+        (*(void (**)(gbGfxManager *))(*(_DWORD *)g_pGfxMgr->_pad_0000 + 88))(g_pGfxMgr);
         ((gbImage2D *)&g_PAL3Data._tail[8])->Release();
         Image = ((gbImage2D *)&g_PAL3Data._tail[8])->CreateImage(v26, v27, 24);
         pBits = (unsigned __int8 *)v30.pBits;
@@ -1930,7 +1915,7 @@ LABEL_8:
       }
       if ( v25 != 9 )
       {
-        (*(void (**)(gbGfxManager *))(*(_DWORD *)dword_BFDA60->_pad_0000 + 88))(dword_BFDA60);
+        (*(void (**)(gbGfxManager *))(*(_DWORD *)g_pGfxMgr->_pad_0000 + 88))(g_pGfxMgr);
 LABEL_34:
         v31 = -1;
         ((gbImage2D *)&v30)->~gbImage2D();
@@ -1953,8 +1938,8 @@ int PAL3::SnapScreen(int a1)
   dword_BFDA2C = a1;
   if ( a1 )
   {
-    dword_BFDA68->pControl[11] = (gbCamControler *)1;
-    ((RoleSystem *)dword_BFDA68)->SetActive((int)g_SceneMgr.m_RoleSystem);
+    *((_DWORD *)g_pCameraCtrl + 112) = 1;
+    ((RoleSystem *)g_pCameraCtrl)->SetActive((int)g_SceneMgr.m_RoleSystem);
   }
   sub_4070A0(aSoftwareSoftst, (DWORD)aSGameA, 1);
   ((PalScriptMgr *)0x63u)->Destroy(0);
@@ -1963,7 +1948,7 @@ int PAL3::SnapScreen(int a1)
     sub_419AE0(v1++);
   while ( (int)v1 < (int)&g_SceneMgr.m_pGameData );
   ((ScriptSystem *)0)->Execute(1);
-  dword_BFDA6C = 7;
+  g_nGameState = 7;
   v2 = (int (***)(_DWORD, _DWORD))((CGameData *)&g_GameData)->SetMode(0);
   result = (**v2)(v2, 0);
   flt_BFDA58 = 0.0;
@@ -2015,7 +2000,7 @@ void PAL3::EndWolf(int a1)
   }
   else
   {
-    dword_BFDA6C = 2;
+    g_nGameState = 2;
     v2 = (void (***)(_DWORD, int))((CGameData *)&g_GameData)->SetMode(0);
     (**v2)(v2, 1);
     if ( retaddr == (void *)-1 )
@@ -2047,7 +2032,7 @@ int PAL3::StartHideFight()
 {
   int (***v0)(_DWORD, _DWORD); // eax
 
-  dword_BFDA6C = 8;
+  g_nGameState = 8;
   flt_BFDA58 = 0.0;
   v0 = (int (***)(_DWORD, _DWORD))((CGameData *)&g_GameData)->SetMode(0);
   return (**v0)(v0, 0);
@@ -2058,7 +2043,7 @@ int PAL3::EndHideFight()
 {
   int (***v0)(_DWORD, int); // eax
 
-  dword_BFDA6C = 2;
+  g_nGameState = 2;
   v0 = (int (***)(_DWORD, int))((CGameData *)&g_GameData)->SetMode(0);
   return (**v0)(v0, 1);
 }
@@ -2118,7 +2103,7 @@ char PAL3::StartCombat(int a1, int a2, int a3, char a4)
       dword_C11744 = a2 == 2;
     dword_C11754 = a3;
     byte_C11751 = a4;
-    result = dword_BFDA74->ProcMagicWait((int)dword_C11700, 0);
+    result = g_pCBSystem->ProcMagicWait((int)dword_C11700, 0);
     if ( result )
     {
       if ( !a4 || !CScreenMode::GetInstance()[4] )
@@ -2483,8 +2468,8 @@ int PAL3::FullInit()
   }
   while ( (int)v1 < (int)&g_SceneMgr.m_pCamera );
   g_SceneMgr._gap_c5e0[849] = 0;
-  memset(&dword_BFDB90, 0, 0x20u);
-  dword_BFDBA4 = 31;
+  memset(&g_pSoundMgr, 0, 0x20u);
+  g_nScreenH = 31;
   *(_DWORD *)&g_SceneMgr._gap_c93c[4] = 0;
   memset(&g_SceneMgr.m_pAddEffect, 0, 0x1B80u);
   v164[0] = dword_58619C;
@@ -2519,17 +2504,17 @@ int PAL3::FullInit()
   dword_C02374 = 1;
   byte_C021A5 = -1;
   v5->SetParams();
-  ((Camera *)dword_BFFDB0)->SetParams((int)"DXD");
+  ((Camera *)&g_pNPCSystem)->SetParams((int)"DXD");
   strcpy(byte_BFFE5E, "DXD");
   dword_C002A0 = 1;
   dword_C00028 = 0;
-  ((Camera *)dword_BFDBB0)->SetParams((int)&off_586180);
+  ((Camera *)&g_pActorSystem)->SetParams((int)&off_586180);
   strcpy(byte_BFDC5E, (const char *)&off_586180);
   dword_BFE0A0 = 1;
   dword_BFDE28 = 0;
   ((CameraSystem *)g_SceneMgr.m_RoleSystem)->Init();
   g_SceneMgr.m_nCameraState = 0;
-  ((RoleSystem *)dword_BFDA68)->SetActive((int)g_SceneMgr.m_RoleSystem);
+  ((RoleSystem *)g_pCameraCtrl)->SetActive((int)g_SceneMgr.m_RoleSystem);
   g_SceneMgr._gap_1888[832] = 1;
   g_SceneMgr._gap_1888[833] = 0;
   g_SceneMgr._gap_1888[834] = 0;

@@ -9,9 +9,6 @@ int sub_4BDD90(...);
 int sub_4BDEB0(...);
 int sub_5541EE(...);
 
-// Unnamed globals (extern)
-extern int dword_BFDA60;
-
 // 0x004BF780
 int RenderTarget2::Init()
 {
@@ -68,8 +65,8 @@ int RenderTarget2::Init()
 
   v1 = this;
   *((_DWORD *)this + 4) = 0;
-  v2 = dword_BFDA60;
-  v3 = *(_DWORD *)&dword_BFDA60[1].DrvInfo.winname[44];
+  v2 = g_pGfxMgr;
+  v3 = *(_DWORD *)&g_pGfxMgr[1].DrvInfo.winname[44];
   v46 = this;
   (*(void (__stdcall **)(int, _DWORD *))(*(_DWORD *)v3 + 28))(v3, v50);
   if ( (v50[36] & 0x200000) == 0 )
@@ -345,9 +342,9 @@ void * RenderTarget2::Begin()
     v3 = (RenderTarget *)CRenderTarget::GetInstance();
     LOBYTE(result) = v3->OnResetDevice(0);
     if ( (_BYTE)result )
-      return (*(void *(__stdcall **)(_DWORD, _DWORD, _DWORD, int, int, int, _DWORD))(**(_DWORD **)&dword_BFDA60[1].DrvInfo.winname[44]
+      return (*(void *(__stdcall **)(_DWORD, _DWORD, _DWORD, int, int, int, _DWORD))(**(_DWORD **)&g_pGfxMgr[1].DrvInfo.winname[44]
                                                                                    + 172))(
-               *(_DWORD *)&dword_BFDA60[1].DrvInfo.winname[44],
+               *(_DWORD *)&g_pGfxMgr[1].DrvInfo.winname[44],
                0,
                0,
                3,
@@ -373,7 +370,7 @@ void RenderTarget2::Resolve()
   {
     Instance = (int *)CRenderTarget::GetInstance();
     sub_4BDD90(Instance);
-    v3 = dword_BFDA60;
+    v3 = g_pGfxMgr;
     PushMatrixStacks();
     (*(void (**)(gbGfxManager *))(*(_DWORD *)v3->_pad_0000 + 60))(v3);
     v4 = (_DWORD *)CRenderTarget::GetInstance();
@@ -571,10 +568,10 @@ void RenderTarget2::Resolve()
           0,
           2);
       }
-      dword_BFDA60[1].WorldMatrix.m[0][3] = 0.0;
-      dword_BFDA60[1].WorldMatrix.m[1][0] = 0.0;
-      ((gbGfxManager_D3D *)dword_BFDA60)->SetTexture(0);
-      ((gbRenderEffect *)dword_BFDA60->pEffectMgr->m_pDefEffect)->Apply();
+      g_pGfxMgr[1].WorldMatrix.m[0][3] = 0.0;
+      g_pGfxMgr[1].WorldMatrix.m[1][0] = 0.0;
+      ((gbGfxManager_D3D *)g_pGfxMgr)->SetTexture(0);
+      ((gbRenderEffect *)g_pGfxMgr->pEffectMgr->m_pDefEffect)->Apply();
     }
     PopMatrixStacks();
   }

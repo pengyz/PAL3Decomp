@@ -13,8 +13,6 @@ extern char aGfxscriptShado[];
 extern char aGfxscriptShado_0[];
 extern char aShadowTga[];
 extern char aViewm[];
-extern int dword_BFDA60;
-extern int dword_BFDA6C;
 
 // 0x0041F370
 void UIManager::Render()
@@ -71,7 +69,7 @@ void UIManager::Render()
     while ( v14 );
     v13 = v4;
   }
-  if ( dword_BFDA6C != 9 )
+  if ( g_nGameState != 9 )
   {
     v7 = (char *)&g_SceneMgr.m_RoleSystem[0]._data[144];
     v8 = (_DWORD *)((char *)this + 68 * v4 + 64);
@@ -99,11 +97,11 @@ void UIManager::Render()
   }
   if ( v4 > 0 )
   {
-    ((gbVertPoolMgr *)dword_BFDA60->pVertPoolMgr)->GetDynVertBuf(0x15u);
-    if ( LODWORD(dword_BFDA60->AllLight[6].ambient.Green) == 1 )
+    ((gbVertPoolMgr *)g_pGfxMgr->pVertPoolMgr)->GetDynVertBuf(0x15u);
+    if ( LODWORD(g_pGfxMgr->AllLight[6].ambient.Green) == 1 )
     {
-      Top = ((gbMatrixStack *)dword_BFDA60->pMatrixStack[1])->GetTop();
-      v10 = ((gbMatrixStack *)dword_BFDA60->pMatrixStack[0])->GetTop();
+      Top = ((gbMatrixStack *)g_pGfxMgr->pMatrixStack[1])->GetTop();
+      v10 = ((gbMatrixStack *)g_pGfxMgr->pMatrixStack[0])->GetTop();
       ((gbMatrix4 *)v16.m)->gbMatrix4();
       ((gbMatrix4 *)&v16)->gbMatrix4();
       ((gbMatrix4 *)v16.m)->LoadIdentity();
@@ -112,10 +110,10 @@ void UIManager::Render()
       ((gbMatrix4 *)&v16)->RightMultiply((gbMatrix4 *)v16.m);
       ((gbMatrix4 *)&v16)->RightMultiply(v10);
       ((gbRenderEffect *)*((gbRenderEffect **)this + 3))->SetVariant(PARAM_HANDLE_ALLTM, &v16);
-      v15[0] = LODWORD(dword_BFDA60->AllLight[6].direction.x);
-      v15[1] = LODWORD(dword_BFDA60->AllLight[6].direction.y);
+      v15[0] = LODWORD(g_pGfxMgr->AllLight[6].direction.x);
+      v15[1] = LODWORD(g_pGfxMgr->AllLight[6].direction.y);
       v11 = (gbRenderEffect *)*((_DWORD *)this + 3);
-      v15[2] = LODWORD(dword_BFDA60->AllLight[6].direction.z);
+      v15[2] = LODWORD(g_pGfxMgr->AllLight[6].direction.z);
       v15[3] = 1065353216;
       v11->SetVariant(PARAM_HANDLE_FOGPLANE, v15);
       qmemcpy(v18, Top, sizeof(v18));
@@ -139,13 +137,13 @@ void * UIManager::LoadShadowTexture()
 
   ((OpenBaseFile *)&v4)->OpenBaseFile();
   v5 = 0;
-  v2 = (gbTexture *)(*(int (**)(gbGfxManager *, char *))(*(_DWORD *)dword_BFDA60->_pad_0000 + 8))(
-                      dword_BFDA60,
+  v2 = (gbTexture *)(*(int (**)(gbGfxManager *, char *))(*(_DWORD *)g_pGfxMgr->_pad_0000 + 8))(
+                      g_pGfxMgr,
                       aShadowTga);
   *((_DWORD *)this + 1) = v2;
   v2->LoadTexture(1);
-  *((_DWORD *)this + 2) = ((gbEffectMgr *)dword_BFDA60->pEffectMgr)->NewRenderEffect(aGfxscriptShado, 0);
-  *((_DWORD *)this + 3) = ((gbEffectMgr *)dword_BFDA60->pEffectMgr)->NewRenderEffect(aGfxscriptShado_0, 0);
+  *((_DWORD *)this + 2) = ((gbEffectMgr *)g_pGfxMgr->pEffectMgr)->NewRenderEffect(aGfxscriptShado, 0);
+  *((_DWORD *)this + 3) = ((gbEffectMgr *)g_pGfxMgr->pEffectMgr)->NewRenderEffect(aGfxscriptShado_0, 0);
   v5 = -1;
   return ((OpenNULLFile *)&v4)->OpenNULLFile();
 }

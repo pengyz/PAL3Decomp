@@ -23,7 +23,6 @@ extern char aCNewFailed[];
 extern char aDProjectPal3Ui[];
 extern char aUiCommonScroll[];
 extern int dword_1894B78;
-extern int dword_BFDA60;
 extern void *off_56AD20;
 extern void *off_56AD40;
 extern int unk_D902F0;
@@ -58,9 +57,7 @@ int UIListBox::SetSelTexture(int id, int pRect, int a4, int a5, int a6, int a7)
   if ( a7 )
   {
     ((OpenBaseFile *)&a7)->OpenBaseFile();
-    v9 = (gbTexture *)(*(int (**)(gbGfxManager *, int))(*(_DWORD *)dword_BFDA60->_pad_0000 + 8))(
-                        dword_BFDA60,
-                        v7);
+    v9 = (gbTexture *)(*(int (**)(gbGfxManager *, int))(*(_DWORD *)g_pGfxMgr->_pad_0000 + 8))(g_pGfxMgr, v7);
     *(_DWORD *)this->m_selcolor = v9;
     if ( v9 )
       v9->LoadTexture(1);
@@ -273,16 +270,16 @@ int UIListBox::CalScrollBarRange(
     v19 = 0;
     if ( a7 )
     {
-      v9 = *(_DWORD *)dword_BFDA60->_pad_0000;
+      v9 = *(_DWORD *)g_pGfxMgr->_pad_0000;
       v10 = ((_Texture_Info *)dword_1894B78)->_CalculateUV(v7);
-      *(_DWORD *)&this->m_column[692] = (*(int (**)(gbGfxManager *, Scene *))(v9 + 8))(dword_BFDA60, v10);
+      *(_DWORD *)&this->m_column[692] = (*(int (**)(gbGfxManager *, Scene *))(v9 + 8))(g_pGfxMgr, v10);
       *(_DWORD *)&this->m_column[696] = ((Parent_Data *)dword_1894B78)->Parent_Data(v7);
     }
     else
     {
-      *(_DWORD *)&this->m_column[692] = (*(int (**)(gbGfxManager *, const CHAR *))(*(_DWORD *)dword_BFDA60->_pad_0000
+      *(_DWORD *)&this->m_column[692] = (*(int (**)(gbGfxManager *, const CHAR *))(*(_DWORD *)g_pGfxMgr->_pad_0000
                                                                                             + 8))(
-                                          dword_BFDA60,
+                                          g_pGfxMgr,
                                           v7);
     }
     v11 = (gbTexture *)*(gbTexture **)&this->m_column[692];
@@ -329,9 +326,7 @@ void UIListBox::GetSel(int a2, int a3)
   if ( a2 )
   {
     ((OpenBaseFile *)&a2)->OpenBaseFile();
-    v5 = (gbTexture *)(*(int (**)(gbGfxManager *, int))(*(_DWORD *)dword_BFDA60->_pad_0000 + 8))(
-                        dword_BFDA60,
-                        v3);
+    v5 = (gbTexture *)(*(int (**)(gbGfxManager *, int))(*(_DWORD *)g_pGfxMgr->_pad_0000 + 8))(g_pGfxMgr, v3);
     *(_DWORD *)&this->m_column[700] = v5;
     if ( v5 )
       v5->LoadTexture(1);
@@ -481,8 +476,8 @@ int UIListBox::SetItemOffset(char *Source, int a3)
   {
     ((OpenBaseFile *)&v18)->OpenBaseFile();
     v21 = 0;
-    v6 = (gbTexture *)(*(int (**)(gbGfxManager *, char *))(*(_DWORD *)dword_BFDA60->_pad_0000 + 8))(
-                        dword_BFDA60,
+    v6 = (gbTexture *)(*(int (**)(gbGfxManager *, char *))(*(_DWORD *)g_pGfxMgr->_pad_0000 + 8))(
+                        g_pGfxMgr,
                         Source);
     *(_DWORD *)SubItemInfo = v6;
     if ( v6 )
@@ -560,8 +555,8 @@ struct gbVFileSystem * UIListBox::SetMouseMoveSel(int a2, int a3, char *Source, 
   if ( !a5 )
     return (struct gbVFileSystem *)strncpy((char *)(v5 + 4), Source, 0x40u);
   ((OpenBaseFile *)&a2)->OpenBaseFile();
-  v6 = (gbTexture *)(*(int (**)(gbGfxManager *, char *))(*(_DWORD *)dword_BFDA60->_pad_0000 + 8))(
-                      dword_BFDA60,
+  v6 = (gbTexture *)(*(int (**)(gbGfxManager *, char *))(*(_DWORD *)g_pGfxMgr->_pad_0000 + 8))(
+                      g_pGfxMgr,
                       Source);
   *(_DWORD *)v5 = v6;
   if ( v6 )

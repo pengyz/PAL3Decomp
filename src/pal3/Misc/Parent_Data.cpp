@@ -25,9 +25,6 @@ extern int dword_1895060;
 extern int dword_1895064;
 extern int dword_1895068;
 extern int dword_189506C;
-extern int dword_BFD6D0;
-extern int dword_BFD6D4;
-extern int dword_BFDA60;
 extern float flt_1895038;
 
 // 0x0053FDD0
@@ -84,9 +81,9 @@ struct gbRenderEffect *Parent_Data::spstr()
   gbEffectMgr *pEffectMgr; // esi
   struct gbRenderEffect *result; // eax
 
-  dword_1895040 = (dword_BFD6D0 - 800) / 2;
-  dword_1895044 = (dword_BFD6D4 - 600) / 2;
-  pEffectMgr = (gbEffectMgr *)dword_BFDA60->pEffectMgr;
+  dword_1895040 = (int)(g_pGameTime - 100) / 2;
+  dword_1895044 = (int)(g_pAbsTime - 75) / 2;
+  pEffectMgr = (gbEffectMgr *)g_pGfxMgr->pEffectMgr;
   dword_1895048 = (int)pEffectMgr->NewTrivalEffect(0);
   dword_189504C = (int)pEffectMgr->NewRenderEffect(aGfxscriptUiTlG, 0);
   dword_1895050 = (int)pEffectMgr->NewRenderEffect(aGfxscriptUiNot, 0);

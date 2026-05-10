@@ -68,14 +68,12 @@ extern char aWe013[];
 extern char aWesneakattacke[];
 extern char aWitch[];
 extern unsigned char byte_17A9927;
-extern unsigned char byte_17AA870;
 extern unsigned char byte_17AA89C;
 extern unsigned char byte_17AA91C;
 extern unsigned char byte_17AA920;
 extern unsigned char byte_17AAA2C;
 extern unsigned char byte_17AB6E4;
 extern unsigned char byte_5DB6C4;
-extern int dword_17A990C;
 extern int dword_17AA880;
 extern int dword_17AA884;
 extern int dword_17AA888;
@@ -98,10 +96,6 @@ extern int dword_17AB6D0;
 extern int dword_17AB6D8;
 extern int dword_17AB6DC;
 extern int dword_17AB6E0;
-extern int dword_BFD6D0;
-extern int dword_BFD6D4;
-extern int dword_BFDA60;
-extern int dword_BFDA70;
 extern int dword_BFDA98;
 extern float flt_17ABCDC;
 extern float flt_56A610;
@@ -280,7 +274,7 @@ char CCBStage::Reset()
         v9 = (_DWORD *)operator new(0x17E8u);
         v23 = 2;
         if ( v9 )
-          v10 = (CCBStageCam *)sub_503FA0((int)v9, this, dword_BFDA60);
+          v10 = (CCBStageCam *)sub_503FA0((int)v9, this, g_pGfxMgr);
         else
           v10 = 0;
         this->m_pCam = v10;
@@ -564,7 +558,7 @@ int CCBStage::Update()
   {
     ((GRPinput *)&this->m_WPXVariance)->GetCursorPos();
     ((CCBStageScene *)this->m_pScene)->SetBattleFieldAttr();
-    if ( dword_17A990C == 1 )
+    if ( g_nCombatMode == 1 )
       this->Update();
     else
       this->Render();
@@ -724,7 +718,7 @@ int CCBStage::EditorUpdate()
   float v29; // [esp+50h] [ebp-4h]
 
   v2 = 0;
-  dword_BFDA60->InvViewMatrix.m[1][2] = 0.0;
+  g_pGfxMgr->InvViewMatrix.m[1][2] = 0.0;
   m_pCam = (CCBStageCam *)this->m_pCam;
   if ( m_pCam )
     v4 = (char *)&m_pCam->_base[4];
@@ -734,14 +728,14 @@ int CCBStage::EditorUpdate()
   v5 = (CEffectSystem *)CEffectSystem::DestroyAllEffect();
   v5->HandleViewMove(v21);
   v6 = (CCBStageCam *)this->m_pCam;
-  v7 = dword_BFDA60->InvViewMatrix.m[1][3];
+  v7 = g_pGfxMgr->InvViewMatrix.m[1][3];
   if ( v6 )
     v8 = (struct gbCamera *)&v6->_base[4];
   else
     v8 = 0;
   ((gbSceneGraph *)LODWORD(v7))->Begin(v8);
   *(_BYTE *)(LODWORD(v7) + 19244) = 0;
-  v9 = (gbMatrixStack *)dword_BFDA60->pMatrixStack[1];
+  v9 = (gbMatrixStack *)g_pGfxMgr->pMatrixStack[1];
   ((CameraCtrl *)this->m_pCam)->SetAsCurrent(3);
   v9->Push();
   (*(void (**)(gbActor **, _DWORD))&this->m_TempStorageWPX->m_pact->_base[16])(
@@ -753,7 +747,7 @@ int CCBStage::EditorUpdate()
     m_pRole = this->m_pRole;
     do
     {
-      if ( dword_17A990C == 1 || (v10 = &this->m_pRoleState->m_sCombatDialog[v2], v10[577]) && !v10[1432] )
+      if ( g_nCombatMode == 1 || (v10 = &this->m_pRoleState->m_sCombatDialog[v2], v10[577]) && !v10[1432] )
         ((CCBStageRole *)*m_pRole)->IsDoTask(v9);
       v2 += 892;
       ++m_pRole;
@@ -814,14 +808,14 @@ int CCBStage::EditorUpdate()
   }
   if ( this->m_pCBSystem->m_bEditor )
   {
-    if ( dword_17A990C == 1 )
+    if ( g_nCombatMode == 1 )
     {
       m_pScene = (CCBStageScene *)this->m_pScene;
       if ( !m_pScene->_pad_3C0[3] )
         goto LABEL_31;
       m_pScene->LoadPointer(60);
     }
-    if ( dword_17A990C == 4 )
+    if ( g_nCombatMode == 4 )
     {
       v18 = (CCBStageScene *)this->m_pScene;
       if ( v18->_pad_3C0[3] )
@@ -833,7 +827,7 @@ LABEL_31:
   sub_4DFA10((int *)this->m_TempStorageNGH);
   v19 = (CEffectSystem *)CEffectSystem::DestroyAllEffect();
   v19->Update();
-  sub_4C5C20((int *)dword_BFDA70);
+  sub_4C5C20((int *)g_pEffectSystem);
   PushMatrixStacks();
   v29 = 0.0;
   ((CGameData *)&g_GameData)->Render();
@@ -1918,10 +1912,10 @@ int CCBStage::GetRoleTaskNum(int a2)
   v16 = (int)*(float *)&v17;
   *(float *)&v17 = (this->m_pCBSystem->m_fTimeFund - *((float *)v5 + 6)) * 30.0;
   v15 = (int)*(float *)&v17;
-  v9 = (double)dword_BFD6D4;
+  v9 = (double)(int)g_pAbsTime;
   v15 = *((_DWORD *)v5 + 18) - (__int64)((1.0 - v19) * v9 * -0.5) - v15;
   v19 = 1.0 - ((double)v15 + (double)v15) / v9;
-  v10 = (double)dword_BFD6D0;
+  v10 = (double)(int)g_pGameTime;
   v15 = *((_DWORD *)v5 + 19) - (__int64)((v18 + 1.0) * v10 * -0.5) - 16;
   v18 = ((double)v15 + (double)v15) / v10 - 1.0;
   v11 = *((_DWORD *)v5 + 13);
@@ -1987,10 +1981,10 @@ int CCBStage::SelectRole(int a2)
   v12 = (int)*(float *)&v13;
   *(float *)&v13 = *(float *)&v14 * 32.0;
   v14 = (int)*(float *)&v13;
-  v7 = (double)dword_BFD6D4;
+  v7 = (double)(int)g_pAbsTime;
   v13 = 16 - (__int64)((1.0 - v16) * v7 * -0.5) - v14;
   v16 = 1.0 - ((double)v13 + (double)v13) / v7;
-  v8 = (double)dword_BFD6D0;
+  v8 = (double)(int)g_pGameTime;
   LODWORD(v9) = *((_DWORD *)v5 + 19) - (__int64)((v15 + 1.0) * v8 * -0.5) - 16;
   *(_WORD *)((char *)&v14 + 1) = 13055;
   *(float *)&v13 = v9;
@@ -2067,10 +2061,10 @@ int CCBStage::ProcWait(int a2)
   v18 = (int)v22;
   v22 = (v2->m_pCBSystem->m_fTimeFund - *(float *)(v6 + 24)) * 30.0;
   v21 = (int)v22;
-  v10 = (double)dword_BFD6D4;
+  v10 = (double)(int)g_pAbsTime;
   LODWORD(v22) = *(_DWORD *)(v6 + 72) - (__int64)((1.0 - v24) * v10 * -0.5) - v21;
   v24 = 1.0 - ((double)SLODWORD(v22) + (double)SLODWORD(v22)) / v10;
-  v11 = (double)dword_BFD6D0;
+  v11 = (double)(int)g_pGameTime;
   v12 = *(_DWORD *)(v6 + 76) - (__int64)((v23 + 1.0) * v11 * -0.5);
   *(_WORD *)((char *)&v21 + 1) = 13055;
   LODWORD(v22) = v12 - 32;
@@ -2147,10 +2141,10 @@ int CCBStage::ProcShowFiveLineup(int a2)
   v17 = (1.0 - *(float *)&v18) * 255.0;
   v16 = (int)v17;
   v17 = *(float *)&v18 * 32.0;
-  v8 = (double)dword_BFD6D4;
+  v8 = (double)(int)g_pAbsTime;
   v18 = 16 - (__int64)((1.0 - v20) * v8 * -0.5);
   v20 = 1.0 - ((double)v18 + (double)v18) / v8;
-  v9 = (double)dword_BFD6D0;
+  v9 = (double)(int)g_pGameTime;
   v10 = (__int64)((v19 + 1.0) * v9 * -0.5);
   HIDWORD(v10) = *this;
   LODWORD(v11) = *((_DWORD *)v6 + 19) - v10 - 16;
@@ -2905,50 +2899,49 @@ int CCBStage::ResetAll()
   float v11; // eax
   int *v12; // esi
   gbVec3D *v13; // eax
-  float v14; // edx
   int result; // eax
   int *p_vec1; // eax
   int *pad_0004; // eax
-  gbVec3D *v18; // eax
+  gbVec3D *v17; // eax
   float z; // eax
-  int v20; // ebx
-  gbVec3D *v21; // eax
+  int v19; // ebx
+  gbVec3D *v20; // eax
   float y; // ecx
-  float v23; // edx
+  float v22; // edx
+  int *v24; // eax
   int *v25; // eax
-  int *v26; // eax
-  gbVec3D *v27; // eax
-  float v28; // eax
+  gbVec3D *v26; // eax
+  float v27; // eax
+  float v28; // [esp+18h] [ebp-38h]
   float v29; // [esp+18h] [ebp-38h]
   float v30; // [esp+18h] [ebp-38h]
   float v31; // [esp+18h] [ebp-38h]
   float v32; // [esp+18h] [ebp-38h]
   float v33; // [esp+18h] [ebp-38h]
   float v34; // [esp+18h] [ebp-38h]
-  float v35; // [esp+18h] [ebp-38h]
+  float v35; // [esp+1Ch] [ebp-34h]
   float v36; // [esp+1Ch] [ebp-34h]
   float v37; // [esp+1Ch] [ebp-34h]
   float v38; // [esp+1Ch] [ebp-34h]
   float v39; // [esp+1Ch] [ebp-34h]
   float v40; // [esp+1Ch] [ebp-34h]
   float v41; // [esp+1Ch] [ebp-34h]
-  float v42; // [esp+1Ch] [ebp-34h]
+  float v42; // [esp+20h] [ebp-30h]
   float v43; // [esp+20h] [ebp-30h]
   float v44; // [esp+20h] [ebp-30h]
   float v45; // [esp+20h] [ebp-30h]
   float v46; // [esp+20h] [ebp-30h]
   float v47; // [esp+20h] [ebp-30h]
   float v48; // [esp+20h] [ebp-30h]
-  float v49; // [esp+20h] [ebp-30h]
+  int v49; // [esp+24h] [ebp-2Ch]
   int v50; // [esp+24h] [ebp-2Ch]
   int v51; // [esp+24h] [ebp-2Ch]
   int v52; // [esp+24h] [ebp-2Ch]
-  int v53; // [esp+24h] [ebp-2Ch]
   int a3; // [esp+30h] [ebp-20h] BYREF
   int a4; // [esp+34h] [ebp-1Ch] BYREF
-  gbVec3D v56; // [esp+38h] [ebp-18h] BYREF
-  gbVec3D v57; // [esp+44h] [ebp-Ch] BYREF
-  float *v58; // [esp+54h] [ebp+4h]
+  gbVec3D v55; // [esp+38h] [ebp-18h] BYREF
+  gbVec3D v56; // [esp+44h] [ebp-Ch] BYREF
+  float *v57; // [esp+54h] [ebp+4h]
   int a2; // [esp+58h] [ebp+8h]
 
   if ( (byte_17AA89C & 1) == 0 )
@@ -2969,10 +2962,9 @@ int CCBStage::ResetAll()
   }
   if ( (byte_17AA89C & 4) == 0 )
   {
-    *(_DWORD *)byte_17AA870 = 0;
+    *(_QWORD *)&g_bRoleActive = 0;
     byte_17AA89C |= 4u;
-    *(_DWORD *)&byte_17AA870[4] = 0;
-    *(_DWORD *)&byte_17AA870[8] = 0;
+    *((_DWORD *)&g_bRoleActive + 2) = 0;
     atexit(nullsub_28);
   }
   v2 = a2;
@@ -3008,21 +3000,19 @@ int CCBStage::ResetAll()
         fsub    dword_17AA880
       }
       __asm { fstp    [esp+38h+var_38] }
-      v18 = ((gbVec3D *)&v57)->gbVec3D(v32, v39, v46);
-      v56.x = v18->x;
-      v56.y = v18->y;
-      z = v18->z;
-      *(float *)byte_17AA870 = v56.x;
-      v56.z = z;
-      *(float *)&byte_17AA870[4] = v56.y;
-      *(float *)&byte_17AA870[8] = z;
-      ((gbVec3D *)byte_17AA870)->Normalize();
-      v20 = *(_DWORD *)(a2 + 8);
-      if ( v20 == 4 && *(_BYTE *)(*(_DWORD *)&g_SceneMgr._gap_1888[288] + 613) == 1 )
+      v17 = ((gbVec3D *)&v56)->gbVec3D(v31, v38, v45);
+      *(_QWORD *)&v55.x = *(_QWORD *)&v17->x;
+      z = v17->z;
+      *(_QWORD *)&g_bRoleActive = *(_QWORD *)&v55.x;
+      v55.z = z;
+      *((float *)&g_bRoleActive + 2) = z;
+      ((gbVec3D *)&g_bRoleActive)->Normalize();
+      v19 = *(_DWORD *)(a2 + 8);
+      if ( v19 == 4 && *(_BYTE *)(*(_DWORD *)&g_SceneMgr._gap_1888[288] + 613) == 1 )
       {
-        ((CCBStageRole *)this->m_pRole[4])->GetStatus(v50);
+        ((CCBStageRole *)this->m_pRole[4])->GetStatus(v49);
         __asm { fstp    [esp+2Ch+a2] }
-        ((CCBStageRole *)this->m_pRole[v5])->GetStatus(v51);
+        ((CCBStageRole *)this->m_pRole[v5])->GetStatus(v50);
         __asm
         {
           fadd    [esp+2Ch+a2]
@@ -3031,60 +3021,60 @@ int CCBStage::ResetAll()
       }
       else
       {
-        ((CCBStageRole *)this->m_pRole[v20])->GetStatus(v50);
+        ((CCBStageRole *)this->m_pRole[v19])->GetStatus(v49);
         __asm { fstp    [esp+2Ch+a2] }
-        ((CCBStageRole *)this->m_pRole[v5])->GetStatus(v52);
+        ((CCBStageRole *)this->m_pRole[v5])->GetStatus(v51);
         __asm { fadd    [esp+2Ch+a2] }
       }
       __asm
       {
-        fld     dword ptr byte_17AA870
+        fld     dword ptr g_bRoleActive
         fmul    st, st(1)
       }
       __asm
       {
-        fstp    dword ptr byte_17AA870
-        fld     dword ptr byte_17AA870+4
+        fstp    dword ptr g_bRoleActive
+        fld     dword ptr g_bRoleActive+4
         fmul    st, st(1)
-        fstp    dword ptr byte_17AA870+4
-        fld     dword ptr byte_17AA870+8
+        fstp    dword ptr g_bRoleActive+4
+        fld     dword ptr g_bRoleActive+8
         fmul    st, st(1)
-        fstp    dword ptr byte_17AA870+8
+        fstp    dword ptr g_bRoleActive+8
         fstp    st
-        fld     dword ptr byte_17AA870+8
+        fld     dword ptr g_bRoleActive+8
         fadd    dword_17AA888
         fstp    [esp+30h+var_30]
-        fld     dword ptr byte_17AA870+4
+        fld     dword ptr g_bRoleActive+4
         fadd    dword_17AA884
       }
       __asm
       {
         fstp    [esp+34h+var_34]
-        fld     dword ptr byte_17AA870
+        fld     dword ptr g_bRoleActive
         fadd    dword_17AA880
       }
       __asm { fstp    [esp+38h+var_38] }
-      v21 = ((gbVec3D *)&v57)->gbVec3D(v33, v40, v47);
-      v56.x = v21->x;
-      y = v21->y;
-      __asm { fld     [esp+20h+var_18] }
-      v23 = v21->z;
-      result = (int)v58;
-      v56.y = y;
-      v56.z = v23;
+      v20 = ((gbVec3D *)&v56)->gbVec3D(v32, v39, v46);
+      v55.x = v20->x;
+      y = v20->y;
+      __asm { fld     dword ptr [esp+20h+var_18] }
+      v22 = v20->z;
+      result = (int)v57;
+      v55.y = y;
+      v55.z = v22;
       __asm { fstp    dword ptr [eax] }
       *(float *)result = _ET1;
-      v58[1] = y;
-      v58[2] = v23;
+      v57[1] = y;
+      v57[2] = v22;
     }
     else
     {
-      _EDI = v58;
+      _EDI = v57;
       v7 = (gbVec3D *)&this->m_pRole[a3]->m_Task[62].vec1;
-      *v58 = v7->x;
+      *v57 = v7->x;
       v8 = a4;
-      v58[1] = v7->y;
-      v58[2] = v7->z;
+      v57[1] = v7->y;
+      v57[2] = v7->z;
       v9 = (int *)&this->m_pRole[v8]->m_Task[62].vec1;
       dword_17AA890 = *v9;
       dword_17AA894 = v9[1];
@@ -3104,22 +3094,21 @@ int CCBStage::ResetAll()
         fadd    dword ptr [edi]
       }
       __asm { fstp    [esp+38h+var_38] }
-      v10 = ((gbVec3D *)&v57)->gbVec3D(v29, v36, v43);
-      v56.x = v10->x;
+      v10 = ((gbVec3D *)&v56)->gbVec3D(v28, v35, v42);
+      *(_QWORD *)&v55.x = *(_QWORD *)&v10->x;
       __asm
       {
-        fld     [esp+2Ch+var_18]
+        fld     dword ptr [esp+2Ch+var_18]
         fmul    ds:flt_56A610
       }
-      v56.y = v10->y;
       v11 = v10->z;
       __asm
       {
         fstp    dword_17AA880
-        fld     [esp+2Ch+var_14]
+        fld     dword ptr [esp+2Ch+var_18+4]
         fmul    ds:flt_56A610
       }
-      v56.z = v11;
+      v55.z = v11;
       __asm
       {
         fstp    dword_17AA884
@@ -3146,56 +3135,53 @@ int CCBStage::ResetAll()
         fsub    dword_17AA880
       }
       __asm { fstp    [esp+38h+var_38] }
-      v56 = *((gbVec3D *)&v57)->gbVec3D(v30, v37, v44);
-      *(gbVec3D *)byte_17AA870 = v56;
-      ((gbVec3D *)byte_17AA870)->Normalize();
+      v55 = *((gbVec3D *)&v56)->gbVec3D(v29, v36, v43);
+      *(gbVec3D *)&g_bRoleActive = v55;
+      ((gbVec3D *)&g_bRoleActive)->Normalize();
       __asm
       {
-        fld     dword ptr byte_17AA870
+        fld     dword ptr g_bRoleActive
         fmul    ds:flt_56A64C
       }
       __asm
       {
-        fstp    dword ptr byte_17AA870
-        fld     dword ptr byte_17AA870+4
+        fstp    dword ptr g_bRoleActive
+        fld     dword ptr g_bRoleActive+4
         fmul    ds:flt_56A64C
-        fstp    dword ptr byte_17AA870+4
-        fld     dword ptr byte_17AA870+8
+        fstp    dword ptr g_bRoleActive+4
+        fld     dword ptr g_bRoleActive+8
         fmul    ds:flt_56A64C
-        fst     dword ptr byte_17AA870+8
+        fst     dword ptr g_bRoleActive+8
         fadd    dword_17AA888
         fstp    [esp+30h+var_30]
-        fld     dword ptr byte_17AA870+4
+        fld     dword ptr g_bRoleActive+4
         fadd    dword_17AA884
       }
       __asm
       {
         fstp    [esp+34h+var_34]
-        fld     dword ptr byte_17AA870
+        fld     dword ptr g_bRoleActive
         fadd    dword_17AA880
       }
       __asm { fstp    [esp+38h+var_38] }
-      v13 = ((gbVec3D *)&v57)->gbVec3D(v31, v38, v45);
-      v56.x = v13->x;
-      v56.y = v13->y;
-      v14 = v56.y;
+      v13 = ((gbVec3D *)&v56)->gbVec3D(v30, v37, v44);
+      *(_QWORD *)&v55.x = *(_QWORD *)&v13->x;
       result = LODWORD(v13->z);
-      *v58 = v56.x;
-      v58[1] = v14;
-      *((_DWORD *)v58 + 2) = result;
-      LODWORD(v56.z) = result;
+      *(_QWORD *)v57 = *(_QWORD *)&v55.x;
+      *((_DWORD *)v57 + 2) = result;
+      LODWORD(v55.z) = result;
     }
   }
   else
   {
-    v25 = (int *)&this->m_pRole[v3]->m_Task[62].vec1;
-    dword_17AA880 = *v25;
-    dword_17AA884 = v25[1];
-    dword_17AA888 = v25[2];
-    v26 = (int *)this->m_pRole[*(_DWORD *)(a2 + 8)]->m_Task[62]._pad_0004;
-    dword_17AA890 = *v26;
-    dword_17AA894 = v26[1];
-    dword_17AA898 = v26[2];
+    v24 = (int *)&this->m_pRole[v3]->m_Task[62].vec1;
+    dword_17AA880 = *v24;
+    dword_17AA884 = v24[1];
+    dword_17AA888 = v24[2];
+    v25 = (int *)this->m_pRole[*(_DWORD *)(a2 + 8)]->m_Task[62]._pad_0004;
+    dword_17AA890 = *v25;
+    dword_17AA894 = v25[1];
+    dword_17AA898 = v25[2];
     __asm
     {
       fld     dword_17AA898
@@ -3211,30 +3197,28 @@ int CCBStage::ResetAll()
       fsub    dword_17AA880
     }
     __asm { fstp    [esp+38h+var_38] }
-    v27 = ((gbVec3D *)&v57)->gbVec3D(v34, v41, v48);
-    v56.x = v27->x;
-    v56.y = v27->y;
-    v28 = v27->z;
-    *(float *)byte_17AA870 = v56.x;
-    v56.z = v28;
-    *(float *)&byte_17AA870[4] = v56.y;
-    *(float *)&byte_17AA870[8] = v28;
-    ((gbVec3D *)byte_17AA870)->Normalize();
-    ((CCBStageRole *)this->m_pRole[*(_DWORD *)(a2 + 12)])->GetStatus(v50);
+    v26 = ((gbVec3D *)&v56)->gbVec3D(v33, v40, v47);
+    *(_QWORD *)&v55.x = *(_QWORD *)&v26->x;
+    v27 = v26->z;
+    *(_QWORD *)&g_bRoleActive = *(_QWORD *)&v55.x;
+    v55.z = v27;
+    *((float *)&g_bRoleActive + 2) = v27;
+    ((gbVec3D *)&g_bRoleActive)->Normalize();
+    ((CCBStageRole *)this->m_pRole[*(_DWORD *)(a2 + 12)])->GetStatus(v49);
     __asm { fstp    [esp+2Ch+a2] }
-    ((CCBStageRole *)this->m_pRole[*(_DWORD *)(v2 + 8)])->GetStatus(v53);
+    ((CCBStageRole *)this->m_pRole[*(_DWORD *)(v2 + 8)])->GetStatus(v52);
     __asm
     {
       fadd    [esp+2Ch+a2]
-      fld     dword ptr byte_17AA870
+      fld     dword ptr g_bRoleActive
       fmul    st, st(1)
-      fstp    dword ptr byte_17AA870
-      fld     dword ptr byte_17AA870+4
+      fstp    dword ptr g_bRoleActive
+      fld     dword ptr g_bRoleActive+4
       fmul    st, st(1)
-      fstp    dword ptr byte_17AA870+4
-      fld     dword ptr byte_17AA870+8
+      fstp    dword ptr g_bRoleActive+4
+      fld     dword ptr g_bRoleActive+8
       fmul    st, st(1)
-      fstp    dword ptr byte_17AA870+8
+      fstp    dword ptr g_bRoleActive+8
     }
     __asm { fstp    st }
     if ( *(_DWORD *)((CCBRoleState *)this->m_pRoleState)->InitUI(*(_DWORD *)(v2 + 8)) == 7364
@@ -3242,37 +3226,37 @@ int CCBStage::ResetAll()
     {
       __asm
       {
-        fld     dword ptr byte_17AA870
+        fld     dword ptr g_bRoleActive
         fadd    st, st
-        fstp    dword ptr byte_17AA870
-        fld     dword ptr byte_17AA870+4
+        fstp    dword ptr g_bRoleActive
+        fld     dword ptr g_bRoleActive+4
         fadd    st, st
-        fstp    dword ptr byte_17AA870+4
-        fld     dword ptr byte_17AA870+8
+        fstp    dword ptr g_bRoleActive+4
+        fld     dword ptr g_bRoleActive+8
         fadd    st, st
-        fstp    dword ptr byte_17AA870+8
+        fstp    dword ptr g_bRoleActive+8
       }
     }
     __asm
     {
-      fld     dword ptr byte_17AA870+8
+      fld     dword ptr g_bRoleActive+8
       fadd    dword_17AA888
     }
     __asm
     {
       fstp    [esp+30h+var_30]
-      fld     dword ptr byte_17AA870+4
+      fld     dword ptr g_bRoleActive+4
       fadd    dword_17AA884
     }
     __asm
     {
       fstp    [esp+34h+var_34]
-      fld     dword ptr byte_17AA870
+      fld     dword ptr g_bRoleActive
       fadd    dword_17AA880
     }
     __asm { fstp    [esp+38h+var_38] }
-    v56 = *((gbVec3D *)&v57)->gbVec3D(v35, v42, v49);
-    return v58->operator=(&v56);
+    v55 = *((gbVec3D *)&v56)->gbVec3D(v34, v41, v48);
+    return v57->operator=(&v55);
   }
   return result;
 }

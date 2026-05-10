@@ -9,8 +9,6 @@ int sub_445910(...);
 
 // Unnamed globals (extern)
 extern char aUiFlexNote_0[];
-extern int dword_BFD6D0;
-extern int dword_BFDA60;
 
 // 0x004503D0
 void UIDialog::Create(int id, int x, int y, int parent, char *tex)
@@ -25,8 +23,8 @@ void UIDialog::Create(int id, int x, int y, int parent, char *tex)
   pRect[1] = 0;
   pRect[0] = 0;
   ((UIWnd *)&this->_base)->Create(id, pRect, parent);
-  v7 = (gbTexture *)(*(int (**)(gbGfxManager *, char *))(*(_DWORD *)dword_BFDA60->_pad_0000 + 8))(
-                      dword_BFDA60,
+  v7 = (gbTexture *)(*(int (**)(gbGfxManager *, char *))(*(_DWORD *)g_pGfxMgr->_pad_0000 + 8))(
+                      g_pGfxMgr,
                       tex);
   *((_DWORD *)this + 23) = v7;
   if ( v7 )
@@ -47,7 +45,7 @@ int UIDialog::Init()
   _DWORD pRect[4]; // [esp+8h] [ebp-10h] BYREF
   int parent; // [esp+1Ch] [ebp+4h]
 
-  pRect[0] = (dword_BFD6D0 - 274) / 2;
+  pRect[0] = ((int)g_pGameTime - 274) / 2;
   pRect[1] = 10;
   pRect[3] = 87;
   pRect[2] = pRect[0] + 274;

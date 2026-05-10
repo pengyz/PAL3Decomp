@@ -10,9 +10,6 @@
 int sub_4A1CF0(...);
 int sub_523820(...);
 
-// Unnamed globals (extern)
-extern int dword_BFDA6C;
-
 // 0x00523600
 int ParabolaCalculator::CalulateParabola()
 {
@@ -82,7 +79,7 @@ int ParabolaCalculator::UpdateParabolaY(int a2, int a3)
   gbAudioManager *AudioManager; // eax
   int result; // eax
 
-  if ( dword_BFDA6C != 2 && (g_nGameFlags & 1) != 0 )
+  if ( g_nGameState != 2 && (g_nGameFlags & 1) != 0 )
   {
     Instance = (char *)CScreenMode::GetInstance();
     AudioManager = (gbAudioManager *)((CScreenMode *)Instance)->GetAudioManager();

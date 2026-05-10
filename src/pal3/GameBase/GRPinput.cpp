@@ -10,10 +10,6 @@ int sub_403B80(...);
 // Unnamed globals (extern)
 extern unsigned char byte_56A634;
 extern unsigned char byte_8AC5D8;
-extern int dword_BFD6D0;
-extern int dword_BFD6D4;
-extern int dword_BFDA60;
-extern int dword_BFDA68;
 extern float flt_8ACBEC;
 extern void *off_56A620;
 extern void *off_580CFC;
@@ -546,10 +542,10 @@ char GRPinput::SetMouseSensitivity()
       if ( !v2 )
       {
         m_joystickMinX = this->m_joystickMinX;
-        v4 = 40.0 / (double)dword_BFD6D4;
-        v5 = (gbPrintFont *)dword_BFDA60->pFontMgr->pAllFont[2];
-        v20 = (unsigned int)(dword_BFD6D0 - 10 * this->m_mouseMinX) >> 1;
-        *(float *)&v5->curColor.Blue = 40.0 / (double)dword_BFD6D0;
+        v4 = 40.0 / (double)(int)g_pAbsTime;
+        v5 = (gbPrintFont *)g_pGfxMgr->pFontMgr->pAllFont[2];
+        v20 = ((unsigned int)g_pGameTime - 10 * this->m_mouseMinX) >> 1;
+        *(float *)&v5->curColor.Blue = 40.0 / (double)(int)g_pGameTime;
         *(float *)&v5->curColor.Color = v4;
         v6 = *(float *)&this->m_mouseMaxX - 1.5;
         if ( v6 < 0.0 )
@@ -564,8 +560,8 @@ char GRPinput::SetMouseSensitivity()
         m_mouseSensitivity = this->m_mouseSensitivity;
         if ( m_mouseSensitivity == 0.0 )
           m_mouseSensitivity = COERCE_FLOAT(byte_56A634);
-        v17 = 1.0 - ((double)m_joystickMinX + (double)m_joystickMinX) / (double)dword_BFD6D4;
-        v15 = ((double)v20 + (double)v20) / (double)dword_BFD6D0 - 1.0;
+        v17 = 1.0 - ((double)m_joystickMinX + (double)m_joystickMinX) / (double)(int)g_pAbsTime;
+        v15 = ((double)v20 + (double)v20) / (double)(int)g_pGameTime - 1.0;
         (*(void (**)(gbPrintFont *, float, _DWORD, _DWORD, int, int))(*(_DWORD *)v5->_pad_0000 + 16))(
           v5,
           COERCE_FLOAT(LODWORD(m_mouseSensitivity)),
@@ -586,16 +582,16 @@ char GRPinput::SetMouseSensitivity()
         v23 = *(float *)(g_SceneMgr.m_pCollisionNode + 164);
         v24 = *(_DWORD *)(g_SceneMgr.m_pCollisionNode + 168);
         v23 = v18 * 20.0 + v23 + 64.0;
-        ((gbCamera *)&dword_BFDA68->OrthoSize)->PointWorldToScr((struct gbVec3D *)&v22.Color, (float *)&v22.ColorQuadFmt, (float *)&v20);
+        ((gbCamera *)((char *)g_pCameraCtrl + 4))->PointWorldToScr((struct gbVec3D *)&v22.Color, (float *)&v22.ColorQuadFmt, (float *)&v20);
         v9 = 1.0 - v18;
         if ( v9 < 0.0 )
           v9 = 0.0;
         v10 = (__int64)(v9 * 255.0);
         if ( !(_BYTE)v10 )
           LOBYTE(this->m_lpDIDKeyboard) = 0;
-        v11 = 32.0 / (double)dword_BFD6D4;
-        v12 = (gbPrintFont *)dword_BFDA60->pFontMgr->pAllFont[3];
-        *(float *)&v12->curColor.Blue = 32.0 / (double)dword_BFD6D0;
+        v11 = 32.0 / (double)(int)g_pAbsTime;
+        v12 = (gbPrintFont *)g_pGfxMgr->pFontMgr->pAllFont[3];
+        *(float *)&v12->curColor.Blue = 32.0 / (double)(int)g_pGameTime;
         *(float *)&v12->curColor.Color = v11;
         if ( gbColorQuad::ColorQuadFmt )
         {

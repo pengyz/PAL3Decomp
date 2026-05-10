@@ -9,7 +9,6 @@ int sub_41A070(...);
 int sub_429A90(...);
 
 // Unnamed globals (extern)
-extern int dword_BFDA68;
 extern int dword_C300C8;
 extern int dword_D8BBEC;
 
@@ -122,9 +121,9 @@ float * UICamera::CalcPosition(float *pMat)
       && *(_BYTE *)(v5 + 126)
       && sub_429A90(v5 - 48, (gbRay *)pMat) )
     {
-      v6 = dword_BFDA68->eyeDir.z - *(float *)(v5 - 4);
-      v7 = dword_BFDA68->eyeDir.w - *(float *)v5;
-      v8 = dword_BFDA68->eyeDir.y - *(float *)(v5 - 8);
+      v6 = *((float *)g_pCameraCtrl + 124) - *(float *)(v5 - 4);
+      v7 = *((float *)g_pCameraCtrl + 125) - *(float *)v5;
+      v8 = *((float *)g_pCameraCtrl + 123) - *(float *)(v5 - 8);
       v9 = v7 * v7 + v8 * v8 + v6 * v6;
       if ( v9 < v11 )
       {
@@ -279,9 +278,9 @@ int UICamera::GetTarget(float *pMat)
         {
           if ( sub_4180B0(v4 - 168, (gbRay *)pMat) )
           {
-            v5 = dword_BFDA68->eyeDir.z - *(float *)(v4 - 4);
-            v6 = dword_BFDA68->eyeDir.w - *(float *)v4;
-            v7 = dword_BFDA68->eyeDir.y - *(float *)(v4 - 8);
+            v5 = *((float *)g_pCameraCtrl + 124) - *(float *)(v4 - 4);
+            v6 = *((float *)g_pCameraCtrl + 125) - *(float *)v4;
+            v7 = *((float *)g_pCameraCtrl + 123) - *(float *)(v4 - 8);
             v8 = v6 * v6 + v5 * v5 + v7 * v7;
             if ( v8 < v16 )
             {
@@ -307,9 +306,9 @@ int UICamera::GetTarget(float *pMat)
       {
         if ( sub_4180B0((int)(v10 - 168), (gbRay *)pMat) )
         {
-          v11 = dword_BFDA68->eyeDir.z - *((float *)v10 - 1);
-          v12 = dword_BFDA68->eyeDir.w - *(float *)v10;
-          v13 = dword_BFDA68->eyeDir.y - *((float *)v10 - 2);
+          v11 = *((float *)g_pCameraCtrl + 124) - *((float *)v10 - 1);
+          v12 = *((float *)g_pCameraCtrl + 125) - *(float *)v10;
+          v13 = *((float *)g_pCameraCtrl + 123) - *((float *)v10 - 2);
           v14 = v12 * v12 + v11 * v11 + v13 * v13;
           if ( v14 < v16 )
           {
