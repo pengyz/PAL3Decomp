@@ -56,8 +56,18 @@ typedef int BOOL;
 #pragma warning(disable: 4244)  // narrowing
 #pragma warning(disable: 4018)  // signed/unsigned mismatch
 
-// IDA helper: qmemcpy = memcpy
+// IDA helpers
 #define qmemcpy memcpy
+#define SLODWORD(x) (*((_DWORD*)&(x)))
+#define SHIDWORD(x) (*(((_DWORD*)&(x))+1))
+#define COERCE_FLOAT(x) (*(float*)&(x))
+#define NAN (*(float*)&_nan_bytes)
+static unsigned int _nan_bytes = 0x7FC00000;
+
+// Forward declarations for common game/engine types used in generated code
+class gbMatrixStack;
+class gbSound2DNode;
+class gbSound3DNode;
 
 // Note: IDA misidentifies UIWnd as stdiobuf/std::ios_base in this binary.
 // gen_cpp.py post-processing replaces these with UIWnd* automatically.
