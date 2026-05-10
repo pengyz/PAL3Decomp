@@ -100,8 +100,6 @@ def collect_functions():
     free_funcs = []
 
     for f in sorted(DECOMP_DIR.glob("*.json")):
-        if f.name.startswith("_"):
-            continue
         try:
             with open(f, 'r', encoding='utf-8') as fh:
                 d = json.load(fh)
@@ -118,13 +116,38 @@ def collect_functions():
         if name.startswith('sub_'):
             continue
 
-        if '::' in name:
+        # Demangle MSVC names: ?Method@Class@@... -> Class::Method
+        cls = None
+        method = None
+        if name.startswith('?'):
+            inner = name[1:]
+            if inner.startswith('?0') or inner.startswith('?1'):
+                code_ch = inner[1]
+                rest = inner[2:]
+                at_pos = rest.find('@')
+                if at_pos > 0:
+                    cls = rest[:at_pos]
+                    method = cls if code_ch == '0' else '~' + cls
+            else:
+                at_pos = inner.find('@')
+                if at_pos > 0:
+                    method = inner[:at_pos]
+                    rest = inner[at_pos+1:]
+                    at_pos2 = rest.find('@')
+                    if at_pos2 > 0:
+                        cls = rest[:at_pos2]
+            if cls and ('$' in cls or '<' in cls or not cls[0].isalpha()):
+                cls = None
+        elif '::' in name:
             cls = name.split('::')[0]
+            method = name.split('::', 1)[1].split('(')[0]
+
+        if cls and method:
             if cls in SKIP_CLASSES:
                 continue
             by_class[cls].append({
-                'name': name,
-                'method': name.split('::', 1)[1].split('(')[0],
+                'name': '%s::%s' % (cls, method),
+                'method': method,
                 'code': code,
                 'addr': addr,
                 'sig': sig,
@@ -220,6 +243,9 @@ def transform_method_code(cls_name, method_name, code, sig):
         # Handles: Type *this, Type **this, _DWORD *this, etc.
         first = re.sub(r'\(\s*\w[\w\s]*\*+\s*this\s*,\s*', '(', first)
         first = re.sub(r'\(\s*\w[\w\s]*\*+\s*this\s*\)', '()', first)
+        # Destructors cannot have parameters — strip all params
+        if is_dtor:
+            first = re.sub(r'\([^)]*\)', '()', first)
         # Clean double spaces
         first = re.sub(r'  +', ' ', first).strip()
         lines[func_line_idx] = first
@@ -248,6 +274,10 @@ def transform_method_code(cls_name, method_name, code, sig):
     code = code.replace('(stdiobuf *)', '(UIWnd *)')
     code = code.replace('std::ios_base *', 'UIWnd *')
     code = code.replace('(std::ios_base *)', '(UIWnd *)')
+
+    # 6c. Fix broken operator new: ((operator *)0xNNu)->new() -> operator new(0xNN)
+    code = re.sub(r'\(\(operator \*\)(0x[0-9A-Fa-f]+u?)\)->new\(\)',
+                  r'operator new(\1)', code)
 
     # 6d. Remove __thiscall from function pointer casts (VC6 doesn't support explicit __thiscall)
     code = re.sub(r'__thiscall\s+', '', code)

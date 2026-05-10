@@ -45,7 +45,7 @@ CEffGrid::CEffGrid()
 {
   _DWORD *v0; // eax
 
-  v0 = (_DWORD *)((operator *)0x10B8u)->new();
+  v0 = (_DWORD *)operator new(0x10B8u);
   if ( v0 )
   sub_4C9550(v0);
   else
@@ -53,7 +53,7 @@ CEffGrid::CEffGrid()
 }
 
 // 0x004C9650
-CEffGrid::~CEffGrid(int a1)
+CEffGrid::~CEffGrid()
 {
   int v2; // edi
   void *v3; // eax
@@ -115,7 +115,7 @@ char CEffGrid::Create(int _this, int a2)
 {
   struct _EXCEPTION_REGISTRATION_RECORD *ExceptionList; // eax
   void *v3; // esp
-  int v5; // eax
+  LPVOID v5; // eax
   int v6; // ebx
   int v7; // edi
   int v8; // edi
@@ -125,25 +125,25 @@ char CEffGrid::Create(int _this, int a2)
   __int64 v12; // rax
   int v13; // ecx
   int v14; // ebx
-  int v15; // eax
+  LPVOID v15; // eax
   int v16; // ebx
   int v17; // ebp
   int v18; // ebx
   int v19; // edi
   int v20; // ebp
-  int v21; // eax
+  char *v21; // eax
   int v22; // ebp
-  int v23; // ebx
+  char *v23; // ebx
   int v24; // ebp
   int v25; // ebp
-  int v26; // eax
+  char *v26; // eax
   int v27; // ebp
-  int v28; // ebx
+  char *v28; // ebx
   int v29; // ebp
   int v30; // ecx
-  int v32; // [esp+0h] [ebp-1010h]
-  int v33; // [esp+0h] [ebp-1010h]
-  int v34; // [esp+0h] [ebp-1010h]
+  void *v32; // [esp+0h] [ebp-1010h]
+  char *v33; // [esp+0h] [ebp-1010h]
+  char *v34; // [esp+0h] [ebp-1010h]
   _BYTE v35[1024]; // [esp+4h] [ebp-100Ch] BYREF
   char pExceptionObject[1024]; // [esp+404h] [ebp-C0Ch] BYREF
   char ArgList[1024]; // [esp+804h] [ebp-80Ch] BYREF
@@ -157,7 +157,7 @@ char CEffGrid::Create(int _this, int a2)
   v40 = (void *)&loc_5667EA;
   v39 = ExceptionList;
   v3 = (void *)alloca(4100);
-  v5 = ((operator *)0x4C0u)->new();
+  v5 = operator new(0x4C0u);
   *(_DWORD *)(this + 24) = v5;
   if ( v5 )
   {
@@ -165,7 +165,7 @@ char CEffGrid::Create(int _this, int a2)
     v7 = 0;
     while ( 1 )
     {
-      *(_DWORD *)(v7 + *(_DWORD *)(this + 24)) = ((operator *)0x2D0u)->new();
+      *(_DWORD *)(v7 + *(_DWORD *)(this + 24)) = operator new(0x2D0u);
       if ( !*(_DWORD *)(v7 + *(_DWORD *)(this + 24)) )
         break;
       v7 += 152;
@@ -236,13 +236,13 @@ LABEL_10:
   *(_DWORD *)(this + 140) = *(_DWORD *)(a2 + 252);
   sub_4CAB30((char *)this, *(_DWORD *)(a2 + 168), *(_DWORD *)(a2 + 172));
   v14 = *(_DWORD *)(this + 124);
-  v15 = ((operator *)68 * v14)->new();
+  v15 = operator new(68 * v14);
   v32 = v15;
   v41 = 0;
   if ( v15 )
   {
     v16 = v14 - 1;
-    v17 = v15;
+    v17 = (int)v15;
     if ( v16 >= 0 )
     {
       v18 = v16 + 1;
@@ -271,7 +271,7 @@ LABEL_10:
     _CxxThrowException(pExceptionObject, (_ThrowInfo *)&_TI1_AV_Exception__);
   }
   v20 = (*(_DWORD *)(this + 112) + 1) * (*(_DWORD *)(this + 116) + 1);
-  v21 = ((operator *)12 * v20)->new();
+  v21 = (char *)operator new(12 * v20);
   v33 = v21;
   v41 = 1;
   if ( v21 )
@@ -283,7 +283,7 @@ LABEL_10:
       v24 = v22 + 1;
       do
       {
-        ((void (*)(int))gbVec3D::`default constructor closure')(v23);
+        ((void (*)(char *))gbVec3D::`default constructor closure')(v23);
         v23 += 12;
         --v24;
       }
@@ -297,7 +297,7 @@ LABEL_10:
   }
   v25 = (*(_DWORD *)(this + 112) + 1) * (*(_DWORD *)(this + 116) + 1);
   *(_DWORD *)(this + 52) = v21;
-  v26 = ((operator *)12 * v25)->new();
+  v26 = (char *)operator new(12 * v25);
   v34 = v26;
   v41 = 2;
   if ( v26 )
@@ -309,7 +309,7 @@ LABEL_10:
       v29 = v27 + 1;
       do
       {
-        ((void (*)(int))gbVec3D::`default constructor closure')(v28);
+        ((void (*)(char *))gbVec3D::`default constructor closure')(v28);
         v28 += 12;
         --v29;
       }

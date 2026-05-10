@@ -471,7 +471,7 @@ int RoleSystem::CheckVisible(int a1)
     v39 = v7 + v6;
     if ( (int)(v7 + v6) < 0 )
       v8 = 0;
-    v35 = ((operator *)12 * v8)->new();
+    v35 = (_DWORD *)operator new(12 * v8);
     v10 = v35;
     for ( k = (_DWORD *)v2[1]; k != (_DWORD *)a1; v10 += 3 )
     {

@@ -30,7 +30,7 @@ CEffSParticle::CEffSParticle()
 {
   _DWORD *v0; // eax
 
-  v0 = (_DWORD *)((operator *)0x30u)->new();
+  v0 = (_DWORD *)operator new(0x30u);
   if ( v0 )
   sub_4D4EA0(v0);
   else

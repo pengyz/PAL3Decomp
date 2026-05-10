@@ -84,7 +84,7 @@ char TextureLib::LoadFromFile(char *filename)
     v10 = v9;
     if ( v9 )
     {
-      v11 = (char *)((operator *)1088 * v9)->new();
+      v11 = (char *)operator new(1088 * v9);
       if ( v11 )
       {
         if ( v10 - 1 >= 0 )
@@ -144,9 +144,9 @@ char TextureLib::LoadFromFile(char *filename)
     g_pVFileSys->CloseFile(v3);
     return 0;
   }
-  v18 = (char *)v16->new();
+  v18 = (char *)operator new(v16);
   String = v18;
-  Blocka = (char *)v17->new();
+  Blocka = (char *)operator new(v17);
   g_pVFileSys->Read(v18, v17, v3);
   g_pVFileSys->CloseFile(v3);
   qmemcpy(Blocka, v18, v17);
@@ -155,7 +155,7 @@ char TextureLib::LoadFromFile(char *filename)
   v21 = v20;
   if ( !v20 )
     return 0;
-  v22 = (char *)((operator *)1088 * v20)->new();
+  v22 = (char *)operator new(1088 * v20);
   if ( v22 )
   {
     if ( v21 - 1 >= 0 )

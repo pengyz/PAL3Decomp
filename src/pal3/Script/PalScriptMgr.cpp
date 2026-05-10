@@ -118,7 +118,7 @@ int * PalScriptMgr::Destroy(unsigned int a1, char a2)
     v3 = result;
     if ( result )
     {
-      v4 = (_DWORD *)((operator *)0x18u)->new();
+      v4 = (_DWORD *)operator new(0x18u);
       if ( v4 )
         v5 = (_DWORD *)sub_431CB0(v4);
       else

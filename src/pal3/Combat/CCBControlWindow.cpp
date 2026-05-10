@@ -87,7 +87,7 @@ CCBControlWindow::CCBControlWindow()
 }
 
 // 0x0051A880
-CCBControlWindow::~CCBControlWindow(int _this)
+CCBControlWindow::~CCBControlWindow()
 {
   int result; // eax
   _DWORD *v3; // edi
@@ -201,7 +201,7 @@ char CCBControlWindow::Create(_DWORD *a2, int a3, int a4, int a5)
   char ArgList[1024]; // [esp+408h] [ebp-40Ch] BYREF
   int v11; // [esp+810h] [ebp-4h]
 
-  v6 = (UIStatic *)((operator *)0xF8u)->new();
+  v6 = (UIStatic *)operator new(0xF8u);
   v11 = 0;
   if ( v6 )
     v6->UIStatic();
@@ -283,7 +283,7 @@ int CCBControlWindow::HandleInput(int _this, int a2)
 LABEL_10:
       *(_DWORD *)(v11 + 80) = 1;
       *(_BYTE *)(v11 + 68) = 1;
-      ((UIWnd *)*(UIWnd **)(this + 72))->SetEnable((const char *)&g_SceneMgr.m_npc[5].m_path.normal[140].y, 0);
+      ((UIWnd *)*(UIWnd **)(this + 72))->SetEnable(g_SceneMgr.m_szUIString, 0);
       result = (***(int (****)(_DWORD, int))(this + 4 * a2 + 76))(*(_DWORD *)(this + 4 * a2 + 76), 1);
       *(_DWORD *)(this + 124) = a2;
       break;
@@ -356,7 +356,7 @@ char CCBControlWindow::OnMessage(int _this, _DWORD *pRect, int parent)
   v22 = ExceptionList;
   v4 = (void *)alloca(4104);
   ((UIWnd *)this)->Create(1879048195, pRect, parent);
-  v6 = (UIFrameWnd *)((operator *)0x98u)->new();
+  v6 = (UIFrameWnd *)operator new(0x98u);
   v17 = v6;
   v24 = 0;
   if ( v6 )
@@ -384,7 +384,7 @@ char CCBControlWindow::OnMessage(int _this, _DWORD *pRect, int parent)
     this);
   ((UIWnd *)*(UIWnd ***)(this + 72))->CreateFromTemplate(aUiCombatContro_55, 0);
   (***(void (****)(_DWORD, int))(this + 72))(*(_DWORD *)(this + 72), 1);
-  v8 = (UIFrameWnd *)((operator *)0x98u)->new();
+  v8 = (UIFrameWnd *)operator new(0x98u);
   v17 = v8;
   v24 = 1;
   if ( v8 )
@@ -410,7 +410,7 @@ char CCBControlWindow::OnMessage(int _this, _DWORD *pRect, int parent)
   v12 = (UIListBox **)(this + 80);
   do
   {
-    v13 = (UIListBox *)((operator *)0x4B8u)->new();
+    v13 = (UIListBox *)operator new(0x4B8u);
     v17 = v13;
     v24 = 2;
     if ( v13 )

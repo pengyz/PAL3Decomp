@@ -50,7 +50,7 @@ CCBStageEffect::CCBStageEffect()
 }
 
 // 0x00508F30
-CCBStageEffect::~CCBStageEffect(int _this)
+CCBStageEffect::~CCBStageEffect()
 {
   struct gbVFile *v2; // eax
   struct gbVFile *v3; // esi

@@ -40,7 +40,7 @@ UIRenderObj::UIRenderObj()
 }
 
 // 0x00541710
-UIRenderObj::~UIRenderObj(unsigned __int8 a2)
+UIRenderObj::~UIRenderObj()
 {
   if ( !*((_BYTE *)UIQuadManager::GetInstance() + 29) )
     return (*(unsigned __int8 (**)(int, _DWORD))(*(_DWORD *)g_Input.KeyInfo[177].Data + 104))(

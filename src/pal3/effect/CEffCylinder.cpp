@@ -198,7 +198,7 @@ int CEffCylinder::Init(int _this, int a2, float a3, float a4, float a5)
 // 0x004C4060
 char CEffCylinder::Create(int _this, int a2)
 {
-  int v3; // eax
+  LPVOID v3; // eax
   int v4; // ebx
   int v5; // edi
   int v6; // edi
@@ -214,7 +214,7 @@ char CEffCylinder::Create(int _this, int a2)
   int v18; // [esp+818h] [ebp-4h]
   int v19; // [esp+824h] [ebp+8h]
 
-  v3 = ((operator *)0x4C0u)->new();
+  v3 = operator new(0x4C0u);
   *(_DWORD *)(this + 24) = v3;
   if ( v3 )
   {
@@ -222,7 +222,7 @@ char CEffCylinder::Create(int _this, int a2)
     v5 = 0;
     while ( 1 )
     {
-      *(_DWORD *)(v5 + *(_DWORD *)(this + 24)) = ((operator *)0x2D0u)->new();
+      *(_DWORD *)(v5 + *(_DWORD *)(this + 24)) = operator new(0x2D0u);
       if ( !*(_DWORD *)(v5 + *(_DWORD *)(this + 24)) )
         break;
       v5 += 152;
@@ -301,7 +301,7 @@ LABEL_10:
   *(_DWORD *)(this + 76) = *(_DWORD *)(a2 + 204);
   ((CEffCylinder *)this)->InitDefaultUVSet(*(_DWORD *)(a2 + 168), *(_DWORD *)(a2 + 172));
   v19 = *(_DWORD *)(this + 112);
-  v11 = (void *)((operator *)68 * v19)->new();
+  v11 = (void *)operator new(68 * v19);
   Block = v11;
   v18 = 0;
   if ( v11 )
@@ -1103,7 +1103,7 @@ _DWORD * CEffCylinder::LoadTexture(int _this, int a2)
   v3 = (gbTexture *)(*(int (**)(_DWORD, int))(***(_DWORD ***)(this + 4) + 8))(**(_DWORD **)(this + 4), a2);
   *(_DWORD *)(this + 52) = v3;
   v3->LoadTexture(1);
-  result = (_DWORD *)((operator *)0x44u)->new();
+  result = (_DWORD *)operator new(0x44u);
   if ( result )
   {
     v5 = *(_DWORD *)(this + 52);

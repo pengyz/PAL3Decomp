@@ -133,13 +133,13 @@ int CUtil::GetFileSize()
   int v3; // ecx
   int v4; // ecx
   int v5; // edx
-  int v6; // eax
+  LPVOID v6; // eax
   int v7; // eax
-  int v8; // eax
+  LPVOID v8; // eax
   int v9; // eax
-  int v10; // eax
+  LPVOID v10; // eax
   int v11; // eax
-  int v12; // eax
+  LPVOID v12; // eax
   int v13; // eax
   int v14; // ecx
   char *Instance; // eax
@@ -172,34 +172,34 @@ int CUtil::GetFileSize()
   *((_DWORD *)this + 429) = 6;
   *(_DWORD *)&this->m_INIBuffer[188] = v5 - 6;
   ((UIWnd *)((char *)this + 824))->GetRect(&this->m_INIBuffer[180]);
-  v6 = ((operator *)0x1578u)->new();
+  v6 = operator new(0x1578u);
   v22 = 0;
   if ( v6 )
-    v7 = v6->ctor_3F30();
+    v7 = ((int)v6)->ctor_3F30();
   else
     v7 = 0;
   v22 = -1;
   *((_DWORD *)this + 434) = v7;
-  v8 = ((operator *)0xA4128u)->new();
+  v8 = operator new(0xA4128u);
   v22 = 1;
   if ( v8 )
-    v9 = v8->Create();
+    v9 = ((int)v8)->Create();
   else
     v9 = 0;
   v22 = -1;
   *((_DWORD *)this + 435) = v9;
-  v10 = ((operator *)0x1E56Cu)->new();
+  v10 = operator new(0x1E56Cu);
   v22 = 2;
   if ( v10 )
-    v11 = v10->ctor_A60();
+    v11 = ((int)v10)->ctor_A60();
   else
     v11 = 0;
   v22 = -1;
   *((_DWORD *)this + 436) = v11;
-  v12 = ((operator *)0x70DCu)->new();
+  v12 = operator new(0x70DCu);
   v22 = 3;
   if ( v12 )
-    v13 = v12->ctor_D140();
+    v13 = ((int)v12)->ctor_D140();
   else
     v13 = 0;
   v14 = *((_DWORD *)this + 434);

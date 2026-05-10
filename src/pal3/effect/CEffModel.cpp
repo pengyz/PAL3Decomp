@@ -54,7 +54,7 @@ _DWORD *CEffModel::SetTimeScale()
 {
   CEffModel *v0; // eax
 
-  v0 = (CEffModel *)((operator *)0x10B0u)->new();
+  v0 = (CEffModel *)operator new(0x10B0u);
   if ( v0 )
     return v0->Render();
   else

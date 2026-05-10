@@ -33,11 +33,18 @@ extern char aScriptSysInitF[];
 extern char aSystemScriptLo[];
 extern char aUiBigmapBigmap[];
 extern unsigned char byte_56A634;
+extern unsigned char byte_D8C2B8;
+extern unsigned char byte_D8C324;
 extern int dword_1894B78;
+extern int dword_D8C2BC;
+extern int dword_D8C2C0;
+extern int dword_D8C2C4;
 extern int dword_D8C2C8;
 extern int dword_D8C2E8;
 extern int dword_D8C360;
 extern void *off_58B448;
+extern int unknown_libname_339;
+extern int unknown_libname_340;
 
 // 0x00430290
 // likely std method (near _Freeze, _Split, max_size, allocator<char>>, _Xran)
@@ -386,6 +393,52 @@ int PalScript::LoadNext()
     while ( *v6 );
   }
   return result;
+}
+
+// 0x00431D80
+PalScript::PalScript()
+{
+  unknown_libname_339();
+  atexit(unknown_libname_340);
+}
+
+// 0x00431F00
+int PalScript::AddWaitObj()
+{
+  ((int)this)->AddCamObj();
+  return atexit(PalScript::ClearAllCamObj);
+}
+
+// 0x00431F10
+int PalScript::AddCamObj(int a1)
+{
+  byte_D8C2B8 = HIBYTE(a1);
+  dword_D8C2BC = 0;
+  dword_D8C2C0 = 0;
+  dword_D8C2C4 = 0;
+  return 0;
+}
+
+// 0x00431F40
+void PalScript::ClearAllCamObj()
+{
+  char v0; // al
+
+  if ( (byte_D8C324 & 0x10) == 0 )
+  {
+    byte_D8C324 |= 0x10u;
+    if ( dword_D8C2BC )
+    {
+      v0 = *(_BYTE *)(dword_D8C2BC - 1);
+      if ( !v0 || v0 == -1 )
+        operator delete((void *)(dword_D8C2BC - 1));
+      else
+        *(_BYTE *)(dword_D8C2BC - 1) = v0 - 1;
+    }
+    dword_D8C2BC = 0;
+    dword_D8C2C0 = 0;
+    dword_D8C2C4 = 0;
+  }
 }
 
 // 0x00431FA0

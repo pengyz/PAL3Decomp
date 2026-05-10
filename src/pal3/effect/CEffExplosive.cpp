@@ -60,7 +60,7 @@ extern int unk_FFFFFF;
 // 0x004C6C10
 char CEffExplosive::Create(int _this, int a2)
 {
-  int v3; // eax
+  LPVOID v3; // eax
   int v4; // ebx
   int v5; // edi
   int v6; // edi
@@ -69,22 +69,22 @@ char CEffExplosive::Create(int _this, int a2)
   int v9; // ecx
   int v10; // edx
   int v11; // ebx
-  int v12; // eax
+  LPVOID v12; // eax
   int v13; // ebx
   int v14; // ebp
   int v15; // ebx
   int v16; // edi
   int v17; // ebx
-  int v18; // eax
+  char *v18; // eax
   _DWORD *v19; // ecx
   int v20; // edx
   int v21; // ecx
-  int v23; // [esp+10h] [ebp-810h]
+  void *v23; // [esp+10h] [ebp-810h]
   char pExceptionObject[1024]; // [esp+14h] [ebp-80Ch] BYREF
   char ArgList[1024]; // [esp+414h] [ebp-40Ch] BYREF
   int v26; // [esp+81Ch] [ebp-4h]
 
-  v3 = ((operator *)0x4C0u)->new();
+  v3 = operator new(0x4C0u);
   *(_DWORD *)(this + 24) = v3;
   if ( v3 )
   {
@@ -92,7 +92,7 @@ char CEffExplosive::Create(int _this, int a2)
     v5 = 0;
     while ( 1 )
     {
-      *(_DWORD *)(v5 + *(_DWORD *)(this + 24)) = ((operator *)0x2D0u)->new();
+      *(_DWORD *)(v5 + *(_DWORD *)(this + 24)) = operator new(0x2D0u);
       if ( !*(_DWORD *)(v5 + *(_DWORD *)(this + 24)) )
         break;
       v5 += 152;
@@ -164,13 +164,13 @@ LABEL_10:
   *(_DWORD *)(this + 80) = *(_DWORD *)(a2 + 204);
   ((CEffExplosive *)this)->InitDefaultUVSet(*(_DWORD *)(a2 + 168), *(_DWORD *)(a2 + 172));
   v11 = *(_DWORD *)(this + 120);
-  v12 = ((operator *)68 * v11)->new();
+  v12 = operator new(68 * v11);
   v23 = v12;
   v26 = 0;
   if ( v12 )
   {
     v13 = v11 - 1;
-    v14 = v12;
+    v14 = (int)v12;
     if ( v13 >= 0 )
     {
       v15 = v13 + 1;
@@ -191,12 +191,12 @@ LABEL_10:
   v17 = *(_DWORD *)(this + 120);
   *(_DWORD *)(this + 48) = v12;
   v26 = -1;
-  v18 = ((operator *)24 * v17)->new();
+  v18 = (char *)operator new(24 * v17);
   if ( v18 )
   {
     if ( v17 - 1 >= 0 )
     {
-      v19 = (_DWORD *)(v18 + 20);
+      v19 = (_DWORD *)v18 + 20;
       v20 = v17;
       do
       {
@@ -609,7 +609,7 @@ _DWORD * CEffExplosive::LoadTexture(int _this, int a2)
   v3 = (gbTexture *)(*(int (**)(_DWORD, int))(***(_DWORD ***)(this + 4) + 8))(**(_DWORD **)(this + 4), a2);
   *(_DWORD *)(this + 56) = v3;
   v3->LoadTexture(1);
-  result = (_DWORD *)((operator *)0x44u)->new();
+  result = (_DWORD *)operator new(0x44u);
   if ( result )
   {
     v5 = *(_DWORD *)(this + 56);

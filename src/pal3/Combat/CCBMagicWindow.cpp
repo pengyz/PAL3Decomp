@@ -60,7 +60,7 @@ CCBMagicWindow::CCBMagicWindow(int a2, int a3, _DWORD *a4)
 }
 
 // 0x0051BAB0
-CCBMagicWindow::~CCBMagicWindow(int a2)
+CCBMagicWindow::~CCBMagicWindow()
 {
   int v2; // edi
   int v4; // ebx

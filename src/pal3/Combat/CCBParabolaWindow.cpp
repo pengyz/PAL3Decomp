@@ -67,7 +67,7 @@ CCBParabolaWindow::CCBParabolaWindow(int *a2, int a3)
 }
 
 // 0x0051B810
-CCBParabolaWindow::~CCBParabolaWindow(int _this)
+CCBParabolaWindow::~CCBParabolaWindow()
 {
   int result; // eax
   int v3; // ecx

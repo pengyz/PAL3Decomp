@@ -81,7 +81,7 @@ C2DSpark::C2DSpark(int a2, int a3)
   *(_DWORD *)&v20[12] = 1;
   *((_DWORD *)this + 5640) = v4;
   v4->LoadTexture(*(_DWORD *)&v20[12]);
-  v5 = (_DWORD *)((operator *)0x44u)->new();
+  v5 = (_DWORD *)operator new(0x44u);
   if ( v5 )
   {
     v6 = *((_DWORD *)this + 5640);
@@ -104,7 +104,7 @@ C2DSpark::C2DSpark(int a2, int a3)
   *(_DWORD *)&v20[8] = 1;
   *((_DWORD *)this + 5646) = v7;
   v7->LoadTexture(*(_DWORD *)&v20[8]);
-  v8 = (_DWORD *)((operator *)0x44u)->new();
+  v8 = (_DWORD *)operator new(0x44u);
   if ( v8 )
   {
     v9 = *((_DWORD *)this + 5646);
@@ -127,7 +127,7 @@ C2DSpark::C2DSpark(int a2, int a3)
   *(_DWORD *)v20 = 1;
   *((_DWORD *)this + 5644) = v10;
   v10->LoadTexture(*(_DWORD *)v20);
-  v11 = (_DWORD *)((operator *)0x44u)->new();
+  v11 = (_DWORD *)operator new(0x44u);
   if ( v11 )
   {
     v12 = *((_DWORD *)this + 5644);
@@ -149,7 +149,7 @@ C2DSpark::C2DSpark(int a2, int a3)
                        aEffectFlareblu);
   *((_DWORD *)this + 5642) = v13;
   v13->LoadTexture(1);
-  v14 = (_DWORD *)((operator *)0x44u)->new();
+  v14 = (_DWORD *)operator new(0x44u);
   if ( v14 )
   {
     v15 = *((_DWORD *)this + 5642);
@@ -171,7 +171,7 @@ C2DSpark::C2DSpark(int a2, int a3)
                        aEffectFlarebri);
   *((_DWORD *)this + 5648) = v16;
   v16->LoadTexture(1);
-  v17 = (_DWORD *)((operator *)0x44u)->new();
+  v17 = (_DWORD *)operator new(0x44u);
   if ( v17 )
   {
     v18 = *((_DWORD *)this + 5648);
@@ -198,7 +198,7 @@ C2DSpark::C2DSpark(int a2, int a3)
 }
 
 // 0x004D5DC0
-C2DSpark::~C2DSpark(int _this)
+C2DSpark::~C2DSpark()
 {
   gbRefObject *v2; // ecx
   gbRefObject *v3; // ecx

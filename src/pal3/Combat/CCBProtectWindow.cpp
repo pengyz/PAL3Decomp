@@ -114,10 +114,10 @@ int CCBProtectWindow::Create(int _this)
   while ( 1 )
   {
     *v2 = 0;
-    lstrcpyA((LPSTR)(v3 - 32), (LPCSTR)&g_SceneMgr.m_npc[5].m_path.normal[140].y);
-    lstrcpyA((LPSTR)v3, (LPCSTR)&g_SceneMgr.m_npc[5].m_path.normal[140].y);
-    lstrcpyA((LPSTR)(v3 + 30), (LPCSTR)&g_SceneMgr.m_npc[5].m_path.normal[140].y);
-    lstrcpyA((LPSTR)(v3 + 60), (LPCSTR)&g_SceneMgr.m_npc[5].m_path.normal[140].y);
+    lstrcpyA((LPSTR)(v3 - 32), g_SceneMgr.m_szUIString);
+    lstrcpyA((LPSTR)v3, g_SceneMgr.m_szUIString);
+    lstrcpyA((LPSTR)(v3 + 30), g_SceneMgr.m_szUIString);
+    lstrcpyA((LPSTR)(v3 + 60), g_SceneMgr.m_szUIString);
     *(_BYTE *)(v3 + 576) = 0;
     memset((void *)(v3 + 608), 0, 0x18u);
     *(_BYTE *)(v3 + 764) = 0;
@@ -192,10 +192,10 @@ int CCBProtectWindow::Create(int _this)
   while ( 1 )
   {
     *v9 = 0;
-    lstrcpyA((LPSTR)(v10 - 32), (LPCSTR)&g_SceneMgr.m_npc[5].m_path.normal[140].y);
-    lstrcpyA((LPSTR)v10, (LPCSTR)&g_SceneMgr.m_npc[5].m_path.normal[140].y);
-    lstrcpyA((LPSTR)(v10 + 30), (LPCSTR)&g_SceneMgr.m_npc[5].m_path.normal[140].y);
-    lstrcpyA((LPSTR)(v10 + 60), (LPCSTR)&g_SceneMgr.m_npc[5].m_path.normal[140].y);
+    lstrcpyA((LPSTR)(v10 - 32), g_SceneMgr.m_szUIString);
+    lstrcpyA((LPSTR)v10, g_SceneMgr.m_szUIString);
+    lstrcpyA((LPSTR)(v10 + 30), g_SceneMgr.m_szUIString);
+    lstrcpyA((LPSTR)(v10 + 60), g_SceneMgr.m_szUIString);
     *(_BYTE *)(v10 + 576) = 0;
     memset((void *)(v10 + 608), 0, 0x18u);
     *(_BYTE *)(v10 + 764) = 0;
@@ -259,10 +259,10 @@ int CCBProtectWindow::Create(int _this)
   while ( 1 )
   {
     *v16 = 0;
-    lstrcpyA((LPSTR)(v17 - 32), (LPCSTR)&g_SceneMgr.m_npc[5].m_path.normal[140].y);
-    lstrcpyA((LPSTR)v17, (LPCSTR)&g_SceneMgr.m_npc[5].m_path.normal[140].y);
-    lstrcpyA((LPSTR)(v17 + 30), (LPCSTR)&g_SceneMgr.m_npc[5].m_path.normal[140].y);
-    lstrcpyA((LPSTR)(v17 + 60), (LPCSTR)&g_SceneMgr.m_npc[5].m_path.normal[140].y);
+    lstrcpyA((LPSTR)(v17 - 32), g_SceneMgr.m_szUIString);
+    lstrcpyA((LPSTR)v17, g_SceneMgr.m_szUIString);
+    lstrcpyA((LPSTR)(v17 + 30), g_SceneMgr.m_szUIString);
+    lstrcpyA((LPSTR)(v17 + 60), g_SceneMgr.m_szUIString);
     *(_BYTE *)(v17 + 576) = 0;
     memset((void *)(v17 + 608), 0, 0x18u);
     *(_BYTE *)(v17 + 764) = 0;

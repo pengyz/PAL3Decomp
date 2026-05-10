@@ -24,7 +24,7 @@ CEffShock::CEffShock()
 {
   _DWORD *v0; // eax
 
-  v0 = (_DWORD *)((operator *)0x10B0u)->new();
+  v0 = (_DWORD *)operator new(0x10B0u);
   if ( v0 )
   sub_4D3870(v0);
   else
@@ -52,7 +52,7 @@ int CEffShock::Init(int _this, int a2, float a3, float a4, float a5)
 // 0x004D3AD0
 char CEffShock::Create(int _this, int a2)
 {
-  int v3; // eax
+  LPVOID v3; // eax
   int v4; // ebx
   int v5; // edi
   int v6; // edi
@@ -61,20 +61,20 @@ char CEffShock::Create(int _this, int a2)
   int v9; // ecx
   int v10; // edx
   int v11; // ebx
-  int v12; // eax
+  LPVOID v12; // eax
   int v13; // ebx
   int v14; // ebp
   int v15; // ebx
   int v16; // edi
-  int v17; // eax
+  LPVOID v17; // eax
   int v18; // ecx
   size_t v20; // [esp-4h] [ebp-820h]
-  int v21; // [esp+Ch] [ebp-810h]
+  void *v21; // [esp+Ch] [ebp-810h]
   char pExceptionObject[1024]; // [esp+10h] [ebp-80Ch] BYREF
   char ArgList[1024]; // [esp+410h] [ebp-40Ch] BYREF
   int v24; // [esp+818h] [ebp-4h]
 
-  v3 = ((operator *)0x4C0u)->new();
+  v3 = operator new(0x4C0u);
   *(_DWORD *)(this + 24) = v3;
   if ( v3 )
   {
@@ -82,7 +82,7 @@ char CEffShock::Create(int _this, int a2)
     v5 = 0;
     while ( 1 )
     {
-      *(_DWORD *)(v5 + *(_DWORD *)(this + 24)) = ((operator *)0x2D0u)->new();
+      *(_DWORD *)(v5 + *(_DWORD *)(this + 24)) = operator new(0x2D0u);
       if ( !*(_DWORD *)(v5 + *(_DWORD *)(this + 24)) )
         break;
       v5 += 152;
@@ -151,13 +151,13 @@ LABEL_10:
   *(_DWORD *)(this + 4188) = *(_DWORD *)(a2 + 204);
   ((CEffShock *)this)->CreateGeom(*(_DWORD *)(a2 + 168), *(_DWORD *)(a2 + 172));
   v11 = *(_DWORD *)(this + 4152);
-  v12 = ((operator *)68 * v11)->new();
+  v12 = operator new(68 * v11);
   v21 = v12;
   v24 = 0;
   if ( v12 )
   {
     v13 = v11 - 1;
-    v14 = v12;
+    v14 = (int)v12;
     if ( v13 >= 0 )
     {
       v15 = v13 + 1;
@@ -178,7 +178,7 @@ LABEL_10:
   *(_DWORD *)(this + 4156) = v12;
   v20 = 8 * *(_DWORD *)(this + 4152);
   v24 = -1;
-  v17 = v20->new();
+  v17 = operator new(v20);
   v18 = *(_DWORD *)(this + 4156);
   *(_DWORD *)(this + 4160) = v17;
   if ( !v18 || !v17 )

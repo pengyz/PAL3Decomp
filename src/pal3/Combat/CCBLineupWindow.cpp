@@ -25,7 +25,7 @@ CCBLineupWindow::CCBLineupWindow(_DWORD *a1)
   char ArgList[1024]; // [esp+404h] [ebp-40Ch] BYREF
   int v6; // [esp+80Ch] [ebp-4h]
 
-  v1 = (CCBControlWindow *)((operator *)0x80u)->new();
+  v1 = (CCBControlWindow *)operator new(0x80u);
   v6 = 0;
   if ( v1 )
     Button = (_DWORD *)v1->CreateButton();
@@ -45,7 +45,7 @@ CCBLineupWindow::CCBLineupWindow(_DWORD *a1)
 }
 
 // 0x0051D070
-CCBLineupWindow::~CCBLineupWindow(_DWORD *a1)
+CCBLineupWindow::~CCBLineupWindow()
 {
   CCBItemWindow *v1; // eax
   _DWORD *v2; // eax
@@ -53,7 +53,7 @@ CCBLineupWindow::~CCBLineupWindow(_DWORD *a1)
   char ArgList[1024]; // [esp+404h] [ebp-40Ch] BYREF
   int v6; // [esp+80Ch] [ebp-4h]
 
-  v1 = (CCBItemWindow *)((operator *)0x7Cu)->new();
+  v1 = (CCBItemWindow *)operator new(0x7Cu);
   v6 = 0;
   if ( v1 )
     v2 = (_DWORD *)v1->Update();
@@ -81,7 +81,7 @@ char CCBLineupWindow::Reset(_DWORD *a1)
   char ArgList[1024]; // [esp+404h] [ebp-40Ch] BYREF
   int v6; // [esp+80Ch] [ebp-4h]
 
-  v1 = (CCBMagicWindow *)((operator *)0x68u)->new();
+  v1 = (CCBMagicWindow *)operator new(0x68u);
   v6 = 0;
   if ( v1 )
     v2 = (_DWORD *)v1->ForbidPage();
@@ -109,7 +109,7 @@ char CCBLineupWindow::Create(_DWORD *a1)
   char ArgList[1024]; // [esp+404h] [ebp-40Ch] BYREF
   int v6; // [esp+80Ch] [ebp-4h]
 
-  v1 = (CCBMagicWindow *)((operator *)0xB4u)->new();
+  v1 = (CCBMagicWindow *)operator new(0xB4u);
   v6 = 0;
   if ( v1 )
     ActivePage = (_DWORD *)v1->GetActivePage();
@@ -137,7 +137,7 @@ char CCBLineupWindow::Destroy(_DWORD *a1)
   char ArgList[1024]; // [esp+404h] [ebp-40Ch] BYREF
   int v6; // [esp+80Ch] [ebp-4h]
 
-  v1 = (UIFrameWnd *)((operator *)0x98u)->new();
+  v1 = (UIFrameWnd *)operator new(0x98u);
   v6 = 0;
   if ( v1 )
     v1->UIFrameWnd();
@@ -165,7 +165,7 @@ char CCBLineupWindow::OnMessage(_DWORD *a1)
   char ArgList[1024]; // [esp+404h] [ebp-40Ch] BYREF
   int v6; // [esp+80Ch] [ebp-4h]
 
-  v1 = (UIStatic *)((operator *)0xF8u)->new();
+  v1 = (UIStatic *)operator new(0xF8u);
   v6 = 0;
   if ( v1 )
     v1->UIStatic();
@@ -193,7 +193,7 @@ char CCBLineupWindow::Update(_DWORD *a1)
   char ArgList[1024]; // [esp+404h] [ebp-40Ch] BYREF
   int v6; // [esp+80Ch] [ebp-4h]
 
-  v1 = (UIScene *)((operator *)0x158u)->new();
+  v1 = (UIScene *)operator new(0x158u);
   v6 = 0;
   if ( v1 )
     v1->_UIScene();
@@ -221,7 +221,7 @@ char CCBLineupWindow::Render(_DWORD *a1)
   char ArgList[1024]; // [esp+404h] [ebp-40Ch] BYREF
   int v6; // [esp+80Ch] [ebp-4h]
 
-  v1 = (UIWnd *)((operator *)0xF4u)->new();
+  v1 = (UIWnd *)operator new(0xF4u);
   v6 = 0;
   if ( v1 )
     v2 = (_DWORD *)v1->ctor_F7F0();

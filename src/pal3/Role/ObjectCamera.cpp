@@ -84,7 +84,7 @@ void ObjectCamera::SetCameraEyePosition(struct gbGfxManager *a2)
   ObjectCamera *v4; // eax
   ObjectCamera *v5; // eax
 
-  v3 = (gbCamera *)((operator *)0x178u)->new();
+  v3 = (gbCamera *)operator new(0x178u);
   if ( v3 )
     v4 = (ObjectCamera *)v3->gbCamera(a2);
   else

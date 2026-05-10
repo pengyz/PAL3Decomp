@@ -68,7 +68,7 @@ int Scene::LoadConfig(void *pConfig)
     v18 = v7 + v6;
     if ( (int)(v7 + v6) < 0 )
       v8 = 0;
-    v9 = (char *)((operator *)12 * v8)->new();
+    v9 = (char *)operator new(12 * v8);
     v10 = (char *)*(char **)&this->m_info.cityname[4];
     v19 = v9;
     for ( i = v9; v10 != v4; i += 12 )

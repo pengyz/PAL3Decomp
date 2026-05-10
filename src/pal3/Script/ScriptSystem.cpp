@@ -340,7 +340,7 @@ int ScriptSystem::RunScript(int a1, int a2, int a3)
   if ( v6 < 0 )
   {
     sprintf(Buffer, "%d", v6);
-    v10 = ((operator *)0x24u)->new();
+    v10 = (void *)operator new(0x24u);
     pPos[5] = v10;
     v16 = 0;
     if ( v10 )
@@ -408,7 +408,7 @@ int ScriptSystem::RunWithDelay(float delay, int a2, int a3)
   if ( v13 < 0 )
   {
     sprintf(Buffer, "%d", v13);
-    v9 = ((operator *)0x24u)->new();
+    v9 = operator new(0x24u);
     v16 = 0;
     if ( v9 )
       v10 = (GRPinput *)((int)v9)->SetMousePos();

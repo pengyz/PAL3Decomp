@@ -40,7 +40,7 @@ CEffectSystem::CEffectSystem(int a2)
   v3 = (gbTexture *)(*(int (**)(_DWORD, int))(**(_DWORD **)dword_DE9384 + 8))(*(_DWORD *)dword_DE9384, a2);
   *((_DWORD *)this + 61448) = v3;
   v3->LoadTexture(1);
-  result = (_DWORD *)((operator *)0x44u)->new();
+  result = (_DWORD *)operator new(0x44u);
   if ( result )
   {
     v5 = *((_DWORD *)this + 61448);
@@ -64,7 +64,7 @@ CEffectSystem::CEffectSystem(int a2)
 }
 
 // 0x004C6240
-CEffectSystem::~CEffectSystem(int a2)
+CEffectSystem::~CEffectSystem()
 {
   sub_4C5D00(this, a2);
   this->m_pDisplay = (gbGfxManager *)&off_56F844;

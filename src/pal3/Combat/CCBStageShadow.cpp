@@ -31,7 +31,7 @@ CCBStageShadow::CCBStageShadow()
   this->m_pTexture = v2;
   v2->LoadTexture(1);
   this->m_pEffect = ((gbEffectMgr *)*(gbEffectMgr **)(g_Input.KeyInfo[177].Data + 200))->NewRenderEffect(aGfxscriptShado, 0);
-  v3 = (gbTextureArray *)((operator *)0x44u)->new();
+  v3 = (gbTextureArray *)operator new(0x44u);
   if ( v3 )
   {
     m_pTexture = (gbTexture *)this->m_pTexture;
@@ -55,7 +55,7 @@ CCBStageShadow::CCBStageShadow()
 }
 
 // 0x00511F90
-CCBStageShadow::~CCBStageShadow(int _this)
+CCBStageShadow::~CCBStageShadow()
 {
   ((gbRefObject *)*(gbRefObject **)(this + 4))->Release();
   ((gbRefObject *)*(gbRefObject **)(this + 8))->Release();

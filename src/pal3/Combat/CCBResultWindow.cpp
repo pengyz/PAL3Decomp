@@ -12,7 +12,7 @@ CCBResultWindow::CCBResultWindow(int a2)
 }
 
 // 0x0051F090
-CCBResultWindow::~CCBResultWindow(int a2)
+CCBResultWindow::~CCBResultWindow()
 {
   *((_DWORD *)this + 2005) = a2;
   a2;

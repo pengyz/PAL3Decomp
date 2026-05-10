@@ -286,7 +286,7 @@ void * CGameData::Init()
   v20 = 0;
   ((TextureLib *)dword_1894B78)->SetPath(aUiUilib);
   ((TextureLib *)dword_1894B78)->LoadFromFile(aUiUilibUiOptTl);
-  v2 = (PropUI *)((operator *)0xB30u)->new();
+  v2 = (PropUI *)operator new(0xB30u);
   v15 = v2;
   LOBYTE(v20) = 1;
   if ( v2 )
@@ -296,7 +296,7 @@ void * CGameData::Init()
   LOBYTE(v20) = 0;
   *((_DWORD *)this + 7044) = v3;
   v3->Init();
-  v4 = (EquipUI *)((operator *)0x2B080u)->new();
+  v4 = (EquipUI *)operator new(0x2B080u);
   v15 = v4;
   LOBYTE(v20) = 2;
   if ( v4 )
@@ -311,7 +311,7 @@ void * CGameData::Init()
   ((StateUI *)*((StateUI **)this + 7045))->Init();
   ((MagicUI *)*((MagicUI **)this + 7045))->Init();
   ((MagicUI *)*((MagicUI **)this + 7045))->Create();
-  v6 = (Object3D *)((operator *)0xEF8u)->new();
+  v6 = (Object3D *)operator new(0xEF8u);
   v15 = v6;
   LOBYTE(v20) = 3;
   if ( v6 )

@@ -46,6 +46,10 @@ def transform_oop_calls(code):
                     class_name = scope_node.text.decode('utf-8').rstrip(':')
                     method_name = name_node.text.decode('utf-8')
 
+                    # Skip operator calls (operator new, operator delete, etc.)
+                    if class_name == 'operator' or method_name == 'operator':
+                        return
+
                     # Get arguments (skip parens and commas)
                     arg_nodes = [c for c in args_node.children
                                  if c.type not in ('(', ')', ',', 'comment')]

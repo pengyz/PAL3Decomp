@@ -33,7 +33,7 @@ CEffMeteor::CEffMeteor()
 {
   _DWORD *v0; // eax
 
-  v0 = (_DWORD *)((operator *)0x10D0u)->new();
+  v0 = (_DWORD *)operator new(0x10D0u);
   if ( v0 )
   sub_4CB3A0(v0);
   else
@@ -41,7 +41,7 @@ CEffMeteor::CEffMeteor()
 }
 
 // 0x004CB4C0
-CEffMeteor::~CEffMeteor(int a1)
+CEffMeteor::~CEffMeteor()
 {
   int v2; // edi
   void *v3; // eax
@@ -188,7 +188,7 @@ int CEffMeteor::Init(int _this, int a2, float a3, float a4, float a5)
 // 0x004CB800
 char CEffMeteor::Create(int _this, int base)
 {
-  int v3; // eax
+  LPVOID v3; // eax
   int v4; // ebx
   int v5; // edi
   int v6; // edi
@@ -201,7 +201,7 @@ char CEffMeteor::Create(int _this, int base)
   int v14; // ebx
   int v15; // ebx
   int v16; // ebx
-  int v17; // eax
+  char *v17; // eax
   int v18; // ebx
   _DWORD *v19; // ecx
   int v20; // ebx
@@ -218,7 +218,7 @@ char CEffMeteor::Create(int _this, int base)
   int basea; // [esp+824h] [ebp+8h]
   int baseb; // [esp+824h] [ebp+8h]
 
-  v3 = ((operator *)0x4C0u)->new();
+  v3 = operator new(0x4C0u);
   *(_DWORD *)(this + 24) = v3;
   if ( v3 )
   {
@@ -226,7 +226,7 @@ char CEffMeteor::Create(int _this, int base)
     v5 = 0;
     while ( 1 )
     {
-      *(_DWORD *)(v5 + *(_DWORD *)(this + 24)) = ((operator *)0x2D0u)->new();
+      *(_DWORD *)(v5 + *(_DWORD *)(this + 24)) = operator new(0x2D0u);
       if ( !*(_DWORD *)(v5 + *(_DWORD *)(this + 24)) )
         break;
       v5 += 152;
@@ -312,7 +312,7 @@ LABEL_10:
   *(_DWORD *)(this + 88) = *(_DWORD *)(base + 204);
   sub_4CCC60((char *)this, *(_DWORD *)(base + 168), *(_DWORD *)(base + 172));
   v12 = *(_DWORD *)(this + 116);
-  v13 = (void *)((operator *)68 * v12)->new();
+  v13 = (void *)operator new(68 * v12);
   Block = v13;
   v31 = 0;
   if ( v13 )
@@ -339,13 +339,13 @@ LABEL_10:
   v16 = *(_DWORD *)(this + 116);
   *(_DWORD *)(this + 48) = v13;
   v31 = -1;
-  v17 = ((operator *)48 * v16)->new();
+  v17 = (char *)operator new(48 * v16);
   if ( v17 )
   {
     v18 = v16 - 1;
     if ( v18 >= 0 )
     {
-      v19 = (_DWORD *)(v17 + 20);
+      v19 = (_DWORD *)v17 + 20;
       v20 = v18 + 1;
       do
       {
@@ -373,7 +373,7 @@ LABEL_10:
   }
   v21 = *(_DWORD *)(this + 116);
   *(_DWORD *)(this + 56) = v17;
-  v22 = (char *)((operator *)56 * v21 + 4)->new();
+  v22 = (char *)operator new(56 * v21 + 4);
   Block = v22;
   v31 = 1;
   if ( v22 )
@@ -425,7 +425,7 @@ LABEL_10:
 }
 
 // 0x004CBFC0
-void CEffMeteor::CreateTask(int _this, float arg0)
+void CEffMeteor::CreateTask(int _this, int arg0)
 {
   int v2; // edi
   double v3; // st7
@@ -448,9 +448,9 @@ void CEffMeteor::CreateTask(int _this, float arg0)
   int a2; // [esp+Ch] [ebp-4h]
 
   v2 = this;
-  v3 = arg0 - *(float *)(this + 16);
+  v3 = *(float *)&arg0 - *(float *)(this + 16);
   v4 = this + 12;
-  *(float *)(this + 16) = arg0;
+  *(float *)(this + 16) = *(float *)&arg0;
   *(float *)(this + 20) = v3;
   if ( *(float *)(this + 20) > 0.0 )
   {
@@ -555,7 +555,7 @@ LABEL_30:
         {
           *(_DWORD *)(v13 + *(_DWORD *)(v2 + 52) + 36) = *(_DWORD *)(v2 + 88);
           *(_DWORD *)(v13 + *(_DWORD *)(v2 + 52) + 40) = *(_DWORD *)(v2 + 136);
-          sub_4CD3D0(*(_DWORD *)(v2 + 52) + v13, SLODWORD(arg0));
+          sub_4CD3D0(*(_DWORD *)(v2 + 52) + v13, arg0);
           ++v12;
           v13 += 56;
         }

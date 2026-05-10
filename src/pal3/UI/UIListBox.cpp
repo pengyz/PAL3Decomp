@@ -36,7 +36,7 @@ UIListBox::UIListBox()
 }
 
 // 0x0043DCF0
-UIListBox::~UIListBox(UIListBox *Block, char a2)
+UIListBox::~UIListBox()
 {
   ((UIWnd *)Block)->~UIWnd();
   if ( (a2 & 1) != 0 )
@@ -459,7 +459,7 @@ int UIListBox::SetItemOffset(char *Source, int a3)
   char ArgList[1024]; // [esp+418h] [ebp-40Ch] BYREF
   int v21; // [esp+820h] [ebp-4h]
 
-  v4 = (UIListBox *)((operator *)0x48u)->new();
+  v4 = (UIListBox *)operator new(0x48u);
   if ( !v4 || (SubItemInfo = (char *)v4->GetSubItemInfo()) == 0 )
   {
     qmemcpy(
@@ -494,7 +494,7 @@ int UIListBox::SetItemOffset(char *Source, int a3)
     m_column = (PtrArray *)this->m_column;
     do
     {
-      v10 = (UIListBox *)((operator *)0x48u)->new();
+      v10 = (UIListBox *)operator new(0x48u);
       if ( !v10 || (v11 = v10->GetSubItemInfo()) == 0 )
       {
         qmemcpy(

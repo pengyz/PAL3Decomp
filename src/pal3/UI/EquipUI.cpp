@@ -289,7 +289,7 @@ void EquipUI::Init()
   sub_4A2F90((int)this, 0, (int)v6, 4, (int)v50, v36);
   *((_BYTE *)this + 176089) = 0;
   *((_BYTE *)this + 176088) = byte_5CEFA9;
-  v12 = ((operator *)0x29CECu)->new();
+  v12 = operator new(0x29CECu);
   id = (int)v12;
   v56 = 0;
   if ( v12 )
@@ -298,7 +298,7 @@ void EquipUI::Init()
     v13 = 0;
   v56 = -1;
   *((_DWORD *)this + 44014) = v13;
-  v14 = ((operator *)0x56630u)->new();
+  v14 = operator new(0x56630u);
   id = (int)v14;
   v56 = 1;
   if ( v14 )
@@ -307,7 +307,7 @@ void EquipUI::Init()
     v15 = 0;
   v56 = -1;
   *((_DWORD *)this + 44015) = v15;
-  v16 = ((operator *)0x35B50u)->new();
+  v16 = operator new(0x35B50u);
   id = (int)v16;
   v56 = 2;
   if ( v16 )
@@ -316,7 +316,7 @@ void EquipUI::Init()
     v17 = 0;
   v56 = -1;
   *((_DWORD *)this + 44016) = v17;
-  v18 = ((operator *)0x41014u)->new();
+  v18 = operator new(0x41014u);
   id = (int)v18;
   v56 = 3;
   if ( v18 )
@@ -325,7 +325,7 @@ void EquipUI::Init()
     v19 = 0;
   v56 = -1;
   *((_DWORD *)this + 44017) = v19;
-  v20 = ((operator *)0x62588u)->new();
+  v20 = operator new(0x62588u);
   id = (int)v20;
   v56 = 4;
   if ( v20 )
@@ -334,7 +334,7 @@ void EquipUI::Init()
     v21 = 0;
   v56 = -1;
   *((_DWORD *)this + 44018) = v21;
-  v22 = ((operator *)0x27BD4u)->new();
+  v22 = operator new(0x27BD4u);
   id = (int)v22;
   v56 = 5;
   if ( v22 )
@@ -343,7 +343,7 @@ void EquipUI::Init()
     v23 = 0;
   v56 = -1;
   *((_DWORD *)this + 44019) = v23;
-  v24 = ((operator *)0x46EB8u)->new();
+  v24 = operator new(0x46EB8u);
   id = (int)v24;
   v56 = 6;
   if ( v24 )

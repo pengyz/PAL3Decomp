@@ -249,7 +249,7 @@ void CScreenMode::SetMode(int mode)
   if ( (g_nGameFlags & 5) != 0 )
   {
     ((gbAudioMgrDesc *)&v12)->gbAudioMgrDesc();
-    v3 = (gbAudioManager *)((operator *)0xF4u)->new();
+    v3 = (gbAudioManager *)operator new(0xF4u);
     v10 = v3;
     v13 = 0;
     if ( v3 )

@@ -23,14 +23,14 @@ extern int unk_FFFFFF;
 char CEffQuad::Create(int _this, int a2)
 {
   int v3; // ebp
-  int v4; // eax
+  LPVOID v4; // eax
   int v5; // ebp
   int v6; // ebx
   int v7; // ebp
-  int v8; // eax
+  LPVOID v8; // eax
   int v9; // ecx
   int i; // eax
-  int v11; // eax
+  LPVOID v11; // eax
   int v12; // ebx
   int v13; // edi
   int v14; // edi
@@ -39,7 +39,7 @@ char CEffQuad::Create(int _this, int a2)
   int v17; // ecx
   int v19; // edi
   size_t v20; // [esp-4h] [ebp-824h]
-  int v21; // [esp+10h] [ebp-810h]
+  void *v21; // [esp+10h] [ebp-810h]
   char pExceptionObject[1024]; // [esp+14h] [ebp-80Ch] BYREF
   char ArgList[1024]; // [esp+414h] [ebp-40Ch] BYREF
   int v24; // [esp+81Ch] [ebp-4h]
@@ -50,15 +50,15 @@ char CEffQuad::Create(int _this, int a2)
   *(_BYTE *)(this + 54) = *(_BYTE *)(a2 + 176);
   *(_DWORD *)(this + 56) = &unk_FFFFFF;
   sub_4D1FD0((char *)this, *(_DWORD *)(a2 + 168), *(_DWORD *)(a2 + 172));
-  *(_DWORD *)(this + 156) = ((operator *)80 * *(_DWORD *)(a2 + 208))->new();
+  *(_DWORD *)(this + 156) = operator new(80 * *(_DWORD *)(a2 + 208));
   v3 = *(_DWORD *)(a2 + 208);
-  v4 = ((operator *)68 * v3)->new();
+  v4 = operator new(68 * v3);
   v21 = v4;
   v24 = 0;
   if ( v4 )
   {
     v5 = v3 - 1;
-    v6 = v4;
+    v6 = (int)v4;
     if ( v5 >= 0 )
     {
       v7 = v5 + 1;
@@ -79,7 +79,7 @@ char CEffQuad::Create(int _this, int a2)
   *(_DWORD *)(this + 160) = v4;
   v20 = 4 * *(_DWORD *)(a2 + 208);
   v24 = -1;
-  v8 = v20->new();
+  v8 = operator new(v20);
   v9 = *(_DWORD *)(this + 156);
   *(_DWORD *)(this + 164) = v8;
   if ( !v9 || !*(_DWORD *)(this + 160) || !v8 )
@@ -95,7 +95,7 @@ char CEffQuad::Create(int _this, int a2)
   for ( i = 0; i < *(_DWORD *)(this + 68); ++i )
     *(_DWORD *)(*(_DWORD *)(this + 164) + 4 * i) = i;
   this->ToNextFrame(a2 + 40);
-  v11 = ((operator *)0x4C0u)->new();
+  v11 = operator new(0x4C0u);
   *(_DWORD *)(this + 24) = v11;
   if ( v11 )
   {
@@ -103,7 +103,7 @@ char CEffQuad::Create(int _this, int a2)
     v13 = 0;
     while ( 1 )
     {
-      *(_DWORD *)(v13 + *(_DWORD *)(this + 24)) = ((operator *)0x2D0u)->new();
+      *(_DWORD *)(v13 + *(_DWORD *)(this + 24)) = operator new(0x2D0u);
       if ( !*(_DWORD *)(v13 + *(_DWORD *)(this + 24)) )
         break;
       v13 += 152;
@@ -279,7 +279,7 @@ _DWORD * CEffQuad::ToNextFrame(int _this, int a2)
   v3 = (gbTexture *)(*(int (**)(_DWORD, int))(***(_DWORD ***)(this + 4) + 8))(**(_DWORD **)(this + 4), a2);
   *(_DWORD *)(this + 4264) = v3;
   v3->LoadTexture(1);
-  result = (_DWORD *)((operator *)0x44u)->new();
+  result = (_DWORD *)operator new(0x44u);
   if ( result )
   {
     v5 = *(_DWORD *)(this + 4264);

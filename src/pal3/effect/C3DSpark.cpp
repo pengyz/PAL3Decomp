@@ -70,7 +70,7 @@ C3DSpark::C3DSpark()
                       aEffectFlare3Bm);
   LODWORD(this->m_GeomQuad[75].vec[1].y) = v4;
   v4->LoadTexture(1);
-  v5 = (float *)((operator *)0x44u)->new();
+  v5 = (float *)operator new(0x44u);
   if ( v5 )
   {
     y = this->m_GeomQuad[75].vec[1].y;
@@ -95,7 +95,7 @@ C3DSpark::C3DSpark()
                       aEffectFlare2Bm);
   LODWORD(this->m_GeomQuad[75].vec[3].y) = v7;
   v7->LoadTexture(1);
-  v8 = (float *)((operator *)0x44u)->new();
+  v8 = (float *)operator new(0x44u);
   if ( v8 )
   {
     v9 = this->m_GeomQuad[75].vec[3].y;
@@ -120,7 +120,7 @@ C3DSpark::C3DSpark()
                        aEffectFlaregre);
   LODWORD(this->m_GeomQuad[75].vec[2].z) = v10;
   v10->LoadTexture(1);
-  v11 = (float *)((operator *)0x44u)->new();
+  v11 = (float *)operator new(0x44u);
   if ( v11 )
   {
     z = this->m_GeomQuad[75].vec[2].z;
@@ -145,7 +145,7 @@ C3DSpark::C3DSpark()
                        aEffectFlareblu);
   LODWORD(this->m_GeomQuad[75].vec[2].x) = v13;
   v13->LoadTexture(1);
-  v14 = (float *)((operator *)0x44u)->new();
+  v14 = (float *)operator new(0x44u);
   if ( v14 )
   {
     x = this->m_GeomQuad[75].vec[2].x;
@@ -170,7 +170,7 @@ C3DSpark::C3DSpark()
                        aEffectFlarebri);
   LODWORD(this->m_GeomQuad[75].su) = v16;
   v16->LoadTexture(1);
-  v17 = (float *)((operator *)0x44u)->new();
+  v17 = (float *)operator new(0x44u);
   if ( v17 )
   {
     su = this->m_GeomQuad[75].su;
@@ -207,7 +207,7 @@ C3DSpark::C3DSpark()
 }
 
 // 0x004D6960
-C3DSpark::~C3DSpark(int _this)
+C3DSpark::~C3DSpark()
 {
   gbRefObject *v2; // ecx
   gbRefObject *v3; // ecx

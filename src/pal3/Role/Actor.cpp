@@ -198,7 +198,7 @@ char Actor::ProcessFrame()
   int v24[4]; // [esp+54h] [ebp-10h] BYREF
 
   ((UIListBox *)this)->SetSelTexture(-1, 0, 0, 800, 600, 0);
-  v2 = ((operator *)0xCu)->new();
+  v2 = (_BYTE *)operator new(0xCu);
   if ( v2 )
   {
     v2[8] = 0;
@@ -569,7 +569,7 @@ void * Actor::LoadModel()
         v16 = v9;
         if ( v9 < 0 )
           v9 = 0;
-        v10 = (gbActor *)((operator *)4 * v9)->new();
+        v10 = (gbActor *)operator new(4 * v9);
         v11 = (_DWORD *)sub_5374E0(&this->m_pact->next, v5, v10);
         sub_537510(v11, (_DWORD *)1, &this->m_name[8]);
         sub_5374E0(v5, *(_DWORD **)this->m_name, v11 + 1);

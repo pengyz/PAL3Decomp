@@ -16,7 +16,7 @@ _DWORD *CEffQuake::Destroy()
 {
   _DWORD *v0; // eax
 
-  v0 = (_DWORD *)((operator *)0x30u)->new();
+  v0 = (_DWORD *)operator new(0x30u);
   if ( v0 )
     return sub_4D3280(v0);
   else
