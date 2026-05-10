@@ -59,7 +59,7 @@ CEffgbParticle::~CEffgbParticle(int a2, int a3, int a4, _DWORD *a5, int a6, int 
   if ( a5 )
   {
     v15 = v13 + 7;
-    *v15 = *a5;
+    * v15 = (*)*a5;
     v15[1] = a5[1];
     v15[2] = a5[2];
     v15[3] = a5[3];
@@ -154,7 +154,7 @@ _DWORD * CEffgbParticle::Render()
   *((_DWORD *)this + 10) = 0;
   *((_DWORD *)this + 11) = 0;
   *((_DWORD *)this + 3) = &off_56F908;
-  *this = &off_56F8CC;
+  * this = (*)&off_56F8CC;
   *((_DWORD *)this + 3) = &off_56F8C0;
   *((_DWORD *)this + 12) = 0;
   *((_DWORD *)this + 13) = 0;
@@ -191,7 +191,7 @@ void CEffgbParticle::Destroy(_DWORD *a1)
   int v8; // edi
 
   v2 = a1 + 3;
-  *a1 = &off_56F8CC;
+  * a1 = (*)&off_56F8CC;
   a1[3] = &off_56F8C0;
   v3 = (void (***)(_DWORD, int))a1[12];
   v4 = 0;
@@ -201,7 +201,7 @@ void CEffgbParticle::Destroy(_DWORD *a1)
     a1[12] = 0;
   }
   v5 = a1 != 0 ? v2 : 0;
-  *v5 = &off_56F908;
+  * v5 = (*)&off_56F908;
   v6 = v5[7];
   v7 = v6 <= 0;
   if ( !v6 )
@@ -227,7 +227,7 @@ void CEffgbParticle::Destroy(_DWORD *a1)
   v5[7] = 0;
   v5[8] = 0;
 LABEL_10:
-  *a1 = &off_56F62C;
+  * a1 = (*)&off_56F62C;
 }
 
 // 0x004C8A40

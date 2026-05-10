@@ -8,6 +8,7 @@ int sub_4BDA60(...);
 // Unnamed globals (extern)
 extern unsigned char byte_DE7B68;
 extern int dword_DE7AA0;
+extern int unknown_libname_427;
 
 // 0x004BDB10
 _DWORD *CRenderTarget::GetInstance()

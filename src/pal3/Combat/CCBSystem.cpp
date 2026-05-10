@@ -122,6 +122,8 @@ extern float flt_17AC7DC;
 extern float flt_17AC7EC;
 extern float flt_17ACA78;
 extern float flt_17ACE10;
+extern int nullsub_3;
+extern int nullsub_68;
 
 // 0x004DB3A0
 // attributes: thunk

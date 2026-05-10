@@ -8,6 +8,7 @@ int sub_541470(...);
 // Unnamed globals (extern)
 extern unsigned char byte_1894DB0;
 extern int unk_1894D90;
+extern int unknown_libname_522;
 
 // 0x005415C0
 void UIQuadManager::Destroy()

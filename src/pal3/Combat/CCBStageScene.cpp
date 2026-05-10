@@ -966,7 +966,7 @@ int CCBStageScene::SetFlingRotX()
   v2 = this + 225;
   *((_DWORD *)this + 230) = v1;
   v3 = this + 222;
-  *v3 = *v2;
+  * v3 = (*)*v2;
   v3[1] = v2[1];
   result = v2[2];
   v3[2] = result;
@@ -984,7 +984,7 @@ _DWORD * CCBStageScene::SetFlingRotY()
   do
   {
     *(result - 1) = result[20];
-    *result = result[21];
+    * result = (*)result[21];
     result[1] = result[22];
     result[41] = result[62];
     result[42] = result[63];

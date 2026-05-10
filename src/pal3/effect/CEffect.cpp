@@ -12,6 +12,7 @@ extern int dword_1895980;
 extern int dword_DE99B0;
 extern int dword_EC9E70;
 extern int dword_EC9E74;
+extern int nullsub_1;
 extern int unk_EC9EB4;
 
 // 0x004C6940
@@ -336,7 +337,7 @@ void CEffect::FillQuadByPartical(_DWORD *a2)
         }
         v13 = (_DWORD *)(v11 + 72 * v10);
         memset(v13, 0, 0x48u);
-        *v13 = CEffect::SetParam;
+        * v13 = (*)CEffect::SetParam;
         *((_BYTE *)v13 + 64) = 1;
         *((_BYTE *)v13 + 65) = 0;
         v13[1] = 0;
@@ -369,7 +370,7 @@ LABEL_22:
         }
         v19 = (_DWORD *)(v17 + 72 * v16);
         memset(v19, 0, 0x48u);
-        *v19 = CEffect::SetParam;
+        * v19 = (*)CEffect::SetParam;
         *((_BYTE *)v19 + 64) = 1;
         *((_BYTE *)v19 + 65) = 0;
         v19[1] = 0;

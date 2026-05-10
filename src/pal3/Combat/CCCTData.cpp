@@ -85,6 +85,8 @@ extern float flt_17AAE9C;
 extern float flt_17AAEA8;
 extern float flt_17AAEB4;
 extern float flt_17AAEC0;
+extern int nullsub_3;
+extern int nullsub_31;
 extern void *off_56A66C;
 extern int unk_17AAD89;
 
@@ -110,7 +112,7 @@ void CCCTData::CalcDist(float a1, float a2)
   v4 = atan2(-(v2 / v6), 1.0);
   *(float *)v12 = v4;
   if ( v11 > (double)v8 )
-    *v3 = v4 + 3.1415927;
+    * v3 = (*)v4 + 3.1415927;
   v7 = v2;
   v9 = v7;
   v11 = v6;
@@ -765,7 +767,7 @@ void CCCTData::InsertTaskToList(int _this)
       }
       else
       {
-        *v31 = *(float *)(this + 430088);
+        * v31 = (*)*(float *)(this + 430088);
         *(_DWORD *)(this + 430116) = *(_DWORD *)(this + 430092);
         *(_DWORD *)(this + 430120) = *(_DWORD *)(this + 430096);
         *(_DWORD *)(this + 430124) = *(_DWORD *)(this + 430100);

@@ -291,7 +291,7 @@ int CCBControlWindow::KeyPressed()
 _DWORD * CCBControlWindow::DefaultKey()
 {
   this->UIListBox();
-  *this = &off_57051C;
+  * this = (*)&off_57051C;
   this->CheckKeyInput();
   return this;
 }
@@ -483,7 +483,7 @@ BOOL CCBControlWindow::MoveButtons(int a2, int a3)
 _DWORD * CCBControlWindow::CreateButton()
 {
   this->UIListBox();
-  *this = &off_570538;
+  * this = (*)&off_570538;
   this->Reset();
   return this;
 }

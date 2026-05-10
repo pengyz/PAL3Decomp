@@ -157,12 +157,15 @@ extern int dword_C0437C;
 extern int dword_C04380;
 extern int dword_C0438C;
 extern int dword_D8E488;
+extern int nullsub_2;
+extern int nullsub_3;
 extern void *off_56A66C;
 extern void *off_56A694;
 extern void *off_56A6A8;
 extern void *off_56A6B4;
 extern void *off_583A1C;
 extern void *off_586180;
+extern int stru_BFAB60;
 extern int unk_8ACBF0;
 extern int unk_A3A6F8;
 extern int unk_A3A750;
@@ -1720,11 +1723,11 @@ LABEL_8:
                 {
                   LOBYTE(v15) = *v7;
                   v7 += 2;
-                  *v6 = 8 * v15;
+                  * v6 = (*)8 * v15;
                   LOWORD(v15) = *((_WORD *)v7 - 1);
                   v17 = (unsigned int)v15 >> 2;
                   v18 = v6 + 1;
-                  *v18 = v17 & 0xF8;
+                  * v18 = (*)v17 & 0xF8;
                   LOWORD(v17) = *((_WORD *)v7 - 1);
                   *++v18 = (v17 >> 7) & 0xF8;
                   v15 = v23;
@@ -1753,11 +1756,11 @@ LABEL_8:
                 {
                   LOBYTE(v20) = *v7;
                   v7 += 2;
-                  *v6 = 8 * v20;
+                  * v6 = (*)8 * v20;
                   LOWORD(v20) = *((_WORD *)v7 - 1);
                   v22 = v6 + 1;
                   *v22++ = ((unsigned int)v20 >> 3) & 0xFC;
-                  *v22 = *(v7 - 1) & 0xF8;
+                  * v22 = (*)*(v7 - 1) & 0xF8;
                   v20 = v23;
                   v6 = v22 + 1;
                   ++v21;
@@ -2329,7 +2332,7 @@ int PAL3::FullInit()
   v1 = g_RoleTeam2;
   do
   {
-    *v1 = *(v1 - 1);
+    * v1 = (*)*(v1 - 1);
     v1 += 4;
   }
   while ( (int)v1 < (int)&g_SceneMgr.m_info[24] );

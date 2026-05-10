@@ -548,7 +548,7 @@ void * Actor::LoadModel()
           &this->m_actarray[16]);
         v13 = *(_DWORD **)&this->m_actarray[8];
         for ( i = v5; i != v13; ++i )
-          *i = *(_DWORD *)&this->m_actarray[16];
+          * i = (*)*(_DWORD *)&this->m_actarray[16];
         *(_DWORD *)&this->m_actarray[8] += 4;
       }
       else

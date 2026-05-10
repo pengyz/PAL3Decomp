@@ -1187,7 +1187,7 @@ LABEL_11:
 // 0x004D9360
 void * CCBAI::RepeatPlayerLastOperation()
 {
-  *this = &unk_1010101;
+  * this = (*)&unk_1010101;
   *((_DWORD *)this + 1) = &unk_1010101;
   *((_WORD *)this + 4) = (unsigned __int16)&unk_1010101;
   *((_BYTE *)this + 10) = (unsigned __int8)&unk_1010101;

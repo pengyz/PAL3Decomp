@@ -23,6 +23,10 @@ extern int dword_DE9370;
 extern int dword_DE9374;
 extern int dword_DE9378;
 extern int dword_DE9380;
+extern int nullsub_1;
+extern int nullsub_76;
+extern int nullsub_77;
+extern int nullsub_78;
 extern void *off_56F62C;
 extern void *off_56F7BC;
 extern void *off_56F7C8;
@@ -124,7 +128,7 @@ LABEL_14:
 // 0x004C3EB0
 CEffCylinder::~CEffCylinder()
 {
-  *this = &off_56F62C;
+  * this = (*)&off_56F62C;
 }
 
 // 0x004C3EC0
@@ -652,7 +656,7 @@ void CEffCylinder::ProcInitTask(_DWORD *a2)
         }
         v13 = (_DWORD *)(v11 + 72 * v10);
         memset(v13, 0, 0x48u);
-        *v13 = CEffect::SetParam;
+        * v13 = (*)CEffect::SetParam;
         *((_BYTE *)v13 + 64) = 1;
         *((_BYTE *)v13 + 65) = 0;
         v13[1] = 0;
@@ -685,7 +689,7 @@ LABEL_22:
         }
         v19 = (_DWORD *)(v17 + 72 * v16);
         memset(v19, 0, 0x48u);
-        *v19 = CEffect::SetParam;
+        * v19 = (*)CEffect::SetParam;
         *((_BYTE *)v19 + 64) = 1;
         *((_BYTE *)v19 + 65) = 0;
         v19[1] = 0;

@@ -26,6 +26,6 @@ bool Config::ReadINI(char *filename, char *section)
   if ( !strcmp(String, lpDefault) )
     *v5 = v6;
   else
-    *v5 = atoi(String);
+    * v5 = (*)atoi(String);
   return PrivateProfileStringA < 0xFF;
 }

@@ -37,6 +37,7 @@ extern int dword_58B3C8;
 extern int dword_58B3DC;
 extern int dword_58B3F0;
 extern int dword_5D0750;
+extern int nullsub_5;
 
 // 0x0040BE50
 int * RoleSystem::Init()
@@ -358,7 +359,7 @@ int RoleSystem::CheckVisible(int a1)
         {
           if ( i )
           {
-            *i = *v29;
+            * i = (*)*v29;
             i[1] = v29[1];
             i[2] = v29[2];
             v28 = 12 * v38;
@@ -374,7 +375,7 @@ int RoleSystem::CheckVisible(int a1)
           {
             v32 -= 3;
             v31 -= 3;
-            *v31 = *v32;
+            * v31 = (*)*v32;
             v31[1] = v32[1];
             v31[2] = v32[2];
           }
@@ -388,7 +389,7 @@ int RoleSystem::CheckVisible(int a1)
           {
             v33 = (_DWORD *)result;
             result += 12;
-            *v33 = *v41;
+            * v33 = (*)*v41;
             v33[1] = v41[1];
             v33[2] = v41[2];
           }
@@ -411,7 +412,7 @@ int RoleSystem::CheckVisible(int a1)
         {
           if ( v21 )
           {
-            *v21 = *v22;
+            * v21 = (*)*v22;
             v21[1] = v22[1];
             v20 = a1b;
             v21[2] = v22[2];
@@ -429,7 +430,7 @@ int RoleSystem::CheckVisible(int a1)
       {
         if ( v23 )
         {
-          *v23 = *v41;
+          * v23 = (*)*v41;
           v23[1] = v41[1];
           v23[2] = v41[2];
         }
@@ -443,7 +444,7 @@ int RoleSystem::CheckVisible(int a1)
         {
           v27 = (_DWORD *)v25;
           v25 += 12;
-          *v27 = *v41;
+          * v27 = (*)*v41;
           v27[1] = v41[1];
           v27[2] = v41[2];
         }
@@ -472,7 +473,7 @@ int RoleSystem::CheckVisible(int a1)
     {
       if ( v10 )
       {
-        *v10 = *k;
+        * v10 = (*)*k;
         v10[1] = k[1];
         v10[2] = k[2];
       }
@@ -486,7 +487,7 @@ int RoleSystem::CheckVisible(int a1)
       {
         if ( v12 )
         {
-          *v12 = *v41;
+          * v12 = (*)*v41;
           v12[1] = v41[1];
           v12[2] = v41[2];
         }
@@ -504,7 +505,7 @@ int RoleSystem::CheckVisible(int a1)
       {
         if ( v14 )
         {
-          *v14 = *v15;
+          * v14 = (*)*v15;
           v14[1] = v15[1];
           v14[2] = v15[2];
         }
@@ -938,7 +939,7 @@ void RoleSystem::GetPosition(void *pOut, int a3)
     *((_DWORD *)this + 328) = 0;
     (gbVec3D *->Normalize()v4);
     v5 = *((float *)this + 322);
-    *v4 = v5 * *v4;
+    * v4 = (*)v5 * *v4;
     v4[1] = v5 * v4[1];
     v4[2] = v5 * v4[2];
     *((_DWORD *)this + 317) = 12;
@@ -1393,7 +1394,7 @@ int RoleSystem::GetDirection(float *pOut)
   int result; // eax
   _BYTE v4[76]; // [esp+8h] [ebp-4Ch] BYREF
 
-  *pOut = *((float *)this + 40);
+  * pOut = (*)*((float *)this + 40);
   pOut[1] = *((float *)this + 41);
   pOut[2] = *((float *)this + 42);
   (gbMatrix4 *->gbMatrix4()v4);

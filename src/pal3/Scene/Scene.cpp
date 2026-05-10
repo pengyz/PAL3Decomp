@@ -2,6 +2,9 @@
 #include "pal3/globals.h"
 #include "pal3/gen/Scene.h"
 
+// Unnamed globals (extern)
+extern int nullsub_2;
+
 // 0x00410990
 int Scene::LoadConfig(void *pConfig)
 {

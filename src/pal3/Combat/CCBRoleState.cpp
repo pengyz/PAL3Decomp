@@ -221,7 +221,7 @@ CCBRoleState::CCBRoleState()
           v22 = *(_DWORD *)(PAL_GDB::~PAL_GDB(g_GDB, *((_DWORD *)v4 - 139)) + v21) << 16;
           v23 = *(_DWORD *)(PAL_GDB::~PAL_GDB(g_GDB, *((_DWORD *)v4 - 139)) + v21);
           v21 += 4;
-          *v25 = v23 | v22;
+          * v25 = (*)v23 | v22;
           LOBYTE(v3) = (_BYTE)v25++ + 4;
         }
         while ( v21 < 600 );
@@ -448,7 +448,7 @@ float * CCBRoleState::Reset(int a2, float *a3)
   {
     case 0x14u:
       result = (float *)&this->m_sCombatDialog[892 * a2 + 684];
-      *result = *result + 5.0;
+      * result = (*)*result + 5.0;
       break;
     case 0x15u:
       v4 = (float *)&this->m_sCombatDialog[892 * a2];
@@ -458,7 +458,7 @@ float * CCBRoleState::Reset(int a2, float *a3)
     case 0x16u:
 LABEL_4:
       result = (float *)&this->m_sCombatDialog[892 * a2 + 692];
-      *result = *result + 10.0;
+      * result = (*)*result + 10.0;
       break;
     case 0x17u:
       result = (float *)&this->m_sCombatDialog[892 * a2 + 696];
@@ -466,7 +466,7 @@ LABEL_4:
       break;
     case 0x18u:
       result = (float *)&this->m_sCombatDialog[892 * a2 + 684];
-      *result = *result + 20.0;
+      * result = (*)*result + 20.0;
       break;
     default:
       result = a3;

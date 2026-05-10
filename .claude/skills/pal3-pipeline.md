@@ -185,18 +185,24 @@ python tools/gen_cpp.py --force-all
 ## 工具命令速查
 
 ```bash
-# IDA
-idat.exe -A -S"SCRIPT.py" original/PAL3.exe.i64
+# === 构建 (CMake + VC6 + Ninja) ===
+cmake -B build/pal3 -DCMAKE_TOOLCHAIN_FILE=cmake/toolchain-vc6.cmake -DBUILD_TARGET=pal3 -G Ninja
+cmake --build build/pal3              # 编译到第一个错误就停
+cmake --build build/pal3 -- -k 0     # 编译所有文件（不停止）
 
-# DIA SDK
-python tools/dia_export_structs.py   # 导出所有结构体+成员
+# === IDA ===
+idat.exe -A -S"tools/ida/SCRIPT.py" original/PAL3.exe.i64
+
+# === DIA SDK ===
+python tools/dia_export_structs.py   # 导出所有结构体+成员（含类型递归解析）
 python tools/dia_export_bases.py     # 导出继承关系
 
-# 代码生成
+# === 代码生成 ===
 python tools/gen_headers.py          # 头文件（总是全量）
 python tools/gen_cpp.py --force-all  # cpp 全量
-python tools/gen_cpp.py ClassName    # cpp 单类
+python tools/gen_cpp.py ClassName    # cpp 单类（不覆盖其他手动修改）
 
-# VC6 编译
-& "tools/compilers/msvc6.0/Bin/CL.EXE" /c /nologo /W0 /I"include" /I"tools/compilers/msvc6.0/Include" /I"tools/vc6/Include" FILE.cpp /FoNUL
+# === 质量统计 ===
+# 编译通过率从 cmake 输出直接获取
+# 代码指标用 python 脚本扫描 src/pal3/
 ```

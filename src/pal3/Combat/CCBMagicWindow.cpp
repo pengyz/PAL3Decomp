@@ -87,7 +87,7 @@ int CCBMagicWindow::Reset(int a2, int a3)
   do
   {
     if ( *v3 == a3 )
-      *v3 = *(this + a2 + 18);
+      * v3 = (*)*(this + a2 + 18);
     ++v3;
     --v4;
   }
@@ -108,7 +108,7 @@ int CCBMagicWindow::Create(int a2)
 _DWORD * CCBMagicWindow::ForbidPage()
 {
   this->UIListBox();
-  *this = &off_570570;
+  * this = (*)&off_570570;
   this->OnMessage();
   return this;
 }
@@ -388,7 +388,7 @@ BOOL CCBMagicWindow::SetActivePage(int a2, int a3)
 _DWORD * CCBMagicWindow::GetActivePage()
 {
   this->UIListBox();
-  *this = &off_57058C;
+  * this = (*)&off_57058C;
   this->Reset();
   return this;
 }

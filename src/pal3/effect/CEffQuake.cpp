@@ -32,7 +32,7 @@ int CEffQuake::Update()
   int v5; // ebx
   int v6; // edi
 
-  *this = &off_56FA88;
+  * this = (*)&off_56FA88;
   v2 = this != 0 ? (unsigned int)(this + 3) : 0;
   *((_DWORD *)this + 3) = &off_56FA7C;
   v3 = *(_DWORD *)(v2 + 0x1C);
@@ -56,12 +56,12 @@ int CEffQuake::Update()
     *(_DWORD *)(v2 + 12) = 0;
     *(_DWORD *)(v2 + 28) = 0;
     *(_DWORD *)(v2 + 32) = 0;
-    *this = &off_56F62C;
+    * this = (*)&off_56F62C;
     return 0;
   }
   else
   {
-    *this = &off_56F62C;
+    * this = (*)&off_56F62C;
   }
   return result;
 }

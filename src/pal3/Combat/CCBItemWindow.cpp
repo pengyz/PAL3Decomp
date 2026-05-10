@@ -304,7 +304,7 @@ int CCBItemWindow::OnMessage(int a2)
 _DWORD * CCBItemWindow::Update()
 {
   this->UIListBox();
-  *this = &off_570554;
+  * this = (*)&off_570554;
   sub_51B6E0(this);
   return this;
 }

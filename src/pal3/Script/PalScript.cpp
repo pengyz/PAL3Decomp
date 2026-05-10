@@ -34,6 +34,8 @@ extern int dword_D8C2C8;
 extern int dword_D8C2E8;
 extern int dword_D8C360;
 extern void *off_58B448;
+extern int unknown_libname_339;
+extern int unknown_libname_340;
 
 // 0x00430290
 // likely std method (near _Freeze, _Split, max_size, allocator<char>>, _Xran)
@@ -113,7 +115,7 @@ int PalScript::LoadScript(PalScript *this, int pathAddr)
       if ( !v7 || v7 == -1 )
         operator delete(v6);
       else
-        *v6 = v7 - 1;
+        * v6 = (*)v7 - 1;
     }
     v17 = 0;
     v18 = 0;
@@ -125,7 +127,7 @@ int PalScript::LoadScript(PalScript *this, int pathAddr)
     if ( !v9 || v9 == -1 )
       operator delete(v8);
     else
-      *v8 = v9 - 1;
+      * v8 = (*)v9 - 1;
   }
   v13 = 0;
   v14 = 0;

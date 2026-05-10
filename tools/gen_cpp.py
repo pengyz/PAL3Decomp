@@ -297,19 +297,48 @@ def transform_method_code(cls_name, method_name, code, sig):
     # Also: &this[N] -> &((_DWORD *)this)[N]  and  this[N] -> ((_DWORD *)this)[N]
     # But be careful not to break this->member access
 
-    # 7. Fix void* implicit conversion (legal in C/VC6 but not modern C++)
-    # Add explicit cast: Type *v = expr -> Type *v = (Type *)expr
-    # Only for assignments, not declarations with initializers from non-void
-    def fix_void_cast(match):
-        type_part = match.group(1)  # e.g. "_DWORD *"
-        var_name = match.group(2)   # e.g. "v3"
-        expr = match.group(3)       # e.g. "malloc(16)"
-        # Only add cast if the expression could return void*
-        if any(kw in expr for kw in ['malloc', 'calloc', 'realloc', 'operator new',
-                                       'j_', 'sub_', 'qmemcpy']):
-            return '%s%s = (%s)%s' % (type_part, var_name, type_part.strip(), expr)
-        return match.group(0)
-    code = re.sub(r'(\w[\w ]*\*)\s*(\w+)\s*=\s*([^;]+)', fix_void_cast, code)
+    # 7. Fix void* implicit conversion
+    # VC6 also doesn't allow void* -> typed pointer without cast
+    # Pattern 1: "Type *var = expr;" where var is assigned from a void* expression
+    # Pattern 2: "var = expr;" where var is already declared as typed pointer
+    # We add cast for common patterns
+    # Simple approach: any assignment to a _DWORD*, _BYTE* etc from a function call gets a cast
+    def fix_ptr_assign(line):
+        # Match: "  TypePtr *varname = funcall(...);"
+        m = re.match(r'(\s*)([\w ]+\*)\s*(\w+)\s*=\s*(.+);', line)
+        if m:
+            indent, ptype, var, expr = m.group(1), m.group(2), m.group(3), m.group(4)
+            # Don't cast if already has a cast, or if RHS is just a variable/number
+            if expr.startswith('(') and ')' in expr.split('(')[1]:
+                return line  # already has cast
+            if re.match(r'^[\w.>\-]+$', expr):
+                return line  # simple variable, might be same type
+            if re.match(r'^\d+$', expr) or expr in ('0', 'NULL', 'nullptr'):
+                return line
+            # Add cast
+            return '%s%s %s = (%s)%s;' % (indent, ptype, var, ptype.strip(), expr)
+        return line
+
+    # Also handle standalone assignments: "var = expr;" where var was declared as Type*
+    # Simple tracking: find all "Type *var;" declarations, then cast assignments to those vars
+    ptr_vars = {}  # var_name -> type string
+    for m in re.finditer(r'^\s*([\w ]+\*)\s*(\w+)\s*;', code, re.MULTILINE):
+        ptr_vars[m.group(2)] = m.group(1).strip()
+
+    new_lines = []
+    for line in code.split('\n'):
+        line = fix_ptr_assign(line)
+        # Check standalone assignment: "  var = expr;"
+        m2 = re.match(r'(\s*)(\w+)\s*=\s*(.+);', line)
+        if m2 and m2.group(2) in ptr_vars:
+            var = m2.group(2)
+            expr = m2.group(3)
+            ptype = ptr_vars[var]
+            # Don't cast if already cast or simple var or 0/NULL
+            if not (expr.startswith('(') or re.match(r'^[\d\w]+$', expr) or expr in ('0','NULL')):
+                line = '%s%s = (%s)%s;' % (m2.group(1), var, ptype, expr)
+        new_lines.append(line)
+    code = '\n'.join(new_lines)
 
     return code
 
@@ -351,6 +380,10 @@ def collect_undefined_refs(code):
     refs.update(re.findall(r'\b(flt_[0-9A-Fa-f]+)\b', code))
     refs.update(re.findall(r'\b(off_[0-9A-Fa-f]+)\b', code))
     refs.update(re.findall(r'\b(unk_[0-9A-Fa-f]+)\b', code))
+    refs.update(re.findall(r'\b(stru_[0-9A-Fa-f]+)\b', code))
+    # IDA named but unresolved: nullsub_N, unknown_libname_N
+    refs.update(re.findall(r'\b(nullsub_\d+)\b', code))
+    refs.update(re.findall(r'\b(unknown_libname_\d+)\b', code))
     return refs
 
 

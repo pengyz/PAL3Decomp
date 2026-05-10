@@ -114,7 +114,7 @@ LABEL_8:
 _DWORD * RenderTarget::Destroy()
 {
   *((_DWORD *)this + 1) = 0;
-  *this = &off_56F4F0;
+  * this = (*)&off_56F4F0;
   *((_DWORD *)this + 2) = 1;
   *((_DWORD *)this + 4) = 0;
   *((_DWORD *)this + 3) = 0;

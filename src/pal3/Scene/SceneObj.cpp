@@ -60,7 +60,7 @@ LABEL_29:
       v10 = *(v3 - 1);
       if ( v10 && v10 != -1 )
       {
-        *v9 = v10 - 1;
+        * v9 = (*)v10 - 1;
         *((_DWORD *)this + 1) = 0;
         *((_DWORD *)this + 2) = 0;
         *((_DWORD *)this + 3) = 0;
@@ -83,7 +83,7 @@ LABEL_29:
       v7 = *(v3 - 1);
       if ( v7 && v7 != -1 )
       {
-        *v6 = v7 - 1;
+        * v6 = (*)v7 - 1;
         *((_DWORD *)this + 1) = 0;
         *((_DWORD *)this + 2) = 0;
         *((_DWORD *)this + 3) = 0;

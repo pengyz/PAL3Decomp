@@ -25,6 +25,8 @@ extern int dword_D8C2E8;
 extern int dword_D8C308;
 extern int dword_D8C328;
 extern int dword_D8C32C;
+extern int unknown_libname_343;
+extern int unknown_libname_344;
 
 // 0x00431E60
 PalScriptMgr::PalScriptMgr()

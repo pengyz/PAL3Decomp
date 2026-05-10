@@ -413,7 +413,7 @@ void GRPinput::SetMouseFreePos()
   _BYTE *v3; // ecx
   char v4; // al
 
-  *this = &off_56A620;
+  * this = (*)&off_56A620;
   v2 = *((_DWORD *)this + 3);
   if ( v2 )
   {
@@ -422,7 +422,7 @@ void GRPinput::SetMouseFreePos()
     if ( !v4 || v4 == -1 )
       operator delete(v3);
     else
-      *v3 = v4 - 1;
+      * v3 = (*)v4 - 1;
   }
   *((_DWORD *)this + 3) = 0;
   *((_DWORD *)this + 4) = 0;
@@ -679,7 +679,7 @@ _BYTE *sub_403000(int _this, unsigned int a2)
     if ( !v9 || v9 == -1 )
       operator delete(v8);
     else
-      *v8 = v9 - 1;
+      * v8 = (*)v9 - 1;
   }
   *(_DWORD *)(this + 8) = 0;
   result = v16 + 1;
@@ -899,7 +899,7 @@ void GRPinput::CheckKeyEvents(const char *a2)
     if ( !strcmp((const char *)&v16, (const char *)&off_580CFC) && (v17 == 1 || v17 == 2) )
     {
       v4 = *(_DWORD *)&v18[1];
-      *v2 = v18[0];
+      * v2 = (*)v18[0];
       g_pVFileSys->Seek(v3, v4, 1);
       v21 = 0;
       if ( (int)*v2 > 0 )
@@ -1062,7 +1062,7 @@ void GRPinput::InitDIKToKEY(unsigned __int16 *a2)
     {
       v8 = (float *)(v7 + *((_DWORD *)a2 + 1));
       if ( *v8 < (double)*this )
-        *this = *v8;
+        * this = (*)*v8;
       v9 = *((_DWORD *)a2 + 1);
       v10 = *(float *)(v7 + v9 + 4);
       v11 = (float *)(v7 + v9 + 4);
@@ -1092,7 +1092,7 @@ void GRPinput::InitDIKToKEY(unsigned __int16 *a2)
     while ( v6 < *a2 );
   }
   v33 = 0;
-  *this = *this - flt_8ACBEC;
+  * this = (*)*this - flt_8ACBEC;
   *((_DWORD *)this + 2) = *((_DWORD *)this + 2) - flt_8ACBEC;
   *((_DWORD *)this + 3) = flt_8ACBEC + *((_DWORD *)this + 3);
   *((_DWORD *)this + 5) = flt_8ACBEC + *((_DWORD *)this + 5);
@@ -1265,7 +1265,7 @@ unsigned int GRPinput::DecideKeyStatus(int _this, gbRay *a2, int a3)
             v18 = *v14;
             v14 += 3;
             *(v15 - 1) = v18;
-            *v15 = *(_DWORD *)((char *)v15 + (_DWORD)v16);
+            * v15 = (*)*(_DWORD *)((char *)v15 + (_DWORD)v16);
             v15[1] = *(v14 - 1);
             v15 += 3;
             --v17;

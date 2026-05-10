@@ -26,6 +26,7 @@ extern int dword_17A7B74;
 extern int dword_1895980;
 extern int dword_EC9E70;
 extern int dword_EC9E74;
+extern int nullsub_1;
 extern int unk_8834C0;
 extern int unk_8DDCE0;
 extern int unk_DE9CB0;

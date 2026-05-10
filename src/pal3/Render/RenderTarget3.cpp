@@ -13,6 +13,7 @@ extern char aGfxscriptGeomG[];
 extern char aGfxscriptGlowG[];
 extern unsigned char byte_DE6A4C;
 extern int unk_DE6A30;
+extern int unknown_libname_413;
 
 // 0x004B65A0
 void *RenderTarget3::GetInstance()

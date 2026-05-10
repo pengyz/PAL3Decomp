@@ -8,6 +8,7 @@ int sub_4D4EA0(...);
 // Unnamed globals (extern)
 extern unsigned char byte_1895561;
 extern int dword_17A8118;
+extern int nullsub_1;
 extern void *off_56F62C;
 extern void *off_56FB28;
 extern void *off_56FB34;
@@ -42,7 +43,7 @@ CEffSParticle::~CEffSParticle()
   int v5; // ebx
   int v6; // edi
 
-  *this = &off_56FB34;
+  * this = (*)&off_56FB34;
   v2 = this != 0 ? (unsigned int)(this + 3) : 0;
   *((_DWORD *)this + 3) = &off_56FB28;
   v3 = *(_DWORD *)(v2 + 0x1C);
@@ -66,12 +67,12 @@ CEffSParticle::~CEffSParticle()
     *(_DWORD *)(v2 + 12) = 0;
     *(_DWORD *)(v2 + 28) = 0;
     *(_DWORD *)(v2 + 32) = 0;
-    *this = &off_56F62C;
+    * this = (*)&off_56F62C;
     return 0;
   }
   else
   {
-    *this = &off_56F62C;
+    * this = (*)&off_56F62C;
   }
   return result;
 }
@@ -292,7 +293,7 @@ void CEffSParticle::Init(_DWORD *a2)
         }
         v13 = (int (**)(int, int))(v11 + 72 * v10);
         memset(v13, 0, 0x48u);
-        *v13 = CEffect::SetParam;
+        * v13 = (*)CEffect::SetParam;
         *((_BYTE *)v13 + 64) = 1;
         *((_BYTE *)v13 + 65) = 0;
         v13[1] = 0;
@@ -325,7 +326,7 @@ LABEL_22:
         }
         v19 = (int (**)(int, int))(v17 + 72 * v16);
         memset(v19, 0, 0x48u);
-        *v19 = CEffect::SetParam;
+        * v19 = (*)CEffect::SetParam;
         *((_BYTE *)v19 + 64) = 1;
         *((_BYTE *)v19 + 65) = 0;
         v19[1] = 0;
@@ -515,7 +516,7 @@ int CEffSParticle::Render(int a2, int a3, int a4, _DWORD *a5, int a6, int a7)
   if ( a5 )
   {
     v15 = v13 + 7;
-    *v15 = *a5;
+    * v15 = (*)*a5;
     v15[1] = a5[1];
     v15[2] = a5[2];
     v15[3] = a5[3];

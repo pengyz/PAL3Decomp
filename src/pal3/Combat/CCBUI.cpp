@@ -1715,7 +1715,7 @@ char CCBUI::CreateButton@<al>(
     UIListBox::GetSel(*v14, (int)aUiCombatContro_0, 0);
     sub_43F690(*v14, 1);
     v17 = (_DWORD *->SetRect()*v14 + 20, pExceptionObject);
-    *a6 = *v17;
+    * a6 = (*)*v17;
     a6[1] = v17[1];
     a6[2] = v17[2];
     a6[3] = v17[3];
@@ -1968,7 +1968,7 @@ LABEL_9:
 _DWORD * CCBUI::ChangeNumTxt()
 {
   this->UIListBox();
-  *this = &off_570500;
+  * this = (*)&off_570500;
   sub_51A400(this);
   return this;
 }
@@ -2076,7 +2076,7 @@ char CCBUI::AddTask(int _this, _DWORD *a2, int a3)
     UIListBox::GetSel(*v8, (int)aUiCombatContro_0, 0);
     sub_43F690(*v8, 1);
     v11 = (_DWORD *->SetRect()*v8 + 20, v15);
-    *a2 = *v11;
+    * a2 = (*)*v11;
     a2[1] = v11[1];
     a2[2] = v11[2];
     a2[3] = v11[3];

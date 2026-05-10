@@ -5,6 +5,7 @@
 // Unnamed globals (extern)
 extern unsigned char byte_DE7DF8;
 extern unsigned char byte_DE7E90;
+extern int unknown_libname_430;
 
 // 0x004BE4A0
 void ScreenEffectMgr::Render()

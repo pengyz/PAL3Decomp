@@ -6,6 +6,7 @@
 int sub_4D1EF0(...);
 
 // Unnamed globals (extern)
+extern int nullsub_1;
 extern void *off_56FA24;
 extern void *off_56FA30;
 extern void *off_56FA6C;
@@ -25,7 +26,7 @@ _DWORD * CEffModel::Render()
   *((_DWORD *)this + 11) = 0;
   *((_DWORD *)this + 3) = &off_56FA6C;
   *((_DWORD *)this + 18) = -1;
-  *this = &off_56FA30;
+  * this = (*)&off_56FA30;
   *((_DWORD *)this + 3) = &off_56FA24;
   *((_BYTE *)this + 48) = 0;
   *((_BYTE *)this + 49) = 0;

@@ -142,6 +142,31 @@ extern float flt_17ABCCC;
 extern float flt_17ABCD0;
 extern float flt_17ABCD4;
 extern float flt_17ABCD8;
+extern int nullsub_1;
+extern int nullsub_32;
+extern int nullsub_33;
+extern int nullsub_34;
+extern int nullsub_35;
+extern int nullsub_36;
+extern int nullsub_37;
+extern int nullsub_38;
+extern int nullsub_39;
+extern int nullsub_40;
+extern int nullsub_41;
+extern int nullsub_42;
+extern int nullsub_43;
+extern int nullsub_44;
+extern int nullsub_45;
+extern int nullsub_46;
+extern int nullsub_47;
+extern int nullsub_48;
+extern int nullsub_49;
+extern int nullsub_50;
+extern int nullsub_51;
+extern int nullsub_52;
+extern int nullsub_53;
+extern int nullsub_54;
+extern int stru_17AB828;
 extern int unk_5888C4;
 extern int unk_5888C8;
 extern int unk_5888D0;
@@ -1421,7 +1446,7 @@ _DWORD * CCBStageRole::DoTask(int _this, float *a2)
   }
   WorldPos = (CCBStageRole *->GetWorldPos()this);
   Center = (float *)WorldPos->GetCenter(v6);
-  *a2 = *Center;
+  * a2 = (*)*Center;
   a2[1] = Center[1];
   a2[2] = Center[2];
   a2[1] = *(float *)(this + 364) * 0.5 + a2[1] + 10.0;
@@ -2282,7 +2307,7 @@ LABEL_43:
     }
     else
     {
-      *v13 = *((_DWORD *)this + 1652);
+      * v13 = (*)*((_DWORD *)this + 1652);
       *((_DWORD *)this + 1647) = *((_DWORD *)this + 1653);
       *((_DWORD *)this + 1648) = *((_DWORD *)this + 1654);
       *((_BYTE *)this + 96 * *((_DWORD *)this + 99) + 505) = 1;
@@ -2298,7 +2323,7 @@ LABEL_43:
     v25->PlaySound(aWe011b, v27);
     goto LABEL_43;
   }
-  *v13 = *((_DWORD *)this + 1652);
+  * v13 = (*)*((_DWORD *)this + 1652);
   *((_DWORD *)this + 1647) = *((_DWORD *)this + 1653);
   *((_DWORD *)this + 1648) = *((_DWORD *)this + 1654);
   *((_BYTE *)this + 96 * *((_DWORD *)this + 99) + 505) = 1;
@@ -2499,7 +2524,7 @@ LABEL_43:
     }
     else
     {
-      *v13 = *((_DWORD *)this + 1652);
+      * v13 = (*)*((_DWORD *)this + 1652);
       *((_DWORD *)this + 1647) = *((_DWORD *)this + 1653);
       *((_DWORD *)this + 1648) = *((_DWORD *)this + 1654);
       *((_BYTE *)this + 96 * *((_DWORD *)this + 99) + 505) = 1;
@@ -2515,7 +2540,7 @@ LABEL_43:
     v25->PlaySound(aWe011b, v27);
     goto LABEL_43;
   }
-  *v13 = *((_DWORD *)this + 1652);
+  * v13 = (*)*((_DWORD *)this + 1652);
   *((_DWORD *)this + 1647) = *((_DWORD *)this + 1653);
   *((_DWORD *)this + 1648) = *((_DWORD *)this + 1654);
   *((_BYTE *)this + 96 * *((_DWORD *)this + 99) + 505) = 1;

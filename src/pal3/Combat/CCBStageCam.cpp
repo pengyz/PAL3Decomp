@@ -119,7 +119,7 @@ char CCBStageCam::LoadEditorCam(int a2, int a3, const void *a4)
     v9 = 49 - a3;
     do
     {
-      *v8 = *(v8 - 1);
+      * v8 = (*)*(v8 - 1);
       --v8;
       --v9;
     }
@@ -176,7 +176,7 @@ char CCBStageCam::AddCurCamToEditor(int a2, int a3)
       v7 = 49 - a3;
       do
       {
-        *v6 = v6[1];
+        * v6 = (*)v6[1];
         ++v6;
         --v7;
       }

@@ -63,7 +63,7 @@ int CMeteorChain::Update(int a2, int a3, int a4, _DWORD *a5, int a6, int a7)
   if ( a5 )
   {
     v15 = v13 + 7;
-    *v15 = *a5;
+    * v15 = (*)*a5;
     v15[1] = a5[1];
     v15[2] = a5[2];
     v15[3] = a5[3];

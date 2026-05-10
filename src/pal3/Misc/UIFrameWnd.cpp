@@ -57,7 +57,7 @@ void sub_442390(UIWnd *this)
     if ( !v4 || v4 == -1 )
       operator delete(v3);
     else
-      *v3 = v4 - 1;
+      * v3 = (*)v4 - 1;
   }
   *((_DWORD *)this + 25) = 0;
   *((_DWORD *)this + 26) = 0;

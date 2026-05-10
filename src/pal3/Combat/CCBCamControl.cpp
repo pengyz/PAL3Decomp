@@ -6,6 +6,7 @@
 extern char aGfxscriptGeomD[];
 extern char aGfxscriptGeomD_0[];
 extern unsigned char byte_17AAF64;
+extern int nullsub_3;
 extern void *off_56A694;
 
 // 0x005081D0

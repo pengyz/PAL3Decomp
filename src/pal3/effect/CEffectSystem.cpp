@@ -17,6 +17,7 @@ extern unsigned char byte_DE96F4;
 extern int dword_DE9384;
 extern int dword_DE997C;
 extern float flt_DE9978;
+extern int nullsub_16;
 extern void *off_56F844;
 extern void *off_56F86C;
 extern void *off_56F878;
@@ -24,6 +25,7 @@ extern void *off_56F8B4;
 extern int unk_DE9388;
 extern int unk_DE9389;
 extern int unk_DE93B0;
+extern int unknown_libname_446;
 
 // 0x004C61A0
 CEffectSystem::CEffectSystem(int a2)
@@ -64,7 +66,7 @@ CEffectSystem::CEffectSystem(int a2)
 CEffectSystem::~CEffectSystem(int a2)
 {
   sub_4C5D00(this, a2);
-  *this = &off_56F844;
+  * this = (*)&off_56F844;
   *((_DWORD *)this + 2) = 1;
   return this;
 }
@@ -257,7 +259,7 @@ void CEffectSystem::SetVisible(float a2)
   if ( !v4 )
   {
     ++*((_DWORD *)this + 13);
-    *this = v2 - 0.02;
+    * this = (*)v2 - 0.02;
   }
 }
 
@@ -350,7 +352,7 @@ char CEffectSystem::Update(int _this)
       do
       {
         *(v7 - 1) = v5 / 2;
-        *v7 = v5 / 2;
+        * v7 = (*)v5 / 2;
         v7[1] = v5 / 2;
         v7[2] = v5;
         v5 += 8;
@@ -432,7 +434,7 @@ _DWORD * CEffectSystem::FillDefaultUVSet()
   *((_DWORD *)this + 44) = 0;
   *((_DWORD *)this + 45) = 0;
   *((_DWORD *)this + 46) = 0;
-  *this = &off_56F878;
+  * this = (*)&off_56F878;
   *((_DWORD *)this + 3) = &off_56F86C;
   *((_DWORD *)this + 43) = 0;
   *((_DWORD *)this + 42) = 0;

@@ -83,6 +83,15 @@ extern float flt_17ABCDC;
 extern float flt_56A610;
 extern float flt_56A64C;
 extern float flt_56A77C;
+extern int nullsub_20;
+extern int nullsub_21;
+extern int nullsub_28;
+extern int nullsub_29;
+extern int nullsub_3;
+extern int nullsub_30;
+extern int nullsub_55;
+extern int nullsub_56;
+extern int nullsub_57;
 extern int unk_5DB6C4;
 
 // 0x004DFAA0
@@ -863,7 +872,7 @@ int CCBStage::GetRoleName(int a2, int a3, int a4, int a5, int a6, _DWORD *a7, in
   if ( a7 )
   {
     v14 = v13 + 11;
-    *v14 = *a7;
+    * v14 = (*)*a7;
     v14[1] = a7[1];
     v14[2] = a7[2];
   }
@@ -916,7 +925,7 @@ char * CCBStage::DelTask(int a2, _BYTE *a3, _DWORD *a4)
   if ( *((_DWORD *)result + 43) == 4 )
   {
     *a3 = 1;
-    *a4 = *((_DWORD *)result + 687);
+    * a4 = (*)*((_DWORD *)result + 687);
   }
   return result;
 }
@@ -2707,7 +2716,7 @@ int CCBStage::ProcShowDamage(int _this, int a2)
         v9 = 3 * *(_DWORD *)(CCBRoleState::InitUI(*(void **)(this + 4), v7) + 584);
         v10 = (_DWORD *)(*(_DWORD *)v8 + 6584);
         v11 = (_DWORD *)(*(_DWORD *)(this + 20) + 4 * v9 + 92);
-        *v10 = *v11;
+        * v10 = (*)*v11;
         v10[1] = v11[1];
         v10[2] = v11[2];
         *(_DWORD *)(*(_DWORD *)v8 + 6632) = *(_DWORD *)(*(_DWORD *)v8 + 6636);
@@ -2742,7 +2751,7 @@ int CCBStage::ProcShowDamage(int _this, int a2)
           }
           v17 = (_DWORD *)(*(_DWORD *)(this + 64) + 6596);
           v18 = (_DWORD *)(*(_DWORD *)(this + 4 * *v14 + 24) + 6584);
-          *v18 = *v17;
+          * v18 = (*)*v17;
           v18[1] = v17[1];
           v18[2] = v17[2];
         }
@@ -3148,7 +3157,7 @@ int CCBStage::ResetAll()
     {
       _EDI = v62;
       v7 = (int *)(*(_DWORD *)&this->m_pCBSystem[4 * v56 + 24] + 6596);
-      *v62 = *v7;
+      * v62 = (*)*v7;
       v8 = v57;
       v62[1] = v7[1];
       v62[2] = v7[2];
@@ -3374,7 +3383,7 @@ int CCBStage::UpdatePhysics()
     if ( *v2 > 0.0 )
     {
       if ( *v2 <= 160.0 )
-        *v2 = *v2 - v4;
+        * v2 = (*)*v2 - v4;
       else
         *v2 = 160.0;
     }

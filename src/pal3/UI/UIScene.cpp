@@ -212,7 +212,7 @@ void sub_43A770(_DWORD *this)
   UIWnd::DestroyChildren(this + 29);
   *((_DWORD *)this + 24) = 0;
   *((_DWORD *)this + 49) = 0;
-  *this = &off_56AC70;
+  * this = (*)&off_56AC70;
   *((_BYTE *)this + 204) = 1;
   memset(this + 53, 0, 0x80u);
   *((_DWORD *)this + 19) = 1065353216;

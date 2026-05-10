@@ -179,6 +179,8 @@ extern int dword_56B77C;
 extern int dword_DE5F98;
 extern int dword_DE5F9C;
 extern int dword_DE5FA0;
+extern int nullsub_1;
+extern int nullsub_3;
 extern void *off_56AC20;
 extern void *off_56AC4C;
 extern void *off_56ACB8;
@@ -275,7 +277,7 @@ _DWORD *sub_439030(_DWORD *this)
   *((_DWORD *)this + 71) = 1065353216;
   *((_DWORD *)this + 70) = 1065353216;
   *((_DWORD *)this + 69) = 1065353216;
-  *this = &off_56AC20;
+  * this = (*)&off_56AC20;
   *((_DWORD *)this + 73) = 0;
   *((_DWORD *)this + 17) = 0;
   *((_DWORD *)this + 59) = 0;
@@ -311,7 +313,7 @@ void sub_43A160(_DWORD *this)
   *((_DWORD *)this + 36) = 0;
   *((_DWORD *)this + 18) = 0;
   *((_DWORD *)this + 37) = 0;
-  *this = &off_56AC4C;
+  * this = (*)&off_56AC4C;
   *((_DWORD *)this + 17) = 1092616192;
   *((_DWORD *)this + 39) = -1;
 }
@@ -330,7 +332,7 @@ void sub_43A1F0(UIWnd *this)
 _DWORD * UIWnd::ctor_BB70()
 {
   UIWnd::UIWnd();
-  *this = &off_56ACB8;
+  * this = (*)&off_56ACB8;
   *((_DWORD *)this + 17) = 0;
   return this;
 }
@@ -367,7 +369,7 @@ _DWORD *sub_43BCE0(_DWORD *this)
   *((_DWORD *)this + 65) = 0;
   *((_DWORD *)this + 66) = 0;
   *((_DWORD *)this + 67) = 0;
-  *this = &off_56ACD8;
+  * this = (*)&off_56ACD8;
   *((_DWORD *)this + 45) = 0;
   *((_DWORD *)this + 46) = 0;
   *((_DWORD *)this + 47) = 0;
@@ -416,7 +418,7 @@ void UIWnd::~stdiobuf(UIWnd *this)
 _DWORD * UIWnd::ctor_D830()
 {
   UIWnd::UIWnd();
-  *this = &off_56ACFC;
+  * this = (*)&off_56ACFC;
   *((_DWORD *)this + 20) = 0;
   *((_DWORD *)this + 19) = 0;
   *((_DWORD *)this + 17) = 32;
@@ -482,7 +484,7 @@ _DWORD *sub_43F7F0(_DWORD *this)
   *((_DWORD *)this + 50) = 0;
   *((_DWORD *)this + 51) = 0;
   *((_DWORD *)this + 52) = 0;
-  *this = &off_56AD64;
+  * this = (*)&off_56AD64;
   *((_BYTE *)this + 166) = -1;
   *((_BYTE *)this + 165) = -1;
   *((_BYTE *)this + 164) = -1;
@@ -692,11 +694,11 @@ int UIWnd::AddChild(_DWORD *a2)
 
   v2 = this + 19;
   v3 = this + 4;
-  *v2 = *a2;
+  * v2 = (*)*a2;
   v2[1] = a2[1];
   v2[2] = a2[2];
   v2[3] = a2[3];
-  *v3 = *a2;
+  * v3 = (*)*a2;
   v3[1] = a2[1];
   v3[2] = a2[2];
   result = a2[3];
@@ -719,7 +721,7 @@ _DWORD *sub_4410F0(_DWORD *this)
   UIWnd::UIWnd();
   UIWnd::ctor_D830(this + 18);
   UIWnd::DestroyChildren(this + 48);
-  *this = &off_56ADAC;
+  * this = (*)&off_56ADAC;
   *((_DWORD *)this + 41) = 0;
   *((_DWORD *)this + 42) = 100;
   *((_DWORD *)this + 43) = 0;
@@ -873,7 +875,7 @@ void UIWnd::ctor_2E10()
   *((_DWORD *)this + 42) = 0;
   *((_BYTE *)this + 172) = 0;
   *((_DWORD *)this + 44) = 0;
-  *this = &off_56AE10;
+  * this = (*)&off_56AE10;
   *((_DWORD *)this + 36) = 21;
 }
 
@@ -923,7 +925,7 @@ UIWnd::UIWnd()
   int v3; // [esp+4h] [ebp-4h]
 
   PtrArray::Clear(this + 9);
-  *this = &off_56AEC8;
+  * this = (*)&off_56AEC8;
   *((_DWORD *)this + 3) = -1;
   *((_DWORD *)this + 4) = 0;
   *((_DWORD *)this + 5) = 0;
@@ -1181,7 +1183,7 @@ _DWORD * UIWnd::SetRect(_DWORD *a2)
   _DWORD *v3; // ecx
 
   v3 = this + 4;
-  *a2 = *v3;
+  * a2 = (*)*v3;
   a2[1] = v3[1];
   a2[2] = v3[2];
   a2[3] = v3[3];
@@ -1206,7 +1208,7 @@ _DWORD * UIWnd::ctor_60D0()
   UIItem::Refresh(this + 4710);
   UIItem::Refresh(this + 5052);
   sub_431870(this + 5394);
-  *this = &off_56AF80;
+  * this = (*)&off_56AF80;
   *((_DWORD *)this + 19) = 0;
   *((_DWORD *)this + 18) = 0;
   *((_DWORD *)this + 20) = 800;
@@ -1502,7 +1504,7 @@ _DWORD * UIWnd::ctor_710()
 {
   this->UIListBox();
   UIWnd::ctor_F7F0(this + 18);
-  *this = &off_56B100;
+  * this = (*)&off_56B100;
   *((_DWORD *)this + 81) = 1120403456;
   return this;
 }
@@ -1629,7 +1631,7 @@ void sub_453030(UIWnd *this)
     if ( !v4 || v4 == -1 )
       operator delete(v3);
     else
-      *v3 = v4 - 1;
+      * v3 = (*)v4 - 1;
   }
   *((_DWORD *)this + 22) = 0;
   *((_DWORD *)this + 23) = 0;
@@ -1641,7 +1643,7 @@ void sub_453030(UIWnd *this)
     v7 = *(_BYTE *)(v5 - 1);
     if ( v7 && v7 != -1 )
     {
-      *v6 = v7 - 1;
+      * v6 = (*)v7 - 1;
       *((_DWORD *)this + 18) = 0;
       *((_DWORD *)this + 19) = 0;
       *((_DWORD *)this + 20) = 0;
@@ -4516,7 +4518,7 @@ void UIWnd::~stdiobuf(void ***this)
 _DWORD * UIWnd::ctor_60A0(int a2)
 {
   this->UIListBox();
-  *this = &off_5704A8;
+  * this = (*)&off_5704A8;
   sub_516170(this);
   *((_DWORD *)this + 290) = a2;
   return this;
@@ -4534,7 +4536,7 @@ void UIWnd::~stdiobuf(UIWnd *this)
 _DWORD * UIWnd::ctor_9310()
 {
   this->UIListBox();
-  *this = &off_5704C8;
+  * this = (*)&off_5704C8;
   this->OnMessage();
   return this;
 }

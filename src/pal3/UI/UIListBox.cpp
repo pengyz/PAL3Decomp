@@ -25,7 +25,7 @@ extern void *off_56AD40;
 UIListBox::UIListBox()
 {
   UIWnd::UIWnd();
-  *this = &off_56AD20;
+  * this = (*)&off_56AD20;
   *((_DWORD *)this + 17) = 0;
   return this;
 }

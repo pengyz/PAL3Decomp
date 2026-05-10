@@ -15,6 +15,8 @@ int sub_4D4D70(...);
 // Unnamed globals (extern)
 extern char aDProjectPal3Co_0[];
 extern char aNewFailInCeffm[];
+extern int nullsub_1;
+extern int nullsub_3;
 extern void *off_56F62C;
 extern void *off_56F96C;
 extern void *off_56F978;

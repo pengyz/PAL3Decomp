@@ -14,6 +14,7 @@ extern unsigned char byte_1895561;
 extern int dword_17A7E88;
 extern int dword_1895984;
 extern int dword_1895988;
+extern int nullsub_1;
 
 // 0x004D3910
 CEffShock::CEffShock()
@@ -345,7 +346,7 @@ int CEffShock::LoadTexture(int a2, int a3, int a4, _DWORD *a5, int a6, int a7)
   if ( a5 )
   {
     v15 = v13 + 7;
-    *v15 = *a5;
+    * v15 = (*)*a5;
     v15[1] = a5[1];
     v15[2] = a5[2];
     v15[3] = a5[3];

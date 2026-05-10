@@ -9,6 +9,7 @@ int sub_4B6D20(...);
 extern char aEffectscnFrame[];
 extern unsigned char byte_DE6CE0;
 extern int dword_DE6CD8;
+extern int unknown_libname_416;
 
 // 0x004B6D30
 _DWORD *RenderTarget4::GetInstance()

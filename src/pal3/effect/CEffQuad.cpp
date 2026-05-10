@@ -385,7 +385,7 @@ int CEffQuad::CreateTask(_DWORD *a2)
         v13 = (int (**)(int, int))(v11 + 72 * v10);
         memset(v13, 0, 0x48u);
         *((_BYTE *)v13 + 65) = 0;
-        *v13 = CEffect::SetParam;
+        * v13 = (*)CEffect::SetParam;
         *((_BYTE *)v13 + 64) = 1;
         v13[1] = 0;
         v13[2] = (int (*)(int, int))2;
@@ -403,7 +403,7 @@ int CEffQuad::CreateTask(_DWORD *a2)
         v16 = *(_DWORD *)(v7 + v15 + 4);
         v17 = (_DWORD *)(v7 + v15 + 4);
         v3 = v27;
-        *v17 = v16 + 1;
+        * v17 = (*)v16 + 1;
       }
 LABEL_22:
       v18 = v2[8];
@@ -422,7 +422,7 @@ LABEL_22:
         v22 = (int (**)(int, int))(v20 + 72 * v19);
         memset(v22, 0, 0x48u);
         *((_BYTE *)v22 + 64) = 1;
-        *v22 = CEffect::SetParam;
+        * v22 = (*)CEffect::SetParam;
         *((_BYTE *)v22 + 65) = 0;
         v22[1] = 0;
         v22[2] = (int (*)(int, int))2;
@@ -440,7 +440,7 @@ LABEL_22:
         v25 = *(_DWORD *)(v24 + v7 + 4);
         v26 = (_DWORD *)(v24 + v7 + 4);
         v3 = v27;
-        *v26 = v25 + 1;
+        * v26 = (*)v25 + 1;
       }
 LABEL_31:
       sub_4D3010(v3, sub_4D22F0, 0, 0, a2[18], a2[19]);
