@@ -1,5 +1,6 @@
 ﻿# PAL3.exe source files (auto-generated from IDA decomp)
-file(GLOB_RECURSE PAL3_SOURCES "*.cpp")
+# CONFIGURE_DEPENDS: re-glob on every build, detect added/removed files automatically
+file(GLOB_RECURSE PAL3_SOURCES CONFIGURE_DEPENDS "*.cpp")
 
 add_executable(PAL3 ${PAL3_SOURCES})
 target_include_directories(PAL3 PRIVATE
