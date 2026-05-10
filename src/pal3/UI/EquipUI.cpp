@@ -41,29 +41,29 @@ extern void *off_56F040;
 int EquipUI::Create()
 {
   ((UIListBox *)this)->UIListBox();
-  *(_DWORD *)&this->_data[88] = 800;
-  *(_DWORD *)&this->_data[92] = 600;
-  *(_DWORD *)&this->_data[96] = 0;
-  *(_DWORD *)&this->_data[100] = 0;
-  this->_data[360] = 0;
-  *(_DWORD *)&this->_data[368] = 0;
-  this->_data[372] = 0;
-  this->_data[373] = 0;
-  ((UIFrameWnd *)&this->_data[376])->UIFrameWnd();
-  ((UIFrameWnd *)&this->_data[528])->UIFrameWnd();
-  ((UIFrameWnd *)&this->_data[680])->UIFrameWnd();
-  ((UIFrameWnd *)&this->_data[832])->UIFrameWnd();
-  ((UIFrameWnd *)&this->_data[984])->UIFrameWnd();
-  ((UIFrameWnd *)&this->_data[1136])->UIFrameWnd();
-  ((UIScene *)&this->_data[1288])->_UIScene();
-  ((UIScene *)&this->_data[1632])->_UIScene();
-  ((UIScene *)&this->_data[1976])->_UIScene();
-  ((UIScene *)&this->_data[2320])->_UIScene();
-  ((UIScene *)&this->_data[2664])->_UIScene();
-  ((UIScene *)&this->_data[3008])->_UIScene();
-  ((UIScene *)&this->_data[3352])->_UIScene();
-  ((UIScene *)&this->_data[3696])->_UIScene();
-  ((UIScene *)&this->_data[4040])->_UIScene();
+  this->_d058 = 800;
+  this->_d05C = 600;
+  this->_d060 = 0;
+  this->_d064 = 0;
+  this->_b168 = 0;
+  this->_d170 = 0;
+  this->_b174 = 0;
+  this->_b175 = 0;
+  ((UIFrameWnd *)&this->_d178)->UIFrameWnd();
+  ((UIFrameWnd *)&this->_d210)->UIFrameWnd();
+  ((UIFrameWnd *)&this->_d2A8)->UIFrameWnd();
+  ((UIFrameWnd *)&this->_tail[148])->UIFrameWnd();
+  ((UIFrameWnd *)&this->_tail[300])->UIFrameWnd();
+  ((UIFrameWnd *)&this->_tail[452])->UIFrameWnd();
+  ((UIScene *)&this->_tail[604])->_UIScene();
+  ((UIScene *)&this->_tail[948])->_UIScene();
+  ((UIScene *)&this->_tail[1292])->_UIScene();
+  ((UIScene *)&this->_tail[1636])->_UIScene();
+  ((UIScene *)&this->_tail[1980])->_UIScene();
+  ((UIScene *)&this->_tail[2324])->_UIScene();
+  ((UIScene *)&this->_tail[2668])->_UIScene();
+  ((UIScene *)&this->_tail[3012])->_UIScene();
+  ((UIScene *)&this->_tail[3356])->_UIScene();
   ((UIFrameWnd *)((char *)this + 4384))->UIFrameWnd();
   ((UIFrameWnd *)((char *)this + 4552))->UIFrameWnd();
   ((UIFrameWnd *)((char *)this + 4704))->UIFrameWnd();
@@ -112,29 +112,29 @@ int EquipUI::Create()
   *((_DWORD *)this + 44020) = 0;
   *((_DWORD *)this + 44021) = 0;
   ((UIFrameWnd *)((char *)this + 176092))->UIFrameWnd();
-  *(_DWORD *)this->_data = &off_56F040;
-  this->_data[365] = 0;
-  this->_data[364] = 0;
-  this->_data[362] = 0;
-  this->_data[361] = 0;
-  this->_data[363] = 0;
+  this->_p000 = &off_56F040;
+  this->_b16D = 0;
+  this->_b16C = 0;
+  this->_b16A = 0;
+  this->_b169 = 0;
+  this->_b16B = 0;
   *((_DWORD *)this + 38622) = 0;
   *((_DWORD *)this + 38623) = 0;
   *((_DWORD *)this + 38624) = 0;
   *((_DWORD *)this + 44061) = 0;
-  return (int)this->_data;
+  return (int)this;
 }
 
 // 0x004A4220
 void EquipUI::Init()
 {
-  int v2; // eax
-  int v3; // ecx
+  int d058; // eax
+  int d05C; // ecx
   int v4; // eax
-  int v5; // edx
+  int d210; // edx
   const CHAR *v6; // ebp
   UIWnd **v7; // edi
-  int v8; // edx
+  int d2A8; // edx
   int v9; // eax
   int v10; // edx
   char *v11; // edi
@@ -184,31 +184,27 @@ void EquipUI::Init()
   _DWORD v55[4]; // [esp+84h] [ebp-1Ch] BYREF
   int v56; // [esp+9Ch] [ebp-4h]
 
-  v2 = *(_DWORD *)&this->_data[88];
-  v3 = *(_DWORD *)&this->_data[92];
-  *(_DWORD *)&this->_data[80] = v2;
-  *(_DWORD *)&this->_data[76] = 0;
-  *(_DWORD *)&this->_data[72] = 0;
-  *(_DWORD *)&this->_data[84] = v3;
-  ((UIListBox *)this)->SetSelTexture(-1, *(_DWORD *)&this->_data[72], *(_DWORD *)&this->_data[76], *(_DWORD *)&this->_data[80], *(_DWORD *)&this->_data[84], 0);
-  v4 = *(_DWORD *)&this->_data[76] + 18;
-  v51 = *(_DWORD *)&this->_data[72] + 592;
+  d058 = this->_d058;
+  d05C = this->_d05C;
+  this->_d050 = d058;
+  this->_d04C = 0;
+  this->_d048 = 0;
+  this->_d054 = d05C;
+  ((UIListBox *)this)->SetSelTexture(-1, this->_d048, this->_d04C, this->_d050, this->_d054, 0);
+  v4 = this->_d04C + 18;
+  v51 = this->_d048 + 592;
   v52 = v4;
   v53 = v51 + 192;
   v54 = v4 + 526;
-  (*(void (**)(char *, int, int *, EquipUI *))(*(_DWORD *)&this->_data[376] + 16))(
-    &this->_data[376],
-    161,
-    &v51,
-    this);
-  ((UIWnd *)&this->_data[376])->CreateFromTemplate(aUiGamemainuiSt_1, byte_5CEFA8);
-  v5 = *(_DWORD *)&this->_data[528];
+  (*(void (**)(int *, int, int *, EquipUI *))(this->_d178 + 16))(&this->_d178, 161, &v51, this);
+  ((UIWnd *)&this->_d178)->CreateFromTemplate(aUiGamemainuiSt_1, byte_5CEFA8);
+  d210 = this->_d210;
   v52 += 26;
   v51 = v53;
   v54 = v52 + 526;
   v53 += 17;
-  (*(void (**)(char *, int, int *, EquipUI *))(v5 + 16))(&this->_data[528], 161, &v51, this);
-  ((UIWnd *)&this->_data[528])->CreateFromTemplate(aUiGamemainuiCo_23, byte_5CEFA8);
+  (*(void (**)(int *, int, int *, EquipUI *))(d210 + 16))(&this->_d210, 161, &v51, this);
+  ((UIWnd *)&this->_d210)->CreateFromTemplate(aUiGamemainuiCo_23, byte_5CEFA8);
   v55[1] = 14;
   v55[0] = 626;
   v55[2] = 674;
@@ -224,13 +220,13 @@ void EquipUI::Init()
     v7 += 38;
   }
   while ( (int)v6 < (int)"UI\\GameMainUI\\State\\Portrait0.tga" );
-  v8 = *(_DWORD *)&this->_data[680];
+  d2A8 = this->_d2A8;
   v46 = v53 - 205;
   v48 = v53 - 205 + 203;
   v47 = 0;
   v49 = 64;
-  (*(void (**)(char *, int, int *, EquipUI *))(v8 + 16))(&this->_data[680], 161, &v46, this);
-  ((UIWnd *)&this->_data[680])->CreateFromTemplate(aUiGamemainuiCo_19, byte_5CEFA8);
+  (*(void (**)(int *, int, int *, EquipUI *))(d2A8 + 16))(&this->_d2A8, 161, &v46, this);
+  ((UIWnd *)&this->_d2A8)->CreateFromTemplate(aUiGamemainuiCo_19, byte_5CEFA8);
   v9 = *((_DWORD *)this + 1176);
   v47 = -4;
   v46 = 618;
@@ -358,7 +354,7 @@ void EquipUI::Init()
   sub_4B0820(*((_DWORD *)this + 44020), (int)this);
   byte_DE5F92 = 0;
   byte_DE5F93 = 0;
-  this->_data[373] = 1;
+  this->_b175 = 1;
 }
 
 // 0x004A48B0
@@ -368,7 +364,7 @@ void EquipUI::InitSlots()
 
   if ( ((UIBase *)this)->GetSelected() < 5 )
   {
-    this->_data[361] = data;
+    this->_b169 = data;
     ((UIBase *)this)->SetItemData(0, data);
     sub_48A2F0(*((char **)this + 44015), data);
     sub_4945C0(*((char **)this + 44016), data);
@@ -377,7 +373,7 @@ void EquipUI::InitSlots()
   }
   else
   {
-    this->_data[361] = 0;
+    this->_b169 = 0;
     ((UIBase *)this)->SetItemData(0, 0);
     sub_48A2F0(*((char **)this + 44015), 0);
     sub_4945C0(*((char **)this + 44016), 0);

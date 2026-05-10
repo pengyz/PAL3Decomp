@@ -20,7 +20,7 @@ int MagicUI::Create()
 
   if ( ((UIBase *)this)->GetSelected() < 5 )
   {
-    this->_data[364] = data;
+    this->_b16C = data;
     ((UIBase *)this)->SetItemData(3, data);
     sub_48A350(*((char **)this + 44015), data);
     sub_494620(*((char **)this + 44016), data);
@@ -29,7 +29,7 @@ int MagicUI::Create()
   }
   else
   {
-    this->_data[364] = 0;
+    this->_b16C = 0;
     ((UIBase *)this)->SetItemData(3, 0);
     sub_48A350(*((char **)this + 44015), 0);
     sub_494620(*((char **)this + 44016), 0);
@@ -45,7 +45,7 @@ void MagicUI::Init()
 
   if ( ((UIBase *)this)->GetSelected() < 5 )
   {
-    this->_data[365] = data;
+    this->_b16D = data;
     ((UIBase *)this)->SetItemData(4, data);
     sub_48A370(*((char **)this + 44015), data);
     sub_494640(*((char **)this + 44016), data);
@@ -54,7 +54,7 @@ void MagicUI::Init()
   }
   else
   {
-    this->_data[365] = 0;
+    this->_b16D = 0;
     ((UIBase *)this)->SetItemData(4, 0);
     sub_48A370(*((char **)this + 44015), 0);
     sub_494640(*((char **)this + 44016), 0);
