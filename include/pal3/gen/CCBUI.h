@@ -102,8 +102,7 @@ public:
     char CreateControlWindow(); // 0x00517D60
     char CreateItemWindow(); // 0x00517DF0
     char CreateParaWindow(); // 0x005181E0
-    // [IDA_COMPLEX_RET] original: int (__thiscall ***__thiscall(_DWORD *this))(_DWORD, _DWORD)
-    int ( CreateMagicWindow(_DWORD); // 0x005183C0
+    int CreateMagicWindow(int a2); // 0x005183C0
     int CreateSkillWindow(char a2); // 0x005184C0
     int CreateLineupWindow(int a2, char a3); // 0x00518AF0
     char CreateProtectWindow(); // 0x00518B20

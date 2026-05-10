@@ -2,6 +2,6 @@
   "name": "unknown_libname_342",
   "address": "0x00431E20",
   "size_bytes": 10,
-  "signature": "_DWORD *()",
-  "decompiled_c": "// Microsoft VisualC 2-14/net runtime\n// Microsoft VisualC 2-14/net runtime\n_DWORD *unknown_libname_342()\n{\n  LOBYTE(dword_D8C308[1]) = (unsigned int)dword_D8C308 >> 24;\n  dword_D8C308[2] = 0;\n  dword_D8C308[3] = 0;\n  dword_D8C308[4] = 0;\n  LOWORD(dword_D8C31C) = 0;\n  dword_D8C320 = 0;\n  dword_D8C308[0] = 0;\n  return dword_D8C308;\n}\n"
+  "signature": "int *()",
+  "decompiled_c": "// Microsoft VisualC 2-14/net runtime\n// Microsoft VisualC 2-14/net runtime\nint *unknown_libname_342()\n{\n  LOBYTE(stru_D8C2B8.m_joystickY) = (unsigned int)&stru_D8C2B8.m_joystickX >> 24;\n  stru_D8C2B8.m_joystickFreeX = 0;\n  stru_D8C2B8.m_joystickFreeY = 0;\n  stru_D8C2B8.m_joystickDeltaX = 0;\n  LOWORD(stru_D8C2B8.m_joystickDeltaY) = 0;\n  stru_D8C2B8.m_keyStates[0] = 0;\n  stru_D8C2B8.m_joystickX = 0;\n  return &stru_D8C2B8.m_joystickX;\n}\n"
 }

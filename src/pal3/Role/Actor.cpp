@@ -136,9 +136,9 @@ void Actor::SetAction(int actionId)
         *(_DWORD *)&this->m_szTexture[80] = 0;
       }
       v5 = (float)*(int *)&this->m_szTexture[84];
-      ((UIWnd *)(int)this + 3096)->FindChild(v5);
+      ((UIWnd *)((char *)this + 3096))->FindChild(v5);
       v6 = (float)*(int *)&this->m_szTexture[80];
-      ((UIWnd *)(int)this + 3096)->FindChildByName(v6);
+      ((UIWnd *)((char *)this + 3096))->FindChildByName(v6);
       this->m_szTexture[64] = 1;
     }
   }
@@ -159,9 +159,9 @@ int Actor::InitComponents()
   *(_DWORD *)&this->m_szTexture[84] = 1000;
   sub_43FE90((int)this + 3096);
   v5 = (float)*(int *)&this->m_szTexture[84];
-  ((UIWnd *)(int)this + 3096)->FindChild(v5);
+  ((UIWnd *)((char *)this + 3096))->FindChild(v5);
   v6 = (float)*(int *)&this->m_szTexture[80];
-  ((UIWnd *)(int)this + 3096)->FindChildByName(v6);
+  ((UIWnd *)((char *)this + 3096))->FindChildByName(v6);
   v2 = *(_DWORD *)&this->m_szTexture[80];
   v3 = (void (**)(char *, bool))*((_DWORD *)this + 774);
   this->m_szTexture[88] = v2 <= 0;
@@ -174,7 +174,7 @@ int Actor::InitComponents()
 // 0x00536560
 char Actor::ProcessFrame()
 {
-  _BYTE *v2; // eax
+  _DWORD *v2; // eax
   int v3; // eax
   int v4; // ecx
   int v5; // eax
@@ -198,12 +198,12 @@ char Actor::ProcessFrame()
   int v24[4]; // [esp+54h] [ebp-10h] BYREF
 
   ((UIListBox *)this)->SetSelTexture(-1, 0, 0, 800, 600, 0);
-  v2 = (_BYTE *)operator new(0xCu);
+  v2 = (_DWORD *)operator new(0xCu);
   if ( v2 )
   {
-    v2[8] = 0;
-    *((_DWORD *)v2 + 1) = 0;
-    *(_DWORD *)v2 = 0;
+    *((_BYTE *)v2 + 8) = 0;
+    v2[1] = 0;
+    *v2 = 0;
   }
   else
   {
@@ -230,9 +230,9 @@ char Actor::ProcessFrame()
   ((UIWnd *)((char *)this + 3096))->GetPosition(1);
   *((_DWORD *)this + 827) = 1;
   v13 = (float)*(int *)&this->m_szTexture[84];
-  ((UIWnd *)(int)this + 3096)->FindChild(v13);
+  ((UIWnd *)((char *)this + 3096))->FindChild(v13);
   v14 = (float)*(int *)&this->m_szTexture[80];
-  ((UIWnd *)(int)this + 3096)->FindChildByName(v14);
+  ((UIWnd *)((char *)this + 3096))->FindChildByName(v14);
   v4 = v20;
   v22[0] = v18;
   v5 = v19;
@@ -475,7 +475,7 @@ int Actor::LoadAction(char *name)
     v18 = 0;
     (*(void (**)(_DWORD, char *))(**(_DWORD **)(v15 + 88) + 60))(*(_DWORD *)(v15 + 88), v14);
     v18 = -1;
-    ((OpenNULLFile **)&name)->OpenNULLFile();
+    ((OpenNULLFile *)&name)->OpenNULLFile();
   }
   return 1;
 }
@@ -602,7 +602,7 @@ void * Actor::LoadModel()
   }
 LABEL_21:
   v20 = -1;
-  return ((OpenNULLFile **)&v17)->OpenNULLFile();
+  return ((OpenNULLFile *)&v17)->OpenNULLFile();
 }
 
 // 0x00536FB0
@@ -688,7 +688,7 @@ void Actor::SetVisible(int bVisible)
       v10 = 0;
       (*(void (**)(_DWORD, char *))(**(_DWORD **)(v7 + 88) + 60))(*(_DWORD *)(v7 + 88), v6);
       v10 = -1;
-      ((OpenNULLFile **)&bVisible)->OpenNULLFile();
+      ((OpenNULLFile *)&bVisible)->OpenNULLFile();
     }
   }
 }

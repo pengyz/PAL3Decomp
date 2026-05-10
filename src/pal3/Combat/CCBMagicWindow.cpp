@@ -121,7 +121,7 @@ _DWORD * CCBMagicWindow::ForbidPage()
 // 0x0051BBE0
 UIWnd * CCBMagicWindow::Destroy(CCBMagicWindow *Block, char a2)
 {
-  ((UIWnd *)Block)->~UIWnd();
+  Block->~UIWnd();
   if ( (a2 & 1) != 0 )
     operator delete(Block);
   return (UIWnd *)Block;
@@ -190,8 +190,8 @@ char CCBMagicWindow::CreateButton(_DWORD *a2, int a3)
       this);
     v6 = ((UIWnd *)*p_m_bcreateok)->SetRect(a2a);
     ((UIWnd *)*p_m_bcreateok)->AddChild(v6);
-    ((UIWnd **)*p_m_bcreateok)->GetChildCount(aUiCombatContro_29, 0);
-    ((UIWnd **)*p_m_bcreateok)->GetChildAt(aUiCombatContro_30, 0);
+    ((UIWnd *)*p_m_bcreateok)->GetChildCount(aUiCombatContro_29, 0);
+    ((UIWnd *)*p_m_bcreateok)->GetChildAt(aUiCombatContro_30, 0);
     ((UIWnd *)*p_m_bcreateok)->SetFrameRate(48);
     ((UIWnd *)*p_m_bcreateok)->GetHeight(23);
     ((UIWnd *)*p_m_bcreateok)->GetWidth(11);
@@ -219,8 +219,8 @@ char CCBMagicWindow::CreateButton(_DWORD *a2, int a3)
       this);
     v9 = ((UIWnd *)*p_m_bvisible)->SetRect(a2a);
     ((UIWnd *)*p_m_bvisible)->AddChild(v9);
-    ((UIWnd **)*p_m_bvisible)->GetChildCount(aUiCombatContro_29, 0);
-    ((UIWnd **)*p_m_bvisible)->GetChildAt(aUiCombatContro_30, 0);
+    ((UIWnd *)*p_m_bvisible)->GetChildCount(aUiCombatContro_29, 0);
+    ((UIWnd *)*p_m_bvisible)->GetChildAt(aUiCombatContro_30, 0);
     ((UIWnd *)*p_m_bvisible)->SetFrameRate(48);
     ((UIWnd *)*p_m_bvisible)->GetHeight(23);
     ((UIWnd *)*p_m_bvisible)->GetWidth(11);
@@ -248,8 +248,8 @@ char CCBMagicWindow::CreateButton(_DWORD *a2, int a3)
       this);
     v12 = ((UIWnd *)*p_m_benable)->SetRect(a2a);
     ((UIWnd *)*p_m_benable)->AddChild(v12);
-    ((UIWnd **)*p_m_benable)->GetChildCount(aUiCombatContro_29, 0);
-    ((UIWnd **)*p_m_benable)->GetChildAt(aUiCombatContro_30, 0);
+    ((UIWnd *)*p_m_benable)->GetChildCount(aUiCombatContro_29, 0);
+    ((UIWnd *)*p_m_benable)->GetChildAt(aUiCombatContro_30, 0);
     ((UIWnd *)*p_m_benable)->SetFrameRate(48);
     ((UIWnd *)*p_m_benable)->GetHeight(23);
     ((UIWnd *)*p_m_benable)->GetWidth(11);
@@ -333,66 +333,66 @@ char CCBMagicWindow::CreateButton(_DWORD *a2, int a3)
 }
 
 // 0x0051C110
-int CCBMagicWindow::Update(int _this)
+int CCBMagicWindow::Update()
 {
   int result; // eax
-  int v3; // ecx
-  int v4; // ecx
-  int v5; // ecx
-  int v6; // ecx
-  int v7; // ecx
-  int v8; // ecx
-  int v9; // ecx
-  int v10; // ecx
+  void *m_pData; // ecx
+  int m_nSize; // ecx
+  int m_nMaxSize; // ecx
+  int m_nGrowBy; // ecx
+  int m_bcreateok; // ecx
+  int m_bvisible; // ecx
+  int m_benable; // ecx
+  int m_bfocus; // ecx
 
-  result = ((UIListBox **)this)->SetScrollPos();
-  v3 = *(_DWORD *)(this + 72);
-  if ( v3 )
+  result = ((UIListBox *)this)->SetScrollPos();
+  m_pData = (void *)this->m_childs.m_pData;
+  if ( m_pData )
   {
-    result = (*(int (**)(int, int))(*(_DWORD *)v3 + 20))(v3, 1);
-    *(_DWORD *)(this + 72) = 0;
+    result = (*(int (**)(void *, int))(*(_DWORD *)m_pData + 20))(m_pData, 1);
+    this->m_childs.m_pData = 0;
   }
-  v4 = *(_DWORD *)(this + 76);
-  if ( v4 )
+  m_nSize = this->m_childs.m_nSize;
+  if ( m_nSize )
   {
-    result = (*(int (**)(int, int))(*(_DWORD *)v4 + 20))(v4, 1);
-    *(_DWORD *)(this + 76) = 0;
+    result = (*(int (**)(int, int))(*(_DWORD *)m_nSize + 20))(m_nSize, 1);
+    this->m_childs.m_nSize = 0;
   }
-  v5 = *(_DWORD *)(this + 80);
-  if ( v5 )
+  m_nMaxSize = this->m_childs.m_nMaxSize;
+  if ( m_nMaxSize )
   {
-    result = (*(int (**)(int, int))(*(_DWORD *)v5 + 20))(v5, 1);
-    *(_DWORD *)(this + 80) = 0;
+    result = (*(int (**)(int, int))(*(_DWORD *)m_nMaxSize + 20))(m_nMaxSize, 1);
+    this->m_childs.m_nMaxSize = 0;
   }
-  v6 = *(_DWORD *)(this + 84);
-  if ( v6 )
+  m_nGrowBy = this->m_childs.m_nGrowBy;
+  if ( m_nGrowBy )
   {
-    result = (*(int (**)(int, int))(*(_DWORD *)v6 + 20))(v6, 1);
-    *(_DWORD *)(this + 84) = 0;
+    result = (*(int (**)(int, int))(*(_DWORD *)m_nGrowBy + 20))(m_nGrowBy, 1);
+    this->m_childs.m_nGrowBy = 0;
   }
-  v7 = *(_DWORD *)(this + 88);
-  if ( v7 )
+  m_bcreateok = this->m_bcreateok;
+  if ( m_bcreateok )
   {
-    result = (*(int (**)(int, int))(*(_DWORD *)v7 + 20))(v7, 1);
-    *(_DWORD *)(this + 88) = 0;
+    result = (*(int (**)(int, int))(*(_DWORD *)m_bcreateok + 20))(m_bcreateok, 1);
+    this->m_bcreateok = 0;
   }
-  v8 = *(_DWORD *)(this + 92);
-  if ( v8 )
+  m_bvisible = this->m_bvisible;
+  if ( m_bvisible )
   {
-    result = (*(int (**)(int, int))(*(_DWORD *)v8 + 20))(v8, 1);
-    *(_DWORD *)(this + 92) = 0;
+    result = (*(int (**)(int, int))(*(_DWORD *)m_bvisible + 20))(m_bvisible, 1);
+    this->m_bvisible = 0;
   }
-  v9 = *(_DWORD *)(this + 96);
-  if ( v9 )
+  m_benable = this->m_benable;
+  if ( m_benable )
   {
-    result = (*(int (**)(int, int))(*(_DWORD *)v9 + 20))(v9, 1);
-    *(_DWORD *)(this + 96) = 0;
+    result = (*(int (**)(int, int))(*(_DWORD *)m_benable + 20))(m_benable, 1);
+    this->m_benable = 0;
   }
-  v10 = *(_DWORD *)(this + 100);
-  if ( v10 )
+  m_bfocus = this->m_bfocus;
+  if ( m_bfocus )
   {
-    result = (*(int (**)(int, int))(*(_DWORD *)v10 + 20))(v10, 1);
-    *(_DWORD *)(this + 100) = 0;
+    result = (*(int (**)(int, int))(*(_DWORD *)m_bfocus + 20))(m_bfocus, 1);
+    this->m_bfocus = 0;
   }
   return result;
 }

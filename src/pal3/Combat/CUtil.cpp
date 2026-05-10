@@ -59,25 +59,25 @@ void CUtil::Init()
 }
 
 // 0x00523130
-int CUtil::CreateLog(int _this)
+int CUtil::CreateLog()
 {
   ((UIListBox *)this)->UIListBox();
-  *(_DWORD *)(this + 88) = 800;
-  *(_DWORD *)(this + 92) = 600;
-  *(_DWORD *)(this + 360) = 0;
-  *(_DWORD *)(this + 364) = 0;
-  ((UIItem *)(this + 368))->Refresh();
-  *(_DWORD *)(this + 1736) = 0;
-  *(_DWORD *)(this + 1740) = 0;
-  *(_DWORD *)(this + 1744) = 0;
-  *(_DWORD *)(this + 1748) = 0;
-  *(_DWORD *)(this + 1752) = 0;
-  *(_DWORD *)this = &off_5705F4;
-  *(_DWORD *)(this + 352) = 0;
-  *(_BYTE *)(this + 356) = 0;
-  *(_DWORD *)(this + 1756) = 0;
-  *(_BYTE *)(this + 1768) = 1;
-  return this;
+  *(_DWORD *)&this->m_INIFileName[68] = 800;
+  *(_DWORD *)&this->m_INIFileName[72] = 600;
+  *(_DWORD *)&this->m_INIBuffer[76] = 0;
+  *(_DWORD *)&this->m_INIBuffer[80] = 0;
+  ((UIItem *)&this->m_INIBuffer[84])->Refresh();
+  *((_DWORD *)this + 434) = 0;
+  *((_DWORD *)this + 435) = 0;
+  *((_DWORD *)this + 436) = 0;
+  *((_DWORD *)this + 437) = 0;
+  *((_DWORD *)this + 438) = 0;
+  this->m_bCanWarp = (__int32)&off_5705F4;
+  *(_DWORD *)&this->m_INIBuffer[68] = 0;
+  this->m_INIBuffer[72] = 0;
+  *((_DWORD *)this + 439) = 0;
+  *((_BYTE *)this + 1768) = 1;
+  return (int)this;
 }
 
 // 0x005231D0
@@ -133,13 +133,13 @@ int CUtil::GetFileSize()
   int v3; // ecx
   int v4; // ecx
   int v5; // edx
-  LPVOID v6; // eax
+  UIWnd *v6; // eax
   int v7; // eax
-  LPVOID v8; // eax
+  CCBProtectWindow *v8; // eax
   int v9; // eax
-  LPVOID v10; // eax
+  UIWnd *v10; // eax
   int v11; // eax
-  LPVOID v12; // eax
+  UIWnd *v12; // eax
   int v13; // eax
   int v14; // ecx
   char *Instance; // eax
@@ -172,34 +172,34 @@ int CUtil::GetFileSize()
   *((_DWORD *)this + 429) = 6;
   *(_DWORD *)&this->m_INIBuffer[188] = v5 - 6;
   ((UIWnd *)((char *)this + 824))->GetRect(&this->m_INIBuffer[180]);
-  v6 = operator new(0x1578u);
+  v6 = (UIWnd *)operator new(0x1578u);
   v22 = 0;
   if ( v6 )
-    v7 = ((int)v6)->ctor_3F30();
+    v7 = v6->ctor_3F30();
   else
     v7 = 0;
   v22 = -1;
   *((_DWORD *)this + 434) = v7;
-  v8 = operator new(0xA4128u);
+  v8 = (CCBProtectWindow *)operator new(0xA4128u);
   v22 = 1;
   if ( v8 )
-    v9 = ((int)v8)->Create();
+    v9 = v8->Create();
   else
     v9 = 0;
   v22 = -1;
   *((_DWORD *)this + 435) = v9;
-  v10 = operator new(0x1E56Cu);
+  v10 = (UIWnd *)operator new(0x1E56Cu);
   v22 = 2;
   if ( v10 )
-    v11 = ((int)v10)->ctor_A60();
+    v11 = v10->ctor_A60();
   else
     v11 = 0;
   v22 = -1;
   *((_DWORD *)this + 436) = v11;
-  v12 = operator new(0x70DCu);
+  v12 = (UIWnd *)operator new(0x70DCu);
   v22 = 3;
   if ( v12 )
-    v13 = ((int)v12)->ctor_D140();
+    v13 = v12->ctor_D140();
   else
     v13 = 0;
   v14 = *((_DWORD *)this + 434);

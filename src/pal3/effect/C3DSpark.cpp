@@ -209,73 +209,73 @@ C3DSpark::C3DSpark()
 // 0x004D6960
 C3DSpark::~C3DSpark()
 {
-  gbRefObject *v2; // ecx
-  gbRefObject *v3; // ecx
-  gbRefObject *v4; // ecx
-  gbRefObject *v5; // ecx
-  gbRefObject *v6; // ecx
-  gbRefObject *v7; // ecx
+  float x; // ecx
+  float y; // ecx
+  float z; // ecx
+  float v5; // ecx
+  float v6; // ecx
+  float su; // ecx
 
-  v2 = (gbRefObject *)*(gbRefObject **)(this + 7172);
-  if ( v2 )
+  x = this->m_GeomQuad[75].vec[1].x;
+  if ( x != 0.0 )
   {
-    v2->Release();
-    *(_DWORD *)(this + 7172) = 0;
+    ((gbRefObject *)LODWORD(x))->Release();
+    this->m_GeomQuad[75].vec[1].x = 0.0;
   }
-  v3 = (gbRefObject *)*(gbRefObject **)(this + 7176);
-  if ( v3 )
+  y = this->m_GeomQuad[75].vec[1].y;
+  if ( y != 0.0 )
   {
-    v3->Release();
-    *(_DWORD *)(this + 7176) = 0;
+    ((gbRefObject *)LODWORD(y))->Release();
+    this->m_GeomQuad[75].vec[1].y = 0.0;
   }
-  v4 = (gbRefObject *)*(gbRefObject **)(this + 7192);
-  if ( v4 )
+  z = this->m_GeomQuad[75].vec[2].z;
+  if ( z != 0.0 )
   {
-    v4->Release();
-    *(_DWORD *)(this + 7192) = 0;
+    ((gbRefObject *)LODWORD(z))->Release();
+    this->m_GeomQuad[75].vec[2].z = 0.0;
   }
-  v5 = (gbRefObject *)*(gbRefObject **)(this + 7184);
-  if ( v5 )
+  v5 = this->m_GeomQuad[75].vec[2].x;
+  if ( v5 != 0.0 )
   {
-    v5->Release();
-    *(_DWORD *)(this + 7184) = 0;
+    ((gbRefObject *)LODWORD(v5))->Release();
+    this->m_GeomQuad[75].vec[2].x = 0.0;
   }
-  v6 = (gbRefObject *)*(gbRefObject **)(this + 7200);
-  if ( v6 )
+  v6 = this->m_GeomQuad[75].vec[3].y;
+  if ( v6 != 0.0 )
   {
-    v6->Release();
-    *(_DWORD *)(this + 7200) = 0;
+    ((gbRefObject *)LODWORD(v6))->Release();
+    this->m_GeomQuad[75].vec[3].y = 0.0;
   }
-  v7 = (gbRefObject *)*(gbRefObject **)(this + 7208);
-  if ( v7 )
+  su = this->m_GeomQuad[75].su;
+  if ( su != 0.0 )
   {
-    v7->Release();
-    *(_DWORD *)(this + 7208) = 0;
+    ((gbRefObject *)LODWORD(su))->Release();
+    this->m_GeomQuad[75].su = 0.0;
   }
-  if ( *(_DWORD *)(this + 7180) )
+  if ( LODWORD(this->m_GeomQuad[75].vec[1].z) )
   {
-    operator delete(*(void **)(this + 7180));
-    *(_DWORD *)(this + 7180) = 0;
+    operator delete((void *)LODWORD(this->m_GeomQuad[75].vec[1].z));
+    this->m_GeomQuad[75].vec[1].z = 0.0;
   }
-  if ( *(_DWORD *)(this + 7196) )
+  if ( LODWORD(this->m_GeomQuad[75].vec[3].x) )
   {
-    operator delete(*(void **)(this + 7196));
-    *(_DWORD *)(this + 7196) = 0;
+    operator delete((void *)LODWORD(this->m_GeomQuad[75].vec[3].x));
+    this->m_GeomQuad[75].vec[3].x = 0.0;
   }
-  if ( *(_DWORD *)(this + 7188) )
+  if ( LODWORD(this->m_GeomQuad[75].vec[2].y) )
   {
-    operator delete(*(void **)(this + 7188));
-    *(_DWORD *)(this + 7188) = 0;
+    operator delete((void *)LODWORD(this->m_GeomQuad[75].vec[2].y));
+    this->m_GeomQuad[75].vec[2].y = 0.0;
   }
-  if ( *(_DWORD *)(this + 7204) )
+  if ( LODWORD(this->m_GeomQuad[75].vec[3].z) )
   {
-    operator delete(*(void **)(this + 7204));
-    *(_DWORD *)(this + 7204) = 0;
+    operator delete((void *)LODWORD(this->m_GeomQuad[75].vec[3].z));
+    this->m_GeomQuad[75].vec[3].z = 0.0;
   }
-  if ( *(_DWORD *)(this + 7212) )
+  if ( LODWORD(this->m_GeomQuad[75].sv) )
   {
-    operator delete(*(void **)(this + 7212));
-    *(_DWORD *)(this + 7212) = 0;
+    operator delete((void *)LODWORD(this->m_GeomQuad[75].sv));
+    this->m_GeomQuad[75].sv = 0.0;
   }
 }
 
@@ -413,7 +413,7 @@ void C3DSpark::Render(int a1@<ecx>, struct gbVec3D *a2@<edi>)
       ((gbVertPoolMgr *)*(gbVertPoolMgr **)(g_Input.KeyInfo[177].Data + 196))->GetDynVertBuf(0x15u);
       v2->Push();
       v2->LoadIdentity();
-      ((struct gbGeomQuad *)(v15 + 7216))->RenderGeomQuad(v17, *(struct gbRenderEffect **)(v15 + 7172), *(struct gbTextureArray **)(v15 + 7204));
+      ((gbDynVertBuf *)(v15 + 7216))->RenderGeomQuad(v17, *(struct gbRenderEffect **)(v15 + 7172), *(struct gbTextureArray **)(v15 + 7204));
       v2->Pop();
     }
   }

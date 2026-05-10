@@ -49,7 +49,7 @@ public:
     void CalHeightCount(); // 0x0043DF10
     void GetItemPos(); // 0x0043DF20
     char * UpdateKeyCtrl(); // 0x0043DFC0
-    UIWnd * DeleteAllItems(UIWnd *Block, char a2); // 0x0043E100
+    UIWnd * DeleteAllItems(char a2); // 0x0043E100
     void DeleteRow(); // 0x0043E120
     int CalScrollBarRange(int id, _DWORD *a3, int parent, LPCSTR lpString, int a6, char a7); // 0x0043E1C0
     void GetSel(int a2, int a3); // 0x0043E330

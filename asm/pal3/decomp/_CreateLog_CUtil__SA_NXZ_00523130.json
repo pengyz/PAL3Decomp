@@ -2,6 +2,6 @@
   "name": "?CreateLog@CUtil@@SA_NXZ",
   "address": "0x00523130",
   "size_bytes": 159,
-  "signature": "int __thiscall(int this)",
-  "decompiled_c": "// between_std_methods (0x504E20-0x53C2B0)\nint __thiscall CUtil::CreateLog(int this)\n{\n  UIListBox::UIListBox((UIListBox *)this);\n  *(_DWORD *)(this + 88) = 800;\n  *(_DWORD *)(this + 92) = 600;\n  *(_DWORD *)(this + 360) = 0;\n  *(_DWORD *)(this + 364) = 0;\n  UIItem::Refresh((UIItem *)(this + 368));\n  *(_DWORD *)(this + 1736) = 0;\n  *(_DWORD *)(this + 1740) = 0;\n  *(_DWORD *)(this + 1744) = 0;\n  *(_DWORD *)(this + 1748) = 0;\n  *(_DWORD *)(this + 1752) = 0;\n  *(_DWORD *)this = &off_5705F4;\n  *(_DWORD *)(this + 352) = 0;\n  *(_BYTE *)(this + 356) = 0;\n  *(_DWORD *)(this + 1756) = 0;\n  *(_BYTE *)(this + 1768) = 1;\n  return this;\n}\n"
+  "signature": "int __thiscall(CUtil *this)",
+  "decompiled_c": "// between_std_methods (0x504E20-0x53C2B0)\nint __thiscall CUtil::CreateLog(CUtil *this)\n{\n  UIListBox::UIListBox((UIListBox *)this);\n  *(_DWORD *)&this->m_INIFileName[68] = 800;\n  *(_DWORD *)&this->m_INIFileName[72] = 600;\n  *(_DWORD *)&this->m_INIBuffer[76] = 0;\n  *(_DWORD *)&this->m_INIBuffer[80] = 0;\n  UIItem::Refresh((UIItem *)&this->m_INIBuffer[84]);\n  *((_DWORD *)this + 434) = 0;\n  *((_DWORD *)this + 435) = 0;\n  *((_DWORD *)this + 436) = 0;\n  *((_DWORD *)this + 437) = 0;\n  *((_DWORD *)this + 438) = 0;\n  this->m_bCanWarp = (__int32)&off_5705F4;\n  *(_DWORD *)&this->m_INIBuffer[68] = 0;\n  this->m_INIBuffer[72] = 0;\n  *((_DWORD *)this + 439) = 0;\n  *((_BYTE *)this + 1768) = 1;\n  return (int)this;\n}\n"
 }

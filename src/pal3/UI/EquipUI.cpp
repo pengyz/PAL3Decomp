@@ -79,10 +79,10 @@ int EquipUI::Create()
     128,
     (void (*)(void *))sub_4B4690,
     (void (*)(void *))sub_4B47E0);
-  ((EquipUI *)((char *)this + 154516))->UIFrameWnd();
-  ((EquipUI *)((char *)this + 154668))->UIFrameWnd();
-  ((EquipUI *)((char *)this + 154820))->UIFrameWnd();
-  ((EquipUI *)((char *)this + 154972))->UIFrameWnd();
+  ((UIFrameWnd *)((char *)this + 154516))->UIFrameWnd();
+  ((UIFrameWnd *)((char *)this + 154668))->UIFrameWnd();
+  ((UIFrameWnd *)((char *)this + 154820))->UIFrameWnd();
+  ((UIFrameWnd *)((char *)this + 154972))->UIFrameWnd();
   `eh vector constructor iterator'(
     (char *)this + 155140,
     0xECCu,
@@ -95,7 +95,7 @@ int EquipUI::Create()
     4,
     (void (*)(void *))UIFrameWnd::UIFrameWnd,
     (void (*)(void *))UIFrameWnd::_UIFrameWnd);
-  ((EquipUI *)((char *)this + 174688))->UIFrameWnd();
+  ((UIFrameWnd *)((char *)this + 174688))->UIFrameWnd();
   `eh vector constructor iterator'(
     (char *)this + 174856,
     0x98u,
@@ -111,7 +111,7 @@ int EquipUI::Create()
   *((_DWORD *)this + 44019) = 0;
   *((_DWORD *)this + 44020) = 0;
   *((_DWORD *)this + 44021) = 0;
-  ((EquipUI *)((char *)this + 176092))->UIFrameWnd();
+  ((UIFrameWnd *)((char *)this + 176092))->UIFrameWnd();
   this->m_fontcolor.ColorQuadFmt = (int)&off_56F040;
   this->buf[249] = 0;
   this->buf[248] = 0;
@@ -138,19 +138,19 @@ void EquipUI::Init()
   int v9; // eax
   int v10; // edx
   char *v11; // edi
-  LPVOID v12; // eax
+  UIWnd *v12; // eax
   int v13; // eax
-  LPVOID v14; // eax
+  UIWnd *v14; // eax
   int v15; // eax
-  LPVOID v16; // eax
+  UIWnd *v16; // eax
   int v17; // eax
-  LPVOID v18; // eax
+  UIWnd *v18; // eax
   int v19; // eax
-  LPVOID v20; // eax
+  UIWnd *v20; // eax
   int v21; // eax
-  LPVOID v22; // eax
+  UIWnd *v22; // eax
   int v23; // eax
-  LPVOID v24; // eax
+  UIWnd *v24; // eax
   int v25; // eax
   int v26; // ecx
   int v27; // [esp+3Ch] [ebp-64h]
@@ -197,14 +197,14 @@ void EquipUI::Init()
   v53 = (char *)v51 + 192;
   v54 = v4 + 526;
   (*((void (**)(int **, int, char **, EquipUI *))this->m_ListNum + 4))(&this->m_ListNum, 161, &v51, this);
-  ((UIWnd **)&this->m_ListNum)->CreateFromTemplate(aUiGamemainuiSt_1, byte_5CEFA8);
+  ((UIWnd *)&this->m_ListNum)->CreateFromTemplate(aUiGamemainuiSt_1, byte_5CEFA8);
   v5 = *(_DWORD *)&this->m_EquipData.m_Name[104];
   v52 += 26;
   v51 = v53;
   v54 = v52 + 526;
   v53 += 17;
   (*(void (**)(char *, int, char **, EquipUI *))(v5 + 16))(&this->m_EquipData.m_Name[104], 161, &v51, this);
-  ((UIWnd **)&this->m_EquipData.m_Name[104])->CreateFromTemplate(aUiGamemainuiCo_23, byte_5CEFA8);
+  ((UIWnd *)&this->m_EquipData.m_Name[104])->CreateFromTemplate(aUiGamemainuiCo_23, byte_5CEFA8);
   v55[1] = 14;
   v55[0] = 626;
   v55[2] = 674;
@@ -226,7 +226,7 @@ void EquipUI::Init()
   v47 = 0;
   v49 = 64;
   (*(void (**)(__int32 *, int, int *, EquipUI *))(m_C + 16))(&this->m_EquipData.m_C, 161, &v46, this);
-  ((UIWnd **)&this->m_EquipData.m_C)->CreateFromTemplate(aUiGamemainuiCo_19, byte_5CEFA8);
+  ((UIWnd *)&this->m_EquipData.m_C)->CreateFromTemplate(aUiGamemainuiCo_19, byte_5CEFA8);
   v9 = *(_DWORD *)&this->m_EquipData.m_AcptTalk[194][1][3];
   v47 = -4;
   v46 = 618;
@@ -289,65 +289,65 @@ void EquipUI::Init()
   sub_4A2F90((int)this, 0, (int)v6, 4, (int)v50, v36);
   *((_BYTE *)this + 176089) = 0;
   *((_BYTE *)this + 176088) = byte_5CEFA9;
-  v12 = operator new(0x29CECu);
+  v12 = (UIWnd *)operator new(0x29CECu);
   id = (int)v12;
   v56 = 0;
   if ( v12 )
-    v13 = ((int)v12)->ctor_2ED0();
+    v13 = v12->ctor_2ED0();
   else
     v13 = 0;
   v56 = -1;
   *((_DWORD *)this + 44014) = v13;
-  v14 = operator new(0x56630u);
+  v14 = (UIWnd *)operator new(0x56630u);
   id = (int)v14;
   v56 = 1;
   if ( v14 )
-    v15 = ((int)v14)->ctor_67F0();
+    v15 = v14->ctor_67F0();
   else
     v15 = 0;
   v56 = -1;
   *((_DWORD *)this + 44015) = v15;
-  v16 = operator new(0x35B50u);
+  v16 = (UIWnd *)operator new(0x35B50u);
   id = (int)v16;
   v56 = 2;
   if ( v16 )
-    v17 = ((int)v16)->ctor_9F0();
+    v17 = v16->ctor_9F0();
   else
     v17 = 0;
   v56 = -1;
   *((_DWORD *)this + 44016) = v17;
-  v18 = operator new(0x41014u);
+  v18 = (UIWnd *)operator new(0x41014u);
   id = (int)v18;
   v56 = 3;
   if ( v18 )
-    v19 = ((int)v18)->ctor_8820();
+    v19 = v18->ctor_8820();
   else
     v19 = 0;
   v56 = -1;
   *((_DWORD *)this + 44017) = v19;
-  v20 = operator new(0x62588u);
+  v20 = (UIWnd *)operator new(0x62588u);
   id = (int)v20;
   v56 = 4;
   if ( v20 )
-    v21 = ((int)v20)->ctor_6F10();
+    v21 = v20->ctor_6F10();
   else
     v21 = 0;
   v56 = -1;
   *((_DWORD *)this + 44018) = v21;
-  v22 = operator new(0x27BD4u);
+  v22 = (UIWnd *)operator new(0x27BD4u);
   id = (int)v22;
   v56 = 5;
   if ( v22 )
-    v23 = ((int)v22)->ctor_E5C0();
+    v23 = v22->ctor_E5C0();
   else
     v23 = 0;
   v56 = -1;
   *((_DWORD *)this + 44019) = v23;
-  v24 = operator new(0x46EB8u);
+  v24 = (UIWnd *)operator new(0x46EB8u);
   id = (int)v24;
   v56 = 6;
   if ( v24 )
-    v25 = ((int)v24)->ctor_1D0();
+    v25 = v24->ctor_1D0();
   else
     v25 = 0;
   v26 = *((_DWORD *)this + 44014);

@@ -14,16 +14,16 @@ void operator delete(void *Block)
 void operator delete()
 {
   int v0; // ebx
-  void *v1; // esi
-  LPVOID v2; // eax
-  void *v3; // edi
+  _DWORD *v1; // esi
+  _DWORD *v2; // eax
+  _DWORD *v3; // edi
 
   v0 = 0;
   if ( !dword_1895304 )
   {
     dword_1895304 = 1;
-    v1 = (void *)operator new(0);
-    v2 = operator new(0);
+    v1 = (_DWORD *)operator new(0);
+    v2 = (_DWORD *)operator new(0);
     v3 = v2;
     if ( !v1 || !v2 || v1 == v2 )
       v0 = 1;

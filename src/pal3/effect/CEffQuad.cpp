@@ -20,17 +20,17 @@ extern int dword_17A7BC0;
 extern int unk_FFFFFF;
 
 // 0x004D1090
-char CEffQuad::Create(int _this, int a2)
+char CEffQuad::Create(int a2)
 {
   int v3; // ebp
-  LPVOID v4; // eax
+  _DWORD *v4; // eax
   int v5; // ebp
   int v6; // ebx
   int v7; // ebp
-  LPVOID v8; // eax
+  _DWORD *v8; // eax
   int v9; // ecx
   int i; // eax
-  LPVOID v11; // eax
+  _DWORD *v11; // eax
   int v12; // ebx
   int v13; // edi
   int v14; // edi
@@ -39,20 +39,20 @@ char CEffQuad::Create(int _this, int a2)
   int v17; // ecx
   int v19; // edi
   size_t v20; // [esp-4h] [ebp-824h]
-  void *v21; // [esp+10h] [ebp-810h]
+  _DWORD *v21; // [esp+10h] [ebp-810h]
   char pExceptionObject[1024]; // [esp+14h] [ebp-80Ch] BYREF
   char ArgList[1024]; // [esp+414h] [ebp-40Ch] BYREF
   int v24; // [esp+81Ch] [ebp-4h]
 
-  *(_BYTE *)(this + 50) = 1;
-  *(_BYTE *)(this + 53) = *(_BYTE *)(a2 + 215);
-  *(_BYTE *)(this + 52) = *(_BYTE *)(a2 + 213);
-  *(_BYTE *)(this + 54) = *(_BYTE *)(a2 + 176);
-  *(_DWORD *)(this + 56) = &unk_FFFFFF;
+  *((_BYTE *)this + 50) = 1;
+  *((_DWORD *)this + 53) = *(CEffQuad *)(a2 + 215);
+  *((_DWORD *)this + 52) = *(CEffQuad *)(a2 + 213);
+  *((_DWORD *)this + 54) = *(CEffQuad *)(a2 + 176);
+  *((_DWORD *)this + 14) = &unk_FFFFFF;
   sub_4D1FD0((char *)this, *(_DWORD *)(a2 + 168), *(_DWORD *)(a2 + 172));
-  *(_DWORD *)(this + 156) = operator new(80 * *(_DWORD *)(a2 + 208));
+  *((_DWORD *)this + 39) = operator new(80 * *(_DWORD *)(a2 + 208));
   v3 = *(_DWORD *)(a2 + 208);
-  v4 = operator new(68 * v3);
+  v4 = (_DWORD *)operator new(68 * v3);
   v21 = v4;
   v24 = 0;
   if ( v4 )
@@ -76,13 +76,13 @@ char CEffQuad::Create(int _this, int a2)
   {
     v4 = 0;
   }
-  *(_DWORD *)(this + 160) = v4;
+  *((_DWORD *)this + 40) = v4;
   v20 = 4 * *(_DWORD *)(a2 + 208);
   v24 = -1;
-  v8 = operator new(v20);
-  v9 = *(_DWORD *)(this + 156);
-  *(_DWORD *)(this + 164) = v8;
-  if ( !v9 || !*(_DWORD *)(this + 160) || !v8 )
+  v8 = (_DWORD *)operator new(v20);
+  v9 = *((_DWORD *)this + 39);
+  *((_DWORD *)this + 41) = v8;
+  if ( !v9 || !*((_DWORD *)this + 40) || !v8 )
   {
     qmemcpy(
       pExceptionObject,
@@ -90,49 +90,49 @@ char CEffQuad::Create(int _this, int a2)
       sizeof(pExceptionObject));
     _CxxThrowException(pExceptionObject, (_ThrowInfo *)&_TI1_AV_Exception__);
   }
-  *(_DWORD *)(this + 68) = *(_DWORD *)(a2 + 208);
-  sub_4D1EF0((_DWORD *)this);
-  for ( i = 0; i < *(_DWORD *)(this + 68); ++i )
-    *(_DWORD *)(*(_DWORD *)(this + 164) + 4 * i) = i;
+  *((_DWORD *)this + 17) = *(_DWORD *)(a2 + 208);
+  sub_4D1EF0(this);
+  for ( i = 0; i < *((_DWORD *)this + 17); ++i )
+    *(_DWORD *)(*((_DWORD *)this + 41) + 4 * i) = i;
   this->ToNextFrame(a2 + 40);
-  v11 = operator new(0x4C0u);
-  *(_DWORD *)(this + 24) = v11;
+  v11 = (_DWORD *)operator new(0x4C0u);
+  *((_DWORD *)this + 6) = v11;
   if ( v11 )
   {
     v12 = 0;
     v13 = 0;
     while ( 1 )
     {
-      *(_DWORD *)(v13 + *(_DWORD *)(this + 24)) = operator new(0x2D0u);
-      if ( !*(_DWORD *)(v13 + *(_DWORD *)(this + 24)) )
+      *(_DWORD *)(v13 + *((_DWORD *)this + 6)) = operator new(0x2D0u);
+      if ( !*(_DWORD *)(v13 + *((_DWORD *)this + 6)) )
         break;
       v13 += 152;
       ++v12;
       if ( v13 >= 1216 )
       {
         v14 = 0;
-        *(_DWORD *)(this + 40) = 8;
-        *(_DWORD *)(this + 44) = 10;
+        *((_DWORD *)this + 10) = 8;
+        *((_DWORD *)this + 11) = 10;
         v15 = 0;
         do
         {
-          *(_BYTE *)(v15 + *(_DWORD *)(this + 24) + 148) = 0;
+          *(_BYTE *)(v15 + *((_DWORD *)this + 6) + 148) = 0;
           v16 = 0;
-          if ( *(int *)(this + 44) > 0 )
+          if ( *((int *)this + 11) > 0 )
           {
             v17 = 0;
             do
             {
               ++v16;
               v17 += 72;
-              *(_BYTE *)(*(_DWORD *)(v15 + *(_DWORD *)(this + 24)) + v17 - 8) = 0;
+              *(_BYTE *)(*(_DWORD *)(v15 + *((_DWORD *)this + 6)) + v17 - 8) = 0;
             }
-            while ( v16 < *(_DWORD *)(this + 44) );
+            while ( v16 < *((_DWORD *)this + 11) );
           }
           ++v14;
           v15 += 152;
         }
-        while ( v14 < *(_DWORD *)(this + 40) );
+        while ( v14 < *((_DWORD *)this + 10) );
         return 1;
       }
     }
@@ -141,13 +141,13 @@ char CEffQuad::Create(int _this, int a2)
       v19 = 152 * (v12 - 1);
       do
       {
-        operator delete(*(void **)(v19 + *(_DWORD *)(this + 24)));
+        operator delete(*(void **)(v19 + *((_DWORD *)this + 6)));
         v19 -= 152;
         --v12;
       }
       while ( v12 );
     }
-    operator delete(*(void **)(this + 24));
+    operator delete(*((void **)this + 6));
   }
   return 1;
 }
@@ -185,56 +185,56 @@ char CEffQuad::DestroyOneQuad(const void *a2)
     *((_DWORD *)this + 15) = v9 + 1;
   *(_DWORD *)(v8 + *((_DWORD *)this + 39)) = *((_DWORD *)this + 16);
   *(_DWORD *)(*((_DWORD *)this + 41) + 4 * (*((_DWORD *)this + 16))++) = v4;
-  ((int)this)->SetQuad(v4);
+  this->SetQuad(v4);
   *((_DWORD *)this + 18) = v4;
   return 1;
 }
 
 // 0x004D1CA0
-int CEffQuad::SetQuad(int _this, int a2)
+int CEffQuad::SetQuad(int a2)
 {
   int v2; // edx
   int result; // eax
   double v4; // st7
 
-  v2 = 80 * a2 + *(_DWORD *)(this + 156);
+  v2 = 80 * a2 + *((_DWORD *)this + 39);
   result = 68 * *(_DWORD *)v2;
-  *(_DWORD *)(result + *(_DWORD *)(this + 160) + 64) = *(_DWORD *)(v2 + 76);
-  if ( *(_BYTE *)(this + 51) )
+  *(_DWORD *)(result + *((_DWORD *)this + 40) + 64) = *(_DWORD *)(v2 + 76);
+  if ( *((_BYTE *)this + 51) )
   {
-    *(float *)(result + *(_DWORD *)(this + 160)) = *(float *)(v2 + 16) - *(float *)(v2 + 28);
-    *(float *)(result + *(_DWORD *)(this + 160) + 12) = *(float *)(v2 + 28) + *(float *)(v2 + 16);
-    *(float *)(result + *(_DWORD *)(this + 160) + 24) = *(float *)(v2 + 28) + *(float *)(v2 + 16);
-    *(float *)(result + *(_DWORD *)(this + 160) + 36) = *(float *)(v2 + 16) - *(float *)(v2 + 28);
-    *(_DWORD *)(result + *(_DWORD *)(this + 160) + 4) = *(_DWORD *)(v2 + 20);
-    *(_DWORD *)(result + *(_DWORD *)(this + 160) + 16) = *(_DWORD *)(v2 + 20);
-    *(_DWORD *)(result + *(_DWORD *)(this + 160) + 28) = *(_DWORD *)(v2 + 20);
-    *(_DWORD *)(result + *(_DWORD *)(this + 160) + 40) = *(_DWORD *)(v2 + 20);
-    *(float *)(result + *(_DWORD *)(this + 160) + 8) = *(float *)(v2 + 32) + *(float *)(v2 + 24);
-    *(float *)(result + *(_DWORD *)(this + 160) + 20) = *(float *)(v2 + 32) + *(float *)(v2 + 24);
-    *(float *)(result + *(_DWORD *)(this + 160) + 32) = *(float *)(v2 + 24) - *(float *)(v2 + 32);
+    *(float *)(result + *((_DWORD *)this + 40)) = *(float *)(v2 + 16) - *(float *)(v2 + 28);
+    *(float *)(result + *((_DWORD *)this + 40) + 12) = *(float *)(v2 + 28) + *(float *)(v2 + 16);
+    *(float *)(result + *((_DWORD *)this + 40) + 24) = *(float *)(v2 + 28) + *(float *)(v2 + 16);
+    *(float *)(result + *((_DWORD *)this + 40) + 36) = *(float *)(v2 + 16) - *(float *)(v2 + 28);
+    *(_DWORD *)(result + *((_DWORD *)this + 40) + 4) = *(_DWORD *)(v2 + 20);
+    *(_DWORD *)(result + *((_DWORD *)this + 40) + 16) = *(_DWORD *)(v2 + 20);
+    *(_DWORD *)(result + *((_DWORD *)this + 40) + 28) = *(_DWORD *)(v2 + 20);
+    *(_DWORD *)(result + *((_DWORD *)this + 40) + 40) = *(_DWORD *)(v2 + 20);
+    *(float *)(result + *((_DWORD *)this + 40) + 8) = *(float *)(v2 + 32) + *(float *)(v2 + 24);
+    *(float *)(result + *((_DWORD *)this + 40) + 20) = *(float *)(v2 + 32) + *(float *)(v2 + 24);
+    *(float *)(result + *((_DWORD *)this + 40) + 32) = *(float *)(v2 + 24) - *(float *)(v2 + 32);
     v4 = *(float *)(v2 + 24) - *(float *)(v2 + 32);
   }
   else
   {
-    *(float *)(result + *(_DWORD *)(this + 160)) = -*(float *)(v2 + 28);
-    *(_DWORD *)(result + *(_DWORD *)(this + 160) + 12) = *(_DWORD *)(v2 + 28);
-    *(_DWORD *)(result + *(_DWORD *)(this + 160) + 24) = *(_DWORD *)(v2 + 28);
-    *(float *)(result + *(_DWORD *)(this + 160) + 36) = -*(float *)(v2 + 28);
-    *(_DWORD *)(result + *(_DWORD *)(this + 160) + 4) = 0;
-    *(_DWORD *)(result + *(_DWORD *)(this + 160) + 16) = 0;
-    *(_DWORD *)(result + *(_DWORD *)(this + 160) + 28) = 0;
-    *(_DWORD *)(result + *(_DWORD *)(this + 160) + 40) = 0;
-    *(_DWORD *)(result + *(_DWORD *)(this + 160) + 8) = *(_DWORD *)(v2 + 32);
-    *(_DWORD *)(result + *(_DWORD *)(this + 160) + 20) = *(_DWORD *)(v2 + 32);
-    *(float *)(result + *(_DWORD *)(this + 160) + 32) = -*(float *)(v2 + 32);
+    *(float *)(result + *((_DWORD *)this + 40)) = -*(float *)(v2 + 28);
+    *(_DWORD *)(result + *((_DWORD *)this + 40) + 12) = *(_DWORD *)(v2 + 28);
+    *(_DWORD *)(result + *((_DWORD *)this + 40) + 24) = *(_DWORD *)(v2 + 28);
+    *(float *)(result + *((_DWORD *)this + 40) + 36) = -*(float *)(v2 + 28);
+    *(_DWORD *)(result + *((_DWORD *)this + 40) + 4) = 0;
+    *(_DWORD *)(result + *((_DWORD *)this + 40) + 16) = 0;
+    *(_DWORD *)(result + *((_DWORD *)this + 40) + 28) = 0;
+    *(_DWORD *)(result + *((_DWORD *)this + 40) + 40) = 0;
+    *(_DWORD *)(result + *((_DWORD *)this + 40) + 8) = *(_DWORD *)(v2 + 32);
+    *(_DWORD *)(result + *((_DWORD *)this + 40) + 20) = *(_DWORD *)(v2 + 32);
+    *(float *)(result + *((_DWORD *)this + 40) + 32) = -*(float *)(v2 + 32);
     v4 = -*(float *)(v2 + 32);
   }
-  *(float *)(result + *(_DWORD *)(this + 160) + 44) = v4;
-  *(_DWORD *)(result + *(_DWORD *)(this + 160) + 48) = 0;
-  *(_DWORD *)(result + *(_DWORD *)(this + 160) + 56) = 0;
-  *(_DWORD *)(result + *(_DWORD *)(this + 160) + 52) = 0;
-  *(_DWORD *)(result + *(_DWORD *)(this + 160) + 60) = 0;
+  *(float *)(result + *((_DWORD *)this + 40) + 44) = v4;
+  *(_DWORD *)(result + *((_DWORD *)this + 40) + 48) = 0;
+  *(_DWORD *)(result + *((_DWORD *)this + 40) + 56) = 0;
+  *(_DWORD *)(result + *((_DWORD *)this + 40) + 52) = 0;
+  *(_DWORD *)(result + *((_DWORD *)this + 40) + 60) = 0;
   return result;
 }
 
@@ -268,7 +268,7 @@ _DWORD * CEffQuad::DestroyAllQuad(int a2)
 }
 
 // 0x004D1F30
-_DWORD * CEffQuad::ToNextFrame(int _this, int a2)
+_DWORD * CEffQuad::ToNextFrame(int a2)
 {
   gbTexture *v3; // eax
   _DWORD *result; // eax
@@ -276,13 +276,13 @@ _DWORD * CEffQuad::ToNextFrame(int _this, int a2)
   char pExceptionObject[1024]; // [esp+8h] [ebp-800h] BYREF
   char ArgList[1024]; // [esp+408h] [ebp-400h] BYREF
 
-  v3 = (gbTexture *)(*(int (**)(_DWORD, int))(***(_DWORD ***)(this + 4) + 8))(**(_DWORD **)(this + 4), a2);
-  *(_DWORD *)(this + 4264) = v3;
+  v3 = (gbTexture *)(*(int (**)(_DWORD, int))(***((_DWORD ***)this + 1) + 8))(**((_DWORD **)this + 1), a2);
+  *((_DWORD *)this + 1066) = v3;
   v3->LoadTexture(1);
   result = (_DWORD *)operator new(0x44u);
   if ( result )
   {
-    v5 = *(_DWORD *)(this + 4264);
+    v5 = *((_DWORD *)this + 1066);
     result[16] = 1;
     *result = v5;
   }
@@ -290,7 +290,7 @@ _DWORD * CEffQuad::ToNextFrame(int _this, int a2)
   {
     result = 0;
   }
-  *(_DWORD *)(this + 4268) = result;
+  *((_DWORD *)this + 1067) = result;
   if ( !result )
   {
     qmemcpy(

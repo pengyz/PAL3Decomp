@@ -137,46 +137,46 @@ CEffCylinder::~CEffCylinder()
 }
 
 // 0x004C3EC0
-int CEffCylinder::Init(int _this, int a2, float a3, float a4, float a5)
+int CEffCylinder::Init(int a2, float a3, float a4, float a5)
 {
   int result; // eax
   int v7; // ecx
   int v8; // edx
 
-  *(_BYTE *)(this + 8) = 0;
-  *(_BYTE *)(this + 60) = 0;
-  *(float *)(this + 172) = a3 + *(float *)(a2 + 184);
-  *(float *)(this + 176) = a4 + *(float *)(a2 + 188);
-  *(float *)(this + 180) = a5 + *(float *)(a2 + 192);
-  *(_DWORD *)(this + 160) = *(_DWORD *)(a2 + 216);
-  *(_DWORD *)(this + 164) = *(_DWORD *)(a2 + 196);
-  *(_DWORD *)(this + 168) = *(_DWORD *)(a2 + 220);
-  *(_DWORD *)(this + 192) = 0;
-  *(_DWORD *)(this + 188) = 0;
-  *(_DWORD *)(this + 184) = 0;
-  *(_DWORD *)(this + 76) = *(_DWORD *)(a2 + 204);
+  *((_BYTE *)this + 8) = 0;
+  *((_BYTE *)this + 60) = 0;
+  *((float *)this + 43) = a3 + *(float *)(a2 + 184);
+  *((float *)this + 44) = a4 + *(float *)(a2 + 188);
+  *((float *)this + 45) = a5 + *(float *)(a2 + 192);
+  *((_DWORD *)this + 40) = *(_DWORD *)(a2 + 216);
+  *((_DWORD *)this + 41) = *(_DWORD *)(a2 + 196);
+  *((_DWORD *)this + 42) = *(_DWORD *)(a2 + 220);
+  *((_DWORD *)this + 48) = 0;
+  *((_DWORD *)this + 47) = 0;
+  *((_DWORD *)this + 46) = 0;
+  *((_DWORD *)this + 19) = *(_DWORD *)(a2 + 204);
   if ( (g_bCursorVisible & 1) == 0 )
   {
     g_bCursorVisible |= 1u;
     ((CEffMgr *)&g_nCursorState)->Reset();
     atexit(nullsub_1);
   }
-  *(float *)(this + 80) = (float)HIBYTE(*(_DWORD *)(this + 76));
+  *((float *)this + 20) = (float)HIBYTE(*((_DWORD *)this + 19));
   if ( (g_bCursorVisible & 1) == 0 )
   {
     g_bCursorVisible |= 1u;
     ((CEffMgr *)&g_nCursorState)->Reset();
     atexit(nullsub_1);
   }
-  *(float *)(this + 84) = (float)(unsigned __int8)BYTE2(*(_DWORD *)(this + 76));
+  *((float *)this + 21) = (float)(unsigned __int8)BYTE2(*((_DWORD *)this + 19));
   if ( (g_bCursorVisible & 1) == 0 )
   {
     g_bCursorVisible |= 1u;
     ((CEffMgr *)&g_nCursorState)->Reset();
     atexit(nullsub_1);
   }
-  result = (unsigned __int8)BYTE1(*(_DWORD *)(this + 76));
-  *(float *)(this + 88) = (float)result;
+  result = (unsigned __int8)BYTE1(*((_DWORD *)this + 19));
+  *((float *)this + 22) = (float)result;
   LOBYTE(result) = g_bCursorVisible;
   if ( (g_bCursorVisible & 1) == 0 )
   {
@@ -184,21 +184,21 @@ int CEffCylinder::Init(int _this, int a2, float a3, float a4, float a5)
     ((CEffMgr *)&g_nCursorState)->Reset();
     result = atexit(nullsub_1);
   }
-  *(_DWORD *)(this + 156) = 0;
-  v7 = *(unsigned __int8 *)(this + 76);
-  *(_DWORD *)(this + 72) = 0;
-  *(_DWORD *)(this + 68) = 0;
-  *(float *)(this + 92) = (float)v7;
+  *((_DWORD *)this + 39) = 0;
+  v7 = *((unsigned __int8 *)this + 76);
+  *((_DWORD *)this + 18) = 0;
+  *((_DWORD *)this + 17) = 0;
+  *((float *)this + 23) = (float)v7;
   v8 = *(_DWORD *)(a2 + 200);
-  *(_DWORD *)(this + 100) = 1065353216;
-  *(_DWORD *)(this + 96) = v8;
+  *((_DWORD *)this + 25) = 1065353216;
+  *((_DWORD *)this + 24) = v8;
   return result;
 }
 
 // 0x004C4060
-char CEffCylinder::Create(int _this, int a2)
+char CEffCylinder::Create(int a2)
 {
-  LPVOID v3; // eax
+  _DWORD *v3; // eax
   int v4; // ebx
   int v5; // edi
   int v6; // edi
@@ -214,44 +214,44 @@ char CEffCylinder::Create(int _this, int a2)
   int v18; // [esp+818h] [ebp-4h]
   int v19; // [esp+824h] [ebp+8h]
 
-  v3 = operator new(0x4C0u);
-  *(_DWORD *)(this + 24) = v3;
+  v3 = (_DWORD *)operator new(0x4C0u);
+  *((_DWORD *)this + 6) = v3;
   if ( v3 )
   {
     v4 = 0;
     v5 = 0;
     while ( 1 )
     {
-      *(_DWORD *)(v5 + *(_DWORD *)(this + 24)) = operator new(0x2D0u);
-      if ( !*(_DWORD *)(v5 + *(_DWORD *)(this + 24)) )
+      *(_DWORD *)(v5 + *((_DWORD *)this + 6)) = operator new(0x2D0u);
+      if ( !*(_DWORD *)(v5 + *((_DWORD *)this + 6)) )
         break;
       v5 += 152;
       ++v4;
       if ( v5 >= 1216 )
       {
         v6 = 0;
-        *(_DWORD *)(this + 40) = 8;
-        *(_DWORD *)(this + 44) = 10;
+        *((_DWORD *)this + 10) = 8;
+        *((_DWORD *)this + 11) = 10;
         v7 = 0;
         do
         {
-          *(_BYTE *)(v7 + *(_DWORD *)(this + 24) + 148) = 0;
+          *(_BYTE *)(v7 + *((_DWORD *)this + 6) + 148) = 0;
           v8 = 0;
-          if ( *(int *)(this + 44) > 0 )
+          if ( *((int *)this + 11) > 0 )
           {
             v9 = 0;
             do
             {
               ++v8;
               v9 += 72;
-              *(_BYTE *)(*(_DWORD *)(v7 + *(_DWORD *)(this + 24)) + v9 - 8) = 0;
+              *(_BYTE *)(*(_DWORD *)(v7 + *((_DWORD *)this + 6)) + v9 - 8) = 0;
             }
-            while ( v8 < *(_DWORD *)(this + 44) );
+            while ( v8 < *((_DWORD *)this + 11) );
           }
           ++v6;
           v7 += 152;
         }
-        while ( v6 < *(_DWORD *)(this + 40) );
+        while ( v6 < *((_DWORD *)this + 10) );
         goto LABEL_10;
       }
     }
@@ -260,47 +260,47 @@ char CEffCylinder::Create(int _this, int a2)
       v13 = 152 * (v4 - 1);
       do
       {
-        operator delete(*(void **)(v13 + *(_DWORD *)(this + 24)));
+        operator delete(*(void **)(v13 + *((_DWORD *)this + 6)));
         v13 -= 152;
         --v4;
       }
       while ( v4 );
     }
-    operator delete(*(void **)(this + 24));
+    operator delete(*((void **)this + 6));
   }
 LABEL_10:
-  *(_DWORD *)(this + 104) = *(_DWORD *)(a2 + 224);
-  *(_DWORD *)(this + 108) = *(_DWORD *)(a2 + 228);
+  *((_DWORD *)this + 26) = *(_DWORD *)(a2 + 224);
+  *((_DWORD *)this + 27) = *(_DWORD *)(a2 + 228);
   if ( (g_bCursorVisible & 1) == 0 )
   {
     g_bCursorVisible |= 1u;
     ((CEffMgr *)&g_nCursorState)->Reset();
     atexit(nullsub_1);
   }
-  *(_DWORD *)(this + 112) = (int)*(float *)(a2 + 232);
-  *(_DWORD *)(this + 116) = *(_DWORD *)(a2 + 236);
-  *(_DWORD *)(this + 120) = *(_DWORD *)(a2 + 240);
-  *(_DWORD *)(this + 124) = *(_DWORD *)(a2 + 244);
-  *(_DWORD *)(this + 128) = *(_DWORD *)(a2 + 248);
-  *(_DWORD *)(this + 132) = *(_DWORD *)(a2 + 252);
-  *(_DWORD *)(this + 136) = *(_DWORD *)(a2 + 256);
-  *(_DWORD *)(this + 140) = *(_DWORD *)(a2 + 260);
-  *(_DWORD *)(this + 144) = *(_DWORD *)(a2 + 264);
-  *(_DWORD *)(this + 148) = *(_DWORD *)(a2 + 268);
-  *(_DWORD *)(this + 152) = *(_DWORD *)(a2 + 180);
-  *(_DWORD *)(this + 172) = *(_DWORD *)(a2 + 184);
-  *(_DWORD *)(this + 176) = *(_DWORD *)(a2 + 188);
-  *(_DWORD *)(this + 180) = *(_DWORD *)(a2 + 192);
-  *(_DWORD *)(this + 160) = *(_DWORD *)(a2 + 216);
-  *(_DWORD *)(this + 164) = *(_DWORD *)(a2 + 196);
-  *(_DWORD *)(this + 168) = *(_DWORD *)(a2 + 220);
-  *(_BYTE *)(this + 61) = *(_BYTE *)(a2 + 213);
-  *(_BYTE *)(this + 62) = *(_BYTE *)(a2 + 215);
-  *(_BYTE *)(this + 63) = *(_BYTE *)(a2 + 176);
-  *(_DWORD *)(this + 64) = &unk_FFFFFF;
-  *(_DWORD *)(this + 76) = *(_DWORD *)(a2 + 204);
-  ((CEffCylinder *)this)->InitDefaultUVSet(*(_DWORD *)(a2 + 168), *(_DWORD *)(a2 + 172));
-  v19 = *(_DWORD *)(this + 112);
+  *((_DWORD *)this + 28) = (int)*(float *)(a2 + 232);
+  *((_DWORD *)this + 29) = *(_DWORD *)(a2 + 236);
+  *((_DWORD *)this + 30) = *(_DWORD *)(a2 + 240);
+  *((_DWORD *)this + 31) = *(_DWORD *)(a2 + 244);
+  *((_DWORD *)this + 32) = *(_DWORD *)(a2 + 248);
+  *((_DWORD *)this + 33) = *(_DWORD *)(a2 + 252);
+  *((_DWORD *)this + 34) = *(_DWORD *)(a2 + 256);
+  *((_DWORD *)this + 35) = *(_DWORD *)(a2 + 260);
+  *((_DWORD *)this + 36) = *(_DWORD *)(a2 + 264);
+  *((_DWORD *)this + 37) = *(_DWORD *)(a2 + 268);
+  *((_DWORD *)this + 38) = *(_DWORD *)(a2 + 180);
+  *((_DWORD *)this + 43) = *(_DWORD *)(a2 + 184);
+  *((_DWORD *)this + 44) = *(_DWORD *)(a2 + 188);
+  *((_DWORD *)this + 45) = *(_DWORD *)(a2 + 192);
+  *((_DWORD *)this + 40) = *(_DWORD *)(a2 + 216);
+  *((_DWORD *)this + 41) = *(_DWORD *)(a2 + 196);
+  *((_DWORD *)this + 42) = *(_DWORD *)(a2 + 220);
+  *((_DWORD *)this + 61) = *(CEffCylinder *)(a2 + 213);
+  *((_DWORD *)this + 62) = *(CEffCylinder *)(a2 + 215);
+  *((_DWORD *)this + 63) = *(CEffCylinder *)(a2 + 176);
+  *((_DWORD *)this + 16) = &unk_FFFFFF;
+  *((_DWORD *)this + 19) = *(_DWORD *)(a2 + 204);
+  this->InitDefaultUVSet(*(_DWORD *)(a2 + 168), *(_DWORD *)(a2 + 172));
+  v19 = *((_DWORD *)this + 28);
   v11 = (void *)operator new(68 * v19);
   Block = v11;
   v18 = 0;
@@ -324,7 +324,7 @@ LABEL_10:
     v11 = 0;
   }
   v18 = -1;
-  *(_DWORD *)(this + 48) = v11;
+  *((_DWORD *)this + 12) = v11;
   if ( !v11 )
   {
     qmemcpy(
@@ -334,12 +334,12 @@ LABEL_10:
     _CxxThrowException(pExceptionObject, (_ThrowInfo *)&_TI1_AV_Exception__);
   }
   this->LoadTexture(a2 + 40);
-  sub_4C5350(this);
+  sub_4C5350((int)this);
   return 1;
 }
 
 // 0x004C4370
-void CEffCylinder::Destroy(int _this)
+void CEffCylinder::Destroy()
 {
   char v2; // al
   bool v3; // zf
@@ -373,14 +373,14 @@ void CEffCylinder::Destroy(int _this)
     dword_DE9358 = 1065353216;
     atexit(nullsub_76);
   }
-  if ( !*(_BYTE *)(this + 8) && *(_BYTE *)(this + 60) )
+  if ( !*((_BYTE *)this + 8) && *((_BYTE *)this + 60) )
   {
-    ((gbVertPoolMgr *)*(gbVertPoolMgr **)(**(_DWORD **)(this + 4) + 196))->GetDynVertBuf(0x15u);
-    v2 = *(_BYTE *)(this + 61);
-    if ( *(_BYTE *)(this + 62) )
+    ((gbVertPoolMgr *)*(gbVertPoolMgr **)(**((_DWORD **)this + 1) + 196))->GetDynVertBuf(0x15u);
+    v2 = *((_BYTE *)this + 61);
+    if ( *((_BYTE *)this + 62) )
     {
       v3 = v2 == 0;
-      v4 = (_DWORD *)*(_DWORD **)(this + 4);
+      v4 = (_DWORD *)*((_DWORD *)this + 1);
       if ( v3 )
         v5 = (struct gbRenderEffect *)v4[3];
       else
@@ -389,7 +389,7 @@ void CEffCylinder::Destroy(int _this)
     else
     {
       v3 = v2 == 0;
-      v4 = (_DWORD *)*(_DWORD **)(this + 4);
+      v4 = (_DWORD *)*((_DWORD *)this + 1);
       if ( v3 )
         v5 = (struct gbRenderEffect *)v4[5];
       else
@@ -397,24 +397,24 @@ void CEffCylinder::Destroy(int _this)
     }
     v6 = (gbMatrixStack *)*(gbMatrixStack **)(*v4 + 216);
     v6->Push();
-    v7 = *(float *)(this + 184) + *(float *)(this + 172);
+    v7 = *((float *)this + 46) + *((float *)this + 43);
     retaddr = v7;
     v6->Translate((struct gbVec3D *)&retaddr);
-    v6->Rotate(*(float *)(this + 160), (struct gbVec3D *)&dword_DE9370);
-    v6->Rotate(*(float *)(this + 164), (struct gbVec3D *)&dword_DE9360);
-    v6->Rotate(*(float *)(this + 168), (struct gbVec3D *)&dword_DE9350);
-    v6->Scale(*(float *)(this + 96), *(float *)(this + 100), *(float *)(this + 96));
-    ((gbDynVertBuf *)*(struct gbGeomQuad **)(this + 48))->RenderGeomQuadViaStrip(*(_DWORD *)(this + 112), v5, *(struct gbTextureArray **)(this + 56), *(_DWORD *)(this + 76));
+    v6->Rotate(*((float *)this + 40), (struct gbVec3D *)&dword_DE9370);
+    v6->Rotate(*((float *)this + 41), (struct gbVec3D *)&dword_DE9360);
+    v6->Rotate(*((float *)this + 42), (struct gbVec3D *)&dword_DE9350);
+    v6->Scale(*((float *)this + 24), *((float *)this + 25), *((float *)this + 24));
+    ((gbDynVertBuf *)*((struct gbGeomQuad **)this + 12))->RenderGeomQuadViaStrip(*((_DWORD *)this + 28), v5, *((struct gbTextureArray **)this + 14), *((_DWORD *)this + 19));
     v6->Pop();
   }
 }
 
 // 0x004C45A0
-void CEffCylinder::CreateTask(int _this, float a2)
+void CEffCylinder::CreateTask(float a2)
 {
-  int v2; // edi
+  CEffCylinder *v2; // edi
   double v3; // st7
-  int v4; // esi
+  CEffCylinder *v4; // esi
   int v5; // ebx
   int v6; // edx
   int v7; // edi
@@ -439,31 +439,31 @@ void CEffCylinder::CreateTask(int _this, float a2)
   float a2b; // [esp+18h] [ebp+8h]
 
   v2 = this;
-  v3 = a2 - *(float *)(this + 16);
-  v4 = this + 12;
-  *(float *)(this + 16) = a2;
-  *(float *)(this + 20) = v3;
-  if ( *(float *)(this + 20) > 0.0 )
+  v3 = a2 - *((float *)this + 4);
+  v4 = (CEffCylinder *)this + 12;
+  *((float *)this + 4) = a2;
+  *((float *)this + 5) = v3;
+  if ( *((float *)this + 5) > 0.0 )
   {
     a2a = 0;
-    if ( *(int *)(this + 40) > 0 )
+    if ( *((int *)this + 10) > 0 )
     {
       v24 = 0;
       while ( 1 )
       {
-        v5 = v24 + *(_DWORD *)(v4 + 12);
+        v5 = v24 + *(_DWORD *)&v4[12];
         if ( *(_BYTE *)(v5 + 148) )
         {
           if ( *(_DWORD *)(v5 + 12) == 3 )
           {
             v6 = 0;
             v22 = 0;
-            if ( *(int *)(v4 + 32) > 0 )
+            if ( *(int *)&v4[32] > 0 )
               break;
           }
         }
 LABEL_29:
-        v11 = ++a2a < *(_DWORD *)(v4 + 28);
+        v11 = ++a2a < *(_DWORD *)&v4[28];
         v24 += 152;
         if ( !v11 )
           goto LABEL_30;
@@ -485,23 +485,23 @@ LABEL_28:
             {
               if ( *(float *)(v8 + 20) >= 0.0 )
               {
-                if ( *(float *)(v4 + 4) - *(float *)(v8 - 56) > *(float *)(v8 + 20) )
+                if ( *(float *)&v4[4] - *(float *)(v8 - 56) > *(float *)(v8 + 20) )
                 {
-                  sub_4D4D30((_DWORD *)v4, a2a, v6);
-                  *(_DWORD *)(v4 + 16) = a2a;
-                  *(_DWORD *)(v4 + 20) = v22;
+                  sub_4D4D30(v4, a2a, v6);
+                  *(_DWORD *)&v4[16] = a2a;
+                  *(_DWORD *)&v4[20] = v22;
                   goto LABEL_24;
                 }
               }
               else if ( *(_DWORD *)(v8 - 64) == 4 )
               {
-                *(_DWORD *)(*(_DWORD *)(v24 + *(_DWORD *)(v4 + 12)) + v7 + 8) = 3;
-                *(_DWORD *)(*(_DWORD *)(v24 + *(_DWORD *)(v4 + 12)) + v7 + 16) = *(_DWORD *)(v4 + 4);
+                *(_DWORD *)(*(_DWORD *)(v24 + *(_DWORD *)&v4[12]) + v7 + 8) = 3;
+                *(_DWORD *)(*(_DWORD *)(v24 + *(_DWORD *)&v4[12]) + v7 + 16) = *(_DWORD *)&v4[4];
 LABEL_21:
-                *(_DWORD *)(v4 + 20) = v6;
-                *(_DWORD *)(v4 + 16) = a2a;
+                *(_DWORD *)&v4[20] = v6;
+                *(_DWORD *)&v4[16] = a2a;
 LABEL_24:
-                (*(void (**)(int, _DWORD, _DWORD, _DWORD))(*(_DWORD *)v4 + 4))(
+                (*(void (**)(CEffCylinder *, _DWORD, _DWORD, _DWORD))(*(_DWORD *)v4 + 4))(
                   v4,
                   *(_DWORD *)(*(_DWORD *)v5 + v7),
                   *(_DWORD *)(*(_DWORD *)v5 + v7 + 4),
@@ -512,7 +512,7 @@ LABEL_24:
           case 3:
             goto LABEL_21;
           case 4:
-            if ( sub_4D4D70((_DWORD *)v4, a2a) )
+            if ( sub_4D4D70(v4, a2a) )
             {
               v9 = *(_DWORD *)(v5 + 4);
               *(_DWORD *)(v5 + 12) = 4;
@@ -529,30 +529,30 @@ LABEL_24:
         }
         v6 = v22 + 1;
         v7 += 72;
-        if ( ++v22 >= *(_DWORD *)(v4 + 32) )
+        if ( ++v22 >= *(_DWORD *)&v4[32] )
           goto LABEL_28;
       }
     }
 LABEL_30:
-    if ( *(int *)(v2 + 36) <= 0 )
-      *(_BYTE *)(v2 + 8) = 1;
-    if ( !*(_BYTE *)(v2 + 8) && (*(float *)(v2 + 152) != 0.0 && *(_BYTE *)(v2 + 63) != 1 || *(float *)(v2 + 156) != 0.0) )
+    if ( *(int *)&v2[36] <= 0 )
+      v2[8] = (CEffCylinder)1;
+    if ( !*(_BYTE *)&v2[8] && (*(float *)&v2[152] != 0.0 && *(_BYTE *)&v2[63] != 1 || *(float *)&v2[156] != 0.0) )
     {
-      v20 = *(float *)(v2 + 148) / (double)*(int *)(v2 + 112);
-      *(float *)(v2 + 72) = *(float *)(v2 + 152) * *(float *)(v2 + 20) + *(float *)(v2 + 72);
+      v20 = *(float *)&v2[148] / (double)*(int *)&v2[112];
+      *(float *)&v2[72] = *(float *)&v2[152] * *(float *)&v2[20] + *(float *)&v2[72];
       if ( (g_bCursorVisible & 1) == 0 )
       {
         g_bCursorVisible |= 1u;
         ((CEffMgr *)&g_nCursorState)->Reset();
         atexit(nullsub_1);
       }
-      v12 = (int)abs32((int)*(float *)(v2 + 72)) % *(unsigned __int8 *)(v2 + 63);
+      v12 = (int)abs32(*(_DWORD *)&v2[72]) % *(_BYTE *)&v2[63];
       v13 = v12 + 13;
-      v14 = (float *)(v2 + 16 * v12);
+      v14 = (float *)&v2[16 * v12];
       v25 = v14[49];
       v21 = (v14[51] - v25) * v20;
-      a2b = v14[50] + *(float *)(v2 + 156);
-      v23 = *(float *)(16 * v13 + v2) + *(float *)(v2 + 156);
+      a2b = v14[50] + *(float *)&v2[156];
+      v23 = *(float *)&v2[16 * v13] + *(float *)&v2[156];
       if ( (g_bCursorVisible & 1) == 0 )
       {
         g_bCursorVisible |= 1u;
@@ -566,21 +566,21 @@ LABEL_30:
         v23 = v23 - v15;
       }
       v16 = 0;
-      if ( *(int *)(v2 + 112) > 0 )
+      if ( *(int *)&v2[112] > 0 )
       {
         v17 = v25;
         v18 = 0;
         do
         {
           ++v16;
-          *(float *)(v18 + *(_DWORD *)(v2 + 48) + 48) = v17;
+          *(float *)(v18 + *(_DWORD *)&v2[48] + 48) = v17;
           v17 = v17 + v21;
           v18 += 68;
-          *(float *)(v18 + *(_DWORD *)(v2 + 48) - 12) = v17;
-          *(float *)(v18 + *(_DWORD *)(v2 + 48) - 16) = a2b;
-          *(float *)(v18 + *(_DWORD *)(v2 + 48) - 8) = v23;
+          *(float *)(v18 + *(_DWORD *)&v2[48] - 12) = v17;
+          *(float *)(v18 + *(_DWORD *)&v2[48] - 16) = a2b;
+          *(float *)(v18 + *(_DWORD *)&v2[48] - 8) = v23;
         }
-        while ( v16 < *(_DWORD *)(v2 + 112) );
+        while ( v16 < *(_DWORD *)&v2[112] );
       }
     }
   }
@@ -716,7 +716,7 @@ LABEL_31:
 }
 
 // 0x004C4B00
-int CEffCylinder::ProcCommonTask(int _this, int a2)
+int CEffCylinder::ProcCommonTask(int a2)
 {
   double v3; // st7
   int v4; // edi
@@ -739,60 +739,60 @@ int CEffCylinder::ProcCommonTask(int _this, int a2)
   struct gbVec3D v22; // [esp+34h] [ebp-4Ch] BYREF
   _BYTE v23[64]; // [esp+40h] [ebp-40h] BYREF
 
-  v3 = *(float *)(this + 16);
-  v4 = *(_DWORD *)(this + 24) + 152 * *(_DWORD *)(this + 28);
-  v5 = 9 * *(_DWORD *)(this + 32);
+  v3 = *((float *)this + 4);
+  v4 = *((_DWORD *)this + 6) + 152 * *((_DWORD *)this + 7);
+  v5 = 9 * *((_DWORD *)this + 8);
   v6 = v3 - *(float *)(*(_DWORD *)v4 + 8 * v5 + 16);
   v7 = *(_DWORD *)v4 + 8 * v5;
-  v16 = *(float *)(this + 20);
+  v16 = *((float *)this + 5);
   if ( v6 > *(float *)(v7 + 24) )
     v16 = v16 - (v6 - *(float *)(v7 + 24));
   if ( !*(_BYTE *)(v7 + 65) )
   {
-    *(_BYTE *)(this + 60) = 1;
+    *((_BYTE *)this + 60) = 1;
     *(_BYTE *)(v7 + 65) = 1;
   }
-  *(float *)(this + 160) = v16 * *(float *)(v4 + 64) + *(float *)(this + 160);
-  *(float *)(this + 164) = v16 * *(float *)(v4 + 68) + *(float *)(this + 164);
-  *(float *)(this + 168) = v16 * *(float *)(v4 + 72) + *(float *)(this + 168);
-  *(float *)(this + 172) = v16 * *(float *)(v4 + 28) + *(float *)(this + 172);
-  *(float *)(this + 176) = v16 * *(float *)(v4 + 32) + *(float *)(this + 176);
-  *(float *)(this + 180) = v16 * *(float *)(v4 + 36) + *(float *)(this + 180);
+  *((float *)this + 40) = v16 * *(float *)(v4 + 64) + *((float *)this + 40);
+  *((float *)this + 41) = v16 * *(float *)(v4 + 68) + *((float *)this + 41);
+  *((float *)this + 42) = v16 * *(float *)(v4 + 72) + *((float *)this + 42);
+  *((float *)this + 43) = v16 * *(float *)(v4 + 28) + *((float *)this + 43);
+  *((float *)this + 44) = v16 * *(float *)(v4 + 32) + *((float *)this + 44);
+  *((float *)this + 45) = v16 * *(float *)(v4 + 36) + *((float *)this + 45);
   ((gbMatrix4 *)v23)->gbMatrix4();
   memset(&v21, 0, sizeof(v21));
   memset(&v22, 0, sizeof(v22));
   ((gbMatrix4 *)v23)->LoadIdentity();
   v21 = *(gbVec3D *)(v4 + 44);
   ((gbVec3D *)&v21)->Normalize();
-  v15 = (*(float *)(this + 16) - *(float *)(v7 + 16)) * *(float *)(v4 + 60);
+  v15 = (*((float *)this + 4) - *(float *)(v7 + 16)) * *(float *)(v4 + 60);
   ((gbMatrix4 *)v23)->SetAxisAngle(&v21, v15);
   v22.z = *(float *)(v4 + 56);
   v22.x = 0.0;
   v22.y = 0.0;
   ((gbMatrix4 *)v23)->Rotate(&v22, (struct gbVec3D *)(this + 184));
-  v8 = v16 * *(float *)(v4 + 108) + *(float *)(this + 156);
-  *(float *)(this + 156) = v8;
+  v8 = v16 * *(float *)(v4 + 108) + *((float *)this + 39);
+  *((float *)this + 39) = v8;
   if ( v8 > 1.0 )
-    *(_DWORD *)(this + 156) = 0;
+    *((_DWORD *)this + 39) = 0;
   if ( *(float *)(v4 + 80) != 0.0
     || *(float *)(v4 + 84) != 0.0
     || *(float *)(v4 + 92) != 0.0
     || *(float *)(v4 + 88) != 0.0 )
   {
-    *(float *)(this + 80) = v16 * *(float *)(v4 + 80) + *(float *)(this + 80);
-    *(float *)(this + 84) = v16 * *(float *)(v4 + 84) + *(float *)(this + 84);
-    *(float *)(this + 88) = v16 * *(float *)(v4 + 88) + *(float *)(this + 88);
-    *(float *)(this + 92) = v16 * *(float *)(v4 + 92) + *(float *)(this + 92);
+    *((float *)this + 20) = v16 * *(float *)(v4 + 80) + *((float *)this + 20);
+    *((float *)this + 21) = v16 * *(float *)(v4 + 84) + *((float *)this + 21);
+    *((float *)this + 22) = v16 * *(float *)(v4 + 88) + *((float *)this + 22);
+    *((float *)this + 23) = v16 * *(float *)(v4 + 92) + *((float *)this + 23);
     if ( (g_bCursorVisible & 1) == 0 )
     {
       g_bCursorVisible |= 1u;
       ((CEffMgr *)&g_nCursorState)->Reset();
       atexit(nullsub_1);
     }
-    if ( *(float *)(this + 80) <= 255.0 )
+    if ( *((float *)this + 20) <= 255.0 )
     {
-      if ( *(float *)(this + 80) >= 0.0 )
-        v9 = *(float *)(this + 80);
+      if ( *((float *)this + 20) >= 0.0 )
+        v9 = *((float *)this + 20);
       else
         v9 = 0.0;
     }
@@ -800,17 +800,17 @@ int CEffCylinder::ProcCommonTask(int _this, int a2)
     {
       v9 = 255.0;
     }
-    *(float *)(this + 80) = v9;
+    *((float *)this + 20) = v9;
     if ( (g_bCursorVisible & 1) == 0 )
     {
       g_bCursorVisible |= 1u;
       ((CEffMgr *)&g_nCursorState)->Reset();
       atexit(nullsub_1);
     }
-    if ( *(float *)(this + 84) <= 255.0 )
+    if ( *((float *)this + 21) <= 255.0 )
     {
-      if ( *(float *)(this + 84) >= 0.0 )
-        v10 = *(float *)(this + 84);
+      if ( *((float *)this + 21) >= 0.0 )
+        v10 = *((float *)this + 21);
       else
         v10 = 0.0;
     }
@@ -818,17 +818,17 @@ int CEffCylinder::ProcCommonTask(int _this, int a2)
     {
       v10 = 255.0;
     }
-    *(float *)(this + 84) = v10;
+    *((float *)this + 21) = v10;
     if ( (g_bCursorVisible & 1) == 0 )
     {
       g_bCursorVisible |= 1u;
       ((CEffMgr *)&g_nCursorState)->Reset();
       atexit(nullsub_1);
     }
-    if ( *(float *)(this + 88) <= 255.0 )
+    if ( *((float *)this + 22) <= 255.0 )
     {
-      if ( *(float *)(this + 88) >= 0.0 )
-        v11 = *(float *)(this + 88);
+      if ( *((float *)this + 22) >= 0.0 )
+        v11 = *((float *)this + 22);
       else
         v11 = 0.0;
     }
@@ -836,17 +836,17 @@ int CEffCylinder::ProcCommonTask(int _this, int a2)
     {
       v11 = 255.0;
     }
-    *(float *)(this + 88) = v11;
+    *((float *)this + 22) = v11;
     if ( (g_bCursorVisible & 1) == 0 )
     {
       g_bCursorVisible |= 1u;
       ((CEffMgr *)&g_nCursorState)->Reset();
       atexit(nullsub_1);
     }
-    if ( *(float *)(this + 92) <= 255.0 )
+    if ( *((float *)this + 23) <= 255.0 )
     {
-      if ( *(float *)(this + 92) >= 0.0 )
-        v12 = *(float *)(this + 92);
+      if ( *((float *)this + 23) >= 0.0 )
+        v12 = *((float *)this + 23);
       else
         v12 = 0.0;
     }
@@ -854,35 +854,35 @@ int CEffCylinder::ProcCommonTask(int _this, int a2)
     {
       v12 = 255.0;
     }
-    *(float *)(this + 92) = v12;
+    *((float *)this + 23) = v12;
     if ( (g_bCursorVisible & 1) == 0 )
     {
       g_bCursorVisible |= 1u;
       ((CEffMgr *)&g_nCursorState)->Reset();
       atexit(nullsub_1);
     }
-    v17 = *(float *)(this + 80) + 12582912.0;
+    v17 = *((float *)this + 20) + 12582912.0;
     if ( (g_bCursorVisible & 1) == 0 )
     {
       g_bCursorVisible |= 1u;
       ((CEffMgr *)&g_nCursorState)->Reset();
       atexit(nullsub_1);
     }
-    v18 = *(float *)(this + 84) + 12582912.0;
+    v18 = *((float *)this + 21) + 12582912.0;
     if ( (g_bCursorVisible & 1) == 0 )
     {
       g_bCursorVisible |= 1u;
       ((CEffMgr *)&g_nCursorState)->Reset();
       atexit(nullsub_1);
     }
-    v19 = *(float *)(this + 88) + 12582912.0;
+    v19 = *((float *)this + 22) + 12582912.0;
     if ( (g_bCursorVisible & 1) == 0 )
     {
       g_bCursorVisible |= 1u;
       ((CEffMgr *)&g_nCursorState)->Reset();
       atexit(nullsub_1);
     }
-    v20 = *(float *)(this + 92) + 12582912.0;
+    v20 = *((float *)this + 23) + 12582912.0;
     if ( (g_bCursorVisible & 1) == 0 )
     {
       g_bCursorVisible |= 1u;
@@ -891,11 +891,11 @@ int CEffCylinder::ProcCommonTask(int _this, int a2)
     }
     HIBYTE(v13) = LOBYTE(v17);
     LOBYTE(v13) = LOBYTE(v18);
-    *(_DWORD *)(this + 76) = LOBYTE(v20) | ((LOBYTE(v19) | (v13 << 8)) << 8);
+    *((_DWORD *)this + 19) = LOBYTE(v20) | ((LOBYTE(v19) | (v13 << 8)) << 8);
   }
-  *(float *)(this + 96) = v16 * *(float *)(v4 + 24) + *(float *)(this + 96);
-  *(float *)(this + 100) = v16 * *(float *)(v4 + 116) + *(float *)(this + 100);
-  if ( *(_BYTE *)(v7 + 66) == 1 || *(float *)(this + 16) - *(float *)(v7 + 16) >= *(float *)(v7 + 24) )
+  *((float *)this + 24) = v16 * *(float *)(v4 + 24) + *((float *)this + 24);
+  *((float *)this + 25) = v16 * *(float *)(v4 + 116) + *((float *)this + 25);
+  if ( *(_BYTE *)(v7 + 66) == 1 || *((float *)this + 4) - *(float *)(v7 + 16) >= *(float *)(v7 + 24) )
     *(_DWORD *)(v7 + 8) = 4;
   return 0;
 }
@@ -1092,7 +1092,7 @@ void CEffCylinder::InitDefaultUVSet(int a2, int a3)
 }
 
 // 0x004C52C0
-_DWORD * CEffCylinder::LoadTexture(int _this, int a2)
+_DWORD * CEffCylinder::LoadTexture(int a2)
 {
   gbTexture *v3; // eax
   _DWORD *result; // eax
@@ -1100,13 +1100,13 @@ _DWORD * CEffCylinder::LoadTexture(int _this, int a2)
   char pExceptionObject[1024]; // [esp+8h] [ebp-800h] BYREF
   char ArgList[1024]; // [esp+408h] [ebp-400h] BYREF
 
-  v3 = (gbTexture *)(*(int (**)(_DWORD, int))(***(_DWORD ***)(this + 4) + 8))(**(_DWORD **)(this + 4), a2);
-  *(_DWORD *)(this + 52) = v3;
+  v3 = (gbTexture *)(*(int (**)(_DWORD, int))(***((_DWORD ***)this + 1) + 8))(**((_DWORD **)this + 1), a2);
+  *((_DWORD *)this + 13) = v3;
   v3->LoadTexture(1);
   result = (_DWORD *)operator new(0x44u);
   if ( result )
   {
-    v5 = *(_DWORD *)(this + 52);
+    v5 = *((_DWORD *)this + 13);
     result[16] = 1;
     *result = v5;
   }
@@ -1114,7 +1114,7 @@ _DWORD * CEffCylinder::LoadTexture(int _this, int a2)
   {
     result = 0;
   }
-  *(_DWORD *)(this + 56) = result;
+  *((_DWORD *)this + 14) = result;
   if ( !result )
   {
     qmemcpy(

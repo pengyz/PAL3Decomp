@@ -160,7 +160,7 @@ char ScriptSystem::Render2()
 
   sub_445500(&g_Input.KeyInfo[182].Data);
   for ( i = 0; i < g_Input.KeyInfo[195].HoldTime; ++i )
-    ((GRPinput *)*(_DWORD *)(g_Input.KeyInfo[195].Data + 4 * i))->SetMouseSensitivity();
+    ((GRPinput *)*(GRPinput **)(g_Input.KeyInfo[195].Data + 4 * i))->SetMouseSensitivity();
   sub_43A270((UIWnd *)&g_SceneMgr.m_pCameraCtrl);
   result = g_SceneMgr.m_slot0[81];
   if ( g_SceneMgr.m_slot0[81] )
@@ -260,7 +260,7 @@ int ScriptSystem::Execute(int a1, char a2)
   *(_DWORD *)&g_SceneMgr._postSlots[8704 * g_SceneMgr.m_nCameraState + 64] = 0;
   *(_DWORD *)&g_SceneMgr._postSlots[8704 * a1 + 64] = 1;
   RoleSystemNotify((int)&g_SceneMgr.m_slot4[8704 * a1 + 840]);
-  ((int)&g_SceneMgr.m_slot4[8704 * a1 + 840])->Init();
+  ((CameraSystem *)&g_SceneMgr.m_slot4[8704 * a1 + 840])->Init();
   g_SceneMgr.m_nCameraState = a1;
   if ( *(_DWORD *)(g_Input.KeyInfo[177].CountMode + 448) )
     ((RoleSystem *)g_Input.KeyInfo[177].CountMode)->SetActive((int)&g_SceneMgr.m_slot4[8704 * a1 + 840]);
@@ -303,7 +303,7 @@ int ScriptSystem::RunScript(int a1, int a2, int a3)
   int v7; // esi
   int v8; // ecx
   int v9; // eax
-  void *v10; // eax
+  _DWORD *v10; // eax
   GRPinput *v11; // esi
   char *Instance; // eax
   void *v13; // [esp-8h] [ebp-13Ch]
@@ -340,11 +340,11 @@ int ScriptSystem::RunScript(int a1, int a2, int a3)
   if ( v6 < 0 )
   {
     sprintf(Buffer, "%d", v6);
-    v10 = (void *)operator new(0x24u);
+    v10 = (_DWORD *)operator new(0x24u);
     pPos[5] = v10;
     v16 = 0;
     if ( v10 )
-      v11 = (GRPinput *)((int)v10)->SetMousePos();
+      v11 = (GRPinput *)((GRPinput *)v10)->SetMousePos();
     else
       v11 = 0;
     v16 = -1;
@@ -375,7 +375,7 @@ int ScriptSystem::RunWithDelay(float delay, int a2, int a3)
   int v6; // ebp
   __int64 v7; // rax
   int result; // eax
-  LPVOID v9; // eax
+  _DWORD *v9; // eax
   GRPinput *v10; // esi
   char *Instance; // eax
   void *v12; // [esp-8h] [ebp-144h]
@@ -408,10 +408,10 @@ int ScriptSystem::RunWithDelay(float delay, int a2, int a3)
   if ( v13 < 0 )
   {
     sprintf(Buffer, "%d", v13);
-    v9 = operator new(0x24u);
+    v9 = (_DWORD *)operator new(0x24u);
     v16 = 0;
     if ( v9 )
-      v10 = (GRPinput *)((int)v9)->SetMousePos();
+      v10 = (GRPinput *)((GRPinput *)v9)->SetMousePos();
     else
       v10 = 0;
     v16 = -1;

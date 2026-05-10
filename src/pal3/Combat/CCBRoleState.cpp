@@ -722,7 +722,7 @@ char CCBRoleState::CheckVarianceRound(int a2, int a3, int *a4)
   if ( a2 >= 5 && a2 < 11 )
     return 0;
   v5 = 0;
-  Proxy = ((Concurrency::details::InternalContextBase *)&g_GDB)->details::InternalContextBase::GetProxy();
+  Proxy = ((Concurrency *)&g_GDB)->details::InternalContextBase::GetProxy();
   v23 = 0;
   if ( (int)Proxy <= 0 )
     return 0;
@@ -871,42 +871,42 @@ char CCBRoleState::CancelVariance(_DWORD *a2, unsigned int a3)
     return 0;
   if ( *a2 != 259 )
     return 1;
-  result = ((int)this)->CalSneakAttack(a2[2], a3);
+  result = this->CalSneakAttack(a2[2], a3);
   if ( result )
     return 1;
   return result;
 }
 
 // 0x004EEE60
-char CCBRoleState::IsAlive(int _this, int a2, int a3)
+char CCBRoleState::IsAlive(int a2, int a3)
 {
   char result; // al
-  int v5; // eax
+  __int32 nProtectRole; // eax
 
-  if ( !*(_BYTE *)(this + 577) )
+  if ( !this->m_Role[0].bValid )
     return 0;
-  v5 = *(_DWORD *)(this + 636);
-  if ( !v5 )
+  nProtectRole = this->m_Role[0].nProtectRole;
+  if ( !nProtectRole )
     return 0;
-  if ( v5 != a2 )
+  if ( nProtectRole != a2 )
     return 0;
-  result = ((CCBRoleState *)this)->IsRoleAlive(0);
+  result = this->IsRoleAlive(0);
   if ( result )
   {
-    if ( *(_DWORD *)(this + 1136) == 6 )
+    if ( *(_DWORD *)&this->m_Role[0].byMagicUseTime[102] == 6 )
     {
-      if ( ((CCBRoleState *)this)->GetRoleField(0, 14) )
+      if ( this->GetRoleField(0, 14) )
       {
         return 0;
       }
       else
       {
-        result = ((CCBStageRole *)*(CCBStageRole **)(*(_DWORD *)(this + 524) + 24))->EndTask(a2, a3);
+        result = ((CCBStageRole *)*(CCBStageRole **)(this->m_pStage + 24))->EndTask(a2, a3);
         if ( result )
         {
-          result = ((CCBStageRole *)*(CCBStageRole **)(*(_DWORD *)(this + 524) + 4 * a2 + 24))->ForceEndTaskByPFN();
+          result = ((CCBStageRole *)*(CCBStageRole **)(this->m_pStage + 4 * a2 + 24))->ForceEndTaskByPFN();
           if ( result )
-            return ((CCBStage *)*(CCBStage **)(this + 524))->ForceDelTask(18) != 0;
+            return ((CCBStage *)this->m_pStage)->ForceDelTask(18) != 0;
         }
       }
     }
@@ -1567,11 +1567,11 @@ int CCBRoleState::SetEnemyBeImbibeNimbus(char a2, char a3)
 }
 
 // 0x004F0210
-bool CCBRoleState::CalSneakAttack(int _this, int a2, unsigned int a3)
+bool CCBRoleState::CalSneakAttack(int a2, unsigned int a3)
 {
-  int v4; // esi
+  signed int v4; // esi
   int v5; // ebx
-  _BYTE *v6; // esi
+  __int8 *v6; // esi
 
   if ( a2 < 5 || a2 >= 11 )
   {
@@ -1583,17 +1583,17 @@ LABEL_14:
     v4 = a3;
     if ( a3 <= 4 )
     {
-      if ( *(_BYTE *)(this + 892 * a2 + 650) || *(_BYTE *)(this + 892 * a2 + 651) )
+      if ( this->m_Role[a2].bAttackColumn || this->m_Role[a2].bAttackAll )
         return 1;
-      if ( *(_DWORD *)(this + 892 * a3 + 1136) == ((CCBRoleState *)this)->CheckDeath(*(_DWORD *)(*(_DWORD *)(*(_DWORD *)(this + 520) + 112) + 64)) )
+      if ( *(_DWORD *)&this->m_Role[a3].byMagicUseTime[102] == this->CheckDeath(*(_DWORD *)(*(_DWORD *)(this->m_pCBSystem + 112) + 64)) )
       {
         v5 = 0;
-        v6 = (_BYTE *)(this + 1432);
+        v6 = (__int8 *)&this->m_Role[0].nSpecStateRound[40];
         while ( !*(v6 - 855)
              || *v6
              || *(v6 - 1)
              || *((_DWORD *)v6 - 74) != 6
-             || ((CCBRoleState *)this)->SetRoleField(v5, 0) <= 0 )
+             || this->SetRoleField(v5, 0) <= 0 )
         {
           ++v5;
           v6 += 892;
@@ -1607,13 +1607,13 @@ LABEL_14:
   return (unsigned int)a2 > 4
       || v4 < 5
       || v4 >= 11
-      || *(_BYTE *)(this + 892 * a2 + 650)
-      || *(_BYTE *)(this + 892 * a2 + 651)
+      || this->m_Role[a2].bAttackColumn
+      || this->m_Role[a2].bAttackAll
       || v4 != 6
-      || !*(_BYTE *)(this + 9497)
-      || *(_BYTE *)(this + 10352)
-      || *(_BYTE *)(this + 10351)
-      || ((CCBRoleState *)this)->SetRoleField(10, 0) <= 0;
+      || !this->m_Role[10].bValid
+      || this->m_Role[10].nSpecStateRound[40]
+      || this->m_Role[10].nSpecStateRound[39]
+      || this->SetRoleField(10, 0) <= 0;
 }
 
 // 0x004F0360
@@ -2030,7 +2030,7 @@ char CCBRoleState::GetDeadRoleNumInForce(int a2)
     v14[3] = v3;
     if ( this->VarianceRoundCounter(v14) )
     {
-      if ( ((_DWORD *)a2)->sub_4F05A0()
+      if ( ((CCBRoleState *)a2)->sub_4F05A0()
         || ((CCBStageRole *)*(CCBStageRole **)(v23 + this->m_pStage))->ForceEndTaskByPFN()
         || *(_WORD *)(((PAL_GDB *)&g_GDB)->GDB_GetRoleNum(*(_DWORD *)(a2 + 4)) + 666) == 2 )
       {
@@ -2221,7 +2221,7 @@ char CCBRoleState::GetCastFightSkillSuccess(int a2)
     {
       goto LABEL_13;
     }
-    if ( (((_DWORD *)a2)->sub_4F05A0()
+    if ( (((CCBRoleState *)a2)->sub_4F05A0()
        || ((CCBStageRole *)*(CCBStageRole **)(this->m_pStage + i))->ForceEndTaskByPFN()
        || *(_WORD *)(((PAL_GDB *)&g_GDB)->GDB_GetSkillNum(*(_DWORD *)(a2 + 4)) + 748) == 2)
       && sub_4F2750(this, (_DWORD *)a2, v4) < 0
@@ -2257,7 +2257,7 @@ char CCBRoleState::SetCoAttack(int a2)
     {
       goto LABEL_12;
     }
-    if ( (((_DWORD *)a2)->sub_4F05A0()
+    if ( (((CCBRoleState *)a2)->sub_4F05A0()
        || ((CCBStageRole *)*(CCBStageRole **)(this->m_pStage + i))->ForceEndTaskByPFN())
       && sub_4F27B0(this, (_DWORD *)a2, v4) < 0
       && !((CCBSystem *)*(CCBSystem **)(this->m_pCBSystem + 12))->IsCmdEmpty(v4)
@@ -2270,8 +2270,8 @@ LABEL_12:
   }
   this->SetRoleHP(*(_DWORD *)(a2 + 8), *(_DWORD *)(a2 + 4));
   sub_43FE90(*(_DWORD *)(this->m_pUI + 1068));
-  ((UIWnd *)*(_DWORD *)(this->m_pUI + 1068))->FindChild(50.0);
-  ((UIWnd *)*(_DWORD *)(this->m_pUI + 1068))->FindChildByName(0.0);
+  ((UIWnd *)*(UIWnd **)(this->m_pUI + 1068))->FindChild(50.0);
+  ((UIWnd *)*(UIWnd **)(this->m_pUI + 1068))->FindChildByName(0.0);
   *(_DWORD *)&this->m_Role[*(_DWORD *)(a2 + 8)].byMagicUseTime[54] = 0;
   return 1;
 }
@@ -2332,16 +2332,16 @@ char CCBRoleState::CanBeImbibeNimbus(int arg0, unsigned int a2)
       result = 1;
       break;
     case 0x391:
-      result = ((int)this)->CheckRoleValid(arg0, a2, 27);
+      result = this->CheckRoleValid(arg0, a2, 27);
       break;
     case 0x392:
-      result = ((int)this)->CheckRoleValid(arg0, a2, 28);
+      result = this->CheckRoleValid(arg0, a2, 28);
       break;
     case 0x393:
-      result = ((int)this)->CheckRoleValid(arg0, a2, 1);
+      result = this->CheckRoleValid(arg0, a2, 1);
       break;
     case 0x3A1:
-      result = ((int)this)->CheckRoleValid(arg0, a2, 30);
+      result = this->CheckRoleValid(arg0, a2, 30);
       break;
     default:
 LABEL_8:
@@ -2352,11 +2352,11 @@ LABEL_8:
 }
 
 // 0x004F1FA0
-char CCBRoleState::CheckRoleValid(int _this, int a2, unsigned int roleIdx, int a4)
+char CCBRoleState::CheckRoleValid(int a2, unsigned int roleIdx, int a4)
 {
   char result; // al
-  CCBSystem *v6; // edx
-  CCBStage *v7; // ecx
+  CCBSystem *m_pCBSystem; // edx
+  CCBStage *m_pStage; // ecx
   int RoleIndex; // edi
   CCBSystem *v9; // ecx
   int v10; // edi
@@ -2370,58 +2370,58 @@ char CCBRoleState::CheckRoleValid(int _this, int a2, unsigned int roleIdx, int a
   switch ( a4 )
   {
     case 1:
-      return ((CCBRoleState *)this)->CanRoleAct(roleIdx);
+      return this->CanRoleAct(roleIdx);
     case 2:
-      v6 = (CCBSystem *)*(CCBSystem **)(this + 520);
-      if ( LOBYTE(v6->m_pFightInfo->nRoleWillNotBeAttack) )
+      m_pCBSystem = (CCBSystem *)this->m_pCBSystem;
+      if ( LOBYTE(m_pCBSystem->m_pFightInfo->nRoleWillNotBeAttack) )
       {
         memset(a3, 0, sizeof(a3));
         a3[2] = a2;
-        v7 = (CCBStage *)*(CCBStage **)(this + 524);
+        m_pStage = (CCBStage *)this->m_pStage;
         LOBYTE(a3[10]) = 1;
         a3[0] = 267;
         a3[1] = 0;
         a3[3] = -1;
-        RoleIndex = v7->GetRoleIndex(26, a3, 1);
+        RoleIndex = m_pStage->GetRoleIndex(26, a3, 1);
         if ( RoleIndex != -1 )
         {
           memset(a7, 0, sizeof(a7));
-          ((CCBStage *)*(CCBStage **)(this + 524))->GetRoleName(RoleIndex, (int)sub_5024D0, 0, 0, 0, a7, 0, 1077936128);
-          ((CCBSystem *)*(CCBSystem **)(this + 524))->GetStageRoleByIdx(RoleIndex);
+          ((CCBStage *)this->m_pStage)->GetRoleName(RoleIndex, (int)sub_5024D0, 0, 0, 0, a7, 0, 1077936128);
+          ((CCBSystem *)this->m_pStage)->GetStageRoleByIdx(RoleIndex);
         }
         goto LABEL_6;
       }
-      *(_BYTE *)(this + 549) = 1;
+      this->m_bFleeAlwaysSuccess = 1;
       memset(a6, 0, sizeof(a6));
       LOBYTE(a6[10]) = 1;
       LOWORD(a6[4]) = 0;
-      a6[1] = v6->ProcProtect();
+      a6[1] = m_pCBSystem->ProcProtect();
       a6[3] = roleIdx;
       a6[2] = a2;
-      v9 = (CCBSystem *)*(CCBSystem **)(this + 520);
+      v9 = (CCBSystem *)this->m_pCBSystem;
       a6[0] = 267;
-      v9->CreateObj(CCBSystem::PassCmdToThread, 0, 0, 0, a6);
+      v9->CreateObj((int (*)(int, int))CCBSystem::PassCmdToThread, 0, 0, 0, a6);
       return 1;
     case 24:
     case 30:
       return 1;
     case 25:
-      sub_4F2390((_DWORD *)this);
+      sub_4F2390(this);
       return 1;
     case 27:
       if ( roleIdx > 4 )
         return 1;
-      v10 = ((CCBRoleState *)this)->GetTotalRounds() / 200;
-      v11 = v10 - ((CCBRoleState *)this)->GetTotalRounds() / 100;
+      v10 = this->GetTotalRounds() / 200;
+      v11 = v10 - this->GetTotalRounds() / 100;
       if ( v11 > 0 )
       {
         ++g_nRandCallCount;
         g_RandSeed = 214013 * g_RandSeed + 2531011;
         v11 = ((g_RandSeed >> 16) & 0x7FFF) % v11;
       }
-      if ( v11 + ((CCBRoleState *)this)->GetTotalRounds() / 200 <= 0 )
+      if ( v11 + this->GetTotalRounds() / 200 <= 0 )
         return 1;
-      ((CCBRoleState *)this)->CheckBuff(roleIdx);
+      this->CheckBuff(roleIdx);
       return 1;
     case 28:
       if ( roleIdx > 4 )
@@ -2435,8 +2435,8 @@ char CCBRoleState::CheckRoleValid(int _this, int a2, unsigned int roleIdx, int a
       result = 1;
       break;
     case 29:
-      if ( ((CCBRoleState *)this)->Update(2) == 1 )
-        sub_4F8FD0((CCBRoleState *)this, a2, roleIdx);
+      if ( this->Update(2) == 1 )
+        sub_4F8FD0(this, a2, roleIdx);
       return 1;
     default:
 LABEL_6:
@@ -2452,7 +2452,7 @@ char CCBRoleState::CheckRoleNimbus(int a2, unsigned int a3)
   int SkillNum; // eax
 
   SkillNum = ((PAL_GDB *)&g_GDB)->GDB_GetSkillNum(*(_DWORD *)(a2 + 4));
-  return ((int)this)->CheckRoleValid(*(_DWORD *)(a2 + 8), a3, *(unsigned __int8 *)(SkillNum + 628));
+  return this->CheckRoleValid(*(_DWORD *)(a2 + 8), a3, *(unsigned __int8 *)(SkillNum + 628));
 }
 
 // 0x004F2350
@@ -2461,7 +2461,7 @@ char CCBRoleState::CanBeSelect(int a2, unsigned int a3)
   int RoleNum; // eax
 
   RoleNum = ((PAL_GDB *)&g_GDB)->GDB_GetRoleNum(*(_DWORD *)(a2 + 4));
-  return ((int)this)->CheckRoleValid(*(_DWORD *)(a2 + 8), a3, *(unsigned __int8 *)(RoleNum + 578));
+  return this->CheckRoleValid(*(_DWORD *)(a2 + 8), a3, *(unsigned __int8 *)(RoleNum + 578));
 }
 
 // 0x004F2910
@@ -4332,8 +4332,10 @@ void * CCBRoleState::ProcessActions()
   int v10; // edi
   void *result; // eax
   int v12; // ecx
-  int v13; // [esp+10h] [ebp-34h]
-  unsigned __int8 *v14; // [esp+14h] [ebp-30h]
+  CCBUI *v13; // [esp+0h] [ebp-44h]
+  int v14; // [esp+4h] [ebp-40h]
+  int v15; // [esp+10h] [ebp-34h]
+  unsigned __int8 *v16; // [esp+14h] [ebp-30h]
   _DWORD a3[11]; // [esp+18h] [ebp-2Ch] BYREF
 
   memset(a3, 0, sizeof(a3));
@@ -4351,7 +4353,7 @@ void * CCBRoleState::ProcessActions()
       ((CCBStage *)this->m_pStage)->GetRoleName(RoleIndex, (int)sub_5021C0, 0, 0, 0, 0, -1082130432, 1045220557);
       ((CCBSystem *)this->m_pStage)->GetStageRoleByIdx(RoleIndex);
     }
-    ((CCBStageCam *)*(_DWORD *)(this->m_pStage + 16))->ClearFinishedTask(10);
+    ((CCBStageCam *)*(CCBStageCam **)(this->m_pStage + 16))->ClearFinishedTask(10);
     v3 = 24;
     p_bValid = (unsigned __int8 *)&this->m_Role[0].bValid;
     *(_DWORD *)(this->m_pCBSystem + 120) = 7;
@@ -4361,7 +4363,7 @@ void * CCBRoleState::ProcessActions()
       {
         *(_BYTE *)(*(_DWORD *)(v3 + this->m_pStage) + 280) = 0;
         *(_BYTE *)(*(_DWORD *)(v3 + this->m_pStage) + 274) = 0;
-        ((CCBStageRole *)*(_DWORD *)(v3 + this->m_pStage))->TryRelease();
+        ((CCBStageRole *)*(CCBStageRole **)(v3 + this->m_pStage))->TryRelease();
       }
       v3 += 4;
       p_bValid += 892;
@@ -4375,11 +4377,11 @@ void * CCBRoleState::ProcessActions()
   {
     sub_4F8AF0(this);
     sub_4FA930((int)this, 1, -1);
-    ((CCBStageCam *)*(_DWORD *)(this->m_pStage + 16))->ClearFinishedTask(3);
+    ((CCBStageCam *)*(CCBStageCam **)(this->m_pStage + 16))->ClearFinishedTask(3);
     v5 = 0;
     p_bAlive = (unsigned __int8 *)&this->m_Role[0].bAlive;
-    v13 = 0;
-    v14 = (unsigned __int8 *)&this->m_Role[0].bAlive;
+    v15 = 0;
+    v16 = (unsigned __int8 *)&this->m_Role[0].bAlive;
     do
     {
       if ( *(p_bAlive - 1) )
@@ -4395,15 +4397,15 @@ void * CCBRoleState::ProcessActions()
             ((CCBStage *)this->m_pStage)->GetRoleName(v8, (int)sub_501CF0, 0, 0, 0, 0, -1082130432, 0);
             ((CCBStage *)this->m_pStage)->GetRoleName(v8, (int)CCBStage::ProcFiveLienupFadeOut, 0, 0, 0, 0, -1082130432, 0);
             ((CCBSystem *)this->m_pStage)->GetStageRoleByIdx(v8);
-            p_bAlive = v14;
-            v5 = v13;
+            p_bAlive = v16;
+            v5 = v15;
           }
         }
       }
       ++v5;
       p_bAlive += 892;
-      v13 = v5;
-      v14 = p_bAlive;
+      v15 = v5;
+      v16 = p_bAlive;
     }
     while ( v5 < 5 );
     v9 = ((CCBStage *)this->m_pStage)->GetRoleIndex(23, a3, 1);
@@ -4423,17 +4425,17 @@ void * CCBRoleState::ProcessActions()
     sub_4ED870(this);
     sub_4ED680(this);
     ((C2DSpark *)*(C2DSpark **)(this->m_pCBSystem + 52))->CreateStars();
-    ((C2DSpark *)*(_DWORD *)(this->m_pCBSystem + 52))->CreateTrack(1);
+    ((C2DSpark *)*(C2DSpark **)(this->m_pCBSystem + 52))->CreateTrack(1);
     *(_DWORD *)(this->m_pCBSystem + 120) = 5;
     ((CCBStageScene *)*(CCBStageScene ***)(*(_DWORD *)(this->m_pCBSystem + 20) + 20))->Destroy();
   }
   if ( *(_DWORD *)(this->m_pCBSystem + 120) == 4 )
   {
     sub_4FA930((int)this, 1, -1);
-    ((CCBStageCam *)*(_DWORD *)(*(_DWORD *)(this->m_pCBSystem + 20) + 16))->ClearFinishedTask(8);
+    ((CCBStageCam *)*(CCBStageCam **)(*(_DWORD *)(this->m_pCBSystem + 20) + 16))->ClearFinishedTask(8);
     ((CCBSystem *)*(CCBSystem **)(this->m_pCBSystem + 12))->GetDeltaTime();
     sub_4DB940(*(_BYTE **)(this->m_pCBSystem + 12), 0);
-    ((CCBUI *)*(_DWORD **)(this->m_pCBSystem + 4))->CreateMagicWindow();
+    v13->CreateMagicWindow(v14);
     v10 = ((CCBStage *)this->m_pStage)->GetRoleIndex(23, a3, 1);
     if ( v10 != -1 )
     {
@@ -4541,24 +4543,24 @@ int CCBRoleState::UpdateEffects()
     {
       v4 = *(unsigned __int8 *)(result + 576);
       a5 = (float)*(int *)(result + 592);
-      ((UIWnd *)*(_DWORD *)(this->m_pUI + 4 * v4 + 1020))->FindChild(a5);
+      ((UIWnd *)*(UIWnd **)(this->m_pUI + 4 * v4 + 1020))->FindChild(a5);
       a5a = (float)a1[150];
-      ((UIWnd *)*(_DWORD *)(this->m_pUI + 4 * v4 + 1036))->FindChild(a5a);
+      ((UIWnd *)*(UIWnd **)(this->m_pUI + 4 * v4 + 1036))->FindChild(a5a);
       a5b = (float)a1[152];
-      ((UIWnd *)*(_DWORD *)(this->m_pUI + 4 * v4 + 1052))->FindChild(a5b);
+      ((UIWnd *)*(UIWnd **)(this->m_pUI + 4 * v4 + 1052))->FindChild(a5b);
       a5c = (float)a1[147];
-      ((UIWnd *)*(_DWORD *)(this->m_pUI + 4 * v4 + 1020))->FindChildByName(a5c);
+      ((UIWnd *)*(UIWnd **)(this->m_pUI + 4 * v4 + 1020))->FindChildByName(a5c);
       a5d = (float)a1[149];
-      ((UIWnd *)*(_DWORD *)(this->m_pUI + 4 * v4 + 1036))->FindChildByName(a5d);
+      ((UIWnd *)*(UIWnd **)(this->m_pUI + 4 * v4 + 1036))->FindChildByName(a5d);
       a5e = (float)a1[151];
-      ((UIWnd *)*(_DWORD *)(this->m_pUI + 4 * v4 + 1052))->FindChildByName(a5e);
+      ((UIWnd *)*(UIWnd **)(this->m_pUI + 4 * v4 + 1052))->FindChildByName(a5e);
       if ( !v2 )
       {
         m_pUI = this->m_pUI;
         if ( *(_DWORD *)(*(_DWORD *)(m_pUI + 120) + 56) == 1 )
         {
           a5f = *(float *)&this->m_Role[0].byMagicUseTime[54] * 0.25;
-          ((UIWnd *)*(_DWORD *)(m_pUI + 1068))->FindChildByName(a5f);
+          ((UIWnd *)*(UIWnd **)(m_pUI + 1068))->FindChildByName(a5f);
           if ( this->m_Role[0].nHP > 0 )
           {
             m_pCBSystem = this->m_pCBSystem;

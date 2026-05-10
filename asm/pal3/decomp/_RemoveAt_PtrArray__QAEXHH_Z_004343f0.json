@@ -3,5 +3,5 @@
   "address": "0x004343F0",
   "size_bytes": 113,
   "signature": "char *__cdecl(const char *a1)",
-  "decompiled_c": "// between_std_methods (0x430790-0x445B40)\nchar *__cdecl PtrArray::RemoveAt(const char *a1)\n{\n  int v1; // edi\n  const char *i; // ebp\n\n  v1 = 0;\n  if ( dword_D8E46C <= 0 )\n    return 0;\n  for ( i = (char *)Block + 8; strcmp(a1, i); i += 24 )\n  {\n    if ( ++v1 >= dword_D8E46C )\n      return 0;\n  }\n  return (char *)Block + 24 * v1;\n}\n"
+  "decompiled_c": "// between_std_methods (0x430790-0x445B40)\nchar *__cdecl PtrArray::RemoveAt(const char *a1)\n{\n  int v1; // edi\n  const char *i; // ebp\n\n  v1 = 0;\n  if ( stru_D8C2B8.KeyTransformation[2] <= 0 )\n    return 0;\n  for ( i = (const char *)(stru_D8C2B8.KeyTransformation[3] + 8); strcmp(a1, i); i += 24 )\n  {\n    if ( ++v1 >= stru_D8C2B8.KeyTransformation[2] )\n      return 0;\n  }\n  return (char *)(stru_D8C2B8.KeyTransformation[3] + 24 * v1);\n}\n"
 }

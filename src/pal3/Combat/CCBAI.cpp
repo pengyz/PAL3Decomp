@@ -102,7 +102,7 @@ char CCBAI::Init()
 // 0x004D7100
 int CCBAI::Update()
 {
-  ((int)this)->DemandThreadTracer();
+  this->DemandThreadTracer();
   return this->FillAllDemandSatisfy();
 }
 
@@ -1147,7 +1147,7 @@ LABEL_5:
             *(_BYTE *)(a3 + 17) = 0;
             ((CCBRoleState *)this->m_bNewRole[4])->CalcHealAmount(a3);
           }
-          v4 = CCBSystem::IsRoleWaitForFlee;
+          v4 = (int (*)(int, int))CCBSystem::IsRoleWaitForFlee;
           goto LABEL_33;
         case 0x104:
           if ( ((CCBRoleState *)this->m_bNewRole[4])->InitRoleSpecEquipAttrib(a3)
@@ -1165,7 +1165,7 @@ LABEL_5:
             *(_BYTE *)(a3 + 17) = 0;
             ((CCBRoleState *)this->m_bNewRole[4])->GetRoleNum((int *)a3);
           }
-          v4 = CCBSystem::GetThreadIndex;
+          v4 = (int (*)(int, int))CCBSystem::GetThreadIndex;
           goto LABEL_33;
         case 0x105:
           if ( ((CCBRoleState *)this->m_bNewRole[4])->InitRoleSpecEquipAttrib(a3)
@@ -1183,7 +1183,7 @@ LABEL_5:
             *(_BYTE *)(a3 + 17) = 0;
             ((CCBRoleState *)this->m_bNewRole[4])->GetRoleNum((int *)a3);
           }
-          v4 = CCBSystem::GetSameThreadNum;
+          v4 = (int (*)(int, int))CCBSystem::GetSameThreadNum;
           goto LABEL_33;
         case 0x106:
           if ( ((CCBRoleState *)this->m_bNewRole[4])->InitRoleSpecEquipAttrib(a3)
@@ -1201,16 +1201,16 @@ LABEL_5:
             *(_BYTE *)(a3 + 17) = 0;
             ((CCBRoleState *)this->m_bNewRole[4])->GetRoleNum((int *)a3);
           }
-          v4 = CCBSystem::PassCmdToThread;
+          v4 = (int (*)(int, int))CCBSystem::PassCmdToThread;
           goto LABEL_33;
         default:
           return result;
       }
     case 0x109:
-      v4 = CCBSystem::PassCmdViaThread;
+      v4 = (int (*)(int, int))CCBSystem::PassCmdViaThread;
       goto LABEL_33;
     case 0x10B:
-      v4 = CCBSystem::PassCmdToThread;
+      v4 = (int (*)(int, int))CCBSystem::PassCmdToThread;
 LABEL_33:
       ((CCBSystem *)this->m_bNewRole[3])->CreateObj(v4, 0, 0, 0, (const void *)a3);
       result = 1;
@@ -1357,78 +1357,78 @@ int CCBAI::FillAllDemandSatisfy()
 }
 
 // 0x004D94F0
-char CCBAI::DemandThreadTracer(int _this)
+char CCBAI::DemandThreadTracer()
 {
   int v2; // edi
   int v3; // ebp
-  int v4; // esi
+  tagDemand *v4; // esi
   CCBRoleState *v5; // ecx
   char result; // al
 
   v2 = 0;
   v3 = 0;
-  v4 = this + 1616;
+  v4 = (tagDemand *)&this->m_Demand[1][5];
   do
   {
-    v5 = (CCBRoleState *)*(CCBRoleState **)(this + 16);
+    v5 = (CCBRoleState *)this->m_bNewRole[4];
     if ( v5->m_Role[v3].bValid )
     {
       if ( v5->IsRoleAlive(v2) )
       {
-        *(_DWORD *)v4 = 100;
+        v4->nSatisfy = 100;
       }
-      else if ( !*(_BYTE *)(v4 + 8) )
+      else if ( !LOBYTE(v4->bHandle) )
       {
-        *(_DWORD *)v4 = 0;
+        v4->nSatisfy = 0;
       }
-      if ( ((CCBRoleState *)*(CCBRoleState **)(this + 16))->GetRoleAttr(v2) < 3 )
+      if ( ((CCBRoleState *)this->m_bNewRole[4])->GetRoleAttr(v2) < 3 )
       {
-        *(_DWORD *)(v4 - 16) = 100;
-        *(_DWORD *)(v4 + 48) = 80;
+        v4[-1].nSatisfy = 100;
+        v4[3].nSatisfy = 80;
       }
       else
       {
-        if ( !*(_BYTE *)(v4 - 8) )
-          *(_DWORD *)(v4 - 16) = 40;
-        if ( !*(_BYTE *)(v4 + 56) )
-          *(_DWORD *)(v4 + 48) = 40;
+        if ( !LOBYTE(v4[-1].bHandle) )
+          v4[-1].nSatisfy = 40;
+        if ( !LOBYTE(v4[3].bHandle) )
+          v4[3].nSatisfy = 40;
       }
-      if ( ((CCBRoleState *)*(CCBRoleState **)(this + 16))->GetRoleAttr(v2) == 4 )
+      if ( ((CCBRoleState *)this->m_bNewRole[4])->GetRoleAttr(v2) == 4 )
       {
-        if ( !*(_BYTE *)(v4 - 8) )
-          *(_DWORD *)(v4 - 16) = 10;
-        if ( !*(_BYTE *)(v4 + 56) )
-          *(_DWORD *)(v4 + 48) = 10;
+        if ( !LOBYTE(v4[-1].bHandle) )
+          v4[-1].nSatisfy = 10;
+        if ( !LOBYTE(v4[3].bHandle) )
+          v4[3].nSatisfy = 10;
       }
-      if ( ((CCBRoleState *)*(CCBRoleState **)(this + 16))->GetRoleForce(v2) )
+      if ( ((CCBRoleState *)this->m_bNewRole[4])->GetRoleForce(v2) )
       {
-        if ( !*(_BYTE *)(v4 + 40) )
+        if ( !LOBYTE(v4[2].bHandle) )
         {
-          *(_DWORD *)(v4 + 44) = ((CCBRoleState *)*(CCBRoleState **)(this + 16))->GetRoleSpeed(v2);
-          *(_DWORD *)(v4 + 32) = 50;
+          v4[2].eSpecState = ((CCBRoleState *)this->m_bNewRole[4])->GetRoleSpeed(v2);
+          v4[2].nSatisfy = 50;
         }
       }
       else
       {
-        *(_DWORD *)(v4 + 32) = 100;
+        v4[2].nSatisfy = 100;
       }
     }
     ++v3;
     ++v2;
-    v4 += 160;
+    v4 += 10;
   }
   while ( v3 < 11 );
-  ((CCBRoleState *)*(CCBRoleState **)(this + 16))->GetRoleMP(2);
-  if ( !*(_BYTE *)(this + 3368) )
-    *(_DWORD *)(this + 3360) = 110;
-  if ( !*(_BYTE *)(this + 3432) )
-    *(_DWORD *)(this + 3424) = 0;
-  ((CCBRoleState *)*(CCBRoleState **)(this + 16))->GetRoleMP(1);
-  if ( !*(_BYTE *)(this + 3528) )
-    *(_DWORD *)(this + 3520) = 110;
-  result = *(_BYTE *)(this + 3592);
+  ((CCBRoleState *)this->m_bNewRole[4])->GetRoleMP(2);
+  if ( !LOBYTE(this->m_FriendDemand[5].bHandle) )
+    this->m_FriendDemand[5].nSatisfy = 110;
+  if ( !LOBYTE(this->m_FriendDemand[9].bHandle) )
+    this->m_FriendDemand[9].nSatisfy = 0;
+  ((CCBRoleState *)this->m_bNewRole[4])->GetRoleMP(1);
+  if ( !*((_BYTE *)this + 3528) )
+    *((_DWORD *)this + 880) = 110;
+  result = *((_BYTE *)this + 3592);
   if ( !result )
-    *(_DWORD *)(this + 3584) = 100;
+    *((_DWORD *)this + 896) = 100;
   return result;
 }
 
@@ -1493,7 +1493,7 @@ char CCBAI::DemandChecker(unsigned int a2, int a3, int a4)
   a6[3] = a3;
   LOWORD(a6[4]) = 0;
   v10->CalcHealAmount((int)a6);
-  Obj = ((CCBSystem *)this->m_bNewRole[3])->CreateObj(CCBSystem::IsRoleWaitForFlee, 0, 0, 0, a6);
+  Obj = ((CCBSystem *)this->m_bNewRole[3])->CreateObj((int (*)(int, int))CCBSystem::IsRoleWaitForFlee, 0, 0, 0, a6);
   if ( a4 )
     *(_DWORD *)(a4 + 4) = Obj;
   return 1;
@@ -1536,7 +1536,7 @@ char CCBAI::CastNormalAttack(int a2, int a3, int a4)
   v8 = (CCBSystem *)this->m_bNewRole[3];
   a6[0] = 261;
   a6[2] = a2;
-  Obj = v8->CreateObj(CCBSystem::GetSameThreadNum, 0, 0, 0, a6);
+  Obj = v8->CreateObj((int (*)(int, int))CCBSystem::GetSameThreadNum, 0, 0, 0, a6);
   if ( a4 )
     *(_DWORD *)(a4 + 4) = Obj;
   return 1;
@@ -1580,7 +1580,7 @@ char CCBAI::CastRecoverMagic(int a2, int a3)
       a6[2] = a2;
       a6[3] = -1;
       v9->GetRoleNum(a6);
-      Obj = ((CCBSystem *)this->m_bNewRole[3])->CreateObj(CCBSystem::GetSameThreadNum, 0, 0, 0, a6);
+      Obj = ((CCBSystem *)this->m_bNewRole[3])->CreateObj((int (*)(int, int))CCBSystem::GetSameThreadNum, 0, 0, 0, a6);
       if ( a3 )
         *(_DWORD *)(a3 + 4) = Obj;
       return 1;
@@ -1633,7 +1633,7 @@ char CCBAI::CastRecoverBigMagic(int a2, int a3, int a4)
   v9 = (CCBSystem *)this->m_bNewRole[3];
   LOWORD(a6[4]) = 0;
   a6[0] = 261;
-  Obj = v9->CreateObj(CCBSystem::GetSameThreadNum, 0, 0, 0, a6);
+  Obj = v9->CreateObj((int (*)(int, int))CCBSystem::GetSameThreadNum, 0, 0, 0, a6);
   if ( a4 )
     *(_DWORD *)(a4 + 4) = Obj;
   return 1;
@@ -1673,7 +1673,7 @@ char CCBAI::CastAttackMagic(int a2, int a3)
   a6[2] = a2;
   a6[3] = -1;
   v8->GetRoleNum(a6);
-  ((CCBSystem *)this->m_bNewRole[3])->CreateObj(CCBSystem::GetSameThreadNum, 0, 0, 0, a6);
+  ((CCBSystem *)this->m_bNewRole[3])->CreateObj((int (*)(int, int))CCBSystem::GetSameThreadNum, 0, 0, 0, a6);
   return 1;
 }
 
@@ -1713,7 +1713,7 @@ char CCBAI::CastAttackBigMagic(int a2, int a3)
   v7 = (CCBSystem *)this->m_bNewRole[3];
   LOWORD(a6[4]) = 0;
   a6[0] = 261;
-  v7->CreateObj(CCBSystem::GetSameThreadNum, 0, 0, 0, a6);
+  v7->CreateObj((int (*)(int, int))CCBSystem::GetSameThreadNum, 0, 0, 0, a6);
   return 1;
 }
 
@@ -1754,7 +1754,7 @@ char CCBAI::CastSpecifyMagic(int a2, int a3, int a4)
   v8 = (CCBSystem *)this->m_bNewRole[3];
   a6[0] = 260;
   a6[2] = a2;
-  Obj = v8->CreateObj(CCBSystem::GetThreadIndex, 0, 0, 0, a6);
+  Obj = v8->CreateObj((int (*)(int, int))CCBSystem::GetThreadIndex, 0, 0, 0, a6);
   if ( a4 )
     *(_DWORD *)(a4 + 4) = Obj;
   return 1;
@@ -1798,7 +1798,7 @@ char CCBAI::CastBFAMagic(int a2, int a3)
       a6[2] = a2;
       a6[3] = -1;
       v9->GetRoleNum(a6);
-      Obj = ((CCBSystem *)this->m_bNewRole[3])->CreateObj(CCBSystem::GetThreadIndex, 0, 0, 0, a6);
+      Obj = ((CCBSystem *)this->m_bNewRole[3])->CreateObj((int (*)(int, int))CCBSystem::GetThreadIndex, 0, 0, 0, a6);
       if ( a3 )
         *(_DWORD *)(a3 + 4) = Obj;
       return 1;
@@ -1850,7 +1850,7 @@ char CCBAI::CastBFAAttackMagic(int a2, int a3, int a4)
   v8 = (CCBSystem *)this->m_bNewRole[3];
   LOWORD(a6[4]) = 0;
   a6[0] = 260;
-  Obj = v8->CreateObj(CCBSystem::GetThreadIndex, 0, 0, 0, a6);
+  Obj = v8->CreateObj((int (*)(int, int))CCBSystem::GetThreadIndex, 0, 0, 0, a6);
   if ( a4 )
     *(_DWORD *)(a4 + 4) = Obj;
   return 1;
@@ -1900,7 +1900,7 @@ char CCBAI::CastRandEnemyMagic(int a2, int a3)
         a6[2] = a2;
         a6[3] = -1;
         v10->GetRoleNum(a6);
-        Obj = ((CCBSystem *)this->m_bNewRole[3])->CreateObj(CCBSystem::GetThreadIndex, 0, 0, 0, a6);
+        Obj = ((CCBSystem *)this->m_bNewRole[3])->CreateObj((int (*)(int, int))CCBSystem::GetThreadIndex, 0, 0, 0, a6);
         if ( a3 )
           *(_DWORD *)(a3 + 4) = Obj;
         return 1;
@@ -1955,7 +1955,7 @@ char CCBAI::CastRecoverSkill(int a2, int a3, int a4)
   v8 = (CCBSystem *)this->m_bNewRole[3];
   a6[0] = 262;
   a6[2] = a2;
-  Obj = v8->CreateObj(CCBSystem::PassCmdToThread, 0, 0, 0, a6);
+  Obj = v8->CreateObj((int (*)(int, int))CCBSystem::PassCmdToThread, 0, 0, 0, a6);
   if ( a4 )
     *(_DWORD *)(a4 + 4) = Obj;
   return 1;
@@ -1999,7 +1999,7 @@ char CCBAI::CastRecoverBigSkill(int a2, int a3)
       a6[2] = a2;
       a6[3] = -1;
       v9->GetRoleNum(a6);
-      Obj = ((CCBSystem *)this->m_bNewRole[3])->CreateObj(CCBSystem::PassCmdToThread, 0, 0, 0, a6);
+      Obj = ((CCBSystem *)this->m_bNewRole[3])->CreateObj((int (*)(int, int))CCBSystem::PassCmdToThread, 0, 0, 0, a6);
       if ( a3 )
         *(_DWORD *)(a3 + 4) = Obj;
       return 1;
@@ -2052,7 +2052,7 @@ char CCBAI::CastAttackSkill(int a2, int a3, int a4)
   v8 = (CCBSystem *)this->m_bNewRole[3];
   LOWORD(a6[4]) = 0;
   a6[0] = 262;
-  Obj = v8->CreateObj(CCBSystem::PassCmdToThread, 0, 0, 0, a6);
+  Obj = v8->CreateObj((int (*)(int, int))CCBSystem::PassCmdToThread, 0, 0, 0, a6);
   if ( a4 )
     *(_DWORD *)(a4 + 4) = Obj;
   return 1;
@@ -2098,7 +2098,7 @@ char CCBAI::CastAttackBigSkill(int a2, int a3)
       a6[2] = a2;
       a6[3] = -1;
       v10->GetRoleNum(a6);
-      Obj = ((CCBSystem *)this->m_bNewRole[3])->CreateObj(CCBSystem::PassCmdToThread, 0, 0, 0, a6);
+      Obj = ((CCBSystem *)this->m_bNewRole[3])->CreateObj((int (*)(int, int))CCBSystem::PassCmdToThread, 0, 0, 0, a6);
       if ( a3 )
         *(_DWORD *)(a3 + 4) = Obj;
       return 1;
@@ -2148,7 +2148,7 @@ char CCBAI::CastRecoverItem(int a2, int a3, int a4)
   v9 = (CCBSystem *)this->m_bNewRole[3];
   LOWORD(a6[4]) = 0;
   a6[0] = 261;
-  Obj = v9->CreateObj(CCBSystem::GetSameThreadNum, 0, 0, 0, a6);
+  Obj = v9->CreateObj((int (*)(int, int))CCBSystem::GetSameThreadNum, 0, 0, 0, a6);
   if ( a4 )
     *(_DWORD *)(a4 + 4) = Obj;
   return 1;
@@ -2191,7 +2191,7 @@ char CCBAI::CastRecoverBigItem(int a2, int a3, int a4)
   v9 = (CCBSystem *)this->m_bNewRole[3];
   LOWORD(a6[4]) = 0;
   a6[0] = 260;
-  Obj = v9->CreateObj(CCBSystem::GetThreadIndex, 0, 0, 0, a6);
+  Obj = v9->CreateObj((int (*)(int, int))CCBSystem::GetThreadIndex, 0, 0, 0, a6);
   if ( a4 )
     *(_DWORD *)(a4 + 4) = Obj;
   return 1;
@@ -2234,7 +2234,7 @@ char CCBAI::CastAttackItem(int a2, int a3, int a4)
   v9 = (CCBSystem *)this->m_bNewRole[3];
   LOWORD(a6[4]) = 0;
   a6[0] = 262;
-  Obj = v9->CreateObj(CCBSystem::PassCmdToThread, 0, 0, 0, a6);
+  Obj = v9->CreateObj((int (*)(int, int))CCBSystem::PassCmdToThread, 0, 0, 0, a6);
   if ( a4 )
     *(_DWORD *)(a4 + 4) = Obj;
   return 1;
@@ -2275,7 +2275,7 @@ char CCBAI::CastAttackBigItem(int a2, int a3, int a4)
   v8 = (CCBSystem *)this->m_bNewRole[3];
   LOWORD(a6[4]) = 0;
   a6[0] = 261;
-  Obj = v8->CreateObj(CCBSystem::GetSameThreadNum, 0, 0, 0, a6);
+  Obj = v8->CreateObj((int (*)(int, int))CCBSystem::GetSameThreadNum, 0, 0, 0, a6);
   if ( a4 )
     *(_DWORD *)(a4 + 4) = Obj;
   return 1;
@@ -2316,7 +2316,7 @@ char CCBAI::CastBossPhysicalAttack(int a2, int a3, int a4)
   v8 = (CCBSystem *)this->m_bNewRole[3];
   LOWORD(a6[4]) = 0;
   a6[0] = 260;
-  Obj = v8->CreateObj(CCBSystem::GetThreadIndex, 0, 0, 0, a6);
+  Obj = v8->CreateObj((int (*)(int, int))CCBSystem::GetThreadIndex, 0, 0, 0, a6);
   if ( a4 )
     *(_DWORD *)(a4 + 4) = Obj;
   return 1;
@@ -2357,7 +2357,7 @@ char CCBAI::CastReviveMagic(int a2, int a3, int a4)
   v8 = (CCBSystem *)this->m_bNewRole[3];
   LOWORD(a6[4]) = 0;
   a6[0] = 262;
-  Obj = v8->CreateObj(CCBSystem::PassCmdToThread, 0, 0, 0, a6);
+  Obj = v8->CreateObj((int (*)(int, int))CCBSystem::PassCmdToThread, 0, 0, 0, a6);
   if ( a4 )
     *(_DWORD *)(a4 + 4) = Obj;
   return 1;
@@ -2384,7 +2384,7 @@ char CCBAI::CastReviveSkill(int a2)
   a6[2] = a2;
   a6[3] = -1;
   v5->GetRoleNum(a6);
-  ((CCBSystem *)this->m_bNewRole[3])->CreateObj(CCBSystem::GetSameThreadNum, 0, 0, 0, a6);
+  ((CCBSystem *)this->m_bNewRole[3])->CreateObj((int (*)(int, int))CCBSystem::GetSameThreadNum, 0, 0, 0, a6);
   ((CEffMgr *)*(CEffMgr **)(this->m_bNewRole[3] + 44))->Init(559, 0, 0, 0, 0);
   return 1;
 }

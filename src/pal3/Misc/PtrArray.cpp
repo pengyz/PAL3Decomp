@@ -10,11 +10,7 @@ int sub_4348E0(...);
 int sub_5372D0(...);
 
 // Unnamed globals (extern)
-extern int dword_D8C360;
-extern int dword_D8C364;
-extern int dword_D8E468;
-extern int dword_D8E46C;
-extern int stru_D8C348;
+extern int stru_D8C2B8;
 
 // 0x00432660
 _DWORD * PtrArray::Clear()
@@ -99,21 +95,21 @@ PtrArray::~PtrArray()
   v2 = *(_DWORD *)(*(_DWORD *)a1 + 68) + *(_DWORD *)(*(_DWORD *)a1 + 72);
   if ( *(_DWORD *)(a1 + 8) >= v2 )
   2;
-  dword_D8E468 = a1;
+  stru_D8C2B8.KeyTransformation[1] = a1;
   if ( *(_DWORD *)(a1 + 8) < v2 )
   {
     do
       sub_433F90();
     while ( *(_BYTE *)(a1 + 4) != 1 && *(_DWORD *)(a1 + 8) < v2 );
   }
-  dword_D8E468 = 0;
+  stru_D8C2B8.KeyTransformation[1] = 0;
   1;
 }
 
 // 0x00434240
 void PtrArray::SetSize()
 {
-  int m_nSize; // esi
+  __int32 v0; // esi
   int v1; // edi
   void **v2; // ebx
   int v3; // esi
@@ -122,17 +118,17 @@ void PtrArray::SetSize()
   int v6; // edi
   int v7; // eax
   int i; // [esp+Ch] [ebp-8h]
-  int v9; // [esp+10h] [ebp-4h]
+  __int32 v9; // [esp+10h] [ebp-4h]
 
-  m_nSize = stru_D8C348.m_nSize;
+  v0 = stru_D8C2B8.m_keyStates[11];
   v1 = 0;
-  v9 = stru_D8C348.m_nSize;
-  for ( i = 0; v1 < m_nSize; i = v1 )
+  v9 = stru_D8C2B8.m_keyStates[11];
+  for ( i = 0; v1 < v0; i = v1 )
   {
-    if ( v1 < 0 || v1 >= stru_D8C348.m_nSize )
+    if ( v1 < 0 || v1 >= stru_D8C2B8.m_keyStates[11] )
       v2 = 0;
     else
-      v2 = (void **)*((_DWORD *)stru_D8C348.m_pData + v1);
+      v2 = *(void ***)(stru_D8C2B8.m_keyStates[10] + 4 * v1);
     if ( *v2 )
     {
       if ( *((_WORD *)*v2 + 38) )
@@ -177,36 +173,36 @@ void PtrArray::SetSize()
         *((_DWORD *)v5 + 20) = 0;
       }
       operator delete(*v2);
-      m_nSize = v9;
+      v0 = v9;
       *v2 = 0;
     }
     free(v2);
     ++v1;
   }
-  sub_4326A0((int)&stru_D8C348, 0, -1);
-  dword_D8C360 = -1;
-  memset(dword_D8C364, 0, 0x100u);
-  dword_D8E468 = 0;
-  if ( Block )
+  sub_4326A0((int)&stru_D8C2B8.m_keyStates[10], 0, -1);
+  stru_D8C2B8.m_keyStates[16] = -1;
+  memset(&stru_D8C2B8.m_keyStates[17], 0, 0x100u);
+  stru_D8C2B8.KeyTransformation[1] = 0;
+  if ( stru_D8C2B8.KeyTransformation[3] )
   {
-    free(Block);
-    Block = 0;
+    free((void *)stru_D8C2B8.KeyTransformation[3]);
+    stru_D8C2B8.KeyTransformation[3] = 0;
   }
-  dword_D8E46C = 0;
+  stru_D8C2B8.KeyTransformation[2] = 0;
 }
 
 // 0x004343B0
-char * PtrArray::SetAtGrow(signed __int16 a1, int a2)
+char * PtrArray::SetAtGrow(unsigned __int16 a1, int a2)
 {
   int v2; // ecx
 
   v2 = a2;
   if ( !a2 )
-    v2 = dword_D8E468;
-  if ( a1 >= 0 )
-    return (char *)(*(_DWORD *)(v2 + 76) + 8 * (unsigned __int16)a1);
+    v2 = stru_D8C2B8.KeyTransformation[1];
+  if ( (a1 & 0x8000u) == 0 )
+    return (char *)(*(_DWORD *)(v2 + 76) + 8 * a1);
   else
-    return (char *)Block + 24 * (a1 & 0x7FFF);
+    return (char *)(stru_D8C2B8.KeyTransformation[3] + 24 * (a1 & 0x7FFF));
 }
 
 // 0x004343F0
@@ -216,28 +212,28 @@ char * PtrArray::RemoveAt(const char *a1)
   const char *i; // ebp
 
   v1 = 0;
-  if ( dword_D8E46C <= 0 )
+  if ( stru_D8C2B8.KeyTransformation[2] <= 0 )
     return 0;
-  for ( i = (char *)Block + 8; strcmp(a1, i); i += 24 )
+  for ( i = (const char *)(stru_D8C2B8.KeyTransformation[3] + 8); strcmp(a1, i); i += 24 )
   {
-    if ( ++v1 >= dword_D8E46C )
+    if ( ++v1 >= stru_D8C2B8.KeyTransformation[2] )
       return 0;
   }
-  return (char *)Block + 24 * v1;
+  return (char *)(stru_D8C2B8.KeyTransformation[3] + 24 * v1);
 }
 
 // 0x00434490
-void PtrArray::Remove(int _this)
+void PtrArray::Remove()
 {
-  sub_434670(this);
-  operator delete(*(void **)(this + 8));
-  *(_DWORD *)(this + 8) = 0;
-  *(_DWORD *)(this + 12) = 0;
-  *(_DWORD *)(this + 16) = 0;
+  sub_434670((int)this);
+  operator delete((void *)this->m_nMaxSize);
+  this->m_nMaxSize = 0;
+  this->m_nGrowBy = 0;
+  *((_DWORD *)this + 4) = 0;
 }
 
 // 0x004344F0
-struct gbVFile * PtrArray::InsertAt(int _this, const char *a2)
+struct gbVFile * PtrArray::InsertAt(const char *a2)
 {
   struct gbVFile *result; // eax
   int v4; // edi
@@ -247,9 +243,9 @@ struct gbVFile * PtrArray::InsertAt(int _this, const char *a2)
   char v8[5]; // [esp+24h] [ebp-Ch] BYREF
   int v9; // [esp+29h] [ebp-7h]
 
-  sub_434670(this);
+  sub_434670((int)this);
   result = (struct gbVFile *)g_pVFileSys->OpenFile(a2, 0x201u);
-  *(_DWORD *)this = result;
+  this->m_pData = result;
   if ( result )
   {
     g_pVFileSys->Read(v8, 7u, result);
@@ -258,28 +254,28 @@ struct gbVFile * PtrArray::InsertAt(int _this, const char *a2)
       if ( v8[4] == 1 )
       {
         result = (struct gbVFile *)malloc(72 * (unsigned __int16)v9);
-        *(_DWORD *)(this + 24) = result;
+        *((_DWORD *)this + 6) = result;
         if ( result )
         {
           memset(result, 0, 72 * (unsigned __int16)v9);
-          g_pVFileSys->Read(*(void **)(this + 24), 72 * (unsigned __int16)v9, *(struct gbVFile **)this);
+          g_pVFileSys->Read(*((void **)this + 6), 72 * (unsigned __int16)v9, (struct gbVFile *)this->m_pData);
           v4 = 0;
           v5 = (_WORD)v9 == 0;
-          *(_WORD *)(this + 20) = v9;
+          *((_WORD *)this + 10) = v9;
           if ( !v5 )
           {
             v6 = 0;
             do
             {
-              v7 = (struct gbVFile *)sub_4348E0((struct gbVFile **)this, v6 + *(_DWORD *)(this + 24));
-              sub_5372D0(this + 4, *(_DWORD **)(this + 12), 1u, &v7);
+              v7 = (struct gbVFile *)sub_4348E0((struct gbVFile **)this, v6 + *((_DWORD *)this + 6));
+              sub_5372D0((int)&this->m_nSize, (_DWORD *)this->m_nGrowBy, 1u, &v7);
               ++v4;
               v6 += 72;
             }
             while ( v4 < (unsigned __int16)v9 );
           }
-          g_pVFileSys->CloseFile(*(struct gbVFile **)this);
-          *(_DWORD *)this = 0;
+          g_pVFileSys->CloseFile((struct gbVFile *)this->m_pData);
+          this->m_pData = 0;
           return (struct gbVFile *)1;
         }
       }

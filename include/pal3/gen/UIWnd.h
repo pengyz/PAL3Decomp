@@ -124,7 +124,7 @@ public:
     int ctor_5120(); // 0x00525120
     void ctor_5540(); // 0x00525540
     _DWORD * ctor_57B0(int a2); // 0x005257B0
-    // [IDA_COMPLEX_RET] original: int __thiscall(int this, int a2, int (__stdcall *a3)(int a2), int a4)
+    // [IDA_COMPLEX_RET] original: int __thiscall(UIWnd *this, int a2, int (__stdcall *a3)(int a2), int a4)
     int ctor_6A40(int a2, int (__stdcall *a3)(int a2), int a4); // 0x00526A40
     int ctor_7950(); // 0x00527950
     void ctor_79F0(); // 0x005279F0

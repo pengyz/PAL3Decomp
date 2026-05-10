@@ -148,49 +148,49 @@ char * CCBCamControl::SetCircle(int a2)
 }
 
 // 0x005084C0
-char CCBCamControl::IsPointerUnderMouse(int _this)
+char CCBCamControl::IsPointerUnderMouse()
 {
-  char *v2; // esi
+  _DWORD *v2; // esi
 
   ((CCBStageEffect *)this)->CCBStageEffect();
-  v2 = (char *)operator new(0xD8u);
+  v2 = (_DWORD *)operator new(0xD8u);
   if ( v2 )
   {
-    *((_DWORD *)v2 + 1) = 1;
-    *(_DWORD *)v2 = gbRefObject::`vftable';
-    *(_DWORD *)v2 = gbVolumeModifier::`vftable';
-    *((_DWORD *)v2 + 24) = 0;
-    *((_DWORD *)v2 + 25) = 0;
-    *((_DWORD *)v2 + 26) = 0;
-    ((CCBCamControl *)(v2 + 108))->LoadPointer();
-    *(_DWORD *)v2 = &off_56A694;
+    v2[1] = 1;
+    * v2 = (*)gbRefObject::`vftable';
+    * v2 = (*)gbVolumeModifier::`vftable';
+    v2[24] = 0;
+    v2[25] = 0;
+    v2[26] = 0;
+    ((CCBCamControl *)(v2 + 27))->LoadPointer();
+    * v2 = (*)&off_56A694;
   }
   else
   {
     v2 = 0;
   }
   v2->Init(0);
-  *((_DWORD *)v2 + 7) = 1008981770;
-  *((_DWORD *)v2 + 8) = 1008981770;
-  *((_DWORD *)v2 + 9) = 1008981770;
-  *((_DWORD *)v2 + 10) = 1065353216;
-  *((_DWORD *)v2 + 17) = 1;
-  *((_DWORD *)v2 + 18) = 1133903872;
-  *((_DWORD *)v2 + 21) = 1056964608;
-  *((_DWORD *)v2 + 3) = 1008981770;
-  *((_DWORD *)v2 + 11) = 1;
-  *((_DWORD *)v2 + 12) = 1;
-  *((_DWORD *)v2 + 4) = 1008981770;
-  *((_DWORD *)v2 + 13) = 0;
-  *((_DWORD *)v2 + 14) = 0;
-  *((_DWORD *)v2 + 5) = 1008981770;
-  *((_DWORD *)v2 + 15) = 0x40000000;
-  *((_DWORD *)v2 + 16) = 1133903872;
-  *((_DWORD *)v2 + 6) = 1065353216;
-  ((gbVolModNode *)(this + 16))->SetVolModObj((struct gbVolumeModifier *)v2);
+  v2[7] = 1008981770;
+  v2[8] = 1008981770;
+  v2[9] = 1008981770;
+  v2[10] = 1065353216;
+  v2[17] = 1;
+  v2[18] = 1133903872;
+  v2[21] = 1056964608;
+  v2[3] = 1008981770;
+  v2[11] = 1;
+  v2[12] = 1;
+  v2[4] = 1008981770;
+  v2[13] = 0;
+  v2[14] = 0;
+  v2[5] = 1008981770;
+  v2[15] = 0x40000000;
+  v2[16] = 1133903872;
+  v2[6] = 1065353216;
+  ((gbVolModNode *)&this->m_CCT.m_Pool[0].bFinished)->SetVolModObj((struct gbVolumeModifier *)v2);
   ((gbRefObject *)v2)->Release();
-  *(_DWORD *)(this + 2436) = ((gbEffectMgr *)*(gbEffectMgr **)(g_Input.KeyInfo[177].Data + 200))->NewRenderEffect(aGfxscriptGeomD, 0x401u);
-  *(_DWORD *)(this + 2440) = ((gbEffectMgr *)*(gbEffectMgr **)(g_Input.KeyInfo[177].Data + 200))->NewRenderEffect(aGfxscriptGeomD_0, 0x441u);
+  LODWORD(this->m_CCT.m_Pool[8].StartPos.pit) = ((gbEffectMgr *)*(gbEffectMgr **)(g_Input.KeyInfo[177].Data + 200))->NewRenderEffect(aGfxscriptGeomD, 0x401u);
+  LODWORD(this->m_CCT.m_Pool[8].StartPos.fRoll) = ((gbEffectMgr *)*(gbEffectMgr **)(g_Input.KeyInfo[177].Data + 200))->NewRenderEffect(aGfxscriptGeomD_0, 0x441u);
   return 1;
 }
 
@@ -214,52 +214,52 @@ char CCBCamControl::DoList()
 }
 
 // 0x00508690
-int CCBCamControl::ResetListFlag(int _this)
+int CCBCamControl::ResetListFlag()
 {
-  char *v2; // esi
+  _DWORD *v2; // esi
   _DWORD *v3; // edx
   _DWORD *v4; // edx
 
-  v2 = (char *)operator new(0xD8u);
+  v2 = (_DWORD *)operator new(0xD8u);
   if ( v2 )
   {
-    *((_DWORD *)v2 + 1) = 1;
-    *(_DWORD *)v2 = gbRefObject::`vftable';
-    *(_DWORD *)v2 = gbVolumeModifier::`vftable';
+    v2[1] = 1;
+    * v2 = (*)gbRefObject::`vftable';
+    * v2 = (*)gbVolumeModifier::`vftable';
     ((gbVec3D *)(gbVec3D *)v2 + 8)->gbVec3D(0.0, 0.0, 0.0);
-    ((CCBCamControl *)(v2 + 108))->LoadPointer();
-    *(_DWORD *)v2 = &off_56A694;
+    ((CCBCamControl *)(v2 + 27))->LoadPointer();
+    * v2 = (*)&off_56A694;
   }
   else
   {
     v2 = 0;
   }
   v2->Init(0);
-  *((_DWORD *)v2 + 7) = 0;
-  *((_DWORD *)v2 + 8) = 0;
-  *((_DWORD *)v2 + 9) = 0;
-  *((_DWORD *)v2 + 10) = 1065353216;
-  *((_DWORD *)v2 + 17) = 1;
-  *((_DWORD *)v2 + 18) = 1133903872;
-  *((_DWORD *)v2 + 21) = 1056964608;
-  *((_DWORD *)v2 + 3) = 0;
-  *((_DWORD *)v2 + 11) = 1;
-  *((_DWORD *)v2 + 12) = 1;
-  *((_DWORD *)v2 + 4) = 0;
-  *((_DWORD *)v2 + 13) = 0;
-  *((_DWORD *)v2 + 14) = 0;
-  *((_DWORD *)v2 + 5) = 0;
-  *((_DWORD *)v2 + 15) = 0x40000000;
-  *((_DWORD *)v2 + 16) = 1133903872;
-  *((_DWORD *)v2 + 6) = 1065353216;
-  ((gbVolModNode *)(this + 236))->SetVolModObj((struct gbVolumeModifier *)v2);
+  v2[7] = 0;
+  v2[8] = 0;
+  v2[9] = 0;
+  v2[10] = 1065353216;
+  v2[17] = 1;
+  v2[18] = 1133903872;
+  v2[21] = 1056964608;
+  v2[3] = 0;
+  v2[11] = 1;
+  v2[12] = 1;
+  v2[4] = 0;
+  v2[13] = 0;
+  v2[14] = 0;
+  v2[5] = 0;
+  v2[15] = 0x40000000;
+  v2[16] = 1133903872;
+  v2[6] = 1065353216;
+  ((gbVolModNode *)&this->m_CCT.m_Pool[0].fCircleCentreY)->SetVolModObj((struct gbVolumeModifier *)v2);
   ((gbRefObject *)v2)->Release();
-  v3 = (_DWORD *)(*(_DWORD *)(this + 232) + 28);
+  v3 = (_DWORD *)(LODWORD(this->m_CCT.m_Pool[0].fCircleCentreX) + 28);
   *v3 = -1098907648;
   v3[1] = -1098907648;
   v3[2] = -1098907648;
   v3[3] = 1065353216;
-  v4 = (_DWORD *)(*(_DWORD *)(this + 452) + 28);
+  v4 = (_DWORD *)(this->m_CCT.m_Pool[1].bCircleMove + 28);
   *v4 = -1098907648;
   v4[1] = -1098907648;
   v4[2] = -1098907648;

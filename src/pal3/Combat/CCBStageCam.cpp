@@ -74,12 +74,12 @@ CCBStageCam::~CCBStageCam()
     _CxxThrowException(pExceptionObject, (_ThrowInfo *)&_TI1_AV_Exception__);
   }
   g_pVFileSys->Seek(v2, 0, 1);
-  g_pVFileSys->Read((void *)this, 0x639C0u, v2);
-  g_pVFileSys->Read((void *)(this + 408000), 0x7D0u, v2);
-  g_pVFileSys->Read((void *)(this + 410000), 0x4E20u, v2);
+  g_pVFileSys->Read(this, 0x639C0u, v2);
+  g_pVFileSys->Read((char *)this + 408000, 0x7D0u, v2);
+  g_pVFileSys->Read((char *)this + 410000, 0x4E20u, v2);
   g_pVFileSys->CloseFile(v2);
   v7 = -1;
-  ((OpenNULLFile **)&v4)->OpenNULLFile();
+  ((OpenNULLFile *)&v4)->OpenNULLFile();
   1;
 }
 
@@ -290,32 +290,32 @@ _DWORD * CCBStageCam::SetCamPos(int **a2, int a3)
 }
 
 // 0x00505410
-int CCBStageCam::Create(int _this)
+int CCBStageCam::Create()
 {
-  *(_DWORD *)(this + 430016) = 0;
-  *(_DWORD *)(this + 430020) = 0;
-  *(_BYTE *)(this + 430012) = 0;
-  *(_DWORD *)(this + 430076) = 0;
-  *(_DWORD *)(this + 430024) = 0;
-  *(_DWORD *)(this + 430228) = 0;
-  *(_DWORD *)(this + 430236) = 0;
-  *(_DWORD *)(this + 430028) = -1;
-  *(_DWORD *)(this + 430032) = -1;
-  *(_DWORD *)(this + 430036) = -1;
-  *(_DWORD *)(this + 430080) = 1065353216;
-  *(_DWORD *)(this + 430084) = 1117782016;
-  *(_DWORD *)(this + 430232) = 1112014848;
-  *(_DWORD *)(this + 430240) = 1120403456;
-  *(_DWORD *)(this + 430244) = 1120403456;
-  *(_DWORD *)(this + 430248) = 1120403456;
+  *((_DWORD *)this + 107504) = 0;
+  *((_DWORD *)this + 107505) = 0;
+  *((_BYTE *)this + 430012) = 0;
+  *((_DWORD *)this + 107519) = 0;
+  *((_DWORD *)this + 107506) = 0;
+  *((_DWORD *)this + 107557) = 0;
+  *((_DWORD *)this + 107559) = 0;
+  *((_DWORD *)this + 107507) = -1;
+  *((_DWORD *)this + 107508) = -1;
+  *((_DWORD *)this + 107509) = -1;
+  *((_DWORD *)this + 107520) = 1065353216;
+  *((_DWORD *)this + 107521) = 1117782016;
+  *((_DWORD *)this + 107558) = 1112014848;
+  *((_DWORD *)this + 107560) = 1120403456;
+  *((_DWORD *)this + 107561) = 1120403456;
+  *((_DWORD *)this + 107562) = 1120403456;
   return 1120403456;
 }
 
 // 0x00505490
 char CCBStageCam::Destroy()
 {
-  ((int)this)->Create();
-  ((int)this)->~CCBStageCam();
+  this->Create();
+  this->~CCBStageCam();
   ((CCCTData *)this)->Destroy();
   return 1;
 }
@@ -337,12 +337,12 @@ char CCBStageCam::Init()
 // 0x005054E0
 char CCBStageCam::Update()
 {
-  ((int)this)->Create();
+  this->Create();
   return 1;
 }
 
 // 0x005054F0
-void CCBStageCam::DoTask(int _this)
+void CCBStageCam::DoTask()
 {
   int v2; // eax
   CCCTData *v3; // ecx
@@ -366,29 +366,29 @@ void CCBStageCam::DoTask(int _this)
   gbRay v21; // [esp+30h] [ebp-30h] BYREF
   _BYTE pTarget[24]; // [esp+48h] [ebp-18h] BYREF
 
-  *(_DWORD *)(*(_DWORD *)(this + 430004) + 448) = 0;
-  if ( *(_BYTE *)(this + 430012) )
-    this->Init();
-  if ( *(float *)(this + 430076) <= 0.0 )
+  *(_DWORD *)(*((_DWORD *)this + 107501) + 448) = 0;
+  if ( *((_BYTE *)this + 430012) )
+    ((CCCTData *)this)->Init();
+  if ( *((float *)this + 107519) <= 0.0 )
   {
-    *(_DWORD *)(this + 430076) = 0;
+    *((_DWORD *)this + 107519) = 0;
   }
   else
   {
-    v2 = *(_DWORD *)(this + 430000);
-    pPos = *(float *)(this + 430116);
-    v3 = (CCCTData *)*(CCCTData **)(this + 430004);
-    v4 = *(float *)(this + 430076) - *(double *)(*(_DWORD *)v2 + 64) * *(float *)(this + 430080);
-    *(float *)(this + 430076) = v4;
-    *(float *)(this + 430116) = sin(*(float *)(*(_DWORD *)v2 + 80) * *(float *)(this + 430084)) * v4
-                              + *(float *)(this + 430116);
-    v3->UpdateCamera(this + 430112);
-    ((CameraCtrl *)*(CameraCtrl **)(this + 430004))->SetAsCurrent(3);
-    *(float *)(this + 430116) = pPos;
+    v2 = *((_DWORD *)this + 107500);
+    pPos = *((float *)this + 107529);
+    v3 = (CCCTData *)*((_DWORD *)this + 107501);
+    v4 = *((float *)this + 107519) - *(double *)(*(_DWORD *)v2 + 64) * *((float *)this + 107520);
+    *((float *)this + 107519) = v4;
+    *((float *)this + 107529) = sin(*(float *)(*(_DWORD *)v2 + 80) * *((float *)this + 107521)) * v4
+                              + *((float *)this + 107529);
+    v3->UpdateCamera((int)this + 430112);
+    ((CameraCtrl *)*((CameraCtrl **)this + 107501))->SetAsCurrent(3);
+    *((float *)this + 107529) = pPos;
   }
   if ( dword_17A990C == 4 )
   {
-    ((CCBStageCam **)this)->SwitchEditorCamPos();
+    ((CCBStageCam *)this)->SwitchEditorCamPos();
     this->ProcCamMove();
     v20.y = 1.0;
     v17 = 0;
@@ -401,9 +401,9 @@ void CCBStageCam::DoTask(int _this)
     v19.z = 1.0;
     memset(&v21, 0, 12);
     ((gbVec3D *)&v21.Direction)->gbVec3D(0.0, 0.0, 0.0);
-    v5 = *(_DWORD *)(this + 430000);
+    v5 = *((_DWORD *)this + 107500);
     pPos = *(float *)(v5 + 80);
-    v6 = (CameraCtrl *)*(CameraCtrl **)(this + 430004);
+    v6 = (CameraCtrl *)*((_DWORD *)this + 107501);
     v17 = *(_DWORD *)(v5 + 84);
     ViewTarget = (float *)v6->GetViewTarget(pTarget, &pPos);
     v8 = *ViewTarget;
@@ -413,106 +413,106 @@ void CCBStageCam::DoTask(int _this)
     v21.Origin.z = *(ViewTarget - 1);
     ((gbVec3D *)&v21.Direction)->operator=(ViewTarget);
     v9 = ((gbRay *)&v21)->IntersectPlane(&v20, &v19);
-    v10 = *(_BYTE *)(this + 430253);
+    v10 = *((_BYTE *)this + 430253);
     v20.x = v21.Direction.x * v9;
     v19.x = v20.x + v21.Origin.x;
     v11 = v9 * v21.Direction.z + v21.Origin.z;
     if ( v10 )
     {
-      v12 = (double)g_Input.m_keyDragStartPositions[1][202] * 0.1 + *(float *)(this + 430232);
-      *(float *)(this + 430232) = v12;
+      v12 = (double)g_Input.m_keyDragStartPositions[1][202] * 0.1 + *((float *)this + 107558);
+      *((float *)this + 107558) = v12;
       v20.x = v19.x;
       v20.z = v11;
       z = v20.z;
-      *(float *)(this + 430228) = v19.x;
-      *(float *)(this + 430232) = v12;
-      *(float *)(this + 430236) = z;
+      *((_DWORD *)this + 107557) = LODWORD(v19.x);
+      *((float *)this + 107558) = v12;
+      *((float *)this + 107559) = z;
     }
-    if ( *(_BYTE *)(this + 430254) )
+    if ( *((_BYTE *)this + 430254) )
     {
-      v14 = (double)g_Input.m_keyDragStartPositions[1][202] * 0.1 + *(float *)(this + 430244);
-      *(float *)(this + 430244) = v14;
+      v14 = (double)g_Input.m_keyDragStartPositions[1][202] * 0.1 + *((float *)this + 107561);
+      *((float *)this + 107561) = v14;
       v20.z = v11;
       v15 = v20.z;
-      *(float *)(this + 430240) = v19.x;
-      *(float *)(this + 430244) = v14;
-      *(float *)(this + 430248) = v15;
+      *((_DWORD *)this + 107560) = LODWORD(v19.x);
+      *((float *)this + 107561) = v14;
+      *((float *)this + 107562) = v15;
     }
   }
 }
 
 // 0x00505770
-char CCBStageCam::ClearFinishedTask(int _this, int a2)
+char CCBStageCam::ClearFinishedTask(int a2)
 {
-  if ( !((CCBStageCam *)this)->IsEditorCamValid(a2) )
+  if ( !this->IsEditorCamValid(a2) )
     return 0;
-  *(_BYTE *)(this + 430012) = 1;
+  *((_BYTE *)this + 430012) = 1;
   ((CCCTData *)this)->Save(a2);
-  *(_DWORD *)(this + 430032) = a2;
-  *(_DWORD *)(this + 430036) = 0;
+  *((_DWORD *)this + 107508) = a2;
+  *((_DWORD *)this + 107509) = 0;
   return 1;
 }
 
 // 0x00505800
-int CCBStageCam::AddTask(int _this)
+int CCBStageCam::AddTask()
 {
-  *(_BYTE *)(this + 430012) = 0;
-  *(_DWORD *)(this + 430032) = -1;
-  *(_DWORD *)(this + 430036) = -1;
+  *((_BYTE *)this + 430012) = 0;
+  *((_DWORD *)this + 107508) = -1;
+  *((_DWORD *)this + 107509) = -1;
   return -1;
 }
 
 // 0x00505820
-char CCBStageCam::ProcCamMove(int _this)
+char CCBStageCam::ProcCamMove()
 {
-  int v2; // eax
-  int *v3; // ecx
+  char *v2; // eax
+  char *v3; // ecx
   int v4; // eax
   char result; // al
-  int v6; // [esp+4h] [ebp-18h] BYREF
+  float v6; // [esp+4h] [ebp-18h] BYREF
   int v7; // [esp+8h] [ebp-14h]
   int v8; // [esp+Ch] [ebp-10h]
-  int v9; // [esp+10h] [ebp-Ch] BYREF
+  float v9; // [esp+10h] [ebp-Ch] BYREF
   int v10; // [esp+14h] [ebp-8h]
   int v11; // [esp+18h] [ebp-4h]
 
-  v2 = this + 430228;
-  v6 = *(_DWORD *)(this + 430228);
-  v3 = (int *)(this + 430240);
-  v7 = *(_DWORD *)(v2 + 4);
-  v4 = *(_DWORD *)(v2 + 8);
-  v9 = *v3;
+  v2 = (char *)this + 430228;
+  v6 = *((float *)this + 107557);
+  v3 = (char *)this + 430240;
+  v7 = *((_DWORD *)v2 + 1);
+  v4 = *((_DWORD *)v2 + 2);
+  v9 = *(float *)v3;
   v8 = v4;
-  v10 = v3[1];
+  v10 = *((_DWORD *)v3 + 1);
   result = g_Input.m_shiftedKeyStates[267];
-  v11 = v3[2];
+  v11 = *((_DWORD *)v3 + 2);
   v7 = 0;
   v10 = 0;
   if ( g_Input.m_shiftedKeyStates[267] == 1 )
   {
-    result = this->Create((float *)&v6);
+    result = ((CCCTData *)this)->Create(&v6);
     if ( result )
     {
-      *(_BYTE *)(this + 430253) = 1;
+      *((_BYTE *)this + 430253) = 1;
     }
     else
     {
-      result = this->Create((float *)&v9);
+      result = ((CCCTData *)this)->Create(&v9);
       if ( result )
       {
-        *(_BYTE *)(this + 430254) = 1;
+        *((_BYTE *)this + 430254) = 1;
       }
       else
       {
-        *(_BYTE *)(this + 430253) = 0;
-        *(_BYTE *)(this + 430254) = 0;
+        *((_BYTE *)this + 430253) = 0;
+        *((_BYTE *)this + 430254) = 0;
       }
     }
   }
   if ( (g_Input.m_shiftedKeyStates[264] & 0xF) != 1 )
   {
-    *(_BYTE *)(this + 430253) = 0;
-    *(_BYTE *)(this + 430254) = 0;
+    *((_BYTE *)this + 430253) = 0;
+    *((_BYTE *)this + 430254) = 0;
   }
   return result;
 }

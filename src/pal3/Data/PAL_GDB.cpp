@@ -76,7 +76,7 @@ PAL_GDB::PAL_GDB()
   g_pVFileSys->Read(&this->m_ItemData[353].desc[388], 632 * this->m_head.ComboNum, v3);
   g_pVFileSys->CloseFile(v3);
   v8 = -1;
-  ((OpenNULLFile **)&v5)->OpenNULLFile();
+  ((OpenNULLFile *)&v5)->OpenNULLFile();
   1;
 }
 

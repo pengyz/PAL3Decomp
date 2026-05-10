@@ -62,42 +62,42 @@ _DWORD *CEffModel::SetTimeScale()
 }
 
 // 0x004D0EC0
-int CEffModel::ProcInitTask(int _this, int a2, float a3, float a4, float a5)
+int CEffModel::ProcInitTask(int a2, float a3, float a4, float a5)
 {
   int v7; // edx
   double v8; // st7
 
-  *(_BYTE *)(this + 48) = 1;
-  *(_BYTE *)(this + 49) = 1;
-  *(_BYTE *)(this + 8) = 0;
-  *(_BYTE *)(this + 51) = *(_BYTE *)(a2 + 214);
-  sub_4D1EF0((_DWORD *)this);
-  *(_BYTE *)(this + 80) = 1;
-  *(_BYTE *)(this + 81) = 1;
-  *(_BYTE *)(this + 82) = 0;
-  *(_BYTE *)(this + 83) = 0;
-  *(_DWORD *)(this + 152) = *(_DWORD *)(a2 + 204);
+  *((_BYTE *)this + 48) = 1;
+  *((_BYTE *)this + 49) = 1;
+  *((_BYTE *)this + 8) = 0;
+  *((_DWORD *)this + 51) = *(CEffModel *)(a2 + 214);
+  sub_4D1EF0(this);
+  *((_BYTE *)this + 80) = 1;
+  *((_BYTE *)this + 81) = 1;
+  *((_BYTE *)this + 82) = 0;
+  *((_BYTE *)this + 83) = 0;
+  *((_DWORD *)this + 38) = *(_DWORD *)(a2 + 204);
   if ( (g_bCursorVisible & 1) == 0 )
   {
     g_bCursorVisible |= 1u;
     ((CEffMgr *)&g_nCursorState)->Reset();
     atexit(nullsub_1);
   }
-  *(float *)(this + 136) = (float)HIBYTE(*(_DWORD *)(a2 + 204));
+  *((float *)this + 34) = (float)HIBYTE(*(_DWORD *)(a2 + 204));
   if ( (g_bCursorVisible & 1) == 0 )
   {
     g_bCursorVisible |= 1u;
     ((CEffMgr *)&g_nCursorState)->Reset();
     atexit(nullsub_1);
   }
-  *(float *)(this + 140) = (float)(unsigned __int8)BYTE2(*(_DWORD *)(a2 + 204));
+  *((float *)this + 35) = (float)(unsigned __int8)BYTE2(*(_DWORD *)(a2 + 204));
   if ( (g_bCursorVisible & 1) == 0 )
   {
     g_bCursorVisible |= 1u;
     ((CEffMgr *)&g_nCursorState)->Reset();
     atexit(nullsub_1);
   }
-  *(float *)(this + 144) = (float)(unsigned __int8)BYTE1(*(_DWORD *)(a2 + 204));
+  *((float *)this + 36) = (float)(unsigned __int8)BYTE1(*(_DWORD *)(a2 + 204));
   if ( (g_bCursorVisible & 1) == 0 )
   {
     g_bCursorVisible |= 1u;
@@ -105,21 +105,21 @@ int CEffModel::ProcInitTask(int _this, int a2, float a3, float a4, float a5)
     atexit(nullsub_1);
   }
   v7 = *(unsigned __int8 *)(a2 + 204);
-  *(_DWORD *)(this + 88) = 0;
-  *(float *)(this + 148) = (float)v7;
-  *(_DWORD *)(this + 84) = *(_DWORD *)(a2 + 180);
-  *(_DWORD *)(this + 124) = *(_DWORD *)(a2 + 196);
-  *(_DWORD *)(this + 128) = *(_DWORD *)(a2 + 216);
-  *(_DWORD *)(this + 132) = *(_DWORD *)(a2 + 220);
-  *(_DWORD *)(this + 104) = *(_DWORD *)(a2 + 200);
-  *(_DWORD *)(this + 108) = *(_DWORD *)(a2 + 200);
-  *(float *)(this + 92) = a3 + *(float *)(a2 + 184);
-  *(float *)(this + 96) = a4 + *(float *)(a2 + 188);
+  *((_DWORD *)this + 22) = 0;
+  *((float *)this + 37) = (float)v7;
+  *((_DWORD *)this + 21) = *(_DWORD *)(a2 + 180);
+  *((_DWORD *)this + 31) = *(_DWORD *)(a2 + 196);
+  *((_DWORD *)this + 32) = *(_DWORD *)(a2 + 216);
+  *((_DWORD *)this + 33) = *(_DWORD *)(a2 + 220);
+  *((_DWORD *)this + 26) = *(_DWORD *)(a2 + 200);
+  *((_DWORD *)this + 27) = *(_DWORD *)(a2 + 200);
+  *((float *)this + 23) = a3 + *(float *)(a2 + 184);
+  *((float *)this + 24) = a4 + *(float *)(a2 + 188);
   v8 = a5 + *(float *)(a2 + 192);
-  *(_DWORD *)(this + 112) = 0;
-  *(_DWORD *)(this + 116) = 0;
-  *(_DWORD *)(this + 120) = 0;
-  *(_DWORD *)(this + 76) = 0;
-  *(float *)(this + 100) = v8;
+  *((_DWORD *)this + 28) = 0;
+  *((_DWORD *)this + 29) = 0;
+  *((_DWORD *)this + 30) = 0;
+  *((_DWORD *)this + 19) = 0;
+  *((float *)this + 25) = v8;
   return 0;
 }

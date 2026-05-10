@@ -17,7 +17,7 @@ public:
     PalScriptMgr(); // 0x00431E60
     static int OpenSCE(); // 0x00431EB0
     static void FindScript(); // 0x00431EE0
-    static void Update(const char *a1); // 0x004320A0
+    static void Update(char *a1); // 0x004320A0
     static int * Destroy(unsigned int a1, char a2); // 0x00432170
     int IfAnyScriptRunning(int a2); // 0x004322A0
     int IsScriptRuning(int a2); // 0x004322C0

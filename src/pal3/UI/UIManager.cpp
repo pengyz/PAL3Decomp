@@ -119,11 +119,11 @@ void UIManager::Render()
       qmemcpy(v18, Top, sizeof(v18));
       ((gbMatrix4 *)v18)->RightMultiply((gbMatrix4 *)v16.m);
       ((gbRenderEffect *)*((gbRenderEffect **)this + 3))->SetVariant(aViewm, v18);
-      ((struct gbGeomQuad *)((char *)this + 16))->RenderGeomQuad(v13, *((struct gbRenderEffect **)this + 3), &v17);
+      ((gbDynVertBuf *)((char *)this + 16))->RenderGeomQuad(v13, *((struct gbRenderEffect **)this + 3), &v17);
     }
     else
     {
-      ((struct gbGeomQuad *)((char *)this + 16))->RenderGeomQuad(v4, *((struct gbRenderEffect **)this + 2), &v17);
+      ((gbDynVertBuf *)((char *)this + 16))->RenderGeomQuad(v4, *((struct gbRenderEffect **)this + 2), &v17);
     }
   }
 }
@@ -145,5 +145,5 @@ void * UIManager::LoadShadowTexture()
   *((_DWORD *)this + 2) = ((gbEffectMgr *)*(gbEffectMgr **)(g_Input.KeyInfo[177].Data + 200))->NewRenderEffect(aGfxscriptShado, 0);
   *((_DWORD *)this + 3) = ((gbEffectMgr *)*(gbEffectMgr **)(g_Input.KeyInfo[177].Data + 200))->NewRenderEffect(aGfxscriptShado_0, 0);
   v5 = -1;
-  return ((OpenNULLFile **)&v4)->OpenNULLFile();
+  return ((OpenNULLFile *)&v4)->OpenNULLFile();
 }

@@ -181,26 +181,26 @@ CCBStage::CCBStage(int a2)
 // 0x004FB9F0
 CCBStage::~CCBStage()
 {
-  _DWORD *v2; // ecx
+  Actor **p_m_WPXVariance; // ecx
   unsigned int result; // eax
 
-  v2 = (_DWORD *)(this + 80);
-  *v2 = 0;
-  v2[1] = 0;
-  *(_BYTE *)(this + 152) = 0;
-  *(_DWORD *)(this + 156) = 0;
-  memset((void *)(this + 168), 0, 0xA4800u);
-  *(_DWORD *)(this + 160) = -1;
-  *(_DWORD *)(this + 164) = -1;
-  *(_DWORD *)(this + 88) = -1;
-  *(_DWORD *)(this + 92) = 0;
-  *(_DWORD *)(this + 96) = 0;
-  *(_WORD *)(this + 100) = 0;
-  *(_BYTE *)(this + 102) = 0;
-  memset((void *)(this + 104), 0, 0x2Cu);
-  *(_DWORD *)(this + 148) = 0;
+  p_m_WPXVariance = &this->m_WPXVariance;
+  *p_m_WPXVariance = 0;
+  p_m_WPXVariance[1] = 0;
+  LOBYTE(this->m_bRoleSelected[9]) = 0;
+  this->m_bRoleSelected[10] = 0;
+  memset(&this->m_fDamageNumPosY[1], 0, 0xA4800u);
+  this->m_bHideSceneAndRole = -1;
+  this->m_fDamageNumPosY[0] = NAN;
+  this->m_pShadow = (CCBStageShadow *)-1;
+  this->m_pEffect = 0;
+  this->m_BFARole = 0;
+  LOWORD(this->m_BFARound) = 0;
+  BYTE2(this->m_BFARound) = 0;
+  memset(&this->m_ptMousePos, 0, 0x2Cu);
+  this->m_bRoleSelected[8] = 0;
   result = gbCrc32Compute(aOver);
-  *(_DWORD *)(this + 673960) = result;
+  this->m_Task[141].SubTask[21].dwTemp1 = result;
   result;
 }
 
@@ -215,7 +215,7 @@ char CCBStage::Reset()
   CCBStageRole **i; // ebx
   CCBStageRole *v7; // eax
   char *OBBox; // eax
-  LPVOID v9; // eax
+  _DWORD *v9; // eax
   CCBStageCam *v10; // eax
   CCBStageCam *v11; // eax
   CCBCamControl *v12; // eax
@@ -268,11 +268,11 @@ char CCBStage::Reset()
           sizeof(pExceptionObject));
         _CxxThrowException(pExceptionObject, (_ThrowInfo *)&_TI1_AV_Exception__);
       }
-      if ( !((int)OBBox)->IsIdle(v3) )
+      if ( !((CCBStageRole *)OBBox)->IsIdle(v3) )
         break;
       if ( (int)++v3 >= 11 )
       {
-        v9 = operator new(0x17E8u);
+        v9 = (_DWORD *)operator new(0x17E8u);
         v23 = 2;
         if ( v9 )
           v10 = (CCBStageCam *)sub_503FA0((int)v9, this, (struct gbGfxManager *)g_Input.KeyInfo[177].Data);
@@ -326,7 +326,7 @@ char CCBStage::Reset()
                 sizeof(pExceptionObject));
               _CxxThrowException(pExceptionObject, (_ThrowInfo *)&_TI1_AV_Exception__);
             }
-            result = ((std::codecvt_base *)v14)->codecvt_base::do_always_noconv();
+            result = ((std *)v14)->codecvt_base::do_always_noconv();
             if ( result )
             {
               v15 = (_DWORD *)operator new(0x614u);
@@ -364,7 +364,7 @@ char CCBStage::Reset()
                     sizeof(v21));
                   _CxxThrowException(v21, (_ThrowInfo *)&_TI1_AV_Exception__);
                 }
-                return ((int)v18)->IsPointerUnderMouse() != 0;
+                return ((CCBCamControl *)v18)->IsPointerUnderMouse() != 0;
               }
             }
           }
@@ -378,37 +378,37 @@ char CCBStage::Reset()
 
 // 0x004FBE50
 // likely std method (near _Freeze, _Split, max_size, allocator<char>>, _Xran)
-char CCBStage::Create(int _this)
+char CCBStage::Create()
 {
   int v2; // ebp
-  int v3; // ecx
-  void *v4; // edi
+  CCBStageScene *m_pScene; // ecx
+  CCBStageScene *v4; // edi
   CCBStageRole **i; // edi
   CCBStageRole *v6; // ebx
-  std::codecvt_base *v7; // ecx
-  void (***v8)(_DWORD, int); // ecx
-  CCBStageCam *v9; // ecx
-  void *v10; // edi
-  std::codecvt_base *v11; // ecx
-  void *v12; // edi
-  int v13; // ecx
-  void *v14; // edi
-  CCBCamControl **v15; // ecx
-  void *v16; // edi
+  std::codecvt_base *m_pCam; // ecx
+  CCBStageCam *v8; // ecx
+  CCBStageCam *m_pCamControl; // ecx
+  CCBCamControl *v10; // edi
+  std::codecvt_base *m_TempStorageNGH; // ecx
+  Actor *v12; // edi
+  Actor *m_NGHVariance; // ecx
+  Actor *v14; // edi
+  CCBCamControl **m_TempStorageWPX; // ecx
+  Actor *v16; // edi
 
   v2 = 0;
-  v3 = *(_DWORD *)(this + 20);
-  if ( v3 )
+  m_pScene = (CCBStageScene *)this->m_pScene;
+  if ( m_pScene )
   {
-    v3->~CCBStageScene();
-    v4 = (void *)*(void **)(this + 20);
+    m_pScene->~CCBStageScene();
+    v4 = (CCBStageScene *)this->m_pScene;
     if ( v4 )
     {
-      nullsub_3(*(void **)(this + 20));
+      nullsub_3(this->m_pScene);
       operator delete(v4);
     }
-    *(_DWORD *)(this + 20) = 0;
-    for ( i = (CCBStageRole **)(this + 24); *i; ++i )
+    this->m_pScene = 0;
+    for ( i = this->m_pRole; *i; ++i )
     {
       ((CCBStageRole *)*i)->IsAtInitPos();
       v6 = (CCBStageRole *)*i;
@@ -420,58 +420,58 @@ char CCBStage::Create(int _this)
       *i = 0;
       if ( ++v2 >= 11 )
       {
-        v7 = *(std::codecvt_base **)(this + 12);
-        if ( v7 )
+        m_pCam = (std::codecvt_base *)this->m_pCam;
+        if ( m_pCam )
         {
-          v7->codecvt_base::do_always_noconv();
-          v8 = *(void (****)(_DWORD, int))(this + 12);
+          m_pCam->codecvt_base::do_always_noconv();
+          v8 = (CCBStageCam *)this->m_pCam;
           if ( v8 )
-            (**v8)(v8, 1);
-          *(_DWORD *)(this + 12) = 0;
-          v9 = (CCBStageCam *)*(CCBStageCam **)(this + 16);
-          if ( v9 )
+            (*(void (**)(CCBStageCam *, int))LODWORD(v8->fov))(v8, 1);
+          this->m_pCam = 0;
+          m_pCamControl = (CCBStageCam *)this->m_pCamControl;
+          if ( m_pCamControl )
           {
-            v9->Init();
-            v10 = (void *)*(void **)(this + 16);
+            m_pCamControl->Init();
+            v10 = (CCBCamControl *)this->m_pCamControl;
             if ( v10 )
             {
-              ((j_std *)*(std::codecvt_base **)(this + 16))->codecvt_base::do_always_noconv();
+              ((j_std *)this->m_pCamControl)->codecvt_base::do_always_noconv();
               operator delete(v10);
             }
-            *(_DWORD *)(this + 16) = 0;
-            v11 = *(std::codecvt_base **)(this + 68);
-            if ( v11 )
+            this->m_pCamControl = 0;
+            m_TempStorageNGH = (std::codecvt_base *)this->m_TempStorageNGH;
+            if ( m_TempStorageNGH )
             {
-              v11->codecvt_base::do_always_noconv();
-              v12 = (void *)*(void **)(this + 68);
+              m_TempStorageNGH->codecvt_base::do_always_noconv();
+              v12 = (Actor *)this->m_TempStorageNGH;
               if ( v12 )
               {
-                nullsub_3(*(void **)(this + 68));
+                nullsub_3(this->m_TempStorageNGH);
                 operator delete(v12);
               }
-              *(_DWORD *)(this + 68) = 0;
-              v13 = *(_DWORD *)(this + 72);
-              if ( v13 )
+              this->m_TempStorageNGH = 0;
+              m_NGHVariance = (Actor *)this->m_NGHVariance;
+              if ( m_NGHVariance )
               {
-                v13->~CCBStageShadow();
-                v14 = (void *)*(void **)(this + 72);
+                ((CCBStageShadow *)m_NGHVariance)->~CCBStageShadow();
+                v14 = (Actor *)this->m_NGHVariance;
                 if ( v14 )
                 {
-                  nullsub_3(*(void **)(this + 72));
+                  nullsub_3(this->m_NGHVariance);
                   operator delete(v14);
                 }
-                *(_DWORD *)(this + 72) = 0;
-                v15 = *(CCBCamControl ***)(this + 76);
-                if ( v15 )
+                this->m_NGHVariance = 0;
+                m_TempStorageWPX = (CCBCamControl **)this->m_TempStorageWPX;
+                if ( m_TempStorageWPX )
                 {
-                  v15->DoList();
-                  v16 = (void *)*(void **)(this + 76);
+                  m_TempStorageWPX->DoList();
+                  v16 = (Actor *)this->m_TempStorageWPX;
                   if ( v16 )
                   {
-                    sub_508460(*(char **)(this + 76));
+                    sub_508460((char *)this->m_TempStorageWPX);
                     operator delete(v16);
                   }
-                  *(_DWORD *)(this + 76) = 0;
+                  this->m_TempStorageWPX = 0;
                   return 1;
                 }
               }
@@ -491,7 +491,7 @@ char CCBStage::Destroy()
   CCBStageScene *m_pScene; // ecx
   int v4; // ebx
   int v5; // edi
-  int *m_pRole; // esi
+  CCBStageRole **m_pRole; // esi
   CCBStageRole *v7; // ecx
   CCBStageCam *m_pCam; // ecx
   CCBStageCam *m_pCamControl; // ecx
@@ -499,14 +499,14 @@ char CCBStage::Destroy()
   Actor *m_TempStorageWPX; // ecx
   Actor *m_TempStorageNGH; // ecx
 
-  ((int)this)->~CCBStage();
+  this->~CCBStage();
   this->m_pEditor = this->m_pCBSystem->m_pEditor;
   m_pScene = (CCBStageScene *)this->m_pScene;
   if ( !m_pScene || !m_pScene->Reset() )
     return 0;
   v4 = 0;
   v5 = 0;
-  m_pRole = (int *)this->m_pRole;
+  m_pRole = this->m_pRole;
   do
   {
     if ( !*m_pRole )
@@ -537,7 +537,7 @@ char CCBStage::Destroy()
   if ( !m_NGHVariance || !((CCBStageShadow *)m_NGHVariance)->Reset() )
     return 0;
   m_TempStorageWPX = (Actor *)this->m_TempStorageWPX;
-  if ( !m_TempStorageWPX || !(unsigned __int8)((int)m_TempStorageWPX)->ResetListFlag() )
+  if ( !m_TempStorageWPX || !(unsigned __int8)((CCBCamControl *)m_TempStorageWPX)->ResetListFlag() )
     return 0;
   m_TempStorageNGH = (Actor *)this->m_TempStorageNGH;
   if ( !m_TempStorageNGH || !sub_4DF700(m_TempStorageNGH) )
@@ -574,7 +574,7 @@ int CCBStage::Update()
     }
     while ( v3 );
     ((CCBStage *)this->m_pCam)->ProcessTurn();
-    ((int)this->m_pCamControl)->DoTask();
+    ((CCBStageCam *)this->m_pCamControl)->DoTask();
     nullsub_3(this->m_TempStorageNGH);
     nullsub_3(this->m_NGHVariance);
     this->UpdatePhysics();
@@ -694,7 +694,7 @@ int CCBStage::EditorUpdate()
   int v2; // ebp
   CCBStageCam *m_pCam; // eax
   float *p_OrthoSize; // eax
-  void *v5; // eax
+  CEffectSystem *v5; // eax
   CCBStageCam *v6; // eax
   int v7; // ebx
   struct gbCamera *v8; // eax
@@ -708,7 +708,7 @@ int CCBStage::EditorUpdate()
   struct gbCamera *v16; // eax
   CCBStageScene *m_pScene; // ecx
   CCBStageScene *v18; // ecx
-  void *v19; // eax
+  CEffectSystem *v19; // eax
   int v21; // [esp+18h] [ebp-3Ch]
   float v22; // [esp+20h] [ebp-34h]
   CCBStageRole **m_pRole; // [esp+38h] [ebp-1Ch]
@@ -727,8 +727,8 @@ int CCBStage::EditorUpdate()
   else
     p_OrthoSize = 0;
   v21 = (int)p_OrthoSize;
-  v5 = (void *)CEffectSystem::DestroyAllEffect();
-  ((int)v5)->HandleViewMove(v21);
+  v5 = (CEffectSystem *)CEffectSystem::DestroyAllEffect();
+  v5->HandleViewMove(v21);
   v6 = (CCBStageCam *)this->m_pCam;
   v7 = *(_DWORD *)(g_Input.KeyInfo[177].Data + 448);
   if ( v6 )
@@ -803,7 +803,7 @@ int CCBStage::EditorUpdate()
   ((void (*)(gbVisNode *, _DWORD))this->m_pScene->m_pLights->next[4].next)(this->m_pScene->m_pLights, 0);
   ((SceneMgr *)this->m_pCBSystem->m_pEffMgr)->RenderAll();
   ((SceneMgr *)this->m_pCBSystem->m_pATSEffMgr)->RenderAll();
-  ((int)this->m_pCBSystem->m_p3DSpark->m_Spark)->Render((struct gbVec3D *)gbSceneGraph::End);
+  ((C3DSpark *)this->m_pCBSystem->m_p3DSpark->m_Spark)->Render((struct gbVec3D *)gbSceneGraph::End);
   ((gbSceneGraph *)v7)->End();
   if ( byte_17A9927 )
   {
@@ -817,20 +817,20 @@ int CCBStage::EditorUpdate()
       m_pScene = (CCBStageScene *)this->m_pScene;
       if ( !HIBYTE(m_pScene->m_EnemyFiveLineupQuad.color.Blue) )
         goto LABEL_31;
-      ((int)m_pScene)->LoadPointer(60);
+      m_pScene->LoadPointer(60);
     }
     if ( dword_17A990C == 4 )
     {
       v18 = (CCBStageScene *)this->m_pScene;
       if ( HIBYTE(v18->m_EnemyFiveLineupQuad.color.Blue) )
-        ((int)v18)->LoadPointer(60);
-      ((int)this->m_pCamControl)->~CCCTData();
+        v18->LoadPointer(60);
+      ((CCCTData *)&this->m_pCamControl->m_CCT)->~CCCTData();
     }
   }
 LABEL_31:
   sub_4DFA10(&this->m_TempStorageNGH->m_actarray);
-  v19 = (void *)CEffectSystem::DestroyAllEffect();
-  ((int)v19)->Update();
+  v19 = (CEffectSystem *)CEffectSystem::DestroyAllEffect();
+  v19->Update();
   sub_4C5C20((int *)g_Input.KeyInfo[178].Data);
   PushMatrixStacks();
   v29 = 0.0;
@@ -1474,7 +1474,7 @@ int CCBStage::IsIdle(int a2)
   v5 = (int)&v4[8 * v3 + 184];
   if ( !v4[8 * v3 + 225] )
   {
-    if ( *((_BYTE *)CEffectSystem::DestroyAllEffect() + 5) )
+    if ( BYTE1(CEffectSystem::DestroyAllEffect()->m_pVertexBuffer) )
     {
       *(_BYTE *)(v5 + 41) = 1;
       *(_DWORD *)(v5 + 16) = 4;
@@ -1498,7 +1498,7 @@ int CCBStage::IsIdle(int a2)
   }
   if ( *(_BYTE *)(v5 + 43) == 1
     || this->m_pCBSystem->m_fTimeFund - *(float *)(v5 + 24) > *(float *)(v5 + 32)
-    || *((_BYTE *)CEffectSystem::DestroyAllEffect() + 5) )
+    || BYTE1(CEffectSystem::DestroyAllEffect()->m_pVertexBuffer) )
   {
     v11 = (CCBUI *)this->m_pCBSystem->m_pUI;
     if ( this->m_pRoleState->m_bWeSneakAttackEnemy )
@@ -1516,34 +1516,34 @@ int CCBStage::IsIdle(int a2)
 }
 
 // 0x004FD3D0
-int CCBStage::HasNormalAttackRole(int _this, int _24)
+int CCBStage::HasNormalAttackRole(int _24)
 {
-  int v3; // ebp
-  int v4; // ecx
-  int v5; // ebx
+  __int32 v3; // ebp
+  __int32 v4; // ecx
+  char *v5; // ebx
   int v6; // eax
   int v8; // edi
   signed int i; // edi
   int v10; // edi
   int v11; // ebx
-  CCBStageRole *v12; // ecx
+  CCBRoleState *m_pRoleState; // ecx
   int j; // edi
   int v14; // ecx
   int v15; // edx
-  int v16; // eax
+  CCBStageRole **v16; // eax
   int v17; // eax
-  int v18; // eax
+  char *v18; // eax
   char v19; // dl
   int k; // eax
   int v21; // ebp
   int v22; // eax
-  int v23; // ecx
+  CCBStageRole **v23; // ecx
   int v24; // eax
-  int v25; // ecx
+  CCBStageRole **v25; // ecx
   unsigned int *a2; // [esp+10h] [ebp-10h]
-  CCBStageRole **v27; // [esp+14h] [ebp-Ch]
+  CCBStageRole **m_pRole; // [esp+14h] [ebp-Ch]
   CCBStageRole **v28; // [esp+14h] [ebp-Ch]
-  int v29; // [esp+18h] [ebp-8h]
+  char *v29; // [esp+18h] [ebp-8h]
   int v30; // [esp+18h] [ebp-8h]
   int roleIdx; // [esp+1Ch] [ebp-4h]
 
@@ -1555,81 +1555,102 @@ int CCBStage::HasNormalAttackRole(int _this, int _24)
     dword_17AAA28 = 0;
     atexit(nullsub_20);
   }
-  v3 = 2632 * *(_DWORD *)(this + 160);
-  roleIdx = *(_DWORD *)(this + v3 + 2760);
-  v4 = v3 + 80 * *(_DWORD *)(this + 164);
-  v5 = v4 + this + 184;
+  v3 = 2632 * this->m_bHideSceneAndRole;
+  roleIdx = *(__int32 *)((char *)&this->m_Task[0].SubTask[17].param.dw3 + v3);
+  v4 = v3 + 80 * LODWORD(this->m_fDamageNumPosY[0]);
+  v5 = (char *)&this->m_fDamageNumPosY[5] + v4;
   v29 = v5;
-  if ( !*(_BYTE *)(v4 + this + 225) )
+  if ( !*((_BYTE *)&this->m_nCurSubTask + v4 + 1) )
   {
-    *(_DWORD *)(this + 92) = 0;
-    *(_DWORD *)(this + 96) = 0;
-    *(_WORD *)(this + 100) = 0;
-    *(_BYTE *)(this + 102) = 0;
-    v6 = sub_503680((char **)this, *(_DWORD *)(v4 + this + 228), (unsigned int *)(this + v3 + 2752));
+    this->m_pEffect = 0;
+    this->m_BFARole = 0;
+    LOWORD(this->m_BFARound) = 0;
+    BYTE2(this->m_BFARound) = 0;
+    v6 = sub_503680(
+           (char **)this,
+           *(__int32 *)((char *)&this->m_Task[0].eTask + v4),
+           (unsigned int *)((char *)&this->m_Task[0].SubTask[17].param.f2 + v3));
     dword_17AAD3C = v6;
     if ( v6 == -1 )
     {
-      *(_BYTE *)(v5 + 41) = 1;
-      *(_DWORD *)(v5 + 36) = -1;
-      *(_DWORD *)(v5 + 16) = 4;
+      v5[41] = 1;
+      *((_DWORD *)v5 + 9) = -1;
+      *((_DWORD *)v5 + 4) = 4;
       return 0;
     }
-    sub_503AE0((void **)this, v6, *(_DWORD *)(v5 + 44), *(_DWORD *)(this + v3 + 2756));
-    *(_BYTE *)(v5 + 41) = 1;
+    sub_503AE0(
+      (void **)&this->m_pCBSystem,
+      v6,
+      *((_DWORD *)v5 + 11),
+      *(int *)((char *)&this->m_Task[0].SubTask[17].param.n3 + v3));
+    v5[41] = 1;
   }
-  if ( (*(_BYTE *)(v5 + 44) & 1) != 0 )
+  if ( (v5[44] & 1) != 0 )
   {
     v8 = 0;
-    a2 = (unsigned int *)(this + v3 + 2752);
-    v27 = (CCBStageRole **)(this + 24);
+    a2 = (unsigned int *)((char *)&this->m_Task[0].SubTask[17].param.f2 + v3);
+    m_pRole = this->m_pRole;
     do
     {
-      if ( ((CCBRoleState *)*(CCBRoleState **)(this + 4))->CancelVariance(a2, v8)
-        && !((CCBStageRole *)*(CCBStageRole **)(this + 4))->IsActive(v8)
-        && sub_50A4B0(*v27) )
+      if ( ((CCBRoleState *)this->m_pRoleState)->CancelVariance(a2, v8)
+        && !((CCBStageRole *)this->m_pRoleState)->IsActive(v8)
+        && sub_50A4B0(*m_pRole) )
       {
         dword_17AAD3C = v8;
-        sub_503AE0((void **)this, v8, *(_DWORD *)(v5 + 44), *(_DWORD *)(this + v3 + 2756));
+        sub_503AE0(
+          (void **)&this->m_pCBSystem,
+          v8,
+          *((_DWORD *)v5 + 11),
+          *(int *)((char *)&this->m_Task[0].SubTask[17].param.n3 + v3));
       }
       ++v8;
-      ++v27;
+      ++m_pRole;
     }
     while ( v8 < 11 );
-    sub_503AE0((void **)this, dword_17AAD3C, *(_DWORD *)(v5 + 44), *(_DWORD *)(this + v3 + 2756));
+    sub_503AE0(
+      (void **)&this->m_pCBSystem,
+      dword_17AAD3C,
+      *((_DWORD *)v5 + 11),
+      *(int *)((char *)&this->m_Task[0].SubTask[17].param.n3 + v3));
     for ( i = 0; i < 11; ++i )
     {
-      if ( *(_BYTE *)(this + i + 92) && !((CCBRoleState *)*(CCBRoleState **)(this + 4))->CancelVariance(a2, i) )
-        *(_BYTE *)(this + i + 92) = 0;
+      if ( *((_BYTE *)&this->m_pEffect + i) && !((CCBRoleState *)this->m_pRoleState)->CancelVariance(a2, i) )
+        *((_BYTE *)&this->m_pEffect + i) = 0;
     }
-    if ( (unsigned int)dword_17AAD3C <= 0xA && ((CCBRoleState *)*(CCBRoleState **)(this + 4))->GetRoleAttr(roleIdx) < 4 )
-      ((CCBStageRole *)*(CCBStageRole **)(this + 4 * roleIdx + 24))->SetBladeTime(dword_17AAD3C);
+    if ( (unsigned int)dword_17AAD3C <= 0xA && ((CCBRoleState *)this->m_pRoleState)->GetRoleAttr(roleIdx) < 4 )
+      ((CCBStageRole *)this->m_pRole[roleIdx])->SetBladeTime(dword_17AAD3C);
   }
   else
   {
     v10 = 0;
     v11 = 0;
-    v28 = (CCBStageRole **)(this + 24);
+    v28 = this->m_pRole;
     do
     {
-      v12 = (CCBStageRole *)*(CCBStageRole **)(this + 4);
-      if ( *((_BYTE *)&v12->m_OBBox.trans.zx + v11 + 1) && v12->IsActive(v10) == 1 && sub_50A4B0(*v28) )
+      m_pRoleState = (CCBRoleState *)this->m_pRoleState;
+      if ( m_pRoleState->m_Role[v11].bValid
+        && ((CCBStageRole *)m_pRoleState)->IsActive(v10) == 1
+        && sub_50A4B0(*v28) )
       {
         dword_17AAD3C = v10;
-        sub_503AE0((void **)this, v10, *(_DWORD *)(v29 + 44), *(_DWORD *)(this + v3 + 2756));
+        sub_503AE0(
+          (void **)&this->m_pCBSystem,
+          v10,
+          *((_DWORD *)v29 + 11),
+          *(int *)((char *)&this->m_Task[0].SubTask[17].param.n3 + v3));
       }
-      v11 += 892;
+      ++v11;
       ++v10;
       ++v28;
     }
-    while ( v11 < 9812 );
-    a2 = (unsigned int *)(this + v3 + 2752);
+    while ( v11 < 11 );
+    a2 = (unsigned int *)((char *)&this->m_Task[0].SubTask[17].param.f2 + v3);
     if ( !sub_4F6CD0(a2) )
     {
       for ( j = 0; j < 11; ++j )
       {
-        if ( *(_BYTE *)(this + j + 92) && !((CCBRoleState *)*(CCBRoleState **)(this + 4))->IsRoleAlive(j) )
-          *(_BYTE *)(this + j + 92) = 0;
+        if ( *((_BYTE *)&this->m_pEffect + j) && !((CCBRoleState *)this->m_pRoleState)->IsRoleAlive(j) )
+          *((_BYTE *)&this->m_pEffect + j) = 0;
       }
     }
     v5 = v29;
@@ -1637,101 +1658,101 @@ int CCBStage::HasNormalAttackRole(int _this, int _24)
   v14 = 0;
   v15 = 0;
   v30 = 0;
-  v16 = this + 24;
+  v16 = this->m_pRole;
   do
   {
-    if ( *(_BYTE *)(v14 + *(_DWORD *)(this + 4) + 577) )
+    if ( this->m_pRoleState->m_Role[v14].bValid )
     {
-      if ( *(_BYTE *)(v15 + this + 92) )
+      if ( *((_BYTE *)&this->m_pEffect + v15) )
       {
         ++v30;
-        *(_BYTE *)(*(_DWORD *)v16 + 280) = 1;
-        *(_BYTE *)(*(_DWORD *)v16 + 274) = 1;
+        LOBYTE((*v16)->m_fTimeScale) = 1;
+        BYTE2((*v16)->m_bPaused) = 1;
       }
       else
       {
-        *(_BYTE *)(*(_DWORD *)v16 + 280) = 0;
-        *(_BYTE *)(*(_DWORD *)v16 + 274) = 0;
+        LOBYTE((*v16)->m_fTimeScale) = 0;
+        BYTE2((*v16)->m_bPaused) = 0;
       }
     }
-    v14 += 892;
+    ++v14;
     ++v15;
-    v16 += 4;
+    ++v16;
   }
-  while ( v14 < 9812 );
+  while ( v14 < 11 );
   if ( v30 <= 0 )
-    *(_BYTE *)(v5 + 41) = 0;
+    v5[41] = 0;
   if ( g_Input.m_shiftedKeyStates[207] == 1 && ((v17 = g_Input.m_shiftedKeyStates[204] & 0xF, v17 == 1) || v17 == 2) )
   {
-    if ( (*(_BYTE *)(v5 + 44) & 0x10) != 0 )
+    if ( (v5[44] & 0x10) != 0 )
     {
-      *(_BYTE *)(this + v3 + 2769) = 0;
-      *(_BYTE *)(this + v3 + 2768) = 0;
-      *(_DWORD *)(this + v3 + 2764) = dword_17AAD3C;
+      *((_BYTE *)&this->m_Task[0].SubTask[17].nEffLinker + v3 + 1) = 0;
+      *((_BYTE *)&this->m_Task[0].SubTask[17].nEffLinker + v3) = 0;
+      *(_DWORD *)((char *)&this->m_Task[0].SubTask[17].param.f3 + v3) = dword_17AAD3C;
       if ( dword_17AAD3C == -1 )
         return 0;
     }
     else
     {
-      *(_BYTE *)(this + v3 + 2768) = 0;
-      *(_BYTE *)(this + v3 + 2769) = 1;
-      v18 = this + v3 + 2781;
-      *(_DWORD *)v18 = *(_DWORD *)(this + 92);
-      *(_DWORD *)(v18 + 4) = *(_DWORD *)(this + 96);
-      *(_WORD *)(v18 + 8) = *(_WORD *)(this + 100);
-      *(_BYTE *)(v18 + 10) = *(_BYTE *)(this + 102);
+      *((_BYTE *)&this->m_Task[0].SubTask[17].nEffLinker + v3) = 0;
+      *((_BYTE *)&this->m_Task[0].SubTask[17].nEffLinker + v3 + 1) = 1;
+      v18 = (char *)&this->m_Task[0].SubTask[17].bEffWorked + v3 + 1;
+      *(_DWORD *)v18 = this->m_pEffect;
+      *((_DWORD *)v18 + 1) = this->m_BFARole;
+      *((_WORD *)v18 + 4) = this->m_BFARound;
+      v18[10] = BYTE2(this->m_BFARound);
       v19 = 0;
       for ( k = 0; k < 11; ++k )
       {
-        if ( *(_BYTE *)(this + 92 + k) )
+        if ( *((_BYTE *)&this->m_pEffect + k) )
           v19 = 1;
       }
       if ( !v19 )
         return 0;
     }
     v21 = roleIdx;
-    *(_DWORD *)(v5 + 36) = dword_17AAD3C;
-    *(_DWORD *)(v5 + 16) = 4;
+    *((_DWORD *)v5 + 9) = dword_17AAD3C;
+    *((_DWORD *)v5 + 4) = 4;
     v22 = 0;
-    *(_BYTE *)(*(_DWORD *)(this + 4 * roleIdx + 24) + 274) = 0;
-    v23 = this + 24;
+    BYTE2(this->m_pRole[roleIdx]->m_bPaused) = 0;
+    v23 = this->m_pRole;
     do
     {
-      if ( *(_BYTE *)(v22 + *(_DWORD *)(this + 4) + 577) )
+      if ( this->m_pRoleState->m_Role[v22].bValid )
       {
-        *(_BYTE *)(*(_DWORD *)v23 + 280) = 0;
-        *(_BYTE *)(*(_DWORD *)v23 + 274) = 0;
+        LOBYTE((*v23)->m_fTimeScale) = 0;
+        BYTE2((*v23)->m_bPaused) = 0;
       }
-      v22 += 892;
-      v23 += 4;
+      ++v22;
+      ++v23;
     }
-    while ( v22 < 9812 );
+    while ( v22 < 11 );
   }
   else
   {
     v21 = roleIdx;
   }
-  if ( *(_BYTE *)(v5 + 43) == 1
+  if ( v5[43] == 1
     || g_Input.m_shiftedKeyStates[211] == 1 && (g_Input.m_shiftedKeyStates[208] & 0xF) == 1
     || g_Input.m_DIKToKEY[5] == 1
-    || *a2 == 262 && ((CCBRoleState *)*(CCBRoleState **)(this + 4))->GetRoleField(v21, 16)
-    || *a2 == 261 && ((CCBRoleState *)*(CCBRoleState **)(this + 4))->GetRoleField(v21, 15) )
+    || *a2 == 262 && ((CCBRoleState *)this->m_pRoleState)->GetRoleField(v21, 16)
+    || *a2 == 261 && ((CCBRoleState *)this->m_pRoleState)->GetRoleField(v21, 15) )
   {
-    *(_DWORD *)(v5 + 36) = -1;
-    *(_DWORD *)(v5 + 16) = 4;
+    *((_DWORD *)v5 + 9) = -1;
+    *((_DWORD *)v5 + 4) = 4;
     v24 = 0;
-    v25 = this + 24;
+    v25 = this->m_pRole;
     do
     {
-      if ( *(_BYTE *)(v24 + *(_DWORD *)(this + 4) + 577) )
+      if ( this->m_pRoleState->m_Role[v24].bValid )
       {
-        *(_BYTE *)(*(_DWORD *)v25 + 280) = 0;
-        *(_BYTE *)(*(_DWORD *)v25 + 274) = 0;
+        LOBYTE((*v25)->m_fTimeScale) = 0;
+        BYTE2((*v25)->m_bPaused) = 0;
       }
-      v24 += 892;
-      v25 += 4;
+      ++v24;
+      ++v25;
     }
-    while ( v24 < 9812 );
+    while ( v24 < 11 );
   }
   return 0;
 }
@@ -1753,7 +1774,7 @@ int CCBStage::ClearRoleAllTask(int a2)
   v5 = (char *)&this->m_fDamageNumPosY[5] + v4;
   if ( !*((_BYTE *)&this->m_nCurSubTask + v4 + 1) )
   {
-    if ( *((_BYTE *)CEffectSystem::DestroyAllEffect() + 5) )
+    if ( BYTE1(CEffectSystem::DestroyAllEffect()->m_pVertexBuffer) )
     {
       v5[41] = 1;
       *((_DWORD *)v5 + 4) = 4;
@@ -1788,7 +1809,7 @@ int CCBStage::ClearRoleAllTask(int a2)
   }
   if ( v5[43] == 1
     || this->m_pCBSystem->m_fTimeFund - *((float *)v5 + 6) > *((float *)v5 + 8)
-    || *((_BYTE *)CEffectSystem::DestroyAllEffect() + 5) )
+    || BYTE1(CEffectSystem::DestroyAllEffect()->m_pVertexBuffer) )
   {
     if ( *(__int32 *)((char *)&this->m_Task[0].SubTask[17].param.dw3 + v3) > 4u )
       v10 = (UIStatic *)this->m_pCBSystem->m_pUI->m_pWinPanel;
@@ -1886,7 +1907,7 @@ int CCBStage::GetRoleTaskNum(int a2)
   v14.z = *((float *)v5 + 17);
   m_pCam = (CCBStageCam *)this->m_pCam;
   v14.y = 50.0;
-  ((CCBStageCam *)&m_pCam->OrthoSize)->PointWorldToScr(&v14, &v18, &v19);
+  ((gbCamera *)&m_pCam->OrthoSize)->PointWorldToScr(&v14, &v18, &v19);
   sprintf(byte_17AA920, "%d", *((_DWORD *)v5 + 11));
   v8 = (this->m_pCBSystem->m_fTimeFund - *((float *)v5 + 6)) / *((float *)v5 + 8);
   if ( v8 > 1.0 )
@@ -2180,8 +2201,8 @@ int CCBStage::ProcFiveLienupFadeIn(int a2)
     if ( !BYTE1(v7->m_vThrowVec.x) || !BYTE2(v7->m_vThrowVec.x) )
     {
       if ( BYTE1(v7->m_vThrowVec.x) == 1 )
-        ((int)v7)->GetCurrentTaskIndex();
-      ((int)this->m_pRole[*v6])->DelAllTask(*(&this->m_Task[0].SubTask[17].param.n2 + 658 * this->m_bHideSceneAndRole), 1);
+        v7->GetCurrentTaskIndex();
+      ((CCBStageRole *)this->m_pRole[*v6])->DelAllTask(*(&this->m_Task[0].SubTask[17].param.n2 + 658 * this->m_bHideSceneAndRole), 1);
       v5[41] = 1;
       *((_DWORD *)v5 + 4) = 4;
     }
@@ -2201,7 +2222,7 @@ int CCBStage::ProcFiveLienupFadeOut(int a2)
   v4 = (char *)&this->m_fDamageNumPosY[5] + v3;
   if ( !*((_BYTE *)&this->m_nCurSubTask + v3 + 1) )
   {
-    ((int)this->m_pRole[*(__int32 *)((char *)&this->m_Task[0].SubTask[17].param.dw3 + v2)])->GetCurrentTask(*(int *)((char *)&this->m_Task[0].SubTask[17].param.n2 + v2));
+    ((CCBStageRole *)this->m_pRole[*(__int32 *)((char *)&this->m_Task[0].SubTask[17].param.dw3 + v2)])->GetCurrentTask(*(int *)((char *)&this->m_Task[0].SubTask[17].param.n2 + v2));
     v4[41] = 1;
     *((_DWORD *)v4 + 4) = 4;
   }
@@ -2209,19 +2230,19 @@ int CCBStage::ProcFiveLienupFadeOut(int a2)
 }
 
 // 0x004FE660
-int CCBStage::ProcShowSneakAttackState(int _this, int _74)
+int CCBStage::ProcShowSneakAttackState(int _74)
 {
-  int v3; // eax
-  int v4; // ebp
-  int v5; // edi
+  unsigned __int32 v3; // eax
+  char *v4; // ebp
+  float *v5; // edi
   unsigned int v7; // eax
   _DWORD *v8; // ecx
-  CCBRoleState *v9; // ecx
+  CCBRoleState *m_pRoleState; // ecx
   unsigned int v10; // eax
   unsigned int v11; // eax
   unsigned int v12; // eax
   double v13; // st7
-  int v14; // eax
+  __int32 m_bHideSceneAndRole; // eax
   _DWORD *inited; // eax
   int i; // ebx
   int v17; // eax
@@ -2234,7 +2255,7 @@ int CCBStage::ProcShowSneakAttackState(int _this, int _74)
   double v24; // st7
   int RoleIndex; // edi
   char v26; // [esp+13h] [ebp-5Dh]
-  int v27; // [esp+14h] [ebp-5Ch]
+  float *v27; // [esp+14h] [ebp-5Ch]
   int a4; // [esp+18h] [ebp-58h] BYREF
   float a3; // [esp+1Ch] [ebp-54h] BYREF
   float a2[3]; // [esp+20h] [ebp-50h] BYREF
@@ -2243,52 +2264,52 @@ int CCBStage::ProcShowSneakAttackState(int _this, int _74)
   _DWORD v33[11]; // [esp+44h] [ebp-2Ch] BYREF
 
   memset(a2, 0, sizeof(a2));
-  v3 = 2632 * *(_DWORD *)(this + 160);
-  v4 = v3 + this + 2752;
-  v5 = v3 + 80 * *(_DWORD *)(this + 164) + this + 184;
+  v3 = 2632 * this->m_bHideSceneAndRole;
+  v4 = (char *)&this->m_Task[0].SubTask[17].param.f2 + v3;
+  v5 = (float *)&this->m_fDamageNumPosY[20 * LODWORD(this->m_fDamageNumPosY[0]) + 5 + v3 / 4];
   v27 = v5;
-  if ( !((CCBStageRole *)*(CCBStageRole **)(this + 4 * *(_DWORD *)(v3 + this + 2760) + 24))->IsReady(*(_DWORD *)(v3 + this + 2744)) )
+  if ( !((CCBStageRole *)this->m_pRole[*(__int32 *)((char *)&this->m_Task[0].SubTask[17].param.dw3 + v3)])->IsReady(*(int *)((char *)&this->m_Task[0].SubTask[17].param.n2 + v3)) )
   {
-    *(_DWORD *)(v5 + 16) = 4;
+    *((_DWORD *)v5 + 4) = 4;
     return 0;
   }
-  if ( !*(_BYTE *)(v5 + 41) && ((CCBStageRole *)*(CCBStageRole **)(this + 4 * *(_DWORD *)(v4 + 8) + 24))->ForceDelTaskByPFN() )
+  if ( !*((_BYTE *)v5 + 41) && ((CCBStageRole *)this->m_pRole[*((_DWORD *)v4 + 2)])->ForceDelTaskByPFN() )
   {
-    ((CCBStage *)this)->ResetAll();
-    v7 = *(_DWORD *)(v4 + 8);
+    this->ResetAll();
+    v7 = *((_DWORD *)v4 + 2);
     if ( v7 <= 4 && *(_BYTE *)(*(_DWORD *)&g_SceneMgr.m_slot0[1408 * v7 + 288] + 613) == 5
-      || *(_DWORD *)((CCBRoleState *)*(CCBRoleState **)(this + 4))->InitUI(*(_DWORD *)(v4 + 8)) == 7366 )
+      || *(_DWORD *)((CCBRoleState *)this->m_pRoleState)->InitUI(*((_DWORD *)v4 + 2)) == 7366 )
     {
-      a4 = *(_DWORD *)(v4 + 12);
+      a4 = *((_DWORD *)v4 + 3);
       if ( (unsigned int)a4 <= 0xA )
       {
         v8 = sub_50E160;
         a2[0] = (float)a4;
 LABEL_25:
-        ((CCBStageRole *)*(CCBStageRole **)(this + 4 * *(_DWORD *)(v4 + 8) + 24))->GetProperCurAction(v8, 0, 0, 0, *(_DWORD **)(this + 2632 * *(_DWORD *)(this + 160) + 2744), (int *)a2, (const void *)v4, (_DWORD *)1);
+        ((CCBStageRole *)this->m_pRole[*((_DWORD *)v4 + 2)])->GetProperCurAction(v8, 0, 0, 0, *((_DWORD **)&this->m_Task[0].SubTask[17].param.n2 + 658 * this->m_bHideSceneAndRole), (int *)a2, v4, (_DWORD *)1);
         goto LABEL_26;
       }
-      v9 = (CCBRoleState *)*(CCBRoleState **)(this + 4);
+      m_pRoleState = (CCBRoleState *)this->m_pRoleState;
       a3 = NAN;
       a4 = -1;
-      if ( (unsigned int)v9->WriteBackRoleData(v4, &a3, &a4) <= 0xA )
+      if ( (unsigned int)m_pRoleState->WriteBackRoleData((int)v4, &a3, &a4) <= 0xA )
       {
         v8 = sub_50E160;
-        a2[0] = (float)*(int *)(v4 + 12);
+        a2[0] = (float)*((int *)v4 + 3);
         goto LABEL_25;
       }
     }
     else
     {
-      v10 = *(_DWORD *)(v4 + 8);
+      v10 = *((_DWORD *)v4 + 2);
       if ( v10 > 4 )
       {
-        if ( *(_DWORD *)((CCBRoleState *)*(CCBRoleState **)(this + 4))->InitUI(*(_DWORD *)(v4 + 8)) == 720 )
+        if ( *(_DWORD *)((CCBRoleState *)this->m_pRoleState)->InitUI(*((_DWORD *)v4 + 2)) == 720 )
         {
           v8 = (_DWORD *)CCBStageRole::ProcMagic;
         }
-        else if ( *(_DWORD *)((CCBRoleState *)*(CCBRoleState **)(this + 4))->InitUI(*(_DWORD *)(v4 + 8)) == 738
-               || (inited = (_DWORD *)((CCBRoleState *)*(CCBRoleState **)(this + 4))->InitUI(*(_DWORD *)(v4 + 8)),
+        else if ( *(_DWORD *)((CCBRoleState *)this->m_pRoleState)->InitUI(*((_DWORD *)v4 + 2)) == 738
+               || (inited = (_DWORD *)((CCBRoleState *)this->m_pRoleState)->InitUI(*((_DWORD *)v4 + 2)),
                    v8 = CCBStageRole::ProcTurnToRole,
                    *inited == 739) )
         {
@@ -2304,11 +2325,11 @@ LABEL_25:
         {
           if ( v12 == 1 )
           {
-            v13 = ((CCBStageRole *)*(_DWORD *)(this + 36))->AddTask(a2);
-            v14 = *(_DWORD *)(this + 160);
+            v13 = ((CCBStageRole *)this->m_pRole[3])->AddTask(a2);
+            m_bHideSceneAndRole = this->m_bHideSceneAndRole;
             a3 = v13;
-            ((CCBStageRole *)*(CCBStageRole **)(this + 4 * *(_DWORD *)(v4 + 8) + 24))->GetProperCurAction(sub_50E360, 0, 0, 0, *(_DWORD **)(this + 2632 * v14 + 2744), (int *)a2, (const void *)v4, (_DWORD *)1);
-            ((CCBStageRole *)*(CCBStageRole **)(this + 4 * *(_DWORD *)(v4 + 8) + 24))->GetProperCurAction(CCBStage::CheckAllDone, 0, 0, 0, *(_DWORD **)(this + 2632 * *(_DWORD *)(this + 160) + 2744), (int *)a2, (const void *)v4, (_DWORD *)1);
+            ((CCBStageRole *)this->m_pRole[*((_DWORD *)v4 + 2)])->GetProperCurAction(sub_50E360, 0, 0, 0, *((_DWORD **)&this->m_Task[0].SubTask[17].param.n2 + 658 * m_bHideSceneAndRole), (int *)a2, v4, (_DWORD *)1);
+            ((CCBStageRole *)this->m_pRole[*((_DWORD *)v4 + 2)])->GetProperCurAction(CCBStage::CheckAllDone, 0, 0, 0, *((_DWORD **)&this->m_Task[0].SubTask[17].param.n2 + 658 * this->m_bHideSceneAndRole), (int *)a2, v4, (_DWORD *)1);
             v8 = (_DWORD *)CCBStage::ProcessCommand;
             a2[0] = a3;
             goto LABEL_25;
@@ -2316,55 +2337,55 @@ LABEL_25:
         }
         else
         {
-          ((CCBStageRole *)*(CCBStageRole **)(this + 32))->GetProperCurAction(CCBStageRole::ProcMagic, 0, 0, 0, *(_DWORD **)(this + 2632 * *(_DWORD *)(this + 160) + 2744), (int *)a2, (const void *)v4, (_DWORD *)1);
+          ((CCBStageRole *)this->m_pRole[2])->GetProperCurAction(CCBStageRole::ProcMagic, 0, 0, 0, *((_DWORD **)&this->m_Task[0].SubTask[17].param.n2 + 658 * this->m_bHideSceneAndRole), (int *)a2, v4, (_DWORD *)1);
         }
         v8 = (_DWORD *)CCBStageRole::ProcTurnToRole;
         goto LABEL_25;
       }
-      ((CCBStageRole *)*(CCBStageRole **)(this + 28))->GetProperCurAction(CCBStageRole::ProcUseRecoverItem, 0, 0, 0, *(_DWORD **)(this + 2632 * *(_DWORD *)(this + 160) + 2744), (int *)a2, (const void *)v4, (_DWORD *)1);
+      ((CCBStageRole *)this->m_pRole[1])->GetProperCurAction(CCBStageRole::ProcUseRecoverItem, 0, 0, 0, *((_DWORD **)&this->m_Task[0].SubTask[17].param.n2 + 658 * this->m_bHideSceneAndRole), (int *)a2, v4, (_DWORD *)1);
     }
 LABEL_26:
-    *(_DWORD *)(v5 + 64) = 1;
-    *(_BYTE *)(v5 + 41) = 1;
+    *((_DWORD *)v5 + 16) = 1;
+    *((_BYTE *)v5 + 41) = 1;
   }
-  if ( ((CCBStageRole *)*(CCBStageRole **)(this + 4))->IsActive(*(_DWORD *)(v4 + 8)) )
+  if ( ((CCBStageRole *)this->m_pRoleState)->IsActive(*((_DWORD *)v4 + 2)) )
   {
     v26 = 1;
-    if ( *(_BYTE *)(v4 + 17) )
+    if ( v4[17] )
     {
       for ( i = 0; i < 11; ++i )
       {
-        if ( *(_BYTE *)(i + v4 + 29) && ((CCBRoleState *)*(CCBRoleState **)(this + 4))->IsRoleAlive(i) )
+        if ( v4[i + 29] && ((CCBRoleState *)this->m_pRoleState)->IsRoleAlive(i) )
           v26 = 0;
       }
       if ( v26 )
         goto LABEL_35;
     }
-    else if ( !((CCBRoleState *)*(CCBRoleState **)(this + 4))->IsRoleAlive(*(_DWORD *)(v4 + 12)) )
+    else if ( !((CCBRoleState *)this->m_pRoleState)->IsRoleAlive(*((_DWORD *)v4 + 3)) )
     {
 LABEL_35:
-      *(_BYTE *)(v5 + 41) = 1;
-      *(_DWORD *)(v5 + 16) = 4;
+      *((_BYTE *)v5 + 41) = 1;
+      *((_DWORD *)v5 + 4) = 4;
       return 0;
     }
   }
-  if ( *(_DWORD *)(v5 + 64) == 1 )
+  if ( *((_DWORD *)v5 + 16) == 1 )
   {
-    v17 = *(_DWORD *)(v4 + 8);
+    v17 = *((_DWORD *)v4 + 2);
     if ( v17 >= 5 && v17 < 11 )
     {
-      v18 = (CCBRoleState *)*(CCBRoleState **)(this + 4);
+      v18 = (CCBRoleState *)this->m_pRoleState;
       if ( v18->m_Role[0].bValid )
       {
         if ( *(int *)(v18->InitUI(0) + 84) >= 0
-          && *(int *)(((CCBRoleState *)*(CCBRoleState **)(this + 4))->InitUI(0) + 84) < 11 )
+          && *(int *)(((CCBRoleState *)this->m_pRoleState)->InitUI(0) + 84) < 11 )
         {
-          v19 = ((CCBRoleState *)*(CCBRoleState **)(this + 4))->InitUI(0);
-          if ( sub_4F06C0(v4, *(_DWORD *)(v19 + 84)) )
+          v19 = ((CCBRoleState *)this->m_pRoleState)->InitUI(0);
+          if ( sub_4F06C0((int)v4, *(_DWORD *)(v19 + 84)) )
           {
-            v20 = *(_DWORD *)(((CCBRoleState *)*(CCBRoleState **)(this + 4))->InitUI(0) + 84);
-            v21 = (float *)(*(_DWORD *)(this + 4 * v20 + 24) + 6584);
-            v22 = (float *)(*(_DWORD *)(this + 4 * *(_DWORD *)(v4 + 8) + 24) + 6584);
+            v20 = *(_DWORD *)(((CCBRoleState *)this->m_pRoleState)->InitUI(0) + 84);
+            v21 = (float *)&this->m_pRole[v20]->m_Task[35].cmd.bDestRole[7];
+            v22 = (float *)&this->m_pRole[*((_DWORD *)v4 + 2)]->m_Task[35].cmd.bDestRole[7];
             a7.x = *v21 - *v22;
             a7.y = v21[1] - v22[1];
             v23 = v21[2] - v22[2];
@@ -2373,24 +2394,24 @@ LABEL_35:
             v24 = ((gbVec3D *)&v32)->Length();
             if ( v24 < 120.0 && v24 > 50.0 )
             {
-              if ( sub_4EED60(*(_DWORD *)(this + 4), v20) )
+              if ( sub_4EED60((int)this->m_pRoleState->m_sCombatDialog, v20) )
               {
                 memset(v33, 0, sizeof(v33));
                 v33[2] = 0;
                 v33[1] = 0;
                 v33[3] = v20;
-                RoleIndex = ((CCBStage *)this)->GetRoleIndex(18, v33, 1);
+                RoleIndex = this->GetRoleIndex(18, v33, 1);
                 if ( RoleIndex != -1 )
                 {
-                  a7.x = *(float *)(v4 + 8);
+                  a7.x = *((float *)v4 + 2);
                   LODWORD(a7.y) = v33[2];
                   LODWORD(a7.z) = v33[3];
-                  ((CCBStage *)this)->GetRoleName(RoleIndex, (int)CCBStage::ProcFiveLienupFadeIn, 0, 0, 0, &a7, -1082130432, 0);
-                  ((CCBStage *)this)->GetRoleName(RoleIndex, (int)sub_500840, 0, 0, 0, &a7, -1082130432, 0);
-                  ((CCBStage *)this)->GetRoleName(RoleIndex, (int)sub_5009C0, 0, 0, 0, &a7, -1082130432, 0);
-                  ((CCBStage *)this)->GetRoleName(RoleIndex, (int)sub_500AD0, 0, 0, 0, &a7, -1082130432, 0);
-                  ((CCBStage *)this)->GetRoleName(RoleIndex, (int)CCBStage::ProcFiveLienupFadeOut, 0, 0, 0, &a7, -1082130432, 0);
-                  *(_DWORD *)(v27 + 64) = 0;
+                  this->GetRoleName(RoleIndex, (int)CCBStage::ProcFiveLienupFadeIn, 0, 0, 0, &a7, -1082130432, 0);
+                  this->GetRoleName(RoleIndex, (int)sub_500840, 0, 0, 0, &a7, -1082130432, 0);
+                  this->GetRoleName(RoleIndex, (int)sub_5009C0, 0, 0, 0, &a7, -1082130432, 0);
+                  this->GetRoleName(RoleIndex, (int)sub_500AD0, 0, 0, 0, &a7, -1082130432, 0);
+                  this->GetRoleName(RoleIndex, (int)CCBStage::ProcFiveLienupFadeOut, 0, 0, 0, &a7, -1082130432, 0);
+                  v27[16] = 0.0;
                   ((CCBSystem *)this)->GetStageRoleByIdx(RoleIndex);
                 }
               }
@@ -2400,11 +2421,8 @@ LABEL_35:
       }
     }
   }
-  if ( ((CCBStageRole *)*(CCBStageRole **)(this + 4 * *(_DWORD *)(v4 + 8) + 24))->ForceDelTaskByPFN()
-    || *(_BYTE *)(v27 + 43) == 1 )
-  {
-    *(_DWORD *)(v27 + 16) = 4;
-  }
+  if ( ((CCBStageRole *)this->m_pRole[*((_DWORD *)v4 + 2)])->ForceDelTaskByPFN() || *((_BYTE *)v27 + 43) == 1 )
+    *((_DWORD *)v27 + 4) = 4;
   return 0;
 }
 
@@ -2470,28 +2488,28 @@ int CCBStage::HandleKeyFriend(int a2)
 }
 
 // 0x004FEFB0
-int CCBStage::ProcShowName(int _this, int a2)
+int CCBStage::ProcShowName(int a2)
 {
-  int v3; // eax
+  unsigned __int32 v3; // eax
   int *v4; // edi
-  int v5; // ebx
+  float *v5; // ebx
   int v7; // eax
   CCBStageRole *v8; // ecx
   _DWORD *v9; // edx
   int v10; // ecx
-  double v11; // st7
-  int v12; // eax
+  double x; // st7
+  __int32 m_bHideSceneAndRole; // eax
   int v13[3]; // [esp+14h] [ebp-Ch] BYREF
 
-  v3 = 2632 * *(_DWORD *)(this + 160);
-  v4 = (int *)(v3 + this + 2760);
-  v5 = v3 + 80 * *(_DWORD *)(this + 164) + this + 184;
-  if ( !((CCBStageRole *)*(CCBStageRole **)(this + 4 * *v4 + 24))->IsReady(*(_DWORD *)(v3 + this + 2744)) )
+  v3 = 2632 * this->m_bHideSceneAndRole;
+  v4 = (__int32 *)((char *)&this->m_Task[0].SubTask[17].param.dw3 + v3);
+  v5 = (float *)&this->m_fDamageNumPosY[20 * LODWORD(this->m_fDamageNumPosY[0]) + 5 + v3 / 4];
+  if ( !((CCBStageRole *)this->m_pRole[*v4])->IsReady(*(int *)((char *)&this->m_Task[0].SubTask[17].param.n2 + v3)) )
   {
-    *(_DWORD *)(v5 + 16) = 4;
+    *((_DWORD *)v5 + 4) = 4;
     return 0;
   }
-  if ( !*(_BYTE *)(v5 + 41) && ((CCBStageRole *)*(CCBStageRole **)(this + 4 * *v4 + 24))->ForceDelTaskByPFN() )
+  if ( !*((_BYTE *)v5 + 41) && ((CCBStageRole *)this->m_pRole[*v4])->ForceDelTaskByPFN() )
   {
     v7 = *v4;
     if ( *v4 >= 0 && v7 < 5 )
@@ -2499,57 +2517,57 @@ int CCBStage::ProcShowName(int _this, int a2)
       switch ( v7 )
       {
         case 1:
-          v8 = (CCBStageRole *)*(CCBStageRole **)(this + 28);
+          v8 = (CCBStageRole *)this->m_pRole[1];
           v9 = (_DWORD *)CCBStageRole::ProcUseRecoverItem;
           break;
         case 2:
-          v8 = (CCBStageRole *)*(CCBStageRole **)(this + 32);
+          v8 = (CCBStageRole *)this->m_pRole[2];
           v9 = (_DWORD *)CCBStageRole::ProcMagic;
           break;
         case 3:
-          v8 = (CCBStageRole *)*(CCBStageRole **)(this + 36);
+          v8 = (CCBStageRole *)this->m_pRole[3];
           v9 = (_DWORD *)CCBStage::CheckAllDone;
           break;
         default:
-          v8 = (CCBStageRole *)*(CCBStageRole **)(this + 4 * v7 + 24);
+          v8 = (CCBStageRole *)this->m_pRole[v7];
           v9 = (_DWORD *)CCBStageRole::ProcTurnToRole;
           break;
       }
       goto LABEL_22;
     }
-    if ( *(_DWORD *)((CCBRoleState *)*(CCBRoleState **)(this + 4))->InitUI(*v4) == 720 )
+    if ( *(_DWORD *)((CCBRoleState *)this->m_pRoleState)->InitUI(*v4) == 720 )
     {
       v9 = (_DWORD *)CCBStageRole::ProcMagic;
     }
     else
     {
-      if ( *(_DWORD *)((CCBRoleState *)*(CCBRoleState **)(this + 4))->InitUI(*v4) != 738
-        && *(_DWORD *)((CCBRoleState *)*(CCBRoleState **)(this + 4))->InitUI(*v4) != 739 )
+      if ( *(_DWORD *)((CCBRoleState *)this->m_pRoleState)->InitUI(*v4) != 738
+        && *(_DWORD *)((CCBRoleState *)this->m_pRoleState)->InitUI(*v4) != 739 )
       {
         v9 = (_DWORD *)CCBStageRole::ProcTurnToRole;
-        v8 = (CCBStageRole *)*(CCBStageRole **)(this + 4 * *v4 + 24);
+        v8 = (CCBStageRole *)this->m_pRole[*v4];
 LABEL_22:
-        v8->GetProperCurAction(v9, 0, 0, 0, *(_DWORD **)(this + 2632 * *(_DWORD *)(this + 160) + 2744), &v8->m_Task[35].cmd.bDestRole[10], 0, (_DWORD *)1);
+        v8->GetProperCurAction(v9, 0, 0, 0, *((_DWORD **)&this->m_Task[0].SubTask[17].param.n2 + 658 * this->m_bHideSceneAndRole), &v8->m_Task[35].cmd.bDestRole[10], 0, (_DWORD *)1);
         v10 = *v4;
-        v11 = *(float *)(*(_DWORD *)(this + 4 * *v4 + 24) + 6636);
+        x = this->m_pRole[*v4]->m_Task[36].vec1.x;
         v13[1] = 0;
-        v12 = *(_DWORD *)(this + 160);
-        *(float *)v13 = v11;
+        m_bHideSceneAndRole = this->m_bHideSceneAndRole;
+        *(float *)v13 = x;
         v13[2] = 0;
-        ((CCBStageRole *)*(CCBStageRole **)(this + 4 * v10 + 24))->GetProperCurAction(CCBStage::ProcessCommand, 0, 0, 0, *(_DWORD **)(this + 2632 * v12 + 2744), v13, 0, (_DWORD *)1);
-        *(_BYTE *)(v5 + 41) = 1;
+        ((CCBStageRole *)this->m_pRole[v10])->GetProperCurAction(CCBStage::ProcessCommand, 0, 0, 0, *((_DWORD **)&this->m_Task[0].SubTask[17].param.n2 + 658 * m_bHideSceneAndRole), v13, 0, (_DWORD *)1);
+        *((_BYTE *)v5 + 41) = 1;
         goto LABEL_23;
       }
       v9 = (_DWORD *)CCBStageRole::ProcBlock;
     }
-    v8 = (CCBStageRole *)*(CCBStageRole **)(this + 4 * *v4 + 24);
+    v8 = (CCBStageRole *)this->m_pRole[*v4];
     goto LABEL_22;
   }
 LABEL_23:
-  if ( ((CCBStageRole *)*(CCBStageRole **)(this + 4 * *v4 + 24))->ForceDelTaskByPFN() )
-    *(_DWORD *)(v5 + 16) = 4;
-  if ( *(_BYTE *)(v5 + 43) == 1 && !*(_DWORD *)(((CCBRoleState *)*(CCBRoleState **)(this + 4))->InitUI(*v4) + 36) )
-    *(_DWORD *)(v5 + 16) = 4;
+  if ( ((CCBStageRole *)this->m_pRole[*v4])->ForceDelTaskByPFN() )
+    *((_DWORD *)v5 + 4) = 4;
+  if ( *((_BYTE *)v5 + 43) == 1 && !*(_DWORD *)(((CCBRoleState *)this->m_pRoleState)->InitUI(*v4) + 36) )
+    *((_DWORD *)v5 + 4) = 4;
   return 0;
 }
 
@@ -2607,78 +2625,78 @@ LABEL_13:
 }
 
 // 0x004FF3D0
-int CCBStage::ProcShowDamage(int _this, int a2)
+int CCBStage::ProcShowDamage(int a2)
 {
-  int v3; // ebp
-  int v4; // eax
+  __int32 v3; // ebp
+  __int32 v4; // eax
   char v5; // cl
-  int v6; // eax
+  char *v6; // eax
   int v7; // edi
-  int v8; // ebx
+  CCBStageRole **m_pRole; // ebx
   int v9; // ecx
-  _DWORD *v10; // eax
-  _DWORD *v11; // ecx
+  __int32 *v10; // eax
+  gbVec3D *v11; // ecx
   int ItemNum; // eax
   int v13; // eax
-  _DWORD *v14; // ebp
-  int v15; // ecx
-  int v16; // eax
-  _DWORD *v17; // eax
-  _DWORD *v18; // esi
-  int v20; // [esp+8h] [ebp-4h]
+  CCBStage *v14; // ebp
+  CCBRoleState *m_pRoleState; // ecx
+  CCBStageRole *v16; // eax
+  __int32 *v17; // eax
+  __int32 *v18; // esi
+  char *v20; // [esp+8h] [ebp-4h]
 
-  v3 = 2632 * *(_DWORD *)(this + 160);
-  v4 = v3 + 80 * *(_DWORD *)(this + 164);
-  v5 = *(_BYTE *)(v4 + this + 225);
-  v6 = v4 + this + 184;
+  v3 = 2632 * this->m_bHideSceneAndRole;
+  v4 = v3 + 80 * LODWORD(this->m_fDamageNumPosY[0]);
+  v5 = *((_BYTE *)&this->m_nCurSubTask + v4 + 1);
+  v6 = (char *)&this->m_fDamageNumPosY[5] + v4;
   v20 = v6;
   if ( !v5 )
   {
     v7 = 0;
-    v8 = this + 24;
+    m_pRole = this->m_pRole;
     do
     {
-      if ( *(_BYTE *)(((CCBRoleState *)*(CCBRoleState **)(this + 4))->InitUI(v7) + 25)
-        && *(_BYTE *)(((CCBRoleState *)*(CCBRoleState **)(this + 4))->InitUI(v7) + 26) )
+      if ( *(_BYTE *)(((CCBRoleState *)this->m_pRoleState)->InitUI(v7) + 25)
+        && *(_BYTE *)(((CCBRoleState *)this->m_pRoleState)->InitUI(v7) + 26) )
       {
-        v9 = 3 * *(_DWORD *)(((CCBRoleState *)*(CCBRoleState **)(this + 4))->InitUI(v7) + 584);
-        v10 = (_DWORD *)(*(_DWORD *)v8 + 6584);
-        v11 = (_DWORD *)(*(_DWORD *)(this + 20) + 4 * v9 + 92);
-        * v10 = (*)*v11;
-        v10[1] = v11[1];
-        v10[2] = v11[2];
-        *(_DWORD *)(*(_DWORD *)v8 + 6632) = *(_DWORD *)(*(_DWORD *)v8 + 6636);
+        v9 = *(_DWORD *)(((CCBRoleState *)this->m_pRoleState)->InitUI(v7) + 584);
+        v10 = (__int32 *)&(*m_pRole)->m_Task[35].cmd.bDestRole[7];
+        v11 = (gbVec3D *)&this->m_pScene->m_vecInitFiveLineup[v9];
+        * v10 = (*)LODWORD(v11->x);
+        v10[1] = LODWORD(v11->y);
+        v10[2] = LODWORD(v11->z);
+        (*m_pRole)->m_Task[36].fp = (void *)LODWORD((*m_pRole)->m_Task[36].vec1.x);
       }
       ++v7;
-      v8 += 4;
+      ++m_pRole;
     }
     while ( v7 < 5 );
-    ItemNum = ((PAL_GDB *)&g_GDB)->GDB_GetItemNum(*(_DWORD *)(this + v3 + 2756));
+    ItemNum = ((PAL_GDB *)&g_GDB)->GDB_GetItemNum(*(int *)((char *)&this->m_Task[0].SubTask[17].param.n3 + v3));
     if ( ItemNum )
     {
       if ( *(_BYTE *)(ItemNum + 592) == 2 )
       {
-        v13 = *(_DWORD *)(this + v3 + 2764);
-        v14 = (_DWORD *)(this + v3 + 2764);
+        v13 = *(_DWORD *)((char *)&this->m_Task[0].SubTask[17].param.f3 + v3);
+        v14 = (CCBStage *)((char *)&this->m_Task[0].SubTask[17].param.f3 + v3);
         if ( v13 != -1 && v13 != 10 )
         {
-          v15 = *(_DWORD *)(this + 4);
-          if ( *(_BYTE *)(v15 + 9497) )
+          m_pRoleState = (CCBRoleState *)this->m_pRoleState;
+          if ( m_pRoleState->m_Role[10].bValid )
           {
-            if ( !*(_BYTE *)(((CCBRoleState *)v15)->InitUI(10) + 880) )
+            if ( !*(_BYTE *)(m_pRoleState->InitUI(10) + 880) )
             {
-              v16 = *(_DWORD *)(this + 64);
-              if ( *(_BYTE *)(v16 + 272) )
+              v16 = (CCBStageRole *)this->m_pRole[10];
+              if ( LOBYTE(v16->m_bPaused) )
               {
-                *(_DWORD *)(v16 + 6584) = *(_DWORD *)(v16 + 6596);
-                *(_DWORD *)(v16 + 6588) = *(_DWORD *)(v16 + 6600);
-                *(_DWORD *)(v16 + 6592) = *(_DWORD *)(v16 + 6604);
-                ((CCBStageRole *)*(CCBStageRole **)(this + 64))->ForceRelease(0);
+                v16->m_Task[35].cmd.bDestRole[7] = v16->m_Task[35].cmd.bDestRole[10];
+                v16->m_Task[35].cmd.bDestRole[8] = v16->m_Task[35].cmd.bValid;
+                v16->m_Task[35].cmd.bDestRole[9] = LODWORD(v16->m_Task[35].fTemp);
+                ((CCBStageRole *)this->m_pRole[10])->ForceRelease(0);
               }
             }
           }
-          v17 = (_DWORD *)(*(_DWORD *)(this + 64) + 6596);
-          v18 = (_DWORD *)(*(_DWORD *)(this + 4 * *v14 + 24) + 6584);
+          v17 = (__int32 *)&this->m_pRole[10]->m_Task[35].cmd.bDestRole[10];
+          v18 = (__int32 *)&this->m_pRole[(int)v14->m_pCBSystem]->m_Task[35].cmd.bDestRole[7];
           * v18 = (*)*v17;
           v18[1] = v17[1];
           v18[2] = v17[2];
@@ -2686,9 +2704,9 @@ int CCBStage::ProcShowDamage(int _this, int a2)
       }
     }
     v6 = v20;
-    *(_BYTE *)(v20 + 41) = 1;
+    v20[41] = 1;
   }
-  *(_DWORD *)(v6 + 16) = 4;
+  *((_DWORD *)v6 + 4) = 4;
   return 0;
 }
 
@@ -2864,7 +2882,7 @@ int CCBStage::ProcGrabStageRole(int a2)
   }
   if ( ((CCBStageRole *)this->m_pRole[(int)v4->m_pEditor])->ForceDelTaskByPFN() || *((_BYTE *)v5 + 43) == 1 )
   {
-    ((int)this->m_pRole[(int)v4->m_pEditor])->TryRelease();
+    ((CCBStageRole *)this->m_pRole[(int)v4->m_pEditor])->TryRelease();
 LABEL_17:
     *((_DWORD *)v5 + 4) = 4;
   }
@@ -3538,10 +3556,10 @@ int CCBStage::CheckAllDone()
       this->m_Task[1].SubTask[10].nTemp4 = 31;
     else
       this->m_Task[1].SubTask[10].nTemp4 = 52;
-    ((int)this)->IsGrabedBy();
+    ((CCBStageRole *)this)->IsGrabedBy();
     v9 = 0;
     *((_BYTE *)&this->m_Task[0].SubTask[1].nTemp3 + 96 * LODWORD(this->m_Task[0].SubTask[1].fStartTime) + 2) = 1;
-    ((int)this)->ClearBadPushTask(0.40000001);
+    ((CCBStageRole *)this)->ClearBadPushTask(0.40000001);
     n1 = this->m_Task[0].SubTask[0].param.n1;
     BYTE1(this->m_Task[0].SubTask[0].bExecuted) = 1;
     if ( n1 == 3 )
@@ -3633,7 +3651,7 @@ int CCBStage::ProcessCommand()
       this->m_Task[1].SubTask[10].nTemp4 = 32;
     else
       this->m_Task[1].SubTask[10].nTemp4 = 50;
-    ((int)this)->IsGrabedBy();
+    ((CCBStageRole *)this)->IsGrabedBy();
     *((_BYTE *)&this->m_Task[0].SubTask[1].nTemp3 + 96 * LODWORD(this->m_Task[0].SubTask[1].fStartTime) + 2) = 1;
     *((_BYTE *)&this->m_Task[0].SubTask[1].nTemp3 + 96 * LODWORD(this->m_Task[0].SubTask[1].fStartTime) + 1) = 1;
   }

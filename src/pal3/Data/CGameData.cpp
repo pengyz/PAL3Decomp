@@ -74,7 +74,7 @@ int CGameData::InitRoles(int a2)
     &unk_AABEF6,
     &this->_data[92],
     this);
-  ((UIWnd **)&this->_data[124])->CreateFromTemplate(off_59BA88, 1);
+  ((UIWnd *)&this->_data[124])->CreateFromTemplate(off_59BA88, 1);
   (**(void (***)(char *, _DWORD))&this->_data[124])(&this->_data[124], 0);
   v6 = (UIWnd **)&this->_data[428];
   a2a = 3;
@@ -96,7 +96,7 @@ int CGameData::InitRoles(int a2)
     &unk_AABEF6,
     &this->_data[92],
     this);
-  ((UIWnd **)&this->_data[276])->CreateFromTemplate(off_59BA8C, 1);
+  ((UIWnd *)&this->_data[276])->CreateFromTemplate(off_59BA8C, 1);
   (**(void (***)(char *, _DWORD))&this->_data[276])(&this->_data[276], 0);
   (*(void (**)(char *, void *, char *, CGameData *, char *, _DWORD, int))(*(_DWORD *)&this->_data[884] + 28))(
     &this->_data[884],
@@ -369,7 +369,7 @@ void * CGameData::Init()
   (*(void (**)(char *, _DWORD, int *, CGameData *))(v12 + 16))(&this->_data[260], 0, &pRect, this);
   (**(void (***)(char *, _DWORD))&this->_data[260])(&this->_data[260], 0);
   v20 = -1;
-  return ((OpenNULLFile **)&v14)->OpenNULLFile();
+  return ((OpenNULLFile *)&v14)->OpenNULLFile();
 }
 
 // 0x0044F430

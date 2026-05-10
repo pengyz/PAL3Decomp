@@ -15,8 +15,8 @@ extern void *off_56B1BC;
 int PropUI::Create()
 {
   ((UIListBox *)this)->UIListBox();
-  ((int)&this->m_childs)->ctor_2790();
-  ((int)&this->m_PropData.m_EntrySale[172])->ctor_1CC0();
+  ((UIWnd *)&this->m_childs)->ctor_2790();
+  ((UIWnd *)&this->m_PropData.m_EntrySale[172])->ctor_1CC0();
   this->m_fontcolor.ColorQuadFmt = (int)&off_56B1BC;
   return (int)this;
 }

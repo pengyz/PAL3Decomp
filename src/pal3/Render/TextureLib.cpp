@@ -36,8 +36,8 @@ char TextureLib::LoadFromFile(char *filename)
   TextureLib *v8; // edi
   int v9; // eax
   int v10; // esi
-  char *v11; // eax
-  char *v12; // ecx
+  _DWORD *v11; // eax
+  _DWORD *v12; // ecx
   char *v13; // eax
   char *v14; // esi
   size_t v16; // eax
@@ -46,8 +46,8 @@ char TextureLib::LoadFromFile(char *filename)
   TextureLib *v19; // edi
   int v20; // eax
   int v21; // esi
-  char *v22; // eax
-  char *v23; // ecx
+  _DWORD *v22; // eax
+  _DWORD *v23; // ecx
   char *v24; // eax
   char *v25; // esi
   char *v26; // [esp+8h] [ebp-28h]
@@ -56,7 +56,7 @@ char TextureLib::LoadFromFile(char *filename)
   char *String; // [esp+28h] [ebp-8h]
   size_t v30; // [esp+2Ch] [ebp-4h]
   void *Block; // [esp+34h] [ebp+4h]
-  char *Blocka; // [esp+34h] [ebp+4h]
+  _DWORD *Blocka; // [esp+34h] [ebp+4h]
 
   v28 = this;
   memset(String2, 0, sizeof(String2));
@@ -84,32 +84,32 @@ char TextureLib::LoadFromFile(char *filename)
     v10 = v9;
     if ( v9 )
     {
-      v11 = (char *)operator new(1088 * v9);
+      v11 = (_DWORD *)operator new(1088 * v9);
       if ( v11 )
       {
         if ( v10 - 1 >= 0 )
         {
-          v12 = (char *)v11 + 1060;
+          v12 = (_DWORD *)v11 + 265;
           do
           {
-            *((_DWORD *)v12 - 3) = 0;
-            *((_DWORD *)v12 - 2) = 0;
-            *((_DWORD *)v12 - 1) = 0;
-            *(_DWORD *)v12 = 0;
-            *((_DWORD *)v12 + 1) = 0;
-            *((_DWORD *)v12 + 2) = 0;
-            *((_DWORD *)v12 + 3) = 0;
-            *((_DWORD *)v12 + 4) = 0;
-            *(v12 - 1060) = 0;
-            *(v12 - 548) = 0;
-            *((_DWORD *)v12 - 8) = 256;
-            *((_DWORD *)v12 - 9) = 256;
-            *((_DWORD *)v12 - 6) = 0;
-            *((_DWORD *)v12 - 7) = 0;
-            *((_DWORD *)v12 - 5) = 256;
-            *((_DWORD *)v12 + 5) = 0;
-            v12[24] = 0;
-            v12 += 1088;
+            *(v12 - 3) = 0;
+            *(v12 - 2) = 0;
+            *(v12 - 1) = 0;
+            *v12 = 0;
+            v12[1] = 0;
+            v12[2] = 0;
+            v12[3] = 0;
+            v12[4] = 0;
+            *((_BYTE *)v12 - 1060) = 0;
+            *((_BYTE *)v12 - 548) = 0;
+            *(v12 - 8) = 256;
+            *(v12 - 9) = 256;
+            *(v12 - 6) = 0;
+            *(v12 - 7) = 0;
+            *(v12 - 5) = 256;
+            v12[5] = 0;
+            *((_BYTE *)v12 + 24) = 0;
+            v12 += 272;
             --v10;
           }
           while ( v10 );
@@ -146,41 +146,41 @@ char TextureLib::LoadFromFile(char *filename)
   }
   v18 = (char *)operator new(v16);
   String = v18;
-  Blocka = (char *)operator new(v17);
+  Blocka = (_DWORD *)operator new(v17);
   g_pVFileSys->Read(v18, v17, v3);
   g_pVFileSys->CloseFile(v3);
   qmemcpy(Blocka, v18, v17);
   v19 = v28;
-  v20 = sub_53F610(Blocka);
+  v20 = sub_53F610((char *)Blocka);
   v21 = v20;
   if ( !v20 )
     return 0;
-  v22 = (char *)operator new(1088 * v20);
+  v22 = (_DWORD *)operator new(1088 * v20);
   if ( v22 )
   {
     if ( v21 - 1 >= 0 )
     {
-      v23 = (char *)v22 + 1060;
+      v23 = (_DWORD *)v22 + 265;
       do
       {
-        *((_DWORD *)v23 - 3) = 0;
-        *((_DWORD *)v23 - 2) = 0;
-        *((_DWORD *)v23 - 1) = 0;
-        *(_DWORD *)v23 = 0;
-        *((_DWORD *)v23 + 1) = 0;
-        *((_DWORD *)v23 + 2) = 0;
-        *((_DWORD *)v23 + 3) = 0;
-        *((_DWORD *)v23 + 4) = 0;
-        *(v23 - 1060) = 0;
-        *(v23 - 548) = 0;
-        *((_DWORD *)v23 - 8) = 256;
-        *((_DWORD *)v23 - 9) = 256;
-        *((_DWORD *)v23 - 6) = 0;
-        *((_DWORD *)v23 - 7) = 0;
-        *((_DWORD *)v23 - 5) = 256;
-        *((_DWORD *)v23 + 5) = 0;
-        v23[24] = 0;
-        v23 += 1088;
+        *(v23 - 3) = 0;
+        *(v23 - 2) = 0;
+        *(v23 - 1) = 0;
+        *v23 = 0;
+        v23[1] = 0;
+        v23[2] = 0;
+        v23[3] = 0;
+        v23[4] = 0;
+        *((_BYTE *)v23 - 1060) = 0;
+        *((_BYTE *)v23 - 548) = 0;
+        *(v23 - 8) = 256;
+        *(v23 - 9) = 256;
+        *(v23 - 6) = 0;
+        *(v23 - 7) = 0;
+        *(v23 - 5) = 256;
+        v23[5] = 0;
+        *((_BYTE *)v23 + 24) = 0;
+        v23 += 272;
         --v21;
       }
       while ( v21 );

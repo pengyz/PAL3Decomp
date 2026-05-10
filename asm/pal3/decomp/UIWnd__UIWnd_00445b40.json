@@ -2,6 +2,6 @@
   "name": "UIWnd::_UIWnd",
   "address": "0x00445B40",
   "size_bytes": 80,
-  "signature": "void __thiscall(std::ios_base *this)",
-  "decompiled_c": "void __thiscall UIWnd::_UIWnd(std::ios_base *this)\n{\n  *(_DWORD *)this->_data = &off_56AEC8;\n  UIWnd::UpdateChildren((UIWnd *)this);\n  sub_432680((void **)&this->_data[36]);\n}\n"
+  "signature": "void __thiscall(UIWnd *this)",
+  "decompiled_c": "void __thiscall UIWnd::_UIWnd(UIWnd *this)\n{\n  this->m_fontcolor.ColorQuadFmt = (int)&off_56AEC8;\n  UIWnd::UpdateChildren(this);\n  sub_432680((void **)&this->m_wndcolor.Red);\n}\n"
 }

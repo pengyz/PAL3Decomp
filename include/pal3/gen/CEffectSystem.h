@@ -32,7 +32,7 @@ public:
     static int CreateEffect(); // 0x004C6340
     static void GetEffect(); // 0x004C6350
     static void DestroyEffect(); // 0x004C6360
-    static void * DestroyAllEffect(); // 0x004C6410
+    static CEffectSystem * DestroyAllEffect(); // 0x004C6410
     char IsVisible(); // 0x004C6460
     void SetVisible(float a2); // 0x004C65C0
     void HandleViewMove(int a2); // 0x004C65F0

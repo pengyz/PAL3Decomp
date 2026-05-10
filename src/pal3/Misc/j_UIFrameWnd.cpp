@@ -7,5 +7,5 @@
 // attributes: thunk
 void j_UIFrameWnd::_UIFrameWnd(UIWnd *this)
 {
-  this->_UIFrameWnd();
+  ((UIFrameWnd *)this)->_UIFrameWnd();
 }

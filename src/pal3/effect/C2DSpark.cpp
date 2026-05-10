@@ -207,66 +207,66 @@ C2DSpark::~C2DSpark()
   gbRefObject *v6; // ecx
   gbRefObject *v7; // ecx
 
-  v2 = (gbRefObject *)*(gbRefObject **)(this + 22556);
+  v2 = (gbRefObject *)*((_DWORD *)this + 5639);
   if ( v2 )
   {
     v2->Release();
-    *(_DWORD *)(this + 22556) = 0;
+    *((_DWORD *)this + 5639) = 0;
   }
-  v3 = (gbRefObject *)*(gbRefObject **)(this + 22560);
+  v3 = (gbRefObject *)*((_DWORD *)this + 5640);
   if ( v3 )
   {
     v3->Release();
-    *(_DWORD *)(this + 22560) = 0;
+    *((_DWORD *)this + 5640) = 0;
   }
-  v4 = (gbRefObject *)*(gbRefObject **)(this + 22576);
+  v4 = (gbRefObject *)*((_DWORD *)this + 5644);
   if ( v4 )
   {
     v4->Release();
-    *(_DWORD *)(this + 22576) = 0;
+    *((_DWORD *)this + 5644) = 0;
   }
-  v5 = (gbRefObject *)*(gbRefObject **)(this + 22568);
+  v5 = (gbRefObject *)*((_DWORD *)this + 5642);
   if ( v5 )
   {
     v5->Release();
-    *(_DWORD *)(this + 22568) = 0;
+    *((_DWORD *)this + 5642) = 0;
   }
-  v6 = (gbRefObject *)*(gbRefObject **)(this + 22584);
+  v6 = (gbRefObject *)*((_DWORD *)this + 5646);
   if ( v6 )
   {
     v6->Release();
-    *(_DWORD *)(this + 22584) = 0;
+    *((_DWORD *)this + 5646) = 0;
   }
-  v7 = (gbRefObject *)*(gbRefObject **)(this + 22592);
+  v7 = (gbRefObject *)*((_DWORD *)this + 5648);
   if ( v7 )
   {
     v7->Release();
-    *(_DWORD *)(this + 22592) = 0;
+    *((_DWORD *)this + 5648) = 0;
   }
-  if ( *(_DWORD *)(this + 22564) )
+  if ( *((_DWORD *)this + 5641) )
   {
-    operator delete(*(void **)(this + 22564));
-    *(_DWORD *)(this + 22564) = 0;
+    operator delete(*((void **)this + 5641));
+    *((_DWORD *)this + 5641) = 0;
   }
-  if ( *(_DWORD *)(this + 22580) )
+  if ( *((_DWORD *)this + 5645) )
   {
-    operator delete(*(void **)(this + 22580));
-    *(_DWORD *)(this + 22580) = 0;
+    operator delete(*((void **)this + 5645));
+    *((_DWORD *)this + 5645) = 0;
   }
-  if ( *(_DWORD *)(this + 22572) )
+  if ( *((_DWORD *)this + 5643) )
   {
-    operator delete(*(void **)(this + 22572));
-    *(_DWORD *)(this + 22572) = 0;
+    operator delete(*((void **)this + 5643));
+    *((_DWORD *)this + 5643) = 0;
   }
-  if ( *(_DWORD *)(this + 22588) )
+  if ( *((_DWORD *)this + 5647) )
   {
-    operator delete(*(void **)(this + 22588));
-    *(_DWORD *)(this + 22588) = 0;
+    operator delete(*((void **)this + 5647));
+    *((_DWORD *)this + 5647) = 0;
   }
-  if ( *(_DWORD *)(this + 22596) )
+  if ( *((_DWORD *)this + 5649) )
   {
-    operator delete(*(void **)(this + 22596));
-    *(_DWORD *)(this + 22596) = 0;
+    operator delete(*((void **)this + 5649));
+    *((_DWORD *)this + 5649) = 0;
   }
 }
 
@@ -290,10 +290,10 @@ char C2DSpark::CreateSingle(const void *a2)
 }
 
 // 0x004D5F20
-char C2DSpark::CreateTrack(int _this, char a2)
+char C2DSpark::CreateTrack(char a2)
 {
-  *(_DWORD *)(this + 22540) = 0;
-  *(_BYTE *)(this + 22552) = a2;
+  *((_DWORD *)this + 5635) = 0;
+  *((_BYTE *)this + 22552) = a2;
   return a2;
 }
 
@@ -384,7 +384,7 @@ _BYTE * C2DSpark::CreateStars()
 }
 
 // 0x004D61C0
-int C2DSpark::DestroyAll(int _this)
+int C2DSpark::DestroyAll()
 {
   gbDynVertBuf *DynVertBuf; // ebx
   int y; // ecx
@@ -393,7 +393,7 @@ int C2DSpark::DestroyAll(int _this)
   double v6; // st7
   struct gbRenderEffect *v7; // ecx
   int result; // eax
-  int v9; // edi
+  __int32 *v9; // edi
   struct gbTextureArray *v10; // ecx
   struct gbRenderEffect *v11; // ecx
   int v12; // ecx
@@ -403,10 +403,10 @@ int C2DSpark::DestroyAll(int _this)
   int v16; // [esp+18h] [ebp-4h]
 
   DynVertBuf = ((gbVertPoolMgr *)*(gbVertPoolMgr **)(g_Input.KeyInfo[177].Data + 196))->GetDynVertBuf(0x114u);
-  if ( *(float *)(this + 22540) > 2.0 )
+  if ( *((float *)this + 5635) > 2.0 )
   {
     ((GRPinput *)&Point)->GetCursorPos();
-    if ( *(_BYTE *)(this + 22552) )
+    if ( *((_BYTE *)this + 22552) )
     {
       GetCursorPos(&Point);
       y = Point.y;
@@ -414,66 +414,66 @@ int C2DSpark::DestroyAll(int _this)
     }
     else
     {
-      x = *(_DWORD *)(this + 22544);
-      y = *(_DWORD *)(this + 22548);
+      x = *((_DWORD *)this + 5636);
+      y = *((_DWORD *)this + 5637);
       Point.x = x;
       Point.y = y;
     }
     v16 = y - 64;
-    *(float *)(this + 22600) = (float)(x - 64);
+    *((float *)this + 5650) = (float)(x - 64);
     v5 = (double)v16;
     v16 = x + 64;
-    *(float *)(this + 22604) = v5;
+    *((float *)this + 5651) = v5;
     v6 = (double)v16;
     v16 = y + 64;
-    *(float *)(this + 22608) = v6;
-    *(float *)(this + 22612) = (float)v16;
-    v7 = (struct gbRenderEffect *)*(struct gbRenderEffect **)(this + 22556);
-    *(_BYTE *)(this + 22639) = (__int64)*(float *)(this + 22540);
-    DynVertBuf->RenderUIQuad((struct gbUIQuad *)(this + 22600), 1, v7, *(struct gbTextureArray **)(this + 22564));
+    *((float *)this + 5652) = v6;
+    *((float *)this + 5653) = (float)v16;
+    v7 = (struct gbRenderEffect *)*((_DWORD *)this + 5639);
+    *((_BYTE *)this + 22639) = (__int64)*((float *)this + 5635);
+    DynVertBuf->RenderUIQuad((struct gbUIQuad *)((char *)this + 22600), 1, v7, *((struct gbTextureArray **)this + 5641));
   }
-  result = *(_DWORD *)(this + 22536);
+  result = *((_DWORD *)this + 5634);
   v16 = 0;
   if ( result > 0 )
   {
-    v9 = this + 32;
+    v9 = (__int32 *)&this->m_Spark[8];
     do
     {
-      if ( *(_BYTE *)(v9 + 9) )
+      if ( *((_BYTE *)v9 + 9) )
       {
-        result = *(unsigned __int8 *)(v9 + 8);
-        switch ( *(_BYTE *)(v9 + 8) )
+        result = *((unsigned __int8 *)v9 + 8);
+        switch ( *((_BYTE *)v9 + 8) )
         {
           case 0:
-            v10 = (struct gbTextureArray *)*(struct gbTextureArray **)(this + 22588);
+            v10 = (struct gbTextureArray *)*((_DWORD *)this + 5647);
             goto LABEL_14;
           case 1:
-            v10 = (struct gbTextureArray *)*(struct gbTextureArray **)(this + 22580);
+            v10 = (struct gbTextureArray *)*((_DWORD *)this + 5645);
             goto LABEL_14;
           case 2:
-            v10 = (struct gbTextureArray *)*(struct gbTextureArray **)(this + 22572);
+            v10 = (struct gbTextureArray *)*((_DWORD *)this + 5643);
             goto LABEL_14;
           case 3:
-            v10 = (struct gbTextureArray *)*(struct gbTextureArray **)(this + 22596);
+            v10 = (struct gbTextureArray *)*((_DWORD *)this + 5649);
 LABEL_14:
-            *(_DWORD *)(this + 22600) = *(_DWORD *)(v9 - 32);
-            *(_DWORD *)(this + 22604) = *(_DWORD *)(v9 - 28);
-            *(float *)(this + 22608) = *(float *)v9 + *(float *)(v9 - 32);
-            *(float *)(this + 22612) = *(float *)v9 + *(float *)(v9 - 28);
-            v15 = *(float *)(v9 - 8);
+            *((_DWORD *)this + 5650) = *(v9 - 8);
+            *((_DWORD *)this + 5651) = *(v9 - 7);
+            *((float *)this + 5652) = *(float *)v9 + *((float *)v9 - 8);
+            *((float *)this + 5653) = *(float *)v9 + *((float *)v9 - 7);
+            v15 = *((float *)v9 - 2);
             Point.y = (int)v15;
             v13 = v10;
-            v11 = (struct gbRenderEffect *)*(struct gbRenderEffect **)(this + 22556);
-            *(_BYTE *)(this + 22639) = Point.y;
-            DynVertBuf->RenderUIQuad((struct gbUIQuad *)(this + 22600), 1, v11, v13);
+            v11 = (struct gbRenderEffect *)*((_DWORD *)this + 5639);
+            *((_BYTE *)this + 22639) = Point.y;
+            DynVertBuf->RenderUIQuad((struct gbUIQuad *)((char *)this + 22600), 1, v11, v13);
             break;
           default:
             return result;
         }
       }
-      v12 = *(_DWORD *)(this + 22536);
+      v12 = *((_DWORD *)this + 5634);
       result = v16 + 1;
-      v9 += 44;
+      v9 += 11;
       ++v16;
     }
     while ( v16 < v12 );
@@ -482,16 +482,18 @@ LABEL_14:
 }
 
 // 0x004D6380
-int C2DSpark::Render(int _this, float a2)
+int C2DSpark::Render(float a2)
 {
   int v3; // edi
   int v4; // eax
-  __int64 v5; // rax
-  int v6; // ecx
+  int result; // eax
+  int v6; // edx
+  __int32 *v7; // ecx
+  int v8; // eax
   struct tagPOINT Point; // [esp+8h] [ebp-Ch] BYREF
-  int v9; // [esp+10h] [ebp-4h]
+  int v10; // [esp+10h] [ebp-4h]
 
-  if ( *(_BYTE *)(this + 22552) )
+  if ( *((_BYTE *)this + 22552) )
   {
     ((GRPinput *)&Point)->GetCursorPos();
     if ( Point != qword_17A8438 )
@@ -505,60 +507,61 @@ int C2DSpark::Render(int _this, float a2)
       {
         rand();
         byte_17A8148 = 0;
-        v9 = rand() % 100;
-        flt_17A8128 = ((double)v9 - 50.0) * 2.5;
+        v10 = rand() % 100;
+        flt_17A8128 = ((double)v10 - 50.0) * 2.5;
         v4 = rand();
         dword_17A8130 = 0;
         dword_17A8134 = 1145569280;
         dword_17A813C = -1011941376;
         dword_17A8144 = 0;
-        v9 = v4 % 100;
+        v10 = v4 % 100;
         flt_17A812C = ((double)(v4 % 100) - 50.0) * 2.5;
-        ((C2DSpark *)this)->CreateSingle(&flt_17A8120);
+        this->CreateSingle(&flt_17A8120);
         --v3;
       }
       while ( v3 );
       qword_17A8438 = (__int64)Point;
-      v9 = (unsigned __int8)rand();
-      *(float *)(this + 22540) = (float)v9;
+      v10 = (unsigned __int8)rand();
+      *((float *)this + 5635) = (float)v10;
     }
   }
-  if ( *(float *)(this + 22540) > 2.0 )
-    *(float *)(this + 22540) = *(float *)(this + 22540) - a2 * 200.0;
-  v5 = *(unsigned int *)(this + 22536);
-  if ( (int)v5 > 0 )
+  if ( *((float *)this + 5635) > 2.0 )
+    *((float *)this + 5635) = *((float *)this + 5635) - a2 * 200.0;
+  result = *((_DWORD *)this + 5634);
+  v6 = 0;
+  if ( result > 0 )
   {
-    v6 = this + 8;
+    v7 = (__int32 *)&this->m_Spark[2];
     do
     {
-      if ( *(_BYTE *)(v6 + 33) )
+      if ( *((_BYTE *)v7 + 33) )
       {
-        *(float *)v6 = a2 * *(float *)(v6 + 8) + *(float *)v6;
-        *(float *)(v6 + 4) = a2 * *(float *)(v6 + 12) + *(float *)(v6 + 4);
-        *(float *)(v6 - 8) = a2 * *(float *)v6 + *(float *)(v6 - 8);
-        *(float *)(v6 - 4) = a2 * *(float *)(v6 + 4) + *(float *)(v6 - 4);
-        *(float *)(v6 + 16) = a2 * *(float *)(v6 + 20) + *(float *)(v6 + 16);
-        *(float *)&v9 = a2 * *(float *)(v6 + 28) + *(float *)(v6 + 24);
-        *(float *)(v6 + 24) = *(float *)&v9;
-        if ( *(float *)(v6 - 8) >= (double)*(float *)(this + 22528)
-          || (*(float *)&Point.x = -*(float *)&v9, *(float *)(v6 - 8) <= (double)*(float *)&Point.x)
-          || *(float *)(v6 - 4) >= (double)*(float *)(this + 22532)
-          || *(float *)(v6 - 4) <= (double)*(float *)&Point.x
-          || *(float *)(v6 + 16) <= 1.0
-          || *(float *)(v6 + 16) > 255.0
-          || *(float *)&v9 < 0.0099999998 )
+        *(float *)v7 = a2 * *((float *)v7 + 2) + *(float *)v7;
+        *((float *)v7 + 1) = a2 * *((float *)v7 + 3) + *((float *)v7 + 1);
+        *((float *)v7 - 2) = a2 * *(float *)v7 + *((float *)v7 - 2);
+        *((float *)v7 - 1) = a2 * *((float *)v7 + 1) + *((float *)v7 - 1);
+        *((float *)v7 + 4) = a2 * *((float *)v7 + 5) + *((float *)v7 + 4);
+        *(float *)&v10 = a2 * *((float *)v7 + 7) + *((float *)v7 + 6);
+        v7[6] = v10;
+        if ( *((float *)v7 - 2) >= (double)*((float *)this + 5632)
+          || (*(float *)&Point.x = -*(float *)&v10, *((float *)v7 - 2) <= (double)*(float *)&Point.x)
+          || *((float *)v7 - 1) >= (double)*((float *)this + 5633)
+          || *((float *)v7 - 1) <= (double)*(float *)&Point.x
+          || *((float *)v7 + 4) <= 1.0
+          || *((float *)v7 + 4) > 255.0
+          || *(float *)&v10 < 0.0099999998 )
         {
-          *(_BYTE *)(v6 + 33) = 0;
-          LODWORD(v5) = *(_DWORD *)(this + 22536) - 1;
-          if ( HIDWORD(v5) == (_DWORD)v5 )
-            *(_DWORD *)(this + 22536) = v5;
+          *((_BYTE *)v7 + 33) = 0;
+          v8 = *((_DWORD *)this + 5634) - 1;
+          if ( v6 == v8 )
+            *((_DWORD *)this + 5634) = v8;
         }
       }
-      LODWORD(v5) = *(_DWORD *)(this + 22536);
-      ++HIDWORD(v5);
-      v6 += 44;
+      result = *((_DWORD *)this + 5634);
+      ++v6;
+      v7 += 11;
     }
-    while ( SHIDWORD(v5) < (int)v5 );
+    while ( v6 < result );
   }
-  return v5;
+  return result;
 }

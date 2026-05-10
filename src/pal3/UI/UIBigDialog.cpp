@@ -77,7 +77,7 @@ int UIBigDialog::Create(int id, void *pRect, int parent, char *tex)
     2,
     &a2,
     this);
-  ((UIBigDialog *)((char *)this + 272))->LoadResource(aUiScenePage);
+  ((UIScene *)((char *)this + 272))->LoadResource(aUiScenePage);
   ((MvcViewport *)(_DWORD *)this + 68)->SetController(0x40000000);
   sub_4517A0(&a2, 1);
   ((UIWnd *)((char *)this + 272))->GetRect(&a2);
@@ -99,8 +99,8 @@ int UIBigDialog::Create(int id, void *pRect, int parent, char *tex)
   ((UIWnd *)((char *)this + 848))->AddChild(&a2);
   ((UIWnd *)(UIWnd **)this + 212)->GetChildCount(aUiSceneTimebkT, 0);
   ((UIWnd *)(UIWnd **)this + 212)->GetChildAt(aUiSceneTimepTg, 0);
-  ((UIWnd *)(int)this + 848)->FindChild(4.0);
-  ((UIWnd *)(int)this + 848)->FindChildByName(0.0);
+  ((UIWnd *)((char *)this + 848))->FindChild(4.0);
+  ((UIWnd *)((char *)this + 848))->FindChildByName(0.0);
   *((_DWORD *)this + 240) = 1120403456;
   ((UIWnd *)((char *)this + 848))->SetFrameRate(4);
   ((UIWnd *)((char *)this + 848))->GetHeight(9);

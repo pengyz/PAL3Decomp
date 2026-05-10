@@ -111,11 +111,11 @@ LABEL_18:
 }
 
 // 0x004C98F0
-char CEffGrid::Create(int _this, int a2)
+char CEffGrid::Create(int a2)
 {
   struct _EXCEPTION_REGISTRATION_RECORD *ExceptionList; // eax
   void *v3; // esp
-  LPVOID v5; // eax
+  _DWORD *v5; // eax
   int v6; // ebx
   int v7; // edi
   int v8; // edi
@@ -125,25 +125,25 @@ char CEffGrid::Create(int _this, int a2)
   __int64 v12; // rax
   int v13; // ecx
   int v14; // ebx
-  LPVOID v15; // eax
+  _DWORD *v15; // eax
   int v16; // ebx
   int v17; // ebp
   int v18; // ebx
   int v19; // edi
   int v20; // ebp
-  char *v21; // eax
+  _DWORD *v21; // eax
   int v22; // ebp
-  char *v23; // ebx
+  _DWORD *v23; // ebx
   int v24; // ebp
   int v25; // ebp
-  char *v26; // eax
+  _DWORD *v26; // eax
   int v27; // ebp
-  char *v28; // ebx
+  _DWORD *v28; // ebx
   int v29; // ebp
   int v30; // ecx
-  void *v32; // [esp+0h] [ebp-1010h]
-  char *v33; // [esp+0h] [ebp-1010h]
-  char *v34; // [esp+0h] [ebp-1010h]
+  _DWORD *v32; // [esp+0h] [ebp-1010h]
+  _DWORD *v33; // [esp+0h] [ebp-1010h]
+  _DWORD *v34; // [esp+0h] [ebp-1010h]
   _BYTE v35[1024]; // [esp+4h] [ebp-100Ch] BYREF
   char pExceptionObject[1024]; // [esp+404h] [ebp-C0Ch] BYREF
   char ArgList[1024]; // [esp+804h] [ebp-80Ch] BYREF
@@ -157,44 +157,44 @@ char CEffGrid::Create(int _this, int a2)
   v40 = (void *)&loc_5667EA;
   v39 = ExceptionList;
   v3 = (void *)alloca(4100);
-  v5 = operator new(0x4C0u);
-  *(_DWORD *)(this + 24) = v5;
+  v5 = (_DWORD *)operator new(0x4C0u);
+  *((_DWORD *)this + 6) = v5;
   if ( v5 )
   {
     v6 = 0;
     v7 = 0;
     while ( 1 )
     {
-      *(_DWORD *)(v7 + *(_DWORD *)(this + 24)) = operator new(0x2D0u);
-      if ( !*(_DWORD *)(v7 + *(_DWORD *)(this + 24)) )
+      *(_DWORD *)(v7 + *((_DWORD *)this + 6)) = operator new(0x2D0u);
+      if ( !*(_DWORD *)(v7 + *((_DWORD *)this + 6)) )
         break;
       v7 += 152;
       ++v6;
       if ( v7 >= 1216 )
       {
         v8 = 0;
-        *(_DWORD *)(this + 40) = 8;
-        *(_DWORD *)(this + 44) = 10;
+        *((_DWORD *)this + 10) = 8;
+        *((_DWORD *)this + 11) = 10;
         v9 = 0;
         do
         {
-          *(_BYTE *)(v9 + *(_DWORD *)(this + 24) + 148) = 0;
+          *(_BYTE *)(v9 + *((_DWORD *)this + 6) + 148) = 0;
           v10 = 0;
-          if ( *(int *)(this + 44) > 0 )
+          if ( *((int *)this + 11) > 0 )
           {
             v11 = 0;
             do
             {
               ++v10;
               v11 += 72;
-              *(_BYTE *)(*(_DWORD *)(v9 + *(_DWORD *)(this + 24)) + v11 - 8) = 0;
+              *(_BYTE *)(*(_DWORD *)(v9 + *((_DWORD *)this + 6)) + v11 - 8) = 0;
             }
-            while ( v10 < *(_DWORD *)(this + 44) );
+            while ( v10 < *((_DWORD *)this + 11) );
           }
           ++v8;
           v9 += 152;
         }
-        while ( v8 < *(_DWORD *)(this + 40) );
+        while ( v8 < *((_DWORD *)this + 10) );
         goto LABEL_10;
       }
     }
@@ -203,40 +203,40 @@ char CEffGrid::Create(int _this, int a2)
       v19 = 152 * (v6 - 1);
       do
       {
-        operator delete(*(void **)(v19 + *(_DWORD *)(this + 24)));
+        operator delete(*(void **)(v19 + *((_DWORD *)this + 6)));
         v19 -= 152;
         --v6;
       }
       while ( v6 );
     }
-    operator delete(*(void **)(this + 24));
+    operator delete(*((void **)this + 6));
   }
 LABEL_10:
-  *(_DWORD *)(this + 112) = (__int64)*(float *)(a2 + 224);
+  *((_DWORD *)this + 28) = (__int64)*(float *)(a2 + 224);
   v12 = (__int64)*(float *)(a2 + 232);
-  *(_DWORD *)(this + 116) = v12;
+  *((_DWORD *)this + 29) = v12;
   v13 = *(_DWORD *)(a2 + 228);
-  *(_DWORD *)(this + 124) = *(_DWORD *)(this + 112) * v12;
-  *(_DWORD *)(this + 120) = v13;
-  *(_DWORD *)(this + 144) = *(_DWORD *)(a2 + 180);
-  *(_DWORD *)(this + 160) = *(_DWORD *)(a2 + 184);
-  *(_DWORD *)(this + 164) = *(_DWORD *)(a2 + 188);
-  *(_DWORD *)(this + 168) = *(_DWORD *)(a2 + 192);
-  *(_DWORD *)(this + 148) = *(_DWORD *)(a2 + 216);
-  *(_DWORD *)(this + 152) = *(_DWORD *)(a2 + 196);
-  *(_DWORD *)(this + 156) = *(_DWORD *)(a2 + 220);
-  *(_BYTE *)(this + 69) = *(_BYTE *)(a2 + 213);
-  *(_BYTE *)(this + 70) = *(_BYTE *)(a2 + 215);
-  *(_BYTE *)(this + 71) = *(_BYTE *)(a2 + 176);
-  *(_DWORD *)(this + 72) = &unk_FFFFFF;
-  *(_DWORD *)(this + 84) = *(_DWORD *)(a2 + 204);
-  *(_DWORD *)(this + 128) = *(_DWORD *)(a2 + 244);
-  *(_DWORD *)(this + 132) = *(_DWORD *)(a2 + 248);
-  *(_DWORD *)(this + 136) = *(_DWORD *)(a2 + 268);
-  *(_DWORD *)(this + 140) = *(_DWORD *)(a2 + 252);
+  *((_DWORD *)this + 31) = *((_DWORD *)this + 28) * v12;
+  *((_DWORD *)this + 30) = v13;
+  *((_DWORD *)this + 36) = *(_DWORD *)(a2 + 180);
+  *((_DWORD *)this + 40) = *(_DWORD *)(a2 + 184);
+  *((_DWORD *)this + 41) = *(_DWORD *)(a2 + 188);
+  *((_DWORD *)this + 42) = *(_DWORD *)(a2 + 192);
+  *((_DWORD *)this + 37) = *(_DWORD *)(a2 + 216);
+  *((_DWORD *)this + 38) = *(_DWORD *)(a2 + 196);
+  *((_DWORD *)this + 39) = *(_DWORD *)(a2 + 220);
+  *((_DWORD *)this + 69) = *(CEffGrid *)(a2 + 213);
+  *((_DWORD *)this + 70) = *(CEffGrid *)(a2 + 215);
+  *((_DWORD *)this + 71) = *(CEffGrid *)(a2 + 176);
+  *((_DWORD *)this + 18) = &unk_FFFFFF;
+  *((_DWORD *)this + 21) = *(_DWORD *)(a2 + 204);
+  *((_DWORD *)this + 32) = *(_DWORD *)(a2 + 244);
+  *((_DWORD *)this + 33) = *(_DWORD *)(a2 + 248);
+  *((_DWORD *)this + 34) = *(_DWORD *)(a2 + 268);
+  *((_DWORD *)this + 35) = *(_DWORD *)(a2 + 252);
   sub_4CAB30((char *)this, *(_DWORD *)(a2 + 168), *(_DWORD *)(a2 + 172));
-  v14 = *(_DWORD *)(this + 124);
-  v15 = operator new(68 * v14);
+  v14 = *((_DWORD *)this + 31);
+  v15 = (_DWORD *)operator new(68 * v14);
   v32 = v15;
   v41 = 0;
   if ( v15 )
@@ -261,7 +261,7 @@ LABEL_10:
     v15 = 0;
   }
   v41 = -1;
-  *(_DWORD *)(this + 48) = v15;
+  *((_DWORD *)this + 12) = v15;
   if ( !v15 )
   {
     qmemcpy(
@@ -270,8 +270,8 @@ LABEL_10:
       sizeof(pExceptionObject));
     _CxxThrowException(pExceptionObject, (_ThrowInfo *)&_TI1_AV_Exception__);
   }
-  v20 = (*(_DWORD *)(this + 112) + 1) * (*(_DWORD *)(this + 116) + 1);
-  v21 = (char *)operator new(12 * v20);
+  v20 = (*((_DWORD *)this + 28) + 1) * (*((_DWORD *)this + 29) + 1);
+  v21 = (_DWORD *)operator new(12 * v20);
   v33 = v21;
   v41 = 1;
   if ( v21 )
@@ -283,8 +283,8 @@ LABEL_10:
       v24 = v22 + 1;
       do
       {
-        ((void (*)(char *))gbVec3D::`default constructor closure')(v23);
-        v23 += 12;
+        ((void (*)(_DWORD *))gbVec3D::`default constructor closure')(v23);
+        v23 += 3;
         --v24;
       }
       while ( v24 );
@@ -295,9 +295,9 @@ LABEL_10:
   {
     v21 = 0;
   }
-  v25 = (*(_DWORD *)(this + 112) + 1) * (*(_DWORD *)(this + 116) + 1);
-  *(_DWORD *)(this + 52) = v21;
-  v26 = (char *)operator new(12 * v25);
+  v25 = (*((_DWORD *)this + 28) + 1) * (*((_DWORD *)this + 29) + 1);
+  *((_DWORD *)this + 13) = v21;
+  v26 = (_DWORD *)operator new(12 * v25);
   v34 = v26;
   v41 = 2;
   if ( v26 )
@@ -309,8 +309,8 @@ LABEL_10:
       v29 = v27 + 1;
       do
       {
-        ((void (*)(char *))gbVec3D::`default constructor closure')(v28);
-        v28 += 12;
+        ((void (*)(_DWORD *))gbVec3D::`default constructor closure')(v28);
+        v28 += 3;
         --v29;
       }
       while ( v29 );
@@ -321,16 +321,16 @@ LABEL_10:
   {
     v26 = 0;
   }
-  v30 = *(_DWORD *)(this + 52);
+  v30 = *((_DWORD *)this + 13);
   v41 = -1;
-  *(_DWORD *)(this + 56) = v26;
+  *((_DWORD *)this + 14) = v26;
   if ( !v30 || !v26 )
   {
     qmemcpy(v35, ((Logger *)v38)->FormatException(aNewFailInCeffg, aDProjectPal3Co_14, 124), sizeof(v35));
     _CxxThrowException(v35, (_ThrowInfo *)&_TI1_AV_Exception__);
   }
-  sub_4CABE0(this, a2 + 40);
-  sub_4CAC70(this);
+  sub_4CABE0((int)this, a2 + 40);
+  sub_4CAC70((int)this);
   return 1;
 }
 

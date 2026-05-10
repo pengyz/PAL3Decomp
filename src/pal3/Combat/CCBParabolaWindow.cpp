@@ -70,27 +70,27 @@ CCBParabolaWindow::CCBParabolaWindow(int *a2, int a3)
 CCBParabolaWindow::~CCBParabolaWindow()
 {
   int result; // eax
-  int v3; // ecx
-  _DWORD *v4; // esi
+  int m_bvisible; // ecx
+  int *p_m_benable; // esi
   int v5; // edi
 
-  result = ((UIListBox **)this)->SetScrollPos();
-  v3 = *(_DWORD *)(this + 92);
-  if ( v3 )
+  result = ((UIListBox *)this)->SetScrollPos();
+  m_bvisible = this->m_bvisible;
+  if ( m_bvisible )
   {
-    result = (*(int (**)(int, int))(*(_DWORD *)v3 + 20))(v3, 1);
-    *(_DWORD *)(this + 92) = 0;
+    result = (*(int (**)(int, int))(*(_DWORD *)m_bvisible + 20))(m_bvisible, 1);
+    this->m_bvisible = 0;
   }
-  v4 = (_DWORD *)(this + 96);
+  p_m_benable = (int *)&this->m_benable;
   v5 = 5;
   do
   {
-    if ( *v4 )
+    if ( *p_m_benable )
     {
-      result = (*(int (**)(_DWORD, int))(*(_DWORD *)*v4 + 20))(*v4, 1);
-      *v4 = 0;
+      result = (*(int (**)(int, int))(*(_DWORD *)*p_m_benable + 20))(*p_m_benable, 1);
+      *p_m_benable = 0;
     }
-    ++v4;
+    ++p_m_benable;
     --v5;
   }
   while ( v5 );

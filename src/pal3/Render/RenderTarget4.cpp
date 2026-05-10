@@ -41,5 +41,5 @@ void * RenderTarget4::Init()
   v2->LoadTexture(1);
   *this = 0;
   v5 = -1;
-  return ((OpenNULLFile **)&v4)->OpenNULLFile();
+  return ((OpenNULLFile *)&v4)->OpenNULLFile();
 }

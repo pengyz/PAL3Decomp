@@ -23,9 +23,9 @@ extern void *off_56F844;
 extern void *off_56F86C;
 extern void *off_56F878;
 extern void *off_56F8B4;
+extern int stru_DE93B0;
 extern int unk_DE9388;
 extern int unk_DE9389;
-extern int unk_DE93B0;
 extern int unknown_libname_446;
 
 // 0x004C61A0
@@ -149,58 +149,58 @@ void CEffectSystem::DestroyEffect()
 }
 
 // 0x004C6370
-int CEffectSystem::DestroyEffect(int _this)
+int CEffectSystem::DestroyEffect()
 {
-  *(_DWORD *)(this + 48) = -1;
-  *(_DWORD *)(this + 44) = 0;
+  this->m_DefaultUVSet[2].su = NAN;
+  this->m_DefaultUVSet[1].ev = 0.0;
   `eh vector constructor iterator'(
-    (char *)(this + 60),
+    (char *)&this->m_DefaultUVSet[2].ev,
     0x60u,
     8,
     gbTexture_D3D::gbTexture_D3D,
     gbTexture_D3D::~gbTexture_D3D);
-  *(_DWORD *)(this + 832) = 0;
-  *(_DWORD *)(this + 52) = 0;
-  *(_DWORD *)(this + 56) = 0;
-  *(_BYTE *)(this + 4) = 0;
-  *(_BYTE *)(this + 5) = 0;
-  *(_DWORD *)(this + 8) = 0;
-  *(_DWORD *)(this + 828) = 0;
-  *(_DWORD *)(this + 28) = 0;
-  *(_DWORD *)(this + 32) = 1061158912;
-  *(_DWORD *)(this + 36) = 1065353216;
-  *(_DWORD *)(this + 40) = 0;
-  *(_DWORD *)(this + 12) = 0;
-  *(_DWORD *)(this + 24) = 0;
-  *(_DWORD *)(this + 20) = 1145569280;
-  *(_DWORD *)(this + 16) = 1142292480;
-  return this;
+  *((_DWORD *)this + 208) = 0;
+  this->m_DefaultUVSet[2].sv = 0.0;
+  this->m_DefaultUVSet[2].eu = 0.0;
+  LOBYTE(this->m_pVertexBuffer) = 0;
+  BYTE1(this->m_pVertexBuffer) = 0;
+  this->m_pAdditiveBlend = 0;
+  *((_DWORD *)this + 207) = 0;
+  this->m_DefaultUVSet[0].ev = 0.0;
+  this->m_DefaultUVSet[1].su = 0.75;
+  this->m_DefaultUVSet[1].sv = 1.0;
+  this->m_DefaultUVSet[1].eu = 0.0;
+  this->m_pAlphaBlend = 0;
+  this->m_DefaultUVSet[0].eu = 0.0;
+  this->m_DefaultUVSet[0].sv = 800.0;
+  this->m_DefaultUVSet[0].su = 600.0;
+  return (int)this;
 }
 
 // 0x004C6410
-void *CEffectSystem::DestroyAllEffect()
+CEffectSystem *CEffectSystem::DestroyAllEffect()
 {
   if ( (byte_DE96F4 & 1) == 0 )
   {
     byte_DE96F4 |= 1u;
-    ((int)&unk_DE93B0)->DestroyEffect();
+    ((CEffectSystem *)&stru_DE93B0)->DestroyEffect();
     atexit(unknown_libname_446);
   }
-  return &unk_DE93B0;
+  return &stru_DE93B0;
 }
 
 // 0x004C6460
-char CEffectSystem::IsVisible(int _this)
+char CEffectSystem::IsVisible()
 {
   struct gbRenderEffect *v3; // eax
   int v4; // esi
-  int v5; // edi
+  float *p_ev; // edi
   _DWORD v6[2]; // [esp+14h] [ebp-14h] BYREF
   int v7; // [esp+1Ch] [ebp-Ch]
   int v8; // [esp+20h] [ebp-8h]
   int v9; // [esp+24h] [ebp-4h]
 
-  if ( !*(_DWORD *)(this + 828) )
+  if ( !*((_DWORD *)this + 207) )
   {
     if ( (g_nGameFlags & 8) == 0 )
       return 0;
@@ -216,20 +216,22 @@ char CEffectSystem::IsVisible(int _this)
       return 0;
     (*(void (**)(int))(*(_DWORD *)g_Input.KeyInfo[177].Data + 88))(g_Input.KeyInfo[177].Data);
     v3 = ((gbEffectMgr *)*(gbEffectMgr **)(g_Input.KeyInfo[177].Data + 200))->NewRenderEffect(aGfxscriptTrail, 0);
-    *(_DWORD *)(this + 828) = v3;
+    *((_DWORD *)this + 207) = v3;
     if ( !v3 )
       return 0;
-    if ( (*(int (__stdcall **)(_DWORD, _DWORD, int))(**(_DWORD **)(g_Input.KeyInfo[177].Data + 1816) + 152))(
+    if ( (*(int (__stdcall **)(_DWORD, _DWORD, char *))(**(_DWORD **)(g_Input.KeyInfo[177].Data + 1816) + 152))(
            *(_DWORD *)(g_Input.KeyInfo[177].Data + 1816),
            0,
-           this + 832) < 0 )
+           (char *)this + 832) < 0 )
       return 0;
     v4 = 0;
-    v5 = this + 60;
+    p_ev = (float *)&this->m_DefaultUVSet[2].ev;
     do
     {
-      if ( !(*(int (**)(int, int, int, int))(*(_DWORD *)v5 + 12))(v5, 256, 256, v7)
-        || !(*(int (**)(int, int))(*(_DWORD *)g_Input.KeyInfo[177].Data + 92))(g_Input.KeyInfo[177].Data, v5) )
+      if ( !(*(int (**)(float *, int, int, int))(*(_DWORD *)p_ev + 12))(p_ev, 256, 256, v7)
+        || !(*(int (**)(int, float *))(*(_DWORD *)g_Input.KeyInfo[177].Data + 92))(
+              g_Input.KeyInfo[177].Data,
+              p_ev) )
       {
         return 0;
       }
@@ -244,15 +246,15 @@ char CEffectSystem::IsVisible(int _this)
         1065353216,
         0);
       ++v4;
-      v5 += 96;
+      p_ev += 24;
     }
     while ( v4 < 8 );
     if ( (*(int (__stdcall **)(_DWORD, _DWORD, _DWORD))(**(_DWORD **)(g_Input.KeyInfo[177].Data + 1816) + 148))(
            *(_DWORD *)(g_Input.KeyInfo[177].Data + 1816),
            0,
-           *(_DWORD *)(this + 832)) < 0 )
+           *((_DWORD *)this + 208)) < 0 )
       return 0;
-    *(_BYTE *)(this + 4) = 1;
+    LOBYTE(this->m_pVertexBuffer) = 1;
   }
   return 1;
 }
@@ -273,20 +275,20 @@ void CEffectSystem::SetVisible(float a2)
 }
 
 // 0x004C65F0
-void CEffectSystem::HandleViewMove(int _this, int a2)
+void CEffectSystem::HandleViewMove(int a2)
 {
   int v3; // eax
-  gbCamera *v4; // ecx
+  gbRenderEffect *m_pAdditiveBlend; // ecx
 
-  if ( *(_BYTE *)(this + 5) && *(_BYTE *)(this + 4) )
+  if ( BYTE1(this->m_pVertexBuffer) && LOBYTE(this->m_pVertexBuffer) )
   {
     if ( a2 )
-      *(_DWORD *)(this + 8) = a2;
-    v3 = *(_DWORD *)(this + 52) & 7;
-    *(_DWORD *)(this + 56) = v3;
-    (*(void (**)(int, int))(*(_DWORD *)g_Input.KeyInfo[177].Data + 92))(
+      this->m_pAdditiveBlend = (gbRenderEffect *)a2;
+    v3 = LODWORD(this->m_DefaultUVSet[2].sv) & 7;
+    LODWORD(this->m_DefaultUVSet[2].eu) = v3;
+    (*(void (**)(int, float *))(*(_DWORD *)g_Input.KeyInfo[177].Data + 92))(
       g_Input.KeyInfo[177].Data,
-      96 * v3 + this + 60);
+      &this->m_DefaultUVSet[6 * v3 + 2].ev);
     (*(void (__stdcall **)(_DWORD, _DWORD, _DWORD, int, int, int, _DWORD))(**(_DWORD **)(g_Input.KeyInfo[177].Data + 1816)
                                                                          + 172))(
       *(_DWORD *)(g_Input.KeyInfo[177].Data + 1816),
@@ -296,43 +298,43 @@ void CEffectSystem::HandleViewMove(int _this, int a2)
       -16777216,
       1065353216,
       0);
-    v4 = (gbCamera *)*(gbCamera **)(this + 8);
-    if ( v4 )
-      v4->SetDimention(256, 192);
+    m_pAdditiveBlend = (gbRenderEffect *)this->m_pAdditiveBlend;
+    if ( m_pAdditiveBlend )
+      ((gbCamera *)m_pAdditiveBlend)->SetDimention(256, 192);
   }
 }
 
 // 0x004C6670
-char CEffectSystem::Update(int _this)
+char CEffectSystem::Update()
 {
-  unsigned int v2; // eax
+  float v2; // eax
   gbColorQuad *v3; // edi
   int v4; // ebx
   int v5; // ebx
   int v6; // edi
   _BYTE *v7; // ecx
-  unsigned int v8; // eax
+  float eu; // eax
   int v9; // eax
-  _DWORD *v10; // edi
-  gbTexture *v11; // ebx
+  float *v10; // edi
+  float *p_ev; // ebx
   struct gbRenderEffect *v12; // eax
   unsigned int v13; // ebp
-  _DWORD *v14; // edi
-  gbTexture *v15; // ebx
+  float *v14; // edi
+  float *v15; // ebx
   struct gbRenderEffect *v16; // eax
   gbDynVertBuf *DynVertBuf; // [esp+44h] [ebp-48h]
   struct gbTextureArray v19; // [esp+48h] [ebp-44h] BYREF
 
-  LOBYTE(v2) = *(_BYTE *)(this + 5);
-  if ( (_BYTE)v2 )
+  LOBYTE(v2) = BYTE1(this->m_pVertexBuffer);
+  if ( LOBYTE(v2) )
   {
-    LOBYTE(v2) = *(_BYTE *)(this + 4);
-    if ( (_BYTE)v2 )
+    LOBYTE(v2) = this->m_pVertexBuffer;
+    if ( LOBYTE(v2) )
     {
       (*(void (__stdcall **)(_DWORD, _DWORD, _DWORD))(**(_DWORD **)(g_Input.KeyInfo[177].Data + 1816) + 148))(
         *(_DWORD *)(g_Input.KeyInfo[177].Data + 1816),
         0,
-        *(_DWORD *)(this + 832));
+        *((_DWORD *)this + 208));
       (*(void (__stdcall **)(_DWORD, _DWORD, _DWORD, int, int, int, _DWORD))(**(_DWORD **)(g_Input.KeyInfo[177].Data
                                                                                          + 1816)
                                                                            + 172))(
@@ -343,7 +345,7 @@ char CEffectSystem::Update(int _this)
         -16777216,
         1065353216,
         0);
-      ((gbCamera *)*(gbCamera **)(this + 8))->SetDimention(g_Input.KeyInfo[120].Data, g_Input.KeyInfo[120].HoldTime);
+      ((gbCamera *)this->m_pAdditiveBlend)->SetDimention(g_Input.KeyInfo[120].Data, g_Input.KeyInfo[120].HoldTime);
       DynVertBuf = ((gbVertPoolMgr *)*(gbVertPoolMgr **)(g_Input.KeyInfo[177].Data + 196))->GetDynVertBuf(0x114u);
       if ( (byte_DE93A8 & 1) == 0 )
       {
@@ -359,7 +361,7 @@ char CEffectSystem::Update(int _this)
         while ( v4 );
         atexit(nullsub_16);
       }
-      v5 = 158 - 8 * *(_DWORD *)(this + 56);
+      v5 = 158 - 8 * LODWORD(this->m_DefaultUVSet[2].eu);
       v6 = 0;
       v7 = (_BYTE *)&unk_DE9389;
       do
@@ -369,56 +371,56 @@ char CEffectSystem::Update(int _this)
         v7[1] = v5 / 2;
         v7[2] = v5;
         v5 += 8;
-        if ( v6 == *(_DWORD *)(this + 56) )
+        if ( v6 == LODWORD(this->m_DefaultUVSet[2].eu) )
           v5 = 102;
         v7 += 4;
         ++v6;
       }
       while ( (int)v7 < (int)byte_DE93A9 );
-      v8 = *(_DWORD *)(this + 56);
+      eu = this->m_DefaultUVSet[2].eu;
       v19.nTex = 0;
-      if ( v8 < 7 )
+      if ( LODWORD(eu) < 7 )
       {
-        v9 = v8 + 1;
+        v9 = LODWORD(eu) + 1;
         if ( v9 < 8 )
         {
-          v10 = (_DWORD *)(4 * v9 + 14586760);
-          v11 = (gbTexture *)(96 * v9 + this + 60);
+          v10 = (float *)(4 * v9 + 14586760);
+          p_ev = (float *)&this->m_DefaultUVSet[6 * v9 + 2].ev;
           do
           {
-            v12 = (struct gbRenderEffect *)*(struct gbRenderEffect **)(this + 828);
-            *(_DWORD *)(this + 48) = *v10;
+            v12 = (struct gbRenderEffect *)*((_DWORD *)this + 207);
+            this->m_DefaultUVSet[2].su = *v10;
             v19.nTex = 1;
-            v19.pTexPt[0] = v11;
-            DynVertBuf->RenderUIQuad((struct gbUIQuad *)(this + 12), 1, v12, &v19);
+            v19.pTexPt[0] = (gbTexture *)p_ev;
+            DynVertBuf->RenderUIQuad((struct gbUIQuad *)&this->m_pAlphaBlend, 1, v12, &v19);
             ++v10;
-            v11 = (gbTexture *)((char *)v11 + 96);
+            p_ev += 24;
           }
           while ( (int)v10 < (int)&byte_DE93A8 );
         }
       }
       v13 = 0;
-      v14 = (_DWORD *)&unk_DE9388;
-      v15 = (gbTexture *)(this + 60);
+      v14 = (float *)&unk_DE9388;
+      v15 = (float *)&this->m_DefaultUVSet[2].ev;
       do
       {
         if ( (int)v14 < (int)&byte_DE93A8 )
         {
-          v16 = (struct gbRenderEffect *)*(struct gbRenderEffect **)(this + 828);
-          *(_DWORD *)(this + 48) = *v14;
+          v16 = (struct gbRenderEffect *)*((_DWORD *)this + 207);
+          this->m_DefaultUVSet[2].su = *v14;
           v19.nTex = 1;
-          v19.pTexPt[0] = v15;
-          DynVertBuf->RenderUIQuad((struct gbUIQuad *)(this + 12), 1, v16, &v19);
+          v19.pTexPt[0] = (gbTexture *)v15;
+          DynVertBuf->RenderUIQuad((struct gbUIQuad *)&this->m_pAlphaBlend, 1, v16, &v19);
         }
-        v2 = *(_DWORD *)(this + 56);
+        v2 = this->m_DefaultUVSet[2].eu;
         ++v13;
         ++v14;
-        v15 = (gbTexture *)((char *)v15 + 96);
+        v15 += 24;
       }
-      while ( v13 <= v2 );
+      while ( v13 <= LODWORD(v2) );
     }
   }
-  return v2;
+  return LOBYTE(v2);
 }
 
 // 0x004C6870

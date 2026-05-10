@@ -48,11 +48,11 @@ int UIItem::Refresh()
 UIItem::UIItem()
 {
   *(_DWORD *)this = &off_56E190;
-  ((UIWnd *)this)->UpdateChildren();
-  ((UIWnd *)(this + 976))->Destroy2();
-  ((UIWnd *)(this + 632))->Destroy2();
-  ((UIWnd *)(this + 456))->_UIFrameWnd();
-  ((UIWnd *)(this + 304))->_UIFrameWnd();
+  ((j_UIWnd *)this)->UpdateChildren();
+  ((UIScene *)(this + 976))->Destroy2();
+  ((UIScene *)(this + 632))->Destroy2();
+  ((UIFrameWnd *)(this + 456))->_UIFrameWnd();
+  ((UIFrameWnd *)(this + 304))->_UIFrameWnd();
   sub_445010((UIWnd *)(this + 112));
   dword_DE5CE4 = 0;
   ((UIWnd *)this)->ctor_BBB0();

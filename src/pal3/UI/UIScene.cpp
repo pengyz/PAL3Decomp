@@ -19,6 +19,7 @@ int sub_445F60(...);
 
 // Unnamed globals (extern)
 extern void *off_56AC70;
+extern int unk_D91780;
 
 // 0x004200A0
 int UIScene::Render(int a2)
@@ -205,7 +206,7 @@ void UIScene::LoadResource(char *path)
     *((_DWORD *)this + 40) = 0;
     sub_43A660(this);
     v6 = -1;
-    ((OpenNULLFile **)&v4)->OpenNULLFile();
+    ((OpenNULLFile *)&v4)->OpenNULLFile();
   }
 }
 
@@ -227,12 +228,12 @@ void UIScene::_UIScene()
 
 // 0x0043A810
 // likely std method (near _Freeze, _Split, max_size, allocator<char>>, _Xran)
-void UIScene::Destroy2(UIWnd *this)
+void UIScene::Destroy2()
 {
-  *(_DWORD *)this->_data = &off_56AC70;
-  ((UIScene *)this)->OnMessage2();
+  *(_DWORD *)this = &off_56AC70;
+  this->OnMessage2();
   ((j_UIWnd *)(UIWnd **)this + 29)->MoveWindow();
-  this->_UIWnd();
+  ((UIWnd *)this)->_UIWnd();
 }
 
 // 0x0043AB00
@@ -246,7 +247,7 @@ int UIScene::OnMessage2()
 }
 
 // 0x0043AB20
-BOOL UIScene::Update2(int _this, int a2, int a3)
+BOOL UIScene::Update2(int a2, int a3)
 {
   BOOL v4; // edi
   int v6; // ecx
@@ -261,100 +262,100 @@ BOOL UIScene::Update2(int _this, int a2, int a3)
   POINT pt; // [esp+10h] [ebp-8h] BYREF
 
   ((GRPinput *)&pt)->GetCursorPos();
-  v4 = PtInRect((const RECT *)(this + 16), pt);
-  if ( !*(_DWORD *)(this + 56) )
+  v4 = PtInRect((const RECT *)this + 1, pt);
+  if ( !*((_DWORD *)this + 14) )
     return 0;
-  if ( !*(_BYTE *)(this + 100) )
+  if ( !*((_BYTE *)this + 100) )
   {
     if ( v4 )
-      *(_DWORD *)(this + 96) = 1;
+      *((_DWORD *)this + 24) = 1;
     return 0;
   }
-  if ( !*(_DWORD *)(this + 60) )
+  if ( !*((_DWORD *)this + 15) )
   {
     if ( v4 && g_Input.m_shiftedKeyStates[207] == 1 )
     {
-      v6 = *(_DWORD *)(this + 32);
+      v6 = *((_DWORD *)this + 8);
       if ( v6 )
-        (*(void (**)(int, int, _DWORD, int))(*(_DWORD *)v6 + 24))(v6, 1021, *(_DWORD *)(this + 12), 1);
-      if ( *(_BYTE *)(this + 340) )
+        (*(void (**)(int, int, _DWORD, int))(*(_DWORD *)v6 + 24))(v6, 1021, *((_DWORD *)this + 3), 1);
+      if ( *((_BYTE *)this + 340) )
       {
         v14 = pPos;
         Instance = (char *)CScreenMode::GetInstance();
         ((CScreenMode *)Instance)->AudioSetPosition(v14, 1);
       }
     }
-    *(_DWORD *)(this + 96) = 0;
+    *((_DWORD *)this + 24) = 0;
     return 0;
   }
   if ( !a3 )
   {
-    *(_DWORD *)(this + 96) = 0;
+    *((_DWORD *)this + 24) = 0;
     return ((UIWnd *)this)->HitTest(a2, 0);
   }
-  if ( *(_DWORD *)(this + 96) != 2 )
+  if ( *((_DWORD *)this + 24) != 2 )
   {
     if ( !v4 )
     {
-      *(_DWORD *)(this + 96) = 0;
+      *((_DWORD *)this + 24) = 0;
       goto LABEL_27;
     }
-    *(_DWORD *)(this + 96) = 1;
+    *((_DWORD *)this + 24) = 1;
   }
   if ( !v4 )
   {
 LABEL_27:
-    if ( !*(_BYTE *)(this + 204) )
+    if ( !*((_BYTE *)this + 204) )
     {
-      v9 = *(_DWORD *)(this + 32);
-      *(_BYTE *)(this + 204) = 1;
+      v9 = *((_DWORD *)this + 8);
+      *((_BYTE *)this + 204) = 1;
       if ( v9 )
-        (*(void (**)(int, int, _DWORD, _DWORD))(*(_DWORD *)v9 + 24))(v9, 1003, *(_DWORD *)(this + 12), 0);
+        (*(void (**)(int, int, _DWORD, _DWORD))(*(_DWORD *)v9 + 24))(v9, 1003, *((_DWORD *)this + 3), 0);
     }
     goto LABEL_30;
   }
-  if ( g_Input.m_shiftedKeyStates[207] == 1 && (g_Input.m_shiftedKeyStates[204] & 0xF) == 2 && *(_BYTE *)(this + 68) )
+  if ( g_Input.m_shiftedKeyStates[207] == 1 && (g_Input.m_shiftedKeyStates[204] & 0xF) == 2 && *((_BYTE *)this + 68) )
   {
-    v8 = *(_DWORD *)(this + 32);
-    *(_DWORD *)(this + 96) = 2;
+    v8 = *((_DWORD *)this + 8);
+    *((_DWORD *)this + 24) = 2;
     if ( v8 )
     {
-      (*(void (**)(int, int, _DWORD, _DWORD))(*(_DWORD *)v8 + 24))(v8, 1020, *(_DWORD *)(this + 12), 0);
-      *(_BYTE *)(this + 204) = 0;
+      (*(void (**)(int, int, _DWORD, _DWORD))(*(_DWORD *)v8 + 24))(v8, 1020, *((_DWORD *)this + 3), 0);
+      *((_BYTE *)this + 204) = 0;
       goto LABEL_30;
     }
   }
   else if ( g_Input.m_shiftedKeyStates[207] == 1 )
   {
-    v11 = *(_DWORD *)(this + 32);
-    *(_DWORD *)(this + 96) = 2;
+    v11 = *((_DWORD *)this + 8);
+    *((_DWORD *)this + 24) = 2;
     if ( v11 )
     {
-      (*(void (**)(int, int, _DWORD, _DWORD))(*(_DWORD *)v11 + 24))(v11, 1004, *(_DWORD *)(this + 12), 0);
-      *(_BYTE *)(this + 204) = 0;
+      (*(void (**)(int, int, _DWORD, _DWORD))(*(_DWORD *)v11 + 24))(v11, 1004, *((_DWORD *)this + 3), 0);
+      *((_BYTE *)this + 204) = 0;
       goto LABEL_30;
     }
   }
   else
   {
-    v12 = *(_DWORD *)(this + 32);
+    v12 = *((_DWORD *)this + 8);
     if ( v12 )
-      (*(void (**)(int, int, _DWORD, _DWORD))(*(_DWORD *)v12 + 24))(v12, 1002, *(_DWORD *)(this + 12), 0);
+      (*(void (**)(int, int, _DWORD, _DWORD))(*(_DWORD *)v12 + 24))(v12, 1002, *((_DWORD *)this + 3), 0);
   }
-  *(_BYTE *)(this + 204) = 0;
+  *((_BYTE *)this + 204) = 0;
 LABEL_30:
-  if ( *(_DWORD *)(this + 96) == 2 && (g_Input.m_shiftedKeyStates[204] & 0xF) != 1 )
+  if ( *((_DWORD *)this + 24) == 2 && (g_Input.m_shiftedKeyStates[204] & 0xF) != 1 )
   {
     if ( v4 )
     {
-      v10 = *(_DWORD *)(this + 32);
-      *(_DWORD *)(this + 96) = 1;
+      v10 = *((_DWORD *)this + 8);
+      *((_DWORD *)this + 24) = 1;
       if ( v10 )
-        (*(void (**)(int, int, _DWORD, _DWORD))(*(_DWORD *)v10 + 24))(v10, 1001, *(_DWORD *)(this + 12), 0);
+        (*(void (**)(int, int, _DWORD, _DWORD))(*(_DWORD *)v10 + 24))(v10, 1001, *((_DWORD *)this + 3), 0);
     }
     else
     {
-      *(_DWORD *)(this + 96) = 0;
+      *((_DWORD *)this + 24) = 0;
     }
   }
   v13 = ((UIWnd *)this)->HitTest(a2, a3);
@@ -362,7 +363,7 @@ LABEL_30:
 }
 
 // 0x0043AD40
-int UIScene::Create2(int _this)
+int UIScene::Create2()
 {
   int result; // eax
   int v3; // ecx
@@ -396,86 +397,86 @@ int UIScene::Create2(int _this)
   int v31[5]; // [esp+34h] [ebp-54h] BYREF
   _BYTE v32[64]; // [esp+48h] [ebp-40h] BYREF
 
-  result = *(_DWORD *)(this + 56);
+  result = *((_DWORD *)this + 14);
   if ( !result )
     return result;
-  v3 = *(_DWORD *)(this + 16);
-  v4 = (int *)(this + 16);
-  v24 = *(_DWORD *)(this + 24);
+  v3 = *((_DWORD *)this + 4);
+  v4 = (int *)((char *)this + 16);
+  v24 = *((_DWORD *)this + 6);
   v5 = v3 + v24;
   v23 = v3;
-  v6 = 1.0 - *(float *)(this + 72);
-  v7 = *(_DWORD *)(this + 20);
+  v6 = 1.0 - *((float *)this + 18);
+  v7 = *((_DWORD *)this + 5);
   v27 = v5 / 2;
   v8 = v6 * (double)(v5 / 2);
-  v26 = *(_DWORD *)(this + 28);
+  v26 = *((_DWORD *)this + 7);
   v25 = v7;
-  v9 = (double)v23 * *(float *)(this + 72);
+  v9 = (double)v23 * *((float *)this + 18);
   v28 = (v7 + v26) / 2;
   v31[0] = (__int64)(v9 + v8);
-  v10 = (__int64)((double)v24 * *(float *)(this + 72) + v8);
-  v11 = (1.0 - *(float *)(this + 76)) * (double)v28;
+  v10 = (__int64)((double)v24 * *((float *)this + 18) + v8);
+  v11 = (1.0 - *((float *)this + 19)) * (double)v28;
   v31[2] = v10;
-  v31[1] = (__int64)((double)v7 * *(float *)(this + 76) + v11);
-  v31[3] = (__int64)((double)v26 * *(float *)(this + 76) + v11);
-  v12 = (struct gbTexture *)sub_445F60((_DWORD *)(this + 116), *(_DWORD *)(this + 96));
+  v31[1] = (__int64)((double)v7 * *((float *)this + 19) + v11);
+  v31[3] = (__int64)((double)v26 * *((float *)this + 19) + v11);
+  v12 = (struct gbTexture *)sub_445F60((_DWORD *)this + 29, *((_DWORD *)this + 24));
   if ( !v12 )
     goto LABEL_6;
-  v13 = *(_DWORD *)(this + 96);
-  v22.Green = *(_DWORD *)(this + 4 * v13 + 184);
+  v13 = *((_DWORD *)this + 24);
+  v22.Green = *((_DWORD *)this + v13 + 46);
   v22.Blue = 276;
   v22.ColorQuadFmt = v13;
-  ((gbColorQuad *)&v22)->gbColorQuad((struct gbColorQuad *)(this + 8));
+  ((gbColorQuad *)&v22)->gbColorQuad((struct gbColorQuad *)((char *)this + 8));
   v14 = ((gbTextureArray *)v32)->gbTextureArray(v12);
-  ((_DWORD *)(this + 16))->_CheckItem(v31, v14, v22.ColorQuadFmt, v22.Blue, (float *)v22.Green);
-  if ( !*(_DWORD *)(this + 60) )
+  ((_TextureLib_Data *)(_DWORD *)this + 4)->_CheckItem(v31, v14, v22.ColorQuadFmt, v22.Blue, (float *)v22.Green);
+  if ( !*((_DWORD *)this + 15) )
   {
-    if ( *(_DWORD *)(this + 196) )
+    if ( *((_DWORD *)this + 49) )
     {
-      v22.Green = *(_DWORD *)(this + 200);
+      v22.Green = *((_DWORD *)this + 50);
       v22.Blue = 276;
       v22.ColorQuadFmt = v22.Green;
-      ((gbColorQuad *)&v22)->gbColorQuad((struct gbColorQuad *)(this + 8));
-      v15 = ((gbTextureArray *)v32)->gbTextureArray(*(struct gbTexture **)(this + 196));
-      ((_DWORD *)(this + 16))->_CheckItem((int *)(this + 16), v15, v22.ColorQuadFmt, v22.Blue, (float *)v22.Green);
+      ((gbColorQuad *)&v22)->gbColorQuad((struct gbColorQuad *)((char *)this + 8));
+      v15 = ((gbTextureArray *)v32)->gbTextureArray(*((struct gbTexture **)this + 49));
+      ((_TextureLib_Data *)(_DWORD *)this + 4)->_CheckItem((int *)this + 4, v15, v22.ColorQuadFmt, v22.Blue, (float *)v22.Green);
       goto LABEL_7;
     }
 LABEL_6:
-    ((_TextureLib_Data *)*v4)->~_TextureLib_Data(*(_DWORD *)(this + 20), *(_DWORD *)(this + 24), *(_DWORD *)(this + 28), (float *)&g_GameData_0._data[12992]);
+    ((_TextureLib_Data *)*v4)->~_TextureLib_Data(*((_DWORD *)this + 5), *((_DWORD *)this + 6), *((_DWORD *)this + 7), (float *)&unk_D91780);
   }
 LABEL_7:
-  if ( *(_BYTE *)(this + 212) )
+  if ( *((_BYTE *)this + 212) )
   {
     v16 = *v4;
-    v26 = *(_DWORD *)(this + 4);
-    v17 = *(_DWORD *)(this + 20);
-    v29 = *(_DWORD *)(this + 24);
-    v18 = *(_DWORD *)(this + 108);
-    v30 = *(_DWORD *)(this + 28);
+    v26 = *((_DWORD *)this + 1);
+    v17 = *((_DWORD *)this + 5);
+    v29 = *((_DWORD *)this + 6);
+    v18 = *((_DWORD *)this + 27);
+    v30 = *((_DWORD *)this + 7);
     v19 = v18 + v17;
-    v27 = *(_DWORD *)(this + 104) + v16;
-    v20 = *(_DWORD *)(this + 60);
+    v27 = *((_DWORD *)this + 26) + v16;
+    v20 = *((_DWORD *)this + 15);
     v28 = v19;
-    if ( !v20 || *(_DWORD *)(this + 96) == 2 )
+    if ( !v20 || *((_DWORD *)this + 24) == 2 )
     {
       BYTE2(v26) = (BYTE2(v26) - 64) & ((BYTE2(v26) - 64 < 0) - 1);
       BYTE1(v26) = (BYTE1(v26) - 64) & ((BYTE1(v26) - 64 < 0) - 1);
-      v21 = *(_DWORD *)(this + 96);
+      v21 = *((_DWORD *)this + 24);
       LOBYTE(v26) = (v26 - 64) & (((unsigned __int8)v26 - 64 < 0) - 1);
       if ( v21 == 2 )
         v28 = v19 + 6;
     }
-    if ( *(_BYTE *)(this + 112) )
+    if ( *((_BYTE *)this + 112) )
     {
       v22.Green = 1;
       v22.Blue = 2;
     }
     else
     {
-      v22.Green = *(_DWORD *)(this + 208);
+      v22.Green = *((_DWORD *)this + 52);
       v22.Blue = 1;
     }
-    UIRenderPar((const char *)(this + 212), &v27, &v26, v22.Blue, v22.Green);
+    UIRenderPar((const char *)this + 212, &v27, &v26, v22.Blue, v22.Green);
   }
   return ((UIWnd *)this)->GetID();
 }

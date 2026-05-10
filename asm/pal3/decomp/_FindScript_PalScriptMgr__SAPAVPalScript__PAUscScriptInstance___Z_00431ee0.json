@@ -3,5 +3,5 @@
   "address": "0x00431EE0",
   "size_bytes": 31,
   "signature": "void __cdecl()",
-  "decompiled_c": "// between_std_methods (0x430790-0x445B40)\nvoid __cdecl PalScriptMgr::FindScript()\n{\n  if ( (byte_D8C324 & 8) == 0 )\n  {\n    byte_D8C324 |= 8u;\n    PtrArray::Remove((int)dword_D8C2C8);\n  }\n}\n"
+  "decompiled_c": "// between_std_methods (0x430790-0x445B40)\nvoid __cdecl PalScriptMgr::FindScript()\n{\n  if ( (stru_D8C2B8.m_keyStates[1] & 8) == 0 )\n  {\n    LOBYTE(stru_D8C2B8.m_keyStates[1]) |= 8u;\n    PtrArray::Remove((PtrArray *)&stru_D8C2B8.m_mouseMinX);\n  }\n}\n"
 }

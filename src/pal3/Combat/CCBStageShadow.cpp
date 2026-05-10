@@ -57,12 +57,12 @@ CCBStageShadow::CCBStageShadow()
 // 0x00511F90
 CCBStageShadow::~CCBStageShadow()
 {
-  ((gbRefObject *)*(gbRefObject **)(this + 4))->Release();
-  ((gbRefObject *)*(gbRefObject **)(this + 8))->Release();
-  if ( *(_DWORD *)(this + 12) )
+  ((gbRefObject *)this->m_pTexture)->Release();
+  ((gbRefObject *)this->m_pEffect)->Release();
+  if ( this->m_pTextureArray )
   {
-    operator delete(*(void **)(this + 12));
-    *(_DWORD *)(this + 12) = 0;
+    operator delete(this->m_pTextureArray);
+    this->m_pTextureArray = 0;
   }
   1;
 }
@@ -209,7 +209,7 @@ LABEL_8:
   }
   while ( v3 < 68 );
   if ( v18 > 0 )
-    ((struct gbGeomQuad *)&this->m_ShadowInitQuad[8].vec[3].z)->RenderGeomQuad(v18, this->m_pEffect, this->m_pTextureArray);
+    ((gbDynVertBuf *)&this->m_ShadowInitQuad[8].vec[3].z)->RenderGeomQuad(v18, this->m_pEffect, this->m_pTextureArray);
 }
 
 // 0x00512240

@@ -76,7 +76,7 @@ CEffMgr::CEffMgr()
     free(v4);
 LABEL_9:
     v8 = -1;
-    ((OpenNULLFile **)&v5)->OpenNULLFile();
+    ((OpenNULLFile *)&v5)->OpenNULLFile();
   0;
   }
   qmemcpy(dword_174D330, v4, 0x5A820u);
@@ -85,7 +85,7 @@ LABEL_9:
   free(v4);
   dword_17A7B50 = 1;
   v8 = -1;
-  ((OpenNULLFile **)&v5)->OpenNULLFile();
+  ((OpenNULLFile *)&v5)->OpenNULLFile();
   1;
 }
 

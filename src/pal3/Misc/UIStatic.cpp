@@ -8,6 +8,7 @@
 // Unnamed globals (extern)
 extern void *off_56AD88;
 extern void *off_5974E0;
+extern int unk_D91780;
 
 // 0x00440740
 UIStatic::UIStatic()
@@ -62,24 +63,24 @@ int UIStatic::OnMessage()
 }
 
 // 0x00440DD0
-BOOL UIStatic::Update(int _this, int a2, int a3)
+BOOL UIStatic::Update(int a2, int a3)
 {
   BOOL v5; // eax
-  int v6; // ecx
+  __int32 v6; // ecx
   char *Instance; // eax
-  char v8; // dl
-  int v9; // ecx
-  int v10; // ecx
-  int v11; // ecx
-  int v12; // ecx
+  char m_pfather; // dl
+  __int32 v9; // ecx
+  __int32 Green; // ecx
+  __int32 v11; // ecx
+  __int32 v12; // ecx
   void *v13; // [esp-8h] [ebp-1Ch]
   POINT pt; // [esp+Ch] [ebp-8h] BYREF
 
-  if ( !*(_DWORD *)(this + 56) )
+  if ( !this->m_rect.top )
     return 0;
   ((GRPinput *)&pt)->GetCursorPos();
-  v5 = PtInRect((const RECT *)(this + 16), pt);
-  if ( *(_DWORD *)(this + 60) )
+  v5 = PtInRect((const RECT *)&this->m_fontcolor.Alpha, pt);
+  if ( this->m_rect.right )
   {
     if ( a3 )
     {
@@ -87,57 +88,57 @@ BOOL UIStatic::Update(int _this, int a2, int a3)
       {
         if ( g_Input.m_shiftedKeyStates[207] == 1 )
         {
-          v8 = *(_BYTE *)(this + 68);
-          *(_BYTE *)(this + 69) = 1;
-          *(_BYTE *)(this + 68) = v8 == 0;
-          if ( v8 )
+          m_pfather = (char)this->m_pfather;
+          BYTE1(this->m_pfather) = 1;
+          LOBYTE(this->m_pfather) = m_pfather == 0;
+          if ( m_pfather )
           {
-            v10 = *(_DWORD *)(this + 32);
-            *(_DWORD *)(this + 80) = 0;
-            if ( v10 )
-              (*(void (__stdcall **)(int, _DWORD, _DWORD))(*(_DWORD *)v10 + 24))(1001, *(_DWORD *)(this + 12), 0);
+            Green = this->m_wndcolor.Green;
+            this->m_childs.m_nMaxSize = 0;
+            if ( Green )
+              (*(void (__stdcall **)(int, __int32, _DWORD))(*(_DWORD *)Green + 24))(1001, this->m_fontcolor.Red, 0);
           }
           else
           {
-            v9 = *(_DWORD *)(this + 32);
-            *(_DWORD *)(this + 80) = 1;
+            v9 = this->m_wndcolor.Green;
+            this->m_childs.m_nMaxSize = 1;
             if ( v9 )
-              (*(void (__stdcall **)(int, _DWORD, int))(*(_DWORD *)v9 + 24))(1001, *(_DWORD *)(this + 12), 1);
+              (*(void (__stdcall **)(int, __int32, int))(*(_DWORD *)v9 + 24))(1001, this->m_fontcolor.Red, 1);
           }
-          *(_BYTE *)(this + 69) = 0;
-          *(_BYTE *)(this + 70) = 0;
+          BYTE1(this->m_pfather) = 0;
+          BYTE2(this->m_pfather) = 0;
         }
         else
         {
-          v11 = *(_DWORD *)(this + 32);
-          *(_BYTE *)(this + 100) = 1;
-          *(_BYTE *)(this + 70) = 0;
+          v11 = this->m_wndcolor.Green;
+          LOBYTE(this->m_bfocus) = 1;
+          BYTE2(this->m_pfather) = 0;
           if ( v11 )
-            (*(void (__stdcall **)(int, _DWORD, _DWORD))(*(_DWORD *)v11 + 24))(1002, *(_DWORD *)(this + 12), 0);
+            (*(void (__stdcall **)(int, __int32, _DWORD))(*(_DWORD *)v11 + 24))(1002, this->m_fontcolor.Red, 0);
         }
       }
-      else if ( !*(_BYTE *)(this + 70) )
+      else if ( !BYTE2(this->m_pfather) )
       {
-        v12 = *(_DWORD *)(this + 32);
-        *(_BYTE *)(this + 100) = 0;
-        *(_BYTE *)(this + 70) = 1;
+        v12 = this->m_wndcolor.Green;
+        LOBYTE(this->m_bfocus) = 0;
+        BYTE2(this->m_pfather) = 1;
         if ( v12 )
-          (*(void (__stdcall **)(int, _DWORD, _DWORD))(*(_DWORD *)v12 + 24))(1003, *(_DWORD *)(this + 12), 0);
+          (*(void (__stdcall **)(int, __int32, _DWORD))(*(_DWORD *)v12 + 24))(1003, this->m_fontcolor.Red, 0);
       }
-      return ((UIWnd *)this)->HitTest(a2, a3);
+      return this->HitTest(a2, a3);
     }
     else
     {
-      return ((UIWnd *)this)->HitTest(a2, 0);
+      return this->HitTest(a2, 0);
     }
   }
   else
   {
     if ( v5 && g_Input.m_shiftedKeyStates[207] == 1 )
     {
-      v6 = *(_DWORD *)(this + 32);
+      v6 = this->m_wndcolor.Green;
       if ( v6 )
-        (*(void (**)(int, int, _DWORD, int))(*(_DWORD *)v6 + 24))(v6, 1021, *(_DWORD *)(this + 12), 1);
+        (*(void (**)(__int32, int, __int32, int))(*(_DWORD *)v6 + 24))(v6, 1021, this->m_fontcolor.Red, 1);
       v13 = off_5974E0;
       Instance = (char *)CScreenMode::GetInstance();
       ((CScreenMode *)Instance)->AudioSetPosition(v13, 1);
@@ -147,62 +148,62 @@ BOOL UIStatic::Update(int _this, int a2, int a3)
 }
 
 // 0x00440F30
-int UIStatic::Render(int _this)
+int UIStatic::Render()
 {
   int result; // eax
-  int v3; // eax
-  unsigned int *v4; // eax
-  unsigned int *v5; // ebx
-  int *v6; // edi
+  int m_nMaxSize; // eax
+  unsigned int *m_align; // eax
+  __int32 *p_Green; // ebx
+  __int32 *p_Alpha; // edi
   gbTexture *v7; // ecx
-  gbTexture *v8; // eax
-  unsigned int *v9; // [esp-10h] [ebp-58h]
+  gbTexture *pDebugTex; // eax
+  float m_ratiow; // [esp-10h] [ebp-58h]
   struct gbTextureArray v10; // [esp+4h] [ebp-44h] BYREF
 
-  result = *(_DWORD *)(this + 56);
+  result = this->m_rect.top;
   if ( result )
   {
-    v3 = *(_DWORD *)(this + 80);
-    if ( *(_DWORD *)(this + 4 * v3 + 84) )
+    m_nMaxSize = this->m_childs.m_nMaxSize;
+    if ( *(&this->m_childs.m_nGrowBy + m_nMaxSize) )
     {
-      if ( *(_BYTE *)(this + 100) && *(_DWORD *)(this + 104) && v3 != 1 )
+      if ( LOBYTE(this->m_bfocus) && this->m_bordersize && m_nMaxSize != 1 )
       {
-        v4 = (unsigned int *)*(unsigned int **)(this + 108);
-        v10.pTexPt[0] = *(gbTexture **)(this + 104);
+        m_align = (unsigned int *)this->m_align;
+        v10.pTexPt[0] = (gbTexture *)this->m_bordersize;
         v10.nTex = 1;
-        v5 = (unsigned int *)(this + 8);
-        v6 = (int *)(this + 16);
-        ((int *)(this + 16))->SetLibFolder((unsigned int *)(this + 8), &v10, 0x114u, v4, COERCE_FLOAT(1));
+        p_Green = (__int32 *)&this->m_fontcolor.Green;
+        p_Alpha = (__int32 *)&this->m_fontcolor.Alpha;
+        ((_TextureLib_Data *)&this->m_fontcolor.Alpha)->SetLibFolder((unsigned int *)&this->m_fontcolor.Green, &v10, 0x114u, m_align, COERCE_FLOAT(1));
       }
       else
       {
-        v7 = (gbTexture *)*(gbTexture **)(this + 4 * v3 + 84);
+        v7 = (gbTexture *)*(&this->m_childs.m_nGrowBy + m_nMaxSize);
         v10.nTex = 1;
         v10.pTexPt[0] = v7;
-        v5 = (unsigned int *)(this + 8);
-        v6 = (int *)(this + 16);
-        ((int *)(this + 16))->SetLibFolder((unsigned int *)(this + 8), &v10, 0x114u, *(unsigned int **)(this + 4 * v3 + 92), COERCE_FLOAT(1));
+        p_Green = (__int32 *)&this->m_fontcolor.Green;
+        p_Alpha = (__int32 *)&this->m_fontcolor.Alpha;
+        ((_TextureLib_Data *)&this->m_fontcolor.Alpha)->SetLibFolder((unsigned int *)&this->m_fontcolor.Green, &v10, 0x114u, *((unsigned int **)&this->m_bvisible + m_nMaxSize), COERCE_FLOAT(1));
       }
-      if ( !*(_DWORD *)(this + 60) )
+      if ( !this->m_rect.right )
       {
-        v8 = (gbTexture *)*(gbTexture **)(this + 112);
-        if ( v8 )
+        pDebugTex = (gbTexture *)this->pDebugTex;
+        if ( pDebugTex )
         {
-          v9 = (unsigned int *)*(unsigned int **)(this + 116);
+          m_ratiow = this->m_ratiow;
           v10.nTex = 1;
-          v10.pTexPt[0] = v8;
-          v6->SetLibFolder(v5, &v10, 0x114u, v9, COERCE_FLOAT(1));
+          v10.pTexPt[0] = pDebugTex;
+          p_Alpha->SetLibFolder((unsigned int *)p_Green, &v10, 0x114u, (unsigned int *)LODWORD(m_ratiow), COERCE_FLOAT(1));
         }
       }
     }
     else
     {
-      v6 = (int *)(this + 16);
-      ((_TextureLib_Data *)*(_DWORD *)(this + 16))->~_TextureLib_Data(*(_DWORD *)(this + 20), *(_DWORD *)(this + 24), *(_DWORD *)(this + 28), (float *)&g_GameData_0._data[12992]);
+      p_Alpha = (__int32 *)&this->m_fontcolor.Alpha;
+      ((_TextureLib_Data *)this->m_fontcolor.Alpha)->~_TextureLib_Data(this->m_fontcolor.Color, this->m_wndcolor.ColorQuadFmt, this->m_wndcolor.Blue, (float *)&unk_D91780);
     }
-    if ( *(_BYTE *)(this + 120) )
-      UIRenderPar((const char *)(this + 120), v6, (_BYTE *)(this + 72), 1, 1);
-    return ((UIWnd *)this)->GetID();
+    if ( LOBYTE(this->m_ratioh) )
+      UIRenderPar((const char *)&this->m_ratioh, p_Alpha, &this->m_childs, 1, 1);
+    return this->GetID();
   }
   return result;
 }

@@ -39,28 +39,28 @@ int ParabolaCalculator::CalulateParabola()
 }
 
 // 0x00523670
-int ParabolaCalculator::UpdateParabola(int _this)
+int ParabolaCalculator::UpdateParabola()
 {
   int result; // eax
 
-  ((ParabolaCalculator *)this)->CalulateParabola();
-  result = *(_DWORD *)(this + 1752);
+  this->CalulateParabola();
+  result = *((_DWORD *)this + 438);
   switch ( result )
   {
     case 0:
       result = ((UIListBox *)this)->SetScroll();
       break;
     case 1:
-      result = (*(int (**)(_DWORD))(**(_DWORD **)(this + 1736) + 4))(*(_DWORD *)(this + 1736));
+      result = (*(int (**)(_DWORD))(**((_DWORD **)this + 434) + 4))(*((_DWORD *)this + 434));
       break;
     case 2:
-      result = (*(int (**)(_DWORD))(**(_DWORD **)(this + 1740) + 4))(*(_DWORD *)(this + 1740));
+      result = (*(int (**)(_DWORD))(**((_DWORD **)this + 435) + 4))(*((_DWORD *)this + 435));
       break;
     case 3:
-      result = (*(int (**)(_DWORD))(**(_DWORD **)(this + 1744) + 4))(*(_DWORD *)(this + 1744));
+      result = (*(int (**)(_DWORD))(**((_DWORD **)this + 436) + 4))(*((_DWORD *)this + 436));
       break;
     case 4:
-      result = (*(int (**)(_DWORD))(**(_DWORD **)(this + 1748) + 4))(*(_DWORD *)(this + 1748));
+      result = (*(int (**)(_DWORD))(**((_DWORD **)this + 437) + 4))(*((_DWORD *)this + 437));
       break;
     default:
       return result;
@@ -69,7 +69,7 @@ int ParabolaCalculator::UpdateParabola(int _this)
 }
 
 // 0x005236E0
-int ParabolaCalculator::UpdateParabolaY(int _this, int a2, int a3)
+int ParabolaCalculator::UpdateParabolaY(int a2, int a3)
 {
   char *Instance; // eax
   gbAudioManager *AudioManager; // eax
@@ -81,29 +81,29 @@ int ParabolaCalculator::UpdateParabolaY(int _this, int a2, int a3)
     AudioManager = (gbAudioManager *)((CScreenMode *)Instance)->GetAudioManager();
     AudioManager->DetachAll3D();
   }
-  if ( !sub_4A1CF0((_DWORD *)(this + 368)) )
-    sub_523820((_DWORD *)this, 2);
-  switch ( *(_DWORD *)(this + 1752) )
+  if ( !sub_4A1CF0((_DWORD *)this + 92) )
+    sub_523820(this, 2);
+  switch ( *((_DWORD *)this + 438) )
   {
     case 0:
       ((UIWnd *)this)->HitTest(a2, a3);
       result = 1;
       break;
     case 1:
-      (*(void (**)(_DWORD, int, int))(**(_DWORD **)(this + 1736) + 8))(*(_DWORD *)(this + 1736), a2, a3);
+      (*(void (**)(_DWORD, int, int))(**((_DWORD **)this + 434) + 8))(*((_DWORD *)this + 434), a2, a3);
       result = 1;
       break;
     case 2:
       a2->RunSceneScript();
-      (*(void (**)(_DWORD, int, int))(**(_DWORD **)(this + 1740) + 8))(*(_DWORD *)(this + 1740), a2, a3);
+      (*(void (**)(_DWORD, int, int))(**((_DWORD **)this + 435) + 8))(*((_DWORD *)this + 435), a2, a3);
       result = 1;
       break;
     case 3:
-      (*(void (**)(_DWORD, int, int))(**(_DWORD **)(this + 1744) + 8))(*(_DWORD *)(this + 1744), a2, a3);
+      (*(void (**)(_DWORD, int, int))(**((_DWORD **)this + 436) + 8))(*((_DWORD *)this + 436), a2, a3);
       result = 1;
       break;
     case 4:
-      (*(void (**)(_DWORD, int, int))(**(_DWORD **)(this + 1748) + 8))(*(_DWORD *)(this + 1748), a2, a3);
+      (*(void (**)(_DWORD, int, int))(**((_DWORD **)this + 437) + 8))(*((_DWORD *)this + 437), a2, a3);
       result = 1;
       break;
     case 5:

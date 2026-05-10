@@ -98,9 +98,9 @@ void ObjectCamera::SetCameraEyePosition(struct gbGfxManager *a2)
 }
 
 // 0x0047C6E0
-int ObjectCamera::SetCameraAtPosition(int _this, int a2, int a3, int a4, char a5)
+int ObjectCamera::SetCameraAtPosition(int a2, int a3, int a4, char a5)
 {
-  int v6; // ecx
+  float y; // ecx
   double v7; // st7
   double v8; // st7
   gbVec3D v10; // [esp+4h] [ebp-Ch] BYREF
@@ -108,30 +108,30 @@ int ObjectCamera::SetCameraAtPosition(int _this, int a2, int a3, int a4, char a5
   float v12; // [esp+18h] [ebp+8h]
   float v13; // [esp+1Ch] [ebp+Ch]
 
-  *(_DWORD *)(this + 4) = a2;
-  *(_DWORD *)(this + 8) = a3;
-  *(_DWORD *)(this + 12) = a4;
+  LODWORD(this->m_camFrom.x) = a2;
+  LODWORD(this->m_camFrom.y) = a3;
+  LODWORD(this->m_camFrom.z) = a4;
   if ( a5 )
   {
-    v6 = *(_DWORD *)(this + 8);
-    *(_DWORD *)(this + 16) = *(_DWORD *)(this + 4);
-    *(_DWORD *)(this + 20) = v6;
-    *(_DWORD *)(this + 24) = 0;
+    y = this->m_camFrom.y;
+    this->m_camTo.x = this->m_camFrom.x;
+    this->m_camTo.y = y;
+    this->m_camTo.z = 0.0;
   }
-  v11 = *(float *)(this + 16) - *(float *)(this + 4);
-  v7 = *(float *)(this + 20) - *(float *)(this + 8);
+  v11 = this->m_camTo.x - this->m_camFrom.x;
+  v7 = this->m_camTo.y - this->m_camFrom.y;
   v10.x = v11;
   v12 = v7;
-  v8 = *(float *)(this + 24) - *(float *)(this + 12);
+  v8 = this->m_camTo.z - this->m_camFrom.z;
   v10.y = v12;
   v13 = v8;
   v10.z = v13;
-  *(float *)(this + 64) = ((gbVec3D *)&v10)->Length();
-  return ((ObjectCamera *)this)->ComputeInfo(1);
+  this->m_dist = ((gbVec3D *)&v10)->Length();
+  return this->ComputeInfo(1);
 }
 
 // 0x0047C770
-int ObjectCamera::SetCameraRotate(int _this, int a2, int a3, int a4)
+int ObjectCamera::SetCameraRotate(int a2, int a3, int a4)
 {
   double v5; // st7
   double v6; // st7
@@ -140,19 +140,19 @@ int ObjectCamera::SetCameraRotate(int _this, int a2, int a3, int a4)
   float v10; // [esp+18h] [ebp+8h]
   float v11; // [esp+1Ch] [ebp+Ch]
 
-  *(_DWORD *)(this + 16) = a2;
-  *(_DWORD *)(this + 20) = a3;
-  *(_DWORD *)(this + 24) = a4;
-  v9 = *(float *)(this + 16) - *(float *)(this + 4);
-  v5 = *(float *)(this + 20) - *(float *)(this + 8);
+  LODWORD(this->m_camTo.x) = a2;
+  LODWORD(this->m_camTo.y) = a3;
+  LODWORD(this->m_camTo.z) = a4;
+  v9 = this->m_camTo.x - this->m_camFrom.x;
+  v5 = this->m_camTo.y - this->m_camFrom.y;
   v8.x = v9;
   v10 = v5;
-  v6 = *(float *)(this + 24) - *(float *)(this + 12);
+  v6 = this->m_camTo.z - this->m_camFrom.z;
   v8.y = v10;
   v11 = v6;
   v8.z = v11;
-  *(float *)(this + 64) = ((gbVec3D *)&v8)->Length();
-  return ((ObjectCamera *)this)->ComputeInfo(1);
+  this->m_dist = ((gbVec3D *)&v8)->Length();
+  return this->ComputeInfo(1);
 }
 
 // 0x0047C7E0
@@ -258,10 +258,10 @@ int ObjectCamera::ComputeInfo(int a2)
 }
 
 // 0x0047C9B0
-void ObjectCamera::SetStepRotate(int _this)
+void ObjectCamera::SetStepRotate()
 {
-  int v2; // eax
-  int v3; // eax
+  int m_stepRotMode; // eax
+  int m_stepRotAxis; // eax
   double v4; // st7
   double v5; // st7
   int v6; // eax
@@ -272,77 +272,77 @@ void ObjectCamera::SetStepRotate(int _this)
   float v11; // [esp+4h] [ebp-4h]
   float v12; // [esp+4h] [ebp-4h]
 
-  if ( *(_BYTE *)(this + 120) )
+  if ( LOBYTE(this->m_bStepRot) )
   {
-    v2 = *(_DWORD *)(this + 112);
-    if ( v2 )
+    m_stepRotMode = this->m_stepRotMode;
+    if ( m_stepRotMode )
     {
-      if ( v2 == 1 )
+      if ( m_stepRotMode == 1 )
       {
-        v3 = *(_DWORD *)(this + 116);
-        if ( v3 )
+        m_stepRotAxis = this->m_stepRotAxis;
+        if ( m_stepRotAxis )
         {
-          if ( v3 == 1 )
+          if ( m_stepRotAxis == 1 )
           {
-            v4 = *(float *)(this + 104) + *(float *)(this + 52);
-            *(float *)(this + 52) = v4;
-            v9 = *(float *)(this + 108) + *(float *)(this + 68);
+            v4 = this->m_stepRotSpeed + this->m_yaw;
+            this->m_yaw = v4;
+            v9 = this->m_stepRot + this->m_nyaw;
             if ( v4 >= v9 )
             {
-              *(_BYTE *)(this + 120) = 0;
-              *(float *)(this + 52) = v9;
-              *(float *)(this + 68) = v9;
+              LOBYTE(this->m_bStepRot) = 0;
+              this->m_yaw = v9;
+              this->m_nyaw = v9;
             }
           }
         }
         else
         {
-          v5 = *(float *)(this + 104) + *(float *)(this + 56);
-          *(float *)(this + 56) = v5;
-          v10 = *(float *)(this + 108) + *(float *)(this + 72);
+          v5 = this->m_stepRotSpeed + this->m_pitch;
+          this->m_pitch = v5;
+          v10 = this->m_stepRot + this->m_npitch;
           if ( v5 >= v10 )
           {
-            *(_BYTE *)(this + 120) = 0;
-            *(float *)(this + 56) = v10;
-            *(float *)(this + 72) = v10;
+            LOBYTE(this->m_bStepRot) = 0;
+            this->m_pitch = v10;
+            this->m_npitch = v10;
           }
         }
       }
     }
     else
     {
-      v6 = *(_DWORD *)(this + 116);
+      v6 = this->m_stepRotAxis;
       if ( v6 )
       {
         if ( v6 == 1 )
         {
-          v7 = *(float *)(this + 52) - *(float *)(this + 104);
-          *(float *)(this + 52) = v7;
-          v11 = *(float *)(this + 68) - *(float *)(this + 108);
+          v7 = this->m_yaw - this->m_stepRotSpeed;
+          this->m_yaw = v7;
+          v11 = this->m_nyaw - this->m_stepRot;
           if ( v7 <= v11 )
           {
-            *(_BYTE *)(this + 120) = 0;
-            *(float *)(this + 52) = v11;
-            *(float *)(this + 68) = v11;
+            LOBYTE(this->m_bStepRot) = 0;
+            this->m_yaw = v11;
+            this->m_nyaw = v11;
           }
         }
       }
       else
       {
-        v8 = *(float *)(this + 56) - *(float *)(this + 104);
-        *(float *)(this + 56) = v8;
-        v12 = *(float *)(this + 72) - *(float *)(this + 108);
+        v8 = this->m_pitch - this->m_stepRotSpeed;
+        this->m_pitch = v8;
+        v12 = this->m_npitch - this->m_stepRot;
         if ( v8 <= v12 )
         {
-          *(_BYTE *)(this + 120) = 0;
-          *(float *)(this + 56) = v12;
-          *(float *)(this + 72) = v12;
+          LOBYTE(this->m_bStepRot) = 0;
+          this->m_pitch = v12;
+          this->m_npitch = v12;
         }
       }
     }
-    ((ObjectCamera *)this)->ComputeInfo(1);
+    this->ComputeInfo(1);
   }
-  ((gbCamera *)*(gbCamera **)this)->SetLookAt((struct gbVec3D *)(this + 4), (struct gbVec3D *)(this + 16), (struct gbVec3D *)(this + 28));
+  ((gbCamera *)this->m_pCamera)->SetLookAt(&this->m_camFrom, &this->m_camTo, &this->m_camUp);
 }
 
 // 0x0047CAD0

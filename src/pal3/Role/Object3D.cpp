@@ -48,7 +48,7 @@ struct gbVFileSystem * Object3D::_Object3D(const char *a2, int a3)
   gbGeomNode *v4; // eax
   gbGeomNode *v5; // edi
   gbGeomNode *v6; // ecx
-  LPVOID v7; // eax
+  _DWORD *v7; // eax
   gbGeomNode *v8; // eax
   char Destination[4]; // [esp+10h] [ebp-60h] BYREF
   OpenBaseFile v11; // [esp+14h] [ebp-5Ch] BYREF
@@ -98,10 +98,10 @@ LABEL_5:
     goto LABEL_3;
   }
   this->m_type = 2;
-  v7 = operator new(0x224u);
+  v7 = (_DWORD *)operator new(0x224u);
   LOBYTE(v14) = 3;
   if ( v7 )
-    v8 = (gbGeomNode *)((int)v7)->FastInit();
+    v8 = (gbGeomNode *)((Actor *)v7)->FastInit();
   else
     v8 = 0;
   LOBYTE(v14) = 0;
@@ -118,7 +118,7 @@ LABEL_13:
   LOBYTE(this->m_dropy) = 1;
   LODWORD(this->m_rotDstSpeed) = a3;
   v14 = -1;
-  return ((OpenNULLFile **)&v11)->OpenNULLFile();
+  return ((OpenNULLFile *)&v11)->OpenNULLFile();
 }
 
 // 0x0047CD70
@@ -157,7 +157,7 @@ unsigned __int8 Object3D::LoadObject(const char *a2, int a3)
       {
 LABEL_15:
         v14 = -1;
-        return (unsigned __int8)((OpenNULLFile **)&v13)->OpenNULLFile();
+        return (unsigned __int8)((OpenNULLFile *)&v13)->OpenNULLFile();
       }
       this->m_subObj = (gbGeomNode *)3;
       v9 = (Actor *)operator new(0x118u);
@@ -244,12 +244,12 @@ LABEL_9:
 }
 
 // 0x0047CF40
-char Object3D::Destroy(int _this)
+char Object3D::Destroy()
 {
   unsigned int v2; // eax
   struct gbNodeMsgObj v4; // [esp+Ch] [ebp-10h] BYREF
 
-  if ( *(_DWORD *)(this + 4) != 3 || !((gbVisNode *)*(gbVisNode **)(this + 8))->PopMessage(&v4) )
+  if ( this->m_type != 3 || !((gbVisNode *)this->m_pol)->PopMessage(&v4) )
     return 0;
   while ( 1 )
   {
@@ -259,7 +259,7 @@ char Object3D::Destroy(int _this)
       if ( v4.param[0] == v2 )
         break;
     }
-    if ( !((gbVisNode *)*(gbVisNode **)(this + 8))->PopMessage(&v4) )
+    if ( !((gbVisNode *)this->m_pol)->PopMessage(&v4) )
       return 0;
   }
   return 1;
@@ -520,10 +520,10 @@ LABEL_16:
 }
 
 // 0x0047D690
-void Object3D::CaculateRelative(int _this, float a2)
+void Object3D::CaculateRelative(float a2)
 {
   unsigned int v3; // eax
-  int v4; // eax
+  float m_rotDstDegree; // eax
   double v5; // st7
   double v6; // st6
   double v7; // st7
@@ -537,141 +537,141 @@ void Object3D::CaculateRelative(int _this, float a2)
   double v17; // st6
   double v18; // st7
   double v19; // st6
-  double v21; // st7
+  double m_degreeToScreen; // st7
   unsigned __int8 v22; // c0
   unsigned __int8 v23; // c3
   double v24; // st7
   struct gbNodeMsgObj v25; // [esp+Ch] [ebp-10h] BYREF
 
-  if ( !*(_BYTE *)this )
+  if ( !LOBYTE(this->m_isLoadObj) )
     return;
-  if ( *(_BYTE *)(this + 80) )
+  if ( LOBYTE(this->m_dropy) )
   {
-    switch ( *(_DWORD *)(this + 4) )
+    switch ( this->m_type )
     {
       case 1:
 LABEL_10:
-        (*(void (**)(_DWORD))(**(_DWORD **)(this + 8) + 20))(*(_DWORD *)(this + 8));
+        ((void (*)(gbGeomNode *))this->m_pol->next[5].next)(this->m_pol);
         break;
       case 2:
-        if ( sub_537060(*(gbVisNode ***)(this + 8)) )
-          ((Actor *)*(Actor **)(this + 8))->CompareAction(0, 0);
-        ((Actor *)*(Actor **)(this + 8))->QueryState();
+        if ( sub_537060((gbVisNode **)this->m_pol) )
+          ((Actor *)this->m_pol)->CompareAction(0, 0);
+        ((Actor *)this->m_pol)->QueryState();
         break;
       case 3:
         goto LABEL_10;
     }
   }
-  if ( *(_BYTE *)(this + 21) && *(_BYTE *)(this + 20) )
+  if ( BYTE1(this->m_subType) && LOBYTE(this->m_subType) )
   {
-    if ( *(_DWORD *)(this + 16) == 1 )
+    if ( this->m_subObj == (gbGeomNode *)1 )
     {
-      (*(void (**)(_DWORD))(**(_DWORD **)(this + 12) + 20))(*(_DWORD *)(this + 12));
+      (*(void (**)(Actor *))(this->m_actor->m_actarray + 20))(this->m_actor);
     }
-    else if ( *(_DWORD *)(this + 16) == 3 )
+    else if ( this->m_subObj == (gbGeomNode *)3 )
     {
-      (*(void (**)(_DWORD))(**(_DWORD **)(this + 12) + 20))(*(_DWORD *)(this + 12));
-      while ( ((gbVisNode *)*(gbVisNode **)(this + 12))->PopMessage(&v25) )
+      (*(void (**)(Actor *))(this->m_actor->m_actarray + 20))(this->m_actor);
+      while ( ((gbVisNode *)this->m_actor)->PopMessage(&v25) )
       {
         if ( v25.msgid == 1 )
         {
           v3 = gbCrc32Compute(aOver);
           if ( v25.param[0] == v3 )
           {
-            (*(void (**)(_DWORD, _DWORD))(**(_DWORD **)(this + 12) + 24))(*(_DWORD *)(this + 12), 0);
-            ((gbVisNode *)*(gbVisNode **)(this + 12))->SetTimeScale(1.0);
+            (*(void (**)(Actor *, _DWORD))(this->m_actor->m_actarray + 24))(this->m_actor, 0);
+            ((gbVisNode *)this->m_actor)->SetTimeScale(1.0);
           }
         }
       }
     }
   }
-  if ( *(_BYTE *)(this + 121) )
+  if ( BYTE1(this->m_forward.z) )
   {
-    v4 = *(_DWORD *)(this + 144);
-    if ( v4 )
+    m_rotDstDegree = this->m_rotDstDegree;
+    if ( m_rotDstDegree != 0.0 )
     {
-      if ( v4 == 1 )
+      if ( LODWORD(m_rotDstDegree) == 1 )
       {
-        if ( *(float *)(this + 128) >= (double)*(float *)(this + 132) )
+        if ( *(float *)&this->m_isActionRelativeRot >= (double)*(float *)&this->m_bRotDstDegree )
         {
-          if ( *(float *)(this + 128) <= (double)*(float *)(this + 132) )
+          if ( *(float *)&this->m_isActionRelativeRot <= (double)*(float *)&this->m_bRotDstDegree )
           {
-            if ( *(float *)(this + 128) > 360.0 )
-              *(float *)(this + 128) = *(float *)(this + 128) - 360.0;
-            if ( *(float *)(this + 128) < 0.0 )
-              *(float *)(this + 128) = *(float *)(this + 128) + 360.0;
-            *(_BYTE *)(this + 121) = 0;
+            if ( *(float *)&this->m_isActionRelativeRot > 360.0 )
+              *(float *)&this->m_isActionRelativeRot = *(float *)&this->m_isActionRelativeRot - 360.0;
+            if ( *(float *)&this->m_isActionRelativeRot < 0.0 )
+              *(float *)&this->m_isActionRelativeRot = *(float *)&this->m_isActionRelativeRot + 360.0;
+            BYTE1(this->m_forward.z) = 0;
           }
           else
           {
-            v11 = a2 * 50.0 * *(float *)(this + 136);
-            v12 = *(float *)(this + 128) - v11;
-            *(float *)(this + 128) = v12;
-            if ( v12 <= *(float *)(this + 132) )
-              *(_DWORD *)(this + 128) = *(_DWORD *)(this + 132);
-            v13 = *(float *)(this + 56) - v11;
-            *(float *)(this + 56) = v13;
+            v11 = a2 * 50.0 * this->m_rotRelative;
+            v12 = *(float *)&this->m_isActionRelativeRot - v11;
+            *(float *)&this->m_isActionRelativeRot = v12;
+            if ( v12 <= *(float *)&this->m_bRotDstDegree )
+              this->m_isActionRelativeRot = this->m_bRotDstDegree;
+            v13 = this->RelativePos.y - v11;
+            this->RelativePos.y = v13;
             if ( v15 )
-              *(float *)(this + 56) = v13 + 360.0;
+              this->RelativePos.y = v13 + 360.0;
           }
         }
         else
         {
-          v5 = a2 * 50.0 * *(float *)(this + 136);
-          v6 = v5 + *(float *)(this + 128);
-          *(float *)(this + 128) = v6;
-          if ( v6 >= *(float *)(this + 132) )
-            *(_DWORD *)(this + 128) = *(_DWORD *)(this + 132);
-          v7 = v5 + *(float *)(this + 56);
-          *(float *)(this + 56) = v7;
+          v5 = a2 * 50.0 * this->m_rotRelative;
+          v6 = v5 + *(float *)&this->m_isActionRelativeRot;
+          *(float *)&this->m_isActionRelativeRot = v6;
+          if ( v6 >= *(float *)&this->m_bRotDstDegree )
+            this->m_isActionRelativeRot = this->m_bRotDstDegree;
+          v7 = v5 + this->RelativePos.y;
+          this->RelativePos.y = v7;
           if ( !(v9 | v10) )
-            *(float *)(this + 56) = v7 - 360.0;
+            this->RelativePos.y = v7 - 360.0;
         }
       }
       return;
     }
-    if ( *(float *)(this + 128) >= (double)*(float *)(this + 132) )
+    if ( *(float *)&this->m_isActionRelativeRot >= (double)*(float *)&this->m_bRotDstDegree )
     {
-      if ( *(float *)(this + 128) <= (double)*(float *)(this + 132) )
+      if ( *(float *)&this->m_isActionRelativeRot <= (double)*(float *)&this->m_bRotDstDegree )
       {
-        *(_BYTE *)(this + 121) = 0;
+        BYTE1(this->m_forward.z) = 0;
       }
       else
       {
-        v18 = a2 * 50.0 * *(float *)(this + 136);
-        v19 = *(float *)(this + 128) - v18;
-        *(float *)(this + 128) = v19;
-        *(float *)(this + 124) = *(float *)(this + 124) - v18;
-        if ( v19 <= *(float *)(this + 132) )
-          *(_DWORD *)(this + 128) = *(_DWORD *)(this + 132);
+        v18 = a2 * 50.0 * this->m_rotRelative;
+        v19 = *(float *)&this->m_isActionRelativeRot - v18;
+        *(float *)&this->m_isActionRelativeRot = v19;
+        this->m_degreeToScreen = this->m_degreeToScreen - v18;
+        if ( v19 <= *(float *)&this->m_bRotDstDegree )
+          this->m_isActionRelativeRot = this->m_bRotDstDegree;
       }
     }
     else
     {
-      v16 = a2 * 50.0 * *(float *)(this + 136);
-      v17 = v16 + *(float *)(this + 128);
-      *(float *)(this + 128) = v17;
-      *(float *)(this + 124) = v16 + *(float *)(this + 124);
-      if ( v17 >= *(float *)(this + 132) )
-        *(_DWORD *)(this + 128) = *(_DWORD *)(this + 132);
+      v16 = a2 * 50.0 * this->m_rotRelative;
+      v17 = v16 + *(float *)&this->m_isActionRelativeRot;
+      *(float *)&this->m_isActionRelativeRot = v17;
+      this->m_degreeToScreen = v16 + this->m_degreeToScreen;
+      if ( v17 >= *(float *)&this->m_bRotDstDegree )
+        this->m_isActionRelativeRot = this->m_bRotDstDegree;
     }
-    v21 = *(float *)(this + 124);
+    m_degreeToScreen = this->m_degreeToScreen;
     if ( v22 | v23 )
     {
-      if ( v21 >= 0.0 )
+      if ( m_degreeToScreen >= 0.0 )
       {
 LABEL_52:
-        *(float *)(this + 88) = *(float *)(this + 124);
-        ((Object3D *)this)->GetScreenDegree();
+        *(float *)&this->m_visible = this->m_degreeToScreen;
+        this->GetScreenDegree();
         return;
       }
-      v24 = *(float *)(this + 124) + 360.0;
+      v24 = this->m_degreeToScreen + 360.0;
     }
     else
     {
-      v24 = v21 - 360.0;
+      v24 = m_degreeToScreen - 360.0;
     }
-    *(float *)(this + 124) = v24;
+    this->m_degreeToScreen = v24;
     goto LABEL_52;
   }
 }
@@ -694,23 +694,23 @@ void * Object3D::SetupCamera()
 }
 
 // 0x0047DA60
-bool Object3D::Update(int _this)
+bool Object3D::Update()
 {
   void *v2; // esi
-  int v3; // eax
-  int v4; // eax
-  int v5; // eax
+  __int32 m_type; // eax
+  __int32 v4; // eax
+  __int32 v5; // eax
   struct tagPOINT Point; // [esp+4h] [ebp-84h] BYREF
   _BYTE actionId[124]; // [esp+Ch] [ebp-7Ch] BYREF
 
-  if ( !*(_BYTE *)(this + 80) || *(_BYTE *)(this + 121) || g_Input.m_shiftedKeyStates[207] != 1 )
+  if ( !LOBYTE(this->m_dropy) || BYTE1(this->m_forward.z) || g_Input.m_shiftedKeyStates[207] != 1 )
     return 0;
   ((gbMatrix4 *)actionId)->gbMatrix4();
   ((GRPinput *)&Point)->GetCursorPos();
-  v2 = ((Object3D *)this)->SetupCamera();
-  v3 = *(_DWORD *)(this + 4);
+  v2 = (void *)this->SetupCamera();
+  m_type = this->m_type;
   qmemcpy(&actionId[76], v2, 0x18u);
-  v4 = v3 - 1;
+  v4 = m_type - 1;
   if ( v4 )
   {
     v5 = v4 - 1;
@@ -718,39 +718,39 @@ bool Object3D::Update(int _this)
     {
       if ( v5 != 1 )
         return ((gbRay *)&actionId[76])->IsColOBB((struct gbOBBox *)actionId) != 0;
-      ((gbGeomNode *)*(gbGeomNode **)(this + 8))->GetTotalOBBox((struct gbOBBox *)actionId);
+      ((gbGeomNode *)this->m_pol)->GetTotalOBBox((struct gbOBBox *)actionId);
     }
     else
     {
-      ((Actor *)*(Actor **)(this + 8))->PlayAction((int)actionId);
+      ((Actor *)this->m_pol)->PlayAction((int)actionId);
     }
   }
   else
   {
-    ((gbGeomNode *)*(gbGeomNode **)(this + 8))->GetOBBox((struct gbOBBox *)actionId);
+    ((gbGeomNode *)this->m_pol)->GetOBBox((struct gbOBBox *)actionId);
   }
-  ((gbMatrix4 *)actionId)->RightTranslate((struct gbVec3D *)(this + 32));
+  ((gbMatrix4 *)actionId)->RightTranslate((struct gbVec3D *)&this->m_subObjHeight);
   return ((gbRay *)&actionId[76])->IsColOBB((struct gbOBBox *)actionId) != 0;
 }
 
 // 0x0047DB40
-bool Object3D::GetMouseRay(int _this, int a2)
+bool Object3D::GetMouseRay(int a2)
 {
   void *v3; // esi
-  int v4; // eax
-  int v5; // eax
-  int v6; // eax
+  __int32 m_type; // eax
+  __int32 v5; // eax
+  __int32 v6; // eax
   struct tagPOINT Point; // [esp+4h] [ebp-84h] BYREF
   _BYTE actionId[124]; // [esp+Ch] [ebp-7Ch] BYREF
 
-  if ( !*(_BYTE *)(this + 80) || *(_BYTE *)(this + 121) || (g_Input.m_shiftedKeyStates[4 * a2 + 204] & 0xF) != 1 )
+  if ( !LOBYTE(this->m_dropy) || BYTE1(this->m_forward.z) || (g_Input.m_shiftedKeyStates[4 * a2 + 204] & 0xF) != 1 )
     return 0;
   ((gbMatrix4 *)actionId)->gbMatrix4();
   ((GRPinput *)&Point)->GetCursorPos();
-  v3 = ((Object3D *)this)->SetupCamera();
-  v4 = *(_DWORD *)(this + 4);
+  v3 = (void *)this->SetupCamera();
+  m_type = this->m_type;
   qmemcpy(&actionId[76], v3, 0x18u);
-  v5 = v4 - 1;
+  v5 = m_type - 1;
   if ( v5 )
   {
     v6 = v5 - 1;
@@ -758,18 +758,18 @@ bool Object3D::GetMouseRay(int _this, int a2)
     {
       if ( v6 != 1 )
         return ((gbRay *)&actionId[76])->IsColOBB((struct gbOBBox *)actionId) != 0;
-      ((gbGeomNode *)*(gbGeomNode **)(this + 8))->GetTotalOBBox((struct gbOBBox *)actionId);
+      ((gbGeomNode *)this->m_pol)->GetTotalOBBox((struct gbOBBox *)actionId);
     }
     else
     {
-      ((Actor *)*(Actor **)(this + 8))->PlayAction((int)actionId);
+      ((Actor *)this->m_pol)->PlayAction((int)actionId);
     }
   }
   else
   {
-    ((gbGeomNode *)*(gbGeomNode **)(this + 8))->GetOBBox((struct gbOBBox *)actionId);
+    ((gbGeomNode *)this->m_pol)->GetOBBox((struct gbOBBox *)actionId);
   }
-  ((gbMatrix4 *)actionId)->RightTranslate((struct gbVec3D *)(this + 32));
+  ((gbMatrix4 *)actionId)->RightTranslate((struct gbVec3D *)&this->m_subObjHeight);
   return ((gbRay *)&actionId[76])->IsColOBB((struct gbOBBox *)actionId) != 0;
 }
 

@@ -54,7 +54,7 @@ char SceneObj::Update(unsigned int a2)
       if ( *((_DWORD *)this + 3) >= a2 )
         return 1;
 LABEL_29:
-      ((int)this)->GetKeyState(a2);
+      ((GRPinput *)this)->GetKeyState(a2);
       return 1;
     }
     v8 = *((_DWORD *)this + 3);
@@ -70,7 +70,7 @@ LABEL_29:
         *((_DWORD *)this + 1) = 0;
         *((_DWORD *)this + 2) = 0;
         *((_DWORD *)this + 3) = 0;
-        ((int)this)->GetKeyState(a2);
+        ((GRPinput *)this)->GetKeyState(a2);
         return 1;
       }
       operator delete(v9);
@@ -78,7 +78,7 @@ LABEL_29:
     *((_DWORD *)this + 1) = 0;
     *((_DWORD *)this + 2) = 0;
     *((_DWORD *)this + 3) = 0;
-    ((int)this)->GetKeyState(a2);
+    ((GRPinput *)this)->GetKeyState(a2);
     return 1;
   }
   else if ( v12 )
@@ -142,7 +142,7 @@ void * SceneObj::Destructor()
 void SceneObj::DestroyInternal()
 {
   *(_DWORD *)this = &off_5708E8;
-  ((UIWnd *)(this + 3340))->_UIFrameWnd();
+  ((UIFrameWnd *)(this + 3340))->_UIFrameWnd();
   ((UIWnd *)(this + 3096))->~UIWnd();
   ((UIItem *)(UIItem *)this + 1728)->UIItem();
   ((UIItem *)(UIItem *)this + 360)->UIItem();

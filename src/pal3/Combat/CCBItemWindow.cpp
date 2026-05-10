@@ -25,7 +25,7 @@ extern void *off_570554;
 // 0x0051B160
 CCBItemWindow::CCBItemWindow(CCBItemWindow *Block, char a2)
 {
-  ((UIWnd *)Block)->~UIWnd();
+  Block->~UIWnd();
   if ( (a2 & 1) != 0 )
     operator delete(Block);
   (UIWnd *)Block;
@@ -77,7 +77,7 @@ char CCBItemWindow::Create(_DWORD *pRect, int parent)
     232,
     pRect,
     this);
-  ((UIWnd **)this->m_childs.m_pData)->CreateFromTemplate(aUiCombatContro_18, 0);
+  ((UIWnd *)this->m_childs.m_pData)->CreateFromTemplate(aUiCombatContro_18, 0);
   (**(void (***)(void *, int))p_m_childs->m_pData)(p_m_childs->m_pData, 1);
   p_m_benable = (int *)&this->m_benable;
   ((CCBLineupWindow *)&this->m_benable)->OnMessage();
@@ -179,7 +179,7 @@ char CCBItemWindow::Create(_DWORD *pRect, int parent)
       dword_570138[i],
       pRect,
       this);
-    ((UIWnd **)*p_m_nSize)->CreateFromTemplate(off_570218[i], 0);
+    ((UIWnd *)*p_m_nSize)->CreateFromTemplate(off_570218[i], 0);
     (**(void (***)(int, int))*p_m_nSize)(*p_m_nSize, 1);
     ++p_m_nSize;
   }
@@ -203,79 +203,79 @@ char CCBItemWindow::Create(_DWORD *pRect, int parent)
 }
 
 // 0x0051B4B0
-int CCBItemWindow::Destroy(int _this)
+int CCBItemWindow::Destroy()
 {
   int result; // eax
-  int v3; // ecx
-  int v4; // ecx
-  int v5; // ecx
-  int v6; // ecx
-  int v7; // ecx
-  int v8; // ecx
-  int v9; // ecx
-  int v10; // ecx
-  _DWORD *v11; // esi
+  void *m_pData; // ecx
+  int m_benable; // ecx
+  int m_bfocus; // ecx
+  gbTexture *m_pbktex; // ecx
+  UIStatic *m_pBack; // ecx
+  UIStatic *m_pDescription; // ecx
+  UIListBox *v9; // ecx
+  UIListBox *v10; // ecx
+  int *p_m_nSize; // esi
   int v12; // edi
 
-  result = ((UIListBox **)this)->SetScrollPos();
-  v3 = *(_DWORD *)(this + 72);
-  if ( v3 )
+  result = ((UIListBox *)this)->SetScrollPos();
+  m_pData = (void *)this->m_childs.m_pData;
+  if ( m_pData )
   {
-    result = (*(int (**)(int, int))(*(_DWORD *)v3 + 20))(v3, 1);
-    *(_DWORD *)(this + 72) = 0;
+    result = (*(int (**)(void *, int))(*(_DWORD *)m_pData + 20))(m_pData, 1);
+    this->m_childs.m_pData = 0;
   }
-  v4 = *(_DWORD *)(this + 96);
-  if ( v4 )
+  m_benable = this->m_benable;
+  if ( m_benable )
   {
-    result = (*(int (**)(int, int))(*(_DWORD *)v4 + 20))(v4, 1);
-    *(_DWORD *)(this + 96) = 0;
+    result = (*(int (**)(int, int))(*(_DWORD *)m_benable + 20))(m_benable, 1);
+    this->m_benable = 0;
   }
-  v5 = *(_DWORD *)(this + 100);
-  if ( v5 )
+  m_bfocus = this->m_bfocus;
+  if ( m_bfocus )
   {
-    result = (*(int (**)(int, int))(*(_DWORD *)v5 + 20))(v5, 1);
-    *(_DWORD *)(this + 100) = 0;
+    result = (*(int (**)(int, int))(*(_DWORD *)m_bfocus + 20))(m_bfocus, 1);
+    this->m_bfocus = 0;
   }
-  v6 = *(_DWORD *)(this + 104);
-  if ( v6 )
+  m_pbktex = (gbTexture *)this->m_pbktex;
+  if ( m_pbktex )
   {
-    result = (*(int (**)(int, int))(*(_DWORD *)v6 + 20))(v6, 1);
-    *(_DWORD *)(this + 104) = 0;
+    result = (*(int (**)(gbTexture *, int))(m_pbktex->RefCount + 20))(m_pbktex, 1);
+    this->m_pbktex = 0;
   }
-  v7 = *(_DWORD *)(this + 108);
-  if ( v7 )
+  m_pBack = (UIStatic *)this->m_pBack;
+  if ( m_pBack )
   {
-    result = (*(int (**)(int, int))(*(_DWORD *)v7 + 20))(v7, 1);
-    *(_DWORD *)(this + 108) = 0;
+    result = (*(int (**)(UIStatic *, int))(m_pBack->m_fontcolor.ColorQuadFmt + 20))(m_pBack, 1);
+    this->m_pBack = 0;
   }
-  v8 = *(_DWORD *)(this + 112);
-  if ( v8 )
+  m_pDescription = (UIStatic *)this->m_pDescription;
+  if ( m_pDescription )
   {
-    result = (*(int (**)(int, int))(*(_DWORD *)v8 + 20))(v8, 1);
-    *(_DWORD *)(this + 112) = 0;
+    result = (*(int (**)(UIStatic *, int))(m_pDescription->m_fontcolor.ColorQuadFmt + 20))(m_pDescription, 1);
+    this->m_pDescription = 0;
   }
-  v9 = *(_DWORD *)(this + 116);
+  v9 = (UIListBox *)this->m_pItemList[0];
   if ( v9 )
   {
-    result = (*(int (**)(int, int))(*(_DWORD *)v9 + 20))(v9, 1);
-    *(_DWORD *)(this + 116) = 0;
+    result = (*(int (**)(UIListBox *, int))(v9->m_fontcolor.ColorQuadFmt + 20))(v9, 1);
+    this->m_pItemList[0] = 0;
   }
-  v10 = *(_DWORD *)(this + 120);
+  v10 = (UIListBox *)this->m_pItemList[1];
   if ( v10 )
   {
-    result = (*(int (**)(int, int))(*(_DWORD *)v10 + 20))(v10, 1);
-    *(_DWORD *)(this + 120) = 0;
+    result = (*(int (**)(UIListBox *, int))(v10->m_fontcolor.ColorQuadFmt + 20))(v10, 1);
+    this->m_pItemList[1] = 0;
   }
-  v11 = (_DWORD *)(this + 76);
+  p_m_nSize = (int *)&this->m_childs.m_nSize;
   v12 = 5;
   do
   {
-    if ( *v11 )
+    if ( *p_m_nSize )
     {
-      result = (*(int (**)(_DWORD, int))(*(_DWORD *)*v11 + 20))(*v11, 1);
-      *v11 = 0;
+      result = (*(int (**)(int, int))(*(_DWORD *)*p_m_nSize + 20))(*p_m_nSize, 1);
+      *p_m_nSize = 0;
     }
-    ++v11;
+    ++p_m_nSize;
     --v12;
   }
   while ( v12 );
@@ -331,7 +331,7 @@ _DWORD * CCBItemWindow::Update()
 // 0x0051B670
 UIWnd * CCBItemWindow::CreateButtons(CCBItemWindow *Block, char a2)
 {
-  ((UIWnd *)Block)->~UIWnd();
+  Block->~UIWnd();
   if ( (a2 & 1) != 0 )
     operator delete(Block);
   return (UIWnd *)Block;

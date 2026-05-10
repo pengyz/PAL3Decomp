@@ -22,7 +22,7 @@ extern void *off_570310;
 // 0x0051C260
 CCBSkillWindow::CCBSkillWindow(CCBSkillWindow *Block, char a2)
 {
-  ((UIWnd *)Block)->~UIWnd();
+  Block->~UIWnd();
   if ( (a2 & 1) != 0 )
     operator delete(Block);
   (UIWnd *)Block;
@@ -88,7 +88,7 @@ char CCBSkillWindow::Create(_DWORD *pRect, int parent)
     513,
     pRect,
     this);
-  ((UIWnd **)this->m_childs.m_pData)->CreateFromTemplate(aUiCombatResult, 0);
+  ((UIWnd *)this->m_childs.m_pData)->CreateFromTemplate(aUiCombatResult, 0);
   (**(void (***)(void *, int))p_m_childs->m_pData)(p_m_childs->m_pData, 1);
   v6 = (LPCSTR *)off_570310;
   p_m_pBack = &this->m_pBack;
@@ -104,7 +104,7 @@ char CCBSkillWindow::Create(_DWORD *pRect, int parent)
       528,
       pRect,
       this);
-    ((UIWnd **)*p_m_pBack++)->CreateFromTemplate(*v6++, 0);
+    ((UIWnd *)*p_m_pBack++)->CreateFromTemplate(*v6++, 0);
   }
   while ( (int)v6 < (int)dword_570324 );
   (*(void (**)(UIStatic *, int))this->m_pBack->m_fontcolor.ColorQuadFmt)(this->m_pBack, 1);
@@ -292,116 +292,116 @@ char CCBSkillWindow::Create(_DWORD *pRect, int parent)
 }
 
 // 0x0051C880
-int CCBSkillWindow::Destroy(int _this)
+int CCBSkillWindow::Destroy()
 {
   int result; // eax
-  _DWORD *v3; // edi
+  UIStatic **p_m_pBack; // edi
   int v4; // ebx
-  int v5; // ecx
-  int v6; // ecx
-  int v7; // ecx
-  int v8; // ecx
-  int v9; // ecx
-  int v10; // ecx
-  int v11; // ecx
-  int v12; // ecx
-  int v13; // ecx
+  void *m_pData; // ecx
+  int m_nSize; // ecx
+  int m_nMaxSize; // ecx
+  int m_nGrowBy; // ecx
+  int m_bcreateok; // ecx
+  int m_bvisible; // ecx
+  int m_benable; // ecx
+  int m_bfocus; // ecx
+  gbTexture *m_pbktex; // ecx
   int v14; // ecx
   int v15; // ecx
   int v16; // ecx
   int v17; // ecx
 
-  result = ((UIListBox **)this)->SetScrollPos();
-  v3 = (_DWORD *)(this + 108);
+  result = ((UIListBox *)this)->SetScrollPos();
+  p_m_pBack = &this->m_pBack;
   v4 = 11;
   do
   {
-    if ( *v3 )
+    if ( *p_m_pBack )
     {
-      result = (*(int (**)(_DWORD, int))(*(_DWORD *)*v3 + 20))(*v3, 1);
-      *v3 = 0;
+      result = (*(int (**)(UIStatic *, int))((*p_m_pBack)->m_fontcolor.ColorQuadFmt + 20))(*p_m_pBack, 1);
+      *p_m_pBack = 0;
     }
-    ++v3;
+    ++p_m_pBack;
     --v4;
   }
   while ( v4 );
-  v5 = *(_DWORD *)(this + 72);
-  if ( v5 )
+  m_pData = (void *)this->m_childs.m_pData;
+  if ( m_pData )
   {
-    result = (*(int (**)(int, int))(*(_DWORD *)v5 + 20))(v5, 1);
-    *(_DWORD *)(this + 72) = 0;
+    result = (*(int (**)(void *, int))(*(_DWORD *)m_pData + 20))(m_pData, 1);
+    this->m_childs.m_pData = 0;
   }
-  v6 = *(_DWORD *)(this + 76);
-  if ( v6 )
+  m_nSize = this->m_childs.m_nSize;
+  if ( m_nSize )
   {
-    result = (*(int (**)(int, int))(*(_DWORD *)v6 + 20))(v6, 1);
-    *(_DWORD *)(this + 76) = 0;
+    result = (*(int (**)(int, int))(*(_DWORD *)m_nSize + 20))(m_nSize, 1);
+    this->m_childs.m_nSize = 0;
   }
-  v7 = *(_DWORD *)(this + 80);
-  if ( v7 )
+  m_nMaxSize = this->m_childs.m_nMaxSize;
+  if ( m_nMaxSize )
   {
-    result = (*(int (**)(int, int))(*(_DWORD *)v7 + 20))(v7, 1);
-    *(_DWORD *)(this + 80) = 0;
+    result = (*(int (**)(int, int))(*(_DWORD *)m_nMaxSize + 20))(m_nMaxSize, 1);
+    this->m_childs.m_nMaxSize = 0;
   }
-  v8 = *(_DWORD *)(this + 84);
-  if ( v8 )
+  m_nGrowBy = this->m_childs.m_nGrowBy;
+  if ( m_nGrowBy )
   {
-    result = (*(int (**)(int, int))(*(_DWORD *)v8 + 20))(v8, 1);
-    *(_DWORD *)(this + 84) = 0;
+    result = (*(int (**)(int, int))(*(_DWORD *)m_nGrowBy + 20))(m_nGrowBy, 1);
+    this->m_childs.m_nGrowBy = 0;
   }
-  v9 = *(_DWORD *)(this + 88);
-  if ( v9 )
+  m_bcreateok = this->m_bcreateok;
+  if ( m_bcreateok )
   {
-    result = (*(int (**)(int, int))(*(_DWORD *)v9 + 20))(v9, 1);
-    *(_DWORD *)(this + 88) = 0;
+    result = (*(int (**)(int, int))(*(_DWORD *)m_bcreateok + 20))(m_bcreateok, 1);
+    this->m_bcreateok = 0;
   }
-  v10 = *(_DWORD *)(this + 92);
-  if ( v10 )
+  m_bvisible = this->m_bvisible;
+  if ( m_bvisible )
   {
-    result = (*(int (**)(int, int))(*(_DWORD *)v10 + 20))(v10, 1);
-    *(_DWORD *)(this + 92) = 0;
+    result = (*(int (**)(int, int))(*(_DWORD *)m_bvisible + 20))(m_bvisible, 1);
+    this->m_bvisible = 0;
   }
-  v11 = *(_DWORD *)(this + 96);
-  if ( v11 )
+  m_benable = this->m_benable;
+  if ( m_benable )
   {
-    result = (*(int (**)(int, int))(*(_DWORD *)v11 + 20))(v11, 1);
-    *(_DWORD *)(this + 96) = 0;
+    result = (*(int (**)(int, int))(*(_DWORD *)m_benable + 20))(m_benable, 1);
+    this->m_benable = 0;
   }
-  v12 = *(_DWORD *)(this + 100);
-  if ( v12 )
+  m_bfocus = this->m_bfocus;
+  if ( m_bfocus )
   {
-    result = (*(int (**)(int, int))(*(_DWORD *)v12 + 20))(v12, 1);
-    *(_DWORD *)(this + 100) = 0;
+    result = (*(int (**)(int, int))(*(_DWORD *)m_bfocus + 20))(m_bfocus, 1);
+    this->m_bfocus = 0;
   }
-  v13 = *(_DWORD *)(this + 104);
-  if ( v13 )
+  m_pbktex = (gbTexture *)this->m_pbktex;
+  if ( m_pbktex )
   {
-    result = (*(int (**)(int, int))(*(_DWORD *)v13 + 20))(v13, 1);
-    *(_DWORD *)(this + 104) = 0;
+    result = (*(int (**)(gbTexture *, int))(m_pbktex->RefCount + 20))(m_pbktex, 1);
+    this->m_pbktex = 0;
   }
-  v14 = *(_DWORD *)(this + 152);
+  v14 = *((_DWORD *)this + 38);
   if ( v14 )
   {
     result = (*(int (**)(int, int))(*(_DWORD *)v14 + 20))(v14, 1);
-    *(_DWORD *)(this + 152) = 0;
+    *((_DWORD *)this + 38) = 0;
   }
-  v15 = *(_DWORD *)(this + 156);
+  v15 = *((_DWORD *)this + 39);
   if ( v15 )
   {
     result = (*(int (**)(int, int))(*(_DWORD *)v15 + 20))(v15, 1);
-    *(_DWORD *)(this + 156) = 0;
+    *((_DWORD *)this + 39) = 0;
   }
-  v16 = *(_DWORD *)(this + 160);
+  v16 = *((_DWORD *)this + 40);
   if ( v16 )
   {
     result = (*(int (**)(int, int))(*(_DWORD *)v16 + 20))(v16, 1);
-    *(_DWORD *)(this + 160) = 0;
+    *((_DWORD *)this + 40) = 0;
   }
-  v17 = *(_DWORD *)(this + 164);
+  v17 = *((_DWORD *)this + 41);
   if ( v17 )
   {
     result = (*(int (**)(int, int))(*(_DWORD *)v17 + 20))(v17, 1);
-    *(_DWORD *)(this + 164) = 0;
+    *((_DWORD *)this + 41) = 0;
   }
   return result;
 }

@@ -294,7 +294,7 @@ void CScreenMode::SetMode(int mode)
         }
       }
       v13 = -1;
-      ((OpenNULLFile **)&v9)->OpenNULLFile();
+      ((OpenNULLFile *)&v9)->OpenNULLFile();
     }
   }
 }

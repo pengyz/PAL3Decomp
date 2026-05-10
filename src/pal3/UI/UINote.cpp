@@ -32,5 +32,5 @@ void * UINote::Create(int id, int a3, int a4, char *tex)
   this->m_static.m_rect.bottom = 0;
   this->m_rect.top = 0;
   v10 = -1;
-  return ((OpenNULLFile **)&v8)->OpenNULLFile();
+  return ((OpenNULLFile *)&v8)->OpenNULLFile();
 }

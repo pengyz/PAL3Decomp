@@ -33,16 +33,9 @@ extern char aScriptSysInitF[];
 extern char aSystemScriptLo[];
 extern char aUiBigmapBigmap[];
 extern unsigned char byte_56A634;
-extern unsigned char byte_D8C2B8;
-extern unsigned char byte_D8C324;
 extern int dword_1894B78;
-extern int dword_D8C2BC;
-extern int dword_D8C2C0;
-extern int dword_D8C2C4;
-extern int dword_D8C2C8;
-extern int dword_D8C2E8;
-extern int dword_D8C360;
 extern void *off_58B448;
+extern int stru_D8C2B8;
 extern int unknown_libname_339;
 extern int unknown_libname_340;
 
@@ -234,7 +227,7 @@ void * PalScript::LoadFromFile(char *filename)
     }
   }
   v9 = -1;
-  return ((OpenNULLFile **)&v8)->OpenNULLFile();
+  return ((OpenNULLFile *)&v8)->OpenNULLFile();
 }
 
 // 0x004319F0
@@ -405,39 +398,39 @@ PalScript::PalScript()
 // 0x00431F00
 int PalScript::AddWaitObj()
 {
-  ((int)this)->AddCamObj();
+  ((PalScript *)this)->AddCamObj();
   return atexit(PalScript::ClearAllCamObj);
 }
 
 // 0x00431F10
 int PalScript::AddCamObj(int a1)
 {
-  byte_D8C2B8 = HIBYTE(a1);
-  dword_D8C2BC = 0;
-  dword_D8C2C0 = 0;
-  dword_D8C2C4 = 0;
+  LOBYTE(stru_D8C2B8.m_lpDI) = HIBYTE(a1);
+  stru_D8C2B8.m_lpDIDKeyboard = 0;
+  stru_D8C2B8.m_lpDIDMouse = 0;
+  stru_D8C2B8.m_mouseSensitivity = 0.0;
   return 0;
 }
 
 // 0x00431F40
 void PalScript::ClearAllCamObj()
 {
-  char v0; // al
+  IDirectInputDevice8A v0; // al
 
-  if ( (byte_D8C324 & 0x10) == 0 )
+  if ( (stru_D8C2B8.m_keyStates[1] & 0x10) == 0 )
   {
-    byte_D8C324 |= 0x10u;
-    if ( dword_D8C2BC )
+    LOBYTE(stru_D8C2B8.m_keyStates[1]) |= 0x10u;
+    if ( stru_D8C2B8.m_lpDIDKeyboard )
     {
-      v0 = *(_BYTE *)(dword_D8C2BC - 1);
-      if ( !v0 || v0 == -1 )
-        operator delete((void *)(dword_D8C2BC - 1));
+      v0 = stru_D8C2B8.m_lpDIDKeyboard[-1];
+      if ( !*(_BYTE *)&v0 || v0 == 0xFF )
+        operator delete(&stru_D8C2B8.m_lpDIDKeyboard[-1]);
       else
-        *(_BYTE *)(dword_D8C2BC - 1) = v0 - 1;
+        stru_D8C2B8.m_lpDIDKeyboard[-1] = (IDirectInputDevice8A)(*(_BYTE *)&v0 - 1);
     }
-    dword_D8C2BC = 0;
-    dword_D8C2C0 = 0;
-    dword_D8C2C4 = 0;
+    stru_D8C2B8.m_lpDIDKeyboard = 0;
+    stru_D8C2B8.m_lpDIDMouse = 0;
+    stru_D8C2B8.m_mouseSensitivity = 0.0;
   }
 }
 
@@ -464,7 +457,7 @@ int PalScript::Update()
       sizeof(pExceptionObject));
     _CxxThrowException(pExceptionObject, (_ThrowInfo *)&_TI1_AV_Exception__);
   }
-  if ( !((int)dword_D8C2E8)->InsertAt(aInitSce) )
+  if ( !((PtrArray *)&stru_D8C2B8.m_mousept)->InsertAt(aInitSce) )
   {
     qmemcpy(
       pExceptionObject,
@@ -472,7 +465,7 @@ int PalScript::Update()
       sizeof(pExceptionObject));
     _CxxThrowException(pExceptionObject, (_ThrowInfo *)&_TI1_AV_Exception__);
   }
-  result = (int)((int)dword_D8C2C8)->InsertAt(aUiBigmapBigmap);
+  result = (int)((PtrArray *)&stru_D8C2B8.m_mouseMinX)->InsertAt(aUiBigmapBigmap);
   if ( !result )
   {
     qmemcpy(
@@ -489,14 +482,14 @@ char *PalScript::GetString()
 {
   char *result; // eax
 
-  if ( dword_D8C360 < 0 )
+  if ( stru_D8C2B8.m_keyStates[16] < 0 )
   {
     result = 0;
   }
   else
   {
-    --dword_D8C360;
-    result = (char *)(8 * dword_D8C360 + 14205804);
+    --stru_D8C2B8.m_keyStates[16];
+    result = (char *)(8 * stru_D8C2B8.m_keyStates[16] + 14205804);
   }
   if ( result )
   {
@@ -536,7 +529,7 @@ struct gbVFileSystem * PalScript::OpenScript(const char *a2, char a3)
   if ( a3 )
   {
     v5 = *(_DWORD *)g_Input.KeyInfo[177].Data;
-    v6 = ((int)dword_1894B78)->_CalculateUV(Buffer);
+    v6 = ((_Texture_Info *)dword_1894B78)->_CalculateUV(Buffer);
     *((_DWORD *)this + 49) = (PalScript *)(*(int (**)(int, Scene *))(v5 + 8))(g_Input.KeyInfo[177].Data, v6);
     *((_DWORD *)this + 50) = (PalScript *)((Parent_Data *)dword_1894B78)->Parent_Data(Buffer);
   }
@@ -550,5 +543,5 @@ struct gbVFileSystem * PalScript::OpenScript(const char *a2, char a3)
   if ( v7 )
     v7->LoadTexture(1);
   v11 = -1;
-  return ((OpenNULLFile **)&v9)->OpenNULLFile();
+  return ((OpenNULLFile *)&v9)->OpenNULLFile();
 }

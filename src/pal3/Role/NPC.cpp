@@ -31,7 +31,7 @@ unsigned int NPC::Create(int index)
   memset(&g_SceneMgr.m_slot0[1408 * index + 400], 0, 0x18u);
   *(_DWORD *)v3 = 0;
   *((_WORD *)v3 + 2) = 0;
-  result = ((Concurrency::details::VirtualProcessor *)&g_GDB)->details::VirtualProcessor::GetExecutionResourceId();
+  result = ((Concurrency *)&g_GDB)->details::VirtualProcessor::GetExecutionResourceId();
   v5 = 0;
   for ( indexa = result; v5 < indexa; ++v5 )
   {
@@ -80,7 +80,7 @@ void * NPC::Init(int index)
   memset(&g_SceneMgr.m_slot0[1408 * index + 624], 0, 0x30u);
   memset(&g_SceneMgr.m_slot0[1408 * index + 672], 0, 0x30u);
   memset(&g_SceneMgr.m_slot0[1408 * index + 720], 0, 0x30u);
-  indexa = ((Concurrency::details::VirtualProcessor *)&g_GDB)->details::VirtualProcessor::GetExecutionResourceId();
+  indexa = ((Concurrency *)&g_GDB)->details::VirtualProcessor::GetExecutionResourceId();
   if ( indexa > 0 )
   {
     do

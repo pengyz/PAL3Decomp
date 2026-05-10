@@ -78,12 +78,19 @@ def transform_oop_calls(code):
                             return
                         else:
                             # Complex expression as this-pointer
-                            # If it's already a cast to the right type, use directly
+                            # Always transform to OOP form (header declares as member function)
+                            # Use class_name for the cast since IDA may have wrong type
                             if first_arg.type == 'cast_expression':
-                                new_text = '(%s)->%s(%s)' % (
-                                    first_arg_text, method_name, rest_str)
+                                # Extract inner expression past the cast
+                                # (Type)expr -> get expr
+                                val_node = first_arg.child_by_field_name('value')
+                                if val_node:
+                                    inner = val_node.text.decode('utf-8')
+                                else:
+                                    inner = first_arg_text
+                                new_text = '((%s *)%s)->%s(%s)' % (
+                                    class_name, inner, method_name, rest_str)
                             else:
-                                # Add cast: ((ClassName *)expr)->Method(rest)
                                 new_text = '((%s *)%s)->%s(%s)' % (
                                     class_name, first_arg_text,
                                     method_name, rest_str)

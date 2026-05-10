@@ -34,7 +34,7 @@ void MiniGame1::Render()
   v6 = 5;
   do
   {
-    ((int)v5)->GetScreenDegree((int)v3, v7, v8, v9);
+    ((Object3D *)v5)->GetScreenDegree((int)v3, v7, v8, v9);
     v5 += 152;
     --v6;
   }
