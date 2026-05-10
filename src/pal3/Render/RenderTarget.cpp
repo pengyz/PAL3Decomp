@@ -1,6 +1,8 @@
 #include "pal3/ida_defs.h"
 #include "pal3/globals.h"
 #include "pal3/gen/RenderTarget.h"
+#include "pal3/gen/CameraCtrl.h"
+#include "pal3/gen/Logger.h"
 
 // Unnamed globals (extern)
 extern char aDProjectPal3Ef[];

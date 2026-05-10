@@ -1,6 +1,8 @@
 #include "pal3/ida_defs.h"
 #include "pal3/globals.h"
 #include "pal3/gen/UIDialog.h"
+#include "pal3/gen/UINote.h"
+#include "pal3/gen/UIWnd.h"
 
 // Forward declarations for unnamed functions
 int sub_445910(...);

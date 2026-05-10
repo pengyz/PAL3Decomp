@@ -1,6 +1,7 @@
 #include "pal3/ida_defs.h"
 #include "pal3/globals.h"
 #include "pal3/gen/Scene.h"
+#include "pal3/gen/Array.h"
 
 // Unnamed globals (extern)
 extern int nullsub_2;

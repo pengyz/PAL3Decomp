@@ -426,6 +426,21 @@ def generate_class_cpp(cls_name, methods):
     header_path = HEADER_DIR / ("%s.h" % cls_name)
     if header_path.exists():
         lines.append('#include "pal3/gen/%s.h"' % cls_name)
+
+    # Auto-detect additional includes needed from code content
+    # Look for ClassName:: or ClassName * patterns that need the class definition
+    all_code_preview = '\n'.join(m['code'] for m in methods)
+    needed_classes = set()
+    for match in re.finditer(r'\b([A-Z]\w+)::', all_code_preview):
+        c = match.group(1)
+        if c != cls_name and (HEADER_DIR / ("%s.h" % c)).exists():
+            needed_classes.add(c)
+    # Also detect "this->m_pXXX->" patterns where m_pXXX is a typed pointer member
+    for match in re.finditer(r'->(\w+)\(', all_code_preview):
+        pass  # method calls already handled by Class:: detection
+    for c in sorted(needed_classes):
+        lines.append('#include "pal3/gen/%s.h"' % c)
+
     lines.append("")
 
     # Sort methods by address

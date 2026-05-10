@@ -1,6 +1,8 @@
 #include "pal3/ida_defs.h"
 #include "pal3/globals.h"
 #include "pal3/gen/C2DSpark.h"
+#include "pal3/gen/GRPinput.h"
+#include "pal3/gen/Logger.h"
 
 // Unnamed globals (extern)
 extern char aCNewFailed_0[];

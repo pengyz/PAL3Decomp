@@ -1,6 +1,8 @@
 #include "pal3/ida_defs.h"
 #include "pal3/globals.h"
 #include "pal3/gen/CCBCamControl.h"
+#include "pal3/gen/CCBStageEffect.h"
+#include "pal3/gen/CEffect.h"
 
 // Unnamed globals (extern)
 extern char aGfxscriptGeomD[];

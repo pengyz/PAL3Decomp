@@ -1,6 +1,8 @@
 #include "pal3/ida_defs.h"
 #include "pal3/globals.h"
 #include "pal3/gen/RenderTarget2.h"
+#include "pal3/gen/CRenderTarget.h"
+#include "pal3/gen/RenderTarget.h"
 
 // Forward declarations for unnamed functions
 int sub_4BDD90(...);

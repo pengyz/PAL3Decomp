@@ -1,6 +1,9 @@
 #include "pal3/ida_defs.h"
 #include "pal3/globals.h"
 #include "pal3/gen/UIStatic.h"
+#include "pal3/gen/CScreenMode.h"
+#include "pal3/gen/GRPinput.h"
+#include "pal3/gen/UIWnd.h"
 
 // Unnamed globals (extern)
 extern void *off_56AD88;

@@ -1,6 +1,8 @@
 #include "pal3/ida_defs.h"
 #include "pal3/globals.h"
 #include "pal3/gen/CCBResultWindow.h"
+#include "pal3/gen/PalScriptMgr.h"
+#include "pal3/gen/UIWnd.h"
 
 // 0x0051F080
 CCBResultWindow::CCBResultWindow(int a2)

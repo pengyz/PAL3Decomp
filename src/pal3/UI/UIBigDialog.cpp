@@ -1,6 +1,10 @@
 #include "pal3/ida_defs.h"
 #include "pal3/globals.h"
 #include "pal3/gen/UIBigDialog.h"
+#include "pal3/gen/MvcViewport.h"
+#include "pal3/gen/UINote.h"
+#include "pal3/gen/UIScene.h"
+#include "pal3/gen/UIWnd.h"
 
 // Forward declarations for unnamed functions
 int sub_4517A0(...);

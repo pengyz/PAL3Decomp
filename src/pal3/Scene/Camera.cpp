@@ -1,6 +1,10 @@
 #include "pal3/ida_defs.h"
 #include "pal3/globals.h"
 #include "pal3/gen/Camera.h"
+#include "pal3/gen/Actor.h"
+#include "pal3/gen/CameraCtrl.h"
+#include "pal3/gen/RoleSystem.h"
+#include "pal3/gen/ScriptObj.h"
 
 // Forward declarations for unnamed functions
 int sub_4031D0(...);

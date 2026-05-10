@@ -1,6 +1,11 @@
 #include "pal3/ida_defs.h"
 #include "pal3/globals.h"
 #include "pal3/gen/CCBParabolaWindow.h"
+#include "pal3/gen/CCBLineupWindow.h"
+#include "pal3/gen/CCBUI.h"
+#include "pal3/gen/CScreenMode.h"
+#include "pal3/gen/UIListBox.h"
+#include "pal3/gen/UIWnd.h"
 
 // Forward declarations for unnamed functions
 int sub_4425D0(...);

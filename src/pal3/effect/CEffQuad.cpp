@@ -1,6 +1,8 @@
 #include "pal3/ida_defs.h"
 #include "pal3/globals.h"
 #include "pal3/gen/CEffQuad.h"
+#include "pal3/gen/CEffect.h"
+#include "pal3/gen/Logger.h"
 
 // Forward declarations for unnamed functions
 int sub_4D1EF0(...);

@@ -1,6 +1,7 @@
 #include "pal3/ida_defs.h"
 #include "pal3/globals.h"
 #include "pal3/gen/CEffModel.h"
+#include "pal3/gen/CEffMgr.h"
 
 // Forward declarations for unnamed functions
 int sub_4D1EF0(...);

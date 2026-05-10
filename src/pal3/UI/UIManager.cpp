@@ -1,6 +1,8 @@
 #include "pal3/ida_defs.h"
 #include "pal3/globals.h"
 #include "pal3/gen/UIManager.h"
+#include "pal3/gen/OpenBaseFile.h"
+#include "pal3/gen/OpenNULLFile.h"
 
 // Forward declarations for unnamed functions
 int sub_418260(...);

@@ -1,6 +1,7 @@
 #include "pal3/ida_defs.h"
 #include "pal3/globals.h"
 #include "pal3/gen/ScreenEffectMgr.h"
+#include "pal3/gen/ScreenEffect.h"
 
 // Unnamed globals (extern)
 extern unsigned char byte_DE7E90;

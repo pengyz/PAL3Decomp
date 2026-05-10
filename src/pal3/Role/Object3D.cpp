@@ -1,6 +1,17 @@
 #include "pal3/ida_defs.h"
 #include "pal3/globals.h"
 #include "pal3/gen/Object3D.h"
+#include "pal3/gen/Actor.h"
+#include "pal3/gen/GRPinput.h"
+#include "pal3/gen/OpenBaseFile.h"
+#include "pal3/gen/OpenNULLFile.h"
+#include "pal3/gen/PalScript.h"
+#include "pal3/gen/UIFrameWnd.h"
+#include "pal3/gen/UIItem.h"
+#include "pal3/gen/UIListBox.h"
+#include "pal3/gen/UINote.h"
+#include "pal3/gen/UIScene.h"
+#include "pal3/gen/UIWnd.h"
 
 // Forward declarations for unnamed functions
 int sub_40EE00(...);

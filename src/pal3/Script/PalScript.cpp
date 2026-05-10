@@ -1,6 +1,14 @@
 #include "pal3/ida_defs.h"
 #include "pal3/globals.h"
 #include "pal3/gen/PalScript.h"
+#include "pal3/gen/Logger.h"
+#include "pal3/gen/OpenBaseFile.h"
+#include "pal3/gen/OpenNULLFile.h"
+#include "pal3/gen/PalScriptMgr.h"
+#include "pal3/gen/Parent_Data.h"
+#include "pal3/gen/PtrArray.h"
+#include "pal3/gen/SceneObj.h"
+#include "pal3/gen/UIWnd.h"
 
 // Forward declarations for unnamed functions
 int sub_430670(...);

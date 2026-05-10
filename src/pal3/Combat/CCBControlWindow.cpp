@@ -1,6 +1,14 @@
 #include "pal3/ida_defs.h"
 #include "pal3/globals.h"
 #include "pal3/gen/CCBControlWindow.h"
+#include "pal3/gen/CCBItemWindow.h"
+#include "pal3/gen/CCBUI.h"
+#include "pal3/gen/CScreenMode.h"
+#include "pal3/gen/Logger.h"
+#include "pal3/gen/UIFrameWnd.h"
+#include "pal3/gen/UIListBox.h"
+#include "pal3/gen/UIStatic.h"
+#include "pal3/gen/UIWnd.h"
 
 // Forward declarations for unnamed functions
 int sub_43F640(...);

@@ -1,6 +1,10 @@
 #include "pal3/ida_defs.h"
 #include "pal3/globals.h"
 #include "pal3/gen/CCBStageEffect.h"
+#include "pal3/gen/CCBStageRole.h"
+#include "pal3/gen/Logger.h"
+#include "pal3/gen/OpenBaseFile.h"
+#include "pal3/gen/OpenNULLFile.h"
 
 // Forward declarations for unnamed functions
 int sub_5090A0(...);

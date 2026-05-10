@@ -1,6 +1,12 @@
 #include "pal3/ida_defs.h"
 #include "pal3/globals.h"
 #include "pal3/gen/SceneObj.h"
+#include "pal3/gen/Actor.h"
+#include "pal3/gen/GRPinput.h"
+#include "pal3/gen/UIFrameWnd.h"
+#include "pal3/gen/UIItem.h"
+#include "pal3/gen/UIListBox.h"
+#include "pal3/gen/UIWnd.h"
 
 // Unnamed globals (extern)
 extern void *off_5708E8;

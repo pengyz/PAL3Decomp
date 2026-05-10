@@ -1,6 +1,7 @@
 #include "pal3/ida_defs.h"
 #include "pal3/globals.h"
 #include "pal3/gen/MagicUI.h"
+#include "pal3/gen/UIBase.h"
 
 // Forward declarations for unnamed functions
 int sub_484ED0(...);

@@ -1,6 +1,11 @@
 #include "pal3/ida_defs.h"
 #include "pal3/globals.h"
 #include "pal3/gen/CEffMgr.h"
+#include "pal3/gen/CEffSParticle.h"
+#include "pal3/gen/CPK.h"
+#include "pal3/gen/Logger.h"
+#include "pal3/gen/OpenBaseFile.h"
+#include "pal3/gen/OpenNULLFile.h"
 
 // Forward declarations for unnamed functions
 int sub_4C04C0(...);

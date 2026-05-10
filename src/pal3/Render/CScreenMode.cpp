@@ -1,6 +1,15 @@
 #include "pal3/ida_defs.h"
 #include "pal3/globals.h"
 #include "pal3/gen/CScreenMode.h"
+#include "pal3/gen/CPK.h"
+#include "pal3/gen/OpenBaseFile.h"
+#include "pal3/gen/OpenNULLFile.h"
+#include "pal3/gen/PalScript.h"
+#include "pal3/gen/PalScriptMgr.h"
+#include "pal3/gen/PtrArray.h"
+#include "pal3/gen/UICursor.h"
+#include "pal3/gen/UIQuadManager.h"
+#include "pal3/gen/UIRenderObj.h"
 
 // Forward declarations for unnamed functions
 int sub_42C1C0(...);

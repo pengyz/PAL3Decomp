@@ -1,6 +1,8 @@
 #include "pal3/ida_defs.h"
 #include "pal3/globals.h"
 #include "pal3/gen/PalScriptMgr.h"
+#include "pal3/gen/GRPinput.h"
+#include "pal3/gen/PtrArray.h"
 
 // Forward declarations for unnamed functions
 int sub_431CB0(...);

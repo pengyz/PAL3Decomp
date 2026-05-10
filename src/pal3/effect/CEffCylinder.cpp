@@ -1,6 +1,10 @@
 #include "pal3/ida_defs.h"
 #include "pal3/globals.h"
 #include "pal3/gen/CEffCylinder.h"
+#include "pal3/gen/CEffMgr.h"
+#include "pal3/gen/CEffect.h"
+#include "pal3/gen/CEffgbParticle.h"
+#include "pal3/gen/Logger.h"
 
 // Forward declarations for unnamed functions
 int sub_4C5350(...);

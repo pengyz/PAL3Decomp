@@ -1,6 +1,8 @@
 #include "pal3/ida_defs.h"
 #include "pal3/globals.h"
 #include "pal3/gen/CEffShock.h"
+#include "pal3/gen/CEffMgr.h"
+#include "pal3/gen/Logger.h"
 
 // Forward declarations for unnamed functions
 int sub_4D3870(...);

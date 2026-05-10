@@ -1,6 +1,17 @@
 #include "pal3/ida_defs.h"
 #include "pal3/globals.h"
 #include "pal3/gen/CCBStageRole.h"
+#include "pal3/gen/Actor.h"
+#include "pal3/gen/C3DSpark.h"
+#include "pal3/gen/CCBRoleState.h"
+#include "pal3/gen/CCBSystem.h"
+#include "pal3/gen/CEffMgr.h"
+#include "pal3/gen/CEffSParticle.h"
+#include "pal3/gen/CEffect.h"
+#include "pal3/gen/CScreenMode.h"
+#include "pal3/gen/Logger.h"
+#include "pal3/gen/SceneObj.h"
+#include "pal3/gen/UIWnd.h"
 
 // Forward declarations for unnamed functions
 int sub_40EE00(...);

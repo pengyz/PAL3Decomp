@@ -1,6 +1,11 @@
 #include "pal3/ida_defs.h"
 #include "pal3/globals.h"
 #include "pal3/gen/CCBStageCam.h"
+#include "pal3/gen/CCCTData.h"
+#include "pal3/gen/CameraCtrl.h"
+#include "pal3/gen/Logger.h"
+#include "pal3/gen/OpenBaseFile.h"
+#include "pal3/gen/OpenNULLFile.h"
 
 // Forward declarations for unnamed functions
 int sub_504DD0(...);

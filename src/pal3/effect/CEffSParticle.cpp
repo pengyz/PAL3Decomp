@@ -1,6 +1,9 @@
 #include "pal3/ida_defs.h"
 #include "pal3/globals.h"
 #include "pal3/gen/CEffSParticle.h"
+#include "pal3/gen/CCBSystem.h"
+#include "pal3/gen/CEffMgr.h"
+#include "pal3/gen/CEffect.h"
 
 // Forward declarations for unnamed functions
 int sub_4D4EA0(...);

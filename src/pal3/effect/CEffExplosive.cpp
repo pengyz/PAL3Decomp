@@ -1,6 +1,9 @@
 #include "pal3/ida_defs.h"
 #include "pal3/globals.h"
 #include "pal3/gen/CEffExplosive.h"
+#include "pal3/gen/CEffCallBack.h"
+#include "pal3/gen/CEffMgr.h"
+#include "pal3/gen/Logger.h"
 
 // Forward declarations for unnamed functions
 int sub_4C7E60(...);

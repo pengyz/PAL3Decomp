@@ -1,6 +1,8 @@
 #include "pal3/ida_defs.h"
 #include "pal3/globals.h"
 #include "pal3/gen/UIRenderObj.h"
+#include "pal3/gen/GRPinput.h"
+#include "pal3/gen/UIQuadManager.h"
 
 // 0x00541640
 UIRenderObj::UIRenderObj(int _this)

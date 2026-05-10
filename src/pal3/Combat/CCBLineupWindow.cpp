@@ -1,6 +1,15 @@
 #include "pal3/ida_defs.h"
 #include "pal3/globals.h"
 #include "pal3/gen/CCBLineupWindow.h"
+#include "pal3/gen/CCBControlWindow.h"
+#include "pal3/gen/CCBItemWindow.h"
+#include "pal3/gen/CCBMagicWindow.h"
+#include "pal3/gen/CCBProtectWindow.h"
+#include "pal3/gen/Logger.h"
+#include "pal3/gen/UIFrameWnd.h"
+#include "pal3/gen/UIScene.h"
+#include "pal3/gen/UIStatic.h"
+#include "pal3/gen/UIWnd.h"
 
 // Unnamed globals (extern)
 extern char aCNewFailed[];

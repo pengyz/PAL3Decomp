@@ -1,6 +1,20 @@
 #include "pal3/ida_defs.h"
 #include "pal3/globals.h"
 #include "pal3/gen/CGameData.h"
+#include "pal3/gen/EquipUI.h"
+#include "pal3/gen/MagicUI.h"
+#include "pal3/gen/MvcViewport.h"
+#include "pal3/gen/Object3D.h"
+#include "pal3/gen/OpenBaseFile.h"
+#include "pal3/gen/OpenNULLFile.h"
+#include "pal3/gen/PropUI.h"
+#include "pal3/gen/StateUI.h"
+#include "pal3/gen/TextureLib.h"
+#include "pal3/gen/UIBigDialog.h"
+#include "pal3/gen/UIDialog.h"
+#include "pal3/gen/UIItem.h"
+#include "pal3/gen/UISelectDialog.h"
+#include "pal3/gen/UIWnd.h"
 
 // Forward declarations for unnamed functions
 int sub_43A5D0(...);

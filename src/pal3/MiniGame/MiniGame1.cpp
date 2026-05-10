@@ -1,6 +1,7 @@
 #include "pal3/ida_defs.h"
 #include "pal3/globals.h"
 #include "pal3/gen/MiniGame1.h"
+#include "pal3/gen/Object3D.h"
 
 // Forward declarations for unnamed functions
 int sub_52AFC0(...);

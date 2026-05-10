@@ -1,6 +1,12 @@
 #include "pal3/ida_defs.h"
 #include "pal3/globals.h"
 #include "pal3/gen/CCBProtectWindow.h"
+#include "pal3/gen/UIFrameWnd.h"
+#include "pal3/gen/UIItem.h"
+#include "pal3/gen/UIListBox.h"
+#include "pal3/gen/UIScene.h"
+#include "pal3/gen/UIStatic.h"
+#include "pal3/gen/UIWnd.h"
 
 // Unnamed globals (extern)
 extern int dword_17AD59C;

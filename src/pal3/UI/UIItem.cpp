@@ -1,6 +1,10 @@
 #include "pal3/ida_defs.h"
 #include "pal3/globals.h"
 #include "pal3/gen/UIItem.h"
+#include "pal3/gen/UIFrameWnd.h"
+#include "pal3/gen/UINote.h"
+#include "pal3/gen/UIScene.h"
+#include "pal3/gen/UIWnd.h"
 
 // Forward declarations for unnamed functions
 int sub_444F60(...);

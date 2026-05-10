@@ -1,6 +1,9 @@
 #include "pal3/ida_defs.h"
 #include "pal3/globals.h"
 #include "pal3/gen/CCBAttackSequen.h"
+#include "pal3/gen/CCBRoleState.h"
+#include "pal3/gen/NPC.h"
+#include "pal3/gen/UIWnd.h"
 
 // Forward declarations for unnamed functions
 int sub_446030(...);

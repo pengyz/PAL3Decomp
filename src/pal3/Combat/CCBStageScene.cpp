@@ -1,6 +1,11 @@
 #include "pal3/ida_defs.h"
 #include "pal3/globals.h"
 #include "pal3/gen/CCBStageScene.h"
+#include "pal3/gen/CCBRoleState.h"
+#include "pal3/gen/CIniFile.h"
+#include "pal3/gen/CameraCtrl.h"
+#include "pal3/gen/Logger.h"
+#include "pal3/gen/PAL_GDB.h"
 
 // Forward declarations for unnamed functions
 int sub_4DFB70(...);

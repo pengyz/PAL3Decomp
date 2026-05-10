@@ -1,6 +1,12 @@
 #include "pal3/ida_defs.h"
 #include "pal3/globals.h"
 #include "pal3/gen/UIScene.h"
+#include "pal3/gen/CScreenMode.h"
+#include "pal3/gen/GRPinput.h"
+#include "pal3/gen/OpenBaseFile.h"
+#include "pal3/gen/OpenNULLFile.h"
+#include "pal3/gen/RoleSystem.h"
+#include "pal3/gen/UIWnd.h"
 
 // Forward declarations for unnamed functions
 int sub_4019F0(...);

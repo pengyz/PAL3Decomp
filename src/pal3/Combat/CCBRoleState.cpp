@@ -1,6 +1,21 @@
 #include "pal3/ida_defs.h"
 #include "pal3/globals.h"
 #include "pal3/gen/CCBRoleState.h"
+#include "pal3/gen/C2DSpark.h"
+#include "pal3/gen/CCBAI.h"
+#include "pal3/gen/CCBAIWindow.h"
+#include "pal3/gen/CCBStage.h"
+#include "pal3/gen/CCBStageCam.h"
+#include "pal3/gen/CCBStageRole.h"
+#include "pal3/gen/CCBStageScene.h"
+#include "pal3/gen/CCBSystem.h"
+#include "pal3/gen/CCBUI.h"
+#include "pal3/gen/CScreenMode.h"
+#include "pal3/gen/Concurrency.h"
+#include "pal3/gen/Logger.h"
+#include "pal3/gen/NPC.h"
+#include "pal3/gen/PAL_GDB.h"
+#include "pal3/gen/UIWnd.h"
 
 // Forward declarations for unnamed functions
 int sub_40CCD0(...);

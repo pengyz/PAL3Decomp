@@ -1,6 +1,17 @@
 #include "pal3/ida_defs.h"
 #include "pal3/globals.h"
 #include "pal3/gen/ScriptSystem.h"
+#include "pal3/gen/Actor.h"
+#include "pal3/gen/CGameData.h"
+#include "pal3/gen/CScreenMode.h"
+#include "pal3/gen/CameraSystem.h"
+#include "pal3/gen/GRPinput.h"
+#include "pal3/gen/PalScript.h"
+#include "pal3/gen/PtrArray.h"
+#include "pal3/gen/RenderTarget3.h"
+#include "pal3/gen/RoleSystem.h"
+#include "pal3/gen/ScriptObj.h"
+#include "pal3/gen/UIWnd.h"
 
 // Forward declarations for unnamed functions
 int sub_410360(...);
