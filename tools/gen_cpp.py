@@ -271,8 +271,19 @@ def transform_method_code(cls_name, method_name, code, sig):
     # Also: &this[N] -> &((_DWORD *)this)[N]  and  this[N] -> ((_DWORD *)this)[N]
     # But be careful not to break this->member access
 
-    # 7. Fix void* to typed pointer: add (type*) cast for malloc/calloc returns
-    code = re.sub(r'(\w+\s*\*\s*\w+\s*=\s*)malloc\(', r'\1(void *)malloc(', code)
+    # 7. Fix void* implicit conversion (legal in C/VC6 but not modern C++)
+    # Add explicit cast: Type *v = expr -> Type *v = (Type *)expr
+    # Only for assignments, not declarations with initializers from non-void
+    def fix_void_cast(match):
+        type_part = match.group(1)  # e.g. "_DWORD *"
+        var_name = match.group(2)   # e.g. "v3"
+        expr = match.group(3)       # e.g. "malloc(16)"
+        # Only add cast if the expression could return void*
+        if any(kw in expr for kw in ['malloc', 'calloc', 'realloc', 'operator new',
+                                       'j_', 'sub_', 'qmemcpy']):
+            return '%s%s = (%s)%s' % (type_part, var_name, type_part.strip(), expr)
+        return match.group(0)
+    code = re.sub(r'(\w[\w ]*\*)\s*(\w+)\s*=\s*([^;]+)', fix_void_cast, code)
 
     return code
 
