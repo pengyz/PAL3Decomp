@@ -334,6 +334,46 @@ struct CCBRoleState {
         log("[!] CCBRoleState: FAILED")
 
     # =========================================================================
+    # OVERRIDE 8: UIWnd (68 bytes — correct types for vtable, colors, rect)
+    # Evidence: PDB has gbColorQuad, tagRECT, PtrArray; batch import used char[]
+    # Affects: All UI code (vtable calls, visibility/enable checks)
+    # =========================================================================
+    FWD4 = """
+struct PtrArray;
+struct gbColorQuad;
+struct tagRECT;
+"""
+    idc.parse_decls(FWD4, idc.PT_TYP)
+
+    DECL = """
+struct UIWnd {
+  void **_vftable;              // +0x00 (vtable pointer)
+  unsigned int m_fontcolor;     // +0x04 (gbColorQuad as DWORD)
+  unsigned int m_wndcolor;      // +0x08 (gbColorQuad as DWORD)
+  unsigned int m_id;            // +0x0C
+  int m_rect_left;              // +0x10
+  int m_rect_top;               // +0x14
+  int m_rect_right;             // +0x18
+  int m_rect_bottom;            // +0x1C
+  UIWnd *m_pfather;             // +0x20
+  void *m_childs_data;          // +0x24 (PtrArray.data)
+  int m_childs_count;           // +0x28 (PtrArray.count)
+  int m_childs_capacity;        // +0x2C (PtrArray.capacity)
+  int m_childs_elemsize;        // +0x30 (PtrArray.elemsize)
+  int m_bcreateok;              // +0x34
+  int m_bvisible;               // +0x38
+  int m_benable;                // +0x3C
+  int m_bfocus;                 // +0x40
+};
+"""
+    if idc.parse_decls(DECL, idc.PT_TYP) == 0:
+        applied += 1
+        log("[+] UIWnd: 68 bytes (vtable typed, rect/color expanded)")
+    else:
+        errors += 1
+        log("[!] UIWnd: FAILED")
+
+    # =========================================================================
     log("")
     log("[*] Applied: %d, Errors: %d" % (applied, errors))
     idc.qexit(0)
