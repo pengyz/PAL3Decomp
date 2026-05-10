@@ -291,6 +291,49 @@ struct C2DSpark { char _data[22640]; };
         log("[!] C2DSpark: FAILED")
 
     # =========================================================================
+    # OVERRIDE 7: CCBRoleState (20648 bytes, PAL3A=23904)
+    # Evidence: Contains tagRoleState[11] x2. PAL3 tagRoleState=892 vs PAL3A=1040.
+    #   Calculated: 23904 - (1040-892)*11*2 = 23904 - 3256 = 20648
+    # Affects: All combat role state functions
+    # =========================================================================
+    DECL = """
+struct CCBRoleState {
+  char m_sCombatDialog[512];     // +0x000
+  float m_fLastDialogTime;       // +0x200
+  unsigned char m_bCombatDialog; // +0x204
+  char _pad205[3];
+  CCBSystem *m_pCBSystem;        // +0x208
+  CCBStage *m_pStage;            // +0x20C
+  void *m_pUI;                   // +0x210
+  void *m_pUtil;                 // +0x214
+  unsigned char m_bWeSneakAttackEnemy; // +0x218
+  unsigned char m_bEnemySneakAttackUs; // +0x219
+  char _pad21A[2];
+  int m_nMaxRound;               // +0x21C
+  int m_nBossRound;              // +0x220
+  unsigned char m_bMustFail;     // +0x224
+  unsigned char m_bFleeAlwaysSuccess; // +0x225
+  unsigned char m_bCreatedNewRole;    // +0x226
+  char _pad227[1];
+  tagRoleState m_Role[11];       // +0x228 (892*11 = 9812 bytes, ends at +0x287C)
+  tagRoleState m_RoleXor[11];    // +0x287C (892*11 = 9812 bytes, ends at +0x4ED0)
+  char m_dwEXPTable[400];        // +0x4ED0
+  unsigned int m_dwWinTaskID;    // +0x5060
+  int m_bNGHDeadVariance;        // +0x5064
+  char _tail[124];               // +0x5068 to end
+};
+"""
+    if idc.parse_decls(DECL, idc.PT_TYP) == 0:
+        applied += 1
+        til2 = ida_typeinf.get_idati()
+        tif2 = ida_typeinf.tinfo_t()
+        tif2.get_named_type(til2, "CCBRoleState")
+        log("[+] CCBRoleState: %d bytes (PAL3A=23904)" % tif2.get_size())
+    else:
+        errors += 1
+        log("[!] CCBRoleState: FAILED")
+
+    # =========================================================================
     log("")
     log("[*] Applied: %d, Errors: %d" % (applied, errors))
     idc.qexit(0)
