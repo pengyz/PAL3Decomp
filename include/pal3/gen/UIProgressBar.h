@@ -25,7 +25,7 @@ public:
     float m_bradius; // +0x94
     float m_step; // +0x98
     float m_Val; // +0x9C
-    unsigned char m_IsGetit; // +0xA0
+    BYTE m_IsGetit; // +0xA0
     gbColorQuad m_bkColor; // +0xA4
     gbColorQuad m_foColor; // +0xA8
     gbTexture * m_pbk; // +0xAC
@@ -44,9 +44,9 @@ public:
     int m_alpha; // +0xE0
     int m_minAlpha; // +0xE4
     float m_fadespeed; // +0xE8
-    unsigned char m_isAdd; // +0xEC
-    unsigned char m_isFlash; // +0xED
-    unsigned char m_stop; // +0xEE
+    BYTE m_isAdd; // +0xEC
+    BYTE m_isFlash; // +0xED
+    BYTE m_stop; // +0xEE
     int m_warningval; // +0xF0
     // total size: 0xF4 (244)
 

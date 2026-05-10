@@ -3,7 +3,7 @@
 
 class S_Distribute {
 public:
-    unsigned long id; // +0x0
+    DWORD id; // +0x0
     int Num; // +0x4
     int m_Type; // +0x8
     int m_Index; // +0xC

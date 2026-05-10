@@ -15,7 +15,7 @@ public:
     int m_sizey; // +0x2D4
     _BGM m_mode; // +0x2D8
     int m_Interval; // +0x2DC
-    unsigned char m_opt; // +0x2E0
+    BYTE m_opt; // +0x2E0
     // total size: 0x2E4 (740)
 
 };

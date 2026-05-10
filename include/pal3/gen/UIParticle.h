@@ -13,28 +13,28 @@ public:
     int par_radiusY; // +0x1C
     int _W; // +0x20
     int _H; // +0x24
-    unsigned char m_bGetBottom; // +0x28
-    unsigned char m_bBounceX; // +0x29
+    BYTE m_bGetBottom; // +0x28
+    BYTE m_bBounceX; // +0x29
     float m_HelixAngle; // +0x2C
     float m_tempx; // +0x30
     float m_tempy; // +0x34
     float m_helix_rx; // +0x38
     float m_helix_ry; // +0x3C
-    unsigned char m_isDiffuse; // +0x40
+    BYTE m_isDiffuse; // +0x40
     float m_posx; // +0x44
     float m_posy; // +0x48
     int m_FlareTime; // +0x4C
-    unsigned char m_isSubA; // +0x50
+    BYTE m_isSubA; // +0x50
     gbColorQuad m_rainbowColor; // +0x54
-    unsigned char m_bGetTop; // +0x58
+    BYTE m_bGetTop; // +0x58
     float m_riseY; // +0x5C
     int m_xflag; // +0x60
     int m_state; // +0x64
-    unsigned char m_iscolorfade; // +0x68
+    BYTE m_iscolorfade; // +0x68
     UIPar_TimeCtrl m_time; // +0x6C
-    unsigned long m_sec; // +0x78
+    DWORD m_sec; // +0x78
     gbColorQuad m_color; // +0x7C
-    unsigned char _isActive; // +0x80
+    BYTE _isActive; // +0x80
     float _fade; // +0x84
     float _x; // +0x88
     float _y; // +0x8C

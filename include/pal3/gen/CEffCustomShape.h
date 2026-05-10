@@ -9,7 +9,7 @@ class t3DModel;
 
 class CEffCustomShape : public CEffObj, public CTaskTpl {
 public:
-    unsigned char m_bVisible; // +0x30
+    BYTE m_bVisible; // +0x30
     gbVec3D m_vecPos; // +0x34
     gbVec3D m_vecOffsetPos; // +0x40
     gbVec3D m_vecRot; // +0x4C

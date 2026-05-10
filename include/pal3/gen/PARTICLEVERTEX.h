@@ -6,10 +6,10 @@ class D3DXVECTOR3;
 class PARTICLEVERTEX {
 public:
     D3DXVECTOR3 v; // +0x0
-    unsigned long color; // +0xC
+    DWORD color; // +0xC
     float tu; // +0x10
     float tv; // +0x14
-    unsigned long FVF; // +0x0
+    DWORD FVF; // +0x0
     // total size: 0x18 (24)
 
 };

@@ -10,7 +10,7 @@ public:
     char _ParticleSystems[16]; // +0x10 (std::vector<CParticleSystem *,std::allocator<CParticleSystem *> >)
     gbRenderEffect * _pRenderEffect; // +0x20
     gbGfxManager * _pGfxMgr; // +0x24
-    unsigned long _dwReserved[4]; // +0x28
+    DWORD _dwReserved[4]; // +0x28
     // total size: 0x38 (56)
 
 };

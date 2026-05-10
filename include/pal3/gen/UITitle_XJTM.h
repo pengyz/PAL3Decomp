@@ -20,14 +20,14 @@ public:
     UIStatic m_background; // +0x2E0
     UIStatic m_title; // +0x380
     UIButton m_exit; // +0x420
-    unsigned char m_IsActive; // +0x578
+    BYTE m_IsActive; // +0x578
     UICoverFrm * m_pMgr; // +0x57C
     _Item m_Item; // +0x580
     int m_SelFirstRow; // +0x5B0
     int m_SelSecondRow; // +0x5B4
-    unsigned char m_SelFirstChanged; // +0x5B8
-    unsigned char m_SelSecondChanged; // +0x5B9
-    unsigned char m_SelZeroChanged; // +0x5BA
+    BYTE m_SelFirstChanged; // +0x5B8
+    BYTE m_SelSecondChanged; // +0x5B9
+    BYTE m_SelZeroChanged; // +0x5BA
     UIStatic m_WordBk; // +0x5BC
     UIStatic m_BtnBk; // +0x65C
     UIButton m_BtnFirstRow[4]; // +0x6FC

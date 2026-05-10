@@ -3,6 +3,9 @@
 
 class CGameData {
 public:
+    char _data[14544]; // +0x0
+    // total size: 0x38D0 (14544)
+
     int InitRoles(int a2); // 0x0044ADE0
     int InitItems(int a2); // 0x0044E660
     void * Init(); // 0x0044F130

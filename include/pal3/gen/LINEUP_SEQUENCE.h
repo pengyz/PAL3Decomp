@@ -3,7 +3,7 @@
 
 class LINEUP_SEQUENCE {
 public:
-    unsigned char Role_Sequence[5]; // +0x0
+    BYTE Role_Sequence[5]; // +0x0
     // total size: 0x5 (5)
 
 };

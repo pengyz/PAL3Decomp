@@ -23,12 +23,12 @@ public:
     int m_nCurFrame; // +0x44
     float m_fWidth; // +0x48
     float m_fHeight; // +0x4C
-    unsigned char m_bIsTime; // +0x50
-    unsigned char m_bOver; // +0x51
-    unsigned char m_bValid; // +0x52
-    unsigned char m_bDelyTime; // +0x53
+    BYTE m_bIsTime; // +0x50
+    BYTE m_bOver; // +0x51
+    BYTE m_bValid; // +0x52
+    BYTE m_bDelyTime; // +0x53
     float m_fNoteTime; // +0x54
-    unsigned long m_nameCrc; // +0x58
+    DWORD m_nameCrc; // +0x58
     gbRenderEffect * m_pSkyboxEff; // +0x5C
     gbVec3D m_vRender[4]; // +0x60
     // total size: 0x90 (144)

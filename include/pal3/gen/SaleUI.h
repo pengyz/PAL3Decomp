@@ -30,12 +30,12 @@ public:
     int m_ListSelNum[299][5]; // +0x756C
     int m_Max[299][5]; // +0x8CC8
     int m_Sum[5]; // +0xA424
-    unsigned char _isCreatable; // +0xA438
+    BYTE _isCreatable; // +0xA438
     PlayerItem m_SaleData[299][5]; // +0xA43C
     PlayerItem m_TempData[299][5]; // +0xEA50
     int m_NotesNull[299][5]; // +0x13064
-    unsigned char m_IsEquip[299][5]; // +0x147C0
-    unsigned char m_TempIsEquip[299][5]; // +0x14D97
+    BYTE m_IsEquip[299][5]; // +0x147C0
+    BYTE m_TempIsEquip[299][5]; // +0x14D97
     int x; // +0x15370
     tagRECT rc; // +0x15374
     UIStatic m_Frame; // +0x15384
@@ -54,7 +54,7 @@ public:
     int RoleY; // +0x15D18
     int HeadW; // +0x15D1C
     int HeadH; // +0x15D20
-    unsigned char m_Is[5]; // +0x15D24
+    BYTE m_Is[5]; // +0x15D24
     MUIDialog m_Msg; // +0x15D2C
     UI3DCtrl m_3DObj; // +0x16294
     tagRECT m_FlagRc; // +0x163C8
@@ -87,8 +87,8 @@ public:
     int curNum; // +0x1A858
     BtnGroup m_btnGroup; // +0x1A85C
     float m_ctrlTime; // +0x1AB40
-    unsigned char m_bCanUpdate1; // +0x1AB44
-    unsigned char m_bCanUpdate2; // +0x1AB45
+    BYTE m_bCanUpdate1; // +0x1AB44
+    BYTE m_bCanUpdate2; // +0x1AB45
     UIButton m_Sortfunc; // +0x1AB48
     UIButton m_Sortprice; // +0x1ACA0
     int m_sortstate; // +0x1ADF8
@@ -105,15 +105,15 @@ public:
     tagRECT m_MoneyRc; // +0x1B3FC
     UIStatic m_SumSale; // +0x1B40C
     tagRECT m_SumRc; // +0x1B4AC
-    unsigned char b_IsAdd; // +0x1B4BC
-    unsigned char b_IsSub; // +0x1B4BD
+    BYTE b_IsAdd; // +0x1B4BC
+    BYTE b_IsSub; // +0x1B4BD
     int m_extmode; // +0x1B4C0
     DealUI * pDealUI; // +0x1B4C4
     HS_Entry * pEntryUI; // +0x1B4C8
-    unsigned char m_IsSale; // +0x1B4CC
+    BYTE m_IsSale; // +0x1B4CC
     int m_curPage; // +0x1B4D0
     UITabBtn m_TabBtn; // +0x1B4D4
-    unsigned char m_opt; // +0x1B4EC
+    BYTE m_opt; // +0x1B4EC
     // total size: 0x1B4F0 (111856)
 
 };

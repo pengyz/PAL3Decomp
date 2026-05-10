@@ -10,9 +10,9 @@ public:
     gbVec3D m_vecCurPos; // +0x34
     gbVec3D m_vecOffsetPos; // +0x40
     gbVec3D m_vecRot; // +0x4C
-    unsigned char m_bVisible; // +0x58
-    unsigned char m_bAdditiveBlend; // +0x59
-    unsigned char m_bNoZTest; // +0x5A
+    BYTE m_bVisible; // +0x58
+    BYTE m_bAdditiveBlend; // +0x59
+    BYTE m_bNoZTest; // +0x5A
     float m_fSizeX; // +0x5C
     float m_fSizeY; // +0x60
     float m_fSizeZ; // +0x64

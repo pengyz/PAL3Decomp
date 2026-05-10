@@ -8,7 +8,7 @@ public:
     gbImage2D pDstImg; // +0xCC
     int m_ItemNum; // +0x194
     char EffItem[16]; // +0x198 (std::vector<EffectItem,std::allocator<EffectItem> >)
-    unsigned char m_isUpdateMerge; // +0x1A8
+    BYTE m_isUpdateMerge; // +0x1A8
     // total size: 0x1AC (428)
 
 };

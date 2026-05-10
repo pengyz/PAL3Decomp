@@ -12,7 +12,7 @@ public:
     UIStatic m_NoteState; // +0x208
     UIStatic m_HeadShot_NO_SEL[5]; // +0x2A8
     UIStatic m_HeadShot[5]; // +0x5C8
-    unsigned char m_isHead[5]; // +0x8E8
+    BYTE m_isHead[5]; // +0x8E8
     UIStatic m_NoteTime; // +0x8F0
     UIStatic m_NoteMoney; // +0x990
     UIStatic m_NoteLv[5]; // +0xA30

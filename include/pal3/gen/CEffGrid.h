@@ -14,14 +14,14 @@ public:
     gbVec3D * m_pMesh2; // +0x38
     gbTexture * m_pTexture; // +0x3C
     gbTextureArray * m_pTextureArray; // +0x40
-    unsigned char m_bVisible; // +0x44
-    unsigned char m_bAdditiveBlend; // +0x45
-    unsigned char m_bNoZTest; // +0x46
-    unsigned char m_byMaxFrame; // +0x47
+    BYTE m_bVisible; // +0x44
+    BYTE m_bAdditiveBlend; // +0x45
+    BYTE m_bNoZTest; // +0x46
+    BYTE m_byMaxFrame; // +0x47
     int m_nRequireLoops; // +0x48
     int m_nLoops; // +0x4C
     float m_fCurFrame; // +0x50
-    unsigned long m_dwStartColor; // +0x54
+    DWORD m_dwStartColor; // +0x54
     float m_fAlpha; // +0x58
     float m_fRed; // +0x5C
     float m_fGreen; // +0x60

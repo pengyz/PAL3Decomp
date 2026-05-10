@@ -15,7 +15,7 @@ public:
     int m_nFrameNum; // +0x14D0
     int m_nCurFrame; // +0x14D4
     int m_nFrameFPS; // +0x14D8
-    unsigned char m_bFrameShadow; // +0x14DC
+    BYTE m_bFrameShadow; // +0x14DC
     // total size: 0x14E0 (5344)
 
 };

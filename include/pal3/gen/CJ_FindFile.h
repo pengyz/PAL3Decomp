@@ -9,7 +9,7 @@ public:
     void * m_pFoundInfo; // +0x14C
     char m_fileName[324]; // +0x150
     char m_strbuf[324]; // +0x294
-    unsigned char m_bClosed; // +0x3D8
+    BYTE m_bClosed; // +0x3D8
     // total size: 0x3DC (988)
 
 };

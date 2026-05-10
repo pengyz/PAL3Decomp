@@ -46,18 +46,18 @@ public:
     float m_fAbsTimeFund; // +0x68
     float m_fTimeScale; // +0x6C
     FightInfo * m_pFightInfo; // +0x70
-    unsigned char m_bQuitFlag; // +0x74
-    unsigned char m_bPause; // +0x75
+    BYTE m_bQuitFlag; // +0x74
+    BYTE m_bPause; // +0x75
     ECBCombatState m_eState; // +0x78
     ECBCombatResult m_eResult; // +0x7C
-    unsigned char m_bFiveNimbus; // +0x80
-    unsigned char m_bPXVariance; // +0x81
+    BYTE m_bFiveNimbus; // +0x80
+    BYTE m_bPXVariance; // +0x81
     int m_nTimesOfCombat; // +0x84
-    unsigned char m_bAuto; // +0x88
-    unsigned char m_bEditor; // +0x89
-    unsigned char m_bLockCam; // +0x8A
-    unsigned char m_bFirstRender; // +0x8B
-    unsigned long m_dwIDHolder; // +0x8C
+    BYTE m_bAuto; // +0x88
+    BYTE m_bEditor; // +0x89
+    BYTE m_bLockCam; // +0x8A
+    BYTE m_bFirstRender; // +0x8B
+    DWORD m_dwIDHolder; // +0x8C
     int m_nThread; // +0x90
     int m_nCurThread; // +0x94
     tagThread m_Thread[1024]; // +0x98

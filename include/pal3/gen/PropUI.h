@@ -34,7 +34,7 @@ public:
     int m_Sum; // +0x46D0
     int i; // +0x46D4
     int j; // +0x46D8
-    unsigned char _isCreatable; // +0x46DC
+    BYTE _isCreatable; // +0x46DC
     UIStatic m_Frame; // +0x46E0
     UIFlexBar m_FrameBar; // +0x4780
     UIStatic m_Flag; // +0x47D4
@@ -51,7 +51,7 @@ public:
     int RoleY; // +0x5074
     int HeadW; // +0x5078
     int HeadH; // +0x507C
-    unsigned char m_Is[5]; // +0x5080
+    BYTE m_Is[5]; // +0x5080
     MUIDialog m_Msg; // +0x5088
     UI3DCtrl m_3DObj; // +0x55F0
     UIStatic m_Dlg; // +0x5724
@@ -69,8 +69,8 @@ public:
     tagRECT ml_ListPropRc; // +0x697C
     BtnGroup m_btnGroup; // +0x698C
     float m_ctrlTime; // +0x6C70
-    unsigned char m_bCanUpdate1; // +0x6C74
-    unsigned char m_bCanUpdate2; // +0x6C75
+    BYTE m_bCanUpdate1; // +0x6C74
+    BYTE m_bCanUpdate2; // +0x6C75
     UIStatic m_PropRemarkBk; // +0x6C78
     UIStatic m_PropRemark; // +0x6D18
     UIStatic m_PropAtt; // +0x6DB8
@@ -80,20 +80,20 @@ public:
     tagRECT m_SumRc; // +0x6FA8
     UIButton mb_OK; // +0x6FB8
     tagRECT mb_OKRc; // +0x7110
-    unsigned char m_IsDeal; // +0x7120
+    BYTE m_IsDeal; // +0x7120
     UIButton mb_Cancel; // +0x7124
     tagRECT mb_CancelRc; // +0x727C
-    unsigned long * m_DealID; // +0x728C
+    DWORD * m_DealID; // +0x728C
     int DealNum; // +0x7290
     int curID; // +0x7294
-    unsigned char m_isBuy; // +0x7298
-    unsigned char b_IsExterior; // +0x7299
+    BYTE m_isBuy; // +0x7298
+    BYTE b_IsExterior; // +0x7299
     int exterior_num; // +0x729C
     float discount_price; // +0x72A0
     int m_extmode; // +0x72A4
     DealUI * pDealUI; // +0x72A8
     UITabBtn m_TabBtn; // +0x72AC
-    unsigned char m_opt; // +0x72C4
+    BYTE m_opt; // +0x72C4
     // total size: 0x72C8 (29384)
 
     int Create(); // 0x00452580

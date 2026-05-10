@@ -30,14 +30,14 @@ public:
     long m_joystickFreeY; // +0x5C
     long m_joystickDeltaX; // +0x60
     long m_joystickDeltaY; // +0x64
-    unsigned char m_keyStates[270]; // +0x68
-    unsigned char m_keyRaw[256]; // +0x176
-    unsigned long m_keyPressTimes[270]; // +0x278
-    unsigned long m_keyDragStartPositions[2][270]; // +0x6B0
-    unsigned char m_shiftedKeyStates[270]; // +0xF20
-    unsigned long m_DIKToKEY[256]; // +0x1030
+    BYTE m_keyStates[270]; // +0x68
+    BYTE m_keyRaw[256]; // +0x176
+    DWORD m_keyPressTimes[270]; // +0x278
+    DWORD m_keyDragStartPositions[2][270]; // +0x6B0
+    BYTE m_shiftedKeyStates[270]; // +0xF20
+    DWORD m_DIKToKEY[256]; // +0x1030
     _DIMOUSESTATE2 MouseState; // +0x1430
-    unsigned long charTOscan[256]; // +0x1444
+    DWORD charTOscan[256]; // +0x1444
     int KeyTransformation[10]; // +0x1844
     int m_bMouse; // +0x186C
     int m_bKeyboard; // +0x1870

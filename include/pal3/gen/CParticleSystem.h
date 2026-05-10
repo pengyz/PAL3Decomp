@@ -11,7 +11,7 @@ public:
     int _bCycle; // +0x8
     int _bManual; // +0xC
     char _strParticleName[16]; // +0x10 (std::basic_string<char,std::char_traits<char>,std::allocator<char> >)
-    unsigned long _dwParticleId; // +0x20
+    DWORD _dwParticleId; // +0x20
     CPolicy * _pPositionPolicy; // +0x24
     CPolicy * _pDirectionPolicy; // +0x28
     CPolicy * _pColorPolicy; // +0x2C
@@ -23,13 +23,13 @@ public:
     char _KeyFrames[16]; // +0x44 (std::vector<KeyFrame *,std::allocator<KeyFrame *> >)
     int _nNumOfParticles; // +0x54
     int _nMaxNum; // +0x58
-    unsigned long _dwNumOfKeyFrames; // +0x5C
-    unsigned long _dwNumOfUnitFrames; // +0x60
+    DWORD _dwNumOfKeyFrames; // +0x5C
+    DWORD _dwNumOfUnitFrames; // +0x60
     int _nCurrFrame; // +0x64
     int _nLastFrame; // +0x68
     float _fTimeCounter; // +0x6C
     float _fEmitDecPart; // +0x70
-    unsigned long _dwVBFlush; // +0x74
+    DWORD _dwVBFlush; // +0x74
     gbMatrix4 _matTransform; // +0x78
     float _fWidthScale; // +0xB8
     float _fHeightScale; // +0xBC

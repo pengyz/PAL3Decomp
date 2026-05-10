@@ -23,8 +23,8 @@ public:
     UIStatic m_WordBk; // +0x820
     UIStatic ms_Info; // +0x8C0
     UIStatic ms_Pic; // +0x960
-    unsigned char m_bIsChanged; // +0xA00
-    unsigned char m_IsActive; // +0xA01
+    BYTE m_bIsChanged; // +0xA00
+    BYTE m_IsActive; // +0xA01
     _Item m_Item; // +0xA04
     UICoverFrm * m_pMgr; // +0xA34
     // total size: 0xA38 (2616)

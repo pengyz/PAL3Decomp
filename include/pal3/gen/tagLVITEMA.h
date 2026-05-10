@@ -3,11 +3,11 @@
 
 class tagLVITEMA {
 public:
-    unsigned int mask; // +0x0
+    UINT mask; // +0x0
     int iItem; // +0x4
     int iSubItem; // +0x8
-    unsigned int state; // +0xC
-    unsigned int stateMask; // +0x10
+    UINT state; // +0xC
+    UINT stateMask; // +0x10
     char * pszText; // +0x14
     int cchTextMax; // +0x18
     int iImage; // +0x1C

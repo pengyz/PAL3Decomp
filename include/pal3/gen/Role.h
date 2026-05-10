@@ -26,23 +26,23 @@ public:
     NPCInfo m_npcinfo; // +0xAC
     int m_onlayer; // +0x274
     int m_active; // +0x278
-    unsigned char bCGMonster; // +0x27C
+    BYTE bCGMonster; // +0x27C
     int nCGMonsterID; // +0x280
     int nCGMonsterType; // +0x284
-    unsigned char bRelive; // +0x288
-    unsigned char bInvincible; // +0x289
+    BYTE bRelive; // +0x288
+    BYTE bInvincible; // +0x289
     float fRattrapWait; // +0x28C
     float fMirrorWait; // +0x290
-    unsigned char bMirror; // +0x294
+    BYTE bMirror; // +0x294
     float fCGBIXIE; // +0x298
-    unsigned char bCGBIXIE; // +0x29C
-    unsigned char bCrossAlpha; // +0x29D
+    BYTE bCGBIXIE; // +0x29C
+    BYTE bCrossAlpha; // +0x29D
     float fCrossAlpha; // +0x2A0
-    unsigned char bCGMonsterHitObj; // +0x2A4
-    unsigned char bStill; // +0x2A5
+    BYTE bCGMonsterHitObj; // +0x2A4
+    BYTE bStill; // +0x2A5
     SceneProp * pCG_SceneProp; // +0x2A8
     Actor m_actor; // +0x2AC
-    unsigned char m_MachineryID; // +0x500
+    BYTE m_MachineryID; // +0x500
     int m_bPet; // +0x504
     float m_scale; // +0x508
     NavTriangle m_tri; // +0x50C
@@ -51,7 +51,7 @@ public:
     ROLE_BEHAVIOUR m_curbehaviour; // +0x558
     int m_bPathOut; // +0x55C
     int m_bShowActAutoStand; // +0x560
-    unsigned char m_bNeedShowActEnd; // +0x564
+    BYTE m_bNeedShowActEnd; // +0x564
     ACTION_KIND m_curact; // +0x568
     float m_curspeed; // +0x56C
     float m_curforce; // +0x570
@@ -78,8 +78,8 @@ public:
     float m_mfindradius; // +0x5FC
     float m_statetime; // +0x600
     gbGeomNode * m_weapon; // +0x604
-    unsigned char m_bLeftWeapon; // +0x608
-    unsigned char m_bRightWeapon; // +0x609
+    BYTE m_bLeftWeapon; // +0x608
+    BYTE m_bRightWeapon; // +0x609
     int m_nRad; // +0x60C
     int m_nRealHeadPos; // +0x610
     int m_nOverlapState; // +0x614

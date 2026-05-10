@@ -8,15 +8,15 @@ class _PlugInfo;
 
 class UIPushButton : public UIWnd {
 public:
-    unsigned char m_isDown; // +0x44
-    unsigned char m_isCtrl; // +0x45
-    unsigned char m_mouseoff; // +0x46
+    BYTE m_isDown; // +0x44
+    BYTE m_isCtrl; // +0x45
+    BYTE m_mouseoff; // +0x46
     gbColorQuad m_fontcolor; // +0x48
     gbFontType m_fonttype; // +0x4C
     char m_state[4]; // +0x50 (UIPushButton::UIPUSHBUTTON_STATE)
     gbTexture * m_texarray[2]; // +0x54
     _PlugInfo * m_texarrayInfo[2]; // +0x5C
-    unsigned char m_bOn; // +0x64
+    BYTE m_bOn; // +0x64
     gbTexture * m_onpic; // +0x68
     _PlugInfo * m_onpicInfo; // +0x6C
     gbTexture * m_disablepic; // +0x70

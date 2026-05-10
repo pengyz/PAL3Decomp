@@ -12,7 +12,7 @@ public:
     gbSound2DNode * p2d; // +0x0
     h3DPOBJECT * h3d; // +0x4
     _SAMPLE * h2d; // +0x4
-    unsigned int time; // +0x8
+    UINT time; // +0x8
     // total size: 0xC (12)
 
 };

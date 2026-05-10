@@ -14,7 +14,7 @@ public:
     CCBStage * m_pStage; // +0x68FB0
     CCBStageCam * m_pCam; // +0x68FB4
     CUtil * m_pUtil; // +0x68FB8
-    unsigned char m_bRunning; // +0x68FBC
+    BYTE m_bRunning; // +0x68FBC
     void * * m_fp; // +0x68FC0
     int m_nCurList; // +0x68FD0
     int m_nCurTask; // +0x68FD4
@@ -33,9 +33,9 @@ public:
     gbGeomNode * m_pPointer; // +0x69090
     gbVec3D m_vecCircleCenter; // +0x69094
     gbVec3D m_vecCircleEnd; // +0x690A0
-    unsigned char m_bShowCircleSet; // +0x690AC
-    unsigned char m_bCircleCenterSelected; // +0x690AD
-    unsigned char m_bCircleEndSelected; // +0x690AE
+    BYTE m_bShowCircleSet; // +0x690AC
+    BYTE m_bCircleCenterSelected; // +0x690AD
+    BYTE m_bCircleEndSelected; // +0x690AE
     // total size: 0x690B0 (430256)
 
     CCBCamControl(); // 0x005081D0

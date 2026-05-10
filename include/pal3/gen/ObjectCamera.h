@@ -21,7 +21,7 @@ public:
     float m_stepRot; // +0x6C
     int m_stepRotMode; // +0x70
     int m_stepRotAxis; // +0x74
-    unsigned char m_bStepRot; // +0x78
+    BYTE m_bStepRot; // +0x78
     // total size: 0x7C (124)
 
     ObjectCamera(); // 0x0047C570

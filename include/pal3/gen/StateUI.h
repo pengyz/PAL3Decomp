@@ -28,11 +28,11 @@ public:
     int i; // +0x60
     int j; // +0x64
     char buf[256]; // +0x68
-    unsigned char m_IsMsg; // +0x168
-    unsigned char m_Is[5]; // +0x169
+    BYTE m_IsMsg; // +0x168
+    BYTE m_Is[5]; // +0x169
     int m_CtrlRole; // +0x170
-    unsigned char m_IsActive; // +0x174
-    unsigned char m_IsCreateable; // +0x175
+    BYTE m_IsActive; // +0x174
+    BYTE m_IsCreateable; // +0x175
     UIStatic m_Frame; // +0x178
     UIStatic m_TimeMoney; // +0x218
     UIStatic m_OutFrameT; // +0x2B8
@@ -57,7 +57,7 @@ public:
     UIParticle m_par[16][7]; // +0x137C
     UIParticle m_par2[16][7]; // +0x1167C
     tagRECT m_parRc[7]; // +0x2197C
-    unsigned char _isParBtn[7]; // +0x219EC
+    BYTE _isParBtn[7]; // +0x219EC
     int _curParEffect; // +0x219F4
     tagRECT m_PortraitRc; // +0x219F8
     UIStatic m_Portrait; // +0x21A08
@@ -85,17 +85,17 @@ public:
     TaskBookUI * p_TaskBookUI; // +0x27910
     SystemUI * p_SystemUI; // +0x27914
     int m_curRender; // +0x27918
-    unsigned char m_saveflag_note; // +0x2791C
-    unsigned char m_isSeekSAVELOAD; // +0x2791D
+    BYTE m_saveflag_note; // +0x2791C
+    BYTE m_isSeekSAVELOAD; // +0x2791D
     UIStatic m_test; // +0x27920
     gbTexture * pInterceptTex; // +0x279C0
     float sv; // +0x279C4
     float ev; // +0x279C8
-    unsigned char mainuiopt; // +0x0
-    unsigned char enable_save; // +0x0
-    unsigned char m_isSword; // +0x0
-    unsigned char m_isJusticeBook; // +0x0
-    unsigned char m_isExit; // +0x279CC
+    BYTE mainuiopt; // +0x0
+    BYTE enable_save; // +0x0
+    BYTE m_isSword; // +0x0
+    BYTE m_isJusticeBook; // +0x0
+    BYTE m_isExit; // +0x279CC
     s_SpecialPropItem m_SpecialPropItem[5]; // +0x279D0
     // total size: 0x279F8 (162296)
 

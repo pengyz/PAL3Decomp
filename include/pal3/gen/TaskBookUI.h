@@ -16,8 +16,8 @@ public:
     tagRECT rc; // +0x48
     int bkWndX; // +0x58
     int bkWndY; // +0x5C
-    unsigned char m_IsCreateable; // +0x60
-    unsigned char m_IsActive; // +0x61
+    BYTE m_IsCreateable; // +0x60
+    BYTE m_IsActive; // +0x61
     StateUI * pStateUI; // +0x64
     UIStatic m_OutFrameT; // +0x68
     UIStatic m_OutFrameR; // +0x108
@@ -40,7 +40,7 @@ public:
     UIParticle m_btnPar[16][7]; // +0x1554
     UIParticle m_btnPar2[16][7]; // +0x11854
     tagRECT m_btnParRc[7]; // +0x21B54
-    unsigned char _isParBtn[7]; // +0x21BC4
+    BYTE _isParBtn[7]; // +0x21BC4
     int _curParEffect; // +0x21BCC
     UIStatic m_ListBK; // +0x21BD0
     UIStatic m_ListTitle; // +0x21C70

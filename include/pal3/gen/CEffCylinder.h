@@ -12,14 +12,14 @@ public:
     gbGeomQuad * m_pGeomQuad; // +0x30
     gbTexture * m_pTexture; // +0x34
     gbTextureArray * m_pTextureArray; // +0x38
-    unsigned char m_bVisible; // +0x3C
-    unsigned char m_bAdditiveBlend; // +0x3D
-    unsigned char m_bNoZTest; // +0x3E
-    unsigned char m_byMaxFrame; // +0x3F
+    BYTE m_bVisible; // +0x3C
+    BYTE m_bAdditiveBlend; // +0x3D
+    BYTE m_bNoZTest; // +0x3E
+    BYTE m_byMaxFrame; // +0x3F
     int m_nRequireLoops; // +0x40
     int m_nLoops; // +0x44
     float m_fCurFrame; // +0x48
-    unsigned long m_dwStartColor; // +0x4C
+    DWORD m_dwStartColor; // +0x4C
     float m_fAlpha; // +0x50
     float m_fRed; // +0x54
     float m_fGreen; // +0x58

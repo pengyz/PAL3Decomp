@@ -6,7 +6,7 @@
 class CCCTData {
 public:
     tagCCT m_Pool[2000]; // +0x0
-    unsigned char m_bPoolInUse[2000]; // +0x639C0
+    BYTE m_bPoolInUse[2000]; // +0x639C0
     int m_nCCTIndex[50][100]; // +0x64190
     // total size: 0x68FB0 (430000)
 

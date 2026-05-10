@@ -3,10 +3,10 @@
 
 class DIPROPHEADER {
 public:
-    unsigned long dwSize; // +0x0
-    unsigned long dwHeaderSize; // +0x4
-    unsigned long dwObj; // +0x8
-    unsigned long dwHow; // +0xC
+    DWORD dwSize; // +0x0
+    DWORD dwHeaderSize; // +0x4
+    DWORD dwObj; // +0x8
+    DWORD dwHow; // +0xC
     // total size: 0x10 (16)
 
 };

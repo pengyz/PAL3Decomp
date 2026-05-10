@@ -24,8 +24,8 @@ public:
     int i; // +0x60
     int j; // +0x64
     char buf[256]; // +0x68
-    unsigned char m_IsMsg; // +0x168
-    unsigned char m_Is[5]; // +0x169
+    BYTE m_IsMsg; // +0x168
+    BYTE m_Is[5]; // +0x169
     UIStatic m_Frame; // +0x170
     UIStatic m_TimeMoney; // +0x210
     UIStatic m_OutFrameT; // +0x2B0
@@ -52,7 +52,7 @@ public:
     UIParticle m_btnPar[16][7]; // +0x197C
     UIParticle m_btnPar2[16][7]; // +0x11C7C
     tagRECT m_btnParRc[7]; // +0x21F7C
-    unsigned char _isParBtn[7]; // +0x21FEC
+    BYTE _isParBtn[7]; // +0x21FEC
     int _curParEffect; // +0x21FF4
     LINEUPINFO m_LineupInfo[5]; // +0x21FF8
     LINEUP_SEQUENCE m_Sequence; // +0x22016
@@ -69,19 +69,19 @@ public:
     float m_objRotSpeed; // +0x23398
     ObjectCamera * m_pCamera; // +0x2339C
     float m_pointerHeight; // +0x233A0
-    unsigned char m_bPeek; // +0x233A4
+    BYTE m_bPeek; // +0x233A4
     int m_nPeek; // +0x233A8
     int m_nLastPeek; // +0x233AC
-    unsigned char m_isRotLineup; // +0x233B0
+    BYTE m_isRotLineup; // +0x233B0
     gbVec3D m_ObjPos[6]; // +0x233B4
     Object3D m_LineupObj; // +0x233FC
     Object3D m_3DRole[5]; // +0x23494
-    unsigned char m_IsRole[6]; // +0x2378C
+    BYTE m_IsRole[6]; // +0x2378C
     int m_RoleId[6]; // +0x23794
     Object3D m_3DNone[6]; // +0x237AC
     LineupPlank m_CtrlPlank[5]; // +0x23B3C
     ProtectPanel m_ProtectPanel; // +0x26224
-    unsigned char m_ProFlag; // +0x2672C
+    BYTE m_ProFlag; // +0x2672C
     StateUI * pStateUI; // +0x26730
     // total size: 0x26734 (157492)
 

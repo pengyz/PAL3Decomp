@@ -4,10 +4,10 @@
 class tagQuad {
 public:
     int nGeomQuad; // +0x0
-    unsigned char bValid; // +0x4
-    unsigned char bVisible; // +0x5
-    unsigned char byFrame; // +0x6
-    unsigned char byLoops; // +0x7
+    BYTE bValid; // +0x4
+    BYTE bVisible; // +0x5
+    BYTE byFrame; // +0x6
+    BYTE byLoops; // +0x7
     float fFramePerSec; // +0x8
     float fCurFrame; // +0xC
     float fX; // +0x10
@@ -25,7 +25,7 @@ public:
     float fRed; // +0x40
     float fGreen; // +0x44
     float fBlue; // +0x48
-    unsigned long dwColor; // +0x4C
+    DWORD dwColor; // +0x4C
     // total size: 0x50 (80)
 
 };

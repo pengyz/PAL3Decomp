@@ -4,8 +4,8 @@
 class NGHHURT {
 public:
     float AlphaSpeed; // +0x0
-    unsigned char bFlashState; // +0x4
-    unsigned char bNeedFlash; // +0x5
+    BYTE bFlashState; // +0x4
+    BYTE bNeedFlash; // +0x5
     float fTimeCounter; // +0x8
     int nWaitSecond; // +0xC
     int nHurtState; // +0x10

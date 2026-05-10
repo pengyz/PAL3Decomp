@@ -5,7 +5,7 @@ class ARC_FightItem;
 
 class ARC_PlayerItem {
 public:
-    unsigned long id; // +0x0
+    DWORD id; // +0x0
     int num; // +0x4
     ARC_FightItem * item; // +0x8
     // total size: 0xC (12)

@@ -6,8 +6,8 @@ class CLoad3DS;
 
 class util {
 public:
-    unsigned long Crc32Table[256]; // +0x0
-    unsigned long m_dwIDHolder; // +0x400
+    DWORD Crc32Table[256]; // +0x0
+    DWORD m_dwIDHolder; // +0x400
     int m_nRandHolder; // +0x404
     int m_nRandCallCount; // +0x408
     CIniFile * m_pIniReader; // +0x40C

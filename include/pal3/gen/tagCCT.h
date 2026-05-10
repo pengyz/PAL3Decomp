@@ -6,32 +6,32 @@
 class tagCCT {
 public:
     void * * fp; // +0x0
-    unsigned long dwID; // +0x10
-    unsigned char bValid; // +0x14
-    unsigned char bExecuted; // +0x15
-    unsigned char bFinished; // +0x16
-    unsigned char bSplice; // +0x17
+    DWORD dwID; // +0x10
+    BYTE bValid; // +0x14
+    BYTE bExecuted; // +0x15
+    BYTE bFinished; // +0x16
+    BYTE bSplice; // +0x17
     float fStartTime; // +0x18
     float fExpectTime; // +0x1C
     tagCam StartPos; // +0x20
     tagCam EndPos; // +0x38
     int nStartCam; // +0x50
     int nEndCam; // +0x54
-    unsigned char bStartCamValid; // +0x58
-    unsigned char bEndCamValid; // +0x59
-    unsigned char bTimeValid; // +0x5A
-    unsigned char bSpeedValid; // +0x5B
-    unsigned char bLineMove; // +0x5C
-    unsigned char bCircleMove; // +0x5D
-    unsigned char bMechanicsMove; // +0x5E
-    unsigned char bTimeRevise; // +0x5F
-    unsigned char bAbsoluteTime; // +0x60
-    unsigned char bCounterYaw; // +0x61
-    unsigned char bCounterPitch; // +0x62
-    unsigned char bCounterRoll; // +0x63
-    unsigned char bRandSwing; // +0x64
-    unsigned char bSightTrace; // +0x65
-    unsigned char bPosTrace; // +0x66
+    BYTE bStartCamValid; // +0x58
+    BYTE bEndCamValid; // +0x59
+    BYTE bTimeValid; // +0x5A
+    BYTE bSpeedValid; // +0x5B
+    BYTE bLineMove; // +0x5C
+    BYTE bCircleMove; // +0x5D
+    BYTE bMechanicsMove; // +0x5E
+    BYTE bTimeRevise; // +0x5F
+    BYTE bAbsoluteTime; // +0x60
+    BYTE bCounterYaw; // +0x61
+    BYTE bCounterPitch; // +0x62
+    BYTE bCounterRoll; // +0x63
+    BYTE bRandSwing; // +0x64
+    BYTE bSightTrace; // +0x65
+    BYTE bPosTrace; // +0x66
     int nTraceRole; // +0x68
     float fStartSpeed; // +0x6C
     float fInertia; // +0x70
@@ -55,7 +55,7 @@ public:
     float fStartTracePosX; // +0xB8
     float fStartTracePosY; // +0xBC
     float fStartTracePosZ; // +0xC0
-    unsigned long dwReserved[2]; // +0xC4
+    DWORD dwReserved[2]; // +0xC4
     // total size: 0xCC (204)
 
 };

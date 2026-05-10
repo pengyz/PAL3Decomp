@@ -20,7 +20,7 @@ public:
     void * * sample_attribute; // +0x30
     void * * set_sample_preference; // +0x34
     _DIG_DRIVER * dig; // +0x38
-    unsigned long provider; // +0x3C
+    DWORD provider; // +0x3C
     long driver_state; // +0x40
     _FLTPROVIDER * next; // +0x44
     // total size: 0x48 (72)

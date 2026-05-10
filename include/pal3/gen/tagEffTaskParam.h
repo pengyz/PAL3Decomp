@@ -73,17 +73,17 @@ public:
     float fRoleIndex; // +0x54
     float fTextureSpeed; // +0x54
     float fZStretchSpeed; // +0x54
-    unsigned char bValid; // +0x58
-    unsigned char bCreateNew; // +0x59
-    unsigned char bFaceToFront; // +0x59
-    unsigned char bGetBackOldTimeScale; // +0x59
-    unsigned char bModifyLast; // +0x5A
-    unsigned char bActionDecideTime; // +0x5A
-    unsigned char bModifyStartTimeScale; // +0x5A
+    BYTE bValid; // +0x58
+    BYTE bCreateNew; // +0x59
+    BYTE bFaceToFront; // +0x59
+    BYTE bGetBackOldTimeScale; // +0x59
+    BYTE bModifyLast; // +0x5A
+    BYTE bActionDecideTime; // +0x5A
+    BYTE bModifyStartTimeScale; // +0x5A
     float fYStretchSpeed; // +0x5C
     float fTargetRot; // +0x5C
-    unsigned long dwActKey; // +0x60
-    unsigned long dwRoleKey; // +0x64
+    DWORD dwActKey; // +0x60
+    DWORD dwRoleKey; // +0x64
     float fReseved[5]; // +0x68
     // total size: 0x7C (124)
 

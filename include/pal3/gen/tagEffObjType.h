@@ -3,9 +3,9 @@
 
 class tagEffObjType {
 public:
-    unsigned long dwClassNameCRC; // +0x0
+    DWORD dwClassNameCRC; // +0x0
     char szTypeName[30]; // +0x4
-    unsigned long dwTypeNameCRC; // +0x24
+    DWORD dwTypeNameCRC; // +0x24
     char szTexture[128]; // +0x28
     char szParticleFileName[128]; // +0x28
     char szSoundNamePrefix[128]; // +0x28
@@ -21,12 +21,12 @@ public:
     float fStartAngle; // +0xC4
     float fStartYRot; // +0xC4
     float fSize; // +0xC8
-    unsigned long dwColor; // +0xCC
+    DWORD dwColor; // +0xCC
     int nMaxQuad; // +0xD0
-    unsigned char bValid; // +0xD4
-    unsigned char bAdditiveBlend; // +0xD5
-    unsigned char bBillBoard; // +0xD6
-    unsigned char bNoZTest; // +0xD7
+    BYTE bValid; // +0xD4
+    BYTE bAdditiveBlend; // +0xD5
+    BYTE bBillBoard; // +0xD6
+    BYTE bNoZTest; // +0xD7
     float fStartXRot; // +0xD8
     float fStartZRot; // +0xDC
     float fRotAngle; // +0xE0

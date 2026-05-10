@@ -11,7 +11,7 @@ class Comp_DonateUI;
 class ComposeUI : public UIFrameWnd {
 public:
     int m_CurRender; // +0x48
-    unsigned char m_isCreatable; // +0x4C
+    BYTE m_isCreatable; // +0x4C
     UIStatic m_TopFrame; // +0x50
     UIStatic m_BottomFrame; // +0xF0
     UIStatic m_MiddleFrame[3]; // +0x190

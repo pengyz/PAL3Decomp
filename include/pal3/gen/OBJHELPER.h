@@ -3,7 +3,7 @@
 
 class OBJHELPER {
 public:
-    unsigned char bValid; // +0x0
+    BYTE bValid; // +0x0
     int nType; // +0x4
     tagRECT rTouchArea; // +0x8
     tagPOINT pGroundPt; // +0x18

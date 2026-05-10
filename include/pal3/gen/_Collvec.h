@@ -3,8 +3,8 @@
 
 class _Collvec {
 public:
-    unsigned long _Hand; // +0x0
-    unsigned int _Page; // +0x4
+    DWORD _Hand; // +0x0
+    UINT _Page; // +0x4
     // total size: 0x8 (8)
 
 };

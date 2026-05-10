@@ -3,15 +3,15 @@
 
 class CUtil {
 public:
-    unsigned char m_bCanWarp; // +0x0
-    int m_nRandHolder; // +0x0
-    int m_nRandCallCount; // +0x0
-    _iobuf * m_fLog; // +0x0
-    char * m_sLogFileName; // +0x0
-    char m_INIFileName[260]; // +0x0
-    char * m_pDefaultString; // +0x0
-    char m_INIBuffer[256]; // +0x0
-    // total size: 0x1 (1)
+    int m_bCanWarp; // +0x0
+    int m_nRandHolder; // +0x4
+    int m_nRandCallCount; // +0x8
+    FILE * m_fLog; // +0xC
+    char * m_sLogFileName; // +0x10
+    char m_INIFileName[260]; // +0x14
+    char * m_pDefaultString; // +0x118
+    char m_INIBuffer[256]; // +0x11C
+    // total size: 0x21C (540)
 
     ~CUtil(); // 0x005230F0
     static int Create(); // 0x00523100

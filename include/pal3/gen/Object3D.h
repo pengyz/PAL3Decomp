@@ -8,14 +8,14 @@ class ObjectCamera;
 
 class Object3D {
 public:
-    unsigned char m_isLoadObj; // +0x0
-    unsigned int m_type; // +0x4
+    BYTE m_isLoadObj; // +0x0
+    UINT m_type; // +0x4
     gbGeomNode * m_pol; // +0x8
     Actor * m_actor; // +0x8
     gbGeomNode * m_subObj; // +0xC
-    unsigned int m_subType; // +0x10
-    unsigned char m_isLoadSubObj; // +0x14
-    unsigned char m_showSubObj; // +0x15
+    UINT m_subType; // +0x10
+    BYTE m_isLoadSubObj; // +0x14
+    BYTE m_showSubObj; // +0x15
     float m_subObjHeight; // +0x18
     float m_height; // +0x1C
     gbVec3D m_position; // +0x20
@@ -26,7 +26,7 @@ public:
     float m_dropx; // +0x44
     float m_dropy; // +0x48
     float m_dropz; // +0x4C
-    unsigned char m_visible; // +0x50
+    BYTE m_visible; // +0x50
     ObjectCamera * m_pCamera; // +0x54
     float m_yaw; // +0x58
     float m_pitch; // +0x5C
@@ -34,8 +34,8 @@ public:
     float m_dist; // +0x64
     gbVec3D m_forward; // +0x68
     float m_degreeToScreen; // +0x74
-    unsigned char m_isActionRelativeRot; // +0x78
-    unsigned char m_bRotDstDegree; // +0x79
+    BYTE m_isActionRelativeRot; // +0x78
+    BYTE m_bRotDstDegree; // +0x79
     float m_rotRelative; // +0x7C
     float m_rotDegree; // +0x80
     float m_rotDstDegree; // +0x84

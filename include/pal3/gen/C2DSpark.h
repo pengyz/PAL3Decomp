@@ -12,7 +12,7 @@ public:
     float m_fBigLum; // +0x600C
     int m_nBigLumX; // +0x6010
     int m_nBigLumY; // +0x6014
-    unsigned char m_bMouseTrack; // +0x6018
+    BYTE m_bMouseTrack; // +0x6018
     gbRenderEffect * m_pAdditiveBlend; // +0x601C
     gbTexture * m_pRedBig; // +0x6020
     gbTextureArray * m_pRedBigArray; // +0x6024

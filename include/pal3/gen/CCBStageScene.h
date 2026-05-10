@@ -18,7 +18,7 @@ public:
     gbVec3D m_vecInitFiveLineup[7]; // +0x5C
     gbVec3D m_vecEnemyLineup[7]; // +0xB0
     gbVec3D m_vecInitEnemyLineup[7]; // +0x104
-    unsigned char m_bLoaded; // +0x158
+    BYTE m_bLoaded; // +0x158
     char m_sLastScene[256]; // +0x159
     gbGeomNode * m_pGeomNode; // +0x25C
     gbGeomNode * m_pCvd; // +0x260
@@ -28,7 +28,7 @@ public:
     gbGeomNode * m_pFling; // +0x298
     gbVec3D m_vecFling; // +0x29C
     gbVec3D m_rotFling; // +0x2A8
-    unsigned char m_bShowFling; // +0x2B4
+    BYTE m_bShowFling; // +0x2B4
     gbRenderEffect * m_pFiveLineupEffect; // +0x2B8
     gbTexture * m_pFiveLineupTexture; // +0x2BC
     gbTextureArray * m_pFiveLineupTextureArray; // +0x2C0
@@ -47,11 +47,11 @@ public:
     float m_fEnemyFiveLineupRadius; // +0x3CC
     float m_fEnemyFiveLineupRoll; // +0x3D0
     gbVec3D m_vecPointerPos; // +0x3D4
-    unsigned char m_bShowPointer; // +0x3E0
-    unsigned char m_bShowAxis; // +0x3E1
-    unsigned char m_bShowRoleIndex; // +0x3E2
-    unsigned char m_bShowFiveLineup; // +0x3E3
-    unsigned char m_bFiveLineupSelected; // +0x3E4
+    BYTE m_bShowPointer; // +0x3E0
+    BYTE m_bShowAxis; // +0x3E1
+    BYTE m_bShowRoleIndex; // +0x3E2
+    BYTE m_bShowFiveLineup; // +0x3E3
+    BYTE m_bFiveLineupSelected; // +0x3E4
     ECBFiveMagic m_eSceneFiveMagicAttrib; // +0x3E8
     ECBBattleFieldAttr m_eBattleFieldAttr; // +0x3EC
     ECBForce m_eBFAForce; // +0x3F0

@@ -3,9 +3,9 @@
 
 class tagTCITEMA {
 public:
-    unsigned int mask; // +0x0
-    unsigned long dwState; // +0x4
-    unsigned long dwStateMask; // +0x8
+    UINT mask; // +0x0
+    DWORD dwState; // +0x4
+    DWORD dwStateMask; // +0x8
     char * pszText; // +0xC
     int cchTextMax; // +0x10
     int iImage; // +0x14

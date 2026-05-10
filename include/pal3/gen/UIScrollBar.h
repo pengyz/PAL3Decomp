@@ -9,11 +9,11 @@ class _PlugInfo;
 
 class UIScrollBar : public UIWnd {
 public:
-    unsigned char m_bPress; // +0x44
-    unsigned char m_bPressed; // +0x45
+    BYTE m_bPress; // +0x44
+    BYTE m_bPressed; // +0x45
     UIFlexBar m_bk; // +0x48
     int m_DragState; // +0x9C
-    unsigned char m_bDrag; // +0xA0
+    BYTE m_bDrag; // +0xA0
     tagPOINT m_lastPt; // +0xA4
     int m_btnH; // +0xAC
     char m_mouseat[4]; // +0xB0 (UIScrollBar::SB_AREA)

@@ -11,8 +11,8 @@ class CEffect {
 public:
     CEffectSystem * m_pES; // +0x0
     EEffect m_eKind; // +0x8
-    unsigned char m_bActive; // +0xC
-    unsigned char m_bVisible; // +0xD
+    BYTE m_bActive; // +0xC
+    BYTE m_bVisible; // +0xD
     double m_DeltaTime; // +0x10
     int m_nPartical; // +0x18
     tagPartical m_Partical[2048]; // +0x1C

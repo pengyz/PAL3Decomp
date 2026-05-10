@@ -10,8 +10,8 @@
 
 class UISceneMap : public UIWnd {
 public:
-    unsigned char m_bLeft; // +0x44
-    unsigned char m_bPlayer; // +0x45
+    BYTE m_bLeft; // +0x44
+    BYTE m_bPlayer; // +0x45
     float m_lastZ; // +0x48
     gbVec3D m_lastLookAt; // +0x4C
     UIButton m_probe; // +0x58

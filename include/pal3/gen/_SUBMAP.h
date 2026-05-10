@@ -3,7 +3,7 @@
 
 class _SUBMAP {
 public:
-    unsigned char m_bShow; // +0x0
+    BYTE m_bShow; // +0x0
     tagRECT m_pos; // +0x4
     tagRECT m_notepos; // +0x14
     float m_fposX; // +0x24

@@ -30,16 +30,16 @@ public:
     UIButton m_Exit; // +0x64C
     UITabBtn m_TabBtn; // +0x7A4
     MUIDialog m_answerDlg; // +0x7BC
-    unsigned char m_bAnswer; // +0xD24
+    BYTE m_bAnswer; // +0xD24
     ScreenEffect * eft; // +0xD28
     TimeCtl m_timewait; // +0xD2C
-    unsigned char m_isFadeOut; // +0xD38
-    unsigned char m_isFadeIn; // +0xD39
+    BYTE m_isFadeOut; // +0xD38
+    BYTE m_isFadeIn; // +0xD39
     MUIDialog m_noenoughmsg; // +0xD3C
     MUIDialog m_enough; // +0x12A4
     MUIDialog m_restover; // +0x180C
-    unsigned int m_status; // +0x1D74
-    unsigned char m_isExit; // +0x1D78
+    UINT m_status; // +0x1D74
+    BYTE m_isExit; // +0x1D78
     RestScript m_RestScript; // +0x1D7C
     int m_CANREST_ID; // +0x2590
     int m_CANNOTREST_ID; // +0x2594
@@ -47,11 +47,11 @@ public:
     PalScript * pRest; // +0x259C
     PalScript * pCantRest; // +0x25A0
     PalScript * pRestOver; // +0x25A4
-    unsigned char m_bActive; // +0x25A8
+    BYTE m_bActive; // +0x25A8
     Comp_DonateUI * pC_DUI; // +0x25AC
-    unsigned char m_bC_DUIOver; // +0x25B0
+    BYTE m_bC_DUIOver; // +0x25B0
     UIStatic m_BK; // +0x25B4
-    unsigned char m_FadeOutAlpha; // +0x2654
+    BYTE m_FadeOutAlpha; // +0x2654
     float m_age; // +0x2658
     float m_life; // +0x265C
     // total size: 0x2660 (9824)

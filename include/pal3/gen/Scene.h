@@ -25,10 +25,10 @@ public:
     NavigationInfo m_nav; // +0x10AF24
     gbGeomNode * m_cvd; // +0x10B090
     NavigationInfo m_CamCollide; // +0x10B094
-    unsigned char m_bHasNavCollide; // +0x10B200
+    BYTE m_bHasNavCollide; // +0x10B200
     int m_bLoad; // +0x10B204
     int m_battached; // +0x10B208
-    unsigned char m_lastobj; // +0x10B20C
+    BYTE m_lastobj; // +0x10B20C
     int m_bStar; // +0x10B210
     // total size: 0x10B214 (1094164)
 

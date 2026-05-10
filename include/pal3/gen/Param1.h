@@ -6,10 +6,10 @@
 class Param1 {
 public:
     localVar1 loc; // +0x0
-    unsigned long retAddr; // +0x1C
-    unsigned long pOut; // +0x20
-    unsigned long pIn; // +0x24
-    unsigned long n; // +0x28
+    DWORD retAddr; // +0x1C
+    DWORD pOut; // +0x20
+    DWORD pIn; // +0x24
+    DWORD n; // +0x28
     // total size: 0x2C (44)
 
 };

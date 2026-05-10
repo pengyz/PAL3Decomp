@@ -7,7 +7,7 @@ class UIWnd {
 public:
     gbColorQuad m_fontcolor; // +0x4
     gbColorQuad m_wndcolor; // +0x8
-    unsigned int m_id; // +0xC
+    UINT m_id; // +0xC
     tagRECT m_rect; // +0x10
     UIWnd * m_pfather; // +0x20
     PtrArray m_childs; // +0x24

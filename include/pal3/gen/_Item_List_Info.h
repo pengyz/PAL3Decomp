@@ -10,7 +10,7 @@ class _Item;
 class _Item_List_Info : public UIFrameWnd {
 public:
     UIStatic m_background; // +0x48
-    unsigned char m_IsActive; // +0xE8
+    BYTE m_IsActive; // +0xE8
     _Item * m_pItem; // +0xEC
     UIButton m_BtnItem[12]; // +0xF0
     UIStatic ms_Title; // +0x1110

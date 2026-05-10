@@ -3,7 +3,7 @@
 
 class _LARGE_INTEGER {
 public:
-    unsigned long LowPart; // +0x0
+    DWORD LowPart; // +0x0
     long HighPart; // +0x4
     int u; // +0x0 (_LARGE_INTEGER::__unnamed)
     __int64 QuadPart; // +0x0

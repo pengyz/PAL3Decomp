@@ -5,7 +5,7 @@ class tMaterialInfo {
 public:
     char strName[255]; // +0x0
     char strFile[255]; // +0xFF
-    unsigned char color[3]; // +0x1FE
+    BYTE color[3]; // +0x1FE
     float fColor[3]; // +0x204
     int texureId; // +0x210
     float uTile; // +0x214

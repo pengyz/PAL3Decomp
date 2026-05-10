@@ -35,16 +35,16 @@ public:
     int m_BFARound; // +0x64
     tagPOINT m_ptMousePos; // +0x68
     int m_nSelectedRole; // +0x70
-    unsigned char m_bRoleSelected[11]; // +0x74
-    unsigned char m_bHideSceneAndRole; // +0x7F
+    BYTE m_bRoleSelected[11]; // +0x74
+    BYTE m_bHideSceneAndRole; // +0x7F
     float m_fDamageNumPosY[11]; // +0x80
     float m_fMusicVolume; // +0xAC
-    unsigned char m_bPaused; // +0xB0
+    BYTE m_bPaused; // +0xB0
     int m_nTask; // +0xB4
     int m_nCurTask; // +0xB8
     int m_nCurSubTask; // +0xBC
     tagStageTask m_Task[256]; // +0xC0
-    unsigned long m_dwAniFlagOver; // +0xA48C0
+    DWORD m_dwAniFlagOver; // +0xA48C0
     // total size: 0xA48C8 (673992)
 
     int InitRound(); // 0x004DFAA0

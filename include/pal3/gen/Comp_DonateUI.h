@@ -29,8 +29,8 @@ public:
     int m_mouseon; // +0x69BC
     UIRoleDialog m_RoleDlg; // +0x69C0
     UIRoleSelect m_SelectDlg; // +0x6C90
-    unsigned char m_IfSel; // +0x72B0
-    unsigned char m_IfGetSel; // +0x72B1
+    BYTE m_IfSel; // +0x72B0
+    BYTE m_IfGetSel; // +0x72B1
     tagRECT m_RoleDlgRc; // +0x72B4
     int m_AddIntimacyDonate[5]; // +0x72C4
     int m_AddIntimacyComp[5]; // +0x72D8
@@ -39,8 +39,8 @@ public:
     MUIDialog m_Msg; // +0x9AF0
     MUIDialog m_ActiveDlg; // +0xA058
     MUIDialog m_ExitDlg; // +0xA5C0
-    unsigned char m_IsActive; // +0xAB28
-    unsigned char m_IsOver; // +0xAB29
+    BYTE m_IsActive; // +0xAB28
+    BYTE m_IsOver; // +0xAB29
     LineupComp m_LineupComp; // +0xAB2C
     UIStatic m_BK; // +0xB308
     // total size: 0xB3A8 (45992)

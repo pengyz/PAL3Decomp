@@ -6,13 +6,13 @@
 
 class PalScriptMgr {
 public:
-    unsigned char m_bGetSceneScript; // +0x0
-    PtrArray m_script; // +0x0
-    scSCEFile m_scefile; // +0x0
-    scSCEFile m_scesys; // +0x0
-    int m_scepath; // +0x0 (std::basic_string<char,std::char_traits<char>,std::allocator<char> >)
-    scSCEFile m_bigmapsce; // +0x0
-    // total size: 0x1 (1)
+    int m_bGetSceneScript; // +0x0
+    PtrArray m_script; // +0x4
+    scSCEFile m_scefile; // +0x14
+    scSCEFile m_scesys; // +0x24
+    int m_scepath; // +0x34
+    scSCEFile m_bigmapsce; // +0x38
+    // total size: 0x48 (72)
 
     PalScriptMgr(); // 0x00431E60
     static int OpenSCE(); // 0x00431EB0

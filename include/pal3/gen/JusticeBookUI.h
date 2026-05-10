@@ -17,10 +17,10 @@ public:
     int i; // +0x60
     int j; // +0x64
     char buf[256]; // +0x68
-    unsigned char m_IsMsg; // +0x168
-    unsigned char m_IsActive; // +0x169
-    unsigned char m_IsExit; // +0x16A
-    unsigned char m_IsOpen; // +0x16B
+    BYTE m_IsMsg; // +0x168
+    BYTE m_IsActive; // +0x169
+    BYTE m_IsExit; // +0x16A
+    BYTE m_IsOpen; // +0x16B
     UIStatic m_BK; // +0x16C
     UIButton m_Exit; // +0x20C
     UIStatic m_OutFrameT; // +0x364
@@ -52,10 +52,10 @@ public:
     UIPushButton m_tpDemon_unopen; // +0x1FF8
     UIPushButton m_tpHuman_unopen; // +0x20F4
     UIPushButton m_tpMagic_unopen; // +0x21F0
-    unsigned long * m_allMonsters; // +0x22EC
+    DWORD * m_allMonsters; // +0x22EC
     int m_MonstersNum; // +0x22F0
     int m_tpNum[6]; // +0x22F4
-    unsigned long m_tpID[100][6]; // +0x230C
+    DWORD m_tpID[100][6]; // +0x230C
     JB_TYPE m_bookMark; // +0x2C6C
     JB_TYPE m_curMark; // +0x2C70
     int m_Page; // +0x2C74
@@ -64,13 +64,13 @@ public:
     tagRECT r_bookMarkRc[6]; // +0x2CDC
     int bookMarkLR[6]; // +0x2D3C
     tagRECT m_OpenBookRc; // +0x2D54
-    unsigned char m_showElement; // +0x2D64
-    unsigned char m_isSetBookMark; // +0x2D65
+    BYTE m_showElement; // +0x2D64
+    BYTE m_isSetBookMark; // +0x2D65
     int m_isSetBookMarkLR; // +0x2D68
     JB_STATE m_bookState; // +0x2D6C
     gbColorQuad m_color; // +0x2D70
     float m_alpha; // +0x2D74
-    unsigned char m_isAlpha; // +0x2D78
+    BYTE m_isAlpha; // +0x2D78
     // total size: 0x2D7C (11644)
 
 };

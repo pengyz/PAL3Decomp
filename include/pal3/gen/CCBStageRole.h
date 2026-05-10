@@ -15,21 +15,21 @@ public:
     CCBStage * m_pStage; // +0x0
     CCBRoleState * m_pRoleState; // +0x4
     char m_sLastRole[256]; // +0x8
-    unsigned char m_bValid; // +0x108
-    unsigned char m_bVisible; // +0x109
-    unsigned char m_bPaused; // +0x10A
-    unsigned char m_bAbsTime; // +0x10B
+    BYTE m_bValid; // +0x108
+    BYTE m_bVisible; // +0x109
+    BYTE m_bPaused; // +0x10A
+    BYTE m_bAbsTime; // +0x10B
     float m_fTimeScale; // +0x10C
-    unsigned char m_bAlive; // +0x110
-    unsigned char m_bRun; // +0x111
-    unsigned char m_bFlash; // +0x112
-    unsigned char m_bFlashCounter; // +0x113
+    BYTE m_bAlive; // +0x110
+    BYTE m_bRun; // +0x111
+    BYTE m_bFlash; // +0x112
+    BYTE m_bFlashCounter; // +0x113
     float m_fFlashTimeKey; // +0x114
-    unsigned char m_bShowWeapon; // +0x118
+    BYTE m_bShowWeapon; // +0x118
     float m_fBlend; // +0x11C
-    unsigned char m_bBeSelected; // +0x120
+    BYTE m_bBeSelected; // +0x120
     int m_nIndex; // +0x124
-    unsigned long m_dwID; // +0x128
+    DWORD m_dwID; // +0x128
     Actor * m_pActor; // +0x12C
     Actor * m_pRawActor; // +0x130
     gbGeomNode * m_pWeaponModel; // +0x134
@@ -38,28 +38,28 @@ public:
     gbVec3D m_vNoteThrowPos; // +0x150
     gbVec3D m_vThrowVec; // +0x15C
     gbVec3D m_vecLen; // +0x168
-    unsigned char m_bShowWeaponModel; // +0x174
-    unsigned char m_bCatching; // +0x175
+    BYTE m_bShowWeaponModel; // +0x174
+    BYTE m_bCatching; // +0x175
     int m_iState; // +0x178
-    unsigned char m_bForceFinishThrowingWeapon; // +0x17C
+    BYTE m_bForceFinishThrowingWeapon; // +0x17C
     float m_fMaxThrowSpeed; // +0x180
     float m_fThrowSpeed; // +0x184
     float m_fThrowLen; // +0x188
     tagCmdData m_ThrowCmdData; // +0x18C
     gbOBBox m_OBBox; // +0x1B8
-    unsigned char m_bTransMtl; // +0x204
-    unsigned char m_bSpecTransport; // +0x205
-    unsigned char m_bGrabed; // +0x206
-    unsigned char m_bNormalGrab; // +0x207
-    unsigned long m_dwStageTaskID; // +0x208
-    unsigned char m_bExternalTask; // +0x20C
+    BYTE m_bTransMtl; // +0x204
+    BYTE m_bSpecTransport; // +0x205
+    BYTE m_bGrabed; // +0x206
+    BYTE m_bNormalGrab; // +0x207
+    DWORD m_dwStageTaskID; // +0x208
+    BYTE m_bExternalTask; // +0x20C
     float m_fLeftWeapon; // +0x210
     float m_fRightWeapon; // +0x214
     int m_nTask; // +0x218
     int m_nCurTask; // +0x21C
     void * * m_fp; // +0x220
     tagRoleTask m_Task[64]; // +0x230
-    unsigned long m_dwCurWeaponIndex; // +0x1A30
+    DWORD m_dwCurWeaponIndex; // +0x1A30
     ERoleActState m_eRoleActState; // +0x1A34
     ACTION_KIND m_eCurAction; // +0x1A38
     gbVec3D m_vecSunDir; // +0x1A3C
@@ -69,21 +69,21 @@ public:
     gbVec3D m_vecRunVelocity; // +0x1A6C
     float m_fFaceDir; // +0x1A78
     float m_fInitFaceDir; // +0x1A7C
-    unsigned long m_dwCurAniFlag; // +0x1A80
-    unsigned long m_dwAniFlagOver; // +0x1A84
-    unsigned long m_dwAniFlagWork; // +0x1A88
-    unsigned long m_dwAniFlagWork1; // +0x1A8C
-    unsigned long m_dwAniFlagWork2; // +0x1A90
-    unsigned long m_dwAniFlagWork3; // +0x1A94
-    unsigned long m_dwAniFlagPause; // +0x1A98
-    unsigned long m_dwAniFlagStore; // +0x1A9C
-    unsigned long m_dwAniFlagFlyup; // +0x1AA0
-    unsigned long m_dwAniFlagFlydown; // +0x1AA4
-    unsigned long m_dwAniFlagThrowED; // +0x1AA8
-    unsigned long m_dwAniFlagCatchED; // +0x1AAC
-    unsigned long m_dwAniFlagSJump; // +0x1AB0
-    unsigned long m_dwAniFlagEJump; // +0x1AB4
-    unsigned long m_dwLastExternalActionCRC; // +0x1AB8
+    DWORD m_dwCurAniFlag; // +0x1A80
+    DWORD m_dwAniFlagOver; // +0x1A84
+    DWORD m_dwAniFlagWork; // +0x1A88
+    DWORD m_dwAniFlagWork1; // +0x1A8C
+    DWORD m_dwAniFlagWork2; // +0x1A90
+    DWORD m_dwAniFlagWork3; // +0x1A94
+    DWORD m_dwAniFlagPause; // +0x1A98
+    DWORD m_dwAniFlagStore; // +0x1A9C
+    DWORD m_dwAniFlagFlyup; // +0x1AA0
+    DWORD m_dwAniFlagFlydown; // +0x1AA4
+    DWORD m_dwAniFlagThrowED; // +0x1AA8
+    DWORD m_dwAniFlagCatchED; // +0x1AAC
+    DWORD m_dwAniFlagSJump; // +0x1AB0
+    DWORD m_dwAniFlagEJump; // +0x1AB4
+    DWORD m_dwLastExternalActionCRC; // +0x1AB8
     // total size: 0x1AC0 (6848)
 
     char IsActive(int index); // 0x004ED040

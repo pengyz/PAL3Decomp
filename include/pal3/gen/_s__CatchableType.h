@@ -7,7 +7,7 @@ class _TypeDescriptor;
 
 class _s__CatchableType {
 public:
-    unsigned int properties; // +0x0
+    UINT properties; // +0x0
     _TypeDescriptor * pType; // +0x4
     _PMD thisDisplacement; // +0x8
     int sizeOrOffset; // +0x14

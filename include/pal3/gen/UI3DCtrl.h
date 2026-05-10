@@ -12,7 +12,7 @@ public:
     UI3DObj m_obj[5]; // +0x48
     float m_orthosize; // +0xE8
     int m_rotatemode; // +0xEC
-    unsigned char m_isrotateto; // +0xF0
+    BYTE m_isrotateto; // +0xF0
     int m_speed; // +0xF4
     float m_rotate; // +0xF8
     float m_rotatetarget; // +0xFC

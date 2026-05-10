@@ -12,7 +12,7 @@ public:
     char _libfolder[512]; // +0xC
     int _realNum; // +0x20C
     _Texture_Info * m_pData; // +0x210
-    unsigned char _isLoadTLI; // +0x214
+    BYTE _isLoadTLI; // +0x214
     // total size: 0x218 (536)
 
 };

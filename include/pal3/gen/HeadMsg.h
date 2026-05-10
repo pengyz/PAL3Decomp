@@ -6,7 +6,7 @@ class UIStatic;
 
 class HeadMsg {
 public:
-    unsigned char m_bEnable; // +0x4
+    BYTE m_bEnable; // +0x4
     char m_szMsg[16]; // +0x8 (std::basic_string<char,std::char_traits<char>,std::allocator<char> >)
     float m_fTime; // +0x18
     int m_nType; // +0x1C
@@ -17,8 +17,8 @@ public:
     int m_nShowPointW; // +0x30
     float m_fHeadModeTime; // +0x34
     float m_fAttenSpeed; // +0x38
-    unsigned char m_bAtten; // +0x3C
-    unsigned char m_ucAlpha; // +0x3D
+    BYTE m_bAtten; // +0x3C
+    BYTE m_ucAlpha; // +0x3D
     Role * m_pRole; // +0x40
     // total size: 0x44 (68)
 

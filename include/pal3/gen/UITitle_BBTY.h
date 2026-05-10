@@ -32,8 +32,8 @@ public:
     UIButton m_Exit; // +0xE38
     MUIDialog m_Msg; // +0xF90
     _better_note m_appr_note; // +0x14F8
-    unsigned int m_gamestate; // +0x1500
-    unsigned char m_isgoto; // +0x1504
+    UINT m_gamestate; // +0x1500
+    BYTE m_isgoto; // +0x1504
     UICoverFrm * m_pMgr; // +0x1508
     // total size: 0x150C (5388)
 

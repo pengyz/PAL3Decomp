@@ -3,10 +3,10 @@
 
 class Color4ub {
 public:
-    unsigned char B; // +0x0
-    unsigned char G; // +0x1
-    unsigned char R; // +0x2
-    unsigned char A; // +0x3
+    BYTE B; // +0x0
+    BYTE G; // +0x1
+    BYTE R; // +0x2
+    BYTE A; // +0x3
     // total size: 0x4 (4)
 
 };

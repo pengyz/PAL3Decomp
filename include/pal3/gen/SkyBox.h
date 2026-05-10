@@ -8,7 +8,7 @@ public:
     gbVec3D m_vHalfSize; // +0x20
     gbRenderEffect * m_pEffect; // +0x2C
     gbRenderEffect * m_pEffectNormal; // +0x30
-    unsigned char m_bValid; // +0x34
+    BYTE m_bValid; // +0x34
     // total size: 0x38 (56)
 
 };

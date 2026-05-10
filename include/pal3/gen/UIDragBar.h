@@ -8,13 +8,13 @@ class _PlugInfo;
 class UIDragBar : public UIWnd {
 public:
     UIWnd * p_Wnd; // +0x44
-    unsigned int m_id; // +0x48
+    UINT m_id; // +0x48
     tagRECT m_fatherRc; // +0x4C
     int m_SX; // +0x5C
     int m_SY; // +0x60
     int m_xOffSet; // +0x64
-    unsigned char m_bDrag; // +0x68
-    unsigned char m_bClick; // +0x69
+    BYTE m_bDrag; // +0x68
+    BYTE m_bClick; // +0x69
     int m_DragState; // +0x6C
     tagPOINT m_lastPt; // +0x70
     tagRECT m_DragRc; // +0x78

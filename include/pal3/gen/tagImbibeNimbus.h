@@ -11,7 +11,7 @@ public:
     ECBFiveNimbus mNimbustype; // +0x4
     gbVec3D mVelocity; // +0x8
     tagPOINT mPos; // +0x14
-    unsigned char bAlive; // +0x1C
+    BYTE bAlive; // +0x1C
     float mAccelerate; // +0x20
     float mFX; // +0x24
     float mFY; // +0x28

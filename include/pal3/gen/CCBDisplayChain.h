@@ -15,7 +15,7 @@ public:
     gbColorQuad m_ScreenQuadColor; // +0xC
     int m_nItemNum; // +0x10
     tagShowItem m_ShowItem[64]; // +0x14
-    unsigned char m_byScreenQuadAlpha; // +0x4614
+    BYTE m_byScreenQuadAlpha; // +0x4614
     // total size: 0x4618 (17944)
 
 };

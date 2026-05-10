@@ -30,8 +30,8 @@ public:
     char m_CollideData[12]; // +0x234 (std::list<COLLIDE_DATA,std::allocator<COLLIDE_DATA> >)
     int m_clientwidth; // +0x240
     int m_clientheight; // +0x244
-    unsigned char CAMERA_LOCK_HALFRADIUS; // +0x248
-    unsigned char CAMERA_COLLIDE_METHOD; // +0x249
+    BYTE CAMERA_LOCK_HALFRADIUS; // +0x248
+    BYTE CAMERA_COLLIDE_METHOD; // +0x249
     gbVec3D m_lookat; // +0x24C
     gbVec3D m_from; // +0x258
     gbVec3D m_forward; // +0x264
@@ -39,7 +39,7 @@ public:
     gbVec3D m_side; // +0x27C
     gbVec3D m_LockForward; // +0x288
     gbVec3D m_LockCenter; // +0x294
-    unsigned char m_bCollide; // +0x2A0
+    BYTE m_bCollide; // +0x2A0
     float m_roomHeight; // +0x2A4
     gbVec3D m_lastUP; // +0x2A8
     // total size: 0x2B4 (692)

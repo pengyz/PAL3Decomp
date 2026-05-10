@@ -23,10 +23,10 @@ public:
     int i; // +0x60
     int j; // +0x64
     char buf[256]; // +0x68
-    unsigned char m_IsMsg; // +0x168
-    unsigned char m_Is[5]; // +0x169
-    unsigned char m_IsActive; // +0x16E
-    unsigned char m_IsCreateable; // +0x16F
+    BYTE m_IsMsg; // +0x168
+    BYTE m_Is[5]; // +0x169
+    BYTE m_IsActive; // +0x16E
+    BYTE m_IsCreateable; // +0x16F
     int m_SelNum; // +0x170
     int m_PutOnType; // +0x174
     PlayerItem_Type m_CurType; // +0x178
@@ -59,7 +59,7 @@ public:
     UIParticle m_btnPar[16][7]; // +0x1ACC
     UIParticle m_btnPar2[16][7]; // +0x11DCC
     tagRECT m_btnParRc[7]; // +0x220CC
-    unsigned char _isParBtn[7]; // +0x2213C
+    BYTE _isParBtn[7]; // +0x2213C
     int _curParEffect; // +0x22144
     me_RoleState me_Role[5]; // +0x22148
     UIStatic m_WeaponName; // +0x2DEBC

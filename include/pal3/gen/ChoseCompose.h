@@ -17,15 +17,15 @@ public:
     int j; // +0x6C
     char buf[256]; // +0x70
     tagRECT bkRc; // +0x170
-    unsigned long m_id; // +0x180
-    unsigned char m_isExit; // +0x184
+    DWORD m_id; // +0x180
+    BYTE m_isExit; // +0x184
     UIStaticFlex m_bk; // +0x188
     UIStatic m_ComposeInfo; // +0x248
     UIButton m_RoleName[5]; // +0x2E8
     MUIDialog m_Msg; // +0x9A0
-    unsigned char m_isCtrl[5]; // +0xF08
-    unsigned char m_isActive; // +0xF0D
-    unsigned char m_isExtented; // +0xF0E
+    BYTE m_isCtrl[5]; // +0xF08
+    BYTE m_isActive; // +0xF0D
+    BYTE m_isExtented; // +0xF0E
     // total size: 0xF10 (3856)
 
 };

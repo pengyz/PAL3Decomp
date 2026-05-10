@@ -79,7 +79,7 @@ public:
     CCBSystem * m_pCBSystem; // +0x4AC
     CUtil * m_pUtil; // +0x4B0
     tagUITask m_Task[32]; // +0x4B8
-    unsigned char m_bShowResult; // +0xDB8
+    BYTE m_bShowResult; // +0xDB8
     void * * m_fp; // +0xDC0
     int m_nTask; // +0xDD0
     int m_nCurTask; // +0xDD4

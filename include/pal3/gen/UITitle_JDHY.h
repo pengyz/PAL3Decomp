@@ -23,7 +23,7 @@ public:
     UIStatic m_OutFrameB; // +0x338
     UIStatic m_background; // +0x3D8
     UIButton m_exit; // +0x478
-    unsigned char m_isItemShow[99]; // +0x5D0
+    BYTE m_isItemShow[99]; // +0x5D0
     Note_Item m_NoteItem[99]; // +0x634
     UIStatic m_Title_JDHY; // +0x5A7E4
     UIStatic m_TopBar; // +0x5A884

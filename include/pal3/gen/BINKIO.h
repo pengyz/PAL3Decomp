@@ -12,19 +12,19 @@ public:
     void * * Idle; // +0x10
     void * * Close; // +0x14
     BINK * bink; // +0x18
-    unsigned long ReadError; // +0x1C
-    unsigned long DoingARead; // +0x20
-    unsigned long BytesRead; // +0x24
-    unsigned long Working; // +0x28
-    unsigned long TotalTime; // +0x2C
-    unsigned long ForegroundTime; // +0x30
-    unsigned long IdleTime; // +0x34
-    unsigned long ThreadTime; // +0x38
-    unsigned long BufSize; // +0x3C
-    unsigned long BufHighUsed; // +0x40
-    unsigned long CurBufSize; // +0x44
-    unsigned long CurBufUsed; // +0x48
-    unsigned char iodata[128]; // +0x4C
+    DWORD ReadError; // +0x1C
+    DWORD DoingARead; // +0x20
+    DWORD BytesRead; // +0x24
+    DWORD Working; // +0x28
+    DWORD TotalTime; // +0x2C
+    DWORD ForegroundTime; // +0x30
+    DWORD IdleTime; // +0x34
+    DWORD ThreadTime; // +0x38
+    DWORD BufSize; // +0x3C
+    DWORD BufHighUsed; // +0x40
+    DWORD CurBufSize; // +0x44
+    DWORD CurBufUsed; // +0x48
+    BYTE iodata[128]; // +0x4C
     // total size: 0xCC (204)
 
 };

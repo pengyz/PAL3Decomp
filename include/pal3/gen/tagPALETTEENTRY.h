@@ -3,10 +3,10 @@
 
 class tagPALETTEENTRY {
 public:
-    unsigned char peRed; // +0x0
-    unsigned char peGreen; // +0x1
-    unsigned char peBlue; // +0x2
-    unsigned char peFlags; // +0x3
+    BYTE peRed; // +0x0
+    BYTE peGreen; // +0x1
+    BYTE peBlue; // +0x2
+    BYTE peFlags; // +0x3
     // total size: 0x4 (4)
 
 };

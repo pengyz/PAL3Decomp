@@ -60,7 +60,7 @@ public:
     PtrArray m_ComboBuffer; // +0x4EA0
     UISceneMap m_SceneMap; // +0x4EB0
     UIButton m_Exit; // +0x5368
-    unsigned char m_IsExit; // +0x54C0
+    BYTE m_IsExit; // +0x54C0
     tagRECT m_InvalidRc0; // +0x54C4
     tagRECT m_InvalidRc1; // +0x54D4
     tagRECT m_InvalidRc2; // +0x54E4
@@ -74,15 +74,15 @@ public:
     int m_nComboHit; // +0x5510
     int m_nTotalComboHit; // +0x5514
     UIStatic m_pCombo; // +0x5518
-    unsigned char m_mouseon[9]; // +0x55B8
+    BYTE m_mouseon[9]; // +0x55B8
     int m_nPropCost; // +0x55C4
     int m_nNoteMoney; // +0x55C8
     PropUI * m_pBuyUI; // +0x55CC
-    unsigned char m_bRenderBuyUI; // +0x55D0
+    BYTE m_bRenderBuyUI; // +0x55D0
     st_Manager m_PropData; // +0x55D4
-    unsigned char bUseKeyLocked; // +0x9A34
-    unsigned int m_nPropNum[5]; // +0x9A38
-    unsigned long m_dwCurPropID; // +0x9A4C
+    BYTE bUseKeyLocked; // +0x9A34
+    UINT m_nPropNum[5]; // +0x9A38
+    DWORD m_dwCurPropID; // +0x9A4C
     // total size: 0x9A50 (39504)
 
 };

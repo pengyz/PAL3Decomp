@@ -15,7 +15,7 @@ public:
     ARC_FightItem m_ItemData[500]; // +0x614E0
     ARC_ComboAttack m_ComboData[10]; // +0xC2F60
     int i; // +0xC4810
-    unsigned char mLoaded; // +0xC4814
+    BYTE mLoaded; // +0xC4814
     // total size: 0xC4818 (804888)
 
 };

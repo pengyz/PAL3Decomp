@@ -24,10 +24,10 @@ public:
     gbTexture * m_disablepic; // +0x80
     _PlugInfo * m_disablepicInfo; // +0x84
     gbTexture * m_pbk2; // +0x88
-    unsigned char m_mouseoff; // +0x8C
+    BYTE m_mouseoff; // +0x8C
     int m_FVF; // +0x90
     int m_nTextW; // +0x94
-    unsigned char m_PureColor; // +0x98
+    BYTE m_PureColor; // +0x98
     int m_richtext; // +0x9C
     // total size: 0xA0 (160)
 

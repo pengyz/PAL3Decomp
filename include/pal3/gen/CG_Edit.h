@@ -20,7 +20,7 @@ public:
     gbRenderEffect * EFT_LINE; // +0x3C
     gbRenderEffect * EFT_GEOM_NOTEX; // +0x40
     gbRenderEffect * EFT_GEOM_NOTEX_LINE; // +0x44
-    unsigned char m_bWaitForEditArea; // +0x48
+    BYTE m_bWaitForEditArea; // +0x48
     tagRECT m_rTouchArea; // +0x4C
     tagRECT m_rLastObjArea; // +0x5C
     tagPOINT m_pLastGroundPt; // +0x6C

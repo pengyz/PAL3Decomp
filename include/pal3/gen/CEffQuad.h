@@ -10,13 +10,13 @@ class gbTextureArray;
 
 class CEffQuad : public CEffObj, public CTaskTpl {
 public:
-    unsigned char m_bActive; // +0x30
-    unsigned char m_bVisible; // +0x31
-    unsigned char m_bAniFrame; // +0x32
-    unsigned char m_bBillBoard; // +0x33
-    unsigned char m_bAdditiveBlend; // +0x34
-    unsigned char m_bNoZTest; // +0x35
-    unsigned char m_byMaxFrame; // +0x36
+    BYTE m_bActive; // +0x30
+    BYTE m_bVisible; // +0x31
+    BYTE m_bAniFrame; // +0x32
+    BYTE m_bBillBoard; // +0x33
+    BYTE m_bAdditiveBlend; // +0x34
+    BYTE m_bNoZTest; // +0x35
+    BYTE m_byMaxFrame; // +0x36
     int m_nRequireLoops; // +0x38
     int m_nQuadNum; // +0x3C
     int m_nGeomQuadNum; // +0x40

@@ -14,8 +14,8 @@ public:
     int m_nimbus[5]; // +0x6C
     int m_state[5]; // +0x80
     int m_nimbusStep; // +0x94
-    unsigned char m_bShow; // +0x98
-    unsigned char m_bLock; // +0x99
+    BYTE m_bShow; // +0x98
+    BYTE m_bLock; // +0x99
     int m_counter; // +0x9C
     // total size: 0xA0 (160)
 

@@ -22,12 +22,12 @@ public:
     float m_fTimeScale; // +0x60
     float m_deltatime; // +0x64
     int m_bLockPropUI; // +0x68
-    unsigned char m_bLockCamera; // +0x6C
+    BYTE m_bLockCamera; // +0x6C
     int m_bProcessLinkObj; // +0x70
     int m_bCallProcessGroupObj; // +0x74
     int m_bMainGroupObj; // +0x78
-    unsigned long dwEffGroupRunningID; // +0x7C
-    unsigned char bCGObj; // +0x80
+    DWORD dwEffGroupRunningID; // +0x7C
+    BYTE bCGObj; // +0x80
     char sCGSHELF[64]; // +0x81
     tagRECT rCGSelfArea; // +0xC4
     tagRECT rTouchAreaCG; // +0xD4
@@ -39,7 +39,7 @@ public:
     int mRetrorse; // +0x14C
     int mTouchCounter; // +0x150
     int m_iState; // +0x154
-    unsigned char m_bCVDOver; // +0x158
+    BYTE m_bCVDOver; // +0x158
     gbOBBox mOBBox; // +0x15C
     char m_pObjMsgBuffer[256]; // +0x1A8
     char m_pObjMsgBuffer2[256]; // +0x2A8
@@ -49,7 +49,7 @@ public:
     ObjectInfo m_info; // +0x42C
     PathObj * m_path; // +0x688
     SceneMapObj * m_pmap; // +0x68C
-    unsigned char m_mapindex; // +0x690
+    BYTE m_mapindex; // +0x690
     int m_pushboxdir; // +0x694
     tagRECT m_maprect; // +0x698
     int m_liftrole; // +0x6A8

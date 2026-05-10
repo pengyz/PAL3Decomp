@@ -10,8 +10,8 @@ class CG_UI;
 
 class CG_Entry {
 public:
-    unsigned char m_bActive; // +0x0
-    unsigned char m_bUIActive; // +0x1
+    BYTE m_bActive; // +0x0
+    BYTE m_bUIActive; // +0x1
     CG_Scene * m_pScene; // +0x4
     CG_UI * m_pUI; // +0x8
     CG_Edit * m_pEdit; // +0xC
@@ -20,8 +20,8 @@ public:
     gbVec3D m_EntryRolePos; // +0x3C
     char m_EntryCityName[64]; // +0x48
     char m_EntryName[64]; // +0x88
-    unsigned char bOpt; // +0x0
-    unsigned char b_NoteJumpFree; // +0xC8
+    BYTE bOpt; // +0x0
+    BYTE b_NoteJumpFree; // +0xC8
     // total size: 0xCC (204)
 
 };

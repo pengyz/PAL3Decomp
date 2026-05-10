@@ -3,19 +3,19 @@
 
 #include "DLG_MSG.h"
 #include "DLG_TYPE.h"
+#include "MUIDialogMgr.h"
 #include "UIButton.h"
 #include "UIDialog.h"
 #include "UIStatic.h"
 #include "UIStaticFlex.h"
 #include "_TimeMgr.h"
 
-class MUIDialogMgr;
 class UIWnd;
 
 class MUIDialog : public UIDialog, public MUIDialogMgr {
 public:
     UIWnd * ptr_Dlg; // +0x48
-    unsigned int m_DlgId; // +0x4C
+    UINT m_DlgId; // +0x4C
     tagRECT m_rect; // +0x50
     tagRECT m_textRc; // +0x60
     UIStaticFlex m_bk; // +0x70
@@ -31,13 +31,13 @@ public:
     DLG_MSG m_getMsg; // +0x540
     int dft_W; // +0x544
     int dft_H; // +0x548
-    unsigned char m_IsModel; // +0x54C
-    unsigned char m_isDoModel; // +0x54D
+    BYTE m_IsModel; // +0x54C
+    BYTE m_isDoModel; // +0x54D
     int m_xOffset; // +0x550
     int m_yOffset; // +0x554
     _TimeMgr _m_timeMgr; // +0x558
-    unsigned char _m_canEndDlg; // +0x564
-    unsigned char _haveSound; // +0x565
+    BYTE _m_canEndDlg; // +0x564
+    BYTE _haveSound; // +0x565
     // total size: 0x568 (1384)
 
 };

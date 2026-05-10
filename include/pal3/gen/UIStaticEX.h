@@ -10,7 +10,7 @@ public:
     float m_rotdst; // +0xA8
     float m_rotspeed; // +0xAC
     int m_rotdir; // +0xB0
-    unsigned char m_isStoped; // +0xB4
+    BYTE m_isStoped; // +0xB4
     float m_accelerate; // +0xB8
     float m_notespeed; // +0xBC
     // total size: 0xC0 (192)

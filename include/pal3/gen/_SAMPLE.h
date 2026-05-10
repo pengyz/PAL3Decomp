@@ -10,13 +10,13 @@ class _SAMPLE {
 public:
     char tag[4]; // +0x0
     _DIG_DRIVER * driver; // +0x4
-    unsigned long status; // +0x8
+    DWORD status; // +0x8
     void * start[2]; // +0xC
-    unsigned long len[2]; // +0x14
-    unsigned long pos[2]; // +0x1C
-    unsigned long done[2]; // +0x24
+    DWORD len[2]; // +0x14
+    DWORD pos[2]; // +0x1C
+    DWORD done[2]; // +0x24
     long reset_ASI[2]; // +0x2C
-    unsigned long src_fract; // +0x34
+    DWORD src_fract; // +0x34
     long left_val; // +0x38
     long right_val; // +0x3C
     long current_buffer; // +0x40
@@ -26,7 +26,7 @@ public:
     long loop_start; // +0x50
     long loop_end; // +0x54
     long format; // +0x58
-    unsigned long flags; // +0x5C
+    DWORD flags; // +0x5C
     long playback_rate; // +0x60
     long volume; // +0x64
     long pan; // +0x68

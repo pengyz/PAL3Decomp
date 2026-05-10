@@ -32,7 +32,7 @@ public:
     int i; // +0x164
     int j; // +0x168
     int k; // +0x16C
-    unsigned char _isCreatable; // +0x170
+    BYTE _isCreatable; // +0x170
     float _flashSpeed; // +0x174
     st_Manager m_EquipData; // +0x178
     PlayerItem * p_DealData; // +0x45D8
@@ -52,25 +52,25 @@ public:
     int RoleY; // +0x6BDC
     int HeadW; // +0x6BE0
     int HeadH; // +0x6BE4
-    unsigned char m_Is[5]; // +0x6BE8
+    BYTE m_Is[5]; // +0x6BE8
     UIStatic m_Arrow[8][6][5]; // +0x6BF0
     UIStatic m_ArrowNum[8][2][5]; // +0x101F0
     tagRECT m_ArrowRc[8][6][5]; // +0x133F0
-    unsigned char m_IsArrow[8][6][5]; // +0x142F0
+    BYTE m_IsArrow[8][6][5]; // +0x142F0
     int m_OldSelect; // +0x143E0
-    unsigned char m_IsMove[8][6][5]; // +0x143E4
+    BYTE m_IsMove[8][6][5]; // +0x143E4
     tagRECT m_AnimateRc[8][6][5]; // +0x144D4
     UIAnimate m_ArrowMove[8][6][5]; // +0x153D4
     UIStaticRM m_Icon[6][5]; // +0x18494
     UIStatic m_Select[6][5]; // +0x19A9C
-    unsigned char m_IsControlEquip; // +0x1AD5C
-    unsigned char m_IsEquip[6][5]; // +0x1AD5D
-    unsigned char m_IsMsg; // +0x1AD7B
+    BYTE m_IsControlEquip; // +0x1AD5C
+    BYTE m_IsEquip[6][5]; // +0x1AD5D
+    BYTE m_IsMsg; // +0x1AD7B
     int * m_EquipingNum; // +0x1AD7C
     int m_Equiping[6][5]; // +0x1AD80
     int * m_UnEquipingNum; // +0x1ADF8
     int * m_MaxNum; // +0x1ADFC
-    unsigned char m_Adorn[2][5]; // +0x1AE00
+    BYTE m_Adorn[2][5]; // +0x1AE00
     UI3DCtrl m_3DObj; // +0x1AE0C
     MUIDialog m_Msg; // +0x1AF40
     UIStatic m_TalkFrame; // +0x1B4A8
@@ -89,8 +89,8 @@ public:
     tagRECT ml_ListEquipRc; // +0x1C9A0
     BtnGroup m_btnGroup; // +0x1C9B0
     float m_ctrlTime; // +0x1CC94
-    unsigned char m_bCanUpdate1; // +0x1CC98
-    unsigned char m_bCanUpdate2; // +0x1CC99
+    BYTE m_bCanUpdate1; // +0x1CC98
+    BYTE m_bCanUpdate2; // +0x1CC99
     UIStatic m_EquipRemarkBk; // +0x1CC9C
     UIStatic m_EquipRemark; // +0x1CD3C
     tagRECT m_EquipRemarkRc; // +0x1CDDC
@@ -102,7 +102,7 @@ public:
     tagRECT m_SumRc; // +0x1CFEC
     UIButton mb_OK; // +0x1CFFC
     tagRECT mb_OKRc; // +0x1D154
-    unsigned char m_IsDicker; // +0x1D164
+    BYTE m_IsDicker; // +0x1D164
     UIButton mb_Cancel; // +0x1D168
     tagRECT mb_CancelRc; // +0x1D2C0
     UIButton mb_Exit; // +0x1D2D0
@@ -110,23 +110,23 @@ public:
     UITabBtn m_TabBtn; // +0x1D438
     tagRECT mb_DKRc; // +0x1D450
     tagRECT haveRc; // +0x1D460
-    unsigned char m_isCancelTalk; // +0x1D470
-    unsigned char m_IsRefuse; // +0x1D471
+    BYTE m_isCancelTalk; // +0x1D470
+    BYTE m_IsRefuse; // +0x1D471
     char m_strIn[256][2]; // +0x1D472
-    unsigned char m_IsTalk; // +0x1D672
+    BYTE m_IsTalk; // +0x1D672
     int m_TalkCount; // +0x1D674
     int m_talker; // +0x1D678
     int m_TalkFlag; // +0x1D67C
-    unsigned char m_bDK; // +0x1D680
+    BYTE m_bDK; // +0x1D680
     int m_DkNum; // +0x1D684
     int mb_DkFlag; // +0x1D688
-    unsigned long * m_DealID; // +0x1D68C
+    DWORD * m_DealID; // +0x1D68C
     int DealNum; // +0x1D690
     int curID; // +0x1D694
-    unsigned char m_IsUse; // +0x1D698
-    unsigned char m_IsDeal; // +0x1D699
+    BYTE m_IsUse; // +0x1D698
+    BYTE m_IsDeal; // +0x1D699
     DealUI * pDealUI; // +0x1D69C
-    unsigned char m_isSetData; // +0x1D6A0
+    BYTE m_isSetData; // +0x1D6A0
     // total size: 0x1D6A4 (120484)
 
     int Create(); // 0x004A1E40

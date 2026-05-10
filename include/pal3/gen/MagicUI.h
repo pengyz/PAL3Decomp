@@ -25,20 +25,20 @@ public:
     char buf[256]; // +0x68
     char remarkbuf[256]; // +0x168
     int s_x; // +0x268
-    unsigned char m_IsMsg; // +0x26C
-    unsigned char m_Is[5]; // +0x26D
+    BYTE m_IsMsg; // +0x26C
+    BYTE m_Is[5]; // +0x26D
     int m_CtrlRole; // +0x274
-    unsigned char m_IsActive; // +0x278
-    unsigned char m_IsCreateable; // +0x279
+    BYTE m_IsActive; // +0x278
+    BYTE m_IsCreateable; // +0x279
     int curPage; // +0x27C
     int m_SelNum; // +0x280
     int m_CurType; // +0x284
     int m_usemagicRole; // +0x288
-    unsigned char m_isuseMagic; // +0x28C
-    unsigned char m_LockUse; // +0x28D
-    unsigned char m_IsUsed; // +0x28E
-    unsigned char m_IsCanUse; // +0x28F
-    unsigned char m_IsAllUse; // +0x290
+    BYTE m_isuseMagic; // +0x28C
+    BYTE m_LockUse; // +0x28D
+    BYTE m_IsUsed; // +0x28E
+    BYTE m_IsCanUse; // +0x28F
+    BYTE m_IsAllUse; // +0x290
     tagPOINT pt; // +0x294
     SkillData m_RoleSkill[7][5]; // +0x29C
     StateUI * pStateUI; // +0xA594
@@ -69,7 +69,7 @@ public:
     UIParticle m_btnPar[16][7]; // +0xBF94
     UIParticle m_btnPar2[16][7]; // +0x1C294
     tagRECT m_btnParRc[7]; // +0x2C594
-    unsigned char _isParBtn[7]; // +0x2C604
+    BYTE _isParBtn[7]; // +0x2C604
     int _curParEffect; // +0x2C60C
     int m_CurSelRole; // +0x2C610
     int m_CurNeedRole; // +0x2C614
@@ -98,7 +98,7 @@ public:
     UIParticle m_parRainbow[8][5]; // +0x35C14
     UIParticle m_parRise[8][5]; // +0x3B894
     tagRECT m_parRc[5]; // +0x41514
-    unsigned char m_ComSkill[8][5]; // +0x0
+    BYTE m_ComSkill[8][5]; // +0x0
     // total size: 0x41564 (267620)
 
     int Create(); // 0x004A4AC0

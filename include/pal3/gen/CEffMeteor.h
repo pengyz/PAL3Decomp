@@ -16,15 +16,15 @@ public:
     tagMeteor * m_pMeteor; // +0x38
     gbTexture * m_pTexture; // +0x3C
     gbTextureArray * m_pTextureArray; // +0x40
-    unsigned char m_bVisible; // +0x44
-    unsigned char m_bAdditiveBlend; // +0x45
-    unsigned char m_bNoZTest; // +0x46
-    unsigned char m_bHaveHead; // +0x47
-    unsigned char m_byMaxFrame; // +0x48
+    BYTE m_bVisible; // +0x44
+    BYTE m_bAdditiveBlend; // +0x45
+    BYTE m_bNoZTest; // +0x46
+    BYTE m_bHaveHead; // +0x47
+    BYTE m_byMaxFrame; // +0x48
     int m_nRequireLoops; // +0x4C
     int m_nLoops; // +0x50
     float m_fCurFrame; // +0x54
-    unsigned long m_dwStartColor; // +0x58
+    DWORD m_dwStartColor; // +0x58
     float m_fAlpha; // +0x5C
     float m_fRed; // +0x60
     float m_fGreen; // +0x64

@@ -5,11 +5,11 @@
 
 class UICursor {
 public:
-    unsigned long m_dwID[3]; // +0x0
+    DWORD m_dwID[3]; // +0x0
     CURSOR_TYPE m_active; // +0xC
     gbTexture * m_tex[3]; // +0x10
-    unsigned char m_bShow; // +0x1C
-    unsigned char m_bSoftMode; // +0x1D
+    BYTE m_bShow; // +0x1C
+    BYTE m_bSoftMode; // +0x1D
     // total size: 0x20 (32)
 
     UICursor(); // 0x005417B0

@@ -31,16 +31,16 @@ public:
     int m_spiritspeed; // +0x1B5C
     float m_speedFX; // +0x1B60
     float m_speedFY; // +0x1B64
-    unsigned char m_bSpiritCanMove; // +0x1B68
-    unsigned char m_isSpiritMoveTo; // +0x1B69
+    BYTE m_bSpiritCanMove; // +0x1B68
+    BYTE m_isSpiritMoveTo; // +0x1B69
     float m_timescale; // +0x1B6C
     int m_stopdir; // +0x1B70
     _BIGMAP_ELEMENT m_curElement; // +0x1B74
     MUIDialog m_Answer; // +0x1B78
     MUIDialog m_Msg; // +0x20E0
     TxtFile scnname; // +0x2648
-    unsigned char m_haveopen; // +0x2854
-    unsigned char m_bupalpha; // +0x2855
+    BYTE m_haveopen; // +0x2854
+    BYTE m_bupalpha; // +0x2855
     int m_alpha; // +0x2858
     int m_alphatime; // +0x285C
     // total size: 0x2860 (10336)

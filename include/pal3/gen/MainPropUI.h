@@ -25,20 +25,20 @@ public:
     int s_x; // +0x68
     char buf[256]; // +0x6C
     char remarkbuf[256]; // +0x16C
-    unsigned char m_IsMsg; // +0x26C
-    unsigned char m_Is[5]; // +0x26D
+    BYTE m_IsMsg; // +0x26C
+    BYTE m_Is[5]; // +0x26D
     int m_CurSelRole; // +0x274
     int m_CurNeedRole; // +0x278
-    unsigned char m_IsActive; // +0x27C
-    unsigned char m_IsCreateable; // +0x27D
+    BYTE m_IsActive; // +0x27C
+    BYTE m_IsCreateable; // +0x27D
     int curPage; // +0x280
     int curList; // +0x284
     int m_SelNum; // +0x288
     int m_UseNum; // +0x28C
-    unsigned char m_LockUse; // +0x290
-    unsigned char m_IsUsed; // +0x291
-    unsigned char m_IsCanUse; // +0x292
-    unsigned char m_IsAllUse; // +0x293
+    BYTE m_LockUse; // +0x290
+    BYTE m_IsUsed; // +0x291
+    BYTE m_IsCanUse; // +0x292
+    BYTE m_IsAllUse; // +0x293
     StateUI * pStateUI; // +0x294
     UIStatic m_Frame; // +0x298
     UIStatic m_TimeMoney; // +0x338
@@ -67,7 +67,7 @@ public:
     UIParticle m_btnPar[16][7]; // +0x1B44
     UIParticle m_btnPar2[16][7]; // +0x11E44
     tagRECT m_btnParRc[7]; // +0x22144
-    unsigned char _isParBtn[7]; // +0x221B4
+    BYTE _isParBtn[7]; // +0x221B4
     int _curParEffect; // +0x221BC
     MUIDialog m_Dlg; // +0x221C0
     p_RoleState m_Role[5]; // +0x22728

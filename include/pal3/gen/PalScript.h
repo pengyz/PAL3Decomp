@@ -7,7 +7,7 @@ class scScriptInstance;
 
 class PalScript {
 public:
-    unsigned char m_bLoadSceneScript; // +0x0
+    BYTE m_bLoadSceneScript; // +0x0
     scScriptInstance * m_pinst; // +0x4
     PtrArray m_waitobj; // +0x8
     PtrArray m_CamObj; // +0x18

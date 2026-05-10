@@ -13,22 +13,22 @@ class CCBRoleState {
 public:
     char m_sCombatDialog[512]; // +0x0
     float m_fLastDialogTime; // +0x200
-    unsigned char m_bCombatDialog; // +0x204
+    BYTE m_bCombatDialog; // +0x204
     CCBSystem * m_pCBSystem; // +0x208
     CCBStage * m_pStage; // +0x20C
     CCBUI * m_pUI; // +0x210
     CUtil * m_pUtil; // +0x214
-    unsigned char m_bWeSneakAttackEnemy; // +0x218
-    unsigned char m_bEnemySneakAttackUs; // +0x219
+    BYTE m_bWeSneakAttackEnemy; // +0x218
+    BYTE m_bEnemySneakAttackUs; // +0x219
     int m_nMaxRound; // +0x21C
     int m_nBossRound; // +0x220
-    unsigned char m_bMustFail; // +0x224
-    unsigned char m_bFleeAlwaysSuccess; // +0x225
-    unsigned char m_bCreatedNewRole; // +0x226
+    BYTE m_bMustFail; // +0x224
+    BYTE m_bFleeAlwaysSuccess; // +0x225
+    BYTE m_bCreatedNewRole; // +0x226
     tagRoleState m_Role[11]; // +0x228
     tagRoleState m_RoleXor[11]; // +0x2ED8
-    unsigned long m_dwEXPTable[100]; // +0x5B88
-    unsigned long m_dwWinTaskID; // +0x5D18
+    DWORD m_dwEXPTable[100]; // +0x5B88
+    DWORD m_dwWinTaskID; // +0x5D18
     int m_bNGHDeadVariance; // +0x5D1C
     ECBFiveLineup m_eSameRow[3][3]; // +0x5D20
     ECBFiveLineup m_eSameColumn[2][3]; // +0x5D44

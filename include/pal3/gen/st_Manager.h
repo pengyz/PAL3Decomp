@@ -5,11 +5,11 @@ class FightItem;
 
 class st_Manager {
 public:
-    unsigned char m_Type; // +0x0
-    unsigned char m_Dicker; // +0x1
-    unsigned short m_ID; // +0x2
+    BYTE m_Type; // +0x0
+    BYTE m_Dicker; // +0x1
+    WORD m_ID; // +0x2
     char m_Name[256]; // +0x4
-    unsigned char m_C; // +0x104
+    BYTE m_C; // +0x104
     int m_Patience; // +0x108
     char m_BeginTalk[256]; // +0x10C
     char m_EntryBuy[256]; // +0x20C
@@ -28,9 +28,9 @@ public:
     char m_ForceAcptTalk[256][2][5]; // +0x2748
     char m_ForceAcptTalkback[256][5]; // +0x3148
     int m_StoreNum[2]; // +0x3648
-    unsigned long m_StoreID[200][2]; // +0x3650
+    DWORD m_StoreID[200][2]; // +0x3650
     FightItem * m_StoreData[200][2]; // +0x3C90
-    unsigned char m_IsCtrl[200][2]; // +0x42D0
+    BYTE m_IsCtrl[200][2]; // +0x42D0
     // total size: 0x4460 (17504)
 
 };

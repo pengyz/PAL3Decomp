@@ -13,7 +13,7 @@ public:
     CPolicy * pFramePolicy; // +0xEC
     CPolicy * pEmitterPolicy; // +0xF0
     float fTime; // +0xF4
-    unsigned long dwReserved[4]; // +0xF8
+    DWORD dwReserved[4]; // +0xF8
     // total size: 0x108 (264)
 
 };

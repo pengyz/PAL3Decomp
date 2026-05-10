@@ -3,15 +3,15 @@
 
 class _FLOATING_SAVE_AREA {
 public:
-    unsigned long ControlWord; // +0x0
-    unsigned long StatusWord; // +0x4
-    unsigned long TagWord; // +0x8
-    unsigned long ErrorOffset; // +0xC
-    unsigned long ErrorSelector; // +0x10
-    unsigned long DataOffset; // +0x14
-    unsigned long DataSelector; // +0x18
-    unsigned char RegisterArea[80]; // +0x1C
-    unsigned long Cr0NpxState; // +0x6C
+    DWORD ControlWord; // +0x0
+    DWORD StatusWord; // +0x4
+    DWORD TagWord; // +0x8
+    DWORD ErrorOffset; // +0xC
+    DWORD ErrorSelector; // +0x10
+    DWORD DataOffset; // +0x14
+    DWORD DataSelector; // +0x18
+    BYTE RegisterArea[80]; // +0x1C
+    DWORD Cr0NpxState; // +0x6C
     // total size: 0x70 (112)
 
 };

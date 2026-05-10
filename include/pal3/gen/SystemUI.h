@@ -23,7 +23,7 @@ public:
     int i; // +0x60
     int j; // +0x64
     char buf[256]; // +0x68
-    unsigned char m_IsMsg; // +0x168
+    BYTE m_IsMsg; // +0x168
     StateUI * pStateUI; // +0x16C
     UIStatic m_Frame; // +0x170
     UIStatic m_TimeMoney; // +0x210
@@ -49,7 +49,7 @@ public:
     UIParticle m_par[16][7]; // +0x1374
     UIParticle m_par2[16][7]; // +0x11674
     tagRECT m_parRc[7]; // +0x21974
-    unsigned char _isParBtn[7]; // +0x219E4
+    BYTE _isParBtn[7]; // +0x219E4
     int _curParEffect; // +0x219EC
     UIStatic m_TopBar; // +0x219F0
     UIStatic m_BottomBar; // +0x21A90
@@ -58,7 +58,7 @@ public:
     UIButton m_LoadBtn; // +0x21DE0
     UIButton m_DeleteBtn; // +0x21F38
     UIPushButton m_pbPage[10]; // +0x22090
-    unsigned char m_isItemShow[99]; // +0x22A68
+    BYTE m_isItemShow[99]; // +0x22A68
     Note_Item m_NoteItem[99]; // +0x22ACC
     UIScrollBar m_Scroll; // +0x7CC7C
     int m_CurScrollPos; // +0x7CDEC
@@ -76,7 +76,7 @@ public:
     NOTE_STATE m_noteState; // +0x7D2A4
     int m_loading; // +0x7D2A8
     float m_passtime; // +0x7D2AC
-    unsigned char m_isExit; // +0x7D2B0
+    BYTE m_isExit; // +0x7D2B0
     MUIDialog m_MsgBox; // +0x7D2B4
     MUIDialog m_DlgEx; // +0x7D81C
     MUIDialog m_YesNo_Btn; // +0x7DD84

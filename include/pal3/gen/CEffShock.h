@@ -16,15 +16,15 @@ public:
     int m_nMaxGeomQuad; // +0x1038
     gbGeomQuad * m_pGeomQuad; // +0x103C
     tagShockUnit * m_pShock; // +0x1040
-    unsigned char m_bVisible; // +0x1044
-    unsigned char m_bAdditiveBlend; // +0x1045
-    unsigned char m_bNoZTest; // +0x1046
+    BYTE m_bVisible; // +0x1044
+    BYTE m_bAdditiveBlend; // +0x1045
+    BYTE m_bNoZTest; // +0x1046
     float m_fFramePerSec; // +0x1048
-    unsigned char m_byMaxFrame; // +0x104C
+    BYTE m_byMaxFrame; // +0x104C
     int m_nRequireLoops; // +0x1050
     int m_nLoops; // +0x1054
     float m_fCurFrame; // +0x1058
-    unsigned long m_dwStartColor; // +0x105C
+    DWORD m_dwStartColor; // +0x105C
     float m_fAlpha; // +0x1060
     float m_fRed; // +0x1064
     float m_fGreen; // +0x1068

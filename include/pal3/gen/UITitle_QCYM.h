@@ -23,8 +23,8 @@ public:
     UIButton m_exit; // +0x43E8
     UIStatic m_info; // +0x4540
     UIStatic m_infoBK; // +0x45E0
-    unsigned char m_isPlayMovie; // +0x4680
-    unsigned char m_isJustOver; // +0x4681
+    BYTE m_isPlayMovie; // +0x4680
+    BYTE m_isJustOver; // +0x4681
     float m_fpasstime; // +0x4684
     UICoverFrm * m_pMgr; // +0x4688
     // total size: 0x468C (18060)

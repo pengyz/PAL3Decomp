@@ -5,7 +5,7 @@ class DIEFFECT;
 
 class DIFILEEFFECT {
 public:
-    unsigned long dwSize; // +0x0
+    DWORD dwSize; // +0x0
     _GUID GuidEffect; // +0x4
     DIEFFECT * lpDiEffect; // +0x14
     char szFriendlyName[324]; // +0x18

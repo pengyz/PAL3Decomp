@@ -17,14 +17,14 @@ public:
     int m_MapNum; // +0x6C
     _SUBMAP * m_pSubMap; // +0x70
     float m_moveSpeed; // +0x74
-    unsigned char m_isMoving; // +0x78
+    BYTE m_isMoving; // +0x78
     float m_offsetx; // +0x7C
     float m_offsety; // +0x80
     float m_moveoffsetx; // +0x84
     float m_moveoffsety; // +0x88
-    unsigned char m_bCreate; // +0x8C
+    BYTE m_bCreate; // +0x8C
     float timescale; // +0x90
-    unsigned char m_bLock; // +0x94
+    BYTE m_bLock; // +0x94
     // total size: 0x98 (152)
 
 };

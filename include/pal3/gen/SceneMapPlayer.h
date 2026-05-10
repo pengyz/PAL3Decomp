@@ -15,7 +15,7 @@ public:
     gbTexture * m_tex; // +0x34
     gbImage2D m_img; // +0x38
     NavTileLayer * m_layer; // +0x100
-    unsigned char m_bBuild; // +0x104
+    BYTE m_bBuild; // +0x104
     char m_szName[128]; // +0x105
     // total size: 0x188 (392)
 

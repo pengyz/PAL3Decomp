@@ -13,7 +13,7 @@ public:
     float _cloudSpeed; // +0xBC
     float _alpha; // +0xC0
     float _fade; // +0xC4
-    unsigned char _isfade; // +0xC8
+    BYTE _isfade; // +0xC8
     int _up; // +0xCC
     int _yPt; // +0xD0
     int _fluctuate; // +0xD4

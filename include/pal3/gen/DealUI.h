@@ -25,10 +25,10 @@ public:
     int m_startY; // +0x8C
     int m_x; // +0x90
     int m_y; // +0x94
-    unsigned char _isCreatable; // +0x98
-    unsigned char m_Is[5]; // +0x99
-    unsigned short m_ST; // +0x9E
-    unsigned short m_ID; // +0xA0
+    BYTE _isCreatable; // +0x98
+    BYTE m_Is[5]; // +0x99
+    WORD m_ST; // +0x9E
+    WORD m_ID; // +0xA0
     UIStatic m_FlagT; // +0xA4
     UIStatic m_FlagB; // +0x144
     UIStatic m_FlagM[5]; // +0x1E4
@@ -36,7 +36,7 @@ public:
     UIButton mb_BuyProp; // +0x65C
     UIButton mb_Sale; // +0x7B4
     UIButton mb_Talk; // +0x90C
-    unsigned char m_IsExit; // +0xA64
+    BYTE m_IsExit; // +0xA64
     UIButton mb_Exit; // +0xA68
     UITabBtn m_TabBtn; // +0xBC0
     UIStatic m_BkWnd; // +0xBD8
@@ -47,7 +47,7 @@ public:
     gbTexture * pInterceptTex; // +0xC88
     float sv; // +0xC8C
     float ev; // +0xC90
-    unsigned char m_opt; // +0xC94
+    BYTE m_opt; // +0xC94
     // total size: 0xC98 (3224)
 
 };

@@ -12,7 +12,7 @@ public:
     gbRenderEffect * m_pAdditiveBlend; // +0x8
     gbRenderEffect * m_pAlphaBlend; // +0xC
     tagUVSet m_DefaultUVSet[16]; // +0x10
-    unsigned char m_bInitialized; // +0x110
+    BYTE m_bInitialized; // +0x110
     int m_nEffect; // +0x114
     CEffect * m_pEffect[8]; // +0x118
     double m_dDeltaTime; // +0x138

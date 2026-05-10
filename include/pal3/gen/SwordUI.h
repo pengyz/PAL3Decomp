@@ -39,12 +39,12 @@ public:
     int m_defNum; // +0x228
     FightSkill m_WSkill[28]; // +0x22C
     int m_wskillNum; // +0x554C
-    unsigned char m_IsMsg; // +0x5550
+    BYTE m_IsMsg; // +0x5550
     int m_CtrlRole; // +0x5554
-    unsigned char m_IsActive; // +0x5558
-    unsigned char m_IsCreateable; // +0x5559
-    unsigned char m_IsLunar; // +0x555A
-    unsigned char m_is3dLunar; // +0x555B
+    BYTE m_IsActive; // +0x5558
+    BYTE m_IsCreateable; // +0x5559
+    BYTE m_IsLunar; // +0x555A
+    BYTE m_is3dLunar; // +0x555B
     int m_SelNum; // +0x555C
     int m_CurPage; // +0x5560
     float m_angle; // +0x5564
@@ -72,7 +72,7 @@ public:
     UIParticle m_btnPar[16][7]; // +0x6A20
     UIParticle m_btnPar2[16][7]; // +0x16D20
     tagRECT m_btnParRc[7]; // +0x27020
-    unsigned char _isParBtn[7]; // +0x27090
+    BYTE _isParBtn[7]; // +0x27090
     int _curParEffect; // +0x27098
     UIStatic Sword_Name; // +0x2709C
     UIStatic Sword_Att; // +0x2713C
@@ -87,15 +87,15 @@ public:
     tagRECT m_RemarkRc; // +0x278BC
     tagRECT m_SwordRemarkRc; // +0x278CC
     tagRECT m_NoteSwordRemarkRc; // +0x278DC
-    unsigned short m_SwordDstX; // +0x278EC
-    unsigned short m_SwordNoteX; // +0x278EE
+    WORD m_SwordDstX; // +0x278EC
+    WORD m_SwordNoteX; // +0x278EE
     int m_bSwordRemarkOut; // +0x278F0
     UIButton mb_Positive[5]; // +0x278F4
     UIStatic ms_Positive[5]; // +0x27FAC
     UIButton mb_Lunar[5]; // +0x282CC
     UIStatic ms_Lunar[5]; // +0x28984
     UIStatic ms_Perfect[5]; // +0x28CA4
-    unsigned char m_CanCtrlBtn; // +0x28FC4
+    BYTE m_CanCtrlBtn; // +0x28FC4
     UIButton mb_Test; // +0x28FC8
     UIParticle m_parSword[168]; // +0x29120
     tagRECT m_parSwordRc; // +0x415A0
@@ -107,10 +107,10 @@ public:
     tagRECT dstRect[5]; // +0x59D80
     PurgeEffect m_PurgeEffect; // +0x59DD0
     TimeCtl m_effTime; // +0x59F7C
-    unsigned char m_bSwordMotion; // +0x59F88
-    unsigned char m_bSwordEff; // +0x59F89
-    unsigned char m_bSwordRot; // +0x59F8A
-    unsigned char m_bEff; // +0x59F8B
+    BYTE m_bSwordMotion; // +0x59F88
+    BYTE m_bSwordEff; // +0x59F89
+    BYTE m_bSwordRot; // +0x59F8A
+    BYTE m_bEff; // +0x59F8B
     int m_curpar; // +0x59F8C
     TimeCtl m_swdTime; // +0x59F90
     int m_Orthosize; // +0x59F9C
@@ -154,10 +154,10 @@ public:
     MUIDialog m_Dlg; // +0x5E480
     MUIDialog m_Msg; // +0x5E9E8
     WuLing note_purgenum; // +0x5EF50
-    unsigned char m_bHasWeapon; // +0x5EF54
-    unsigned char m_isyjfx; // +0x0
-    unsigned char m_isPurged[5][2]; // +0x0
-    unsigned char m_isAllPurged[5]; // +0x0
+    BYTE m_bHasWeapon; // +0x5EF54
+    BYTE m_isyjfx; // +0x0
+    BYTE m_isPurged[5][2]; // +0x0
+    BYTE m_isAllPurged[5]; // +0x0
     WuLing m_PurgeNum; // +0x0
     // total size: 0x5EF58 (388952)
 

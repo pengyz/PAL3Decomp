@@ -3,7 +3,7 @@
 
 class ScriptData {
 public:
-    unsigned short m_ID; // +0x0
+    WORD m_ID; // +0x0
     char m_Name[256]; // +0x2
     int m_RestPrice; // +0x104
     char m_Rest[256]; // +0x108

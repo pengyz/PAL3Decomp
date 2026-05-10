@@ -34,7 +34,7 @@ public:
     UIStatic m_mountainB; // +0x2270
     UIStatic m_frame; // +0x2310
     UIStatic m_Logo; // +0x23B0
-    unsigned char m_isAlpha; // +0x2450
+    BYTE m_isAlpha; // +0x2450
     float m_alpha; // +0x2454
     UIStaticEXA m_tjA; // +0x2458
     UIStaticEXA m_tjB; // +0x2520
@@ -46,7 +46,7 @@ public:
     UIButtonEX m_JDHY; // +0x2D90
     UIButtonEX * m_CtrlBtn[6]; // +0x2F18
     int m_SelBtn; // +0x2F30
-    unsigned char m_ExitGame; // +0x2F34
+    BYTE m_ExitGame; // +0x2F34
     UITitle_QCYM * pQCYM; // +0x2F38
     UITitle_JDHY * pJDHY; // +0x2F3C
     UITitle_YXXX * pYXXX; // +0x2F40
@@ -55,14 +55,14 @@ public:
     UILoadingFrm * pLoadingFrm; // +0x2F4C
     MENU_TYPE m_MenuType; // +0x2F50
     Average m_timeAverage; // +0x2F54
-    unsigned char m_gotogame; // +0x2F6C
-    unsigned int m_flag; // +0x2F70
+    BYTE m_gotogame; // +0x2F6C
+    UINT m_flag; // +0x2F70
     UIStatic m_test; // +0x2F74
     MUIDialog m_ArcDlg; // +0x3014
     MUIDialog m_Not1stDlg; // +0x357C
-    unsigned char m_goingin; // +0x3AE4
-    unsigned char m_ArcSaveSuc; // +0x3AE5
-    unsigned char m_IsReadFinishSave; // +0x3AE6
+    BYTE m_goingin; // +0x3AE4
+    BYTE m_ArcSaveSuc; // +0x3AE5
+    BYTE m_IsReadFinishSave; // +0x3AE6
     // total size: 0x3AE8 (15080)
 
 };

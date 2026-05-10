@@ -16,7 +16,7 @@ public:
     UITextArea m_static; // +0x238
     float m_fPosY; // +0x2A0
     float m_SfPosY; // +0x2A4
-    unsigned char m_bReady; // +0x2A8
+    BYTE m_bReady; // +0x2A8
     int m_dlgh; // +0x2AC
     tagRECT m_bkRc; // +0x2B0
     int m_mode; // +0x2C0

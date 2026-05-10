@@ -1,8 +1,6 @@
 #pragma once
 // Auto-generated: PAL3
 
-#include "GAME_STATE.h"
-
 class CCBSystem;
 class CEffMgr;
 class CEffectSystem;
@@ -13,35 +11,35 @@ class gbGfxDriverInfo;
 class PAL3 {
 public:
     gbImage2D m_screenImg; // +0x0
-    unsigned long m_nPrintScreen; // +0x0
-    gbDropGroup * g_pSnow; // +0x0
-    gbDropGroup * g_pRain; // +0x0
-    int s_bCombatGameOver; // +0x0
-    int s_bActive; // +0x0
-    gbGfxDriverInfo s_drvinfo; // +0x0
-    GAME_STATE s_gamestate; // +0x0
-    char * m_pCmdLine; // +0x0
-    unsigned char m_bTestCombat; // +0x0
-    unsigned char m_bCombatWin; // +0x0
-    unsigned char m_bLoadMainUI; // +0x0
-    unsigned char m_bShowRenderInfo; // +0x0
-    unsigned char m_bSoftCursor; // +0x0
-    unsigned char m_bNGHVariance; // +0x0
-    unsigned char m_bWPXVariance; // +0x0
-    double m_gametime; // +0x0
-    HICON__ * s_hcur; // +0x0
-    int m_snapstate; // +0x0
-    unsigned char m_isRenderConsole; // +0x0
-    unsigned short s_keymap[54]; // +0x0
-    unsigned long s_flag; // +0x0
-    CCBSystem * m_pCBSystem; // +0x0
-    CEffectSystem * m_pEffectSystem; // +0x0
-    CEffMgr * m_pEffMgr; // +0x0
-    int m_snapautoindex; // +0x0
-    int m_snappath; // +0x0 (std::basic_string<char,std::char_traits<char>,std::allocator<char> >)
-    int m_snapw; // +0x0
-    int m_snaph; // +0x0
-    // total size: 0x1 (1)
+    int m_nPrintScreen; // +0xDC
+    gbDropGroup * g_pSnow; // +0xE0
+    gbDropGroup * g_pRain; // +0xE4
+    int s_bCombatGameOver; // +0xE8
+    int s_bActive; // +0xEC
+    gbGfxDriverInfo s_drvinfo; // +0xF0
+    int s_gamestate; // +0x1A8
+    char * m_pCmdLine; // +0x1AC
+    int m_bTestCombat; // +0x1B0
+    int m_bCombatWin; // +0x1B4
+    int m_bLoadMainUI; // +0x1B8
+    int m_bShowRenderInfo; // +0x1BC
+    int m_bSoftCursor; // +0x1C0
+    int m_bNGHVariance; // +0x1C4
+    int m_bWPXVariance; // +0x1C8
+    double m_gametime; // +0x1D0
+    HICON__ * s_hcur; // +0x1D8
+    int m_snapstate; // +0x1DC
+    int m_isRenderConsole; // +0x1E0
+    int s_keymap[54]; // +0x1E4
+    int s_flag; // +0x2BC
+    CCBSystem * m_pCBSystem; // +0x2C0
+    CEffectSystem * m_pEffectSystem; // +0x2C4
+    CEffMgr * m_pEffMgr; // +0x2C8
+    int m_snapautoindex; // +0x2CC
+    int m_snappath; // +0x2D0
+    int m_snapw; // +0x2D4
+    int m_snaph; // +0x2D8
+    // total size: 0x2E0 (736)
 
     PAL3(); // 0x00404760
     ~PAL3(); // 0x004047F0

@@ -23,6 +23,7 @@ from pathlib import Path
 
 PROJECT_ROOT = Path(__file__).parent.parent
 PDB_FILE = PROJECT_ROOT / "asm" / "pal3a" / "pdb_export.json"
+IDA_STRUCTS_FILE = PROJECT_ROOT / "asm" / "pal3" / "ida_structs.json"
 DECOMP_DIR = PROJECT_ROOT / "asm" / "pal3" / "decomp"
 OUTPUT_DIR = PROJECT_ROOT / "include" / "pal3" / "gen"
 
@@ -65,11 +66,18 @@ def should_skip_class(name):
         return True
     return False
 
-# Type mapping for header output
+# Type mapping for header output (includes IDA internal type names)
 TYPE_REMAP = {
     'unsigned char': 'BYTE',
     'unsigned int': 'UINT',
     'unsigned long': 'DWORD',
+    '__int8': 'char',
+    '__int16': 'short',
+    '__int32': 'int',
+    '__int64': '__int64',
+    'unsigned __int8': 'unsigned char',
+    'unsigned __int16': 'unsigned short',
+    'unsigned __int32': 'unsigned int',
     'unsigned short': 'WORD',
     '_iobuf *': 'FILE *',
 }
@@ -227,7 +235,9 @@ def generate_header(cls_name, pdb_class, methods, known_classes=None):
     PRIMITIVES = {'int', 'char', 'float', 'double', 'unsigned', 'void', 'long',
                   'short', 'bool', 'BYTE', 'WORD', 'DWORD', 'UINT', 'HRESULT',
                   '__int64', 'unsigned char', 'unsigned int', 'unsigned long',
-                  'unsigned short', 'unsigned __int64', 'wchar_t'}
+                  'unsigned short', 'unsigned __int64', 'wchar_t',
+                  '__int8', '__int16', '__int32', 'unsigned __int8',
+                  'unsigned __int16', 'unsigned __int32'}
 
     # Types provided by system headers (windows.h, CRT, gbengine) - never include/fwd-declare
     SYSTEM_TYPES = SKIP_CLASSES | {
@@ -335,6 +345,11 @@ def generate_header(cls_name, pdb_class, methods, known_classes=None):
 
             if not mname:
                 mname = '_field_%04X' % moffset
+
+            # Remap IDA internal types to C types
+            for ida_type, c_type in TYPE_REMAP.items():
+                if ida_type in mtype:
+                    mtype = mtype.replace(ida_type, c_type)
 
             # Fix IDA type misidentification
             mtype = mtype.replace('stdiobuf', 'UIWnd')
@@ -451,6 +466,27 @@ def main():
                 template_classes[base_name] = c
         elif '::' not in name:
             pdb_classes[name] = c
+
+    # Override PDB data with IDA struct exports (for classes with broken PDB layout)
+    ida_override_count = 0
+    if IDA_STRUCTS_FILE.exists():
+        ida_data = json.load(open(IDA_STRUCTS_FILE, encoding='utf-8'))
+        for s in ida_data.get('structs', []):
+            sname = s.get('name', '')
+            ssize = s.get('size', 0)
+            if not sname or ssize <= 1 or should_skip_class(sname):
+                continue
+            # Skip names with invalid characters for filenames
+            if '$' in sname or ':' in sname or '?' in sname or '<' in sname:
+                continue
+            if not sname[0].isalpha() and sname[0] != '_':
+                continue
+            # Override if PDB entry is broken (size<=1) or missing
+            pdb_entry = pdb_classes.get(sname)
+            if pdb_entry is None or pdb_entry.get('size', 0) <= 1:
+                pdb_classes[sname] = s
+                ida_override_count += 1
+        print("  IDA struct overrides: %d" % ida_override_count)
 
     # Collect methods from decomp
     methods_by_class = collect_methods()

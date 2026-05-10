@@ -12,7 +12,7 @@ class CUtil;
 
 class CCBAI {
 public:
-    unsigned char m_bNewRole[11]; // +0x0
+    BYTE m_bNewRole[11]; // +0x0
     CCBSystem * m_pCBSystem; // +0xC
     CCBRoleState * m_pRoleState; // +0x10
     CUtil * m_pUtil; // +0x14

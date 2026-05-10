@@ -3,7 +3,7 @@
 
 class tagLVCOLUMNA {
 public:
-    unsigned int mask; // +0x0
+    UINT mask; // +0x0
     int fmt; // +0x4
     int cx; // +0x8
     char * pszText; // +0xC

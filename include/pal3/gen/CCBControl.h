@@ -20,11 +20,11 @@ public:
     CCBUI * m_pUI; // +0x10
     double m_DeltaTime; // +0x18
     int m_nController; // +0x20
-    unsigned char m_bActive; // +0x24
-    unsigned char m_bForceRelease; // +0x25
+    BYTE m_bActive; // +0x24
+    BYTE m_bForceRelease; // +0x25
     tagControlData m_InputData; // +0x28
     tagCmdData m_CmdData; // +0x38
-    unsigned char m_bShowRightPanel; // +0x64
+    BYTE m_bShowRightPanel; // +0x64
     int m_nCurThread; // +0x68
     int m_nThread; // +0x6C
     tagControlThread m_Thread[20]; // +0x70

@@ -7,8 +7,8 @@ public:
     gbActor * m_pact; // +0x10
     char m_name[260]; // +0x14
     char m_szTexture[260]; // +0x118
-    unsigned long m_dwMatMsg[11]; // +0x21C
-    unsigned char m_bChangedMat; // +0x248
+    DWORD m_dwMatMsg[11]; // +0x21C
+    BYTE m_bChangedMat; // +0x248
     char m_curact[8]; // +0x249
     // total size: 0x254 (596)
 

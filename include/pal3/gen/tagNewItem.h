@@ -3,7 +3,7 @@
 
 class tagNewItem {
 public:
-    unsigned long dwItemID; // +0x0
+    DWORD dwItemID; // +0x0
     int nHP; // +0x4
     int nGP; // +0x8
     int nMP; // +0xC

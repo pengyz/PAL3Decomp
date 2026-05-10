@@ -14,14 +14,14 @@ public:
     tagExplosive * m_pExplosive; // +0x34
     gbTexture * m_pTexture; // +0x38
     gbTextureArray * m_pTextureArray; // +0x3C
-    unsigned char m_bVisible; // +0x40
-    unsigned char m_bAdditiveBlend; // +0x41
-    unsigned char m_bNoZTest; // +0x42
-    unsigned char m_byMaxFrame; // +0x43
+    BYTE m_bVisible; // +0x40
+    BYTE m_bAdditiveBlend; // +0x41
+    BYTE m_bNoZTest; // +0x42
+    BYTE m_byMaxFrame; // +0x43
     int m_nRequireLoops; // +0x44
     int m_nLoops; // +0x48
     float m_fCurFrame; // +0x4C
-    unsigned long m_dwStartColor; // +0x50
+    DWORD m_dwStartColor; // +0x50
     float m_fAlpha; // +0x54
     float m_fRed; // +0x58
     float m_fGreen; // +0x5C

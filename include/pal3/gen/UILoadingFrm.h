@@ -10,7 +10,7 @@ public:
     float m_anitime; // +0x13C
     int m_aniFlag; // +0x140
     float m_MaxValue; // +0x144
-    unsigned char m_isOverProgress; // +0x148
+    BYTE m_isOverProgress; // +0x148
     // total size: 0x14C (332)
 
 };

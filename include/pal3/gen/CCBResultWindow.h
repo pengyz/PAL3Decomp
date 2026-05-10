@@ -25,7 +25,7 @@ public:
     UIProgressBar * m_pMP; // +0xA4
     CCBUI * m_pUI; // +0xA8
     int m_nIndex; // +0xAC
-    unsigned char m_bClosed; // +0xB0
+    BYTE m_bClosed; // +0xB0
     // total size: 0xB4 (180)
 
     CCBResultWindow(int a2); // 0x0051F080

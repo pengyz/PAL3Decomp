@@ -11,7 +11,7 @@ class UIListBox : public UIWnd {
 public:
     gbColorQuad m_selcolor; // +0x44
     int m_showGrayBk; // +0x48
-    unsigned char m_hasKeyCtrl; // +0x4C
+    BYTE m_hasKeyCtrl; // +0x4C
     UIScrollBar m_scrollbar; // +0x50
     int m_numcol; // +0x1C0
     UILBColumn m_column[8]; // +0x1C4

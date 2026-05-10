@@ -16,8 +16,8 @@ public:
     int m_curline2; // +0x68
     float m_linetime2; // +0x6C
     tagRECT m_rect2; // +0x70
-    unsigned char m_bHas2; // +0x80
-    unsigned char m_bDraw2; // +0x81
+    BYTE m_bHas2; // +0x80
+    BYTE m_bDraw2; // +0x81
     // total size: 0x84 (132)
 
 };
