@@ -1,6 +1,7 @@
 #include "gbengine/gbengine_types.h"
 #include "gbengine/gbengine_internal.h"
 #include "gbengine/gbGfxManager.h"
+#include "gbengine/gbGfxManager_impl.h"
 #include "gbengine/gbVisNode.h"
 #include "gbengine/gbSceneGraph.h"
 #include "gbengine/gbVFileSystem.h"

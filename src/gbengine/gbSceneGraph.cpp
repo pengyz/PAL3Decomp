@@ -5,6 +5,7 @@
 
 #include "gbengine/gbSceneGraph.h"
 #include "gbengine/gbGfxManager.h"
+#include "gbengine/gbGfxManager_impl.h"
 #include "gbengine/gbVisNode.h"
 #include "gbengine/gbChain.h"
 #include "gbengine/gbengine_internal.h"

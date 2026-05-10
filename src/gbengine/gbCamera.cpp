@@ -28,6 +28,7 @@
 
 #include "gbengine/gbCamera.h"
 #include "gbengine/gbGfxManager.h"
+#include "gbengine/gbGfxManager_impl.h"
 #include "gbengine/gbengine_internal.h"
 #include <math.h>
 #include <string.h>

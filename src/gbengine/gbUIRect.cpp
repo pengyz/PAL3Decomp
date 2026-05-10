@@ -1,5 +1,6 @@
 #include "gbengine/gbengine_types.h"
 #include "gbengine/gbGfxManager.h"
+#include "gbengine/gbGfxManager_impl.h"
 #include <string.h>
 
 // gbUIRect - UI rectangle rendering

@@ -11,6 +11,7 @@
  */
 
 #include "gbengine/gbGfxManager.h"
+#include "gbengine/gbGfxManager_impl.h"
 #include "gbengine/gbTexture.h"
 #include "gbengine/gbSceneGraph.h"
 #include "gbengine/gbengine_internal.h"

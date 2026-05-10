@@ -5,6 +5,7 @@
 
 #include "gbengine/gbMesh.h"
 #include "gbengine/gbGfxManager.h"
+#include "gbengine/gbGfxManager_impl.h"
 #include "gbengine/gbRenderEffect.h"
 #include <string.h>
 #include <stdlib.h>

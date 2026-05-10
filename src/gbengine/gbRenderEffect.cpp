@@ -5,6 +5,7 @@
 
 #include "gbengine/gbRenderEffect.h"
 #include "gbengine/gbGfxManager.h"
+#include "gbengine/gbGfxManager_impl.h"
 #include <d3d9.h>
 #include <d3dx9.h>
 #include <string.h>

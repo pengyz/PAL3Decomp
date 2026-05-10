@@ -6,6 +6,7 @@
 
 #include "gbengine/gbParticle.h"
 #include "gbengine/gbGfxManager.h"
+#include "gbengine/gbGfxManager_impl.h"
 #include "gbengine/gbengine_internal.h"
 #include <math.h>
 #include <string.h>
@@ -1251,6 +1252,7 @@ float gbParticleEffect::GetSpaceScale(void) {
 
 #include "gbengine/gbVFileSystem.h"
 #include "gbengine/gbGfxManager.h"
+#include "gbengine/gbGfxManager_impl.h"
 
 extern gbVFileSystem* g_pVFileSys;
 extern char* gbVfgetdir(const char* path, char* dir, int maxLen);
