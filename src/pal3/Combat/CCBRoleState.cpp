@@ -635,31 +635,27 @@ int CCBRoleState::Init(int a2, char a3)
   if ( a3 == 1 )
   {
     if ( !a2 )
-      (**(void (***)(UIProgressBar *, int))m_pUI->m_pRoleStateGP[1])(m_pUI->m_pRoleStateGP[1], 1);
-    (**(void (***)(UIStatic *, int))m_pUI->m_pAttackSequenFace[a2 + 4])(
-      m_pUI->m_pAttackSequenFace[a2 + 4],
-      1);
-    (**(void (***)(UIStatic *, int))m_pUI->m_pRoleStateImmunity[a2 + 6])(
-      m_pUI->m_pRoleStateImmunity[a2 + 6],
-      1);
-    (**(void (***)(UIProgressBar *, int))m_pUI->m_pRoleStateHP[a2 + 1])(m_pUI->m_pRoleStateHP[a2 + 1], 1);
-    return (**(int (***)(UIStatic *, int))m_pUI->m_pRoleStateImmunity[a2 + 10])(
-             m_pUI->m_pRoleStateImmunity[a2 + 10],
+      (***(void (****)(_DWORD, int))&m_pUI->_data[1068])(*(_DWORD *)&m_pUI->_data[1068], 1);
+    (***(void (****)(_DWORD, int))&m_pUI->_data[4 * a2 + 120])(*(_DWORD *)&m_pUI->_data[4 * a2 + 120], 1);
+    (***(void (****)(_DWORD, int))&m_pUI->_data[4 * a2 + 1020])(*(_DWORD *)&m_pUI->_data[4 * a2 + 1020], 1);
+    (***(void (****)(_DWORD, int))&m_pUI->_data[4 * a2 + 1052])(*(_DWORD *)&m_pUI->_data[4 * a2 + 1052], 1);
+    return (***(int (****)(_DWORD, int))&m_pUI->_data[4 * a2 + 1036])(
+             *(_DWORD *)&m_pUI->_data[4 * a2 + 1036],
              1);
   }
   else
   {
     if ( !a2 )
-      (**(void (***)(UIProgressBar *, _DWORD))m_pUI->m_pRoleStateGP[1])(m_pUI->m_pRoleStateGP[1], 0);
-    (**(void (***)(UIStatic *, _DWORD))m_pUI->m_pAttackSequenFace[a2 + 4])(
-      m_pUI->m_pAttackSequenFace[a2 + 4],
+      (***(void (****)(_DWORD, _DWORD))&m_pUI->_data[1068])(*(_DWORD *)&m_pUI->_data[1068], 0);
+    (***(void (****)(_DWORD, _DWORD))&m_pUI->_data[4 * a2 + 120])(*(_DWORD *)&m_pUI->_data[4 * a2 + 120], 0);
+    (***(void (****)(_DWORD, _DWORD))&m_pUI->_data[4 * a2 + 1020])(
+      *(_DWORD *)&m_pUI->_data[4 * a2 + 1020],
       0);
-    (**(void (***)(UIStatic *, _DWORD))m_pUI->m_pRoleStateImmunity[a2 + 6])(
-      m_pUI->m_pRoleStateImmunity[a2 + 6],
+    (***(void (****)(_DWORD, _DWORD))&m_pUI->_data[4 * a2 + 1052])(
+      *(_DWORD *)&m_pUI->_data[4 * a2 + 1052],
       0);
-    (**(void (***)(UIProgressBar *, _DWORD))m_pUI->m_pRoleStateHP[a2 + 1])(m_pUI->m_pRoleStateHP[a2 + 1], 0);
-    return (**(int (***)(UIStatic *, _DWORD))m_pUI->m_pRoleStateImmunity[a2 + 10])(
-             m_pUI->m_pRoleStateImmunity[a2 + 10],
+    return (***(int (****)(_DWORD, _DWORD))&m_pUI->_data[4 * a2 + 1036])(
+             *(_DWORD *)&m_pUI->_data[4 * a2 + 1036],
              0);
   }
 }
@@ -2217,7 +2213,7 @@ char CCBRoleState::GetCastFightSkillSuccess(int a2)
 {
   int v4; // esi
   int i; // ebp
-  UIStatic *m_pResultThunderLvup; // eax
+  int v6; // eax
   int a2a; // [esp+14h] [ebp+4h]
 
   a2a = *(_DWORD *)(a2 + 8);
@@ -2245,9 +2241,9 @@ char CCBRoleState::GetCastFightSkillSuccess(int a2)
 LABEL_13:
     ++v4;
   }
-  m_pResultThunderLvup = (UIStatic *)this->m_pUI->m_pResultThunderLvup;
-  if ( *(_DWORD *)&m_pResultThunderLvup->_pad_0000[56] == 1 )
-    sub_4F95F0(this, a2a, *(_DWORD *)&m_pResultThunderLvup->_pad_0004[24]);
+  v6 = *(_DWORD *)&this->m_pUI->_data[1120];
+  if ( *(_DWORD *)(v6 + 56) == 1 )
+    sub_4F95F0(this, a2a, *(_DWORD *)(v6 + 104));
   return 1;
 }
 
@@ -2281,9 +2277,9 @@ LABEL_12:
     ++v4;
   }
   this->SetRoleHP(*(_DWORD *)(a2 + 8), *(_DWORD *)(a2 + 4));
-  sub_43FE90((int)this->m_pUI->m_pRoleStateGP[1]->_pad_0000);
-  ((UIWnd *)this->m_pUI->m_pRoleStateGP[1])->FindChild(50.0);
-  ((UIWnd *)this->m_pUI->m_pRoleStateGP[1])->FindChildByName(0.0);
+  sub_43FE90(*(_DWORD *)&this->m_pUI->_data[1068]);
+  ((UIWnd *)*(UIWnd **)&this->m_pUI->_data[1068])->FindChild(50.0);
+  ((UIWnd *)*(UIWnd **)&this->m_pUI->_data[1068])->FindChildByName(0.0);
   *(_DWORD *)&this->m_Role[0].byMagicUseTime[4][446 * *(_DWORD *)(a2 + 8) + 3] = 0;
   return 1;
 }
@@ -2640,7 +2636,7 @@ int CCBRoleState::CalcAttackPower(int roleIdx)
     v2 = v17;
   }
   m_pCBSystem = (CCBSystem *)this->m_pCBSystem;
-  if ( BYTE1(m_pCBSystem->m_nTimesOfCombat) )
+  if ( m_pCBSystem->m_bEditor )
     sub_4E2AE0((int *)m_pCBSystem->m_pEditor, v4);
   return v2;
 }
@@ -2715,7 +2711,7 @@ int CCBRoleState::CalcDefensePower(int roleIdx)
     v2 = v16;
   }
   m_pCBSystem = (CCBSystem *)this->m_pCBSystem;
-  if ( BYTE1(m_pCBSystem->m_nTimesOfCombat) )
+  if ( m_pCBSystem->m_bEditor )
     sub_4E2AE0((int *)m_pCBSystem->m_pEditor, roleIdx);
   return v2;
 }
@@ -2771,7 +2767,7 @@ char CCBRoleState::CheckBuff(int roleIdx)
     }
   }
   m_pCBSystem = (CCBSystem *)this->m_pCBSystem;
-  result = BYTE1(m_pCBSystem->m_nTimesOfCombat);
+  result = m_pCBSystem->m_bEditor;
   if ( result )
     return sub_4E2C10(m_pCBSystem->m_pEditor);
   return result;
@@ -3488,7 +3484,7 @@ LABEL_86:
         LOBYTE(this->m_Role[0].byMagicUseTime[8][v9 / 2 + 5]) = 0;
         ((CCBStageRole *)this->m_pStage->m_pRole[a2])->DangerForceRelease(0);
         ((CCBStageRole *)this->m_pStage->m_pRole[a2])->Release(1);
-        v15 = (void (***)(_DWORD, int))*((_DWORD *)&this->m_pUI->pPanel + a2);
+        v15 = *(void (****)(_DWORD, int))&this->m_pUI->_data[4 * a2 + 76];
         (**v15)(v15, 1);
         ((CCBSystem *)this->m_pCBSystem->m_pAttackSequen)->SetCmdParam(a2, 0);
         ((CCBSystem *)this->m_pCBSystem->m_pAttackSequen)->GetCmdData(a2);
@@ -4352,7 +4348,7 @@ void * CCBRoleState::ProcessActions()
 
   memset(a3, 0, sizeof(a3));
   if ( sub_4ED0A0(this->m_sCombatDialog, 0) == 1
-    && this->m_pCBSystem->m_eState == CBS_END
+    && *(_DWORD *)&this->m_pCBSystem->m_eState[2] == 2
     && !((CCBStage *)this->m_pStage)->ForceDelTask(12) )
   {
     sub_4ED800(this->m_sCombatDialog);
@@ -4368,13 +4364,13 @@ void * CCBRoleState::ProcessActions()
     ((CCBStageCam *)this->m_pStage->m_pCamControl)->ClearFinishedTask(10);
     v3 = 24;
     p_bValid = (unsigned __int8 *)&this->m_Role[0].bValid;
-    this->m_pCBSystem->m_eState = CBS_END|CBS_RUNNING|0x4;
+    *(_DWORD *)&this->m_pCBSystem->m_eState[2] = 7;
     do
     {
       if ( *p_bValid )
       {
-        (*(CCBSystem **)((char *)&this->m_pStage->m_pCBSystem + v3))->m_Thread[128] = 0;
-        (*(CCBSystem **)((char *)&this->m_pStage->m_pCBSystem + v3))->m_Thread[122] = 0;
+        LOBYTE((*(CCBSystem **)((char *)&this->m_pStage->m_pCBSystem + v3))->m_Thread[1].cmd.dwCmdID) = 0;
+        *(&(*(CCBSystem **)((char *)&this->m_pStage->m_pCBSystem + v3))->m_Thread[1].bExecuted + 1) = 0;
         ((CCBStageRole *)*(CCBStageRole **)((char *)&this->m_pStage->m_pCBSystem + v3))->TryRelease();
       }
       v3 += 4;
@@ -4384,7 +4380,7 @@ void * CCBRoleState::ProcessActions()
   }
   if ( ((unsigned __int8)this->GetForce(0) == 1
      || this->m_nBossRound >= this->m_nMaxRound && !this->m_bMustFail)
-    && this->m_pCBSystem->m_eState == CBS_END
+    && *(_DWORD *)&this->m_pCBSystem->m_eState[2] == 2
     && !((CCBStage *)this->m_pStage)->ForceDelTask(12) )
   {
     sub_4F8AF0(this);
@@ -4438,10 +4434,10 @@ void * CCBRoleState::ProcessActions()
     sub_4ED680(this);
     ((C2DSpark *)this->m_pCBSystem->m_p2DSpark)->CreateStars();
     ((C2DSpark *)this->m_pCBSystem->m_p2DSpark)->CreateTrack(1);
-    this->m_pCBSystem->m_eState = 5;
+    *(_DWORD *)&this->m_pCBSystem->m_eState[2] = 5;
     ((CCBStageScene *)this->m_pCBSystem->m_pStage->m_pScene)->Destroy();
   }
-  if ( this->m_pCBSystem->m_eState == 4 )
+  if ( *(_DWORD *)&this->m_pCBSystem->m_eState[2] == 4 )
   {
     sub_4FA930((int)this, 1, -1);
     ((CCBStageCam *)this->m_pCBSystem->m_pStage->m_pCamControl)->ClearFinishedTask(8);
@@ -4458,7 +4454,7 @@ void * CCBRoleState::ProcessActions()
       ((CCBSystem *)this->m_pStage)->GetStageRoleByIdx(v10);
     }
     sub_4ED680(this);
-    this->m_pCBSystem->m_eState = 5;
+    *(_DWORD *)&this->m_pCBSystem->m_eState[2] = 5;
     ((CCBStageScene *)this->m_pCBSystem->m_pStage->m_pScene)->Destroy();
   }
   result = (void *)this->m_pCBSystem;
@@ -4468,7 +4464,7 @@ void * CCBRoleState::ProcessActions()
     LOBYTE(result) = sub_4FCA40((char *)this->m_pStage, this->m_RoleXor[8].dwMagicID[2][1]);
     if ( (_BYTE)result )
       return result;
-    this->m_pCBSystem->m_eResult = CBR_LOSE;
+    *(_DWORD *)&this->m_pCBSystem->m_eResult[2] = 2;
     return (void *)CCBSystem::GetRenderFlag();
   }
   if ( v12 == 7 )
@@ -4555,24 +4551,24 @@ int CCBRoleState::UpdateEffects()
     {
       v4 = *(unsigned __int8 *)(result + 576);
       a5 = (float)*(int *)(result + 592);
-      ((UIWnd *)this->m_pUI->m_pRoleStateImmunity[v4 + 6])->FindChild(a5);
+      ((UIWnd *)*(UIWnd **)&this->m_pUI->_data[4 * v4 + 1020])->FindChild(a5);
       a5a = (float)a1[150];
-      ((UIWnd *)this->m_pUI->m_pRoleStateImmunity[v4 + 10])->FindChild(a5a);
+      ((UIWnd *)*(UIWnd **)&this->m_pUI->_data[4 * v4 + 1036])->FindChild(a5a);
       a5b = (float)a1[152];
-      ((UIWnd *)this->m_pUI->m_pRoleStateHP[v4 + 1])->FindChild(a5b);
+      ((UIWnd *)*(UIWnd **)&this->m_pUI->_data[4 * v4 + 1052])->FindChild(a5b);
       a5c = (float)a1[147];
-      ((UIWnd *)this->m_pUI->m_pRoleStateImmunity[v4 + 6])->FindChildByName(a5c);
+      ((UIWnd *)*(UIWnd **)&this->m_pUI->_data[4 * v4 + 1020])->FindChildByName(a5c);
       a5d = (float)a1[149];
-      ((UIWnd *)this->m_pUI->m_pRoleStateImmunity[v4 + 10])->FindChildByName(a5d);
+      ((UIWnd *)*(UIWnd **)&this->m_pUI->_data[4 * v4 + 1036])->FindChildByName(a5d);
       a5e = (float)a1[151];
-      ((UIWnd *)this->m_pUI->m_pRoleStateHP[v4 + 1])->FindChildByName(a5e);
+      ((UIWnd *)*(UIWnd **)&this->m_pUI->_data[4 * v4 + 1052])->FindChildByName(a5e);
       if ( !v2 )
       {
         m_pUI = (CCBUI *)this->m_pUI;
-        if ( *(_DWORD *)&m_pUI->m_pAttackSequenFace[4]->_pad_0000[56] == 1 )
+        if ( *(_DWORD *)(*(_DWORD *)&m_pUI->_data[120] + 56) == 1 )
         {
           a5f = *(float *)&this->m_Role[0].byMagicUseTime[4][3] * 0.25;
-          ((UIWnd *)m_pUI->m_pRoleStateGP[1])->FindChildByName(a5f);
+          ((UIWnd *)*(UIWnd **)&m_pUI->_data[1068])->FindChildByName(a5f);
           if ( this->m_Role[0].nHP > 0 )
           {
             m_pCBSystem = (CCBSystem *)this->m_pCBSystem;
@@ -4590,7 +4586,7 @@ int CCBRoleState::UpdateEffects()
           }
         }
       }
-      result = (int)this->m_pUI->_pad_0000;
+      result = (int)this->m_pUI->_data;
       if ( *(_DWORD *)(*(_DWORD *)(result + 4 * v4 + 120) + 56) == 1 )
       {
         m_TempStorageNGH->SetText(dword_17AA808[v4] + 22, dword_17AA818[v4] + 5);
@@ -4623,115 +4619,115 @@ int CCBRoleState::UpdateEffects()
         if ( a1[147] <= 0 )
           ((NPC *)-11513776)->UpdateAnim();
         RoleField = this->GetRoleField(v2, 6);
-        v8 = *(void (__stdcall ***)(int))this->m_pUI->m_pRoleStateFace[v4 + 3];
+        v8 = **(void (__stdcall ****)(int))&this->m_pUI->_data[4 * v4 + 176];
         if ( RoleField )
           (*v8)(1);
         else
           (*v8)(0);
         v9 = this->GetRoleField(v2, 7);
-        v10 = *(void (__stdcall ***)(int))this->m_pUI->m_pRoleStateAttackInc[v4 + 4];
+        v10 = **(void (__stdcall ****)(int))&this->m_pUI->_data[4 * v4 + 220];
         if ( v9 )
           (*v10)(1);
         else
           (*v10)(0);
         v11 = this->GetRoleField(v2, 8);
-        v12 = *(void (__stdcall ***)(int))this->m_pUI->m_pRoleStateAttackDec[v4 + 4];
+        v12 = **(void (__stdcall ****)(int))&this->m_pUI->_data[4 * v4 + 264];
         if ( v11 )
           (*v12)(1);
         else
           (*v12)(0);
         v13 = this->GetRoleField(v2, 9);
-        v14 = *(void (__stdcall ***)(int))this->m_pUI->m_pRoleStateDefenceInc[v4 + 4];
+        v14 = **(void (__stdcall ****)(int))&this->m_pUI->_data[4 * v4 + 308];
         if ( v13 )
           (*v14)(1);
         else
           (*v14)(0);
         v15 = this->GetRoleField(v2, 12);
-        v16 = *(void (__stdcall ***)(int))this->m_pUI->m_pRoleStateLuckDec[v4 + 4];
+        v16 = **(void (__stdcall ****)(int))&this->m_pUI->_data[4 * v4 + 440];
         if ( v15 )
           (*v16)(1);
         else
           (*v16)(0);
         v17 = this->GetRoleField(v2, 13);
-        v18 = *(void (__stdcall ***)(int))this->m_pUI->m_pRoleStateSpeedInc[v4 + 4];
+        v18 = **(void (__stdcall ****)(int))&this->m_pUI->_data[4 * v4 + 484];
         if ( v17 )
           (*v18)(1);
         else
           (*v18)(0);
         v19 = this->GetRoleField(v2, 10);
-        v20 = *(void (__stdcall ***)(int))this->m_pUI->m_pRoleStateDefenceDec[v4 + 4];
+        v20 = **(void (__stdcall ****)(int))&this->m_pUI->_data[4 * v4 + 352];
         if ( v19 )
           (*v20)(1);
         else
           (*v20)(0);
         v21 = this->GetRoleField(v2, 11);
-        v22 = *(void (__stdcall ***)(int))this->m_pUI->m_pRoleStateLuckInc[v4 + 4];
+        v22 = **(void (__stdcall ****)(int))&this->m_pUI->_data[4 * v4 + 396];
         if ( v21 )
           (*v22)(1);
         else
           (*v22)(0);
         v23 = this->GetRoleField(v2, 14);
-        v24 = *(void (__stdcall ***)(int))this->m_pUI->m_pRoleStateSpeedDec[v4 + 4];
+        v24 = **(void (__stdcall ****)(int))&this->m_pUI->_data[4 * v4 + 528];
         if ( v23 )
           (*v24)(1);
         else
           (*v24)(0);
         v25 = this->GetRoleField(v2, 15);
-        v26 = *(void (__stdcall ***)(int))this->m_pUI->m_pRoleStateStable[v4 + 4];
+        v26 = **(void (__stdcall ****)(int))&this->m_pUI->_data[4 * v4 + 572];
         if ( v25 )
           (*v26)(1);
         else
           (*v26)(0);
         v27 = this->GetRoleField(v2, 16);
-        v28 = *(void (__stdcall ***)(int))this->m_pUI->m_pRoleStateBlank[v4 + 4];
+        v28 = **(void (__stdcall ****)(int))&this->m_pUI->_data[4 * v4 + 616];
         if ( v27 )
           (*v28)(1);
         else
           (*v28)(0);
         v29 = this->GetRoleField(v2, 17);
-        v30 = *(void (__stdcall ***)(int))this->m_pUI->m_pRoleStateForbid[v4 + 4];
+        v30 = **(void (__stdcall ****)(int))&this->m_pUI->_data[4 * v4 + 660];
         if ( v29 )
           (*v30)(1);
         else
           (*v30)(0);
         v31 = this->GetRoleField(v2, 18);
-        v32 = *(void (__stdcall ***)(int))this->m_pUI->m_pRoleStateSleep[v4 + 4];
+        v32 = **(void (__stdcall ****)(int))&this->m_pUI->_data[4 * v4 + 704];
         if ( v31 )
           (*v32)(1);
         else
           (*v32)(0);
         v33 = this->GetRoleField(v2, 19);
-        v34 = *(void (__stdcall ***)(int))this->m_pUI->m_pRoleStateChaos[v4 + 4];
+        v34 = **(void (__stdcall ****)(int))&this->m_pUI->_data[4 * v4 + 748];
         if ( v33 )
           (*v34)(1);
         else
           (*v34)(0);
         v35 = this->GetRoleField(v2, 20);
-        v36 = *(void (__stdcall ***)(int))this->m_pUI->m_pRoleStateMad[v4 + 4];
+        v36 = **(void (__stdcall ****)(int))&this->m_pUI->_data[4 * v4 + 792];
         if ( v35 )
           (*v36)(1);
         else
           (*v36)(0);
         v37 = this->GetRoleField(v2, 21);
-        v38 = *(void (__stdcall ***)(int))this->m_pUI->m_pRoleStateMirror[v4 + 4];
+        v38 = **(void (__stdcall ****)(int))&this->m_pUI->_data[4 * v4 + 836];
         if ( v37 )
           (*v38)(1);
         else
           (*v38)(0);
         v39 = this->GetRoleField(v2, 22);
-        v40 = *(void (__stdcall ***)(int))this->m_pUI->m_pRoleStateWall[v4 + 4];
+        v40 = **(void (__stdcall ****)(int))&this->m_pUI->_data[4 * v4 + 880];
         if ( v39 )
           (*v40)(1);
         else
           (*v40)(0);
         v41 = this->GetRoleField(v2, 23);
-        v42 = *(void (__stdcall ***)(int))this->m_pUI->m_pRoleStateBound[v4 + 4];
+        v42 = **(void (__stdcall ****)(int))&this->m_pUI->_data[4 * v4 + 924];
         if ( v41 )
           (*v42)(1);
         else
           (*v42)(0);
         v43 = this->GetRoleField(v2, 26);
-        v44 = *(int (__stdcall ***)(int))this->m_pUI->m_pRoleStateHermit[v4 + 4];
+        v44 = **(int (__stdcall ****)(int))&this->m_pUI->_data[4 * v4 + 968];
         if ( v43 )
           result = (*v44)(1);
         else

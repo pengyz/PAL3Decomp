@@ -64,12 +64,12 @@ int CCBProtectWindow::Create()
   int v28; // [esp+14h] [ebp-14h]
 
   ((UIListBox *)this)->UIListBox();
-  this->m_pWPXLove = (UIProgressBar *)128;
-  this->m_pOk = (UIButton *)512;
-  *((_DWORD *)this + 24) = 0;
-  *((_DWORD *)this + 25) = 0;
-  ((UIFrameWnd *)(UIFrameWnd *)this + 5)->UIFrameWnd();
-  ((UIFrameWnd *)((char *)this + 512))->UIFrameWnd();
+  *(_DWORD *)&this->_data[88] = 128;
+  *(_DWORD *)&this->_data[92] = 512;
+  *(_DWORD *)&this->_data[96] = 0;
+  *(_DWORD *)&this->_data[100] = 0;
+  ((UIFrameWnd *)((char *)this + 360))->UIFrameWnd();
+  ((UIFrameWnd *)(this + 4))->UIFrameWnd();
   ((UIFrameWnd *)((char *)this + 664))->UIFrameWnd();
   `eh vector constructor iterator'(
     (char *)this + 816,
@@ -79,15 +79,15 @@ int CCBProtectWindow::Create()
     (void (*)(void *))UIFrameWnd::_UIFrameWnd);
   ((UIScene *)((char *)this + 1744))->_UIScene();
   ((UIScene *)((char *)this + 2088))->_UIScene();
-  ((UIStatic *)((char *)this + 2432))->UIStatic();
+  ((UIStatic *)(this + 19))->UIStatic();
   ((UIScene *)((char *)this + 2680))->_UIScene();
   ((UIScene *)((char *)this + 3024))->_UIScene();
   ((UIScene *)((char *)this + 3368))->_UIScene();
   ((UIStatic *)((char *)this + 3728))->UIStatic();
   ((UIStatic *)((char *)this + 3976))->UIStatic();
-  ((UIStatic *)(this + 44))->UIStatic();
+  ((UIStatic *)(this + 33))->UIStatic();
   ((UIStatic *)((char *)this + 4472))->UIStatic();
-  ((UIStatic *)((char *)this + 4736))->UIStatic();
+  ((UIStatic *)(this + 37))->UIStatic();
   ((UIStatic *)((char *)this + 4984))->UIStatic();
   ((UIStatic *)((char *)this + 5232))->UIStatic();
   ((UIStatic *)((char *)this + 5496))->UIStatic();
@@ -100,7 +100,7 @@ int CCBProtectWindow::Create()
   ((UIStatic *)((char *)this + 7264))->UIStatic();
   ((UIStatic *)((char *)this + 7512))->UIStatic();
   ((UIStatic *)((char *)this + 7760))->UIStatic();
-  v2 = (_DWORD *)((char *)this + 8052);
+  v2 = (_DWORD *)this + 2013;
   *((_DWORD *)this + 2002) = 0;
   *((_DWORD *)this + 2003) = 0;
   *((_DWORD *)this + 2004) = 0;
@@ -145,7 +145,7 @@ int CCBProtectWindow::Create()
   memset((char *)this + 345156, 0, 0x190u);
   memset((char *)this + 343556, 0, 0x640u);
   *((_DWORD *)this + 82013) = 0;
-  v4 = (_DWORD *)((char *)this + 345608);
+  v4 = (_DWORD *)this + 86402;
   *((_DWORD *)this + 86393) = 0;
   *((_DWORD *)this + 86394) = 0;
   *((_DWORD *)this + 86395) = 0;
@@ -185,7 +185,7 @@ int CCBProtectWindow::Create()
   *((_DWORD *)this + 86401) = 0;
   *((_DWORD *)this + 86450) = 0;
   memset((char *)this + 345608, 0, 0xC0u);
-  v9 = (_DWORD *)((char *)this + 345804);
+  v9 = (_DWORD *)this + 86451;
   v26 = 200;
   v22 = (char *)this + 345804;
   v10 = (char *)this + 345840;
@@ -207,7 +207,7 @@ int CCBProtectWindow::Create()
       break;
     v9 = v22;
   }
-  v11 = (_DWORD *)((char *)this + 507472);
+  v11 = (_DWORD *)this + 126868;
   *((_DWORD *)this + 126855) = 1;
   *((_DWORD *)this + 126856) = 1;
   *((_DWORD *)this + 126857) = 1;
@@ -252,7 +252,7 @@ int CCBProtectWindow::Create()
   *((_DWORD *)this + 126867) = 0;
   *((_DWORD *)this + 126916) = 0;
   memset((char *)this + 507472, 0, 0xC0u);
-  v16 = (_DWORD *)((char *)this + 507668);
+  v16 = (_DWORD *)this + 126917;
   v28 = 200;
   v23 = (char *)this + 507668;
   v17 = (char *)this + 507704;
@@ -281,8 +281,8 @@ int CCBProtectWindow::Create()
   *((_BYTE *)this + 669300) = 0;
   ((UIItem *)(UIItem *)this + 669304)->Refresh();
   ((UIItem *)(UIItem *)this + 670672)->Refresh();
-  *(_DWORD *)this->_pad_0000 = &off_5705D0;
-  v18 = (_DWORD *)((char *)this + 8028);
+  *(_DWORD *)this->_data = &off_5705D0;
+  v18 = (_DWORD *)this + 2007;
   v19 = 4;
   do
   {
@@ -291,7 +291,7 @@ int CCBProtectWindow::Create()
     --v19;
   }
   while ( v19 );
-  return (int)this->_pad_0000;
+  return (int)this->_data;
 }
 
 // 0x0051DD80
@@ -306,7 +306,7 @@ UIWnd * CCBProtectWindow::Destroy(CCBProtectWindow *Block, char a2)
 // 0x0051DDA0
 void CCBProtectWindow::ShowWindow()
 {
-  *(_DWORD *)this->_pad_0000 = &off_5705D0;
+  *(_DWORD *)this->_data = &off_5705D0;
   *((_BYTE *)this + 8025) = 1;
   ((UIItem *)(UIItem *)this + 670672)->UIItem();
   ((UIItem *)(UIItem *)this + 669304)->UIItem();
@@ -322,21 +322,21 @@ void CCBProtectWindow::ShowWindow()
   ((UIWnd *)((char *)this + 5496))->~UIWnd();
   ((UIWnd *)((char *)this + 5232))->~UIWnd();
   ((UIWnd *)((char *)this + 4984))->~UIWnd();
-  ((UIWnd *)((char *)this + 4736))->~UIWnd();
+  ((UIWnd *)(this + 37))->~UIWnd();
   ((UIWnd *)((char *)this + 4472))->~UIWnd();
-  ((UIWnd *)(this + 44))->~UIWnd();
+  ((UIWnd *)(this + 33))->~UIWnd();
   ((UIWnd *)((char *)this + 3976))->~UIWnd();
   ((UIWnd *)((char *)this + 3728))->~UIWnd();
   ((UIScene *)((char *)this + 3368))->Destroy2();
   ((UIScene *)((char *)this + 3024))->Destroy2();
   ((UIScene *)((char *)this + 2680))->Destroy2();
-  ((UIWnd *)((char *)this + 2432))->~UIWnd();
+  ((UIWnd *)(this + 19))->~UIWnd();
   ((UIScene *)((char *)this + 2088))->Destroy2();
   ((UIScene *)((char *)this + 1744))->Destroy2();
   `eh vector destructor iterator'((char *)this + 816, 0x98u, 6, (void (*)(void *))UIFrameWnd::_UIFrameWnd);
   ((UIFrameWnd *)((char *)this + 664))->_UIFrameWnd();
-  ((UIFrameWnd *)((char *)this + 512))->_UIFrameWnd();
-  ((UIFrameWnd *)(UIFrameWnd *)this + 5)->_UIFrameWnd();
+  ((UIFrameWnd *)(this + 4))->_UIFrameWnd();
+  ((UIFrameWnd *)((char *)this + 360))->_UIFrameWnd();
   ((UIWnd *)this)->~UIWnd();
 }
 

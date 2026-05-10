@@ -258,9 +258,14 @@ def main():
             continue
         if '$' in name or '?' in name:
             continue
+        # CRITICAL: Only import classes WITHOUT base classes
+        # Classes with inheritance have different base sizes in PAL3 vs PAL3A
+        # Their member offsets are WRONG and will cause Hex-Rays misinterpretation
+        if c.get('bases'):
+            continue
         classes[name] = c
 
-    log("[*] PDB classes with layout: %d" % len(classes))
+    log("[*] PDB classes with layout (no bases): %d" % len(classes))
 
     # Topological sort by value-member dependencies
     order, cycles = topological_sort(classes)

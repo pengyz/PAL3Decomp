@@ -20,21 +20,21 @@ int MagicUI::Create()
 
   if ( ((UIBase *)this)->GetSelected() < 5 )
   {
-    this->remarkbuf[4] = data;
+    this->_data[364] = data;
     ((UIBase *)this)->SetItemData(3, data);
-    sub_48A350(*(char **)&this->m_btnPar2[10][1]._element._pad_0004[36], data);
-    sub_494620(*(char **)&this->m_btnPar2[10][1]._element._pad_0004[40], data);
-    sub_49E8A0(*(char **)&this->m_btnPar2[10][1]._element._pad_0004[44], data);
-    return sub_484ED0(*(char **)&this->m_btnPar2[10][1]._element._pad_0004[32], data);
+    sub_48A350(*((char **)this + 44015), data);
+    sub_494620(*((char **)this + 44016), data);
+    sub_49E8A0(*((char **)this + 44017), data);
+    return sub_484ED0(*((char **)this + 44014), data);
   }
   else
   {
-    this->remarkbuf[4] = 0;
+    this->_data[364] = 0;
     ((UIBase *)this)->SetItemData(3, 0);
-    sub_48A350(*(char **)&this->m_btnPar2[10][1]._element._pad_0004[36], 0);
-    sub_494620(*(char **)&this->m_btnPar2[10][1]._element._pad_0004[40], 0);
-    sub_49E8A0(*(char **)&this->m_btnPar2[10][1]._element._pad_0004[44], 0);
-    return sub_484ED0(*(char **)&this->m_btnPar2[10][1]._element._pad_0004[32], 0);
+    sub_48A350(*((char **)this + 44015), 0);
+    sub_494620(*((char **)this + 44016), 0);
+    sub_49E8A0(*((char **)this + 44017), 0);
+    return sub_484ED0(*((char **)this + 44014), 0);
   }
 }
 
@@ -45,20 +45,20 @@ void MagicUI::Init()
 
   if ( ((UIBase *)this)->GetSelected() < 5 )
   {
-    this->remarkbuf[5] = data;
+    this->_data[365] = data;
     ((UIBase *)this)->SetItemData(4, data);
-    sub_48A370(*(char **)&this->m_btnPar2[10][1]._element._pad_0004[36], data);
-    sub_494640(*(char **)&this->m_btnPar2[10][1]._element._pad_0004[40], data);
-    sub_49E8C0(*(char **)&this->m_btnPar2[10][1]._element._pad_0004[44], data);
-    sub_484EF0(*(char **)&this->m_btnPar2[10][1]._element._pad_0004[32], data);
+    sub_48A370(*((char **)this + 44015), data);
+    sub_494640(*((char **)this + 44016), data);
+    sub_49E8C0(*((char **)this + 44017), data);
+    sub_484EF0(*((char **)this + 44014), data);
   }
   else
   {
-    this->remarkbuf[5] = 0;
+    this->_data[365] = 0;
     ((UIBase *)this)->SetItemData(4, 0);
-    sub_48A370(*(char **)&this->m_btnPar2[10][1]._element._pad_0004[36], 0);
-    sub_494640(*(char **)&this->m_btnPar2[10][1]._element._pad_0004[40], 0);
-    sub_49E8C0(*(char **)&this->m_btnPar2[10][1]._element._pad_0004[44], 0);
-    sub_484EF0(*(char **)&this->m_btnPar2[10][1]._element._pad_0004[32], 0);
+    sub_48A370(*((char **)this + 44015), 0);
+    sub_494640(*((char **)this + 44016), 0);
+    sub_49E8C0(*((char **)this + 44017), 0);
+    sub_484EF0(*((char **)this + 44014), 0);
   }
 }

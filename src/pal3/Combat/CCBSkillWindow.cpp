@@ -33,16 +33,16 @@ int CCBSkillWindow::Reset()
 {
   *((_DWORD *)this + 42) = 0;
   *((_DWORD *)this + 43) = -1;
-  this->m_pBack = 0;
-  this->m_pDescription = 0;
-  this->m_pSkillList[0] = 0;
-  *((_DWORD *)this + 21) = 0;
-  *((_DWORD *)this + 22) = 0;
-  *((_DWORD *)this + 23) = 0;
-  *((_DWORD *)this + 24) = 0;
-  *((_DWORD *)this + 25) = 0;
-  *((_DWORD *)this + 26) = 0;
-  memset((char *)this + 108, 0, 0x2Cu);
+  *(_DWORD *)&this->_data[72] = 0;
+  *(_DWORD *)&this->_data[76] = 0;
+  *(_DWORD *)&this->_data[80] = 0;
+  *(_DWORD *)&this->_data[84] = 0;
+  *(_DWORD *)&this->_data[88] = 0;
+  *(_DWORD *)&this->_data[92] = 0;
+  *(_DWORD *)&this->_data[96] = 0;
+  *(_DWORD *)&this->_data[100] = 0;
+  *(_DWORD *)&this->_data[104] = 0;
+  memset(&this->_data[108], 0, 0x2Cu);
   *((_DWORD *)this + 38) = 0;
   *((_DWORD *)this + 39) = 0;
   *((_DWORD *)this + 40) = 0;
@@ -54,9 +54,9 @@ int CCBSkillWindow::Reset()
 char CCBSkillWindow::Create(_DWORD *pRect, int parent)
 {
   int v3; // ebx
-  UIStatic **p_m_pBack; // ebx
+  char *v5; // ebx
   LPCSTR *v6; // ebp
-  UIWnd ***v7; // ebx
+  char *v7; // ebx
   _DWORD *v8; // ebx
   _DWORD *v9; // eax
   _DWORD *v10; // ebx
@@ -64,34 +64,34 @@ char CCBSkillWindow::Create(_DWORD *pRect, int parent)
   _DWORD *v12; // ebx
   _DWORD *v13; // eax
   _DWORD *v14; // ebx
-  UIStatic **p_m_pDescription; // ebx
-  UIListBox **m_pSkillList; // ebx
-  CCBSkillWindow *v17; // ebx
-  _DWORD *v18; // ebx
-  _DWORD *v19; // ebx
-  _DWORD *v20; // ebx
-  _DWORD *v21; // ebx
-  _DWORD *v22; // ebx
+  char *v15; // ebx
+  char *v16; // ebx
+  char *v17; // ebx
+  char *v18; // ebx
+  char *v19; // ebx
+  char *v20; // ebx
+  char *v21; // ebx
+  char *v22; // ebx
   _DWORD a2[4]; // [esp+C8h] [ebp-10h] BYREF
 
   v3 = parent;
   ((UIWnd *)this)->Create(512, pRect, parent);
   *((_DWORD *)this + 42) = v3;
-  p_m_pBack = &this->m_pBack;
-  ((CCBLineupWindow *)&this->m_pBack)->Destroy();
+  v5 = (char *)&this->_data[72];
+  ((CCBLineupWindow *)&this->_data[72])->Destroy();
   *pRect = 0;
   pRect[2] = 256;
   pRect[1] = 0;
   pRect[3] = 256;
-  (*(void (**)(UIStatic *, int, _DWORD *, CCBSkillWindow *))(*(_DWORD *)(*p_m_pBack)->_pad_0000 + 16))(
-    *p_m_pBack,
+  (*(void (**)(_DWORD, int, _DWORD *, CCBSkillWindow *))(**(_DWORD **)v5 + 16))(
+    *(_DWORD *)v5,
     513,
     pRect,
     this);
-  ((UIWnd *)this->m_pBack)->CreateFromTemplate(aUiCombatResult, 0);
-  (**(void (***)(UIStatic *, int))(*p_m_pBack)->_pad_0000)(*p_m_pBack, 1);
+  ((UIWnd *)*(UIWnd ***)&this->_data[72])->CreateFromTemplate(aUiCombatResult, 0);
+  (***(void (****)(_DWORD, int))v5)(*(_DWORD *)v5, 1);
   v6 = (LPCSTR *)off_570310;
-  v7 = (UIWnd ***)((char *)this + 108);
+  v7 = (char *)&this->_data[108];
   do
   {
     v7->Destroy();
@@ -99,16 +99,17 @@ char CCBSkillWindow::Create(_DWORD *pRect, int parent)
     pRect[2] = 79;
     pRect[1] = -15;
     pRect[3] = 113;
-    ((void (*)(UIWnd **, int, _DWORD *, CCBSkillWindow *))(**v7)->m_wndcolor.ColorQuadFmt)(
-      *v7,
+    (*(void (**)(_DWORD, int, _DWORD *, CCBSkillWindow *))(**(_DWORD **)v7 + 16))(
+      *(_DWORD *)v7,
       528,
       pRect,
       this);
-    ((UIWnd *)*v7++)->CreateFromTemplate(*v6++, 0);
+    ((UIWnd *)*(UIWnd ***)v7)->CreateFromTemplate(*v6++, 0);
+    v7 += 4;
   }
   while ( (int)v6 < (int)dword_570324 );
-  (***((void (****)(_DWORD, int))this + 27))(*((_DWORD *)this + 27), 1);
-  v8 = (_DWORD *)((char *)this + 156);
+  (***(void (****)(_DWORD, int))&this->_data[108])(*(_DWORD *)&this->_data[108], 1);
+  v8 = (_DWORD *)this + 39;
   ((CCBLineupWindow *)(_DWORD *)this + 39)->Render();
   *pRect = 83;
   pRect[2] = 168;
@@ -122,7 +123,7 @@ char CCBSkillWindow::Create(_DWORD *pRect, int parent)
   sub_43FD90(*((float **)this + 39), 3);
   ((UIWnd *)*((UIWnd **)this + 39))->SetFrameRate(-2);
   (**(void (***)(_DWORD, int))*v8)(*v8, 1);
-  v10 = (_DWORD *)((char *)this + 160);
+  v10 = (_DWORD *)this + 40;
   ((CCBLineupWindow *)(_DWORD *)this + 40)->Render();
   *pRect = 86;
   pRect[2] = 171;
@@ -136,7 +137,7 @@ char CCBSkillWindow::Create(_DWORD *pRect, int parent)
   sub_43FD90(*((float **)this + 40), 3);
   ((UIWnd *)*((UIWnd **)this + 40))->SetFrameRate(-2);
   (**(void (***)(_DWORD, int))*v10)(*v10, 1);
-  v12 = (_DWORD *)((char *)this + 164);
+  v12 = (_DWORD *)this + 41;
   ((CCBLineupWindow *)(_DWORD *)this + 41)->Render();
   *pRect = 84;
   pRect[2] = 169;
@@ -150,7 +151,7 @@ char CCBSkillWindow::Create(_DWORD *pRect, int parent)
   sub_43FD90(*((float **)this + 41), 3);
   ((UIWnd *)*((UIWnd **)this + 41))->SetFrameRate(-2);
   (**(void (***)(_DWORD, int))*v12)(*v12, 1);
-  v14 = (_DWORD *)((char *)this + 152);
+  v14 = (_DWORD *)this + 38;
   ((CCBLineupWindow *)(_DWORD *)this + 38)->Destroy();
   *pRect = 66;
   pRect[2] = 130;
@@ -159,99 +160,119 @@ char CCBSkillWindow::Create(_DWORD *pRect, int parent)
   (*(void (**)(_DWORD, int, _DWORD *, CCBSkillWindow *))(*(_DWORD *)*v14 + 16))(*v14, 544, pRect, this);
   ((UIWnd *)*((UIWnd ***)this + 38))->CreateFromTemplate(aUiCombatResult_5, 0);
   (**(void (***)(_DWORD, int))*v14)(*v14, 1);
-  p_m_pDescription = &this->m_pDescription;
+  v15 = (char *)&this->_data[76];
   parent = -1;
-  ((CCBLineupWindow *)&this->m_pDescription)->Destroy();
+  ((CCBLineupWindow *)&this->_data[76])->Destroy();
   *pRect = 136;
   pRect[2] = 200;
   pRect[1] = 134;
   pRect[3] = 166;
-  (*(void (**)(UIStatic *, int, _DWORD *, CCBSkillWindow *))(*(_DWORD *)(*p_m_pDescription)->_pad_0000 + 16))(
-    *p_m_pDescription,
+  (*(void (**)(_DWORD, int, _DWORD *, CCBSkillWindow *))(**(_DWORD **)v15 + 16))(
+    *(_DWORD *)v15,
     514,
     pRect,
     this);
-  (**(void (***)(UIStatic *, int))(*p_m_pDescription)->_pad_0000)(*p_m_pDescription, 1);
-  ((UIWnd *)this->m_pDescription)->SetShow(0);
-  ((UIWnd *)this->m_pDescription)->GetChild((int)&parent);
-  m_pSkillList = this->m_pSkillList;
-  ((CCBLineupWindow *)this->m_pSkillList)->Destroy();
+  (***(void (****)(_DWORD, int))v15)(*(_DWORD *)v15, 1);
+  ((UIWnd *)*(UIWnd **)&this->_data[76])->SetShow(0);
+  ((UIWnd *)*(UIWnd **)&this->_data[76])->GetChild((int)&parent);
+  v16 = (char *)&this->_data[80];
+  ((CCBLineupWindow *)&this->_data[80])->Destroy();
   *pRect = 51;
   pRect[2] = 115;
   pRect[1] = 134;
   pRect[3] = 166;
-  (*(void (**)(UIListBox *, int, _DWORD *, CCBSkillWindow *))(*(_DWORD *)(*m_pSkillList)->_pad_0000 + 16))(
-    *m_pSkillList,
+  (*(void (**)(_DWORD, int, _DWORD *, CCBSkillWindow *))(**(_DWORD **)v16 + 16))(
+    *(_DWORD *)v16,
     515,
     pRect,
     this);
-  (**(void (***)(UIListBox *, int))(*m_pSkillList)->_pad_0000)(*m_pSkillList, 1);
-  ((UIWnd *)this->m_pSkillList[0])->SetShow(0);
-  ((UIWnd *)this->m_pSkillList[0])->GetChild((int)&parent);
-  v17 = (CCBSkillWindow *)this + 1;
-  ((CCBLineupWindow *)(_DWORD *)this + 21)->Destroy();
+  (***(void (****)(_DWORD, int))v16)(*(_DWORD *)v16, 1);
+  ((UIWnd *)*(UIWnd **)&this->_data[80])->SetShow(0);
+  ((UIWnd *)*(UIWnd **)&this->_data[80])->GetChild((int)&parent);
+  v17 = (char *)&this->_data[84];
+  ((CCBLineupWindow *)&this->_data[84])->Destroy();
   *pRect = 51;
   pRect[2] = 115;
   pRect[1] = 108;
   pRect[3] = 140;
-  (*(void (**)(_DWORD, int, _DWORD *, CCBSkillWindow *))(**(_DWORD **)v17->_pad_0000 + 16))(
-    *(_DWORD *)v17->_pad_0000,
+  (*(void (**)(_DWORD, int, _DWORD *, CCBSkillWindow *))(**(_DWORD **)v17 + 16))(
+    *(_DWORD *)v17,
     516,
     pRect,
     this);
-  (***(void (****)(_DWORD, int))v17->_pad_0000)(*(_DWORD *)v17->_pad_0000, 1);
-  ((UIWnd *)*((UIWnd **)this + 21))->SetShow(0);
-  ((UIWnd *)*((UIWnd **)this + 21))->GetChild((int)&parent);
-  v18 = (_DWORD *)((char *)this + 88);
-  ((CCBLineupWindow *)(_DWORD *)this + 22)->Destroy();
+  (***(void (****)(_DWORD, int))v17)(*(_DWORD *)v17, 1);
+  ((UIWnd *)*(UIWnd **)&this->_data[84])->SetShow(0);
+  ((UIWnd *)*(UIWnd **)&this->_data[84])->GetChild((int)&parent);
+  v18 = (char *)&this->_data[88];
+  ((CCBLineupWindow *)&this->_data[88])->Destroy();
   *pRect = 136;
   pRect[2] = 200;
   pRect[1] = 108;
   pRect[3] = 140;
-  (*(void (**)(_DWORD, int, _DWORD *, CCBSkillWindow *))(*(_DWORD *)*v18 + 16))(*v18, 517, pRect, this);
-  (**(void (***)(_DWORD, int))*v18)(*v18, 1);
-  ((UIWnd *)*((UIWnd **)this + 22))->SetShow(0);
-  ((UIWnd *)*((UIWnd **)this + 22))->GetChild((int)&parent);
-  v19 = (_DWORD *)((char *)this + 92);
-  ((CCBLineupWindow *)(_DWORD *)this + 23)->Destroy();
+  (*(void (**)(_DWORD, int, _DWORD *, CCBSkillWindow *))(**(_DWORD **)v18 + 16))(
+    *(_DWORD *)v18,
+    517,
+    pRect,
+    this);
+  (***(void (****)(_DWORD, int))v18)(*(_DWORD *)v18, 1);
+  ((UIWnd *)*(UIWnd **)&this->_data[88])->SetShow(0);
+  ((UIWnd *)*(UIWnd **)&this->_data[88])->GetChild((int)&parent);
+  v19 = (char *)&this->_data[92];
+  ((CCBLineupWindow *)&this->_data[92])->Destroy();
   pRect[2] = 115;
   *pRect = 51;
   pRect[1] = 160;
   pRect[3] = 192;
-  (*(void (**)(_DWORD, int, _DWORD *, CCBSkillWindow *))(*(_DWORD *)*v19 + 16))(*v19, 518, pRect, this);
-  (**(void (***)(_DWORD, int))*v19)(*v19, 1);
-  ((UIWnd *)*((UIWnd **)this + 23))->SetShow(0);
-  ((UIWnd *)*((UIWnd **)this + 23))->GetChild((int)&parent);
-  v20 = (_DWORD *)((char *)this + 96);
-  ((CCBLineupWindow *)(_DWORD *)this + 24)->Destroy();
+  (*(void (**)(_DWORD, int, _DWORD *, CCBSkillWindow *))(**(_DWORD **)v19 + 16))(
+    *(_DWORD *)v19,
+    518,
+    pRect,
+    this);
+  (***(void (****)(_DWORD, int))v19)(*(_DWORD *)v19, 1);
+  ((UIWnd *)*(UIWnd **)&this->_data[92])->SetShow(0);
+  ((UIWnd *)*(UIWnd **)&this->_data[92])->GetChild((int)&parent);
+  v20 = (char *)&this->_data[96];
+  ((CCBLineupWindow *)&this->_data[96])->Destroy();
   *pRect = 136;
   pRect[2] = 200;
   pRect[1] = 160;
   pRect[3] = 192;
-  (*(void (**)(_DWORD, int, _DWORD *, CCBSkillWindow *))(*(_DWORD *)*v20 + 16))(*v20, 519, pRect, this);
-  (**(void (***)(_DWORD, int))*v20)(*v20, 1);
-  ((UIWnd *)*((UIWnd **)this + 24))->SetShow(0);
-  ((UIWnd *)*((UIWnd **)this + 24))->GetChild((int)&parent);
-  v21 = (_DWORD *)((char *)this + 100);
-  ((CCBLineupWindow *)(_DWORD *)this + 25)->Destroy();
+  (*(void (**)(_DWORD, int, _DWORD *, CCBSkillWindow *))(**(_DWORD **)v20 + 16))(
+    *(_DWORD *)v20,
+    519,
+    pRect,
+    this);
+  (***(void (****)(_DWORD, int))v20)(*(_DWORD *)v20, 1);
+  ((UIWnd *)*(UIWnd **)&this->_data[96])->SetShow(0);
+  ((UIWnd *)*(UIWnd **)&this->_data[96])->GetChild((int)&parent);
+  v21 = (char *)&this->_data[100];
+  ((CCBLineupWindow *)&this->_data[100])->Destroy();
   *pRect = 0;
   pRect[2] = 187;
   pRect[1] = 211;
   pRect[3] = 243;
-  (*(void (**)(_DWORD, int, _DWORD *, CCBSkillWindow *))(*(_DWORD *)*v21 + 16))(*v21, 529, pRect, this);
-  (**(void (***)(_DWORD, int))*v21)(*v21, 1);
-  ((UIWnd *)*((UIWnd **)this + 25))->SetShow(0);
-  ((UIWnd *)*((UIWnd **)this + 25))->GetChild((int)&parent);
-  v22 = (_DWORD *)((char *)this + 104);
-  ((CCBLineupWindow *)(_DWORD *)this + 26)->Destroy();
+  (*(void (**)(_DWORD, int, _DWORD *, CCBSkillWindow *))(**(_DWORD **)v21 + 16))(
+    *(_DWORD *)v21,
+    529,
+    pRect,
+    this);
+  (***(void (****)(_DWORD, int))v21)(*(_DWORD *)v21, 1);
+  ((UIWnd *)*(UIWnd **)&this->_data[100])->SetShow(0);
+  ((UIWnd *)*(UIWnd **)&this->_data[100])->GetChild((int)&parent);
+  v22 = (char *)&this->_data[104];
+  ((CCBLineupWindow *)&this->_data[104])->Destroy();
   *pRect = 0;
   pRect[2] = 187;
   pRect[1] = 0;
   pRect[3] = 32;
-  (*(void (**)(_DWORD, int, _DWORD *, CCBSkillWindow *))(*(_DWORD *)*v22 + 16))(*v22, 530, pRect, this);
-  (**(void (***)(_DWORD, int))*v22)(*v22, 1);
-  ((UIWnd *)*((UIWnd **)this + 26))->SetShow(0);
-  ((UIWnd *)*((UIWnd **)this + 26))->GetChild((int)&parent);
+  (*(void (**)(_DWORD, int, _DWORD *, CCBSkillWindow *))(**(_DWORD **)v22 + 16))(
+    *(_DWORD *)v22,
+    530,
+    pRect,
+    this);
+  (***(void (****)(_DWORD, int))v22)(*(_DWORD *)v22, 1);
+  ((UIWnd *)*(UIWnd **)&this->_data[104])->SetShow(0);
+  ((UIWnd *)*(UIWnd **)&this->_data[104])->GetChild((int)&parent);
   return 1;
 }
 
@@ -259,11 +280,11 @@ char CCBSkillWindow::Create(_DWORD *pRect, int parent)
 int CCBSkillWindow::Destroy()
 {
   int result; // eax
-  _DWORD *v3; // edi
+  char *v3; // edi
   int v4; // ebx
-  UIStatic *m_pBack; // ecx
-  UIStatic *m_pDescription; // ecx
-  UIListBox *v7; // ecx
+  int v5; // ecx
+  int v6; // ecx
+  int v7; // ecx
   int v8; // ecx
   int v9; // ecx
   int v10; // ecx
@@ -276,72 +297,72 @@ int CCBSkillWindow::Destroy()
   int v17; // ecx
 
   result = ((UIListBox *)this)->SetScrollPos();
-  v3 = (_DWORD *)((char *)this + 108);
+  v3 = (char *)&this->_data[108];
   v4 = 11;
   do
   {
-    if ( *v3 )
+    if ( *(_DWORD *)v3 )
     {
-      result = (*(int (**)(_DWORD, int))(*(_DWORD *)*v3 + 20))(*v3, 1);
-      *v3 = 0;
+      result = (*(int (**)(_DWORD, int))(**(_DWORD **)v3 + 20))(*(_DWORD *)v3, 1);
+      *(_DWORD *)v3 = 0;
     }
-    ++v3;
+    v3 += 4;
     --v4;
   }
   while ( v4 );
-  m_pBack = (UIStatic *)this->m_pBack;
-  if ( m_pBack )
+  v5 = *(_DWORD *)&this->_data[72];
+  if ( v5 )
   {
-    result = (*(int (**)(UIStatic *, int))(*(_DWORD *)m_pBack->_pad_0000 + 20))(m_pBack, 1);
-    this->m_pBack = 0;
+    result = (*(int (**)(int, int))(*(_DWORD *)v5 + 20))(v5, 1);
+    *(_DWORD *)&this->_data[72] = 0;
   }
-  m_pDescription = (UIStatic *)this->m_pDescription;
-  if ( m_pDescription )
+  v6 = *(_DWORD *)&this->_data[76];
+  if ( v6 )
   {
-    result = (*(int (**)(UIStatic *, int))(*(_DWORD *)m_pDescription->_pad_0000 + 20))(m_pDescription, 1);
-    this->m_pDescription = 0;
+    result = (*(int (**)(int, int))(*(_DWORD *)v6 + 20))(v6, 1);
+    *(_DWORD *)&this->_data[76] = 0;
   }
-  v7 = (UIListBox *)this->m_pSkillList[0];
+  v7 = *(_DWORD *)&this->_data[80];
   if ( v7 )
   {
-    result = (*(int (**)(UIListBox *, int))(*(_DWORD *)v7->_pad_0000 + 20))(v7, 1);
-    this->m_pSkillList[0] = 0;
+    result = (*(int (**)(int, int))(*(_DWORD *)v7 + 20))(v7, 1);
+    *(_DWORD *)&this->_data[80] = 0;
   }
-  v8 = *((_DWORD *)this + 21);
+  v8 = *(_DWORD *)&this->_data[84];
   if ( v8 )
   {
     result = (*(int (**)(int, int))(*(_DWORD *)v8 + 20))(v8, 1);
-    *((_DWORD *)this + 21) = 0;
+    *(_DWORD *)&this->_data[84] = 0;
   }
-  v9 = *((_DWORD *)this + 22);
+  v9 = *(_DWORD *)&this->_data[88];
   if ( v9 )
   {
     result = (*(int (**)(int, int))(*(_DWORD *)v9 + 20))(v9, 1);
-    *((_DWORD *)this + 22) = 0;
+    *(_DWORD *)&this->_data[88] = 0;
   }
-  v10 = *((_DWORD *)this + 23);
+  v10 = *(_DWORD *)&this->_data[92];
   if ( v10 )
   {
     result = (*(int (**)(int, int))(*(_DWORD *)v10 + 20))(v10, 1);
-    *((_DWORD *)this + 23) = 0;
+    *(_DWORD *)&this->_data[92] = 0;
   }
-  v11 = *((_DWORD *)this + 24);
+  v11 = *(_DWORD *)&this->_data[96];
   if ( v11 )
   {
     result = (*(int (**)(int, int))(*(_DWORD *)v11 + 20))(v11, 1);
-    *((_DWORD *)this + 24) = 0;
+    *(_DWORD *)&this->_data[96] = 0;
   }
-  v12 = *((_DWORD *)this + 25);
+  v12 = *(_DWORD *)&this->_data[100];
   if ( v12 )
   {
     result = (*(int (**)(int, int))(*(_DWORD *)v12 + 20))(v12, 1);
-    *((_DWORD *)this + 25) = 0;
+    *(_DWORD *)&this->_data[100] = 0;
   }
-  v13 = *((_DWORD *)this + 26);
+  v13 = *(_DWORD *)&this->_data[104];
   if ( v13 )
   {
     result = (*(int (**)(int, int))(*(_DWORD *)v13 + 20))(v13, 1);
-    *((_DWORD *)this + 26) = 0;
+    *(_DWORD *)&this->_data[104] = 0;
   }
   v14 = *((_DWORD *)this + 38);
   if ( v14 )
@@ -374,18 +395,14 @@ int CCBSkillWindow::Destroy()
 int CCBSkillWindow::OnMessage(int a2, int a3, int a4)
 {
   if ( a2 == 1001 )
-    ((CCBUI *)*(CCBUI **)(*(_DWORD *)(*(_DWORD *)&this->_pad_0000[32] + 1160) + 8))->SetParam(a3, a4);
+    ((CCBUI *)*(CCBUI **)(*(_DWORD *)(*(_DWORD *)&this->_data[32] + 1160) + 8))->SetParam(a3, a4);
   return a2->SendMessage(a3, a4);
 }
 
 // 0x0051C9F0
 BOOL CCBSkillWindow::Update(int a2, int a3)
 {
-  if ( *(_DWORD *)&this->_pad_0000[56] == 1
-    && g_Input.KeyInfo[16].PressTime == 1
-    && (g_Input.KeyInfo[16].Data & 0xF) == 1 )
-  {
-    ((CCBUI *)*(CCBUI **)(*(_DWORD *)(*(_DWORD *)&this->_pad_0000[32] + 1160) + 8))->SetParam(513, -1);
-  }
+  if ( *(_DWORD *)&this->_data[56] == 1 && g_Input.KeyInfo[16].PressTime == 1 && (g_Input.KeyInfo[16].Data & 0xF) == 1 )
+    ((CCBUI *)*(CCBUI **)(*(_DWORD *)(*(_DWORD *)&this->_data[32] + 1160) + 8))->SetParam(513, -1);
   return ((UIWnd *)this)->HitTest(a2, a3);
 }

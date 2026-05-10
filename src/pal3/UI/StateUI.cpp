@@ -20,21 +20,21 @@ int StateUI::Create()
 
   if ( ((UIBase *)this)->GetSelected() < 5 )
   {
-    this->m_Is[1] = data;
+    this->_data[362] = data;
     ((UIBase *)this)->SetItemData(1, data);
-    sub_48A310(*(char **)&this->m_RoleState[2].m_WuLing[3]._pad_0000[24], data);
-    sub_4945E0(*(char **)&this->m_RoleState[2].m_WuLing[3]._pad_0000[28], data);
-    sub_49E860(*(char **)&this->m_RoleState[2].m_WuLing[3]._pad_0000[32], data);
-    return sub_484E90(*(char **)&this->m_RoleState[2].m_WuLing[3]._pad_0000[20], data);
+    sub_48A310(*((char **)this + 44015), data);
+    sub_4945E0(*((char **)this + 44016), data);
+    sub_49E860(*((char **)this + 44017), data);
+    return sub_484E90(*((char **)this + 44014), data);
   }
   else
   {
-    this->m_Is[1] = 0;
+    this->_data[362] = 0;
     ((UIBase *)this)->SetItemData(1, 0);
-    sub_48A310(*(char **)&this->m_RoleState[2].m_WuLing[3]._pad_0000[24], 0);
-    sub_4945E0(*(char **)&this->m_RoleState[2].m_WuLing[3]._pad_0000[28], 0);
-    sub_49E860(*(char **)&this->m_RoleState[2].m_WuLing[3]._pad_0000[32], 0);
-    return sub_484E90(*(char **)&this->m_RoleState[2].m_WuLing[3]._pad_0000[20], 0);
+    sub_48A310(*((char **)this + 44015), 0);
+    sub_4945E0(*((char **)this + 44016), 0);
+    sub_49E860(*((char **)this + 44017), 0);
+    return sub_484E90(*((char **)this + 44014), 0);
   }
 }
 
@@ -45,20 +45,20 @@ void StateUI::Init()
 
   if ( ((UIBase *)this)->GetSelected() < 5 )
   {
-    this->m_Is[2] = data;
+    this->_data[363] = data;
     ((UIBase *)this)->SetItemData(2, data);
-    sub_48A330(*(char **)&this->m_RoleState[2].m_WuLing[3]._pad_0000[24], data);
-    sub_494600(*(char **)&this->m_RoleState[2].m_WuLing[3]._pad_0000[28], data);
-    sub_49E880(*(char **)&this->m_RoleState[2].m_WuLing[3]._pad_0000[32], data);
-    sub_484EB0(*(char **)&this->m_RoleState[2].m_WuLing[3]._pad_0000[20], data);
+    sub_48A330(*((char **)this + 44015), data);
+    sub_494600(*((char **)this + 44016), data);
+    sub_49E880(*((char **)this + 44017), data);
+    sub_484EB0(*((char **)this + 44014), data);
   }
   else
   {
-    this->m_Is[2] = 0;
+    this->_data[363] = 0;
     ((UIBase *)this)->SetItemData(2, 0);
-    sub_48A330(*(char **)&this->m_RoleState[2].m_WuLing[3]._pad_0000[24], 0);
-    sub_494600(*(char **)&this->m_RoleState[2].m_WuLing[3]._pad_0000[28], 0);
-    sub_49E880(*(char **)&this->m_RoleState[2].m_WuLing[3]._pad_0000[32], 0);
-    sub_484EB0(*(char **)&this->m_RoleState[2].m_WuLing[3]._pad_0000[20], 0);
+    sub_48A330(*((char **)this + 44015), 0);
+    sub_494600(*((char **)this + 44016), 0);
+    sub_49E880(*((char **)this + 44017), 0);
+    sub_484EB0(*((char **)this + 44014), 0);
   }
 }

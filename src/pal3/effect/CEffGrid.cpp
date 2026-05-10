@@ -123,27 +123,27 @@ char CEffGrid::Create(int a2)
   int v10; // eax
   int v11; // ecx
   __int64 v12; // rax
-  float v13; // ecx
-  int m_nQuad; // ebx
-  gbGeomQuad *v15; // eax
+  int v13; // ecx
+  int v14; // ebx
+  _DWORD *v15; // eax
   int v16; // ebx
   int v17; // ebp
   int v18; // ebx
   int v19; // edi
   int v20; // ebp
-  gbVec3D *v21; // eax
+  _DWORD *v21; // eax
   int v22; // ebp
-  gbVec3D *v23; // ebx
+  _DWORD *v23; // ebx
   int v24; // ebp
   int v25; // ebp
-  gbVec3D *v26; // eax
+  _DWORD *v26; // eax
   int v27; // ebp
-  gbVec3D *v28; // ebx
+  _DWORD *v28; // ebx
   int v29; // ebp
-  gbVec3D *m_pMesh; // ecx
-  gbGeomQuad *v32; // [esp+0h] [ebp-1010h]
-  gbVec3D *v33; // [esp+0h] [ebp-1010h]
-  gbVec3D *v34; // [esp+0h] [ebp-1010h]
+  int v30; // ecx
+  _DWORD *v32; // [esp+0h] [ebp-1010h]
+  _DWORD *v33; // [esp+0h] [ebp-1010h]
+  _DWORD *v34; // [esp+0h] [ebp-1010h]
   _BYTE v35[1024]; // [esp+4h] [ebp-100Ch] BYREF
   char pExceptionObject[1024]; // [esp+404h] [ebp-C0Ch] BYREF
   char ArgList[1024]; // [esp+804h] [ebp-80Ch] BYREF
@@ -158,43 +158,43 @@ char CEffGrid::Create(int a2)
   v39 = ExceptionList;
   v3 = (void *)alloca(4100);
   v5 = (_DWORD *)operator new(0x4C0u);
-  *(_DWORD *)&this->_pad_0000[24] = v5;
+  *(_DWORD *)&this->_data[24] = v5;
   if ( v5 )
   {
     v6 = 0;
     v7 = 0;
     while ( 1 )
     {
-      *(_DWORD *)(v7 + *(_DWORD *)&this->_pad_0000[24]) = operator new(0x2D0u);
-      if ( !*(_DWORD *)(v7 + *(_DWORD *)&this->_pad_0000[24]) )
+      *(_DWORD *)(v7 + *(_DWORD *)&this->_data[24]) = operator new(0x2D0u);
+      if ( !*(_DWORD *)(v7 + *(_DWORD *)&this->_data[24]) )
         break;
       v7 += 152;
       ++v6;
       if ( v7 >= 1216 )
       {
         v8 = 0;
-        *(_DWORD *)&this->_pad_0000[40] = 8;
-        *(_DWORD *)&this->_pad_0000[44] = 10;
+        *(_DWORD *)&this->_data[40] = 8;
+        *(_DWORD *)&this->_data[44] = 10;
         v9 = 0;
         do
         {
-          *(_BYTE *)(v9 + *(_DWORD *)&this->_pad_0000[24] + 148) = 0;
+          *(_BYTE *)(v9 + *(_DWORD *)&this->_data[24] + 148) = 0;
           v10 = 0;
-          if ( *(int *)&this->_pad_0000[44] > 0 )
+          if ( *(int *)&this->_data[44] > 0 )
           {
             v11 = 0;
             do
             {
               ++v10;
               v11 += 72;
-              *(_BYTE *)(*(_DWORD *)(v9 + *(_DWORD *)&this->_pad_0000[24]) + v11 - 8) = 0;
+              *(_BYTE *)(*(_DWORD *)(v9 + *(_DWORD *)&this->_data[24]) + v11 - 8) = 0;
             }
-            while ( v10 < *(_DWORD *)&this->_pad_0000[44] );
+            while ( v10 < *(_DWORD *)&this->_data[44] );
           }
           ++v8;
           v9 += 152;
         }
-        while ( v8 < *(_DWORD *)&this->_pad_0000[40] );
+        while ( v8 < *(_DWORD *)&this->_data[40] );
         goto LABEL_10;
       }
     }
@@ -203,45 +203,45 @@ char CEffGrid::Create(int a2)
       v19 = 152 * (v6 - 1);
       do
       {
-        operator delete(*(void **)(v19 + *(_DWORD *)&this->_pad_0000[24]));
+        operator delete(*(void **)(v19 + *(_DWORD *)&this->_data[24]));
         v19 -= 152;
         --v6;
       }
       while ( v6 );
     }
-    operator delete(*(void **)&this->_pad_0000[24]);
+    operator delete(*(void **)&this->_data[24]);
   }
 LABEL_10:
-  this->m_nXDivision = (__int64)*(float *)(a2 + 224);
+  *(_DWORD *)&this->_data[112] = (__int64)*(float *)(a2 + 224);
   v12 = (__int64)*(float *)(a2 + 232);
-  this->m_nZDivision = v12;
-  v13 = *(float *)(a2 + 228);
-  this->m_nQuad = this->m_nXDivision * v12;
-  this->m_fGridSize = v13;
-  this->m_fFramePerSec = *(float *)(a2 + 180);
-  this->m_vecPos.x = *(float *)(a2 + 184);
-  this->m_vecPos.y = *(float *)(a2 + 188);
-  this->m_vecPos.z = *(float *)(a2 + 192);
-  this->m_vecRot.x = *(float *)(a2 + 216);
-  this->m_vecRot.y = *(float *)(a2 + 196);
-  this->m_vecRot.z = *(float *)(a2 + 220);
-  this->m_bAdditiveBlend = *(_BYTE *)(a2 + 213);
-  this->m_bNoZTest = *(_BYTE *)(a2 + 215);
-  this->m_byMaxFrame = *(_BYTE *)(a2 + 176);
-  this->m_nRequireLoops = (int)&unk_FFFFFF;
-  this->m_dwStartColor = *(_DWORD *)(a2 + 204);
-  this->m_fWavePower = *(float *)(a2 + 244);
-  this->m_fWaveSpeed = *(float *)(a2 + 248);
-  this->m_fFlapPower = *(float *)(a2 + 268);
-  this->m_fFlapSpeed = *(float *)(a2 + 252);
-  sub_4CAB30(this->_pad_0000, *(_DWORD *)(a2 + 168), *(_DWORD *)(a2 + 172));
-  m_nQuad = this->m_nQuad;
-  v15 = (gbGeomQuad *)operator new(68 * m_nQuad);
+  *(_DWORD *)&this->_data[116] = v12;
+  v13 = *(_DWORD *)(a2 + 228);
+  *(_DWORD *)&this->_data[124] = *(_DWORD *)&this->_data[112] * v12;
+  *(_DWORD *)&this->_data[120] = v13;
+  *(_DWORD *)&this->_data[144] = *(_DWORD *)(a2 + 180);
+  *(_DWORD *)&this->_data[160] = *(_DWORD *)(a2 + 184);
+  *(_DWORD *)&this->_data[164] = *(_DWORD *)(a2 + 188);
+  *(_DWORD *)&this->_data[168] = *(_DWORD *)(a2 + 192);
+  *(_DWORD *)&this->_data[148] = *(_DWORD *)(a2 + 216);
+  *(_DWORD *)&this->_data[152] = *(_DWORD *)(a2 + 196);
+  *(_DWORD *)&this->_data[156] = *(_DWORD *)(a2 + 220);
+  this->_data[69] = *(_BYTE *)(a2 + 213);
+  this->_data[70] = *(_BYTE *)(a2 + 215);
+  this->_data[71] = *(_BYTE *)(a2 + 176);
+  *(_DWORD *)&this->_data[72] = &unk_FFFFFF;
+  *(_DWORD *)&this->_data[84] = *(_DWORD *)(a2 + 204);
+  *(_DWORD *)&this->_data[128] = *(_DWORD *)(a2 + 244);
+  *(_DWORD *)&this->_data[132] = *(_DWORD *)(a2 + 248);
+  *(_DWORD *)&this->_data[136] = *(_DWORD *)(a2 + 268);
+  *(_DWORD *)&this->_data[140] = *(_DWORD *)(a2 + 252);
+  sub_4CAB30(this->_data, *(_DWORD *)(a2 + 168), *(_DWORD *)(a2 + 172));
+  v14 = *(_DWORD *)&this->_data[124];
+  v15 = (_DWORD *)operator new(68 * v14);
   v32 = v15;
   v41 = 0;
   if ( v15 )
   {
-    v16 = m_nQuad - 1;
+    v16 = v14 - 1;
     v17 = (int)v15;
     if ( v16 >= 0 )
     {
@@ -261,7 +261,7 @@ LABEL_10:
     v15 = 0;
   }
   v41 = -1;
-  this->m_pGeomQuad = v15;
+  *(_DWORD *)&this->_data[48] = v15;
   if ( !v15 )
   {
     qmemcpy(
@@ -270,8 +270,8 @@ LABEL_10:
       sizeof(pExceptionObject));
     _CxxThrowException(pExceptionObject, (_ThrowInfo *)&_TI1_AV_Exception__);
   }
-  v20 = (this->m_nXDivision + 1) * (this->m_nZDivision + 1);
-  v21 = (gbVec3D *)operator new(12 * v20);
+  v20 = (*(_DWORD *)&this->_data[112] + 1) * (*(_DWORD *)&this->_data[116] + 1);
+  v21 = (_DWORD *)operator new(12 * v20);
   v33 = v21;
   v41 = 1;
   if ( v21 )
@@ -283,7 +283,8 @@ LABEL_10:
       v24 = v22 + 1;
       do
       {
-        ((void (*)(gbVec3D *))gbVec3D::`default constructor closure')(v23++);
+        ((void (*)(_DWORD *))gbVec3D::`default constructor closure')(v23);
+        v23 += 3;
         --v24;
       }
       while ( v24 );
@@ -294,9 +295,9 @@ LABEL_10:
   {
     v21 = 0;
   }
-  v25 = (this->m_nXDivision + 1) * (this->m_nZDivision + 1);
-  this->m_pMesh = v21;
-  v26 = (gbVec3D *)operator new(12 * v25);
+  v25 = (*(_DWORD *)&this->_data[112] + 1) * (*(_DWORD *)&this->_data[116] + 1);
+  *(_DWORD *)&this->_data[52] = v21;
+  v26 = (_DWORD *)operator new(12 * v25);
   v34 = v26;
   v41 = 2;
   if ( v26 )
@@ -308,7 +309,8 @@ LABEL_10:
       v29 = v27 + 1;
       do
       {
-        ((void (*)(gbVec3D *))gbVec3D::`default constructor closure')(v28++);
+        ((void (*)(_DWORD *))gbVec3D::`default constructor closure')(v28);
+        v28 += 3;
         --v29;
       }
       while ( v29 );
@@ -319,10 +321,10 @@ LABEL_10:
   {
     v26 = 0;
   }
-  m_pMesh = (gbVec3D *)this->m_pMesh;
+  v30 = *(_DWORD *)&this->_data[52];
   v41 = -1;
-  this->m_pMesh2 = v26;
-  if ( !m_pMesh || !v26 )
+  *(_DWORD *)&this->_data[56] = v26;
+  if ( !v30 || !v26 )
   {
     qmemcpy(v35, ((Logger *)v38)->FormatException(aNewFailInCeffg, aDProjectPal3Co_14, 124), sizeof(v35));
     _CxxThrowException(v35, (_ThrowInfo *)&_TI1_AV_Exception__);

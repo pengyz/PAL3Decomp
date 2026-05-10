@@ -16,8 +16,8 @@ extern void *off_56F4F0;
 // 0x004BDAC0
 RenderTarget::RenderTarget()
 {
-  ((gbTexture_D3D *)&this->m_ScreenPlane)->~gbTexture_D3D();
-  ((gbTexture_D3D *)&this->m_Texture)->~gbTexture_D3D();
+  ((gbTexture_D3D *)this->m_ScreenPlane)->~gbTexture_D3D();
+  ((gbTexture_D3D *)this->m_Texture)->~gbTexture_D3D();
 }
 
 // 0x004BDB60
@@ -41,13 +41,13 @@ int RenderTarget::Create()
     _CxxThrowException(pExceptionObject, (_ThrowInfo *)&_TI1_AV_Exception__);
   }
   (*(void (**)(gbGfxManager *))(*(_DWORD *)dword_BFDA60->_pad_0000 + 88))(dword_BFDA60);
-  (*(void (**)(gbTexture_D3D *, int, int, int))(*(_DWORD *)this->m_ScreenPlane._pad_0000 + 12))(
-    &this->m_ScreenPlane,
+  (*(void (**)(char *, int, int, int))(*(_DWORD *)this->m_ScreenPlane + 12))(
+    this->m_ScreenPlane,
     dword_BFD6D0,
     dword_BFD6D4,
     v4);
-  result = (*(int (**)(gbTexture_D3D *, int, int, int))(*(_DWORD *)this->m_Texture._pad_0000 + 12))(
-             &this->m_Texture,
+  result = (*(int (**)(char *, int, int, int))(*(_DWORD *)this->m_Texture + 12))(
+             this->m_Texture,
              512,
              512,
              v4);
@@ -64,7 +64,7 @@ void RenderTarget::OnDeviceLost(int a2)
   if ( this->m_nState != 1 )
   {
     v2 = a2;
-    if ( (a2 == 1 || a2 == 2) && !this->m_ScreenPlane.pTex )
+    if ( (a2 == 1 || a2 == 2) && !*(_DWORD *)&this->m_ScreenPlane[84] )
       v2 = 0;
     this->m_iMode = v2;
   }
@@ -86,15 +86,15 @@ bool RenderTarget::OnResetDevice(int a2)
     {
       if ( m_iMode <= 0 || m_iMode > 2 )
         return v5 != 0;
-      v5 = (*(int (**)(gbGfxManager *, gbTexture_D3D *))(*(_DWORD *)dword_BFDA60->_pad_0000 + 92))(
+      v5 = (*(int (**)(gbGfxManager *, char *))(*(_DWORD *)dword_BFDA60->_pad_0000 + 92))(
              dword_BFDA60,
-             &this->m_ScreenPlane);
+             this->m_ScreenPlane);
     }
     else
     {
-      v5 = (*(int (**)(gbGfxManager *, gbTexture_D3D *))(*(_DWORD *)dword_BFDA60->_pad_0000 + 92))(
+      v5 = (*(int (**)(gbGfxManager *, char *))(*(_DWORD *)dword_BFDA60->_pad_0000 + 92))(
              dword_BFDA60,
-             &this->m_Texture);
+             this->m_Texture);
       ((gbCamera *)&dword_BFDA68->OrthoSize)->SetDimention(512, 384);
       ((CameraCtrl *)dword_BFDA68)->SetAsCurrent(3);
     }
@@ -125,11 +125,11 @@ bool RenderTarget::OnResetDevice(int a2)
 // 0x004BDF10
 _DWORD * RenderTarget::Destroy()
 {
-  *(_DWORD *)this->m_Texture._pad_0000 = 0;
+  *(_DWORD *)this->m_Texture = 0;
   this->m_iMode = (int)&off_56F4F0;
-  *(_DWORD *)&this->m_Texture._pad_0000[4] = 1;
-  *(_DWORD *)&this->m_Texture._pad_0000[12] = 0;
-  *(_DWORD *)&this->m_Texture._pad_0000[8] = 0;
-  this->m_Texture._pad_0000[16] = 0;
+  *(_DWORD *)&this->m_Texture[4] = 1;
+  *(_DWORD *)&this->m_Texture[12] = 0;
+  *(_DWORD *)&this->m_Texture[8] = 0;
+  this->m_Texture[16] = 0;
   return &this->m_iMode;
 }

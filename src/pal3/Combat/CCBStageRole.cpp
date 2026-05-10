@@ -970,7 +970,7 @@ void CCBStageRole::IsDoTask(gbMatrixStack *a2)
     if ( (unsigned int)m_fBlend_low <= 4
       || m_fBlend_low >= 5 && m_fBlend_low < 11 && this->ForceEndTaskByPFN() )
     {
-      ((gbCamera *)&this->m_pStage->m_pCam->_pad_0000[4])->PointWorldToScr(&v23, &v21, &v22);
+      ((gbCamera *)&this->m_pStage->m_pCam->_data[4])->PointWorldToScr(&v23, &v21, &v22);
       v5 = ((CCBRoleState *)this->m_pRoleState)->SetRoleField(LODWORD(this->m_fBlend), 0);
       v6 = ((CCBRoleState *)this->m_pRoleState)->SetRoleField(LODWORD(this->m_fBlend), 1);
       RoleType = ((CCBRoleState *)this->m_pRoleState)->GetRoleType(LODWORD(this->m_fBlend));
@@ -1004,7 +1004,7 @@ void CCBStageRole::IsDoTask(gbMatrixStack *a2)
         this->ProcPursueRole(v9, v10, 1);
     }
   }
-  if ( BYTE1(this->m_pStage->m_pCBSystem->m_nTimesOfCombat) && dword_17A990C == 1
+  if ( this->m_pStage->m_pCBSystem->m_bEditor && dword_17A990C == 1
     || this->m_bVisible && (this->m_bAlive || SLODWORD(this->m_fBlend) < 5) )
   {
     a2->Push();
@@ -1852,55 +1852,55 @@ int CCBStageRole::GetTaskState()
 char CCBStageRole::ProcPursueRole(int a2, int a3, char a4)
 {
   CCBUI *m_pUI; // edi
-  UIStatic *v6; // ecx
+  void (***v6)(_DWORD, int); // ecx
   int v7; // ebx
-  UIStatic *v8; // ecx
-  UIStatic *v9; // ecx
-  UIStatic *v10; // ecx
-  UIStatic *v11; // ecx
-  UIStatic *v12; // ecx
-  UIStatic *v13; // ecx
-  UIStatic *v14; // ecx
-  UIStatic *v15; // ecx
-  UIStatic *v16; // ecx
-  UIStatic *v17; // ecx
-  UIStatic *v18; // ecx
-  UIStatic *v19; // ecx
-  UIStatic *v20; // ecx
-  UIStatic *v21; // ecx
-  UIStatic *v22; // ecx
-  UIStatic *v23; // ecx
-  UIStatic *v24; // ecx
+  void (***v8)(_DWORD, int); // ecx
+  void (***v9)(_DWORD, int); // ecx
+  void (***v10)(_DWORD, int); // ecx
+  void (***v11)(_DWORD, int); // ecx
+  void (***v12)(_DWORD, int); // ecx
+  void (***v13)(_DWORD, int); // ecx
+  void (***v14)(_DWORD, int); // ecx
+  void (***v15)(_DWORD, int); // ecx
+  void (***v16)(_DWORD, int); // ecx
+  void (***v17)(_DWORD, int); // ecx
+  void (***v18)(_DWORD, int); // ecx
+  void (***v19)(_DWORD, int); // ecx
+  void (***v20)(_DWORD, int); // ecx
+  void (***v21)(_DWORD, int); // ecx
+  void (***v22)(_DWORD, int); // ecx
+  void (***v23)(_DWORD, int); // ecx
+  void (***v24)(_DWORD, int); // ecx
   char result; // al
-  UIStatic *v26; // ecx
-  UIStatic *v27; // ecx
-  UIStatic *v28; // ecx
-  UIStatic *v29; // ecx
-  UIStatic *v30; // ecx
-  UIStatic *v31; // ecx
-  UIStatic *v32; // ecx
-  UIStatic *v33; // ecx
-  UIStatic *v34; // ecx
-  UIStatic *v35; // ecx
-  UIStatic *v36; // ecx
-  UIStatic *v37; // ecx
-  UIStatic *v38; // ecx
-  UIStatic *v39; // ecx
-  UIStatic *v40; // ecx
-  UIStatic *v41; // ecx
-  UIStatic *v42; // ecx
-  UIStatic *v43; // ecx
-  UIStatic *v44; // ecx
-  UIStatic *v45; // ecx
+  void (***v26)(_DWORD, int); // ecx
+  void (***v27)(_DWORD, _DWORD); // ecx
+  void (***v28)(_DWORD, _DWORD); // ecx
+  void (***v29)(_DWORD, _DWORD); // ecx
+  void (***v30)(_DWORD, _DWORD); // ecx
+  void (***v31)(_DWORD, _DWORD); // ecx
+  void (***v32)(_DWORD, _DWORD); // ecx
+  void (***v33)(_DWORD, _DWORD); // ecx
+  void (***v34)(_DWORD, _DWORD); // ecx
+  void (***v35)(_DWORD, _DWORD); // ecx
+  void (***v36)(_DWORD, _DWORD); // ecx
+  void (***v37)(_DWORD, _DWORD); // ecx
+  void (***v38)(_DWORD, _DWORD); // ecx
+  void (***v39)(_DWORD, _DWORD); // ecx
+  void (***v40)(_DWORD, _DWORD); // ecx
+  void (***v41)(_DWORD, _DWORD); // ecx
+  void (***v42)(_DWORD, _DWORD); // ecx
+  void (***v43)(_DWORD, _DWORD); // ecx
+  void (***v44)(_DWORD, _DWORD); // ecx
+  char (***v45)(_DWORD, _DWORD); // ecx
 
   m_pUI = (CCBUI *)this->m_pStage->m_pCBSystem->m_pUI;
   if ( a4 )
   {
     if ( ((CCBRoleState *)this->m_pRoleState)->GetRoleField(LODWORD(this->m_fBlend), 6) )
     {
-      v6 = (UIStatic *)m_pUI->m_pRoleStateFace[LODWORD(this->m_fBlend) + 3];
-      (**(void (***)(UIStatic *, int))v6->_pad_0000)(v6, 1);
-      ((UIWnd *)m_pUI->m_pRoleStateFace[LODWORD(this->m_fBlend) + 3])->ScreenToClient(a2, a3);
+      v6 = *(void (****)(_DWORD, int))&m_pUI->_data[4 * LODWORD(this->m_fBlend) + 176];
+      (**v6)(v6, 1);
+      ((UIWnd *)*(UIWnd **)&m_pUI->_data[4 * LODWORD(this->m_fBlend) + 176])->ScreenToClient(a2, a3);
       v7 = a2 + 24;
     }
     else
@@ -1909,171 +1909,171 @@ char CCBStageRole::ProcPursueRole(int a2, int a3, char a4)
     }
     if ( ((CCBRoleState *)this->m_pRoleState)->GetRoleField(LODWORD(this->m_fBlend), 7) )
     {
-      v8 = (UIStatic *)m_pUI->m_pRoleStateAttackInc[LODWORD(this->m_fBlend) + 4];
-      (**(void (***)(UIStatic *, int))v8->_pad_0000)(v8, 1);
-      ((UIWnd *)m_pUI->m_pRoleStateAttackInc[LODWORD(this->m_fBlend) + 4])->ScreenToClient(v7, a3);
+      v8 = *(void (****)(_DWORD, int))&m_pUI->_data[4 * LODWORD(this->m_fBlend) + 220];
+      (**v8)(v8, 1);
+      ((UIWnd *)*(UIWnd **)&m_pUI->_data[4 * LODWORD(this->m_fBlend) + 220])->ScreenToClient(v7, a3);
       v7 += 24;
     }
     if ( ((CCBRoleState *)this->m_pRoleState)->GetRoleField(LODWORD(this->m_fBlend), 8) )
     {
-      v9 = (UIStatic *)m_pUI->m_pRoleStateAttackDec[LODWORD(this->m_fBlend) + 4];
-      (**(void (***)(UIStatic *, int))v9->_pad_0000)(v9, 1);
-      ((UIWnd *)m_pUI->m_pRoleStateAttackDec[LODWORD(this->m_fBlend) + 4])->ScreenToClient(v7, a3);
+      v9 = *(void (****)(_DWORD, int))&m_pUI->_data[4 * LODWORD(this->m_fBlend) + 264];
+      (**v9)(v9, 1);
+      ((UIWnd *)*(UIWnd **)&m_pUI->_data[4 * LODWORD(this->m_fBlend) + 264])->ScreenToClient(v7, a3);
       v7 += 24;
     }
     if ( ((CCBRoleState *)this->m_pRoleState)->GetRoleField(LODWORD(this->m_fBlend), 9) )
     {
-      v10 = (UIStatic *)m_pUI->m_pRoleStateDefenceInc[LODWORD(this->m_fBlend) + 4];
-      (**(void (***)(UIStatic *, int))v10->_pad_0000)(v10, 1);
-      ((UIWnd *)m_pUI->m_pRoleStateDefenceInc[LODWORD(this->m_fBlend) + 4])->ScreenToClient(v7, a3);
+      v10 = *(void (****)(_DWORD, int))&m_pUI->_data[4 * LODWORD(this->m_fBlend) + 308];
+      (**v10)(v10, 1);
+      ((UIWnd *)*(UIWnd **)&m_pUI->_data[4 * LODWORD(this->m_fBlend) + 308])->ScreenToClient(v7, a3);
       v7 += 24;
     }
     if ( ((CCBRoleState *)this->m_pRoleState)->GetRoleField(LODWORD(this->m_fBlend), 12) )
     {
-      v11 = (UIStatic *)m_pUI->m_pRoleStateLuckDec[LODWORD(this->m_fBlend) + 4];
-      (**(void (***)(UIStatic *, int))v11->_pad_0000)(v11, 1);
-      ((UIWnd *)m_pUI->m_pRoleStateLuckDec[LODWORD(this->m_fBlend) + 4])->ScreenToClient(v7, a3);
+      v11 = *(void (****)(_DWORD, int))&m_pUI->_data[4 * LODWORD(this->m_fBlend) + 440];
+      (**v11)(v11, 1);
+      ((UIWnd *)*(UIWnd **)&m_pUI->_data[4 * LODWORD(this->m_fBlend) + 440])->ScreenToClient(v7, a3);
       v7 += 24;
     }
     if ( ((CCBRoleState *)this->m_pRoleState)->GetRoleField(LODWORD(this->m_fBlend), 13) )
     {
-      v12 = (UIStatic *)m_pUI->m_pRoleStateSpeedInc[LODWORD(this->m_fBlend) + 4];
-      (**(void (***)(UIStatic *, int))v12->_pad_0000)(v12, 1);
-      ((UIWnd *)m_pUI->m_pRoleStateSpeedInc[LODWORD(this->m_fBlend) + 4])->ScreenToClient(v7, a3);
+      v12 = *(void (****)(_DWORD, int))&m_pUI->_data[4 * LODWORD(this->m_fBlend) + 484];
+      (**v12)(v12, 1);
+      ((UIWnd *)*(UIWnd **)&m_pUI->_data[4 * LODWORD(this->m_fBlend) + 484])->ScreenToClient(v7, a3);
       v7 += 24;
     }
     if ( ((CCBRoleState *)this->m_pRoleState)->GetRoleField(LODWORD(this->m_fBlend), 10) )
     {
-      v13 = (UIStatic *)m_pUI->m_pRoleStateDefenceDec[LODWORD(this->m_fBlend) + 4];
-      (**(void (***)(UIStatic *, int))v13->_pad_0000)(v13, 1);
-      ((UIWnd *)m_pUI->m_pRoleStateDefenceDec[LODWORD(this->m_fBlend) + 4])->ScreenToClient(v7, a3);
+      v13 = *(void (****)(_DWORD, int))&m_pUI->_data[4 * LODWORD(this->m_fBlend) + 352];
+      (**v13)(v13, 1);
+      ((UIWnd *)*(UIWnd **)&m_pUI->_data[4 * LODWORD(this->m_fBlend) + 352])->ScreenToClient(v7, a3);
       v7 += 24;
     }
     if ( ((CCBRoleState *)this->m_pRoleState)->GetRoleField(LODWORD(this->m_fBlend), 11) )
     {
-      v14 = (UIStatic *)m_pUI->m_pRoleStateLuckInc[LODWORD(this->m_fBlend) + 4];
-      (**(void (***)(UIStatic *, int))v14->_pad_0000)(v14, 1);
-      ((UIWnd *)m_pUI->m_pRoleStateLuckInc[LODWORD(this->m_fBlend) + 4])->ScreenToClient(v7, a3);
+      v14 = *(void (****)(_DWORD, int))&m_pUI->_data[4 * LODWORD(this->m_fBlend) + 396];
+      (**v14)(v14, 1);
+      ((UIWnd *)*(UIWnd **)&m_pUI->_data[4 * LODWORD(this->m_fBlend) + 396])->ScreenToClient(v7, a3);
       v7 += 24;
     }
     if ( ((CCBRoleState *)this->m_pRoleState)->GetRoleField(LODWORD(this->m_fBlend), 14) )
     {
-      v15 = (UIStatic *)m_pUI->m_pRoleStateSpeedDec[LODWORD(this->m_fBlend) + 4];
-      (**(void (***)(UIStatic *, int))v15->_pad_0000)(v15, 1);
-      ((UIWnd *)m_pUI->m_pRoleStateSpeedDec[LODWORD(this->m_fBlend) + 4])->ScreenToClient(v7, a3);
+      v15 = *(void (****)(_DWORD, int))&m_pUI->_data[4 * LODWORD(this->m_fBlend) + 528];
+      (**v15)(v15, 1);
+      ((UIWnd *)*(UIWnd **)&m_pUI->_data[4 * LODWORD(this->m_fBlend) + 528])->ScreenToClient(v7, a3);
       v7 += 20;
     }
     if ( ((CCBRoleState *)this->m_pRoleState)->GetRoleField(LODWORD(this->m_fBlend), 15) )
     {
-      v16 = (UIStatic *)m_pUI->m_pRoleStateStable[LODWORD(this->m_fBlend) + 4];
-      (**(void (***)(UIStatic *, int))v16->_pad_0000)(v16, 1);
-      ((UIWnd *)m_pUI->m_pRoleStateStable[LODWORD(this->m_fBlend) + 4])->ScreenToClient(v7, a3);
+      v16 = *(void (****)(_DWORD, int))&m_pUI->_data[4 * LODWORD(this->m_fBlend) + 572];
+      (**v16)(v16, 1);
+      ((UIWnd *)*(UIWnd **)&m_pUI->_data[4 * LODWORD(this->m_fBlend) + 572])->ScreenToClient(v7, a3);
       v7 += 20;
     }
     if ( ((CCBRoleState *)this->m_pRoleState)->GetRoleField(LODWORD(this->m_fBlend), 16) )
     {
-      v17 = (UIStatic *)m_pUI->m_pRoleStateBlank[LODWORD(this->m_fBlend) + 4];
-      (**(void (***)(UIStatic *, int))v17->_pad_0000)(v17, 1);
-      ((UIWnd *)m_pUI->m_pRoleStateBlank[LODWORD(this->m_fBlend) + 4])->ScreenToClient(v7, a3);
+      v17 = *(void (****)(_DWORD, int))&m_pUI->_data[4 * LODWORD(this->m_fBlend) + 616];
+      (**v17)(v17, 1);
+      ((UIWnd *)*(UIWnd **)&m_pUI->_data[4 * LODWORD(this->m_fBlend) + 616])->ScreenToClient(v7, a3);
       v7 += 20;
     }
     if ( ((CCBRoleState *)this->m_pRoleState)->GetRoleField(LODWORD(this->m_fBlend), 17) )
     {
-      v18 = (UIStatic *)m_pUI->m_pRoleStateForbid[LODWORD(this->m_fBlend) + 4];
-      (**(void (***)(UIStatic *, int))v18->_pad_0000)(v18, 1);
-      ((UIWnd *)m_pUI->m_pRoleStateForbid[LODWORD(this->m_fBlend) + 4])->ScreenToClient(v7, a3);
+      v18 = *(void (****)(_DWORD, int))&m_pUI->_data[4 * LODWORD(this->m_fBlend) + 660];
+      (**v18)(v18, 1);
+      ((UIWnd *)*(UIWnd **)&m_pUI->_data[4 * LODWORD(this->m_fBlend) + 660])->ScreenToClient(v7, a3);
       v7 += 20;
     }
     if ( ((CCBRoleState *)this->m_pRoleState)->GetRoleField(LODWORD(this->m_fBlend), 18) )
     {
-      v19 = (UIStatic *)m_pUI->m_pRoleStateSleep[LODWORD(this->m_fBlend) + 4];
-      (**(void (***)(UIStatic *, int))v19->_pad_0000)(v19, 1);
-      ((UIWnd *)m_pUI->m_pRoleStateSleep[LODWORD(this->m_fBlend) + 4])->ScreenToClient(v7, a3);
+      v19 = *(void (****)(_DWORD, int))&m_pUI->_data[4 * LODWORD(this->m_fBlend) + 704];
+      (**v19)(v19, 1);
+      ((UIWnd *)*(UIWnd **)&m_pUI->_data[4 * LODWORD(this->m_fBlend) + 704])->ScreenToClient(v7, a3);
       v7 += 20;
     }
     if ( ((CCBRoleState *)this->m_pRoleState)->GetRoleField(LODWORD(this->m_fBlend), 19) )
     {
-      v20 = (UIStatic *)m_pUI->m_pRoleStateChaos[LODWORD(this->m_fBlend) + 4];
-      (**(void (***)(UIStatic *, int))v20->_pad_0000)(v20, 1);
-      ((UIWnd *)m_pUI->m_pRoleStateChaos[LODWORD(this->m_fBlend) + 4])->ScreenToClient(v7, a3);
+      v20 = *(void (****)(_DWORD, int))&m_pUI->_data[4 * LODWORD(this->m_fBlend) + 748];
+      (**v20)(v20, 1);
+      ((UIWnd *)*(UIWnd **)&m_pUI->_data[4 * LODWORD(this->m_fBlend) + 748])->ScreenToClient(v7, a3);
       v7 += 20;
     }
     if ( ((CCBRoleState *)this->m_pRoleState)->GetRoleField(LODWORD(this->m_fBlend), 20) )
     {
-      v21 = (UIStatic *)m_pUI->m_pRoleStateMad[LODWORD(this->m_fBlend) + 4];
-      (**(void (***)(UIStatic *, int))v21->_pad_0000)(v21, 1);
-      ((UIWnd *)m_pUI->m_pRoleStateMad[LODWORD(this->m_fBlend) + 4])->ScreenToClient(v7, a3);
+      v21 = *(void (****)(_DWORD, int))&m_pUI->_data[4 * LODWORD(this->m_fBlend) + 792];
+      (**v21)(v21, 1);
+      ((UIWnd *)*(UIWnd **)&m_pUI->_data[4 * LODWORD(this->m_fBlend) + 792])->ScreenToClient(v7, a3);
       v7 += 20;
     }
     if ( ((CCBRoleState *)this->m_pRoleState)->GetRoleField(LODWORD(this->m_fBlend), 21) )
     {
-      v22 = (UIStatic *)m_pUI->m_pRoleStateMirror[LODWORD(this->m_fBlend) + 4];
-      (**(void (***)(UIStatic *, int))v22->_pad_0000)(v22, 1);
-      ((UIWnd *)m_pUI->m_pRoleStateMirror[LODWORD(this->m_fBlend) + 4])->ScreenToClient(v7, a3);
+      v22 = *(void (****)(_DWORD, int))&m_pUI->_data[4 * LODWORD(this->m_fBlend) + 836];
+      (**v22)(v22, 1);
+      ((UIWnd *)*(UIWnd **)&m_pUI->_data[4 * LODWORD(this->m_fBlend) + 836])->ScreenToClient(v7, a3);
       v7 += 20;
     }
     if ( ((CCBRoleState *)this->m_pRoleState)->GetRoleField(LODWORD(this->m_fBlend), 22) )
     {
-      v23 = (UIStatic *)m_pUI->m_pRoleStateWall[LODWORD(this->m_fBlend) + 4];
-      (**(void (***)(UIStatic *, int))v23->_pad_0000)(v23, 1);
-      ((UIWnd *)m_pUI->m_pRoleStateWall[LODWORD(this->m_fBlend) + 4])->ScreenToClient(v7, a3);
+      v23 = *(void (****)(_DWORD, int))&m_pUI->_data[4 * LODWORD(this->m_fBlend) + 880];
+      (**v23)(v23, 1);
+      ((UIWnd *)*(UIWnd **)&m_pUI->_data[4 * LODWORD(this->m_fBlend) + 880])->ScreenToClient(v7, a3);
       v7 += 20;
     }
     if ( ((CCBRoleState *)this->m_pRoleState)->GetRoleField(LODWORD(this->m_fBlend), 23) )
     {
-      v24 = (UIStatic *)m_pUI->m_pRoleStateBound[LODWORD(this->m_fBlend) + 4];
-      (**(void (***)(UIStatic *, int))v24->_pad_0000)(v24, 1);
-      ((UIWnd *)m_pUI->m_pRoleStateBound[LODWORD(this->m_fBlend) + 4])->ScreenToClient(v7, a3);
+      v24 = *(void (****)(_DWORD, int))&m_pUI->_data[4 * LODWORD(this->m_fBlend) + 924];
+      (**v24)(v24, 1);
+      ((UIWnd *)*(UIWnd **)&m_pUI->_data[4 * LODWORD(this->m_fBlend) + 924])->ScreenToClient(v7, a3);
       v7 += 20;
     }
     result = ((CCBRoleState *)this->m_pRoleState)->GetRoleField(LODWORD(this->m_fBlend), 26);
     if ( result )
     {
-      v26 = (UIStatic *)m_pUI->m_pRoleStateHermit[LODWORD(this->m_fBlend) + 4];
-      (**(void (***)(UIStatic *, int))v26->_pad_0000)(v26, 1);
-      return ((UIWnd *)m_pUI->m_pRoleStateHermit[LODWORD(this->m_fBlend) + 4])->ScreenToClient(v7, a3);
+      v26 = *(void (****)(_DWORD, int))&m_pUI->_data[4 * LODWORD(this->m_fBlend) + 968];
+      (**v26)(v26, 1);
+      return ((UIWnd *)*(UIWnd **)&m_pUI->_data[4 * LODWORD(this->m_fBlend) + 968])->ScreenToClient(v7, a3);
     }
   }
   else
   {
-    v27 = (UIStatic *)m_pUI->m_pRoleStateFace[LODWORD(this->m_fBlend) + 3];
-    (**(void (***)(UIStatic *, _DWORD))v27->_pad_0000)(v27, 0);
-    v28 = (UIStatic *)m_pUI->m_pRoleStateAttackInc[LODWORD(this->m_fBlend) + 4];
-    (**(void (***)(UIStatic *, _DWORD))v28->_pad_0000)(v28, 0);
-    v29 = (UIStatic *)m_pUI->m_pRoleStateAttackDec[LODWORD(this->m_fBlend) + 4];
-    (**(void (***)(UIStatic *, _DWORD))v29->_pad_0000)(v29, 0);
-    v30 = (UIStatic *)m_pUI->m_pRoleStateDefenceInc[LODWORD(this->m_fBlend) + 4];
-    (**(void (***)(UIStatic *, _DWORD))v30->_pad_0000)(v30, 0);
-    v31 = (UIStatic *)m_pUI->m_pRoleStateDefenceDec[LODWORD(this->m_fBlend) + 4];
-    (**(void (***)(UIStatic *, _DWORD))v31->_pad_0000)(v31, 0);
-    v32 = (UIStatic *)m_pUI->m_pRoleStateLuckInc[LODWORD(this->m_fBlend) + 4];
-    (**(void (***)(UIStatic *, _DWORD))v32->_pad_0000)(v32, 0);
-    v33 = (UIStatic *)m_pUI->m_pRoleStateLuckDec[LODWORD(this->m_fBlend) + 4];
-    (**(void (***)(UIStatic *, _DWORD))v33->_pad_0000)(v33, 0);
-    v34 = (UIStatic *)m_pUI->m_pRoleStateSpeedInc[LODWORD(this->m_fBlend) + 4];
-    (**(void (***)(UIStatic *, _DWORD))v34->_pad_0000)(v34, 0);
-    v35 = (UIStatic *)m_pUI->m_pRoleStateSpeedDec[LODWORD(this->m_fBlend) + 4];
-    (**(void (***)(UIStatic *, _DWORD))v35->_pad_0000)(v35, 0);
-    v36 = (UIStatic *)m_pUI->m_pRoleStateStable[LODWORD(this->m_fBlend) + 4];
-    (**(void (***)(UIStatic *, _DWORD))v36->_pad_0000)(v36, 0);
-    v37 = (UIStatic *)m_pUI->m_pRoleStateBlank[LODWORD(this->m_fBlend) + 4];
-    (**(void (***)(UIStatic *, _DWORD))v37->_pad_0000)(v37, 0);
-    v38 = (UIStatic *)m_pUI->m_pRoleStateForbid[LODWORD(this->m_fBlend) + 4];
-    (**(void (***)(UIStatic *, _DWORD))v38->_pad_0000)(v38, 0);
-    v39 = (UIStatic *)m_pUI->m_pRoleStateSleep[LODWORD(this->m_fBlend) + 4];
-    (**(void (***)(UIStatic *, _DWORD))v39->_pad_0000)(v39, 0);
-    v40 = (UIStatic *)m_pUI->m_pRoleStateChaos[LODWORD(this->m_fBlend) + 4];
-    (**(void (***)(UIStatic *, _DWORD))v40->_pad_0000)(v40, 0);
-    v41 = (UIStatic *)m_pUI->m_pRoleStateMad[LODWORD(this->m_fBlend) + 4];
-    (**(void (***)(UIStatic *, _DWORD))v41->_pad_0000)(v41, 0);
-    v42 = (UIStatic *)m_pUI->m_pRoleStateMirror[LODWORD(this->m_fBlend) + 4];
-    (**(void (***)(UIStatic *, _DWORD))v42->_pad_0000)(v42, 0);
-    v43 = (UIStatic *)m_pUI->m_pRoleStateWall[LODWORD(this->m_fBlend) + 4];
-    (**(void (***)(UIStatic *, _DWORD))v43->_pad_0000)(v43, 0);
-    v44 = (UIStatic *)m_pUI->m_pRoleStateBound[LODWORD(this->m_fBlend) + 4];
-    (**(void (***)(UIStatic *, _DWORD))v44->_pad_0000)(v44, 0);
-    v45 = (UIStatic *)m_pUI->m_pRoleStateHermit[LODWORD(this->m_fBlend) + 4];
-    return (**(char (***)(UIStatic *, _DWORD))v45->_pad_0000)(v45, 0);
+    v27 = *(void (****)(_DWORD, _DWORD))&m_pUI->_data[4 * LODWORD(this->m_fBlend) + 176];
+    (**v27)(v27, 0);
+    v28 = *(void (****)(_DWORD, _DWORD))&m_pUI->_data[4 * LODWORD(this->m_fBlend) + 220];
+    (**v28)(v28, 0);
+    v29 = *(void (****)(_DWORD, _DWORD))&m_pUI->_data[4 * LODWORD(this->m_fBlend) + 264];
+    (**v29)(v29, 0);
+    v30 = *(void (****)(_DWORD, _DWORD))&m_pUI->_data[4 * LODWORD(this->m_fBlend) + 308];
+    (**v30)(v30, 0);
+    v31 = *(void (****)(_DWORD, _DWORD))&m_pUI->_data[4 * LODWORD(this->m_fBlend) + 352];
+    (**v31)(v31, 0);
+    v32 = *(void (****)(_DWORD, _DWORD))&m_pUI->_data[4 * LODWORD(this->m_fBlend) + 396];
+    (**v32)(v32, 0);
+    v33 = *(void (****)(_DWORD, _DWORD))&m_pUI->_data[4 * LODWORD(this->m_fBlend) + 440];
+    (**v33)(v33, 0);
+    v34 = *(void (****)(_DWORD, _DWORD))&m_pUI->_data[4 * LODWORD(this->m_fBlend) + 484];
+    (**v34)(v34, 0);
+    v35 = *(void (****)(_DWORD, _DWORD))&m_pUI->_data[4 * LODWORD(this->m_fBlend) + 528];
+    (**v35)(v35, 0);
+    v36 = *(void (****)(_DWORD, _DWORD))&m_pUI->_data[4 * LODWORD(this->m_fBlend) + 572];
+    (**v36)(v36, 0);
+    v37 = *(void (****)(_DWORD, _DWORD))&m_pUI->_data[4 * LODWORD(this->m_fBlend) + 616];
+    (**v37)(v37, 0);
+    v38 = *(void (****)(_DWORD, _DWORD))&m_pUI->_data[4 * LODWORD(this->m_fBlend) + 660];
+    (**v38)(v38, 0);
+    v39 = *(void (****)(_DWORD, _DWORD))&m_pUI->_data[4 * LODWORD(this->m_fBlend) + 704];
+    (**v39)(v39, 0);
+    v40 = *(void (****)(_DWORD, _DWORD))&m_pUI->_data[4 * LODWORD(this->m_fBlend) + 748];
+    (**v40)(v40, 0);
+    v41 = *(void (****)(_DWORD, _DWORD))&m_pUI->_data[4 * LODWORD(this->m_fBlend) + 792];
+    (**v41)(v41, 0);
+    v42 = *(void (****)(_DWORD, _DWORD))&m_pUI->_data[4 * LODWORD(this->m_fBlend) + 836];
+    (**v42)(v42, 0);
+    v43 = *(void (****)(_DWORD, _DWORD))&m_pUI->_data[4 * LODWORD(this->m_fBlend) + 880];
+    (**v43)(v43, 0);
+    v44 = *(void (****)(_DWORD, _DWORD))&m_pUI->_data[4 * LODWORD(this->m_fBlend) + 924];
+    (**v44)(v44, 0);
+    v45 = *(char (****)(_DWORD, _DWORD))&m_pUI->_data[4 * LODWORD(this->m_fBlend) + 968];
+    return (**v45)(v45, 0);
   }
   return result;
 }

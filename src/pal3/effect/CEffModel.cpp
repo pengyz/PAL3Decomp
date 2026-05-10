@@ -15,38 +15,38 @@ extern void *off_56FA6C;
 // 0x004D0CE0
 _DWORD * CEffModel::Render()
 {
-  *(_DWORD *)&this->_pad_0000[4] = 0;
-  this->_pad_0000[8] = 0;
-  *(_DWORD *)&this->_pad_0000[16] = 0;
-  *(_DWORD *)&this->_pad_0000[20] = 0;
-  *(_DWORD *)&this->_pad_0000[24] = 0;
-  *(_DWORD *)&this->_pad_0000[28] = -1;
-  *(_DWORD *)&this->_pad_0000[32] = -1;
-  *(_DWORD *)&this->_pad_0000[36] = 0;
-  *(_DWORD *)&this->_pad_0000[40] = 0;
-  *(_DWORD *)&this->_pad_0000[44] = 0;
-  *(_DWORD *)&this->_pad_0000[12] = &off_56FA6C;
-  this->m_vecOffsetPos.z = NAN;
-  *(_DWORD *)this->_pad_0000 = &off_56FA30;
-  *(_DWORD *)&this->_pad_0000[12] = &off_56FA24;
-  LOBYTE(this->m_pGeomNode) = 0;
-  BYTE1(this->m_pGeomNode) = 0;
-  BYTE2(this->m_pGeomNode) = 0;
-  HIBYTE(this->m_pGeomNode) = 0;
-  BYTE2(this->m_vecCurPos.x) = 0;
-  LOBYTE(this->m_vecCurPos.x) = 0;
-  BYTE1(this->m_vecCurPos.x) = 0;
-  this->m_vecCurPos.y = 0.0;
-  this->m_vecCurPos.z = 0.0;
-  this->m_vecOffsetPos.x = 0.0;
-  this->m_vecOffsetPos.y = 0.0;
-  *((_DWORD *)this + 39) = 0;
-  *((_DWORD *)this + 40) = 0;
-  *((_DWORD *)this + 41) = 0;
+  *(_DWORD *)&this->_data[4] = 0;
+  this->_data[8] = 0;
+  *(_DWORD *)&this->_data[16] = 0;
+  *(_DWORD *)&this->_data[20] = 0;
+  *(_DWORD *)&this->_data[24] = 0;
+  *(_DWORD *)&this->_data[28] = -1;
+  *(_DWORD *)&this->_data[32] = -1;
+  *(_DWORD *)&this->_data[36] = 0;
+  *(_DWORD *)&this->_data[40] = 0;
+  *(_DWORD *)&this->_data[44] = 0;
+  *(_DWORD *)&this->_data[12] = &off_56FA6C;
+  *(_DWORD *)&this->_data[72] = -1;
+  *(_DWORD *)this->_data = &off_56FA30;
+  *(_DWORD *)&this->_data[12] = &off_56FA24;
+  this->_data[48] = 0;
+  this->_data[49] = 0;
+  this->_data[50] = 0;
+  this->_data[51] = 0;
+  this->_data[54] = 0;
+  this->_data[52] = 0;
+  this->_data[53] = 0;
+  *(_DWORD *)&this->_data[56] = 0;
+  *(_DWORD *)&this->_data[60] = 0;
+  *(_DWORD *)&this->_data[64] = 0;
+  *(_DWORD *)&this->_data[68] = 0;
+  *(_DWORD *)&this->_data[156] = 0;
+  *(_DWORD *)&this->_data[160] = 0;
+  *(_DWORD *)&this->_data[164] = 0;
   *((_DWORD *)this + 1066) = 0;
   *((_DWORD *)this + 1067) = 0;
-  memset((char *)this + 168, 0, 0x1000u);
-  return this->_pad_0000;
+  memset(&this->_data[168], 0, 0x1000u);
+  return this->_data;
 }
 
 // 0x004D0D70
@@ -67,34 +67,37 @@ int CEffModel::ProcInitTask(int a2, float a3, float a4, float a5)
   int v7; // edx
   double v8; // st7
 
-  LOBYTE(this->m_pGeomNode) = 1;
-  BYTE1(this->m_pGeomNode) = 1;
-  this->_pad_0000[8] = 0;
-  HIBYTE(this->m_pGeomNode) = *(_BYTE *)(a2 + 214);
+  this->_data[48] = 1;
+  this->_data[49] = 1;
+  this->_data[8] = 0;
+  this->_data[51] = *(_BYTE *)(a2 + 214);
   sub_4D1EF0(this);
-  this->m_vecRot.y = 257;
-  *((_DWORD *)this + 38) = *(_DWORD *)(a2 + 204);
+  this->_data[80] = 1;
+  this->_data[81] = 1;
+  this->_data[82] = 0;
+  this->_data[83] = 0;
+  *(_DWORD *)&this->_data[152] = *(_DWORD *)(a2 + 204);
   if ( (g_bCursorVisible & 1) == 0 )
   {
     g_bCursorVisible |= 1u;
     ((CEffMgr *)&g_nCursorState)->Reset();
     atexit(nullsub_1);
   }
-  *((float *)this + 34) = (float)HIBYTE(*(_DWORD *)(a2 + 204));
+  *(float *)&this->_data[136] = (float)HIBYTE(*(_DWORD *)(a2 + 204));
   if ( (g_bCursorVisible & 1) == 0 )
   {
     g_bCursorVisible |= 1u;
     ((CEffMgr *)&g_nCursorState)->Reset();
     atexit(nullsub_1);
   }
-  *((float *)this + 35) = (float)(unsigned __int8)BYTE2(*(_DWORD *)(a2 + 204));
+  *(float *)&this->_data[140] = (float)(unsigned __int8)BYTE2(*(_DWORD *)(a2 + 204));
   if ( (g_bCursorVisible & 1) == 0 )
   {
     g_bCursorVisible |= 1u;
     ((CEffMgr *)&g_nCursorState)->Reset();
     atexit(nullsub_1);
   }
-  *((float *)this + 36) = (float)(unsigned __int8)BYTE1(*(_DWORD *)(a2 + 204));
+  *(float *)&this->_data[144] = (float)(unsigned __int8)BYTE1(*(_DWORD *)(a2 + 204));
   if ( (g_bCursorVisible & 1) == 0 )
   {
     g_bCursorVisible |= 1u;
@@ -102,21 +105,21 @@ int CEffModel::ProcInitTask(int a2, float a3, float a4, float a5)
     atexit(nullsub_1);
   }
   v7 = *(unsigned __int8 *)(a2 + 204);
-  *(_DWORD *)&this->m_bVisible = 0;
-  *((float *)this + 37) = (float)v7;
-  this->m_vecRot.z = *(float *)(a2 + 180);
-  *((_DWORD *)this + 31) = *(_DWORD *)(a2 + 196);
-  *((_DWORD *)this + 32) = *(_DWORD *)(a2 + 216);
-  *((_DWORD *)this + 33) = *(_DWORD *)(a2 + 220);
-  *((_DWORD *)this + 26) = *(_DWORD *)(a2 + 200);
-  *((_DWORD *)this + 27) = *(_DWORD *)(a2 + 200);
-  this->m_fSizeX = a3 + *(float *)(a2 + 184);
-  this->m_fSizeY = a4 + *(float *)(a2 + 188);
+  *(_DWORD *)&this->_data[88] = 0;
+  *(float *)&this->_data[148] = (float)v7;
+  *(_DWORD *)&this->_data[84] = *(_DWORD *)(a2 + 180);
+  *(_DWORD *)&this->_data[124] = *(_DWORD *)(a2 + 196);
+  *(_DWORD *)&this->_data[128] = *(_DWORD *)(a2 + 216);
+  *(_DWORD *)&this->_data[132] = *(_DWORD *)(a2 + 220);
+  *(_DWORD *)&this->_data[104] = *(_DWORD *)(a2 + 200);
+  *(_DWORD *)&this->_data[108] = *(_DWORD *)(a2 + 200);
+  *(float *)&this->_data[92] = a3 + *(float *)(a2 + 184);
+  *(float *)&this->_data[96] = a4 + *(float *)(a2 + 188);
   v8 = a5 + *(float *)(a2 + 192);
-  *((_DWORD *)this + 28) = 0;
-  *((_DWORD *)this + 29) = 0;
-  *((_DWORD *)this + 30) = 0;
-  this->m_vecRot.x = 0.0;
-  this->m_fSizeZ = v8;
+  *(_DWORD *)&this->_data[112] = 0;
+  *(_DWORD *)&this->_data[116] = 0;
+  *(_DWORD *)&this->_data[120] = 0;
+  *(_DWORD *)&this->_data[76] = 0;
+  *(float *)&this->_data[100] = v8;
   return 0;
 }

@@ -36,11 +36,11 @@ CEffgbParticle::~CEffgbParticle(
   unsigned int v14; // eax
   _DWORD *v15; // edx
 
-  v8 = *(_DWORD *)&this->_pad_0000[32];
+  v8 = *(_DWORD *)&this->_data[32];
   v9 = 0;
   if ( v8 <= 0 )
   -1;
-  v10 = *(_DWORD *)(*(_DWORD *)&this->_pad_0000[12] + 152 * a2);
+  v10 = *(_DWORD *)(*(_DWORD *)&this->_data[12] + 152 * a2);
   for ( i = (_BYTE *)(v10 + 64); *i; i += 72 )
   {
     if ( ++v9 >= v8 )
@@ -71,7 +71,7 @@ CEffgbParticle::~CEffgbParticle(
     v15[2] = a5[2];
     v15[3] = a5[3];
   }
-  ++*(_DWORD *)(*(_DWORD *)&this->_pad_0000[12] + 152 * a2 + 4);
+  ++*(_DWORD *)(*(_DWORD *)&this->_data[12] + 152 * a2 + 4);
   v9;
 }
 
@@ -82,9 +82,9 @@ void * CEffgbParticle::Create(CEffgbParticle *Block, char a2)
   int v4; // ebx
   int v5; // edi
 
-  v3 = *(_DWORD *)&Block->_pad_0000[28];
-  *(_DWORD *)Block->_pad_0000 = &off_56F8B4;
-  if ( v3 || *(_DWORD *)&Block->_pad_0000[32] )
+  v3 = *(_DWORD *)&Block->_data[28];
+  *(_DWORD *)Block->_data = &off_56F8B4;
+  if ( v3 || *(_DWORD *)&Block->_data[32] )
   {
     v4 = 0;
     if ( v3 > 0 )
@@ -92,17 +92,17 @@ void * CEffgbParticle::Create(CEffgbParticle *Block, char a2)
       v5 = 0;
       do
       {
-        operator delete(*(void **)(*(_DWORD *)&Block->_pad_0000[12] + v5));
+        operator delete(*(void **)(*(_DWORD *)&Block->_data[12] + v5));
         ++v4;
-        *(_DWORD *)(*(_DWORD *)&Block->_pad_0000[12] + v5) = 0;
+        *(_DWORD *)(*(_DWORD *)&Block->_data[12] + v5) = 0;
         v5 += 152;
       }
-      while ( v4 < *(_DWORD *)&Block->_pad_0000[28] );
+      while ( v4 < *(_DWORD *)&Block->_data[28] );
     }
-    operator delete(*(void **)&Block->_pad_0000[12]);
-    *(_DWORD *)&Block->_pad_0000[12] = 0;
-    *(_DWORD *)&Block->_pad_0000[28] = 0;
-    *(_DWORD *)&Block->_pad_0000[32] = 0;
+    operator delete(*(void **)&Block->_data[12]);
+    *(_DWORD *)&Block->_data[12] = 0;
+    *(_DWORD *)&Block->_data[28] = 0;
+    *(_DWORD *)&Block->_data[32] = 0;
   }
   if ( (a2 & 1) != 0 )
     operator delete(Block);
@@ -116,22 +116,22 @@ int CEffgbParticle::Init(int a2)
   int v3; // esi
   int result; // eax
 
-  *(_BYTE *)(*(_DWORD *)&this->_pad_0000[12] + 152 * a2 + 148) = 0;
+  *(_BYTE *)(*(_DWORD *)&this->_data[12] + 152 * a2 + 148) = 0;
   v2 = 0;
-  if ( *(int *)&this->_pad_0000[32] > 0 )
+  if ( *(int *)&this->_data[32] > 0 )
   {
     v3 = 0;
     do
     {
       ++v2;
       v3 += 72;
-      *(_BYTE *)(*(_DWORD *)(*(_DWORD *)&this->_pad_0000[12] + 152 * a2) + v3 - 8) = 0;
+      *(_BYTE *)(*(_DWORD *)(*(_DWORD *)&this->_data[12] + 152 * a2) + v3 - 8) = 0;
     }
-    while ( v2 < *(_DWORD *)&this->_pad_0000[32] );
+    while ( v2 < *(_DWORD *)&this->_data[32] );
   }
-  *(_DWORD *)(*(_DWORD *)&this->_pad_0000[12] + 152 * a2 + 4) = 0;
-  result = *(_DWORD *)&this->_pad_0000[24] - 1;
-  *(_DWORD *)&this->_pad_0000[24] = result;
+  *(_DWORD *)(*(_DWORD *)&this->_data[12] + 152 * a2 + 4) = 0;
+  result = *(_DWORD *)&this->_data[24] - 1;
+  *(_DWORD *)&this->_data[24] = result;
   return result;
 }
 
@@ -150,28 +150,28 @@ char * CEffgbParticle::Attach(char a2)
 // 0x004C88D0
 _DWORD * CEffgbParticle::Render()
 {
-  *(_DWORD *)&this->_pad_0000[4] = 0;
-  this->_pad_0000[8] = 0;
-  *(_DWORD *)&this->_pad_0000[16] = 0;
-  *(_DWORD *)&this->_pad_0000[20] = 0;
-  *(_DWORD *)&this->_pad_0000[24] = 0;
-  *(_DWORD *)&this->_pad_0000[28] = -1;
-  *(_DWORD *)&this->_pad_0000[32] = -1;
-  *(_DWORD *)&this->_pad_0000[36] = 0;
-  *(_DWORD *)&this->_pad_0000[40] = 0;
-  *(_DWORD *)&this->_pad_0000[44] = 0;
-  *(_DWORD *)&this->_pad_0000[12] = &off_56F908;
-  *(_DWORD *)this->_pad_0000 = &off_56F8CC;
-  *(_DWORD *)&this->_pad_0000[12] = &off_56F8C0;
-  this->m_pEffect = 0;
-  this->m_fSize = 0.0;
-  this->m_fZ = 0.0;
-  this->m_fY = 0.0;
-  this->m_fX = 0.0;
-  this->m_fPZ = 0.0;
-  this->m_fPY = 0.0;
-  this->m_fPX = 0.0;
-  return this->_pad_0000;
+  *(_DWORD *)&this->_data[4] = 0;
+  this->_data[8] = 0;
+  *(_DWORD *)&this->_data[16] = 0;
+  *(_DWORD *)&this->_data[20] = 0;
+  *(_DWORD *)&this->_data[24] = 0;
+  *(_DWORD *)&this->_data[28] = -1;
+  *(_DWORD *)&this->_data[32] = -1;
+  *(_DWORD *)&this->_data[36] = 0;
+  *(_DWORD *)&this->_data[40] = 0;
+  *(_DWORD *)&this->_data[44] = 0;
+  *(_DWORD *)&this->_data[12] = &off_56F908;
+  *(_DWORD *)this->_data = &off_56F8CC;
+  *(_DWORD *)&this->_data[12] = &off_56F8C0;
+  *(_DWORD *)&this->_data[48] = 0;
+  *(_DWORD *)&this->_data[52] = 0;
+  *(_DWORD *)&this->_data[64] = 0;
+  *(_DWORD *)&this->_data[60] = 0;
+  *(_DWORD *)&this->_data[56] = 0;
+  *(_DWORD *)&this->_data[76] = 0;
+  *(_DWORD *)&this->_data[72] = 0;
+  *(_DWORD *)&this->_data[68] = 0;
+  return this->_data;
 }
 
 // 0x004C8930
@@ -248,47 +248,47 @@ char CEffgbParticle::CreateTask(int a2)
   int v8; // eax
   int v9; // ecx
   char *v10; // eax
-  ParticleEffect *v11; // eax
+  char *v11; // eax
   int v12; // edi
 
   v3 = (_DWORD *)operator new(0x4C0u);
-  *(_DWORD *)&this->_pad_0000[24] = v3;
+  *(_DWORD *)&this->_data[24] = v3;
   if ( v3 )
   {
     v4 = 0;
     v5 = 0;
     while ( 1 )
     {
-      *(_DWORD *)(*(_DWORD *)&this->_pad_0000[24] + v5) = operator new(0x2D0u);
-      if ( !*(_DWORD *)(*(_DWORD *)&this->_pad_0000[24] + v5) )
+      *(_DWORD *)(*(_DWORD *)&this->_data[24] + v5) = operator new(0x2D0u);
+      if ( !*(_DWORD *)(*(_DWORD *)&this->_data[24] + v5) )
         break;
       v5 += 152;
       ++v4;
       if ( v5 >= 1216 )
       {
         v6 = 0;
-        *(_DWORD *)&this->_pad_0000[40] = 8;
-        *(_DWORD *)&this->_pad_0000[44] = 10;
+        *(_DWORD *)&this->_data[40] = 8;
+        *(_DWORD *)&this->_data[44] = 10;
         v7 = 0;
         do
         {
-          *(_BYTE *)(*(_DWORD *)&this->_pad_0000[24] + v7 + 148) = 0;
+          *(_BYTE *)(*(_DWORD *)&this->_data[24] + v7 + 148) = 0;
           v8 = 0;
-          if ( *(int *)&this->_pad_0000[44] > 0 )
+          if ( *(int *)&this->_data[44] > 0 )
           {
             v9 = 0;
             do
             {
               ++v8;
               v9 += 72;
-              *(_BYTE *)(v9 + *(_DWORD *)(v7 + *(_DWORD *)&this->_pad_0000[24]) - 8) = 0;
+              *(_BYTE *)(v9 + *(_DWORD *)(v7 + *(_DWORD *)&this->_data[24]) - 8) = 0;
             }
-            while ( v8 < *(_DWORD *)&this->_pad_0000[44] );
+            while ( v8 < *(_DWORD *)&this->_data[44] );
           }
           ++v6;
           v7 += 152;
         }
-        while ( v6 < *(_DWORD *)&this->_pad_0000[40] );
+        while ( v6 < *(_DWORD *)&this->_data[40] );
         goto LABEL_10;
       }
     }
@@ -297,21 +297,21 @@ char CEffgbParticle::CreateTask(int a2)
       v12 = 152 * (v4 - 1);
       do
       {
-        operator delete(*(void **)(*(_DWORD *)&this->_pad_0000[24] + v12));
+        operator delete(*(void **)(*(_DWORD *)&this->_data[24] + v12));
         v12 -= 152;
         --v4;
       }
       while ( v4 );
     }
-    operator delete(*(void **)&this->_pad_0000[24]);
+    operator delete(*(void **)&this->_data[24]);
   }
 LABEL_10:
   v10 = (char *)operator new(0x5896Cu);
   if ( v10 )
-    v11 = (ParticleEffect *)sub_4BC760(v10);
+    v11 = (char *)sub_4BC760(v10);
   else
     v11 = 0;
-  this->m_pEffect = v11;
+  *(_DWORD *)&this->_data[48] = v11;
   return sub_4BD6C0(v11, (const char *)(a2 + 40));
 }
 
@@ -339,14 +339,14 @@ void CEffgbParticle::ProcCommonTask(float a2)
   int a2a; // [esp+18h] [ebp+4h]
 
   v2 = this;
-  v3 = a2 - *(float *)&this->_pad_0000[16];
-  v4 = (char *)&this->_pad_0000[12];
-  *(float *)&this->_pad_0000[16] = a2;
-  *(float *)&this->_pad_0000[20] = v3;
-  v5 = *(int *)&this->_pad_0000[20];
+  v3 = a2 - *(float *)&this->_data[16];
+  v4 = (char *)&this->_data[12];
+  *(float *)&this->_data[16] = a2;
+  *(float *)&this->_data[20] = v3;
+  v5 = *(int *)&this->_data[20];
   if ( *(float *)&v5 > 0.0 )
   {
-    sub_4BC7E0(v2->m_pEffect->_pad_0000, v5);
+    sub_4BC7E0(*(_DWORD **)&v2->_data[48], v5);
     v6 = 0;
     a2a = 0;
     if ( *((int *)v4 + 7) > 0 )
@@ -463,8 +463,8 @@ LABEL_17:
       }
     }
 LABEL_35:
-    if ( *(int *)&v2->_pad_0000[36] <= 0 )
-      sub_4BD7A0(v2->m_pEffect->_pad_0000, 0);
+    if ( *(int *)&v2->_data[36] <= 0 )
+      sub_4BD7A0(*(_DWORD **)&v2->_data[48], 0);
   }
 }
 
@@ -477,17 +477,17 @@ void CEffgbParticle::GetEditorTaskDescription()
   float v5; // [esp+4h] [ebp-10h]
   float v6; // [esp+8h] [ebp-Ch]
 
-  if ( !this->_pad_0000[8] )
+  if ( !this->_data[8] )
   {
-    v2 = (gbMatrixStack *)*(gbMatrixStack **)(**(_DWORD **)&this->_pad_0000[4] + 216);
+    v2 = (gbMatrixStack *)*(gbMatrixStack **)(**(_DWORD **)&this->_data[4] + 216);
     v2->Push();
-    v6 = this->m_fPZ + this->m_fZ;
-    v5 = this->m_fPY + this->m_fY;
-    v4 = this->m_fPX + this->m_fX;
+    v6 = *(float *)&this->_data[76] + *(float *)&this->_data[64];
+    v5 = *(float *)&this->_data[72] + *(float *)&this->_data[60];
+    v4 = *(float *)&this->_data[68] + *(float *)&this->_data[56];
     v2->Translate(v4, v5, v6);
-    v3 = sub_4BC8A0(this->m_pEffect->_pad_0000);
-    if ( *(int *)&this->_pad_0000[36] <= 0 && v3 <= 0 )
-      this->_pad_0000[8] = 1;
+    v3 = sub_4BC8A0(*(char **)&this->_data[48]);
+    if ( *(int *)&this->_data[36] <= 0 && v3 <= 0 )
+      this->_data[8] = 1;
     v2->Pop();
   }
 }

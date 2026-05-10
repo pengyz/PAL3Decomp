@@ -48,95 +48,83 @@ int PalScript::LoadScript(int pathAddr)
   unsigned int v4; // kr08_4
   unsigned int v5; // ebp
   _BYTE *v6; // ecx
-  char m_nGrowBy_high; // al
+  char v7; // al
   _BYTE *v8; // ecx
   char v9; // al
   int result; // eax
   char v11; // [esp+13h] [ebp-265h]
-  int v12; // [esp+14h] [ebp-264h] BYREF
-  PalScript *v13; // [esp+18h] [ebp-260h]
-  unsigned int v14; // [esp+1Ch] [ebp-25Ch]
-  int v15; // [esp+20h] [ebp-258h]
-  int v16; // [esp+24h] [ebp-254h] BYREF
-  PalScript *v17; // [esp+28h] [ebp-250h]
-  unsigned int v18; // [esp+2Ch] [ebp-24Ch]
-  int v19; // [esp+30h] [ebp-248h]
-  PalScript *v20; // [esp+34h] [ebp-244h]
-  _DWORD v21[4]; // [esp+38h] [ebp-240h] BYREF
-  _DWORD v22[4]; // [esp+48h] [ebp-230h] BYREF
-  _DWORD v23[2]; // [esp+58h] [ebp-220h] BYREF
-  PalScript String1[13]; // [esp+60h] [ebp-218h] BYREF
-  int v25; // [esp+274h] [ebp-4h]
+  SceneObj v12[2]; // [esp+14h] [ebp-264h] BYREF
+  int v13; // [esp+274h] [ebp-4h]
 
-  v20 = this;
-  ctor_0x431870(String1);
-  v25 = 0;
-  String1->LoadFromFile((char *)pathAddr);
-  String1->SetDirectory(aPal3lang);
-  LOBYTE(v12) = v11;
-  ((std *)&v12)->string::_Tidy(0);
-  for ( LOBYTE(v25) = 1; String1->HasNext(); v19 = 0 )
+  *(_DWORD *)&v12[0]._data[32] = this;
+  ctor_0x431870(&v12[0]._data[76]);
+  v13 = 0;
+  ((PalScript *)&v12[0]._data[76])->LoadFromFile((char *)pathAddr);
+  ((PalScript *)&v12[0]._data[76])->SetDirectory(aPal3lang);
+  v12[0]._data[0] = v11;
+  v12->string::_Tidy(0);
+  for ( LOBYTE(v13) = 1; ((PalScript *)&v12[0]._data[76])->HasNext(); *(_DWORD *)&v12[0]._data[28] = 0 )
   {
-    if ( !_strcmpi((const char *)String1, off_58B448) )
+    if ( !_strcmpi(&v12[0]._data[76], off_58B448) )
       break;
-    v2 = strlen((const char *)String1) + 1;
+    v2 = strlen(&v12[0]._data[76]) + 1;
     v3 = v2 - 1;
-    if ( ((SceneObj *)&v12)->Update(v2 - 1) )
+    if ( v12->Update(v2 - 1) )
     {
-      qmemcpy(v13, String1, v3);
-      v14 = v2 - 1;
-      *(&v13->m_bLoadSceneScript + v3) = 0;
+      qmemcpy(*(void **)&v12[0]._data[4], &v12[0]._data[76], v3);
+      *(_DWORD *)&v12[0]._data[8] = v2 - 1;
+      *(_BYTE *)(*(_DWORD *)&v12[0]._data[4] + v3) = 0;
     }
-    String1->LoadNext();
-    LOBYTE(v16) = v11;
-    ((std *)&v16)->string::_Tidy(0);
-    v4 = strlen((const char *)String1) + 1;
+    ((PalScript *)&v12[0]._data[76])->LoadNext();
+    v12[0]._data[16] = v11;
+    ((std *)&v12[0]._data[16])->string::_Tidy(0);
+    v4 = strlen(&v12[0]._data[76]) + 1;
     v5 = v4 - 1;
-    if ( ((SceneObj *)&v16)->Update(v4 - 1) )
+    if ( ((SceneObj *)&v12[0]._data[16])->Update(v4 - 1) )
     {
-      qmemcpy(v17, String1, v5);
-      v18 = v4 - 1;
-      *(&v17->m_bLoadSceneScript + v5) = 0;
+      qmemcpy(*(void **)&v12[0]._data[20], &v12[0]._data[76], v5);
+      *(_DWORD *)&v12[0]._data[24] = v4 - 1;
+      *(_BYTE *)(*(_DWORD *)&v12[0]._data[20] + v5) = 0;
     }
-    LOBYTE(v25) = 2;
-    LOBYTE(v21[0]) = v12;
-    v21->string::_Tidy(0);
-    sub_4307D0((int)v21, &v12, 0, 0xFFFFFFFF);
-    LOBYTE(v25) = 3;
-    sub_430670((int)v22, (int)&v16);
-    LOBYTE(v25) = 4;
-    sub_4309D0((int)v20, v23, (char *)v21);
-    LOBYTE(v25) = 5;
-    v22->string::_Tidy(1);
-    LOBYTE(v25) = 2;
-    v21->string::_Tidy(1);
-    LOBYTE(v25) = 1;
-    if ( v17 )
+    LOBYTE(v13) = 2;
+    v12[0]._data[36] = v12[0]._data[0];
+    ((std *)&v12[0]._data[36])->string::_Tidy(0);
+    sub_4307D0((int)&v12[0]._data[36], v12, 0, 0xFFFFFFFF);
+    LOBYTE(v13) = 3;
+    sub_430670((int)&v12[0]._data[52], (int)&v12[0]._data[16]);
+    LOBYTE(v13) = 4;
+    sub_4309D0(*(int *)&v12[0]._data[32], &v12[0]._data[68], &v12[0]._data[36]);
+    LOBYTE(v13) = 5;
+    ((std *)&v12[0]._data[52])->string::_Tidy(1);
+    LOBYTE(v13) = 2;
+    ((std *)&v12[0]._data[36])->string::_Tidy(1);
+    LOBYTE(v13) = 1;
+    if ( *(_DWORD *)&v12[0]._data[20] )
     {
-      v6 = (char *)&v17[-1].m_CamObj.m_nGrowBy + 3;
-      m_nGrowBy_high = HIBYTE(v17[-1].m_CamObj.m_nGrowBy);
-      if ( !m_nGrowBy_high || m_nGrowBy_high == -1 )
+      v6 = (_BYTE *)(*(_DWORD *)&v12[0]._data[20] - 1);
+      v7 = *(_BYTE *)(*(_DWORD *)&v12[0]._data[20] - 1);
+      if ( !v7 || v7 == -1 )
         operator delete(v6);
       else
-        * v6 = (*)m_nGrowBy_high - 1;
+        * v6 = (*)v7 - 1;
     }
-    v17 = 0;
-    v18 = 0;
+    *(_DWORD *)&v12[0]._data[20] = 0;
+    *(_DWORD *)&v12[0]._data[24] = 0;
   }
-  if ( v13 )
+  if ( *(_DWORD *)&v12[0]._data[4] )
   {
-    v8 = (char *)&v13[-1].m_CamObj.m_nGrowBy + 3;
-    v9 = HIBYTE(v13[-1].m_CamObj.m_nGrowBy);
+    v8 = (_BYTE *)(*(_DWORD *)&v12[0]._data[4] - 1);
+    v9 = *(_BYTE *)(*(_DWORD *)&v12[0]._data[4] - 1);
     if ( !v9 || v9 == -1 )
       operator delete(v8);
     else
       * v8 = (*)v9 - 1;
   }
-  v13 = 0;
-  v14 = 0;
-  v15 = 0;
-  v25 = -1;
-  sub_4318A0((int)String1);
+  *(_DWORD *)&v12[0]._data[4] = 0;
+  *(_DWORD *)&v12[0]._data[8] = 0;
+  *(_DWORD *)&v12[0]._data[12] = 0;
+  v13 = -1;
+  sub_4318A0((int)&v12[0]._data[76]);
   return result;
 }
 

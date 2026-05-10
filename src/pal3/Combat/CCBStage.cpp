@@ -117,6 +117,7 @@ extern int nullsub_30;
 extern int nullsub_55;
 extern int nullsub_56;
 extern int nullsub_57;
+extern int unk_8ACD30;
 
 // 0x004DFAA0
 int CCBStage::InitRound()
@@ -299,7 +300,7 @@ char CCBStage::Reset()
           v11 = (CCBStageCam *)operator new(0x690B0u);
           v23 = 3;
           if ( v11 )
-            v12 = (CCBCamControl *)v11->SetCamPos((int **)this, (int)this->m_pCam->_pad_0000);
+            v12 = (CCBCamControl *)v11->SetCamPos((int **)this, (int)this->m_pCam->_data);
           else
             v12 = 0;
           v23 = -1;
@@ -431,7 +432,7 @@ char CCBStage::Create()
           m_pCam->codecvt_base::do_always_noconv();
           v8 = (CCBStageCam *)this->m_pCam;
           if ( v8 )
-            (**(void (***)(CCBStageCam *, int))v8->_pad_0000)(v8, 1);
+            (**(void (***)(CCBStageCam *, int))v8->_data)(v8, 1);
           this->m_pCam = 0;
           m_pCamControl = (CCBStageCam *)this->m_pCamControl;
           if ( m_pCamControl )
@@ -727,7 +728,7 @@ int CCBStage::EditorUpdate()
   dword_BFDA60->InvViewMatrix.m[1][2] = 0.0;
   m_pCam = (CCBStageCam *)this->m_pCam;
   if ( m_pCam )
-    v4 = (char *)&m_pCam->_pad_0000[4];
+    v4 = (char *)&m_pCam->_data[4];
   else
     v4 = 0;
   v21 = (int)v4;
@@ -736,7 +737,7 @@ int CCBStage::EditorUpdate()
   v6 = (CCBStageCam *)this->m_pCam;
   v7 = dword_BFDA60->InvViewMatrix.m[1][3];
   if ( v6 )
-    v8 = (struct gbCamera *)&v6->_pad_0000[4];
+    v8 = (struct gbCamera *)&v6->_data[4];
   else
     v8 = 0;
   ((gbSceneGraph *)LODWORD(v7))->Begin(v8);
@@ -796,7 +797,7 @@ int CCBStage::EditorUpdate()
   ((CCBStageShadow *)this->m_NGHVariance)->Create();
   v15 = (CCBStageCam *)this->m_pCam;
   if ( v15 )
-    v16 = (struct gbCamera *)&v15->_pad_0000[4];
+    v16 = (struct gbCamera *)&v15->_data[4];
   else
     v16 = 0;
   ((gbSceneGraph *)LODWORD(v7))->Begin(v16);
@@ -816,7 +817,7 @@ int CCBStage::EditorUpdate()
     ((CCBStageScene *)this->m_pScene)->IsSameBattleFieldAttr();
     ((CCBStageScene *)this->m_pScene)->GetBFASubdueFM();
   }
-  if ( BYTE1(this->m_pCBSystem->m_nTimesOfCombat) )
+  if ( this->m_pCBSystem->m_bEditor )
   {
     if ( dword_17A990C == 1 )
     {
@@ -1472,7 +1473,7 @@ int CCBStage::IsIdle(int a2)
   int v5; // edi
   CCBUI *m_pUI; // ebp
   char *v8; // eax
-  UIProgressBar *v9; // ecx
+  void (***v9)(_DWORD, int); // ecx
   char *v10; // eax
   CCBUI *v11; // ecx
 
@@ -1490,17 +1491,17 @@ int CCBStage::IsIdle(int a2)
     m_pUI = (CCBUI *)this->m_pCBSystem->m_pUI;
     if ( this->m_pRoleState->m_bWeSneakAttackEnemy )
     {
-      v8 = ((PalScript *)&g_PAL3Data.mParam.f4)->SetAppName(aWesneakattacke);
-      ((UIWnd *)m_pUI->m_pRoleStateGP[2])->SetEnable(v8, 1);
-      v9 = (UIProgressBar *)this->m_pCBSystem->m_pUI->m_pRoleStateGP[2];
+      v8 = ((PalScript *)&unk_8ACD30)->SetAppName(aWesneakattacke);
+      ((UIWnd *)*(UIWnd **)&m_pUI->_data[1072])->SetEnable(v8, 1);
+      v9 = *(void (****)(_DWORD, int))&this->m_pCBSystem->m_pUI->_data[1072];
     }
     else
     {
-      v10 = ((PalScript *)&g_PAL3Data.mParam.f4)->SetAppName(aEnemysneakatta);
-      ((UIWnd *)m_pUI->m_pRoleStateGP[3])->SetEnable(v10, 1);
-      v9 = (UIProgressBar *)this->m_pCBSystem->m_pUI->m_pRoleStateGP[3];
+      v10 = ((PalScript *)&unk_8ACD30)->SetAppName(aEnemysneakatta);
+      ((UIWnd *)*(UIWnd **)&m_pUI->_data[1076])->SetEnable(v10, 1);
+      v9 = *(void (****)(_DWORD, int))&this->m_pCBSystem->m_pUI->_data[1076];
     }
-    (**(void (***)(UIProgressBar *, int))v9->_pad_0000)(v9, 1);
+    (**v9)(v9, 1);
     *(_BYTE *)(v5 + 41) = 1;
   }
   if ( *(_BYTE *)(v5 + 43) == 1
@@ -1510,11 +1511,11 @@ int CCBStage::IsIdle(int a2)
     v11 = (CCBUI *)this->m_pCBSystem->m_pUI;
     if ( this->m_pRoleState->m_bWeSneakAttackEnemy )
     {
-      (**(void (***)(UIProgressBar *, _DWORD))v11->m_pRoleStateGP[2])(v11->m_pRoleStateGP[2], 0);
+      (***(void (****)(_DWORD, _DWORD))&v11->_data[1072])(*(_DWORD *)&v11->_data[1072], 0);
       *(_DWORD *)(v5 + 16) = 4;
       return 0;
     }
-    (**(void (***)(UIProgressBar *, _DWORD))v11->m_pRoleStateGP[3])(v11->m_pRoleStateGP[3], 0);
+    (***(void (****)(_DWORD, _DWORD))&v11->_data[1076])(*(_DWORD *)&v11->_data[1076], 0);
     *(_DWORD *)(v5 + 16) = 4;
   }
   return 0;
@@ -1770,8 +1771,8 @@ int CCBStage::ClearRoleAllTask(int a2)
   char *v5; // ebp
   const char *ItemNum; // eax
   int RoleNum; // eax
-  UIProgressBar *v9; // ecx
-  UIProgressBar *v10; // ecx
+  void (***v9)(_DWORD, int); // ecx
+  void (***v10)(_DWORD, _DWORD); // ecx
   int v11; // [esp-4h] [ebp-10h]
 
   v3 = 2632 * LODWORD(this->m_fDamageNumPosY[8]);
@@ -1792,24 +1793,24 @@ int CCBStage::ClearRoleAllTask(int a2)
       {
         ItemNum = (const char *)((PAL_GDB *)&g_GDB)->GDB_GetItemNum(v11);
         if ( *(_DWORD *)((char *)&this->m_Task[0].SubTask[18].fTemp2 + v3) > 4u )
-          ((UIWnd *)this->m_pCBSystem->m_pUI->m_pRoleStateGP[3])->SetEnable(ItemNum, 1);
+          ((UIWnd *)*(UIWnd **)&this->m_pCBSystem->m_pUI->_data[1076])->SetEnable(ItemNum, 1);
         else
-          ((UIWnd *)this->m_pCBSystem->m_pUI->m_pRoleStateGP[2])->SetEnable(ItemNum, 1);
+          ((UIWnd *)*(UIWnd **)&this->m_pCBSystem->m_pUI->_data[1072])->SetEnable(ItemNum, 1);
       }
       else
       {
         RoleNum = ((PAL_GDB *)&g_GDB)->GDB_GetRoleNum(v11);
         if ( *(_DWORD *)((char *)&this->m_Task[0].SubTask[18].fTemp2 + v3) > 4u )
-          ((UIWnd *)this->m_pCBSystem->m_pUI->m_pRoleStateGP[3])->SetEnable((const char *)(RoleNum + 28), 1);
+          ((UIWnd *)*(UIWnd **)&this->m_pCBSystem->m_pUI->_data[1076])->SetEnable((const char *)(RoleNum + 28), 1);
         else
-          ((UIWnd *)this->m_pCBSystem->m_pUI->m_pRoleStateGP[2])->SetEnable((const char *)(RoleNum + 28), 1);
+          ((UIWnd *)*(UIWnd **)&this->m_pCBSystem->m_pUI->_data[1072])->SetEnable((const char *)(RoleNum + 28), 1);
       }
     }
     if ( *(_DWORD *)((char *)&this->m_Task[0].SubTask[18].fTemp2 + v3) > 4u )
-      v9 = (UIProgressBar *)this->m_pCBSystem->m_pUI->m_pRoleStateGP[3];
+      v9 = *(void (****)(_DWORD, int))&this->m_pCBSystem->m_pUI->_data[1076];
     else
-      v9 = (UIProgressBar *)this->m_pCBSystem->m_pUI->m_pRoleStateGP[2];
-    (**(void (***)(UIProgressBar *, int))v9->_pad_0000)(v9, 1);
+      v9 = *(void (****)(_DWORD, int))&this->m_pCBSystem->m_pUI->_data[1072];
+    (**v9)(v9, 1);
     v5[41] = 1;
   }
   if ( v5[43] == 1
@@ -1817,10 +1818,10 @@ int CCBStage::ClearRoleAllTask(int a2)
     || BYTE1(CEffectSystem::DestroyAllEffect()->m_pVertexBuffer) )
   {
     if ( *(_DWORD *)((char *)&this->m_Task[0].SubTask[18].fTemp2 + v3) > 4u )
-      v10 = (UIProgressBar *)this->m_pCBSystem->m_pUI->m_pRoleStateGP[3];
+      v10 = *(void (****)(_DWORD, _DWORD))&this->m_pCBSystem->m_pUI->_data[1076];
     else
-      v10 = (UIProgressBar *)this->m_pCBSystem->m_pUI->m_pRoleStateGP[2];
-    (**(void (***)(UIProgressBar *, _DWORD))v10->_pad_0000)(v10, 0);
+      v10 = *(void (****)(_DWORD, _DWORD))&this->m_pCBSystem->m_pUI->_data[1072];
+    (**v10)(v10, 0);
     *((_DWORD *)v5 + 4) = 4;
   }
   return 0;
@@ -1833,8 +1834,8 @@ int CCBStage::EndRoleAllTask(int a2)
   int v4; // eax
   char *v5; // ebp
   int SkillNum; // eax
-  UIProgressBar *v7; // ecx
-  UIProgressBar *v8; // ecx
+  void (***v7)(_DWORD, int); // ecx
+  void (***v8)(_DWORD, _DWORD); // ecx
 
   v3 = 2632 * LODWORD(this->m_fDamageNumPosY[8]);
   v4 = v3 + 80 * LODWORD(this->m_fDamageNumPosY[9]);
@@ -1844,24 +1845,24 @@ int CCBStage::EndRoleAllTask(int a2)
     SkillNum = ((PAL_GDB *)&g_GDB)->GDB_GetSkillNum(*(_DWORD *)((char *)&this->m_Task[0].SubTask[0].fStartTime + v4));
     if ( *(_DWORD *)((char *)&this->m_Task[0].SubTask[18].fTemp2 + v3) > 4u )
     {
-      ((UIWnd *)this->m_pCBSystem->m_pUI->m_pRoleStateGP[3])->SetEnable((const char *)(SkillNum + 4), 1);
-      v7 = (UIProgressBar *)this->m_pCBSystem->m_pUI->m_pRoleStateGP[3];
+      ((UIWnd *)*(UIWnd **)&this->m_pCBSystem->m_pUI->_data[1076])->SetEnable((const char *)(SkillNum + 4), 1);
+      v7 = *(void (****)(_DWORD, int))&this->m_pCBSystem->m_pUI->_data[1076];
     }
     else
     {
-      ((UIWnd *)this->m_pCBSystem->m_pUI->m_pRoleStateGP[2])->SetEnable((const char *)(SkillNum + 4), 1);
-      v7 = (UIProgressBar *)this->m_pCBSystem->m_pUI->m_pRoleStateGP[2];
+      ((UIWnd *)*(UIWnd **)&this->m_pCBSystem->m_pUI->_data[1072])->SetEnable((const char *)(SkillNum + 4), 1);
+      v7 = *(void (****)(_DWORD, int))&this->m_pCBSystem->m_pUI->_data[1072];
     }
-    (**(void (***)(UIProgressBar *, int))v7->_pad_0000)(v7, 1);
+    (**v7)(v7, 1);
     v5[41] = 1;
   }
   if ( v5[43] == 1 || this->m_pCBSystem->m_fTimeFund - *((float *)v5 + 6) > *((float *)v5 + 8) )
   {
     if ( *(_DWORD *)((char *)&this->m_Task[0].SubTask[18].fTemp2 + v3) > 4u )
-      v8 = (UIProgressBar *)this->m_pCBSystem->m_pUI->m_pRoleStateGP[3];
+      v8 = *(void (****)(_DWORD, _DWORD))&this->m_pCBSystem->m_pUI->_data[1076];
     else
-      v8 = (UIProgressBar *)this->m_pCBSystem->m_pUI->m_pRoleStateGP[2];
-    (**(void (***)(UIProgressBar *, _DWORD))v8->_pad_0000)(v8, 0);
+      v8 = *(void (****)(_DWORD, _DWORD))&this->m_pCBSystem->m_pUI->_data[1072];
+    (**v8)(v8, 0);
     *((_DWORD *)v5 + 4) = 4;
   }
   return 0;
@@ -1913,7 +1914,7 @@ int CCBStage::GetRoleTaskNum(int a2)
   v14.z = *((float *)v5 + 17);
   m_pCam = (CCBStageCam *)this->m_pCam;
   v14.y = 50.0;
-  ((gbCamera *)&m_pCam->_pad_0000[4])->PointWorldToScr(&v14, &v18, &v19);
+  ((gbCamera *)&m_pCam->_data[4])->PointWorldToScr(&v14, &v18, &v19);
   sprintf(byte_17AA920, "%d", *((_DWORD *)v5 + 11));
   v8 = (this->m_pCBSystem->m_fTimeFund - *((float *)v5 + 6)) / *((float *)v5 + 8);
   if ( v8 > 1.0 )
@@ -1982,7 +1983,7 @@ int CCBStage::SelectRole(int a2)
     this->m_Task[0].SubTask[0].eStats[v4 + 5] = 1;
   }
   vec1 = *(struct gbVec3D *)((char *)&this->m_Task[0].SubTask[0].param.n1 + v4);
-  ((gbCamera *)&this->m_pCam->_pad_0000[4])->PointWorldToScr(&vec1, &v15, &v16);
+  ((gbCamera *)&this->m_pCam->_data[4])->PointWorldToScr(&vec1, &v15, &v16);
   v6 = (this->m_pCBSystem->m_fTimeFund - v5[6]) / v5[8];
   *(float *)&v14 = v6;
   if ( v6 > 1.0 )
@@ -2061,7 +2062,7 @@ int CCBStage::ProcWait(int a2)
   }
   vec1.x = *(float *)(v6 + 64);
   vec1.z = *(float *)(v6 + 68);
-  v8 = (gbCamera *)&v2->m_pCam->_pad_0000[4];
+  v8 = (gbCamera *)&v2->m_pCam->_data[4];
   vec1.y = 50.0;
   v8->PointWorldToScr(&vec1, &v23, &v24);
   v9 = (v2->m_pCBSystem->m_fTimeFund - *(float *)(v6 + 24)) / *(float *)(v6 + 32);
@@ -2084,12 +2085,12 @@ int CCBStage::ProcWait(int a2)
   if ( *(_DWORD *)(v6 + 44) == 1 )
   {
     v16 = *(_DWORD *)(v6 + 52);
-    v14 = ((PalScript *)&g_PAL3Data.mParam.f4)->SetAppName(aWitch);
+    v14 = ((PalScript *)&unk_8ACD30)->SetAppName(aWitch);
     sprintf(Buffer, "%s -%d", v14, v16);
   }
   else if ( *(_DWORD *)(v6 + 44) == 2 )
   {
-    v15 = ((PalScript *)&g_PAL3Data.mParam.f4)->SetAppName(aMoney);
+    v15 = ((PalScript *)&unk_8ACD30)->SetAppName(aMoney);
     sprintf(Buffer, "%d%s", *(_DWORD *)(v6 + 52), v15);
   }
   else

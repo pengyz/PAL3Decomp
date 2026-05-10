@@ -75,26 +75,26 @@ CCBParabolaWindow::~CCBParabolaWindow()
 {
   int result; // eax
   int v3; // ecx
-  _DWORD *v4; // esi
+  char *v4; // esi
   int v5; // edi
 
   result = ((UIListBox *)this)->SetScrollPos();
-  v3 = *((_DWORD *)this + 23);
+  v3 = *(_DWORD *)&this->_data[92];
   if ( v3 )
   {
     result = (*(int (**)(int, int))(*(_DWORD *)v3 + 20))(v3, 1);
-    *((_DWORD *)this + 23) = 0;
+    *(_DWORD *)&this->_data[92] = 0;
   }
-  v4 = (_DWORD *)((char *)this + 96);
+  v4 = (char *)&this->_data[96];
   v5 = 5;
   do
   {
-    if ( *v4 )
+    if ( *(_DWORD *)v4 )
     {
-      result = (*(int (**)(_DWORD, int))(*(_DWORD *)*v4 + 20))(*v4, 1);
-      *v4 = 0;
+      result = (*(int (**)(_DWORD, int))(**(_DWORD **)v4 + 20))(*(_DWORD *)v4, 1);
+      *(_DWORD *)v4 = 0;
     }
-    ++v4;
+    v4 += 4;
     --v5;
   }
   while ( v5 );
@@ -110,7 +110,7 @@ int CCBParabolaWindow::Reset(int a2, int a3, int a4)
   {
     Instance = (char *)CScreenMode::GetInstance();
     ((CScreenMode *)Instance)->AudioSetPosition(aWa001, 1);
-    ((CCBUI *)*(CCBUI **)(*(_DWORD *)(*(_DWORD *)&this->_pad_0000[32] + 1160) + 8))->SetParam(a3, a4);
+    ((CCBUI *)*(CCBUI **)(*(_DWORD *)(*(_DWORD *)&this->_data[32] + 1160) + 8))->SetParam(a3, a4);
   }
   return a2->SendMessage(a3, a4);
 }
@@ -121,7 +121,7 @@ int CCBParabolaWindow::Destroy()
   int v2; // ecx
 
   ((UIListBox *)this)->SetScroll();
-  v2 = *((_DWORD *)this + *((_DWORD *)this + 29) + 24);
+  v2 = *(_DWORD *)&this->_data[4 * *(_DWORD *)&this->_data[116] + 96];
   return (*(int (**)(int))(*(_DWORD *)v2 + 4))(v2);
 }
 
@@ -142,7 +142,7 @@ int CCBParabolaWindow::Update(int a2, int a3)
   CCBParabolaWindow **i; // edi
 
   v4 = 0;
-  for ( i = this + 24; *(_DWORD *)&(*i)->_pad_0000[56] != 1 || !this->OnMessage(v4, a2, a3); ++i )
+  for ( i = this + 24; *(_DWORD *)&(*i)->_data[56] != 1 || !this->OnMessage(v4, a2, a3); ++i )
   {
     if ( ++v4 >= 5 )
       return -1;

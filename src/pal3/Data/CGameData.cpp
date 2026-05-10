@@ -30,6 +30,7 @@ extern unsigned char byte_DD8F3C;
 extern unsigned char byte_DD903C;
 extern unsigned char byte_DD913C;
 extern int dword_1894B78;
+extern int dword_8ACD40;
 extern void *off_59BA88;
 extern void *off_59BA8C;
 extern void *off_59BA90;
@@ -336,7 +337,7 @@ void * CGameData::Init()
   {
     v11->Create(1002, 180, 50, (int)this, aUiDlgHeadbkTga);
     v11->Show();
-    (**(void (***)(UIDialog *, _DWORD))v11->_pad_0000)(v11, 0);
+    (**(void (***)(UIDialog *, _DWORD))v11->_data)(v11, 0);
     v10 += 8704;
     v11 = (UIDialog *)((char *)v11 + 352);
   }
@@ -377,7 +378,7 @@ void CGameData::Destroy()
   int v5; // ecx
 
   ((UIWnd *)this)->UpdateChildren();
-  sub_4573A0(&g_PAL3Data.mParam.n5);
+  sub_4573A0(dword_8ACD40);
   (*(void (**)(char *))(*(_DWORD *)&this->_data[3904] + 12))(&this->_data[3904]);
   v2 = *((_DWORD *)this + 7044);
   if ( v2 )

@@ -35,7 +35,7 @@ CCBStageCam::CCBStageCam(CCBStageCam *Buffer)
       sizeof(pExceptionObject));
     _CxxThrowException(pExceptionObject, (_ThrowInfo *)&_TI1_AV_Exception__);
   }
-  v3 = (char *)&Buffer->_pad_0000[176];
+  v3 = (char *)&Buffer->_data[176];
   v4 = 2000;
   do
   {
@@ -119,7 +119,7 @@ char CCBStageCam::LoadEditorCam(int a2, int a3, const void *a4)
     return 0;
   if ( a3 < 49 )
   {
-    v8 = (_DWORD *)((char *)this + 200 * a2 + 410196);
+    v8 = (_DWORD *)this + 50 * a2 + 102549;
     v9 = 49 - a3;
     do
     {
@@ -149,9 +149,9 @@ char CCBStageCam::SaveEditorCam(int a2, int a3, int a4)
     return 0;
   v6 = 10 * (5 * a2 + 10250);
   v7 = v6 + a3;
-  v8 = *(_DWORD *)&this->_pad_0000[4 * v6 + 4 * a3];
-  v9 = (char *)&this->_pad_0000[4 * a4 + 4 * v6];
-  *(_DWORD *)&this->_pad_0000[4 * v7] = *(_DWORD *)v9;
+  v8 = *(_DWORD *)&this->_data[4 * v6 + 4 * a3];
+  v9 = (char *)&this->_data[4 * a4 + 4 * v6];
+  *(_DWORD *)&this->_data[4 * v7] = *(_DWORD *)v9;
   *(_DWORD *)v9 = v8;
   return 1;
 }
@@ -166,7 +166,7 @@ char CCBStageCam::AddCurCamToEditor(int a2, int a3)
   if ( a3 >= this->IsEditorCamValid(a2) )
     return 0;
   v5 = 10 * (5 * a2 + 10250);
-  *((_BYTE *)this + *(_DWORD *)&this->_pad_0000[4 * v5 + 4 * a3] + 408000) = 0;
+  *((_BYTE *)this + *(_DWORD *)&this->_data[4 * v5 + 4 * a3] + 408000) = 0;
   if ( a3 == 49 )
   {
     *((_DWORD *)this + 50 * a2 + 102549) = -1;
@@ -176,7 +176,7 @@ char CCBStageCam::AddCurCamToEditor(int a2, int a3)
   {
     if ( a3 < 49 )
     {
-      v6 = (char *)&this->_pad_0000[4 * v5 + 4 * a3];
+      v6 = (char *)&this->_data[4 * v5 + 4 * a3];
       v7 = 49 - a3;
       do
       {
@@ -198,7 +198,7 @@ char CCBStageCam::DelEditorCam(int a2)
   int v4; // esi
 
   v2 = 50;
-  v3 = (int *)((char *)this + 200 * a2 + 410000);
+  v3 = (int *)this + 50 * a2 + 102500;
   do
   {
     v4 = *v3++;
@@ -219,7 +219,7 @@ int CCBStageCam::IsEditorCamValid(int a2)
 
   result = 0;
   v3 = 0;
-  v4 = (_DWORD *)((char *)this + 200 * a2 + 410000);
+  v4 = (_DWORD *)this + 50 * a2 + 102500;
   do
   {
     if ( *v4 == -1 )
@@ -286,7 +286,7 @@ _DWORD * CCBStageCam::SetCamPos(int **a2, int a3)
   v4 = **a2;
   *((_DWORD *)this + 107509) = -1;
   *((_DWORD *)this + 107502) = v4;
-  return this->_pad_0000;
+  return this->_data;
 }
 
 // 0x00505410
@@ -520,5 +520,5 @@ char CCBStageCam::ProcCamMove()
 // 0x005058E0
 int CCBStageCam::SwitchEditorCamPos()
 {
-  return (*(int (**)(_DWORD))(*(_DWORD *)(*((_DWORD *)this + 107556))->_pad_0000 + 20))(*((_DWORD *)this + 107556));
+  return (*(int (**)(_DWORD))(*(_DWORD *)(*((_DWORD *)this + 107556))->_data + 20))(*((_DWORD *)this + 107556));
 }

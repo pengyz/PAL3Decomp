@@ -116,7 +116,7 @@ char CCBAttackSequen::CheckComplete()
         v5 = (double)*(int *)(p_bSlot2Running - 10) * 0.0078260871 + 659.0;
       else
         v5 = (double)*(int *)(p_bSlot2Running - 14) * 0.017130435 + 460.0;
-      result = ((UIWnd *)*(UIWnd **)&this->m_pUI->_pad_0000[v2])->ScreenToClient((__int64)v5, 8);
+      result = ((UIWnd *)*(UIWnd **)&this->m_pUI->_data[v2])->ScreenToClient((__int64)v5, 8);
     }
     v2 += 4;
     p_bSlot2Running += 40;
@@ -153,15 +153,13 @@ int CCBAttackSequen::AdvanceStep()
       if ( !m_pRole->IsRoleAlive(roleIdx)
         || LOBYTE(this->m_pRole->m_Role[0].nSpecStateRound[v1 + 10]) == 1 )
       {
-        (***(void (****)(_DWORD, _DWORD))&this->m_pUI->_pad_0000[v3])(
-          *(_DWORD *)&this->m_pUI->_pad_0000[v3],
-          0);
+        (***(void (****)(_DWORD, _DWORD))&this->m_pUI->_data[v3])(*(_DWORD *)&this->m_pUI->_data[v3], 0);
       }
       else
       {
         m_pUI = (CCBUI *)this->m_pUI;
-        if ( *(_DWORD *)&m_pUI->m_pAttackSequenBack->_pad_0000[56] == 1 )
-          (***(void (****)(_DWORD, int))&m_pUI->_pad_0000[v3])(*(_DWORD *)&m_pUI->_pad_0000[v3], 1);
+        if ( *(_DWORD *)(*(_DWORD *)&m_pUI->_data[72] + 56) == 1 )
+          (***(void (****)(_DWORD, int))&m_pUI->_data[v3])(*(_DWORD *)&m_pUI->_data[v3], 1);
         v14 = -1;
         if ( *(_BYTE *)(*(_DWORD *)((char *)this->m_pCBSystem->m_pStage + v3 - 52) + 280) )
         {
@@ -181,7 +179,7 @@ int CCBAttackSequen::AdvanceStep()
           }
           BYTE1(v14) = v7;
           LOBYTE(v14) = v7;
-          sub_446030(*(_DWORD **)&this->m_pUI->_pad_0000[v3]);
+          sub_446030(*(_DWORD **)&this->m_pUI->_data[v3]);
         }
         v14->UpdateAnim();
       }

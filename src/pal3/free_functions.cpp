@@ -245,6 +245,7 @@ extern int dword_60B538;
 extern int dword_60B870;
 extern int dword_6EBFA0;
 extern int dword_7CC178;
+extern int dword_8ACD40;
 extern int dword_BFD6D0;
 extern int dword_BFD6D4;
 extern int dword_BFDA48;
@@ -355,6 +356,10 @@ extern int unk_60B348;
 extern int unk_60B878;
 extern int unk_60B9D8;
 extern int unk_60BDC8;
+extern int unk_8ACD30;
+extern int unk_8ACD34;
+extern int unk_8ACD3C;
+extern int unk_A3A7D8;
 extern int unk_BFDAA4;
 extern int unk_BFDAB0;
 extern int unk_DBA258;
@@ -873,7 +878,7 @@ void __cdecl unknown_libname_294()
 // Microsoft VisualC 2-14/net runtime
 char *unknown_libname_295()
 {
-  return sub_53C250(&g_GDB.m_ItemData[508].desc[64]);
+  return sub_53C250((char *)&unk_A3A7D8);
 }
 
 // 0x00404510
@@ -881,7 +886,7 @@ char *unknown_libname_295()
 // Microsoft VisualC 2-14/net runtime
 void __cdecl unknown_libname_296()
 {
-  std::strstreambuf::~strstreambuf((std::strstreambuf *)&g_GDB.m_ItemData[508].desc[64]);
+  std::strstreambuf::~strstreambuf((std::strstreambuf *)&unk_A3A7D8);
 }
 
 // 0x00404570
@@ -970,7 +975,7 @@ void __cdecl unknown_libname_300()
 // Microsoft VisualC 2-14/net runtime
 _DWORD *unknown_libname_301()
 {
-  return sub_457260(&g_PAL3Data.mParam.n5);
+  return sub_457260(dword_8ACD40);
 }
 
 // 0x00404610
@@ -978,7 +983,7 @@ _DWORD *unknown_libname_301()
 // Microsoft VisualC 2-14/net runtime
 void __cdecl unknown_libname_302()
 {
-  sub_457340((int)&g_PAL3Data.mParam.n5);
+  sub_457340((int)dword_8ACD40);
 }
 
 // 0x00404620
@@ -994,7 +999,7 @@ int _E187()
 // Microsoft VisualC 2-14/net runtime
 _BYTE *unknown_libname_303()
 {
-  return sub_430180(&g_PAL3Data.mParam.f4);
+  return sub_430180(&unk_8ACD30);
 }
 
 // 0x00404650
@@ -1002,17 +1007,13 @@ _BYTE *unknown_libname_303()
 // Microsoft VisualC 2-14/net runtime
 void __cdecl unknown_libname_304()
 {
-  float *p_f4; // [esp+0h] [ebp-4h] BYREF
+  PalScript *v0; // [esp+0h] [ebp-4h] BYREF
 
-  p_f4 = &g_PAL3Data.mParam.f4;
-  sub_430B30(
-    &g_PAL3Data.mParam.f4,
-    &p_f4,
-    *(_DWORD **)LODWORD(g_PAL3Data.mParam.pf4[0]),
-    (_DWORD *)LODWORD(g_PAL3Data.mParam.pf4[0]));
-  operator delete((void *)LODWORD(g_PAL3Data.mParam.pf4[0]));
-  g_PAL3Data.mParam.pf4[0] = 0.0;
-  g_PAL3Data.mParam.pf4[2] = 0.0;
+  v0 = &unk_8ACD30;
+  sub_430B30(&unk_8ACD30, &v0, (_DWORD *)*unk_8ACD34, unk_8ACD34);
+  operator delete(unk_8ACD34);
+  unk_8ACD34 = 0;
+  unk_8ACD3C = 0;
   if ( !--*(_DWORD *)&String[256] )
   {
     operator delete(dword_D8C2B0);
@@ -1032,17 +1033,17 @@ int _E202()
 // between_std_methods (0x402FB0-0x407AB0)
 gbImage2D *_E207()
 {
-  return gbImage2D::gbImage2D((gbImage2D *)&g_PAL3Data._pad_0000[24]);
+  return gbImage2D::gbImage2D((gbImage2D *)&g_PAL3Data._data[24]);
 }
 
 // 0x00404690
 // between_std_methods (0x402FB0-0x407AB0)
 void __cdecl _E212()
 {
-  if ( (g_PAL3Data._pad_0000[16] & 1) == 0 )
+  if ( (g_PAL3Data._data[16] & 1) == 0 )
   {
-    g_PAL3Data._pad_0000[16] |= 1u;
-    gbImage2D::~gbImage2D((gbImage2D *)&g_PAL3Data._pad_0000[24]);
+    g_PAL3Data._data[16] |= 1u;
+    gbImage2D::~gbImage2D((gbImage2D *)&g_PAL3Data._data[24]);
   }
 }
 
@@ -1058,10 +1059,10 @@ int __thiscall _E217(void *_this)
 // between_std_methods (0x402FB0-0x407AB0)
 int __fastcall _E222(int a1)
 {
-  g_PAL3Data._pad_0000[0] = HIBYTE(a1);
-  *(_DWORD *)&g_PAL3Data._pad_0000[4] = 0;
-  *(_DWORD *)&g_PAL3Data._pad_0000[8] = 0;
-  *(_DWORD *)&g_PAL3Data._pad_0000[12] = 0;
+  g_PAL3Data._data[0] = HIBYTE(a1);
+  *(_DWORD *)&g_PAL3Data._data[4] = 0;
+  *(_DWORD *)&g_PAL3Data._data[8] = 0;
+  *(_DWORD *)&g_PAL3Data._data[12] = 0;
   return 0;
 }
 
@@ -1071,20 +1072,20 @@ void __cdecl _E228()
 {
   char v0; // al
 
-  if ( (g_PAL3Data._pad_0000[16] & 2) == 0 )
+  if ( (g_PAL3Data._data[16] & 2) == 0 )
   {
-    g_PAL3Data._pad_0000[16] |= 2u;
-    if ( *(_DWORD *)&g_PAL3Data._pad_0000[4] )
+    g_PAL3Data._data[16] |= 2u;
+    if ( *(_DWORD *)&g_PAL3Data._data[4] )
     {
-      v0 = *(_BYTE *)(*(_DWORD *)&g_PAL3Data._pad_0000[4] - 1);
+      v0 = *(_BYTE *)(*(_DWORD *)&g_PAL3Data._data[4] - 1);
       if ( !v0 || v0 == -1 )
-        operator delete((void *)(*(_DWORD *)&g_PAL3Data._pad_0000[4] - 1));
+        operator delete((void *)(*(_DWORD *)&g_PAL3Data._data[4] - 1));
       else
-        *(_BYTE *)(*(_DWORD *)&g_PAL3Data._pad_0000[4] - 1) = v0 - 1;
+        *(_BYTE *)(*(_DWORD *)&g_PAL3Data._data[4] - 1) = v0 - 1;
     }
-    *(_DWORD *)&g_PAL3Data._pad_0000[4] = 0;
-    *(_DWORD *)&g_PAL3Data._pad_0000[8] = 0;
-    *(_DWORD *)&g_PAL3Data._pad_0000[12] = 0;
+    *(_DWORD *)&g_PAL3Data._data[4] = 0;
+    *(_DWORD *)&g_PAL3Data._data[8] = 0;
+    *(_DWORD *)&g_PAL3Data._data[12] = 0;
   }
 }
 
@@ -8333,7 +8334,7 @@ enum _EXCEPTION_DISPOSITION __usercall TranslatorGuardHandler@<eax>(
       *((EXCEPTION_POINTERS **)TargetFrame + 2),
       *((_DWORD *)TargetFrame + 4),
       *((struct EHRegistrationNode **)TargetFrame + 5),
-      1u);
+      1);
     if ( !*((_DWORD *)TargetFrame + 9) )
       _UnwindNestedFrames(a1, TargetFrame, (PEXCEPTION_RECORD)ExceptionRecord);
     return (*((enum _EXCEPTION_DISPOSITION (**)(void))TargetFrame + 6))();
@@ -8494,12 +8495,12 @@ __int64 __usercall _ftol@<edx:eax>(double a1@<st0>)
 }
 
 // 0x005535C9
-void __stdcall __ArrayUnwind(char *a1, unsigned int a2, int a3, void (__thiscall *a4)(void *))
+void __stdcall __ArrayUnwind(char *a1, unsigned int a2, int a3, void (*a4)(void))
 {
   while ( --a3 >= 0 )
   {
     a1 -= a2;
-    ((void (*)(void))a4)();
+    a4();
   }
 }
 
@@ -9711,9 +9712,16 @@ LABEL_10:
 }
 
 // 0x00554700
-long double __usercall _CIpow@<st0>(double x@<st0>, unsigned __int64 y@<st1>)
+long double __usercall _CIpow@<st0>(unsigned __int64 x@<st0>, long double y@<st1>)
 {
-  return sub_554722(HIDWORD(y), x, *(long double *)&y, SLODWORD(x), HIDWORD(*(unsigned __int64 *)&x), y, HIDWORD(y));
+  return sub_554722(
+           HIDWORD(*(unsigned __int64 *)&y),
+           *(double *)&x,
+           y,
+           x,
+           HIDWORD(x),
+           SLODWORD(y),
+           HIDWORD(*(unsigned __int64 *)&y));
 }
 
 // 0x00554719
@@ -12642,7 +12650,7 @@ int __cdecl __InternalCxxFrameHandler(
         EXCEPTION_POINTERS *a5,
         int a6,
         struct EHRegistrationNode *TargetFrame,
-        char a8)
+        unsigned __int8 a8)
 {
   EXCEPTION_POINTERS *v8; // ecx
   int (__cdecl *pForwardCompat)(); // ecx
@@ -12671,7 +12679,7 @@ int __cdecl __InternalCxxFrameHandler(
                  a5,
                  a6,
                  TargetFrame,
-                 (unsigned __int8)a8);
+                 a8);
     }
     FindHandler(ExceptionRecord, a2, a3, a4, a5, a8, a6, TargetFrame);
   }
@@ -14619,9 +14627,9 @@ int __initmbctable()
 }
 
 // 0x005592F0
-double __usercall fFYTOX@<st0>(int a1@<ebp>, char a2@<ch>, long double a3@<st1>, long double a4@<st0>)
+long double __usercall fFYTOX@<st0>(int a1@<ebp>, char a2@<ch>, long double a3@<st1>, long double a4@<st0>)
 {
-  double result; // st7
+  long double result; // st7
   long double v6; // st6
   long double v7; // st7
   long double v8; // st7
@@ -15934,7 +15942,7 @@ LABEL_256:
 }
 
 // 0x0055A28B
-int __cdecl _hextodec(int C)
+unsigned int __cdecl _hextodec(int C)
 {
   int v1; // esi
   int v2; // eax

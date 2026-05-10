@@ -139,6 +139,9 @@ extern int dword_586190;
 extern int dword_586194;
 extern int dword_586198;
 extern int dword_58619C;
+extern int dword_8ACD40;
+extern int dword_A3A6EC;
+extern int dword_A3A6F0;
 extern int dword_BFD6C8;
 extern int dword_BFD6CC;
 extern int dword_BFD6D0;
@@ -277,12 +280,42 @@ extern void *off_56A6A8;
 extern void *off_56A6B4;
 extern void *off_583A1C;
 extern void *off_586180;
+extern int stru_A3A750;
 extern int stru_BFAB60;
 extern int stru_D8C2B8;
 extern int unk_8ACBF0;
+extern int unk_8ACD30;
+extern int unk_A3A6F8;
+extern int unk_A3A7D8;
 extern int unk_BFDAB0;
 extern int unk_C11720;
 extern int unk_C11758;
+extern int word_8ACCF8;
+extern int word_8ACCFA;
+extern int word_8ACCFC;
+extern int word_8ACCFE;
+extern int word_8ACD00;
+extern int word_8ACD02;
+extern int word_8ACD04;
+extern int word_8ACD06;
+extern int word_8ACD08;
+extern int word_8ACD0A;
+extern int word_8ACD0C;
+extern int word_8ACD0E;
+extern int word_8ACD10;
+extern int word_8ACD12;
+extern int word_8ACD14;
+extern int word_8ACD16;
+extern int word_8ACD18;
+extern int word_8ACD1A;
+extern int word_8ACD1C;
+extern int word_8ACD1E;
+extern int word_8ACD20;
+extern int word_8ACD22;
+extern int word_8ACD24;
+extern int word_8ACD26;
+extern int word_8ACD28;
+extern int word_8ACD2A;
 
 // 0x00404760
 PAL3::PAL3()
@@ -296,10 +329,10 @@ PAL3::PAL3()
   dword_BFDA8C = 0;
   LOBYTE(byte_BFDA90) = 0;
   v0 = g_nGameFlags;
-  *(_DWORD *)&g_GDB.m_ItemData[507].fightstate[12] = 0;
+  dword_A3A6EC = 0;
   LOBYTE(v0) = g_nGameFlags & 0xF4 | 3;
   g_nGameFlags = v0;
-  *(_DWORD *)&g_GDB.m_ItemData[507].fightstate[14] = 0;
+  dword_A3A6F0 = 0;
   &unk_8ACBF0;
 }
 
@@ -362,8 +395,8 @@ struct gbVFileSystem * PAL3::Create@<eax>(char *a1@<edi>, HINSTANCE hInstance)
   v2->Update();
   ScriptSystem::Init();
   ((PalScript *)&stru_BFAB60)->LoadFromFile(filename);
-  ((PalScript *)&g_PAL3Data.mParam.f4)->LoadScript((int)aDatascriptLang);
-  ((PalScript *)&g_PAL3Data.mParam.f4)->SetAppName(aAppname);
+  ((PalScript *)&unk_8ACD30)->LoadScript((int)aDatascriptLang);
+  ((PalScript *)&unk_8ACD30)->SetAppName(aAppname);
   Instance = (char *)CScreenMode::GetInstance();
   ((CScreenMode *)Instance)->SetMode(v31);
   CursorA = (Logger *)LoadCursorA(hInstance, (LPCSTR)0x73);
@@ -381,7 +414,7 @@ struct gbVFileSystem * PAL3::Create@<eax>(char *a1@<edi>, HINSTANCE hInstance)
   }
   ((GRPinput *)&g_Input)->SetMouseLimits(0, 0, dword_BFD6D0, dword_BFD6D4);
   ((GRPinput *)&g_Input)->SetMode(0x40000000);
-  ((CScreenMode *)&g_GDB.m_ItemData[508].desc[64])->InitCPK(0, 1);
+  ((CScreenMode *)&unk_A3A7D8)->InitCPK(0, 1);
   memset(pParams, 0, sizeof(pParams));
   ((CameraCtrl *)dword_BFDA68)->InitParams(pParams);
   if ( !((PAL_GDB *)&g_GDB)->PAL_GDB() )
@@ -392,7 +425,7 @@ struct gbVFileSystem * PAL3::Create@<eax>(char *a1@<edi>, HINSTANCE hInstance)
       sizeof(pExceptionObject));
     _CxxThrowException(pExceptionObject, (_ThrowInfo *)&_TI1_AV_Exception__);
   }
-  ((PAL_GDB *)&g_PAL3Data.mParam.n5)->LoadLanguage(path);
+  ((PAL_GDB *)dword_8ACD40)->LoadLanguage(path);
   PAL3::InitSubsystems();
   v6 = (_BYTE *)UIQuadManager::GetInstance();
   UIRenderQuadList(v6);
@@ -494,7 +527,7 @@ struct gbVFileSystem * PAL3::Create@<eax>(char *a1@<edi>, HINSTANCE hInstance)
     v24 = 0;
   }
   LOBYTE(v38) = 2;
-  *(_DWORD *)&g_GDB.m_ItemData[507].fightstate[12] = v24;
+  dword_A3A6EC = v24;
   v24->LoadFromFile(aObjectG02Cvd, 0, 0);
   v25 = (gbVFileSystem *)operator new(0x118u);
   v26 = v25;
@@ -511,13 +544,13 @@ struct gbVFileSystem * PAL3::Create@<eax>(char *a1@<edi>, HINSTANCE hInstance)
     v27 = 0;
   }
   LOBYTE(retaddr) = 2;
-  *(_DWORD *)&g_GDB.m_ItemData[507].fightstate[14] = v27;
+  dword_A3A6F0 = v27;
   v27->LoadFromFile(aObjectG03Cvd, 0, 0);
-  ((CScreenMode *)&g_GDB.m_ItemData[508].desc[64])->CreateDevice((int)aMovieLogoBik, (int)dword_BFDA4C, 0, 0);
-  v30 = (600 - ((CScreenMode *)&g_GDB.m_ItemData[508].desc[64])->GetHeight()) / 2;
-  Width = ((CScreenMode *)&g_GDB.m_ItemData[508].desc[64])->GetWidth();
-  ((CScreenMode *)&g_GDB.m_ItemData[508].desc[64])->SetViewport((800 - Width) / 2, v30);
-  ((CScreenMode *)&g_GDB.m_ItemData[508].desc[64])->PlayVideo(1);
+  ((CScreenMode *)&unk_A3A7D8)->CreateDevice((int)aMovieLogoBik, (int)dword_BFDA4C, 0, 0);
+  v30 = (600 - ((CScreenMode *)&unk_A3A7D8)->GetHeight()) / 2;
+  Width = ((CScreenMode *)&unk_A3A7D8)->GetWidth();
+  ((CScreenMode *)&unk_A3A7D8)->SetViewport((800 - Width) / 2, v30);
+  ((CScreenMode *)&unk_A3A7D8)->PlayVideo(1);
   v38 = -1;
   return ((OpenNULLFile *)&v32)->OpenNULLFile();
 }
@@ -608,7 +641,7 @@ void PAL3::InitGFX()
   v4[16] = 1092616192;
   v4[15] = 1092616192;
   v4[6] = 1065353216;
-  ((gbVolModNode *)&g_GDB.m_ItemData[507].fightstate[18])->SetVolModObj((struct gbVolumeModifier *)v4);
+  ((gbVolModNode *)&unk_A3A6F8)->SetVolModObj((struct gbVolumeModifier *)v4);
   ((gbRefObject *)v4)->Release();
 }
 
@@ -728,7 +761,7 @@ char PAL3::DestroyEffectSystem()
 int PAL3::Update(int a1)
 {
   int v1; // edi
-  int *p_bottom; // esi
+  unsigned __int16 *v2; // esi
   __int16 KeyState; // ax
   BOOL v4; // eax
   DWORD Time; // eax
@@ -769,18 +802,18 @@ int PAL3::Update(int a1)
   *(float *)&flt_BFDAA0 = *(float *)&flt_BFDAA0 + *(float *)&a1;
   ((GRPinput *)&g_Input)->GRPinput();
   v1 = 0;
-  p_bottom = (int *)&g_PAL3Data.rTouchAreaCG.bottom;
+  v2 = (unsigned __int16 *)&g_PAL3Data._data[224];
   do
   {
-    KeyState = ((GRPinput *)&g_Input)->GetKeyState(*(_WORD *)p_bottom);
+    KeyState = ((GRPinput *)&g_Input)->GetKeyState(*v2);
     v4 = KeyState == 1 || KeyState == 3;
     v33 = v4;
     Time = timeGetTime();
     ((GRPinput *)&g_Input)->SetMouseAbs(Time, v1, v33);
-    p_bottom = (int *)((char *)p_bottom + 2);
+    ++v2;
     ++v1;
   }
-  while ( (int)p_bottom < (int)((char *)&g_PAL3Data.mParam.n4 + 2) );
+  while ( (int)v2 < (int)word_8ACD2A );
   v6 = dword_BFDA6C;
   v7 = SceneUpdate((int)&g_GameData, a1, 1);
   v8 = dword_BFDA6C;
@@ -799,8 +832,8 @@ int PAL3::Update(int a1)
     case 2:
     case 9:
       flt_BFDA5C = flt_BFDA5C + *(float *)&a1;
-      (*(void (**)(_DWORD))(**(_DWORD **)&g_GDB.m_ItemData[507].fightstate[12] + 20))(*(_DWORD *)&g_GDB.m_ItemData[507].fightstate[12]);
-      (*(void (**)(_DWORD))(**(_DWORD **)&g_GDB.m_ItemData[507].fightstate[14] + 20))(*(_DWORD *)&g_GDB.m_ItemData[507].fightstate[14]);
+      (*(void (**)(gbGeomNode *))(*(_DWORD *)dword_A3A6EC->_pad_0000 + 20))(dword_A3A6EC);
+      (*(void (**)(gbGeomNode *))(*(_DWORD *)dword_A3A6F0->_pad_0000 + 20))(dword_A3A6F0);
       Instance = (float *)CRenderTarget2::GetInstance();
       CRenderTarget2_Update(Instance, *(float *)&a1);
       a1->RunSceneScript();
@@ -847,7 +880,7 @@ int PAL3::Update(int a1)
         CombatEffectUpdate((int)dword_BFDA70, 0.0);
         goto LABEL_59;
       }
-      byte_5833D0 = dword_BFDA74->m_eResult == CBR_LOSE;
+      byte_5833D0 = *(_DWORD *)&dword_BFDA74->m_eResult[2] == 2;
       Mode = (CUtil *)((CGameData *)&g_GameData)->GetMode();
       CGameData_Load((int)&g_GameData, Mode);
       CombatEnter();
@@ -1102,8 +1135,8 @@ void PAL3::Render()
         v31.z = 0.0;
         ((gbQuaternion *)&v33)->SetAxisAngle(&v31, 90.0);
         ((gbQuaternion *)&v33)->MultiplyBy(&v32, &v34);
-        ((gbQuaternion *)&v34)->GetMatrix((struct gbMatrix4 *)&g_GDB.m_ItemData[508].name[20]);
-        ((gbVolModNode *)&g_GDB.m_ItemData[507].fightstate[18])->Attach(0);
+        ((gbQuaternion *)&v34)->GetMatrix(&stru_A3A750);
+        ((gbVolModNode *)&unk_A3A6F8)->Attach(0);
       }
       if ( stru_D8C2B8.KeyInfo[149].CountMode == 2 )
       {
@@ -1554,27 +1587,47 @@ int PAL3::GetCommandLineParam()
 // 0x00406A10
 int PAL3::TestCombat()
 {
-  g_PAL3Data.mParam.f1 = 1.423454e-38;
-  LODWORD(g_PAL3Data.mParam.pf1[1]) = 6357001;
-  LODWORD(g_PAL3Data.mParam.pf2[1]) = 7798793;
-  g_PAL3Data.rTouchAreaCG.bottom = 16843008;
-  g_PAL3Data.fLastTime = 1.239798e-38;
-  g_PAL3Data.mParam.n1 = 8978568;
-  g_PAL3Data.mParam.dw1 = 852000;
-  LODWORD(g_PAL3Data.mParam.pf1[0]) = 589978;
-  g_PAL3Data.mParam.pf1[2] = 2.3510167e-38;
-  g_PAL3Data.mParam.n2 = 1769729;
-  g_PAL3Data.mParam.dw2 = 2097165;
-  g_PAL3Data.mParam.f2 = 1.239798e-38;
-  g_PAL3Data.mParam.pf2[0] = 1.2581654e-38;
-  g_PAL3Data.mParam.pf2[2] = 1.2765327e-38;
-  g_PAL3Data.mParam.n3 = 9240716;
-  g_PAL3Data.mParam.dw3 = 8519822;
-  LODWORD(g_PAL3Data.mParam.f3) = 7340164;
-  LODWORD(g_PAL3Data.mParam.pf3[0]) = 6684786;
-  LODWORD(g_PAL3Data.mParam.pf3[1]) = 6619243;
-  g_PAL3Data.mParam.pf3[2] = 1.2122468e-38;
-  LOWORD(g_PAL3Data.mParam.n4) = 128;
+  *(_WORD *)&g_PAL3Data._data[240] = 27;
+  strcpy(&g_PAL3Data._data[246], "\t");
+  strcpy(&g_PAL3Data._data[248], "\t");
+  word_8ACCFA = 27;
+  word_8ACD08 = 9;
+  *(_WORD *)&g_PAL3Data._data[224] = 256;
+  *(_WORD *)&g_PAL3Data._data[226] = 257;
+  *(_WORD *)&g_PAL3Data._data[228] = 134;
+  *(_WORD *)&g_PAL3Data._data[230] = 135;
+  *(_WORD *)&g_PAL3Data._data[232] = 136;
+  *(_WORD *)&g_PAL3Data._data[234] = 137;
+  strcpy(&g_PAL3Data._data[236], " ");
+  *(_WORD *)&g_PAL3Data._data[238] = 13;
+  *(_WORD *)&g_PAL3Data._data[244] = 154;
+  *(_WORD *)&g_PAL3Data._data[242] = 155;
+  strcpy(&g_PAL3Data._data[250], "a");
+  strcpy(&g_PAL3Data._data[252], "d");
+  *(_WORD *)&g_PAL3Data._data[254] = 256;
+  word_8ACCF8 = 257;
+  word_8ACCFC = 13;
+  word_8ACCFE = 32;
+  word_8ACD00 = 134;
+  word_8ACD02 = 135;
+  word_8ACD04 = 136;
+  word_8ACD06 = 137;
+  word_8ACD0A = 119;
+  word_8ACD0C = 138;
+  word_8ACD0E = 139;
+  word_8ACD10 = 140;
+  word_8ACD12 = 141;
+  word_8ACD14 = 142;
+  word_8ACD16 = 130;
+  word_8ACD18 = 132;
+  word_8ACD1A = 112;
+  word_8ACD1C = 114;
+  word_8ACD1E = 102;
+  word_8ACD20 = 107;
+  word_8ACD22 = 101;
+  word_8ACD24 = 130;
+  word_8ACD26 = 132;
+  word_8ACD28 = 128;
   return 132;
 }
 
@@ -1604,14 +1657,12 @@ int PAL3::DefaultKeyMap(const char *a1, int a2, int a3)
     v13 = v12 - 1;
     if ( std::string::max_size() < v12 - 1 )
       v16->_Xlen();
-    v14 = (char *)*(char **)&g_PAL3Data._pad_0000[4];
-    if ( *(_DWORD *)&g_PAL3Data._pad_0000[4]
-      && (v15 = *(_BYTE *)(*(_DWORD *)&g_PAL3Data._pad_0000[4] - 1)) != 0
-      && v15 != -1 )
+    v14 = (char *)*(char **)&g_PAL3Data._data[4];
+    if ( *(_DWORD *)&g_PAL3Data._data[4] && (v15 = *(_BYTE *)(*(_DWORD *)&g_PAL3Data._data[4] - 1)) != 0 && v15 != -1 )
     {
       if ( v12 == 1 )
       {
-        *(_BYTE *)(*(_DWORD *)&g_PAL3Data._pad_0000[4] - 1) = v15 - 1;
+        *(_BYTE *)(*(_DWORD *)&g_PAL3Data._data[4] - 1) = v15 - 1;
         ((std *)&g_PAL3Data)->string::_Tidy(0);
         goto LABEL_43;
       }
@@ -1623,84 +1674,84 @@ int PAL3::DefaultKeyMap(const char *a1, int a2, int a3)
         ((std *)&g_PAL3Data)->string::_Tidy(1);
         goto LABEL_43;
       }
-      if ( *(_DWORD *)&g_PAL3Data._pad_0000[12] <= 0x1Fu && *(_DWORD *)&g_PAL3Data._pad_0000[12] >= v13 )
+      if ( *(_DWORD *)&g_PAL3Data._data[12] <= 0x1Fu && *(_DWORD *)&g_PAL3Data._data[12] >= v13 )
       {
 LABEL_42:
         qmemcpy(v14, a1, v13);
-        result = *(_DWORD *)&g_PAL3Data._pad_0000[4];
-        *(_DWORD *)&g_PAL3Data._pad_0000[8] = v12 - 1;
-        *(_BYTE *)(*(_DWORD *)&g_PAL3Data._pad_0000[4] + v13) = 0;
+        result = *(_DWORD *)&g_PAL3Data._data[4];
+        *(_DWORD *)&g_PAL3Data._data[8] = v12 - 1;
+        *(_BYTE *)(*(_DWORD *)&g_PAL3Data._data[4] + v13) = 0;
         goto LABEL_43;
       }
       ((std *)&g_PAL3Data)->string::_Tidy(1);
     }
     ((GRPinput *)&g_PAL3Data)->GetKeyState(v13);
-    v14 = (char *)*(char **)&g_PAL3Data._pad_0000[4];
+    v14 = (char *)*(char **)&g_PAL3Data._data[4];
     goto LABEL_42;
   }
-  v3 = *(_DWORD *)&g_PAL3Data._pad_0000[4];
-  v4 = *(_DWORD *)&g_PAL3Data._pad_0000[4] == 0;
-  if ( *(_DWORD *)&g_PAL3Data._pad_0000[4] )
+  v3 = *(_DWORD *)&g_PAL3Data._data[4];
+  v4 = *(_DWORD *)&g_PAL3Data._data[4] == 0;
+  if ( *(_DWORD *)&g_PAL3Data._data[4] )
   {
-    v5 = *(_BYTE *)(*(_DWORD *)&g_PAL3Data._pad_0000[4] - 1);
+    v5 = *(_BYTE *)(*(_DWORD *)&g_PAL3Data._data[4] - 1);
     if ( v5 && v5 != -1 )
     {
-      ((SceneObj *)&g_PAL3Data)->Update(*(unsigned int *)&g_PAL3Data._pad_0000[8]);
-      v3 = *(_DWORD *)&g_PAL3Data._pad_0000[4];
+      ((SceneObj *)&g_PAL3Data)->Update(*(unsigned int *)&g_PAL3Data._data[8]);
+      v3 = *(_DWORD *)&g_PAL3Data._data[4];
     }
     v4 = v3 == 0;
     if ( v3 )
     {
       *(_BYTE *)(v3 - 1) = -1;
-      v3 = *(_DWORD *)&g_PAL3Data._pad_0000[4];
-      v4 = *(_DWORD *)&g_PAL3Data._pad_0000[4] == 0;
+      v3 = *(_DWORD *)&g_PAL3Data._data[4];
+      v4 = *(_DWORD *)&g_PAL3Data._data[4] == 0;
     }
   }
   if ( v4 )
     v6 = 0;
   else
-    v6 = *(_DWORD *)&g_PAL3Data._pad_0000[8] + v3;
+    v6 = *(_DWORD *)&g_PAL3Data._data[8] + v3;
   if ( v3 )
   {
     v7 = *(_BYTE *)(v3 - 1);
     if ( v7 && v7 != -1 )
     {
-      ((SceneObj *)&g_PAL3Data)->Update(*(unsigned int *)&g_PAL3Data._pad_0000[8]);
-      v3 = *(_DWORD *)&g_PAL3Data._pad_0000[4];
+      ((SceneObj *)&g_PAL3Data)->Update(*(unsigned int *)&g_PAL3Data._data[8]);
+      v3 = *(_DWORD *)&g_PAL3Data._data[4];
     }
     if ( v3 )
     {
       *(_BYTE *)(v3 - 1) = -1;
-      v3 = *(_DWORD *)&g_PAL3Data._pad_0000[4];
+      v3 = *(_DWORD *)&g_PAL3Data._data[4];
     }
   }
   v8 = v3;
   ((std *)&g_PAL3Data)->string::_Freeze();
   if ( v8 )
-    v9 = v8 - *(_DWORD *)&g_PAL3Data._pad_0000[4];
+    v9 = v8 - *(_DWORD *)&g_PAL3Data._data[4];
   else
     v9 = 0;
   if ( v6 )
     v6 -= v8;
-  if ( *(_DWORD *)&g_PAL3Data._pad_0000[8] < v9 )
+  if ( *(_DWORD *)&g_PAL3Data._data[8] < v9 )
     std::_Xran();
   ((std *)&g_PAL3Data)->string::_Split();
-  result = *(_DWORD *)&g_PAL3Data._pad_0000[8];
-  if ( *(_DWORD *)&g_PAL3Data._pad_0000[8] - v9 < v6 )
-    v6 = *(_DWORD *)&g_PAL3Data._pad_0000[8] - v9;
+  result = *(_DWORD *)&g_PAL3Data._data[8];
+  if ( *(_DWORD *)&g_PAL3Data._data[8] - v9 < v6 )
+    v6 = *(_DWORD *)&g_PAL3Data._data[8] - v9;
   if ( v6 )
   {
     memcpy(
-      (void *)(v9 + *(_DWORD *)&g_PAL3Data._pad_0000[4]),
-      (const void *)(v9 + *(_DWORD *)&g_PAL3Data._pad_0000[4] + v6),
-      *(_DWORD *)&g_PAL3Data._pad_0000[8] - v6 - v9);
-    v11 = *(_DWORD *)&g_PAL3Data._pad_0000[8] - v6;
-    LOBYTE(result) = ((SceneObj *)&g_PAL3Data)->Update(*(_DWORD *)&g_PAL3Data._pad_0000[8] - v6);
+      (void *)(v9 + *(_DWORD *)&g_PAL3Data._data[4]),
+      (const void *)(v9 + *(_DWORD *)&g_PAL3Data._data[4] + v6),
+      *(_DWORD *)&g_PAL3Data._data[8] - v6 - v9);
+    v11 = *(_DWORD *)&g_PAL3Data._data[8] - v6;
+    LOBYTE(result) = ((SceneObj *)&g_PAL3Data)->Update(*(_DWORD *)&g_PAL3Data._data[8] - v6);
     if ( (_BYTE)result )
     {
-      result = *(_DWORD *)&g_PAL3Data._pad_0000[4];
-      *(_DWORD *)&g_PAL3Data._pad_0000[8] = v11;
-      *(_BYTE *)(*(_DWORD *)&g_PAL3Data._pad_0000[4] + v11) = 0;
+      result = *(_DWORD *)&g_PAL3Data._data[4];
+      *(_DWORD *)&g_PAL3Data._data[8] = v11;
+      *(_BYTE *)(*(_DWORD *)&g_PAL3Data._data[4] + v11) = 0;
     }
   }
 LABEL_43:
@@ -1779,8 +1830,8 @@ LABEL_8:
           isdiskinfo = v30.ImgInfo.isdiskinfo;
         }
         (*(void (**)(gbGfxManager *))(*(_DWORD *)dword_BFDA60->_pad_0000 + 88))(dword_BFDA60);
-        ((gbImage2D *)&g_PAL3Data._pad_0000[24])->Release();
-        Image = ((gbImage2D *)&g_PAL3Data._pad_0000[24])->CreateImage(v26, v27, 24);
+        ((gbImage2D *)&g_PAL3Data._data[24])->Release();
+        Image = ((gbImage2D *)&g_PAL3Data._data[24])->CreateImage(v26, v27, 24);
         pBits = (unsigned __int8 *)v30.pBits;
         v8 = (unsigned __int8 *)v30.pBits;
         if ( isdiskinfo == 32 )
@@ -1877,7 +1928,7 @@ LABEL_8:
           }
         }
         if ( dword_5833C4 != -1 && dword_5833C8 != -1 )
-          ((gbImage2D *)&g_PAL3Data._pad_0000[24])->ScaleTo(dword_5833C4, dword_5833C8);
+          ((gbImage2D *)&g_PAL3Data._data[24])->ScaleTo(dword_5833C4, dword_5833C8);
         ((gbImage2D *)&v30)->Release();
         goto LABEL_34;
       }

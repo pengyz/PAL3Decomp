@@ -3,5 +3,5 @@
   "address": "0x00505290",
   "size_bytes": 41,
   "signature": "int __thiscall(CCBStageCam *this, int a2)",
-  "decompiled_c": "// between_std_methods (0x504E20-0x53C2B0)\nint __thiscall CCBStageCam::IsEditorCamValid(CCBStageCam *this, int a2)\n{\n  int result; // eax\n  int v3; // edx\n  _DWORD *v4; // ecx\n\n  result = 0;\n  v3 = 0;\n  v4 = (_DWORD *)((char *)this + 200 * a2 + 410000);\n  do\n  {\n    if ( *v4 == -1 )\n      break;\n    ++result;\n    ++v3;\n    ++v4;\n  }\n  while ( v3 < 50 );\n  return result;\n}\n"
+  "decompiled_c": "// between_std_methods (0x504E20-0x53C2B0)\nint __thiscall CCBStageCam::IsEditorCamValid(CCBStageCam *this, int a2)\n{\n  int result; // eax\n  int v3; // edx\n  _DWORD *v4; // ecx\n\n  result = 0;\n  v3 = 0;\n  v4 = (_DWORD *)this + 50 * a2 + 102500;\n  do\n  {\n    if ( *v4 == -1 )\n      break;\n    ++result;\n    ++v3;\n    ++v4;\n  }\n  while ( v3 < 50 );\n  return result;\n}\n"
 }

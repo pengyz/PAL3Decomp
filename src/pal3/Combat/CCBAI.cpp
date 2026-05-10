@@ -1102,7 +1102,7 @@ LABEL_21:
       LOBYTE(v17[10]) = 1;
       v17[0] = 259;
       v17[2] = a2;
-      qmemcpy(&m_pCBSystem->m_Player[52 * a2], v17, 0x2Cu);
+      qmemcpy(&m_pCBSystem->m_Player[0].LastRoleCmd.dwCmdID + 13 * a2, v17, 0x2Cu);
       v16->m_bNewRole[a2] = 0;
     }
     return a2_3;
