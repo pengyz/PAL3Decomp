@@ -29,6 +29,7 @@ LOG_FILE = os.path.join(LOG_DIR, "pal3_batch_import_structs_log.txt")
 SKIP_PREFIXES = ('D3D', '_D3D', 'ID3D', 'IDirect', 'IUnknown', 'CD3D', 'D3DX',
                  'std', '_IMAGE', '_LARGE', '_LIST', '_RTL', '_EXCEPTION',
                  'tag_s_', 'Concurrency')
+# Note: 'gb' prefix is NOT skipped — gbengine classes need import for type propagation
 SKIP_NAMES = {
     '_iobuf', 'FILE', 'GUID', 'IID', '_GUID', 'CRITICAL_SECTION',
     'type_info', 'exception', '_FILETIME', '_SYSTEMTIME',
@@ -67,10 +68,34 @@ def should_skip(name):
 
 
 def build_type_decl(pdb_class):
-    """Build a C struct declaration string from PDB class data."""
+    """Build a C struct declaration string from PDB class data.
+
+    Key principle: use offset differences to compute member sizes, never guess from type name.
+    Non-pointer, non-primitive members are emitted as char[size] with type comment.
+    Pointers use forward-declared class types for Hex-Rays type propagation.
+    """
+    import re
     name = pdb_class['name']
     size = pdb_class['size']
     members = pdb_class.get('data_members', [])
+
+    # Pre-compute actual size of each member from offset gaps
+    member_sizes = []
+    for i, m in enumerate(members):
+        if i + 1 < len(members):
+            msize = members[i+1]['offset'] - m['offset']
+        else:
+            msize = size - m['offset']
+        member_sizes.append(max(msize, 0))
+
+    PRIMITIVES_SIZE = {
+        'int': 4, 'unsigned int': 4, 'long': 4, 'unsigned long': 4,
+        'short': 2, 'unsigned short': 2,
+        'char': 1, 'unsigned char': 1, 'bool': 1,
+        'float': 4, 'double': 8,
+        '__int64': 8, 'unsigned __int64': 8,
+        'BYTE': 1, 'WORD': 2, 'DWORD': 4, 'UINT': 4,
+    }
 
     lines = []
     lines.append("struct %s {" % name)
@@ -80,83 +105,62 @@ def build_type_decl(pdb_class):
         mname = m.get('name', '_field_%04X' % m.get('offset', 0))
         mtype = m.get('type', 'int')
         moffset = m.get('offset', 0)
+        msize = member_sizes[i]
 
         # Add padding if gap
         if moffset > prev_end:
             gap = moffset - prev_end
             lines.append("  char _pad_%04X[%d];" % (prev_end, gap))
 
-        # Simplify type for IDA parsing
-        # Handle arrays: "Type[N]"
-        arr_suffix = ""
-        import re
-        arr_match = re.search(r'(\[\d+\](?:\[\d+\])*)$', mtype)
-        if arr_match:
-            arr_suffix = arr_match.group(1)
-            mtype = mtype[:arr_match.start()].strip()
+        # Sanitize member name
+        if mname.startswith('_') and mname[1:2].isdigit():
+            mname = 'field' + mname
 
-        # Handle templates/nested: use char[] with correct size
-        if '<' in mtype or '::' in mtype:
-            # Calculate size from next member offset
-            if i + 1 < len(members):
-                msize = members[i+1]['offset'] - moffset
-            else:
-                msize = size - moffset
-            if msize > 0:
-                lines.append("  char %s[%d];" % (mname, msize))
-                prev_end = moffset + msize
-            else:
-                lines.append("  int %s;" % mname)
-                prev_end = moffset + 4
-            continue
-
-        # Handle pointer types
-        is_ptr = '*' in mtype
-        if is_ptr:
-            # Keep as void* for simplicity (forward decls may not exist)
+        # Pointer types: use typed pointer (critical for Hex-Rays)
+        if '*' in mtype and '[' not in mtype:
             base = mtype.replace('*', '').strip()
-            if base and not base.startswith('_') and base[0].isupper():
-                lines.append("  %s %s%s;" % (mtype, mname, arr_suffix))
+            # Clean up base type
+            if '<' in base or '::' in base or not base:
+                lines.append("  void *%s;" % mname)
+            elif base[0].isalpha():
+                lines.append("  %s *%s;" % (base, mname))
             else:
-                lines.append("  void *%s%s;" % (mname, arr_suffix))
-            if arr_suffix:
-                # Parse array size
-                import re
-                nums = re.findall(r'\[(\d+)\]', arr_suffix)
-                elem_count = 1
-                for n in nums:
-                    elem_count *= int(n)
-                prev_end = moffset + 4 * elem_count
-            else:
-                prev_end = moffset + 4
+                lines.append("  void *%s;" % mname)
+            prev_end = moffset + 4
             continue
 
-        # Map primitive types
-        mapped = TYPE_MAP.get(mtype, mtype)
+        # Pointer array: Type *[N]
+        if '*' in mtype and '[' in mtype:
+            arr_match = re.search(r'\[(\d+)\]', mtype)
+            count = int(arr_match.group(1)) if arr_match else 1
+            base = mtype.split('*')[0].strip()
+            if base and base[0].isalpha() and '<' not in base:
+                lines.append("  %s *%s[%d];" % (base, mname, count))
+            else:
+                lines.append("  void *%s[%d];" % (mname, count))
+            prev_end = moffset + 4 * count
+            continue
 
-        # Calculate member size for prev_end tracking
-        size_map = {
-            '__int8': 1, 'unsigned __int8': 1, 'char': 1,
-            '__int16': 2, 'unsigned __int16': 2, 'short': 2,
-            '__int32': 4, 'unsigned __int32': 4, 'int': 4, 'long': 4,
-            '__int64': 8, 'unsigned __int64': 8,
-            'float': 4, 'double': 8,
-        }
-        base_size = size_map.get(mapped, 4)
+        # Primitive types (size known from type name)
+        base_type = re.sub(r'\[\d+\]', '', mtype).strip()
+        if base_type in PRIMITIVES_SIZE:
+            psize = PRIMITIVES_SIZE[base_type]
+            arr_match = re.search(r'(\[\d+\](?:\[\d+\])*)$', mtype)
+            if arr_match:
+                lines.append("  %s %s%s;" % (base_type, mname, arr_match.group(1)))
+            else:
+                lines.append("  %s %s;" % (base_type, mname))
+            prev_end = moffset + msize  # trust computed size
+            continue
 
-        if arr_suffix:
-            import re
-            nums = re.findall(r'\[(\d+)\]', arr_suffix)
-            elem_count = 1
-            for n in nums:
-                elem_count *= int(n)
-            prev_end = moffset + base_size * elem_count
-            lines.append("  %s %s%s;" % (mapped, mname, arr_suffix))
+        # Everything else: use char[computed_size] with type comment
+        if msize > 0:
+            lines.append("  char %s[%d]; // %s" % (mname, msize, mtype))
         else:
-            prev_end = moffset + base_size
-            lines.append("  %s %s;" % (mapped, mname))
+            lines.append("  int %s; // %s" % (mname, mtype))
+        prev_end = moffset + max(msize, 4)
 
-    # Final padding to reach declared size
+    # Final padding
     if prev_end < size:
         lines.append("  char _tail[%d];" % (size - prev_end))
 
@@ -194,10 +198,8 @@ def main():
             if existing_size >= size * 0.8:  # already has reasonable definition
                 continue
 
-        # Only import small or mostly-pointer classes
-        ptr_count = sum(1 for m in members if '*' in m.get('type', ''))
-        if size <= 256 or ptr_count > len(members) * 0.4:
-            candidates.append(c)
+        # Import all classes with valid PDB layout
+        candidates.append(c)
 
     log("[*] Candidates for import: %d" % len(candidates))
 
