@@ -81,7 +81,10 @@ struct gbColorFlt {
 };
 
 struct gbMatrix4 {
-    float m[4][4];
+    union {
+        float m[4][4];
+        struct { float xx, xy, xz, xw, yx, yy, yz, yw, zx, zy, zz, zw, wx, wy, wz, ww; };
+    };
 
     // Methods (auto-generated)
     gbMatrix4();
