@@ -25,7 +25,7 @@ public:
     int Reset(int a2, int a3); // 0x0051BB00
     int Create(int a2); // 0x0051BB40
     _DWORD * ForbidPage(); // 0x0051BB90
-    UIWnd * Destroy(UIWnd *Block, char a2); // 0x0051BBE0
+    UIWnd * Destroy(CCBMagicWindow *Block, char a2); // 0x0051BBE0
     int OnMessage(); // 0x0051BC50
     char CreateButton(_DWORD *a2, int a3); // 0x0051BC70
     int Update(); // 0x0051C110

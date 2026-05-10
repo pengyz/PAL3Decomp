@@ -354,7 +354,7 @@ int RoleSystem::CheckVisible(int a1)
       if ( v38 )
       {
         v28 = 12 * v38;
-        v29 = &v3[-3 * v38];
+        v29 = (_DWORD *)&v3[-3 * v38];
         for ( i = v3; v29 != v3; i += 3 )
         {
           if ( i )
@@ -368,7 +368,7 @@ int RoleSystem::CheckVisible(int a1)
           v29 += 3;
         }
         v31 = (_DWORD *)v2[2];
-        v32 = &v31[v28 / 0xFFFFFFFC];
+        v32 = (_DWORD *)&v31[v28 / 0xFFFFFFFC];
         if ( (_DWORD *)a1 != &v31[v28 / 0xFFFFFFFC] )
         {
           do
@@ -497,7 +497,7 @@ int RoleSystem::CheckVisible(int a1)
       while ( a1a );
     }
     v13 = (_DWORD *)v2[2];
-    v14 = &v10[3 * v4];
+    v14 = (_DWORD *)&v10[3 * v4];
     if ( (_DWORD *)a1 != v13 )
     {
       v15 = (_DWORD *)a1;
@@ -1239,7 +1239,7 @@ void RoleSystem::UpdateAnimation(int a2)
       }
       else
       {
-        v8 = PalScriptMgr::Destroy(*(_DWORD *)(*((_DWORD *)this + 348) + 264), 0);
+        v8 = (_DWORD *)PalScriptMgr::Destroy(*(_DWORD *)(*((_DWORD *)this + 348) + 264), 0);
         *((_DWORD *)this + 349) = v8;
         if ( v8 )
         {
@@ -1248,7 +1248,7 @@ void RoleSystem::UpdateAnimation(int a2)
           v9 = *((_DWORD *)this + 349);
           *((_DWORD *)this + 347) = 2;
           v23 = v9;
-          Instance = SoundContext::GetInstance();
+          Instance = (int *)SoundContext::GetInstance();
           CScreenMode_SetResolution(Instance, 0, v23);
         }
         else

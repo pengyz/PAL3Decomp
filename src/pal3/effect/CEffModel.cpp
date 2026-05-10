@@ -26,7 +26,7 @@ _DWORD * CEffModel::Render()
   *((_DWORD *)this + 11) = 0;
   *((_DWORD *)this + 3) = &off_56FA6C;
   *((_DWORD *)this + 18) = -1;
-  * this = (*)&off_56FA30;
+  *(_DWORD *)this = &off_56FA30;
   *((_DWORD *)this + 3) = &off_56FA24;
   *((_BYTE *)this + 48) = 0;
   *((_BYTE *)this + 49) = 0;
@@ -44,7 +44,7 @@ _DWORD * CEffModel::Render()
   *((_DWORD *)this + 41) = 0;
   *((_DWORD *)this + 1066) = 0;
   *((_DWORD *)this + 1067) = 0;
-  memset(this + 42, 0, 0x1000u);
+  memset(this + 168, 0, 0x1000u);
   return this;
 }
 
@@ -53,7 +53,7 @@ _DWORD *CEffModel::SetTimeScale()
 {
   _DWORD *v0; // eax
 
-  v0 = operator new(0x10B0u);
+  v0 = (_DWORD *)operator new(0x10B0u);
   if ( v0 )
     return v0->Render();
   else

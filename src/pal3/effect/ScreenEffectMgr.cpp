@@ -3,8 +3,8 @@
 #include "pal3/gen/ScreenEffectMgr.h"
 
 // Unnamed globals (extern)
-extern unsigned char byte_DE7DF8;
 extern unsigned char byte_DE7E90;
+extern int stru_DE7DF8;
 extern int unknown_libname_430;
 
 // 0x004BE4A0
@@ -36,8 +36,8 @@ void ScreenEffectMgr::Render()
         operator delete(*v5);
         if ( *(_DWORD *)&this->m_fadeIn[148] )
         {
-          v6 = *(int **)&this->m_fadeIn[120];
-          v7 = &this->m_fadeIn[108];
+          v6 = (int *)*(int **)&this->m_fadeIn[120];
+          v7 = (char *)&this->m_fadeIn[108];
           v8 = *v6;
           *(_DWORD *)v7 = *v6;
           *((_DWORD *)v7 + 1) = v8 + 4096;
@@ -51,7 +51,7 @@ void ScreenEffectMgr::Render()
           *(_DWORD *)&this->m_fadeIn[116] = 0;
           *(_DWORD *)&this->m_fadeIn[120] = 0;
           *(_DWORD *)&this->m_fadeIn[124] = 0;
-          v9 = *(void **)&this->m_fadeIn[140];
+          v9 = (void *)*(void **)&this->m_fadeIn[140];
           *(_DWORD *)&this->m_fadeIn[128] = 0;
           *(_DWORD *)&this->m_fadeIn[132] = 0;
           *(_DWORD *)&this->m_fadeIn[136] = 0;
@@ -68,8 +68,8 @@ _BYTE * ScreenEffectMgr::GetInstance()
   if ( (byte_DE7E90 & 1) == 0 )
   {
     byte_DE7E90 |= 1u;
-    byte_DE7DF8->ScreenEffect();
+    stru_DE7DF8->ScreenEffect();
     atexit(unknown_libname_430);
   }
-  return byte_DE7DF8;
+  return stru_DE7DF8;
 }

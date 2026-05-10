@@ -25,7 +25,7 @@ public:
 
     CEffectSystem(int a2); // 0x004C61A0
     ~CEffectSystem(); // 0x004C6240
-    _DWORD * Reset(_DWORD *Block, char a2); // 0x004C6260
+    _DWORD * Reset(CEffectSystem *Block, char a2); // 0x004C6260
     int Init(); // 0x004C6280
     char Destroy(int a2, int a3, int a4, int a5, int a6); // 0x004C6290
     static int GetEffectIndex(); // 0x004C6330

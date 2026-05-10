@@ -4,7 +4,6 @@
 
 // Forward declarations for unnamed functions
 int sub_504DD0(...);
-int sub_5052E0(...);
 
 // Unnamed globals (extern)
 extern char aBasedataCbdata_0[];
@@ -14,37 +13,37 @@ extern char aDProjectPal3Co_6[];
 extern int dword_17A990C;
 
 // 0x00504E70
-CCBStageCam::CCBStageCam(char *Buffer)
+CCBStageCam::CCBStageCam(CCBStageCam *Buffer)
 {
   FILE *v2; // esi
-  _DWORD *v3; // eax
+  float *p_yw; // eax
   int v4; // ecx
   char pExceptionObject[1024]; // [esp+8h] [ebp-800h] BYREF
-  char ArgList; // [esp+408h] [ebp-400h] BYREF
+  char ArgList[1024]; // [esp+408h] [ebp-400h] BYREF
 
-  v2 = fopen(aBasedataCbdata_0, Mode);
+  v2 = (FILE *)fopen(aBasedataCbdata_0, Mode);
   if ( !v2 )
   {
     qmemcpy(
       pExceptionObject,
-      (const void *)Logger::FormatException((char)&ArgList, (int)aCouldnTOpenCbC, (int)aDProjectPal3Co_6, 702),
+      (Logger *->FormatException()ArgList, aCouldnTOpenCbC, aDProjectPal3Co_6, 702),
       sizeof(pExceptionObject));
     _CxxThrowException(pExceptionObject, (_ThrowInfo *)&_TI1_AV_Exception__);
   }
-  v3 = Buffer + 176;
+  p_yw = (float *)&Buffer->ViewMatrix.yw;
   v4 = 2000;
   do
   {
-    v3[1] = 1112014848;
-    *v3 = 1112014848;
-    v3 += 51;
+    p_yw[1] = 50.0;
+    *p_yw = 50.0;
+    p_yw += 51;
     --v4;
   }
   while ( v4 );
   fseek(v2, 0, 0);
   fwrite(Buffer, 0x639C0u, 1u, v2);
-  fwrite(Buffer + 408000, 0x7D0u, 1u, v2);
-  fwrite(Buffer + 410000, 0x4E20u, 1u, v2);
+  fwrite((char *)Buffer + 408000, 0x7D0u, 1u, v2);
+  fwrite((char *)Buffer + 410000, 0x4E20u, 1u, v2);
   fclose(v2);
   return 1;
 }
@@ -60,7 +59,7 @@ CCBStageCam::~CCBStageCam(int _this)
 
   OpenBaseFile::OpenBaseFile(&v4);
   v7 = 0;
-  v2 = g_pVFileSys->OpenFile(aCbdataFlexcamD, 0x201u);
+  v2 = (struct gbVFile *)g_pVFileSys->OpenFile(aCbdataFlexcamD, 0x201u);
   if ( !v2 )
   {
     qmemcpy(
@@ -100,22 +99,22 @@ char CCBStageCam::Reset(int a2, const void *a3)
 // 0x005050D0
 char CCBStageCam::LoadEditorCam(int a2, int a3, const void *a4)
 {
-  int v5; // eax
-  int v7; // eax
+  int IsEditorCamValid; // eax
+  int IsCamValid; // eax
   _DWORD *v8; // edx
   int v9; // ecx
 
-  v5 = a2->IsEditorCamValid();
-  if ( a3 >= v5 )
+  IsEditorCamValid = this->IsEditorCamValid(a2);
+  if ( a3 >= IsEditorCamValid )
     return this->Reset(a2, a4);
-  if ( v5 >= 50 )
+  if ( IsEditorCamValid >= 50 )
     return 0;
-  v7 = this->IsCamValid();
-  if ( v7 == -1 )
+  IsCamValid = this->IsCamValid();
+  if ( IsCamValid == -1 )
     return 0;
   if ( a3 < 49 )
   {
-    v8 = this + 50 * a2 + 102549;
+    v8 = (_DWORD *)((char *)this + 200 * a2 + 410196);
     v9 = 49 - a3;
     do
     {
@@ -125,29 +124,29 @@ char CCBStageCam::LoadEditorCam(int a2, int a3, const void *a4)
     }
     while ( v9 );
   }
-  *(this + 50 * a2 + a3 + 102500) = v7;
-  *((_BYTE *)this + v7 + 408000) = 1;
-  qmemcpy(this + 51 * v7, a4, 0xCCu);
+  *((_DWORD *)this + 50 * a2 + a3 + 102500) = IsCamValid;
+  *((_BYTE *)this + IsCamValid + 408000) = 1;
+  qmemcpy((char *)this + 204 * IsCamValid, a4, 0xCCu);
   return 1;
 }
 
 // 0x00505180
 char CCBStageCam::SaveEditorCam(int a2, int a3, int a4)
 {
-  int v5; // eax
+  int IsEditorCamValid; // eax
   int v6; // eax
   int v7; // ecx
   int v8; // edx
   _DWORD *v9; // eax
 
-  v5 = a2->IsEditorCamValid();
-  if ( a3 >= v5 || a4 >= v5 || a3 == a4 )
+  IsEditorCamValid = this->IsEditorCamValid(a2);
+  if ( a3 >= IsEditorCamValid || a4 >= IsEditorCamValid || a3 == a4 )
     return 0;
   v6 = 10 * (5 * a2 + 10250);
   v7 = v6 + a3;
-  v8 = *(this + v6 + a3);
-  v9 = this + a4 + v6;
-  *(this + v7) = *v9;
+  v8 = *((_DWORD *)&this->fov + v6 + a3);
+  v9 = (_DWORD *)(&this->fov + a4 + v6);
+  *((_DWORD *)&this->fov + v7) = *v9;
   *v9 = v8;
   return 1;
 }
@@ -159,10 +158,10 @@ char CCBStageCam::AddCurCamToEditor(int a2, int a3)
   _DWORD *v6; // eax
   int v7; // edx
 
-  if ( a3 >= a2->IsEditorCamValid() )
+  if ( a3 >= this->IsEditorCamValid(a2) )
     return 0;
   v5 = 10 * (5 * a2 + 10250);
-  *(this + *((_DWORD *)this + v5 + a3) + 408000) = 0;
+  *((_BYTE *)this + *((_DWORD *)&this->fov + v5 + a3) + 408000) = 0;
   if ( a3 == 49 )
   {
     *((_DWORD *)this + 50 * a2 + 102549) = -1;
@@ -172,7 +171,7 @@ char CCBStageCam::AddCurCamToEditor(int a2, int a3)
   {
     if ( a3 < 49 )
     {
-      v6 = this + 4 * v5 + 4 * a3;
+      v6 = (_DWORD *)(&this->fov + v5 + a3);
       v7 = 49 - a3;
       do
       {
@@ -194,12 +193,12 @@ char CCBStageCam::DelEditorCam(int a2)
   int v4; // esi
 
   v2 = 50;
-  v3 = (int *)(this + 200 * a2 + 410000);
+  v3 = (int *)((char *)this + 200 * a2 + 410000);
   do
   {
     v4 = *v3++;
     --v2;
-    *(this + v4 + 408000) = 0;
+    *((_BYTE *)this + v4 + 408000) = 0;
     *(v3 - 1) = -1;
   }
   while ( v2 );
@@ -234,7 +233,7 @@ int CCBStageCam::IsCamValid()
   int result; // eax
 
   result = 0;
-  while ( *(this + result + 408000) )
+  while ( *((_BYTE *)this + result + 408000) )
   {
     if ( ++result >= 2000 )
       return -1;
@@ -244,7 +243,7 @@ int CCBStageCam::IsCamValid()
 
 // 0x005052E0
 // likely std method (near _Freeze, _Split, max_size, allocator<char>>, _Xran)
-_DWORD *sub_5052E0(_DWORD *this, int **a2, int a3)
+_DWORD *CCBStageCam::SetCamPos(CCBStageCam *this, int **a2, int a3)
 {
   int v4; // eax
 
@@ -270,7 +269,7 @@ _DWORD *sub_5052E0(_DWORD *this, int **a2, int a3)
   *((_DWORD *)this + 107534) = 0;
   *((_DWORD *)this + 107535) = 0;
   *((_DWORD *)this + 107536) = 0;
-  (gbMatrix4 *->gbMatrix4()(this + 107537));
+  (gbMatrix4 *->gbMatrix4()((char *)this + 430148));
   *((_DWORD *)this + 107557) = 0;
   *((_DWORD *)this + 107558) = 0;
   *((_DWORD *)this + 107559) = 0;
@@ -282,7 +281,7 @@ _DWORD *sub_5052E0(_DWORD *this, int **a2, int a3)
   v4 = **a2;
   *((_DWORD *)this + 107509) = -1;
   *((_DWORD *)this + 107502) = v4;
-  return this;
+  return (_DWORD *)&this->fov;
 }
 
 // 0x00505410
@@ -312,7 +311,7 @@ char CCBStageCam::Destroy()
 {
   CCBStageCam::Create((int)this);
   CCBStageCam::~CCBStageCam((int)this);
-  this->Destroy();
+  (CCCTData *->Destroy()this);
   return 1;
 }
 
@@ -341,34 +340,30 @@ char CCBStageCam::Update()
 void CCBStageCam::DoTask(int _this)
 {
   int v2; // eax
-  void *v3; // ecx
+  CCCTData *v3; // ecx
   double v4; // st7
   int v5; // eax
-  char *v6; // ecx
-  float *v7; // eax
+  CameraCtrl *v6; // ecx
+  float *ViewTarget; // eax
   float v8; // edx
   double v9; // st7
   char v10; // al
   double v11; // st7
   double v12; // st6
-  float v13; // eax
+  float z; // eax
   double v14; // st6
   float v15; // edx
-  int v16; // [esp+Ch] [ebp-54h] BYREF
+  float pPos; // [esp+Ch] [ebp-54h] BYREF
   int v17; // [esp+10h] [ebp-50h]
   int v18; // [esp+14h] [ebp-4Ch]
-  float v19[3]; // [esp+18h] [ebp-48h] BYREF
-  float v20[2]; // [esp+24h] [ebp-3Ch] BYREF
-  float v21; // [esp+2Ch] [ebp-34h]
-  float v22; // [esp+30h] [ebp-30h] BYREF
-  int v23; // [esp+34h] [ebp-2Ch]
-  float v24; // [esp+38h] [ebp-28h]
-  float v25[3]; // [esp+3Ch] [ebp-24h] BYREF
-  _BYTE v26[24]; // [esp+48h] [ebp-18h] BYREF
+  struct gbVec3D v19; // [esp+18h] [ebp-48h] BYREF
+  struct gbVec3D v20; // [esp+24h] [ebp-3Ch] BYREF
+  gbRay v21; // [esp+30h] [ebp-30h] BYREF
+  _BYTE pTarget[24]; // [esp+48h] [ebp-18h] BYREF
 
   *(_DWORD *)(*(_DWORD *)(this + 430004) + 448) = 0;
   if ( *(_BYTE *)(this + 430012) )
-    CCCTData::Init();
+    this->Init();
   if ( *(float *)(this + 430076) <= 0.0 )
   {
     *(_DWORD *)(this + 430076) = 0;
@@ -376,67 +371,65 @@ void CCBStageCam::DoTask(int _this)
   else
   {
     v2 = *(_DWORD *)(this + 430000);
-    v16 = *(_DWORD *)(this + 430116);
-    v3 = *(void **)(this + 430004);
+    pPos = *(float *)(this + 430116);
+    v3 = (CCCTData *)*(CCCTData **)(this + 430004);
     v4 = *(float *)(this + 430076) - *(double *)(*(_DWORD *)v2 + 64) * *(float *)(this + 430080);
     *(float *)(this + 430076) = v4;
     *(float *)(this + 430116) = sin(*(float *)(*(_DWORD *)v2 + 80) * *(float *)(this + 430084)) * v4
                               + *(float *)(this + 430116);
-    v3->UpdateCamera((int *)(this + 430112));
-    CameraCtrl::SetAsCurrent(*(_DWORD *)(this + 430004), 3);
-    *(_DWORD *)(this + 430116) = v16;
+    v3->UpdateCamera(this + 430112);
+    CameraCtrl::SetAsCurrent(*(CameraCtrl **)(this + 430004), 3);
+    *(float *)(this + 430116) = pPos;
   }
   if ( dword_17A990C == 4 )
   {
-    this->SwitchEditorCamPos();
+    (CCBStageCam **->SwitchEditorCamPos()this);
     this->ProcCamMove();
-    v20[1] = 1.0;
+    v20.y = 1.0;
     v17 = 0;
-    v20[0] = 0.0;
-    v21 = 0.0;
-    v16 = 1065353216;
+    v20.x = 0.0;
+    v20.z = 0.0;
+    pPos = 1.0;
     v18 = 1065353216;
-    v19[1] = 0.0;
-    v19[0] = 1.0;
-    v19[2] = 1.0;
-    v22 = 0.0;
-    v23 = 0;
-    v24 = 0.0;
-    (gbVec3D *->gbVec3D()v25, 0.0, 0.0, 0.0);
+    v19.y = 0.0;
+    v19.x = 1.0;
+    v19.z = 1.0;
+    memset(&v21, 0, 12);
+    gbVec3D::gbVec3D(&v21.Direction, 0.0, 0.0, 0.0);
     v5 = *(_DWORD *)(this + 430000);
-    v16 = *(_DWORD *)(v5 + 80);
-    v6 = *(char **)(this + 430004);
+    pPos = *(float *)(v5 + 80);
+    v6 = (CameraCtrl *)*(CameraCtrl **)(this + 430004);
     v17 = *(_DWORD *)(v5 + 84);
-    v7 = (float *)v6->GetViewTarget(v26, &v16);
-    v8 = *v7;
-    v7 += 3;
-    v22 = v8;
-    v23 = *((_DWORD *)v7 - 2);
-    v24 = *(v7 - 1);
-    gbVec3D::operator=(v25, v7);
-    v9 = (gbRay *->IntersectPlane()&v22, (struct gbVec3D *)v20, (struct gbVec3D *)v19);
+    ViewTarget = (float *)v6->GetViewTarget(pTarget, &pPos);
+    v8 = *ViewTarget;
+    ViewTarget += 3;
+    v21.Origin.x = v8;
+    v21.Origin.y = *(ViewTarget - 2);
+    v21.Origin.z = *(ViewTarget - 1);
+    gbVec3D::operator=(&v21.Direction, ViewTarget);
+    v9 = gbRay::IntersectPlane(&v21, &v20, &v19);
     v10 = *(_BYTE *)(this + 430253);
-    v20[0] = v25[0] * v9;
-    v19[0] = v20[0] + v22;
-    v11 = v9 * v25[2] + v24;
+    v20.x = v21.Direction.x * v9;
+    v19.x = v20.x + v21.Origin.x;
+    v11 = v9 * v21.Direction.z + v21.Origin.z;
     if ( v10 )
     {
-      v12 = (double)MEMORY[0xBFC1A8] * 0.1 + *(float *)(this + 430232);
+      v12 = (double)g_Input.m_keyDragStartPositions[1][202] * 0.1 + *(float *)(this + 430232);
       *(float *)(this + 430232) = v12;
-      v20[0] = v19[0];
-      v21 = v11;
-      v13 = v21;
-      *(float *)(this + 430228) = v19[0];
+      v20.x = v19.x;
+      v20.z = v11;
+      z = v20.z;
+      *(float *)(this + 430228) = v19.x;
       *(float *)(this + 430232) = v12;
-      *(float *)(this + 430236) = v13;
+      *(float *)(this + 430236) = z;
     }
     if ( *(_BYTE *)(this + 430254) )
     {
-      v14 = (double)MEMORY[0xBFC1A8] * 0.1 + *(float *)(this + 430244);
+      v14 = (double)g_Input.m_keyDragStartPositions[1][202] * 0.1 + *(float *)(this + 430244);
       *(float *)(this + 430244) = v14;
-      v21 = v11;
-      v15 = v21;
-      *(float *)(this + 430240) = v19[0];
+      v20.z = v11;
+      v15 = v20.z;
+      *(float *)(this + 430240) = v19.x;
       *(float *)(this + 430244) = v14;
       *(float *)(this + 430248) = v15;
     }
@@ -520,7 +513,7 @@ int CCBStageCam::ProcCamMove(int _this)
 }
 
 // 0x005058E0
-int CCBStageCam::SwitchEditorCamPos(_DWORD **this)
+int CCBStageCam::SwitchEditorCamPos(CCBStageCam **this)
 {
-  return (*(int (**)(_DWORD))(**((_DWORD *)this + 107556) + 20))(*((_DWORD *)this + 107556));
+  return (*(int (**)(_DWORD))(LODWORD((*((_DWORD *)this + 107556))->fov) + 20))(*((_DWORD *)this + 107556));
 }

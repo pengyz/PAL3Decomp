@@ -87,7 +87,7 @@ public:
     int ProcShowEnemyFiveLineup(); // 0x004FE540
     int ProcFiveLienupFadeIn(int a2); // 0x004FE550
     int ProcFiveLienupFadeOut(int a2); // 0x004FE600
-    int ProcShowSneakAttackState(int a2); // 0x004FE660
+    int ProcShowSneakAttackState(int _74); // 0x004FE660
     int HandleKeyCtrl(int a2); // 0x004FECE0
     int HandleKeyFriend(int a2); // 0x004FEE60
     int ProcShowName(int a2); // 0x004FEFB0

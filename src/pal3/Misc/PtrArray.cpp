@@ -10,29 +10,28 @@ int sub_4348E0(...);
 int sub_5372D0(...);
 
 // Unnamed globals (extern)
-extern int dword_D8C348;
-extern int dword_D8C34C;
 extern int dword_D8C360;
 extern int dword_D8C364;
 extern int dword_D8E468;
 extern int dword_D8E46C;
+extern int stru_D8C348;
 
 // 0x00432660
 _DWORD * PtrArray::Clear()
 {
-  *this = 0;
-  *((_DWORD *)this + 2) = 0;
-  *((_DWORD *)this + 1) = 0;
-  *((_DWORD *)this + 3) = 32;
-  return this;
+  this->m_pData = 0;
+  this->m_nMaxSize = 0;
+  this->m_nSize = 0;
+  this->m_nGrowBy = 32;
+  return &this->m_pData;
 }
 
 // 0x00432770
 void PtrArray::SetAt(int a2, int a3)
 {
-  if ( a2 >= *((_DWORD *)this + 1) )
+  if ( a2 >= this->m_nSize )
     sub_4326A0((int)this, a2 + 1, -1);
-  *(_DWORD *)(*this + 4 * a2) = a3;
+  *((_DWORD *)this->m_pData + a2) = a3;
 }
 
 // 0x004327B0
@@ -41,11 +40,11 @@ int PtrArray::InsertAt(int a2, int a3)
   int v4; // eax
   int result; // eax
 
-  v4 = *((_DWORD *)this + 1) - a2 - a3;
+  v4 = this->m_nSize - a2 - a3;
   if ( v4 )
-    memcpy((void *)(*this + 4 * a2), (const void *)(*this + 4 * (a2 + a3)), 4 * v4);
-  result = *((_DWORD *)this + 1) - a3;
-  *((_DWORD *)this + 1) = result;
+    memcpy((char *)this->m_pData + 4 * a2, (char *)this->m_pData + 4 * a2 + 4 * a3, 4 * v4);
+  result = this->m_nSize - a3;
+  this->m_nSize = result;
   return result;
 }
 
@@ -125,15 +124,15 @@ void PtrArray::SetSize()
   int i; // [esp+Ch] [ebp-8h]
   int v9; // [esp+10h] [ebp-4h]
 
-  v0 = dword_D8C34C;
+  v0 = MEMORY[0xD8C34C];
   v1 = 0;
-  v9 = dword_D8C34C;
+  v9 = MEMORY[0xD8C34C];
   for ( i = 0; v1 < v0; i = v1 )
   {
-    if ( v1 < 0 || v1 >= dword_D8C34C )
+    if ( v1 < 0 || v1 >= MEMORY[0xD8C34C] )
       v2 = 0;
     else
-      v2 = *(void ***)(dword_D8C348 + 4 * v1);
+      v2 = *(void ***)(stru_D8C348 + 4 * v1);
     if ( *v2 )
     {
       if ( *((_WORD *)*v2 + 38) )
@@ -184,7 +183,7 @@ void PtrArray::SetSize()
     free(v2);
     ++v1;
   }
-  sub_4326A0((int)&dword_D8C348, 0, -1);
+  sub_4326A0((int)&stru_D8C348, 0, -1);
   dword_D8C360 = -1;
   memset(dword_D8C364, 0, 0x100u);
   dword_D8E468 = 0;
@@ -249,7 +248,7 @@ struct gbVFile * PtrArray::InsertAt(int _this, const char *a2)
   int v9; // [esp+29h] [ebp-7h]
 
   sub_434670(this);
-  result = g_pVFileSys->OpenFile(a2, 0x201u);
+  result = (struct gbVFile *)g_pVFileSys->OpenFile(a2, 0x201u);
   *(_DWORD *)this = result;
   if ( result )
   {

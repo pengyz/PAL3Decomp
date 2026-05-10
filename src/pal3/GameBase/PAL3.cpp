@@ -167,8 +167,6 @@ extern void *off_583A1C;
 extern void *off_586180;
 extern int stru_BFAB60;
 extern int unk_8ACBF0;
-extern int unk_A3A6F8;
-extern int unk_A3A750;
 
 // 0x00404760
 PAL3::PAL3()
@@ -182,10 +180,10 @@ PAL3::PAL3()
   g_pUIManager = 0;
   g_pEffMgr = 0;
   v0 = g_nGameFlags;
-  g_pCursorNode1 = 0;
+  MEMORY[0xA3A6EC] = 0;
   LOBYTE(v0) = g_nGameFlags & 0xF4 | 3;
   g_nGameFlags = v0;
-  g_pCursorNode2 = 0;
+  MEMORY[0xA3A6F0] = 0;
   return &unk_8ACBF0;
 }
 
@@ -250,7 +248,7 @@ struct gbVFileSystem * PAL3::Create@<eax>(char *a1@<edi>, HINSTANCE hInstance)
   PalScript::LoadFromFile(&stru_BFAB60, filename);
   (PalScript *->LoadScript()(&g_PAL3Data + 312), (int)aDatascriptLang);
   (PalScript *->SetAppName()(&g_PAL3Data + 312), aAppname);
-  Instance = CScreenMode::GetInstance();
+  Instance = (char *)CScreenMode::GetInstance();
   (CScreenMode *->SetMode()Instance, v31);
   CursorA = LoadCursorA(hInstance, (LPCSTR)0x73);
   v5 = MEMORY[0xBFD774];
@@ -267,7 +265,7 @@ struct gbVFileSystem * PAL3::Create@<eax>(char *a1@<edi>, HINSTANCE hInstance)
   }
   GRPinput::SetMouseLimits(&g_Input, 0, 0, MEMORY[0xBFD6D0], MEMORY[0xBFD6D4]);
   GRPinput::SetMode(&g_Input, 0x40000000);
-  (CScreenMode *->InitCPK()&g_DisplayConfig, 0, 1);
+  (CScreenMode *->InitCPK()&MEMORY[0xA3A7D8], 0, 1);
   memset(pParams, 0, sizeof(pParams));
   (CameraCtrl *->InitParams()g_pCamera, pParams);
   if ( !g_GDB->PAL_GDB() )
@@ -280,7 +278,7 @@ struct gbVFileSystem * PAL3::Create@<eax>(char *a1@<edi>, HINSTANCE hInstance)
   }
   (PAL_GDB *->LoadLanguage()(&g_PAL3Data + 328), path);
   PAL3::InitSubsystems();
-  v6 = UIQuadManager::GetInstance();
+  v6 = (_BYTE *)UIQuadManager::GetInstance();
   UIRenderQuadList(v6);
   (UIManager *->LoadShadowTexture()&g_SceneMgr.?[5].?.normal[220].y);
   (Logger *->RegisterCallbacks()g_Logger);
@@ -331,7 +329,7 @@ struct gbVFileSystem * PAL3::Create@<eax>(char *a1@<edi>, HINSTANCE hInstance)
   {
     if ( byte_5833C0 )
       (CGameData *->Init()&g_GameData);
-    v17 = CRenderTarget::GetInstance();
+    v17 = (_DWORD *)CRenderTarget::GetInstance();
     v17->Create();
     v18 = (RenderTarget3 *)RenderTarget3::GetInstance();
     v18->Init();
@@ -339,7 +337,7 @@ struct gbVFileSystem * PAL3::Create@<eax>(char *a1@<edi>, HINSTANCE hInstance)
     v19->Init();
     v20 = (RenderTarget4 *)RenderTarget4::GetInstance();
     v20->Init();
-    v21 = CEffectSystem::DestroyAllEffect();
+    v21 = (void *)CEffectSystem::DestroyAllEffect();
     CEffectSystem::IsVisible((int)v21);
     PAL3::GetCommandLineParam();
   }
@@ -347,7 +345,7 @@ struct gbVFileSystem * PAL3::Create@<eax>(char *a1@<edi>, HINSTANCE hInstance)
   {
     (CGameData *->Init()&g_GameData);
     CGameData_Load((int)&g_GameData, 4);
-    v12 = CRenderTarget::GetInstance();
+    v12 = (_DWORD *)CRenderTarget::GetInstance();
     v12->Create();
     v13 = (RenderTarget3 *)RenderTarget3::GetInstance();
     v13->Init();
@@ -355,7 +353,7 @@ struct gbVFileSystem * PAL3::Create@<eax>(char *a1@<edi>, HINSTANCE hInstance)
     v14->Init();
     v15 = (RenderTarget4 *)RenderTarget4::GetInstance();
     v15->Init();
-    v16 = CEffectSystem::DestroyAllEffect();
+    v16 = (void *)CEffectSystem::DestroyAllEffect();
     CEffectSystem::IsVisible((int)v16);
   }
   (*(void (__stdcall **)(_DWORD, char *))(**(_DWORD **)&g_pGfxManager[1816] + 28))(
@@ -380,7 +378,7 @@ struct gbVFileSystem * PAL3::Create@<eax>(char *a1@<edi>, HINSTANCE hInstance)
     v24 = 0;
   }
   LOBYTE(v38) = 2;
-  g_pCursorNode1 = v24;
+  MEMORY[0xA3A6EC] = v24;
   v24->LoadFromFile(aObjectG02Cvd, 0, 0);
   v25 = (struct gbVFileSystem *)operator new(0x118u);
   v26 = v25;
@@ -397,13 +395,13 @@ struct gbVFileSystem * PAL3::Create@<eax>(char *a1@<edi>, HINSTANCE hInstance)
     v27 = 0;
   }
   LOBYTE(retaddr) = 2;
-  g_pCursorNode2 = v27;
+  MEMORY[0xA3A6F0] = v27;
   v27->LoadFromFile(aObjectG03Cvd, 0, 0);
-  (CScreenMode *->CreateDevice()&g_DisplayConfig, (int)aMovieLogoBik, (int)MEMORY[0xBFDA4C], 0, 0);
-  v30 = (600 - (CScreenMode *->GetHeight()&g_DisplayConfig)) / 2;
-  Width = (CScreenMode *->GetWidth()&g_DisplayConfig);
-  (CScreenMode *->SetViewport()&g_DisplayConfig, (800 - Width) / 2, v30);
-  (CScreenMode *->PlayVideo()&g_DisplayConfig, 1);
+  (CScreenMode *->CreateDevice()&MEMORY[0xA3A7D8], (int)aMovieLogoBik, (int)MEMORY[0xBFDA4C], 0, 0);
+  v30 = (600 - (CScreenMode *->GetHeight()&MEMORY[0xA3A7D8])) / 2;
+  Width = (CScreenMode *->GetWidth()&MEMORY[0xA3A7D8]);
+  (CScreenMode *->SetViewport()&MEMORY[0xA3A7D8], (800 - Width) / 2, v30);
+  (CScreenMode *->PlayVideo()&MEMORY[0xA3A7D8], 1);
   v38 = -1;
   return OpenNULLFile::OpenNULLFile(&v32);
 }
@@ -432,7 +430,7 @@ void PAL3::InitGFX()
   v0 = (gbActorMgr *)operator new(0xCu);
   v7 = 0;
   if ( v0 )
-    v1 = v0->gbActorMgr((struct gbGfxManager *)g_pGfxManager);
+    v1 = (gbActorMgr *)v0->gbActorMgr((struct gbGfxManager *)g_pGfxManager);
   else
     v1 = 0;
   v7 = -1;
@@ -502,7 +500,7 @@ void PAL3::InitGFX()
   v3[16].RefCount = 1092616192;
   v3[15].RefCount = 1092616192;
   v3[6].RefCount = 1065353216;
-  (gbVolModNode *->SetVolModObj()&unk_A3A6F8, (struct gbVolumeModifier *)v3);
+  (gbVolModNode *->SetVolModObj()&MEMORY[0xA3A6F8], (struct gbVolumeModifier *)v3);
   v3->Release();
 }
 
@@ -687,8 +685,8 @@ int PAL3::Update(float a1)
     case 2:
     case 9:
       MEMORY[0xBFDA5C] = MEMORY[0xBFDA5C] + a1;
-      (*(void (**)(int))(*(_DWORD *)g_pCursorNode1 + 20))(g_pCursorNode1);
-      (*(void (**)(int))(*(_DWORD *)g_pCursorNode2 + 20))(g_pCursorNode2);
+      (*(void (**)(int))(*(_DWORD *)MEMORY[0xA3A6EC] + 20))(MEMORY[0xA3A6EC]);
+      (*(void (**)(int))(*(_DWORD *)MEMORY[0xA3A6F0] + 20))(MEMORY[0xA3A6F0]);
       CRenderTarget2::GetInstance();
       CRenderTarget2_Update(a1);
       PalScriptMgr::RunSceneScript(LODWORD(a1));
@@ -825,7 +823,7 @@ LABEL_63:
         CameraUpdate_Internal(a1);
       v9 = (float *)MEMORY[0xC116EC];
       v10 = 1;
-      v11 = &MEMORY[0xC0816C];
+      v11 = (float *)&MEMORY[0xC0816C];
       while ( 1 )
       {
         if ( *((_DWORD *)v11 + 155) )
@@ -951,14 +949,14 @@ int PAL3::Render()
       v1->End();
       v2 = CRenderTarget2::GetInstance();
       v2->Begin();
-      v3 = *(gbSceneGraph **)(g_pGfxManager + 448);
+      v3 = (gbSceneGraph *)*(gbSceneGraph **)(g_pGfxManager + 448);
       if ( g_pCamera )
         v4 = (struct gbCamera *)(g_pCamera + 4);
       else
         v4 = 0;
       v3->Begin(v4);
       v5 = UIScene::CombatCheck();
-      v6 = *(gbMatrixStack **)(g_pGfxManager + 216);
+      v6 = (gbMatrixStack *)*(gbMatrixStack **)(g_pGfxManager + 216);
       CameraCtrl::SetAsCurrent(3);
       v26[0] = 1065353216;
       v26[1] = 0;
@@ -991,12 +989,12 @@ int PAL3::Render()
         v30[2] = 0;
         (gbQuaternion *->SetAxisAngle()v32, (struct gbVec3D *)v30, 90.0);
         (gbQuaternion *->MultiplyBy()v32, (struct gbQuaternion *)v31, (struct gbQuaternion *)v34);
-        (gbQuaternion *->GetMatrix()v34, (struct gbMatrix4 *)&unk_A3A750);
-        (gbVolModNode *->Attach()&unk_A3A6F8, 0);
+        (gbQuaternion *->GetMatrix()v34, (struct gbMatrix4 *)&MEMORY[0xA3A750]);
+        (gbVolModNode *->Attach()&MEMORY[0xA3A6F8], 0);
       }
       if ( dword_D8E488 == 2 )
       {
-        Top = v6->GetTop();
+        Top = (gbMatrix4 *)v6->GetTop();
         Top->TransformPlane();
         (*(void (**)(int, int *))(*(_DWORD *)g_pGfxManager + 112))(g_pGfxManager, &dword_D8E488);
       }
@@ -1242,10 +1240,10 @@ void PAL3::CheckSystemRequire(char *a1@<edi>, char *a2@<esi>, HINSTANCE hInstanc
   int v18; // [esp+1158h] [ebp-4h]
 
   v18 = -1;
-  ExceptionList = NtCurrentTeb()->NtTib.ExceptionList;
-  v17 = &loc_55F21B;
+  ExceptionList = (struct _EXCEPTION_REGISTRATION_RECORD *)NtCurrentTeb()->NtTib.ExceptionList;
+  v17 = (void *)&loc_55F21B;
   v16 = ExceptionList;
-  v4 = alloca(4432);
+  v4 = (void *)alloca(4432);
   strcpy(ClassName, "PAL3--SOFTSTAR.sh");
   WndClass.style = 32;
   WndClass.lpfnWndProc = WinProc;
@@ -1658,14 +1656,14 @@ LABEL_8:
         Image = (gbImage2D *->CreateImage()&v30, v23, v24, v0);
         v31 = 0;
         v2 = v0 * v25 / 8;
-        v3 = &Image[v2 * (v26 - 1)];
+        v3 = (unsigned __int8 *)&Image[v2 * (v26 - 1)];
         v4 = v29;
         if ( v26 > 0 )
         {
           do
           {
             qmemcpy(v3, v4, 4 * (v2 >> 2));
-            v5 = &v3[4 * (v2 >> 2)];
+            v5 = (unsigned __int8 *)&v3[4 * (v2 >> 2)];
             v3 -= v2;
             qmemcpy(v5, &v4[4 * (v2 >> 2)], v2 & 3);
             v4 += v28;
@@ -1726,12 +1724,12 @@ LABEL_8:
                   * v6 = (*)8 * v15;
                   LOWORD(v15) = *((_WORD *)v7 - 1);
                   v17 = (unsigned int)v15 >> 2;
-                  v18 = v6 + 1;
+                  v18 = (_BYTE *)v6 + 1;
                   * v18 = (*)v17 & 0xF8;
                   LOWORD(v17) = *((_WORD *)v7 - 1);
                   *++v18 = (v17 >> 7) & 0xF8;
                   v15 = v23;
-                  v6 = v18 + 1;
+                  v6 = (unsigned __int8 *)v18 + 1;
                   ++v16;
                 }
                 while ( v16 < v23 );
@@ -1758,11 +1756,11 @@ LABEL_8:
                   v7 += 2;
                   * v6 = (*)8 * v20;
                   LOWORD(v20) = *((_WORD *)v7 - 1);
-                  v22 = v6 + 1;
+                  v22 = (_BYTE *)v6 + 1;
                   *v22++ = ((unsigned int)v20 >> 3) & 0xFC;
                   * v22 = (*)*(v7 - 1) & 0xF8;
                   v20 = v23;
-                  v6 = v22 + 1;
+                  v6 = (unsigned __int8 *)v22 + 1;
                   ++v21;
                 }
                 while ( v21 < v23 );
@@ -1848,7 +1846,7 @@ int PAL3::EndWolf(int a1)
   _DWORD v6[5]; // [esp+0h] [ebp-14h]
   void *retaddr; // [esp+14h] [ebp+0h]
 
-  v1 = &MEMORY[0xC08650];
+  v1 = (_DWORD *)&MEMORY[0xC08650];
   do
   {
     RoleSystemNotify(v1 - 316);
@@ -1939,7 +1937,7 @@ int PAL3::StartCombat(int a1, int a2, int a3, char a4)
   int v20; // [esp+118h] [ebp-4h]
 
   v20 = 0;
-  v19 = &v17;
+  v19 = (int *)&v17;
   result = PAL3::UIPostProcess();
   v5 = MEMORY[0xC116EC];
   if ( MEMORY[0xC116EC] )
@@ -2347,7 +2345,7 @@ int PAL3::FullInit()
   v164[3] = &dword_586190;
   v164[4] = dword_58618C;
   v145 = 0;
-  v2 = &g_SceneMgr.m_info[7294];
+  v2 = (char *)&g_SceneMgr.m_info[7294];
   v3 = v164;
   do
   {
@@ -3136,7 +3134,7 @@ int PAL3::FullInit()
   pConfig = 4501;
   v162 = 0;
   v163 = g_GDB->GDB_GetRoleNum(4501);
-  v115 = *(int **)&g_SceneMgr.m_info[8];
+  v115 = (int *)*(int **)&g_SceneMgr.m_info[8];
   if ( (*(_DWORD *)&g_SceneMgr.m_info[12] - *(_DWORD *)&g_SceneMgr.m_info[8]) / 12 )
   {
     Array::Insert(
@@ -3185,7 +3183,7 @@ LABEL_148:
   pConfig = 306;
   v162 = 2949123;
   v163 = g_GDB->GDB_GetRoleNum(306);
-  v123 = *(int **)&g_SceneMgr.m_info[8];
+  v123 = (int *)*(int **)&g_SceneMgr.m_info[8];
   if ( (*(_DWORD *)&g_SceneMgr.m_info[12] - *(_DWORD *)&g_SceneMgr.m_info[8]) / 12 )
   {
     Array::Insert(
@@ -3222,7 +3220,7 @@ LABEL_148:
     if ( v125 + v124 < 0 )
       v126 = 0;
     v127 = operator new(12 * v126);
-    v128 = *(char **)&g_SceneMgr.m_info[4];
+    v128 = (char *)*(char **)&g_SceneMgr.m_info[4];
     v159 = v127;
     for ( mm = v127; v128 != (char *)v123; mm += 12 )
     {
@@ -3241,7 +3239,7 @@ LABEL_148:
   pConfig = 307;
   v162 = 983043;
   v163 = g_GDB->GDB_GetRoleNum(307);
-  v133 = *(int **)&g_SceneMgr.m_info[8];
+  v133 = (int *)*(int **)&g_SceneMgr.m_info[8];
   if ( (*(_DWORD *)&g_SceneMgr.m_info[12] - *(_DWORD *)&g_SceneMgr.m_info[8]) / 12 )
   {
     Array::Insert(
@@ -3278,7 +3276,7 @@ LABEL_148:
     if ( v135 + v134 < 0 )
       v136 = 0;
     v137 = operator new(12 * v136);
-    v138 = *(char **)&g_SceneMgr.m_info[4];
+    v138 = (char *)*(char **)&g_SceneMgr.m_info[4];
     v158 = v137;
     for ( i1 = v137; v138 != (char *)v133; i1 += 12 )
     {

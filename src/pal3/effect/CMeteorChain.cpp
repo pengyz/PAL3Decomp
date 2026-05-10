@@ -11,7 +11,7 @@ CMeteorChain::CMeteorChain()
   _DWORD *v2; // esi
   void *v3; // eax
 
-  v2 = *(_DWORD **)&this->m_pEM[20];
+  v2 = (_DWORD *)*(_DWORD **)&this->m_pEM[20];
   while ( v2 )
   {
     v3 = v2;
@@ -25,25 +25,25 @@ CMeteorChain::CMeteorChain()
 // 0x004CD7E0
 int CMeteorChain::Update(int a2, int a3, int a4, _DWORD *a5, int a6, int a7)
 {
-  int v8; // ecx
+  float m_fLastTime; // ecx
   int v9; // esi
-  int v10; // edx
-  _BYTE *i; // eax
-  _DWORD *v13; // edx
+  gbTexture *v10; // edx
+  __int32 *i; // eax
+  int *v13; // edx
   unsigned int v14; // eax
   _DWORD *v15; // edx
 
-  v8 = *((_DWORD *)this + 8);
+  m_fLastTime = this->m_fLastTime;
   v9 = 0;
-  if ( v8 <= 0 )
+  if ( SLODWORD(m_fLastTime) <= 0 )
     return -1;
-  v10 = *(_DWORD *)(*((_DWORD *)this + 3) + 152 * a2);
-  for ( i = (_BYTE *)(v10 + 64); *i; i += 72 )
+  v10 = (gbTexture *)this->m_pTextureArray->pTexPt[38 * a2];
+  for ( i = &v10->InFmt.r_mask; *(_BYTE *)i; i += 18 )
   {
-    if ( ++v9 >= v8 )
+    if ( ++v9 >= SLODWORD(m_fLastTime) )
       return -1;
   }
-  v13 = (_DWORD *)(v10 + 72 * v9);
+  v13 = (int *)&v10->RefCount + 18 * v9;
   memset(v13, 0, 0x48u);
   *((_BYTE *)v13 + 65) = 0;
   *((_BYTE *)v13 + 64) = 1;
@@ -62,12 +62,12 @@ int CMeteorChain::Update(int a2, int a3, int a4, _DWORD *a5, int a6, int a7)
   v13[6] = a7;
   if ( a5 )
   {
-    v15 = v13 + 7;
+    v15 = (_DWORD *)v13 + 7;
     * v15 = (*)*a5;
     v15[1] = a5[1];
     v15[2] = a5[2];
     v15[3] = a5[3];
   }
-  ++*(_DWORD *)(*((_DWORD *)this + 3) + 152 * a2 + 4);
+  ++this->m_pTextureArray->pTexPt[38 * a2 + 1];
   return v9;
 }

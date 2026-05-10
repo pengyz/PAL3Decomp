@@ -268,7 +268,7 @@ void CEffExplosive::Destroy(int _this)
     if ( *(_BYTE *)(this + 66) )
     {
       v3 = v2 == 0;
-      v4 = *(_DWORD **)(this + 4);
+      v4 = (_DWORD *)*(_DWORD **)(this + 4);
       if ( v3 )
         v5 = (struct gbRenderEffect *)v4[3];
       else
@@ -277,13 +277,13 @@ void CEffExplosive::Destroy(int _this)
     else
     {
       v3 = v2 == 0;
-      v4 = *(_DWORD **)(this + 4);
+      v4 = (_DWORD *)*(_DWORD **)(this + 4);
       if ( v3 )
         v5 = (struct gbRenderEffect *)v4[5];
       else
         v5 = (struct gbRenderEffect *)v4[4];
     }
-    v6 = *(gbMatrixStack **)(*v4 + 216);
+    v6 = (gbMatrixStack *)*(gbMatrixStack **)(*v4 + 216);
     v6->Push();
     v7 = *(float *)(this + 176) + *(float *)(this + 164);
     retaddr = v7;
@@ -302,7 +302,7 @@ void CEffExplosive::Destroy(int _this)
 }
 
 // 0x004C7680
-int CEffExplosive::ProcCommonTask(int _this, int a2)
+int CEffExplosive::ProcCommonTask(int _this, int _94)
 {
   double v3; // st7
   int v4; // edi
@@ -311,29 +311,25 @@ int CEffExplosive::ProcCommonTask(int _this, int a2)
   int v7; // ebp
   double v8; // st7
   unsigned __int16 v9; // cx
-  float v11; // [esp+10h] [ebp-80h]
-  int v12; // [esp+10h] [ebp-80h]
-  float v13; // [esp+24h] [ebp-6Ch]
+  float a3; // [esp+10h] [ebp-80h]
+  int a3a; // [esp+10h] [ebp-80h]
+  float a2; // [esp+24h] [ebp-6Ch]
   float v14; // [esp+28h] [ebp-68h]
   float v15; // [esp+2Ch] [ebp-64h]
   float v16; // [esp+30h] [ebp-60h]
   float v17; // [esp+34h] [ebp-5Ch]
-  int v18; // [esp+38h] [ebp-58h] BYREF
-  int v19; // [esp+3Ch] [ebp-54h]
-  int v20; // [esp+40h] [ebp-50h]
-  int v21; // [esp+44h] [ebp-4Ch] BYREF
-  int v22; // [esp+48h] [ebp-48h]
-  float v23; // [esp+4Ch] [ebp-44h]
-  _BYTE v24[64]; // [esp+50h] [ebp-40h] BYREF
+  gbVec3D v18; // [esp+38h] [ebp-58h] BYREF
+  struct gbVec3D v19; // [esp+44h] [ebp-4Ch] BYREF
+  _BYTE v20[64]; // [esp+50h] [ebp-40h] BYREF
 
   v3 = *(float *)(this + 16);
   v4 = *(_DWORD *)(this + 24) + 152 * *(_DWORD *)(this + 28);
   v5 = 9 * *(_DWORD *)(this + 32);
   v6 = v3 - *(float *)(*(_DWORD *)v4 + 8 * v5 + 16);
   v7 = *(_DWORD *)v4 + 8 * v5;
-  v13 = *(float *)(this + 20);
+  a2 = *(float *)(this + 20);
   if ( v6 > *(float *)(v7 + 24) )
-    v13 = v13 - (v6 - *(float *)(v7 + 24));
+    a2 = a2 - (v6 - *(float *)(v7 + 24));
   if ( !*(_BYTE *)(v7 + 65) )
   {
     *(_DWORD *)(v7 + 44) = 0;
@@ -345,40 +341,34 @@ int CEffExplosive::ProcCommonTask(int _this, int a2)
     sub_4C7E60(this);
     *(_DWORD *)(v7 + 44) = 1;
   }
-  *(float *)(this + 152) = v13 * *(float *)(v4 + 64) + *(float *)(this + 152);
-  *(float *)(this + 156) = v13 * *(float *)(v4 + 68) + *(float *)(this + 156);
-  *(float *)(this + 160) = v13 * *(float *)(v4 + 72) + *(float *)(this + 160);
-  *(float *)(this + 164) = v13 * *(float *)(v4 + 28) + *(float *)(this + 164);
-  *(float *)(this + 168) = v13 * *(float *)(v4 + 32) + *(float *)(this + 168);
-  *(float *)(this + 172) = v13 * *(float *)(v4 + 36) + *(float *)(this + 172);
-  (gbMatrix4 *->gbMatrix4()v24);
-  v18 = 0;
-  v19 = 0;
-  v20 = 0;
-  v21 = 0;
-  v22 = 0;
-  v23 = 0.0;
-  (gbMatrix4 *->LoadIdentity()v24);
-  v18 = *(_DWORD *)(v4 + 44);
-  v19 = *(_DWORD *)(v4 + 48);
-  v20 = *(_DWORD *)(v4 + 52);
-  (gbVec3D *->Normalize()&v18);
-  v11 = (*(float *)(this + 16) - *(float *)(v7 + 16)) * *(float *)(v4 + 60);
-  (gbMatrix4 *->SetAxisAngle()v24, (struct gbVec3D *)&v18, v11);
-  v23 = *(float *)(v4 + 56);
-  v21 = 0;
-  v22 = 0;
-  (gbMatrix4 *->Rotate()v24, (const struct gbVec3D *)&v21, (struct gbVec3D *)(this + 176));
+  *(float *)(this + 152) = a2 * *(float *)(v4 + 64) + *(float *)(this + 152);
+  *(float *)(this + 156) = a2 * *(float *)(v4 + 68) + *(float *)(this + 156);
+  *(float *)(this + 160) = a2 * *(float *)(v4 + 72) + *(float *)(this + 160);
+  *(float *)(this + 164) = a2 * *(float *)(v4 + 28) + *(float *)(this + 164);
+  *(float *)(this + 168) = a2 * *(float *)(v4 + 32) + *(float *)(this + 168);
+  *(float *)(this + 172) = a2 * *(float *)(v4 + 36) + *(float *)(this + 172);
+  (gbMatrix4 *->gbMatrix4()v20);
+  memset(&v18, 0, sizeof(v18));
+  memset(&v19, 0, sizeof(v19));
+  (gbMatrix4 *->LoadIdentity()v20);
+  v18 = *(gbVec3D *)(v4 + 44);
+  gbVec3D::Normalize(&v18);
+  a3 = (*(float *)(this + 16) - *(float *)(v7 + 16)) * *(float *)(v4 + 60);
+  (gbMatrix4 *->SetAxisAngle()v20, &v18, a3);
+  v19.z = *(float *)(v4 + 56);
+  v19.x = 0.0;
+  v19.y = 0.0;
+  (gbMatrix4 *->Rotate()v20, &v19, (struct gbVec3D *)(this + 176));
   if ( *(float *)(v4 + 80) != 0.0
     || *(float *)(v4 + 84) != 0.0
     || *(float *)(v4 + 92) != 0.0
     || *(float *)(v4 + 88) != 0.0 )
   {
-    *(float *)(this + 84) = v13 * *(float *)(v4 + 80) + *(float *)(this + 84);
+    *(float *)(this + 84) = a2 * *(float *)(v4 + 80) + *(float *)(this + 84);
     if ( (g_bCursorVisible & 1) == 0 )
     {
       g_bCursorVisible |= 1u;
-      CEffMgr::Reset(&g_nCursorState);
+      (CEffMgr *->Reset()&g_nCursorState);
       atexit(nullsub_1);
     }
     if ( *(float *)(this + 84) <= 255.0 )
@@ -396,47 +386,47 @@ int CEffExplosive::ProcCommonTask(int _this, int a2)
     if ( (g_bCursorVisible & 1) == 0 )
     {
       g_bCursorVisible |= 1u;
-      CEffMgr::Reset(&g_nCursorState);
+      (CEffMgr *->Reset()&g_nCursorState);
       atexit(nullsub_1);
     }
     v14 = *(float *)(this + 84) + 12582912.0;
     if ( (g_bCursorVisible & 1) == 0 )
     {
       g_bCursorVisible |= 1u;
-      CEffMgr::Reset(&g_nCursorState);
+      (CEffMgr *->Reset()&g_nCursorState);
       atexit(nullsub_1);
     }
     v15 = *(float *)(this + 88) + 12582912.0;
     if ( (g_bCursorVisible & 1) == 0 )
     {
       g_bCursorVisible |= 1u;
-      CEffMgr::Reset(&g_nCursorState);
+      (CEffMgr *->Reset()&g_nCursorState);
       atexit(nullsub_1);
     }
     v16 = *(float *)(this + 92) + 12582912.0;
     if ( (g_bCursorVisible & 1) == 0 )
     {
       g_bCursorVisible |= 1u;
-      CEffMgr::Reset(&g_nCursorState);
+      (CEffMgr *->Reset()&g_nCursorState);
       atexit(nullsub_1);
     }
     v17 = *(float *)(this + 96) + 12582912.0;
     if ( (g_bCursorVisible & 1) == 0 )
     {
       g_bCursorVisible |= 1u;
-      CEffMgr::Reset(&g_nCursorState);
+      (CEffMgr *->Reset()&g_nCursorState);
       atexit(nullsub_1);
     }
     HIBYTE(v9) = LOBYTE(v14);
     LOBYTE(v9) = LOBYTE(v15);
     *(_DWORD *)(this + 80) = LOBYTE(v17) | ((LOBYTE(v16) | (v9 << 8)) << 8);
   }
-  *(float *)(this + 100) = v13 * *(float *)(v4 + 24) + *(float *)(this + 100);
-  *(float *)(this + 104) = v13 * *(float *)(v4 + 108) + *(float *)(this + 104);
+  *(float *)(this + 100) = a2 * *(float *)(v4 + 24) + *(float *)(this + 100);
+  *(float *)(this + 104) = a2 * *(float *)(v4 + 108) + *(float *)(this + 104);
   if ( *(_DWORD *)(v7 + 44) == 1 )
   {
-    *(float *)&v12 = *(float *)(this + 16) - *(float *)(v7 + 16);
-    v13->UpdateExplosive(v12);
+    *(float *)&a3a = *(float *)(this + 16) - *(float *)(v7 + 16);
+    (CEffExplosive *->UpdateExplosive()this, a2, a3a);
   }
   if ( *(_BYTE *)(v7 + 66) == 1 || *(float *)(this + 16) - *(float *)(v7 + 16) >= *(float *)(v7 + 24) )
     *(_DWORD *)(v7 + 8) = 4;
@@ -451,61 +441,61 @@ void * CEffExplosive::GetEditorTaskDescription(int a1)
   switch ( a1 )
   {
     case 0:
-      result = &unk_5D5050;
+      result = (void *)&unk_5D5050;
       break;
     case 1:
-      result = &unk_5D4E40;
+      result = (void *)&unk_5D4E40;
       break;
     case 2:
-      result = &unk_5D4E38;
+      result = (void *)&unk_5D4E38;
       break;
     case 3:
-      result = &unk_5D4E30;
+      result = (void *)&unk_5D4E30;
       break;
     case 4:
-      result = &unk_5D4E24;
+      result = (void *)&unk_5D4E24;
       break;
     case 5:
-      result = &unk_5D5048;
+      result = (void *)&unk_5D5048;
       break;
     case 6:
-      result = &unk_5D5040;
+      result = (void *)&unk_5D5040;
       break;
     case 7:
-      result = &unk_5D5038;
+      result = (void *)&unk_5D5038;
       break;
     case 8:
-      result = &unk_5D4E00;
+      result = (void *)&unk_5D4E00;
       break;
     case 9:
-      result = &unk_5D4DF4;
+      result = (void *)&unk_5D4DF4;
       break;
     case 10:
-      result = &unk_5D51B0;
+      result = (void *)&unk_5D51B0;
       break;
     case 12:
-      result = &unk_5D4DD4;
+      result = (void *)&unk_5D4DD4;
       break;
     case 13:
-      result = &unk_5D4DCC;
+      result = (void *)&unk_5D4DCC;
       break;
     case 14:
-      result = &unk_5D4DC4;
+      result = (void *)&unk_5D4DC4;
       break;
     case 15:
-      result = &unk_5D4DB8;
+      result = (void *)&unk_5D4DB8;
       break;
     case 16:
-      result = &unk_5D4DAC;
+      result = (void *)&unk_5D4DAC;
       break;
     case 17:
-      result = &unk_5D51A4;
+      result = (void *)&unk_5D51A4;
       break;
     case 20:
-      result = &unk_5D4D7C;
+      result = (void *)&unk_5D4D7C;
       break;
     default:
-      result = &unk_5D4D3C;
+      result = (void *)&unk_5D4D3C;
       break;
   }
   return result;
@@ -519,37 +509,37 @@ void * CEffExplosive::GetEditorObjDescription(int a1)
   switch ( a1 )
   {
     case 0:
-      result = &unk_5D521C;
+      result = (void *)&unk_5D521C;
       break;
     case 1:
-      result = &unk_5D5210;
+      result = (void *)&unk_5D5210;
       break;
     case 2:
-      result = &unk_5D5204;
+      result = (void *)&unk_5D5204;
       break;
     case 3:
-      result = &unk_5D51F8;
+      result = (void *)&unk_5D51F8;
       break;
     case 4:
-      result = &unk_5D51EC;
+      result = (void *)&unk_5D51EC;
       break;
     case 5:
-      result = &CTaskTpl<tagEffTaskParam,unsigned long (CEffCallBack::*)(unsigned long)>::DelTask;
+      result = (void *)&CTaskTpl<tagEffTaskParam,unsigned long (CEffCallBack::*)(unsigned long)>::DelTask;
       break;
     case 6:
-      result = &unk_5D51D8;
+      result = (void *)&unk_5D51D8;
       break;
     case 7:
-      result = &unk_5D51D0;
+      result = (void *)&unk_5D51D0;
       break;
     case 8:
-      result = &unk_5D51C8;
+      result = (void *)&unk_5D51C8;
       break;
     case 9:
-      result = &unk_5D51BC;
+      result = (void *)&unk_5D51BC;
       break;
     default:
-      result = &unk_5D4D3C;
+      result = (void *)&unk_5D4D3C;
       break;
   }
   return result;
@@ -619,7 +609,7 @@ _DWORD * CEffExplosive::LoadTexture(int _this, int a2)
   v3 = (gbTexture *)(*(int (**)(_DWORD, int))(***(_DWORD ***)(this + 4) + 8))(**(_DWORD **)(this + 4), a2);
   *(_DWORD *)(this + 56) = v3;
   v3->LoadTexture(1);
-  result = operator new(0x44u);
+  result = (_DWORD *)operator new(0x44u);
   if ( result )
   {
     v5 = *(_DWORD *)(this + 56);
@@ -758,11 +748,11 @@ int CEffExplosive::UpdateExplosive(float a2, int a3)
   float v40; // [esp+34h] [ebp-60h]
   float v41; // [esp+3Ch] [ebp-58h]
   float v42; // [esp+40h] [ebp-54h]
-  _DWORD v43[4]; // [esp+44h] [ebp-50h] BYREF
+  gbQuaternion v43; // [esp+44h] [ebp-50h] BYREF
   _BYTE v44[64]; // [esp+54h] [ebp-40h] BYREF
 
-  memset(v43, 0, 12);
-  v43[3] = 1065353216;
+  memset(&v43, 0, 12);
+  v43.w = 1.0;
   (gbMatrix4 *->gbMatrix4()v44);
   result = *((_DWORD *)this + 27);
   v5 = 0;
@@ -773,7 +763,7 @@ int CEffExplosive::UpdateExplosive(float a2, int a3)
     do
     {
       v34 = 0;
-      if ( (int)*((_DWORD *)this + 28) > 0 )
+      if ( *((int *)this + 28) > 0 )
       {
         v6 = 68 * v5;
         v7 = 24 * v5;
@@ -811,8 +801,8 @@ int CEffExplosive::UpdateExplosive(float a2, int a3)
           v32 = a2 * *(float *)(v17 + v7 + 20);
           v31 = a2 * *(float *)(v17 + v7 + 16);
           v30 = a2 * *(float *)(v17 + v7 + 12);
-          (gbQuaternion *->SetYawPitchRoll()v43, v30, v31, v32);
-          (gbQuaternion *->GetMatrix()v43, (struct gbMatrix4 *)v44);
+          gbQuaternion::SetYawPitchRoll(&v43, v30, v31, v32);
+          gbQuaternion::GetMatrix(&v43, (struct gbMatrix4 *)v44);
           (gbMatrix4 *->RotateIn()v44, (struct gbVec3D *)(v6 + *((_DWORD *)this + 12)));
           (gbMatrix4 *->RotateIn()v44, (struct gbVec3D *)(*((_DWORD *)this + 12) + v6 + 12));
           (gbMatrix4 *->RotateIn()v44, (struct gbVec3D *)(*((_DWORD *)this + 12) + v6 + 24));

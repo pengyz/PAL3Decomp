@@ -33,10 +33,10 @@ void * SceneMgr::Create(int gfxMgr, int cam, int a4)
   *((_DWORD *)this + 10825) = 0;
   *((_DWORD *)this + 10826) = 0;
   *((_DWORD *)this + 10827) = 1065353216;
-  v6 = gbEffectMgr::NewRenderEffect(*(gbEffectMgr **)(v5 + 200), aGfxscriptAddit, 0);
+  v6 = (struct gbRenderEffect *)gbEffectMgr::NewRenderEffect(*(gbEffectMgr **)(v5 + 200), aGfxscriptAddit, 0);
   v7 = *(_DWORD *)this;
   *((_DWORD *)this + 4) = v6;
-  v8 = gbEffectMgr::NewRenderEffect(*(gbEffectMgr **)(v7 + 200), aGfxscriptAlpha, 0);
+  v8 = (struct gbRenderEffect *)gbEffectMgr::NewRenderEffect(*(gbEffectMgr **)(v7 + 200), aGfxscriptAlpha, 0);
   v9 = *(_DWORD *)this;
   *((_DWORD *)this + 5) = v8;
   *((_DWORD *)this + 2) = gbEffectMgr::NewRenderEffect(*(gbEffectMgr **)(v9 + 200), aGfxscriptAddit_0, 0);
@@ -53,7 +53,7 @@ char SceneMgr::RenderAll()
   int v2; // edi
   char result; // al
 
-  v1 = this + 2348;
+  v1 = (SceneMgr *)this + 2348;
   v2 = 2048;
   do
   {
@@ -74,7 +74,7 @@ char SceneMgr::RenderUpdate()
   int v2; // edi
   char result; // al
 
-  v1 = this + 2348;
+  v1 = (SceneMgr *)this + 2348;
   v2 = 2048;
   do
   {

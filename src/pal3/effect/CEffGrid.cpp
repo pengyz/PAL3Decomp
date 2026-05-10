@@ -43,7 +43,7 @@ CEffGrid::CEffGrid()
 {
   _DWORD *v0; // eax
 
-  v0 = operator new(0x10B8u);
+  v0 = (_DWORD *)operator new(0x10B8u);
   if ( v0 )
     return sub_4C9550(v0);
   else
@@ -65,7 +65,7 @@ CEffGrid::~CEffGrid(int a1)
   v2 = a1 + 12;
   *(_DWORD *)a1 = &off_56F920;
   *(_DWORD *)(a1 + 12) = &off_56F914;
-  v3 = *(void **)(a1 + 48);
+  v3 = (void *)*(void **)(a1 + 48);
   v4 = 0;
   if ( v3 )
     operator delete(v3);
@@ -73,7 +73,7 @@ CEffGrid::~CEffGrid(int a1)
     operator delete(*(void **)(a1 + 52));
   if ( *(_DWORD *)(a1 + 56) )
     operator delete(*(void **)(a1 + 56));
-  v5 = *(gbRefObject **)(a1 + 60);
+  v5 = (gbRefObject *)*(gbRefObject **)(a1 + 60);
   if ( v5 )
     v5->Release();
   if ( *(_DWORD *)(a1 + 64) )
@@ -151,11 +151,11 @@ char CEffGrid::Create(int _this, int a2)
   int v41; // [esp+100Ch] [ebp-4h]
 
   v41 = -1;
-  ExceptionList = NtCurrentTeb()->NtTib.ExceptionList;
-  v40 = &loc_5667EA;
+  ExceptionList = (struct _EXCEPTION_REGISTRATION_RECORD *)NtCurrentTeb()->NtTib.ExceptionList;
+  v40 = (void *)&loc_5667EA;
   v39 = ExceptionList;
-  v3 = alloca(4100);
-  v5 = operator new(0x4C0u);
+  v3 = (void *)alloca(4100);
+  v5 = (void *)operator new(0x4C0u);
   *(_DWORD *)(this + 24) = v5;
   if ( v5 )
   {
@@ -234,7 +234,7 @@ LABEL_10:
   *(_DWORD *)(this + 140) = *(_DWORD *)(a2 + 252);
   sub_4CAB30(*(_DWORD *)(a2 + 168), *(_DWORD *)(a2 + 172));
   v14 = *(_DWORD *)(this + 124);
-  v15 = operator new(68 * v14);
+  v15 = (void *)operator new(68 * v14);
   v32 = v15;
   v41 = 0;
   if ( v15 )
@@ -343,67 +343,67 @@ void * CEffGrid::GetEditorObjDescription(int a1)
   switch ( a1 )
   {
     case 0:
-      result = &unk_5D5050;
+      result = (void *)&unk_5D5050;
       break;
     case 1:
-      result = &unk_5D4E40;
+      result = (void *)&unk_5D4E40;
       break;
     case 2:
-      result = &unk_5D4E38;
+      result = (void *)&unk_5D4E38;
       break;
     case 3:
-      result = &unk_5D4E30;
+      result = (void *)&unk_5D4E30;
       break;
     case 4:
-      result = &unk_5D4E24;
+      result = (void *)&unk_5D4E24;
       break;
     case 5:
-      result = &unk_5D5048;
+      result = (void *)&unk_5D5048;
       break;
     case 6:
-      result = &unk_5D5040;
+      result = (void *)&unk_5D5040;
       break;
     case 7:
-      result = &unk_5D5038;
+      result = (void *)&unk_5D5038;
       break;
     case 8:
-      result = &unk_5D4E00;
+      result = (void *)&unk_5D4E00;
       break;
     case 9:
-      result = &unk_5D4DF4;
+      result = (void *)&unk_5D4DF4;
       break;
     case 10:
-      result = &unk_5D51B0;
+      result = (void *)&unk_5D51B0;
       break;
     case 12:
-      result = &unk_5D4DD4;
+      result = (void *)&unk_5D4DD4;
       break;
     case 13:
-      result = &unk_5D4DCC;
+      result = (void *)&unk_5D4DCC;
       break;
     case 14:
-      result = &unk_5D4DC4;
+      result = (void *)&unk_5D4DC4;
       break;
     case 15:
-      result = &unk_5D4DB8;
+      result = (void *)&unk_5D4DB8;
       break;
     case 16:
-      result = &unk_5D4DAC;
+      result = (void *)&unk_5D4DAC;
       break;
     case 17:
-      result = &unk_5D5014;
+      result = (void *)&unk_5D5014;
       break;
     case 18:
-      result = &unk_5D5008;
+      result = (void *)&unk_5D5008;
       break;
     case 19:
-      result = &unk_5D4FFC;
+      result = (void *)&unk_5D4FFC;
       break;
     case 20:
-      result = &unk_5D4D7C;
+      result = (void *)&unk_5D4D7C;
       break;
     default:
-      result = &unk_5D4D3C;
+      result = (void *)&unk_5D4D3C;
       break;
   }
   return result;

@@ -137,7 +137,7 @@ int UIItem::Create(int id, int a3)
   v38 = 0;
   v4 = *(_DWORD *)a3;
   v39 = 0;
-  v5 = this + 80;
+  v5 = (UIItem *)this + 80;
   *((_DWORD *)this + 20) = v4;
   *((_DWORD *)this + 21) = *(_DWORD *)(a3 + 4);
   *((_DWORD *)this + 22) = *(_DWORD *)(a3 + 8);
@@ -146,7 +146,7 @@ int UIItem::Create(int id, int a3)
   sprintf(v34, "%s", aUiGamemainuiMu_0);
   sprintf(v37, "%s", aUiGamemainuiMu_1);
   v6 = *((_DWORD *)this + 21);
-  v7 = this + 96;
+  v7 = (UIItem *)this + 96;
   *((_DWORD *)this + 25) = v6 + 6;
   v8 = *((_DWORD *)this + 20);
   *((_DWORD *)this + 24) = v8 + 6;
@@ -239,7 +239,7 @@ int UIItem::Create(int id, int a3)
     *((_DWORD *)this + 26) = *((_DWORD *)this + 22) - 6;
     *((_DWORD *)this + 27) = v21;
 LABEL_7:
-    v7 = this + 96;
+    v7 = (UIItem *)this + 96;
     goto LABEL_8;
   }
   if ( v10 == 1 )

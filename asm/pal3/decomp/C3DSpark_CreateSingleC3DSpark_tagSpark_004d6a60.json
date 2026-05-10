@@ -2,6 +2,6 @@
   "name": "C3DSpark::CreateSingle(C3DSpark::tagSpark *)",
   "address": "0x004D6A60",
   "size_bytes": 86,
-  "signature": "char __thiscall(_DWORD *this, const void *a2)",
-  "decompiled_c": "// between_std_methods (0x4C2840-0x4D70B0)\nchar __thiscall sub_4D6A60(_DWORD *this, const void *a2)\n{\n  int v3; // eax\n  _BYTE *i; // ecx\n\n  v3 = 0;\n  for ( i = (char *)this + 53; *i; i += 56 )\n  {\n    if ( ++v3 >= 128 )\n      return 0;\n  }\n  qmemcpy(this + 14 * v3, a2, 0x38u);\n  *((_BYTE *)this + 56 * v3 + 53) = 1;\n  if ( v3 >= *(this + 1792) )\n    *(this + 1792) = v3 + 1;\n  return 1;\n}\n"
+  "signature": "char __thiscall(C3DSpark *this, const void *a2)",
+  "decompiled_c": "// between_std_methods (0x4C2840-0x4D70B0)\nchar __thiscall C3DSpark::CreateSingle(C3DSpark *this, const void *a2)\n{\n  int v3; // eax\n  _BYTE *i; // ecx\n\n  v3 = 0;\n  for ( i = (char *)&this->m_Spark[13] + 1; *i; i += 56 )\n  {\n    if ( ++v3 >= 128 )\n      return 0;\n  }\n  qmemcpy((char *)this + 56 * v3, a2, 0x38u);\n  BYTE1(this->m_Spark[14 * v3 + 13]) = 1;\n  if ( v3 >= SLODWORD(this->m_GeomQuad[75].vec[0].z) )\n    LODWORD(this->m_GeomQuad[75].vec[0].z) = v3 + 1;\n  return 1;\n}\n"
 }

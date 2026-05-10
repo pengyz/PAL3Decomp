@@ -63,7 +63,7 @@ char TextureLib::LoadFromFile(char *filename)
   strncpy(String2, &filename[strlen(filename) - 3], 3u);
   if ( lstrcmpA(lpString1, String2) )
     return 0;
-  v2 = g_pVFileSys->OpenFile(filename, 0x201u);
+  v2 = (struct gbVFile *)g_pVFileSys->OpenFile(filename, 0x201u);
   v3 = v2;
   if ( !v2 )
     return 0;
@@ -71,10 +71,10 @@ char TextureLib::LoadFromFile(char *filename)
   {
     FileSize = g_pVFileSys->GetFileSize(v2);
     v30 = FileSize;
-    Block = malloc(FileSize);
+    Block = (void *)malloc(FileSize);
     v5 = (char *)malloc(FileSize);
     v6 = FileSize;
-    v7 = *(const void **)&v3[304];
+    v7 = (const void *)*(const void **)&v3[304];
     String = v5;
     qmemcpy(Block, v7, v6);
     qmemcpy(v5, *(const void **)&v3[304], v6);
@@ -120,12 +120,12 @@ char TextureLib::LoadFromFile(char *filename)
         v11 = 0;
       }
       *((_DWORD *)v8 + 132) = v11;
-      v13 = strtok((char *)Block, Delimiter);
+      v13 = (char *)strtok((char *)Block, Delimiter);
       if ( lstrcmpA(v13, aEndfile) )
       {
         do
         {
-          v14 = strtok(0, Delimiter);
+          v14 = (char *)strtok(0, Delimiter);
           (**(void (***)(TextureLib *, char *, char *))v8)(v8, v14, Delimiter);
         }
         while ( lstrcmpA(v14, aEndfile) );
@@ -192,12 +192,12 @@ char TextureLib::LoadFromFile(char *filename)
   }
   v26 = String;
   *((_DWORD *)v19 + 132) = v22;
-  v24 = strtok(v26, Delimiter);
+  v24 = (char *)strtok(v26, Delimiter);
   if ( lstrcmpA(v24, aEndfile) )
   {
     do
     {
-      v25 = strtok(0, Delimiter);
+      v25 = (char *)strtok(0, Delimiter);
       (**(void (***)(TextureLib *, char *, char *))v19)(v19, v25, Delimiter);
     }
     while ( lstrcmpA(v25, aEndfile) );

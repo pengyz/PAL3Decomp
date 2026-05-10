@@ -2,6 +2,6 @@
   "name": "sub_4526F0",
   "address": "0x004526F0",
   "size_bytes": 36,
-  "signature": "int __thiscall(int *this)",
-  "decompiled_c": "// between_std_methods (0x44BDA0-0x4A7690)\nint __thiscall sub_4526F0(int *this)\n{\n  int result; // eax\n\n  if ( dword_DBD898 == 12 )\n    UIListBox::SetScroll(this);\n  result = dword_58B230;\n  if ( dword_58B230 > 0 )\n    return UIListBox::SetScroll(this);\n  return result;\n}\n"
+  "signature": "int __thiscall(UIListBox *this)",
+  "decompiled_c": "// between_std_methods (0x44BDA0-0x4A7690)\nint __thiscall sub_4526F0(UIListBox *this)\n{\n  int result; // eax\n\n  if ( dword_DBD898 == 12 )\n    UIListBox::SetScroll(this);\n  result = dword_58B230;\n  if ( dword_58B230 > 0 )\n    return UIListBox::SetScroll(this);\n  return result;\n}\n"
 }

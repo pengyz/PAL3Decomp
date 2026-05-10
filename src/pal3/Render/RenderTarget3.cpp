@@ -32,7 +32,7 @@ void RenderTarget3::Init()
 {
   gbEffectMgr *pEffectMgr; // edi
 
-  pEffectMgr = *(gbEffectMgr **)&g_pGfxManager[200];
+  pEffectMgr = (gbEffectMgr *)*(gbEffectMgr **)&g_pGfxManager[200];
   *(_DWORD *)this = pEffectMgr->NewRenderEffect(aGfxscriptGlowG, 0);
   *((_DWORD *)this + 1) = pEffectMgr->NewRenderEffect(aGfxscriptGeomG, 1u);
 }
@@ -119,7 +119,7 @@ void RenderTarget3::Resolve()
         v4[1] = -1082130432;
         PushMatrixStacks();
         v6 = 0;
-        DynVertBuf = gbVertPoolMgr::GetDynVertBuf(*(gbVertPoolMgr **)&g_pGfxManager[196], 0x15u);
+        DynVertBuf = (gbDynVertBuf *)gbVertPoolMgr::GetDynVertBuf(*(gbVertPoolMgr **)&g_pGfxManager[196], 0x15u);
         v3 = *((_DWORD *)this + 1);
         v5[16] = 1;
         v5[0] = v3;

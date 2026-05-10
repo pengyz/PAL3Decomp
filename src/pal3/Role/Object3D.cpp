@@ -27,8 +27,8 @@ extern int unk_ABE000;
 // 0x0047CB70
 Object3D::Object3D()
 {
-  Object3D::LoadSubObject();
-  *((_DWORD *)this + 21) = 0;
+  this->LoadSubObject();
+  this->m_dropz = 0.0;
 }
 
 // 0x0047CB90
@@ -194,40 +194,40 @@ LABEL_15:
 // 0x0047CEE0
 void Object3D::LoadSubObject()
 {
-  void *v2; // edi
-  void (***v3)(_DWORD, int); // ecx
+  gbGeomNode *v2; // edi
+  gbGeomNode *m_pol; // ecx
 
-  if ( *((_DWORD *)this + 1) == 1 )
+  if ( this->m_type == 1 )
   {
 LABEL_7:
-    v3 = (void (***)(_DWORD, int))*((_DWORD *)this + 2);
-    if ( v3 )
+    m_pol = (gbGeomNode *)this->m_pol;
+    if ( m_pol )
     {
-      (**v3)(v3, 1);
-      *((_DWORD *)this + 2) = 0;
+      ((void (*)(gbGeomNode *, int))m_pol->next->next)(m_pol, 1);
+      this->m_pol = 0;
     }
     goto LABEL_9;
   }
-  if ( *((_DWORD *)this + 1) != 2 )
+  if ( this->m_type != 2 )
   {
-    if ( *((_DWORD *)this + 1) != 3 )
+    if ( this->m_type != 3 )
     {
-      *(_BYTE *)this = 0;
+      LOBYTE(this->m_isLoadObj) = 0;
       return;
     }
     goto LABEL_7;
   }
-  v2 = (void *)*((_DWORD *)this + 2);
+  v2 = (gbGeomNode *)this->m_pol;
   if ( v2 )
   {
-    sub_40EE00(*((_DWORD *)this + 2));
+    sub_40EE00((int)this->m_pol);
     operator delete(v2);
-    *((_DWORD *)this + 2) = 0;
-    *(_BYTE *)this = 0;
+    this->m_pol = 0;
+    LOBYTE(this->m_isLoadObj) = 0;
     return;
   }
 LABEL_9:
-  *(_BYTE *)this = 0;
+  LOBYTE(this->m_isLoadObj) = 0;
 }
 
 // 0x0047CF40
@@ -268,33 +268,33 @@ void Object3D::VecAngle(float a2, float a3, float a4)
   double v8; // st7
   double v9; // st7
   double v10; // st6
-  _DWORD v11[4]; // [esp+10h] [ebp-18h] BYREF
+  gbVec3D v11; // [esp+10h] [ebp-18h] BYREF
   float v12; // [esp+20h] [ebp-8h]
   float v13; // [esp+24h] [ebp-4h]
 
   v4 = a4;
   v6 = a3;
-  *((_DWORD *)this + 8) = a2;
-  *((_DWORD *)this + 9) = v6;
-  *((_DWORD *)this + 10) = v4;
-  a2 = *((_DWORD *)this + 11) - *((_DWORD *)this + 8);
-  v7 = *((_DWORD *)this + 12) - *((_DWORD *)this + 9);
-  *(float *)v11 = a2;
+  this->m_subObjHeight = a2;
+  this->m_height = v6;
+  this->m_position.x = v4;
+  a2 = this->m_position.y - this->m_subObjHeight;
+  v7 = this->m_position.z - this->m_height;
+  v11.x = a2;
   a3 = v7;
-  v8 = *((_DWORD *)this + 13) - *((_DWORD *)this + 10);
-  *(float *)&v11[1] = a3;
+  v8 = this->RelativePos.x - this->m_position.x;
+  v11.y = a3;
   a4 = v8;
-  *(float *)&v11[2] = a4;
-  *((_DWORD *)this + 25) = (gbVec3D *->Length()v11);
-  v9 = *((_DWORD *)this + 8) - *((_DWORD *)this + 11);
-  v12 = *((_DWORD *)this + 9) - *((_DWORD *)this + 12);
-  v10 = *((_DWORD *)this + 10) - *((_DWORD *)this + 13);
+  v11.z = a4;
+  this->m_pitch = gbVec3D::Length(&v11);
+  v9 = this->m_subObjHeight - this->m_position.y;
+  v12 = this->m_height - this->m_position.z;
+  v10 = this->m_position.x - this->RelativePos.x;
   a3 = v12;
   v13 = v10;
   a2 = v9;
   a4 = v13;
   (gbVec3D *->Normalize()&a2);
-  *((_DWORD *)this + 29) = a2->IsOverCVD(a3, a4, 0.0, 0.0, 1.0);
+  this->m_forward.y = a2->IsOverCVD(a3, a4, 0.0, 0.0, 1.0);
 }
 
 // 0x0047D130
@@ -306,33 +306,33 @@ void Object3D::SetObjectPosition(float a2, float a3, float a4)
   double v8; // st7
   double v9; // st7
   double v10; // st6
-  _DWORD v11[4]; // [esp+10h] [ebp-18h] BYREF
+  gbVec3D v11; // [esp+10h] [ebp-18h] BYREF
   float v12; // [esp+20h] [ebp-8h]
   float v13; // [esp+24h] [ebp-4h]
 
   v4 = a4;
   v6 = a3;
-  *((_DWORD *)this + 11) = a2;
-  *((_DWORD *)this + 12) = v6;
-  *((_DWORD *)this + 13) = v4;
-  a2 = *((_DWORD *)this + 11) - *((_DWORD *)this + 8);
-  v7 = *((_DWORD *)this + 12) - *((_DWORD *)this + 9);
-  *(float *)v11 = a2;
+  this->m_position.y = a2;
+  this->m_position.z = v6;
+  this->RelativePos.x = v4;
+  a2 = this->m_position.y - this->m_subObjHeight;
+  v7 = this->m_position.z - this->m_height;
+  v11.x = a2;
   a3 = v7;
-  v8 = *((_DWORD *)this + 13) - *((_DWORD *)this + 10);
-  *(float *)&v11[1] = a3;
+  v8 = this->RelativePos.x - this->m_position.x;
+  v11.y = a3;
   a4 = v8;
-  *(float *)&v11[2] = a4;
-  *((_DWORD *)this + 25) = (gbVec3D *->Length()v11);
-  v9 = *((_DWORD *)this + 8) - *((_DWORD *)this + 11);
-  v12 = *((_DWORD *)this + 9) - *((_DWORD *)this + 12);
-  v10 = *((_DWORD *)this + 10) - *((_DWORD *)this + 13);
+  v11.z = a4;
+  this->m_pitch = gbVec3D::Length(&v11);
+  v9 = this->m_subObjHeight - this->m_position.y;
+  v12 = this->m_height - this->m_position.z;
+  v10 = this->m_position.x - this->RelativePos.x;
   a3 = v12;
   v13 = v10;
   a2 = v9;
   a4 = v13;
   (gbVec3D *->Normalize()&a2);
-  *((_DWORD *)this + 29) = a2->IsOverCVD(a3, a4, 0.0, 0.0, 1.0);
+  this->m_forward.y = a2->IsOverCVD(a3, a4, 0.0, 0.0, 1.0);
 }
 
 // 0x0047D230
@@ -341,31 +341,29 @@ long double Object3D::SetCentrePos()
   double v2; // st7
   double v3; // st6
   double v4; // st6
-  float v6; // [esp+4h] [ebp-24h] BYREF
-  float v7; // [esp+8h] [ebp-20h]
-  float v8; // [esp+Ch] [ebp-1Ch]
-  float v9; // [esp+10h] [ebp-18h]
-  float v10; // [esp+14h] [ebp-14h]
-  float v11; // [esp+18h] [ebp-10h]
-  float v12; // [esp+20h] [ebp-8h]
-  float v13; // [esp+24h] [ebp-4h]
+  gbVec3D v6; // [esp+4h] [ebp-24h] BYREF
+  float v7; // [esp+10h] [ebp-18h]
+  float v8; // [esp+14h] [ebp-14h]
+  float v9; // [esp+18h] [ebp-10h]
+  float v10; // [esp+20h] [ebp-8h]
+  float v11; // [esp+24h] [ebp-4h]
 
-  v9 = 0.0;
-  v10 = 0.0;
-  v2 = *((_DWORD *)this + 8) - *((_DWORD *)this + 11);
-  v3 = *((_DWORD *)this + 9) - *((_DWORD *)this + 12);
-  v11 = 1.0;
-  v12 = v3;
-  v4 = *((_DWORD *)this + 10) - *((_DWORD *)this + 13);
-  v7 = v12;
-  v13 = v4;
-  v6 = v2;
-  v8 = v13;
-  (gbVec3D *->Normalize()&v6);
-  if ( *((_DWORD *)this + 8) >= (double)*((_DWORD *)this + 11) )
-    return v6->IsOverCVD(v7, v8, v9, v10, v11);
+  v7 = 0.0;
+  v8 = 0.0;
+  v2 = this->m_subObjHeight - this->m_position.y;
+  v3 = this->m_height - this->m_position.z;
+  v9 = 1.0;
+  v10 = v3;
+  v4 = this->m_position.x - this->RelativePos.x;
+  v6.y = v10;
+  v11 = v4;
+  v6.x = v2;
+  v6.z = v11;
+  gbVec3D::Normalize(&v6);
+  if ( this->m_subObjHeight >= (double)this->m_position.y )
+    return Object3D::IsOverCVD(v6.x, v6.y, v6.z, v7, v8, v9);
   else
-    return 360.0 - v6->IsOverCVD(v7, v8, v9, v10, v11);
+    return 360.0 - Object3D::IsOverCVD(v6.x, v6.y, v6.z, v7, v8, v9);
 }
 
 // 0x0047D320
@@ -373,7 +371,7 @@ void Object3D::GetScreenDegree()
 {
   long double v2; // st7
   long double v3; // st6
-  double v4; // st7
+  double m_pitch; // st7
   double v5; // st7
   double v6; // st6
   double v7; // st5
@@ -383,47 +381,45 @@ void Object3D::GetScreenDegree()
   double v11; // st7
   double v12; // st6
   float v13; // [esp+4h] [ebp-28h]
-  float v14; // [esp+8h] [ebp-24h] BYREF
-  float v15; // [esp+Ch] [ebp-20h]
-  float v16; // [esp+10h] [ebp-1Ch]
-  float v17; // [esp+14h] [ebp-18h]
-  float v18; // [esp+18h] [ebp-14h]
-  float v19; // [esp+1Ch] [ebp-10h]
-  float v20; // [esp+24h] [ebp-8h]
-  float v21; // [esp+28h] [ebp-4h]
+  gbVec3D v14; // [esp+8h] [ebp-24h] BYREF
+  float v15; // [esp+14h] [ebp-18h]
+  float v16; // [esp+18h] [ebp-14h]
+  float v17; // [esp+1Ch] [ebp-10h]
+  float v18; // [esp+24h] [ebp-8h]
+  float v19; // [esp+28h] [ebp-4h]
 
-  v2 = *((_DWORD *)this + 22) * 0.017453292;
-  v3 = *((_DWORD *)this + 23) * 0.017453292;
+  v2 = *(float *)&this->m_visible * 0.017453292;
+  v3 = *(float *)&this->m_pCamera * 0.017453292;
   v13 = cos(v3);
-  *((_DWORD *)this + 26) = sin(v2) * v13;
-  *((_DWORD *)this + 27) = sin(v3);
-  *((_DWORD *)this + 28) = -(cos(v2) * v13);
-  v4 = *((_DWORD *)this + 25);
-  v17 = v4 * *((_DWORD *)this + 26);
-  v18 = v4 * *((_DWORD *)this + 27);
-  v5 = v4 * *((_DWORD *)this + 28);
-  v6 = *((_DWORD *)this + 11) - v17;
-  v7 = *((_DWORD *)this + 12) - v18;
-  v17 = 0.0;
-  v18 = v7;
-  v8 = *((_DWORD *)this + 13) - v5;
-  v9 = v18;
-  v18 = 0.0;
-  *((_DWORD *)this + 9) = v9;
-  v19 = v8;
-  v10 = v19;
-  v19 = 1.0;
-  *((_DWORD *)this + 8) = v6;
-  *((_DWORD *)this + 10) = v10;
-  v11 = *((_DWORD *)this + 8) - *((_DWORD *)this + 11);
-  v20 = *((_DWORD *)this + 9) - *((_DWORD *)this + 12);
-  v12 = *((_DWORD *)this + 10) - *((_DWORD *)this + 13);
-  v15 = v20;
-  v21 = v12;
-  v14 = v11;
-  v16 = v21;
-  (gbVec3D *->Normalize()&v14);
-  *((_DWORD *)this + 29) = v14->IsOverCVD(v15, v16, v17, v18, v19);
+  this->m_roll = sin(v2) * v13;
+  this->m_dist = sin(v3);
+  this->m_forward.x = -(cos(v2) * v13);
+  m_pitch = this->m_pitch;
+  v15 = m_pitch * this->m_roll;
+  v16 = m_pitch * this->m_dist;
+  v5 = m_pitch * this->m_forward.x;
+  v6 = this->m_position.y - v15;
+  v7 = this->m_position.z - v16;
+  v15 = 0.0;
+  v16 = v7;
+  v8 = this->RelativePos.x - v5;
+  v9 = v16;
+  v16 = 0.0;
+  this->m_height = v9;
+  v17 = v8;
+  v10 = v17;
+  v17 = 1.0;
+  this->m_subObjHeight = v6;
+  this->m_position.x = v10;
+  v11 = this->m_subObjHeight - this->m_position.y;
+  v18 = this->m_height - this->m_position.z;
+  v12 = this->m_position.x - this->RelativePos.x;
+  v14.y = v18;
+  v19 = v12;
+  v14.x = v11;
+  v14.z = v19;
+  gbVec3D::Normalize(&v14);
+  this->m_forward.y = Object3D::IsOverCVD(v14.x, v14.y, v14.z, v15, v16, v17);
 }
 
 // 0x0047D440
@@ -448,13 +444,13 @@ void Object3D::GetScreenDegree(int a1@<ecx>, int a2, int a3, int a4, gbMatrixSta
   v6 = *(struct gbCamera ***)(a1 + 84);
   if ( !v6 || !*(_BYTE *)a1 || !*(_BYTE *)(a1 + 80) )
     return;
-  v7 = *(gbSceneGraph **)(g_pGfxManager + 448);
+  v7 = (gbSceneGraph *)*(gbSceneGraph **)(g_pGfxManager + 448);
   v16 = v7;
   v7->Begin(*v6);
   v7->pAllRObj[19244] = 0;
   v8 = a5;
   if ( !a5 )
-    v8 = *(gbMatrixStack **)(g_pGfxManager + 216);
+    v8 = (gbMatrixStack *)*(gbMatrixStack **)(g_pGfxManager + 216);
   gbCamera::SetAsCurrent(**(gbCamera ***)(a1 + 84), 3);
   v8->Push();
   v8->Translate((struct gbVec3D *)(a1 + 32));
@@ -534,7 +530,7 @@ void Object3D::CaculateRelative(int _this, float a2)
   unsigned __int8 v22; // c0
   unsigned __int8 v23; // c3
   double v24; // st7
-  _DWORD v25[4]; // [esp+Ch] [ebp-10h] BYREF
+  struct gbNodeMsgObj v25; // [esp+Ch] [ebp-10h] BYREF
 
   if ( !*(_BYTE *)this )
     return;
@@ -548,8 +544,8 @@ LABEL_10:
         break;
       case 2:
         if ( sub_537060() )
-          Actor::CompareAction(*(void **)(this + 8), 0, 0);
-        Actor::QueryState(*(void **)(this + 8));
+          Actor::CompareAction(*(Actor **)(this + 8), 0, 0);
+        Actor::QueryState(*(Actor **)(this + 8));
         break;
       case 3:
         goto LABEL_10;
@@ -564,12 +560,12 @@ LABEL_10:
     else if ( *(_DWORD *)(this + 16) == 3 )
     {
       (*(void (**)(_DWORD))(**(_DWORD **)(this + 12) + 20))(*(_DWORD *)(this + 12));
-      while ( gbVisNode::PopMessage(*(gbVisNode **)(this + 12), (struct gbNodeMsgObj *)v25) )
+      while ( gbVisNode::PopMessage(*(gbVisNode **)(this + 12), &v25) )
       {
-        if ( v25[0] == 1 )
+        if ( v25.msgid == 1 )
         {
           v3 = gbCrc32Compute(aOver);
-          if ( v25[1] == v3 )
+          if ( v25.param[0] == v3 )
           {
             (*(void (**)(_DWORD, _DWORD))(**(_DWORD **)(this + 12) + 24))(*(_DWORD *)(this + 12), 0);
             gbVisNode::SetTimeScale(*(gbVisNode **)(this + 12), 1.0);
@@ -655,7 +651,7 @@ LABEL_10:
       {
 LABEL_52:
         *(float *)(this + 88) = *(float *)(this + 124);
-        (float *->GetScreenDegree()this);
+        (Object3D *->GetScreenDegree()this);
         return;
       }
       v24 = *(float *)(this + 124) + 360.0;
@@ -807,89 +803,85 @@ int Object3D::Create()
 // 0x0047DE40
 void Object3D::Init()
 {
-  int v2; // eax
-  int v3; // ecx
+  __int32 m_yaw_low; // eax
+  float m_pitch; // ecx
   int v4; // eax
   char *v5; // ebx
   _DWORD *v6; // ebp
-  gbRefObject **v7; // esi
-  int v8; // [esp+1Ch] [ebp-24h] BYREF
-  _DWORD v9[4]; // [esp+20h] [ebp-20h] BYREF
-  int v10[4]; // [esp+30h] [ebp-10h] BYREF
+  PalScript **v7; // esi
+  char id; // [esp+1Ch] [ebp-24h] BYREF
+  __int16 id_1; // [esp+1Dh] [ebp-23h]
+  char id_3; // [esp+1Fh] [ebp-21h]
+  _DWORD v11[4]; // [esp+20h] [ebp-20h] BYREF
+  int a3[4]; // [esp+30h] [ebp-10h] BYREF
 
-  v2 = *(_DWORD *)&this->m_isLoadObj[96];
-  v3 = *(_DWORD *)&this->m_isLoadObj[100];
-  *(_DWORD *)&this->m_isLoadObj[88] = v2;
-  *(_DWORD *)&this->m_isLoadObj[92] = v3;
-  *(_DWORD *)&this->m_isLoadObj[84] = 0;
-  *(_DWORD *)&this->m_isLoadObj[80] = 0;
-  (UIWnd *->SetSelTexture()this,
-    -1,
-    0,
-    0,
-    *(_DWORD *)&this->m_isLoadObj[88],
-    *(_DWORD *)&this->m_isLoadObj[92],
-    0);
+  m_yaw_low = LODWORD(this->m_yaw);
+  m_pitch = this->m_pitch;
+  this->m_visible = m_yaw_low;
+  *(float *)&this->m_pCamera = m_pitch;
+  this->m_dropz = 0.0;
+  this->m_dropy = 0.0;
+  (UIListBox *->SetSelTexture()this, -1, 0, 0, this->m_visible, (int)this->m_pCamera, 0);
   *((_DWORD *)this + 93) = 170;
   *((_DWORD *)this + 92) = 310;
   *((_DWORD *)this + 94) = 468;
   *((_DWORD *)this + 95) = 430;
-  (UINote *->Create()this + 2, -1430519792, (int)this + 368, (int)this, aUiFlexNote);
+  (UINote *->Create()((char *)this + 392), -1430519792, (int)this + 368, (int)this, aUiFlexNote);
   (**((void (***)(char *, _DWORD))this + 98))((char *)this + 392, 0);
   v4 = *((_DWORD *)this + 93) + 10;
-  v9[0] = *((_DWORD *)this + 92) + 10;
-  v9[1] = v4;
-  v9[2] = v9[0] + 136;
-  v9[3] = v4 + 128;
+  v11[0] = *((_DWORD *)this + 92) + 10;
+  v11[1] = v4;
+  v11[2] = v11[0] + 136;
+  v11[3] = v4 + 128;
   (*(void (**)(char *, int, _DWORD *, Object3D *))(*((_DWORD *)this + 146) + 16))(
     (char *)this + 584,
     -1430519792,
-    v9,
+    v11,
     this);
-  (_DWORD *->SetShow()this + 146, 0);
+  (UIWnd *->SetShow()((char *)this + 584), 0);
   if ( gbColorQuad::ColorQuadFmt )
   {
-    *(_WORD *)((char *)&v8 + 1) = -5;
-    LOBYTE(v8) = 31;
+    id_1 = -5;
+    id = 31;
   }
   else
   {
-    *(_WORD *)((char *)&v8 + 1) = 8187;
-    LOBYTE(v8) = -1;
+    id_1 = 8187;
+    id = -1;
   }
-  HIBYTE(v8) = -1;
-  (_DWORD *->GetChild()this + 146, &v8);
+  id_3 = -1;
+  (UIWnd *->GetChild()((char *)this + 584), (int)&id);
   (**((void (***)(char *, _DWORD))this + 146))((char *)this + 584, 0);
   v5 = byte_DC733C;
-  v6 = &unk_56B884;
-  v7 = (gbRefObject **)((char *)this + 736);
+  v6 = (_DWORD *)&unk_56B884;
+  v7 = (PalScript **)((char *)this + 736);
   do
   {
-    ((void (*)(gbRefObject **, _DWORD, _DWORD *, Object3D *, char *, _DWORD, int))(*v7)[7].RefCount)(
+    ((void (*)(PalScript **, _DWORD, _DWORD *, Object3D *, char *, _DWORD, int))(*v7)->m_CamObj.m_nSize)(
       v7,
       *v6,
-      v9,
+      v11,
       this,
       aSubgameHocksho_0,
       0,
       1);
     v7->OpenScript(aSubgameHocksho_1, 1);
     sub_43AFA0((char *)v7, v5);
-    v7[27] = (gbRefObject *)3;
-    v7[26] = (gbRefObject *)1;
-    v7[52] = (gbRefObject *)1;
-    ((void (*)(gbRefObject **, _DWORD))(*v7)->RefCount)(v7, 0);
+    v7[27] = (PalScript *)3;
+    v7[26] = (PalScript *)1;
+    v7[52] = (PalScript *)1;
+    ((void (*)(PalScript **, _DWORD))(*v7)->m_bLoadSceneScript)(v7, 0);
     ++v6;
     v5 += 256;
     v7 += 86;
   }
   while ( (int)v6 < (int)&off_56B898 );
-  v10[1] = 200;
-  v10[0] = 300;
-  v10[2] = 500;
-  v10[3] = 300;
-  UIItem::Create((int)this + 2456, (int)&unk_ABE000, v10, (int)this, 3, 0);
-  (_DWORD *->SetData()this + 614, 18, 255, 28, 200);
+  a3[1] = 200;
+  a3[0] = 300;
+  a3[2] = 500;
+  a3[3] = 300;
+  (UIItem *->Create()this + 2456, (int)&unk_ABE000, (int)a3);
+  (UIItem *->SetData()this + 2456, 18);
   *((_BYTE *)this + 3829) = 0;
   *((_BYTE *)this + 3830) = 0;
 }

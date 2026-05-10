@@ -27,7 +27,7 @@ int SoundSystem::Init()
     v2 = (gbSound2DNode *)operator new(0x10u);
     v9 = 0;
     if ( v2 )
-      v3 = v2->gbSound2DNode();
+      v3 = (gbSound2DNode *)v2->gbSound2DNode();
     else
       v3 = 0;
     v9 = -1;
@@ -37,7 +37,7 @@ int SoundSystem::Init()
     v4 = (gbSound2DNode *)operator new(0x10u);
     v9 = 1;
     if ( v4 )
-      v5 = v4->gbSound2DNode();
+      v5 = (gbSound2DNode *)v4->gbSound2DNode();
     else
       v5 = 0;
     v9 = -1;

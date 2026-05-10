@@ -20,7 +20,7 @@ int UISystem::Destroy()
 
   UISceneUpdate();
   GetGfxManager_3();
-  v0 = &g_SceneMgr.m_info[121944];
+  v0 = (char *)&g_SceneMgr.m_info[121944];
   do
   {
     sub_41F8C0((int)v0);

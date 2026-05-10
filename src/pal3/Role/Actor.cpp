@@ -192,7 +192,7 @@ char Actor::ProcessFrame()
   int a3[4]; // [esp+44h] [ebp-20h] BYREF
   int v24[4]; // [esp+54h] [ebp-10h] BYREF
 
-  (UIWnd *->SetSelTexture()this, -1, 0, 0, 800, 600, 0);
+  (UIListBox *->SetSelTexture()this, -1, 0, 0, 800, 600, 0);
   v2 = operator new(0xCu);
   if ( v2 )
   {
@@ -204,29 +204,29 @@ char Actor::ProcessFrame()
   {
     v2 = 0;
   }
-  *(_DWORD *)&this->m_actarray[340] = v2;
-  *(_DWORD *)&this->m_actarray[348] = 1000;
-  *(_DWORD *)&this->m_actarray[352] = 1000;
+  *(_DWORD *)&this->m_szTexture[72] = v2;
+  *(_DWORD *)&this->m_szTexture[80] = 1000;
+  *(_DWORD *)&this->m_szTexture[84] = 1000;
   v3 = *((_DWORD *)this + 774);
-  this->m_actarray[338] = -58;
-  this->m_actarray[337] = 116;
-  this->m_actarray[336] = 36;
+  this->m_szTexture[70] = -58;
+  this->m_szTexture[69] = 116;
+  this->m_szTexture[68] = 36;
   v19 = 310;
   v18 = 350;
   v20 = 440;
   v21 = 322;
   (*(void (**)(char *, int, int *, Actor *))(v3 + 16))((char *)this + 3096, -5570049, &v18, this);
-  (gbRefObject **->GetChildCount()this + 774, aPal3Timenotefi_96_0, *((_BYTE *)this + 3492));
-  (gbRefObject **->GetChildAt()this + 774, off_60154C, *((_BYTE *)this + 3492));
+  (UIWnd **->GetChildCount()this + 774, aPal3Timenotefi_96_0, *((_BYTE *)this + 3492));
+  (UIWnd **->GetChildAt()this + 774, off_60154C, *((_BYTE *)this + 3492));
   sub_43FD90((float *)this + 774, 2);
-  (float *->GetWidth()this + 774, 2);
-  (float *->SetFrameRate()this + 774, 2);
-  (float *->GetHeight()this + 774, 2);
-  (float *->GetPosition()this + 774, 1);
+  (UIWnd *->GetWidth()((char *)this + 3096), 2);
+  (UIWnd *->SetFrameRate()((char *)this + 3096), 2);
+  (UIWnd *->GetHeight()((char *)this + 3096), 2);
+  (UIWnd *->GetPosition()((char *)this + 3096), 1);
   *((_DWORD *)this + 827) = 1;
-  v13 = (float)*(int *)&this->m_actarray[352];
+  v13 = (float)*(int *)&this->m_szTexture[84];
   UIWnd::FindChild((int)this + 3096, v13);
-  v14 = (float)*(int *)&this->m_actarray[348];
+  v14 = (float)*(int *)&this->m_szTexture[80];
   UIWnd::FindChildByName((int)this + 3096, v14);
   v4 = v20;
   v22[0] = v18;
@@ -242,7 +242,7 @@ char Actor::ProcessFrame()
     -5570049,
     v22,
     this);
-  (_DWORD *->SetShow()this + 835, 0);
+  (UIWnd *->SetShow()((char *)this + 3340), 0);
   if ( gbColorQuad::ColorQuadFmt )
   {
     id_1 = -5;
@@ -259,27 +259,27 @@ char Actor::ProcessFrame()
   a3[0] = 300;
   a3[2] = 500;
   a3[3] = 370;
-  &this->m_actarray[360]->Create(-5569793, (int)a3);
-  v6 = *(_DWORD *)&this->m_actarray[444] + 22;
-  *(_DWORD *)&this->m_actarray[456] = *(_DWORD *)&this->m_actarray[440] + 6;
-  v7 = *(_DWORD *)&this->m_actarray[452];
-  *(_DWORD *)&this->m_actarray[460] = v6;
-  v8 = *(_DWORD *)&this->m_actarray[448] - 6;
-  *(_DWORD *)&this->m_actarray[468] = v7 - 38;
+  (UIItem *->Create()&this->m_szTexture[92], -5569793, (int)a3);
+  v6 = *(_DWORD *)&this->m_szTexture[176] + 22;
+  *(_DWORD *)&this->m_szTexture[188] = *(_DWORD *)&this->m_szTexture[172] + 6;
+  v7 = *(_DWORD *)&this->m_szTexture[184];
+  *(_DWORD *)&this->m_szTexture[192] = v6;
+  v8 = *(_DWORD *)&this->m_szTexture[180] - 6;
+  *(_DWORD *)&this->m_szTexture[200] = v7 - 38;
   *((_DWORD *)this + 426) = 0;
   *((_DWORD *)this + 427) = 16;
-  *(_DWORD *)&this->m_actarray[464] = v8;
-  (_DWORD *->GetRect()this + 204, &this->m_actarray[456]);
-  &this->m_actarray[360]->SetData(31);
-  this->m_actarray[356] = 0;
-  this->m_actarray[344] = 1;
-  this->m_actarray[345] = 0;
+  *(_DWORD *)&this->m_szTexture[196] = v8;
+  (UIWnd *->GetRect()((char *)this + 816), &this->m_szTexture[188]);
+  (UIItem *->SetData()&this->m_szTexture[92], 31);
+  this->m_szTexture[88] = 0;
+  this->m_szTexture[76] = 1;
+  this->m_szTexture[77] = 0;
   v24[1] = 200;
   v24[0] = 250;
   v24[2] = 550;
   v24[3] = 328;
-  (char *->Create()this + 1728, -5520641, (int)v24);
-  (char *->SetData()this + 1728, 31);
+  (UIItem *->Create()this + 1728, -5520641, (int)v24);
+  (UIItem *->SetData()this + 1728, 31);
   v9 = *((_DWORD *)this + 452);
   v10 = *((_DWORD *)this + 454);
   *((_DWORD *)this + 457) = *((_DWORD *)this + 453) + 26;
@@ -289,8 +289,8 @@ char Actor::ProcessFrame()
   *((_DWORD *)this + 769) = 20;
   *((_DWORD *)this + 458) = v10 - 6;
   *((_DWORD *)this + 459) = v11;
-  (_DWORD *->GetRect()this + 546, (_DWORD *)this + 456);
-  (_DWORD *->SetEnable()this + 546, byte_DDAD3C, 0);
+  (UIWnd *->GetRect()this + 21, (_DWORD *)this + 456);
+  (UIWnd *->SetEnable()this + 21, byte_DDAD3C, 0);
   sub_4A1530((int)this + 1728, 1);
   return 1;
 }
@@ -306,15 +306,15 @@ BOOL Actor::HandleEvent(int a2, int a3)
   char v10; // al
   char v11; // al
 
-  if ( this->m_actarray[356] )
-    return this->HitTest(a2, a3);
-  if ( !this->m_actarray[345] && sub_4A1CF0((_DWORD *)this + 432) == 2 )
-    this->m_actarray[345] = 1;
-  sprintf(&this->m_actarray[72], "%d/%d", (int)*((float *)this + 813), *(_DWORD *)&this->m_actarray[352]);
-  (_DWORD *->SetEnable()this + 835, &this->m_actarray[72], 1);
-  if ( this->m_actarray[332] )
+  if ( this->m_szTexture[88] )
+    return (UIWnd *->HitTest()this, a2, a3);
+  if ( !this->m_szTexture[77] && sub_4A1CF0((_DWORD *)this + 432) == 2 )
+    this->m_szTexture[77] = 1;
+  sprintf(&this->m_name[64], "%d/%d", (int)*((float *)this + 813), *(_DWORD *)&this->m_szTexture[84]);
+  (UIWnd *->SetEnable()((char *)this + 3340), &this->m_name[64], 1);
+  if ( this->m_szTexture[64] )
   {
-    v5 = *(_DWORD *)&this->m_actarray[340];
+    v5 = *(_DWORD *)&this->m_szTexture[72];
     if ( !*(_BYTE *)(v5 + 8) )
     {
       TickCount = GetTickCount();
@@ -327,26 +327,26 @@ BOOL Actor::HandleEvent(int a2, int a3)
     *(_DWORD *)v5 = v7;
     if ( v8 <= 0x7D0 )
     {
-      v9 = this->m_actarray[333];
-      this->m_actarray[344] = 0;
+      v9 = this->m_szTexture[65];
+      this->m_szTexture[76] = 0;
       if ( v9 )
       {
-        v10 = this->m_actarray[339] + 20;
-        this->m_actarray[339] = v10;
+        v10 = this->m_szTexture[71] + 20;
+        this->m_szTexture[71] = v10;
         if ( v10 == -1 )
         {
-          this->m_actarray[339] = -1;
-          this->m_actarray[333] = 0;
+          this->m_szTexture[71] = -1;
+          this->m_szTexture[65] = 0;
         }
       }
       else
       {
-        v11 = this->m_actarray[339];
-        this->m_actarray[339] = v11 - 20;
+        v11 = this->m_szTexture[71];
+        this->m_szTexture[71] = v11 - 20;
         if ( v11 == 20 )
         {
-          this->m_actarray[339] = 0;
-          this->m_actarray[333] = 1;
+          this->m_szTexture[71] = 0;
+          this->m_szTexture[65] = 1;
         }
       }
     }
@@ -354,13 +354,13 @@ BOOL Actor::HandleEvent(int a2, int a3)
     {
       *(_DWORD *)(v5 + 4) = v7;
       *(_BYTE *)(v5 + 8) = 0;
-      this->m_actarray[332] = 0;
-      this->m_actarray[344] = 1;
-      this->m_actarray[339] = -1;
+      this->m_szTexture[64] = 0;
+      this->m_szTexture[76] = 1;
+      this->m_szTexture[71] = -1;
     }
   }
-  this->m_actarray[356] = sub_4A1CF0(&this->m_actarray[360]) == 2;
-  return this->HitTest(a2, a3);
+  this->m_szTexture[88] = sub_4A1CF0(&this->m_szTexture[92]) == 2;
+  return (UIWnd *->HitTest()this, a2, a3);
 }
 
 // 0x00536A40
@@ -426,11 +426,11 @@ int Actor::LoadAction(char *name)
   _BYTE v17[16]; // [esp+10h] [ebp-1Ch] BYREF
   int v18; // [esp+28h] [ebp-4h]
 
-  v3 = &this->m_actarray[540];
+  v3 = (char *)&this->m_actarray[540];
   if ( !strcmp(name, &this->m_actarray[540]) )
     return 1;
   v6 = strlen(name) + 1;
-  v5 = &name[v6];
+  v5 = (char *)&name[v6];
   qmemcpy(v3, name, 4 * (v6 >> 2));
   qmemcpy(&v3[4 * (v6 >> 2)], &v5[4 * (v6 >> 2) - v6], v6 & 3);
   _strlwr(v3);
@@ -456,13 +456,13 @@ int Actor::LoadAction(char *name)
   v16 = *(_DWORD *)&this->m_actarray[16];
   v11 = gbCrc32Compute(v3);
   v12 = sub_5370E0(v11, v16);
-  v13 = *(gbActor **)&this->m_actarray[16];
+  v13 = (gbActor *)*(gbActor **)&this->m_actarray[16];
   if ( !v13 || !v12 )
     return 0;
   v13->GotoAction(v3, 0);
   while ( gbVisNode::PopMessage(*(gbVisNode **)&this->m_actarray[16], (struct gbNodeMsgObj *)v17) )
     ;
-  v14 = &this->m_actarray[280];
+  v14 = (char *)&this->m_actarray[280];
   if ( this->m_actarray[280] )
   {
     OpenBaseFile::OpenBaseFile(&name);
@@ -537,7 +537,7 @@ void * Actor::LoadModel()
     *(_DWORD *)&this->m_actarray[16] = ActorFile;
     if ( ActorFile )
     {
-      v4 = *(_DWORD **)&this->m_actarray[8];
+      v4 = (_DWORD *)*(_DWORD **)&this->m_actarray[8];
       v5 = v4;
       if ( (*(_DWORD *)&this->m_actarray[12] - (int)v4) >> 2 )
       {
@@ -546,7 +546,7 @@ void * Actor::LoadModel()
           *(_DWORD **)&this->m_actarray[8],
           (_DWORD *)(1 - ((*(_DWORD *)&this->m_actarray[8] - (int)v5) >> 2)),
           &this->m_actarray[16]);
-        v13 = *(_DWORD **)&this->m_actarray[8];
+        v13 = (_DWORD *)*(_DWORD **)&this->m_actarray[8];
         for ( i = v5; i != v13; ++i )
           * i = (*)*(_DWORD *)&this->m_actarray[16];
         *(_DWORD *)&this->m_actarray[8] += 4;
@@ -565,10 +565,10 @@ void * Actor::LoadModel()
         if ( v9 < 0 )
           v9 = 0;
         v10 = (_DWORD *)operator new(4 * v9);
-        v11 = sub_5374E0(*(_DWORD **)&this->m_actarray[4], v5, v10);
+        v11 = (_DWORD *)sub_5374E0(*(_DWORD **)&this->m_actarray[4], v5, v10);
         sub_537510(v11, (_DWORD *)1, &this->m_actarray[16]);
         sub_5374E0(v5, *(_DWORD **)&this->m_actarray[8], v11 + 1);
-        v18 = *(void **)&this->m_actarray[4];
+        v18 = (void *)*(void **)&this->m_actarray[4];
         operator delete(v18);
         *(_DWORD *)&this->m_actarray[12] = &v10[v16];
         v12 = sub_5372B0(this);
@@ -641,7 +641,7 @@ int Actor::UpdateAllActions()
   result = *(_DWORD *)&this->m_actarray[8];
   *(_DWORD *)&this->m_actarray[8] = *(_DWORD *)&this->m_actarray[4];
   *(_DWORD *)&this->m_actarray[16] = 0;
-  v5 = &this->m_actarray[540];
+  v5 = (char *)&this->m_actarray[540];
   *(_DWORD *)v5 = 0;
   *((_DWORD *)v5 + 1) = 0;
   return result;
@@ -669,13 +669,13 @@ void Actor::SetVisible(int bVisible)
   v8 = *(_DWORD *)&this->m_actarray[16];
   v3 = gbCrc32Compute(&this->m_actarray[540]);
   v4 = sub_5370E0(v3, v8);
-  v5 = *(gbActor **)&this->m_actarray[16];
+  v5 = (gbActor *)*(gbActor **)&this->m_actarray[16];
   if ( v5 && v4 )
   {
     v5->GotoAction(&this->m_actarray[540], v11, v12);
     while ( gbVisNode::PopMessage(*(gbVisNode **)&this->m_actarray[16], (struct gbNodeMsgObj *)v9) )
       ;
-    v6 = &this->m_actarray[280];
+    v6 = (char *)&this->m_actarray[280];
     if ( this->m_actarray[280] )
     {
       OpenBaseFile::OpenBaseFile(&bVisible);

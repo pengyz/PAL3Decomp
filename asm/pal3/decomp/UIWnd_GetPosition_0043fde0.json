@@ -2,6 +2,6 @@
   "name": "UIWnd::GetPosition",
   "address": "0x0043FDE0",
   "size_bytes": 13,
-  "signature": "void __thiscall(float *this, int a2)",
-  "decompiled_c": "// between_std_methods (0x430790-0x445B40)\nvoid __thiscall sub_43FDE0(float *this, int a2)\n{\n  *(this + 37) = (float)a2;\n}\n"
+  "signature": "void __thiscall(UIWnd *this, int a2)",
+  "decompiled_c": "// between_std_methods (0x430790-0x445B40)\nvoid __thiscall UIWnd::GetPosition(UIWnd *this, int a2)\n{\n  *((float *)this + 37) = (float)a2;\n}\n"
 }

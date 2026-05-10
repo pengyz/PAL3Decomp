@@ -23,8 +23,7 @@ extern int dword_D8C2C4;
 extern int dword_D8C2C8;
 extern int dword_D8C2E8;
 extern int dword_D8C308;
-extern int dword_D8C328;
-extern int dword_D8C32C;
+extern int stru_D8C328;
 extern int unknown_libname_343;
 extern int unknown_libname_344;
 
@@ -117,15 +116,15 @@ _DWORD * PalScriptMgr::Destroy(unsigned int a1, char a2)
     v3 = result;
     if ( result )
     {
-      v4 = operator new(0x18u);
+      v4 = (_DWORD *)operator new(0x18u);
       if ( v4 )
-        v5 = sub_431CB0(v4);
+        v5 = (_DWORD *)sub_431CB0(v4);
       else
         v5 = 0;
       if ( v5 )
       {
         v5[1] = v3;
-        dword_D8C32C->SetAt(v5);
+        PtrArray::SetAt(MEMORY[0xD8C32C], v5);
         return v5;
       }
       else
@@ -146,11 +145,11 @@ int PalScriptMgr::_CON_State(int a1)
   int result; // eax
 
   v1 = 0;
-  if ( dword_D8C32C <= 0 )
+  if ( MEMORY[0xD8C32C] <= 0 )
     return 0;
-  for ( i = (int *)dword_D8C328; ; ++i )
+  for ( i = (int *)stru_D8C328; ; ++i )
   {
-    if ( v1 >= 0 && v1 < dword_D8C32C )
+    if ( v1 >= 0 && v1 < MEMORY[0xD8C32C] )
     {
       result = *i;
       if ( *i )
@@ -159,7 +158,7 @@ int PalScriptMgr::_CON_State(int a1)
           break;
       }
     }
-    if ( ++v1 >= dword_D8C32C )
+    if ( ++v1 >= MEMORY[0xD8C32C] )
       return 0;
   }
   return result;
@@ -168,33 +167,36 @@ int PalScriptMgr::_CON_State(int a1)
 // 0x004322A0
 int PalScriptMgr::IfAnyScriptRunning(int a2)
 {
-  return PtrArray::SetAt(*((_DWORD *)this + 3), a2);
+  int result; // eax
+
+  (PtrArray *->SetAt()&this->m_script.m_nSize, this->m_script.m_nMaxSize, a2);
+  return result;
 }
 
 // 0x004322C0
 int PalScriptMgr::IsScriptRuning(int a2)
 {
-  int v3; // eax
+  int m_nMaxSize; // eax
   int v5; // ebp
   int v6; // edi
-  _DWORD *v7; // ebx
+  PtrArray *p_m_nSize; // ebx
   _DWORD *v8; // esi
   int v9; // esi
 
-  v3 = *((_DWORD *)this + 3);
-  if ( v3 )
+  m_nMaxSize = this->m_script.m_nMaxSize;
+  if ( m_nMaxSize )
   {
     v5 = 0;
     v6 = 0;
-    if ( v3 > 0 )
+    if ( m_nMaxSize > 0 )
     {
-      v7 = this + 2;
+      p_m_nSize = (PtrArray *)&this->m_script.m_nSize;
       do
       {
-        if ( v6 < 0 || v6 >= v7[1] )
+        if ( v6 < 0 || v6 >= p_m_nSize->m_nSize )
           v8 = 0;
         else
-          v8 = *(_DWORD **)(*v7 + 4 * v6);
+          v8 = (_DWORD *)*((_DWORD *)p_m_nSize->m_pData + v6);
         if ( (*(int (**)(_DWORD *))(*v8 + 4))(v8) )
         {
           (*(void (**)(_DWORD *, int))(*v8 + 8))(v8, a2);
@@ -203,34 +205,34 @@ int PalScriptMgr::IsScriptRuning(int a2)
         {
           if ( v8[1] && v8 )
             (*(void (**)(_DWORD *, int))*v8)(v8, 1);
-          if ( v6 >= 0 && v6 < v7[1] )
-            *(_DWORD *)(*v7 + 4 * v6) = 0;
+          if ( v6 >= 0 && v6 < p_m_nSize->m_nSize )
+            *((_DWORD *)p_m_nSize->m_pData + v6) = 0;
           v5 = 1;
         }
         ++v6;
       }
-      while ( v6 < *((_DWORD *)this + 3) );
+      while ( v6 < this->m_script.m_nMaxSize );
       if ( v5 )
       {
         v9 = 0;
-        while ( v9 < *((_DWORD *)this + 3) )
+        while ( v9 < this->m_script.m_nMaxSize )
         {
-          if ( v9 >= 0 && v9 < v7[1] && *(_DWORD *)(*v7 + 4 * v9) )
+          if ( v9 >= 0 && v9 < p_m_nSize->m_nSize && *((_DWORD *)p_m_nSize->m_pData + v9) )
             ++v9;
           else
-            v9->InsertAt(1);
+            p_m_nSize->InsertAt(v9, 1);
         }
       }
     }
   }
   else
   {
-    while ( PtrArray::~PtrArray(*((_DWORD *)this + 1)) != 2 )
+    while ( PtrArray::~PtrArray((int)this->m_script.m_pData) != 2 )
     {
-      if ( (int)*((_DWORD *)this + 3) > 0 )
+      if ( this->m_script.m_nMaxSize > 0 )
         return 0;
     }
-    if ( !*((_DWORD *)this + 3) )
+    if ( !this->m_script.m_nMaxSize )
       return 1;
   }
   return 0;
@@ -246,17 +248,17 @@ void PalScriptMgr::RunSceneScript(int a1)
   int v5; // eax
   int i; // esi
 
-  v1 = dword_D8C32C;
+  v1 = MEMORY[0xD8C32C];
   v2 = 0;
   v3 = 0;
-  if ( dword_D8C32C > 0 )
+  if ( MEMORY[0xD8C32C] > 0 )
   {
     do
     {
-      if ( v3 < 0 || v3 >= dword_D8C32C )
+      if ( v3 < 0 || v3 >= MEMORY[0xD8C32C] )
         v4 = 0;
       else
-        v4 = *(char **)(dword_D8C328 + 4 * v3);
+        v4 = (char *)*(char **)(stru_D8C328 + 4 * v3);
       if ( v4->IsScriptRuning(a1) )
       {
         if ( v4 )
@@ -264,8 +266,8 @@ void PalScriptMgr::RunSceneScript(int a1)
           sub_431CD0(v4);
           operator delete(v4);
         }
-        if ( v3 >= 0 && v3 < dword_D8C32C )
-          *(_DWORD *)(dword_D8C328 + 4 * v3) = 0;
+        if ( v3 >= 0 && v3 < MEMORY[0xD8C32C] )
+          *(_DWORD *)(stru_D8C328 + 4 * v3) = 0;
         v2 = 1;
       }
       ++v3;
@@ -273,10 +275,10 @@ void PalScriptMgr::RunSceneScript(int a1)
     while ( v3 < v1 );
     if ( v2 )
     {
-      v5 = dword_D8C32C;
-      for ( i = 0; i < dword_D8C32C; v5 = dword_D8C32C )
+      v5 = MEMORY[0xD8C32C];
+      for ( i = 0; i < MEMORY[0xD8C32C]; v5 = MEMORY[0xD8C32C] )
       {
-        if ( i >= 0 && i < v5 && *(_DWORD *)(dword_D8C328 + 4 * i) )
+        if ( i >= 0 && i < v5 && *(_DWORD *)(stru_D8C328 + 4 * i) )
           ++i;
         else
           i->InsertAt(1);
@@ -296,7 +298,7 @@ int PalScriptMgr::_CON_ReLoadScript()
 // 0x004324A0
 BOOL PalScriptMgr::_CON_CloseScript()
 {
-  return dword_D8C32C > 0;
+  return MEMORY[0xD8C32C] > 0;
 }
 
 // 0x004324B0
@@ -309,14 +311,14 @@ int PalScriptMgr::ClearAllScript(int a1)
   if ( !a1 )
     return 0;
   v1 = 0;
-  if ( dword_D8C32C <= 0 )
+  if ( MEMORY[0xD8C32C] <= 0 )
     return 0;
-  for ( i = (_DWORD *)dword_D8C328; ; ++i )
+  for ( i = (_DWORD *)stru_D8C328; ; ++i )
   {
-    v3 = v1 < 0 || v1 >= dword_D8C32C ? 0 : *i;
+    v3 = v1 < 0 || v1 >= MEMORY[0xD8C32C] ? 0 : *i;
     if ( v3 == a1 )
       break;
-    if ( ++v1 >= dword_D8C32C )
+    if ( ++v1 >= MEMORY[0xD8C32C] )
       return 0;
   }
   return 1;
@@ -331,7 +333,7 @@ _DWORD * PalScriptMgr::FindScriptByDesc(const char *a1, const char *a2)
 
   _snprintf(Buffer, 0x3Fu, "_%s_%s", a1, a2);
   v2 = sub_4325A0(Buffer);
-  result = v2->Destroy(0);
+  result = (_DWORD *)v2->Destroy(0);
   if ( result )
     byte_D8C339 = 1;
   return result;
@@ -344,17 +346,17 @@ int PalScriptMgr::IfHaveScript()
   int i; // edi
   void *v2; // esi
 
-  v0 = dword_D8C32C;
+  v0 = MEMORY[0xD8C32C];
   for ( i = 0; i < v0; ++i )
   {
     if ( i >= 0 && i < v0 )
     {
-      v2 = *(void **)(dword_D8C328 + 4 * i);
+      v2 = (void *)*(void **)(stru_D8C328 + 4 * i);
       if ( v2 )
       {
-        sub_431CD0(*(char **)(dword_D8C328 + 4 * i));
+        sub_431CD0(*(char **)(stru_D8C328 + 4 * i));
         operator delete(v2);
-        v0 = dword_D8C32C;
+        v0 = MEMORY[0xD8C32C];
       }
     }
   }

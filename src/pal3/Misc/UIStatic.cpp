@@ -9,38 +9,39 @@ extern void *off_5974E0;
 // 0x00440740
 UIStatic::UIStatic()
 {
-  _DWORD *v2; // eax
+  int *p_m_bvisible; // eax
   int v3; // ecx
 
-  UIWnd::UIWnd();
-  *(_DWORD *)this = &off_56AD88;
-  *((_DWORD *)this + 68) = 0;
-  *((_DWORD *)this + 69) = 0;
-  *((_DWORD *)this + 20) = 0;
-  v2 = this + 92;
+  this->UIWnd();
+  this->m_fontcolor.ColorQuadFmt = (int)&off_56AD88;
+  LOBYTE(this->m_pfather) = 0;
+  BYTE1(this->m_pfather) = 0;
+  this->m_childs.m_nMaxSize = 0;
+  p_m_bvisible = (int *)&this->m_bvisible;
   v3 = 2;
   do
   {
-    *(v2 - 2) = 0;
-    *v2++ = 0;
+    *(p_m_bvisible - 2) = 0;
+    *p_m_bvisible++ = 0;
     --v3;
   }
   while ( v3 );
-  memset(this + 120, 0, 0x80u);
-  *((_DWORD *)this + 19) = 1;
-  *((_DWORD *)this + 28) = 0;
-  *((_DWORD *)this + 29) = 0;
-  *((_DWORD *)this + 26) = 0;
-  *((_DWORD *)this + 27) = 0;
+  memset(&this->m_ratioh, 0, 0x80u);
+  this->m_childs.m_nSize = 1;
+  this->pDebugTex = 0;
+  this->m_ratiow = 0.0;
+  this->m_bordersize = 0;
+  this->m_align = 0;
 }
 
 // 0x00440BA0
-int UIStatic::OnMessage(gbRefObject **this)
+int UIStatic::OnMessage(UIStatic **this)
 {
   gbRefObject **v2; // esi
   int v3; // ebx
+  int result; // eax
 
-  v2 = this + 21;
+  v2 = (gbRefObject **)(this + 21);
   v3 = 2;
   do
   {
@@ -53,20 +54,22 @@ int UIStatic::OnMessage(gbRefObject **this)
     --v3;
   }
   while ( v3 );
-  return this->UpdateChildren();
+  (UIWnd *->UpdateChildren()this);
+  return result;
 }
 
 // 0x00440DD0
-int UIStatic::Update(int _this, int a2, int a3)
+BOOL UIStatic::Update(int _this, int a2, int a3)
 {
   BOOL v5; // eax
   int v6; // ecx
-  char v7; // dl
-  int v8; // ecx
+  char *Instance; // eax
+  char v8; // dl
   int v9; // ecx
   int v10; // ecx
   int v11; // ecx
-  char *v12; // [esp-8h] [ebp-1Ch]
+  int v12; // ecx
+  void *v13; // [esp-8h] [ebp-1Ch]
   POINT pt; // [esp+Ch] [ebp-8h] BYREF
 
   if ( !*(_DWORD *)(this + 56) )
@@ -79,62 +82,62 @@ int UIStatic::Update(int _this, int a2, int a3)
     {
       if ( v5 )
       {
-        if ( MEMORY[0xBFC5F4] == 1 )
+        if ( g_Input.m_shiftedKeyStates[207] == 1 )
         {
-          v7 = *(_BYTE *)(this + 68);
+          v8 = *(_BYTE *)(this + 68);
           *(_BYTE *)(this + 69) = 1;
-          *(_BYTE *)(this + 68) = v7 == 0;
-          if ( v7 )
+          *(_BYTE *)(this + 68) = v8 == 0;
+          if ( v8 )
           {
-            v9 = *(_DWORD *)(this + 32);
+            v10 = *(_DWORD *)(this + 32);
             *(_DWORD *)(this + 80) = 0;
-            if ( v9 )
-              (*(void (__stdcall **)(int, _DWORD, _DWORD))(*(_DWORD *)v9 + 24))(1001, *(_DWORD *)(this + 12), 0);
+            if ( v10 )
+              (*(void (__stdcall **)(int, _DWORD, _DWORD))(*(_DWORD *)v10 + 24))(1001, *(_DWORD *)(this + 12), 0);
           }
           else
           {
-            v8 = *(_DWORD *)(this + 32);
+            v9 = *(_DWORD *)(this + 32);
             *(_DWORD *)(this + 80) = 1;
-            if ( v8 )
-              (*(void (__stdcall **)(int, _DWORD, int))(*(_DWORD *)v8 + 24))(1001, *(_DWORD *)(this + 12), 1);
+            if ( v9 )
+              (*(void (__stdcall **)(int, _DWORD, int))(*(_DWORD *)v9 + 24))(1001, *(_DWORD *)(this + 12), 1);
           }
           *(_BYTE *)(this + 69) = 0;
           *(_BYTE *)(this + 70) = 0;
         }
         else
         {
-          v10 = *(_DWORD *)(this + 32);
+          v11 = *(_DWORD *)(this + 32);
           *(_BYTE *)(this + 100) = 1;
           *(_BYTE *)(this + 70) = 0;
-          if ( v10 )
-            (*(void (__stdcall **)(int, _DWORD, _DWORD))(*(_DWORD *)v10 + 24))(1002, *(_DWORD *)(this + 12), 0);
+          if ( v11 )
+            (*(void (__stdcall **)(int, _DWORD, _DWORD))(*(_DWORD *)v11 + 24))(1002, *(_DWORD *)(this + 12), 0);
         }
       }
       else if ( !*(_BYTE *)(this + 70) )
       {
-        v11 = *(_DWORD *)(this + 32);
+        v12 = *(_DWORD *)(this + 32);
         *(_BYTE *)(this + 100) = 0;
         *(_BYTE *)(this + 70) = 1;
-        if ( v11 )
-          (*(void (__stdcall **)(int, _DWORD, _DWORD))(*(_DWORD *)v11 + 24))(1003, *(_DWORD *)(this + 12), 0);
+        if ( v12 )
+          (*(void (__stdcall **)(int, _DWORD, _DWORD))(*(_DWORD *)v12 + 24))(1003, *(_DWORD *)(this + 12), 0);
       }
-      return a2->HitTest(a3);
+      return (UIWnd *->HitTest()this, a2, a3);
     }
     else
     {
-      return a2->HitTest(0);
+      return (UIWnd *->HitTest()this, a2, 0);
     }
   }
   else
   {
-    if ( v5 && MEMORY[0xBFC5F4] == 1 )
+    if ( v5 && g_Input.m_shiftedKeyStates[207] == 1 )
     {
       v6 = *(_DWORD *)(this + 32);
       if ( v6 )
         (*(void (**)(int, int, _DWORD, int))(*(_DWORD *)v6 + 24))(v6, 1021, *(_DWORD *)(this + 12), 1);
-      v12 = off_5974E0[0];
-      CScreenMode::GetInstance();
-      v12->AudioSetPosition(1);
+      v13 = off_5974E0;
+      Instance = (char *)CScreenMode::GetInstance();
+      (CScreenMode *->AudioSetPosition()Instance, v13, 1);
     }
     return 0;
   }
@@ -145,14 +148,13 @@ int UIStatic::Render(int _this)
 {
   int result; // eax
   int v3; // eax
-  int v4; // eax
-  int v5; // ebx
-  int v6; // edi
-  int v7; // ecx
-  int v8; // eax
-  int v9; // [esp-10h] [ebp-58h]
-  int v10[16]; // [esp+4h] [ebp-44h] BYREF
-  int v11; // [esp+44h] [ebp-4h]
+  unsigned int *v4; // eax
+  unsigned int *v5; // ebx
+  int *v6; // edi
+  gbTexture *v7; // ecx
+  gbTexture *v8; // eax
+  unsigned int *v9; // [esp-10h] [ebp-58h]
+  struct gbTextureArray v10; // [esp+4h] [ebp-44h] BYREF
 
   result = *(_DWORD *)(this + 56);
   if ( result )
@@ -162,53 +164,57 @@ int UIStatic::Render(int _this)
     {
       if ( *(_BYTE *)(this + 100) && *(_DWORD *)(this + 104) && v3 != 1 )
       {
-        v4 = *(_DWORD *)(this + 108);
-        v10[0] = *(_DWORD *)(this + 104);
-        v11 = 1;
-        v5 = this + 8;
-        v6 = this + 16;
-        _TextureLib_Data::SetLibFolder(this + 16, this + 8, (int)v10, 276, v4, COERCE_FLOAT(1));
+        v4 = (unsigned int *)*(unsigned int **)(this + 108);
+        v10.pTexPt[0] = *(gbTexture **)(this + 104);
+        v10.nTex = 1;
+        v5 = (unsigned int *)(this + 8);
+        v6 = (int *)(this + 16);
+        (int *->SetLibFolder()(this + 16),
+          (unsigned int *)(this + 8),
+          &v10,
+          0x114u,
+          v4,
+          COERCE_FLOAT(1));
       }
       else
       {
-        v7 = *(_DWORD *)(this + 4 * v3 + 84);
-        v11 = 1;
-        v10[0] = v7;
-        v5 = this + 8;
-        v6 = this + 16;
-        _TextureLib_Data::SetLibFolder(
-          this + 16,
-          this + 8,
-          (int)v10,
-          276,
-          *(_DWORD *)(this + 4 * v3 + 92),
+        v7 = (gbTexture *)*(gbTexture **)(this + 4 * v3 + 84);
+        v10.nTex = 1;
+        v10.pTexPt[0] = v7;
+        v5 = (unsigned int *)(this + 8);
+        v6 = (int *)(this + 16);
+        (int *->SetLibFolder()(this + 16),
+          (unsigned int *)(this + 8),
+          &v10,
+          0x114u,
+          *(unsigned int **)(this + 4 * v3 + 92),
           COERCE_FLOAT(1));
       }
       if ( !*(_DWORD *)(this + 60) )
       {
-        v8 = *(_DWORD *)(this + 112);
+        v8 = (gbTexture *)*(gbTexture **)(this + 112);
         if ( v8 )
         {
-          v9 = *(_DWORD *)(this + 116);
-          v11 = 1;
-          v10[0] = v8;
-          v6->SetLibFolder(v5, (int)v10, 276, v9, COERCE_FLOAT(1));
+          v9 = (unsigned int *)*(unsigned int **)(this + 116);
+          v10.nTex = 1;
+          v10.pTexPt[0] = v8;
+          v6->SetLibFolder(v5, &v10, 0x114u, v9, COERCE_FLOAT(1));
         }
       }
     }
     else
     {
-      v6 = this + 16;
+      v6 = (int *)(this + 16);
       _TextureLib_Data::~_TextureLib_Data(
         *(_DWORD *)(this + 16),
         *(_DWORD *)(this + 20),
         *(_DWORD *)(this + 24),
         *(_DWORD *)(this + 28),
-        &MEMORY[0xD91780]);
+        (float *)&g_GameData_0._data[12992]);
     }
     if ( *(_BYTE *)(this + 120) )
-      UIRenderPar(this + 120, v6, this + 72, 1, 1);
-    return this->GetID();
+      UIRenderPar(this + 120, (int)v6, (_BYTE *)(this + 72), 1, 1);
+    return (UIWnd *->GetID()this);
   }
   return result;
 }

@@ -49,7 +49,7 @@ char CEffQuad::Create(int _this, int a2)
   sub_4D1FD0(*(_DWORD *)(a2 + 168), *(_DWORD *)(a2 + 172));
   *(_DWORD *)(this + 156) = operator new(80 * *(_DWORD *)(a2 + 208));
   v3 = *(_DWORD *)(a2 + 208);
-  v4 = operator new(68 * v3);
+  v4 = (void *)operator new(68 * v3);
   v21 = v4;
   v24 = 0;
   if ( v4 )
@@ -76,7 +76,7 @@ char CEffQuad::Create(int _this, int a2)
   *(_DWORD *)(this + 160) = v4;
   v20 = 4 * *(_DWORD *)(a2 + 208);
   v24 = -1;
-  v8 = operator new(v20);
+  v8 = (void *)operator new(v20);
   v9 = *(_DWORD *)(this + 156);
   *(_DWORD *)(this + 164) = v8;
   if ( !v9 || !*(_DWORD *)(this + 160) || !v8 )
@@ -92,7 +92,7 @@ char CEffQuad::Create(int _this, int a2)
   for ( i = 0; i < *(_DWORD *)(this + 68); ++i )
     *(_DWORD *)(*(_DWORD *)(this + 164) + 4 * i) = i;
   CEffQuad::ToNextFrame(a2 + 40);
-  v11 = operator new(0x4C0u);
+  v11 = (void *)operator new(0x4C0u);
   *(_DWORD *)(this + 24) = v11;
   if ( v11 )
   {
@@ -182,7 +182,7 @@ char CEffQuad::DestroyOneQuad(const void *a2)
     *((_DWORD *)this + 15) = v9 + 1;
   *(_DWORD *)(v8 + *((_DWORD *)this + 39)) = *((_DWORD *)this + 16);
   *(_DWORD *)(*((_DWORD *)this + 41) + 4 * (*((_DWORD *)this + 16))++) = v4;
-  v4->SetQuad();
+  CEffQuad::SetQuad((int)this, v4);
   *((_DWORD *)this + 18) = v4;
   return 1;
 }
@@ -276,7 +276,7 @@ _DWORD * CEffQuad::ToNextFrame(int _this, int a2)
   v3 = (gbTexture *)(*(int (**)(_DWORD, int))(***(_DWORD ***)(this + 4) + 8))(**(_DWORD **)(this + 4), a2);
   *(_DWORD *)(this + 4264) = v3;
   v3->LoadTexture(1);
-  result = operator new(0x44u);
+  result = (_DWORD *)operator new(0x44u);
   if ( result )
   {
     v5 = *(_DWORD *)(this + 4264);
@@ -302,7 +302,7 @@ _DWORD * CEffQuad::ToNextFrame(int _this, int a2)
 // 0x004D2080
 int CEffQuad::CreateTask(_DWORD *a2)
 {
-  _DWORD *v2; // ebp
+  int *v2; // ebp
   int v3; // edx
   int result; // eax
   int v5; // esi
@@ -313,7 +313,7 @@ int CEffQuad::CreateTask(_DWORD *a2)
   int v10; // eax
   int v11; // esi
   _BYTE *v12; // edi
-  int (**v13)(int, int); // edx
+  int (**v13)(CEffect *, int); // edx
   unsigned int v14; // eax
   int v15; // edx
   int v16; // ecx
@@ -322,14 +322,14 @@ int CEffQuad::CreateTask(_DWORD *a2)
   int v19; // eax
   int v20; // esi
   _BYTE *v21; // edi
-  int (**v22)(int, int); // edx
+  int (**v22)(CEffect *, int); // edx
   unsigned int v23; // eax
   int v24; // edx
   int v25; // ecx
   _DWORD *v26; // eax
   int v27; // [esp+10h] [ebp-Ch]
 
-  v2 = this + 3;
+  v2 = (int *)(this + 12);
   v3 = 0;
   *((_DWORD *)this + 14) = a2[20];
   result = *((_DWORD *)this + 10);
@@ -382,20 +382,20 @@ int CEffQuad::CreateTask(_DWORD *a2)
           if ( v10 >= v9 )
             goto LABEL_22;
         }
-        v13 = (int (**)(int, int))(v11 + 72 * v10);
+        v13 = (int (**)(CEffect *, int))(v11 + 72 * v10);
         memset(v13, 0, 0x48u);
         *((_BYTE *)v13 + 65) = 0;
         * v13 = (*)CEffect::SetParam;
         *((_BYTE *)v13 + 64) = 1;
         v13[1] = 0;
-        v13[2] = (int (*)(int, int))2;
+        v13[2] = (int (*)(CEffect *, int))2;
         v14 = ++dword_17A7BC0;
         if ( !dword_17A7BC0 || v14 >= 0x7FFFFFFF )
         {
           v14 = 1;
           dword_17A7BC0 = 1;
         }
-        v13[3] = (int (*)(int, int))v14;
+        v13[3] = (int (*)(CEffect *, int))v14;
         v13[5] = 0;
         v13[4] = 0;
         v13[6] = 0;
@@ -419,20 +419,20 @@ LABEL_22:
           if ( v19 >= v18 )
             goto LABEL_31;
         }
-        v22 = (int (**)(int, int))(v20 + 72 * v19);
+        v22 = (int (**)(CEffect *, int))(v20 + 72 * v19);
         memset(v22, 0, 0x48u);
         *((_BYTE *)v22 + 64) = 1;
         * v22 = (*)CEffect::SetParam;
         *((_BYTE *)v22 + 65) = 0;
         v22[1] = 0;
-        v22[2] = (int (*)(int, int))2;
+        v22[2] = (int (*)(CEffect *, int))2;
         v23 = ++dword_17A7BC0;
         if ( !dword_17A7BC0 || v23 >= 0x7FFFFFFF )
         {
           v23 = 1;
           dword_17A7BC0 = 1;
         }
-        v22[3] = (int (*)(int, int))v23;
+        v22[3] = (int (*)(CEffect *, int))v23;
         v22[5] = 0;
         v22[4] = 0;
         v22[6] = 0;
@@ -443,8 +443,8 @@ LABEL_22:
         * v26 = (*)v25 + 1;
       }
 LABEL_31:
-      sub_4D3010(v3, sub_4D22F0, 0, 0, a2[18], a2[19]);
-      sub_4D3010(v27, sub_4D2E10, 0, 0, 0, a2[19]);
+      sub_4D3010(v2, v3, (int)sub_4D22F0, 0, 0, a2[18], a2[19]);
+      sub_4D3010(v2, v27, (int)sub_4D2E10, 0, 0, 0, a2[19]);
       *(_DWORD *)(v2[3] + v7 + 12) = 3;
       *(_DWORD *)(*(_DWORD *)(v2[3] + v7) + 8) = 3;
       result = *(_DWORD *)(v2[3] + v7);

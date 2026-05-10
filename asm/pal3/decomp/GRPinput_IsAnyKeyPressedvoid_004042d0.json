@@ -2,6 +2,6 @@
   "name": "GRPinput::IsAnyKeyPressed(void)",
   "address": "0x004042D0",
   "size_bytes": 33,
-  "signature": "int __thiscall(int *this)",
-  "decompiled_c": "// between_std_methods (0x402FB0-0x407AB0)\nint __thiscall sub_4042D0(int *this)\n{\n  int result; // eax\n\n  result = *(this + 1);\n  if ( result )\n    return (*(this + 2) - result) / 36;\n  return result;\n}\n"
+  "signature": "int __thiscall(GRPinput *this)",
+  "decompiled_c": "// between_std_methods (0x402FB0-0x407AB0)\nint __thiscall GRPinput::IsAnyKeyPressed(GRPinput *this)\n{\n  int result; // eax\n\n  result = (int)this->m_lpDIDKeyboard;\n  if ( result )\n    return (int)&this->m_lpDIDMouse[-result] / 36;\n  return result;\n}\n"
 }

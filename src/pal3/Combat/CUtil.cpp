@@ -71,12 +71,12 @@ int CUtil::CreateLog(int _this)
 }
 
 // 0x005231D0
-UIWnd * CUtil::WriteLog(UIWnd *Block, char a2)
+UIWnd * CUtil::WriteLog(CUtil *Block, char a2)
 {
   Block->GetFileSize();
   if ( (a2 & 1) != 0 )
     operator delete(Block);
-  return Block;
+  return (UIWnd *)Block;
 }
 
 // 0x005231F0
@@ -87,7 +87,7 @@ void CUtil::GetFileSize()
   int v4; // ecx
   int v5; // ecx
 
-  *(_DWORD *)this = &off_5705F4;
+  this->m_bCanWarp = (__int32)&off_5705F4;
   v2 = *((_DWORD *)this + 434);
   if ( v2 )
   {
@@ -112,7 +112,7 @@ void CUtil::GetFileSize()
     (*(void (**)(int, int))(*(_DWORD *)v5 + 20))(v5, 1);
     *((_DWORD *)this + 437) = 0;
   }
-  UIItem::UIItem((int)this + 368);
+  (UIItem *->UIItem()&this->m_INIBuffer[84]);
   UIWnd::~UIWnd((UIWnd *)this);
 }
 
@@ -123,45 +123,51 @@ int CUtil::GetFileSize()
   int v3; // ecx
   int v4; // ecx
   int v5; // edx
-  void *v6; // eax
+  int v6; // eax
   int v7; // eax
-  void *v8; // eax
+  int v8; // eax
   int v9; // eax
-  void *v10; // eax
+  int v10; // eax
   int v11; // eax
-  void *v12; // eax
+  int v12; // eax
   int v13; // eax
   int v14; // ecx
-  int v15; // eax
-  gbAudioManager *v16; // eax
+  char *Instance; // eax
+  gbAudioManager *AudioManager; // eax
   gbAudioManager *v17; // esi
-  int v18; // ecx
+  char *v18; // eax
   char *v20; // [esp-8h] [ebp-38h]
-  int v21[4]; // [esp+14h] [ebp-1Ch] BYREF
+  int a3[4]; // [esp+14h] [ebp-1Ch] BYREF
   int v22; // [esp+2Ch] [ebp-4h]
 
-  v2 = *((_DWORD *)this + 22);
-  v3 = *((_DWORD *)this + 23);
-  *((_DWORD *)this + 20) = v2;
-  *((_DWORD *)this + 21) = v3;
-  *((_DWORD *)this + 19) = 0;
-  *((_DWORD *)this + 18) = 0;
-  this->SetSelTexture(-1, 0, 0, *((_DWORD *)this + 20), *((_DWORD *)this + 21), 0);
-  v21[1] = 200;
-  v21[0] = 250;
-  v21[2] = 550;
-  v21[3] = 300;
-  UIItem::Create((int)(this + 92), (int)&unk_ABCD00, v21, (int)this, 0, 1);
-  UIItem::SetData(this + 92, 18, 255, 28, 200);
-  v4 = *((_DWORD *)this + 112);
-  v5 = *((_DWORD *)this + 114);
-  *((_DWORD *)this + 117) = *((_DWORD *)this + 113) + 12;
-  *((_DWORD *)this + 116) = v4 + 6;
-  *((_DWORD *)this + 119) = *((_DWORD *)this + 115) - 38;
+  v2 = *(_DWORD *)&this->m_INIFileName[68];
+  v3 = *(_DWORD *)&this->m_INIFileName[72];
+  *(_DWORD *)&this->m_INIFileName[60] = v2;
+  *(_DWORD *)&this->m_INIFileName[64] = v3;
+  *(_DWORD *)&this->m_INIFileName[56] = 0;
+  *(_DWORD *)&this->m_INIFileName[52] = 0;
+  (UIListBox *->SetSelTexture()this,
+    -1,
+    0,
+    0,
+    *(_DWORD *)&this->m_INIFileName[60],
+    *(_DWORD *)&this->m_INIFileName[64],
+    0);
+  a3[1] = 200;
+  a3[0] = 250;
+  a3[2] = 550;
+  a3[3] = 300;
+  (UIItem *->Create()&this->m_INIBuffer[84], (int)&unk_ABCD00, (int)a3);
+  (UIItem *->SetData()&this->m_INIBuffer[84], 18);
+  v4 = *(_DWORD *)&this->m_INIBuffer[164];
+  v5 = *(_DWORD *)&this->m_INIBuffer[172];
+  *(_DWORD *)&this->m_INIBuffer[184] = *(_DWORD *)&this->m_INIBuffer[168] + 12;
+  *(_DWORD *)&this->m_INIBuffer[180] = v4 + 6;
+  *(_DWORD *)&this->m_INIBuffer[192] = *(_DWORD *)&this->m_INIBuffer[176] - 38;
   *((_DWORD *)this + 428) = 0;
   *((_DWORD *)this + 429) = 6;
-  *((_DWORD *)this + 118) = v5 - 6;
-  UIWnd::GetRect(this + 206, this + 116);
+  *(_DWORD *)&this->m_INIBuffer[188] = v5 - 6;
+  (UIWnd *->GetRect()((char *)this + 824), &this->m_INIBuffer[180]);
   v6 = operator new(0x1578u);
   v22 = 0;
   if ( v6 )
@@ -173,7 +179,7 @@ int CUtil::GetFileSize()
   v8 = operator new(0xA4128u);
   v22 = 1;
   if ( v8 )
-    v9 = CCBProtectWindow::Create((int)v8);
+    v9 = v8->Create();
   else
     v9 = 0;
   v22 = -1;
@@ -181,7 +187,7 @@ int CUtil::GetFileSize()
   v10 = operator new(0x1E56Cu);
   v22 = 2;
   if ( v10 )
-    v11 = UIWnd::ctor_A60((int)v10);
+    v11 = v10->ctor_A60();
   else
     v11 = 0;
   v22 = -1;
@@ -189,35 +195,36 @@ int CUtil::GetFileSize()
   v12 = operator new(0x70DCu);
   v22 = 3;
   if ( v12 )
-    v13 = UIWnd::ctor_D140((int)v12);
+    v13 = v12->ctor_D140();
   else
     v13 = 0;
+  v14 = *((_DWORD *)this + 434);
   v22 = -1;
   *((_DWORD *)this + 437) = v13;
-  sub_524230(this);
+  sub_524230(v14, (int)this);
   sub_51DFD0(*((_DWORD *)this + 435), (int)this);
-  sub_472A80((_DWORD *)*((_DWORD *)this + 436), 1);
+  sub_472A80(*((_DWORD **)this + 436), 1);
   sub_471590(*((_DWORD *)this + 436), (int)this);
-  sub_46EC30((_DWORD *)*((_DWORD *)this + 437), 1);
+  sub_46EC30(*((_DWORD **)this + 437), 1);
   sub_46DF40(*((_DWORD *)this + 437), (int)this);
-  sub_524960(*((_DWORD *)this + 435));
-  CCBResultWindow::~CCBResultWindow((_DWORD *)*((_DWORD *)this + 435), *((_DWORD *)this + 437));
-  (_DWORD *->CCBResultWindow()*((_DWORD *)this + 435), *((_DWORD *)this + 436));
-  (_DWORD *->Update()*((_DWORD *)this + 435), *((_DWORD *)this + 434));
+  sub_524960(*((_DWORD **)this + 434), *((_DWORD *)this + 435));
+  CCBResultWindow::~CCBResultWindow(*((CCBResultWindow **)this + 435), *((_DWORD *)this + 437));
+  CCBResultWindow::CCBResultWindow(*((CCBResultWindow **)this + 435), *((_DWORD *)this + 436));
+  CCBProtectWindow::Update(*((CCBProtectWindow **)this + 435), *((_DWORD *)this + 434));
   this->RectIntersection();
   if ( (g_nGameFlags & 4) != 0 )
   {
-    v15 = v14->GetInstance();
-    v16 = (gbAudioManager *)v15->GetAudioManager();
-    v17 = v16;
-    if ( v16 )
+    Instance = (char *)CScreenMode::GetInstance();
+    AudioManager = (gbAudioManager *)(CScreenMode *->GetAudioManager()Instance);
+    v17 = AudioManager;
+    if ( AudioManager )
     {
-      v16->DetachAll3D();
+      AudioManager->DetachAll3D();
       v17->StopSoundStream(0);
       v17->StopSoundStream(2);
-      v20 = off_5E2C34[0];
-      v18->GetInstance();
-      sub_53EA80(1, v20, 0);
+      v20 = (char *)off_5E2C34[0];
+      v18 = (char *)CScreenMode::GetInstance();
+      sub_53EA80((int)v18, 1, v20, 0);
     }
   }
   return UICursor::IRender();
@@ -226,24 +233,24 @@ int CUtil::GetFileSize()
 // 0x00523560
 char CUtil::RectIntersection()
 {
-  _DWORD *v2; // eax
+  RenderTarget *Instance; // eax
   int v3; // ecx
   int v4; // eax
-  int *v5; // eax
+  RenderTarget *v5; // eax
   _DWORD *v6; // eax
   char v7; // bl
   int *v8; // eax
   _DWORD *v9; // eax
 
-  v2 = CRenderTarget::GetInstance();
-  v2->OnDeviceLost(1);
+  Instance = (RenderTarget *)CRenderTarget::GetInstance();
+  Instance->OnDeviceLost(1);
   v3 = *CRenderTarget::GetInstance();
   v4 = 1061158912;
   if ( v3 )
     v4 = 1065353216;
   *((_DWORD *)this + 441) = v4;
   *((_DWORD *)this + 440) = v4;
-  v5 = CRenderTarget::GetInstance();
+  v5 = (RenderTarget *)CRenderTarget::GetInstance();
   LOBYTE(v6) = v5->OnResetDevice(1);
   if ( (_BYTE)v6 )
   {
@@ -251,11 +258,11 @@ char CUtil::RectIntersection()
     g_bRenderUI = 0;
     PAL3::Render();
     g_bRenderUI = v7;
-    v8 = CRenderTarget::GetInstance();
+    v8 = (int *)CRenderTarget::GetInstance();
     sub_4BDD90(v8);
     *((_DWORD *)this + 439) = 0;
-    v9 = CRenderTarget::GetInstance();
-    v6 = sub_4BDEB0(v9);
+    v9 = (_DWORD *)CRenderTarget::GetInstance();
+    v6 = (_DWORD *)sub_4BDEB0(v9);
     if ( v6 && v6[21] )
       *((_DWORD *)this + 439) = v6;
   }

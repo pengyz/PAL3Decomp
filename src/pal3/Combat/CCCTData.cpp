@@ -140,13 +140,13 @@ CCCTData::CCCTData(_DWORD *a2, _DWORD *a3)
 {
   int result; // eax
 
-  *((_DWORD *)this + 107557) = *a2;
-  *((_DWORD *)this + 107558) = a2[1];
-  *((_DWORD *)this + 107559) = a2[2];
-  *((_DWORD *)this + 107560) = *a3;
-  *((_DWORD *)this + 107561) = a3[1];
+  this->m_Pool[1453].bEndCamValid = *a2;
+  this->m_Pool[1453].bTimeValid = a2[1];
+  this->m_Pool[1453].bSpeedValid = a2[2];
+  this->m_Pool[1453].bLineMove = *a3;
+  this->m_Pool[1453].bCircleMove = a3[1];
   result = a3[2];
-  *((_DWORD *)this + 107562) = result;
+  this->m_Pool[1453].bMechanicsMove = result;
   return result;
 }
 
@@ -204,11 +204,11 @@ CCCTData::~CCCTData(int _this)
     gbGeomNode::GetTotalOBBox(*(gbGeomNode **)(this + 430224), (struct gbOBBox *)v42);
     v2 = this + 430228;
     (gbMatrix4 *->RightTranslate()v42, (struct gbVec3D *)(this + 430228));
-    v3 = gbEffectMgr::NewTrivalEffect(*(gbEffectMgr **)(g_pGfxManager + 200), 3);
-    DynVertBuf = gbVertPoolMgr::GetDynVertBuf(*(gbVertPoolMgr **)(g_pGfxManager + 196), 0x15u);
+    v3 = (struct gbRenderEffect *)gbEffectMgr::NewTrivalEffect(*(gbEffectMgr **)(g_pGfxManager + 200), 3);
+    DynVertBuf = (struct gbDynVertBuf *)gbVertPoolMgr::GetDynVertBuf(*(gbVertPoolMgr **)(g_pGfxManager + 196), 0x15u);
     if ( (byte_17AAEE0 & 1) == 0 )
     {
-      v4 = &flt_17AAD48;
+      v4 = (float *)&flt_17AAD48;
       byte_17AAEE0 |= 1u;
       v30 = 6;
       do
@@ -301,7 +301,7 @@ CCCTData::~CCCTData(int _this)
     v29 = v30;
     dword_17AAEC4 = v31;
     dword_17AAEC8 = v30;
-    v5 = &unk_17AAD89;
+    v5 = (_BYTE *)&unk_17AAD89;
     do
     {
       v5[1] = -1;
@@ -331,10 +331,10 @@ CCCTData::~CCCTData(int _this)
     v39 = v8;
     v36 = v7;
     v38 = *(float *)&v29;
-    v10 = *(float **)(this + 430236);
+    v10 = (float *)*(float **)(this + 430236);
     v27 = (int)v3;
     v26 = 2;
-    v25 = &v36;
+    v25 = (float *)&v36;
     v40 = v9;
     v24 = v10;
     v41 = v10;
@@ -352,10 +352,10 @@ CCCTData::~CCCTData(int _this)
     v39 = v12;
     v36 = v11;
     v38 = *(float *)&v29;
-    v14 = *(float **)(this + 430248);
+    v14 = (float *)*(float **)(this + 430248);
     v27 = (int)v3;
     v26 = 2;
-    v25 = &v36;
+    v25 = (float *)&v36;
     v40 = v13;
     v24 = v14;
     v41 = v14;
@@ -371,14 +371,14 @@ CCCTData::~CCCTData(int _this)
     v39 = v17;
     v27 = (int)v3;
     v26 = 2;
-    v25 = &v36;
+    v25 = (float *)&v36;
     v40 = v18;
-    v24 = &v36;
+    v24 = (float *)&v36;
     v38 = v16;
-    v41 = *(float **)(this + 430248);
+    v41 = (float *)*(float **)(this + 430248);
     (gbColorQuad *->gbColorQuad()&v24, (struct gbColorQuad *)v34);
     gbDynVertBuf::RenderLineStrip(LODWORD(v39));
-    v19 = *(float **)(this + 430004);
+    v19 = (float *)*(float **)(this + 430004);
     v20 = v19[123] + 1.0;
     v21 = v19[124] + 1.0;
     v22 = *(float *)v2;
@@ -390,10 +390,10 @@ CCCTData::~CCCTData(int _this)
     v37 = *(float *)&v28;
     v40 = *(_DWORD *)(v2 + 4);
     *(float *)&v29 = v23 + 1.0;
-    v25 = &v36;
+    v25 = (float *)&v36;
     v36 = v20;
     v38 = *(float *)&v29;
-    v24 = *(float **)(v2 + 8);
+    v24 = (float *)*(float **)(v2 + 8);
     v41 = v24;
     (gbColorQuad *->gbColorQuad()&v24, (struct gbColorQuad *)v34);
     gbDynVertBuf::RenderLineStrip(LODWORD(v39));
@@ -420,7 +420,7 @@ bool CCCTData::Create(int _this, _DWORD *a2)
   (gbMatrix4 *->RightTranslate()v9, (struct gbVec3D *)v7);
   v3 = *(_DWORD *)(this + 430000);
   v6[0] = *(_DWORD *)(v3 + 80);
-  v4 = *(char **)(this + 430004);
+  v4 = (char *)*(char **)(this + 430004);
   v6[1] = *(_DWORD *)(v3 + 84);
   qmemcpy(v8, v4->GetViewTarget(v10, v6), sizeof(v8));
   return (gbRay *->IsColOBB()v8, (struct gbOBBox *)v9) == 1;
@@ -433,7 +433,7 @@ char CCCTData::Destroy()
   gbGeomNode *v3; // esi
   gbGeomNode *v4; // ecx
   char pExceptionObject[1024]; // [esp+Ch] [ebp-80Ch] BYREF
-  char ArgList; // [esp+40Ch] [ebp-40Ch] BYREF
+  char ArgList[1024]; // [esp+40Ch] [ebp-40Ch] BYREF
   int v8; // [esp+814h] [ebp-4h]
 
   v2 = (gbGeomNode *)operator new(0x118u);
@@ -442,7 +442,7 @@ char CCCTData::Destroy()
   if ( v2 )
   {
     v2->gbGeomNode();
-    *(_DWORD *)v3->gbVisNode = &off_56A66C;
+    v3->next = (gbChain1DNode *)&off_56A66C;
     v4 = v3;
   }
   else
@@ -450,12 +450,12 @@ char CCCTData::Destroy()
     v4 = 0;
   }
   v8 = -1;
-  *((_DWORD *)this + 107556) = v4;
+  this->m_Pool[1453].bStartCamValid = (__int32)v4;
   if ( !v4 )
   {
     qmemcpy(
       pExceptionObject,
-      (const void *)Logger::FormatException((char)&ArgList, (int)aCNewFailed, (int)aDProjectPal3Co_6, 1425),
+      (Logger *->FormatException()ArgList, aCNewFailed, aDProjectPal3Co_6, 1425),
       sizeof(pExceptionObject));
     _CxxThrowException(pExceptionObject, (_ThrowInfo *)&_TI1_AV_Exception__);
   }
@@ -515,13 +515,13 @@ int CCCTData::Save(int a2)
   if ( result > 0 )
   {
     v4 = result;
-    v5 = &this->m_Pool[200 * a2 + 410000];
+    v5 = (char *)&this->m_Pool[200 * a2 + 410000];
     do
     {
       if ( *(_DWORD *)v5 == -1 )
         v6 = 0;
       else
-        v6 = &this->m_Pool[204 * *(_DWORD *)v5];
+        v6 = (char *)&this->m_Pool[204 * *(_DWORD *)v5];
       v6[21] = 0;
       if ( *(_DWORD *)v5 == -1 )
         result = 0;
@@ -539,7 +539,7 @@ int CCCTData::Save(int a2)
 // 0x005062D0
 int CCCTData::Load(int a2)
 {
-  int v2; // eax
+  float fAccelerationTime2; // eax
   double v3; // st7
   double v4; // st6
   int v5; // ecx
@@ -547,13 +547,13 @@ int CCCTData::Load(int a2)
   int v8; // [esp+0h] [ebp-10h]
   int v9; // [esp+4h] [ebp-Ch]
 
-  v2 = *((_DWORD *)this + 107501);
-  v3 = *(float *)(v2 + 496);
-  v4 = *(float *)(v2 + 492);
-  v8 = *(_DWORD *)(v2 + 500);
-  v5 = *(_DWORD *)(v2 + 452);
-  v9 = *(_DWORD *)(v2 + 456);
-  v6 = *(_DWORD *)(v2 + 464);
+  fAccelerationTime2 = this->m_Pool[1452].fAccelerationTime2;
+  v3 = *(float *)(LODWORD(fAccelerationTime2) + 496);
+  v4 = *(float *)(LODWORD(fAccelerationTime2) + 492);
+  v8 = *(_DWORD *)(LODWORD(fAccelerationTime2) + 500);
+  v5 = *(_DWORD *)(LODWORD(fAccelerationTime2) + 452);
+  v9 = *(_DWORD *)(LODWORD(fAccelerationTime2) + 456);
+  v6 = *(_DWORD *)(LODWORD(fAccelerationTime2) + 464);
   *(_DWORD *)(a2 + 8) = v8;
   *(_DWORD *)(a2 + 12) = v9;
   *(_DWORD *)(a2 + 16) = v5;
@@ -612,7 +612,7 @@ void CCCTData::InsertTaskToList(int _this)
   float v48; // [esp+3Ch] [ebp-60h]
   float v49; // [esp+44h] [ebp-58h]
   float v50; // [esp+48h] [ebp-54h]
-  _DWORD v51[4]; // [esp+4Ch] [ebp-50h] BYREF
+  gbQuaternion v51; // [esp+4Ch] [ebp-50h] BYREF
   _BYTE v52[64]; // [esp+5Ch] [ebp-40h] BYREF
 
   v1 = *(_DWORD *)(this + 4 * (*(_DWORD *)(this + 430036) + 10 * (5 * *(_DWORD *)(this + 430032) + 10250)));
@@ -632,7 +632,7 @@ void CCCTData::InsertTaskToList(int _this)
       if ( !*(_BYTE *)(v5 + 21) )
       {
         if ( !*(_BYTE *)(v5 + 88) )
-          (_DWORD *->Load()this, v5 + 32);
+          (CCCTData *->Load()this, v5 + 32);
         if ( *(_BYTE *)(v5 + 96) )
           v6 = *(float *)(**(_DWORD **)(this + 430000) + 104);
         else
@@ -685,8 +685,8 @@ void CCCTData::InsertTaskToList(int _this)
       }
       v17 = *(float *)(v5 + 156) - *(float *)(v5 + 144);
       v18 = v35 / *(float *)(this + 430072);
-      memset(v51, 0, 12);
-      v51[3] = 1065353216;
+      memset(&v51, 0, 12);
+      v51.w = 1.0;
       v37 = v17 * v18;
       (gbMatrix4 *->gbMatrix4()v52);
       v43 = *(float *)(v5 + 140);
@@ -699,8 +699,8 @@ void CCCTData::InsertTaskToList(int _this)
       v50 = v20;
       *(float *)(this + 430136) = v19;
       *(float *)(this + 430144) = v50;
-      (gbQuaternion *->SetYawPitchRoll()v51, v35, 0.0, 0.0);
-      (gbQuaternion *->GetMatrix()v51, (struct gbMatrix4 *)v52);
+      gbQuaternion::SetYawPitchRoll(&v51, v35, 0.0, 0.0);
+      gbQuaternion::GetMatrix(&v51, (struct gbMatrix4 *)v52);
       (gbMatrix4 *->RotateIn()v52, (struct gbVec3D *)(this + 430136));
       v21 = v43 + *(float *)(this + 430136);
       v44 = 0.0;
@@ -724,7 +724,7 @@ void CCCTData::InsertTaskToList(int _this)
         {
           if ( v26 == -1 )
           {
-            v29 = *(float **)(*(_DWORD *)(this + 430000) + 20);
+            v29 = (float *)*(float **)(*(_DWORD *)(this + 430000) + 20);
             v30 = v29[225];
             v29 += 225;
             v44 = v30;
@@ -740,7 +740,7 @@ void CCCTData::InsertTaskToList(int _this)
         }
         else
         {
-          v27 = *(float **)(*(_DWORD *)(this + 430000) + 4 * v26 + 24);
+          v27 = (float *)*(float **)(*(_DWORD *)(this + 430000) + 4 * v26 + 24);
           v28 = v27[1646];
           v27 += 1646;
           v44 = v28;
@@ -763,7 +763,7 @@ void CCCTData::InsertTaskToList(int _this)
         *(float *)(this + 430116) = v39;
         *(float *)(this + 430120) = v41;
         *v31 = v24;
-        v38->CalcDist(v39, v41, v44, v46, v48, COERCE_FLOAT(this + 430124), (float *)(this + 430128));
+        v38->CalcDist(v39);
       }
       else
       {
@@ -777,8 +777,8 @@ void CCCTData::InsertTaskToList(int _this)
         *v31 = v24;
         *(float *)(this + 430120) = v41;
       }
-      CCCTData::UpdateCamera(*(void **)(this + 430004), (int *)(this + 430112));
-      CameraCtrl::SetAsCurrent(*(_DWORD *)(this + 430004), 3);
+      CCCTData::UpdateCamera(*(CCCTData **)(this + 430004), this + 430112);
+      CameraCtrl::SetAsCurrent(*(CameraCtrl **)(this + 430004), 3);
       if ( v33 | v34 )
       {
         if ( v35 <= (double)*(float *)(this + 430072) )
@@ -885,7 +885,7 @@ void CCCTData::SwapTask(int _this)
   if ( !*(_BYTE *)(v3 + 21) )
   {
     if ( !*(_BYTE *)(v3 + 88) )
-      (_DWORD *->Load()this, v3 + 32);
+      (CCCTData *->Load()this, v3 + 32);
     v4 = (float *)(v3 + 32);
     qmemcpy((void *)(this + 430088), (const void *)(v3 + 32), 0x18u);
     *(_DWORD *)(this + 430136) = *(_DWORD *)(v3 + 32);
@@ -1014,7 +1014,7 @@ void CCCTData::SwapTask(int _this)
     {
       if ( v27 == -1 )
       {
-        v30 = *(float **)(*(_DWORD *)(this + 430000) + 20);
+        v30 = (float *)*(float **)(*(_DWORD *)(this + 430000) + 20);
         v31 = v30[225];
         v30 += 225;
         v50 = v31;
@@ -1030,7 +1030,7 @@ void CCCTData::SwapTask(int _this)
     }
     else
     {
-      v28 = *(float **)(*(_DWORD *)(this + 430000) + 4 * v27 + 24);
+      v28 = (float *)*(float **)(*(_DWORD *)(this + 430000) + 4 * v27 + 24);
       v29 = v28[1646];
       v28 += 1646;
       v50 = v29;
@@ -1052,7 +1052,7 @@ void CCCTData::SwapTask(int _this)
     *(float *)(this + 430116) = v43;
     *(float *)(this + 430120) = v48;
     *(float *)(this + 430112) = v25;
-    v39->CalcDist(v43, v48, v50, v55, v62, COERCE_FLOAT(this + 430124), (float *)(this + 430128));
+    v39->CalcDist(v43);
   }
   else
   {
@@ -1083,8 +1083,8 @@ void CCCTData::SwapTask(int _this)
     *(float *)(this + 430116) = v43;
     *(float *)(this + 430120) = v48;
   }
-  CCCTData::UpdateCamera(*(void **)(this + 430004), (int *)(this + 430112));
-  CameraCtrl::SetAsCurrent(*(_DWORD *)(this + 430004), 3);
+  CCCTData::UpdateCamera(*(CCCTData **)(this + 430004), this + 430112);
+  CameraCtrl::SetAsCurrent(*(CameraCtrl **)(this + 430004), 3);
   if ( v34 >= 1.0 )
     *(_BYTE *)(v3 + 22) = 1;
 }

@@ -146,7 +146,7 @@ int CCBProtectWindow::Create(int _this)
   v5 = (_DWORD *)(this + 345644);
   do
   {
-    v6 = v5 - 6;
+    v6 = (_DWORD *)v5 - 6;
     *v4 = 0;
     *(v5 - 8) = 0;
     *(v5 - 7) = 0;
@@ -154,7 +154,7 @@ int CCBProtectWindow::Create(int _this)
     v4 += 12;
     v6[1] = 0;
     v6[2] = 0;
-    v7 = v5 - 3;
+    v7 = (_DWORD *)v5 - 3;
     *(v5 - 3) = 0;
     v7[1] = 0;
     v7[2] = 0;
@@ -213,7 +213,7 @@ int CCBProtectWindow::Create(int _this)
   v27 = 4;
   do
   {
-    v13 = v12 - 6;
+    v13 = (_DWORD *)v12 - 6;
     *v11 = 0;
     *(v12 - 8) = 0;
     *(v12 - 7) = 0;
@@ -221,7 +221,7 @@ int CCBProtectWindow::Create(int _this)
     v11 += 12;
     v13[1] = 0;
     v13[2] = 0;
-    v14 = v12 - 3;
+    v14 = (_DWORD *)v12 - 3;
     *(v12 - 3) = 0;
     v14[1] = 0;
     v14[2] = 0;
@@ -289,21 +289,21 @@ int CCBProtectWindow::Create(int _this)
 }
 
 // 0x0051DD80
-UIWnd * CCBProtectWindow::Destroy(UIWnd *Block, char a2)
+UIWnd * CCBProtectWindow::Destroy(CCBProtectWindow *Block, char a2)
 {
   Block->ShowWindow();
   if ( (a2 & 1) != 0 )
     operator delete(Block);
-  return Block;
+  return (UIWnd *)Block;
 }
 
 // 0x0051DDA0
 void CCBProtectWindow::ShowWindow()
 {
-  *(_DWORD *)this = &off_5705D0;
+  this->m_fontcolor.ColorQuadFmt = (int)&off_5705D0;
   *((_BYTE *)this + 8025) = 1;
-  UIItem::UIItem((int)this + 670672);
-  UIItem::UIItem((int)this + 669304);
+  (UIItem *->UIItem()this + 670672);
+  (UIItem *->UIItem()this + 669304);
   UIWnd::~UIWnd((UIWnd *)this + 194);
   UIWnd::~UIWnd((UIWnd *)((char *)this + 7512));
   UIWnd::~UIWnd((UIWnd *)((char *)this + 7264));
@@ -318,7 +318,7 @@ void CCBProtectWindow::ShowWindow()
   UIWnd::~UIWnd((UIWnd *)((char *)this + 4984));
   UIWnd::~UIWnd((UIWnd *)((char *)this + 4736));
   UIWnd::~UIWnd((UIWnd *)((char *)this + 4472));
-  UIWnd::~UIWnd((UIWnd *)((char *)this + 4224));
+  UIWnd::~UIWnd((UIWnd *)(this + 32));
   UIWnd::~UIWnd((UIWnd *)((char *)this + 3976));
   UIWnd::~UIWnd((UIWnd *)((char *)this + 3728));
   (UIWnd *->Destroy2()((char *)this + 3368));

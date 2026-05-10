@@ -96,7 +96,7 @@ int CScreenMode::PlayVideo(int a2)
       -16777216,
       1065353216,
       0);
-    Instance = UIQuadManager::GetInstance();
+    Instance = (_BYTE *)UIQuadManager::GetInstance();
     UIRenderObj::~UIRenderObj(Instance, 0);
     do
     {
@@ -108,7 +108,7 @@ int CScreenMode::PlayVideo(int a2)
 LABEL_13:
           sub_53C420((int *)this);
           UICursor::IRender();
-          v5 = UIQuadManager::GetInstance();
+          v5 = (_BYTE *)UIQuadManager::GetInstance();
           UIRenderObj::~UIRenderObj(v5, 1u);
           return 0;
         }
@@ -121,7 +121,7 @@ LABEL_13:
     while ( sub_53C460((int *)this) || !sub_53C470(this) );
     sub_53C420((int *)this);
     UICursor::IRender();
-    v7 = UIQuadManager::GetInstance();
+    v7 = (_BYTE *)UIQuadManager::GetInstance();
     UIRenderObj::~UIRenderObj(v7, 1u);
   }
   return 1;
@@ -191,7 +191,7 @@ void CScreenMode::SetAudioParam()
     if ( v4 >= 0 && v4 < *((_DWORD *)this + 5) && *(_DWORD *)(*((_DWORD *)this + 4) + 4 * v4) )
       ++v4;
     else
-      (_DWORD *->InsertAt()this + 4, v4, 1);
+      (PtrArray *->InsertAt()this + 1, v4, 1);
   }
   v5 = *((_DWORD *)this + 1);
   for ( j = 0; j < v5; ++j )
@@ -210,7 +210,7 @@ void CScreenMode::SetAudioParam()
     if ( k >= 0 && k < v8 && *(_DWORD *)(*(_DWORD *)this + 4 * k) )
       ++k;
     else
-      this->InsertAt(k, 1);
+      (PtrArray *->InsertAt()this, k, 1);
   }
 }
 

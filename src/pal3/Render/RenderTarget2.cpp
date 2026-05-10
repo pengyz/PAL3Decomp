@@ -83,7 +83,7 @@ int RenderTarget2::Init()
          60) < 0 )
     *(_DWORD *)&v1[16] = 1;
   v44 = 1.0;
-  Instance = CRenderTarget::GetInstance();
+  Instance = (_DWORD *)CRenderTarget::GetInstance();
   Instance->OnDeviceLost(1);
   if ( !*CRenderTarget::GetInstance() )
     v44 = 0.75;
@@ -154,7 +154,7 @@ int RenderTarget2::Init()
   if ( *(_DWORD *)&v1[16] )
   {
 LABEL_22:
-    v24 = v1 + 8;
+    v24 = (RenderTarget2 *)v1 + 8;
     result = (*(int (__stdcall **)(_DWORD, int, int, int, int, RenderTarget2 *, _DWORD))(**(_DWORD **)&v2[1816] + 104))(
                *(_DWORD *)&v2[1816],
                2800,
@@ -165,8 +165,8 @@ LABEL_22:
                0);
     if ( result >= 0 )
     {
-      v25 = *(int **)&v2[1816];
-      v26 = v1 + 4;
+      v25 = (int *)*(int **)&v2[1816];
+      v26 = (RenderTarget2 *)v1 + 4;
       v27 = *v25;
       v45 = *(float *)&v26;
       result = (*(int (__stdcall **)(int *, int, int, int, _DWORD, RenderTarget2 *, _DWORD))(v27 + 108))(
@@ -258,7 +258,7 @@ LABEL_22:
   }
   else
   {
-    v15 = v1 + 8;
+    v15 = (RenderTarget2 *)v1 + 8;
     result = (*(int (__stdcall **)(_DWORD, int, int, int, int, RenderTarget2 *, _DWORD))(**(_DWORD **)&v2[1816] + 104))(
                *(_DWORD *)&v2[1816],
                112,
@@ -332,9 +332,9 @@ void * RenderTarget2::Begin()
   v1 = v0;
   if ( *v0 )
   {
-    Instance = CRenderTarget::GetInstance();
+    Instance = (_DWORD *)CRenderTarget::GetInstance();
     Instance->OnDeviceLost(2);
-    v3 = CRenderTarget::GetInstance();
+    v3 = (int *)CRenderTarget::GetInstance();
     LOBYTE(result) = v3->OnResetDevice(0);
     if ( (_BYTE)result )
       return (*(void *(__stdcall **)(_DWORD, _DWORD, _DWORD, int, int, int, _DWORD))(**(_DWORD **)&g_pGfxManager[1816]
@@ -363,13 +363,13 @@ void RenderTarget2::Resolve()
 
   if ( *this )
   {
-    Instance = CRenderTarget::GetInstance();
+    Instance = (int *)CRenderTarget::GetInstance();
     sub_4BDD90(Instance);
     v3 = g_pGfxManager;
     PushMatrixStacks();
     (*(void (**)(gbGfxManager *))(*(_DWORD *)v3 + 60))(v3);
-    v4 = CRenderTarget::GetInstance();
-    v5 = sub_4BDEB0(v4);
+    v4 = (_DWORD *)CRenderTarget::GetInstance();
+    v5 = (_DWORD *)sub_4BDEB0(v4);
     v6 = v5;
     if ( v5 && v5[21] && *((_DWORD *)this + 2) )
     {

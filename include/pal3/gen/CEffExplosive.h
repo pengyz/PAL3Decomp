@@ -46,7 +46,7 @@ public:
 
     char Create(int a2); // 0x004C6C10
     void Destroy(); // 0x004C6F20
-    int ProcCommonTask(int a2); // 0x004C7680
+    int ProcCommonTask(int _94); // 0x004C7680
     static void * GetEditorTaskDescription(int a1); // 0x004C7A70
     static void * GetEditorObjDescription(int a1); // 0x004C7B70
     void InitDefaultUVSet(int a2, int a3); // 0x004C7C00

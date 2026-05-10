@@ -43,67 +43,67 @@ PAL_GDB::PAL_GDB()
 {
   struct gbVFile *v2; // eax
   struct gbVFile *v3; // edi
-  struct gbVFileSystem *v5; // [esp+84h] [ebp-810h] BYREF
+  OpenBaseFile v5; // [esp+84h] [ebp-810h] BYREF
   char pExceptionObject[1024]; // [esp+88h] [ebp-80Ch] BYREF
-  char ArgList; // [esp+488h] [ebp-40Ch] BYREF
+  char ArgList[1024]; // [esp+488h] [ebp-40Ch] BYREF
   int v8; // [esp+890h] [ebp-4h]
 
   OpenBaseFile::OpenBaseFile(&v5);
   v8 = 0;
-  v2 = g_pVFileSys->OpenFile("cbdata\\pal3_softstar.gdb", 0x201u);
+  v2 = (struct gbVFile *)g_pVFileSys->OpenFile("cbdata\\pal3_softstar.gdb", 0x201u);
   v3 = v2;
   if ( !v2 )
   {
     qmemcpy(
       pExceptionObject,
-      (const void *)Logger::FormatException((char)&ArgList, (int)aCombatDataCoul, (int)aDProjectPal3Fi, 38),
+      (Logger *->FormatException()ArgList, aCombatDataCoul, aDProjectPal3Fi, 38),
       sizeof(pExceptionObject));
     _CxxThrowException(pExceptionObject, (_ThrowInfo *)&_TI1_AV_Exception__);
   }
   g_pVFileSys->Seek(v2, 0, 1);
   g_pVFileSys->Read(this, 0xA0u, v3);
-  g_pVFileSys->Seek(v3, *((_DWORD *)this + 32), 1);
-  g_pVFileSys->Read(this + 40, 852 * *((_DWORD *)this + 33), v3);
-  g_pVFileSys->Seek(v3, *((_DWORD *)this + 34), 1);
-  g_pVFileSys->Read(this + 42640, 760 * *((_DWORD *)this + 35), v3);
-  g_pVFileSys->Seek(v3, *((_DWORD *)this + 36), 1);
-  g_pVFileSys->Read(this + 99640, 800 * *((_DWORD *)this + 37), v3);
-  g_pVFileSys->Seek(v3, *((_DWORD *)this + 38), 1);
-  g_pVFileSys->Read(this + 199640, 632 * *((_DWORD *)this + 39), v3);
+  g_pVFileSys->Seek(v3, this->m_head.RolePos, 1);
+  g_pVFileSys->Read(this->m_RoleData, 852 * this->m_head.RoleNum, v3);
+  g_pVFileSys->Seek(v3, this->m_head.SkillPos, 1);
+  g_pVFileSys->Read(&this->m_RoleData[175].Remark[292], 760 * this->m_head.SkillNum, v3);
+  g_pVFileSys->Seek(v3, this->m_head.ItemPos, 1);
+  g_pVFileSys->Read(&this->m_SkillData[235].att[3], 800 * this->m_head.ItemNum, v3);
+  g_pVFileSys->Seek(v3, this->m_head.ComboPos, 1);
+  g_pVFileSys->Read(&this->m_ItemData[353].desc[388], 632 * this->m_head.ComboNum, v3);
   g_pVFileSys->CloseFile(v3);
   v8 = -1;
-  OpenNULLFile::OpenNULLFile(&v5);
+  (OpenNULLFile **->OpenNULLFile()&v5);
   return 1;
 }
 
 // 0x00478FD0
 PAL_GDB::~PAL_GDB(int a2)
 {
-  int v2; // esi
-  int v3; // edx
+  int RoleNum; // esi
+  __int32 id; // edx
 
   if ( !a2 )
     return 0;
-  v2 = *((_DWORD *)this + 33);
-  *((_DWORD *)this + 201220) = 0;
-  if ( v2 <= 0 )
+  RoleNum = this->m_head.RoleNum;
+  this->m_ItemData[360].id = 0;
+  if ( RoleNum <= 0 )
     return 0;
   while ( 1 )
   {
-    v3 = *((_DWORD *)this + 201220);
-    if ( a2 == *(this + 213 * v3 + 40) )
+    id = this->m_ItemData[360].id;
+    if ( a2 == *(&this->m_RoleData[0].id + 213 * id) )
       break;
-    *((_DWORD *)this + 201220) = v3 + 1;
-    if ( v3 + 1 >= v2 )
+    this->m_ItemData[360].id = id + 1;
+    if ( id + 1 >= RoleNum )
       return 0;
   }
-  return (int)(this + 213 * *((_DWORD *)this + 201220) + 40);
+  return (int)this->m_RoleData + 852 * this->m_ItemData[360].id;
 }
 
 // 0x00479040
 int PAL_GDB::GDB_LoadFile()
 {
-  return *((_DWORD *)this + 33);
+  return this->m_head.RoleNum;
 }
 
 // 0x00479050
@@ -112,91 +112,91 @@ int PAL_GDB::GDB_GetRole(unsigned int a2)
   if ( a2 > 0xC8 )
     return 0;
   else
-    return *(this + 213 * a2 + 40);
+    return *(&this->m_RoleData[0].id + 213 * a2);
 }
 
 // 0x00479080
 int PAL_GDB::GDB_GetRoleNum(int a2)
 {
-  int v2; // edx
-  int v3; // eax
-  int v4; // eax
+  int SkillNum; // edx
+  __int32 id; // eax
+  __int32 v4; // eax
 
   if ( !a2 )
     return 0;
-  v2 = *((_DWORD *)this + 35);
-  *((_DWORD *)this + 201220) = 0;
-  if ( v2 <= 0 )
+  SkillNum = this->m_head.SkillNum;
+  this->m_ItemData[360].id = 0;
+  if ( SkillNum <= 0 )
     return 0;
   while ( 1 )
   {
-    v3 = *((_DWORD *)this + 201220);
-    if ( a2 == *(this + 190 * v3 + 42640) )
+    id = this->m_ItemData[360].id;
+    if ( a2 == *(_DWORD *)&this->m_RoleData[175].Remark[760 * id + 292] )
       break;
-    v4 = v3 + 1;
-    *((_DWORD *)this + 201220) = v4;
-    if ( v4 >= v2 )
+    v4 = id + 1;
+    this->m_ItemData[360].id = v4;
+    if ( v4 >= SkillNum )
       return 0;
   }
-  return (int)(this + 190 * *((_DWORD *)this + 201220) + 42640);
+  return (int)&this->m_RoleData[175].Remark[760 * this->m_ItemData[360].id + 292];
 }
 
 // 0x00479130
 int PAL_GDB::GDB_GetSkillNum(int a2)
 {
-  int v2; // esi
-  int v3; // eax
-  int v4; // eax
+  int ItemNum; // esi
+  __int32 id; // eax
+  __int32 v4; // eax
 
   if ( !a2 )
     return 0;
-  v2 = *((_DWORD *)this + 37);
-  *((_DWORD *)this + 201220) = 0;
-  if ( v2 <= 0 )
+  ItemNum = this->m_head.ItemNum;
+  this->m_ItemData[360].id = 0;
+  if ( ItemNum <= 0 )
     return 0;
   while ( 1 )
   {
-    v3 = *((_DWORD *)this + 201220);
-    if ( a2 == *(this + 200 * v3 + 99640) )
+    id = this->m_ItemData[360].id;
+    if ( a2 == this->m_SkillData[235].att[200 * id + 3] )
       break;
-    v4 = v3 + 1;
-    *((_DWORD *)this + 201220) = v4;
-    if ( v4 >= v2 )
+    v4 = id + 1;
+    this->m_ItemData[360].id = v4;
+    if ( v4 >= ItemNum )
       return 0;
   }
-  return (int)(this + 200 * *((_DWORD *)this + 201220) + 99640);
+  return (int)&this->m_SkillData[235].att[200 * this->m_ItemData[360].id + 3];
 }
 
 // 0x004791A0
 int PAL_GDB::GDB_GetSkillID()
 {
-  return *((_DWORD *)this + 37);
+  return this->m_head.ItemNum;
 }
 
 // 0x004791E0
 int PAL_GDB::GDB_GetItemNum(int a2)
 {
-  int v2; // edx
-  int v3; // eax
-  int v4; // eax
+  int ComboNum; // edx
+  __int32 id; // eax
+  __int32 v4; // eax
 
   if ( !a2 )
     return 0;
-  v2 = *((_DWORD *)this + 39);
-  *((_DWORD *)this + 201220) = 0;
-  if ( v2 <= 0 )
+  ComboNum = this->m_head.ComboNum;
+  this->m_ItemData[360].id = 0;
+  if ( ComboNum <= 0 )
     return 0;
   while ( 1 )
   {
-    v3 = *((_DWORD *)this + 201220);
-    if ( a2 == *(this + 158 * v3 + 199648) )
+    id = this->m_ItemData[360].id;
+    if ( a2 == *(_DWORD *)&this->m_ItemData[353].desc[632 * id + 420] )
       break;
-    v4 = v3 + 1;
-    *((_DWORD *)this + 201220) = v4;
-    if ( v4 >= v2 )
+    v4 = id + 1;
+    this->m_ItemData[360].id = v4;
+    if ( v4 >= ComboNum )
       return 0;
   }
-  return (int)(this + 158 * *((_DWORD *)this + 201220) + 199640);
+  return (int)&this->m_ItemData[353].desc[632 * this->m_ItemData[360].id + 388];
 }
 
 // 0x004792C0

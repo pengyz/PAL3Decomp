@@ -82,7 +82,7 @@ C2DSpark::C2DSpark(int _this, int a2, int a3)
   *(_DWORD *)&v20[12] = 1;
   *(_DWORD *)(this + 22560) = v4;
   v4->LoadTexture(*(_DWORD *)&v20[12]);
-  v5 = operator new(0x44u);
+  v5 = (_DWORD *)operator new(0x44u);
   if ( v5 )
   {
     v6 = *(_DWORD *)(this + 22560);
@@ -108,7 +108,7 @@ C2DSpark::C2DSpark(int _this, int a2, int a3)
   *(_DWORD *)&v20[8] = 1;
   *(_DWORD *)(this + 22584) = v7;
   v7->LoadTexture(*(_DWORD *)&v20[8]);
-  v8 = operator new(0x44u);
+  v8 = (_DWORD *)operator new(0x44u);
   if ( v8 )
   {
     v9 = *(_DWORD *)(this + 22584);
@@ -134,7 +134,7 @@ C2DSpark::C2DSpark(int _this, int a2, int a3)
   *(_DWORD *)v20 = 1;
   *(_DWORD *)(this + 22576) = v10;
   v10->LoadTexture(*(_DWORD *)v20);
-  v11 = operator new(0x44u);
+  v11 = (_DWORD *)operator new(0x44u);
   if ( v11 )
   {
     v12 = *(_DWORD *)(this + 22576);
@@ -159,7 +159,7 @@ C2DSpark::C2DSpark(int _this, int a2, int a3)
                        aEffectFlareblu);
   *(_DWORD *)(this + 22568) = v13;
   v13->LoadTexture(1);
-  v14 = operator new(0x44u);
+  v14 = (_DWORD *)operator new(0x44u);
   if ( v14 )
   {
     v15 = *(_DWORD *)(this + 22568);
@@ -184,7 +184,7 @@ C2DSpark::C2DSpark(int _this, int a2, int a3)
                        aEffectFlarebri);
   *(_DWORD *)(this + 22592) = v16;
   v16->LoadTexture(1);
-  v17 = operator new(0x44u);
+  v17 = (_DWORD *)operator new(0x44u);
   if ( v17 )
   {
     v18 = *(_DWORD *)(this + 22592);
@@ -223,37 +223,37 @@ C2DSpark::~C2DSpark(int _this)
   gbRefObject *v6; // ecx
   gbRefObject *v7; // ecx
 
-  v2 = *(gbRefObject **)(this + 22556);
+  v2 = (gbRefObject *)*(gbRefObject **)(this + 22556);
   if ( v2 )
   {
     v2->Release();
     *(_DWORD *)(this + 22556) = 0;
   }
-  v3 = *(gbRefObject **)(this + 22560);
+  v3 = (gbRefObject *)*(gbRefObject **)(this + 22560);
   if ( v3 )
   {
     v3->Release();
     *(_DWORD *)(this + 22560) = 0;
   }
-  v4 = *(gbRefObject **)(this + 22576);
+  v4 = (gbRefObject *)*(gbRefObject **)(this + 22576);
   if ( v4 )
   {
     v4->Release();
     *(_DWORD *)(this + 22576) = 0;
   }
-  v5 = *(gbRefObject **)(this + 22568);
+  v5 = (gbRefObject *)*(gbRefObject **)(this + 22568);
   if ( v5 )
   {
     v5->Release();
     *(_DWORD *)(this + 22568) = 0;
   }
-  v6 = *(gbRefObject **)(this + 22584);
+  v6 = (gbRefObject *)*(gbRefObject **)(this + 22584);
   if ( v6 )
   {
     v6->Release();
     *(_DWORD *)(this + 22584) = 0;
   }
-  v7 = *(gbRefObject **)(this + 22592);
+  v7 = (gbRefObject *)*(gbRefObject **)(this + 22592);
   if ( v7 )
   {
     v7->Release();
@@ -293,13 +293,13 @@ char C2DSpark::CreateSingle(const void *a2)
   _BYTE *i; // ecx
 
   v3 = 0;
-  for ( i = (char *)this + 41; *i; i += 44 )
+  for ( i = (char *)&this->m_Spark[10] + 1; *i; i += 44 )
   {
     if ( ++v3 >= 512 )
       return 0;
   }
-  qmemcpy(this + 11 * v3, a2, 0x2Cu);
-  *((_BYTE *)this + 44 * v3 + 41) = 1;
+  qmemcpy((char *)this + 44 * v3, a2, 0x2Cu);
+  BYTE1(this->m_Spark[11 * v3 + 10]) = 1;
   if ( v3 >= *((_DWORD *)this + 5634) )
     *((_DWORD *)this + 5634) = v3 + 1;
   return 1;
@@ -353,8 +353,8 @@ char C2DSpark::CreateMore(int a2, int a3, int a4, int a5)
   double v5; // st7
   double v7; // st7
   float v9; // [esp+0h] [ebp-4h]
-  float v10; // [esp+8h] [ebp+4h]
-  float v11; // [esp+Ch] [ebp+8h]
+  float a2a; // [esp+8h] [ebp+4h]
+  float a3a; // [esp+Ch] [ebp+8h]
 
   v5 = *(float *)&a5 * 0.5;
   dword_17A8170 = a5;
@@ -367,11 +367,11 @@ char C2DSpark::CreateMore(int a2, int a3, int a4, int a5)
   dword_17A816C = -1027080192;
   dword_17A8174 = 0;
   byte_17A8178 = 2;
-  v11 = (double)a3 - v5;
+  a3a = (double)a3 - v5;
   *(float *)&dword_17A8168 = 250.0 - (double)(rand() % 50);
-  v10 = (float)a4;
-  flt_17A8150 = (double)(rand() % a4) + v9 - v10 * 0.5;
-  flt_17A8154 = (double)(rand() % (2 * a4)) + v11 - v10;
+  a2a = (float)a4;
+  flt_17A8150 = (double)(rand() % a4) + v9 - a2a * 0.5;
+  flt_17A8154 = (double)(rand() % (2 * a4)) + a3a - a2a;
   if ( *(float *)&a5 >= 19.0 )
     v7 = (double)-(rand() % 100);
   else
@@ -386,7 +386,7 @@ _BYTE * C2DSpark::CreateStars()
   _BYTE *result; // eax
   int v2; // edx
 
-  result = (char *)this + 41;
+  result = (char *)&this->m_Spark[10] + 1;
   v2 = 512;
   do
   {
@@ -418,7 +418,7 @@ int C2DSpark::DestroyAll(int _this)
   float v15; // [esp+14h] [ebp-8h]
   int v16; // [esp+18h] [ebp-4h]
 
-  DynVertBuf = gbVertPoolMgr::GetDynVertBuf(*(gbVertPoolMgr **)(g_pGfxManager + 196), 0x114u);
+  DynVertBuf = (gbDynVertBuf *)gbVertPoolMgr::GetDynVertBuf(*(gbVertPoolMgr **)(g_pGfxManager + 196), 0x114u);
   if ( *(float *)(this + 22540) > 2.0 )
   {
     GRPinput::GetCursorPos(&Point);
@@ -444,7 +444,7 @@ int C2DSpark::DestroyAll(int _this)
     v16 = y + 64;
     *(float *)(this + 22608) = v6;
     *(float *)(this + 22612) = (float)v16;
-    v7 = *(struct gbRenderEffect **)(this + 22556);
+    v7 = (struct gbRenderEffect *)*(struct gbRenderEffect **)(this + 22556);
     *(_BYTE *)(this + 22639) = (__int64)*(float *)(this + 22540);
     DynVertBuf->RenderUIQuad((struct gbUIQuad *)(this + 22600),
       1,
@@ -464,16 +464,16 @@ int C2DSpark::DestroyAll(int _this)
         switch ( *(_BYTE *)(v9 + 8) )
         {
           case 0:
-            v10 = *(struct gbTextureArray **)(this + 22588);
+            v10 = (struct gbTextureArray *)*(struct gbTextureArray **)(this + 22588);
             goto LABEL_14;
           case 1:
-            v10 = *(struct gbTextureArray **)(this + 22580);
+            v10 = (struct gbTextureArray *)*(struct gbTextureArray **)(this + 22580);
             goto LABEL_14;
           case 2:
-            v10 = *(struct gbTextureArray **)(this + 22572);
+            v10 = (struct gbTextureArray *)*(struct gbTextureArray **)(this + 22572);
             goto LABEL_14;
           case 3:
-            v10 = *(struct gbTextureArray **)(this + 22596);
+            v10 = (struct gbTextureArray *)*(struct gbTextureArray **)(this + 22596);
 LABEL_14:
             *(_DWORD *)(this + 22600) = *(_DWORD *)(v9 - 32);
             *(_DWORD *)(this + 22604) = *(_DWORD *)(v9 - 28);
@@ -482,7 +482,7 @@ LABEL_14:
             v15 = *(float *)(v9 - 8);
             Point.y = (int)v15;
             v13 = v10;
-            v11 = *(struct gbRenderEffect **)(this + 22556);
+            v11 = (struct gbRenderEffect *)*(struct gbRenderEffect **)(this + 22556);
             *(_BYTE *)(this + 22639) = Point.y;
             DynVertBuf->RenderUIQuad((struct gbUIQuad *)(this + 22600), 1, v11, v13);
             break;
@@ -513,7 +513,7 @@ int C2DSpark::Render(int _this, float a2)
   if ( *(_BYTE *)(this + 22552) )
   {
     GRPinput::GetCursorPos(&Point);
-    if ( Point.x != (_DWORD)qword_17A8438 || Point.y != HIDWORD(qword_17A8438) )
+    if ( Point != qword_17A8438 )
     {
       dword_17A8140 = 1098907648;
       dword_17A8138 = 1125842944;
@@ -533,7 +533,7 @@ int C2DSpark::Render(int _this, float a2)
         dword_17A8144 = 0;
         v9 = v4 % 100;
         flt_17A812C = ((double)(v4 % 100) - 50.0) * 2.5;
-        (_DWORD *->CreateSingle()this, &flt_17A8120);
+        (C2DSpark *->CreateSingle()this, &flt_17A8120);
         --v3;
       }
       while ( v3 );

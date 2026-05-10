@@ -7,7 +7,6 @@ int sub_4019F0(...);
 int sub_419C20(...);
 int sub_424570(...);
 int sub_43A660(...);
-int sub_43A770(...);
 int sub_43A810(...);
 int sub_445ED0(...);
 int sub_445F60(...);
@@ -206,15 +205,15 @@ void UIScene::LoadResource(char *path)
 
 // 0x0043A770
 // likely std method (near _Freeze, _Split, max_size, allocator<char>>, _Xran)
-void sub_43A770(_DWORD *this)
+void UIScene::_UIScene(UIScene *this)
 {
-  UIWnd::UIWnd();
-  UIWnd::DestroyChildren(this + 29);
+  (UIWnd *->UIWnd()this);
+  (UIWnd *->DestroyChildren()((char *)this + 116));
   *((_DWORD *)this + 24) = 0;
   *((_DWORD *)this + 49) = 0;
-  * this = (*)&off_56AC70;
+  *(_DWORD *)this = &off_56AC70;
   *((_BYTE *)this + 204) = 1;
-  memset(this + 53, 0, 0x80u);
+  memset((char *)this + 212, 0, 0x80u);
   *((_DWORD *)this + 19) = 1065353216;
   *((_DWORD *)this + 18) = 1065353216;
   *((_DWORD *)this + 52) = 1;
@@ -233,22 +232,26 @@ void sub_43A810(UIWnd *this)
 // 0x0043AB00
 int UIScene::OnMessage2()
 {
-  UIWnd::MoveWindow(this + 116);
-  return this->UpdateChildren();
+  int result; // eax
+
+  (UIWnd **->MoveWindow()this + 29);
+  (UIWnd *->UpdateChildren()this);
+  return result;
 }
 
 // 0x0043AB20
-int UIScene::Update2(int _this, int a2, int a3)
+BOOL UIScene::Update2(int _this, int a2, int a3)
 {
   BOOL v4; // edi
   int v6; // ecx
-  int v7; // ecx
+  char *Instance; // eax
   int v8; // ecx
   int v9; // ecx
   int v10; // ecx
   int v11; // ecx
-  int v12; // eax
-  char *v13; // [esp-8h] [ebp-20h]
+  int v12; // ecx
+  BOOL v13; // eax
+  void *v14; // [esp-8h] [ebp-20h]
   POINT pt; // [esp+10h] [ebp-8h] BYREF
 
   GRPinput::GetCursorPos(&pt);
@@ -263,16 +266,16 @@ int UIScene::Update2(int _this, int a2, int a3)
   }
   if ( !*(_DWORD *)(this + 60) )
   {
-    if ( v4 && MEMORY[0xBFC5F4] == 1 )
+    if ( v4 && g_Input.m_shiftedKeyStates[207] == 1 )
     {
       v6 = *(_DWORD *)(this + 32);
       if ( v6 )
         (*(void (**)(int, int, _DWORD, int))(*(_DWORD *)v6 + 24))(v6, 1021, *(_DWORD *)(this + 12), 1);
       if ( *(_BYTE *)(this + 340) )
       {
-        v13 = pPos[0];
-        CScreenMode::GetInstance();
-        v13->AudioSetPosition(1);
+        v14 = pPos;
+        Instance = (char *)CScreenMode::GetInstance();
+        (CScreenMode *->AudioSetPosition()Instance, v14, 1);
       }
     }
     *(_DWORD *)(this + 96) = 0;
@@ -281,7 +284,7 @@ int UIScene::Update2(int _this, int a2, int a3)
   if ( !a3 )
   {
     *(_DWORD *)(this + 96) = 0;
-    return a2->HitTest(0);
+    return (UIWnd *->HitTest()this, a2, 0);
   }
   if ( *(_DWORD *)(this + 96) != 2 )
   {
@@ -297,59 +300,59 @@ int UIScene::Update2(int _this, int a2, int a3)
 LABEL_27:
     if ( !*(_BYTE *)(this + 204) )
     {
-      v8 = *(_DWORD *)(this + 32);
+      v9 = *(_DWORD *)(this + 32);
       *(_BYTE *)(this + 204) = 1;
-      if ( v8 )
-        (*(void (**)(int, int, _DWORD, _DWORD))(*(_DWORD *)v8 + 24))(v8, 1003, *(_DWORD *)(this + 12), 0);
+      if ( v9 )
+        (*(void (**)(int, int, _DWORD, _DWORD))(*(_DWORD *)v9 + 24))(v9, 1003, *(_DWORD *)(this + 12), 0);
     }
     goto LABEL_30;
   }
-  if ( MEMORY[0xBFC5F4] == 1 && (MEMORY[0xBFC5E8] & 0xF) == 2 && *(_BYTE *)(this + 68) )
+  if ( g_Input.m_shiftedKeyStates[207] == 1 && (g_Input.m_shiftedKeyStates[204] & 0xF) == 2 && *(_BYTE *)(this + 68) )
   {
-    v7 = *(_DWORD *)(this + 32);
+    v8 = *(_DWORD *)(this + 32);
     *(_DWORD *)(this + 96) = 2;
-    if ( v7 )
+    if ( v8 )
     {
-      (*(void (**)(int, int, _DWORD, _DWORD))(*(_DWORD *)v7 + 24))(v7, 1020, *(_DWORD *)(this + 12), 0);
+      (*(void (**)(int, int, _DWORD, _DWORD))(*(_DWORD *)v8 + 24))(v8, 1020, *(_DWORD *)(this + 12), 0);
       *(_BYTE *)(this + 204) = 0;
       goto LABEL_30;
     }
   }
-  else if ( MEMORY[0xBFC5F4] == 1 )
+  else if ( g_Input.m_shiftedKeyStates[207] == 1 )
   {
-    v10 = *(_DWORD *)(this + 32);
+    v11 = *(_DWORD *)(this + 32);
     *(_DWORD *)(this + 96) = 2;
-    if ( v10 )
+    if ( v11 )
     {
-      (*(void (**)(int, int, _DWORD, _DWORD))(*(_DWORD *)v10 + 24))(v10, 1004, *(_DWORD *)(this + 12), 0);
+      (*(void (**)(int, int, _DWORD, _DWORD))(*(_DWORD *)v11 + 24))(v11, 1004, *(_DWORD *)(this + 12), 0);
       *(_BYTE *)(this + 204) = 0;
       goto LABEL_30;
     }
   }
   else
   {
-    v11 = *(_DWORD *)(this + 32);
-    if ( v11 )
-      (*(void (**)(int, int, _DWORD, _DWORD))(*(_DWORD *)v11 + 24))(v11, 1002, *(_DWORD *)(this + 12), 0);
+    v12 = *(_DWORD *)(this + 32);
+    if ( v12 )
+      (*(void (**)(int, int, _DWORD, _DWORD))(*(_DWORD *)v12 + 24))(v12, 1002, *(_DWORD *)(this + 12), 0);
   }
   *(_BYTE *)(this + 204) = 0;
 LABEL_30:
-  if ( *(_DWORD *)(this + 96) == 2 && (MEMORY[0xBFC5E8] & 0xF) != 1 )
+  if ( *(_DWORD *)(this + 96) == 2 && (g_Input.m_shiftedKeyStates[204] & 0xF) != 1 )
   {
     if ( v4 )
     {
-      v9 = *(_DWORD *)(this + 32);
+      v10 = *(_DWORD *)(this + 32);
       *(_DWORD *)(this + 96) = 1;
-      if ( v9 )
-        (*(void (**)(int, int, _DWORD, _DWORD))(*(_DWORD *)v9 + 24))(v9, 1001, *(_DWORD *)(this + 12), 0);
+      if ( v10 )
+        (*(void (**)(int, int, _DWORD, _DWORD))(*(_DWORD *)v10 + 24))(v10, 1001, *(_DWORD *)(this + 12), 0);
     }
     else
     {
       *(_DWORD *)(this + 96) = 0;
     }
   }
-  v12 = a2->HitTest(a3);
-  return v4 || v12;
+  v13 = (UIWnd *->HitTest()this, a2, a3);
+  return v4 || v13;
 }
 
 // 0x0043AD40
@@ -357,7 +360,7 @@ int UIScene::Create2(int _this)
 {
   int result; // eax
   int v3; // ecx
-  _DWORD *v4; // edi
+  int *v4; // edi
   int v5; // eax
   double v6; // st7
   int v7; // ecx
@@ -367,70 +370,73 @@ int UIScene::Create2(int _this)
   double v11; // st7
   struct gbTexture *v12; // ebx
   int v13; // ecx
-  gbTextureArray *v14; // eax
-  gbTextureArray *v15; // eax
+  struct gbTextureArray *v14; // eax
+  struct gbTextureArray *v15; // eax
   int v16; // eax
   int v17; // ecx
   int v18; // edi
   int v19; // ecx
   int v20; // eax
   int v21; // eax
-  int v22; // [esp-Ch] [ebp-94h] BYREF
-  int v23; // [esp-8h] [ebp-90h]
-  int v24; // [esp-4h] [ebp-8Ch]
-  int v25; // [esp+10h] [ebp-78h]
-  int v26; // [esp+14h] [ebp-74h]
-  int v27; // [esp+18h] [ebp-70h]
-  int v28; // [esp+1Ch] [ebp-6Ch] BYREF
-  int v29; // [esp+24h] [ebp-64h] BYREF
-  int v30; // [esp+28h] [ebp-60h]
-  int v31; // [esp+2Ch] [ebp-5Ch]
-  int v32; // [esp+30h] [ebp-58h]
-  _DWORD v33[5]; // [esp+34h] [ebp-54h] BYREF
-  _BYTE v34[64]; // [esp+48h] [ebp-40h] BYREF
+  gbColorQuad v22; // [esp-Ch] [ebp-94h] BYREF
+  int v23; // [esp+10h] [ebp-78h]
+  int v24; // [esp+14h] [ebp-74h]
+  int v25; // [esp+18h] [ebp-70h]
+  int v26; // [esp+1Ch] [ebp-6Ch] BYREF
+  int v27; // [esp+24h] [ebp-64h] BYREF
+  int v28; // [esp+28h] [ebp-60h]
+  int v29; // [esp+2Ch] [ebp-5Ch]
+  int v30; // [esp+30h] [ebp-58h]
+  int v31[5]; // [esp+34h] [ebp-54h] BYREF
+  _BYTE v32[64]; // [esp+48h] [ebp-40h] BYREF
 
   result = *(_DWORD *)(this + 56);
   if ( !result )
     return result;
   v3 = *(_DWORD *)(this + 16);
-  v4 = (_DWORD *)(this + 16);
-  v26 = *(_DWORD *)(this + 24);
-  v5 = v3 + v26;
-  v25 = v3;
+  v4 = (int *)(this + 16);
+  v24 = *(_DWORD *)(this + 24);
+  v5 = v3 + v24;
+  v23 = v3;
   v6 = 1.0 - *(float *)(this + 72);
   v7 = *(_DWORD *)(this + 20);
-  v29 = v5 / 2;
+  v27 = v5 / 2;
   v8 = v6 * (double)(v5 / 2);
-  v28 = *(_DWORD *)(this + 28);
-  v27 = v7;
-  v9 = (double)v25 * *(float *)(this + 72);
-  v30 = (v7 + v28) / 2;
-  v33[0] = (__int64)(v9 + v8);
-  v10 = (__int64)((double)v26 * *(float *)(this + 72) + v8);
-  v11 = (1.0 - *(float *)(this + 76)) * (double)v30;
-  v33[2] = v10;
-  v33[1] = (__int64)((double)v7 * *(float *)(this + 76) + v11);
-  v33[3] = (__int64)((double)v28 * *(float *)(this + 76) + v11);
-  v12 = (struct gbTexture *)sub_445F60(*(_DWORD *)(this + 96));
+  v26 = *(_DWORD *)(this + 28);
+  v25 = v7;
+  v9 = (double)v23 * *(float *)(this + 72);
+  v28 = (v7 + v26) / 2;
+  v31[0] = (__int64)(v9 + v8);
+  v10 = (__int64)((double)v24 * *(float *)(this + 72) + v8);
+  v11 = (1.0 - *(float *)(this + 76)) * (double)v28;
+  v31[2] = v10;
+  v31[1] = (__int64)((double)v7 * *(float *)(this + 76) + v11);
+  v31[3] = (__int64)((double)v26 * *(float *)(this + 76) + v11);
+  v12 = (struct gbTexture *)sub_445F60((_DWORD *)(this + 116), *(_DWORD *)(this + 96));
   if ( !v12 )
     goto LABEL_6;
   v13 = *(_DWORD *)(this + 96);
-  v24 = *(_DWORD *)(this + 4 * v13 + 184);
-  v23 = 276;
-  v22 = v13;
-  (gbColorQuad *->gbColorQuad()&v22, (struct gbColorQuad *)(this + 8));
-  v14 = (gbTextureArray *->gbTextureArray()v34, v12);
-  _TextureLib_Data::_CheckItem(this + 16, v33, v14, v22, v23, v24);
+  v22.Green = *(_DWORD *)(this + 4 * v13 + 184);
+  v22.Blue = 276;
+  v22.ColorQuadFmt = v13;
+  gbColorQuad::gbColorQuad(&v22, (struct gbColorQuad *)(this + 8));
+  v14 = (gbTextureArray *->gbTextureArray()v32, v12);
+  (_DWORD *->_CheckItem()(this + 16), v31, v14, v22.ColorQuadFmt, v22.Blue, (float *)v22.Green);
   if ( !*(_DWORD *)(this + 60) )
   {
     if ( *(_DWORD *)(this + 196) )
     {
-      v24 = *(_DWORD *)(this + 200);
-      v23 = 276;
-      v22 = v24;
-      (gbColorQuad *->gbColorQuad()&v22, (struct gbColorQuad *)(this + 8));
-      v15 = (gbTextureArray *->gbTextureArray()v34, *(struct gbTexture **)(this + 196));
-      _TextureLib_Data::_CheckItem(this + 16, this + 16, v15, v22, v23, v24);
+      v22.Green = *(_DWORD *)(this + 200);
+      v22.Blue = 276;
+      v22.ColorQuadFmt = v22.Green;
+      gbColorQuad::gbColorQuad(&v22, (struct gbColorQuad *)(this + 8));
+      v15 = (gbTextureArray *->gbTextureArray()v32, *(struct gbTexture **)(this + 196));
+      (_DWORD *->_CheckItem()(this + 16),
+        (int *)(this + 16),
+        v15,
+        v22.ColorQuadFmt,
+        v22.Blue,
+        (float *)v22.Green);
       goto LABEL_7;
     }
 LABEL_6:
@@ -439,41 +445,41 @@ LABEL_6:
       *(_DWORD *)(this + 20),
       *(_DWORD *)(this + 24),
       *(_DWORD *)(this + 28),
-      &MEMORY[0xD91780]);
+      (float *)&g_GameData_0._data[12992]);
   }
 LABEL_7:
   if ( *(_BYTE *)(this + 212) )
   {
     v16 = *v4;
-    v28 = *(_DWORD *)(this + 4);
+    v26 = *(_DWORD *)(this + 4);
     v17 = *(_DWORD *)(this + 20);
-    v31 = *(_DWORD *)(this + 24);
+    v29 = *(_DWORD *)(this + 24);
     v18 = *(_DWORD *)(this + 108);
-    v32 = *(_DWORD *)(this + 28);
+    v30 = *(_DWORD *)(this + 28);
     v19 = v18 + v17;
-    v29 = *(_DWORD *)(this + 104) + v16;
+    v27 = *(_DWORD *)(this + 104) + v16;
     v20 = *(_DWORD *)(this + 60);
-    v30 = v19;
+    v28 = v19;
     if ( !v20 || *(_DWORD *)(this + 96) == 2 )
     {
-      BYTE2(v28) = (BYTE2(v28) - 64) & ((BYTE2(v28) - 64 < 0) - 1);
-      BYTE1(v28) = (BYTE1(v28) - 64) & ((BYTE1(v28) - 64 < 0) - 1);
+      BYTE2(v26) = (BYTE2(v26) - 64) & ((BYTE2(v26) - 64 < 0) - 1);
+      BYTE1(v26) = (BYTE1(v26) - 64) & ((BYTE1(v26) - 64 < 0) - 1);
       v21 = *(_DWORD *)(this + 96);
-      LOBYTE(v28) = (v28 - 64) & (((unsigned __int8)v28 - 64 < 0) - 1);
+      LOBYTE(v26) = (v26 - 64) & (((unsigned __int8)v26 - 64 < 0) - 1);
       if ( v21 == 2 )
-        v30 = v19 + 6;
+        v28 = v19 + 6;
     }
     if ( *(_BYTE *)(this + 112) )
     {
-      v24 = 1;
-      v23 = 2;
+      v22.Green = 1;
+      v22.Blue = 2;
     }
     else
     {
-      v24 = *(_DWORD *)(this + 208);
-      v23 = 1;
+      v22.Green = *(_DWORD *)(this + 208);
+      v22.Blue = 1;
     }
-    UIRenderPar(this + 212, &v29, &v28, v23, v24);
+    UIRenderPar(this + 212, (int)&v27, &v26, v22.Blue, v22.Green);
   }
-  return this->GetID();
+  return (UIWnd *->GetID()this);
 }

@@ -108,7 +108,7 @@ public:
     int ProcDialog(); // 0x00512580
     char ProcNormalAttack(); // 0x005125E0
     char ProcFling(); // 0x00512BA0
-    void * ProcCoAttack(void *Block, char a2); // 0x00512D40
+    void * ProcCoAttack(CCBSystem *Block, char a2); // 0x00512D40
     char ProcWeaponSkill(); // 0x00512D60
     char ProcMagicWait(int a2, char a3); // 0x00512F40
     int CombatUpdate(double dt); // 0x00513060
@@ -135,11 +135,11 @@ public:
     int PassCmdToTask(int a2); // 0x005155D0
     int PassCmdViaThread(int a2); // 0x00515760
     int CreateObj(int a2); // 0x00515940
-    static int CreateObj(const char *a1, const char *a2, UINT a3); // 0x005159A0
+    int CreateObj(const char *a2, const char *a3, UINT a4); // 0x005159A0
     int CreateObj(int (__thiscall *a2)(int this, int a2), int a3, int a4, int a5, const void *a6); // 0x00515B20
     char ClearEffect(int idx); // 0x00515C50
     bool CreateObj2(_DWORD *a2); // 0x00515D10
-    void * DestroyObj(void *Block, char a2); // 0x00515DD0
+    void * DestroyObj(CCBSystem *Block, char a2); // 0x00515DD0
     static int DestroyObj(); // 0x00515E40
     static int InitObj(); // 0x00515E90
 };

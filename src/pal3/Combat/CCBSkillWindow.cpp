@@ -16,12 +16,12 @@ extern int dword_570324;
 extern void *off_570310;
 
 // 0x0051C260
-CCBSkillWindow::CCBSkillWindow(UIWnd *Block, char a2)
+CCBSkillWindow::CCBSkillWindow(CCBSkillWindow *Block, char a2)
 {
-  UIWnd::~UIWnd(Block);
+  UIWnd::~UIWnd((UIWnd *)Block);
   if ( (a2 & 1) != 0 )
     operator delete(Block);
-  return Block;
+  return (UIWnd *)Block;
 }
 
 // 0x0051C2D0
@@ -29,16 +29,16 @@ int CCBSkillWindow::Reset()
 {
   *((_DWORD *)this + 42) = 0;
   *((_DWORD *)this + 43) = -1;
-  *((_DWORD *)this + 18) = 0;
-  *((_DWORD *)this + 19) = 0;
-  *((_DWORD *)this + 20) = 0;
-  *((_DWORD *)this + 21) = 0;
-  *((_DWORD *)this + 22) = 0;
-  *((_DWORD *)this + 23) = 0;
-  *((_DWORD *)this + 24) = 0;
-  *((_DWORD *)this + 25) = 0;
-  *((_DWORD *)this + 26) = 0;
-  memset(this + 27, 0, 0x2Cu);
+  this->m_childs.m_pData = 0;
+  this->m_childs.m_nSize = 0;
+  this->m_childs.m_nMaxSize = 0;
+  this->m_childs.m_nGrowBy = 0;
+  this->m_bcreateok = 0;
+  this->m_bvisible = 0;
+  this->m_benable = 0;
+  this->m_bfocus = 0;
+  this->m_pbktex = 0;
+  memset(&this->m_pBack, 0, 0x2Cu);
   *((_DWORD *)this + 38) = 0;
   *((_DWORD *)this + 39) = 0;
   *((_DWORD *)this + 40) = 0;
@@ -103,7 +103,7 @@ char CCBSkillWindow::Create(int _this, _DWORD *a2, int a3)
   a2[1] = 46;
   a2[3] = 58;
   (*(void (**)(_DWORD, int, _DWORD *, int))(*(_DWORD *)*v8 + 16))(*v8, 545, a2, this);
-  v9 = UIWnd::SetRect(*(_DWORD **)(this + 156), v24);
+  v9 = (_DWORD *)UIWnd::SetRect(*(_DWORD **)(this + 156), v24);
   UIWnd::AddChild(*(_DWORD **)(this + 156), v9);
   UIWnd::GetChildCount(*(gbRefObject ***)(this + 156), aUiCombatResult_4, 0);
   UIWnd::GetChildAt(*(gbRefObject ***)(this + 156), aUiCombatResult_1, 0);
@@ -117,7 +117,7 @@ char CCBSkillWindow::Create(int _this, _DWORD *a2, int a3)
   a2[1] = 71;
   a2[3] = 83;
   (*(void (**)(_DWORD, int, _DWORD *, int))(*(_DWORD *)*v10 + 16))(*v10, 546, a2, this);
-  v11 = UIWnd::SetRect(*(_DWORD **)(this + 160), v24);
+  v11 = (_DWORD *)UIWnd::SetRect(*(_DWORD **)(this + 160), v24);
   UIWnd::AddChild(*(_DWORD **)(this + 160), v11);
   UIWnd::GetChildCount(*(gbRefObject ***)(this + 160), aUiCombatResult_4, 0);
   UIWnd::GetChildAt(*(gbRefObject ***)(this + 160), aUiCombatResult_2, 0);
@@ -131,7 +131,7 @@ char CCBSkillWindow::Create(int _this, _DWORD *a2, int a3)
   a2[1] = 97;
   a2[3] = 109;
   (*(void (**)(_DWORD, int, _DWORD *, int))(*(_DWORD *)*v12 + 16))(*v12, 547, a2, this);
-  v13 = UIWnd::SetRect(*(_DWORD **)(this + 164), v24);
+  v13 = (_DWORD *)UIWnd::SetRect(*(_DWORD **)(this + 164), v24);
   UIWnd::AddChild(*(_DWORD **)(this + 164), v13);
   UIWnd::GetChildCount(*(gbRefObject ***)(this + 164), aUiCombatResult_4, 0);
   UIWnd::GetChildAt(*(gbRefObject ***)(this + 164), aUiCombatResult_3, 0);
@@ -350,14 +350,14 @@ int CCBSkillWindow::Destroy(int _this)
 int CCBSkillWindow::OnMessage(int a2, int a3, int a4)
 {
   if ( a2 == 1001 )
-    CCBUI::SetParam(*(_DWORD *)(*(_DWORD *)(*((_DWORD *)this + 8) + 1160) + 8), a3, a4, 0);
+    CCBUI::SetParam(*(CCBUI **)(*(_DWORD *)(this->m_wndcolor.Green + 1160) + 8), a3, a4);
   return a2->SendMessage(a3, a4);
 }
 
 // 0x0051C9F0
 BOOL CCBSkillWindow::Update(int a2, int a3)
 {
-  if ( *((_DWORD *)this + 14) == 1 && MEMORY[0xBFC6F4] == 1 && (MEMORY[0xBFC6E8] & 0xF) == 1 )
-    CCBUI::SetParam(*(_DWORD *)(*(_DWORD *)(*((_DWORD *)this + 8) + 1160) + 8), 513, -1, 0);
+  if ( this->m_rect.top == 1 && g_Input.m_DIKToKEY[1] == 1 && (g_Input.m_shiftedKeyStates[268] & 0xF) == 1 )
+    CCBUI::SetParam(*(CCBUI **)(*(_DWORD *)(this->m_wndcolor.Green + 1160) + 8), 513, -1);
   return this->HitTest(a2, a3);
 }

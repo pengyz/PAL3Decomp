@@ -15,7 +15,7 @@ int CCBAttackSequen::Update()
 
   if ( this->m_pCBSystem[453] || !this->m_pCBSystem[452] )
   {
-    v4 = &this->m_pCBSystem[16];
+    v4 = (char *)&this->m_pCBSystem[16];
     v5 = 11;
     do
     {
@@ -28,7 +28,7 @@ int CCBAttackSequen::Update()
   }
   else
   {
-    v2 = &this->m_pCBSystem[16];
+    v2 = (char *)&this->m_pCBSystem[16];
     v3 = 11;
     do
     {
@@ -56,7 +56,7 @@ char CCBAttackSequen::ProcessQueue()
   int v5; // edi
 
   v2 = 0;
-  v3 = &this->m_pCBSystem[36];
+  v3 = (char *)&this->m_pCBSystem[36];
   do
   {
     LOBYTE(v4) = v3[12];
@@ -102,7 +102,7 @@ char CCBAttackSequen::CheckComplete()
   double v5; // st7
 
   v2 = 76;
-  v3 = &this->m_pCBSystem[46];
+  v3 = (char *)&this->m_pCBSystem[46];
   do
   {
     result = v3[2];
@@ -143,7 +143,7 @@ int CCBAttackSequen::AdvanceStep()
   v3 = 76;
   do
   {
-    v4 = *(_BYTE **)&this->m_pCBSystem[8];
+    v4 = (_BYTE *)*(_BYTE **)&this->m_pCBSystem[8];
     if ( v4[v1 + 577] )
     {
       if ( !v4->IsRoleAlive(v13) || *(_BYTE *)(v1 + *(_DWORD *)&this->m_pCBSystem[8] + 1432) == 1 )

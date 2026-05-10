@@ -3,5 +3,5 @@
   "address": "0x00432260",
   "size_bytes": 56,
   "signature": "int __cdecl(int a1)",
-  "decompiled_c": "// between_std_methods (0x430790-0x445B40)\nint __cdecl sub_432260(int a1)\n{\n  int v1; // ecx\n  int *i; // edx\n  int result; // eax\n\n  v1 = 0;\n  if ( dword_D8C32C <= 0 )\n    return 0;\n  for ( i = (int *)dword_D8C328; ; ++i )\n  {\n    if ( v1 >= 0 && v1 < dword_D8C32C )\n    {\n      result = *i;\n      if ( *i )\n      {\n        if ( *(_DWORD *)(result + 4) == a1 )\n          break;\n      }\n    }\n    if ( ++v1 >= dword_D8C32C )\n      return 0;\n  }\n  return result;\n}\n"
+  "decompiled_c": "// between_std_methods (0x430790-0x445B40)\nint __cdecl sub_432260(int a1)\n{\n  int v1; // ecx\n  int *i; // edx\n  int result; // eax\n\n  v1 = 0;\n  if ( MEMORY[0xD8C32C] <= 0 )\n    return 0;\n  for ( i = (int *)stru_D8C328; ; ++i )\n  {\n    if ( v1 >= 0 && v1 < MEMORY[0xD8C32C] )\n    {\n      result = *i;\n      if ( *i )\n      {\n        if ( *(_DWORD *)(result + 4) == a1 )\n          break;\n      }\n    }\n    if ( ++v1 >= MEMORY[0xD8C32C] )\n      return 0;\n  }\n  return result;\n}\n"
 }

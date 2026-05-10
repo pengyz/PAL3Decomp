@@ -32,7 +32,7 @@ int CCBResultWindow::Reset(int a2, int a3)
   *((_DWORD *)this + 86393) = *((_DWORD *)this + 82005);
   *((_DWORD *)this + 86395) = v4;
   v7 = *((_DWORD *)this + 82008);
-  qmemcpy(this + 86396, v5, 0xDCu);
+  qmemcpy((char *)this + 345584, v5, 0xDCu);
   v8 = *((_DWORD *)this + 82009);
   *((_DWORD *)this + 126858) = v6;
   v9 = *((_DWORD *)this + 82010);

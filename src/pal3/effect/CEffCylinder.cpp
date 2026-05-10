@@ -86,11 +86,11 @@ CEffCylinder::CEffCylinder(int a1)
   v2 = a1 + 12;
   *(_DWORD *)a1 = &off_56F7C8;
   *(_DWORD *)(a1 + 12) = &off_56F7BC;
-  v3 = *(void **)(a1 + 48);
+  v3 = (void *)*(void **)(a1 + 48);
   v4 = 0;
   if ( v3 )
     operator delete(v3);
-  v5 = *(gbRefObject **)(a1 + 52);
+  v5 = (gbRefObject *)*(gbRefObject **)(a1 + 52);
   if ( v5 )
     v5->Release();
   if ( *(_DWORD *)(a1 + 56) )
@@ -128,7 +128,7 @@ LABEL_14:
 // 0x004C3EB0
 CEffCylinder::~CEffCylinder()
 {
-  * this = (*)&off_56F62C;
+  *(_DWORD *)this = &off_56F62C;
 }
 
 // 0x004C3EC0
@@ -375,7 +375,7 @@ void CEffCylinder::Destroy(int _this)
     if ( *(_BYTE *)(this + 62) )
     {
       v3 = v2 == 0;
-      v4 = *(_DWORD **)(this + 4);
+      v4 = (_DWORD *)*(_DWORD **)(this + 4);
       if ( v3 )
         v5 = (struct gbRenderEffect *)v4[3];
       else
@@ -384,13 +384,13 @@ void CEffCylinder::Destroy(int _this)
     else
     {
       v3 = v2 == 0;
-      v4 = *(_DWORD **)(this + 4);
+      v4 = (_DWORD *)*(_DWORD **)(this + 4);
       if ( v3 )
         v5 = (struct gbRenderEffect *)v4[5];
       else
         v5 = (struct gbRenderEffect *)v4[4];
     }
-    v6 = *(gbMatrixStack **)(*v4 + 216);
+    v6 = (gbMatrixStack *)*(gbMatrixStack **)(*v4 + 216);
     v6->Push();
     v7 = *(float *)(this + 184) + *(float *)(this + 172);
     retaddr = v7;
@@ -589,7 +589,7 @@ LABEL_30:
 // 0x004C48D0
 void CEffCylinder::ProcInitTask(_DWORD *a2)
 {
-  _DWORD *v2; // ebx
+  int *v2; // ebx
   int v3; // ecx
   int v4; // edx
   int v5; // esi
@@ -600,16 +600,16 @@ void CEffCylinder::ProcInitTask(_DWORD *a2)
   int v10; // eax
   int v11; // edi
   _BYTE *v12; // esi
-  _DWORD *v13; // esi
+  int (**v13)(CEffect *, int); // esi
   unsigned int v14; // eax
   int v15; // ecx
   int v16; // eax
   int v17; // edi
   _BYTE *v18; // esi
-  _DWORD *v19; // esi
+  int (**v19)(CEffect *, int); // esi
   unsigned int v20; // eax
 
-  v2 = this + 3;
+  v2 = (int *)(this + 12);
   v3 = *((_DWORD *)this + 10);
   v4 = 0;
   if ( v3 > 0 )
@@ -654,20 +654,20 @@ void CEffCylinder::ProcInitTask(_DWORD *a2)
           if ( v10 >= v9 )
             goto LABEL_22;
         }
-        v13 = (_DWORD *)(v11 + 72 * v10);
+        v13 = (int (**)(CEffect *, int))(v11 + 72 * v10);
         memset(v13, 0, 0x48u);
         * v13 = (*)CEffect::SetParam;
         *((_BYTE *)v13 + 64) = 1;
         *((_BYTE *)v13 + 65) = 0;
         v13[1] = 0;
-        v13[2] = 2;
+        v13[2] = (int (*)(CEffect *, int))2;
         v14 = ++dword_DE9380;
         if ( !dword_DE9380 || v14 >= 0x7FFFFFFF )
         {
           v14 = 1;
           dword_DE9380 = 1;
         }
-        v13[3] = v14;
+        v13[3] = (int (*)(CEffect *, int))v14;
         v13[5] = 0;
         v13[4] = 0;
         v13[6] = 0;
@@ -687,27 +687,27 @@ LABEL_22:
           if ( v16 >= v15 )
             goto LABEL_31;
         }
-        v19 = (_DWORD *)(v17 + 72 * v16);
+        v19 = (int (**)(CEffect *, int))(v17 + 72 * v16);
         memset(v19, 0, 0x48u);
         * v19 = (*)CEffect::SetParam;
         *((_BYTE *)v19 + 64) = 1;
         *((_BYTE *)v19 + 65) = 0;
         v19[1] = 0;
-        v19[2] = 2;
+        v19[2] = (int (*)(CEffect *, int))2;
         v20 = ++dword_DE9380;
         if ( !dword_DE9380 || v20 >= 0x7FFFFFFF )
         {
           v20 = 1;
           dword_DE9380 = 1;
         }
-        v19[3] = v20;
+        v19[3] = (int (*)(CEffect *, int))v20;
         v19[5] = 0;
         v19[4] = 0;
         v19[6] = 0;
         ++*(_DWORD *)(v2[3] + v7 + 4);
       }
 LABEL_31:
-      sub_4C55F0(v4, CEffCylinder::ProcCommonTask, 0, 0, a2[18], a2[19]);
+      sub_4C55F0(v2, v4, (int)CEffCylinder::ProcCommonTask, 0, 0, a2[18], a2[19]);
       *(_DWORD *)(v2[3] + v7 + 12) = 3;
       *(_DWORD *)(*(_DWORD *)(v2[3] + v7) + 8) = 3;
       *(_DWORD *)(*(_DWORD *)(v2[3] + v7) + 16) = v2[1];
@@ -918,79 +918,79 @@ void * CEffCylinder::GetEditorTaskDescription(int a1)
   switch ( a1 )
   {
     case 0:
-      result = &unk_5D5050;
+      result = (void *)&unk_5D5050;
       break;
     case 1:
-      result = &unk_5D4E40;
+      result = (void *)&unk_5D4E40;
       break;
     case 2:
-      result = &unk_5D4E38;
+      result = (void *)&unk_5D4E38;
       break;
     case 3:
-      result = &unk_5D4E30;
+      result = (void *)&unk_5D4E30;
       break;
     case 4:
-      result = &unk_5D4E24;
+      result = (void *)&unk_5D4E24;
       break;
     case 5:
-      result = &unk_5D5048;
+      result = (void *)&unk_5D5048;
       break;
     case 6:
-      result = &unk_5D5040;
+      result = (void *)&unk_5D5040;
       break;
     case 7:
-      result = &unk_5D5038;
+      result = (void *)&unk_5D5038;
       break;
     case 8:
-      result = &unk_5D4E00;
+      result = (void *)&unk_5D4E00;
       break;
     case 9:
-      result = &unk_5D4DF4;
+      result = (void *)&unk_5D4DF4;
       break;
     case 10:
-      result = &unk_5D502C;
+      result = (void *)&unk_5D502C;
       break;
     case 11:
-      result = &unk_5D5020;
+      result = (void *)&unk_5D5020;
       break;
     case 12:
-      result = &unk_5D4DD4;
+      result = (void *)&unk_5D4DD4;
       break;
     case 13:
-      result = &unk_5D4DCC;
+      result = (void *)&unk_5D4DCC;
       break;
     case 14:
-      result = &unk_5D4DC4;
+      result = (void *)&unk_5D4DC4;
       break;
     case 15:
-      result = &unk_5D4DB8;
+      result = (void *)&unk_5D4DB8;
       break;
     case 16:
-      result = &unk_5D4DAC;
+      result = (void *)&unk_5D4DAC;
       break;
     case 17:
-      result = &unk_5D5014;
+      result = (void *)&unk_5D5014;
       break;
     case 18:
-      result = &unk_5D5008;
+      result = (void *)&unk_5D5008;
       break;
     case 19:
-      result = &unk_5D4FFC;
+      result = (void *)&unk_5D4FFC;
       break;
     case 20:
-      result = &unk_5D4D7C;
+      result = (void *)&unk_5D4D7C;
       break;
     case 21:
-      result = &unk_5D4FF0;
+      result = (void *)&unk_5D4FF0;
       break;
     case 22:
-      result = &unk_5D4FE0;
+      result = (void *)&unk_5D4FE0;
       break;
     case 23:
-      result = &unk_5D4FD0;
+      result = (void *)&unk_5D4FD0;
       break;
     default:
-      result = &unk_5D4D3C;
+      result = (void *)&unk_5D4D3C;
       break;
   }
   return result;
@@ -1004,46 +1004,46 @@ void * CEffCylinder::GetEditorObjDescription(int a1)
   switch ( a1 )
   {
     case 0:
-      result = &unk_5D50E4;
+      result = (void *)&unk_5D50E4;
       break;
     case 1:
-      result = &unk_5D50D8;
+      result = (void *)&unk_5D50D8;
       break;
     case 2:
-      result = &unk_5D50CC;
+      result = (void *)&unk_5D50CC;
       break;
     case 3:
-      result = &unk_5D50C0;
+      result = (void *)&unk_5D50C0;
       break;
     case 4:
-      result = &unk_5D50B8;
+      result = (void *)&unk_5D50B8;
       break;
     case 5:
-      result = &unk_5D50B0;
+      result = (void *)&unk_5D50B0;
       break;
     case 6:
-      result = &unk_5D50A4;
+      result = (void *)&unk_5D50A4;
       break;
     case 7:
-      result = &unk_5D5098;
+      result = (void *)&unk_5D5098;
       break;
     case 8:
-      result = &unk_5D508C;
+      result = (void *)&unk_5D508C;
       break;
     case 9:
-      result = &unk_5D5080;
+      result = (void *)&unk_5D5080;
       break;
     case 10:
-      result = &unk_5D5074;
+      result = (void *)&unk_5D5074;
       break;
     case 11:
-      result = &unk_5D5068;
+      result = (void *)&unk_5D5068;
       break;
     case 12:
-      result = &unk_5D505C;
+      result = (void *)&unk_5D505C;
       break;
     default:
-      result = &unk_5D4D3C;
+      result = (void *)&unk_5D4D3C;
       break;
   }
   return result;
@@ -1113,7 +1113,7 @@ _DWORD * CEffCylinder::LoadTexture(int _this, int a2)
   v3 = (gbTexture *)(*(int (**)(_DWORD, int))(***(_DWORD ***)(this + 4) + 8))(**(_DWORD **)(this + 4), a2);
   *(_DWORD *)(this + 52) = v3;
   v3->LoadTexture(1);
-  result = operator new(0x44u);
+  result = (_DWORD *)operator new(0x44u);
   if ( result )
   {
     v5 = *(_DWORD *)(this + 52);

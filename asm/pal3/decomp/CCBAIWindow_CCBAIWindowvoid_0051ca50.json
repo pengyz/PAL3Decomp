@@ -2,6 +2,6 @@
   "name": "CCBAIWindow::CCBAIWindow(void)",
   "address": "0x0051CA50",
   "size_bytes": 77,
-  "signature": "int __thiscall(int this, int a2)",
-  "decompiled_c": "// between_std_methods (0x504E20-0x53C2B0)\nint __thiscall sub_51CA50(int this, int a2)\n{\n  int v3; // edi\n  void (__thiscall ****v4)(_DWORD, int); // esi\n  void (__thiscall ***v5)(_DWORD, int); // ecx\n\n  if ( a2 == 1 )\n  {\n    *(_BYTE *)(this + 176) = 0;\n    v3 = 0;\n    v4 = (void (__thiscall ****)(_DWORD, int))(this + 108);\n    do\n    {\n      v5 = *v4;\n      if ( *(_DWORD *)(this + 172) == v3 )\n        (**v5)(v5, 1);\n      else\n        (**v5)(v5, 0);\n      ++v3;\n      ++v4;\n    }\n    while ( v3 < 5 );\n  }\n  return UIWnd::Destroy((int *)this, a2);\n}\n"
+  "signature": "CCBAIWindow *__thiscall(CCBAIWindow *this, int a2)",
+  "decompiled_c": "// between_std_methods (0x504E20-0x53C2B0)\nCCBAIWindow *__thiscall CCBAIWindow::CCBAIWindow(CCBAIWindow *this, int a2)\n{\n  int v3; // edi\n  UIStatic **p_m_pBack; // esi\n  UIStatic *v5; // ecx\n\n  if ( a2 == 1 )\n  {\n    *((_BYTE *)this + 176) = 0;\n    v3 = 0;\n    p_m_pBack = &this->m_pBack;\n    do\n    {\n      v5 = *p_m_pBack;\n      if ( *((_DWORD *)this + 43) == v3 )\n        (*(void (__thiscall **)(UIStatic *, int))v5->m_fontcolor.ColorQuadFmt)(v5, 1);\n      else\n        (*(void (__thiscall **)(UIStatic *, _DWORD))v5->m_fontcolor.ColorQuadFmt)(v5, 0);\n      ++v3;\n      ++p_m_pBack;\n    }\n    while ( v3 < 5 );\n  }\n  return (CCBAIWindow *)UIWnd::Destroy(this, a2);\n}\n"
 }

@@ -207,7 +207,7 @@ int UICamera::GetState()
     while ( v1 < *(_DWORD *)(v2 + 57568) );
   }
   v7 = 0;
-  v8 = &g_SceneMgr.m_info[7288];
+  v8 = (char *)&g_SceneMgr.m_info[7288];
   do
   {
     if ( v7 != *(_DWORD *)&g_SceneMgr.m_info[51512] )
@@ -298,7 +298,7 @@ int UICamera::GetTarget(float *pMat)
     while ( v1 < *(_DWORD *)(v3 + 57568) );
   }
   v9 = 0;
-  v10 = &g_SceneMgr.m_info[7288];
+  v10 = (char *)&g_SceneMgr.m_info[7288];
   do
   {
     if ( v9 != *(_DWORD *)&g_SceneMgr.m_info[51512] )

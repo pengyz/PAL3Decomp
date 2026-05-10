@@ -66,7 +66,7 @@ void ScriptSystem::Render(void *a1)
 
   v1 = *(_DWORD *)&g_SceneMgr.m_info[51512];
   v2 = 0;
-  v3 = &g_SceneMgr.m_info[7120];
+  v3 = (char *)&g_SceneMgr.m_info[7120];
   do
   {
     if ( v2 != v1 )
@@ -91,7 +91,7 @@ void ScriptSystem::Render(void *a1)
   }
   else
   {
-    Instance = RenderTarget3::GetInstance();
+    Instance = (_DWORD *)RenderTarget3::GetInstance();
     v5 = Instance[1];
     if ( v5 )
     {
@@ -111,7 +111,7 @@ void ScriptSystem::Render(void *a1)
   RoleSystem::RenderRole((int)MEMORY[0xBFDBB0], (gbMatrixStack *)a1, 0);
   if ( *(_DWORD *)&g_SceneMgr.m_info[51500] )
   {
-    v7 = &g_SceneMgr.m_info[8704 * *(_DWORD *)&g_SceneMgr.m_info[51512] + 7280];
+    v7 = (char *)&g_SceneMgr.m_info[8704 * *(_DWORD *)&g_SceneMgr.m_info[51512] + 7280];
     v8 = *(_DWORD *)v7;
     v9 = *((float *)v7 + 1);
     v10 = *((_DWORD *)v7 + 2);
@@ -211,7 +211,7 @@ int ScriptSystem::Destroy()
   (UIWnd *->Reset()&MEMORY[0xBFDAB0]);
   (PalScript *->Reset()&g_SceneMgr.m_info[50648]);
   ScriptSystem::Cleanup();
-  v0 = &g_SceneMgr.m_info[7120];
+  v0 = (char *)&g_SceneMgr.m_info[7120];
   do
   {
     result = v0->Destroy();
@@ -231,7 +231,7 @@ int ScriptSystem::Execute(int a1, char a2)
   int v6; // eax
   char *v7; // ecx
 
-  v2 = *(_DWORD **)&g_SceneMgr.m_info[54108];
+  v2 = (_DWORD *)*(_DWORD **)&g_SceneMgr.m_info[54108];
   flt_58DE64 = 10.0;
   if ( a2 )
   {
@@ -284,7 +284,7 @@ int ScriptSystem::Execute(int a1, char a2)
     v5 = *(_DWORD *)&g_SceneMgr.m_info[51512];
   }
   v6 = 0;
-  v7 = &g_SceneMgr.m_info[1408 * v5 + 700];
+  v7 = (char *)&g_SceneMgr.m_info[1408 * v5 + 700];
   while ( !v7[v6] )
   {
     if ( ++v6 > 4 )
@@ -311,7 +311,7 @@ int ScriptSystem::RunScript(int a1, int a2, int a3)
   char Buffer[256]; // [esp+28h] [ebp-10Ch] BYREF
   int v16; // [esp+130h] [ebp-4h]
 
-  v4 = &g_SceneMgr.m_info[988];
+  v4 = (char *)&g_SceneMgr.m_info[988];
   v5 = *(_DWORD *)&g_SceneMgr.m_info[51512];
   v6 = 0;
   v7 = 0;
@@ -387,7 +387,7 @@ int ScriptSystem::RunWithDelay(float delay, int a2, int a3)
   v3 = *(_DWORD *)&g_SceneMgr.m_info[51512];
   v4 = 0;
   v13 = 0;
-  v5 = &g_SceneMgr.m_info[988];
+  v5 = (char *)&g_SceneMgr.m_info[988];
   do
   {
     if ( g_SceneMgr.m_info[v4 + 7112] && (!(_BYTE)a3 || v4 == v3) )
@@ -467,7 +467,7 @@ int ScriptSystem::RunEvent(int eventId, int a2, int a3)
     if ( !g_SceneMgr.m_info[1408 * v4 + 725] && (unsigned int)eventId <= 4 && !a3 )
     {
       sprintf(Buffer, off_5861F8, eventId);
-      v7 = PalScript::SetAppName(&MEMORY[0x8ACD30], Buffer);
+      v7 = (char *)PalScript::SetAppName(&MEMORY[0x8ACD30], Buffer);
       sub_410360(v7);
       result = *(_DWORD *)&g_SceneMgr.m_info[51512];
       g_SceneMgr.m_info[1408 * *(_DWORD *)&g_SceneMgr.m_info[51512] + 700 + eventId] = 1;

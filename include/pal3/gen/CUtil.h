@@ -18,7 +18,7 @@ public:
     static void Destroy(); // 0x00523110
     static void Init(); // 0x00523120
     int CreateLog(); // 0x00523130
-    UIWnd * WriteLog(UIWnd *Block, char a2); // 0x005231D0
+    UIWnd * WriteLog(CUtil *Block, char a2); // 0x005231D0
     void GetFileSize(); // 0x005231F0
     char RectIntersection(); // 0x00523560
 };

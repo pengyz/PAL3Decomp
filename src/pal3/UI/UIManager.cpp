@@ -68,7 +68,7 @@ void UIManager::Render()
   }
   if ( g_nGameState != 9 )
   {
-    p_y = &g_SceneMgr.m_npc[0].m_path.normal[95].y;
+    p_y = (float *)&g_SceneMgr.m_npc[0].m_path.normal[95].y;
     v8 = (_DWORD *)((char *)this + 68 * v4 + 64);
     do
     {
@@ -97,8 +97,8 @@ void UIManager::Render()
     gbVertPoolMgr::GetDynVertBuf(*(gbVertPoolMgr **)&g_pGfxManager[196], 0x15u);
     if ( *(_DWORD *)&g_pGfxManager[1432] == 1 )
     {
-      Top = gbMatrixStack::GetTop(*(gbMatrixStack **)&g_pGfxManager[216]);
-      v10 = gbMatrixStack::GetTop(*(gbMatrixStack **)&g_pGfxManager[212]);
+      Top = (struct gbMatrix4 *)gbMatrixStack::GetTop(*(gbMatrixStack **)&g_pGfxManager[216]);
+      v10 = (const struct gbMatrix4 *)gbMatrixStack::GetTop(*(gbMatrixStack **)&g_pGfxManager[212]);
       (gbMatrix4 *->gbMatrix4()v16.m);
       gbMatrix4::gbMatrix4(&v16);
       (gbMatrix4 *->LoadIdentity()v16.m);

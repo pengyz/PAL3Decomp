@@ -26,13 +26,13 @@ int Scene::LoadConfig(void *pConfig)
   unsigned int v18; // [esp+10h] [ebp-8h]
   int v19; // [esp+14h] [ebp-4h]
 
-  v3 = *(char **)&this->m_info[8];
+  v3 = (char *)*(char **)&this->m_info[8];
   v4 = v3;
   if ( (*(_DWORD *)&this->m_info[12] - (int)v3) / 12 )
   {
     v3->Insert(v3, v3 + 12);
     Array::Erase(*(void **)&this->m_info[8], 1 - (*(_DWORD *)&this->m_info[8] - (int)v4) / 12, pConfig);
-    v15 = *(char **)&this->m_info[8];
+    v15 = (char *)*(char **)&this->m_info[8];
     v16 = v4;
     if ( v4 == v15 )
     {
@@ -68,7 +68,7 @@ int Scene::LoadConfig(void *pConfig)
     if ( (int)(v7 + v6) < 0 )
       v8 = 0;
     v9 = operator new(12 * v8);
-    v10 = *(char **)&this->m_info[4];
+    v10 = (char *)*(char **)&this->m_info[4];
     v19 = v9;
     for ( i = v9; v10 != v4; i += 12 )
     {

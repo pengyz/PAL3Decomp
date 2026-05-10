@@ -25,10 +25,10 @@ extern void *off_570570;
 extern void *off_57058C;
 
 // 0x0051B9F0
-CCBMagicWindow::CCBMagicWindow(_DWORD **this, int a2, int a3, _DWORD *a4)
+CCBMagicWindow::CCBMagicWindow(CCBMagicWindow **this, int a2, int a3, _DWORD *a4)
 {
   int v4; // eax
-  _DWORD *v5; // eax
+  int *v5; // eax
   int v7; // [esp-14h] [ebp-40h]
   int v8; // [esp-10h] [ebp-3Ch]
   int v9; // [esp-Ch] [ebp-38h]
@@ -41,8 +41,8 @@ CCBMagicWindow::CCBMagicWindow(_DWORD **this, int a2, int a3, _DWORD *a4)
   v8 = dword_570268[a2] + 232;
   v9 = v4 + 49;
   v10 = dword_570268[a2] + 270;
-  v5 = UIWnd::SetRect(*(this + a3 + 24), v12);
-  if ( (unsigned __int8)CCBLineupWindow::SetFaceLineup(*v5, v5[1], v5[2], v5[3], v7, v8, v9, v10, v11) )
+  v5 = (int *)UIWnd::SetRect(*(this + a3 + 24), v12);
+  if ( CCBLineupWindow::SetFaceLineup(*v5, v5[1], v5[2], v5[3], v7, v8, v9, v10, v11) )
   {
     *a4 = (v11[3] - v11[1]) * (v11[2] - v11[0]);
     return 1;
@@ -55,22 +55,22 @@ CCBMagicWindow::CCBMagicWindow(_DWORD **this, int a2, int a3, _DWORD *a4)
 }
 
 // 0x0051BAB0
-CCBMagicWindow::~CCBMagicWindow(_DWORD **this, int a2)
+CCBMagicWindow::~CCBMagicWindow(CCBMagicWindow **this, int a2)
 {
   int v2; // edi
   int v4; // ebx
   int i; // esi
-  int v7; // [esp+10h] [ebp-4h] BYREF
+  int a4; // [esp+10h] [ebp-4h] BYREF
 
   v2 = 0;
-  v7 = 0;
+  a4 = 0;
   v4 = -1;
   for ( i = 1; i < 7; ++i )
   {
-    if ( this->CCBMagicWindow(i, a2, &v7) && v7 > v2 )
+    if ( this->CCBMagicWindow(i, a2, &a4) && a4 > v2 )
     {
       v4 = i;
-      v2 = v7;
+      v2 = a4;
     }
   }
   return v4;
@@ -79,235 +79,251 @@ CCBMagicWindow::~CCBMagicWindow(_DWORD **this, int a2)
 // 0x0051BB00
 int CCBMagicWindow::Reset(int a2, int a3)
 {
-  _DWORD *v3; // eax
+  PtrArray *p_m_childs; // eax
   int v4; // esi
 
-  v3 = this + 18;
+  p_m_childs = (PtrArray *)&this->m_childs;
   v4 = 5;
   do
   {
-    if ( *v3 == a3 )
-      * v3 = (*)*(this + a2 + 18);
-    ++v3;
+    if ( p_m_childs->m_pData == (void *)a3 )
+      p_m_childs->m_pData = (void *)*((_DWORD *)&this->m_childs.m_pData + a2);
+    p_m_childs = (PtrArray *)((char *)p_m_childs + 4);
     --v4;
   }
   while ( v4 );
-  *(this + a2 + 18) = a3;
-  sub_51BB50(this);
+  *((_DWORD *)&this->m_childs.m_pData + a2) = a3;
+  sub_51BB50((char *)this);
   return -1;
 }
 
 // 0x0051BB40
 int CCBMagicWindow::Create(int a2)
 {
-  *((_DWORD *)this + 29) = a2;
+  this->m_pMagicList[1] = (UIListBox *)a2;
   return a2;
 }
 
 // 0x0051BB90
 _DWORD * CCBMagicWindow::ForbidPage()
 {
-  this->UIListBox();
-  * this = (*)&off_570570;
+  (UIListBox *->UIListBox()this);
+  this->m_fontcolor.ColorQuadFmt = (int)&off_570570;
   this->OnMessage();
-  return this;
+  return &this->m_fontcolor.ColorQuadFmt;
 }
 
 // 0x0051BBE0
-UIWnd * CCBMagicWindow::Destroy(UIWnd *Block, char a2)
+UIWnd * CCBMagicWindow::Destroy(CCBMagicWindow *Block, char a2)
 {
-  UIWnd::~UIWnd(Block);
+  UIWnd::~UIWnd((UIWnd *)Block);
   if ( (a2 & 1) != 0 )
     operator delete(Block);
-  return Block;
+  return (UIWnd *)Block;
 }
 
 // 0x0051BC50
 int CCBMagicWindow::OnMessage()
 {
-  *((_DWORD *)this + 18) = 0;
-  *((_DWORD *)this + 19) = 0;
-  *((_DWORD *)this + 20) = 0;
-  *((_DWORD *)this + 21) = 0;
-  *((_DWORD *)this + 22) = 0;
-  *((_DWORD *)this + 23) = 0;
-  *((_DWORD *)this + 24) = 0;
-  *((_DWORD *)this + 25) = 0;
+  this->m_childs.m_pData = 0;
+  this->m_childs.m_nSize = 0;
+  this->m_childs.m_nMaxSize = 0;
+  this->m_childs.m_nGrowBy = 0;
+  this->m_bcreateok = 0;
+  this->m_bvisible = 0;
+  this->m_benable = 0;
+  this->m_bfocus = 0;
   return 0;
 }
 
 // 0x0051BC70
 char CCBMagicWindow::CreateButton(_DWORD *a2, int a3)
 {
-  gbRefObject ***v4; // edi
-  gbRefObject ***v5; // edi
+  UIWnd ***p_m_childs; // edi
+  int *p_m_bcreateok; // edi
   _DWORD *v6; // eax
-  gbRefObject **v7; // eax
-  gbRefObject ***v8; // edi
+  UIWnd *v7; // eax
+  int *p_m_bvisible; // edi
   _DWORD *v9; // eax
-  gbRefObject **v10; // eax
-  gbRefObject ***v11; // edi
+  UIWnd *v10; // eax
+  int *p_m_benable; // edi
   _DWORD *v12; // eax
-  gbRefObject **v13; // eax
-  gbRefObject ***v14; // edi
-  gbRefObject ***v15; // edi
-  gbRefObject ***v16; // edi
-  _DWORD *v17; // edi
-  _DWORD v19[4]; // [esp+3Ch] [ebp-10h] BYREF
+  UIWnd *v13; // eax
+  int *p_m_nSize; // edi
+  int *p_m_nMaxSize; // edi
+  int *p_m_nGrowBy; // edi
+  int *p_m_bfocus; // edi
+  _DWORD a2a[4]; // [esp+3Ch] [ebp-10h] BYREF
 
   this->Create(1879048198, a2, a3);
-  v4 = (gbRefObject ***)(this + 18);
-  if ( (unsigned __int8)CCBLineupWindow::Destroy(this + 18) == 1 )
+  p_m_childs = (UIWnd ***)&this->m_childs;
+  if ( &this->m_childs.m_pData->Destroy() == 1 )
   {
     *a2 = 0;
     a2[2] = 230;
     a2[1] = 0;
     a2[3] = 200;
-    ((void (*)(gbRefObject **, int, _DWORD *, _DWORD *))(**v4)[4].RefCount)(*v4, 272, a2, this);
-    UIWnd::CreateFromTemplate(*v4, aUiCombatContro_22, 0);
-    ((void (*)(gbRefObject **, int))(**v4)->RefCount)(*v4, 1);
+    ((void (*)(UIWnd **, int, _DWORD *, CCBMagicWindow *))(**p_m_childs)->m_fontcolor.Alpha)(
+      *p_m_childs,
+      272,
+      a2,
+      this);
+    UIWnd::CreateFromTemplate(*p_m_childs, aUiCombatContro_22, 0);
+    ((void (*)(UIWnd **, int))(**p_m_childs)->m_fontcolor.ColorQuadFmt)(*p_m_childs, 1);
   }
-  v5 = (gbRefObject ***)(this + 22);
-  if ( (unsigned __int8)CCBLineupWindow::Render(this + 22) == 1 )
+  p_m_bcreateok = (int *)&this->m_bcreateok;
+  if ( &this->m_bcreateok->Render() == 1 )
   {
     *a2 = 27;
     a2[1] = 57;
     a2[2] = 211;
     a2[3] = 95;
-    ((void (*)(gbRefObject **, int, _DWORD *, _DWORD *))(**v5)[4].RefCount)(*v5, 276, a2, this);
-    v6 = UIWnd::SetRect(*v5, v19);
-    UIWnd::AddChild(*v5, v6);
-    UIWnd::GetChildCount(*v5, aUiCombatContro_29, 0);
-    UIWnd::GetChildAt(*v5, aUiCombatContro_30, 0);
-    (float *->SetFrameRate()*v5, 48);
-    (float *->GetHeight()*v5, 23);
-    (float *->GetWidth()*v5, 11);
-    (float *->GetPosition()*v5, 5);
-    sub_43FBC0(*v5, aUiCombatContro_31, 0);
-    v7 = *v5;
-    v7[49] = (gbRefObject *)10;
-    v7[50] = (gbRefObject *)9;
-    UIWnd::FindChild((int)*v5, 100.0);
-    UIWnd::FindChildByName((int)*v5, 100.0);
-    (*v5)[28] = (gbRefObject *)1077936128;
-    ((void (*)(gbRefObject **, int))(**v5)->RefCount)(*v5, 1);
+    (*(void (**)(int, int, _DWORD *, CCBMagicWindow *))(*(_DWORD *)*p_m_bcreateok + 16))(
+      *p_m_bcreateok,
+      276,
+      a2,
+      this);
+    v6 = (UIWnd *->SetRect()*p_m_bcreateok, a2a);
+    (UIWnd *->AddChild()*p_m_bcreateok, v6);
+    (UIWnd **->GetChildCount()*p_m_bcreateok, aUiCombatContro_29, 0);
+    (UIWnd **->GetChildAt()*p_m_bcreateok, aUiCombatContro_30, 0);
+    (UIWnd *->SetFrameRate()*p_m_bcreateok, 48);
+    (UIWnd *->GetHeight()*p_m_bcreateok, 23);
+    (UIWnd *->GetWidth()*p_m_bcreateok, 11);
+    (UIWnd *->GetPosition()*p_m_bcreateok, 5);
+    sub_43FBC0((gbRefObject **)*p_m_bcreateok, aUiCombatContro_31, 0);
+    v7 = (UIWnd *)*p_m_bcreateok;
+    v7[1].m_bvisible = 10;
+    v7[1].m_benable = 9;
+    UIWnd::FindChild(*p_m_bcreateok, 100.0);
+    UIWnd::FindChildByName(*p_m_bcreateok, 100.0);
+    *(_DWORD *)(*p_m_bcreateok + 112) = 1077936128;
+    (**(void (***)(int, int))*p_m_bcreateok)(*p_m_bcreateok, 1);
   }
-  v8 = (gbRefObject ***)(this + 23);
-  if ( (unsigned __int8)CCBLineupWindow::Render(this + 23) == 1 )
+  p_m_bvisible = (int *)&this->m_bvisible;
+  if ( &this->m_bvisible->Render() == 1 )
   {
     *a2 = 27;
     a2[1] = 94;
     a2[2] = 211;
     a2[3] = 132;
-    ((void (*)(gbRefObject **, int, _DWORD *, _DWORD *))(**v8)[4].RefCount)(*v8, 277, a2, this);
-    v9 = UIWnd::SetRect(*v8, v19);
-    UIWnd::AddChild(*v8, v9);
-    UIWnd::GetChildCount(*v8, aUiCombatContro_29, 0);
-    UIWnd::GetChildAt(*v8, aUiCombatContro_30, 0);
-    (float *->SetFrameRate()*v8, 48);
-    (float *->GetHeight()*v8, 23);
-    (float *->GetWidth()*v8, 11);
-    (float *->GetPosition()*v8, 5);
-    sub_43FBC0(*v8, aUiCombatContro_31, 0);
-    v10 = *v8;
-    v10[49] = (gbRefObject *)10;
-    v10[50] = (gbRefObject *)9;
-    UIWnd::FindChild((int)*v8, 100.0);
-    UIWnd::FindChildByName((int)*v8, 100.0);
-    (*v8)[28] = (gbRefObject *)1077936128;
-    ((void (*)(gbRefObject **, int))(**v8)->RefCount)(*v8, 1);
+    (*(void (**)(int, int, _DWORD *, CCBMagicWindow *))(*(_DWORD *)*p_m_bvisible + 16))(
+      *p_m_bvisible,
+      277,
+      a2,
+      this);
+    v9 = (UIWnd *->SetRect()*p_m_bvisible, a2a);
+    (UIWnd *->AddChild()*p_m_bvisible, v9);
+    (UIWnd **->GetChildCount()*p_m_bvisible, aUiCombatContro_29, 0);
+    (UIWnd **->GetChildAt()*p_m_bvisible, aUiCombatContro_30, 0);
+    (UIWnd *->SetFrameRate()*p_m_bvisible, 48);
+    (UIWnd *->GetHeight()*p_m_bvisible, 23);
+    (UIWnd *->GetWidth()*p_m_bvisible, 11);
+    (UIWnd *->GetPosition()*p_m_bvisible, 5);
+    sub_43FBC0((gbRefObject **)*p_m_bvisible, aUiCombatContro_31, 0);
+    v10 = (UIWnd *)*p_m_bvisible;
+    v10[1].m_bvisible = 10;
+    v10[1].m_benable = 9;
+    UIWnd::FindChild(*p_m_bvisible, 100.0);
+    UIWnd::FindChildByName(*p_m_bvisible, 100.0);
+    *(_DWORD *)(*p_m_bvisible + 112) = 1077936128;
+    (**(void (***)(int, int))*p_m_bvisible)(*p_m_bvisible, 1);
   }
-  v11 = (gbRefObject ***)(this + 24);
-  if ( (unsigned __int8)CCBLineupWindow::Render(this + 24) == 1 )
+  p_m_benable = (int *)&this->m_benable;
+  if ( &this->m_benable->Render() == 1 )
   {
     *a2 = 27;
     a2[1] = 132;
     a2[2] = 211;
     a2[3] = 170;
-    ((void (*)(gbRefObject **, int, _DWORD *, _DWORD *))(**v11)[4].RefCount)(*v11, 278, a2, this);
-    v12 = UIWnd::SetRect(*v11, v19);
-    UIWnd::AddChild(*v11, v12);
-    UIWnd::GetChildCount(*v11, aUiCombatContro_29, 0);
-    UIWnd::GetChildAt(*v11, aUiCombatContro_30, 0);
-    (float *->SetFrameRate()*v11, 48);
-    (float *->GetHeight()*v11, 23);
-    (float *->GetWidth()*v11, 11);
-    (float *->GetPosition()*v11, 5);
-    sub_43FBC0(*v11, aUiCombatContro_31, 0);
-    v13 = *v11;
-    v13[49] = (gbRefObject *)10;
-    v13[50] = (gbRefObject *)9;
-    UIWnd::FindChild((int)*v11, 100.0);
-    UIWnd::FindChildByName((int)*v11, 100.0);
-    (*v11)[28] = (gbRefObject *)1077936128;
-    ((void (*)(gbRefObject **, int))(**v11)->RefCount)(*v11, 1);
+    (*(void (**)(int, int, _DWORD *, CCBMagicWindow *))(*(_DWORD *)*p_m_benable + 16))(
+      *p_m_benable,
+      278,
+      a2,
+      this);
+    v12 = (UIWnd *->SetRect()*p_m_benable, a2a);
+    (UIWnd *->AddChild()*p_m_benable, v12);
+    (UIWnd **->GetChildCount()*p_m_benable, aUiCombatContro_29, 0);
+    (UIWnd **->GetChildAt()*p_m_benable, aUiCombatContro_30, 0);
+    (UIWnd *->SetFrameRate()*p_m_benable, 48);
+    (UIWnd *->GetHeight()*p_m_benable, 23);
+    (UIWnd *->GetWidth()*p_m_benable, 11);
+    (UIWnd *->GetPosition()*p_m_benable, 5);
+    sub_43FBC0((gbRefObject **)*p_m_benable, aUiCombatContro_31, 0);
+    v13 = (UIWnd *)*p_m_benable;
+    v13[1].m_bvisible = 10;
+    v13[1].m_benable = 9;
+    UIWnd::FindChild(*p_m_benable, 100.0);
+    UIWnd::FindChildByName(*p_m_benable, 100.0);
+    *(_DWORD *)(*p_m_benable + 112) = 1077936128;
+    (**(void (***)(int, int))*p_m_benable)(*p_m_benable, 1);
   }
-  v14 = (gbRefObject ***)(this + 19);
-  if ( (unsigned __int8)CCBLineupWindow::OnMessage(this + 19) == 1 )
+  p_m_nSize = (int *)&this->m_childs.m_nSize;
+  if ( &this->m_childs.m_nSize->OnMessage() == 1 )
   {
     *a2 = 37;
     a2[1] = 57;
     a2[2] = 69;
     a2[3] = 89;
-    ((void (*)(gbRefObject **, int, _DWORD *, _DWORD *, char *, _DWORD))(**v14)[7].RefCount)(
-      *v14,
+    (*(void (**)(int, int, _DWORD *, CCBMagicWindow *, char *, _DWORD))(*(_DWORD *)*p_m_nSize + 28))(
+      *p_m_nSize,
       273,
       a2,
       this,
       aUiCombatContro_23,
       0);
-    sub_440CE0(*v14, aUiCombatContro_26, 0);
-    ((void (*)(gbRefObject **, int))(**v14)->RefCount)(*v14, 1);
+    sub_440CE0((gbRefObject **)*p_m_nSize, aUiCombatContro_26, 0);
+    (**(void (***)(int, int))*p_m_nSize)(*p_m_nSize, 1);
   }
-  v15 = (gbRefObject ***)(this + 20);
-  if ( (unsigned __int8)CCBLineupWindow::OnMessage(this + 20) == 1 )
+  p_m_nMaxSize = (int *)&this->m_childs.m_nMaxSize;
+  if ( &this->m_childs.m_nMaxSize->OnMessage() == 1 )
   {
     *a2 = 37;
     a2[1] = 94;
     a2[2] = 69;
     a2[3] = 126;
-    ((void (*)(gbRefObject **, int, _DWORD *, _DWORD *, char *, _DWORD))(**v15)[7].RefCount)(
-      *v15,
+    (*(void (**)(int, int, _DWORD *, CCBMagicWindow *, char *, _DWORD))(*(_DWORD *)*p_m_nMaxSize + 28))(
+      *p_m_nMaxSize,
       274,
       a2,
       this,
       aUiCombatContro_24,
       0);
-    sub_440CE0(*v15, aUiCombatContro_27, 0);
-    ((void (*)(gbRefObject **, int))(**v15)->RefCount)(*v15, 1);
+    sub_440CE0((gbRefObject **)*p_m_nMaxSize, aUiCombatContro_27, 0);
+    (**(void (***)(int, int))*p_m_nMaxSize)(*p_m_nMaxSize, 1);
   }
-  v16 = (gbRefObject ***)(this + 21);
-  if ( (unsigned __int8)CCBLineupWindow::OnMessage(this + 21) == 1 )
+  p_m_nGrowBy = (int *)&this->m_childs.m_nGrowBy;
+  if ( &this->m_childs.m_nGrowBy->OnMessage() == 1 )
   {
     *a2 = 37;
     a2[1] = 132;
     a2[2] = 69;
     a2[3] = 164;
-    ((void (*)(gbRefObject **, int, _DWORD *, _DWORD *, char *, _DWORD))(**v16)[7].RefCount)(
-      *v16,
+    (*(void (**)(int, int, _DWORD *, CCBMagicWindow *, char *, _DWORD))(*(_DWORD *)*p_m_nGrowBy + 28))(
+      *p_m_nGrowBy,
       275,
       a2,
       this,
       aUiCombatContro_25,
       0);
-    sub_440CE0(*v16, aUiCombatContro_28, 0);
-    ((void (*)(gbRefObject **, int))(**v16)->RefCount)(*v16, 1);
+    sub_440CE0((gbRefObject **)*p_m_nGrowBy, aUiCombatContro_28, 0);
+    (**(void (***)(int, int))*p_m_nGrowBy)(*p_m_nGrowBy, 1);
   }
-  v17 = this + 25;
-  CCBLineupWindow::Update(this + 25);
+  p_m_bfocus = (int *)&this->m_bfocus;
+  &this->m_bfocus->Update();
   *a2 = 68;
   a2[2] = 160;
   a2[1] = 170;
   a2[3] = 196;
-  (*(void (**)(_DWORD, int, _DWORD *, _DWORD *, char *, int, _DWORD))(*(_DWORD *)*v17 + 28))(
-    *v17,
+  (*(void (**)(int, int, _DWORD *, CCBMagicWindow *, char *, int, _DWORD))(*(_DWORD *)*p_m_bfocus + 28))(
+    *p_m_bfocus,
     282,
     a2,
     this,
     aUiCombatContro_32,
     1,
     0);
-  (**(void (***)(_DWORD, int))*v17)(*v17, 1);
+  (**(void (***)(int, int))*p_m_bfocus)(*p_m_bfocus, 1);
   return 1;
 }
 
@@ -379,16 +395,19 @@ int CCBMagicWindow::Update(int _this)
 // 0x0051C1B0
 BOOL CCBMagicWindow::SetActivePage(int a2, int a3)
 {
-  if ( *((_DWORD *)this + 14) == 1 && (MEMORY[0xBFC6F4] == 1 && (MEMORY[0xBFC6E8] & 0xF) == 1 || MEMORY[0xBFC704] == 1) )
-    CCBUI::SetParam(*(_DWORD *)(*(_DWORD *)(*((_DWORD *)this + 8) + 1160) + 8), 272, -1, 0);
+  if ( this->m_rect.top == 1
+    && (g_Input.m_DIKToKEY[1] == 1 && (g_Input.m_shiftedKeyStates[268] & 0xF) == 1 || g_Input.m_DIKToKEY[5] == 1) )
+  {
+    CCBUI::SetParam(*(CCBUI **)(*(_DWORD *)(this->m_wndcolor.Green + 1160) + 8), 272, -1);
+  }
   return this->HitTest(a2, a3);
 }
 
 // 0x0051C210
 _DWORD * CCBMagicWindow::GetActivePage()
 {
-  this->UIListBox();
-  * this = (*)&off_57058C;
-  this->Reset();
-  return this;
+  (UIListBox *->UIListBox()this);
+  this->m_fontcolor.ColorQuadFmt = (int)&off_57058C;
+  (CCBSkillWindow *->Reset()this);
+  return &this->m_fontcolor.ColorQuadFmt;
 }

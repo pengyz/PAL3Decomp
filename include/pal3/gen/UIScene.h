@@ -14,6 +14,6 @@ public:
     void _UIScene(); // 0x0043A770
     void Destroy2(); // 0x0043A810
     int OnMessage2(); // 0x0043AB00
-    int Update2(int a2, int a3); // 0x0043AB20
+    BOOL Update2(int a2, int a3); // 0x0043AB20
     int Create2(); // 0x0043AD40
 };

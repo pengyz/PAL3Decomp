@@ -2,6 +2,6 @@
   "name": "CCBStageShadow::Destroy(void)",
   "address": "0x00512240",
   "size_bytes": 110,
-  "signature": "float *__thiscall(float *this)",
-  "decompiled_c": "// between_std_methods (0x504E20-0x53C2B0)\nfloat *__thiscall sub_512240(float *this)\n{\n  float *v1; // edx\n  float *result; // eax\n  int v3; // esi\n  double v4; // st7\n  float v5; // [esp+8h] [ebp-1Ch]\n\n  v1 = this + 378;\n  result = this + 6;\n  v3 = 11;\n  do\n  {\n    v4 = *v1;\n    v5 = -v4;\n    *(result - 2) = v5;\n    *(result - 1) = 0.5;\n    ++v1;\n    *result = v4;\n    result[2] = 0.5;\n    result[1] = v4;\n    result[3] = v4;\n    result[5] = 0.5;\n    result += 17;\n    --v3;\n    *(result - 13) = v4;\n    *(result - 11) = v5;\n    *(result - 10) = v5;\n    *(result - 9) = 0.5;\n    *(result - 8) = v5;\n  }\n  while ( v3 );\n  return result;\n}\n"
+  "signature": "float *__thiscall(CCBStageShadow *this)",
+  "decompiled_c": "// between_std_methods (0x504E20-0x53C2B0)\nfloat *__thiscall CCBStageShadow::Destroy(CCBStageShadow *this)\n{\n  gbGeomQuad *v1; // edx\n  float *result; // eax\n  int v3; // esi\n  double x; // st7\n  float v5; // [esp+8h] [ebp-1Ch]\n\n  v1 = &this->m_ShadowQuad[6];\n  result = &this->m_ShadowInitQuad[0].vec[0].z;\n  v3 = 11;\n  do\n  {\n    x = v1->vec[0].x;\n    v5 = -x;\n    *(result - 2) = v5;\n    *(result - 1) = 0.5;\n    v1 = (gbGeomQuad *)((char *)v1 + 4);\n    *result = x;\n    result[2] = 0.5;\n    result[1] = x;\n    result[3] = x;\n    result[5] = 0.5;\n    result += 17;\n    --v3;\n    *(result - 13) = x;\n    *(result - 11) = v5;\n    *(result - 10) = v5;\n    *(result - 9) = 0.5;\n    *(result - 8) = v5;\n  }\n  while ( v3 );\n  return result;\n}\n"
 }

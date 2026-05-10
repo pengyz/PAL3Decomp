@@ -216,7 +216,7 @@ int CGameData::InitItems(int a2)
   v13[9] = 8;
   v8 = v13;
   v4 = v14;
-  v5 = &this->_data[244];
+  v5 = (char *)&this->_data[244];
   do
   {
     (*(void (**)(char *, _DWORD, _DWORD *, CGameData *))(*(_DWORD *)v5 + 16))(v5, 0, pRect, this);
@@ -303,7 +303,7 @@ void * CGameData::Init()
   LOBYTE(v20) = 0;
   *((_DWORD *)this + 7046) = v7;
   v7->Init();
-  v8 = this + 1;
+  v8 = (CGameData *)this + 1;
   v9 = 6;
   do
   {
@@ -316,7 +316,7 @@ void * CGameData::Init()
   v18 = pRect + 800;
   (UIBigDialog *->Create()&this->_data[3904], 1001, &pRect, 0, tex);
   (**(void (***)(char *, _DWORD))&this->_data[3904])(&this->_data[3904], 0);
-  v10 = &g_SceneMgr.m_info[7120];
+  v10 = (char *)&g_SceneMgr.m_info[7120];
   v11 = (UIDialog *)&this->_data[2144];
   do
   {
@@ -399,7 +399,7 @@ int CGameData::Render()
   v2 = (_BYTE *)*((_DWORD *)this + 7046);
   if ( v2 && v2[3829] )
     (*(void (**)(_BYTE *))(*(_DWORD *)v2 + 4))(v2);
-  this->GetID();
+  (UIWnd *->GetID()this);
   result = *(_DWORD *)&this->_data[14536];
   if ( !result )
     return (*(int (**)(char *))(*(_DWORD *)&this->_data[3904] + 4))(&this->_data[3904]);

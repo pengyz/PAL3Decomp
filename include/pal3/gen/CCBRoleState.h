@@ -56,7 +56,7 @@ public:
     static _DWORD * IsAllEnemyDead(int a1, int *a2, int *a3); // 0x004EF6C0
     int CanAction(int a2, int a3, int a4); // 0x004EF710
     int SetCanAction(unsigned int dmg, int roleIdx, int a4); // 0x004EF7E0
-    static char RandSetEnemyPos(const void *a1); // 0x004EF8B0
+    char RandSetEnemyPos(const void *arg0); // 0x004EF8B0
     int CalcHealAmount(int roleIdx); // 0x004EF980
     int WriteBackRoleData(int a2, _DWORD *a3, int *a4); // 0x004EFAF0
     bool WriteBackConfig(int roleIdx, int a3); // 0x004EFD70

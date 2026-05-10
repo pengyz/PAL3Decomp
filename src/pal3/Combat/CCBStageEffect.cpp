@@ -26,7 +26,7 @@ CCBStageEffect::CCBStageEffect(int _this)
 
   OpenBaseFile::OpenBaseFile(&v5);
   v8 = 0;
-  v2 = g_pVFileSys->OpenFile(aCbdataEfflinke, 0x201u);
+  v2 = (struct gbVFile *)g_pVFileSys->OpenFile(aCbdataEfflinke, 0x201u);
   v3 = v2;
   if ( !v2 )
   {
@@ -57,7 +57,7 @@ CCBStageEffect::~CCBStageEffect(int _this)
 
   OpenBaseFile::OpenBaseFile(&v5);
   v8 = 0;
-  v2 = g_pVFileSys->OpenFile(aCbdataEfflinke, 0x202u);
+  v2 = (struct gbVFile *)g_pVFileSys->OpenFile(aCbdataEfflinke, 0x202u);
   v3 = v2;
   if ( !v2 )
   {

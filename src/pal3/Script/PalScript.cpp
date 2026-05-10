@@ -27,6 +27,7 @@ extern char aUiBigmapBigmap[];
 extern unsigned char byte_56A634;
 extern unsigned char byte_D8C2B8;
 extern unsigned char byte_D8C324;
+extern int dword_1894B78;
 extern int dword_D8C2BC;
 extern int dword_D8C2C0;
 extern int dword_D8C2C4;
@@ -110,7 +111,7 @@ int PalScript::LoadScript(PalScript *this, int pathAddr)
     LOBYTE(v25) = 1;
     if ( v17 )
     {
-      v6 = &v17[-1].m_bLoadSceneScript[39];
+      v6 = (char *)&v17[-1].m_bLoadSceneScript[39];
       v7 = v17[-1].m_bLoadSceneScript[39];
       if ( !v7 || v7 == -1 )
         operator delete(v6);
@@ -122,7 +123,7 @@ int PalScript::LoadScript(PalScript *this, int pathAddr)
   }
   if ( v13 )
   {
-    v8 = &v13[-1].m_bLoadSceneScript[39];
+    v8 = (char *)&v13[-1].m_bLoadSceneScript[39];
     v9 = v13[-1].m_bLoadSceneScript[39];
     if ( !v9 || v9 == -1 )
       operator delete(v8);
@@ -169,7 +170,7 @@ char *PalScript::SetAppName(PalScript *this, char *name)
   }
   v17 = 0;
   v6 = (char *)*sub_431040(v13, (int)&v14);
-  v7 = *(char **)&this->m_bLoadSceneScript[4];
+  v7 = (char *)*(char **)&this->m_bLoadSceneScript[4];
   name = v6;
   if ( v6 == v7 || sub_431780((int)&v14, (int)(v6 + 12)) < 0 )
   {
@@ -180,7 +181,7 @@ char *PalScript::SetAppName(PalScript *this, char *name)
   {
     p_name = &name;
   }
-  v9 = *p_name;
+  v9 = (char *)*p_name;
   v17 = -1;
   std::string::_Tidy(&v14, 1);
   if ( v9 == *(char **)&this->m_bLoadSceneScript[4] )
@@ -205,14 +206,14 @@ void * PalScript::LoadFromFile(char *filename)
   sub_4319C0((int)this);
   OpenBaseFile::OpenBaseFile(&v8);
   v9 = 0;
-  v3 = g_pVFileSys->OpenFile(filename, 0x201u);
+  v3 = (struct gbVFile *)g_pVFileSys->OpenFile(filename, 0x201u);
   v4 = v3;
   if ( v3 )
   {
     g_pVFileSys->Seek(v3, 0, 3);
     v5 = g_pVFileSys->TellPos(v4);
     g_pVFileSys->Seek(v4, 0, 1);
-    v6 = malloc(v5 + 1);
+    v6 = (void *)malloc(v5 + 1);
     *((_DWORD *)this + 128) = v6;
     if ( v6 )
     {
@@ -500,44 +501,44 @@ int PalScript::Reset()
 {
   int result; // eax
 
-  (gbRefObject **->MoveWindow()this + 19);
-  this->UpdateChildren();
+  (UIWnd **->MoveWindow()this + 19);
+  (UIWnd *->UpdateChildren()this);
   return result;
 }
 
 // 0x0043AA00
-struct gbVFileSystem * PalScript::OpenScript(gbRefObject **this, const char *a2, char a3)
+struct gbVFileSystem * PalScript::OpenScript(PalScript **this, const char *a2, char a3)
 {
   gbRefObject *v4; // ecx
   int v5; // edi
-  int v6; // eax
+  CHAR *v6; // eax
   gbTexture *v7; // ecx
-  struct gbVFileSystem *v9; // [esp+8h] [ebp-110h] BYREF
+  OpenBaseFile v9; // [esp+8h] [ebp-110h] BYREF
   char Buffer[256]; // [esp+Ch] [ebp-10Ch] BYREF
   int v11; // [esp+114h] [ebp-4h]
 
   OpenBaseFile::OpenBaseFile(&v9);
   v11 = 0;
   sprintf(Buffer, "%s", a2);
-  v4 = *((_DWORD *)this + 49);
+  v4 = (gbRefObject *)*((_DWORD *)this + 49);
   if ( v4 )
     v4->Release();
   if ( a3 )
   {
-    v5 = *(_DWORD *)g_pGfxManager;
-    v6 = Buffer->_CalculateUV();
-    *((_DWORD *)this + 49) = (gbRefObject *)(*(int (**)(int, int))(v5 + 8))(g_pGfxManager, v6);
-    *((_DWORD *)this + 50) = (gbRefObject *)Buffer->Parent_Data();
+    v5 = *(_DWORD *)g_Input.KeyInfo[177].Data;
+    v6 = (CHAR *)_Texture_Info::_CalculateUV((int)dword_1894B78, Buffer);
+    *((_DWORD *)this + 49) = (PalScript *)(*(int (**)(int, CHAR *))(v5 + 8))(g_Input.KeyInfo[177].Data, v6);
+    *((_DWORD *)this + 50) = (PalScript *)Parent_Data::Parent_Data((int)dword_1894B78, Buffer);
   }
   else
   {
-    *((_DWORD *)this + 49) = (gbRefObject *)(*(int (**)(int, char *))(*(_DWORD *)g_pGfxManager + 8))(
-                                    g_pGfxManager,
-                                    Buffer);
+    *((_DWORD *)this + 49) = (PalScript *)(*(int (**)(int, char *))(*(_DWORD *)g_Input.KeyInfo[177].Data + 8))(
+                                  g_Input.KeyInfo[177].Data,
+                                  Buffer);
   }
   v7 = (gbTexture *)*((_DWORD *)this + 49);
   if ( v7 )
     v7->LoadTexture(1);
   v11 = -1;
-  return OpenNULLFile::OpenNULLFile(&v9);
+  return (OpenNULLFile **->OpenNULLFile()&v9);
 }

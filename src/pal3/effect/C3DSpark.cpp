@@ -29,177 +29,180 @@ extern float flt_17A8454;
 C3DSpark::C3DSpark()
 {
   int v2; // ebx
-  int v3; // edi
+  float *p_eu; // edi
   gbTexture *v4; // eax
-  _DWORD *v5; // eax
-  int v6; // ecx
+  float *v5; // eax
+  float y; // ecx
   gbTexture *v7; // eax
-  _DWORD *v8; // eax
-  int v9; // ecx
+  float *v8; // eax
+  float v9; // ecx
   gbTexture *v10; // eax
-  _DWORD *v11; // eax
-  int v12; // ecx
+  float *v11; // eax
+  float z; // ecx
   gbTexture *v13; // eax
-  _DWORD *v14; // eax
-  int v15; // ecx
+  float *v14; // eax
+  float x; // ecx
   gbTexture *v16; // eax
-  _DWORD *v17; // eax
-  int v18; // ecx
-  _DWORD *v19; // eax
+  float *v17; // eax
+  float su; // ecx
+  float *p_z; // eax
   int v20; // ecx
   char pExceptionObject[1024]; // [esp+30h] [ebp-800h] BYREF
   char ArgList[1024]; // [esp+430h] [ebp-400h] BYREF
 
   v2 = 128;
-  v3 = (int)(this + 1804);
+  p_eu = (float *)&this->m_GeomQuad[75].eu;
   do
   {
-    ArraySort(v3, 12, 4, (int (*)(int))gbVec3D::`default constructor closure');
-    v3 += 68;
+    ArraySort((int)p_eu, 12, 4, gbVec3D::`default constructor closure');
+    p_eu += 17;
     --v2;
   }
   while ( v2 );
   memset(this, 0, 0x3E30u);
-  *((_DWORD *)this + 1793) = gbEffectMgr::NewRenderEffect(*(gbEffectMgr **)(g_pGfxManager + 200), aGfxscriptAddit, 0);
-  v4 = (gbTexture *)(*(int (**)(int, char *))(*(_DWORD *)g_pGfxManager + 8))(
-                      g_pGfxManager,
+  LODWORD(this->m_GeomQuad[75].vec[1].x) = gbEffectMgr::NewRenderEffect(
+                                             *(gbEffectMgr **)(g_Input.KeyInfo[177].Data + 200),
+                                             aGfxscriptAddit,
+                                             0);
+  v4 = (gbTexture *)(*(int (**)(int, char *))(*(_DWORD *)g_Input.KeyInfo[177].Data + 8))(
+                      g_Input.KeyInfo[177].Data,
                       aEffectFlare3Bm);
-  *((_DWORD *)this + 1794) = v4;
+  LODWORD(this->m_GeomQuad[75].vec[1].y) = v4;
   v4->LoadTexture(1);
-  v5 = operator new(0x44u);
+  v5 = (float *)operator new(0x44u);
   if ( v5 )
   {
-    v6 = *((_DWORD *)this + 1794);
-    v5[16] = 1;
-    *v5 = v6;
+    y = this->m_GeomQuad[75].vec[1].y;
+    *((_DWORD *)v5 + 16) = 1;
+    *v5 = y;
   }
   else
   {
     v5 = 0;
   }
-  *((_DWORD *)this + 1795) = v5;
+  LODWORD(this->m_GeomQuad[75].vec[1].z) = v5;
   if ( !v5 )
   {
     qmemcpy(
       pExceptionObject,
-      (const void *)Logger::FormatException((char)ArgList, (int)aCNewFailed_0, (int)aDProjectPal3Co_11, 37),
+      (Logger *->FormatException()ArgList, aCNewFailed_0, aDProjectPal3Co_11, 37),
       sizeof(pExceptionObject));
     _CxxThrowException(pExceptionObject, (_ThrowInfo *)&_TI1_AV_Exception__);
   }
-  v7 = (gbTexture *)(*(int (**)(int, char *))(*(_DWORD *)g_pGfxManager + 8))(
-                      g_pGfxManager,
+  v7 = (gbTexture *)(*(int (**)(int, char *))(*(_DWORD *)g_Input.KeyInfo[177].Data + 8))(
+                      g_Input.KeyInfo[177].Data,
                       aEffectFlare2Bm);
-  *((_DWORD *)this + 1800) = v7;
+  LODWORD(this->m_GeomQuad[75].vec[3].y) = v7;
   v7->LoadTexture(1);
-  v8 = operator new(0x44u);
+  v8 = (float *)operator new(0x44u);
   if ( v8 )
   {
-    v9 = *((_DWORD *)this + 1800);
-    v8[16] = 1;
+    v9 = this->m_GeomQuad[75].vec[3].y;
+    *((_DWORD *)v8 + 16) = 1;
     *v8 = v9;
   }
   else
   {
     v8 = 0;
   }
-  *((_DWORD *)this + 1801) = v8;
+  LODWORD(this->m_GeomQuad[75].vec[3].z) = v8;
   if ( !v8 )
   {
     qmemcpy(
       pExceptionObject,
-      (const void *)Logger::FormatException((char)ArgList, (int)aCNewFailed_0, (int)aDProjectPal3Co_11, 42),
+      (Logger *->FormatException()ArgList, aCNewFailed_0, aDProjectPal3Co_11, 42),
       sizeof(pExceptionObject));
     _CxxThrowException(pExceptionObject, (_ThrowInfo *)&_TI1_AV_Exception__);
   }
-  v10 = (gbTexture *)(*(int (**)(int, char *))(*(_DWORD *)g_pGfxManager + 8))(
-                       g_pGfxManager,
+  v10 = (gbTexture *)(*(int (**)(int, char *))(*(_DWORD *)g_Input.KeyInfo[177].Data + 8))(
+                       g_Input.KeyInfo[177].Data,
                        aEffectFlaregre);
-  *((_DWORD *)this + 1798) = v10;
+  LODWORD(this->m_GeomQuad[75].vec[2].z) = v10;
   v10->LoadTexture(1);
-  v11 = operator new(0x44u);
+  v11 = (float *)operator new(0x44u);
   if ( v11 )
   {
-    v12 = *((_DWORD *)this + 1798);
-    v11[16] = 1;
-    *v11 = v12;
+    z = this->m_GeomQuad[75].vec[2].z;
+    *((_DWORD *)v11 + 16) = 1;
+    *v11 = z;
   }
   else
   {
     v11 = 0;
   }
-  *((_DWORD *)this + 1799) = v11;
-  if ( !*((_DWORD *)this + 1801) )
+  LODWORD(this->m_GeomQuad[75].vec[3].x) = v11;
+  if ( !LODWORD(this->m_GeomQuad[75].vec[3].z) )
   {
     qmemcpy(
       pExceptionObject,
-      (const void *)Logger::FormatException((char)ArgList, (int)aCNewFailed_0, (int)aDProjectPal3Co_11, 47),
+      (Logger *->FormatException()ArgList, aCNewFailed_0, aDProjectPal3Co_11, 47),
       sizeof(pExceptionObject));
     _CxxThrowException(pExceptionObject, (_ThrowInfo *)&_TI1_AV_Exception__);
   }
-  v13 = (gbTexture *)(*(int (**)(int, char *))(*(_DWORD *)g_pGfxManager + 8))(
-                       g_pGfxManager,
+  v13 = (gbTexture *)(*(int (**)(int, char *))(*(_DWORD *)g_Input.KeyInfo[177].Data + 8))(
+                       g_Input.KeyInfo[177].Data,
                        aEffectFlareblu);
-  *((_DWORD *)this + 1796) = v13;
+  LODWORD(this->m_GeomQuad[75].vec[2].x) = v13;
   v13->LoadTexture(1);
-  v14 = operator new(0x44u);
+  v14 = (float *)operator new(0x44u);
   if ( v14 )
   {
-    v15 = *((_DWORD *)this + 1796);
-    v14[16] = 1;
-    *v14 = v15;
+    x = this->m_GeomQuad[75].vec[2].x;
+    *((_DWORD *)v14 + 16) = 1;
+    *v14 = x;
   }
   else
   {
     v14 = 0;
   }
-  *((_DWORD *)this + 1797) = v14;
+  LODWORD(this->m_GeomQuad[75].vec[2].y) = v14;
   if ( !v14 )
   {
     qmemcpy(
       pExceptionObject,
-      (const void *)Logger::FormatException((char)ArgList, (int)aCNewFailed_0, (int)aDProjectPal3Co_11, 52),
+      (Logger *->FormatException()ArgList, aCNewFailed_0, aDProjectPal3Co_11, 52),
       sizeof(pExceptionObject));
     _CxxThrowException(pExceptionObject, (_ThrowInfo *)&_TI1_AV_Exception__);
   }
-  v16 = (gbTexture *)(*(int (**)(int, char *))(*(_DWORD *)g_pGfxManager + 8))(
-                       g_pGfxManager,
+  v16 = (gbTexture *)(*(int (**)(int, char *))(*(_DWORD *)g_Input.KeyInfo[177].Data + 8))(
+                       g_Input.KeyInfo[177].Data,
                        aEffectFlarebri);
-  *((_DWORD *)this + 1802) = v16;
+  LODWORD(this->m_GeomQuad[75].su) = v16;
   v16->LoadTexture(1);
-  v17 = operator new(0x44u);
+  v17 = (float *)operator new(0x44u);
   if ( v17 )
   {
-    v18 = *((_DWORD *)this + 1802);
-    v17[16] = 1;
-    *v17 = v18;
+    su = this->m_GeomQuad[75].su;
+    *((_DWORD *)v17 + 16) = 1;
+    *v17 = su;
   }
   else
   {
     v17 = 0;
   }
-  *((_DWORD *)this + 1803) = v17;
+  LODWORD(this->m_GeomQuad[75].sv) = v17;
   if ( !v17 )
   {
     qmemcpy(
       pExceptionObject,
-      (const void *)Logger::FormatException((char)ArgList, (int)aCNewFailed_0, (int)aDProjectPal3Co_11, 57),
+      (Logger *->FormatException()ArgList, aCNewFailed_0, aDProjectPal3Co_11, 57),
       sizeof(pExceptionObject));
     _CxxThrowException(pExceptionObject, (_ThrowInfo *)&_TI1_AV_Exception__);
   }
-  v19 = this + 1817;
+  p_z = (float *)&this->m_GeomQuad[76].vec[1].z;
   v20 = 128;
   do
   {
-    v19[3] = -1;
-    *v19 = 0;
-    *(v19 - 1) = 0;
-    v19[2] = 1065353216;
-    v19[1] = 1065353216;
-    v19 += 17;
+    p_z[3] = NAN;
+    *p_z = 0.0;
+    *(p_z - 1) = 0.0;
+    p_z[2] = 1.0;
+    p_z[1] = 1.0;
+    p_z += 17;
     --v20;
   }
   while ( v20 );
-  return this;
+  return this->m_Spark;
 }
 
 // 0x004D6960
@@ -212,37 +215,37 @@ C3DSpark::~C3DSpark(int _this)
   gbRefObject *v6; // ecx
   gbRefObject *v7; // ecx
 
-  v2 = *(gbRefObject **)(this + 7172);
+  v2 = (gbRefObject *)*(gbRefObject **)(this + 7172);
   if ( v2 )
   {
     v2->Release();
     *(_DWORD *)(this + 7172) = 0;
   }
-  v3 = *(gbRefObject **)(this + 7176);
+  v3 = (gbRefObject *)*(gbRefObject **)(this + 7176);
   if ( v3 )
   {
     v3->Release();
     *(_DWORD *)(this + 7176) = 0;
   }
-  v4 = *(gbRefObject **)(this + 7192);
+  v4 = (gbRefObject *)*(gbRefObject **)(this + 7192);
   if ( v4 )
   {
     v4->Release();
     *(_DWORD *)(this + 7192) = 0;
   }
-  v5 = *(gbRefObject **)(this + 7184);
+  v5 = (gbRefObject *)*(gbRefObject **)(this + 7184);
   if ( v5 )
   {
     v5->Release();
     *(_DWORD *)(this + 7184) = 0;
   }
-  v6 = *(gbRefObject **)(this + 7200);
+  v6 = (gbRefObject *)*(gbRefObject **)(this + 7200);
   if ( v6 )
   {
     v6->Release();
     *(_DWORD *)(this + 7200) = 0;
   }
-  v7 = *(gbRefObject **)(this + 7208);
+  v7 = (gbRefObject *)*(gbRefObject **)(this + 7208);
   if ( v7 )
   {
     v7->Release();
@@ -282,15 +285,15 @@ char C3DSpark::CreateSingle(const void *a2)
   _BYTE *i; // ecx
 
   v3 = 0;
-  for ( i = (char *)this + 53; *i; i += 56 )
+  for ( i = (char *)&this->m_Spark[13] + 1; *i; i += 56 )
   {
     if ( ++v3 >= 128 )
       return 0;
   }
-  qmemcpy(this + 14 * v3, a2, 0x38u);
-  *((_BYTE *)this + 56 * v3 + 53) = 1;
-  if ( v3 >= *((_DWORD *)this + 1792) )
-    *((_DWORD *)this + 1792) = v3 + 1;
+  qmemcpy((char *)this + 56 * v3, a2, 0x38u);
+  BYTE1(this->m_Spark[14 * v3 + 13]) = 1;
+  if ( v3 >= SLODWORD(this->m_GeomQuad[75].vec[0].z) )
+    LODWORD(this->m_GeomQuad[75].vec[0].z) = v3 + 1;
   return 1;
 }
 
@@ -299,7 +302,7 @@ char C3DSpark::CreateOne(int a2, int a3, int a4)
 {
   int v5; // eax
   long double v6; // st7
-  float v8; // [esp+8h] [ebp+4h]
+  float a2a; // [esp+8h] [ebp+4h]
 
   dword_17A846C = 1090519040;
   dword_17A8464 = 1128792064;
@@ -311,12 +314,12 @@ char C3DSpark::CreateOne(int a2, int a3, int a4)
   dword_17A8460 = 0;
   dword_17A8468 = -1015414784;
   dword_17A8470 = 0;
-  v8 = (float)(rand() % 10);
+  a2a = (float)(rand() % 10);
   v5 = rand();
   dword_17A8450 = -1054867456;
   v6 = (double)(v5 % 5760 / 16) * 0.017453292;
-  flt_17A844C = sin(v6) * v8;
-  flt_17A8454 = cos(v6) * v8;
+  flt_17A844C = sin(v6) * a2a;
+  flt_17A8454 = cos(v6) * a2a;
   return this->CreateSingle(&dword_17A8440);
 }
 
@@ -326,7 +329,7 @@ _BYTE * C3DSpark::DestroyAll()
   _BYTE *result; // eax
   int v2; // edx
 
-  result = (char *)this + 53;
+  result = (char *)&this->m_Spark[13] + 1;
   v2 = 128;
   do
   {
@@ -335,7 +338,7 @@ _BYTE * C3DSpark::DestroyAll()
     --v2;
   }
   while ( v2 );
-  *((_DWORD *)this + 1792) = 0;
+  this->m_GeomQuad[75].vec[0].z = 0.0;
   return result;
 }
 
@@ -360,7 +363,7 @@ void C3DSpark::Render(int a1@<ecx>, struct gbVec3D *a2@<edi>)
   int v17; // [esp+28h] [ebp-8h]
   float v18; // [esp+2Ch] [ebp-4h]
 
-  v2 = *(gbMatrixStack **)(g_pGfxManager + 216);
+  v2 = (gbMatrixStack *)*(gbMatrixStack **)(g_pGfxManager + 216);
   v15 = a1;
   v17 = 0;
   v16 = 0;
@@ -376,7 +379,7 @@ void C3DSpark::Render(int a1@<ecx>, struct gbVec3D *a2@<edi>)
         v10 = *(float *)(v4 - 4);
         v11 = *(float *)v4;
         v12 = *(_DWORD *)(v4 + 4);
-        Top = v2->GetTop();
+        Top = (gbMatrix4 *)v2->GetTop();
         Top->Transform(v8, v9);
         v18 = *(float *)(v4 + 40) * 0.5;
         v6 = v10 - v18;
@@ -423,37 +426,37 @@ int C3DSpark::Update(float a2)
 {
   int result; // eax
   int v3; // esi
-  float *v4; // edx
-  int v5; // eax
+  __int32 *v4; // edx
+  float v5; // eax
   float v6; // [esp+4h] [ebp-4h]
 
-  result = *((_DWORD *)this + 1792);
+  result = LODWORD(this->m_GeomQuad[75].vec[0].z);
   v3 = 0;
   if ( result > 0 )
   {
-    v4 = this + 3;
+    v4 = (__int32 *)&this->m_Spark[3];
     do
     {
       if ( *((_BYTE *)v4 + 41) )
       {
-        * v4 = (*)a2 * v4[3] + *v4;
-        v4[1] = a2 * v4[4] + v4[1];
-        v4[2] = a2 * v4[5] + v4[2];
-        *(v4 - 3) = a2 * *v4 + *(v4 - 3);
-        *(v4 - 2) = a2 * v4[1] + *(v4 - 2);
-        *(v4 - 1) = a2 * v4[2] + *(v4 - 1);
-        v4[6] = a2 * v4[7] + v4[6];
-        v6 = a2 * v4[9] + v4[8];
-        v4[8] = v6;
-        if ( -v6 >= *(v4 - 2) || v4[6] <= 1.0 || v4[6] > 255.0 || v6 < 0.0099999998 )
+        *(float *)v4 = a2 * *((float *)v4 + 3) + *(float *)v4;
+        *((float *)v4 + 1) = a2 * *((float *)v4 + 4) + *((float *)v4 + 1);
+        *((float *)v4 + 2) = a2 * *((float *)v4 + 5) + *((float *)v4 + 2);
+        *((float *)v4 - 3) = a2 * *(float *)v4 + *((float *)v4 - 3);
+        *((float *)v4 - 2) = a2 * *((float *)v4 + 1) + *((float *)v4 - 2);
+        *((float *)v4 - 1) = a2 * *((float *)v4 + 2) + *((float *)v4 - 1);
+        *((float *)v4 + 6) = a2 * *((float *)v4 + 7) + *((float *)v4 + 6);
+        v6 = a2 * *((float *)v4 + 9) + *((float *)v4 + 8);
+        *((float *)v4 + 8) = v6;
+        if ( -v6 >= *((float *)v4 - 2) || *((float *)v4 + 6) <= 1.0 || *((float *)v4 + 6) > 255.0 || v6 < 0.0099999998 )
         {
           *((_BYTE *)v4 + 41) = 0;
-          v5 = *((_DWORD *)this + 1792) - 1;
-          if ( v3 == v5 )
-            *((_DWORD *)this + 1792) = v5;
+          LODWORD(v5) = LODWORD(this->m_GeomQuad[75].vec[0].z) - 1;
+          if ( v3 == LODWORD(v5) )
+            this->m_GeomQuad[75].vec[0].z = v5;
         }
       }
-      result = *((_DWORD *)this + 1792);
+      result = LODWORD(this->m_GeomQuad[75].vec[0].z);
       ++v3;
       v4 += 14;
     }

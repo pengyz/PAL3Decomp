@@ -21,7 +21,7 @@ public:
     tagCam m_EditorCam[64]; // +0x1280
     // total size: 0x1880 (6272)
 
-    CCBStageCam(char *Buffer); // 0x00504E70
+    CCBStageCam(CCBStageCam *Buffer); // 0x00504E70
     ~CCBStageCam(); // 0x00504F40
     char Reset(int a2, const void *a3); // 0x00505060
     char LoadEditorCam(int a2, int a3, const void *a4); // 0x005050D0

@@ -16,34 +16,34 @@ extern int dword_17ACA7C;
 CCBStageShadow::CCBStageShadow()
 {
   gbTexture *v2; // eax
-  _DWORD *v3; // eax
-  int v4; // ecx
+  gbTextureArray *v3; // eax
+  gbTexture *m_pTexture; // ecx
   char pExceptionObject[1024]; // [esp+10h] [ebp-800h] BYREF
-  char ArgList; // [esp+410h] [ebp-400h] BYREF
+  char ArgList[1024]; // [esp+410h] [ebp-400h] BYREF
 
-  v2 = (gbTexture *)(*(int (**)(int, char *))(*(_DWORD *)g_pGfxManager + 8))(
-                      g_pGfxManager,
+  v2 = (gbTexture *)(*(int (**)(int, char *))(*(_DWORD *)g_Input.KeyInfo[177].Data + 8))(
+                      g_Input.KeyInfo[177].Data,
                       aShadowTga_0);
-  *((_DWORD *)this + 1) = v2;
+  this->m_pTexture = v2;
   v2->LoadTexture(1);
-  *((_DWORD *)this + 2) = gbEffectMgr::NewRenderEffect(*(gbEffectMgr **)(g_pGfxManager + 200), aGfxscriptShado, 0);
-  v3 = operator new(0x44u);
+  this->m_pEffect = gbEffectMgr::NewRenderEffect(*(gbEffectMgr **)(g_Input.KeyInfo[177].Data + 200), aGfxscriptShado, 0);
+  v3 = (gbTextureArray *)operator new(0x44u);
   if ( v3 )
   {
-    v4 = *((_DWORD *)this + 1);
-    v3[16] = 1;
-    *v3 = v4;
+    m_pTexture = (gbTexture *)this->m_pTexture;
+    v3->nTex = 1;
+    v3->pTexPt[0] = m_pTexture;
   }
   else
   {
     v3 = 0;
   }
-  *((_DWORD *)this + 3) = v3;
+  this->m_pTextureArray = v3;
   if ( !v3 )
   {
     qmemcpy(
       pExceptionObject,
-      (const void *)Logger::FormatException((char)&ArgList, (int)aCNewFailed_0, (int)aDProjectPal3Co_9, 85),
+      (Logger *->FormatException()ArgList, aCNewFailed_0, aDProjectPal3Co_9, 85),
       sizeof(pExceptionObject));
     _CxxThrowException(pExceptionObject, (_ThrowInfo *)&_TI1_AV_Exception__);
   }
@@ -68,41 +68,44 @@ char CCBStageShadow::Reset()
 {
   int v2; // ebx
   int v3; // ecx
-  float *v4; // edi
+  gbGeomQuad *v4; // edi
   float *WorldPos; // esi
   double v6; // st7
-  _BYTE v8[76]; // [esp+14h] [ebp-4Ch] BYREF
+  _BYTE v8[64]; // [esp+14h] [ebp-4Ch] BYREF
+  float v9; // [esp+54h] [ebp-Ch]
+  int v10; // [esp+58h] [ebp-8h]
+  float v11; // [esp+5Ch] [ebp-4h]
 
   sub_511E80((char *)this);
   (gbMatrix4 *->gbMatrix4()v8);
   v2 = 0;
   v3 = -1488 - (_DWORD)this;
-  v4 = (float *)&this->m_ShadowQuad[6];
+  v4 = (gbGeomQuad *)&this->m_ShadowQuad[6];
   do
   {
-    if ( BYTE1(this->m_pStage->m_pCBSystem->m_pRoleState->m_bMustFail[0].sModel[v2 + 4]) )
+    if ( this->m_pStage->m_pCBSystem->m_pRoleState->m_Role[0].sModel[v2 + 5] )
     {
-      WorldPos = CCBStageRole::GetWorldPos(*(CCBStageRole **)((char *)v4 + v3 + (unsigned int)this->m_pStage));
+      WorldPos = (float *)CCBStageRole::GetWorldPos(*(CCBStageRole **)((char *)&v4->vec[0].x + v3 + (unsigned int)this->m_pStage));
       gbMatrix4::operator=(v8, WorldPos);
-      *(float *)&v8[64] = WorldPos[16];
-      *(float *)&v8[68] = WorldPos[17];
-      *(float *)&v8[72] = WorldPos[18];
-      if ( *(float *)&v8[64] >= (double)*(float *)&v8[72] )
-        v6 = *(float *)&v8[72];
+      v9 = WorldPos[16];
+      v10 = *((_DWORD *)WorldPos + 17);
+      v11 = WorldPos[18];
+      if ( v9 >= (double)v11 )
+        v6 = v11;
       else
-        v6 = *(float *)&v8[64];
-      *v4 = v6;
+        v6 = v9;
+      v4->vec[0].x = v6;
       v3 = -1488 - (_DWORD)this;
     }
     else
     {
-      *v4 = 0.5;
+      v4->vec[0].x = 0.5;
     }
-    v2 += 223;
-    ++v4;
+    v2 += 892;
+    v4 = (gbGeomQuad *)((char *)v4 + 4);
   }
-  while ( v2 < 2453 );
-  (float *->Destroy()this);
+  while ( v2 < 9812 );
+  this->Destroy();
   return 1;
 }
 
@@ -139,7 +142,7 @@ void CCBStageShadow::Create()
   float v29; // [esp+5Ch] [ebp-8h]
   float v30; // [esp+60h] [ebp-4h]
 
-  v2 = this->m_pStage->m_pCBSystem->m_pRoleState;
+  v2 = (CCBRoleState *)this->m_pStage->m_pCBSystem->m_pRoleState;
   v19 = v2;
   gbVertPoolMgr::GetDynVertBuf(*(gbVertPoolMgr **)&g_pGfxManager[196], 0x15u);
   v18 = 0;
@@ -211,30 +214,30 @@ LABEL_8:
 // 0x00512240
 float * CCBStageShadow::Destroy()
 {
-  float *v1; // edx
+  gbGeomQuad *v1; // edx
   float *result; // eax
   int v3; // esi
-  double v4; // st7
+  double x; // st7
   float v5; // [esp+8h] [ebp-1Ch]
 
-  v1 = this + 378;
-  result = this + 6;
+  v1 = (gbGeomQuad *)&this->m_ShadowQuad[6];
+  result = (float *)&this->m_ShadowInitQuad[0].vec[0].z;
   v3 = 11;
   do
   {
-    v4 = *v1;
-    v5 = -v4;
+    x = v1->vec[0].x;
+    v5 = -x;
     *(result - 2) = v5;
     *(result - 1) = 0.5;
-    ++v1;
-    *result = v4;
+    v1 = (gbGeomQuad *)((char *)v1 + 4);
+    *result = x;
     result[2] = 0.5;
-    result[1] = v4;
-    result[3] = v4;
+    result[1] = x;
+    result[3] = x;
     result[5] = 0.5;
     result += 17;
     --v3;
-    *(result - 13) = v4;
+    *(result - 13) = x;
     *(result - 11) = v5;
     *(result - 10) = v5;
     *(result - 9) = 0.5;

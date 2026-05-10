@@ -90,7 +90,6 @@ int sub_445720(...);
 int sub_44A790(...);
 int sub_44E530(...);
 int sub_44E5E0(...);
-int sub_44F4C0(...);
 int sub_44F610(...);
 int sub_44F8D0(...);
 int sub_450320(...);
@@ -225,7 +224,6 @@ extern unsigned char byte_D92785;
 extern unsigned char byte_DBA25C;
 extern unsigned char byte_DBA830;
 extern unsigned char byte_DBD8A0;
-extern unsigned char byte_DE7DF8;
 extern unsigned char byte_DE93EC;
 extern int dword_17A94E0;
 extern int dword_17B3EB0;
@@ -327,13 +325,10 @@ extern int dword_D8C2E8;
 extern int dword_D8C308;
 extern int dword_D8C31C;
 extern int dword_D8C320;
-extern int dword_D8C328;
-extern int dword_D8C348;
 extern int dword_D92788;
 extern int dword_DBA0D4;
 extern int dword_DBA254;
 extern int dword_DBA260;
-extern int dword_DBAF10;
 extern int dword_DBD898;
 extern int dword_DC0DE8;
 extern int dword_DC10FC;
@@ -373,6 +368,10 @@ extern void *off_60AF50;
 extern void *off_60B0B8;
 extern void *off_60B53C;
 extern int stru_BFAB60;
+extern int stru_D8C328;
+extern int stru_D8C348;
+extern int stru_DBAF10;
+extern int stru_DE7DF8;
 extern int unk_1010100;
 extern int unk_17B1550;
 extern int unk_17B3ED8;
@@ -899,7 +898,7 @@ void __cdecl unknown_libname_294()
 // Microsoft VisualC 2-14/net runtime
 char *unknown_libname_295()
 {
-  return sub_53C250((char *)&g_DisplayConfig);
+  return sub_53C250((char *)&MEMORY[0xA3A7D8]);
 }
 
 // 0x00404510
@@ -907,7 +906,7 @@ char *unknown_libname_295()
 // Microsoft VisualC 2-14/net runtime
 void __cdecl unknown_libname_296()
 {
-  std::strstreambuf::~strstreambuf((std::strstreambuf *)&g_DisplayConfig);
+  std::strstreambuf::~strstreambuf((std::strstreambuf *)&MEMORY[0xA3A7D8]);
 }
 
 // 0x00404570
@@ -3455,7 +3454,7 @@ int sub_431DC0()
 // Microsoft VisualC 2-14/net runtime
 _DWORD *unknown_libname_341()
 {
-  return PtrArray::Clear(&dword_D8C328);
+  return PtrArray::Clear(&stru_D8C328);
 }
 
 // 0x00431DF0
@@ -3465,7 +3464,7 @@ void __cdecl sub_431DF0()
   if ( (byte_D8C324 & 1) == 0 )
   {
     byte_D8C324 |= 1u;
-    sub_432680(&dword_D8C328);
+    sub_432680(&stru_D8C328);
   }
 }
 
@@ -3558,7 +3557,7 @@ int unknown_libname_346()
 // Microsoft VisualC 2-14/net runtime
 _DWORD *unknown_libname_347()
 {
-  return PtrArray::Clear(&dword_D8C348);
+  return PtrArray::Clear(&stru_D8C348);
 }
 
 // 0x00434B20
@@ -3959,7 +3958,7 @@ UIWnd *unknown_libname_375()
     5,
     (void (__thiscall *)(void *))sub_450320,
     (void (__thiscall *)(void *))sub_450390);
-  sub_450DC0((int)&dword_DBAF10);
+  sub_450DC0((int)&stru_DBAF10);
   UIWnd::ctor_AB90((int)&unk_DBB364);
   `eh vector constructor iterator'(
     byte_DBD8A0,
@@ -3980,7 +3979,7 @@ UIWnd *unknown_libname_375()
 
 // 0x0044F4C0
 // between_std_methods (0x44BDA0-0x4A7690)
-int __thiscall sub_44F4C0(int _this, int a2, int a3)
+int __thiscall SceneUpdate(int _this, int a2, int a3)
 {
   int v4; // ecx
   _BYTE *v5; // ecx
@@ -3999,7 +3998,7 @@ int __thiscall sub_44F4C0(int _this, int a2, int a3)
           *(_BYTE *)(_this + 652) = 1;
           *(_BYTE *)(_this + 653) = 1;
           *(_DWORD *)(_this + 648) = 0;
-          CGameData_Load(10);
+          CGameData_Load(_this, 10);
         }
       }
     }
@@ -4009,7 +4008,7 @@ int __thiscall sub_44F4C0(int _this, int a2, int a3)
   v5 = *(_BYTE **)(_this + 28184);
   if ( v5 && v5[3829] )
     (*(void (__thiscall **)(_BYTE *, int, int))(*(_DWORD *)v5 + 8))(v5, a2, a3);
-  v6 = UIWnd::HitTest((_DWORD *)_this, a2, a3);
+  v6 = UIWnd::HitTest((UIWnd *)_this, a2, a3);
   if ( !*(_DWORD *)(_this + 14536)
     && ((*(int (__thiscall **)(int, int, int))(*(_DWORD *)(_this + 3904) + 8))(_this + 3904, a2, a3) || v6) )
   {
@@ -4809,7 +4808,7 @@ int __thiscall sub_4BE460(int _this, int a2)
 // Microsoft VisualC 2-14/net runtime
 void __cdecl unknown_libname_430()
 {
-  sub_4BE080((void ***)byte_DE7DF8);
+  sub_4BE080((void ***)stru_DE7DF8);
 }
 
 // 0x004BE860

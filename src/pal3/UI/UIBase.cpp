@@ -16,7 +16,7 @@ int UIBase::SetItemData(int id, unsigned int data)
 
   if ( id <= 5 )
   {
-    v4 = this + 3788 * id;
+    v4 = (UIBase *)this + 3788 * id;
     (**(void (***)(int, _DWORD))&v4[155140])((int)&v4[155140], (unsigned __int8)data);
     (**(void (***)(int, _DWORD))&v4[155292])((int)&v4[155292], (unsigned __int8)data);
     (**(void (***)(int, _DWORD))&v4[155444])((int)&v4[155444], (unsigned __int8)data);

@@ -2,6 +2,6 @@
   "name": "sub_517CF0",
   "address": "0x00517CF0",
   "size_bytes": 104,
-  "signature": "char __thiscall(_DWORD *this)",
-  "decompiled_c": "// between_std_methods (0x504E20-0x53C2B0)\nchar __thiscall sub_517CF0(_DWORD *this)\n{\n  _DWORD *v2; // esi\n  char result; // al\n  _DWORD v4[4]; // [esp+8h] [ebp-10h] BYREF\n\n  v2 = this + 285;\n  result = CCBLineupWindow::Reset(this + 285);\n  if ( result )\n  {\n    v4[0] = 10;\n    v4[2] = 240;\n    v4[1] = 271;\n    v4[3] = 471;\n    CCBMagicWindow::CreateButton(v4, this);\n    (**(void (__thiscall ***)(_DWORD, _DWORD))*v2)(*v2, 0);\n    return 1;\n  }\n  return result;\n}\n"
+  "signature": "char __thiscall(CCBMagicWindow **this)",
+  "decompiled_c": "// between_std_methods (0x504E20-0x53C2B0)\nchar __thiscall sub_517CF0(CCBMagicWindow **this)\n{\n  CCBMagicWindow **v2; // esi\n  char result; // al\n  CCBMagicWindow *v4; // ecx\n  int a2; // [esp+8h] [ebp-10h] BYREF\n  int v6; // [esp+Ch] [ebp-Ch]\n  int v7; // [esp+10h] [ebp-8h]\n  int v8; // [esp+14h] [ebp-4h]\n\n  v2 = this + 285;\n  result = CCBLineupWindow::Reset(this + 285);\n  if ( result )\n  {\n    v6 = 0;\n    v7 = 0;\n    v4 = *v2;\n    a2 = 10;\n    v7 = 240;\n    v6 = 271;\n    v8 = 471;\n    CCBMagicWindow::CreateButton(v4, &a2, (int)this);\n    (*(void (__thiscall **)(CCBMagicWindow *, _DWORD))(*v2)->m_fontcolor.ColorQuadFmt)(*v2, 0);\n    return 1;\n  }\n  return result;\n}\n"
 }

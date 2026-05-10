@@ -126,7 +126,7 @@ char CCBRoleState::GetRoleType(int roleIdx)
 {
   char *v2; // eax
 
-  v2 = &this->m_sCombatDialog[892 * roleIdx];
+  v2 = (char *)&this->m_sCombatDialog[892 * roleIdx];
   if ( !v2[577] )
     return 0;
   if ( v2[579] == 1 )
@@ -202,13 +202,13 @@ CCBRoleState::CCBRoleState()
   _DWORD *v25; // [esp+10h] [ebp-8h]
   char *v26; // [esp+14h] [ebp-4h]
 
-  v1 = &this->m_sCombatDialog[1112];
-  v2 = &g_SceneMgr.m_info[936];
-  v26 = &this->m_sCombatDialog[1112];
+  v1 = (char *)&this->m_sCombatDialog[1112];
+  v2 = (char *)&g_SceneMgr.m_info[936];
+  v26 = (char *)&this->m_sCombatDialog[1112];
   do
   {
     LOBYTE(v3) = *(v1 - 535);
-    v4 = v1 - 4;
+    v4 = (char *)v1 - 4;
     if ( (_BYTE)v3 )
     {
       memset(v4, 0, 0x1Cu);
@@ -321,8 +321,8 @@ char CCBRoleState::~CCBRoleState()
   char result; // al
 
   v2 = 0;
-  v3 = &g_SceneMgr.m_info[888];
-  v4 = &this->m_sCombatDialog[656];
+  v3 = (char *)&g_SceneMgr.m_info[888];
+  v4 = (char *)&this->m_sCombatDialog[656];
   do
   {
     result = *(v4 - 79);
@@ -476,9 +476,9 @@ LABEL_4:
 }
 
 // 0x004EE540
-char CCBRoleState::Create(gbGeomNode **this)
+char CCBRoleState::Create(CCBRoleState **this)
 {
-  int *v1; // ebp
+  __int32 *p_speed; // ebp
   gbGeomNode **v2; // edi
   int v3; // eax
   gbGeomNode *v4; // eax
@@ -491,34 +491,34 @@ char CCBRoleState::Create(gbGeomNode **this)
   char v12[256]; // [esp+114h] [ebp-110Ch] BYREF
   _BYTE pExceptionObject[1024]; // [esp+214h] [ebp-100Ch] BYREF
   char v14[1024]; // [esp+614h] [ebp-C0Ch] BYREF
-  char ArgList; // [esp+A14h] [ebp-80Ch] BYREF
-  char v16; // [esp+E14h] [ebp-40Ch] BYREF
+  char ArgList[1024]; // [esp+A14h] [ebp-80Ch] BYREF
+  char v16[1024]; // [esp+E14h] [ebp-40Ch] BYREF
   int v17; // [esp+121Ch] [ebp-4h]
 
-  v1 = MEMORY[0xC04738];
-  v2 = this + 350;
+  p_speed = (__int32 *)&g_SceneMgr.m_npc[0].m_npcinfo.speed;
+  v2 = (gbGeomNode **)(this + 350);
   do
   {
     LOBYTE(v3) = *((_BYTE *)v2 - 823);
     if ( (_BYTE)v3 )
     {
-      v3 = *(v1 - 2);
+      v3 = *(p_speed - 2);
       if ( v3 )
       {
-        sprintf(Buffer, "weapon\\%s\\%s.pol", (const char *)(*v1 + 36), (const char *)(*v1 + 36));
+        sprintf(Buffer, "weapon\\%s\\%s.pol", (const char *)(*p_speed + 36), (const char *)(*p_speed + 36));
         sprintf(
           v12,
           "weapon\\%s\\%s%s.tga",
-          (const char *)(*v1 + 36),
-          (const char *)(*v1 + 36),
-          (const char *)(*v1 + 66));
+          (const char *)(*p_speed + 36),
+          (const char *)(*p_speed + 36),
+          (const char *)(*p_speed + 66));
         v4 = (gbGeomNode *)operator new(0x118u);
         v5 = v4;
         v17 = 0;
         if ( v4 )
         {
           v4->gbGeomNode();
-          *(_DWORD *)v5->gbVisNode = &off_56A66C;
+          v5->next = (gbChain1DNode *)&off_56A66C;
           v6 = v5;
         }
         else
@@ -531,7 +531,7 @@ char CCBRoleState::Create(gbGeomNode **this)
         {
           qmemcpy(
             pExceptionObject,
-            (const void *)Logger::FormatException((char)&ArgList, (int)aFailToCreateWe, (int)aDProjectPal3Co_2, 1484),
+            (Logger *->FormatException()ArgList, aFailToCreateWe, aDProjectPal3Co_2, 1484),
             sizeof(pExceptionObject));
           _CxxThrowException(pExceptionObject, (_ThrowInfo *)&_TI1_AV_Exception__);
         }
@@ -543,7 +543,7 @@ char CCBRoleState::Create(gbGeomNode **this)
         if ( v7 )
         {
           v7->gbGeomNode();
-          *(_DWORD *)v8->gbVisNode = &off_56A66C;
+          v8->next = (gbChain1DNode *)&off_56A66C;
           v9 = v8;
         }
         else
@@ -554,23 +554,20 @@ char CCBRoleState::Create(gbGeomNode **this)
         v2[3] = v9;
         if ( !v9 )
         {
-          qmemcpy(
-            v14,
-            (const void *)Logger::FormatException((char)&v16, (int)aFailToCreateWe, (int)aDProjectPal3Co_2, 1494),
-            sizeof(v14));
+          qmemcpy(v14, (Logger *->FormatException()v16, aFailToCreateWe, aDProjectPal3Co_2, 1494), sizeof(v14));
           _CxxThrowException(v14, (_ThrowInfo *)&_TI1_AV_Exception__);
         }
         v9->LoadFromFile(Buffer, 0, 0);
         gbGeomNode::ReplaceTexture(v2[3], v12);
         LOBYTE(v3) = 1;
-        *(_DWORD *)&(*v2)->gbVisNode[260] = 1;
-        *(_DWORD *)&v2[3]->gbVisNode[260] = 1;
+        LODWORD((*v2)->OffMat.tw) = 1;
+        LODWORD(v2[3]->OffMat.tw) = 1;
       }
     }
-    v1 += 352;
+    p_speed += 352;
     v2 += 223;
   }
-  while ( (int)v1 < (int)&MEMORY[0xC062B8] );
+  while ( (int)p_speed < (int)&g_SceneMgr.m_npc[0].m_path.normal[154].z );
   return v3;
 }
 
@@ -584,7 +581,7 @@ int CCBRoleState::Destroy()
   int result; // eax
   int v6; // [esp+10h] [ebp-4h]
 
-  v1 = &this->m_sCombatDialog[1412];
+  v1 = (char *)&this->m_sCombatDialog[1412];
   v6 = 5;
   do
   {
@@ -617,26 +614,46 @@ int CCBRoleState::Destroy()
 // 0x004EE7C0
 int CCBRoleState::Init(int a2, char a3)
 {
-  int v3; // esi
+  CCBUI *m_pUI; // esi
 
-  v3 = *(_DWORD *)(*((_DWORD *)this + 130) + 4);
+  m_pUI = (CCBUI *)this->m_pCBSystem->m_pUI;
   if ( a3 == 1 )
   {
     if ( !a2 )
-      (***(void (****)(_DWORD, int))(v3 + 1068))(*(_DWORD *)(v3 + 1068), 1);
-    (***(void (****)(_DWORD, int))(v3 + 4 * a2 + 120))(*(_DWORD *)(v3 + 4 * a2 + 120), 1);
-    (***(void (****)(_DWORD, int))(v3 + 4 * a2 + 1020))(*(_DWORD *)(v3 + 4 * a2 + 1020), 1);
-    (***(void (****)(_DWORD, int))(v3 + 4 * a2 + 1052))(*(_DWORD *)(v3 + 4 * a2 + 1052), 1);
-    return (***(int (****)(_DWORD, int))(v3 + 4 * a2 + 1036))(*(_DWORD *)(v3 + 4 * a2 + 1036), 1);
+      (*(void (**)(UIStatic *, int))m_pUI->m_pRoleStateImmunity[9]->m_fontcolor.ColorQuadFmt)(
+        m_pUI->m_pRoleStateImmunity[9],
+        1);
+    (*(void (**)(UIStatic *, int))m_pUI->m_pBattleFieldAttr[a2 + 1]->m_fontcolor.ColorQuadFmt)(
+      m_pUI->m_pBattleFieldAttr[a2 + 1],
+      1);
+    (*(void (**)(UIStatic *, int))m_pUI->m_pRoleStateHermit[a2 + 8]->m_fontcolor.ColorQuadFmt)(
+      m_pUI->m_pRoleStateHermit[a2 + 8],
+      1);
+    (*(void (**)(UIStatic *, int))m_pUI->m_pRoleStateImmunity[a2 + 5]->m_fontcolor.ColorQuadFmt)(
+      m_pUI->m_pRoleStateImmunity[a2 + 5],
+      1);
+    return (*(int (**)(UIStatic *, int))m_pUI->m_pRoleStateImmunity[a2 + 1]->m_fontcolor.ColorQuadFmt)(
+             m_pUI->m_pRoleStateImmunity[a2 + 1],
+             1);
   }
   else
   {
     if ( !a2 )
-      (***(void (****)(_DWORD, _DWORD))(v3 + 1068))(*(_DWORD *)(v3 + 1068), 0);
-    (***(void (****)(_DWORD, _DWORD))(v3 + 4 * a2 + 120))(*(_DWORD *)(v3 + 4 * a2 + 120), 0);
-    (***(void (****)(_DWORD, _DWORD))(v3 + 4 * a2 + 1020))(*(_DWORD *)(v3 + 4 * a2 + 1020), 0);
-    (***(void (****)(_DWORD, _DWORD))(v3 + 4 * a2 + 1052))(*(_DWORD *)(v3 + 4 * a2 + 1052), 0);
-    return (***(int (****)(_DWORD, _DWORD))(v3 + 4 * a2 + 1036))(*(_DWORD *)(v3 + 4 * a2 + 1036), 0);
+      (*(void (**)(UIStatic *, _DWORD))m_pUI->m_pRoleStateImmunity[9]->m_fontcolor.ColorQuadFmt)(
+        m_pUI->m_pRoleStateImmunity[9],
+        0);
+    (*(void (**)(UIStatic *, _DWORD))m_pUI->m_pBattleFieldAttr[a2 + 1]->m_fontcolor.ColorQuadFmt)(
+      m_pUI->m_pBattleFieldAttr[a2 + 1],
+      0);
+    (*(void (**)(UIStatic *, _DWORD))m_pUI->m_pRoleStateHermit[a2 + 8]->m_fontcolor.ColorQuadFmt)(
+      m_pUI->m_pRoleStateHermit[a2 + 8],
+      0);
+    (*(void (**)(UIStatic *, _DWORD))m_pUI->m_pRoleStateImmunity[a2 + 5]->m_fontcolor.ColorQuadFmt)(
+      m_pUI->m_pRoleStateImmunity[a2 + 5],
+      0);
+    return (*(int (**)(UIStatic *, _DWORD))m_pUI->m_pRoleStateImmunity[a2 + 1]->m_fontcolor.ColorQuadFmt)(
+             m_pUI->m_pRoleStateImmunity[a2 + 1],
+             0);
   }
 }
 
@@ -690,11 +707,11 @@ char CCBRoleState::CheckVarianceRound(int a2, int a3, int *a4)
   signed int v5; // esi
   char v6; // bl
   int v7; // eax
-  int v8; // eax
+  int ItemNum; // eax
   int v9; // edi
   _DWORD *v10; // ebp
   int v11; // ecx
-  _BYTE *v12; // esi
+  char *v12; // esi
   unsigned __int8 v13; // cl
   bool v14; // zf
   int v15; // edx
@@ -710,22 +727,22 @@ char CCBRoleState::CheckVarianceRound(int a2, int a3, int *a4)
   if ( a2 >= 5 && a2 < 11 )
     return 0;
   v5 = 0;
-  Proxy = Concurrency::details::(Concurrency::details::InternalContextBase *->GetProxy()g_GDB);
+  Proxy = Concurrency::details::(Concurrency::details::InternalContextBase *->GetProxy()&g_GDB);
   v23 = 0;
   if ( (int)Proxy <= 0 )
     return 0;
   while ( 2 )
   {
     v6 = 1;
-    v7 = sub_479260(g_GDB, v5);
+    v7 = sub_479260(&g_GDB, v5);
     *a4 = v7;
-    v8 = g_GDB->GDB_GetItemNum(v7);
-    if ( *(_DWORD *)(v8 + 56) != a3 )
+    ItemNum = PAL_GDB::GDB_GetItemNum(&g_GDB, v7);
+    if ( *(_DWORD *)(ItemNum + 56) != a3 )
       goto LABEL_53;
-    if ( *(_DWORD *)(v8 + 36) != *(this + 223 * v4 + 138) )
+    if ( *(_DWORD *)(ItemNum + 36) != *(&this->m_bMustFail + 223 * v4) )
       goto LABEL_52;
     v9 = 0;
-    v10 = (_DWORD *)(v8 + 36);
+    v10 = (_DWORD *)(ItemNum + 36);
     do
     {
       if ( !*v10 )
@@ -752,10 +769,10 @@ char CCBRoleState::CheckVarianceRound(int a2, int a3, int *a4)
         default:
           break;
       }
-      v12 = this + 223 * v11;
+      v12 = (char *)&this->m_sCombatDialog[892 * v11];
       if ( !v12[577] )
         v6 = 0;
-      v13 = *(_BYTE *)(v8 + v9 + 52);
+      v13 = *(_BYTE *)(ItemNum + v9 + 52);
       if ( v13 )
       {
         v14 = v13 == 7;
@@ -778,7 +795,7 @@ LABEL_21:
         if ( v16 != 1 && v16 != 2 && v16 != 5 )
           v6 = 0;
       }
-      if ( *(_BYTE *)(v8 + v9 + 60) != v12[648] )
+      if ( *(_BYTE *)(ItemNum + v9 + 60) != v12[648] )
         v6 = 0;
 LABEL_33:
       ++v9;
@@ -787,7 +804,7 @@ LABEL_33:
     while ( v9 < 4 );
     if ( !v6 )
       goto LABEL_51;
-    v17 = (int *)(v8 + 68);
+    v17 = (int *)(ItemNum + 68);
     v18 = 3;
     do
     {
@@ -810,9 +827,9 @@ LABEL_33:
           v19 = 3;
 LABEL_42:
           v20 = *v17;
-          if ( *v17 >= 0 && v20 < 26 && !(unsigned __int8)v19->GetRoleField(v20 + 1) )
+          if ( *v17 >= 0 && v20 < 26 && !this->GetRoleField(v19, v20 + 1) )
             v6 = 0;
-          if ( *v17 == 26 && !(unsigned __int8)v19->IsRoleInForce() )
+          if ( *v17 == 26 && !this->IsRoleInForce(v19) )
             v6 = 0;
           break;
         default:
@@ -846,7 +863,7 @@ char CCBRoleState::CancelVariance(_DWORD *a2, unsigned int a3)
 
   if ( a3 > 0xA )
     return 0;
-  v4 = &this->m_sCombatDialog[892 * a3];
+  v4 = (char *)&this->m_sCombatDialog[892 * a3];
   if ( !v4[577] )
     return 0;
   if ( !v4[578] )
@@ -1027,7 +1044,7 @@ char CCBRoleState::IsBoss(_DWORD *a1, int a2)
 // 0x004EF6A0
 int CCBRoleState::IsAllWeDead(int a2)
 {
-  return *(this + 223 * a2 + 284);
+  return this->m_Role[0].bMagicMastered[3][223 * a2 + 2];
 }
 
 // 0x004EF6C0
@@ -1111,32 +1128,32 @@ int CCBRoleState::SetCanAction(unsigned int dmg, int roleIdx, int a4)
 }
 
 // 0x004EF8B0
-char CCBRoleState::RandSetEnemyPos(const void *a1)
+char CCBRoleState::RandSetEnemyPos(const void *arg0)
 {
   char result; // al
-  _DWORD v2[11]; // [esp+8h] [ebp-2Ch] BYREF
+  int a2[11]; // [esp+8h] [ebp-2Ch] BYREF
 
   result = 0;
-  qmemcpy(v2, a1, sizeof(v2));
-  switch ( v2[0] )
+  qmemcpy(a2, arg0, sizeof(a2));
+  switch ( a2[0] )
   {
     case 0x103:
-      result = sub_4F0A10(v2);
+      result = sub_4F0A10((int)this, (int)a2);
       break;
     case 0x104:
-      result = v2->GetDeadRoleNumInForce();
+      result = this->GetDeadRoleNumInForce((int)a2);
       break;
     case 0x105:
-      result = v2->GetAliveRoleNumInForce();
+      result = this->GetAliveRoleNumInForce((int)a2);
       break;
     case 0x106:
-      result = v2->GetCastFightSkillSuccess();
+      result = this->GetCastFightSkillSuccess((int)a2);
       break;
     case 0x10D:
-      result = v2->SetCoAttack();
+      result = this->SetCoAttack((int)a2);
       break;
     case 0x10E:
-      result = sub_4F1C40(v2);
+      result = sub_4F1C40(this, (int)a2);
       break;
     default:
       return result;
@@ -1158,7 +1175,7 @@ int CCBRoleState::CalcHealAmount(int roleIdx)
   *(_BYTE *)(roleIdx + 39) = 0;
   RoleHP = this->GetRoleHP(*(_DWORD *)(roleIdx + 12));
   this->GetRoleMP(RoleHP);
-  v4 = &this->m_sCombatDialog[892 * *(_DWORD *)(roleIdx + 8)];
+  v4 = (char *)&this->m_sCombatDialog[892 * *(_DWORD *)(roleIdx + 8)];
   if ( v4[651] )
   {
     v6 = 1;
@@ -1198,7 +1215,7 @@ int CCBRoleState::WriteBackRoleData(int a2, _DWORD *a3, int *a4)
   char v13; // dl
   int v14; // edi
   int v15; // esi
-  int v16; // eax
+  __int32 v16; // eax
   bool v17; // zf
   int v18; // [esp+10h] [ebp-2Ch] BYREF
   int v19; // [esp+14h] [ebp-28h]
@@ -1212,7 +1229,7 @@ int CCBRoleState::WriteBackRoleData(int a2, _DWORD *a3, int *a4)
   v7 = 0;
   v8 = 0;
   v9 = 0;
-  v10 = &v18;
+  v10 = (int *)&v18;
   do
   {
     if ( *(_BYTE *)(a2 + v9 + 29) )
@@ -1271,7 +1288,7 @@ int CCBRoleState::WriteBackRoleData(int a2, _DWORD *a3, int *a4)
   }
   v14 = v19;
   v15 = v18;
-  if ( !(unsigned __int8)v18->WriteBackConfig(v19) )
+  if ( !this->WriteBackConfig(v18, v19) )
     goto LABEL_47;
   if ( v7 == 2 )
   {
@@ -1279,18 +1296,18 @@ int CCBRoleState::WriteBackRoleData(int a2, _DWORD *a3, int *a4)
     *a4 = v14;
     return 100;
   }
-  if ( *(this + 223 * v15 + 284) == 6 )
+  if ( this->m_Role[0].bMagicMastered[3][223 * v15 + 2] == 6 )
     return v15;
-  if ( *(this + 223 * v14 + 284) == 6 )
+  if ( this->m_Role[0].bMagicMastered[3][223 * v14 + 2] == 6 )
     return v14;
   result = v20;
-  if ( *(this + 223 * v20 + 284) != 6 )
+  if ( this->m_Role[0].bMagicMastered[3][223 * v20 + 2] != 6 )
   {
 LABEL_47:
-    v16 = *(this + 223 * v15 + 284);
-    if ( v16 != *((_DWORD *)this + 5154) && v16 != *((_DWORD *)this + 5156) )
+    v16 = this->m_Role[0].bMagicMastered[3][223 * v15 + 2];
+    if ( v16 != this->m_RoleXor[1].bFriend && v16 != this->m_RoleXor[1].bCanAction )
     {
-      v17 = v16 == *((_DWORD *)this + 5158);
+      v17 = v16 == this->m_RoleXor[1].bEnemyFriend;
       result = v14;
       if ( !v17 )
         return result;
@@ -1345,7 +1362,7 @@ bool CCBRoleState::WriteBackConfig(int roleIdx, int a3)
   else
   {
     v9 = 0;
-    v10 = &this->m_sCombatDialog[20580];
+    v10 = (char *)&this->m_sCombatDialog[20580];
     do
     {
       v11 = 3;
@@ -1421,7 +1438,7 @@ bool CCBRoleState::ReviveAllFriendAtEnd(int roleIdx, int a3)
   else
   {
     v9 = 0;
-    v10 = &this->m_sCombatDialog[20616];
+    v10 = (char *)&this->m_sCombatDialog[20616];
     do
     {
       v11 = 2;
@@ -1724,13 +1741,15 @@ bool CCBRoleState::InitRoleSpecEquipAttrib(int a2)
 // 0x004F0700
 char CCBRoleState::UnloadWeaponModel(int a2)
 {
-  int v2; // esi
-  _DWORD *i; // edi
+  int v3; // esi
+  __int32 *i; // edi
 
-  v2 = 0;
-  for ( i = this + 284; !*((_BYTE *)i - 559) || *i != a2 || (unsigned __int8)v2->SetVisible(); i += 223 )
+  v3 = 0;
+  for ( i = &this->m_Role[0].bMagicMastered[3][2];
+        !*((_BYTE *)i - 559) || *i != a2 || this->SetVisible(v3);
+        i += 223 )
   {
-    if ( ++v2 >= 5 )
+    if ( ++v3 >= 5 )
       return 0;
   }
   return 1;
@@ -1865,7 +1884,7 @@ char CCBRoleState::GetAliveRoleNumInForce(int a2)
   v24 = 6;
   idx = 0;
   v23 = 24;
-  v26 = &this->m_sCombatDialog[1092];
+  v26 = (char *)&this->m_sCombatDialog[1092];
   do
   {
     v5 = (_DWORD *)a2;
@@ -1929,7 +1948,7 @@ char CCBRoleState::GetAliveRoleNumInForce(int a2)
     {
       memset(v18, 0, sizeof(v18));
       v18[2] = idx;
-      v6 = *(_DWORD **)&this->m_sCombatDialog[524];
+      v6 = (_DWORD *)*(_DWORD **)&this->m_sCombatDialog[524];
       LOBYTE(v18[10]) = 1;
       v18[1] = 0;
       RoleIndex = v6->GetRoleIndex(7, v18, 1);
@@ -2003,7 +2022,7 @@ char CCBRoleState::GetDeadRoleNumInForce(int a2)
   v20 = 0;
   idx = 0;
   v23 = 24;
-  v22 = &this->m_sCombatDialog[1092];
+  v22 = (char *)&this->m_sCombatDialog[1092];
   do
   {
     if ( *(_BYTE *)(a2 + 17) )
@@ -2064,7 +2083,7 @@ char CCBRoleState::GetDeadRoleNumInForce(int a2)
       else
       {
         memset(v15, 0, sizeof(v15));
-        v6 = *(_DWORD **)&this->m_sCombatDialog[524];
+        v6 = (_DWORD *)*(_DWORD **)&this->m_sCombatDialog[524];
         LOBYTE(v15[10]) = 1;
         v15[2] = idx;
         v15[1] = 0;
@@ -2089,7 +2108,7 @@ char CCBRoleState::GetDeadRoleNumInForce(int a2)
     else
     {
       memset(v16, 0, sizeof(v16));
-      v4 = *(_DWORD **)&this->m_sCombatDialog[524];
+      v4 = (_DWORD *)*(_DWORD **)&this->m_sCombatDialog[524];
       v16[1] = 0;
       LOBYTE(v16[10]) = 1;
       v16[2] = idx;
@@ -2154,7 +2173,7 @@ char CCBRoleState::GetFirstAliveRoleInForce(int roleIdx, int a3)
   v20 = 0;
   v5 = *(_DWORD *)&this->m_sCombatDialog[892 * a3 + 1096];
   LOBYTE(v21[10]) = 1;
-  v6 = &this->m_sCombatDialog[892 * a3];
+  v6 = (char *)&this->m_sCombatDialog[892 * a3];
   v21[0] = 260;
   v21[1] = 0;
   if ( v5 > 0 )
@@ -2196,7 +2215,7 @@ char CCBRoleState::GetFirstAliveRoleInForce(int roleIdx, int a3)
       if ( v4 == -1 )
         return 0;
     }
-    Instance = CScreenMode::GetInstance();
+    Instance = (char *)CScreenMode::GetInstance();
     (CScreenMode *->AudioSetPosition()Instance, aWa006, 1);
     v16 = *((_DWORD *)v6 + 275);
     v15 = 0;
@@ -2230,10 +2249,10 @@ char CCBRoleState::GetCastFightSkillSuccess(int a2)
 {
   int v4; // esi
   int i; // ebp
-  int v6; // eax
-  int v8; // [esp+14h] [ebp+4h]
+  UIProgressBar *v6; // eax
+  int a2a; // [esp+14h] [ebp+4h]
 
-  v8 = *(_DWORD *)(a2 + 8);
+  a2a = *(_DWORD *)(a2 + 8);
   v4 = 0;
   for ( i = 24; i < 68; i += 4 )
   {
@@ -2247,20 +2266,20 @@ char CCBRoleState::GetCastFightSkillSuccess(int a2)
       goto LABEL_13;
     }
     if ( ((_DWORD *->sub_4F05A0()a2)
-       || (unsigned __int8)CCBStageRole::ForceEndTaskByPFN(*(_DWORD *)(*((_DWORD *)this + 131) + i))
-       || *(_WORD *)(g_GDB->GDB_GetSkillNum(*(_DWORD *)(a2 + 4)) + 748) == 2)
-      && (int)sub_4F2750(a2, v4) < 0
-      && !CCBSystem::IsCmdEmpty(*(_BYTE **)(*((_DWORD *)this + 130) + 12), v4)
-      && !CCBSystem::IsCmdReady(*(_DWORD **)(*((_DWORD *)this + 130) + 12), v4) )
+       || CCBStageRole::ForceEndTaskByPFN(*(CCBStageRole **)((char *)&this->m_pStage->m_pCBSystem + i))
+       || *(_WORD *)(PAL_GDB::GDB_GetSkillNum(&g_GDB, *(_DWORD *)(a2 + 4)) + 748) == 2)
+      && sub_4F2750(this, (_DWORD *)a2, v4) < 0
+      && !(CCBSystem *->IsCmdEmpty()this->m_pCBSystem->m_pAttackSequen, v4)
+      && !(CCBSystem *->IsCmdReady()this->m_pCBSystem->m_pAttackSequen, v4) )
     {
-      CCBSystem::GetCmdData(*(char **)(*((_DWORD *)this + 130) + 12), v4, 0, 0, 1);
+      (CCBSystem *->GetCmdData()this->m_pCBSystem->m_pAttackSequen, v4);
     }
 LABEL_13:
     ++v4;
   }
-  v6 = *(_DWORD *)(*((_DWORD *)this + 132) + 1120);
-  if ( *(_DWORD *)(v6 + 56) == 1 )
-    sub_4F95F0(v8, *(_DWORD *)(v6 + 104));
+  v6 = (UIProgressBar *)this->m_pUI->m_pRoleStateMP[1];
+  if ( v6->m_rect.top == 1 )
+    sub_4F95F0(this, a2a, v6->m_mode);
   return 1;
 }
 
@@ -2313,7 +2332,7 @@ char CCBRoleState::CanBeImbibeNimbus(int arg0, unsigned int a2)
     return 0;
   if ( arg0 >= 11 )
     return 0;
-  v6 = &this->m_sCombatDialog[892 * arg0];
+  v6 = (char *)&this->m_sCombatDialog[892 * arg0];
   if ( !v6[577] )
     return 0;
   dmg = this->ApplyDamage(4, arg0);
@@ -2397,12 +2416,12 @@ char CCBRoleState::CheckRoleValid(int _this, int a2, unsigned int roleIdx, int a
     case 1:
       return (CCBRoleState *->CanRoleAct()this, roleIdx);
     case 2:
-      v6 = *(_DWORD **)(this + 520);
+      v6 = (_DWORD *)*(_DWORD **)(this + 520);
       if ( *(_BYTE *)(v6[28] + 80) )
       {
         memset(v16, 0, sizeof(v16));
         v16[2] = a2;
-        v7 = *(_DWORD **)(this + 524);
+        v7 = (_DWORD *)*(_DWORD **)(this + 524);
         LOBYTE(v16[10]) = 1;
         v16[0] = 267;
         v16[1] = 0;
@@ -2423,7 +2442,7 @@ char CCBRoleState::CheckRoleValid(int _this, int a2, unsigned int roleIdx, int a
       v15[1] = v6->ProcProtect();
       v15[3] = roleIdx;
       v15[2] = a2;
-      v9 = *(_DWORD **)(this + 520);
+      v9 = (_DWORD *)*(_DWORD **)(this + 520);
       v15[0] = 267;
       v9->CreateObj(CCBSystem::PassCmdToThread, 0, 0, 0, v15);
       return 1;
@@ -2612,7 +2631,7 @@ int CCBRoleState::CalcAttackPower(int roleIdx)
   if ( !v16 )
     return 0;
   v4 = roleIdx;
-  v5 = &this->m_sCombatDialog[892 * roleIdx];
+  v5 = (char *)&this->m_sCombatDialog[892 * roleIdx];
   if ( !v5[578] )
     return 0;
   v15 = *((_DWORD *)v5 + 149);
@@ -2632,7 +2651,7 @@ int CCBRoleState::CalcAttackPower(int roleIdx)
   if ( v18 )
   {
     memset(v12, 0, sizeof(v12));
-    v8 = *(_DWORD **)&this->m_sCombatDialog[524];
+    v8 = (_DWORD *)*(_DWORD **)&this->m_sCombatDialog[524];
     v12[2] = roleIdx;
     v12[3] = roleIdx;
     LOBYTE(v12[10]) = 1;
@@ -2695,7 +2714,7 @@ int CCBRoleState::CalcDefensePower(int roleIdx)
   v2 = v15;
   if ( !v15 )
     return 0;
-  v4 = &this->m_sCombatDialog[892 * roleIdx];
+  v4 = (char *)&this->m_sCombatDialog[892 * roleIdx];
   if ( !v4[578] || this->GetRoleField(roleIdx, 23) && v15 > 0 )
     return 0;
   v14 = *((_DWORD *)v4 + 151);
@@ -2715,7 +2734,7 @@ int CCBRoleState::CalcDefensePower(int roleIdx)
   if ( v17 )
   {
     memset(v11, 0, sizeof(v11));
-    v7 = *(_DWORD **)&this->m_sCombatDialog[524];
+    v7 = (_DWORD *)*(_DWORD **)&this->m_sCombatDialog[524];
     v11[2] = roleIdx;
     v11[3] = roleIdx;
     LOBYTE(v11[10]) = 1;
@@ -2836,18 +2855,18 @@ char CCBRoleState::CanUseSkill(int roleIdx)
     result = roleIdx;
     if ( roleIdx != 4 )
     {
-      v3 = &this->m_sCombatDialog[892 * roleIdx + 628];
+      v3 = (char *)&this->m_sCombatDialog[892 * roleIdx + 628];
       v4 = v7 < 0;
       *(_DWORD *)v3 += v7;
       if ( v7 > 0 )
       {
-        Instance = CScreenMode::GetInstance();
+        Instance = (char *)CScreenMode::GetInstance();
         (CScreenMode *->AudioSetPosition()Instance, aWa010, 1);
         v4 = v7 < 0;
       }
       if ( v4 )
       {
-        v6 = CScreenMode::GetInstance();
+        v6 = (char *)CScreenMode::GetInstance();
         (CScreenMode *->AudioSetPosition()v6, aWa048, 1);
       }
       if ( *(int *)v3 < 0 )
@@ -2890,7 +2909,7 @@ int CCBRoleState::GetAttackBonus(int roleIdx)
   float roleIdxa; // [esp+Ch] [ebp+8h]
   float roleIdxb; // [esp+Ch] [ebp+8h]
 
-  v2 = &this->m_sCombatDialog[892 * roleIdx];
+  v2 = (char *)&this->m_sCombatDialog[892 * roleIdx];
   if ( v2[1147] )
   {
     v3 = *((_DWORD *)v2 + 153);
@@ -2920,7 +2939,7 @@ int CCBRoleState::GetDefenseBonus(int roleIdx)
   float roleIdxa; // [esp+Ch] [ebp+8h]
   float roleIdxb; // [esp+Ch] [ebp+8h]
 
-  v2 = &this->m_sCombatDialog[892 * roleIdx];
+  v2 = (char *)&this->m_sCombatDialog[892 * roleIdx];
   if ( v2[1149] )
   {
     v3 = *((_DWORD *)v2 + 154);
@@ -2950,7 +2969,7 @@ int CCBRoleState::GetRoleState(int roleIdx)
   float roleIdxa; // [esp+Ch] [ebp+8h]
   float roleIdxb; // [esp+Ch] [ebp+8h]
 
-  v2 = &this->m_sCombatDialog[892 * roleIdx];
+  v2 = (char *)&this->m_sCombatDialog[892 * roleIdx];
   if ( v2[1151] )
   {
     v3 = *((_DWORD *)v2 + 156);
@@ -2980,7 +2999,7 @@ int CCBRoleState::GetSpeedBonus(int roleIdx)
   float roleIdxa; // [esp+Ch] [ebp+8h]
   float roleIdxb; // [esp+Ch] [ebp+8h]
 
-  v2 = &this->m_sCombatDialog[892 * roleIdx];
+  v2 = (char *)&this->m_sCombatDialog[892 * roleIdx];
   if ( v2[1153] )
   {
     v3 = *((_DWORD *)v2 + 155);
@@ -3008,7 +3027,7 @@ int CCBRoleState::GetRoleLevel(int roleIdx)
   int v5; // [esp+10h] [ebp+8h]
 
   v2 = *(_DWORD *)&this->m_sCombatDialog[892 * roleIdx + 620];
-  v3 = &this->m_sCombatDialog[892 * roleIdx + 620];
+  v3 = (char *)&this->m_sCombatDialog[892 * roleIdx + 620];
   *(_DWORD *)v3 = v2 + v5;
   if ( v2 + v5 < 0 )
     *(_DWORD *)v3 = 0;
@@ -3135,7 +3154,7 @@ char CCBRoleState::GetRoleForce(int roleIdx)
   char *v3; // ebx
 
   v2 = 1;
-  v3 = &this->m_sCombatDialog[892 * roleIdx + 1141];
+  v3 = (char *)&this->m_sCombatDialog[892 * roleIdx + 1141];
   while ( v3[v2] != 1 || v2->IsPlayerTeam() )
   {
     if ( ++v2 >= 27 )
@@ -3151,7 +3170,7 @@ bool CCBRoleState::IsRoleInForce(int roleIdx)
   char *v3; // ecx
 
   result = 1;
-  v3 = &this->m_sCombatDialog[892 * roleIdx];
+  v3 = (char *)&this->m_sCombatDialog[892 * roleIdx];
   if ( v3[1142] != 1 && v3[1143] != 1 && v3[1144] != 1 && v3[1145] != 1 )
     return v3[1146] == 1;
   return result;
@@ -3237,7 +3256,7 @@ LABEL_7:
     {
       if ( v25 >= 1 && v25 <= 5 )
       {
-        v3 = &this->m_sCombatDialog[892 * a2];
+        v3 = (char *)&this->m_sCombatDialog[892 * a2];
         *(_DWORD *)(v3 + 1142) = 0;
         v3[1146] = 0;
         if ( v3[1167] )
@@ -3254,7 +3273,7 @@ LABEL_7:
         && *(int *)&this->m_sCombatDialog[892 * a2 + 588] > 0 )
       {
         memset(v24, 0, sizeof(v24));
-        v5 = *(_DWORD **)&this->m_sCombatDialog[524];
+        v5 = (_DWORD *)*(_DWORD **)&this->m_sCombatDialog[524];
         LOBYTE(v24[10]) = 1;
         v24[2] = a2;
         v24[0] = 0;
@@ -3282,7 +3301,7 @@ LABEL_7:
   }
   v8 = v25;
   v9 = 892 * a2;
-  v3 = &this->m_sCombatDialog[892 * a2 + 1141 + v25];
+  v3 = (char *)&this->m_sCombatDialog[892 * a2 + 1141 + v25];
   *v3 = v27;
   v10 = v25 + 446 * a2;
   v26 = v10;
@@ -3474,13 +3493,13 @@ LABEL_41:
         v21 = aWd015;
         break;
       case 24:
-        v3 = &this->m_sCombatDialog[v9 + 588];
+        v3 = (char *)&this->m_sCombatDialog[v9 + 588];
         v13 = *(_DWORD *)&this->m_sCombatDialog[v9 + 592] / 10;
         if ( *(_DWORD *)v3 > v13 )
           *(_DWORD *)v3 = v13;
         return (char)v3;
       case 25:
-        v3 = *(char **)&this->m_sCombatDialog[v9 + 588];
+        v3 = (char *)*(char **)&this->m_sCombatDialog[v9 + 588];
         if ( (int)v3 > 0 )
           *(_DWORD *)&this->m_sCombatDialog[v9 + 588] = 0;
         return (char)v3;
@@ -3491,7 +3510,7 @@ LABEL_41:
       default:
         return (char)v3;
     }
-    Instance = CScreenMode::GetInstance();
+    Instance = (char *)CScreenMode::GetInstance();
     (CScreenMode *->AudioSetPosition()Instance, v21, 1);
   }
   else
@@ -3551,7 +3570,7 @@ LABEL_86:
         this->m_sCombatDialog[v9 + 578] = 1;
         *(_DWORD *)&this->m_sCombatDialog[v9 + 588] = 0;
         memset(&this->m_sCombatDialog[v9 + 1141], 0, 0x18u);
-        v14 = &this->m_sCombatDialog[v9 + 1165];
+        v14 = (char *)&this->m_sCombatDialog[v9 + 1165];
         *(_WORD *)v14 = 0;
         v14[2] = 0;
         memset(&this->m_sCombatDialog[v9 + 1168], 0, 0x34u);
@@ -3568,7 +3587,7 @@ LABEL_86:
         if ( !CCBStageRole::ForceEndTaskByPFN(*(float **)(*(_DWORD *)&this->m_sCombatDialog[524] + 4 * a2 + 24)) )
         {
           memset(v24, 0, sizeof(v24));
-          v16 = *(_DWORD **)&this->m_sCombatDialog[524];
+          v16 = (_DWORD *)*(_DWORD **)&this->m_sCombatDialog[524];
           LOBYTE(v24[10]) = 1;
           v24[2] = a2;
           v24[1] = 259;
@@ -3618,7 +3637,7 @@ LABEL_86:
       default:
         goto LABEL_91;
     }
-    v19 = CScreenMode::GetInstance();
+    v19 = (char *)CScreenMode::GetInstance();
     (CScreenMode *->AudioSetPosition()v19, v22, 1);
 LABEL_91:
     *(_WORD *)&this->m_sCombatDialog[2 * v26 + 1168] = 0;
@@ -3992,7 +4011,7 @@ int CCBRoleState::CalcPhysicalDamage(int roleIdx)
   v4 = 0;
   LOBYTE(pOut[10]) = 1;
   pOut[0] = 260;
-  v5 = &this->m_sCombatDialog[892 * roleIdx];
+  v5 = (char *)&this->m_sCombatDialog[892 * roleIdx];
   pOut[1] = 0;
   pOut[2] = roleIdx;
   LOWORD(pOut[4]) = 0;
@@ -4032,7 +4051,7 @@ LABEL_16:
     ++v13;
     if ( v4 >= 6 )
       break;
-    v5 = &this->m_sCombatDialog[892 * roleIdx];
+    v5 = (char *)&this->m_sCombatDialog[892 * roleIdx];
   }
   result = v12;
   if ( v12 )
@@ -4095,7 +4114,7 @@ int CCBRoleState::CalcMagicDamage(int roleIdx)
   pOut[0] = 260;
   pOut[1] = 0;
   pOut[2] = roleIdx;
-  v6 = &this->m_sCombatDialog[892 * roleIdx];
+  v6 = (char *)&this->m_sCombatDialog[892 * roleIdx];
   pOut[3] = -1;
   LOWORD(pOut[4]) = 0;
   v17 = 0;
@@ -4137,7 +4156,7 @@ LABEL_15:
     ++v15;
     if ( !v10 )
       break;
-    v6 = &this->m_sCombatDialog[892 * roleIdx];
+    v6 = (char *)&this->m_sCombatDialog[892 * roleIdx];
   }
   result = v14;
   if ( v14 )
@@ -4330,7 +4349,7 @@ char CCBRoleState::GetRoleAI(void *pOut)
 
   v3 = *((_DWORD *)pOut + 2);
   v4 = this->m_sCombatDialog[892 * v3 + 578];
-  v5 = &this->m_sCombatDialog[892 * v3];
+  v5 = (char *)&this->m_sCombatDialog[892 * v3];
   if ( !v4 )
     return 0;
   if ( v5[1432] )
@@ -4406,7 +4425,7 @@ unsigned int CCBRoleState::CheckStatus()
   int v3; // esi
   unsigned int result; // eax
 
-  v1 = &this->m_sCombatDialog[604];
+  v1 = (char *)&this->m_sCombatDialog[604];
   v2 = 11;
   do
   {
@@ -4501,7 +4520,7 @@ void * CCBRoleState::ProcessActions()
     }
     CCBStageCam::ClearFinishedTask(*(_DWORD *)(*(_DWORD *)&this->m_sCombatDialog[524] + 16), 10);
     v3 = 24;
-    v4 = &this->m_sCombatDialog[577];
+    v4 = (char *)&this->m_sCombatDialog[577];
     *(_DWORD *)(*(_DWORD *)&this->m_sCombatDialog[520] + 120) = 7;
     do
     {
@@ -4525,16 +4544,16 @@ void * CCBRoleState::ProcessActions()
     sub_4FA930((int)this, 1, -1);
     CCBStageCam::ClearFinishedTask(*(_DWORD *)(*(_DWORD *)&this->m_sCombatDialog[524] + 16), 3);
     v5 = 0;
-    v6 = &this->m_sCombatDialog[578];
+    v6 = (char *)&this->m_sCombatDialog[578];
     v13 = 0;
-    v14 = &this->m_sCombatDialog[578];
+    v14 = (char *)&this->m_sCombatDialog[578];
     do
     {
       if ( *(v6 - 1) )
       {
         if ( *v6 )
         {
-          v7 = *(_DWORD **)&this->m_sCombatDialog[524];
+          v7 = (_DWORD *)*(_DWORD **)&this->m_sCombatDialog[524];
           v15[2] = v5;
           v8 = v7->GetRoleIndex(24, v15, 1);
           if ( v8 != -1 )
@@ -4694,7 +4713,7 @@ void * CCBRoleState::ProcessActions()
     *(_DWORD *)(*(_DWORD *)&this->m_sCombatDialog[520] + 120) = 5;
     CCBStageScene::Destroy(*(gbGeomNode ***)(*(_DWORD *)(*(_DWORD *)&this->m_sCombatDialog[520] + 20) + 20));
   }
-  result = *(void **)&this->m_sCombatDialog[520];
+  result = (void *)*(void **)&this->m_sCombatDialog[520];
   v12 = *((_DWORD *)result + 30);
   if ( v12 == 5 )
   {
@@ -4779,7 +4798,7 @@ int CCBRoleState::UpdateEffects()
   int *a1; // [esp+2Ch] [ebp-4h]
 
   v2 = 0;
-  v54 = *(char **)(*(_DWORD *)(*(_DWORD *)&this->m_sCombatDialog[520] + 20) + 68);
+  v54 = (char *)*(char **)(*(_DWORD *)(*(_DWORD *)&this->m_sCombatDialog[520] + 20) + 68);
   do
   {
     result = (int)&this->m_sCombatDialog[892 * v2];
@@ -5145,7 +5164,7 @@ LABEL_23:
       if ( v45 < dmg )
       {
         v19 = dmg - v45;
-        v20 = &this->m_sCombatDialog[892 * v45 + 584];
+        v20 = (char *)&this->m_sCombatDialog[892 * v45 + 584];
         do
         {
           if ( *(v20 - 7) )

@@ -21,25 +21,32 @@ int RenderTarget::Create()
   int v3; // [esp+Ch] [ebp-814h] BYREF
   int v4; // [esp+14h] [ebp-80Ch]
   char pExceptionObject[1024]; // [esp+20h] [ebp-800h] BYREF
-  char ArgList; // [esp+420h] [ebp-400h] BYREF
+  char ArgList[1024]; // [esp+420h] [ebp-400h] BYREF
 
-  if ( !(*(int (**)(int, int *, int))(*(_DWORD *)g_pGfxManager + 84))(g_pGfxManager, &v3, 1) )
+  if ( !(*(int (**)(int, int *, int))(*(_DWORD *)g_Input.KeyInfo[177].Data + 84))(
+          g_Input.KeyInfo[177].Data,
+          &v3,
+          1) )
   {
     qmemcpy(
       pExceptionObject,
-      (const void *)Logger::FormatException((char)&ArgList, (int)aLockBackBuffer, (int)aDProjectPal3Ef, 39),
+      (Logger *->FormatException()ArgList, aLockBackBuffer, aDProjectPal3Ef, 39),
       sizeof(pExceptionObject));
     _CxxThrowException(pExceptionObject, (_ThrowInfo *)&_TI1_AV_Exception__);
   }
-  (*(void (**)(int))(*(_DWORD *)g_pGfxManager + 88))(g_pGfxManager);
-  (*(void (**)(_DWORD *, int, int, int))(*((_DWORD *)this + 25) + 12))(
-    this + 25,
-    MEMORY[0xBFD6D0],
-    MEMORY[0xBFD6D4],
+  (*(void (**)(int))(*(_DWORD *)g_Input.KeyInfo[177].Data + 88))(g_Input.KeyInfo[177].Data);
+  (*(void (**)(int *, int, int, int))(this->m_Texture.nLevels + 12))(
+    &this->m_Texture.nLevels,
+    g_Input.KeyInfo[120].Data,
+    g_Input.KeyInfo[120].HoldTime,
     v4);
-  result = (*(int (**)(_DWORD *, int, int, int))(*((_DWORD *)this + 1) + 12))(this + 1, 512, 512, v4);
-  *this = 0;
-  *((_DWORD *)this + 49) = 0;
+  result = (*(int (**)(gbTexture_D3D *, int, int, int))(this->m_Texture.RefCount + 12))(
+             &this->m_Texture,
+             512,
+             512,
+             v4);
+  this->m_iMode = 0;
+  this->m_ScreenPlane.InFmt.a_mask = 0;
   return result;
 }
 
@@ -48,76 +55,76 @@ void RenderTarget::OnDeviceLost(int a2)
 {
   int v2; // eax
 
-  if ( *((_DWORD *)this + 49) != 1 )
+  if ( this->m_ScreenPlane.InFmt.a_mask != 1 )
   {
     v2 = a2;
-    if ( (a2 == 1 || a2 == 2) && !*((_DWORD *)this + 46) )
+    if ( (a2 == 1 || a2 == 2) && !this->m_ScreenPlane.InFmt.r_mask )
       v2 = 0;
-    *this = v2;
+    this->m_iMode = v2;
   }
 }
 
 // 0x004BDC40
 bool RenderTarget::OnResetDevice(int a2)
 {
-  int v4; // ecx
+  BOOL v3; // eax
+  int m_iMode; // ecx
   int v5; // esi
-  int *v6; // [esp+28h] [ebp-10h] BYREF
-  int v7; // [esp+34h] [ebp-4h]
 
-  v6 = this;
-  if ( *((_DWORD *)this + 49) == 1 )
-    return 0;
-  *((_DWORD *)this + 49) = 1;
-  v4 = *this;
-  v5 = 0;
-  if ( !*this )
+  if ( this->m_ScreenPlane.InFmt.a_mask != 1 )
   {
-    v5 = (*(int (**)(int, int *))(*(_DWORD *)g_pGfxManager + 92))(g_pGfxManager, this + 1);
-    (gbCamera *->SetDimention()(g_pCamera + 4), 512, 384);
-    CameraCtrl::SetAsCurrent(g_pCamera, 3);
-LABEL_8:
-    if ( v5 )
+    this->m_ScreenPlane.InFmt.a_mask = 1;
+    m_iMode = this->m_iMode;
+    v5 = 0;
+    if ( this->m_iMode )
     {
-      if ( (_BYTE)a2 )
-      {
-        (*(void (__stdcall **)(_DWORD, _DWORD, _DWORD, int, int, int, _DWORD))(**(_DWORD **)(g_pGfxManager + 1816)
-                                                                             + 172))(
-          *(_DWORD *)(g_pGfxManager + 1816),
-          0,
-          0,
-          3,
-          -16777216,
-          1065353216,
-          0);
-        (*(void (**)(int))(*(_DWORD *)g_pGfxManager + 48))(g_pGfxManager);
-        PushMatrixStacks(&v6);
-        v7 = 0;
-        a2 = -16777216;
-        _TextureLib_Data::~_TextureLib_Data(0, 0, 512, 512, &a2);
-        (*(void (**)(int))(*(_DWORD *)g_pGfxManager + 52))(g_pGfxManager);
-        v7 = -1;
-        PopMatrixStacks(&v6);
-      }
+      if ( m_iMode <= 0 || m_iMode > 2 )
+        return v5 != 0;
+      v5 = (*(int (**)(int, int *))(*(_DWORD *)g_Input.KeyInfo[177].Data + 92))(
+             g_Input.KeyInfo[177].Data,
+             &this->m_Texture.nLevels);
+    }
+    else
+    {
+      v5 = (*(int (**)(int, gbTexture_D3D *))(*(_DWORD *)g_Input.KeyInfo[177].Data + 92))(
+             g_Input.KeyInfo[177].Data,
+             &this->m_Texture);
+      (gbCamera *->SetDimention()(g_Input.KeyInfo[177].CountMode + 4), 512, 384);
+      (CameraCtrl *->SetAsCurrent()g_Input.KeyInfo[177].CountMode, 3);
+    }
+    if ( v5 && (_BYTE)a2 )
+    {
+      (*(void (__stdcall **)(_DWORD, _DWORD, _DWORD, int, int, int, _DWORD))(**(_DWORD **)(g_Input.KeyInfo[177].Data
+                                                                                         + 1816)
+                                                                           + 172))(
+        *(_DWORD *)(g_Input.KeyInfo[177].Data + 1816),
+        0,
+        0,
+        3,
+        -16777216,
+        1065353216,
+        0);
+      (*(void (**)(int))(*(_DWORD *)g_Input.KeyInfo[177].Data + 48))(g_Input.KeyInfo[177].Data);
+      PushMatrixStacks();
+      a2 = -16777216;
+      _TextureLib_Data::~_TextureLib_Data(0, 0, 512, 512, (float *)&a2);
+      (*(void (**)(int))(*(_DWORD *)g_Input.KeyInfo[177].Data + 52))(g_Input.KeyInfo[177].Data);
+      PopMatrixStacks();
     }
     return v5 != 0;
   }
-  if ( v4 > 0 && v4 <= 2 )
-  {
-    v5 = (*(int (**)(int, int *))(*(_DWORD *)g_pGfxManager + 92))(g_pGfxManager, this + 25);
-    goto LABEL_8;
-  }
-  return v5 != 0;
+  LOBYTE(v3) = 0;
+  return v3;
 }
 
 // 0x004BDF10
 _DWORD * RenderTarget::Destroy()
 {
-  *((_DWORD *)this + 1) = 0;
-  * this = (*)&off_56F4F0;
-  *((_DWORD *)this + 2) = 1;
-  *((_DWORD *)this + 4) = 0;
-  *((_DWORD *)this + 3) = 0;
-  *((_BYTE *)this + 20) = 0;
-  return this;
+  this->m_Texture.RefCount = 0;
+  this->m_iMode = (int)&off_56F4F0;
+  this->m_Texture.pName = (char *)1;
+  this->m_Texture.IsLoaded = 0;
+  this->m_Texture.NameCrc32 = 0;
+  LOBYTE(this->m_Texture.pMgr) = 0;
+  return &this->m_iMode;
 }

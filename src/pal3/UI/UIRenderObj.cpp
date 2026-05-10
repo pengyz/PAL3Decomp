@@ -48,7 +48,9 @@ UIRenderObj::UIRenderObj(int _this)
 UIRenderObj::~UIRenderObj(unsigned __int8 a2)
 {
   if ( !*((_BYTE *)UIQuadManager::GetInstance() + 29) )
-    return (*(int (**)(int, _DWORD))(*(_DWORD *)g_pGfxManager + 104))(g_pGfxManager, a2);
-  *((_DWORD *)this + 28) = a2;
+    return (*(unsigned __int8 (**)(int, _DWORD))(*(_DWORD *)g_Input.KeyInfo[177].Data + 104))(
+             g_Input.KeyInfo[177].Data,
+             a2);
+  *((_BYTE *)this + 28) = a2;
   return a2;
 }

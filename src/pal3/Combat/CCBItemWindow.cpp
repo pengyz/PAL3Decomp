@@ -19,31 +19,31 @@ extern void *off_570218;
 extern void *off_570554;
 
 // 0x0051B160
-CCBItemWindow::CCBItemWindow(UIWnd *Block, char a2)
+CCBItemWindow::CCBItemWindow(CCBItemWindow *Block, char a2)
 {
-  UIWnd::~UIWnd(Block);
+  UIWnd::~UIWnd((UIWnd *)Block);
   if ( (a2 & 1) != 0 )
     operator delete(Block);
-  return Block;
+  return (UIWnd *)Block;
 }
 
 // 0x0051B1D0
 int CCBItemWindow::Reset()
 {
-  *((_DWORD *)this + 18) = 0;
-  *((_DWORD *)this + 19) = 0;
-  *((_DWORD *)this + 20) = 0;
-  *((_DWORD *)this + 21) = 0;
-  *((_DWORD *)this + 22) = 0;
-  *((_DWORD *)this + 23) = 0;
-  *((_DWORD *)this + 24) = 0;
-  *((_DWORD *)this + 25) = 0;
-  *((_DWORD *)this + 26) = 0;
-  *((_DWORD *)this + 27) = 0;
-  *((_DWORD *)this + 28) = 0;
-  *((_DWORD *)this + 29) = 0;
-  *((_DWORD *)this + 30) = 0;
-  *((_DWORD *)this + 31) = -1;
+  this->m_childs.m_pData = 0;
+  this->m_childs.m_nSize = 0;
+  this->m_childs.m_nMaxSize = 0;
+  this->m_childs.m_nGrowBy = 0;
+  this->m_bcreateok = 0;
+  this->m_bvisible = 0;
+  this->m_benable = 0;
+  this->m_bfocus = 0;
+  this->m_pbktex = 0;
+  this->m_pBack = 0;
+  this->m_pDescription = 0;
+  this->m_pItemList[0] = 0;
+  this->m_pItemList[1] = 0;
+  this->m_pItemList[2] = (UIListBox *)-1;
   return 0;
 }
 
@@ -269,8 +269,11 @@ int CCBItemWindow::Destroy(int _this)
 // 0x0051B570
 BOOL CCBItemWindow::HandleInput(int a2, int a3)
 {
-  if ( *((_DWORD *)this + 14) == 1 && (MEMORY[0xBFC6F4] == 1 && (MEMORY[0xBFC6E8] & 0xF) == 1 || MEMORY[0xBFC704] == 1) )
-    CCBUI::SetParam(*(_DWORD *)(*(_DWORD *)(*((_DWORD *)this + 8) + 1160) + 8), 214, -1, 0);
+  if ( this->m_rect.top == 1
+    && (g_Input.m_DIKToKEY[1] == 1 && (g_Input.m_shiftedKeyStates[268] & 0xF) == 1 || g_Input.m_DIKToKEY[5] == 1) )
+  {
+    CCBUI::SetParam(*(CCBUI **)(*(_DWORD *)(this->m_wndcolor.Green + 1160) + 8), 214, -1);
+  }
   return this->HitTest(a2, a3);
 }
 
@@ -278,22 +281,22 @@ BOOL CCBItemWindow::HandleInput(int a2, int a3)
 int CCBItemWindow::OnMessage(int a2)
 {
   int v3; // edi
-  void (****v4)(_DWORD, int); // esi
+  int *p_m_nSize; // esi
   void (***v5)(_DWORD, int); // ecx
 
   if ( a2 == 1 )
   {
     v3 = 0;
-    v4 = (void (****)(_DWORD, int))(this + 19);
+    p_m_nSize = (int *)&this->m_childs.m_nSize;
     do
     {
-      v5 = *v4;
-      if ( *((_DWORD *)this + 31) == v3 )
+      v5 = (void (***)(_DWORD, int))*p_m_nSize;
+      if ( this->m_pItemList[2] == (UIListBox *)v3 )
         (**v5)(v5, 1);
       else
         (**v5)(v5, 0);
       ++v3;
-      ++v4;
+      ++p_m_nSize;
     }
     while ( v3 < 5 );
   }
@@ -303,17 +306,17 @@ int CCBItemWindow::OnMessage(int a2)
 // 0x0051B620
 _DWORD * CCBItemWindow::Update()
 {
-  this->UIListBox();
-  * this = (*)&off_570554;
+  (UIListBox *->UIListBox()this);
+  this->m_fontcolor.ColorQuadFmt = (int)&off_570554;
   sub_51B6E0(this);
-  return this;
+  return &this->m_fontcolor.ColorQuadFmt;
 }
 
 // 0x0051B670
-UIWnd * CCBItemWindow::CreateButtons(UIWnd *Block, char a2)
+UIWnd * CCBItemWindow::CreateButtons(CCBItemWindow *Block, char a2)
 {
-  UIWnd::~UIWnd(Block);
+  UIWnd::~UIWnd((UIWnd *)Block);
   if ( (a2 & 1) != 0 )
     operator delete(Block);
-  return Block;
+  return (UIWnd *)Block;
 }

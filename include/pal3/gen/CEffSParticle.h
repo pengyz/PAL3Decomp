@@ -28,7 +28,7 @@ public:
     int Attach(int a2); // 0x004D53E0
     static void * Update(int a1); // 0x004D5620
     int Render(int a2, int a3, int a4, _DWORD *a5, int a6, int a7); // 0x004D56B0
-    void * SetTimeScale(void *Block, char a2); // 0x004D5790
+    void * SetTimeScale(CEffSParticle *Block, char a2); // 0x004D5790
     char * CreateTask(char a2); // 0x004D5860
     int GetEditorTaskDescription(unsigned __int8 *a2); // 0x004D58D0
 };

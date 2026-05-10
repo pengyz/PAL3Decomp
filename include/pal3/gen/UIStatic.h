@@ -34,6 +34,6 @@ public:
 
     UIStatic(); // 0x00440740
     int OnMessage(); // 0x00440BA0
-    int Update(int a2, int a3); // 0x00440DD0
+    BOOL Update(int a2, int a3); // 0x00440DD0
     int Render(); // 0x00440F30
 };

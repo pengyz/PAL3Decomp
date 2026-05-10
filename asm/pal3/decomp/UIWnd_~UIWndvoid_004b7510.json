@@ -2,6 +2,6 @@
   "name": "UIWnd::~UIWnd(void)",
   "address": "0x004B7510",
   "size_bytes": 79,
-  "signature": "void __thiscall(stdiobuf *this)",
-  "decompiled_c": "void __thiscall stdiobuf::~stdiobuf(stdiobuf *this)\n{\n  *(_DWORD *)this = &off_56F404;\n  sub_4B7AF0();\n  sub_4B6FB0((int)this);\n}\n"
+  "signature": "void __thiscall(UIWnd *this)",
+  "decompiled_c": "void __thiscall UIWnd::~UIWnd(UIWnd *this)\n{\n  this->m_fontcolor.ColorQuadFmt = (int)&off_56F404;\n  sub_4B7AF0((gbRefObject **)this);\n  sub_4B6FB0((int)this);\n}\n"
 }

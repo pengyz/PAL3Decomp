@@ -124,7 +124,7 @@ char * CCBCamControl::SetCircle(int a2)
     10,
     gbVolModNode::gbVolModNode,
     gbVolModNode::~gbVolModNode);
-  v3 = &this->m_CCT[2464];
+  v3 = (char *)&this->m_CCT[2464];
   v4 = 384;
   do
   {
@@ -201,19 +201,19 @@ char CCBCamControl::IsPointerUnderMouse(int _this)
 // 0x00508660
 _DWORD * CCBCamControl::LoadPointer()
 {
-  *((_DWORD *)this + 13) = 0;
-  *((_DWORD *)this + 14) = 0;
-  *((_DWORD *)this + 15) = 0;
-  *((_DWORD *)this + 16) = 0;
-  *((_DWORD *)this + 17) = 0;
-  *((_DWORD *)this + 18) = 0;
+  this->m_CCT.m_Pool[0].StartPos.z = 0.0;
+  this->m_CCT.m_Pool[0].StartPos.fYaw = 0.0;
+  this->m_CCT.m_Pool[0].StartPos.yaw = 0.0;
+  this->m_CCT.m_Pool[0].StartPos.fPitch = 0.0;
+  this->m_CCT.m_Pool[0].StartPos.pit = 0.0;
+  this->m_CCT.m_Pool[0].StartPos.fRoll = 0.0;
   return this;
 }
 
 // 0x00508680
-char CCBCamControl::DoList(gbRefObject **this)
+char CCBCamControl::DoList(CCBCamControl **this)
 {
-  gbRefObject::Release(*((_DWORD *)this + 609));
+  (gbRefObject *->Release()*((_DWORD *)this + 609));
   return 1;
 }
 
@@ -274,25 +274,25 @@ int CCBCamControl::ResetListFlag(int _this)
 // 0x00508880
 int CCBCamControl::KeepCurCam(int a2)
 {
-  _DWORD *v2; // edx
+  float *p_rol; // edx
   int result; // eax
-  _DWORD *i; // esi
+  float *i; // esi
 
-  v2 = this + 611;
+  p_rol = (float *)&this->m_CCT.m_Pool[8].StartPos.rol;
   result = 0;
-  for ( i = this + 611; *i != a2; i += 15 )
+  for ( i = &this->m_CCT.m_Pool[8].StartPos.rol; *(_DWORD *)i != a2; i += 15 )
   {
     if ( ++result >= 384 )
     {
       result = 0;
-      while ( *v2 )
+      while ( *(_DWORD *)p_rol )
       {
         ++result;
-        v2 += 15;
+        p_rol += 15;
         if ( result >= 384 )
           return 0;
       }
-      *(this + 15 * result + 611) = a2;
+      *((_DWORD *)&this->m_CCT.m_Pool[8].StartPos.rol + 15 * result) = a2;
       return result;
     }
   }
@@ -300,10 +300,10 @@ int CCBCamControl::KeepCurCam(int a2)
 }
 
 // 0x005088D0
-int CCBCamControl::DoLineMove(_DWORD **this, unsigned int a2)
+int CCBCamControl::DoLineMove(CCBCamControl **this, unsigned int a2)
 {
   int result; // eax
-  _DWORD **v4; // esi
+  CCBCamControl **v4; // esi
   int v5; // esi
 
   result = a2;
@@ -312,10 +312,10 @@ int CCBCamControl::DoLineMove(_DWORD **this, unsigned int a2)
     v4 = this + 15 * a2;
     result = (int)v4[612];
     if ( result != -1 )
-      result = CEffect::Render(*(int **)(**((_DWORD *)this + 2) + 44), (int)v4[612]);
+      result = CEffect::Render(*((CEffect **)(*((_DWORD *)this + 2))->m_CCT.m_Pool[0].fp + 11), (int)v4[612]);
     v5 = (int)v4[619];
     if ( v5 != -1 )
-      return CEffect::Render(*(int **)(**((_DWORD *)this + 2) + 44), v5);
+      return CEffect::Render(*((CEffect **)(*((_DWORD *)this + 2))->m_CCT.m_Pool[0].fp + 11), v5);
   }
   return result;
 }

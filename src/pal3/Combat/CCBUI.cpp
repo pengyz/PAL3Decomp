@@ -235,7 +235,7 @@ char CCBUI::UpdateDisplay()
     for ( i = 0; i < 4460; i += 892 )
     {
       inited = *(_DWORD *)this->UIFrameWnd;
-      v5 = *(void **)(*(_DWORD *)this->UIFrameWnd + 16);
+      v5 = (void *)*(void **)(*(_DWORD *)this->UIFrameWnd + 16);
       if ( *((_BYTE *)v5 + i + 577) )
       {
         inited = v5->InitUI(v3);
@@ -252,7 +252,7 @@ char CCBUI::UpdateDisplay()
     v7 = 0;
     while ( 1 )
     {
-      v8 = *(void **)(*(_DWORD *)this->UIFrameWnd + 16);
+      v8 = (void *)*(void **)(*(_DWORD *)this->UIFrameWnd + 16);
       if ( *((_BYTE *)v8 + v7 + 577) )
       {
         inited = v8->InitUI(v6);
@@ -397,21 +397,21 @@ char CCBUI::UpdateState()
 }
 
 // 0x00517650
-CCBUI::~CCBUI(gbRefObject ***this)
+CCBUI::~CCBUI(CCBUI ***this)
 {
-  _BYTE *v2; // eax
-  gbRefObject **v3; // eax
+  UIFrameWnd *v2; // eax
+  CCBUI **v3; // eax
   _DWORD *v5; // esi
-  gbRefObject ***i; // edi
-  _BYTE *v7; // eax
-  gbRefObject **v8; // eax
+  CCBUI ***i; // edi
+  UIFrameWnd *v7; // eax
+  CCBUI **v8; // eax
   int v9; // [esp+10h] [ebp-1Ch] BYREF
   int v10; // [esp+14h] [ebp-18h]
   int v11; // [esp+18h] [ebp-14h]
   int v12; // [esp+1Ch] [ebp-10h]
   int v13; // [esp+28h] [ebp-4h]
 
-  v2 = operator new(0x98u);
+  v2 = (UIFrameWnd *)operator new(0x98u);
   v13 = 0;
   if ( v2 )
     v2->UIFrameWnd();
@@ -425,16 +425,16 @@ CCBUI::~CCBUI(gbRefObject ***this)
     v10 = 10;
     v11 = 803;
     v12 = 42;
-    ((void (*)(gbRefObject **, int, int *, gbRefObject ***))(*v3)[4].RefCount)(v3, 1, &v9, this);
+    ((void (*)(CCBUI **, int, int *, CCBUI ***))(*v3)->m_fontcolor.Alpha)(v3, 1, &v9, this);
     UIWnd::CreateFromTemplate(*((_DWORD *)this + 18), aUiCombatAttack_0, 0);
     v9 = 480;
     v11 = 544;
     v10 = 8;
     v12 = 72;
-    v5 = &unk_5700E8;
+    v5 = (_DWORD *)&unk_5700E8;
     for ( i = this + 19; ; ++i )
     {
-      v7 = operator new(0x98u);
+      v7 = (UIFrameWnd *)operator new(0x98u);
       v13 = 1;
       if ( v7 )
         v7->UIFrameWnd();
@@ -444,7 +444,7 @@ CCBUI::~CCBUI(gbRefObject ***this)
       *i = v8;
       if ( !v8 )
         break;
-      ((void (*)(gbRefObject **, _DWORD, int *, gbRefObject ***))(*v8)[4].RefCount)(v8, *v5, &v9, this);
+      ((void (*)(CCBUI **, _DWORD, int *, CCBUI ***))(*v8)->m_fontcolor.Alpha)(v8, *v5, &v9, this);
       UIWnd::CreateFromTemplate(*i, aUiCombatAttack_1, 0);
       if ( (int)++v5 >= (int)dword_570114 )
         return 1;
@@ -454,44 +454,44 @@ CCBUI::~CCBUI(gbRefObject ***this)
 }
 
 // 0x005177B0
-char CCBUI::Reset(gbRefObject ***this)
+char CCBUI::Reset(CCBUI ***this)
 {
-  _BYTE *v2; // eax
-  int v3; // eax
-  _BYTE *v4; // eax
-  int v5; // eax
-  _BYTE *v6; // eax
-  gbRefObject **v7; // eax
+  int v2; // eax
+  CCBUI **v3; // eax
+  int v4; // eax
+  CCBUI **v5; // eax
+  UIFrameWnd *v6; // eax
+  CCBUI **v7; // eax
   int v8; // ecx
   int v9; // ecx
-  int v11; // [esp+2Ch] [ebp-824h] BYREF
+  int id; // [esp+2Ch] [ebp-824h] BYREF
   int v12; // [esp+30h] [ebp-820h] BYREF
   int v13; // [esp+34h] [ebp-81Ch]
   int v14; // [esp+38h] [ebp-818h]
   int v15; // [esp+3Ch] [ebp-814h]
-  _BYTE *v16; // [esp+40h] [ebp-810h]
+  UIFrameWnd *v16; // [esp+40h] [ebp-810h]
   char pExceptionObject[1024]; // [esp+44h] [ebp-80Ch] BYREF
-  char ArgList; // [esp+444h] [ebp-40Ch] BYREF
+  char ArgList[1024]; // [esp+444h] [ebp-40Ch] BYREF
   int v19; // [esp+84Ch] [ebp-4h]
 
-  v11 = -1;
+  id = -1;
   v2 = operator new(0x9Cu);
-  v16 = v2;
+  v16 = (UIFrameWnd *)v2;
   v19 = 0;
   if ( v2 )
-    v3 = sub_442D00((int)v2);
+    v3 = (CCBUI **)sub_442D00(v2);
   else
     v3 = 0;
-  *((_DWORD *)this + 268) = (gbRefObject **)v3;
+  *((_DWORD *)this + 268) = v3;
   v4 = operator new(0x9Cu);
-  v16 = v4;
+  v16 = (UIFrameWnd *)v4;
   v19 = 1;
   if ( v4 )
-    v5 = sub_442D00((int)v4);
+    v5 = (CCBUI **)sub_442D00(v4);
   else
     v5 = 0;
-  *((_DWORD *)this + 269) = (gbRefObject **)v5;
-  v6 = operator new(0x98u);
+  *((_DWORD *)this + 269) = v5;
+  v6 = (UIFrameWnd *)operator new(0x98u);
   v16 = v6;
   v19 = 2;
   if ( v6 )
@@ -505,7 +505,7 @@ char CCBUI::Reset(gbRefObject ***this)
   {
     qmemcpy(
       pExceptionObject,
-      (const void *)Logger::FormatException((char)&ArgList, (int)aCNewFailed_0, (int)aDProjectPal3Co_12, 719),
+      (Logger *->FormatException()ArgList, aCNewFailed_0, aDProjectPal3Co_12, 719),
       sizeof(pExceptionObject));
     _CxxThrowException(pExceptionObject, (_ThrowInfo *)&_TI1_AV_Exception__);
   }
@@ -513,31 +513,31 @@ char CCBUI::Reset(gbRefObject ***this)
   v13 = 30;
   v14 = 461;
   v15 = 87;
-  (*(void (**)(int, int, int *, gbRefObject ***))(*(_DWORD *)v8 + 16))(v8, 784, &v12, this);
+  (*(void (**)(int, int, int *, CCBUI ***))(*(_DWORD *)v8 + 16))(v8, 784, &v12, this);
   UIWnd::CreateFromTemplate(*((_DWORD *)this + 268), aUiCombatTrickn, 0);
-  UIWnd::SetShow(*((_DWORD *)this + 268), 1);
-  UIWnd::GetChild(*((_DWORD *)this + 268), &v11);
-  ((void (*)(_DWORD, _DWORD))(**((_DWORD *)this + 268))->RefCount)(*((_DWORD *)this + 268), 0);
-  ((void (*)(_DWORD, int, int *, gbRefObject ***))(**((_DWORD *)this + 269))[4].RefCount)(
+  (UIWnd *->SetShow()*((_DWORD *)this + 268), 1);
+  (UIWnd *->GetChild()*((_DWORD *)this + 268), (int)&id);
+  ((void (*)(_DWORD, _DWORD))(**((_DWORD *)this + 268))->m_fontcolor.ColorQuadFmt)(*((_DWORD *)this + 268), 0);
+  ((void (*)(_DWORD, int, int *, CCBUI ***))(**((_DWORD *)this + 269))->m_fontcolor.Alpha)(
     *((_DWORD *)this + 269),
     784,
     &v12,
     this);
   UIWnd::CreateFromTemplate(*((_DWORD *)this + 269), aUiCombatTrickn_0, 0);
-  UIWnd::SetShow(*((_DWORD *)this + 269), 1);
-  UIWnd::GetChild(*((_DWORD *)this + 269), &v11);
-  ((void (*)(_DWORD, _DWORD))(**((_DWORD *)this + 269))->RefCount)(*((_DWORD *)this + 269), 0);
+  (UIWnd *->SetShow()*((_DWORD *)this + 269), 1);
+  (UIWnd *->GetChild()*((_DWORD *)this + 269), (int)&id);
+  ((void (*)(_DWORD, _DWORD))(**((_DWORD *)this + 269))->m_fontcolor.ColorQuadFmt)(*((_DWORD *)this + 269), 0);
   v9 = (int)*((_DWORD *)this + 270);
   v12 = 100;
   v13 = 100;
   v14 = 356;
   v15 = 228;
-  (*(void (**)(int, int, int *, gbRefObject ***))(*(_DWORD *)v9 + 16))(v9, 1024, &v12, this);
+  (*(void (**)(int, int, int *, CCBUI ***))(*(_DWORD *)v9 + 16))(v9, 1024, &v12, this);
   UIWnd::CreateFromTemplate(*((_DWORD *)this + 270), aUiCombatDialog, 0);
-  UIWnd::SetShow(*((_DWORD *)this + 270), 1);
-  UIWnd::GetChild(*((_DWORD *)this + 270), &v11);
-  ((void (*)(_DWORD, _DWORD))(**((_DWORD *)this + 270))->RefCount)(*((_DWORD *)this + 270), 0);
-  UIFrameWnd::SetPosition(*((_DWORD *)this + 270), 5, 63);
+  (UIWnd *->SetShow()*((_DWORD *)this + 270), 1);
+  (UIWnd *->GetChild()*((_DWORD *)this + 270), (int)&id);
+  ((void (*)(_DWORD, _DWORD))(**((_DWORD *)this + 270))->m_fontcolor.ColorQuadFmt)(*((_DWORD *)this + 270), 0);
+  (UIFrameWnd *->SetPosition()*((_DWORD *)this + 270), 5, 63);
   sub_442C80(*((_DWORD *)this + 270), 190);
   return 1;
 }
@@ -545,20 +545,27 @@ char CCBUI::Reset(gbRefObject ***this)
 // 0x00517B30
 char CCBUI::CreateCombatPanel()
 {
-  _DWORD *v2; // esi
+  UIProgressBar **v2; // esi
   char result; // al
-  _DWORD v4[4]; // [esp+8h] [ebp-10h] BYREF
+  UIProgressBar *v4; // ecx
+  int v5; // [esp+8h] [ebp-10h] BYREF
+  int v6; // [esp+Ch] [ebp-Ch]
+  int v7; // [esp+10h] [ebp-8h]
+  int v8; // [esp+14h] [ebp-4h]
 
-  v2 = this + 281;
-  result = CCBAIWindow::Update(this + 281);
+  v2 = &this->m_pRoleStateMP[2];
+  result = &this->m_pRoleStateMP[2]->Update();
   if ( result )
   {
-    v4[0] = 2;
-    v4[2] = 251;
-    v4[1] = 278;
-    v4[3] = 484;
-    v4->AddTask(this);
-    (**(void (***)(_DWORD, _DWORD))*v2)(*v2, 0);
+    v6 = 0;
+    v7 = 0;
+    v4 = (UIProgressBar *)*v2;
+    v5 = 2;
+    v7 = 251;
+    v6 = 278;
+    v8 = 484;
+    CCBUI::AddTask((int)v4, &v5, (int)this);
+    (*(void (**)(UIProgressBar *, _DWORD))(*v2)->m_fontcolor.ColorQuadFmt)(*v2, 0);
     return 1;
   }
   return result;
@@ -567,20 +574,29 @@ char CCBUI::CreateCombatPanel()
 // 0x00517C10
 char CCBUI::CreateAttackSequen()
 {
-  _DWORD *v2; // esi
+  UIProgressBar **p_m_pRoleStateSword; // esi
   char result; // al
-  _DWORD v4[4]; // [esp+8h] [ebp-10h] BYREF
+  UIProgressBar *v4; // ecx
+  int v5; // [esp+8h] [ebp-10h] BYREF
+  int v6; // [esp+Ch] [ebp-Ch]
+  int v7; // [esp+10h] [ebp-8h]
+  int v8; // [esp+14h] [ebp-4h]
 
-  v2 = this + 283;
-  result = CCBLineupWindow::CCBLineupWindow(this + 283);
+  p_m_pRoleStateSword = &this->m_pRoleStateSword;
+  result = &this->m_pRoleStateSword->CCBLineupWindow();
   if ( result )
   {
-    v4[0] = 14;
-    v4[2] = 172;
-    v4[1] = 316;
-    v4[3] = 474;
-    v4->Create(this);
-    (**(void (***)(_DWORD, _DWORD))*v2)(*v2, 0);
+    v6 = 0;
+    v7 = 0;
+    v4 = (UIProgressBar *)*p_m_pRoleStateSword;
+    v5 = 14;
+    v7 = 172;
+    v6 = 316;
+    v8 = 474;
+    CCBItemWindow::Create((int)v4, &v5, (int)this);
+    (*(void (**)(UIProgressBar *, _DWORD))(*p_m_pRoleStateSword)->m_fontcolor.ColorQuadFmt)(
+      *p_m_pRoleStateSword,
+      0);
     return 1;
   }
   return result;
@@ -589,20 +605,27 @@ char CCBUI::CreateAttackSequen()
 // 0x00517C80
 char CCBUI::CreateBattleFieldAttr()
 {
-  _DWORD *v2; // esi
+  UIStaticCB **p_m_pTrickName; // esi
   char result; // al
-  _DWORD v4[4]; // [esp+8h] [ebp-10h] BYREF
+  CCBParabolaWindow ***v4; // ecx
+  int a2; // [esp+8h] [ebp-10h] BYREF
+  int v6; // [esp+Ch] [ebp-Ch]
+  int v7; // [esp+10h] [ebp-8h]
+  int v8; // [esp+14h] [ebp-4h]
 
-  v2 = this + 284;
-  result = CCBLineupWindow::~CCBLineupWindow(this + 284);
+  p_m_pTrickName = &this->m_pTrickName;
+  result = CCBLineupWindow::~CCBLineupWindow(&this->m_pTrickName);
   if ( result )
   {
-    v4[0] = 9;
-    v4[2] = 239;
-    v4[1] = 232;
-    v4[3] = 482;
-    v4->CCBParabolaWindow(this);
-    (**(void (***)(_DWORD, _DWORD))*v2)(*v2, 0);
+    v6 = 0;
+    v7 = 0;
+    v4 = (CCBParabolaWindow ***)*p_m_pTrickName;
+    a2 = 9;
+    v7 = 239;
+    v6 = 232;
+    v8 = 482;
+    v4->CCBParabolaWindow(&a2, (int)this);
+    (*(void (**)(UIStaticCB *, _DWORD))(*p_m_pTrickName)->m_fontcolor.ColorQuadFmt)(*p_m_pTrickName, 0);
     return 1;
   }
   return result;
@@ -612,25 +635,27 @@ char CCBUI::CreateBattleFieldAttr()
 char CCBUI::CreateControlWindow()
 {
   int v1; // esi
-  _DWORD *i; // edi
-  int v5; // [esp+Ch] [ebp-10h] BYREF
-  int v6; // [esp+10h] [ebp-Ch]
-  int v7; // [esp+14h] [ebp-8h]
-  int v8; // [esp+18h] [ebp-4h]
+  UIStatic **i; // edi
+  UIStatic *v4; // ecx
+  int v6; // [esp+Ch] [ebp-10h] BYREF
+  int v7; // [esp+10h] [ebp-Ch]
+  int v8; // [esp+14h] [ebp-8h]
+  int v9; // [esp+18h] [ebp-4h]
 
   v1 = 0;
-  v6 = 0;
   v7 = 0;
-  v5 = 0;
   v8 = 0;
-  for ( i = this + 286; (unsigned __int8)i->Create(); ++i )
+  v6 = 0;
+  v9 = 0;
+  for ( i = &this->m_pDialogBack; i->Create(); ++i )
   {
-    v7 = v1 + 256;
-    v5 = v1;
-    v6 = 0;
-    v8 = 256;
-    CCBSkillWindow::Create(&v5, this);
-    (**(void (***)(_DWORD, _DWORD))*i)(*i, 0);
+    v8 = v1 + 256;
+    v4 = (UIStatic *)*i;
+    v6 = v1;
+    v7 = 0;
+    v9 = 256;
+    CCBSkillWindow::Create((int)v4, &v6, (int)this);
+    (*(void (**)(UIStatic *, _DWORD))(*i)->m_fontcolor.ColorQuadFmt)(*i, 0);
     v1 += 200;
     if ( v1 >= 800 )
       return 1;
@@ -639,26 +664,26 @@ char CCBUI::CreateControlWindow()
 }
 
 // 0x00517DF0
-char CCBUI::CreateItemWindow(gbRefObject ***this)
+char CCBUI::CreateItemWindow(CCBUI ***this)
 {
-  gbRefObject ***v2; // edi
+  CCBUI ***v2; // edi
   char result; // al
-  gbRefObject **v4; // ecx
-  gbRefObject ***v5; // edi
-  gbRefObject **v6; // ecx
-  gbRefObject ***v7; // edi
-  gbRefObject **v8; // ecx
-  gbRefObject ***v9; // edi
-  gbRefObject **v10; // ecx
-  gbRefObject ***v11; // edi
-  gbRefObject **v12; // ecx
-  gbRefObject ***v13; // edi
-  gbRefObject **v14; // ecx
-  gbRefObject ***v15; // edi
-  gbRefObject **v16; // ecx
-  gbRefObject ***v17; // edi
-  gbRefObject **v18; // ecx
-  int v19; // [esp+7Ch] [ebp-14h] BYREF
+  UIWnd **v4; // ecx
+  CCBUI ***v5; // edi
+  UIWnd **v6; // ecx
+  CCBUI ***v7; // edi
+  UIWnd **v8; // ecx
+  CCBUI ***v9; // edi
+  UIWnd **v10; // ecx
+  CCBUI ***v11; // edi
+  UIWnd **v12; // ecx
+  CCBUI ***v13; // edi
+  UIWnd **v14; // ecx
+  CCBUI ***v15; // edi
+  UIWnd **v16; // ecx
+  CCBUI ***v17; // edi
+  UIWnd **v18; // ecx
+  int id; // [esp+7Ch] [ebp-14h] BYREF
   int v20; // [esp+80h] [ebp-10h] BYREF
   int v21; // [esp+84h] [ebp-Ch]
   int v22; // [esp+88h] [ebp-8h]
@@ -669,7 +694,7 @@ char CCBUI::CreateItemWindow(gbRefObject ***this)
   v22 = 0;
   v20 = 0;
   v23 = 0;
-  v19 = -1;
+  id = -1;
   result = CCBAIWindow::Reset(this + 271);
   if ( result )
   {
@@ -678,11 +703,11 @@ char CCBUI::CreateItemWindow(gbRefObject ***this)
     v22 = 516;
     v21 = 268;
     v23 = 332;
-    ((void (*)(gbRefObject **, int, int *, gbRefObject ***))(*v4)[4].RefCount)(v4, 531, &v20, this);
+    ((void (*)(UIWnd **, int, int *, CCBUI ***))(*v4)->m_fontcolor.Alpha)(v4, 531, &v20, this);
     UIWnd::CreateFromTemplate(*v2, aUiCombatResult_6, 0);
-    UIWnd::SetShow(*v2, 1);
-    UIWnd::GetChild(*v2, &v19);
-    ((void (*)(gbRefObject **, _DWORD))(**v2)->RefCount)(*v2, 0);
+    (UIWnd *->SetShow()*v2, 1);
+    (UIWnd *->GetChild()*v2, (int)&id);
+    ((void (*)(CCBUI **, _DWORD))(**v2)->m_fontcolor.ColorQuadFmt)(*v2, 0);
     v5 = this + 272;
     result = CCBAIWindow::Reset(this + 272);
     if ( result )
@@ -692,11 +717,11 @@ char CCBUI::CreateItemWindow(gbRefObject ***this)
       v22 = 551;
       v21 = 263;
       v23 = 337;
-      ((void (*)(gbRefObject **, int, int *, gbRefObject ***))(*v6)[4].RefCount)(v6, 533, &v20, this);
+      ((void (*)(UIWnd **, int, int *, CCBUI ***))(*v6)->m_fontcolor.Alpha)(v6, 533, &v20, this);
       UIWnd::CreateFromTemplate(*v5, aUiCombatResult_8, 0);
-      UIWnd::SetShow(*v5, 1);
-      UIWnd::GetChild(*v5, &v19);
-      ((void (*)(gbRefObject **, _DWORD))(**v5)->RefCount)(*v5, 0);
+      (UIWnd *->SetShow()*v5, 1);
+      (UIWnd *->GetChild()*v5, (int)&id);
+      ((void (*)(CCBUI **, _DWORD))(**v5)->m_fontcolor.ColorQuadFmt)(*v5, 0);
       v7 = this + 273;
       result = CCBAIWindow::Reset(this + 273);
       if ( result )
@@ -706,11 +731,11 @@ char CCBUI::CreateItemWindow(gbRefObject ***this)
         v22 = 551;
         v21 = 263;
         v23 = 337;
-        ((void (*)(gbRefObject **, int, int *, gbRefObject ***))(*v8)[4].RefCount)(v8, 534, &v20, this);
+        ((void (*)(UIWnd **, int, int *, CCBUI ***))(*v8)->m_fontcolor.Alpha)(v8, 534, &v20, this);
         UIWnd::CreateFromTemplate(*v7, aUiCombatResult_9, 0);
-        UIWnd::SetShow(*v7, 1);
-        UIWnd::GetChild(*v7, &v19);
-        ((void (*)(gbRefObject **, _DWORD))(**v7)->RefCount)(*v7, 0);
+        (UIWnd *->SetShow()*v7, 1);
+        (UIWnd *->GetChild()*v7, (int)&id);
+        ((void (*)(CCBUI **, _DWORD))(**v7)->m_fontcolor.ColorQuadFmt)(*v7, 0);
         v9 = this + 274;
         result = CCBAIWindow::Reset(this + 274);
         if ( result )
@@ -720,11 +745,11 @@ char CCBUI::CreateItemWindow(gbRefObject ***this)
           v22 = 551;
           v21 = 263;
           v23 = 337;
-          ((void (*)(gbRefObject **, int, int *, gbRefObject ***))(*v10)[4].RefCount)(v10, 535, &v20, this);
+          ((void (*)(UIWnd **, int, int *, CCBUI ***))(*v10)->m_fontcolor.Alpha)(v10, 535, &v20, this);
           UIWnd::CreateFromTemplate(*v9, aUiCombatResult_10, 0);
-          UIWnd::SetShow(*v9, 1);
-          UIWnd::GetChild(*v9, &v19);
-          ((void (*)(gbRefObject **, _DWORD))(**v9)->RefCount)(*v9, 0);
+          (UIWnd *->SetShow()*v9, 1);
+          (UIWnd *->GetChild()*v9, (int)&id);
+          ((void (*)(CCBUI **, _DWORD))(**v9)->m_fontcolor.ColorQuadFmt)(*v9, 0);
           v11 = this + 275;
           result = CCBAIWindow::Reset(this + 275);
           if ( result )
@@ -734,11 +759,11 @@ char CCBUI::CreateItemWindow(gbRefObject ***this)
             v22 = 551;
             v21 = 263;
             v23 = 337;
-            ((void (*)(gbRefObject **, int, int *, gbRefObject ***))(*v12)[4].RefCount)(v12, 536, &v20, this);
+            ((void (*)(UIWnd **, int, int *, CCBUI ***))(*v12)->m_fontcolor.Alpha)(v12, 536, &v20, this);
             UIWnd::CreateFromTemplate(*v11, aUiCombatResult_11, 0);
-            UIWnd::SetShow(*v11, 1);
-            UIWnd::GetChild(*v11, &v19);
-            ((void (*)(gbRefObject **, _DWORD))(**v11)->RefCount)(*v11, 0);
+            (UIWnd *->SetShow()*v11, 1);
+            (UIWnd *->GetChild()*v11, (int)&id);
+            ((void (*)(CCBUI **, _DWORD))(**v11)->m_fontcolor.ColorQuadFmt)(*v11, 0);
             v13 = this + 276;
             result = CCBAIWindow::Reset(this + 276);
             if ( result )
@@ -748,15 +773,11 @@ char CCBUI::CreateItemWindow(gbRefObject ***this)
               v22 = 551;
               v21 = 263;
               v23 = 337;
-              ((void (*)(gbRefObject **, int, int *, gbRefObject ***))(*v14)[4].RefCount)(
-                v14,
-                538,
-                &v20,
-                this);
+              ((void (*)(UIWnd **, int, int *, CCBUI ***))(*v14)->m_fontcolor.Alpha)(v14, 538, &v20, this);
               UIWnd::CreateFromTemplate(*v13, aUiCombatResult_12, 0);
-              UIWnd::SetShow(*v13, 1);
-              UIWnd::GetChild(*v13, &v19);
-              ((void (*)(gbRefObject **, _DWORD))(**v13)->RefCount)(*v13, 0);
+              (UIWnd *->SetShow()*v13, 1);
+              (UIWnd *->GetChild()*v13, (int)&id);
+              ((void (*)(CCBUI **, _DWORD))(**v13)->m_fontcolor.ColorQuadFmt)(*v13, 0);
               v15 = this + 277;
               result = CCBAIWindow::Reset(this + 277);
               if ( result )
@@ -766,15 +787,11 @@ char CCBUI::CreateItemWindow(gbRefObject ***this)
                 v22 = 551;
                 v21 = 263;
                 v23 = 337;
-                ((void (*)(gbRefObject **, int, int *, gbRefObject ***))(*v16)[4].RefCount)(
-                  v16,
-                  539,
-                  &v20,
-                  this);
+                ((void (*)(UIWnd **, int, int *, CCBUI ***))(*v16)->m_fontcolor.Alpha)(v16, 539, &v20, this);
                 UIWnd::CreateFromTemplate(*v15, aUiCombatResult_13, 0);
-                UIWnd::SetShow(*v15, 1);
-                UIWnd::GetChild(*v15, &v19);
-                ((void (*)(gbRefObject **, _DWORD))(**v15)->RefCount)(*v15, 0);
+                (UIWnd *->SetShow()*v15, 1);
+                (UIWnd *->GetChild()*v15, (int)&id);
+                ((void (*)(CCBUI **, _DWORD))(**v15)->m_fontcolor.ColorQuadFmt)(*v15, 0);
                 v17 = this + 278;
                 result = CCBAIWindow::Reset(this + 278);
                 if ( result )
@@ -784,15 +801,15 @@ char CCBUI::CreateItemWindow(gbRefObject ***this)
                   v22 = 579;
                   v21 = 255;
                   v23 = 345;
-                  ((void (*)(gbRefObject **, int, int *, gbRefObject ***))(*v18)[4].RefCount)(
+                  ((void (*)(UIWnd **, int, int *, CCBUI ***))(*v18)->m_fontcolor.Alpha)(
                     v18,
                     532,
                     &v20,
                     this);
                   UIWnd::CreateFromTemplate(*v17, aUiCombatResult_7, 0);
-                  UIWnd::SetShow(*v17, 1);
-                  UIWnd::GetChild(*v17, &v19);
-                  ((void (*)(gbRefObject **, _DWORD))(**v17)->RefCount)(*v17, 0);
+                  (UIWnd *->SetShow()*v17, 1);
+                  (UIWnd *->GetChild()*v17, (int)&id);
+                  ((void (*)(CCBUI **, _DWORD))(**v17)->m_fontcolor.ColorQuadFmt)(*v17, 0);
                   return 1;
                 }
               }
@@ -949,7 +966,7 @@ int ( *** CCBUI::CreateMagicWindow())(_DWORD, _DWORD)
     (**v13)(v13, 0);
   CCBUI::CreateResultWindow(0);
   v14 = 0;
-  v15 = this + 286;
+  v15 = (_DWORD *)this + 286;
   do
   {
     result = (int (***)(_DWORD, _DWORD))*v15;
@@ -968,32 +985,36 @@ int ( *** CCBUI::CreateMagicWindow())(_DWORD, _DWORD)
 // 0x005184C0
 int CCBUI::CreateSkillWindow(char a2)
 {
-  int (***v2)(_DWORD, int); // ecx
+  UIProgressBar *v2; // ecx
 
-  v2 = (int (***)(_DWORD, int))*((_DWORD *)this + 279);
+  v2 = (UIProgressBar *)this->m_pRoleStateMP[0];
   if ( a2 )
-    return (**v2)(v2, 1);
+    return (*(int (**)(UIProgressBar *, int))v2->m_fontcolor.ColorQuadFmt)(v2, 1);
   else
-    return (**v2)(v2, 0);
+    return (*(int (**)(UIProgressBar *, _DWORD))v2->m_fontcolor.ColorQuadFmt)(v2, 0);
 }
 
 // 0x00518AF0
 int CCBUI::CreateLineupWindow(int a2, char a3)
 {
-  int (***v3)(_DWORD, int); // ecx
+  UIProgressBar *m_pRoleStateSword; // ecx
 
-  *(_DWORD *)(*((_DWORD *)this + 283) + 124) = a2;
-  v3 = (int (***)(_DWORD, int))*((_DWORD *)this + 283);
+  this->m_pRoleStateSword->m_ProgressRc.bottom = a2;
+  m_pRoleStateSword = (UIProgressBar *)this->m_pRoleStateSword;
   if ( a3 )
-    return (**v3)(v3, 1);
+    return (*(int (**)(UIProgressBar *, int))m_pRoleStateSword->m_fontcolor.ColorQuadFmt)(
+             m_pRoleStateSword,
+             1);
   else
-    return (**v3)(v3, 0);
+    return (*(int (**)(UIProgressBar *, _DWORD))m_pRoleStateSword->m_fontcolor.ColorQuadFmt)(
+             m_pRoleStateSword,
+             0);
 }
 
 // 0x00518B20
 char CCBUI::CreateProtectWindow()
 {
-  return *(_BYTE *)(*((_DWORD *)this + 286) + 176);
+  return this->m_pDialogBack->m_nTextW;
 }
 
 // 0x00518B30
@@ -1126,15 +1147,15 @@ int CCBUI::CreateFiveNimbus(int _this, char a2)
 // 0x00518E60
 int CCBUI::HideAll()
 {
-  _DWORD *v1; // esi
+  UIStatic **m_pRoleStateFaceName; // esi
   int v2; // ebx
   int result; // eax
   float v4; // [esp+10h] [ebp-8h]
   int v5; // [esp+14h] [ebp-4h]
 
   HIBYTE(v5) = -1;
-  v4 = sin(*(float *)(*((_DWORD *)this + 290) + 80) * 12.0) * 50.0;
-  v1 = this + 55;
+  v4 = sin(*(float *)&this->m_pResultWaterLvup->m_childs.m_nMaxSize * 12.0) * 50.0;
+  m_pRoleStateFaceName = this->m_pRoleStateFaceName;
   v2 = 4;
   BYTE2(v5) = (int)v4 - 56;
   BYTE1(v5) = BYTE2(v5);
@@ -1160,7 +1181,7 @@ int CCBUI::HideAll()
     v5->UpdateAnim();
     v5->UpdateAnim();
     result = v5->UpdateAnim();
-    ++v1;
+    ++m_pRoleStateFaceName;
     --v2;
   }
   while ( v2 );
@@ -1170,57 +1191,59 @@ int CCBUI::HideAll()
 // 0x00518FE0
 int CCBUI::ShowBattleFieldAttr(int a2)
 {
-  int v2; // esi
-  double v3; // st7
+  UIStatic **v2; // esi
+  UIStatic *m_pResultWaterLvup; // ecx
   double v4; // st6
   double v5; // st7
+  double v6; // st7
 
-  v2 = (int)(this + 18 * *((_DWORD *)this + 657) + 292);
-  if ( !*((_BYTE *)this + 72 * *((_DWORD *)this + 657) + 1185) )
+  v2 = &this->m_pResultEarthLvup + 18 * LODWORD(this->m_Task[21].param.fEndX);
+  if ( !*((_BYTE *)&this->m_pItemWindow + 72 * LODWORD(this->m_Task[21].param.fEndX) + 1) )
   {
-    *(this + 18 * *((_DWORD *)this + 657) + 298) = *(float *)(*((_DWORD *)this + 290) + 80);
-    *(_BYTE *)(v2 + 17) = 1;
+    *((float *)&this->m_pMagicWindow + 18 * LODWORD(this->m_Task[21].param.fEndX)) = *(float *)&this->m_pResultWaterLvup->m_childs.m_nMaxSize;
+    *((_BYTE *)v2 + 17) = 1;
   }
-  v4 = *(float *)(v2 + 28) + *(float *)(v2 + 24);
-  if ( *(float *)(*((_DWORD *)this + 290) + 80) <= v4 )
+  m_pResultWaterLvup = (UIStatic *)this->m_pResultWaterLvup;
+  v4 = *((float *)v2 + 7) + *((float *)v2 + 6);
+  if ( *(float *)&m_pResultWaterLvup->m_childs.m_nMaxSize <= v4 )
     return 0;
-  v3 = *(float *)(*((_DWORD *)this + 290) + 80);
-  v5 = (v3 - v4) * ((v3 - v4) * *(float *)(v2 + 32)) * 0.5 + *(float *)(v2 + 44);
-  if ( v5 > *(float *)(v2 + 52) )
+  v5 = *(float *)&m_pResultWaterLvup->m_childs.m_nMaxSize - v4;
+  v6 = v5 * (v5 * *((float *)v2 + 8)) * 0.5 + *((float *)v2 + 11);
+  if ( v6 > *((float *)v2 + 13) )
   {
-    v5 = *(float *)(v2 + 52);
-    *(_BYTE *)(v2 + 18) = 1;
+    v6 = *((float *)v2 + 13);
+    *((_BYTE *)v2 + 18) = 1;
   }
-  UIWnd::ScreenToClient(*(_DWORD **)(v2 + 36), (__int64)*(float *)(v2 + 40), (__int64)v5);
+  UIWnd::ScreenToClient(v2[9], (__int64)*((float *)v2 + 10), (__int64)v6);
   return 0;
 }
 
 // 0x00519080
 int CCBUI::ShowControlWindow(int a2)
 {
-  int v2; // esi
+  UIStatic **v2; // esi
   double v3; // st6
   float v5; // [esp+8h] [ebp-8h]
   float v6; // [esp+Ch] [ebp-4h]
 
-  v2 = (int)(this + 18 * *((_DWORD *)this + 657) + 292);
-  if ( !*((_BYTE *)this + 72 * *((_DWORD *)this + 657) + 1185) )
+  v2 = &this->m_pResultEarthLvup + 18 * LODWORD(this->m_Task[21].param.fEndX);
+  if ( !*((_BYTE *)&this->m_pItemWindow + 72 * LODWORD(this->m_Task[21].param.fEndX) + 1) )
   {
-    *(this + 18 * *((_DWORD *)this + 657) + 298) = *(float *)(*((_DWORD *)this + 290) + 80);
-    *(_BYTE *)(v2 + 17) = 1;
+    *((float *)&this->m_pMagicWindow + 18 * LODWORD(this->m_Task[21].param.fEndX)) = *(float *)&this->m_pResultWaterLvup->m_childs.m_nMaxSize;
+    *((_BYTE *)v2 + 17) = 1;
   }
-  v3 = *(float *)(v2 + 28) + *(float *)(v2 + 24);
-  if ( *(float *)(*((_DWORD *)this + 290) + 80) <= v3 )
+  v3 = *((float *)v2 + 7) + *((float *)v2 + 6);
+  if ( *(float *)&this->m_pResultWaterLvup->m_childs.m_nMaxSize <= v3 )
     return 0;
-  v6 = (*(float *)(*((_DWORD *)this + 290) + 80) - v3) / *(float *)(v2 + 32);
-  v5 = (*(float *)(v2 + 48) - *(float *)(v2 + 40)) * v6 + *(float *)(v2 + 40);
+  v6 = (*(float *)&this->m_pResultWaterLvup->m_childs.m_nMaxSize - v3) / *((float *)v2 + 8);
+  v5 = (*((float *)v2 + 12) - *((float *)v2 + 10)) * v6 + *((float *)v2 + 10);
   sprintf(byte_17ACB08, "%d", (int)v5);
-  UIWnd::SetEnable(*(_DWORD **)(v2 + 36), byte_17ACB08, 1);
+  UIWnd::SetEnable(v2[9], byte_17ACB08, 1);
   if ( v6 < 1.0 )
     return 0;
-  sprintf(byte_17ACB08, "%d", (int)*(float *)(v2 + 48));
-  UIWnd::SetEnable(*(_DWORD **)(v2 + 36), byte_17ACB08, 1);
-  *(_BYTE *)(v2 + 18) = 1;
+  sprintf(byte_17ACB08, "%d", (int)*((float *)v2 + 12));
+  UIWnd::SetEnable(v2[9], byte_17ACB08, 1);
+  *((_BYTE *)v2 + 18) = 1;
   return 0;
 }
 
@@ -1228,11 +1251,11 @@ int CCBUI::ShowControlWindow(int a2)
 int CCBUI::ShowDialogWindow()
 {
   int v2; // esi
-  char *v3; // edi
+  _BYTE *v3; // edi
   int result; // eax
 
   v2 = 0;
-  v3 = &this->UIFrameWnd[1186];
+  v3 = (char *)&this->m_pItemWindow + 2;
   do
   {
     if ( *(v3 - 2) == 1 && *v3 == 1 )
@@ -1247,80 +1270,89 @@ int CCBUI::ShowDialogWindow()
 // 0x00519230
 char CCBUI::ShowAIWindow(int a2)
 {
-  *((_BYTE *)this + 72 * a2 + 1184) = 0;
-  --*((_DWORD *)this + 656);
+  *((_BYTE *)&this->m_pItemWindow + 72 * a2) = 0;
+  --LODWORD(this->m_Task[21].param.fFromY);
   return 1;
 }
 
 // 0x00519260
-char CCBUI::IsResultWindowClosed(int a2, int a3, int a4, int a5, int a6, int a7, int a8, const void *a9)
+char CCBUI::IsResultWindowClosed(
+        CCBUI *this,
+        int a2,
+        int a3,
+        int a4,
+        int a5,
+        int a6,
+        int a7,
+        int a8,
+        const void *a9)
 {
   int v10; // eax
-  _BYTE *i; // ecx
-  int *v13; // eax
+  CCBItemWindow **i; // ecx
+  char *v13; // eax
 
-  if ( *((_DWORD *)this + 656) >= 19 )
+  if ( SLODWORD(this->m_Task[21].param.fFromY) >= 19 )
     return 0;
   v10 = 0;
-  for ( i = this + 296; *i; i += 72 )
+  for ( i = &this->m_pItemWindow; *(_BYTE *)i; i += 18 )
   {
     if ( ++v10 >= 20 )
       return 0;
   }
-  v13 = this + 18 * v10;
-  *((_BYTE *)v13 + 1184) = 1;
-  *((_BYTE *)v13 + 1185) = 0;
-  *((_BYTE *)v13 + 1186) = 0;
-  v13[299] = a7;
-  v13[300] = a8;
-  v13[297] = a6;
-  qmemcpy(v13 + 301, a9, 0x20u);
-  v13 += 292;
-  *v13 = a2;
-  v13[1] = a3;
-  v13[2] = a4;
-  v13[3] = a5;
-  ++*((_DWORD *)this + 656);
+  v13 = (char *)this + 72 * v10;
+  v13[1184] = 1;
+  v13[1185] = 0;
+  v13[1186] = 0;
+  *((_DWORD *)v13 + 299) = a7;
+  *((_DWORD *)v13 + 300) = a8;
+  *((_DWORD *)v13 + 297) = a6;
+  qmemcpy(v13 + 1204, a9, 0x20u);
+  v13 += 1168;
+  *(_DWORD *)v13 = a2;
+  *((_DWORD *)v13 + 1) = a3;
+  *((_DWORD *)v13 + 2) = a4;
+  *((_DWORD *)v13 + 3) = a5;
+  ++LODWORD(this->m_Task[21].param.fFromY);
   return 1;
 }
 
 // 0x00519360
-UIWnd * CCBUI::ShowLineupWindow(UIWnd *Block, char a2)
+UIWnd * CCBUI::ShowLineupWindow(CCBUI *Block, char a2)
 {
-  UIWnd::~UIWnd(Block);
+  UIWnd::~UIWnd((UIWnd *)Block);
   if ( (a2 & 1) != 0 )
     operator delete(Block);
-  return Block;
+  return (UIWnd *)Block;
 }
 
 // 0x005193D0
 int CCBUI::OnMessage()
 {
-  *((_DWORD *)this + 18) = 0;
-  *((_DWORD *)this + 19) = 0;
-  *((_DWORD *)this + 20) = 0;
-  *((_DWORD *)this + 21) = 0;
-  *((_DWORD *)this + 22) = 0;
-  *((_DWORD *)this + 23) = 0;
-  *((_DWORD *)this + 24) = 0;
-  *((_DWORD *)this + 25) = 0;
-  *((_DWORD *)this + 26) = 0;
-  *((_DWORD *)this + 27) = 0;
-  *((_DWORD *)this + 28) = 0;
+  this->m_childs.m_pData = 0;
+  this->m_childs.m_nSize = 0;
+  this->m_childs.m_nMaxSize = 0;
+  this->m_childs.m_nGrowBy = 0;
+  this->m_bcreateok = 0;
+  this->m_bvisible = 0;
+  this->m_benable = 0;
+  this->m_bfocus = 0;
+  this->m_pbktex = 0;
+  this->m_pAttackSequenBack = 0;
+  this->pPanel = 0;
   return 0;
 }
 
 // 0x00519400
-char CCBUI::CreateImbibeNimbus(int _this, _DWORD *a2, int a3)
+char CCBUI::CreateImbibeNimbus(int _this, _DWORD *pRect, int parent)
 {
-  _BYTE *v4; // eax
+  UIFrameWnd *v4; // eax
   int v5; // eax
   char pExceptionObject[1024]; // [esp+Ch] [ebp-80Ch] BYREF
-  char ArgList; // [esp+40Ch] [ebp-40Ch] BYREF
+  char ArgList[1024]; // [esp+40Ch] [ebp-40Ch] BYREF
   int v9; // [esp+814h] [ebp-4h]
 
-  (_DWORD *->Create()this, 1879048193, a2, a3);
-  v4 = operator new(0x98u);
+  (UIWnd *->Create()this, 1879048193, pRect, parent);
+  v4 = (UIFrameWnd *)operator new(0x98u);
   v9 = 0;
   if ( v4 )
     v4->UIFrameWnd();
@@ -1332,22 +1364,22 @@ char CCBUI::CreateImbibeNimbus(int _this, _DWORD *a2, int a3)
   {
     qmemcpy(
       pExceptionObject,
-      (const void *)Logger::FormatException((char)&ArgList, (int)aCNewFailed_0, (int)aDProjectPal3Co_12, 2090),
+      (Logger *->FormatException()ArgList, aCNewFailed_0, aDProjectPal3Co_12, 2090),
       sizeof(pExceptionObject));
     _CxxThrowException(pExceptionObject, (_ThrowInfo *)&_TI1_AV_Exception__);
   }
-  *a2 = 0;
-  a2[2] = 256;
-  a2[1] = 0;
-  a2[3] = 256;
+  *pRect = 0;
+  pRect[2] = 256;
+  pRect[1] = 0;
+  pRect[3] = 256;
   (*(void (**)(_DWORD, int, _DWORD *, int))(**(_DWORD **)(this + 72) + 16))(
     *(_DWORD *)(this + 72),
     256,
-    a2,
+    pRect,
     this);
-  UIWnd::CreateFromTemplate(*(gbRefObject ***)(this + 72), aUiCombatContro_33, 0);
+  UIWnd::CreateFromTemplate(*(UIWnd ***)(this + 72), aUiCombatContro_33, 0);
   (***(void (****)(_DWORD, int))(this + 72))(*(_DWORD *)(this + 72), 1);
-  this->SetNimbusToNimbusControl();
+  (CCBUI ***->SetNimbusToNimbusControl()this);
   return 1;
 }
 
@@ -1440,18 +1472,20 @@ int CCBUI::ConfigImbibeNimbus(int _this)
 // 0x005195E0
 int CCBUI::CheckNimbusMove(int a2, unsigned int a3, int a4)
 {
+  char *Instance; // eax
+
   if ( a2 == 1001 )
   {
     if ( a3 >= 0x103 && a3 <= 0x10C )
     {
-      this->GetInstance();
-      aWa001->AudioSetPosition(1);
+      Instance = (char *)CScreenMode::GetInstance();
+      (CScreenMode *->AudioSetPosition()Instance, aWa001, 1);
     }
-    CCBUI::SetParam(*(_DWORD *)(*(_DWORD *)(*((_DWORD *)this + 8) + 1160) + 8), a3, a4, 0);
+    CCBUI::SetParam(*(CCBUI **)(*(_DWORD *)(this->m_wndcolor.Green + 1160) + 8), a3, a4);
   }
   else if ( a2 == 1007 && a4 != -1 )
   {
-    CCBUI::SetParam(*(_DWORD *)(*(_DWORD *)(*((_DWORD *)this + 8) + 1160) + 8), a3, a4, 0);
+    CCBUI::SetParam(*(CCBUI **)(*(_DWORD *)(this->m_wndcolor.Green + 1160) + 8), a3, a4);
   }
   return a2->SendMessage(a3, a4);
 }
@@ -1459,15 +1493,18 @@ int CCBUI::CheckNimbusMove(int a2, unsigned int a3, int a4)
 // 0x00519660
 BOOL CCBUI::IsImbibeNimbusNotFinish(int a2, int a3)
 {
-  if ( *((_DWORD *)this + 14) == 1 && (MEMORY[0xBFC6F4] == 1 && (MEMORY[0xBFC6E8] & 0xF) == 1 || MEMORY[0xBFC704] == 1) )
-    CCBUI::SetParam(*(_DWORD *)(*(_DWORD *)(*((_DWORD *)this + 8) + 1160) + 8), 128, -1, 0);
+  if ( this->m_rect.top == 1
+    && (g_Input.m_DIKToKEY[1] == 1 && (g_Input.m_shiftedKeyStates[268] & 0xF) == 1 || g_Input.m_DIKToKEY[5] == 1) )
+  {
+    CCBUI::SetParam(*(CCBUI **)(*(_DWORD *)(this->m_wndcolor.Green + 1160) + 8), 128, -1);
+  }
   return this->HitTest(a2, a3);
 }
 
 // 0x005196C0
-struct gbVFileSystem * CCBUI::SetNimbusToNimbusControl(gbRefObject ***this)
+struct gbVFileSystem * CCBUI::SetNimbusToNimbusControl(CCBUI ***this)
 {
-  gbRefObject ***v2; // edi
+  CCBUI ***v2; // edi
   int a4; // [esp+24h] [ebp-10h] BYREF
   int v5; // [esp+28h] [ebp-Ch]
   int v6; // [esp+2Ch] [ebp-8h]
@@ -1479,70 +1516,70 @@ struct gbVFileSystem * CCBUI::SetNimbusToNimbusControl(gbRefObject ***this)
   v5 = 185;
   v7 = 269;
   (CCBUI *->WriteNimbusToPlayerMgr()this, this + 28, 269, (int)&a4, (int)aUiCombatContro_42);
-  ((void (*)(gbRefObject **, _DWORD))(**v2)->RefCount)(*v2, 0);
+  ((void (*)(CCBUI **, _DWORD))(**v2)->m_fontcolor.ColorQuadFmt)(*v2, 0);
   a4 = 53;
   v6 = 99;
   v5 = 156;
   v7 = 202;
   (CCBUI *->WriteNimbusToPlayerMgr()this, this + 19, 259, (int)&a4, (int)aUiCombatContro_34);
-  ((void (*)(_DWORD, int))(**((_DWORD *)this + 19))->RefCount)(*((_DWORD *)this + 19), 1);
-  PalScript::OpenScript(*((_DWORD *)this + 19), aUiCombatContro_35, 0);
+  ((void (*)(_DWORD, int))(**((_DWORD *)this + 19))->m_fontcolor.ColorQuadFmt)(*((_DWORD *)this + 19), 1);
+  (PalScript **->OpenScript()*((_DWORD *)this + 19), aUiCombatContro_35, 0);
   a4 = 57;
   v6 = 103;
   v5 = 97;
   v7 = 143;
   (CCBUI *->WriteNimbusToPlayerMgr()this, this + 20, 260, (int)&a4, (int)aUiCombatContro_36);
-  ((void (*)(_DWORD, int))(**((_DWORD *)this + 20))->RefCount)(*((_DWORD *)this + 20), 1);
-  PalScript::OpenScript(*((_DWORD *)this + 20), aUiCombatContro_37, 0);
+  ((void (*)(_DWORD, int))(**((_DWORD *)this + 20))->m_fontcolor.ColorQuadFmt)(*((_DWORD *)this + 20), 1);
+  (PalScript **->OpenScript()*((_DWORD *)this + 20), aUiCombatContro_37, 0);
   a4 = 2;
   v6 = 48;
   v5 = 153;
   v7 = 199;
   (CCBUI *->WriteNimbusToPlayerMgr()this, this + 21, 261, (int)&a4, (int)aUiCombatContro_38);
-  ((void (*)(_DWORD, int))(**((_DWORD *)this + 21))->RefCount)(*((_DWORD *)this + 21), 1);
-  PalScript::OpenScript(*((_DWORD *)this + 21), aUiCombatContro_39, 0);
+  ((void (*)(_DWORD, int))(**((_DWORD *)this + 21))->m_fontcolor.ColorQuadFmt)(*((_DWORD *)this + 21), 1);
+  (PalScript **->OpenScript()*((_DWORD *)this + 21), aUiCombatContro_39, 0);
   a4 = 56;
   v6 = 102;
   v5 = 208;
   v7 = 254;
   (CCBUI *->WriteNimbusToPlayerMgr()this, this + 22, 262, (int)&a4, (int)aUiCombatContro_40);
-  ((void (*)(_DWORD, int))(**((_DWORD *)this + 22))->RefCount)(*((_DWORD *)this + 22), 1);
-  PalScript::OpenScript(*((_DWORD *)this + 22), aUiCombatContro_41, 0);
+  ((void (*)(_DWORD, int))(**((_DWORD *)this + 22))->m_fontcolor.ColorQuadFmt)(*((_DWORD *)this + 22), 1);
+  (PalScript **->OpenScript()*((_DWORD *)this + 22), aUiCombatContro_41, 0);
   a4 = 19;
   v6 = 65;
   v5 = 192;
   v7 = 238;
   (CCBUI *->WriteNimbusToPlayerMgr()this, this + 24, 264, (int)&a4, (int)aUiCombatContro_43);
-  ((void (*)(_DWORD, int))(**((_DWORD *)this + 24))->RefCount)(*((_DWORD *)this + 24), 1);
-  PalScript::OpenScript(*((_DWORD *)this + 24), aUiCombatContro_44, 0);
+  ((void (*)(_DWORD, int))(**((_DWORD *)this + 24))->m_fontcolor.ColorQuadFmt)(*((_DWORD *)this + 24), 1);
+  (PalScript **->OpenScript()*((_DWORD *)this + 24), aUiCombatContro_44, 0);
   a4 = 19;
   v6 = 65;
   v5 = 121;
   v7 = 167;
   (CCBUI *->WriteNimbusToPlayerMgr()this, this + 25, 266, (int)&a4, (int)aUiCombatContro_47);
-  ((void (*)(_DWORD, int))(**((_DWORD *)this + 25))->RefCount)(*((_DWORD *)this + 25), 1);
-  PalScript::OpenScript(*((_DWORD *)this + 25), aUiCombatContro_48, 0);
+  ((void (*)(_DWORD, int))(**((_DWORD *)this + 25))->m_fontcolor.ColorQuadFmt)(*((_DWORD *)this + 25), 1);
+  (PalScript **->OpenScript()*((_DWORD *)this + 25), aUiCombatContro_48, 0);
   a4 = 90;
   v6 = 136;
   v5 = 192;
   v7 = 238;
   (CCBUI *->WriteNimbusToPlayerMgr()this, this + 26, 267, (int)&a4, (int)aUiCombatContro_49);
-  ((void (*)(_DWORD, int))(**((_DWORD *)this + 26))->RefCount)(*((_DWORD *)this + 26), 1);
-  PalScript::OpenScript(*((_DWORD *)this + 26), aUiCombatContro_50, 0);
+  ((void (*)(_DWORD, int))(**((_DWORD *)this + 26))->m_fontcolor.ColorQuadFmt)(*((_DWORD *)this + 26), 1);
+  (PalScript **->OpenScript()*((_DWORD *)this + 26), aUiCombatContro_50, 0);
   a4 = 90;
   v6 = 136;
   v5 = 121;
   v7 = 167;
   (CCBUI *->WriteNimbusToPlayerMgr()this, this + 27, 268, (int)&a4, (int)aUiCombatContro_51);
-  ((void (*)(_DWORD, int))(**((_DWORD *)this + 27))->RefCount)(*((_DWORD *)this + 27), 1);
-  PalScript::OpenScript(*((_DWORD *)this + 27), aUiCombatContro_52, 0);
+  ((void (*)(_DWORD, int))(**((_DWORD *)this + 27))->m_fontcolor.ColorQuadFmt)(*((_DWORD *)this + 27), 1);
+  (PalScript **->OpenScript()*((_DWORD *)this + 27), aUiCombatContro_52, 0);
   a4 = 111;
   v6 = 157;
   v5 = 153;
   v7 = 199;
   (CCBUI *->WriteNimbusToPlayerMgr()this, this + 23, 265, (int)&a4, (int)aUiCombatContro_45);
-  ((void (*)(_DWORD, int))(**((_DWORD *)this + 23))->RefCount)(*((_DWORD *)this + 23), 1);
-  return PalScript::OpenScript(*((_DWORD *)this + 23), aUiCombatContro_46, 0);
+  ((void (*)(_DWORD, int))(**((_DWORD *)this + 23))->m_fontcolor.ColorQuadFmt)(*((_DWORD *)this + 23), 1);
+  return (PalScript **->OpenScript()*((_DWORD *)this + 23), aUiCombatContro_46, 0);
 }
 
 // 0x00519A10
@@ -1575,25 +1612,25 @@ char CCBUI::WriteNimbusToPlayerMgr(_DWORD *a2, int a3, int a4, int a5)
 }
 
 // 0x00519B40
-UIWnd * CCBUI::GetNimbusColor(UIWnd *Block, char a2)
+UIWnd * CCBUI::GetNimbusColor(CCBUI *Block, char a2)
 {
-  UIWnd::~UIWnd(Block);
+  UIWnd::~UIWnd((UIWnd *)Block);
   if ( (a2 & 1) != 0 )
     operator delete(Block);
-  return Block;
+  return (UIWnd *)Block;
 }
 
 // 0x00519BB0
 int CCBUI::Render()
 {
-  *((_DWORD *)this + 20) = 0;
-  *((_DWORD *)this + 21) = 0;
-  *((_DWORD *)this + 22) = 0;
-  *((_DWORD *)this + 18) = 0;
-  *((_DWORD *)this + 19) = 0;
-  *((_DWORD *)this + 23) = 0;
-  *((_DWORD *)this + 24) = 0;
-  *((_DWORD *)this + 25) = 0;
+  this->m_childs.m_nMaxSize = 0;
+  this->m_childs.m_nGrowBy = 0;
+  this->m_bcreateok = 0;
+  this->m_childs.m_pData = 0;
+  this->m_childs.m_nSize = 0;
+  this->m_bvisible = 0;
+  this->m_benable = 0;
+  this->m_bfocus = 0;
   return 0;
 }
 
@@ -1630,12 +1667,12 @@ char CCBUI::CreateButton@<al>(
   int v30; // [esp+1048h] [ebp-4h]
 
   v30 = -1;
-  ExceptionList = NtCurrentTeb()->NtTib.ExceptionList;
-  v29 = &loc_56720A;
+  ExceptionList = (struct _EXCEPTION_REGISTRATION_RECORD *)NtCurrentTeb()->NtTib.ExceptionList;
+  v29 = (void *)&loc_56720A;
   v28 = ExceptionList;
-  v8 = alloca(4120);
+  v8 = (void *)alloca(4120);
   (_DWORD *->Create()a1, 1879048193, a6, a7);
-  v10 = operator new(0x98u);
+  v10 = (_BYTE *)operator new(0x98u);
   v30 = 0;
   if ( v10 )
     v10->UIFrameWnd();
@@ -1669,21 +1706,21 @@ char CCBUI::CreateButton@<al>(
     a3,
     a2);
   UIWnd::CreateFromTemplate(*(gbRefObject ***)(a1 + 72), aUiCombatContro_53, 0);
-  v12 = *(_DWORD **)(a1 + 72);
+  v12 = (_DWORD *)*(_DWORD **)(a1 + 72);
   v22 = -1862270977;
   v12->SetShow(0);
   UIWnd::GetChild(*(_DWORD **)(a1 + 72), &v22);
   UIFrameWnd::SetPosition(*(_DWORD **)(a1 + 72), 40, 150);
   UIFrameWnd::SetPosition(*(_DWORD **)(a1 + 72), 0, 0);
   (***(void (****)(_DWORD, int))(a1 + 72))(*(_DWORD *)(a1 + 72), 1);
-  v13 = &dword_570110;
+  v13 = (int *)&dword_570110;
   v14 = (char **)(a1 + 80);
   do
   {
     v15 = (char *)operator new(0x4B8u);
     v23 = v15;
     if ( v15 )
-      v16 = v15->UpdateKeyCtrl();
+      v16 = (char *)v15->UpdateKeyCtrl();
     else
       v16 = 0;
     *v14 = v16;
@@ -1815,33 +1852,31 @@ int CCBUI::DeleteUIObj(int _this)
 // 0x00519FE0
 int CCBUI::AddRightControlButtonAni(int a2, unsigned int a3, int a4)
 {
-  int v5; // ecx
-  int v7; // [esp-4h] [ebp-14h]
+  char *v5; // eax
+  char *Instance; // eax
 
   if ( a2 == 1001 )
   {
     if ( a3 < 0xB5 || a3 > 0xB7 )
       return a2->SendMessage(a3, a4);
-    CCBUI::GravityDown(a3 - 181);
-    v5->GetInstance();
-    aWa001->AudioSetPosition(1);
-    v7 = 0;
+    CCBUI::GravityDown((int)this, a3 - 181);
+    Instance = (char *)CScreenMode::GetInstance();
+    (CScreenMode *->AudioSetPosition()Instance, aWa001, 1);
 LABEL_11:
-    CCBUI::SetParam(*(_DWORD *)(*(_DWORD *)(*((_DWORD *)this + 8) + 1160) + 8), a3, a4, v7);
+    CCBUI::SetParam(*(CCBUI **)(*(_DWORD *)(this->m_wndcolor.Green + 1160) + 8), a3, a4);
     return a2->SendMessage(a3, a4);
   }
   if ( a2 == 1006 )
   {
     if ( a4 == -1 )
       return a2->SendMessage(a3, a4);
-    v7 = 1;
     goto LABEL_11;
   }
   if ( a2 == 1007 && a4 != -1 )
   {
-    this->GetInstance();
-    aWa002->AudioSetPosition(1);
-    CCBUI::SetParam(*(_DWORD *)(*(_DWORD *)(*((_DWORD *)this + 8) + 1160) + 8), a3, a4, 0);
+    v5 = (char *)CScreenMode::GetInstance();
+    (CScreenMode *->AudioSetPosition()v5, aWa002, 1);
+    CCBUI::SetParam(*(CCBUI **)(*(_DWORD *)(this->m_wndcolor.Green + 1160) + 8), a3, a4);
   }
   return a2->SendMessage(a3, a4);
 }
@@ -1849,8 +1884,11 @@ LABEL_11:
 // 0x0051A090
 BOOL CCBUI::AddResultWindowAni(int a2, int a3)
 {
-  if ( *((_DWORD *)this + 14) == 1 && (MEMORY[0xBFC6F4] == 1 && (MEMORY[0xBFC6E8] & 0xF) == 1 || MEMORY[0xBFC704] == 1) )
-    CCBUI::SetParam(*(_DWORD *)(*(_DWORD *)(*((_DWORD *)this + 8) + 1160) + 8), 128, -1, 0);
+  if ( this->m_rect.top == 1
+    && (g_Input.m_DIKToKEY[1] == 1 && (g_Input.m_shiftedKeyStates[268] & 0xF) == 1 || g_Input.m_DIKToKEY[5] == 1) )
+  {
+    CCBUI::SetParam(*(CCBUI **)(*(_DWORD *)(this->m_wndcolor.Green + 1160) + 8), 128, -1);
+  }
   return this->HitTest(a2, a3);
 }
 
@@ -1967,19 +2005,19 @@ LABEL_9:
 // 0x0051A340
 _DWORD * CCBUI::ChangeNumTxt()
 {
-  this->UIListBox();
-  * this = (*)&off_570500;
+  (UIListBox *->UIListBox()this);
+  this->m_fontcolor.ColorQuadFmt = (int)&off_570500;
   sub_51A400(this);
-  return this;
+  return &this->m_fontcolor.ColorQuadFmt;
 }
 
 // 0x0051A390
-UIWnd * CCBUI::DoTask(UIWnd *Block, char a2)
+UIWnd * CCBUI::DoTask(CCBUI *Block, char a2)
 {
-  UIWnd::~UIWnd(Block);
+  UIWnd::~UIWnd((UIWnd *)Block);
   if ( (a2 & 1) != 0 )
     operator delete(Block);
-  return Block;
+  return (UIWnd *)Block;
 }
 
 // 0x0051A430
@@ -2029,12 +2067,12 @@ char CCBUI::AddTask(int _this, _DWORD *a2, int a3)
     this);
   UIWnd::CreateFromTemplate(*(gbRefObject ***)(this + 72), aUiCombatContro_54, 0);
   (***(void (****)(_DWORD, int))(this + 72))(*(_DWORD *)(this + 72), 1);
-  v6 = *(_DWORD **)(this + 72);
+  v6 = (_DWORD *)*(_DWORD **)(this + 72);
   v13 = -1879048192;
   v6->SetShow(0);
   UIWnd::GetChild(*(_DWORD **)(this + 72), &v13);
   UIFrameWnd::SetPosition(*(_DWORD **)(this + 72), 40, 170);
-  v7 = &dword_57011C;
+  v7 = (int *)&dword_57011C;
   v8 = (char **)(this + 76);
   do
   {
@@ -2042,7 +2080,7 @@ char CCBUI::AddTask(int _this, _DWORD *a2, int a3)
     v14 = v9;
     v18 = 1;
     if ( v9 )
-      v10 = v9->UpdateKeyCtrl();
+      v10 = (char *)v9->UpdateKeyCtrl();
     else
       v10 = 0;
     v18 = -1;

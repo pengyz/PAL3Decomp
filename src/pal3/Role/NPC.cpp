@@ -25,7 +25,7 @@ unsigned int NPC::Create(int index)
   int indexa; // [esp+14h] [ebp+4h]
 
   v2 = 0;
-  v3 = &g_SceneMgr.m_info[1408 * index + 1072];
+  v3 = (char *)&g_SceneMgr.m_info[1408 * index + 1072];
   memset(&g_SceneMgr.m_info[1408 * index + 1048], 0, 0x18u);
   *(_DWORD *)v3 = 0;
   *((_WORD *)v3 + 2) = 0;
@@ -139,7 +139,7 @@ void * NPC::Init(int index)
   {
     v11 = 1;
     v12 = 6;
-    v13 = &g_SceneMgr.m_info[v17 + 1084];
+    v13 = (char *)&g_SceneMgr.m_info[v17 + 1084];
     do
     {
       result = v13;
@@ -224,7 +224,7 @@ int * NPC::InitAll()
 
   result = g_RoleTeam2;
   v11 = 0;
-  v1 = &g_SceneMgr.m_info[1072];
+  v1 = (char *)&g_SceneMgr.m_info[1072];
   v12 = g_RoleTeam2;
   do
   {
@@ -236,7 +236,7 @@ int * NPC::InitAll()
       {
         v3 = *v2;
         v4 = 0;
-        v5 = v1 - 24;
+        v5 = (char *)v1 - 24;
         do
         {
           if ( v3 == *(_DWORD *)v5 )
@@ -249,7 +249,7 @@ int * NPC::InitAll()
         }
         while ( v4 < 6 );
         v6 = 0;
-        v7 = v1 + 8;
+        v7 = (char *)v1 + 8;
         while ( 2 )
         {
           v8 = 0;

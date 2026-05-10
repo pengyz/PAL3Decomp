@@ -21,7 +21,7 @@ CEffShock::CEffShock()
 {
   _DWORD *v0; // eax
 
-  v0 = operator new(0x10B0u);
+  v0 = (_DWORD *)operator new(0x10B0u);
   if ( v0 )
     return sub_4D3870(v0);
   else
@@ -312,7 +312,7 @@ int CEffShock::LoadTexture(int a2, int a3, int a4, _DWORD *a5, int a6, int a7)
   int v9; // esi
   int v10; // edx
   _BYTE *i; // eax
-  _DWORD *v13; // edx
+  int *v13; // edx
   unsigned int v14; // eax
   _DWORD *v15; // edx
 
@@ -326,7 +326,7 @@ int CEffShock::LoadTexture(int a2, int a3, int a4, _DWORD *a5, int a6, int a7)
     if ( ++v9 >= v8 )
       return -1;
   }
-  v13 = (_DWORD *)(v10 + 72 * v9);
+  v13 = (int *)(v10 + 72 * v9);
   memset(v13, 0, 0x48u);
   *((_BYTE *)v13 + 65) = 0;
   *((_BYTE *)v13 + 64) = 1;
@@ -345,7 +345,7 @@ int CEffShock::LoadTexture(int a2, int a3, int a4, _DWORD *a5, int a6, int a7)
   v13[6] = a7;
   if ( a5 )
   {
-    v15 = v13 + 7;
+    v15 = (_DWORD *)v13 + 7;
     * v15 = (*)*a5;
     v15[1] = a5[1];
     v15[2] = a5[2];

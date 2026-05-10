@@ -10,31 +10,26 @@ int sub_523820(...);
 int ParabolaCalculator::CalulateParabola()
 {
   int result; // eax
-  int v2; // [esp-20h] [ebp-68h]
-  int v3; // [esp-1Ch] [ebp-64h]
-  int v4; // [esp-18h] [ebp-60h]
-  int v5; // [esp-14h] [ebp-5Ch]
-  int v6; // [esp-10h] [ebp-58h]
-  int v7; // [esp-Ch] [ebp-54h]
-  _BYTE v8[4]; // [esp+0h] [ebp-48h] BYREF
-  _DWORD v9[17]; // [esp+4h] [ebp-44h] BYREF
+  gbVec3D v2; // [esp-20h] [ebp-68h]
+  int v3; // [esp-14h] [ebp-5Ch]
+  int v4; // [esp-10h] [ebp-58h]
+  int v5; // [esp-Ch] [ebp-54h]
+  int v6; // [esp+0h] [ebp-48h] BYREF
+  struct gbTextureArray v7; // [esp+4h] [ebp-44h] BYREF
 
   result = *((_DWORD *)this + 439);
   if ( result )
   {
-    v9[0] = *((_DWORD *)this + 439);
-    v9[16] = 1;
-    v8[2] = -1;
-    v8[1] = -1;
-    v8[0] = -1;
-    v7 = *((_DWORD *)this + 441);
-    v6 = *((_DWORD *)this + 440);
-    v5 = *((_DWORD *)this + 21);
-    v4 = *((_DWORD *)this + 20);
-    v3 = *((_DWORD *)this + 19);
-    v2 = *((_DWORD *)this + 18);
-    v8[3] = 62;
-    return UIRenderQuad(v2, v3, v4, v5, v6, v7, v8, v9);
+    v7.pTexPt[0] = (gbTexture *)*((_DWORD *)this + 439);
+    v7.nTex = 1;
+    *(_WORD *)((char *)&v6 + 1) = -1;
+    LOBYTE(v6) = -1;
+    v5 = *((_DWORD *)this + 441);
+    v4 = *((_DWORD *)this + 440);
+    v3 = *((_DWORD *)this + 21);
+    v2 = *(gbVec3D *)((_BYTE *)this + 6);
+    HIBYTE(v6) = 62;
+    UIRenderQuad(SLODWORD(v2.x), SLODWORD(v2.y), SLODWORD(v2.z), v3, v4, v5, &v6, &v7);
   }
   return result;
 }
@@ -44,12 +39,12 @@ int ParabolaCalculator::UpdateParabola(int _this)
 {
   int result; // eax
 
-  (_DWORD *->CalulateParabola()this);
+  (ParabolaCalculator *->CalulateParabola()this);
   result = *(_DWORD *)(this + 1752);
   switch ( result )
   {
     case 0:
-      result = (int *->SetScroll()this);
+      result = (UIListBox *->SetScroll()this);
       break;
     case 1:
       result = (*(int (**)(_DWORD))(**(_DWORD **)(this + 1736) + 4))(*(_DWORD *)(this + 1736));
@@ -72,22 +67,22 @@ int ParabolaCalculator::UpdateParabola(int _this)
 // 0x005236E0
 int ParabolaCalculator::UpdateParabolaY(int _this, int a2, int a3)
 {
-  int v4; // eax
-  gbAudioManager *v5; // eax
+  char *Instance; // eax
+  gbAudioManager *AudioManager; // eax
   int result; // eax
 
-  if ( g_nGameState != 2 && (g_nGameFlags & 1) != 0 )
+  if ( g_Input.KeyInfo[177].PressTime != 2 && (g_nGameFlags & 1) != 0 )
   {
-    v4 = this->GetInstance();
-    v5 = (gbAudioManager *)v4->GetAudioManager();
-    v5->DetachAll3D();
+    Instance = (char *)CScreenMode::GetInstance();
+    AudioManager = (gbAudioManager *)(CScreenMode *->GetAudioManager()Instance);
+    AudioManager->DetachAll3D();
   }
   if ( !sub_4A1CF0((_DWORD *)(this + 368)) )
-    sub_523820(2);
+    sub_523820((_DWORD *)this, 2);
   switch ( *(_DWORD *)(this + 1752) )
   {
     case 0:
-      (_DWORD *->HitTest()this, a2, a3);
+      (UIWnd *->HitTest()this, a2, a3);
       result = 1;
       break;
     case 1:

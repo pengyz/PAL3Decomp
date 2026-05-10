@@ -34,12 +34,12 @@ CEffectSystem::CEffectSystem(int a2)
   _DWORD *result; // eax
   int v5; // ecx
   char pExceptionObject[1024]; // [esp+8h] [ebp-800h] BYREF
-  char ArgList; // [esp+408h] [ebp-400h] BYREF
+  char ArgList[1024]; // [esp+408h] [ebp-400h] BYREF
 
   v3 = (gbTexture *)(*(int (**)(_DWORD, int))(**(_DWORD **)dword_DE9384 + 8))(*(_DWORD *)dword_DE9384, a2);
   *((_DWORD *)this + 61448) = v3;
   v3->LoadTexture(1);
-  result = operator new(0x44u);
+  result = (_DWORD *)operator new(0x44u);
   if ( result )
   {
     v5 = *((_DWORD *)this + 61448);
@@ -55,7 +55,7 @@ CEffectSystem::CEffectSystem(int a2)
   {
     qmemcpy(
       pExceptionObject,
-      (const void *)Logger::FormatException((char)&ArgList, (int)aCNewFailed_0, (int)aDProjectPal3Ef_0, 761),
+      (Logger *->FormatException()ArgList, aCNewFailed_0, aDProjectPal3Ef_0, 761),
       sizeof(pExceptionObject));
     _CxxThrowException(pExceptionObject, (_ThrowInfo *)&_TI1_AV_Exception__);
   }
@@ -66,23 +66,23 @@ CEffectSystem::CEffectSystem(int a2)
 CEffectSystem::~CEffectSystem(int a2)
 {
   sub_4C5D00(this, a2);
-  * this = (*)&off_56F844;
-  *((_DWORD *)this + 2) = 1;
-  return this;
+  this->m_pDisplay = (gbGfxManager *)&off_56F844;
+  this->m_pAdditiveBlend = (gbRenderEffect *)1;
+  return &this->m_pDisplay;
 }
 
 // 0x004C6260
-_DWORD * CEffectSystem::Reset(_DWORD *Block, char a2)
+_DWORD * CEffectSystem::Reset(CEffectSystem *Block, char a2)
 {
   Block->Init();
   if ( (a2 & 1) != 0 )
     operator delete(Block);
-  return Block;
+  return &Block->m_pDisplay;
 }
 
 // 0x004C6280
 // attributes: thunk
-int CEffectSystem::Init(_DWORD *this)
+int CEffectSystem::Init(CEffectSystem *this)
 {
   return sub_4C5D70(this);
 }
@@ -208,7 +208,7 @@ char CEffectSystem::IsVisible(int _this)
     if ( !(*(int (**)(int, _DWORD *, int))(*(_DWORD *)g_pGfxManager + 84))(g_pGfxManager, v6, 1) )
       return 0;
     (*(void (**)(int))(*(_DWORD *)g_pGfxManager + 88))(g_pGfxManager);
-    v3 = gbEffectMgr::NewRenderEffect(*(gbEffectMgr **)(g_pGfxManager + 200), aGfxscriptTrail, 0);
+    v3 = (struct gbRenderEffect *)gbEffectMgr::NewRenderEffect(*(gbEffectMgr **)(g_pGfxManager + 200), aGfxscriptTrail, 0);
     *(_DWORD *)(this + 828) = v3;
     if ( !v3 )
       return 0;
@@ -254,12 +254,12 @@ void CEffectSystem::SetVisible(float a2)
   double v2; // st7
   char v4; // c0
 
-  v2 = a2 + *this;
-  *this = v2;
+  v2 = a2 + *(float *)&this->m_pDisplay;
+  *(float *)&this->m_pDisplay = v2;
   if ( !v4 )
   {
-    ++*((_DWORD *)this + 13);
-    * this = (*)v2 - 0.02;
+    ++LODWORD(this->m_DefaultUVSet[2].sv);
+    *(float *)&this->m_pDisplay = v2 - 0.02;
   }
 }
 
@@ -284,7 +284,7 @@ void CEffectSystem::HandleViewMove(int _this, int a2)
       -16777216,
       1065353216,
       0);
-    v4 = *(gbCamera **)(this + 8);
+    v4 = (gbCamera *)*(gbCamera **)(this + 8);
     if ( v4 )
       v4->SetDimention(256, 192);
   }
@@ -331,7 +331,7 @@ char CEffectSystem::Update(int _this)
         1065353216,
         0);
       gbCamera::SetDimention(*(gbCamera **)(this + 8), MEMORY[0xBFD6D0], MEMORY[0xBFD6D4]);
-      DynVertBuf = gbVertPoolMgr::GetDynVertBuf(*(gbVertPoolMgr **)(g_pGfxManager + 196), 0x114u);
+      DynVertBuf = (gbDynVertBuf *)gbVertPoolMgr::GetDynVertBuf(*(gbVertPoolMgr **)(g_pGfxManager + 196), 0x114u);
       if ( (byte_DE93A8 & 1) == 0 )
       {
         v3 = (gbColorQuad *)&unk_DE9388;
@@ -348,7 +348,7 @@ char CEffectSystem::Update(int _this)
       }
       v5 = 158 - 8 * *(_DWORD *)(this + 56);
       v6 = 0;
-      v7 = &unk_DE9389;
+      v7 = (_BYTE *)&unk_DE9389;
       do
       {
         *(v7 - 1) = v5 / 2;
@@ -373,7 +373,7 @@ char CEffectSystem::Update(int _this)
           v11 = 96 * v9 + this + 60;
           do
           {
-            v12 = *(struct gbRenderEffect **)(this + 828);
+            v12 = (struct gbRenderEffect *)*(struct gbRenderEffect **)(this + 828);
             *(_DWORD *)(this + 48) = *v10;
             v20 = 1;
             v19[0] = v11;
@@ -385,13 +385,13 @@ char CEffectSystem::Update(int _this)
         }
       }
       v13 = 0;
-      v14 = &unk_DE9388;
+      v14 = (_DWORD *)&unk_DE9388;
       v15 = this + 60;
       do
       {
         if ( (int)v14 < (int)&byte_DE93A8 )
         {
-          v16 = *(struct gbRenderEffect **)(this + 828);
+          v16 = (struct gbRenderEffect *)*(struct gbRenderEffect **)(this + 828);
           *(_DWORD *)(this + 48) = *v14;
           v20 = 1;
           v19[0] = v15;
@@ -411,46 +411,46 @@ char CEffectSystem::Update(int _this)
 // 0x004C6870
 _DWORD * CEffectSystem::FillDefaultUVSet()
 {
-  *((_DWORD *)this + 1) = 0;
-  *((_BYTE *)this + 8) = 0;
-  *((_DWORD *)this + 4) = 0;
-  *((_DWORD *)this + 5) = 0;
-  *((_DWORD *)this + 6) = 0;
-  *((_DWORD *)this + 7) = -1;
-  *((_DWORD *)this + 8) = -1;
-  *((_DWORD *)this + 9) = 0;
-  *((_DWORD *)this + 10) = 0;
-  *((_DWORD *)this + 11) = 0;
-  *((_DWORD *)this + 3) = &off_56F8B4;
-  *((_DWORD *)this + 33) = 0;
-  *((_DWORD *)this + 34) = 0;
-  *((_DWORD *)this + 35) = 0;
-  *((_DWORD *)this + 38) = 0;
-  *((_DWORD *)this + 39) = 0;
-  *((_DWORD *)this + 40) = 0;
-  *((_DWORD *)this + 41) = 0;
-  *((_DWORD *)this + 42) = 0;
-  *((_DWORD *)this + 43) = 0;
-  *((_DWORD *)this + 44) = 0;
-  *((_DWORD *)this + 45) = 0;
-  *((_DWORD *)this + 46) = 0;
-  * this = (*)&off_56F878;
-  *((_DWORD *)this + 3) = &off_56F86C;
-  *((_DWORD *)this + 43) = 0;
-  *((_DWORD *)this + 42) = 0;
-  *((_DWORD *)this + 41) = 0;
-  *((_DWORD *)this + 46) = 0;
-  *((_DWORD *)this + 45) = 0;
-  *((_DWORD *)this + 44) = 0;
-  *((_DWORD *)this + 40) = 0;
-  *((_DWORD *)this + 39) = 0;
-  *((_DWORD *)this + 38) = 0;
-  *((_DWORD *)this + 30) = 0;
-  *((_DWORD *)this + 12) = 0;
-  *((_DWORD *)this + 13) = 0;
-  *((_BYTE *)this + 65) = 0;
-  *((_BYTE *)this + 66) = 0;
-  *((_DWORD *)this + 14) = 0;
-  *((_DWORD *)this + 15) = 0;
-  return this;
+  this->m_pVertexBuffer = 0;
+  LOBYTE(this->m_pAdditiveBlend) = 0;
+  this->m_DefaultUVSet[0].su = 0.0;
+  this->m_DefaultUVSet[0].sv = 0.0;
+  this->m_DefaultUVSet[0].eu = 0.0;
+  this->m_DefaultUVSet[0].ev = NAN;
+  this->m_DefaultUVSet[1].su = NAN;
+  this->m_DefaultUVSet[1].sv = 0.0;
+  this->m_DefaultUVSet[1].eu = 0.0;
+  this->m_DefaultUVSet[1].ev = 0.0;
+  this->m_pAlphaBlend = (gbRenderEffect *)&off_56F8B4;
+  this->m_DefaultUVSet[7].sv = 0.0;
+  this->m_DefaultUVSet[7].eu = 0.0;
+  this->m_DefaultUVSet[7].ev = 0.0;
+  this->m_DefaultUVSet[8].eu = 0.0;
+  this->m_DefaultUVSet[8].ev = 0.0;
+  this->m_DefaultUVSet[9].su = 0.0;
+  this->m_DefaultUVSet[9].sv = 0.0;
+  this->m_DefaultUVSet[9].eu = 0.0;
+  this->m_DefaultUVSet[9].ev = 0.0;
+  this->m_DefaultUVSet[10].su = 0.0;
+  this->m_DefaultUVSet[10].sv = 0.0;
+  this->m_DefaultUVSet[10].eu = 0.0;
+  this->m_pDisplay = (gbGfxManager *)&off_56F878;
+  this->m_pAlphaBlend = (gbRenderEffect *)&off_56F86C;
+  this->m_DefaultUVSet[9].ev = 0.0;
+  this->m_DefaultUVSet[9].eu = 0.0;
+  this->m_DefaultUVSet[9].sv = 0.0;
+  this->m_DefaultUVSet[10].eu = 0.0;
+  this->m_DefaultUVSet[10].sv = 0.0;
+  this->m_DefaultUVSet[10].su = 0.0;
+  this->m_DefaultUVSet[9].su = 0.0;
+  this->m_DefaultUVSet[8].ev = 0.0;
+  this->m_DefaultUVSet[8].eu = 0.0;
+  this->m_DefaultUVSet[6].eu = 0.0;
+  this->m_DefaultUVSet[2].su = 0.0;
+  this->m_DefaultUVSet[2].sv = 0.0;
+  BYTE1(this->m_DefaultUVSet[3].su) = 0;
+  BYTE2(this->m_DefaultUVSet[3].su) = 0;
+  this->m_DefaultUVSet[2].eu = 0.0;
+  this->m_DefaultUVSet[2].ev = 0.0;
+  return &this->m_pDisplay;
 }

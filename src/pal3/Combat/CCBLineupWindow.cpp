@@ -16,10 +16,10 @@ CCBLineupWindow::CCBLineupWindow(_DWORD *a1)
   char ArgList; // [esp+404h] [ebp-40Ch] BYREF
   int v6; // [esp+80Ch] [ebp-4h]
 
-  v1 = operator new(0x80u);
+  v1 = (_DWORD *)operator new(0x80u);
   v6 = 0;
   if ( v1 )
-    v2 = v1->CreateButton();
+    v2 = (_DWORD *)v1->CreateButton();
   else
     v2 = 0;
   v6 = -1;
@@ -44,10 +44,10 @@ CCBLineupWindow::~CCBLineupWindow(_DWORD *a1)
   char ArgList; // [esp+404h] [ebp-40Ch] BYREF
   int v6; // [esp+80Ch] [ebp-4h]
 
-  v1 = operator new(0x7Cu);
+  v1 = (_DWORD *)operator new(0x7Cu);
   v6 = 0;
   if ( v1 )
-    v2 = v1->Update();
+    v2 = (_DWORD *)v1->Update();
   else
     v2 = 0;
   v6 = -1;
@@ -72,10 +72,10 @@ char CCBLineupWindow::Reset(_DWORD *a1)
   char ArgList; // [esp+404h] [ebp-40Ch] BYREF
   int v6; // [esp+80Ch] [ebp-4h]
 
-  v1 = operator new(0x68u);
+  v1 = (_DWORD *)operator new(0x68u);
   v6 = 0;
   if ( v1 )
-    v2 = v1->ForbidPage();
+    v2 = (_DWORD *)v1->ForbidPage();
   else
     v2 = 0;
   v6 = -1;
@@ -100,10 +100,10 @@ char CCBLineupWindow::Create(_DWORD *a1)
   char ArgList; // [esp+404h] [ebp-40Ch] BYREF
   int v6; // [esp+80Ch] [ebp-4h]
 
-  v1 = operator new(0xB4u);
+  v1 = (_DWORD *)operator new(0xB4u);
   v6 = 0;
   if ( v1 )
-    v2 = v1->GetActivePage();
+    v2 = (_DWORD *)v1->GetActivePage();
   else
     v2 = 0;
   v6 = -1;
@@ -128,7 +128,7 @@ char CCBLineupWindow::Destroy(_DWORD *a1)
   char ArgList; // [esp+404h] [ebp-40Ch] BYREF
   int v6; // [esp+80Ch] [ebp-4h]
 
-  v1 = operator new(0x98u);
+  v1 = (_BYTE *)operator new(0x98u);
   v6 = 0;
   if ( v1 )
     v1->UIFrameWnd();
@@ -184,7 +184,7 @@ char CCBLineupWindow::Update(_DWORD *a1)
   char ArgList; // [esp+404h] [ebp-40Ch] BYREF
   int v6; // [esp+80Ch] [ebp-4h]
 
-  v1 = operator new(0x158u);
+  v1 = (_DWORD *)operator new(0x158u);
   v6 = 0;
   if ( v1 )
     v1->_UIScene();
@@ -212,10 +212,10 @@ char CCBLineupWindow::Render(_DWORD *a1)
   char ArgList; // [esp+404h] [ebp-40Ch] BYREF
   int v6; // [esp+80Ch] [ebp-4h]
 
-  v1 = operator new(0xF4u);
+  v1 = (_DWORD *)operator new(0xF4u);
   v6 = 0;
   if ( v1 )
-    v2 = v1->ctor_F7F0();
+    v2 = (_DWORD *)v1->ctor_F7F0();
   else
     v2 = 0;
   v6 = -1;

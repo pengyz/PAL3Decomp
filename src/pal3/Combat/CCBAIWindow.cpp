@@ -30,46 +30,46 @@ int CCBAIWindow::SetText(int a2, int a3)
 }
 
 // 0x0051CA50
-CCBAIWindow::CCBAIWindow(int _this, int a2)
+CCBAIWindow::CCBAIWindow(int a2)
 {
   int v3; // edi
-  void (****v4)(_DWORD, int); // esi
-  void (***v5)(_DWORD, int); // ecx
+  UIStatic **p_m_pBack; // esi
+  UIStatic *v5; // ecx
 
   if ( a2 == 1 )
   {
-    *(_BYTE *)(this + 176) = 0;
+    *((_BYTE *)this + 176) = 0;
     v3 = 0;
-    v4 = (void (****)(_DWORD, int))(this + 108);
+    p_m_pBack = &this->m_pBack;
     do
     {
-      v5 = *v4;
-      if ( *(_DWORD *)(this + 172) == v3 )
-        (**v5)(v5, 1);
+      v5 = (UIStatic *)*p_m_pBack;
+      if ( *((_DWORD *)this + 43) == v3 )
+        (*(void (**)(UIStatic *, int))v5->m_fontcolor.ColorQuadFmt)(v5, 1);
       else
-        (**v5)(v5, 0);
+        (*(void (**)(UIStatic *, _DWORD))v5->m_fontcolor.ColorQuadFmt)(v5, 0);
       ++v3;
-      ++v4;
+      ++p_m_pBack;
     }
     while ( v3 < 5 );
   }
-  return (int *->Destroy()this, a2);
+  return (CCBAIWindow *)this->Destroy(a2);
 }
 
 // 0x0051CAA0
 CCBAIWindow::~CCBAIWindow()
 {
-  int v2; // ebx
-  char *v3; // edi
-  int v5; // [esp+Ch] [ebp-Ch]
+  __int32 Alpha; // ebx
+  CCBAIWindow *v3; // edi
+  __int32 Color; // [esp+Ch] [ebp-Ch]
 
-  this->SetScroll();
-  v2 = *((_DWORD *)this + 4);
-  v5 = *((_DWORD *)this + 5);
-  v3 = *(char **)(*(_DWORD *)(*(_DWORD *)(*((_DWORD *)this + 42) + 1160) + 20) + 68);
-  v3->SetText(v2 + 105, v5 + 51, (int)*(float *)(*((_DWORD *)this + 39) + 156), -6243078);
-  v3->SetText(v2 + 117, v5 + 76, (int)*(float *)(*((_DWORD *)this + 40) + 156), -270174);
-  return v3->SetText(v2 + 107, v5 + 102, (int)*(float *)(*((_DWORD *)this + 41) + 156), -349995);
+  (UIListBox *->SetScroll()this);
+  Alpha = this->m_fontcolor.Alpha;
+  Color = this->m_fontcolor.Color;
+  v3 = (CCBAIWindow *)*(CCBAIWindow **)(*(_DWORD *)(*(_DWORD *)(*((_DWORD *)this + 42) + 1160) + 20) + 68);
+  v3->SetText(Alpha + 105, Color + 51);
+  v3->SetText(Alpha + 117, Color + 76);
+  return v3->SetText(Alpha + 107, Color + 102);
 }
 
 // 0x0051CB60
@@ -81,7 +81,7 @@ char CCBAIWindow::Reset(_DWORD *a1)
   char ArgList; // [esp+404h] [ebp-40Ch] BYREF
   int v6; // [esp+80Ch] [ebp-4h]
 
-  v1 = operator new(0x98u);
+  v1 = (_BYTE *)operator new(0x98u);
   v6 = 0;
   if ( v1 )
     v1->UIFrameWnd();
@@ -109,10 +109,10 @@ char CCBAIWindow::Destroy(_DWORD *a1)
   char ArgList; // [esp+404h] [ebp-40Ch] BYREF
   int v6; // [esp+80Ch] [ebp-4h]
 
-  v1 = operator new(0x74u);
+  v1 = (_DWORD *)operator new(0x74u);
   v6 = 0;
   if ( v1 )
-    v2 = v1->ctor_9310();
+    v2 = (_DWORD *)v1->ctor_9310();
   else
     v2 = 0;
   v6 = -1;
@@ -137,10 +137,10 @@ char CCBAIWindow::OnMessage(_DWORD *a1)
   char ArgList; // [esp+404h] [ebp-40Ch] BYREF
   int v6; // [esp+80Ch] [ebp-4h]
 
-  v1 = operator new(0x6Cu);
+  v1 = (_DWORD *)operator new(0x6Cu);
   v6 = 0;
   if ( v1 )
-    v2 = sub_519AF0(v1);
+    v2 = (_DWORD *)sub_519AF0(v1);
   else
     v2 = 0;
   v6 = -1;
@@ -165,10 +165,10 @@ char CCBAIWindow::Update(_DWORD *a1)
   char ArgList; // [esp+404h] [ebp-40Ch] BYREF
   int v6; // [esp+80Ch] [ebp-4h]
 
-  v1 = operator new(0x80u);
+  v1 = (_DWORD *)operator new(0x80u);
   v6 = 0;
   if ( v1 )
-    v2 = v1->ChangeNumTxt();
+    v2 = (_DWORD *)v1->ChangeNumTxt();
   else
     v2 = 0;
   v6 = -1;
@@ -193,10 +193,10 @@ char CCBAIWindow::ShowWindow(_DWORD *a1)
   char ArgList; // [esp+404h] [ebp-40Ch] BYREF
   int v6; // [esp+80Ch] [ebp-4h]
 
-  v1 = operator new(0x54u);
+  v1 = (_DWORD *)operator new(0x54u);
   v6 = 0;
   if ( v1 )
-    v2 = v1->DefaultKey();
+    v2 = (_DWORD *)v1->DefaultKey();
   else
     v2 = 0;
   v6 = -1;

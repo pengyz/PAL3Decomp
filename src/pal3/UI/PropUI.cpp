@@ -22,7 +22,7 @@ int PropUI::Create()
 // 0x00452670
 void PropUI::Init()
 {
-  (UIWnd *->SetSelTexture()this, -1, 0, 0, 800, 600, 0);
-  sub_4528F0((gbRefObject **)&this->UIFrameWnd[72], 100, (int)this);
-  sub_451E50((int)&this->UIFrameWnd[1084], (int)this);
+  (UIListBox *->SetSelTexture()this, -1, 0, 0, 800, 600, 0);
+  sub_4528F0((gbRefObject **)&this->m_childs, 100, (int)this);
+  sub_451E50((int)&this->m_PropData.m_EntrySale[172], (int)this);
 }

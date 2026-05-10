@@ -114,15 +114,15 @@ public:
     int ShowDialogWindow(); // 0x00519200
     char ShowAIWindow(int a2); // 0x00519230
     char IsResultWindowClosed(int a2, int a3, int a4, int a5, int a6, int a7, int a8, const void *a9); // 0x00519260
-    UIWnd * ShowLineupWindow(UIWnd *Block, char a2); // 0x00519360
+    UIWnd * ShowLineupWindow(CCBUI *Block, char a2); // 0x00519360
     int OnMessage(); // 0x005193D0
-    char CreateImbibeNimbus(_DWORD *a2, int a3); // 0x00519400
+    char CreateImbibeNimbus(_DWORD *pRect, int parent); // 0x00519400
     int ConfigImbibeNimbus(); // 0x00519510
     int CheckNimbusMove(int a2, unsigned int a3, int a4); // 0x005195E0
     BOOL IsImbibeNimbusNotFinish(int a2, int a3); // 0x00519660
     struct gbVFileSystem * SetNimbusToNimbusControl(); // 0x005196C0
     char WriteNimbusToPlayerMgr(_DWORD *a2, int a3, int a4, int a5); // 0x00519A10
-    UIWnd * GetNimbusColor(UIWnd *Block, char a2); // 0x00519B40
+    UIWnd * GetNimbusColor(CCBUI *Block, char a2); // 0x00519B40
     int Render(); // 0x00519BB0
     static char __userpurge@<al> CreateButton(int a1, int a2, int a3, int a4, int a5, _DWORD *a6, int a7); // 0x00519BD0
     int DeleteUIObj(); // 0x00519F50
@@ -132,6 +132,6 @@ public:
     char LineMove(_DWORD *a2, int a3, int a4, int a5); // 0x0051A1D0
     int GravityDown(int a2); // 0x0051A2B0
     _DWORD * ChangeNumTxt(); // 0x0051A340
-    UIWnd * DoTask(UIWnd *Block, char a2); // 0x0051A390
+    UIWnd * DoTask(CCBUI *Block, char a2); // 0x0051A390
     char AddTask(_DWORD *a2, int a3); // 0x0051A430
 };

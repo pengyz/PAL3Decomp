@@ -48,7 +48,7 @@ CEffMgr::CEffMgr()
     return 1;
   OpenBaseFile::OpenBaseFile(&v5);
   v8 = 0;
-  v1 = g_pVFileSys->OpenFile(aCbdataFlexeffD, 0x201u);
+  v1 = (struct gbVFile *)g_pVFileSys->OpenFile(aCbdataFlexeffD, 0x201u);
   if ( !v1 )
   {
     qmemcpy(
@@ -57,7 +57,7 @@ CEffMgr::CEffMgr()
       sizeof(pExceptionObject));
     _CxxThrowException(pExceptionObject, (_ThrowInfo *)&_TI1_AV_Exception__);
   }
-  v2 = malloc(0x2C047u);
+  v2 = (void *)malloc(0x2C047u);
   v3 = (char *)malloc((size_t)&unk_8DDCE0);
   v4 = v3;
   if ( !v2 || !v3 )
@@ -92,7 +92,7 @@ CEffMgr::~CEffMgr()
   char pExceptionObject[1024]; // [esp+4h] [ebp-800h] BYREF
   char ArgList; // [esp+404h] [ebp-400h] BYREF
 
-  v0 = fopen(FileName, Mode);
+  v0 = (FILE *)fopen(FileName, Mode);
   v1 = v0;
   if ( !v0 )
   {
@@ -119,7 +119,7 @@ int CEffMgr::Init(int a2, int a3, int a4, int a5, int a6)
   int v10; // ebp
   int v13; // [esp+10h] [ebp-Ch]
   int v15; // [esp+18h] [ebp-4h]
-  int *i; // [esp+30h] [ebp+14h]
+  int *a6a; // [esp+30h] [ebp+14h]
 
   v13 = a6;
   if ( !a6 )
@@ -127,7 +127,7 @@ int CEffMgr::Init(int a2, int a3, int a4, int a5, int a6)
     if ( (g_bCursorVisible & 1) == 0 )
     {
       g_bCursorVisible |= 1u;
-      CEffMgr::Reset(&g_nCursorState);
+      (CEffMgr *->Reset()&g_nCursorState);
       atexit(nullsub_1);
     }
     v6 = dword_1895980;
@@ -141,16 +141,18 @@ int CEffMgr::Init(int a2, int a3, int a4, int a5, int a6)
   if ( dword_EC9E70[3985 * a2] <= 0 )
     return v13;
   v8 = (char *)&unk_EC9EB4 + v7 * 4;
-  for ( i = &dword_EC9E74[v7]; ; ++i )
+  for ( a6a = &dword_EC9E74[v7]; ; ++a6a )
   {
-    v9 = sub_4CDCA0(this, *i, v13, a3, a4, a5);
+    v9 = sub_4CDCA0((int *)this, *a6a, v13, a3, a4, a5);
     if ( v9 == -1 )
       break;
     v10 = 8;
     do
     {
       if ( v8[88] )
-        (*(void (**)(_DWORD, char *))(*(_DWORD *)*(this + 5 * v9 + 587) + 48))(*(this + 5 * v9 + 587), v8);
+        (*(void (**)(_DWORD, char *))(**(_DWORD **)&this->m_EffClass[30].szChineseName[20 * v9 + 10] + 48))(
+          *(_DWORD *)&this->m_EffClass[30].szChineseName[20 * v9 + 10],
+          v8);
       v8 += 124;
       --v10;
     }
@@ -303,16 +305,16 @@ int CEffMgr::RunEffGroup(const char *a2, int a3, const char *a4)
     if ( ++v4 >= 32 )
       return -1;
   }
-  v7 = &this->m_pDisplay[72 * v4];
+  v7 = (char *)&this->m_pDisplay[72 * v4];
   strcpy(v7 + 28, a2);
   v8 = (char *)a4;
   if ( !a4 )
-    v8 = &g_SceneMgr.m_info[51624];
+    v8 = (char *)&g_SceneMgr.m_info[51624];
   strcpy(v7 + 58, v8);
   v7[88] = 1;
   v9 = (_DWORD *)operator new(0x34u);
   if ( v9 )
-    v10 = sub_4C04C0(v9);
+    v10 = (_DWORD *)sub_4C04C0(v9);
   else
     v10 = 0;
   *((_DWORD *)v7 + 24) = v10;
@@ -342,16 +344,16 @@ int CEffMgr::IsAllEffGroupStop(const char *a2, int a3, const char *a4)
     if ( ++v4 >= 32 )
       return -1;
   }
-  v7 = &this->m_pDisplay[72 * v4];
+  v7 = (char *)&this->m_pDisplay[72 * v4];
   strcpy(v7 + 28, a2);
   v8 = (char *)a4;
   if ( !a4 )
-    v8 = &g_SceneMgr.m_info[51624];
+    v8 = (char *)&g_SceneMgr.m_info[51624];
   strcpy(v7 + 58, v8);
   v7[88] = 1;
   v9 = (_DWORD *)operator new(0x10C4u);
   if ( v9 )
-    v10 = sub_4C3C90(v9);
+    v10 = (_DWORD *)sub_4C3C90(v9);
   else
     v10 = 0;
   *((_DWORD *)v7 + 24) = v10;
@@ -381,16 +383,16 @@ int CEffMgr::CopyObjInGroup(const char *a2, int a3, const char *a4)
     if ( ++v4 >= 32 )
       return -1;
   }
-  v7 = &this->m_pDisplay[72 * v4];
+  v7 = (char *)&this->m_pDisplay[72 * v4];
   strcpy(v7 + 28, a2);
   v8 = (char *)a4;
   if ( !a4 )
-    v8 = &g_SceneMgr.m_info[51624];
+    v8 = (char *)&g_SceneMgr.m_info[51624];
   strcpy(v7 + 58, v8);
   v7[88] = 1;
   v9 = (_DWORD *)operator new(0x130u);
   if ( v9 )
-    v10 = sub_4C1570(v9);
+    v10 = (_DWORD *)sub_4C1570(v9);
   else
     v10 = 0;
   *((_DWORD *)v7 + 24) = v10;

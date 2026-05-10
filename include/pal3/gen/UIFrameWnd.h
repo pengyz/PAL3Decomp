@@ -12,6 +12,6 @@ public:
     void _UIFrameWnd(); // 0x00442390
     void OnMessage(); // 0x00442420
     int Render(); // 0x00442890
-    int Update(int a2, int a3); // 0x00442AD0
+    BOOL Update(int a2, int a3); // 0x00442AD0
     int SetPosition(int a2, int a3); // 0x00442C60
 };

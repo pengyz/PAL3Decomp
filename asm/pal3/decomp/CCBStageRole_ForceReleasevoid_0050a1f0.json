@@ -2,6 +2,6 @@
   "name": "CCBStageRole::ForceRelease(void)",
   "address": "0x0050A1F0",
   "size_bytes": 13,
-  "signature": "char __thiscall(_BYTE *this, char a2)",
-  "decompiled_c": "// between_std_methods (0x504E20-0x53C2B0)\nchar __thiscall sub_50A1F0(_BYTE *this, char a2)\n{\n  *(this + 265) = a2;\n  return a2;\n}\n"
+  "signature": "char __thiscall(CCBStageRole *this, char a2)",
+  "decompiled_c": "// between_std_methods (0x504E20-0x53C2B0)\nchar __thiscall CCBStageRole::ForceRelease(CCBStageRole *this, char a2)\n{\n  BYTE1(this->m_bValid) = a2;\n  return a2;\n}\n"
 }

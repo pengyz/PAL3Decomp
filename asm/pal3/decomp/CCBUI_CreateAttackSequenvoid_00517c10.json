@@ -2,6 +2,6 @@
   "name": "CCBUI::CreateAttackSequen(void)",
   "address": "0x00517C10",
   "size_bytes": 104,
-  "signature": "char __thiscall(_DWORD *this)",
-  "decompiled_c": "// between_std_methods (0x504E20-0x53C2B0)\nchar __thiscall sub_517C10(_DWORD *this)\n{\n  _DWORD *v2; // esi\n  char result; // al\n  _DWORD v4[4]; // [esp+8h] [ebp-10h] BYREF\n\n  v2 = this + 283;\n  result = CCBLineupWindow::CCBLineupWindow(this + 283);\n  if ( result )\n  {\n    v4[0] = 14;\n    v4[2] = 172;\n    v4[1] = 316;\n    v4[3] = 474;\n    CCBItemWindow::Create(v4, this);\n    (**(void (__thiscall ***)(_DWORD, _DWORD))*v2)(*v2, 0);\n    return 1;\n  }\n  return result;\n}\n"
+  "signature": "char __thiscall(CCBUI *this)",
+  "decompiled_c": "// between_std_methods (0x504E20-0x53C2B0)\nchar __thiscall CCBUI::CreateAttackSequen(CCBUI *this)\n{\n  UIProgressBar **p_m_pRoleStateSword; // esi\n  char result; // al\n  UIProgressBar *v4; // ecx\n  int v5; // [esp+8h] [ebp-10h] BYREF\n  int v6; // [esp+Ch] [ebp-Ch]\n  int v7; // [esp+10h] [ebp-8h]\n  int v8; // [esp+14h] [ebp-4h]\n\n  p_m_pRoleStateSword = &this->m_pRoleStateSword;\n  result = CCBLineupWindow::CCBLineupWindow(&this->m_pRoleStateSword);\n  if ( result )\n  {\n    v6 = 0;\n    v7 = 0;\n    v4 = *p_m_pRoleStateSword;\n    v5 = 14;\n    v7 = 172;\n    v6 = 316;\n    v8 = 474;\n    CCBItemWindow::Create((int)v4, &v5, (int)this);\n    (*(void (__thiscall **)(UIProgressBar *, _DWORD))(*p_m_pRoleStateSword)->m_fontcolor.ColorQuadFmt)(\n      *p_m_pRoleStateSword,\n      0);\n    return 1;\n  }\n  return result;\n}\n"
 }
