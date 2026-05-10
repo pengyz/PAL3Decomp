@@ -3,5 +3,5 @@
   "address": "0x004411D0",
   "size_bytes": 108,
   "signature": "void __thiscall(UIWnd *this)",
-  "decompiled_c": "// likely std method (near _Freeze, _Split, max_size, allocator<char>>, _Xran)\nvoid __thiscall UIWnd::ctor_11D0(UIWnd *this)\n{\n  *(_DWORD *)this->_pad_0000 = &off_56ADAC;\n  sub_4414D0((UIWnd **)this);\n  j_UIWnd::MoveWindow((UIWnd **)this + 48);\n  UIWnd::ctor_D880((UIWnd *)&this->m_bvisible);\n  UIWnd::_UIWnd(this);\n}\n"
+  "decompiled_c": "// likely std method (near _Freeze, _Split, max_size, allocator<char>>, _Xran)\nvoid __thiscall UIWnd::ctor_11D0(UIWnd *this)\n{\n  *(_DWORD *)this->_pad_000 = &off_56ADAC;\n  sub_4414D0((UIWnd **)this);\n  j_UIWnd::MoveWindow((UIWnd **)this + 48);\n  UIWnd::ctor_D880((UIWnd *)((char *)this + 72));\n  UIWnd::_UIWnd(this);\n}\n"
 }

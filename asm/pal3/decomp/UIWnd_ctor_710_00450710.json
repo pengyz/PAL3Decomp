@@ -3,5 +3,5 @@
   "address": "0x00450710",
   "size_bytes": 84,
   "signature": "_DWORD *__thiscall(UIWnd *this)",
-  "decompiled_c": "// between_std_methods (0x44BDA0-0x4A7690)\n_DWORD *__thiscall UIWnd::ctor_710(UIWnd *this)\n{\n  UIListBox::UIListBox((UIListBox *)this);\n  UIWnd::ctor_F7F0((UIWnd *)&this->m_bvisible);\n  *(_DWORD *)this->_pad_0000 = &off_56B100;\n  *((_DWORD *)this + 81) = 1120403456;\n  return this->_pad_0000;\n}\n"
+  "decompiled_c": "// between_std_methods (0x44BDA0-0x4A7690)\n_DWORD *__thiscall UIWnd::ctor_710(UIWnd *this)\n{\n  UIListBox::UIListBox((UIListBox *)this);\n  UIWnd::ctor_F7F0((UIWnd *)((char *)this + 72));\n  *(_DWORD *)this->_pad_000 = &off_56B100;\n  *((_DWORD *)this + 81) = 1120403456;\n  return this->_pad_000;\n}\n"
 }

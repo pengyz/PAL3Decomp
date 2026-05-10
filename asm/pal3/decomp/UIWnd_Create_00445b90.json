@@ -3,5 +3,5 @@
   "address": "0x00445B90",
   "size_bytes": 87,
   "signature": "int __thiscall(UIWnd *this, int id, void *pRect, int parent)",
-  "decompiled_c": "// between_std_methods (0x445B40-0x44BDA0)\nint __thiscall UIWnd::Create(UIWnd *this, int id, void *pRect, int parent)\n{\n  this->m_fontcolor.Color = id;\n  this->m_wndcolor = *(gbColorQuad *)pRect;\n  this->m_id = *((_DWORD *)pRect + 3);\n  this->m_rect.left = parent;\n  if ( parent )\n  {\n    sub_445BF0((int *)parent, (int)this);\n    sub_445E10((_DWORD *)this->m_rect.left, &this->m_wndcolor.ColorQuadFmt);\n  }\n  this->m_childs.m_pData = (void *)1;\n  this->m_childs.m_nSize = 1;\n  this->m_childs.m_nMaxSize = 1;\n  return 1;\n}\n"
+  "decompiled_c": "// between_std_methods (0x445B40-0x44BDA0)\nint __thiscall UIWnd::Create(UIWnd *this, int id, void *pRect, int parent)\n{\n  this->m_id = id;\n  *(_DWORD *)this->m_rect = *(_DWORD *)pRect;\n  *(_DWORD *)&this->m_rect[4] = *((_DWORD *)pRect + 1);\n  *(_DWORD *)&this->m_rect[8] = *((_DWORD *)pRect + 2);\n  *(_DWORD *)&this->m_rect[12] = *((_DWORD *)pRect + 3);\n  this->m_pfather = (UIWnd *)parent;\n  if ( parent )\n  {\n    sub_445BF0((int *)parent, (int)this);\n    sub_445E10(this->m_pfather->_pad_000, this->m_rect);\n  }\n  this->m_bcreateok = 1;\n  this->m_bvisible = 1;\n  this->m_benable = 1;\n  return 1;\n}\n"
 }
