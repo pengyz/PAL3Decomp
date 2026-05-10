@@ -13,10 +13,10 @@ int sub_5541EE(...);
 int RenderTarget2::Init()
 {
   RenderTarget2 *v1; // esi
-  gbGfxManager *v2; // ebp
+  int Data; // ebp
   int v3; // eax
-  unsigned int CurTick; // eax
-  _DWORD *Instance; // eax
+  int v4; // eax
+  RenderTarget *Instance; // eax
   DWORD Time; // eax
   _BYTE *v7; // edi
   unsigned int v8; // esi
@@ -65,35 +65,35 @@ int RenderTarget2::Init()
 
   v1 = this;
   *((_DWORD *)this + 4) = 0;
-  v2 = g_pGfxManager;
-  v3 = *(_DWORD *)&g_pGfxManager[1816];
+  Data = g_Input.KeyInfo[177].Data;
+  v3 = *(_DWORD *)(g_Input.KeyInfo[177].Data + 1816);
   v46 = this;
   (*(void (__stdcall **)(int, _DWORD *))(*(_DWORD *)v3 + 28))(v3, v50);
   if ( (v50[36] & 0x200000) == 0 )
     *(_DWORD *)&v1[16] = 1;
-  if ( v2[1648] )
-    CurTick = *(_DWORD *)&v2[1660];
+  if ( *(_BYTE *)(Data + 1648) )
+    v4 = *(_DWORD *)(Data + 1660);
   else
-    CurTick = *(_DWORD *)&v2[1716];
-  if ( (*(int (__stdcall **)(_DWORD, _DWORD, _DWORD, _DWORD, _DWORD, int, int))(**(_DWORD **)&v2[1812] + 40))(
-         *(_DWORD *)&v2[1812],
+    v4 = *(_DWORD *)(Data + 1716);
+  if ( (*(int (__stdcall **)(_DWORD, _DWORD, _DWORD, _DWORD, _DWORD, int, int))(**(_DWORD **)(Data + 1812) + 40))(
+         *(_DWORD *)(Data + 1812),
          v50[1],
          v50[0],
-         *(_DWORD *)(CurTick + 8),
+         *(_DWORD *)(v4 + 8),
          0,
          3,
          60) < 0 )
     *(_DWORD *)&v1[16] = 1;
   v44 = 1.0;
-  Instance = (_DWORD *)CRenderTarget::GetInstance();
+  Instance = (RenderTarget *)CRenderTarget::GetInstance();
   Instance->OnDeviceLost(1);
   if ( !*CRenderTarget::GetInstance() )
     v44 = 0.75;
   if ( *(_DWORD *)&v1[16] )
     goto LABEL_22;
-  if ( (*(int (__stdcall **)(_DWORD, int, int, int, _DWORD, int, int, RenderTarget2 *, _DWORD))(**(_DWORD **)&v2[1816]
+  if ( (*(int (__stdcall **)(_DWORD, int, int, int, _DWORD, int, int, RenderTarget2 *, _DWORD))(**(_DWORD **)(Data + 1816)
                                                                                               + 92))(
-         *(_DWORD *)&v2[1816],
+         *(_DWORD *)(Data + 1816),
          256,
          256,
          1,
@@ -135,16 +135,16 @@ int RenderTarget2::Init()
       v43 += v48[0];
     }
     (*(void (__stdcall **)(_DWORD, _DWORD))(**(_DWORD **)&v46[12] + 80))(*(_DWORD *)&v46[12], 0);
-    v11 = *(_DWORD *)&v2[1816];
+    v11 = *(_DWORD *)(Data + 1816);
     v40 = 0.0099999998;
     (*(void (__stdcall **)(int, _DWORD, int, int))(*(_DWORD *)v11 + 268))(v11, 0, 7, 1008981770);
-    v12 = *(_DWORD *)&v2[1816];
+    v12 = *(_DWORD *)(Data + 1816);
     v40 = 0.0;
     (*(void (__stdcall **)(int, _DWORD, int, _DWORD))(*(_DWORD *)v12 + 268))(v12, 0, 8, 0);
-    v13 = *(_DWORD *)&v2[1816];
+    v13 = *(_DWORD *)(Data + 1816);
     v40 = 0.0;
     (*(void (__stdcall **)(int, _DWORD, int, _DWORD))(*(_DWORD *)v13 + 268))(v13, 0, 9, 0);
-    v14 = *(_DWORD *)&v2[1816];
+    v14 = *(_DWORD *)(Data + 1816);
     v40 = 0.0099999998;
     (*(void (__stdcall **)(int, _DWORD, int, int))(*(_DWORD *)v14 + 268))(v14, 0, 10, 1008981770);
     v1 = v46;
@@ -157,8 +157,8 @@ int RenderTarget2::Init()
   {
 LABEL_22:
     v24 = (RenderTarget2 *)v1 + 8;
-    result = (*(int (__stdcall **)(_DWORD, int, int, int, int, RenderTarget2 *, _DWORD))(**(_DWORD **)&v2[1816] + 104))(
-               *(_DWORD *)&v2[1816],
+    result = (*(int (__stdcall **)(_DWORD, int, int, int, int, RenderTarget2 *, _DWORD))(**(_DWORD **)(Data + 1816) + 104))(
+               *(_DWORD *)(Data + 1816),
                2800,
                8,
                514,
@@ -167,7 +167,7 @@ LABEL_22:
                0);
     if ( result >= 0 )
     {
-      v25 = (int *)*(int **)&v2[1816];
+      v25 = (int *)*(int **)(Data + 1816);
       v26 = (RenderTarget2 *)v1 + 4;
       v27 = *v25;
       v45 = *(float *)&v26;
@@ -261,8 +261,8 @@ LABEL_22:
   else
   {
     v15 = (RenderTarget2 *)v1 + 8;
-    result = (*(int (__stdcall **)(_DWORD, int, int, int, int, RenderTarget2 *, _DWORD))(**(_DWORD **)&v2[1816] + 104))(
-               *(_DWORD *)&v2[1816],
+    result = (*(int (__stdcall **)(_DWORD, int, int, int, int, RenderTarget2 *, _DWORD))(**(_DWORD **)(Data + 1816) + 104))(
+               *(_DWORD *)(Data + 1816),
                112,
                8,
                514,
@@ -327,21 +327,22 @@ void * RenderTarget2::Begin()
 {
   _BYTE *v0; // ecx
   _BYTE *v1; // esi
-  _DWORD *Instance; // eax
-  int *v3; // eax
+  RenderTarget *Instance; // eax
+  RenderTarget *v3; // eax
   void *result; // eax
 
   v1 = v0;
   if ( *v0 )
   {
-    Instance = (_DWORD *)CRenderTarget::GetInstance();
+    Instance = (RenderTarget *)CRenderTarget::GetInstance();
     Instance->OnDeviceLost(2);
-    v3 = (int *)CRenderTarget::GetInstance();
+    v3 = (RenderTarget *)CRenderTarget::GetInstance();
     LOBYTE(result) = v3->OnResetDevice(0);
     if ( (_BYTE)result )
-      return (*(void *(__stdcall **)(_DWORD, _DWORD, _DWORD, int, int, int, _DWORD))(**(_DWORD **)&g_pGfxManager[1816]
+      return (*(void *(__stdcall **)(_DWORD, _DWORD, _DWORD, int, int, int, _DWORD))(**(_DWORD **)(g_Input.KeyInfo[177].Data
+                                                                                                 + 1816)
                                                                                    + 172))(
-               *(_DWORD *)&g_pGfxManager[1816],
+               *(_DWORD *)(g_Input.KeyInfo[177].Data + 1816),
                0,
                0,
                3,
@@ -358,7 +359,7 @@ void * RenderTarget2::Begin()
 void RenderTarget2::Resolve()
 {
   int *Instance; // eax
-  gbGfxManager *v3; // esi
+  _DWORD **Data; // esi
   _DWORD *v4; // eax
   _DWORD *v5; // eax
   _DWORD *v6; // ebp
@@ -367,48 +368,42 @@ void RenderTarget2::Resolve()
   {
     Instance = (int *)CRenderTarget::GetInstance();
     sub_4BDD90(Instance);
-    v3 = g_pGfxManager;
+    Data = (_DWORD **)g_Input.KeyInfo[177].Data;
     PushMatrixStacks();
-    (*(void (**)(gbGfxManager *))(*(_DWORD *)v3 + 60))(v3);
+    ((void (*)(_DWORD **))(*Data)[15])(Data);
     v4 = (_DWORD *)CRenderTarget::GetInstance();
     v5 = (_DWORD *)sub_4BDEB0(v4);
     v6 = v5;
     if ( v5 && v5[21] && *((_DWORD *)this + 2) )
     {
-      (*(void (__stdcall **)(_DWORD, int, int))(**(_DWORD **)&v3[1816] + 228))(*(_DWORD *)&v3[1816], 22, 1);
-      (*(void (__stdcall **)(_DWORD, int, _DWORD))(**(_DWORD **)&v3[1816] + 228))(*(_DWORD *)&v3[1816], 137, 0);
-      (*(void (__stdcall **)(_DWORD, int, _DWORD))(**(_DWORD **)&v3[1816] + 228))(*(_DWORD *)&v3[1816], 7, 0);
-      (*(void (__stdcall **)(_DWORD, int, _DWORD))(**(_DWORD **)&v3[1816] + 228))(*(_DWORD *)&v3[1816], 14, 0);
-      (*(void (__stdcall **)(_DWORD, int, _DWORD))(**(_DWORD **)&v3[1816] + 228))(*(_DWORD *)&v3[1816], 15, 0);
-      (*(void (__stdcall **)(_DWORD, int, _DWORD))(**(_DWORD **)&v3[1816] + 228))(*(_DWORD *)&v3[1816], 27, 0);
-      (*(void (__stdcall **)(_DWORD, int, int))(**(_DWORD **)&v3[1816] + 228))(*(_DWORD *)&v3[1816], 26, 1);
-      (*(void (__stdcall **)(_DWORD, int, _DWORD))(**(_DWORD **)&v3[1816] + 228))(*(_DWORD *)&v3[1816], 29, 0);
+      (*(void (__stdcall **)(_DWORD *, int, int))(*Data[454] + 228))(Data[454], 22, 1);
+      (*(void (__stdcall **)(_DWORD *, int, _DWORD))(*Data[454] + 228))(Data[454], 137, 0);
+      (*(void (__stdcall **)(_DWORD *, int, _DWORD))(*Data[454] + 228))(Data[454], 7, 0);
+      (*(void (__stdcall **)(_DWORD *, int, _DWORD))(*Data[454] + 228))(Data[454], 14, 0);
+      (*(void (__stdcall **)(_DWORD *, int, _DWORD))(*Data[454] + 228))(Data[454], 15, 0);
+      (*(void (__stdcall **)(_DWORD *, int, _DWORD))(*Data[454] + 228))(Data[454], 27, 0);
+      (*(void (__stdcall **)(_DWORD *, int, int))(*Data[454] + 228))(Data[454], 26, 1);
+      (*(void (__stdcall **)(_DWORD *, int, _DWORD))(*Data[454] + 228))(Data[454], 29, 0);
       if ( *((_DWORD *)this + 4) )
       {
-        (*(void (__stdcall **)(_DWORD, _DWORD, _DWORD))(**(_DWORD **)&v3[1816] + 260))(*(_DWORD *)&v3[1816], 0, v6[21]);
-        (*(void (__stdcall **)(_DWORD, _DWORD, int, _DWORD))(**(_DWORD **)&v3[1816] + 268))(
-          *(_DWORD *)&v3[1816],
-          0,
-          11,
-          0);
-        (*(void (__stdcall **)(_DWORD, _DWORD, int, int))(**(_DWORD **)&v3[1816] + 268))(*(_DWORD *)&v3[1816], 0, 1, 2);
-        (*(void (__stdcall **)(_DWORD, _DWORD, int, int))(**(_DWORD **)&v3[1816] + 268))(*(_DWORD *)&v3[1816], 0, 2, 2);
-        (*(void (__stdcall **)(_DWORD, _DWORD, int, int))(**(_DWORD **)&v3[1816] + 268))(*(_DWORD *)&v3[1816], 0, 3, 1);
-        (*(void (__stdcall **)(_DWORD, _DWORD, int, int))(**(_DWORD **)&v3[1816] + 268))(*(_DWORD *)&v3[1816], 0, 4, 1);
-        (*(void (__stdcall **)(_DWORD, _DWORD, int, int))(**(_DWORD **)&v3[1816] + 276))(*(_DWORD *)&v3[1816], 0, 1, 3);
-        (*(void (__stdcall **)(_DWORD, _DWORD, int, int))(**(_DWORD **)&v3[1816] + 276))(*(_DWORD *)&v3[1816], 0, 2, 3);
-        (*(void (__stdcall **)(_DWORD, int))(**(_DWORD **)&v3[1816] + 356))(*(_DWORD *)&v3[1816], 514);
-        (*(void (__stdcall **)(_DWORD, _DWORD, _DWORD, _DWORD, int))(**(_DWORD **)&v3[1816] + 400))(
-          *(_DWORD *)&v3[1816],
+        (*(void (__stdcall **)(_DWORD *, _DWORD, _DWORD))(*Data[454] + 260))(Data[454], 0, v6[21]);
+        (*(void (__stdcall **)(_DWORD *, _DWORD, int, _DWORD))(*Data[454] + 268))(Data[454], 0, 11, 0);
+        (*(void (__stdcall **)(_DWORD *, _DWORD, int, int))(*Data[454] + 268))(Data[454], 0, 1, 2);
+        (*(void (__stdcall **)(_DWORD *, _DWORD, int, int))(*Data[454] + 268))(Data[454], 0, 2, 2);
+        (*(void (__stdcall **)(_DWORD *, _DWORD, int, int))(*Data[454] + 268))(Data[454], 0, 3, 1);
+        (*(void (__stdcall **)(_DWORD *, _DWORD, int, int))(*Data[454] + 268))(Data[454], 0, 4, 1);
+        (*(void (__stdcall **)(_DWORD *, _DWORD, int, int))(*Data[454] + 276))(Data[454], 0, 1, 3);
+        (*(void (__stdcall **)(_DWORD *, _DWORD, int, int))(*Data[454] + 276))(Data[454], 0, 2, 3);
+        (*(void (__stdcall **)(_DWORD *, int))(*Data[454] + 356))(Data[454], 514);
+        (*(void (__stdcall **)(_DWORD *, _DWORD, _DWORD, _DWORD, int))(*Data[454] + 400))(
+          Data[454],
           0,
           *((_DWORD *)this + 2),
           0,
           28);
-        (*(void (__stdcall **)(_DWORD, _DWORD))(**(_DWORD **)&v3[1816] + 416))(
-          *(_DWORD *)&v3[1816],
-          *((_DWORD *)this + 1));
-        (*(void (__stdcall **)(_DWORD, int, _DWORD, _DWORD, int, _DWORD, int))(**(_DWORD **)&v3[1816] + 328))(
-          *(_DWORD *)&v3[1816],
+        (*(void (__stdcall **)(_DWORD *, _DWORD))(*Data[454] + 416))(Data[454], *((_DWORD *)this + 1));
+        (*(void (__stdcall **)(_DWORD *, int, _DWORD, _DWORD, int, _DWORD, int))(*Data[454] + 328))(
+          Data[454],
           4,
           0,
           0,
@@ -418,42 +413,35 @@ void RenderTarget2::Resolve()
       }
       else
       {
-        (*(void (__stdcall **)(_DWORD, _DWORD, _DWORD))(**(_DWORD **)&v3[1816] + 260))(
-          *(_DWORD *)&v3[1816],
-          0,
-          *((_DWORD *)this + 3));
-        (*(void (__stdcall **)(_DWORD, int, _DWORD))(**(_DWORD **)&v3[1816] + 260))(*(_DWORD *)&v3[1816], 1, v6[21]);
-        (*(void (__stdcall **)(_DWORD, _DWORD, int, _DWORD))(**(_DWORD **)&v3[1816] + 268))(
-          *(_DWORD *)&v3[1816],
-          0,
-          11,
-          0);
-        (*(void (__stdcall **)(_DWORD, _DWORD, int, int))(**(_DWORD **)&v3[1816] + 268))(*(_DWORD *)&v3[1816], 0, 1, 22);
-        (*(void (__stdcall **)(_DWORD, _DWORD, int, int))(**(_DWORD **)&v3[1816] + 268))(*(_DWORD *)&v3[1816], 0, 2, 2);
-        (*(void (__stdcall **)(_DWORD, _DWORD, int, int))(**(_DWORD **)&v3[1816] + 268))(*(_DWORD *)&v3[1816], 0, 3, 1);
-        (*(void (__stdcall **)(_DWORD, _DWORD, int, int))(**(_DWORD **)&v3[1816] + 268))(*(_DWORD *)&v3[1816], 0, 4, 1);
-        (*(void (__stdcall **)(_DWORD, int, int, int))(**(_DWORD **)&v3[1816] + 268))(*(_DWORD *)&v3[1816], 1, 11, 1);
-        (*(void (__stdcall **)(_DWORD, int, int, int))(**(_DWORD **)&v3[1816] + 268))(*(_DWORD *)&v3[1816], 1, 1, 2);
-        (*(void (__stdcall **)(_DWORD, int, int, int))(**(_DWORD **)&v3[1816] + 268))(*(_DWORD *)&v3[1816], 1, 2, 2);
-        (*(void (__stdcall **)(_DWORD, int, int, int))(**(_DWORD **)&v3[1816] + 268))(*(_DWORD *)&v3[1816], 1, 3, 1);
-        (*(void (__stdcall **)(_DWORD, int, int, int))(**(_DWORD **)&v3[1816] + 268))(*(_DWORD *)&v3[1816], 1, 4, 1);
-        (*(void (__stdcall **)(_DWORD, int, int, int))(**(_DWORD **)&v3[1816] + 276))(*(_DWORD *)&v3[1816], 1, 1, 3);
-        (*(void (__stdcall **)(_DWORD, int, int, int))(**(_DWORD **)&v3[1816] + 276))(*(_DWORD *)&v3[1816], 1, 2, 3);
-        (*(void (__stdcall **)(_DWORD, int, int, int))(**(_DWORD **)&v3[1816] + 268))(*(_DWORD *)&v3[1816], 2, 1, 1);
-        (*(void (__stdcall **)(_DWORD, int, int, int))(**(_DWORD **)&v3[1816] + 268))(*(_DWORD *)&v3[1816], 2, 4, 1);
-        (*(void (__stdcall **)(_DWORD, int))(**(_DWORD **)&v3[1816] + 356))(*(_DWORD *)&v3[1816], 514);
-        (*(void (__stdcall **)(_DWORD, _DWORD, _DWORD, _DWORD, int))(**(_DWORD **)&v3[1816] + 400))(
-          *(_DWORD *)&v3[1816],
+        (*(void (__stdcall **)(_DWORD *, _DWORD, _DWORD))(*Data[454] + 260))(Data[454], 0, *((_DWORD *)this + 3));
+        (*(void (__stdcall **)(_DWORD *, int, _DWORD))(*Data[454] + 260))(Data[454], 1, v6[21]);
+        (*(void (__stdcall **)(_DWORD *, _DWORD, int, _DWORD))(*Data[454] + 268))(Data[454], 0, 11, 0);
+        (*(void (__stdcall **)(_DWORD *, _DWORD, int, int))(*Data[454] + 268))(Data[454], 0, 1, 22);
+        (*(void (__stdcall **)(_DWORD *, _DWORD, int, int))(*Data[454] + 268))(Data[454], 0, 2, 2);
+        (*(void (__stdcall **)(_DWORD *, _DWORD, int, int))(*Data[454] + 268))(Data[454], 0, 3, 1);
+        (*(void (__stdcall **)(_DWORD *, _DWORD, int, int))(*Data[454] + 268))(Data[454], 0, 4, 1);
+        (*(void (__stdcall **)(_DWORD *, int, int, int))(*Data[454] + 268))(Data[454], 1, 11, 1);
+        (*(void (__stdcall **)(_DWORD *, int, int, int))(*Data[454] + 268))(Data[454], 1, 1, 2);
+        (*(void (__stdcall **)(_DWORD *, int, int, int))(*Data[454] + 268))(Data[454], 1, 2, 2);
+        (*(void (__stdcall **)(_DWORD *, int, int, int))(*Data[454] + 268))(Data[454], 1, 3, 1);
+        (*(void (__stdcall **)(_DWORD *, int, int, int))(*Data[454] + 268))(Data[454], 1, 4, 1);
+        (*(void (__stdcall **)(_DWORD *, int, int, int))(*Data[454] + 276))(Data[454], 1, 1, 3);
+        (*(void (__stdcall **)(_DWORD *, int, int, int))(*Data[454] + 276))(Data[454], 1, 2, 3);
+        (*(void (__stdcall **)(_DWORD *, int, int, int))(*Data[454] + 268))(Data[454], 2, 1, 1);
+        (*(void (__stdcall **)(_DWORD *, int, int, int))(*Data[454] + 268))(Data[454], 2, 4, 1);
+        (*(void (__stdcall **)(_DWORD *, int))(*Data[454] + 356))(Data[454], 514);
+        (*(void (__stdcall **)(_DWORD *, _DWORD, _DWORD, _DWORD, int))(*Data[454] + 400))(
+          Data[454],
           0,
           *((_DWORD *)this + 2),
           0,
           28);
-        (*(void (__stdcall **)(_DWORD, int, _DWORD, int))(**(_DWORD **)&v3[1816] + 324))(*(_DWORD *)&v3[1816], 5, 0, 2);
+        (*(void (__stdcall **)(_DWORD *, int, _DWORD, int))(*Data[454] + 324))(Data[454], 5, 0, 2);
       }
-      *(_DWORD *)&g_pGfxManager[2280] = 0;
-      *(_DWORD *)&g_pGfxManager[2284] = 0;
-      ((gbGfxManager_D3D *)g_pGfxManager)->SetTexture(0);
-      ((gbRenderEffect *)*(gbRenderEffect **)(*(_DWORD *)&g_pGfxManager[200] + 24))->Apply();
+      *(_DWORD *)(g_Input.KeyInfo[177].Data + 2280) = 0;
+      *(_DWORD *)(g_Input.KeyInfo[177].Data + 2284) = 0;
+      ((gbGfxManager_D3D *)g_Input.KeyInfo[177].Data)->SetTexture(0);
+      ((gbRenderEffect *)*(gbRenderEffect **)(*(_DWORD *)(g_Input.KeyInfo[177].Data + 200) + 24))->Apply();
     }
     PopMatrixStacks();
   }

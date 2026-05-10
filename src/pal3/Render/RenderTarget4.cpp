@@ -29,17 +29,17 @@ _DWORD *RenderTarget4::GetInstance()
 void * RenderTarget4::Init()
 {
   gbTexture *v2; // eax
-  struct gbVFileSystem *v4; // [esp+8h] [ebp-10h] BYREF
+  OpenBaseFile v4; // [esp+8h] [ebp-10h] BYREF
   int v5; // [esp+14h] [ebp-4h]
 
   ((OpenBaseFile *)&v4)->OpenBaseFile();
   v5 = 0;
-  v2 = (gbTexture *)(*(int (**)(gbGfxManager *, char *))(*(_DWORD *)g_pGfxManager + 8))(
-                      g_pGfxManager,
+  v2 = (gbTexture *)(*(int (**)(int, char *))(*(_DWORD *)g_Input.KeyInfo[177].Data + 8))(
+                      g_Input.KeyInfo[177].Data,
                       aEffectscnFrame);
   *((_DWORD *)this + 1) = v2;
   v2->LoadTexture(1);
   *this = 0;
   v5 = -1;
-  return ((OpenNULLFile *)&v4)->OpenNULLFile();
+  return ((OpenNULLFile **)&v4)->OpenNULLFile();
 }

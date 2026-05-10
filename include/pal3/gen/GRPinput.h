@@ -74,7 +74,7 @@ public:
     static void GetMouseDeltas(); // 0x00403160
     static void GetJoystickPos(); // 0x00403170
     BOOL GetJoystickFreePos(int a2, int a3); // 0x00403180
-    int AcquireMouse(); // 0x00403370
+    char * AcquireMouse(); // 0x00403370
     void UnacquireMouse(); // 0x004033F0
     void AcquireJoystick(); // 0x00403410
     void UnacquireJoystick(); // 0x00403470

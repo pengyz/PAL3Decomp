@@ -47,7 +47,7 @@ void UIFrameWnd::_UIFrameWnd(UIWnd *this)
   char v4; // al
 
   *(_DWORD *)this->_data = &off_56ADD0;
-  UIFrameWnd::OnMessage();
+  ((UIFrameWnd **)this)->OnMessage();
   v2 = *((_DWORD *)this + 25);
   if ( v2 )
   {

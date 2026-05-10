@@ -134,5 +134,5 @@ public:
     int GravityDown(int a2); // 0x0051A2B0
     _DWORD * ChangeNumTxt(); // 0x0051A340
     UIWnd * DoTask(CCBUI *Block, char a2); // 0x0051A390
-    char AddTask(_DWORD *a2, int a3); // 0x0051A430
+    char AddTask(_DWORD *pRect, int parent); // 0x0051A430
 };

@@ -40,49 +40,49 @@ extern void *off_56F040;
 // 0x004A1E40
 int EquipUI::Create()
 {
-  this->UIListBox();
-  *(_DWORD *)&this->UIFrameWnd[88] = 800;
-  *(_DWORD *)&this->UIFrameWnd[92] = 600;
-  *(_DWORD *)&this->UIFrameWnd[96] = 0;
-  *(_DWORD *)&this->UIFrameWnd[100] = 0;
-  this->UIFrameWnd[360] = 0;
-  *(_DWORD *)&this->UIFrameWnd[368] = 0;
-  this->UIFrameWnd[372] = 0;
-  this->UIFrameWnd[373] = 0;
-  ((UIFrameWnd *)&this->UIFrameWnd[376])->UIFrameWnd();
-  ((UIFrameWnd *)&this->UIFrameWnd[528])->UIFrameWnd();
-  ((UIFrameWnd *)&this->UIFrameWnd[680])->UIFrameWnd();
-  ((UIFrameWnd *)&this->UIFrameWnd[832])->UIFrameWnd();
-  ((UIFrameWnd *)&this->UIFrameWnd[984])->UIFrameWnd();
-  ((UIFrameWnd *)&this->UIFrameWnd[1136])->UIFrameWnd();
-  ((UIScene *)&this->UIFrameWnd[1288])->_UIScene();
-  ((UIScene *)&this->UIFrameWnd[1632])->_UIScene();
-  ((UIScene *)&this->UIFrameWnd[1976])->_UIScene();
-  ((UIScene *)&this->UIFrameWnd[2320])->_UIScene();
-  ((UIScene *)&this->UIFrameWnd[2664])->_UIScene();
-  ((UIScene *)&this->UIFrameWnd[3008])->_UIScene();
-  ((UIScene *)&this->UIFrameWnd[3352])->_UIScene();
-  ((UIScene *)&this->UIFrameWnd[3696])->_UIScene();
-  ((UIScene *)&this->UIFrameWnd[4040])->_UIScene();
-  ((UIFrameWnd *)&this->UIFrameWnd[4384])->UIFrameWnd();
-  ((UIFrameWnd *)&this->UIFrameWnd[4552])->UIFrameWnd();
-  ((UIFrameWnd *)&this->UIFrameWnd[4704])->UIFrameWnd();
+  ((UIListBox *)this)->UIListBox();
+  this->m_bcreateok = 800;
+  this->m_bvisible = 600;
+  this->m_benable = 0;
+  this->m_bfocus = 0;
+  this->buf[244] = 0;
+  *(_DWORD *)&this->buf[252] = 0;
+  LOBYTE(this->m_SelNum) = 0;
+  BYTE1(this->m_SelNum) = 0;
+  ((UIFrameWnd *)&this->m_ListNum)->UIFrameWnd();
+  ((UIFrameWnd *)&this->m_EquipData.m_Name[104])->UIFrameWnd();
+  ((UIFrameWnd *)&this->m_EquipData.m_C)->UIFrameWnd();
+  ((UIFrameWnd *)&this->m_EquipData.m_BeginTalk[144])->UIFrameWnd();
+  ((UIFrameWnd *)&this->m_EquipData.m_EntryBuy[40])->UIFrameWnd();
+  ((UIFrameWnd *)&this->m_EquipData.m_EntryBuy[192])->UIFrameWnd();
+  ((UIScene *)&this->m_EquipData.m_EntrySale[88])->_UIScene();
+  ((UIScene *)&this->m_EquipData.m_NormalAcptTalk[176])->_UIScene();
+  ((UIScene *)&this->m_EquipData.m_NoEnoughMoney[8])->_UIScene();
+  ((UIScene *)&this->m_EquipData.m_Leave[96])->_UIScene();
+  ((UIScene *)&this->m_EquipData.m_HarshTalkbuy[184])->_UIScene();
+  ((UIScene *)&this->m_EquipData.m_AcptTalk[25][0][2])->_UIScene();
+  ((UIScene *)&this->m_EquipData.m_AcptTalk[59][1][1])->_UIScene();
+  ((UIScene *)this->m_EquipData.m_AcptTalk[94])->_UIScene();
+  ((UIScene *)&this->m_EquipData.m_AcptTalk[128][0][4])->_UIScene();
+  ((UIFrameWnd *)&this->m_EquipData.m_AcptTalk[162][1][3])->UIFrameWnd();
+  ((UIFrameWnd *)&this->m_EquipData.m_AcptTalk[179][1][1])->UIFrameWnd();
+  ((UIFrameWnd *)&this->m_EquipData.m_AcptTalk[194][1][3])->UIFrameWnd();
   `eh vector constructor iterator'(
-    &this->UIFrameWnd[4856],
+    this->m_EquipData.m_AcptTalk[210][0],
     0x248u,
     128,
     (void (*)(void *))sub_4B4690,
     (void (*)(void *))sub_4B47E0);
   `eh vector constructor iterator'(
-    &this->UIFrameWnd[79608],
+    (char *)&this->m_ArrowNum[1][0][1].m_FVF,
     0x248u,
     128,
     (void (*)(void *))sub_4B4690,
     (void (*)(void *))sub_4B47E0);
-  ((UIFrameWnd *)(_BYTE *)this + 154516)->UIFrameWnd();
-  ((UIFrameWnd *)(_BYTE *)this + 154668)->UIFrameWnd();
-  ((UIFrameWnd *)(_BYTE *)this + 154820)->UIFrameWnd();
-  ((UIFrameWnd *)(_BYTE *)this + 154972)->UIFrameWnd();
+  ((EquipUI *)((char *)this + 154516))->UIFrameWnd();
+  ((EquipUI *)((char *)this + 154668))->UIFrameWnd();
+  ((EquipUI *)((char *)this + 154820))->UIFrameWnd();
+  ((EquipUI *)((char *)this + 154972))->UIFrameWnd();
   `eh vector constructor iterator'(
     (char *)this + 155140,
     0xECCu,
@@ -95,14 +95,14 @@ int EquipUI::Create()
     4,
     (void (*)(void *))UIFrameWnd::UIFrameWnd,
     (void (*)(void *))UIFrameWnd::_UIFrameWnd);
-  ((UIFrameWnd *)(_BYTE *)this + 174688)->UIFrameWnd();
+  ((EquipUI *)((char *)this + 174688))->UIFrameWnd();
   `eh vector constructor iterator'(
     (char *)this + 174856,
     0x98u,
     5,
     (void (*)(void *))UIFrameWnd::UIFrameWnd,
     (void (*)(void *))UIFrameWnd::_UIFrameWnd);
-  ((UIScene *)(_DWORD *)this + 43924)->_UIScene();
+  ((UIScene *)((char *)this + 175696))->_UIScene();
   *((_DWORD *)this + 44014) = 0;
   *((_DWORD *)this + 44015) = 0;
   *((_DWORD *)this + 44016) = 0;
@@ -111,18 +111,18 @@ int EquipUI::Create()
   *((_DWORD *)this + 44019) = 0;
   *((_DWORD *)this + 44020) = 0;
   *((_DWORD *)this + 44021) = 0;
-  ((UIFrameWnd *)(_BYTE *)this + 176092)->UIFrameWnd();
-  *(_DWORD *)this->UIFrameWnd = &off_56F040;
-  this->UIFrameWnd[365] = 0;
-  this->UIFrameWnd[364] = 0;
-  this->UIFrameWnd[362] = 0;
-  this->UIFrameWnd[361] = 0;
-  this->UIFrameWnd[363] = 0;
+  ((EquipUI *)((char *)this + 176092))->UIFrameWnd();
+  this->m_fontcolor.ColorQuadFmt = (int)&off_56F040;
+  this->buf[249] = 0;
+  this->buf[248] = 0;
+  this->buf[246] = 0;
+  this->buf[245] = 0;
+  this->buf[247] = 0;
   *((_DWORD *)this + 38622) = 0;
   *((_DWORD *)this + 38623) = 0;
   *((_DWORD *)this + 38624) = 0;
   *((_DWORD *)this + 44061) = 0;
-  return (int)this->UIFrameWnd;
+  return (int)this;
 }
 
 // 0x004A4220
@@ -372,7 +372,7 @@ void EquipUI::InitSlots()
 
   if ( ((UIBase *)this)->GetSelected() < 5 )
   {
-    this->UIFrameWnd[361] = data;
+    this->buf[245] = data;
     ((UIBase *)this)->SetItemData(0, data);
     sub_48A2F0(*((char **)this + 44015), data);
     sub_4945C0(*((char **)this + 44016), data);
@@ -381,7 +381,7 @@ void EquipUI::InitSlots()
   }
   else
   {
-    this->UIFrameWnd[361] = 0;
+    this->buf[245] = 0;
     ((UIBase *)this)->SetItemData(0, 0);
     sub_48A2F0(*((char **)this + 44015), 0);
     sub_4945C0(*((char **)this + 44016), 0);

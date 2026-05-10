@@ -116,81 +116,81 @@ int CCBCamControl::UpdateCircleSet()
 // 0x005083B0
 char * CCBCamControl::SetCircle(int a2)
 {
-  char *v3; // eax
+  float *p_fFromZ; // eax
   int v4; // ecx
 
-  ((gbVolModNode *)&this->m_CCT[16])->gbVolModNode();
+  ((gbVolModNode *)&this->m_CCT.m_Pool[0].bFinished)->gbVolModNode();
   `eh vector constructor iterator'(
-    &this->m_CCT[236],
+    (char *)&this->m_CCT.m_Pool[0].fCircleCentreY,
     0xDCu,
     10,
     gbVolModNode::gbVolModNode,
     gbVolModNode::~gbVolModNode);
-  v3 = (char *)&this->m_CCT[2464];
+  p_fFromZ = (float *)&this->m_CCT.m_Pool[8].EndPos.fFromZ;
   v4 = 384;
   do
   {
-    *((_DWORD *)v3 - 2) = 0;
-    *((_DWORD *)v3 - 1) = 0;
-    *(_DWORD *)v3 = 0;
-    *((_DWORD *)v3 + 5) = 0;
-    *((_DWORD *)v3 + 6) = 0;
-    *((_DWORD *)v3 + 7) = 0;
-    v3 += 60;
+    *(p_fFromZ - 2) = 0.0;
+    *(p_fFromZ - 1) = 0.0;
+    *p_fFromZ = 0.0;
+    p_fFromZ[5] = 0.0;
+    p_fFromZ[6] = 0.0;
+    p_fFromZ[7] = 0.0;
+    p_fFromZ += 15;
     --v4;
   }
   while ( v4 );
   nullsub_3(this);
-  *(_DWORD *)&this->m_CCT[2436] = 0;
-  *(_DWORD *)&this->m_CCT[2440] = 0;
-  *(_DWORD *)&this->m_CCT[8] = a2;
-  return this->m_CCT;
+  this->m_CCT.m_Pool[8].StartPos.pit = 0.0;
+  this->m_CCT.m_Pool[8].StartPos.fRoll = 0.0;
+  this->m_CCT.m_Pool[0].bValid = a2;
+  return (char *)this;
 }
 
 // 0x005084C0
 char CCBCamControl::IsPointerUnderMouse(int _this)
 {
-  gbRefObject *v2; // esi
+  int v2; // esi
 
   this->CCBStageEffect();
-  v2 = (gbRefObject *)((operator *)0xD8u)->new();
+  v2 = ((operator *)0xD8u)->new();
   if ( v2 )
   {
-    v2[1].RefCount = 1;
-    v2->RefCount = (int)gbRefObject::`vftable';
-    v2->RefCount = (int)gbVolumeModifier::`vftable';
-    v2[24].RefCount = 0;
-    v2[25].RefCount = 0;
-    v2[26].RefCount = 0;
-    ((CCBCamControl *)&v2[27])->LoadPointer();
-    v2->RefCount = (int)&off_56A694;
+    *(_DWORD *)(v2 + 4) = 1;
+    *(_DWORD *)v2 = gbRefObject::`vftable';
+    *(_DWORD *)v2 = gbVolumeModifier::`vftable';
+    *(_DWORD *)(v2 + 96) = 0;
+    *(_DWORD *)(v2 + 100) = 0;
+    *(_DWORD *)(v2 + 104) = 0;
+    ((CCBCamControl *)(v2 + 108))->LoadPointer();
+    *(_DWORD *)v2 = &off_56A694;
   }
   else
   {
     v2 = 0;
   }
   v2->Init(0);
-  v2[7].RefCount = 1008981770;
-  v2[8].RefCount = 1008981770;
-  v2[9].RefCount = 1008981770;
-  v2[10].RefCount = 1065353216;
-  v2[17].RefCount = 1;
-  v2[18].RefCount = 1133903872;
-  v2[21].RefCount = 1056964608;
-  v2[3].RefCount = 1008981770;
-  v2[11].RefCount = 1;
-  v2[12].RefCount = 1;
-  v2[4].RefCount = 1008981770;
-  v2[13].RefCount = 0;
-  v2[14].RefCount = 0;
-  v2[5].RefCount = 1008981770;
-  v2[15].RefCount = 0x40000000;
-  v2[16].RefCount = 1133903872;
-  v2[6].RefCount = 1065353216;
+  *(_DWORD *)(v2 + 28) = 1008981770;
+  *(_DWORD *)(v2 + 32) = 1008981770;
+  *(_DWORD *)(v2 + 36) = 1008981770;
+  *(_DWORD *)(v2 + 40) = 1065353216;
+  *(_DWORD *)(v2 + 68) = 1;
+  *(_DWORD *)(v2 + 72) = 1133903872;
+  *(_DWORD *)(v2 + 84) = 1056964608;
+  *(_DWORD *)(v2 + 12) = 1008981770;
+  *(_DWORD *)(v2 + 44) = 1;
+  *(_DWORD *)(v2 + 48) = 1;
+  *(_DWORD *)(v2 + 16) = 1008981770;
+  *(_DWORD *)(v2 + 52) = 0;
+  *(_DWORD *)(v2 + 56) = 0;
+  *(_DWORD *)(v2 + 20) = 1008981770;
+  *(_DWORD *)(v2 + 60) = 0x40000000;
+  *(_DWORD *)(v2 + 64) = 1133903872;
+  *(_DWORD *)(v2 + 24) = 1065353216;
   ((gbVolModNode *)(this + 16))->SetVolModObj((struct gbVolumeModifier *)v2);
-  v2->Release();
-  *(_DWORD *)(this + 2436) = ((gbEffectMgr *)*(gbEffectMgr **)(g_pGfxManager + 200))->NewRenderEffect(aGfxscriptGeomD, 0x401u);
-  *(_DWORD *)(this + 2440) = ((gbEffectMgr *)*(gbEffectMgr **)(g_pGfxManager + 200))->NewRenderEffect(aGfxscriptGeomD_0, 0x441u);
+  ((gbRefObject *)v2)->Release();
+  *(_DWORD *)(this + 2436) = ((gbEffectMgr *)*(gbEffectMgr **)(g_Input.KeyInfo[177].Data + 200))->NewRenderEffect(aGfxscriptGeomD, 0x401u);
+  *(_DWORD *)(this + 2440) = ((gbEffectMgr *)*(gbEffectMgr **)(g_Input.KeyInfo[177].Data + 200))->NewRenderEffect(aGfxscriptGeomD_0, 0x441u);
   return 1;
 }
 
@@ -216,44 +216,44 @@ char CCBCamControl::DoList()
 // 0x00508690
 int CCBCamControl::ResetListFlag(int _this)
 {
-  gbRefObject *v2; // esi
+  int v2; // esi
   _DWORD *v3; // edx
   _DWORD *v4; // edx
 
-  v2 = (gbRefObject *)((operator *)0xD8u)->new();
+  v2 = ((operator *)0xD8u)->new();
   if ( v2 )
   {
-    v2[1].RefCount = 1;
-    v2->RefCount = (int)gbRefObject::`vftable';
-    v2->RefCount = (int)gbVolumeModifier::`vftable';
-    ((gbVec3D *)&v2[24])->gbVec3D(0.0, 0.0, 0.0);
-    ((CCBCamControl *)&v2[27].RefCount)->LoadPointer();
-    v2->RefCount = (int)&off_56A694;
+    *(_DWORD *)(v2 + 4) = 1;
+    *(_DWORD *)v2 = gbRefObject::`vftable';
+    *(_DWORD *)v2 = gbVolumeModifier::`vftable';
+    ((gbVec3D *)(v2 + 96))->gbVec3D(0.0, 0.0, 0.0);
+    ((CCBCamControl *)(v2 + 108))->LoadPointer();
+    *(_DWORD *)v2 = &off_56A694;
   }
   else
   {
     v2 = 0;
   }
   v2->Init(0);
-  v2[7].RefCount = 0;
-  v2[8].RefCount = 0;
-  v2[9].RefCount = 0;
-  v2[10].RefCount = 1065353216;
-  v2[17].RefCount = 1;
-  v2[18].RefCount = 1133903872;
-  v2[21].RefCount = 1056964608;
-  v2[3].RefCount = 0;
-  v2[11].RefCount = 1;
-  v2[12].RefCount = 1;
-  v2[4].RefCount = 0;
-  v2[13].RefCount = 0;
-  v2[14].RefCount = 0;
-  v2[5].RefCount = 0;
-  v2[15].RefCount = 0x40000000;
-  v2[16].RefCount = 1133903872;
-  v2[6].RefCount = 1065353216;
+  *(_DWORD *)(v2 + 28) = 0;
+  *(_DWORD *)(v2 + 32) = 0;
+  *(_DWORD *)(v2 + 36) = 0;
+  *(_DWORD *)(v2 + 40) = 1065353216;
+  *(_DWORD *)(v2 + 68) = 1;
+  *(_DWORD *)(v2 + 72) = 1133903872;
+  *(_DWORD *)(v2 + 84) = 1056964608;
+  *(_DWORD *)(v2 + 12) = 0;
+  *(_DWORD *)(v2 + 44) = 1;
+  *(_DWORD *)(v2 + 48) = 1;
+  *(_DWORD *)(v2 + 16) = 0;
+  *(_DWORD *)(v2 + 52) = 0;
+  *(_DWORD *)(v2 + 56) = 0;
+  *(_DWORD *)(v2 + 20) = 0;
+  *(_DWORD *)(v2 + 60) = 0x40000000;
+  *(_DWORD *)(v2 + 64) = 1133903872;
+  *(_DWORD *)(v2 + 24) = 1065353216;
   ((gbVolModNode *)(this + 236))->SetVolModObj((struct gbVolumeModifier *)v2);
-  v2->Release();
+  ((gbRefObject *)v2)->Release();
   v3 = (_DWORD *)(*(_DWORD *)(this + 232) + 28);
   *v3 = -1098907648;
   v3[1] = -1098907648;

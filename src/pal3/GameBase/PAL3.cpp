@@ -215,17 +215,17 @@ PAL3::PAL3()
 {
   int v0; // eax
 
-  memset(&MEMORY[0xBFD6C8], 0, 0xB8u);
+  memset(&g_Input.KeyInfo[119].CountMode, 0, 0xB8u);
   g_bGameActive = 1;
   PAL3::TestCombat();
-  g_pCBSystem = 0;
-  g_pUIManager = 0;
-  g_pEffMgr = 0;
+  g_Input.KeyInfo[178].HoldTime = 0;
+  g_Input.KeyInfo[179].PressTime = 0;
+  LOBYTE(g_Input.KeyInfo[180].Data) = 0;
   v0 = g_nGameFlags;
-  MEMORY[0xA3A6EC] = 0;
+  *(_DWORD *)g_GDB.m_ItemData[360].name = 0;
   LOBYTE(v0) = g_nGameFlags & 0xF4 | 3;
   g_nGameFlags = v0;
-  MEMORY[0xA3A6F0] = 0;
+  *(_DWORD *)&g_GDB.m_ItemData[360].name[4] = 0;
   return &unk_8ACBF0;
 }
 
@@ -242,19 +242,19 @@ struct gbVFileSystem * PAL3::Create@<eax>(char *a1@<edi>, HINSTANCE hInstance)
   PalScript *v2; // ecx
   char *Instance; // eax
   HCURSOR CursorA; // eax
-  HWND v5; // edi
+  HWND HoldTime; // edi
   _BYTE *v6; // eax
   CCBSystem *v7; // eax
   CCBSystem *v8; // eax
   SceneMgr *v9; // eax
-  char *v10; // ecx
-  CGameData *v11; // eax
-  _DWORD *v12; // eax
+  int v10; // ecx
+  void *v11; // eax
+  RenderTarget *v12; // eax
   RenderTarget3 *v13; // eax
   RenderTarget2 *v14; // eax
   RenderTarget4 *v15; // eax
   void *v16; // eax
-  _DWORD *v17; // eax
+  RenderTarget *v17; // eax
   RenderTarget3 *v18; // eax
   RenderTarget2 *v19; // eax
   RenderTarget4 *v20; // eax
@@ -262,13 +262,13 @@ struct gbVFileSystem * PAL3::Create@<eax>(char *a1@<edi>, HINSTANCE hInstance)
   gbGeomNode *v22; // eax
   gbGeomNode *v23; // esi
   gbGeomNode *v24; // ecx
-  struct gbVFileSystem *v25; // eax
-  struct gbVFileSystem *v26; // esi
+  gbVFileSystem *v25; // eax
+  gbVFileSystem *v26; // esi
   gbGeomNode *v27; // ecx
   int Width; // eax
   int v30; // [esp+Ch] [ebp-960h]
   int v31; // [esp+14h] [ebp-958h]
-  struct gbVFileSystem *v32; // [esp+20h] [ebp-94Ch] BYREF
+  OpenBaseFile v32; // [esp+20h] [ebp-94Ch] BYREF
   _DWORD pParams[3]; // [esp+24h] [ebp-948h] BYREF
   char pExceptionObject[1024]; // [esp+30h] [ebp-93Ch] BYREF
   char v35[24]; // [esp+430h] [ebp-53Ch] BYREF
@@ -293,11 +293,11 @@ struct gbVFileSystem * PAL3::Create@<eax>(char *a1@<edi>, HINSTANCE hInstance)
   Instance = (char *)CScreenMode::GetInstance();
   ((CScreenMode *)Instance)->SetMode(v31);
   CursorA = LoadCursorA(hInstance, (LPCSTR)0x73);
-  v5 = MEMORY[0xBFD774];
-  g_pLogger = (Logger *)CursorA;
-  ShowWindow(MEMORY[0xBFD774], 5);
-  UpdateWindow(v5);
-  if ( !((GRPinput *)&g_Input)->Create(hInstance, (int)v5, 0) )
+  HoldTime = (HWND)g_Input.KeyInfo[130].HoldTime;
+  g_Input.KeyInfo[180].HoldTime = (int)CursorA;
+  ShowWindow((HWND)g_Input.KeyInfo[130].HoldTime, 5);
+  UpdateWindow(HoldTime);
+  if ( !((GRPinput *)&g_Input)->Create(hInstance, (int)HoldTime, 0) )
   {
     qmemcpy(
       pExceptionObject,
@@ -305,12 +305,12 @@ struct gbVFileSystem * PAL3::Create@<eax>(char *a1@<edi>, HINSTANCE hInstance)
       sizeof(pExceptionObject));
     _CxxThrowException(pExceptionObject, (_ThrowInfo *)&_TI1_AV_Exception__);
   }
-  ((GRPinput *)&g_Input)->SetMouseLimits(0, 0, MEMORY[0xBFD6D0], MEMORY[0xBFD6D4]);
+  ((GRPinput *)&g_Input)->SetMouseLimits(0, 0, g_Input.KeyInfo[120].Data, g_Input.KeyInfo[120].HoldTime);
   ((GRPinput *)&g_Input)->SetMode(0x40000000);
-  ((CScreenMode *)&MEMORY[0xA3A7D8])->InitCPK(0, 1);
+  ((CScreenMode *)&g_GDB.m_ItemData[360].desc[144])->InitCPK(0, 1);
   memset(pParams, 0, sizeof(pParams));
-  ((CameraCtrl *)g_pCamera)->InitParams(pParams);
-  if ( !g_GDB->PAL_GDB() )
+  ((CameraCtrl *)g_Input.KeyInfo[177].CountMode)->InitParams(pParams);
+  if ( !((PAL_GDB *)&g_GDB)->PAL_GDB() )
   {
     qmemcpy(
       pExceptionObject,
@@ -322,7 +322,7 @@ struct gbVFileSystem * PAL3::Create@<eax>(char *a1@<edi>, HINSTANCE hInstance)
   PAL3::InitSubsystems();
   v6 = (_BYTE *)UIQuadManager::GetInstance();
   UIRenderQuadList(v6);
-  ((UIManager *)&g_SceneMgr.?[5].?.normal[220].y)->LoadShadowTexture();
+  ((UIManager *)&g_SceneMgr.m_npc[6].m_actor.m_szTexture[240])->LoadShadowTexture();
   ((Logger *)g_Logger)->RegisterCallbacks();
   ((Logger *)g_Logger)->Write("%s Bulid %s %s", aV104, aJan52004, a163941);
   ((Logger *)g_Logger)->Write(aGameCreateOk);
@@ -332,7 +332,7 @@ struct gbVFileSystem * PAL3::Create@<eax>(char *a1@<edi>, HINSTANCE hInstance)
     v8 = (CCBSystem *)v7->CCBSystem();
   else
     v8 = 0;
-  g_pCBSystem = v8;
+  g_Input.KeyInfo[178].HoldTime = (int)v8;
   v38 = -1;
   if ( !v8 )
   {
@@ -347,18 +347,18 @@ struct gbVFileSystem * PAL3::Create@<eax>(char *a1@<edi>, HINSTANCE hInstance)
   v38 = 1;
   if ( v9 )
   {
-    if ( g_pCamera )
-      v10 = (char *)&g_pCamera->OrthoSize;
+    if ( g_Input.KeyInfo[177].CountMode )
+      v10 = g_Input.KeyInfo[177].CountMode + 4;
     else
       v10 = 0;
-    v11 = (CGameData *)v9->Create((int)g_pGfxManager, (int)v10, 0);
+    v11 = (void *)v9->Create(g_Input.KeyInfo[177].Data, v10, 0);
   }
   else
   {
     v11 = 0;
   }
   v38 = -1;
-  g_pGameData = v11;
+  g_Input.KeyInfo[178].CountMode = (int)v11;
   if ( !v11 )
   {
     qmemcpy(
@@ -367,11 +367,11 @@ struct gbVFileSystem * PAL3::Create@<eax>(char *a1@<edi>, HINSTANCE hInstance)
       sizeof(pExceptionObject));
     _CxxThrowException(pExceptionObject, (_ThrowInfo *)&_TI1_AV_Exception__);
   }
-  if ( (_BYTE)g_pEffMgr )
+  if ( LOBYTE(g_Input.KeyInfo[180].Data) )
   {
     if ( byte_5833C0 )
       ((CGameData *)&g_GameData)->Init();
-    v17 = (_DWORD *)CRenderTarget::GetInstance();
+    v17 = (RenderTarget *)CRenderTarget::GetInstance();
     v17->Create();
     v18 = (RenderTarget3 *)RenderTarget3::GetInstance();
     v18->Init();
@@ -387,7 +387,7 @@ struct gbVFileSystem * PAL3::Create@<eax>(char *a1@<edi>, HINSTANCE hInstance)
   {
     ((CGameData *)&g_GameData)->Init();
     CGameData_Load((int)&g_GameData, 4);
-    v12 = (_DWORD *)CRenderTarget::GetInstance();
+    v12 = (RenderTarget *)CRenderTarget::GetInstance();
     v12->Create();
     v13 = (RenderTarget3 *)RenderTarget3::GetInstance();
     v13->Init();
@@ -398,11 +398,11 @@ struct gbVFileSystem * PAL3::Create@<eax>(char *a1@<edi>, HINSTANCE hInstance)
     v16 = (void *)CEffectSystem::DestroyAllEffect();
     ((int)v16)->IsVisible();
   }
-  (*(void (__stdcall **)(_DWORD, char *))(**(_DWORD **)&g_pGfxManager[1816] + 28))(
-    *(_DWORD *)&g_pGfxManager[1816],
+  (*(void (__stdcall **)(_DWORD, char *))(**(_DWORD **)(g_Input.KeyInfo[177].Data + 1816) + 28))(
+    *(_DWORD *)(g_Input.KeyInfo[177].Data + 1816),
     v35);
   if ( !v36 )
-    MEMORY[0xBFDA91] = 1;
+    BYTE1(g_Input.KeyInfo[180].Data) = 1;
   SoundSystem::Init();
   ((OpenBaseFile *)&v32)->OpenBaseFile();
   v38 = 2;
@@ -420,11 +420,11 @@ struct gbVFileSystem * PAL3::Create@<eax>(char *a1@<edi>, HINSTANCE hInstance)
     v24 = 0;
   }
   LOBYTE(v38) = 2;
-  MEMORY[0xA3A6EC] = v24;
+  *(_DWORD *)g_GDB.m_ItemData[360].name = v24;
   v24->LoadFromFile(aObjectG02Cvd, 0, 0);
-  v25 = (struct gbVFileSystem *)((operator *)0x118u)->new();
+  v25 = (gbVFileSystem *)((operator *)0x118u)->new();
   v26 = v25;
-  v32 = v25;
+  v32.m_plastsys = v25;
   LOBYTE(retaddr) = 4;
   if ( v25 )
   {
@@ -437,15 +437,15 @@ struct gbVFileSystem * PAL3::Create@<eax>(char *a1@<edi>, HINSTANCE hInstance)
     v27 = 0;
   }
   LOBYTE(retaddr) = 2;
-  MEMORY[0xA3A6F0] = v27;
+  *(_DWORD *)&g_GDB.m_ItemData[360].name[4] = v27;
   v27->LoadFromFile(aObjectG03Cvd, 0, 0);
-  ((CScreenMode *)&MEMORY[0xA3A7D8])->CreateDevice((int)aMovieLogoBik, (int)MEMORY[0xBFDA4C], 0, 0);
-  v30 = (600 - ((CScreenMode *)&MEMORY[0xA3A7D8])->GetHeight()) / 2;
-  Width = ((CScreenMode *)&MEMORY[0xA3A7D8])->GetWidth();
-  ((CScreenMode *)&MEMORY[0xA3A7D8])->SetViewport((800 - Width) / 2, v30);
-  ((CScreenMode *)&MEMORY[0xA3A7D8])->PlayVideo(1);
+  ((CScreenMode *)&g_GDB.m_ItemData[360].desc[144])->CreateDevice((int)aMovieLogoBik, g_Input.KeyInfo[175].PressTime, 0, 0);
+  v30 = (600 - ((CScreenMode *)&g_GDB.m_ItemData[360].desc[144])->GetHeight()) / 2;
+  Width = ((CScreenMode *)&g_GDB.m_ItemData[360].desc[144])->GetWidth();
+  ((CScreenMode *)&g_GDB.m_ItemData[360].desc[144])->SetViewport((800 - Width) / 2, v30);
+  ((CScreenMode *)&g_GDB.m_ItemData[360].desc[144])->PlayVideo(1);
   v38 = -1;
-  return ((OpenNULLFile *)&v32)->OpenNULLFile();
+  return ((OpenNULLFile **)&v32)->OpenNULLFile();
 }
 
 // 0x00404FF0
@@ -453,97 +453,89 @@ void PAL3::InitGFX()
 {
   gbActorMgr *v0; // eax
   gbActorMgr *v1; // eax
-  int v2; // eax
-  gbRefObject *v3; // esi
-  _DWORD v4[4]; // [esp+20h] [ebp-81Ch] BYREF
-  char pExceptionObject[1024]; // [esp+30h] [ebp-80Ch] BYREF
+  char *v2; // eax
+  char *v3; // eax
+  int v4; // esi
+  _BYTE v5[1040]; // [esp+20h] [ebp-81Ch] BYREF
   char ArgList[1024]; // [esp+430h] [ebp-40Ch] BYREF
   int v7; // [esp+838h] [ebp-4h]
 
-  g_pGfxManager = (int)gbCreateGraphManager((struct gbGfxDriverInfo *)&MEMORY[0xBFD6C8]);
-  if ( !g_pGfxManager )
+  g_Input.KeyInfo[177].Data = (int)gbCreateGraphManager((struct gbGfxDriverInfo *)&g_Input.KeyInfo[119].CountMode);
+  if ( !g_Input.KeyInfo[177].Data )
   {
-    qmemcpy(
-      pExceptionObject,
-      (const void *)((char)ArgList)->FormatException((int)aCreateGfxManag, (int)aDProjectPal3Ga_0, 401),
-      sizeof(pExceptionObject));
-    _CxxThrowException(pExceptionObject, (_ThrowInfo *)&_TI1_AV_Exception__);
+    qmemcpy(&v5[16], ((Logger *)ArgList)->FormatException(aCreateGfxManag, aDProjectPal3Ga_0, 401), 0x400u);
+    _CxxThrowException(&v5[16], (_ThrowInfo *)&_TI1_AV_Exception__);
   }
   v0 = (gbActorMgr *)((operator *)0xCu)->new();
   v7 = 0;
   if ( v0 )
-    v1 = (gbActorMgr *)v0->gbActorMgr((struct gbGfxManager *)g_pGfxManager);
+    v1 = (gbActorMgr *)v0->gbActorMgr((struct gbGfxManager *)g_Input.KeyInfo[177].Data);
   else
     v1 = 0;
   v7 = -1;
-  g_pActorMgr = v1;
+  g_Input.KeyInfo[177].HoldTime = (int)v1;
   if ( !v1 )
   {
-    qmemcpy(
-      pExceptionObject,
-      (const void *)((char)ArgList)->FormatException((int)aCreateActorman, (int)aDProjectPal3Ga_0, 405),
-      sizeof(pExceptionObject));
-    _CxxThrowException(pExceptionObject, (_ThrowInfo *)&_TI1_AV_Exception__);
+    qmemcpy(&v5[16], ((Logger *)ArgList)->FormatException(aCreateActorman, aDProjectPal3Ga_0, 405), 0x400u);
+    _CxxThrowException(&v5[16], (_ThrowInfo *)&_TI1_AV_Exception__);
   }
+  v2 = (char *)((operator *)0x220u)->new();
   v7 = 1;
-  if ( operator new(0x220u) )
-    v2 = sub_41BE80(g_pGfxManager);
+  if ( v2 )
+    v3 = (char *)sub_41BE80(v2, (struct gbGfxManager *)g_Input.KeyInfo[177].Data);
   else
-    v2 = 0;
-  v7 = -1;
-  g_pCamera = v2;
-  if ( !v2 )
-  {
-    qmemcpy(
-      pExceptionObject,
-      (const void *)((char)ArgList)->FormatException((int)aCNewFailed, (int)aDProjectPal3Ga_0, 409),
-      sizeof(pExceptionObject));
-    _CxxThrowException(pExceptionObject, (_ThrowInfo *)&_TI1_AV_Exception__);
-  }
-  ((CameraCtrl *)MEMORY[0xBFD6D0])->SetDimention(MEMORY[0xBFD6D4]);
-  sub_41D100(0);
-  ((CameraCtrl *)3)->SetAsCurrent();
-  v4[3] = 3;
-  v4[0] = -16777216;
-  v4[1] = 1065353216;
-  ((gbGfxManager *)g_pGfxManager)->SetClearParam((struct gbClearParam *)v4);
-  v3 = (gbRefObject *)((operator *)0xD8u)->new();
-  v7 = 2;
-  if ( v3 )
-  {
-    v3[1].RefCount = 1;
-    v3->RefCount = (int)gbRefObject::`vftable';
-    v3->RefCount = (int)gbVolumeModifier::`vftable';
-    v3[24].RefCount = 0;
-    v3[25].RefCount = 0;
-    v3[26].RefCount = 0;
-    LOBYTE(v7) = 3;
-    v3[40].RefCount = 0;
-    v3[41].RefCount = 0;
-    v3[42].RefCount = 0;
-    ((gbVec3D *)&v3[43])->gbVec3D(0.0, 0.0, 0.0);
-    v3->RefCount = (int)&off_56A694;
-  }
-  else
-  {
     v3 = 0;
+  v7 = -1;
+  g_Input.KeyInfo[177].CountMode = (int)v3;
+  if ( !v3 )
+  {
+    qmemcpy(&v5[16], ((Logger *)ArgList)->FormatException(aCNewFailed, aDProjectPal3Ga_0, 409), 0x400u);
+    _CxxThrowException(&v5[16], (_ThrowInfo *)&_TI1_AV_Exception__);
+  }
+  ((CameraCtrl *)v3)->SetDimention(g_Input.KeyInfo[120].Data, g_Input.KeyInfo[120].HoldTime);
+  sub_41D100(g_Input.KeyInfo[177].CountMode, 0);
+  ((CameraCtrl *)g_Input.KeyInfo[177].CountMode)->SetAsCurrent(3);
+  *(_DWORD *)&v5[12] = 3;
+  *(_DWORD *)v5 = -16777216;
+  *(_DWORD *)&v5[4] = 1065353216;
+  ((gbGfxManager *)g_Input.KeyInfo[177].Data)->SetClearParam((struct gbClearParam *)v5);
+  v4 = ((operator *)0xD8u)->new();
+  v7 = 2;
+  if ( v4 )
+  {
+    *(_DWORD *)(v4 + 4) = 1;
+    *(_DWORD *)v4 = gbRefObject::`vftable';
+    *(_DWORD *)v4 = gbVolumeModifier::`vftable';
+    *(_DWORD *)(v4 + 96) = 0;
+    *(_DWORD *)(v4 + 100) = 0;
+    *(_DWORD *)(v4 + 104) = 0;
+    LOBYTE(v7) = 3;
+    *(_DWORD *)(v4 + 160) = 0;
+    *(_DWORD *)(v4 + 164) = 0;
+    *(_DWORD *)(v4 + 168) = 0;
+    ((gbVec3D *)(v4 + 172))->gbVec3D(0.0, 0.0, 0.0);
+    *(_DWORD *)v4 = &off_56A694;
+  }
+  else
+  {
+    v4 = 0;
   }
   v7 = -1;
-  v3->Init(2);
-  v3[7].RefCount = 1065353216;
-  v3[8].RefCount = 1065353216;
-  v3[9].RefCount = 1065353216;
-  v3[10].RefCount = 1065353216;
-  v3[12].RefCount = 1;
-  v3[11].RefCount = 1;
-  v3[3].RefCount = 1049582633;
-  v3[4].RefCount = 1049582633;
-  v3[5].RefCount = 1049582633;
-  v3[16].RefCount = 1092616192;
-  v3[15].RefCount = 1092616192;
-  v3[6].RefCount = 1065353216;
-  ((gbVolModNode *)&MEMORY[0xA3A6F8])->SetVolModObj((struct gbVolumeModifier *)v3);
-  v3->Release();
+  v4->Init(2);
+  *(_DWORD *)(v4 + 28) = 1065353216;
+  *(_DWORD *)(v4 + 32) = 1065353216;
+  *(_DWORD *)(v4 + 36) = 1065353216;
+  *(_DWORD *)(v4 + 40) = 1065353216;
+  *(_DWORD *)(v4 + 48) = 1;
+  *(_DWORD *)(v4 + 44) = 1;
+  *(_DWORD *)(v4 + 12) = 1049582633;
+  *(_DWORD *)(v4 + 16) = 1049582633;
+  *(_DWORD *)(v4 + 20) = 1049582633;
+  *(_DWORD *)(v4 + 64) = 1092616192;
+  *(_DWORD *)(v4 + 60) = 1092616192;
+  *(_DWORD *)(v4 + 24) = 1065353216;
+  ((gbVolModNode *)&g_GDB.m_ItemData[360].name[12])->SetVolModObj((struct gbVolumeModifier *)v4);
+  ((gbRefObject *)v4)->Release();
 }
 
 // 0x00405330
@@ -552,95 +544,93 @@ char PAL3::CreateEffectSystem()
   gbSnow *v0; // esi
   gbRain *v1; // eax
   gbRain *v2; // esi
-  SceneMgr *v3; // eax
-  char v4; // al
-  struct gbVFileSystem *v6; // [esp+8h] [ebp-85Ch] BYREF
-  void *v7; // [esp+Ch] [ebp-858h]
-  _DWORD v8[9]; // [esp+10h] [ebp-854h] BYREF
-  _DWORD v9[9]; // [esp+34h] [ebp-830h] BYREF
+  _DWORD *v3; // eax
+  _DWORD *v4; // eax
+  char v5; // al
+  OpenBaseFile v7; // [esp+8h] [ebp-85Ch] BYREF
+  _DWORD *p_m_MaxUnit; // [esp+Ch] [ebp-858h]
+  struct gbDropDesc v9; // [esp+10h] [ebp-854h] BYREF
+  struct gbDropDesc v10; // [esp+34h] [ebp-830h] BYREF
   char pExceptionObject[1024]; // [esp+58h] [ebp-80Ch] BYREF
-  char ArgList; // [esp+458h] [ebp-40Ch] BYREF
-  int v12; // [esp+860h] [ebp-4h]
+  char ArgList[1024]; // [esp+458h] [ebp-40Ch] BYREF
+  int v13; // [esp+860h] [ebp-4h]
 
-  v9[2] = 500;
-  v9[7] = -1054867456;
-  v9[8] = 1112014848;
-  v9[4] = 0x40000000;
-  v9[3] = 1053609165;
-  v9[6] = 1109393408;
-  v9[5] = 1101004800;
-  v9[1] = 1120403456;
-  v9[0] = 1034147594;
-  v8[2] = 200;
-  v8[7] = -1054867456;
-  v8[8] = 1112014848;
-  v8[4] = 1077936128;
-  v8[3] = 1065353216;
-  v8[6] = 1092616192;
-  v8[5] = 1086324736;
-  v8[1] = 1120403456;
-  v8[0] = 1056964608;
-  ((OpenBaseFile *)&v6)->OpenBaseFile();
-  v12 = 0;
+  v10.emitrate = 500;
+  v10.minheight = -10.0;
+  v10.maxheight = 50.0;
+  v10.maxlife = 2.0;
+  v10.minlife = 0.40000001;
+  v10.maxvelocity = 40.0;
+  v10.minvelocity = 20.0;
+  v10.range = 100.0;
+  v10.unitsize = 0.079999998;
+  v9.emitrate = 200;
+  v9.minheight = -10.0;
+  v9.maxheight = 50.0;
+  v9.maxlife = 3.0;
+  v9.minlife = 1.0;
+  v9.maxvelocity = 10.0;
+  v9.minvelocity = 6.0;
+  v9.range = 100.0;
+  v9.unitsize = 0.5;
+  ((OpenBaseFile *)&v7)->OpenBaseFile();
+  v13 = 0;
   v0 = (gbSnow *)((operator *)0x58u)->new();
-  v7 = v0;
-  LOBYTE(v12) = 1;
+  p_m_MaxUnit = (_DWORD *)&v0->m_MaxUnit;
+  LOBYTE(v13) = 1;
   if ( v0 )
   {
-    v0->gbSnow(500, (const struct gbDropDesc *)v8, aEffectSnowTga, 2.0);
+    v0->gbSnow(500, &v9, aEffectSnowTga, 2.0);
     v0->m_MaxUnit = (int)&off_56A6B4;
   }
   else
   {
     v0 = 0;
   }
-  LOBYTE(v12) = 0;
-  MEMORY[0xBFDA38] = v0;
+  LOBYTE(v13) = 0;
+  g_Input.KeyInfo[174].CountMode = (int)v0;
   v1 = (gbRain *)((operator *)0x50u)->new();
   v2 = v1;
-  v7 = v1;
-  LOBYTE(v12) = 2;
+  p_m_MaxUnit = v1;
+  LOBYTE(v13) = 2;
   if ( v1 )
   {
-    v1->gbRain(500, (const struct gbDropDesc *)v9, 0);
+    v1->gbRain(500, &v10, 0);
     *(_DWORD *)v2 = &off_56A6A8;
   }
   else
   {
     v2 = 0;
   }
-  LOBYTE(v12) = 0;
-  MEMORY[0xBFDA3C] = (gbDropGroup *)v2;
-  v7 = (void *)((operator *)0x158u)->new();
-  LOBYTE(v12) = 3;
-  if ( v7 )
-    v3 = (SceneMgr *)((SceneMgr *(__stdcall *)(gbGfxManager *))sub_4C5820)(g_pGfxManager);
+  LOBYTE(v13) = 0;
+  g_Input.KeyInfo[174].PressTime = (int)v2;
+  v3 = (_DWORD *)((operator *)0x158u)->new();
+  p_m_MaxUnit = v3;
+  LOBYTE(v13) = 3;
+  if ( v3 )
+    v4 = (_DWORD *)sub_4C5820(v3, g_Input.KeyInfo[177].Data);
   else
-    v3 = 0;
-  LOBYTE(v12) = 0;
-  g_pSceneMgr = v3;
-  if ( !v3 )
+    v4 = 0;
+  LOBYTE(v13) = 0;
+  g_Input.KeyInfo[178].Data = (int)v4;
+  if ( !v4 )
   {
     qmemcpy(
       pExceptionObject,
-      (const void *)((int (*)@<eax>(char@<cl>, int, int, int))Logger::FormatException)(
-                      (char)&ArgList,
-                      (int)aCouldnTMallocM,
-                      (int)aDProjectPal3Ga_0,
-                      483),
+      ((Logger *)ArgList)->FormatException(aCouldnTMallocM, aDProjectPal3Ga_0, 483),
       sizeof(pExceptionObject));
     _CxxThrowException(pExceptionObject, (_ThrowInfo *)&_TI1_AV_Exception__);
   }
-  v4 = sub_4C58C0(v3);
-  v12 = -1;
-  if ( v4 )
+  v5 = sub_4C58C0(v4);
+  v13 = -1;
+  if ( v5 )
   {
-    ((OpenNULLFile *)&v6)->OpenNULLFile();
+    ((OpenNULLFile **)&v7)->OpenNULLFile();
     return 1;
   }
   else
   {
-    ((OpenNULLFile *)&v6)->OpenNULLFile();
+    ((OpenNULLFile **)&v7)->OpenNULLFile();
     return 0;
   }
 }
@@ -648,290 +638,298 @@ char PAL3::CreateEffectSystem()
 // 0x004055A0
 char PAL3::DestroyEffectSystem()
 {
-  void *v0; // esi
+  void *Data; // esi
 
-  v0 = g_pSceneMgr;
-  if ( g_pSceneMgr )
+  Data = (void *)g_Input.KeyInfo[178].Data;
+  if ( g_Input.KeyInfo[178].Data )
   {
-    sub_4C5840(g_pSceneMgr);
-    operator delete(v0);
+    sub_4C5840(g_Input.KeyInfo[178].Data);
+    operator delete(Data);
   }
-  g_pSceneMgr = 0;
+  g_Input.KeyInfo[178].Data = 0;
   return 1;
 }
 
 // 0x004055D0
-int PAL3::Update(float a1)
+int PAL3::Update(int a1)
 {
   int v1; // edi
   unsigned __int16 *v2; // esi
-  __int16 v3; // ax
+  __int16 KeyState; // ax
   BOOL v4; // eax
   DWORD Time; // eax
-  int v6; // esi
+  int PressTime; // esi
   int v7; // ebx
   int v8; // eax
-  float *v9; // ebp
-  int v10; // ebx
-  float *v11; // esi
-  double v12; // st7
+  _DWORD *v9; // eax
+  float *v10; // ebp
+  int v11; // ebx
+  float *p_y; // esi
   double v13; // st7
-  int v14; // eax
-  double v15; // st7
-  int v16; // eax
-  int v17; // eax
-  int v18; // eax
-  int v19; // eax
-  int v20; // eax
-  gbAudioManager *v21; // esi
-  int v22; // eax
-  int v23; // eax
+  double v14; // st7
+  _DWORD *v15; // eax
+  double v16; // st7
+  _DWORD *v17; // eax
+  void *v18; // ecx
+  int *v19; // eax
+  int *v20; // eax
+  float *Instance; // eax
+  _DWORD *v22; // eax
+  void *v23; // ecx
+  char *v24; // eax
+  char *v25; // eax
+  int Mode; // eax
+  char *v27; // eax
+  gbAudioManager *AudioManager; // esi
+  char *v29; // eax
+  char *v30; // eax
+  _BYTE *v31; // eax
   int result; // eax
-  int v25; // [esp+4h] [ebp-2Ch]
-  int v26; // [esp+4h] [ebp-2Ch]
-  float v27; // [esp+18h] [ebp-18h]
-  float v28; // [esp+1Ch] [ebp-14h]
-  float v29; // [esp+20h] [ebp-10h]
-  _DWORD v30[3]; // [esp+24h] [ebp-Ch] BYREF
+  int v33; // [esp+4h] [ebp-2Ch]
+  int v34; // [esp+4h] [ebp-2Ch]
+  float dt; // [esp+18h] [ebp-18h]
+  float dt_4; // [esp+1Ch] [ebp-14h]
+  float v37; // [esp+20h] [ebp-10h]
+  gbVec3D v38; // [esp+24h] [ebp-Ch] BYREF
 
-  g_pTextureLib = g_pTextureLib + a1;
-  ((int)&g_Input)->GRPinput();
+  *(float *)&g_Input.KeyInfo[181].Data = *(float *)&g_Input.KeyInfo[181].Data + *(float *)&a1;
+  ((GRPinput *)&g_Input)->GRPinput();
   v1 = 0;
-  v2 = (unsigned __int16 *)&MEMORY[0x8ACCD8];
+  v2 = (unsigned __int16 *)(&g_PAL3Data + 224);
   do
   {
-    v3 = ((unsigned __int8 *)&g_Input)->GetKeyState(*v2);
-    v4 = v3 == 1 || v3 == 3;
-    v25 = v4;
+    KeyState = ((GRPinput *)&g_Input)->GetKeyState(*v2);
+    v4 = KeyState == 1 || KeyState == 3;
+    v33 = v4;
     Time = timeGetTime();
-    ((GRPinput *)&g_Input)->SetMouseAbs(Time, v1, v25);
+    ((GRPinput *)&g_Input)->SetMouseAbs(Time, v1, v33);
     ++v2;
     ++v1;
   }
-  while ( (int)v2 < (int)MEMORY[0x8ACD2A] );
-  v6 = g_nGameState;
-  v7 = SceneUpdate(LODWORD(a1), 1);
-  v8 = g_nGameState;
-  if ( g_nGameState != v6 )
+  while ( (int)v2 < (int)((unsigned __int16 *)&g_PAL3Data + 153) );
+  PressTime = g_Input.KeyInfo[177].PressTime;
+  v7 = SceneUpdate((int)&g_GameData, a1, 1);
+  v8 = g_Input.KeyInfo[177].PressTime;
+  if ( g_Input.KeyInfo[177].PressTime != PressTime )
   {
-    v6->IfHideFightSucceed();
-    v8 = g_nGameState;
+    PressTime->IfHideFightSucceed();
+    v8 = g_Input.KeyInfo[177].PressTime;
   }
   switch ( v8 )
   {
     case 0:
     case 1:
       UIQuadManager::GetInstance();
-      UIQuadManager_Reset(0);
+      UIQuadManager_Reset();
       goto LABEL_64;
     case 2:
     case 9:
-      MEMORY[0xBFDA5C] = MEMORY[0xBFDA5C] + a1;
-      (*(void (**)(int))(*(_DWORD *)MEMORY[0xA3A6EC] + 20))(MEMORY[0xA3A6EC]);
-      (*(void (**)(int))(*(_DWORD *)MEMORY[0xA3A6F0] + 20))(MEMORY[0xA3A6F0]);
-      CRenderTarget2::GetInstance();
-      CRenderTarget2_Update(a1);
-      ((PalScriptMgr *)LODWORD(a1))->RunSceneScript();
+      *(float *)&g_Input.KeyInfo[176].PressTime = *(float *)&g_Input.KeyInfo[176].PressTime + *(float *)&a1;
+      (*(void (**)(_DWORD))(**(_DWORD **)g_GDB.m_ItemData[360].name + 20))(*(_DWORD *)g_GDB.m_ItemData[360].name);
+      (*(void (**)(_DWORD))(**(_DWORD **)&g_GDB.m_ItemData[360].name[4] + 20))(*(_DWORD *)&g_GDB.m_ItemData[360].name[4]);
+      Instance = (float *)CRenderTarget2::GetInstance();
+      CRenderTarget2_Update(Instance, *(float *)&a1);
+      a1->RunSceneScript();
       if ( byte_D8C339 )
       {
         byte_D8C339 = 0;
-        ((PalScriptMgr *)LODWORD(a1))->RunSceneScript();
+        a1->RunSceneScript();
       }
-      InputUpdate(a1);
-      if ( g_nGameState != 9 )
+      InputUpdate(g_Input.KeyInfo[177].CountMode, *(float *)&a1);
+      if ( g_Input.KeyInfo[177].PressTime != 9 )
       {
         if ( v7 )
         {
           UIQuadManager::GetInstance();
-          UIQuadManager_Reset(0);
+          UIQuadManager_Reset();
         }
         else
         {
-          CameraUpdate_Internal(a1);
+          CameraUpdate_Internal(*(float *)&a1);
         }
-        ScriptUpdate(a1);
+        ScriptUpdate(*(float *)&a1);
       }
-      UISceneUpdate();
-      UIUpdate(a1);
-      EffectUpdate(a1);
-      SceneMgrUpdate(MEMORY[0xBFDA5C]);
-      UIPostUpdate();
-      v17 = CScreenMode::GetInstance();
-      v17->AudioUpdate();
-      if ( g_nGameState != 2 && g_nGameState != 9 )
-        v6->IfHideFightSucceed();
+      v22 = (_DWORD *)UISceneUpdate();
+      UIUpdate(v22, *(float *)&a1);
+      EffectUpdate(*(float *)&a1);
+      SceneMgrUpdate((float *)g_Input.KeyInfo[178].CountMode, *(float *)&g_Input.KeyInfo[176].PressTime);
+      UIPostUpdate(v23);
+      v24 = (char *)CScreenMode::GetInstance();
+      ((CScreenMode *)v24)->AudioUpdate();
+      if ( g_Input.KeyInfo[177].PressTime != 2 && g_Input.KeyInfo[177].PressTime != 9 )
+        PressTime->IfHideFightSucceed();
       goto LABEL_64;
     case 3:
-      ((CCBSystem *)COERCE_FLOAT(COERCE_UNSIGNED_INT64(a1)))->CombatUpdate(HIDWORD(COERCE_UNSIGNED_INT64(a1)));
-      CombatEffectUpdate(a1);
-      v18 = CScreenMode::GetInstance();
-      v18->AudioUpdate();
-      if ( !*((_BYTE *)g_pCBSystem + 116) )
+      ((CCBSystem *)g_Input.KeyInfo[178].HoldTime)->CombatUpdate(*(float *)&a1);
+      CombatEffectUpdate(g_Input.KeyInfo[178].Data, *(float *)&a1);
+      v25 = (char *)CScreenMode::GetInstance();
+      ((CScreenMode *)v25)->AudioUpdate();
+      if ( !*(_BYTE *)(g_Input.KeyInfo[178].HoldTime + 116) )
         goto LABEL_64;
-      if ( g_pEffMgr )
+      if ( LOBYTE(g_Input.KeyInfo[180].Data) )
       {
         PAL3::GetCommandLineParam();
-        ((CCBSystem *)0.0)->CombatUpdate(0);
-        CombatEffectUpdate(0.0);
+        ((CCBSystem *)g_Input.KeyInfo[178].HoldTime)->CombatUpdate(0.0);
+        CombatEffectUpdate(g_Input.KeyInfo[178].Data, 0.0);
         goto LABEL_59;
       }
-      byte_5833D0 = *((_DWORD *)g_pCBSystem + 31) == 2;
-      v19 = ((CGameData *)&g_GameData)->GetMode();
-      CGameData_Load(v19);
+      byte_5833D0 = *(_DWORD *)(g_Input.KeyInfo[178].HoldTime + 124) == 2;
+      Mode = ((CGameData *)&g_GameData)->GetMode();
+      CGameData_Load((int)&g_GameData, Mode);
       CombatEnter();
       if ( (g_nGameFlags & 4) == 0 )
         goto LABEL_54;
-      v20 = CScreenMode::GetInstance();
-      v21 = (gbAudioManager *)v20->GetAudioManager();
-      if ( !v21 )
+      v27 = (char *)CScreenMode::GetInstance();
+      AudioManager = (gbAudioManager *)((CScreenMode *)v27)->GetAudioManager();
+      if ( !AudioManager )
         goto LABEL_54;
-      if ( MEMORY[0xC11751] )
+      if ( g_SceneMgr.m_npc[6].m_actor.m_szTexture[233] )
       {
-        if ( *(_BYTE *)(CScreenMode::GetInstance() + 4) )
+        if ( CScreenMode::GetInstance()[4] )
           goto LABEL_54;
         goto LABEL_51;
       }
-      v21->StopSoundStream(1);
-      v21->StopSoundStream(0);
-      if ( !*(_BYTE *)(CScreenMode::GetInstance() + 4) )
+      AudioManager->StopSoundStream(1);
+      AudioManager->StopSoundStream(0);
+      if ( !CScreenMode::GetInstance()[4] )
       {
 LABEL_51:
-        v21->StopSoundStream(2);
-        v21->StopSoundStream(1);
-        v22 = CScreenMode::GetInstance();
-        v22->AudioStopAll();
+        AudioManager->StopSoundStream(2);
+        AudioManager->StopSoundStream(1);
+        v29 = (char *)CScreenMode::GetInstance();
+        ((CScreenMode *)v29)->AudioStopAll();
         goto LABEL_54;
       }
-      v23 = CScreenMode::GetInstance();
-      v23->AudioFadeOut();
+      v30 = (char *)CScreenMode::GetInstance();
+      ((CScreenMode *)v30)->AudioFadeOut();
 LABEL_54:
       if ( byte_5833D0 || !dword_5833CC )
       {
-        if ( MEMORY[0xC11754] )
-          *(_DWORD *)(MEMORY[0xC11754] + 632) = 0;
+        if ( *(_DWORD *)&g_SceneMgr.m_npc[6].m_actor.m_szTexture[236] )
+          *(_DWORD *)(*(_DWORD *)&g_SceneMgr.m_npc[6].m_actor.m_szTexture[236] + 632) = 0;
       }
       else
       {
-        CGameData_Load(15);
+        CGameData_Load((int)&g_GameData, 15);
         PalScriptMgr::IfHaveScript();
       }
 LABEL_59:
-      MEMORY[0xC11748] = 0;
-      MEMORY[0xC11750] = 0;
-      MEMORY[0xC1171C] = 0x7FFFFFFF;
+      g_SceneMgr.m_npc[6].m_actor.m_szTexture[224] = 0;
+      g_SceneMgr.m_npc[6].m_actor.m_szTexture[232] = 0;
+      *(_DWORD *)&g_SceneMgr.m_npc[6].m_actor.m_szTexture[180] = 0x7FFFFFFF;
       dword_5833CC = 1;
       goto LABEL_64;
     case 4:
       UIQuadManager::GetInstance();
-      UIQuadManager_Reset(0);
-      MiniGame1Update(a1);
+      UIQuadManager_Reset();
+      MiniGame1Update((_DWORD ***)g_Input.KeyInfo[179].Data, *(float *)&a1);
       goto LABEL_64;
     case 5:
       UIQuadManager::GetInstance();
-      UIQuadManager_Reset(0);
-      MiniGame2Update(a1);
+      UIQuadManager_Reset();
+      MiniGame2Update(g_Input.KeyInfo[178].PressTime, a1);
       goto LABEL_63;
     case 6:
       UIQuadManager::GetInstance();
-      UIQuadManager_Reset(0);
-      MiniGame3Update(a1);
+      UIQuadManager_Reset();
+      MiniGame3Update((int *)g_Input.KeyInfo[179].HoldTime, *(float *)&a1);
 LABEL_63:
-      NPCAnimUpdate(a1);
+      NPCAnimUpdate(*(float *)&a1);
       goto LABEL_64;
     case 7:
-      MEMORY[0xBFDA58] = MEMORY[0xBFDA58] + a1;
-      if ( MEMORY[0xBFDA30] )
+      *(float *)&g_Input.KeyInfo[176].CountMode = *(float *)&g_Input.KeyInfo[176].CountMode + *(float *)&a1;
+      if ( g_Input.KeyInfo[174].Data )
       {
-        if ( !(unsigned __int8)PalScriptMgr::_CON_CloseScript() )
+        if ( !PalScriptMgr::_CON_CloseScript() )
         {
           byte_D924E8 = 1;
-          CGameData_Load(4);
+          CGameData_Load((int)&g_GameData, 4);
         }
       }
-      else if ( MEMORY[0xBFDA58] >= 60.0 )
+      else if ( *(float *)&g_Input.KeyInfo[176].CountMode >= 60.0 )
       {
         ((PAL3 *)-1)->EndWolf();
         goto LABEL_64;
       }
-      ((PalScriptMgr *)LODWORD(a1))->RunSceneScript();
-      InputUpdate(a1);
-      ScriptUpdate(a1);
-      UISceneUpdate();
-      UIUpdate(a1);
-      EffectUpdate(a1);
-      if ( MEMORY[0xBFDA30] )
+      a1->RunSceneScript();
+      InputUpdate(g_Input.KeyInfo[177].CountMode, *(float *)&a1);
+      ScriptUpdate(*(float *)&a1);
+      v9 = (_DWORD *)UISceneUpdate();
+      UIUpdate(v9, *(float *)&a1);
+      EffectUpdate(*(float *)&a1);
+      if ( g_Input.KeyInfo[174].Data )
         goto LABEL_64;
       if ( !v7 )
-        CameraUpdate_Internal(a1);
-      v9 = (float *)MEMORY[0xC116EC];
-      v10 = 1;
-      v11 = (float *)&MEMORY[0xC0816C];
+        CameraUpdate_Internal(*(float *)&a1);
+      v10 = (float *)*(float **)&g_SceneMgr.m_npc[6].m_actor.m_szTexture[132];
+      v11 = 1;
+      p_y = (float *)&g_SceneMgr.m_npc[1].m_path.normal[79].y;
       while ( 1 )
       {
-        if ( *((_DWORD *)v11 + 155) )
+        if ( *((_DWORD *)p_y + 155) )
         {
-          v27 = v9[1] - *(v11 - 2);
-          v12 = v9[2] - *(v11 - 1);
-          *(float *)v30 = v27;
-          v28 = v12;
-          v13 = v9[3] - *v11;
-          *(float *)&v30[1] = v28;
-          v29 = v13;
-          *(float *)&v30[2] = v29;
-          if ( 12.0 + 12.0 > ((gbVec3D *)v30)->Length() )
+          dt = v10[1] - *(p_y - 2);
+          v13 = v10[2] - *(p_y - 1);
+          v38.x = dt;
+          dt_4 = v13;
+          v14 = v10[3] - *p_y;
+          v38.y = dt_4;
+          v37 = v14;
+          v38.z = v37;
+          if ( 12.0 + 12.0 > ((gbVec3D *)&v38)->Length() )
             break;
         }
-        v11 += 2176;
-        ++v10;
-        if ( (int)v11 >= (int)MEMORY[0xC1096C] )
+        p_y += 2176;
+        ++v11;
+        if ( (int)p_y >= (int)&g_SceneMgr.m_npc[5].m_path.normal[59].y )
           goto LABEL_64;
       }
-      v10->EndWolf();
+      v11->EndWolf();
       goto LABEL_64;
     case 8:
-      if ( (unsigned __int8)((PAL3 *)0)->EntryCatchGhost() )
+      if ( PAL3::EntryCatchGhost() )
       {
         PAL3::EndHideFight();
-        RoleSystemNotify(MEMORY[0xC116EC]);
-        v14 = ((PalScriptMgr *)1701)->Destroy(0);
+        RoleSystemNotify(*(int *)&g_SceneMgr.m_npc[6].m_actor.m_szTexture[132]);
+        v15 = ((PalScriptMgr *)0x6A5u)->Destroy(0);
 LABEL_33:
-        v26 = v14;
-        SoundContext::GetInstance();
-        CScreenMode_SetResolution(0, v26);
-        ((PalScriptMgr *)LODWORD(a1))->RunSceneScript();
+        v34 = (int)v15;
+        v20 = (int *)SoundContext::GetInstance();
+        CScreenMode_SetResolution(v20, 0, v34);
+        a1->RunSceneScript();
         goto LABEL_64;
       }
-      v15 = MEMORY[0xBFDA58] + a1;
-      MEMORY[0xBFDA58] = v15;
-      if ( v15 >= 180.0 )
+      v16 = *(float *)&g_Input.KeyInfo[176].CountMode + *(float *)&a1;
+      *(float *)&g_Input.KeyInfo[176].CountMode = v16;
+      if ( v16 >= 180.0 )
         goto LABEL_32;
-      ((PalScriptMgr *)LODWORD(a1))->RunSceneScript();
-      InputUpdate(a1);
-      ScriptUpdate(a1);
-      UISceneUpdate();
-      UIUpdate(a1);
-      EffectUpdate(a1);
+      a1->RunSceneScript();
+      InputUpdate(g_Input.KeyInfo[177].CountMode, *(float *)&a1);
+      ScriptUpdate(*(float *)&a1);
+      v17 = (_DWORD *)UISceneUpdate();
+      UIUpdate(v17, *(float *)&a1);
+      EffectUpdate(*(float *)&a1);
       if ( !v7 )
-        CameraUpdate_Internal(a1);
-      UIPostUpdate();
-      if ( *(_DWORD *)(MEMORY[0xC116EC] + 1264) != 4 )
+        CameraUpdate_Internal(*(float *)&a1);
+      UIPostUpdate(v18);
+      if ( *(_DWORD *)(*(_DWORD *)&g_SceneMgr.m_npc[6].m_actor.m_szTexture[132] + 1264) != 4 )
       {
-        v16 = UISceneUpdate();
-        if ( UINotifyUpdate(v16) )
+        v19 = (int *)UISceneUpdate();
+        if ( UINotifyUpdate(v19) )
         {
 LABEL_32:
-          RoleSystemNotify(MEMORY[0xC116EC]);
+          RoleSystemNotify(*(int *)&g_SceneMgr.m_npc[6].m_actor.m_szTexture[132]);
           PAL3::EndHideFight();
-          v14 = ((PalScriptMgr *)1702)->Destroy(0);
+          v15 = ((PalScriptMgr *)0x6A6u)->Destroy(0);
           goto LABEL_33;
         }
       }
 LABEL_64:
-      ScreenEffectMgr::GetInstance();
-      RenderPost(LODWORD(a1));
-      result = g_nGameState;
-      if ( !g_nGameState )
-        return ((CScreenMode *)1)->SetState();
+      v31 = (_BYTE *)ScreenEffectMgr::GetInstance();
+      RenderPost((int)v31, a1);
+      result = g_Input.KeyInfo[177].PressTime;
+      if ( !g_Input.KeyInfo[177].PressTime )
+        return ((CScreenMode *)g_Logger)->SetState(1);
       return result;
     default:
       goto LABEL_64;
@@ -939,326 +937,328 @@ LABEL_64:
 }
 
 // 0x00405C00
-int PAL3::Render()
+void PAL3::Render()
 {
-  int result; // eax
-  int v1; // eax
-  int v2; // eax
-  gbSceneGraph *v3; // edi
-  struct gbCamera *v4; // eax
-  int v5; // ebx
-  gbMatrixStack *v6; // esi
+  int v0; // edi
+  struct gbCamera *v1; // eax
+  int v2; // ebx
+  gbMatrixStack *v3; // esi
   gbMatrix4 *Top; // eax
-  struct gbCamera *v8; // eax
+  UIScene *v5; // eax
+  struct gbCamera *v6; // eax
+  struct gbCamera *v7; // eax
+  UIScene *v8; // eax
   struct gbCamera *v9; // eax
-  int v10; // eax
-  struct gbCamera *v11; // eax
-  int v12; // eax
-  struct gbCamera *v13; // eax
-  int v14; // eax
-  int v15; // eax
-  int v16; // eax
+  UIScene *v10; // eax
+  UIScene *v11; // eax
+  struct gbCamera *v12; // eax
+  UIScene *v13; // eax
+  RenderTarget3 *Instance; // eax
+  RenderTarget2 *v15; // eax
+  RenderTarget3 *v16; // eax
   int v17; // edi
   __int64 v18; // rax
   int v19; // esi
   double v20; // st7
-  int v21; // eax
-  int v22; // eax
+  ScreenEffectMgr *v21; // eax
+  void *v22; // eax
   float v23; // [esp+0h] [ebp-94h]
   float v24; // [esp+4h] [ebp-90h]
-  _DWORD v25[3]; // [esp+18h] [ebp-7Ch] BYREF
-  _DWORD v26[3]; // [esp+24h] [ebp-70h] BYREF
-  _DWORD v27[3]; // [esp+30h] [ebp-64h] BYREF
-  _DWORD v28[3]; // [esp+3Ch] [ebp-58h] BYREF
-  _DWORD v29[3]; // [esp+48h] [ebp-4Ch] BYREF
-  _DWORD v30[3]; // [esp+54h] [ebp-40h] BYREF
-  _DWORD v31[4]; // [esp+60h] [ebp-34h] BYREF
-  _DWORD v32[2]; // [esp+70h] [ebp-24h] BYREF
-  _DWORD Buffer[2]; // [esp+78h] [ebp-1Ch] BYREF
-  _DWORD v34[4]; // [esp+80h] [ebp-14h] BYREF
+  int v25; // [esp+18h] [ebp-7Ch]
+  int v26; // [esp+18h] [ebp-7Ch]
+  struct gbVec3D v27; // [esp+24h] [ebp-70h] BYREF
+  struct gbVec3D v28; // [esp+30h] [ebp-64h] BYREF
+  struct gbVec3D v29; // [esp+3Ch] [ebp-58h] BYREF
+  struct gbVec3D v30; // [esp+48h] [ebp-4Ch] BYREF
+  struct gbVec3D v31; // [esp+54h] [ebp-40h] BYREF
+  gbQuaternion v32; // [esp+60h] [ebp-34h] BYREF
+  gbQuaternion v33; // [esp+70h] [ebp-24h] BYREF
+  struct gbQuaternion v34; // [esp+80h] [ebp-14h] BYREF
   int v35; // [esp+90h] [ebp-4h]
 
-  (*(void (**)(int))(*(_DWORD *)g_pGfxManager + 48))(g_pGfxManager);
-  switch ( g_nGameState )
+  (*(void (**)(int))(*(_DWORD *)g_Input.KeyInfo[177].Data + 48))(g_Input.KeyInfo[177].Data);
+  switch ( g_Input.KeyInfo[177].PressTime )
   {
     case 0:
-      return (*(int (**)(int))(*(_DWORD *)g_pGfxManager + 52))(g_pGfxManager);
+      (*(void (**)(int))(*(_DWORD *)g_Input.KeyInfo[177].Data + 52))(g_Input.KeyInfo[177].Data);
+      return;
     case 2:
     case 7:
     case 8:
     case 9:
-      v1 = RenderTarget4::GetInstance();
-      v1->End();
-      v2 = CRenderTarget2::GetInstance();
-      v2->Begin();
-      v3 = (gbSceneGraph *)*(gbSceneGraph **)(g_pGfxManager + 448);
-      if ( g_pCamera )
-        v4 = (struct gbCamera *)(g_pCamera + 4);
+      RenderTarget4::GetInstance();
+      RenderTarget3::End();
+      CRenderTarget2::GetInstance();
+      RenderTarget2::Begin();
+      v0 = *(_DWORD *)(g_Input.KeyInfo[177].Data + 448);
+      if ( g_Input.KeyInfo[177].CountMode )
+        v1 = (struct gbCamera *)(g_Input.KeyInfo[177].CountMode + 4);
       else
-        v4 = 0;
-      v3->Begin(v4);
-      v5 = UIScene::CombatCheck();
-      v6 = (gbMatrixStack *)*(gbMatrixStack **)(g_pGfxManager + 216);
-      ((CameraCtrl *)3)->SetAsCurrent();
-      v26[0] = 1065353216;
-      v26[1] = 0;
-      v26[2] = 0;
-      v6->Rotate(*(float *)&MEMORY[0xC12B28], (struct gbVec3D *)v26);
-      v27[0] = 0;
-      v27[1] = 1065353216;
-      v27[2] = 0;
-      v6->Rotate(*(float *)&MEMORY[0xC12B2C], (struct gbVec3D *)v27);
-      v28[0] = 0;
-      v28[1] = 0;
-      v28[2] = 1065353216;
-      v6->Rotate(*(float *)&MEMORY[0xC12B30], (struct gbVec3D *)v28);
-      if ( !v5 && *(_DWORD *)(UISceneUpdate() + 100) != 1 )
+        v1 = 0;
+      ((gbSceneGraph *)v0)->Begin(v1);
+      v2 = UIScene::CombatCheck();
+      v3 = (gbMatrixStack *)*(gbMatrixStack **)(g_Input.KeyInfo[177].Data + 216);
+      ((CameraCtrl *)g_Input.KeyInfo[177].CountMode)->SetAsCurrent(3);
+      v27.x = 1.0;
+      v27.y = 0.0;
+      v27.z = 0.0;
+      v3->Rotate(g_SceneMgr.m_npc[6].m_path.normal[48].z, &v27);
+      v28.x = 0.0;
+      v28.y = 1.0;
+      v28.z = 0.0;
+      v3->Rotate(g_SceneMgr.m_npc[6].m_path.normal[49].x, &v28);
+      v29.x = 0.0;
+      v29.y = 0.0;
+      v29.z = 1.0;
+      v3->Rotate(g_SceneMgr.m_npc[6].m_path.normal[49].y, &v29);
+      if ( !v2 && *(_DWORD *)(UISceneUpdate() + 100) != 1 )
       {
-        memset(v31, 0, 12);
-        Buffer[0] = 0;
-        v32[1] = 0;
-        v32[0] = 0;
-        memset(v34, 0, 12);
-        v29[1] = 0;
-        v29[2] = 0;
-        v31[3] = 1065353216;
-        Buffer[1] = 1065353216;
-        v34[3] = 1065353216;
-        v29[0] = 1065353216;
-        ((gbQuaternion *)v31)->SetAxisAngle((struct gbVec3D *)v29, 45.0);
-        v30[0] = 0;
-        v30[1] = 1065353216;
-        v30[2] = 0;
-        ((gbQuaternion *)v32)->SetAxisAngle((struct gbVec3D *)v30, 90.0);
-        ((gbQuaternion *)v32)->MultiplyBy((struct gbQuaternion *)v31, (struct gbQuaternion *)v34);
-        ((gbQuaternion *)v34)->GetMatrix((struct gbMatrix4 *)&MEMORY[0xA3A750]);
-        ((gbVolModNode *)&MEMORY[0xA3A6F8])->Attach(0);
+        memset(&v32, 0, 12);
+        memset(&v33, 0, 12);
+        memset(&v34, 0, 12);
+        v30.y = 0.0;
+        v30.z = 0.0;
+        v32.w = 1.0;
+        v33.w = 1.0;
+        v34.w = 1.0;
+        v30.x = 1.0;
+        ((gbQuaternion *)&v32)->SetAxisAngle(&v30, 45.0);
+        v31.x = 0.0;
+        v31.y = 1.0;
+        v31.z = 0.0;
+        ((gbQuaternion *)&v33)->SetAxisAngle(&v31, 90.0);
+        ((gbQuaternion *)&v33)->MultiplyBy(&v32, &v34);
+        ((gbQuaternion *)&v34)->GetMatrix((struct gbMatrix4 *)&g_GDB.m_ItemData[360].desc[8]);
+        ((gbVolModNode *)&g_GDB.m_ItemData[360].name[12])->Attach(0);
       }
       if ( dword_D8E488 == 2 )
       {
-        Top = (gbMatrix4 *)v6->GetTop();
+        Top = (gbMatrix4 *)v3->GetTop();
         Top->TransformPlane();
-        (*(void (**)(int, int *))(*(_DWORD *)g_pGfxManager + 112))(g_pGfxManager, &dword_D8E488);
+        (*(void (**)(int, int *))(*(_DWORD *)g_Input.KeyInfo[177].Data + 112))(
+          g_Input.KeyInfo[177].Data,
+          &dword_D8E488);
       }
       else
       {
-        (*(void (**)(int, _DWORD))(*(_DWORD *)g_pGfxManager + 112))(g_pGfxManager, 0);
+        (*(void (**)(int, _DWORD))(*(_DWORD *)g_Input.KeyInfo[177].Data + 112))(g_Input.KeyInfo[177].Data, 0);
       }
-      UISceneUpdate();
-      v6->RenderWithStack();
-      if ( g_nGameState != 9 )
-        v6->Render();
-      v3->End();
-      if ( MEMORY[0xBFDA38] && MEMORY[0xBFDA40] )
+      v5 = (UIScene *)UISceneUpdate();
+      v5->RenderWithStack(v3);
+      if ( g_Input.KeyInfo[177].PressTime != 9 )
+        v3->Render();
+      ((gbSceneGraph *)v0)->End();
+      if ( g_Input.KeyInfo[174].CountMode && LOBYTE(g_Input.KeyInfo[175].Data) )
       {
-        if ( g_pCamera )
-          v8 = (struct gbCamera *)(g_pCamera + 4);
+        if ( g_Input.KeyInfo[177].CountMode )
+          v6 = (struct gbCamera *)(g_Input.KeyInfo[177].CountMode + 4);
         else
-          v8 = 0;
-        ((gbDropGroup *)MEMORY[0xBFDA38])->Render(v8);
+          v6 = 0;
+        ((gbDropGroup *)g_Input.KeyInfo[174].CountMode)->Render(v6);
       }
-      if ( MEMORY[0xBFDA3C] && MEMORY[0xBFDA41] )
+      if ( g_Input.KeyInfo[174].PressTime && BYTE1(g_Input.KeyInfo[175].Data) )
       {
-        if ( g_pCamera )
-          v9 = (struct gbCamera *)(g_pCamera + 4);
+        if ( g_Input.KeyInfo[177].CountMode )
+          v7 = (struct gbCamera *)(g_Input.KeyInfo[177].CountMode + 4);
         else
-          v9 = 0;
-        ((gbDropGroup *)MEMORY[0xBFDA3C])->Render(v9);
+          v7 = 0;
+        ((gbDropGroup *)g_Input.KeyInfo[174].PressTime)->Render(v7);
       }
-      v10 = UISceneUpdate();
-      v10->NotifyRender();
-      if ( g_pCamera )
-        v11 = (struct gbCamera *)(g_pCamera + 4);
+      v8 = (UIScene *)UISceneUpdate();
+      v8->NotifyRender();
+      if ( g_Input.KeyInfo[177].CountMode )
+        v9 = (struct gbCamera *)(g_Input.KeyInfo[177].CountMode + 4);
       else
-        v11 = 0;
-      v3->Begin(v11);
-      v3->pAllRObj[19244] = 0;
+        v9 = 0;
+      ((gbSceneGraph *)v0)->Begin(v9);
+      *(_BYTE *)(v0 + 19244) = 0;
       if ( *(_DWORD *)(UISceneUpdate() + 100) != 1 )
         UIScene::CombatCheck();
-      UISceneUpdate();
-      v6->Render();
-      ((SceneMgr *)g_pGameData)->RenderUpdate();
-      v3->End();
-      if ( g_nGameState == 8 )
+      v10 = (UIScene *)UISceneUpdate();
+      v10->Render((int)v3);
+      ((SceneMgr *)g_Input.KeyInfo[178].CountMode)->RenderUpdate();
+      ((gbSceneGraph *)v0)->End();
+      if ( g_Input.KeyInfo[177].PressTime == 8 )
       {
-        v12 = UISceneUpdate();
-        v12->EffectRender();
+        v11 = (UIScene *)UISceneUpdate();
+        v11->EffectRender();
       }
-      ((UIManager *)&MEMORY[0xC11758])->Render();
-      ((SceneMgr *)g_pGameData)->RenderAll();
-      if ( g_pCamera )
-        v13 = (struct gbCamera *)(g_pCamera + 4);
+      ((UIManager *)&g_SceneMgr.m_npc[6].m_actor.m_szTexture[240])->Render();
+      ((SceneMgr *)g_Input.KeyInfo[178].CountMode)->RenderAll();
+      if ( g_Input.KeyInfo[177].CountMode )
+        v12 = (struct gbCamera *)(g_Input.KeyInfo[177].CountMode + 4);
       else
-        v13 = 0;
-      v3->Begin(v13);
-      v3->pAllRObj[19244] = 0;
+        v12 = 0;
+      ((gbSceneGraph *)v0)->Begin(v12);
+      *(_BYTE *)(v0 + 19244) = 0;
       UIScene::CombatCheck();
-      sub_410430(v6);
-      UISceneUpdate();
-      v6->OverlayRender();
-      v3->End();
-      v14 = RenderTarget4::GetInstance();
-      v14->Resolve();
-      v15 = CRenderTarget2::GetInstance();
+      sub_410430((int)v3);
+      v13 = (UIScene *)UISceneUpdate();
+      v13->OverlayRender((int)v3);
+      ((gbSceneGraph *)v0)->End();
+      Instance = (RenderTarget3 *)RenderTarget4::GetInstance();
+      Instance->Resolve();
+      v15 = (RenderTarget2 *)CRenderTarget2::GetInstance();
       v15->Resolve();
-      v16 = RenderTarget3::GetInstance();
+      v16 = (RenderTarget3 *)RenderTarget3::GetInstance();
       v16->Begin();
       if ( !g_bRenderUI )
         break;
       goto LABEL_42;
     case 3:
-      ((CCBSystem *)g_pCBSystem)->RenderCheck();
+      ((CCBSystem *)g_Input.KeyInfo[178].HoldTime)->RenderCheck();
       break;
     case 4:
-      ((MiniGame1 *)g_pInput)->Render();
+      ((MiniGame1 *)g_Input.KeyInfo[179].Data)->Render();
       break;
     case 5:
-      sub_52F2E0(g_pScreenMode);
+      sub_52F2E0((_DWORD *)g_Input.KeyInfo[178].PressTime);
       goto LABEL_42;
     case 6:
-      ((MiniGame3 *)g_pRoleSystem)->Render();
+      ((MiniGame3 *)g_Input.KeyInfo[179].HoldTime)->Render();
 LABEL_42:
       ScriptSystem::Render2();
       break;
     default:
       break;
   }
-  if ( g_nGameState == 8 )
+  if ( g_Input.KeyInfo[177].PressTime == 8 )
   {
-    v17 = (__int64)(180.0 - MEMORY[0xBFDA58]);
+    v17 = (__int64)(180.0 - *(float *)&g_Input.KeyInfo[176].CountMode);
     goto LABEL_46;
   }
-  if ( g_nGameState == 7 )
+  if ( g_Input.KeyInfo[177].PressTime == 7 )
   {
-    v17 = (int)(__int64)(60.0 - MEMORY[0xBFDA58]) < 0 ? 0 : (__int64)(60.0 - MEMORY[0xBFDA58]);
+    v17 = (int)(__int64)(60.0 - *(float *)&g_Input.KeyInfo[176].CountMode) < 0
+        ? 0
+        : (__int64)(60.0 - *(float *)&g_Input.KeyInfo[176].CountMode);
 LABEL_46:
-    sprintf((char *const)Buffer, "%03d", v17);
+    sprintf((char *const)&v33.z, "%03d", v17);
     LOBYTE(v18) = 0;
-    v19 = *(_DWORD *)(*(_DWORD *)(g_pGfxManager + 208) + 12);
+    v19 = *(_DWORD *)(*(_DWORD *)(g_Input.KeyInfo[177].Data + 208) + 12);
     if ( v17 < 30 )
-      v18 = (__int64)(sin(MEMORY[0xBFDA58] * 4.0) * 255.0);
-    v20 = 60.0 / (double)MEMORY[0xBFD6D4];
-    *(float *)(v19 + 48) = 60.0 / (double)MEMORY[0xBFD6D0];
+      v18 = (__int64)(sin(*(float *)&g_Input.KeyInfo[176].CountMode * 4.0) * 255.0);
+    v20 = 60.0 / (double)g_Input.KeyInfo[120].HoldTime;
+    *(float *)(v19 + 48) = 60.0 / (double)g_Input.KeyInfo[120].Data;
     *(float *)(v19 + 52) = v20;
     if ( (_BYTE)v18 )
     {
       if ( gbColorQuad::ColorQuadFmt )
       {
-        BYTE2(v25[0]) = v18;
-        LOWORD(v25[0]) = 29338;
+        BYTE2(v25) = v18;
+        LOWORD(v25) = 29338;
       }
       else
       {
-        *(_WORD *)((char *)v25 + 1) = -25998;
-        LOBYTE(v25[0]) = v18;
+        *(_WORD *)((char *)&v25 + 1) = -25998;
+        LOBYTE(v25) = v18;
       }
-      HIBYTE(v25[0]) = -56;
-      *(_DWORD *)(v19 + 44) = v25[0];
+      HIBYTE(v25) = -56;
+      *(_DWORD *)(v19 + 44) = v25;
     }
     else
     {
       if ( gbColorQuad::ColorQuadFmt )
       {
-        *(_WORD *)((char *)v25 + 1) = 214;
-        LOBYTE(v25[0]) = -2;
+        *(_WORD *)((char *)&v26 + 1) = 214;
+        LOBYTE(v26) = -2;
       }
       else
       {
-        *(_WORD *)((char *)v25 + 1) = -298;
-        LOBYTE(v25[0]) = 0;
+        *(_WORD *)((char *)&v26 + 1) = -298;
+        LOBYTE(v26) = 0;
       }
-      HIBYTE(v25[0]) = -56;
-      *(_DWORD *)(v19 + 44) = v25[0];
+      HIBYTE(v26) = -56;
+      *(_DWORD *)(v19 + 44) = v26;
     }
-    v24 = 1.0 - 64.0 / (double)MEMORY[0xBFD6D4];
-    v23 = 1380.0 / (double)MEMORY[0xBFD6D0] - 1.0;
-    (*(void (**)(int, _DWORD *, _DWORD, _DWORD, int, int))(*(_DWORD *)v19 + 16))(
+    v24 = 1.0 - 64.0 / (double)g_Input.KeyInfo[120].HoldTime;
+    v23 = 1380.0 / (double)g_Input.KeyInfo[120].Data - 1.0;
+    (*(void (**)(int, float *, _DWORD, _DWORD, int, int))(*(_DWORD *)v19 + 16))(
       v19,
-      Buffer,
+      &v33.z,
       LODWORD(v23),
       LODWORD(v24),
       1176256512,
       1176256512);
     (*(void (**)(int))(*(_DWORD *)v19 + 8))(v19);
   }
-  if ( g_nGameState && g_nGameState != 3 && g_bRenderUI )
+  if ( g_Input.KeyInfo[177].PressTime && g_Input.KeyInfo[177].PressTime != 3 && g_bRenderUI )
   {
-    PushMatrixStacks(v25);
+    PushMatrixStacks();
     v35 = 0;
-    v21 = ScreenEffectMgr::GetInstance();
+    v21 = (ScreenEffectMgr *)ScreenEffectMgr::GetInstance();
     v21->Render();
     ((CGameData *)&g_GameData)->Render();
-    if ( MEMORY[0xBFDA34] )
-      (*(void (**)(int))(*(_DWORD *)MEMORY[0xBFDA34] + 4))(MEMORY[0xBFDA34]);
-    if ( !g_pPalScript )
-      ((Logger *)&g_Logger)->Render();
+    if ( g_Input.KeyInfo[174].HoldTime )
+      (*(void (**)(int))(*(_DWORD *)g_Input.KeyInfo[174].HoldTime + 4))(g_Input.KeyInfo[174].HoldTime);
+    if ( !g_Input.KeyInfo[180].CountMode )
+      ((Logger *)g_Logger)->Render();
     v35 = -1;
-    PopMatrixStacks(v25);
+    PopMatrixStacks();
   }
-  v22 = UIQuadManager::GetInstance();
-  v22->UIRenderObj();
-  result = (*(int (**)(int))(*(_DWORD *)g_pGfxManager + 52))(g_pGfxManager);
-  if ( g_pPalScript )
+  v22 = (void *)UIQuadManager::GetInstance();
+  ((int)v22)->UIRenderObj();
+  (*(void (**)(int))(*(_DWORD *)g_Input.KeyInfo[177].Data + 52))(g_Input.KeyInfo[177].Data);
+  if ( g_Input.KeyInfo[180].CountMode )
   {
-    result = PAL3::PrintScreen();
-    g_pPalScript = 0;
+    PAL3::PrintScreen();
+    g_Input.KeyInfo[180].CountMode = 0;
   }
-  return result;
 }
 
 // 0x00406230
-int PAL3::Destroy()
+void PAL3::Destroy()
 {
-  int v0; // eax
-  int v1; // eax
-  int v2; // eax
-  void *v3; // esi
+  CRenderTarget *Instance; // eax
+  CRenderTarget2 *v1; // eax
+  UIQuadManager *v2; // eax
+  void *HoldTime; // esi
   void *v4; // esi
-  int v5; // eax
+  char *v5; // eax
 
-  v0 = CRenderTarget::GetInstance();
-  v0->Destroy();
-  v1 = CRenderTarget2::GetInstance();
+  Instance = (CRenderTarget *)CRenderTarget::GetInstance();
+  Instance->Destroy();
+  v1 = (CRenderTarget2 *)CRenderTarget2::GetInstance();
   v1->Destroy();
-  v2 = UIQuadManager::GetInstance();
+  v2 = (UIQuadManager *)UIQuadManager::GetInstance();
   v2->Destroy();
   ScriptSystem::Destroy();
   UISystem::Destroy();
   _TextureLib_Data::_TextureLib_Data();
   PalScriptMgr::_CON_ReLoadScript();
-  if ( g_pCBSystem )
+  if ( g_Input.KeyInfo[178].HoldTime )
   {
-    CCBSystem::ProcFling();
-    v3 = g_pCBSystem;
-    if ( g_pCBSystem )
+    ((CCBSystem *)g_Input.KeyInfo[178].HoldTime)->ProcFling();
+    HoldTime = (void *)g_Input.KeyInfo[178].HoldTime;
+    if ( g_Input.KeyInfo[178].HoldTime )
     {
-      nullsub_3(g_pCBSystem);
-      operator delete(v3);
+      nullsub_3((void *)g_Input.KeyInfo[178].HoldTime);
+      operator delete(HoldTime);
     }
-    g_pCBSystem = 0;
+    g_Input.KeyInfo[178].HoldTime = 0;
   }
   ((CGameData *)&g_GameData)->Destroy();
   PAL3::DestroyEffectSystem();
-  if ( g_pCamera )
+  if ( g_Input.KeyInfo[177].CountMode )
   {
-    (**(void (***)(int, int))g_pCamera)(g_pCamera, 1);
-    g_pCamera = 0;
+    (**(void (***)(int, int))g_Input.KeyInfo[177].CountMode)(g_Input.KeyInfo[177].CountMode, 1);
+    g_Input.KeyInfo[177].CountMode = 0;
   }
-  v4 = g_pActorMgr;
-  if ( g_pActorMgr )
+  v4 = (void *)g_Input.KeyInfo[177].HoldTime;
+  if ( g_Input.KeyInfo[177].HoldTime )
   {
-    ((gbActorMgr *)g_pActorMgr)->~gbActorMgr();
+    ((gbActorMgr *)g_Input.KeyInfo[177].HoldTime)->~gbActorMgr();
     operator delete(v4);
-    g_pActorMgr = 0;
+    g_Input.KeyInfo[177].HoldTime = 0;
   }
-  if ( g_pGfxManager )
+  if ( g_Input.KeyInfo[177].Data )
   {
-    (**(void (***)(int, int))g_pGfxManager)(g_pGfxManager, 1);
-    g_pGfxManager = 0;
+    (**(void (***)(int, int))g_Input.KeyInfo[177].Data)(g_Input.KeyInfo[177].Data, 1);
+    g_Input.KeyInfo[177].Data = 0;
   }
   FileSysDestory();
-  v5 = CScreenMode::GetInstance();
-  return v5->Restore();
+  v5 = (char *)CScreenMode::GetInstance();
+  ((CScreenMode *)v5)->Restore();
 }
 
 // 0x00406310
@@ -1305,22 +1305,22 @@ void PAL3::CheckSystemRequire(char *a1@<edi>, char *a2@<esi>, HINSTANCE hInstanc
   ((Config *)Buffer)->ReadINIInt(a1, a2);
   v18 = 0;
   ((Config *)Buffer)->ReadINIString(aConfigIni, v7);
-  MEMORY[0xBFD6C8] = 2;
-  MEMORY[0xBFD6CC] = 0;
+  g_Input.KeyInfo[119].CountMode = 2;
+  g_Input.KeyInfo[119].PressTime = 0;
   ((Config *)Buffer)->ReadINI(aDisplay, section);
   ((Config *)Buffer)->ReadINI(aDisplay, aHeight);
   ((Config *)Buffer)->ReadINI(aDisplay, aColorbits);
   ((Config *)Buffer)->ReadINI(aDisplay, aDepthbits);
   ((Config *)Buffer)->ReadINI(aDisplay, aRate);
-  MEMORY[0xBFD6E4] = 2;
-  MEMORY[0xBFD77C] = (unsigned __int8)(g_nGameFlags & 0x10) >> 4;
-  MEMORY[0xBFD6E8] = 1;
-  MEMORY[0xBFD6E0] = 0;
-  strcpy(MEMORY[0xBFD6F0], ClassName);
-  MEMORY[0xBFD770] = (int)hInstance;
-  MEMORY[0xBFD778] = 0;
-  v5 = MEMORY[0xBFD6E8] != 0 ? 8 : 0;
-  SetRect(&rc, 0, 0, MEMORY[0xBFD6D0], MEMORY[0xBFD6D4]);
+  g_Input.KeyInfo[121].HoldTime = 2;
+  g_Input.KeyInfo[130].PressTime = (unsigned __int8)(g_nGameFlags & 0x10) >> 4;
+  g_Input.KeyInfo[121].CountMode = 1;
+  g_Input.KeyInfo[121].Data = 0;
+  strcpy((char *)&g_Input.KeyInfo[122], ClassName);
+  g_Input.KeyInfo[130].Data = (int)hInstance;
+  g_Input.KeyInfo[130].CountMode = 0;
+  v5 = g_Input.KeyInfo[121].CountMode != 0 ? 8 : 0;
+  SetRect(&rc, 0, 0, g_Input.KeyInfo[120].Data, g_Input.KeyInfo[120].HoldTime);
   AdjustWindowRect(&rc, 0x96080000, 0);
   Window = CreateWindowExA(
              v5,
@@ -1340,8 +1340,8 @@ void PAL3::CheckSystemRequire(char *a1@<edi>, char *a2@<esi>, HINSTANCE hInstanc
     qmemcpy(v12, ((Logger *)v15)->FormatException(aWindowCreateFa, aDProjectPal3Ga_0, 1152), sizeof(v12));
     _CxxThrowException(v12, (_ThrowInfo *)&_TI1_AV_Exception__);
   }
-  MEMORY[0xBFD774] = Window;
-  MEMORY[0xBFDA4C] = Window;
+  g_Input.KeyInfo[130].HoldTime = (int)Window;
+  g_Input.KeyInfo[175].PressTime = (int)Window;
   v18 = -1;
   nullsub_3(Buffer);
 }
@@ -1358,18 +1358,18 @@ char PAL3::CreateGfxWindow()
   int v6; // eax
 
   CommandLineA = GetCommandLineA();
-  g_pUIManager = (int)CommandLineA;
+  g_Input.KeyInfo[179].PressTime = (int)CommandLineA;
   if ( CommandLineA )
   {
-    if ( (unsigned __int8)aSc->ParseCmdLine() || (unsigned __int8)aSoftcursor->ParseCmdLine() )
-      MEMORY[0xBFDA91] = 1;
-    if ( (unsigned __int8)aXsnd->ParseCmdLine() )
+    if ( aSc->ParseCmdLine() || aSoftcursor->ParseCmdLine() )
+      BYTE1(g_Input.KeyInfo[180].Data) = 1;
+    if ( aXsnd->ParseCmdLine() )
     {
       v1 = g_nGameFlags;
       LOBYTE(v1) = g_nGameFlags & 0xFE;
       g_nGameFlags = v1;
     }
-    if ( (unsigned __int8)aXmusic->ParseCmdLine() )
+    if ( aXmusic->ParseCmdLine() )
     {
       v2 = g_nGameFlags;
       LOBYTE(v2) = g_nGameFlags & 0xFB;
@@ -1382,15 +1382,15 @@ char PAL3::CreateGfxWindow()
     else
       LOBYTE(v4) = g_nGameFlags | 0x10;
     g_nGameFlags = v4;
-    v5 = (unsigned __int8)aMotionblur->ParseCmdLine() == 0;
+    v5 = aMotionblur->ParseCmdLine() == 0;
     v6 = g_nGameFlags;
     if ( v5 )
       LOBYTE(v6) = g_nGameFlags & 0xF7;
     else
       LOBYTE(v6) = g_nGameFlags | 8;
     g_nGameFlags = v6;
-    if ( (unsigned __int8)aScursor->ParseCmdLine() )
-      *(_BYTE *)(UIQuadManager::GetInstance() + 29) = 1;
+    if ( aScursor->ParseCmdLine() )
+      *((_BYTE *)UIQuadManager::GetInstance() + 29) = 1;
     v3 = aRate->HasCommandLineParam() <= 60;
     CommandLineA = (LPSTR)g_nGameFlags;
     if ( v3 )
@@ -1461,63 +1461,63 @@ int PAL3::HasCommandLineParam(char *lpKeyName)
 // 0x00406980
 int PAL3::GetCommandLineParam()
 {
-  if ( !(_BYTE)MEMORY[0xC05F58]
-    && __PAIR16__(BYTE1(MEMORY[0xC05F58]), 0) == BYTE2(MEMORY[0xC05F58])
-    && __PAIR16__(HIBYTE(MEMORY[0xC05F58]), 0) == (unsigned __int8)MEMORY[0xC05F5C] )
+  if ( !LOBYTE(g_SceneMgr.m_npc[0].m_path.normal[82].z)
+    && __PAIR16__(BYTE1(g_SceneMgr.m_npc[0].m_path.normal[82].z), 0) == BYTE2(g_SceneMgr.m_npc[0].m_path.normal[82].z)
+    && __PAIR16__(HIBYTE(g_SceneMgr.m_npc[0].m_path.normal[82].z), 0) == LOBYTE(g_SceneMgr.m_npc[0].m_path.normal[83].x) )
   {
-    MEMORY[0xC05F58] = 16777473;
-    MEMORY[0xC05F5C] = 0;
+    g_SceneMgr.m_npc[0].m_path.normal[82].z = 2.3510607e-38;
+    LOBYTE(g_SceneMgr.m_npc[0].m_path.normal[83].x) = 0;
   }
-  if ( !MEMORY[0xC11718] )
-    ((PAL3 *)2)->UpdateSubsystems(7304, 7305, 0, 0, &MEMORY[0xC11700]);
-  ((CCBSystem *)&MEMORY[0xC11700])->ProcMagicWait(1);
-  return CGameData_Load(6);
+  if ( !*(_DWORD *)&g_SceneMgr.m_npc[6].m_actor.m_szTexture[176] )
+    PAL3::UpdateSubsystems();
+  ((CCBSystem *)g_Input.KeyInfo[178].HoldTime)->ProcMagicWait((int)&g_SceneMgr.m_npc[6].m_actor.m_szTexture[152], 1);
+  return CGameData_Load((int)&g_GameData, 6);
 }
 
 // 0x00406A10
 int PAL3::TestCombat()
 {
-  MEMORY[0x8ACCE8] = 27;
-  MEMORY[0x8ACCEE] = 9;
-  MEMORY[0x8ACCF0] = 9;
-  MEMORY[0x8ACCFA] = 27;
-  MEMORY[0x8ACD08] = 9;
-  MEMORY[0x8ACCD8] = 256;
-  MEMORY[0x8ACCDA] = 257;
-  MEMORY[0x8ACCDC] = 134;
-  MEMORY[0x8ACCDE] = 135;
-  MEMORY[0x8ACCE0] = 136;
-  MEMORY[0x8ACCE2] = 137;
-  MEMORY[0x8ACCE4] = 32;
-  MEMORY[0x8ACCE6] = 13;
-  MEMORY[0x8ACCEC] = 154;
-  MEMORY[0x8ACCEA] = 155;
-  MEMORY[0x8ACCF2] = 97;
-  MEMORY[0x8ACCF4] = 100;
-  MEMORY[0x8ACCF6] = 256;
-  MEMORY[0x8ACCF8] = 257;
-  MEMORY[0x8ACCFC] = 13;
-  MEMORY[0x8ACCFE] = 32;
-  MEMORY[0x8ACD00] = 134;
-  MEMORY[0x8ACD02] = 135;
-  MEMORY[0x8ACD04] = 136;
-  MEMORY[0x8ACD06] = 137;
-  MEMORY[0x8ACD0A] = 119;
-  MEMORY[0x8ACD0C] = 138;
-  MEMORY[0x8ACD0E] = 139;
-  MEMORY[0x8ACD10] = 140;
-  MEMORY[0x8ACD12] = 141;
-  MEMORY[0x8ACD14] = 142;
-  MEMORY[0x8ACD16] = 130;
-  MEMORY[0x8ACD18] = 132;
-  MEMORY[0x8ACD1A] = 112;
-  MEMORY[0x8ACD1C] = 114;
-  MEMORY[0x8ACD1E] = 102;
-  MEMORY[0x8ACD20] = 107;
-  MEMORY[0x8ACD22] = 101;
-  MEMORY[0x8ACD24] = 130;
-  MEMORY[0x8ACD26] = 132;
-  MEMORY[0x8ACD28] = 128;
+  *((_WORD *)&g_PAL3Data + 120) = 27;
+  *((_WORD *)&g_PAL3Data + 123) = 9;
+  *((_WORD *)&g_PAL3Data + 124) = 9;
+  *((_WORD *)&g_PAL3Data + 129) = 27;
+  *((_WORD *)&g_PAL3Data + 136) = 9;
+  *((_WORD *)&g_PAL3Data + 112) = 256;
+  *((_WORD *)&g_PAL3Data + 113) = 257;
+  *((_WORD *)&g_PAL3Data + 114) = 134;
+  *((_WORD *)&g_PAL3Data + 115) = 135;
+  *((_WORD *)&g_PAL3Data + 116) = 136;
+  *((_WORD *)&g_PAL3Data + 117) = 137;
+  *((_WORD *)&g_PAL3Data + 118) = 32;
+  *((_WORD *)&g_PAL3Data + 119) = 13;
+  *((_WORD *)&g_PAL3Data + 122) = 154;
+  *((_WORD *)&g_PAL3Data + 121) = 155;
+  *((_WORD *)&g_PAL3Data + 125) = 97;
+  *((_WORD *)&g_PAL3Data + 126) = 100;
+  *((_WORD *)&g_PAL3Data + 127) = 256;
+  *((_WORD *)&g_PAL3Data + 128) = 257;
+  *((_WORD *)&g_PAL3Data + 130) = 13;
+  *((_WORD *)&g_PAL3Data + 131) = 32;
+  *((_WORD *)&g_PAL3Data + 132) = 134;
+  *((_WORD *)&g_PAL3Data + 133) = 135;
+  *((_WORD *)&g_PAL3Data + 134) = 136;
+  *((_WORD *)&g_PAL3Data + 135) = 137;
+  *((_WORD *)&g_PAL3Data + 137) = 119;
+  *((_WORD *)&g_PAL3Data + 138) = 138;
+  *((_WORD *)&g_PAL3Data + 139) = 139;
+  *((_WORD *)&g_PAL3Data + 140) = 140;
+  *((_WORD *)&g_PAL3Data + 141) = 141;
+  *((_WORD *)&g_PAL3Data + 142) = 142;
+  *((_WORD *)&g_PAL3Data + 143) = 130;
+  *((_WORD *)&g_PAL3Data + 144) = 132;
+  *((_WORD *)&g_PAL3Data + 145) = 112;
+  *((_WORD *)&g_PAL3Data + 146) = 114;
+  *((_WORD *)&g_PAL3Data + 147) = 102;
+  *((_WORD *)&g_PAL3Data + 148) = 107;
+  *((_WORD *)&g_PAL3Data + 149) = 101;
+  *((_WORD *)&g_PAL3Data + 150) = 130;
+  *((_WORD *)&g_PAL3Data + 151) = 132;
+  *((_WORD *)&g_PAL3Data + 152) = 128;
   return 132;
 }
 
@@ -1533,25 +1533,26 @@ int PAL3::DefaultKeyMap(const char *a1, int a2, int a3)
   int v8; // ebx
   unsigned int v9; // edi
   int result; // eax
-  int v11; // edi
+  unsigned int v11; // edi
   unsigned int v12; // kr04_4
   unsigned int v13; // ebx
   char *v14; // edi
   char v15; // al
+  int v16; // [esp+0h] [ebp-Ch]
 
-  g_pPalScript = 1;
+  g_Input.KeyInfo[180].CountMode = 1;
   if ( a1 )
   {
     v12 = strlen(a1) + 1;
     v13 = v12 - 1;
-    if ( ((std *)&g_PAL3Data)->string::max_size() < v12 - 1 )
-      std::_Xlen();
-    v14 = (char *)MEMORY[0x8ACBFC];
-    if ( MEMORY[0x8ACBFC] && (v15 = *(_BYTE *)(MEMORY[0x8ACBFC] - 1)) != 0 && v15 != -1 )
+    if ( std::string::max_size() < v12 - 1 )
+      v16->_Xlen();
+    v14 = (char *)*((_DWORD *)&g_PAL3Data + 1);
+    if ( *((_DWORD *)&g_PAL3Data + 1) && (v15 = *(_BYTE *)(*((_DWORD *)&g_PAL3Data + 1) - 1)) != 0 && v15 != -1 )
     {
       if ( v12 == 1 )
       {
-        *(_BYTE *)(MEMORY[0x8ACBFC] - 1) = v15 - 1;
+        *(_BYTE *)(*((_DWORD *)&g_PAL3Data + 1) - 1) = v15 - 1;
         ((std *)&g_PAL3Data)->string::_Tidy(0);
         goto LABEL_43;
       }
@@ -1563,81 +1564,84 @@ int PAL3::DefaultKeyMap(const char *a1, int a2, int a3)
         ((std *)&g_PAL3Data)->string::_Tidy(1);
         goto LABEL_43;
       }
-      if ( (unsigned int)MEMORY[0x8ACC04] <= 0x1F && MEMORY[0x8ACC04] >= v13 )
+      if ( *((_DWORD *)&g_PAL3Data + 3) <= 0x1Fu && *((_DWORD *)&g_PAL3Data + 3) >= v13 )
       {
 LABEL_42:
         qmemcpy(v14, a1, v13);
-        result = MEMORY[0x8ACBFC];
-        MEMORY[0x8ACC00] = v12 - 1;
-        *(_BYTE *)(MEMORY[0x8ACBFC] + v13) = 0;
+        result = *((_DWORD *)&g_PAL3Data + 1);
+        *((_DWORD *)&g_PAL3Data + 2) = v12 - 1;
+        *(_BYTE *)(*((_DWORD *)&g_PAL3Data + 1) + v13) = 0;
         goto LABEL_43;
       }
       ((std *)&g_PAL3Data)->string::_Tidy(1);
     }
     ((int)&g_PAL3Data)->GetKeyState(v13);
-    v14 = (char *)MEMORY[0x8ACBFC];
+    v14 = (char *)*((_DWORD *)&g_PAL3Data + 1);
     goto LABEL_42;
   }
-  v3 = MEMORY[0x8ACBFC];
-  v4 = MEMORY[0x8ACBFC] == 0;
-  if ( MEMORY[0x8ACBFC] )
+  v3 = *((_DWORD *)&g_PAL3Data + 1);
+  v4 = *((_DWORD *)&g_PAL3Data + 1) == 0;
+  if ( *((_DWORD *)&g_PAL3Data + 1) )
   {
-    v5 = *(_BYTE *)(MEMORY[0x8ACBFC] - 1);
+    v5 = *(_BYTE *)(*((_DWORD *)&g_PAL3Data + 1) - 1);
     if ( v5 && v5 != -1 )
     {
-      ((SceneObj *)MEMORY[0x8ACC00])->Update(0);
-      v3 = MEMORY[0x8ACBFC];
+      ((SceneObj *)&g_PAL3Data)->Update(*((unsigned int *)&g_PAL3Data + 2));
+      v3 = *((_DWORD *)&g_PAL3Data + 1);
     }
     v4 = v3 == 0;
     if ( v3 )
     {
       *(_BYTE *)(v3 - 1) = -1;
-      v3 = MEMORY[0x8ACBFC];
-      v4 = MEMORY[0x8ACBFC] == 0;
+      v3 = *((_DWORD *)&g_PAL3Data + 1);
+      v4 = *((_DWORD *)&g_PAL3Data + 1) == 0;
     }
   }
   if ( v4 )
     v6 = 0;
   else
-    v6 = MEMORY[0x8ACC00] + v3;
+    v6 = *((_DWORD *)&g_PAL3Data + 2) + v3;
   if ( v3 )
   {
     v7 = *(_BYTE *)(v3 - 1);
     if ( v7 && v7 != -1 )
     {
-      ((SceneObj *)MEMORY[0x8ACC00])->Update(0);
-      v3 = MEMORY[0x8ACBFC];
+      ((SceneObj *)&g_PAL3Data)->Update(*((unsigned int *)&g_PAL3Data + 2));
+      v3 = *((_DWORD *)&g_PAL3Data + 1);
     }
     if ( v3 )
     {
       *(_BYTE *)(v3 - 1) = -1;
-      v3 = MEMORY[0x8ACBFC];
+      v3 = *((_DWORD *)&g_PAL3Data + 1);
     }
   }
   v8 = v3;
-  ((std *)&g_PAL3Data)->string::_Freeze();
+  ((unsigned int *)&g_PAL3Data)->string::_Freeze();
   if ( v8 )
-    v9 = v8 - MEMORY[0x8ACBFC];
+    v9 = v8 - *((_DWORD *)&g_PAL3Data + 1);
   else
     v9 = 0;
   if ( v6 )
     v6 -= v8;
-  if ( MEMORY[0x8ACC00] < v9 )
+  if ( *((_DWORD *)&g_PAL3Data + 2) < v9 )
     std::_Xran();
-  ((std *)&g_PAL3Data)->string::_Split();
-  result = MEMORY[0x8ACC00];
-  if ( MEMORY[0x8ACC00] - v9 < v6 )
-    v6 = MEMORY[0x8ACC00] - v9;
+  ((int)&g_PAL3Data)->string::_Split();
+  result = *((_DWORD *)&g_PAL3Data + 2);
+  if ( *((_DWORD *)&g_PAL3Data + 2) - v9 < v6 )
+    v6 = *((_DWORD *)&g_PAL3Data + 2) - v9;
   if ( v6 )
   {
-    memcpy((void *)(v9 + MEMORY[0x8ACBFC]), (const void *)(v9 + MEMORY[0x8ACBFC] + v6), MEMORY[0x8ACC00] - v6 - v9);
-    v11 = MEMORY[0x8ACC00] - v6;
-    result = ((SceneObj *)MEMORY[0x8ACC00] - v6)->Update(0);
+    memcpy(
+      (void *)(v9 + *((_DWORD *)&g_PAL3Data + 1)),
+      (const void *)(v9 + *((_DWORD *)&g_PAL3Data + 1) + v6),
+      *((_DWORD *)&g_PAL3Data + 2) - v6 - v9);
+    v11 = *((_DWORD *)&g_PAL3Data + 2) - v6;
+    LOBYTE(result) = ((SceneObj *)&g_PAL3Data)->Update(*((_DWORD *)&g_PAL3Data + 2) - v6);
     if ( (_BYTE)result )
     {
-      result = MEMORY[0x8ACBFC];
-      MEMORY[0x8ACC00] = v11;
-      *(_BYTE *)(MEMORY[0x8ACBFC] + v11) = 0;
+      result = *((_DWORD *)&g_PAL3Data + 1);
+      *((_DWORD *)&g_PAL3Data + 2) = v11;
+      *(_BYTE *)(*((_DWORD *)&g_PAL3Data + 1) + v11) = 0;
     }
   }
 LABEL_43:
@@ -1684,7 +1688,10 @@ void PAL3::PrintScreen()
   _BYTE *v32; // [esp+F4h] [ebp-1Ch]
   int v33; // [esp+10Ch] [ebp-4h]
 
-  if ( (*(int (**)(gbGfxManager *, int *, int))(*(_DWORD *)g_pGfxManager + 84))(g_pGfxManager, &v23, 1) )
+  if ( (*(int (**)(int, int *, int))(*(_DWORD *)g_Input.KeyInfo[177].Data + 84))(
+         g_Input.KeyInfo[177].Data,
+         &v23,
+         1) )
   {
     ((gbImage2D *)&v30)->gbImage2D();
     v33 = 0;
@@ -1714,7 +1721,7 @@ LABEL_8:
           while ( v31 < v26 );
           v0 = v30;
         }
-        (*(void (**)(gbGfxManager *))(*(_DWORD *)g_pGfxManager + 88))(g_pGfxManager);
+        (*(void (**)(int))(*(_DWORD *)g_Input.KeyInfo[177].Data + 88))(g_Input.KeyInfo[177].Data);
         ((gbImage2D *)(&g_PAL3Data + 24))->Release();
         v6 = ((gbImage2D *)(&g_PAL3Data + 24))->CreateImage(v26, v27, 24);
         v7 = v32;
@@ -1819,7 +1826,7 @@ LABEL_8:
       }
       if ( v25 != 9 )
       {
-        (*(void (**)(gbGfxManager *))(*(_DWORD *)g_pGfxManager + 88))(g_pGfxManager);
+        (*(void (**)(int))(*(_DWORD *)g_Input.KeyInfo[177].Data + 88))(g_Input.KeyInfo[177].Data);
 LABEL_34:
         v33 = -1;
         ((gbImage2D *)&v30)->~gbImage2D();
@@ -1834,31 +1841,31 @@ LABEL_34:
 // 0x00406FF0
 int PAL3::SnapScreen(int a1)
 {
-  char *v1; // esi
+  float *p_y; // esi
   int (***v2)(_DWORD, _DWORD); // eax
   int result; // eax
 
-  MEMORY[0xBFDA30] = 0;
-  MEMORY[0xBFDA2C] = a1;
+  g_Input.KeyInfo[174].Data = 0;
+  g_Input.KeyInfo[173].PressTime = a1;
   if ( a1 )
   {
-    *(_DWORD *)(g_pCamera + 448) = 1;
-    ((RoleSystem *)&MEMORY[0xC05F60])->SetActive();
+    *(_DWORD *)(g_Input.KeyInfo[177].CountMode + 448) = 1;
+    ((RoleSystem *)g_Input.KeyInfo[177].CountMode)->SetActive((int)&g_SceneMgr.m_npc[0].m_path.normal[83].y);
   }
-  sub_4070A0(aSoftwareSoftst, (DWORD)aSGameA, 1u);
-  ((PalScriptMgr *)99)->Destroy(0);
-  v1 = (char *)&MEMORY[0xC08160];
+  sub_4070A0(aSoftwareSoftst, (DWORD)aSGameA, 1);
+  ((PalScriptMgr *)0x63u)->Destroy(0);
+  p_y = (float *)&g_SceneMgr.m_npc[1].m_path.normal[78].y;
   do
   {
-    sub_419AE0(v1);
-    v1 += 8704;
+    sub_419AE0(p_y);
+    p_y += 2176;
   }
-  while ( (int)v1 < (int)MEMORY[0xC10960] );
+  while ( (int)p_y < (int)&g_SceneMgr.m_npc[5].m_path.normal[58].y );
   ((ScriptSystem *)0)->Execute(1);
-  g_nGameState = 7;
-  v2 = (int (***)(_DWORD, _DWORD))((CGameData *)0)->SetMode();
+  g_Input.KeyInfo[177].PressTime = 7;
+  v2 = (int (***)(_DWORD, _DWORD))((CGameData *)&g_GameData)->SetMode(0);
   result = (**v2)(v2, 0);
-  MEMORY[0xBFDA58] = 0.0;
+  g_Input.KeyInfo[176].CountMode = 0;
   return result;
 }
 
@@ -1878,62 +1885,60 @@ char PAL3::StartWolf(HKEY hKey, CHAR *lpSubKey)
 }
 
 // 0x004071C0
-int PAL3::EndWolf(int a1)
+void PAL3::EndWolf(int a1)
 {
-  _DWORD *v1; // esi
-  int result; // eax
-  void (***v3)(_DWORD, int); // eax
-  int v4; // [esp-4h] [ebp-18h]
-  int v5; // [esp-4h] [ebp-18h]
-  _DWORD v6[5]; // [esp+0h] [ebp-14h]
+  float *p_z; // esi
+  void (***v2)(_DWORD, int); // eax
+  int *v3; // eax
+  int *Instance; // eax
+  _DWORD *v5; // [esp-4h] [ebp-18h]
+  _DWORD *v6; // [esp-4h] [ebp-18h]
+  _DWORD v7[5]; // [esp+0h] [ebp-14h]
   void *retaddr; // [esp+14h] [ebp+0h]
 
-  v1 = (_DWORD *)&MEMORY[0xC08650];
+  p_z = (float *)&g_SceneMgr.m_npc[1].m_path.normal[183].z;
   do
   {
-    RoleSystemNotify(v1 - 316);
-    *v1 = 2;
-    v1 += 2176;
+    RoleSystemNotify((int)(p_z - 316));
+    *(_DWORD *)p_z = 2;
+    p_z += 2176;
   }
-  while ( (int)v1 < (int)MEMORY[0xC10E50] );
-  if ( MEMORY[0xBFDA2C] )
+  while ( (int)p_z < (int)&g_SceneMgr.m_npc[5].m_path.normal[163].z );
+  if ( g_Input.KeyInfo[173].PressTime )
   {
-    v6[0] = 0;
+    v7[0] = 0;
     if ( a1 == -1 )
-      result = ((PalScriptMgr *)95)->Destroy(v6[0]);
+      g_Input.KeyInfo[174].Data = (int)((PalScriptMgr *)0x5Fu)->Destroy(v7[0]);
     else
-      result = ((PalScriptMgr *)96)->Destroy(v6[0]);
-    MEMORY[0xBFDA30] = result;
+      g_Input.KeyInfo[174].Data = (int)((PalScriptMgr *)0x60u)->Destroy(v7[0]);
   }
   else
   {
-    g_nGameState = 2;
-    v3 = (void (***)(_DWORD, int))((CGameData *)0)->SetMode();
-    (**v3)(v3, 1);
+    g_Input.KeyInfo[177].PressTime = 2;
+    v2 = (void (***)(_DWORD, int))((CGameData *)&g_GameData)->SetMode(0);
+    (**v2)(v2, 1);
     if ( retaddr == (void *)-1 )
     {
-      v5 = ((PalScriptMgr *)97)->Destroy(0);
-      SoundContext::GetInstance();
-      return CScreenMode_SetResolution(0, v5);
+      v6 = ((PalScriptMgr *)0x61u)->Destroy(0);
+      Instance = (int *)SoundContext::GetInstance();
+      CScreenMode_SetResolution(Instance, 0, (int)v6);
     }
     else
     {
-      v4 = ((PalScriptMgr *)98)->Destroy(0);
-      SoundContext::GetInstance();
-      CScreenMode_SetResolution(0, v4);
-      result = MEMORY[0xBFDA44];
-      if ( (unsigned int)MEMORY[0xBFDA44] < 4 )
+      v5 = ((PalScriptMgr *)0x62u)->Destroy(0);
+      v3 = (int *)SoundContext::GetInstance();
+      CScreenMode_SetResolution(v3, 0, (int)v5);
+      if ( g_Input.KeyInfo[175].HoldTime < 4u )
       {
-        v6[0] = 80015;
-        v6[1] = 83012;
-        v6[2] = 8153;
-        v6[3] = 8154;
-        result = sub_42BEF0(v6[MEMORY[0xBFDA44]]);
+        v7[0] = 80015;
+        v7[1] = 83012;
+        v7[2] = 8153;
+        v7[3] = 8154;
+        sub_42BEF0(v7[g_Input.KeyInfo[175].HoldTime]);
       }
-      ++MEMORY[0xBFDA44];
+      ++g_Input.KeyInfo[175].HoldTime;
     }
   }
-  return result;
 }
 
 // 0x004072D0
@@ -1941,9 +1946,9 @@ int PAL3::StartHideFight()
 {
   int (***v0)(_DWORD, _DWORD); // eax
 
-  g_nGameState = 8;
-  MEMORY[0xBFDA58] = 0.0;
-  v0 = (int (***)(_DWORD, _DWORD))((CGameData *)0)->SetMode();
+  g_Input.KeyInfo[177].PressTime = 8;
+  g_Input.KeyInfo[176].CountMode = 0;
+  v0 = (int (***)(_DWORD, _DWORD))((CGameData *)&g_GameData)->SetMode(0);
   return (**v0)(v0, 0);
 }
 
@@ -1952,27 +1957,27 @@ int PAL3::EndHideFight()
 {
   int (***v0)(_DWORD, int); // eax
 
-  g_nGameState = 2;
-  v0 = (int (***)(_DWORD, int))((CGameData *)0)->SetMode();
+  g_Input.KeyInfo[177].PressTime = 2;
+  v0 = (int (***)(_DWORD, int))((CGameData *)&g_GameData)->SetMode(0);
   return (**v0)(v0, 1);
 }
 
 // 0x00407320
-int PAL3::StartCombat(int a1, int a2, int a3, char a4)
+char PAL3::StartCombat(int a1, int a2, int a3, char a4)
 {
-  int result; // eax
+  char result; // al
   int v5; // ebx
-  int v6; // esi
-  int v7; // edi
-  __int64 v8; // rax
-  int v9; // ecx
-  int v10; // esi
+  RoleSystem *v6; // eax
+  int RolePtr; // esi
+  int v8; // edi
+  __int64 v9; // rax
+  int v10; // ecx
+  int v11; // esi
   int i; // eax
-  int v12; // edi
-  int v13; // ecx
+  int v13; // edi
   const char *v14; // eax
-  int v15; // ecx
-  char *v16; // esi
+  char *v15; // esi
+  char *Instance; // eax
   int v17; // [esp+0h] [ebp-11Ch] BYREF
   char Buffer[256]; // [esp+Ch] [ebp-110h] BYREF
   int *v19; // [esp+10Ch] [ebp-10h]
@@ -1981,54 +1986,54 @@ int PAL3::StartCombat(int a1, int a2, int a3, char a4)
   v20 = 0;
   v19 = (int *)&v17;
   result = PAL3::UIPostProcess();
-  v5 = MEMORY[0xC116EC];
-  if ( MEMORY[0xC116EC] )
+  v5 = *(_DWORD *)&g_SceneMgr.m_npc[6].m_actor.m_szTexture[132];
+  if ( *(_DWORD *)&g_SceneMgr.m_npc[6].m_actor.m_szTexture[132] )
   {
-    ((void (*)(void))UISceneUpdate)();
-    v6 = ((RoleSystem *)*(_DWORD *)(v5 + 628))->GetRolePtr();
-    v7 = (__int64)((*(float *)(v5 + 4) - *(float *)(v6 + 128)) / MEMORY[0xBFDA04]);
-    v8 = (__int64)((*(float *)(v5 + 12) - *(float *)(v6 + 136)) / MEMORY[0xBFDA04]);
-    if ( v7 < 0 || (v9 = *(_DWORD *)(v6 + 152), v7 >= v9) || (int)v8 < 0 || (int)v8 >= *(_DWORD *)(v6 + 156) )
-      v10 = 2;
+    v6 = (RoleSystem *)UISceneUpdate();
+    RolePtr = v6->GetRolePtr(*(_DWORD *)(v5 + 628));
+    v8 = (__int64)((*(float *)(v5 + 4) - *(float *)(RolePtr + 128)) / *(float *)&g_Input.KeyInfo[171].HoldTime);
+    v9 = (__int64)((*(float *)(v5 + 12) - *(float *)(RolePtr + 136)) / *(float *)&g_Input.KeyInfo[171].HoldTime);
+    if ( v8 < 0 || (v10 = *(_DWORD *)(RolePtr + 152), v8 >= v10) || (int)v9 < 0 || (int)v9 >= *(_DWORD *)(RolePtr + 156) )
+      v11 = 2;
     else
-      v10 = *(unsigned __int8 *)(*(_DWORD *)(v6 + 160) + 8 * (v7 + v8 * v9) + 5);
+      v11 = *(unsigned __int8 *)(*(_DWORD *)(RolePtr + 160) + 8 * (v8 + v9 * v10) + 5);
     for ( i = 0; i < 6; ++i )
-      MEMORY[0xC11700][i] = *(_DWORD *)(a1 + 4 * i);
-    v12 = UISceneUpdate(a1);
-    v14 = (const char *)UISceneUpdate(v13);
-    sprintf(Buffer, "%s_%s", v14, (const char *)(v12 + 32));
-    stru_BFAB60->SetDirectory(Buffer);
-    sprintf(Buffer, "%d", v10);
-    if ( !(unsigned __int8)sub_431C10(stru_BFAB60, Buffer, MEMORY[0xC11720], 32) )
-      sub_431C10(stru_BFAB60, aDefault, MEMORY[0xC11720], 32);
-    stru_BFAB60->SetDirectory(dir);
-    if ( (unsigned __int8)sub_431C10(stru_BFAB60, MEMORY[0xC11720], Buffer, 256) )
-      MEMORY[0xC11740] = atoi(Buffer);
+      *(_DWORD *)&g_SceneMgr.m_npc[6].m_actor.m_szTexture[4 * i + 152] = *(_DWORD *)(a1 + 4 * i);
+    v13 = UISceneUpdate();
+    v14 = (const char *)UISceneUpdate();
+    sprintf(Buffer, "%s_%s", v14, (const char *)(v13 + 32));
+    ((PalScript *)&stru_BFAB60)->SetDirectory(Buffer);
+    sprintf(Buffer, "%d", v11);
+    if ( !sub_431C10(&stru_BFAB60, Buffer, &g_SceneMgr.m_npc[6].m_actor.m_szTexture[184], 32) )
+      sub_431C10(&stru_BFAB60, aDefault, &g_SceneMgr.m_npc[6].m_actor.m_szTexture[184], 32);
+    ((PalScript *)&stru_BFAB60)->SetDirectory(dir);
+    if ( sub_431C10(&stru_BFAB60, &g_SceneMgr.m_npc[6].m_actor.m_szTexture[184], Buffer, 256) )
+      *(_DWORD *)&g_SceneMgr.m_npc[6].m_actor.m_szTexture[216] = atoi(Buffer);
     else
-      MEMORY[0xC11740] = 1;
+      *(_DWORD *)&g_SceneMgr.m_npc[6].m_actor.m_szTexture[216] = 1;
     if ( a2 == 1 )
-      MEMORY[0xC11744] = 2;
+      *(_DWORD *)&g_SceneMgr.m_npc[6].m_actor.m_szTexture[220] = 2;
     else
-      MEMORY[0xC11744] = a2 == 2;
-    MEMORY[0xC11754] = a3;
-    MEMORY[0xC11751] = a4;
-    result = ((CCBSystem *)MEMORY[0xC11700])->ProcMagicWait(0);
-    if ( (_BYTE)result )
+      *(_DWORD *)&g_SceneMgr.m_npc[6].m_actor.m_szTexture[220] = a2 == 2;
+    *(_DWORD *)&g_SceneMgr.m_npc[6].m_actor.m_szTexture[236] = a3;
+    g_SceneMgr.m_npc[6].m_actor.m_szTexture[233] = a4;
+    result = ((CCBSystem *)g_Input.KeyInfo[178].HoldTime)->ProcMagicWait((int)&g_SceneMgr.m_npc[6].m_actor.m_szTexture[152], 0);
+    if ( result )
     {
-      if ( !a4 || (LOBYTE(v15) = *(_BYTE *)(CScreenMode::GetInstance() + 4), !(_BYTE)v15) )
+      if ( !a4 || !CScreenMode::GetInstance()[4] )
       {
-        v16 = (char *)UISceneUpdate(v15);
-        CScreenMode::GetInstance();
-        sub_53E680(v16);
+        v15 = (char *)UISceneUpdate();
+        Instance = (char *)CScreenMode::GetInstance();
+        sub_53E680((int)Instance, v15);
       }
-      return CGameData_Load(6);
+      return CGameData_Load((int)&g_GameData, 6);
     }
   }
   return result;
 }
 
 // 0x00407560
-int PAL3::StartCombat(const void *a1, int a2, int a3)
+char PAL3::StartCombat(const void *a1, int a2, int a3)
 {
   _BYTE v4[28]; // [esp+Ch] [ebp-220h] BYREF
   int v5; // [esp+28h] [ebp-204h]
@@ -2052,9 +2057,9 @@ int PAL3::StartCombat(const void *a1, int a2, int a3)
   v13 = 0;
   v11 = 0;
   qmemcpy(v14, a1, sizeof(v14));
-  if ( MEMORY[0xC10CC1] )
+  if ( BYTE1(g_SceneMgr.m_npc[5].m_path.normal[130].y) )
     LOBYTE(v14[32]) = 6;
-  ((PAL3 *)LOBYTE(v14[32]))->UpdateSubsystems(v14[29], v14[30], v14[31], 0, v4);
+  PAL3::UpdateSubsystems();
   return ((int)v4)->StartCombat(a2, a3, 0);
 }
 
@@ -2062,10 +2067,10 @@ int PAL3::StartCombat(const void *a1, int a2, int a3)
 char PAL3::EntryCatchGhost()
 {
   int v0; // esi
-  int v1; // ecx
   int *i; // edi
-  int v4; // esi
-  int v5; // edi
+  int v3; // esi
+  RoleSystem *v4; // eax
+  int RolePtr; // edi
   int v6; // ebx
   int v7; // [esp-8h] [ebp-2Ch]
   int v8; // [esp+8h] [ebp-1Ch] BYREF
@@ -2077,7 +2082,7 @@ char PAL3::EntryCatchGhost()
   int v14; // [esp+20h] [ebp-4h]
 
   v0 = 0;
-  if ( (unsigned __int8)aQ01->ProcessInput(0) )
+  if ( aQ01->ProcessInput(0) )
   {
     v8 = 6308;
     v9 = 6309;
@@ -2087,7 +2092,7 @@ char PAL3::EntryCatchGhost()
     for ( i = &v8; ; ++i )
     {
       v11 = *i;
-      if ( CCBStageRole_GetByIndex(&v11) )
+      if ( CCBStageRole_GetByIndex(&g_SceneMgr.m_npc[0].m_path.normal[79].y, &v11) )
         break;
       if ( ++v0 >= 3 )
         return 0;
@@ -2095,12 +2100,12 @@ char PAL3::EntryCatchGhost()
   }
   else
   {
-    v4 = MEMORY[0xC116EC];
-    v7 = *(_DWORD *)(MEMORY[0xC116EC] + 628);
-    UISceneUpdate(v1);
-    v5 = v7->GetRolePtr();
-    v6 = (__int64)((*(float *)(v4 + 4) - *(float *)(v5 + 128)) / MEMORY[0xBFDA04]);
-    v9 = (__int64)((*(float *)(v4 + 12) - *(float *)(v5 + 136)) / MEMORY[0xBFDA04]);
+    v3 = *(_DWORD *)&g_SceneMgr.m_npc[6].m_actor.m_szTexture[132];
+    v7 = *(_DWORD *)(*(_DWORD *)&g_SceneMgr.m_npc[6].m_actor.m_szTexture[132] + 628);
+    v4 = (RoleSystem *)UISceneUpdate();
+    RolePtr = v4->GetRolePtr(v7);
+    v6 = (__int64)((*(float *)(v3 + 4) - *(float *)(RolePtr + 128)) / *(float *)&g_Input.KeyInfo[171].HoldTime);
+    v9 = (__int64)((*(float *)(v3 + 12) - *(float *)(RolePtr + 136)) / *(float *)&g_Input.KeyInfo[171].HoldTime);
     v8 = v6;
     v11 = 23;
     v12 = 93;
@@ -2113,25 +2118,25 @@ char PAL3::EntryCatchGhost()
 }
 
 // 0x00407740
-int PAL3::IfHideFightSucceed(int a1)
+gbGfxManager * PAL3::IfHideFightSucceed(int a1)
 {
-  int result; // eax
-  int v2; // eax
-  gbAudioManager *v3; // eax
+  gbGfxManager *result; // eax
+  char *Instance; // eax
+  gbAudioManager *AudioManager; // eax
 
-  result = a1 - 2;
+  result = (gbGfxManager *)(a1 - 2);
   if ( a1 == 2 )
   {
     if ( (g_nGameFlags & 1) != 0 )
     {
-      v2 = CScreenMode::GetInstance();
-      v3 = (gbAudioManager *)v2->GetAudioManager();
-      v3->DetachAll3D();
+      Instance = (char *)CScreenMode::GetInstance();
+      AudioManager = (gbAudioManager *)((CScreenMode *)Instance)->GetAudioManager();
+      AudioManager->DetachAll3D();
     }
     PAL3::UIPostProcess();
-    RoleSystemNotify(MEMORY[0xC116EC]);
+    RoleSystemNotify(*(int *)&g_SceneMgr.m_npc[6].m_actor.m_szTexture[132]);
     UIQuadManager::GetInstance();
-    return UIQuadManager_Reset(0);
+    return UIQuadManager_Reset();
   }
   return result;
 }
@@ -2139,18 +2144,18 @@ int PAL3::IfHideFightSucceed(int a1)
 // 0x00408BE0
 int PAL3::InitSubsystems()
 {
-  _DWORD v1[4]; // [esp+0h] [ebp-10h] BYREF
+  _DWORD pRect[4]; // [esp+0h] [ebp-10h] BYREF
 
-  v1[0] = 0;
-  v1[1] = 0;
-  v1[2] = 40;
-  v1[3] = 32;
-  ((UIWnd *)0)->Create(v1, 0);
-  aUiSceneTiao->LoadResource();
-  ((MvcViewport *)1082130432)->SetController();
-  ((UIWnd *)0)->Destroy();
-  ((UINote *)1)->Create(v1, 0, aUiFlexNote_0);
-  ((UIWnd *)1)->SetState();
+  pRect[0] = 0;
+  pRect[1] = 0;
+  pRect[2] = 40;
+  pRect[3] = 32;
+  ((UIWnd *)&g_SceneMgr.m_npc[5].m_path.normal[59])->Create(0, pRect, 0);
+  ((UIScene *)&g_SceneMgr.m_npc[5].m_path.normal[59])->LoadResource(aUiSceneTiao);
+  ((MvcViewport *)&g_SceneMgr.m_npc[5].m_path.normal[59].x)->SetController(1082130432);
+  ((UIWnd *)&g_SceneMgr.m_npc[5].m_path.normal[59])->Destroy(0);
+  ((UINote *)&g_Input.KeyInfo[182])->Create(1, (int)pRect, 0, aUiFlexNote_0);
+  ((UIWnd *)&g_Input.KeyInfo[182])->SetState(1);
   dword_C042F8 = 1101838418;
   dword_C042FC = 0;
   dword_C04300 = -1038795408;
@@ -2177,7 +2182,7 @@ int PAL3::FullInit()
   char *v2; // esi
   int *v3; // ebp
   const char *v4; // edi
-  int v5; // eax
+  int y_low; // eax
   int i; // esi
   int RoleNum; // eax
   int *v8; // esi
@@ -2252,39 +2257,39 @@ int PAL3::FullInit()
   int v77; // eax
   int v78; // ebp
   int v79; // eax
-  char *v80; // edi
+  void *v80; // edi
   int v81; // eax
-  char *v82; // eax
+  int ii; // eax
   int *v83; // ecx
   int *v84; // esi
   int v85; // edi
   int v86; // eax
   int v87; // ebp
   int v88; // eax
-  char *v89; // edi
+  void *v89; // edi
   int v90; // eax
-  char *v91; // eax
+  int jj; // eax
   int *v92; // ecx
   int *v93; // esi
   int v94; // edi
   int v95; // eax
   int v96; // ebp
   int v97; // eax
-  char *v98; // edi
+  void *v98; // edi
   int v99; // eax
-  char *v100; // eax
+  int kk; // eax
   int *v101; // ecx
   int *v102; // esi
   int v103; // edi
   int v104; // eax
   int v105; // ebp
   int v106; // eax
-  char *v107; // edi
+  void *v107; // edi
   int v108; // eax
-  char *v109; // eax
+  int mm; // eax
   int *v110; // ecx
   int v111; // ebp
-  int ii; // eax
+  int nn; // eax
   int v113; // ecx
   int v114; // edx
   int *v115; // esi
@@ -2293,7 +2298,7 @@ int PAL3::FullInit()
   int v118; // eax
   char *v119; // ebp
   int v120; // edx
-  int *jj; // eax
+  int *i1; // eax
   int *v122; // edx
   int *v123; // esi
   int v124; // ebp
@@ -2301,9 +2306,9 @@ int PAL3::FullInit()
   int v126; // eax
   int v127; // eax
   char *v128; // ebp
-  int mm; // edi
+  int i3; // edi
   int v130; // eax
-  int *kk; // eax
+  int *i2; // eax
   int *v132; // ecx
   int *v133; // esi
   int v134; // ebp
@@ -2311,11 +2316,11 @@ int PAL3::FullInit()
   int v136; // eax
   int v137; // eax
   char *v138; // ebp
-  int i1; // edi
+  int i5; // edi
   int v140; // eax
-  int *nn; // eax
+  int *i4; // eax
   int *v142; // ecx
-  int i2; // ecx
+  int i6; // ecx
   int result; // eax
   int v145; // [esp+10h] [ebp-28h]
   char *v146; // [esp+10h] [ebp-28h]
@@ -2339,10 +2344,12 @@ int PAL3::FullInit()
   _DWORD v164[5]; // [esp+24h] [ebp-14h] BYREF
 
   memset(byte_DE5220, 0, 0x28u);
-  if ( *(_DWORD *)&g_SceneMgr.m_info[51500] )
+  if ( LODWORD(g_SceneMgr.m_npc[5].m_path.normal[130].x) )
   {
-    (***(void (****)(_DWORD, int))&g_SceneMgr.m_info[51500])(*(_DWORD *)&g_SceneMgr.m_info[51500], 1);
-    *(_DWORD *)&g_SceneMgr.m_info[51500] = 0;
+    (**(void (***)(_DWORD, int))LODWORD(g_SceneMgr.m_npc[5].m_path.normal[130].x))(
+      LODWORD(g_SceneMgr.m_npc[5].m_path.normal[130].x),
+      1);
+    g_SceneMgr.m_npc[5].m_path.normal[130].x = 0.0;
   }
   memset(dword_C02050, 0, 0xA0u);
   v0 = dword_C02050;
@@ -2364,10 +2371,10 @@ int PAL3::FullInit()
   dword_C020CC = 6704;
   dword_C020DC = 6705;
   dword_C020EC = 84018;
-  *(_DWORD *)&g_SceneMgr.m_info[51524] = 0;
-  *(_DWORD *)&g_SceneMgr.m_info[51516] = 0;
-  CCBStageRole_Reset(&g_SceneMgr.m_info[7072]);
-  *(_DWORD *)&g_SceneMgr.m_info[7064] = *(_DWORD *)&g_SceneMgr.m_info[7060];
+  g_SceneMgr.m_npc[5].m_path.normal[132].x = 0.0;
+  g_SceneMgr.m_npc[5].m_path.normal[131].y = 0.0;
+  CCBStageRole_Reset(&g_SceneMgr.m_npc[0].m_path.normal[79].y);
+  g_SceneMgr.m_npc[0].m_path.normal[78].z = g_SceneMgr.m_npc[0].m_path.normal[78].y;
   dword_586158 = 35;
   v1 = g_RoleTeam2;
   do
@@ -2375,19 +2382,19 @@ int PAL3::FullInit()
     * v1 = (*)*(v1 - 1);
     v1 += 4;
   }
-  while ( (int)v1 < (int)&g_SceneMgr.m_info[24] );
-  g_SceneMgr.m_info[51505] = 0;
-  memset(&MEMORY[0xBFDB90], 0, 0x20u);
-  MEMORY[0xBFDBA4] = 31;
-  *(_DWORD *)&g_SceneMgr.m_info[51520] = 0;
-  memset(&g_SceneMgr.m_info[16], 0, 0x1B80u);
+  while ( (int)v1 < (int)&g_SceneMgr.m_info.cityname[24] );
+  BYTE1(g_SceneMgr.m_npc[5].m_path.normal[130].y) = 0;
+  memset(&g_Input.KeyInfo[196], 0, 0x20u);
+  g_Input.KeyInfo[197].HoldTime = 31;
+  g_SceneMgr.m_npc[5].m_path.normal[131].z = 0.0;
+  memset(&g_SceneMgr.m_info.cityname[16], 0, 0x1B80u);
   v164[0] = dword_58619C;
   v164[1] = dword_586198;
   v164[2] = dword_586194;
   v164[3] = &dword_586190;
   v164[4] = dword_58618C;
   v145 = 0;
-  v2 = (char *)&g_SceneMgr.m_info[7294];
+  v2 = (char *)&g_SceneMgr.m_npc[0].m_path.normal[97].z + 2;
   v3 = v164;
   do
   {
@@ -2403,37 +2410,34 @@ int PAL3::FullInit()
     ++v3;
     ++v145;
   }
-  while ( (int)v2 < (int)&g_SceneMgr.m_info[50814] );
+  while ( (int)v2 < (int)((char *)&g_SceneMgr.m_npc[5].m_path.normal[72].z + 2) );
   ((Camera *)dword_C020F8)->SetParams((int)"109");
   byte_C021A4 = 5;
-  v5 = *(_DWORD *)&g_SceneMgr.m_info[51516];
+  y_low = LODWORD(g_SceneMgr.m_npc[5].m_path.normal[131].y);
   strcpy(byte_C021A6, "109");
   dword_C025E8 = 0;
   dword_C02370 = 0;
   dword_C02374 = 1;
   byte_C021A5 = -1;
-  v5->SetParams();
+  y_low->SetParams();
   ((Camera *)dword_BFFDB0)->SetParams((int)"DXD");
   strcpy(byte_BFFE5E, "DXD");
   dword_C002A0 = 1;
   dword_C00028 = 0;
-  ((Camera *)MEMORY[0xBFDBB0])->SetParams((int)&off_586180);
-  strcpy(MEMORY[0xBFDC5E], (const char *)&off_586180);
+  ((Camera *)&g_Input.KeyInfo[198])->SetParams((int)&off_586180);
+  strcpy((char *)&g_Input.KeyInfo[208].PressTime + 2, (const char *)&off_586180);
   dword_BFE0A0 = 1;
-  MEMORY[0xBFDE28] = 0;
-  ((int)&g_SceneMgr.m_info[7120])->Init();
-  *(_DWORD *)&g_SceneMgr.m_info[51512] = 0;
-  ((RoleSystem *)g_pCamera)->SetActive((int)&g_SceneMgr.m_info[7120]);
-  g_SceneMgr.m_info[7112] = 1;
-  g_SceneMgr.m_info[7113] = 0;
-  g_SceneMgr.m_info[7114] = 0;
-  g_SceneMgr.m_info[7115] = 0;
-  g_SceneMgr.m_info[7116] = 0;
-  g_SceneMgr.m_info[1422] = 3;
-  g_SceneMgr.m_info[2830] = 5;
-  g_SceneMgr.m_info[4238] = 1;
-  g_SceneMgr.m_info[5646] = 2;
-  g_SceneMgr.m_info[7054] = 4;
+  g_Input.KeyInfo[237].CountMode = 0;
+  ((int)&g_SceneMgr.m_npc[0].m_path.normal[83].y)->Init();
+  g_SceneMgr.m_npc[5].m_path.normal[131].x = 0.0;
+  ((RoleSystem *)g_Input.KeyInfo[177].CountMode)->SetActive((int)&g_SceneMgr.m_npc[0].m_path.normal[83].y);
+  LODWORD(g_SceneMgr.m_npc[0].m_path.normal[82].z) = 1;
+  LOBYTE(g_SceneMgr.m_npc[0].m_path.normal[83].x) = 0;
+  g_SceneMgr.m_npc[0].m_actor.m_szTexture[30] = 3;
+  BYTE2(g_SceneMgr.m_npc[0].m_path.points[67].z) = 5;
+  BYTE2(g_SceneMgr.m_npc[0].m_path.points[185].x) = 1;
+  BYTE2(g_SceneMgr.m_npc[0].m_path.length[137]) = 2;
+  BYTE2(g_SceneMgr.m_npc[0].m_path.normal[77].z) = 4;
   dword_C01FB0[0] = 1058642330;
   dword_C01FB4 = 1061997773;
   dword_C01FB8 = 1053609165;
@@ -2478,29 +2482,29 @@ int PAL3::FullInit()
     i->Init();
   }
   memset32(dword_C04334, 20, 6u);
-  *(_DWORD *)&g_SceneMgr.m_info[1036] = 2224;
-  *(_DWORD *)&g_SceneMgr.m_info[1040] = 10;
-  *(_DWORD *)&g_SceneMgr.m_info[868] = 0;
-  *(_DWORD *)&g_SceneMgr.m_info[872] = 0;
-  *(_DWORD *)&g_SceneMgr.m_info[876] = 0;
-  *(_DWORD *)&g_SceneMgr.m_info[880] = 0;
-  *(_DWORD *)&g_SceneMgr.m_info[884] = 0;
-  *(_DWORD *)&g_SceneMgr.m_info[888] = 0;
-  *(_DWORD *)&g_SceneMgr.m_info[892] = 0;
-  *(_DWORD *)&g_SceneMgr.m_info[896] = 0;
-  *(_DWORD *)&g_SceneMgr.m_info[900] = 0;
-  *(_DWORD *)&g_SceneMgr.m_info[904] = 0;
-  *(_DWORD *)&g_SceneMgr.m_info[908] = 0;
-  *(_DWORD *)&g_SceneMgr.m_info[912] = 0;
-  *(_DWORD *)&g_SceneMgr.m_info[916] = 0;
-  *(_DWORD *)&g_SceneMgr.m_info[920] = 0;
-  *(_DWORD *)&g_SceneMgr.m_info[924] = 0;
-  *(_DWORD *)&g_SceneMgr.m_info[928] = 0;
-  *(_DWORD *)&g_SceneMgr.m_info[932] = 0;
-  *(_DWORD *)&g_SceneMgr.m_info[936] = 0;
+  g_SceneMgr.m_npc[0].m_npcinfo.reserve[24] = 2224;
+  g_SceneMgr.m_npc[0].m_npcinfo.reserve[25] = 10;
+  g_SceneMgr.m_npc[0].m_npcinfo.path.pt[11].x = 0.0;
+  g_SceneMgr.m_npc[0].m_npcinfo.path.pt[11].y = 0.0;
+  g_SceneMgr.m_npc[0].m_npcinfo.path.pt[11].z = 0.0;
+  g_SceneMgr.m_npc[0].m_npcinfo.path.pt[12].x = 0.0;
+  g_SceneMgr.m_npc[0].m_npcinfo.path.pt[12].y = 0.0;
+  g_SceneMgr.m_npc[0].m_npcinfo.path.pt[12].z = 0.0;
+  g_SceneMgr.m_npc[0].m_npcinfo.path.pt[13].x = 0.0;
+  g_SceneMgr.m_npc[0].m_npcinfo.path.pt[13].y = 0.0;
+  g_SceneMgr.m_npc[0].m_npcinfo.path.pt[13].z = 0.0;
+  g_SceneMgr.m_npc[0].m_npcinfo.path.pt[14].x = 0.0;
+  g_SceneMgr.m_npc[0].m_npcinfo.path.pt[14].y = 0.0;
+  g_SceneMgr.m_npc[0].m_npcinfo.path.pt[14].z = 0.0;
+  g_SceneMgr.m_npc[0].m_npcinfo.path.pt[15].x = 0.0;
+  g_SceneMgr.m_npc[0].m_npcinfo.path.pt[15].y = 0.0;
+  g_SceneMgr.m_npc[0].m_npcinfo.path.pt[15].z = 0.0;
+  g_SceneMgr.m_npc[0].m_npcinfo.noturn = 0;
+  g_SceneMgr.m_npc[0].m_npcinfo.loopact = 0;
+  g_SceneMgr.m_npc[0].m_npcinfo.speed = 0;
   pConfig = 301;
   v162 = 0;
-  RoleNum = g_GDB->GDB_GetRoleNum(301);
+  RoleNum = ((PAL_GDB *)&g_GDB)->GDB_GetRoleNum(301);
   v8 = (int *)g_RoleTeam2[0];
   v163 = RoleNum;
   if ( (dword_C0435C - g_RoleTeam2[0]) / 12 )
@@ -2539,63 +2543,63 @@ int PAL3::FullInit()
     g_RoleTeam1 = v14;
     g_RoleTeam2[0] = (int)v14 + 12 * v15 + 12;
   }
-  *(_DWORD *)&g_SceneMgr.m_info[756] = 0;
-  *(_DWORD *)&g_SceneMgr.m_info[648] = 1;
-  *(_DWORD *)&g_SceneMgr.m_info[652] = ((Role *)0)->CreateXueJian(1);
-  *(_DWORD *)&g_SceneMgr.m_info[656] = ((Role *)0)->CreateLongKui(*(int *)&g_SceneMgr.m_info[648]);
-  *(_DWORD *)&g_SceneMgr.m_info[660] = ((Role *)0)->CreateZiXuan(*(int *)&g_SceneMgr.m_info[648]);
-  *(_DWORD *)&g_SceneMgr.m_info[664] = ((Role *)0)->CreateChangQing(*(int *)&g_SceneMgr.m_info[648]);
-  *(_DWORD *)&g_SceneMgr.m_info[668] = ((Role *)0)->CreateHuaYing(*(int *)&g_SceneMgr.m_info[648]);
-  *(_DWORD *)&g_SceneMgr.m_info[1008] = 3;
-  *(_DWORD *)&g_SceneMgr.m_info[672] = 3;
-  *(_DWORD *)&g_SceneMgr.m_info[1016] = 3;
-  *(_DWORD *)&g_SceneMgr.m_info[680] = 3;
-  *(_DWORD *)&g_SceneMgr.m_info[1020] = 3;
-  *(_DWORD *)&g_SceneMgr.m_info[684] = 3;
-  *(_DWORD *)&g_SceneMgr.m_info[1012] = 2;
-  *(_DWORD *)&g_SceneMgr.m_info[676] = 2;
-  *(_DWORD *)&g_SceneMgr.m_info[1032] = 2;
-  *(_DWORD *)&g_SceneMgr.m_info[696] = 2;
-  *(_DWORD *)&g_SceneMgr.m_info[1024] = 6;
-  *(_DWORD *)&g_SceneMgr.m_info[688] = 6;
-  *(_DWORD *)&g_SceneMgr.m_info[1028] = 1;
-  *(_DWORD *)&g_SceneMgr.m_info[692] = 1;
-  ((RoleSystem *)&g_SceneMgr.m_info[16])->LoadData(1);
-  for ( k = 243; k < 255; ++k )
+  g_SceneMgr.m_npc[0].m_npcinfo.path.pt[1].z = 0.0;
+  *(_DWORD *)&g_SceneMgr.m_npc[0].m_npcinfo.mtl[16] = 1;
+  *(_DWORD *)&g_SceneMgr.m_npc[0].m_npcinfo.mtl[20] = ((Role *)0)->CreateXueJian(1);
+  *(_DWORD *)&g_SceneMgr.m_npc[0].m_npcinfo.mtl[24] = ((Role *)0)->CreateLongKui(*(int *)&g_SceneMgr.m_npc[0].m_npcinfo.mtl[16]);
+  *(_DWORD *)&g_SceneMgr.m_npc[0].m_npcinfo.mtl[28] = ((Role *)0)->CreateZiXuan(*(int *)&g_SceneMgr.m_npc[0].m_npcinfo.mtl[16]);
+  LODWORD(g_SceneMgr.m_npc[0].m_npcinfo.face) = ((Role *)0)->CreateChangQing(*(int *)&g_SceneMgr.m_npc[0].m_npcinfo.mtl[16]);
+  g_SceneMgr.m_npc[0].m_npcinfo.onlayer = ((Role *)0)->CreateHuaYing(*(int *)&g_SceneMgr.m_npc[0].m_npcinfo.mtl[16]);
+  g_SceneMgr.m_npc[0].m_npcinfo.reserve[17] = 3;
+  LODWORD(g_SceneMgr.m_npc[0].m_npcinfo.x) = 3;
+  g_SceneMgr.m_npc[0].m_npcinfo.reserve[19] = 3;
+  g_SceneMgr.m_npc[0].m_npcinfo.initactive = 3;
+  g_SceneMgr.m_npc[0].m_npcinfo.reserve[20] = 3;
+  g_SceneMgr.m_npc[0].m_npcinfo.initbeh = 3;
+  g_SceneMgr.m_npc[0].m_npcinfo.reserve[18] = 2;
+  LODWORD(g_SceneMgr.m_npc[0].m_npcinfo.z) = 2;
+  g_SceneMgr.m_npc[0].m_npcinfo.reserve[23] = 2;
+  *(_DWORD *)g_SceneMgr.m_npc[0].m_npcinfo.initact = 2;
+  g_SceneMgr.m_npc[0].m_npcinfo.reserve[21] = 6;
+  g_SceneMgr.m_npc[0].m_npcinfo.scriptid = 6;
+  g_SceneMgr.m_npc[0].m_npcinfo.reserve[22] = 1;
+  LODWORD(g_SceneMgr.m_npc[0].m_npcinfo.y) = 1;
+  ((RoleSystem *)&g_SceneMgr.m_info.cityname[16])->LoadData(1);
+  for ( k = 972; k < 1020; k += 4 )
   {
-    v19 = *(_DWORD *)&g_SceneMgr.m_info[k * 4 + 16];
-    v20 = g_nSceneFlags[k];
+    v19 = *(_DWORD *)&g_SceneMgr.m_info.cityname[k + 16];
+    v20 = *(int *)((char *)&g_nSceneFlags + k);
     if ( v19 < v20 )
     {
       if ( v19 <= 0 )
-        *(_DWORD *)&g_SceneMgr.m_info[k * 4 + 16] = 0;
+        *(_DWORD *)&g_SceneMgr.m_info.cityname[k + 16] = 0;
     }
     else
     {
-      *(_DWORD *)&g_SceneMgr.m_info[k * 4 + 16] = v20;
+      *(_DWORD *)&g_SceneMgr.m_info.cityname[k + 16] = v20;
     }
   }
-  *(_DWORD *)&g_SceneMgr.m_info[2276] = 0;
-  *(_DWORD *)&g_SceneMgr.m_info[2280] = 0;
-  *(_DWORD *)&g_SceneMgr.m_info[2284] = 0;
-  *(_DWORD *)&g_SceneMgr.m_info[2288] = 0;
-  *(_DWORD *)&g_SceneMgr.m_info[2292] = 0;
-  *(_DWORD *)&g_SceneMgr.m_info[2296] = 0;
-  *(_DWORD *)&g_SceneMgr.m_info[2300] = 0;
-  *(_DWORD *)&g_SceneMgr.m_info[2304] = 0;
-  *(_DWORD *)&g_SceneMgr.m_info[2308] = 0;
-  *(_DWORD *)&g_SceneMgr.m_info[2312] = 0;
-  *(_DWORD *)&g_SceneMgr.m_info[2316] = 0;
-  *(_DWORD *)&g_SceneMgr.m_info[2320] = 0;
-  *(_DWORD *)&g_SceneMgr.m_info[2324] = 0;
-  *(_DWORD *)&g_SceneMgr.m_info[2328] = 0;
-  *(_DWORD *)&g_SceneMgr.m_info[2332] = 0;
-  *(_DWORD *)&g_SceneMgr.m_info[2336] = 82201;
-  *(_DWORD *)&g_SceneMgr.m_info[2340] = 1;
-  *(_DWORD *)&g_SceneMgr.m_info[2344] = g_GDB->GDB_GetSkillNum(82201);
+  g_SceneMgr.m_npc[0].m_path.points[21].z = 0.0;
+  g_SceneMgr.m_npc[0].m_path.points[22].x = 0.0;
+  g_SceneMgr.m_npc[0].m_path.points[22].y = 0.0;
+  g_SceneMgr.m_npc[0].m_path.points[22].z = 0.0;
+  g_SceneMgr.m_npc[0].m_path.points[23].x = 0.0;
+  g_SceneMgr.m_npc[0].m_path.points[23].y = 0.0;
+  g_SceneMgr.m_npc[0].m_path.points[23].z = 0.0;
+  g_SceneMgr.m_npc[0].m_path.points[24].x = 0.0;
+  g_SceneMgr.m_npc[0].m_path.points[24].y = 0.0;
+  g_SceneMgr.m_npc[0].m_path.points[24].z = 0.0;
+  g_SceneMgr.m_npc[0].m_path.points[25].x = 0.0;
+  g_SceneMgr.m_npc[0].m_path.points[25].y = 0.0;
+  g_SceneMgr.m_npc[0].m_path.points[25].z = 0.0;
+  g_SceneMgr.m_npc[0].m_path.points[26].x = 0.0;
+  g_SceneMgr.m_npc[0].m_path.points[26].y = 0.0;
+  LODWORD(g_SceneMgr.m_npc[0].m_path.points[26].z) = 82201;
+  LODWORD(g_SceneMgr.m_npc[0].m_path.points[27].x) = 1;
+  LODWORD(g_SceneMgr.m_npc[0].m_path.points[27].y) = ((PAL_GDB *)&g_GDB)->GDB_GetSkillNum(82201);
   pConfig = 321;
   v162 = 0;
-  v21 = g_GDB->GDB_GetRoleNum(321);
+  v21 = ((PAL_GDB *)&g_GDB)->GDB_GetRoleNum(321);
   v22 = (int *)end;
   v163 = v21;
   if ( (dword_C0436C - (int)end) / 12 )
@@ -2640,64 +2644,64 @@ int PAL3::FullInit()
     arr = v27;
     end = &v27[12 * v28 + 12];
   }
-  *(_DWORD *)&g_SceneMgr.m_info[2164] = 0;
-  *(_DWORD *)&g_SceneMgr.m_info[2056] = 1;
-  *(_DWORD *)&g_SceneMgr.m_info[2060] = ((Role *)1)->CreateXueJian(1);
-  *(_DWORD *)&g_SceneMgr.m_info[2064] = ((Role *)1)->CreateLongKui(*(int *)&g_SceneMgr.m_info[2056]);
-  *(_DWORD *)&g_SceneMgr.m_info[2068] = ((Role *)1)->CreateZiXuan(*(int *)&g_SceneMgr.m_info[2056]);
-  *(_DWORD *)&g_SceneMgr.m_info[2072] = ((Role *)1)->CreateChangQing(*(int *)&g_SceneMgr.m_info[2056]);
-  HuaYing = ((Role *)1)->CreateHuaYing(*(int *)&g_SceneMgr.m_info[2056]);
-  *(_DWORD *)&g_SceneMgr.m_info[2424] = 2;
-  *(_DWORD *)&g_SceneMgr.m_info[2088] = 2;
-  *(_DWORD *)&g_SceneMgr.m_info[2432] = 2;
-  *(_DWORD *)&g_SceneMgr.m_info[2096] = 2;
-  *(_DWORD *)&g_SceneMgr.m_info[2076] = HuaYing;
-  *(_DWORD *)&g_SceneMgr.m_info[2436] = 3;
-  *(_DWORD *)&g_SceneMgr.m_info[2100] = 3;
-  *(_DWORD *)&g_SceneMgr.m_info[2416] = 5;
-  *(_DWORD *)&g_SceneMgr.m_info[2080] = 5;
-  *(_DWORD *)&g_SceneMgr.m_info[2420] = 4;
-  *(_DWORD *)&g_SceneMgr.m_info[2084] = 4;
-  *(_DWORD *)&g_SceneMgr.m_info[2428] = 4;
-  *(_DWORD *)&g_SceneMgr.m_info[2092] = 4;
-  *(_DWORD *)&g_SceneMgr.m_info[2440] = 5;
-  *(_DWORD *)&g_SceneMgr.m_info[2104] = 5;
-  ((RoleSystem *)&g_SceneMgr.m_info[1424])->LoadData(1);
+  g_SceneMgr.m_npc[0].m_path.points[12].y = 0.0;
+  LODWORD(g_SceneMgr.m_npc[0].m_path.points[3].y) = 1;
+  LODWORD(g_SceneMgr.m_npc[0].m_path.points[3].z) = ((Role *)1)->CreateXueJian(1);
+  LODWORD(g_SceneMgr.m_npc[0].m_path.points[4].x) = ((Role *)1)->CreateLongKui(SLODWORD(g_SceneMgr.m_npc[0].m_path.points[3].y));
+  LODWORD(g_SceneMgr.m_npc[0].m_path.points[4].y) = ((Role *)1)->CreateZiXuan(SLODWORD(g_SceneMgr.m_npc[0].m_path.points[3].y));
+  LODWORD(g_SceneMgr.m_npc[0].m_path.points[4].z) = ((Role *)1)->CreateChangQing(SLODWORD(g_SceneMgr.m_npc[0].m_path.points[3].y));
+  HuaYing = ((Role *)1)->CreateHuaYing(SLODWORD(g_SceneMgr.m_npc[0].m_path.points[3].y));
+  LODWORD(g_SceneMgr.m_npc[0].m_path.points[34].x) = 2;
+  LODWORD(g_SceneMgr.m_npc[0].m_path.points[6].x) = 2;
+  LODWORD(g_SceneMgr.m_npc[0].m_path.points[34].z) = 2;
+  LODWORD(g_SceneMgr.m_npc[0].m_path.points[6].z) = 2;
+  LODWORD(g_SceneMgr.m_npc[0].m_path.points[5].x) = HuaYing;
+  LODWORD(g_SceneMgr.m_npc[0].m_path.points[35].x) = 3;
+  LODWORD(g_SceneMgr.m_npc[0].m_path.points[7].x) = 3;
+  LODWORD(g_SceneMgr.m_npc[0].m_path.points[33].y) = 5;
+  LODWORD(g_SceneMgr.m_npc[0].m_path.points[5].y) = 5;
+  LODWORD(g_SceneMgr.m_npc[0].m_path.points[33].z) = 4;
+  LODWORD(g_SceneMgr.m_npc[0].m_path.points[5].z) = 4;
+  LODWORD(g_SceneMgr.m_npc[0].m_path.points[34].y) = 4;
+  LODWORD(g_SceneMgr.m_npc[0].m_path.points[6].y) = 4;
+  LODWORD(g_SceneMgr.m_npc[0].m_path.points[35].y) = 5;
+  LODWORD(g_SceneMgr.m_npc[0].m_path.points[7].y) = 5;
+  ((RoleSystem *)&g_SceneMgr.m_npc[0].m_actor.m_szTexture[32])->LoadData(1);
   for ( m = 972; m < 1020; m += 4 )
   {
-    v33 = *(_DWORD *)&g_SceneMgr.m_info[m + 1424];
-    v34 = *(_DWORD *)&g_SceneMgr.m_info[m + 1376];
+    v33 = *(_DWORD *)&g_SceneMgr.m_npc[0].m_actor.m_szTexture[m + 32];
+    v34 = *(_DWORD *)&g_SceneMgr.m_npc[0].m_actor.m_name[m + 244];
     if ( v33 < v34 )
     {
       if ( v33 <= 0 )
-        *(_DWORD *)&g_SceneMgr.m_info[m + 1424] = 0;
+        *(_DWORD *)&g_SceneMgr.m_npc[0].m_actor.m_szTexture[m + 32] = 0;
     }
     else
     {
-      *(_DWORD *)&g_SceneMgr.m_info[m + 1424] = v34;
+      *(_DWORD *)&g_SceneMgr.m_npc[0].m_actor.m_szTexture[m + 32] = v34;
     }
   }
-  *(_DWORD *)&g_SceneMgr.m_info[3684] = 0;
-  *(_DWORD *)&g_SceneMgr.m_info[3688] = 0;
-  *(_DWORD *)&g_SceneMgr.m_info[3692] = 0;
-  *(_DWORD *)&g_SceneMgr.m_info[3696] = 0;
-  *(_DWORD *)&g_SceneMgr.m_info[3700] = 0;
-  *(_DWORD *)&g_SceneMgr.m_info[3704] = 0;
-  *(_DWORD *)&g_SceneMgr.m_info[3708] = 0;
-  *(_DWORD *)&g_SceneMgr.m_info[3712] = 0;
-  *(_DWORD *)&g_SceneMgr.m_info[3716] = 0;
-  *(_DWORD *)&g_SceneMgr.m_info[3720] = 0;
-  *(_DWORD *)&g_SceneMgr.m_info[3724] = 0;
-  *(_DWORD *)&g_SceneMgr.m_info[3728] = 0;
-  *(_DWORD *)&g_SceneMgr.m_info[3732] = 0;
-  *(_DWORD *)&g_SceneMgr.m_info[3736] = 0;
-  *(_DWORD *)&g_SceneMgr.m_info[3740] = 0;
-  *(_DWORD *)&g_SceneMgr.m_info[3744] = 82101;
-  *(_DWORD *)&g_SceneMgr.m_info[3748] = 1;
-  *(_DWORD *)&g_SceneMgr.m_info[3752] = g_GDB->GDB_GetSkillNum(82101);
+  g_SceneMgr.m_npc[0].m_path.points[139].x = 0.0;
+  g_SceneMgr.m_npc[0].m_path.points[139].y = 0.0;
+  g_SceneMgr.m_npc[0].m_path.points[139].z = 0.0;
+  g_SceneMgr.m_npc[0].m_path.points[140].x = 0.0;
+  g_SceneMgr.m_npc[0].m_path.points[140].y = 0.0;
+  g_SceneMgr.m_npc[0].m_path.points[140].z = 0.0;
+  g_SceneMgr.m_npc[0].m_path.points[141].x = 0.0;
+  g_SceneMgr.m_npc[0].m_path.points[141].y = 0.0;
+  g_SceneMgr.m_npc[0].m_path.points[141].z = 0.0;
+  g_SceneMgr.m_npc[0].m_path.points[142].x = 0.0;
+  g_SceneMgr.m_npc[0].m_path.points[142].y = 0.0;
+  g_SceneMgr.m_npc[0].m_path.points[142].z = 0.0;
+  g_SceneMgr.m_npc[0].m_path.points[143].x = 0.0;
+  g_SceneMgr.m_npc[0].m_path.points[143].y = 0.0;
+  g_SceneMgr.m_npc[0].m_path.points[143].z = 0.0;
+  LODWORD(g_SceneMgr.m_npc[0].m_path.points[144].x) = 82101;
+  LODWORD(g_SceneMgr.m_npc[0].m_path.points[144].y) = 1;
+  LODWORD(g_SceneMgr.m_npc[0].m_path.points[144].z) = ((PAL_GDB *)&g_GDB)->GDB_GetSkillNum(82101);
   pConfig = 4301;
   v162 = 0;
-  v163 = g_GDB->GDB_GetRoleNum(4301);
+  v163 = ((PAL_GDB *)&g_GDB)->GDB_GetRoleNum(4301);
   v35 = (int *)elem;
   if ( (dword_C0437C - (int)elem) / 12 )
   {
@@ -2720,30 +2724,30 @@ int PAL3::FullInit()
   }
   else
   {
-    if ( g_nSceneMode && (unsigned int)(((_BYTE *)elem - (_BYTE *)g_nSceneMode) / 12) > 1 )
-      v36 = g_nSceneFlags->Size();
+    if ( g_nSceneMode && (unsigned int)(((int)elem - g_nSceneMode) / 12) > 1 )
+      v36 = ((Array *)&g_nSceneFlags)->Size();
     else
       v36 = 1;
-    v37 = g_nSceneFlags->Size();
+    v37 = ((Array *)&g_nSceneFlags)->Size();
     v11 = v36 + v37 < 0;
     v38 = v36 + v37;
     v39 = v36 + v37;
     if ( v11 )
       v39 = 0;
     v40 = (char *)((operator *)12 * v39)->new();
-    v148 = (char *)g_nSceneMode->Insert(v35, v40);
+    v148 = (char *)((void *)g_nSceneMode)->Insert(v35, v40);
     v148->Erase(1, &pConfig);
     v35->Insert(elem, v148 + 12);
     nullsub_2(g_nSceneMode, elem);
-    operator delete(g_nSceneMode);
+    operator delete((void *)g_nSceneMode);
     dword_C0437C = (int)&v40[12 * v38];
-    v41 = g_nSceneFlags->Size();
-    g_nSceneMode = v40;
+    v41 = ((Array *)&g_nSceneFlags)->Size();
+    g_nSceneMode = (int)v40;
     elem = &v40[12 * v41 + 12];
   }
   pConfig = 4302;
   v162 = 0;
-  v163 = g_GDB->GDB_GetRoleNum(4302);
+  v163 = ((PAL_GDB *)&g_GDB)->GDB_GetRoleNum(4302);
   v44 = (int *)elem;
   if ( (dword_C0437C - (int)elem) / 12 )
   {
@@ -2766,30 +2770,30 @@ int PAL3::FullInit()
   }
   else
   {
-    if ( g_nSceneMode && (unsigned int)(((_BYTE *)elem - (_BYTE *)g_nSceneMode) / 12) > 1 )
-      v45 = g_nSceneFlags->Size();
+    if ( g_nSceneMode && (unsigned int)(((int)elem - g_nSceneMode) / 12) > 1 )
+      v45 = ((Array *)&g_nSceneFlags)->Size();
     else
       v45 = 1;
-    v46 = g_nSceneFlags->Size();
+    v46 = ((Array *)&g_nSceneFlags)->Size();
     v11 = v45 + v46 < 0;
     v47 = v45 + v46;
     v48 = v45 + v46;
     if ( v11 )
       v48 = 0;
     v49 = (char *)((operator *)12 * v48)->new();
-    v149 = (char *)g_nSceneMode->Insert(v44, v49);
+    v149 = (char *)((void *)g_nSceneMode)->Insert(v44, v49);
     v149->Erase(1, &pConfig);
     v44->Insert(elem, v149 + 12);
     nullsub_2(g_nSceneMode, elem);
-    operator delete(g_nSceneMode);
+    operator delete((void *)g_nSceneMode);
     dword_C0437C = (int)&v49[12 * v47];
-    v50 = g_nSceneFlags->Size();
-    g_nSceneMode = v49;
+    v50 = ((Array *)&g_nSceneFlags)->Size();
+    g_nSceneMode = (int)v49;
     elem = &v49[12 * v50 + 12];
   }
   pConfig = 311;
   v162 = 2949123;
-  v163 = g_GDB->GDB_GetRoleNum(311);
+  v163 = ((PAL_GDB *)&g_GDB)->GDB_GetRoleNum(311);
   v53 = (int *)elem;
   if ( (dword_C0437C - (int)elem) / 12 )
   {
@@ -2812,30 +2816,30 @@ int PAL3::FullInit()
   }
   else
   {
-    if ( g_nSceneMode && (unsigned int)(((_BYTE *)elem - (_BYTE *)g_nSceneMode) / 12) > 1 )
-      v54 = g_nSceneFlags->Size();
+    if ( g_nSceneMode && (unsigned int)(((int)elem - g_nSceneMode) / 12) > 1 )
+      v54 = ((Array *)&g_nSceneFlags)->Size();
     else
       v54 = 1;
-    v55 = g_nSceneFlags->Size();
+    v55 = ((Array *)&g_nSceneFlags)->Size();
     v11 = v54 + v55 < 0;
     v56 = v54 + v55;
     v57 = v54 + v55;
     if ( v11 )
       v57 = 0;
     v58 = (char *)((operator *)12 * v57)->new();
-    v150 = (char *)g_nSceneMode->Insert(v53, v58);
+    v150 = (char *)((void *)g_nSceneMode)->Insert(v53, v58);
     v150->Erase(1, &pConfig);
     v53->Insert(elem, v150 + 12);
     nullsub_2(g_nSceneMode, elem);
-    operator delete(g_nSceneMode);
+    operator delete((void *)g_nSceneMode);
     dword_C0437C = (int)&v58[12 * v56];
-    v59 = g_nSceneFlags->Size();
-    g_nSceneMode = v58;
+    v59 = ((Array *)&g_nSceneFlags)->Size();
+    g_nSceneMode = (int)v58;
     elem = &v58[12 * v59 + 12];
   }
   pConfig = 312;
   v162 = 0;
-  v163 = g_GDB->GDB_GetRoleNum(312);
+  v163 = ((PAL_GDB *)&g_GDB)->GDB_GetRoleNum(312);
   v62 = (int *)elem;
   if ( (dword_C0437C - (int)elem) / 12 )
   {
@@ -2858,108 +2862,102 @@ int PAL3::FullInit()
   }
   else
   {
-    if ( g_nSceneMode && (unsigned int)(((_BYTE *)elem - (_BYTE *)g_nSceneMode) / 12) > 1 )
-      v63 = g_nSceneFlags->Size();
+    if ( g_nSceneMode && (unsigned int)(((int)elem - g_nSceneMode) / 12) > 1 )
+      v63 = ((Array *)&g_nSceneFlags)->Size();
     else
       v63 = 1;
-    v64 = g_nSceneFlags->Size();
+    v64 = ((Array *)&g_nSceneFlags)->Size();
     v11 = v63 + v64 < 0;
     v65 = v63 + v64;
     v66 = v63 + v64;
     if ( v11 )
       v66 = 0;
     v67 = (char *)((operator *)12 * v66)->new();
-    v151 = (char *)g_nSceneMode->Insert(v62, v67);
+    v151 = (char *)((void *)g_nSceneMode)->Insert(v62, v67);
     v151->Erase(1, &pConfig);
     v62->Insert(elem, v151 + 12);
     nullsub_2(g_nSceneMode, elem);
-    operator delete(g_nSceneMode);
+    operator delete((void *)g_nSceneMode);
     dword_C0437C = (int)&v67[12 * v65];
-    v68 = g_nSceneFlags->Size();
-    g_nSceneMode = v67;
+    v68 = ((Array *)&g_nSceneFlags)->Size();
+    g_nSceneMode = (int)v67;
     elem = &v67[12 * v68 + 12];
   }
-  *(_DWORD *)&g_SceneMgr.m_info[3464] = 14;
-  *(_DWORD *)&g_SceneMgr.m_info[3572] = 5594;
-  *(_DWORD *)&g_SceneMgr.m_info[3468] = ((Role *)2)->CreateXueJian(14);
-  *(_DWORD *)&g_SceneMgr.m_info[3472] = ((Role *)2)->CreateLongKui(*(int *)&g_SceneMgr.m_info[3464]);
-  *(_DWORD *)&g_SceneMgr.m_info[3476] = ((Role *)2)->CreateZiXuan(*(int *)&g_SceneMgr.m_info[3464]);
-  *(_DWORD *)&g_SceneMgr.m_info[3480] = ((Role *)2)->CreateChangQing(*(int *)&g_SceneMgr.m_info[3464]);
-  v71 = ((Role *)2)->CreateHuaYing(*(int *)&g_SceneMgr.m_info[3464]);
-  *(_DWORD *)&g_SceneMgr.m_info[3840] = 3;
-  *(_DWORD *)&g_SceneMgr.m_info[3504] = 3;
-  *(_DWORD *)&g_SceneMgr.m_info[3484] = v71;
-  *(_DWORD *)&g_SceneMgr.m_info[3844] = 6;
-  *(_DWORD *)&g_SceneMgr.m_info[3508] = 6;
-  *(_DWORD *)&g_SceneMgr.m_info[3824] = 4;
-  *(_DWORD *)&g_SceneMgr.m_info[3488] = 4;
-  *(_DWORD *)&g_SceneMgr.m_info[3828] = 5;
-  *(_DWORD *)&g_SceneMgr.m_info[3492] = 5;
-  *(_DWORD *)&g_SceneMgr.m_info[3832] = 4;
-  *(_DWORD *)&g_SceneMgr.m_info[3496] = 4;
-  *(_DWORD *)&g_SceneMgr.m_info[3836] = 2;
-  *(_DWORD *)&g_SceneMgr.m_info[3500] = 2;
-  *(_DWORD *)&g_SceneMgr.m_info[3848] = 5;
-  *(_DWORD *)&g_SceneMgr.m_info[3512] = 5;
-  ((RoleSystem *)&g_SceneMgr.m_info[2832])->LoadData(1);
+  LODWORD(g_SceneMgr.m_npc[0].m_path.points[120].z) = 14;
+  LODWORD(g_SceneMgr.m_npc[0].m_path.points[129].z) = 5594;
+  LODWORD(g_SceneMgr.m_npc[0].m_path.points[121].x) = ((Role *)2)->CreateXueJian(14);
+  LODWORD(g_SceneMgr.m_npc[0].m_path.points[121].y) = ((Role *)2)->CreateLongKui(SLODWORD(g_SceneMgr.m_npc[0].m_path.points[120].z));
+  LODWORD(g_SceneMgr.m_npc[0].m_path.points[121].z) = ((Role *)2)->CreateZiXuan(SLODWORD(g_SceneMgr.m_npc[0].m_path.points[120].z));
+  LODWORD(g_SceneMgr.m_npc[0].m_path.points[122].x) = ((Role *)2)->CreateChangQing(SLODWORD(g_SceneMgr.m_npc[0].m_path.points[120].z));
+  v71 = ((Role *)2)->CreateHuaYing(SLODWORD(g_SceneMgr.m_npc[0].m_path.points[120].z));
+  LODWORD(g_SceneMgr.m_npc[0].m_path.points[152].x) = 3;
+  LODWORD(g_SceneMgr.m_npc[0].m_path.points[124].x) = 3;
+  LODWORD(g_SceneMgr.m_npc[0].m_path.points[122].y) = v71;
+  LODWORD(g_SceneMgr.m_npc[0].m_path.points[152].y) = 6;
+  LODWORD(g_SceneMgr.m_npc[0].m_path.points[124].y) = 6;
+  LODWORD(g_SceneMgr.m_npc[0].m_path.points[150].z) = 4;
+  LODWORD(g_SceneMgr.m_npc[0].m_path.points[122].z) = 4;
+  LODWORD(g_SceneMgr.m_npc[0].m_path.points[151].x) = 5;
+  LODWORD(g_SceneMgr.m_npc[0].m_path.points[123].x) = 5;
+  LODWORD(g_SceneMgr.m_npc[0].m_path.points[151].y) = 4;
+  LODWORD(g_SceneMgr.m_npc[0].m_path.points[123].y) = 4;
+  LODWORD(g_SceneMgr.m_npc[0].m_path.points[151].z) = 2;
+  LODWORD(g_SceneMgr.m_npc[0].m_path.points[123].z) = 2;
+  LODWORD(g_SceneMgr.m_npc[0].m_path.points[152].z) = 5;
+  LODWORD(g_SceneMgr.m_npc[0].m_path.points[124].z) = 5;
+  ((RoleSystem *)&g_SceneMgr.m_npc[0].m_path.points[68])->LoadData(1);
   for ( n = 972; n < 1020; n += 4 )
   {
-    v73 = *(_DWORD *)&g_SceneMgr.m_info[n + 2832];
-    v74 = *(_DWORD *)&g_SceneMgr.m_info[n + 2784];
+    v73 = *(_DWORD *)((char *)&g_SceneMgr.m_npc[0].m_path.points[68].x + n);
+    v74 = *(_DWORD *)((char *)&g_SceneMgr.m_npc[0].m_path.points[64].x + n);
     if ( v73 < v74 )
     {
       if ( v73 <= 0 )
-        *(_DWORD *)&g_SceneMgr.m_info[n + 2832] = 0;
+        *(float *)((char *)&g_SceneMgr.m_npc[0].m_path.points[68].x + n) = 0.0;
     }
     else
     {
-      *(_DWORD *)&g_SceneMgr.m_info[n + 2832] = v74;
+      *(_DWORD *)((char *)&g_SceneMgr.m_npc[0].m_path.points[68].x + n) = v74;
     }
   }
-  *(_DWORD *)&g_SceneMgr.m_info[5092] = 0;
-  *(_DWORD *)&g_SceneMgr.m_info[5096] = 0;
-  *(_DWORD *)&g_SceneMgr.m_info[5100] = 0;
-  *(_DWORD *)&g_SceneMgr.m_info[5104] = 0;
-  *(_DWORD *)&g_SceneMgr.m_info[5108] = 0;
-  *(_DWORD *)&g_SceneMgr.m_info[5112] = 0;
-  *(_DWORD *)&g_SceneMgr.m_info[5116] = 0;
-  *(_DWORD *)&g_SceneMgr.m_info[5120] = 0;
-  *(_DWORD *)&g_SceneMgr.m_info[5124] = 0;
-  *(_DWORD *)&g_SceneMgr.m_info[5128] = 0;
-  *(_DWORD *)&g_SceneMgr.m_info[5132] = 0;
-  *(_DWORD *)&g_SceneMgr.m_info[5136] = 0;
-  *(_DWORD *)&g_SceneMgr.m_info[5140] = 0;
-  *(_DWORD *)&g_SceneMgr.m_info[5144] = 0;
-  *(_DWORD *)&g_SceneMgr.m_info[5148] = 0;
-  *(_DWORD *)&g_SceneMgr.m_info[5152] = 82301;
-  *(_DWORD *)&g_SceneMgr.m_info[5156] = 1;
-  *(_DWORD *)&g_SceneMgr.m_info[5160] = g_GDB->GDB_GetSkillNum(82301);
+  g_SceneMgr.m_npc[0].m_path.totallength = 0.0;
+  g_SceneMgr.m_npc[0].m_path.length[0] = 0.0;
+  g_SceneMgr.m_npc[0].m_path.length[1] = 0.0;
+  g_SceneMgr.m_npc[0].m_path.length[2] = 0.0;
+  g_SceneMgr.m_npc[0].m_path.length[3] = 0.0;
+  g_SceneMgr.m_npc[0].m_path.length[4] = 0.0;
+  g_SceneMgr.m_npc[0].m_path.length[5] = 0.0;
+  g_SceneMgr.m_npc[0].m_path.length[6] = 0.0;
+  g_SceneMgr.m_npc[0].m_path.length[7] = 0.0;
+  g_SceneMgr.m_npc[0].m_path.length[8] = 0.0;
+  g_SceneMgr.m_npc[0].m_path.length[9] = 0.0;
+  g_SceneMgr.m_npc[0].m_path.length[10] = 0.0;
+  g_SceneMgr.m_npc[0].m_path.length[11] = 0.0;
+  g_SceneMgr.m_npc[0].m_path.length[12] = 0.0;
+  g_SceneMgr.m_npc[0].m_path.length[13] = 0.0;
+  LODWORD(g_SceneMgr.m_npc[0].m_path.length[14]) = 82301;
+  LODWORD(g_SceneMgr.m_npc[0].m_path.length[15]) = 1;
+  LODWORD(g_SceneMgr.m_npc[0].m_path.length[16]) = ((PAL_GDB *)&g_GDB)->GDB_GetSkillNum(82301);
   pConfig = 4401;
   v162 = 0;
-  v163 = g_GDB->GDB_GetRoleNum(4401);
+  v163 = ((PAL_GDB *)&g_GDB)->GDB_GetRoleNum(4401);
   v75 = (int *)g_nSceneType;
-  if ( (dword_C0438C - (int)g_nSceneType) / 12 )
+  if ( (dword_C0438C - g_nSceneType) / 12 )
   {
-    g_nSceneType->Insert(g_nSceneType, (char *)g_nSceneType + 12);
-    g_nSceneType->Erase(1 - ((_BYTE *)g_nSceneType - (_BYTE *)v75) / 12, &pConfig);
-    v82 = (char *)g_nSceneType;
-    if ( v75 != g_nSceneType )
+    ((void *)g_nSceneType)->Insert((void *)g_nSceneType, (void *)(g_nSceneType + 12));
+    ((void *)g_nSceneType)->Erase(1 - (g_nSceneType - (int)v75) / 12, &pConfig);
+    for ( ii = g_nSceneType; v75 != (int *)ii; v83[2] = v163 )
     {
-      do
-      {
-        v83 = v75;
-        v75 += 3;
-        *v83 = pConfig;
-        v83[1] = v162;
-        v83[2] = v163;
-      }
-      while ( v75 != (int *)v82 );
+      v83 = v75;
+      v75 += 3;
+      *v83 = pConfig;
+      v83[1] = v162;
     }
-    g_nSceneType = (char *)g_nSceneType + 12;
+    g_nSceneType += 12;
   }
   else
   {
-    if ( g_nSceneState && (unsigned int)(((_BYTE *)g_nSceneType - (_BYTE *)g_nSceneState) / 12) > 1 )
+    if ( g_nSceneState && (unsigned int)((g_nSceneType - g_nSceneState) / 12) > 1 )
       v76 = ((Array *)&dword_C04380)->Size();
     else
       v76 = 1;
@@ -2969,44 +2967,38 @@ int PAL3::FullInit()
     v79 = v76 + v77;
     if ( v11 )
       v79 = 0;
-    v80 = (char *)((operator *)12 * v79)->new();
-    v152 = (char *)g_nSceneState->Insert(v75, v80);
+    v80 = (void *)((operator *)12 * v79)->new();
+    v152 = (char *)((void *)g_nSceneState)->Insert(v75, v80);
     v152->Erase(1, &pConfig);
-    v75->Insert(g_nSceneType, v152 + 12);
+    v75->Insert((void *)g_nSceneType, v152 + 12);
     nullsub_2(g_nSceneState, g_nSceneType);
-    operator delete(g_nSceneState);
-    dword_C0438C = (int)&v80[12 * v78];
+    operator delete((void *)g_nSceneState);
+    dword_C0438C = (int)v80 + 12 * v78;
     v81 = ((Array *)&dword_C04380)->Size();
-    g_nSceneState = v80;
-    g_nSceneType = &v80[12 * v81 + 12];
+    g_nSceneState = (int)v80;
+    g_nSceneType = (int)v80 + 12 * v81 + 12;
   }
   pConfig = 316;
   v162 = 2949123;
-  v163 = g_GDB->GDB_GetRoleNum(316);
+  v163 = ((PAL_GDB *)&g_GDB)->GDB_GetRoleNum(316);
   v84 = (int *)g_nSceneType;
-  if ( (dword_C0438C - (int)g_nSceneType) / 12 )
+  if ( (dword_C0438C - g_nSceneType) / 12 )
   {
-    g_nSceneType->Insert(g_nSceneType, (char *)g_nSceneType + 12);
-    g_nSceneType->Erase(1 - ((_BYTE *)g_nSceneType - (_BYTE *)v84) / 12, &pConfig);
-    v91 = (char *)g_nSceneType;
-    if ( v84 != g_nSceneType )
+    ((void *)g_nSceneType)->Insert((void *)g_nSceneType, (void *)(g_nSceneType + 12));
+    ((void *)g_nSceneType)->Erase(1 - (g_nSceneType - (int)v84) / 12, &pConfig);
+    for ( jj = g_nSceneType; v84 != (int *)jj; v92[2] = v163 )
     {
-      do
-      {
-        v92 = v84;
-        v84 += 3;
-        *v92 = pConfig;
-        v92[1] = v162;
-        v92[2] = v163;
-      }
-      while ( v84 != (int *)v91 );
+      v92 = v84;
+      v84 += 3;
+      *v92 = pConfig;
+      v92[1] = v162;
     }
-    g_nSceneType = (char *)g_nSceneType + 12;
+    g_nSceneType += 12;
   }
   else
   {
-    if ( g_nSceneState && (unsigned int)(((_BYTE *)g_nSceneType - (_BYTE *)g_nSceneState) / 12) > 1 )
-      v85 = ((_BYTE *)g_nSceneType - (_BYTE *)g_nSceneState) / 12;
+    if ( g_nSceneState && (unsigned int)((g_nSceneType - g_nSceneState) / 12) > 1 )
+      v85 = (g_nSceneType - g_nSceneState) / 12;
     else
       v85 = 1;
     v86 = ((Array *)&dword_C04380)->Size();
@@ -3015,44 +3007,38 @@ int PAL3::FullInit()
     v88 = v85 + v86;
     if ( v11 )
       v88 = 0;
-    v89 = (char *)((operator *)12 * v88)->new();
-    v153 = (char *)g_nSceneState->Insert(v84, v89);
+    v89 = (void *)((operator *)12 * v88)->new();
+    v153 = (char *)((void *)g_nSceneState)->Insert(v84, v89);
     v153->Erase(1, &pConfig);
-    v84->Insert(g_nSceneType, v153 + 12);
+    v84->Insert((void *)g_nSceneType, v153 + 12);
     nullsub_2(g_nSceneState, g_nSceneType);
-    operator delete(g_nSceneState);
-    dword_C0438C = (int)&v89[12 * v87];
+    operator delete((void *)g_nSceneState);
+    dword_C0438C = (int)v89 + 12 * v87;
     v90 = ((Array *)&dword_C04380)->Size();
-    g_nSceneState = v89;
-    g_nSceneType = &v89[12 * v90 + 12];
+    g_nSceneState = (int)v89;
+    g_nSceneType = (int)v89 + 12 * v90 + 12;
   }
   pConfig = 317;
   v162 = 983043;
-  v163 = g_GDB->GDB_GetRoleNum(317);
+  v163 = ((PAL_GDB *)&g_GDB)->GDB_GetRoleNum(317);
   v93 = (int *)g_nSceneType;
-  if ( (dword_C0438C - (int)g_nSceneType) / 12 )
+  if ( (dword_C0438C - g_nSceneType) / 12 )
   {
-    g_nSceneType->Insert(g_nSceneType, (char *)g_nSceneType + 12);
-    g_nSceneType->Erase(1 - ((_BYTE *)g_nSceneType - (_BYTE *)v93) / 12, &pConfig);
-    v100 = (char *)g_nSceneType;
-    if ( v93 != g_nSceneType )
+    ((void *)g_nSceneType)->Insert((void *)g_nSceneType, (void *)(g_nSceneType + 12));
+    ((void *)g_nSceneType)->Erase(1 - (g_nSceneType - (int)v93) / 12, &pConfig);
+    for ( kk = g_nSceneType; v93 != (int *)kk; v101[2] = v163 )
     {
-      do
-      {
-        v101 = v93;
-        v93 += 3;
-        *v101 = pConfig;
-        v101[1] = v162;
-        v101[2] = v163;
-      }
-      while ( v93 != (int *)v100 );
+      v101 = v93;
+      v93 += 3;
+      *v101 = pConfig;
+      v101[1] = v162;
     }
-    g_nSceneType = (char *)g_nSceneType + 12;
+    g_nSceneType += 12;
   }
   else
   {
-    if ( g_nSceneState && (unsigned int)(((_BYTE *)g_nSceneType - (_BYTE *)g_nSceneState) / 12) > 1 )
-      v94 = ((_BYTE *)g_nSceneType - (_BYTE *)g_nSceneState) / 12;
+    if ( g_nSceneState && (unsigned int)((g_nSceneType - g_nSceneState) / 12) > 1 )
+      v94 = (g_nSceneType - g_nSceneState) / 12;
     else
       v94 = 1;
     v95 = ((Array *)&dword_C04380)->Size();
@@ -3061,44 +3047,38 @@ int PAL3::FullInit()
     v97 = v94 + v95;
     if ( v11 )
       v97 = 0;
-    v98 = (char *)((operator *)12 * v97)->new();
-    v154 = (char *)g_nSceneState->Insert(v93, v98);
+    v98 = (void *)((operator *)12 * v97)->new();
+    v154 = (char *)((void *)g_nSceneState)->Insert(v93, v98);
     v154->Erase(1, &pConfig);
-    v93->Insert(g_nSceneType, v154 + 12);
+    v93->Insert((void *)g_nSceneType, v154 + 12);
     nullsub_2(g_nSceneState, g_nSceneType);
-    operator delete(g_nSceneState);
-    dword_C0438C = (int)&v98[12 * v96];
+    operator delete((void *)g_nSceneState);
+    dword_C0438C = (int)v98 + 12 * v96;
     v99 = ((Array *)&dword_C04380)->Size();
-    g_nSceneState = v98;
-    g_nSceneType = &v98[12 * v99 + 12];
+    g_nSceneState = (int)v98;
+    g_nSceneType = (int)v98 + 12 * v99 + 12;
   }
   pConfig = 318;
   v162 = 0;
-  v163 = g_GDB->GDB_GetRoleNum(318);
+  v163 = ((PAL_GDB *)&g_GDB)->GDB_GetRoleNum(318);
   v102 = (int *)g_nSceneType;
-  if ( (dword_C0438C - (int)g_nSceneType) / 12 )
+  if ( (dword_C0438C - g_nSceneType) / 12 )
   {
-    g_nSceneType->Insert(g_nSceneType, (char *)g_nSceneType + 12);
-    g_nSceneType->Erase(1 - ((_BYTE *)g_nSceneType - (_BYTE *)v102) / 12, &pConfig);
-    v109 = (char *)g_nSceneType;
-    if ( v102 != g_nSceneType )
+    ((void *)g_nSceneType)->Insert((void *)g_nSceneType, (void *)(g_nSceneType + 12));
+    ((void *)g_nSceneType)->Erase(1 - (g_nSceneType - (int)v102) / 12, &pConfig);
+    for ( mm = g_nSceneType; v102 != (int *)mm; v110[2] = v163 )
     {
-      do
-      {
-        v110 = v102;
-        v102 += 3;
-        *v110 = pConfig;
-        v110[1] = v162;
-        v110[2] = v163;
-      }
-      while ( v102 != (int *)v109 );
+      v110 = v102;
+      v102 += 3;
+      *v110 = pConfig;
+      v110[1] = v162;
     }
-    g_nSceneType = (char *)g_nSceneType + 12;
+    g_nSceneType += 12;
   }
   else
   {
-    if ( g_nSceneState && (unsigned int)(((_BYTE *)g_nSceneType - (_BYTE *)g_nSceneState) / 12) > 1 )
-      v103 = ((_BYTE *)g_nSceneType - (_BYTE *)g_nSceneState) / 12;
+    if ( g_nSceneState && (unsigned int)((g_nSceneType - g_nSceneState) / 12) > 1 )
+      v103 = (g_nSceneType - g_nSceneState) / 12;
     else
       v103 = 1;
     v104 = ((Array *)&dword_C04380)->Size();
@@ -3107,97 +3087,97 @@ int PAL3::FullInit()
     v106 = v103 + v104;
     if ( v11 )
       v106 = 0;
-    v107 = (char *)((operator *)12 * v106)->new();
-    v155 = (char *)g_nSceneState->Insert(v102, v107);
+    v107 = (void *)((operator *)12 * v106)->new();
+    v155 = (char *)((void *)g_nSceneState)->Insert(v102, v107);
     v155->Erase(1, &pConfig);
-    v102->Insert(g_nSceneType, v155 + 12);
+    v102->Insert((void *)g_nSceneType, v155 + 12);
     nullsub_2(g_nSceneState, g_nSceneType);
-    operator delete(g_nSceneState);
-    dword_C0438C = (int)&v107[12 * v105];
+    operator delete((void *)g_nSceneState);
+    dword_C0438C = (int)v107 + 12 * v105;
     v108 = ((Array *)&dword_C04380)->Size();
-    g_nSceneState = v107;
-    g_nSceneType = &v107[12 * v108 + 12];
+    g_nSceneState = (int)v107;
+    g_nSceneType = (int)v107 + 12 * v108 + 12;
   }
-  *(_DWORD *)&g_SceneMgr.m_info[4872] = 10;
-  *(_DWORD *)&g_SceneMgr.m_info[4980] = 1943;
-  *(_DWORD *)&g_SceneMgr.m_info[4876] = ((Role *)3)->CreateXueJian(10);
-  *(_DWORD *)&g_SceneMgr.m_info[4880] = ((Role *)3)->CreateLongKui(*(int *)&g_SceneMgr.m_info[4872]);
-  *(_DWORD *)&g_SceneMgr.m_info[4884] = ((Role *)3)->CreateZiXuan(*(int *)&g_SceneMgr.m_info[4872]);
-  *(_DWORD *)&g_SceneMgr.m_info[4888] = ((Role *)3)->CreateChangQing(*(int *)&g_SceneMgr.m_info[4872]);
-  *(_DWORD *)&g_SceneMgr.m_info[4892] = ((Role *)3)->CreateHuaYing(*(int *)&g_SceneMgr.m_info[4872]);
+  LODWORD(g_SceneMgr.m_npc[0].m_path.points[238].x) = 10;
+  LODWORD(g_SceneMgr.m_npc[0].m_path.points[247].x) = 1943;
+  LODWORD(g_SceneMgr.m_npc[0].m_path.points[238].y) = ((Role *)3)->CreateXueJian(10);
+  LODWORD(g_SceneMgr.m_npc[0].m_path.points[238].z) = ((Role *)3)->CreateLongKui(SLODWORD(g_SceneMgr.m_npc[0].m_path.points[238].x));
+  LODWORD(g_SceneMgr.m_npc[0].m_path.points[239].x) = ((Role *)3)->CreateZiXuan(SLODWORD(g_SceneMgr.m_npc[0].m_path.points[238].x));
+  LODWORD(g_SceneMgr.m_npc[0].m_path.points[239].y) = ((Role *)3)->CreateChangQing(SLODWORD(g_SceneMgr.m_npc[0].m_path.points[238].x));
+  LODWORD(g_SceneMgr.m_npc[0].m_path.points[239].z) = ((Role *)3)->CreateHuaYing(SLODWORD(g_SceneMgr.m_npc[0].m_path.points[238].x));
   v111 = 1;
-  *(_DWORD *)&g_SceneMgr.m_info[5240] = 6;
-  *(_DWORD *)&g_SceneMgr.m_info[4904] = 6;
-  *(_DWORD *)&g_SceneMgr.m_info[5232] = 4;
-  *(_DWORD *)&g_SceneMgr.m_info[4896] = 4;
-  *(_DWORD *)&g_SceneMgr.m_info[5236] = 1;
-  *(_DWORD *)&g_SceneMgr.m_info[4900] = 1;
-  *(_DWORD *)&g_SceneMgr.m_info[5244] = 3;
-  *(_DWORD *)&g_SceneMgr.m_info[4908] = 3;
-  *(_DWORD *)&g_SceneMgr.m_info[5248] = 4;
-  *(_DWORD *)&g_SceneMgr.m_info[4912] = 4;
-  *(_DWORD *)&g_SceneMgr.m_info[5252] = 3;
-  *(_DWORD *)&g_SceneMgr.m_info[4916] = 3;
-  *(_DWORD *)&g_SceneMgr.m_info[5256] = 2;
-  *(_DWORD *)&g_SceneMgr.m_info[4920] = 2;
-  ((RoleSystem *)&g_SceneMgr.m_info[4240])->LoadData(1);
-  for ( ii = 972; ii < 1020; ii += 4 )
+  LODWORD(g_SceneMgr.m_npc[0].m_path.length[36]) = 6;
+  LODWORD(g_SceneMgr.m_npc[0].m_path.points[240].z) = 6;
+  LODWORD(g_SceneMgr.m_npc[0].m_path.length[34]) = 4;
+  LODWORD(g_SceneMgr.m_npc[0].m_path.points[240].x) = 4;
+  LODWORD(g_SceneMgr.m_npc[0].m_path.length[35]) = 1;
+  LODWORD(g_SceneMgr.m_npc[0].m_path.points[240].y) = 1;
+  LODWORD(g_SceneMgr.m_npc[0].m_path.length[37]) = 3;
+  LODWORD(g_SceneMgr.m_npc[0].m_path.points[241].x) = 3;
+  LODWORD(g_SceneMgr.m_npc[0].m_path.length[38]) = 4;
+  LODWORD(g_SceneMgr.m_npc[0].m_path.points[241].y) = 4;
+  LODWORD(g_SceneMgr.m_npc[0].m_path.length[39]) = 3;
+  LODWORD(g_SceneMgr.m_npc[0].m_path.points[241].z) = 3;
+  LODWORD(g_SceneMgr.m_npc[0].m_path.length[40]) = 2;
+  LODWORD(g_SceneMgr.m_npc[0].m_path.points[242].x) = 2;
+  ((RoleSystem *)&g_SceneMgr.m_npc[0].m_path.points[185].y)->LoadData(1);
+  for ( nn = 972; nn < 1020; nn += 4 )
   {
-    v113 = *(_DWORD *)&g_SceneMgr.m_info[ii + 4240];
-    v114 = *(_DWORD *)&g_SceneMgr.m_info[ii + 4192];
+    v113 = *(_DWORD *)((char *)&g_SceneMgr.m_npc[0].m_path.points[185].y + nn);
+    v114 = *(_DWORD *)((char *)&g_SceneMgr.m_npc[0].m_path.points[181].y + nn);
     if ( v113 < v114 )
     {
       if ( v113 <= 0 )
-        *(_DWORD *)&g_SceneMgr.m_info[ii + 4240] = 0;
+        *(float *)((char *)&g_SceneMgr.m_npc[0].m_path.points[185].y + nn) = 0.0;
     }
     else
     {
-      *(_DWORD *)&g_SceneMgr.m_info[ii + 4240] = v114;
+      *(_DWORD *)((char *)&g_SceneMgr.m_npc[0].m_path.points[185].y + nn) = v114;
     }
   }
-  *(_DWORD *)&g_SceneMgr.m_info[6500] = 0;
-  *(_DWORD *)&g_SceneMgr.m_info[6504] = 0;
-  *(_DWORD *)&g_SceneMgr.m_info[6508] = 0;
-  *(_DWORD *)&g_SceneMgr.m_info[6512] = 0;
-  *(_DWORD *)&g_SceneMgr.m_info[6516] = 0;
-  *(_DWORD *)&g_SceneMgr.m_info[6520] = 0;
-  *(_DWORD *)&g_SceneMgr.m_info[6524] = 0;
-  *(_DWORD *)&g_SceneMgr.m_info[6528] = 0;
-  *(_DWORD *)&g_SceneMgr.m_info[6532] = 0;
-  *(_DWORD *)&g_SceneMgr.m_info[6536] = 0;
-  *(_DWORD *)&g_SceneMgr.m_info[6540] = 0;
-  *(_DWORD *)&g_SceneMgr.m_info[6544] = 0;
-  *(_DWORD *)&g_SceneMgr.m_info[6548] = 0;
-  *(_DWORD *)&g_SceneMgr.m_info[6552] = 0;
-  *(_DWORD *)&g_SceneMgr.m_info[6556] = 0;
-  *(_DWORD *)&g_SceneMgr.m_info[6560] = 82001;
-  *(_DWORD *)&g_SceneMgr.m_info[6564] = 1;
-  *(_DWORD *)&g_SceneMgr.m_info[6568] = g_GDB->GDB_GetSkillNum(82001);
+  g_SceneMgr.m_npc[0].m_path.normal[31].z = 0.0;
+  g_SceneMgr.m_npc[0].m_path.normal[32].x = 0.0;
+  g_SceneMgr.m_npc[0].m_path.normal[32].y = 0.0;
+  g_SceneMgr.m_npc[0].m_path.normal[32].z = 0.0;
+  g_SceneMgr.m_npc[0].m_path.normal[33].x = 0.0;
+  g_SceneMgr.m_npc[0].m_path.normal[33].y = 0.0;
+  g_SceneMgr.m_npc[0].m_path.normal[33].z = 0.0;
+  g_SceneMgr.m_npc[0].m_path.normal[34].x = 0.0;
+  g_SceneMgr.m_npc[0].m_path.normal[34].y = 0.0;
+  g_SceneMgr.m_npc[0].m_path.normal[34].z = 0.0;
+  g_SceneMgr.m_npc[0].m_path.normal[35].x = 0.0;
+  g_SceneMgr.m_npc[0].m_path.normal[35].y = 0.0;
+  g_SceneMgr.m_npc[0].m_path.normal[35].z = 0.0;
+  g_SceneMgr.m_npc[0].m_path.normal[36].x = 0.0;
+  g_SceneMgr.m_npc[0].m_path.normal[36].y = 0.0;
+  LODWORD(g_SceneMgr.m_npc[0].m_path.normal[36].z) = 82001;
+  LODWORD(g_SceneMgr.m_npc[0].m_path.normal[37].x) = 1;
+  LODWORD(g_SceneMgr.m_npc[0].m_path.normal[37].y) = ((PAL_GDB *)&g_GDB)->GDB_GetSkillNum(82001);
   pConfig = 4501;
   v162 = 0;
-  v163 = g_GDB->GDB_GetRoleNum(4501);
-  v115 = (int *)*(int **)&g_SceneMgr.m_info[8];
-  if ( (*(_DWORD *)&g_SceneMgr.m_info[12] - *(_DWORD *)&g_SceneMgr.m_info[8]) / 12 )
+  v163 = ((PAL_GDB *)&g_GDB)->GDB_GetRoleNum(4501);
+  v115 = (int *)*(int **)&g_SceneMgr.m_info.cityname[8];
+  if ( (*(_DWORD *)&g_SceneMgr.m_info.cityname[12] - *(_DWORD *)&g_SceneMgr.m_info.cityname[8]) / 12 )
   {
-    ((Array *)*(void **)&g_SceneMgr.m_info[8])->Insert(*(void **)&g_SceneMgr.m_info[8], (void *)(*(_DWORD *)&g_SceneMgr.m_info[8] + 12));
-    ((Array *)*(void **)&g_SceneMgr.m_info[8])->Erase(1 - (*(_DWORD *)&g_SceneMgr.m_info[8] - (int)v115) / 12, &pConfig);
-    for ( jj = *(int **)&g_SceneMgr.m_info[8]; v115 != jj; v122[2] = v163 )
+    ((Array *)*(void **)&g_SceneMgr.m_info.cityname[8])->Insert(*(void **)&g_SceneMgr.m_info.cityname[8], (void *)(*(_DWORD *)&g_SceneMgr.m_info.cityname[8] + 12));
+    ((Array *)*(void **)&g_SceneMgr.m_info.cityname[8])->Erase(1 - (*(_DWORD *)&g_SceneMgr.m_info.cityname[8] - (int)v115) / 12, &pConfig);
+    for ( i1 = *(int **)&g_SceneMgr.m_info.cityname[8]; v115 != i1; v122[2] = v163 )
     {
       v122 = v115;
       v115 += 3;
       *v122 = pConfig;
       v122[1] = v162;
     }
-    *(_DWORD *)&g_SceneMgr.m_info[8] += 12;
+    *(_DWORD *)&g_SceneMgr.m_info.cityname[8] += 12;
   }
   else
   {
-    if ( !*(_DWORD *)&g_SceneMgr.m_info[4] )
+    if ( !*(_DWORD *)&g_SceneMgr.m_info.cityname[4] )
       goto LABEL_148;
-    if ( (unsigned int)((*(_DWORD *)&g_SceneMgr.m_info[8] - *(_DWORD *)&g_SceneMgr.m_info[4]) / 12) > 1 )
-      v111 = (*(_DWORD *)&g_SceneMgr.m_info[8] - *(_DWORD *)&g_SceneMgr.m_info[4]) / 12;
-    if ( *(_DWORD *)&g_SceneMgr.m_info[4] )
-      v116 = (*(_DWORD *)&g_SceneMgr.m_info[8] - *(_DWORD *)&g_SceneMgr.m_info[4]) / 12;
+    if ( (unsigned int)((*(_DWORD *)&g_SceneMgr.m_info.cityname[8] - *(_DWORD *)&g_SceneMgr.m_info.cityname[4]) / 12) > 1 )
+      v111 = (*(_DWORD *)&g_SceneMgr.m_info.cityname[8] - *(_DWORD *)&g_SceneMgr.m_info.cityname[4]) / 12;
+    if ( *(_DWORD *)&g_SceneMgr.m_info.cityname[4] )
+      v116 = (*(_DWORD *)&g_SceneMgr.m_info.cityname[8] - *(_DWORD *)&g_SceneMgr.m_info.cityname[4]) / 12;
     else
 LABEL_148:
       v116 = 0;
@@ -3206,49 +3186,49 @@ LABEL_148:
     if ( v116 + v111 < 0 )
       v118 = 0;
     v119 = (char *)((operator *)12 * v118)->new();
-    v156 = (char *)((Array *)*(void **)&g_SceneMgr.m_info[4])->Insert(v115, v119);
+    v156 = (char *)((Array *)*(void **)&g_SceneMgr.m_info.cityname[4])->Insert(v115, v119);
     v156->Erase(1, &pConfig);
-    v115->Insert(*(void **)&g_SceneMgr.m_info[8], v156 + 12);
-    nullsub_2(*(_DWORD *)&g_SceneMgr.m_info[4], *(_DWORD *)&g_SceneMgr.m_info[8]);
-    operator delete(*(void **)&g_SceneMgr.m_info[4]);
-    *(_DWORD *)&g_SceneMgr.m_info[12] = &v119[12 * v117];
-    if ( *(_DWORD *)&g_SceneMgr.m_info[4] )
-      v120 = (*(_DWORD *)&g_SceneMgr.m_info[8] - *(_DWORD *)&g_SceneMgr.m_info[4]) / 12;
+    v115->Insert(*(void **)&g_SceneMgr.m_info.cityname[8], v156 + 12);
+    nullsub_2(*(_DWORD *)&g_SceneMgr.m_info.cityname[4], *(_DWORD *)&g_SceneMgr.m_info.cityname[8]);
+    operator delete(*(void **)&g_SceneMgr.m_info.cityname[4]);
+    *(_DWORD *)&g_SceneMgr.m_info.cityname[12] = &v119[12 * v117];
+    if ( *(_DWORD *)&g_SceneMgr.m_info.cityname[4] )
+      v120 = (*(_DWORD *)&g_SceneMgr.m_info.cityname[8] - *(_DWORD *)&g_SceneMgr.m_info.cityname[4]) / 12;
     else
       v120 = 0;
-    *(_DWORD *)&g_SceneMgr.m_info[4] = v119;
-    *(_DWORD *)&g_SceneMgr.m_info[8] = &v119[12 * v120 + 12];
+    *(_DWORD *)&g_SceneMgr.m_info.cityname[4] = v119;
+    *(_DWORD *)&g_SceneMgr.m_info.cityname[8] = &v119[12 * v120 + 12];
   }
   pConfig = 306;
   v162 = 2949123;
-  v163 = g_GDB->GDB_GetRoleNum(306);
-  v123 = (int *)*(int **)&g_SceneMgr.m_info[8];
-  if ( (*(_DWORD *)&g_SceneMgr.m_info[12] - *(_DWORD *)&g_SceneMgr.m_info[8]) / 12 )
+  v163 = ((PAL_GDB *)&g_GDB)->GDB_GetRoleNum(306);
+  v123 = (int *)*(int **)&g_SceneMgr.m_info.cityname[8];
+  if ( (*(_DWORD *)&g_SceneMgr.m_info.cityname[12] - *(_DWORD *)&g_SceneMgr.m_info.cityname[8]) / 12 )
   {
-    ((Array *)*(void **)&g_SceneMgr.m_info[8])->Insert(*(void **)&g_SceneMgr.m_info[8], (void *)(*(_DWORD *)&g_SceneMgr.m_info[8] + 12));
-    ((Array *)*(void **)&g_SceneMgr.m_info[8])->Erase(1 - (*(_DWORD *)&g_SceneMgr.m_info[8] - (int)v123) / 12, &pConfig);
-    for ( kk = *(int **)&g_SceneMgr.m_info[8]; v123 != kk; v132[2] = v163 )
+    ((Array *)*(void **)&g_SceneMgr.m_info.cityname[8])->Insert(*(void **)&g_SceneMgr.m_info.cityname[8], (void *)(*(_DWORD *)&g_SceneMgr.m_info.cityname[8] + 12));
+    ((Array *)*(void **)&g_SceneMgr.m_info.cityname[8])->Erase(1 - (*(_DWORD *)&g_SceneMgr.m_info.cityname[8] - (int)v123) / 12, &pConfig);
+    for ( i2 = *(int **)&g_SceneMgr.m_info.cityname[8]; v123 != i2; v132[2] = v163 )
     {
       v132 = v123;
       v123 += 3;
       *v132 = pConfig;
       v132[1] = v162;
     }
-    *(_DWORD *)&g_SceneMgr.m_info[8] += 12;
+    *(_DWORD *)&g_SceneMgr.m_info.cityname[8] += 12;
   }
   else
   {
-    if ( *(_DWORD *)&g_SceneMgr.m_info[4]
-      && (unsigned int)((*(_DWORD *)&g_SceneMgr.m_info[8] - *(_DWORD *)&g_SceneMgr.m_info[4]) / 12) > 1 )
+    if ( *(_DWORD *)&g_SceneMgr.m_info.cityname[4]
+      && (unsigned int)((*(_DWORD *)&g_SceneMgr.m_info.cityname[8] - *(_DWORD *)&g_SceneMgr.m_info.cityname[4]) / 12) > 1 )
     {
-      v124 = (*(_DWORD *)&g_SceneMgr.m_info[8] - *(_DWORD *)&g_SceneMgr.m_info[4]) / 12;
+      v124 = (*(_DWORD *)&g_SceneMgr.m_info.cityname[8] - *(_DWORD *)&g_SceneMgr.m_info.cityname[4]) / 12;
     }
     else
     {
       v124 = 1;
     }
-    if ( *(_DWORD *)&g_SceneMgr.m_info[4] )
-      v125 = (*(_DWORD *)&g_SceneMgr.m_info[8] - *(_DWORD *)&g_SceneMgr.m_info[4]) / 12;
+    if ( *(_DWORD *)&g_SceneMgr.m_info.cityname[4] )
+      v125 = (*(_DWORD *)&g_SceneMgr.m_info.cityname[8] - *(_DWORD *)&g_SceneMgr.m_info.cityname[4]) / 12;
     else
       v125 = 0;
     v126 = v125 + v124;
@@ -3256,52 +3236,52 @@ LABEL_148:
     if ( v125 + v124 < 0 )
       v126 = 0;
     v127 = ((operator *)12 * v126)->new();
-    v128 = (char *)*(char **)&g_SceneMgr.m_info[4];
+    v128 = (char *)*(char **)&g_SceneMgr.m_info.cityname[4];
     v159 = v127;
-    for ( mm = v127; v128 != (char *)v123; mm += 12 )
+    for ( i3 = v127; v128 != (char *)v123; i3 += 12 )
     {
-      ((void *)mm)->Copy(v128);
+      ((void *)i3)->Copy(v128);
       v128 += 12;
     }
-    ((void *)mm)->Erase(1, &pConfig);
-    v123->Insert(*(void **)&g_SceneMgr.m_info[8], (void *)(mm + 12));
-    nullsub_2(*(_DWORD *)&g_SceneMgr.m_info[4], *(_DWORD *)&g_SceneMgr.m_info[8]);
-    operator delete(*(void **)&g_SceneMgr.m_info[4]);
-    *(_DWORD *)&g_SceneMgr.m_info[12] = v159 + 12 * v157;
-    v130 = ((int *)g_SceneMgr.m_info)->Size();
-    *(_DWORD *)&g_SceneMgr.m_info[4] = v159;
-    *(_DWORD *)&g_SceneMgr.m_info[8] = v159 + 12 * (v130 + 1);
+    ((void *)i3)->Erase(1, &pConfig);
+    v123->Insert(*(void **)&g_SceneMgr.m_info.cityname[8], (void *)(i3 + 12));
+    nullsub_2(*(_DWORD *)&g_SceneMgr.m_info.cityname[4], *(_DWORD *)&g_SceneMgr.m_info.cityname[8]);
+    operator delete(*(void **)&g_SceneMgr.m_info.cityname[4]);
+    *(_DWORD *)&g_SceneMgr.m_info.cityname[12] = v159 + 12 * v157;
+    v130 = ((int *)g_SceneMgr.m_info.cityname)->Size();
+    *(_DWORD *)&g_SceneMgr.m_info.cityname[4] = v159;
+    *(_DWORD *)&g_SceneMgr.m_info.cityname[8] = v159 + 12 * (v130 + 1);
   }
   pConfig = 307;
   v162 = 983043;
-  v163 = g_GDB->GDB_GetRoleNum(307);
-  v133 = (int *)*(int **)&g_SceneMgr.m_info[8];
-  if ( (*(_DWORD *)&g_SceneMgr.m_info[12] - *(_DWORD *)&g_SceneMgr.m_info[8]) / 12 )
+  v163 = ((PAL_GDB *)&g_GDB)->GDB_GetRoleNum(307);
+  v133 = (int *)*(int **)&g_SceneMgr.m_info.cityname[8];
+  if ( (*(_DWORD *)&g_SceneMgr.m_info.cityname[12] - *(_DWORD *)&g_SceneMgr.m_info.cityname[8]) / 12 )
   {
-    ((Array *)*(void **)&g_SceneMgr.m_info[8])->Insert(*(void **)&g_SceneMgr.m_info[8], (void *)(*(_DWORD *)&g_SceneMgr.m_info[8] + 12));
-    ((Array *)*(void **)&g_SceneMgr.m_info[8])->Erase(1 - (*(_DWORD *)&g_SceneMgr.m_info[8] - (int)v133) / 12, &pConfig);
-    for ( nn = *(int **)&g_SceneMgr.m_info[8]; v133 != nn; v142[2] = v163 )
+    ((Array *)*(void **)&g_SceneMgr.m_info.cityname[8])->Insert(*(void **)&g_SceneMgr.m_info.cityname[8], (void *)(*(_DWORD *)&g_SceneMgr.m_info.cityname[8] + 12));
+    ((Array *)*(void **)&g_SceneMgr.m_info.cityname[8])->Erase(1 - (*(_DWORD *)&g_SceneMgr.m_info.cityname[8] - (int)v133) / 12, &pConfig);
+    for ( i4 = *(int **)&g_SceneMgr.m_info.cityname[8]; v133 != i4; v142[2] = v163 )
     {
       v142 = v133;
       v133 += 3;
       *v142 = pConfig;
       v142[1] = v162;
     }
-    *(_DWORD *)&g_SceneMgr.m_info[8] += 12;
+    *(_DWORD *)&g_SceneMgr.m_info.cityname[8] += 12;
   }
   else
   {
-    if ( *(_DWORD *)&g_SceneMgr.m_info[4]
-      && (unsigned int)((*(_DWORD *)&g_SceneMgr.m_info[8] - *(_DWORD *)&g_SceneMgr.m_info[4]) / 12) > 1 )
+    if ( *(_DWORD *)&g_SceneMgr.m_info.cityname[4]
+      && (unsigned int)((*(_DWORD *)&g_SceneMgr.m_info.cityname[8] - *(_DWORD *)&g_SceneMgr.m_info.cityname[4]) / 12) > 1 )
     {
-      v134 = (*(_DWORD *)&g_SceneMgr.m_info[8] - *(_DWORD *)&g_SceneMgr.m_info[4]) / 12;
+      v134 = (*(_DWORD *)&g_SceneMgr.m_info.cityname[8] - *(_DWORD *)&g_SceneMgr.m_info.cityname[4]) / 12;
     }
     else
     {
       v134 = 1;
     }
-    if ( *(_DWORD *)&g_SceneMgr.m_info[4] )
-      v135 = (*(_DWORD *)&g_SceneMgr.m_info[8] - *(_DWORD *)&g_SceneMgr.m_info[4]) / 12;
+    if ( *(_DWORD *)&g_SceneMgr.m_info.cityname[4] )
+      v135 = (*(_DWORD *)&g_SceneMgr.m_info.cityname[8] - *(_DWORD *)&g_SceneMgr.m_info.cityname[4]) / 12;
     else
       v135 = 0;
     v136 = v135 + v134;
@@ -3309,218 +3289,218 @@ LABEL_148:
     if ( v135 + v134 < 0 )
       v136 = 0;
     v137 = ((operator *)12 * v136)->new();
-    v138 = (char *)*(char **)&g_SceneMgr.m_info[4];
+    v138 = (char *)*(char **)&g_SceneMgr.m_info.cityname[4];
     v158 = v137;
-    for ( i1 = v137; v138 != (char *)v133; i1 += 12 )
+    for ( i5 = v137; v138 != (char *)v133; i5 += 12 )
     {
-      ((void *)i1)->Copy(v138);
+      ((void *)i5)->Copy(v138);
       v138 += 12;
     }
-    ((void *)i1)->Erase(1, &pConfig);
-    v133->Insert(*(void **)&g_SceneMgr.m_info[8], (void *)(i1 + 12));
-    nullsub_2(*(_DWORD *)&g_SceneMgr.m_info[4], *(_DWORD *)&g_SceneMgr.m_info[8]);
-    operator delete(*(void **)&g_SceneMgr.m_info[4]);
-    *(_DWORD *)&g_SceneMgr.m_info[12] = v158 + 12 * v160;
-    v140 = ((int *)g_SceneMgr.m_info)->Size();
-    *(_DWORD *)&g_SceneMgr.m_info[4] = v158;
-    *(_DWORD *)&g_SceneMgr.m_info[8] = v158 + 12 * (v140 + 1);
+    ((void *)i5)->Erase(1, &pConfig);
+    v133->Insert(*(void **)&g_SceneMgr.m_info.cityname[8], (void *)(i5 + 12));
+    nullsub_2(*(_DWORD *)&g_SceneMgr.m_info.cityname[4], *(_DWORD *)&g_SceneMgr.m_info.cityname[8]);
+    operator delete(*(void **)&g_SceneMgr.m_info.cityname[4]);
+    *(_DWORD *)&g_SceneMgr.m_info.cityname[12] = v158 + 12 * v160;
+    v140 = ((int *)g_SceneMgr.m_info.cityname)->Size();
+    *(_DWORD *)&g_SceneMgr.m_info.cityname[4] = v158;
+    *(_DWORD *)&g_SceneMgr.m_info.cityname[8] = v158 + 12 * (v140 + 1);
   }
   pConfig = 308;
   v162 = 0;
-  v163 = g_GDB->GDB_GetRoleNum(308);
+  v163 = ((PAL_GDB *)&g_GDB)->GDB_GetRoleNum(308);
   ((Scene *)&g_SceneMgr)->LoadConfig(&pConfig);
-  *(_DWORD *)&g_SceneMgr.m_info[6388] = 4341;
-  *(_DWORD *)&g_SceneMgr.m_info[6280] = 13;
-  *(_DWORD *)&g_SceneMgr.m_info[6284] = ((Role *)4)->CreateXueJian(13);
-  *(_DWORD *)&g_SceneMgr.m_info[6288] = ((Role *)4)->CreateLongKui(*(int *)&g_SceneMgr.m_info[6280]);
-  *(_DWORD *)&g_SceneMgr.m_info[6292] = ((Role *)4)->CreateZiXuan(*(int *)&g_SceneMgr.m_info[6280]);
-  *(_DWORD *)&g_SceneMgr.m_info[6296] = ((Role *)4)->CreateChangQing(*(int *)&g_SceneMgr.m_info[6280]);
-  *(_DWORD *)&g_SceneMgr.m_info[6300] = ((Role *)4)->CreateHuaYing(*(int *)&g_SceneMgr.m_info[6280]);
-  *(_DWORD *)&g_SceneMgr.m_info[6652] = 4;
-  *(_DWORD *)&g_SceneMgr.m_info[6316] = 4;
-  *(_DWORD *)&g_SceneMgr.m_info[6648] = 1;
-  *(_DWORD *)&g_SceneMgr.m_info[6312] = 1;
-  *(_DWORD *)&g_SceneMgr.m_info[6640] = 3;
-  *(_DWORD *)&g_SceneMgr.m_info[6304] = 3;
-  *(_DWORD *)&g_SceneMgr.m_info[6644] = 3;
-  *(_DWORD *)&g_SceneMgr.m_info[6308] = 3;
-  *(_DWORD *)&g_SceneMgr.m_info[6656] = 3;
-  *(_DWORD *)&g_SceneMgr.m_info[6320] = 3;
-  *(_DWORD *)&g_SceneMgr.m_info[6660] = 2;
-  *(_DWORD *)&g_SceneMgr.m_info[6324] = 2;
-  *(_DWORD *)&g_SceneMgr.m_info[6664] = 2;
-  *(_DWORD *)&g_SceneMgr.m_info[6328] = 2;
-  ((RoleSystem *)&g_SceneMgr.m_info[5648])->LoadData(1);
-  ((RoleSystem *)&g_SceneMgr.m_info[5648])->Init();
-  *(_DWORD *)&g_SceneMgr.m_info[51216] = 4101;
-  *(_DWORD *)&g_SceneMgr.m_info[51220] = -1;
-  *(_DWORD *)&g_SceneMgr.m_info[51224] = 4102;
-  *(_DWORD *)&g_SceneMgr.m_info[51228] = 4;
-  *(_DWORD *)&g_SceneMgr.m_info[51232] = 4103;
-  *(_DWORD *)&g_SceneMgr.m_info[51236] = -1;
-  *(_DWORD *)&g_SceneMgr.m_info[51240] = 4104;
-  *(_DWORD *)&g_SceneMgr.m_info[51244] = -1;
-  *(_DWORD *)&g_SceneMgr.m_info[51248] = 4105;
-  *(_DWORD *)&g_SceneMgr.m_info[51252] = 44;
-  *(_DWORD *)&g_SceneMgr.m_info[51256] = 4106;
-  *(_DWORD *)&g_SceneMgr.m_info[51260] = -1;
-  *(_DWORD *)&g_SceneMgr.m_info[51264] = 4201;
-  *(_DWORD *)&g_SceneMgr.m_info[51268] = -1;
-  *(_DWORD *)&g_SceneMgr.m_info[51272] = 4202;
-  *(_DWORD *)&g_SceneMgr.m_info[51276] = 15;
-  *(_DWORD *)&g_SceneMgr.m_info[51308] = -1;
-  *(_DWORD *)&g_SceneMgr.m_info[51316] = 3;
-  *(_DWORD *)&g_SceneMgr.m_info[51332] = 15;
-  *(_DWORD *)&g_SceneMgr.m_info[51348] = -1;
-  *(_DWORD *)&g_SceneMgr.m_info[51356] = -1;
-  *(_DWORD *)&g_SceneMgr.m_info[51372] = -1;
-  *(_DWORD *)&g_SceneMgr.m_info[51404] = -1;
-  *(_DWORD *)&g_SceneMgr.m_info[51452] = -1;
-  *(_DWORD *)&g_SceneMgr.m_info[51380] = 13;
-  memset(&g_SceneMgr.m_info[50816], 0, 0x190u);
-  *(_DWORD *)&g_SceneMgr.m_info[51280] = 4203;
-  *(_DWORD *)&g_SceneMgr.m_info[51284] = 20;
-  *(_DWORD *)&g_SceneMgr.m_info[51288] = 4204;
-  *(_DWORD *)&g_SceneMgr.m_info[51292] = 55;
-  *(_DWORD *)&g_SceneMgr.m_info[51296] = 4205;
-  *(_DWORD *)&g_SceneMgr.m_info[51300] = 50;
-  *(_DWORD *)&g_SceneMgr.m_info[51304] = 0;
-  *(_DWORD *)&g_SceneMgr.m_info[51312] = 4301;
-  *(_DWORD *)&g_SceneMgr.m_info[51320] = 4302;
-  *(_DWORD *)&g_SceneMgr.m_info[51324] = 10;
-  *(_DWORD *)&g_SceneMgr.m_info[51328] = 4303;
-  *(_DWORD *)&g_SceneMgr.m_info[51336] = 4304;
-  *(_DWORD *)&g_SceneMgr.m_info[51340] = 20;
-  *(_DWORD *)&g_SceneMgr.m_info[51344] = 4305;
-  *(_DWORD *)&g_SceneMgr.m_info[51352] = 0;
-  *(_DWORD *)&g_SceneMgr.m_info[51360] = 4401;
-  *(_DWORD *)&g_SceneMgr.m_info[51364] = 4;
-  *(_DWORD *)&g_SceneMgr.m_info[51368] = 4402;
-  *(_DWORD *)&g_SceneMgr.m_info[51376] = 4403;
-  *(_DWORD *)&g_SceneMgr.m_info[51384] = 4404;
-  *(_DWORD *)&g_SceneMgr.m_info[51388] = 35;
-  *(_DWORD *)&g_SceneMgr.m_info[51392] = 4405;
-  *(_DWORD *)&g_SceneMgr.m_info[51396] = 58;
-  *(_DWORD *)&g_SceneMgr.m_info[51400] = 0;
-  *(_DWORD *)&g_SceneMgr.m_info[51408] = 4501;
-  *(_DWORD *)&g_SceneMgr.m_info[51412] = 8;
-  *(_DWORD *)&g_SceneMgr.m_info[51416] = 4502;
-  *(_DWORD *)&g_SceneMgr.m_info[51420] = 24;
-  *(_DWORD *)&g_SceneMgr.m_info[51424] = 4503;
-  *(_DWORD *)&g_SceneMgr.m_info[51428] = 38;
-  *(_DWORD *)&g_SceneMgr.m_info[51432] = 4504;
-  *(_DWORD *)&g_SceneMgr.m_info[51436] = 50;
-  *(_DWORD *)&g_SceneMgr.m_info[51440] = 4505;
-  *(_DWORD *)&g_SceneMgr.m_info[51444] = 64;
-  *(_DWORD *)&g_SceneMgr.m_info[51448] = 0;
-  *(_DWORD *)&g_SceneMgr.m_info[50816] = 301;
-  *(_DWORD *)&g_SceneMgr.m_info[50828] = 0;
-  *(_DWORD *)&g_SceneMgr.m_info[50824] = 45;
-  *(_DWORD *)&g_SceneMgr.m_info[50832] = 302;
-  *(_DWORD *)&g_SceneMgr.m_info[50844] = 4;
-  *(_DWORD *)&g_SceneMgr.m_info[50840] = 45;
-  *(_DWORD *)&g_SceneMgr.m_info[50848] = 303;
-  *(_DWORD *)&g_SceneMgr.m_info[50860] = 5;
-  *(_DWORD *)&g_SceneMgr.m_info[50856] = 15;
-  *(_DWORD *)&g_SceneMgr.m_info[50864] = 304;
-  *(_DWORD *)&g_SceneMgr.m_info[50876] = 20;
-  *(_DWORD *)&g_SceneMgr.m_info[50872] = 50;
-  *(_DWORD *)&g_SceneMgr.m_info[50880] = 305;
-  *(_DWORD *)&g_SceneMgr.m_info[50892] = 30;
-  *(_DWORD *)&g_SceneMgr.m_info[50888] = 60;
-  *(_DWORD *)&g_SceneMgr.m_info[50896] = 321;
-  *(_DWORD *)&g_SceneMgr.m_info[50908] = 0;
-  *(_DWORD *)&g_SceneMgr.m_info[50904] = 45;
-  *(_DWORD *)&g_SceneMgr.m_info[50912] = 322;
-  *(_DWORD *)&g_SceneMgr.m_info[50924] = 5;
-  *(_DWORD *)&g_SceneMgr.m_info[50920] = 30;
-  *(_DWORD *)&g_SceneMgr.m_info[50928] = 323;
-  *(_DWORD *)&g_SceneMgr.m_info[50940] = 14;
-  *(_DWORD *)&g_SceneMgr.m_info[50936] = 15;
-  *(_DWORD *)&g_SceneMgr.m_info[50944] = 324;
-  *(_DWORD *)&g_SceneMgr.m_info[50956] = 23;
-  *(_DWORD *)&g_SceneMgr.m_info[50952] = 45;
-  *(_DWORD *)&g_SceneMgr.m_info[50960] = 325;
-  *(_DWORD *)&g_SceneMgr.m_info[51096] = 30;
-  *(_DWORD *)&g_SceneMgr.m_info[50972] = 32;
-  *(_DWORD *)&g_SceneMgr.m_info[50968] = 50;
-  *(_DWORD *)&g_SceneMgr.m_info[50976] = 311;
-  *(_DWORD *)&g_SceneMgr.m_info[50988] = 0;
-  *(_DWORD *)&g_SceneMgr.m_info[50984] = 45;
-  *(_DWORD *)&g_SceneMgr.m_info[50992] = 312;
-  *(_DWORD *)&g_SceneMgr.m_info[51004] = 5;
-  *(_DWORD *)&g_SceneMgr.m_info[51000] = 45;
-  *(_DWORD *)&g_SceneMgr.m_info[51008] = 313;
-  *(_DWORD *)&g_SceneMgr.m_info[51020] = 15;
-  *(_DWORD *)&g_SceneMgr.m_info[51016] = 15;
-  *(_DWORD *)&g_SceneMgr.m_info[51024] = 314;
-  *(_DWORD *)&g_SceneMgr.m_info[51036] = 25;
-  *(_DWORD *)&g_SceneMgr.m_info[51032] = 45;
-  *(_DWORD *)&g_SceneMgr.m_info[51040] = 315;
-  *(_DWORD *)&g_SceneMgr.m_info[51052] = 35;
-  *(_DWORD *)&g_SceneMgr.m_info[51048] = 60;
-  *(_DWORD *)&g_SceneMgr.m_info[51056] = 316;
-  *(_DWORD *)&g_SceneMgr.m_info[51068] = 0;
-  *(_DWORD *)&g_SceneMgr.m_info[51064] = 45;
-  *(_DWORD *)&g_SceneMgr.m_info[51072] = 317;
-  *(_DWORD *)&g_SceneMgr.m_info[51084] = 3;
-  *(_DWORD *)&g_SceneMgr.m_info[51080] = 15;
-  *(_DWORD *)&g_SceneMgr.m_info[51088] = 318;
-  *(_DWORD *)&g_SceneMgr.m_info[51100] = 10;
-  *(_DWORD *)&g_SceneMgr.m_info[51104] = 319;
-  *(_DWORD *)&g_SceneMgr.m_info[51116] = 20;
-  *(_DWORD *)&g_SceneMgr.m_info[51112] = 45;
-  *(_DWORD *)&g_SceneMgr.m_info[51120] = 320;
-  *(_DWORD *)&g_SceneMgr.m_info[51132] = 28;
-  *(_DWORD *)&g_SceneMgr.m_info[51128] = 20;
-  *(_DWORD *)&g_SceneMgr.m_info[51136] = 306;
-  *(_DWORD *)&g_SceneMgr.m_info[51148] = 0;
-  *(_DWORD *)&g_SceneMgr.m_info[51144] = 45;
-  *(_DWORD *)&g_SceneMgr.m_info[51152] = 307;
-  *(_DWORD *)&g_SceneMgr.m_info[51164] = 6;
-  *(_DWORD *)&g_SceneMgr.m_info[51160] = 15;
-  *(_DWORD *)&g_SceneMgr.m_info[51168] = 308;
-  *(_DWORD *)&g_SceneMgr.m_info[51180] = 14;
-  *(_DWORD *)&g_SceneMgr.m_info[51176] = 45;
-  *(_DWORD *)&g_SceneMgr.m_info[51184] = 309;
-  *(_DWORD *)&g_SceneMgr.m_info[51196] = 22;
-  *(_DWORD *)&g_SceneMgr.m_info[51192] = 50;
-  *(_DWORD *)&g_SceneMgr.m_info[51200] = 310;
-  *(_DWORD *)&g_SceneMgr.m_info[51212] = 32;
-  *(_DWORD *)&g_SceneMgr.m_info[51208] = 60;
+  LODWORD(g_SceneMgr.m_npc[0].m_path.normal[22].y) = 4341;
+  LODWORD(g_SceneMgr.m_npc[0].m_path.normal[13].y) = 13;
+  LODWORD(g_SceneMgr.m_npc[0].m_path.normal[13].z) = ((Role *)4)->CreateXueJian(13);
+  LODWORD(g_SceneMgr.m_npc[0].m_path.normal[14].x) = ((Role *)4)->CreateLongKui(SLODWORD(g_SceneMgr.m_npc[0].m_path.normal[13].y));
+  LODWORD(g_SceneMgr.m_npc[0].m_path.normal[14].y) = ((Role *)4)->CreateZiXuan(SLODWORD(g_SceneMgr.m_npc[0].m_path.normal[13].y));
+  LODWORD(g_SceneMgr.m_npc[0].m_path.normal[14].z) = ((Role *)4)->CreateChangQing(SLODWORD(g_SceneMgr.m_npc[0].m_path.normal[13].y));
+  LODWORD(g_SceneMgr.m_npc[0].m_path.normal[15].x) = ((Role *)4)->CreateHuaYing(SLODWORD(g_SceneMgr.m_npc[0].m_path.normal[13].y));
+  LODWORD(g_SceneMgr.m_npc[0].m_path.normal[44].y) = 4;
+  LODWORD(g_SceneMgr.m_npc[0].m_path.normal[16].y) = 4;
+  LODWORD(g_SceneMgr.m_npc[0].m_path.normal[44].x) = 1;
+  LODWORD(g_SceneMgr.m_npc[0].m_path.normal[16].x) = 1;
+  LODWORD(g_SceneMgr.m_npc[0].m_path.normal[43].y) = 3;
+  LODWORD(g_SceneMgr.m_npc[0].m_path.normal[15].y) = 3;
+  LODWORD(g_SceneMgr.m_npc[0].m_path.normal[43].z) = 3;
+  LODWORD(g_SceneMgr.m_npc[0].m_path.normal[15].z) = 3;
+  LODWORD(g_SceneMgr.m_npc[0].m_path.normal[44].z) = 3;
+  LODWORD(g_SceneMgr.m_npc[0].m_path.normal[16].z) = 3;
+  LODWORD(g_SceneMgr.m_npc[0].m_path.normal[45].x) = 2;
+  LODWORD(g_SceneMgr.m_npc[0].m_path.normal[17].x) = 2;
+  LODWORD(g_SceneMgr.m_npc[0].m_path.normal[45].y) = 2;
+  LODWORD(g_SceneMgr.m_npc[0].m_path.normal[17].y) = 2;
+  ((RoleSystem *)&g_SceneMgr.m_npc[0].m_path.length[138])->LoadData(1);
+  ((RoleSystem *)&g_SceneMgr.m_npc[0].m_path.length[138])->Init();
+  LODWORD(g_SceneMgr.m_npc[5].m_path.normal[106].y) = 4101;
+  g_SceneMgr.m_npc[5].m_path.normal[106].z = NAN;
+  LODWORD(g_SceneMgr.m_npc[5].m_path.normal[107].x) = 4102;
+  LODWORD(g_SceneMgr.m_npc[5].m_path.normal[107].y) = 4;
+  LODWORD(g_SceneMgr.m_npc[5].m_path.normal[107].z) = 4103;
+  g_SceneMgr.m_npc[5].m_path.normal[108].x = NAN;
+  LODWORD(g_SceneMgr.m_npc[5].m_path.normal[108].y) = 4104;
+  g_SceneMgr.m_npc[5].m_path.normal[108].z = NAN;
+  LODWORD(g_SceneMgr.m_npc[5].m_path.normal[109].x) = 4105;
+  LODWORD(g_SceneMgr.m_npc[5].m_path.normal[109].y) = 44;
+  LODWORD(g_SceneMgr.m_npc[5].m_path.normal[109].z) = 4106;
+  g_SceneMgr.m_npc[5].m_path.normal[110].x = NAN;
+  LODWORD(g_SceneMgr.m_npc[5].m_path.normal[110].y) = 4201;
+  g_SceneMgr.m_npc[5].m_path.normal[110].z = NAN;
+  LODWORD(g_SceneMgr.m_npc[5].m_path.normal[111].x) = 4202;
+  LODWORD(g_SceneMgr.m_npc[5].m_path.normal[111].y) = 15;
+  g_SceneMgr.m_npc[5].m_path.normal[114].x = NAN;
+  LODWORD(g_SceneMgr.m_npc[5].m_path.normal[114].z) = 3;
+  LODWORD(g_SceneMgr.m_npc[5].m_path.normal[116].x) = 15;
+  g_SceneMgr.m_npc[5].m_path.normal[117].y = NAN;
+  g_SceneMgr.m_npc[5].m_path.normal[118].x = NAN;
+  g_SceneMgr.m_npc[5].m_path.normal[119].y = NAN;
+  g_SceneMgr.m_npc[5].m_path.normal[122].x = NAN;
+  g_SceneMgr.m_npc[5].m_path.normal[126].x = NAN;
+  LODWORD(g_SceneMgr.m_npc[5].m_path.normal[120].x) = 13;
+  memset(&g_SceneMgr.m_npc[5].m_path.normal[73], 0, 0x190u);
+  LODWORD(g_SceneMgr.m_npc[5].m_path.normal[111].z) = 4203;
+  LODWORD(g_SceneMgr.m_npc[5].m_path.normal[112].x) = 20;
+  LODWORD(g_SceneMgr.m_npc[5].m_path.normal[112].y) = 4204;
+  LODWORD(g_SceneMgr.m_npc[5].m_path.normal[112].z) = 55;
+  LODWORD(g_SceneMgr.m_npc[5].m_path.normal[113].x) = 4205;
+  LODWORD(g_SceneMgr.m_npc[5].m_path.normal[113].y) = 50;
+  g_SceneMgr.m_npc[5].m_path.normal[113].z = 0.0;
+  LODWORD(g_SceneMgr.m_npc[5].m_path.normal[114].y) = 4301;
+  LODWORD(g_SceneMgr.m_npc[5].m_path.normal[115].x) = 4302;
+  LODWORD(g_SceneMgr.m_npc[5].m_path.normal[115].y) = 10;
+  LODWORD(g_SceneMgr.m_npc[5].m_path.normal[115].z) = 4303;
+  LODWORD(g_SceneMgr.m_npc[5].m_path.normal[116].y) = 4304;
+  LODWORD(g_SceneMgr.m_npc[5].m_path.normal[116].z) = 20;
+  LODWORD(g_SceneMgr.m_npc[5].m_path.normal[117].x) = 4305;
+  g_SceneMgr.m_npc[5].m_path.normal[117].z = 0.0;
+  LODWORD(g_SceneMgr.m_npc[5].m_path.normal[118].y) = 4401;
+  LODWORD(g_SceneMgr.m_npc[5].m_path.normal[118].z) = 4;
+  LODWORD(g_SceneMgr.m_npc[5].m_path.normal[119].x) = 4402;
+  LODWORD(g_SceneMgr.m_npc[5].m_path.normal[119].z) = 4403;
+  LODWORD(g_SceneMgr.m_npc[5].m_path.normal[120].y) = 4404;
+  LODWORD(g_SceneMgr.m_npc[5].m_path.normal[120].z) = 35;
+  LODWORD(g_SceneMgr.m_npc[5].m_path.normal[121].x) = 4405;
+  LODWORD(g_SceneMgr.m_npc[5].m_path.normal[121].y) = 58;
+  g_SceneMgr.m_npc[5].m_path.normal[121].z = 0.0;
+  LODWORD(g_SceneMgr.m_npc[5].m_path.normal[122].y) = 4501;
+  LODWORD(g_SceneMgr.m_npc[5].m_path.normal[122].z) = 8;
+  LODWORD(g_SceneMgr.m_npc[5].m_path.normal[123].x) = 4502;
+  LODWORD(g_SceneMgr.m_npc[5].m_path.normal[123].y) = 24;
+  LODWORD(g_SceneMgr.m_npc[5].m_path.normal[123].z) = 4503;
+  LODWORD(g_SceneMgr.m_npc[5].m_path.normal[124].x) = 38;
+  LODWORD(g_SceneMgr.m_npc[5].m_path.normal[124].y) = 4504;
+  LODWORD(g_SceneMgr.m_npc[5].m_path.normal[124].z) = 50;
+  LODWORD(g_SceneMgr.m_npc[5].m_path.normal[125].x) = 4505;
+  LODWORD(g_SceneMgr.m_npc[5].m_path.normal[125].y) = 64;
+  g_SceneMgr.m_npc[5].m_path.normal[125].z = 0.0;
+  LODWORD(g_SceneMgr.m_npc[5].m_path.normal[73].x) = 301;
+  g_SceneMgr.m_npc[5].m_path.normal[74].x = 0.0;
+  LODWORD(g_SceneMgr.m_npc[5].m_path.normal[73].z) = 45;
+  LODWORD(g_SceneMgr.m_npc[5].m_path.normal[74].y) = 302;
+  LODWORD(g_SceneMgr.m_npc[5].m_path.normal[75].y) = 4;
+  LODWORD(g_SceneMgr.m_npc[5].m_path.normal[75].x) = 45;
+  LODWORD(g_SceneMgr.m_npc[5].m_path.normal[75].z) = 303;
+  LODWORD(g_SceneMgr.m_npc[5].m_path.normal[76].z) = 5;
+  LODWORD(g_SceneMgr.m_npc[5].m_path.normal[76].y) = 15;
+  LODWORD(g_SceneMgr.m_npc[5].m_path.normal[77].x) = 304;
+  LODWORD(g_SceneMgr.m_npc[5].m_path.normal[78].x) = 20;
+  LODWORD(g_SceneMgr.m_npc[5].m_path.normal[77].z) = 50;
+  LODWORD(g_SceneMgr.m_npc[5].m_path.normal[78].y) = 305;
+  LODWORD(g_SceneMgr.m_npc[5].m_path.normal[79].y) = 30;
+  LODWORD(g_SceneMgr.m_npc[5].m_path.normal[79].x) = 60;
+  LODWORD(g_SceneMgr.m_npc[5].m_path.normal[79].z) = 321;
+  g_SceneMgr.m_npc[5].m_path.normal[80].z = 0.0;
+  LODWORD(g_SceneMgr.m_npc[5].m_path.normal[80].y) = 45;
+  LODWORD(g_SceneMgr.m_npc[5].m_path.normal[81].x) = 322;
+  LODWORD(g_SceneMgr.m_npc[5].m_path.normal[82].x) = 5;
+  LODWORD(g_SceneMgr.m_npc[5].m_path.normal[81].z) = 30;
+  LODWORD(g_SceneMgr.m_npc[5].m_path.normal[82].y) = 323;
+  LODWORD(g_SceneMgr.m_npc[5].m_path.normal[83].y) = 14;
+  LODWORD(g_SceneMgr.m_npc[5].m_path.normal[83].x) = 15;
+  LODWORD(g_SceneMgr.m_npc[5].m_path.normal[83].z) = 324;
+  LODWORD(g_SceneMgr.m_npc[5].m_path.normal[84].z) = 23;
+  LODWORD(g_SceneMgr.m_npc[5].m_path.normal[84].y) = 45;
+  LODWORD(g_SceneMgr.m_npc[5].m_path.normal[85].x) = 325;
+  LODWORD(g_SceneMgr.m_npc[5].m_path.normal[96].y) = 30;
+  LODWORD(g_SceneMgr.m_npc[5].m_path.normal[86].x) = 32;
+  LODWORD(g_SceneMgr.m_npc[5].m_path.normal[85].z) = 50;
+  LODWORD(g_SceneMgr.m_npc[5].m_path.normal[86].y) = 311;
+  g_SceneMgr.m_npc[5].m_path.normal[87].y = 0.0;
+  LODWORD(g_SceneMgr.m_npc[5].m_path.normal[87].x) = 45;
+  LODWORD(g_SceneMgr.m_npc[5].m_path.normal[87].z) = 312;
+  LODWORD(g_SceneMgr.m_npc[5].m_path.normal[88].z) = 5;
+  LODWORD(g_SceneMgr.m_npc[5].m_path.normal[88].y) = 45;
+  LODWORD(g_SceneMgr.m_npc[5].m_path.normal[89].x) = 313;
+  LODWORD(g_SceneMgr.m_npc[5].m_path.normal[90].x) = 15;
+  LODWORD(g_SceneMgr.m_npc[5].m_path.normal[89].z) = 15;
+  LODWORD(g_SceneMgr.m_npc[5].m_path.normal[90].y) = 314;
+  LODWORD(g_SceneMgr.m_npc[5].m_path.normal[91].y) = 25;
+  LODWORD(g_SceneMgr.m_npc[5].m_path.normal[91].x) = 45;
+  LODWORD(g_SceneMgr.m_npc[5].m_path.normal[91].z) = 315;
+  LODWORD(g_SceneMgr.m_npc[5].m_path.normal[92].z) = 35;
+  LODWORD(g_SceneMgr.m_npc[5].m_path.normal[92].y) = 60;
+  LODWORD(g_SceneMgr.m_npc[5].m_path.normal[93].x) = 316;
+  g_SceneMgr.m_npc[5].m_path.normal[94].x = 0.0;
+  LODWORD(g_SceneMgr.m_npc[5].m_path.normal[93].z) = 45;
+  LODWORD(g_SceneMgr.m_npc[5].m_path.normal[94].y) = 317;
+  LODWORD(g_SceneMgr.m_npc[5].m_path.normal[95].y) = 3;
+  LODWORD(g_SceneMgr.m_npc[5].m_path.normal[95].x) = 15;
+  LODWORD(g_SceneMgr.m_npc[5].m_path.normal[95].z) = 318;
+  LODWORD(g_SceneMgr.m_npc[5].m_path.normal[96].z) = 10;
+  LODWORD(g_SceneMgr.m_npc[5].m_path.normal[97].x) = 319;
+  LODWORD(g_SceneMgr.m_npc[5].m_path.normal[98].x) = 20;
+  LODWORD(g_SceneMgr.m_npc[5].m_path.normal[97].z) = 45;
+  LODWORD(g_SceneMgr.m_npc[5].m_path.normal[98].y) = 320;
+  LODWORD(g_SceneMgr.m_npc[5].m_path.normal[99].y) = 28;
+  LODWORD(g_SceneMgr.m_npc[5].m_path.normal[99].x) = 20;
+  LODWORD(g_SceneMgr.m_npc[5].m_path.normal[99].z) = 306;
+  g_SceneMgr.m_npc[5].m_path.normal[100].z = 0.0;
+  LODWORD(g_SceneMgr.m_npc[5].m_path.normal[100].y) = 45;
+  LODWORD(g_SceneMgr.m_npc[5].m_path.normal[101].x) = 307;
+  LODWORD(g_SceneMgr.m_npc[5].m_path.normal[102].x) = 6;
+  LODWORD(g_SceneMgr.m_npc[5].m_path.normal[101].z) = 15;
+  LODWORD(g_SceneMgr.m_npc[5].m_path.normal[102].y) = 308;
+  LODWORD(g_SceneMgr.m_npc[5].m_path.normal[103].y) = 14;
+  LODWORD(g_SceneMgr.m_npc[5].m_path.normal[103].x) = 45;
+  LODWORD(g_SceneMgr.m_npc[5].m_path.normal[103].z) = 309;
+  LODWORD(g_SceneMgr.m_npc[5].m_path.normal[104].z) = 22;
+  LODWORD(g_SceneMgr.m_npc[5].m_path.normal[104].y) = 50;
+  LODWORD(g_SceneMgr.m_npc[5].m_path.normal[105].x) = 310;
+  LODWORD(g_SceneMgr.m_npc[5].m_path.normal[106].x) = 32;
+  LODWORD(g_SceneMgr.m_npc[5].m_path.normal[105].z) = 60;
   NPC::InitAll();
-  for ( i2 = 0; i2 < 5; ++i2 )
+  for ( i6 = 0; i6 < 5; ++i6 )
   {
-    result = 1408 * i2;
-    g_SceneMgr.m_info[result + 1417] = 0;
-    g_SceneMgr.m_info[result + 1418] = 0;
-    g_SceneMgr.m_info[result + 1419] = 0;
-    g_SceneMgr.m_info[result + 1420] = 0;
-    g_SceneMgr.m_info[result + 1421] = 1;
-    g_SceneMgr.m_info[result + 1416] = 0;
-    switch ( i2 )
+    result = 1408 * i6;
+    g_SceneMgr.m_npc[0].m_actor.m_szTexture[result + 25] = 0;
+    g_SceneMgr.m_npc[0].m_actor.m_szTexture[result + 26] = 0;
+    g_SceneMgr.m_npc[0].m_actor.m_szTexture[result + 27] = 0;
+    g_SceneMgr.m_npc[0].m_actor.m_szTexture[result + 28] = 0;
+    g_SceneMgr.m_npc[0].m_actor.m_szTexture[result + 29] = 1;
+    g_SceneMgr.m_npc[0].m_actor.m_szTexture[result + 24] = 0;
+    switch ( i6 )
     {
       case 0:
-        *(_DWORD *)&g_SceneMgr.m_info[1408 * i2 + 16] = 101;
+        *(_DWORD *)&g_SceneMgr.m_info.cityname[1408 * i6 + 16] = 101;
         break;
       case 1:
-        *(_DWORD *)&g_SceneMgr.m_info[1408 * i2 + 16] = 104;
+        *(_DWORD *)&g_SceneMgr.m_info.cityname[1408 * i6 + 16] = 104;
         break;
       case 2:
-        *(_DWORD *)&g_SceneMgr.m_info[1408 * i2 + 16] = 106;
+        *(_DWORD *)&g_SceneMgr.m_info.cityname[1408 * i6 + 16] = 106;
         break;
       case 3:
-        *(_DWORD *)&g_SceneMgr.m_info[1408 * i2 + 16] = 107;
+        *(_DWORD *)&g_SceneMgr.m_info.cityname[1408 * i6 + 16] = 107;
         break;
       case 4:
-        *(_DWORD *)&g_SceneMgr.m_info[1408 * i2 + 16] = 102;
+        *(_DWORD *)&g_SceneMgr.m_info.cityname[1408 * i6 + 16] = 102;
         break;
       default:
         continue;
     }
   }
-  MEMORY[0xBFDB70] = 50529027;
-  MEMORY[0xBFDB74] = 50529027;
+  g_Input.KeyInfo[194].Data = 50529027;
+  g_Input.KeyInfo[194].HoldTime = 50529027;
   return result;
 }
 
@@ -3542,10 +3522,10 @@ int PAL3::UIPostProcess()
 {
   int result; // eax
 
-  if ( *(_DWORD *)&g_SceneMgr.m_info[54116] )
+  if ( *(_DWORD *)&g_SceneMgr.m_npc[6].m_actor.m_szTexture[140] )
   {
-    ((gbSound2DNode *)*(gbSound2DNode **)&g_SceneMgr.m_info[54116])->Stop();
-    *(_DWORD *)&g_SceneMgr.m_info[54116] = 0;
+    ((gbSound2DNode *)*(gbSound2DNode **)&g_SceneMgr.m_npc[6].m_actor.m_szTexture[140])->Stop();
+    *(_DWORD *)&g_SceneMgr.m_npc[6].m_actor.m_szTexture[140] = 0;
   }
   return result;
 }

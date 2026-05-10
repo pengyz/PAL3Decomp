@@ -39,49 +39,51 @@ extern void *off_570538;
 // 0x0051A700
 CCBControlWindow::CCBControlWindow()
 {
-  CCBControlWindow *v2; // edi
+  int *p_m_bfocus; // edi
   int a4; // [esp+14h] [ebp-10h] BYREF
   int v5; // [esp+18h] [ebp-Ch]
   int v6; // [esp+1Ch] [ebp-8h]
   int v7; // [esp+20h] [ebp-4h]
 
-  v2 = (CCBControlWindow *)((char *)this + 100);
+  p_m_bfocus = (int *)&this->m_bfocus;
   a4 = 40;
   v6 = 72;
   v5 = 27;
   v7 = 59;
-  this->Create((_DWORD *)this + 25, 192, (int)&a4, (int)aUiCombatContro_4);
-  (**(void (***)(UIStatic *, int))v2->UIFrameWnd)(v2->UIFrameWnd, 1);
+  this->Create(&this->m_bfocus, 192, (int)&a4, (int)aUiCombatContro_4);
+  (**(void (***)(int, int))*p_m_bfocus)(*p_m_bfocus, 1);
   a4 = 72;
   v6 = 104;
   v5 = 27;
   v7 = 59;
-  this->Create((_DWORD *)this + 26, 193, (int)&a4, (int)aUiCombatContro_5);
-  (***((void (****)(_DWORD, int))this + 26))(*((_DWORD *)this + 26), 1);
+  this->Create(&this->m_pbktex, 193, (int)&a4, (int)aUiCombatContro_5);
+  (*(void (**)(gbTexture *, int))this->m_pbktex->RefCount)(this->m_pbktex, 1);
   a4 = 104;
   v6 = 136;
   v5 = 27;
   v7 = 59;
-  this->Create((_DWORD *)this + 27, 194, (int)&a4, (int)aUiCombatContro_6);
-  (***((void (****)(_DWORD, int))this + 27))(*((_DWORD *)this + 27), 1);
+  this->Create(&this->m_pBack, 194, (int)&a4, (int)aUiCombatContro_6);
+  (*(void (**)(UIStatic *, int))this->m_pBack->m_fontcolor.ColorQuadFmt)(this->m_pBack, 1);
   a4 = 136;
   v6 = 168;
   v5 = 27;
   v7 = 59;
-  this->Create((_DWORD *)this + 28, 195, (int)&a4, (int)aUiCombatContro_7);
-  (***((void (****)(_DWORD, int))this + 28))(*((_DWORD *)this + 28), 1);
+  this->Create(&this->m_pButtonAttack, 195, (int)&a4, (int)aUiCombatContro_7);
+  (*(void (**)(UIButton *, int))this->m_pButtonAttack->m_fontcolor.ColorQuadFmt)(this->m_pButtonAttack, 1);
   a4 = 168;
   v6 = 200;
   v5 = 27;
   v7 = 59;
-  this->Create((_DWORD *)this + 29, 196, (int)&a4, (int)aUiCombatContro_8);
-  (***((void (****)(_DWORD, int))this + 29))(*((_DWORD *)this + 29), 1);
+  this->Create(&this->m_pButtonSkill, 196, (int)&a4, (int)aUiCombatContro_8);
+  (*(void (**)(UIButton *, int))this->m_pButtonSkill->m_fontcolor.ColorQuadFmt)(this->m_pButtonSkill, 1);
   a4 = 200;
   v6 = 232;
   v5 = 27;
   v7 = 59;
-  this->Create((_DWORD *)this + 30, 197, (int)&a4, (int)aUiCombatContro_9);
-  return (CCBControlWindow *)(***((int (****)(_DWORD, int))this + 30))(*((_DWORD *)this + 30), 1);
+  this->Create(&this->m_pButtonMagic, 197, (int)&a4, (int)aUiCombatContro_9);
+  return (*(CCBControlWindow *(**)(UIButton *, int))this->m_pButtonMagic->m_fontcolor.ColorQuadFmt)(
+           this->m_pButtonMagic,
+           1);
 }
 
 // 0x0051A880
@@ -98,7 +100,7 @@ CCBControlWindow::~CCBControlWindow(int _this)
   int v10; // ecx
   int v11; // ecx
 
-  result = ((gbRefObject **)this)->SetScrollPos();
+  result = ((UIListBox **)this)->SetScrollPos();
   v3 = (_DWORD *)(this + 76);
   v4 = 6;
   do
@@ -193,13 +195,13 @@ int CCBControlWindow::Reset(int a2, unsigned int a3, int a4)
 // 0x0051AA20
 char CCBControlWindow::Create(_DWORD *a2, int a3, int a4, int a5)
 {
-  char *v6; // eax
+  UIStatic *v6; // eax
   int v7; // eax
   char pExceptionObject[1024]; // [esp+8h] [ebp-80Ch] BYREF
   char ArgList[1024]; // [esp+408h] [ebp-40Ch] BYREF
   int v11; // [esp+810h] [ebp-4h]
 
-  v6 = (char *)((operator *)0xF8u)->new();
+  v6 = (UIStatic *)((operator *)0xF8u)->new();
   v11 = 0;
   if ( v6 )
     v6->UIStatic();
@@ -281,7 +283,7 @@ int CCBControlWindow::HandleInput(int _this, int a2)
 LABEL_10:
       *(_DWORD *)(v11 + 80) = 1;
       *(_BYTE *)(v11 + 68) = 1;
-      ((UIWnd *)*(_DWORD **)(this + 72))->SetEnable(MEMORY[0xC10D38], 0);
+      ((UIWnd *)*(UIWnd **)(this + 72))->SetEnable((const char *)&g_SceneMgr.m_npc[5].m_path.normal[140].y, 0);
       result = (***(int (****)(_DWORD, int))(this + 4 * a2 + 76))(*(_DWORD *)(this + 4 * a2 + 76), 1);
       *(_DWORD *)(this + 124) = a2;
       break;
@@ -325,25 +327,25 @@ int CCBControlWindow::CheckKeyInput()
 }
 
 // 0x0051AD10
-char CCBControlWindow::OnMessage(int _this, _DWORD *a2, int a3)
+char CCBControlWindow::OnMessage(int _this, _DWORD *pRect, int parent)
 {
   struct _EXCEPTION_REGISTRATION_RECORD *ExceptionList; // eax
   void *v4; // esp
-  char *v6; // eax
+  UIFrameWnd *v6; // eax
   int v7; // eax
-  char *v8; // eax
+  UIFrameWnd *v8; // eax
   int v9; // eax
-  _DWORD *v10; // ecx
-  int *v11; // ebp
-  char **v12; // esi
-  char *v13; // eax
-  char *v14; // eax
-  int v16; // [esp+10h] [ebp-1014h] BYREF
-  char *v17; // [esp+14h] [ebp-1010h]
+  UIWnd *v10; // ecx
+  const int *v11; // ebp
+  UIListBox **v12; // esi
+  UIListBox *v13; // eax
+  char *updated; // eax
+  int id; // [esp+10h] [ebp-1014h] BYREF
+  void *v17; // [esp+14h] [ebp-1010h]
   char pExceptionObject[1024]; // [esp+18h] [ebp-100Ch] BYREF
   char ArgList[1024]; // [esp+418h] [ebp-C0Ch] BYREF
   char v20[1024]; // [esp+818h] [ebp-80Ch] BYREF
-  char v21; // [esp+C18h] [ebp-40Ch] BYREF
+  char v21[1024]; // [esp+C18h] [ebp-40Ch] BYREF
   struct _EXCEPTION_REGISTRATION_RECORD *v22; // [esp+1018h] [ebp-Ch]
   void *v23; // [esp+101Ch] [ebp-8h]
   int v24; // [esp+1020h] [ebp-4h]
@@ -353,8 +355,8 @@ char CCBControlWindow::OnMessage(int _this, _DWORD *a2, int a3)
   v23 = (void *)&loc_56733A;
   v22 = ExceptionList;
   v4 = (void *)alloca(4104);
-  ((_DWORD *)this)->Create(1879048195, a2, a3);
-  v6 = (char *)((operator *)0x98u)->new();
+  ((UIWnd *)this)->Create(1879048195, pRect, parent);
+  v6 = (UIFrameWnd *)((operator *)0x98u)->new();
   v17 = v6;
   v24 = 0;
   if ( v6 )
@@ -367,22 +369,22 @@ char CCBControlWindow::OnMessage(int _this, _DWORD *a2, int a3)
   {
     qmemcpy(
       pExceptionObject,
-      (const void *)((char)ArgList)->FormatException((int)aCNewFailed_0, (int)aDProjectPal3Co_12, 3023),
+      ((Logger *)ArgList)->FormatException(aCNewFailed_0, aDProjectPal3Co_12, 3023),
       sizeof(pExceptionObject));
     _CxxThrowException(pExceptionObject, (_ThrowInfo *)&_TI1_AV_Exception__);
   }
-  *a2 = 0;
-  a2[2] = 256;
-  a2[1] = 0;
-  a2[3] = 256;
+  *pRect = 0;
+  pRect[2] = 256;
+  pRect[1] = 0;
+  pRect[3] = 256;
   (*(void (**)(_DWORD, int, _DWORD *, int))(**(_DWORD **)(this + 72) + 16))(
     *(_DWORD *)(this + 72),
     161,
-    a2,
+    pRect,
     this);
-  ((UIWnd *)*(gbRefObject ***)(this + 72))->CreateFromTemplate(aUiCombatContro_55, 0);
+  ((UIWnd *)*(UIWnd ***)(this + 72))->CreateFromTemplate(aUiCombatContro_55, 0);
   (***(void (****)(_DWORD, int))(this + 72))(*(_DWORD *)(this + 72), 1);
-  v8 = (char *)((operator *)0x98u)->new();
+  v8 = (UIFrameWnd *)((operator *)0x98u)->new();
   v17 = v8;
   v24 = 1;
   if ( v8 )
@@ -395,49 +397,47 @@ char CCBControlWindow::OnMessage(int _this, _DWORD *a2, int a3)
   {
     qmemcpy(
       pExceptionObject,
-      (const void *)((char)ArgList)->FormatException((int)aCNewFailed_0, (int)aDProjectPal3Co_12, 3037),
+      ((Logger *)ArgList)->FormatException(aCNewFailed_0, aDProjectPal3Co_12, 3037),
       sizeof(pExceptionObject));
     _CxxThrowException(pExceptionObject, (_ThrowInfo *)&_TI1_AV_Exception__);
   }
-  v10 = (_DWORD *)*(_DWORD **)(this + 72);
-  v16 = -1879048192;
+  v10 = (UIWnd *)*(UIWnd **)(this + 72);
+  id = -1879048192;
   v10->SetShow(0);
-  ((UIWnd *)*(_DWORD **)(this + 72))->GetChild(&v16);
-  ((UIFrameWnd *)*(_DWORD **)(this + 72))->SetPosition(39, 219);
-  v11 = (int *)&dword_570134;
-  v12 = (char **)(this + 80);
+  ((UIWnd *)*(UIWnd **)(this + 72))->GetChild((int)&id);
+  ((UIFrameWnd *)*(UIFrameWnd **)(this + 72))->SetPosition(39, 219);
+  v11 = (const int *)&dword_570134;
+  v12 = (UIListBox **)(this + 80);
   do
   {
-    v13 = (char *)((operator *)0x4B8u)->new();
+    v13 = (UIListBox *)((operator *)0x4B8u)->new();
     v17 = v13;
     v24 = 2;
     if ( v13 )
-      v14 = (char *)v13->UpdateKeyCtrl();
+      updated = (char *)v13->UpdateKeyCtrl();
     else
-      v14 = 0;
+      updated = 0;
     v24 = -1;
-    *v12 = v14;
-    if ( !v14 )
+    *v12 = (UIListBox *)updated;
+    if ( !updated )
     {
-      qmemcpy(
-        v20,
-        (const void *)((char)&v21)->FormatException((int)aCNewFailed_0, (int)aDProjectPal3Co_12, 3067),
-        sizeof(v20));
+      qmemcpy(v20, ((Logger *)v21)->FormatException(aCNewFailed_0, aDProjectPal3Co_12, 3067), sizeof(v20));
       _CxxThrowException(v20, (_ThrowInfo *)&_TI1_AV_Exception__);
     }
-    *a2 = 39;
-    a2[2] = 241;
-    a2[1] = 110;
-    a2[3] = 226;
-    (*(void (**)(char *, int, _DWORD *, int, _DWORD, _DWORD, _DWORD))(*(_DWORD *)*v12 + 28))(
+    *pRect = 39;
+    pRect[2] = 241;
+    pRect[1] = 110;
+    pRect[3] = 226;
+    (*(void (**)(UIListBox *, const int, _DWORD *, int, _DWORD, _DWORD, _DWORD))((*v12)->m_fontcolor.ColorQuadFmt
+                                                                                          + 28))(
       *v12,
       *v11,
-      a2,
+      pRect,
       this,
       0,
       0,
       0);
-    (**(void (***)(char *, int))*v12)(*v12, 1);
+    (*(void (**)(UIListBox *, int))(*v12)->m_fontcolor.ColorQuadFmt)(*v12, 1);
     sub_43F670(*v12, 2, -4);
     ((UIListBox *)*v12)->SetFirstShow(aName, 150);
     ((UIListBox *)*v12)->SetFirstShow(aCost, 43);
@@ -447,7 +447,7 @@ char CCBControlWindow::OnMessage(int _this, _DWORD *a2, int a3)
     ++v11;
     ++v12;
   }
-  while ( (int)v11 < (int)&dword_570138 );
+  while ( (int)v11 < (int)dword_570138 );
   return 1;
 }
 
@@ -459,7 +459,7 @@ int CCBControlWindow::Update(int _this)
   int v4; // ecx
   int v5; // ecx
 
-  result = ((gbRefObject **)this)->SetScrollPos();
+  result = ((UIListBox **)this)->SetScrollPos();
   v3 = *(_DWORD *)(this + 80);
   if ( v3 )
   {

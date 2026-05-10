@@ -98,7 +98,7 @@ public:
     void ctor_D4E0(); // 0x0046D4E0
     int ctor_A60(); // 0x00470A60
     void ctor_F40(); // 0x00470F40
-    int ctor_7BB0(int a2, int a3, int a4); // 0x00477BB0
+    int ctor_7BB0(int arg0, int a3, int a4); // 0x00477BB0
     int ctor_9300(); // 0x00479300
     void ctor_9680(); // 0x00479680
     int ctor_BBF0(); // 0x0047BBF0
@@ -124,7 +124,8 @@ public:
     int ctor_5120(); // 0x00525120
     void ctor_5540(); // 0x00525540
     _DWORD * ctor_57B0(int a2); // 0x005257B0
-    int ctor_6A40(int a2, _BYTE *a3, int a4); // 0x00526A40
+    // [IDA_COMPLEX_RET] original: int __thiscall(int this, int a2, int (__stdcall *a3)(int a2), int a4)
+    int ctor_6A40(int a2, int (__stdcall *a3)(int a2), int a4); // 0x00526A40
     int ctor_7950(); // 0x00527950
     void ctor_79F0(); // 0x005279F0
     int ctor_82E0(); // 0x005282E0

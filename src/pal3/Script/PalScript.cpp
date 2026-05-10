@@ -59,12 +59,12 @@ int PalScript::LoadScript(int pathAddr)
   char *v8; // ecx
   char v9; // al
   char v11; // [esp+13h] [ebp-265h]
-  unsigned int v12; // [esp+14h] [ebp-264h] BYREF
-  PalScript *v13; // [esp+18h] [ebp-260h]
+  int v12; // [esp+14h] [ebp-264h] BYREF
+  char *v13; // [esp+18h] [ebp-260h]
   unsigned int v14; // [esp+1Ch] [ebp-25Ch]
   int v15; // [esp+20h] [ebp-258h]
-  unsigned int v16; // [esp+24h] [ebp-254h] BYREF
-  PalScript *v17; // [esp+28h] [ebp-250h]
+  int v16; // [esp+24h] [ebp-254h] BYREF
+  char *v17; // [esp+28h] [ebp-250h]
   unsigned int v18; // [esp+2Ch] [ebp-24Ch]
   int v19; // [esp+30h] [ebp-248h]
   PalScript *v20; // [esp+34h] [ebp-244h]
@@ -83,26 +83,26 @@ int PalScript::LoadScript(int pathAddr)
   ((std *)&v12)->string::_Tidy(0);
   for ( LOBYTE(v25) = 1; String1->HasNext(); v19 = 0 )
   {
-    if ( !_strcmpi(String1[0].m_bLoadSceneScript, off_58B448) )
+    if ( !_strcmpi((const char *)String1, off_58B448) )
       break;
-    v2 = strlen(String1[0].m_bLoadSceneScript) + 1;
+    v2 = strlen((const char *)String1) + 1;
     v3 = v2 - 1;
-    if ( ((SceneObj *)&v12)->Update(v2 - 1, 1) )
+    if ( ((SceneObj *)&v12)->Update(v2 - 1) )
     {
       qmemcpy(v13, String1, v3);
       v14 = v2 - 1;
-      v13->m_bLoadSceneScript[v3] = 0;
+      v13[v3] = 0;
     }
     String1->LoadNext();
     LOBYTE(v16) = v11;
     ((std *)&v16)->string::_Tidy(0);
-    v4 = strlen(String1[0].m_bLoadSceneScript) + 1;
+    v4 = strlen((const char *)String1) + 1;
     v5 = v4 - 1;
-    if ( ((SceneObj *)&v16)->Update(v4 - 1, 1) )
+    if ( ((SceneObj *)&v16)->Update(v4 - 1) )
     {
       qmemcpy(v17, String1, v5);
       v18 = v4 - 1;
-      v17->m_bLoadSceneScript[v5] = 0;
+      v17[v5] = 0;
     }
     LOBYTE(v25) = 2;
     LOBYTE(v21[0]) = v12;
@@ -119,8 +119,8 @@ int PalScript::LoadScript(int pathAddr)
     LOBYTE(v25) = 1;
     if ( v17 )
     {
-      v6 = (char *)&v17[-1].m_bLoadSceneScript[39];
-      v7 = v17[-1].m_bLoadSceneScript[39];
+      v6 = (char *)v17 - 1;
+      v7 = *(v17 - 1);
       if ( !v7 || v7 == -1 )
         operator delete(v6);
       else
@@ -131,8 +131,8 @@ int PalScript::LoadScript(int pathAddr)
   }
   if ( v13 )
   {
-    v8 = (char *)&v13[-1].m_bLoadSceneScript[39];
-    v9 = v13[-1].m_bLoadSceneScript[39];
+    v8 = (char *)v13 - 1;
+    v9 = *(v13 - 1);
     if ( !v9 || v9 == -1 )
       operator delete(v8);
     else
@@ -153,14 +153,14 @@ char * PalScript::SetAppName(char *name)
   unsigned int v4; // kr04_4
   unsigned int v5; // ebx
   char *v6; // eax
-  char *v7; // ecx
+  scScriptInstance *m_pinst; // ecx
   char **p_name; // eax
   char *v9; // esi
   char *v10; // esi
   char *result; // eax
-  int v12; // [esp+10h] [ebp-24h] BYREF
+  scScriptInstance *v12; // [esp+10h] [ebp-24h] BYREF
   char v13[4]; // [esp+14h] [ebp-20h] BYREF
-  unsigned int v14; // [esp+18h] [ebp-1Ch] BYREF
+  int v14; // [esp+18h] [ebp-1Ch] BYREF
   char *v15; // [esp+1Ch] [ebp-18h]
   unsigned int v16; // [esp+20h] [ebp-14h]
   int v17; // [esp+30h] [ebp-4h]
@@ -170,7 +170,7 @@ char * PalScript::SetAppName(char *name)
   v3 = name;
   v4 = strlen(name) + 1;
   v5 = v4 - 1;
-  if ( ((SceneObj *)&v14)->Update(v4 - 1, 1) )
+  if ( ((SceneObj *)&v14)->Update(v4 - 1) )
   {
     qmemcpy(v15, v3, v5);
     v16 = v4 - 1;
@@ -178,11 +178,11 @@ char * PalScript::SetAppName(char *name)
   }
   v17 = 0;
   v6 = (char *)*sub_431040(v13, (int)&v14);
-  v7 = (char *)*(char **)&this->m_bLoadSceneScript[4];
+  m_pinst = (scScriptInstance *)this->m_pinst;
   name = v6;
-  if ( v6 == v7 || sub_431780((int)&v14, (int)(v6 + 12)) < 0 )
+  if ( v6 == (char *)m_pinst || sub_431780((int)&v14, (int)(v6 + 12)) < 0 )
   {
-    v12 = *(_DWORD *)&this->m_bLoadSceneScript[4];
+    v12 = (scScriptInstance *)this->m_pinst;
     p_name = (char **)&v12;
   }
   else
@@ -192,7 +192,7 @@ char * PalScript::SetAppName(char *name)
   v9 = (char *)*p_name;
   v17 = -1;
   ((std *)&v14)->string::_Tidy(1);
-  if ( v9 == *(char **)&this->m_bLoadSceneScript[4] )
+  if ( v9 == (char *)this->m_pinst )
     return aLangNull;
   v10 = (char *)*((_DWORD *)v9 + 8);
   result = byte_56A634;
@@ -208,7 +208,7 @@ void * PalScript::LoadFromFile(char *filename)
   struct gbVFile *v4; // esi
   unsigned int v5; // ebp
   void *v6; // edi
-  struct gbVFileSystem *v8; // [esp+34h] [ebp-10h] BYREF
+  OpenBaseFile v8; // [esp+34h] [ebp-10h] BYREF
   int v9; // [esp+40h] [ebp-4h]
 
   sub_4319C0((int)this);
@@ -232,7 +232,7 @@ void * PalScript::LoadFromFile(char *filename)
     }
   }
   v9 = -1;
-  return ((OpenNULLFile *)&v8)->OpenNULLFile();
+  return ((OpenNULLFile **)&v8)->OpenNULLFile();
 }
 
 // 0x004319F0
@@ -247,7 +247,7 @@ int PalScript::SetDirectory(char *dir)
   {
     if ( v3 )
     {
-      result = _strcmpi(this->m_bLoadSceneScript, dir);
+      result = _strcmpi((const char *)this, dir);
       if ( !result )
       {
         *((_DWORD *)this + 129) = *((_DWORD *)this + 130);
@@ -257,7 +257,7 @@ int PalScript::SetDirectory(char *dir)
     }
     else
     {
-      v3 = _strcmpi(this->m_bLoadSceneScript, aBegin) == 0;
+      v3 = _strcmpi((const char *)this, aBegin) == 0;
     }
   }
   return result;
@@ -301,7 +301,7 @@ int PalScript::HasNext()
           }
           else if ( v5 != 13 )
           {
-            v3->m_bLoadSceneScript[0] = v5;
+            LOBYTE(v3->m_bLoadSceneScript) = v5;
             v3 = (PalScript *)((char *)v3 + 1);
           }
           goto LABEL_31;
@@ -319,7 +319,7 @@ int PalScript::HasNext()
           }
           else if ( v4 != 32 && v4 != 9 && v4 != 44 && v4 != 13 && v4 != 10 )
           {
-            v3->m_bLoadSceneScript[0] = v4;
+            LOBYTE(v3->m_bLoadSceneScript) = v4;
             v3 = (PalScript *)((char *)v3 + 1);
             v2 = 2;
           }
@@ -365,7 +365,7 @@ int PalScript::LoadNext()
         }
         else
         {
-          v3->m_bLoadSceneScript[0] = v5;
+          LOBYTE(v3->m_bLoadSceneScript) = v5;
           v3 = (PalScript *)((char *)v3 + 1);
         }
       }
@@ -403,7 +403,7 @@ PalScript::PalScript()
 // 0x00431F00
 int PalScript::AddWaitObj()
 {
-  PalScript::AddCamObj();
+  ((int)this)->AddCamObj();
   return atexit(PalScript::ClearAllCamObj);
 }
 

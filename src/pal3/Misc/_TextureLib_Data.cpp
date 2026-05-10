@@ -81,7 +81,7 @@ _TextureLib_Data::~_TextureLib_Data(int a1, int a2, int a3, int a4, float *a5)
   v6[3] = (float)a2;
   v6[2] = (float)a3;
   v6[1] = (float)a4;
-  DynVertBuf = ((gbVertPoolMgr *)*(gbVertPoolMgr **)(g_pGfxManager + 196))->GetDynVertBuf(0x114u);
+  DynVertBuf = ((gbVertPoolMgr *)*(gbVertPoolMgr **)(g_Input.KeyInfo[177].Data + 196))->GetDynVertBuf(0x114u);
   DynVertBuf->RenderUIQuad((struct gbUIQuad *)v6, 1, (struct gbRenderEffect *)dword_1895050, 0);
 }
 
@@ -89,9 +89,9 @@ _TextureLib_Data::~_TextureLib_Data(int a1, int a2, int a3, int a4, float *a5)
 void _TextureLib_Data::_GetItemNum(int *a1, struct gbTextureArray *a2, int a3, int a4)
 {
   float v4; // ecx
-  int v5; // ecx
+  gbTexture *v5; // ecx
   long double v6; // st7
-  double v7; // st7
+  double Data; // st7
   struct gbRenderEffect *v8; // esi
   gbDynVertBuf *DynVertBuf; // eax
   float v10[4]; // [esp+8h] [ebp-28h] BYREF
@@ -103,7 +103,7 @@ void _TextureLib_Data::_GetItemNum(int *a1, struct gbTextureArray *a2, int a3, i
   int v16; // [esp+2Ch] [ebp-4h]
   int v17; // [esp+3Ch] [ebp+Ch]
   int v18; // [esp+3Ch] [ebp+Ch]
-  float v19; // [esp+3Ch] [ebp+Ch]
+  float HoldTime; // [esp+3Ch] [ebp+Ch]
 
   v16 = a3;
   v15 = 0;
@@ -117,37 +117,43 @@ void _TextureLib_Data::_GetItemNum(int *a1, struct gbTextureArray *a2, int a3, i
   }
   else
   {
-    v5 = *(_DWORD *)a2;
+    v5 = (gbTexture *)a2->pTexPt[0];
     v17 = a1[2] - *a1;
     v12 = 0;
     v11 = 0;
-    v6 = (fabs((double)v17) + -0.5) / (double)*(int *)(v5 + 24);
+    v6 = (fabs((double)v17) + -0.5) / (double)v5->TextureDetail;
     v18 = a1[3] - a1[1];
     v13 = v6;
-    v14 = (fabs((double)v18) + -0.5) / (double)*(int *)(v5 + 28);
+    v14 = (fabs((double)v18) + -0.5) / (double)v5->TextureRes;
   }
-  v7 = (double)MEMORY[0xBFD6D0];
+  Data = (double)g_Input.KeyInfo[120].Data;
   v8 = (struct gbRenderEffect *)dword_1895048;
-  v10[0] = ((double)*a1 + (double)*a1) / v7 - 1.0;
-  v19 = (float)MEMORY[0xBFD6D4];
-  v10[3] = 1.0 - ((double)a1[1] + (double)a1[1]) / v19;
-  v10[2] = ((double)a1[2] + (double)a1[2]) / v7 - 1.0;
-  v10[1] = 1.0 - ((double)a1[3] + (double)a1[3]) / v19;
-  DynVertBuf = ((gbVertPoolMgr *)*(gbVertPoolMgr **)(g_pGfxManager + 196))->GetDynVertBuf(0x15u);
+  v10[0] = ((double)*a1 + (double)*a1) / Data - 1.0;
+  HoldTime = (float)g_Input.KeyInfo[120].HoldTime;
+  v10[3] = 1.0 - ((double)a1[1] + (double)a1[1]) / HoldTime;
+  v10[2] = ((double)a1[2] + (double)a1[2]) / Data - 1.0;
+  v10[1] = 1.0 - ((double)a1[3] + (double)a1[3]) / HoldTime;
+  DynVertBuf = ((gbVertPoolMgr *)*(gbVertPoolMgr **)(g_Input.KeyInfo[177].Data + 196))->GetDynVertBuf(0x15u);
   DynVertBuf->RenderUIQuad((struct gbUIQuad *)v10, 1, v8, a2);
 }
 
 // 0x00540210
-void _TextureLib_Data::_CheckItem(_DWORD *a1, int *a2, struct gbTextureArray *a3, int a4, unsigned int a5, float *a6)
+void _TextureLib_Data::_CheckItem(
+        _DWORD *a1,
+        int *a2,
+        struct gbTextureArray *a3,
+        int a4,
+        unsigned int a5,
+        float *a6)
 {
   int v6; // edx
   float v7; // eax
   float v8; // ecx
-  int v9; // ecx
+  gbTexture *v9; // ecx
   unsigned int v10; // eax
   struct gbRenderEffect *v11; // esi
   double v12; // st7
-  double v14; // st7
+  double Data; // st7
   __int64 v15; // rax
   double v16; // st7
   gbDynVertBuf *DynVertBuf; // eax
@@ -163,7 +169,7 @@ void _TextureLib_Data::_CheckItem(_DWORD *a1, int *a2, struct gbTextureArray *a3
   float v27; // [esp+34h] [ebp-Ch]
   int v28; // [esp+38h] [ebp-8h]
   int v29; // [esp+3Ch] [ebp-4h]
-  float v30; // [esp+48h] [ebp+8h]
+  float HoldTime; // [esp+48h] [ebp+8h]
   int v31; // [esp+50h] [ebp+10h]
 
   v28 = 0;
@@ -180,12 +186,12 @@ void _TextureLib_Data::_CheckItem(_DWORD *a1, int *a2, struct gbTextureArray *a3
   }
   else
   {
-    v9 = *(_DWORD *)a3;
+    v9 = (gbTexture *)a3->pTexPt[0];
     v25 = 0;
     v24 = 0;
     v31 = a1[3] - a1[1];
-    v26 = (fabs((double)(a1[2] - *a1)) + -0.5) / (double)*(int *)(v9 + 24);
-    v27 = (fabs((double)v31) + -0.5) / (double)*(int *)(v9 + 28);
+    v26 = (fabs((double)(a1[2] - *a1)) + -0.5) / (double)v9->TextureDetail;
+    v27 = (fabs((double)v31) + -0.5) / (double)v9->TextureRes;
   }
   if ( (a5 & 0x100) != 0 )
   {
@@ -210,26 +216,26 @@ void _TextureLib_Data::_CheckItem(_DWORD *a1, int *a2, struct gbTextureArray *a3
   }
   else
   {
-    v14 = (double)MEMORY[0xBFD6D0];
-    v20 = ((double)*a2 + (double)*a2) / v14 - 1.0;
-    v30 = (float)MEMORY[0xBFD6D4];
-    v23 = 1.0 - ((double)a2[1] + (double)a2[1]) / v30;
+    Data = (double)g_Input.KeyInfo[120].Data;
+    v20 = ((double)*a2 + (double)*a2) / Data - 1.0;
+    HoldTime = (float)g_Input.KeyInfo[120].HoldTime;
+    v23 = 1.0 - ((double)a2[1] + (double)a2[1]) / HoldTime;
     if ( a6 )
     {
       v15 = (__int64)((double)*((unsigned int *)a6 + 260) + v20 + 0.5);
       v19 = *((unsigned int *)a6 + 261);
-      v22 = ((double)(int)v15 + (double)(int)v15) / v14 - 1.0;
+      v22 = ((double)(int)v15 + (double)(int)v15) / Data - 1.0;
       v16 = (double)(int)(__int64)((double)v19 + v23 + 0.5);
     }
     else
     {
-      v22 = ((double)a2[2] + (double)a2[2]) / v14 - 1.0;
+      v22 = ((double)a2[2] + (double)a2[2]) / Data - 1.0;
       v16 = (double)a2[3];
     }
     v11 = (struct gbRenderEffect *)dword_1895048;
-    v21 = 1.0 - (v16 + v16) / v30;
+    v21 = 1.0 - (v16 + v16) / HoldTime;
   }
-  DynVertBuf = ((gbVertPoolMgr *)*(gbVertPoolMgr **)(g_pGfxManager + 196))->GetDynVertBuf(a5);
+  DynVertBuf = ((gbVertPoolMgr *)*(gbVertPoolMgr **)(g_Input.KeyInfo[177].Data + 196))->GetDynVertBuf(a5);
   DynVertBuf->RenderUIQuad((struct gbUIQuad *)&v20, 1, v11, a3);
 }
 
@@ -244,9 +250,9 @@ void _TextureLib_Data::SetLibFolder(
 {
   __int64 v6; // rcx
   unsigned int v7; // ecx
-  float v8; // edx
-  float v9; // ecx
-  int v10; // ecx
+  unsigned int v8; // edx
+  unsigned int v9; // ecx
+  gbTexture *v10; // ecx
   long double v11; // st7
   double v12; // st7
   struct gbRenderEffect *v13; // esi
@@ -267,8 +273,8 @@ void _TextureLib_Data::SetLibFolder(
   int v28; // [esp+3Ch] [ebp-4h]
   int v29; // [esp+48h] [ebp+8h]
   int v30; // [esp+48h] [ebp+8h]
-  float v31; // [esp+48h] [ebp+8h]
-  float v32; // [esp+58h] [ebp+18h]
+  float HoldTime; // [esp+48h] [ebp+8h]
+  float Data; // [esp+58h] [ebp+18h]
 
   v6 = *a2;
   v27 = 0;
@@ -277,22 +283,22 @@ void _TextureLib_Data::SetLibFolder(
   {
     v7 = a5[263];
     v23 = a5[262];
-    v8 = *((float *)a5 + 266);
+    v8 = a5[266];
     v24 = v7;
-    v9 = *((float *)a5 + 267);
-    v25 = v8;
-    v26 = v9;
+    v9 = a5[267];
+    v25 = *(float *)&v8;
+    v26 = *(float *)&v9;
   }
   else
   {
-    v10 = *(_DWORD *)a3;
+    v10 = (gbTexture *)a3->pTexPt[0];
     v29 = a1[2] - *a1;
     v24 = 0;
     v23 = 0;
-    v11 = (fabs((double)v29) + -0.5) / (double)*(int *)(v10 + 24);
+    v11 = (fabs((double)v29) + -0.5) / (double)v10->TextureDetail;
     v30 = a1[3] - a1[1];
     v25 = v11;
-    v26 = (fabs((double)v30) + -0.5) / (double)*(int *)(v10 + 28);
+    v26 = (fabs((double)v30) + -0.5) / (double)v10->TextureRes;
   }
   if ( (a4 & 0x100) != 0 )
   {
@@ -314,13 +320,13 @@ void _TextureLib_Data::SetLibFolder(
   }
   else
   {
-    v32 = (float)MEMORY[0xBFD6D0];
-    v12 = ((double)*a1 + (double)*a1) / v32 - 1.0;
-    v31 = (float)MEMORY[0xBFD6D4];
-    v22 = 1.0 - ((double)a1[1] + (double)a1[1]) / v31;
+    Data = (float)g_Input.KeyInfo[120].Data;
+    v12 = ((double)*a1 + (double)*a1) / Data - 1.0;
+    HoldTime = (float)g_Input.KeyInfo[120].HoldTime;
+    v22 = 1.0 - ((double)a1[1] + (double)a1[1]) / HoldTime;
     if ( a5 == (unsigned int *)HIDWORD(v6) )
     {
-      v14 = ((double)a1[2] + (double)a1[2]) / v32 - 1.0;
+      v14 = ((double)a1[2] + (double)a1[2]) / Data - 1.0;
       v16 = (double)a1[3];
     }
     else
@@ -328,25 +334,33 @@ void _TextureLib_Data::SetLibFolder(
       v15 = (__int64)((double)__SPAIR64__(HIDWORD(v6), a5[260]) + v12);
       LODWORD(v18) = a5[261];
       HIDWORD(v18) = HIDWORD(v6);
-      v14 = ((double)(int)v15 + (double)(int)v15) / v32 - 1.0;
+      v14 = ((double)(int)v15 + (double)(int)v15) / Data - 1.0;
       v16 = (double)(int)(__int64)((double)v18 + v22);
     }
     v13 = (struct gbRenderEffect *)dword_1895048;
-    v20 = 1.0 - (v16 + v16) / v31;
+    v20 = 1.0 - (v16 + v16) / HoldTime;
   }
   v19 = v12 - -0.5;
   v21 = v14 - -0.5;
-  DynVertBuf = ((gbVertPoolMgr *)*(gbVertPoolMgr **)(g_pGfxManager + 196))->GetDynVertBuf(a4);
+  DynVertBuf = ((gbVertPoolMgr *)*(gbVertPoolMgr **)(g_Input.KeyInfo[177].Data + 196))->GetDynVertBuf(a4);
   DynVertBuf->RenderUIQuad((struct gbUIQuad *)&v19, 1, v13, a3);
 }
 
 // 0x00540650
-void _TextureLib_Data::GetLibInfo(int a1, int a2, int a3, int a4, int *a5, struct gbTextureArray *a6, int a7, unsigned int *a8)
+void _TextureLib_Data::GetLibInfo(
+        int a1,
+        int a2,
+        int a3,
+        int a4,
+        int *a5,
+        struct gbTextureArray *a6,
+        int a7,
+        unsigned int *a8)
 {
   unsigned int v8; // ecx
-  float v9; // edx
-  float v10; // ecx
-  int v11; // ecx
+  unsigned int v9; // edx
+  unsigned int v10; // ecx
+  gbTexture *v11; // ecx
   double v12; // st7
   double v13; // st6
   double v14; // st5
@@ -368,19 +382,19 @@ void _TextureLib_Data::GetLibInfo(int a1, int a2, int a3, int a4, int *a5, struc
   {
     v8 = a8[263];
     v20 = a8[262];
-    v9 = *((float *)a8 + 266);
+    v9 = a8[266];
     v21 = v8;
-    v10 = *((float *)a8 + 267);
-    v22 = v9;
-    v23 = v10;
+    v10 = a8[267];
+    v22 = *(float *)&v9;
+    v23 = *(float *)&v10;
   }
   else
   {
-    v11 = *(_DWORD *)a6;
+    v11 = (gbTexture *)a6->pTexPt[0];
     v21 = 0;
     v20 = 0;
-    v22 = (fabs((double)(a3 - a1)) + -0.5) / (double)*(int *)(v11 + 24);
-    v23 = (fabs((double)(a4 - a2)) + -0.5) / (double)*(int *)(v11 + 28);
+    v22 = (fabs((double)(a3 - a1)) + -0.5) / (double)v11->TextureDetail;
+    v23 = (fabs((double)(a4 - a2)) + -0.5) / (double)v11->TextureRes;
   }
   v12 = (double)a1;
   v19 = (float)a2;
@@ -397,7 +411,7 @@ void _TextureLib_Data::GetLibInfo(int a1, int a2, int a3, int a4, int *a5, struc
   v18[1] = v14;
   v18[0] = v12 - -0.5;
   v18[2] = v13 - -0.5;
-  DynVertBuf = ((gbVertPoolMgr *)*(gbVertPoolMgr **)(g_pGfxManager + 196))->GetDynVertBuf(0x114u);
+  DynVertBuf = ((gbVertPoolMgr *)*(gbVertPoolMgr **)(g_Input.KeyInfo[177].Data + 196))->GetDynVertBuf(0x114u);
   if ( !a7 )
   {
     v17 = a6;
@@ -416,11 +430,18 @@ LABEL_12:
 }
 
 // 0x005407A0
-void _TextureLib_Data::GetLib(int a1, int a2, int a3, int a4, int *a5, struct gbTextureArray *a6, unsigned int a7)
+void _TextureLib_Data::GetLib(
+        int a1,
+        int a2,
+        int a3,
+        int a4,
+        int *a5,
+        struct gbTextureArray *a6,
+        unsigned int a7)
 {
   int v7; // ecx
   __int64 v8; // rax
-  int v9; // ecx
+  gbTexture *v9; // ecx
   double v10; // st7
   double v11; // st6
   double v12; // st5
@@ -447,11 +468,11 @@ void _TextureLib_Data::GetLib(int a1, int a2, int a3, int a4, int *a5, struct gb
   }
   else
   {
-    v9 = *(_DWORD *)a6;
+    v9 = (gbTexture *)a6->pTexPt[0];
     v17 = 0;
     v16 = 0;
-    v18 = (fabs((double)(a3 - a1)) + -0.5) / (double)*(int *)(v9 + 24);
-    v19 = (fabs((double)(a4 - a2)) + -0.5) / (double)*(int *)(v9 + 28);
+    v18 = (fabs((double)(a3 - a1)) + -0.5) / (double)v9->TextureDetail;
+    v19 = (fabs((double)(a4 - a2)) + -0.5) / (double)v9->TextureRes;
   }
   v10 = (double)a1;
   v15 = (float)a2;
@@ -469,17 +490,22 @@ void _TextureLib_Data::GetLib(int a1, int a2, int a3, int a4, int *a5, struct gb
   v14[1] = v12;
   v14[0] = v10 - -0.5;
   v14[2] = v11 - -0.5;
-  DynVertBuf = ((gbVertPoolMgr *)*(gbVertPoolMgr **)(g_pGfxManager + 196))->GetDynVertBuf(0x114u);
+  DynVertBuf = ((gbVertPoolMgr *)*(gbVertPoolMgr **)(g_Input.KeyInfo[177].Data + 196))->GetDynVertBuf(0x114u);
   DynVertBuf->RenderUIQuad((struct gbUIQuad *)v14, 1, (struct gbRenderEffect *)dword_189505C, a6);
 }
 
 // 0x005408E0
-void _TextureLib_Data::GetTextureInfo(_DWORD *a1, int *a2, int *a3, struct gbTextureArray *a4, unsigned int *a5)
+void _TextureLib_Data::GetTextureInfo(
+        _DWORD *a1,
+        int *a2,
+        int *a3,
+        struct gbTextureArray *a4,
+        unsigned int *a5)
 {
   unsigned int v5; // ecx
-  float v6; // edx
-  float v7; // ecx
-  int v8; // edx
+  unsigned int v6; // edx
+  unsigned int v7; // ecx
+  gbTexture *v8; // edx
   int v9; // ebx
   double v10; // st7
   gbDynVertBuf *DynVertBuf; // eax
@@ -501,21 +527,21 @@ void _TextureLib_Data::GetTextureInfo(_DWORD *a1, int *a2, int *a3, struct gbTex
   {
     v5 = a5[263];
     v16 = a5[262];
-    v6 = *((float *)a5 + 266);
+    v6 = a5[266];
     v17 = v5;
-    v7 = *((float *)a5 + 267);
-    v18 = v6;
-    v19 = v7;
+    v7 = a5[267];
+    v18 = *(float *)&v6;
+    v19 = *(float *)&v7;
   }
   else
   {
-    v8 = *(_DWORD *)a4;
+    v8 = (gbTexture *)a4->pTexPt[0];
     v9 = a1[2] - *a1;
     v17 = 0;
     v16 = 0;
     v22 = a1[3] - a1[1];
-    v18 = (fabs((double)v9) + -0.5) / (double)*(int *)(v8 + 24);
-    v19 = (fabs((double)v22) + -0.5) / (double)*(int *)(v8 + 28);
+    v18 = (fabs((double)v9) + -0.5) / (double)v8->TextureDetail;
+    v19 = (fabs((double)v22) + -0.5) / (double)v8->TextureRes;
   }
   v13[0] = (float)*a2;
   v15 = (float)a2[1];
@@ -531,12 +557,19 @@ void _TextureLib_Data::GetTextureInfo(_DWORD *a1, int *a2, int *a3, struct gbTex
     v10 = (double)a2[3];
   }
   v13[1] = v10;
-  DynVertBuf = ((gbVertPoolMgr *)*(gbVertPoolMgr **)(g_pGfxManager + 196))->GetDynVertBuf(0x114u);
+  DynVertBuf = ((gbVertPoolMgr *)*(gbVertPoolMgr **)(g_Input.KeyInfo[177].Data + 196))->GetDynVertBuf(0x114u);
   DynVertBuf->RenderUIQuad((struct gbUIQuad *)v13, 1, (struct gbRenderEffect *)dword_1895054, a4);
 }
 
 // 0x00540A20
-void _TextureLib_Data::GetTextureInfo(int a1, int a2, int a3, int a4, int *a5, struct gbTextureArray *a6, unsigned int *a7)
+void _TextureLib_Data::GetTextureInfo(
+        int a1,
+        int a2,
+        int a3,
+        int a4,
+        int *a5,
+        struct gbTextureArray *a6,
+        unsigned int *a7)
 {
   double v7; // st7
   double v8; // st6
@@ -546,8 +579,8 @@ void _TextureLib_Data::GetTextureInfo(int a1, int a2, int a3, int a4, int *a5, s
   float v12; // [esp+14h] [ebp-1Ch]
   unsigned int v13; // [esp+18h] [ebp-18h]
   unsigned int v14; // [esp+1Ch] [ebp-14h]
-  int v15; // [esp+20h] [ebp-10h]
-  int v16; // [esp+24h] [ebp-Ch]
+  unsigned int v15; // [esp+20h] [ebp-10h]
+  unsigned int v16; // [esp+24h] [ebp-Ch]
   int v17; // [esp+28h] [ebp-8h]
   int v18; // [esp+2Ch] [ebp-4h]
 
@@ -582,6 +615,6 @@ void _TextureLib_Data::GetTextureInfo(int a1, int a2, int a3, int a4, int *a5, s
   v11[1] = v9;
   v11[0] = v7 - -0.5;
   v11[2] = v8 - -0.5;
-  DynVertBuf = ((gbVertPoolMgr *)*(gbVertPoolMgr **)(g_pGfxManager + 196))->GetDynVertBuf(0x114u);
+  DynVertBuf = ((gbVertPoolMgr *)*(gbVertPoolMgr **)(g_Input.KeyInfo[177].Data + 196))->GetDynVertBuf(0x114u);
   DynVertBuf->RenderUIQuad((struct gbUIQuad *)v11, 1, (struct gbRenderEffect *)dword_1895058, a6);
 }

@@ -51,21 +51,23 @@ struct gbVFileSystem * Object3D::_Object3D(const char *a2, int a3)
   int v7; // eax
   gbGeomNode *v8; // eax
   char Destination[4]; // [esp+10h] [ebp-60h] BYREF
-  struct gbVFileSystem *v11; // [esp+14h] [ebp-5Ch] BYREF
-  _BYTE v12[88]; // [esp+18h] [ebp-58h] BYREF
+  OpenBaseFile v11; // [esp+14h] [ebp-5Ch] BYREF
+  _BYTE v12[68]; // [esp+18h] [ebp-58h] BYREF
+  __int32 v13; // [esp+5Ch] [ebp-14h]
+  int v14; // [esp+6Ch] [ebp-4h]
 
   this->LoadSubObject();
   *(_DWORD *)Destination = 0;
   strncpy(Destination, &a2[strlen(a2) - 3], 3u);
   ((OpenBaseFile *)&v11)->OpenBaseFile();
-  *(_DWORD *)&v12[84] = 0;
+  v14 = 0;
   ((gbMatrix4 *)v12)->gbMatrix4();
   if ( !_strcmpi(Destination, off_596424) )
   {
     this->m_type = 1;
     v4 = (gbGeomNode *)((operator *)0x118u)->new();
     v5 = v4;
-    v12[84] = 1;
+    LOBYTE(v14) = 1;
     if ( !v4 )
     {
       v6 = 0;
@@ -76,7 +78,7 @@ LABEL_3:
     v5->next = (gbChain1DNode *)&off_56A66C;
     v6 = v5;
 LABEL_5:
-    v12[84] = 0;
+    LOBYTE(v14) = 0;
     this->m_pol = v6;
     v6->LoadFromFile(a2, 0, 0);
     ((gbGeomNode *)this->m_pol)->GetOBBox((struct gbOBBox *)v12);
@@ -87,7 +89,7 @@ LABEL_5:
     this->m_type = 3;
     v4 = (gbGeomNode *)((operator *)0x118u)->new();
     v5 = v4;
-    v12[84] = 2;
+    LOBYTE(v14) = 2;
     if ( !v4 )
     {
       v6 = 0;
@@ -97,12 +99,12 @@ LABEL_5:
   }
   this->m_type = 2;
   v7 = ((operator *)0x224u)->new();
-  v12[84] = 3;
+  LOBYTE(v14) = 3;
   if ( v7 )
     v8 = (gbGeomNode *)v7->FastInit();
   else
     v8 = 0;
-  v12[84] = 0;
+  LOBYTE(v14) = 0;
   this->m_pol = v8;
   ((Actor *)v8)->LoadModel();
   ((Actor *)this->m_pol)->CompareAction(a3, 0);
@@ -111,39 +113,39 @@ LABEL_5:
     v12,
     this->m_pol->Children.m_numNode);
 LABEL_13:
-  this->m_showSubObj = *(float *)&v12[68];
-  this->m_isLoadObj = 1;
+  this->m_showSubObj = v13;
+  LOBYTE(this->m_isLoadObj) = 1;
   LOBYTE(this->m_dropy) = 1;
-  this->m_rotDstSpeed = a3;
-  *(_DWORD *)&v12[84] = -1;
-  return ((OpenNULLFile *)&v11)->OpenNULLFile();
+  LODWORD(this->m_rotDstSpeed) = a3;
+  v14 = -1;
+  return ((OpenNULLFile **)&v11)->OpenNULLFile();
 }
 
 // 0x0047CD70
 unsigned __int8 Object3D::LoadObject(const char *a2, int a3)
 {
   unsigned __int8 result; // al
-  void (***v5)(_DWORD, int); // ecx
-  gbGeomNode *v6; // eax
-  gbGeomNode *v7; // edi
-  gbGeomNode *v8; // ecx
-  gbGeomNode *v9; // eax
-  gbGeomNode *v10; // edi
-  gbGeomNode *v11; // ecx
+  Actor *m_actor; // ecx
+  Actor *v6; // eax
+  Actor *v7; // edi
+  Actor *v8; // ecx
+  Actor *v9; // eax
+  Actor *v10; // edi
+  Actor *v11; // ecx
   int Destination; // [esp+10h] [ebp-14h] BYREF
-  struct gbVFileSystem *v13; // [esp+14h] [ebp-10h] BYREF
+  OpenBaseFile v13; // [esp+14h] [ebp-10h] BYREF
   int v14; // [esp+20h] [ebp-4h]
 
-  result = this->m_isLoadObj[0];
-  this->m_isLoadObj[20] = 0;
-  this->m_isLoadObj[21] = 0;
+  result = this->m_isLoadObj;
+  LOBYTE(this->m_subType) = 0;
+  BYTE1(this->m_subType) = 0;
   if ( result )
   {
-    v5 = *(void (****)(_DWORD, int))&this->m_isLoadObj[12];
-    if ( v5 )
+    m_actor = (Actor *)this->m_actor;
+    if ( m_actor )
     {
-      (**v5)(v5, 1);
-      *(_DWORD *)&this->m_isLoadObj[12] = 0;
+      (*(void (**)(Actor *, int))m_actor->m_actarray)(m_actor, 1);
+      this->m_actor = 0;
     }
     Destination = 0;
     strncpy((char *)&Destination, &a2[strlen(a2) - 3], 3u);
@@ -155,16 +157,16 @@ unsigned __int8 Object3D::LoadObject(const char *a2, int a3)
       {
 LABEL_15:
         v14 = -1;
-        return (unsigned __int8)((OpenNULLFile *)&v13)->OpenNULLFile();
+        return (unsigned __int8)((OpenNULLFile **)&v13)->OpenNULLFile();
       }
-      *(_DWORD *)&this->m_isLoadObj[16] = 3;
-      v9 = (gbGeomNode *)((operator *)0x118u)->new();
+      this->m_subObj = (gbGeomNode *)3;
+      v9 = (Actor *)((operator *)0x118u)->new();
       v10 = v9;
       LOBYTE(v14) = 2;
       if ( v9 )
       {
         v9->gbGeomNode();
-        *(_DWORD *)v10->gbVisNode = &off_56A66C;
+        v10->m_actarray = (__int32)&off_56A66C;
         v11 = v10;
       }
       else
@@ -172,20 +174,20 @@ LABEL_15:
         v11 = 0;
       }
       LOBYTE(v14) = 0;
-      *(_DWORD *)&this->m_isLoadObj[12] = v11;
-      v11->LoadFromFile(a2, 0, 0);
-      ((gbVisNode *)*(gbVisNode **)&this->m_isLoadObj[12])->SetTimeScale(1.0);
+      this->m_actor = v11;
+      ((gbGeomNode *)v11)->LoadFromFile(a2, 0, 0);
+      ((gbVisNode *)this->m_actor)->SetTimeScale(1.0);
     }
     else
     {
-      *(_DWORD *)&this->m_isLoadObj[16] = 1;
-      v6 = (gbGeomNode *)((operator *)0x118u)->new();
+      this->m_subObj = (gbGeomNode *)1;
+      v6 = (Actor *)((operator *)0x118u)->new();
       v7 = v6;
       LOBYTE(v14) = 1;
       if ( v6 )
       {
         v6->gbGeomNode();
-        *(_DWORD *)v7->gbVisNode = &off_56A66C;
+        v7->m_actarray = (__int32)&off_56A66C;
         v8 = v7;
       }
       else
@@ -193,10 +195,10 @@ LABEL_15:
         v8 = 0;
       }
       LOBYTE(v14) = 0;
-      *(_DWORD *)&this->m_isLoadObj[12] = v8;
-      v8->LoadFromFile(a2, 0, 0);
+      this->m_actor = v8;
+      ((gbGeomNode *)v8)->LoadFromFile(a2, 0, 0);
     }
-    this->m_isLoadObj[20] = 1;
+    LOBYTE(this->m_subType) = 1;
     goto LABEL_15;
   }
   return result;
@@ -245,19 +247,19 @@ LABEL_9:
 char Object3D::Destroy(int _this)
 {
   unsigned int v2; // eax
-  _DWORD v4[4]; // [esp+Ch] [ebp-10h] BYREF
+  struct gbNodeMsgObj v4; // [esp+Ch] [ebp-10h] BYREF
 
-  if ( *(_DWORD *)(this + 4) != 3 || !((gbVisNode *)*(gbVisNode **)(this + 8))->PopMessage((struct gbNodeMsgObj *)v4) )
+  if ( *(_DWORD *)(this + 4) != 3 || !((gbVisNode *)*(gbVisNode **)(this + 8))->PopMessage(&v4) )
     return 0;
   while ( 1 )
   {
-    if ( v4[0] == 1 )
+    if ( v4.msgid == 1 )
     {
       v2 = gbCrc32Compute(aOver);
-      if ( v4[1] == v2 )
+      if ( v4.param[0] == v2 )
         break;
     }
-    if ( !((gbVisNode *)*(gbVisNode **)(this + 8))->PopMessage((struct gbNodeMsgObj *)v4) )
+    if ( !((gbVisNode *)*(gbVisNode **)(this + 8))->PopMessage(&v4) )
       return 0;
   }
   return 1;
@@ -437,7 +439,7 @@ void Object3D::GetScreenDegree()
 void Object3D::GetScreenDegree(int a1@<ecx>, int a2, int a3, int a4, gbMatrixStack *a5)
 {
   struct gbCamera **v6; // eax
-  gbSceneGraph *v7; // edi
+  int v7; // edi
   gbMatrixStack *v8; // edi
   double v10; // st7
   unsigned __int8 v11; // c0
@@ -446,22 +448,20 @@ void Object3D::GetScreenDegree(int a1@<ecx>, int a2, int a3, int a4, gbMatrixSta
   float v14; // [esp+38h] [ebp-28h]
   float v15; // [esp+40h] [ebp-20h]
   gbSceneGraph *v16; // [esp+50h] [ebp-10h]
-  float v17; // [esp+54h] [ebp-Ch] BYREF
-  float v18; // [esp+58h] [ebp-8h]
-  float v19; // [esp+5Ch] [ebp-4h] BYREF
+  struct gbVec3D v17; // [esp+54h] [ebp-Ch] BYREF
   _UNKNOWN *retaddr; // [esp+60h] [ebp+0h] BYREF
-  float v21; // [esp+70h] [ebp+10h]
+  float v19; // [esp+70h] [ebp+10h]
 
   v6 = *(struct gbCamera ***)(a1 + 84);
   if ( !v6 || !*(_BYTE *)a1 || !*(_BYTE *)(a1 + 80) )
     return;
-  v7 = (gbSceneGraph *)*(gbSceneGraph **)(g_pGfxManager + 448);
-  v16 = v7;
-  v7->Begin(*v6);
-  v7->pAllRObj[19244] = 0;
+  v7 = *(_DWORD *)(g_Input.KeyInfo[177].Data + 448);
+  v16 = (gbSceneGraph *)v7;
+  ((gbSceneGraph *)v7)->Begin(*v6);
+  *(_BYTE *)(v7 + 19244) = 0;
   v8 = a5;
   if ( !a5 )
-    v8 = (gbMatrixStack *)*(gbMatrixStack **)(g_pGfxManager + 216);
+    v8 = (gbMatrixStack *)*(gbMatrixStack **)(g_Input.KeyInfo[177].Data + 216);
   ((gbCamera *)**(gbCamera ***)(a1 + 84))->SetAsCurrent(3);
   v8->Push();
   v8->Translate((struct gbVec3D *)(a1 + 32));
@@ -473,31 +473,31 @@ void Object3D::GetScreenDegree(int a1@<ecx>, int a2, int a3, int a4, gbMatrixSta
     v10 = 360.0 - *(float *)(a1 + 116);
     if ( !(v11 | v12) )
       v10 = -v10;
-    v21 = v10;
+    v19 = v10;
     retaddr = 0;
-    v8->Rotate(v21, (struct gbVec3D *)&retaddr);
+    v8->Rotate(v19, (struct gbVec3D *)&retaddr);
   }
   v8->Rotate(*(float *)(a1 + 64), (struct gbVec3D *)&retaddr);
   v15 = *(float *)(a1 + 68);
-  v19 = 1.0;
+  v17.z = 1.0;
   retaddr = 0;
-  v8->Rotate(v15, (struct gbVec3D *)&v19);
+  v8->Rotate(v15, (struct gbVec3D *)&v17.z);
   v13 = *(float *)(a1 + 72);
-  v17 = 0.0;
-  v18 = 1.0;
-  v19 = 0.0;
-  v8->Rotate(v13, (struct gbVec3D *)&v17);
+  v17.x = 0.0;
+  v17.y = 1.0;
+  v17.z = 0.0;
+  v8->Rotate(v13, &v17);
   v14 = *(float *)(a1 + 76);
-  v17 = 0.0;
-  v18 = 0.0;
-  v19 = 1.0;
-  v8->Rotate(v14, (struct gbVec3D *)&v17);
+  v17.x = 0.0;
+  v17.y = 0.0;
+  v17.z = 1.0;
+  v8->Rotate(v14, &v17);
   switch ( *(_DWORD *)(a1 + 4) )
   {
     case 1:
       goto LABEL_16;
     case 2:
-      ((Actor *)0)->DispatchAction();
+      ((Actor *)*(Actor **)(a1 + 8))->DispatchAction(0);
       break;
     case 3:
 LABEL_16:
@@ -508,10 +508,10 @@ LABEL_16:
   if ( *(_BYTE *)(a1 + 21) && *(_BYTE *)(a1 + 20) )
   {
     v8->Push();
-    v17 = *(float *)(a1 + 32);
-    v18 = *(float *)(a1 + 36) + *(float *)(a1 + 24);
-    v19 = *(float *)(a1 + 40);
-    v8->Translate((struct gbVec3D *)&v17);
+    v17.x = *(float *)(a1 + 32);
+    v17.y = *(float *)(a1 + 36) + *(float *)(a1 + 24);
+    v17.z = *(float *)(a1 + 40);
+    v8->Translate(&v17);
     if ( *(_DWORD *)(a1 + 16) == 1 || *(_DWORD *)(a1 + 16) == 3 )
       (*(void (**)(_DWORD, _DWORD))(**(_DWORD **)(a1 + 12) + 16))(*(_DWORD *)(a1 + 12), 0);
     v8->Pop();
@@ -681,15 +681,15 @@ void * Object3D::SetupCamera()
 {
   float v2; // [esp+0h] [ebp-2Ch]
   float v3; // [esp+4h] [ebp-28h]
-  _DWORD v4[6]; // [esp+14h] [ebp-18h] BYREF
-  void *v5; // [esp+30h] [ebp+4h]
+  struct gbRay v4; // [esp+14h] [ebp-18h] BYREF
+  struct gbRay *v5; // [esp+30h] [ebp+4h]
   int *v6; // [esp+34h] [ebp+8h]
 
-  memset(v4, 0, sizeof(v4));
-  v3 = 1.0 - ((double)v6[1] + (double)v6[1]) / (double)MEMORY[0xBFD6D4];
-  v2 = ((double)*v6 + (double)*v6) / (double)MEMORY[0xBFD6D0] - 1.0;
-  ((gbCamera *)**(gbCamera ***)&this->m_isLoadObj[84])->GetRayToScreen(v2, v3, (struct gbRay *)v4);
-  qmemcpy(v5, v4, 0x18u);
+  memset(&v4, 0, sizeof(v4));
+  v3 = 1.0 - ((double)v6[1] + (double)v6[1]) / (double)g_Input.KeyInfo[120].HoldTime;
+  v2 = ((double)*v6 + (double)*v6) / (double)g_Input.KeyInfo[120].Data - 1.0;
+  ((gbCamera *)*(gbCamera **)LODWORD(this->m_dropz))->GetRayToScreen(v2, v3, &v4);
+  qmemcpy(v5, &v4, sizeof(struct gbRay));
   return v5;
 }
 
@@ -701,9 +701,9 @@ bool Object3D::Update(int _this)
   int v4; // eax
   int v5; // eax
   struct tagPOINT Point; // [esp+4h] [ebp-84h] BYREF
-  _BYTE actionId[100]; // [esp+Ch] [ebp-7Ch] BYREF
+  _BYTE actionId[124]; // [esp+Ch] [ebp-7Ch] BYREF
 
-  if ( !*(_BYTE *)(this + 80) || *(_BYTE *)(this + 121) || g_Input.? != 1 )
+  if ( !*(_BYTE *)(this + 80) || *(_BYTE *)(this + 121) || g_Input.m_shiftedKeyStates[207] != 1 )
     return 0;
   ((gbMatrix4 *)actionId)->gbMatrix4();
   ((GRPinput *)&Point)->GetCursorPos();
@@ -741,9 +741,9 @@ bool Object3D::GetMouseRay(int _this, int a2)
   int v5; // eax
   int v6; // eax
   struct tagPOINT Point; // [esp+4h] [ebp-84h] BYREF
-  _BYTE actionId[100]; // [esp+Ch] [ebp-7Ch] BYREF
+  _BYTE actionId[124]; // [esp+Ch] [ebp-7Ch] BYREF
 
-  if ( !*(_BYTE *)(this + 80) || *(_BYTE *)(this + 121) || (g_Input.?[4 * a2 + 7] & 0xF) != 1 )
+  if ( !*(_BYTE *)(this + 80) || *(_BYTE *)(this + 121) || (g_Input.m_shiftedKeyStates[4 * a2 + 204] & 0xF) != 1 )
     return 0;
   ((gbMatrix4 *)actionId)->gbMatrix4();
   ((GRPinput *)&Point)->GetCursorPos();
@@ -790,25 +790,25 @@ int Object3D::CheckMousePressed()
 // 0x0047DCA0
 int Object3D::Create()
 {
-  this->UIListBox();
-  *(_DWORD *)&this->m_isLoadObj[72] = &off_56A9C0;
-  *(_DWORD *)&this->m_isLoadObj[76] = 0;
-  *(_DWORD *)&this->m_isLoadObj[96] = 800;
-  *(_DWORD *)&this->m_isLoadObj[100] = 600;
+  ((UIListBox *)this)->UIListBox();
+  LODWORD(this->m_rotz) = &off_56A9C0;
+  this->m_dropx = 0.0;
+  LODWORD(this->m_yaw) = 800;
+  LODWORD(this->m_pitch) = 600;
   *((_DWORD *)this + 96) = 0;
   *((_BYTE *)this + 388) = 0;
-  sub_444F60((_BYTE *)this + 392);
-  ((UIFrameWnd *)(_BYTE *)this + 584)->UIFrameWnd();
+  sub_444F60((UIWnd *)((char *)this + 392));
+  ((UIFrameWnd *)((char *)this + 584))->UIFrameWnd();
   `eh vector constructor iterator'(
     (char *)this + 736,
     0x158u,
     5,
     (void (*)(void *))UIScene::_UIScene,
     (void (*)(void *))UIScene::Destroy2);
-  ((UIItem *)(int)this + 2456)->Refresh();
-  *(_DWORD *)this->m_isLoadObj = &off_56B8A4;
-  *(_DWORD *)&this->m_isLoadObj[72] = &off_56B898;
-  return (int)this->m_isLoadObj;
+  ((UIItem *)(UIItem *)this + 2456)->Refresh();
+  this->m_isLoadObj = (__int32)&off_56B8A4;
+  LODWORD(this->m_rotz) = &off_56B898;
+  return (int)this;
 }
 
 // 0x0047DE40

@@ -21,45 +21,52 @@ extern int unk_573C64;
 // 0x004020E0
 int GRPinput::Create(void *hInst, int hwnd, int flag)
 {
-  void **p_m_lpDIDMouse; // edi
-  void *v7; // edi
-  void **p_m_lpDIDKeyboard; // edi
+  IDirectInputDevice8A **p_m_lpDIDMouse; // edi
+  IDirectInputDevice8A *v7; // edi
+  IDirectInputDevice8A **p_m_lpDIDKeyboard; // edi
 
-  if ( DirectInput8Create((HINSTANCE)hInst, 0x800u, &riidltf, &this->m_lpDI, 0) )
+  if ( DirectInput8Create((HINSTANCE)hInst, 0x800u, &riidltf, (LPVOID *)&this->m_lpDI, 0) )
     return 0;
   p_m_lpDIDMouse = &this->m_lpDIDMouse;
-  if ( !(*(int (__stdcall **)(void *, void *, void **, _DWORD))(*(_DWORD *)this->m_lpDI + 12))(
+  if ( !(*(int (__stdcall **)(IDirectInput8A *, void *, IDirectInputDevice8A **, _DWORD))(*(_DWORD *)this->m_lpDI + 12))(
           this->m_lpDI,
           &unk_573810,
           &this->m_lpDIDMouse,
           0) )
   {
-    (*(void (__stdcall **)(void *, void *))(*(_DWORD *)*p_m_lpDIDMouse + 44))(*p_m_lpDIDMouse, &unk_573C64);
-    v7 = (void *)*p_m_lpDIDMouse;
+    (*(void (__stdcall **)(IDirectInputDevice8A *, void *))(*(_DWORD *)*p_m_lpDIDMouse + 44))(
+      *p_m_lpDIDMouse,
+      &unk_573C64);
+    v7 = (IDirectInputDevice8A *)*p_m_lpDIDMouse;
     if ( flag )
-      (*(void (__stdcall **)(void *, int, int))(*(_DWORD *)v7 + 52))(v7, hwnd, 5);
+      (*(void (__stdcall **)(IDirectInputDevice8A *, int, int))(*(_DWORD *)v7 + 52))(v7, hwnd, 5);
     else
-      (*(void (__stdcall **)(void *, int, int))(*(_DWORD *)v7 + 52))(v7, hwnd, 6);
+      (*(void (__stdcall **)(IDirectInputDevice8A *, int, int))(*(_DWORD *)v7 + 52))(v7, hwnd, 6);
     this->AcquireDevices();
-    if ( !*(_DWORD *)&this->m_mousept[6204] )
+    if ( !this->m_shiftedKeyStates[201] )
       return 0;
   }
   p_m_lpDIDKeyboard = &this->m_lpDIDKeyboard;
-  if ( !(*(int (__stdcall **)(void *, void *, void **, _DWORD))(*(_DWORD *)this->m_lpDI + 12))(
+  if ( !(*(int (__stdcall **)(IDirectInput8A *, void *, IDirectInputDevice8A **, _DWORD))(*(_DWORD *)this->m_lpDI + 12))(
           this->m_lpDI,
           &unk_573800,
           &this->m_lpDIDKeyboard,
           0) )
   {
-    (*(void (__stdcall **)(void *, void *))(*(_DWORD *)*p_m_lpDIDKeyboard + 44))(*p_m_lpDIDKeyboard, &unk_573A5C);
-    (*(void (__stdcall **)(void *, int, int))(*(_DWORD *)*p_m_lpDIDKeyboard + 52))(*p_m_lpDIDKeyboard, hwnd, 6);
+    (*(void (__stdcall **)(IDirectInputDevice8A *, void *))(*(_DWORD *)*p_m_lpDIDKeyboard + 44))(
+      *p_m_lpDIDKeyboard,
+      &unk_573A5C);
+    (*(void (__stdcall **)(IDirectInputDevice8A *, int, int))(*(_DWORD *)*p_m_lpDIDKeyboard + 52))(
+      *p_m_lpDIDKeyboard,
+      hwnd,
+      6);
     this->ReleaseDevices();
-    if ( !*(_DWORD *)&this->m_mousept[6208] )
+    if ( !this->m_shiftedKeyStates[202] )
       return 0;
     sub_402640(this);
     ((int)this)->Create();
   }
-  GetCursorPos((LPPOINT)this->m_mousept);
+  GetCursorPos(&this->m_mousept);
   return 1;
 }
 
@@ -83,7 +90,7 @@ int GRPinput::SetMode(int mode)
 // 0x004022C0
 __int16 GRPinput::GetKeyState(unsigned __int16 key)
 {
-  return (unsigned __int8)this->m_mousept[key + 56];
+  return *((unsigned __int8 *)this->m_keyStates + key);
 }
 
 // 0x004022E0
@@ -97,8 +104,8 @@ int GRPinput::GetMousePos(void *pOut, void *pOut2)
 {
   int result; // eax
 
-  *(_DWORD *)pOut = *(_DWORD *)&this->m_mousept[24];
-  result = *(_DWORD *)&this->m_mousept[28];
+  *(_DWORD *)pOut = this->m_mouseDeltaX;
+  result = this->m_mouseDeltaY;
   *(_DWORD *)pOut2 = result;
   return result;
 }
@@ -112,19 +119,19 @@ int GRPinput::AcquireDevices()
   result = (int)this->m_lpDIDMouse;
   if ( result )
   {
-    *(_DWORD *)&this->m_mousept[6204] = 1;
+    this->m_shiftedKeyStates[201] = 1;
     result = (*(int (__stdcall **)(int))(*(_DWORD *)result + 28))(result);
     if ( result )
     {
       v3 = 0;
       while ( 1 )
       {
-        result = (*(int (__stdcall **)(void *))(*(_DWORD *)this->m_lpDIDMouse + 28))(this->m_lpDIDMouse);
+        result = (*(int (__stdcall **)(IDirectInputDevice8A *))(*(_DWORD *)this->m_lpDIDMouse + 28))(this->m_lpDIDMouse);
         if ( !result )
           break;
         if ( ++v3 >= 50 )
         {
-          *(_DWORD *)&this->m_mousept[6204] = 0;
+          this->m_shiftedKeyStates[201] = 0;
           return result;
         }
       }
@@ -142,18 +149,18 @@ int GRPinput::ReleaseDevices()
   result = (int)this->m_lpDIDKeyboard;
   if ( result )
   {
-    *(_DWORD *)&this->m_mousept[6208] = 1;
+    this->m_shiftedKeyStates[202] = 1;
     if ( (*(int (__stdcall **)(int))(*(_DWORD *)result + 28))(result) )
     {
       v3 = 0;
       while ( 1 )
       {
-        result = (*(int (__stdcall **)(void *))(*(_DWORD *)this->m_lpDIDKeyboard + 28))(this->m_lpDIDKeyboard);
+        result = (*(int (__stdcall **)(IDirectInputDevice8A *))(*(_DWORD *)this->m_lpDIDKeyboard + 28))(this->m_lpDIDKeyboard);
         if ( !result )
           break;
         if ( ++v3 >= 50 )
         {
-          *(_DWORD *)&this->m_mousept[6208] = 0;
+          this->m_shiftedKeyStates[202] = 0;
           return result;
         }
       }
@@ -347,16 +354,16 @@ int GRPinput::SetMouseAbs(int a2, int a3, int a4)
 char GRPinput::SetJoystickAbs()
 {
   int v1; // edx
-  char *v2; // ecx
+  __int32 *v2; // ecx
   char result; // al
 
   v1 = 0;
-  v2 = (char *)&this->m_mousept[6216];
+  v2 = (__int32 *)&this->m_shiftedKeyStates[204];
   result = 1;
-  while ( *((_DWORD *)v2 + 3) != 1 || (*v2 & 3) == 0 )
+  while ( v2[3] != 1 || (*(_BYTE *)v2 & 3) == 0 )
   {
     ++v1;
-    v2 += 16;
+    v2 += 4;
     if ( v1 >= 270 )
       return 0;
   }
@@ -509,12 +516,12 @@ char GRPinput::SetMouseSensitivity(int _this)
   int v5; // edi
   double v6; // st7
   double v7; // st7
-  void *v8; // esi
+  _BYTE *v8; // esi
   double v9; // st7
   __int64 v10; // rax
   double v11; // st7
   int v12; // edi
-  void *v13; // esi
+  _BYTE *v13; // esi
   float v15; // [esp+10h] [ebp-38h]
   float v16; // [esp+10h] [ebp-38h]
   float v17; // [esp+14h] [ebp-34h]
@@ -522,10 +529,7 @@ char GRPinput::SetMouseSensitivity(int _this)
   int v19; // [esp+28h] [ebp-20h]
   signed int v20; // [esp+2Ch] [ebp-1Ch] BYREF
   int v21; // [esp+30h] [ebp-18h]
-  float v22[2]; // [esp+34h] [ebp-14h] BYREF
-  int v23; // [esp+3Ch] [ebp-Ch] BYREF
-  float v24; // [esp+40h] [ebp-8h]
-  int v25; // [esp+44h] [ebp-4h]
+  _BYTE v22[20]; // [esp+34h] [ebp-14h] BYREF
 
   LOBYTE(v2) = *(_BYTE *)(this + 4);
   if ( (_BYTE)v2 )
@@ -537,10 +541,10 @@ char GRPinput::SetMouseSensitivity(int _this)
       if ( !v2 )
       {
         v21 = *(_DWORD *)(this + 32);
-        v4 = 40.0 / (double)MEMORY[0xBFD6D4];
-        v5 = *(_DWORD *)(*(_DWORD *)(g_pGfxManager + 208) + 8);
-        v20 = (unsigned int)(MEMORY[0xBFD6D0] - 10 * *(_DWORD *)(this + 16)) >> 1;
-        *(float *)(v5 + 48) = 40.0 / (double)MEMORY[0xBFD6D0];
+        v4 = 40.0 / (double)g_Input.KeyInfo[120].HoldTime;
+        v5 = *(_DWORD *)(*(_DWORD *)(g_Input.KeyInfo[177].Data + 208) + 8);
+        v20 = (unsigned int)(g_Input.KeyInfo[120].Data - 10 * *(_DWORD *)(this + 16)) >> 1;
+        *(float *)(v5 + 48) = 40.0 / (double)g_Input.KeyInfo[120].Data;
         *(float *)(v5 + 52) = v4;
         v6 = *(float *)(this + 24) - 1.5;
         if ( v6 < 0.0 )
@@ -548,45 +552,45 @@ char GRPinput::SetMouseSensitivity(int _this)
         v7 = 1.0 - v6 * 0.40000001;
         if ( v7 < 0.0 )
           v7 = 0.0;
-        HIBYTE(v22[0]) = (__int64)(v7 * 255.0);
-        if ( !HIBYTE(v22[0]) )
+        v22[3] = (__int64)(v7 * 255.0);
+        if ( !v22[3] )
           *(_BYTE *)(this + 4) = 0;
-        *(_DWORD *)(v5 + 44) = *(_DWORD *)((gbColorQuad *)v22)->gbColorQuad(0xFFu, 0xFFu, 0xFFu, HIBYTE(v22[0]));
-        v8 = (void *)*(void **)(this + 12);
+        *(_DWORD *)(v5 + 44) = ((gbColorQuad *)v22)->gbColorQuad(0xFFu, 0xFFu, 0xFFu, v22[3])->ColorQuadFmt;
+        v8 = (_BYTE *)*(_BYTE **)(this + 12);
         if ( !v8 )
-          v8 = (void *)&byte_56A634;
-        v17 = 1.0 - ((double)v21 + (double)v21) / (double)MEMORY[0xBFD6D4];
-        v15 = ((double)v20 + (double)v20) / (double)MEMORY[0xBFD6D0] - 1.0;
-        (*(void (**)(int, void *, _DWORD, _DWORD, int, int))(*(_DWORD *)v5 + 16))(
+          v8 = byte_56A634;
+        v17 = 1.0 - ((double)v21 + (double)v21) / (double)g_Input.KeyInfo[120].HoldTime;
+        v15 = ((double)v20 + (double)v20) / (double)g_Input.KeyInfo[120].Data - 1.0;
+        (*(void (**)(int, _BYTE *, _DWORD, _DWORD, int, int))(*(_DWORD *)v5 + 16))(
           v5,
           v8,
           LODWORD(v15),
           LODWORD(v17),
           1176256512,
           1176256512);
-        LOBYTE(v2) = (*(int (**)(int))(*(_DWORD *)v5 + 8))(v5);
+        LOBYTE(v2) = (*(char (**)(int))(*(_DWORD *)v5 + 8))(v5);
       }
     }
     else
     {
-      LOBYTE(v2) = MEMORY[0xC116EC];
+      LOBYTE(v2) = g_SceneMgr.m_npc[6].m_actor.m_szTexture[132];
       v18 = *(float *)(this + 24) * 0.40000001;
-      if ( MEMORY[0xC116EC] )
+      if ( *(_DWORD *)&g_SceneMgr.m_npc[6].m_actor.m_szTexture[132] )
       {
-        v23 = *(_DWORD *)(MEMORY[0xC116EC] + 160);
-        v24 = *(float *)(MEMORY[0xC116EC] + 164);
-        v25 = *(_DWORD *)(MEMORY[0xC116EC] + 168);
-        v24 = v18 * 20.0 + v24 + 64.0;
-        ((gbCamera *)(g_pCamera + 4))->PointWorldToScr((struct gbVec3D *)&v23, v22, (float *)&v20);
+        *(_DWORD *)&v22[8] = *(_DWORD *)(*(_DWORD *)&g_SceneMgr.m_npc[6].m_actor.m_szTexture[132] + 160);
+        *(_DWORD *)&v22[12] = *(_DWORD *)(*(_DWORD *)&g_SceneMgr.m_npc[6].m_actor.m_szTexture[132] + 164);
+        *(_DWORD *)&v22[16] = *(_DWORD *)(*(_DWORD *)&g_SceneMgr.m_npc[6].m_actor.m_szTexture[132] + 168);
+        *(float *)&v22[12] = v18 * 20.0 + *(float *)&v22[12] + 64.0;
+        ((gbCamera *)(g_Input.KeyInfo[177].CountMode + 4))->PointWorldToScr((struct gbVec3D *)&v22[8], (float *)v22, (float *)&v20);
         v9 = 1.0 - v18;
         if ( v9 < 0.0 )
           v9 = 0.0;
         v10 = (__int64)(v9 * 255.0);
         if ( !(_BYTE)v10 )
           *(_BYTE *)(this + 4) = 0;
-        v11 = 32.0 / (double)MEMORY[0xBFD6D4];
-        v12 = *(_DWORD *)(*(_DWORD *)(g_pGfxManager + 208) + 12);
-        *(float *)(v12 + 48) = 32.0 / (double)MEMORY[0xBFD6D0];
+        v11 = 32.0 / (double)g_Input.KeyInfo[120].HoldTime;
+        v12 = *(_DWORD *)(*(_DWORD *)(g_Input.KeyInfo[177].Data + 208) + 12);
+        *(float *)(v12 + 48) = 32.0 / (double)g_Input.KeyInfo[120].Data;
         *(float *)(v12 + 52) = v11;
         if ( gbColorQuad::ColorQuadFmt )
         {
@@ -600,18 +604,18 @@ char GRPinput::SetMouseSensitivity(int _this)
         }
         HIBYTE(v19) = v10;
         *(_DWORD *)(v12 + 44) = v19;
-        v13 = (void *)*(void **)(this + 12);
+        v13 = (_BYTE *)*(_BYTE **)(this + 12);
         if ( !v13 )
-          v13 = (void *)&byte_56A634;
-        v16 = v22[0] - 0.1;
-        (*(void (**)(int, void *, _DWORD, signed int, int, int))(*(_DWORD *)v12 + 16))(
+          v13 = byte_56A634;
+        v16 = *(float *)v22 - 0.1;
+        (*(void (**)(int, _BYTE *, _DWORD, signed int, int, int))(*(_DWORD *)v12 + 16))(
           v12,
           v13,
           LODWORD(v16),
           v20,
           1176256512,
           1176256512);
-        LOBYTE(v2) = (*(int (**)(int))(*(_DWORD *)v12 + 8))(v12);
+        LOBYTE(v2) = (*(char (**)(int))(*(_DWORD *)v12 + 8))(v12);
       }
     }
   }
@@ -639,7 +643,7 @@ _BYTE * GRPinput::GetKeyState(int _this, unsigned int a2)
   _BYTE *result; // eax
   int v11; // ecx
   _DWORD v12[4]; // [esp+0h] [ebp-24h] BYREF
-  int v13; // [esp+10h] [ebp-14h]
+  unsigned int v13; // [esp+10h] [ebp-14h]
   _DWORD *v14; // [esp+14h] [ebp-10h]
   int v15; // [esp+20h] [ebp-4h]
   _BYTE *v16; // [esp+2Ch] [ebp+8h]
@@ -729,11 +733,21 @@ BOOL GRPinput::GetJoystickFreePos(int a2, int a3)
 }
 
 // 0x00403370
-int GRPinput::AcquireMouse(int _this)
+char * GRPinput::AcquireMouse()
 {
-  `eh vector constructor iterator'((void *)(this + 4), 0xA4u, 2, GRPinput::UnacquireJoystick, GRPinput::AcquireKeyboard);
-  `eh vector constructor iterator'((void *)(this + 332), 0x10u, 2, GRPinput::UnacquireMouse, GRPinput::AcquireJoystick);
-  memset((void *)this, 0, 0x16Cu);
+  `eh vector constructor iterator'(
+    this + 4,
+    0xA4u,
+    2,
+    (void (*)(void *))GRPinput::UnacquireJoystick,
+    (void (*)(void *))GRPinput::AcquireKeyboard);
+  `eh vector constructor iterator'(
+    this + 332,
+    0x10u,
+    2,
+    (void (*)(void *))GRPinput::UnacquireMouse,
+    (void (*)(void *))GRPinput::AcquireJoystick);
+  memset(this, 0, 0x16Cu);
   return this;
 }
 
@@ -797,13 +811,13 @@ void GRPinput::AcquireKeyboard()
 // 0x004034E0
 void GRPinput::UnacquireKeyboard(int _this)
 {
-  GRPinput::Update();
+  ((GRPinput *)this)->Update();
   `eh vector destructor iterator'(
-    (void *)(this + 332),
+    (char *)(this + 332),
     0x10u,
     2,
     (void (*)(void *))GRPinput::AcquireJoystick);
-  `eh vector destructor iterator'((void *)(this + 4), 0xA4u, 2, (void (*)(void *))GRPinput::AcquireKeyboard);
+  `eh vector destructor iterator'((char *)(this + 4), 0xA4u, 2, (void (*)(void *))GRPinput::AcquireKeyboard);
 }
 
 // 0x00403560
@@ -1147,12 +1161,12 @@ int GRPinput::GetKey(int a1)
 int GRPinput::GetCharKey(int _this)
 {
   _DWORD *v2; // ebx
-  _DWORD *v3; // edi
+  int *v3; // edi
   void *v4; // ebp
   int v6; // [esp+10h] [ebp-18h]
 
   v2 = (_DWORD *)(this + 44);
-  v3 = (_DWORD *)(this + 44);
+  v3 = (int *)(this + 44);
   v6 = 4;
   do
   {
@@ -1182,40 +1196,36 @@ int GRPinput::GetCharKey(int _this)
 // 0x00404150
 unsigned int GRPinput::DecideKeyStatus(int _this, gbRay *a2, int a3)
 {
-  float *v3; // ebx
+  gbRay *v3; // ebx
   unsigned int result; // eax
   unsigned int v6; // edx
-  int *v7; // edi
+  struct gbVec3D *v7; // edi
   double v8; // st7
   double v9; // st7
   double v10; // st7
-  float v11; // edx
-  float v12; // ecx
-  float v13; // eax
+  float y; // edx
+  float x; // ecx
+  float z; // eax
   int *v14; // ecx
   _DWORD *v15; // eax
   char *v16; // edi
   int v17; // edx
   int v18; // ebx
-  _DWORD *v19; // edi
+  int *v19; // edi
   int v20; // ebp
   unsigned int v21; // [esp+14h] [ebp-2Ch]
   int i; // [esp+18h] [ebp-28h]
-  float v23; // [esp+1Ch] [ebp-24h] BYREF
-  float v24; // [esp+20h] [ebp-20h]
-  float v25; // [esp+24h] [ebp-1Ch]
-  float v26; // [esp+28h] [ebp-18h]
-  float v27; // [esp+2Ch] [ebp-14h]
-  float v28; // [esp+30h] [ebp-10h]
-  _DWORD v29[3]; // [esp+34h] [ebp-Ch] BYREF
+  struct gbVec3D v23; // [esp+1Ch] [ebp-24h] BYREF
+  float v24; // [esp+28h] [ebp-18h]
+  float v25; // [esp+2Ch] [ebp-14h]
+  float v26; // [esp+30h] [ebp-10h]
+  gbVec3D v27; // [esp+34h] [ebp-Ch] BYREF
 
-  v3 = (float *)a2;
+  v3 = a2;
   result = a2->IsColAABB((struct gbAABBox *)this);
   if ( result )
   {
-    v23 = 0.0;
-    v24 = 0.0;
-    v25 = 0.0;
+    memset(&v23, 0, sizeof(v23));
     v21 = 0;
     for ( i = 0; ; i += 36 )
     {
@@ -1226,32 +1236,32 @@ unsigned int GRPinput::DecideKeyStatus(int _this, gbRay *a2, int a3)
       result = v21;
       if ( v21 >= v6 )
         break;
-      v7 = (int *)(i + *(_DWORD *)(this + 28));
+      v7 = (struct gbVec3D *)(i + *(_DWORD *)(this + 28));
       ++*(_DWORD *)(a3 + 20);
-      if ( ((gbRay *)v3)->IsColTriangle((struct gbVec3D *)v7, (struct gbVec3D *)(v7 + 3), (struct gbVec3D *)(v7 + 6), (struct gbVec3D *)&v23) )
+      if ( v3->IsColTriangle(v7, v7 + 1, v7 + 2, &v23) )
       {
-        v26 = v23 - *v3;
-        v8 = v24 - v3[1];
-        *(float *)v29 = v26;
-        v27 = v8;
-        v9 = v25 - v3[2];
-        *(float *)&v29[1] = v27;
-        v28 = v9;
-        *(float *)&v29[2] = v28;
-        v10 = ((gbVec3D *)v29)->Length();
+        v24 = v23.x - v3->Origin.x;
+        v8 = v23.y - v3->Origin.y;
+        v27.x = v24;
+        v25 = v8;
+        v9 = v23.z - v3->Origin.z;
+        v27.y = v25;
+        v26 = v9;
+        v27.z = v26;
+        v10 = ((gbVec3D *)&v27)->Length();
         if ( v10 < *(float *)a3 )
         {
-          v11 = v24;
-          v12 = v23;
+          y = v23.y;
+          x = v23.x;
           *(float *)a3 = v10;
-          v13 = v25;
+          z = v23.z;
           *(_BYTE *)(a3 + 16) = 1;
-          *(float *)(a3 + 8) = v11;
-          *(float *)(a3 + 4) = v12;
-          *(float *)(a3 + 12) = v13;
-          v14 = v7;
+          *(float *)(a3 + 8) = y;
+          *(float *)(a3 + 4) = x;
+          *(float *)(a3 + 12) = z;
+          v14 = (int *)v7;
           v15 = (_DWORD *)(a3 + 28);
-          v16 = (char *)v7 - a3 - 24;
+          v16 = (char *)&v7[-2] - a3;
           v17 = 3;
           do
           {
@@ -1264,17 +1274,17 @@ unsigned int GRPinput::DecideKeyStatus(int _this, gbRay *a2, int a3)
             --v17;
           }
           while ( v17 );
-          v3 = (float *)a2;
+          v3 = a2;
         }
       }
       ++v21;
     }
-    v19 = (_DWORD *)(this + 44);
+    v19 = (int *)(this + 44);
     v20 = 4;
     do
     {
       if ( *v19 )
-        result = v3->DecideKeyStatus(a3);
+        result = ((GRPinput *)*v19)->DecideKeyStatus(v3, a3);
       ++v19;
       --v20;
     }

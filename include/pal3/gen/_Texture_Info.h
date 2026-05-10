@@ -21,5 +21,5 @@ public:
     unsigned char _tex_valid; // +0x43C
     // total size: 0x440 (1088)
 
-    CHAR * _CalculateUV(LPCSTR lpString); // 0x0053FCF0
+    Scene * _CalculateUV(LPCSTR lpString); // 0x0053FCF0
 };

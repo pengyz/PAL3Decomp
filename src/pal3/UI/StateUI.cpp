@@ -20,21 +20,21 @@ int StateUI::Create()
 
   if ( ((UIBase *)this)->GetSelected() < 5 )
   {
-    this->UIFrameWnd[362] = data;
+    this->buf[222] = data;
     ((UIBase *)this)->SetItemData(1, data);
-    sub_48A310(*((char **)this + 44015), data);
-    sub_4945E0(*((char **)this + 44016), data);
-    sub_49E860(*((char **)this + 44017), data);
-    return sub_484E90(*((char **)this + 44014), data);
+    sub_48A310((char *)this->m_RoleState[4].m_Shen.m_bcreateok, data);
+    sub_4945E0((char *)this->m_RoleState[4].m_Shen.m_bvisible, data);
+    sub_49E860((char *)this->m_RoleState[4].m_Shen.m_benable, data);
+    return sub_484E90((char *)this->m_RoleState[4].m_Shen.m_childs.m_nGrowBy, data);
   }
   else
   {
-    this->UIFrameWnd[362] = 0;
+    this->buf[222] = 0;
     ((UIBase *)this)->SetItemData(1, 0);
-    sub_48A310(*((char **)this + 44015), 0);
-    sub_4945E0(*((char **)this + 44016), 0);
-    sub_49E860(*((char **)this + 44017), 0);
-    return sub_484E90(*((char **)this + 44014), 0);
+    sub_48A310((char *)this->m_RoleState[4].m_Shen.m_bcreateok, 0);
+    sub_4945E0((char *)this->m_RoleState[4].m_Shen.m_bvisible, 0);
+    sub_49E860((char *)this->m_RoleState[4].m_Shen.m_benable, 0);
+    return sub_484E90((char *)this->m_RoleState[4].m_Shen.m_childs.m_nGrowBy, 0);
   }
 }
 
@@ -45,20 +45,20 @@ void StateUI::Init()
 
   if ( ((UIBase *)this)->GetSelected() < 5 )
   {
-    this->UIFrameWnd[363] = data;
+    this->buf[223] = data;
     ((UIBase *)this)->SetItemData(2, data);
-    sub_48A330(*((char **)this + 44015), data);
-    sub_494600(*((char **)this + 44016), data);
-    sub_49E880(*((char **)this + 44017), data);
-    sub_484EB0(*((char **)this + 44014), data);
+    sub_48A330((char *)this->m_RoleState[4].m_Shen.m_bcreateok, data);
+    sub_494600((char *)this->m_RoleState[4].m_Shen.m_bvisible, data);
+    sub_49E880((char *)this->m_RoleState[4].m_Shen.m_benable, data);
+    sub_484EB0((char *)this->m_RoleState[4].m_Shen.m_childs.m_nGrowBy, data);
   }
   else
   {
-    this->UIFrameWnd[363] = 0;
+    this->buf[223] = 0;
     ((UIBase *)this)->SetItemData(2, 0);
-    sub_48A330(*((char **)this + 44015), 0);
-    sub_494600(*((char **)this + 44016), 0);
-    sub_49E880(*((char **)this + 44017), 0);
-    sub_484EB0(*((char **)this + 44014), 0);
+    sub_48A330((char *)this->m_RoleState[4].m_Shen.m_bcreateok, 0);
+    sub_494600((char *)this->m_RoleState[4].m_Shen.m_bvisible, 0);
+    sub_49E880((char *)this->m_RoleState[4].m_Shen.m_benable, 0);
+    sub_484EB0((char *)this->m_RoleState[4].m_Shen.m_childs.m_nGrowBy, 0);
   }
 }

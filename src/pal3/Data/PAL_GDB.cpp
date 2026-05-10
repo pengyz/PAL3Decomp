@@ -22,23 +22,23 @@ char PAL_GDB::LoadLanguage(char *path)
   PalScript *v3; // esi
   char *v4; // edi
 
-  v3 = (PalScript *)&this->m_head[805416];
-  ((PalScript *)&this->m_head[805416])->LoadFromFile(path);
+  v3 = (PalScript *)&this->m_ItemData[360].desc[440];
+  ((PalScript *)&this->m_ItemData[360].desc[440])->LoadFromFile(path);
   v3->SetDirectory(aSec1);
   if ( v3->HasNext() )
   {
     v4 = byte_DC333C;
     do
     {
-      if ( !_strcmpi(off_58B448, v3->m_bLoadSceneScript) )
+      if ( !_strcmpi(off_58B448, (const char *)v3) )
         break;
       v3->LoadNext();
-      strncpy(v4, v3->m_bLoadSceneScript, 0x100u);
+      strncpy(v4, (const char *)v3, 0x100u);
       v4 += 256;
     }
     while ( v3->HasNext() );
   }
-  this->m_head[805412] = 1;
+  this->m_ItemData[360].desc[436] = 1;
   return 1;
 }
 

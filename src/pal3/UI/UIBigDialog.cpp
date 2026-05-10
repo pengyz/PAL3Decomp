@@ -30,7 +30,7 @@ int UIBigDialog::Create(int id, void *pRect, int parent, char *tex)
   int v14; // eax
   void *v16; // [esp+28h] [ebp-24h]
   int v17; // [esp+2Ch] [ebp-20h]
-  int v18; // [esp+3Ch] [ebp-10h] BYREF
+  int a2; // [esp+3Ch] [ebp-10h] BYREF
   int v19; // [esp+40h] [ebp-Ch]
   int v20; // [esp+44h] [ebp-8h]
   int v21; // [esp+48h] [ebp-4h]
@@ -45,21 +45,21 @@ int UIBigDialog::Create(int id, void *pRect, int parent, char *tex)
   ((UIWnd *)this)->Create(id, v16, v17);
   ((UINote *)((char *)this + 80))->Create(0, (int)v5, 0, aUiFlexDlg);
   *((_DWORD *)this + 37) = 1048576000;
-  v21 = MEMORY[0xBFD6D4] - 8;
-  v19 = MEMORY[0xBFD6D4] - 520;
+  v21 = g_Input.KeyInfo[120].HoldTime - 8;
+  v19 = g_Input.KeyInfo[120].HoldTime - 520;
   v7 = *((_DWORD *)this + 109);
-  v18 = 8;
+  a2 = 8;
   v20 = 264;
-  (*(void (**)(char *, int, int *, UIBigDialog *))(v7 + 16))((char *)this + 436, 2, &v18, this);
+  (*(void (**)(char *, int, int *, UIBigDialog *))(v7 + 16))((char *)this + 436, 2, &a2, this);
   v8 = *((_DWORD *)this + 6);
   v9 = *((_DWORD *)this + 4);
   v10 = *((_DWORD *)this + 148);
   v19 = 8;
   v11 = v8 - v9;
-  v18 = 256;
+  a2 = 256;
   v20 = 600;
   v21 = 144;
-  (*(void (**)(char *, int, int *, UIBigDialog *))(v10 + 16))((char *)this + 592, 1, &v18, this);
+  (*(void (**)(char *, int, int *, UIBigDialog *))(v10 + 16))((char *)this + 592, 1, &a2, this);
   if ( gbColorQuad::ColorQuadFmt )
   {
     *(_WORD *)((char *)&pRect + 1) = -1286;
@@ -71,40 +71,40 @@ int UIBigDialog::Create(int id, void *pRect, int parent, char *tex)
     LOBYTE(pRect) = -6;
   }
   HIBYTE(pRect) = -1;
-  ((UIWnd *)(_DWORD *)this + 148)->GetChild(&pRect);
+  ((UIWnd *)((char *)this + 592))->GetChild((int)&pRect);
   (*(void (**)(char *, int, int *, UIBigDialog *))(*((_DWORD *)this + 68) + 16))(
     (char *)this + 272,
     2,
-    &v18,
+    &a2,
     this);
   ((UIBigDialog *)((char *)this + 272))->LoadResource(aUiScenePage);
   ((MvcViewport *)(_DWORD *)this + 68)->SetController(0x40000000);
-  sub_4517A0(&v18, 1);
-  ((UIWnd *)(_DWORD *)this + 68)->GetRect(&v18);
+  sub_4517A0(&a2, 1);
+  ((UIWnd *)((char *)this + 272))->GetRect(&a2);
   v12 = (v11 - 134) / 2;
-  v18 = v12;
+  a2 = v12;
   v20 = v12 + 134;
   v13 = *((_DWORD *)this + 174);
   v21 = 600;
   v19 = 580;
-  (*(void (**)(char *, _DWORD, int *, UIBigDialog *))(v13 + 16))((char *)this + 696, 0, &v18, this);
-  ((UIWnd *)(_DWORD *)this + 174)->GetRect(&v18);
-  ((UIWnd *)(gbRefObject **)this + 174)->CreateFromTemplate(aUiSceneTimeclo, 0);
+  (*(void (**)(char *, _DWORD, int *, UIBigDialog *))(v13 + 16))((char *)this + 696, 0, &a2, this);
+  ((UIWnd *)((char *)this + 696))->GetRect(&a2);
+  ((UIWnd *)(UIWnd **)this + 174)->CreateFromTemplate(aUiSceneTimeclo, 0);
   v14 = *((_DWORD *)this + 212);
-  v18 = v12;
+  a2 = v12;
   v20 = v12 + 134;
   v21 = 600;
   v19 = 568;
-  (*(void (**)(char *, _DWORD, int *, UIBigDialog *))(v14 + 16))((char *)this + 848, 0, &v18, this);
-  ((UIWnd *)(_DWORD *)this + 212)->AddChild(&v18);
-  ((UIWnd *)(gbRefObject **)this + 212)->GetChildCount(aUiSceneTimebkT, 0);
-  ((UIWnd *)(gbRefObject **)this + 212)->GetChildAt(aUiSceneTimepTg, 0);
+  (*(void (**)(char *, _DWORD, int *, UIBigDialog *))(v14 + 16))((char *)this + 848, 0, &a2, this);
+  ((UIWnd *)((char *)this + 848))->AddChild(&a2);
+  ((UIWnd *)(UIWnd **)this + 212)->GetChildCount(aUiSceneTimebkT, 0);
+  ((UIWnd *)(UIWnd **)this + 212)->GetChildAt(aUiSceneTimepTg, 0);
   ((UIWnd *)(int)this + 848)->FindChild(4.0);
   ((UIWnd *)(int)this + 848)->FindChildByName(0.0);
   *((_DWORD *)this + 240) = 1120403456;
-  ((UIWnd *)(float *)this + 212)->SetFrameRate(4);
-  ((UIWnd *)(float *)this + 212)->GetHeight(9);
-  ((UIWnd *)(float *)this + 212)->GetWidth(4);
-  ((UIWnd *)(float *)this + 212)->GetPosition(9);
+  ((UIWnd *)((char *)this + 848))->SetFrameRate(4);
+  ((UIWnd *)((char *)this + 848))->GetHeight(9);
+  ((UIWnd *)((char *)this + 848))->GetWidth(4);
+  ((UIWnd *)((char *)this + 848))->GetPosition(9);
   return (**((int (***)(char *, _DWORD))this + 212))((char *)this + 848, 0);
 }

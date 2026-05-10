@@ -548,10 +548,10 @@ void * CEffExplosive::GetEditorObjDescription(int a1)
 void CEffExplosive::InitDefaultUVSet(int a2, int a3)
 {
   int v3; // ebx
-  char *v4; // edi
+  CEffExplosive *v4; // edi
   int v5; // ecx
   double v6; // st7
-  char *v7; // eax
+  CEffExplosive *v7; // eax
   double v8; // st5
   double v9; // st5
   double v10; // st3
@@ -564,7 +564,7 @@ void CEffExplosive::InitDefaultUVSet(int a2, int a3)
   v12 = 0;
   if ( a3 > 0 )
   {
-    v4 = (char *)(this + 200);
+    v4 = (CEffExplosive *)this + 200;
     do
     {
       v5 = 0;
@@ -583,10 +583,10 @@ void CEffExplosive::InitDefaultUVSet(int a2, int a3)
           v7 += 16;
           v14 = ++v5;
           v11 = v10 / v6;
-          *((float *)v7 - 6) = v11;
-          *((float *)v7 - 4) = 1.0 / v6 + v11;
-          *((float *)v7 - 5) = v9;
-          *((float *)v7 - 3) = 1.0 - v13;
+          *(float *)&v7[-24] = v11;
+          *(float *)&v7[-16] = 1.0 / v6 + v11;
+          *(float *)&v7[-20] = v9;
+          *(float *)&v7[-12] = 1.0 - v13;
         }
         while ( v5 < a2 );
       }
@@ -603,12 +603,12 @@ _DWORD * CEffExplosive::LoadTexture(int _this, int a2)
   _DWORD *result; // eax
   int v5; // ecx
   char pExceptionObject[1024]; // [esp+8h] [ebp-800h] BYREF
-  char ArgList; // [esp+408h] [ebp-400h] BYREF
+  char ArgList[1024]; // [esp+408h] [ebp-400h] BYREF
 
   v3 = (gbTexture *)(*(int (**)(_DWORD, int))(***(_DWORD ***)(this + 4) + 8))(**(_DWORD **)(this + 4), a2);
   *(_DWORD *)(this + 56) = v3;
   v3->LoadTexture(1);
-  result = ((operator *)0x44u)->new();
+  result = (_DWORD *)((operator *)0x44u)->new();
   if ( result )
   {
     v5 = *(_DWORD *)(this + 56);
@@ -624,7 +624,7 @@ _DWORD * CEffExplosive::LoadTexture(int _this, int a2)
   {
     qmemcpy(
       pExceptionObject,
-      (const void *)((char)&ArgList)->FormatException((int)aCNewFailed_0, (int)aDProjectPal3Co_13, 499),
+      ((Logger *)ArgList)->FormatException(aCNewFailed_0, aDProjectPal3Co_13, 499),
       sizeof(pExceptionObject));
     _CxxThrowException(pExceptionObject, (_ThrowInfo *)&_TI1_AV_Exception__);
   }

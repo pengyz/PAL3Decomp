@@ -5,36 +5,35 @@
 #include "pal3/gen/UIQuadManager.h"
 
 // 0x00541640
-UIRenderObj::UIRenderObj(int _this)
+UIRenderObj::UIRenderObj()
 {
   int v2; // ecx
-  int v3; // esi
+  gbTexture *v3; // esi
   int v4; // [esp+4h] [ebp-70h] BYREF
-  _BYTE v5[4]; // [esp+8h] [ebp-6Ch] BYREF
   struct tagPOINT Point; // [esp+Ch] [ebp-68h] BYREF
-  struct tagPOINT v7; // [esp+14h] [ebp-60h] BYREF
-  int v8; // [esp+1Ch] [ebp-58h]
-  int v9; // [esp+20h] [ebp-54h]
-  int v10[17]; // [esp+24h] [ebp-50h] BYREF
-  int v11; // [esp+70h] [ebp-4h]
+  struct tagPOINT v6; // [esp+14h] [ebp-60h] BYREF
+  int v7; // [esp+1Ch] [ebp-58h]
+  int v8; // [esp+20h] [ebp-54h]
+  struct gbTextureArray v9; // [esp+24h] [ebp-50h] BYREF
+  int v10; // [esp+70h] [ebp-4h]
 
-  if ( *(_BYTE *)(this + 29) )
+  if ( *((_BYTE *)this + 29) )
   {
-    if ( *(_BYTE *)(this + 28) )
+    if ( *((_BYTE *)this + 28) )
     {
-      PushMatrixStacks(v5);
-      v11 = 0;
+      PushMatrixStacks();
+      v10 = 0;
       ((GRPinput *)&Point)->GetCursorPos();
-      v7 = Point;
-      v9 = Point.y + 32;
-      v2 = *(_DWORD *)(this + 12);
-      v8 = Point.x + 32;
+      v6 = Point;
+      v8 = Point.y + 32;
+      v2 = *((_DWORD *)this + 3);
+      v7 = Point.x + 32;
       v4 = -1;
-      v3 = *(_DWORD *)(this + 4 * v2 + 16);
-      v10[16] = 1;
-      v10[0] = v3;
-      ((_TextureLib_Data *)&v7.x)->SetLibFolder((unsigned int *)&v4, (struct gbTextureArray *)v10, 0x114u, 0, COERCE_FLOAT(1));
-      v11 = -1;
+      v3 = (gbTexture *)*((_DWORD *)this + v2 + 4);
+      v9.nTex = 1;
+      v9.pTexPt[0] = v3;
+      ((_TextureLib_Data *)&v6.x)->SetLibFolder((unsigned int *)&v4, &v9, 0x114u, 0, COERCE_FLOAT(1));
+      v10 = -1;
       PopMatrixStacks();
     }
   }

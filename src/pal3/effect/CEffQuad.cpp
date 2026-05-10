@@ -22,14 +22,14 @@ extern int unk_FFFFFF;
 char CEffQuad::Create(int _this, int a2)
 {
   int v3; // ebp
-  void *v4; // eax
+  int v4; // eax
   int v5; // ebp
   int v6; // ebx
   int v7; // ebp
-  void *v8; // eax
+  int v8; // eax
   int v9; // ecx
   int i; // eax
-  void *v11; // eax
+  int v11; // eax
   int v12; // ebx
   int v13; // edi
   int v14; // edi
@@ -38,9 +38,9 @@ char CEffQuad::Create(int _this, int a2)
   int v17; // ecx
   int v19; // edi
   size_t v20; // [esp-4h] [ebp-824h]
-  void *v21; // [esp+10h] [ebp-810h]
+  int v21; // [esp+10h] [ebp-810h]
   char pExceptionObject[1024]; // [esp+14h] [ebp-80Ch] BYREF
-  char ArgList; // [esp+414h] [ebp-40Ch] BYREF
+  char ArgList[1024]; // [esp+414h] [ebp-40Ch] BYREF
   int v24; // [esp+81Ch] [ebp-4h]
 
   *(_BYTE *)(this + 50) = 1;
@@ -48,7 +48,7 @@ char CEffQuad::Create(int _this, int a2)
   *(_BYTE *)(this + 52) = *(_BYTE *)(a2 + 213);
   *(_BYTE *)(this + 54) = *(_BYTE *)(a2 + 176);
   *(_DWORD *)(this + 56) = &unk_FFFFFF;
-  sub_4D1FD0(*(_DWORD *)(a2 + 168), *(_DWORD *)(a2 + 172));
+  sub_4D1FD0((char *)this, *(_DWORD *)(a2 + 168), *(_DWORD *)(a2 + 172));
   *(_DWORD *)(this + 156) = ((operator *)80 * *(_DWORD *)(a2 + 208))->new();
   v3 = *(_DWORD *)(a2 + 208);
   v4 = ((operator *)68 * v3)->new();
@@ -57,13 +57,13 @@ char CEffQuad::Create(int _this, int a2)
   if ( v4 )
   {
     v5 = v3 - 1;
-    v6 = (int)v4;
+    v6 = v4;
     if ( v5 >= 0 )
     {
       v7 = v5 + 1;
       do
       {
-        ArraySort(v6, 12, 4, (int (*)(int))gbVec3D::`default constructor closure');
+        ArraySort(v6, 12, 4, gbVec3D::`default constructor closure');
         v6 += 68;
         --v7;
       }
@@ -78,22 +78,22 @@ char CEffQuad::Create(int _this, int a2)
   *(_DWORD *)(this + 160) = v4;
   v20 = 4 * *(_DWORD *)(a2 + 208);
   v24 = -1;
-  v8 = (void *)v20->new();
+  v8 = v20->new();
   v9 = *(_DWORD *)(this + 156);
   *(_DWORD *)(this + 164) = v8;
   if ( !v9 || !*(_DWORD *)(this + 160) || !v8 )
   {
     qmemcpy(
       pExceptionObject,
-      (const void *)((char)&ArgList)->FormatException((int)aNewFailInCeffq, (int)aDProjectPal3Co_16, 127),
+      ((Logger *)ArgList)->FormatException(aNewFailInCeffq, aDProjectPal3Co_16, 127),
       sizeof(pExceptionObject));
     _CxxThrowException(pExceptionObject, (_ThrowInfo *)&_TI1_AV_Exception__);
   }
   *(_DWORD *)(this + 68) = *(_DWORD *)(a2 + 208);
-  sub_4D1EF0(this);
+  sub_4D1EF0((_DWORD *)this);
   for ( i = 0; i < *(_DWORD *)(this + 68); ++i )
     *(_DWORD *)(*(_DWORD *)(this + 164) + 4 * i) = i;
-  ((CEffQuad *)a2 + 40)->ToNextFrame();
+  this->ToNextFrame(a2 + 40);
   v11 = ((operator *)0x4C0u)->new();
   *(_DWORD *)(this + 24) = v11;
   if ( v11 )
@@ -273,12 +273,12 @@ _DWORD * CEffQuad::ToNextFrame(int _this, int a2)
   _DWORD *result; // eax
   int v5; // ecx
   char pExceptionObject[1024]; // [esp+8h] [ebp-800h] BYREF
-  char ArgList; // [esp+408h] [ebp-400h] BYREF
+  char ArgList[1024]; // [esp+408h] [ebp-400h] BYREF
 
   v3 = (gbTexture *)(*(int (**)(_DWORD, int))(***(_DWORD ***)(this + 4) + 8))(**(_DWORD **)(this + 4), a2);
   *(_DWORD *)(this + 4264) = v3;
   v3->LoadTexture(1);
-  result = ((operator *)0x44u)->new();
+  result = (_DWORD *)((operator *)0x44u)->new();
   if ( result )
   {
     v5 = *(_DWORD *)(this + 4264);
@@ -294,7 +294,7 @@ _DWORD * CEffQuad::ToNextFrame(int _this, int a2)
   {
     qmemcpy(
       pExceptionObject,
-      (const void *)((char)&ArgList)->FormatException((int)aCNewFailed_0, (int)aDProjectPal3Co_16, 540),
+      ((Logger *)ArgList)->FormatException(aCNewFailed_0, aDProjectPal3Co_16, 540),
       sizeof(pExceptionObject));
     _CxxThrowException(pExceptionObject, (_ThrowInfo *)&_TI1_AV_Exception__);
   }

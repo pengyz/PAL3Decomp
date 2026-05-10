@@ -16,5 +16,5 @@ public:
     // total size: 0x98 (152)
 
     void Render(); // 0x004BE4A0
-    static _BYTE * GetInstance(); // 0x004BE590
+    static ScreenEffect * GetInstance(); // 0x004BE590
 };

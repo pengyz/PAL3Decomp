@@ -10,10 +10,10 @@ extern char aLockBackBuffer[];
 extern void *off_56F4F0;
 
 // 0x004BDAC0
-RenderTarget::RenderTarget(int _this)
+RenderTarget::RenderTarget()
 {
-  ((void *)(this + 100))->~gbTexture_D3D();
-  ((void *)(this + 4))->~gbTexture_D3D();
+  ((gbTexture_D3D *)&this->m_Texture.nLevels)->~gbTexture_D3D();
+  ((gbTexture_D3D *)&this->m_Texture)->~gbTexture_D3D();
 }
 
 // 0x004BDB60

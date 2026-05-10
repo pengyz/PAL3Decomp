@@ -48,7 +48,7 @@ extern float flt_17A8188;
 extern float flt_17A818C;
 
 // 0x004D5AB0
-C2DSpark::C2DSpark(int _this, int a2, int a3)
+C2DSpark::C2DSpark(int a2, int a3)
 {
   gbTexture *v4; // eax
   _DWORD *v5; // eax
@@ -66,25 +66,25 @@ C2DSpark::C2DSpark(int _this, int a2, int a3)
   _DWORD *v17; // eax
   int v18; // ecx
   _BYTE v20[1056]; // [esp+30h] [ebp-800h] BYREF
-  char ArgList; // [esp+450h] [ebp-3E0h] BYREF
+  char ArgList[992]; // [esp+450h] [ebp-3E0h] BYREF
 
-  *(_DWORD *)(this + 22636) = -1;
-  *(_DWORD *)(this + 22632) = 0;
-  memset((void *)this, 0, 0x5870u);
-  *(float *)(this + 22528) = (float)a2;
-  *(float *)(this + 22532) = (float)a3;
-  *(_BYTE *)(this + 22552) = 0;
-  *(_DWORD *)(this + 22556) = ((gbEffectMgr *)*(gbEffectMgr **)(g_pGfxManager + 200))->NewRenderEffect(aGfxscriptTlAdd, 0);
-  v4 = (gbTexture *)(*(int (**)(int, char *))(*(_DWORD *)g_pGfxManager + 8))(
-                      g_pGfxManager,
+  *((_DWORD *)this + 5659) = -1;
+  *((_DWORD *)this + 5658) = 0;
+  memset(this, 0, 0x5870u);
+  *((float *)this + 5632) = (float)a2;
+  *((float *)this + 5633) = (float)a3;
+  *((_BYTE *)this + 22552) = 0;
+  *((_DWORD *)this + 5639) = ((gbEffectMgr *)*(gbEffectMgr **)(g_Input.KeyInfo[177].Data + 200))->NewRenderEffect(aGfxscriptTlAdd, 0);
+  v4 = (gbTexture *)(*(int (**)(int, char *))(*(_DWORD *)g_Input.KeyInfo[177].Data + 8))(
+                      g_Input.KeyInfo[177].Data,
                       aEffectFlare3Bm);
   *(_DWORD *)&v20[12] = 1;
-  *(_DWORD *)(this + 22560) = v4;
+  *((_DWORD *)this + 5640) = v4;
   v4->LoadTexture(*(_DWORD *)&v20[12]);
-  v5 = ((operator *)0x44u)->new();
+  v5 = (_DWORD *)((operator *)0x44u)->new();
   if ( v5 )
   {
-    v6 = *(_DWORD *)(this + 22560);
+    v6 = *((_DWORD *)this + 5640);
     v5[16] = 1;
     *v5 = v6;
   }
@@ -92,25 +92,22 @@ C2DSpark::C2DSpark(int _this, int a2, int a3)
   {
     v5 = 0;
   }
-  *(_DWORD *)(this + 22564) = v5;
+  *((_DWORD *)this + 5641) = v5;
   if ( !v5 )
   {
-    qmemcpy(
-      &v20[32],
-      (const void *)((char)&ArgList)->FormatException((int)aCNewFailed_0, (int)aDProjectPal3Co_10, 41),
-      0x400u);
+    qmemcpy(&v20[32], ((Logger *)ArgList)->FormatException(aCNewFailed_0, aDProjectPal3Co_10, 41), 0x400u);
     _CxxThrowException(&v20[32], (_ThrowInfo *)&_TI1_AV_Exception__);
   }
-  v7 = (gbTexture *)(*(int (**)(int, char *))(*(_DWORD *)g_pGfxManager + 8))(
-                      g_pGfxManager,
+  v7 = (gbTexture *)(*(int (**)(int, char *))(*(_DWORD *)g_Input.KeyInfo[177].Data + 8))(
+                      g_Input.KeyInfo[177].Data,
                       aEffectFlare2Bm);
   *(_DWORD *)&v20[8] = 1;
-  *(_DWORD *)(this + 22584) = v7;
+  *((_DWORD *)this + 5646) = v7;
   v7->LoadTexture(*(_DWORD *)&v20[8]);
-  v8 = ((operator *)0x44u)->new();
+  v8 = (_DWORD *)((operator *)0x44u)->new();
   if ( v8 )
   {
-    v9 = *(_DWORD *)(this + 22584);
+    v9 = *((_DWORD *)this + 5646);
     v8[16] = 1;
     *v8 = v9;
   }
@@ -118,25 +115,22 @@ C2DSpark::C2DSpark(int _this, int a2, int a3)
   {
     v8 = 0;
   }
-  *(_DWORD *)(this + 22588) = v8;
+  *((_DWORD *)this + 5647) = v8;
   if ( !v8 )
   {
-    qmemcpy(
-      &v20[24],
-      (const void *)((char)&v20[1048])->FormatException((int)aCNewFailed_0, (int)aDProjectPal3Co_10, 46),
-      0x400u);
+    qmemcpy(&v20[24], ((Logger *)&v20[1048])->FormatException(aCNewFailed_0, aDProjectPal3Co_10, 46), 0x400u);
     _CxxThrowException(&v20[24], (_ThrowInfo *)&_TI1_AV_Exception__);
   }
-  v10 = (gbTexture *)(*(int (**)(int, char *))(*(_DWORD *)g_pGfxManager + 8))(
-                       g_pGfxManager,
+  v10 = (gbTexture *)(*(int (**)(int, char *))(*(_DWORD *)g_Input.KeyInfo[177].Data + 8))(
+                       g_Input.KeyInfo[177].Data,
                        aEffectFlaregre);
   *(_DWORD *)v20 = 1;
-  *(_DWORD *)(this + 22576) = v10;
+  *((_DWORD *)this + 5644) = v10;
   v10->LoadTexture(*(_DWORD *)v20);
-  v11 = ((operator *)0x44u)->new();
+  v11 = (_DWORD *)((operator *)0x44u)->new();
   if ( v11 )
   {
-    v12 = *(_DWORD *)(this + 22576);
+    v12 = *((_DWORD *)this + 5644);
     v11[16] = 1;
     *v11 = v12;
   }
@@ -144,24 +138,21 @@ C2DSpark::C2DSpark(int _this, int a2, int a3)
   {
     v11 = 0;
   }
-  *(_DWORD *)(this + 22580) = v11;
-  if ( !*(_DWORD *)(this + 22588) )
+  *((_DWORD *)this + 5645) = v11;
+  if ( !*((_DWORD *)this + 5647) )
   {
-    qmemcpy(
-      &v20[16],
-      (const void *)((char)&v20[1040])->FormatException((int)aCNewFailed_0, (int)aDProjectPal3Co_10, 51),
-      0x400u);
+    qmemcpy(&v20[16], ((Logger *)&v20[1040])->FormatException(aCNewFailed_0, aDProjectPal3Co_10, 51), 0x400u);
     _CxxThrowException(&v20[16], (_ThrowInfo *)&_TI1_AV_Exception__);
   }
-  v13 = (gbTexture *)(*(int (**)(int, char *))(*(_DWORD *)g_pGfxManager + 8))(
-                       g_pGfxManager,
+  v13 = (gbTexture *)(*(int (**)(int, char *))(*(_DWORD *)g_Input.KeyInfo[177].Data + 8))(
+                       g_Input.KeyInfo[177].Data,
                        aEffectFlareblu);
-  *(_DWORD *)(this + 22568) = v13;
+  *((_DWORD *)this + 5642) = v13;
   v13->LoadTexture(1);
-  v14 = ((operator *)0x44u)->new();
+  v14 = (_DWORD *)((operator *)0x44u)->new();
   if ( v14 )
   {
-    v15 = *(_DWORD *)(this + 22568);
+    v15 = *((_DWORD *)this + 5642);
     v14[16] = 1;
     *v14 = v15;
   }
@@ -169,24 +160,21 @@ C2DSpark::C2DSpark(int _this, int a2, int a3)
   {
     v14 = 0;
   }
-  *(_DWORD *)(this + 22572) = v14;
+  *((_DWORD *)this + 5643) = v14;
   if ( !v14 )
   {
-    qmemcpy(
-      &v20[8],
-      (const void *)((char)&v20[1032])->FormatException((int)aCNewFailed_0, (int)aDProjectPal3Co_10, 56),
-      0x400u);
+    qmemcpy(&v20[8], ((Logger *)&v20[1032])->FormatException(aCNewFailed_0, aDProjectPal3Co_10, 56), 0x400u);
     _CxxThrowException(&v20[8], (_ThrowInfo *)&_TI1_AV_Exception__);
   }
-  v16 = (gbTexture *)(*(int (**)(int, char *))(*(_DWORD *)g_pGfxManager + 8))(
-                       g_pGfxManager,
+  v16 = (gbTexture *)(*(int (**)(int, char *))(*(_DWORD *)g_Input.KeyInfo[177].Data + 8))(
+                       g_Input.KeyInfo[177].Data,
                        aEffectFlarebri);
-  *(_DWORD *)(this + 22592) = v16;
+  *((_DWORD *)this + 5648) = v16;
   v16->LoadTexture(1);
-  v17 = ((operator *)0x44u)->new();
+  v17 = (_DWORD *)((operator *)0x44u)->new();
   if ( v17 )
   {
-    v18 = *(_DWORD *)(this + 22592);
+    v18 = *((_DWORD *)this + 5648);
     v17[16] = 1;
     *v17 = v18;
   }
@@ -194,21 +182,18 @@ C2DSpark::C2DSpark(int _this, int a2, int a3)
   {
     v17 = 0;
   }
-  *(_DWORD *)(this + 22596) = v17;
+  *((_DWORD *)this + 5649) = v17;
   if ( !v17 )
   {
-    qmemcpy(
-      v20,
-      (const void *)((char)&v20[1024])->FormatException((int)aCNewFailed_0, (int)aDProjectPal3Co_10, 61),
-      0x400u);
+    qmemcpy(v20, ((Logger *)&v20[1024])->FormatException(aCNewFailed_0, aDProjectPal3Co_10, 61), 0x400u);
     _CxxThrowException(v20, (_ThrowInfo *)&_TI1_AV_Exception__);
   }
-  *(_DWORD *)(this + 22636) = -1;
-  *(_DWORD *)(this + 22628) = 1065353216;
-  *(_DWORD *)(this + 22624) = 1065353216;
-  *(_DWORD *)(this + 22620) = 0;
-  *(_DWORD *)(this + 22616) = 0;
-  *(_DWORD *)(this + 22632) = 1056964608;
+  *((_DWORD *)this + 5659) = -1;
+  *((_DWORD *)this + 5657) = 1065353216;
+  *((_DWORD *)this + 5656) = 1065353216;
+  *((_DWORD *)this + 5655) = 0;
+  *((_DWORD *)this + 5654) = 0;
+  *((_DWORD *)this + 5658) = 1056964608;
   return this;
 }
 
@@ -402,8 +387,8 @@ _BYTE * C2DSpark::CreateStars()
 int C2DSpark::DestroyAll(int _this)
 {
   gbDynVertBuf *DynVertBuf; // ebx
-  LONG y; // ecx
-  LONG x; // eax
+  int y; // ecx
+  int x; // eax
   double v5; // st7
   double v6; // st7
   struct gbRenderEffect *v7; // ecx
@@ -417,7 +402,7 @@ int C2DSpark::DestroyAll(int _this)
   float v15; // [esp+14h] [ebp-8h]
   int v16; // [esp+18h] [ebp-4h]
 
-  DynVertBuf = ((gbVertPoolMgr *)*(gbVertPoolMgr **)(g_pGfxManager + 196))->GetDynVertBuf(0x114u);
+  DynVertBuf = ((gbVertPoolMgr *)*(gbVertPoolMgr **)(g_Input.KeyInfo[177].Data + 196))->GetDynVertBuf(0x114u);
   if ( *(float *)(this + 22540) > 2.0 )
   {
     ((GRPinput *)&Point)->GetCursorPos();

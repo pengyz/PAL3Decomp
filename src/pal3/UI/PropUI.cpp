@@ -14,11 +14,11 @@ extern void *off_56B1BC;
 // 0x00452580
 int PropUI::Create()
 {
-  this->UIListBox();
-  ((int)&this->UIFrameWnd[72])->ctor_2790();
-  ((int)&this->UIFrameWnd[1084])->ctor_1CC0();
-  *(_DWORD *)this->UIFrameWnd = &off_56B1BC;
-  return (int)this->UIFrameWnd;
+  ((UIListBox *)this)->UIListBox();
+  ((int)&this->m_childs)->ctor_2790();
+  ((int)&this->m_PropData.m_EntrySale[172])->ctor_1CC0();
+  this->m_fontcolor.ColorQuadFmt = (int)&off_56B1BC;
+  return (int)this;
 }
 
 // 0x00452670

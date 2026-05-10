@@ -61,12 +61,12 @@ void CUtil::Init()
 // 0x00523130
 int CUtil::CreateLog(int _this)
 {
-  ((_DWORD *)this)->UIListBox();
+  ((UIListBox *)this)->UIListBox();
   *(_DWORD *)(this + 88) = 800;
   *(_DWORD *)(this + 92) = 600;
   *(_DWORD *)(this + 360) = 0;
   *(_DWORD *)(this + 364) = 0;
-  ((UIItem *)this + 368)->Refresh();
+  ((UIItem *)(this + 368))->Refresh();
   *(_DWORD *)(this + 1736) = 0;
   *(_DWORD *)(this + 1740) = 0;
   *(_DWORD *)(this + 1744) = 0;

@@ -181,14 +181,14 @@ BOOL UIScene::ProcessInput(char *String1, char *a2)
 void UIScene::LoadResource(char *path)
 {
   int v2; // edi
-  struct gbVFileSystem *v4; // [esp+Ch] [ebp-114h] BYREF
+  OpenBaseFile v4; // [esp+Ch] [ebp-114h] BYREF
   char Buffer[260]; // [esp+10h] [ebp-110h] BYREF
   int v6; // [esp+11Ch] [ebp-4h]
 
   v2 = 0;
   if ( path )
   {
-    ((UIWnd *)(gbRefObject **)this + 19)->MoveWindow();
+    ((UIWnd *)(UIWnd **)this + 19)->MoveWindow();
     *((_DWORD *)this + 37) = 0;
     ((OpenBaseFile *)&v4)->OpenBaseFile();
     v6 = 0;
@@ -196,7 +196,7 @@ void UIScene::LoadResource(char *path)
     while ( (int)g_pVFileSys->FileExistNum(Buffer) > 0 )
     {
       if ( !sub_445ED0() )
-        ((UIWnd *)(gbRefObject **)this + 19)->MoveWindow();
+        ((UIWnd *)(UIWnd **)this + 19)->MoveWindow();
       ++v2;
       ++*((_DWORD *)this + 37);
       sprintf(Buffer, "%s%d.tga", path, v2);
@@ -204,7 +204,7 @@ void UIScene::LoadResource(char *path)
     *((_DWORD *)this + 40) = 0;
     sub_43A660(this);
     v6 = -1;
-    ((OpenNULLFile *)&v4)->OpenNULLFile();
+    ((OpenNULLFile **)&v4)->OpenNULLFile();
   }
 }
 
@@ -229,7 +229,7 @@ void UIScene::_UIScene()
 void UIScene::Destroy2(UIWnd *this)
 {
   *(_DWORD *)this->_data = &off_56AC70;
-  UIScene::OnMessage2();
+  ((UIScene *)this)->OnMessage2();
   ((j_UIWnd *)(char *)this + 116)->MoveWindow();
   this->_UIWnd();
 }

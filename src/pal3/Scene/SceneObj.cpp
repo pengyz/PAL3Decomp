@@ -116,11 +116,11 @@ LABEL_29:
 // 0x00536260
 int SceneObj::CreateUI()
 {
-  this->UIListBox();
+  ((UIListBox *)this)->UIListBox();
   ((UIItem *)(UIItem *)this + 360)->Refresh();
   ((UIItem *)(UIItem *)this + 1728)->Refresh();
-  ((UIWnd *)(_DWORD *)this + 774)->ctor_F7F0();
-  ((UIFrameWnd *)(_BYTE *)this + 3340)->UIFrameWnd();
+  ((UIWnd *)(this + 3096))->ctor_F7F0();
+  ((UIFrameWnd *)(this + 3340))->UIFrameWnd();
   *(_DWORD *)this = &off_5708E8;
   ((Actor *)this)->ResetState();
   *((_BYTE *)this + 3492) = 1;

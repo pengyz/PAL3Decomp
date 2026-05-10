@@ -16,7 +16,9 @@ int sub_420F50(...);
 void Camera::SetParams(int a2)
 {
   long double v3; // st7
-  _BYTE actionId[76]; // [esp+8h] [ebp-4Ch] BYREF
+  int actionId[16]; // [esp+8h] [ebp-4Ch] BYREF
+  float v5; // [esp+48h] [ebp-Ch]
+  float v6; // [esp+50h] [ebp-4h]
 
   if ( a2 )
   {
@@ -27,8 +29,7 @@ void Camera::SetParams(int a2)
     sub_41AEA0((gbVisNode **)this, 1.0);
     ((gbMatrix4 *)actionId)->gbMatrix4();
     ((Actor *)((char *)this + 680))->PlayAction((int)actionId);
-    v3 = sqrt(*(float *)&actionId[72] * *(float *)&actionId[72] + *(float *)&actionId[64] * *(float *)&actionId[64])
-       * 0.40000001;
+    v3 = sqrt(v6 * v6 + v5 * v5) * 0.40000001;
     *((float *)this + 4) = v3;
     if ( v3 < 6.0 )
       *((_DWORD *)this + 364) = 1;
@@ -41,60 +42,58 @@ int Camera::CheckCollision1(void *pPos, void *pBounds, float *pDist)
 {
   int *v3; // ebx
   double v4; // st7
-  double v5; // st7
-  float v6; // edx
-  float v7; // ecx
+  double x; // st7
+  float y; // edx
+  float z; // ecx
   double v9; // st7
   float v10; // ecx
   float v11; // edx
-  double v12; // st7
+  int v12; // eax
   double v13; // st7
-  double v14; // st6
-  float v15; // ecx
-  float v16; // [esp+10h] [ebp-3Ch] BYREF
-  float v17; // [esp+14h] [ebp-38h]
-  float v18; // [esp+18h] [ebp-34h]
-  int pTarget; // [esp+1Ch] [ebp-30h] BYREF
-  float v20; // [esp+20h] [ebp-2Ch]
-  float v21; // [esp+24h] [ebp-28h]
-  float v22[6]; // [esp+34h] [ebp-18h] BYREF
+  double v14; // st7
+  double v15; // st6
+  float v16; // ecx
+  struct gbVec3D v17; // [esp+10h] [ebp-3Ch] BYREF
+  struct gbVec3D pTarget[2]; // [esp+1Ch] [ebp-30h] BYREF
+  gbRay v19; // [esp+34h] [ebp-18h] BYREF
 
   *pDist = 0.0;
   v3 = (int *)(UISceneUpdate() + 492772);
-  qmemcpy(v22, ((CameraCtrl *)g_pCamera)->GetViewTarget(&pTarget, (float *)pPos), sizeof(v22));
-  v4 = *((float *)g_pCamera + 117) - 300.0;
-  v16 = v22[3] * v4;
-  v17 = v22[4] * v4;
-  v22[0] = v16 + v22[0];
-  v22[1] = v22[1] + v17;
-  v22[2] = v22[2] + v4 * v22[5];
+  qmemcpy(
+    &v19,
+    ((CameraCtrl *)g_Input.KeyInfo[177].CountMode)->GetViewTarget(pTarget, (float *)pPos),
+    sizeof(v19));
+  v4 = *(float *)(g_Input.KeyInfo[177].CountMode + 468) - 300.0;
+  v17.x = v19.Direction.x * v4;
+  v17.y = v19.Direction.y * v4;
+  v19.Origin.x = v17.x + v19.Origin.x;
+  v19.Origin.y = v19.Origin.y + v17.y;
+  v19.Origin.z = v19.Origin.z + v4 * v19.Direction.z;
   if ( *v3 <= 1 )
   {
-    UISceneUpdate();
-    if ( sub_4031D0((int)v22, (int)pBounds, 0) )
+    v12 = UISceneUpdate();
+    if ( sub_4031D0((int *)(v12 + 493104), &v19, (int)pBounds, 0) )
       return 1;
   }
   else
   {
-    v16 = 0.0;
-    v17 = 0.0;
-    v18 = 0.0;
-    if ( sub_4031D0((int)v22, (int)&v16, 0) )
+    memset(&v17, 0, sizeof(v17));
+    if ( sub_4031D0(v3 + 87, &v19, (int)&v17, 0) )
     {
-      v5 = v16;
-      v6 = v17;
-      v7 = v18;
+      x = v17.x;
+      y = v17.y;
+      z = v17.z;
       *(_DWORD *)pDist = 1;
-      *(float *)pBounds = v5;
-      *((float *)pBounds + 1) = v6;
-      *((float *)pBounds + 2) = v7;
+      *(float *)pBounds = x;
+      *((float *)pBounds + 1) = y;
+      *((float *)pBounds + 2) = z;
       return 1;
     }
-    if ( sub_4031D0((int)v22, (int)&v16, 0) )
+    if ( sub_4031D0(v3 + 83, &v19, (int)&v17, 0) )
     {
-      v9 = v16;
-      v10 = v17;
-      v11 = v18;
+      v9 = v17.x;
+      v10 = v17.y;
+      v11 = v17.z;
       *pDist = 0.0;
       *(float *)pBounds = v9;
       *((float *)pBounds + 1) = v10;
@@ -102,27 +101,25 @@ int Camera::CheckCollision1(void *pPos, void *pBounds, float *pDist)
       return 1;
     }
   }
-  if ( !*(_DWORD *)&g_SceneMgr.m_info[54108] )
+  if ( !*(_DWORD *)&g_SceneMgr.m_npc[6].m_actor.m_szTexture[132] )
     return 0;
-  pTarget = 0;
-  v20 = 1.0;
-  v21 = 0.0;
-  v16 = *(float *)(*(_DWORD *)&g_SceneMgr.m_info[54108] + 160);
-  v17 = *(float *)(*(_DWORD *)&g_SceneMgr.m_info[54108] + 164);
-  v18 = *(float *)(*(_DWORD *)&g_SceneMgr.m_info[54108] + 168);
-  v12 = ((gbRay *)v22)->IntersectPlane((struct gbVec3D *)&pTarget, (struct gbVec3D *)&v16);
-  if ( v12 == 3.4028235e38 )
+  pTarget[0].x = 0.0;
+  pTarget[0].y = 1.0;
+  pTarget[0].z = 0.0;
+  v17 = *(struct gbVec3D *)(*(_DWORD *)&g_SceneMgr.m_npc[6].m_actor.m_szTexture[132] + 160);
+  v13 = ((gbRay *)&v19)->IntersectPlane(pTarget, &v17);
+  if ( v13 == 3.4028235e38 )
     return 0;
-  v20 = v22[4] * v12;
-  v21 = v22[5] * v12;
-  v13 = v22[3] * v12 + v22[0];
-  v17 = v22[1] + v20;
-  v14 = v22[2] + v21;
-  *((float *)pBounds + 1) = v17;
-  v18 = v14;
-  v15 = v18;
-  *(float *)pBounds = v13;
-  *((float *)pBounds + 2) = v15;
+  pTarget[0].y = v19.Direction.y * v13;
+  pTarget[0].z = v19.Direction.z * v13;
+  v14 = v19.Direction.x * v13 + v19.Origin.x;
+  v17.y = v19.Origin.y + pTarget[0].y;
+  v15 = v19.Origin.z + pTarget[0].z;
+  *((_DWORD *)pBounds + 1) = LODWORD(v17.y);
+  v17.z = v15;
+  v16 = v17.z;
+  *(float *)pBounds = v14;
+  *((float *)pBounds + 2) = v16;
   return 1;
 }
 
@@ -130,54 +127,56 @@ int Camera::CheckCollision1(void *pPos, void *pBounds, float *pDist)
 int Camera::CheckCollision2(void *pPos, int rolePtr, void *pBounds)
 {
   char *v3; // eax
-  double v4; // st7
-  double v6; // st7
+  int *v4; // ebx
+  double v5; // st7
   double v7; // st7
-  double v8; // st6
-  float v9; // edx
-  float v10; // [esp+Ch] [ebp-3Ch] BYREF
-  float v11; // [esp+10h] [ebp-38h]
-  float v12; // [esp+14h] [ebp-34h]
+  double v8; // st7
+  double v9; // st6
+  float v10; // edx
+  struct gbVec3D v11; // [esp+Ch] [ebp-3Ch] BYREF
   float pTarget; // [esp+18h] [ebp-30h] BYREF
-  float v14; // [esp+1Ch] [ebp-2Ch]
-  float v15; // [esp+20h] [ebp-28h]
-  float v16[6]; // [esp+30h] [ebp-18h] BYREF
+  float v13; // [esp+1Ch] [ebp-2Ch]
+  float v14; // [esp+20h] [ebp-28h]
+  gbRay v15; // [esp+30h] [ebp-18h] BYREF
 
   v3 = (char *)UISceneUpdate();
-  sub_420F50(v3, rolePtr);
-  qmemcpy(v16, ((CameraCtrl *)g_pCamera)->GetViewTarget(&pTarget, (float *)pPos), sizeof(v16));
-  v4 = *((float *)g_pCamera + 117) - 100.0;
-  v10 = v16[3] * v4;
-  v11 = v16[4] * v4;
-  v16[0] = v10 + v16[0];
-  v16[1] = v16[1] + v11;
-  v16[2] = v16[2] + v4 * v16[5];
-  if ( sub_4031D0((int)v16, (int)pBounds, 0) )
+  v4 = (int *)sub_420F50(v3, rolePtr);
+  qmemcpy(
+    &v15,
+    ((CameraCtrl *)g_Input.KeyInfo[177].CountMode)->GetViewTarget(&pTarget, (float *)pPos),
+    sizeof(v15));
+  v5 = *(float *)(g_Input.KeyInfo[177].CountMode + 468) - 100.0;
+  v11.x = v15.Direction.x * v5;
+  v11.y = v15.Direction.y * v5;
+  v15.Origin.x = v11.x + v15.Origin.x;
+  v15.Origin.y = v15.Origin.y + v11.y;
+  v15.Origin.z = v15.Origin.z + v5 * v15.Direction.z;
+  if ( sub_4031D0(v4, &v15, (int)pBounds, 0) )
     return 1;
-  v10 = 0.0;
-  v11 = 1.0;
-  v12 = 0.0;
-  v6 = ((gbRay *)v16)->IntersectPlane((struct gbVec3D *)&v10, (struct gbVec3D *)(*(_DWORD *)&g_SceneMgr.m_info[54108] + 160));
-  if ( v6 >= 3.4028235e38 )
+  v11.x = 0.0;
+  v11.y = 1.0;
+  v11.z = 0.0;
+  v7 = ((gbRay *)&v15)->IntersectPlane(&v11, (struct gbVec3D *)(*(_DWORD *)&g_SceneMgr.m_npc[6].m_actor.m_szTexture[132] + 160));
+  if ( v7 >= 3.4028235e38 )
     return 0;
-  v11 = v16[4] * v6;
-  v12 = v16[5] * v6;
-  v7 = v16[3] * v6 + v16[0];
-  v14 = v16[1] + v11;
-  v8 = v16[2] + v12;
-  *((float *)pBounds + 1) = v14;
-  v15 = v8;
-  v9 = v15;
-  *(float *)pBounds = v7;
-  *((float *)pBounds + 2) = v9;
+  v11.y = v15.Direction.y * v7;
+  v11.z = v15.Direction.z * v7;
+  v8 = v15.Direction.x * v7 + v15.Origin.x;
+  v13 = v15.Origin.y + v11.y;
+  v9 = v15.Origin.z + v11.z;
+  *((float *)pBounds + 1) = v13;
+  v14 = v9;
+  v10 = v14;
+  *(float *)pBounds = v8;
+  *((float *)pBounds + 2) = v10;
   return 1;
 }
 
 // 0x0041EE60
 char Camera::IsTransitioning()
 {
-  void *v0; // eax
-  int v1; // eax
+  RoleSystem *v0; // eax
+  int RolePtr; // eax
   _DWORD *v2; // eax
   int v3; // eax
   char v5; // al
@@ -186,14 +185,14 @@ char Camera::IsTransitioning()
   int v8; // [esp-4h] [ebp-10h]
   int v9; // [esp-4h] [ebp-10h]
 
-  v8 = *(_DWORD *)(*(_DWORD *)&g_SceneMgr.m_info[54108] + 628);
-  v0 = (void *)UISceneUpdate();
-  v1 = v0->GetRolePtr(v8);
-  v9 = (__int64)((*(float *)(*(_DWORD *)&g_SceneMgr.m_info[54108] + 12) - *(float *)(v1 + 136))
-               / *(float *)&g_SceneMgr.m_info[54068]);
-  v7 = (__int64)((*(float *)(*(_DWORD *)&g_SceneMgr.m_info[54108] + 4) - *(float *)(v1 + 128))
-               / *(float *)&g_SceneMgr.m_info[54068]);
-  v6 = *(_DWORD *)(*(_DWORD *)&g_SceneMgr.m_info[54108] + 628);
+  v8 = *(_DWORD *)(*(_DWORD *)&g_SceneMgr.m_npc[6].m_actor.m_szTexture[132] + 628);
+  v0 = (RoleSystem *)UISceneUpdate();
+  RolePtr = v0->GetRolePtr(v8);
+  v9 = (__int64)((*(float *)(*(_DWORD *)&g_SceneMgr.m_npc[6].m_actor.m_szTexture[132] + 12) - *(float *)(RolePtr + 136))
+               / *(float *)&g_SceneMgr.m_npc[6].m_actor.m_szTexture[92]);
+  v7 = (__int64)((*(float *)(*(_DWORD *)&g_SceneMgr.m_npc[6].m_actor.m_szTexture[132] + 4) - *(float *)(RolePtr + 128))
+               / *(float *)&g_SceneMgr.m_npc[6].m_actor.m_szTexture[92]);
+  v6 = *(_DWORD *)(*(_DWORD *)&g_SceneMgr.m_npc[6].m_actor.m_szTexture[132] + 628);
   v2 = (_DWORD *)UISceneUpdate();
   v3 = sub_420A10(v2, v6, v7, v9);
   if ( !v3 )

@@ -28,24 +28,24 @@ extern int dword_189506C;
 extern float flt_1895038;
 
 // 0x0053FDD0
-Parent_Data::Parent_Data(int _this, LPCSTR lpString)
+Parent_Data::Parent_Data(LPCSTR lpString)
 {
   int v3; // edi
   int i; // ebx
 
-  if ( !*(_BYTE *)(this + 532) )
+  if ( !*((_BYTE *)this + 532) )
     return 0;
   if ( lstrlenA(lpString) <= 0 )
     return 0;
   v3 = 0;
-  if ( *(int *)(this + 524) <= 0 )
+  if ( *((int *)this + 131) <= 0 )
     return 0;
-  for ( i = 0; _strcmpi(lpString, (const char *)(i + *(_DWORD *)(this + 528))); i += 1088 )
+  for ( i = 0; _strcmpi(lpString, (const char *)(i + *((_DWORD *)this + 132))); i += 1088 )
   {
-    if ( ++v3 >= *(_DWORD *)(this + 524) )
+    if ( ++v3 >= *((_DWORD *)this + 131) )
       return 0;
   }
-  return *(_DWORD *)(this + 528) + 1088 * v3;
+  return (Parent_Data *)(*((_DWORD *)this + 132) + 1088 * v3);
 }
 
 // 0x0053FE80
@@ -81,9 +81,9 @@ struct gbRenderEffect *Parent_Data::spstr()
   gbEffectMgr *v0; // esi
   struct gbRenderEffect *result; // eax
 
-  dword_1895040 = (MEMORY[0xBFD6D0] - 800) / 2;
-  dword_1895044 = (MEMORY[0xBFD6D4] - 600) / 2;
-  v0 = (gbEffectMgr *)*(gbEffectMgr **)(g_pGfxManager + 200);
+  dword_1895040 = (g_Input.KeyInfo[120].Data - 800) / 2;
+  dword_1895044 = (g_Input.KeyInfo[120].HoldTime - 600) / 2;
+  v0 = (gbEffectMgr *)*(gbEffectMgr **)(g_Input.KeyInfo[177].Data + 200);
   dword_1895048 = (int)v0->NewTrivalEffect(0);
   dword_189504C = (int)v0->NewRenderEffect(aGfxscriptUiTlG, 0);
   dword_1895050 = (int)v0->NewRenderEffect(aGfxscriptUiNot, 0);

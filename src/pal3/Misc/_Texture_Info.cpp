@@ -7,7 +7,7 @@ extern char aDProjectPal3Ui_0[];
 extern char aNotFoundSInUiO[];
 
 // 0x0053FCF0
-CHAR * _Texture_Info::_CalculateUV(int _this, LPCSTR lpString)
+Scene * _Texture_Info::_CalculateUV(int _this, LPCSTR lpString)
 {
   int v3; // edi
   int v4; // ebx
@@ -15,7 +15,7 @@ CHAR * _Texture_Info::_CalculateUV(int _this, LPCSTR lpString)
   char ArgList[1024]; // [esp+410h] [ebp-400h] BYREF
 
   if ( !*(_BYTE *)(this + 532) || lstrlenA(lpString) <= 0 )
-    return MEMORY[0xC10D38];
+    return (Scene *)&g_SceneMgr.m_npc[5].m_path.normal[140].y;
   v3 = 0;
   if ( *(int *)(this + 524) <= 0 )
   {
@@ -34,5 +34,5 @@ LABEL_7:
     if ( v3 >= *(_DWORD *)(this + 524) )
       goto LABEL_7;
   }
-  return (CHAR *)(1088 * v3 + *(_DWORD *)(this + 528) + 512);
+  return (Scene *)(1088 * v3 + *(_DWORD *)(this + 528) + 512);
 }

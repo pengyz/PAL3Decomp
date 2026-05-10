@@ -80,14 +80,14 @@ char CCBStageShadow::Reset()
   int v10; // [esp+58h] [ebp-8h]
   float v11; // [esp+5Ch] [ebp-4h]
 
-  sub_511E80((char *)this);
+  sub_511E80(this);
   ((gbMatrix4 *)v8)->gbMatrix4();
   v2 = 0;
   v3 = -1488 - (_DWORD)this;
   v4 = (gbGeomQuad *)&this->m_ShadowQuad[6];
   do
   {
-    if ( this->m_pStage->m_pCBSystem->m_pRoleState->m_Role[0].sModel[v2 + 5] )
+    if ( this->m_pStage->m_pCBSystem->m_pRoleState->m_Role[v2].bValid )
     {
       WorldPos = ((CCBStageRole *)*(CCBStageRole **)((char *)&v4->vec[0].x + v3 + (unsigned int)this->m_pStage))->GetWorldPos();
       v8->operator=(WorldPos);
@@ -105,10 +105,10 @@ char CCBStageShadow::Reset()
     {
       v4->vec[0].x = 0.5;
     }
-    v2 += 892;
+    ++v2;
     v4 = (gbGeomQuad *)((char *)v4 + 4);
   }
-  while ( v2 < 9812 );
+  while ( v2 < 11 );
   this->Destroy();
   return 1;
 }
@@ -116,10 +116,10 @@ char CCBStageShadow::Reset()
 // 0x00512080
 void CCBStageShadow::Create()
 {
-  CCBRoleState *v2; // esi
+  CCBRoleState *m_pRoleState; // esi
   int v3; // ebx
-  float *v4; // edi
-  float *v5; // esi
+  float *p_sv; // edi
+  float *p_z; // esi
   int v6; // eax
   double v7; // st7
   double v8; // st6
@@ -131,7 +131,7 @@ void CCBStageShadow::Create()
   double v14; // st7
   double v15; // st6
   int roleIdx; // [esp+10h] [ebp-54h]
-  char *v17; // [esp+14h] [ebp-50h]
+  unsigned __int8 *p_bValid; // [esp+14h] [ebp-50h]
   int v18; // [esp+18h] [ebp-4Ch]
   CCBRoleState *v19; // [esp+1Ch] [ebp-48h]
   int v20; // [esp+20h] [ebp-44h]
@@ -146,20 +146,20 @@ void CCBStageShadow::Create()
   float v29; // [esp+5Ch] [ebp-8h]
   float v30; // [esp+60h] [ebp-4h]
 
-  v2 = (CCBRoleState *)this->m_pStage->m_pCBSystem->m_pRoleState;
-  v19 = v2;
-  ((gbVertPoolMgr *)*(gbVertPoolMgr **)&g_pGfxManager[196])->GetDynVertBuf(0x15u);
+  m_pRoleState = (CCBRoleState *)this->m_pStage->m_pCBSystem->m_pRoleState;
+  v19 = m_pRoleState;
+  ((gbVertPoolMgr *)*(gbVertPoolMgr **)(g_Input.KeyInfo[177].Data + 196))->GetDynVertBuf(0x15u);
   v18 = 0;
-  v17 = (char *)&v2->m_bMustFail[0].sModel[4] + 1;
+  p_bValid = (unsigned __int8 *)&m_pRoleState->m_Role[0].bValid;
   roleIdx = 0;
   v3 = 24;
-  v4 = (float *)&this->m_ShadowInitQuad[8].sv;
-  v5 = (float *)&this->m_ShadowInitQuad[0].vec[0].z;
+  p_sv = (float *)&this->m_ShadowInitQuad[8].sv;
+  p_z = (float *)&this->m_ShadowInitQuad[0].vec[0].z;
   do
   {
     v6 = *(int *)((char *)&this->m_pStage->m_pCBSystem + v3);
     v20 = v6;
-    if ( !*v17 )
+    if ( !*p_bValid )
       goto LABEL_8;
     if ( *(_BYTE *)(v6 + 272) )
       goto LABEL_7;
@@ -168,44 +168,44 @@ void CCBStageShadow::Create()
       v6 = v20;
 LABEL_7:
       v7 = *(float *)(v6 + 6584);
-      v8 = v7 + *(v5 - 2);
+      v8 = v7 + *(p_z - 2);
       v21 = *(float *)(v6 + 6588);
       v22 = *(float *)(v6 + 6592);
-      v23 = v21 + *(v5 - 1);
-      v9 = v22 + *v5;
-      *(v4 - 1) = v23;
+      v23 = v21 + *(p_z - 1);
+      v9 = v22 + *p_z;
+      *(p_sv - 1) = v23;
       v24 = v9;
-      *(v4 - 2) = v8;
-      *v4 = v24;
-      v10 = v7 + v5[1];
-      v25 = v21 + v5[2];
-      v11 = v22 + v5[3];
-      v4[2] = v25;
+      *(p_sv - 2) = v8;
+      *p_sv = v24;
+      v10 = v7 + p_z[1];
+      v25 = v21 + p_z[2];
+      v11 = v22 + p_z[3];
+      p_sv[2] = v25;
       v26 = v11;
-      v4[1] = v10;
-      v4[3] = v26;
-      v12 = v7 + v5[4];
-      v27 = v21 + v5[5];
-      v13 = v22 + v5[6];
-      v4[5] = v27;
+      p_sv[1] = v10;
+      p_sv[3] = v26;
+      v12 = v7 + p_z[4];
+      v27 = v21 + p_z[5];
+      v13 = v22 + p_z[6];
+      p_sv[5] = v27;
       v28 = v13;
-      v4[4] = v12;
-      v4[6] = v28;
-      v14 = v7 + v5[7];
-      v29 = v21 + v5[8];
-      v15 = v22 + v5[9];
-      v4[8] = v29;
+      p_sv[4] = v12;
+      p_sv[6] = v28;
+      v14 = v7 + p_z[7];
+      v29 = v21 + p_z[8];
+      v15 = v22 + p_z[9];
+      p_sv[8] = v29;
       v30 = v15;
-      v4[7] = v14;
-      v4[9] = v30;
-      v4 += 17;
+      p_sv[7] = v14;
+      p_sv[9] = v30;
+      p_sv += 17;
       ++v18;
     }
 LABEL_8:
     v3 += 4;
-    v5 += 17;
+    p_z += 17;
     ++roleIdx;
-    v17 += 892;
+    p_bValid += 892;
   }
   while ( v3 < 68 );
   if ( v18 > 0 )

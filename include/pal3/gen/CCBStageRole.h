@@ -109,13 +109,13 @@ public:
     void IsDoTask(gbMatrixStack *a2); // 0x00509B90
     int Grab(int a2); // 0x0050A180
     char Release(char a2); // 0x0050A1A0
-    int TryRelease(); // 0x0050A1B0
+    void TryRelease(); // 0x0050A1B0
     char ForceRelease(char a2); // 0x0050A1F0
     char DangerForceRelease(char a2); // 0x0050A200
     int IsGrabedBy(); // 0x0050A210
-    int GetPointerPos(); // 0x0050A260
+    void GetPointerPos(); // 0x0050A260
     void SetBladeTime(int a2); // 0x0050A2B0
-    static bool LoadAction(char a1, int a2, int a3, int a4, int a5, int a6); // 0x0050A500
+    bool LoadAction(gbRay a2); // 0x0050A500
     int GetStatus(int index); // 0x0050A520
     float * GetWorldPos(); // 0x0050A560
     double AddTask(float *a2); // 0x0050A5D0
@@ -133,7 +133,7 @@ public:
     void ClearAniMsg(char a2, float a3); // 0x0050AB10
     int SetParam(int a2, char a3); // 0x0050AC50
     char GetProperCurAction(_DWORD *a2, _DWORD *a3, _DWORD *a4, _DWORD *a5, _DWORD *a6, int *a7, const void *a8, _DWORD *a9); // 0x0050AD30
-    char ProcTransportRun(int a2, int a3, int a4, int a5, int *a6, const void *a7, int a8); // 0x0050B070
+    char ProcTransportRun(float a2, float a3, int a4, int a5, int *a6, const void *a7, int a8); // 0x0050B070
     char SetForceFinishThrowingWeapon(int a2); // 0x0050B290
     char GetState(); // 0x0050B330
     int ProcCatchED(); // 0x0050B360

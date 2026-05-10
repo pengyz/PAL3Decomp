@@ -44,7 +44,7 @@ CEffGrid::CEffGrid()
 {
   _DWORD *v0; // eax
 
-  v0 = ((operator *)0x10B8u)->new();
+  v0 = (_DWORD *)((operator *)0x10B8u)->new();
   if ( v0 )
     return sub_4C9550(v0);
   else
@@ -114,7 +114,7 @@ char CEffGrid::Create(int _this, int a2)
 {
   struct _EXCEPTION_REGISTRATION_RECORD *ExceptionList; // eax
   void *v3; // esp
-  void *v5; // eax
+  int v5; // eax
   int v6; // ebx
   int v7; // edi
   int v8; // edi
@@ -124,29 +124,29 @@ char CEffGrid::Create(int _this, int a2)
   __int64 v12; // rax
   int v13; // ecx
   int v14; // ebx
-  void *v15; // eax
+  int v15; // eax
   int v16; // ebx
   int v17; // ebp
   int v18; // ebx
   int v19; // edi
   int v20; // ebp
-  gbVec3D *v21; // eax
+  int v21; // eax
   int v22; // ebp
-  gbVec3D *v23; // ebx
+  int v23; // ebx
   int v24; // ebp
   int v25; // ebp
-  gbVec3D *v26; // eax
+  int v26; // eax
   int v27; // ebp
-  gbVec3D *v28; // ebx
+  int v28; // ebx
   int v29; // ebp
   int v30; // ecx
-  void *v32; // [esp+0h] [ebp-1010h]
-  gbVec3D *v33; // [esp+0h] [ebp-1010h]
-  gbVec3D *v34; // [esp+0h] [ebp-1010h]
+  int v32; // [esp+0h] [ebp-1010h]
+  int v33; // [esp+0h] [ebp-1010h]
+  int v34; // [esp+0h] [ebp-1010h]
   _BYTE v35[1024]; // [esp+4h] [ebp-100Ch] BYREF
   char pExceptionObject[1024]; // [esp+404h] [ebp-C0Ch] BYREF
-  char ArgList; // [esp+804h] [ebp-80Ch] BYREF
-  char v38; // [esp+C04h] [ebp-40Ch] BYREF
+  char ArgList[1024]; // [esp+804h] [ebp-80Ch] BYREF
+  char v38[1024]; // [esp+C04h] [ebp-40Ch] BYREF
   struct _EXCEPTION_REGISTRATION_RECORD *v39; // [esp+1004h] [ebp-Ch]
   void *v40; // [esp+1008h] [ebp-8h]
   int v41; // [esp+100Ch] [ebp-4h]
@@ -233,7 +233,7 @@ LABEL_10:
   *(_DWORD *)(this + 132) = *(_DWORD *)(a2 + 248);
   *(_DWORD *)(this + 136) = *(_DWORD *)(a2 + 268);
   *(_DWORD *)(this + 140) = *(_DWORD *)(a2 + 252);
-  sub_4CAB30(*(_DWORD *)(a2 + 168), *(_DWORD *)(a2 + 172));
+  sub_4CAB30((char *)this, *(_DWORD *)(a2 + 168), *(_DWORD *)(a2 + 172));
   v14 = *(_DWORD *)(this + 124);
   v15 = ((operator *)68 * v14)->new();
   v32 = v15;
@@ -241,13 +241,13 @@ LABEL_10:
   if ( v15 )
   {
     v16 = v14 - 1;
-    v17 = (int)v15;
+    v17 = v15;
     if ( v16 >= 0 )
     {
       v18 = v16 + 1;
       do
       {
-        ArraySort(v17, 12, 4, (int (*)(int))gbVec3D::`default constructor closure');
+        ArraySort(v17, 12, 4, gbVec3D::`default constructor closure');
         v17 += 68;
         --v18;
       }
@@ -265,12 +265,12 @@ LABEL_10:
   {
     qmemcpy(
       pExceptionObject,
-      (const void *)((char)&ArgList)->FormatException((int)aNewFailInCeffg, (int)aDProjectPal3Co_14, 115),
+      ((Logger *)ArgList)->FormatException(aNewFailInCeffg, aDProjectPal3Co_14, 115),
       sizeof(pExceptionObject));
     _CxxThrowException(pExceptionObject, (_ThrowInfo *)&_TI1_AV_Exception__);
   }
   v20 = (*(_DWORD *)(this + 112) + 1) * (*(_DWORD *)(this + 116) + 1);
-  v21 = (gbVec3D *)((operator *)12 * v20)->new();
+  v21 = ((operator *)12 * v20)->new();
   v33 = v21;
   v41 = 1;
   if ( v21 )
@@ -282,8 +282,8 @@ LABEL_10:
       v24 = v22 + 1;
       do
       {
-        gbVec3D::`default constructor closure'(v23);
-        v23 = (gbVec3D *)((char *)v23 + 12);
+        ((void (*)(int))gbVec3D::`default constructor closure')(v23);
+        v23 += 12;
         --v24;
       }
       while ( v24 );
@@ -296,7 +296,7 @@ LABEL_10:
   }
   v25 = (*(_DWORD *)(this + 112) + 1) * (*(_DWORD *)(this + 116) + 1);
   *(_DWORD *)(this + 52) = v21;
-  v26 = (gbVec3D *)((operator *)12 * v25)->new();
+  v26 = ((operator *)12 * v25)->new();
   v34 = v26;
   v41 = 2;
   if ( v26 )
@@ -308,8 +308,8 @@ LABEL_10:
       v29 = v27 + 1;
       do
       {
-        gbVec3D::`default constructor closure'(v28);
-        v28 = (gbVec3D *)((char *)v28 + 12);
+        ((void (*)(int))gbVec3D::`default constructor closure')(v28);
+        v28 += 12;
         --v29;
       }
       while ( v29 );
@@ -325,13 +325,10 @@ LABEL_10:
   *(_DWORD *)(this + 56) = v26;
   if ( !v30 || !v26 )
   {
-    qmemcpy(
-      v35,
-      (const void *)((char)&v38)->FormatException((int)aNewFailInCeffg, (int)aDProjectPal3Co_14, 124),
-      sizeof(v35));
+    qmemcpy(v35, ((Logger *)v38)->FormatException(aNewFailInCeffg, aDProjectPal3Co_14, 124), sizeof(v35));
     _CxxThrowException(v35, (_ThrowInfo *)&_TI1_AV_Exception__);
   }
-  sub_4CABE0(a2 + 40);
+  sub_4CABE0(this, a2 + 40);
   sub_4CAC70(this);
   return 1;
 }

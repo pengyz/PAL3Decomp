@@ -20,7 +20,7 @@ int CameraCtrl::InitParams(void *pParams)
 void CameraCtrl::SetAsCurrent(int flags)
 {
   if ( (flags & 2) != 0 )
-    ((gbCamera *)((char *)this + 4))->SetLookAt((CameraCtrl *)((char *)this + 492), (CameraCtrl *)((char *)this + 480), (CameraCtrl *)((char *)this + 516));
+    ((gbCamera *)((char *)this + 4))->SetLookAt((struct gbVec3D *)this + 41, (struct gbVec3D *)this + 40, (struct gbVec3D *)this + 43);
   ((gbCamera *)((char *)this + 4))->SetAsCurrent(flags);
 }
 
@@ -40,16 +40,16 @@ void * CameraCtrl::GetViewTarget(void *pTarget, float *pPos)
   double v5; // st6
   float v7; // [esp+8h] [ebp-20h]
   float v8; // [esp+Ch] [ebp-1Ch]
-  _DWORD v9[6]; // [esp+10h] [ebp-18h] BYREF
+  struct gbRay v9; // [esp+10h] [ebp-18h] BYREF
 
   v3 = (int *)((char *)this + 4);
   v4 = (double)*(int *)pPos;
   v5 = (double)v3[117];
-  memset(v9, 0, sizeof(v9));
+  memset(&v9, 0, sizeof(v9));
   v7 = v4 / (v5 * 0.5) - 1.0;
   v8 = 1.0 - (double)*((int *)pPos + 1) / ((double)v3[118] * 0.5);
-  ((gbCamera *)v3)->GetRayToScreen(v7, v8, (struct gbRay *)v9);
-  qmemcpy(pTarget, v9, 0x18u);
+  ((gbCamera *)v3)->GetRayToScreen(v7, v8, &v9);
+  qmemcpy(pTarget, &v9, 0x18u);
   return pTarget;
 }
 

@@ -5,7 +5,7 @@
 // 0x0043DCA0
 UILBColumn::UILBColumn()
 {
-  MEMORY[0xD90064] = 1094713344;
+  *(_DWORD *)&g_GameData_0._data[7076] = 1094713344;
   return 1094713344;
 }
 
@@ -19,5 +19,5 @@ UILBColumn::~UILBColumn()
 // 0x0043DCC0
 void UILBColumn::Destroy()
 {
-  MEMORY[0xD90060] = 12.0 + 12.0;
+  *(float *)&g_GameData_0._data[7072] = 12.0 + 12.0;
 }

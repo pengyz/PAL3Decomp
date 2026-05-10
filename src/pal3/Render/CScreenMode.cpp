@@ -74,38 +74,39 @@ int CScreenMode::CreateDevice(int a, int b, int c, int d)
 // 0x0053C5A0
 int CScreenMode::PlayVideo(int a2)
 {
-  gbGfxManager *v3; // esi
-  _BYTE *Instance; // eax
-  _BYTE *v5; // eax
-  _BYTE *v7; // eax
+  int Data; // esi
+  UIRenderObj *Instance; // eax
+  UIRenderObj *v5; // eax
+  UIRenderObj *v7; // eax
   struct tagMSG Msg; // [esp+4Ch] [ebp-1Ch] BYREF
 
   if ( *((_DWORD *)this + 3) )
   {
-    v3 = g_pGfxManager;
-    (*(void (__stdcall **)(_DWORD, _DWORD, _DWORD, int, int, int, _DWORD))(**(_DWORD **)&g_pGfxManager[1816] + 172))(
-      *(_DWORD *)&g_pGfxManager[1816],
+    Data = g_Input.KeyInfo[177].Data;
+    (*(void (__stdcall **)(_DWORD, _DWORD, _DWORD, int, int, int, _DWORD))(**(_DWORD **)(g_Input.KeyInfo[177].Data + 1816)
+                                                                         + 172))(
+      *(_DWORD *)(g_Input.KeyInfo[177].Data + 1816),
       0,
       0,
       1,
       -16777216,
       1065353216,
       0);
-    (*(void (__stdcall **)(_DWORD, _DWORD, _DWORD, _DWORD, _DWORD))(**(_DWORD **)&v3[1816] + 68))(
-      *(_DWORD *)&v3[1816],
+    (*(void (__stdcall **)(_DWORD, _DWORD, _DWORD, _DWORD, _DWORD))(**(_DWORD **)(Data + 1816) + 68))(
+      *(_DWORD *)(Data + 1816),
       0,
       0,
       0,
       0);
-    (*(void (__stdcall **)(_DWORD, _DWORD, _DWORD, int, int, int, _DWORD))(**(_DWORD **)&v3[1816] + 172))(
-      *(_DWORD *)&v3[1816],
+    (*(void (__stdcall **)(_DWORD, _DWORD, _DWORD, int, int, int, _DWORD))(**(_DWORD **)(Data + 1816) + 172))(
+      *(_DWORD *)(Data + 1816),
       0,
       0,
       1,
       -16777216,
       1065353216,
       0);
-    Instance = (_BYTE *)UIQuadManager::GetInstance();
+    Instance = (UIRenderObj *)UIQuadManager::GetInstance();
     Instance->~UIRenderObj(0);
     do
     {
@@ -117,7 +118,7 @@ int CScreenMode::PlayVideo(int a2)
 LABEL_13:
           sub_53C420((int *)this);
           UICursor::IRender();
-          v5 = (_BYTE *)UIQuadManager::GetInstance();
+          v5 = (UIRenderObj *)UIQuadManager::GetInstance();
           v5->~UIRenderObj(1u);
           return 0;
         }
@@ -127,10 +128,10 @@ LABEL_13:
         DispatchMessageA(&Msg);
       }
     }
-    while ( sub_53C460((int *)this) || !sub_53C470(this) );
+    while ( sub_53C460((int *)this) || !sub_53C470((int *)this) );
     sub_53C420((int *)this);
     UICursor::IRender();
-    v7 = (_BYTE *)UIQuadManager::GetInstance();
+    v7 = (UIRenderObj *)UIQuadManager::GetInstance();
     v7->~UIRenderObj(1u);
   }
   return 1;
@@ -232,28 +233,29 @@ char CScreenMode::IsAudioReady()
 // 0x0053DD70
 void CScreenMode::SetMode(int mode)
 {
-  struct gbVFileSystem *v3; // eax
+  gbAudioManager *v3; // eax
   gbAudioManager *v4; // edi
   bool v5; // zf
   int v6; // eax
   CPK *v7; // esi
   int v8; // [esp+Ch] [ebp-268h] BYREF
-  struct gbVFileSystem *v9[2]; // [esp+10h] [ebp-264h] BYREF
+  OpenBaseFile v9; // [esp+10h] [ebp-264h] BYREF
+  gbAudioManager *v10; // [esp+14h] [ebp-260h]
   char Buffer[324]; // [esp+18h] [ebp-25Ch] BYREF
-  _BYTE v11[268]; // [esp+15Ch] [ebp-118h] BYREF
-  int v12; // [esp+270h] [ebp-4h]
+  gbAudioMgrDesc v12; // [esp+15Ch] [ebp-118h] BYREF
+  int v13; // [esp+270h] [ebp-4h]
 
   if ( (g_nGameFlags & 5) != 0 )
   {
-    ((gbAudioMgrDesc *)v11)->gbAudioMgrDesc();
-    v3 = (struct gbVFileSystem *)((operator *)0xF4u)->new();
-    v9[1] = v3;
-    v12 = 0;
+    ((gbAudioMgrDesc *)&v12)->gbAudioMgrDesc();
+    v3 = (gbAudioManager *)((operator *)0xF4u)->new();
+    v10 = v3;
+    v13 = 0;
     if ( v3 )
-      v4 = ((gbAudioManager *)v3)->gbAudioManager(&v8, (struct gbAudioMgrDesc *)v11);
+      v4 = (gbAudioManager *)v3->gbAudioManager(&v8, &v12);
     else
       v4 = 0;
-    v12 = -1;
+    v13 = -1;
     v5 = v8 == 0;
     *((_DWORD *)this + 202) = v4;
     if ( v5 )
@@ -272,8 +274,8 @@ void CScreenMode::SetMode(int mode)
     {
       *((_DWORD *)this + 207) = 0;
       *((_DWORD *)this + 6) = 0;
-      v9->OpenBaseFile();
-      v12 = 1;
+      ((OpenBaseFile *)&v9)->OpenBaseFile();
+      v13 = 1;
       ((PalScript *)((char *)this + 284))->LoadFromFile(aDatascriptMusi);
       if ( (g_nGameFlags & 2) != 0 )
       {
@@ -290,8 +292,8 @@ void CScreenMode::SetMode(int mode)
             v7->Load(Buffer);
         }
       }
-      v12 = -1;
-      v9->OpenNULLFile();
+      v13 = -1;
+      ((OpenNULLFile **)&v9)->OpenNULLFile();
     }
   }
 }
@@ -338,10 +340,10 @@ void CScreenMode::AudioUpdate()
 {
   if ( (g_nGameFlags & 1) != 0 )
   {
-    if ( g_pCamera )
+    if ( g_Input.KeyInfo[177].CountMode )
     {
-      ((gbAudioManager *)*((gbAudioManager **)this + 202))->SetListenerPosition((const struct gbVec3D *)((char *)g_pCamera + 492));
-      ((gbAudioManager *)*((gbAudioManager **)this + 202))->SetListenerOrientation((struct gbVec3D *)((char *)g_pCamera + 504), (struct gbVec3D *)((char *)g_pCamera + 516));
+      ((gbAudioManager *)*((gbAudioManager **)this + 202))->SetListenerPosition((const struct gbVec3D *)(g_Input.KeyInfo[177].CountMode + 492));
+      ((gbAudioManager *)*((gbAudioManager **)this + 202))->SetListenerOrientation((struct gbVec3D *)(g_Input.KeyInfo[177].CountMode + 504), (struct gbVec3D *)(g_Input.KeyInfo[177].CountMode + 516));
     }
   }
 }

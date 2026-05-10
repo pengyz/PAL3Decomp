@@ -113,7 +113,7 @@ PtrArray::~PtrArray(int a1)
 // 0x00434240
 void PtrArray::SetSize()
 {
-  int v0; // esi
+  int m_nSize; // esi
   int v1; // edi
   void **v2; // ebx
   int v3; // esi
@@ -124,15 +124,15 @@ void PtrArray::SetSize()
   int i; // [esp+Ch] [ebp-8h]
   int v9; // [esp+10h] [ebp-4h]
 
-  v0 = MEMORY[0xD8C34C];
+  m_nSize = stru_D8C348.m_nSize;
   v1 = 0;
-  v9 = MEMORY[0xD8C34C];
-  for ( i = 0; v1 < v0; i = v1 )
+  v9 = stru_D8C348.m_nSize;
+  for ( i = 0; v1 < m_nSize; i = v1 )
   {
-    if ( v1 < 0 || v1 >= MEMORY[0xD8C34C] )
+    if ( v1 < 0 || v1 >= stru_D8C348.m_nSize )
       v2 = 0;
     else
-      v2 = *(void ***)(stru_D8C348 + 4 * v1);
+      v2 = (void **)*((_DWORD *)stru_D8C348.m_pData + v1);
     if ( *v2 )
     {
       if ( *((_WORD *)*v2 + 38) )
@@ -177,7 +177,7 @@ void PtrArray::SetSize()
         *((_DWORD *)v5 + 20) = 0;
       }
       operator delete(*v2);
-      v0 = v9;
+      m_nSize = v9;
       *v2 = 0;
     }
     free(v2);
@@ -196,15 +196,15 @@ void PtrArray::SetSize()
 }
 
 // 0x004343B0
-char * PtrArray::SetAtGrow(unsigned __int16 a1, int a2)
+char * PtrArray::SetAtGrow(signed __int16 a1, int a2)
 {
   int v2; // ecx
 
   v2 = a2;
   if ( !a2 )
     v2 = dword_D8E468;
-  if ( (a1 & 0x8000u) == 0 )
-    return (char *)(*(_DWORD *)(v2 + 76) + 8 * a1);
+  if ( a1 >= 0 )
+    return (char *)(*(_DWORD *)(v2 + 76) + 8 * (unsigned __int16)a1);
   else
     return (char *)Block + 24 * (a1 & 0x7FFF);
 }
@@ -243,7 +243,7 @@ struct gbVFile * PtrArray::InsertAt(int _this, const char *a2)
   int v4; // edi
   bool v5; // zf
   int v6; // ebx
-  int v7; // [esp+20h] [ebp-10h] BYREF
+  struct gbVFile *v7; // [esp+20h] [ebp-10h] BYREF
   char v8[5]; // [esp+24h] [ebp-Ch] BYREF
   int v9; // [esp+29h] [ebp-7h]
 
@@ -271,8 +271,8 @@ struct gbVFile * PtrArray::InsertAt(int _this, const char *a2)
             v6 = 0;
             do
             {
-              v7 = sub_4348E0(v6 + *(_DWORD *)(this + 24));
-              sub_5372D0(*(_DWORD *)(this + 12), 1, &v7);
+              v7 = (struct gbVFile *)sub_4348E0((struct gbVFile **)this, v6 + *(_DWORD *)(this + 24));
+              sub_5372D0(this + 4, *(_DWORD **)(this + 12), 1u, &v7);
               ++v4;
               v6 += 72;
             }

@@ -77,7 +77,7 @@ public:
     int IsTaskValid(int a2); // 0x004FD0B0
     int IsSubTaskValid(int a2); // 0x004FD1A0
     int IsIdle(int a2); // 0x004FD290
-    int HasNormalAttackRole(int a2); // 0x004FD3D0
+    int HasNormalAttackRole(int _24); // 0x004FD3D0
     int ClearRoleAllTask(int a2); // 0x004FD880
     int EndRoleAllTask(int a2); // 0x004FDA10
     int GetRoleTaskNum(int a2); // 0x004FDB10

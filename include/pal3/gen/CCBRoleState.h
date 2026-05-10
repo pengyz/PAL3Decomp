@@ -51,9 +51,9 @@ public:
     char CheckVarianceRound(int a2, int a3, int *a4); // 0x004EEA70
     char CancelVariance(_DWORD *a2, unsigned int a3); // 0x004EECB0
     char IsAlive(int a2, int a3); // 0x004EEE60
-    static char IsBoss(_DWORD *a1, int a2); // 0x004EF4A0
+    void IsBoss(_DWORD *arg0, unsigned int a2); // 0x004EF4A0
     int IsAllWeDead(int a2); // 0x004EF6A0
-    static _DWORD * IsAllEnemyDead(int a1, int *a2, int *a3); // 0x004EF6C0
+    static _DWORD * IsAllEnemyDead(int a2, int *arg4, int *a3); // 0x004EF6C0
     int CanAction(int a2, int a3, int a4); // 0x004EF710
     int SetCanAction(unsigned int dmg, int roleIdx, int a4); // 0x004EF7E0
     char RandSetEnemyPos(const void *arg0); // 0x004EF8B0
@@ -73,7 +73,7 @@ public:
     unsigned __int8 GetRoleNum(int *a2); // 0x004F0830
     char GetAliveRoleNumInForce(int a2); // 0x004F1070
     char GetDeadRoleNumInForce(int a2); // 0x004F1420
-    char GetFirstAliveRoleInForce(int roleIdx, int a3); // 0x004F17C0
+    char GetFirstAliveRoleInForce(int roleIdx, int arg4); // 0x004F17C0
     char GetCastFightSkillSuccess(int a2); // 0x004F1A30
     char SetCoAttack(int a2); // 0x004F1B20
     char CanBeImbibeNimbus(int arg0, unsigned int a2); // 0x004F1CC0

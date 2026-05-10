@@ -22,9 +22,9 @@ extern int unk_EC9EB4;
 // 0x004C6940
 CEffect::CEffect()
 {
-  _DWORD *v0; // eax
+  CEffectSystem *v0; // eax
 
-  v0 = ((operator *)0x10C0u)->new();
+  v0 = (CEffectSystem *)((operator *)0x10C0u)->new();
   if ( v0 )
     return v0->FillDefaultUVSet();
   else
@@ -114,8 +114,8 @@ void CEffect::CreateOnePartical(int _this, float a2)
   float v27; // [esp+10h] [ebp-8h]
   int v28; // [esp+14h] [ebp-4h]
   float v29; // [esp+14h] [ebp-4h]
-  int v30; // [esp+20h] [ebp+8h]
-  int v31; // [esp+20h] [ebp+8h]
+  int a2a; // [esp+20h] [ebp+8h]
+  int a2b; // [esp+20h] [ebp+8h]
 
   v2 = this;
   v3 = a2 - *(float *)(this + 16);
@@ -124,7 +124,7 @@ void CEffect::CreateOnePartical(int _this, float a2)
   *(float *)(this + 20) = v3;
   if ( *(float *)(this + 20) > 0.0 )
   {
-    v30 = 0;
+    a2a = 0;
     if ( *(int *)(this + 40) > 0 )
     {
       v28 = 0;
@@ -142,7 +142,7 @@ void CEffect::CreateOnePartical(int _this, float a2)
           }
         }
 LABEL_29:
-        v11 = ++v30 < *(_DWORD *)(v4 + 28);
+        v11 = ++a2a < *(_DWORD *)(v4 + 28);
         v28 += 152;
         if ( !v11 )
           goto LABEL_30;
@@ -166,8 +166,8 @@ LABEL_28:
               {
                 if ( *(float *)(v4 + 4) - *(float *)(v8 - 56) > *(float *)(v8 + 20) )
                 {
-                  sub_4D4D30(v30, v6);
-                  *(_DWORD *)(v4 + 16) = v30;
+                  sub_4D4D30((_DWORD *)v4, a2a, v6);
+                  *(_DWORD *)(v4 + 16) = a2a;
                   *(_DWORD *)(v4 + 20) = v26;
                   goto LABEL_24;
                 }
@@ -178,7 +178,7 @@ LABEL_28:
                 *(_DWORD *)(*(_DWORD *)(v28 + *(_DWORD *)(v4 + 12)) + v7 + 16) = *(_DWORD *)(v4 + 4);
 LABEL_21:
                 *(_DWORD *)(v4 + 20) = v6;
-                *(_DWORD *)(v4 + 16) = v30;
+                *(_DWORD *)(v4 + 16) = a2a;
 LABEL_24:
                 (*(void (**)(int, _DWORD, _DWORD, _DWORD))(*(_DWORD *)v4 + 4))(
                   v4,
@@ -191,7 +191,7 @@ LABEL_24:
           case 3:
             goto LABEL_21;
           case 4:
-            if ( (unsigned __int8)sub_4D4D70(v30) )
+            if ( sub_4D4D70((_DWORD *)v4, a2a) )
             {
               v9 = *(_DWORD *)(v5 + 4);
               *(_DWORD *)(v5 + 12) = 4;
@@ -200,7 +200,7 @@ LABEL_24:
               *(_DWORD *)(v5 + 20) = *(_DWORD *)(*(_DWORD *)v5 + 8 * v10 - 12);
               if ( (_BYTE)v9 == 1 )
               {
-                v30->Init();
+                ((CEffgbParticle *)v4)->Init(a2a);
                 goto LABEL_28;
               }
             }
@@ -232,7 +232,7 @@ LABEL_30:
       v24 = *(_DWORD *)(v2 + 112);
       v20 = v15;
       v21 = v16;
-      v31 = 0;
+      a2b = 0;
       v29 = (v15[50] - *v16) * (1.0 / (double)v14);
       v27 = (v15[51] - v15[49]) * (1.0 / (double)v24);
       if ( v24 > 0 )
@@ -241,7 +241,7 @@ LABEL_30:
         {
           v17 = *v16;
           v18 = 0;
-          v25 = (double)v31 * v27 + v15[49];
+          v25 = (double)a2b * v27 + v15[49];
           if ( v14 > 0 )
           {
             v19 = 68 * v12;
@@ -263,9 +263,9 @@ LABEL_30:
             v16 = v21;
             v15 = v20;
           }
-          ++v31;
+          ++a2b;
         }
-        while ( v31 < *(_DWORD *)(v2 + 112) );
+        while ( a2b < *(_DWORD *)(v2 + 112) );
       }
     }
   }
@@ -407,12 +407,12 @@ int CEffect::SetParam(int a2)
   char v3; // bl
   int v4; // edx
 
-  v2 = *(_DWORD *)(*(_DWORD *)&this->m_pES[24] + 152 * *(_DWORD *)&this->m_pES[28]);
-  v3 = *(_BYTE *)(v2 + 72 * *(_DWORD *)&this->m_pES[32] + 65);
-  v4 = v2 + 72 * *(_DWORD *)&this->m_pES[32];
+  v2 = *(_DWORD *)(this->m_nPartical + 152 * (int)this->m_Partical[0].pPic);
+  v3 = *(_BYTE *)(v2 + 72 * this->m_Partical[0].nQuadIndex + 65);
+  v4 = v2 + 72 * this->m_Partical[0].nQuadIndex;
   if ( !v3 )
     *(_BYTE *)(v4 + 65) = 1;
-  if ( *(_BYTE *)(v4 + 66) == 1 || *(float *)&this->m_pES[16] - *(float *)(v4 + 16) >= *(float *)(v4 + 24) )
+  if ( *(_BYTE *)(v4 + 66) == 1 || *(float *)&this->m_DeltaTime - *(float *)(v4 + 16) >= *(float *)(v4 + 24) )
     *(_DWORD *)(v4 + 8) = 4;
   return 0;
 }
@@ -452,7 +452,7 @@ int CEffect::Render(int a2)
     a2a = (int *)&dword_EC9E74[v4];
     do
     {
-      v5 = sub_4CDCA0((int *)this->m_pES, *a2a, v3, 0, 0, 0);
+      v5 = sub_4CDCA0((int *)this, *a2a, v3, 0, 0, 0);
       if ( v5 != -1 )
       {
         v6 = v9;
@@ -460,8 +460,8 @@ int CEffect::Render(int a2)
         do
         {
           if ( v6[88] )
-            (*(void (**)(_DWORD, char *))(**(_DWORD **)&this->m_pES[20 * v5 + 2348] + 36))(
-              *(_DWORD *)&this->m_pES[20 * v5 + 2348],
+            (*(void (**)(_DWORD, char *))(**((_DWORD **)&this->m_Partical[32].bAniFrame + 5 * v5) + 36))(
+              *(&this->m_Partical[32].bAniFrame + 5 * v5),
               v6);
           v6 += 124;
           --v7;

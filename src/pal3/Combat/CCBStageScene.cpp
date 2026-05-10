@@ -35,27 +35,27 @@ extern void *off_56A66C;
 // 0x0050FE50
 int CCBStageScene::Update()
 {
-  *(_DWORD *)&this->m_pStage[948] = 0;
-  *(_DWORD *)&this->m_pStage[952] = 0;
-  *(_DWORD *)&this->m_pStage[956] = 0;
-  this->m_pStage[961] = 1;
-  this->m_pStage[962] = 1;
-  this->m_pStage[963] = 1;
-  *(_DWORD *)&this->m_pStage[968] = 0;
-  this->m_pStage[960] = 0;
-  this->m_pStage[964] = 0;
-  *(_DWORD *)&this->m_pStage[732] = 0;
-  *(_DWORD *)&this->m_pStage[736] = 0;
-  *(_DWORD *)&this->m_pStage[740] = 1065353216;
-  *(_DWORD *)&this->m_pStage[744] = 1065353216;
-  *(_DWORD *)&this->m_pStage[868] = 0;
-  *(_DWORD *)&this->m_pStage[872] = 0;
-  *(_DWORD *)&this->m_pStage[876] = 1065353216;
-  *(_DWORD *)&this->m_pStage[880] = 1065353216;
-  *(_DWORD *)&this->m_pStage[800] = 0;
-  *(_DWORD *)&this->m_pStage[804] = 0;
-  *(_DWORD *)&this->m_pStage[808] = 1065353216;
-  *(_DWORD *)&this->m_pStage[812] = 1065353216;
+  this->m_EnemyFiveLineupQuad.eu = 0.0;
+  this->m_EnemyFiveLineupQuad.ev = 0.0;
+  this->m_EnemyFiveLineupQuad.color.ColorQuadFmt = 0;
+  BYTE1(this->m_EnemyFiveLineupQuad.color.Blue) = 1;
+  BYTE2(this->m_EnemyFiveLineupQuad.color.Blue) = 1;
+  HIBYTE(this->m_EnemyFiveLineupQuad.color.Blue) = 1;
+  this->m_EnemyFiveLineupQuad.color.Red = 0;
+  LOBYTE(this->m_EnemyFiveLineupQuad.color.Blue) = 0;
+  LOBYTE(this->m_EnemyFiveLineupQuad.color.Green) = 0;
+  this->m_FiveLineupQuad.vec[1].y = 0.0;
+  this->m_FiveLineupQuad.vec[1].z = 0.0;
+  this->m_FiveLineupQuad.vec[2].x = 1.0;
+  this->m_FiveLineupQuad.vec[2].y = 1.0;
+  this->m_FiveLineupCenterQuad.color.ColorQuadFmt = 0;
+  this->m_FiveLineupCenterQuad.color.Blue = 0;
+  this->m_FiveLineupCenterQuad.color.Green = 1065353216;
+  this->m_FiveLineupCenterQuad.color.Red = 1065353216;
+  this->m_FiveLineupQuad.color.Color = 0;
+  this->m_FiveLineupCenterQuad.vec[0].x = 0.0;
+  this->m_FiveLineupCenterQuad.vec[0].y = 1.0;
+  this->m_FiveLineupCenterQuad.vec[0].z = 1.0;
   return 0;
 }
 
@@ -166,7 +166,7 @@ CCBStageScene::~CCBStageScene(int _this)
   _DWORD *v5; // esi
   int v6; // edi
 
-  sub_511630(this);
+  sub_511630((_DWORD *)this);
   ((gbRefObject *)*(gbRefObject **)(this + 668))->Release();
   ((gbRefObject *)*(gbRefObject **)(this + 664))->Release();
   if ( *(_DWORD *)(this + 672) )
@@ -431,7 +431,7 @@ void CCBStageScene::Destroy()
       *v3 = 0;
     }
     m_pCamControl = (CCBRoleState *)(*v1)->m_pStage->m_pCamControl;
-    if ( m_pCamControl->m_Role[0].sModel[v2 + 5] )
+    if ( m_pCamControl->m_Role[v2].bValid )
     {
       v5 = *(_DWORD *)(m_pCamControl->InitUI(a2) + 540);
       if ( v5 )
@@ -481,11 +481,11 @@ void CCBStageScene::Destroy()
         }
       }
     }
-    v2 += 892;
+    ++v2;
     ++v3;
     ++a2;
   }
-  while ( v2 < 9812 );
+  while ( v2 < 11 );
 }
 
 // 0x005107C0
@@ -706,57 +706,55 @@ int CCBStageScene::SetBattleFieldAttr()
 void CCBStageScene::GetBattleFieldSubdueAttr(gbMatrixStack *a2)
 {
   int v3; // ebp
-  int v4; // ecx
-  int v5; // ecx
-  char *v7; // ebx
+  gbGeomNode *m_pGeomNode; // ecx
+  gbVisNode *m_pLights; // ecx
+  gbGeomNode **m_pCorpse; // ebx
   long double v8; // st7
   float v9; // [esp+18h] [ebp-24h]
   float v10; // [esp+18h] [ebp-24h]
   float v11; // [esp+30h] [ebp-Ch]
-  float v12; // [esp+34h] [ebp-8h]
+  float x; // [esp+34h] [ebp-8h]
   float v13; // [esp+38h] [ebp-4h]
   gbMatrixStack *a2a; // [esp+40h] [ebp+4h]
 
   v3 = 0;
-  v4 = *(_DWORD *)&this->m_pStage[604];
-  if ( v4 && this->m_pStage[344] )
+  m_pGeomNode = (gbGeomNode *)this->m_pGeomNode;
+  if ( m_pGeomNode && LOBYTE(this->m_bLoaded) )
   {
-    (*(void (**)(int, _DWORD))(*(_DWORD *)v4 + 16))(v4, 0);
-    v5 = *(_DWORD *)&this->m_pStage[612];
-    if ( v5 )
-      (*(void (**)(int, _DWORD))(*(_DWORD *)v5 + 16))(v5, 0);
-    if ( this->m_pStage[960] && *(_DWORD *)&this->m_pStage[616] )
+    ((void (*)(gbGeomNode *, _DWORD))m_pGeomNode->next[4].next)(m_pGeomNode, 0);
+    m_pLights = (gbVisNode *)this->m_pLights;
+    if ( m_pLights )
+      ((void (*)(gbVisNode *, _DWORD))m_pLights->next[4].next)(m_pLights, 0);
+    if ( LOBYTE(this->m_EnemyFiveLineupQuad.color.Blue) && this->m_pPointer )
     {
       a2->Push();
-      v9 = sin(*(float *)(**(_DWORD **)this->m_pStage + 80) * 10.0) * 5.0 + *(float *)&this->m_pStage[952] + 6.0;
-      a2->Translate(*(float *)&this->m_pStage[948], v9, *(float *)&this->m_pStage[956]);
-      (*(void (**)(_DWORD, _DWORD))(**(_DWORD **)&this->m_pStage[616] + 16))(
-        *(_DWORD *)&this->m_pStage[616],
-        0);
+      v9 = sin(this->m_pStage->m_pCBSystem->m_fTimeFund * 10.0) * 5.0 + this->m_EnemyFiveLineupQuad.ev + 6.0;
+      a2->Translate(this->m_EnemyFiveLineupQuad.eu, v9, *(float *)&this->m_EnemyFiveLineupQuad.color.ColorQuadFmt);
+      ((void (*)(gbGeomNode *, _DWORD))this->m_pPointer->next[4].next)(this->m_pPointer, 0);
       a2->Pop();
     }
     a2a = 0;
-    v12 = *(float *)&this->m_pStage[892];
-    v7 = (char *)&this->m_pStage[620];
+    x = this->m_EnemyFiveLineupQuad.vec[0].x;
+    m_pCorpse = this->m_pCorpse;
     do
     {
       if ( v3 >= 5 )
       {
-        if ( *(_DWORD *)v7 )
+        if ( *m_pCorpse )
         {
           v8 = (double)(int)a2a * 0.017453292;
-          v11 = sin(v8) * 20.0 + *(float *)&this->m_pStage[888];
-          v13 = cos(v8) * 20.0 + *(float *)&this->m_pStage[896];
+          v11 = sin(v8) * 20.0 + *(float *)&this->m_FiveLineupCenterQuad.color.Color;
+          v13 = cos(v8) * 20.0 + this->m_EnemyFiveLineupQuad.vec[0].y;
           a2->Push();
-          v10 = v12 + 2.0;
+          v10 = x + 2.0;
           a2->Translate(v11, v10, v13);
-          (*(void (**)(_DWORD, _DWORD))(**(_DWORD **)v7 + 16))(*(_DWORD *)v7, 0);
+          ((void (*)(gbGeomNode *, _DWORD))(*m_pCorpse)->next[4].next)(*m_pCorpse, 0);
           a2->Pop();
           a2a = (gbMatrixStack *)((char *)a2a + 60);
         }
       }
       ++v3;
-      v7 += 4;
+      ++m_pCorpse;
     }
     while ( v3 < 11 );
   }
@@ -837,7 +835,7 @@ char CCBStageScene::IsSameBattleFieldAttr()
   int v4; // edi
   CCBRoleState *m_pRoleState; // ebp
   int inited; // eax
-  char *v7; // [esp+Ch] [ebp-Ch]
+  unsigned __int8 *p_bValid; // [esp+Ch] [ebp-Ch]
   float v8; // [esp+10h] [ebp-8h] BYREF
   float v9; // [esp+14h] [ebp-4h] BYREF
 
@@ -852,11 +850,11 @@ char CCBStageScene::IsSameBattleFieldAttr()
       v3 = 0;
       v4 = 24;
       m_pRoleState = (CCBRoleState *)this->m_pStage->m_pCBSystem->m_pRoleState;
-      v7 = (char *)&m_pRoleState->m_Role[0].sModel[5];
+      p_bValid = (unsigned __int8 *)&m_pRoleState->m_Role[0].bValid;
       do
       {
-        result = (char)v7;
-        if ( *v7 )
+        result = (char)p_bValid;
+        if ( *p_bValid )
         {
           inited = m_pRoleState->InitUI(v3);
           sprintf(byte_17ABF00, "%d(%s)", v3, (const char *)(inited + 8));
@@ -865,7 +863,7 @@ char CCBStageScene::IsSameBattleFieldAttr()
         }
         v4 += 4;
         ++v3;
-        v7 += 892;
+        p_bValid += 892;
       }
       while ( v4 < 68 );
     }
@@ -879,7 +877,7 @@ void CCBStageScene::LoadPointer(int _this, char a2)
   struct gbTextureArray *v3; // ecx
   struct gbRenderEffect *v4; // edx
 
-  ((gbVertPoolMgr *)*(gbVertPoolMgr **)(g_pGfxManager + 196))->GetDynVertBuf(0x15u);
+  ((gbVertPoolMgr *)*(gbVertPoolMgr **)(g_Input.KeyInfo[177].Data + 196))->GetDynVertBuf(0x15u);
   v3 = (struct gbTextureArray *)*(struct gbTextureArray **)(this + 672);
   v4 = (struct gbRenderEffect *)*(struct gbRenderEffect **)(this + 664);
   *(_BYTE *)(this + 750) = -1;

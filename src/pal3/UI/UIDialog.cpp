@@ -23,8 +23,8 @@ void UIDialog::Create(int id, int x, int y, int parent, char *tex)
   pRect[1] = 0;
   pRect[0] = 0;
   this->Create(id, pRect, parent);
-  v7 = (gbTexture *)(*(int (**)(gbGfxManager *, char *))(*(_DWORD *)g_pGfxManager + 8))(
-                      g_pGfxManager,
+  v7 = (gbTexture *)(*(int (**)(int, char *))(*(_DWORD *)g_Input.KeyInfo[177].Data + 8))(
+                      g_Input.KeyInfo[177].Data,
                       tex);
   this->m_bvisible = (int)v7;
   if ( v7 )
@@ -36,7 +36,7 @@ void UIDialog::Show()
 {
   int v1; // [esp+4h] [ebp+4h]
 
-  *((_DWORD *)this + 20) = v1;
+  this->m_childs.m_nMaxSize = v1;
 }
 
 // 0x00450B30
@@ -45,13 +45,13 @@ int UIDialog::Init()
   _DWORD pRect[4]; // [esp+8h] [ebp-10h] BYREF
   int parent; // [esp+1Ch] [ebp+4h]
 
-  pRect[0] = (MEMORY[0xBFD6D0] - 274) / 2;
+  pRect[0] = (g_Input.KeyInfo[120].Data - 274) / 2;
   pRect[1] = 10;
   pRect[3] = 87;
   pRect[2] = pRect[0] + 274;
-  ((UIWnd *)this)->Create(0, pRect, parent);
-  ((UINote *)(this + 18))->Create(1, (int)pRect, (int)this, aUiFlexNote_0);
-  ((UIWnd *)(_DWORD *)this + 18)->GetRect(pRect);
-  sub_445910((_DWORD *)this + 18, 2);
-  return (*(int (**)(UIDialog *, _DWORD))this->UIWnd)(this, 0);
+  this->Create(0, pRect, parent);
+  ((UINote *)&this->m_childs)->Create(1, (int)pRect, (int)this, aUiFlexNote_0);
+  ((UIWnd *)&this->m_childs)->GetRect(pRect);
+  sub_445910(&this->m_childs.m_pData, 2);
+  return (*(int (**)(UIDialog *, _DWORD))this->m_fontcolor.ColorQuadFmt)(this, 0);
 }

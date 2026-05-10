@@ -19,25 +19,25 @@ extern unsigned char byte_17ACF80;
 // 0x0051CFB0
 CCBLineupWindow::CCBLineupWindow(_DWORD *a1)
 {
-  _DWORD *v1; // eax
-  _DWORD *v2; // eax
+  CCBControlWindow *v1; // eax
+  _DWORD *Button; // eax
   char pExceptionObject[1024]; // [esp+4h] [ebp-80Ch] BYREF
-  char ArgList; // [esp+404h] [ebp-40Ch] BYREF
+  char ArgList[1024]; // [esp+404h] [ebp-40Ch] BYREF
   int v6; // [esp+80Ch] [ebp-4h]
 
-  v1 = ((operator *)0x80u)->new();
+  v1 = (CCBControlWindow *)((operator *)0x80u)->new();
   v6 = 0;
   if ( v1 )
-    v2 = (_DWORD *)v1->CreateButton();
+    Button = (_DWORD *)v1->CreateButton();
   else
-    v2 = 0;
+    Button = 0;
   v6 = -1;
-  *a1 = v2;
-  if ( !v2 )
+  *a1 = Button;
+  if ( !Button )
   {
     qmemcpy(
       pExceptionObject,
-      (const void *)((char)&ArgList)->FormatException((int)aCNewFailed, (int)aDProjectPal3Co_12, 1660),
+      ((Logger *)ArgList)->FormatException(aCNewFailed, aDProjectPal3Co_12, 1660),
       sizeof(pExceptionObject));
     _CxxThrowException(pExceptionObject, (_ThrowInfo *)&_TI1_AV_Exception__);
   }
@@ -47,13 +47,13 @@ CCBLineupWindow::CCBLineupWindow(_DWORD *a1)
 // 0x0051D070
 CCBLineupWindow::~CCBLineupWindow(_DWORD *a1)
 {
-  _DWORD *v1; // eax
+  CCBItemWindow *v1; // eax
   _DWORD *v2; // eax
   char pExceptionObject[1024]; // [esp+4h] [ebp-80Ch] BYREF
-  char ArgList; // [esp+404h] [ebp-40Ch] BYREF
+  char ArgList[1024]; // [esp+404h] [ebp-40Ch] BYREF
   int v6; // [esp+80Ch] [ebp-4h]
 
-  v1 = ((operator *)0x7Cu)->new();
+  v1 = (CCBItemWindow *)((operator *)0x7Cu)->new();
   v6 = 0;
   if ( v1 )
     v2 = (_DWORD *)v1->Update();
@@ -65,7 +65,7 @@ CCBLineupWindow::~CCBLineupWindow(_DWORD *a1)
   {
     qmemcpy(
       pExceptionObject,
-      (const void *)((char)&ArgList)->FormatException((int)aCNewFailed, (int)aDProjectPal3Co_12, 1660),
+      ((Logger *)ArgList)->FormatException(aCNewFailed, aDProjectPal3Co_12, 1660),
       sizeof(pExceptionObject));
     _CxxThrowException(pExceptionObject, (_ThrowInfo *)&_TI1_AV_Exception__);
   }
@@ -75,13 +75,13 @@ CCBLineupWindow::~CCBLineupWindow(_DWORD *a1)
 // 0x0051D120
 char CCBLineupWindow::Reset(_DWORD *a1)
 {
-  _DWORD *v1; // eax
+  CCBMagicWindow *v1; // eax
   _DWORD *v2; // eax
   char pExceptionObject[1024]; // [esp+4h] [ebp-80Ch] BYREF
-  char ArgList; // [esp+404h] [ebp-40Ch] BYREF
+  char ArgList[1024]; // [esp+404h] [ebp-40Ch] BYREF
   int v6; // [esp+80Ch] [ebp-4h]
 
-  v1 = ((operator *)0x68u)->new();
+  v1 = (CCBMagicWindow *)((operator *)0x68u)->new();
   v6 = 0;
   if ( v1 )
     v2 = (_DWORD *)v1->ForbidPage();
@@ -93,7 +93,7 @@ char CCBLineupWindow::Reset(_DWORD *a1)
   {
     qmemcpy(
       pExceptionObject,
-      (const void *)((char)&ArgList)->FormatException((int)aCNewFailed, (int)aDProjectPal3Co_12, 1660),
+      ((Logger *)ArgList)->FormatException(aCNewFailed, aDProjectPal3Co_12, 1660),
       sizeof(pExceptionObject));
     _CxxThrowException(pExceptionObject, (_ThrowInfo *)&_TI1_AV_Exception__);
   }
@@ -103,25 +103,25 @@ char CCBLineupWindow::Reset(_DWORD *a1)
 // 0x0051D1D0
 char CCBLineupWindow::Create(_DWORD *a1)
 {
-  _DWORD *v1; // eax
-  _DWORD *v2; // eax
+  CCBMagicWindow *v1; // eax
+  _DWORD *ActivePage; // eax
   char pExceptionObject[1024]; // [esp+4h] [ebp-80Ch] BYREF
-  char ArgList; // [esp+404h] [ebp-40Ch] BYREF
+  char ArgList[1024]; // [esp+404h] [ebp-40Ch] BYREF
   int v6; // [esp+80Ch] [ebp-4h]
 
-  v1 = ((operator *)0xB4u)->new();
+  v1 = (CCBMagicWindow *)((operator *)0xB4u)->new();
   v6 = 0;
   if ( v1 )
-    v2 = (_DWORD *)v1->GetActivePage();
+    ActivePage = (_DWORD *)v1->GetActivePage();
   else
-    v2 = 0;
+    ActivePage = 0;
   v6 = -1;
-  *a1 = v2;
-  if ( !v2 )
+  *a1 = ActivePage;
+  if ( !ActivePage )
   {
     qmemcpy(
       pExceptionObject,
-      (const void *)((char)&ArgList)->FormatException((int)aCNewFailed, (int)aDProjectPal3Co_12, 1660),
+      ((Logger *)ArgList)->FormatException(aCNewFailed, aDProjectPal3Co_12, 1660),
       sizeof(pExceptionObject));
     _CxxThrowException(pExceptionObject, (_ThrowInfo *)&_TI1_AV_Exception__);
   }
@@ -131,13 +131,13 @@ char CCBLineupWindow::Create(_DWORD *a1)
 // 0x0051D290
 char CCBLineupWindow::Destroy(_DWORD *a1)
 {
-  _BYTE *v1; // eax
+  UIFrameWnd *v1; // eax
   int v2; // eax
   char pExceptionObject[1024]; // [esp+4h] [ebp-80Ch] BYREF
-  char ArgList; // [esp+404h] [ebp-40Ch] BYREF
+  char ArgList[1024]; // [esp+404h] [ebp-40Ch] BYREF
   int v6; // [esp+80Ch] [ebp-4h]
 
-  v1 = ((operator *)0x98u)->new();
+  v1 = (UIFrameWnd *)((operator *)0x98u)->new();
   v6 = 0;
   if ( v1 )
     v1->UIFrameWnd();
@@ -149,7 +149,7 @@ char CCBLineupWindow::Destroy(_DWORD *a1)
   {
     qmemcpy(
       pExceptionObject,
-      (const void *)((char)&ArgList)->FormatException((int)aCNewFailed, (int)aDProjectPal3Co_12, 4346),
+      ((Logger *)ArgList)->FormatException(aCNewFailed, aDProjectPal3Co_12, 4346),
       sizeof(pExceptionObject));
     _CxxThrowException(pExceptionObject, (_ThrowInfo *)&_TI1_AV_Exception__);
   }
@@ -159,13 +159,13 @@ char CCBLineupWindow::Destroy(_DWORD *a1)
 // 0x0051D340
 char CCBLineupWindow::OnMessage(_DWORD *a1)
 {
-  char *v1; // eax
+  UIStatic *v1; // eax
   int v2; // eax
   char pExceptionObject[1024]; // [esp+4h] [ebp-80Ch] BYREF
-  char ArgList; // [esp+404h] [ebp-40Ch] BYREF
+  char ArgList[1024]; // [esp+404h] [ebp-40Ch] BYREF
   int v6; // [esp+80Ch] [ebp-4h]
 
-  v1 = (char *)((operator *)0xF8u)->new();
+  v1 = (UIStatic *)((operator *)0xF8u)->new();
   v6 = 0;
   if ( v1 )
     v1->UIStatic();
@@ -177,7 +177,7 @@ char CCBLineupWindow::OnMessage(_DWORD *a1)
   {
     qmemcpy(
       pExceptionObject,
-      (const void *)((char)&ArgList)->FormatException((int)aCNewFailed, (int)aDProjectPal3Co_12, 4346),
+      ((Logger *)ArgList)->FormatException(aCNewFailed, aDProjectPal3Co_12, 4346),
       sizeof(pExceptionObject));
     _CxxThrowException(pExceptionObject, (_ThrowInfo *)&_TI1_AV_Exception__);
   }
@@ -187,13 +187,13 @@ char CCBLineupWindow::OnMessage(_DWORD *a1)
 // 0x0051D3F0
 char CCBLineupWindow::Update(_DWORD *a1)
 {
-  _DWORD *v1; // eax
+  UIScene *v1; // eax
   int v2; // eax
   char pExceptionObject[1024]; // [esp+4h] [ebp-80Ch] BYREF
-  char ArgList; // [esp+404h] [ebp-40Ch] BYREF
+  char ArgList[1024]; // [esp+404h] [ebp-40Ch] BYREF
   int v6; // [esp+80Ch] [ebp-4h]
 
-  v1 = ((operator *)0x158u)->new();
+  v1 = (UIScene *)((operator *)0x158u)->new();
   v6 = 0;
   if ( v1 )
     v1->_UIScene();
@@ -205,7 +205,7 @@ char CCBLineupWindow::Update(_DWORD *a1)
   {
     qmemcpy(
       pExceptionObject,
-      (const void *)((char)&ArgList)->FormatException((int)aCNewFailed, (int)aDProjectPal3Co_12, 4346),
+      ((Logger *)ArgList)->FormatException(aCNewFailed, aDProjectPal3Co_12, 4346),
       sizeof(pExceptionObject));
     _CxxThrowException(pExceptionObject, (_ThrowInfo *)&_TI1_AV_Exception__);
   }
@@ -215,13 +215,13 @@ char CCBLineupWindow::Update(_DWORD *a1)
 // 0x0051D4A0
 char CCBLineupWindow::Render(_DWORD *a1)
 {
-  _DWORD *v1; // eax
+  UIWnd *v1; // eax
   _DWORD *v2; // eax
   char pExceptionObject[1024]; // [esp+4h] [ebp-80Ch] BYREF
-  char ArgList; // [esp+404h] [ebp-40Ch] BYREF
+  char ArgList[1024]; // [esp+404h] [ebp-40Ch] BYREF
   int v6; // [esp+80Ch] [ebp-4h]
 
-  v1 = ((operator *)0xF4u)->new();
+  v1 = (UIWnd *)((operator *)0xF4u)->new();
   v6 = 0;
   if ( v1 )
     v2 = (_DWORD *)v1->ctor_F7F0();
@@ -233,7 +233,7 @@ char CCBLineupWindow::Render(_DWORD *a1)
   {
     qmemcpy(
       pExceptionObject,
-      (const void *)((char)&ArgList)->FormatException((int)aCNewFailed, (int)aDProjectPal3Co_12, 4346),
+      ((Logger *)ArgList)->FormatException(aCNewFailed, aDProjectPal3Co_12, 4346),
       sizeof(pExceptionObject));
     _CxxThrowException(pExceptionObject, (_ThrowInfo *)&_TI1_AV_Exception__);
   }

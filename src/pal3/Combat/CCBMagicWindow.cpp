@@ -345,7 +345,7 @@ int CCBMagicWindow::Update(int _this)
   int v9; // ecx
   int v10; // ecx
 
-  result = ((gbRefObject **)this)->SetScrollPos();
+  result = ((UIListBox **)this)->SetScrollPos();
   v3 = *(_DWORD *)(this + 72);
   if ( v3 )
   {

@@ -361,7 +361,7 @@ void C3DSpark::Render(int a1@<ecx>, struct gbVec3D *a2@<edi>)
   int v17; // [esp+28h] [ebp-8h]
   float v18; // [esp+2Ch] [ebp-4h]
 
-  v2 = (gbMatrixStack *)*(gbMatrixStack **)(g_pGfxManager + 216);
+  v2 = (gbMatrixStack *)*(gbMatrixStack **)(g_Input.KeyInfo[177].Data + 216);
   v15 = a1;
   v17 = 0;
   v16 = 0;
@@ -407,7 +407,7 @@ void C3DSpark::Render(int a1@<ecx>, struct gbVec3D *a2@<edi>)
     while ( v16 < *(_DWORD *)(a1 + 7168) );
     if ( v17 > 0 )
     {
-      ((gbVertPoolMgr *)*(gbVertPoolMgr **)(g_pGfxManager + 196))->GetDynVertBuf(0x15u);
+      ((gbVertPoolMgr *)*(gbVertPoolMgr **)(g_Input.KeyInfo[177].Data + 196))->GetDynVertBuf(0x15u);
       v2->Push();
       v2->LoadIdentity();
       ((struct gbGeomQuad *)(v15 + 7216))->RenderGeomQuad(v17, *(struct gbRenderEffect **)(v15 + 7172), *(struct gbTextureArray **)(v15 + 7204));

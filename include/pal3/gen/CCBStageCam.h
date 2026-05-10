@@ -38,6 +38,6 @@ public:
     void DoTask(); // 0x005054F0
     char ClearFinishedTask(int a2); // 0x00505770
     int AddTask(); // 0x00505800
-    int ProcCamMove(); // 0x00505820
+    char ProcCamMove(); // 0x00505820
     int SwitchEditorCamPos(); // 0x005058E0
 };

@@ -23,7 +23,7 @@ CEffShock::CEffShock()
 {
   _DWORD *v0; // eax
 
-  v0 = ((operator *)0x10B0u)->new();
+  v0 = (_DWORD *)((operator *)0x10B0u)->new();
   if ( v0 )
     return sub_4D3870(v0);
   else
@@ -249,10 +249,10 @@ int CEffShock::CreateGeom(int a2, int a3)
 {
   int result; // eax
   int v4; // ebx
-  char *v6; // edi
+  CEffShock *v6; // edi
   int v7; // esi
   int v8; // ecx
-  char *v9; // eax
+  CEffShock *v9; // eax
   double v10; // st7
   double v11; // st7
   double v12; // st6
@@ -271,7 +271,7 @@ int CEffShock::CreateGeom(int a2, int a3)
   v13 = (float)a3;
   if ( a3 > 0 )
   {
-    v6 = (char *)(this + 56);
+    v6 = (CEffShock *)this + 56;
     v7 = 16 * a2;
     do
     {
@@ -291,11 +291,11 @@ int CEffShock::CreateGeom(int a2, int a3)
           ++v8;
           v12 = (double)a2a / v14;
           a2a = v8;
-          *((float *)v9 - 6) = v12;
+          *(float *)&v9[-24] = v12;
           v18 = 1.0 / v14;
-          *((float *)v9 - 4) = v12 + v18;
-          *((float *)v9 - 5) = v16;
-          *((float *)v9 - 3) = v11;
+          *(float *)&v9[-16] = v12 + v18;
+          *(float *)&v9[-20] = v16;
+          *(float *)&v9[-12] = v11;
         }
         while ( v8 < a2 );
       }

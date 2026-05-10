@@ -51,187 +51,211 @@ int CCBSkillWindow::Reset()
 }
 
 // 0x0051C330
-char CCBSkillWindow::Create(int _this, _DWORD *a2, int a3)
+char CCBSkillWindow::Create(_DWORD *pRect, int parent)
 {
   int v3; // ebx
-  _DWORD *v5; // ebx
+  PtrArray *p_m_childs; // ebx
   LPCSTR *v6; // ebp
-  gbRefObject ***v7; // ebx
-  _DWORD *v8; // ebx
+  UIWnd ***v7; // ebx
+  UIWnd *v8; // ebx
   _DWORD *v9; // eax
-  _DWORD *v10; // ebx
+  UIWnd *v10; // ebx
   _DWORD *v11; // eax
-  _DWORD *v12; // ebx
+  UIWnd *v12; // ebx
   _DWORD *v13; // eax
-  _DWORD *v14; // ebx
-  _DWORD *v15; // ebx
-  _DWORD *v16; // ebx
-  _DWORD *v17; // ebx
-  _DWORD *v18; // ebx
-  _DWORD *v19; // ebx
-  _DWORD *v20; // ebx
-  _DWORD *v21; // ebx
+  UIWnd *v14; // ebx
+  int *p_m_nSize; // ebx
+  int *p_m_nMaxSize; // ebx
+  int *p_m_nGrowBy; // ebx
+  int *p_m_bcreateok; // ebx
+  int *p_m_bvisible; // ebx
+  int *p_m_benable; // ebx
+  int *p_m_bfocus; // ebx
   _DWORD *v22; // ebx
-  _DWORD v24[4]; // [esp+C8h] [ebp-10h] BYREF
+  _DWORD a2[4]; // [esp+C8h] [ebp-10h] BYREF
 
-  v3 = a3;
-  ((_DWORD *)this)->Create(512, a2, a3);
-  *(_DWORD *)(this + 168) = v3;
-  v5 = (_DWORD *)(this + 72);
-  ((CCBLineupWindow *)this + 72)->Destroy();
-  *a2 = 0;
-  a2[2] = 256;
-  a2[1] = 0;
-  a2[3] = 256;
-  (*(void (**)(_DWORD, int, _DWORD *, int))(*(_DWORD *)*v5 + 16))(*v5, 513, a2, this);
-  ((UIWnd *)*(gbRefObject ***)(this + 72))->CreateFromTemplate(aUiCombatResult, 0);
-  (**(void (***)(_DWORD, int))*v5)(*v5, 1);
+  v3 = parent;
+  this->Create(512, pRect, parent);
+  *((_DWORD *)this + 42) = v3;
+  p_m_childs = (PtrArray *)&this->m_childs;
+  ((CCBLineupWindow *)&this->m_childs.m_pData)->Destroy();
+  *pRect = 0;
+  pRect[2] = 256;
+  pRect[1] = 0;
+  pRect[3] = 256;
+  (*(void (**)(void *, int, _DWORD *, UIWnd *))(*(_DWORD *)p_m_childs->m_pData + 16))(
+    p_m_childs->m_pData,
+    513,
+    pRect,
+    this);
+  ((UIWnd **)this->m_childs.m_pData)->CreateFromTemplate(aUiCombatResult, 0);
+  (**(void (***)(void *, int))p_m_childs->m_pData)(p_m_childs->m_pData, 1);
   v6 = (LPCSTR *)off_570310;
-  v7 = (gbRefObject ***)(this + 108);
+  v7 = (UIWnd ***)((char *)this + 108);
   do
   {
     v7->Destroy();
-    *a2 = 15;
-    a2[2] = 79;
-    a2[1] = -15;
-    a2[3] = 113;
-    ((void (*)(gbRefObject **, int, _DWORD *, int))(**v7)[4].RefCount)(*v7, 528, a2, this);
+    *pRect = 15;
+    pRect[2] = 79;
+    pRect[1] = -15;
+    pRect[3] = 113;
+    ((void (*)(UIWnd **, int, _DWORD *, UIWnd *))(**v7)->m_fontcolor.Alpha)(*v7, 528, pRect, this);
     ((UIWnd *)*v7++)->CreateFromTemplate(*v6++, 0);
   }
   while ( (int)v6 < (int)dword_570324 );
-  (***(void (****)(_DWORD, int))(this + 108))(*(_DWORD *)(this + 108), 1);
-  v8 = (_DWORD *)(this + 156);
-  ((CCBLineupWindow *)this + 156)->Render();
-  *a2 = 83;
-  a2[2] = 168;
-  a2[1] = 46;
-  a2[3] = 58;
-  (*(void (**)(_DWORD, int, _DWORD *, int))(*(_DWORD *)*v8 + 16))(*v8, 545, a2, this);
-  v9 = ((UIWnd *)*(_DWORD **)(this + 156))->SetRect(v24);
-  ((UIWnd *)*(_DWORD **)(this + 156))->AddChild(v9);
-  ((UIWnd *)*(gbRefObject ***)(this + 156))->GetChildCount(aUiCombatResult_4, 0);
-  ((UIWnd *)*(gbRefObject ***)(this + 156))->GetChildAt(aUiCombatResult_1, 0);
-  sub_43FD90(*(float **)(this + 156), 3);
-  ((UIWnd *)*(float **)(this + 156))->SetFrameRate(-2);
-  (**(void (***)(_DWORD, int))*v8)(*v8, 1);
-  v10 = (_DWORD *)(this + 160);
-  ((CCBLineupWindow *)this + 160)->Render();
-  *a2 = 86;
-  a2[2] = 171;
-  a2[1] = 71;
-  a2[3] = 83;
-  (*(void (**)(_DWORD, int, _DWORD *, int))(*(_DWORD *)*v10 + 16))(*v10, 546, a2, this);
-  v11 = ((UIWnd *)*(_DWORD **)(this + 160))->SetRect(v24);
-  ((UIWnd *)*(_DWORD **)(this + 160))->AddChild(v11);
-  ((UIWnd *)*(gbRefObject ***)(this + 160))->GetChildCount(aUiCombatResult_4, 0);
-  ((UIWnd *)*(gbRefObject ***)(this + 160))->GetChildAt(aUiCombatResult_2, 0);
-  sub_43FD90(*(float **)(this + 160), 3);
-  ((UIWnd *)*(float **)(this + 160))->SetFrameRate(-2);
-  (**(void (***)(_DWORD, int))*v10)(*v10, 1);
-  v12 = (_DWORD *)(this + 164);
-  ((CCBLineupWindow *)this + 164)->Render();
-  *a2 = 84;
-  a2[2] = 169;
-  a2[1] = 97;
-  a2[3] = 109;
-  (*(void (**)(_DWORD, int, _DWORD *, int))(*(_DWORD *)*v12 + 16))(*v12, 547, a2, this);
-  v13 = ((UIWnd *)*(_DWORD **)(this + 164))->SetRect(v24);
-  ((UIWnd *)*(_DWORD **)(this + 164))->AddChild(v13);
-  ((UIWnd *)*(gbRefObject ***)(this + 164))->GetChildCount(aUiCombatResult_4, 0);
-  ((UIWnd *)*(gbRefObject ***)(this + 164))->GetChildAt(aUiCombatResult_3, 0);
-  sub_43FD90(*(float **)(this + 164), 3);
-  ((UIWnd *)*(float **)(this + 164))->SetFrameRate(-2);
-  (**(void (***)(_DWORD, int))*v12)(*v12, 1);
-  v14 = (_DWORD *)(this + 152);
-  ((CCBLineupWindow *)this + 152)->Destroy();
-  *a2 = 66;
-  a2[2] = 130;
-  a2[1] = 42;
-  a2[3] = 109;
-  (*(void (**)(_DWORD, int, _DWORD *, int))(*(_DWORD *)*v14 + 16))(*v14, 544, a2, this);
-  ((UIWnd *)*(gbRefObject ***)(this + 152))->CreateFromTemplate(aUiCombatResult_5, 0);
-  (**(void (***)(_DWORD, int))*v14)(*v14, 1);
-  v15 = (_DWORD *)(this + 76);
-  a3 = -1;
-  ((CCBLineupWindow *)this + 76)->Destroy();
-  *a2 = 136;
-  a2[2] = 200;
-  a2[1] = 134;
-  a2[3] = 166;
-  (*(void (**)(_DWORD, int, _DWORD *, int))(*(_DWORD *)*v15 + 16))(*v15, 514, a2, this);
-  (**(void (***)(_DWORD, int))*v15)(*v15, 1);
-  ((UIWnd *)*(_DWORD **)(this + 76))->SetShow(0);
-  ((UIWnd *)*(_DWORD **)(this + 76))->GetChild(&a3);
-  v16 = (_DWORD *)(this + 80);
-  ((CCBLineupWindow *)this + 80)->Destroy();
-  *a2 = 51;
-  a2[2] = 115;
-  a2[1] = 134;
-  a2[3] = 166;
-  (*(void (**)(_DWORD, int, _DWORD *, int))(*(_DWORD *)*v16 + 16))(*v16, 515, a2, this);
-  (**(void (***)(_DWORD, int))*v16)(*v16, 1);
-  ((UIWnd *)*(_DWORD **)(this + 80))->SetShow(0);
-  ((UIWnd *)*(_DWORD **)(this + 80))->GetChild(&a3);
-  v17 = (_DWORD *)(this + 84);
-  ((CCBLineupWindow *)this + 84)->Destroy();
-  *a2 = 51;
-  a2[2] = 115;
-  a2[1] = 108;
-  a2[3] = 140;
-  (*(void (**)(_DWORD, int, _DWORD *, int))(*(_DWORD *)*v17 + 16))(*v17, 516, a2, this);
-  (**(void (***)(_DWORD, int))*v17)(*v17, 1);
-  ((UIWnd *)*(_DWORD **)(this + 84))->SetShow(0);
-  ((UIWnd *)*(_DWORD **)(this + 84))->GetChild(&a3);
-  v18 = (_DWORD *)(this + 88);
-  ((CCBLineupWindow *)this + 88)->Destroy();
-  *a2 = 136;
-  a2[2] = 200;
-  a2[1] = 108;
-  a2[3] = 140;
-  (*(void (**)(_DWORD, int, _DWORD *, int))(*(_DWORD *)*v18 + 16))(*v18, 517, a2, this);
-  (**(void (***)(_DWORD, int))*v18)(*v18, 1);
-  ((UIWnd *)*(_DWORD **)(this + 88))->SetShow(0);
-  ((UIWnd *)*(_DWORD **)(this + 88))->GetChild(&a3);
-  v19 = (_DWORD *)(this + 92);
-  ((CCBLineupWindow *)this + 92)->Destroy();
-  a2[2] = 115;
-  *a2 = 51;
-  a2[1] = 160;
-  a2[3] = 192;
-  (*(void (**)(_DWORD, int, _DWORD *, int))(*(_DWORD *)*v19 + 16))(*v19, 518, a2, this);
-  (**(void (***)(_DWORD, int))*v19)(*v19, 1);
-  ((UIWnd *)*(_DWORD **)(this + 92))->SetShow(0);
-  ((UIWnd *)*(_DWORD **)(this + 92))->GetChild(&a3);
-  v20 = (_DWORD *)(this + 96);
-  ((CCBLineupWindow *)this + 96)->Destroy();
-  *a2 = 136;
-  a2[2] = 200;
-  a2[1] = 160;
-  a2[3] = 192;
-  (*(void (**)(_DWORD, int, _DWORD *, int))(*(_DWORD *)*v20 + 16))(*v20, 519, a2, this);
-  (**(void (***)(_DWORD, int))*v20)(*v20, 1);
-  ((UIWnd *)*(_DWORD **)(this + 96))->SetShow(0);
-  ((UIWnd *)*(_DWORD **)(this + 96))->GetChild(&a3);
-  v21 = (_DWORD *)(this + 100);
-  ((CCBLineupWindow *)this + 100)->Destroy();
-  *a2 = 0;
-  a2[2] = 187;
-  a2[1] = 211;
-  a2[3] = 243;
-  (*(void (**)(_DWORD, int, _DWORD *, int))(*(_DWORD *)*v21 + 16))(*v21, 529, a2, this);
-  (**(void (***)(_DWORD, int))*v21)(*v21, 1);
-  ((UIWnd *)*(_DWORD **)(this + 100))->SetShow(0);
-  ((UIWnd *)*(_DWORD **)(this + 100))->GetChild(&a3);
-  v22 = (_DWORD *)(this + 104);
-  ((CCBLineupWindow *)this + 104)->Destroy();
-  *a2 = 0;
-  a2[2] = 187;
-  a2[1] = 0;
-  a2[3] = 32;
-  (*(void (**)(_DWORD, int, _DWORD *, int))(*(_DWORD *)*v22 + 16))(*v22, 530, a2, this);
+  (***((void (****)(_DWORD, int))this + 27))(*((_DWORD *)this + 27), 1);
+  v8 = (UIWnd *)((char *)this + 156);
+  ((CCBLineupWindow *)(_DWORD *)this + 39)->Render();
+  *pRect = 83;
+  pRect[2] = 168;
+  pRect[1] = 46;
+  pRect[3] = 58;
+  (*(void (**)(int, int, _DWORD *, UIWnd *))(*(_DWORD *)v8->m_fontcolor.ColorQuadFmt + 16))(
+    v8->m_fontcolor.ColorQuadFmt,
+    545,
+    pRect,
+    this);
+  v9 = ((UIWnd *)*((UIWnd **)this + 39))->SetRect(a2);
+  ((UIWnd *)*((UIWnd **)this + 39))->AddChild(v9);
+  ((UIWnd *)*((UIWnd ***)this + 39))->GetChildCount(aUiCombatResult_4, 0);
+  ((UIWnd *)*((UIWnd ***)this + 39))->GetChildAt(aUiCombatResult_1, 0);
+  sub_43FD90(*((float **)this + 39), 3);
+  ((UIWnd *)*((UIWnd **)this + 39))->SetFrameRate(-2);
+  (**(void (***)(int, int))v8->m_fontcolor.ColorQuadFmt)(v8->m_fontcolor.ColorQuadFmt, 1);
+  v10 = (UIWnd *)((char *)this + 160);
+  ((CCBLineupWindow *)(_DWORD *)this + 40)->Render();
+  *pRect = 86;
+  pRect[2] = 171;
+  pRect[1] = 71;
+  pRect[3] = 83;
+  (*(void (**)(int, int, _DWORD *, UIWnd *))(*(_DWORD *)v10->m_fontcolor.ColorQuadFmt + 16))(
+    v10->m_fontcolor.ColorQuadFmt,
+    546,
+    pRect,
+    this);
+  v11 = ((UIWnd *)*((UIWnd **)this + 40))->SetRect(a2);
+  ((UIWnd *)*((UIWnd **)this + 40))->AddChild(v11);
+  ((UIWnd *)*((UIWnd ***)this + 40))->GetChildCount(aUiCombatResult_4, 0);
+  ((UIWnd *)*((UIWnd ***)this + 40))->GetChildAt(aUiCombatResult_2, 0);
+  sub_43FD90(*((float **)this + 40), 3);
+  ((UIWnd *)*((UIWnd **)this + 40))->SetFrameRate(-2);
+  (**(void (***)(int, int))v10->m_fontcolor.ColorQuadFmt)(v10->m_fontcolor.ColorQuadFmt, 1);
+  v12 = (UIWnd *)((char *)this + 164);
+  ((CCBLineupWindow *)(_DWORD *)this + 41)->Render();
+  *pRect = 84;
+  pRect[2] = 169;
+  pRect[1] = 97;
+  pRect[3] = 109;
+  (*(void (**)(int, int, _DWORD *, UIWnd *))(*(_DWORD *)v12->m_fontcolor.ColorQuadFmt + 16))(
+    v12->m_fontcolor.ColorQuadFmt,
+    547,
+    pRect,
+    this);
+  v13 = ((UIWnd *)*((UIWnd **)this + 41))->SetRect(a2);
+  ((UIWnd *)*((UIWnd **)this + 41))->AddChild(v13);
+  ((UIWnd *)*((UIWnd ***)this + 41))->GetChildCount(aUiCombatResult_4, 0);
+  ((UIWnd *)*((UIWnd ***)this + 41))->GetChildAt(aUiCombatResult_3, 0);
+  sub_43FD90(*((float **)this + 41), 3);
+  ((UIWnd *)*((UIWnd **)this + 41))->SetFrameRate(-2);
+  (**(void (***)(int, int))v12->m_fontcolor.ColorQuadFmt)(v12->m_fontcolor.ColorQuadFmt, 1);
+  v14 = (UIWnd *)((char *)this + 152);
+  ((CCBLineupWindow *)(_DWORD *)this + 38)->Destroy();
+  *pRect = 66;
+  pRect[2] = 130;
+  pRect[1] = 42;
+  pRect[3] = 109;
+  (*(void (**)(int, int, _DWORD *, UIWnd *))(*(_DWORD *)v14->m_fontcolor.ColorQuadFmt + 16))(
+    v14->m_fontcolor.ColorQuadFmt,
+    544,
+    pRect,
+    this);
+  ((UIWnd *)*((UIWnd ***)this + 38))->CreateFromTemplate(aUiCombatResult_5, 0);
+  (**(void (***)(int, int))v14->m_fontcolor.ColorQuadFmt)(v14->m_fontcolor.ColorQuadFmt, 1);
+  p_m_nSize = (int *)&this->m_childs.m_nSize;
+  parent = -1;
+  ((CCBLineupWindow *)&this->m_childs.m_nSize)->Destroy();
+  *pRect = 136;
+  pRect[2] = 200;
+  pRect[1] = 134;
+  pRect[3] = 166;
+  (*(void (**)(int, int, _DWORD *, UIWnd *))(*(_DWORD *)*p_m_nSize + 16))(*p_m_nSize, 514, pRect, this);
+  (**(void (***)(int, int))*p_m_nSize)(*p_m_nSize, 1);
+  ((UIWnd *)this->m_childs.m_nSize)->SetShow(0);
+  ((UIWnd *)this->m_childs.m_nSize)->GetChild((int)&parent);
+  p_m_nMaxSize = (int *)&this->m_childs.m_nMaxSize;
+  ((CCBLineupWindow *)&this->m_childs.m_nMaxSize)->Destroy();
+  *pRect = 51;
+  pRect[2] = 115;
+  pRect[1] = 134;
+  pRect[3] = 166;
+  (*(void (**)(int, int, _DWORD *, UIWnd *))(*(_DWORD *)*p_m_nMaxSize + 16))(*p_m_nMaxSize, 515, pRect, this);
+  (**(void (***)(int, int))*p_m_nMaxSize)(*p_m_nMaxSize, 1);
+  ((UIWnd *)this->m_childs.m_nMaxSize)->SetShow(0);
+  ((UIWnd *)this->m_childs.m_nMaxSize)->GetChild((int)&parent);
+  p_m_nGrowBy = (int *)&this->m_childs.m_nGrowBy;
+  ((CCBLineupWindow *)&this->m_childs.m_nGrowBy)->Destroy();
+  *pRect = 51;
+  pRect[2] = 115;
+  pRect[1] = 108;
+  pRect[3] = 140;
+  (*(void (**)(int, int, _DWORD *, UIWnd *))(*(_DWORD *)*p_m_nGrowBy + 16))(*p_m_nGrowBy, 516, pRect, this);
+  (**(void (***)(int, int))*p_m_nGrowBy)(*p_m_nGrowBy, 1);
+  ((UIWnd *)this->m_childs.m_nGrowBy)->SetShow(0);
+  ((UIWnd *)this->m_childs.m_nGrowBy)->GetChild((int)&parent);
+  p_m_bcreateok = (int *)&this->m_bcreateok;
+  ((CCBLineupWindow *)&this->m_bcreateok)->Destroy();
+  *pRect = 136;
+  pRect[2] = 200;
+  pRect[1] = 108;
+  pRect[3] = 140;
+  (*(void (**)(int, int, _DWORD *, UIWnd *))(*(_DWORD *)*p_m_bcreateok + 16))(
+    *p_m_bcreateok,
+    517,
+    pRect,
+    this);
+  (**(void (***)(int, int))*p_m_bcreateok)(*p_m_bcreateok, 1);
+  ((UIWnd *)this->m_bcreateok)->SetShow(0);
+  ((UIWnd *)this->m_bcreateok)->GetChild((int)&parent);
+  p_m_bvisible = (int *)&this->m_bvisible;
+  ((CCBLineupWindow *)&this->m_bvisible)->Destroy();
+  pRect[2] = 115;
+  *pRect = 51;
+  pRect[1] = 160;
+  pRect[3] = 192;
+  (*(void (**)(int, int, _DWORD *, UIWnd *))(*(_DWORD *)*p_m_bvisible + 16))(*p_m_bvisible, 518, pRect, this);
+  (**(void (***)(int, int))*p_m_bvisible)(*p_m_bvisible, 1);
+  ((UIWnd *)this->m_bvisible)->SetShow(0);
+  ((UIWnd *)this->m_bvisible)->GetChild((int)&parent);
+  p_m_benable = (int *)&this->m_benable;
+  ((CCBLineupWindow *)&this->m_benable)->Destroy();
+  *pRect = 136;
+  pRect[2] = 200;
+  pRect[1] = 160;
+  pRect[3] = 192;
+  (*(void (**)(int, int, _DWORD *, UIWnd *))(*(_DWORD *)*p_m_benable + 16))(*p_m_benable, 519, pRect, this);
+  (**(void (***)(int, int))*p_m_benable)(*p_m_benable, 1);
+  ((UIWnd *)this->m_benable)->SetShow(0);
+  ((UIWnd *)this->m_benable)->GetChild((int)&parent);
+  p_m_bfocus = (int *)&this->m_bfocus;
+  ((CCBLineupWindow *)&this->m_bfocus)->Destroy();
+  *pRect = 0;
+  pRect[2] = 187;
+  pRect[1] = 211;
+  pRect[3] = 243;
+  (*(void (**)(int, int, _DWORD *, UIWnd *))(*(_DWORD *)*p_m_bfocus + 16))(*p_m_bfocus, 529, pRect, this);
+  (**(void (***)(int, int))*p_m_bfocus)(*p_m_bfocus, 1);
+  ((UIWnd *)this->m_bfocus)->SetShow(0);
+  ((UIWnd *)this->m_bfocus)->GetChild((int)&parent);
+  v22 = (_DWORD *)this + 1;
+  ((CCBLineupWindow *)(_DWORD *)this + 26)->Destroy();
+  *pRect = 0;
+  pRect[2] = 187;
+  pRect[1] = 0;
+  pRect[3] = 32;
+  (*(void (**)(_DWORD, int, _DWORD *, UIWnd *))(*(_DWORD *)*v22 + 16))(*v22, 530, pRect, this);
   (**(void (***)(_DWORD, int))*v22)(*v22, 1);
-  ((UIWnd *)*(_DWORD **)(this + 104))->SetShow(0);
-  ((UIWnd *)*(_DWORD **)(this + 104))->GetChild(&a3);
+  ((UIWnd *)*((UIWnd **)this + 26))->SetShow(0);
+  ((UIWnd *)*((UIWnd **)this + 26))->GetChild((int)&parent);
   return 1;
 }
 
@@ -255,7 +279,7 @@ int CCBSkillWindow::Destroy(int _this)
   int v16; // ecx
   int v17; // ecx
 
-  result = ((gbRefObject **)this)->SetScrollPos();
+  result = ((UIListBox **)this)->SetScrollPos();
   v3 = (_DWORD *)(this + 108);
   v4 = 11;
   do

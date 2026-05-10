@@ -49,9 +49,9 @@ int CGameData::InitRoles(int a2)
   int v3; // ecx
   int v4; // eax
   int v5; // edx
-  gbRefObject **v6; // edi
+  UIWnd **v6; // edi
   int result; // eax
-  int v8; // [esp+84h] [ebp-10h] BYREF
+  int a3; // [esp+84h] [ebp-10h] BYREF
   int v9; // [esp+88h] [ebp-Ch]
   int v10; // [esp+8Ch] [ebp-8h]
   int v11; // [esp+90h] [ebp-4h]
@@ -74,19 +74,19 @@ int CGameData::InitRoles(int a2)
     &unk_AABEF6,
     &this->_data[92],
     this);
-  ((gbRefObject **)&this->_data[124])->CreateFromTemplate(off_59BA88, 1);
+  ((UIWnd **)&this->_data[124])->CreateFromTemplate(off_59BA88, 1);
   (**(void (***)(char *, _DWORD))&this->_data[124])(&this->_data[124], 0);
-  v6 = (gbRefObject **)&this->_data[428];
+  v6 = (UIWnd **)&this->_data[428];
   a2a = 3;
   do
   {
-    ((void (*)(gbRefObject **, void *, char *, CGameData *))(*v6)[4].RefCount)(
+    ((void (*)(UIWnd **, void *, char *, CGameData *))(*v6)->m_fontcolor.Alpha)(
       v6,
       &unk_AABEF6,
       &this->_data[92],
       this);
     v6->CreateFromTemplate(off_59BA90, 1);
-    ((void (*)(gbRefObject **, _DWORD))(*v6)->RefCount)(v6, 0);
+    ((void (*)(UIWnd **, _DWORD))(*v6)->m_fontcolor.ColorQuadFmt)(v6, 0);
     v6 += 38;
     --a2a;
   }
@@ -96,7 +96,7 @@ int CGameData::InitRoles(int a2)
     &unk_AABEF6,
     &this->_data[92],
     this);
-  ((gbRefObject **)&this->_data[276])->CreateFromTemplate(off_59BA8C, 1);
+  ((UIWnd **)&this->_data[276])->CreateFromTemplate(off_59BA8C, 1);
   (**(void (***)(char *, _DWORD))&this->_data[276])(&this->_data[276], 0);
   (*(void (**)(char *, void *, char *, CGameData *, char *, _DWORD, int))(*(_DWORD *)&this->_data[884] + 28))(
     &this->_data[884],
@@ -135,19 +135,19 @@ int CGameData::InitRoles(int a2)
   *(_DWORD *)&this->_data[1680] = 2;
   (**(void (***)(char *, _DWORD))&this->_data[1572])(&this->_data[1572], 0);
   v9 = 200;
-  v8 = 300;
+  a3 = 300;
   v10 = 600;
   v11 = 456;
-  ((int)&this->_data[1916])->Create((int)&unk_ABD000, &v8, (int)this, 2, 1);
-  ((UIItem *)&this->_data[1916])->SetData(31, 251, 255, 255);
-  v10 = v8 + 256;
+  ((UIItem *)&this->_data[1916])->Create((int)&unk_ABD000, (int)&a3);
+  ((UIItem *)&this->_data[1916])->SetData(31);
+  v10 = a3 + 256;
   v11 = v9 + 128;
-  ((int)&this->_data[3308])->Create((int)&unk_ABCD01, &v8, (int)this, 3, 0);
-  ((UIItem *)&this->_data[3308])->SetData(31, 251, 255, 255);
-  ((int)&this->_data[4676])->Create((int)&unk_ABCD02, &v8, (int)this, 3, 0);
-  ((UIItem *)&this->_data[4676])->SetData(18, 255, 28, 200);
-  ((int)&this->_data[6044])->Create((int)&unk_ABCD03, &v8, (int)this, 3, 0);
-  result = (int)((UIItem *)&this->_data[6044])->SetData(31, 251, 255, 255);
+  ((UIItem *)&this->_data[3308])->Create((int)&unk_ABCD01, (int)&a3);
+  ((UIItem *)&this->_data[3308])->SetData(31);
+  ((UIItem *)&this->_data[4676])->Create((int)&unk_ABCD02, (int)&a3);
+  ((UIItem *)&this->_data[4676])->SetData(18);
+  ((UIItem *)&this->_data[6044])->Create((int)&unk_ABCD03, (int)&a3);
+  result = (int)((UIItem *)&this->_data[6044])->SetData(31);
   *(_DWORD *)&this->_data[9492] = 0;
   *(_DWORD *)&this->_data[9488] = 0;
   *(_DWORD *)&this->_data[9496] = 0;
@@ -169,9 +169,9 @@ int CGameData::InitItems(int a2)
 {
   int v3; // edi
   int *v4; // ebp
-  char *v5; // esi
+  UIWnd *v5; // esi
   int v6; // eax
-  int *v8; // [esp+10h] [ebp-1B4h]
+  UIWnd **v8; // [esp+10h] [ebp-1B4h]
   _DWORD pRect[2]; // [esp+14h] [ebp-1B0h] BYREF
   int v10; // [esp+1Ch] [ebp-1A8h]
   int v11; // [esp+20h] [ebp-1A4h]
@@ -228,23 +228,27 @@ int CGameData::InitItems(int a2)
   v13[7] = 3;
   v13[8] = 2;
   v13[9] = 8;
-  v8 = v13;
+  v8 = (UIWnd **)v13;
   v4 = v14;
-  v5 = (char *)&this->_data[244];
+  v5 = (UIWnd *)&this->_data[244];
   do
   {
-    (*(void (**)(char *, _DWORD, _DWORD *, CGameData *))(*(_DWORD *)v5 + 16))(v5, 0, pRect, this);
-    (**(void (***)(char *, _DWORD))v5)(v5, 0);
+    (*(void (**)(UIWnd *, _DWORD, _DWORD *, CGameData *))(v5->m_fontcolor.ColorQuadFmt + 16))(
+      v5,
+      0,
+      pRect,
+      this);
+    (*(void (**)(UIWnd *, _DWORD))v5->m_fontcolor.ColorQuadFmt)(v5, 0);
     v6 = *(v4 - 1);
     v11 = *v4;
     v10 = v6;
     v5->GetRect(pRect);
     sprintf(Buffer, "ui\\EMOTE\\EM_%02d.tga", v3);
-    sub_43A5D0(v5, (int)Buffer, *v8);
+    sub_43A5D0((UIWnd **)v5, (int)Buffer, *v8);
     v5->SetController(1084227584);
     ++v3;
     v4 += 2;
-    v5 += 164;
+    v5 = (UIWnd *)((char *)v5 + 164);
     ++v8;
   }
   while ( v3 < 13 );
@@ -262,10 +266,10 @@ void * CGameData::Init()
   Object3D *v7; // eax
   CGameData *v8; // edi
   int v9; // ebp
-  char *v10; // ebp
+  float *p_y; // ebp
   UIDialog *v11; // edi
   int v12; // edx
-  struct gbVFileSystem *v14; // [esp+18h] [ebp-24h] BYREF
+  OpenBaseFile v14; // [esp+18h] [ebp-24h] BYREF
   void *v15; // [esp+1Ch] [ebp-20h]
   int pRect; // [esp+20h] [ebp-1Ch] BYREF
   int v17; // [esp+24h] [ebp-18h]
@@ -330,17 +334,17 @@ void * CGameData::Init()
   v18 = pRect + 800;
   ((UIBigDialog *)&this->_data[3904])->Create(1001, &pRect, 0, tex);
   (**(void (***)(char *, _DWORD))&this->_data[3904])(&this->_data[3904], 0);
-  v10 = (char *)&g_SceneMgr.m_info[7120];
+  p_y = (float *)&g_SceneMgr.m_npc[0].m_path.normal[83].y;
   v11 = (UIDialog *)&this->_data[2144];
   do
   {
     v11->Create(1002, 180, 50, (int)this, aUiDlgHeadbkTga);
     v11->Show();
-    (*(void (**)(UIDialog *, _DWORD))v11->UIWnd)(v11, 0);
-    v10 += 8704;
-    v11 += 88;
+    (*(void (**)(UIDialog *, _DWORD))v11->m_fontcolor.ColorQuadFmt)(v11, 0);
+    p_y += 2176;
+    v11 = (UIDialog *)((char *)v11 + 352);
   }
-  while ( (int)v10 < (int)&g_SceneMgr.m_info[50640] );
+  while ( (int)p_y < (int)&g_SceneMgr.m_npc[5].m_path.normal[58].y );
   pRect = 0;
   v18 = 414;
   v17 = 0;
@@ -365,7 +369,7 @@ void * CGameData::Init()
   (*(void (**)(char *, _DWORD, int *, CGameData *))(v12 + 16))(&this->_data[260], 0, &pRect, this);
   (**(void (***)(char *, _DWORD))&this->_data[260])(&this->_data[260], 0);
   v20 = -1;
-  return ((OpenNULLFile *)&v14)->OpenNULLFile();
+  return ((OpenNULLFile **)&v14)->OpenNULLFile();
 }
 
 // 0x0044F430
@@ -376,8 +380,8 @@ void CGameData::Destroy()
   int v4; // eax
   int v5; // ecx
 
-  this->UpdateChildren();
-  sub_4573A0(MEMORY[0x8ACD40]);
+  ((UIWnd *)this)->UpdateChildren();
+  sub_4573A0(&g_PAL3Data + 328);
   (*(void (**)(char *))(*(_DWORD *)&this->_data[3904] + 12))(&this->_data[3904]);
   v2 = *((_DWORD *)this + 7044);
   if ( v2 )

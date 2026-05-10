@@ -104,33 +104,31 @@ void CCCTData::CalcDist(float a1, float a2)
   float v6; // [esp+0h] [ebp-10h]
   float v7; // [esp+4h] [ebp-Ch]
   float v8; // [esp+1Ch] [ebp+Ch]
-  float v9; // [esp+20h] [ebp+10h] BYREF
-  int v10; // [esp+24h] [ebp+14h]
-  float v11; // [esp+28h] [ebp+18h]
-  int v12; // [esp+2Ch] [ebp+1Ch]
-  int v13; // [esp+30h] [ebp+20h]
+  gbVec3D v9; // [esp+20h] [ebp+10h] BYREF
+  int v10; // [esp+2Ch] [ebp+1Ch]
+  int v11; // [esp+30h] [ebp+20h]
 
-  v2 = v9 - a1;
-  v3 = (float *)v12;
-  v6 = v11 - v8;
+  v2 = v9.x - a1;
+  v3 = (float *)v10;
+  v6 = v9.z - v8;
   v4 = atan2(-(v2 / v6), 1.0);
-  *(float *)v12 = v4;
-  if ( v11 > (double)v8 )
+  *(float *)v10 = v4;
+  if ( v9.z > (double)v8 )
     * v3 = (*)v4 + 3.1415927;
   v7 = v2;
-  v9 = v7;
-  v11 = v6;
-  *(float *)&v12 = *(float *)&v10 - a2;
-  v10 = v12;
+  v9.x = v7;
+  v9.z = v6;
+  *(float *)&v10 = v9.y - a2;
+  LODWORD(v9.y) = v10;
   v5 = ((gbVec3D *)&v9)->Length();
-  *(float *)v13 = asin(*(float *)&v12 / v5);
+  *(float *)v11 = asin(*(float *)&v10 / v5);
 }
 
 // 0x005044C0
 int CCCTData::UpdateCamera(int a2)
 {
   return sub_41CA30(
-           (int)this,
+           this,
            *(_DWORD *)(a2 + 12),
            *(_DWORD *)(a2 + 16),
            *(_DWORD *)(a2 + 20),
@@ -157,277 +155,266 @@ CCCTData::CCCTData(_DWORD *a2, _DWORD *a3)
 // 0x00505930
 CCCTData::~CCCTData(int _this)
 {
-  int v2; // ebp
+  __int32 *v2; // ebp
   struct gbRenderEffect *v3; // ebx
   float *v4; // esi
   _BYTE *v5; // esi
-  gbVec3D *v6; // esi
+  __int32 *p_Green; // esi
   double v7; // st7
   float v8; // edx
-  int v9; // eax
-  float *v10; // ecx
+  __int32 v9; // eax
+  int v10; // ecx
   double v11; // st7
-  float v12; // edx
-  int v13; // eax
-  float *v14; // ecx
-  float v15; // edx
-  float v16; // eax
-  float v17; // ecx
-  int v18; // edx
+  __int32 v12; // edx
+  __int32 v13; // eax
+  int v14; // ecx
+  __int32 v15; // edx
+  __int32 v16; // eax
+  __int32 v17; // ecx
+  __int32 v18; // edx
   float *v19; // edi
   double v20; // st7
   double v21; // st6
-  float v22; // edx
+  __int32 v22; // edx
   double v23; // st6
-  float *v24; // [esp+40h] [ebp-A8h] BYREF
-  float *v25; // [esp+44h] [ebp-A4h]
-  int v26; // [esp+48h] [ebp-A0h]
-  int v27; // [esp+4Ch] [ebp-9Ch]
-  int v28; // [esp+64h] [ebp-84h]
-  int v29; // [esp+68h] [ebp-80h]
-  int v30; // [esp+6Ch] [ebp-7Ch]
-  int v31; // [esp+70h] [ebp-78h]
-  int v32; // [esp+74h] [ebp-74h]
-  int v33; // [esp+78h] [ebp-70h]
-  _BYTE v34[4]; // [esp+7Ch] [ebp-6Ch] BYREF
-  struct gbDynVertBuf *DynVertBuf; // [esp+80h] [ebp-68h]
-  float v36; // [esp+84h] [ebp-64h] BYREF
-  float v37; // [esp+88h] [ebp-60h]
-  float v38; // [esp+8Ch] [ebp-5Ch]
-  float v39; // [esp+90h] [ebp-58h]
-  int v40; // [esp+94h] [ebp-54h]
-  float *v41; // [esp+98h] [ebp-50h]
-  _BYTE v42[64]; // [esp+9Ch] [ebp-4Ch] BYREF
-  float v43; // [esp+DCh] [ebp-Ch]
-  float v44; // [esp+E0h] [ebp-8h]
-  float v45; // [esp+E4h] [ebp-4h]
+  gbColorQuad v24; // [esp+40h] [ebp-A8h] BYREF
+  __int32 v25; // [esp+64h] [ebp-84h]
+  __int32 v26; // [esp+68h] [ebp-80h]
+  int v27; // [esp+6Ch] [ebp-7Ch]
+  int v28; // [esp+70h] [ebp-78h]
+  int v29; // [esp+74h] [ebp-74h]
+  int v30; // [esp+78h] [ebp-70h]
+  struct gbColorQuad v31; // [esp+7Ch] [ebp-6Ch] BYREF
+  __int32 v32; // [esp+94h] [ebp-54h]
+  int ColorQuadFmt; // [esp+98h] [ebp-50h]
+  _BYTE v34[64]; // [esp+9Ch] [ebp-4Ch] BYREF
+  float v35; // [esp+DCh] [ebp-Ch]
+  float v36; // [esp+E0h] [ebp-8h]
+  float v37; // [esp+E4h] [ebp-4h]
 
   if ( *(_BYTE *)(this + 430252) )
   {
-    ((gbMatrix4 *)v42)->gbMatrix4();
-    ((gbGeomNode *)*(gbGeomNode **)(this + 430224))->GetTotalOBBox((struct gbOBBox *)v42);
-    v2 = this + 430228;
-    ((gbMatrix4 *)v42)->RightTranslate((struct gbVec3D *)(this + 430228));
-    v3 = ((gbEffectMgr *)*(gbEffectMgr **)(g_pGfxManager + 200))->NewTrivalEffect(3);
-    DynVertBuf = ((gbVertPoolMgr *)*(gbVertPoolMgr **)(g_pGfxManager + 196))->GetDynVertBuf(0x15u);
+    ((gbMatrix4 *)v34)->gbMatrix4();
+    ((gbGeomNode *)*(gbGeomNode **)(this + 430224))->GetTotalOBBox((struct gbOBBox *)v34);
+    v2 = (__int32 *)(this + 430228);
+    ((gbMatrix4 *)v34)->RightTranslate((struct gbVec3D *)(this + 430228));
+    v3 = ((gbEffectMgr *)*(gbEffectMgr **)(g_Input.KeyInfo[177].Data + 200))->NewTrivalEffect(3);
+    v31.Blue = (__int32)((gbVertPoolMgr *)*(gbVertPoolMgr **)(g_Input.KeyInfo[177].Data + 196))->GetDynVertBuf(0x15u);
     if ( (byte_17AAEE0 & 1) == 0 )
     {
       v4 = (float *)&flt_17AAD48;
       byte_17AAEE0 |= 1u;
-      v30 = 6;
+      v27 = 6;
       do
       {
-        ArraySort((int)v4, 12, 4, (int (*)(int))gbVec3D::`default constructor closure');
+        ArraySort((int)v4, 12, 4, gbVec3D::`default constructor closure');
         v4 += 17;
-        --v30;
+        --v27;
       }
-      while ( *(float *)&v30 != 0.0 );
+      while ( *(float *)&v27 != 0.0 );
       atexit(nullsub_31);
     }
-    v43 = v43 + 2.0;
-    v44 = v44 + 2.0;
-    v45 = v45 + 2.0;
-    *(float *)&v33 = v44 * 0.5;
-    dword_17AAD4C = v33;
-    *(float *)&v30 = v45 * 0.5;
-    flt_17AAD48 = v43 * -0.5;
-    dword_17AAD50 = v30;
-    dword_17AAD58 = v33;
-    flt_17AAD54 = v43 * 0.5;
-    dword_17AAD5C = v30;
-    dword_17AAD68 = v30;
-    *(float *)&v31 = v44 * -0.5;
+    v35 = v35 + 2.0;
+    v36 = v36 + 2.0;
+    v37 = v37 + 2.0;
+    *(float *)&v30 = v36 * 0.5;
+    dword_17AAD4C = v30;
+    *(float *)&v27 = v37 * 0.5;
+    flt_17AAD48 = v35 * -0.5;
+    dword_17AAD50 = v27;
+    dword_17AAD58 = v30;
+    flt_17AAD54 = v35 * 0.5;
+    dword_17AAD5C = v27;
+    dword_17AAD68 = v27;
+    *(float *)&v28 = v36 * -0.5;
     flt_17AAD60 = flt_17AAD54;
-    dword_17AAD64 = v31;
+    dword_17AAD64 = v28;
     flt_17AAD6C = flt_17AAD48;
-    dword_17AAD70 = v31;
-    *(float *)&v32 = v45 * -0.5;
-    dword_17AAD74 = v30;
+    dword_17AAD70 = v28;
+    *(float *)&v29 = v37 * -0.5;
+    dword_17AAD74 = v27;
     flt_17AAD8C = flt_17AAD48;
-    dword_17AAD90 = v33;
-    dword_17AAD94 = v32;
+    dword_17AAD90 = v30;
+    dword_17AAD94 = v29;
     flt_17AAD98 = flt_17AAD54;
-    dword_17AAD9C = v33;
-    dword_17AADA0 = v32;
+    dword_17AAD9C = v30;
+    dword_17AADA0 = v29;
     flt_17AADA4 = flt_17AAD54;
     flt_17AADB0 = flt_17AAD48;
     flt_17AADD0 = flt_17AAD48;
-    dword_17AADA8 = v31;
-    dword_17AADAC = v32;
-    dword_17AADB4 = v31;
-    dword_17AADB8 = v32;
+    dword_17AADA8 = v28;
+    dword_17AADAC = v29;
+    dword_17AADB4 = v28;
+    dword_17AADB8 = v29;
     flt_17AADDC = flt_17AAD48;
-    dword_17AADD4 = v33;
-    dword_17AADD8 = v30;
+    dword_17AADD4 = v30;
+    dword_17AADD8 = v27;
     flt_17AADE8 = flt_17AAD48;
-    dword_17AADE0 = v33;
-    dword_17AADE4 = v32;
+    dword_17AADE0 = v30;
+    dword_17AADE4 = v29;
     flt_17AADF4 = flt_17AAD48;
-    dword_17AADEC = v31;
-    dword_17AADF0 = v32;
-    dword_17AADF8 = v31;
+    dword_17AADEC = v28;
+    dword_17AADF0 = v29;
+    dword_17AADF8 = v28;
     flt_17AAE14 = flt_17AAD54;
-    dword_17AADFC = v30;
-    dword_17AAE18 = v33;
-    dword_17AAE1C = v30;
+    dword_17AADFC = v27;
+    dword_17AAE18 = v30;
+    dword_17AAE1C = v27;
     flt_17AAE20 = flt_17AAD54;
-    dword_17AAE24 = v33;
-    dword_17AAE28 = v32;
+    dword_17AAE24 = v30;
+    dword_17AAE28 = v29;
     flt_17AAE2C = flt_17AAD54;
-    dword_17AAE30 = v31;
+    dword_17AAE30 = v28;
     flt_17AAE38 = flt_17AAD54;
     flt_17AAE58 = flt_17AAD48;
-    dword_17AAE34 = v32;
-    dword_17AAE3C = v31;
+    dword_17AAE34 = v29;
+    dword_17AAE3C = v28;
     flt_17AAE64 = flt_17AAD54;
-    dword_17AAE40 = v30;
-    dword_17AAE5C = v33;
-    dword_17AAE60 = v32;
+    dword_17AAE40 = v27;
+    dword_17AAE5C = v30;
+    dword_17AAE60 = v29;
     flt_17AAE70 = flt_17AAD54;
-    dword_17AAE68 = v33;
-    dword_17AAE6C = v32;
-    dword_17AAE74 = v33;
+    dword_17AAE68 = v30;
+    dword_17AAE6C = v29;
+    dword_17AAE74 = v30;
     flt_17AAE7C = flt_17AAD48;
-    dword_17AAE78 = v30;
-    dword_17AAE80 = v33;
+    dword_17AAE78 = v27;
+    dword_17AAE80 = v30;
     flt_17AAE9C = flt_17AAD48;
-    dword_17AAE84 = v30;
-    dword_17AAEA0 = v31;
-    dword_17AAEA4 = v32;
+    dword_17AAE84 = v27;
+    dword_17AAEA0 = v28;
+    dword_17AAEA4 = v29;
     flt_17AAEA8 = flt_17AAD54;
     flt_17AAEB4 = flt_17AAD54;
-    dword_17AAEAC = v31;
-    dword_17AAEB0 = v32;
+    dword_17AAEAC = v28;
+    dword_17AAEB0 = v29;
     flt_17AAEC0 = flt_17AAD48;
-    dword_17AAEB8 = v31;
-    dword_17AAEBC = v30;
-    v28 = v31;
-    v29 = v30;
-    dword_17AAEC4 = v31;
-    dword_17AAEC8 = v30;
+    dword_17AAEB8 = v28;
+    dword_17AAEBC = v27;
+    v25 = v28;
+    v26 = v27;
+    dword_17AAEC4 = v28;
+    dword_17AAEC8 = v27;
     v5 = (_BYTE *)&unk_17AAD89;
     do
     {
       v5[1] = -1;
       *v5 = -1;
-      v27 = 4;
+      v24.Red = 4;
       *(v5 - 1) = 10;
-      v26 = (int)(v5 - 65);
+      v24.Green = (__int32)(v5 - 65);
       v5[2] = -101;
-      ((gbMatrix4 *)v42)->Transform((struct gbVec3D *)v26, v27);
+      ((gbMatrix4 *)v34)->Transform((struct gbVec3D *)v24.Green, v24.Red);
       v5 += 68;
     }
     while ( (int)v5 < (int)byte_17AAF21 );
     ((struct gbGeomQuad *)&flt_17AAD48)->RenderGeomQuad(6, v3, 0);
-    v6 = (gbVec3D *)&v36;
-    v30 = 2;
+    p_Green = (__int32 *)&v31.Green;
+    v27 = 2;
     do
     {
-      gbVec3D::`default constructor closure'(v6);
-      v6 = (gbVec3D *)((char *)v6 + 12);
-      --v30;
+      ((void (*)(__int32 *))gbVec3D::`default constructor closure')(p_Green);
+      p_Green += 3;
+      --v27;
     }
-    while ( *(float *)&v30 != 0.0 );
+    while ( *(float *)&v27 != 0.0 );
     v7 = *(float *)v2;
     v8 = *(float *)v2;
     v9 = *(_DWORD *)(this + 430232);
-    v29 = *(int *)(this + 430236);
-    v39 = v8;
-    v36 = v7;
-    v38 = *(float *)&v29;
-    v10 = (float *)*(float **)(this + 430236);
-    v27 = (int)v3;
-    v26 = 2;
-    v25 = (float *)&v36;
-    v40 = v9;
-    v24 = v10;
-    v41 = v10;
-    v34[3] = 80;
-    v34[1] = -1;
-    v34[2] = -1;
-    v34[0] = -1;
-    v37 = 0.0;
-    ((gbColorQuad *)&v24)->gbColorQuad((struct gbColorQuad *)v34);
-    ((gbDynVertBuf *)LODWORD(v39))->RenderLineStrip();
+    v26 = *(__int32 *)(this + 430236);
+    *(float *)&v31.Color = v8;
+    *(float *)&v31.Green = v7;
+    v31.Alpha = v26;
+    v10 = *(_DWORD *)(this + 430236);
+    v24.Red = (__int32)v3;
+    v24.Green = 2;
+    v24.Blue = (__int32)&v31.Green;
+    v32 = v9;
+    v24.ColorQuadFmt = v10;
+    ColorQuadFmt = v10;
+    v31.ColorQuadFmt = 1358954495;
+    v31.Red = 0;
+    ((gbColorQuad *)&v24)->gbColorQuad(&v31);
+    ((gbDynVertBuf *)v31.Color)->RenderLineStrip();
     v11 = *(float *)(this + 430240);
-    v12 = *(float *)(this + 430240);
+    v12 = *(_DWORD *)(this + 430240);
     v13 = *(_DWORD *)(this + 430244);
-    v29 = *(int *)(this + 430248);
-    v39 = v12;
-    v36 = v11;
-    v38 = *(float *)&v29;
-    v14 = (float *)*(float **)(this + 430248);
-    v27 = (int)v3;
-    v26 = 2;
-    v25 = (float *)&v36;
-    v40 = v13;
-    v24 = v14;
-    v41 = v14;
-    v37 = 0.0;
-    ((gbColorQuad *)&v24)->gbColorQuad((struct gbColorQuad *)v34);
-    ((gbDynVertBuf *)LODWORD(v39))->RenderLineStrip();
-    v15 = *(float *)(this + 430232);
-    v16 = *(float *)(this + 430236);
-    v36 = *(float *)v2;
-    v17 = *(float *)(this + 430240);
-    v37 = v15;
+    v26 = *(__int32 *)(this + 430248);
+    v31.Color = v12;
+    *(float *)&v31.Green = v11;
+    v31.Alpha = v26;
+    v14 = *(_DWORD *)(this + 430248);
+    v24.Red = (__int32)v3;
+    v24.Green = 2;
+    v24.Blue = (__int32)&v31.Green;
+    v32 = v13;
+    v24.ColorQuadFmt = v14;
+    ColorQuadFmt = v14;
+    v31.Red = 0;
+    ((gbColorQuad *)&v24)->gbColorQuad(&v31);
+    ((gbDynVertBuf *)v31.Color)->RenderLineStrip();
+    v15 = *(_DWORD *)(this + 430232);
+    v16 = *(_DWORD *)(this + 430236);
+    v31.Green = *v2;
+    v17 = *(_DWORD *)(this + 430240);
+    v31.Red = v15;
     v18 = *(_DWORD *)(this + 430244);
-    v39 = v17;
-    v27 = (int)v3;
-    v26 = 2;
-    v25 = (float *)&v36;
-    v40 = v18;
-    v24 = (float *)&v36;
-    v38 = v16;
-    v41 = (float *)*(float **)(this + 430248);
-    ((gbColorQuad *)&v24)->gbColorQuad((struct gbColorQuad *)v34);
-    ((gbDynVertBuf *)LODWORD(v39))->RenderLineStrip();
+    v31.Color = v17;
+    v24.Red = (__int32)v3;
+    v24.Green = 2;
+    v24.Blue = (__int32)&v31.Green;
+    v32 = v18;
+    v24.ColorQuadFmt = (int)&v31.Green;
+    v31.Alpha = v16;
+    ColorQuadFmt = *(_DWORD *)(this + 430248);
+    ((gbColorQuad *)&v24)->gbColorQuad(&v31);
+    ((gbDynVertBuf *)v31.Color)->RenderLineStrip();
     v19 = (float *)*(float **)(this + 430004);
     v20 = v19[123] + 1.0;
     v21 = v19[124] + 1.0;
-    v22 = *(float *)v2;
-    v27 = (int)v3;
-    v26 = 2;
-    *(float *)&v28 = v21;
+    v22 = *v2;
+    v24.Red = (__int32)v3;
+    v24.Green = 2;
+    *(float *)&v25 = v21;
     v23 = v19[125];
-    v39 = v22;
-    v37 = *(float *)&v28;
-    v40 = *(_DWORD *)(v2 + 4);
-    *(float *)&v29 = v23 + 1.0;
-    v25 = (float *)&v36;
-    v36 = v20;
-    v38 = *(float *)&v29;
-    v24 = (float *)*(float **)(v2 + 8);
-    v41 = v24;
-    ((gbColorQuad *)&v24)->gbColorQuad((struct gbColorQuad *)v34);
-    ((gbDynVertBuf *)LODWORD(v39))->RenderLineStrip();
-    ((gbRefObject *)v3)->Release();
+    v31.Color = v22;
+    v31.Red = v25;
+    v32 = v2[1];
+    *(float *)&v26 = v23 + 1.0;
+    v24.Blue = (__int32)&v31.Green;
+    *(float *)&v31.Green = v20;
+    v31.Alpha = v26;
+    v24.ColorQuadFmt = v2[2];
+    ColorQuadFmt = v24.ColorQuadFmt;
+    ((gbColorQuad *)&v24)->gbColorQuad(&v31);
+    ((gbDynVertBuf *)v31.Color)->RenderLineStrip();
+    v3->Release();
   }
 }
 
 // 0x00506020
-bool CCCTData::Create(int _this, _DWORD *a2)
+bool CCCTData::Create(int _this, float *a2)
 {
   int v3; // eax
-  char *v4; // ecx
-  int v6[2]; // [esp+8h] [ebp-90h] BYREF
-  _DWORD v7[3]; // [esp+10h] [ebp-88h] BYREF
-  _BYTE v8[24]; // [esp+1Ch] [ebp-7Ch] BYREF
+  CameraCtrl *v4; // ecx
+  float pPos[2]; // [esp+8h] [ebp-90h] BYREF
+  struct gbVec3D v7; // [esp+10h] [ebp-88h] BYREF
+  gbRay v8; // [esp+1Ch] [ebp-7Ch] BYREF
   _BYTE v9[76]; // [esp+34h] [ebp-64h] BYREF
-  _BYTE v10[24]; // [esp+80h] [ebp-18h] BYREF
+  _BYTE pTarget[24]; // [esp+80h] [ebp-18h] BYREF
 
   ((gbMatrix4 *)v9)->gbMatrix4();
   ((gbGeomNode *)*(gbGeomNode **)(this + 430224))->GetTotalOBBox((struct gbOBBox *)v9);
-  v7[0] = *a2;
-  v7[1] = a2[1];
-  v7[2] = a2[2];
-  ((gbMatrix4 *)v9)->RightTranslate((struct gbVec3D *)v7);
+  v7.x = *a2;
+  v7.y = a2[1];
+  v7.z = a2[2];
+  ((gbMatrix4 *)v9)->RightTranslate(&v7);
   v3 = *(_DWORD *)(this + 430000);
-  v6[0] = *(_DWORD *)(v3 + 80);
-  v4 = (char *)*(char **)(this + 430004);
-  v6[1] = *(_DWORD *)(v3 + 84);
-  qmemcpy(v8, v4->GetViewTarget(v10, v6), sizeof(v8));
-  return ((gbRay *)v8)->IsColOBB((struct gbOBBox *)v9) == 1;
+  pPos[0] = *(float *)(v3 + 80);
+  v4 = (CameraCtrl *)*(CameraCtrl **)(this + 430004);
+  pPos[1] = *(float *)(v3 + 84);
+  qmemcpy(&v8, v4->GetViewTarget(pTarget, pPos), sizeof(v8));
+  return ((gbRay *)&v8)->IsColOBB((struct gbOBBox *)v9) == 1;
 }
 
 // 0x005060D0
@@ -512,26 +499,26 @@ int CCCTData::Save(int a2)
 {
   int result; // eax
   int v4; // esi
-  char *v5; // edx
+  float *v5; // edx
   char *v6; // eax
 
   result = ((CCBStageCam *)this)->IsEditorCamValid(a2);
   if ( result > 0 )
   {
     v4 = result;
-    v5 = (char *)&this->m_Pool[200 * a2 + 410000];
+    v5 = (float *)&this->m_Pool[1385].StartPos.fFromY + 50 * a2;
     do
     {
       if ( *(_DWORD *)v5 == -1 )
         v6 = 0;
       else
-        v6 = (char *)&this->m_Pool[204 * *(_DWORD *)v5];
+        v6 = (char *)this + 204 * *(_DWORD *)v5;
       v6[21] = 0;
       if ( *(_DWORD *)v5 == -1 )
         result = 0;
       else
-        result = (int)&this->m_Pool[204 * *(_DWORD *)v5];
-      v5 += 4;
+        result = (int)this + 204 * *(_DWORD *)v5;
+      ++v5;
       --v4;
       *(_BYTE *)(result + 22) = 0;
     }

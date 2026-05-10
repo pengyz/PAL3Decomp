@@ -74,7 +74,7 @@ CCBParabolaWindow::~CCBParabolaWindow(int _this)
   _DWORD *v4; // esi
   int v5; // edi
 
-  result = ((gbRefObject **)this)->SetScrollPos();
+  result = ((UIListBox **)this)->SetScrollPos();
   v3 = *(_DWORD *)(this + 92);
   if ( v3 )
   {

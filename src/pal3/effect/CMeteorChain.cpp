@@ -8,18 +8,18 @@ extern int dword_DE9CA8;
 // 0x004CD0A0
 CMeteorChain::CMeteorChain()
 {
-  _DWORD *v2; // esi
-  void *v3; // eax
+  tagMeteorNode *m_pFirstNode; // esi
+  tagMeteorNode *v3; // eax
 
-  v2 = (_DWORD *)*(_DWORD **)&this->m_pEM[20];
-  while ( v2 )
+  m_pFirstNode = (tagMeteorNode *)this->m_pFirstNode;
+  while ( m_pFirstNode )
   {
-    v3 = v2;
-    v2 = (_DWORD *)v2[8];
+    v3 = m_pFirstNode;
+    m_pFirstNode = (tagMeteorNode *)m_pFirstNode->pNext;
     operator delete(v3);
   }
-  if ( *(_DWORD *)&this->m_pEM[4] )
-    operator delete(*(void **)&this->m_pEM[4]);
+  if ( this->m_pGeomQuad )
+    operator delete(this->m_pGeomQuad);
 }
 
 // 0x004CD7E0

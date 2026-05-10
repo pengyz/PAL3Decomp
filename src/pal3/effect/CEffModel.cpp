@@ -52,9 +52,9 @@ _DWORD * CEffModel::Render()
 // 0x004D0D70
 _DWORD *CEffModel::SetTimeScale()
 {
-  _DWORD *v0; // eax
+  CEffModel *v0; // eax
 
-  v0 = ((operator *)0x10B0u)->new();
+  v0 = (CEffModel *)((operator *)0x10B0u)->new();
   if ( v0 )
     return v0->Render();
   else
@@ -71,7 +71,7 @@ int CEffModel::ProcInitTask(int _this, int a2, float a3, float a4, float a5)
   *(_BYTE *)(this + 49) = 1;
   *(_BYTE *)(this + 8) = 0;
   *(_BYTE *)(this + 51) = *(_BYTE *)(a2 + 214);
-  sub_4D1EF0();
+  sub_4D1EF0((_DWORD *)this);
   *(_BYTE *)(this + 80) = 1;
   *(_BYTE *)(this + 81) = 1;
   *(_BYTE *)(this + 82) = 0;

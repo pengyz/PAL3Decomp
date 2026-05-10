@@ -36,28 +36,28 @@ int Actor::SetParam(int a2)
 {
   int v3; // eax
   int result; // eax
-  int v5; // ecx
+  gbActor *m_pact; // ecx
   int v6; // ecx
   float v7[17]; // [esp+4h] [ebp-44h] BYREF
 
-  if ( this->m_actarray[216] )
+  if ( this->m_name[208] )
   {
     v3 = rand();
-    ((Actor *)*(Actor **)&this->m_actarray[224])->SetAction(-83 - v3 % 34);
-    this->m_actarray[217] = 1;
+    ((Actor *)*(Actor **)&this->m_name[216])->SetAction(-83 - v3 % 34);
+    this->m_name[209] = 1;
   }
-  ((gbGeomNode *)*(gbGeomNode **)this->m_actarray)->GetTotalOBBox((struct gbOBBox *)&this->m_actarray[12]);
+  ((gbGeomNode *)this->m_actarray)->GetTotalOBBox((struct gbOBBox *)&this->m_name[4]);
   sub_535FD0(
-    (float *)this->m_actarray,
+    (float *)&this->m_actarray,
     v7,
-    *(float *)&this->m_actarray[168],
-    *(float *)&this->m_actarray[172],
-    *(float *)&this->m_actarray[176]);
-  result = (*(int (**)(_DWORD))(**(_DWORD **)this->m_actarray + 20))(*(_DWORD *)this->m_actarray);
-  v5 = *(_DWORD *)&this->m_actarray[4];
-  if ( v5 )
-    result = (*(int (**)(int))(*(_DWORD *)v5 + 20))(v5);
-  v6 = *(_DWORD *)&this->m_actarray[8];
+    *(float *)&this->m_name[160],
+    *(float *)&this->m_name[164],
+    *(float *)&this->m_name[168]);
+  result = (*(int (**)(__int32))(*(_DWORD *)this->m_actarray + 20))(this->m_actarray);
+  m_pact = (gbActor *)this->m_pact;
+  if ( m_pact )
+    result = ((int (*)(gbActor *))m_pact->next[5].next)(m_pact);
+  v6 = *(_DWORD *)this->m_name;
   if ( v6 )
     return (*(int (**)(int))(*(_DWORD *)v6 + 20))(v6);
   return result;
@@ -96,17 +96,17 @@ void Actor::SetDefaultDist()
 // 0x005363A0
 int Actor::ResetState()
 {
-  *(_DWORD *)&this->m_actarray[340] = 0;
-  this->m_actarray[332] = 0;
-  this->m_actarray[333] = 0;
+  *(_DWORD *)&this->m_szTexture[72] = 0;
+  this->m_szTexture[64] = 0;
+  this->m_szTexture[65] = 0;
   return 0;
 }
 
 // 0x005363C0
 int Actor::Cleanup()
 {
-  if ( *(_DWORD *)&this->m_actarray[340] )
-    operator delete(*(void **)&this->m_actarray[340]);
+  if ( *(_DWORD *)&this->m_szTexture[72] )
+    operator delete(*(void **)&this->m_szTexture[72]);
   return this->ResetState();
 }
 
@@ -118,28 +118,28 @@ void Actor::SetAction(int actionId)
   float v5; // [esp+8h] [ebp-Ch]
   float v6; // [esp+8h] [ebp-Ch]
 
-  if ( this->m_actarray[344] )
+  if ( this->m_szTexture[76] )
   {
-    v3 = *(_DWORD *)&this->m_actarray[348];
+    v3 = *(_DWORD *)&this->m_szTexture[80];
     if ( v3 )
     {
       v4 = actionId + v3;
-      this->m_actarray[344] = 0;
-      *(_DWORD *)&this->m_actarray[348] = v4;
+      this->m_szTexture[76] = 0;
+      *(_DWORD *)&this->m_szTexture[80] = v4;
       if ( v4 <= 0 )
       {
         (**((void (***)(char *, _DWORD))this + 774))((char *)this + 3096, 0);
         (**((void (***)(char *, _DWORD))this + 835))((char *)this + 3340, 0);
-        sprintf(&this->m_actarray[72], "       %s\\n       %s", byte_DD893C, byte_DD8B3C);
-        ((UIWnd *)(_DWORD *)this + 204)->SetEnable(&this->m_actarray[72], 0);
-        sub_4A1530((int)&this->m_actarray[360], 1);
-        *(_DWORD *)&this->m_actarray[348] = 0;
+        sprintf(&this->m_name[64], "       %s\\n       %s", byte_DD893C, byte_DD8B3C);
+        ((UIWnd *)((char *)this + 816))->SetEnable(&this->m_name[64], 0);
+        sub_4A1530((int)&this->m_szTexture[92], 1);
+        *(_DWORD *)&this->m_szTexture[80] = 0;
       }
-      v5 = (float)*(int *)&this->m_actarray[352];
+      v5 = (float)*(int *)&this->m_szTexture[84];
       ((UIWnd *)(int)this + 3096)->FindChild(v5);
-      v6 = (float)*(int *)&this->m_actarray[348];
+      v6 = (float)*(int *)&this->m_szTexture[80];
       ((UIWnd *)(int)this + 3096)->FindChildByName(v6);
-      this->m_actarray[332] = 1;
+      this->m_szTexture[64] = 1;
     }
   }
 }
@@ -152,23 +152,23 @@ int Actor::InitComponents()
   float v5; // [esp+0h] [ebp-Ch]
   float v6; // [esp+0h] [ebp-Ch]
 
-  this->m_actarray[345] = 0;
-  ((UIWnd *)(_DWORD *)this + 546)->SetEnable(byte_DDAD3C, 0);
+  this->m_szTexture[77] = 0;
+  ((UIWnd *)(UIWnd *)this + 21)->SetEnable(byte_DDAD3C, 0);
   sub_4A1530((int)this + 1728, 1);
-  *(_DWORD *)&this->m_actarray[348] = 1000;
-  *(_DWORD *)&this->m_actarray[352] = 1000;
+  *(_DWORD *)&this->m_szTexture[80] = 1000;
+  *(_DWORD *)&this->m_szTexture[84] = 1000;
   sub_43FE90((int)this + 3096);
-  v5 = (float)*(int *)&this->m_actarray[352];
+  v5 = (float)*(int *)&this->m_szTexture[84];
   ((UIWnd *)(int)this + 3096)->FindChild(v5);
-  v6 = (float)*(int *)&this->m_actarray[348];
+  v6 = (float)*(int *)&this->m_szTexture[80];
   ((UIWnd *)(int)this + 3096)->FindChildByName(v6);
-  v2 = *(_DWORD *)&this->m_actarray[348];
+  v2 = *(_DWORD *)&this->m_szTexture[80];
   v3 = (void (**)(char *, bool))*((_DWORD *)this + 774);
-  this->m_actarray[356] = v2 <= 0;
+  this->m_szTexture[88] = v2 <= 0;
   (*v3)((char *)this + 3096, v2 > 0);
   return (**((int (***)(char *, bool))this + 835))(
            (char *)this + 3340,
-           *(_DWORD *)&this->m_actarray[348] > 0);
+           *(_DWORD *)&this->m_szTexture[80] > 0);
 }
 
 // 0x00536560
@@ -415,67 +415,67 @@ int Actor::FastInit(int a1)
 // 0x00536AC0
 int Actor::LoadAction(char *name)
 {
-  char *v3; // ebx
+  __int32 *v3; // ebx
   char *v5; // edi
   unsigned int v6; // kr04_4
-  int v7; // eax
+  gbActor *m_pact; // eax
   unsigned int v8; // esi
   int v9; // edi
-  int v10; // eax
+  gbActor *v10; // eax
   int v11; // eax
   int v12; // eax
   gbActor *v13; // ecx
   char *v14; // esi
   int v15; // ebp
   int v16; // [esp-4h] [ebp-30h]
-  _BYTE v17[16]; // [esp+10h] [ebp-1Ch] BYREF
+  struct gbNodeMsgObj v17; // [esp+10h] [ebp-1Ch] BYREF
   int v18; // [esp+28h] [ebp-4h]
 
-  v3 = (char *)&this->m_actarray[540];
-  if ( !strcmp(name, &this->m_actarray[540]) )
+  v3 = (__int32 *)&this->m_dwMatMsg[3];
+  if ( !strcmp(name, (const char *)&this->m_dwMatMsg[3]) )
     return 1;
   v6 = strlen(name) + 1;
   v5 = (char *)&name[v6];
   qmemcpy(v3, name, 4 * (v6 >> 2));
-  qmemcpy(&v3[4 * (v6 >> 2)], &v5[4 * (v6 >> 2) - v6], v6 & 3);
-  _strlwr(v3);
-  v7 = *(_DWORD *)&this->m_actarray[4];
+  qmemcpy(&v3[v6 >> 2], &v5[4 * (v6 >> 2) - v6], v6 & 3);
+  _strlwr((char *)v3);
+  m_pact = (gbActor *)this->m_pact;
   v8 = 0;
-  if ( v7 && (unsigned int)((*(_DWORD *)&this->m_actarray[8] - v7) >> 2) > 1 )
+  if ( m_pact && (unsigned int)((*(_DWORD *)this->m_name - (int)m_pact) >> 2) > 1 )
   {
-    *(_DWORD *)&this->m_actarray[16] = 0;
-    v9 = gbCrc32Compute(v3);
+    *(_DWORD *)&this->m_name[8] = 0;
+    v9 = gbCrc32Compute((const char *)v3);
     while ( 1 )
     {
-      v10 = *(_DWORD *)&this->m_actarray[4];
-      if ( !v10 || v8 >= (*(_DWORD *)&this->m_actarray[8] - v10) >> 2 )
+      v10 = (gbActor *)this->m_pact;
+      if ( !v10 || v8 >= (*(_DWORD *)this->m_name - (int)v10) >> 2 )
         break;
-      if ( sub_5370E0(v9, *(_DWORD *)(v10 + 4 * v8)) )
+      if ( sub_5370E0(v9, *((_DWORD *)&v10->next + v8)) )
       {
-        *(_DWORD *)&this->m_actarray[16] = *(_DWORD *)(*(_DWORD *)&this->m_actarray[4] + 4 * v8);
+        *(_DWORD *)&this->m_name[8] = *((_DWORD *)&this->m_pact->next + v8);
         break;
       }
       ++v8;
     }
   }
-  v16 = *(_DWORD *)&this->m_actarray[16];
-  v11 = gbCrc32Compute(v3);
+  v16 = *(_DWORD *)&this->m_name[8];
+  v11 = gbCrc32Compute((const char *)v3);
   v12 = sub_5370E0(v11, v16);
-  v13 = (gbActor *)*(gbActor **)&this->m_actarray[16];
+  v13 = (gbActor *)*(gbActor **)&this->m_name[8];
   if ( !v13 || !v12 )
     return 0;
-  v13->GotoAction(v3, 0);
-  while ( ((gbVisNode *)*(gbVisNode **)&this->m_actarray[16])->PopMessage((struct gbNodeMsgObj *)v17) )
+  v13->GotoAction((char *)v3, 0);
+  while ( ((gbVisNode *)*(gbVisNode **)&this->m_name[8])->PopMessage(&v17) )
     ;
-  v14 = (char *)&this->m_actarray[280];
-  if ( this->m_actarray[280] )
+  v14 = (char *)&this->m_szTexture[12];
+  if ( this->m_szTexture[12] )
   {
     ((OpenBaseFile *)&name)->OpenBaseFile();
-    v15 = *(_DWORD *)&this->m_actarray[16];
+    v15 = *(_DWORD *)&this->m_name[8];
     v18 = 0;
     (*(void (**)(_DWORD, char *))(**(_DWORD **)(v15 + 88) + 60))(*(_DWORD *)(v15 + 88), v14);
     v18 = -1;
-    ((struct gbVFileSystem **)&name)->OpenNULLFile();
+    ((OpenNULLFile **)&name)->OpenNULLFile();
   }
   return 1;
 }
@@ -483,7 +483,7 @@ int Actor::LoadAction(char *name)
 // 0x00536C50
 int Actor::CompareAction(int actionIdx, int a3)
 {
-  if ( !strcmp((&off_570904)[actionIdx], &this->m_actarray[540]) )
+  if ( !strcmp((&off_570904)[actionIdx], (const char *)&this->m_dwMatMsg[3]) )
     return 1;
   else
     return this->LoadAction((&off_570904)[actionIdx]);
@@ -492,19 +492,19 @@ int Actor::CompareAction(int actionIdx, int a3)
 // 0x00536CC0
 unsigned int Actor::GetAnimDuration(int animId)
 {
-  return ((gbActor *)*(gbActor **)&this->m_actarray[16])->GetActionDuration((char *)animId);
+  return ((gbActor *)*(gbActor **)&this->m_name[8])->GetActionDuration((char *)animId);
 }
 
 // 0x00536CE0
 void Actor::EnableTransition(int a2, int a3)
 {
-  ((gbActor *)*(gbActor **)&this->m_actarray[16])->EnableActionTransMtl((char *)a2, a3);
+  ((gbActor *)*(gbActor **)&this->m_name[8])->EnableActionTransMtl((char *)a2, a3);
 }
 
 // 0x00536D00
 void Actor::SetTimeScale(float scale)
 {
-  ((gbVisNode *)*(gbVisNode **)&this->m_actarray[16])->SetTimeScale(scale);
+  ((gbVisNode *)*(gbVisNode **)&this->m_name[8])->SetTimeScale(scale);
 }
 
 // 0x00536D20
@@ -514,71 +514,71 @@ void * Actor::LoadModel()
   struct gbActor *ActorFile; // eax
   _DWORD *v4; // eax
   _DWORD *v5; // esi
-  int v6; // edx
+  gbActor *m_pact; // edx
   unsigned int v7; // ecx
   int v8; // eax
   int v9; // eax
-  _DWORD *v10; // edi
+  gbActor *v10; // edi
   _DWORD *v11; // ebp
   int v12; // eax
   _DWORD *v13; // ecx
   _DWORD *i; // eax
   int v16; // [esp+10h] [ebp-11Ch] BYREF
-  struct gbVFileSystem *v17; // [esp+14h] [ebp-118h] BYREF
-  void *v18; // [esp+18h] [ebp-114h]
+  OpenBaseFile v17; // [esp+14h] [ebp-118h] BYREF
+  gbActor *v18; // [esp+18h] [ebp-114h]
   char Buffer[260]; // [esp+1Ch] [ebp-110h] BYREF
   int v20; // [esp+128h] [ebp-4h]
   const char *v21; // [esp+130h] [ebp+4h]
 
   this->UpdateAllActions();
-  strcpy(&this->m_actarray[20], v21);
+  strcpy(&this->m_name[12], v21);
   ((OpenBaseFile *)&v17)->OpenBaseFile();
   v2 = 0;
   v20 = 0;
-  sprintf(Buffer, "role\\%s\\%s.ini", &this->m_actarray[20], &this->m_actarray[20]);
+  sprintf(Buffer, "role\\%s\\%s.ini", &this->m_name[12], &this->m_name[12]);
   if ( (int)g_pVFileSys->FileExistNum(Buffer) > 0 )
   {
-    ActorFile = ((gbActorMgr *)g_pActorMgr)->LoadActorFile(Buffer);
-    *(_DWORD *)&this->m_actarray[16] = ActorFile;
+    ActorFile = ((gbActorMgr *)g_Input.KeyInfo[177].HoldTime)->LoadActorFile(Buffer);
+    *(_DWORD *)&this->m_name[8] = ActorFile;
     if ( ActorFile )
     {
-      v4 = (_DWORD *)*(_DWORD **)&this->m_actarray[8];
+      v4 = (_DWORD *)*(_DWORD **)this->m_name;
       v5 = v4;
-      if ( (*(_DWORD *)&this->m_actarray[12] - (int)v4) >> 2 )
+      if ( (*(_DWORD *)&this->m_name[4] - (int)v4) >> 2 )
       {
         sub_5374E0(v4, v4, v4 + 1);
         sub_537510(
-          *(_DWORD **)&this->m_actarray[8],
-          (_DWORD *)(1 - ((*(_DWORD *)&this->m_actarray[8] - (int)v5) >> 2)),
-          &this->m_actarray[16]);
-        v13 = (_DWORD *)*(_DWORD **)&this->m_actarray[8];
+          *(_DWORD **)this->m_name,
+          (_DWORD *)(1 - ((*(_DWORD *)this->m_name - (int)v5) >> 2)),
+          &this->m_name[8]);
+        v13 = (_DWORD *)*(_DWORD **)this->m_name;
         for ( i = v5; i != v13; ++i )
-          * i = (*)*(_DWORD *)&this->m_actarray[16];
-        *(_DWORD *)&this->m_actarray[8] += 4;
+          * i = (*)*(_DWORD *)&this->m_name[8];
+        *(_DWORD *)this->m_name += 4;
       }
       else
       {
-        v6 = *(_DWORD *)&this->m_actarray[4];
-        if ( !v6 || (v7 = ((int)v4 - v6) >> 2, v7 <= 1) )
+        m_pact = (gbActor *)this->m_pact;
+        if ( !m_pact || (v7 = ((char *)v4 - (char *)m_pact) >> 2, v7 <= 1) )
           v7 = 1;
-        if ( v6 )
-          v8 = ((int)v4 - v6) >> 2;
+        if ( m_pact )
+          v8 = ((char *)v4 - (char *)m_pact) >> 2;
         else
           v8 = 0;
         v9 = v7 + v8;
         v16 = v9;
         if ( v9 < 0 )
           v9 = 0;
-        v10 = (_DWORD *)((operator *)4 * v9)->new();
-        v11 = (_DWORD *)sub_5374E0(*(_DWORD **)&this->m_actarray[4], v5, v10);
-        sub_537510(v11, (_DWORD *)1, &this->m_actarray[16]);
-        sub_5374E0(v5, *(_DWORD **)&this->m_actarray[8], v11 + 1);
-        v18 = (void *)*(void **)&this->m_actarray[4];
+        v10 = (gbActor *)((operator *)4 * v9)->new();
+        v11 = (_DWORD *)sub_5374E0(&this->m_pact->next, v5, v10);
+        sub_537510(v11, (_DWORD *)1, &this->m_name[8]);
+        sub_5374E0(v5, *(_DWORD **)this->m_name, v11 + 1);
+        v18 = (gbActor *)this->m_pact;
         operator delete(v18);
-        *(_DWORD *)&this->m_actarray[12] = &v10[v16];
+        *(_DWORD *)&this->m_name[4] = (char *)v10 + 4 * v16;
         v12 = sub_5372B0(this);
-        *(_DWORD *)&this->m_actarray[4] = v10;
-        *(_DWORD *)&this->m_actarray[8] = &v10[v12 + 1];
+        this->m_pact = v10;
+        *(_DWORD *)this->m_name = &v10->pFather + v12;
       }
     }
   }
@@ -586,69 +586,69 @@ void * Actor::LoadModel()
   {
     do
     {
-      sprintf(Buffer, "role\\%s\\%02d.ini", &this->m_actarray[20], v2);
+      sprintf(Buffer, "role\\%s\\%02d.ini", &this->m_name[12], v2);
       v16 = 0;
       if ( g_pVFileSys->FileExistNum(Buffer) )
       {
-        v16 = (int)((gbActorMgr *)g_pActorMgr)->LoadActorFile(Buffer);
+        v16 = (int)((gbActorMgr *)g_Input.KeyInfo[177].HoldTime)->LoadActorFile(Buffer);
         if ( !v16 )
           goto LABEL_21;
-        sub_5372D0((int)this, *(_DWORD **)&this->m_actarray[8], 1u, &v16);
+        sub_5372D0((int)this, *(_DWORD **)this->m_name, 1u, &v16);
       }
       ++v2;
     }
     while ( v2 < 10 );
-    *(_DWORD *)&this->m_actarray[16] = **(_DWORD **)&this->m_actarray[4];
+    *(_DWORD *)&this->m_name[8] = this->m_pact->next;
   }
 LABEL_21:
   v20 = -1;
-  return ((OpenNULLFile *)&v17)->OpenNULLFile();
+  return ((OpenNULLFile **)&v17)->OpenNULLFile();
 }
 
 // 0x00536FB0
 int Actor::QueryState()
 {
-  return (*(int (**)(_DWORD))(**(_DWORD **)&this->m_actarray[16] + 20))(*(_DWORD *)&this->m_actarray[16]);
+  return (*(int (**)(_DWORD))(**(_DWORD **)&this->m_name[8] + 20))(*(_DWORD *)&this->m_name[8]);
 }
 
 // 0x00536FC0
 int Actor::DispatchAction(int actionId)
 {
-  return (*(int (**)(_DWORD, int))(**(_DWORD **)&this->m_actarray[16] + 16))(
-           *(_DWORD *)&this->m_actarray[16],
+  return (*(int (**)(_DWORD, int))(**(_DWORD **)&this->m_name[8] + 16))(
+           *(_DWORD *)&this->m_name[8],
            actionId);
 }
 
 // 0x00536FD0
 int Actor::PlayAction(int actionId)
 {
-  return (*(int (**)(_DWORD, int, _DWORD))(**(_DWORD **)(*(_DWORD *)&this->m_actarray[16] + 88) + 28))(
-           *(_DWORD *)(*(_DWORD *)&this->m_actarray[16] + 88),
+  return (*(int (**)(_DWORD, int, _DWORD))(**(_DWORD **)(*(_DWORD *)&this->m_name[8] + 88) + 28))(
+           *(_DWORD *)(*(_DWORD *)&this->m_name[8] + 88),
            actionId,
-           *(_DWORD *)&this->m_actarray[16]);
+           *(_DWORD *)&this->m_name[8]);
 }
 
 // 0x00536FF0
 int Actor::UpdateAllActions()
 {
   unsigned int i; // edi
-  int v3; // eax
+  gbActor *m_pact; // eax
   int result; // eax
-  char *v5; // esi
+  __int32 *v5; // esi
 
   for ( i = 0; ; ++i )
   {
-    v3 = *(_DWORD *)&this->m_actarray[4];
-    if ( !v3 || i >= (*(_DWORD *)&this->m_actarray[8] - v3) >> 2 )
+    m_pact = (gbActor *)this->m_pact;
+    if ( !m_pact || i >= (*(_DWORD *)this->m_name - (int)m_pact) >> 2 )
       break;
-    ((gbActorMgr *)g_pActorMgr)->DestroyActor(*(struct gbActor **)(v3 + 4 * i));
+    ((gbActorMgr *)g_Input.KeyInfo[177].HoldTime)->DestroyActor(*((struct gbActor **)&m_pact->next + i));
   }
-  result = *(_DWORD *)&this->m_actarray[8];
-  *(_DWORD *)&this->m_actarray[8] = *(_DWORD *)&this->m_actarray[4];
-  *(_DWORD *)&this->m_actarray[16] = 0;
-  v5 = (char *)&this->m_actarray[540];
-  *(_DWORD *)v5 = 0;
-  *((_DWORD *)v5 + 1) = 0;
+  result = *(_DWORD *)this->m_name;
+  *(_DWORD *)this->m_name = this->m_pact;
+  *(_DWORD *)&this->m_name[8] = 0;
+  v5 = (__int32 *)&this->m_dwMatMsg[3];
+  *v5 = 0;
+  v5[1] = 0;
   return result;
 }
 
@@ -661,34 +661,34 @@ void Actor::SetVisible(int bVisible)
   char *v6; // esi
   int v7; // ebx
   int v8; // [esp+0h] [ebp-2Ch]
-  _DWORD v9[4]; // [esp+10h] [ebp-1Ch] BYREF
+  struct gbNodeMsgObj v9; // [esp+10h] [ebp-1Ch] BYREF
   int v10; // [esp+28h] [ebp-4h]
   char *v11; // [esp+34h] [ebp+8h]
   char *v12; // [esp+38h] [ebp+Ch]
 
   if ( bVisible )
   {
-    strcpy(&this->m_actarray[540], (const char *)bVisible);
-    _strlwr(&this->m_actarray[540]);
+    strcpy((char *)&this->m_dwMatMsg[3], (const char *)bVisible);
+    _strlwr((char *)&this->m_dwMatMsg[3]);
   }
-  v8 = *(_DWORD *)&this->m_actarray[16];
-  v3 = gbCrc32Compute(&this->m_actarray[540]);
+  v8 = *(_DWORD *)&this->m_name[8];
+  v3 = gbCrc32Compute((const char *)&this->m_dwMatMsg[3]);
   v4 = sub_5370E0(v3, v8);
-  v5 = (gbActor *)*(gbActor **)&this->m_actarray[16];
+  v5 = (gbActor *)*(gbActor **)&this->m_name[8];
   if ( v5 && v4 )
   {
-    v5->GotoAction(&this->m_actarray[540], v11, v12);
-    while ( ((gbVisNode *)*(gbVisNode **)&this->m_actarray[16])->PopMessage((struct gbNodeMsgObj *)v9) )
+    v5->GotoAction((char *)&this->m_dwMatMsg[3], v11, v12);
+    while ( ((gbVisNode *)*(gbVisNode **)&this->m_name[8])->PopMessage(&v9) )
       ;
-    v6 = (char *)&this->m_actarray[280];
-    if ( this->m_actarray[280] )
+    v6 = (char *)&this->m_szTexture[12];
+    if ( this->m_szTexture[12] )
     {
       ((OpenBaseFile *)&bVisible)->OpenBaseFile();
-      v7 = *(_DWORD *)&this->m_actarray[16];
+      v7 = *(_DWORD *)&this->m_name[8];
       v10 = 0;
       (*(void (**)(_DWORD, char *))(**(_DWORD **)(v7 + 88) + 60))(*(_DWORD *)(v7 + 88), v6);
       v10 = -1;
-      ((struct gbVFileSystem **)&bVisible)->OpenNULLFile();
+      ((OpenNULLFile **)&bVisible)->OpenNULLFile();
     }
   }
 }

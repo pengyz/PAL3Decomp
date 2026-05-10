@@ -544,19 +544,19 @@ void RoleSystem::RenderRole(void *pStack, int a3)
 
   if ( *((_DWORD *)this + 158) )
   {
-    if ( (g_SceneMgr.?[5].?.normal[12].x & 1) == 0 )
+    if ( (LOBYTE(g_SceneMgr.m_npc[5].m_path.normal[148].x) & 1) == 0 )
     {
-      g_SceneMgr.?[5].?.normal[11].x = 0;
-      LOBYTE(g_SceneMgr.?[5].?.normal[12].x) |= 1u;
-      g_SceneMgr.?[5].?.normal[11].y = 1065353216;
-      g_SceneMgr.?[5].?.normal[11].z = 0;
+      g_SceneMgr.m_npc[5].m_path.normal[147].x = 0.0;
+      LOBYTE(g_SceneMgr.m_npc[5].m_path.normal[148].x) |= 1u;
+      g_SceneMgr.m_npc[5].m_path.normal[147].y = 1.0;
+      g_SceneMgr.m_npc[5].m_path.normal[147].z = 0.0;
       atexit(nullsub_5);
     }
     ((gbMatrixStack *)pStack)->Push();
     ((gbMatrixStack *)pStack)->Translate((struct gbVec3D *)((char *)this + 160));
     if ( *((_DWORD *)this + 316) == 4 && *((_DWORD *)this + 307) == 11 )
       ((gbMatrixStack *)pStack)->Rotate(*((float *)this + 336), (struct gbVec3D *)this + 108);
-    ((gbMatrixStack *)pStack)->Rotate(*((float *)this + 2172), &g_SceneMgr.?[5].?.normal[11]);
+    ((gbMatrixStack *)pStack)->Rotate(*((float *)this + 2172), &g_SceneMgr.m_npc[5].m_path.normal[147]);
     ((gbMatrixStack *)pStack)->Scale(*((float *)this + 160), *((float *)this + 160), *((float *)this + 160));
     *((_DWORD *)this + 36) = ((Actor *)((char *)this + 680))->DispatchAction(a3);
     if ( *((_DWORD *)this + 360) )
@@ -609,7 +609,7 @@ int RoleSystem::UpdateTransform()
       *((_DWORD *)this + 327) = 0;
       *((_DWORD *)this + 328) = *((_DWORD *)this + 325);
       *((_DWORD *)this + 329) = *((_DWORD *)this + 326);
-      return ((int)this)->UpdatePath(*((_DWORD *)this + 321));
+      return this->UpdatePath(*((_DWORD *)this + 321));
     case 1:
     case 3:
       *((_DWORD *)this + 323) = dword_58B3B4;
@@ -619,7 +619,7 @@ int RoleSystem::UpdateTransform()
         HIDWORD(v1) = dword_58B3DC;
 LABEL_7:
         *((_DWORD *)this + 322) = HIDWORD(v1);
-        return ((int)this)->UpdatePath(*((_DWORD *)this + 321));
+        return this->UpdatePath(*((_DWORD *)this + 321));
       }
       if ( v3 == 2 )
       {
@@ -629,18 +629,18 @@ LABEL_7:
           {
             v5 = *((_DWORD *)this + 321);
             *((_DWORD *)this + 322) = dword_58B33C;
-            return ((int)this)->UpdatePath(v5);
+            return this->UpdatePath(v5);
           }
           else if ( *(_BYTE *)(*((_DWORD *)this + 355) + 756) == 2 )
           {
             *((_DWORD *)this + 322) = dword_58B350;
-            return ((int)this)->UpdatePath(*((_DWORD *)this + 321));
+            return this->UpdatePath(*((_DWORD *)this + 321));
           }
           else
           {
             v4 = *((_DWORD *)this + 321);
             *((_DWORD *)this + 322) = dword_58B328;
-            return ((int)this)->UpdatePath(v4);
+            return this->UpdatePath(v4);
           }
         }
         else
@@ -651,14 +651,14 @@ LABEL_7:
               goto LABEL_7;
             case 1:
               *((_DWORD *)this + 322) = dword_58B29C;
-              return ((int)this)->UpdatePath(*((_DWORD *)this + 321));
+              return this->UpdatePath(*((_DWORD *)this + 321));
             case 2:
               v6 = *((_DWORD *)this + 321);
               *((_DWORD *)this + 322) = dword_58B2B0;
-              return ((int)this)->UpdatePath(v6);
+              return this->UpdatePath(v6);
             default:
               *((_DWORD *)this + 322) = dword_58B2C4;
-              return ((int)this)->UpdatePath(*((_DWORD *)this + 321));
+              return this->UpdatePath(*((_DWORD *)this + 321));
           }
         }
       }
@@ -670,14 +670,14 @@ LABEL_7:
           *((_DWORD *)this + 322) = dword_58B38C;
         else
           *((float *)this + 322) = (float)v1;
-        return ((int)this)->UpdatePath(v7);
+        return this->UpdatePath(v7);
       }
     case 2:
       *((_DWORD *)this + 322) = dword_58B3F0;
       *((_DWORD *)this + 323) = dword_58B3C8;
-      return ((int)this)->UpdatePath(*((_DWORD *)this + 321));
+      return this->UpdatePath(*((_DWORD *)this + 321));
     default:
-      return ((int)this)->UpdatePath(*((_DWORD *)this + 321));
+      return this->UpdatePath(*((_DWORD *)this + 321));
   }
 }
 
@@ -685,14 +685,14 @@ LABEL_7:
 int RoleSystem::UpdatePath(int a2)
 {
   int v3; // ebp
-  char *v4; // edi
+  Actor *v4; // edi
   int result; // eax
   int v6; // [esp-8h] [ebp-14h]
 
   if ( *((_BYTE *)this + 174) == 49 )
   {
-    ((Actor *)(const char *)this + 680)->CompareAction(a2, 2);
-    ((Actor *)(gbVisNode **)this + 170)->SetTimeScale(1.0);
+    ((Actor *)((char *)this + 680))->CompareAction(a2, 2);
+    ((Actor *)((char *)this + 680))->SetTimeScale(1.0);
     *((_BYTE *)this + 1445) = 0;
     *((_BYTE *)this + 1444) = 0;
     return result;
@@ -702,20 +702,20 @@ int RoleSystem::UpdatePath(int a2)
     goto LABEL_10;
   if ( v3 == 50 )
   {
-    v4 = (char *)this + 680;
-    if ( !((Actor *)(int)this + 680)->LoadAction(aZ0, 0) )
+    v4 = (Actor *)((char *)this + 680);
+    if ( !((Actor *)((char *)this + 680))->LoadAction(aZ0) )
       v4->CompareAction(50, 0);
     goto LABEL_12;
   }
   if ( v3 != 52 && v3 != 58 )
   {
 LABEL_10:
-    v4 = (char *)this + 680;
+    v4 = (Actor *)((char *)this + 680);
     v6 = 2;
     goto LABEL_11;
   }
-  v4 = (char *)this + 680;
-  if ( !((Actor *)(int)this + 680)->LoadAction(aZ4, 0) )
+  v4 = (Actor *)((char *)this + 680);
+  if ( !((Actor *)((char *)this + 680))->LoadAction(aZ4) )
   {
     v6 = 0;
 LABEL_11:
@@ -723,9 +723,9 @@ LABEL_11:
   }
 LABEL_12:
   if ( *((_DWORD *)this + 321) == 2 )
-    ((gbVisNode **)v4)->SetTimeScale(2.4000001);
+    v4->SetTimeScale(2.4000001);
   else
-    ((gbVisNode **)v4)->SetTimeScale(1.0);
+    v4->SetTimeScale(1.0);
   *((_BYTE *)this + 1445) = 0;
   *((_BYTE *)this + 1444) = 0;
   return result;
@@ -736,8 +736,8 @@ int RoleSystem::MoveRole(float *pPos, int a3, int a4, int a5)
 {
   int result; // eax
   int v7; // ecx
-  void *v8; // eax
-  int v9; // ebx
+  RoleSystem *v8; // eax
+  int RolePtr; // ebx
   char *v10; // eax
   int v11; // edx
   int v12; // [esp-18h] [ebp-34h]
@@ -763,12 +763,12 @@ int RoleSystem::MoveRole(float *pPos, int a3, int a4, int a5)
   if ( a3 == *((_DWORD *)this + 157) )
   {
     v16 = *((_DWORD *)this + 157);
-    v8 = (void *)UISceneUpdate();
-    v9 = v8->GetRolePtr(v16);
-    v17 = (__int64)((pPos[2] - *(float *)(v9 + 136)) / *(float *)&g_SceneMgr.m_info[52492]);
-    v15 = (__int64)((*pPos - *(float *)(v9 + 128)) / *(float *)&g_SceneMgr.m_info[52492]);
-    v14 = (__int64)((*((float *)this + 3) - *(float *)(v9 + 136)) / *(float *)&g_SceneMgr.m_info[52492]);
-    v13 = (__int64)((*((float *)this + 1) - *(float *)(v9 + 128)) / *(float *)&g_SceneMgr.m_info[52492]);
+    v8 = (RoleSystem *)UISceneUpdate();
+    RolePtr = v8->GetRolePtr(v16);
+    v17 = (__int64)((pPos[2] - *(float *)(RolePtr + 136)) / g_SceneMgr.m_npc[5].m_path.normal[212].z);
+    v15 = (__int64)((*pPos - *(float *)(RolePtr + 128)) / g_SceneMgr.m_npc[5].m_path.normal[212].z);
+    v14 = (__int64)((*((float *)this + 3) - *(float *)(RolePtr + 136)) / g_SceneMgr.m_npc[5].m_path.normal[212].z);
+    v13 = (__int64)((*((float *)this + 1) - *(float *)(RolePtr + 128)) / g_SceneMgr.m_npc[5].m_path.normal[212].z);
     v12 = *((_DWORD *)this + 157);
     v10 = (char *)UISceneUpdate();
     if ( sub_4215B0(v10, v12, v13, v14, v15, v17) )
@@ -780,7 +780,7 @@ int RoleSystem::MoveRole(float *pPos, int a3, int a4, int a5)
       *((float *)this + 373) = *pPos;
       *((float *)this + 374) = pPos[1];
       *((float *)this + 375) = pPos[2];
-      return sub_407DC0((_DWORD *)this + 370);
+      return sub_407DC0((float *)this + 370);
     }
     result = a3;
   }
@@ -831,10 +831,10 @@ char RoleSystem::UpdateRole(int a2, int a3, int a4)
     v6 = (RoleSystem *)UISceneUpdate();
     RolePtr = v6->GetRolePtr(v18);
     v21 = RolePtr;
-    v24 = (__int64)((*((float *)this + 1) - *(float *)(RolePtr + 128)) / *(float *)&g_SceneMgr.m_info[52492]);
+    v24 = (__int64)((*((float *)this + 1) - *(float *)(RolePtr + 128)) / g_SceneMgr.m_npc[5].m_path.normal[212].z);
     v8 = v22;
     v9 = 0x7FFFF;
-    v25 = (__int64)((*((float *)this + 3) - *(float *)(RolePtr + 136)) / *(float *)&g_SceneMgr.m_info[52492]);
+    v25 = (__int64)((*((float *)this + 3) - *(float *)(RolePtr + 136)) / g_SceneMgr.m_npc[5].m_path.normal[212].z);
     v20 = 0x7FFFF;
     v19 = 0;
     v10 = (int *)(RolePtr + 8);
@@ -868,8 +868,8 @@ char RoleSystem::UpdateRole(int a2, int a3, int a4)
     if ( v9 <= 32 )
     {
       v29 = 0.0;
-      v28 = ((double)v22 + 0.5) * *(float *)&g_SceneMgr.m_info[52492] + *(float *)(RolePtr + 128);
-      v30 = ((double)v23 + 0.5) * *(float *)&g_SceneMgr.m_info[52492] + *(float *)(RolePtr + 136);
+      v28 = ((double)v22 + 0.5) * g_SceneMgr.m_npc[5].m_path.normal[212].z + *(float *)(RolePtr + 128);
+      v30 = ((double)v23 + 0.5) * g_SceneMgr.m_npc[5].m_path.normal[212].z + *(float *)(RolePtr + 136);
       if ( v8 < 0 || (v14 = *(_DWORD *)(RolePtr + 152), v8 >= v14) )
       {
         v15 = v23;
@@ -895,11 +895,11 @@ char RoleSystem::UpdateRole(int a2, int a3, int a4)
         *((_DWORD *)this + 337) = 0;
         *((float *)this + 338) = v16;
         if ( sub_408460(
-               &g_SceneMgr.m_info[51808],
+               &g_SceneMgr.m_npc[5].m_path.normal[155].z,
                *((_DWORD *)this + 157),
                (float *)this + 1,
                v26,
-               (_DWORD *)this + 370,
+               (float *)this + 370,
                *((_BYTE *)this + 172)) )
         {
           *((_DWORD *)this + 317) = 7;
@@ -925,10 +925,10 @@ char RoleSystem::UpdateRole(int a2, int a3, int a4)
 // 0x00414980
 void RoleSystem::GetPosition(void *pOut, int a3)
 {
-  float *v4; // esi
+  gbVec3D *v4; // esi
   double v5; // st7
 
-  v4 = (float *)((char *)this + 1308);
+  v4 = (gbVec3D *)((char *)this + 1308);
   *((_DWORD *)this + 327) = *(_DWORD *)pOut;
   *((_DWORD *)this + 328) = *((_DWORD *)pOut + 1);
   *((_DWORD *)this + 329) = *((_DWORD *)pOut + 2);
@@ -937,11 +937,11 @@ void RoleSystem::GetPosition(void *pOut, int a3)
   if ( a3 )
   {
     *((_DWORD *)this + 328) = 0;
-    ((gbVec3D *)v4)->Normalize();
+    v4->Normalize();
     v5 = *((float *)this + 322);
-    * v4 = (*)v5 * *v4;
-    v4[1] = v5 * v4[1];
-    v4[2] = v5 * v4[2];
+    v4->x = v5 * v4->x;
+    v4->y = v5 * v4->y;
+    v4->z = v5 * v4->z;
     *((_DWORD *)this + 317) = 12;
   }
   else
@@ -956,14 +956,14 @@ int RoleSystem::PathFind(float *pTarget)
   int v3; // eax
   double v4; // st7
   double v5; // st7
-  float v6; // ecx
+  float y; // ecx
   double v7; // st7
   double v8; // st7
   float *v9; // ebp
   float v10; // ecx
   void *v11; // eax
-  void *v12; // eax
-  int v13; // edi
+  RoleSystem *v12; // eax
+  int RolePtr; // edi
   int v14; // ebx
   double v15; // st7
   __int64 v16; // rax
@@ -999,12 +999,8 @@ int RoleSystem::PathFind(float *pTarget)
   float v46; // [esp+20h] [ebp-24h]
   float v47; // [esp+24h] [ebp-20h]
   float v48; // [esp+28h] [ebp-1Ch]
-  float v49; // [esp+2Ch] [ebp-18h] BYREF
-  float v50; // [esp+30h] [ebp-14h]
-  float v51; // [esp+34h] [ebp-10h]
-  float v52; // [esp+38h] [ebp-Ch] BYREF
-  float v53; // [esp+3Ch] [ebp-8h]
-  float v54; // [esp+40h] [ebp-4h]
+  gbVec3D v49; // [esp+2Ch] [ebp-18h] BYREF
+  gbVec3D v50; // [esp+38h] [ebp-Ch] BYREF
 
   v3 = *((_DWORD *)this + 316);
   *((_DWORD *)this + 307) = 0;
@@ -1012,18 +1008,18 @@ int RoleSystem::PathFind(float *pTarget)
   if ( v3 != 4 )
     *((_DWORD *)this + 315) = v3;
   *((_DWORD *)this + 316) = 4;
-  v52 = *pTarget - *((float *)this + 1);
+  v50.x = *pTarget - *((float *)this + 1);
   v4 = pTarget[1] - *((float *)this + 2);
-  v49 = v52;
-  v53 = v4;
+  v49.x = v50.x;
+  v50.y = v4;
   v5 = pTarget[2] - *((float *)this + 3);
-  v6 = v53;
+  y = v50.y;
   pTarget[1] = 0.0;
-  v50 = v6;
-  v54 = v5;
-  v51 = v54;
+  v49.y = y;
+  v50.z = v5;
+  v49.z = v50.z;
   v7 = ((gbVec3D *)&v49)->Length();
-  if ( v7 <= *(float *)&g_SceneMgr.m_info[51640] )
+  if ( v7 <= g_SceneMgr.m_npc[5].m_path.normal[141].z )
   {
     v9 = (float *)((char *)this + 1240);
     *((float *)this + 310) = *pTarget;
@@ -1032,35 +1028,36 @@ int RoleSystem::PathFind(float *pTarget)
   }
   else
   {
-    v8 = *(float *)&g_SceneMgr.m_info[51640] / v7;
+    v8 = g_SceneMgr.m_npc[5].m_path.normal[141].z / v7;
     v9 = (float *)((char *)this + 1240);
-    v49 = v49 * v8;
-    v50 = v50 * v8;
-    v49 = v49 + *((float *)this + 1);
-    v50 = v50 + *((float *)this + 2);
-    v10 = v50;
-    v7 = v8 * v51 + *((float *)this + 3);
-    *((float *)this + 310) = v49;
+    v49.x = v49.x * v8;
+    v49.y = v49.y * v8;
+    v49.x = v49.x + *((float *)this + 1);
+    v49.y = v49.y + *((float *)this + 2);
+    v10 = v49.y;
+    v7 = v8 * v49.z + *((float *)this + 3);
+    *((_DWORD *)this + 310) = LODWORD(v49.x);
     *((float *)this + 311) = v10;
-    v51 = v7;
+    v49.z = v7;
     *((float *)this + 312) = v7;
   }
   v35 = *((_DWORD *)this + 157);
   v11 = (void *)UISceneUpdate();
   sub_421440(v11, v35, v9, 0, 0);
   *((float *)this + 311) = v7;
-  if ( !g_SceneMgr.m_info[54106] )
+  if ( !g_SceneMgr.m_npc[6].m_actor.m_szTexture[130] )
   {
     v42 = *((_DWORD *)this + 157);
-    v12 = (void *)UISceneUpdate();
-    v13 = v12->GetRolePtr(v42);
-    v14 = (__int64)((*((float *)this + 1) - *(float *)(v13 + 128)) / *(float *)&g_SceneMgr.m_info[52492]);
-    v15 = *v9 - *(float *)(v13 + 128);
-    LODWORD(v47) = (__int64)((*((float *)this + 3) - *(float *)(v13 + 136)) / *(float *)&g_SceneMgr.m_info[52492]);
-    v16 = (__int64)(v15 / *(float *)&g_SceneMgr.m_info[52492]);
-    v17 = v9[2] - *(float *)(v13 + 136);
+    v12 = (RoleSystem *)UISceneUpdate();
+    RolePtr = v12->GetRolePtr(v42);
+    v14 = (__int64)((*((float *)this + 1) - *(float *)(RolePtr + 128)) / g_SceneMgr.m_npc[5].m_path.normal[212].z);
+    v15 = *v9 - *(float *)(RolePtr + 128);
+    LODWORD(v47) = (__int64)((*((float *)this + 3) - *(float *)(RolePtr + 136))
+                           / g_SceneMgr.m_npc[5].m_path.normal[212].z);
+    v16 = (__int64)(v15 / g_SceneMgr.m_npc[5].m_path.normal[212].z);
+    v17 = v9[2] - *(float *)(RolePtr + 136);
     v45 = v16;
-    v40 = (__int64)(v17 / *(float *)&g_SceneMgr.m_info[52492]);
+    v40 = (__int64)(v17 / g_SceneMgr.m_npc[5].m_path.normal[212].z);
     v38 = v16;
     v36 = LODWORD(v47);
     v34 = *((_DWORD *)this + 157);
@@ -1070,13 +1067,13 @@ int RoleSystem::PathFind(float *pTarget)
       v19 = 0.0;
       v20 = v43;
       v21 = v44;
-      v46 = ((double)v43 + 0.5) * *(float *)&g_SceneMgr.m_info[52492] + *(float *)(v13 + 128);
-      v48 = ((double)v44 + 0.5) * *(float *)&g_SceneMgr.m_info[52492] + *(float *)(v13 + 136);
+      v46 = ((double)v43 + 0.5) * g_SceneMgr.m_npc[5].m_path.normal[212].z + *(float *)(RolePtr + 128);
+      v48 = ((double)v44 + 0.5) * g_SceneMgr.m_npc[5].m_path.normal[212].z + *(float *)(RolePtr + 136);
       if ( v43 >= 0 )
       {
-        v22 = *(_DWORD *)(v13 + 152);
-        if ( v43 < v22 && v44 >= 0 && v44 < *(_DWORD *)(v13 + 156) )
-          v19 = *(float *)(*(_DWORD *)(v13 + 160) + 8 * (v43 + v44 * v22));
+        v22 = *(_DWORD *)(RolePtr + 152);
+        if ( v43 < v22 && v44 >= 0 && v44 < *(_DWORD *)(RolePtr + 156) )
+          v19 = *(float *)(*(_DWORD *)(RolePtr + 160) + 8 * (v43 + v44 * v22));
       }
       v23 = v46;
       v9[1] = v19;
@@ -1096,7 +1093,7 @@ int RoleSystem::PathFind(float *pTarget)
   *((float *)this + 325) = *((float *)this + 325) - *((float *)this + 41);
   *((float *)this + 326) = *((float *)this + 326) - *((float *)this + 42);
   *((_DWORD *)this + 325) = 0;
-  ((RoleSystem *)((char *)this + 1296))->Normalize();
+  ((gbVec3D *)(gbVec3D *)this + 108)->Normalize();
   sub_4122C0((int)this);
   v25 = sqrt((50.0 + 50.0) / 490.0);
   *((float *)this + 313) = v25;
@@ -1105,18 +1102,18 @@ int RoleSystem::PathFind(float *pTarget)
   *((float *)this + 313) = sqrt((v26 + 50.0 + v26 + 50.0) / 490.0) + v25;
   v46 = *v9 - *((float *)this + 40);
   v27 = v9[1] - *((float *)this + 41);
-  v52 = v46;
+  v50.x = v46;
   v47 = v27;
   v28 = v9[2] - *((float *)this + 42);
   *((_DWORD *)this + 325) = 0;
   v48 = v28;
   v29 = v48;
-  *((float *)this + 324) = v52;
-  v54 = v29;
-  v53 = 0.0;
+  *((_DWORD *)this + 324) = LODWORD(v50.x);
+  v50.z = v29;
+  v50.y = 0.0;
   *((float *)this + 326) = v29;
-  ((RoleSystem *)((char *)this + 1296))->Normalize();
-  v30 = ((gbVec3D *)&v52)->Length() / *((float *)this + 313);
+  ((gbVec3D *)(gbVec3D *)this + 108)->Normalize();
+  v30 = ((gbVec3D *)&v50)->Length() / *((float *)this + 313);
   *((float *)this + 324) = v30 * *((float *)this + 324);
   *((float *)this + 325) = v30 * *((float *)this + 325);
   *((float *)this + 326) = v30 * *((float *)this + 326);
@@ -1125,8 +1122,8 @@ int RoleSystem::PathFind(float *pTarget)
     v31 = *((float *)this + 311) - *((float *)this + 41) + 50.0;
   *((_DWORD *)this + 321) = 4;
   *((float *)this + 325) = sqrt((v31 + v31) / 490.0) * 490.0;
-  ((Actor *)(const char *)this + 680)->CompareAction(4, 2);
-  ((Actor *)(gbVisNode **)this + 170)->SetTimeScale(4.0);
+  ((Actor *)((char *)this + 680))->CompareAction(4, 2);
+  ((Actor *)((char *)this + 680))->SetTimeScale(4.0);
   v33 = *((float *)this + 313) + 0.5;
   *((float *)this + 313) = v33;
   *((float *)this + 313) = v33 + 0.5;
@@ -1146,9 +1143,9 @@ void RoleSystem::UpdateAnimation(int a2)
   double v11; // st7
   float v12; // edx
   int v13; // ecx
-  void *v14; // ebx
+  RoleSystem *v14; // ebx
   int v15; // ecx
-  int v16; // edi
+  int RolePtr; // edi
   bool v17; // cc
   _DWORD *v18; // eax
   int v19; // ecx
@@ -1156,15 +1153,13 @@ void RoleSystem::UpdateAnimation(int a2)
   double v21; // st7
   double v22; // st6
   int v23; // [esp-4h] [ebp-38h]
-  float v24; // [esp+10h] [ebp-24h] BYREF
-  float v25; // [esp+14h] [ebp-20h]
-  float v26; // [esp+18h] [ebp-1Ch]
-  float v27; // [esp+1Ch] [ebp-18h]
-  float v28; // [esp+20h] [ebp-14h]
-  float v29; // [esp+24h] [ebp-10h]
-  float v30; // [esp+28h] [ebp-Ch]
-  int v31; // [esp+2Ch] [ebp-8h]
-  float v32; // [esp+30h] [ebp-4h]
+  gbVec3D v24; // [esp+10h] [ebp-24h] BYREF
+  float v25; // [esp+1Ch] [ebp-18h]
+  float v26; // [esp+20h] [ebp-14h]
+  float v27; // [esp+24h] [ebp-10h]
+  float v28; // [esp+28h] [ebp-Ch]
+  int v29; // [esp+2Ch] [ebp-8h]
+  float v30; // [esp+30h] [ebp-4h]
   float a2a; // [esp+38h] [ebp+4h]
   float a2c; // [esp+38h] [ebp+4h]
   int a2b; // [esp+38h] [ebp+4h]
@@ -1176,13 +1171,13 @@ void RoleSystem::UpdateAnimation(int a2)
       this->GetActiveRole();
     *((_DWORD *)this + 347) = 1;
     *((_DWORD *)this + 348) = a2;
-    v24 = *((float *)this + 1);
+    v24.x = *((float *)this + 1);
     v4 = *((float *)this + 3);
-    v25 = *((float *)this + 2);
-    v26 = v4;
-    v24 = v24 - *(float *)(a2 + 4);
-    v25 = v25 - *(float *)(a2 + 8);
-    v26 = v4 - *(float *)(a2 + 12);
+    v24.y = *((float *)this + 2);
+    v24.z = v4;
+    v24.x = v24.x - *(float *)(a2 + 4);
+    v24.y = v24.y - *(float *)(a2 + 8);
+    v24.z = v4 - *(float *)(a2 + 12);
     v5 = ((gbVec3D *)&v24)->Length();
     v6 = *((_DWORD *)this + 348);
     v7 = v5 - *(float *)(v6 + 16);
@@ -1193,25 +1188,25 @@ void RoleSystem::UpdateAnimation(int a2)
     *(_DWORD *)(v6 + 1388) = 4;
     if ( *(_BYTE *)(a2 + 173) == 1 )
     {
-      if ( a2a >= (double)*(float *)&g_SceneMgr.m_info[51636] )
+      if ( a2a >= (double)g_SceneMgr.m_npc[5].m_path.normal[141].y )
       {
         v11 = *(float *)(a2 + 20);
         v12 = *(float *)(a2 + 28);
-        v28 = 0.0;
-        v29 = v12;
-        v30 = *(float *)(a2 + 20);
+        v26 = 0.0;
+        v27 = v12;
+        v28 = *(float *)(a2 + 20);
         v13 = *(_DWORD *)(a2 + 24);
-        a2c = *(float *)&g_SceneMgr.m_info[52492] + *(float *)&g_SceneMgr.m_info[52492];
-        v32 = v12;
-        v31 = v13;
-        v29 = v12 * a2c;
-        v27 = v11 * a2c + *(float *)(a2 + 4);
-        v28 = *(float *)(a2 + 8) + 0.0;
-        v29 = v29 + *(float *)(a2 + 12);
-        v30 = *(float *)&g_SceneMgr.m_info[52492] * v30;
-        v32 = v12 * *(float *)&g_SceneMgr.m_info[52492];
-        v14 = (void *)UISceneUpdate();
-        v16 = v14->GetRolePtr(*(_DWORD *)(a2 + 628));
+        a2c = g_SceneMgr.m_npc[5].m_path.normal[212].z + g_SceneMgr.m_npc[5].m_path.normal[212].z;
+        v30 = v12;
+        v29 = v13;
+        v27 = v12 * a2c;
+        v25 = v11 * a2c + *(float *)(a2 + 4);
+        v26 = *(float *)(a2 + 8) + 0.0;
+        v27 = v27 + *(float *)(a2 + 12);
+        v28 = g_SceneMgr.m_npc[5].m_path.normal[212].z * v28;
+        v30 = v12 * g_SceneMgr.m_npc[5].m_path.normal[212].z;
+        v14 = (RoleSystem *)UISceneUpdate();
+        RolePtr = v14->GetRolePtr(*(_DWORD *)(a2 + 628));
         a2b = 0;
         do
         {
@@ -1219,22 +1214,22 @@ void RoleSystem::UpdateAnimation(int a2)
           if ( sub_421020(
                  (char *)v14,
                  *((_DWORD *)this + 157),
-                 (__int64)((v27 - *(float *)(v16 + 128)) / *(float *)&g_SceneMgr.m_info[52492]),
-                 (__int64)((v29 - *(float *)(v16 + 136)) / *(float *)&g_SceneMgr.m_info[52492]),
+                 (__int64)((v25 - *(float *)(RolePtr + 128)) / g_SceneMgr.m_npc[5].m_path.normal[212].z),
+                 (__int64)((v27 - *(float *)(RolePtr + 136)) / g_SceneMgr.m_npc[5].m_path.normal[212].z),
                  v15) )
           {
             break;
           }
-          v27 = v30 + v27;
+          v25 = v28 + v25;
           v17 = ++a2b < 10;
-          v29 = v32 + v29;
+          v27 = v30 + v27;
         }
         while ( v17 );
-        v29 = v32 + v29;
+        v27 = v30 + v27;
         sub_4132B0(
           (int)this,
-          (__int64)((v30 + v27 - *(float *)(v16 + 128)) / *(float *)&g_SceneMgr.m_info[52492]),
-          (__int64)((v29 - *(float *)(v16 + 136)) / *(float *)&g_SceneMgr.m_info[52492]),
+          (__int64)((v28 + v25 - *(float *)(RolePtr + 128)) / g_SceneMgr.m_npc[5].m_path.normal[212].z),
+          (__int64)((v27 - *(float *)(RolePtr + 136)) / g_SceneMgr.m_npc[5].m_path.normal[212].z),
           1);
       }
       else
@@ -1279,21 +1274,21 @@ void RoleSystem::UpdateAnimation(int a2)
           RoleSystemNotify(*((_DWORD *)this + 348));
         }
       }
-      if ( a2a >= (double)*(float *)&g_SceneMgr.m_info[51636] )
+      if ( a2a >= (double)g_SceneMgr.m_npc[5].m_path.normal[141].y )
       {
-        v25 = v25 * -1.0;
-        v26 = v26 * -1.0;
-        v21 = v24 * -1.0 / a2a;
-        v25 = v25 / a2a;
-        v26 = v26 / a2a;
-        v22 = *(float *)&g_SceneMgr.m_info[51636] - 10.0;
+        v24.y = v24.y * -1.0;
+        v24.z = v24.z * -1.0;
+        v21 = v24.x * -1.0 / a2a;
+        v24.y = v24.y / a2a;
+        v24.z = v24.z / a2a;
+        v22 = g_SceneMgr.m_npc[5].m_path.normal[141].y - 10.0;
         a2d = v22;
-        v25 = v25 * a2d;
-        v26 = v26 * a2d;
-        v24 = v21 * v22 + *(float *)(a2 + 4);
-        v25 = v25 + *(float *)(a2 + 8);
-        v26 = v26 + *(float *)(a2 + 12);
-        sub_412D90((int)this, &v24, 1);
+        v24.y = v24.y * a2d;
+        v24.z = v24.z * a2d;
+        v24.x = v21 * v22 + *(float *)(a2 + 4);
+        v24.y = v24.y + *(float *)(a2 + 8);
+        v24.z = v24.z + *(float *)(a2 + 12);
+        sub_412D90((int)this, &v24.x, 1);
       }
       else
       {
@@ -1317,7 +1312,7 @@ int RoleSystem::GetActiveRole()
       *(_DWORD *)(result + 1284) = *((_DWORD *)this + 351);
       *(_DWORD *)(*((_DWORD *)this + 348) + 1268) = *((_DWORD *)this + 350);
       sub_416620(*((_DWORD *)this + 348), *((float *)this + 352), 1);
-      result = ((RoleSystem *)*((_DWORD *)this + 348))->UpdateTransform();
+      result = ((RoleSystem *)*((RoleSystem **)this + 348))->UpdateTransform();
     }
     *(_DWORD *)(*((_DWORD *)this + 348) + 1388) = 0;
     *((_DWORD *)this + 348) = 0;
@@ -1329,7 +1324,7 @@ int RoleSystem::GetActiveRole()
 char RoleSystem::SetState(int state)
 {
   int v3; // eax
-  void *v5; // eax
+  RoleSystem *v5; // eax
   int v6; // ecx
   int v7; // edi
   int v8; // esi
@@ -1345,7 +1340,7 @@ char RoleSystem::SetState(int state)
   if ( (_BYTE)v3 == 14 )
   {
     v12 = *((_DWORD *)this + 157);
-    v5 = (void *)UISceneUpdate();
+    v5 = (RoleSystem *)UISceneUpdate();
     v5->GetRolePtr(v12);
     v3 = *(_DWORD *)(state + 236) - *(_DWORD *)(state + 228);
     v15 = v3;
@@ -1392,14 +1387,15 @@ LABEL_7:
 int RoleSystem::GetDirection(float *pOut)
 {
   int result; // eax
-  _BYTE v4[76]; // [esp+8h] [ebp-4Ch] BYREF
+  _BYTE v4[68]; // [esp+8h] [ebp-4Ch] BYREF
+  float v5; // [esp+4Ch] [ebp-8h]
 
   * pOut = (*)*((float *)this + 40);
   pOut[1] = *((float *)this + 41);
   pOut[2] = *((float *)this + 42);
   ((gbMatrix4 *)v4)->gbMatrix4();
   result = ((Actor *)((char *)this + 680))->PlayAction((int)v4);
-  pOut[1] = *(float *)&v4[68] + pOut[1];
+  pOut[1] = v5 + pOut[1];
   return result;
 }
 
@@ -1416,7 +1412,7 @@ int RoleSystem::GetCount()
     *((_DWORD *)this + 313) = 0x40000000;
     *((_DWORD *)this + 314) = 0;
     *((_DWORD *)this + 307) = 44;
-    LOBYTE(result) = ((Actor *)(int)this + 680)->SetVisible(aC08, 0, 0);
+    ((Actor *)((char *)this + 680))->SetVisible((int)aC08);
   }
   return result;
 }

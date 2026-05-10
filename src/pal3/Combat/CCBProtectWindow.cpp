@@ -63,43 +63,43 @@ int CCBProtectWindow::Create(int _this)
   int v27; // [esp+14h] [ebp-14h]
   int v28; // [esp+14h] [ebp-14h]
 
-  ((_DWORD *)this)->UIListBox();
+  ((UIListBox *)this)->UIListBox();
   *(_DWORD *)(this + 88) = 128;
   *(_DWORD *)(this + 92) = 512;
   *(_DWORD *)(this + 96) = 0;
   *(_DWORD *)(this + 100) = 0;
-  ((_BYTE *)(this + 360))->UIFrameWnd();
-  ((_BYTE *)(this + 512))->UIFrameWnd();
-  ((_BYTE *)(this + 664))->UIFrameWnd();
+  ((UIFrameWnd *)(this + 360))->UIFrameWnd();
+  ((UIFrameWnd *)(this + 512))->UIFrameWnd();
+  ((UIFrameWnd *)(this + 664))->UIFrameWnd();
   `eh vector constructor iterator'(
-    (void *)(this + 816),
+    (char *)(this + 816),
     0x98u,
     6,
     (void (*)(void *))UIFrameWnd::UIFrameWnd,
     (void (*)(void *))UIFrameWnd::_UIFrameWnd);
-  ((_DWORD *)(this + 1744))->_UIScene();
-  ((_DWORD *)(this + 2088))->_UIScene();
-  ((char *)(this + 2432))->UIStatic();
-  ((_DWORD *)(this + 2680))->_UIScene();
-  ((_DWORD *)(this + 3024))->_UIScene();
-  ((_DWORD *)(this + 3368))->_UIScene();
-  ((char *)(this + 3728))->UIStatic();
-  ((char *)(this + 3976))->UIStatic();
-  ((char *)(this + 4224))->UIStatic();
-  ((char *)(this + 4472))->UIStatic();
-  ((char *)(this + 4736))->UIStatic();
-  ((char *)(this + 4984))->UIStatic();
-  ((char *)(this + 5232))->UIStatic();
-  ((char *)(this + 5496))->UIStatic();
-  ((char *)(this + 5744))->UIStatic();
-  ((char *)(this + 5992))->UIStatic();
-  ((char *)(this + 6256))->UIStatic();
-  ((char *)(this + 6504))->UIStatic();
-  ((char *)(this + 6752))->UIStatic();
-  ((char *)(this + 7016))->UIStatic();
-  ((char *)(this + 7264))->UIStatic();
-  ((char *)(this + 7512))->UIStatic();
-  ((char *)(this + 7760))->UIStatic();
+  ((UIScene *)(this + 1744))->_UIScene();
+  ((UIScene *)(this + 2088))->_UIScene();
+  ((UIStatic *)(this + 2432))->UIStatic();
+  ((UIScene *)(this + 2680))->_UIScene();
+  ((UIScene *)(this + 3024))->_UIScene();
+  ((UIScene *)(this + 3368))->_UIScene();
+  ((UIStatic *)(this + 3728))->UIStatic();
+  ((UIStatic *)(this + 3976))->UIStatic();
+  ((UIStatic *)(this + 4224))->UIStatic();
+  ((UIStatic *)(this + 4472))->UIStatic();
+  ((UIStatic *)(this + 4736))->UIStatic();
+  ((UIStatic *)(this + 4984))->UIStatic();
+  ((UIStatic *)(this + 5232))->UIStatic();
+  ((UIStatic *)(this + 5496))->UIStatic();
+  ((UIStatic *)(this + 5744))->UIStatic();
+  ((UIStatic *)(this + 5992))->UIStatic();
+  ((UIStatic *)(this + 6256))->UIStatic();
+  ((UIStatic *)(this + 6504))->UIStatic();
+  ((UIStatic *)(this + 6752))->UIStatic();
+  ((UIStatic *)(this + 7016))->UIStatic();
+  ((UIStatic *)(this + 7264))->UIStatic();
+  ((UIStatic *)(this + 7512))->UIStatic();
+  ((UIStatic *)(this + 7760))->UIStatic();
   v2 = (_DWORD *)(this + 8052);
   *(_DWORD *)(this + 8008) = 0;
   *(_DWORD *)(this + 8012) = 0;
@@ -114,10 +114,10 @@ int CCBProtectWindow::Create(int _this)
   while ( 1 )
   {
     *v2 = 0;
-    lstrcpyA((LPSTR)(v3 - 32), MEMORY[0xC10D38]);
-    lstrcpyA((LPSTR)v3, MEMORY[0xC10D38]);
-    lstrcpyA((LPSTR)(v3 + 30), MEMORY[0xC10D38]);
-    lstrcpyA((LPSTR)(v3 + 60), MEMORY[0xC10D38]);
+    lstrcpyA((LPSTR)(v3 - 32), (LPCSTR)&g_SceneMgr.m_npc[5].m_path.normal[140].y);
+    lstrcpyA((LPSTR)v3, (LPCSTR)&g_SceneMgr.m_npc[5].m_path.normal[140].y);
+    lstrcpyA((LPSTR)(v3 + 30), (LPCSTR)&g_SceneMgr.m_npc[5].m_path.normal[140].y);
+    lstrcpyA((LPSTR)(v3 + 60), (LPCSTR)&g_SceneMgr.m_npc[5].m_path.normal[140].y);
     *(_BYTE *)(v3 + 576) = 0;
     memset((void *)(v3 + 608), 0, 0x18u);
     *(_BYTE *)(v3 + 764) = 0;
@@ -192,10 +192,10 @@ int CCBProtectWindow::Create(int _this)
   while ( 1 )
   {
     *v9 = 0;
-    lstrcpyA((LPSTR)(v10 - 32), MEMORY[0xC10D38]);
-    lstrcpyA((LPSTR)v10, MEMORY[0xC10D38]);
-    lstrcpyA((LPSTR)(v10 + 30), MEMORY[0xC10D38]);
-    lstrcpyA((LPSTR)(v10 + 60), MEMORY[0xC10D38]);
+    lstrcpyA((LPSTR)(v10 - 32), (LPCSTR)&g_SceneMgr.m_npc[5].m_path.normal[140].y);
+    lstrcpyA((LPSTR)v10, (LPCSTR)&g_SceneMgr.m_npc[5].m_path.normal[140].y);
+    lstrcpyA((LPSTR)(v10 + 30), (LPCSTR)&g_SceneMgr.m_npc[5].m_path.normal[140].y);
+    lstrcpyA((LPSTR)(v10 + 60), (LPCSTR)&g_SceneMgr.m_npc[5].m_path.normal[140].y);
     *(_BYTE *)(v10 + 576) = 0;
     memset((void *)(v10 + 608), 0, 0x18u);
     *(_BYTE *)(v10 + 764) = 0;
@@ -259,10 +259,10 @@ int CCBProtectWindow::Create(int _this)
   while ( 1 )
   {
     *v16 = 0;
-    lstrcpyA((LPSTR)(v17 - 32), MEMORY[0xC10D38]);
-    lstrcpyA((LPSTR)v17, MEMORY[0xC10D38]);
-    lstrcpyA((LPSTR)(v17 + 30), MEMORY[0xC10D38]);
-    lstrcpyA((LPSTR)(v17 + 60), MEMORY[0xC10D38]);
+    lstrcpyA((LPSTR)(v17 - 32), (LPCSTR)&g_SceneMgr.m_npc[5].m_path.normal[140].y);
+    lstrcpyA((LPSTR)v17, (LPCSTR)&g_SceneMgr.m_npc[5].m_path.normal[140].y);
+    lstrcpyA((LPSTR)(v17 + 30), (LPCSTR)&g_SceneMgr.m_npc[5].m_path.normal[140].y);
+    lstrcpyA((LPSTR)(v17 + 60), (LPCSTR)&g_SceneMgr.m_npc[5].m_path.normal[140].y);
     *(_BYTE *)(v17 + 576) = 0;
     memset((void *)(v17 + 608), 0, 0x18u);
     *(_BYTE *)(v17 + 764) = 0;
@@ -279,8 +279,8 @@ int CCBProtectWindow::Create(int _this)
   *(_DWORD *)(this + 669288) = 1;
   *(_DWORD *)(this + 669292) = 1;
   *(_BYTE *)(this + 669300) = 0;
-  ((UIItem *)this + 669304)->Refresh();
-  ((UIItem *)this + 670672)->Refresh();
+  ((UIItem *)(this + 669304))->Refresh();
+  ((UIItem *)(this + 670672))->Refresh();
   *(_DWORD *)this = &off_5705D0;
   v18 = (_DWORD *)(this + 8028);
   v19 = 4;

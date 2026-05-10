@@ -25,7 +25,7 @@ int UISelectDialog::Create(int id, void *pRect, int parent, char *tex)
 
   ((UIWnd *)this)->Create(id, pRect, parent);
   ((UINote *)((char *)this + 1296))->Create(0, (int)pRect, (int)this, aUiFlexNote_0);
-  ((UIWnd *)(_DWORD *)this + 324)->GetRect(pRect);
+  ((UIWnd *)((char *)this + 1296))->GetRect(pRect);
   v6 = *((_DWORD *)pRect + 3);
   v10 = *((_DWORD *)pRect + 2) - *(_DWORD *)pRect - 16;
   v7 = *((_DWORD *)this + 22);
@@ -40,7 +40,7 @@ int UISelectDialog::Create(int id, void *pRect, int parent, char *tex)
     0,
     0,
     0);
-  ((UIListBox *)(char *)this + 88)->SetFirstShow(aSeldlg, v10 - v9[0]);
+  ((UIListBox *)((char *)this + 88))->SetFirstShow(aSeldlg, v10 - v9[0]);
   sub_43F690((_DWORD *)this + 22, 1);
   if ( gbColorQuad::ColorQuadFmt )
   {
@@ -53,8 +53,8 @@ int UISelectDialog::Create(int id, void *pRect, int parent, char *tex)
     LOBYTE(parent) = -1;
   }
   HIBYTE(parent) = -1;
-  ((UIWnd *)(_DWORD *)this + 22)->GetChild(&parent);
-  ((UIListBox *)(_DWORD *)this + 22)->GetSel((int)aUiSceneSelpicT, 0);
+  ((UIWnd *)((char *)this + 88))->GetChild((int)&parent);
+  ((UIListBox *)((char *)this + 88))->GetSel((int)aUiSceneSelpicT, 0);
   (**(void (***)(UISelectDialog *, _DWORD))this)(this, 0);
   *((_DWORD *)this + 300) = 20;
   return sub_43F640((_DWORD *)this + 22, 20);

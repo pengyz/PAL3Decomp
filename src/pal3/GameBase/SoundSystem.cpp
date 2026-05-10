@@ -16,10 +16,10 @@ int SoundSystem::Init()
   char Buffer[256]; // [esp+14h] [ebp-10Ch] BYREF
   int v9; // [esp+11Ch] [ebp-4h]
 
-  memset(MEMORY[0xC113C0], 0, sizeof(MEMORY[0xC113C0]));
-  memset(MEMORY[0xC11360], 0, sizeof(MEMORY[0xC11360]));
+  memset(g_SceneMgr.m_npc[6].m_npcinfo.mid, 0, 0x60u);
+  memset(&g_SceneMgr.m_npc[6].m_npcinfo.name[16], 0, 0x60u);
   v0 = 97;
-  MEMORY[0xC116F4] = 0;
+  *(_DWORD *)&g_SceneMgr.m_npc[6].m_actor.m_szTexture[140] = 0;
   v1 = 0;
   do
   {
@@ -31,9 +31,9 @@ int SoundSystem::Init()
     else
       v3 = 0;
     v9 = -1;
-    MEMORY[0xC113C0][v1] = (int)v3;
+    g_SceneMgr.m_npc[6].m_npcinfo.mid[v1] = (__int32)v3;
     v3->LoadFromFile(Buffer);
-    *(_DWORD *)(MEMORY[0xC113C0][v1] + 8) = 0;
+    *(_DWORD *)(g_SceneMgr.m_npc[6].m_npcinfo.mid[v1] + 8) = 0;
     v4 = (gbSound2DNode *)((operator *)0x10u)->new();
     v9 = 1;
     if ( v4 )
@@ -41,10 +41,10 @@ int SoundSystem::Init()
     else
       v5 = 0;
     v9 = -1;
-    MEMORY[0xC11360][v1] = (int)v5;
+    *(_DWORD *)&g_SceneMgr.m_npc[6].m_npcinfo.name[v1 * 4 + 16] = v5;
     sprintf(Buffer, "snd\\we022%c.wav", v0);
-    result = ((gbSound2DNode *)MEMORY[0xC11360][v1])->LoadFromFile(Buffer);
-    v7 = MEMORY[0xC11360][v1];
+    result = ((gbSound2DNode *)*(gbSound2DNode **)&g_SceneMgr.m_npc[6].m_npcinfo.name[v1 * 4 + 16])->LoadFromFile(Buffer);
+    v7 = *(_DWORD *)&g_SceneMgr.m_npc[6].m_npcinfo.name[v1 * 4 + 16];
     ++v0;
     ++v1;
     *(_DWORD *)(v7 + 8) = 0;

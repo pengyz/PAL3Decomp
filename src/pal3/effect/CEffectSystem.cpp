@@ -85,7 +85,10 @@ _DWORD * CEffectSystem::Reset(CEffectSystem *Block, char a2)
 // attributes: thunk
 int CEffectSystem::Init()
 {
-  return sub_4C5D70(this);
+  int result; // eax
+
+  sub_4C5D70((int)this);
+  return result;
 }
 
 // 0x004C6290
@@ -151,7 +154,7 @@ int CEffectSystem::DestroyEffect(int _this)
   *(_DWORD *)(this + 48) = -1;
   *(_DWORD *)(this + 44) = 0;
   `eh vector constructor iterator'(
-    (void *)(this + 60),
+    (char *)(this + 60),
     0x60u,
     8,
     gbTexture_D3D::gbTexture_D3D,
@@ -206,15 +209,18 @@ char CEffectSystem::IsVisible(int _this)
     v7 = 0;
     v8 = 0;
     v9 = 0;
-    if ( !(*(int (**)(int, _DWORD *, int))(*(_DWORD *)g_pGfxManager + 84))(g_pGfxManager, v6, 1) )
+    if ( !(*(int (**)(int, _DWORD *, int))(*(_DWORD *)g_Input.KeyInfo[177].Data + 84))(
+            g_Input.KeyInfo[177].Data,
+            v6,
+            1) )
       return 0;
-    (*(void (**)(int))(*(_DWORD *)g_pGfxManager + 88))(g_pGfxManager);
-    v3 = ((gbEffectMgr *)*(gbEffectMgr **)(g_pGfxManager + 200))->NewRenderEffect(aGfxscriptTrail, 0);
+    (*(void (**)(int))(*(_DWORD *)g_Input.KeyInfo[177].Data + 88))(g_Input.KeyInfo[177].Data);
+    v3 = ((gbEffectMgr *)*(gbEffectMgr **)(g_Input.KeyInfo[177].Data + 200))->NewRenderEffect(aGfxscriptTrail, 0);
     *(_DWORD *)(this + 828) = v3;
     if ( !v3 )
       return 0;
-    if ( (*(int (__stdcall **)(_DWORD, _DWORD, int))(**(_DWORD **)(g_pGfxManager + 1816) + 152))(
-           *(_DWORD *)(g_pGfxManager + 1816),
+    if ( (*(int (__stdcall **)(_DWORD, _DWORD, int))(**(_DWORD **)(g_Input.KeyInfo[177].Data + 1816) + 152))(
+           *(_DWORD *)(g_Input.KeyInfo[177].Data + 1816),
            0,
            this + 832) < 0 )
       return 0;
@@ -223,12 +229,14 @@ char CEffectSystem::IsVisible(int _this)
     do
     {
       if ( !(*(int (**)(int, int, int, int))(*(_DWORD *)v5 + 12))(v5, 256, 256, v7)
-        || !(*(int (**)(int, int))(*(_DWORD *)g_pGfxManager + 92))(g_pGfxManager, v5) )
+        || !(*(int (**)(int, int))(*(_DWORD *)g_Input.KeyInfo[177].Data + 92))(g_Input.KeyInfo[177].Data, v5) )
       {
         return 0;
       }
-      (*(void (__stdcall **)(_DWORD, _DWORD, _DWORD, int, int, int, _DWORD))(**(_DWORD **)(g_pGfxManager + 1816) + 172))(
-        *(_DWORD *)(g_pGfxManager + 1816),
+      (*(void (__stdcall **)(_DWORD, _DWORD, _DWORD, int, int, int, _DWORD))(**(_DWORD **)(g_Input.KeyInfo[177].Data
+                                                                                         + 1816)
+                                                                           + 172))(
+        *(_DWORD *)(g_Input.KeyInfo[177].Data + 1816),
         0,
         0,
         3,
@@ -239,8 +247,8 @@ char CEffectSystem::IsVisible(int _this)
       v5 += 96;
     }
     while ( v4 < 8 );
-    if ( (*(int (__stdcall **)(_DWORD, _DWORD, _DWORD))(**(_DWORD **)(g_pGfxManager + 1816) + 148))(
-           *(_DWORD *)(g_pGfxManager + 1816),
+    if ( (*(int (__stdcall **)(_DWORD, _DWORD, _DWORD))(**(_DWORD **)(g_Input.KeyInfo[177].Data + 1816) + 148))(
+           *(_DWORD *)(g_Input.KeyInfo[177].Data + 1816),
            0,
            *(_DWORD *)(this + 832)) < 0 )
       return 0;
@@ -276,9 +284,12 @@ void CEffectSystem::HandleViewMove(int _this, int a2)
       *(_DWORD *)(this + 8) = a2;
     v3 = *(_DWORD *)(this + 52) & 7;
     *(_DWORD *)(this + 56) = v3;
-    (*(void (**)(int, int))(*(_DWORD *)g_pGfxManager + 92))(g_pGfxManager, 96 * v3 + this + 60);
-    (*(void (__stdcall **)(_DWORD, _DWORD, _DWORD, int, int, int, _DWORD))(**(_DWORD **)(g_pGfxManager + 1816) + 172))(
-      *(_DWORD *)(g_pGfxManager + 1816),
+    (*(void (**)(int, int))(*(_DWORD *)g_Input.KeyInfo[177].Data + 92))(
+      g_Input.KeyInfo[177].Data,
+      96 * v3 + this + 60);
+    (*(void (__stdcall **)(_DWORD, _DWORD, _DWORD, int, int, int, _DWORD))(**(_DWORD **)(g_Input.KeyInfo[177].Data + 1816)
+                                                                         + 172))(
+      *(_DWORD *)(g_Input.KeyInfo[177].Data + 1816),
       0,
       0,
       3,
@@ -303,15 +314,14 @@ char CEffectSystem::Update(int _this)
   unsigned int v8; // eax
   int v9; // eax
   _DWORD *v10; // edi
-  int v11; // ebx
+  gbTexture *v11; // ebx
   struct gbRenderEffect *v12; // eax
   unsigned int v13; // ebp
   _DWORD *v14; // edi
-  int v15; // ebx
+  gbTexture *v15; // ebx
   struct gbRenderEffect *v16; // eax
   gbDynVertBuf *DynVertBuf; // [esp+44h] [ebp-48h]
-  _DWORD v19[16]; // [esp+48h] [ebp-44h] BYREF
-  int v20; // [esp+88h] [ebp-4h]
+  struct gbTextureArray v19; // [esp+48h] [ebp-44h] BYREF
 
   LOBYTE(v2) = *(_BYTE *)(this + 5);
   if ( (_BYTE)v2 )
@@ -319,20 +329,22 @@ char CEffectSystem::Update(int _this)
     LOBYTE(v2) = *(_BYTE *)(this + 4);
     if ( (_BYTE)v2 )
     {
-      (*(void (__stdcall **)(_DWORD, _DWORD, _DWORD))(**(_DWORD **)(g_pGfxManager + 1816) + 148))(
-        *(_DWORD *)(g_pGfxManager + 1816),
+      (*(void (__stdcall **)(_DWORD, _DWORD, _DWORD))(**(_DWORD **)(g_Input.KeyInfo[177].Data + 1816) + 148))(
+        *(_DWORD *)(g_Input.KeyInfo[177].Data + 1816),
         0,
         *(_DWORD *)(this + 832));
-      (*(void (__stdcall **)(_DWORD, _DWORD, _DWORD, int, int, int, _DWORD))(**(_DWORD **)(g_pGfxManager + 1816) + 172))(
-        *(_DWORD *)(g_pGfxManager + 1816),
+      (*(void (__stdcall **)(_DWORD, _DWORD, _DWORD, int, int, int, _DWORD))(**(_DWORD **)(g_Input.KeyInfo[177].Data
+                                                                                         + 1816)
+                                                                           + 172))(
+        *(_DWORD *)(g_Input.KeyInfo[177].Data + 1816),
         0,
         0,
         3,
         -16777216,
         1065353216,
         0);
-      ((gbCamera *)*(gbCamera **)(this + 8))->SetDimention(MEMORY[0xBFD6D0], MEMORY[0xBFD6D4]);
-      DynVertBuf = ((gbVertPoolMgr *)*(gbVertPoolMgr **)(g_pGfxManager + 196))->GetDynVertBuf(0x114u);
+      ((gbCamera *)*(gbCamera **)(this + 8))->SetDimention(g_Input.KeyInfo[120].Data, g_Input.KeyInfo[120].HoldTime);
+      DynVertBuf = ((gbVertPoolMgr *)*(gbVertPoolMgr **)(g_Input.KeyInfo[177].Data + 196))->GetDynVertBuf(0x114u);
       if ( (byte_DE93A8 & 1) == 0 )
       {
         v3 = (gbColorQuad *)&unk_DE9388;
@@ -364,44 +376,44 @@ char CEffectSystem::Update(int _this)
       }
       while ( (int)v7 < (int)byte_DE93A9 );
       v8 = *(_DWORD *)(this + 56);
-      v20 = 0;
+      v19.nTex = 0;
       if ( v8 < 7 )
       {
         v9 = v8 + 1;
         if ( v9 < 8 )
         {
           v10 = (_DWORD *)(4 * v9 + 14586760);
-          v11 = 96 * v9 + this + 60;
+          v11 = (gbTexture *)(96 * v9 + this + 60);
           do
           {
             v12 = (struct gbRenderEffect *)*(struct gbRenderEffect **)(this + 828);
             *(_DWORD *)(this + 48) = *v10;
-            v20 = 1;
-            v19[0] = v11;
-            DynVertBuf->RenderUIQuad((struct gbUIQuad *)(this + 12), 1, v12, (struct gbTextureArray *)v19);
+            v19.nTex = 1;
+            v19.pTexPt[0] = v11;
+            DynVertBuf->RenderUIQuad((struct gbUIQuad *)(this + 12), 1, v12, &v19);
             ++v10;
-            v11 += 96;
+            v11 = (gbTexture *)((char *)v11 + 96);
           }
           while ( (int)v10 < (int)&byte_DE93A8 );
         }
       }
       v13 = 0;
       v14 = (_DWORD *)&unk_DE9388;
-      v15 = this + 60;
+      v15 = (gbTexture *)(this + 60);
       do
       {
         if ( (int)v14 < (int)&byte_DE93A8 )
         {
           v16 = (struct gbRenderEffect *)*(struct gbRenderEffect **)(this + 828);
           *(_DWORD *)(this + 48) = *v14;
-          v20 = 1;
-          v19[0] = v15;
-          DynVertBuf->RenderUIQuad((struct gbUIQuad *)(this + 12), 1, v16, (struct gbTextureArray *)v19);
+          v19.nTex = 1;
+          v19.pTexPt[0] = v15;
+          DynVertBuf->RenderUIQuad((struct gbUIQuad *)(this + 12), 1, v16, &v19);
         }
         v2 = *(_DWORD *)(this + 56);
         ++v13;
         ++v14;
-        v15 += 96;
+        v15 = (gbTexture *)((char *)v15 + 96);
       }
       while ( v13 <= v2 );
     }

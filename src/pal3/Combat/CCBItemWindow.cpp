@@ -52,141 +52,150 @@ int CCBItemWindow::Reset()
 }
 
 // 0x0051B210
-char CCBItemWindow::Create(int _this, _DWORD *a2, int a3)
+char CCBItemWindow::Create(_DWORD *pRect, int parent)
 {
-  _DWORD *v4; // ebx
-  _DWORD *v5; // ebx
-  _DWORD *v6; // ebx
+  PtrArray *p_m_childs; // ebx
+  int *p_m_benable; // ebx
+  int *p_m_bfocus; // ebx
   _DWORD *v7; // ebx
-  _DWORD *v8; // ebx
-  _DWORD *v9; // ebx
-  _DWORD *v10; // ebx
-  gbRefObject ***v11; // ebx
+  UIWnd *v8; // ebx
+  UIWnd *v9; // ebx
+  UIWnd *v10; // ebx
+  int *p_m_nSize; // ebx
   int i; // ebp
-  _DWORD *v13; // ebx
+  UIWnd *v13; // ebx
 
-  ((_DWORD *)this)->Create(1879048196, a2, a3);
-  v4 = (_DWORD *)(this + 72);
-  ((CCBLineupWindow *)this + 72)->Destroy();
-  *a2 = 0;
-  a2[2] = 158;
-  a2[1] = 0;
-  a2[3] = 158;
-  (*(void (**)(_DWORD, int, _DWORD *, int))(*(_DWORD *)*v4 + 16))(*v4, 232, a2, this);
-  ((UIWnd *)*(gbRefObject ***)(this + 72))->CreateFromTemplate(aUiCombatContro_18, 0);
-  (**(void (***)(_DWORD, int))*v4)(*v4, 1);
-  v5 = (_DWORD *)(this + 96);
-  ((CCBLineupWindow *)this + 96)->OnMessage();
-  *a2 = 7;
-  a2[2] = 80;
-  a2[1] = 48;
-  a2[3] = 73;
-  (*(void (**)(_DWORD, int, _DWORD *, int, char *, _DWORD))(*(_DWORD *)*v5 + 28))(
-    *v5,
+  this->Create(1879048196, pRect, parent);
+  p_m_childs = (PtrArray *)&this->m_childs;
+  ((CCBLineupWindow *)&this->m_childs.m_pData)->Destroy();
+  *pRect = 0;
+  pRect[2] = 158;
+  pRect[1] = 0;
+  pRect[3] = 158;
+  (*(void (**)(void *, int, _DWORD *, UIWnd *))(*(_DWORD *)p_m_childs->m_pData + 16))(
+    p_m_childs->m_pData,
+    232,
+    pRect,
+    this);
+  ((UIWnd **)this->m_childs.m_pData)->CreateFromTemplate(aUiCombatContro_18, 0);
+  (**(void (***)(void *, int))p_m_childs->m_pData)(p_m_childs->m_pData, 1);
+  p_m_benable = (int *)&this->m_benable;
+  ((CCBLineupWindow *)&this->m_benable)->OnMessage();
+  *pRect = 7;
+  pRect[2] = 80;
+  pRect[1] = 48;
+  pRect[3] = 73;
+  (*(void (**)(int, int, _DWORD *, UIWnd *, char *, _DWORD))(*(_DWORD *)*p_m_benable + 28))(
+    *p_m_benable,
     214,
-    a2,
+    pRect,
     this,
     aUiCombatContro_11,
     0);
-  (**(void (***)(_DWORD, int))*v5)(*v5, 1);
-  v6 = (_DWORD *)(this + 100);
-  ((CCBLineupWindow *)this + 100)->OnMessage();
-  *a2 = 78;
-  a2[2] = 151;
-  a2[1] = 48;
-  a2[3] = 73;
-  (*(void (**)(_DWORD, int, _DWORD *, int, char *, _DWORD))(*(_DWORD *)*v6 + 28))(
-    *v6,
+  (**(void (***)(int, int))*p_m_benable)(*p_m_benable, 1);
+  p_m_bfocus = (int *)&this->m_bfocus;
+  ((CCBLineupWindow *)&this->m_bfocus)->OnMessage();
+  *pRect = 78;
+  pRect[2] = 151;
+  pRect[1] = 48;
+  pRect[3] = 73;
+  (*(void (**)(int, int, _DWORD *, UIWnd *, char *, _DWORD))(*(_DWORD *)*p_m_bfocus + 28))(
+    *p_m_bfocus,
     215,
-    a2,
+    pRect,
     this,
     aUiCombatContro_12,
     0);
-  (**(void (***)(_DWORD, int))*v6)(*v6, 1);
-  v7 = (_DWORD *)(this + 104);
-  ((CCBLineupWindow *)this + 104)->OnMessage();
-  a2[1] = 73;
-  *a2 = 7;
-  a2[2] = 80;
-  a2[3] = 98;
-  (*(void (**)(_DWORD, int, _DWORD *, int, char *, _DWORD))(*(_DWORD *)*v7 + 28))(
+  (**(void (***)(int, int))*p_m_bfocus)(*p_m_bfocus, 1);
+  v7 = (_DWORD *)this + 1;
+  ((CCBLineupWindow *)(_DWORD *)this + 26)->OnMessage();
+  pRect[1] = 73;
+  *pRect = 7;
+  pRect[2] = 80;
+  pRect[3] = 98;
+  (*(void (**)(_DWORD, int, _DWORD *, UIWnd *, char *, _DWORD))(*(_DWORD *)*v7 + 28))(
     *v7,
     216,
-    a2,
+    pRect,
     this,
     aUiCombatContro_13,
     0);
   (**(void (***)(_DWORD, int))*v7)(*v7, 1);
-  v8 = (_DWORD *)(this + 108);
-  ((CCBLineupWindow *)this + 108)->OnMessage();
-  *a2 = 78;
-  a2[2] = 151;
-  a2[1] = 73;
-  a2[3] = 98;
-  (*(void (**)(_DWORD, int, _DWORD *, int, char *, _DWORD))(*(_DWORD *)*v8 + 28))(
-    *v8,
+  v8 = (UIWnd *)((char *)this + 108);
+  ((CCBLineupWindow *)(_DWORD *)this + 27)->OnMessage();
+  *pRect = 78;
+  pRect[2] = 151;
+  pRect[1] = 73;
+  pRect[3] = 98;
+  (*(void (**)(int, int, _DWORD *, UIWnd *, char *, _DWORD))(*(_DWORD *)v8->m_fontcolor.ColorQuadFmt + 28))(
+    v8->m_fontcolor.ColorQuadFmt,
     217,
-    a2,
+    pRect,
     this,
     aUiCombatContro_14,
     0);
-  (**(void (***)(_DWORD, int))*v8)(*v8, 1);
-  v9 = (_DWORD *)(this + 112);
-  ((CCBLineupWindow *)this + 112)->OnMessage();
-  *a2 = 7;
-  a2[2] = 80;
-  a2[1] = 98;
-  a2[3] = 123;
-  (*(void (**)(_DWORD, int, _DWORD *, int, char *, _DWORD))(*(_DWORD *)*v9 + 28))(
-    *v9,
+  (**(void (***)(int, int))v8->m_fontcolor.ColorQuadFmt)(v8->m_fontcolor.ColorQuadFmt, 1);
+  v9 = (UIWnd *)((char *)this + 112);
+  ((CCBLineupWindow *)(_DWORD *)this + 28)->OnMessage();
+  *pRect = 7;
+  pRect[2] = 80;
+  pRect[1] = 98;
+  pRect[3] = 123;
+  (*(void (**)(int, int, _DWORD *, UIWnd *, char *, _DWORD))(*(_DWORD *)v9->m_fontcolor.ColorQuadFmt + 28))(
+    v9->m_fontcolor.ColorQuadFmt,
     218,
-    a2,
+    pRect,
     this,
     aUiCombatContro_15,
     0);
-  (**(void (***)(_DWORD, int))*v9)(*v9, 1);
-  v10 = (_DWORD *)(this + 116);
-  ((CCBLineupWindow *)this + 116)->OnMessage();
-  *a2 = 78;
-  a2[2] = 151;
-  a2[1] = 98;
-  a2[3] = 123;
-  (*(void (**)(_DWORD, int, _DWORD *, int, char *, _DWORD))(*(_DWORD *)*v10 + 28))(
-    *v10,
+  (**(void (***)(int, int))v9->m_fontcolor.ColorQuadFmt)(v9->m_fontcolor.ColorQuadFmt, 1);
+  v10 = (UIWnd *)((char *)this + 116);
+  ((CCBLineupWindow *)(_DWORD *)this + 29)->OnMessage();
+  *pRect = 78;
+  pRect[2] = 151;
+  pRect[1] = 98;
+  pRect[3] = 123;
+  (*(void (**)(int, int, _DWORD *, UIWnd *, char *, _DWORD))(*(_DWORD *)v10->m_fontcolor.ColorQuadFmt + 28))(
+    v10->m_fontcolor.ColorQuadFmt,
     219,
-    a2,
+    pRect,
     this,
     aUiCombatContro_16,
     0);
-  (**(void (***)(_DWORD, int))*v10)(*v10, 1);
-  v11 = (gbRefObject ***)(this + 76);
+  (**(void (***)(int, int))v10->m_fontcolor.ColorQuadFmt)(v10->m_fontcolor.ColorQuadFmt, 1);
+  p_m_nSize = (int *)&this->m_childs.m_nSize;
   for ( i = 0; i < 5; ++i )
   {
-    v11->Destroy();
-    *a2 = 57;
-    a2[2] = 95;
-    a2[1] = 31;
-    a2[3] = 47;
-    ((void (*)(gbRefObject **, int, _DWORD *, int))(**v11)[4].RefCount)(*v11, dword_570138[i], a2, this);
-    ((UIWnd *)*v11)->CreateFromTemplate(off_570218[i], 0);
-    ((void (*)(gbRefObject **, int))(**v11)->RefCount)(*v11, 1);
-    ++v11;
+    p_m_nSize->Destroy();
+    *pRect = 57;
+    pRect[2] = 95;
+    pRect[1] = 31;
+    pRect[3] = 47;
+    (*(void (**)(int, int, _DWORD *, UIWnd *))(*(_DWORD *)*p_m_nSize + 16))(
+      *p_m_nSize,
+      dword_570138[i],
+      pRect,
+      this);
+    ((UIWnd **)*p_m_nSize)->CreateFromTemplate(off_570218[i], 0);
+    (**(void (***)(int, int))*p_m_nSize)(*p_m_nSize, 1);
+    ++p_m_nSize;
   }
-  v13 = (_DWORD *)(this + 120);
-  ((CCBLineupWindow *)this + 120)->Update();
-  *a2 = 35;
-  a2[2] = 127;
-  a2[1] = 127;
-  a2[3] = 153;
-  (*(void (**)(_DWORD, int, _DWORD *, int, char *, int, _DWORD))(*(_DWORD *)*v13 + 28))(
-    *v13,
+  v13 = (UIWnd *)((char *)this + 120);
+  ((CCBLineupWindow *)(_DWORD *)this + 30)->Update();
+  *pRect = 35;
+  pRect[2] = 127;
+  pRect[1] = 127;
+  pRect[3] = 153;
+  (*(void (**)(int, int, _DWORD *, UIWnd *, char *, int, _DWORD))(*(_DWORD *)v13->m_fontcolor.ColorQuadFmt
+                                                                           + 28))(
+    v13->m_fontcolor.ColorQuadFmt,
     220,
-    a2,
+    pRect,
     this,
     aUiCombatContro_17,
     1,
     0);
-  (**(void (***)(_DWORD, int))*v13)(*v13, 1);
+  (**(void (***)(int, int))v13->m_fontcolor.ColorQuadFmt)(v13->m_fontcolor.ColorQuadFmt, 1);
   return 1;
 }
 
@@ -205,7 +214,7 @@ int CCBItemWindow::Destroy(int _this)
   _DWORD *v11; // esi
   int v12; // edi
 
-  result = ((gbRefObject **)this)->SetScrollPos();
+  result = ((UIListBox **)this)->SetScrollPos();
   v3 = *(_DWORD *)(this + 72);
   if ( v3 )
   {

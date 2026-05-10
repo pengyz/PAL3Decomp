@@ -57,9 +57,9 @@ CCBStageCam::CCBStageCam(CCBStageCam *Buffer)
 CCBStageCam::~CCBStageCam(int _this)
 {
   struct gbVFile *v2; // esi
-  struct gbVFileSystem *v4; // [esp+3Ch] [ebp-810h] BYREF
+  OpenBaseFile v4; // [esp+3Ch] [ebp-810h] BYREF
   char pExceptionObject[1024]; // [esp+40h] [ebp-80Ch] BYREF
-  char ArgList; // [esp+440h] [ebp-40Ch] BYREF
+  char ArgList[1024]; // [esp+440h] [ebp-40Ch] BYREF
   int v7; // [esp+848h] [ebp-4h]
 
   ((OpenBaseFile *)&v4)->OpenBaseFile();
@@ -69,7 +69,7 @@ CCBStageCam::~CCBStageCam(int _this)
   {
     qmemcpy(
       pExceptionObject,
-      (const void *)((char)&ArgList)->FormatException((int)aCouldnTOpenCbC, (int)aDProjectPal3Co_6, 734),
+      ((Logger *)ArgList)->FormatException(aCouldnTOpenCbC, aDProjectPal3Co_6, 734),
       sizeof(pExceptionObject));
     _CxxThrowException(pExceptionObject, (_ThrowInfo *)&_TI1_AV_Exception__);
   }
@@ -79,7 +79,7 @@ CCBStageCam::~CCBStageCam(int _this)
   g_pVFileSys->Read((void *)(this + 410000), 0x4E20u, v2);
   g_pVFileSys->CloseFile(v2);
   v7 = -1;
-  ((OpenNULLFile *)&v4)->OpenNULLFile();
+  ((OpenNULLFile **)&v4)->OpenNULLFile();
   return 1;
 }
 
@@ -463,12 +463,12 @@ int CCBStageCam::AddTask(int _this)
 }
 
 // 0x00505820
-int CCBStageCam::ProcCamMove(int _this)
+char CCBStageCam::ProcCamMove(int _this)
 {
   int v2; // eax
   int *v3; // ecx
   int v4; // eax
-  int result; // eax
+  char result; // al
   int v6; // [esp+4h] [ebp-18h] BYREF
   int v7; // [esp+8h] [ebp-14h]
   int v8; // [esp+Ch] [ebp-10h]
@@ -484,21 +484,21 @@ int CCBStageCam::ProcCamMove(int _this)
   v9 = *v3;
   v8 = v4;
   v10 = v3[1];
-  result = MEMORY[0xBFC6E4];
+  result = g_Input.m_shiftedKeyStates[267];
   v11 = v3[2];
   v7 = 0;
   v10 = 0;
-  if ( MEMORY[0xBFC6E4] == 1 )
+  if ( g_Input.m_shiftedKeyStates[267] == 1 )
   {
-    result = ((CCCTData *)&v6)->Create();
-    if ( (_BYTE)result )
+    result = this->Create(&v6);
+    if ( result )
     {
       *(_BYTE *)(this + 430253) = 1;
     }
     else
     {
-      result = ((CCCTData *)&v9)->Create();
-      if ( (_BYTE)result )
+      result = this->Create(&v9);
+      if ( result )
       {
         *(_BYTE *)(this + 430254) = 1;
       }
@@ -509,7 +509,7 @@ int CCBStageCam::ProcCamMove(int _this)
       }
     }
   }
-  if ( (MEMORY[0xBFC6D8] & 0xF) != 1 )
+  if ( (g_Input.m_shiftedKeyStates[264] & 0xF) != 1 )
   {
     *(_BYTE *)(this + 430253) = 0;
     *(_BYTE *)(this + 430254) = 0;

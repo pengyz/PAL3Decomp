@@ -14,7 +14,7 @@ public:
     int UpdateCamera(int a2); // 0x005044C0
     CCCTData(_DWORD *a2, _DWORD *a3); // 0x005058F0
     ~CCCTData(); // 0x00505930
-    bool Create(_DWORD *a2); // 0x00506020
+    bool Create(float *a2); // 0x00506020
     char Destroy(); // 0x005060D0
     void Init(); // 0x005061A0
     int Save(int a2); // 0x00506260

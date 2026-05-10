@@ -10,7 +10,7 @@ int CCBControl::Update()
 {
   int result; // eax
 
-  LOBYTE(result) = this->m_pCBSystem[36];
+  LOBYTE(result) = this->m_bActive;
   if ( (_BYTE)result )
     LOBYTE(result) = sub_4DC610(this);
   return result;

@@ -21,14 +21,14 @@ extern void *off_56E190;
 // 0x004A12F0
 int UIItem::Refresh()
 {
-  this->ctor_BB70();
-  sub_444F60((_BYTE *)this + 112);
-  ((UIFrameWnd *)(_BYTE *)this + 304)->UIFrameWnd();
-  ((UIFrameWnd *)(_BYTE *)this + 456)->UIFrameWnd();
+  ((UIWnd *)this)->ctor_BB70();
+  sub_444F60((UIWnd *)(this + 112));
+  ((UIFrameWnd *)(this + 304))->UIFrameWnd();
+  ((UIFrameWnd *)(this + 456))->UIFrameWnd();
   *((_DWORD *)this + 152) = 90;
   *((_DWORD *)this + 153) = 26;
-  ((UIScene *)(_DWORD *)this + 158)->_UIScene();
-  ((UIScene *)(_DWORD *)this + 244)->_UIScene();
+  ((UIScene *)(this + 632))->_UIScene();
+  ((UIScene *)(this + 976))->_UIScene();
   *((_DWORD *)this + 330) = 0;
   *((_DWORD *)this + 332) = -1;
   *((_DWORD *)this + 333) = 208;
@@ -124,7 +124,7 @@ int UIItem::Create(int id, int a3)
   char v39; // [esp+333h] [ebp-1h]
   int parent; // [esp+340h] [ebp+Ch]
   int v41; // [esp+344h] [ebp+10h]
-  int v42; // [esp+348h] [ebp+14h]
+  int a3a; // [esp+348h] [ebp+14h]
 
   ((UIWnd *)this)->Create(id, (void *)a3, parent);
   *((_DWORD *)this + 18) = parent;
@@ -164,9 +164,9 @@ int UIItem::Create(int id, int a3)
       655360,
       this + 80,
       this);
-    ((UIWnd *)(gbRefObject **)this + 76)->CreateFromTemplate(Buffer, v42);
+    ((UIWnd *)(UIWnd **)this + 76)->CreateFromTemplate(Buffer, a3a);
     (**((void (***)(UIItem *, _DWORD))this + 76))(this + 304, 0);
-    ((UIWnd *)(_DWORD *)this + 76)->GetRect((_DWORD *)this + 20);
+    ((UIWnd *)(this + 304))->GetRect((_DWORD *)this + 20);
     v22 = *((_DWORD *)this + 153);
     v23 = *((_DWORD *)this + 23) - v22 - 6;
     v24 = *((_DWORD *)this + 152);
@@ -184,8 +184,8 @@ int UIItem::Create(int id, int a3)
       this,
       v34,
       0,
-      v42);
-    ((UIWnd *)(_DWORD *)this + 158)->GetRect((_DWORD *)this + 154);
+      a3a);
+    ((UIWnd *)(this + 632))->GetRect((_DWORD *)this + 154);
     (**((void (***)(UIItem *, _DWORD))this + 158))(this + 632, 0);
     *((_BYTE *)this + 732) = 0;
     v28 = *((_DWORD *)this + 23) - 38;
@@ -200,9 +200,9 @@ int UIItem::Create(int id, int a3)
     v12 = *((_DWORD *)this + 76);
     *((_DWORD *)this + 22) = v8 + 308;
     (*(void (**)(UIItem *, int, UIItem *, UIItem *))(v12 + 16))(this + 304, 655360, this + 80, this);
-    ((UIWnd *)(gbRefObject **)this + 76)->CreateFromTemplate(Buffer, v42);
+    ((UIWnd *)(UIWnd **)this + 76)->CreateFromTemplate(Buffer, a3a);
     (**((void (***)(UIItem *, _DWORD))this + 76))(this + 304, 0);
-    ((UIWnd *)(_DWORD *)this + 76)->GetRect((_DWORD *)this + 20);
+    ((UIWnd *)(this + 304))->GetRect((_DWORD *)this + 20);
     v13 = *((_DWORD *)this + 153);
     v14 = *((_DWORD *)this + 152);
     v15 = *((_DWORD *)this + 23) - v13 - 6;
@@ -219,8 +219,8 @@ int UIItem::Create(int id, int a3)
       this,
       v34,
       0,
-      v42);
-    ((UIWnd *)(_DWORD *)this + 158)->GetRect((_DWORD *)this + 154);
+      a3a);
+    ((UIWnd *)(this + 632))->GetRect((_DWORD *)this + 154);
     (**((void (***)(UIItem *, _DWORD))this + 158))(this + 632, 0);
     *((_BYTE *)this + 732) = 0;
     v18 = *((_DWORD *)this + 152);
@@ -235,8 +235,8 @@ int UIItem::Create(int id, int a3)
       this,
       v37,
       0,
-      v42);
-    ((UIWnd *)(_DWORD *)this + 244)->GetRect((_DWORD *)this + 154);
+      a3a);
+    ((UIWnd *)(this + 976))->GetRect((_DWORD *)this + 154);
     (**((void (***)(UIItem *, _DWORD))this + 244))(this + 976, 0);
     *((_BYTE *)this + 1076) = 0;
     v21 = *((_DWORD *)this + 23) - 38;
@@ -250,7 +250,7 @@ LABEL_7:
   {
     ((UINote *)(this + 112))->Create(655360, (int)(this + 80), (int)this, aUiFlexNote);
     (**((void (***)(UIItem *, _DWORD))this + 28))(this + 112, 0);
-    ((UIWnd *)(_DWORD *)this + 28)->GetRect((_DWORD *)this + 20);
+    ((UIWnd *)(this + 112))->GetRect((_DWORD *)this + 20);
     v11 = *((_DWORD *)this + 23) - 6;
     *((_DWORD *)this + 26) = *((_DWORD *)this + 22) - 6;
     *((_DWORD *)this + 27) = v11;
@@ -261,7 +261,7 @@ LABEL_8:
   *((_DWORD *)this + 337) = 0;
   *((_BYTE *)this + 1365) = 1;
   (*(void (**)(UIItem *, int, UIItem *, UIItem *))(v29 + 16))(this + 456, 655360, v7, this);
-  ((UIWnd *)(_DWORD *)this + 114)->GetRect(v7);
-  ((UIWnd *)(_DWORD *)this + 114)->SetShow(0);
+  ((UIWnd *)(this + 456))->GetRect(v7);
+  ((UIWnd *)(this + 456))->SetShow(0);
   return (**((int (***)(UIItem *, _DWORD))this + 114))(this + 456, 0);
 }

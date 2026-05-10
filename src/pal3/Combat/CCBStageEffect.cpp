@@ -19,13 +19,13 @@ extern int dword_17ABC64;
 extern float flt_17ABC60;
 
 // 0x00508E30
-CCBStageEffect::CCBStageEffect(int _this)
+CCBStageEffect::CCBStageEffect()
 {
   struct gbVFile *v2; // eax
   struct gbVFile *v3; // esi
-  struct gbVFileSystem *v5; // [esp+24h] [ebp-810h] BYREF
+  OpenBaseFile v5; // [esp+24h] [ebp-810h] BYREF
   char pExceptionObject[1024]; // [esp+28h] [ebp-80Ch] BYREF
-  char ArgList; // [esp+428h] [ebp-40Ch] BYREF
+  char ArgList[1024]; // [esp+428h] [ebp-40Ch] BYREF
   int v8; // [esp+830h] [ebp-4h]
 
   ((OpenBaseFile *)&v5)->OpenBaseFile();
@@ -36,17 +36,17 @@ CCBStageEffect::CCBStageEffect(int _this)
   {
     qmemcpy(
       pExceptionObject,
-      (const void *)((char)&ArgList)->FormatException((int)aCouldnTOpenEff_0, (int)aDProjectPal3Co_7, 366),
+      ((Logger *)ArgList)->FormatException(aCouldnTOpenEff_0, aDProjectPal3Co_7, 366),
       sizeof(pExceptionObject));
     _CxxThrowException(pExceptionObject, (_ThrowInfo *)&_TI1_AV_Exception__);
   }
   g_pVFileSys->Seek(v2, 0, 1);
-  g_pVFileSys->Read((void *)(this + 2444), 0x5A00u, v3);
+  g_pVFileSys->Read(&this->m_Light[6].m_ToWorld.zx, 0x5A00u, v3);
   g_pVFileSys->CloseFile(v3);
   dword_17AB584 = 1;
   v8 = -1;
-  ((OpenNULLFile *)&v5)->OpenNULLFile();
-  return 1;
+  ((OpenNULLFile **)&v5)->OpenNULLFile();
+  return (CCBStageEffect *)1;
 }
 
 // 0x00508F30
@@ -54,9 +54,9 @@ CCBStageEffect::~CCBStageEffect(int _this)
 {
   struct gbVFile *v2; // eax
   struct gbVFile *v3; // esi
-  struct gbVFileSystem *v5; // [esp+24h] [ebp-810h] BYREF
+  OpenBaseFile v5; // [esp+24h] [ebp-810h] BYREF
   char pExceptionObject[1024]; // [esp+28h] [ebp-80Ch] BYREF
-  char ArgList; // [esp+428h] [ebp-40Ch] BYREF
+  char ArgList[1024]; // [esp+428h] [ebp-40Ch] BYREF
   int v8; // [esp+830h] [ebp-4h]
 
   ((OpenBaseFile *)&v5)->OpenBaseFile();
@@ -67,7 +67,7 @@ CCBStageEffect::~CCBStageEffect(int _this)
   {
     qmemcpy(
       pExceptionObject,
-      (const void *)((char)&ArgList)->FormatException((int)aCouldnTOpenCbE_0, (int)aDProjectPal3Co_7, 390),
+      ((Logger *)ArgList)->FormatException(aCouldnTOpenCbE_0, aDProjectPal3Co_7, 390),
       sizeof(pExceptionObject));
     _CxxThrowException(pExceptionObject, (_ThrowInfo *)&_TI1_AV_Exception__);
   }
@@ -75,7 +75,7 @@ CCBStageEffect::~CCBStageEffect(int _this)
   g_pVFileSys->Write((void *)(this + 2444), 0x5A00u, v3);
   g_pVFileSys->CloseFile(v3);
   v8 = -1;
-  ((OpenNULLFile *)&v5)->OpenNULLFile();
+  ((OpenNULLFile **)&v5)->OpenNULLFile();
   return 1;
 }
 

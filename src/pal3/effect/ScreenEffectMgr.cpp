@@ -16,46 +16,46 @@ void ScreenEffectMgr::Render()
   int v4; // ecx
   void **v5; // eax
   int *v6; // eax
-  char *v7; // esi
+  int *v7; // esi
   int v8; // ecx
   void *v9; // [esp-8h] [ebp-20h]
 
-  if ( *(_DWORD *)&this->m_fadeIn[148] )
+  if ( *((_DWORD *)this + 37) )
   {
-    v2 = **(_DWORD **)&this->m_fadeIn[116];
+    v2 = **((_DWORD **)this + 29);
     (*(void (**)(int))(*(_DWORD *)v2 + 16))(v2);
     if ( !*(_DWORD *)(v2 + 8) && !*(_BYTE *)(v2 + 20) )
     {
-      v3 = *(_DWORD *)&this->m_fadeIn[116] + 4;
-      v4 = *(_DWORD *)&this->m_fadeIn[148] - 1;
-      *(_DWORD *)&this->m_fadeIn[116] = v3;
-      *(_DWORD *)&this->m_fadeIn[148] = v4;
-      if ( !v4 || v3 == *(_DWORD *)&this->m_fadeIn[112] )
+      v3 = *((_DWORD *)this + 29) + 4;
+      v4 = *((_DWORD *)this + 37) - 1;
+      *((_DWORD *)this + 29) = v3;
+      *((_DWORD *)this + 37) = v4;
+      if ( !v4 || v3 == *((_DWORD *)this + 28) )
       {
-        v5 = *(void ***)&this->m_fadeIn[120];
-        *(_DWORD *)&this->m_fadeIn[120] = v5 + 1;
+        v5 = (void **)*((_DWORD *)this + 30);
+        *((_DWORD *)this + 30) = v5 + 1;
         operator delete(*v5);
-        if ( *(_DWORD *)&this->m_fadeIn[148] )
+        if ( *((_DWORD *)this + 37) )
         {
-          v6 = (int *)*(int **)&this->m_fadeIn[120];
-          v7 = (char *)&this->m_fadeIn[108];
+          v6 = (int *)*((_DWORD *)this + 30);
+          v7 = (int *)this + 27;
           v8 = *v6;
-          *(_DWORD *)v7 = *v6;
-          *((_DWORD *)v7 + 1) = v8 + 4096;
-          *((_DWORD *)v7 + 2) = v8;
-          *((_DWORD *)v7 + 3) = v6;
+          * v7 = (*)*v6;
+          v7[1] = v8 + 4096;
+          v7[2] = v8;
+          v7[3] = (int)v6;
         }
         else
         {
-          *(_DWORD *)&this->m_fadeIn[108] = 0;
-          *(_DWORD *)&this->m_fadeIn[112] = 0;
-          *(_DWORD *)&this->m_fadeIn[116] = 0;
-          *(_DWORD *)&this->m_fadeIn[120] = 0;
-          *(_DWORD *)&this->m_fadeIn[124] = 0;
-          v9 = (void *)*(void **)&this->m_fadeIn[140];
-          *(_DWORD *)&this->m_fadeIn[128] = 0;
-          *(_DWORD *)&this->m_fadeIn[132] = 0;
-          *(_DWORD *)&this->m_fadeIn[136] = 0;
+          *((_DWORD *)this + 27) = 0;
+          *((_DWORD *)this + 28) = 0;
+          *((_DWORD *)this + 29) = 0;
+          *((_DWORD *)this + 30) = 0;
+          *((_DWORD *)this + 31) = 0;
+          v9 = (void *)*((_DWORD *)this + 35);
+          *((_DWORD *)this + 32) = 0;
+          *((_DWORD *)this + 33) = 0;
+          *((_DWORD *)this + 34) = 0;
           operator delete(v9);
         }
       }
@@ -64,13 +64,13 @@ void ScreenEffectMgr::Render()
 }
 
 // 0x004BE590
-_BYTE * ScreenEffectMgr::GetInstance()
+ScreenEffect * ScreenEffectMgr::GetInstance()
 {
   if ( (byte_DE7E90 & 1) == 0 )
   {
     byte_DE7E90 |= 1u;
-    stru_DE7DF8->ScreenEffect();
+    ((ScreenEffect *)&stru_DE7DF8)->ScreenEffect();
     atexit(unknown_libname_430);
   }
-  return stru_DE7DF8;
+  return &stru_DE7DF8;
 }

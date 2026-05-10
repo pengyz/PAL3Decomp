@@ -121,7 +121,7 @@ public:
     char ProcDefence(); // 0x00513430
     void ProcAI(float a2); // 0x00513600
     int ProcProtect(); // 0x005136A0
-    char ProcMessage(int a2); // 0x005136D0
+    char ProcMessage(int idx); // 0x005136D0
     int IsFriendDoSkill(); // 0x005137F0
     int CheckBattleEnd(); // 0x00513840
     int Message(int a2); // 0x00513EB0

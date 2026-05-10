@@ -138,13 +138,13 @@ int CEffgbParticle::Init(int a2)
 // 0x004C88C0
 char * CEffgbParticle::Attach(char a2)
 {
-  char *v2; // esi
+  CEffgbParticle *v2; // esi
 
-  v2 = (char *)this - 12;
-  sub_4C6980((int)this - 12);
+  v2 = (CEffgbParticle *)this - 12;
+  sub_4C6980((int)(this - 12));
   if ( (a2 & 1) != 0 )
     operator delete(v2);
-  return v2;
+  return (char *)v2;
 }
 
 // 0x004C88D0
@@ -177,9 +177,9 @@ _DWORD * CEffgbParticle::Render()
 // 0x004C8930
 _DWORD *CEffgbParticle::SetTimeScale()
 {
-  _DWORD *v0; // eax
+  CEffgbParticle *v0; // eax
 
-  v0 = ((operator *)0x50u)->new();
+  v0 = (CEffgbParticle *)((operator *)0x50u)->new();
   if ( v0 )
     return v0->Render();
   else
@@ -240,15 +240,15 @@ LABEL_10:
 // 0x004C8A40
 char CEffgbParticle::CreateTask(int _this, int a2)
 {
-  void *v3; // eax
+  int v3; // eax
   int v4; // ebp
   int v5; // edi
   int v6; // edi
   int v7; // edx
   int v8; // eax
   int v9; // ecx
-  _DWORD *v10; // eax
-  _DWORD *v11; // eax
+  char *v10; // eax
+  char *v11; // eax
   int v12; // edi
 
   v3 = ((operator *)0x4C0u)->new();
@@ -306,9 +306,9 @@ char CEffgbParticle::CreateTask(int _this, int a2)
     operator delete(*(void **)(this + 24));
   }
 LABEL_10:
-  v10 = ((operator *)0x5896Cu)->new();
+  v10 = (char *)((operator *)0x5896Cu)->new();
   if ( v10 )
-    v11 = (_DWORD *)sub_4BC760(v10);
+    v11 = (char *)sub_4BC760(v10);
   else
     v11 = 0;
   *(_DWORD *)(this + 48) = v11;
@@ -485,7 +485,7 @@ void CEffgbParticle::GetEditorTaskDescription(int _this)
     v5 = *(float *)(this + 72) + *(float *)(this + 60);
     v4 = *(float *)(this + 68) + *(float *)(this + 56);
     v2->Translate(v4, v5, v6);
-    v3 = sub_4BC8A0(*(void **)(this + 48));
+    v3 = sub_4BC8A0(*(char **)(this + 48));
     if ( *(int *)(this + 36) <= 0 && v3 <= 0 )
       *(_BYTE *)(this + 8) = 1;
     v2->Pop();

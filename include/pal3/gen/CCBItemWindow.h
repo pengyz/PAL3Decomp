@@ -20,7 +20,7 @@ public:
 
     CCBItemWindow(CCBItemWindow *Block, char a2); // 0x0051B160
     int Reset(); // 0x0051B1D0
-    char Create(_DWORD *a2, int a3); // 0x0051B210
+    char Create(_DWORD *pRect, int parent); // 0x0051B210
     int Destroy(); // 0x0051B4B0
     BOOL HandleInput(int a2, int a3); // 0x0051B570
     int OnMessage(int a2); // 0x0051B5D0

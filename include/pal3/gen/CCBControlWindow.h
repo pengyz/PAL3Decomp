@@ -30,7 +30,7 @@ public:
     _DWORD * DefaultKey(); // 0x0051AC40
     UIWnd * HandleEnable(CCBControlWindow *Block, char a2); // 0x0051AC90
     int CheckKeyInput(); // 0x0051AD00
-    char OnMessage(_DWORD *a2, int a3); // 0x0051AD10
+    char OnMessage(_DWORD *pRect, int parent); // 0x0051AD10
     int Update(); // 0x0051AFE0
     BOOL MoveButtons(int a2, int a3); // 0x0051B0B0
     _DWORD * CreateButton(); // 0x0051B110

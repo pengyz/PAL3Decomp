@@ -434,8 +434,8 @@ void CEffCylinder::CreateTask(int _this, float a2)
   float v23; // [esp+8h] [ebp-8h]
   int v24; // [esp+Ch] [ebp-4h]
   float v25; // [esp+Ch] [ebp-4h]
-  int v26; // [esp+18h] [ebp+8h]
-  float v27; // [esp+18h] [ebp+8h]
+  int a2a; // [esp+18h] [ebp+8h]
+  float a2b; // [esp+18h] [ebp+8h]
 
   v2 = this;
   v3 = a2 - *(float *)(this + 16);
@@ -444,7 +444,7 @@ void CEffCylinder::CreateTask(int _this, float a2)
   *(float *)(this + 20) = v3;
   if ( *(float *)(this + 20) > 0.0 )
   {
-    v26 = 0;
+    a2a = 0;
     if ( *(int *)(this + 40) > 0 )
     {
       v24 = 0;
@@ -462,7 +462,7 @@ void CEffCylinder::CreateTask(int _this, float a2)
           }
         }
 LABEL_29:
-        v11 = ++v26 < *(_DWORD *)(v4 + 28);
+        v11 = ++a2a < *(_DWORD *)(v4 + 28);
         v24 += 152;
         if ( !v11 )
           goto LABEL_30;
@@ -486,8 +486,8 @@ LABEL_28:
               {
                 if ( *(float *)(v4 + 4) - *(float *)(v8 - 56) > *(float *)(v8 + 20) )
                 {
-                  sub_4D4D30(v26, v6);
-                  *(_DWORD *)(v4 + 16) = v26;
+                  sub_4D4D30((_DWORD *)v4, a2a, v6);
+                  *(_DWORD *)(v4 + 16) = a2a;
                   *(_DWORD *)(v4 + 20) = v22;
                   goto LABEL_24;
                 }
@@ -498,7 +498,7 @@ LABEL_28:
                 *(_DWORD *)(*(_DWORD *)(v24 + *(_DWORD *)(v4 + 12)) + v7 + 16) = *(_DWORD *)(v4 + 4);
 LABEL_21:
                 *(_DWORD *)(v4 + 20) = v6;
-                *(_DWORD *)(v4 + 16) = v26;
+                *(_DWORD *)(v4 + 16) = a2a;
 LABEL_24:
                 (*(void (**)(int, _DWORD, _DWORD, _DWORD))(*(_DWORD *)v4 + 4))(
                   v4,
@@ -511,7 +511,7 @@ LABEL_24:
           case 3:
             goto LABEL_21;
           case 4:
-            if ( (unsigned __int8)sub_4D4D70(v26) )
+            if ( sub_4D4D70((_DWORD *)v4, a2a) )
             {
               v9 = *(_DWORD *)(v5 + 4);
               *(_DWORD *)(v5 + 12) = 4;
@@ -520,7 +520,7 @@ LABEL_24:
               *(_DWORD *)(v5 + 20) = *(_DWORD *)(*(_DWORD *)v5 + 8 * v10 - 12);
               if ( (_BYTE)v9 == 1 )
               {
-                v26->Init();
+                ((CEffgbParticle *)v4)->Init(a2a);
                 goto LABEL_28;
               }
             }
@@ -550,7 +550,7 @@ LABEL_30:
       v14 = (float *)(v2 + 16 * v12);
       v25 = v14[49];
       v21 = (v14[51] - v25) * v20;
-      v27 = v14[50] + *(float *)(v2 + 156);
+      a2b = v14[50] + *(float *)(v2 + 156);
       v23 = *(float *)(16 * v13 + v2) + *(float *)(v2 + 156);
       if ( (g_bCursorVisible & 1) == 0 )
       {
@@ -558,10 +558,10 @@ LABEL_30:
         ((CEffMgr *)&g_nCursorState)->Reset();
         atexit(nullsub_1);
       }
-      v15 = (double)(int)v27;
+      v15 = (double)(int)a2b;
       if ( v15 > 1.0 )
       {
-        v27 = v27 - v15;
+        a2b = a2b - v15;
         v23 = v23 - v15;
       }
       v16 = 0;
@@ -576,7 +576,7 @@ LABEL_30:
           v17 = v17 + v21;
           v18 += 68;
           *(float *)(v18 + *(_DWORD *)(v2 + 48) - 12) = v17;
-          *(float *)(v18 + *(_DWORD *)(v2 + 48) - 16) = v27;
+          *(float *)(v18 + *(_DWORD *)(v2 + 48) - 16) = a2b;
           *(float *)(v18 + *(_DWORD *)(v2 + 48) - 8) = v23;
         }
         while ( v16 < *(_DWORD *)(v2 + 112) );
@@ -734,13 +734,9 @@ int CEffCylinder::ProcCommonTask(int _this, int a2)
   float v18; // [esp+1Ch] [ebp-64h]
   float v19; // [esp+20h] [ebp-60h]
   float v20; // [esp+24h] [ebp-5Ch]
-  int v21; // [esp+28h] [ebp-58h] BYREF
-  int v22; // [esp+2Ch] [ebp-54h]
-  int v23; // [esp+30h] [ebp-50h]
-  int v24; // [esp+34h] [ebp-4Ch] BYREF
-  int v25; // [esp+38h] [ebp-48h]
-  float v26; // [esp+3Ch] [ebp-44h]
-  _BYTE v27[64]; // [esp+40h] [ebp-40h] BYREF
+  gbVec3D v21; // [esp+28h] [ebp-58h] BYREF
+  struct gbVec3D v22; // [esp+34h] [ebp-4Ch] BYREF
+  _BYTE v23[64]; // [esp+40h] [ebp-40h] BYREF
 
   v3 = *(float *)(this + 16);
   v4 = *(_DWORD *)(this + 24) + 152 * *(_DWORD *)(this + 28);
@@ -761,24 +757,18 @@ int CEffCylinder::ProcCommonTask(int _this, int a2)
   *(float *)(this + 172) = v16 * *(float *)(v4 + 28) + *(float *)(this + 172);
   *(float *)(this + 176) = v16 * *(float *)(v4 + 32) + *(float *)(this + 176);
   *(float *)(this + 180) = v16 * *(float *)(v4 + 36) + *(float *)(this + 180);
-  ((gbMatrix4 *)v27)->gbMatrix4();
-  v21 = 0;
-  v22 = 0;
-  v23 = 0;
-  v24 = 0;
-  v25 = 0;
-  v26 = 0.0;
-  ((gbMatrix4 *)v27)->LoadIdentity();
-  v21 = *(_DWORD *)(v4 + 44);
-  v22 = *(_DWORD *)(v4 + 48);
-  v23 = *(_DWORD *)(v4 + 52);
+  ((gbMatrix4 *)v23)->gbMatrix4();
+  memset(&v21, 0, sizeof(v21));
+  memset(&v22, 0, sizeof(v22));
+  ((gbMatrix4 *)v23)->LoadIdentity();
+  v21 = *(gbVec3D *)(v4 + 44);
   ((gbVec3D *)&v21)->Normalize();
   v15 = (*(float *)(this + 16) - *(float *)(v7 + 16)) * *(float *)(v4 + 60);
-  ((gbMatrix4 *)v27)->SetAxisAngle((struct gbVec3D *)&v21, v15);
-  v26 = *(float *)(v4 + 56);
-  v24 = 0;
-  v25 = 0;
-  ((gbMatrix4 *)v27)->Rotate((const struct gbVec3D *)&v24, (struct gbVec3D *)(this + 184));
+  ((gbMatrix4 *)v23)->SetAxisAngle(&v21, v15);
+  v22.z = *(float *)(v4 + 56);
+  v22.x = 0.0;
+  v22.y = 0.0;
+  ((gbMatrix4 *)v23)->Rotate(&v22, (struct gbVec3D *)(this + 184));
   v8 = v16 * *(float *)(v4 + 108) + *(float *)(this + 156);
   *(float *)(this + 156) = v8;
   if ( v8 > 1.0 )
@@ -1052,10 +1042,10 @@ void * CEffCylinder::GetEditorObjDescription(int a1)
 void CEffCylinder::InitDefaultUVSet(int a2, int a3)
 {
   int v3; // ebx
-  char *v4; // edi
+  CEffCylinder *v4; // edi
   int v5; // ecx
   double v6; // st7
-  char *v7; // eax
+  CEffCylinder *v7; // eax
   double v8; // st5
   double v9; // st5
   double v10; // st3
@@ -1068,7 +1058,7 @@ void CEffCylinder::InitDefaultUVSet(int a2, int a3)
   v12 = 0;
   if ( a3 > 0 )
   {
-    v4 = (char *)(this + 204);
+    v4 = (CEffCylinder *)this + 204;
     do
     {
       v5 = 0;
@@ -1087,10 +1077,10 @@ void CEffCylinder::InitDefaultUVSet(int a2, int a3)
           v7 += 16;
           v14 = ++v5;
           v11 = v10 / v6;
-          *((float *)v7 - 6) = v11;
-          *((float *)v7 - 4) = 1.0 / v6 + v11;
-          *((float *)v7 - 5) = v9;
-          *((float *)v7 - 3) = 1.0 - v13;
+          *(float *)&v7[-24] = v11;
+          *(float *)&v7[-16] = 1.0 / v6 + v11;
+          *(float *)&v7[-20] = v9;
+          *(float *)&v7[-12] = 1.0 - v13;
         }
         while ( v5 < a2 );
       }
@@ -1107,12 +1097,12 @@ _DWORD * CEffCylinder::LoadTexture(int _this, int a2)
   _DWORD *result; // eax
   int v5; // ecx
   char pExceptionObject[1024]; // [esp+8h] [ebp-800h] BYREF
-  char ArgList; // [esp+408h] [ebp-400h] BYREF
+  char ArgList[1024]; // [esp+408h] [ebp-400h] BYREF
 
   v3 = (gbTexture *)(*(int (**)(_DWORD, int))(***(_DWORD ***)(this + 4) + 8))(**(_DWORD **)(this + 4), a2);
   *(_DWORD *)(this + 52) = v3;
   v3->LoadTexture(1);
-  result = ((operator *)0x44u)->new();
+  result = (_DWORD *)((operator *)0x44u)->new();
   if ( result )
   {
     v5 = *(_DWORD *)(this + 52);
@@ -1128,7 +1118,7 @@ _DWORD * CEffCylinder::LoadTexture(int _this, int a2)
   {
     qmemcpy(
       pExceptionObject,
-      (const void *)((char)&ArgList)->FormatException((int)aCNewFailed_0, (int)aDProjectPal3Co, 504),
+      ((Logger *)ArgList)->FormatException(aCNewFailed_0, aDProjectPal3Co, 504),
       sizeof(pExceptionObject));
     _CxxThrowException(pExceptionObject, (_ThrowInfo *)&_TI1_AV_Exception__);
   }
