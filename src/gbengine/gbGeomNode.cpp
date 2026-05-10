@@ -1145,7 +1145,7 @@ gbOBBox* gbGeomNode::GetOBBox(gbOBBox* box) {
         center.x = (aabb->vMin.x + aabb->vMax.x) * 0.5f;
         center.y = (aabb->vMin.y + aabb->vMax.y) * 0.5f;
         center.z = (aabb->vMin.z + aabb->vMax.z) * 0.5f;
-        box->matrix.LeftTranslate(center);
+        box->trans.LeftTranslate(center);
     } else {
         box->extent.x = 0.0f;
         box->extent.y = 0.0f;
@@ -1197,7 +1197,7 @@ gbOBBox* gbGeomNode::GetTotalOBBox(gbOBBox* box) {
             center.x = (aabb->vMin.x + aabb->vMax.x) * 0.5f;
             center.y = (aabb->vMin.y + aabb->vMax.y) * 0.5f;
             center.z = (aabb->vMin.z + aabb->vMax.z) * 0.5f;
-            box->matrix.LeftTranslate(center);
+            box->trans.LeftTranslate(center);
         } else {
             box->extent.x = 0.0f;
             box->extent.y = 0.0f;
@@ -1218,7 +1218,7 @@ gbOBBox* gbGeomNode::GetTotalOBBox(gbOBBox* box) {
             center.x = (aabb->vMin.x + aabb->vMax.x) * 0.5f;
             center.y = (aabb->vMin.y + aabb->vMax.y) * 0.5f;
             center.z = (aabb->vMin.z + aabb->vMax.z) * 0.5f;
-            box->matrix.LeftTranslate(center);
+            box->trans.LeftTranslate(center);
         } else {
             box->extent.x = 0.0f;
             box->extent.y = 0.0f;
@@ -1249,10 +1249,10 @@ gbOBBox* gbGeomNode::GetTotalOBBox(gbOBBox* box) {
     box->extent.x = maxX - minX;
     box->extent.y = maxY - minY;
     box->extent.z = maxZ - minZ;
-    box->matrix.LoadIdentity();
-    box->matrix.m[3][0] = (maxX + minX) * 0.5f;
-    box->matrix.m[3][1] = (maxY + minY) * 0.5f;
-    box->matrix.m[3][2] = (maxZ + minZ) * 0.5f;
+    box->trans.LoadIdentity();
+    box->trans.m[3][0] = (maxX + minX) * 0.5f;
+    box->trans.m[3][1] = (maxY + minY) * 0.5f;
+    box->trans.m[3][2] = (maxZ + minZ) * 0.5f;
     return box;
 }
 

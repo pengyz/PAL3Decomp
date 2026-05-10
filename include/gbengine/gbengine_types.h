@@ -56,7 +56,7 @@ struct gbVec4D {
 struct gbColorQuad {
     union {
         struct { unsigned char Blue, Green, Red, Alpha; };
-        unsigned int Color;  // full 32-bit access
+        unsigned int Color;
     };
 
     // Methods (auto-generated)

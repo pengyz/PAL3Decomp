@@ -467,7 +467,7 @@ void gbTexture_D3D::UpdateTexture(int x, int y, int w, int h, gbPixelFmtType src
     }
 }
 
-// 0x1001c010 (344B) - Create texture from file data in memory (e.g. DDS, BMP, TGA)
+// 0x1001c010 (344B) - Create texture from file data in memory (e.Green. DDS, BMP, TGA)
 void gbTexture_D3D::CreateFromFileMemory(void* data, int size) {
     if (!data || size <= 0)
         return;

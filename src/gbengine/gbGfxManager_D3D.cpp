@@ -649,11 +649,11 @@ void gbGfxManager_D3D::HandleSizeChange(void) {
 void gbGfxManager_D3D::SetTexture(gbTextureArray* texArray) {
     int stage = 0;
 
-    if (!texArray || texArray->numTextures <= 0)
+    if (!texArray || texArray->nTex <= 0)
         goto clearRemaining;
 
     do {
-        gbTexture* tex = texArray->pTex[stage];
+        gbTexture* tex = texArray->pTexPt[stage];
         if (tex != m_pCurTexture[stage]) {
             if (tex)
                 m_pd3dDevice->SetTexture(stage, ((gbTexture_D3D*)tex)->pTex);
@@ -662,7 +662,7 @@ void gbGfxManager_D3D::SetTexture(gbTextureArray* texArray) {
             m_pCurTexture[stage] = tex;
         }
         stage++;
-    } while (stage < texArray->numTextures);
+    } while (stage < texArray->nTex);
 
     if (stage >= 4) return;
 
@@ -716,9 +716,9 @@ gbGfxManager* gbGfxManager_D3D::InitD3D(int* pResult, gbGfxDriverInfo* info) {
             AllLight[i].position.x = 0.0f;
             AllLight[i].position.y = 0.0f;
             AllLight[i].position.z = 0.0f;
-            AllLight[i].direction.x = 0.0f;
-            AllLight[i].direction.y = 0.0f;
-            AllLight[i].direction.z = 0.0f;
+            AllLight[i].Direction.x = 0.0f;
+            AllLight[i].Direction.y = 0.0f;
+            AllLight[i].Direction.z = 0.0f;
         }
         memcpy(&DrvInfo, info, sizeof(gbGfxDriverInfo));
         hGfxWnd = 0;
@@ -730,10 +730,10 @@ gbGfxManager* gbGfxManager_D3D::InitD3D(int* pResult, gbGfxDriverInfo* info) {
         pMatrixStack[1] = NULL;
         pMatrixStack[2] = NULL;
         pMatrixStack[3] = NULL;
-        AmbientLight.r = 0.2f;
-        AmbientLight.g = 0.2f;
-        AmbientLight.b = 0.2f;
-        AmbientLight.a = 1.0f;
+        AmbientLight.Red = 0.2f;
+        AmbientLight.Green = 0.2f;
+        AmbientLight.Blue = 0.2f;
+        AmbientLight.Alpha = 1.0f;
         fSelfIllum = 0.0f;
         LastTime = 0.0;
         CurTime = 0.0;

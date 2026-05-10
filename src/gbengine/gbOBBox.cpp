@@ -11,7 +11,7 @@ gbOBBox::gbOBBox() {
 }
 
 gbOBBox& gbOBBox::operator=(const gbOBBox& box) {
-    matrix = box.matrix;
+    matrix = box.trans;
     extent.x = box.extent.x;
     extent.y = box.extent.y;
     extent.z = box.extent.z;
@@ -65,9 +65,9 @@ void gbOBBox::GetSphere(gbSphere& sphere) {
 // OBB-OBB collision using Separating Axis Theorem
 int gbOBBox::IsColOBB(gbOBBox* other) {
     gbVec3D T;
-    T.x = other->matrix.m[3][0] - matrix.m[3][0];
-    T.y = other->matrix.m[3][1] - matrix.m[3][1];
-    T.z = other->matrix.m[3][2] - matrix.m[3][2];
+    T.x = other->trans.m[3][0] - matrix.m[3][0];
+    T.y = other->trans.m[3][1] - matrix.m[3][1];
+    T.z = other->trans.m[3][2] - matrix.m[3][2];
 
     int i;
     for (i = 0; i < 3; i++) {
@@ -78,7 +78,7 @@ int gbOBBox::IsColOBB(gbOBBox* other) {
         float radiusB = other->GetRadiusInDirection(axis);
         if (dist > radiusA + radiusB) return 0;
 
-        other->matrix.GetRow(&axis, i);
+        other->trans.GetRow(&axis, i);
         dist = fabsf(T.DotProduct(&axis));
         radiusA = GetRadiusInDirection(axis);
         radiusB = ((float*)&other->extent)[i];
@@ -90,7 +90,7 @@ int gbOBBox::IsColOBB(gbOBBox* other) {
         matrix.GetRow(&axisA, i);
         for (int j = 0; j < 3; j++) {
             gbVec3D axisB;
-            other->matrix.GetRow(&axisB, j);
+            other->trans.GetRow(&axisB, j);
 
             gbVec3D cross;
             axisA.CrossProduct(&axisB, &cross);

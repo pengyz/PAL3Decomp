@@ -60,22 +60,22 @@ void gbLightObj::Compute(gbVolModNode* volmod) {
     sysLight.type = 1;
 
     // Copy diffuse color to sysLight
-    sysLight.diffuse.r = diffuse.r;
-    sysLight.diffuse.g = diffuse.g;
-    sysLight.diffuse.b = diffuse.b;
-    sysLight.diffuse.a = diffuse.a;
+    sysLight.diffuse.Red = diffuse.Red;
+    sysLight.diffuse.Green = diffuse.Green;
+    sysLight.diffuse.Blue = diffuse.Blue;
+    sysLight.diffuse.Alpha = diffuse.Alpha;
 
     // Specular defaults (no separate specular field in gbVolumeModifier)
-    sysLight.specular.r = diffuse.r;
-    sysLight.specular.g = diffuse.g;
-    sysLight.specular.b = diffuse.b;
-    sysLight.specular.a = diffuse.a;
+    sysLight.specular.Red = diffuse.Red;
+    sysLight.specular.Green = diffuse.Green;
+    sysLight.specular.Blue = diffuse.Blue;
+    sysLight.specular.Alpha = diffuse.Alpha;
 
     // Copy ambient color
-    sysLight.ambient.r = ambient.r;
-    sysLight.ambient.g = ambient.g;
-    sysLight.ambient.b = ambient.b;
-    sysLight.ambient.a = ambient.a;
+    sysLight.ambient.Red = ambient.Red;
+    sysLight.ambient.Green = ambient.Green;
+    sysLight.ambient.Blue = ambient.Blue;
+    sysLight.ambient.Alpha = ambient.Alpha;
 
     // Set range and falloff
     sysLight.range = range;
@@ -98,14 +98,14 @@ void gbLightObj::Compute(gbVolModNode* volmod) {
     } else if (lightType == 1) {
         // Spot light: transform position and rotate direction
         worldMatrix->Transform(&localPos, &sysLight.position);
-        worldMatrix->Rotate(&localDir, &sysLight.direction);
+        worldMatrix->Rotate(&localDir, &sysLight.Direction);
     } else {
         // Directional light: rotate direction, set position far away
-        worldMatrix->Rotate(&localDir, &sysLight.direction);
+        worldMatrix->Rotate(&localDir, &sysLight.Direction);
         sysLight.range = 200000.0f;
-        sysLight.position.x = sysLight.direction.x * -100000.0f;
-        sysLight.position.y = sysLight.direction.y * -100000.0f;
-        sysLight.position.z = sysLight.direction.z * -100000.0f;
+        sysLight.position.x = sysLight.Direction.x * -100000.0f;
+        sysLight.position.y = sysLight.Direction.y * -100000.0f;
+        sysLight.position.z = sysLight.Direction.z * -100000.0f;
     }
 }
 
@@ -559,14 +559,14 @@ void gbSceneGraph::End(void) {
 
         gbDynVertBuf* dynVB = pGfxManager->pVertPoolMgr->GetDynVertBuf(0x15);
 
-        quad.x1 = -1.0f;
-        quad.y1 = -1.0f;
-        quad.x2 = 1.0f;
-        quad.y2 = 1.0f;
-        quad.u1 = 0.0f;
-        quad.v1 = 0.0f;
-        quad.u2 = 0.0f;
-        quad.v2 = 0.0f;
+        quad.sx = -1.0f;
+        quad.sy = -1.0f;
+        quad.ex = 1.0f;
+        quad.ey = 1.0f;
+        quad.su = 0.0f;
+        quad.sv = 0.0f;
+        quad.eu = 0.0f;
+        quad.ev = 0.0f;
         quad.z = 0.0f;
         quad.color = 0x50000000;
 

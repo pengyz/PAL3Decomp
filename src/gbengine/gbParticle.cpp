@@ -825,8 +825,8 @@ void gbParticleGroup::Update(double deltaTime) {
 void gbParticleGroup::Render(void) {
     gbGfxManager* pGfxMgr = g_pGfxManager;
     gbTextureArray texArray;
-    texArray.numTextures = 1;
-    texArray.pTex[0] = pGroupParam->pTextures[0];
+    texArray.nTex = 1;
+    texArray.pTexPt[0] = pGroupParam->pTextures[0];
 
     gbDynVertBuf* pDVB = pGfxMgr->pVertPoolMgr->GetDynVertBuf(0x15u);
     gbMatrixStack* pMatStack = pGfxMgr->pMatrixStack[1];

@@ -737,7 +737,7 @@ int gbCamera::ClipOBBox(gbOBBox* obb) {
 
     int remaining = 8;
     do {
-        obb->matrix.Transform(&localPt, &transformed);
+        obb->trans.Transform(&localPt, &transformed);
         int planeCount = numPlane;
         int planeIdx = 0;
         if (planeCount > 0) {

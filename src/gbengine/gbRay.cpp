@@ -16,8 +16,8 @@ gbRay::gbRay() {
 
 // Assignment operator
 gbRay& gbRay::operator=(const gbRay& r) {
-    origin = r.origin;
-    direction = r.direction;
+    origin = r.Origin;
+    direction = r.Direction;
     return *this;
 }
 
@@ -140,18 +140,18 @@ int gbRay::IsColOBB(gbOBBox& obb) {
     obbCenter.x = 0.0f; obbCenter.y = 0.0f; obbCenter.z = 0.0f;
 
     temp.x = 1.0f; temp.y = 0.0f; temp.z = 0.0f;
-    obb.matrix.Rotate(&temp, &axisX);
+    obb.trans.Rotate(&temp, &axisX);
 
     temp.x = 0.0f; temp.y = 1.0f; temp.z = 0.0f;
-    obb.matrix.Rotate(&temp, &axisY);
+    obb.trans.Rotate(&temp, &axisY);
 
     temp.x = 0.0f; temp.y = 0.0f; temp.z = 1.0f;
-    obb.matrix.Rotate(&temp, &axisZ);
+    obb.trans.Rotate(&temp, &axisZ);
 
     temp.x = obb.extent.x * 0.5f;
     temp.y = obb.extent.y * 0.5f;
     temp.z = obb.extent.z * 0.5f;
-    obb.matrix.Transform(&temp, &obbCenter);
+    obb.trans.Transform(&temp, &obbCenter);
 
     float t1, t2, t3, t4, t5, t6;
 
@@ -183,7 +183,7 @@ int gbRay::IsColOBB(gbOBBox& obb) {
     }
 
     temp.x = -temp.x; temp.y = -temp.y; temp.z = -temp.z;
-    obb.matrix.Transform(&temp, &obbCenterNeg);
+    obb.trans.Transform(&temp, &obbCenterNeg);
 
     dirDotX = axisX.z * direction.z + axisX.y * direction.y + axisX.x * direction.x;
     delta.x = obbCenterNeg.x; delta.y = obbCenterNeg.y; delta.z = obbCenterNeg.z;
@@ -222,7 +222,7 @@ int gbRay::IsColOBB(gbOBBox& obb) {
 
 // Ray-OBB intersection (via inverse transform to local AABB)
 int gbRay::IsColOBB_H(gbOBBox& obb) {
-    gbMatrix4 invMatrix = obb.matrix;
+    gbMatrix4 invMatrix = obb.trans;
     invMatrix.Invert();
 
     gbVec3D localOrigin, localDir;
@@ -238,8 +238,8 @@ int gbRay::IsColOBB_H(gbOBBox& obb) {
     localBox.vMax.x = halfX;  localBox.vMax.y = halfY;  localBox.vMax.z = halfZ;
 
     gbRay localRay;
-    localRay.origin = localOrigin;
-    localRay.direction = localDir;
+    localRay.Origin = localOrigin;
+    localRay.Direction = localDir;
     return localRay.IsColAABB(localBox);
 }
 

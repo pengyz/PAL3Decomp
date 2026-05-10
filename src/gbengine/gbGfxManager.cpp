@@ -57,9 +57,9 @@ gbGfxManager::gbGfxManager(int& result, gbGfxDriverInfo* driverInfo) {
         AllLight[i].position.x = 0.0f;
         AllLight[i].position.y = 0.0f;
         AllLight[i].position.z = 0.0f;
-        AllLight[i].direction.x = 0.0f;
-        AllLight[i].direction.y = 0.0f;
-        AllLight[i].direction.z = 0.0f;
+        AllLight[i].Direction.x = 0.0f;
+        AllLight[i].Direction.y = 0.0f;
+        AllLight[i].Direction.z = 0.0f;
     }
 
     memcpy(&DrvInfo, driverInfo, sizeof(gbGfxDriverInfo));
@@ -74,10 +74,10 @@ gbGfxManager::gbGfxManager(int& result, gbGfxDriverInfo* driverInfo) {
     pMatrixStack[2] = NULL;
     pMatrixStack[3] = NULL;
 
-    AmbientLight.r = 0.2f;
-    AmbientLight.g = 0.2f;
-    AmbientLight.b = 0.2f;
-    AmbientLight.a = 1.0f;
+    AmbientLight.Red = 0.2f;
+    AmbientLight.Green = 0.2f;
+    AmbientLight.Blue = 0.2f;
+    AmbientLight.Alpha = 1.0f;
     fSelfIllum = 0.0f;
 
     LastTime = 0.0;

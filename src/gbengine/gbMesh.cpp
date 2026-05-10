@@ -282,9 +282,9 @@ static void SetupMeshLighting(gbRenderInfoObj* renderInfo, gbGfxManager* gfxMgr,
     // The original code uses offsets that map materialData:
     //   ambient at [4..7], emissive at [12..15], diffuse alpha at [3]
     float result[4];
-    float ambR = gfxMgr->AmbientLight.r;
-    float ambG = gfxMgr->AmbientLight.g;
-    float ambB = gfxMgr->AmbientLight.b;
+    float ambR = gfxMgr->AmbientLight.Red;
+    float ambG = gfxMgr->AmbientLight.Green;
+    float ambB = gfxMgr->AmbientLight.Blue;
     float selfIllum = gfxMgr->fSelfIllum;
 
     // result = ambient_light * material_ambient + selfIllum * material_emissive
@@ -302,9 +302,9 @@ static void SetupMeshLighting(gbRenderInfoObj* renderInfo, gbGfxManager* gfxMgr,
         // Transform light direction to view space using inverse world matrix
         // Use first enabled directional light
         gbVec3D lightDir;
-        lightDir.x = gfxMgr->AllLight[0].direction.x;
-        lightDir.y = gfxMgr->AllLight[0].direction.y;
-        lightDir.z = gfxMgr->AllLight[0].direction.z;
+        lightDir.x = gfxMgr->AllLight[0].Direction.x;
+        lightDir.y = gfxMgr->AllLight[0].Direction.y;
+        lightDir.z = gfxMgr->AllLight[0].Direction.z;
 
         gbVec3D transformedDir;
         invWorld.Rotate(&lightDir, &transformedDir);
@@ -319,9 +319,9 @@ static void SetupMeshLighting(gbRenderInfoObj* renderInfo, gbGfxManager* gfxMgr,
 
         // Set diffuse light color * material diffuse
         float diffResult[4];
-        diffResult[0] = gfxMgr->AllLight[0].diffuse.r * materialData[0];
-        diffResult[1] = gfxMgr->AllLight[0].diffuse.g * materialData[1];
-        diffResult[2] = gfxMgr->AllLight[0].diffuse.b * materialData[2];
+        diffResult[0] = gfxMgr->AllLight[0].diffuse.Red * materialData[0];
+        diffResult[1] = gfxMgr->AllLight[0].diffuse.Green * materialData[1];
+        diffResult[2] = gfxMgr->AllLight[0].diffuse.Blue * materialData[2];
         diffResult[3] = 1.0f;
         effect->SetVariant((char*)"g_MaterialDiffuse", diffResult);
     }
@@ -464,7 +464,7 @@ struct TopoDataDesc {
     int   desc_14;          // +0x14
     int   desc_18;          // +0x18
     int   desc_1C;          // +0x1C
-    int   bufferRowSize;    // +0x20: bytes per vertex row (e.g. 12 for XYZ)
+    int   bufferRowSize;    // +0x20: bytes per vertex row (e.Green. 12 for XYZ)
     int   vertexCount;      // +0x24: number of vertices
     void* pIndices16;       // +0x28: 16-bit index buffer
     void* pIndices32;       // +0x2C: 32-bit index buffer (NULL if using 16-bit)

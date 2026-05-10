@@ -9,8 +9,8 @@
 
 gbLightObj::gbLightObj(void) {
     lightType = LIGHT_POINT;
-    diffuse.r = diffuse.g = diffuse.b = diffuse.a = 1.0f;
-    ambient.r = ambient.g = ambient.b = ambient.a = 0.0f;
+    diffuse.Red = diffuse.Green = diffuse.Blue = diffuse.Alpha = 1.0f;
+    ambient.Red = ambient.Green = ambient.Blue = ambient.Alpha = 0.0f;
     enabled = 0;
     _field30 = 0;
     _field34 = 0;
@@ -66,14 +66,14 @@ gbLightObj::~gbLightObj(void) {
 
 gbLightObj& gbLightObj::operator=(const gbLightObj& other) {
     lightType = other.lightType;
-    diffuse.r = other.diffuse.r;
-    diffuse.g = other.diffuse.g;
-    diffuse.b = other.diffuse.b;
-    diffuse.a = other.diffuse.a;
-    ambient.r = other.ambient.r;
-    ambient.g = other.ambient.g;
-    ambient.b = other.ambient.b;
-    ambient.a = other.ambient.a;
+    diffuse.Red = other.diffuse.Red;
+    diffuse.Green = other.diffuse.Green;
+    diffuse.Blue = other.diffuse.Blue;
+    diffuse.Alpha = other.diffuse.Alpha;
+    ambient.Red = other.ambient.Red;
+    ambient.Green = other.ambient.Green;
+    ambient.Blue = other.ambient.Blue;
+    ambient.Alpha = other.ambient.Alpha;
     enabled = other.enabled;
     _field30 = other._field30;
     _field34 = other._field34;
@@ -91,24 +91,24 @@ gbLightObj& gbLightObj::operator=(const gbLightObj& other) {
     boundSphere.center.z = other.boundSphere.center.z;
     boundSphere.radius = other.boundSphere.radius;
     sysLight.type = other.sysLight.type;
-    sysLight.diffuse.r = other.sysLight.diffuse.r;
-    sysLight.diffuse.g = other.sysLight.diffuse.g;
-    sysLight.diffuse.b = other.sysLight.diffuse.b;
-    sysLight.diffuse.a = other.sysLight.diffuse.a;
-    sysLight.specular.r = other.sysLight.specular.r;
-    sysLight.specular.g = other.sysLight.specular.g;
-    sysLight.specular.b = other.sysLight.specular.b;
-    sysLight.specular.a = other.sysLight.specular.a;
-    sysLight.ambient.r = other.sysLight.ambient.r;
-    sysLight.ambient.g = other.sysLight.ambient.g;
-    sysLight.ambient.b = other.sysLight.ambient.b;
-    sysLight.ambient.a = other.sysLight.ambient.a;
+    sysLight.diffuse.Red = other.sysLight.diffuse.Red;
+    sysLight.diffuse.Green = other.sysLight.diffuse.Green;
+    sysLight.diffuse.Blue = other.sysLight.diffuse.Blue;
+    sysLight.diffuse.Alpha = other.sysLight.diffuse.Alpha;
+    sysLight.specular.Red = other.sysLight.specular.Red;
+    sysLight.specular.Green = other.sysLight.specular.Green;
+    sysLight.specular.Blue = other.sysLight.specular.Blue;
+    sysLight.specular.Alpha = other.sysLight.specular.Alpha;
+    sysLight.ambient.Red = other.sysLight.ambient.Red;
+    sysLight.ambient.Green = other.sysLight.ambient.Green;
+    sysLight.ambient.Blue = other.sysLight.ambient.Blue;
+    sysLight.ambient.Alpha = other.sysLight.ambient.Alpha;
     sysLight.position.x = other.sysLight.position.x;
     sysLight.position.y = other.sysLight.position.y;
     sysLight.position.z = other.sysLight.position.z;
-    sysLight.direction.x = other.sysLight.direction.x;
-    sysLight.direction.y = other.sysLight.direction.y;
-    sysLight.direction.z = other.sysLight.direction.z;
+    sysLight.Direction.x = other.sysLight.Direction.x;
+    sysLight.Direction.y = other.sysLight.Direction.y;
+    sysLight.Direction.z = other.sysLight.Direction.z;
     sysLight.range = other.sysLight.range;
     sysLight.falloff = other.sysLight.falloff;
     sysLight.attenuation0 = other.sysLight.attenuation0;
@@ -123,14 +123,14 @@ gbLightObj& gbLightObj::operator=(const gbLightObj& other) {
 void gbLightObj::Init(enum LIGHT_TYPE lt) {
     float sqrtMax = (float)sqrt(3.402823466385289e38);
     lightType = lt;
-    diffuse.a = 1.0f;
-    diffuse.b = 1.0f;
-    diffuse.g = 1.0f;
-    diffuse.r = 1.0f;
-    ambient.a = 0.0f;
-    ambient.b = 0.0f;
-    ambient.g = 0.0f;
-    ambient.r = 0.0f;
+    diffuse.Alpha = 1.0f;
+    diffuse.Blue = 1.0f;
+    diffuse.Green = 1.0f;
+    diffuse.Red = 1.0f;
+    ambient.Alpha = 0.0f;
+    ambient.Blue = 0.0f;
+    ambient.Green = 0.0f;
+    ambient.Red = 0.0f;
     enabled = 1;
     _field30 = 1;
     _field38 = 0;

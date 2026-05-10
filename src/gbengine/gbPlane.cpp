@@ -56,7 +56,7 @@ int gbPlane::IsColAABB(gbAABBox& box) {
 }
 
 int gbPlane::IsColOBB(gbOBBox& box) {
-    float* m = (float*)&box.matrix;
+    float* m = (float*)&box.trans;
     float local[10];
 
     local[3] = d;
