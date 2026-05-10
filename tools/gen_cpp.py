@@ -365,10 +365,13 @@ def main():
             continue
 
         content = generate_class_cpp(cls_name, methods)
-        with open(out_path, 'w', encoding='utf-8') as f:
-            f.write(content)
-
-        generated += 1
+        try:
+            with open(out_path, 'w', encoding='utf-8') as f:
+                f.write(content)
+            generated += 1
+        except PermissionError:
+            print("  [SKIP] %s (file locked)" % out_path.name)
+            skipped += 1
         total_funcs += len(methods)
 
     # Free functions
