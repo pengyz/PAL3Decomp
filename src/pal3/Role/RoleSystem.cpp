@@ -6,6 +6,7 @@
 #include "pal3/gen/SoundContext.h"
 
 // Forward declarations for unnamed functions
+int UISceneUpdate(...);
 int sub_407DC0(...);
 int sub_408460(...);
 int sub_4122C0(...);

@@ -5,6 +5,7 @@
 #include "pal3/gen/Logger.h"
 
 // Forward declarations for unnamed functions
+int ArraySort(...);
 int sub_4D1EF0(...);
 int sub_4D1FD0(...);
 int sub_4D22F0(...);

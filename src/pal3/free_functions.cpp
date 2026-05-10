@@ -4,6 +4,24 @@
 // Free functions (not belonging to any class)
 
 // Forward declarations for unnamed functions
+int ArraySort(...);
+int CombatEffectUpdate(...);
+int EffectUpdate(...);
+int ExitProcess(...);
+int FileSysInit(...);
+int GetCurrentProcess(...);
+int HeapCreate(...);
+int HeapDestroy(...);
+int InputUpdate(...);
+int NPCAnimUpdate(...);
+int SceneMgrUpdate(...);
+int SceneUpdate(...);
+int ScriptUpdate(...);
+int TerminateProcess(...);
+int UINotifyUpdate(...);
+int UIPostUpdate(...);
+int UISceneUpdate(...);
+int UIUpdate(...);
 int sub_401000(...);
 int sub_402220(...);
 int sub_4083D0(...);

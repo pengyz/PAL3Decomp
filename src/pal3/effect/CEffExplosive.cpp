@@ -6,6 +6,7 @@
 #include "pal3/gen/Logger.h"
 
 // Forward declarations for unnamed functions
+int ArraySort(...);
 int sub_4C7E60(...);
 
 // Unnamed globals (extern)

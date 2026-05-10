@@ -46,6 +46,18 @@
 #include "pal3/gen/UIWnd.h"
 
 // Forward declarations for unnamed functions
+int CombatEffectUpdate(...);
+int EffectUpdate(...);
+int FileSysInit(...);
+int InputUpdate(...);
+int NPCAnimUpdate(...);
+int SceneMgrUpdate(...);
+int SceneUpdate(...);
+int ScriptUpdate(...);
+int UINotifyUpdate(...);
+int UIPostUpdate(...);
+int UISceneUpdate(...);
+int UIUpdate(...);
 int sub_4070A0(...);
 int sub_410430(...);
 int sub_419AE0(...);

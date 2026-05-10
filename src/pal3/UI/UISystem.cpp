@@ -3,6 +3,7 @@
 #include "pal3/gen/UISystem.h"
 
 // Forward declarations for unnamed functions
+int UISceneUpdate(...);
 int sub_41F8C0(...);
 int sub_4208A0(...);
 

@@ -12,6 +12,7 @@
 #include "pal3/gen/UIRenderObj.h"
 
 // Forward declarations for unnamed functions
+int UISceneUpdate(...);
 int sub_42C1C0(...);
 int sub_53C420(...);
 int sub_53C460(...);

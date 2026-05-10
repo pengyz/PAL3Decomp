@@ -3,6 +3,9 @@
 #include "pal3/gen/C3DSpark.h"
 #include "pal3/gen/Logger.h"
 
+// Forward declarations for unnamed functions
+int ArraySort(...);
+
 // Unnamed globals (extern)
 extern char aCNewFailed_0[];
 extern char aDProjectPal3Co_11[];

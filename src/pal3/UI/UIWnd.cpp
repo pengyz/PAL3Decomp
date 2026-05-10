@@ -28,6 +28,7 @@
 #include "pal3/gen/UIStatic.h"
 
 // Forward declarations for unnamed functions
+int ArraySort(...);
 int sub_40CC60(...);
 int sub_41C090(...);
 int sub_431870(...);

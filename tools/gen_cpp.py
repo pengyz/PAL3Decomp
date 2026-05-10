@@ -333,8 +333,13 @@ def split_params_simple(s):
 
 
 def collect_sub_refs(code):
-    """Find all sub_XXXXX references in code for forward declaration."""
-    return set(re.findall(r'\b(sub_[0-9A-Fa-f]+)\b', code))
+    """Find all sub_XXXXX and named function references needing forward declaration."""
+    refs = set(re.findall(r'\b(sub_[0-9A-Fa-f]+)\b', code))
+    # Also find named functions called as standalone (not Class::Method)
+    # Pattern: identifier( where it's not preceded by . or -> or ::
+    for m in re.finditer(r'(?<![.>:])\b([A-Z][a-zA-Z]+(?:Update|Init|Create|Destroy|Render|Sort|Check|Process))\s*\(', code):
+        refs.add(m.group(1))
+    return refs
 
 
 def collect_undefined_refs(code):
@@ -351,6 +356,8 @@ def collect_undefined_refs(code):
     refs.update(re.findall(r'\b(unk_[0-9A-Fa-f]+)\b', code))
     refs.update(re.findall(r'\b(stru_[0-9A-Fa-f]+)\b', code))
     # IDA named but unresolved: nullsub_N, unknown_libname_N
+    refs.update(re.findall(r'\b(nullsub_\d+)\b', code))
+    refs.update(re.findall(r'\b(unknown_libname_\d+)\b', code))
     refs.update(re.findall(r'\b(nullsub_\d+)\b', code))
     refs.update(re.findall(r'\b(unknown_libname_\d+)\b', code))
     return refs

@@ -14,6 +14,7 @@
 #include "pal3/gen/UIWnd.h"
 
 // Forward declarations for unnamed functions
+int UISceneUpdate(...);
 int sub_410360(...);
 int sub_411E00(...);
 int sub_412230(...);

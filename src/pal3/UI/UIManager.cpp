@@ -5,6 +5,7 @@
 #include "pal3/gen/OpenNULLFile.h"
 
 // Forward declarations for unnamed functions
+int UISceneUpdate(...);
 int sub_418260(...);
 
 // Unnamed globals (extern)

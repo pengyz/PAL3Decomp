@@ -3,6 +3,7 @@
 #include "pal3/gen/InputSystem.h"
 
 // Forward declarations for unnamed functions
+int UISceneUpdate(...);
 int sub_421A40(...);
 
 // 0x0041C540
