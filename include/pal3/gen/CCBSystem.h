@@ -136,6 +136,7 @@ public:
     int PassCmdViaThread(int a2); // 0x00515760
     int CreateObj(int a2); // 0x00515940
     int CreateObj(const char *a2, const char *a3, UINT a4); // 0x005159A0
+    // [IDA_COMPLEX_RET] original: int __thiscall(CCBSystem *this, int (__thiscall *a2)(int this, int a2), int a3, 
     int CreateObj(int (__thiscall *a2)(int this, int a2), int a3, int a4, int a5, const void *a6); // 0x00515B20
     char ClearEffect(int idx); // 0x00515C50
     bool CreateObj2(_DWORD *a2); // 0x00515D10

@@ -45,12 +45,14 @@ public:
 
     PAL3(); // 0x00404760
     ~PAL3(); // 0x004047F0
+    // [IDA_USERPURGE] Create; // 0x00404800
     static void InitGFX(); // 0x00404FF0
     static char CreateEffectSystem(); // 0x00405330
     static char DestroyEffectSystem(); // 0x004055A0
     static int Update(float a1); // 0x004055D0
     static int Render(); // 0x00405C00
     static int Destroy(); // 0x00406230
+    // [IDA_USERPURGE] CheckSystemRequire; // 0x00406310
     static char CreateGfxWindow(); // 0x004065F0
     static char ParseCmdLine(char *lpKeyName); // 0x004066F0
     static int HasCommandLineParam(char *lpKeyName); // 0x004068C0

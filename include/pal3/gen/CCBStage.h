@@ -68,6 +68,7 @@ public:
     char GetTaskID(int a2, int a3); // 0x004FCBD0
     char GetTaskState(int a2); // 0x004FCC10
     int IsTaskFinished(int a2); // 0x004FCD00
+    // [IDA_USERPURGE] IsTaskValidButNotFinish; // 0x004FCD50
     int IsTaskExist(int a2); // 0x004FCDA0
     int DoTask(int a2); // 0x004FCDE0
     int StartSubTask(int a2); // 0x004FCE00

@@ -55,6 +55,7 @@ public:
     void SetObjectPosition(float a2, float a3, float a4); // 0x0047D130
     long double SetCentrePos(); // 0x0047D230
     void GetScreenDegree(); // 0x0047D320
+    // [IDA_USERPURGE] GetScreenDegree; // 0x0047D440
     void CaculateRelative(float a2); // 0x0047D690
     void * SetupCamera(); // 0x0047D9D0
     bool Update(); // 0x0047DA60
