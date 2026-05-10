@@ -3,5 +3,5 @@
   "address": "0x00408800",
   "size_bytes": 10,
   "signature": "gbVec3D *()",
-  "decompiled_c": "// Microsoft VisualC 2-14/net runtime\n// Microsoft VisualC 2-14/net runtime\ngbVec3D *unknown_libname_312()\n{\n  LOBYTE(g_SceneMgr.m_npc[0].m_path.normal[78].x) = (unsigned int)&g_SceneMgr.m_npc[0].m_path.normal[78] >> 24;\n  g_SceneMgr.m_npc[0].m_path.normal[78].y = 0.0;\n  g_SceneMgr.m_npc[0].m_path.normal[78].z = 0.0;\n  g_SceneMgr.m_npc[0].m_path.normal[79].x = 0.0;\n  return &g_SceneMgr.m_npc[0].m_path.normal[78];\n}\n"
+  "decompiled_c": "// Microsoft VisualC 2-14/net runtime\n// Microsoft VisualC 2-14/net runtime\ngbVec3D *unknown_libname_312()\n{\n  g_SceneMgr.m_slot4[776] = (unsigned int)&g_SceneMgr.m_slot4[776] >> 24;\n  *(_DWORD *)&g_SceneMgr.m_slot4[780] = 0;\n  *(_DWORD *)&g_SceneMgr.m_slot4[784] = 0;\n  *(_DWORD *)&g_SceneMgr.m_slot4[788] = 0;\n  return (gbVec3D *)&g_SceneMgr.m_slot4[776];\n}\n"
 }

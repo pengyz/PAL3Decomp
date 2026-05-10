@@ -170,7 +170,7 @@ int CCBRoleState::GetForce(int roleIdx)
 CCBRoleState::CCBRoleState()
 {
   __int8 *v1; // ebp
-  __int32 *p_speed; // esi
+  __int8 *v2; // esi
   int v3; // eax
   __int8 *v4; // ebx
   int v5; // eax
@@ -196,7 +196,7 @@ CCBRoleState::CCBRoleState()
   __int8 *v26; // [esp+14h] [ebp-4h]
 
   v1 = (__int8 *)&this->m_Role[0].byMagicUseTime[78];
-  p_speed = (__int32 *)&g_SceneMgr.m_npc[0].m_npcinfo.speed;
+  v2 = (__int8 *)&g_SceneMgr.m_slot0[288];
   v26 = (__int8 *)&this->m_Role[0].byMagicUseTime[78];
   do
   {
@@ -205,8 +205,7 @@ CCBRoleState::CCBRoleState()
     if ( (_BYTE)v3 )
     {
       memset(v4, 0, 0x1Cu);
-      if ( (int)p_speed < (int)&g_SceneMgr.m_npc[0].m_npcinfo.speed
-        || (int)p_speed >= (int)&g_SceneMgr.m_npc[0].m_path.normal[154].z )
+      if ( (int)v2 < (int)&g_SceneMgr.m_slot0[288] || (int)v2 >= (int)&g_SceneMgr._postSlots[288] )
       {
         v21 = 580;
         v25 = v1;
@@ -223,67 +222,67 @@ CCBRoleState::CCBRoleState()
       }
       else
       {
-        if ( *(p_speed - 2) )
+        if ( *((_DWORD *)v2 - 2) )
         {
           v5 = 0;
           v6 = v1;
           do
           {
             v6 += 4;
-            *((_DWORD *)v6 - 1) = *(unsigned __int8 *)(*p_speed + v5++ + 619) << 16;
+            *((_DWORD *)v6 - 1) = *(unsigned __int8 *)(*(_DWORD *)v2 + v5++ + 619) << 16;
           }
           while ( v5 < 5 );
         }
-        if ( *(p_speed - 17) )
+        if ( *((_DWORD *)v2 - 17) )
         {
           v7 = 0;
           v8 = v1;
           do
           {
             v8 += 4;
-            v9 = *(unsigned __int8 *)(*(p_speed - 15) + v7++ + 619) + *((_DWORD *)v8 - 1);
+            v9 = *(unsigned __int8 *)(*((_DWORD *)v2 - 15) + v7++ + 619) + *((_DWORD *)v8 - 1);
             *((_DWORD *)v8 - 1) = v9;
           }
           while ( v7 < 5 );
         }
-        if ( *(p_speed - 14) )
+        if ( *((_DWORD *)v2 - 14) )
         {
           v10 = 0;
           v11 = v1;
           do
           {
             v11 += 4;
-            v12 = *(unsigned __int8 *)(*(p_speed - 12) + v10++ + 619) + *((_DWORD *)v11 - 1);
+            v12 = *(unsigned __int8 *)(*((_DWORD *)v2 - 12) + v10++ + 619) + *((_DWORD *)v11 - 1);
             *((_DWORD *)v11 - 1) = v12;
           }
           while ( v10 < 5 );
         }
-        if ( *(p_speed - 11) )
+        if ( *((_DWORD *)v2 - 11) )
         {
           v13 = 0;
           v14 = v1;
           do
           {
             v14 += 4;
-            v15 = *(unsigned __int8 *)(v13 + *(p_speed - 9) + 619) + *((_DWORD *)v14 - 1);
+            v15 = *(unsigned __int8 *)(v13 + *((_DWORD *)v2 - 9) + 619) + *((_DWORD *)v14 - 1);
             ++v13;
             *((_DWORD *)v14 - 1) = v15;
           }
           while ( v13 < 5 );
         }
-        if ( *(p_speed - 8) )
+        if ( *((_DWORD *)v2 - 8) )
         {
           v16 = 0;
           v17 = v1;
           do
           {
             v17 += 4;
-            v18 = *(unsigned __int8 *)(*(p_speed - 6) + v16++ + 619) + *((_DWORD *)v17 - 1);
+            v18 = *(unsigned __int8 *)(*((_DWORD *)v2 - 6) + v16++ + 619) + *((_DWORD *)v17 - 1);
             *((_DWORD *)v17 - 1) = v18;
           }
           while ( v16 < 5 );
         }
-        v3 = *(p_speed - 5);
+        v3 = *((_DWORD *)v2 - 5);
         if ( v3 )
         {
           v3 = 0;
@@ -291,18 +290,18 @@ CCBRoleState::CCBRoleState()
           do
           {
             v19 += 4;
-            v20 = *(unsigned __int8 *)(*(p_speed - 3) + v3++ + 619) + *((_DWORD *)v19 - 1);
+            v20 = *(unsigned __int8 *)(*((_DWORD *)v2 - 3) + v3++ + 619) + *((_DWORD *)v19 - 1);
             *((_DWORD *)v19 - 1) = v20;
           }
           while ( v3 < 5 );
         }
       }
     }
-    p_speed += 352;
+    v2 += 1408;
     v1 += 892;
     v26 = v1;
   }
-  while ( (int)p_speed < (int)&g_SceneMgr.m_npc[1].m_path.normal[128].y );
+  while ( (int)v2 < (int)&g_SceneMgr._midRegion[600] );
   v3;
 }
 
@@ -310,125 +309,125 @@ CCBRoleState::CCBRoleState()
 char CCBRoleState::_CCBRoleState()
 {
   int v2; // ebp
-  float *p_z; // edi
+  __int8 *v3; // edi
   __int32 *p_fGPCostDec; // esi
   char result; // al
 
   v2 = 0;
-  p_z = (float *)&g_SceneMgr.m_npc[0].m_npcinfo.path.pt[12].z;
+  v3 = (__int8 *)&g_SceneMgr.m_slot0[240];
   p_fGPCostDec = (__int32 *)&this->m_Role[0].fGPCostDec;
   do
   {
     result = *((_BYTE *)p_fGPCostDec - 79);
     if ( result )
     {
-      if ( *((_DWORD *)p_z - 5) )
+      if ( *((_DWORD *)v3 - 5) )
       {
-        *(float *)p_fGPCostDec = (double)*(__int16 *)(*((_DWORD *)p_z - 3) + 768) + *(float *)p_fGPCostDec;
-        *((float *)p_fGPCostDec + 1) = (double)*(__int16 *)(*((_DWORD *)p_z - 3) + 770) + *((float *)p_fGPCostDec + 1);
-        *((float *)p_fGPCostDec + 3) = (double)*(__int16 *)(*((_DWORD *)p_z - 3) + 774) + *((float *)p_fGPCostDec + 3);
-        *((float *)p_fGPCostDec + 2) = (double)*(__int16 *)(*((_DWORD *)p_z - 3) + 772) + *((float *)p_fGPCostDec + 2);
-        *((float *)p_fGPCostDec + 4) = (double)*(__int16 *)(*((_DWORD *)p_z - 3) + 644) + *((float *)p_fGPCostDec + 4);
-        *((float *)p_fGPCostDec + 5) = (double)*(__int16 *)(*((_DWORD *)p_z - 3) + 646) + *((float *)p_fGPCostDec + 5);
-        *((float *)p_fGPCostDec + 6) = (double)*(__int16 *)(*((_DWORD *)p_z - 3) + 648) + *((float *)p_fGPCostDec + 6);
-        if ( *(_WORD *)(*((_DWORD *)p_z - 3) + 750) )
+        *(float *)p_fGPCostDec = (double)*(__int16 *)(*((_DWORD *)v3 - 3) + 768) + *(float *)p_fGPCostDec;
+        *((float *)p_fGPCostDec + 1) = (double)*(__int16 *)(*((_DWORD *)v3 - 3) + 770) + *((float *)p_fGPCostDec + 1);
+        *((float *)p_fGPCostDec + 3) = (double)*(__int16 *)(*((_DWORD *)v3 - 3) + 774) + *((float *)p_fGPCostDec + 3);
+        *((float *)p_fGPCostDec + 2) = (double)*(__int16 *)(*((_DWORD *)v3 - 3) + 772) + *((float *)p_fGPCostDec + 2);
+        *((float *)p_fGPCostDec + 4) = (double)*(__int16 *)(*((_DWORD *)v3 - 3) + 644) + *((float *)p_fGPCostDec + 4);
+        *((float *)p_fGPCostDec + 5) = (double)*(__int16 *)(*((_DWORD *)v3 - 3) + 646) + *((float *)p_fGPCostDec + 5);
+        *((float *)p_fGPCostDec + 6) = (double)*(__int16 *)(*((_DWORD *)v3 - 3) + 648) + *((float *)p_fGPCostDec + 6);
+        if ( *(_WORD *)(*((_DWORD *)v3 - 3) + 750) )
         {
           *((_BYTE *)p_fGPCostDec + 511) = 1;
           *((_WORD *)p_fGPCostDec + 309) = 0x7FFF;
         }
-        this->Reset(v2, (float *)*(unsigned __int8 *)(*((_DWORD *)p_z - 3) + 628));
+        this->Reset(v2, (float *)*(unsigned __int8 *)(*((_DWORD *)v3 - 3) + 628));
       }
-      if ( *((_DWORD *)p_z - 2) )
+      if ( *((_DWORD *)v3 - 2) )
       {
-        *(float *)p_fGPCostDec = (double)*(__int16 *)(*(_DWORD *)p_z + 768) + *(float *)p_fGPCostDec;
-        *((float *)p_fGPCostDec + 1) = (double)*(__int16 *)(*(_DWORD *)p_z + 770) + *((float *)p_fGPCostDec + 1);
-        *((float *)p_fGPCostDec + 3) = (double)*(__int16 *)(*(_DWORD *)p_z + 774) + *((float *)p_fGPCostDec + 3);
-        *((float *)p_fGPCostDec + 2) = (double)*(__int16 *)(*(_DWORD *)p_z + 772) + *((float *)p_fGPCostDec + 2);
-        *((float *)p_fGPCostDec + 4) = (double)*(__int16 *)(*(_DWORD *)p_z + 644) + *((float *)p_fGPCostDec + 4);
-        *((float *)p_fGPCostDec + 5) = (double)*(__int16 *)(*(_DWORD *)p_z + 646) + *((float *)p_fGPCostDec + 5);
-        *((float *)p_fGPCostDec + 6) = (double)*(__int16 *)(*(_DWORD *)p_z + 648) + *((float *)p_fGPCostDec + 6);
-        if ( *(_WORD *)(*(_DWORD *)p_z + 750) )
+        *(float *)p_fGPCostDec = (double)*(__int16 *)(*(_DWORD *)v3 + 768) + *(float *)p_fGPCostDec;
+        *((float *)p_fGPCostDec + 1) = (double)*(__int16 *)(*(_DWORD *)v3 + 770) + *((float *)p_fGPCostDec + 1);
+        *((float *)p_fGPCostDec + 3) = (double)*(__int16 *)(*(_DWORD *)v3 + 774) + *((float *)p_fGPCostDec + 3);
+        *((float *)p_fGPCostDec + 2) = (double)*(__int16 *)(*(_DWORD *)v3 + 772) + *((float *)p_fGPCostDec + 2);
+        *((float *)p_fGPCostDec + 4) = (double)*(__int16 *)(*(_DWORD *)v3 + 644) + *((float *)p_fGPCostDec + 4);
+        *((float *)p_fGPCostDec + 5) = (double)*(__int16 *)(*(_DWORD *)v3 + 646) + *((float *)p_fGPCostDec + 5);
+        *((float *)p_fGPCostDec + 6) = (double)*(__int16 *)(*(_DWORD *)v3 + 648) + *((float *)p_fGPCostDec + 6);
+        if ( *(_WORD *)(*(_DWORD *)v3 + 750) )
         {
           *((_BYTE *)p_fGPCostDec + 511) = 1;
           *((_WORD *)p_fGPCostDec + 309) = 0x7FFF;
         }
-        this->Reset(v2, (float *)*(unsigned __int8 *)(*(_DWORD *)p_z + 628));
+        this->Reset(v2, (float *)*(unsigned __int8 *)(*(_DWORD *)v3 + 628));
       }
-      if ( *((_DWORD *)p_z + 1) )
+      if ( *((_DWORD *)v3 + 1) )
       {
-        *(float *)p_fGPCostDec = (double)*(__int16 *)(*((_DWORD *)p_z + 3) + 768) + *(float *)p_fGPCostDec;
-        *((float *)p_fGPCostDec + 1) = (double)*(__int16 *)(*((_DWORD *)p_z + 3) + 770) + *((float *)p_fGPCostDec + 1);
-        *((float *)p_fGPCostDec + 3) = (double)*(__int16 *)(*((_DWORD *)p_z + 3) + 774) + *((float *)p_fGPCostDec + 3);
-        *((float *)p_fGPCostDec + 2) = (double)*(__int16 *)(*((_DWORD *)p_z + 3) + 772) + *((float *)p_fGPCostDec + 2);
-        *((float *)p_fGPCostDec + 4) = (double)*(__int16 *)(*((_DWORD *)p_z + 3) + 644) + *((float *)p_fGPCostDec + 4);
-        *((float *)p_fGPCostDec + 5) = (double)*(__int16 *)(*((_DWORD *)p_z + 3) + 646) + *((float *)p_fGPCostDec + 5);
-        *((float *)p_fGPCostDec + 6) = (double)*(__int16 *)(*((_DWORD *)p_z + 3) + 648) + *((float *)p_fGPCostDec + 6);
-        if ( *(_WORD *)(*((_DWORD *)p_z + 3) + 750) )
+        *(float *)p_fGPCostDec = (double)*(__int16 *)(*((_DWORD *)v3 + 3) + 768) + *(float *)p_fGPCostDec;
+        *((float *)p_fGPCostDec + 1) = (double)*(__int16 *)(*((_DWORD *)v3 + 3) + 770) + *((float *)p_fGPCostDec + 1);
+        *((float *)p_fGPCostDec + 3) = (double)*(__int16 *)(*((_DWORD *)v3 + 3) + 774) + *((float *)p_fGPCostDec + 3);
+        *((float *)p_fGPCostDec + 2) = (double)*(__int16 *)(*((_DWORD *)v3 + 3) + 772) + *((float *)p_fGPCostDec + 2);
+        *((float *)p_fGPCostDec + 4) = (double)*(__int16 *)(*((_DWORD *)v3 + 3) + 644) + *((float *)p_fGPCostDec + 4);
+        *((float *)p_fGPCostDec + 5) = (double)*(__int16 *)(*((_DWORD *)v3 + 3) + 646) + *((float *)p_fGPCostDec + 5);
+        *((float *)p_fGPCostDec + 6) = (double)*(__int16 *)(*((_DWORD *)v3 + 3) + 648) + *((float *)p_fGPCostDec + 6);
+        if ( *(_WORD *)(*((_DWORD *)v3 + 3) + 750) )
         {
           *((_BYTE *)p_fGPCostDec + 511) = 1;
           *((_WORD *)p_fGPCostDec + 309) = 0x7FFF;
         }
-        this->Reset(v2, (float *)*(unsigned __int8 *)(*((_DWORD *)p_z + 3) + 628));
+        this->Reset(v2, (float *)*(unsigned __int8 *)(*((_DWORD *)v3 + 3) + 628));
       }
-      if ( *((_DWORD *)p_z + 4) )
+      if ( *((_DWORD *)v3 + 4) )
       {
-        *(float *)p_fGPCostDec = (double)*(__int16 *)(*((_DWORD *)p_z + 6) + 768) + *(float *)p_fGPCostDec;
-        *((float *)p_fGPCostDec + 1) = (double)*(__int16 *)(*((_DWORD *)p_z + 6) + 770) + *((float *)p_fGPCostDec + 1);
-        *((float *)p_fGPCostDec + 3) = (double)*(__int16 *)(*((_DWORD *)p_z + 6) + 774) + *((float *)p_fGPCostDec + 3);
-        *((float *)p_fGPCostDec + 2) = (double)*(__int16 *)(*((_DWORD *)p_z + 6) + 772) + *((float *)p_fGPCostDec + 2);
-        *((float *)p_fGPCostDec + 4) = (double)*(__int16 *)(*((_DWORD *)p_z + 6) + 644) + *((float *)p_fGPCostDec + 4);
-        *((float *)p_fGPCostDec + 5) = (double)*(__int16 *)(*((_DWORD *)p_z + 6) + 646) + *((float *)p_fGPCostDec + 5);
-        *((float *)p_fGPCostDec + 6) = (double)*(__int16 *)(*((_DWORD *)p_z + 6) + 648) + *((float *)p_fGPCostDec + 6);
-        if ( *(_WORD *)(*((_DWORD *)p_z + 6) + 750) )
+        *(float *)p_fGPCostDec = (double)*(__int16 *)(*((_DWORD *)v3 + 6) + 768) + *(float *)p_fGPCostDec;
+        *((float *)p_fGPCostDec + 1) = (double)*(__int16 *)(*((_DWORD *)v3 + 6) + 770) + *((float *)p_fGPCostDec + 1);
+        *((float *)p_fGPCostDec + 3) = (double)*(__int16 *)(*((_DWORD *)v3 + 6) + 774) + *((float *)p_fGPCostDec + 3);
+        *((float *)p_fGPCostDec + 2) = (double)*(__int16 *)(*((_DWORD *)v3 + 6) + 772) + *((float *)p_fGPCostDec + 2);
+        *((float *)p_fGPCostDec + 4) = (double)*(__int16 *)(*((_DWORD *)v3 + 6) + 644) + *((float *)p_fGPCostDec + 4);
+        *((float *)p_fGPCostDec + 5) = (double)*(__int16 *)(*((_DWORD *)v3 + 6) + 646) + *((float *)p_fGPCostDec + 5);
+        *((float *)p_fGPCostDec + 6) = (double)*(__int16 *)(*((_DWORD *)v3 + 6) + 648) + *((float *)p_fGPCostDec + 6);
+        if ( *(_WORD *)(*((_DWORD *)v3 + 6) + 750) )
         {
           *((_BYTE *)p_fGPCostDec + 511) = 1;
           *((_WORD *)p_fGPCostDec + 309) = 0x7FFF;
         }
-        this->Reset(v2, (float *)*(unsigned __int8 *)(*((_DWORD *)p_z + 6) + 628));
+        this->Reset(v2, (float *)*(unsigned __int8 *)(*((_DWORD *)v3 + 6) + 628));
       }
-      if ( *((_DWORD *)p_z + 7) )
+      if ( *((_DWORD *)v3 + 7) )
       {
-        *(float *)p_fGPCostDec = (double)*(__int16 *)(*((_DWORD *)p_z + 9) + 768) + *(float *)p_fGPCostDec;
-        *((float *)p_fGPCostDec + 1) = (double)*(__int16 *)(*((_DWORD *)p_z + 9) + 770) + *((float *)p_fGPCostDec + 1);
-        *((float *)p_fGPCostDec + 3) = (double)*(__int16 *)(*((_DWORD *)p_z + 9) + 774) + *((float *)p_fGPCostDec + 3);
-        *((float *)p_fGPCostDec + 2) = (double)*(__int16 *)(*((_DWORD *)p_z + 9) + 772) + *((float *)p_fGPCostDec + 2);
-        *((float *)p_fGPCostDec + 4) = (double)*(__int16 *)(*((_DWORD *)p_z + 9) + 644) + *((float *)p_fGPCostDec + 4);
-        *((float *)p_fGPCostDec + 5) = (double)*(__int16 *)(*((_DWORD *)p_z + 9) + 646) + *((float *)p_fGPCostDec + 5);
-        *((float *)p_fGPCostDec + 6) = (double)*(__int16 *)(*((_DWORD *)p_z + 9) + 648) + *((float *)p_fGPCostDec + 6);
-        if ( *(_WORD *)(*((_DWORD *)p_z + 9) + 750) )
+        *(float *)p_fGPCostDec = (double)*(__int16 *)(*((_DWORD *)v3 + 9) + 768) + *(float *)p_fGPCostDec;
+        *((float *)p_fGPCostDec + 1) = (double)*(__int16 *)(*((_DWORD *)v3 + 9) + 770) + *((float *)p_fGPCostDec + 1);
+        *((float *)p_fGPCostDec + 3) = (double)*(__int16 *)(*((_DWORD *)v3 + 9) + 774) + *((float *)p_fGPCostDec + 3);
+        *((float *)p_fGPCostDec + 2) = (double)*(__int16 *)(*((_DWORD *)v3 + 9) + 772) + *((float *)p_fGPCostDec + 2);
+        *((float *)p_fGPCostDec + 4) = (double)*(__int16 *)(*((_DWORD *)v3 + 9) + 644) + *((float *)p_fGPCostDec + 4);
+        *((float *)p_fGPCostDec + 5) = (double)*(__int16 *)(*((_DWORD *)v3 + 9) + 646) + *((float *)p_fGPCostDec + 5);
+        *((float *)p_fGPCostDec + 6) = (double)*(__int16 *)(*((_DWORD *)v3 + 9) + 648) + *((float *)p_fGPCostDec + 6);
+        if ( *(_WORD *)(*((_DWORD *)v3 + 9) + 750) )
         {
           *((_BYTE *)p_fGPCostDec + 511) = 1;
           *((_WORD *)p_fGPCostDec + 309) = 0x7FFF;
         }
-        this->Reset(v2, (float *)*(unsigned __int8 *)(*((_DWORD *)p_z + 9) + 628));
+        this->Reset(v2, (float *)*(unsigned __int8 *)(*((_DWORD *)v3 + 9) + 628));
       }
-      if ( *((_DWORD *)p_z - 5) == 80015 )
+      if ( *((_DWORD *)v3 - 5) == 80015 )
       {
-        if ( *((_DWORD *)p_z - 2) == 84018
-          && *((_DWORD *)p_z + 1) == 83012
-          && *((_DWORD *)p_z + 4) == 8153
-          && *((_DWORD *)p_z + 7) == 8154 )
+        if ( *((_DWORD *)v3 - 2) == 84018
+          && *((_DWORD *)v3 + 1) == 83012
+          && *((_DWORD *)v3 + 4) == 8153
+          && *((_DWORD *)v3 + 7) == 8154 )
         {
           *((_BYTE *)p_fGPCostDec + 44) = 1;
         }
-        if ( *((_DWORD *)p_z - 5) == 80015
-          && *((_DWORD *)p_z - 2) == 84018
-          && *((_DWORD *)p_z + 1) == 83012
-          && *((_DWORD *)p_z + 4) == 8154
-          && *((_DWORD *)p_z + 7) == 8153 )
+        if ( *((_DWORD *)v3 - 5) == 80015
+          && *((_DWORD *)v3 - 2) == 84018
+          && *((_DWORD *)v3 + 1) == 83012
+          && *((_DWORD *)v3 + 4) == 8154
+          && *((_DWORD *)v3 + 7) == 8153 )
         {
           *((_BYTE *)p_fGPCostDec + 44) = 1;
         }
       }
       result = -82;
-      if ( *((_DWORD *)p_z + 4) == 8110 || *((_DWORD *)p_z + 7) == 8110 )
+      if ( *((_DWORD *)v3 + 4) == 8110 || *((_DWORD *)v3 + 7) == 8110 )
         *((_BYTE *)p_fGPCostDec + 45) = 1;
     }
-    p_z += 352;
+    v3 += 1408;
     ++v2;
     p_fGPCostDec += 223;
   }
-  while ( (int)p_z < (int)&g_SceneMgr.m_npc[0].m_path.normal[150].z );
+  while ( (int)v3 < (int)&g_SceneMgr._postSlots[240] );
   return result;
 }
 
@@ -472,7 +471,7 @@ LABEL_4:
 // 0x004EE540
 char CCBRoleState::Create()
 {
-  __int32 *p_speed; // ebp
+  __int8 *v1; // ebp
   gbGeomNode **v2; // edi
   int v3; // eax
   gbGeomNode *v4; // eax
@@ -489,23 +488,23 @@ char CCBRoleState::Create()
   char v16[1024]; // [esp+E14h] [ebp-40Ch] BYREF
   int v17; // [esp+121Ch] [ebp-4h]
 
-  p_speed = (__int32 *)&g_SceneMgr.m_npc[0].m_npcinfo.speed;
+  v1 = (__int8 *)&g_SceneMgr.m_slot0[288];
   v2 = (gbGeomNode **)(this + 350);
   do
   {
     LOBYTE(v3) = *((_BYTE *)v2 - 823);
     if ( (_BYTE)v3 )
     {
-      v3 = *(p_speed - 2);
+      v3 = *((_DWORD *)v1 - 2);
       if ( v3 )
       {
-        sprintf(Buffer, "weapon\\%s\\%s.pol", (const char *)(*p_speed + 36), (const char *)(*p_speed + 36));
+        sprintf(Buffer, "weapon\\%s\\%s.pol", (const char *)(*(_DWORD *)v1 + 36), (const char *)(*(_DWORD *)v1 + 36));
         sprintf(
           v12,
           "weapon\\%s\\%s%s.tga",
-          (const char *)(*p_speed + 36),
-          (const char *)(*p_speed + 36),
-          (const char *)(*p_speed + 66));
+          (const char *)(*(_DWORD *)v1 + 36),
+          (const char *)(*(_DWORD *)v1 + 36),
+          (const char *)(*(_DWORD *)v1 + 66));
         v4 = (gbGeomNode *)((operator *)0x118u)->new();
         v5 = v4;
         v17 = 0;
@@ -558,10 +557,10 @@ char CCBRoleState::Create()
         LODWORD(v2[3]->OffMat.tw) = 1;
       }
     }
-    p_speed += 352;
+    v1 += 1408;
     v2 += 223;
   }
-  while ( (int)p_speed < (int)&g_SceneMgr.m_npc[0].m_path.normal[154].z );
+  while ( (int)v1 < (int)&g_SceneMgr._postSlots[288] );
   return v3;
 }
 
@@ -783,13 +782,13 @@ int CCBRoleState::SetRoleHP(int roleIdx, int value)
         break;
       case 16:
         v7 = 6113;
-        result = (int)CCBStageRole_GetByIndex(&g_SceneMgr.m_npc[0].m_path.normal[79].y, &v7);
+        result = (int)CCBStageRole_GetByIndex(&g_SceneMgr.m_slot4[792], &v7);
         if ( result )
         {
           v9 = *(_DWORD *)(result + 8);
           v8 = 1;
           v7 = 6113;
-          CCBStageRole_PassCmd(&g_SceneMgr.m_npc[0].m_path.normal[79].y, &v7);
+          CCBStageRole_PassCmd(&g_SceneMgr.m_slot4[792], &v7);
           result = ((CCBStage *)this->m_pStage)->GetRoleIndex(8, 0, 1);
           v6 = result;
           if ( result != -1 )
@@ -2351,19 +2350,18 @@ int CCBRoleState::ProcessSkillEffect(int roleIdx)
   v15[2] = roleIdx;
   v15[3] = -1;
   LOWORD(v15[4]) = 0;
-  v14 = sub_40CCD0((int *)&g_SceneMgr.m_npc[0].m_path.normal[79].y);
+  v14 = sub_40CCD0((int *)&g_SceneMgr.m_slot4[792]);
   if ( v14 <= 0 )
     return 0;
   while ( 1 )
   {
-    if ( *((int *)((CCBAI *)&g_SceneMgr.m_npc[0].m_path.normal[79].y)->GetTargetRole(pOut) + 1) > 0 )
+    if ( *((int *)((CCBAI *)&g_SceneMgr.m_slot4[792])->GetTargetRole(pOut) + 1) > 0 )
     {
-      v6 = *(_DWORD *)((CCBAI *)&g_SceneMgr.m_npc[0].m_path.normal[79].y)->GetTargetRole(v19);
+      v6 = *(_DWORD *)((CCBAI *)&g_SceneMgr.m_slot4[792])->GetTargetRole(v19);
       v15[1] = v6;
       if ( v2->GetRoleAI(v15) )
       {
-        v7 = *(_BYTE *)(*((_DWORD *)((CCBAI *)&g_SceneMgr.m_npc[0].m_path.normal[79].y)->GetTargetRole(v16) + 2)
-                      + 629);
+        v7 = *(_BYTE *)(*((_DWORD *)((CCBAI *)&g_SceneMgr.m_slot4[792])->GetTargetRole(v16) + 2) + 629);
         if ( v20 )
         {
           if ( v7 == 1 || v7 == 3 )
@@ -2400,7 +2398,7 @@ LABEL_21:
   if ( v13 == -1 )
     return 0;
   else
-    return *(_DWORD *)((CCBAI *)&g_SceneMgr.m_npc[0].m_path.normal[79].y)->GetTargetRole(v16);
+    return *(_DWORD *)((CCBAI *)&g_SceneMgr.m_slot4[792])->GetTargetRole(v16);
 }
 
 // 0x004F5B70
@@ -2431,19 +2429,18 @@ int CCBRoleState::ProcessItemEffect(int roleIdx)
   v14[2] = roleIdx;
   v14[3] = -1;
   LOWORD(v14[4]) = 0;
-  v10 = sub_40CCD0((int *)&g_SceneMgr.m_npc[0].m_path.normal[79].y);
+  v10 = sub_40CCD0((int *)&g_SceneMgr.m_slot4[792]);
   if ( v10 <= 0 )
     return 0;
   for ( i = 0; i < v10; ++i )
   {
-    if ( *((int *)((CCBAI *)&g_SceneMgr.m_npc[0].m_path.normal[79].y)->GetTargetRole(pOut) + 1) > 0 )
+    if ( *((int *)((CCBAI *)&g_SceneMgr.m_slot4[792])->GetTargetRole(pOut) + 1) > 0 )
     {
-      v6 = *(_DWORD *)((CCBAI *)&g_SceneMgr.m_npc[0].m_path.normal[79].y)->GetTargetRole(v12);
+      v6 = *(_DWORD *)((CCBAI *)&g_SceneMgr.m_slot4[792])->GetTargetRole(v12);
       v14[1] = v6;
       if ( this->GetRoleAI(v14) )
       {
-        v7 = *(_BYTE *)(*((_DWORD *)((CCBAI *)&g_SceneMgr.m_npc[0].m_path.normal[79].y)->GetTargetRole(v13) + 2)
-                      + 629);
+        v7 = *(_BYTE *)(*((_DWORD *)((CCBAI *)&g_SceneMgr.m_slot4[792])->GetTargetRole(v13) + 2) + 629);
         if ( v15 )
         {
           if ( v7 == 1 || v7 == 3 )
@@ -2468,7 +2465,7 @@ int CCBRoleState::ProcessItemEffect(int roleIdx)
   if ( v9 == -1 )
     return 0;
   else
-    return *(_DWORD *)((CCBAI *)&g_SceneMgr.m_npc[0].m_path.normal[79].y)->GetTargetRole(v13);
+    return *(_DWORD *)((CCBAI *)&g_SceneMgr.m_slot4[792])->GetTargetRole(v13);
 }
 
 // 0x004F7500

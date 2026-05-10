@@ -105,7 +105,7 @@ int PalScript::LoadScript(int pathAddr)
     LOBYTE(v25) = 3;
     sub_430670((int)v22, (int)&v16);
     LOBYTE(v25) = 4;
-    sub_4309D0((int)v20, v23, v21);
+    sub_4309D0((int)v20, v23, (char *)v21);
     LOBYTE(v25) = 5;
     v22->string::_Tidy(1);
     LOBYTE(v25) = 2;

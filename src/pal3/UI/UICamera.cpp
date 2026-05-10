@@ -10,6 +10,7 @@ int sub_429A90(...);
 
 // Unnamed globals (extern)
 extern int dword_D8BBEC;
+extern int unk_C300C8;
 
 // 0x00420CD0
 int UICamera::GetViewMode(int a1)
@@ -19,7 +20,7 @@ int UICamera::GetViewMode(int a1)
   int v3; // ebx
   int v4; // edi
   int v5; // eax
-  int v6; // ecx
+  __int32 m_pCollisionNode; // ecx
   int v7; // esi
   float v8; // eax
   float v9; // eax
@@ -42,29 +43,29 @@ int UICamera::GetViewMode(int a1)
   v15 = 3.4028235e38;
   if ( v5 <= 0 )
     return 0;
-  v6 = *(_DWORD *)&g_SceneMgr.m_npc[6].m_actor.m_szTexture[132];
+  m_pCollisionNode = g_SceneMgr.m_pCollisionNode;
   v7 = v2 + 272;
   do
   {
     if ( *(_BYTE *)(v7 + 125)
       && (*(_BYTE *)(v7 + 160) & 2) != 0
       && *(_BYTE *)(v7 + 126)
-      && *(unsigned __int8 *)(v7 + 198) == *(_DWORD *)(v6 + 628) )
+      && *(unsigned __int8 *)(v7 + 198) == *(_DWORD *)(m_pCollisionNode + 628) )
     {
       v8 = *(float *)v7;
       v16 = *(float *)(v7 - 8);
       v18 = v8;
       v17 = 0.0;
-      if ( sub_41A070((float *)v6, &v16, 1) )
+      if ( sub_41A070((float *)m_pCollisionNode, &v16, 1) )
       {
         v9 = *(float *)(v7 - 8);
         v18 = *(float *)v7;
-        v6 = *(_DWORD *)&g_SceneMgr.m_npc[6].m_actor.m_szTexture[132];
+        m_pCollisionNode = g_SceneMgr.m_pCollisionNode;
         v16 = v9;
         v17 = 0.0;
-        v16 = v9 - *(float *)(*(_DWORD *)&g_SceneMgr.m_npc[6].m_actor.m_szTexture[132] + 4);
-        v17 = -*(float *)(*(_DWORD *)&g_SceneMgr.m_npc[6].m_actor.m_szTexture[132] + 8);
-        v10 = v18 - *(float *)(*(_DWORD *)&g_SceneMgr.m_npc[6].m_actor.m_szTexture[132] + 12);
+        v16 = v9 - *(float *)(g_SceneMgr.m_pCollisionNode + 4);
+        v17 = -*(float *)(g_SceneMgr.m_pCollisionNode + 8);
+        v10 = v18 - *(float *)(g_SceneMgr.m_pCollisionNode + 12);
         v18 = v10;
         v11 = v10 * v18 + v16 * v16 + v17 * v17;
         v14 = v11;
@@ -76,7 +77,7 @@ int UICamera::GetViewMode(int a1)
       }
       else
       {
-        v6 = *(_DWORD *)&g_SceneMgr.m_npc[6].m_actor.m_szTexture[132];
+        m_pCollisionNode = g_SceneMgr.m_pCollisionNode;
       }
     }
     ++v4;
@@ -151,7 +152,7 @@ int UICamera::GetState()
   double v5; // st7
   double v6; // st7
   int v7; // edi
-  float *p_y; // esi
+  __int8 *v8; // esi
   double v9; // st7
   double v10; // st7
   double v11; // st7
@@ -168,7 +169,7 @@ int UICamera::GetState()
   v13 = 3.4028235e38;
   v1 = 0;
   v2 = 493156 * (dword_D8BBEC == 1) + 12722152;
-  if ( *((int *)&g_SceneMgr.m_npc[20].m_path.points[184].z + 123289 * (dword_D8BBEC == 1)) > 0 )
+  if ( *((int *)&unk_C300C8 + 123289 * (dword_D8BBEC == 1)) > 0 )
   {
     v3 = 493156 * (dword_D8BBEC == 1) + 12779892;
     do
@@ -177,15 +178,15 @@ int UICamera::GetState()
       {
         if ( *(_DWORD *)(v3 - 24) )
         {
-          if ( *(_DWORD *)(*(_DWORD *)&g_SceneMgr.m_npc[6].m_actor.m_szTexture[132] + 628) == *(_DWORD *)(v3 + 460) )
+          if ( *(_DWORD *)(g_SceneMgr.m_pCollisionNode + 628) == *(_DWORD *)(v3 + 460) )
           {
-            if ( sub_419EF0(*(int *)&g_SceneMgr.m_npc[6].m_actor.m_szTexture[132], (float *)(v3 - 164)) )
+            if ( sub_419EF0(g_SceneMgr.m_pCollisionNode, (float *)(v3 - 164)) )
             {
-              v14 = *(float *)(*(_DWORD *)&g_SceneMgr.m_npc[6].m_actor.m_szTexture[132] + 160) - *(float *)(v3 - 8);
-              v4 = *(float *)(*(_DWORD *)&g_SceneMgr.m_npc[6].m_actor.m_szTexture[132] + 164) - *(float *)(v3 - 4);
+              v14 = *(float *)(g_SceneMgr.m_pCollisionNode + 160) - *(float *)(v3 - 8);
+              v4 = *(float *)(g_SceneMgr.m_pCollisionNode + 164) - *(float *)(v3 - 4);
               v20.x = v14;
               v16 = v4;
-              v5 = *(float *)(*(_DWORD *)&g_SceneMgr.m_npc[6].m_actor.m_szTexture[132] + 168) - *(float *)v3;
+              v5 = *(float *)(g_SceneMgr.m_pCollisionNode + 168) - *(float *)v3;
               v20.y = v16;
               v18 = v5;
               v20.z = v18;
@@ -205,20 +206,20 @@ int UICamera::GetState()
     while ( v1 < *(_DWORD *)(v2 + 57568) );
   }
   v7 = 0;
-  p_y = (float *)&g_SceneMgr.m_npc[0].m_path.normal[97].y;
+  v8 = (__int8 *)&g_SceneMgr.m_slot4[1008];
   do
   {
-    if ( v7 != LODWORD(g_SceneMgr.m_npc[5].m_path.normal[131].x) )
+    if ( v7 != g_SceneMgr.m_nCameraState )
     {
-      if ( *((_DWORD *)p_y + 116) )
+      if ( *((_DWORD *)v8 + 116) )
       {
-        if ( sub_41A070(*(float **)&g_SceneMgr.m_npc[6].m_actor.m_szTexture[132], p_y - 41, 1) )
+        if ( sub_41A070((float *)g_SceneMgr.m_pCollisionNode, (float *)v8 - 41, 1) )
         {
-          v15 = *(float *)(*(_DWORD *)&g_SceneMgr.m_npc[6].m_actor.m_szTexture[132] + 160) - *(p_y - 2);
-          v9 = *(float *)(*(_DWORD *)&g_SceneMgr.m_npc[6].m_actor.m_szTexture[132] + 164) - *(p_y - 1);
+          v15 = *(float *)(g_SceneMgr.m_pCollisionNode + 160) - *((float *)v8 - 2);
+          v9 = *(float *)(g_SceneMgr.m_pCollisionNode + 164) - *((float *)v8 - 1);
           v20.x = v15;
           v17 = v9;
-          v10 = *(float *)(*(_DWORD *)&g_SceneMgr.m_npc[6].m_actor.m_szTexture[132] + 168) - *p_y;
+          v10 = *(float *)(g_SceneMgr.m_pCollisionNode + 168) - *(float *)v8;
           v20.y = v17;
           v19 = v10;
           v20.z = v19;
@@ -226,15 +227,15 @@ int UICamera::GetState()
           if ( v11 < v13 )
           {
             v13 = v11;
-            v0 = (int)(p_y - 42);
+            v0 = (int)(v8 - 168);
           }
         }
       }
     }
-    p_y += 2176;
+    v8 += 8704;
     ++v7;
   }
-  while ( (int)p_y < (int)&g_SceneMgr.m_npc[5].m_path.normal[72].y );
+  while ( (int)v8 < (int)&g_SceneMgr._gap_c5e0[152] );
   if ( v0 && 12.0 * 4.5 < v13 - *(float *)(v0 + 16) )
     return 0;
   else
@@ -253,7 +254,7 @@ int UICamera::GetTarget(float *pMat)
   double v7; // st3
   double v8; // st4
   int v9; // edi
-  float *p_y; // esi
+  __int8 *v10; // esi
   double v11; // st6
   double v12; // st5
   double v13; // st3
@@ -266,7 +267,7 @@ int UICamera::GetTarget(float *pMat)
   v1 = 0;
   v2 = 1;
   v3 = 493156 * (dword_D8BBEC == 1) + 12722152;
-  if ( *((int *)&g_SceneMgr.m_npc[20].m_path.points[184].z + 123289 * (dword_D8BBEC == 1)) > 0 )
+  if ( *((int *)&unk_C300C8 + 123289 * (dword_D8BBEC == 1)) > 0 )
   {
     v4 = 493156 * (dword_D8BBEC == 1) + 12779892;
     do
@@ -296,18 +297,18 @@ int UICamera::GetTarget(float *pMat)
     while ( v1 < *(_DWORD *)(v3 + 57568) );
   }
   v9 = 0;
-  p_y = (float *)&g_SceneMgr.m_npc[0].m_path.normal[97].y;
+  v10 = (__int8 *)&g_SceneMgr.m_slot4[1008];
   do
   {
-    if ( v9 != LODWORD(g_SceneMgr.m_npc[5].m_path.normal[131].x) )
+    if ( v9 != g_SceneMgr.m_nCameraState )
     {
-      if ( *((_DWORD *)p_y + 116) )
+      if ( *((_DWORD *)v10 + 116) )
       {
-        if ( sub_4180B0((int)(p_y - 42), (gbRay *)pMat) )
+        if ( sub_4180B0((int)(v10 - 168), (gbRay *)pMat) )
         {
-          v11 = *(float *)(g_Input.KeyInfo[177].CountMode + 496) - *(p_y - 1);
-          v12 = *(float *)(g_Input.KeyInfo[177].CountMode + 500) - *p_y;
-          v13 = *(float *)(g_Input.KeyInfo[177].CountMode + 492) - *(p_y - 2);
+          v11 = *(float *)(g_Input.KeyInfo[177].CountMode + 496) - *((float *)v10 - 1);
+          v12 = *(float *)(g_Input.KeyInfo[177].CountMode + 500) - *(float *)v10;
+          v13 = *(float *)(g_Input.KeyInfo[177].CountMode + 492) - *((float *)v10 - 2);
           v14 = v12 * v12 + v11 * v11 + v13 * v13;
           if ( v14 < v16 )
           {
@@ -318,13 +319,13 @@ int UICamera::GetTarget(float *pMat)
         }
       }
     }
-    p_y += 2176;
+    v10 += 8704;
     ++v9;
   }
-  while ( (int)p_y < (int)&g_SceneMgr.m_npc[5].m_path.normal[72].y );
+  while ( (int)v10 < (int)&g_SceneMgr._gap_c5e0[152] );
   if ( v17 < 0 )
     return 0;
   if ( v2 )
     return 8704 * v17 + v3 + 57572;
-  return (int)(&g_SceneMgr.m_npc[0].m_path.normal[83].y + 2176 * v17);
+  return (int)&g_SceneMgr.m_slot4[8704 * v17 + 840];
 }

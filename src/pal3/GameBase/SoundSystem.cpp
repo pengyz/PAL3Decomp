@@ -2,6 +2,9 @@
 #include "pal3/globals.h"
 #include "pal3/gen/SoundSystem.h"
 
+// Unnamed globals (extern)
+extern int dword_C116F4;
+
 // 0x0041ED00
 int SoundSystem::Init()
 {
@@ -16,10 +19,10 @@ int SoundSystem::Init()
   char Buffer[256]; // [esp+14h] [ebp-10Ch] BYREF
   int v9; // [esp+11Ch] [ebp-4h]
 
-  memset(g_SceneMgr.m_npc[6].m_npcinfo.mid, 0, 0x60u);
-  memset(&g_SceneMgr.m_npc[6].m_npcinfo.name[16], 0, 0x60u);
+  memset(&g_SceneMgr._gap_cd10[800], 0, 0x60u);
+  memset(&g_SceneMgr._gap_cd10[704], 0, 0x60u);
   v0 = 97;
-  *(_DWORD *)&g_SceneMgr.m_npc[6].m_actor.m_szTexture[140] = 0;
+  dword_C116F4 = 0;
   v1 = 0;
   do
   {
@@ -31,9 +34,9 @@ int SoundSystem::Init()
     else
       v3 = 0;
     v9 = -1;
-    g_SceneMgr.m_npc[6].m_npcinfo.mid[v1] = (__int32)v3;
+    *(_DWORD *)&g_SceneMgr._gap_cd10[v1 + 800] = v3;
     v3->LoadFromFile(Buffer);
-    *(_DWORD *)(g_SceneMgr.m_npc[6].m_npcinfo.mid[v1] + 8) = 0;
+    *(_DWORD *)(*(_DWORD *)&g_SceneMgr._gap_cd10[v1 + 800] + 8) = 0;
     v4 = (gbSound2DNode *)((operator *)0x10u)->new();
     v9 = 1;
     if ( v4 )
@@ -41,12 +44,12 @@ int SoundSystem::Init()
     else
       v5 = 0;
     v9 = -1;
-    *(_DWORD *)&g_SceneMgr.m_npc[6].m_npcinfo.name[v1 * 4 + 16] = v5;
+    *(_DWORD *)&g_SceneMgr._gap_cd10[v1 + 704] = v5;
     sprintf(Buffer, "snd\\we022%c.wav", v0);
-    result = ((gbSound2DNode *)*(gbSound2DNode **)&g_SceneMgr.m_npc[6].m_npcinfo.name[v1 * 4 + 16])->LoadFromFile(Buffer);
-    v7 = *(_DWORD *)&g_SceneMgr.m_npc[6].m_npcinfo.name[v1 * 4 + 16];
+    result = ((gbSound2DNode *)*(gbSound2DNode **)&g_SceneMgr._gap_cd10[v1 + 704])->LoadFromFile(Buffer);
+    v7 = *(_DWORD *)&g_SceneMgr._gap_cd10[v1 + 704];
     ++v0;
-    ++v1;
+    v1 += 4;
     *(_DWORD *)(v7 + 8) = 0;
   }
   while ( v0 - 97 < 4 );

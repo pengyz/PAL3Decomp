@@ -48,7 +48,7 @@ int UIItem::Refresh()
 UIItem::UIItem()
 {
   *(_DWORD *)this = &off_56E190;
-  this->UpdateChildren();
+  ((UIWnd *)this)->UpdateChildren();
   ((UIWnd *)(this + 976))->Destroy2();
   ((UIWnd *)(this + 632))->Destroy2();
   ((UIWnd *)(this + 456))->_UIFrameWnd();

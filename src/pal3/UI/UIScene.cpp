@@ -231,7 +231,7 @@ void UIScene::Destroy2(UIWnd *this)
 {
   *(_DWORD *)this->_data = &off_56AC70;
   ((UIScene *)this)->OnMessage2();
-  ((j_UIWnd *)(char *)this + 116)->MoveWindow();
+  ((j_UIWnd *)(UIWnd **)this + 29)->MoveWindow();
   this->_UIWnd();
 }
 

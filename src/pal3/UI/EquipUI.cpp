@@ -138,19 +138,19 @@ void EquipUI::Init()
   int v9; // eax
   int v10; // edx
   char *v11; // edi
-  int v12; // eax
+  LPVOID v12; // eax
   int v13; // eax
-  int v14; // eax
+  LPVOID v14; // eax
   int v15; // eax
-  int v16; // eax
+  LPVOID v16; // eax
   int v17; // eax
-  int v18; // eax
+  LPVOID v18; // eax
   int v19; // eax
-  int v20; // eax
+  LPVOID v20; // eax
   int v21; // eax
-  int v22; // eax
+  LPVOID v22; // eax
   int v23; // eax
-  int v24; // eax
+  LPVOID v24; // eax
   int v25; // eax
   int v26; // ecx
   int v27; // [esp+3Ch] [ebp-64h]
@@ -290,64 +290,64 @@ void EquipUI::Init()
   *((_BYTE *)this + 176089) = 0;
   *((_BYTE *)this + 176088) = byte_5CEFA9;
   v12 = ((operator *)0x29CECu)->new();
-  id = v12;
+  id = (int)v12;
   v56 = 0;
   if ( v12 )
-    v13 = v12->ctor_2ED0();
+    v13 = ((int)v12)->ctor_2ED0();
   else
     v13 = 0;
   v56 = -1;
   *((_DWORD *)this + 44014) = v13;
   v14 = ((operator *)0x56630u)->new();
-  id = v14;
+  id = (int)v14;
   v56 = 1;
   if ( v14 )
-    v15 = v14->ctor_67F0();
+    v15 = ((int)v14)->ctor_67F0();
   else
     v15 = 0;
   v56 = -1;
   *((_DWORD *)this + 44015) = v15;
   v16 = ((operator *)0x35B50u)->new();
-  id = v16;
+  id = (int)v16;
   v56 = 2;
   if ( v16 )
-    v17 = v16->ctor_9F0();
+    v17 = ((int)v16)->ctor_9F0();
   else
     v17 = 0;
   v56 = -1;
   *((_DWORD *)this + 44016) = v17;
   v18 = ((operator *)0x41014u)->new();
-  id = v18;
+  id = (int)v18;
   v56 = 3;
   if ( v18 )
-    v19 = v18->ctor_8820();
+    v19 = ((int)v18)->ctor_8820();
   else
     v19 = 0;
   v56 = -1;
   *((_DWORD *)this + 44017) = v19;
   v20 = ((operator *)0x62588u)->new();
-  id = v20;
+  id = (int)v20;
   v56 = 4;
   if ( v20 )
-    v21 = v20->ctor_6F10();
+    v21 = ((int)v20)->ctor_6F10();
   else
     v21 = 0;
   v56 = -1;
   *((_DWORD *)this + 44018) = v21;
   v22 = ((operator *)0x27BD4u)->new();
-  id = v22;
+  id = (int)v22;
   v56 = 5;
   if ( v22 )
-    v23 = v22->ctor_E5C0();
+    v23 = ((int)v22)->ctor_E5C0();
   else
     v23 = 0;
   v56 = -1;
   *((_DWORD *)this + 44019) = v23;
   v24 = ((operator *)0x46EB8u)->new();
-  id = v24;
+  id = (int)v24;
   v56 = 6;
   if ( v24 )
-    v25 = v24->ctor_1D0();
+    v25 = ((int)v24)->ctor_1D0();
   else
     v25 = 0;
   v26 = *((_DWORD *)this + 44014);

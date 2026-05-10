@@ -9,6 +9,7 @@
 #include "pal3/gen/PtrArray.h"
 #include "pal3/gen/UICursor.h"
 #include "pal3/gen/UIQuadManager.h"
+#include "pal3/gen/UIRenderObj.h"
 
 // Forward declarations for unnamed functions
 int UISceneUpdate(...);

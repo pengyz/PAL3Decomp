@@ -36,8 +36,8 @@ char TextureLib::LoadFromFile(char *filename)
   TextureLib *v8; // edi
   int v9; // eax
   int v10; // esi
-  int v11; // eax
-  int v12; // ecx
+  char *v11; // eax
+  char *v12; // ecx
   char *v13; // eax
   char *v14; // esi
   size_t v16; // eax
@@ -46,8 +46,8 @@ char TextureLib::LoadFromFile(char *filename)
   TextureLib *v19; // edi
   int v20; // eax
   int v21; // esi
-  int v22; // eax
-  int v23; // ecx
+  char *v22; // eax
+  char *v23; // ecx
   char *v24; // eax
   char *v25; // esi
   char *v26; // [esp+8h] [ebp-28h]
@@ -84,31 +84,31 @@ char TextureLib::LoadFromFile(char *filename)
     v10 = v9;
     if ( v9 )
     {
-      v11 = ((operator *)1088 * v9)->new();
+      v11 = (char *)((operator *)1088 * v9)->new();
       if ( v11 )
       {
         if ( v10 - 1 >= 0 )
         {
-          v12 = v11 + 1060;
+          v12 = (char *)v11 + 1060;
           do
           {
-            *(_DWORD *)(v12 - 12) = 0;
-            *(_DWORD *)(v12 - 8) = 0;
-            *(_DWORD *)(v12 - 4) = 0;
+            *((_DWORD *)v12 - 3) = 0;
+            *((_DWORD *)v12 - 2) = 0;
+            *((_DWORD *)v12 - 1) = 0;
             *(_DWORD *)v12 = 0;
-            *(_DWORD *)(v12 + 4) = 0;
-            *(_DWORD *)(v12 + 8) = 0;
-            *(_DWORD *)(v12 + 12) = 0;
-            *(_DWORD *)(v12 + 16) = 0;
-            *(_BYTE *)(v12 - 1060) = 0;
-            *(_BYTE *)(v12 - 548) = 0;
-            *(_DWORD *)(v12 - 32) = 256;
-            *(_DWORD *)(v12 - 36) = 256;
-            *(_DWORD *)(v12 - 24) = 0;
-            *(_DWORD *)(v12 - 28) = 0;
-            *(_DWORD *)(v12 - 20) = 256;
-            *(_DWORD *)(v12 + 20) = 0;
-            *(_BYTE *)(v12 + 24) = 0;
+            *((_DWORD *)v12 + 1) = 0;
+            *((_DWORD *)v12 + 2) = 0;
+            *((_DWORD *)v12 + 3) = 0;
+            *((_DWORD *)v12 + 4) = 0;
+            *(v12 - 1060) = 0;
+            *(v12 - 548) = 0;
+            *((_DWORD *)v12 - 8) = 256;
+            *((_DWORD *)v12 - 9) = 256;
+            *((_DWORD *)v12 - 6) = 0;
+            *((_DWORD *)v12 - 7) = 0;
+            *((_DWORD *)v12 - 5) = 256;
+            *((_DWORD *)v12 + 5) = 0;
+            v12[24] = 0;
             v12 += 1088;
             --v10;
           }
@@ -155,31 +155,31 @@ char TextureLib::LoadFromFile(char *filename)
   v21 = v20;
   if ( !v20 )
     return 0;
-  v22 = ((operator *)1088 * v20)->new();
+  v22 = (char *)((operator *)1088 * v20)->new();
   if ( v22 )
   {
     if ( v21 - 1 >= 0 )
     {
-      v23 = v22 + 1060;
+      v23 = (char *)v22 + 1060;
       do
       {
-        *(_DWORD *)(v23 - 12) = 0;
-        *(_DWORD *)(v23 - 8) = 0;
-        *(_DWORD *)(v23 - 4) = 0;
+        *((_DWORD *)v23 - 3) = 0;
+        *((_DWORD *)v23 - 2) = 0;
+        *((_DWORD *)v23 - 1) = 0;
         *(_DWORD *)v23 = 0;
-        *(_DWORD *)(v23 + 4) = 0;
-        *(_DWORD *)(v23 + 8) = 0;
-        *(_DWORD *)(v23 + 12) = 0;
-        *(_DWORD *)(v23 + 16) = 0;
-        *(_BYTE *)(v23 - 1060) = 0;
-        *(_BYTE *)(v23 - 548) = 0;
-        *(_DWORD *)(v23 - 32) = 256;
-        *(_DWORD *)(v23 - 36) = 256;
-        *(_DWORD *)(v23 - 24) = 0;
-        *(_DWORD *)(v23 - 28) = 0;
-        *(_DWORD *)(v23 - 20) = 256;
-        *(_DWORD *)(v23 + 20) = 0;
-        *(_BYTE *)(v23 + 24) = 0;
+        *((_DWORD *)v23 + 1) = 0;
+        *((_DWORD *)v23 + 2) = 0;
+        *((_DWORD *)v23 + 3) = 0;
+        *((_DWORD *)v23 + 4) = 0;
+        *(v23 - 1060) = 0;
+        *(v23 - 548) = 0;
+        *((_DWORD *)v23 - 8) = 256;
+        *((_DWORD *)v23 - 9) = 256;
+        *((_DWORD *)v23 - 6) = 0;
+        *((_DWORD *)v23 - 7) = 0;
+        *((_DWORD *)v23 - 5) = 256;
+        *((_DWORD *)v23 + 5) = 0;
+        v23[24] = 0;
         v23 += 1088;
         --v21;
       }

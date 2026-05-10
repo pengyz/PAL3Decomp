@@ -12,6 +12,7 @@ int sub_4B6820(...);
 extern char aGfxscriptGeomG[];
 extern char aGfxscriptGlowG[];
 extern unsigned char byte_DE6A4C;
+extern int unk_C11760;
 extern int unk_DE6A30;
 extern int unknown_libname_413;
 
@@ -102,7 +103,7 @@ void RenderTarget3::Resolve()
       7);
     if ( *((_DWORD *)this + 1) )
     {
-      if ( *(_DWORD *)&g_SceneMgr.m_npc[6].m_actor.m_szTexture[248] )
+      if ( unk_C11760 )
       {
         v4.z = 0.0;
         v4.color.ColorQuadFmt = -1;
@@ -120,7 +121,7 @@ void RenderTarget3::Resolve()
         v3 = *((_DWORD *)this + 1);
         v5 = 1;
         v4.color.Blue = v3;
-        DynVertBuf->RenderUIQuad(&v4, 1, *(struct gbRenderEffect **)&g_SceneMgr.m_npc[6].m_actor.m_szTexture[248], (struct gbTextureArray *)&v4.color.Blue);
+        DynVertBuf->RenderUIQuad(&v4, 1, unk_C11760, (struct gbTextureArray *)&v4.color.Blue);
         v6 = -1;
         PopMatrixStacks();
       }

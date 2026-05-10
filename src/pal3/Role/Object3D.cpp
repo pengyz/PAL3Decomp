@@ -36,7 +36,7 @@ struct gbVFileSystem * Object3D::_Object3D(const char *a2, int a3)
   gbGeomNode *v4; // eax
   gbGeomNode *v5; // edi
   gbGeomNode *v6; // ecx
-  int v7; // eax
+  LPVOID v7; // eax
   gbGeomNode *v8; // eax
   char Destination[4]; // [esp+10h] [ebp-60h] BYREF
   OpenBaseFile v11; // [esp+14h] [ebp-5Ch] BYREF
@@ -89,7 +89,7 @@ LABEL_5:
   v7 = ((operator *)0x224u)->new();
   LOBYTE(v14) = 3;
   if ( v7 )
-    v8 = (gbGeomNode *)v7->FastInit();
+    v8 = (gbGeomNode *)((int)v7)->FastInit();
   else
     v8 = 0;
   LOBYTE(v14) = 0;

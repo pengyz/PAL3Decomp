@@ -15,7 +15,6 @@ int ScriptUpdate(...);
 int UINotifyUpdate(...);
 int UIPostUpdate(...);
 int UISceneUpdate(...);
-int UIUpdate(...);
 int sub_401000(...);
 int sub_4083D0(...);
 int sub_40CC60(...);
@@ -135,6 +134,9 @@ extern int dword_C002A0;
 extern int dword_C020F8;
 extern int dword_C02370;
 extern int dword_C025EC;
+extern int dword_C116F4;
+extern int dword_C12B38;
+extern int dword_C12B3C;
 extern int dword_D8BBEC;
 extern int dword_D8C2B0;
 extern int dword_D8C2C8;
@@ -162,6 +164,7 @@ extern float flt_5F4B9C;
 extern float flt_60B720;
 extern float flt_60B724;
 extern float flt_60B728;
+extern float flt_C116F8;
 extern int nullsub_1;
 extern int nullsub_103;
 extern int nullsub_2;
@@ -179,6 +182,9 @@ extern int stru_DBAF10;
 extern int stru_DE7DF8;
 extern int unk_17B1550;
 extern int unk_1894D90;
+extern int unk_C12B38;
+extern int unk_C12B3C;
+extern int unk_C12B40;
 extern int unk_D8C338;
 extern int unk_DBA258;
 extern int unk_DBB364;
@@ -744,7 +750,7 @@ int unknown_libname_306()
 // Microsoft VisualC 2-14/net runtime
 void unknown_libname_307()
 {
-  UIWnd::ctor_A160((UIWnd *)&g_SceneMgr.m_npc[5].m_path.normal[59]);
+  UIWnd::ctor_A160((UIWnd *)&g_SceneMgr.m_pCameraCtrl);
 }
 
 // 0x004086E0
@@ -752,7 +758,7 @@ void unknown_libname_307()
 // Microsoft VisualC 2-14/net runtime
 void __cdecl unknown_libname_308()
 {
-  UIWnd::ctor_A1F0((UIWnd *)&g_SceneMgr.m_npc[5].m_path.normal[59]);
+  UIWnd::ctor_A1F0((UIWnd *)&g_SceneMgr.m_pCameraCtrl);
 }
 
 // 0x00408700
@@ -760,7 +766,7 @@ void __cdecl unknown_libname_308()
 // Microsoft VisualC 2-14/net runtime
 Iostream_init *unknown_libname_309()
 {
-  return Iostream_init::Iostream_init((Iostream_init *)&g_SceneMgr.m_npc[5].m_path.normal[58].y);
+  return Iostream_init::Iostream_init((Iostream_init *)&g_SceneMgr.m_pGameData);
 }
 
 // 0x00408720
@@ -768,7 +774,7 @@ Iostream_init *unknown_libname_309()
 // Microsoft VisualC 2-14/net runtime
 void __cdecl unknown_libname_310()
 {
-  nullsub_3(&g_SceneMgr.m_npc[5].m_path.normal[58].y);
+  nullsub_3(&g_SceneMgr.m_pGameData);
 }
 
 // 0x004087B0
@@ -776,7 +782,7 @@ void __cdecl unknown_libname_310()
 // Microsoft VisualC 2-14/net runtime
 int unknown_libname_311()
 {
-  return sub_40CC60((int)&g_SceneMgr.m_npc[0].m_path.normal[79].y);
+  return sub_40CC60((int)&g_SceneMgr.m_slot4[792]);
 }
 
 // 0x00408800
@@ -784,11 +790,11 @@ int unknown_libname_311()
 // Microsoft VisualC 2-14/net runtime
 gbVec3D *unknown_libname_312()
 {
-  LOBYTE(g_SceneMgr.m_npc[0].m_path.normal[78].x) = (unsigned int)&g_SceneMgr.m_npc[0].m_path.normal[78] >> 24;
-  g_SceneMgr.m_npc[0].m_path.normal[78].y = 0.0;
-  g_SceneMgr.m_npc[0].m_path.normal[78].z = 0.0;
-  g_SceneMgr.m_npc[0].m_path.normal[79].x = 0.0;
-  return &g_SceneMgr.m_npc[0].m_path.normal[78];
+  g_SceneMgr.m_slot4[776] = (unsigned int)&g_SceneMgr.m_slot4[776] >> 24;
+  *(_DWORD *)&g_SceneMgr.m_slot4[780] = 0;
+  *(_DWORD *)&g_SceneMgr.m_slot4[784] = 0;
+  *(_DWORD *)&g_SceneMgr.m_slot4[788] = 0;
+  return (gbVec3D *)&g_SceneMgr.m_slot4[776];
 }
 
 // 0x00408A20
@@ -841,15 +847,15 @@ void __cdecl unknown_libname_318()
 
 // 0x0040C230
 // between_std_methods (0x407D40-0x411B80)
-_DWORD *__cdecl ScriptUpdate(int dt)
+__int8 *__cdecl ScriptUpdate(int dt)
 {
-  float *p_y; // esi
+  __int8 *v1; // esi
   double v2; // st7
   double v3; // st7
-  float *v4; // ecx
+  __int8 *v4; // ecx
   double v5; // st7
   double v6; // st7
-  _DWORD *result; // eax
+  __int8 *result; // eax
   bool v8; // cl
   int v9; // edx
   int v10; // [esp+14h] [ebp-24h]
@@ -858,16 +864,16 @@ _DWORD *__cdecl ScriptUpdate(int dt)
   _BYTE v13[12]; // [esp+20h] [ebp-18h]
   gbVec3D v14; // [esp+2Ch] [ebp-Ch] BYREF
 
-  p_y = &g_SceneMgr.m_npc[0].m_path.normal[83].y;
+  v1 = &g_SceneMgr.m_slot4[840];
   do
   {
     ScriptSystem::UpdateTimers(*(float *)&dt);
-    p_y += 2176;
+    v1 += 8704;
   }
-  while ( (int)p_y < (int)&g_SceneMgr.m_npc[5].m_path.normal[58].y );
+  while ( (int)v1 < (int)&g_SceneMgr.m_pGameData );
   if ( dword_C025EC == 10 )
   {
-    if ( LODWORD(g_SceneMgr.m_npc[1].m_path.normal[131].x) )
+    if ( *(_DWORD *)&g_SceneMgr._midRegion[632] )
       ScriptSystem::UpdateObjects(*(float *)&dt);
   }
   else if ( dword_C025EC == 11 )
@@ -917,9 +923,7 @@ _DWORD *__cdecl ScriptUpdate(int dt)
             break;
           case 3:
             ScriptSystem::RunScript(
-              (__int64)((double)g_SceneMgr.m_npc[0].m_npcinfo.reserve[352
-                                                                    * LODWORD(g_SceneMgr.m_npc[5].m_path.normal[131].x)]
-                      * 0.050000001),
+              (__int64)((double)*(int *)&g_SceneMgr.m_slot0[1408 * g_SceneMgr.m_nCameraState + 292] * 0.050000001),
               0,
               1);
             break;
@@ -937,14 +941,11 @@ _DWORD *__cdecl ScriptUpdate(int dt)
       switch ( g_Input.KeyInfo[197].HoldTime )
       {
         case 0:
-          v2 = (double)g_SceneMgr.m_npc[0].m_npcinfo.reserve[352 * LODWORD(g_SceneMgr.m_npc[5].m_path.normal[131].x)
-                                                           + 12]
-             * 0.5;
+          v2 = (double)*(int *)&g_SceneMgr.m_slot0[1408 * g_SceneMgr.m_nCameraState + 340] * 0.5;
           if ( v2 < 1.0 )
             v2 = 1.0;
           ScriptSystem::RunScript(
-            g_SceneMgr.m_npc[0].m_npcinfo.reserve[352 * LODWORD(g_SceneMgr.m_npc[5].m_path.normal[131].x) + 12]
-          - (__int64)v2,
+            *(_DWORD *)&g_SceneMgr.m_slot0[1408 * g_SceneMgr.m_nCameraState + 340] - (__int64)v2,
             1,
             1);
           break;
@@ -954,14 +955,14 @@ _DWORD *__cdecl ScriptUpdate(int dt)
           break;
         case 3:
           ScriptSystem::RunScript(
-            (__int64)((double)g_SceneMgr.m_npc[0].m_npcinfo.reserve[352
-                                                                  * LODWORD(g_SceneMgr.m_npc[5].m_path.normal[131].x)]
-                    * 0.050000001),
+            (__int64)((double)*(int *)&g_SceneMgr.m_slot0[1408 * g_SceneMgr.m_nCameraState + 292] * 0.050000001),
             1,
             1);
           break;
         case 4:
-          *(float *)&g_Input.KeyInfo[197].CountMode = (double)g_SceneMgr.m_npc[0].m_npcinfo.reserve[352 * LODWORD(g_SceneMgr.m_npc[5].m_path.normal[131].x)]
+          *(float *)&g_Input.KeyInfo[197].CountMode = (double)*(int *)&g_SceneMgr.m_slot0[1408
+                                                                                        * g_SceneMgr.m_nCameraState
+                                                                                        + 292]
                                                     * 0.5;
           ScriptSystem::RunScript((__int64)*(float *)&g_Input.KeyInfo[197].CountMode, 1, 1);
           break;
@@ -970,10 +971,10 @@ _DWORD *__cdecl ScriptUpdate(int dt)
       }
     }
     ++g_Input.KeyInfo[196].Data;
-    v4 = &g_SceneMgr.m_npc[0].m_path.normal[83].z + 2176 * LODWORD(g_SceneMgr.m_npc[5].m_path.normal[131].x);
+    v4 = &g_SceneMgr.m_slot4[8704 * g_SceneMgr.m_nCameraState + 844];
     v10 = *(_DWORD *)v4;
     v11 = *((int *)v4 + 1);
-    *(float *)v13 = *v4 - *(float *)&g_Input.KeyInfo[196].CountMode;
+    *(float *)v13 = *(float *)v4 - *(float *)&g_Input.KeyInfo[196].CountMode;
     v12 = *((int *)v4 + 2);
     *(float *)&v13[4] = *(float *)&v11 - *(float *)&g_Input.KeyInfo[196].PressTime;
     *(float *)&v13[8] = *(float *)&v12 - *(float *)&g_Input.KeyInfo[197].Data;
@@ -986,38 +987,39 @@ _DWORD *__cdecl ScriptUpdate(int dt)
     if ( v5 >= 12.0 * 100.0 )
       ScriptSystem::RunEvent(31, 1, 0);
   }
-  v6 = g_SceneMgr.m_npc[5].m_path.normal[131].z + *(float *)&dt;
-  g_SceneMgr.m_npc[5].m_path.normal[131].z = v6;
+  v6 = *(float *)&g_SceneMgr._gap_c93c[4] + *(float *)&dt;
+  *(float *)&g_SceneMgr._gap_c93c[4] = v6;
   if ( v6 >= 60.0 )
   {
-    HIBYTE(g_SceneMgr.m_npc[0].m_npcinfo.mnum) = 0;
-    LOWORD(g_SceneMgr.m_npc[0].m_npcinfo.mrepeat) = 0;
-    BYTE2(g_SceneMgr.m_npc[0].m_npcinfo.mrepeat) = 0;
-    BYTE1(g_SceneMgr.m_npc[5].m_path.normal[130].y) = 0;
+    g_SceneMgr.m_slot0[79] = 0;
+    g_SceneMgr.m_slot0[80] = 0;
+    g_SceneMgr.m_slot0[81] = 0;
+    g_SceneMgr.m_slot0[82] = 0;
+    g_SceneMgr._gap_c5e0[849] = 0;
   }
   NPCAnimUpdate(*(float *)&dt);
-  result = (_DWORD *)sub_43A3E0((int)&g_SceneMgr.m_npc[5].m_path.normal[59], dt, 0);
-  if ( LOBYTE(g_SceneMgr.m_npc[5].m_path.normal[130].y) )
+  result = (__int8 *)sub_43A3E0((int)&g_SceneMgr.m_pCameraCtrl, dt, 0);
+  if ( g_SceneMgr._gap_c5e0[848] )
   {
     v8 = 1;
     v9 = 0;
-    result = (_DWORD *)&g_SceneMgr.m_npc[0].m_path.normal[185].z;
+    result = &g_SceneMgr._postSlots[660];
     do
     {
-      if ( v9 != LODWORD(g_SceneMgr.m_npc[5].m_path.normal[131].x) )
-        v8 = v8 && (result[9] != 4 || *result != 10);
-      result += 2176;
+      if ( v9 != g_SceneMgr.m_nCameraState )
+        v8 = v8 && (*((_DWORD *)result + 9) != 4 || *(_DWORD *)result != 10);
+      result += 8704;
       ++v9;
     }
-    while ( (int)result < (int)&g_SceneMgr.m_npc[5].m_path.normal[160].z );
+    while ( (int)result < (int)&g_SceneMgr.m_szUIString[244] );
     if ( v8 )
     {
-      LOBYTE(g_SceneMgr.m_npc[5].m_path.normal[130].y) = 0;
-      result = (_DWORD *)sub_41D5C0((_DWORD *)g_Input.KeyInfo[177].CountMode, dword_586154);
+      g_SceneMgr._gap_c5e0[848] = 0;
+      result = (__int8 *)sub_41D5C0((_DWORD *)g_Input.KeyInfo[177].CountMode, dword_586154);
     }
   }
-  if ( LODWORD(g_SceneMgr.m_npc[5].m_path.normal[130].x) )
-    return (*(_DWORD *(__thiscall **)(_DWORD))(*(_DWORD *)LODWORD(g_SceneMgr.m_npc[5].m_path.normal[130].x) + 20))(LODWORD(g_SceneMgr.m_npc[5].m_path.normal[130].x));
+  if ( *(_DWORD *)&g_SceneMgr._gap_c5e0[844] )
+    return (__int8 *)(*(_DWORD *(__thiscall **)(_DWORD))(**(_DWORD **)&g_SceneMgr._gap_c5e0[844] + 20))(*(_DWORD *)&g_SceneMgr._gap_c5e0[844]);
   return result;
 }
 
@@ -1037,18 +1039,18 @@ void __thiscall CCBStageRole_Init(int _this)
 
 // 0x0040CCF0
 // between_std_methods (0x407D40-0x411B80)
-_DWORD *__thiscall CCBStageRole_GetAlive(int _this, _DWORD *pConfig)
+char *__thiscall CCBStageRole_GetAlive(int _this, _DWORD *pConfig)
 {
-  _DWORD *result; // eax
+  char *result; // eax
   char *v4; // ecx
   char *v5; // edi
   int v6; // ebx
   unsigned int v7; // ebp
   int v8; // edx
   unsigned int v9; // eax
-  int v10; // eax
+  char *v10; // eax
   char *v11; // ebp
-  int j; // ebx
+  char *j; // ebx
   int v13; // eax
   int v14; // ecx
   char *v15; // ecx
@@ -1056,15 +1058,15 @@ _DWORD *__thiscall CCBStageRole_GetAlive(int _this, _DWORD *pConfig)
   char *v17; // edi
   int v18; // ecx
   unsigned int v19; // [esp+10h] [ebp-8h]
-  int v20; // [esp+14h] [ebp-4h]
+  char *v20; // [esp+14h] [ebp-4h]
 
-  result = CCBStageRole_GetByIndex((_DWORD *)_this, pConfig);
+  result = (char *)CCBStageRole_GetByIndex((_DWORD *)_this, pConfig);
   if ( result )
   {
-    v18 = pConfig[1] + result[1];
+    v18 = pConfig[1] + *((_DWORD *)result + 1);
     if ( v18 > 99 )
       v18 = 99;
-    result[1] = v18;
+    *((_DWORD *)result + 1) = v18;
   }
   else
   {
@@ -1082,7 +1084,7 @@ _DWORD *__thiscall CCBStageRole_GetAlive(int _this, _DWORD *pConfig)
         *(_DWORD *)v17 = *pConfig;
         *((_DWORD *)v17 + 1) = pConfig[1];
       }
-      result = (_DWORD *)(*(_DWORD *)(_this + 8) + 12);
+      result = (char *)(*(_DWORD *)(_this + 8) + 12);
       *(_DWORD *)(_this + 8) = result;
     }
     else
@@ -1098,32 +1100,32 @@ _DWORD *__thiscall CCBStageRole_GetAlive(int _this, _DWORD *pConfig)
       v19 = v8 + v7;
       if ( (int)(v8 + v7) < 0 )
         v9 = 0;
-      v10 = operator new(12 * v9);
+      v10 = (char *)operator new(12 * v9);
       v11 = *(char **)(_this + 4);
       v20 = v10;
       for ( j = v10; v11 != v5; j += 12 )
       {
-        Array::Copy((void *)j, v11);
+        Array::Copy(j, v11);
         v11 += 12;
       }
-      Array::Erase((void *)j, 1, pConfig);
-      Array::Insert(v5, *(void **)(_this + 8), (void *)(j + 12));
+      Array::Erase(j, 1, pConfig);
+      Array::Insert(v5, *(void **)(_this + 8), j + 12);
       nullsub_2(*(_DWORD *)(_this + 4), *(_DWORD *)(_this + 8));
       operator delete(*(void **)(_this + 4));
-      *(_DWORD *)(_this + 12) = v20 + 12 * v19;
+      *(_DWORD *)(_this + 12) = &v20[12 * v19];
       v13 = *(_DWORD *)(_this + 4);
       if ( v13 )
       {
         v14 = *(_DWORD *)(_this + 8);
         *(_DWORD *)(_this + 4) = v20;
-        result = (_DWORD *)(v20 + 4 * (3 * ((v14 - v13) / 12) + 3));
+        result = &v20[12 * ((v14 - v13) / 12) + 12];
         *(_DWORD *)(_this + 8) = result;
       }
       else
       {
         *(_DWORD *)(_this + 4) = v20;
         *(_DWORD *)(_this + 8) = v20 + 12;
-        return (_DWORD *)(v20 + 12);
+        return v20 + 12;
       }
     }
   }
@@ -1200,7 +1202,7 @@ int __thiscall CCBStageRole_CheckValid(int *_this, int a2)
   unsigned int v25; // ebp
   int v26; // edx
   unsigned int v27; // eax
-  int v28; // eax
+  char *v28; // eax
   char *v29; // ebx
   char *j; // ebp
   char *v31; // ebx
@@ -1360,10 +1362,10 @@ LABEL_45:
                 v40 = v26 + v25;
                 if ( (int)(v26 + v25) < 0 )
                   v27 = 0;
-                v28 = operator new(12 * v27);
+                v28 = (char *)operator new(12 * v27);
                 v29 = (char *)v3[1];
-                v41 = v28;
-                for ( j = (char *)v28; v29 != v23; j += 12 )
+                v41 = (int)v28;
+                for ( j = v28; v29 != v23; j += 12 )
                 {
                   Array::Copy(j, v29);
                   v29 += 12;
@@ -1590,14 +1592,14 @@ int unknown_libname_319()
 // 0x004117A0
 // Microsoft VisualC 2-14/net runtime
 // Microsoft VisualC 2-14/net runtime
-_DWORD *unknown_libname_320()
+__int8 *unknown_libname_320()
 {
-  sub_401000(&g_SceneMgr.m_npc[5].m_path.normal[155].z);
-  LODWORD(g_SceneMgr.m_npc[5].m_path.normal[155].z) = &off_56A6D0;
-  g_SceneMgr.m_npc[5].m_path.normal[157].z = 0.0;
-  g_SceneMgr.m_npc[5].m_path.normal[158].x = 0.0;
-  LOBYTE(g_SceneMgr.m_npc[5].m_path.normal[158].y) = -1;
-  return (_DWORD *)&g_SceneMgr.m_npc[5].m_path.normal[155].z;
+  sub_401000(&g_SceneMgr.m_szUIString[184]);
+  *(_DWORD *)&g_SceneMgr.m_szUIString[184] = &off_56A6D0;
+  *(_DWORD *)&g_SceneMgr.m_szUIString[208] = 0;
+  *(_DWORD *)&g_SceneMgr.m_szUIString[212] = 0;
+  g_SceneMgr.m_szUIString[216] = -1;
+  return &g_SceneMgr.m_szUIString[184];
 }
 
 // 0x004117C0
@@ -1605,7 +1607,7 @@ _DWORD *unknown_libname_320()
 // Microsoft VisualC 2-14/net runtime
 void __cdecl unknown_libname_321()
 {
-  sub_4083D0((void **)&g_SceneMgr.m_npc[5].m_path.normal[155].z);
+  sub_4083D0((void **)&g_SceneMgr.m_szUIString[184]);
 }
 
 // 0x004181E0
@@ -1780,7 +1782,7 @@ int unknown_libname_323()
 // Microsoft VisualC 2-14/net runtime
 Iostream_init *unknown_libname_324()
 {
-  return Iostream_init::Iostream_init((Iostream_init *)&g_SceneMgr.m_npc[6].m_npcinfo.path.pt[8]);
+  return Iostream_init::Iostream_init((Iostream_init *)&g_SceneMgr._gap_cd10[920]);
 }
 
 // 0x0041D940
@@ -1788,7 +1790,7 @@ Iostream_init *unknown_libname_324()
 // Microsoft VisualC 2-14/net runtime
 void __cdecl unknown_libname_325()
 {
-  nullsub_3(&g_SceneMgr.m_npc[6].m_npcinfo.path.pt[8]);
+  nullsub_3(&g_SceneMgr._gap_cd10[920]);
 }
 
 // 0x0041D9A0
@@ -1802,7 +1804,7 @@ void __cdecl CameraUpdate_Internal(float a1)
   CScreenMode *Instance; // eax
   CScreenMode *v6; // eax
   int v7; // eax
-  int v8; // esi
+  __int32 m_pCollisionNode; // esi
   __int32 *v9; // eax
   int v10; // edx
   int v11; // ebp
@@ -1842,9 +1844,9 @@ void __cdecl CameraUpdate_Internal(float a1)
   struct gbVec3D pOut[2]; // [esp+2Ch] [ebp-30h] BYREF
   float pMat[6]; // [esp+44h] [ebp-18h] BYREF
 
-  if ( dword_58B230 <= 0 || !*(_DWORD *)&g_SceneMgr.m_npc[6].m_actor.m_szTexture[132] )
+  if ( dword_58B230 <= 0 || !g_SceneMgr.m_pCollisionNode )
     return;
-  GRPinput::GetCursorPos(&g_SceneMgr.m_npc[6].m_npcinfo.path.pt[7].y);
+  GRPinput::GetCursorPos(&g_SceneMgr._gap_cd10[912]);
   if ( dword_58B234 && dword_D8BBEC != 1 )
   {
     v41 = g_Input.m_keyDragStartPositions[1][202];
@@ -1873,7 +1875,7 @@ void __cdecl CameraUpdate_Internal(float a1)
       CameraCtrl::SetCamMode((CameraCtrl *)g_Input.KeyInfo[177].CountMode, -1113336054);
     }
   }
-  if ( *(_DWORD *)&g_SceneMgr.m_npc[6].m_actor.m_szTexture[136] )
+  if ( g_SceneMgr._tail )
   {
     v2 = 0.0;
     if ( (g_Input.m_shiftedKeyStates[220] & 0xF) == 1 )
@@ -1909,33 +1911,32 @@ void __cdecl CameraUpdate_Internal(float a1)
   Instance = (CScreenMode *)SoundContext::GetInstance();
   CScreenMode::SetAudioParam(Instance);
   v6 = (CScreenMode *)SoundContext::GetInstance();
-  if ( CScreenMode::IsAudioReady(v6) && !LOBYTE(g_SceneMgr.m_npc[5].m_path.normal[130].y) )
+  if ( CScreenMode::IsAudioReady(v6) && !g_SceneMgr._gap_c5e0[848] )
   {
     if ( g_Input.KeyInfo[177].PressTime == 2
       && dword_D8BBEC == 2
       && g_Input.m_shiftedKeyStates[255] == 1
       && (g_Input.m_shiftedKeyStates[252] & 0xF) == 1
-      && !(*(int (__thiscall **)(int))(*(_DWORD *)(*(_DWORD *)&g_SceneMgr.m_npc[6].m_actor.m_szTexture[132] + 56) + 4))(*(_DWORD *)&g_SceneMgr.m_npc[6].m_actor.m_szTexture[132] + 56) )
+      && !(*(int (__thiscall **)(__int32))(*(_DWORD *)(g_SceneMgr.m_pCollisionNode + 56) + 4))(g_SceneMgr.m_pCollisionNode + 56) )
     {
-      v7 = LODWORD(g_SceneMgr.m_npc[5].m_path.normal[131].x) + 1;
-      if ( LODWORD(g_SceneMgr.m_npc[5].m_path.normal[131].x) + 1 > 4 )
+      v7 = g_SceneMgr.m_nCameraState + 1;
+      if ( g_SceneMgr.m_nCameraState + 1 > 4 )
         v7 = 0;
-      if ( !*((_BYTE *)&g_SceneMgr.m_npc[0].m_path.normal[82].z + v7) )
+      if ( !g_SceneMgr.m_slot4[v7 + 832] )
       {
         do
         {
           if ( ++v7 > 4 )
             v7 = 0;
         }
-        while ( v7 != LODWORD(g_SceneMgr.m_npc[5].m_path.normal[131].x)
-             && !*((_BYTE *)&g_SceneMgr.m_npc[0].m_path.normal[82].z + v7) );
+        while ( v7 != g_SceneMgr.m_nCameraState && !g_SceneMgr.m_slot4[v7 + 832] );
       }
       ScriptSystem::Execute(v7, 1);
     }
-    v8 = *(_DWORD *)&g_SceneMgr.m_npc[6].m_actor.m_szTexture[132];
-    if ( *(_DWORD *)(*(_DWORD *)&g_SceneMgr.m_npc[6].m_actor.m_szTexture[132] + 1264) != 4 )
+    m_pCollisionNode = g_SceneMgr.m_pCollisionNode;
+    if ( *(_DWORD *)(g_SceneMgr.m_pCollisionNode + 1264) != 4 )
       goto LABEL_51;
-    if ( *(_DWORD *)(*(_DWORD *)&g_SceneMgr.m_npc[6].m_actor.m_szTexture[132] + 1228) == 44 )
+    if ( *(_DWORD *)(g_SceneMgr.m_pCollisionNode + 1228) == 44 )
     {
       v9 = &g_Input.m_shiftedKeyStates[204];
       v10 = 0;
@@ -1946,25 +1947,25 @@ void __cdecl CameraUpdate_Internal(float a1)
         if ( v10 >= 656 )
           goto LABEL_50;
       }
-      RoleSystemNotify(*(int *)&g_SceneMgr.m_npc[6].m_actor.m_szTexture[132]);
-      v8 = *(_DWORD *)&g_SceneMgr.m_npc[6].m_actor.m_szTexture[132];
+      RoleSystemNotify(g_SceneMgr.m_pCollisionNode);
+      m_pCollisionNode = g_SceneMgr.m_pCollisionNode;
     }
 LABEL_50:
-    if ( *(_DWORD *)(v8 + 1264) != 4 )
+    if ( *(_DWORD *)(m_pCollisionNode + 1264) != 4 )
     {
 LABEL_51:
       LOBYTE(v41) = 0;
       if ( dword_D8BBEC == 2 )
         LOBYTE(v41) = Camera::IsTransitioning();
-      UIWnd::Destroy((UIWnd *)&g_SceneMgr.m_npc[5].m_path.normal[59], (unsigned __int8)v41);
+      UIWnd::Destroy((UIWnd *)&g_SceneMgr.m_pCameraCtrl, (unsigned __int8)v41);
       if ( (_BYTE)v41 )
       {
         memset(pOut, 0, 12);
-        RoleSystem::GetDirection(*(RoleSystem **)&g_SceneMgr.m_npc[6].m_actor.m_szTexture[132], &pOut[0].x);
+        RoleSystem::GetDirection((RoleSystem *)g_SceneMgr.m_pCollisionNode, &pOut[0].x);
         pOut[0].y = pOut[0].y + 10.0;
         gbCamera::PointWorldToScr((gbCamera *)(g_Input.KeyInfo[177].CountMode + 4), pOut, &v43, &pOut2);
         UIWnd::ScreenToClient(
-          (UIWnd *)&g_SceneMgr.m_npc[5].m_path.normal[59],
+          (UIWnd *)&g_SceneMgr.m_pCameraCtrl,
           (__int64)((v43 + 1.0) * (double)g_Input.KeyInfo[120].Data * 0.5),
           (__int64)((1.0 - pOut2) * (double)g_Input.KeyInfo[120].HoldTime * 0.5));
       }
@@ -1976,7 +1977,7 @@ LABEL_51:
         CameraCtrl::GetViewTarget(
           (CameraCtrl *)g_Input.KeyInfo[177].CountMode,
           pOut,
-          &g_SceneMgr.m_npc[6].m_npcinfo.path.pt[7].y),
+          (float *)&g_SceneMgr._gap_cd10[912]),
         sizeof(pMat));
       if ( g_Input.KeyInfo[177].PressTime != 2 && g_Input.KeyInfo[177].PressTime != 8 )
         goto LABEL_107;
@@ -2012,16 +2013,16 @@ LABEL_90:
           goto LABEL_108;
         if ( v14 )
         {
-          RoleSystem::UpdateAnimation(*(RoleSystem **)&g_SceneMgr.m_npc[6].m_actor.m_szTexture[132], v14);
+          RoleSystem::UpdateAnimation((RoleSystem *)g_SceneMgr.m_pCollisionNode, v14);
           v11 = 1;
         }
         else
         {
-          RoleSystem::GetActiveRole(*(RoleSystem **)&g_SceneMgr.m_npc[6].m_actor.m_szTexture[132]);
+          RoleSystem::GetActiveRole((RoleSystem *)g_SceneMgr.m_pCollisionNode);
         }
         if ( v16 )
         {
-          RoleSystem::SetState(*(RoleSystem **)&g_SceneMgr.m_npc[6].m_actor.m_szTexture[132], v16);
+          RoleSystem::SetState((RoleSystem *)g_SceneMgr.m_pCollisionNode, v16);
           goto LABEL_153;
         }
         if ( v11 )
@@ -2044,84 +2045,68 @@ LABEL_109:
           goto LABEL_153;
         }
 LABEL_115:
-        if ( !Camera::CheckCollision1(
-                &g_SceneMgr.m_npc[6].m_npcinfo.path.pt[7].y,
-                &g_SceneMgr.m_npc[6].m_npcinfo.path.pt[6],
-                &pDist)
+        if ( !Camera::CheckCollision1(&g_SceneMgr._gap_cd10[912], &g_SceneMgr._gap_cd10[896], &pDist)
           && !Camera::CheckCollision2(
-                &g_SceneMgr.m_npc[6].m_npcinfo.path.pt[7].y,
-                *(_DWORD *)(*(_DWORD *)&g_SceneMgr.m_npc[6].m_actor.m_szTexture[132] + 628),
-                &g_SceneMgr.m_npc[6].m_npcinfo.path.pt[6]) )
+                &g_SceneMgr._gap_cd10[912],
+                *(_DWORD *)(g_SceneMgr.m_pCollisionNode + 628),
+                &g_SceneMgr._gap_cd10[896]) )
         {
           goto LABEL_153;
         }
-        a2.x = g_SceneMgr.m_npc[6].m_npcinfo.path.pt[6].x;
-        a2.z = g_SceneMgr.m_npc[6].m_npcinfo.path.pt[6].z;
+        a2.x = *(float *)&g_SceneMgr._gap_cd10[896];
+        a2.z = *(float *)&g_SceneMgr._gap_cd10[904];
         a2.y = 0.0;
         v26 = 0;
         GRPinput::GetMousePos(&g_Input, &v43, &pOut2);
         if ( v43 != 0.0 || pOut2 != 0.0 )
           v26 = 1;
-        *(_DWORD *)(*(_DWORD *)&g_SceneMgr.m_npc[6].m_actor.m_szTexture[132] + 1460) = 0;
+        *(_DWORD *)(g_SceneMgr.m_pCollisionNode + 1460) = 0;
         if ( g_Input.m_shiftedKeyStates[207] == 1 && (g_Input.m_shiftedKeyStates[204] & 0xF) == 1 )
         {
-          RoleSystem::UpdateRole(
-            *(RoleSystem **)&g_SceneMgr.m_npc[6].m_actor.m_szTexture[132],
-            (int)&a2,
-            SLODWORD(pDist),
-            1);
-          v27 = *(_DWORD *)(*(_DWORD *)&g_SceneMgr.m_npc[6].m_actor.m_szTexture[132] + 628);
+          RoleSystem::UpdateRole((RoleSystem *)g_SceneMgr.m_pCollisionNode, (int)&a2, SLODWORD(pDist), 1);
+          v27 = *(_DWORD *)(g_SceneMgr.m_pCollisionNode + 628);
           if ( LODWORD(pDist) != v27
-            && !*(_DWORD *)(*(_DWORD *)&g_SceneMgr.m_npc[6].m_actor.m_szTexture[132] + 1268)
-            && Camera::CheckCollision2(&g_SceneMgr.m_npc[6].m_npcinfo.path.pt[7].y, v27, &a2) )
+            && !*(_DWORD *)(g_SceneMgr.m_pCollisionNode + 1268)
+            && Camera::CheckCollision2(&g_SceneMgr._gap_cd10[912], v27, &a2) )
           {
             a2.y = 0.0;
             RoleSystem::UpdateRole(
-              *(RoleSystem **)&g_SceneMgr.m_npc[6].m_actor.m_szTexture[132],
+              (RoleSystem *)g_SceneMgr.m_pCollisionNode,
               (int)&a2,
-              *(_DWORD *)(*(_DWORD *)&g_SceneMgr.m_npc[6].m_actor.m_szTexture[132] + 628),
+              *(_DWORD *)(g_SceneMgr.m_pCollisionNode + 628),
               1);
           }
         }
         else if ( (g_Input.m_shiftedKeyStates[204] & 0xF) == 1 && (double)g_Input.m_shiftedKeyStates[207] * a1 > 0.5 )
         {
-          RoleSystem::MoveRole(
-            *(RoleSystem **)&g_SceneMgr.m_npc[6].m_actor.m_szTexture[132],
-            &a2.x,
-            SLODWORD(pDist),
-            1,
-            v26);
-          v28 = *(_DWORD *)(*(_DWORD *)&g_SceneMgr.m_npc[6].m_actor.m_szTexture[132] + 628);
+          RoleSystem::MoveRole((RoleSystem *)g_SceneMgr.m_pCollisionNode, &a2.x, SLODWORD(pDist), 1, v26);
+          v28 = *(_DWORD *)(g_SceneMgr.m_pCollisionNode + 628);
           if ( LODWORD(pDist) != v28
-            && !*(_DWORD *)(*(_DWORD *)&g_SceneMgr.m_npc[6].m_actor.m_szTexture[132] + 1268)
-            && Camera::CheckCollision2(&g_SceneMgr.m_npc[6].m_npcinfo.path.pt[7].y, v28, &a2) )
+            && !*(_DWORD *)(g_SceneMgr.m_pCollisionNode + 1268)
+            && Camera::CheckCollision2(&g_SceneMgr._gap_cd10[912], v28, &a2) )
           {
             a2.y = 0.0;
             RoleSystem::MoveRole(
-              *(RoleSystem **)&g_SceneMgr.m_npc[6].m_actor.m_szTexture[132],
+              (RoleSystem *)g_SceneMgr.m_pCollisionNode,
               &a2.x,
-              *(_DWORD *)(*(_DWORD *)&g_SceneMgr.m_npc[6].m_actor.m_szTexture[132] + 628),
+              *(_DWORD *)(g_SceneMgr.m_pCollisionNode + 628),
               1,
               1);
           }
         }
         else if ( g_Input.m_shiftedKeyStates[207] == 1 && (g_Input.m_shiftedKeyStates[204] & 0xF) == 2 )
         {
-          RoleSystem::UpdateRole(
-            *(RoleSystem **)&g_SceneMgr.m_npc[6].m_actor.m_szTexture[132],
-            (int)&a2,
-            SLODWORD(pDist),
-            2);
-          v29 = *(_DWORD *)(*(_DWORD *)&g_SceneMgr.m_npc[6].m_actor.m_szTexture[132] + 628);
+          RoleSystem::UpdateRole((RoleSystem *)g_SceneMgr.m_pCollisionNode, (int)&a2, SLODWORD(pDist), 2);
+          v29 = *(_DWORD *)(g_SceneMgr.m_pCollisionNode + 628);
           if ( LODWORD(pDist) != v29
-            && !*(_DWORD *)(*(_DWORD *)&g_SceneMgr.m_npc[6].m_actor.m_szTexture[132] + 1268)
-            && Camera::CheckCollision2(&g_SceneMgr.m_npc[6].m_npcinfo.path.pt[7].y, v29, &a2) )
+            && !*(_DWORD *)(g_SceneMgr.m_pCollisionNode + 1268)
+            && Camera::CheckCollision2(&g_SceneMgr._gap_cd10[912], v29, &a2) )
           {
             a2.y = 0.0;
             RoleSystem::UpdateRole(
-              *(RoleSystem **)&g_SceneMgr.m_npc[6].m_actor.m_szTexture[132],
+              (RoleSystem *)g_SceneMgr.m_pCollisionNode,
               (int)&a2,
-              *(_DWORD *)(*(_DWORD *)&g_SceneMgr.m_npc[6].m_actor.m_szTexture[132] + 628),
+              *(_DWORD *)(g_SceneMgr.m_pCollisionNode + 628),
               2);
           }
         }
@@ -2130,12 +2115,12 @@ LABEL_115:
           if ( (g_Input.m_shiftedKeyStates[204] & 0xFu) <= 1 || (double)g_Input.m_shiftedKeyStates[207] * a1 <= 0.5 )
           {
 LABEL_145:
-            if ( (g_SceneMgr.m_npc[6].m_actor.m_szTexture[130] || (_BYTE)v41 && dword_D8BBEC == 2)
+            if ( (g_SceneMgr._gap_cd10[1610] || (_BYTE)v41 && dword_D8BBEC == 2)
               && g_Input.m_shiftedKeyStates[211] == 1
               && (g_Input.m_shiftedKeyStates[208] & 0xF) == 1
-              && *(_DWORD *)(*(_DWORD *)&g_SceneMgr.m_npc[6].m_actor.m_szTexture[132] + 628) == LODWORD(pDist) )
+              && *(_DWORD *)(g_SceneMgr.m_pCollisionNode + 628) == LODWORD(pDist) )
             {
-              RoleSystem::PathFind(*(RoleSystem **)&g_SceneMgr.m_npc[6].m_actor.m_szTexture[132], &a2.x);
+              RoleSystem::PathFind((RoleSystem *)g_SceneMgr.m_pCollisionNode, &a2.x);
               v12 = 4;
               goto LABEL_166;
             }
@@ -2152,14 +2137,14 @@ LABEL_153:
                 if ( State && *(_DWORD *)(State + 1264) != 7 )
                 {
                   if ( *(_BYTE *)(State + 173) != 2 && *(_DWORD *)(State + 264) )
-                    RoleSystem::UpdateAnimation(*(RoleSystem **)&g_SceneMgr.m_npc[6].m_actor.m_szTexture[132], State);
+                    RoleSystem::UpdateAnimation((RoleSystem *)g_SceneMgr.m_pCollisionNode, State);
                 }
                 else
                 {
                   UISceneUpdate();
                   ViewMode = UICamera::GetViewMode(v39);
                   if ( ViewMode )
-                    RoleSystem::SetState(*(RoleSystem **)&g_SceneMgr.m_npc[6].m_actor.m_szTexture[132], ViewMode);
+                    RoleSystem::SetState((RoleSystem *)g_SceneMgr.m_pCollisionNode, ViewMode);
                 }
               }
               goto LABEL_163;
@@ -2222,17 +2207,17 @@ LABEL_177:
                     if ( v12 != 3 )
                     {
 LABEL_163:
-                      if ( *(_DWORD *)(*(_DWORD *)&g_SceneMgr.m_npc[6].m_actor.m_szTexture[132] + 1264) == 3 )
+                      if ( *(_DWORD *)(g_SceneMgr.m_pCollisionNode + 1264) == 3 )
                       {
                         memset(pOut, 0, 12);
-                        RoleSystem::GetPosition(*(RoleSystem **)&g_SceneMgr.m_npc[6].m_actor.m_szTexture[132], pOut, 0);
+                        RoleSystem::GetPosition((RoleSystem *)g_SceneMgr.m_pCollisionNode, pOut, 0);
                       }
-                      v38 = *(float *)&g_SceneMgr.m_npc[6].m_actor.m_szTexture[144] + a1;
-                      *(float *)&g_SceneMgr.m_npc[6].m_actor.m_szTexture[144] = v38;
+                      v38 = flt_C116F8[0] + a1;
+                      flt_C116F8[0] = v38;
                       if ( v38 > flt_58B238 )
                       {
-                        *(_DWORD *)&g_SceneMgr.m_npc[6].m_actor.m_szTexture[144] = 0;
-                        RoleSystem::GetCount(*(RoleSystem **)&g_SceneMgr.m_npc[6].m_actor.m_szTexture[132]);
+                        flt_C116F8[0] = 0.0;
+                        RoleSystem::GetCount((RoleSystem *)g_SceneMgr.m_pCollisionNode);
                         flt_58B238 = (float)(rand() % 30 + 30);
                       }
                       return;
@@ -2267,13 +2252,13 @@ LABEL_163:
                   a2.y = a2.y + pOut[0].y;
                   a2.z = a2.z + pOut[0].z;
                 }
-                RoleSystem::GetActiveRole(*(RoleSystem **)&g_SceneMgr.m_npc[6].m_actor.m_szTexture[132]);
-                if ( *(_DWORD *)(*(_DWORD *)&g_SceneMgr.m_npc[6].m_actor.m_szTexture[132] + 1284) == 2 )
+                RoleSystem::GetActiveRole((RoleSystem *)g_SceneMgr.m_pCollisionNode);
+                if ( *(_DWORD *)(g_SceneMgr.m_pCollisionNode + 1284) == 2 )
                   v31 = 2;
-                RoleSystem::GetPosition(*(RoleSystem **)&g_SceneMgr.m_npc[6].m_actor.m_szTexture[132], &a2, v31);
+                RoleSystem::GetPosition((RoleSystem *)g_SceneMgr.m_pCollisionNode, &a2, v31);
 LABEL_166:
-                *(_DWORD *)(*(_DWORD *)&g_SceneMgr.m_npc[6].m_actor.m_szTexture[132] + 1264) = v12;
-                *(_DWORD *)&g_SceneMgr.m_npc[6].m_actor.m_szTexture[144] = 0;
+                *(_DWORD *)(g_SceneMgr.m_pCollisionNode + 1264) = v12;
+                flt_C116F8[0] = 0.0;
                 return;
               }
               a2.x = -*(float *)(g_Input.KeyInfo[177].CountMode + 528);
@@ -2289,22 +2274,17 @@ LABEL_166:
             v31 = 2;
             goto LABEL_176;
           }
-          RoleSystem::MoveRole(
-            *(RoleSystem **)&g_SceneMgr.m_npc[6].m_actor.m_szTexture[132],
-            &a2.x,
-            SLODWORD(pDist),
-            2,
-            v26);
-          v30 = *(_DWORD *)(*(_DWORD *)&g_SceneMgr.m_npc[6].m_actor.m_szTexture[132] + 628);
+          RoleSystem::MoveRole((RoleSystem *)g_SceneMgr.m_pCollisionNode, &a2.x, SLODWORD(pDist), 2, v26);
+          v30 = *(_DWORD *)(g_SceneMgr.m_pCollisionNode + 628);
           if ( LODWORD(pDist) != v30
-            && !*(_DWORD *)(*(_DWORD *)&g_SceneMgr.m_npc[6].m_actor.m_szTexture[132] + 1268)
-            && Camera::CheckCollision2(&g_SceneMgr.m_npc[6].m_npcinfo.path.pt[7].y, v30, &a2) )
+            && !*(_DWORD *)(g_SceneMgr.m_pCollisionNode + 1268)
+            && Camera::CheckCollision2(&g_SceneMgr._gap_cd10[912], v30, &a2) )
           {
             a2.y = 0.0;
             RoleSystem::MoveRole(
-              *(RoleSystem **)&g_SceneMgr.m_npc[6].m_actor.m_szTexture[132],
+              (RoleSystem *)g_SceneMgr.m_pCollisionNode,
               &a2.x,
-              *(_DWORD *)(*(_DWORD *)&g_SceneMgr.m_npc[6].m_actor.m_szTexture[132] + 628),
+              *(_DWORD *)(g_SceneMgr.m_pCollisionNode + 628),
               2,
               1);
           }
@@ -2314,20 +2294,20 @@ LABEL_166:
       }
       if ( v14 )
       {
-        pOut[0].x = *(float *)(*(_DWORD *)&g_SceneMgr.m_npc[6].m_actor.m_szTexture[132] + 160) - v15[10];
-        v17 = *(float *)(*(_DWORD *)&g_SceneMgr.m_npc[6].m_actor.m_szTexture[132] + 164) - v15[11];
+        pOut[0].x = *(float *)(g_SceneMgr.m_pCollisionNode + 160) - v15[10];
+        v17 = *(float *)(g_SceneMgr.m_pCollisionNode + 164) - v15[11];
         a2.x = pOut[0].x;
         pOut[0].y = v17;
-        v18 = *(float *)(*(_DWORD *)&g_SceneMgr.m_npc[6].m_actor.m_szTexture[132] + 168) - v15[12];
+        v18 = *(float *)(g_SceneMgr.m_pCollisionNode + 168) - v15[12];
         a2.y = pOut[0].y;
         pOut[0].z = v18;
         a2.z = pOut[0].z;
         v43 = gbVec3D::Length(&a2);
-        pOut[0].x = *(float *)(*(_DWORD *)&g_SceneMgr.m_npc[6].m_actor.m_szTexture[132] + 160) - *(float *)(v14 + 160);
-        v19 = *(float *)(*(_DWORD *)&g_SceneMgr.m_npc[6].m_actor.m_szTexture[132] + 164) - *(float *)(v14 + 164);
+        pOut[0].x = *(float *)(g_SceneMgr.m_pCollisionNode + 160) - *(float *)(v14 + 160);
+        v19 = *(float *)(g_SceneMgr.m_pCollisionNode + 164) - *(float *)(v14 + 164);
         a2.x = pOut[0].x;
         pOut[0].y = v19;
-        v20 = *(float *)(*(_DWORD *)&g_SceneMgr.m_npc[6].m_actor.m_szTexture[132] + 168) - *(float *)(v14 + 168);
+        v20 = *(float *)(g_SceneMgr.m_pCollisionNode + 168) - *(float *)(v14 + 168);
         a2.y = pOut[0].y;
         pOut[0].z = v20;
         a2.z = pOut[0].z;
@@ -2343,9 +2323,7 @@ LABEL_89:
       if ( *(_BYTE *)(v16 + 173) )
       {
         v22 = *(_BYTE *)(v16 + 244);
-        if ( v22 != 14
-          || *(unsigned __int8 *)(v16 + 246) == *(_DWORD *)(*(_DWORD *)&g_SceneMgr.m_npc[6].m_actor.m_szTexture[132]
-                                                          + 628) )
+        if ( v22 != 14 || *(unsigned __int8 *)(v16 + 246) == *(_DWORD *)(g_SceneMgr.m_pCollisionNode + 628) )
         {
           v23 = v22 == 11
              || v22 == 12
@@ -2383,15 +2361,15 @@ void __thiscall UIPostUpdate(void *_this)
   gbSound2DNode *v7; // esi
   int v8; // [esp-8h] [ebp-10h]
 
-  if ( *(_DWORD *)&g_SceneMgr.m_npc[6].m_actor.m_szTexture[132] )
+  if ( g_SceneMgr.m_pCollisionNode )
   {
-    v8 = *(_DWORD *)(*(_DWORD *)&g_SceneMgr.m_npc[6].m_actor.m_szTexture[132] + 628);
+    v8 = *(_DWORD *)(g_SceneMgr.m_pCollisionNode + 628);
     v1 = (RoleSystem *)UISceneUpdate();
     RolePtr = RoleSystem::GetRolePtr(v1, v8);
-    v3 = (__int64)((*(float *)(*(_DWORD *)&g_SceneMgr.m_npc[6].m_actor.m_szTexture[132] + 4) - *(float *)(RolePtr + 128))
-                 / *(float *)&g_SceneMgr.m_npc[6].m_actor.m_szTexture[92]);
-    v4 = (__int64)((*(float *)(*(_DWORD *)&g_SceneMgr.m_npc[6].m_actor.m_szTexture[132] + 12) - *(float *)(RolePtr + 136))
-                 / *(float *)&g_SceneMgr.m_npc[6].m_actor.m_szTexture[92]);
+    v3 = (__int64)((*(float *)(g_SceneMgr.m_pCollisionNode + 4) - *(float *)(RolePtr + 128))
+                 / *(float *)&g_SceneMgr._gap_cd10[1572]);
+    v4 = (__int64)((*(float *)(g_SceneMgr.m_pCollisionNode + 12) - *(float *)(RolePtr + 136))
+                 / *(float *)&g_SceneMgr._gap_cd10[1572]);
     if ( v3 < 0 || (v5 = *(_DWORD *)(RolePtr + 152), v3 >= v5) || (int)v4 < 0 || (int)v4 >= *(_DWORD *)(RolePtr + 156) )
     {
       v6 = 2;
@@ -2417,41 +2395,41 @@ void __thiscall UIPostUpdate(void *_this)
     if ( (g_nGameFlags & 1) != 0 )
     {
       v7 = 0;
-      if ( *(_DWORD *)(*(_DWORD *)&g_SceneMgr.m_npc[6].m_actor.m_szTexture[132] + 1284) )
+      if ( *(_DWORD *)(g_SceneMgr.m_pCollisionNode + 1284) )
       {
-        if ( *(_DWORD *)(*(_DWORD *)&g_SceneMgr.m_npc[6].m_actor.m_szTexture[132] + 1284) == 1 )
+        if ( *(_DWORD *)(g_SceneMgr.m_pCollisionNode + 1284) == 1 )
         {
-          v7 = (gbSound2DNode *)g_SceneMgr.m_npc[6].m_npcinfo.mid[sub_41EB50(v6)];
+          v7 = *(gbSound2DNode **)&g_SceneMgr._gap_cd10[4 * sub_41EB50(v6) + 800];
         }
-        else if ( *(_DWORD *)(*(_DWORD *)&g_SceneMgr.m_npc[6].m_actor.m_szTexture[132] + 1284) == 2 )
+        else if ( *(_DWORD *)(g_SceneMgr.m_pCollisionNode + 1284) == 2 )
         {
-          v7 = *(gbSound2DNode **)&g_SceneMgr.m_npc[6].m_npcinfo.name[4 * sub_41EB50(v6) + 16];
+          v7 = *(gbSound2DNode **)&g_SceneMgr._gap_cd10[4 * sub_41EB50(v6) + 704];
         }
       }
       else
       {
         v7 = 0;
       }
-      if ( *(_DWORD *)&g_SceneMgr.m_npc[6].m_actor.m_szTexture[140] )
+      if ( dword_C116F4 )
       {
         if ( v7 )
         {
-          if ( *(gbSound2DNode **)&g_SceneMgr.m_npc[6].m_actor.m_szTexture[140] != v7 )
+          if ( dword_C116F4 != v7 )
           {
-            gbSound2DNode::Stop(*(gbSound2DNode **)&g_SceneMgr.m_npc[6].m_actor.m_szTexture[140]);
-            *(_DWORD *)&g_SceneMgr.m_npc[6].m_actor.m_szTexture[140] = v7;
+            gbSound2DNode::Stop(dword_C116F4);
+            dword_C116F4 = v7;
             gbSound2DNode::Play(v7);
           }
         }
         else
         {
-          gbSound2DNode::Stop(*(gbSound2DNode **)&g_SceneMgr.m_npc[6].m_actor.m_szTexture[140]);
-          *(_DWORD *)&g_SceneMgr.m_npc[6].m_actor.m_szTexture[140] = 0;
+          gbSound2DNode::Stop(dword_C116F4);
+          dword_C116F4 = 0;
         }
       }
       else if ( v7 )
       {
-        *(_DWORD *)&g_SceneMgr.m_npc[6].m_actor.m_szTexture[140] = v7;
+        dword_C116F4 = v7;
         gbSound2DNode::Play(v7);
       }
     }
@@ -2490,54 +2468,56 @@ int unknown_libname_328()
 
 // 0x00420150
 // between_std_methods (0x411BB0-0x430790)
-int __thiscall UIUpdate(_DWORD *_this, double a2)
+int __userpurge UIUpdate@<eax>(_DWORD *_this@<ecx>, double a2@<st1>, double a3)
 {
   int result; // eax
-  int v4; // ecx
-  int v5; // edi
-  _DWORD *v6; // ebx
-  int v7; // edi
-  _DWORD *v8; // ebx
+  int v5; // ecx
+  int v6; // edi
+  _DWORD *v7; // ebx
+  int v8; // edi
+  double v9; // st7
+  _DWORD *v10; // ebx
   float dt; // [esp+10h] [ebp-4h]
   int dta; // [esp+10h] [ebp-4h]
 
   result = *(_this + 123285);
   if ( result )
   {
-    v4 = *(_this + 123284);
-    if ( v4 )
-      (*(void (__thiscall **)(int))(*(_DWORD *)v4 + 20))(v4);
+    v5 = *(_this + 123284);
+    if ( v5 )
+      (*(void (__thiscall **)(int))(*(_DWORD *)v5 + 20))(v5);
     result = *(_this + 14392);
-    v5 = 0;
+    v6 = 0;
     if ( result > 0 )
     {
-      v6 = _this + 14393;
+      v7 = _this + 14393;
       do
       {
-        dt = a2;
+        dt = a3;
         ScriptSystem::UpdateTimers(dt);
         result = *(_this + 14392);
-        ++v5;
-        v6 += 2176;
+        ++v6;
+        v7 += 2176;
       }
-      while ( v5 < result );
+      while ( v6 < result );
     }
     if ( g_Input.KeyInfo[177].PressTime != 9 )
     {
       result = *(_this + 55);
-      v7 = 0;
+      v8 = 0;
       if ( result > 0 )
       {
-        v8 = _this + 56;
+        v9 = a3;
+        v10 = _this + 56;
         do
         {
-          *(float *)&dta = a2;
-          sub_426EB0(*(float *)&v8, a2, dta);
+          *(float *)&dta = a3;
+          v9 = sub_426EB0(v10, v9, a2, dta);
           result = *(_this + 55);
-          ++v7;
-          v8 += 224;
+          ++v8;
+          v10 += 224;
         }
-        while ( v7 < result );
+        while ( v8 < result );
       }
     }
   }
@@ -2580,15 +2560,15 @@ gbGfxManager *__cdecl GetGfxManager_3()
 // between_std_methods (0x411BB0-0x430790)
 int __thiscall UINotifyUpdate(int *_this)
 {
-  int v1; // ebx
+  __int32 m_pCollisionNode; // ebx
   int v3; // edi
   int *i; // esi
 
-  v1 = *(_DWORD *)&g_SceneMgr.m_npc[6].m_actor.m_szTexture[132];
+  m_pCollisionNode = g_SceneMgr.m_pCollisionNode;
   v3 = 0;
   if ( *(_this + 14392) <= 0 )
     return 0;
-  for ( i = _this + 14393; *((_BYTE *)i + 173) != 4 || !sub_419EF0((int)i, (float *)(v1 + 4)); i += 2176 )
+  for ( i = _this + 14393; *((_BYTE *)i + 173) != 4 || !sub_419EF0((int)i, (float *)(m_pCollisionNode + 4)); i += 2176 )
   {
     if ( ++v3 >= *(_this + 14392) )
       return 0;
@@ -2621,9 +2601,9 @@ int unknown_libname_330()
 // Microsoft VisualC 2-14/net runtime
 char *unknown_libname_331()
 {
-  g_SceneMgr.m_npc[6].m_path.normal[50].x = 0.0;
-  g_SceneMgr.m_npc[6].m_path.normal[50].y = 0.0;
-  g_SceneMgr.m_npc[6].m_path.normal[50].z = 0.0;
+  unk_C12B38 = 0;
+  unk_C12B3C = 0;
+  unk_C12B40 = 0;
   return byte_D8B938;
 }
 
@@ -2646,7 +2626,7 @@ int UISceneUpdate()
 // between_std_methods (0x411BB0-0x430790)
 void __cdecl EffectUpdate(float a1)
 {
-  float z; // eax
+  int v1; // eax
   int v2; // ebx
   CScreenMode *Instance; // eax
   int v4; // eax
@@ -2655,8 +2635,8 @@ void __cdecl EffectUpdate(float a1)
   int v7; // eax
   _DWORD *v8; // esi
   int v9; // ebx
-  float *p_y; // ebx
-  float *p_z; // esi
+  __int8 *v10; // ebx
+  __int8 *v11; // esi
   int v12; // edi
   int v13; // edi
   _DWORD *v14; // esi
@@ -2666,27 +2646,23 @@ void __cdecl EffectUpdate(float a1)
   int v18; // [esp+Ch] [ebp-4h]
 
   flt_58DE64 = flt_58DE64 + a1;
-  if ( LODWORD(g_SceneMgr.m_npc[6].m_path.normal[50].y)
-    && !PalScriptMgr::ClearAllScript(SLODWORD(g_SceneMgr.m_npc[6].m_path.normal[50].y)) )
+  if ( dword_C12B3C && !PalScriptMgr::ClearAllScript(dword_C12B3C) )
   {
-    if ( LOBYTE(g_SceneMgr.m_npc[6].m_path.normal[50].x) == 6 || LOBYTE(g_SceneMgr.m_npc[6].m_path.normal[50].x) == 14 )
+    if ( (_BYTE)dword_C12B38 == 6 || (_BYTE)dword_C12B38 == 14 )
     {
-      sub_418130(*(_DWORD **)&g_SceneMgr.m_npc[6].m_actor.m_szTexture[132], 0);
-      z = g_SceneMgr.m_npc[6].m_path.normal[50].z;
-      if ( *(_DWORD *)(LODWORD(g_SceneMgr.m_npc[6].m_path.normal[50].z) + 88) == 3 )
+      sub_418130((_DWORD *)g_SceneMgr.m_pCollisionNode, 0);
+      v1 = unk_C12B40;
+      if ( *(_DWORD *)(unk_C12B40 + 88) == 3 )
       {
-        gbVisNode::SetTimeScale(*(gbVisNode **)(LODWORD(g_SceneMgr.m_npc[6].m_path.normal[50].z) + 92), 0.0);
-        (*(void (__thiscall **)(_DWORD, _DWORD))(**(_DWORD **)(LODWORD(g_SceneMgr.m_npc[6].m_path.normal[50].z) + 92)
-                                               + 24))(
-          *(_DWORD *)(LODWORD(g_SceneMgr.m_npc[6].m_path.normal[50].z) + 92),
-          0);
-        z = g_SceneMgr.m_npc[6].m_path.normal[50].z;
+        gbVisNode::SetTimeScale(*(gbVisNode **)(unk_C12B40 + 92), 0.0);
+        (*(void (__thiscall **)(_DWORD, _DWORD))(**(_DWORD **)(unk_C12B40 + 92) + 24))(*(_DWORD *)(unk_C12B40 + 92), 0);
+        v1 = unk_C12B40;
       }
-      *(_BYTE *)(LODWORD(z) + 80) = 0;
+      *(_BYTE *)(v1 + 80) = 0;
     }
-    g_SceneMgr.m_npc[6].m_path.normal[50].x = 0.0;
-    g_SceneMgr.m_npc[6].m_path.normal[50].y = 0.0;
-    g_SceneMgr.m_npc[6].m_path.normal[50].z = 0.0;
+    dword_C12B38 = 0;
+    dword_C12B3C = 0;
+    unk_C12B40 = 0;
   }
   v2 = 493156 * (dword_D8BBEC == 1) + 12722152;
   v18 = v2;
@@ -2732,20 +2708,20 @@ void __cdecl EffectUpdate(float a1)
       if ( dword_D8BBEC != 2 )
       {
         v17 = 0;
-        p_y = &g_SceneMgr.m_npc[0].m_path.normal[83].y;
+        v10 = &g_SceneMgr.m_slot4[840];
         do
         {
-          if ( *((_DWORD *)p_y + 158) && *((_DWORD *)p_y + 316) != 4 )
+          if ( *((_DWORD *)v10 + 158) && *((_DWORD *)v10 + 316) != 4 )
           {
-            if ( (int)p_y < (int)&g_SceneMgr.m_npc[4].m_path.normal[63].y )
+            if ( (int)v10 < (int)&g_SceneMgr._midRegion[26112] )
             {
-              p_z = &g_SceneMgr.m_npc[4].m_path.normal[168].z;
+              v11 = &g_SceneMgr._midRegion[27376];
               v12 = 4 - v17;
               do
               {
-                if ( *((_DWORD *)p_z - 158) && *(_DWORD *)p_z != 4 )
-                  sub_416220((int)p_y, (int)(p_z - 316));
-                p_z -= 2176;
+                if ( *((_DWORD *)v11 - 158) && *(_DWORD *)v11 != 4 )
+                  sub_416220((int)v10, (int)(v11 - 1264));
+                v11 -= 8704;
                 --v12;
               }
               while ( v12 );
@@ -2757,24 +2733,21 @@ void __cdecl EffectUpdate(float a1)
               do
               {
                 if ( v14[122] && *v14 )
-                  sub_416220((int)p_y, (int)(v14 - 36));
+                  sub_416220((int)v10, (int)(v14 - 36));
                 ++v13;
                 v14 += 2176;
               }
               while ( v13 < *(_DWORD *)(v18 + 57568) );
             }
           }
-          p_y += 2176;
+          v10 += 8704;
           ++v17;
         }
-        while ( (int)p_y < (int)&g_SceneMgr.m_npc[5].m_path.normal[58].y );
+        while ( (int)v10 < (int)&g_SceneMgr.m_pGameData );
         v2 = v18;
       }
-      if ( *(_DWORD *)&g_SceneMgr.m_npc[6].m_actor.m_szTexture[132]
-        && *(_DWORD *)(*(_DWORD *)&g_SceneMgr.m_npc[6].m_actor.m_szTexture[132] + 1264) != 4 )
-      {
-        sub_420B40((float *)v2, *(RoleSystem **)&g_SceneMgr.m_npc[6].m_actor.m_szTexture[132], a1, 0);
-      }
+      if ( g_SceneMgr.m_pCollisionNode && *(_DWORD *)(g_SceneMgr.m_pCollisionNode + 1264) != 4 )
+        sub_420B40((float *)v2, (RoleSystem *)g_SceneMgr.m_pCollisionNode, a1, 0);
     }
   }
   if ( dword_D8BBEC != 1 )
@@ -3395,7 +3368,7 @@ int unknown_libname_369()
 // 0x00449990
 // between_std_methods (0x445B40-0x44BDA0)
 // attributes: thunk
-int __thiscall UIListBox::SetScrollPos(gbRefObject **_this)
+int __thiscall UIListBox::SetScrollPos(UIListBox **_this)
 {
   return ?SetScrollPos@UIListBox@@QAEXH@Z(_this);
 }
@@ -3505,7 +3478,7 @@ int __thiscall SceneUpdate(int _this, int a2, int a3)
           *(_BYTE *)(_this + 652) = 1;
           *(_BYTE *)(_this + 653) = 1;
           *(_DWORD *)(_this + 648) = 0;
-          CGameData_Load(_this, 10);
+          CGameData_Load(_this, (CUtil *)0xA);
         }
       }
     }
@@ -3534,7 +3507,7 @@ int __thiscall SceneUpdate(int _this, int a2, int a3)
 // between_std_methods (0x44BDA0-0x4A7690)
 int __thiscall CGameData_Load(int _this, CUtil *a2)
 {
-  int v2; // ebx
+  CUtil *v2; // ebx
   int result; // eax
   int v5; // ecx
   void *HoldTime; // esi
@@ -3545,7 +3518,7 @@ int __thiscall CGameData_Load(int _this, CUtil *a2)
   int v11; // ecx
   void *Data; // esi
 
-  v2 = (int)a2;
+  v2 = a2;
   if ( a2 != (CUtil *)8 || *(_DWORD *)(_this + 14536) || (result = (unsigned __int8)byte_D92785, !byte_D92785) )
   {
     result = *(_DWORD *)(_this + 14536);
@@ -3618,36 +3591,36 @@ int __thiscall CGameData_Load(int _this, CUtil *a2)
         v9 = *(int (__thiscall ****)(_DWORD, _DWORD))(_this + 28176);
         *(_DWORD *)(_this + 648) = v8;
         result = (**v9)(v9, 0);
-        v2 = *(_DWORD *)(_this + 14536);
+        v2 = *(CUtil **)(_this + 14536);
         *(_BYTE *)(_this + 652) = 1;
         *(_BYTE *)(_this + 653) = 0;
         g_Input.KeyInfo[177].PressTime = 1;
       }
     }
-    switch ( v2 )
+    switch ( (unsigned int)v2 )
     {
-      case 0:
+      case 0u:
         g_Input.KeyInfo[177].PressTime = 2;
         result = CombatEnter();
         break;
-      case 6:
+      case 6u:
         g_Input.KeyInfo[177].PressTime = 3;
         break;
-      case 9:
-      case 13:
-      case 14:
+      case 9u:
+      case 0xDu:
+      case 0xEu:
         g_Input.KeyInfo[177].PressTime = 1;
         break;
-      case 10:
+      case 0xAu:
         g_Input.KeyInfo[177].PressTime = 4;
         break;
-      case 11:
+      case 0xBu:
         g_Input.KeyInfo[177].PressTime = 5;
         break;
-      case 12:
+      case 0xCu:
         g_Input.KeyInfo[177].PressTime = 6;
         break;
-      case 15:
+      case 0xFu:
         g_Input.KeyInfo[177].PressTime = 9;
         result = CombatEnter();
         break;
@@ -4935,7 +4908,7 @@ int unknown_libname_482()
 // 0x00524970
 // between_std_methods (0x504E20-0x53C2B0)
 // attributes: thunk
-int __thiscall UIListBox::SetScroll(int *_this)
+int __thiscall UIListBox::SetScroll(UIListBox *_this)
 {
   return ?SetScroll@UIListBox@@QAEXPBDAAUtagRECT@@HH_N@Z(_this);
 }
@@ -5187,7 +5160,7 @@ void __thiscall MiniGame2Update(_DWORD **_this, int a2)
       v19 = 1.0;
     }
     sub_52EBE0((gbCamera **)*(_this + 1), SLODWORD(v19));
-    sub_531260((Actor **)*_this, v19);
+    sub_531260((gbVisNode ***)*_this, v19);
     sub_5303C0(*(_this + 3), SLODWORD(v19));
     sub_52FE30((int)*(_this + 4), v19);
   }
@@ -5855,7 +5828,7 @@ exception *__thiscall std_logic_error_ctor0(exception *_this, _DWORD *a2)
 {
   char *v4[4]; // [esp+10h] [ebp-10h] BYREF
 
-  v4[0] = (char *)&g_SceneMgr.m_npc[5].m_path.normal[140].y;
+  v4[0] = g_SceneMgr.m_szUIString;
   exception::exception(_this, (const char **)v4);
   v4[3] = 0;
   *((_BYTE *)_this + 12) = *(_BYTE *)a2;
@@ -6097,9 +6070,9 @@ void chsifnegret()
 }
 
 // 0x005592F0
-long double __usercall fFYTOX@<st0>(int a1@<ebp>, char a2@<ch>, long double a3@<st1>, long double a4@<st0>)
+double __usercall fFYTOX@<st0>(int a1@<ebp>, char a2@<ch>, long double a3@<st1>, long double a4@<st0>)
 {
-  long double result; // st7
+  double result; // st7
   long double v6; // st6
   long double v7; // st7
   long double v8; // st7

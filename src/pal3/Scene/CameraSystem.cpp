@@ -10,7 +10,7 @@ int CameraSystem::Init(int a1)
   result = a1;
   if ( a1 )
   {
-    *(_DWORD *)&g_SceneMgr.m_npc[6].m_actor.m_szTexture[132] = a1;
+    g_SceneMgr.m_pCollisionNode = a1;
     *(_DWORD *)(a1 + 1264) = 2;
   }
   return result;

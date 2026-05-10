@@ -2,6 +2,6 @@
   "name": "unknown_libname_320",
   "address": "0x004117A0",
   "size_bytes": 10,
-  "signature": "_DWORD *()",
-  "decompiled_c": "// Microsoft VisualC 2-14/net runtime\n// Microsoft VisualC 2-14/net runtime\n_DWORD *unknown_libname_320()\n{\n  sub_401000(&g_SceneMgr.m_npc[5].m_path.normal[155].z);\n  LODWORD(g_SceneMgr.m_npc[5].m_path.normal[155].z) = &off_56A6D0;\n  g_SceneMgr.m_npc[5].m_path.normal[157].z = 0.0;\n  g_SceneMgr.m_npc[5].m_path.normal[158].x = 0.0;\n  LOBYTE(g_SceneMgr.m_npc[5].m_path.normal[158].y) = -1;\n  return (_DWORD *)&g_SceneMgr.m_npc[5].m_path.normal[155].z;\n}\n"
+  "signature": "__int8 *()",
+  "decompiled_c": "// Microsoft VisualC 2-14/net runtime\n// Microsoft VisualC 2-14/net runtime\n__int8 *unknown_libname_320()\n{\n  sub_401000(&g_SceneMgr.m_szUIString[184]);\n  *(_DWORD *)&g_SceneMgr.m_szUIString[184] = &off_56A6D0;\n  *(_DWORD *)&g_SceneMgr.m_szUIString[208] = 0;\n  *(_DWORD *)&g_SceneMgr.m_szUIString[212] = 0;\n  g_SceneMgr.m_szUIString[216] = -1;\n  return &g_SceneMgr.m_szUIString[184];\n}\n"
 }

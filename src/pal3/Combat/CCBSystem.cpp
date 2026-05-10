@@ -883,7 +883,7 @@ bool CCBSystem::CreateObj2(_DWORD *a2)
   char ArgList[1024]; // [esp+408h] [ebp-40Ch] BYREF
   int v8; // [esp+810h] [ebp-4h]
 
-  v3 = (_DWORD *)((operator *)0x2598u)->new();
+  v3 = ((operator *)0x2598u)->new();
   v8 = 0;
   if ( v3 )
     v4 = (_DWORD *)sub_4E02F0(v3, (int)this);

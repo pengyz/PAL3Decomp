@@ -22,7 +22,7 @@ void UIManager::Render()
   int v4; // edi
   _DWORD *v5; // esi
   _DWORD *v6; // ebp
-  float *p_y; // ebp
+  __int8 *v7; // ebp
   _DWORD *v8; // esi
   struct gbMatrix4 *Top; // esi
   const struct gbMatrix4 *v10; // edi
@@ -71,28 +71,28 @@ void UIManager::Render()
   }
   if ( g_Input.KeyInfo[177].PressTime != 9 )
   {
-    p_y = (float *)&g_SceneMgr.m_npc[0].m_path.normal[95].y;
+    v7 = (__int8 *)&g_SceneMgr.m_slot4[984];
     v8 = (_DWORD *)((char *)this + 68 * v4 + 64);
     do
     {
-      if ( *((_DWORD *)p_y + 122) )
+      if ( *((_DWORD *)v7 + 122) )
       {
-        if ( *(_DWORD *)p_y )
+        if ( *(_DWORD *)v7 )
         {
           v8[1] = 0;
           *v8 = 0;
           v8[3] = 1065353216;
           v8[2] = 1065353216;
-          if ( sub_418260((int)(p_y - 36), (int)(v8 - 12), v12) )
+          if ( sub_418260((int)(v7 - 144), (int)(v8 - 12), v12) )
           {
             ++v4;
             v8 += 17;
           }
         }
       }
-      p_y += 2176;
+      v7 += 8704;
     }
-    while ( (int)p_y < (int)&g_SceneMgr.m_npc[5].m_path.normal[70].y );
+    while ( (int)v7 < (int)&g_SceneMgr._gap_c5e0[128] );
     v13 = v4;
   }
   if ( v4 > 0 )

@@ -15,9 +15,9 @@ int Scene::LoadConfig(void *pConfig)
   unsigned int v6; // ebp
   int v7; // edx
   unsigned int v8; // eax
-  int v9; // eax
+  char *v9; // eax
   char *v10; // ebp
-  int i; // ebx
+  char *i; // ebx
   int v12; // eax
   int result; // eax
   int v14; // ecx
@@ -25,7 +25,7 @@ int Scene::LoadConfig(void *pConfig)
   char *v16; // eax
   char *v17; // edi
   unsigned int v18; // [esp+10h] [ebp-8h]
-  int v19; // [esp+14h] [ebp-4h]
+  char *v19; // [esp+14h] [ebp-4h]
 
   v3 = (char *)*(char **)&this->m_info.cityname[8];
   v4 = v3;
@@ -68,32 +68,32 @@ int Scene::LoadConfig(void *pConfig)
     v18 = v7 + v6;
     if ( (int)(v7 + v6) < 0 )
       v8 = 0;
-    v9 = ((operator *)12 * v8)->new();
+    v9 = (char *)((operator *)12 * v8)->new();
     v10 = (char *)*(char **)&this->m_info.cityname[4];
     v19 = v9;
     for ( i = v9; v10 != v4; i += 12 )
     {
-      ((void *)i)->Copy(v10);
+      i->Copy(v10);
       v10 += 12;
     }
-    ((void *)i)->Erase(1, pConfig);
-    v4->Insert(*(void **)&this->m_info.cityname[8], (void *)(i + 12));
+    i->Erase(1, pConfig);
+    v4->Insert(*(void **)&this->m_info.cityname[8], i + 12);
     nullsub_2(*(_DWORD *)&this->m_info.cityname[4], *(_DWORD *)&this->m_info.cityname[8]);
     operator delete(*(void **)&this->m_info.cityname[4]);
-    *(_DWORD *)&this->m_info.cityname[12] = v19 + 12 * v18;
+    *(_DWORD *)&this->m_info.cityname[12] = &v19[12 * v18];
     v12 = *(_DWORD *)&this->m_info.cityname[4];
     if ( v12 )
     {
       v14 = *(_DWORD *)&this->m_info.cityname[8];
       *(_DWORD *)&this->m_info.cityname[4] = v19;
-      result = v19 + 4 * (3 * ((v14 - v12) / 12) + 3);
+      result = (int)&v19[12 * ((v14 - v12) / 12) + 12];
       *(_DWORD *)&this->m_info.cityname[8] = result;
     }
     else
     {
       *(_DWORD *)&this->m_info.cityname[4] = v19;
       *(_DWORD *)&this->m_info.cityname[8] = v19 + 12;
-      return v19 + 12;
+      return (int)(v19 + 12);
     }
   }
   return result;

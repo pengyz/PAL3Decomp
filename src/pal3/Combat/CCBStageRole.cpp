@@ -110,7 +110,7 @@ void CCBStageRole::PlaySound(char *name, int a3)
   __int32 j; // edi
   char v9; // al
   int v10; // [esp+4h] [ebp-20h] BYREF
-  char *v11; // [esp+8h] [ebp-1Ch]
+  __int8 *v11; // [esp+8h] [ebp-1Ch]
   unsigned int v12; // [esp+Ch] [ebp-18h]
   int v13; // [esp+14h] [ebp-10h]
   int v14; // [esp+20h] [ebp-4h]
@@ -120,10 +120,10 @@ void CCBStageRole::PlaySound(char *name, int a3)
     LOBYTE(v10) = (_BYTE)name;
     ((std *)&v10)->string::_Tidy(0);
     v14 = 0;
-    v4 = strlen((const char *)&g_SceneMgr.m_npc[5].m_path.normal[140].y);
+    v4 = strlen(g_SceneMgr.m_szUIString);
     if ( ((SceneObj *)&v10)->Update(v4) )
     {
-      qmemcpy(v11, &g_SceneMgr.m_npc[5].m_path.normal[140].y, v4);
+      qmemcpy(v11, g_SceneMgr.m_szUIString, v4);
       ((std *)&v10)->string::_Eos(v4);
     }
     v13 = 0;

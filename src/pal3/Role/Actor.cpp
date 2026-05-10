@@ -174,7 +174,7 @@ int Actor::InitComponents()
 // 0x00536560
 char Actor::ProcessFrame()
 {
-  int v2; // eax
+  _BYTE *v2; // eax
   int v3; // eax
   int v4; // ecx
   int v5; // eax
@@ -201,8 +201,8 @@ char Actor::ProcessFrame()
   v2 = ((operator *)0xCu)->new();
   if ( v2 )
   {
-    *(_BYTE *)(v2 + 8) = 0;
-    *(_DWORD *)(v2 + 4) = 0;
+    v2[8] = 0;
+    *((_DWORD *)v2 + 1) = 0;
     *(_DWORD *)v2 = 0;
   }
   else

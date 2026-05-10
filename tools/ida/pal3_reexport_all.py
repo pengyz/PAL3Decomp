@@ -75,6 +75,7 @@ def main():
                     i + 1, len(targets), exported, errors, rate))
 
             try:
+                ida_hexrays.mark_cfunc_dirty(ea)
                 cfunc = ida_hexrays.decompile(ea)
                 if not cfunc:
                     errors += 1

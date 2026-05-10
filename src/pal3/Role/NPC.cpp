@@ -18,18 +18,18 @@ extern int dword_C025EC;
 unsigned int NPC::Create(int index)
 {
   int v2; // ebp
-  int *v3; // edx
+  __int8 *v3; // edx
   unsigned int result; // eax
   signed int v5; // ebx
-  __int32 v6; // edi
+  int v6; // edi
   int RoleNum; // eax
   int v8; // ecx
   int indexa; // [esp+14h] [ebp+4h]
 
   v2 = 0;
-  v3 = (int *)&g_SceneMgr.m_npc[0].nCGMonsterType + 352 * index;
-  memset(&g_SceneMgr.m_npc[0].m_npcinfo.reserve[352 * index + 27], 0, 0x18u);
-  *v3 = 0;
+  v3 = (__int8 *)&g_SceneMgr.m_slot0[1408 * index + 424];
+  memset(&g_SceneMgr.m_slot0[1408 * index + 400], 0, 0x18u);
+  *(_DWORD *)v3 = 0;
   *((_WORD *)v3 + 2) = 0;
   result = ((Concurrency::details::VirtualProcessor *)&g_GDB)->details::VirtualProcessor::GetExecutionResourceId();
   v5 = 0;
@@ -43,7 +43,7 @@ unsigned int NPC::Create(int index)
       {
         v8 = v2 + 352 * index;
         ++v2;
-        g_SceneMgr.m_npc[0].m_npcinfo.reserve[v8 + 27] = v6;
+        *(_DWORD *)&g_SceneMgr.m_slot0[4 * v8 + 400] = v6;
       }
     }
     result = indexa;
@@ -55,7 +55,7 @@ unsigned int NPC::Create(int index)
 void * NPC::Init(int index)
 {
   signed int v2; // ebx
-  __int32 v3; // ebp
+  int v3; // ebp
   int RoleNum; // eax
   char v5; // cl
   int v6; // edi
@@ -65,7 +65,7 @@ void * NPC::Init(int index)
   int i; // ecx
   char v11; // bl
   int v12; // edi
-  char *v13; // esi
+  __int8 *v13; // esi
   void *result; // eax
   int v15; // edx
   int v16; // ecx
@@ -76,10 +76,10 @@ void * NPC::Init(int index)
   v2 = 0;
   memset(v18, 0, sizeof(v18));
   v17 = 1408 * index;
-  memset(&g_SceneMgr.m_npc[0].bInvincible + 352 * index, 0, 0xC0u);
-  memset(&g_SceneMgr.m_npc[0].m_actor.m_name[1408 * index + 140], 0, 0x30u);
-  memset(&g_SceneMgr.m_npc[0].m_actor.m_name[1408 * index + 188], 0, 0x30u);
-  memset(&g_SceneMgr.m_npc[0].m_actor.m_name[1408 * index + 236], 0, 0x30u);
+  memset(&g_SceneMgr.m_slot0[1408 * index + 432], 0, 0xC0u);
+  memset(&g_SceneMgr.m_slot0[1408 * index + 624], 0, 0x30u);
+  memset(&g_SceneMgr.m_slot0[1408 * index + 672], 0, 0x30u);
+  memset(&g_SceneMgr.m_slot0[1408 * index + 720], 0, 0x30u);
   indexa = ((Concurrency::details::VirtualProcessor *)&g_GDB)->details::VirtualProcessor::GetExecutionResourceId();
   if ( indexa > 0 )
   {
@@ -111,15 +111,15 @@ void * NPC::Init(int index)
               {
                 if ( i == 2 )
                 {
-                  *(_DWORD *)&g_SceneMgr.m_npc[0].m_actor.m_name[1408 * index + 44 + 4 * v18[2]] = v3;
+                  *(_DWORD *)&g_SceneMgr.m_slot0[1408 * index + 528 + 4 * v18[2]] = v3;
                 }
                 else if ( i == 3 )
                 {
-                  *(_DWORD *)&g_SceneMgr.m_npc[0].m_actor.m_name[1408 * index + 12 + 4 * v18[3]] = v3;
+                  *(_DWORD *)&g_SceneMgr.m_slot0[1408 * index + 496 + 4 * v18[3]] = v3;
                 }
                 else
                 {
-                  *(&g_SceneMgr.m_npc[0].bInvincible + 352 * index + 8 * i + v18[i]) = v3;
+                  *(_DWORD *)&g_SceneMgr.m_slot0[1408 * index + 432 + 32 * i + 4 * v18[i]] = v3;
                 }
                 ++v18[i];
               }
@@ -129,7 +129,7 @@ void * NPC::Init(int index)
           {
             v9 = v18[5] + 352 * index;
             ++v18[5];
-            *(_DWORD *)&g_SceneMgr.m_npc[0].m_actor.m_name[4 * v9 + 108] = v3;
+            *(_DWORD *)&g_SceneMgr.m_slot0[4 * v9 + 592] = v3;
           }
         }
       }
@@ -141,7 +141,7 @@ void * NPC::Init(int index)
   {
     v11 = 1;
     v12 = 6;
-    v13 = (char *)&g_SceneMgr.m_npc[0].fRattrapWait + v17;
+    v13 = (__int8 *)&g_SceneMgr.m_slot0[v17 + 436];
     do
     {
       result = v13;
@@ -176,7 +176,7 @@ int NPC::SetParams(int a1)
 {
   int result; // eax
 
-  LODWORD(g_SceneMgr.m_npc[5].m_path.normal[131].y) = a1;
+  *(_DWORD *)g_SceneMgr._gap_c93c = a1;
   result = a1;
   if ( a1 )
   {
@@ -210,15 +210,15 @@ int NPC::SetParams(int a1)
 int * NPC::InitAll()
 {
   int *result; // eax
-  int *p_nCGMonsterType; // ebx
+  __int8 *v1; // ebx
   int *v2; // edi
   int v3; // ebp
   int v4; // eax
-  int *v5; // ecx
+  __int8 *v5; // ecx
   int v6; // edx
-  int *v7; // esi
+  __int8 *v7; // esi
   int v8; // eax
-  int *v9; // ecx
+  __int8 *v9; // ecx
   int v10; // eax
   int v11; // [esp+10h] [ebp-Ch]
   int *v12; // [esp+14h] [ebp-8h]
@@ -226,7 +226,7 @@ int * NPC::InitAll()
 
   result = g_RoleTeam2;
   v11 = 0;
-  p_nCGMonsterType = (int *)&g_SceneMgr.m_npc[0].nCGMonsterType;
+  v1 = (__int8 *)&g_SceneMgr.m_slot0[424];
   v12 = g_RoleTeam2;
   do
   {
@@ -238,40 +238,40 @@ int * NPC::InitAll()
       {
         v3 = *v2;
         v4 = 0;
-        v5 = (int *)p_nCGMonsterType - 6;
+        v5 = (__int8 *)v1 - 24;
         do
         {
-          if ( v3 == *v5 )
+          if ( v3 == *(_DWORD *)v5 )
           {
-            *((_BYTE *)p_nCGMonsterType + v4) = 1;
+            v1[v4] = 1;
             goto LABEL_14;
           }
           ++v4;
-          ++v5;
+          v5 += 4;
         }
         while ( v4 < 6 );
         v6 = 0;
-        v7 = (int *)p_nCGMonsterType + 2;
+        v7 = (__int8 *)v1 + 8;
         while ( 2 )
         {
           v8 = 0;
           v9 = v7;
           do
           {
-            if ( v3 == *v9 )
+            if ( v3 == *(_DWORD *)v9 )
             {
               v10 = v8 + 8 * (v6 + v11);
-              g_SceneMgr.m_npc[0].m_actor.m_name[v10 + 140] = 1;
-              g_SceneMgr.m_npc[0].m_actor.m_name[v10 + 236] = *((_BYTE *)v2 + 4);
-              g_SceneMgr.m_npc[0].m_actor.m_name[v10 + 188] = *((_BYTE *)v2 + 6);
+              g_SceneMgr.m_slot0[v10 + 624] = 1;
+              g_SceneMgr.m_slot0[v10 + 720] = *((_BYTE *)v2 + 4);
+              g_SceneMgr.m_slot0[v10 + 672] = *((_BYTE *)v2 + 6);
               goto LABEL_14;
             }
             ++v8;
-            ++v9;
+            v9 += 4;
           }
           while ( v8 < 8 );
           ++v6;
-          v7 += 8;
+          v7 += 32;
           if ( v6 < 6 )
             continue;
           break;
@@ -283,11 +283,11 @@ LABEL_14:
       result = v12;
     }
     result += 4;
-    p_nCGMonsterType += 352;
+    v1 += 1408;
     v12 = result;
     v11 += 176;
   }
-  while ( (int)result < (int)&g_SceneMgr.m_info.cityname[24] );
+  while ( (int)result < (int)&g_SceneMgr.m_pCamera );
   return result;
 }
 
