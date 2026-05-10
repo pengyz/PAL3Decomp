@@ -4,7 +4,7 @@
  */
 
 #include "gbengine/gbRenderEffect.h"
-#include "gbengine/gbGfxManager_impl.h"
+#include "gbengine/gbGfxManager.h"
 #include "gbengine/gbTexture.h"
 #include "gbengine/gbVFileSystem.h"
 #include <d3d9.h>

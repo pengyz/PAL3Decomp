@@ -8,7 +8,7 @@
 
 #define GBVEC3D_NO_CTOR
 #include "gbengine/gbParticle.h"
-#include "gbengine/gbGfxManager_impl.h"
+#include "gbengine/gbGfxManager.h"
 #include "gbengine/gbRenderEffect.h"
 #include "gbengine/gbengine_internal.h"
 #include <string.h>

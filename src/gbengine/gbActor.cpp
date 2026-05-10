@@ -5,7 +5,7 @@
 
 #include "gbengine/gbActor.h"
 #include "gbengine/gbMisc.h"
-#include "gbengine/gbGfxManager_impl.h"
+#include "gbengine/gbGfxManager.h"
 #include "gbengine/gbSceneGraph.h"
 #include "gbengine/gbengine_internal.h"
 #include <cstring>

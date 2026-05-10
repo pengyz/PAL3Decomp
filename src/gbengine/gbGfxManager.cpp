@@ -8,7 +8,7 @@
  * Graphics: DirectX 9 (Summer 2003 SDK)
  */
 
-#include "gbengine/gbGfxManager_impl.h"
+#include "gbengine/gbGfxManager.h"
 #include "gbengine/gbengine_internal.h"
 #include "gbengine/gbRenderEffect.h"
 #include <windows.h>

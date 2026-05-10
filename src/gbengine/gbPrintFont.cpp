@@ -5,7 +5,7 @@
  */
 
 #include "gbengine/gbPrintFont.h"
-#include "gbengine/gbGfxManager_impl.h"
+#include "gbengine/gbGfxManager.h"
 #include "gbengine/gbRenderEffect.h"
 #include <stdlib.h>
 #include <string.h>

@@ -7,7 +7,7 @@
  * Compiler: MSVC 6.0 SP5
  */
 
-#include "gbengine/gbGfxManager_impl.h"
+#include "gbengine/gbGfxManager.h"
 #include <windows.h>
 #include <d3d9.h>
 #include <string.h>

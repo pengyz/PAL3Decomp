@@ -6,7 +6,7 @@
  */
 
 #include "gbengine/gbMesh.h"
-#include "gbengine/gbGfxManager_impl.h"
+#include "gbengine/gbGfxManager.h"
 #include <stdlib.h>
 
 // gbDynIndexBuf class definition (not yet in header)

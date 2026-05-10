@@ -9,7 +9,7 @@
  */
 
 #include "gbengine/gbTexture.h"
-#include "gbengine/gbGfxManager_impl.h"
+#include "gbengine/gbGfxManager.h"
 #include "gbengine/gbVFileSystem.h"
 #include <windows.h>
 #include <d3d9.h>
