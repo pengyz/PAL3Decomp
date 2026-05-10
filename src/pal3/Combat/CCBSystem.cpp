@@ -1142,7 +1142,7 @@ char CCBSystem::ProcMagicWait(int a2, char a3)
 {
   int v4; // ecx
   unsigned int v5; // ebx
-  __int8 *v6; // edi
+  char *v6; // edi
   int v8; // [esp+1Ch] [ebp+8h]
   char v9; // [esp+23h] [ebp+Fh]
 
@@ -1158,7 +1158,7 @@ char CCBSystem::ProcMagicWait(int a2, char a3)
   v9 = this->ProcWeaponSkill();
   UICursor::IRender();
   v5 = 0;
-  v6 = (__int8 *)&g_SceneMgr.m_slot0[268];
+  v6 = (char *)&g_SceneMgr.m_slot0[268];
   v8 = 0;
   do
   {
@@ -1173,7 +1173,7 @@ char CCBSystem::ProcMagicWait(int a2, char a3)
     ++v5;
     v8 += 892;
   }
-  while ( (int)v6 < (int)&g_SceneMgr._postSlots[268] );
+  while ( (int)v6 < (int)&g_SceneMgr.m_RoleSystem[0]._data[836] );
   return v9;
 }
 
@@ -2235,7 +2235,7 @@ int CCBSystem::PassCmdToThread(int a2)
     if ( sub_4F7050((int)(pad_0004 + 40)) )
       sub_4F7140((int)(pad_0004 + 40));
     else
-      CCBStageRole_PassCmd(&g_SceneMgr.m_slot4[792], &v12);
+      CCBStageRole_PassCmd(&g_SceneMgr._gap_1888[792], &v12);
     pad_0004[37] = 1;
   }
   ((CCBStage *)this->m_pStage)->DelTask(*((_DWORD *)pad_0004 + 5), &a3, &a4);

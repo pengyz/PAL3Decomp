@@ -3,6 +3,9 @@
 
 class RoleSystem {
 public:
+    char _data[8704]; // +0x0
+    // total size: 0x2200 (8704)
+
     int * Init(); // 0x0040BE50
     int LoadData(char a2); // 0x0040BE80
     static int CheckVisible(int a1); // 0x00410E40

@@ -29,11 +29,11 @@ void * SceneMgr::Create(gbGfxManager *gfxMgr, gbCamera *cam, gbSceneGraph *pRoot
   memset(this->_preArray, 0, 0x900u);
   memset(&this->m_slot1[276], 0, 0xA000u);
   m_pGfxMgr = (gbGfxManager *)this->m_pGfxMgr;
-  this->m_lightDirX = 0.0;
-  this->m_lightDirY = 0.0;
-  this->m_lightDirZ = 0.0;
-  this->m_upX = 0.0;
-  this->m_upY = 1.0;
+  *(_DWORD *)&this->m_RoleSystem[4]._data[1356] = 0;
+  *(_DWORD *)&this->m_RoleSystem[4]._data[1360] = 0;
+  *(_DWORD *)&this->m_RoleSystem[4]._data[1364] = 0;
+  *(_DWORD *)&this->m_RoleSystem[4]._data[1368] = 0;
+  *(_DWORD *)&this->m_RoleSystem[4]._data[1372] = 1065353216;
   v6 = ((gbEffectMgr *)m_pGfxMgr->pEffectMgr)->NewRenderEffect(aGfxscriptAddit, 0);
   v7 = (gbGfxManager *)this->m_pGfxMgr;
   this->m_pAddEffect = v6;
@@ -50,11 +50,11 @@ void * SceneMgr::Create(gbGfxManager *gfxMgr, gbCamera *cam, gbSceneGraph *pRoot
 // 0x004CDBF0
 char SceneMgr::RenderAll()
 {
-  __int8 *v1; // esi
+  char *v1; // esi
   int v2; // edi
   char result; // al
 
-  v1 = (__int8 *)&this->m_slot1[292];
+  v1 = (char *)&this->m_slot1[292];
   v2 = 2048;
   do
   {
@@ -71,11 +71,11 @@ char SceneMgr::RenderAll()
 // 0x004CDC20
 char SceneMgr::RenderUpdate()
 {
-  __int8 *v1; // esi
+  char *v1; // esi
   int v2; // edi
   char result; // al
 
-  v1 = (__int8 *)&this->m_slot1[292];
+  v1 = (char *)&this->m_slot1[292];
   v2 = 2048;
   do
   {

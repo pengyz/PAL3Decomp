@@ -15,7 +15,7 @@ public:
     PtrArray(int a1, int a2, char a3); // 0x00434130
     ~PtrArray(); // 0x004341E0
     static void SetSize(); // 0x00434240
-    static char * SetAtGrow(unsigned __int16 a1, int a2); // 0x004343B0
+    static char * SetAtGrow(signed __int16 a1, int a2); // 0x004343B0
     static char * RemoveAt(const char *a1); // 0x004343F0
     void Remove(); // 0x00434490
     struct gbVFile * InsertAt(const char *a2); // 0x004344F0

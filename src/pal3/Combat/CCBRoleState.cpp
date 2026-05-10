@@ -189,7 +189,7 @@ int CCBRoleState::GetForce(int roleIdx)
 CCBRoleState::CCBRoleState()
 {
   unsigned __int16 *v1; // ebp
-  __int8 *v2; // esi
+  char *v2; // esi
   int v3; // eax
   unsigned __int16 *v4; // ebx
   int v5; // eax
@@ -215,7 +215,7 @@ CCBRoleState::CCBRoleState()
   unsigned __int16 *v26; // [esp+14h] [ebp-4h]
 
   v1 = (unsigned __int16 *)&this->m_Role[0].byMagicUseTime[6][3];
-  v2 = (__int8 *)&g_SceneMgr.m_slot0[288];
+  v2 = (char *)&g_SceneMgr.m_slot0[288];
   v26 = (unsigned __int16 *)&this->m_Role[0].byMagicUseTime[6][3];
   do
   {
@@ -224,7 +224,7 @@ CCBRoleState::CCBRoleState()
     if ( (_BYTE)v3 )
     {
       memset(v4, 0, 0x1Cu);
-      if ( (int)v2 < (int)&g_SceneMgr.m_slot0[288] || (int)v2 >= (int)&g_SceneMgr._postSlots[288] )
+      if ( (int)v2 < (int)&g_SceneMgr.m_slot0[288] || (int)v2 >= (int)&g_SceneMgr.m_RoleSystem[0]._data[856] )
       {
         v21 = 580;
         v25 = v1;
@@ -320,7 +320,7 @@ CCBRoleState::CCBRoleState()
     v1 += 446;
     v26 = v1;
   }
-  while ( (int)v2 < (int)&g_SceneMgr._midRegion[600] );
+  while ( (int)v2 < (int)&g_SceneMgr.m_RoleSystem[1]._data[600] );
   v3;
 }
 
@@ -328,12 +328,12 @@ CCBRoleState::CCBRoleState()
 char CCBRoleState::_CCBRoleState()
 {
   int v2; // ebp
-  __int8 *v3; // edi
+  char *v3; // edi
   float *p_fGPCostDec; // esi
   char result; // al
 
   v2 = 0;
-  v3 = (__int8 *)&g_SceneMgr.m_slot0[240];
+  v3 = (char *)&g_SceneMgr.m_slot0[240];
   p_fGPCostDec = (float *)&this->m_Role[0].fGPCostDec;
   do
   {
@@ -446,7 +446,7 @@ char CCBRoleState::_CCBRoleState()
     ++v2;
     p_fGPCostDec += 223;
   }
-  while ( (int)v3 < (int)&g_SceneMgr._postSlots[240] );
+  while ( (int)v3 < (int)&g_SceneMgr.m_RoleSystem[0]._data[808] );
   return result;
 }
 
@@ -490,7 +490,7 @@ LABEL_4:
 // 0x004EE540
 char CCBRoleState::Create()
 {
-  __int8 *v1; // ebp
+  char *v1; // ebp
   gbGeomNode **v2; // edi
   int v3; // eax
   gbGeomNode *v4; // eax
@@ -507,7 +507,7 @@ char CCBRoleState::Create()
   char v16[1024]; // [esp+E14h] [ebp-40Ch] BYREF
   int v17; // [esp+121Ch] [ebp-4h]
 
-  v1 = (__int8 *)&g_SceneMgr.m_slot0[288];
+  v1 = (char *)&g_SceneMgr.m_slot0[288];
   v2 = (gbGeomNode **)(this + 350);
   do
   {
@@ -579,7 +579,7 @@ char CCBRoleState::Create()
     v1 += 1408;
     v2 += 223;
   }
-  while ( (int)v1 < (int)&g_SceneMgr._postSlots[288] );
+  while ( (int)v1 < (int)&g_SceneMgr.m_RoleSystem[0]._data[856] );
   return v3;
 }
 
@@ -2193,7 +2193,7 @@ char CCBRoleState::GetFirstAliveRoleInForce(int roleIdx, int arg4)
     v18 = *((_DWORD *)v6 + 275);
     v20 = SkillNum;
     v19 = v11;
-    CCBStageRole_GetAlive((int)&g_SceneMgr.m_slot4[792], &v18);
+    CCBStageRole_GetAlive((int)&g_SceneMgr._gap_1888[792], &v18);
   }
   if ( v4 != -1 )
   {
@@ -2429,12 +2429,12 @@ char CCBRoleState::CheckRoleValid(int a2, unsigned int roleIdx, int a4)
     case 28:
       if ( roleIdx > 4 )
         return 1;
-      if ( CCBStageRole_CheckValid((int *)&g_SceneMgr.m_slot4[792], 14) <= 0 )
+      if ( CCBStageRole_CheckValid((int *)&g_SceneMgr._gap_1888[792], 14) <= 0 )
         goto LABEL_6;
       ++g_nRandCallCount;
       g_RandSeed = 214013 * g_RandSeed + 2531011;
-      TargetRole = ((CCBAI *)&g_SceneMgr.m_slot4[792])->GetTargetRole(pOut);
-      CCBStageRole_PassCmd(&g_SceneMgr.m_slot4[792], TargetRole);
+      TargetRole = ((CCBAI *)&g_SceneMgr._gap_1888[792])->GetTargetRole(pOut);
+      CCBStageRole_PassCmd(&g_SceneMgr._gap_1888[792], TargetRole);
       result = 1;
       break;
     case 29:
@@ -2525,13 +2525,13 @@ int CCBRoleState::SetRoleHP(int roleIdx, int value)
         break;
       case 16:
         v7 = 6113;
-        result = (int)CCBStageRole_GetByIndex(&g_SceneMgr.m_slot4[792], &v7);
+        result = (int)CCBStageRole_GetByIndex(&g_SceneMgr._gap_1888[792], &v7);
         if ( result )
         {
           v9 = *(_DWORD *)(result + 8);
           v8 = 1;
           v7 = 6113;
-          CCBStageRole_PassCmd(&g_SceneMgr.m_slot4[792], &v7);
+          CCBStageRole_PassCmd(&g_SceneMgr._gap_1888[792], &v7);
           result = ((CCBStage *)this->m_pStage)->GetRoleIndex(8, 0, 1);
           v6 = result;
           if ( result != -1 )
@@ -4093,18 +4093,18 @@ int CCBRoleState::ProcessSkillEffect(int roleIdx)
   v15[2] = roleIdx;
   v15[3] = -1;
   LOWORD(v15[4]) = 0;
-  v14 = sub_40CCD0((int *)&g_SceneMgr.m_slot4[792]);
+  v14 = sub_40CCD0((int *)&g_SceneMgr._gap_1888[792]);
   if ( v14 <= 0 )
     return 0;
   while ( 1 )
   {
-    if ( *((int *)((CCBAI *)&g_SceneMgr.m_slot4[792])->GetTargetRole(pOut) + 1) > 0 )
+    if ( *((int *)((CCBAI *)&g_SceneMgr._gap_1888[792])->GetTargetRole(pOut) + 1) > 0 )
     {
-      v6 = *(_DWORD *)((CCBAI *)&g_SceneMgr.m_slot4[792])->GetTargetRole(v19);
+      v6 = *(_DWORD *)((CCBAI *)&g_SceneMgr._gap_1888[792])->GetTargetRole(v19);
       v15[1] = v6;
       if ( v2->GetRoleAI(v15) )
       {
-        v7 = *(_BYTE *)(*((_DWORD *)((CCBAI *)&g_SceneMgr.m_slot4[792])->GetTargetRole(v16) + 2) + 629);
+        v7 = *(_BYTE *)(*((_DWORD *)((CCBAI *)&g_SceneMgr._gap_1888[792])->GetTargetRole(v16) + 2) + 629);
         if ( v20 )
         {
           if ( v7 == 1 || v7 == 3 )
@@ -4141,7 +4141,7 @@ LABEL_21:
   if ( v13 == -1 )
     return 0;
   else
-    return *(_DWORD *)((CCBAI *)&g_SceneMgr.m_slot4[792])->GetTargetRole(v16);
+    return *(_DWORD *)((CCBAI *)&g_SceneMgr._gap_1888[792])->GetTargetRole(v16);
 }
 
 // 0x004F5B70
@@ -4172,18 +4172,18 @@ int CCBRoleState::ProcessItemEffect(int roleIdx)
   v14[2] = roleIdx;
   v14[3] = -1;
   LOWORD(v14[4]) = 0;
-  v10 = sub_40CCD0((int *)&g_SceneMgr.m_slot4[792]);
+  v10 = sub_40CCD0((int *)&g_SceneMgr._gap_1888[792]);
   if ( v10 <= 0 )
     return 0;
   for ( i = 0; i < v10; ++i )
   {
-    if ( *((int *)((CCBAI *)&g_SceneMgr.m_slot4[792])->GetTargetRole(pOut) + 1) > 0 )
+    if ( *((int *)((CCBAI *)&g_SceneMgr._gap_1888[792])->GetTargetRole(pOut) + 1) > 0 )
     {
-      v6 = *(_DWORD *)((CCBAI *)&g_SceneMgr.m_slot4[792])->GetTargetRole(v12);
+      v6 = *(_DWORD *)((CCBAI *)&g_SceneMgr._gap_1888[792])->GetTargetRole(v12);
       v14[1] = v6;
       if ( this->GetRoleAI(v14) )
       {
-        v7 = *(_BYTE *)(*((_DWORD *)((CCBAI *)&g_SceneMgr.m_slot4[792])->GetTargetRole(v13) + 2) + 629);
+        v7 = *(_BYTE *)(*((_DWORD *)((CCBAI *)&g_SceneMgr._gap_1888[792])->GetTargetRole(v13) + 2) + 629);
         if ( v15 )
         {
           if ( v7 == 1 || v7 == 3 )
@@ -4208,7 +4208,7 @@ int CCBRoleState::ProcessItemEffect(int roleIdx)
   if ( v9 == -1 )
     return 0;
   else
-    return *(_DWORD *)((CCBAI *)&g_SceneMgr.m_slot4[792])->GetTargetRole(v13);
+    return *(_DWORD *)((CCBAI *)&g_SceneMgr._gap_1888[792])->GetTargetRole(v13);
 }
 
 // 0x004F7500

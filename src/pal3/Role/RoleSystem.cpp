@@ -50,7 +50,7 @@ int * RoleSystem::Init()
   int v2; // esi
   int v3; // edx
 
-  result = (int *)((char *)this + 972);
+  result = (int *)&this->_data[972];
   v2 = 12;
   do
   {
@@ -93,7 +93,7 @@ int RoleSystem::LoadData(char a2)
 
   for ( i = 0; i < 12; ++i )
   {
-    v3 = (int *)*((_DWORD *)this + 230);
+    v3 = (int *)*(int **)&this->_data[920];
     v4 = 0;
     if ( !v3 )
       goto LABEL_33;
@@ -155,7 +155,7 @@ LABEL_31:
         v4 += dword_58615C;
     }
 LABEL_33:
-    v7 = (_BYTE *)*((_DWORD *)this + 218);
+    v7 = (_BYTE *)*(_BYTE **)&this->_data[872];
     if ( v7 )
     {
       if ( !v7[i + 631] )
@@ -183,7 +183,7 @@ LABEL_42:
           break;
       }
     }
-    v9 = (_BYTE *)*((_DWORD *)this + 215);
+    v9 = (_BYTE *)*(_BYTE **)&this->_data[860];
     if ( v9 )
     {
       if ( !v9[i + 631] )
@@ -211,7 +211,7 @@ LABEL_52:
           break;
       }
     }
-    v11 = (_BYTE *)*((_DWORD *)this + 221);
+    v11 = (_BYTE *)*(_BYTE **)&this->_data[884];
     if ( v11 )
     {
       if ( !v11[i + 631] )
@@ -239,7 +239,7 @@ LABEL_62:
           break;
       }
     }
-    v13 = (_BYTE *)*((_DWORD *)this + 224);
+    v13 = (_BYTE *)*(_BYTE **)&this->_data[896];
     if ( v13 )
     {
       if ( !v13[i + 631] )
@@ -267,7 +267,7 @@ LABEL_72:
           break;
       }
     }
-    v15 = (_BYTE *)*((_DWORD *)this + 227);
+    v15 = (_BYTE *)*(_BYTE **)&this->_data[908];
     if ( v15 )
     {
       if ( !v15[i + 631] )
@@ -295,10 +295,10 @@ LABEL_82:
           break;
       }
     }
-    result = *((_DWORD *)this + i + 159) + v4;
-    *((_DWORD *)this + i + 231) = result;
+    result = *(_DWORD *)&this->_data[4 * i + 636] + v4;
+    *(_DWORD *)&this->_data[4 * i + 924] = result;
     if ( a2 || (unsigned int)i > 2 )
-      *((_DWORD *)this + i + 243) = result;
+      *(_DWORD *)&this->_data[4 * i + 972] = result;
   }
   return result;
 }
@@ -543,7 +543,7 @@ void RoleSystem::RenderRole(void *pStack, int a3)
 {
   _BYTE v4[64]; // [esp+38h] [ebp-40h] BYREF
 
-  if ( *((_DWORD *)this + 158) )
+  if ( *(_DWORD *)&this->_data[632] )
   {
     if ( (g_SceneMgr.m_szUIString[92] & 1) == 0 )
     {
@@ -554,29 +554,33 @@ void RoleSystem::RenderRole(void *pStack, int a3)
       atexit(nullsub_5);
     }
     ((gbMatrixStack *)pStack)->Push();
-    ((gbMatrixStack *)pStack)->Translate((struct gbVec3D *)((char *)this + 160));
-    if ( *((_DWORD *)this + 316) == 4 && *((_DWORD *)this + 307) == 11 )
-      ((gbMatrixStack *)pStack)->Rotate(*((float *)this + 336), (struct gbVec3D *)this + 108);
-    ((gbMatrixStack *)pStack)->Rotate(*((float *)this + 2172), (struct gbVec3D *)&g_SceneMgr.m_szUIString[80]);
-    ((gbMatrixStack *)pStack)->Scale(*((float *)this + 160), *((float *)this + 160), *((float *)this + 160));
-    *((_DWORD *)this + 36) = ((Actor *)((char *)this + 680))->DispatchAction(a3);
-    if ( *((_DWORD *)this + 360) )
+    ((gbMatrixStack *)pStack)->Translate((struct gbVec3D *)&this->_data[160]);
+    if ( *(_DWORD *)&this->_data[1264] == 4 && *(_DWORD *)&this->_data[1228] == 11 )
+      ((gbMatrixStack *)pStack)->Rotate(*(float *)&this->_data[1344], (struct gbVec3D *)&this->_data[1296]);
+    ((gbMatrixStack *)pStack)->Rotate(*(float *)&this->_data[8688], (struct gbVec3D *)&g_SceneMgr.m_szUIString[80]);
+    ((gbMatrixStack *)pStack)->Scale(*(float *)&this->_data[640], *(float *)&this->_data[640], *(float *)&this->_data[640]);
+    *(_DWORD *)&this->_data[144] = ((Actor *)&this->_data[680])->DispatchAction(a3);
+    if ( *(_DWORD *)&this->_data[1440] )
     {
       ((gbMatrix4 *)v4)->gbMatrix4();
-      if ( *((_BYTE *)this + 1445) )
+      if ( this->_data[1445] )
       {
         ((gbMatrixStack *)pStack)->Push();
-        ((gbActor *)*((gbActor **)this + 174))->GetTagNodeTM((struct gbMatrix4 *)v4, aTagWeapon1);
+        ((gbActor *)*(gbActor **)&this->_data[696])->GetTagNodeTM((struct gbMatrix4 *)v4, aTagWeapon1);
         ((gbMatrixStack *)pStack)->MultMatrix((struct gbMatrix4 *)v4);
-        (*(void (**)(_DWORD, _DWORD))(**((_DWORD **)this + 360) + 16))(*((_DWORD *)this + 360), 0);
+        (*(void (**)(_DWORD, _DWORD))(**(_DWORD **)&this->_data[1440] + 16))(
+          *(_DWORD *)&this->_data[1440],
+          0);
         ((gbMatrixStack *)pStack)->Pop();
       }
-      if ( *((_BYTE *)this + 1444) )
+      if ( this->_data[1444] )
       {
         ((gbMatrixStack *)pStack)->Push();
-        ((gbActor *)*((gbActor **)this + 174))->GetTagNodeTM((struct gbMatrix4 *)v4, aTagWeapon2);
+        ((gbActor *)*(gbActor **)&this->_data[696])->GetTagNodeTM((struct gbMatrix4 *)v4, aTagWeapon2);
         ((gbMatrixStack *)pStack)->MultMatrix((struct gbMatrix4 *)v4);
-        (*(void (**)(_DWORD, _DWORD))(**((_DWORD **)this + 360) + 16))(*((_DWORD *)this + 360), 0);
+        (*(void (**)(_DWORD, _DWORD))(**(_DWORD **)&this->_data[1440] + 16))(
+          *(_DWORD *)&this->_data[1440],
+          0);
         ((gbMatrixStack *)pStack)->Pop();
       }
     }
@@ -594,91 +598,91 @@ int RoleSystem::UpdateTransform()
   int v6; // [esp-4h] [ebp-Ch]
   int v7; // [esp-4h] [ebp-Ch]
 
-  v1 = *((unsigned int *)this + 321);
+  v1 = *(unsigned int *)&this->_data[1284];
   if ( (unsigned int)v1 > 0x3A )
-    *((_DWORD *)this + 321) = 0;
-  switch ( *((_DWORD *)this + 321) )
+    *(_DWORD *)&this->_data[1284] = 0;
+  switch ( *(_DWORD *)&this->_data[1284] )
   {
     case 0:
     case 5:
     case 7:
-      *((_DWORD *)this + 322) = 0;
-      *((_DWORD *)this + 323) = 0;
-      *((_DWORD *)this + 324) = 0;
-      *((_DWORD *)this + 325) = 0;
-      *((_DWORD *)this + 326) = 0;
-      *((_DWORD *)this + 327) = 0;
-      *((_DWORD *)this + 328) = *((_DWORD *)this + 325);
-      *((_DWORD *)this + 329) = *((_DWORD *)this + 326);
-      return this->UpdatePath(*((_DWORD *)this + 321));
+      *(_DWORD *)&this->_data[1288] = 0;
+      *(_DWORD *)&this->_data[1292] = 0;
+      *(_DWORD *)&this->_data[1296] = 0;
+      *(_DWORD *)&this->_data[1300] = 0;
+      *(_DWORD *)&this->_data[1304] = 0;
+      *(_DWORD *)&this->_data[1308] = 0;
+      *(_DWORD *)&this->_data[1312] = *(_DWORD *)&this->_data[1300];
+      *(_DWORD *)&this->_data[1316] = *(_DWORD *)&this->_data[1304];
+      return this->UpdatePath(*(_DWORD *)&this->_data[1284]);
     case 1:
     case 3:
-      *((_DWORD *)this + 323) = dword_58B3B4;
-      v3 = *((_BYTE *)this + 173);
+      *(_DWORD *)&this->_data[1292] = dword_58B3B4;
+      v3 = this->_data[173];
       if ( v3 == -1 )
       {
         HIDWORD(v1) = dword_58B3DC;
 LABEL_7:
-        *((_DWORD *)this + 322) = HIDWORD(v1);
-        return this->UpdatePath(*((_DWORD *)this + 321));
+        *(_DWORD *)&this->_data[1288] = HIDWORD(v1);
+        return this->UpdatePath(*(_DWORD *)&this->_data[1284]);
       }
       if ( v3 == 2 )
       {
-        if ( *((_DWORD *)this + 354) == 1 )
+        if ( *(_DWORD *)&this->_data[1416] == 1 )
         {
-          if ( *(_BYTE *)(*((_DWORD *)this + 355) + 756) == 1 )
+          if ( *(_BYTE *)(*(_DWORD *)&this->_data[1420] + 756) == 1 )
           {
-            v5 = *((_DWORD *)this + 321);
-            *((_DWORD *)this + 322) = dword_58B33C;
+            v5 = *(_DWORD *)&this->_data[1284];
+            *(_DWORD *)&this->_data[1288] = dword_58B33C;
             return this->UpdatePath(v5);
           }
-          else if ( *(_BYTE *)(*((_DWORD *)this + 355) + 756) == 2 )
+          else if ( *(_BYTE *)(*(_DWORD *)&this->_data[1420] + 756) == 2 )
           {
-            *((_DWORD *)this + 322) = dword_58B350;
-            return this->UpdatePath(*((_DWORD *)this + 321));
+            *(_DWORD *)&this->_data[1288] = dword_58B350;
+            return this->UpdatePath(*(_DWORD *)&this->_data[1284]);
           }
           else
           {
-            v4 = *((_DWORD *)this + 321);
-            *((_DWORD *)this + 322) = dword_58B328;
+            v4 = *(_DWORD *)&this->_data[1284];
+            *(_DWORD *)&this->_data[1288] = dword_58B328;
             return this->UpdatePath(v4);
           }
         }
         else
         {
-          switch ( *(_BYTE *)(*((_DWORD *)this + 355) + 755) )
+          switch ( *(_BYTE *)(*(_DWORD *)&this->_data[1420] + 755) )
           {
             case 0:
               goto LABEL_7;
             case 1:
-              *((_DWORD *)this + 322) = dword_58B29C;
-              return this->UpdatePath(*((_DWORD *)this + 321));
+              *(_DWORD *)&this->_data[1288] = dword_58B29C;
+              return this->UpdatePath(*(_DWORD *)&this->_data[1284]);
             case 2:
-              v6 = *((_DWORD *)this + 321);
-              *((_DWORD *)this + 322) = dword_58B2B0;
+              v6 = *(_DWORD *)&this->_data[1284];
+              *(_DWORD *)&this->_data[1288] = dword_58B2B0;
               return this->UpdatePath(v6);
             default:
-              *((_DWORD *)this + 322) = dword_58B2C4;
-              return this->UpdatePath(*((_DWORD *)this + 321));
+              *(_DWORD *)&this->_data[1288] = dword_58B2C4;
+              return this->UpdatePath(*(_DWORD *)&this->_data[1284]);
           }
         }
       }
       else
       {
-        LODWORD(v1) = *((_DWORD *)this + 127);
-        v7 = *((_DWORD *)this + 321);
+        LODWORD(v1) = *(_DWORD *)&this->_data[508];
+        v7 = *(_DWORD *)&this->_data[1284];
         if ( (_DWORD)v1 == HIDWORD(v1) )
-          *((_DWORD *)this + 322) = dword_58B38C;
+          *(_DWORD *)&this->_data[1288] = dword_58B38C;
         else
-          *((float *)this + 322) = (float)v1;
+          *(float *)&this->_data[1288] = (float)v1;
         return this->UpdatePath(v7);
       }
     case 2:
-      *((_DWORD *)this + 322) = dword_58B3F0;
-      *((_DWORD *)this + 323) = dword_58B3C8;
-      return this->UpdatePath(*((_DWORD *)this + 321));
+      *(_DWORD *)&this->_data[1288] = dword_58B3F0;
+      *(_DWORD *)&this->_data[1292] = dword_58B3C8;
+      return this->UpdatePath(*(_DWORD *)&this->_data[1284]);
     default:
-      return this->UpdatePath(*((_DWORD *)this + 321));
+      return this->UpdatePath(*(_DWORD *)&this->_data[1284]);
   }
 }
 
@@ -690,45 +694,45 @@ int RoleSystem::UpdatePath(int a2)
   int result; // eax
   int v6; // [esp-8h] [ebp-14h]
 
-  if ( *((_BYTE *)this + 174) == 49 )
+  if ( this->_data[174] == 49 )
   {
-    ((Actor *)((char *)this + 680))->CompareAction(a2, 2);
-    ((Actor *)((char *)this + 680))->SetTimeScale(1.0);
-    *((_BYTE *)this + 1445) = 0;
-    *((_BYTE *)this + 1444) = 0;
+    ((Actor *)&this->_data[680])->CompareAction(a2, 2);
+    ((Actor *)&this->_data[680])->SetTimeScale(1.0);
+    this->_data[1445] = 0;
+    this->_data[1444] = 0;
     return result;
   }
-  v3 = sub_4126D0(a2, *((_BYTE *)this + 173));
-  if ( *((_BYTE *)this + 174) == 50 )
+  v3 = sub_4126D0(a2, this->_data[173]);
+  if ( this->_data[174] == 50 )
     goto LABEL_10;
   if ( v3 == 50 )
   {
-    v4 = (Actor *)((char *)this + 680);
-    if ( !((Actor *)((char *)this + 680))->LoadAction(aZ0) )
+    v4 = (Actor *)&this->_data[680];
+    if ( !((Actor *)&this->_data[680])->LoadAction(aZ0) )
       v4->CompareAction(50, 0);
     goto LABEL_12;
   }
   if ( v3 != 52 && v3 != 58 )
   {
 LABEL_10:
-    v4 = (Actor *)((char *)this + 680);
+    v4 = (Actor *)&this->_data[680];
     v6 = 2;
     goto LABEL_11;
   }
-  v4 = (Actor *)((char *)this + 680);
-  if ( !((Actor *)((char *)this + 680))->LoadAction(aZ4) )
+  v4 = (Actor *)&this->_data[680];
+  if ( !((Actor *)&this->_data[680])->LoadAction(aZ4) )
   {
     v6 = 0;
 LABEL_11:
     v4->CompareAction(v3, v6);
   }
 LABEL_12:
-  if ( *((_DWORD *)this + 321) == 2 )
+  if ( *(_DWORD *)&this->_data[1284] == 2 )
     v4->SetTimeScale(2.4000001);
   else
     v4->SetTimeScale(1.0);
-  *((_BYTE *)this + 1445) = 0;
-  *((_BYTE *)this + 1444) = 0;
+  this->_data[1445] = 0;
+  this->_data[1444] = 0;
   return result;
 }
 
@@ -748,46 +752,46 @@ int RoleSystem::MoveRole(float *pPos, int a3, int a4, int a5)
   int v16; // [esp-8h] [ebp-24h]
   int v17; // [esp-8h] [ebp-24h]
 
-  *((float *)this + 336) = *pPos;
+  *(float *)&this->_data[1344] = *pPos;
   result = a3;
-  *((float *)this + 337) = pPos[1];
-  *((float *)this + 338) = pPos[2];
-  v7 = *((_DWORD *)this + 317);
-  *((_DWORD *)this + 339) = a3;
-  *((_DWORD *)this + 365) = 1;
+  *(float *)&this->_data[1348] = pPos[1];
+  *(float *)&this->_data[1352] = pPos[2];
+  v7 = *(_DWORD *)&this->_data[1268];
+  *(_DWORD *)&this->_data[1356] = a3;
+  *(_DWORD *)&this->_data[1460] = 1;
   if ( v7 != 2 )
   {
     LOBYTE(result) = this->UpdateRole((int)pPos, a3, a4);
-    *((_DWORD *)this + 366) = 0;
+    *(_DWORD *)&this->_data[1464] = 0;
     return result;
   }
-  if ( a3 == *((_DWORD *)this + 157) )
+  if ( a3 == *(_DWORD *)&this->_data[628] )
   {
-    v16 = *((_DWORD *)this + 157);
+    v16 = *(_DWORD *)&this->_data[628];
     v8 = (RoleSystem *)UISceneUpdate();
     RolePtr = v8->GetRolePtr(v16);
     v17 = (__int64)((pPos[2] - *(float *)(RolePtr + 136)) / g_SceneMgr.m_fMoveParam);
     v15 = (__int64)((*pPos - *(float *)(RolePtr + 128)) / g_SceneMgr.m_fMoveParam);
-    v14 = (__int64)((*((float *)this + 3) - *(float *)(RolePtr + 136)) / g_SceneMgr.m_fMoveParam);
-    v13 = (__int64)((*((float *)this + 1) - *(float *)(RolePtr + 128)) / g_SceneMgr.m_fMoveParam);
-    v12 = *((_DWORD *)this + 157);
+    v14 = (__int64)((*(float *)&this->_data[12] - *(float *)(RolePtr + 136)) / g_SceneMgr.m_fMoveParam);
+    v13 = (__int64)((*(float *)&this->_data[4] - *(float *)(RolePtr + 128)) / g_SceneMgr.m_fMoveParam);
+    v12 = *(_DWORD *)&this->_data[628];
     v10 = (RoleSystem *)UISceneUpdate();
     if ( sub_4215B0(v10, v12, v13, v14, v15, v17) )
     {
-      *((_DWORD *)this + 1138) = 2;
-      *((_DWORD *)this + 370) = *((_DWORD *)this + 1);
-      *((_DWORD *)this + 371) = *((_DWORD *)this + 2);
-      *((_DWORD *)this + 372) = *((_DWORD *)this + 3);
-      *((float *)this + 373) = *pPos;
-      *((float *)this + 374) = pPos[1];
-      *((float *)this + 375) = pPos[2];
-      return sub_407DC0((float *)this + 370);
+      *(_DWORD *)&this->_data[4552] = 2;
+      *(_DWORD *)&this->_data[1480] = *(_DWORD *)&this->_data[4];
+      *(_DWORD *)&this->_data[1484] = *(_DWORD *)&this->_data[8];
+      *(_DWORD *)&this->_data[1488] = *(_DWORD *)&this->_data[12];
+      *(float *)&this->_data[1492] = *pPos;
+      *(float *)&this->_data[1496] = pPos[1];
+      *(float *)&this->_data[1500] = pPos[2];
+      return sub_407DC0((float *)&this->_data[1480]);
     }
     result = a3;
   }
-  if ( a5 || (v11 = *((_DWORD *)this + 366) + 1, *((_DWORD *)this + 366) = v11, v11 > 30) )
+  if ( a5 || (v11 = *(_DWORD *)&this->_data[1464] + 1, *(_DWORD *)&this->_data[1464] = v11, v11 > 30) )
   {
-    *((_DWORD *)this + 366) = 0;
+    *(_DWORD *)&this->_data[1464] = 0;
     LOBYTE(result) = this->UpdateRole((int)pPos, result, a4);
   }
   return result;
@@ -822,20 +826,20 @@ char RoleSystem::UpdateRole(int a2, int a3, int a4)
   float v29; // [esp+3Ch] [ebp-8h]
   float v30; // [esp+40h] [ebp-4h]
 
-  if ( a3 == *((_DWORD *)this + 157) )
+  if ( a3 == *(_DWORD *)&this->_data[628] )
   {
     LOBYTE(v5) = sub_412D90((int)this, (float *)a2, a4);
   }
   else
   {
-    v18 = *((_DWORD *)this + 157);
+    v18 = *(_DWORD *)&this->_data[628];
     v6 = (RoleSystem *)UISceneUpdate();
     RolePtr = v6->GetRolePtr(v18);
     v21 = RolePtr;
-    v24 = (__int64)((*((float *)this + 1) - *(float *)(RolePtr + 128)) / g_SceneMgr.m_fMoveParam);
+    v24 = (__int64)((*(float *)&this->_data[4] - *(float *)(RolePtr + 128)) / g_SceneMgr.m_fMoveParam);
     v8 = v22;
     v9 = 0x7FFFF;
-    v25 = (__int64)((*((float *)this + 3) - *(float *)(RolePtr + 136)) / g_SceneMgr.m_fMoveParam);
+    v25 = (__int64)((*(float *)&this->_data[12] - *(float *)(RolePtr + 136)) / g_SceneMgr.m_fMoveParam);
     v20 = 0x7FFFF;
     v19 = 0;
     v10 = (int *)(RolePtr + 8);
@@ -859,7 +863,7 @@ char RoleSystem::UpdateRole(int a2, int a3, int a4)
           v9 = (v8 - v24) * (v8 - v24) + (v13 / 2 - v25) * (v13 / 2 - v25);
           v20 = v9;
           v22 = (v12 + v11) / 2;
-          *((_DWORD *)this + 340) = v19;
+          *(_DWORD *)&this->_data[1360] = v19;
         }
       }
       v10 += 4;
@@ -886,32 +890,32 @@ char RoleSystem::UpdateRole(int a2, int a3, int a4)
       v26[1] = 0.0;
       if ( v24 == v8 && v25 == v15 )
       {
-        sub_413C00((int)this, a3, *((_DWORD *)this + 340));
+        sub_413C00((int)this, a3, *(_DWORD *)&this->_data[1360]);
         LOBYTE(v5) = sub_412D90((int)this, v26, a4);
       }
       else
       {
         v16 = v27;
-        *((float *)this + 336) = v26[0];
-        *((_DWORD *)this + 337) = 0;
-        *((float *)this + 338) = v16;
+        *(float *)&this->_data[1344] = v26[0];
+        *(_DWORD *)&this->_data[1348] = 0;
+        *(float *)&this->_data[1352] = v16;
         if ( sub_408460(
                &g_SceneMgr.m_szUIString[184],
-               *((_DWORD *)this + 157),
-               (float *)this + 1,
+               *(_DWORD *)&this->_data[628],
+               (float *)&this->_data[4],
                v26,
-               (float *)this + 370,
-               *((_BYTE *)this + 172)) )
+               (float *)&this->_data[1480],
+               this->_data[172]) )
         {
-          *((_DWORD *)this + 317) = 7;
-          *((_DWORD *)this + 321) = a4;
+          *(_DWORD *)&this->_data[1268] = 7;
+          *(_DWORD *)&this->_data[1284] = a4;
           this->UpdateTransform();
-          *((_DWORD *)this + 336) = *(_DWORD *)a2;
-          *((_DWORD *)this + 337) = *(_DWORD *)(a2 + 4);
+          *(_DWORD *)&this->_data[1344] = *(_DWORD *)a2;
+          *(_DWORD *)&this->_data[1348] = *(_DWORD *)(a2 + 4);
           v5 = *(_DWORD *)(a2 + 8);
-          *((_DWORD *)this + 338) = v5;
-          *((_DWORD *)this + 337) = 0;
-          *((_DWORD *)this + 339) = a3;
+          *(_DWORD *)&this->_data[1352] = v5;
+          *(_DWORD *)&this->_data[1348] = 0;
+          *(_DWORD *)&this->_data[1356] = a3;
         }
         else
         {
@@ -929,25 +933,25 @@ void RoleSystem::GetPosition(void *pOut, int a3)
   gbVec3D *v4; // esi
   double v5; // st7
 
-  v4 = (gbVec3D *)((char *)this + 1308);
-  *((_DWORD *)this + 327) = *(_DWORD *)pOut;
-  *((_DWORD *)this + 328) = *((_DWORD *)pOut + 1);
-  *((_DWORD *)this + 329) = *((_DWORD *)pOut + 2);
-  *((_DWORD *)this + 321) = a3;
+  v4 = (gbVec3D *)&this->_data[1308];
+  *(_DWORD *)&this->_data[1308] = *(_DWORD *)pOut;
+  *(_DWORD *)&this->_data[1312] = *((_DWORD *)pOut + 1);
+  *(_DWORD *)&this->_data[1316] = *((_DWORD *)pOut + 2);
+  *(_DWORD *)&this->_data[1284] = a3;
   this->UpdateTransform();
   if ( a3 )
   {
-    *((_DWORD *)this + 328) = 0;
+    *(_DWORD *)&this->_data[1312] = 0;
     v4->Normalize();
-    v5 = *((float *)this + 322);
+    v5 = *(float *)&this->_data[1288];
     v4->x = v5 * v4->x;
     v4->y = v5 * v4->y;
     v4->z = v5 * v4->z;
-    *((_DWORD *)this + 317) = 12;
+    *(_DWORD *)&this->_data[1268] = 12;
   }
   else
   {
-    *((_DWORD *)this + 317) = 0;
+    *(_DWORD *)&this->_data[1268] = 0;
   }
 }
 
@@ -1003,17 +1007,17 @@ int RoleSystem::PathFind(float *pTarget)
   gbVec3D v49; // [esp+2Ch] [ebp-18h] BYREF
   gbVec3D v50; // [esp+38h] [ebp-Ch] BYREF
 
-  v3 = *((_DWORD *)this + 316);
-  *((_DWORD *)this + 307) = 0;
-  *((_DWORD *)this + 308) = 0;
+  v3 = *(_DWORD *)&this->_data[1264];
+  *(_DWORD *)&this->_data[1228] = 0;
+  *(_DWORD *)&this->_data[1232] = 0;
   if ( v3 != 4 )
-    *((_DWORD *)this + 315) = v3;
-  *((_DWORD *)this + 316) = 4;
-  v50.x = *pTarget - *((float *)this + 1);
-  v4 = pTarget[1] - *((float *)this + 2);
+    *(_DWORD *)&this->_data[1260] = v3;
+  *(_DWORD *)&this->_data[1264] = 4;
+  v50.x = *pTarget - *(float *)&this->_data[4];
+  v4 = pTarget[1] - *(float *)&this->_data[8];
   v49.x = v50.x;
   v50.y = v4;
-  v5 = pTarget[2] - *((float *)this + 3);
+  v5 = pTarget[2] - *(float *)&this->_data[12];
   y = v50.y;
   pTarget[1] = 0.0;
   v49.y = y;
@@ -1022,45 +1026,45 @@ int RoleSystem::PathFind(float *pTarget)
   v7 = ((gbVec3D *)&v49)->Length();
   if ( v7 <= *(float *)&g_SceneMgr.m_szUIString[16] )
   {
-    v9 = (float *)((char *)this + 1240);
-    *((float *)this + 310) = *pTarget;
-    *((float *)this + 311) = pTarget[1];
-    *((float *)this + 312) = pTarget[2];
+    v9 = (float *)&this->_data[1240];
+    *(float *)&this->_data[1240] = *pTarget;
+    *(float *)&this->_data[1244] = pTarget[1];
+    *(float *)&this->_data[1248] = pTarget[2];
   }
   else
   {
     v8 = *(float *)&g_SceneMgr.m_szUIString[16] / v7;
-    v9 = (float *)((char *)this + 1240);
+    v9 = (float *)&this->_data[1240];
     v49.x = v49.x * v8;
     v49.y = v49.y * v8;
-    v49.x = v49.x + *((float *)this + 1);
-    v49.y = v49.y + *((float *)this + 2);
+    v49.x = v49.x + *(float *)&this->_data[4];
+    v49.y = v49.y + *(float *)&this->_data[8];
     v10 = v49.y;
-    v7 = v8 * v49.z + *((float *)this + 3);
-    *((_DWORD *)this + 310) = LODWORD(v49.x);
-    *((float *)this + 311) = v10;
+    v7 = v8 * v49.z + *(float *)&this->_data[12];
+    *(float *)&this->_data[1240] = v49.x;
+    *(float *)&this->_data[1244] = v10;
     v49.z = v7;
-    *((float *)this + 312) = v7;
+    *(float *)&this->_data[1248] = v7;
   }
-  v35 = *((_DWORD *)this + 157);
+  v35 = *(_DWORD *)&this->_data[628];
   v11 = (RoleSystem *)UISceneUpdate();
   sub_421440(v11, v35, v9, 0, 0);
-  *((float *)this + 311) = v7;
+  *(float *)&this->_data[1244] = v7;
   if ( !g_SceneMgr._gap_cd10[1610] )
   {
-    v42 = *((_DWORD *)this + 157);
+    v42 = *(_DWORD *)&this->_data[628];
     v12 = (RoleSystem *)UISceneUpdate();
     RolePtr = v12->GetRolePtr(v42);
-    v14 = (__int64)((*((float *)this + 1) - *(float *)(RolePtr + 128)) / g_SceneMgr.m_fMoveParam);
+    v14 = (__int64)((*(float *)&this->_data[4] - *(float *)(RolePtr + 128)) / g_SceneMgr.m_fMoveParam);
     v15 = *v9 - *(float *)(RolePtr + 128);
-    LODWORD(v47) = (__int64)((*((float *)this + 3) - *(float *)(RolePtr + 136)) / g_SceneMgr.m_fMoveParam);
+    LODWORD(v47) = (__int64)((*(float *)&this->_data[12] - *(float *)(RolePtr + 136)) / g_SceneMgr.m_fMoveParam);
     v16 = (__int64)(v15 / g_SceneMgr.m_fMoveParam);
     v17 = v9[2] - *(float *)(RolePtr + 136);
     v45 = v16;
     v40 = (__int64)(v17 / g_SceneMgr.m_fMoveParam);
     v38 = v16;
     v36 = LODWORD(v47);
-    v34 = *((_DWORD *)this + 157);
+    v34 = *(_DWORD *)&this->_data[628];
     v18 = (RoleSystem *)UISceneUpdate();
     if ( !sub_4218B0(v18, v34, v14, v36, v38, v40, &v43) )
     {
@@ -1081,52 +1085,52 @@ int RoleSystem::PathFind(float *pTarget)
       v41 = v21;
       v9[2] = v48;
       v39 = v20;
-      v37 = *((_DWORD *)this + 157);
+      v37 = *(_DWORD *)&this->_data[628];
       v24 = (RoleSystem *)UISceneUpdate();
-      *((float *)this + 311) = sub_421230(v24, v37, v39, v41, 0);
+      *(float *)&this->_data[1244] = sub_421230(v24, v37, v39, v41, 0);
     }
   }
-  *((float *)this + 324) = *v9;
-  *((float *)this + 325) = v9[1];
-  *((float *)this + 326) = v9[2];
-  *((float *)this + 324) = *((float *)this + 324) - *((float *)this + 40);
-  *((float *)this + 325) = *((float *)this + 325) - *((float *)this + 41);
-  *((float *)this + 326) = *((float *)this + 326) - *((float *)this + 42);
-  *((_DWORD *)this + 325) = 0;
-  ((gbVec3D *)(gbVec3D *)this + 108)->Normalize();
+  *(float *)&this->_data[1296] = *v9;
+  *(float *)&this->_data[1300] = v9[1];
+  *(float *)&this->_data[1304] = v9[2];
+  *(float *)&this->_data[1296] = *(float *)&this->_data[1296] - *(float *)&this->_data[160];
+  *(float *)&this->_data[1300] = *(float *)&this->_data[1300] - *(float *)&this->_data[164];
+  *(float *)&this->_data[1304] = *(float *)&this->_data[1304] - *(float *)&this->_data[168];
+  *(_DWORD *)&this->_data[1300] = 0;
+  ((gbVec3D *)&this->_data[1296])->Normalize();
   sub_4122C0((int)this);
   v25 = sqrt((50.0 + 50.0) / 490.0);
-  *((float *)this + 313) = v25;
-  v26 = fabs(*((float *)this + 311) - *((float *)this + 41));
-  *((_DWORD *)this + 314) = 0;
-  *((float *)this + 313) = sqrt((v26 + 50.0 + v26 + 50.0) / 490.0) + v25;
-  v46 = *v9 - *((float *)this + 40);
-  v27 = v9[1] - *((float *)this + 41);
+  *(float *)&this->_data[1252] = v25;
+  v26 = fabs(*(float *)&this->_data[1244] - *(float *)&this->_data[164]);
+  *(_DWORD *)&this->_data[1256] = 0;
+  *(float *)&this->_data[1252] = sqrt((v26 + 50.0 + v26 + 50.0) / 490.0) + v25;
+  v46 = *v9 - *(float *)&this->_data[160];
+  v27 = v9[1] - *(float *)&this->_data[164];
   v50.x = v46;
   v47 = v27;
-  v28 = v9[2] - *((float *)this + 42);
-  *((_DWORD *)this + 325) = 0;
+  v28 = v9[2] - *(float *)&this->_data[168];
+  *(_DWORD *)&this->_data[1300] = 0;
   v48 = v28;
   v29 = v48;
-  *((_DWORD *)this + 324) = LODWORD(v50.x);
+  *(float *)&this->_data[1296] = v50.x;
   v50.z = v29;
   v50.y = 0.0;
-  *((float *)this + 326) = v29;
-  ((gbVec3D *)(gbVec3D *)this + 108)->Normalize();
-  v30 = ((gbVec3D *)&v50)->Length() / *((float *)this + 313);
-  *((float *)this + 324) = v30 * *((float *)this + 324);
-  *((float *)this + 325) = v30 * *((float *)this + 325);
-  *((float *)this + 326) = v30 * *((float *)this + 326);
+  *(float *)&this->_data[1304] = v29;
+  ((gbVec3D *)&this->_data[1296])->Normalize();
+  v30 = ((gbVec3D *)&v50)->Length() / *(float *)&this->_data[1252];
+  *(float *)&this->_data[1296] = v30 * *(float *)&this->_data[1296];
+  *(float *)&this->_data[1300] = v30 * *(float *)&this->_data[1300];
+  *(float *)&this->_data[1304] = v30 * *(float *)&this->_data[1304];
   v31 = 50.0;
-  if ( *((float *)this + 311) > (double)*((float *)this + 41) )
-    v31 = *((float *)this + 311) - *((float *)this + 41) + 50.0;
-  *((_DWORD *)this + 321) = 4;
-  *((float *)this + 325) = sqrt((v31 + v31) / 490.0) * 490.0;
-  ((Actor *)((char *)this + 680))->CompareAction(4, 2);
-  ((Actor *)((char *)this + 680))->SetTimeScale(4.0);
-  v33 = *((float *)this + 313) + 0.5;
-  *((float *)this + 313) = v33;
-  *((float *)this + 313) = v33 + 0.5;
+  if ( *(float *)&this->_data[1244] > (double)*(float *)&this->_data[164] )
+    v31 = *(float *)&this->_data[1244] - *(float *)&this->_data[164] + 50.0;
+  *(_DWORD *)&this->_data[1284] = 4;
+  *(float *)&this->_data[1300] = sqrt((v31 + v31) / 490.0) * 490.0;
+  ((Actor *)&this->_data[680])->CompareAction(4, 2);
+  ((Actor *)&this->_data[680])->SetTimeScale(4.0);
+  v33 = *(float *)&this->_data[1252] + 0.5;
+  *(float *)&this->_data[1252] = v33;
+  *(float *)&this->_data[1252] = v33 + 0.5;
   return result;
 }
 
@@ -1167,19 +1171,19 @@ void RoleSystem::UpdateAnimation(int a2)
 
   if ( a2 && *(_DWORD *)(a2 + 1388) != 4 && *(_BYTE *)(a2 + 173) != 2 )
   {
-    if ( *((_DWORD *)this + 347) && a2 != *((_DWORD *)this + 348) )
+    if ( *(_DWORD *)&this->_data[1388] && a2 != *(_DWORD *)&this->_data[1392] )
       this->GetActiveRole();
-    *((_DWORD *)this + 347) = 1;
-    *((_DWORD *)this + 348) = a2;
-    v24.x = *((float *)this + 1);
-    v4 = *((float *)this + 3);
-    v24.y = *((float *)this + 2);
+    *(_DWORD *)&this->_data[1388] = 1;
+    *(_DWORD *)&this->_data[1392] = a2;
+    v24.x = *(float *)&this->_data[4];
+    v4 = *(float *)&this->_data[12];
+    v24.y = *(float *)&this->_data[8];
     v24.z = v4;
     v24.x = v24.x - *(float *)(a2 + 4);
     v24.y = v24.y - *(float *)(a2 + 8);
     v24.z = v4 - *(float *)(a2 + 12);
     v5 = ((gbVec3D *)&v24)->Length();
-    v6 = *((_DWORD *)this + 348);
+    v6 = *(_DWORD *)&this->_data[1392];
     v7 = v5 - *(float *)(v6 + 16);
     if ( v7 >= 0.0 )
       a2a = v7;
@@ -1210,10 +1214,10 @@ void RoleSystem::UpdateAnimation(int a2)
         a2b = 0;
         do
         {
-          LOBYTE(v15) = *((_BYTE *)this + 172);
+          LOBYTE(v15) = this->_data[172];
           if ( sub_421020(
                  v14,
-                 *((_DWORD *)this + 157),
+                 *(_DWORD *)&this->_data[628],
                  (__int64)((v25 - *(float *)(RolePtr + 128)) / g_SceneMgr.m_fMoveParam),
                  (__int64)((v27 - *(float *)(RolePtr + 136)) / g_SceneMgr.m_fMoveParam),
                  v15) )
@@ -1234,14 +1238,14 @@ void RoleSystem::UpdateAnimation(int a2)
       }
       else
       {
-        v8 = ((PalScriptMgr *)*(_DWORD *)(*((_DWORD *)this + 348) + 264))->Destroy(0);
-        *((_DWORD *)this + 349) = v8;
+        v8 = ((PalScriptMgr *)*(_DWORD *)(*(_DWORD *)&this->_data[1392] + 264))->Destroy(0);
+        *(_DWORD *)&this->_data[1396] = v8;
         if ( v8 )
         {
-          sub_416550((int)this, (float *)(*((_DWORD *)this + 348) + 4), 1);
+          sub_416550((int)this, (float *)(*(_DWORD *)&this->_data[1392] + 4), 1);
           RoleSystemNotify((int)this);
-          v9 = *((_DWORD *)this + 349);
-          *((_DWORD *)this + 347) = 2;
+          v9 = *(_DWORD *)&this->_data[1396];
+          *(_DWORD *)&this->_data[1388] = 2;
           v23 = v9;
           Instance = (PtrArray *)SoundContext::GetInstance();
           CScreenMode_SetResolution(Instance, 0, v23);
@@ -1254,24 +1258,24 @@ void RoleSystem::UpdateAnimation(int a2)
     }
     else
     {
-      v18 = (_DWORD *)*((_DWORD *)this + 348);
+      v18 = (_DWORD *)*(_DWORD **)&this->_data[1392];
       if ( !v18[125] )
       {
         v19 = v18[317];
         if ( v19 != 3 )
         {
-          *((_DWORD *)this + 350) = v19;
-          *((_DWORD *)this + 352) = v18[2172];
-          *((_DWORD *)this + 351) = v18[321];
-          v18[324] = *((_DWORD *)this + 1);
-          v18[325] = *((_DWORD *)this + 2);
-          v18[326] = *((_DWORD *)this + 3);
-          v20 = (float *)*((_DWORD *)this + 348);
+          *(_DWORD *)&this->_data[1400] = v19;
+          *(_DWORD *)&this->_data[1408] = v18[2172];
+          *(_DWORD *)&this->_data[1404] = v18[321];
+          v18[324] = *(_DWORD *)&this->_data[4];
+          v18[325] = *(_DWORD *)&this->_data[8];
+          v18[326] = *(_DWORD *)&this->_data[12];
+          v20 = (float *)*(float **)&this->_data[1392];
           v20[324] = v20[324] - v20[1];
           v20[325] = v20[325] - v20[2];
           v20[326] = v20[326] - v20[3];
-          sub_4122C0(*((_DWORD *)this + 348));
-          RoleSystemNotify(*((_DWORD *)this + 348));
+          sub_4122C0(*(_DWORD *)&this->_data[1392]);
+          RoleSystemNotify(*(_DWORD *)&this->_data[1392]);
         }
       }
       if ( a2a >= (double)*(float *)&g_SceneMgr.m_szUIString[12] )
@@ -1292,7 +1296,7 @@ void RoleSystem::UpdateAnimation(int a2)
       }
       else
       {
-        *((_DWORD *)this + 347) = 2;
+        *(_DWORD *)&this->_data[1388] = 2;
       }
     }
   }
@@ -1303,19 +1307,19 @@ int RoleSystem::GetActiveRole()
 {
   int result; // eax
 
-  result = *((_DWORD *)this + 348);
-  *((_DWORD *)this + 347) = 0;
+  result = *(_DWORD *)&this->_data[1392];
+  *(_DWORD *)&this->_data[1388] = 0;
   if ( result )
   {
     if ( *(_BYTE *)(result + 173) != 1 && !*(_DWORD *)(result + 500) && *(_DWORD *)(result + 1268) != 3 )
     {
-      *(_DWORD *)(result + 1284) = *((_DWORD *)this + 351);
-      *(_DWORD *)(*((_DWORD *)this + 348) + 1268) = *((_DWORD *)this + 350);
-      sub_416620(*((_DWORD *)this + 348), *((float *)this + 352), 1);
-      result = ((RoleSystem *)*((RoleSystem **)this + 348))->UpdateTransform();
+      *(_DWORD *)(result + 1284) = *(_DWORD *)&this->_data[1404];
+      *(_DWORD *)(*(_DWORD *)&this->_data[1392] + 1268) = *(_DWORD *)&this->_data[1400];
+      sub_416620(*(_DWORD *)&this->_data[1392], *(float *)&this->_data[1408], 1);
+      result = ((RoleSystem *)*(RoleSystem **)&this->_data[1392])->UpdateTransform();
     }
-    *(_DWORD *)(*((_DWORD *)this + 348) + 1388) = 0;
-    *((_DWORD *)this + 348) = 0;
+    *(_DWORD *)(*(_DWORD *)&this->_data[1392] + 1388) = 0;
+    *(_DWORD *)&this->_data[1392] = 0;
   }
   return result;
 }
@@ -1341,7 +1345,7 @@ char RoleSystem::SetState(int state)
   LOBYTE(v5) = *(_BYTE *)(state + 244);
   if ( (_BYTE)v5 == 14 )
   {
-    v14 = *((_DWORD *)this + 157);
+    v14 = *(_DWORD *)&this->_data[628];
     v7 = (RoleSystem *)UISceneUpdate();
     v7->GetRolePtr(v14);
     v5 = *(_DWORD *)(state + 236) - *(_DWORD *)(state + 228);
@@ -1362,10 +1366,10 @@ LABEL_7:
       {
         v8 = v16;
         v9 = v16 + *(_DWORD *)(state + 232);
-        LOBYTE(v8) = *((_BYTE *)this + 172);
+        LOBYTE(v8) = this->_data[172];
         v10 = *(_DWORD *)(state + 228) + statea;
         v15 = v8;
-        v13 = *((_DWORD *)this + 157);
+        v13 = *(_DWORD *)&this->_data[628];
         v11 = (RoleSystem *)UISceneUpdate();
         if ( sub_421020(v11, v13, v10, v9, v15) )
           break;
@@ -1378,7 +1382,7 @@ LABEL_7:
       LOBYTE(v5) = sub_4132B0((int)this, v10, v9, 1);
     }
   }
-  else if ( *((_DWORD *)this + 316) != 4 )
+  else if ( *(_DWORD *)&this->_data[1264] != 4 )
   {
     sub_424C20(state, v3, v2, this, 1, 0, 0.001);
   }
@@ -1392,11 +1396,11 @@ int RoleSystem::GetDirection(float *pOut)
   _BYTE v4[68]; // [esp+8h] [ebp-4Ch] BYREF
   float v5; // [esp+4Ch] [ebp-8h]
 
-  * pOut = (*)*((float *)this + 40);
-  pOut[1] = *((float *)this + 41);
-  pOut[2] = *((float *)this + 42);
+  * pOut = (*)*(float *)&this->_data[160];
+  pOut[1] = *(float *)&this->_data[164];
+  pOut[2] = *(float *)&this->_data[168];
   ((gbMatrix4 *)v4)->gbMatrix4();
-  result = ((Actor *)((char *)this + 680))->PlayAction((int)v4);
+  result = ((Actor *)&this->_data[680])->PlayAction((int)v4);
   pOut[1] = v5 + pOut[1];
   return result;
 }
@@ -1406,15 +1410,15 @@ int RoleSystem::GetCount()
 {
   int result; // eax
 
-  result = *((_DWORD *)this + 316);
+  result = *(_DWORD *)&this->_data[1264];
   if ( result != 4 )
   {
-    *((_DWORD *)this + 315) = result;
-    *((_DWORD *)this + 316) = 4;
-    *((_DWORD *)this + 313) = 0x40000000;
-    *((_DWORD *)this + 314) = 0;
-    *((_DWORD *)this + 307) = 44;
-    ((Actor *)((char *)this + 680))->SetVisible((int)aC08);
+    *(_DWORD *)&this->_data[1260] = result;
+    *(_DWORD *)&this->_data[1264] = 4;
+    *(_DWORD *)&this->_data[1252] = 0x40000000;
+    *(_DWORD *)&this->_data[1256] = 0;
+    *(_DWORD *)&this->_data[1228] = 44;
+    ((Actor *)&this->_data[680])->SetVisible((int)aC08);
   }
   return result;
 }
@@ -1425,8 +1429,8 @@ int RoleSystem::SetActive(int a2)
   int result; // eax
 
   result = a2;
-  *((_DWORD *)this + 96) = 0;
-  *((_DWORD *)this + 95) = a2;
+  *(_DWORD *)&this->_data[384] = 0;
+  *(_DWORD *)&this->_data[380] = a2;
   if ( !a2 )
     return sub_41C1E0((int)this);
   return result;

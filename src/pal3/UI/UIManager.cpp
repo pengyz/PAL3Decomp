@@ -24,7 +24,7 @@ void UIManager::Render()
   int v4; // edi
   _DWORD *v5; // esi
   _DWORD *v6; // ebp
-  __int8 *v7; // ebp
+  char *v7; // ebp
   _DWORD *v8; // esi
   struct gbMatrix4 *Top; // esi
   const struct gbMatrix4 *v10; // edi
@@ -73,7 +73,7 @@ void UIManager::Render()
   }
   if ( dword_BFDA6C != 9 )
   {
-    v7 = (__int8 *)&g_SceneMgr.m_slot4[984];
+    v7 = (char *)&g_SceneMgr.m_RoleSystem[0]._data[144];
     v8 = (_DWORD *)((char *)this + 68 * v4 + 64);
     do
     {

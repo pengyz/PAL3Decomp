@@ -3018,7 +3018,7 @@ int CCBStage::ResetAll()
       *(float *)&byte_17AA870[8] = z;
       ((gbVec3D *)byte_17AA870)->Normalize();
       v20 = *(_DWORD *)(a2 + 8);
-      if ( v20 == 4 && *(_BYTE *)(*(_DWORD *)&g_SceneMgr.m_slot4[288] + 613) == 1 )
+      if ( v20 == 4 && *(_BYTE *)(*(_DWORD *)&g_SceneMgr._gap_1888[288] + 613) == 1 )
       {
         ((CCBStageRole *)this->m_pRole[4])->GetStatus(v50);
         __asm { fstp    [esp+2Ch+a2] }

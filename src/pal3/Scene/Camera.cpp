@@ -28,7 +28,7 @@ void Camera::SetParams(int a2)
     ((ScriptObj *)this)->Destroy();
     ((Actor *)((char *)this + 680))->LoadModel();
     *((_DWORD *)this + 321) = 0;
-    this->UpdateTransform();
+    ((RoleSystem *)this)->UpdateTransform();
     sub_41AEA0((gbVisNode **)this, 1.0);
     ((gbMatrix4 *)actionId)->gbMatrix4();
     ((Actor *)((char *)this + 680))->PlayAction((int)actionId);

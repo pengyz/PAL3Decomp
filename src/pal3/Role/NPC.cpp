@@ -18,7 +18,7 @@ extern int dword_C025EC;
 unsigned int NPC::Create(int index)
 {
   int v2; // ebp
-  __int8 *v3; // edx
+  char *v3; // edx
   unsigned int result; // eax
   signed int v5; // ebx
   int v6; // edi
@@ -27,7 +27,7 @@ unsigned int NPC::Create(int index)
   int indexa; // [esp+14h] [ebp+4h]
 
   v2 = 0;
-  v3 = (__int8 *)&g_SceneMgr.m_slot0[1408 * index + 424];
+  v3 = (char *)&g_SceneMgr.m_slot0[1408 * index + 424];
   memset(&g_SceneMgr.m_slot0[1408 * index + 400], 0, 0x18u);
   *(_DWORD *)v3 = 0;
   *((_WORD *)v3 + 2) = 0;
@@ -65,7 +65,7 @@ void * NPC::Init(int index)
   int i; // ecx
   char v11; // bl
   int v12; // edi
-  __int8 *v13; // esi
+  char *v13; // esi
   void *result; // eax
   int v15; // edx
   int v16; // ecx
@@ -141,7 +141,7 @@ void * NPC::Init(int index)
   {
     v11 = 1;
     v12 = 6;
-    v13 = (__int8 *)&g_SceneMgr.m_slot0[v17 + 436];
+    v13 = (char *)&g_SceneMgr.m_slot0[v17 + 436];
     do
     {
       result = v13;
@@ -210,15 +210,15 @@ int NPC::SetParams(int a1)
 int * NPC::InitAll()
 {
   int *result; // eax
-  __int8 *v1; // ebx
+  char *v1; // ebx
   int *v2; // edi
   int v3; // ebp
   int v4; // eax
-  __int8 *v5; // ecx
+  char *v5; // ecx
   int v6; // edx
-  __int8 *v7; // esi
+  char *v7; // esi
   int v8; // eax
-  __int8 *v9; // ecx
+  char *v9; // ecx
   int v10; // eax
   int v11; // [esp+10h] [ebp-Ch]
   int *v12; // [esp+14h] [ebp-8h]
@@ -226,7 +226,7 @@ int * NPC::InitAll()
 
   result = g_RoleTeam2;
   v11 = 0;
-  v1 = (__int8 *)&g_SceneMgr.m_slot0[424];
+  v1 = (char *)&g_SceneMgr.m_slot0[424];
   v12 = g_RoleTeam2;
   do
   {
@@ -238,7 +238,7 @@ int * NPC::InitAll()
       {
         v3 = *v2;
         v4 = 0;
-        v5 = (__int8 *)v1 - 24;
+        v5 = (char *)v1 - 24;
         do
         {
           if ( v3 == *(_DWORD *)v5 )
@@ -251,7 +251,7 @@ int * NPC::InitAll()
         }
         while ( v4 < 6 );
         v6 = 0;
-        v7 = (__int8 *)v1 + 8;
+        v7 = (char *)v1 + 8;
         while ( 2 )
         {
           v8 = 0;

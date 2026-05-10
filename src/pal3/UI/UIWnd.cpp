@@ -2826,7 +2826,7 @@ int UIWnd::ctor_7BB0(int arg0, int a3, int a4)
         else
           (**(void (***)(char *, _DWORD))v11)(v11, 0);
       }
-      sprintf((char *const)this + 80, "%s %d", byte_DC5F3C, *(_DWORD *)&g_SceneMgr.m_slot4[828]);
+      sprintf((char *const)this + 80, "%s %d", byte_DC5F3C, *(_DWORD *)&g_SceneMgr._gap_1888[828]);
       ((UIWnd *)((char *)this + 123908))->SetEnable((const char *)this + 80, 0);
       *((_BYTE *)this + 121869) = 1;
       *((_BYTE *)this + 121868) = 1;
@@ -5906,7 +5906,7 @@ LABEL_21:
             pOut = v31;
             SkillNum = ((PAL_GDB *)&g_GDB)->GDB_GetSkillNum(v31);
             pOut2 = 1;
-            CCBStageRole_GetAlive((int)&g_SceneMgr.m_slot4[792], &pOut);
+            CCBStageRole_GetAlive((int)&g_SceneMgr._gap_1888[792], &pOut);
           }
           ++v19;
           v20 += 402;

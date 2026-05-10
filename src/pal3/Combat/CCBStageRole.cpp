@@ -2898,7 +2898,7 @@ void CCBStageRole::PlaySound(char *name, int a3)
   gbSound2DNode **j; // edi
   char v9; // al
   int v10; // [esp+4h] [ebp-20h] BYREF
-  __int8 *v11; // [esp+8h] [ebp-1Ch]
+  char *v11; // [esp+8h] [ebp-1Ch]
   unsigned int v12; // [esp+Ch] [ebp-18h]
   int v13; // [esp+14h] [ebp-10h]
   int v14; // [esp+20h] [ebp-4h]

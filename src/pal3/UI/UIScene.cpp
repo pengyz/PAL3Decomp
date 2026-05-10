@@ -68,13 +68,13 @@ int UIScene::RenderWithStack(void *pStack)
   result = *((_DWORD *)this + 14392);
   if ( result > 0 )
   {
-    v5 = (UIScene *)((char *)this + 57572);
+    v5 = (RoleSystem *)((char *)this + 57572);
     do
     {
       v5->RenderRole(pStack, 0);
       result = *((_DWORD *)this + 14392);
       ++v3;
-      v5 = (RoleSystem *)((char *)v5 + 8704);
+      ++v5;
     }
     while ( v3 < result );
   }

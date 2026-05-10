@@ -21,7 +21,7 @@ int UICamera::GetViewMode(int a1)
   int v3; // ebx
   int v4; // edi
   int v5; // eax
-  __int32 m_pCollisionNode; // ecx
+  int m_pCollisionNode; // ecx
   int v7; // esi
   float v8; // eax
   float v9; // eax
@@ -153,7 +153,7 @@ int UICamera::GetState()
   double v5; // st7
   double v6; // st7
   int v7; // edi
-  __int8 *v8; // esi
+  char *v8; // esi
   double v9; // st7
   double v10; // st7
   double v11; // st7
@@ -207,7 +207,7 @@ int UICamera::GetState()
     while ( v1 < *(_DWORD *)(v2 + 57568) );
   }
   v7 = 0;
-  v8 = (__int8 *)&g_SceneMgr.m_slot4[1008];
+  v8 = (char *)&g_SceneMgr.m_RoleSystem[0]._data[168];
   do
   {
     if ( v7 != g_SceneMgr.m_nCameraState )
@@ -255,7 +255,7 @@ int UICamera::GetTarget(float *pMat)
   double v7; // st3
   double v8; // st4
   int v9; // edi
-  __int8 *v10; // esi
+  char *v10; // esi
   double v11; // st6
   double v12; // st5
   double v13; // st3
@@ -298,7 +298,7 @@ int UICamera::GetTarget(float *pMat)
     while ( v1 < *(_DWORD *)(v3 + 57568) );
   }
   v9 = 0;
-  v10 = (__int8 *)&g_SceneMgr.m_slot4[1008];
+  v10 = (char *)&g_SceneMgr.m_RoleSystem[0]._data[168];
   do
   {
     if ( v9 != g_SceneMgr.m_nCameraState )
@@ -328,5 +328,5 @@ int UICamera::GetTarget(float *pMat)
     return 0;
   if ( v2 )
     return 8704 * v17 + v3 + 57572;
-  return (int)&g_SceneMgr.m_slot4[8704 * v17 + 840];
+  return (int)g_SceneMgr.m_RoleSystem[v17]._data;
 }
