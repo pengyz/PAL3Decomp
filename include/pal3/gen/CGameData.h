@@ -1,8 +1,11 @@
 #pragma once
 // Auto-generated: CGameData
+// [GEN_BROKEN_LAYOUT] No PDB layout available, using IDA-derived size
 
 class CGameData {
 public:
+    char _data[14544]; // IDA size, no member names available
+
     int InitRoles(int a2); // 0x0044ADE0
     int InitItems(int a2); // 0x0044E660
     void * Init(); // 0x0044F130

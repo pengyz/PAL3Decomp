@@ -4,7 +4,7 @@
 
 class CCBSystem;
 class CEffMgr;
-class CGameData;
+#include "pal3/gen/CGameData.h"
 class CScreenMode;
 class Config;
 class GRPinput;
