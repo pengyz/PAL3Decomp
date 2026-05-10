@@ -63,12 +63,12 @@ int gbPlane::IsColOBB(gbOBBox& box) {
     local[0] = m[1] * normal.y + m[2] * normal.z + m[0] * normal.x;
     local[1] = m[5] * normal.y + m[6] * normal.z + normal.x * m[4];
     local[2] = m[9] * normal.y + m[10] * normal.z + m[8] * normal.x;
-    local[4] = m[12] - box.extent.x * 0.5f;
-    local[5] = m[13] - box.extent.y * 0.5f;
-    local[6] = m[14] - box.extent.z * 0.5f;
-    local[7] = box.extent.x * 0.5f + m[12];
-    local[8] = box.extent.y * 0.5f + m[13];
-    local[9] = box.extent.z * 0.5f + m[14];
+    local[4] = m[12] - box.xlen * 0.5f;
+    local[5] = m[13] - box.ylen * 0.5f;
+    local[6] = m[14] - box.zlen * 0.5f;
+    local[7] = box.xlen * 0.5f + m[12];
+    local[8] = box.ylen * 0.5f + m[13];
+    local[9] = box.zlen * 0.5f + m[14];
 
     return ((gbPlane*)&local[0])->IsColAABB(*(gbAABBox*)&local[4]);
 }

@@ -722,9 +722,9 @@ int gbCamera::ClipOBBox(gbOBBox* obb) {
     localPt.y = 0.0f;
     localPt.z = 0.0f;
 
-    float hx = obb->extent.x * 0.5f;
-    float hy = obb->extent.y * 0.5f;
-    float hz = obb->extent.z * 0.5f;
+    float hx = obb->xlen * 0.5f;
+    float hy = obb->ylen * 0.5f;
+    float hz = obb->zlen * 0.5f;
 
     corners[0].x = hx;   corners[0].y = hy;   corners[0].z = hz;
     corners[1].x = -hx;  corners[1].y = hy;   corners[1].z = hz;

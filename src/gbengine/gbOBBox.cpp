@@ -12,9 +12,9 @@ gbOBBox::gbOBBox() {
 
 gbOBBox& gbOBBox::operator=(const gbOBBox& box) {
     matrix = box.trans;
-    extent.x = box.extent.x;
-    extent.y = box.extent.y;
-    extent.z = box.extent.z;
+    extent.x = box.xlen;
+    extent.y = box.ylen;
+    extent.z = box.zlen;
     return *this;
 }
 
@@ -39,7 +39,7 @@ float gbOBBox::GetRadiusInDirection(const gbVec3D& dir) const {
         gbVec3D axis;
         ((gbMatrix4*)&matrix)->GetRow(&axis, i);
         float proj = fabsf(dir.DotProduct(&axis));
-        r += proj * ((float*)&extent)[i];
+        r += proj * ((float*)&xlen)[i];
     }
     return r;
 }
@@ -74,7 +74,7 @@ int gbOBBox::IsColOBB(gbOBBox* other) {
         gbVec3D axis;
         matrix.GetRow(&axis, i);
         float dist = fabsf(T.DotProduct(&axis));
-        float radiusA = ((float*)&extent)[i];
+        float radiusA = ((float*)&xlen)[i];
         float radiusB = other->GetRadiusInDirection(axis);
         if (dist > radiusA + radiusB) return 0;
 
@@ -126,7 +126,7 @@ int gbOBBox::IsColPoint(gbVec3D& point) {
         gbVec3D axis;
         matrix.GetRow(&axis, i);
         float proj = d.DotProduct(&axis);
-        float halfExt = ((float*)&extent)[i];
+        float halfExt = ((float*)&xlen)[i];
         if (fabsf(proj) > halfExt) return 0;
     }
 

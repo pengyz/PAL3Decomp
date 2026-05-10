@@ -1136,9 +1136,9 @@ gbOBBox* gbGeomNode::GetOBBox(gbOBBox* box) {
     if (mesh) {
         gbAABBox* aabb = &mesh->m_aabb;
         // extent = vMax - vMin
-        box->extent.x = aabb->vMax.x - aabb->vMin.x;
-        box->extent.y = aabb->vMax.y - aabb->vMin.y;
-        box->extent.z = aabb->vMax.z - aabb->vMin.z;
+        box->xlen = aabb->vMax.x - aabb->vMin.x;
+        box->ylen = aabb->vMax.y - aabb->vMin.y;
+        box->zlen = aabb->vMax.z - aabb->vMin.z;
 
         // center = (vMin + vMax) * 0.5
         gbVec3D center;
@@ -1147,9 +1147,9 @@ gbOBBox* gbGeomNode::GetOBBox(gbOBBox* box) {
         center.z = (aabb->vMin.z + aabb->vMax.z) * 0.5f;
         box->trans.LeftTranslate(center);
     } else {
-        box->extent.x = 0.0f;
-        box->extent.y = 0.0f;
-        box->extent.z = 0.0f;
+        box->xlen = 0.0f;
+        box->ylen = 0.0f;
+        box->zlen = 0.0f;
     }
     return box;
 }
@@ -1190,18 +1190,18 @@ gbOBBox* gbGeomNode::GetTotalOBBox(gbOBBox* box) {
         memcpy(box, &worldTransform, sizeof(gbMatrix4));
         if (mesh) {
             gbAABBox* aabb = &mesh->m_aabb;
-            box->extent.x = aabb->vMax.x - aabb->vMin.x;
-            box->extent.y = aabb->vMax.y - aabb->vMin.y;
-            box->extent.z = aabb->vMax.z - aabb->vMin.z;
+            box->xlen = aabb->vMax.x - aabb->vMin.x;
+            box->ylen = aabb->vMax.y - aabb->vMin.y;
+            box->zlen = aabb->vMax.z - aabb->vMin.z;
             gbVec3D center;
             center.x = (aabb->vMin.x + aabb->vMax.x) * 0.5f;
             center.y = (aabb->vMin.y + aabb->vMax.y) * 0.5f;
             center.z = (aabb->vMin.z + aabb->vMax.z) * 0.5f;
             box->trans.LeftTranslate(center);
         } else {
-            box->extent.x = 0.0f;
-            box->extent.y = 0.0f;
-            box->extent.z = 0.0f;
+            box->xlen = 0.0f;
+            box->ylen = 0.0f;
+            box->zlen = 0.0f;
         }
         return box;
     }
@@ -1211,18 +1211,18 @@ gbOBBox* gbGeomNode::GetTotalOBBox(gbOBBox* box) {
         memcpy(box, &n->worldTransform, sizeof(gbMatrix4));
         if (n->mesh) {
             gbAABBox* aabb = &n->mesh->m_aabb;
-            box->extent.x = aabb->vMax.x - aabb->vMin.x;
-            box->extent.y = aabb->vMax.y - aabb->vMin.y;
-            box->extent.z = aabb->vMax.z - aabb->vMin.z;
+            box->xlen = aabb->vMax.x - aabb->vMin.x;
+            box->ylen = aabb->vMax.y - aabb->vMin.y;
+            box->zlen = aabb->vMax.z - aabb->vMin.z;
             gbVec3D center;
             center.x = (aabb->vMin.x + aabb->vMax.x) * 0.5f;
             center.y = (aabb->vMin.y + aabb->vMax.y) * 0.5f;
             center.z = (aabb->vMin.z + aabb->vMax.z) * 0.5f;
             box->trans.LeftTranslate(center);
         } else {
-            box->extent.x = 0.0f;
-            box->extent.y = 0.0f;
-            box->extent.z = 0.0f;
+            box->xlen = 0.0f;
+            box->ylen = 0.0f;
+            box->zlen = 0.0f;
         }
         return box;
     }
@@ -1246,9 +1246,9 @@ gbOBBox* gbGeomNode::GetTotalOBBox(gbOBBox* box) {
         if (tempBox.vMax.z > maxZ) maxZ = tempBox.vMax.z;
     }
 
-    box->extent.x = maxX - minX;
-    box->extent.y = maxY - minY;
-    box->extent.z = maxZ - minZ;
+    box->xlen = maxX - minX;
+    box->ylen = maxY - minY;
+    box->zlen = maxZ - minZ;
     box->trans.LoadIdentity();
     box->trans.m[3][0] = (maxX + minX) * 0.5f;
     box->trans.m[3][1] = (maxY + minY) * 0.5f;

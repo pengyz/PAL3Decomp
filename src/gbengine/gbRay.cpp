@@ -148,9 +148,9 @@ int gbRay::IsColOBB(gbOBBox& obb) {
     temp.x = 0.0f; temp.y = 0.0f; temp.z = 1.0f;
     obb.trans.Rotate(&temp, &axisZ);
 
-    temp.x = obb.extent.x * 0.5f;
-    temp.y = obb.extent.y * 0.5f;
-    temp.z = obb.extent.z * 0.5f;
+    temp.x = obb.xlen * 0.5f;
+    temp.y = obb.ylen * 0.5f;
+    temp.z = obb.zlen * 0.5f;
     obb.trans.Transform(&temp, &obbCenter);
 
     float t1, t2, t3, t4, t5, t6;
@@ -229,9 +229,9 @@ int gbRay::IsColOBB_H(gbOBBox& obb) {
     invMatrix.Transform(&origin, &localOrigin);
     invMatrix.Rotate(&direction, &localDir);
 
-    float halfX = obb.extent.x * 0.5f;
-    float halfY = obb.extent.y * 0.5f;
-    float halfZ = obb.extent.z * 0.5f;
+    float halfX = obb.xlen * 0.5f;
+    float halfY = obb.ylen * 0.5f;
+    float halfZ = obb.zlen * 0.5f;
 
     gbAABBox localBox;
     localBox.vMin.x = -halfX; localBox.vMin.y = -halfY; localBox.vMin.z = -halfZ;
