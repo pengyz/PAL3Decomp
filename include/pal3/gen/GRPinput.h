@@ -53,6 +53,8 @@ public:
     int GetMousePos(void *pOut, void *pOut2); // 0x004022F0
     int AcquireDevices(); // 0x00402310
     int ReleaseDevices(); // 0x00402380
+    GRPinput(); // 0x00402400
+    ~GRPinput(); // 0x004024F0
     int Create(); // 0x00402570
     int SetMouseAbs(int a2, int a3, int a4); // 0x00402A90
     char SetJoystickAbs(); // 0x00402B00

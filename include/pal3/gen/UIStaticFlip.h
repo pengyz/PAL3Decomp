@@ -2,7 +2,8 @@
 // Auto-generated: UIStaticFlip
 
 #include "UIStatic.h"
-#include "_FLIP.h"
+
+class _FLIP;
 
 class UIStaticFlip : public UIStatic {
 public:

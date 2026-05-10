@@ -1,7 +1,7 @@
 #pragma once
 // Auto-generated: MeshFx
 
-#include "gbVisNode.h"
+class gbVisNode;
 
 class MeshFx : public gbVisNode {
 public:

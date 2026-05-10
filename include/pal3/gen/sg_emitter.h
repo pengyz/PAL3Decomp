@@ -1,16 +1,17 @@
 #pragma once
 // Auto-generated: sg_emitter
 
-#include "D3DXVECTOR3.h"
-#include "direction_emitter_graph.h"
-#include "elelife_emitter_graph.h"
-#include "elerandvec_emitter_graph.h"
-#include "emissionrate_emitter_graph.h"
-#include "rotmulti_emitter_graph.h"
 #include "sg_customshape.h"
 #include "sg_emitter_sphere.h"
 #include "sg_emitter_square.h"
-#include "sizemulti_emitter_graph.h"
+
+class D3DXVECTOR3;
+class direction_emitter_graph;
+class elelife_emitter_graph;
+class elerandvec_emitter_graph;
+class emissionrate_emitter_graph;
+class rotmulti_emitter_graph;
+class sizemulti_emitter_graph;
 
 class sg_emitter {
 public:

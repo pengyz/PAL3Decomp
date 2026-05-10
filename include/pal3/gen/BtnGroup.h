@@ -2,7 +2,8 @@
 // Auto-generated: BtnGroup
 
 #include "UIButton.h"
-#include "_BGM.h"
+
+class _BGM;
 
 class BtnGroup {
 public:

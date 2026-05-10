@@ -2,7 +2,8 @@
 // Auto-generated: MXFire
 
 #include "MeshFx.h"
-#include "gbTextureArray.h"
+
+class gbTextureArray;
 
 class MXFire : public MeshFx {
 public:

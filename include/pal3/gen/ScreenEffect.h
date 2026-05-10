@@ -11,4 +11,5 @@ public:
     unsigned char m_hold; // +0x14
     // total size: 0x18 (24)
 
+    ScreenEffect(); // 0x004BDFB0
 };

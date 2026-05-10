@@ -28,6 +28,8 @@ public:
     float m_fTimeScale; // +0xA92C
     // total size: 0xA930 (43312)
 
+    CEffMgr(); // 0x004CE100
+    ~CEffMgr(); // 0x004CE2A0
     int Init(int a2, int a3, int a4, int a5, int a6); // 0x004CE340
     char Render(int a2); // 0x004CE580
     static int SetTimeScale(int a1); // 0x004CE5F0

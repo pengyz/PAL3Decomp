@@ -24,6 +24,7 @@ public:
     _DWORD * ctor_BB70(); // 0x0043BB70
     void ctor_BBB0(); // 0x0043BBB0
     _DWORD * ctor_BCE0(); // 0x0043BCE0
+    ~UIWnd(); // 0x0043BE30
     _DWORD * ctor_D830(); // 0x0043D830
     void ctor_D880(); // 0x0043D880
     int CreateChild(); // 0x0043F560

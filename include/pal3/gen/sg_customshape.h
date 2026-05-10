@@ -1,8 +1,7 @@
 #pragma once
 // Auto-generated: sg_customshape
 
-#include "D3DXMATRIX.h"
-
+class D3DXMATRIX;
 class D3DXVECTOR3;
 
 class sg_customshape {

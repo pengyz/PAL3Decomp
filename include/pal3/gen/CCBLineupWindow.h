@@ -15,6 +15,8 @@ public:
     CCBUI * m_pUI; // +0x78
     // total size: 0x7C (124)
 
+    CCBLineupWindow(_DWORD *a1); // 0x0051CFB0
+    ~CCBLineupWindow(); // 0x0051D070
     static char Reset(_DWORD *a1); // 0x0051D120
     static char Create(_DWORD *a1); // 0x0051D1D0
     static char Destroy(_DWORD *a1); // 0x0051D290

@@ -1,10 +1,10 @@
 #pragma once
 // Auto-generated: sg_particle
 
-#include "rgbcolor_particle_graph.h"
-#include "rotation_particle_graph.h"
-#include "size_particle_graph.h"
-#include "vertexalpha_particle_graph.h"
+class rgbcolor_particle_graph;
+class rotation_particle_graph;
+class size_particle_graph;
+class vertexalpha_particle_graph;
 
 class sg_particle {
 public:

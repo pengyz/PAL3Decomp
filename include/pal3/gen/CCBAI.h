@@ -26,6 +26,8 @@ public:
 
     static char Thunk_GetValue(int a1, int a2); // 0x004014F0
     void * GetTargetRole(void *pOut); // 0x0040CFE0
+    CCBAI(); // 0x004D6FF0
+    ~CCBAI(); // 0x004D7030
     static int Reset(); // 0x004D7040
     _DWORD * Create(_DWORD *a2); // 0x004D7080
     char Init(); // 0x004D70C0

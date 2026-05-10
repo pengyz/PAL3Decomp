@@ -46,6 +46,8 @@ public:
     tagUV m_DefaultUVSet[256]; // +0xC4
     // total size: 0x10C4 (4292)
 
+    CEffCylinder(int a1); // 0x004C3DD0
+    ~CEffCylinder(); // 0x004C3EB0
     int Init(int a2, float a3, float a4, float a5); // 0x004C3EC0
     char Create(int a2); // 0x004C4060
     void Destroy(); // 0x004C4370

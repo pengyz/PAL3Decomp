@@ -43,6 +43,8 @@ public:
     tagUV m_DefaultUVSet[256]; // +0xB8
     // total size: 0x10B8 (4280)
 
+    CEffGrid(); // 0x004C9610
+    ~CEffGrid(); // 0x004C9650
     char Create(int a2); // 0x004C98F0
     static void * GetEditorObjDescription(int a1); // 0x004CA9A0
 };

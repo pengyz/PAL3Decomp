@@ -2,7 +2,8 @@
 // Auto-generated: MXSavePoint
 
 #include "MeshFx.h"
-#include "gbTextureArray.h"
+
+class gbTextureArray;
 
 class MXSavePoint : public MeshFx {
 public:

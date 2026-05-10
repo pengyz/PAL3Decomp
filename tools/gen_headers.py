@@ -122,41 +122,53 @@ def split_params(params_str):
 
 
 def demangle_name(mangled):
-    """Extract ClassName::MethodName from MSVC mangled name like ?Method@Class@@..."""
+    """Extract (ClassName, MethodName) from MSVC mangled name.
+
+    Formats:
+      ?Method@Class@@...       -> (Class, Method)
+      ??0Class@@...            -> (Class, Class)   [ctor]
+      ??1Class@@...            -> (Class, ~Class)  [dtor]
+    """
     if not mangled.startswith('?'):
         return None
-    # ?Method@Class@@... or ??0Class@@... (ctor) or ??1Class@@... (dtor)
-    parts = mangled[1:].split('@')
-    if len(parts) < 2:
-        return None
-    if parts[0].startswith('?'):
-        # ??0ClassName = ctor, ??1ClassName = dtor
-        code = parts[0][1]
-        cls = parts[1]
-        if code == '0':
-            pass  # ctor
-        elif code == '1':
-            pass  # dtor
-        else:
+
+    inner = mangled[1:]  # strip leading ?
+
+    # Ctor/dtor: starts with ?0 or ?1 after the leading ?
+    if inner.startswith('?0') or inner.startswith('?1'):
+        code = inner[1]
+        rest = inner[2:]
+        at_pos = rest.find('@')
+        if at_pos <= 0:
             return None
-        # Validate class name (no template/special chars)
-        if not cls or '$' in cls or '<' in cls or '?' in cls or not cls[0].isalpha():
+        cls = rest[:at_pos]
+        if not cls or '$' in cls or '<' in cls or not cls[0].isalpha():
             return None
         if code == '0':
             return cls, cls
         else:
             return cls, '~' + cls
-    else:
-        method = parts[0]
-        cls = parts[1]
-        # Validate both names (no template/special chars, must be valid C++ identifiers)
-        if not cls or '$' in cls or '<' in cls or '?' in cls or not cls[0].isalpha():
-            return None
-        if not method or '$' in method or '<' in method:
-            return None
-        if not method[0].isalpha() and method[0] != '~':
-            return None
-        return cls, method
+
+    # Regular method: Method@Class@...
+    at_pos = inner.find('@')
+    if at_pos <= 0:
+        return None
+    method = inner[:at_pos]
+    rest = inner[at_pos+1:]
+
+    at_pos2 = rest.find('@')
+    if at_pos2 <= 0:
+        return None
+    cls = rest[:at_pos2]
+
+    if not cls or '$' in cls or '<' in cls or not cls[0].isalpha():
+        return None
+    if not method or '$' in method or '<' in method:
+        return None
+    if not method[0].isalpha() and method[0] != '~':
+        return None
+
+    return cls, method
 
 
 def collect_methods():
@@ -201,7 +213,7 @@ def collect_methods():
     return classes
 
 
-def generate_header(cls_name, pdb_class, methods):
+def generate_header(cls_name, pdb_class, methods, known_classes=None):
     """Generate a complete header for one class."""
     lines = []
     lines.append("#pragma once")
@@ -269,6 +281,18 @@ def generate_header(cls_name, pdb_class, methods):
     # Remove system types from both sets
     include_types -= SYSTEM_TYPES
     fwd_types -= SYSTEM_TYPES
+
+    # Only include types that will have a header file; demote others to fwd_types
+    if known_classes is not None:
+        existing_includes = set()
+        missing_includes = set()
+        for t in include_types:
+            if t in known_classes:
+                existing_includes.add(t)
+            else:
+                missing_includes.add(t)
+        include_types = existing_includes
+        fwd_types |= missing_includes
 
     # Emit includes
     for t in sorted(include_types):
@@ -415,9 +439,17 @@ def main():
         pdb = json.load(f)
 
     pdb_classes = {}
+    template_classes = {}  # template instances: "BaseName<...>" -> class data
     for c in pdb.get('classes', []):
         name = c.get('name', '')
-        if name and '<' not in name and '::' not in name:
+        if not name:
+            continue
+        if '<' in name:
+            # Template instance - store by simplified base name
+            base_name = name.split('<')[0]
+            if base_name and '::' not in base_name and c.get('size', 0) > 1:
+                template_classes[base_name] = c
+        elif '::' not in name:
             pdb_classes[name] = c
 
     # Collect methods from decomp
@@ -428,6 +460,26 @@ def main():
 
     generated = 0
     all_classes = set(pdb_classes.keys()) | set(methods_by_class.keys())
+
+    # Pre-compute set of all class names that will have headers generated
+    classes_with_headers = set()
+    for cls_name in all_classes:
+        if should_skip_class(cls_name):
+            continue
+        pdb_class = pdb_classes.get(cls_name)
+        methods_list = methods_by_class.get(cls_name, [])
+        has_members = pdb_class and pdb_class.get('data_members') and pdb_class.get('size', 0) > 1
+        has_methods = len(methods_list) >= 1
+        if has_members or has_methods:
+            classes_with_headers.add(cls_name)
+    # Also include template stubs and enums
+    for base_name in template_classes:
+        if not should_skip_class(base_name):
+            classes_with_headers.add(base_name)
+    for e in pdb.get('enums', []):
+        ename = e.get('name', '')
+        if ename and ename[0].isalpha() and '<' not in ename and '::' not in ename:
+            classes_with_headers.add(ename)
 
     for cls_name in sorted(all_classes):
         if should_skip_class(cls_name):
@@ -442,7 +494,7 @@ def main():
         if not has_members and not has_methods:
             continue
 
-        content = generate_header(cls_name, pdb_class, methods)
+        content = generate_header(cls_name, pdb_class, methods, classes_with_headers)
         output_path = OUTPUT_DIR / ("%s.h" % cls_name)
         with open(output_path, 'w', encoding='utf-8') as f:
             f.write(content)
@@ -471,11 +523,50 @@ def main():
             f.write('\n'.join(lines))
         enum_count += 1
 
+    # Generate template class stubs (simplified, non-template version)
+    tmpl_count = 0
+    for base_name, tc in sorted(template_classes.items()):
+        if should_skip_class(base_name):
+            continue
+        # Skip if already generated as a normal class
+        out_path = OUTPUT_DIR / ('%s.h' % base_name)
+        if out_path.exists():
+            continue
+
+        members = tc.get('data_members', [])
+        size = tc.get('size', 0)
+        if not members or size <= 1:
+            continue
+
+        lines = ['#pragma once']
+        lines.append('// Auto-generated: %s (template class, simplified)' % base_name)
+        lines.append('// Original: %s' % tc.get('name', base_name))
+        lines.append('// Size: 0x%X (%d bytes) from PAL3A PDB' % (size, size))
+        lines.append('')
+        lines.append('class %s {' % base_name)
+        lines.append('public:')
+        for m in members:
+            mname = m.get('name', '_unk_%04X' % m.get('offset', 0))
+            mtype = m.get('type', 'int')
+            moffset = m.get('offset', 0)
+            # Simplify template types in members
+            if '<' in mtype:
+                mtype = 'void *'
+            lines.append('    %s %s; // +0x%X' % (mtype, mname, moffset))
+        lines.append('    // total size: 0x%X (%d)' % (size, size))
+        lines.append('};')
+        lines.append('')
+
+        with open(out_path, 'w', encoding='utf-8') as f:
+            f.write('\n'.join(lines))
+        tmpl_count += 1
+
     print("Generated %d header files in %s" % (generated, OUTPUT_DIR))
     print("  With PDB layout: %d" % sum(1 for c in all_classes
           if c in pdb_classes and pdb_classes[c].get('data_members') and pdb_classes[c].get('size', 0) > 1))
     print("  With methods: %d" % sum(1 for c in all_classes if c in methods_by_class and methods_by_class[c]))
     print("  Enums: %d" % enum_count)
+    print("  Template stubs: %d" % tmpl_count)
 
 
 if __name__ == '__main__':

@@ -20,6 +20,8 @@ public:
     int m_nActivePage; // +0x7C
     // total size: 0x80 (128)
 
+    CCBMagicWindow(int a2, int a3, _DWORD *a4); // 0x0051B9F0
+    ~CCBMagicWindow(); // 0x0051BAB0
     int Reset(int a2, int a3); // 0x0051BB00
     int Create(int a2); // 0x0051BB40
     _DWORD * ForbidPage(); // 0x0051BB90

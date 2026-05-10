@@ -14,6 +14,7 @@ public:
     scSCEFile m_bigmapsce; // +0x0
     // total size: 0x1 (1)
 
+    PalScriptMgr(); // 0x00431E60
     static int OpenSCE(); // 0x00431EB0
     static void FindScript(); // 0x00431EE0
     static void Update(const char *a1); // 0x004320A0

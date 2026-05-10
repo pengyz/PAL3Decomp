@@ -1,10 +1,11 @@
 #pragma once
 // Auto-generated: sg_particle_scene
 
-#include "D3DXVECTOR3.h"
 #include "sg_emission_control.h"
 #include "sg_emitter.h"
 #include "sg_particle.h"
+
+class D3DXVECTOR3;
 
 class sg_particle_scene {
 public:

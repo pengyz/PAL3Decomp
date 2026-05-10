@@ -18,6 +18,7 @@ public:
     float m_fPZ; // +0x4C
     // total size: 0x50 (80)
 
+    ~CEffgbParticle(); // 0x004C8650
     void * Create(CEffgbParticle *Block, char a2); // 0x004C87A0
     int Init(int a2); // 0x004C8830
     char * Attach(char a2); // 0x004C88C0

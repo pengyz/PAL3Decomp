@@ -1,7 +1,7 @@
 #pragma once
 // Auto-generated: _TypeDescriptor
 
-#include "char[].h"
+class char[];
 
 class _TypeDescriptor {
 public:

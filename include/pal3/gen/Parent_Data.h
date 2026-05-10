@@ -3,6 +3,7 @@
 
 class Parent_Data {
 public:
+    Parent_Data(LPCSTR lpString); // 0x0053FDD0
     static void GetSize(); // 0x0053FEA0
     static void spstr(); // 0x0053FEB0
 };

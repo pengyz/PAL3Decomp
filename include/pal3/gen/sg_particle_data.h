@@ -1,8 +1,8 @@
 #pragma once
 // Auto-generated: sg_particle_data
 
-#include "D3DXCOLOR.h"
-#include "D3DXVECTOR3.h"
+class D3DXCOLOR;
+class D3DXVECTOR3;
 
 class sg_particle_data {
 public:

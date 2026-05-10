@@ -3,8 +3,9 @@
 
 #include "MeshFx.h"
 #include "ParticleEffect.h"
-#include "gbTextureArray.h"
-#include "gbVec2D.h"
+
+class gbTextureArray;
+class gbVec2D;
 
 class MXTransport : public MeshFx {
 public:

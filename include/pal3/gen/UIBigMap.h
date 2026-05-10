@@ -6,8 +6,9 @@
 #include "UIAnimateCtrl.h"
 #include "UIFrameWnd.h"
 #include "UIStatic.h"
-#include "_BIGMAP_ELEMENT.h"
 #include "_MapElement.h"
+
+class _BIGMAP_ELEMENT;
 
 class UIBigMap : public UIFrameWnd {
 public:

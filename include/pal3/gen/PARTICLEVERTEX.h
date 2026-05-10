@@ -1,7 +1,7 @@
 #pragma once
 // Auto-generated: PARTICLEVERTEX
 
-#include "D3DXVECTOR3.h"
+class D3DXVECTOR3;
 
 class PARTICLEVERTEX {
 public:

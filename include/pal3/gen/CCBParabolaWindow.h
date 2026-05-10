@@ -13,6 +13,8 @@ public:
     UIListBox * m_pItemList; // +0x50
     // total size: 0x54 (84)
 
+    CCBParabolaWindow(int *a2, int a3); // 0x0051B710
+    ~CCBParabolaWindow(); // 0x0051B810
     int Reset(int a2, int a3, int a4); // 0x0051B860
     int Destroy(); // 0x0051B920
     bool OnMessage(int a2, int a3, int a4); // 0x0051B950

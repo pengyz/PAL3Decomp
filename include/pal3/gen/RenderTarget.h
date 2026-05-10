@@ -9,6 +9,7 @@ public:
     int m_nState; // +0xC4
     // total size: 0xC8 (200)
 
+    RenderTarget(); // 0x004BDAC0
     int Create(); // 0x004BDB60
     void OnDeviceLost(int a2); // 0x004BDC10
     bool OnResetDevice(int a2); // 0x004BDC40

@@ -41,6 +41,7 @@ public:
     float m_fInterleaving; // +0x10AC
     // total size: 0x10B0 (4272)
 
+    CEffShock(); // 0x004D3910
     int Init(int a2, float a3, float a4, float a5); // 0x004D3A50
     char Create(int a2); // 0x004D3AD0
     int StartShock(int a2); // 0x004D45D0

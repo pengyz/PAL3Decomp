@@ -13,6 +13,7 @@ public:
     char m_INIBuffer[256]; // +0x0
     // total size: 0x1 (1)
 
+    ~CUtil(); // 0x005230F0
     static int Create(); // 0x00523100
     static void Destroy(); // 0x00523110
     static void Init(); // 0x00523120

@@ -2,9 +2,10 @@
 // Auto-generated: ScreenEffectMgr
 
 #include "ScreenFadeIn.h"
-#include "ScreenFadeOut.h"
-#include "ScreenFadeWhite.h"
-#include "ScreenFadeWhite2.h"
+
+class ScreenFadeOut;
+class ScreenFadeWhite;
+class ScreenFadeWhite2;
 
 class ScreenEffectMgr {
 public:

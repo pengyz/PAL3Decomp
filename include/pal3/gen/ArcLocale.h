@@ -5,7 +5,8 @@
 #include "ArcLocaleRole.h"
 #include "RC_ARG.h"
 #include "SceneInfo.h"
-#include "gbFogParam.h"
+
+class gbFogParam;
 
 class ArcLocale {
 public:

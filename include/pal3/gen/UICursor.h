@@ -12,6 +12,7 @@ public:
     unsigned char m_bSoftMode; // +0x1D
     // total size: 0x20 (32)
 
+    UICursor(); // 0x005417B0
     static UINT Init(); // 0x00541860
     static char Inst(CHAR *lpSubKey, LPCSTR lpValueName, LPBYTE lpData); // 0x00541C40
     static int IRender(); // 0x00541CC0

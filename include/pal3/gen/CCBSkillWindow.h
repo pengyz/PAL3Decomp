@@ -13,6 +13,7 @@ public:
     UIListBox * m_pSkillList[1]; // +0x50
     // total size: 0x54 (84)
 
+    CCBSkillWindow(CCBSkillWindow *Block, char a2); // 0x0051C260
     int Reset(); // 0x0051C2D0
     char Create(_DWORD *pRect, int parent); // 0x0051C330
     int Destroy(); // 0x0051C880

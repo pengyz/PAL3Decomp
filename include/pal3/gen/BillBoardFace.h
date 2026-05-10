@@ -1,7 +1,7 @@
 #pragma once
 // Auto-generated: BillBoardFace
 
-#include "gbTextureArray.h"
+class gbTextureArray;
 
 class BillBoardFace {
 public:

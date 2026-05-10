@@ -1,7 +1,7 @@
 #pragma once
 // Auto-generated: sg_emitter_data
 
-#include "D3DXVECTOR3.h"
+class D3DXVECTOR3;
 
 class sg_emitter_data {
 public:
