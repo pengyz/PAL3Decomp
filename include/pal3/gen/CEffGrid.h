@@ -2,11 +2,12 @@
 // Auto-generated: CEffGrid
 
 #include "CEffObj.h"
+#include "CTaskTpl.h"
 #include "tagUV.h"
 
 class gbTextureArray;
 
-class CEffGrid : public CEffObj, public CTaskTpl<tagEffTaskParam,unsigned long (__thiscall CEffGrid::*)(unsigned long)> {
+class CEffGrid : public CEffObj, public CTaskTpl {
 public:
     gbGeomQuad * m_pGeomQuad; // +0x30
     gbVec3D * m_pMesh; // +0x34

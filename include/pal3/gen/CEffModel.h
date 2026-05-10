@@ -2,8 +2,9 @@
 // Auto-generated: CEffModel
 
 #include "CEffObj.h"
+#include "CTaskTpl.h"
 
-class CEffModel : public CEffObj, public CTaskTpl<tagEffTaskParam,unsigned long (__thiscall CEffModel::*)(unsigned long)> {
+class CEffModel : public CEffObj, public CTaskTpl {
 public:
     gbGeomNode * m_pGeomNode; // +0x30
     gbVec3D m_vecCurPos; // +0x34

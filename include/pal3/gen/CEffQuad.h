@@ -2,12 +2,13 @@
 // Auto-generated: CEffQuad
 
 #include "CEffObj.h"
+#include "CTaskTpl.h"
 #include "tagQuad.h"
 #include "tagUV.h"
 
 class gbTextureArray;
 
-class CEffQuad : public CEffObj, public CTaskTpl<tagEffTaskParam,unsigned long (__thiscall CEffQuad::*)(unsigned long)> {
+class CEffQuad : public CEffObj, public CTaskTpl {
 public:
     unsigned char m_bActive; // +0x30
     unsigned char m_bVisible; // +0x31

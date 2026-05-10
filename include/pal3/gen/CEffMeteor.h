@@ -2,13 +2,14 @@
 // Auto-generated: CEffMeteor
 
 #include "CEffObj.h"
+#include "CTaskTpl.h"
 #include "tagUV.h"
 
 class CMeteorChain;
 class gbTextureArray;
 class tagMeteor;
 
-class CEffMeteor : public CEffObj, public CTaskTpl<tagEffTaskParam,unsigned long (__thiscall CEffMeteor::*)(unsigned long)> {
+class CEffMeteor : public CEffObj, public CTaskTpl {
 public:
     gbGeomQuad * m_pGeomQuad; // +0x30
     CMeteorChain * m_pChain; // +0x34

@@ -2,11 +2,12 @@
 // Auto-generated: CEffCustomShape
 
 #include "CEffObj.h"
+#include "CTaskTpl.h"
 
 class gbIndexBubble;
 class t3DModel;
 
-class CEffCustomShape : public CEffObj, public CTaskTpl<tagEffTaskParam,unsigned long (__thiscall CEffCustomShape::*)(unsigned long)> {
+class CEffCustomShape : public CEffObj, public CTaskTpl {
 public:
     unsigned char m_bVisible; // +0x30
     gbVec3D m_vecPos; // +0x34

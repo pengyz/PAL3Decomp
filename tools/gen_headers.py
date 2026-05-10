@@ -176,10 +176,12 @@ def generate_header(cls_name, pdb_class, methods):
     }
 
     if pdb_class:
-        # Inheritance -> include
+        # Inheritance -> include (simplify template names same as in class declaration)
         for b in pdb_class.get('bases', []) or []:
             bname = b['name']
-            if '::' not in bname and '<' not in bname:
+            if '<' in bname:
+                bname = bname.split('<')[0]  # CTaskTpl<...> -> CTaskTpl
+            if '::' not in bname:
                 include_types.add(bname)
 
         # Data members
@@ -219,11 +221,19 @@ def generate_header(cls_name, pdb_class, methods):
     if fwd_types:
         lines.append("")
 
-    # Class declaration
+    # Class declaration with inheritance
     bases_str = ""
     if pdb_class and pdb_class.get('bases'):
-        base_names = [b['name'] for b in pdb_class['bases']]
-        bases_str = " : " + ", ".join("public %s" % b for b in base_names)
+        base_names = []
+        for b in pdb_class['bases']:
+            bname = b['name']
+            # Simplify template base names for compilation
+            if '<' in bname:
+                # Extract the template class name only (e.g. CTaskTpl<...> -> CTaskTpl)
+                bname = bname.split('<')[0]
+            base_names.append(bname)
+        if base_names:
+            bases_str = " : " + ", ".join("public %s" % b for b in base_names)
 
     lines.append("class %s%s {" % (cls_name, bases_str))
     lines.append("public:")

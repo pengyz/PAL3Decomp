@@ -6,6 +6,7 @@
 #include "ObjectInfo.h"
 #include "PalScriptWaitObj.h"
 #include "SaveTask.h"
+#include "TaskMgr.h"
 #include "subPARAM.h"
 
 class PalScript;
@@ -13,7 +14,7 @@ class PathObj;
 class SceneMapObj;
 class gbSound3DNode;
 
-class SceneObj : public PalScriptWaitObj, public GlowObj, public TaskMgr<SceneObjParam,unsigned long (__thiscall SceneObj::*)(unsigned long)> {
+class SceneObj : public PalScriptWaitObj, public GlowObj, public TaskMgr {
 public:
     SaveTask _SaveTaskInfo; // +0x4C
     float m_fTime; // +0x58

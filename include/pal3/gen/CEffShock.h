@@ -2,12 +2,13 @@
 // Auto-generated: CEffShock
 
 #include "CEffObj.h"
+#include "CTaskTpl.h"
 #include "tagUV.h"
 
 class gbTextureArray;
 class tagShockUnit;
 
-class CEffShock : public CEffObj, public CTaskTpl<tagEffTaskParam,unsigned long (__thiscall CEffShock::*)(unsigned long)> {
+class CEffShock : public CEffObj, public CTaskTpl {
 public:
     tagUV m_DefaultUVSet[256]; // +0x30
     gbTexture * m_pTexture; // +0x1030

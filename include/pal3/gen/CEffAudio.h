@@ -2,8 +2,9 @@
 // Auto-generated: CEffAudio
 
 #include "CEffObj.h"
+#include "CTaskTpl.h"
 
-class CEffAudio : public CEffObj, public CTaskTpl<tagEffTaskParam,unsigned long (__thiscall CEffAudio::*)(unsigned long)> {
+class CEffAudio : public CEffObj, public CTaskTpl {
 public:
     char m_szSoundNamePrefix[128]; // +0x30
     char m_szSoundName[128][4]; // +0xB0

@@ -2,10 +2,11 @@
 // Auto-generated: CEffgbParticle
 
 #include "CEffObj.h"
+#include "CTaskTpl.h"
 
 class ParticleEffect;
 
-class CEffgbParticle : public CEffObj, public CTaskTpl<tagEffTaskParam,unsigned long (__thiscall CEffgbParticle::*)(unsigned long)> {
+class CEffgbParticle : public CEffObj, public CTaskTpl {
 public:
     ParticleEffect * m_pEffect; // +0x30
     float m_fSize; // +0x34

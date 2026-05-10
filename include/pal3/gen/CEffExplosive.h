@@ -2,12 +2,13 @@
 // Auto-generated: CEffExplosive
 
 #include "CEffObj.h"
+#include "CTaskTpl.h"
 #include "tagUV.h"
 
 class gbTextureArray;
 class tagExplosive;
 
-class CEffExplosive : public CEffObj, public CTaskTpl<tagEffTaskParam,unsigned long (__thiscall CEffExplosive::*)(unsigned long)> {
+class CEffExplosive : public CEffObj, public CTaskTpl {
 public:
     gbGeomQuad * m_pGeomQuad; // +0x30
     tagExplosive * m_pExplosive; // +0x34
