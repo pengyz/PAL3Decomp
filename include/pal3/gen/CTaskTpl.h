@@ -1,10 +1,9 @@
 #pragma once
-// Auto-generated: CTaskTpl (template class, simplified)
-// Original: CTaskTpl<tagEffTaskParam,unsigned long (__thiscall CEffTemplate::*)(unsigned long)>
-// Size: 0x24 (36 bytes) from PAL3A PDB
+// Auto-generated: CTaskTpl
 
 class CTaskTpl {
 public:
+    char _vtable[4]; // +0x0
     float m_fCurTime; // +0x4
     float m_fDeltaTime; // +0x8
     void * m_pTask; // +0xC
@@ -14,4 +13,5 @@ public:
     int m_nMaxTask; // +0x1C
     int m_nMaxSubTask; // +0x20
     // total size: 0x24 (36)
+
 };

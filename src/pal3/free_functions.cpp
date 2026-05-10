@@ -6617,10 +6617,10 @@ void __cdecl _TextureLib_Data::_GetItemNum(int *a1, struct gbTextureArray *a2, i
     v17 = a1[2] - *a1;
     v12 = 0;
     v11 = 0;
-    v6 = (fabs((double)v17) + -0.5) / (double)v5->Height;
+    v6 = (fabs((double)v17) + -0.5) / (double)v5->Width;
     v18 = a1[3] - a1[1];
     v13 = v6;
-    v14 = (fabs((double)v18) + -0.5) / (double)(int)v5->pTexImage;
+    v14 = (fabs((double)v18) + -0.5) / (double)v5->Height;
   }
   v7 = (double)dword_BFD6D0;
   v8 = (struct gbRenderEffect *)dword_1895048;
@@ -6687,8 +6687,8 @@ void __cdecl _TextureLib_Data::_CheckItem(
     v25 = 0;
     v24 = 0;
     v31 = a1[3] - a1[1];
-    v26 = (fabs((double)(a1[2] - *a1)) + -0.5) / (double)v9->Height;
-    v27 = (fabs((double)v31) + -0.5) / (double)(int)v9->pTexImage;
+    v26 = (fabs((double)(a1[2] - *a1)) + -0.5) / (double)v9->Width;
+    v27 = (fabs((double)v31) + -0.5) / (double)v9->Height;
   }
   if ( (a5 & 0x100) != 0 )
   {
@@ -6793,10 +6793,10 @@ void __cdecl _TextureLib_Data::SetLibFolder(
     v29 = a1[2] - *a1;
     v24 = 0;
     v23 = 0;
-    v11 = (fabs((double)v29) + -0.5) / (double)v10->Height;
+    v11 = (fabs((double)v29) + -0.5) / (double)v10->Width;
     v30 = a1[3] - a1[1];
     v25 = v11;
-    v26 = (fabs((double)v30) + -0.5) / (double)(int)v10->pTexImage;
+    v26 = (fabs((double)v30) + -0.5) / (double)v10->Height;
   }
   if ( (a4 & 0x100) != 0 )
   {
@@ -6892,8 +6892,8 @@ void __cdecl _TextureLib_Data::GetLibInfo(
     v11 = a6->pTexPt[0];
     v21 = 0;
     v20 = 0;
-    v22 = (fabs((double)(a3 - a1)) + -0.5) / (double)v11->Height;
-    v23 = (fabs((double)(a4 - a2)) + -0.5) / (double)(int)v11->pTexImage;
+    v22 = (fabs((double)(a3 - a1)) + -0.5) / (double)v11->Width;
+    v23 = (fabs((double)(a4 - a2)) + -0.5) / (double)v11->Height;
   }
   v12 = (double)a1;
   v19 = (float)a2;
@@ -6971,8 +6971,8 @@ void __cdecl _TextureLib_Data::GetLib(
     v9 = a6->pTexPt[0];
     v17 = 0;
     v16 = 0;
-    v18 = (fabs((double)(a3 - a1)) + -0.5) / (double)v9->Height;
-    v19 = (fabs((double)(a4 - a2)) + -0.5) / (double)(int)v9->pTexImage;
+    v18 = (fabs((double)(a3 - a1)) + -0.5) / (double)v9->Width;
+    v19 = (fabs((double)(a4 - a2)) + -0.5) / (double)v9->Height;
   }
   v10 = (double)a1;
   v15 = (float)a2;
@@ -7041,8 +7041,8 @@ void __cdecl _TextureLib_Data::GetTextureInfo(
     v17 = 0;
     v16 = 0;
     v22 = a1[3] - a1[1];
-    v18 = (fabs((double)v9) + -0.5) / (double)v8->Height;
-    v19 = (fabs((double)v22) + -0.5) / (double)(int)v8->pTexImage;
+    v18 = (fabs((double)v9) + -0.5) / (double)v8->Width;
+    v19 = (fabs((double)v22) + -0.5) / (double)v8->Height;
   }
   v13[0] = (float)*a2;
   v15 = (float)a2[1];
@@ -7218,7 +7218,7 @@ void __cdecl UIDestorySystem(int a1, int a2, int a3, int a4, int *a5, struct gbT
   v13 = 0;
   v12 = 0;
   v14 = 1065353216;
-  v15 = (fabs((double)(a4 - a2)) + -0.5) / (double)(int)v7->pTexImage;
+  v15 = (fabs((double)(a4 - a2)) + -0.5) / (double)v7->Height;
   v11 = (float)a2;
   v10 = (float)a3;
   v9[1] = (float)a4;
@@ -7287,8 +7287,8 @@ void __cdecl UIRenderQuadEX(int a1, int a2, int a3, int a4, int *a5, struct gbTe
     v11 = a6->pTexPt[0];
     v19 = 0.0;
     v18 = 0.0;
-    v20 = (fabs((double)(a3 - a1)) + -0.5) / (double)v11->Height;
-    v10 = (fabs((double)(a4 - a2)) + -0.5) / (double)(int)v11->pTexImage;
+    v20 = (fabs((double)(a3 - a1)) + -0.5) / (double)v11->Width;
+    v10 = (fabs((double)(a4 - a2)) + -0.5) / (double)v11->Height;
     goto LABEL_6;
   }
   v18 = *(float *)(a7 + 1048);
@@ -7296,8 +7296,8 @@ void __cdecl UIRenderQuadEX(int a1, int a2, int a3, int a4, int *a5, struct gbTe
   if ( !a8 )
   {
     v9 = a6->pTexPt[0];
-    v20 = (fabs((double)(a3 - a1)) + -0.5) / (double)a6->pTexPt[0]->Height + v18;
-    v10 = (fabs((double)(a4 - a2)) + -0.5) / (double)(int)v9->pTexImage + v19;
+    v20 = (fabs((double)(a3 - a1)) + -0.5) / (double)a6->pTexPt[0]->Width + v18;
+    v10 = (fabs((double)(a4 - a2)) + -0.5) / (double)v9->Height + v19;
 LABEL_6:
     v21 = v10;
     goto LABEL_7;
@@ -8334,7 +8334,7 @@ enum _EXCEPTION_DISPOSITION __usercall TranslatorGuardHandler@<eax>(
       *((EXCEPTION_POINTERS **)TargetFrame + 2),
       *((_DWORD *)TargetFrame + 4),
       *((struct EHRegistrationNode **)TargetFrame + 5),
-      1);
+      1u);
     if ( !*((_DWORD *)TargetFrame + 9) )
       _UnwindNestedFrames(a1, TargetFrame, (PEXCEPTION_RECORD)ExceptionRecord);
     return (*((enum _EXCEPTION_DISPOSITION (**)(void))TargetFrame + 6))();
@@ -8495,12 +8495,12 @@ __int64 __usercall _ftol@<edx:eax>(double a1@<st0>)
 }
 
 // 0x005535C9
-void __stdcall __ArrayUnwind(char *a1, unsigned int a2, int a3, void (*a4)(void))
+void __stdcall __ArrayUnwind(char *a1, unsigned int a2, int a3, void (__thiscall *a4)(void *))
 {
   while ( --a3 >= 0 )
   {
     a1 -= a2;
-    a4();
+    ((void (*)(void))a4)();
   }
 }
 
@@ -9712,16 +9712,9 @@ LABEL_10:
 }
 
 // 0x00554700
-long double __usercall _CIpow@<st0>(unsigned __int64 x@<st0>, long double y@<st1>)
+long double __usercall _CIpow@<st0>(double x@<st0>, unsigned __int64 y@<st1>)
 {
-  return sub_554722(
-           HIDWORD(*(unsigned __int64 *)&y),
-           *(double *)&x,
-           y,
-           x,
-           HIDWORD(x),
-           SLODWORD(y),
-           HIDWORD(*(unsigned __int64 *)&y));
+  return sub_554722(HIDWORD(y), x, *(long double *)&y, SLODWORD(x), HIDWORD(*(unsigned __int64 *)&x), y, HIDWORD(y));
 }
 
 // 0x00554719
@@ -12650,7 +12643,7 @@ int __cdecl __InternalCxxFrameHandler(
         EXCEPTION_POINTERS *a5,
         int a6,
         struct EHRegistrationNode *TargetFrame,
-        unsigned __int8 a8)
+        char a8)
 {
   EXCEPTION_POINTERS *v8; // ecx
   int (__cdecl *pForwardCompat)(); // ecx
@@ -12679,7 +12672,7 @@ int __cdecl __InternalCxxFrameHandler(
                  a5,
                  a6,
                  TargetFrame,
-                 a8);
+                 (unsigned __int8)a8);
     }
     FindHandler(ExceptionRecord, a2, a3, a4, a5, a8, a6, TargetFrame);
   }
@@ -14627,9 +14620,9 @@ int __initmbctable()
 }
 
 // 0x005592F0
-long double __usercall fFYTOX@<st0>(int a1@<ebp>, char a2@<ch>, long double a3@<st1>, long double a4@<st0>)
+double __usercall fFYTOX@<st0>(int a1@<ebp>, char a2@<ch>, long double a3@<st1>, long double a4@<st0>)
 {
-  long double result; // st7
+  double result; // st7
   long double v6; // st6
   long double v7; // st7
   long double v8; // st7
@@ -15942,7 +15935,7 @@ LABEL_256:
 }
 
 // 0x0055A28B
-unsigned int __cdecl _hextodec(int C)
+int __cdecl _hextodec(int C)
 {
   int v1; // esi
   int v2; // eax

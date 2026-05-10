@@ -23,8 +23,8 @@ int UIItem::Refresh()
 {
   ((UIWnd *)this)->ctor_BB70();
   sub_444F60((UIWnd *)(this + 112));
-  ((UIFrameWnd *)(UIFrameWnd *)this + 2)->UIFrameWnd();
-  ((UIFrameWnd *)(UIFrameWnd *)this + 3)->UIFrameWnd();
+  ((UIFrameWnd *)(this + 304))->UIFrameWnd();
+  ((UIFrameWnd *)(this + 456))->UIFrameWnd();
   *((_DWORD *)this + 152) = 90;
   *((_DWORD *)this + 153) = 26;
   ((UIScene *)(this + 632))->_UIScene();
@@ -51,8 +51,8 @@ UIItem::UIItem()
   ((j_UIWnd *)this)->UpdateChildren();
   ((UIScene *)(this + 976))->Destroy2();
   ((UIScene *)(this + 632))->Destroy2();
-  ((UIFrameWnd *)(UIFrameWnd *)this + 3)->_UIFrameWnd();
-  ((UIFrameWnd *)(UIFrameWnd *)this + 2)->_UIFrameWnd();
+  ((UIFrameWnd *)(this + 456))->_UIFrameWnd();
+  ((UIFrameWnd *)(this + 304))->_UIFrameWnd();
   sub_445010((UIWnd *)(this + 112));
   dword_DE5CE4 = 0;
   ((UIWnd *)this)->ctor_BBB0();

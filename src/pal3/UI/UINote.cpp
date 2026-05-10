@@ -28,9 +28,9 @@ void * UINote::Create(int id, int a3, int a4, char *tex)
     ++v6;
   }
   while ( v6 < 9 );
-  this->m_static.m_texs.m_ptex[2] = *(gbTexture **)(sub_445F60(&this->m_static._pad_0000[32], 0) + 24);
-  this->m_static.m_currect.bottom = 0;
-  *(_DWORD *)&this->_pad_0000[56] = 0;
+  *(_DWORD *)&this->m_static[112] = *(_DWORD *)(sub_445F60(&this->m_static[32], 0) + 24);
+  *(_DWORD *)&this->m_static[100] = 0;
+  *(_DWORD *)&this->_base[56] = 0;
   v10 = -1;
   return ((OpenNULLFile *)&v8)->OpenNULLFile();
 }

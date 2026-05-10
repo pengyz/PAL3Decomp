@@ -144,37 +144,37 @@ CCCTData::CCCTData(_DWORD *a2, _DWORD *a3)
 {
   int result; // eax
 
-  this->m_Pool[1707].StartPos.fPitch = *(float *)a2;
-  this->m_Pool[1707].StartPos.pit = (float)a2[1];
-  this->m_Pool[1707].StartPos.fRoll = (float)a2[2];
-  this->m_Pool[1707].StartPos.rol = *(float *)a3;
-  this->m_Pool[1707].EndPos.fFromX = (float)a3[1];
+  *(_DWORD *)&this->_data[430228] = *a2;
+  *(_DWORD *)&this->_data[430232] = a2[1];
+  *(_DWORD *)&this->_data[430236] = a2[2];
+  *(_DWORD *)&this->_data[430240] = *a3;
+  *(_DWORD *)&this->_data[430244] = a3[1];
   result = a3[2];
-  LODWORD(this->m_Pool[1707].EndPos.x) = result;
+  *(_DWORD *)&this->_data[430248] = result;
   result;
 }
 
 // 0x00505930
 CCCTData::~CCCTData()
 {
-  float *p_fPitch; // ebp
+  char *v2; // ebp
   struct gbRenderEffect *v3; // ebx
   float *v4; // esi
   _BYTE *v5; // esi
   unsigned int *p_Color; // esi
   double v7; // st7
   float v8; // edx
-  float pit; // eax
-  int fRoll_low; // ecx
-  double rol; // st7
+  int v9; // eax
+  int v10; // ecx
+  double v11; // st7
   float v12; // edx
-  float fFromX; // eax
-  int x_low; // ecx
+  int v13; // eax
+  int v14; // ecx
   float v15; // edx
   float v16; // eax
   float v17; // ecx
-  float v18; // edx
-  float y; // edi
+  int v18; // edx
+  float *v19; // edi
   double v20; // st7
   double v21; // st6
   unsigned int v22; // edx
@@ -182,7 +182,7 @@ CCCTData::~CCCTData()
   gbColorQuad v24; // [esp+40h] [ebp-A8h] BYREF
   int v25; // [esp+4Ch] [ebp-9Ch]
   int v26; // [esp+64h] [ebp-84h]
-  float fRoll; // [esp+68h] [ebp-80h]
+  int v27; // [esp+68h] [ebp-80h]
   int v28; // [esp+6Ch] [ebp-7Ch]
   int v29; // [esp+70h] [ebp-78h]
   int v30; // [esp+74h] [ebp-74h]
@@ -191,19 +191,19 @@ CCCTData::~CCCTData()
   float v33; // [esp+88h] [ebp-60h]
   float v34; // [esp+8Ch] [ebp-5Ch]
   float v35; // [esp+90h] [ebp-58h]
-  float v36; // [esp+94h] [ebp-54h]
-  float x; // [esp+98h] [ebp-50h]
+  int v36; // [esp+94h] [ebp-54h]
+  int ColorQuadFmt; // [esp+98h] [ebp-50h]
   _BYTE v38[64]; // [esp+9Ch] [ebp-4Ch] BYREF
   float v39; // [esp+DCh] [ebp-Ch]
   float v40; // [esp+E0h] [ebp-8h]
   float v41; // [esp+E4h] [ebp-4h]
 
-  if ( LOBYTE(this->m_Pool[1707].EndPos.fFromY) )
+  if ( this->_data[430252] )
   {
     ((gbMatrix4 *)v38)->gbMatrix4();
-    ((gbGeomNode *)LODWORD(this->m_Pool[1707].StartPos.yaw))->GetTotalOBBox((struct gbOBBox *)v38);
-    p_fPitch = (float *)&this->m_Pool[1707].StartPos.fPitch;
-    ((gbMatrix4 *)v38)->RightTranslate((struct gbVec3D *)&this->m_Pool[1707].StartPos.fPitch);
+    ((gbGeomNode *)*(gbGeomNode **)&this->_data[430224])->GetTotalOBBox((struct gbOBBox *)v38);
+    v2 = (char *)&this->_data[430228];
+    ((gbMatrix4 *)v38)->RightTranslate((struct gbVec3D *)&this->_data[430228]);
     v3 = ((gbEffectMgr *)dword_BFDA60->pEffectMgr)->NewTrivalEffect(3);
     *(_DWORD *)&v32.Blue = ((gbVertPoolMgr *)dword_BFDA60->pVertPoolMgr)->GetDynVertBuf(0x15u);
     if ( (byte_17AAEE0 & 1) == 0 )
@@ -298,7 +298,7 @@ CCCTData::~CCCTData()
     dword_17AAEB8 = v29;
     dword_17AAEBC = v28;
     v26 = v29;
-    fRoll = *(float *)&v28;
+    v27 = v28;
     dword_17AAEC4 = v29;
     dword_17AAEC8 = v28;
     v5 = (_BYTE *)&unk_17AAD89;
@@ -324,47 +324,47 @@ CCCTData::~CCCTData()
       --v28;
     }
     while ( *(float *)&v28 != 0.0 );
-    v7 = *p_fPitch;
-    v8 = *p_fPitch;
-    pit = this->m_Pool[1707].StartPos.pit;
-    fRoll = this->m_Pool[1707].StartPos.fRoll;
+    v7 = *(float *)v2;
+    v8 = *(float *)v2;
+    v9 = *(_DWORD *)&this->_data[430232];
+    v27 = *(int *)&this->_data[430236];
     v35 = v8;
     *(float *)&v32.Color = v7;
-    v34 = fRoll;
-    fRoll_low = SLODWORD(this->m_Pool[1707].StartPos.fRoll);
+    v34 = *(float *)&v27;
+    v10 = *(_DWORD *)&this->_data[430236];
     v25 = (int)v3;
     v24.Color = 2;
     *(_DWORD *)&v24.Blue = &v32.Color;
-    v36 = pit;
-    v24.ColorQuadFmt = fRoll_low;
-    x = *(float *)&fRoll_low;
+    v36 = v9;
+    v24.ColorQuadFmt = v10;
+    ColorQuadFmt = v10;
     v32.ColorQuadFmt = 1358954495;
     v33 = 0.0;
     ((gbColorQuad *)&v24)->gbColorQuad(&v32);
     ((gbDynVertBuf *)LODWORD(v35))->RenderLineStrip();
-    rol = this->m_Pool[1707].StartPos.rol;
-    v12 = this->m_Pool[1707].StartPos.rol;
-    fFromX = this->m_Pool[1707].EndPos.fFromX;
-    fRoll = this->m_Pool[1707].EndPos.x;
+    v11 = *(float *)&this->_data[430240];
+    v12 = *(float *)&this->_data[430240];
+    v13 = *(_DWORD *)&this->_data[430244];
+    v27 = *(int *)&this->_data[430248];
     v35 = v12;
-    *(float *)&v32.Color = rol;
-    v34 = fRoll;
-    x_low = SLODWORD(this->m_Pool[1707].EndPos.x);
+    *(float *)&v32.Color = v11;
+    v34 = *(float *)&v27;
+    v14 = *(_DWORD *)&this->_data[430248];
     v25 = (int)v3;
     v24.Color = 2;
     *(_DWORD *)&v24.Blue = &v32.Color;
-    v36 = fFromX;
-    v24.ColorQuadFmt = x_low;
-    x = *(float *)&x_low;
+    v36 = v13;
+    v24.ColorQuadFmt = v14;
+    ColorQuadFmt = v14;
     v33 = 0.0;
     ((gbColorQuad *)&v24)->gbColorQuad(&v32);
     ((gbDynVertBuf *)LODWORD(v35))->RenderLineStrip();
-    v15 = this->m_Pool[1707].StartPos.pit;
-    v16 = this->m_Pool[1707].StartPos.fRoll;
-    v32.Color = *(unsigned int *)p_fPitch;
-    v17 = this->m_Pool[1707].StartPos.rol;
+    v15 = *(float *)&this->_data[430232];
+    v16 = *(float *)&this->_data[430236];
+    v32.Color = *(_DWORD *)v2;
+    v17 = *(float *)&this->_data[430240];
     v33 = v15;
-    v18 = this->m_Pool[1707].EndPos.fFromX;
+    v18 = *(_DWORD *)&this->_data[430244];
     v35 = v17;
     v25 = (int)v3;
     v24.Color = 2;
@@ -372,26 +372,26 @@ CCCTData::~CCCTData()
     v36 = v18;
     v24.ColorQuadFmt = (int)&v32.Color;
     v34 = v16;
-    x = this->m_Pool[1707].EndPos.x;
+    ColorQuadFmt = *(_DWORD *)&this->_data[430248];
     ((gbColorQuad *)&v24)->gbColorQuad(&v32);
     ((gbDynVertBuf *)LODWORD(v35))->RenderLineStrip();
-    y = this->m_Pool[1706].EndPos.y;
-    v20 = *(float *)(LODWORD(y) + 492) + 1.0;
-    v21 = *(float *)(LODWORD(y) + 496) + 1.0;
-    v22 = *(_DWORD *)p_fPitch;
+    v19 = (float *)*(float **)&this->_data[430004];
+    v20 = v19[123] + 1.0;
+    v21 = v19[124] + 1.0;
+    v22 = *(unsigned int *)v2;
     v25 = (int)v3;
     v24.Color = 2;
     *(float *)&v26 = v21;
-    v23 = *(float *)(LODWORD(y) + 500);
+    v23 = v19[125];
     v35 = *(float *)&v22;
     v33 = *(float *)&v26;
-    v36 = p_fPitch[1];
-    fRoll = v23 + 1.0;
+    v36 = *((_DWORD *)v2 + 1);
+    *(float *)&v27 = v23 + 1.0;
     *(_DWORD *)&v24.Blue = &v32.Color;
     *(float *)&v32.Color = v20;
-    v34 = fRoll;
-    v24.ColorQuadFmt = (int)p_fPitch[2];
-    x = *(float *)&v24.ColorQuadFmt;
+    v34 = *(float *)&v27;
+    v24.ColorQuadFmt = *((_DWORD *)v2 + 2);
+    ColorQuadFmt = v24.ColorQuadFmt;
     ((gbColorQuad *)&v24)->gbColorQuad(&v32);
     ((gbDynVertBuf *)LODWORD(v35))->RenderLineStrip();
     ((gbRefObject *)v3)->Release();
@@ -401,8 +401,8 @@ CCCTData::~CCCTData()
 // 0x00506020
 bool CCCTData::Create(float *a2)
 {
-  float fFromY; // eax
-  float y; // ecx
+  int v3; // eax
+  CameraCtrl *v4; // ecx
   float pPos[2]; // [esp+8h] [ebp-90h] BYREF
   struct gbVec3D v7; // [esp+10h] [ebp-88h] BYREF
   gbRay v8; // [esp+1Ch] [ebp-7Ch] BYREF
@@ -410,16 +410,16 @@ bool CCCTData::Create(float *a2)
   _BYTE pTarget[24]; // [esp+80h] [ebp-18h] BYREF
 
   ((gbMatrix4 *)v9)->gbMatrix4();
-  ((gbGeomNode *)LODWORD(this->m_Pool[1707].StartPos.yaw))->GetTotalOBBox((struct gbOBBox *)v9);
+  ((gbGeomNode *)*(gbGeomNode **)&this->_data[430224])->GetTotalOBBox((struct gbOBBox *)v9);
   v7.x = *a2;
   v7.y = a2[1];
   v7.z = a2[2];
   ((gbMatrix4 *)v9)->RightTranslate(&v7);
-  fFromY = this->m_Pool[1706].EndPos.fFromY;
-  pPos[0] = *(float *)(LODWORD(fFromY) + 80);
-  y = this->m_Pool[1706].EndPos.y;
-  pPos[1] = *(float *)(LODWORD(fFromY) + 84);
-  qmemcpy(&v8, ((CameraCtrl *)LODWORD(y))->GetViewTarget(pTarget, pPos), sizeof(v8));
+  v3 = *(_DWORD *)&this->_data[430000];
+  pPos[0] = *(float *)(v3 + 80);
+  v4 = (CameraCtrl *)*(CameraCtrl **)&this->_data[430004];
+  pPos[1] = *(float *)(v3 + 84);
+  qmemcpy(&v8, v4->GetViewTarget(pTarget, pPos), sizeof(v8));
   return ((gbRay *)&v8)->IsColOBB((struct gbOBBox *)v9) == 1;
 }
 
@@ -439,7 +439,7 @@ char CCCTData::Destroy()
   if ( v2 )
   {
     v2->gbGeomNode();
-    *(_DWORD *)v3->_pad_0000 = &off_56A66C;
+    *(_DWORD *)v3->_base = &off_56A66C;
     v4 = v3;
   }
   else
@@ -447,7 +447,7 @@ char CCCTData::Destroy()
     v4 = 0;
   }
   v8 = -1;
-  LODWORD(this->m_Pool[1707].StartPos.yaw) = v4;
+  *(_DWORD *)&this->_data[430224] = v4;
   if ( !v4 )
   {
     qmemcpy(
@@ -463,26 +463,26 @@ char CCCTData::Destroy()
 // 0x005061A0
 void CCCTData::Init()
 {
-  int fRoll_low; // edx
-  float rol; // ebp
-  unsigned int v4; // ecx
+  int v2; // edx
+  int v3; // ebp
+  int v4; // ecx
   char *v5; // edi
 
-  fRoll_low = LODWORD(this->m_Pool[1706].EndPos.fRoll);
-  rol = this->m_Pool[1706].EndPos.rol;
-  v4 = this->m_Pool[1626].dwReserved[50 * fRoll_low + 1 + LODWORD(rol)];
+  v2 = *(_DWORD *)&this->_data[430032];
+  v3 = *(_DWORD *)&this->_data[430036];
+  v4 = *(_DWORD *)&this->_data[200 * v2 + 410000 + 4 * v3];
   if ( v4 == -1 )
     v5 = 0;
   else
-    v5 = (char *)this + 204 * v4;
+    v5 = (char *)&this->_data[204 * v4];
   if ( v5[22] )
   {
-    LODWORD(this->m_Pool[1706].EndPos.rol) = LODWORD(rol) + 1;
-    if ( SLODWORD(this->m_Pool[1706].EndPos.rol) >= ((CCBStageCam *)this)->IsEditorCamValid(fRoll_low) )
+    *(_DWORD *)&this->_data[430036] = v3 + 1;
+    if ( *(_DWORD *)&this->_data[430036] >= ((CCBStageCam *)this)->IsEditorCamValid(v2) )
     {
-      LOBYTE(this->m_Pool[1706].EndPos.z) = 0;
-      this->m_Pool[1706].EndPos.rol = NAN;
-      this->m_Pool[1706].EndPos.fRoll = NAN;
+      this->_data[430012] = 0;
+      *(_DWORD *)&this->_data[430036] = -1;
+      *(_DWORD *)&this->_data[430032] = -1;
     }
   }
   else
@@ -505,26 +505,26 @@ int CCCTData::Save(int a2)
 {
   int result; // eax
   int v4; // esi
-  unsigned int *v5; // edx
+  char *v5; // edx
   char *v6; // eax
 
   result = ((CCBStageCam *)this)->IsEditorCamValid(a2);
   if ( result > 0 )
   {
     v4 = result;
-    v5 = (unsigned int *)&this->m_Pool[1626].dwReserved[50 * a2 + 1];
+    v5 = (char *)&this->_data[200 * a2 + 410000];
     do
     {
-      if ( *v5 == -1 )
+      if ( *(_DWORD *)v5 == -1 )
         v6 = 0;
       else
-        v6 = (char *)this + 204 * *v5;
+        v6 = (char *)&this->_data[204 * *(_DWORD *)v5];
       v6[21] = 0;
-      if ( *v5 == -1 )
+      if ( *(_DWORD *)v5 == -1 )
         result = 0;
       else
-        result = (int)this + 204 * *v5;
-      ++v5;
+        result = (int)&this->_data[204 * *(_DWORD *)v5];
+      v5 += 4;
       --v4;
       *(_BYTE *)(result + 22) = 0;
     }
@@ -536,7 +536,7 @@ int CCCTData::Save(int a2)
 // 0x005062D0
 int CCCTData::Load(int a2)
 {
-  float y; // eax
+  int v2; // eax
   double v3; // st7
   double v4; // st6
   int v5; // ecx
@@ -544,13 +544,13 @@ int CCCTData::Load(int a2)
   int v8; // [esp+0h] [ebp-10h]
   int v9; // [esp+4h] [ebp-Ch]
 
-  y = this->m_Pool[1706].EndPos.y;
-  v3 = *(float *)(LODWORD(y) + 496);
-  v4 = *(float *)(LODWORD(y) + 492);
-  v8 = *(_DWORD *)(LODWORD(y) + 500);
-  v5 = *(_DWORD *)(LODWORD(y) + 452);
-  v9 = *(_DWORD *)(LODWORD(y) + 456);
-  v6 = *(_DWORD *)(LODWORD(y) + 464);
+  v2 = *(_DWORD *)&this->_data[430004];
+  v3 = *(float *)(v2 + 496);
+  v4 = *(float *)(v2 + 492);
+  v8 = *(_DWORD *)(v2 + 500);
+  v5 = *(_DWORD *)(v2 + 452);
+  v9 = *(_DWORD *)(v2 + 456);
+  v6 = *(_DWORD *)(v2 + 464);
   *(_DWORD *)(a2 + 8) = v8;
   *(_DWORD *)(a2 + 12) = v9;
   *(_DWORD *)(a2 + 16) = v5;
@@ -563,12 +563,12 @@ int CCCTData::Load(int a2)
 // 0x005075E0
 void CCCTData::InsertTaskToList()
 {
-  unsigned int v1; // edx
+  int v1; // edx
   char *v2; // eax
-  unsigned int v4; // ecx
+  int v4; // ecx
   char *v5; // ebx
   double v6; // st7
-  double fCircleCentreX; // st7
+  double v7; // st7
   char v9; // c0
   double v10; // st7
   double v11; // st7
@@ -583,23 +583,23 @@ void CCCTData::InsertTaskToList()
   double v21; // st7
   double v22; // st7
   double v23; // st7
-  double fStartFOV; // st7
+  double v24; // st7
   char v25; // cl
   unsigned int v26; // eax
   float *v27; // eax
   float v28; // edx
   float *v29; // eax
   float v30; // edx
-  float *p_fCircleEndX; // esi
+  float *v31; // esi
   unsigned __int8 v33; // c0
   unsigned __int8 v34; // c3
-  float fInertia; // [esp+1Ch] [ebp-80h]
+  float v35; // [esp+1Ch] [ebp-80h]
   float v36; // [esp+20h] [ebp-7Ch]
   float v37; // [esp+24h] [ebp-78h]
   float v38; // [esp+28h] [ebp-74h]
-  float fEndFOV; // [esp+2Ch] [ebp-70h]
+  float v39; // [esp+2Ch] [ebp-70h]
   float v40; // [esp+2Ch] [ebp-70h]
-  float fStartTracePosX; // [esp+30h] [ebp-6Ch]
+  float v41; // [esp+30h] [ebp-6Ch]
   float v42; // [esp+30h] [ebp-6Ch]
   float v43; // [esp+34h] [ebp-68h]
   float v44; // [esp+34h] [ebp-68h]
@@ -612,80 +612,76 @@ void CCCTData::InsertTaskToList()
   gbQuaternion v51; // [esp+4Ch] [ebp-50h] BYREF
   _BYTE v52[64]; // [esp+5Ch] [ebp-40h] BYREF
 
-  v1 = this->m_Pool[1626].dwReserved[50 * LODWORD(this->m_Pool[1706].EndPos.fRoll)
-                                   + 1
-                                   + LODWORD(this->m_Pool[1706].EndPos.rol)];
+  v1 = *(_DWORD *)&this->_data[200 * *(_DWORD *)&this->_data[430032] + 410000 + 4 * *(_DWORD *)&this->_data[430036]];
   if ( v1 == -1 )
     v2 = 0;
   else
-    v2 = (char *)this + 204 * v1;
+    v2 = (char *)&this->_data[204 * v1];
   if ( v2[89] && v2[91] )
   {
     if ( !v2[90] )
     {
-      v4 = this->m_Pool[1626].dwReserved[50 * LODWORD(this->m_Pool[1706].EndPos.fRoll)
-                                       + 1
-                                       + LODWORD(this->m_Pool[1706].EndPos.rol)];
+      v4 = *(_DWORD *)&this->_data[200 * *(_DWORD *)&this->_data[430032] + 410000 + 4 * *(_DWORD *)&this->_data[430036]];
       if ( v4 == -1 )
         v5 = 0;
       else
-        v5 = (char *)this + 204 * v4;
+        v5 = (char *)&this->_data[204 * v4];
       if ( !v5[21] )
       {
         if ( !v5[88] )
           this->Load((int)(v5 + 32));
         if ( v5[96] )
-          v6 = *(float *)(*(_DWORD *)LODWORD(this->m_Pool[1706].EndPos.fFromY) + 104);
+          v6 = *(float *)(**(_DWORD **)&this->_data[430000] + 104);
         else
-          v6 = *(float *)(*(_DWORD *)LODWORD(this->m_Pool[1706].EndPos.fFromY) + 80);
+          v6 = *(float *)(**(_DWORD **)&this->_data[430000] + 80);
         *((float *)v5 + 6) = v6;
-        qmemcpy(&this->m_Pool[1706].fAcceleration2, v5 + 32, 0x18u);
+        qmemcpy(&this->_data[430088], v5 + 32, 0x18u);
         if ( v5[97] )
         {
-          if ( *((float *)v5 + 17) - this->m_Pool[1706].fCircleCentreX <= 0.0 )
+          if ( *((float *)v5 + 17) - *(float *)&this->_data[430100] <= 0.0 )
           {
-            fCircleCentreX = this->m_Pool[1706].fCircleCentreX;
+            v7 = *(float *)&this->_data[430100];
             if ( v9 )
-              fCircleCentreX = fCircleCentreX - 6.2831855;
+              v7 = v7 - 6.2831855;
           }
           else
           {
-            fCircleCentreX = this->m_Pool[1706].fCircleCentreX + 6.2831855;
+            v7 = *(float *)&this->_data[430100] + 6.2831855;
           }
-          this->m_Pool[1706].fCircleCentreX = fCircleCentreX;
+          *(float *)&this->_data[430100] = v7;
         }
-        this->m_Pool[1706].fInertia = *((float *)v5 + 33);
-        this->m_Pool[1706].nStartCam = *((_DWORD *)v5 + 34);
+        *(_DWORD *)&this->_data[430072] = *((_DWORD *)v5 + 33);
+        *(_DWORD *)&this->_data[430040] = *((_DWORD *)v5 + 34);
         v5[21] = 1;
       }
       if ( v5[96] )
-        v10 = *(float *)(*(_DWORD *)LODWORD(this->m_Pool[1706].EndPos.fFromY) + 104);
+        v10 = *(float *)(**(_DWORD **)&this->_data[430000] + 104);
       else
-        v10 = *(float *)(*(_DWORD *)LODWORD(this->m_Pool[1706].EndPos.fFromY) + 80);
+        v10 = *(float *)(**(_DWORD **)&this->_data[430000] + 80);
       v11 = v10 - *((float *)v5 + 6);
       v36 = v11;
-      fInertia = v11 * *(float *)&this->m_Pool[1706].nStartCam;
+      v35 = v11 * *(float *)&this->_data[430040];
       if ( v36 >= (double)*((float *)v5 + 29) )
       {
         v12 = v36 - *((float *)v5 + 29);
-        fInertia = v12 * *((float *)v5 + 31) * v12 * 0.5 + fInertia;
+        v35 = v12 * *((float *)v5 + 31) * v12 * 0.5 + v35;
       }
       if ( v36 >= (double)*((float *)v5 + 30) )
       {
         v13 = v36 - *((float *)v5 + 30);
-        fInertia = (*((float *)v5 + 32) + *((float *)v5 + 31)) * v13 * v13 * 0.5 + fInertia;
+        v35 = (*((float *)v5 + 32) + *((float *)v5 + 31)) * v13 * v13 * 0.5 + v35;
       }
       if ( v15 | v16 )
       {
-        if ( fInertia < (double)this->m_Pool[1706].fInertia )
-          fInertia = this->m_Pool[1706].fInertia;
+        if ( v35 < (double)*(float *)&this->_data[430072] )
+          v35 = *(float *)&this->_data[430072];
       }
-      else if ( fInertia > (double)this->m_Pool[1706].fInertia )
+      else if ( v35 > (double)*(float *)&this->_data[430072] )
       {
-        fInertia = this->m_Pool[1706].fInertia;
+        v35 = *(float *)&this->_data[430072];
       }
       v17 = *((float *)v5 + 39) - *((float *)v5 + 36);
-      v18 = fInertia / this->m_Pool[1706].fInertia;
+      v18 = v35 / *(float *)&this->_data[430072];
       memset(&v51, 0, 12);
       v51.w = 1.0;
       v37 = v17 * v18;
@@ -696,28 +692,28 @@ void CCCTData::InsertTaskToList()
       v19 = *((float *)v5 + 8) - v43;
       v49 = *((float *)v5 + 9) - v45;
       v20 = *((float *)v5 + 10) - v47;
-      this->m_Pool[1706].fEndFOV = v49;
+      *(float *)&this->_data[430140] = v49;
       v50 = v20;
-      this->m_Pool[1706].fStartFOV = v19;
-      this->m_Pool[1706].fStartTracePosX = v50;
-      ((gbQuaternion *)&v51)->SetYawPitchRoll(fInertia, 0.0, 0.0);
+      *(float *)&this->_data[430136] = v19;
+      *(float *)&this->_data[430144] = v50;
+      ((gbQuaternion *)&v51)->SetYawPitchRoll(v35, 0.0, 0.0);
       ((gbQuaternion *)&v51)->GetMatrix((struct gbMatrix4 *)v52);
-      ((gbMatrix4 *)v52)->RotateIn((struct gbVec3D *)&this->m_Pool[1706].fStartFOV);
-      v21 = v43 + this->m_Pool[1706].fStartFOV;
+      ((gbMatrix4 *)v52)->RotateIn((struct gbVec3D *)&this->_data[430136]);
+      v21 = v43 + *(float *)&this->_data[430136];
       v44 = 0.0;
-      this->m_Pool[1706].fStartFOV = v21;
-      v22 = v45 + this->m_Pool[1706].fEndFOV;
+      *(float *)&this->_data[430136] = v21;
+      v22 = v45 + *(float *)&this->_data[430140];
       v46 = 0.0;
-      this->m_Pool[1706].fEndFOV = v22;
-      v23 = v47 + this->m_Pool[1706].fStartTracePosX;
+      *(float *)&this->_data[430140] = v22;
+      v23 = v47 + *(float *)&this->_data[430144];
       v48 = 0.0;
-      this->m_Pool[1706].fStartTracePosX = v23;
-      this->m_Pool[1706].fEndFOV = v37 + this->m_Pool[1706].fEndFOV;
-      fStartFOV = this->m_Pool[1706].fStartFOV;
-      v38 = this->m_Pool[1706].fStartFOV;
-      fEndFOV = this->m_Pool[1706].fEndFOV;
+      *(float *)&this->_data[430144] = v23;
+      *(float *)&this->_data[430140] = v37 + *(float *)&this->_data[430140];
+      v24 = *(float *)&this->_data[430136];
+      v38 = *(float *)&this->_data[430136];
+      v39 = *(float *)&this->_data[430140];
       v25 = v5[102];
-      fStartTracePosX = this->m_Pool[1706].fStartTracePosX;
+      v41 = *(float *)&this->_data[430144];
       if ( v25 || v5[101] )
       {
         v26 = *((_DWORD *)v5 + 26);
@@ -725,7 +721,7 @@ void CCCTData::InsertTaskToList()
         {
           if ( v26 == -1 )
           {
-            v29 = (float *)*(float **)(LODWORD(this->m_Pool[1706].EndPos.fFromY) + 20);
+            v29 = (float *)*(float **)(*(_DWORD *)&this->_data[430000] + 20);
             v30 = v29[225];
             v29 += 225;
             v44 = v30;
@@ -741,7 +737,7 @@ void CCCTData::InsertTaskToList()
         }
         else
         {
-          v27 = (float *)*(float **)(LODWORD(this->m_Pool[1706].EndPos.fFromY) + 4 * v26 + 24);
+          v27 = (float *)*(float **)(*(_DWORD *)&this->_data[430000] + 4 * v26 + 24);
           v28 = v27[1646];
           v27 += 1646;
           v44 = v28;
@@ -751,44 +747,44 @@ void CCCTData::InsertTaskToList()
       }
       if ( v25 )
       {
-        v40 = fEndFOV + v46;
-        v42 = fStartTracePosX + v48;
-        fStartFOV = fStartFOV + v44 - *((float *)v5 + 46);
-        v38 = fStartFOV;
-        fEndFOV = v40 - *((float *)v5 + 47);
-        fStartTracePosX = v42 - *((float *)v5 + 48);
+        v40 = v39 + v46;
+        v42 = v41 + v48;
+        v24 = v24 + v44 - *((float *)v5 + 46);
+        v38 = v24;
+        v39 = v40 - *((float *)v5 + 47);
+        v41 = v42 - *((float *)v5 + 48);
       }
-      p_fCircleEndX = (float *)&this->m_Pool[1706].fCircleEndX;
+      v31 = (float *)&this->_data[430112];
       if ( v5[101] )
       {
-        this->m_Pool[1706].fCircleEndY = fEndFOV;
-        this->m_Pool[1706].fCircleEndZ = fStartTracePosX;
-        *p_fCircleEndX = fStartFOV;
-        v38->CalcDist(fEndFOV);
+        *(float *)&this->_data[430116] = v39;
+        *(float *)&this->_data[430120] = v41;
+        *v31 = v24;
+        v38->CalcDist(v39);
       }
       else
       {
-        * p_fCircleEndX = (*)this->m_Pool[1706].fAcceleration2;
-        this->m_Pool[1706].fCircleEndY = this->m_Pool[1706].fCircleAngle;
-        this->m_Pool[1706].fCircleEndZ = this->m_Pool[1706].fAngleSpeed;
-        this->m_Pool[1706].fSwingFre = this->m_Pool[1706].fCircleCentreX;
-        this->m_Pool[1706].fSwing = this->m_Pool[1706].fCircleCentreY;
-        this->m_Pool[1706].fTimeExpiate = this->m_Pool[1706].fCircleCentreZ;
-        this->m_Pool[1706].fCircleEndY = fEndFOV;
-        *p_fCircleEndX = fStartFOV;
-        this->m_Pool[1706].fCircleEndZ = fStartTracePosX;
+        * v31 = (*)*(float *)&this->_data[430088];
+        *(_DWORD *)&this->_data[430116] = *(_DWORD *)&this->_data[430092];
+        *(_DWORD *)&this->_data[430120] = *(_DWORD *)&this->_data[430096];
+        *(_DWORD *)&this->_data[430124] = *(_DWORD *)&this->_data[430100];
+        *(_DWORD *)&this->_data[430128] = *(_DWORD *)&this->_data[430104];
+        *(_DWORD *)&this->_data[430132] = *(_DWORD *)&this->_data[430108];
+        *(float *)&this->_data[430116] = v39;
+        *v31 = v24;
+        *(float *)&this->_data[430120] = v41;
       }
-      ((CCCTData *)LODWORD(this->m_Pool[1706].EndPos.y))->UpdateCamera((int)&this->m_Pool[1706].fCircleEndX);
-      ((CameraCtrl *)LODWORD(this->m_Pool[1706].EndPos.y))->SetAsCurrent(3);
+      ((CCCTData *)*(CCCTData **)&this->_data[430004])->UpdateCamera((int)&this->_data[430112]);
+      ((CameraCtrl *)*(CameraCtrl **)&this->_data[430004])->SetAsCurrent(3);
       if ( v33 | v34 )
       {
-        if ( fInertia <= (double)this->m_Pool[1706].fInertia )
+        if ( v35 <= (double)*(float *)&this->_data[430072] )
         {
           *((float *)v5 + 7) = v36;
           v5[22] = 1;
         }
       }
-      else if ( fInertia >= (double)this->m_Pool[1706].fInertia )
+      else if ( v35 >= (double)*(float *)&this->_data[430072] )
       {
         *((float *)v5 + 7) = v36;
         v5[22] = 1;
@@ -804,11 +800,11 @@ void CCCTData::InsertTaskToList()
 // 0x00507B20
 void CCCTData::SwapTask()
 {
-  unsigned int v2; // ecx
+  int v2; // ecx
   char *v3; // ebx
   float *v4; // edx
-  float rol; // eax
-  unsigned int v6; // ecx
+  int v5; // eax
+  int v6; // ecx
   char *v7; // eax
   double v8; // st7
   float v9; // ecx
@@ -816,9 +812,9 @@ void CCCTData::SwapTask()
   float v11; // ecx
   int v12; // ecx
   double v13; // st7
-  double fCircleCentreX; // st7
+  double v14; // st7
   char v16; // c0
-  float fFromY; // edx
+  int v17; // edx
   double v18; // st7
   int v19; // eax
   double v20; // st7
@@ -826,7 +822,7 @@ void CCCTData::SwapTask()
   double v22; // st7
   double v23; // st6
   double v24; // st6
-  double fStartFOV; // st7
+  double v25; // st7
   char v26; // cl
   unsigned int v27; // eax
   float *v28; // eax
@@ -842,7 +838,7 @@ void CCCTData::SwapTask()
   float v38; // [esp+18h] [ebp-40h]
   float v39; // [esp+1Ch] [ebp-3Ch]
   float v40; // [esp+20h] [ebp-38h]
-  int v41; // [esp+20h] [ebp-38h]
+  float v41; // [esp+20h] [ebp-38h]
   float v42; // [esp+20h] [ebp-38h]
   float v43; // [esp+20h] [ebp-38h]
   float v44; // [esp+20h] [ebp-38h]
@@ -853,7 +849,7 @@ void CCCTData::SwapTask()
   float v49; // [esp+24h] [ebp-34h]
   float v50; // [esp+28h] [ebp-30h]
   float v51; // [esp+2Ch] [ebp-2Ch]
-  int v52; // [esp+2Ch] [ebp-2Ch]
+  float v52; // [esp+2Ch] [ebp-2Ch]
   float v53; // [esp+2Ch] [ebp-2Ch]
   float v54; // [esp+2Ch] [ebp-2Ch]
   float v55; // [esp+2Ch] [ebp-2Ch]
@@ -878,28 +874,26 @@ void CCCTData::SwapTask()
   float v74; // [esp+50h] [ebp-8h]
   float v75; // [esp+54h] [ebp-4h]
 
-  v2 = this->m_Pool[1626].dwReserved[50 * LODWORD(this->m_Pool[1706].EndPos.fRoll)
-                                   + 1
-                                   + LODWORD(this->m_Pool[1706].EndPos.rol)];
+  v2 = *(_DWORD *)&this->_data[200 * *(_DWORD *)&this->_data[430032] + 410000 + 4 * *(_DWORD *)&this->_data[430036]];
   if ( v2 == -1 )
     v3 = 0;
   else
-    v3 = (char *)this + 204 * v2;
+    v3 = (char *)&this->_data[204 * v2];
   if ( !v3[21] )
   {
     if ( !v3[88] )
       this->Load((int)(v3 + 32));
     v4 = (float *)(v3 + 32);
-    qmemcpy(&this->m_Pool[1706].fAcceleration2, v3 + 32, 0x18u);
-    this->m_Pool[1706].fStartFOV = *((float *)v3 + 8);
-    this->m_Pool[1706].fEndFOV = *((float *)v3 + 9);
-    rol = this->m_Pool[1706].EndPos.rol;
-    this->m_Pool[1706].fStartTracePosX = *((float *)v3 + 10);
-    if ( rol == 0.0
-      || SLODWORD(rol) > 0
-      && ((v6 = this->m_Pool[1626].dwReserved[50 * LODWORD(this->m_Pool[1706].EndPos.fRoll) + LODWORD(rol)], v6 == -1)
+    qmemcpy(&this->_data[430088], v3 + 32, 0x18u);
+    *(_DWORD *)&this->_data[430136] = *((_DWORD *)v3 + 8);
+    *(_DWORD *)&this->_data[430140] = *((_DWORD *)v3 + 9);
+    v5 = *(_DWORD *)&this->_data[430036];
+    *(_DWORD *)&this->_data[430144] = *((_DWORD *)v3 + 10);
+    if ( !v5
+      || v5 > 0
+      && ((v6 = *(_DWORD *)&this->_data[200 * *(_DWORD *)&this->_data[430032] + 409996 + 4 * v5], v6 == -1)
         ? (v7 = 0)
-        : (v7 = (char *)this + 204 * v6),
+        : (v7 = &this->_data[204 * v6]),
           !v7[94]) )
     {
       v8 = *((float *)v3 + 14) - *v4;
@@ -908,71 +902,71 @@ void CCCTData::SwapTask()
       if ( *((float *)v3 + 7) <= 0.0 )
       {
         v9 = *((float *)v3 + 16) - *((float *)v3 + 10);
-        *(float *)&this->m_Pool[1706].bStartCamValid = v8;
-        *(float *)&this->m_Pool[1706].bLineMove = v51;
+        *(float *)&this->_data[430048] = v8;
+        *(float *)&this->_data[430052] = v51;
       }
       else
       {
         v35 = 1.0 / *((float *)v3 + 7);
         v40 = v51 * v35;
-        *(float *)&this->m_Pool[1706].bLineMove = v40;
+        *(float *)&this->_data[430052] = v40;
         v45 = v58 * v35;
         v9 = v45;
-        *(float *)&this->m_Pool[1706].bStartCamValid = v8 * v35;
+        *(float *)&this->_data[430048] = v8 * v35;
       }
-      *(float *)&this->m_Pool[1706].bAbsoluteTime = v9;
+      *(float *)&this->_data[430056] = v9;
     }
     v10 = *((float *)v3 + 14) - *v4;
-    *(float *)&v52 = *((float *)v3 + 15) - *((float *)v3 + 9);
+    v52 = *((float *)v3 + 15) - *((float *)v3 + 9);
     v59 = *((float *)v3 + 16) - *((float *)v3 + 10);
     if ( *((float *)v3 + 7) <= 0.0 )
     {
       v11 = *((float *)v3 + 16) - *((float *)v3 + 10);
-      *(float *)&this->m_Pool[1706].bRandSwing = v10;
-      this->m_Pool[1706].nTraceRole = v52;
+      *(float *)&this->_data[430060] = v10;
+      *(float *)&this->_data[430064] = v52;
     }
     else
     {
       v36 = 1.0 / *((float *)v3 + 7);
-      *(float *)&v41 = *(float *)&v52 * v36;
-      this->m_Pool[1706].nTraceRole = v41;
+      v41 = v52 * v36;
+      *(float *)&this->_data[430064] = v41;
       v46 = v59 * v36;
       v11 = v46;
-      *(float *)&this->m_Pool[1706].bRandSwing = v10 * v36;
+      *(float *)&this->_data[430060] = v10 * v36;
     }
-    this->m_Pool[1706].fStartSpeed = v11;
-    v12 = *(_DWORD *)LODWORD(this->m_Pool[1706].EndPos.fFromY);
+    *(float *)&this->_data[430068] = v11;
+    v12 = **(_DWORD **)&this->_data[430000];
     if ( v3[96] )
       v13 = *(float *)(v12 + 104);
     else
       v13 = *(float *)(v12 + 80);
     *((float *)v3 + 6) = v13;
-    qmemcpy(&this->m_Pool[1706].fCircleEndX, v4, 0x18u);
+    qmemcpy(&this->_data[430112], v4, 0x18u);
     if ( v3[97] )
     {
-      if ( *((float *)v3 + 17) - this->m_Pool[1706].fCircleCentreX <= 0.0 )
+      if ( *((float *)v3 + 17) - *(float *)&this->_data[430100] <= 0.0 )
       {
-        fCircleCentreX = this->m_Pool[1706].fCircleCentreX;
+        v14 = *(float *)&this->_data[430100];
         if ( v16 )
-          fCircleCentreX = fCircleCentreX - 6.2831855;
+          v14 = v14 - 6.2831855;
       }
       else
       {
-        fCircleCentreX = this->m_Pool[1706].fCircleCentreX + 6.2831855;
+        v14 = *(float *)&this->_data[430100] + 6.2831855;
       }
-      this->m_Pool[1706].fCircleCentreX = fCircleCentreX;
+      *(float *)&this->_data[430100] = v14;
     }
     v3[21] = 1;
   }
   if ( v3[96] )
   {
-    fFromY = this->m_Pool[1706].EndPos.fFromY;
-    v37 = *(double *)(*(_DWORD *)LODWORD(fFromY) + 88);
-    v18 = *(float *)(*(_DWORD *)LODWORD(fFromY) + 104);
+    v17 = *(_DWORD *)&this->_data[430000];
+    v37 = *(double *)(*(_DWORD *)v17 + 88);
+    v18 = *(float *)(*(_DWORD *)v17 + 104);
   }
   else
   {
-    v19 = *(_DWORD *)LODWORD(this->m_Pool[1706].EndPos.fFromY);
+    v19 = **(_DWORD **)&this->_data[430000];
     v37 = *(double *)(v19 + 64);
     v18 = *(float *)(v19 + 80);
   }
@@ -980,36 +974,36 @@ void CCCTData::SwapTask()
     v34 = (v18 - *((float *)v3 + 6)) / (*((float *)v3 + 43) + *((float *)v3 + 7));
   else
     v34 = 1.0;
-  v38 = ((gbVec3D *)&this->m_Pool[1706].bStartCamValid)->Length();
-  v53 = v37 * *(float *)&this->m_Pool[1706].nTraceRole;
-  v60 = v37 * this->m_Pool[1706].fStartSpeed;
-  v20 = v37 * *(float *)&this->m_Pool[1706].bRandSwing + *(float *)&this->m_Pool[1706].bStartCamValid;
-  v42 = v53 + *(float *)&this->m_Pool[1706].bLineMove;
-  v21 = v60 + *(float *)&this->m_Pool[1706].bAbsoluteTime;
-  *(float *)&this->m_Pool[1706].bLineMove = v42;
+  v38 = ((gbVec3D *)&this->_data[430048])->Length();
+  v53 = v37 * *(float *)&this->_data[430064];
+  v60 = v37 * *(float *)&this->_data[430068];
+  v20 = v37 * *(float *)&this->_data[430060] + *(float *)&this->_data[430048];
+  v42 = v53 + *(float *)&this->_data[430052];
+  v21 = v60 + *(float *)&this->_data[430056];
+  *(float *)&this->_data[430052] = v42;
   v47 = v21;
-  *(float *)&this->m_Pool[1706].bStartCamValid = v20;
-  *(float *)&this->m_Pool[1706].bAbsoluteTime = v47;
-  ((gbVec3D *)&this->m_Pool[1706].bStartCamValid)->Normalize();
+  *(float *)&this->_data[430048] = v20;
+  *(float *)&this->_data[430056] = v47;
+  ((gbVec3D *)&this->_data[430048])->Normalize();
   v50 = 0.0;
-  *(float *)&this->m_Pool[1706].bStartCamValid = v38 * *(float *)&this->m_Pool[1706].bStartCamValid;
-  *(float *)&this->m_Pool[1706].bLineMove = v38 * *(float *)&this->m_Pool[1706].bLineMove;
-  *(float *)&this->m_Pool[1706].bAbsoluteTime = v38 * *(float *)&this->m_Pool[1706].bAbsoluteTime;
-  v54 = v37 * *(float *)&this->m_Pool[1706].bLineMove;
-  v61 = v37 * *(float *)&this->m_Pool[1706].bAbsoluteTime;
-  v22 = v37 * *(float *)&this->m_Pool[1706].bStartCamValid + this->m_Pool[1706].fStartFOV;
-  v23 = v54 + this->m_Pool[1706].fEndFOV;
+  *(float *)&this->_data[430048] = v38 * *(float *)&this->_data[430048];
+  *(float *)&this->_data[430052] = v38 * *(float *)&this->_data[430052];
+  *(float *)&this->_data[430056] = v38 * *(float *)&this->_data[430056];
+  v54 = v37 * *(float *)&this->_data[430052];
+  v61 = v37 * *(float *)&this->_data[430056];
+  v22 = v37 * *(float *)&this->_data[430048] + *(float *)&this->_data[430136];
+  v23 = v54 + *(float *)&this->_data[430140];
   v55 = 0.0;
   v43 = v23;
-  v24 = v61 + this->m_Pool[1706].fStartTracePosX;
+  v24 = v61 + *(float *)&this->_data[430144];
   v62 = 0.0;
-  this->m_Pool[1706].fEndFOV = v43;
+  *(float *)&this->_data[430140] = v43;
   v48 = v24;
-  this->m_Pool[1706].fStartFOV = v22;
-  this->m_Pool[1706].fStartTracePosX = v48;
-  fStartFOV = this->m_Pool[1706].fStartFOV;
+  *(float *)&this->_data[430136] = v22;
+  *(float *)&this->_data[430144] = v48;
+  v25 = *(float *)&this->_data[430136];
   v26 = v3[102];
-  v39 = this->m_Pool[1706].fStartFOV;
+  v39 = *(float *)&this->_data[430136];
   if ( v26 || v3[101] )
   {
     v27 = *((_DWORD *)v3 + 26);
@@ -1017,7 +1011,7 @@ void CCCTData::SwapTask()
     {
       if ( v27 == -1 )
       {
-        v30 = (float *)*(float **)(LODWORD(this->m_Pool[1706].EndPos.fFromY) + 20);
+        v30 = (float *)*(float **)(*(_DWORD *)&this->_data[430000] + 20);
         v31 = v30[225];
         v30 += 225;
         v50 = v31;
@@ -1033,7 +1027,7 @@ void CCCTData::SwapTask()
     }
     else
     {
-      v28 = (float *)*(float **)(LODWORD(this->m_Pool[1706].EndPos.fFromY) + 4 * v27 + 24);
+      v28 = (float *)*(float **)(*(_DWORD *)&this->_data[430000] + 4 * v27 + 24);
       v29 = v28[1646];
       v28 += 1646;
       v50 = v29;
@@ -1045,49 +1039,49 @@ void CCCTData::SwapTask()
   {
     v44 = v55 + v43;
     v49 = v62 + v48;
-    fStartFOV = fStartFOV + v50 - *((float *)v3 + 46);
-    v39 = fStartFOV;
+    v25 = v25 + v50 - *((float *)v3 + 46);
+    v39 = v25;
     v43 = v44 - *((float *)v3 + 47);
     v48 = v49 - *((float *)v3 + 48);
   }
   if ( v3[101] )
   {
-    this->m_Pool[1706].fCircleEndY = v43;
-    this->m_Pool[1706].fCircleEndZ = v48;
-    this->m_Pool[1706].fCircleEndX = fStartFOV;
+    *(float *)&this->_data[430116] = v43;
+    *(float *)&this->_data[430120] = v48;
+    *(float *)&this->_data[430112] = v25;
     v39->CalcDist(v43);
   }
   else
   {
-    v56 = *((float *)v3 + 15) - this->m_Pool[1706].fCircleAngle;
-    v63 = *((float *)v3 + 16) - this->m_Pool[1706].fAngleSpeed;
-    v65 = *((float *)v3 + 17) - this->m_Pool[1706].fCircleCentreX;
-    v67 = *((float *)v3 + 18) - this->m_Pool[1706].fCircleCentreY;
-    v69 = *((float *)v3 + 19) - this->m_Pool[1706].fCircleCentreZ;
+    v56 = *((float *)v3 + 15) - *(float *)&this->_data[430092];
+    v63 = *((float *)v3 + 16) - *(float *)&this->_data[430096];
+    v65 = *((float *)v3 + 17) - *(float *)&this->_data[430100];
+    v67 = *((float *)v3 + 18) - *(float *)&this->_data[430104];
+    v69 = *((float *)v3 + 19) - *(float *)&this->_data[430108];
     v71 = v56 * v34;
     v72 = v63 * v34;
     v73 = v65 * v34;
     v74 = v67 * v34;
     v75 = v69 * v34;
-    v32 = (*((float *)v3 + 14) - this->m_Pool[1706].fAcceleration2) * v34 + this->m_Pool[1706].fAcceleration2;
-    v57 = v71 + this->m_Pool[1706].fCircleAngle;
-    v64 = v72 + this->m_Pool[1706].fAngleSpeed;
-    v66 = v73 + this->m_Pool[1706].fCircleCentreX;
-    v68 = v74 + this->m_Pool[1706].fCircleCentreY;
-    v33 = v75 + this->m_Pool[1706].fCircleCentreZ;
-    this->m_Pool[1706].fCircleEndY = v57;
-    this->m_Pool[1706].fCircleEndZ = v64;
-    this->m_Pool[1706].fSwingFre = v66;
-    this->m_Pool[1706].fSwing = v68;
+    v32 = (*((float *)v3 + 14) - *(float *)&this->_data[430088]) * v34 + *(float *)&this->_data[430088];
+    v57 = v71 + *(float *)&this->_data[430092];
+    v64 = v72 + *(float *)&this->_data[430096];
+    v66 = v73 + *(float *)&this->_data[430100];
+    v68 = v74 + *(float *)&this->_data[430104];
+    v33 = v75 + *(float *)&this->_data[430108];
+    *(float *)&this->_data[430116] = v57;
+    *(float *)&this->_data[430120] = v64;
+    *(float *)&this->_data[430124] = v66;
+    *(float *)&this->_data[430128] = v68;
     v70 = v33;
-    this->m_Pool[1706].fCircleEndX = v32;
-    this->m_Pool[1706].fTimeExpiate = v70;
-    this->m_Pool[1706].fCircleEndX = fStartFOV;
-    this->m_Pool[1706].fCircleEndY = v43;
-    this->m_Pool[1706].fCircleEndZ = v48;
+    *(float *)&this->_data[430112] = v32;
+    *(float *)&this->_data[430132] = v70;
+    *(float *)&this->_data[430112] = v25;
+    *(float *)&this->_data[430116] = v43;
+    *(float *)&this->_data[430120] = v48;
   }
-  ((CCCTData *)LODWORD(this->m_Pool[1706].EndPos.y))->UpdateCamera((int)&this->m_Pool[1706].fCircleEndX);
-  ((CameraCtrl *)LODWORD(this->m_Pool[1706].EndPos.y))->SetAsCurrent(3);
+  ((CCCTData *)*(CCCTData **)&this->_data[430004])->UpdateCamera((int)&this->_data[430112]);
+  ((CameraCtrl *)*(CameraCtrl **)&this->_data[430004])->SetAsCurrent(3);
   if ( v34 >= 1.0 )
     v3[22] = 1;
 }

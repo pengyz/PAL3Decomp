@@ -20,21 +20,21 @@ int MagicUI::Create()
 
   if ( ((UIBase *)this)->GetSelected() < 5 )
   {
-    this->_b16C = data;
+    this->_rest[264] = data;
     ((UIBase *)this)->SetItemData(3, data);
-    sub_48A350(*((char **)this + 44015), data);
-    sub_494620(*((char **)this + 44016), data);
-    sub_49E8A0(*((char **)this + 44017), data);
-    return sub_484ED0(*((char **)this + 44014), data);
+    sub_48A350(*(char **)&this->_rest[175960], data);
+    sub_494620(*(char **)&this->_rest[175964], data);
+    sub_49E8A0(*(char **)&this->_rest[175968], data);
+    return sub_484ED0(*(char **)&this->_rest[175956], data);
   }
   else
   {
-    this->_b16C = 0;
+    this->_rest[264] = 0;
     ((UIBase *)this)->SetItemData(3, 0);
-    sub_48A350(*((char **)this + 44015), 0);
-    sub_494620(*((char **)this + 44016), 0);
-    sub_49E8A0(*((char **)this + 44017), 0);
-    return sub_484ED0(*((char **)this + 44014), 0);
+    sub_48A350(*(char **)&this->_rest[175960], 0);
+    sub_494620(*(char **)&this->_rest[175964], 0);
+    sub_49E8A0(*(char **)&this->_rest[175968], 0);
+    return sub_484ED0(*(char **)&this->_rest[175956], 0);
   }
 }
 
@@ -45,20 +45,20 @@ void MagicUI::Init()
 
   if ( ((UIBase *)this)->GetSelected() < 5 )
   {
-    this->_b16D = data;
+    this->_rest[265] = data;
     ((UIBase *)this)->SetItemData(4, data);
-    sub_48A370(*((char **)this + 44015), data);
-    sub_494640(*((char **)this + 44016), data);
-    sub_49E8C0(*((char **)this + 44017), data);
-    sub_484EF0(*((char **)this + 44014), data);
+    sub_48A370(*(char **)&this->_rest[175960], data);
+    sub_494640(*(char **)&this->_rest[175964], data);
+    sub_49E8C0(*(char **)&this->_rest[175968], data);
+    sub_484EF0(*(char **)&this->_rest[175956], data);
   }
   else
   {
-    this->_b16D = 0;
+    this->_rest[265] = 0;
     ((UIBase *)this)->SetItemData(4, 0);
-    sub_48A370(*((char **)this + 44015), 0);
-    sub_494640(*((char **)this + 44016), 0);
-    sub_49E8C0(*((char **)this + 44017), 0);
-    sub_484EF0(*((char **)this + 44014), 0);
+    sub_48A370(*(char **)&this->_rest[175960], 0);
+    sub_494640(*(char **)&this->_rest[175964], 0);
+    sub_49E8C0(*(char **)&this->_rest[175968], 0);
+    sub_484EF0(*(char **)&this->_rest[175956], 0);
   }
 }

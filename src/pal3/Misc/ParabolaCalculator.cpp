@@ -17,26 +17,30 @@ extern int dword_BFDA6C;
 int ParabolaCalculator::CalulateParabola()
 {
   int result; // eax
-  gbVec3D v2; // [esp-20h] [ebp-68h]
-  int v3; // [esp-14h] [ebp-5Ch]
-  int v4; // [esp-10h] [ebp-58h]
-  int v5; // [esp-Ch] [ebp-54h]
-  int v6; // [esp+0h] [ebp-48h] BYREF
-  struct gbTextureArray v7; // [esp+4h] [ebp-44h] BYREF
+  int d048; // [esp-20h] [ebp-68h]
+  int d04C; // [esp-1Ch] [ebp-64h]
+  int d050; // [esp-18h] [ebp-60h]
+  int d054; // [esp-14h] [ebp-5Ch]
+  int v6; // [esp-10h] [ebp-58h]
+  int v7; // [esp-Ch] [ebp-54h]
+  int v8; // [esp+0h] [ebp-48h] BYREF
+  struct gbTextureArray v9; // [esp+4h] [ebp-44h] BYREF
 
   result = *((_DWORD *)this + 439);
   if ( result )
   {
-    v7.pTexPt[0] = (gbTexture *)*((_DWORD *)this + 439);
-    v7.nTex = 1;
-    *(_WORD *)((char *)&v6 + 1) = -1;
-    LOBYTE(v6) = -1;
-    v5 = *((_DWORD *)this + 441);
-    v4 = *((_DWORD *)this + 440);
-    v3 = *((_DWORD *)this + 21);
-    v2 = *(gbVec3D *)((_BYTE *)this + 6);
-    HIBYTE(v6) = 62;
-    UIRenderQuad(SLODWORD(v2.x), SLODWORD(v2.y), SLODWORD(v2.z), v3, v4, v5, &v6, &v7);
+    v9.pTexPt[0] = (gbTexture *)*((_DWORD *)this + 439);
+    v9.nTex = 1;
+    *(_WORD *)((char *)&v8 + 1) = -1;
+    LOBYTE(v8) = -1;
+    v7 = *((_DWORD *)this + 441);
+    v6 = *((_DWORD *)this + 440);
+    d054 = this->_d054;
+    d050 = this->_d050;
+    d04C = this->_d04C;
+    d048 = this->_d048;
+    HIBYTE(v8) = 62;
+    UIRenderQuad(d048, d04C, d050, d054, v6, v7, &v8, &v9);
   }
   return result;
 }
@@ -84,7 +88,7 @@ int ParabolaCalculator::UpdateParabolaY(int a2, int a3)
     AudioManager = (gbAudioManager *)((CScreenMode *)Instance)->GetAudioManager();
     AudioManager->DetachAll3D();
   }
-  if ( !sub_4A1CF0((_DWORD *)this + 92) )
+  if ( !sub_4A1CF0(&this->_tail[280]) )
     sub_523820(this, 2);
   switch ( *((_DWORD *)this + 438) )
   {

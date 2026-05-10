@@ -133,50 +133,50 @@ LABEL_14:
 // 0x004C3EB0
 CEffCylinder::~CEffCylinder()
 {
-  this->_p000 = &off_56F62C;
+  *(_DWORD *)this->_base = &off_56F62C;
 }
 
 // 0x004C3EC0
 int CEffCylinder::Init(int a2, float a3, float a4, float a5)
 {
   int result; // eax
-  int d04C_low; // ecx
+  int m_dwStartColor_low; // ecx
   float v8; // edx
 
-  this->_b008 = 0;
-  this->_b03C = 0;
-  this->_f0AC = a3 + *(float *)(a2 + 184);
-  this->_f0B0 = a4 + *(float *)(a2 + 188);
-  this->_f0B4 = a5 + *(float *)(a2 + 192);
-  this->_f0A0 = *(float *)(a2 + 216);
-  this->_f0A4 = *(float *)(a2 + 196);
-  this->_f0A8 = *(float *)(a2 + 220);
-  this->_d0C0 = 0;
-  this->_d0BC = 0;
-  this->_f0B8 = 0.0;
-  this->_d04C = *(_DWORD *)(a2 + 204);
+  this->_base[8] = 0;
+  this->m_bVisible = 0;
+  *(float *)this->m_vecPos = a3 + *(float *)(a2 + 184);
+  *(float *)&this->m_vecPos[4] = a4 + *(float *)(a2 + 188);
+  *(float *)&this->m_vecPos[8] = a5 + *(float *)(a2 + 192);
+  *(_DWORD *)this->m_vecRot = *(_DWORD *)(a2 + 216);
+  *(_DWORD *)&this->m_vecRot[4] = *(_DWORD *)(a2 + 196);
+  *(_DWORD *)&this->m_vecRot[8] = *(_DWORD *)(a2 + 220);
+  *(_DWORD *)&this->m_vecOffsetPos[8] = 0;
+  *(_DWORD *)&this->m_vecOffsetPos[4] = 0;
+  *(_DWORD *)this->m_vecOffsetPos = 0;
+  this->m_dwStartColor = *(_DWORD *)(a2 + 204);
   if ( (g_bCursorVisible & 1) == 0 )
   {
     g_bCursorVisible |= 1u;
     ((CEffMgr *)&g_nCursorState)->Reset();
     atexit(nullsub_1);
   }
-  this->_f050 = (float)HIBYTE(this->_d04C);
+  this->m_fAlpha = (float)HIBYTE(this->m_dwStartColor);
   if ( (g_bCursorVisible & 1) == 0 )
   {
     g_bCursorVisible |= 1u;
     ((CEffMgr *)&g_nCursorState)->Reset();
     atexit(nullsub_1);
   }
-  this->_f054 = (float)(unsigned __int8)BYTE2(this->_d04C);
+  this->m_fRed = (float)(unsigned __int8)BYTE2(this->m_dwStartColor);
   if ( (g_bCursorVisible & 1) == 0 )
   {
     g_bCursorVisible |= 1u;
     ((CEffMgr *)&g_nCursorState)->Reset();
     atexit(nullsub_1);
   }
-  result = (unsigned __int8)BYTE1(this->_d04C);
-  this->_f058 = (float)result;
+  result = (unsigned __int8)BYTE1(this->m_dwStartColor);
+  this->m_fGreen = (float)result;
   LOBYTE(result) = g_bCursorVisible;
   if ( (g_bCursorVisible & 1) == 0 )
   {
@@ -184,14 +184,14 @@ int CEffCylinder::Init(int a2, float a3, float a4, float a5)
     ((CEffMgr *)&g_nCursorState)->Reset();
     result = atexit(nullsub_1);
   }
-  this->_f09C = 0.0;
-  d04C_low = LOBYTE(this->_d04C);
-  this->_f048 = 0.0;
-  this->_d044 = 0;
-  this->_f05C = (float)d04C_low;
+  this->m_fCurTextureV = 0.0;
+  m_dwStartColor_low = LOBYTE(this->m_dwStartColor);
+  this->m_fCurFrame = 0.0;
+  this->m_nLoops = 0;
+  this->m_fBlue = (float)m_dwStartColor_low;
   v8 = *(float *)(a2 + 200);
-  this->_f064 = 1.0;
-  this->_f060 = v8;
+  this->m_fHeight = 1.0;
+  this->m_fSize = v8;
   return result;
 }
 
@@ -205,53 +205,53 @@ char CEffCylinder::Create(int a2)
   int v7; // edx
   int v8; // eax
   int v9; // ecx
-  void *v11; // eax
+  gbGeomQuad *v11; // eax
   int v12; // ebx
   int v13; // edi
   char ArgList[1024]; // [esp+Ch] [ebp-810h] BYREF
   _BYTE pExceptionObject[1024]; // [esp+40Ch] [ebp-410h] BYREF
   void *Block; // [esp+80Ch] [ebp-10h]
   int v18; // [esp+818h] [ebp-4h]
-  int d070; // [esp+824h] [ebp+8h]
+  int m_nDivision; // [esp+824h] [ebp+8h]
 
   v3 = (_DWORD *)operator new(0x4C0u);
-  this->_d018 = (int)v3;
+  *(_DWORD *)&this->_base[24] = v3;
   if ( v3 )
   {
     v4 = 0;
     v5 = 0;
     while ( 1 )
     {
-      *(_DWORD *)(v5 + this->_d018) = operator new(0x2D0u);
-      if ( !*(_DWORD *)(v5 + this->_d018) )
+      *(_DWORD *)(v5 + *(_DWORD *)&this->_base[24]) = operator new(0x2D0u);
+      if ( !*(_DWORD *)(v5 + *(_DWORD *)&this->_base[24]) )
         break;
       v5 += 152;
       ++v4;
       if ( v5 >= 1216 )
       {
         v6 = 0;
-        this->_d028 = 8;
-        this->_d02C = 10;
+        *(_DWORD *)&this->_base[40] = 8;
+        *(_DWORD *)&this->_base[44] = 10;
         v7 = 0;
         do
         {
-          *(_BYTE *)(v7 + this->_d018 + 148) = 0;
+          *(_BYTE *)(v7 + *(_DWORD *)&this->_base[24] + 148) = 0;
           v8 = 0;
-          if ( this->_d02C > 0 )
+          if ( *(int *)&this->_base[44] > 0 )
           {
             v9 = 0;
             do
             {
               ++v8;
               v9 += 72;
-              *(_BYTE *)(*(_DWORD *)(v7 + this->_d018) + v9 - 8) = 0;
+              *(_BYTE *)(*(_DWORD *)(v7 + *(_DWORD *)&this->_base[24]) + v9 - 8) = 0;
             }
-            while ( v8 < this->_d02C );
+            while ( v8 < *(_DWORD *)&this->_base[44] );
           }
           ++v6;
           v7 += 152;
         }
-        while ( v6 < this->_d028 );
+        while ( v6 < *(_DWORD *)&this->_base[40] );
         goto LABEL_10;
       }
     }
@@ -260,63 +260,63 @@ char CEffCylinder::Create(int a2)
       v13 = 152 * (v4 - 1);
       do
       {
-        operator delete(*(void **)(v13 + this->_d018));
+        operator delete(*(void **)(v13 + *(_DWORD *)&this->_base[24]));
         v13 -= 152;
         --v4;
       }
       while ( v4 );
     }
-    operator delete((void *)this->_d018);
+    operator delete(*(void **)&this->_base[24]);
   }
 LABEL_10:
-  this->_d068 = *(_DWORD *)(a2 + 224);
-  this->_d06C = *(_DWORD *)(a2 + 228);
+  this->m_fRotAngle = *(float *)(a2 + 224);
+  this->m_fWide = *(float *)(a2 + 228);
   if ( (g_bCursorVisible & 1) == 0 )
   {
     g_bCursorVisible |= 1u;
     ((CEffMgr *)&g_nCursorState)->Reset();
     atexit(nullsub_1);
   }
-  this->_d070 = (int)*(float *)(a2 + 232);
-  this->_d074 = *(_DWORD *)(a2 + 236);
-  this->_d078 = *(_DWORD *)(a2 + 240);
-  this->_d07C = *(_DWORD *)(a2 + 244);
-  this->_d080 = *(_DWORD *)(a2 + 248);
-  this->_d084 = *(_DWORD *)(a2 + 252);
-  this->_d088 = *(_DWORD *)(a2 + 256);
-  this->_d08C = *(_DWORD *)(a2 + 260);
-  this->_d090 = *(_DWORD *)(a2 + 264);
-  this->_f094 = *(float *)(a2 + 268);
-  this->_f098 = *(float *)(a2 + 180);
-  this->_f0AC = *(float *)(a2 + 184);
-  this->_f0B0 = *(float *)(a2 + 188);
-  this->_f0B4 = *(float *)(a2 + 192);
-  this->_f0A0 = *(float *)(a2 + 216);
-  this->_f0A4 = *(float *)(a2 + 196);
-  this->_f0A8 = *(float *)(a2 + 220);
-  this->_b03D = *(_BYTE *)(a2 + 213);
-  this->_b03E = *(_BYTE *)(a2 + 215);
-  this->_b03F = *(_BYTE *)(a2 + 176);
-  this->_d040 = (int)&unk_FFFFFF;
-  this->_d04C = *(_DWORD *)(a2 + 204);
+  this->m_nDivision = (int)*(float *)(a2 + 232);
+  this->m_fTopShrink = *(float *)(a2 + 236);
+  this->m_fBottomShrink = *(float *)(a2 + 240);
+  this->m_fTopRadius = *(float *)(a2 + 244);
+  this->m_fBottomRadius = *(float *)(a2 + 248);
+  this->m_fTopRadiusIncSpeed = *(float *)(a2 + 252);
+  this->m_fBottomRadiusIncSpeed = *(float *)(a2 + 256);
+  this->m_fTopRiseSpeed = *(float *)(a2 + 260);
+  this->m_fBottomRiseSpeed = *(float *)(a2 + 264);
+  this->m_fTextureRepeat = *(float *)(a2 + 268);
+  this->m_fFramePerSec = *(float *)(a2 + 180);
+  *(_DWORD *)this->m_vecPos = *(_DWORD *)(a2 + 184);
+  *(_DWORD *)&this->m_vecPos[4] = *(_DWORD *)(a2 + 188);
+  *(_DWORD *)&this->m_vecPos[8] = *(_DWORD *)(a2 + 192);
+  *(_DWORD *)this->m_vecRot = *(_DWORD *)(a2 + 216);
+  *(_DWORD *)&this->m_vecRot[4] = *(_DWORD *)(a2 + 196);
+  *(_DWORD *)&this->m_vecRot[8] = *(_DWORD *)(a2 + 220);
+  this->m_bAdditiveBlend = *(_BYTE *)(a2 + 213);
+  this->m_bNoZTest = *(_BYTE *)(a2 + 215);
+  this->m_byMaxFrame = *(_BYTE *)(a2 + 176);
+  this->m_nRequireLoops = (int)&unk_FFFFFF;
+  this->m_dwStartColor = *(_DWORD *)(a2 + 204);
   this->InitDefaultUVSet(*(_DWORD *)(a2 + 168), *(_DWORD *)(a2 + 172));
-  d070 = this->_d070;
-  v11 = (void *)operator new(68 * d070);
+  m_nDivision = this->m_nDivision;
+  v11 = (gbGeomQuad *)operator new(68 * m_nDivision);
   Block = v11;
   v18 = 0;
   if ( v11 )
   {
     v12 = (int)v11;
-    if ( d070 - 1 >= 0 )
+    if ( m_nDivision - 1 >= 0 )
     {
       do
       {
         ArraySort(v12, 12, 4, gbVec3D::`default constructor closure');
         v12 += 68;
-        --d070;
+        --m_nDivision;
       }
-      while ( d070 );
-      v11 = Block;
+      while ( m_nDivision );
+      v11 = (gbGeomQuad *)Block;
     }
   }
   else
@@ -324,7 +324,7 @@ LABEL_10:
     v11 = 0;
   }
   v18 = -1;
-  this->_d030 = (int)v11;
+  this->m_pGeomQuad = v11;
   if ( !v11 )
   {
     qmemcpy(
@@ -341,7 +341,7 @@ LABEL_10:
 // 0x004C4370
 void CEffCylinder::Destroy()
 {
-  char b03D; // al
+  unsigned __int8 m_bAdditiveBlend; // al
   bool v3; // zf
   _DWORD *v4; // eax
   struct gbRenderEffect *v5; // ebp
@@ -373,14 +373,14 @@ void CEffCylinder::Destroy()
     dword_DE9358 = 1065353216;
     atexit(nullsub_76);
   }
-  if ( !this->_b008 && this->_b03C )
+  if ( !this->_base[8] && this->m_bVisible )
   {
-    ((gbVertPoolMgr *)*(gbVertPoolMgr **)(**(_DWORD **)this->_pad_004 + 196))->GetDynVertBuf(0x15u);
-    b03D = this->_b03D;
-    if ( this->_b03E )
+    ((gbVertPoolMgr *)*(gbVertPoolMgr **)(**(_DWORD **)&this->_base[4] + 196))->GetDynVertBuf(0x15u);
+    m_bAdditiveBlend = this->m_bAdditiveBlend;
+    if ( this->m_bNoZTest )
     {
-      v3 = b03D == 0;
-      v4 = (_DWORD *)*(_DWORD **)this->_pad_004;
+      v3 = m_bAdditiveBlend == 0;
+      v4 = (_DWORD *)*(_DWORD **)&this->_base[4];
       if ( v3 )
         v5 = (struct gbRenderEffect *)v4[3];
       else
@@ -388,8 +388,8 @@ void CEffCylinder::Destroy()
     }
     else
     {
-      v3 = b03D == 0;
-      v4 = (_DWORD *)*(_DWORD **)this->_pad_004;
+      v3 = m_bAdditiveBlend == 0;
+      v4 = (_DWORD *)*(_DWORD **)&this->_base[4];
       if ( v3 )
         v5 = (struct gbRenderEffect *)v4[5];
       else
@@ -397,14 +397,14 @@ void CEffCylinder::Destroy()
     }
     v6 = (gbMatrixStack *)*(gbMatrixStack **)(*v4 + 216);
     v6->Push();
-    v7 = this->_f0B8 + this->_f0AC;
+    v7 = *(float *)this->m_vecOffsetPos + *(float *)this->m_vecPos;
     retaddr = v7;
     v6->Translate((struct gbVec3D *)&retaddr);
-    v6->Rotate(this->_f0A0, (struct gbVec3D *)&dword_DE9370);
-    v6->Rotate(this->_f0A4, (struct gbVec3D *)&dword_DE9360);
-    v6->Rotate(this->_f0A8, (struct gbVec3D *)&dword_DE9350);
-    v6->Scale(this->_f060, this->_f064, this->_f060);
-    ((gbDynVertBuf *)this->_d030)->RenderGeomQuadViaStrip(this->_d070, v5, *(struct gbTextureArray **)&this->_pad_034[4], this->_d04C);
+    v6->Rotate(*(float *)this->m_vecRot, (struct gbVec3D *)&dword_DE9370);
+    v6->Rotate(*(float *)&this->m_vecRot[4], (struct gbVec3D *)&dword_DE9360);
+    v6->Rotate(*(float *)&this->m_vecRot[8], (struct gbVec3D *)&dword_DE9350);
+    v6->Scale(this->m_fSize, this->m_fHeight, this->m_fSize);
+    ((gbDynVertBuf *)this->m_pGeomQuad)->RenderGeomQuadViaStrip(this->m_nDivision, v5, this->m_pTextureArray, this->m_dwStartColor);
     v6->Pop();
   }
 }
@@ -439,14 +439,14 @@ void CEffCylinder::CreateTask(float a2)
   float a2b; // [esp+18h] [ebp+8h]
 
   v2 = this;
-  v3 = a2 - this->_f010;
-  v4 = (char *)&this->_pad_009[3];
-  this->_f010 = a2;
-  this->_f014 = v3;
-  if ( this->_f014 > 0.0 )
+  v3 = a2 - *(float *)&this->_base[16];
+  v4 = (char *)&this->_base[12];
+  *(float *)&this->_base[16] = a2;
+  *(float *)&this->_base[20] = v3;
+  if ( *(float *)&this->_base[20] > 0.0 )
   {
     a2a = 0;
-    if ( this->_d028 > 0 )
+    if ( *(int *)&this->_base[40] > 0 )
     {
       v24 = 0;
       while ( 1 )
@@ -534,25 +534,25 @@ LABEL_24:
       }
     }
 LABEL_30:
-    if ( *(int *)&v2->_b024 <= 0 )
-      v2->_b008 = 1;
-    if ( !v2->_b008 && (v2->_f098 != 0.0 && v2->_b03F != 1 || v2->_f09C != 0.0) )
+    if ( *(int *)&v2->_base[36] <= 0 )
+      v2->_base[8] = 1;
+    if ( !v2->_base[8] && (v2->m_fFramePerSec != 0.0 && v2->m_byMaxFrame != 1 || v2->m_fCurTextureV != 0.0) )
     {
-      v20 = v2->_f094 / (double)v2->_d070;
-      v2->_f048 = v2->_f098 * v2->_f014 + v2->_f048;
+      v20 = v2->m_fTextureRepeat / (double)v2->m_nDivision;
+      v2->m_fCurFrame = v2->m_fFramePerSec * *(float *)&v2->_base[20] + v2->m_fCurFrame;
       if ( (g_bCursorVisible & 1) == 0 )
       {
         g_bCursorVisible |= 1u;
         ((CEffMgr *)&g_nCursorState)->Reset();
         atexit(nullsub_1);
       }
-      v12 = (int)abs32((int)v2->_f048) % (unsigned __int8)v2->_b03F;
+      v12 = (int)abs32((int)v2->m_fCurFrame) % v2->m_byMaxFrame;
       v13 = v12 + 13;
-      v14 = (float *)v2 + 4 * v12;
+      v14 = (float *)&v2->_base[16 * v12];
       v25 = v14[49];
       v21 = (v14[51] - v25) * v20;
-      a2b = v14[50] + v2->_f09C;
-      v23 = *((float *)&v2->_p000 + 4 * v13) + v2->_f09C;
+      a2b = v14[50] + v2->m_fCurTextureV;
+      v23 = *(float *)&v2->_base[16 * v13] + v2->m_fCurTextureV;
       if ( (g_bCursorVisible & 1) == 0 )
       {
         g_bCursorVisible |= 1u;
@@ -566,21 +566,21 @@ LABEL_30:
         v23 = v23 - v15;
       }
       v16 = 0;
-      if ( v2->_d070 > 0 )
+      if ( v2->m_nDivision > 0 )
       {
         v17 = v25;
         v18 = 0;
         do
         {
           ++v16;
-          *(float *)(v18 + v2->_d030 + 48) = v17;
+          *(float *)((char *)&v2->m_pGeomQuad->vec[4].x + v18) = v17;
           v17 = v17 + v21;
           v18 += 68;
-          *(float *)(v18 + v2->_d030 - 12) = v17;
-          *(float *)(v18 + v2->_d030 - 16) = a2b;
-          *(float *)(v18 + v2->_d030 - 8) = v23;
+          *(float *)((char *)&v2->m_pGeomQuad->vec[-1].x + v18) = v17;
+          *(float *)((char *)&v2->m_pGeomQuad->vec[-1] + v18 - 4) = a2b;
+          *(float *)((char *)v2->m_pGeomQuad->vec + v18 - 8) = v23;
         }
-        while ( v16 < v2->_d070 );
+        while ( v16 < v2->m_nDivision );
       }
     }
   }
@@ -590,7 +590,7 @@ LABEL_30:
 void CEffCylinder::ProcInitTask(_DWORD *a2)
 {
   int *v2; // ebx
-  int d028; // ecx
+  int v3; // ecx
   int v4; // edx
   int v5; // esi
   _BYTE *i; // eax
@@ -609,15 +609,15 @@ void CEffCylinder::ProcInitTask(_DWORD *a2)
   int (**v19)(CEffect *, int); // esi
   unsigned int v20; // eax
 
-  v2 = (int *)&this->_pad_009[3];
-  d028 = this->_d028;
+  v2 = (int *)&this->_base[12];
+  v3 = *(_DWORD *)&this->_base[40];
   v4 = 0;
-  if ( d028 > 0 )
+  if ( v3 > 0 )
   {
     v5 = v2[3];
     for ( i = (_BYTE *)(v5 + 148); *i; i += 152 )
     {
-      if ( ++v4 >= d028 )
+      if ( ++v4 >= v3 )
         return;
     }
     v7 = 152 * v4;
@@ -718,19 +718,19 @@ LABEL_31:
 // 0x004C4B00
 int CEffCylinder::ProcCommonTask(int a2)
 {
-  double f010; // st7
+  double v3; // st7
   int v4; // edi
   int v5; // ecx
   double v6; // st7
   int v7; // ebp
   double v8; // st7
-  double f050; // st7
-  double f054; // st7
-  double f058; // st7
-  double f05C; // st7
+  double m_fAlpha; // st7
+  double m_fRed; // st7
+  double m_fGreen; // st7
+  double m_fBlue; // st7
   unsigned __int16 v13; // cx
   float v15; // [esp+0h] [ebp-80h]
-  float f014; // [esp+14h] [ebp-6Ch]
+  float v16; // [esp+14h] [ebp-6Ch]
   float v17; // [esp+18h] [ebp-68h]
   float v18; // [esp+1Ch] [ebp-64h]
   float v19; // [esp+20h] [ebp-60h]
@@ -739,150 +739,150 @@ int CEffCylinder::ProcCommonTask(int a2)
   struct gbVec3D v22; // [esp+34h] [ebp-4Ch] BYREF
   _BYTE v23[64]; // [esp+40h] [ebp-40h] BYREF
 
-  f010 = this->_f010;
-  v4 = this->_d018 + 152 * this->_d01C;
-  v5 = 9 * this->_d020;
-  v6 = f010 - *(float *)(*(_DWORD *)v4 + 8 * v5 + 16);
+  v3 = *(float *)&this->_base[16];
+  v4 = *(_DWORD *)&this->_base[24] + 152 * *(_DWORD *)&this->_base[28];
+  v5 = 9 * *(_DWORD *)&this->_base[32];
+  v6 = v3 - *(float *)(*(_DWORD *)v4 + 8 * v5 + 16);
   v7 = *(_DWORD *)v4 + 8 * v5;
-  f014 = this->_f014;
+  v16 = *(float *)&this->_base[20];
   if ( v6 > *(float *)(v7 + 24) )
-    f014 = f014 - (v6 - *(float *)(v7 + 24));
+    v16 = v16 - (v6 - *(float *)(v7 + 24));
   if ( !*(_BYTE *)(v7 + 65) )
   {
-    this->_b03C = 1;
+    this->m_bVisible = 1;
     *(_BYTE *)(v7 + 65) = 1;
   }
-  this->_f0A0 = f014 * *(float *)(v4 + 64) + this->_f0A0;
-  this->_f0A4 = f014 * *(float *)(v4 + 68) + this->_f0A4;
-  this->_f0A8 = f014 * *(float *)(v4 + 72) + this->_f0A8;
-  this->_f0AC = f014 * *(float *)(v4 + 28) + this->_f0AC;
-  this->_f0B0 = f014 * *(float *)(v4 + 32) + this->_f0B0;
-  this->_f0B4 = f014 * *(float *)(v4 + 36) + this->_f0B4;
+  *(float *)this->m_vecRot = v16 * *(float *)(v4 + 64) + *(float *)this->m_vecRot;
+  *(float *)&this->m_vecRot[4] = v16 * *(float *)(v4 + 68) + *(float *)&this->m_vecRot[4];
+  *(float *)&this->m_vecRot[8] = v16 * *(float *)(v4 + 72) + *(float *)&this->m_vecRot[8];
+  *(float *)this->m_vecPos = v16 * *(float *)(v4 + 28) + *(float *)this->m_vecPos;
+  *(float *)&this->m_vecPos[4] = v16 * *(float *)(v4 + 32) + *(float *)&this->m_vecPos[4];
+  *(float *)&this->m_vecPos[8] = v16 * *(float *)(v4 + 36) + *(float *)&this->m_vecPos[8];
   ((gbMatrix4 *)v23)->gbMatrix4();
   memset(&v21, 0, sizeof(v21));
   memset(&v22, 0, sizeof(v22));
   ((gbMatrix4 *)v23)->LoadIdentity();
   v21 = *(gbVec3D *)(v4 + 44);
   ((gbVec3D *)&v21)->Normalize();
-  v15 = (this->_f010 - *(float *)(v7 + 16)) * *(float *)(v4 + 60);
+  v15 = (*(float *)&this->_base[16] - *(float *)(v7 + 16)) * *(float *)(v4 + 60);
   ((gbMatrix4 *)v23)->SetAxisAngle(&v21, v15);
   v22.z = *(float *)(v4 + 56);
   v22.x = 0.0;
   v22.y = 0.0;
-  ((gbMatrix4 *)v23)->Rotate(&v22, (struct gbVec3D *)&this->_f0B8);
-  v8 = f014 * *(float *)(v4 + 108) + this->_f09C;
-  this->_f09C = v8;
+  ((gbMatrix4 *)v23)->Rotate(&v22, (struct gbVec3D *)this->m_vecOffsetPos);
+  v8 = v16 * *(float *)(v4 + 108) + this->m_fCurTextureV;
+  this->m_fCurTextureV = v8;
   if ( v8 > 1.0 )
-    this->_f09C = 0.0;
+    this->m_fCurTextureV = 0.0;
   if ( *(float *)(v4 + 80) != 0.0
     || *(float *)(v4 + 84) != 0.0
     || *(float *)(v4 + 92) != 0.0
     || *(float *)(v4 + 88) != 0.0 )
   {
-    this->_f050 = f014 * *(float *)(v4 + 80) + this->_f050;
-    this->_f054 = f014 * *(float *)(v4 + 84) + this->_f054;
-    this->_f058 = f014 * *(float *)(v4 + 88) + this->_f058;
-    this->_f05C = f014 * *(float *)(v4 + 92) + this->_f05C;
+    this->m_fAlpha = v16 * *(float *)(v4 + 80) + this->m_fAlpha;
+    this->m_fRed = v16 * *(float *)(v4 + 84) + this->m_fRed;
+    this->m_fGreen = v16 * *(float *)(v4 + 88) + this->m_fGreen;
+    this->m_fBlue = v16 * *(float *)(v4 + 92) + this->m_fBlue;
     if ( (g_bCursorVisible & 1) == 0 )
     {
       g_bCursorVisible |= 1u;
       ((CEffMgr *)&g_nCursorState)->Reset();
       atexit(nullsub_1);
     }
-    if ( this->_f050 <= 255.0 )
+    if ( this->m_fAlpha <= 255.0 )
     {
-      if ( this->_f050 >= 0.0 )
-        f050 = this->_f050;
+      if ( this->m_fAlpha >= 0.0 )
+        m_fAlpha = this->m_fAlpha;
       else
-        f050 = 0.0;
+        m_fAlpha = 0.0;
     }
     else
     {
-      f050 = 255.0;
+      m_fAlpha = 255.0;
     }
-    this->_f050 = f050;
+    this->m_fAlpha = m_fAlpha;
     if ( (g_bCursorVisible & 1) == 0 )
     {
       g_bCursorVisible |= 1u;
       ((CEffMgr *)&g_nCursorState)->Reset();
       atexit(nullsub_1);
     }
-    if ( this->_f054 <= 255.0 )
+    if ( this->m_fRed <= 255.0 )
     {
-      if ( this->_f054 >= 0.0 )
-        f054 = this->_f054;
+      if ( this->m_fRed >= 0.0 )
+        m_fRed = this->m_fRed;
       else
-        f054 = 0.0;
+        m_fRed = 0.0;
     }
     else
     {
-      f054 = 255.0;
+      m_fRed = 255.0;
     }
-    this->_f054 = f054;
+    this->m_fRed = m_fRed;
     if ( (g_bCursorVisible & 1) == 0 )
     {
       g_bCursorVisible |= 1u;
       ((CEffMgr *)&g_nCursorState)->Reset();
       atexit(nullsub_1);
     }
-    if ( this->_f058 <= 255.0 )
+    if ( this->m_fGreen <= 255.0 )
     {
-      if ( this->_f058 >= 0.0 )
-        f058 = this->_f058;
+      if ( this->m_fGreen >= 0.0 )
+        m_fGreen = this->m_fGreen;
       else
-        f058 = 0.0;
+        m_fGreen = 0.0;
     }
     else
     {
-      f058 = 255.0;
+      m_fGreen = 255.0;
     }
-    this->_f058 = f058;
+    this->m_fGreen = m_fGreen;
     if ( (g_bCursorVisible & 1) == 0 )
     {
       g_bCursorVisible |= 1u;
       ((CEffMgr *)&g_nCursorState)->Reset();
       atexit(nullsub_1);
     }
-    if ( this->_f05C <= 255.0 )
+    if ( this->m_fBlue <= 255.0 )
     {
-      if ( this->_f05C >= 0.0 )
-        f05C = this->_f05C;
+      if ( this->m_fBlue >= 0.0 )
+        m_fBlue = this->m_fBlue;
       else
-        f05C = 0.0;
+        m_fBlue = 0.0;
     }
     else
     {
-      f05C = 255.0;
+      m_fBlue = 255.0;
     }
-    this->_f05C = f05C;
+    this->m_fBlue = m_fBlue;
     if ( (g_bCursorVisible & 1) == 0 )
     {
       g_bCursorVisible |= 1u;
       ((CEffMgr *)&g_nCursorState)->Reset();
       atexit(nullsub_1);
     }
-    v17 = this->_f050 + 12582912.0;
+    v17 = this->m_fAlpha + 12582912.0;
     if ( (g_bCursorVisible & 1) == 0 )
     {
       g_bCursorVisible |= 1u;
       ((CEffMgr *)&g_nCursorState)->Reset();
       atexit(nullsub_1);
     }
-    v18 = this->_f054 + 12582912.0;
+    v18 = this->m_fRed + 12582912.0;
     if ( (g_bCursorVisible & 1) == 0 )
     {
       g_bCursorVisible |= 1u;
       ((CEffMgr *)&g_nCursorState)->Reset();
       atexit(nullsub_1);
     }
-    v19 = this->_f058 + 12582912.0;
+    v19 = this->m_fGreen + 12582912.0;
     if ( (g_bCursorVisible & 1) == 0 )
     {
       g_bCursorVisible |= 1u;
       ((CEffMgr *)&g_nCursorState)->Reset();
       atexit(nullsub_1);
     }
-    v20 = this->_f05C + 12582912.0;
+    v20 = this->m_fBlue + 12582912.0;
     if ( (g_bCursorVisible & 1) == 0 )
     {
       g_bCursorVisible |= 1u;
@@ -891,11 +891,11 @@ int CEffCylinder::ProcCommonTask(int a2)
     }
     HIBYTE(v13) = LOBYTE(v17);
     LOBYTE(v13) = LOBYTE(v18);
-    this->_d04C = LOBYTE(v20) | ((LOBYTE(v19) | (v13 << 8)) << 8);
+    this->m_dwStartColor = LOBYTE(v20) | ((LOBYTE(v19) | (v13 << 8)) << 8);
   }
-  this->_f060 = f014 * *(float *)(v4 + 24) + this->_f060;
-  this->_f064 = f014 * *(float *)(v4 + 116) + this->_f064;
-  if ( *(_BYTE *)(v7 + 66) == 1 || this->_f010 - *(float *)(v7 + 16) >= *(float *)(v7 + 24) )
+  this->m_fSize = v16 * *(float *)(v4 + 24) + this->m_fSize;
+  this->m_fHeight = v16 * *(float *)(v4 + 116) + this->m_fHeight;
+  if ( *(_BYTE *)(v7 + 66) == 1 || *(float *)&this->_base[16] - *(float *)(v7 + 16) >= *(float *)(v7 + 24) )
     *(_DWORD *)(v7 + 8) = 4;
   return 0;
 }
@@ -1059,7 +1059,7 @@ void CEffCylinder::InitDefaultUVSet(int a2, int a3)
   v12 = 0;
   if ( a3 > 0 )
   {
-    v4 = (char *)&this->_tail[8];
+    v4 = (char *)&this->m_DefaultUVSet[8];
     do
     {
       v5 = 0;
@@ -1096,27 +1096,27 @@ _DWORD * CEffCylinder::LoadTexture(int a2)
 {
   gbTexture *v3; // eax
   _DWORD *result; // eax
-  int v5; // ecx
+  gbTexture *m_pTexture; // ecx
   char pExceptionObject[1024]; // [esp+8h] [ebp-800h] BYREF
   char ArgList[1024]; // [esp+408h] [ebp-400h] BYREF
 
-  v3 = (gbTexture *)(*(int (**)(_DWORD, int))(***(_DWORD ***)this->_pad_004 + 8))(
-                      **(_DWORD **)this->_pad_004,
+  v3 = (gbTexture *)(*(int (**)(_DWORD, int))(***(_DWORD ***)&this->_base[4] + 8))(
+                      **(_DWORD **)&this->_base[4],
                       a2);
-  *(_DWORD *)this->_pad_034 = v3;
+  this->m_pTexture = v3;
   v3->LoadTexture(1);
   result = (_DWORD *)operator new(0x44u);
   if ( result )
   {
-    v5 = *(_DWORD *)this->_pad_034;
+    m_pTexture = (gbTexture *)this->m_pTexture;
     result[16] = 1;
-    *result = v5;
+    *result = m_pTexture;
   }
   else
   {
     result = 0;
   }
-  *(_DWORD *)&this->_pad_034[4] = result;
+  this->m_pTextureArray = (gbTextureArray *)result;
   if ( !result )
   {
     qmemcpy(

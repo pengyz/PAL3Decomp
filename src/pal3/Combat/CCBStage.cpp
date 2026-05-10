@@ -133,8 +133,8 @@ int CCBStage::InitRound()
   *((float *)&this->m_Task[0].SubTask[0].bEff1Started + 70 * (int)this->m_pCamControl) = v4;
   *((_DWORD *)&this->m_pScene + 70 * (int)this->m_pCamControl) = 1;
   *(&this->m_Task[0].SubTask[0].dwTemp1 + 70 * (int)this->m_pCamControl) = 1103101952;
-  *((_DWORD *)&this->m_pCBSystem + 70 * ((int)&this->m_pCamControl->m_CCT.m_Pool[0].fp + 1)) = v5;
-  result = (int)&this->m_pCamControl->m_CCT.m_Pool[0].fp + 1;
+  *((_DWORD *)&this->m_pCBSystem + 70 * (int)&this->m_pCamControl->m_CCT._data[1]) = v5;
+  result = (int)&this->m_pCamControl->m_CCT._data[1];
   this->m_pCamControl = (CCBCamControl *)result;
   return result;
 }
@@ -154,9 +154,9 @@ int CCBStage::EndRound()
   *((float *)&this->m_Task[0].SubTask[0].nTemp1 + 70 * (int)this->m_pCamControl) = v4;
   *((float *)&this->m_Task[0].SubTask[0].dwTemp1 + 70 * (int)this->m_pCamControl) = v5;
   *((_DWORD *)&this->m_pScene + 70 * (int)this->m_pCamControl) = 5;
-  *((_DWORD *)&this->m_pCBSystem + 70 * ((int)&this->m_pCamControl->m_CCT.m_Pool[0].fp + 1)) = this->m_pEditor;
+  *((_DWORD *)&this->m_pCBSystem + 70 * (int)&this->m_pCamControl->m_CCT._data[1]) = this->m_pEditor;
   *((_BYTE *)&this->m_Task[0].SubTask[0].param.f3 + 280 * (int)this->m_pCamControl + 3) = v6;
-  result = (int)&this->m_pCamControl->m_CCT.m_Pool[0].fp + 1;
+  result = (int)&this->m_pCamControl->m_CCT._data[1];
   this->m_pCamControl = (CCBCamControl *)result;
   return result;
 }
@@ -216,7 +216,7 @@ char CCBStage::Reset()
 {
   char *v2; // eax
   unsigned int v3; // edi
-  char *v4; // eax
+  CCBStageScene *v4; // eax
   char result; // al
   CCBStageRole **i; // ebx
   CCBStageRole *v7; // eax
@@ -241,11 +241,11 @@ char CCBStage::Reset()
   v3 = 0;
   v23 = 0;
   if ( v2 )
-    v4 = (char *)sub_50FD00(v2, this);
+    v4 = (CCBStageScene *)sub_50FD00(v2, this);
   else
     v4 = 0;
   v23 = -1;
-  this->m_pScene = (CCBStageScene *)v4;
+  this->m_pScene = v4;
   if ( !v4 )
   {
     qmemcpy(
@@ -254,7 +254,7 @@ char CCBStage::Reset()
       sizeof(pExceptionObject));
     _CxxThrowException(pExceptionObject, (_ThrowInfo *)&_TI1_AV_Exception__);
   }
-  if ( ((CCBStageScene *)v4)->CCBStageScene() )
+  if ( v4->CCBStageScene() )
   {
     for ( i = this->m_pRole; ; ++i )
     {
@@ -300,7 +300,7 @@ char CCBStage::Reset()
           v11 = (CCBStageCam *)operator new(0x690B0u);
           v23 = 3;
           if ( v11 )
-            v12 = (CCBCamControl *)v11->SetCamPos((int **)this, (int)this->m_pCam->_data);
+            v12 = (CCBCamControl *)v11->SetCamPos((int **)this, (int)this->m_pCam->_base);
           else
             v12 = 0;
           v23 = -1;
@@ -432,7 +432,7 @@ char CCBStage::Create()
           m_pCam->codecvt_base::do_always_noconv();
           v8 = (CCBStageCam *)this->m_pCam;
           if ( v8 )
-            (**(void (***)(CCBStageCam *, int))v8->_data)(v8, 1);
+            (**(void (***)(CCBStageCam *, int))v8->_base)(v8, 1);
           this->m_pCam = 0;
           m_pCamControl = (CCBStageCam *)this->m_pCamControl;
           if ( m_pCamControl )
@@ -668,7 +668,7 @@ int CCBStage::Update()
     *(float *)&v9->m_pRoleState = v22;
     *(_DWORD *)v9->m_sLastRole = v23;
   }
-  result = (int)this->m_pScene;
+  result = (int)this->m_pScene->_pad_000;
   if ( *(_BYTE *)(result + 964) )
   {
     if ( (g_Input.KeyInfo[15].Data & 0xF) == 1 )
@@ -685,9 +685,9 @@ int CCBStage::Update()
     else
     {
       ((GRPinput *)&g_Input)->GetMousePos(&pOut, &pOut2);
-      result = (int)this->m_pScene;
+      result = (int)this->m_pScene->_pad_000;
       *(float *)(result + 912) = (double)pOut + *(float *)(result + 912);
-      this->m_pScene->m_EnemyFiveLineupQuad.sv = (double)pOut2 * 0.016666668 + this->m_pScene->m_EnemyFiveLineupQuad.sv;
+      *(float *)&this->m_pScene->_d398 = (double)pOut2 * 0.016666668 + *(float *)&this->m_pScene->_d398;
     }
   }
   return result;
@@ -728,7 +728,7 @@ int CCBStage::EditorUpdate()
   dword_BFDA60->InvViewMatrix.m[1][2] = 0.0;
   m_pCam = (CCBStageCam *)this->m_pCam;
   if ( m_pCam )
-    v4 = (char *)&m_pCam->_data[4];
+    v4 = (char *)&m_pCam->_base[4];
   else
     v4 = 0;
   v21 = (int)v4;
@@ -737,7 +737,7 @@ int CCBStage::EditorUpdate()
   v6 = (CCBStageCam *)this->m_pCam;
   v7 = dword_BFDA60->InvViewMatrix.m[1][3];
   if ( v6 )
-    v8 = (struct gbCamera *)&v6->_data[4];
+    v8 = (struct gbCamera *)&v6->_base[4];
   else
     v8 = 0;
   ((gbSceneGraph *)LODWORD(v7))->Begin(v8);
@@ -745,7 +745,7 @@ int CCBStage::EditorUpdate()
   v9 = (gbMatrixStack *)dword_BFDA60->pMatrixStack[1];
   ((CameraCtrl *)this->m_pCam)->SetAsCurrent(3);
   v9->Push();
-  (*(void (**)(gbActor **, _DWORD))&this->m_TempStorageWPX->m_pact->_pad_0000[16])(
+  (*(void (**)(gbActor **, _DWORD))&this->m_TempStorageWPX->m_pact->_base[16])(
     &this->m_TempStorageWPX->m_pact,
     0);
   if ( !HIBYTE(this->m_BFARound) )
@@ -779,9 +779,7 @@ int CCBStage::EditorUpdate()
         v9->Translate(v27, v28, v29);
         v22 = v25 * 0.2 + 1.0;
         v9->Scale(1.0, v22, 1.0);
-        (*(void (**)(gbGeomNode *, _DWORD))(*(_DWORD *)this->m_pScene->m_pPointer + 16))(
-          this->m_pScene->m_pPointer,
-          0);
+        (*(void (**)(int, _DWORD))(*(_DWORD *)this->m_pScene->_d268 + 16))(this->m_pScene->_d268, 0);
         v9->Pop();
       }
       v11 = v26 + 1;
@@ -797,17 +795,15 @@ int CCBStage::EditorUpdate()
   ((CCBStageShadow *)this->m_NGHVariance)->Create();
   v15 = (CCBStageCam *)this->m_pCam;
   if ( v15 )
-    v16 = (struct gbCamera *)&v15->_data[4];
+    v16 = (struct gbCamera *)&v15->_base[4];
   else
     v16 = 0;
   ((gbSceneGraph *)LODWORD(v7))->Begin(v16);
   *(_BYTE *)(LODWORD(v7) + 19244) = 0;
-  (*(void (**)(gbActor **, _DWORD))&this->m_TempStorageWPX->m_pact->_pad_0000[16])(
+  (*(void (**)(gbActor **, _DWORD))&this->m_TempStorageWPX->m_pact->_base[16])(
     &this->m_TempStorageWPX->m_pact,
     0);
-  (*(void (**)(gbVisNode *, _DWORD))(*(_DWORD *)this->m_pScene->m_pLights + 16))(
-    this->m_pScene->m_pLights,
-    0);
+  (*(void (**)(int, _DWORD))(*(_DWORD *)this->m_pScene->_d264 + 16))(this->m_pScene->_d264, 0);
   ((SceneMgr *)this->m_pCBSystem->m_pEffMgr)->RenderAll();
   ((SceneMgr *)this->m_pCBSystem->m_pATSEffMgr)->RenderAll();
   ((C3DSpark *)this->m_pCBSystem->m_p3DSpark->m_Spark)->Render((struct gbVec3D *)gbSceneGraph::End);
@@ -822,14 +818,14 @@ int CCBStage::EditorUpdate()
     if ( dword_17A990C == 1 )
     {
       m_pScene = (CCBStageScene *)this->m_pScene;
-      if ( !HIBYTE(m_pScene->m_vecFiveLineupInitPos.y) )
+      if ( !m_pScene->_pad_3C0[3] )
         goto LABEL_31;
       m_pScene->LoadPointer(60);
     }
     if ( dword_17A990C == 4 )
     {
       v18 = (CCBStageScene *)this->m_pScene;
-      if ( HIBYTE(v18->m_vecFiveLineupInitPos.y) )
+      if ( v18->_pad_3C0[3] )
         v18->LoadPointer(60);
       ((CCCTData *)&this->m_pCamControl->m_CCT)->~CCCTData();
     }
@@ -1473,7 +1469,7 @@ int CCBStage::IsIdle(int a2)
   int v5; // edi
   CCBUI *m_pUI; // ebp
   char *v8; // eax
-  void (***v9)(_DWORD, int); // ecx
+  void (***v9)(void *, int); // ecx
   char *v10; // eax
   CCBUI *v11; // ecx
 
@@ -1492,14 +1488,14 @@ int CCBStage::IsIdle(int a2)
     if ( this->m_pRoleState->m_bWeSneakAttackEnemy )
     {
       v8 = ((PalScript *)&unk_8ACD30)->SetAppName(aWesneakattacke);
-      ((UIWnd *)*(UIWnd **)&m_pUI->_data[1072])->SetEnable(v8, 1);
-      v9 = *(void (****)(_DWORD, int))&this->m_pCBSystem->m_pUI->_data[1072];
+      ((UIWnd *)m_pUI->m_pRoleStateGP[2])->SetEnable(v8, 1);
+      v9 = (void (***)(void *, int))this->m_pCBSystem->m_pUI->m_pRoleStateGP[2];
     }
     else
     {
       v10 = ((PalScript *)&unk_8ACD30)->SetAppName(aEnemysneakatta);
-      ((UIWnd *)*(UIWnd **)&m_pUI->_data[1076])->SetEnable(v10, 1);
-      v9 = *(void (****)(_DWORD, int))&this->m_pCBSystem->m_pUI->_data[1076];
+      ((UIWnd *)m_pUI->m_pRoleStateGP[3])->SetEnable(v10, 1);
+      v9 = (void (***)(void *, int))this->m_pCBSystem->m_pUI->m_pRoleStateGP[3];
     }
     (**v9)(v9, 1);
     *(_BYTE *)(v5 + 41) = 1;
@@ -1511,11 +1507,11 @@ int CCBStage::IsIdle(int a2)
     v11 = (CCBUI *)this->m_pCBSystem->m_pUI;
     if ( this->m_pRoleState->m_bWeSneakAttackEnemy )
     {
-      (***(void (****)(_DWORD, _DWORD))&v11->_data[1072])(*(_DWORD *)&v11->_data[1072], 0);
+      (**(void (***)(void *, _DWORD))v11->m_pRoleStateGP[2])(v11->m_pRoleStateGP[2], 0);
       *(_DWORD *)(v5 + 16) = 4;
       return 0;
     }
-    (***(void (****)(_DWORD, _DWORD))&v11->_data[1076])(*(_DWORD *)&v11->_data[1076], 0);
+    (**(void (***)(void *, _DWORD))v11->m_pRoleStateGP[3])(v11->m_pRoleStateGP[3], 0);
     *(_DWORD *)(v5 + 16) = 4;
   }
   return 0;
@@ -1771,8 +1767,8 @@ int CCBStage::ClearRoleAllTask(int a2)
   char *v5; // ebp
   const char *ItemNum; // eax
   int RoleNum; // eax
-  void (***v9)(_DWORD, int); // ecx
-  void (***v10)(_DWORD, _DWORD); // ecx
+  void (***v9)(void *, int); // ecx
+  void (***v10)(void *, _DWORD); // ecx
   int v11; // [esp-4h] [ebp-10h]
 
   v3 = 2632 * LODWORD(this->m_fDamageNumPosY[8]);
@@ -1793,23 +1789,23 @@ int CCBStage::ClearRoleAllTask(int a2)
       {
         ItemNum = (const char *)((PAL_GDB *)&g_GDB)->GDB_GetItemNum(v11);
         if ( *(_DWORD *)((char *)&this->m_Task[0].SubTask[18].fTemp2 + v3) > 4u )
-          ((UIWnd *)*(UIWnd **)&this->m_pCBSystem->m_pUI->_data[1076])->SetEnable(ItemNum, 1);
+          ((UIWnd *)this->m_pCBSystem->m_pUI->m_pRoleStateGP[3])->SetEnable(ItemNum, 1);
         else
-          ((UIWnd *)*(UIWnd **)&this->m_pCBSystem->m_pUI->_data[1072])->SetEnable(ItemNum, 1);
+          ((UIWnd *)this->m_pCBSystem->m_pUI->m_pRoleStateGP[2])->SetEnable(ItemNum, 1);
       }
       else
       {
         RoleNum = ((PAL_GDB *)&g_GDB)->GDB_GetRoleNum(v11);
         if ( *(_DWORD *)((char *)&this->m_Task[0].SubTask[18].fTemp2 + v3) > 4u )
-          ((UIWnd *)*(UIWnd **)&this->m_pCBSystem->m_pUI->_data[1076])->SetEnable((const char *)(RoleNum + 28), 1);
+          ((UIWnd *)this->m_pCBSystem->m_pUI->m_pRoleStateGP[3])->SetEnable((const char *)(RoleNum + 28), 1);
         else
-          ((UIWnd *)*(UIWnd **)&this->m_pCBSystem->m_pUI->_data[1072])->SetEnable((const char *)(RoleNum + 28), 1);
+          ((UIWnd *)this->m_pCBSystem->m_pUI->m_pRoleStateGP[2])->SetEnable((const char *)(RoleNum + 28), 1);
       }
     }
     if ( *(_DWORD *)((char *)&this->m_Task[0].SubTask[18].fTemp2 + v3) > 4u )
-      v9 = *(void (****)(_DWORD, int))&this->m_pCBSystem->m_pUI->_data[1076];
+      v9 = (void (***)(void *, int))this->m_pCBSystem->m_pUI->m_pRoleStateGP[3];
     else
-      v9 = *(void (****)(_DWORD, int))&this->m_pCBSystem->m_pUI->_data[1072];
+      v9 = (void (***)(void *, int))this->m_pCBSystem->m_pUI->m_pRoleStateGP[2];
     (**v9)(v9, 1);
     v5[41] = 1;
   }
@@ -1818,9 +1814,9 @@ int CCBStage::ClearRoleAllTask(int a2)
     || BYTE1(CEffectSystem::DestroyAllEffect()->m_pVertexBuffer) )
   {
     if ( *(_DWORD *)((char *)&this->m_Task[0].SubTask[18].fTemp2 + v3) > 4u )
-      v10 = *(void (****)(_DWORD, _DWORD))&this->m_pCBSystem->m_pUI->_data[1076];
+      v10 = (void (***)(void *, _DWORD))this->m_pCBSystem->m_pUI->m_pRoleStateGP[3];
     else
-      v10 = *(void (****)(_DWORD, _DWORD))&this->m_pCBSystem->m_pUI->_data[1072];
+      v10 = (void (***)(void *, _DWORD))this->m_pCBSystem->m_pUI->m_pRoleStateGP[2];
     (**v10)(v10, 0);
     *((_DWORD *)v5 + 4) = 4;
   }
@@ -1834,8 +1830,8 @@ int CCBStage::EndRoleAllTask(int a2)
   int v4; // eax
   char *v5; // ebp
   int SkillNum; // eax
-  void (***v7)(_DWORD, int); // ecx
-  void (***v8)(_DWORD, _DWORD); // ecx
+  void (***v7)(void *, int); // ecx
+  void (***v8)(void *, _DWORD); // ecx
 
   v3 = 2632 * LODWORD(this->m_fDamageNumPosY[8]);
   v4 = v3 + 80 * LODWORD(this->m_fDamageNumPosY[9]);
@@ -1845,13 +1841,13 @@ int CCBStage::EndRoleAllTask(int a2)
     SkillNum = ((PAL_GDB *)&g_GDB)->GDB_GetSkillNum(*(_DWORD *)((char *)&this->m_Task[0].SubTask[0].fStartTime + v4));
     if ( *(_DWORD *)((char *)&this->m_Task[0].SubTask[18].fTemp2 + v3) > 4u )
     {
-      ((UIWnd *)*(UIWnd **)&this->m_pCBSystem->m_pUI->_data[1076])->SetEnable((const char *)(SkillNum + 4), 1);
-      v7 = *(void (****)(_DWORD, int))&this->m_pCBSystem->m_pUI->_data[1076];
+      ((UIWnd *)this->m_pCBSystem->m_pUI->m_pRoleStateGP[3])->SetEnable((const char *)(SkillNum + 4), 1);
+      v7 = (void (***)(void *, int))this->m_pCBSystem->m_pUI->m_pRoleStateGP[3];
     }
     else
     {
-      ((UIWnd *)*(UIWnd **)&this->m_pCBSystem->m_pUI->_data[1072])->SetEnable((const char *)(SkillNum + 4), 1);
-      v7 = *(void (****)(_DWORD, int))&this->m_pCBSystem->m_pUI->_data[1072];
+      ((UIWnd *)this->m_pCBSystem->m_pUI->m_pRoleStateGP[2])->SetEnable((const char *)(SkillNum + 4), 1);
+      v7 = (void (***)(void *, int))this->m_pCBSystem->m_pUI->m_pRoleStateGP[2];
     }
     (**v7)(v7, 1);
     v5[41] = 1;
@@ -1859,9 +1855,9 @@ int CCBStage::EndRoleAllTask(int a2)
   if ( v5[43] == 1 || this->m_pCBSystem->m_fTimeFund - *((float *)v5 + 6) > *((float *)v5 + 8) )
   {
     if ( *(_DWORD *)((char *)&this->m_Task[0].SubTask[18].fTemp2 + v3) > 4u )
-      v8 = *(void (****)(_DWORD, _DWORD))&this->m_pCBSystem->m_pUI->_data[1076];
+      v8 = (void (***)(void *, _DWORD))this->m_pCBSystem->m_pUI->m_pRoleStateGP[3];
     else
-      v8 = *(void (****)(_DWORD, _DWORD))&this->m_pCBSystem->m_pUI->_data[1072];
+      v8 = (void (***)(void *, _DWORD))this->m_pCBSystem->m_pUI->m_pRoleStateGP[2];
     (**v8)(v8, 0);
     *((_DWORD *)v5 + 4) = 4;
   }
@@ -1914,7 +1910,7 @@ int CCBStage::GetRoleTaskNum(int a2)
   v14.z = *((float *)v5 + 17);
   m_pCam = (CCBStageCam *)this->m_pCam;
   v14.y = 50.0;
-  ((gbCamera *)&m_pCam->_data[4])->PointWorldToScr(&v14, &v18, &v19);
+  ((gbCamera *)&m_pCam->_base[4])->PointWorldToScr(&v14, &v18, &v19);
   sprintf(byte_17AA920, "%d", *((_DWORD *)v5 + 11));
   v8 = (this->m_pCBSystem->m_fTimeFund - *((float *)v5 + 6)) / *((float *)v5 + 8);
   if ( v8 > 1.0 )
@@ -1983,7 +1979,7 @@ int CCBStage::SelectRole(int a2)
     this->m_Task[0].SubTask[0].eStats[v4 + 5] = 1;
   }
   vec1 = *(struct gbVec3D *)((char *)&this->m_Task[0].SubTask[0].param.n1 + v4);
-  ((gbCamera *)&this->m_pCam->_data[4])->PointWorldToScr(&vec1, &v15, &v16);
+  ((gbCamera *)&this->m_pCam->_base[4])->PointWorldToScr(&vec1, &v15, &v16);
   v6 = (this->m_pCBSystem->m_fTimeFund - v5[6]) / v5[8];
   *(float *)&v14 = v6;
   if ( v6 > 1.0 )
@@ -2062,7 +2058,7 @@ int CCBStage::ProcWait(int a2)
   }
   vec1.x = *(float *)(v6 + 64);
   vec1.z = *(float *)(v6 + 68);
-  v8 = (gbCamera *)&v2->m_pCam->_data[4];
+  v8 = (gbCamera *)&v2->m_pCam->_base[4];
   vec1.y = 50.0;
   v8->PointWorldToScr(&vec1, &v23, &v24);
   v9 = (v2->m_pCBSystem->m_fTimeFund - *(float *)(v6 + 24)) / *(float *)(v6 + 32);
@@ -2642,7 +2638,7 @@ int CCBStage::ProcShowDamage(int a2)
   CCBStageRole **m_pRole; // ebx
   int v9; // ecx
   char *pad_0004; // eax
-  gbVec3D *v11; // ecx
+  char *v11; // ecx
   int ItemNum; // eax
   int v13; // eax
   _DWORD *v14; // ebp
@@ -2666,12 +2662,12 @@ int CCBStage::ProcShowDamage(int a2)
       if ( *(_BYTE *)(((CCBRoleState *)this->m_pRoleState)->InitUI(v7) + 25)
         && *(_BYTE *)(((CCBRoleState *)this->m_pRoleState)->InitUI(v7) + 26) )
       {
-        v9 = *(_DWORD *)(((CCBRoleState *)this->m_pRoleState)->InitUI(v7) + 584);
+        v9 = 3 * *(_DWORD *)(((CCBRoleState *)this->m_pRoleState)->InitUI(v7) + 584);
         pad_0004 = (*m_pRole)->m_Task[62]._pad_0004;
-        v11 = (gbVec3D *)&this->m_pScene->m_vecInitFiveLineup[v9];
-        *(float *)pad_0004 = v11->x;
-        *((_DWORD *)pad_0004 + 1) = LODWORD(v11->y);
-        *((_DWORD *)pad_0004 + 2) = LODWORD(v11->z);
+        v11 = (char *)&this->m_pScene->_pad_05C[4 * v9];
+        *(_DWORD *)pad_0004 = *(_DWORD *)v11;
+        *((_DWORD *)pad_0004 + 1) = *((_DWORD *)v11 + 1);
+        *((_DWORD *)pad_0004 + 2) = *((_DWORD *)v11 + 2);
         *(_DWORD *)&(*m_pRole)->m_Task[62].cmd.bSrcRole[2] = *(_DWORD *)&(*m_pRole)->m_Task[62].cmd.bSrcRole[6];
       }
       ++v7;

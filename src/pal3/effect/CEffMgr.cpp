@@ -148,15 +148,15 @@ int CEffMgr::Init(int a2, int a3, int a4, int a5, int a6)
   v8 = (char *)&unk_EC9EB4 + v7 * 4;
   for ( a6a = &dword_EC9E74[v7]; ; ++a6a )
   {
-    v9 = sub_4CDCA0((int *)this, *a6a, v13, a3, a4, a5);
+    v9 = sub_4CDCA0((int *)this->_pad_000, *a6a, v13, a3, a4, a5);
     if ( v9 == -1 )
       break;
     v10 = 8;
     do
     {
       if ( v8[88] )
-        (*(void (**)(_DWORD, char *))(**(_DWORD **)&this->m_EffObjType[0].szTypeName[20 * v9 + 12] + 48))(
-          *(_DWORD *)&this->m_EffObjType[0].szTypeName[20 * v9 + 12],
+        (*(void (**)(_DWORD, char *))(**((_DWORD **)this + 5 * v9 + 587) + 48))(
+          *((_DWORD *)this + 5 * v9 + 587),
           v8);
       v8 += 124;
       --v10;
@@ -177,7 +177,7 @@ char CEffMgr::Render(int a2)
   if ( !a2 )
     return 0;
   v2 = 0;
-  for ( i = &this->m_EffObjType[0].szTypeName[8]; *((_DWORD *)i - 1) != a2 || !*i || i[1]; i += 20 )
+  for ( i = (char *)this + 2344; *((_DWORD *)i - 1) != a2 || !*i || i[1]; i += 20 )
   {
     if ( ++v2 >= 2048 )
       return 0;
@@ -298,19 +298,19 @@ LABEL_10:
 int CEffMgr::RunEffGroup(const char *a2, int a3, const char *a4)
 {
   int v4; // ebp
-  unsigned __int8 *i; // eax
+  char *i; // eax
   char *v7; // ebx
   const char *m_szUIString; // edi
   _DWORD *v9; // eax
   _DWORD *v10; // eax
 
   v4 = 0;
-  for ( i = &this->m_EffClass[0].bValid; *i; i += 72 )
+  for ( i = &this->_pad_000[88]; *i; i += 72 )
   {
     if ( ++v4 >= 32 )
       return -1;
   }
-  v7 = (char *)this + 72 * v4;
+  v7 = (char *)&this->_pad_000[72 * v4];
   strcpy(v7 + 28, a2);
   m_szUIString = a4;
   if ( !a4 )
@@ -337,19 +337,19 @@ int CEffMgr::RunEffGroup(const char *a2, int a3, const char *a4)
 int CEffMgr::IsAllEffGroupStop(const char *a2, int a3, const char *a4)
 {
   int v4; // ebp
-  unsigned __int8 *i; // eax
+  char *i; // eax
   char *v7; // ebx
   const char *m_szUIString; // edi
   _DWORD *v9; // eax
   _DWORD *v10; // eax
 
   v4 = 0;
-  for ( i = &this->m_EffClass[0].bValid; *i; i += 72 )
+  for ( i = &this->_pad_000[88]; *i; i += 72 )
   {
     if ( ++v4 >= 32 )
       return -1;
   }
-  v7 = (char *)this + 72 * v4;
+  v7 = (char *)&this->_pad_000[72 * v4];
   strcpy(v7 + 28, a2);
   m_szUIString = a4;
   if ( !a4 )
@@ -376,19 +376,19 @@ int CEffMgr::IsAllEffGroupStop(const char *a2, int a3, const char *a4)
 int CEffMgr::CopyObjInGroup(const char *a2, int a3, const char *a4)
 {
   int v4; // ebp
-  unsigned __int8 *i; // eax
+  char *i; // eax
   char *v7; // ebx
   const char *m_szUIString; // edi
   _DWORD *v9; // eax
   _DWORD *v10; // eax
 
   v4 = 0;
-  for ( i = &this->m_EffClass[0].bValid; *i; i += 72 )
+  for ( i = &this->_pad_000[88]; *i; i += 72 )
   {
     if ( ++v4 >= 32 )
       return -1;
   }
-  v7 = (char *)this + 72 * v4;
+  v7 = (char *)&this->_pad_000[72 * v4];
   strcpy(v7 + 28, a2);
   m_szUIString = a4;
   if ( !a4 )
@@ -414,9 +414,9 @@ int CEffMgr::CopyObjInGroup(const char *a2, int a3, const char *a4)
 // 0x004D58A0
 _DWORD * CEffMgr::Reset()
 {
-  sub_4D5A00((int *)this);
-  *(_DWORD *)&this->m_EffClass[13].bValid = 1;
-  this->m_EffClass[13].dwNameCRC = timeGetTime();
-  this->m_EffClass[13].pClassObj = 0;
-  return &this->m_pDisplay;
+  sub_4D5A00((int *)this->_pad_000);
+  this->_d400 = 1;
+  this->_d404 = timeGetTime();
+  this->_d408 = 0;
+  return this->_pad_000;
 }

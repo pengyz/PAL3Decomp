@@ -136,12 +136,12 @@ char * PalScript::SetAppName(char *name)
   unsigned int v4; // kr04_4
   unsigned int v5; // ebx
   char *v6; // eax
-  scScriptInstance *m_pinst; // ecx
+  int d004; // ecx
   char **p_name; // eax
   char *v9; // esi
   char *v10; // esi
   char *result; // eax
-  scScriptInstance *v12; // [esp+10h] [ebp-24h] BYREF
+  int v12; // [esp+10h] [ebp-24h] BYREF
   char v13[4]; // [esp+14h] [ebp-20h] BYREF
   int v14; // [esp+18h] [ebp-1Ch] BYREF
   char *v15; // [esp+1Ch] [ebp-18h]
@@ -161,11 +161,11 @@ char * PalScript::SetAppName(char *name)
   }
   v17 = 0;
   v6 = (char *)*sub_431040(this, v13, (int)&v14);
-  m_pinst = (scScriptInstance *)this->m_pinst;
+  d004 = this->_d004;
   name = v6;
-  if ( v6 == (char *)m_pinst || sub_431780((int)&v14, (int)(v6 + 12)) < 0 )
+  if ( v6 == (char *)d004 || sub_431780((int)&v14, (int)(v6 + 12)) < 0 )
   {
-    v12 = (scScriptInstance *)this->m_pinst;
+    v12 = this->_d004;
     p_name = (char **)&v12;
   }
   else
@@ -175,7 +175,7 @@ char * PalScript::SetAppName(char *name)
   v9 = (char *)*p_name;
   v17 = -1;
   ((std *)&v14)->string::_Tidy(1);
-  if ( v9 == (char *)this->m_pinst )
+  if ( v9 == (char *)this->_d004 )
     return aLangNull;
   v10 = (char *)*((_DWORD *)v9 + 8);
   result = byte_56A634;
@@ -230,7 +230,7 @@ int PalScript::SetDirectory(char *dir)
   {
     if ( v3 )
     {
-      result = _strcmpi((const char *)this, dir);
+      result = _strcmpi(this->_pad_000, dir);
       if ( !result )
       {
         *((_DWORD *)this + 129) = *((_DWORD *)this + 130);
@@ -240,7 +240,7 @@ int PalScript::SetDirectory(char *dir)
     }
     else
     {
-      v3 = _strcmpi((const char *)this, aBegin) == 0;
+      v3 = _strcmpi(this->_pad_000, aBegin) == 0;
     }
   }
   return result;
@@ -251,8 +251,8 @@ int PalScript::HasNext()
 {
   int v2; // ecx
   PalScript *v3; // esi
-  unsigned __int8 v4; // al
-  unsigned __int8 v5; // al
+  char v4; // al
+  char v5; // al
   _BYTE *v6; // eax
 
   memset(this, 0, 0x200u);
@@ -284,7 +284,7 @@ int PalScript::HasNext()
           }
           else if ( v5 != 13 )
           {
-            v3->m_bLoadSceneScript = v5;
+            v3->_pad_000[0] = v5;
             v3 = (PalScript *)((char *)v3 + 1);
           }
           goto LABEL_31;
@@ -302,7 +302,7 @@ int PalScript::HasNext()
           }
           else if ( v4 != 32 && v4 != 9 && v4 != 44 && v4 != 13 && v4 != 10 )
           {
-            v3->m_bLoadSceneScript = v4;
+            v3->_pad_000[0] = v4;
             v3 = (PalScript *)((char *)v3 + 1);
             v2 = 2;
           }
@@ -327,7 +327,7 @@ int PalScript::LoadNext()
   int result; // eax
   PalScript *v3; // esi
   char v4; // cl
-  unsigned __int8 v5; // cl
+  char v5; // cl
   _BYTE *v6; // ecx
 
   result = 0;
@@ -348,7 +348,7 @@ int PalScript::LoadNext()
         }
         else
         {
-          v3->m_bLoadSceneScript = v5;
+          v3->_pad_000[0] = v5;
           v3 = (PalScript *)((char *)v3 + 1);
         }
       }

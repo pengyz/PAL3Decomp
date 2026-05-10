@@ -117,35 +117,35 @@ int CCBCamControl::UpdateCircleSet()
 // 0x005083B0
 char * CCBCamControl::SetCircle(int a2)
 {
-  float *p_fCircleCentreZ; // eax
+  char *v3; // eax
   int v4; // ecx
 
-  ((gbVolModNode *)&this->m_CCT.m_Pool[0].dwID)->gbVolModNode();
+  ((gbVolModNode *)&this->m_CCT._data[16])->gbVolModNode();
   `eh vector constructor iterator'(
-    (char *)&this->m_CCT.m_Pool[0].fStartTracePosY,
+    &this->m_CCT._data[236],
     0xDCu,
     10,
     gbVolModNode::gbVolModNode,
     gbVolModNode::~gbVolModNode);
-  p_fCircleCentreZ = (float *)&this->m_CCT.m_Pool[9].fCircleCentreZ;
+  v3 = (char *)&this->m_CCT._data[2464];
   v4 = 384;
   do
   {
-    *(p_fCircleCentreZ - 2) = 0.0;
-    *(p_fCircleCentreZ - 1) = 0.0;
-    *p_fCircleCentreZ = 0.0;
-    p_fCircleCentreZ[5] = 0.0;
-    p_fCircleCentreZ[6] = 0.0;
-    p_fCircleCentreZ[7] = 0.0;
-    p_fCircleCentreZ += 15;
+    *((_DWORD *)v3 - 2) = 0;
+    *((_DWORD *)v3 - 1) = 0;
+    *(_DWORD *)v3 = 0;
+    *((_DWORD *)v3 + 5) = 0;
+    *((_DWORD *)v3 + 6) = 0;
+    *((_DWORD *)v3 + 7) = 0;
+    v3 += 60;
     --v4;
   }
   while ( v4 );
   nullsub_3(this);
-  this->m_CCT.m_Pool[9].fAccelerationTime2 = 0.0;
-  this->m_CCT.m_Pool[9].fAcceleration1 = 0.0;
-  *(_DWORD *)&this->m_CCT.m_Pool[0]._pad_0004[4] = a2;
-  return (char *)this;
+  *(_DWORD *)&this->m_CCT._data[2436] = 0;
+  *(_DWORD *)&this->m_CCT._data[2440] = 0;
+  *(_DWORD *)&this->m_CCT._data[8] = a2;
+  return this->m_CCT._data;
 }
 
 // 0x005084C0
@@ -188,23 +188,23 @@ char CCBCamControl::IsPointerUnderMouse()
   v2[15] = 0x40000000;
   v2[16] = 1133903872;
   v2[6] = 1065353216;
-  ((gbVolModNode *)&this->m_CCT.m_Pool[0].dwID)->SetVolModObj((struct gbVolumeModifier *)v2);
+  ((gbVolModNode *)&this->m_CCT._data[16])->SetVolModObj((struct gbVolumeModifier *)v2);
   ((gbRefObject *)v2)->Release();
-  LODWORD(this->m_CCT.m_Pool[9].fAccelerationTime2) = ((gbEffectMgr *)dword_BFDA60->pEffectMgr)->NewRenderEffect(aGfxscriptGeomD, 0x401u);
-  LODWORD(this->m_CCT.m_Pool[9].fAcceleration1) = ((gbEffectMgr *)dword_BFDA60->pEffectMgr)->NewRenderEffect(aGfxscriptGeomD_0, 0x441u);
+  *(_DWORD *)&this->m_CCT._data[2436] = ((gbEffectMgr *)dword_BFDA60->pEffectMgr)->NewRenderEffect(aGfxscriptGeomD, 0x401u);
+  *(_DWORD *)&this->m_CCT._data[2440] = ((gbEffectMgr *)dword_BFDA60->pEffectMgr)->NewRenderEffect(aGfxscriptGeomD_0, 0x441u);
   return 1;
 }
 
 // 0x00508660
 _DWORD * CCBCamControl::LoadPointer()
 {
-  this->m_CCT.m_Pool[0].StartPos.z = 0.0;
-  this->m_CCT.m_Pool[0].StartPos.fYaw = 0.0;
-  this->m_CCT.m_Pool[0].StartPos.yaw = 0.0;
-  this->m_CCT.m_Pool[0].StartPos.fPitch = 0.0;
-  this->m_CCT.m_Pool[0].StartPos.pit = 0.0;
-  this->m_CCT.m_Pool[0].StartPos.fRoll = 0.0;
-  return this;
+  *(_DWORD *)&this->m_CCT._data[52] = 0;
+  *(_DWORD *)&this->m_CCT._data[56] = 0;
+  *(_DWORD *)&this->m_CCT._data[60] = 0;
+  *(_DWORD *)&this->m_CCT._data[64] = 0;
+  *(_DWORD *)&this->m_CCT._data[68] = 0;
+  *(_DWORD *)&this->m_CCT._data[72] = 0;
+  return this->m_CCT._data;
 }
 
 // 0x00508680
@@ -253,14 +253,14 @@ int CCBCamControl::ResetListFlag()
   v2[15] = 0x40000000;
   v2[16] = 1133903872;
   v2[6] = 1065353216;
-  ((gbVolModNode *)&this->m_CCT.m_Pool[0].fStartTracePosY)->SetVolModObj((struct gbVolumeModifier *)v2);
+  ((gbVolModNode *)&this->m_CCT._data[236])->SetVolModObj((struct gbVolumeModifier *)v2);
   ((gbRefObject *)v2)->Release();
-  v3 = (_DWORD *)(LODWORD(this->m_CCT.m_Pool[0].fStartTracePosX) + 28);
+  v3 = (_DWORD *)(*(_DWORD *)&this->m_CCT._data[232] + 28);
   *v3 = -1098907648;
   v3[1] = -1098907648;
   v3[2] = -1098907648;
   v3[3] = 1065353216;
-  v4 = (_DWORD *)(LODWORD(this->m_CCT.m_Pool[1].fCircleEndX) + 28);
+  v4 = (_DWORD *)(*(_DWORD *)&this->m_CCT._data[452] + 28);
   *v4 = -1098907648;
   v4[1] = -1098907648;
   v4[2] = -1098907648;
@@ -271,25 +271,25 @@ int CCBCamControl::ResetListFlag()
 // 0x00508880
 int CCBCamControl::KeepCurCam(int a2)
 {
-  float *p_fAcceleration2; // edx
+  char *v2; // edx
   int result; // eax
-  float *i; // esi
+  char *i; // esi
 
-  p_fAcceleration2 = (float *)&this->m_CCT.m_Pool[9].fAcceleration2;
+  v2 = (char *)&this->m_CCT._data[2444];
   result = 0;
-  for ( i = &this->m_CCT.m_Pool[9].fAcceleration2; *(_DWORD *)i != a2; i += 15 )
+  for ( i = &this->m_CCT._data[2444]; *(_DWORD *)i != a2; i += 60 )
   {
     if ( ++result >= 384 )
     {
       result = 0;
-      while ( *(_DWORD *)p_fAcceleration2 )
+      while ( *(_DWORD *)v2 )
       {
         ++result;
-        p_fAcceleration2 += 15;
+        v2 += 60;
         if ( result >= 384 )
           return 0;
       }
-      *((_DWORD *)&this->m_CCT.m_Pool[9].fAcceleration2 + 15 * result) = a2;
+      *(_DWORD *)&this->m_CCT._data[60 * result + 2444] = a2;
       return result;
     }
   }
@@ -309,10 +309,10 @@ int CCBCamControl::DoLineMove(unsigned int a2)
     v4 = this + 15 * a2;
     result = (int)v4[612];
     if ( result != -1 )
-      result = ((CEffect *)*((CEffect **)(*((_DWORD *)this + 2))->m_CCT.m_Pool[0].fp + 11))->Render((int)v4[612]);
+      result = ((CEffect *)*(CEffect **)(*(_DWORD *)(*((_DWORD *)this + 2))->m_CCT._data + 44))->Render((int)v4[612]);
     v5 = (int)v4[619];
     if ( v5 != -1 )
-      return ((CEffect *)*((CEffect **)(*((_DWORD *)this + 2))->m_CCT.m_Pool[0].fp + 11))->Render(v5);
+      return ((CEffect *)*(CEffect **)(*(_DWORD *)(*((_DWORD *)this + 2))->m_CCT._data + 44))->Render(v5);
   }
   return result;
 }

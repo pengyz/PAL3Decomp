@@ -20,7 +20,7 @@ int StateUI::Create()
 
   if ( ((UIBase *)this)->GetSelected() < 5 )
   {
-    this->_b16A = data;
+    this->m_Is[1] = data;
     ((UIBase *)this)->SetItemData(1, data);
     sub_48A310(*((char **)this + 44015), data);
     sub_4945E0(*((char **)this + 44016), data);
@@ -29,7 +29,7 @@ int StateUI::Create()
   }
   else
   {
-    this->_b16A = 0;
+    this->m_Is[1] = 0;
     ((UIBase *)this)->SetItemData(1, 0);
     sub_48A310(*((char **)this + 44015), 0);
     sub_4945E0(*((char **)this + 44016), 0);
@@ -45,7 +45,7 @@ void StateUI::Init()
 
   if ( ((UIBase *)this)->GetSelected() < 5 )
   {
-    this->_b16B = data;
+    this->m_Is[2] = data;
     ((UIBase *)this)->SetItemData(2, data);
     sub_48A330(*((char **)this + 44015), data);
     sub_494600(*((char **)this + 44016), data);
@@ -54,7 +54,7 @@ void StateUI::Init()
   }
   else
   {
-    this->_b16B = 0;
+    this->m_Is[2] = 0;
     ((UIBase *)this)->SetItemData(2, 0);
     sub_48A330(*((char **)this + 44015), 0);
     sub_494600(*((char **)this + 44016), 0);

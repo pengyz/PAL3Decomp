@@ -533,7 +533,7 @@ char CCBRoleState::Create()
         if ( v4 )
         {
           v4->gbGeomNode();
-          *(_DWORD *)v5->_pad_0000 = &off_56A66C;
+          *(_DWORD *)v5->_base = &off_56A66C;
           v6 = v5;
         }
         else
@@ -558,7 +558,7 @@ char CCBRoleState::Create()
         if ( v7 )
         {
           v7->gbGeomNode();
-          *(_DWORD *)v8->_pad_0000 = &off_56A66C;
+          *(_DWORD *)v8->_base = &off_56A66C;
           v9 = v8;
         }
         else
@@ -575,8 +575,8 @@ char CCBRoleState::Create()
         v9->LoadFromFile(Buffer, 0, 0);
         ((gbGeomNode *)v2[3])->ReplaceTexture(v12);
         LOBYTE(v3) = 1;
-        LODWORD((*v2)->OffMat.zw) = 1;
-        LODWORD(v2[3]->OffMat.zw) = 1;
+        (*v2)->bBlade = 1;
+        v2[3]->bBlade = 1;
       }
     }
     v1 += 1408;
@@ -635,27 +635,25 @@ int CCBRoleState::Init(int a2, char a3)
   if ( a3 == 1 )
   {
     if ( !a2 )
-      (***(void (****)(_DWORD, int))&m_pUI->_data[1068])(*(_DWORD *)&m_pUI->_data[1068], 1);
-    (***(void (****)(_DWORD, int))&m_pUI->_data[4 * a2 + 120])(*(_DWORD *)&m_pUI->_data[4 * a2 + 120], 1);
-    (***(void (****)(_DWORD, int))&m_pUI->_data[4 * a2 + 1020])(*(_DWORD *)&m_pUI->_data[4 * a2 + 1020], 1);
-    (***(void (****)(_DWORD, int))&m_pUI->_data[4 * a2 + 1052])(*(_DWORD *)&m_pUI->_data[4 * a2 + 1052], 1);
-    return (***(int (****)(_DWORD, int))&m_pUI->_data[4 * a2 + 1036])(
-             *(_DWORD *)&m_pUI->_data[4 * a2 + 1036],
+      (**(void (***)(void *, int))m_pUI->m_pRoleStateGP[1])(m_pUI->m_pRoleStateGP[1], 1);
+    (**(void (***)(void *, int))m_pUI->m_pAttackSequenFace[a2 + 4])(m_pUI->m_pAttackSequenFace[a2 + 4], 1);
+    (**(void (***)(void *, int))m_pUI->m_pRoleStateImmunity[a2 + 6])(m_pUI->m_pRoleStateImmunity[a2 + 6], 1);
+    (**(void (***)(void *, int))m_pUI->m_pRoleStateHP[a2 + 1])(m_pUI->m_pRoleStateHP[a2 + 1], 1);
+    return (**(int (***)(void *, int))m_pUI->m_pRoleStateImmunity[a2 + 10])(
+             m_pUI->m_pRoleStateImmunity[a2 + 10],
              1);
   }
   else
   {
     if ( !a2 )
-      (***(void (****)(_DWORD, _DWORD))&m_pUI->_data[1068])(*(_DWORD *)&m_pUI->_data[1068], 0);
-    (***(void (****)(_DWORD, _DWORD))&m_pUI->_data[4 * a2 + 120])(*(_DWORD *)&m_pUI->_data[4 * a2 + 120], 0);
-    (***(void (****)(_DWORD, _DWORD))&m_pUI->_data[4 * a2 + 1020])(
-      *(_DWORD *)&m_pUI->_data[4 * a2 + 1020],
+      (**(void (***)(void *, _DWORD))m_pUI->m_pRoleStateGP[1])(m_pUI->m_pRoleStateGP[1], 0);
+    (**(void (***)(void *, _DWORD))m_pUI->m_pAttackSequenFace[a2 + 4])(m_pUI->m_pAttackSequenFace[a2 + 4], 0);
+    (**(void (***)(void *, _DWORD))m_pUI->m_pRoleStateImmunity[a2 + 6])(
+      m_pUI->m_pRoleStateImmunity[a2 + 6],
       0);
-    (***(void (****)(_DWORD, _DWORD))&m_pUI->_data[4 * a2 + 1052])(
-      *(_DWORD *)&m_pUI->_data[4 * a2 + 1052],
-      0);
-    return (***(int (****)(_DWORD, _DWORD))&m_pUI->_data[4 * a2 + 1036])(
-             *(_DWORD *)&m_pUI->_data[4 * a2 + 1036],
+    (**(void (***)(void *, _DWORD))m_pUI->m_pRoleStateHP[a2 + 1])(m_pUI->m_pRoleStateHP[a2 + 1], 0);
+    return (**(int (***)(void *, _DWORD))m_pUI->m_pRoleStateImmunity[a2 + 10])(
+             m_pUI->m_pRoleStateImmunity[a2 + 10],
              0);
   }
 }
@@ -2213,7 +2211,7 @@ char CCBRoleState::GetCastFightSkillSuccess(int a2)
 {
   int v4; // esi
   int i; // ebp
-  int v6; // eax
+  UIStatic *m_pResultThunderLvup; // eax
   int a2a; // [esp+14h] [ebp+4h]
 
   a2a = *(_DWORD *)(a2 + 8);
@@ -2241,9 +2239,9 @@ char CCBRoleState::GetCastFightSkillSuccess(int a2)
 LABEL_13:
     ++v4;
   }
-  v6 = *(_DWORD *)&this->m_pUI->_data[1120];
-  if ( *(_DWORD *)(v6 + 56) == 1 )
-    sub_4F95F0(this, a2a, *(_DWORD *)(v6 + 104));
+  m_pResultThunderLvup = (UIStatic *)this->m_pUI->m_pResultThunderLvup;
+  if ( *(_DWORD *)&m_pResultThunderLvup->_base[56] == 1 )
+    sub_4F95F0(this, a2a, *(_DWORD *)&m_pResultThunderLvup->_pad_004[24]);
   return 1;
 }
 
@@ -2277,9 +2275,9 @@ LABEL_12:
     ++v4;
   }
   this->SetRoleHP(*(_DWORD *)(a2 + 8), *(_DWORD *)(a2 + 4));
-  sub_43FE90(*(_DWORD *)&this->m_pUI->_data[1068]);
-  ((UIWnd *)*(UIWnd **)&this->m_pUI->_data[1068])->FindChild(50.0);
-  ((UIWnd *)*(UIWnd **)&this->m_pUI->_data[1068])->FindChildByName(0.0);
+  sub_43FE90((int)this->m_pUI->m_pRoleStateGP[1]);
+  ((UIWnd *)this->m_pUI->m_pRoleStateGP[1])->FindChild(50.0);
+  ((UIWnd *)this->m_pUI->m_pRoleStateGP[1])->FindChildByName(0.0);
   *(_DWORD *)&this->m_Role[0].byMagicUseTime[4][446 * *(_DWORD *)(a2 + 8) + 3] = 0;
   return 1;
 }
@@ -3484,7 +3482,7 @@ LABEL_86:
         LOBYTE(this->m_Role[0].byMagicUseTime[8][v9 / 2 + 5]) = 0;
         ((CCBStageRole *)this->m_pStage->m_pRole[a2])->DangerForceRelease(0);
         ((CCBStageRole *)this->m_pStage->m_pRole[a2])->Release(1);
-        v15 = *(void (****)(_DWORD, int))&this->m_pUI->_data[4 * a2 + 76];
+        v15 = (void (***)(_DWORD, int))*((_DWORD *)&this->m_pUI->pPanel + a2);
         (**v15)(v15, 1);
         ((CCBSystem *)this->m_pCBSystem->m_pAttackSequen)->SetCmdParam(a2, 0);
         ((CCBSystem *)this->m_pCBSystem->m_pAttackSequen)->GetCmdData(a2);
@@ -4551,24 +4549,24 @@ int CCBRoleState::UpdateEffects()
     {
       v4 = *(unsigned __int8 *)(result + 576);
       a5 = (float)*(int *)(result + 592);
-      ((UIWnd *)*(UIWnd **)&this->m_pUI->_data[4 * v4 + 1020])->FindChild(a5);
+      ((UIWnd *)this->m_pUI->m_pRoleStateImmunity[v4 + 6])->FindChild(a5);
       a5a = (float)a1[150];
-      ((UIWnd *)*(UIWnd **)&this->m_pUI->_data[4 * v4 + 1036])->FindChild(a5a);
+      ((UIWnd *)this->m_pUI->m_pRoleStateImmunity[v4 + 10])->FindChild(a5a);
       a5b = (float)a1[152];
-      ((UIWnd *)*(UIWnd **)&this->m_pUI->_data[4 * v4 + 1052])->FindChild(a5b);
+      ((UIWnd *)this->m_pUI->m_pRoleStateHP[v4 + 1])->FindChild(a5b);
       a5c = (float)a1[147];
-      ((UIWnd *)*(UIWnd **)&this->m_pUI->_data[4 * v4 + 1020])->FindChildByName(a5c);
+      ((UIWnd *)this->m_pUI->m_pRoleStateImmunity[v4 + 6])->FindChildByName(a5c);
       a5d = (float)a1[149];
-      ((UIWnd *)*(UIWnd **)&this->m_pUI->_data[4 * v4 + 1036])->FindChildByName(a5d);
+      ((UIWnd *)this->m_pUI->m_pRoleStateImmunity[v4 + 10])->FindChildByName(a5d);
       a5e = (float)a1[151];
-      ((UIWnd *)*(UIWnd **)&this->m_pUI->_data[4 * v4 + 1052])->FindChildByName(a5e);
+      ((UIWnd *)this->m_pUI->m_pRoleStateHP[v4 + 1])->FindChildByName(a5e);
       if ( !v2 )
       {
         m_pUI = (CCBUI *)this->m_pUI;
-        if ( *(_DWORD *)(*(_DWORD *)&m_pUI->_data[120] + 56) == 1 )
+        if ( *((_DWORD *)m_pUI->m_pAttackSequenFace[4] + 14) == 1 )
         {
           a5f = *(float *)&this->m_Role[0].byMagicUseTime[4][3] * 0.25;
-          ((UIWnd *)*(UIWnd **)&m_pUI->_data[1068])->FindChildByName(a5f);
+          ((UIWnd *)m_pUI->m_pRoleStateGP[1])->FindChildByName(a5f);
           if ( this->m_Role[0].nHP > 0 )
           {
             m_pCBSystem = (CCBSystem *)this->m_pCBSystem;
@@ -4586,7 +4584,7 @@ int CCBRoleState::UpdateEffects()
           }
         }
       }
-      result = (int)this->m_pUI->_data;
+      result = (int)this->m_pUI->_base;
       if ( *(_DWORD *)(*(_DWORD *)(result + 4 * v4 + 120) + 56) == 1 )
       {
         m_TempStorageNGH->SetText(dword_17AA808[v4] + 22, dword_17AA818[v4] + 5);
@@ -4619,115 +4617,115 @@ int CCBRoleState::UpdateEffects()
         if ( a1[147] <= 0 )
           ((NPC *)-11513776)->UpdateAnim();
         RoleField = this->GetRoleField(v2, 6);
-        v8 = **(void (__stdcall ****)(int))&this->m_pUI->_data[4 * v4 + 176];
+        v8 = *(void (__stdcall ***)(int))this->m_pUI->m_pRoleStateFace[v4 + 3];
         if ( RoleField )
           (*v8)(1);
         else
           (*v8)(0);
         v9 = this->GetRoleField(v2, 7);
-        v10 = **(void (__stdcall ****)(int))&this->m_pUI->_data[4 * v4 + 220];
+        v10 = *(void (__stdcall ***)(int))this->m_pUI->m_pRoleStateAttackInc[v4 + 4];
         if ( v9 )
           (*v10)(1);
         else
           (*v10)(0);
         v11 = this->GetRoleField(v2, 8);
-        v12 = **(void (__stdcall ****)(int))&this->m_pUI->_data[4 * v4 + 264];
+        v12 = *(void (__stdcall ***)(int))this->m_pUI->m_pRoleStateAttackDec[v4 + 4];
         if ( v11 )
           (*v12)(1);
         else
           (*v12)(0);
         v13 = this->GetRoleField(v2, 9);
-        v14 = **(void (__stdcall ****)(int))&this->m_pUI->_data[4 * v4 + 308];
+        v14 = *(void (__stdcall ***)(int))this->m_pUI->m_pRoleStateDefenceInc[v4 + 4];
         if ( v13 )
           (*v14)(1);
         else
           (*v14)(0);
         v15 = this->GetRoleField(v2, 12);
-        v16 = **(void (__stdcall ****)(int))&this->m_pUI->_data[4 * v4 + 440];
+        v16 = *(void (__stdcall ***)(int))this->m_pUI->m_pRoleStateLuckDec[v4 + 4];
         if ( v15 )
           (*v16)(1);
         else
           (*v16)(0);
         v17 = this->GetRoleField(v2, 13);
-        v18 = **(void (__stdcall ****)(int))&this->m_pUI->_data[4 * v4 + 484];
+        v18 = *(void (__stdcall ***)(int))this->m_pUI->m_pRoleStateSpeedInc[v4 + 4];
         if ( v17 )
           (*v18)(1);
         else
           (*v18)(0);
         v19 = this->GetRoleField(v2, 10);
-        v20 = **(void (__stdcall ****)(int))&this->m_pUI->_data[4 * v4 + 352];
+        v20 = *(void (__stdcall ***)(int))this->m_pUI->m_pRoleStateDefenceDec[v4 + 4];
         if ( v19 )
           (*v20)(1);
         else
           (*v20)(0);
         v21 = this->GetRoleField(v2, 11);
-        v22 = **(void (__stdcall ****)(int))&this->m_pUI->_data[4 * v4 + 396];
+        v22 = *(void (__stdcall ***)(int))this->m_pUI->m_pRoleStateLuckInc[v4 + 4];
         if ( v21 )
           (*v22)(1);
         else
           (*v22)(0);
         v23 = this->GetRoleField(v2, 14);
-        v24 = **(void (__stdcall ****)(int))&this->m_pUI->_data[4 * v4 + 528];
+        v24 = *(void (__stdcall ***)(int))this->m_pUI->m_pRoleStateSpeedDec[v4 + 4];
         if ( v23 )
           (*v24)(1);
         else
           (*v24)(0);
         v25 = this->GetRoleField(v2, 15);
-        v26 = **(void (__stdcall ****)(int))&this->m_pUI->_data[4 * v4 + 572];
+        v26 = *(void (__stdcall ***)(int))this->m_pUI->m_pRoleStateStable[v4 + 4];
         if ( v25 )
           (*v26)(1);
         else
           (*v26)(0);
         v27 = this->GetRoleField(v2, 16);
-        v28 = **(void (__stdcall ****)(int))&this->m_pUI->_data[4 * v4 + 616];
+        v28 = *(void (__stdcall ***)(int))this->m_pUI->m_pRoleStateBlank[v4 + 4];
         if ( v27 )
           (*v28)(1);
         else
           (*v28)(0);
         v29 = this->GetRoleField(v2, 17);
-        v30 = **(void (__stdcall ****)(int))&this->m_pUI->_data[4 * v4 + 660];
+        v30 = *(void (__stdcall ***)(int))this->m_pUI->m_pRoleStateForbid[v4 + 4];
         if ( v29 )
           (*v30)(1);
         else
           (*v30)(0);
         v31 = this->GetRoleField(v2, 18);
-        v32 = **(void (__stdcall ****)(int))&this->m_pUI->_data[4 * v4 + 704];
+        v32 = *(void (__stdcall ***)(int))this->m_pUI->m_pRoleStateSleep[v4 + 4];
         if ( v31 )
           (*v32)(1);
         else
           (*v32)(0);
         v33 = this->GetRoleField(v2, 19);
-        v34 = **(void (__stdcall ****)(int))&this->m_pUI->_data[4 * v4 + 748];
+        v34 = *(void (__stdcall ***)(int))this->m_pUI->m_pRoleStateChaos[v4 + 4];
         if ( v33 )
           (*v34)(1);
         else
           (*v34)(0);
         v35 = this->GetRoleField(v2, 20);
-        v36 = **(void (__stdcall ****)(int))&this->m_pUI->_data[4 * v4 + 792];
+        v36 = *(void (__stdcall ***)(int))this->m_pUI->m_pRoleStateMad[v4 + 4];
         if ( v35 )
           (*v36)(1);
         else
           (*v36)(0);
         v37 = this->GetRoleField(v2, 21);
-        v38 = **(void (__stdcall ****)(int))&this->m_pUI->_data[4 * v4 + 836];
+        v38 = *(void (__stdcall ***)(int))this->m_pUI->m_pRoleStateMirror[v4 + 4];
         if ( v37 )
           (*v38)(1);
         else
           (*v38)(0);
         v39 = this->GetRoleField(v2, 22);
-        v40 = **(void (__stdcall ****)(int))&this->m_pUI->_data[4 * v4 + 880];
+        v40 = *(void (__stdcall ***)(int))this->m_pUI->m_pRoleStateWall[v4 + 4];
         if ( v39 )
           (*v40)(1);
         else
           (*v40)(0);
         v41 = this->GetRoleField(v2, 23);
-        v42 = **(void (__stdcall ****)(int))&this->m_pUI->_data[4 * v4 + 924];
+        v42 = *(void (__stdcall ***)(int))this->m_pUI->m_pRoleStateBound[v4 + 4];
         if ( v41 )
           (*v42)(1);
         else
           (*v42)(0);
         v43 = this->GetRoleField(v2, 26);
-        v44 = **(int (__stdcall ****)(int))&this->m_pUI->_data[4 * v4 + 968];
+        v44 = *(int (__stdcall ***)(int))this->m_pUI->m_pRoleStateHermit[v4 + 4];
         if ( v43 )
           result = (*v44)(1);
         else

@@ -132,7 +132,7 @@ void Actor::SetAction(int actionId)
         (**((void (***)(char *, _DWORD))this + 774))((char *)this + 3096, 0);
         (**((void (***)(char *, _DWORD))this + 835))((char *)this + 3340, 0);
         sprintf(&this->m_name[52], "       %s\\n       %s", byte_DD893C, byte_DD8B3C);
-        ((UIWnd *)((char *)this + 816))->SetEnable(&this->m_name[52], 0);
+        ((UIWnd *)(UIWnd *)this + 12)->SetEnable(&this->m_name[52], 0);
         sub_4A1530((int)&this->m_szTexture[80], 1);
         *(_DWORD *)&this->m_szTexture[68] = 0;
       }
@@ -154,7 +154,7 @@ int Actor::InitComponents()
   float v6; // [esp+0h] [ebp-Ch]
 
   this->m_szTexture[65] = 0;
-  ((UIWnd *)(UIWnd *)this + 26)->SetEnable(byte_DDAD3C, 0);
+  ((UIWnd *)((char *)this + 2184))->SetEnable(byte_DDAD3C, 0);
   sub_4A1530((int)this + 1728, 1);
   *(_DWORD *)&this->m_szTexture[68] = 1000;
   *(_DWORD *)&this->m_szTexture[72] = 1000;
@@ -275,7 +275,7 @@ char Actor::ProcessFrame()
   *((_DWORD *)this + 426) = 0;
   *((_DWORD *)this + 427) = 16;
   *(_DWORD *)&this->m_szTexture[184] = v8;
-  ((UIWnd *)((char *)this + 816))->GetRect(&this->m_szTexture[176]);
+  ((UIWnd *)(UIWnd *)this + 12)->GetRect(&this->m_szTexture[176]);
   ((UIItem *)&this->m_szTexture[80])->SetData(31);
   this->m_szTexture[76] = 0;
   this->m_szTexture[64] = 1;
@@ -295,8 +295,8 @@ char Actor::ProcessFrame()
   *((_DWORD *)this + 769) = 20;
   *((_DWORD *)this + 458) = v10 - 6;
   *((_DWORD *)this + 459) = v11;
-  ((UIWnd *)(UIWnd *)this + 26)->GetRect((_DWORD *)this + 456);
-  ((UIWnd *)(UIWnd *)this + 26)->SetEnable(byte_DDAD3C, 0);
+  ((UIWnd *)((char *)this + 2184))->GetRect((_DWORD *)this + 456);
+  ((UIWnd *)((char *)this + 2184))->SetEnable(byte_DDAD3C, 0);
   sub_4A1530((int)this + 1728, 1);
   return 1;
 }

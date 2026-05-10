@@ -28,7 +28,7 @@ int CMeteorChain::Update(int a2, int a3, int a4, _DWORD *a5, int a6, int a7)
   float m_fLastTime; // ecx
   int v9; // esi
   gbTexture *v10; // edx
-  unsigned int *i; // eax
+  char *i; // eax
   int *v13; // edx
   unsigned int v14; // eax
   _DWORD *v15; // edx
@@ -38,12 +38,12 @@ int CMeteorChain::Update(int a2, int a3, int a4, _DWORD *a5, int a6, int a7)
   if ( SLODWORD(m_fLastTime) <= 0 )
     return -1;
   v10 = (gbTexture *)this->m_pTextureArray->pTexPt[38 * a2];
-  for ( i = &v10->InFmt.g_shift; *(_BYTE *)i; i += 18 )
+  for ( i = &v10->InFmt[28]; *i; i += 72 )
   {
     if ( ++v9 >= SLODWORD(m_fLastTime) )
       return -1;
   }
-  v13 = (int *)&v10->IsCreateMipmap + 18 * v9;
+  v13 = (int *)&v10->_base[72 * v9];
   memset(v13, 0, 0x48u);
   *((_BYTE *)v13 + 65) = 0;
   *((_BYTE *)v13 + 64) = 1;

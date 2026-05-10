@@ -519,7 +519,7 @@ struct gbVFileSystem * PAL3::Create@<eax>(char *a1@<edi>, HINSTANCE hInstance)
   if ( v22 )
   {
     v22->gbGeomNode();
-    *(_DWORD *)v23->_pad_0000 = &off_56A66C;
+    *(_DWORD *)v23->_base = &off_56A66C;
     v24 = v23;
   }
   else
@@ -688,7 +688,7 @@ char PAL3::CreateEffectSystem()
   if ( v0 )
   {
     v0->gbSnow(500, &v9, aEffectSnowTga, 2.0);
-    *(_DWORD *)v0->_pad_0000 = &off_56A6B4;
+    *(_DWORD *)v0->_base = &off_56A6B4;
   }
   else
   {
@@ -832,8 +832,8 @@ int PAL3::Update(int a1)
     case 2:
     case 9:
       flt_BFDA5C = flt_BFDA5C + *(float *)&a1;
-      (*(void (**)(gbGeomNode *))(*(_DWORD *)dword_A3A6EC->_pad_0000 + 20))(dword_A3A6EC);
-      (*(void (**)(gbGeomNode *))(*(_DWORD *)dword_A3A6F0->_pad_0000 + 20))(dword_A3A6F0);
+      (*(void (**)(gbGeomNode *))(*(_DWORD *)dword_A3A6EC->_base + 20))(dword_A3A6EC);
+      (*(void (**)(gbGeomNode *))(*(_DWORD *)dword_A3A6F0->_base + 20))(dword_A3A6F0);
       Instance = (float *)CRenderTarget2::GetInstance();
       CRenderTarget2_Update(Instance, *(float *)&a1);
       a1->RunSceneScript();
@@ -2404,7 +2404,7 @@ int PAL3::FullInit()
   gbSceneGraph *v119; // ebp
   int v120; // edx
   gbRenderEffect *i1; // eax
-  _DWORD *pad_0000; // edx
+  _DWORD *base; // edx
   gbRenderEffect *v123; // esi
   int v124; // ebp
   int v125; // edx
@@ -3265,14 +3265,14 @@ int PAL3::FullInit()
   m_pAddEffect2 = (gbRenderEffect *)g_SceneMgr.m_pAddEffect2;
   if ( ((char *)g_SceneMgr.m_pAlphaEffect2 - (char *)g_SceneMgr.m_pAddEffect2) / 12 )
   {
-    ((Array *)g_SceneMgr.m_pAddEffect2)->Insert(g_SceneMgr.m_pAddEffect2, &g_SceneMgr.m_pAddEffect2->_pad_0000[12]);
+    ((Array *)g_SceneMgr.m_pAddEffect2)->Insert(g_SceneMgr.m_pAddEffect2, &g_SceneMgr.m_pAddEffect2->_base[12]);
     ((Array *)g_SceneMgr.m_pAddEffect2)->Erase(1 - ((char *)g_SceneMgr.m_pAddEffect2 - (char *)m_pAddEffect2) / 12, &pConfig);
-    for ( i1 = g_SceneMgr.m_pAddEffect2; m_pAddEffect2 != i1; pad_0000[2] = v163 )
+    for ( i1 = g_SceneMgr.m_pAddEffect2; m_pAddEffect2 != i1; base[2] = v163 )
     {
-      pad_0000 = (_DWORD *)m_pAddEffect2->_pad_0000;
+      base = (_DWORD *)m_pAddEffect2->_base;
       m_pAddEffect2 = (gbRenderEffect *)((char *)m_pAddEffect2 + 12);
-      *pad_0000 = pConfig;
-      pad_0000[1] = v162;
+      *base = pConfig;
+      base[1] = v162;
     }
     g_SceneMgr.m_pAddEffect2 = (gbRenderEffect *)((char *)g_SceneMgr.m_pAddEffect2 + 12);
   }
@@ -3311,11 +3311,11 @@ LABEL_148:
   v123 = (gbRenderEffect *)g_SceneMgr.m_pAddEffect2;
   if ( ((char *)g_SceneMgr.m_pAlphaEffect2 - (char *)g_SceneMgr.m_pAddEffect2) / 12 )
   {
-    ((Array *)g_SceneMgr.m_pAddEffect2)->Insert(g_SceneMgr.m_pAddEffect2, &g_SceneMgr.m_pAddEffect2->_pad_0000[12]);
+    ((Array *)g_SceneMgr.m_pAddEffect2)->Insert(g_SceneMgr.m_pAddEffect2, &g_SceneMgr.m_pAddEffect2->_base[12]);
     ((Array *)g_SceneMgr.m_pAddEffect2)->Erase(1 - ((char *)g_SceneMgr.m_pAddEffect2 - (char *)v123) / 12, &pConfig);
     for ( i2 = g_SceneMgr.m_pAddEffect2; v123 != i2; v132[2] = v163 )
     {
-      v132 = (_DWORD *)v123->_pad_0000;
+      v132 = (_DWORD *)v123->_base;
       v123 = (gbRenderEffect *)((char *)v123 + 12);
       *v132 = pConfig;
       v132[1] = v162;
@@ -3364,11 +3364,11 @@ LABEL_148:
   v133 = (gbRenderEffect *)g_SceneMgr.m_pAddEffect2;
   if ( ((char *)g_SceneMgr.m_pAlphaEffect2 - (char *)g_SceneMgr.m_pAddEffect2) / 12 )
   {
-    ((Array *)g_SceneMgr.m_pAddEffect2)->Insert(g_SceneMgr.m_pAddEffect2, &g_SceneMgr.m_pAddEffect2->_pad_0000[12]);
+    ((Array *)g_SceneMgr.m_pAddEffect2)->Insert(g_SceneMgr.m_pAddEffect2, &g_SceneMgr.m_pAddEffect2->_base[12]);
     ((Array *)g_SceneMgr.m_pAddEffect2)->Erase(1 - ((char *)g_SceneMgr.m_pAddEffect2 - (char *)v133) / 12, &pConfig);
     for ( i4 = g_SceneMgr.m_pAddEffect2; v133 != i4; v142[2] = v163 )
     {
-      v142 = (_DWORD *)v133->_pad_0000;
+      v142 = (_DWORD *)v133->_base;
       v133 = (gbRenderEffect *)((char *)v133 + 12);
       *v142 = pConfig;
       v142[1] = v162;

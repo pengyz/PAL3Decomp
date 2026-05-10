@@ -15,16 +15,16 @@ extern void *off_56B1BC;
 int PropUI::Create()
 {
   ((UIListBox *)this)->UIListBox();
-  ((UIWnd *)&this->_data[72])->ctor_2790();
-  ((UIWnd *)&this->_data[1084])->ctor_1CC0();
-  *(_DWORD *)this->_data = &off_56B1BC;
-  return (int)this->_data;
+  ((UIWnd *)&this->bkWndX)->ctor_2790();
+  ((UIWnd *)&this->m_PropData[996])->ctor_1CC0();
+  *(_DWORD *)this->_base = &off_56B1BC;
+  return (int)this->_base;
 }
 
 // 0x00452670
 void PropUI::Init()
 {
   ((UIListBox *)this)->SetSelTexture(-1, 0, 0, 800, 600, 0);
-  sub_4528F0((gbRefObject **)&this->_data[72], 100, (int)this);
-  sub_451E50((int)&this->_data[1084], (int)this);
+  sub_4528F0((gbRefObject **)&this->bkWndX, 100, (int)this);
+  sub_451E50((int)&this->m_PropData[996], (int)this);
 }

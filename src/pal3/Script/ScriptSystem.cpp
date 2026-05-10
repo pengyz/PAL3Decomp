@@ -693,7 +693,7 @@ void ScriptSystem::Init()
   const char *v1; // esi
   int v2; // edi
   const char *v3; // esi
-  PalScript String[13]; // [esp+8h] [ebp-218h] BYREF
+  PalScript String[8]; // [esp+8h] [ebp-218h] BYREF
   int v5; // [esp+21Ch] [ebp-4h]
 
   ctor_0x431870(String);
@@ -702,11 +702,11 @@ void ScriptSystem::Init()
   String->SetDirectory(aRole);
   while ( String->HasNext() )
   {
-    if ( !_strcmpi((const char *)String, off_58B448) )
+    if ( !_strcmpi(String[0]._pad_000, off_58B448) )
       break;
     v0 = 0;
     v1 = aTalkrange;
-    while ( _strcmpi((const char *)String, v1) )
+    while ( _strcmpi(String[0]._pad_000, v1) )
     {
       v1 += 20;
       ++v0;
@@ -714,18 +714,18 @@ void ScriptSystem::Init()
         goto LABEL_8;
     }
     String->LoadNext();
-    flt_58B378[5 * v0] = atof((const char *)String);
+    flt_58B378[5 * v0] = atof(String[0]._pad_000);
 LABEL_8:
     ;
   }
   String->SetDirectory(aMons);
   while ( String->HasNext() )
   {
-    if ( !_strcmpi((const char *)String, off_58B448) )
+    if ( !_strcmpi(String[0]._pad_000, off_58B448) )
       break;
     v2 = 0;
     v3 = aFreeranges;
-    while ( _strcmpi((const char *)String, v3) )
+    while ( _strcmpi(String[0]._pad_000, v3) )
     {
       v3 += 20;
       ++v2;
@@ -733,7 +733,7 @@ LABEL_8:
         goto LABEL_16;
     }
     String->LoadNext();
-    *(float *)&dword_58B260[5 * v2] = atof((const char *)String);
+    *(float *)&dword_58B260[5 * v2] = atof(String[0]._pad_000);
 LABEL_16:
     ;
   }

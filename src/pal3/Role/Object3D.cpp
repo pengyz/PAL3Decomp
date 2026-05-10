@@ -78,7 +78,7 @@ struct gbVFileSystem * Object3D::_Object3D(const char *a2, int a3)
     }
 LABEL_3:
     v4->gbGeomNode();
-    *(_DWORD *)v5->_pad_0000 = &off_56A66C;
+    *(_DWORD *)v5->_base = &off_56A66C;
     v6 = v5;
 LABEL_5:
     LOBYTE(v14) = 0;
@@ -111,10 +111,10 @@ LABEL_5:
   this->m_pol = v8;
   ((Actor *)v8)->LoadModel();
   ((Actor *)this->m_pol)->CompareAction(a3, 0);
-  (*(void (**)(_DWORD, _BYTE *, _DWORD))(**(_DWORD **)(*(_DWORD *)&this->m_pol->_pad_0000[16] + 88) + 28))(
-    *(_DWORD *)(*(_DWORD *)&this->m_pol->_pad_0000[16] + 88),
+  (*(void (**)(_DWORD, _BYTE *, _DWORD))(**(_DWORD **)(*(_DWORD *)&this->m_pol->_base[16] + 88) + 28))(
+    *(_DWORD *)(*(_DWORD *)&this->m_pol->_base[16] + 88),
     v12,
-    *(_DWORD *)&this->m_pol->_pad_0000[16]);
+    *(_DWORD *)&this->m_pol->_base[16]);
 LABEL_13:
   this->m_subObjHeight = v13;
   this->m_isLoadObj = 1;
@@ -219,7 +219,7 @@ LABEL_7:
     m_pol = (gbGeomNode *)this->m_pol;
     if ( m_pol )
     {
-      (**(void (***)(gbGeomNode *, int))m_pol->_pad_0000)(m_pol, 1);
+      (**(void (***)(gbGeomNode *, int))m_pol->_base)(m_pol, 1);
       this->m_pol = 0;
     }
     goto LABEL_9;
@@ -236,7 +236,7 @@ LABEL_7:
   v2 = (gbGeomNode *)this->m_pol;
   if ( v2 )
   {
-    sub_40EE00((int)this->m_pol->_pad_0000);
+    sub_40EE00((int)this->m_pol->_base);
     operator delete(v2);
     this->m_pol = 0;
     this->m_isLoadObj = 0;
@@ -871,7 +871,7 @@ void Object3D::Init()
   v7 = (PalScript **)((char *)this + 736);
   do
   {
-    ((void (*)(PalScript **, _DWORD, _DWORD *, Object3D *, char *, _DWORD, int))(*v7)->m_CamObj.m_nSize)(
+    (*(void (**)(PalScript **, _DWORD, _DWORD *, Object3D *, char *, _DWORD, int))&(*v7)->_tail[20])(
       v7,
       *v6,
       v11,
@@ -884,7 +884,7 @@ void Object3D::Init()
     v7[27] = (PalScript *)3;
     v7[26] = (PalScript *)1;
     v7[52] = (PalScript *)1;
-    (*(void (**)(PalScript **, _DWORD))&(*v7)->m_bLoadSceneScript)(v7, 0);
+    (*(void (**)(PalScript **, _DWORD))(*v7)->_pad_000)(v7, 0);
     ++v6;
     v5 += 256;
     v7 += 86;

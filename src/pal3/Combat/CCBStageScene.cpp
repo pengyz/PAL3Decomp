@@ -36,27 +36,27 @@ extern void *off_56A66C;
 // 0x0050FE50
 int CCBStageScene::Update()
 {
-  this->m_vecFiveLineupPos.y = 0.0;
-  this->m_vecFiveLineupPos.z = 0.0;
-  this->m_vecFiveLineupInitPos.x = 0.0;
-  BYTE1(this->m_vecFiveLineupInitPos.y) = 1;
-  BYTE2(this->m_vecFiveLineupInitPos.y) = 1;
-  HIBYTE(this->m_vecFiveLineupInitPos.y) = 1;
-  this->m_fFiveLineupRadius = 0.0;
-  LOBYTE(this->m_vecFiveLineupInitPos.y) = 0;
-  LOBYTE(this->m_vecFiveLineupInitPos.z) = 0;
-  this->m_FiveLineupQuad.vec[1].y = 0.0;
-  this->m_FiveLineupQuad.vec[1].z = 0.0;
-  this->m_FiveLineupQuad.vec[2].x = 1.0;
-  this->m_FiveLineupQuad.vec[2].y = 1.0;
-  this->m_EnemyFiveLineupQuad.vec[0].x = 0.0;
-  this->m_EnemyFiveLineupQuad.vec[0].y = 0.0;
-  this->m_EnemyFiveLineupQuad.vec[0].z = 1.0;
-  this->m_EnemyFiveLineupQuad.vec[1].x = 1.0;
-  this->m_FiveLineupCenterQuad.vec[0].z = 0.0;
-  this->m_FiveLineupCenterQuad.vec[1].x = 0.0;
-  this->m_FiveLineupCenterQuad.vec[1].y = 1.0;
-  this->m_FiveLineupCenterQuad.vec[1].z = 1.0;
+  this->_f3B4 = 0.0;
+  this->_f3B8 = 0.0;
+  this->_f3BC = 0.0;
+  this->_pad_3C0[1] = 1;
+  this->_pad_3C0[2] = 1;
+  this->_pad_3C0[3] = 1;
+  this->_d3C8 = 0;
+  this->_pad_3C0[0] = 0;
+  this->_pad_3C0[4] = 0;
+  this->_d2DC = 0;
+  this->_d2E0 = 0;
+  this->_d2E4 = 1065353216;
+  this->_d2E8 = 1065353216;
+  this->_d364 = 0;
+  this->_d368 = 0;
+  this->_d36C = 1065353216;
+  this->_d370 = 1065353216;
+  this->_d320 = 0;
+  this->_d324 = 0;
+  this->_d328 = 1065353216;
+  this->_d32C = 1065353216;
   return 0;
 }
 
@@ -64,88 +64,88 @@ int CCBStageScene::Update()
 CCBStageScene::CCBStageScene()
 {
   gbTexture *v2; // eax
-  float *v3; // eax
-  float x; // ecx
+  _DWORD *v3; // eax
+  int d29C; // ecx
   gbTexture *v5; // eax
-  float *v6; // eax
-  float z; // ecx
+  _DWORD *v6; // eax
+  int d2A4; // ecx
   char pExceptionObject[1024]; // [esp+18h] [ebp-800h] BYREF
   char ArgList[1024]; // [esp+418h] [ebp-400h] BYREF
 
   this->Update();
-  this->m_vecFiveLineup[1].x = -110.0;
-  this->m_vecFiveLineup[1].y = 0.0;
-  this->m_vecFiveLineup[1].z = -130.0;
-  this->m_vecFiveLineup[2].x = 30.0;
-  this->m_vecFiveLineup[2].z = -110.0;
-  this->m_vecFiveLineup[2].y = 0.0;
-  this->m_vecFiveLineup[3].x = -110.0;
-  this->m_vecFiveLineup[3].y = 0.0;
-  this->m_vecFiveLineup[3].z = 30.0;
-  this->m_vecFiveLineup[4].x = 30.0;
-  this->m_vecFiveLineup[4].y = 0.0;
-  this->m_vecFiveLineup[4].z = 10.0;
-  this->m_vecFiveLineup[5].x = -150.0;
-  this->m_vecFiveLineup[5].y = 0.0;
-  this->m_vecFiveLineup[5].z = -50.0;
-  this->m_vecFiveLineup[6].x = -50.0;
-  this->m_vecFiveLineup[6].z = -50.0;
-  this->m_vecFiveLineup[6].y = 0.0;
-  this->m_vecEnemyLineup[1].x = 140.0;
-  this->m_vecEnemyLineup[1].y = 0.0;
-  this->m_vecEnemyLineup[1].z = 120.0;
-  this->m_vecEnemyLineup[2].x = 280.0;
-  this->m_vecEnemyLineup[2].y = 0.0;
-  this->m_vecEnemyLineup[2].z = 140.0;
-  this->m_vecEnemyLineup[3].x = 140.0;
-  this->m_vecEnemyLineup[3].y = 0.0;
-  this->m_vecEnemyLineup[3].z = 280.0;
-  this->m_vecEnemyLineup[4].x = 280.0;
-  this->m_vecEnemyLineup[4].y = 0.0;
-  this->m_vecEnemyLineup[4].z = 260.0;
-  this->m_vecEnemyLineup[5].x = 100.0;
-  this->m_vecEnemyLineup[5].y = 0.0;
-  this->m_vecEnemyLineup[5].z = 200.0;
-  this->m_vecEnemyLineup[6].x = 200.0;
-  this->m_vecEnemyLineup[6].y = 0.0;
-  this->m_vecEnemyLineup[6].z = 200.0;
+  this->_d014 = -1025769472;
+  this->_d018 = 0;
+  this->_d01C = -1023279104;
+  this->_d020 = 1106247680;
+  this->_d028 = -1025769472;
+  this->_d024 = 0;
+  this->_d02C = -1025769472;
+  this->_d030 = 0;
+  this->_d034 = 1106247680;
+  this->_d038 = 1106247680;
+  this->_d03C = 0;
+  this->_d040 = 1092616192;
+  this->_d044 = -1021968384;
+  this->_d048 = 0;
+  this->_d04C = -1035468800;
+  this->_d050 = -1035468800;
+  this->_d058 = -1035468800;
+  this->_d054 = 0;
+  this->_d0BC = 1124859904;
+  this->_d0C0 = 0;
+  this->_d0C4 = 1123024896;
+  this->_d0C8 = 1133248512;
+  this->_d0CC = 0;
+  this->_d0D0 = 1124859904;
+  this->_d0D4 = 1124859904;
+  this->_d0D8 = 0;
+  this->_d0DC = 1133248512;
+  this->_d0E0 = 1133248512;
+  this->_d0E4 = 0;
+  this->_d0E8 = 1132593152;
+  this->_d0EC = 1120403456;
+  this->_d0F0 = 0;
+  this->_d0F4 = 1128792064;
+  this->_d0F8 = 1128792064;
+  this->_d0FC = 0;
+  this->_d100 = 1128792064;
   this->Render();
   this->ShowAxis();
-  this->m_pFling = (gbGeomNode *)((gbEffectMgr *)dword_BFDA60->pEffectMgr)->NewRenderEffect(aGfxscriptAddit_1, 0);
+  this->_p298 = ((gbEffectMgr *)dword_BFDA60->pEffectMgr)->NewRenderEffect(aGfxscriptAddit_1, 0);
   v2 = (gbTexture *)(*(int (**)(gbGfxManager *, char *))(*(_DWORD *)dword_BFDA60->_pad_0000 + 8))(
                       dword_BFDA60,
                       aCbsceneFivelin);
-  LODWORD(this->m_vecFling.x) = v2;
+  this->_d29C = (int)v2;
   v2->LoadTexture(1);
-  v3 = (float *)operator new(0x44u);
+  v3 = (_DWORD *)operator new(0x44u);
   if ( v3 )
   {
-    x = this->m_vecFling.x;
-    *((_DWORD *)v3 + 16) = 1;
-    *v3 = x;
+    d29C = this->_d29C;
+    v3[16] = 1;
+    *v3 = d29C;
   }
   else
   {
     v3 = 0;
   }
-  LODWORD(this->m_vecFling.y) = v3;
+  this->_d2A0 = (int)v3;
   v5 = (gbTexture *)(*(int (**)(gbGfxManager *, char *))(*(_DWORD *)dword_BFDA60->_pad_0000 + 8))(
                       dword_BFDA60,
                       aCbsceneFivelin_0);
-  LODWORD(this->m_vecFling.z) = v5;
+  this->_d2A4 = (int)v5;
   v5->LoadTexture(1);
-  v6 = (float *)operator new(0x44u);
+  v6 = (_DWORD *)operator new(0x44u);
   if ( v6 )
   {
-    z = this->m_vecFling.z;
-    *((_DWORD *)v6 + 16) = 1;
-    *v6 = z;
+    d2A4 = this->_d2A4;
+    v6[16] = 1;
+    *v6 = d2A4;
   }
   else
   {
     v6 = 0;
   }
-  LODWORD(this->m_rotFling.x) = v6;
+  this->_d2A8 = (int)v6;
   if ( !v6 )
   {
     qmemcpy(
@@ -161,48 +161,48 @@ CCBStageScene::CCBStageScene()
 // 0x005100D0
 CCBStageScene::~CCBStageScene()
 {
-  gbGeomNode *m_pPointer; // ecx
-  gbGeomNode *m_pGeomNode; // ecx
-  gbGeomNode *m_pCvd; // ecx
-  gbGeomNode **m_pCorpse; // esi
+  void (***d268)(_DWORD, int); // ecx
+  void (***d25C)(_DWORD, int); // ecx
+  void (***d260)(_DWORD, int); // ecx
+  char *pad_26C; // esi
   int v6; // edi
 
   sub_511630(this);
-  ((gbRefObject *)LODWORD(this->m_vecFling.x))->Release();
-  ((gbRefObject *)this->m_pFling)->Release();
-  if ( LODWORD(this->m_vecFling.y) )
+  ((gbRefObject *)this->_d29C)->Release();
+  ((gbRefObject *)this->_p298)->Release();
+  if ( this->_d2A0 )
   {
-    operator delete((void *)LODWORD(this->m_vecFling.y));
-    this->m_vecFling.y = 0.0;
+    operator delete((void *)this->_d2A0);
+    this->_d2A0 = 0;
   }
-  m_pPointer = (gbGeomNode *)this->m_pPointer;
-  if ( m_pPointer )
+  d268 = (void (***)(_DWORD, int))this->_d268;
+  if ( d268 )
   {
-    (**(void (***)(gbGeomNode *, int))m_pPointer->_pad_0000)(m_pPointer, 1);
-    this->m_pPointer = 0;
+    (**d268)(d268, 1);
+    this->_d268 = 0;
   }
-  m_pGeomNode = (gbGeomNode *)this->m_pGeomNode;
-  if ( m_pGeomNode )
+  d25C = (void (***)(_DWORD, int))this->_d25C;
+  if ( d25C )
   {
-    (**(void (***)(gbGeomNode *, int))m_pGeomNode->_pad_0000)(m_pGeomNode, 1);
-    this->m_pGeomNode = 0;
+    (**d25C)(d25C, 1);
+    this->_d25C = 0;
   }
-  m_pCvd = (gbGeomNode *)this->m_pCvd;
-  if ( m_pCvd )
+  d260 = (void (***)(_DWORD, int))this->_d260;
+  if ( d260 )
   {
-    (**(void (***)(gbGeomNode *, int))m_pCvd->_pad_0000)(m_pCvd, 1);
-    this->m_pCvd = 0;
+    (**d260)(d260, 1);
+    this->_d260 = 0;
   }
-  m_pCorpse = this->m_pCorpse;
+  pad_26C = (char *)this->_pad_26C;
   v6 = 11;
   do
   {
-    if ( *m_pCorpse )
+    if ( *(_DWORD *)pad_26C )
     {
-      (**(void (***)(gbGeomNode *, int))(*m_pCorpse)->_pad_0000)(*m_pCorpse, 1);
-      *m_pCorpse = 0;
+      (***(void (****)(_DWORD, int))pad_26C)(*(_DWORD *)pad_26C, 1);
+      *(_DWORD *)pad_26C = 0;
     }
-    ++m_pCorpse;
+    pad_26C += 4;
     --v6;
   }
   while ( v6 );
@@ -212,155 +212,155 @@ CCBStageScene::~CCBStageScene()
 // 0x00510180
 char CCBStageScene::Reset()
 {
-  CCBStage *m_pStage; // ecx
-  FightInfo *m_pFightInfo; // edi
-  float v4; // eax
+  int v2; // ecx
+  int v3; // edi
+  int v4; // eax
   int v5; // eax
-  float z; // ecx
-  gbGeomNode **m_pCorpse; // esi
+  int d070; // ecx
+  char *pad_26C; // esi
   int v8; // edi
 
   this->Update();
   this->SetFlingRotX();
   this->SetFlingRotY();
-  m_pStage = (CCBStage *)this->m_pStage;
-  m_pFightInfo = (FightInfo *)this->m_pStage->m_pCBSystem->m_pFightInfo;
-  v4 = *(float *)m_pFightInfo->eSceneFiveMagic;
-  this->m_fFiveLineupRadius = v4;
-  switch ( LODWORD(v4) )
+  v2 = *(_DWORD *)this->_pad_000;
+  v3 = *(_DWORD *)(**(_DWORD **)this->_pad_000 + 112);
+  v4 = *(_DWORD *)(v3 + 64);
+  this->_d3C8 = v4;
+  switch ( v4 )
   {
     case 1:
-      this->m_FiveLineupCenterQuad.vec[2].x = 2.467103e38;
+      this->_d330 = 2134481581;
       break;
     case 2:
-      this->m_FiveLineupCenterQuad.vec[2].x = NAN;
+      this->_d330 = 2145285425;
       break;
     case 3:
-      this->m_FiveLineupCenterQuad.vec[2].x = 2.8008505e38;
+      this->_d330 = 2136127083;
       break;
     case 4:
-      this->m_FiveLineupCenterQuad.vec[2].x = NAN;
+      this->_d330 = 2145285565;
       break;
     case 5:
-      this->m_FiveLineupCenterQuad.vec[2].x = NAN;
+      this->_d330 = 2144775770;
       break;
     default:
       break;
   }
-  v5 = ((CCBRoleState *)m_pStage->m_pCBSystem->m_pRoleState)->CheckDeath(LODWORD(this->m_fFiveLineupRadius));
-  this->m_vecFiveLineup[6].x = this->m_vecInitFiveLineup[6].x;
-  this->m_vecFiveLineup[6].y = this->m_vecInitFiveLineup[6].y;
-  this->m_vecFiveLineup[6].z = this->m_vecInitFiveLineup[6].z;
+  v5 = ((CCBRoleState *)*(CCBRoleState **)(*(_DWORD *)v2 + 16))->CheckDeath(this->_d3C8);
+  this->_d050 = this->_d0A4;
+  this->_d054 = this->_d0A8;
+  this->_d058 = this->_d0AC;
   switch ( v5 )
   {
     case 1:
-      this->m_EnemyFiveLineupQuad.sv = this->m_EnemyFiveLineupQuad.sv + 1.256636;
-      this->m_vecFiveLineup[1].x = this->m_vecInitFiveLineup[5].x;
-      this->m_vecFiveLineup[1].y = this->m_vecInitFiveLineup[5].y;
-      this->m_vecFiveLineup[1].z = this->m_vecInitFiveLineup[5].z;
-      this->m_vecFiveLineup[5].x = this->m_vecInitFiveLineup[3].x;
-      this->m_vecFiveLineup[5].y = this->m_vecInitFiveLineup[3].y;
-      this->m_vecFiveLineup[5].z = this->m_vecInitFiveLineup[3].z;
-      this->m_vecFiveLineup[3].x = this->m_vecInitFiveLineup[4].x;
-      this->m_vecFiveLineup[3].y = this->m_vecInitFiveLineup[4].y;
-      this->m_vecFiveLineup[3].z = this->m_vecInitFiveLineup[4].z;
-      this->m_vecFiveLineup[4].x = this->m_vecInitFiveLineup[2].x;
-      this->m_vecFiveLineup[4].y = this->m_vecInitFiveLineup[2].y;
-      this->m_vecFiveLineup[4].z = this->m_vecInitFiveLineup[2].z;
-      this->m_vecFiveLineup[2].x = this->m_vecInitFiveLineup[1].x;
-      this->m_vecFiveLineup[2].y = this->m_vecInitFiveLineup[1].y;
-      z = this->m_vecInitFiveLineup[1].z;
+      *(float *)&this->_d398 = *(float *)&this->_d398 + 1.256636;
+      this->_d014 = this->_d098;
+      this->_d018 = this->_d09C;
+      this->_d01C = this->_d0A0;
+      this->_d044 = this->_d080;
+      this->_d048 = this->_d084;
+      this->_d04C = this->_d088;
+      this->_d02C = this->_d08C;
+      this->_d030 = this->_d090;
+      this->_d034 = this->_d094;
+      this->_d038 = this->_d074;
+      this->_d03C = this->_d078;
+      this->_d040 = this->_d07C;
+      this->_d020 = this->_d068;
+      this->_d024 = this->_d06C;
+      d070 = this->_d070;
       goto LABEL_13;
     case 2:
-      this->m_EnemyFiveLineupQuad.sv = this->m_EnemyFiveLineupQuad.sv + 2.513272;
-      this->m_vecFiveLineup[1].x = this->m_vecInitFiveLineup[3].x;
-      this->m_vecFiveLineup[1].y = this->m_vecInitFiveLineup[3].y;
-      this->m_vecFiveLineup[1].z = this->m_vecInitFiveLineup[3].z;
-      this->m_vecFiveLineup[5].x = this->m_vecInitFiveLineup[4].x;
-      this->m_vecFiveLineup[5].y = this->m_vecInitFiveLineup[4].y;
-      this->m_vecFiveLineup[5].z = this->m_vecInitFiveLineup[4].z;
-      this->m_vecFiveLineup[3].x = this->m_vecInitFiveLineup[2].x;
-      this->m_vecFiveLineup[3].y = this->m_vecInitFiveLineup[2].y;
-      this->m_vecFiveLineup[3].z = this->m_vecInitFiveLineup[2].z;
-      this->m_vecFiveLineup[4].x = this->m_vecInitFiveLineup[1].x;
-      this->m_vecFiveLineup[4].y = this->m_vecInitFiveLineup[1].y;
-      this->m_vecFiveLineup[4].z = this->m_vecInitFiveLineup[1].z;
-      this->m_vecFiveLineup[2].x = this->m_vecInitFiveLineup[5].x;
-      this->m_vecFiveLineup[2].y = this->m_vecInitFiveLineup[5].y;
-      z = this->m_vecInitFiveLineup[5].z;
+      *(float *)&this->_d398 = *(float *)&this->_d398 + 2.513272;
+      this->_d014 = this->_d080;
+      this->_d018 = this->_d084;
+      this->_d01C = this->_d088;
+      this->_d044 = this->_d08C;
+      this->_d048 = this->_d090;
+      this->_d04C = this->_d094;
+      this->_d02C = this->_d074;
+      this->_d030 = this->_d078;
+      this->_d034 = this->_d07C;
+      this->_d038 = this->_d068;
+      this->_d03C = this->_d06C;
+      this->_d040 = this->_d070;
+      this->_d020 = this->_d098;
+      this->_d024 = this->_d09C;
+      d070 = this->_d0A0;
       goto LABEL_13;
     case 3:
-      this->m_EnemyFiveLineupQuad.sv = this->m_EnemyFiveLineupQuad.sv + 5.0265441;
-      this->m_vecFiveLineup[1].x = this->m_vecInitFiveLineup[2].x;
-      this->m_vecFiveLineup[1].y = this->m_vecInitFiveLineup[2].y;
-      this->m_vecFiveLineup[1].z = this->m_vecInitFiveLineup[2].z;
-      this->m_vecFiveLineup[5].x = this->m_vecInitFiveLineup[1].x;
-      this->m_vecFiveLineup[5].y = this->m_vecInitFiveLineup[1].y;
-      this->m_vecFiveLineup[5].z = this->m_vecInitFiveLineup[1].z;
-      this->m_vecFiveLineup[3].x = this->m_vecInitFiveLineup[5].x;
-      this->m_vecFiveLineup[3].y = this->m_vecInitFiveLineup[5].y;
-      this->m_vecFiveLineup[3].z = this->m_vecInitFiveLineup[5].z;
-      this->m_vecFiveLineup[4].x = this->m_vecInitFiveLineup[3].x;
-      this->m_vecFiveLineup[4].y = this->m_vecInitFiveLineup[3].y;
-      this->m_vecFiveLineup[4].z = this->m_vecInitFiveLineup[3].z;
-      this->m_vecFiveLineup[2].x = this->m_vecInitFiveLineup[4].x;
-      this->m_vecFiveLineup[2].y = this->m_vecInitFiveLineup[4].y;
-      z = this->m_vecInitFiveLineup[4].z;
+      *(float *)&this->_d398 = *(float *)&this->_d398 + 5.0265441;
+      this->_d014 = this->_d074;
+      this->_d018 = this->_d078;
+      this->_d01C = this->_d07C;
+      this->_d044 = this->_d068;
+      this->_d048 = this->_d06C;
+      this->_d04C = this->_d070;
+      this->_d02C = this->_d098;
+      this->_d030 = this->_d09C;
+      this->_d034 = this->_d0A0;
+      this->_d038 = this->_d080;
+      this->_d03C = this->_d084;
+      this->_d040 = this->_d088;
+      this->_d020 = this->_d08C;
+      this->_d024 = this->_d090;
+      d070 = this->_d094;
       goto LABEL_13;
     case 4:
-      this->m_EnemyFiveLineupQuad.sv = this->m_EnemyFiveLineupQuad.sv + 3.769908;
-      this->m_vecFiveLineup[1].x = this->m_vecInitFiveLineup[4].x;
-      this->m_vecFiveLineup[1].y = this->m_vecInitFiveLineup[4].y;
-      this->m_vecFiveLineup[1].z = this->m_vecInitFiveLineup[4].z;
-      this->m_vecFiveLineup[5].x = this->m_vecInitFiveLineup[2].x;
-      this->m_vecFiveLineup[5].y = this->m_vecInitFiveLineup[2].y;
-      this->m_vecFiveLineup[5].z = this->m_vecInitFiveLineup[2].z;
-      this->m_vecFiveLineup[3].x = this->m_vecInitFiveLineup[1].x;
-      this->m_vecFiveLineup[3].y = this->m_vecInitFiveLineup[1].y;
-      this->m_vecFiveLineup[3].z = this->m_vecInitFiveLineup[1].z;
-      this->m_vecFiveLineup[4].x = this->m_vecInitFiveLineup[5].x;
-      this->m_vecFiveLineup[4].y = this->m_vecInitFiveLineup[5].y;
-      this->m_vecFiveLineup[4].z = this->m_vecInitFiveLineup[5].z;
-      this->m_vecFiveLineup[2].x = this->m_vecInitFiveLineup[3].x;
-      this->m_vecFiveLineup[2].y = this->m_vecInitFiveLineup[3].y;
-      z = this->m_vecInitFiveLineup[3].z;
+      *(float *)&this->_d398 = *(float *)&this->_d398 + 3.769908;
+      this->_d014 = this->_d08C;
+      this->_d018 = this->_d090;
+      this->_d01C = this->_d094;
+      this->_d044 = this->_d074;
+      this->_d048 = this->_d078;
+      this->_d04C = this->_d07C;
+      this->_d02C = this->_d068;
+      this->_d030 = this->_d06C;
+      this->_d034 = this->_d070;
+      this->_d038 = this->_d098;
+      this->_d03C = this->_d09C;
+      this->_d040 = this->_d0A0;
+      this->_d020 = this->_d080;
+      this->_d024 = this->_d084;
+      d070 = this->_d088;
       goto LABEL_13;
     case 5:
-      this->m_vecFiveLineup[1].x = this->m_vecInitFiveLineup[1].x;
-      this->m_vecFiveLineup[1].y = this->m_vecInitFiveLineup[1].y;
-      this->m_vecFiveLineup[1].z = this->m_vecInitFiveLineup[1].z;
-      this->m_vecFiveLineup[5].x = this->m_vecInitFiveLineup[5].x;
-      this->m_vecFiveLineup[5].y = this->m_vecInitFiveLineup[5].y;
-      this->m_vecFiveLineup[5].z = this->m_vecInitFiveLineup[5].z;
-      this->m_vecFiveLineup[3].x = this->m_vecInitFiveLineup[3].x;
-      this->m_vecFiveLineup[3].y = this->m_vecInitFiveLineup[3].y;
-      this->m_vecFiveLineup[3].z = this->m_vecInitFiveLineup[3].z;
-      this->m_vecFiveLineup[4].x = this->m_vecInitFiveLineup[4].x;
-      this->m_vecFiveLineup[4].y = this->m_vecInitFiveLineup[4].y;
-      this->m_vecFiveLineup[4].z = this->m_vecInitFiveLineup[4].z;
-      this->m_vecFiveLineup[2].x = this->m_vecInitFiveLineup[2].x;
-      this->m_vecFiveLineup[2].y = this->m_vecInitFiveLineup[2].y;
-      z = this->m_vecInitFiveLineup[2].z;
+      this->_d014 = this->_d068;
+      this->_d018 = this->_d06C;
+      this->_d01C = this->_d070;
+      this->_d044 = this->_d098;
+      this->_d048 = this->_d09C;
+      this->_d04C = this->_d0A0;
+      this->_d02C = this->_d080;
+      this->_d030 = this->_d084;
+      this->_d034 = this->_d088;
+      this->_d038 = this->_d08C;
+      this->_d03C = this->_d090;
+      this->_d040 = this->_d094;
+      this->_d020 = this->_d074;
+      this->_d024 = this->_d078;
+      d070 = this->_d07C;
 LABEL_13:
-      this->m_vecFiveLineup[2].z = z;
+      this->_d028 = d070;
       break;
     default:
       break;
   }
-  if ( strlen(m_pFightInfo->sSceneName) )
-    sub_511340((int)this, m_pFightInfo->sSceneName);
+  if ( strlen((const char *)(v3 + 32)) )
+    sub_511340((int)this, (const char *)(v3 + 32));
   else
     sub_511340((int)this, aZ27);
-  m_pCorpse = this->m_pCorpse;
+  pad_26C = (char *)this->_pad_26C;
   v8 = 11;
   do
   {
-    if ( *m_pCorpse )
+    if ( *(_DWORD *)pad_26C )
     {
-      (**(void (***)(gbGeomNode *, int))(*m_pCorpse)->_pad_0000)(*m_pCorpse, 1);
-      *m_pCorpse = 0;
+      (***(void (****)(_DWORD, int))pad_26C)(*(_DWORD *)pad_26C, 1);
+      *(_DWORD *)pad_26C = 0;
     }
-    ++m_pCorpse;
+    pad_26C += 4;
     --v8;
   }
   while ( v8 );
@@ -383,7 +383,7 @@ int CCBStageScene::Create()
   if ( v2 )
   {
     v2->gbGeomNode();
-    *(_DWORD *)v3->_pad_0000 = &off_56A66C;
+    *(_DWORD *)v3->_base = &off_56A66C;
     v4 = v3;
   }
   else
@@ -391,7 +391,7 @@ int CCBStageScene::Create()
     v4 = 0;
   }
   v8 = -1;
-  this->m_pPointer = v4;
+  this->_d268 = (int)v4;
   if ( !v4 )
   {
     qmemcpy(
@@ -409,7 +409,7 @@ void CCBStageScene::Destroy()
   CCBStageScene **v1; // esi
   int v2; // ebx
   gbGeomNode **v3; // edi
-  CCBRoleState *m_pCamControl; // ecx
+  CCBRoleState *v4; // ecx
   int v5; // eax
   int SkillNum; // ebp
   gbGeomNode *v7; // eax
@@ -428,13 +428,13 @@ void CCBStageScene::Destroy()
   {
     if ( *v3 )
     {
-      (**(void (***)(gbGeomNode *, int))(*v3)->_pad_0000)(*v3, 1);
+      (**(void (***)(gbGeomNode *, int))(*v3)->_base)(*v3, 1);
       *v3 = 0;
     }
-    m_pCamControl = (CCBRoleState *)(*v1)->m_pStage->m_pCamControl;
-    if ( *(&m_pCamControl->m_Role[0].bValid + v2) )
+    v4 = (CCBRoleState *)*(CCBRoleState **)(*(_DWORD *)(*v1)->_pad_000 + 16);
+    if ( *(&v4->m_Role[0].bValid + v2) )
     {
-      v5 = *(_DWORD *)(m_pCamControl->InitUI(a2) + 540);
+      v5 = *(_DWORD *)(v4->InitUI(a2) + 540);
       if ( v5 )
       {
         SkillNum = ((PAL_GDB *)&g_GDB)->GDB_GetSkillNum(v5);
@@ -446,7 +446,7 @@ void CCBStageScene::Destroy()
           if ( v7 )
           {
             v7->gbGeomNode();
-            *(_DWORD *)v8->_pad_0000 = &off_56A66C;
+            *(_DWORD *)v8->_base = &off_56A66C;
           }
           else
           {
@@ -467,7 +467,7 @@ void CCBStageScene::Destroy()
           {
             if ( *v3 )
             {
-              (**(void (***)(gbGeomNode *, int))(*v3)->_pad_0000)(*v3, 1);
+              (**(void (***)(gbGeomNode *, int))(*v3)->_base)(*v3, 1);
               *v3 = 0;
             }
           }
@@ -492,7 +492,7 @@ void CCBStageScene::Destroy()
 // 0x005107C0
 int CCBStageScene::Init()
 {
-  double z; // st7
+  double v1; // st7
   long double v3; // st6
   double v4; // st6
   double v5; // st5
@@ -516,8 +516,8 @@ int CCBStageScene::Init()
   double v23; // st6
   double v24; // st7
   double v25; // st6
-  double v26; // st7
-  float v27; // esi
+  double f3AC; // st7
+  float f3A8; // esi
   double v28; // st7
   double v29; // st6
   double v30; // st5
@@ -541,153 +541,152 @@ int CCBStageScene::Init()
   float v48; // [esp+4h] [ebp-18h]
   float v49; // [esp+8h] [ebp-14h]
   float v50; // [esp+8h] [ebp-14h]
-  float y; // [esp+Ch] [ebp-10h]
-  float v52; // [esp+10h] [ebp-Ch]
-  float ev; // [esp+10h] [ebp-Ch]
+  float f380; // [esp+Ch] [ebp-10h]
+  float f378; // [esp+10h] [ebp-Ch]
+  float f3A0; // [esp+10h] [ebp-Ch]
   float v54; // [esp+14h] [ebp-8h]
   float v55; // [esp+18h] [ebp-4h]
   float v56; // [esp+18h] [ebp-4h]
 
-  z = this->m_EnemyFiveLineupQuad.vec[3].z;
-  v52 = this->m_EnemyFiveLineupQuad.vec[1].z;
-  y = this->m_EnemyFiveLineupQuad.vec[2].y;
-  v47 = sin(this->m_EnemyFiveLineupQuad.sv);
-  v3 = cos(this->m_EnemyFiveLineupQuad.sv);
-  this->m_FiveLineupQuad.vec[3].y = 0.0;
+  v1 = *(float *)&this->_d390;
+  f378 = this->_f378;
+  f380 = this->_f380;
+  v47 = sin(*(float *)&this->_d398);
+  v3 = cos(*(float *)&this->_d398);
+  this->_d2F4 = 0;
   v49 = v3;
-  v54 = z * 0.5;
-  v4 = v52 - v54;
-  this->m_FiveLineupQuad.vec[3].x = v4;
-  v5 = y - v54;
-  this->m_FiveLineupQuad.vec[3].z = v5;
-  this->m_FiveLineupQuad.sv = 0.0;
-  v55 = v54 + v52;
-  this->m_FiveLineupQuad.su = v55;
-  this->m_FiveLineupQuad.eu = v5;
-  this->m_FiveLineupQuad.ev = v55;
-  this->m_FiveLineupQuad.color.ColorQuadFmt = 0;
-  v56 = v54 + y;
-  *(float *)&this->m_FiveLineupQuad.color.Blue = v56;
-  this->m_FiveLineupCenterQuad.vec[0].x = 0.0;
-  *(float *)&this->m_FiveLineupQuad.color.Color = v4;
-  this->m_FiveLineupCenterQuad.vec[0].y = v56;
-  this->m_rotFling.z = 0.0;
-  this->m_rotFling.y = -z;
-  *(float *)&this->m_bShowFling = -z;
-  this->m_pFiveLineupTexture = 0;
-  *(float *)&this->m_pFiveLineupEffect = z;
-  *(float *)&this->m_pFiveLineupTextureArray = -z;
-  this->m_pFiveLineupCenterTextureArray = 0;
-  *(float *)&this->m_pFiveLineupCenterTexture = z;
-  this->m_FiveLineupQuad.vec[0].x = z;
-  this->m_FiveLineupQuad.vec[0].z = 0.0;
-  this->m_FiveLineupQuad.vec[0].y = -z;
-  this->m_FiveLineupQuad.vec[1].x = z;
-  v6 = v49 * *(float *)&this->m_bShowFling - v47 * this->m_rotFling.y;
-  v7 = v47 * *(float *)&this->m_bShowFling;
-  v8 = v49 * this->m_rotFling.y;
-  this->m_rotFling.z = 0.0;
-  this->m_rotFling.y = v7 + v8;
-  *(float *)&this->m_bShowFling = v6;
-  v9 = v49 * *(float *)&this->m_pFiveLineupTextureArray - v47 * *(float *)&this->m_pFiveLineupEffect;
-  v10 = v47 * *(float *)&this->m_pFiveLineupTextureArray;
-  v11 = v49 * *(float *)&this->m_pFiveLineupEffect;
-  this->m_pFiveLineupTexture = 0;
-  *(float *)&this->m_pFiveLineupEffect = v10 + v11;
-  *(float *)&this->m_pFiveLineupTextureArray = v9;
-  v12 = v49 * this->m_FiveLineupQuad.vec[0].x - v47 * *(float *)&this->m_pFiveLineupCenterTexture;
-  v13 = v49 * *(float *)&this->m_pFiveLineupCenterTexture;
-  v14 = v47 * this->m_FiveLineupQuad.vec[0].x;
-  this->m_pFiveLineupCenterTextureArray = 0;
-  *(float *)&this->m_pFiveLineupCenterTexture = v13 + v14;
-  this->m_FiveLineupQuad.vec[0].x = v12;
-  v15 = v49 * this->m_FiveLineupQuad.vec[1].x - v47 * this->m_FiveLineupQuad.vec[0].y;
-  v16 = v47 * this->m_FiveLineupQuad.vec[1].x;
-  v17 = v49 * this->m_FiveLineupQuad.vec[0].y;
-  this->m_FiveLineupQuad.vec[0].z = 0.0;
-  this->m_FiveLineupQuad.vec[0].y = v16 + v17;
-  this->m_FiveLineupQuad.vec[1].x = v15;
-  v18 = y + *(float *)&this->m_bShowFling;
-  v19 = v52 + this->m_rotFling.y;
-  this->m_rotFling.z = 0.5;
-  this->m_rotFling.y = v19;
-  *(float *)&this->m_bShowFling = v18;
-  v20 = y + *(float *)&this->m_pFiveLineupTextureArray;
-  v21 = v52 + *(float *)&this->m_pFiveLineupEffect;
-  this->m_pFiveLineupTexture = (gbTexture *)1056964608;
-  *(float *)&this->m_pFiveLineupEffect = v21;
-  *(float *)&this->m_pFiveLineupTextureArray = v20;
-  v22 = y + this->m_FiveLineupQuad.vec[0].x;
-  v23 = v52 + *(float *)&this->m_pFiveLineupCenterTexture;
-  this->m_pFiveLineupCenterTextureArray = (gbTextureArray *)1056964608;
-  *(float *)&this->m_pFiveLineupCenterTexture = v23;
-  this->m_FiveLineupQuad.vec[0].x = v22;
-  v24 = y + this->m_FiveLineupQuad.vec[1].x;
-  v25 = v52 + this->m_FiveLineupQuad.vec[0].y;
-  this->m_FiveLineupQuad.vec[0].z = 0.5;
-  this->m_FiveLineupQuad.vec[0].y = v25;
-  this->m_FiveLineupQuad.vec[1].x = v24;
-  v26 = *(float *)&this->m_EnemyFiveLineupQuad.color.Color;
-  v48 = sin(this->m_vecFiveLineupPos.x);
-  v50 = cos(this->m_vecFiveLineupPos.x);
-  ev = this->m_EnemyFiveLineupQuad.ev;
-  v27 = *(float *)&this->m_EnemyFiveLineupQuad.color.Blue;
-  this->m_FiveLineupCenterQuad.vec[2].y = -v26;
-  this->m_FiveLineupCenterQuad.vec[3].x = -v26;
-  this->m_FiveLineupCenterQuad.vec[2].z = 0.0;
-  this->m_FiveLineupCenterQuad.vec[3].z = 0.0;
-  this->m_FiveLineupCenterQuad.vec[3].y = v26;
-  this->m_FiveLineupCenterQuad.su = -v26;
-  this->m_FiveLineupCenterQuad.eu = 0.0;
-  this->m_FiveLineupCenterQuad.sv = v26;
-  this->m_FiveLineupCenterQuad.ev = v26;
-  *(_DWORD *)&this->m_FiveLineupCenterQuad.color.Blue = 0;
-  *(float *)&this->m_FiveLineupCenterQuad.color.ColorQuadFmt = -v26;
-  *(float *)&this->m_FiveLineupCenterQuad.color.Color = v26;
-  v28 = v50 * this->m_FiveLineupCenterQuad.vec[3].x - v48 * this->m_FiveLineupCenterQuad.vec[2].y;
-  v29 = v50 * this->m_FiveLineupCenterQuad.vec[2].y;
-  v30 = v48 * this->m_FiveLineupCenterQuad.vec[3].x;
-  this->m_FiveLineupCenterQuad.vec[2].z = 0.0;
-  this->m_FiveLineupCenterQuad.vec[2].y = v29 + v30;
-  this->m_FiveLineupCenterQuad.vec[3].x = v28;
-  v31 = v50 * this->m_FiveLineupCenterQuad.su - v48 * this->m_FiveLineupCenterQuad.vec[3].y;
-  v32 = v48 * this->m_FiveLineupCenterQuad.su;
-  v33 = v50 * this->m_FiveLineupCenterQuad.vec[3].y;
-  this->m_FiveLineupCenterQuad.vec[3].z = 0.0;
-  this->m_FiveLineupCenterQuad.vec[3].y = v32 + v33;
-  this->m_FiveLineupCenterQuad.su = v31;
-  v34 = v50 * this->m_FiveLineupCenterQuad.ev - v48 * this->m_FiveLineupCenterQuad.sv;
-  v35 = v50 * this->m_FiveLineupCenterQuad.sv;
-  v36 = v48 * this->m_FiveLineupCenterQuad.ev;
-  this->m_FiveLineupCenterQuad.eu = 0.0;
-  this->m_FiveLineupCenterQuad.sv = v35 + v36;
-  this->m_FiveLineupCenterQuad.ev = v34;
-  v37 = v50 * *(float *)&this->m_FiveLineupCenterQuad.color.Color
-      - v48 * *(float *)&this->m_FiveLineupCenterQuad.color.ColorQuadFmt;
-  v38 = v48 * *(float *)&this->m_FiveLineupCenterQuad.color.Color;
-  v39 = v50 * *(float *)&this->m_FiveLineupCenterQuad.color.ColorQuadFmt;
-  *(_DWORD *)&this->m_FiveLineupCenterQuad.color.Blue = 0;
-  *(float *)&this->m_FiveLineupCenterQuad.color.ColorQuadFmt = v38 + v39;
-  *(float *)&this->m_FiveLineupCenterQuad.color.Color = v37;
-  v40 = v27 + this->m_FiveLineupCenterQuad.vec[3].x;
-  this->m_FiveLineupCenterQuad.vec[2].y = ev + this->m_FiveLineupCenterQuad.vec[2].y;
-  this->m_FiveLineupCenterQuad.vec[2].z = 0.5;
-  this->m_FiveLineupCenterQuad.vec[3].x = v40;
-  v41 = v27 + this->m_FiveLineupCenterQuad.su;
-  v42 = ev + this->m_FiveLineupCenterQuad.vec[3].y;
-  this->m_FiveLineupCenterQuad.vec[3].z = 0.5;
-  this->m_FiveLineupCenterQuad.vec[3].y = v42;
-  this->m_FiveLineupCenterQuad.su = v41;
-  v43 = v27 + this->m_FiveLineupCenterQuad.ev;
-  v44 = ev + this->m_FiveLineupCenterQuad.sv;
-  this->m_FiveLineupCenterQuad.eu = 0.5;
-  this->m_FiveLineupCenterQuad.sv = v44;
-  this->m_FiveLineupCenterQuad.ev = v43;
-  v45 = v27 + *(float *)&this->m_FiveLineupCenterQuad.color.Color;
-  v46 = ev + *(float *)&this->m_FiveLineupCenterQuad.color.ColorQuadFmt;
-  *(_DWORD *)&this->m_FiveLineupCenterQuad.color.Blue = 1056964608;
-  *(float *)&this->m_FiveLineupCenterQuad.color.ColorQuadFmt = v46;
-  *(float *)&this->m_FiveLineupCenterQuad.color.Color = v45;
+  v54 = v1 * 0.5;
+  v4 = f378 - v54;
+  this->_f2F0 = v4;
+  v5 = f380 - v54;
+  this->_f2F8 = v5;
+  this->_d300 = 0;
+  v55 = v54 + f378;
+  this->_f2FC = v55;
+  this->_f304 = v5;
+  this->_f308 = v55;
+  this->_d30C = 0;
+  v56 = v54 + f380;
+  this->_f310 = v56;
+  this->_d318 = 0;
+  this->_f314 = v4;
+  this->_f31C = v56;
+  this->_d2B0 = 0;
+  this->_f2AC = -v1;
+  this->_f2B4 = -v1;
+  this->_d2BC = 0;
+  this->_f2B8 = v1;
+  this->_f2C0 = -v1;
+  this->_d2C8 = 0;
+  this->_f2C4 = v1;
+  this->_f2CC = v1;
+  this->_d2D4 = 0;
+  this->_f2D0 = -v1;
+  this->_f2D8 = v1;
+  v6 = v49 * this->_f2B4 - v47 * this->_f2AC;
+  v7 = v47 * this->_f2B4;
+  v8 = v49 * this->_f2AC;
+  this->_d2B0 = 0;
+  this->_f2AC = v7 + v8;
+  this->_f2B4 = v6;
+  v9 = v49 * this->_f2C0 - v47 * this->_f2B8;
+  v10 = v47 * this->_f2C0;
+  v11 = v49 * this->_f2B8;
+  this->_d2BC = 0;
+  this->_f2B8 = v10 + v11;
+  this->_f2C0 = v9;
+  v12 = v49 * this->_f2CC - v47 * this->_f2C4;
+  v13 = v49 * this->_f2C4;
+  v14 = v47 * this->_f2CC;
+  this->_d2C8 = 0;
+  this->_f2C4 = v13 + v14;
+  this->_f2CC = v12;
+  v15 = v49 * this->_f2D8 - v47 * this->_f2D0;
+  v16 = v47 * this->_f2D8;
+  v17 = v49 * this->_f2D0;
+  this->_d2D4 = 0;
+  this->_f2D0 = v16 + v17;
+  this->_f2D8 = v15;
+  v18 = f380 + this->_f2B4;
+  v19 = f378 + this->_f2AC;
+  this->_d2B0 = 1056964608;
+  this->_f2AC = v19;
+  this->_f2B4 = v18;
+  v20 = f380 + this->_f2C0;
+  v21 = f378 + this->_f2B8;
+  this->_d2BC = 1056964608;
+  this->_f2B8 = v21;
+  this->_f2C0 = v20;
+  v22 = f380 + this->_f2CC;
+  v23 = f378 + this->_f2C4;
+  this->_d2C8 = 1056964608;
+  this->_f2C4 = v23;
+  this->_f2CC = v22;
+  v24 = f380 + this->_f2D8;
+  v25 = f378 + this->_f2D0;
+  this->_d2D4 = 1056964608;
+  this->_f2D0 = v25;
+  this->_f2D8 = v24;
+  f3AC = this->_f3AC;
+  v48 = sin(this->_f3B0);
+  v50 = cos(this->_f3B0);
+  f3A0 = this->_f3A0;
+  f3A8 = this->_f3A8;
+  this->_f334 = -f3AC;
+  this->_f33C = -f3AC;
+  this->_d338 = 0;
+  this->_d344 = 0;
+  this->_f340 = f3AC;
+  this->_f348 = -f3AC;
+  this->_d350 = 0;
+  this->_f34C = f3AC;
+  this->_f354 = f3AC;
+  this->_d35C = 0;
+  this->_f358 = -f3AC;
+  this->_f360 = f3AC;
+  v28 = v50 * this->_f33C - v48 * this->_f334;
+  v29 = v50 * this->_f334;
+  v30 = v48 * this->_f33C;
+  this->_d338 = 0;
+  this->_f334 = v29 + v30;
+  this->_f33C = v28;
+  v31 = v50 * this->_f348 - v48 * this->_f340;
+  v32 = v48 * this->_f348;
+  v33 = v50 * this->_f340;
+  this->_d344 = 0;
+  this->_f340 = v32 + v33;
+  this->_f348 = v31;
+  v34 = v50 * this->_f354 - v48 * this->_f34C;
+  v35 = v50 * this->_f34C;
+  v36 = v48 * this->_f354;
+  this->_d350 = 0;
+  this->_f34C = v35 + v36;
+  this->_f354 = v34;
+  v37 = v50 * this->_f360 - v48 * this->_f358;
+  v38 = v48 * this->_f360;
+  v39 = v50 * this->_f358;
+  this->_d35C = 0;
+  this->_f358 = v38 + v39;
+  this->_f360 = v37;
+  v40 = f3A8 + this->_f33C;
+  this->_f334 = f3A0 + this->_f334;
+  this->_d338 = 1056964608;
+  this->_f33C = v40;
+  v41 = f3A8 + this->_f348;
+  v42 = f3A0 + this->_f340;
+  this->_d344 = 1056964608;
+  this->_f340 = v42;
+  this->_f348 = v41;
+  v43 = f3A8 + this->_f354;
+  v44 = f3A0 + this->_f34C;
+  this->_d350 = 1056964608;
+  this->_f34C = v44;
+  this->_f354 = v43;
+  v45 = f3A8 + this->_f360;
+  v46 = f3A0 + this->_f358;
+  this->_d35C = 1056964608;
+  this->_f358 = v46;
+  this->_f360 = v45;
   return 0;
 }
 
@@ -695,12 +694,12 @@ int CCBStageScene::Init()
 int CCBStageScene::SetBattleFieldAttr()
 {
   int result; // eax
-  gbGeomNode *m_pPointer; // ecx
+  int d268; // ecx
 
   result = this->Init();
-  m_pPointer = (gbGeomNode *)this->m_pPointer;
-  if ( m_pPointer )
-    return (*(int (**)(gbGeomNode *))(*(_DWORD *)m_pPointer->_pad_0000 + 20))(m_pPointer);
+  d268 = this->_d268;
+  if ( d268 )
+    return (*(int (**)(int))(*(_DWORD *)d268 + 20))(d268);
   return result;
 }
 
@@ -708,55 +707,55 @@ int CCBStageScene::SetBattleFieldAttr()
 void CCBStageScene::GetBattleFieldSubdueAttr(gbMatrixStack *a2)
 {
   int v3; // ebp
-  gbGeomNode *m_pGeomNode; // ecx
-  gbVisNode *m_pLights; // ecx
-  gbGeomNode **m_pCorpse; // ebx
+  int d25C; // ecx
+  int d264; // ecx
+  char *pad_26C; // ebx
   long double v8; // st7
   float v9; // [esp+18h] [ebp-24h]
   float v10; // [esp+18h] [ebp-24h]
   float v11; // [esp+30h] [ebp-Ch]
-  float x; // [esp+34h] [ebp-8h]
+  float f37C; // [esp+34h] [ebp-8h]
   float v13; // [esp+38h] [ebp-4h]
   gbMatrixStack *a2a; // [esp+40h] [ebp+4h]
 
   v3 = 0;
-  m_pGeomNode = (gbGeomNode *)this->m_pGeomNode;
-  if ( m_pGeomNode && this->m_bLoaded )
+  d25C = this->_d25C;
+  if ( d25C && this->_pad_104[84] )
   {
-    (*(void (**)(gbGeomNode *, _DWORD))(*(_DWORD *)m_pGeomNode->_pad_0000 + 16))(m_pGeomNode, 0);
-    m_pLights = (gbVisNode *)this->m_pLights;
-    if ( m_pLights )
-      (*(void (**)(gbVisNode *, _DWORD))(*(_DWORD *)m_pLights->_pad_0000 + 16))(m_pLights, 0);
-    if ( LOBYTE(this->m_vecFiveLineupInitPos.y) && this->m_pPointer )
+    (*(void (**)(int, _DWORD))(*(_DWORD *)d25C + 16))(d25C, 0);
+    d264 = this->_d264;
+    if ( d264 )
+      (*(void (**)(int, _DWORD))(*(_DWORD *)d264 + 16))(d264, 0);
+    if ( this->_pad_3C0[0] && this->_d268 )
     {
       a2->Push();
-      v9 = sin(this->m_pStage->m_pCBSystem->m_fTimeFund * 10.0) * 5.0 + this->m_vecFiveLineupPos.z + 6.0;
-      a2->Translate(this->m_vecFiveLineupPos.y, v9, this->m_vecFiveLineupInitPos.x);
-      (*(void (**)(gbGeomNode *, _DWORD))(*(_DWORD *)this->m_pPointer + 16))(this->m_pPointer, 0);
+      v9 = sin(*(float *)(**(_DWORD **)this->_pad_000 + 80) * 10.0) * 5.0 + this->_f3B8 + 6.0;
+      a2->Translate(this->_f3B4, v9, this->_f3BC);
+      (*(void (**)(int, _DWORD))(*(_DWORD *)this->_d268 + 16))(this->_d268, 0);
       a2->Pop();
     }
     a2a = 0;
-    x = this->m_EnemyFiveLineupQuad.vec[2].x;
-    m_pCorpse = this->m_pCorpse;
+    f37C = this->_f37C;
+    pad_26C = (char *)this->_pad_26C;
     do
     {
       if ( v3 >= 5 )
       {
-        if ( *m_pCorpse )
+        if ( *(_DWORD *)pad_26C )
         {
           v8 = (double)(int)a2a * 0.017453292;
-          v11 = sin(v8) * 20.0 + this->m_EnemyFiveLineupQuad.vec[1].z;
-          v13 = cos(v8) * 20.0 + this->m_EnemyFiveLineupQuad.vec[2].y;
+          v11 = sin(v8) * 20.0 + this->_f378;
+          v13 = cos(v8) * 20.0 + this->_f380;
           a2->Push();
-          v10 = x + 2.0;
+          v10 = f37C + 2.0;
           a2->Translate(v11, v10, v13);
-          (*(void (**)(gbGeomNode *, _DWORD))(*(_DWORD *)(*m_pCorpse)->_pad_0000 + 16))(*m_pCorpse, 0);
+          (*(void (**)(_DWORD, _DWORD))(**(_DWORD **)pad_26C + 16))(*(_DWORD *)pad_26C, 0);
           a2->Pop();
           a2a = (gbMatrixStack *)((char *)a2a + 60);
         }
       }
       ++v3;
-      ++m_pCorpse;
+      pad_26C += 4;
     }
     while ( v3 < 11 );
   }
@@ -780,7 +779,7 @@ void CCBStageScene::GetBFASubdueFM()
   int v13; // [esp+44h] [ebp-8h]
   int v14; // [esp+48h] [ebp-4h]
 
-  if ( dword_BFDA60 && BYTE1(this->m_vecFiveLineupInitPos.y) )
+  if ( dword_BFDA60 && this->_pad_3C0[1] )
   {
     v1 = (gbRefObject *)((gbEffectMgr *)dword_BFDA60->pEffectMgr)->NewTrivalEffect(3);
     HIBYTE(v10.ColorQuadFmt) = 80;
@@ -841,7 +840,7 @@ char CCBStageScene::IsSameBattleFieldAttr()
   char result; // al
   int v3; // esi
   int v4; // edi
-  CCBRoleState *m_pRoleState; // ebp
+  CCBRoleState *v5; // ebp
   int inited; // eax
   unsigned __int8 *p_bValid; // [esp+Ch] [ebp-Ch]
   float v8; // [esp+10h] [ebp-8h] BYREF
@@ -852,22 +851,22 @@ char CCBStageScene::IsSameBattleFieldAttr()
   v8 = 0.0;
   if ( dword_BFDA60 )
   {
-    result = BYTE2(this->m_vecFiveLineupInitPos.y);
+    result = this->_pad_3C0[2];
     if ( result )
     {
       v3 = 0;
       v4 = 24;
-      m_pRoleState = (CCBRoleState *)this->m_pStage->m_pCBSystem->m_pRoleState;
-      p_bValid = (unsigned __int8 *)&m_pRoleState->m_Role[0].bValid;
+      v5 = (CCBRoleState *)*(CCBRoleState **)(**(_DWORD **)this->_pad_000 + 16);
+      p_bValid = (unsigned __int8 *)&v5->m_Role[0].bValid;
       do
       {
         result = (char)p_bValid;
         if ( *p_bValid )
         {
-          inited = m_pRoleState->InitUI(v3);
+          inited = v5->InitUI(v3);
           sprintf(byte_17ABF00, "%d(%s)", v3, (const char *)(inited + 8));
-          ((gbCamera *)&this->m_pStage->m_pCam->_data[4])->PointWorldToScr((struct gbVec3D *)&(*(CCBSystem **)((char *)&this->m_pStage->m_pCBSystem + v4))->m_Thread[73]._pad_0004[8], &v9, &v8);
-          result = sub_4DFB70((char *)this->m_pStage->m_TempStorageNGH, byte_17ABF00, v9, v8, 16.0);
+          ((gbCamera *)(*(_DWORD *)(*(_DWORD *)this->_pad_000 + 12) + 4))->PointWorldToScr((struct gbVec3D *)(*(_DWORD *)(v4 + *(_DWORD *)this->_pad_000) + 6584), &v9, &v8);
+          result = sub_4DFB70(*(char **)(*(_DWORD *)this->_pad_000 + 68), byte_17ABF00, v9, v8, 16.0);
         }
         v4 += 4;
         ++v3;
@@ -882,31 +881,31 @@ char CCBStageScene::IsSameBattleFieldAttr()
 // 0x00511030
 void CCBStageScene::LoadPointer(char a2)
 {
-  float y; // ecx
-  gbGeomNode *m_pFling; // edx
+  struct gbTextureArray *d2A0; // ecx
+  struct gbRenderEffect *p298; // edx
 
   ((gbVertPoolMgr *)dword_BFDA60->pVertPoolMgr)->GetDynVertBuf(0x15u);
-  y = this->m_vecFling.y;
-  m_pFling = (gbGeomNode *)this->m_pFling;
-  BYTE2(this->m_FiveLineupQuad.vec[2].z) = -1;
-  BYTE1(this->m_FiveLineupQuad.vec[2].z) = -1;
-  LOBYTE(this->m_FiveLineupQuad.vec[2].z) = -1;
-  HIBYTE(this->m_FiveLineupQuad.vec[2].z) = a2;
-  HIBYTE(this->m_FiveLineupCenterQuad.vec[2].x) = a2;
-  ((gbDynVertBuf *)&this->m_rotFling.y)->RenderGeomQuad(1, (struct gbRenderEffect *)m_pFling, (struct gbTextureArray *)LODWORD(y));
-  ((gbDynVertBuf *)&this->m_FiveLineupQuad.vec[3])->RenderGeomQuad(1, (struct gbRenderEffect *)this->m_pFling, (struct gbTextureArray *)LODWORD(this->m_rotFling.x));
+  d2A0 = (struct gbTextureArray *)this->_d2A0;
+  p298 = (struct gbRenderEffect *)this->_p298;
+  this->_pad_2EC[2] = -1;
+  this->_pad_2EC[1] = -1;
+  this->_pad_2EC[0] = -1;
+  this->_pad_2EC[3] = a2;
+  HIBYTE(this->_d330) = a2;
+  ((gbDynVertBuf *)&this->_f2AC)->RenderGeomQuad(1, p298, d2A0);
+  ((gbDynVertBuf *)&this->_f2F0)->RenderGeomQuad(1, (struct gbRenderEffect *)this->_p298, (struct gbTextureArray *)this->_d2A8);
 }
 
 // 0x00511110
 bool CCBStageScene::LoadFlingNode()
 {
-  CCBStage *m_pStage; // eax
+  int v2; // eax
   double v3; // st7
   double v4; // st6
   double v5; // st5
   float v7; // [esp+0h] [ebp-74h]
   float v8; // [esp+4h] [ebp-70h]
-  Actor *pPos; // [esp+8h] [ebp-6Ch] BYREF
+  float pPos; // [esp+8h] [ebp-6Ch] BYREF
   gbVec3D v10; // [esp+Ch] [ebp-68h] BYREF
   struct gbVec3D v11; // [esp+20h] [ebp-54h] BYREF
   struct gbVec3D v12; // [esp+2Ch] [ebp-48h] BYREF
@@ -923,18 +922,18 @@ bool CCBStageScene::LoadFlingNode()
   memset(&v11, 0, sizeof(v11));
   memset(&v14.Direction, 0, sizeof(v14.Direction));
   ((gbVec3D *)&v15)->gbVec3D(0.0, 0.0, 0.0);
-  m_pStage = (CCBStage *)this->m_pStage;
-  pPos = (Actor *)this->m_pStage->m_WPXVariance;
-  LODWORD(v10.x) = m_pStage->m_pDisplayChain;
-  v14 = *(gbRay *)((CameraCtrl *)m_pStage->m_pCam)->GetViewTarget(pTarget, (float *)&pPos);
+  v2 = *(_DWORD *)this->_pad_000;
+  pPos = *(float *)(*(_DWORD *)this->_pad_000 + 80);
+  v10.x = *(float *)(v2 + 84);
+  v14 = *(gbRay *)((CameraCtrl *)*(CameraCtrl **)(v2 + 12))->GetViewTarget(pTarget, &pPos);
   v3 = ((gbRay *)&v14)->IntersectPlane(&v12, &v11);
   v7 = v14.Origin.y * v3;
   v8 = v14.Origin.z * v3;
   v12.y = v7 + pTarget[4];
   v12.z = pTarget[5] + v8;
-  v4 = this->m_EnemyFiveLineupQuad.vec[1].z - v12.y;
-  v12.z = this->m_EnemyFiveLineupQuad.vec[2].x - v12.z;
-  v5 = this->m_EnemyFiveLineupQuad.vec[2].y - (v3 * v14.Direction.x + v14.Origin.x);
+  v4 = this->_f378 - v12.y;
+  v12.z = this->_f37C - v12.z;
+  v5 = this->_f380 - (v3 * v14.Direction.x + v14.Origin.x);
   v10.y = v12.z;
   pTarget[0] = v5;
   v10.x = v4;
@@ -945,20 +944,20 @@ bool CCBStageScene::LoadFlingNode()
 // 0x005112B0
 int CCBStageScene::SetFlingRotX()
 {
-  float eu; // edx
-  float *p_z; // eax
-  float *v3; // ecx
+  int d39C; // edx
+  char *pad_384; // eax
+  float *p_f378; // ecx
   int result; // eax
 
-  eu = this->m_EnemyFiveLineupQuad.eu;
-  this->m_EnemyFiveLineupQuad.vec[3].z = this->m_EnemyFiveLineupQuad.su;
-  p_z = (float *)&this->m_EnemyFiveLineupQuad.vec[2].z;
-  this->m_EnemyFiveLineupQuad.sv = eu;
-  v3 = (float *)&this->m_EnemyFiveLineupQuad.vec[1].z;
-  * v3 = (*)*p_z;
-  v3[1] = p_z[1];
-  result = *((_DWORD *)p_z + 2);
-  *((_DWORD *)v3 + 2) = result;
+  d39C = this->_d39C;
+  this->_d390 = this->_d394;
+  pad_384 = (char *)this->_pad_384;
+  this->_d398 = d39C;
+  p_f378 = (float *)&this->_f378;
+  * p_f378 = (*)*(float *)pad_384;
+  p_f378[1] = *((float *)pad_384 + 1);
+  result = *((_DWORD *)pad_384 + 2);
+  *((_DWORD *)p_f378 + 2) = result;
   return result;
 }
 
@@ -968,7 +967,7 @@ _DWORD * CCBStageScene::SetFlingRotY()
   _DWORD *result; // eax
   int v2; // ecx
 
-  result = (_DWORD *)&this->m_vecFiveLineup[0].y;
+  result = (_DWORD *)&this->_pad_000[12];
   v2 = 7;
   do
   {
@@ -1003,9 +1002,9 @@ char CCBStageScene::Update()
   for ( i = 24; i < 68; i += 4 )
   {
     sprintf(byte_17ABE00, "Role%d-x", v3);
-    ((CIniFile *)&v5)->WriteLine(byte_17ABE00, *(float *)&(*(CCBSystem **)((char *)&this->m_pStage->m_pCBSystem + i))->m_Thread[73]._pad_0004[8]);
+    ((CIniFile *)&v5)->WriteLine(byte_17ABE00, *(float *)(*(_DWORD *)(i + *(_DWORD *)this->_pad_000) + 6584));
     sprintf(byte_17ABE00, "Role%d-z", v3);
-    ((CIniFile *)&v5)->WriteLine(byte_17ABE00, *(float *)&(*(CCBSystem **)((char *)&this->m_pStage->m_pCBSystem + i))->m_Thread[73].nTaskIndex);
+    ((CIniFile *)&v5)->WriteLine(byte_17ABE00, *(float *)(*(_DWORD *)(i + *(_DWORD *)this->_pad_000) + 6592));
     ++v3;
   }
   v6 = -1;
@@ -1018,26 +1017,26 @@ char CCBStageScene::Render()
 {
   int v2; // ebp
   int v3; // edi
-  gbVec3D *v4; // eax
-  float v5; // edx
-  float v6; // ecx
-  float v7; // edx
-  float v8; // eax
-  float x; // eax
+  int *v4; // eax
+  int v5; // edx
+  int v6; // ecx
+  int v7; // edx
+  int v8; // eax
+  int d080; // eax
   double v10; // st7
-  float z; // edx
-  float v12; // ecx
-  float v13; // eax
-  float v14; // ecx
+  int d094; // edx
+  int d084; // ecx
+  int v13; // eax
+  int v14; // ecx
   CIniFile v16; // [esp+2Ch] [ebp-20h] BYREF
   float v17; // [esp+34h] [ebp-18h] BYREF
-  float y; // [esp+38h] [ebp-14h]
-  float v19; // [esp+3Ch] [ebp-10h] BYREF
+  int d090; // [esp+38h] [ebp-14h]
+  int v19; // [esp+3Ch] [ebp-10h] BYREF
   int v20; // [esp+48h] [ebp-4h]
 
   v17 = 0.0;
-  y = 0.0;
-  v19 = 0.0;
+  d090 = 0;
+  v19 = 0;
   v2 = 0;
   v3 = 0;
   ((CIniFile *)&v16)->CIniFile();
@@ -1049,48 +1048,48 @@ char CCBStageScene::Render()
     ((CIniFile *)&v16)->ReadSection(aRolepos);
     sprintf(byte_17ABD00, "Role%d-x", v2);
     ((CIniFile *)&v16)->ReadLine(byte_17ABD00, &v17);
-    y = 0.0;
+    d090 = 0;
     sprintf(byte_17ABD00, "Role%d-z", v2);
-    ((CIniFile *)&v16)->ReadLine(byte_17ABD00, &v19);
+    ((CIniFile *)&v16)->ReadLine(byte_17ABD00, (float *)&v19);
     if ( ++v3 >= 6 )
-      v4 = (gbVec3D *)&this->m_vecEnemyLineup[v3 + 2];
+      v4 = (int *)&this->_d0C8 + 3 * v3;
     else
-      v4 = (gbVec3D *)&this->m_vecInitFiveLineup[v3];
-    v5 = y;
-    v4->x = v17;
+      v4 = (int *)&this->_pad_05C[12 * v3];
+    v5 = d090;
+    *(float *)v4 = v17;
     v6 = v19;
-    v4->y = v5;
-    v4->z = v6;
+    v4[1] = v5;
+    v4[2] = v6;
     if ( v3 == 6 )
     {
       ((CIniFile *)&v16)->ReadStart();
       ((CIniFile *)&v16)->ReadSection(aFivelineup);
       ((CIniFile *)&v16)->ReadLine(asc_5D8B80, &v17);
-      ((CIniFile *)&v16)->ReadLine("z", &v19);
-      v7 = y;
+      ((CIniFile *)&v16)->ReadLine("z", (float *)&v19);
+      v7 = d090;
       v8 = v19;
-      this->m_vecInitFiveLineup[6].x = v17;
-      this->m_vecInitFiveLineup[6].y = v7;
-      this->m_vecInitFiveLineup[6].z = v8;
+      *(float *)&this->_d0A4 = v17;
+      this->_d0A8 = v7;
+      this->_d0AC = v8;
     }
     ++v2;
   }
   while ( v2 < 11 );
-  x = this->m_vecInitFiveLineup[3].x;
-  v10 = this->m_vecInitFiveLineup[4].x;
-  z = this->m_vecInitFiveLineup[4].z;
-  y = this->m_vecInitFiveLineup[4].y;
+  d080 = this->_d080;
+  v10 = *(float *)&this->_d08C;
+  d094 = this->_d094;
+  d090 = this->_d090;
   v17 = v10;
-  this->m_vecInitFiveLineup[4].x = x;
-  v12 = this->m_vecInitFiveLineup[3].y;
-  v13 = y;
-  v19 = z;
-  this->m_vecInitFiveLineup[4].y = v12;
+  this->_d08C = d080;
+  d084 = this->_d084;
+  v13 = d090;
+  v19 = d094;
+  this->_d090 = d084;
   v14 = v19;
-  this->m_vecInitFiveLineup[4].z = this->m_vecInitFiveLineup[3].z;
-  this->m_vecInitFiveLineup[3].x = v10;
-  this->m_vecInitFiveLineup[3].z = v14;
-  this->m_vecInitFiveLineup[3].y = v13;
+  this->_d094 = this->_d088;
+  *(float *)&this->_d080 = v10;
+  this->_d088 = v14;
+  this->_d084 = v13;
   v20 = -1;
   ((CIniFile *)&v16)->~CIniFile();
   return 1;
@@ -1099,9 +1098,9 @@ char CCBStageScene::Render()
 // 0x00511970
 char CCBStageScene::ShowAxis()
 {
-  float z; // eax
-  float x; // ecx
-  float y; // eax
+  float v2; // eax
+  float v3; // ecx
+  float v4; // eax
   CIniFile v6; // [esp+5Ch] [ebp-14h] BYREF
   int v7; // [esp+6Ch] [ebp-4h]
 
@@ -1109,25 +1108,25 @@ char CCBStageScene::ShowAxis()
   v7 = 0;
   ((CIniFile *)&v6)->OpenFileRead(aDatascriptComb_1);
   ((CIniFile *)&v6)->ReadSection(aFivelineup);
-  ((CIniFile *)&v6)->ReadLine(asc_5D8B80, &this->m_EnemyFiveLineupQuad.vec[2].z);
-  ((CIniFile *)&v6)->ReadLine("y", &this->m_EnemyFiveLineupQuad.vec[3].x);
-  ((CIniFile *)&v6)->ReadLine("z", &this->m_EnemyFiveLineupQuad.vec[3].y);
-  ((CIniFile *)&v6)->ReadLine(aRadius, &this->m_EnemyFiveLineupQuad.su);
-  this->m_EnemyFiveLineupQuad.vec[3].z = this->m_EnemyFiveLineupQuad.su;
-  ((CIniFile *)&v6)->ReadLine(aRoll, &this->m_EnemyFiveLineupQuad.eu);
-  z = this->m_EnemyFiveLineupQuad.vec[2].z;
-  this->m_EnemyFiveLineupQuad.sv = this->m_EnemyFiveLineupQuad.eu;
-  x = this->m_EnemyFiveLineupQuad.vec[3].x;
-  this->m_EnemyFiveLineupQuad.vec[1].z = z;
-  y = this->m_EnemyFiveLineupQuad.vec[3].y;
-  this->m_EnemyFiveLineupQuad.vec[2].x = x;
-  this->m_EnemyFiveLineupQuad.vec[2].y = y;
+  ((CIniFile *)&v6)->ReadLine(asc_5D8B80, (float *)this->_pad_384);
+  ((CIniFile *)&v6)->ReadLine("y", (float *)&this->_pad_384[4]);
+  ((CIniFile *)&v6)->ReadLine("z", (float *)&this->_pad_384[8]);
+  ((CIniFile *)&v6)->ReadLine(aRadius, (float *)&this->_d394);
+  this->_d390 = this->_d394;
+  ((CIniFile *)&v6)->ReadLine(aRoll, (float *)&this->_d39C);
+  v2 = *(float *)this->_pad_384;
+  this->_d398 = this->_d39C;
+  v3 = *(float *)&this->_pad_384[4];
+  this->_f378 = v2;
+  v4 = *(float *)&this->_pad_384[8];
+  this->_f37C = v3;
+  this->_f380 = v4;
   ((CIniFile *)&v6)->ReadSection(aEnemyfivelineu);
-  ((CIniFile *)&v6)->ReadLine(asc_5D8B80, &this->m_EnemyFiveLineupQuad.ev);
-  ((CIniFile *)&v6)->ReadLine("y", (float *)&this->m_EnemyFiveLineupQuad.color.ColorQuadFmt);
-  ((CIniFile *)&v6)->ReadLine("z", (float *)&this->m_EnemyFiveLineupQuad.color.Blue);
-  ((CIniFile *)&v6)->ReadLine(aRadius, (float *)&this->m_EnemyFiveLineupQuad.color.Color);
-  ((CIniFile *)&v6)->ReadLine(aRoll, &this->m_vecFiveLineupPos.x);
+  ((CIniFile *)&v6)->ReadLine(asc_5D8B80, &this->_f3A0);
+  ((CIniFile *)&v6)->ReadLine("y", (float *)this->_pad_3A4);
+  ((CIniFile *)&v6)->ReadLine("z", &this->_f3A8);
+  ((CIniFile *)&v6)->ReadLine(aRadius, &this->_f3AC);
+  ((CIniFile *)&v6)->ReadLine(aRoll, &this->_f3B0);
   v7 = -1;
   ((CIniFile *)&v6)->~CIniFile();
   return 1;
@@ -1145,11 +1144,11 @@ char CCBStageScene::ShowRoleIndex()
     v4 = 0;
     ((CIniFile *)&v3)->OpenFileWrite(aDatascriptComb_1);
     ((CIniFile *)&v3)->WriteSection(aFivelineup);
-    ((CIniFile *)&v3)->WriteLine(asc_5D8B80, this->m_EnemyFiveLineupQuad.vec[1].z);
-    ((CIniFile *)&v3)->WriteLine("y", this->m_EnemyFiveLineupQuad.vec[2].x);
-    ((CIniFile *)&v3)->WriteLine("z", this->m_EnemyFiveLineupQuad.vec[2].y);
-    ((CIniFile *)&v3)->WriteLine(aRadius, this->m_EnemyFiveLineupQuad.vec[3].z);
-    ((CIniFile *)&v3)->WriteLine(aRoll, this->m_EnemyFiveLineupQuad.sv);
+    ((CIniFile *)&v3)->WriteLine(asc_5D8B80, this->_f378);
+    ((CIniFile *)&v3)->WriteLine("y", this->_f37C);
+    ((CIniFile *)&v3)->WriteLine("z", this->_f380);
+    ((CIniFile *)&v3)->WriteLine(aRadius, *(float *)&this->_d390);
+    ((CIniFile *)&v3)->WriteLine(aRoll, *(float *)&this->_d398);
     v4 = -1;
     ((CIniFile *)&v3)->~CIniFile();
   }

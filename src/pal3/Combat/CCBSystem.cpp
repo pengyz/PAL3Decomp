@@ -230,10 +230,10 @@ int CCBSystem::ResetFlags()
 // 0x004DB4F0
 char CCBSystem::DestroySubsystems()
 {
-  void (***v3)(_DWORD, _DWORD); // ecx
+  UIStatic *m_pAttackSequenBack; // ecx
   int i; // esi
   void (***v5)(_DWORD, _DWORD); // ecx
-  void (***v6)(_DWORD, int); // ecx
+  UIStatic *v6; // ecx
   int v7; // ebx
   int j; // esi
   CCBSystem *m_pUtil; // eax
@@ -249,27 +249,27 @@ char CCBSystem::DestroySubsystems()
   sub_4DB9F0(this);
   if ( dword_17A990C == 1 )
   {
-    v3 = *(void (****)(_DWORD, _DWORD))&this->m_pUtil->m_pUI->_data[72];
-    (**v3)(v3, 0);
+    m_pAttackSequenBack = (UIStatic *)this->m_pUtil->m_pUI->m_pAttackSequenBack;
+    (**(void (***)(UIStatic *, _DWORD))m_pAttackSequenBack->_base)(m_pAttackSequenBack, 0);
     for ( i = 76; i < 120; i += 4 )
     {
-      v5 = *(void (****)(_DWORD, _DWORD))&this->m_pUtil->m_pUI->_data[i];
+      v5 = *(void (****)(_DWORD, _DWORD))&this->m_pUtil->m_pUI->_base[i];
       (**v5)(v5, 0);
     }
     return 1;
   }
   else
   {
-    v6 = *(void (****)(_DWORD, int))&this->m_pUtil->m_pUI->_data[72];
-    (**v6)(v6, 1);
+    v6 = (UIStatic *)this->m_pUtil->m_pUI->m_pAttackSequenBack;
+    (**(void (***)(UIStatic *, int))v6->_base)(v6, 1);
     v7 = 0;
     for ( j = 76; j < 120; j += 4 )
     {
       m_pUtil = (CCBSystem *)this->m_pUtil;
       if ( *(&this->m_pUtil->m_pRoleState->m_Role[0].bValid + v7) )
-        (***(void (****)(_DWORD, int))&m_pUtil->m_pUI->_data[j])(*(_DWORD *)&m_pUtil->m_pUI->_data[j], 1);
+        (***(void (****)(_DWORD, int))&m_pUtil->m_pUI->_base[j])(*(_DWORD *)&m_pUtil->m_pUI->_base[j], 1);
       else
-        (***(void (****)(_DWORD, _DWORD))&m_pUtil->m_pUI->_data[j])(*(_DWORD *)&m_pUtil->m_pUI->_data[j], 0);
+        (***(void (****)(_DWORD, _DWORD))&m_pUtil->m_pUI->_base[j])(*(_DWORD *)&m_pUtil->m_pUI->_base[j], 0);
       v7 += 892;
     }
     return 1;
@@ -863,7 +863,7 @@ char CCBSystem::ProcNormalAttack()
                   {
                     m_pCam = (CCBStageCam *)this->m_pStage->m_pCam;
                     if ( m_pCam )
-                      v21 = (gbCamera *)&m_pCam->_data[4];
+                      v21 = (gbCamera *)&m_pCam->_base[4];
                     else
                       v21 = 0;
                     v22 = (CEffMgr *)v19->Create(dword_BFDA60, v21, (gbSceneGraph *)this);
@@ -879,7 +879,7 @@ char CCBSystem::ProcNormalAttack()
                   {
                     v24 = (CCBStageCam *)this->m_pStage->m_pCam;
                     if ( v24 )
-                      v25 = (gbCamera *)&v24->_data[4];
+                      v25 = (gbCamera *)&v24->_base[4];
                     else
                       v25 = 0;
                     v26 = (CEffMgr *)v23->Create(dword_BFDA60, v25, (gbSceneGraph *)this);
@@ -988,10 +988,10 @@ char CCBSystem::ProcFling()
   m_pUI = (CCBUI *)this->m_pUI;
   if ( !m_pUI )
     return 0;
-  (*(void (**)(CCBUI *))(*(_DWORD *)m_pUI->_data + 12))(m_pUI);
+  (*(void (**)(CCBUI *))(*(_DWORD *)m_pUI->_base + 12))(m_pUI);
   v11 = (CCBUI *)this->m_pUI;
   if ( v11 )
-    (*(void (**)(CCBUI *, int))(*(_DWORD *)v11->_data + 20))(v11, 1);
+    (*(void (**)(CCBUI *, int))(*(_DWORD *)v11->_base + 20))(v11, 1);
   this->m_pUI = 0;
   m_pAI = (std::codecvt_base *)this->m_pAI;
   if ( !m_pAI )
@@ -1177,7 +1177,7 @@ char CCBSystem::ProcMagicWait(int a2, char a3)
 int CCBSystem::CombatUpdate(double dt)
 {
   double v3; // st6
-  float *m_pEffMgr; // ecx
+  float *pad_000; // ecx
   double v5; // st7
   double v6; // st7
   CCBEditor *m_pEditor; // ecx
@@ -1188,7 +1188,7 @@ int CCBSystem::CombatUpdate(double dt)
 
   this->m_AbsDeltaTime = dt;
   v3 = dt + this->m_dAbsTimeFund;
-  m_pEffMgr = (float *)this->m_pEffMgr;
+  pad_000 = (float *)this->m_pEffMgr->_pad_000;
   this->m_dAbsTimeFund = v3;
   this->m_fAbsTimeFund = v3;
   v5 = dt * this->m_fTimeScale;
@@ -1197,8 +1197,8 @@ int CCBSystem::CombatUpdate(double dt)
   dta = v6;
   this->m_dTimeFund = v6;
   this->m_fTimeFund = v6;
-  SceneMgrUpdate(m_pEffMgr, dta);
-  SceneMgrUpdate((float *)this->m_pATSEffMgr, this->m_fAbsTimeFund);
+  SceneMgrUpdate(pad_000, dta);
+  SceneMgrUpdate((float *)this->m_pATSEffMgr->_pad_000, this->m_fAbsTimeFund);
   this->ProcMagic();
   this->IsFriendDoSkill();
   ((CCBAttackSequen *)this->m_pAttackSequen)->Update();
@@ -1274,13 +1274,13 @@ char CCBSystem::ProcMagic()
       {
         ((CCBStage *)this->m_pStage)->DoTask(-1);
         if ( ((CCBStageScene *)this->m_pStage->m_pScene)->LoadFlingNode() )
-          LOBYTE(this->m_pStage->m_pScene->m_vecFiveLineupInitPos.z) = 1;
+          this->m_pStage->m_pScene->_pad_3C0[4] = 1;
       }
     }
     if ( (g_Input.KeyInfo[15].Data & 0xF) != 1 && (g_Input.KeyInfo[16].Data & 0xF) != 1 )
     {
       ((CCBStage *)this->m_pStage)->DoTask(-1);
-      LOBYTE(this->m_pStage->m_pScene->m_vecFiveLineupInitPos.z) = 0;
+      this->m_pStage->m_pScene->_pad_3C0[4] = 0;
     }
   }
   LOBYTE(inited) = 1;
@@ -1455,7 +1455,7 @@ void CCBSystem::ProcAI(float a2)
   CEffMgr *m_pATSEffMgr; // ecx
   int v6; // ecx
   int i; // eax
-  gbGeomNode *m_pPointer; // ecx
+  gbVisNode *d268; // ecx
 
   m_pES = (CEffectSystem *)this->m_pES;
   this->m_fTimeScale = a2;
@@ -1473,9 +1473,9 @@ void CCBSystem::ProcAI(float a2)
       *(float *)&(*(CCBSystem **)((char *)&this->m_pStage->m_pCBSystem + i))->m_Thread[1].nTemp = a2;
     v6 += 892;
   }
-  m_pPointer = (gbGeomNode *)this->m_pStage->m_pScene->m_pPointer;
-  if ( m_pPointer )
-    ((gbVisNode *)m_pPointer)->SetTimeScale(a2);
+  d268 = (gbVisNode *)this->m_pStage->m_pScene->_d268;
+  if ( d268 )
+    d268->SetTimeScale(a2);
   if ( this->m_bEditor )
     sub_4E05B0(a2);
 }
@@ -1595,7 +1595,7 @@ int CCBSystem::CheckBattleEnd()
   if ( (unsigned __int8)((CCBRoleState *)this->m_pRoleState)->GetForce(0) || *(_DWORD *)&this->m_eState[2] != 2 )
   {
     m_pControl = (CCBUI *)this->m_pControl;
-    if ( m_pControl->_data[36] )
+    if ( m_pControl->_base[36] )
       m_pControl->GetState();
     return 0;
   }

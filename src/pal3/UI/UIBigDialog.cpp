@@ -81,7 +81,7 @@ int UIBigDialog::Create(int id, void *pRect, int parent, char *tex)
   ((UIScene *)((char *)this + 272))->LoadResource(aUiScenePage);
   ((MvcViewport *)(_DWORD *)this + 68)->SetController(0x40000000);
   sub_4517A0(&a2, 1);
-  ((UIWnd *)((char *)this + 272))->GetRect(&a2);
+  ((UIWnd *)(UIWnd *)this + 4)->GetRect(&a2);
   v12 = (v11 - 134) / 2;
   a2 = v12;
   v20 = v12 + 134;

@@ -22,23 +22,23 @@ char PAL_GDB::LoadLanguage(char *path)
   PalScript *v3; // esi
   char *v4; // edi
 
-  v3 = (PalScript *)&this->m_ItemData[508].desc[360];
-  ((PalScript *)&this->m_ItemData[508].desc[360])->LoadFromFile(path);
+  v3 = (PalScript *)((char *)this + 805416);
+  ((PalScript *)((char *)this + 805416))->LoadFromFile(path);
   v3->SetDirectory(aSec1);
   if ( v3->HasNext() )
   {
     v4 = byte_DC333C;
     do
     {
-      if ( !_strcmpi(off_58B448, (const char *)v3) )
+      if ( !_strcmpi(off_58B448, v3->_pad_000) )
         break;
       v3->LoadNext();
-      strncpy(v4, (const char *)v3, 0x100u);
+      strncpy(v4, v3->_pad_000, 0x100u);
       v4 += 256;
     }
     while ( v3->HasNext() );
   }
-  this->m_ItemData[508].desc[356] = 1;
+  *((_BYTE *)this + 805412) = 1;
   return 1;
 }
 
@@ -66,14 +66,14 @@ PAL_GDB::PAL_GDB()
   }
   g_pVFileSys->Seek(v2, 0, 1);
   g_pVFileSys->Read(this, 0xA0u, v3);
-  g_pVFileSys->Seek(v3, this->m_head.RolePos, 1);
-  g_pVFileSys->Read(this->m_RoleData, 852 * this->m_head.RoleNum, v3);
-  g_pVFileSys->Seek(v3, this->m_head.SkillPos, 1);
-  g_pVFileSys->Read(this->m_SkillData, 760 * this->m_head.SkillNum, v3);
-  g_pVFileSys->Seek(v3, this->m_head.ItemPos, 1);
-  g_pVFileSys->Read(this->m_ItemData, 800 * this->m_head.ItemNum, v3);
-  g_pVFileSys->Seek(v3, this->m_head.ComboPos, 1);
-  g_pVFileSys->Read(&this->m_ItemData[500], 632 * this->m_head.ComboNum, v3);
+  g_pVFileSys->Seek(v3, this->_d080, 1);
+  g_pVFileSys->Read(this->_tail, 852 * this->_d084, v3);
+  g_pVFileSys->Seek(v3, this->_d088, 1);
+  g_pVFileSys->Read((char *)this + 170560, 760 * this->_d08C, v3);
+  g_pVFileSys->Seek(v3, this->_d090, 1);
+  g_pVFileSys->Read((char *)this + 398560, 800 * this->_d094, v3);
+  g_pVFileSys->Seek(v3, this->_d098, 1);
+  g_pVFileSys->Read((char *)this + 798560, 632 * this->_d09C, v3);
   g_pVFileSys->CloseFile(v3);
   v8 = -1;
   ((OpenNULLFile *)&v5)->OpenNULLFile();
@@ -83,31 +83,31 @@ PAL_GDB::PAL_GDB()
 // 0x00478FD0
 PAL_GDB::~PAL_GDB()
 {
-  int RoleNum; // esi
+  int d084; // esi
   int v3; // edx
 
   if ( !a2 )
   0;
-  RoleNum = this->m_head.RoleNum;
-  *(_DWORD *)&this->m_ItemData[507].fightstate[10] = 0;
-  if ( RoleNum <= 0 )
+  d084 = this->_d084;
+  *((_DWORD *)this + 201220) = 0;
+  if ( d084 <= 0 )
   0;
   while ( 1 )
   {
-    v3 = *(_DWORD *)&this->m_ItemData[507].fightstate[10];
-    if ( a2 == this->m_RoleData[v3].id )
+    v3 = *((_DWORD *)this + 201220);
+    if ( a2 == *(_DWORD *)&this->_tail[852 * v3] )
       break;
-    *(_DWORD *)&this->m_ItemData[507].fightstate[10] = v3 + 1;
-    if ( v3 + 1 >= RoleNum )
+    *((_DWORD *)this + 201220) = v3 + 1;
+    if ( v3 + 1 >= d084 )
   0;
   }
-  (int)&this->m_RoleData[*(_DWORD *)&this->m_ItemData[507].fightstate[10]];
+  (int)&this->_tail[852 * *((_DWORD *)this + 201220)];
 }
 
 // 0x00479040
 int PAL_GDB::GDB_LoadFile()
 {
-  return this->m_head.RoleNum;
+  return this->_d084;
 }
 
 // 0x00479050
@@ -116,91 +116,91 @@ int PAL_GDB::GDB_GetRole(unsigned int a2)
   if ( a2 > 0xC8 )
     return 0;
   else
-    return this->m_RoleData[a2].id;
+    return *(_DWORD *)&this->_tail[852 * a2];
 }
 
 // 0x00479080
 int PAL_GDB::GDB_GetRoleNum(int a2)
 {
-  int SkillNum; // edx
+  int d08C; // edx
   int v3; // eax
   int v4; // eax
 
   if ( !a2 )
     return 0;
-  SkillNum = this->m_head.SkillNum;
-  *(_DWORD *)&this->m_ItemData[507].fightstate[10] = 0;
-  if ( SkillNum <= 0 )
+  d08C = this->_d08C;
+  *((_DWORD *)this + 201220) = 0;
+  if ( d08C <= 0 )
     return 0;
   while ( 1 )
   {
-    v3 = *(_DWORD *)&this->m_ItemData[507].fightstate[10];
-    if ( a2 == this->m_SkillData[v3].id )
+    v3 = *((_DWORD *)this + 201220);
+    if ( a2 == *((_DWORD *)this + 190 * v3 + 42640) )
       break;
     v4 = v3 + 1;
-    *(_DWORD *)&this->m_ItemData[507].fightstate[10] = v4;
-    if ( v4 >= SkillNum )
+    *((_DWORD *)this + 201220) = v4;
+    if ( v4 >= d08C )
       return 0;
   }
-  return (int)&this->m_SkillData[*(_DWORD *)&this->m_ItemData[507].fightstate[10]];
+  return (int)this + 760 * *((_DWORD *)this + 201220) + 170560;
 }
 
 // 0x00479130
 int PAL_GDB::GDB_GetSkillNum(int a2)
 {
-  int ItemNum; // esi
+  int d094; // esi
   int v3; // eax
   int v4; // eax
 
   if ( !a2 )
     return 0;
-  ItemNum = this->m_head.ItemNum;
-  *(_DWORD *)&this->m_ItemData[507].fightstate[10] = 0;
-  if ( ItemNum <= 0 )
+  d094 = this->_d094;
+  *((_DWORD *)this + 201220) = 0;
+  if ( d094 <= 0 )
     return 0;
   while ( 1 )
   {
-    v3 = *(_DWORD *)&this->m_ItemData[507].fightstate[10];
-    if ( a2 == this->m_ItemData[v3].id )
+    v3 = *((_DWORD *)this + 201220);
+    if ( a2 == *((_DWORD *)this + 200 * v3 + 99640) )
       break;
     v4 = v3 + 1;
-    *(_DWORD *)&this->m_ItemData[507].fightstate[10] = v4;
-    if ( v4 >= ItemNum )
+    *((_DWORD *)this + 201220) = v4;
+    if ( v4 >= d094 )
       return 0;
   }
-  return (int)&this->m_ItemData[*(_DWORD *)&this->m_ItemData[507].fightstate[10]];
+  return (int)this + 800 * *((_DWORD *)this + 201220) + 398560;
 }
 
 // 0x004791A0
 int PAL_GDB::GDB_GetSkillID()
 {
-  return this->m_head.ItemNum;
+  return this->_d094;
 }
 
 // 0x004791E0
 int PAL_GDB::GDB_GetItemNum(int a2)
 {
-  int ComboNum; // edx
+  int d09C; // edx
   int v3; // eax
   int v4; // eax
 
   if ( !a2 )
     return 0;
-  ComboNum = this->m_head.ComboNum;
-  *(_DWORD *)&this->m_ItemData[507].fightstate[10] = 0;
-  if ( ComboNum <= 0 )
+  d09C = this->_d09C;
+  *((_DWORD *)this + 201220) = 0;
+  if ( d09C <= 0 )
     return 0;
   while ( 1 )
   {
-    v3 = *(_DWORD *)&this->m_ItemData[507].fightstate[10];
-    if ( a2 == *(_DWORD *)&this->m_ItemData[500].name[632 * v3 + 28] )
+    v3 = *((_DWORD *)this + 201220);
+    if ( a2 == *((_DWORD *)this + 158 * v3 + 199648) )
       break;
     v4 = v3 + 1;
-    *(_DWORD *)&this->m_ItemData[507].fightstate[10] = v4;
-    if ( v4 >= ComboNum )
+    *((_DWORD *)this + 201220) = v4;
+    if ( v4 >= d09C )
       return 0;
   }
-  return (int)&this->m_ItemData[500] + 632 * *(_DWORD *)&this->m_ItemData[507].fightstate[10];
+  return (int)this + 632 * *((_DWORD *)this + 201220) + 798560;
 }
 
 // 0x004792C0
