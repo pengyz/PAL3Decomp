@@ -43,7 +43,7 @@ public:
     int _tail; // +0xD360
     // total size: 0xD364 (54116)
 
-    void * Create(int gfxMgr, int cam, int a4); // 0x004CDA10
+    void * Create(gbGfxManager *gfxMgr, gbCamera *cam, gbSceneGraph *pRoot); // 0x004CDA10
     char RenderAll(); // 0x004CDBF0
     char RenderUpdate(); // 0x004CDC20
 };

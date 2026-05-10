@@ -23,12 +23,12 @@ extern int unk_FFFFFF;
 char CEffQuad::Create(int a2)
 {
   int v3; // ebp
-  _DWORD *v4; // eax
+  gbGeomQuad *v4; // eax
   int v5; // ebp
   int v6; // ebx
   int v7; // ebp
-  _DWORD *v8; // eax
-  int v9; // ecx
+  int *v8; // eax
+  tagQuad *m_pQuad; // ecx
   int i; // eax
   _DWORD *v11; // eax
   int v12; // ebx
@@ -39,20 +39,20 @@ char CEffQuad::Create(int a2)
   int v17; // ecx
   int v19; // edi
   size_t v20; // [esp-4h] [ebp-824h]
-  _DWORD *v21; // [esp+10h] [ebp-810h]
+  gbGeomQuad *v21; // [esp+10h] [ebp-810h]
   char pExceptionObject[1024]; // [esp+14h] [ebp-80Ch] BYREF
   char ArgList[1024]; // [esp+414h] [ebp-40Ch] BYREF
   int v24; // [esp+81Ch] [ebp-4h]
 
-  *((_BYTE *)this + 50) = 1;
-  *((_DWORD *)this + 53) = *(CEffQuad *)(a2 + 215);
-  *((_DWORD *)this + 52) = *(CEffQuad *)(a2 + 213);
-  *((_DWORD *)this + 54) = *(CEffQuad *)(a2 + 176);
-  *((_DWORD *)this + 14) = &unk_FFFFFF;
-  sub_4D1FD0((char *)this, *(_DWORD *)(a2 + 168), *(_DWORD *)(a2 + 172));
-  *((_DWORD *)this + 39) = operator new(80 * *(_DWORD *)(a2 + 208));
+  this->m_bAniFrame = 1;
+  this->m_bNoZTest = *(_BYTE *)(a2 + 215);
+  this->m_bAdditiveBlend = *(_BYTE *)(a2 + 213);
+  this->m_byMaxFrame = *(_BYTE *)(a2 + 176);
+  this->m_nRequireLoops = (int)&unk_FFFFFF;
+  sub_4D1FD0(this->_pad_0000, *(_DWORD *)(a2 + 168), *(_DWORD *)(a2 + 172));
+  this->m_pQuad = (tagQuad *)operator new(80 * *(_DWORD *)(a2 + 208));
   v3 = *(_DWORD *)(a2 + 208);
-  v4 = (_DWORD *)operator new(68 * v3);
+  v4 = (gbGeomQuad *)operator new(68 * v3);
   v21 = v4;
   v24 = 0;
   if ( v4 )
@@ -76,13 +76,13 @@ char CEffQuad::Create(int a2)
   {
     v4 = 0;
   }
-  *((_DWORD *)this + 40) = v4;
+  this->m_pGeomQuad = v4;
   v20 = 4 * *(_DWORD *)(a2 + 208);
   v24 = -1;
-  v8 = (_DWORD *)operator new(v20);
-  v9 = *((_DWORD *)this + 39);
-  *((_DWORD *)this + 41) = v8;
-  if ( !v9 || !*((_DWORD *)this + 40) || !v8 )
+  v8 = (int *)operator new(v20);
+  m_pQuad = (tagQuad *)this->m_pQuad;
+  this->m_pnG2Q = v8;
+  if ( !m_pQuad || !this->m_pGeomQuad || !v8 )
   {
     qmemcpy(
       pExceptionObject,
@@ -90,49 +90,49 @@ char CEffQuad::Create(int a2)
       sizeof(pExceptionObject));
     _CxxThrowException(pExceptionObject, (_ThrowInfo *)&_TI1_AV_Exception__);
   }
-  *((_DWORD *)this + 17) = *(_DWORD *)(a2 + 208);
+  this->m_nMaxQuad = *(_DWORD *)(a2 + 208);
   sub_4D1EF0(this);
-  for ( i = 0; i < *((_DWORD *)this + 17); ++i )
-    *(_DWORD *)(*((_DWORD *)this + 41) + 4 * i) = i;
+  for ( i = 0; i < this->m_nMaxQuad; ++i )
+    this->m_pnG2Q[i] = i;
   this->ToNextFrame(a2 + 40);
   v11 = (_DWORD *)operator new(0x4C0u);
-  *((_DWORD *)this + 6) = v11;
+  *(_DWORD *)&this->_pad_0000[24] = v11;
   if ( v11 )
   {
     v12 = 0;
     v13 = 0;
     while ( 1 )
     {
-      *(_DWORD *)(v13 + *((_DWORD *)this + 6)) = operator new(0x2D0u);
-      if ( !*(_DWORD *)(v13 + *((_DWORD *)this + 6)) )
+      *(_DWORD *)(v13 + *(_DWORD *)&this->_pad_0000[24]) = operator new(0x2D0u);
+      if ( !*(_DWORD *)(v13 + *(_DWORD *)&this->_pad_0000[24]) )
         break;
       v13 += 152;
       ++v12;
       if ( v13 >= 1216 )
       {
         v14 = 0;
-        *((_DWORD *)this + 10) = 8;
-        *((_DWORD *)this + 11) = 10;
+        *(_DWORD *)&this->_pad_0000[40] = 8;
+        *(_DWORD *)&this->_pad_0000[44] = 10;
         v15 = 0;
         do
         {
-          *(_BYTE *)(v15 + *((_DWORD *)this + 6) + 148) = 0;
+          *(_BYTE *)(v15 + *(_DWORD *)&this->_pad_0000[24] + 148) = 0;
           v16 = 0;
-          if ( *((int *)this + 11) > 0 )
+          if ( *(int *)&this->_pad_0000[44] > 0 )
           {
             v17 = 0;
             do
             {
               ++v16;
               v17 += 72;
-              *(_BYTE *)(*(_DWORD *)(v15 + *((_DWORD *)this + 6)) + v17 - 8) = 0;
+              *(_BYTE *)(*(_DWORD *)(v15 + *(_DWORD *)&this->_pad_0000[24]) + v17 - 8) = 0;
             }
-            while ( v16 < *((_DWORD *)this + 11) );
+            while ( v16 < *(_DWORD *)&this->_pad_0000[44] );
           }
           ++v14;
           v15 += 152;
         }
-        while ( v14 < *((_DWORD *)this + 10) );
+        while ( v14 < *(_DWORD *)&this->_pad_0000[40] );
         return 1;
       }
     }
@@ -141,13 +141,13 @@ char CEffQuad::Create(int a2)
       v19 = 152 * (v12 - 1);
       do
       {
-        operator delete(*(void **)(v19 + *((_DWORD *)this + 6)));
+        operator delete(*(void **)(v19 + *(_DWORD *)&this->_pad_0000[24]));
         v19 -= 152;
         --v12;
       }
       while ( v12 );
     }
-    operator delete(*((void **)this + 6));
+    operator delete(*(void **)&this->_pad_0000[24]);
   }
   return 1;
 }
@@ -155,86 +155,86 @@ char CEffQuad::Create(int a2)
 // 0x004D1BE0
 char CEffQuad::DestroyOneQuad(const void *a2)
 {
-  int v3; // ecx
+  int m_nMaxQuad; // ecx
   int v4; // ebp
-  int v5; // esi
-  _BYTE *i; // eax
+  tagQuad *m_pQuad; // esi
+  __int32 *i; // eax
   int v8; // eax
-  int v9; // ecx
+  int m_nQuadNum; // ecx
 
-  v3 = *((_DWORD *)this + 17);
-  if ( *((_DWORD *)this + 16) > v3 )
+  m_nMaxQuad = this->m_nMaxQuad;
+  if ( this->m_nGeomQuadNum > m_nMaxQuad )
     return 0;
   v4 = 0;
-  if ( v3 <= 0 )
+  if ( m_nMaxQuad <= 0 )
     return 0;
-  v5 = *((_DWORD *)this + 39);
-  for ( i = (_BYTE *)(v5 + 4); *i; i += 80 )
+  m_pQuad = (tagQuad *)this->m_pQuad;
+  for ( i = &m_pQuad->bValid; *(_BYTE *)i; i += 20 )
   {
-    if ( ++v4 >= v3 )
+    if ( ++v4 >= m_nMaxQuad )
       return 0;
   }
   v8 = 80 * v4;
-  qmemcpy((void *)(v5 + 80 * v4), a2, 0x50u);
-  *(_BYTE *)(v8 + *((_DWORD *)this + 39) + 4) = 1;
-  *(_DWORD *)(v8 + *((_DWORD *)this + 39) + 12) = 0;
-  *(_BYTE *)(v8 + *((_DWORD *)this + 39) + 6) = 0;
-  *(_BYTE *)(v8 + *((_DWORD *)this + 39) + 7) = 0;
-  v9 = *((_DWORD *)this + 15);
-  if ( v4 > v9 - 1 )
-    *((_DWORD *)this + 15) = v9 + 1;
-  *(_DWORD *)(v8 + *((_DWORD *)this + 39)) = *((_DWORD *)this + 16);
-  *(_DWORD *)(*((_DWORD *)this + 41) + 4 * (*((_DWORD *)this + 16))++) = v4;
+  qmemcpy((char *)m_pQuad + 80 * v4, a2, 0x50u);
+  *((_BYTE *)&this->m_pQuad->bValid + v8) = 1;
+  *(__int32 *)((char *)&this->m_pQuad->byFrame + v8) = 0;
+  *((_BYTE *)&this->m_pQuad->bValid + v8 + 2) = 0;
+  *((_BYTE *)&this->m_pQuad->bValid + v8 + 3) = 0;
+  m_nQuadNum = this->m_nQuadNum;
+  if ( v4 > m_nQuadNum - 1 )
+    this->m_nQuadNum = m_nQuadNum + 1;
+  *(int *)((char *)&this->m_pQuad->nGeomQuad + v8) = this->m_nGeomQuadNum;
+  this->m_pnG2Q[this->m_nGeomQuadNum++] = v4;
   this->SetQuad(v4);
-  *((_DWORD *)this + 18) = v4;
+  this->m_nLastCreatedQuad = v4;
   return 1;
 }
 
 // 0x004D1CA0
 int CEffQuad::SetQuad(int a2)
 {
-  int v2; // edx
+  char *v2; // edx
   int result; // eax
   double v4; // st7
 
-  v2 = 80 * a2 + *((_DWORD *)this + 39);
+  v2 = (char *)this->m_pQuad + 80 * a2;
   result = 68 * *(_DWORD *)v2;
-  *(_DWORD *)(result + *((_DWORD *)this + 40) + 64) = *(_DWORD *)(v2 + 76);
-  if ( *((_BYTE *)this + 51) )
+  *(int *)((char *)&this->m_pGeomQuad->color.ColorQuadFmt + result) = *((_DWORD *)v2 + 19);
+  if ( this->m_bBillBoard )
   {
-    *(float *)(result + *((_DWORD *)this + 40)) = *(float *)(v2 + 16) - *(float *)(v2 + 28);
-    *(float *)(result + *((_DWORD *)this + 40) + 12) = *(float *)(v2 + 28) + *(float *)(v2 + 16);
-    *(float *)(result + *((_DWORD *)this + 40) + 24) = *(float *)(v2 + 28) + *(float *)(v2 + 16);
-    *(float *)(result + *((_DWORD *)this + 40) + 36) = *(float *)(v2 + 16) - *(float *)(v2 + 28);
-    *(_DWORD *)(result + *((_DWORD *)this + 40) + 4) = *(_DWORD *)(v2 + 20);
-    *(_DWORD *)(result + *((_DWORD *)this + 40) + 16) = *(_DWORD *)(v2 + 20);
-    *(_DWORD *)(result + *((_DWORD *)this + 40) + 28) = *(_DWORD *)(v2 + 20);
-    *(_DWORD *)(result + *((_DWORD *)this + 40) + 40) = *(_DWORD *)(v2 + 20);
-    *(float *)(result + *((_DWORD *)this + 40) + 8) = *(float *)(v2 + 32) + *(float *)(v2 + 24);
-    *(float *)(result + *((_DWORD *)this + 40) + 20) = *(float *)(v2 + 32) + *(float *)(v2 + 24);
-    *(float *)(result + *((_DWORD *)this + 40) + 32) = *(float *)(v2 + 24) - *(float *)(v2 + 32);
-    v4 = *(float *)(v2 + 24) - *(float *)(v2 + 32);
+    *(float *)((char *)&this->m_pGeomQuad->vec[0].x + result) = *((float *)v2 + 4) - *((float *)v2 + 7);
+    *(float *)((char *)&this->m_pGeomQuad->vec[1].x + result) = *((float *)v2 + 7) + *((float *)v2 + 4);
+    *(float *)((char *)&this->m_pGeomQuad->vec[2].x + result) = *((float *)v2 + 7) + *((float *)v2 + 4);
+    *(float *)((char *)&this->m_pGeomQuad->vec[3].x + result) = *((float *)v2 + 4) - *((float *)v2 + 7);
+    *(float *)((char *)&this->m_pGeomQuad->vec[0].y + result) = *((float *)v2 + 5);
+    *(float *)((char *)&this->m_pGeomQuad->vec[1].y + result) = *((float *)v2 + 5);
+    *(float *)((char *)&this->m_pGeomQuad->vec[2].y + result) = *((float *)v2 + 5);
+    *(float *)((char *)&this->m_pGeomQuad->vec[3].y + result) = *((float *)v2 + 5);
+    *(float *)((char *)&this->m_pGeomQuad->vec[0].z + result) = *((float *)v2 + 8) + *((float *)v2 + 6);
+    *(float *)((char *)&this->m_pGeomQuad->vec[1].z + result) = *((float *)v2 + 8) + *((float *)v2 + 6);
+    *(float *)((char *)&this->m_pGeomQuad->vec[2].z + result) = *((float *)v2 + 6) - *((float *)v2 + 8);
+    v4 = *((float *)v2 + 6) - *((float *)v2 + 8);
   }
   else
   {
-    *(float *)(result + *((_DWORD *)this + 40)) = -*(float *)(v2 + 28);
-    *(_DWORD *)(result + *((_DWORD *)this + 40) + 12) = *(_DWORD *)(v2 + 28);
-    *(_DWORD *)(result + *((_DWORD *)this + 40) + 24) = *(_DWORD *)(v2 + 28);
-    *(float *)(result + *((_DWORD *)this + 40) + 36) = -*(float *)(v2 + 28);
-    *(_DWORD *)(result + *((_DWORD *)this + 40) + 4) = 0;
-    *(_DWORD *)(result + *((_DWORD *)this + 40) + 16) = 0;
-    *(_DWORD *)(result + *((_DWORD *)this + 40) + 28) = 0;
-    *(_DWORD *)(result + *((_DWORD *)this + 40) + 40) = 0;
-    *(_DWORD *)(result + *((_DWORD *)this + 40) + 8) = *(_DWORD *)(v2 + 32);
-    *(_DWORD *)(result + *((_DWORD *)this + 40) + 20) = *(_DWORD *)(v2 + 32);
-    *(float *)(result + *((_DWORD *)this + 40) + 32) = -*(float *)(v2 + 32);
-    v4 = -*(float *)(v2 + 32);
+    *(float *)((char *)&this->m_pGeomQuad->vec[0].x + result) = -*((float *)v2 + 7);
+    *(float *)((char *)&this->m_pGeomQuad->vec[1].x + result) = *((float *)v2 + 7);
+    *(float *)((char *)&this->m_pGeomQuad->vec[2].x + result) = *((float *)v2 + 7);
+    *(float *)((char *)&this->m_pGeomQuad->vec[3].x + result) = -*((float *)v2 + 7);
+    *(float *)((char *)&this->m_pGeomQuad->vec[0].y + result) = 0.0;
+    *(float *)((char *)&this->m_pGeomQuad->vec[1].y + result) = 0.0;
+    *(float *)((char *)&this->m_pGeomQuad->vec[2].y + result) = 0.0;
+    *(float *)((char *)&this->m_pGeomQuad->vec[3].y + result) = 0.0;
+    *(float *)((char *)&this->m_pGeomQuad->vec[0].z + result) = *((float *)v2 + 8);
+    *(float *)((char *)&this->m_pGeomQuad->vec[1].z + result) = *((float *)v2 + 8);
+    *(float *)((char *)&this->m_pGeomQuad->vec[2].z + result) = -*((float *)v2 + 8);
+    v4 = -*((float *)v2 + 8);
   }
-  *(float *)(result + *((_DWORD *)this + 40) + 44) = v4;
-  *(_DWORD *)(result + *((_DWORD *)this + 40) + 48) = 0;
-  *(_DWORD *)(result + *((_DWORD *)this + 40) + 56) = 0;
-  *(_DWORD *)(result + *((_DWORD *)this + 40) + 52) = 0;
-  *(_DWORD *)(result + *((_DWORD *)this + 40) + 60) = 0;
+  *(float *)((char *)&this->m_pGeomQuad->vec[3].z + result) = v4;
+  *(float *)((char *)&this->m_pGeomQuad->vec[4].x + result) = 0.0;
+  *(float *)((char *)&this->m_pGeomQuad->eu + result) = 0.0;
+  *(float *)((char *)&this->m_pGeomQuad->sv + result) = 0.0;
+  *(float *)((char *)&this->m_pGeomQuad->ev + result) = 0.0;
   return result;
 }
 
@@ -242,16 +242,16 @@ int CEffQuad::SetQuad(int a2)
 _DWORD * CEffQuad::DestroyAllQuad(int a2)
 {
   _DWORD *result; // eax
-  int v3; // ecx
+  char *v3; // ecx
   int v4; // edx
   int v5; // ebx
   int v6; // ecx
 
-  result = this;
-  v3 = *((_DWORD *)this + 39) + 80 * a2;
+  result = (_DWORD *)this->_pad_0000;
+  v3 = (char *)this->m_pQuad + 80 * a2;
   v4 = result[16] - 1;
   v5 = *(_DWORD *)v3;
-  *(_BYTE *)(v3 + 4) = 0;
+  v3[4] = 0;
   if ( v4 != v5 )
   {
     qmemcpy((void *)(result[40] + 68 * v5), (const void *)(result[40] + 68 * v4), 0x44u);
@@ -272,25 +272,27 @@ _DWORD * CEffQuad::ToNextFrame(int a2)
 {
   gbTexture *v3; // eax
   _DWORD *result; // eax
-  int v5; // ecx
+  gbTexture *m_pTexture; // ecx
   char pExceptionObject[1024]; // [esp+8h] [ebp-800h] BYREF
   char ArgList[1024]; // [esp+408h] [ebp-400h] BYREF
 
-  v3 = (gbTexture *)(*(int (**)(_DWORD, int))(***((_DWORD ***)this + 1) + 8))(**((_DWORD **)this + 1), a2);
-  *((_DWORD *)this + 1066) = v3;
+  v3 = (gbTexture *)(*(int (**)(_DWORD, int))(***(_DWORD ***)&this->_pad_0000[4] + 8))(
+                      **(_DWORD **)&this->_pad_0000[4],
+                      a2);
+  this->m_pTexture = v3;
   v3->LoadTexture(1);
   result = (_DWORD *)operator new(0x44u);
   if ( result )
   {
-    v5 = *((_DWORD *)this + 1066);
+    m_pTexture = (gbTexture *)this->m_pTexture;
     result[16] = 1;
-    *result = v5;
+    *result = m_pTexture;
   }
   else
   {
     result = 0;
   }
-  *((_DWORD *)this + 1067) = result;
+  this->m_pTextureArray = (gbTextureArray *)result;
   if ( !result )
   {
     qmemcpy(
@@ -332,13 +334,13 @@ int CEffQuad::CreateTask(_DWORD *a2)
   _DWORD *v26; // eax
   int v27; // [esp+10h] [ebp-Ch]
 
-  v2 = (int *)(this + 12);
+  v2 = (int *)&this->_pad_0000[12];
   v3 = 0;
-  *((_DWORD *)this + 14) = a2[20];
-  result = *((_DWORD *)this + 10);
+  this->m_nRequireLoops = a2[20];
+  result = *(_DWORD *)&this->_pad_0000[40];
   if ( result > 0 )
   {
-    v5 = *((_DWORD *)this + 6);
+    v5 = *(_DWORD *)&this->_pad_0000[24];
     for ( i = (_BYTE *)(v5 + 148); *i; i += 152 )
     {
       if ( ++v3 >= result )

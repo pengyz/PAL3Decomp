@@ -1485,13 +1485,13 @@ int CCBStage::IsIdle(int a2)
     m_pUI = (CCBUI *)this->m_pCBSystem->m_pUI;
     if ( this->m_pRoleState->m_bWeSneakAttackEnemy )
     {
-      v8 = ((PalScript *)(&g_PAL3Data + 312))->SetAppName(aWesneakattacke);
+      v8 = ((PalScript *)&g_PAL3Data.mVelocity[8])->SetAppName(aWesneakattacke);
       ((UIWnd *)m_pUI->m_pRoleStateImmunity[10])->SetEnable(v8, 1);
       m_pWinPanel = (UIStatic *)this->m_pCBSystem->m_pUI->m_pRoleStateImmunity[10];
     }
     else
     {
-      v10 = ((PalScript *)(&g_PAL3Data + 312))->SetAppName(aEnemysneakatta);
+      v10 = ((PalScript *)&g_PAL3Data.mVelocity[8])->SetAppName(aEnemysneakatta);
       ((UIWnd *)m_pUI->m_pWinPanel)->SetEnable(v10, 1);
       m_pWinPanel = (UIStatic *)this->m_pCBSystem->m_pUI->m_pWinPanel;
     }
@@ -2080,12 +2080,12 @@ int CCBStage::ProcWait(int a2)
   if ( *(_DWORD *)(v6 + 44) == 1 )
   {
     v16 = *(_DWORD *)(v6 + 52);
-    v14 = ((PalScript *)(&g_PAL3Data + 312))->SetAppName(aWitch);
+    v14 = ((PalScript *)&g_PAL3Data.mVelocity[8])->SetAppName(aWitch);
     sprintf(Buffer, "%s -%d", v14, v16);
   }
   else if ( *(_DWORD *)(v6 + 44) == 2 )
   {
-    v15 = ((PalScript *)(&g_PAL3Data + 312))->SetAppName(aMoney);
+    v15 = ((PalScript *)&g_PAL3Data.mVelocity[8])->SetAppName(aMoney);
     sprintf(Buffer, "%d%s", *(_DWORD *)(v6 + 52), v15);
   }
   else

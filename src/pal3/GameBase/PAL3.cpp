@@ -273,7 +273,7 @@ struct gbVFileSystem * PAL3::Create@<eax>(char *a1@<edi>, HINSTANCE hInstance)
   CCBSystem *v7; // eax
   CCBSystem *v8; // eax
   SceneMgr *v9; // eax
-  int v10; // ecx
+  gbCamera *v10; // ecx
   void *v11; // eax
   RenderTarget *v12; // eax
   RenderTarget3 *v13; // eax
@@ -314,8 +314,8 @@ struct gbVFileSystem * PAL3::Create@<eax>(char *a1@<edi>, HINSTANCE hInstance)
   v2->Update();
   ScriptSystem::Init();
   ((PalScript *)&stru_BFAB60)->LoadFromFile(filename);
-  ((PalScript *)(&g_PAL3Data + 312))->LoadScript((int)aDatascriptLang);
-  ((PalScript *)(&g_PAL3Data + 312))->SetAppName(aAppname);
+  ((PalScript *)&g_PAL3Data.mVelocity[8])->LoadScript((int)aDatascriptLang);
+  ((PalScript *)&g_PAL3Data.mVelocity[8])->SetAppName(aAppname);
   Instance = (char *)CScreenMode::GetInstance();
   ((CScreenMode *)Instance)->SetMode(v31);
   CursorA = LoadCursorA(hInstance, (LPCSTR)0x73);
@@ -344,7 +344,7 @@ struct gbVFileSystem * PAL3::Create@<eax>(char *a1@<edi>, HINSTANCE hInstance)
       sizeof(pExceptionObject));
     _CxxThrowException(pExceptionObject, (_ThrowInfo *)&_TI1_AV_Exception__);
   }
-  ((PAL_GDB *)(&g_PAL3Data + 328))->LoadLanguage(path);
+  ((PAL_GDB *)&g_PAL3Data.mStorePos[8])->LoadLanguage(path);
   PAL3::InitSubsystems();
   v6 = (_BYTE *)UIQuadManager::GetInstance();
   UIRenderQuadList(v6);
@@ -374,10 +374,10 @@ struct gbVFileSystem * PAL3::Create@<eax>(char *a1@<edi>, HINSTANCE hInstance)
   if ( v9 )
   {
     if ( g_Input.KeyInfo[177].CountMode )
-      v10 = g_Input.KeyInfo[177].CountMode + 4;
+      v10 = (gbCamera *)(g_Input.KeyInfo[177].CountMode + 4);
     else
       v10 = 0;
-    v11 = (void *)v9->Create(g_Input.KeyInfo[177].Data, v10, 0);
+    v11 = (void *)v9->Create((gbGfxManager *)g_Input.KeyInfo[177].Data, v10, 0);
   }
   else
   {
@@ -679,69 +679,69 @@ char PAL3::DestroyEffectSystem()
 // 0x004055D0
 int PAL3::Update(int a1)
 {
-  int v2; // edi
-  unsigned __int16 *v3; // esi
+  int v1; // edi
+  unsigned __int16 *v2; // esi
   __int16 KeyState; // ax
-  BOOL v5; // eax
+  BOOL v4; // eax
   DWORD Time; // eax
   int PressTime; // esi
-  int v8; // ebx
-  int v9; // eax
-  _DWORD *v10; // eax
+  int v7; // ebx
+  int v8; // eax
+  _DWORD *v9; // eax
   float *m_pCollisionNode; // ebp
-  int v12; // ebx
-  __int8 *v13; // esi
+  int v11; // ebx
+  __int8 *v12; // esi
+  double v13; // st7
   double v14; // st7
-  double v15; // st7
-  int *v16; // eax
-  double v17; // st7
-  _DWORD *v18; // eax
-  void *v19; // ecx
-  int *v20; // eax
-  PtrArray *v21; // eax
+  int *v15; // eax
+  double v16; // st7
+  _DWORD *v17; // eax
+  void *v18; // ecx
+  int *v19; // eax
+  PtrArray *v20; // eax
   float *Instance; // eax
-  _DWORD *v23; // eax
-  void *v24; // ecx
+  _DWORD *v22; // eax
+  void *v23; // ecx
+  char *v24; // eax
   char *v25; // eax
-  char *v26; // eax
   CUtil *Mode; // eax
-  char *v28; // eax
+  char *v27; // eax
   gbAudioManager *AudioManager; // esi
+  char *v29; // eax
   char *v30; // eax
-  char *v31; // eax
-  ScreenEffect *v32; // eax
+  ScreenEffect *v31; // eax
   int result; // eax
+  int v33; // [esp+4h] [ebp-2Ch]
   int v34; // [esp+4h] [ebp-2Ch]
-  int v35; // [esp+4h] [ebp-2Ch]
   float dt; // [esp+18h] [ebp-18h]
   float dt_4; // [esp+1Ch] [ebp-14h]
-  float v38; // [esp+20h] [ebp-10h]
-  gbVec3D v39; // [esp+24h] [ebp-Ch] BYREF
+  float v37; // [esp+20h] [ebp-10h]
+  gbVec3D v38; // [esp+24h] [ebp-Ch] BYREF
 
   *(float *)&g_Input.KeyInfo[181].Data = *(float *)&g_Input.KeyInfo[181].Data + *(float *)&a1;
   ((GRPinput *)&g_Input)->GRPinput();
-  v2 = 0;
-  v3 = (unsigned __int16 *)(&g_PAL3Data + 224);
+  v1 = 0;
+  v2 = (unsigned __int16 *)&g_PAL3Data.rTouchAreaCG[15];
   do
   {
-    KeyState = ((GRPinput *)&g_Input)->GetKeyState(*v3);
-    v5 = KeyState == 1 || KeyState == 3;
-    v34 = v5;
+    KeyState = ((GRPinput *)&g_Input)->GetKeyState(*v2);
+    v4 = KeyState == 1 || KeyState == 3;
+    v33 = v4;
     Time = timeGetTime();
-    ((GRPinput *)&g_Input)->SetMouseAbs(Time, v2, v34);
-    ++v3;
+    ((GRPinput *)&g_Input)->SetMouseAbs(Time, v1, v33);
     ++v2;
+    ++v1;
   }
-  while ( (int)v3 < (int)((unsigned __int16 *)&g_PAL3Data + 153) );
+  while ( (int)v2 < (int)&g_PAL3Data.mVelocity[2] );
   PressTime = g_Input.KeyInfo[177].PressTime;
-  v8 = SceneUpdate((int)&g_GameData, a1, 1);
-  v9 = g_Input.KeyInfo[177].PressTime;
+  v7 = SceneUpdate((int)&g_GameData, a1, 1);
+  v8 = g_Input.KeyInfo[177].PressTime;
   if ( g_Input.KeyInfo[177].PressTime != PressTime )
   {
     PressTime->IfHideFightSucceed();
-    v9 = g_Input.KeyInfo[177].PressTime;
+    v8 = g_Input.KeyInfo[177].PressTime;
   }
-  switch ( v9 )
+  switch ( v8 )
   {
     case 0:
     case 1:
@@ -764,7 +764,7 @@ int PAL3::Update(int a1)
       InputUpdate(g_Input.KeyInfo[177].CountMode, a1);
       if ( g_Input.KeyInfo[177].PressTime != 9 )
       {
-        if ( v8 )
+        if ( v7 )
         {
           UIQuadManager::GetInstance();
           UIQuadManager_Reset();
@@ -775,21 +775,21 @@ int PAL3::Update(int a1)
         }
         ScriptUpdate(a1);
       }
-      v23 = (_DWORD *)UISceneUpdate();
-      UIUpdate(v23, *(float *)&a1, *(float *)&a1);
+      v22 = (_DWORD *)UISceneUpdate();
+      UIUpdate(v22, *(float *)&a1, *(float *)&a1);
       EffectUpdate(*(float *)&a1);
       SceneMgrUpdate((float *)g_Input.KeyInfo[178].CountMode, *(float *)&g_Input.KeyInfo[176].PressTime);
-      UIPostUpdate(v24);
-      v25 = (char *)CScreenMode::GetInstance();
-      ((CScreenMode *)v25)->AudioUpdate();
+      UIPostUpdate(v23);
+      v24 = (char *)CScreenMode::GetInstance();
+      ((CScreenMode *)v24)->AudioUpdate();
       if ( g_Input.KeyInfo[177].PressTime != 2 && g_Input.KeyInfo[177].PressTime != 9 )
         PressTime->IfHideFightSucceed();
       goto LABEL_64;
     case 3:
       ((CCBSystem *)g_Input.KeyInfo[178].HoldTime)->CombatUpdate(*(float *)&a1);
       CombatEffectUpdate(g_Input.KeyInfo[178].Data, *(float *)&a1);
-      v26 = (char *)CScreenMode::GetInstance();
-      ((CScreenMode *)v26)->AudioUpdate();
+      v25 = (char *)CScreenMode::GetInstance();
+      ((CScreenMode *)v25)->AudioUpdate();
       if ( !*(_BYTE *)(g_Input.KeyInfo[178].HoldTime + 116) )
         goto LABEL_64;
       if ( LOBYTE(g_Input.KeyInfo[180].Data) )
@@ -805,8 +805,8 @@ int PAL3::Update(int a1)
       CombatEnter();
       if ( (g_nGameFlags & 4) == 0 )
         goto LABEL_54;
-      v28 = (char *)CScreenMode::GetInstance();
-      AudioManager = (gbAudioManager *)((CScreenMode *)v28)->GetAudioManager();
+      v27 = (char *)CScreenMode::GetInstance();
+      AudioManager = (gbAudioManager *)((CScreenMode *)v27)->GetAudioManager();
       if ( !AudioManager )
         goto LABEL_54;
       if ( byte_C11751 )
@@ -822,12 +822,12 @@ int PAL3::Update(int a1)
 LABEL_51:
         AudioManager->StopSoundStream(2);
         AudioManager->StopSoundStream(1);
-        v30 = (char *)CScreenMode::GetInstance();
-        ((CScreenMode *)v30)->AudioStopAll();
+        v29 = (char *)CScreenMode::GetInstance();
+        ((CScreenMode *)v29)->AudioStopAll();
         goto LABEL_54;
       }
-      v31 = (char *)CScreenMode::GetInstance();
-      ((CScreenMode *)v31)->AudioFadeOut();
+      v30 = (char *)CScreenMode::GetInstance();
+      ((CScreenMode *)v30)->AudioFadeOut();
 LABEL_54:
       if ( byte_5833D0 || !dword_5833CC )
       {
@@ -880,79 +880,79 @@ LABEL_63:
       a1->RunSceneScript();
       InputUpdate(g_Input.KeyInfo[177].CountMode, a1);
       ScriptUpdate(a1);
-      v10 = (_DWORD *)UISceneUpdate();
-      UIUpdate(v10, *(float *)&a1, *(float *)&a1);
+      v9 = (_DWORD *)UISceneUpdate();
+      UIUpdate(v9, *(float *)&a1, *(float *)&a1);
       EffectUpdate(*(float *)&a1);
       if ( g_Input.KeyInfo[174].Data )
         goto LABEL_64;
-      if ( !v8 )
+      if ( !v7 )
         CameraUpdate_Internal(*(float *)&a1);
       m_pCollisionNode = (float *)g_SceneMgr.m_pCollisionNode;
-      v12 = 1;
-      v13 = (__int8 *)&g_SceneMgr._midRegion[12];
+      v11 = 1;
+      v12 = (__int8 *)&g_SceneMgr._midRegion[12];
       while ( 1 )
       {
-        if ( *((_DWORD *)v13 + 155) )
+        if ( *((_DWORD *)v12 + 155) )
         {
-          dt = m_pCollisionNode[1] - *((float *)v13 - 2);
-          v14 = m_pCollisionNode[2] - *((float *)v13 - 1);
-          v39.x = dt;
-          dt_4 = v14;
-          v15 = m_pCollisionNode[3] - *(float *)v13;
-          v39.y = dt_4;
-          v38 = v15;
-          v39.z = v38;
-          if ( 12.0 + 12.0 > ((gbVec3D *)&v39)->Length() )
+          dt = m_pCollisionNode[1] - *((float *)v12 - 2);
+          v13 = m_pCollisionNode[2] - *((float *)v12 - 1);
+          v38.x = dt;
+          dt_4 = v13;
+          v14 = m_pCollisionNode[3] - *(float *)v12;
+          v38.y = dt_4;
+          v37 = v14;
+          v38.z = v37;
+          if ( 12.0 + 12.0 > ((gbVec3D *)&v38)->Length() )
             break;
         }
-        v13 += 8704;
-        ++v12;
-        if ( (int)v13 >= (int)&g_SceneMgr.m_pScriptCtrl )
+        v12 += 8704;
+        ++v11;
+        if ( (int)v12 >= (int)&g_SceneMgr.m_pScriptCtrl )
           goto LABEL_64;
       }
-      v12->EndWolf();
+      v11->EndWolf();
       goto LABEL_64;
     case 8:
       if ( PAL3::EntryCatchGhost() )
       {
         PAL3::EndHideFight();
         RoleSystemNotify(g_SceneMgr.m_pCollisionNode);
-        v16 = ((PalScriptMgr *)0x6A5u)->Destroy(0);
+        v15 = ((PalScriptMgr *)0x6A5u)->Destroy(0);
 LABEL_33:
-        v35 = (int)v16;
-        v21 = (PtrArray *)SoundContext::GetInstance();
-        CScreenMode_SetResolution(v21, 0, v35);
+        v34 = (int)v15;
+        v20 = (PtrArray *)SoundContext::GetInstance();
+        CScreenMode_SetResolution(v20, 0, v34);
         a1->RunSceneScript();
         goto LABEL_64;
       }
-      v17 = *(float *)&g_Input.KeyInfo[176].CountMode + *(float *)&a1;
-      *(float *)&g_Input.KeyInfo[176].CountMode = v17;
-      if ( v17 >= 180.0 )
+      v16 = *(float *)&g_Input.KeyInfo[176].CountMode + *(float *)&a1;
+      *(float *)&g_Input.KeyInfo[176].CountMode = v16;
+      if ( v16 >= 180.0 )
         goto LABEL_32;
       a1->RunSceneScript();
       InputUpdate(g_Input.KeyInfo[177].CountMode, a1);
       ScriptUpdate(a1);
-      v18 = (_DWORD *)UISceneUpdate();
-      UIUpdate(v18, *(float *)&a1, *(float *)&a1);
+      v17 = (_DWORD *)UISceneUpdate();
+      UIUpdate(v17, *(float *)&a1, *(float *)&a1);
       EffectUpdate(*(float *)&a1);
-      if ( !v8 )
+      if ( !v7 )
         CameraUpdate_Internal(*(float *)&a1);
-      UIPostUpdate(v19);
+      UIPostUpdate(v18);
       if ( *(_DWORD *)(g_SceneMgr.m_pCollisionNode + 1264) != 4 )
       {
-        v20 = (int *)UISceneUpdate();
-        if ( UINotifyUpdate(v20) )
+        v19 = (int *)UISceneUpdate();
+        if ( UINotifyUpdate(v19) )
         {
 LABEL_32:
           RoleSystemNotify(g_SceneMgr.m_pCollisionNode);
           PAL3::EndHideFight();
-          v16 = ((PalScriptMgr *)0x6A6u)->Destroy(0);
+          v15 = ((PalScriptMgr *)0x6A6u)->Destroy(0);
           goto LABEL_33;
         }
       }
 LABEL_64:
-      v32 = (ScreenEffect *)ScreenEffectMgr::GetInstance();
-      RenderPost((int)v32, a1);
+      v31 = (ScreenEffect *)ScreenEffectMgr::GetInstance();
+      RenderPost((int)v31, a1);
       result = g_Input.KeyInfo[177].PressTime;
       if ( !g_Input.KeyInfo[177].PressTime )
         return ((CScreenMode *)g_Logger)->SetState(1);
@@ -1508,47 +1508,46 @@ int PAL3::GetCommandLineParam()
 // 0x00406A10
 int PAL3::TestCombat()
 {
-  *((_WORD *)&g_PAL3Data + 120) = 27;
-  *((_WORD *)&g_PAL3Data + 123) = 9;
-  *((_WORD *)&g_PAL3Data + 124) = 9;
-  *((_WORD *)&g_PAL3Data + 129) = 27;
-  *((_WORD *)&g_PAL3Data + 136) = 9;
-  *((_WORD *)&g_PAL3Data + 112) = 256;
-  *((_WORD *)&g_PAL3Data + 113) = 257;
-  *((_WORD *)&g_PAL3Data + 114) = 134;
-  *((_WORD *)&g_PAL3Data + 115) = 135;
-  *((_WORD *)&g_PAL3Data + 116) = 136;
-  *((_WORD *)&g_PAL3Data + 117) = 137;
-  *((_WORD *)&g_PAL3Data + 118) = 32;
-  *((_WORD *)&g_PAL3Data + 119) = 13;
-  *((_WORD *)&g_PAL3Data + 122) = 154;
-  *((_WORD *)&g_PAL3Data + 121) = 155;
-  *((_WORD *)&g_PAL3Data + 125) = 97;
-  *((_WORD *)&g_PAL3Data + 126) = 100;
-  *((_WORD *)&g_PAL3Data + 127) = 256;
-  *((_WORD *)&g_PAL3Data + 128) = 257;
-  *((_WORD *)&g_PAL3Data + 130) = 13;
-  *((_WORD *)&g_PAL3Data + 131) = 32;
-  *((_WORD *)&g_PAL3Data + 132) = 134;
-  *((_WORD *)&g_PAL3Data + 133) = 135;
-  *((_WORD *)&g_PAL3Data + 134) = 136;
-  *((_WORD *)&g_PAL3Data + 135) = 137;
-  *((_WORD *)&g_PAL3Data + 137) = 119;
-  *((_WORD *)&g_PAL3Data + 138) = 138;
-  *((_WORD *)&g_PAL3Data + 139) = 139;
-  *((_WORD *)&g_PAL3Data + 140) = 140;
-  *((_WORD *)&g_PAL3Data + 141) = 141;
-  *((_WORD *)&g_PAL3Data + 142) = 142;
-  *((_WORD *)&g_PAL3Data + 143) = 130;
-  *((_WORD *)&g_PAL3Data + 144) = 132;
-  *((_WORD *)&g_PAL3Data + 145) = 112;
-  *((_WORD *)&g_PAL3Data + 146) = 114;
-  *((_WORD *)&g_PAL3Data + 147) = 102;
-  *((_WORD *)&g_PAL3Data + 148) = 107;
-  *((_WORD *)&g_PAL3Data + 149) = 101;
-  *((_WORD *)&g_PAL3Data + 150) = 130;
-  *((_WORD *)&g_PAL3Data + 151) = 132;
-  *((_WORD *)&g_PAL3Data + 152) = 128;
+  *(_WORD *)&g_PAL3Data.mParam[8] = 27;
+  strcpy(&g_PAL3Data.mParam[14], "\t");
+  strcpy(&g_PAL3Data.mParam[16], "\t");
+  *(_WORD *)&g_PAL3Data.mParam[26] = 27;
+  strcpy(&g_PAL3Data.mParam[40], "\t");
+  *(_WORD *)&g_PAL3Data.rTouchAreaCG[15] = 256;
+  *(_WORD *)&g_PAL3Data.rTouchAreaCG[17] = 257;
+  g_PAL3Data.fLastTime = 1.239798e-38;
+  *(_WORD *)g_PAL3Data.mParam = 136;
+  *(_WORD *)&g_PAL3Data.mParam[2] = 137;
+  strcpy(&g_PAL3Data.mParam[4], " ");
+  *(_WORD *)&g_PAL3Data.mParam[6] = 13;
+  *(_WORD *)&g_PAL3Data.mParam[12] = 154;
+  *(_WORD *)&g_PAL3Data.mParam[10] = 155;
+  strcpy(&g_PAL3Data.mParam[18], "a");
+  strcpy(&g_PAL3Data.mParam[20], "d");
+  *(_WORD *)&g_PAL3Data.mParam[22] = 256;
+  *(_WORD *)&g_PAL3Data.mParam[24] = 257;
+  *(_WORD *)&g_PAL3Data.mParam[28] = 13;
+  strcpy(&g_PAL3Data.mParam[30], " ");
+  *(_WORD *)&g_PAL3Data.mParam[32] = 134;
+  *(_WORD *)&g_PAL3Data.mParam[34] = 135;
+  *(_WORD *)&g_PAL3Data.mParam[36] = 136;
+  *(_WORD *)&g_PAL3Data.mParam[38] = 137;
+  strcpy(&g_PAL3Data.mParam[42], "w");
+  *(_WORD *)&g_PAL3Data.mParam[44] = 138;
+  *(_WORD *)&g_PAL3Data.mParam[46] = 139;
+  *(_WORD *)&g_PAL3Data.mParam[48] = 140;
+  *(_WORD *)&g_PAL3Data.mParam[50] = 141;
+  *(_WORD *)&g_PAL3Data.mParam[52] = 142;
+  *(_WORD *)&g_PAL3Data.mParam[54] = 130;
+  *(_WORD *)&g_PAL3Data.mParam[56] = 132;
+  strcpy(&g_PAL3Data.mParam[58], "p");
+  strcpy(&g_PAL3Data.mParam[60], "r");
+  strcpy(&g_PAL3Data.mParam[62], "f");
+  strcpy(&g_PAL3Data.mParam[64], "k");
+  strcpy(&g_PAL3Data.mParam[66], "e");
+  *(_WORD *)&g_PAL3Data.mParam[68] = 130;
+  *(_WORD *)&g_PAL3Data.mParam[70] = 132;
+  *(_WORD *)g_PAL3Data.mVelocity = 128;
   return 132;
 }
 
@@ -1578,12 +1577,14 @@ int PAL3::DefaultKeyMap(const char *a1, int a2, int a3)
     v13 = v12 - 1;
     if ( std::string::max_size() < v12 - 1 )
       v16->_Xlen();
-    v14 = (char *)*((_DWORD *)&g_PAL3Data + 1);
-    if ( *((_DWORD *)&g_PAL3Data + 1) && (v15 = *(_BYTE *)(*((_DWORD *)&g_PAL3Data + 1) - 1)) != 0 && v15 != -1 )
+    v14 = (char *)*(char **)&g_PAL3Data._pad_0000[4];
+    if ( *(_DWORD *)&g_PAL3Data._pad_0000[4]
+      && (v15 = *(_BYTE *)(*(_DWORD *)&g_PAL3Data._pad_0000[4] - 1)) != 0
+      && v15 != -1 )
     {
       if ( v12 == 1 )
       {
-        *(_BYTE *)(*((_DWORD *)&g_PAL3Data + 1) - 1) = v15 - 1;
+        *(_BYTE *)(*(_DWORD *)&g_PAL3Data._pad_0000[4] - 1) = v15 - 1;
         ((std *)&g_PAL3Data)->string::_Tidy(0);
         goto LABEL_43;
       }
@@ -1595,84 +1596,84 @@ int PAL3::DefaultKeyMap(const char *a1, int a2, int a3)
         ((std *)&g_PAL3Data)->string::_Tidy(1);
         goto LABEL_43;
       }
-      if ( *((_DWORD *)&g_PAL3Data + 3) <= 0x1Fu && *((_DWORD *)&g_PAL3Data + 3) >= v13 )
+      if ( *(_DWORD *)&g_PAL3Data._pad_0000[12] <= 0x1Fu && *(_DWORD *)&g_PAL3Data._pad_0000[12] >= v13 )
       {
 LABEL_42:
         qmemcpy(v14, a1, v13);
-        result = *((_DWORD *)&g_PAL3Data + 1);
-        *((_DWORD *)&g_PAL3Data + 2) = v12 - 1;
-        *(_BYTE *)(*((_DWORD *)&g_PAL3Data + 1) + v13) = 0;
+        result = *(_DWORD *)&g_PAL3Data._pad_0000[4];
+        *(_DWORD *)&g_PAL3Data._pad_0000[8] = v12 - 1;
+        *(_BYTE *)(*(_DWORD *)&g_PAL3Data._pad_0000[4] + v13) = 0;
         goto LABEL_43;
       }
       ((std *)&g_PAL3Data)->string::_Tidy(1);
     }
     ((GRPinput *)&g_PAL3Data)->GetKeyState(v13);
-    v14 = (char *)*((_DWORD *)&g_PAL3Data + 1);
+    v14 = (char *)*(char **)&g_PAL3Data._pad_0000[4];
     goto LABEL_42;
   }
-  v3 = *((_DWORD *)&g_PAL3Data + 1);
-  v4 = *((_DWORD *)&g_PAL3Data + 1) == 0;
-  if ( *((_DWORD *)&g_PAL3Data + 1) )
+  v3 = *(_DWORD *)&g_PAL3Data._pad_0000[4];
+  v4 = *(_DWORD *)&g_PAL3Data._pad_0000[4] == 0;
+  if ( *(_DWORD *)&g_PAL3Data._pad_0000[4] )
   {
-    v5 = *(_BYTE *)(*((_DWORD *)&g_PAL3Data + 1) - 1);
+    v5 = *(_BYTE *)(*(_DWORD *)&g_PAL3Data._pad_0000[4] - 1);
     if ( v5 && v5 != -1 )
     {
-      ((SceneObj *)&g_PAL3Data)->Update(*((unsigned int *)&g_PAL3Data + 2));
-      v3 = *((_DWORD *)&g_PAL3Data + 1);
+      ((SceneObj *)&g_PAL3Data)->Update(*(unsigned int *)&g_PAL3Data._pad_0000[8]);
+      v3 = *(_DWORD *)&g_PAL3Data._pad_0000[4];
     }
     v4 = v3 == 0;
     if ( v3 )
     {
       *(_BYTE *)(v3 - 1) = -1;
-      v3 = *((_DWORD *)&g_PAL3Data + 1);
-      v4 = *((_DWORD *)&g_PAL3Data + 1) == 0;
+      v3 = *(_DWORD *)&g_PAL3Data._pad_0000[4];
+      v4 = *(_DWORD *)&g_PAL3Data._pad_0000[4] == 0;
     }
   }
   if ( v4 )
     v6 = 0;
   else
-    v6 = *((_DWORD *)&g_PAL3Data + 2) + v3;
+    v6 = *(_DWORD *)&g_PAL3Data._pad_0000[8] + v3;
   if ( v3 )
   {
     v7 = *(_BYTE *)(v3 - 1);
     if ( v7 && v7 != -1 )
     {
-      ((SceneObj *)&g_PAL3Data)->Update(*((unsigned int *)&g_PAL3Data + 2));
-      v3 = *((_DWORD *)&g_PAL3Data + 1);
+      ((SceneObj *)&g_PAL3Data)->Update(*(unsigned int *)&g_PAL3Data._pad_0000[8]);
+      v3 = *(_DWORD *)&g_PAL3Data._pad_0000[4];
     }
     if ( v3 )
     {
       *(_BYTE *)(v3 - 1) = -1;
-      v3 = *((_DWORD *)&g_PAL3Data + 1);
+      v3 = *(_DWORD *)&g_PAL3Data._pad_0000[4];
     }
   }
   v8 = v3;
   ((std *)&g_PAL3Data)->string::_Freeze();
   if ( v8 )
-    v9 = v8 - *((_DWORD *)&g_PAL3Data + 1);
+    v9 = v8 - *(_DWORD *)&g_PAL3Data._pad_0000[4];
   else
     v9 = 0;
   if ( v6 )
     v6 -= v8;
-  if ( *((_DWORD *)&g_PAL3Data + 2) < v9 )
+  if ( *(_DWORD *)&g_PAL3Data._pad_0000[8] < v9 )
     std::_Xran();
   ((std *)&g_PAL3Data)->string::_Split();
-  result = *((_DWORD *)&g_PAL3Data + 2);
-  if ( *((_DWORD *)&g_PAL3Data + 2) - v9 < v6 )
-    v6 = *((_DWORD *)&g_PAL3Data + 2) - v9;
+  result = *(_DWORD *)&g_PAL3Data._pad_0000[8];
+  if ( *(_DWORD *)&g_PAL3Data._pad_0000[8] - v9 < v6 )
+    v6 = *(_DWORD *)&g_PAL3Data._pad_0000[8] - v9;
   if ( v6 )
   {
     memcpy(
-      (void *)(v9 + *((_DWORD *)&g_PAL3Data + 1)),
-      (const void *)(v9 + *((_DWORD *)&g_PAL3Data + 1) + v6),
-      *((_DWORD *)&g_PAL3Data + 2) - v6 - v9);
-    v11 = *((_DWORD *)&g_PAL3Data + 2) - v6;
-    LOBYTE(result) = ((SceneObj *)&g_PAL3Data)->Update(*((_DWORD *)&g_PAL3Data + 2) - v6);
+      (void *)(v9 + *(_DWORD *)&g_PAL3Data._pad_0000[4]),
+      (const void *)(v9 + *(_DWORD *)&g_PAL3Data._pad_0000[4] + v6),
+      *(_DWORD *)&g_PAL3Data._pad_0000[8] - v6 - v9);
+    v11 = *(_DWORD *)&g_PAL3Data._pad_0000[8] - v6;
+    LOBYTE(result) = ((SceneObj *)&g_PAL3Data)->Update(*(_DWORD *)&g_PAL3Data._pad_0000[8] - v6);
     if ( (_BYTE)result )
     {
-      result = *((_DWORD *)&g_PAL3Data + 1);
-      *((_DWORD *)&g_PAL3Data + 2) = v11;
-      *(_BYTE *)(*((_DWORD *)&g_PAL3Data + 1) + v11) = 0;
+      result = *(_DWORD *)&g_PAL3Data._pad_0000[4];
+      *(_DWORD *)&g_PAL3Data._pad_0000[8] = v11;
+      *(_BYTE *)(*(_DWORD *)&g_PAL3Data._pad_0000[4] + v11) = 0;
     }
   }
 LABEL_43:
@@ -1753,8 +1754,8 @@ LABEL_8:
           v0 = v30;
         }
         (*(void (**)(int))(*(_DWORD *)g_Input.KeyInfo[177].Data + 88))(g_Input.KeyInfo[177].Data);
-        ((gbImage2D *)(&g_PAL3Data + 24))->Release();
-        v6 = ((gbImage2D *)(&g_PAL3Data + 24))->CreateImage(v26, v27, 24);
+        ((gbImage2D *)&g_PAL3Data._pad_0000[24])->Release();
+        v6 = ((gbImage2D *)&g_PAL3Data._pad_0000[24])->CreateImage(v26, v27, 24);
         v7 = v32;
         v8 = v32;
         if ( v0 == 32 )
@@ -1851,7 +1852,7 @@ LABEL_8:
           }
         }
         if ( dword_5833C4 != -1 && dword_5833C8 != -1 )
-          ((gbImage2D *)(&g_PAL3Data + 24))->ScaleTo(dword_5833C4, dword_5833C8);
+          ((gbImage2D *)&g_PAL3Data._pad_0000[24])->ScaleTo(dword_5833C4, dword_5833C8);
         ((gbImage2D *)&v30)->Release();
         goto LABEL_34;
       }
@@ -2232,7 +2233,7 @@ int PAL3::FullInit()
   int *v17; // ecx
   int k; // eax
   int v19; // ecx
-  __int32 v20; // edx
+  gbRenderEffect *v20; // edx
   int v21; // eax
   int *v22; // esi
   int v23; // edi
@@ -2323,38 +2324,38 @@ int PAL3::FullInit()
   int v108; // eax
   int mm; // eax
   int *v110; // ecx
-  __int32 v111; // ebp
+  int v111; // ebp
   int nn; // eax
   int v113; // ecx
   int v114; // edx
-  int *m_pAddEffect2; // esi
-  __int32 v116; // edx
-  __int32 v117; // edi
-  __int32 v118; // eax
-  _DWORD *v119; // ebp
-  __int32 v120; // edx
-  __int32 i1; // eax
-  int *v122; // edx
-  int *v123; // esi
-  __int32 v124; // ebp
-  __int32 v125; // edx
-  __int32 v126; // eax
-  _DWORD *v127; // eax
-  char *m_pSceneRoot; // ebp
-  _DWORD *i3; // edi
+  gbRenderEffect *m_pAddEffect2; // esi
+  int v116; // edx
+  int v117; // edi
+  int v118; // eax
+  gbSceneGraph *v119; // ebp
+  int v120; // edx
+  gbRenderEffect *i1; // eax
+  _DWORD *pad_0000; // edx
+  gbRenderEffect *v123; // esi
+  int v124; // ebp
+  int v125; // edx
+  int v126; // eax
+  gbSceneGraph *v127; // eax
+  gbSceneGraph *m_pSceneRoot; // ebp
+  gbSceneGraph *i3; // edi
   int v130; // eax
-  __int32 i2; // eax
-  int *v132; // ecx
-  int *v133; // esi
-  __int32 v134; // ebp
-  __int32 v135; // edx
-  __int32 v136; // eax
-  _DWORD *v137; // eax
-  char *v138; // ebp
-  _DWORD *i5; // edi
+  gbRenderEffect *i2; // eax
+  _DWORD *v132; // ecx
+  gbRenderEffect *v133; // esi
+  int v134; // ebp
+  int v135; // edx
+  int v136; // eax
+  gbSceneGraph *v137; // eax
+  gbSceneGraph *v138; // ebp
+  gbSceneGraph *i5; // edi
   int v140; // eax
-  __int32 i4; // eax
-  int *v142; // ecx
+  gbRenderEffect *i4; // eax
+  _DWORD *v142; // ecx
   int i6; // ecx
   int result; // eax
   int v145; // [esp+10h] [ebp-28h]
@@ -2369,10 +2370,10 @@ int PAL3::FullInit()
   char *v154; // [esp+10h] [ebp-28h]
   char *v155; // [esp+10h] [ebp-28h]
   char *v156; // [esp+10h] [ebp-28h]
-  __int32 v157; // [esp+10h] [ebp-28h]
-  __int32 v158; // [esp+10h] [ebp-28h]
-  __int32 v159; // [esp+14h] [ebp-24h]
-  __int32 v160; // [esp+14h] [ebp-24h]
+  int v157; // [esp+10h] [ebp-28h]
+  gbSceneGraph *v158; // [esp+10h] [ebp-28h]
+  gbSceneGraph *v159; // [esp+14h] [ebp-24h]
+  int v160; // [esp+14h] [ebp-24h]
   int pConfig; // [esp+18h] [ebp-20h] BYREF
   int v162; // [esp+1Ch] [ebp-1Ch]
   int v163; // [esp+20h] [ebp-18h]
@@ -2603,16 +2604,16 @@ int PAL3::FullInit()
   ((RoleSystem *)&g_SceneMgr.m_pAddEffect)->LoadData(1);
   for ( k = 972; k < 1020; k += 4 )
   {
-    v19 = *(__int32 *)((char *)&g_SceneMgr.m_pAddEffect + k);
-    v20 = *(int *)((char *)&g_nSceneFlags + k);
-    if ( v19 < v20 )
+    v19 = *(int *)((char *)&g_SceneMgr.m_pAddEffect + k);
+    v20 = (gbRenderEffect *)*(gbRenderEffect **)((char *)&g_nSceneFlags + k);
+    if ( v19 < (int)v20 )
     {
       if ( v19 <= 0 )
-        *(__int32 *)((char *)&g_SceneMgr.m_pAddEffect + k) = 0;
+        *(gbRenderEffect **)((char *)&g_SceneMgr.m_pAddEffect + k) = 0;
     }
     else
     {
-      *(__int32 *)((char *)&g_SceneMgr.m_pAddEffect + k) = v20;
+      *(gbRenderEffect **)((char *)&g_SceneMgr.m_pAddEffect + k) = v20;
     }
   }
   *(_DWORD *)&g_SceneMgr.m_slot1[220] = 0;
@@ -3192,28 +3193,28 @@ int PAL3::FullInit()
   pConfig = 4501;
   v162 = 0;
   v163 = ((PAL_GDB *)&g_GDB)->GDB_GetRoleNum(4501);
-  m_pAddEffect2 = (int *)g_SceneMgr.m_pAddEffect2;
-  if ( (g_SceneMgr.m_pAlphaEffect2 - g_SceneMgr.m_pAddEffect2) / 12 )
+  m_pAddEffect2 = (gbRenderEffect *)g_SceneMgr.m_pAddEffect2;
+  if ( ((char *)g_SceneMgr.m_pAlphaEffect2 - (char *)g_SceneMgr.m_pAddEffect2) / 12 )
   {
-    ((Array *)g_SceneMgr.m_pAddEffect2)->Insert((void *)g_SceneMgr.m_pAddEffect2, (void *)(g_SceneMgr.m_pAddEffect2 + 12));
-    ((Array *)g_SceneMgr.m_pAddEffect2)->Erase(1 - (g_SceneMgr.m_pAddEffect2 - (int)m_pAddEffect2) / 12, &pConfig);
-    for ( i1 = g_SceneMgr.m_pAddEffect2; m_pAddEffect2 != (int *)i1; v122[2] = v163 )
+    ((Array *)g_SceneMgr.m_pAddEffect2)->Insert(g_SceneMgr.m_pAddEffect2, &g_SceneMgr.m_pAddEffect2->NameCrc32);
+    ((Array *)g_SceneMgr.m_pAddEffect2)->Erase(1 - ((char *)g_SceneMgr.m_pAddEffect2 - (char *)m_pAddEffect2) / 12, &pConfig);
+    for ( i1 = g_SceneMgr.m_pAddEffect2; m_pAddEffect2 != i1; pad_0000[2] = v163 )
     {
-      v122 = m_pAddEffect2;
-      m_pAddEffect2 += 3;
-      *v122 = pConfig;
-      v122[1] = v162;
+      pad_0000 = (_DWORD *)m_pAddEffect2->_pad_0000;
+      m_pAddEffect2 = (gbRenderEffect *)((char *)m_pAddEffect2 + 12);
+      *pad_0000 = pConfig;
+      pad_0000[1] = v162;
     }
-    g_SceneMgr.m_pAddEffect2 += 12;
+    g_SceneMgr.m_pAddEffect2 = (gbRenderEffect *)((char *)g_SceneMgr.m_pAddEffect2 + 12);
   }
   else
   {
     if ( !g_SceneMgr.m_pSceneRoot )
       goto LABEL_148;
-    if ( (unsigned int)((g_SceneMgr.m_pAddEffect2 - g_SceneMgr.m_pSceneRoot) / 12) > 1 )
-      v111 = (g_SceneMgr.m_pAddEffect2 - g_SceneMgr.m_pSceneRoot) / 12;
+    if ( (unsigned int)(((char *)g_SceneMgr.m_pAddEffect2 - (char *)g_SceneMgr.m_pSceneRoot) / 12) > 1 )
+      v111 = ((char *)g_SceneMgr.m_pAddEffect2 - (char *)g_SceneMgr.m_pSceneRoot) / 12;
     if ( g_SceneMgr.m_pSceneRoot )
-      v116 = (g_SceneMgr.m_pAddEffect2 - g_SceneMgr.m_pSceneRoot) / 12;
+      v116 = ((char *)g_SceneMgr.m_pAddEffect2 - (char *)g_SceneMgr.m_pSceneRoot) / 12;
     else
 LABEL_148:
       v116 = 0;
@@ -3221,115 +3222,125 @@ LABEL_148:
     v118 = v116 + v111;
     if ( v116 + v111 < 0 )
       v118 = 0;
-    v119 = (_DWORD *)operator new(12 * v118);
+    v119 = (gbSceneGraph *)operator new(12 * v118);
     v156 = (char *)((Array *)g_SceneMgr.m_pSceneRoot)->Insert(m_pAddEffect2, v119);
     v156->Erase(1, &pConfig);
-    m_pAddEffect2->Insert((void *)g_SceneMgr.m_pAddEffect2, v156 + 12);
+    m_pAddEffect2->Insert(g_SceneMgr.m_pAddEffect2, v156 + 12);
     nullsub_2(g_SceneMgr.m_pSceneRoot, g_SceneMgr.m_pAddEffect2);
-    operator delete((void *)g_SceneMgr.m_pSceneRoot);
-    g_SceneMgr.m_pAlphaEffect2 = (__int32)&v119[3 * v117];
+    operator delete(g_SceneMgr.m_pSceneRoot);
+    g_SceneMgr.m_pAlphaEffect2 = (gbRenderEffect *)((char *)v119 + 12 * v117);
     if ( g_SceneMgr.m_pSceneRoot )
-      v120 = (g_SceneMgr.m_pAddEffect2 - g_SceneMgr.m_pSceneRoot) / 12;
+      v120 = ((char *)g_SceneMgr.m_pAddEffect2 - (char *)g_SceneMgr.m_pSceneRoot) / 12;
     else
       v120 = 0;
-    g_SceneMgr.m_pSceneRoot = (__int32)v119;
-    g_SceneMgr.m_pAddEffect2 = (__int32)&v119[3 * v120 + 3];
+    g_SceneMgr.m_pSceneRoot = v119;
+    g_SceneMgr.m_pAddEffect2 = (gbRenderEffect *)&v119->index[3 * v120 + 2];
   }
   pConfig = 306;
   v162 = 2949123;
   v163 = ((PAL_GDB *)&g_GDB)->GDB_GetRoleNum(306);
-  v123 = (int *)g_SceneMgr.m_pAddEffect2;
-  if ( (g_SceneMgr.m_pAlphaEffect2 - g_SceneMgr.m_pAddEffect2) / 12 )
+  v123 = (gbRenderEffect *)g_SceneMgr.m_pAddEffect2;
+  if ( ((char *)g_SceneMgr.m_pAlphaEffect2 - (char *)g_SceneMgr.m_pAddEffect2) / 12 )
   {
-    ((Array *)g_SceneMgr.m_pAddEffect2)->Insert((void *)g_SceneMgr.m_pAddEffect2, (void *)(g_SceneMgr.m_pAddEffect2 + 12));
-    ((Array *)g_SceneMgr.m_pAddEffect2)->Erase(1 - (g_SceneMgr.m_pAddEffect2 - (int)v123) / 12, &pConfig);
-    for ( i2 = g_SceneMgr.m_pAddEffect2; v123 != (int *)i2; v132[2] = v163 )
+    ((Array *)g_SceneMgr.m_pAddEffect2)->Insert(g_SceneMgr.m_pAddEffect2, &g_SceneMgr.m_pAddEffect2->NameCrc32);
+    ((Array *)g_SceneMgr.m_pAddEffect2)->Erase(1 - ((char *)g_SceneMgr.m_pAddEffect2 - (char *)v123) / 12, &pConfig);
+    for ( i2 = g_SceneMgr.m_pAddEffect2; v123 != i2; v132[2] = v163 )
     {
-      v132 = v123;
-      v123 += 3;
+      v132 = (_DWORD *)v123->_pad_0000;
+      v123 = (gbRenderEffect *)((char *)v123 + 12);
       *v132 = pConfig;
       v132[1] = v162;
     }
-    g_SceneMgr.m_pAddEffect2 += 12;
+    g_SceneMgr.m_pAddEffect2 = (gbRenderEffect *)((char *)g_SceneMgr.m_pAddEffect2 + 12);
   }
   else
   {
-    if ( g_SceneMgr.m_pSceneRoot && (unsigned int)((g_SceneMgr.m_pAddEffect2 - g_SceneMgr.m_pSceneRoot) / 12) > 1 )
-      v124 = (g_SceneMgr.m_pAddEffect2 - g_SceneMgr.m_pSceneRoot) / 12;
+    if ( g_SceneMgr.m_pSceneRoot
+      && (unsigned int)(((char *)g_SceneMgr.m_pAddEffect2 - (char *)g_SceneMgr.m_pSceneRoot) / 12) > 1 )
+    {
+      v124 = ((char *)g_SceneMgr.m_pAddEffect2 - (char *)g_SceneMgr.m_pSceneRoot) / 12;
+    }
     else
+    {
       v124 = 1;
+    }
     if ( g_SceneMgr.m_pSceneRoot )
-      v125 = (g_SceneMgr.m_pAddEffect2 - g_SceneMgr.m_pSceneRoot) / 12;
+      v125 = ((char *)g_SceneMgr.m_pAddEffect2 - (char *)g_SceneMgr.m_pSceneRoot) / 12;
     else
       v125 = 0;
     v126 = v125 + v124;
     v157 = v125 + v124;
     if ( v125 + v124 < 0 )
       v126 = 0;
-    v127 = (_DWORD *)operator new(12 * v126);
-    m_pSceneRoot = (char *)g_SceneMgr.m_pSceneRoot;
-    v159 = (__int32)v127;
-    for ( i3 = v127; m_pSceneRoot != (char *)v123; i3 += 3 )
+    v127 = (gbSceneGraph *)operator new(12 * v126);
+    m_pSceneRoot = (gbSceneGraph *)g_SceneMgr.m_pSceneRoot;
+    v159 = v127;
+    for ( i3 = v127; m_pSceneRoot != (gbSceneGraph *)v123; i3 = (gbSceneGraph *)((char *)i3 + 12) )
     {
       i3->Copy(m_pSceneRoot);
-      m_pSceneRoot += 12;
+      m_pSceneRoot = (gbSceneGraph *)((char *)m_pSceneRoot + 12);
     }
     i3->Erase(1, &pConfig);
-    v123->Insert((void *)g_SceneMgr.m_pAddEffect2, i3 + 3);
+    v123->Insert(g_SceneMgr.m_pAddEffect2, &i3->index[2]);
     nullsub_2(g_SceneMgr.m_pSceneRoot, g_SceneMgr.m_pAddEffect2);
-    operator delete((void *)g_SceneMgr.m_pSceneRoot);
-    g_SceneMgr.m_pAlphaEffect2 = v159 + 12 * v157;
-    v130 = ((Array *)&g_SceneMgr.m_pGfxMgr)->Size();
+    operator delete(g_SceneMgr.m_pSceneRoot);
+    g_SceneMgr.m_pAlphaEffect2 = (gbRenderEffect *)((char *)v159 + 12 * v157);
+    v130 = ((Array *)&g_SceneMgr)->Size();
     g_SceneMgr.m_pSceneRoot = v159;
-    g_SceneMgr.m_pAddEffect2 = v159 + 12 * (v130 + 1);
+    g_SceneMgr.m_pAddEffect2 = (gbRenderEffect *)&v159->index[3 * v130 + 2];
   }
   pConfig = 307;
   v162 = 983043;
   v163 = ((PAL_GDB *)&g_GDB)->GDB_GetRoleNum(307);
-  v133 = (int *)g_SceneMgr.m_pAddEffect2;
-  if ( (g_SceneMgr.m_pAlphaEffect2 - g_SceneMgr.m_pAddEffect2) / 12 )
+  v133 = (gbRenderEffect *)g_SceneMgr.m_pAddEffect2;
+  if ( ((char *)g_SceneMgr.m_pAlphaEffect2 - (char *)g_SceneMgr.m_pAddEffect2) / 12 )
   {
-    ((Array *)g_SceneMgr.m_pAddEffect2)->Insert((void *)g_SceneMgr.m_pAddEffect2, (void *)(g_SceneMgr.m_pAddEffect2 + 12));
-    ((Array *)g_SceneMgr.m_pAddEffect2)->Erase(1 - (g_SceneMgr.m_pAddEffect2 - (int)v133) / 12, &pConfig);
-    for ( i4 = g_SceneMgr.m_pAddEffect2; v133 != (int *)i4; v142[2] = v163 )
+    ((Array *)g_SceneMgr.m_pAddEffect2)->Insert(g_SceneMgr.m_pAddEffect2, &g_SceneMgr.m_pAddEffect2->NameCrc32);
+    ((Array *)g_SceneMgr.m_pAddEffect2)->Erase(1 - ((char *)g_SceneMgr.m_pAddEffect2 - (char *)v133) / 12, &pConfig);
+    for ( i4 = g_SceneMgr.m_pAddEffect2; v133 != i4; v142[2] = v163 )
     {
-      v142 = v133;
-      v133 += 3;
+      v142 = (_DWORD *)v133->_pad_0000;
+      v133 = (gbRenderEffect *)((char *)v133 + 12);
       *v142 = pConfig;
       v142[1] = v162;
     }
-    g_SceneMgr.m_pAddEffect2 += 12;
+    g_SceneMgr.m_pAddEffect2 = (gbRenderEffect *)((char *)g_SceneMgr.m_pAddEffect2 + 12);
   }
   else
   {
-    if ( g_SceneMgr.m_pSceneRoot && (unsigned int)((g_SceneMgr.m_pAddEffect2 - g_SceneMgr.m_pSceneRoot) / 12) > 1 )
-      v134 = (g_SceneMgr.m_pAddEffect2 - g_SceneMgr.m_pSceneRoot) / 12;
+    if ( g_SceneMgr.m_pSceneRoot
+      && (unsigned int)(((char *)g_SceneMgr.m_pAddEffect2 - (char *)g_SceneMgr.m_pSceneRoot) / 12) > 1 )
+    {
+      v134 = ((char *)g_SceneMgr.m_pAddEffect2 - (char *)g_SceneMgr.m_pSceneRoot) / 12;
+    }
     else
+    {
       v134 = 1;
+    }
     if ( g_SceneMgr.m_pSceneRoot )
-      v135 = (g_SceneMgr.m_pAddEffect2 - g_SceneMgr.m_pSceneRoot) / 12;
+      v135 = ((char *)g_SceneMgr.m_pAddEffect2 - (char *)g_SceneMgr.m_pSceneRoot) / 12;
     else
       v135 = 0;
     v136 = v135 + v134;
     v160 = v135 + v134;
     if ( v135 + v134 < 0 )
       v136 = 0;
-    v137 = (_DWORD *)operator new(12 * v136);
-    v138 = (char *)g_SceneMgr.m_pSceneRoot;
-    v158 = (__int32)v137;
-    for ( i5 = v137; v138 != (char *)v133; i5 += 3 )
+    v137 = (gbSceneGraph *)operator new(12 * v136);
+    v138 = (gbSceneGraph *)g_SceneMgr.m_pSceneRoot;
+    v158 = v137;
+    for ( i5 = v137; v138 != (gbSceneGraph *)v133; i5 = (gbSceneGraph *)((char *)i5 + 12) )
     {
       i5->Copy(v138);
-      v138 += 12;
+      v138 = (gbSceneGraph *)((char *)v138 + 12);
     }
     i5->Erase(1, &pConfig);
-    v133->Insert((void *)g_SceneMgr.m_pAddEffect2, i5 + 3);
+    v133->Insert(g_SceneMgr.m_pAddEffect2, &i5->index[2]);
     nullsub_2(g_SceneMgr.m_pSceneRoot, g_SceneMgr.m_pAddEffect2);
-    operator delete((void *)g_SceneMgr.m_pSceneRoot);
-    g_SceneMgr.m_pAlphaEffect2 = v158 + 12 * v160;
-    v140 = ((Array *)&g_SceneMgr.m_pGfxMgr)->Size();
+    operator delete(g_SceneMgr.m_pSceneRoot);
+    g_SceneMgr.m_pAlphaEffect2 = (gbRenderEffect *)((char *)v158 + 12 * v160);
+    v140 = ((Array *)&g_SceneMgr)->Size();
     g_SceneMgr.m_pSceneRoot = v158;
-    g_SceneMgr.m_pAddEffect2 = v158 + 12 * (v140 + 1);
+    g_SceneMgr.m_pAddEffect2 = (gbRenderEffect *)&v158->index[3 * v140 + 2];
   }
   pConfig = 308;
   v162 = 0;
@@ -3507,19 +3518,19 @@ LABEL_148:
     switch ( i6 )
     {
       case 0:
-        *(&g_SceneMgr.m_pAddEffect + 352 * i6) = 101;
+        *((_DWORD *)&g_SceneMgr.m_pAddEffect + 352 * i6) = 101;
         break;
       case 1:
-        *(&g_SceneMgr.m_pAddEffect + 352 * i6) = 104;
+        *((_DWORD *)&g_SceneMgr.m_pAddEffect + 352 * i6) = 104;
         break;
       case 2:
-        *(&g_SceneMgr.m_pAddEffect + 352 * i6) = 106;
+        *((_DWORD *)&g_SceneMgr.m_pAddEffect + 352 * i6) = 106;
         break;
       case 3:
-        *(&g_SceneMgr.m_pAddEffect + 352 * i6) = 107;
+        *((_DWORD *)&g_SceneMgr.m_pAddEffect + 352 * i6) = 107;
         break;
       case 4:
-        *(&g_SceneMgr.m_pAddEffect + 352 * i6) = 102;
+        *((_DWORD *)&g_SceneMgr.m_pAddEffect + 352 * i6) = 102;
         break;
       default:
         continue;

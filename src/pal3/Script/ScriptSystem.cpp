@@ -467,7 +467,7 @@ int ScriptSystem::RunEvent(int eventId, int a2, int a3)
     if ( !g_SceneMgr.m_slot0[1408 * m_nCameraState + 77] && (unsigned int)eventId <= 4 && !a3 )
     {
       sprintf(Buffer, off_5861F8, eventId);
-      v7 = ((PalScript *)(&g_PAL3Data + 312))->SetAppName(Buffer);
+      v7 = ((PalScript *)&g_PAL3Data.mVelocity[8])->SetAppName(Buffer);
       sub_410360(v7);
       result = g_SceneMgr.m_nCameraState;
       g_SceneMgr.m_slot0[1408 * g_SceneMgr.m_nCameraState + 52 + eventId] = 1;

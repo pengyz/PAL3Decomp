@@ -381,7 +381,7 @@ void CGameData::Destroy()
   int v5; // ecx
 
   ((UIWnd *)this)->UpdateChildren();
-  sub_4573A0(&g_PAL3Data + 328);
+  sub_4573A0(&g_PAL3Data.mStorePos[8]);
   (*(void (**)(char *))(*(_DWORD *)&this->_data[3904] + 12))(&this->_data[3904]);
   v2 = *((_DWORD *)this + 7044);
   if ( v2 )

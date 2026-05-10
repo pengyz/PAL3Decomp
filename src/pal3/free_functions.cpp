@@ -945,7 +945,7 @@ void __cdecl unknown_libname_300()
 // Microsoft VisualC 2-14/net runtime
 _DWORD *unknown_libname_301()
 {
-  return sub_457260((_DWORD *)&g_PAL3Data + 82);
+  return sub_457260(&g_PAL3Data.mStorePos[8]);
 }
 
 // 0x00404610
@@ -953,7 +953,7 @@ _DWORD *unknown_libname_301()
 // Microsoft VisualC 2-14/net runtime
 void __cdecl unknown_libname_302()
 {
-  sub_457340((int)(&g_PAL3Data + 328));
+  sub_457340((int)&g_PAL3Data.mStorePos[8]);
 }
 
 // 0x00404620
@@ -969,7 +969,7 @@ int _E187()
 // Microsoft VisualC 2-14/net runtime
 _BYTE *unknown_libname_303()
 {
-  return sub_430180((_BYTE *)&g_PAL3Data + 312);
+  return sub_430180(&g_PAL3Data.mVelocity[8]);
 }
 
 // 0x00404650
@@ -977,13 +977,13 @@ _BYTE *unknown_libname_303()
 // Microsoft VisualC 2-14/net runtime
 void __cdecl unknown_libname_304()
 {
-  SceneObj *v0; // [esp+0h] [ebp-4h] BYREF
+  char *v0; // [esp+0h] [ebp-4h] BYREF
 
-  v0 = &g_PAL3Data + 312;
-  sub_430B30((_DWORD *)&g_PAL3Data + 78, &v0, **((_DWORD ***)&g_PAL3Data + 79), *((_DWORD **)&g_PAL3Data + 79));
-  operator delete(*((void **)&g_PAL3Data + 79));
-  *((_DWORD *)&g_PAL3Data + 79) = 0;
-  *((_DWORD *)&g_PAL3Data + 81) = 0;
+  v0 = &g_PAL3Data.mVelocity[8];
+  sub_430B30(&g_PAL3Data.mVelocity[8], &v0, *(_DWORD **)LODWORD(g_PAL3Data.mTime), (_DWORD *)LODWORD(g_PAL3Data.mTime));
+  operator delete((void *)LODWORD(g_PAL3Data.mTime));
+  g_PAL3Data.mTime = 0.0;
+  *(_DWORD *)&g_PAL3Data.mStorePos[4] = 0;
   if ( !--*(_DWORD *)&String[256] )
   {
     operator delete(dword_D8C2B0);
@@ -1003,17 +1003,17 @@ int _E202()
 // between_std_methods (0x402FB0-0x407AB0)
 gbImage2D *_E207()
 {
-  return gbImage2D::gbImage2D((gbImage2D *)(&g_PAL3Data + 24));
+  return gbImage2D::gbImage2D((gbImage2D *)&g_PAL3Data._pad_0000[24]);
 }
 
 // 0x00404690
 // between_std_methods (0x402FB0-0x407AB0)
 void __cdecl _E212()
 {
-  if ( (*((unsigned __int8 *)&g_PAL3Data + 16) & 1) == 0 )
+  if ( (g_PAL3Data._pad_0000[16] & 1) == 0 )
   {
-    *(&g_PAL3Data + 16) = (SceneObj)(*((unsigned __int8 *)&g_PAL3Data + 16) | 1);
-    gbImage2D::~gbImage2D((gbImage2D *)(&g_PAL3Data + 24));
+    g_PAL3Data._pad_0000[16] |= 1u;
+    gbImage2D::~gbImage2D((gbImage2D *)&g_PAL3Data._pad_0000[24]);
   }
 }
 
@@ -1029,10 +1029,10 @@ int __thiscall _E217(void *_this)
 // between_std_methods (0x402FB0-0x407AB0)
 int __fastcall _E222(int a1)
 {
-  g_PAL3Data = (SceneObj)HIBYTE(a1);
-  *((_DWORD *)&g_PAL3Data + 1) = 0;
-  *((_DWORD *)&g_PAL3Data + 2) = 0;
-  *((_DWORD *)&g_PAL3Data + 3) = 0;
+  g_PAL3Data._pad_0000[0] = HIBYTE(a1);
+  *(_DWORD *)&g_PAL3Data._pad_0000[4] = 0;
+  *(_DWORD *)&g_PAL3Data._pad_0000[8] = 0;
+  *(_DWORD *)&g_PAL3Data._pad_0000[12] = 0;
   return 0;
 }
 
@@ -1042,20 +1042,20 @@ void __cdecl _E228()
 {
   char v0; // al
 
-  if ( (*((unsigned __int8 *)&g_PAL3Data + 16) & 2) == 0 )
+  if ( (g_PAL3Data._pad_0000[16] & 2) == 0 )
   {
-    *(&g_PAL3Data + 16) = (SceneObj)(*((unsigned __int8 *)&g_PAL3Data + 16) | 2);
-    if ( *((_DWORD *)&g_PAL3Data + 1) )
+    g_PAL3Data._pad_0000[16] |= 2u;
+    if ( *(_DWORD *)&g_PAL3Data._pad_0000[4] )
     {
-      v0 = *(_BYTE *)(*((_DWORD *)&g_PAL3Data + 1) - 1);
+      v0 = *(_BYTE *)(*(_DWORD *)&g_PAL3Data._pad_0000[4] - 1);
       if ( !v0 || v0 == -1 )
-        operator delete((void *)(*((_DWORD *)&g_PAL3Data + 1) - 1));
+        operator delete((void *)(*(_DWORD *)&g_PAL3Data._pad_0000[4] - 1));
       else
-        *(_BYTE *)(*((_DWORD *)&g_PAL3Data + 1) - 1) = v0 - 1;
+        *(_BYTE *)(*(_DWORD *)&g_PAL3Data._pad_0000[4] - 1) = v0 - 1;
     }
-    *((_DWORD *)&g_PAL3Data + 1) = 0;
-    *((_DWORD *)&g_PAL3Data + 2) = 0;
-    *((_DWORD *)&g_PAL3Data + 3) = 0;
+    *(_DWORD *)&g_PAL3Data._pad_0000[4] = 0;
+    *(_DWORD *)&g_PAL3Data._pad_0000[8] = 0;
+    *(_DWORD *)&g_PAL3Data._pad_0000[12] = 0;
   }
 }
 
@@ -7686,11 +7686,11 @@ gbGfxManager *__cdecl UIQuadManager_Reset()
   if ( v3 != *(_DWORD *)(v0 + 12) )
   {
     v2 = *(_BYTE *)(v0 + 29);
-    *(_DWORD *)&result[12] = v3;
+    *(_DWORD *)result->DrvInfo = v3;
     if ( !v2 )
       return (gbGfxManager *)(*(int (__thiscall **)(int, _DWORD))(*(_DWORD *)g_Input.KeyInfo[177].Data + 100))(
                                g_Input.KeyInfo[177].Data,
-                               *(_DWORD *)&result[4 * v3]);
+                               *(_DWORD *)&result->_vftable[4 * v3]);
   }
   return result;
 }

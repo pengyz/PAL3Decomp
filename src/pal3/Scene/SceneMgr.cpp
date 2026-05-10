@@ -13,35 +13,35 @@ extern char aGfxscriptAlpha[];
 extern char aGfxscriptAlpha_0[];
 
 // 0x004CDA10
-void * SceneMgr::Create(int gfxMgr, int cam, int a4)
+void * SceneMgr::Create(gbGfxManager *gfxMgr, gbCamera *cam, gbSceneGraph *pRoot)
 {
-  __int32 m_pGfxMgr; // eax
-  struct gbRenderEffect *v6; // eax
-  __int32 v7; // ecx
-  struct gbRenderEffect *v8; // eax
-  __int32 v9; // edx
+  gbGfxManager *m_pGfxMgr; // eax
+  gbRenderEffect *v6; // eax
+  gbGfxManager *v7; // ecx
+  gbRenderEffect *v8; // eax
+  gbGfxManager *v9; // edx
 
   this->m_pGfxMgr = gfxMgr;
   this->m_pCamera = cam;
   this->m_pAddEffect = 0;
   this->m_pAlphaEffect = 0;
-  this->m_pSceneRoot = a4;
+  this->m_pSceneRoot = pRoot;
   memset(this->_preArray, 0, 0x900u);
   memset(&this->m_slot1[276], 0, 0xA000u);
-  m_pGfxMgr = this->m_pGfxMgr;
+  m_pGfxMgr = (gbGfxManager *)this->m_pGfxMgr;
   this->m_lightDirX = 0.0;
   this->m_lightDirY = 0.0;
   this->m_lightDirZ = 0.0;
   this->m_upX = 0.0;
   this->m_upY = 1.0;
-  v6 = ((gbEffectMgr *)*(gbEffectMgr **)(m_pGfxMgr + 200))->NewRenderEffect(aGfxscriptAddit, 0);
-  v7 = this->m_pGfxMgr;
-  this->m_pAddEffect = (__int32)v6;
-  v8 = ((gbEffectMgr *)*(gbEffectMgr **)(v7 + 200))->NewRenderEffect(aGfxscriptAlpha, 0);
-  v9 = this->m_pGfxMgr;
-  this->m_pAlphaEffect = (__int32)v8;
-  this->m_pAddEffect2 = (__int32)((gbEffectMgr *)*(gbEffectMgr **)(v9 + 200))->NewRenderEffect(aGfxscriptAddit_0, 0);
-  this->m_pAlphaEffect2 = (__int32)((gbEffectMgr *)*(gbEffectMgr **)(this->m_pGfxMgr + 200))->NewRenderEffect(aGfxscriptAlpha_0, 0);
+  v6 = ((gbEffectMgr *)m_pGfxMgr->pEffectMgr)->NewRenderEffect(aGfxscriptAddit, 0);
+  v7 = (gbGfxManager *)this->m_pGfxMgr;
+  this->m_pAddEffect = v6;
+  v8 = ((gbEffectMgr *)v7->pEffectMgr)->NewRenderEffect(aGfxscriptAlpha, 0);
+  v9 = (gbGfxManager *)this->m_pGfxMgr;
+  this->m_pAlphaEffect = v8;
+  this->m_pAddEffect2 = ((gbEffectMgr *)v9->pEffectMgr)->NewRenderEffect(aGfxscriptAddit_0, 0);
+  this->m_pAlphaEffect2 = ((gbEffectMgr *)this->m_pGfxMgr->pEffectMgr)->NewRenderEffect(aGfxscriptAlpha_0, 0);
   sub_4CDED0((CEffMgr *)this);
   CEffMgr::CEffMgr();
   return this;

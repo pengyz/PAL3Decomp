@@ -27,7 +27,7 @@ char SceneObj::Update(unsigned int a2)
 
   if ( a2 > 0xFFFFFFFD )
     v11->_Xlen();
-  v3 = (_BYTE *)*((_DWORD *)this + 1);
+  v3 = (_BYTE *)*(_BYTE **)&this->_pad_0000[4];
   if ( v3 )
   {
     v4 = *(v3 - 1);
@@ -38,9 +38,9 @@ char SceneObj::Update(unsigned int a2)
         if ( !a2 )
         {
           *(v3 - 1) = v4 - 1;
-          *((_DWORD *)this + 1) = 0;
-          *((_DWORD *)this + 2) = 0;
-          *((_DWORD *)this + 3) = 0;
+          *(_DWORD *)&this->_pad_0000[4] = 0;
+          *(_DWORD *)&this->_pad_0000[8] = 0;
+          *(_DWORD *)&this->_pad_0000[12] = 0;
           return 0;
         }
         goto LABEL_29;
@@ -51,13 +51,13 @@ char SceneObj::Update(unsigned int a2)
   {
     if ( !v12 )
     {
-      if ( *((_DWORD *)this + 3) >= a2 )
+      if ( *(_DWORD *)&this->_pad_0000[12] >= a2 )
         return 1;
 LABEL_29:
       ((GRPinput *)this)->GetKeyState(a2);
       return 1;
     }
-    v8 = *((_DWORD *)this + 3);
+    v8 = *(_DWORD *)&this->_pad_0000[12];
     if ( v8 <= 0x1F && v8 >= a2 )
       return 1;
     if ( v3 )
@@ -67,17 +67,17 @@ LABEL_29:
       if ( v10 && v10 != -1 )
       {
         * v9 = (*)v10 - 1;
-        *((_DWORD *)this + 1) = 0;
-        *((_DWORD *)this + 2) = 0;
-        *((_DWORD *)this + 3) = 0;
+        *(_DWORD *)&this->_pad_0000[4] = 0;
+        *(_DWORD *)&this->_pad_0000[8] = 0;
+        *(_DWORD *)&this->_pad_0000[12] = 0;
         ((GRPinput *)this)->GetKeyState(a2);
         return 1;
       }
       operator delete(v9);
     }
-    *((_DWORD *)this + 1) = 0;
-    *((_DWORD *)this + 2) = 0;
-    *((_DWORD *)this + 3) = 0;
+    *(_DWORD *)&this->_pad_0000[4] = 0;
+    *(_DWORD *)&this->_pad_0000[8] = 0;
+    *(_DWORD *)&this->_pad_0000[12] = 0;
     ((GRPinput *)this)->GetKeyState(a2);
     return 1;
   }
@@ -90,23 +90,23 @@ LABEL_29:
       if ( v7 && v7 != -1 )
       {
         * v6 = (*)v7 - 1;
-        *((_DWORD *)this + 1) = 0;
-        *((_DWORD *)this + 2) = 0;
-        *((_DWORD *)this + 3) = 0;
+        *(_DWORD *)&this->_pad_0000[4] = 0;
+        *(_DWORD *)&this->_pad_0000[8] = 0;
+        *(_DWORD *)&this->_pad_0000[12] = 0;
         return 0;
       }
       operator delete(v6);
     }
-    *((_DWORD *)this + 1) = 0;
-    *((_DWORD *)this + 2) = 0;
-    *((_DWORD *)this + 3) = 0;
+    *(_DWORD *)&this->_pad_0000[4] = 0;
+    *(_DWORD *)&this->_pad_0000[8] = 0;
+    *(_DWORD *)&this->_pad_0000[12] = 0;
     return 0;
   }
   else
   {
     if ( v3 )
     {
-      *((_DWORD *)this + 2) = 0;
+      *(_DWORD *)&this->_pad_0000[8] = 0;
       *v3 = 0;
     }
     return 0;
@@ -117,14 +117,14 @@ LABEL_29:
 int SceneObj::CreateUI()
 {
   ((UIListBox *)this)->UIListBox();
-  ((UIItem *)(UIItem *)this + 360)->Refresh();
-  ((UIItem *)(UIItem *)this + 1728)->Refresh();
-  ((UIWnd *)(this + 3096))->ctor_F7F0();
-  ((UIFrameWnd *)(this + 3340))->UIFrameWnd();
-  *(_DWORD *)this = &off_5708E8;
+  ((UIItem *)&this->mOBBox[15])->Refresh();
+  ((UIItem *)&this->m_common[20])->Refresh();
+  ((UIWnd *)((char *)this + 3096))->ctor_F7F0();
+  ((UIFrameWnd *)((char *)this + 3340))->UIFrameWnd();
+  *(_DWORD *)this->_pad_0000 = &off_5708E8;
   ((Actor *)this)->ResetState();
   *((_BYTE *)this + 3492) = 1;
-  return (int)this;
+  return (int)this->_pad_0000;
 }
 
 // 0x005362F0
@@ -141,10 +141,10 @@ void * SceneObj::Destructor()
 // 0x00536310
 void SceneObj::DestroyInternal()
 {
-  *(_DWORD *)this = &off_5708E8;
-  ((UIFrameWnd *)(this + 3340))->_UIFrameWnd();
-  ((UIWnd *)(this + 3096))->~UIWnd();
-  ((UIItem *)(UIItem *)this + 1728)->UIItem();
-  ((UIItem *)(UIItem *)this + 360)->UIItem();
+  *(_DWORD *)this->_pad_0000 = &off_5708E8;
+  ((UIFrameWnd *)((char *)this + 3340))->_UIFrameWnd();
+  ((UIWnd *)((char *)this + 3096))->~UIWnd();
+  ((UIItem *)&this->m_common[20])->UIItem();
+  ((UIItem *)&this->mOBBox[15])->UIItem();
   ((UIWnd *)this)->~UIWnd();
 }

@@ -68,60 +68,60 @@ char CEffExplosive::Create(int a2)
   int v8; // eax
   int v9; // ecx
   int v10; // edx
-  int v11; // ebx
-  _DWORD *v12; // eax
+  int m_nQuad; // ebx
+  gbGeomQuad *v12; // eax
   int v13; // ebx
   int v14; // ebp
   int v15; // ebx
   int v16; // edi
   int v17; // ebx
-  _DWORD *v18; // eax
-  _DWORD *v19; // ecx
+  tagExplosive *v18; // eax
+  _DWORD *p_z; // ecx
   int v20; // edx
-  int v21; // ecx
-  _DWORD *v23; // [esp+10h] [ebp-810h]
+  gbGeomQuad *m_pGeomQuad; // ecx
+  gbGeomQuad *v23; // [esp+10h] [ebp-810h]
   char pExceptionObject[1024]; // [esp+14h] [ebp-80Ch] BYREF
   char ArgList[1024]; // [esp+414h] [ebp-40Ch] BYREF
   int v26; // [esp+81Ch] [ebp-4h]
 
   v3 = (_DWORD *)operator new(0x4C0u);
-  *((_DWORD *)this + 6) = v3;
+  *(_DWORD *)&this->_pad_0000[24] = v3;
   if ( v3 )
   {
     v4 = 0;
     v5 = 0;
     while ( 1 )
     {
-      *(_DWORD *)(v5 + *((_DWORD *)this + 6)) = operator new(0x2D0u);
-      if ( !*(_DWORD *)(v5 + *((_DWORD *)this + 6)) )
+      *(_DWORD *)(v5 + *(_DWORD *)&this->_pad_0000[24]) = operator new(0x2D0u);
+      if ( !*(_DWORD *)(v5 + *(_DWORD *)&this->_pad_0000[24]) )
         break;
       v5 += 152;
       ++v4;
       if ( v5 >= 1216 )
       {
         v6 = 0;
-        *((_DWORD *)this + 10) = 8;
-        *((_DWORD *)this + 11) = 10;
+        *(_DWORD *)&this->_pad_0000[40] = 8;
+        *(_DWORD *)&this->_pad_0000[44] = 10;
         v7 = 0;
         do
         {
-          *(_BYTE *)(v7 + *((_DWORD *)this + 6) + 148) = 0;
+          *(_BYTE *)(v7 + *(_DWORD *)&this->_pad_0000[24] + 148) = 0;
           v8 = 0;
-          if ( *((int *)this + 11) > 0 )
+          if ( *(int *)&this->_pad_0000[44] > 0 )
           {
             v9 = 0;
             do
             {
               ++v8;
               v9 += 72;
-              *(_BYTE *)(*(_DWORD *)(v7 + *((_DWORD *)this + 6)) + v9 - 8) = 0;
+              *(_BYTE *)(*(_DWORD *)(v7 + *(_DWORD *)&this->_pad_0000[24]) + v9 - 8) = 0;
             }
-            while ( v8 < *((_DWORD *)this + 11) );
+            while ( v8 < *(_DWORD *)&this->_pad_0000[44] );
           }
           ++v6;
           v7 += 152;
         }
-        while ( v6 < *((_DWORD *)this + 10) );
+        while ( v6 < *(_DWORD *)&this->_pad_0000[40] );
         goto LABEL_10;
       }
     }
@@ -130,46 +130,46 @@ char CEffExplosive::Create(int a2)
       v16 = 152 * (v4 - 1);
       do
       {
-        operator delete(*(void **)(v16 + *((_DWORD *)this + 6)));
+        operator delete(*(void **)(v16 + *(_DWORD *)&this->_pad_0000[24]));
         v16 -= 152;
         --v4;
       }
       while ( v4 );
     }
-    operator delete(*((void **)this + 6));
+    operator delete(*(void **)&this->_pad_0000[24]);
   }
 LABEL_10:
-  *((_DWORD *)this + 27) = (__int64)*(float *)(a2 + 224);
-  *((_DWORD *)this + 28) = (__int64)*(float *)(a2 + 232);
-  *((_DWORD *)this + 29) = *(_DWORD *)(a2 + 228);
-  *((_DWORD *)this + 31) = *(_DWORD *)(a2 + 244);
-  *((_DWORD *)this + 32) = *(_DWORD *)(a2 + 248);
-  *((_DWORD *)this + 33) = *(_DWORD *)(a2 + 252);
-  *((_DWORD *)this + 34) = *(_DWORD *)(a2 + 256);
-  v10 = *((_DWORD *)this + 27) * *((_DWORD *)this + 28);
-  *((_DWORD *)this + 35) = *(_DWORD *)(a2 + 268);
-  *((_DWORD *)this + 36) = *(_DWORD *)(a2 + 260);
-  *((_DWORD *)this + 30) = v10;
-  *((_DWORD *)this + 37) = *(_DWORD *)(a2 + 180);
-  *((_DWORD *)this + 41) = *(_DWORD *)(a2 + 184);
-  *((_DWORD *)this + 42) = *(_DWORD *)(a2 + 188);
-  *((_DWORD *)this + 43) = *(_DWORD *)(a2 + 192);
-  *((_DWORD *)this + 38) = *(_DWORD *)(a2 + 216);
-  *((_DWORD *)this + 39) = *(_DWORD *)(a2 + 196);
-  *((_DWORD *)this + 40) = *(_DWORD *)(a2 + 220);
-  *((_DWORD *)this + 65) = *(CEffExplosive *)(a2 + 213);
-  *((_DWORD *)this + 66) = *(CEffExplosive *)(a2 + 215);
-  *((_DWORD *)this + 67) = *(CEffExplosive *)(a2 + 176);
-  *((_DWORD *)this + 17) = &unk_FFFFFF;
-  *((_DWORD *)this + 20) = *(_DWORD *)(a2 + 204);
+  this->m_nXDivision = (__int64)*(float *)(a2 + 224);
+  this->m_nZDivision = (__int64)*(float *)(a2 + 232);
+  this->m_fGridSize = *(float *)(a2 + 228);
+  this->m_fMaxExplosivePower = *(float *)(a2 + 244);
+  this->m_fMinExplosivePower = *(float *)(a2 + 248);
+  *(_DWORD *)this->m_vecExplosiveDir = *(_DWORD *)(a2 + 252);
+  *(_DWORD *)&this->m_vecExplosiveDir[4] = *(_DWORD *)(a2 + 256);
+  v10 = this->m_nXDivision * this->m_nZDivision;
+  *(_DWORD *)&this->m_vecExplosiveDir[8] = *(_DWORD *)(a2 + 268);
+  this->m_fPowerDec = *(float *)(a2 + 260);
+  this->m_nQuad = v10;
+  this->m_fFramePerSec = *(float *)(a2 + 180);
+  *(_DWORD *)this->m_vecPos = *(_DWORD *)(a2 + 184);
+  *(_DWORD *)&this->m_vecPos[4] = *(_DWORD *)(a2 + 188);
+  *(_DWORD *)&this->m_vecPos[8] = *(_DWORD *)(a2 + 192);
+  *(_DWORD *)this->m_vecRot = *(_DWORD *)(a2 + 216);
+  *(_DWORD *)&this->m_vecRot[4] = *(_DWORD *)(a2 + 196);
+  *(_DWORD *)&this->m_vecRot[8] = *(_DWORD *)(a2 + 220);
+  this->m_bAdditiveBlend = *(_BYTE *)(a2 + 213);
+  this->m_bNoZTest = *(_BYTE *)(a2 + 215);
+  this->m_byMaxFrame = *(_BYTE *)(a2 + 176);
+  this->m_nRequireLoops = (int)&unk_FFFFFF;
+  this->m_dwStartColor = *(_DWORD *)(a2 + 204);
   this->InitDefaultUVSet(*(_DWORD *)(a2 + 168), *(_DWORD *)(a2 + 172));
-  v11 = *((_DWORD *)this + 30);
-  v12 = (_DWORD *)operator new(68 * v11);
+  m_nQuad = this->m_nQuad;
+  v12 = (gbGeomQuad *)operator new(68 * m_nQuad);
   v23 = v12;
   v26 = 0;
   if ( v12 )
   {
-    v13 = v11 - 1;
+    v13 = m_nQuad - 1;
     v14 = (int)v12;
     if ( v13 >= 0 )
     {
@@ -188,25 +188,25 @@ LABEL_10:
   {
     v12 = 0;
   }
-  v17 = *((_DWORD *)this + 30);
-  *((_DWORD *)this + 12) = v12;
+  v17 = this->m_nQuad;
+  this->m_pGeomQuad = v12;
   v26 = -1;
-  v18 = (_DWORD *)operator new(24 * v17);
+  v18 = (tagExplosive *)operator new(24 * v17);
   if ( v18 )
   {
     if ( v17 - 1 >= 0 )
     {
-      v19 = (_DWORD *)v18 + 5;
+      p_z = (_DWORD *)&v18->vecRot.z;
       v20 = v17;
       do
       {
-        *(v19 - 5) = 0;
-        *(v19 - 4) = 0;
-        *(v19 - 3) = 0;
-        *(v19 - 2) = 0;
-        *(v19 - 1) = 0;
-        *v19 = 0;
-        v19 += 6;
+        *(p_z - 5) = 0;
+        *(p_z - 4) = 0;
+        *(p_z - 3) = 0;
+        *(p_z - 2) = 0;
+        *(p_z - 1) = 0;
+        *p_z = 0;
+        p_z += 6;
         --v20;
       }
       while ( v20 );
@@ -216,9 +216,9 @@ LABEL_10:
   {
     v18 = 0;
   }
-  v21 = *((_DWORD *)this + 12);
-  *((_DWORD *)this + 13) = v18;
-  if ( !v21 || !v18 )
+  m_pGeomQuad = (gbGeomQuad *)this->m_pGeomQuad;
+  this->m_pExplosive = v18;
+  if ( !m_pGeomQuad || !v18 )
   {
     qmemcpy(
       pExceptionObject,
@@ -233,7 +233,7 @@ LABEL_10:
 // 0x004C6F20
 void CEffExplosive::Destroy()
 {
-  char v2; // al
+  unsigned __int8 m_bAdditiveBlend; // al
   bool v3; // zf
   _DWORD *v4; // eax
   struct gbRenderEffect *v5; // ebp
@@ -265,14 +265,14 @@ void CEffExplosive::Destroy()
     dword_DE9988 = 1065353216;
     atexit(nullsub_80);
   }
-  if ( !*((_BYTE *)this + 8) && *((_BYTE *)this + 64) )
+  if ( !this->_pad_0000[8] && this->m_bVisible )
   {
-    ((gbVertPoolMgr *)*(gbVertPoolMgr **)(**((_DWORD **)this + 1) + 196))->GetDynVertBuf(0x15u);
-    v2 = *((_BYTE *)this + 65);
-    if ( *((_BYTE *)this + 66) )
+    ((gbVertPoolMgr *)*(gbVertPoolMgr **)(**(_DWORD **)&this->_pad_0000[4] + 196))->GetDynVertBuf(0x15u);
+    m_bAdditiveBlend = this->m_bAdditiveBlend;
+    if ( this->m_bNoZTest )
     {
-      v3 = v2 == 0;
-      v4 = (_DWORD *)*((_DWORD *)this + 1);
+      v3 = m_bAdditiveBlend == 0;
+      v4 = (_DWORD *)*(_DWORD **)&this->_pad_0000[4];
       if ( v3 )
         v5 = (struct gbRenderEffect *)v4[3];
       else
@@ -280,8 +280,8 @@ void CEffExplosive::Destroy()
     }
     else
     {
-      v3 = v2 == 0;
-      v4 = (_DWORD *)*((_DWORD *)this + 1);
+      v3 = m_bAdditiveBlend == 0;
+      v4 = (_DWORD *)*(_DWORD **)&this->_pad_0000[4];
       if ( v3 )
         v5 = (struct gbRenderEffect *)v4[5];
       else
@@ -289,14 +289,14 @@ void CEffExplosive::Destroy()
     }
     v6 = (gbMatrixStack *)*(gbMatrixStack **)(*v4 + 216);
     v6->Push();
-    v7 = *((float *)this + 44) + *((float *)this + 41);
+    v7 = *(float *)this->m_vecOffsetPos + *(float *)this->m_vecPos;
     retaddr = v7;
     v6->Translate((struct gbVec3D *)&retaddr);
-    v6->Scale(*((float *)this + 25), 1.0, *((float *)this + 26));
-    v6->Rotate(*((float *)this + 38), (struct gbVec3D *)&dword_DE99A0);
-    v6->Rotate(*((float *)this + 39), (struct gbVec3D *)&dword_DE9990);
-    v6->Rotate(*((float *)this + 40), (struct gbVec3D *)&dword_DE9980);
-    ((gbDynVertBuf *)*((struct gbGeomQuad **)this + 12))->RenderGeomQuad(*((_DWORD *)this + 30), v5, *((struct gbTextureArray **)this + 15));
+    v6->Scale(this->m_fXSize, 1.0, this->m_fZSize);
+    v6->Rotate(*(float *)this->m_vecRot, (struct gbVec3D *)&dword_DE99A0);
+    v6->Rotate(*(float *)&this->m_vecRot[4], (struct gbVec3D *)&dword_DE9990);
+    v6->Rotate(*(float *)&this->m_vecRot[8], (struct gbVec3D *)&dword_DE9980);
+    ((gbDynVertBuf *)this->m_pGeomQuad)->RenderGeomQuad(this->m_nQuad, v5, this->m_pTextureArray);
     v6->Pop();
   }
 }
@@ -309,7 +309,7 @@ int CEffExplosive::ProcCommonTask(int _94)
   int v5; // ecx
   double v6; // st7
   int v7; // ebp
-  double v8; // st7
+  double m_fAlpha; // st7
   unsigned __int16 v9; // cx
   float a3; // [esp+10h] [ebp-80h]
   int a3a; // [esp+10h] [ebp-80h]
@@ -322,95 +322,95 @@ int CEffExplosive::ProcCommonTask(int _94)
   struct gbVec3D v19; // [esp+44h] [ebp-4Ch] BYREF
   _BYTE v20[64]; // [esp+50h] [ebp-40h] BYREF
 
-  v3 = *((float *)this + 4);
-  v4 = *((_DWORD *)this + 6) + 152 * *((_DWORD *)this + 7);
-  v5 = 9 * *((_DWORD *)this + 8);
+  v3 = *(float *)&this->_pad_0000[16];
+  v4 = *(_DWORD *)&this->_pad_0000[24] + 152 * *(_DWORD *)&this->_pad_0000[28];
+  v5 = 9 * *(_DWORD *)&this->_pad_0000[32];
   v6 = v3 - *(float *)(*(_DWORD *)v4 + 8 * v5 + 16);
   v7 = *(_DWORD *)v4 + 8 * v5;
-  a2 = *((float *)this + 5);
+  a2 = *(float *)&this->_pad_0000[20];
   if ( v6 > *(float *)(v7 + 24) )
     a2 = a2 - (v6 - *(float *)(v7 + 24));
   if ( !*(_BYTE *)(v7 + 65) )
   {
     *(_DWORD *)(v7 + 44) = 0;
-    *((_BYTE *)this + 64) = 1;
+    this->m_bVisible = 1;
     *(_BYTE *)(v7 + 65) = 1;
   }
-  if ( *((float *)this + 4) - *(float *)(v7 + 16) > *(float *)(v4 + 84) && !*(_DWORD *)(v7 + 44) )
+  if ( *(float *)&this->_pad_0000[16] - *(float *)(v7 + 16) > *(float *)(v4 + 84) && !*(_DWORD *)(v7 + 44) )
   {
     sub_4C7E60((int)this);
     *(_DWORD *)(v7 + 44) = 1;
   }
-  *((float *)this + 38) = a2 * *(float *)(v4 + 64) + *((float *)this + 38);
-  *((float *)this + 39) = a2 * *(float *)(v4 + 68) + *((float *)this + 39);
-  *((float *)this + 40) = a2 * *(float *)(v4 + 72) + *((float *)this + 40);
-  *((float *)this + 41) = a2 * *(float *)(v4 + 28) + *((float *)this + 41);
-  *((float *)this + 42) = a2 * *(float *)(v4 + 32) + *((float *)this + 42);
-  *((float *)this + 43) = a2 * *(float *)(v4 + 36) + *((float *)this + 43);
+  *(float *)this->m_vecRot = a2 * *(float *)(v4 + 64) + *(float *)this->m_vecRot;
+  *(float *)&this->m_vecRot[4] = a2 * *(float *)(v4 + 68) + *(float *)&this->m_vecRot[4];
+  *(float *)&this->m_vecRot[8] = a2 * *(float *)(v4 + 72) + *(float *)&this->m_vecRot[8];
+  *(float *)this->m_vecPos = a2 * *(float *)(v4 + 28) + *(float *)this->m_vecPos;
+  *(float *)&this->m_vecPos[4] = a2 * *(float *)(v4 + 32) + *(float *)&this->m_vecPos[4];
+  *(float *)&this->m_vecPos[8] = a2 * *(float *)(v4 + 36) + *(float *)&this->m_vecPos[8];
   ((gbMatrix4 *)v20)->gbMatrix4();
   memset(&v18, 0, sizeof(v18));
   memset(&v19, 0, sizeof(v19));
   ((gbMatrix4 *)v20)->LoadIdentity();
   v18 = *(gbVec3D *)(v4 + 44);
   ((gbVec3D *)&v18)->Normalize();
-  a3 = (*((float *)this + 4) - *(float *)(v7 + 16)) * *(float *)(v4 + 60);
+  a3 = (*(float *)&this->_pad_0000[16] - *(float *)(v7 + 16)) * *(float *)(v4 + 60);
   ((gbMatrix4 *)v20)->SetAxisAngle(&v18, a3);
   v19.z = *(float *)(v4 + 56);
   v19.x = 0.0;
   v19.y = 0.0;
-  ((gbMatrix4 *)v20)->Rotate(&v19, (struct gbVec3D *)(this + 176));
+  ((gbMatrix4 *)v20)->Rotate(&v19, (struct gbVec3D *)this->m_vecOffsetPos);
   if ( *(float *)(v4 + 80) != 0.0
     || *(float *)(v4 + 84) != 0.0
     || *(float *)(v4 + 92) != 0.0
     || *(float *)(v4 + 88) != 0.0 )
   {
-    *((float *)this + 21) = a2 * *(float *)(v4 + 80) + *((float *)this + 21);
+    this->m_fAlpha = a2 * *(float *)(v4 + 80) + this->m_fAlpha;
     if ( (g_bCursorVisible & 1) == 0 )
     {
       g_bCursorVisible |= 1u;
       ((CEffMgr *)&g_nCursorState)->Reset();
       atexit(nullsub_1);
     }
-    if ( *((float *)this + 21) <= 255.0 )
+    if ( this->m_fAlpha <= 255.0 )
     {
-      if ( *((float *)this + 21) >= 0.0 )
-        v8 = *((float *)this + 21);
+      if ( this->m_fAlpha >= 0.0 )
+        m_fAlpha = this->m_fAlpha;
       else
-        v8 = 0.0;
+        m_fAlpha = 0.0;
     }
     else
     {
-      v8 = 255.0;
+      m_fAlpha = 255.0;
     }
-    *((float *)this + 21) = v8;
+    this->m_fAlpha = m_fAlpha;
     if ( (g_bCursorVisible & 1) == 0 )
     {
       g_bCursorVisible |= 1u;
       ((CEffMgr *)&g_nCursorState)->Reset();
       atexit(nullsub_1);
     }
-    v14 = *((float *)this + 21) + 12582912.0;
+    v14 = this->m_fAlpha + 12582912.0;
     if ( (g_bCursorVisible & 1) == 0 )
     {
       g_bCursorVisible |= 1u;
       ((CEffMgr *)&g_nCursorState)->Reset();
       atexit(nullsub_1);
     }
-    v15 = *((float *)this + 22) + 12582912.0;
+    v15 = this->m_fRed + 12582912.0;
     if ( (g_bCursorVisible & 1) == 0 )
     {
       g_bCursorVisible |= 1u;
       ((CEffMgr *)&g_nCursorState)->Reset();
       atexit(nullsub_1);
     }
-    v16 = *((float *)this + 23) + 12582912.0;
+    v16 = this->m_fGreen + 12582912.0;
     if ( (g_bCursorVisible & 1) == 0 )
     {
       g_bCursorVisible |= 1u;
       ((CEffMgr *)&g_nCursorState)->Reset();
       atexit(nullsub_1);
     }
-    v17 = *((float *)this + 24) + 12582912.0;
+    v17 = this->m_fBlue + 12582912.0;
     if ( (g_bCursorVisible & 1) == 0 )
     {
       g_bCursorVisible |= 1u;
@@ -419,16 +419,16 @@ int CEffExplosive::ProcCommonTask(int _94)
     }
     HIBYTE(v9) = LOBYTE(v14);
     LOBYTE(v9) = LOBYTE(v15);
-    *((_DWORD *)this + 20) = LOBYTE(v17) | ((LOBYTE(v16) | (v9 << 8)) << 8);
+    this->m_dwStartColor = LOBYTE(v17) | ((LOBYTE(v16) | (v9 << 8)) << 8);
   }
-  *((float *)this + 25) = a2 * *(float *)(v4 + 24) + *((float *)this + 25);
-  *((float *)this + 26) = a2 * *(float *)(v4 + 108) + *((float *)this + 26);
+  this->m_fXSize = a2 * *(float *)(v4 + 24) + this->m_fXSize;
+  this->m_fZSize = a2 * *(float *)(v4 + 108) + this->m_fZSize;
   if ( *(_DWORD *)(v7 + 44) == 1 )
   {
-    *(float *)&a3a = *((float *)this + 4) - *(float *)(v7 + 16);
+    *(float *)&a3a = *(float *)&this->_pad_0000[16] - *(float *)(v7 + 16);
     this->UpdateExplosive(a2, a3a);
   }
-  if ( *(_BYTE *)(v7 + 66) == 1 || *((float *)this + 4) - *(float *)(v7 + 16) >= *(float *)(v7 + 24) )
+  if ( *(_BYTE *)(v7 + 66) == 1 || *(float *)&this->_pad_0000[16] - *(float *)(v7 + 16) >= *(float *)(v7 + 24) )
     *(_DWORD *)(v7 + 8) = 4;
   return 0;
 }
@@ -549,10 +549,10 @@ void * CEffExplosive::GetEditorObjDescription(int a1)
 void CEffExplosive::InitDefaultUVSet(int a2, int a3)
 {
   int v3; // ebx
-  CEffExplosive *v4; // edi
+  char *v4; // edi
   int v5; // ecx
   double v6; // st7
-  CEffExplosive *v7; // eax
+  char *v7; // eax
   double v8; // st5
   double v9; // st5
   double v10; // st3
@@ -565,7 +565,7 @@ void CEffExplosive::InitDefaultUVSet(int a2, int a3)
   v12 = 0;
   if ( a3 > 0 )
   {
-    v4 = (CEffExplosive *)this + 200;
+    v4 = (char *)&this->m_DefaultUVSet[8];
     do
     {
       v5 = 0;
@@ -584,10 +584,10 @@ void CEffExplosive::InitDefaultUVSet(int a2, int a3)
           v7 += 16;
           v14 = ++v5;
           v11 = v10 / v6;
-          *(float *)&v7[-24] = v11;
-          *(float *)&v7[-16] = 1.0 / v6 + v11;
-          *(float *)&v7[-20] = v9;
-          *(float *)&v7[-12] = 1.0 - v13;
+          *((float *)v7 - 6) = v11;
+          *((float *)v7 - 4) = 1.0 / v6 + v11;
+          *((float *)v7 - 5) = v9;
+          *((float *)v7 - 3) = 1.0 - v13;
         }
         while ( v5 < a2 );
       }
@@ -602,25 +602,27 @@ _DWORD * CEffExplosive::LoadTexture(int a2)
 {
   gbTexture *v3; // eax
   _DWORD *result; // eax
-  int v5; // ecx
+  gbTexture *m_pTexture; // ecx
   char pExceptionObject[1024]; // [esp+8h] [ebp-800h] BYREF
   char ArgList[1024]; // [esp+408h] [ebp-400h] BYREF
 
-  v3 = (gbTexture *)(*(int (**)(_DWORD, int))(***((_DWORD ***)this + 1) + 8))(**((_DWORD **)this + 1), a2);
-  *((_DWORD *)this + 14) = v3;
+  v3 = (gbTexture *)(*(int (**)(_DWORD, int))(***(_DWORD ***)&this->_pad_0000[4] + 8))(
+                      **(_DWORD **)&this->_pad_0000[4],
+                      a2);
+  this->m_pTexture = v3;
   v3->LoadTexture(1);
   result = (_DWORD *)operator new(0x44u);
   if ( result )
   {
-    v5 = *((_DWORD *)this + 14);
+    m_pTexture = (gbTexture *)this->m_pTexture;
     result[16] = 1;
-    *result = v5;
+    *result = m_pTexture;
   }
   else
   {
     result = 0;
   }
-  *((_DWORD *)this + 15) = result;
+  this->m_pTextureArray = (gbTextureArray *)result;
   if ( !result )
   {
     qmemcpy(
@@ -635,7 +637,7 @@ _DWORD * CEffExplosive::LoadTexture(int a2)
 // 0x004C7D40
 int CEffExplosive::CreateGeom()
 {
-  int v1; // edx
+  int m_nXDivision; // edx
   int result; // eax
   int v3; // ebx
   int v4; // ebp
@@ -643,64 +645,64 @@ int CEffExplosive::CreateGeom()
   double v6; // st6
   int v7; // esi
   int v8; // eax
-  int v9; // edx
-  int v10; // edx
-  int v11; // edx
-  int v12; // edx
-  int v13; // edx
+  gbGeomQuad *m_pGeomQuad; // edx
+  gbGeomQuad *v10; // edx
+  gbGeomQuad *v11; // edx
+  gbGeomQuad *v12; // edx
+  gbGeomQuad *v13; // edx
   double v14; // st5
   float *v15; // edx
   float v16; // [esp+8h] [ebp-4h]
 
-  v1 = *((_DWORD *)this + 27);
-  result = *((_DWORD *)this + 28);
+  m_nXDivision = this->m_nXDivision;
+  result = this->m_nZDivision;
   v3 = 0;
   v4 = 0;
-  v16 = (double)v1 * *((float *)this + 29) * -0.5;
-  for ( i = (double)result * *((float *)this + 29) * 0.5; v4 < result; i = i - *((float *)this + 29) )
+  v16 = (double)m_nXDivision * this->m_fGridSize * -0.5;
+  for ( i = (double)result * this->m_fGridSize * 0.5; v4 < result; i = i - this->m_fGridSize )
   {
     v6 = v16;
     v7 = 0;
-    if ( v1 > 0 )
+    if ( m_nXDivision > 0 )
     {
       v8 = 68 * v3;
       do
       {
-        v9 = *((_DWORD *)this + 12);
-        *(_DWORD *)(v9 + v8 + 4) = 0;
-        *(float *)(v9 + v8) = v6;
+        m_pGeomQuad = (gbGeomQuad *)this->m_pGeomQuad;
+        *(float *)((char *)&m_pGeomQuad->vec[0].y + v8) = 0.0;
+        *(float *)((char *)&m_pGeomQuad->vec[0].x + v8) = v6;
         ++v3;
-        *(float *)(v8 + v9 + 8) = i;
-        v10 = *((_DWORD *)this + 12);
-        *(_DWORD *)(v10 + v8 + 16) = 0;
-        *(float *)(v10 + v8 + 12) = v6;
-        *(float *)(v10 + v8 + 20) = i;
-        *(float *)(*((_DWORD *)this + 12) + v8 + 12) = *(float *)(*((_DWORD *)this + 12) + v8 + 12)
-                                                     + *((float *)this + 29);
-        v11 = *((_DWORD *)this + 12);
-        *(_DWORD *)(v11 + v8 + 28) = 0;
-        *(float *)(v11 + v8 + 24) = v6;
-        *(float *)(v11 + v8 + 32) = i;
-        *(float *)(*((_DWORD *)this + 12) + v8 + 24) = *(float *)(*((_DWORD *)this + 12) + v8 + 24)
-                                                     + *((float *)this + 29);
-        *(float *)(*((_DWORD *)this + 12) + v8 + 32) = *(float *)(*((_DWORD *)this + 12) + v8 + 32)
-                                                     - *((float *)this + 29);
-        v12 = *((_DWORD *)this + 12);
-        *(_DWORD *)(v12 + v8 + 40) = 0;
-        *(float *)(v12 + v8 + 36) = v6;
-        *(float *)(v12 + v8 + 44) = i;
-        v13 = *((_DWORD *)this + 12);
-        v14 = *(float *)(v13 + v8 + 44) - *((float *)this + 29);
-        v15 = (float *)(v13 + v8 + 44);
+        *(float *)((char *)&m_pGeomQuad->vec[0].z + v8) = i;
+        v10 = (gbGeomQuad *)this->m_pGeomQuad;
+        *(float *)((char *)&v10->vec[1].y + v8) = 0.0;
+        *(float *)((char *)&v10->vec[1].x + v8) = v6;
+        *(float *)((char *)&v10->vec[1].z + v8) = i;
+        *(float *)((char *)&this->m_pGeomQuad->vec[1].x + v8) = *(float *)((char *)&this->m_pGeomQuad->vec[1].x + v8)
+                                                              + this->m_fGridSize;
+        v11 = (gbGeomQuad *)this->m_pGeomQuad;
+        *(float *)((char *)&v11->vec[2].y + v8) = 0.0;
+        *(float *)((char *)&v11->vec[2].x + v8) = v6;
+        *(float *)((char *)&v11->vec[2].z + v8) = i;
+        *(float *)((char *)&this->m_pGeomQuad->vec[2].x + v8) = *(float *)((char *)&this->m_pGeomQuad->vec[2].x + v8)
+                                                              + this->m_fGridSize;
+        *(float *)((char *)&this->m_pGeomQuad->vec[2].z + v8) = *(float *)((char *)&this->m_pGeomQuad->vec[2].z + v8)
+                                                              - this->m_fGridSize;
+        v12 = (gbGeomQuad *)this->m_pGeomQuad;
+        *(float *)((char *)&v12->vec[3].y + v8) = 0.0;
+        *(float *)((char *)&v12->vec[3].x + v8) = v6;
+        *(float *)((char *)&v12->vec[3].z + v8) = i;
+        v13 = (gbGeomQuad *)this->m_pGeomQuad;
+        v14 = *(float *)((char *)&v13->vec[3].z + v8) - this->m_fGridSize;
+        v15 = (float *)((char *)&v13->vec[3].z + v8);
         v8 += 68;
         ++v7;
         *v15 = v14;
-        v1 = *((_DWORD *)this + 27);
-        v6 = v6 + *((float *)this + 29);
+        m_nXDivision = this->m_nXDivision;
+        v6 = v6 + this->m_fGridSize;
       }
-      while ( v7 < v1 );
+      while ( v7 < m_nXDivision );
     }
-    result = *((_DWORD *)this + 28);
+    result = this->m_nZDivision;
     ++v4;
   }
   return result;
@@ -715,22 +717,22 @@ int CEffExplosive::UpdateExplosive(float a2, int a3)
   int v7; // ebp
   float *v8; // eax
   double v9; // st7
-  int v10; // ecx
+  gbGeomQuad *m_pGeomQuad; // ecx
   float *v11; // eax
-  int v12; // edx
+  gbGeomQuad *v12; // edx
   float *v13; // eax
-  int v14; // eax
+  gbGeomQuad *v14; // eax
   double v15; // st6
   float *v16; // eax
-  int v17; // ecx
-  int v18; // eax
+  tagExplosive *m_pExplosive; // ecx
+  gbGeomQuad *v18; // eax
   double v19; // st7
   float *v20; // eax
-  int v21; // ecx
+  gbGeomQuad *v21; // ecx
   float *v22; // eax
-  int v23; // edx
+  gbGeomQuad *v23; // edx
   float *v24; // eax
-  int v25; // eax
+  gbGeomQuad *v25; // eax
   double v26; // st7
   float *v27; // eax
   int v28; // edx
@@ -754,7 +756,7 @@ int CEffExplosive::UpdateExplosive(float a2, int a3)
   memset(&v43, 0, 12);
   v43.w = 1.0;
   ((gbMatrix4 *)v44)->gbMatrix4();
-  result = *((_DWORD *)this + 27);
+  result = this->m_nXDivision;
   v5 = 0;
   v33 = 0;
   v35 = 0;
@@ -763,76 +765,76 @@ int CEffExplosive::UpdateExplosive(float a2, int a3)
     do
     {
       v34 = 0;
-      if ( *((int *)this + 28) > 0 )
+      if ( this->m_nZDivision > 0 )
       {
         v6 = 68 * v5;
-        v7 = 24 * v5;
+        v7 = v5;
         do
         {
-          v8 = (float *)(v6 + *((_DWORD *)this + 12));
+          v8 = (float *)((char *)this->m_pGeomQuad + v6);
           v9 = (v8[9] + v8[6] + v8[3] + *v8) * 0.25;
           v37 = (v8[10] + v8[7] + v8[4] + v8[1]) * 0.25;
           v39 = (v8[11] + v8[8] + v8[5] + v8[2]) * 0.25;
           * v8 = (*)*v8 - v9;
           v8[1] = v8[1] - v37;
           v8[2] = v8[2] - v39;
-          v10 = *((_DWORD *)this + 12);
-          v11 = (float *)(v10 + v6 + 12);
+          m_pGeomQuad = (gbGeomQuad *)this->m_pGeomQuad;
+          v11 = (float *)((char *)&m_pGeomQuad->vec[1].x + v6);
           * v11 = (*)*v11 - v9;
-          v11[1] = *(float *)(v10 + v6 + 16) - v37;
-          v11[2] = *(float *)(v10 + v6 + 20) - v39;
-          v12 = *((_DWORD *)this + 12);
-          v13 = (float *)(v12 + v6 + 24);
+          v11[1] = *(float *)((char *)&m_pGeomQuad->vec[1].y + v6) - v37;
+          v11[2] = *(float *)((char *)&m_pGeomQuad->vec[1].z + v6) - v39;
+          v12 = (gbGeomQuad *)this->m_pGeomQuad;
+          v13 = (float *)((char *)&v12->vec[2].x + v6);
           * v13 = (*)*v13 - v9;
-          v13[1] = *(float *)(v12 + v6 + 28) - v37;
-          v13[2] = *(float *)(v12 + v6 + 32) - v39;
-          v14 = *((_DWORD *)this + 12);
-          v15 = *(float *)(v14 + v6 + 36);
-          v16 = (float *)(v14 + v6 + 36);
+          v13[1] = *(float *)((char *)&v12->vec[2].y + v6) - v37;
+          v13[2] = *(float *)((char *)&v12->vec[2].z + v6) - v39;
+          v14 = (gbGeomQuad *)this->m_pGeomQuad;
+          v15 = *(float *)((char *)&v14->vec[3].x + v6);
+          v16 = (float *)((char *)&v14->vec[3].x + v6);
           * v16 = (*)v15 - v9;
           v16[1] = v16[1] - v37;
           v16[2] = v16[2] - v39;
-          v17 = *((_DWORD *)this + 13);
-          v41 = a2 * *(float *)(v17 + v7 + 4);
-          v42 = a2 * *(float *)(v17 + v7 + 8);
-          v36 = a2 * *(float *)(v17 + v7) + v9;
+          m_pExplosive = (tagExplosive *)this->m_pExplosive;
+          v41 = a2 * m_pExplosive[v7].vecSpeed.y;
+          v42 = a2 * m_pExplosive[v7].vecSpeed.z;
+          v36 = a2 * m_pExplosive[v7].vecSpeed.x + v9;
           v38 = v41 + v37;
           v40 = v42 + v39;
-          v32 = a2 * *(float *)(v17 + v7 + 20);
-          v31 = a2 * *(float *)(v17 + v7 + 16);
-          v30 = a2 * *(float *)(v17 + v7 + 12);
+          v32 = a2 * m_pExplosive[v7].vecRot.z;
+          v31 = a2 * m_pExplosive[v7].vecRot.y;
+          v30 = a2 * m_pExplosive[v7].vecRot.x;
           ((gbQuaternion *)&v43)->SetYawPitchRoll(v30, v31, v32);
           ((gbQuaternion *)&v43)->GetMatrix((struct gbMatrix4 *)v44);
-          ((gbMatrix4 *)v44)->RotateIn((struct gbVec3D *)(v6 + *((_DWORD *)this + 12)));
-          ((gbMatrix4 *)v44)->RotateIn((struct gbVec3D *)(*((_DWORD *)this + 12) + v6 + 12));
-          ((gbMatrix4 *)v44)->RotateIn((struct gbVec3D *)(*((_DWORD *)this + 12) + v6 + 24));
-          ((gbMatrix4 *)v44)->RotateIn((struct gbVec3D *)(*((_DWORD *)this + 12) + v6 + 36));
-          v18 = *((_DWORD *)this + 12);
-          v19 = v36 + *(float *)(v18 + v6);
-          v20 = (float *)(v6 + v18);
+          ((gbMatrix4 *)v44)->RotateIn((struct gbVec3D *)((char *)this->m_pGeomQuad->vec + v6));
+          ((gbMatrix4 *)v44)->RotateIn((struct gbVec3D *)((char *)&this->m_pGeomQuad->vec[1] + v6));
+          ((gbMatrix4 *)v44)->RotateIn((struct gbVec3D *)((char *)&this->m_pGeomQuad->vec[2] + v6));
+          ((gbMatrix4 *)v44)->RotateIn((struct gbVec3D *)((char *)&this->m_pGeomQuad->vec[3] + v6));
+          v18 = (gbGeomQuad *)this->m_pGeomQuad;
+          v19 = v36 + *(float *)((char *)&v18->vec[0].x + v6);
+          v20 = (float *)((char *)v18 + v6);
           *v20 = v19;
           v20[1] = v38 + v20[1];
           v20[2] = v40 + v20[2];
-          v21 = *((_DWORD *)this + 12);
-          v22 = (float *)(v21 + v6 + 12);
+          v21 = (gbGeomQuad *)this->m_pGeomQuad;
+          v22 = (float *)((char *)&v21->vec[1].x + v6);
           * v22 = (*)v36 + *v22;
-          v22[1] = v38 + *(float *)(v21 + v6 + 16);
-          v22[2] = v40 + *(float *)(v21 + v6 + 20);
-          v23 = *((_DWORD *)this + 12);
-          v24 = (float *)(v23 + v6 + 24);
+          v22[1] = v38 + *(float *)((char *)&v21->vec[1].y + v6);
+          v22[2] = v40 + *(float *)((char *)&v21->vec[1].z + v6);
+          v23 = (gbGeomQuad *)this->m_pGeomQuad;
+          v24 = (float *)((char *)&v23->vec[2].x + v6);
           * v24 = (*)v36 + *v24;
-          v24[1] = v38 + *(float *)(v23 + v6 + 28);
-          v24[2] = v40 + *(float *)(v23 + v6 + 32);
-          v25 = *((_DWORD *)this + 12);
-          v26 = v36 + *(float *)(v25 + v6 + 36);
-          v27 = (float *)(v25 + v6 + 36);
+          v24[1] = v38 + *(float *)((char *)&v23->vec[2].y + v6);
+          v24[2] = v40 + *(float *)((char *)&v23->vec[2].z + v6);
+          v25 = (gbGeomQuad *)this->m_pGeomQuad;
+          v26 = v36 + *(float *)((char *)&v25->vec[3].x + v6);
+          v27 = (float *)((char *)&v25->vec[3].x + v6);
           *v27 = v26;
-          v7 += 24;
+          ++v7;
           v6 += 68;
           v27[1] = v38 + v27[1];
           v27[2] = v40 + v27[2];
           v28 = v33 + 1;
-          v29 = ++v34 < *((_DWORD *)this + 28);
+          v29 = ++v34 < this->m_nZDivision;
           ++v33;
         }
         while ( v29 );
@@ -840,7 +842,7 @@ int CEffExplosive::UpdateExplosive(float a2, int a3)
       }
       result = ++v35;
     }
-    while ( v35 < *((_DWORD *)this + 27) );
+    while ( v35 < this->m_nXDivision );
   }
   return result;
 }

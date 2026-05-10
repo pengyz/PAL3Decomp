@@ -702,11 +702,11 @@ char CCBSystem::ProcNormalAttack()
   CCBAI *v18; // eax
   SceneMgr *v19; // eax
   CCBStageCam *m_pCam; // edx
-  int p_OrthoSize; // edx
+  gbCamera *p_OrthoSize; // edx
   CEffMgr *v22; // eax
   SceneMgr *v23; // eax
   CCBStageCam *v24; // ecx
-  int v25; // ecx
+  gbCamera *v25; // ecx
   CEffMgr *v26; // eax
   C2DSpark *v27; // eax
   C2DSpark *v28; // eax
@@ -862,10 +862,10 @@ char CCBSystem::ProcNormalAttack()
                   {
                     m_pCam = (CCBStageCam *)this->m_pStage->m_pCam;
                     if ( m_pCam )
-                      p_OrthoSize = (int)&m_pCam->OrthoSize;
+                      p_OrthoSize = (CCBStageCam *)&m_pCam->OrthoSize;
                     else
                       p_OrthoSize = 0;
-                    v22 = (CEffMgr *)v19->Create(g_Input.KeyInfo[177].Data, p_OrthoSize, (int)this);
+                    v22 = (CEffMgr *)v19->Create((gbGfxManager *)g_Input.KeyInfo[177].Data, p_OrthoSize, (gbSceneGraph *)this);
                   }
                   else
                   {
@@ -878,10 +878,10 @@ char CCBSystem::ProcNormalAttack()
                   {
                     v24 = (CCBStageCam *)this->m_pStage->m_pCam;
                     if ( v24 )
-                      v25 = (int)&v24->OrthoSize;
+                      v25 = (CCBStageCam *)&v24->OrthoSize;
                     else
                       v25 = 0;
-                    v26 = (CEffMgr *)v23->Create(g_Input.KeyInfo[177].Data, v25, (int)this);
+                    v26 = (CEffMgr *)v23->Create((gbGfxManager *)g_Input.KeyInfo[177].Data, v25, (gbSceneGraph *)this);
                   }
                   else
                   {

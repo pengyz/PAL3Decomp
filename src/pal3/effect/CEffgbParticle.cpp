@@ -346,7 +346,7 @@ void CEffgbParticle::ProcCommonTask(float a2)
   v5 = *(int *)&this->_pad_0000[20];
   if ( *(float *)&v5 > 0.0 )
   {
-    sub_4BC7E0(v2->m_pEffect->name, v5);
+    sub_4BC7E0(v2->m_pEffect->_pad_0000, v5);
     v6 = 0;
     a2a = 0;
     if ( *((int *)v4 + 7) > 0 )
@@ -464,7 +464,7 @@ LABEL_17:
     }
 LABEL_35:
     if ( *(int *)&v2->_pad_0000[36] <= 0 )
-      sub_4BD7A0(v2->m_pEffect->name, 0);
+      sub_4BD7A0(v2->m_pEffect->_pad_0000, 0);
   }
 }
 
@@ -485,7 +485,7 @@ void CEffgbParticle::GetEditorTaskDescription()
     v5 = this->m_fPY + this->m_fY;
     v4 = this->m_fPX + this->m_fX;
     v2->Translate(v4, v5, v6);
-    v3 = sub_4BC8A0(this->m_pEffect->name);
+    v3 = sub_4BC8A0(this->m_pEffect->_pad_0000);
     if ( *(int *)&this->_pad_0000[36] <= 0 && v3 <= 0 )
       this->_pad_0000[8] = 1;
     v2->Pop();
