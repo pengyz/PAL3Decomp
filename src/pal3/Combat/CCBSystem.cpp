@@ -1059,7 +1059,7 @@ void * CCBSystem::ProcCoAttack(CCBSystem *Block, char a2)
 char CCBSystem::ProcWeaponSkill()
 {
   CCBUI *m_pUI; // ecx
-  CCBControl *m_pControl; // ecx
+  int *m_pControl; // ecx
   CCBRoleState *m_pRoleState; // ecx
   CCBSystem *m_pAttackSequen; // ecx
   CCBStage *m_pStage; // ecx
@@ -1076,7 +1076,7 @@ char CCBSystem::ProcWeaponSkill()
   m_pUI = (CCBUI *)this->m_pUI;
   if ( !m_pUI || !((int)m_pUI)->CreateParaWindow() )
     return 0;
-  m_pControl = (CCBControl *)this->m_pControl;
+  m_pControl = (int *)this->m_pControl;
   if ( !m_pControl || !sub_4DC220(m_pControl) )
     return 0;
   m_pRoleState = (CCBRoleState *)this->m_pRoleState;
@@ -1265,7 +1265,7 @@ char CCBSystem::ProcMagic(int _this)
       v3 = 0;
       for ( i = 24; i < 68; i += 4 )
       {
-        if ( sub_50A4B0(*(int **)(i + *(_DWORD *)(this + 20))) )
+        if ( sub_50A4B0(*(CCBStageRole **)(i + *(_DWORD *)(this + 20))) )
         {
           ((CCBStage *)*(CCBStage **)(this + 20))->DoTask(v3);
           v2 = 1;

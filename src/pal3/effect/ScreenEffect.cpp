@@ -16,10 +16,10 @@ ScreenEffect::ScreenEffect()
 {
   char v3; // [esp+Bh] [ebp-11h]
 
-  sub_4BE8D0(&this->m_blive);
+  sub_4BE8D0((RenderTarget *)&this->m_blive);
   sub_4BEA60((int)this + 32);
   sub_4BEBB0((int)this + 56);
-  sub_4BED00((_DWORD *)this + 20);
+  sub_4BED00((RenderTarget *)(this + 4));
   *((_BYTE *)this + 104) = v3;
   *((_DWORD *)this + 27) = 0;
   *((_DWORD *)this + 28) = 0;

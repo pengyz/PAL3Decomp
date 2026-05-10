@@ -475,7 +475,7 @@ LABEL_7:
       v22.Green = *(_DWORD *)(this + 208);
       v22.Blue = 1;
     }
-    UIRenderPar(this + 212, (int)&v27, &v26, v22.Blue, v22.Green);
+    UIRenderPar((const char *)(this + 212), &v27, &v26, v22.Blue, v22.Green);
   }
   return ((UIWnd *)this)->GetID();
 }

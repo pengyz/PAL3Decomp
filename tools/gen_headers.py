@@ -39,6 +39,8 @@ SKIP_CLASSES = {
     '_iobuf', 'FILE', '_cpinfo', '_EXCEPTION_RECORD', 'EXCEPTION_RECORD',
     # DirectX / DirectInput
     '_DIMOUSESTATE2',
+    # Manually maintained headers (have special definitions)
+    'SceneMgr', 'CGameData',
     # gbengine (separate library)
     'gbGfxManager', 'gbActorMgr', 'gbCamera', 'gbActor', 'gbVFileSystem',
     'gbRenderEffect', 'gbSceneGraph', 'gbTexture', 'gbGeomNode',

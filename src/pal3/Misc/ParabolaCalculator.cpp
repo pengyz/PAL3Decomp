@@ -111,7 +111,7 @@ int ParabolaCalculator::UpdateParabolaY(int _this, int a2, int a3)
       result = 1;
       break;
     case 6:
-      CGameData_Load((int)&g_GameData, 4);
+      CGameData_Load((int)&g_GameData, (CUtil *)4);
       goto LABEL_14;
     default:
 LABEL_14:

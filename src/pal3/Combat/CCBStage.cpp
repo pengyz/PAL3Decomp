@@ -468,7 +468,7 @@ char CCBStage::Create(int _this)
                   v16 = (void *)*(void **)(this + 76);
                   if ( v16 )
                   {
-                    sub_508460(*(_DWORD *)(this + 76));
+                    sub_508460(*(char **)(this + 76));
                     operator delete(v16);
                   }
                   *(_DWORD *)(this + 76) = 0;
@@ -701,7 +701,7 @@ int CCBStage::EditorUpdate()
   gbMatrixStack *v9; // edi
   __int8 *v10; // eax
   CCBStageRole **v11; // eax
-  int v12; // ecx
+  CCBStageRole *v12; // ecx
   long double v13; // st7
   bool v14; // cc
   CCBStageCam *v15; // eax
@@ -760,7 +760,7 @@ int CCBStage::EditorUpdate()
     v26 = this->m_pRole;
     do
     {
-      v12 = (int)*v11;
+      v12 = (CCBStageRole *)*v11;
       if ( LOBYTE((*v11)->m_fTimeScale) )
       {
         v27 = 0.0;
@@ -1566,7 +1566,7 @@ int CCBStage::HasNormalAttackRole(int _this, int _24)
     *(_DWORD *)(this + 96) = 0;
     *(_WORD *)(this + 100) = 0;
     *(_BYTE *)(this + 102) = 0;
-    v6 = sub_503680((char **)this, *(_DWORD *)(v4 + this + 228), (_DWORD *)(this + v3 + 2752));
+    v6 = sub_503680((char **)this, *(_DWORD *)(v4 + this + 228), (unsigned int *)(this + v3 + 2752));
     dword_17AAD3C = v6;
     if ( v6 == -1 )
     {
@@ -2460,7 +2460,7 @@ int CCBStage::HandleKeyFriend(int a2)
   v4 = (char *)&this->m_fDamageNumPosY[5] + v3;
   if ( !*((_BYTE *)&this->m_nCurSubTask + v3 + 1) )
   {
-    ((CCBStageRole *)this->m_pRole[*(__int32 *)((char *)&this->m_Task[0].SubTask[17].param.dw3 + v2)])->ProcTransportRun((int)sub_50EB00, 0, 0, 0, 0, 0, 3);
+    ((CCBStageRole *)this->m_pRole[*(__int32 *)((char *)&this->m_Task[0].SubTask[17].param.dw3 + v2)])->ProcTransportRun(COERCE_FLOAT(sub_50EB00), 0.0, 0, 0, 0, 0, 3);
     v4[41] = 1;
     *((_DWORD *)v4 + 4) = 4;
   }
@@ -2949,8 +2949,9 @@ int CCBStage::ResetAll()
   }
   if ( (byte_17AA89C & 4) == 0 )
   {
-    *(_QWORD *)byte_17AA870 = 0;
+    *(_DWORD *)byte_17AA870 = 0;
     byte_17AA89C |= 4u;
+    *(_DWORD *)&byte_17AA870[4] = 0;
     *(_DWORD *)&byte_17AA870[8] = 0;
     atexit(nullsub_28);
   }

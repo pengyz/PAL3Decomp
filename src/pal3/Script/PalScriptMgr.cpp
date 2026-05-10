@@ -112,9 +112,9 @@ int * PalScriptMgr::Destroy(unsigned int a1, char a2)
   if ( a1 )
   {
     if ( a2 )
-      result = (int *)sub_433DC0((int)dword_D8C2C8, a1, 0);
+      result = (int *)sub_433DC0(dword_D8C2C8, a1, 0);
     else
-      result = (int *)a1 >= 0x64 ? sub_433DC0((int)dword_D8C308, a1, 0) : sub_433DC0((int)dword_D8C2E8, a1, 0);
+      result = (int *)a1 >= 0x64 ? sub_433DC0(dword_D8C308, a1, 0) : sub_433DC0(dword_D8C2E8, a1, 0);
     v3 = result;
     if ( result )
     {

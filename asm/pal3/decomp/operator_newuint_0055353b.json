@@ -2,6 +2,6 @@
   "name": "operator new(uint)",
   "address": "0x0055353B",
   "size_bytes": 14,
-  "signature": "int __cdecl(size_t Size)",
-  "decompiled_c": "int __cdecl operator new(size_t Size)\n{\n  return _nh_malloc(Size, 1);\n}\n"
+  "signature": "LPVOID __cdecl(size_t Size)",
+  "decompiled_c": "LPVOID __cdecl operator new(size_t Size)\n{\n  return _nh_malloc(Size, 1);\n}\n"
 }

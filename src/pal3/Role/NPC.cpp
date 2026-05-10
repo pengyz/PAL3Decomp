@@ -184,7 +184,7 @@ int NPC::SetParams(int a1)
     {
       dword_C02370 = 1;
       dword_C025EC = 10;
-      return sub_41A150((const char *)dword_C020F8, "109");
+      sub_41A150((const char *)dword_C020F8, "109");
     }
     else
     {

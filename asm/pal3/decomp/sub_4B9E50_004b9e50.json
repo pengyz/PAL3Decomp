@@ -3,5 +3,5 @@
   "address": "0x004B9E50",
   "size_bytes": 66,
   "signature": "void __thiscall(_DWORD *this)",
-  "decompiled_c": "// between_std_methods (0x4A7690-0x4BEF50)\nvoid __thiscall sub_4B9E50(_DWORD *this)\n{\n  int v1[3]; // [esp+0h] [ebp-Ch] BYREF\n\n  memset(v1, 0, sizeof(v1));\n  *(this + 18) = 0;\n  *(this + 19) = 0;\n  *(this + 9224) = 1;\n  *(this + 9225) = 0;\n  sub_4BA150((int)this, 0.0, (int)v1);\n}\n"
+  "decompiled_c": "// between_std_methods (0x4A7690-0x4BEF50)\nvoid __thiscall sub_4B9E50(_DWORD *this)\n{\n  int v1[3]; // [esp+0h] [ebp-Ch] BYREF\n\n  memset(v1, 0, sizeof(v1));\n  *(this + 18) = 0;\n  *(this + 19) = 0;\n  *(this + 9224) = 1;\n  *(this + 9225) = 0;\n  sub_4BA150((int)this, 0.0, (float *)v1);\n}\n"
 }

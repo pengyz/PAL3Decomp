@@ -527,7 +527,7 @@ void UIWnd::GetChildCount(LPCSTR lpString, char a3)
   gbRefObject *v5; // ecx
   bool v6; // zf
   int v7; // ebp
-  CHAR *v8; // eax
+  Scene *v8; // eax
   gbTexture *v9; // ecx
 
   v3 = lpString;
@@ -549,8 +549,8 @@ void UIWnd::GetChildCount(LPCSTR lpString, char a3)
     {
       v7 = *(_DWORD *)g_Input.KeyInfo[177].Data;
       v8 = ((int)dword_1894B78)->_CalculateUV(v3);
-      *((_DWORD *)this + 43) = (UIWnd *)(*(int (**)(int, CHAR *))(v7 + 8))(g_Input.KeyInfo[177].Data, v8);
-      *((_DWORD *)this + 44) = (UIWnd *)((int)dword_1894B78)->Parent_Data(v3);
+      *((_DWORD *)this + 43) = (UIWnd *)(*(int (**)(int, Scene *))(v7 + 8))(g_Input.KeyInfo[177].Data, v8);
+      *((_DWORD *)this + 44) = (UIWnd *)((Parent_Data *)dword_1894B78)->Parent_Data(v3);
     }
     v9 = (gbTexture *)*((_DWORD *)this + 43);
     if ( v9 )
@@ -566,7 +566,7 @@ void UIWnd::GetChildAt(LPCSTR lpString, char a3)
   gbRefObject *v5; // ecx
   bool v6; // zf
   int v7; // ebp
-  CHAR *v8; // eax
+  Scene *v8; // eax
   gbTexture *v9; // ecx
 
   v3 = lpString;
@@ -588,8 +588,8 @@ void UIWnd::GetChildAt(LPCSTR lpString, char a3)
     {
       v7 = *(_DWORD *)g_Input.KeyInfo[177].Data;
       v8 = ((int)dword_1894B78)->_CalculateUV(v3);
-      *((_DWORD *)this + 45) = (UIWnd *)(*(int (**)(int, CHAR *))(v7 + 8))(g_Input.KeyInfo[177].Data, v8);
-      *((_DWORD *)this + 46) = (UIWnd *)((int)dword_1894B78)->Parent_Data(v3);
+      *((_DWORD *)this + 45) = (UIWnd *)(*(int (**)(int, Scene *))(v7 + 8))(g_Input.KeyInfo[177].Data, v8);
+      *((_DWORD *)this + 46) = (UIWnd *)((Parent_Data *)dword_1894B78)->Parent_Data(v3);
     }
     v9 = (gbTexture *)*((_DWORD *)this + 45);
     if ( v9 )
@@ -757,7 +757,7 @@ void UIWnd::CreateFromTemplate(LPCSTR lpString1, char a3)
   gbRefObject *v5; // ecx
   char v6; // al
   int v7; // ebx
-  CHAR *v8; // eax
+  Scene *v8; // eax
   gbTexture *v9; // ecx
 
   v3 = lpString1;
@@ -774,8 +774,8 @@ void UIWnd::CreateFromTemplate(LPCSTR lpString1, char a3)
     {
       v7 = *(_DWORD *)g_Input.KeyInfo[177].Data;
       v8 = ((int)dword_1894B78)->_CalculateUV(v3);
-      *((_DWORD *)this + 28) = (UIWnd *)(*(int (**)(int, CHAR *))(v7 + 8))(g_Input.KeyInfo[177].Data, v8);
-      *((_DWORD *)this + 29) = (UIWnd *)((int)dword_1894B78)->Parent_Data(v3);
+      *((_DWORD *)this + 28) = (UIWnd *)(*(int (**)(int, Scene *))(v7 + 8))(g_Input.KeyInfo[177].Data, v8);
+      *((_DWORD *)this + 29) = (UIWnd *)((Parent_Data *)dword_1894B78)->Parent_Data(v3);
     }
     else
     {
@@ -2692,7 +2692,7 @@ int UIWnd::ctor_7BB0(int _this, int arg0, int a3, int a4)
   int v10; // eax
   void (***v11)(_DWORD, int); // ecx
   int result; // eax
-  int v13; // edi
+  UIListBox *v13; // edi
   int *v14; // eax
   int v15; // eax
   int v16; // eax
@@ -2829,7 +2829,7 @@ int UIWnd::ctor_7BB0(int _this, int arg0, int a3, int a4)
       while ( a3 != *v14 )
       {
         ++v14;
-        ++v13;
+        v13 = (UIListBox *)((char *)v13 + 1);
         if ( (int)v14 >= (int)&off_56B794 )
         {
           switch ( a3 )
@@ -2900,7 +2900,7 @@ LABEL_31:
           return result;
         }
       }
-      sub_445E50((_DWORD *)(this + 344 * v13 + 105020), 0);
+      sub_445E50((_DWORD *)(this + 344 * (_DWORD)v13 + 105020), 0);
       sub_473520((char *)this, v13);
       ((UIWnd *)(this + 104596))->SetEnable((const char *)&g_SceneMgr.m_npc[5].m_path.normal[140].y, 0);
       (**(void (***)(int, _DWORD))(this + 101420))(this + 101420, 0);

@@ -245,7 +245,7 @@ int UIListBox::CalScrollBarRange(int _this, int id, _DWORD *a3, int parent, LPCS
 {
   const CHAR *v7; // edi
   int v9; // ebp
-  CHAR *v10; // eax
+  Scene *v10; // eax
   gbTexture *v11; // ecx
   int v12; // ecx
   int v13; // eax
@@ -264,8 +264,8 @@ int UIListBox::CalScrollBarRange(int _this, int id, _DWORD *a3, int parent, LPCS
     {
       v9 = *(_DWORD *)g_Input.KeyInfo[177].Data;
       v10 = ((int)dword_1894B78)->_CalculateUV(v7);
-      *(_DWORD *)(this + 1144) = (*(int (**)(int, CHAR *))(v9 + 8))(g_Input.KeyInfo[177].Data, v10);
-      *(_DWORD *)(this + 1148) = ((int)dword_1894B78)->Parent_Data(v7);
+      *(_DWORD *)(this + 1144) = (*(int (**)(int, Scene *))(v9 + 8))(g_Input.KeyInfo[177].Data, v10);
+      *(_DWORD *)(this + 1148) = ((Parent_Data *)dword_1894B78)->Parent_Data(v7);
     }
     else
     {
@@ -296,8 +296,8 @@ int UIListBox::CalScrollBarRange(int _this, int id, _DWORD *a3, int parent, LPCS
     aUiCommonScroll,
     1,
     0);
-  sub_442060((_DWORD *)(this + 80), 0);
-  sub_43F520((_DWORD *)this);
+  sub_442060((int *)(this + 80), 0);
+  sub_43F520((UIListBox *)this);
   v15 = ((UIWnd *)(this + 80))->SetRect(a2);
   *(_DWORD *)(this + 1128) = *v15;
   *(_DWORD *)(this + 1132) = v15[1];
@@ -334,7 +334,7 @@ int UIListBox::GetLockSel(int a2, _DWORD *a3, int a4, int a5, char a6)
   int v9; // edx
 
   if ( a2 )
-    sub_4413C0(&this->m_childs.m_nMaxSize, (const char *)a2, a6);
+    sub_4413C0((UIWnd **)&this->m_childs.m_nMaxSize, (struct gbVFileSystem *)a2, a6);
   this->m_column[5].rightalign = *a3;
   this->m_column[5].rightoffset = a3[1];
   *(_DWORD *)this->m_column[6].head = a3[2];
@@ -411,7 +411,7 @@ int UIListBox::GetItemCount()
   gbRefObject *v2; // ecx
   int result; // eax
 
-  sub_43F360(this);
+  sub_43F360((int *)this);
   v2 = (gbRefObject *)*((_DWORD *)this + 286);
   *((_DWORD *)this + 108) = 0;
   if ( v2 )

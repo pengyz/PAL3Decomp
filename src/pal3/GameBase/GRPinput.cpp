@@ -736,19 +736,19 @@ BOOL GRPinput::GetJoystickFreePos(int a2, int a3)
 char * GRPinput::AcquireMouse()
 {
   `eh vector constructor iterator'(
-    this + 4,
+    (char *)&this->m_lpDIDKeyboard,
     0xA4u,
     2,
     (void (*)(void *))GRPinput::UnacquireJoystick,
     (void (*)(void *))GRPinput::AcquireKeyboard);
   `eh vector constructor iterator'(
-    this + 332,
+    (char *)&this->m_keyStates[57],
     0x10u,
     2,
     (void (*)(void *))GRPinput::UnacquireMouse,
     (void (*)(void *))GRPinput::AcquireJoystick);
   memset(this, 0, 0x16Cu);
-  return this;
+  return (char *)this;
 }
 
 // 0x004033F0
@@ -1017,7 +1017,7 @@ float * GRPinput::InitShiftedKeys(float *a1, int a2)
 // 0x004039D0
 void GRPinput::InitDIKToKEY(unsigned __int16 *a2)
 {
-  _BYTE *v3; // edi
+  char *v3; // edi
   int v4; // ebx
   int v6; // ebx
   int v7; // ecx
@@ -1044,7 +1044,7 @@ void GRPinput::InitDIKToKEY(unsigned __int16 *a2)
   bool v28; // cc
   int v29; // [esp+Ch] [ebp-2Ch]
   int v30; // [esp+10h] [ebp-28h]
-  _BYTE v31[8]; // [esp+14h] [ebp-24h] BYREF
+  char v31[8]; // [esp+14h] [ebp-24h] BYREF
   char v32; // [esp+1Ch] [ebp-1Ch] BYREF
   unsigned __int16 *a2a; // [esp+3Ch] [ebp+4h]
 
@@ -1052,7 +1052,7 @@ void GRPinput::InitDIKToKEY(unsigned __int16 *a2)
   v4 = 3;
   do
   {
-    ((void (*)(_BYTE *))gbVec3D::`default constructor closure')(v3);
+    ((void (*)(char *))gbVec3D::`default constructor closure')(v3);
     v3 += 12;
     --v4;
   }
@@ -1126,7 +1126,7 @@ void GRPinput::InitDIKToKEY(unsigned __int16 *a2)
         *((_DWORD *)v23 - 3) = v27[2];
       }
       while ( v25 );
-      sub_403B80((char *)this, (int)v31);
+      sub_403B80((char *)this, v31);
       v22 = v29 + 6;
       v28 = (int)a2a + 1 < a2[1];
       a2a = (unsigned __int16 *)((char *)a2a + 1);

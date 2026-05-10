@@ -2243,7 +2243,7 @@ LABEL_13:
 // 0x004F1B20
 char CCBRoleState::SetCoAttack(int a2)
 {
-  int v4; // edi
+  unsigned int v4; // edi
   int i; // [esp+14h] [ebp+4h]
 
   v4 = 0;
@@ -2437,7 +2437,7 @@ char CCBRoleState::CheckRoleValid(int _this, int a2, unsigned int roleIdx, int a
       break;
     case 29:
       if ( ((CCBRoleState *)this)->Update(2) == 1 )
-        sub_4F8FD0((char *)this, a2, roleIdx);
+        sub_4F8FD0((CCBRoleState *)this, a2, roleIdx);
       return 1;
     default:
 LABEL_6:
@@ -4063,7 +4063,7 @@ int CCBRoleState::ProcessSkillEffect(int roleIdx)
   int v5; // ebx
   int v6; // esi
   char v7; // al
-  unsigned int v8; // ebp
+  int v8; // ebp
   unsigned int v9; // ecx
   __int64 v10; // rax
   signed int v12; // [esp+14h] [ebp-88h]

@@ -201,7 +201,7 @@ int UIStatic::Render(int _this)
       ((_TextureLib_Data *)*(_DWORD *)(this + 16))->~_TextureLib_Data(*(_DWORD *)(this + 20), *(_DWORD *)(this + 24), *(_DWORD *)(this + 28), (float *)&g_GameData_0._data[12992]);
     }
     if ( *(_BYTE *)(this + 120) )
-      UIRenderPar(this + 120, (int)v6, (_BYTE *)(this + 72), 1, 1);
+      UIRenderPar((const char *)(this + 120), v6, (_BYTE *)(this + 72), 1, 1);
     return ((UIWnd *)this)->GetID();
   }
   return result;

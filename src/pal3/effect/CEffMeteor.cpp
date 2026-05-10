@@ -425,7 +425,7 @@ LABEL_10:
 }
 
 // 0x004CBFC0
-void CEffMeteor::CreateTask(int _this, int arg0)
+void CEffMeteor::CreateTask(int _this, float arg0)
 {
   int v2; // edi
   double v3; // st7
@@ -448,9 +448,9 @@ void CEffMeteor::CreateTask(int _this, int arg0)
   int a2; // [esp+Ch] [ebp-4h]
 
   v2 = this;
-  v3 = *(float *)&arg0 - *(float *)(this + 16);
+  v3 = arg0 - *(float *)(this + 16);
   v4 = this + 12;
-  *(float *)(this + 16) = *(float *)&arg0;
+  *(float *)(this + 16) = arg0;
   *(float *)(this + 20) = v3;
   if ( *(float *)(this + 20) > 0.0 )
   {
@@ -555,7 +555,7 @@ LABEL_30:
         {
           *(_DWORD *)(v13 + *(_DWORD *)(v2 + 52) + 36) = *(_DWORD *)(v2 + 88);
           *(_DWORD *)(v13 + *(_DWORD *)(v2 + 52) + 40) = *(_DWORD *)(v2 + 136);
-          sub_4CD3D0(*(_DWORD *)(v2 + 52) + v13, arg0);
+          sub_4CD3D0(*(_DWORD *)(v2 + 52) + v13, SLODWORD(arg0));
           ++v12;
           v13 += 56;
         }

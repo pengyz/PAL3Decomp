@@ -58,6 +58,7 @@ int PalScript::LoadScript(int pathAddr)
   char v7; // al
   char *v8; // ecx
   char v9; // al
+  int result; // eax
   char v11; // [esp+13h] [ebp-265h]
   int v12; // [esp+14h] [ebp-264h] BYREF
   char *v13; // [esp+18h] [ebp-260h]
@@ -111,7 +112,7 @@ int PalScript::LoadScript(int pathAddr)
     LOBYTE(v25) = 3;
     sub_430670((int)v22, (int)&v16);
     LOBYTE(v25) = 4;
-    sub_4309D0((int)v20, v23, (int)v21);
+    sub_4309D0((int)v20, v23, v21);
     LOBYTE(v25) = 5;
     v22->string::_Tidy(1);
     LOBYTE(v25) = 2;
@@ -142,7 +143,8 @@ int PalScript::LoadScript(int pathAddr)
   v14 = 0;
   v15 = 0;
   v25 = -1;
-  return sub_4318A0(String1);
+  sub_4318A0((int)String1);
+  return result;
 }
 
 // 0x00430570
@@ -177,7 +179,7 @@ char * PalScript::SetAppName(char *name)
     v15[v5] = 0;
   }
   v17 = 0;
-  v6 = (char *)*sub_431040(v13, (int)&v14);
+  v6 = (char *)*sub_431040(this, v13, (int)&v14);
   m_pinst = (scScriptInstance *)this->m_pinst;
   name = v6;
   if ( v6 == (char *)m_pinst || sub_431780((int)&v14, (int)(v6 + 12)) < 0 )
@@ -454,7 +456,7 @@ int PalScript::Update()
   char ArgList[1024]; // [esp+408h] [ebp-400h] BYREF
 
   PalScriptMgr::_CON_ReLoadScript();
-  if ( !sub_432990((int)aInitScs) )
+  if ( !sub_432990(aInitScs) )
   {
     qmemcpy(
       pExceptionObject,
@@ -519,7 +521,7 @@ struct gbVFileSystem * PalScript::OpenScript(const char *a2, char a3)
 {
   gbRefObject *v4; // ecx
   int v5; // edi
-  CHAR *v6; // eax
+  Scene *v6; // eax
   gbTexture *v7; // ecx
   OpenBaseFile v9; // [esp+8h] [ebp-110h] BYREF
   char Buffer[256]; // [esp+Ch] [ebp-10Ch] BYREF
@@ -535,8 +537,8 @@ struct gbVFileSystem * PalScript::OpenScript(const char *a2, char a3)
   {
     v5 = *(_DWORD *)g_Input.KeyInfo[177].Data;
     v6 = ((int)dword_1894B78)->_CalculateUV(Buffer);
-    *((_DWORD *)this + 49) = (PalScript *)(*(int (**)(int, CHAR *))(v5 + 8))(g_Input.KeyInfo[177].Data, v6);
-    *((_DWORD *)this + 50) = (PalScript *)((int)dword_1894B78)->Parent_Data(Buffer);
+    *((_DWORD *)this + 49) = (PalScript *)(*(int (**)(int, Scene *))(v5 + 8))(g_Input.KeyInfo[177].Data, v6);
+    *((_DWORD *)this + 50) = (PalScript *)((Parent_Data *)dword_1894B78)->Parent_Data(Buffer);
   }
   else
   {

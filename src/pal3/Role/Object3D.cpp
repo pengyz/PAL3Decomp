@@ -554,7 +554,7 @@ LABEL_10:
         (*(void (**)(_DWORD))(**(_DWORD **)(this + 8) + 20))(*(_DWORD *)(this + 8));
         break;
       case 2:
-        if ( sub_537060() )
+        if ( sub_537060(*(gbVisNode ***)(this + 8)) )
           ((Actor *)*(Actor **)(this + 8))->CompareAction(0, 0);
         ((Actor *)*(Actor **)(this + 8))->QueryState();
         break;

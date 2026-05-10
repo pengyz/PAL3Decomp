@@ -57,13 +57,13 @@ char CCBItemWindow::Create(_DWORD *pRect, int parent)
   PtrArray *p_m_childs; // ebx
   int *p_m_benable; // ebx
   int *p_m_bfocus; // ebx
-  _DWORD *v7; // ebx
-  UIWnd *v8; // ebx
-  UIWnd *v9; // ebx
-  UIWnd *v10; // ebx
+  gbTexture **p_m_pbktex; // ebx
+  UIStatic **p_m_pBack; // ebx
+  UIStatic **p_m_pDescription; // ebx
+  UIListBox **m_pItemList; // ebx
   int *p_m_nSize; // ebx
   int i; // ebp
-  UIWnd *v13; // ebx
+  UIListBox **v13; // ebx
 
   this->Create(1879048196, pRect, parent);
   p_m_childs = (PtrArray *)&this->m_childs;
@@ -72,7 +72,7 @@ char CCBItemWindow::Create(_DWORD *pRect, int parent)
   pRect[2] = 158;
   pRect[1] = 0;
   pRect[3] = 158;
-  (*(void (**)(void *, int, _DWORD *, UIWnd *))(*(_DWORD *)p_m_childs->m_pData + 16))(
+  (*(void (**)(void *, int, _DWORD *, CCBItemWindow *))(*(_DWORD *)p_m_childs->m_pData + 16))(
     p_m_childs->m_pData,
     232,
     pRect,
@@ -85,7 +85,7 @@ char CCBItemWindow::Create(_DWORD *pRect, int parent)
   pRect[2] = 80;
   pRect[1] = 48;
   pRect[3] = 73;
-  (*(void (**)(int, int, _DWORD *, UIWnd *, char *, _DWORD))(*(_DWORD *)*p_m_benable + 28))(
+  (*(void (**)(int, int, _DWORD *, CCBItemWindow *, char *, _DWORD))(*(_DWORD *)*p_m_benable + 28))(
     *p_m_benable,
     214,
     pRect,
@@ -99,7 +99,7 @@ char CCBItemWindow::Create(_DWORD *pRect, int parent)
   pRect[2] = 151;
   pRect[1] = 48;
   pRect[3] = 73;
-  (*(void (**)(int, int, _DWORD *, UIWnd *, char *, _DWORD))(*(_DWORD *)*p_m_bfocus + 28))(
+  (*(void (**)(int, int, _DWORD *, CCBItemWindow *, char *, _DWORD))(*(_DWORD *)*p_m_bfocus + 28))(
     *p_m_bfocus,
     215,
     pRect,
@@ -107,62 +107,65 @@ char CCBItemWindow::Create(_DWORD *pRect, int parent)
     aUiCombatContro_12,
     0);
   (**(void (***)(int, int))*p_m_bfocus)(*p_m_bfocus, 1);
-  v7 = (_DWORD *)this + 1;
-  ((CCBLineupWindow *)(_DWORD *)this + 26)->OnMessage();
+  p_m_pbktex = &this->m_pbktex;
+  ((CCBLineupWindow *)&this->m_pbktex)->OnMessage();
   pRect[1] = 73;
   *pRect = 7;
   pRect[2] = 80;
   pRect[3] = 98;
-  (*(void (**)(_DWORD, int, _DWORD *, UIWnd *, char *, _DWORD))(*(_DWORD *)*v7 + 28))(
-    *v7,
+  (*(void (**)(gbTexture *, int, _DWORD *, CCBItemWindow *, char *, _DWORD))((*p_m_pbktex)->RefCount + 28))(
+    *p_m_pbktex,
     216,
     pRect,
     this,
     aUiCombatContro_13,
     0);
-  (**(void (***)(_DWORD, int))*v7)(*v7, 1);
-  v8 = (UIWnd *)((char *)this + 108);
-  ((CCBLineupWindow *)(_DWORD *)this + 27)->OnMessage();
+  (*(void (**)(gbTexture *, int))(*p_m_pbktex)->RefCount)(*p_m_pbktex, 1);
+  p_m_pBack = &this->m_pBack;
+  ((CCBLineupWindow *)&this->m_pBack)->OnMessage();
   *pRect = 78;
   pRect[2] = 151;
   pRect[1] = 73;
   pRect[3] = 98;
-  (*(void (**)(int, int, _DWORD *, UIWnd *, char *, _DWORD))(*(_DWORD *)v8->m_fontcolor.ColorQuadFmt + 28))(
-    v8->m_fontcolor.ColorQuadFmt,
+  (*(void (**)(UIStatic *, int, _DWORD *, CCBItemWindow *, char *, _DWORD))((*p_m_pBack)->m_fontcolor.ColorQuadFmt
+                                                                                     + 28))(
+    *p_m_pBack,
     217,
     pRect,
     this,
     aUiCombatContro_14,
     0);
-  (**(void (***)(int, int))v8->m_fontcolor.ColorQuadFmt)(v8->m_fontcolor.ColorQuadFmt, 1);
-  v9 = (UIWnd *)((char *)this + 112);
-  ((CCBLineupWindow *)(_DWORD *)this + 28)->OnMessage();
+  (*(void (**)(UIStatic *, int))(*p_m_pBack)->m_fontcolor.ColorQuadFmt)(*p_m_pBack, 1);
+  p_m_pDescription = &this->m_pDescription;
+  ((CCBLineupWindow *)&this->m_pDescription)->OnMessage();
   *pRect = 7;
   pRect[2] = 80;
   pRect[1] = 98;
   pRect[3] = 123;
-  (*(void (**)(int, int, _DWORD *, UIWnd *, char *, _DWORD))(*(_DWORD *)v9->m_fontcolor.ColorQuadFmt + 28))(
-    v9->m_fontcolor.ColorQuadFmt,
+  (*(void (**)(UIStatic *, int, _DWORD *, CCBItemWindow *, char *, _DWORD))((*p_m_pDescription)->m_fontcolor.ColorQuadFmt
+                                                                                     + 28))(
+    *p_m_pDescription,
     218,
     pRect,
     this,
     aUiCombatContro_15,
     0);
-  (**(void (***)(int, int))v9->m_fontcolor.ColorQuadFmt)(v9->m_fontcolor.ColorQuadFmt, 1);
-  v10 = (UIWnd *)((char *)this + 116);
-  ((CCBLineupWindow *)(_DWORD *)this + 29)->OnMessage();
+  (*(void (**)(UIStatic *, int))(*p_m_pDescription)->m_fontcolor.ColorQuadFmt)(*p_m_pDescription, 1);
+  m_pItemList = this->m_pItemList;
+  ((CCBLineupWindow *)this->m_pItemList)->OnMessage();
   *pRect = 78;
   pRect[2] = 151;
   pRect[1] = 98;
   pRect[3] = 123;
-  (*(void (**)(int, int, _DWORD *, UIWnd *, char *, _DWORD))(*(_DWORD *)v10->m_fontcolor.ColorQuadFmt + 28))(
-    v10->m_fontcolor.ColorQuadFmt,
+  (*(void (**)(UIListBox *, int, _DWORD *, CCBItemWindow *, char *, _DWORD))((*m_pItemList)->m_fontcolor.ColorQuadFmt
+                                                                                      + 28))(
+    *m_pItemList,
     219,
     pRect,
     this,
     aUiCombatContro_16,
     0);
-  (**(void (***)(int, int))v10->m_fontcolor.ColorQuadFmt)(v10->m_fontcolor.ColorQuadFmt, 1);
+  (*(void (**)(UIListBox *, int))(*m_pItemList)->m_fontcolor.ColorQuadFmt)(*m_pItemList, 1);
   p_m_nSize = (int *)&this->m_childs.m_nSize;
   for ( i = 0; i < 5; ++i )
   {
@@ -171,7 +174,7 @@ char CCBItemWindow::Create(_DWORD *pRect, int parent)
     pRect[2] = 95;
     pRect[1] = 31;
     pRect[3] = 47;
-    (*(void (**)(int, int, _DWORD *, UIWnd *))(*(_DWORD *)*p_m_nSize + 16))(
+    (*(void (**)(int, int, _DWORD *, CCBItemWindow *))(*(_DWORD *)*p_m_nSize + 16))(
       *p_m_nSize,
       dword_570138[i],
       pRect,
@@ -180,22 +183,22 @@ char CCBItemWindow::Create(_DWORD *pRect, int parent)
     (**(void (***)(int, int))*p_m_nSize)(*p_m_nSize, 1);
     ++p_m_nSize;
   }
-  v13 = (UIWnd *)((char *)this + 120);
-  ((CCBLineupWindow *)(_DWORD *)this + 30)->Update();
+  v13 = &this->m_pItemList[1];
+  ((CCBLineupWindow *)&this->m_pItemList[1])->Update();
   *pRect = 35;
   pRect[2] = 127;
   pRect[1] = 127;
   pRect[3] = 153;
-  (*(void (**)(int, int, _DWORD *, UIWnd *, char *, int, _DWORD))(*(_DWORD *)v13->m_fontcolor.ColorQuadFmt
-                                                                           + 28))(
-    v13->m_fontcolor.ColorQuadFmt,
+  (*(void (**)(UIListBox *, int, _DWORD *, CCBItemWindow *, char *, int, _DWORD))((*v13)->m_fontcolor.ColorQuadFmt
+                                                                                           + 28))(
+    *v13,
     220,
     pRect,
     this,
     aUiCombatContro_17,
     1,
     0);
-  (**(void (***)(int, int))v13->m_fontcolor.ColorQuadFmt)(v13->m_fontcolor.ColorQuadFmt, 1);
+  (*(void (**)(UIListBox *, int))(*v13)->m_fontcolor.ColorQuadFmt)(*v13, 1);
   return 1;
 }
 

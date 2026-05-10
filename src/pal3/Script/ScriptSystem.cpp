@@ -483,119 +483,120 @@ int ScriptSystem::RunEvent(int eventId, int a2, int a3)
 int ScriptSystem::UpdateTimers(float dt)
 {
   int v1; // ecx
-  int v2; // esi
+  double v2; // st7
+  int v3; // esi
   int result; // eax
-  int v4; // eax
-  unsigned __int8 v6; // c0
-  unsigned __int8 v7; // c3
-  int v8; // [esp+8h] [ebp-24h]
-  float v9; // [esp+Ch] [ebp-20h]
-  int v10; // [esp+10h] [ebp-1Ch]
-  int v11; // [esp+14h] [ebp-18h]
-  int v12; // [esp+18h] [ebp-14h]
-  int v13; // [esp+1Ch] [ebp-10h]
-  int v14; // [esp+20h] [ebp-Ch]
-  int v15; // [esp+24h] [ebp-8h]
-  int v16; // [esp+28h] [ebp-4h]
+  int v5; // eax
+  unsigned __int8 v7; // c0
+  unsigned __int8 v8; // c3
+  int v9; // [esp+8h] [ebp-24h]
+  float v10; // [esp+Ch] [ebp-20h]
+  int v11; // [esp+10h] [ebp-1Ch]
+  int v12; // [esp+14h] [ebp-18h]
+  int v13; // [esp+18h] [ebp-14h]
+  int v14; // [esp+1Ch] [ebp-10h]
+  int v15; // [esp+20h] [ebp-Ch]
+  int v16; // [esp+24h] [ebp-8h]
+  int v17; // [esp+28h] [ebp-4h]
 
-  v2 = v1;
+  v3 = v1;
   result = *(_DWORD *)(v1 + 632);
   if ( result )
   {
     if ( *(_DWORD *)(v1 + 144) || *(_DWORD *)(v1 + 1264) == 4 )
       ((Actor *)(v1 + 680))->QueryState();
-    switch ( *(_DWORD *)(v2 + 1264) )
+    switch ( *(_DWORD *)(v3 + 1264) )
     {
       case 0:
-        return sub_412230((float *)v2, 0, 0);
+        return sub_412230((float *)v3, v2, 0, 0);
       case 1:
-        result = sub_417C50(v2, SLODWORD(dt));
+        result = sub_417C50(v3, SLODWORD(dt));
         if ( result )
           goto LABEL_23;
         return result;
       case 2:
-        sub_413CD0(v2, SLODWORD(dt));
-        if ( !*(_DWORD *)(v2 + 1268) )
+        sub_413CD0(v3, SLODWORD(dt));
+        if ( !*(_DWORD *)(v3 + 1268) )
           goto LABEL_16;
         goto LABEL_13;
       case 3:
-        if ( *(_DWORD *)(v2 + 1268) == 12 )
+        if ( *(_DWORD *)(v3 + 1268) == 12 )
         {
 LABEL_13:
-          *(_DWORD *)(v2 + 1296) = *(_DWORD *)(v2 + 1308);
-          *(_DWORD *)(v2 + 1300) = *(_DWORD *)(v2 + 1312);
-          *(_DWORD *)(v2 + 1304) = *(_DWORD *)(v2 + 1316);
+          *(_DWORD *)(v3 + 1296) = *(_DWORD *)(v3 + 1308);
+          *(_DWORD *)(v3 + 1300) = *(_DWORD *)(v3 + 1312);
+          *(_DWORD *)(v3 + 1304) = *(_DWORD *)(v3 + 1316);
         }
         else
         {
-          sub_413CD0(v2, SLODWORD(dt));
-          if ( *(_DWORD *)(v2 + 1268) )
+          sub_413CD0(v3, SLODWORD(dt));
+          if ( *(_DWORD *)(v3 + 1268) )
           {
-            *(_DWORD *)(v2 + 1296) = *(_DWORD *)(v2 + 1308);
-            *(_DWORD *)(v2 + 1300) = *(_DWORD *)(v2 + 1312);
-            *(_DWORD *)(v2 + 1304) = *(_DWORD *)(v2 + 1316);
+            *(_DWORD *)(v3 + 1296) = *(_DWORD *)(v3 + 1308);
+            *(_DWORD *)(v3 + 1300) = *(_DWORD *)(v3 + 1312);
+            *(_DWORD *)(v3 + 1304) = *(_DWORD *)(v3 + 1316);
           }
         }
 LABEL_16:
-        v4 = *(_DWORD *)(v2 + 1388);
-        if ( v4 && v4 != 4 )
-          sub_416BC0(v2);
+        v5 = *(_DWORD *)(v3 + 1388);
+        if ( v5 && v5 != 4 )
+          sub_416BC0(v3);
         goto LABEL_23;
       case 4:
-        result = sub_4150C0(v2, SLODWORD(dt));
+        result = sub_4150C0(v3, v2, SLODWORD(dt));
         if ( result )
           goto LABEL_23;
         return result;
       case 5:
-        sub_417420(v2, SLODWORD(dt));
+        sub_417420(v3, SLODWORD(dt));
         goto LABEL_23;
       case 6:
-        sub_419B30(v2, dt);
+        sub_419B30(v3, dt);
         goto LABEL_23;
       case 7:
-        sub_41A450(v2, SLODWORD(dt));
+        sub_41A450(v3, SLODWORD(dt));
         goto LABEL_23;
       default:
 LABEL_23:
-        *(_DWORD *)(v2 + 1300) = 0;
-        if ( !(v6 | v7) )
+        *(_DWORD *)(v3 + 1300) = 0;
+        if ( !(v7 | v8) )
         {
-          if ( *(_DWORD *)(v2 + 636) || *(_DWORD *)(v2 + 1264) == 4 )
+          if ( *(_DWORD *)(v3 + 636) || *(_DWORD *)(v3 + 1264) == 4 )
           {
-            sub_411E00(v2, dt, 1);
+            sub_411E00(v3, dt, 1);
           }
           else
           {
-            v11 = *(_DWORD *)(v2 + 4);
-            v12 = *(_DWORD *)(v2 + 8);
-            v14 = *(_DWORD *)(v2 + 148);
-            v13 = *(_DWORD *)(v2 + 12);
-            v15 = *(_DWORD *)(v2 + 152);
-            v16 = *(_DWORD *)(v2 + 156);
-            v8 = *(_DWORD *)(v2 + 160);
-            v9 = *(float *)(v2 + 164);
-            v10 = *(_DWORD *)(v2 + 168);
-            sub_411E00(v2, dt, 1);
-            if ( fabs(*(float *)(v2 + 164) - v9) > 45.0 )
+            v12 = *(_DWORD *)(v3 + 4);
+            v13 = *(_DWORD *)(v3 + 8);
+            v15 = *(_DWORD *)(v3 + 148);
+            v14 = *(_DWORD *)(v3 + 12);
+            v16 = *(_DWORD *)(v3 + 152);
+            v17 = *(_DWORD *)(v3 + 156);
+            v9 = *(_DWORD *)(v3 + 160);
+            v10 = *(float *)(v3 + 164);
+            v11 = *(_DWORD *)(v3 + 168);
+            sub_411E00(v3, dt, 1);
+            if ( fabs(*(float *)(v3 + 164) - v10) > 45.0 )
             {
-              *(_DWORD *)(v2 + 12) = v13;
-              *(_DWORD *)(v2 + 4) = v11;
-              *(_DWORD *)(v2 + 8) = v12;
-              *(_DWORD *)(v2 + 156) = v16;
-              *(_DWORD *)(v2 + 148) = v14;
-              *(_DWORD *)(v2 + 152) = v15;
-              *(_DWORD *)(v2 + 168) = v10;
-              *(_DWORD *)(v2 + 160) = v8;
-              *(float *)(v2 + 164) = v9;
-              sub_4142E0((_DWORD *)v2);
+              *(_DWORD *)(v3 + 12) = v14;
+              *(_DWORD *)(v3 + 4) = v12;
+              *(_DWORD *)(v3 + 8) = v13;
+              *(_DWORD *)(v3 + 156) = v17;
+              *(_DWORD *)(v3 + 148) = v15;
+              *(_DWORD *)(v3 + 152) = v16;
+              *(_DWORD *)(v3 + 168) = v11;
+              *(_DWORD *)(v3 + 160) = v9;
+              *(float *)(v3 + 164) = v10;
+              sub_4142E0((RoleSystem *)v3);
             }
           }
         }
-        result = (*(int (**)(int))(*(_DWORD *)(v2 + 56) + 4))(v2 + 56);
+        result = (*(int (**)(int))(*(_DWORD *)(v3 + 56) + 4))(v3 + 56);
         if ( !result )
-          result = sub_41B300((void ***)v2);
-        if ( *(_DWORD *)(v2 + 1264) == 3 )
-          LOBYTE(result) = sub_41B6C0(v2, -1);
+          result = sub_41B300((void ***)v3);
+        if ( *(_DWORD *)(v3 + 1264) == 3 )
+          LOBYTE(result) = sub_41B6C0(v3, -1);
         break;
     }
   }
@@ -673,17 +674,17 @@ LABEL_9:
 }
 
 // 0x0041EFA0
-int ScriptSystem::Init()
+void ScriptSystem::Init()
 {
   int v0; // edi
   const char *v1; // esi
   int v2; // edi
   const char *v3; // esi
   PalScript String[13]; // [esp+8h] [ebp-218h] BYREF
-  int v6; // [esp+21Ch] [ebp-4h]
+  int v5; // [esp+21Ch] [ebp-4h]
 
   sub_431870(String);
-  v6 = 0;
+  v5 = 0;
   String->LoadFromFile(aDatascriptScen_0);
   String->SetDirectory(aRole);
   while ( String->HasNext() )
@@ -723,6 +724,6 @@ LABEL_8:
 LABEL_16:
     ;
   }
-  v6 = -1;
-  return sub_4318A0(String);
+  v5 = -1;
+  sub_4318A0((int)String);
 }

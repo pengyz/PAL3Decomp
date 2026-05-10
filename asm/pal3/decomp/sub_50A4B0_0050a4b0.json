@@ -2,6 +2,6 @@
   "name": "sub_50A4B0",
   "address": "0x0050A4B0",
   "size_bytes": 77,
-  "signature": "bool __thiscall(int *this)",
-  "decompiled_c": "// between_std_methods (0x504E20-0x53C2B0)\nbool __thiscall sub_50A4B0(int *this)\n{\n  int v1; // eax\n  int v3[6]; // [esp-18h] [ebp-44h] BYREF\n  float pPos[2]; // [esp+Ch] [ebp-20h] BYREF\n  _BYTE pTarget[24]; // [esp+14h] [ebp-18h] BYREF\n\n  v1 = *this;\n  pPos[0] = *(float *)(*this + 80);\n  pPos[1] = *(float *)(v1 + 84);\n  qmemcpy(v3, CameraCtrl::GetViewTarget(*(CameraCtrl **)(v1 + 12), pTarget, pPos), sizeof(v3));\n  return CCBStageRole::LoadAction(v3[0], v3[1], v3[2], v3[3], v3[4], v3[5]);\n}\n"
+  "signature": "bool __thiscall(CCBStageRole *this)",
+  "decompiled_c": "// between_std_methods (0x504E20-0x53C2B0)\nbool __thiscall sub_50A4B0(CCBStageRole *this)\n{\n  CCBStage *m_pStage; // eax\n  gbRay v4; // [esp-18h] [ebp-44h] BYREF\n  float pPos[2]; // [esp+Ch] [ebp-20h] BYREF\n  _BYTE pTarget[24]; // [esp+14h] [ebp-18h] BYREF\n\n  m_pStage = this->m_pStage;\n  pPos[0] = *(float *)&this->m_pStage->m_WPXVariance;\n  pPos[1] = *(float *)&m_pStage->m_pDisplayChain;\n  qmemcpy(&v4, CameraCtrl::GetViewTarget((CameraCtrl *)m_pStage->m_pCam, pTarget, pPos), sizeof(v4));\n  return CCBStageRole::LoadAction(this, v4);\n}\n"
 }

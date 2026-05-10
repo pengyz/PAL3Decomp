@@ -739,7 +739,7 @@ int __thiscall WinProc_HWND_4021E0(GRPinput *_this, int a2, int a3, int a4)
   if ( a2 )
     GRPinput::AcquireDevices(_this);
   else
-    WinProc_HWND_402360(_this);
+    WinProc_HWND_402360((int *)_this);
   _this->m_shiftedKeyStates[202] = a3;
   if ( a3 )
     return GRPinput::ReleaseDevices(_this);
@@ -817,7 +817,7 @@ _DWORD *unknown_libname_293()
 // Microsoft VisualC 2-14/net runtime
 void __cdecl unknown_libname_294()
 {
-  sub_4318A0(&stru_BFAB60);
+  sub_4318A0((int)&stru_BFAB60);
 }
 
 // 0x004044F0
@@ -1257,9 +1257,9 @@ _DWORD *unknown_libname_316()
 // 0x00408B90
 // Microsoft VisualC 2-14/net runtime
 // Microsoft VisualC 2-14/net runtime
-_BYTE *unknown_libname_317()
+UIWnd *unknown_libname_317()
 {
-  return sub_444F60(&g_Input.KeyInfo[182]);
+  return sub_444F60((UIWnd *)&g_Input.KeyInfo[182]);
 }
 
 // 0x00408BB0
@@ -1272,7 +1272,7 @@ void __cdecl unknown_libname_318()
 
 // 0x0040C230
 // between_std_methods (0x407D40-0x411B80)
-_DWORD *__cdecl ScriptUpdate(float dt)
+_DWORD *__cdecl ScriptUpdate(int dt)
 {
   float *p_y; // esi
   double v2; // st7
@@ -1292,22 +1292,22 @@ _DWORD *__cdecl ScriptUpdate(float dt)
   p_y = &g_SceneMgr.m_npc[0].m_path.normal[83].y;
   do
   {
-    ScriptSystem::UpdateTimers(dt);
+    ScriptSystem::UpdateTimers(*(float *)&dt);
     p_y += 2176;
   }
   while ( (int)p_y < (int)&g_SceneMgr.m_npc[5].m_path.normal[58].y );
   if ( dword_C025EC == 10 )
   {
     if ( LODWORD(g_SceneMgr.m_npc[1].m_path.normal[131].x) )
-      ScriptSystem::UpdateObjects(dt);
+      ScriptSystem::UpdateObjects(*(float *)&dt);
   }
   else if ( dword_C025EC == 11 )
   {
-    sub_419690((int)dword_C020F8, dt);
+    sub_419690((int)dword_C020F8, *(float *)&dt);
   }
   else if ( dword_C02370 )
   {
-    ScriptSystem::UpdateTimers(dt);
+    ScriptSystem::UpdateTimers(*(float *)&dt);
   }
   if ( dword_C00028 )
   {
@@ -1316,7 +1316,7 @@ _DWORD *__cdecl ScriptUpdate(float dt)
       dword_C00028 = 0;
       RoleSystemNotify((int)dword_BFFDB0);
     }
-    ScriptSystem::UpdateTimers(dt);
+    ScriptSystem::UpdateTimers(*(float *)&dt);
   }
   if ( g_Input.KeyInfo[237].CountMode )
   {
@@ -1325,14 +1325,14 @@ _DWORD *__cdecl ScriptUpdate(float dt)
       g_Input.KeyInfo[237].CountMode = 0;
       RoleSystemNotify((int)&g_Input.KeyInfo[198]);
     }
-    ScriptSystem::UpdateTimers(dt);
+    ScriptSystem::UpdateTimers(*(float *)&dt);
     *(float *)&g_Input.KeyInfo[208].HoldTime = *(float *)&g_Input.KeyInfo[208].HoldTime + 80.0;
   }
   if ( g_Input.KeyInfo[197].HoldTime <= 4u )
   {
     if ( g_Input.KeyInfo[196].Data )
     {
-      v3 = *(float *)&g_Input.KeyInfo[197].PressTime + dt;
+      v3 = *(float *)&g_Input.KeyInfo[197].PressTime + *(float *)&dt;
       *(float *)&g_Input.KeyInfo[197].PressTime = v3;
       if ( v3 >= 4.0 )
       {
@@ -1417,7 +1417,7 @@ _DWORD *__cdecl ScriptUpdate(float dt)
     if ( v5 >= 12.0 * 100.0 )
       ScriptSystem::RunEvent(31, 1, 0);
   }
-  v6 = g_SceneMgr.m_npc[5].m_path.normal[131].z + dt;
+  v6 = g_SceneMgr.m_npc[5].m_path.normal[131].z + *(float *)&dt;
   g_SceneMgr.m_npc[5].m_path.normal[131].z = v6;
   if ( v6 >= 60.0 )
   {
@@ -1426,7 +1426,7 @@ _DWORD *__cdecl ScriptUpdate(float dt)
     BYTE2(g_SceneMgr.m_npc[0].m_npcinfo.mrepeat) = 0;
     BYTE1(g_SceneMgr.m_npc[5].m_path.normal[130].y) = 0;
   }
-  NPCAnimUpdate(dt);
+  NPCAnimUpdate(*(float *)&dt);
   result = (_DWORD *)sub_43A3E0((int)&g_SceneMgr.m_npc[5].m_path.normal[59], dt, 0);
   if ( LOBYTE(g_SceneMgr.m_npc[5].m_path.normal[130].y) )
   {
@@ -1910,7 +1910,7 @@ int __cdecl NPCAnimUpdate(float a1)
   v18 = -1;
   v17 = 0;
   if ( g_Input.KeyInfo[195].HoldTime <= 0 )
-    return sub_445720(&g_Input.KeyInfo[182].Data, 0);
+    return sub_445720((UIWnd *)&g_Input.KeyInfo[182], 0);
   do
   {
     v3 = *(_DWORD *)(g_Input.KeyInfo[195].Data + 4 * v2);
@@ -1980,7 +1980,7 @@ int __cdecl NPCAnimUpdate(float a1)
     }
   }
   if ( v18 == -1 )
-    return sub_445720(&g_Input.KeyInfo[182].Data, 0);
+    return sub_445720((UIWnd *)&g_Input.KeyInfo[182], 0);
   v14 = 0;
   if ( HoldTime > 0 )
   {
@@ -2000,7 +2000,7 @@ int __cdecl NPCAnimUpdate(float a1)
   a2[0] = (g_Input.KeyInfo[120].Data - v16) / 2 < 0 ? 0 : (g_Input.KeyInfo[120].Data - v16) / 2;
   a2[2] = v16 + a2[0];
   UIWnd::GetRect((UIWnd *)&g_Input.KeyInfo[182], a2);
-  sub_445720(&g_Input.KeyInfo[182].Data, 1);
+  sub_445720((UIWnd *)&g_Input.KeyInfo[182], 1);
   UIWnd::SetState((UIWnd *)&g_Input.KeyInfo[182], 1);
   *(_WORD *)((char *)&v20 + 1) = -1;
   LOBYTE(v20) = -1;
@@ -2969,7 +2969,7 @@ int __thiscall UIUpdate(_DWORD *_this, double a2)
         do
         {
           *(float *)&dta = a2;
-          sub_426EB0((int)v8, dta);
+          sub_426EB0(*(float *)&v8, a2, dta);
           result = *(_this + 55);
           ++v7;
           v8 += 224;
@@ -3968,24 +3968,24 @@ int __thiscall SceneUpdate(int _this, int a2, int a3)
 
 // 0x0044F610
 // between_std_methods (0x44BDA0-0x4A7690)
-int __thiscall CGameData_Load(int _this, int a2)
+int __thiscall CGameData_Load(int _this, CUtil *a2)
 {
   int v2; // ebx
   int result; // eax
   int v5; // ecx
   void *HoldTime; // esi
-  _BYTE *Instance; // eax
+  ScreenEffect *Instance; // eax
   int v8; // eax
   int (__thiscall ***v9)(_DWORD, _DWORD); // ecx
   int v10; // eax
   int v11; // ecx
   void *Data; // esi
 
-  v2 = a2;
-  if ( a2 != 8 || *(_DWORD *)(_this + 14536) || (result = (unsigned __int8)byte_D92785, !byte_D92785) )
+  v2 = (int)a2;
+  if ( a2 != (CUtil *)8 || *(_DWORD *)(_this + 14536) || (result = (unsigned __int8)byte_D92785, !byte_D92785) )
   {
     result = *(_DWORD *)(_this + 14536);
-    if ( result != a2 )
+    if ( (CUtil *)result != a2 )
     {
       *(_DWORD *)(_this + 14540) = result;
       if ( result == 7 )
@@ -4014,7 +4014,7 @@ int __thiscall CGameData_Load(int _this, int a2)
           }
         }
       }
-      if ( a2 != 10 || *(_BYTE *)(_this + 652) )
+      if ( a2 != (CUtil *)10 || *(_BYTE *)(_this + 652) )
       {
         v10 = *(_DWORD *)(_this + 14536);
         *(_BYTE *)(_this + 652) = 0;
@@ -4043,7 +4043,7 @@ int __thiscall CGameData_Load(int _this, int a2)
             g_Input.KeyInfo[179].Data = 0;
           }
         }
-        result = (int)sub_44F8D0((_DWORD *)_this, a2);
+        result = (int)sub_44F8D0((int *)_this, (int)a2);
         *(_DWORD *)(_this + 14532) = result;
         *(_DWORD *)(_this + 14536) = a2;
       }
@@ -5354,7 +5354,7 @@ int unknown_libname_468()
 // 0x004E0A30
 INT_PTR __stdcall DialogFunc(HWND hDlg, UINT a2, WPARAM a3, LPARAM a4)
 {
-  return sub_4E0A60(dword_17A94E0, hDlg, a2, a3, a4);
+  return sub_4E0A60((void *)dword_17A94E0, hDlg, a2, a3, a4);
 }
 
 // 0x004EC430
@@ -5571,7 +5571,7 @@ int __thiscall MiniGame1Update(_DWORD ***_this, double a2)
   do
   {
     Object3D::CaculateRelative((int)(v3 - 2), v6);
-    if ( sub_537060() == 1 )
+    if ( sub_537060((gbVisNode **)*v3) == 1 )
       Actor::CompareAction(*v3, (int)v3[35], 0);
     v3 += 38;
     --v4;
@@ -5635,7 +5635,7 @@ int unknown_libname_493()
 
 // 0x0052F350
 // between_std_methods (0x504E20-0x53C2B0)
-void __thiscall MiniGame2Update(_DWORD **_this, float a2)
+void __thiscall MiniGame2Update(_DWORD **_this, int a2)
 {
   int v3; // ecx
   char *v4; // eax
@@ -5646,8 +5646,8 @@ void __thiscall MiniGame2Update(_DWORD **_this, float a2)
   ScreenEffect *Instance; // eax
   double v10; // st7
   char v11; // al
-  unsigned int v12; // ecx
-  unsigned int v13; // edx
+  _DWORD *v12; // ecx
+  _DWORD *v13; // edx
   unsigned int v14; // ecx
   float *v15; // eax
   unsigned int v16; // edx
@@ -5655,14 +5655,14 @@ void __thiscall MiniGame2Update(_DWORD **_this, float a2)
   double v18; // st6
   float v19; // [esp+14h] [ebp+4h]
 
-  PalScriptMgr::RunSceneScript(SLODWORD(a2));
+  PalScriptMgr::RunSceneScript(a2);
   if ( *((_BYTE *)_this + 24) )
   {
     v3 = (int)*(_this + 5);
     if ( v3 && !(*(int (__thiscall **)(int))(*(_DWORD *)v3 + 4))(v3) )
     {
       sub_52F570(aSoftwareSoftst, (DWORD)aSGameC, 1);
-      CGameData_Load((int)&g_GameData, (int)*(_this + 75));
+      CGameData_Load((int)&g_GameData, (CUtil *)*(_this + 75));
       if ( *(_this + 75) )
       {
         Instance = ScreenEffectMgr::GetInstance();
@@ -5699,22 +5699,22 @@ void __thiscall MiniGame2Update(_DWORD **_this, float a2)
   {
     if ( *((_BYTE *)_this + 293) )
     {
-      v10 = a2;
+      v10 = *(float *)&a2;
     }
     else
     {
       if ( *((_BYTE *)_this + 292) )
         *((_BYTE *)_this + 292) = 0;
-      *(float *)&(*(_this + 69))[(_DWORD)*(_this + 71)] = a2;
+      (*(_this + 69))[(_DWORD)*(_this + 71)] = a2;
       v11 = *((_BYTE *)_this + 294);
-      v12 = (unsigned int)*(_this + 71) + 1;
-      *(_this + 71) = (_DWORD *)v12;
+      v12 = (_DWORD *)((char *)*(_this + 71) + 1);
+      *(_this + 71) = v12;
       v13 = v12;
       if ( !v11 )
-        *((_BYTE *)_this + 294) = v12 >= (unsigned int)*(_this + 68);
+        *((_BYTE *)_this + 294) = v12 >= *(_this + 68);
       v14 = (unsigned int)*(_this + 68);
       *(_this + 70) = 0;
-      *(_this + 71) = v13 < v14 ? (_DWORD *)v13 : 0;
+      *(_this + 71) = (unsigned int)v13 < v14 ? v13 : 0;
       if ( v14 )
       {
         v15 = (float *)*(_this + 69);
@@ -5744,7 +5744,7 @@ void __thiscall MiniGame2Update(_DWORD **_this, float a2)
       v19 = 1.0;
     }
     sub_52EBE0((gbCamera **)*(_this + 1), SLODWORD(v19));
-    sub_531260(*_this, v19);
+    sub_531260((Actor **)*_this, v19);
     sub_5303C0(*(_this + 3), SLODWORD(v19));
     sub_52FE30((int)*(_this + 4), v19);
   }
@@ -5916,7 +5916,7 @@ void __thiscall MiniGame3Update(int *_this, float a2)
     sub_533250(*(_this + 4), a2);
     sub_534E60((float **)*(_this + 2), COERCE_UNSIGNED_INT64(a2), HIDWORD(COERCE_UNSIGNED_INT64(a2)));
     Actor::SetParam((Actor *)*_this, COERCE_UNSIGNED_INT64(a2));
-    sub_5359B0((_DWORD **)*(_this + 1), a2);
+    sub_5359B0((char *)*(_this + 1), a2);
     sub_534CF0(*(_this + 3), COERCE_UNSIGNED_INT64(a2), HIDWORD(COERCE_UNSIGNED_INT64(a2)));
   }
 }
@@ -7359,7 +7359,7 @@ unsigned int _fpmath()
 }
 
 // 0x00552F9C
-char *(__cdecl *_cfltcvt_init())(double *, char *Src, int, size_t Size, int)
+char *(__cdecl *_cfltcvt_init())(double *, char *Src, int, char *Size, int)
 {
   off_60ACBC[0] = (void (__noreturn *)())_cropzeros;
   off_60ACB8[0] = (void (__noreturn *)())_cfltcvt;
@@ -7562,7 +7562,7 @@ enum _EXCEPTION_DISPOSITION __usercall TranslatorGuardHandler@<eax>(
       *((struct _s_FuncInfo **)TargetFrame + 2),
       *((_DWORD *)TargetFrame + 4),
       *((PVOID *)TargetFrame + 5),
-      1u);
+      1);
     if ( !*((_DWORD *)TargetFrame + 9) )
       _UnwindNestedFrames(a1, TargetFrame, ExceptionRecord);
     return (*((enum _EXCEPTION_DISPOSITION (**)(void))TargetFrame + 6))();
@@ -7714,7 +7714,7 @@ __int64 __usercall _ftol@<edx:eax>(double a1@<st0>)
 }
 
 // 0x0055353B
-int __cdecl operator new(size_t Size)
+LPVOID __cdecl operator new(size_t Size)
 {
   return _nh_malloc(Size, 1);
 }
@@ -7729,12 +7729,12 @@ void __stdcall `eh vector destructor iterator'(char *a1, unsigned int a2, int a3
 }
 
 // 0x005535C9
-void __stdcall __ArrayUnwind(char *a1, unsigned int a2, int a3, void (__thiscall *a4)(void *))
+void __stdcall __ArrayUnwind(char *a1, unsigned int a2, int a3, void (*a4)(void))
 {
   while ( --a3 >= 0 )
   {
     a1 -= a2;
-    ((void (*)(void))a4)();
+    a4();
   }
 }
 
@@ -7758,13 +7758,13 @@ void __stdcall `eh vector constructor iterator'(
 // 0x005536A9
 void *__cdecl malloc(size_t Size)
 {
-  return (void *)_nh_malloc(Size, dword_1895328);
+  return _nh_malloc(Size, dword_1895328);
 }
 
 // 0x005536BB
-LPVOID __cdecl _nh_malloc(size_t Size, int a2)
+_DWORD *__cdecl _nh_malloc(size_t Size, int a2)
 {
-  LPVOID result; // eax
+  _DWORD *result; // eax
 
   if ( Size > 0xFFFFFFE0 )
     return 0;
@@ -8288,7 +8288,7 @@ char *__cdecl _strlwr(char *String)
   Block = 0;
   if ( dword_18953A8 )
   {
-    v4 = __crtLCMapStringA(dword_18953A8, 0x100u, String, -1, 0, 0, 0, 1);
+    v4 = __crtLCMapStringA(dword_18953A8, 0x100u, String, (_BYTE *)0xFFFFFFFF, 0, 0, 0, 1);
     v5 = v4;
     if ( v4 )
     {
@@ -8296,7 +8296,7 @@ char *__cdecl _strlwr(char *String)
       Block = v6;
       if ( v6 )
       {
-        if ( __crtLCMapStringA(dword_18953A8, 0x100u, String, -1, v6, v5, 0, 1) )
+        if ( __crtLCMapStringA(dword_18953A8, 0x100u, String, (_BYTE *)0xFFFFFFFF, v6, v5, 0, 1) )
           strcpy(String, Block);
       }
     }
@@ -8804,7 +8804,7 @@ double __cdecl atof(const char *String)
         : _isctype(*(unsigned __int8 *)String, 8) )
     ++String;
   strlen(String);
-  return *((double *)_fltin((int)String) + 2);
+  return *((double *)_fltin((char *)String) + 2);
 }
 
 // 0x00554560
@@ -8963,9 +8963,16 @@ LABEL_10:
 }
 
 // 0x00554700
-long double __usercall _CIpow@<st0>(double x@<st0>, unsigned __int64 y@<st1>)
+long double __usercall _CIpow@<st0>(unsigned __int64 x@<st0>, long double y@<st1>)
 {
-  return sub_554722(HIDWORD(y), x, SLODWORD(x), HIDWORD(*(unsigned __int64 *)&x), y, HIDWORD(y));
+  return sub_554722(
+           HIDWORD(*(unsigned __int64 *)&y),
+           *(double *)&x,
+           y,
+           x,
+           HIDWORD(x),
+           SLODWORD(y),
+           HIDWORD(*(unsigned __int64 *)&y));
 }
 
 // 0x00554719
@@ -8974,9 +8981,10 @@ double __cdecl pow(double X, double Y)
   int v2; // ecx
   double v3; // st6
   int v4; // eax
+  double v5; // st7
 
-  _fload_withFB(v2, &Y);
-  return sub_554722(v4, v3, SLODWORD(X), SHIDWORD(X), SLODWORD(Y), SHIDWORD(Y));
+  v5 = _fload_withFB(v2, &Y);
+  return sub_554722(v4, v3, v5, SLODWORD(X), SHIDWORD(X), SLODWORD(Y), SHIDWORD(Y));
 }
 
 // 0x0055491D
@@ -10888,15 +10896,15 @@ BOOL __cdecl _positive(double *a1)
 }
 
 // 0x00556517
-_DWORD *__cdecl _fassign(int a1, _DWORD *a2, int a3)
+char **__cdecl _fassign(int a1, char **a2, char *a3)
 {
   unsigned int v4[2]; // [esp+0h] [ebp-8h] BYREF
 
   if ( a1 )
   {
     sub_55BAB4(v4, a3);
-    *a2 = v4[0];
-    a2[1] = v4[1];
+    *a2 = (char *)v4[0];
+    a2[1] = (char *)v4[1];
     return a2;
   }
   else
@@ -10910,59 +10918,54 @@ _DWORD *__cdecl _fassign(int a1, _DWORD *a2, int a3)
 // 0x00556555
 _BYTE *__cdecl _cftoe(double *a1, _BYTE *a2, int a3, int a4)
 {
-  int v4; // ebx
-  int *v5; // esi
-  _BYTE *v6; // eax
-  char *v7; // eax
-  int v8; // ebx
-  double v10; // [esp+0h] [ebp-10h]
+  int *v4; // esi
+  _BYTE *v5; // eax
+  char *v6; // eax
+  int v7; // ebx
 
   if ( byte_1895330 )
   {
-    v4 = a3;
-    v5 = (int *)dword_189532C;
+    v4 = (int *)dword_189532C;
     _shift(&a2[*(_DWORD *)dword_189532C == 45], a3 > 0);
   }
   else
   {
-    v10 = *a1;
-    v4 = a3;
-    v5 = _fltout(SLOBYTE(v10));
-    _fptostr(&a2[(*v5 == 45) + (a3 > 0)], (char *)(a3 + 1), (int)v5);
+    v4 = _fltout(COERCE_UNSIGNED_INT64(*a1));
+    _fptostr(&a2[(*v4 == 45) + (a3 > 0)], (char *)(a3 + 1), (int)v4);
   }
-  v6 = a2;
-  if ( *v5 == 45 )
+  v5 = a2;
+  if ( *v4 == 45 )
   {
     *a2 = 45;
-    v6 = a2 + 1;
+    v5 = a2 + 1;
   }
-  if ( v4 > 0 )
+  if ( a3 > 0 )
   {
-    *v6 = v6[1];
-    *++v6 = byte_60AF10;
+    *v5 = v5[1];
+    *++v5 = byte_60AF10;
   }
-  v7 = strcpy(&v6[(byte_1895330 == 0) + v4], "e+000");
+  v6 = strcpy(&v5[(byte_1895330 == 0) + a3], "e+000");
   if ( a4 )
-    *v7 = 69;
-  if ( *(_BYTE *)v5[3] != 48 )
+    *v6 = 69;
+  if ( *(_BYTE *)v4[3] != 48 )
   {
-    v8 = v5[1] - 1;
-    if ( v8 < 0 )
+    v7 = v4[1] - 1;
+    if ( v7 < 0 )
     {
-      v8 = 1 - v5[1];
-      v7[1] = 45;
+      v7 = 1 - v4[1];
+      v6[1] = 45;
     }
-    if ( v8 >= 100 )
+    if ( v7 >= 100 )
     {
-      v7[2] += v8 / 100;
-      v8 %= 100;
+      v6[2] += v7 / 100;
+      v7 %= 100;
     }
-    if ( v8 >= 10 )
+    if ( v7 >= 10 )
     {
-      v7[3] += v8 / 10;
-      v8 %= 10;
+      v6[3] += v7 / 10;
+      v7 %= 10;
     }
-    v7[4] += v8;
+    v6[4] += v7;
   }
   return a2;
 }
@@ -10979,7 +10982,6 @@ char *__cdecl _cftof(double *a1, char *Src, size_t Size)
   int v9; // esi
   char *v10; // edi
   int v11; // esi
-  double v13; // [esp+0h] [ebp-18h]
 
   if ( byte_1895330 )
   {
@@ -10994,9 +10996,8 @@ char *__cdecl _cftof(double *a1, char *Src, size_t Size)
   }
   else
   {
-    v13 = *a1;
     v3 = Size;
-    v4 = _fltout(SLOBYTE(v13));
+    v4 = _fltout(COERCE_UNSIGNED_INT64(*a1));
     _fptostr(&Src[*v4 == 45], (char *)(Size + v4[1]), (int)v4);
   }
   v6 = Src;
@@ -11051,10 +11052,8 @@ char *__cdecl _cftog(double *a1, char *Src, char *Size, int a4)
 {
   char *v4; // esi
   bool v5; // cl
-  double v7; // [esp+0h] [ebp-14h]
 
-  v7 = *a1;
-  dword_189532C = (int)_fltout(SLOBYTE(v7));
+  dword_189532C = (int)_fltout(COERCE_UNSIGNED_INT64(*a1));
   dword_1895334 = *(_DWORD *)(dword_189532C + 4) - 1;
   v4 = &Src[*(_DWORD *)dword_189532C == 45];
   _fptostr(v4, Size, dword_189532C);
@@ -11362,11 +11361,11 @@ int __cdecl _output(FILE *File, char *a2, int a3)
   _BYTE *v29; // eax
   char *v30; // eax
   char v31; // bl
-  _DWORD *v32; // esi
+  char *v32; // esi
   wchar_t *v33; // ebx
   int v34; // edi
   wchar_t v35; // ax
-  _DWORD *v36; // eax
+  char *v36; // eax
   char Str; // [esp+Ch] [ebp-248h] BYREF
   char v40; // [esp+20Bh] [ebp-49h] BYREF
   int v41; // [esp+20Ch] [ebp-48h]
@@ -11770,10 +11769,10 @@ LABEL_156:
             goto LABEL_156;
           }
 LABEL_157:
-          v32 = (_DWORD *)(v50 - v51 - v54);
+          v32 = (char *)(v50 - v51 - v54);
           if ( (v56 & 0xC) == 0 )
-            write_multi_char(32, (_DWORD *)(v50 - v51 - v54), File, &v52[1]);
-          write_string((char *)v52, (_DWORD *)v51, File, &v52[1]);
+            write_multi_char(32, (char *)(v50 - v51 - v54), File, &v52[1]);
+          write_string((char *)v52, (char *)v51, File, &v52[1]);
           if ( (v31 & 8) != 0 && (v31 & 4) == 0 )
             write_multi_char(48, v32, File, &v52[1]);
           if ( v49 && v54 > 0 )
@@ -11783,7 +11782,7 @@ LABEL_157:
             do
             {
               v35 = *v33++;
-              v36 = (_DWORD *)wctomb(MbCh, v35);
+              v36 = (char *)wctomb(MbCh, v35);
               if ( (int)v36 <= 0 )
                 break;
               write_string(MbCh, v36, File, &v52[1]);
@@ -11792,7 +11791,7 @@ LABEL_157:
           }
           else
           {
-            write_string((char *)p_Str, (_DWORD *)v54, File, &v52[1]);
+            write_string((char *)p_Str, (char *)v54, File, &v52[1]);
           }
           if ( (v56 & 4) != 0 )
             write_multi_char(32, v32, File, &v52[1]);
@@ -11899,31 +11898,31 @@ int __cdecl __InternalCxxFrameHandler(
         struct EHRegistrationNode *a2,
         struct _CONTEXT *a3,
         void *a4,
-        struct _s_FuncInfo *a5,
+        EXCEPTION_POINTERS *a5,
         int a6,
-        PVOID TargetFrame,
-        char a8)
+        struct EHRegistrationNode *TargetFrame,
+        unsigned __int8 a8)
 {
   EXCEPTION_POINTERS *v8; // ecx
-  int (__cdecl *v9)(PEXCEPTION_RECORD, struct EHRegistrationNode *, struct _CONTEXT *, void *, struct _s_FuncInfo *, int, PVOID, _DWORD); // ecx
+  int (__cdecl *v9)(PEXCEPTION_RECORD, struct EHRegistrationNode *, struct _CONTEXT *, void *, EXCEPTION_POINTERS *, int, struct EHRegistrationNode *, _DWORD); // ecx
 
-  if ( *(_DWORD *)a5 != 429065504 )
+  if ( a5->ExceptionRecord != (_EXCEPTION_RECORD *)429065504 )
     sub_557CA2(v8);
   if ( (ExceptionRecord->ExceptionFlags & 0x66) != 0 )
   {
-    if ( a5->maxState )
+    if ( a5->ContextRecord )
     {
       if ( !a6 )
         __FrameUnwindToState((int)a2, (int)a4, (int)a5, -1);
     }
   }
-  else if ( a5->nTryBlocks )
+  else if ( a5[1].ContextRecord )
   {
     if ( ExceptionRecord->ExceptionCode == -529697949 && ExceptionRecord->ExceptionInformation[0] > 0x19930520u )
     {
-      v9 = *(int (__cdecl **)(PEXCEPTION_RECORD, struct EHRegistrationNode *, struct _CONTEXT *, void *, struct _s_FuncInfo *, int, PVOID, _DWORD))(ExceptionRecord->ExceptionInformation[2] + 8);
+      v9 = *(int (__cdecl **)(PEXCEPTION_RECORD, struct EHRegistrationNode *, struct _CONTEXT *, void *, EXCEPTION_POINTERS *, int, struct EHRegistrationNode *, _DWORD))(ExceptionRecord->ExceptionInformation[2] + 8);
       if ( v9 )
-        return v9(ExceptionRecord, a2, a3, a4, a5, a6, TargetFrame, (unsigned __int8)a8);
+        return v9(ExceptionRecord, a2, a3, a4, a5, a6, TargetFrame, a8);
     }
     FindHandler(ExceptionRecord, a2, a3, a4, a5, a8, a6, TargetFrame);
   }
@@ -11932,7 +11931,7 @@ int __cdecl __InternalCxxFrameHandler(
 
 // 0x00557497
 void __cdecl FindHandler(
-        PEXCEPTION_RECORD ExceptionRecord,
+        struct EHExceptionRecord *ExceptionRecord,
         struct EHRegistrationNode *a2,
         struct _CONTEXT *a3,
         void *a4,
@@ -11942,17 +11941,17 @@ void __cdecl FindHandler(
         struct EHRegistrationNode *TargetFrame)
 {
   EXCEPTION_POINTERS *v8; // ecx
-  PEXCEPTION_RECORD v9; // esi
+  struct EHExceptionRecord *v9; // esi
   int v10; // edi
   const struct _s_TryBlockMapEntry *v11; // ebx
-  _DWORD *v12; // eax
-  const struct _s_CatchableType **v13; // edi
+  CatchableTypeArray *pCatchableTypeArray; // eax
+  const struct _s_CatchableType **arrayOfCatchableTypes; // edi
   EXCEPTION_POINTERS *v14; // [esp-10h] [ebp-28h]
   unsigned int v15; // [esp+0h] [ebp-18h] BYREF
   unsigned __int8 v16[4]; // [esp+4h] [ebp-14h]
   int state; // [esp+8h] [ebp-10h]
   int nCatches; // [esp+Ch] [ebp-Ch]
-  int v19; // [esp+10h] [ebp-8h]
+  int nCatchableTypes; // [esp+10h] [ebp-8h]
   unsigned int v20; // [esp+14h] [ebp-4h] BYREF
   struct _s_HandlerType *ExceptionRecorda; // [esp+20h] [ebp+8h]
 
@@ -11964,10 +11963,10 @@ void __cdecl FindHandler(
   if ( ExceptionRecord->ExceptionCode != -529697949 )
     goto LABEL_35;
   if ( ExceptionRecord->NumberParameters == 3
-    && ExceptionRecord->ExceptionInformation[0] == 429065504
-    && !ExceptionRecord->ExceptionInformation[2] )
+    && ExceptionRecord->params.magicNumber == 429065504
+    && !ExceptionRecord->params.pThrowInfo )
   {
-    v9 = (PEXCEPTION_RECORD)lp;
+    v9 = (struct EHExceptionRecord *)lp;
     if ( !lp )
       return;
     a3 = (struct _CONTEXT *)dword_189538C;
@@ -11976,15 +11975,23 @@ void __cdecl FindHandler(
       sub_557CA2(v14);
     if ( v9->ExceptionCode != -529697949 )
       goto LABEL_35;
-    if ( v9->NumberParameters == 3 && v9->ExceptionInformation[0] == 429065504 && !v9->ExceptionInformation[2] )
+    if ( v9->NumberParameters == 3 && v9->params.magicNumber == 429065504 && !v9->params.pThrowInfo )
       sub_557CA2(v14);
   }
-  if ( v9->ExceptionCode != -529697949 || v9->NumberParameters != 3 || v9->ExceptionInformation[0] != 429065504 )
+  if ( v9->ExceptionCode != -529697949 || v9->NumberParameters != 3 || v9->params.magicNumber != 429065504 )
   {
 LABEL_35:
     if ( a6 )
       sub_557C4C();
-    FindHandlerForForeignException(v9, a2, a3, a4, (const struct _s_FuncInfo *)a5, state, a7, TargetFrame);
+    FindHandlerForForeignException(
+      v9,
+      a2,
+      a3,
+      a4,
+      (const struct _s_FuncInfo *)a5,
+      (EXCEPTION_POINTERS *)state,
+      a7,
+      TargetFrame);
     return;
   }
   v10 = state;
@@ -12004,10 +12011,10 @@ LABEL_35:
       {
         while ( 1 )
         {
-          v12 = *(_DWORD **)(v9->ExceptionInformation[2] + 12);
-          v13 = (const struct _s_CatchableType **)(v12 + 1);
-          v19 = *v12;
-          if ( v19 > 0 )
+          pCatchableTypeArray = v9->params.pThrowInfo->pCatchableTypeArray;
+          arrayOfCatchableTypes = (const struct _s_CatchableType **)pCatchableTypeArray->arrayOfCatchableTypes;
+          nCatchableTypes = pCatchableTypeArray->nCatchableTypes;
+          if ( nCatchableTypes > 0 )
             break;
 LABEL_27:
           --nCatches;
@@ -12015,21 +12022,21 @@ LABEL_27:
           if ( nCatches <= 0 )
             goto LABEL_30;
         }
-        while ( !TypeMatch(ExceptionRecorda, *v13, (const struct _s_ThrowInfo *)v9->ExceptionInformation[2]) )
+        while ( !TypeMatch(ExceptionRecorda, *arrayOfCatchableTypes, v9->params.pThrowInfo) )
         {
-          --v19;
-          ++v13;
-          if ( v19 <= 0 )
+          --nCatchableTypes;
+          ++arrayOfCatchableTypes;
+          if ( nCatchableTypes <= 0 )
             goto LABEL_27;
         }
         CatchIt(
-          (struct EHExceptionRecord *)v9,
+          v9,
           a2,
           a3,
           a4,
           (const struct _s_FuncInfo *)a5,
           ExceptionRecorda,
-          *v13,
+          *arrayOfCatchableTypes,
           v11,
           a7,
           TargetFrame);
@@ -13857,9 +13864,9 @@ int __initmbctable()
 }
 
 // 0x005592F0
-double __usercall fFYTOX@<st0>(int a1@<ebp>, char a2@<ch>, long double a3@<st1>, long double a4@<st0>)
+long double __usercall fFYTOX@<st0>(int a1@<ebp>, char a2@<ch>, long double a3@<st1>, long double a4@<st0>)
 {
-  double result; // st7
+  long double result; // st7
   long double v6; // st6
   long double v7; // st7
   long double v8; // st7
@@ -15154,7 +15161,7 @@ LABEL_256:
 }
 
 // 0x0055A28B
-int __cdecl _hextodec(int C)
+unsigned int __cdecl _hextodec(int C)
 {
   int v1; // esi
   int v2; // eax
@@ -16417,7 +16424,7 @@ unsigned int __cdecl _control87(unsigned int NewValue, unsigned int Mask)
 {
   int v2; // eax
   unsigned int v3; // esi
-  char v5; // [esp+4h] [ebp-4h]
+  __int16 v5; // [esp+4h] [ebp-4h]
 
   LOBYTE(v2) = _abstract_cw(v5);
   v3 = Mask & NewValue | ~Mask & v2;
@@ -19005,7 +19012,7 @@ unsigned int *__cdecl __shl_12(unsigned int *a1)
 unsigned int *__cdecl __shr_12(unsigned int *a1)
 {
   unsigned int v2; // edx
-  int v3; // edi
+  unsigned int v3; // edi
   unsigned int v4; // ecx
 
   v2 = a1[2];

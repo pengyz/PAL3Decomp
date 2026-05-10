@@ -490,14 +490,14 @@ char CCBStageCam::ProcCamMove(int _this)
   v10 = 0;
   if ( g_Input.m_shiftedKeyStates[267] == 1 )
   {
-    result = this->Create(&v6);
+    result = this->Create((float *)&v6);
     if ( result )
     {
       *(_BYTE *)(this + 430253) = 1;
     }
     else
     {
-      result = this->Create(&v9);
+      result = this->Create((float *)&v9);
       if ( result )
       {
         *(_BYTE *)(this + 430254) = 1;

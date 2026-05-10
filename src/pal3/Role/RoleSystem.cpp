@@ -739,7 +739,7 @@ int RoleSystem::MoveRole(float *pPos, int a3, int a4, int a5)
   int v7; // ecx
   RoleSystem *v8; // eax
   int RolePtr; // ebx
-  char *v10; // eax
+  RoleSystem *v10; // eax
   int v11; // edx
   int v12; // [esp-18h] [ebp-34h]
   int v13; // [esp-14h] [ebp-30h]
@@ -771,7 +771,7 @@ int RoleSystem::MoveRole(float *pPos, int a3, int a4, int a5)
     v14 = (__int64)((*((float *)this + 3) - *(float *)(RolePtr + 136)) / g_SceneMgr.m_npc[5].m_path.normal[212].z);
     v13 = (__int64)((*((float *)this + 1) - *(float *)(RolePtr + 128)) / g_SceneMgr.m_npc[5].m_path.normal[212].z);
     v12 = *((_DWORD *)this + 157);
-    v10 = (char *)UISceneUpdate();
+    v10 = (RoleSystem *)UISceneUpdate();
     if ( sub_4215B0(v10, v12, v13, v14, v15, v17) )
     {
       *((_DWORD *)this + 1138) = 2;
@@ -962,20 +962,20 @@ int RoleSystem::PathFind(float *pTarget)
   double v8; // st7
   float *v9; // ebp
   float v10; // ecx
-  void *v11; // eax
+  RoleSystem *v11; // eax
   RoleSystem *v12; // eax
   int RolePtr; // edi
   int v14; // ebx
   double v15; // st7
   __int64 v16; // rax
   double v17; // st7
-  char *v18; // eax
+  RoleSystem *v18; // eax
   double v19; // st7
   int v20; // ecx
   int v21; // edx
   int v22; // eax
   float v23; // eax
-  char *v24; // eax
+  RoleSystem *v24; // eax
   long double v25; // st7
   long double v26; // st6
   double v27; // st7
@@ -1043,7 +1043,7 @@ int RoleSystem::PathFind(float *pTarget)
     *((float *)this + 312) = v7;
   }
   v35 = *((_DWORD *)this + 157);
-  v11 = (void *)UISceneUpdate();
+  v11 = (RoleSystem *)UISceneUpdate();
   sub_421440(v11, v35, v9, 0, 0);
   *((float *)this + 311) = v7;
   if ( !g_SceneMgr.m_npc[6].m_actor.m_szTexture[130] )
@@ -1062,7 +1062,7 @@ int RoleSystem::PathFind(float *pTarget)
     v38 = v16;
     v36 = LODWORD(v47);
     v34 = *((_DWORD *)this + 157);
-    v18 = (char *)UISceneUpdate();
+    v18 = (RoleSystem *)UISceneUpdate();
     if ( !sub_4218B0(v18, v34, v14, v36, v38, v40, &v43) )
     {
       v19 = 0.0;
@@ -1083,7 +1083,7 @@ int RoleSystem::PathFind(float *pTarget)
       v9[2] = v48;
       v39 = v20;
       v37 = *((_DWORD *)this + 157);
-      v24 = (char *)UISceneUpdate();
+      v24 = (RoleSystem *)UISceneUpdate();
       *((float *)this + 311) = sub_421230(v24, v37, v39, v41, 0);
     }
   }
@@ -1138,9 +1138,9 @@ void RoleSystem::UpdateAnimation(int a2)
   double v5; // st7
   int v6; // ecx
   double v7; // st7
-  _DWORD *v8; // eax
+  int *v8; // eax
   int v9; // ecx
-  int *Instance; // eax
+  PtrArray *Instance; // eax
   double v11; // st7
   float v12; // edx
   int v13; // ecx
@@ -1213,7 +1213,7 @@ void RoleSystem::UpdateAnimation(int a2)
         {
           LOBYTE(v15) = *((_BYTE *)this + 172);
           if ( sub_421020(
-                 (char *)v14,
+                 v14,
                  *((_DWORD *)this + 157),
                  (__int64)((v25 - *(float *)(RolePtr + 128)) / g_SceneMgr.m_npc[5].m_path.normal[212].z),
                  (__int64)((v27 - *(float *)(RolePtr + 136)) / g_SceneMgr.m_npc[5].m_path.normal[212].z),
@@ -1244,7 +1244,7 @@ void RoleSystem::UpdateAnimation(int a2)
           v9 = *((_DWORD *)this + 349);
           *((_DWORD *)this + 347) = 2;
           v23 = v9;
-          Instance = (int *)SoundContext::GetInstance();
+          Instance = (PtrArray *)SoundContext::GetInstance();
           CScreenMode_SetResolution(Instance, 0, v23);
         }
         else
@@ -1324,64 +1324,65 @@ int RoleSystem::GetActiveRole()
 // 0x00417AC0
 char RoleSystem::SetState(int state)
 {
-  int v3; // eax
-  RoleSystem *v5; // eax
-  int v6; // ecx
-  int v7; // edi
-  int v8; // esi
-  char *v9; // eax
-  int v11; // [esp-10h] [ebp-28h]
-  int v12; // [esp-4h] [ebp-1Ch]
+  double v2; // st7
+  int v4; // eax
+  RoleSystem *v6; // eax
+  int v7; // ecx
+  int v8; // edi
+  int v9; // esi
+  RoleSystem *v10; // eax
+  int v12; // [esp-10h] [ebp-28h]
   int v13; // [esp-4h] [ebp-1Ch]
-  int v14; // [esp+10h] [ebp-8h]
-  int v15; // [esp+14h] [ebp-4h]
+  int v14; // [esp-4h] [ebp-1Ch]
+  int v15; // [esp+10h] [ebp-8h]
+  int v16; // [esp+14h] [ebp-4h]
   int statea; // [esp+1Ch] [ebp+4h]
 
-  LOBYTE(v3) = *(_BYTE *)(state + 244);
-  if ( (_BYTE)v3 == 14 )
+  LOBYTE(v4) = *(_BYTE *)(state + 244);
+  if ( (_BYTE)v4 == 14 )
   {
-    v12 = *((_DWORD *)this + 157);
-    v5 = (RoleSystem *)UISceneUpdate();
-    v5->GetRolePtr(v12);
-    v3 = *(_DWORD *)(state + 236) - *(_DWORD *)(state + 228);
-    v15 = v3;
-    v14 = *(_DWORD *)(state + 240) - *(_DWORD *)(state + 232);
-    if ( v14 >= 0 )
+    v13 = *((_DWORD *)this + 157);
+    v6 = (RoleSystem *)UISceneUpdate();
+    v6->GetRolePtr(v13);
+    v4 = *(_DWORD *)(state + 236) - *(_DWORD *)(state + 228);
+    v16 = v4;
+    v15 = *(_DWORD *)(state + 240) - *(_DWORD *)(state + 232);
+    if ( v15 >= 0 )
     {
       while ( 1 )
       {
-        statea = v3;
-        if ( v3 >= 0 )
+        statea = v4;
+        if ( v4 >= 0 )
           break;
 LABEL_7:
-        if ( --v14 < 0 )
-          return v3;
+        if ( --v15 < 0 )
+          return v4;
       }
       while ( 1 )
       {
-        v6 = v14;
-        v7 = v14 + *(_DWORD *)(state + 232);
-        LOBYTE(v6) = *((_BYTE *)this + 172);
-        v8 = *(_DWORD *)(state + 228) + statea;
-        v13 = v6;
-        v11 = *((_DWORD *)this + 157);
-        v9 = (char *)UISceneUpdate();
-        if ( sub_421020(v9, v11, v8, v7, v13) )
+        v7 = v15;
+        v8 = v15 + *(_DWORD *)(state + 232);
+        LOBYTE(v7) = *((_BYTE *)this + 172);
+        v9 = *(_DWORD *)(state + 228) + statea;
+        v14 = v7;
+        v12 = *((_DWORD *)this + 157);
+        v10 = (RoleSystem *)UISceneUpdate();
+        if ( sub_421020(v10, v12, v9, v8, v14) )
           break;
         if ( --statea < 0 )
         {
-          v3 = v15;
+          v4 = v16;
           goto LABEL_7;
         }
       }
-      LOBYTE(v3) = sub_4132B0((int)this, v8, v7, 1);
+      LOBYTE(v4) = sub_4132B0((int)this, v9, v8, 1);
     }
   }
   else if ( *((_DWORD *)this + 316) != 4 )
   {
-    sub_424C20(state, (int)this, 1, 0, 0.001);
+    sub_424C20(state, v2, this, 1, 0, 0.001);
   }
-  return v3;
+  return v4;
 }
 
 // 0x00419A80

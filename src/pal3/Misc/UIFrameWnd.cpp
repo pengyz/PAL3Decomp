@@ -124,7 +124,7 @@ int UIFrameWnd::Render(int _this)
   int v21; // edx
   int v22; // edi
   int v23; // eax
-  _BYTE *v24; // eax
+  const char *v24; // eax
   int v25; // [esp-1Ch] [ebp-A0h]
   int v26; // [esp-18h] [ebp-9Ch]
   gbColorQuad v27; // [esp-Ch] [ebp-90h] BYREF
@@ -219,12 +219,12 @@ int UIFrameWnd::Render(int _this)
         v34 = v38 - v21;
       else
         v34 = v23 + v22;
-      v24 = (_BYTE *)*(_BYTE **)(this + 100);
+      v24 = (const char *)*(const char **)(this + 100);
       v33 = v21 + v20;
       v35 = v39 - v21;
       if ( !v24 )
         v24 = byte_56A634;
-      UIRenderPar((int)v24, (int)&v32, (_BYTE *)(this + 4), *(_DWORD *)(this + 92), *(_DWORD *)(this + 72));
+      UIRenderPar(v24, &v32, (_BYTE *)(this + 4), *(_DWORD *)(this + 92), *(_DWORD *)(this + 72));
     }
     return ((UIWnd *)this)->GetID();
   }

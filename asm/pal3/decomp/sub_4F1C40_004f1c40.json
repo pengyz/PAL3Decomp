@@ -2,6 +2,6 @@
   "name": "sub_4F1C40",
   "address": "0x004F1C40",
   "size_bytes": 121,
-  "signature": "char __thiscall(_DWORD *this, int a2)",
-  "decompiled_c": "// between_std_methods (0x4D70B0-0x504E20)\nchar __thiscall sub_4F1C40(_DWORD *this, int a2)\n{\n  int i; // esi\n\n  for ( i = 0; i < 11; ++i )\n  {\n    if ( *(_BYTE *)(a2 + 17) )\n    {\n      if ( !*(_BYTE *)(i + a2 + 29) )\n        continue;\n    }\n    else if ( *(_DWORD *)(a2 + 12) != i )\n    {\n      continue;\n    }\n    if ( sub_4F27E0(this, (const void *)a2, i) < 0\n      && !CCBSystem::IsCmdEmpty(*(CCBSystem **)(*(this + 130) + 12), i)\n      && !CCBSystem::IsCmdReady(*(CCBSystem **)(*(this + 130) + 12), i) )\n    {\n      CCBSystem::GetCmdData(*(CCBSystem **)(*(this + 130) + 12), i);\n    }\n  }\n  return 1;\n}\n"
+  "signature": "char __thiscall(CCBRoleState *this, int a2)",
+  "decompiled_c": "// between_std_methods (0x4D70B0-0x504E20)\nchar __thiscall sub_4F1C40(CCBRoleState *this, int a2)\n{\n  int i; // esi\n\n  for ( i = 0; i < 11; ++i )\n  {\n    if ( *(_BYTE *)(a2 + 17) )\n    {\n      if ( !*(_BYTE *)(i + a2 + 29) )\n        continue;\n    }\n    else if ( *(_DWORD *)(a2 + 12) != i )\n    {\n      continue;\n    }\n    if ( sub_4F27E0(this, (const void *)a2, i) < 0\n      && !CCBSystem::IsCmdEmpty(*(CCBSystem **)(this->m_pCBSystem + 12), i)\n      && !CCBSystem::IsCmdReady(*(CCBSystem **)(this->m_pCBSystem + 12), i) )\n    {\n      CCBSystem::GetCmdData(*(CCBSystem **)(this->m_pCBSystem + 12), i);\n    }\n  }\n  return 1;\n}\n"
 }

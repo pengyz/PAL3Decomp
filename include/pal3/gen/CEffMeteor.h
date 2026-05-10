@@ -51,5 +51,5 @@ public:
     ~CEffMeteor(); // 0x004CB4C0
     int Init(int a2, float a3, float a4, float a5); // 0x004CB5E0
     char Create(int base); // 0x004CB800
-    void CreateTask(int arg0); // 0x004CBFC0
+    void CreateTask(float arg0); // 0x004CBFC0
 };

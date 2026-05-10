@@ -29,7 +29,7 @@ void MiniGame3::Render()
   v6 = *(_DWORD *)(*((_DWORD *)this + 1) + 3216);
   if ( v6 )
     (*(void (**)(int, _DWORD))(*(_DWORD *)v6 + 16))(v6, 0);
-  sub_535F10(*(float **)this, v5);
+  sub_535F10(*(struct gbVec3D **)this, v5);
   sub_535970(v5);
   v5->Pop();
   v2->End();

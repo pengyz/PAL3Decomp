@@ -960,7 +960,7 @@ void CCBStageRole::IsDoTask(gbMatrixStack *a2)
     this->ProcPursueRole(0, 0, 0);
   if ( LOBYTE(this->m_fTimeScale) )
   {
-    ((int)this)->DoTask(&v23.x);
+    this->DoTask(&v23.x);
     v4 = this->m_bAlive;
     v23.y = sin(this->m_pStage->m_pCBSystem->m_fTimeFund * 10.0 + (double)v4) * 5.0 + v23.y + 6.0;
     if ( (unsigned int)v4 <= 4 || v4 >= 5 && v4 < 11 && this->ForceEndTaskByPFN() )

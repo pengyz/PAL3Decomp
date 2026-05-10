@@ -13,5 +13,5 @@ public:
     static int RunEvent(int eventId, int a2, int a3); // 0x00410470
     static int UpdateTimers(float dt); // 0x00411F60
     static int UpdateObjects(float dt); // 0x004194C0
-    static int Init(); // 0x0041EFA0
+    static void Init(); // 0x0041EFA0
 };

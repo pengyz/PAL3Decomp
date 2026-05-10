@@ -152,7 +152,7 @@ char CCBCamControl::IsPointerUnderMouse(int _this)
 {
   int v2; // esi
 
-  this->CCBStageEffect();
+  ((CCBStageEffect *)this)->CCBStageEffect();
   v2 = ((operator *)0xD8u)->new();
   if ( v2 )
   {

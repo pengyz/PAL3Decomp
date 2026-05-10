@@ -152,7 +152,7 @@ int CCBUI::GetState()
   if ( !(_BYTE)result )
   {
     BYTE1(this->m_wndcolor.Red) = 1;
-    return sub_4DC650(this, (int)sub_4DF2F0, 0, 0, 0, 0, 0, 0, -1, 0, 0);
+    return sub_4DC650((CCBSystem **)this, (CCBSystem *)sub_4DF2F0, 0, 0, 0, 0, 0, 0, (CCBSystem *)0xFFFFFFFF, 0, 0);
   }
   return result;
 }
@@ -226,7 +226,7 @@ char CCBUI::UpdateInput()
     byte_17A9931 = 0;
   if ( byte_17A9933 )
   {
-    v3 = sub_504240(*(_DWORD **)(*(_DWORD *)(this->m_fontcolor.ColorQuadFmt + 20) + 12));
+    v3 = sub_504240(*(float **)(*(_DWORD *)(this->m_fontcolor.ColorQuadFmt + 20) + 12));
     sprintf(Buffer, &byte_5D8848, v3);
     result = ((CCBSystem *)this->m_fontcolor.ColorQuadFmt)->CreateObj(Buffer, 0, 0x40u);
     byte_17A9933 = 0;
@@ -310,7 +310,7 @@ char CCBUI::UpdateAnimation()
   if ( byte_17A9935 )
   {
     byte_17A9935 = 0;
-    result = sub_4E30E0(this);
+    result = sub_4E30E0(&this->m_fontcolor.ColorQuadFmt);
   }
   if ( byte_17A9936 )
   {
@@ -320,17 +320,17 @@ char CCBUI::UpdateAnimation()
   if ( byte_17A9938 )
   {
     byte_17A9938 = 0;
-    result = sub_4E3D90();
+    result = sub_4E3D90((CCBRoleState **)this);
   }
   if ( byte_17A9937 )
   {
     byte_17A9937 = 0;
-    result = sub_4E3A20();
+    result = sub_4E3A20((CCBRoleState **)this);
   }
   if ( byte_17A9944 )
   {
     byte_17A9944 = 0;
-    result = sub_4E40B0(this);
+    result = sub_4E40B0((CCBRoleState **)this);
   }
   if ( byte_17A9945 )
   {
@@ -340,12 +340,12 @@ char CCBUI::UpdateAnimation()
   if ( byte_17A9946 )
   {
     byte_17A9946 = 0;
-    result = sub_4E4A80();
+    result = sub_4E4A80(this);
   }
   if ( byte_17A9948 )
   {
     byte_17A9948 = 0;
-    result = sub_4E4D70();
+    result = sub_4E4D70(this);
   }
   if ( byte_17A9947 )
   {
@@ -355,7 +355,7 @@ char CCBUI::UpdateAnimation()
   if ( byte_17A994A )
   {
     byte_17A994A = 0;
-    result = sub_4E50B0();
+    result = (unsigned __int8)sub_4E50B0();
   }
   if ( byte_17A9949 )
   {
@@ -594,8 +594,8 @@ char CCBUI::CreateAttackSequen()
 {
   UIProgressBar **p_m_pRoleStateSword; // esi
   char result; // al
-  UIProgressBar *v4; // ecx
-  int v5; // [esp+8h] [ebp-10h] BYREF
+  CCBItemWindow *v4; // ecx
+  int pRect; // [esp+8h] [ebp-10h] BYREF
   int v6; // [esp+Ch] [ebp-Ch]
   int v7; // [esp+10h] [ebp-8h]
   int v8; // [esp+14h] [ebp-4h]
@@ -606,12 +606,12 @@ char CCBUI::CreateAttackSequen()
   {
     v6 = 0;
     v7 = 0;
-    v4 = (UIProgressBar *)*p_m_pRoleStateSword;
-    v5 = 14;
+    v4 = (CCBItemWindow *)*p_m_pRoleStateSword;
+    pRect = 14;
     v7 = 172;
     v6 = 316;
     v8 = 474;
-    ((int)v4)->Create(&v5, (int)this);
+    v4->Create(&pRect, (int)this);
     (*(void (**)(UIProgressBar *, _DWORD))(*p_m_pRoleStateSword)->m_fontcolor.ColorQuadFmt)(
       *p_m_pRoleStateSword,
       0);
@@ -654,8 +654,8 @@ char CCBUI::CreateControlWindow()
 {
   int v1; // esi
   UIStatic **i; // edi
-  UIStatic *v4; // ecx
-  int v6; // [esp+Ch] [ebp-10h] BYREF
+  CCBSkillWindow *v4; // ecx
+  int pRect; // [esp+Ch] [ebp-10h] BYREF
   int v7; // [esp+10h] [ebp-Ch]
   int v8; // [esp+14h] [ebp-8h]
   int v9; // [esp+18h] [ebp-4h]
@@ -663,16 +663,16 @@ char CCBUI::CreateControlWindow()
   v1 = 0;
   v7 = 0;
   v8 = 0;
-  v6 = 0;
+  pRect = 0;
   v9 = 0;
   for ( i = &this->m_pDialogBack; i->Create(); ++i )
   {
     v8 = v1 + 256;
-    v4 = (UIStatic *)*i;
-    v6 = v1;
+    v4 = (CCBSkillWindow *)*i;
+    pRect = v1;
     v7 = 0;
     v9 = 256;
-    ((int)v4)->Create(&v6, (int)this);
+    v4->Create(&pRect, (int)this);
     (*(void (**)(UIStatic *, _DWORD))(*i)->m_fontcolor.ColorQuadFmt)(*i, 0);
     v1 += 200;
     if ( v1 >= 800 )
@@ -1774,7 +1774,7 @@ char CCBUI::CreateButton@<al>(
     ++v14;
   }
   while ( (int)v13 < (int)&dword_57011C );
-  a1->ChangeSpecStateLum();
+  ((CCBUI *)a1)->ChangeSpecStateLum();
   v18 = (UIFrameWnd *)((operator *)0x98u)->new();
   v23 = v18;
   if ( v18 )

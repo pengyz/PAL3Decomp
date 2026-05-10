@@ -505,7 +505,7 @@ void PAL3::InitGFX()
     _CxxThrowException(&v5[16], (_ThrowInfo *)&_TI1_AV_Exception__);
   }
   ((CameraCtrl *)v3)->SetDimention(g_Input.KeyInfo[120].Data, g_Input.KeyInfo[120].HoldTime);
-  sub_41D100(g_Input.KeyInfo[177].CountMode, 0);
+  sub_41D100((_DWORD *)g_Input.KeyInfo[177].CountMode, 0);
   ((CameraCtrl *)g_Input.KeyInfo[177].CountMode)->SetAsCurrent(3);
   *(_DWORD *)&v5[12] = 3;
   *(_DWORD *)v5 = -16777216;
@@ -556,11 +556,11 @@ char PAL3::CreateEffectSystem()
   gbSnow *v0; // esi
   gbRain *v1; // eax
   gbRain *v2; // esi
-  _DWORD *v3; // eax
-  _DWORD *v4; // eax
+  char *v3; // eax
+  float *v4; // eax
   char v5; // al
   OpenBaseFile v7; // [esp+8h] [ebp-85Ch] BYREF
-  _DWORD *p_m_MaxUnit; // [esp+Ch] [ebp-858h]
+  void *v8; // [esp+Ch] [ebp-858h]
   struct gbDropDesc v9; // [esp+10h] [ebp-854h] BYREF
   struct gbDropDesc v10; // [esp+34h] [ebp-830h] BYREF
   char pExceptionObject[1024]; // [esp+58h] [ebp-80Ch] BYREF
@@ -588,7 +588,7 @@ char PAL3::CreateEffectSystem()
   ((OpenBaseFile *)&v7)->OpenBaseFile();
   v13 = 0;
   v0 = (gbSnow *)((operator *)0x58u)->new();
-  p_m_MaxUnit = (_DWORD *)&v0->m_MaxUnit;
+  v8 = v0;
   LOBYTE(v13) = 1;
   if ( v0 )
   {
@@ -603,7 +603,7 @@ char PAL3::CreateEffectSystem()
   g_Input.KeyInfo[174].CountMode = (int)v0;
   v1 = (gbRain *)((operator *)0x50u)->new();
   v2 = v1;
-  p_m_MaxUnit = v1;
+  v8 = v1;
   LOBYTE(v13) = 2;
   if ( v1 )
   {
@@ -616,11 +616,11 @@ char PAL3::CreateEffectSystem()
   }
   LOBYTE(v13) = 0;
   g_Input.KeyInfo[174].PressTime = (int)v2;
-  v3 = (_DWORD *)((operator *)0x158u)->new();
-  p_m_MaxUnit = v3;
+  v3 = (char *)((operator *)0x158u)->new();
+  v8 = v3;
   LOBYTE(v13) = 3;
   if ( v3 )
-    v4 = (_DWORD *)sub_4C5820(v3, g_Input.KeyInfo[177].Data);
+    v4 = (float *)sub_4C5820(v3, g_Input.KeyInfo[177].Data);
   else
     v4 = 0;
   LOBYTE(v13) = 0;
@@ -679,12 +679,12 @@ int PAL3::Update(int a1)
   float *p_y; // esi
   double v13; // st7
   double v14; // st7
-  _DWORD *v15; // eax
+  int *v15; // eax
   double v16; // st7
   _DWORD *v17; // eax
   void *v18; // ecx
   int *v19; // eax
-  int *v20; // eax
+  PtrArray *v20; // eax
   float *Instance; // eax
   _DWORD *v22; // eax
   void *v23; // ecx
@@ -695,7 +695,7 @@ int PAL3::Update(int a1)
   gbAudioManager *AudioManager; // esi
   char *v29; // eax
   char *v30; // eax
-  _BYTE *v31; // eax
+  ScreenEffect *v31; // eax
   int result; // eax
   int v33; // [esp+4h] [ebp-2Ch]
   int v34; // [esp+4h] [ebp-2Ch]
@@ -747,7 +747,7 @@ int PAL3::Update(int a1)
         byte_D8C339 = 0;
         a1->RunSceneScript();
       }
-      InputUpdate(g_Input.KeyInfo[177].CountMode, *(float *)&a1);
+      InputUpdate(g_Input.KeyInfo[177].CountMode, a1);
       if ( g_Input.KeyInfo[177].PressTime != 9 )
       {
         if ( v7 )
@@ -839,7 +839,7 @@ LABEL_59:
     case 5:
       UIQuadManager::GetInstance();
       UIQuadManager_Reset();
-      MiniGame2Update(g_Input.KeyInfo[178].PressTime, a1);
+      MiniGame2Update((_DWORD **)g_Input.KeyInfo[178].PressTime, *(float *)&a1);
       goto LABEL_63;
     case 6:
       UIQuadManager::GetInstance();
@@ -864,7 +864,7 @@ LABEL_63:
         goto LABEL_64;
       }
       a1->RunSceneScript();
-      InputUpdate(g_Input.KeyInfo[177].CountMode, *(float *)&a1);
+      InputUpdate(g_Input.KeyInfo[177].CountMode, a1);
       ScriptUpdate(*(float *)&a1);
       v9 = (_DWORD *)UISceneUpdate();
       UIUpdate(v9, *(float *)&a1);
@@ -906,7 +906,7 @@ LABEL_63:
         v15 = ((PalScriptMgr *)0x6A5u)->Destroy(0);
 LABEL_33:
         v34 = (int)v15;
-        v20 = (int *)SoundContext::GetInstance();
+        v20 = (PtrArray *)SoundContext::GetInstance();
         CScreenMode_SetResolution(v20, 0, v34);
         a1->RunSceneScript();
         goto LABEL_64;
@@ -916,7 +916,7 @@ LABEL_33:
       if ( v16 >= 180.0 )
         goto LABEL_32;
       a1->RunSceneScript();
-      InputUpdate(g_Input.KeyInfo[177].CountMode, *(float *)&a1);
+      InputUpdate(g_Input.KeyInfo[177].CountMode, a1);
       ScriptUpdate(*(float *)&a1);
       v17 = (_DWORD *)UISceneUpdate();
       UIUpdate(v17, *(float *)&a1);
@@ -937,7 +937,7 @@ LABEL_32:
         }
       }
 LABEL_64:
-      v31 = (_BYTE *)ScreenEffectMgr::GetInstance();
+      v31 = (ScreenEffect *)ScreenEffectMgr::GetInstance();
       RenderPost((int)v31, a1);
       result = g_Input.KeyInfo[177].PressTime;
       if ( !g_Input.KeyInfo[177].PressTime )
@@ -973,7 +973,7 @@ void PAL3::Render()
   int v19; // esi
   double v20; // st7
   ScreenEffectMgr *v21; // eax
-  void *v22; // eax
+  UIRenderObj *v22; // eax
   float v23; // [esp+0h] [ebp-94h]
   float v24; // [esp+4h] [ebp-90h]
   int v25; // [esp+18h] [ebp-7Ch]
@@ -1104,7 +1104,7 @@ void PAL3::Render()
       ((gbSceneGraph *)v0)->Begin(v12);
       *(_BYTE *)(v0 + 19244) = 0;
       UIScene::CombatCheck();
-      sub_410430((int)v3);
+      sub_410430(v3);
       v13 = (UIScene *)UISceneUpdate();
       v13->OverlayRender((int)v3);
       ((gbSceneGraph *)v0)->End();
@@ -1208,8 +1208,8 @@ LABEL_46:
     v35 = -1;
     PopMatrixStacks();
   }
-  v22 = (void *)UIQuadManager::GetInstance();
-  ((int)v22)->UIRenderObj();
+  v22 = (UIRenderObj *)UIQuadManager::GetInstance();
+  v22->UIRenderObj();
   (*(void (**)(int))(*(_DWORD *)g_Input.KeyInfo[177].Data + 52))(g_Input.KeyInfo[177].Data);
   if ( g_Input.KeyInfo[180].CountMode )
   {
@@ -1901,10 +1901,10 @@ void PAL3::EndWolf(int a1)
 {
   float *p_z; // esi
   void (***v2)(_DWORD, int); // eax
-  int *v3; // eax
-  int *Instance; // eax
-  _DWORD *v5; // [esp-4h] [ebp-18h]
-  _DWORD *v6; // [esp-4h] [ebp-18h]
+  PtrArray *v3; // eax
+  PtrArray *Instance; // eax
+  int *v5; // [esp-4h] [ebp-18h]
+  int *v6; // [esp-4h] [ebp-18h]
   _DWORD v7[5]; // [esp+0h] [ebp-14h]
   void *retaddr; // [esp+14h] [ebp+0h]
 
@@ -1932,13 +1932,13 @@ void PAL3::EndWolf(int a1)
     if ( retaddr == (void *)-1 )
     {
       v6 = ((PalScriptMgr *)0x61u)->Destroy(0);
-      Instance = (int *)SoundContext::GetInstance();
+      Instance = (PtrArray *)SoundContext::GetInstance();
       CScreenMode_SetResolution(Instance, 0, (int)v6);
     }
     else
     {
       v5 = ((PalScriptMgr *)0x62u)->Destroy(0);
-      v3 = (int *)SoundContext::GetInstance();
+      v3 = (PtrArray *)SoundContext::GetInstance();
       CScreenMode_SetResolution(v3, 0, (int)v5);
       if ( g_Input.KeyInfo[175].HoldTime < 4u )
       {

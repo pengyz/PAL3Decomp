@@ -179,7 +179,7 @@ char Camera::IsTransitioning()
   RoleSystem *v0; // eax
   int RolePtr; // eax
   _DWORD *v2; // eax
-  int v3; // eax
+  _DWORD *v3; // eax
   char v5; // al
   int v6; // [esp-Ch] [ebp-18h]
   int v7; // [esp-8h] [ebp-14h]
@@ -195,9 +195,9 @@ char Camera::IsTransitioning()
                / *(float *)&g_SceneMgr.m_npc[6].m_actor.m_szTexture[92]);
   v6 = *(_DWORD *)(*(_DWORD *)&g_SceneMgr.m_npc[6].m_actor.m_szTexture[132] + 628);
   v2 = (_DWORD *)UISceneUpdate();
-  v3 = sub_420A10(v2, v6, v7, v9);
+  v3 = (_DWORD *)sub_420A10(v2, v6, v7, v9);
   if ( !v3 )
     return 0;
-  v5 = *(_BYTE *)(v3 + 244);
+  v5 = *((_BYTE *)v3 + 244);
   return v5 == 44 || v5 == 38;
 }
